@@ -2,13 +2,218 @@
   "version": 1,
   "stories": [
     {
+      "id": "raf-fairford-evacuation-arrests",
+      "label": "UK police evacuate homes near air base used by US",
+      "firstSeen": "2026-09-27T14:06:19.564Z",
+      "lastCovered": "2026-09-27T14:06:19.564Z",
+      "coverageCount": 1,
+      "category": "politics",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-09-27-raf-fairford-evacuation-arrests"
+      ],
+      "eventUri": "eng-12046625",
+      "summary": "Police evacuated homes in Whelford near RAF Fairford and arrested five people after villagers reported suspicious vans overnight. The US Air Force flies strikes on Iran from this base. Lead with the arrests and the bomb-disposal operation. The structural point: Britain's decision to lend Fairford to the Iran war has brought the war's security risk into a Gloucestershire village. Do not speculate about motive beyond what police have said.",
+      "conceptUris": [
+        "http://en.wikipedia.org/wiki/United_Kingdom",
+        "http://en.wikipedia.org/wiki/RAF_Fairford",
+        "http://en.wikipedia.org/wiki/Explosive",
+        "http://en.wikipedia.org/wiki/United_States_Air_Force",
+        "http://en.wikipedia.org/wiki/Gloucestershire",
+        "http://en.wikipedia.org/wiki/Air_base",
+        "http://en.wikipedia.org/wiki/Bomb_disposal",
+        "http://en.wikipedia.org/wiki/Iran"
+      ]
+    },
+    {
+      "id": "smotrich-annexation-gaza-lebanon-west-bank-war",
+      "label": "Israeli minister calls for West Bank war, annexation of Lebanon, Gaza areas",
+      "firstSeen": "2026-09-27T14:06:19.564Z",
+      "lastCovered": "2026-09-27T14:06:19.564Z",
+      "coverageCount": 1,
+      "category": "politics",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-09-27-smotrich-annexation-gaza-lebanon-west-bank-war"
+      ],
+      "eventUri": "eng-12046844",
+      "summary": "Finance Minister Bezalel Smotrich called on Sunday for Israel to annex Gaza at least up to the 'yellow line', along with parts of south Lebanon, and for forces to 'go to war' against Palestinians in the occupied West Bank. Lead with his own words. This is a sitting cabinet minister openly stating annexation as policy, with Gaza's ceasefire lines as the template. Name who would be displaced, and note that annexation of occupied territory is barred under international law.",
+      "conceptUris": []
+    },
+    {
+      "id": "rsf-drones-gezira-fuel-depot-wad-madani",
+      "label": "RSF drones strike El Gezira fuel depot as both sides report shootdowns",
+      "firstSeen": "2026-09-27T14:06:19.564Z",
+      "lastCovered": "2026-09-27T14:06:19.564Z",
+      "coverageCount": 1,
+      "category": "politics",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-09-27-rsf-drones-gezira-fuel-depot-wad-madani"
+      ],
+      "eventUri": null,
+      "summary": "RSF drones hit the Umm Alila fuel depot east of Wad Madani shortly after dawn prayers and set it on fire, while both sides reported shooting down drones elsewhere. Lead with the target. Fuel is what keeps Gezira's pumps, bakeries and hospitals running in a state the army retook, and the RSF's drone war now reaches civilian supply lines far behind the front. Continuing coverage of the war and the siege of Sudan's civilians.",
+      "conceptUris": []
+    },
+    {
+      "id": "oleshky-drone-food-deliveries-occupied-kherson",
+      "label": "Ukrainian military delivers 4 tons of food to occupied Oleshky by drones, according to regional authorities",
+      "firstSeen": "2026-09-27T14:06:19.564Z",
+      "lastCovered": "2026-09-27T14:06:19.564Z",
+      "coverageCount": 1,
+      "category": "politics",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-09-27-oleshky-drone-food-deliveries-occupied-kherson"
+      ],
+      "eventUri": "ukr-368106",
+      "summary": "Civilians trapped in occupied Oleshky, on the Dnipro's left bank, are being fed by drone: about four tons of food dropped at 100 points across the town, according to the Kherson regional administration. Lead with the method. It shows how cut off the front-line town is, since drones are the only way in. Attribute the figures to the Ukrainian authorities. The same night, Russian strikes killed at least four people and hit a data centre in Kyiv.",
+      "conceptUris": [
+        "http://en.wikipedia.org/wiki/Oleshky",
+        "http://en.wikipedia.org/wiki/Kherson_Oblast",
+        "http://en.wikipedia.org/wiki/Unmanned_aerial_vehicle",
+        "http://en.wikipedia.org/wiki/Marines",
+        "http://en.wikipedia.org/wiki/National_Guard_of_Ukraine",
+        "http://en.wikipedia.org/wiki/Humanitarian_aid",
+        "http://en.wikipedia.org/wiki/FC_Borysfen_Boryspil",
+        "http://en.wikipedia.org/wiki/Russia"
+      ]
+    },
+    {
+      "id": "irgc-captures-second-remus-600-uuv-hormuz",
+      "label": "Iran's IRGC Navy captures 2nd US-made Remus 600 UUV in Hormuz",
+      "firstSeen": "2026-09-27T14:06:19.564Z",
+      "lastCovered": "2026-09-27T14:06:19.564Z",
+      "coverageCount": 1,
+      "category": "tech",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-09-27-irgc-captures-second-remus-600-uuv-hormuz"
+      ],
+      "eventUri": "rus-2131661",
+      "summary": "The IRGC Navy says it has captured a second US-made Remus 600 unmanned underwater vehicle in the Strait of Hormuz. Attribute the claim to Iran's state Mehr News Agency, because there is no US confirmation. Lead with the hardware: the Remus 600 is an autonomous mine-hunting and survey vehicle, and a second capture suggests the US is mapping the strait's seabed. Iran's navy is harvesting the robots sent to do that mapping. The capture comes a day after Trump rejected Tehran's truce offer.",
+      "conceptUris": [
+        "http://en.wikipedia.org/wiki/Strait_of_Hormuz",
+        "http://en.wikipedia.org/wiki/Islamic_Revolutionary_Guard_Corps",
+        "http://en.wikipedia.org/wiki/Iran",
+        "http://en.wikipedia.org/wiki/United_States",
+        "http://en.wikipedia.org/wiki/Unmanned_aerial_vehicle",
+        "http://en.wikipedia.org/wiki/Submarine",
+        "http://en.wikipedia.org/wiki/United_States_Navy",
+        "http://en.wikipedia.org/wiki/Espionage"
+      ]
+    },
+    {
+      "id": "burnham-heathrow-third-runway",
+      "label": "Burnham refuses to back 'contested' Heathrow third runway",
+      "firstSeen": "2026-09-27T14:06:19.564Z",
+      "lastCovered": "2026-09-27T14:06:19.564Z",
+      "coverageCount": 1,
+      "category": "economy",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-09-27-burnham-heathrow-third-runway"
+      ],
+      "eventUri": "eng-12044842",
+      "summary": "Prime Minister Andy Burnham has declined to back the £49bn Heathrow third runway, calling it 'contested' and a matter for Londoners. That breaks with Rachel Reeves's growth-first enthusiasm. Lead with the size of the project now in doubt. The mechanism: Britain's flagship infrastructure bet is running into a new leader's political base, and investors and airlines have been planning around a runway that may not come.",
+      "conceptUris": [
+        "http://en.wikipedia.org/wiki/Heathrow_Airport",
+        "http://en.wikipedia.org/wiki/Expansion_of_Heathrow_Airport",
+        "http://en.wikipedia.org/wiki/Runway",
+        "http://en.wikipedia.org/wiki/Andy_Burnham",
+        "http://en.wikipedia.org/wiki/Airport",
+        "http://en.wikipedia.org/wiki/Planning_permission",
+        "http://en.wikipedia.org/wiki/Rachel_Reeves",
+        "http://en.wikipedia.org/wiki/London"
+      ]
+    },
+    {
+      "id": "india-bank-strike-five-day-week",
+      "label": "Bank strike tomorrow: Full list of banks facing work disruption; will HDFC Bank, Axis Bank, SBI, PNB & ICICI Bank remain closed?",
+      "firstSeen": "2026-09-27T14:06:19.564Z",
+      "lastCovered": "2026-09-27T14:06:19.564Z",
+      "coverageCount": 1,
+      "category": "economy",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-09-27-india-bank-strike-five-day-week"
+      ],
+      "eventUri": "eng-12045219",
+      "summary": "Indian bank unions start a three-day nationwide strike from September 28 to 30, demanding a five-day working week. SBI, PNB, Bank of India and Central Bank of India have warned customers that branch services will be disrupted. Lead with the scale: public-sector banks that hold most of India's deposits will go dark over quarter-end. The mechanism is a labour dispute that the finance ministry and the RBI have left unresolved.",
+      "conceptUris": [
+        "http://en.wikipedia.org/wiki/Bank",
+        "http://en.wikipedia.org/wiki/Strike_action",
+        "http://en.wikipedia.org/wiki/Public_sector",
+        "http://en.wikipedia.org/wiki/State_Bank_of_India",
+        "http://en.wikipedia.org/wiki/Automated_teller_machine",
+        "http://en.wikipedia.org/wiki/Reserve_Bank_of_India",
+        "http://en.wikipedia.org/wiki/India",
+        "http://en.wikipedia.org/wiki/Ministry_of_Finance_(India)"
+      ]
+    },
+    {
+      "id": "haiti-informal-vendors-protest-gang-warfare",
+      "label": "‘We cannot take it anymore’: Haiti’s informal vendors protest over gang warfare",
+      "firstSeen": "2026-09-27T14:06:19.564Z",
+      "lastCovered": "2026-09-27T14:06:19.564Z",
+      "coverageCount": 1,
+      "category": "economy",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-09-27-haiti-informal-vendors-protest-gang-warfare"
+      ],
+      "eventUri": null,
+      "summary": "Since early August, informal street vendors in Port-au-Prince have been protesting because gang warfare has driven them out of the markets they depend on, and they are asking the government for support. Lead with the vendors' own words. The mechanism is that gangs control the markets and roads, so the informal economy most Haitians live on has collapsed. This is a Latin America dateline the site has been missing.",
+      "conceptUris": []
+    },
+    {
+      "id": "clarity-act-crypto-bill-collapse",
+      "label": "How months of work on the crypto Clarity Act all fell apart",
+      "firstSeen": "2026-09-27T14:06:19.564Z",
+      "lastCovered": "2026-09-27T14:06:19.564Z",
+      "coverageCount": 1,
+      "category": "tech",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-09-27-clarity-act-crypto-bill-collapse"
+      ],
+      "eventUri": "eng-12040350",
+      "summary": "The Digital Asset Market Clarity Act, the US bill meant to define who regulates crypto, is dead after months of Senate Banking Committee work. Lead with what that leaves behind: no federal market-structure law, so SEC-versus-CFTC jurisdiction and enforcement-by-lawsuit continue, while stablecoins keep growing. Explain the political and policy factors that sank it. Keep it factual and leave out CoinDesk's analysis framing.",
+      "conceptUris": []
+    },
+    {
+      "id": "chemosynthetic-bacteria-reef-fish-gills",
+      "label": "DNA reveals chemosynthesis genes in bacteria living on coral reef fish gills",
+      "firstSeen": "2026-09-27T14:06:19.564Z",
+      "lastCovered": "2026-09-27T14:06:19.564Z",
+      "coverageCount": 1,
+      "category": "science",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-09-27-chemosynthetic-bacteria-reef-fish-gills"
+      ],
+      "eventUri": null,
+      "summary": "Chemosynthetic bacteria were known from worms and molluscs, but this is the first time they have been found on fish: DNA from coral reef fish gills carries chemosynthesis genes. Lead with the surprise that fish carry a microbiome able to make energy from chemicals. Explain why it matters: gill microbes may shape fish metabolism, immunity and health, which bears on reef resilience.",
+      "conceptUris": []
+    },
+    {
       "id": "south-africa-fochville-bar-shooting-17-killed",
       "label": "Gunmen kill 17 in South Africa bar shooting, 15 wounded: police",
       "firstSeen": "2026-09-27T10:06:19.186Z",
       "lastCovered": "2026-09-27T10:06:19.186Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-09-27-south-africa-fochville-bar-shooting-17-killed"
@@ -33,7 +238,7 @@
       "lastCovered": "2026-09-27T10:06:19.186Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-09-26-apple-taction-haptics-patent-5-7-billion"
@@ -58,7 +263,7 @@
       "lastCovered": "2026-09-27T10:06:19.186Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-09-26-jaishankar-unga-global-south-war-costs"
@@ -83,7 +288,7 @@
       "lastCovered": "2026-09-27T10:06:19.186Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-09-27-burnham-universal-social-care-labour-conference"
@@ -108,7 +313,7 @@
       "lastCovered": "2026-09-27T10:06:19.186Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-09-27-assam-police-detain-cjp-ranka-42-guwahati"
@@ -133,7 +338,7 @@
       "lastCovered": "2026-09-27T10:06:19.186Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-09-27-serap-cbn-diverted-funds-anchor-borrowers"
@@ -149,7 +354,7 @@
       "lastCovered": "2026-09-27T10:06:19.186Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-09-26-japan-tightens-rules-foreign-residents"
@@ -165,7 +370,7 @@
       "lastCovered": "2026-09-27T10:06:19.186Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-09-27-turlov-elected-fide-president-samarkand"
@@ -190,7 +395,7 @@
       "lastCovered": "2026-09-27T05:07:24.342Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-09-27-hamas-israel-election-gaza-blood-abbas"
@@ -215,7 +420,7 @@
       "lastCovered": "2026-09-27T05:07:24.342Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-09-27-swiss-neutrality-referendum-vote"
@@ -240,7 +445,7 @@
       "lastCovered": "2026-09-27T05:07:24.342Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-09-27-xi-skips-un-han-zheng-china-iran-war"
@@ -265,7 +470,7 @@
       "lastCovered": "2026-09-27T05:07:24.342Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-09-27-india-cec-gyanesh-kumar-bjp-ticket-claim-sir"
@@ -290,7 +495,7 @@
       "lastCovered": "2026-09-27T05:07:24.342Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-09-27-hormuz-pgsa-blacklist-saudi-rejects-fees"
@@ -315,7 +520,7 @@
       "lastCovered": "2026-09-27T05:07:24.342Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-09-27-openai-pauses-frontier-training-safety-incidents"
@@ -331,7 +536,7 @@
       "lastCovered": "2026-09-27T05:07:24.342Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-09-27-trump-rolls-back-fuel-economy-rules-oil-shock"
@@ -356,7 +561,7 @@
       "lastCovered": "2026-09-27T05:07:24.342Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-09-27-malaria-funding-cut-146-million-cases-africa"
@@ -372,7 +577,7 @@
       "lastCovered": "2026-09-27T05:07:24.342Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-09-27-manipur-naga-kuki-violence-soo-pact"
@@ -397,7 +602,7 @@
       "lastCovered": "2026-09-27T05:07:24.342Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-09-27-ai-weather-models-hurricane-intensity-gap"
@@ -413,7 +618,7 @@
       "lastCovered": "2026-09-26T22:06:36.099Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-09-26-cuba-unga-us-oil-blockade-collective-punishment"
@@ -438,7 +643,7 @@
       "lastCovered": "2026-09-26T22:06:36.099Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-09-26-hurricane-polo-category-5-baja-california-landfall"
@@ -463,7 +668,7 @@
       "lastCovered": "2026-09-26T22:06:36.099Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-09-26-supreme-court-blocks-missouri-map-third-time"
@@ -488,7 +693,7 @@
       "lastCovered": "2026-09-26T22:06:36.099Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-09-26-egypt-unga-bab-al-mandab-tigray-madbuly"
@@ -504,7 +709,7 @@
       "lastCovered": "2026-09-26T22:06:36.099Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-09-26-lavrov-s400-turkey-transfer-f35"
@@ -520,7 +725,7 @@
       "lastCovered": "2026-09-26T22:06:36.099Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-09-26-rana-sanaullah-islamabad-protest-ban-pti"
@@ -536,7 +741,7 @@
       "lastCovered": "2026-09-26T22:06:36.099Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-09-26-dmitriev-nord-stream-restart-germany-afd"
@@ -552,7 +757,7 @@
       "lastCovered": "2026-09-26T22:06:36.099Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-09-26-nigeria-un-pandemic-financing-vaccine-equity"
@@ -568,7 +773,7 @@
       "lastCovered": "2026-09-26T22:06:36.099Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-09-26-enceladus-ocean-microbes-survive-life-detection"
@@ -584,7 +789,7 @@
       "lastCovered": "2026-09-26T22:06:36.099Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-09-26-boeing-737-max-software-update-landing-glitch"
@@ -600,7 +805,7 @@
       "lastCovered": "2026-09-26T22:06:36.099Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-09-26-instagram-womens-health-posts-40-percent-ads"
@@ -616,7 +821,7 @@
       "lastCovered": "2026-09-26T22:06:36.099Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-09-26-space-force-lasers-cape-canaveral-drones"
@@ -632,7 +837,7 @@
       "lastCovered": "2026-09-26T18:05:05.426Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-09-26-trump-rejects-iran-hormuz-seven-day-roadmap"
@@ -657,7 +862,7 @@
       "lastCovered": "2026-09-26T18:05:05.426Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-09-26-dera-ismail-khan-suicide-blast-ttp-khyber-pakhtunkhwa"
@@ -682,7 +887,7 @@
       "lastCovered": "2026-09-26T18:05:05.426Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-09-26-china-us-30-billion-tariff-cut-ai-safety-channel"
@@ -707,7 +912,7 @@
       "lastCovered": "2026-09-26T18:05:05.426Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-09-26-lavrov-wadephul-russia-germany-first-talks-since-2022"
@@ -732,7 +937,7 @@
       "lastCovered": "2026-09-26T18:05:05.426Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-09-26-zelensky-patriot-production-refused-uae-trilateral-talks"
@@ -757,7 +962,7 @@
       "lastCovered": "2026-09-26T18:05:05.426Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-09-26-belfast-court-halts-orange-order-garvaghy-road-march"
@@ -782,7 +987,7 @@
       "lastCovered": "2026-09-26T18:05:05.426Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-09-26-yemen-houthis-count-1059-saudi-strikes-marib"
@@ -798,7 +1003,7 @@
       "lastCovered": "2026-09-26T18:05:05.426Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-09-26-khyber-pakhtunkhwa-mpa-arrest-speaker-approval-naqvi-pti"
@@ -814,7 +1019,7 @@
       "lastCovered": "2026-09-26T18:05:05.426Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-09-26-kraken-payward-financial-infrastructure-no-ipo"
@@ -830,7 +1035,7 @@
       "lastCovered": "2026-09-26T18:05:05.426Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-09-26-county-championship-somerset-build-big-lead-against-surrey"
@@ -846,7 +1051,7 @@
       "lastCovered": "2026-09-26T18:05:05.426Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-09-26-resolving-temporal-threat-uncertainty-by-observational-learn"
@@ -862,7 +1067,7 @@
       "lastCovered": "2026-09-26T18:05:05.426Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-09-26-cymru-premier-bumper-crowd-see-penybont-victory-and-flint-fi"
@@ -878,7 +1083,7 @@
       "lastCovered": "2026-09-26T18:05:05.426Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-09-26-shinty-big-wins-for-top-two-light-up-premiership-title-race"
@@ -894,7 +1099,7 @@
       "lastCovered": "2026-09-26T14:07:02.975Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-09-26-ceuta-migrant-crisis-madrid-protest-morocco"
@@ -919,7 +1124,7 @@
       "lastCovered": "2026-09-26T14:07:02.975Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-09-26-india-sir-electoral-roll-revision-vote-theft-karnataka"
@@ -944,7 +1149,7 @@
       "lastCovered": "2026-09-26T14:07:02.975Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-09-26-drc-military-plane-crash-kenge-kwango"
@@ -969,7 +1174,7 @@
       "lastCovered": "2026-09-26T14:07:02.975Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-09-26-nigerians-repatriated-south-africa-xenophobia"
@@ -985,7 +1190,7 @@
       "lastCovered": "2026-09-26T14:07:02.975Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-09-26-italy-truckers-strike-diesel-greece-fuel-subsidy"
@@ -1010,7 +1215,7 @@
       "lastCovered": "2026-09-26T14:07:02.975Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-09-26-binance-circle-usdc-tether-emerging-markets"
@@ -1026,7 +1231,7 @@
       "lastCovered": "2026-09-26T14:07:02.975Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-09-26-argentina-poverty-rate-32-percent"
@@ -1042,7 +1247,7 @@
       "lastCovered": "2026-09-26T14:07:02.975Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-09-26-bitget-hack-xrp-cannot-freeze"
@@ -1067,7 +1272,7 @@
       "lastCovered": "2026-09-26T14:07:02.975Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-09-26-ai-generated-song-evidence-murder-trial"
@@ -1083,7 +1288,7 @@
       "lastCovered": "2026-09-26T14:07:02.975Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-09-26-world-of-warcraft-mod-blocks-asmongold-fans-moderation"
@@ -1099,7 +1304,7 @@
       "lastCovered": "2026-09-26T14:07:02.975Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-09-26-malawi-copper-ingots-kipushi-lead-isotopes"
@@ -1115,7 +1320,7 @@
       "lastCovered": "2026-09-26T14:07:02.975Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-09-26-human-animal-chimeras-organs-brain-exclusion"
@@ -1123,270 +1328,6 @@
       "eventUri": null,
       "summary": "Researchers are building human–animal chimeras as a possible source of organs for transplant, and they are trying to engineer the animals so that human cells stay out of the brain. Explain that mechanism and the current state of the science, including Jun Wu's lab. The ethical line being drawn is about the organ shortage against the moral status of the animal. Report the research, not the essay's opinions.",
       "conceptUris": []
-    },
-    {
-      "id": "houthi-drones-riyadh-intercepted-mecca-pact-test",
-      "label": "Saudi coalition intercepts Houthi drones bound for Riyadh",
-      "firstSeen": "2026-09-26T10:05:26.866Z",
-      "lastCovered": "2026-09-26T10:05:26.866Z",
-      "coverageCount": 1,
-      "category": "politics",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-09-26-houthi-drones-riyadh-intercepted-mecca-pact-test"
-      ],
-      "eventUri": "tur-1369413",
-      "summary": "New development in the Houthi–Saudi arc: the Saudi-led coalition says it intercepted drones and missiles headed for the capital, Riyadh, not just shipping or Red Sea oil sites. The Houthis declared a naval blockade of Saudi Arabia in July. Lead with the target moving to the capital. The structural question is SCMP's: the attacks test the Saudi–Pakistan–Turkey 'Mecca' regional security pact, and whether Islamabad and Ankara will act on it. Name Yemen's civilians, who absorb the coalition's retaliation. GEO TV is the regional voice.",
-      "conceptUris": [
-        "http://en.wikipedia.org/wiki/Saudi_Arabia",
-        "http://en.wikipedia.org/wiki/Riyadh",
-        "http://en.wikipedia.org/wiki/Yemen",
-        "http://en.wikipedia.org/wiki/Houthi_movement",
-        "http://en.wikipedia.org/wiki/Mecca",
-        "http://en.wikipedia.org/wiki/Pakistan",
-        "http://en.wikipedia.org/wiki/Turkey",
-        "http://en.wikipedia.org/wiki/Unmanned_aerial_vehicle"
-      ]
-    },
-    {
-      "id": "us-army-reserve-southcom-cuba-groundwork",
-      "label": "U.S. military lays groundwork for potential action around Cuba",
-      "firstSeen": "2026-09-26T10:05:26.866Z",
-      "lastCovered": "2026-09-26T10:05:26.866Z",
-      "coverageCount": 1,
-      "category": "politics",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-09-26-us-army-reserve-southcom-cuba-groundwork"
-      ],
-      "eventUri": "spa-4355941",
-      "summary": "An internal Army message, reviewed by CBS News, asks whether the Army Reserve can supply Southern Command with military police, medical staff and support units within four months. Lead with the logistics: these are occupation and stabilisation units, not strike assets. It follows Trump's UNGA attacks on Cuba and the deadly armed incursion from Florida on 09-23. The people exposed are 11 million Cubans already living through blackouts and shortages under the embargo. Dateline Havana: this is US policy that would land in Cuba.",
-      "conceptUris": [
-        "http://en.wikipedia.org/wiki/Cuba",
-        "http://en.wikipedia.org/wiki/United_States_Army",
-        "http://en.wikipedia.org/wiki/United_States",
-        "http://en.wikipedia.org/wiki/CBS_News",
-        "http://en.wikipedia.org/wiki/Military_affairs",
-        "http://en.wikipedia.org/wiki/Battalion",
-        "http://en.wikipedia.org/wiki/Donald_Trump",
-        "http://en.wikipedia.org/wiki/CBS"
-      ]
-    },
-    {
-      "id": "saudi-nuclear-weapons-us-intelligence-civil-deal",
-      "label": "Saudi Arabia 'has not ruled out' developing nuclear weapons - WaPo",
-      "firstSeen": "2026-09-26T10:05:26.866Z",
-      "lastCovered": "2026-09-26T10:05:26.866Z",
-      "coverageCount": 1,
-      "category": "politics",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-09-26-saudi-nuclear-weapons-us-intelligence-civil-deal"
-      ],
-      "eventUri": "eng-12043996",
-      "summary": "A classified US intelligence assessment, first reported by The Washington Post and carried here by RT, says Riyadh has not ruled out building nuclear weapons. That has raised concern in Congress about Trump's civilian nuclear deal with Saudi Arabia, specifically whether it allows domestic uranium enrichment. The mechanism is that a civil 123 agreement without enrichment safeguards gives a state a route to a bomb. Attribute the assessment to the Post's reporting, and note that the only feed source is Russian state broadcaster RT. With a nuclear Israel and Iran's programme at war, this is a proliferation cascade question.",
-      "conceptUris": [
-        "http://en.wikipedia.org/wiki/Saudi_Arabia",
-        "http://en.wikipedia.org/wiki/Nuclear_weapon",
-        "http://en.wikipedia.org/wiki/United_States_Congress",
-        "http://en.wikipedia.org/wiki/Riyadh",
-        "http://en.wikipedia.org/wiki/Donald_Trump",
-        "http://en.wikipedia.org/wiki/The_Washington_Post",
-        "http://en.wikipedia.org/wiki/United_States",
-        "http://en.wikipedia.org/wiki/Nuclear_power"
-      ]
-    },
-    {
-      "id": "putin-denies-europe-conflict-plans-ukraine-talks",
-      "label": "Putin says Russia not preparing for 'any kind' of conflict with Europe, weighs Ukraine talks",
-      "firstSeen": "2026-09-26T10:05:26.866Z",
-      "lastCovered": "2026-09-26T10:05:26.866Z",
-      "coverageCount": 1,
-      "category": "politics",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-09-26-putin-denies-europe-conflict-plans-ukraine-talks"
-      ],
-      "eventUri": "eng-12043648",
-      "summary": "Putin rejected European warnings that Moscow could target NATO territory, saying Russia has 'no real motive' to escalate, and he raised the possibility of Ukraine talks. This answers Macron's 09-25 warning about 300,000 mobilised troops and the CIA's container-ship drone report. Lead with the gap between his words and the week's facts: the Kyiv office-building strike and the ongoing drone war on refineries. Say what a denial like this is worth, and name the concrete conditions he attaches to any talks.",
-      "conceptUris": [
-        "http://en.wikipedia.org/wiki/Vladimir_Putin",
-        "http://en.wikipedia.org/wiki/Russia",
-        "http://en.wikipedia.org/wiki/Ukraine",
-        "http://en.wikipedia.org/wiki/Moscow",
-        "http://en.wikipedia.org/wiki/Kyiv",
-        "http://en.wikipedia.org/wiki/Europe",
-        "http://en.wikipedia.org/wiki/Saint_Petersburg",
-        "http://en.wikipedia.org/wiki/Unmanned_aerial_vehicle"
-      ]
-    },
-    {
-      "id": "eu-peace-facility-6-6-billion-ukraine-hungary-veto",
-      "label": "EU to release US$7.5 billion linked to Ukraine military aid",
-      "firstSeen": "2026-09-26T10:05:26.866Z",
-      "lastCovered": "2026-09-26T10:05:26.866Z",
-      "coverageCount": 1,
-      "category": "economy",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-09-26-eu-peace-facility-6-6-billion-ukraine-hungary-veto"
-      ],
-      "eventUri": "rus-2130880",
-      "summary": "EU states agreed to release €6.6bn from the European Peace Facility. Hungary had blocked it for months. It arrives as Ukraine's Ministry of Defence faces a budget shortfall that threatens drone deliveries, with a $27bn deficit cited. Lead with the money unblocked. The mechanism is that one member's veto froze an off-budget fund, and the EU found a way around it. Say who funds Ukraine's war now that US aid has thinned, and what €6.6bn buys set against the gap.",
-      "conceptUris": [
-        "http://en.wikipedia.org/wiki/European_Union",
-        "http://en.wikipedia.org/wiki/Euro",
-        "http://en.wikipedia.org/wiki/Ukraine",
-        "http://en.wikipedia.org/wiki/Europe",
-        "http://en.wikipedia.org/wiki/Hungary",
-        "http://en.wikipedia.org/wiki/Russia",
-        "http://en.wikipedia.org/wiki/Kaja_Kallas",
-        "http://en.wikipedia.org/wiki/Kiev"
-      ]
-    },
-    {
-      "id": "azerbaijan-investment-forum-middle-corridor-free-zones",
-      "label": "Baku's week of F1 racing, global security, and record investments",
-      "firstSeen": "2026-09-26T10:05:26.866Z",
-      "lastCovered": "2026-09-26T10:05:26.866Z",
-      "coverageCount": 1,
-      "category": "economy",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-09-26-azerbaijan-investment-forum-middle-corridor-free-zones"
-      ],
-      "eventUri": "eng-12036468",
-      "summary": "Azerbaijan's second International Investment Forum pitched free economic zones and industrial parks as the way to tie Baku into regional value chains along the Middle Corridor, the Caspian route Europe and China now use to bypass Russia and a Hormuz closed by war. Lead with the specific investment figures and the zones, not the forum. Say who gains from rerouted trade, and use Armenia's NEWS.am coverage for the South Caucasus counterweight. Treat the promotional framing with scepticism: separate signed commitments from announced ones.",
-      "conceptUris": [
-        "http://en.wikipedia.org/wiki/Azerbaijan",
-        "http://en.wikipedia.org/wiki/Baku",
-        "http://en.wikipedia.org/wiki/Azerbaijan_International",
-        "http://en.wikipedia.org/wiki/Ilham_Aliyev",
-        "http://en.wikipedia.org/wiki/Artificial_intelligence",
-        "http://en.wikipedia.org/wiki/Transcaucasia",
-        "http://en.wikipedia.org/wiki/Logistics",
-        "http://en.wikipedia.org/wiki/Tourism"
-      ]
-    },
-    {
-      "id": "solana-alpenglow-150ms-settlement-testnet",
-      "label": "Solana's 150-millisecond settlement upgrade reaches second public test network",
-      "firstSeen": "2026-09-26T10:05:26.866Z",
-      "lastCovered": "2026-09-26T10:05:26.866Z",
-      "coverageCount": 1,
-      "category": "economy",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-09-26-solana-alpenglow-150ms-settlement-testnet"
-      ],
-      "eventUri": "eng-12034914",
-      "summary": "Solana's Alpenglow consensus upgrade, which aims to finalise payments in about 150 milliseconds against roughly 12 seconds today, has reached its second public test network. Lead with the settlement-time gap against card networks and against bank settlement (T+1). The stakes: sub-second finality is what stablecoin payment rails need to compete with Visa. Be plain that there is no mainnet date and the target has not held under live load.",
-      "conceptUris": []
-    },
-    {
-      "id": "latvia-anduril-barracuda-cruise-missile-long-range-strike",
-      "label": "Latvia To Order Anduril's Barracuda Cruise Missile For Long-Range Strike Capability",
-      "firstSeen": "2026-09-26T10:05:26.866Z",
-      "lastCovered": "2026-09-26T10:05:26.866Z",
-      "coverageCount": 1,
-      "category": "tech",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-09-26-latvia-anduril-barracuda-cruise-missile-long-range-strike"
-      ],
-      "eventUri": null,
-      "summary": "Latvia will buy Anduril's Barracuda, a low-cost, mass-producible cruise missile, to give Riga long-range precision strike for the first time. Lead with the cost model: software-first defence startups are selling 'attritable' missiles built like consumer electronics, and NATO's eastern flank is buying them in quantity rather than a few exquisite Tomahawks. Name the range and what it puts in reach inside Russia, and who profits: a Silicon Valley firm now sits in NATO's deterrence chain. Dateline Riga.",
-      "conceptUris": []
-    },
-    {
-      "id": "shielded-bitcoin-zcash-privacy-no-fork",
-      "label": "Inside the 'Shielded Bitcoin' paper that proposes private BTC payments using Zcash tech",
-      "firstSeen": "2026-09-26T10:05:26.866Z",
-      "lastCovered": "2026-09-26T10:05:26.866Z",
-      "coverageCount": 1,
-      "category": "tech",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-09-26-shielded-bitcoin-zcash-privacy-no-fork"
-      ],
-      "eventUri": "eng-12042699",
-      "summary": "Researchers propose adding Zcash-style zero-knowledge 'shielded' payments to Bitcoin without changing its consensus rules. Lead with that: privacy without a fork. Explain the mechanism in one line (zk-SNARK proofs hide sender, receiver and amount), then the trade-offs critics name: visible fees, higher costs, and a trusted setup ceremony, which reintroduces trust into a trustless system. Stakes: Bitcoin's public ledger is how chain-analysis firms and states trace users, so private BTC would collide with AML regimes. No launch date.",
-      "conceptUris": []
-    },
-    {
-      "id": "blackbeard-hypersonic-super-hornet-first-flight",
-      "label": "Blackbeard Hypersonic Missile Seen Flying On F/A-18 Super Hornet For The First Time",
-      "firstSeen": "2026-09-26T10:05:26.866Z",
-      "lastCovered": "2026-09-26T10:05:26.866Z",
-      "coverageCount": 1,
-      "category": "tech",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-09-26-blackbeard-hypersonic-super-hornet-first-flight"
-      ],
-      "eventUri": null,
-      "summary": "The US Navy's Blackbeard hypersonic missile, Castelion's cheap and fast-to-produce standoff weapon, has been seen flying on an F/A-18 Super Hornet for the first time. The Navy wants it in service by 2028. Lead with the cost shift: hypersonics had been multi-million-dollar boutique weapons, and Blackbeard is built for volume, like Barracuda. In context, the US is at war with Iran and has depleted munitions stocks, so a cheap hypersonic changes the stockpile arithmetic. Keep this distinct from the Latvia/Anduril pick: that one is about the buyer, this one about the weapon.",
-      "conceptUris": []
-    },
-    {
-      "id": "bangkok-disaster-zone-flooding-subsidence",
-      "label": "Bangkok declares city disaster zone after heavy flooding",
-      "firstSeen": "2026-09-26T10:05:26.866Z",
-      "lastCovered": "2026-09-26T10:05:26.866Z",
-      "coverageCount": 1,
-      "category": "science",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-09-26-bangkok-disaster-zone-flooding-subsidence"
-      ],
-      "eventUri": "eng-12044598",
-      "summary": "Bangkok's governor, Chadchart Sittipunt, declared the entire capital a disaster zone after overnight rain flooded roads and forced thousands from their homes, with more rain forecast. Lead with the whole-city declaration. The science: Bangkok sits about 1.5m above sea level and sinks 1-2cm a year from groundwater extraction, so its canal drainage cannot clear intense rainfall. Name who is hit first: informal canal-side communities. Asia-Pacific coverage has been thin for four days. Dawn and Al Jazeera give regional voices.",
-      "conceptUris": [
-        "http://en.wikipedia.org/wiki/Bangkok",
-        "http://en.wikipedia.org/wiki/Thailand",
-        "http://en.wikipedia.org/wiki/Flood",
-        "http://en.wikipedia.org/wiki/Canal",
-        "http://en.wikipedia.org/wiki/Governor",
-        "http://en.wikipedia.org/wiki/District",
-        "http://en.wikipedia.org/wiki/Chadchart_Sittipunt",
-        "http://en.wikipedia.org/wiki/Rain"
-      ]
-    },
-    {
-      "id": "athens-plaka-building-explosion-gas-link",
-      "label": "Deadly blast rips through Athens building, near Acropolis",
-      "firstSeen": "2026-09-26T10:05:26.866Z",
-      "lastCovered": "2026-09-26T10:05:26.866Z",
-      "coverageCount": 1,
-      "category": "science",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-09-26-athens-plaka-building-explosion-gas-link"
-      ],
-      "eventUri": "eng-12041760",
-      "summary": "An explosion brought down a residential building in Plaka, below the Acropolis. One woman is dead and five people are missing. Investigators are examining a possible link to gas infrastructure. Lead with the toll and the missing. The mechanism: ageing urban gas networks in dense historic districts, where how the gas leaked and built up determines whether a building collapses. Report what investigators have established, and do not speculate beyond the gas lead. TRT World gives a regional voice.",
-      "conceptUris": [
-        "http://en.wikipedia.org/wiki/Athens",
-        "http://en.wikipedia.org/wiki/Plaka",
-        "http://en.wikipedia.org/wiki/Acropolis",
-        "http://en.wikipedia.org/wiki/Greece",
-        "http://en.wikipedia.org/wiki/Firefighter",
-        "http://en.wikipedia.org/wiki/Fire_department",
-        "http://en.wikipedia.org/wiki/Acropolis_of_Athens",
-        "http://en.wikipedia.org/wiki/Tourism"
-      ]
     }
   ]
 }
