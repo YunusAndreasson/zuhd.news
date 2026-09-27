@@ -2,13 +2,259 @@
   "version": 1,
   "stories": [
     {
+      "id": "afghanistan-pakistan-nuristan-balochistan-clashes",
+      "label": "Afghanistan says 28 fighters killed as Islamabad, Kabul trade accusations",
+      "firstSeen": "2026-09-27T18:07:57.272Z",
+      "lastCovered": "2026-09-27T18:07:57.272Z",
+      "coverageCount": 1,
+      "category": "politics",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-09-27-afghanistan-pakistan-nuristan-balochistan-clashes"
+      ],
+      "eventUri": "eng-12046773",
+      "summary": "Two Muslim neighbours are killing across their shared border on the same day: the Taliban defence ministry says it killed 28 fighters who crossed from Pakistan into Nuristan, while Pakistan says it killed dozens of 'India-backed terrorists' in Balochistan. Lead with the 28 in Nuristan; the mechanism is each capital blaming the other's proxies, which lets both avoid accountability for civilians in the border belt. Name who says what and do not state either side's labels as fact.",
+      "conceptUris": [
+        "http://en.wikipedia.org/wiki/Afghanistan",
+        "http://en.wikipedia.org/wiki/Pakistan",
+        "http://en.wikipedia.org/wiki/Nuristan_Province",
+        "http://en.wikipedia.org/wiki/Islamic_State",
+        "http://en.wikipedia.org/wiki/Taliban",
+        "http://en.wikipedia.org/wiki/Islamabad",
+        "http://en.wikipedia.org/wiki/Kabul",
+        "http://en.wikipedia.org/wiki/Militia"
+      ]
+    },
+    {
+      "id": "ukraine-strikes-after-lavrov-wadephul-talks",
+      "label": "Strikes kill 6 in Ukraine, 1 in Russia after Moscow rejects German calls to de-escalate",
+      "firstSeen": "2026-09-27T18:07:57.272Z",
+      "lastCovered": "2026-09-27T18:07:57.272Z",
+      "coverageCount": 1,
+      "category": "politics",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-09-27-ukraine-strikes-after-lavrov-wadephul-talks"
+      ],
+      "eventUri": "eng-12045699",
+      "summary": "Continues the Lavrov-Wadephul thread with a material development: the first Russia-Germany foreign-minister talks in years ended with Moscow rejecting Berlin's de-escalation call, and within hours strikes killed 6 in Ukraine and 1 in Russia. Russia's defence ministry (TASS, RT — label as state media) says it hit an Omega Telecom data centre in Kyiv and a Nova Poshta depot in Odesa. Lead with the dead; the mechanism is diplomacy at the UN running alongside strikes on civilian-dual-use infrastructure. Dateline Kyiv.",
+      "conceptUris": [
+        "http://en.wikipedia.org/wiki/Russia",
+        "http://en.wikipedia.org/wiki/Sergey_Lavrov",
+        "http://en.wikipedia.org/wiki/Germany",
+        "http://en.wikipedia.org/wiki/Ukraine",
+        "http://en.wikipedia.org/wiki/Moscow",
+        "http://en.wikipedia.org/wiki/Europe",
+        "http://en.wikipedia.org/wiki/New_York_City",
+        "http://en.wikipedia.org/wiki/United_Nations"
+      ]
+    },
+    {
+      "id": "naqeebullah-mehsud-final-officers-acquitted",
+      "label": "If they didn't, then who killed Naqeebullah Mehsud?",
+      "firstSeen": "2026-09-27T18:07:57.272Z",
+      "lastCovered": "2026-09-27T18:07:57.272Z",
+      "coverageCount": 1,
+      "category": "politics",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-09-27-naqeebullah-mehsud-final-officers-acquitted"
+      ],
+      "eventUri": "eng-12046294",
+      "summary": "An anti-terrorism court has acquitted the final seven police officers accused in the 2018 killing of Naqeebullah Mehsud, the young Pashtun shot in a staged 'encounter' in Karachi under SSP Rao Anwar. Report the acquittal as the news, not the column's voice: eight years on, no one is convicted for a killing the state's own inquiry called extrajudicial. The mechanism is impunity for police encounter killings, the grievance that launched the Pashtun Tahaffuz Movement.",
+      "conceptUris": []
+    },
+    {
+      "id": "kano-durbar-ban-rival-emirs",
+      "label": "Kano govt restricts durbar after former emir Bayero's public appearance",
+      "firstSeen": "2026-09-27T18:07:57.272Z",
+      "lastCovered": "2026-09-27T18:07:57.272Z",
+      "coverageCount": 1,
+      "category": "politics",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-09-27-kano-durbar-ban-rival-emirs"
+      ],
+      "eventUri": "eng-12047123",
+      "summary": "Kano State banned durbar processions in the metropolis after the deposed 15th emir, Aminu Ado-Bayero, made an unexpected public appearance, to head off clashes between supporters of two rival claimants to one throne. Lead with the ban; the mechanism is a traditional Muslim institution turned into a proxy fight between the state government and federal-aligned rivals, with ordinary Kano residents caught between them.",
+      "conceptUris": []
+    },
+    {
+      "id": "pope-leo-france-abuse-assisted-dying",
+      "label": "Pope Leo urges Church to face failings",
+      "firstSeen": "2026-09-27T18:07:57.272Z",
+      "lastCovered": "2026-09-27T18:07:57.272Z",
+      "coverageCount": 1,
+      "category": "politics",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-09-27-pope-leo-france-abuse-assisted-dying"
+      ],
+      "eventUri": "deu-2179388",
+      "summary": "On his France trip Pope Leo XIV told bishops to keep confronting clerical sex abuse and, at Lourdes, called assisted dying 'false compassion' as France legislates on end-of-life law. Lead with the two-track message: accountability for the Church's own abuse record, and direct pressure on a secular state's lawmakers. Dateline Lourdes.",
+      "conceptUris": [
+        "http://en.wikipedia.org/wiki/Pope",
+        "http://en.wikipedia.org/wiki/France",
+        "http://en.wikipedia.org/wiki/Paris",
+        "http://en.wikipedia.org/wiki/Catholic_Church",
+        "http://en.wikipedia.org/wiki/Mass_(liturgy)",
+        "http://en.wikipedia.org/wiki/Place_de_la_Concorde",
+        "http://en.wikipedia.org/wiki/Lourdes",
+        "http://en.wikipedia.org/wiki/Baptism"
+      ]
+    },
+    {
+      "id": "parvesh-verma-slap-video-delhi",
+      "label": "Are Netas In Power Becoming Arrogant? Parvesh Verma Slap Row, Scindia's Guna Video Raise Questions",
+      "firstSeen": "2026-09-27T18:07:57.272Z",
+      "lastCovered": "2026-09-27T18:07:57.272Z",
+      "coverageCount": 1,
+      "category": "politics",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-09-27-parvesh-verma-slap-video-delhi"
+      ],
+      "eventUri": "eng-12046891",
+      "summary": "Delhi PWD minister Parvesh Verma was filmed appearing to slap a young man who questioned him during a road inspection in Tilak Nagar; AAP is protesting and Rahul Gandhi has tied it to 'vote chori'. Lead with the video and what the young man asked; the accountability question is what happens to citizens who question ministers in person, and whether any consequence follows for the minister.",
+      "conceptUris": [
+        "http://en.wikipedia.org/wiki/Delhi",
+        "http://en.wikipedia.org/wiki/Parvesh_Verma",
+        "http://en.wikipedia.org/wiki/Aam_Aadmi_Party",
+        "http://en.wikipedia.org/wiki/Member_of_the_Legislative_Assembly_(India)",
+        "http://en.wikipedia.org/wiki/Tilak_Nagar_(Delhi)",
+        "http://en.wikipedia.org/wiki/Jarnail_Singh_(politician,_born_1981)",
+        "http://en.wikipedia.org/wiki/Bharatiya_Janata_Party",
+        "http://en.wikipedia.org/wiki/Disability"
+      ]
+    },
+    {
+      "id": "maharashtra-drought-list-revenue-circle",
+      "label": "Maharashtra drought list misses dry pockets; experts say revenue circle a better measure",
+      "firstSeen": "2026-09-27T18:07:57.272Z",
+      "lastCovered": "2026-09-27T18:07:57.272Z",
+      "coverageCount": 1,
+      "category": "economy",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-09-27-maharashtra-drought-list-revenue-circle"
+      ],
+      "eventUri": "eng-12044827",
+      "summary": "Farmers in Kolhapur and Nashik with stunted crops and empty soybean pods are shut out of drought relief because Maharashtra declares drought by taluka averages, which wash out dry pockets. Lead with the empty pods; the mechanism is the unit of measurement — experts want the smaller revenue circle — deciding who gets compensation, loan relief and power-bill waivers.",
+      "conceptUris": [
+        "http://en.wikipedia.org/wiki/Tehsil",
+        "http://en.wikipedia.org/wiki/Drought",
+        "http://en.wikipedia.org/wiki/Maharashtra",
+        "http://en.wikipedia.org/wiki/Government_of_Maharashtra",
+        "http://en.wikipedia.org/wiki/Agriculture",
+        "http://en.wikipedia.org/wiki/District",
+        "http://en.wikipedia.org/wiki/Devendra_Fadnavis",
+        "http://en.wikipedia.org/wiki/Electricity"
+      ]
+    },
+    {
+      "id": "nepal-himlung-avalanche-guides-missing",
+      "label": "Nepal avalanche kills at least 2, leaves several missing",
+      "firstSeen": "2026-09-27T18:07:57.272Z",
+      "lastCovered": "2026-09-27T18:07:57.272Z",
+      "coverageCount": 1,
+      "category": "economy",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-09-27-nepal-himlung-avalanche-guides-missing"
+      ],
+      "eventUri": "eng-12046513",
+      "summary": "An avalanche hit a staging camp near Himlung Himal in Manang, killing at least 2 and leaving about 10 Nepali guides missing before their clients arrived. Lead with who was on the mountain: local guides who carry the risk of a foreign-client expedition industry, fixing routes ahead of paying climbers. Frame as labour and risk in Nepal's mountaineering economy, not as science.",
+      "conceptUris": [
+        "http://en.wikipedia.org/wiki/Avalanche",
+        "http://en.wikipedia.org/wiki/Nepal",
+        "http://en.wikipedia.org/wiki/Mountaineering",
+        "http://en.wikipedia.org/wiki/Himalayas",
+        "http://en.wikipedia.org/wiki/Snow",
+        "http://en.wikipedia.org/wiki/Manang_District,_Nepal",
+        "http://en.wikipedia.org/wiki/Mountain",
+        "http://en.wikipedia.org/wiki/Tibet"
+      ]
+    },
+    {
+      "id": "authors-guild-openai-unsealed-briefs-piracy",
+      "label": "Unsealed Briefs in Authors' Case v. Microsoft/OpenAI",
+      "firstSeen": "2026-09-27T18:07:57.272Z",
+      "lastCovered": "2026-09-27T18:07:57.272Z",
+      "coverageCount": 1,
+      "category": "tech",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-09-27-authors-guild-openai-unsealed-briefs-piracy"
+      ],
+      "eventUri": null,
+      "summary": "Newly unsealed briefs in the Authors Guild's case against OpenAI and Microsoft allege top executives knew that training on mass-pirated book collections was illegal. Lead with what the documents show executives knew and when; the mechanism is that knowledge undercuts a fair-use defence and exposes the companies to wilful-infringement damages. Attribute every claim to the plaintiffs' filings; the Authors Guild is a party.",
+      "conceptUris": []
+    },
+    {
+      "id": "bill-gates-ai-laws-self-regulation",
+      "label": "Why does Bill Gates want AI laws? He says self-regulation is not enough",
+      "firstSeen": "2026-09-27T18:07:57.272Z",
+      "lastCovered": "2026-09-27T18:07:57.272Z",
+      "coverageCount": 1,
+      "category": "tech",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-09-27-bill-gates-ai-laws-self-regulation"
+      ],
+      "eventUri": "eng-12044066",
+      "summary": "Microsoft co-founder Bill Gates says AI needs laws from Congress, not company promises, days after OpenAI paused frontier training over safety incidents. Lead with the co-founder of OpenAI's largest backer rejecting self-regulation; the mechanism is that voluntary commitments have no enforcement when a lab's incentives run the other way. Do not re-report the OpenAI pause beyond one line of context.",
+      "conceptUris": []
+    },
+    {
+      "id": "buterin-ethereum-2030-hegota-proofs",
+      "label": "ETH news: Ethereum may not be 'just a blockchain' in 2030, Vitalik Buterin says",
+      "firstSeen": "2026-09-27T18:07:57.272Z",
+      "lastCovered": "2026-09-27T18:07:57.272Z",
+      "coverageCount": 1,
+      "category": "tech",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-09-27-buterin-ethereum-2030-hegota-proofs"
+      ],
+      "eventUri": "eng-12047209",
+      "summary": "Vitalik Buterin laid out a 2030 roadmap in which Ethereum becomes a proof-verification layer more than a blockchain, accelerating after the Hegotá upgrade — but only if developers make zero-knowledge proofs cheaper and coordinate parallel client work securely. Lead with the engineering bottleneck, not the vision; name what has to get cheaper and why.",
+      "conceptUris": []
+    },
+    {
+      "id": "pakistan-glacial-lakes-suparco-40-to-105",
+      "label": "Number of unfrozen lakes in Pakistan grows by 65 in less than 2 months: Suparco",
+      "firstSeen": "2026-09-27T18:07:57.272Z",
+      "lastCovered": "2026-09-27T18:07:57.272Z",
+      "coverageCount": 1,
+      "category": "science",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-09-27-pakistan-glacial-lakes-suparco-40-to-105"
+      ],
+      "eventUri": null,
+      "summary": "Satellite imagery assessed by Suparco shows Pakistan's unfrozen glacial lakes rose from 40 to 105 between July and August. Lead with the jump from 40 to 105; the mechanism is meltwater pooling behind unstable moraine dams, the precondition for glacial lake outburst floods that hit Gilgit-Baltistan and Chitral villages downstream.",
+      "conceptUris": []
+    },
+    {
       "id": "raf-fairford-evacuation-arrests",
       "label": "UK police evacuate homes near air base used by US",
       "firstSeen": "2026-09-27T14:06:19.564Z",
       "lastCovered": "2026-09-27T14:06:19.564Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-09-27-raf-fairford-evacuation-arrests"
@@ -33,7 +279,7 @@
       "lastCovered": "2026-09-27T14:06:19.564Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-09-27-smotrich-annexation-gaza-lebanon-west-bank-war"
@@ -49,7 +295,7 @@
       "lastCovered": "2026-09-27T14:06:19.564Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-09-27-rsf-drones-gezira-fuel-depot-wad-madani"
@@ -65,7 +311,7 @@
       "lastCovered": "2026-09-27T14:06:19.564Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-09-27-oleshky-drone-food-deliveries-occupied-kherson"
@@ -90,7 +336,7 @@
       "lastCovered": "2026-09-27T14:06:19.564Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-09-27-irgc-captures-second-remus-600-uuv-hormuz"
@@ -115,7 +361,7 @@
       "lastCovered": "2026-09-27T14:06:19.564Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-09-27-burnham-heathrow-third-runway"
@@ -140,7 +386,7 @@
       "lastCovered": "2026-09-27T14:06:19.564Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-09-27-india-bank-strike-five-day-week"
@@ -165,7 +411,7 @@
       "lastCovered": "2026-09-27T14:06:19.564Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-09-27-haiti-informal-vendors-protest-gang-warfare"
@@ -181,7 +427,7 @@
       "lastCovered": "2026-09-27T14:06:19.564Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-09-27-clarity-act-crypto-bill-collapse"
@@ -197,7 +443,7 @@
       "lastCovered": "2026-09-27T14:06:19.564Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-09-27-chemosynthetic-bacteria-reef-fish-gills"
@@ -213,7 +459,7 @@
       "lastCovered": "2026-09-27T10:06:19.186Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-09-27-south-africa-fochville-bar-shooting-17-killed"
@@ -238,7 +484,7 @@
       "lastCovered": "2026-09-27T10:06:19.186Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-09-26-apple-taction-haptics-patent-5-7-billion"
@@ -263,7 +509,7 @@
       "lastCovered": "2026-09-27T10:06:19.186Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-09-26-jaishankar-unga-global-south-war-costs"
@@ -288,7 +534,7 @@
       "lastCovered": "2026-09-27T10:06:19.186Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-09-27-burnham-universal-social-care-labour-conference"
@@ -313,7 +559,7 @@
       "lastCovered": "2026-09-27T10:06:19.186Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-09-27-assam-police-detain-cjp-ranka-42-guwahati"
@@ -338,7 +584,7 @@
       "lastCovered": "2026-09-27T10:06:19.186Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-09-27-serap-cbn-diverted-funds-anchor-borrowers"
@@ -354,7 +600,7 @@
       "lastCovered": "2026-09-27T10:06:19.186Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-09-26-japan-tightens-rules-foreign-residents"
@@ -370,7 +616,7 @@
       "lastCovered": "2026-09-27T10:06:19.186Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-09-27-turlov-elected-fide-president-samarkand"
@@ -395,7 +641,7 @@
       "lastCovered": "2026-09-27T05:07:24.342Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-09-27-hamas-israel-election-gaza-blood-abbas"
@@ -420,7 +666,7 @@
       "lastCovered": "2026-09-27T05:07:24.342Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-09-27-swiss-neutrality-referendum-vote"
@@ -445,7 +691,7 @@
       "lastCovered": "2026-09-27T05:07:24.342Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-09-27-xi-skips-un-han-zheng-china-iran-war"
@@ -470,7 +716,7 @@
       "lastCovered": "2026-09-27T05:07:24.342Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-09-27-india-cec-gyanesh-kumar-bjp-ticket-claim-sir"
@@ -495,7 +741,7 @@
       "lastCovered": "2026-09-27T05:07:24.342Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-09-27-hormuz-pgsa-blacklist-saudi-rejects-fees"
@@ -520,7 +766,7 @@
       "lastCovered": "2026-09-27T05:07:24.342Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-09-27-openai-pauses-frontier-training-safety-incidents"
@@ -536,7 +782,7 @@
       "lastCovered": "2026-09-27T05:07:24.342Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-09-27-trump-rolls-back-fuel-economy-rules-oil-shock"
@@ -561,7 +807,7 @@
       "lastCovered": "2026-09-27T05:07:24.342Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-09-27-malaria-funding-cut-146-million-cases-africa"
@@ -577,7 +823,7 @@
       "lastCovered": "2026-09-27T05:07:24.342Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-09-27-manipur-naga-kuki-violence-soo-pact"
@@ -602,7 +848,7 @@
       "lastCovered": "2026-09-27T05:07:24.342Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-09-27-ai-weather-models-hurricane-intensity-gap"
@@ -618,7 +864,7 @@
       "lastCovered": "2026-09-26T22:06:36.099Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-09-26-cuba-unga-us-oil-blockade-collective-punishment"
@@ -643,7 +889,7 @@
       "lastCovered": "2026-09-26T22:06:36.099Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-09-26-hurricane-polo-category-5-baja-california-landfall"
@@ -668,7 +914,7 @@
       "lastCovered": "2026-09-26T22:06:36.099Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-09-26-supreme-court-blocks-missouri-map-third-time"
@@ -693,7 +939,7 @@
       "lastCovered": "2026-09-26T22:06:36.099Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-09-26-egypt-unga-bab-al-mandab-tigray-madbuly"
@@ -709,7 +955,7 @@
       "lastCovered": "2026-09-26T22:06:36.099Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-09-26-lavrov-s400-turkey-transfer-f35"
@@ -725,7 +971,7 @@
       "lastCovered": "2026-09-26T22:06:36.099Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-09-26-rana-sanaullah-islamabad-protest-ban-pti"
@@ -741,7 +987,7 @@
       "lastCovered": "2026-09-26T22:06:36.099Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-09-26-dmitriev-nord-stream-restart-germany-afd"
@@ -757,7 +1003,7 @@
       "lastCovered": "2026-09-26T22:06:36.099Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-09-26-nigeria-un-pandemic-financing-vaccine-equity"
@@ -773,7 +1019,7 @@
       "lastCovered": "2026-09-26T22:06:36.099Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-09-26-enceladus-ocean-microbes-survive-life-detection"
@@ -789,7 +1035,7 @@
       "lastCovered": "2026-09-26T22:06:36.099Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-09-26-boeing-737-max-software-update-landing-glitch"
@@ -805,7 +1051,7 @@
       "lastCovered": "2026-09-26T22:06:36.099Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-09-26-instagram-womens-health-posts-40-percent-ads"
@@ -821,7 +1067,7 @@
       "lastCovered": "2026-09-26T22:06:36.099Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-09-26-space-force-lasers-cape-canaveral-drones"
@@ -837,7 +1083,7 @@
       "lastCovered": "2026-09-26T18:05:05.426Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-09-26-trump-rejects-iran-hormuz-seven-day-roadmap"
@@ -862,7 +1108,7 @@
       "lastCovered": "2026-09-26T18:05:05.426Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-09-26-dera-ismail-khan-suicide-blast-ttp-khyber-pakhtunkhwa"
@@ -887,7 +1133,7 @@
       "lastCovered": "2026-09-26T18:05:05.426Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-09-26-china-us-30-billion-tariff-cut-ai-safety-channel"
@@ -912,7 +1158,7 @@
       "lastCovered": "2026-09-26T18:05:05.426Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-09-26-lavrov-wadephul-russia-germany-first-talks-since-2022"
@@ -937,7 +1183,7 @@
       "lastCovered": "2026-09-26T18:05:05.426Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-09-26-zelensky-patriot-production-refused-uae-trilateral-talks"
@@ -962,7 +1208,7 @@
       "lastCovered": "2026-09-26T18:05:05.426Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-09-26-belfast-court-halts-orange-order-garvaghy-road-march"
@@ -987,7 +1233,7 @@
       "lastCovered": "2026-09-26T18:05:05.426Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-09-26-yemen-houthis-count-1059-saudi-strikes-marib"
@@ -1003,7 +1249,7 @@
       "lastCovered": "2026-09-26T18:05:05.426Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-09-26-khyber-pakhtunkhwa-mpa-arrest-speaker-approval-naqvi-pti"
@@ -1019,7 +1265,7 @@
       "lastCovered": "2026-09-26T18:05:05.426Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-09-26-kraken-payward-financial-infrastructure-no-ipo"
@@ -1035,7 +1281,7 @@
       "lastCovered": "2026-09-26T18:05:05.426Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-09-26-county-championship-somerset-build-big-lead-against-surrey"
@@ -1051,7 +1297,7 @@
       "lastCovered": "2026-09-26T18:05:05.426Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-09-26-resolving-temporal-threat-uncertainty-by-observational-learn"
@@ -1067,7 +1313,7 @@
       "lastCovered": "2026-09-26T18:05:05.426Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-09-26-cymru-premier-bumper-crowd-see-penybont-victory-and-flint-fi"
@@ -1083,250 +1329,13 @@
       "lastCovered": "2026-09-26T18:05:05.426Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-09-26-shinty-big-wins-for-top-two-light-up-premiership-title-race"
       ],
       "eventUri": null,
       "summary": "[Auto-backfill for tech floor] Both Newtonmore and Kingussie recorded thumping 7-0 victories as the Mowi Premiership title race looks set to go down to goal difference.\n\nA penalty from Steven MacDonald and a goal from Conor Jones gave leaders Newtonmore an early 2-0 lead against bottom side Kyles Athletic, before Struan Ross grab",
-      "conceptUris": []
-    },
-    {
-      "id": "ceuta-migrant-crisis-madrid-protest-morocco",
-      "label": "Thousands take to the streets in Madrid over Ceuta migrant crisis",
-      "firstSeen": "2026-09-26T14:07:02.975Z",
-      "lastCovered": "2026-09-26T14:07:02.975Z",
-      "coverageCount": 1,
-      "category": "politics",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-09-26-ceuta-migrant-crisis-madrid-protest-morocco"
-      ],
-      "eventUri": "spa-4356667",
-      "summary": "Thousands of people remain stranded in Ceuta in a worsening humanitarian situation (Al Jazeera), while the PP and Vox march in Madrid against the government. The detail to explain is that Morocco says it will take migrants back, yet Spain has not returned them. The people stuck in the enclave are the story, and Spain's domestic fight is being waged over them. Show how Morocco's control of the border works as leverage over Madrid.",
-      "conceptUris": [
-        "http://en.wikipedia.org/wiki/Ceuta",
-        "http://en.wikipedia.org/wiki/Spain",
-        "http://en.wikipedia.org/wiki/Madrid",
-        "http://en.wikipedia.org/wiki/Morocco",
-        "http://en.wikipedia.org/wiki/People's_Party_(Spain)",
-        "http://en.wikipedia.org/wiki/Vox_(political_party)",
-        "http://en.wikipedia.org/wiki/Human_migration",
-        "http://en.wikipedia.org/wiki/April_2019_Spanish_general_election"
-      ]
-    },
-    {
-      "id": "india-sir-electoral-roll-revision-vote-theft-karnataka",
-      "label": "DK Shivakumar calls EC BJP's puppet, accuses poll panel of vote theft in SIR",
-      "firstSeen": "2026-09-26T14:07:02.975Z",
-      "lastCovered": "2026-09-26T14:07:02.975Z",
-      "coverageCount": 1,
-      "category": "politics",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-09-26-india-sir-electoral-roll-revision-vote-theft-karnataka"
-      ],
-      "eventUri": "eng-12041411",
-      "summary": "India's Special Intensive Revision (SIR) of electoral rolls has become a fight over who gets to vote. Karnataka's chief minister accuses the Election Commission of 'vote theft' for the BJP, and Priyanka Gandhi is demanding the chief election commissioner resign and the commission's legal safeguards be removed. Explain how a roll revision can remove voters, who holds the burden of proof, and why the dissent reportedly reaches inside the commission. This is a structural story about the world's largest electorate.",
-      "conceptUris": [
-        "http://en.wikipedia.org/wiki/Chief_Election_Commissioner_of_India",
-        "http://en.wikipedia.org/wiki/Indian_National_Congress",
-        "http://en.wikipedia.org/wiki/Election_Commission_of_India",
-        "http://en.wikipedia.org/wiki/Electoral_roll",
-        "http://en.wikipedia.org/wiki/Democracy",
-        "http://en.wikipedia.org/wiki/Bharatiya_Janata_Party",
-        "http://en.wikipedia.org/wiki/India",
-        "http://en.wikipedia.org/wiki/The_Indian_Express"
-      ]
-    },
-    {
-      "id": "drc-military-plane-crash-kenge-kwango",
-      "label": "Plane crash in DR Congo kills more than a dozen",
-      "firstSeen": "2026-09-26T14:07:02.975Z",
-      "lastCovered": "2026-09-26T14:07:02.975Z",
-      "coverageCount": 1,
-      "category": "politics",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-09-26-drc-military-plane-crash-kenge-kwango"
-      ],
-      "eventUri": "eng-12043744",
-      "summary": "A Congolese military aircraft came down in a residential area of Kenge, the capital of Kwango province, killing at least 13 to 14 people. Lead with the civilians on the ground. Give the cause as far as the sources establish it, and set the crash against the DRC military's ageing air fleet and its safety record. Dateline Kenge.",
-      "conceptUris": [
-        "http://en.wikipedia.org/wiki/Democratic_Republic_of_the_Congo",
-        "http://en.wikipedia.org/wiki/Kenge,_Kwango",
-        "http://en.wikipedia.org/wiki/Lieutenant_general",
-        "http://en.wikipedia.org/wiki/Kinshasa",
-        "http://en.wikipedia.org/wiki/Armed_Forces_of_the_Democratic_Republic_of_the_Congo",
-        "http://en.wikipedia.org/wiki/Kikwit",
-        "http://en.wikipedia.org/wiki/Kwango",
-        "http://en.wikipedia.org/wiki/Aviation_accidents_and_incidents"
-      ]
-    },
-    {
-      "id": "nigerians-repatriated-south-africa-xenophobia",
-      "label": "Xenophobia: 105 more Nigerians repatriated from South Africa",
-      "firstSeen": "2026-09-26T14:07:02.975Z",
-      "lastCovered": "2026-09-26T14:07:02.975Z",
-      "coverageCount": 1,
-      "category": "politics",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-09-26-nigerians-repatriated-south-africa-xenophobia"
-      ],
-      "eventUri": "eng-12041664",
-      "summary": "About 1,640 Nigerians have been evacuated from South Africa since xenophobic attacks on Black foreigners began in April, and 105 more landed on Saturday. The people evacuated are the story. Lead with the running total and the six months it covers. Explain that the attacks continue while two major African economies manage the problem with airlifts rather than accountability. Dateline Lagos.",
-      "conceptUris": []
-    },
-    {
-      "id": "italy-truckers-strike-diesel-greece-fuel-subsidy",
-      "label": "Italian truck drivers threaten strike over soaring diesel prices",
-      "firstSeen": "2026-09-26T14:07:02.975Z",
-      "lastCovered": "2026-09-26T14:07:02.975Z",
-      "coverageCount": 1,
-      "category": "economy",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-09-26-italy-truckers-strike-diesel-greece-fuel-subsidy"
-      ],
-      "eventUri": "deu-2177253",
-      "summary": "This advances the Eni diesel-cap story. Italy's cap has not calmed hauliers, whose truckers now threaten to strike, and Greece is adding a fuel subsidy for the first 15 days of October while the Philippines sees a diesel rollback. Lead with the strike threat, then show how the Hormuz oil shock is turning into a series of fiscal patches, each written for two weeks at a time. Do not repeat the price-cap mechanism that was already covered.",
-      "conceptUris": [
-        "http://en.wikipedia.org/wiki/Euro",
-        "http://en.wikipedia.org/wiki/Gasoline",
-        "http://en.wikipedia.org/wiki/Diesel_fuel",
-        "http://en.wikipedia.org/wiki/Motor_fuel",
-        "http://en.wikipedia.org/wiki/Eni",
-        "http://en.wikipedia.org/wiki/Bundestag",
-        "http://en.wikipedia.org/wiki/Excise",
-        "http://en.wikipedia.org/wiki/Diesel_engine"
-      ]
-    },
-    {
-      "id": "binance-circle-usdc-tether-emerging-markets",
-      "label": "Binance's $100M Circle (CRCL) deal boosts USDC in stablecoin race with Tether, analysts say",
-      "firstSeen": "2026-09-26T14:07:02.975Z",
-      "lastCovered": "2026-09-26T14:07:02.975Z",
-      "coverageCount": 1,
-      "category": "economy",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-09-26-binance-circle-usdc-tether-emerging-markets"
-      ],
-      "eventUri": null,
-      "summary": "Binance's expanded $100M deal with Circle could push USDC into emerging markets where Tether dominates. Frame this as a contest over which private dollar reaches savers in countries with weak currencies. Name the mechanism: exchange distribution deals decide which stablecoin people in Lagos or Karachi actually hold. Note the counterweight that Tether keeps its local liquidity and habits of use.",
-      "conceptUris": []
-    },
-    {
-      "id": "argentina-poverty-rate-32-percent",
-      "label": "Iran pushes 7-day plan to end war; Saudi calls on regional pact for defense; Argentina's poverty rate climbs to over 32%",
-      "firstSeen": "2026-09-26T14:07:02.975Z",
-      "lastCovered": "2026-09-26T14:07:02.975Z",
-      "coverageCount": 1,
-      "category": "economy",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-09-26-argentina-poverty-rate-32-percent"
-      ],
-      "eventUri": null,
-      "summary": "Use only the Argentina item from this roundup: the poverty rate has risen to over 32%. Explain the mechanism, meaning which adjustment measures and price moves pushed households back below the line, and who is falling. Dateline Buenos Aires. This gives the cycle a Latin America economy story.",
-      "conceptUris": []
-    },
-    {
-      "id": "bitget-hack-xrp-cannot-freeze",
-      "label": "Crypto exchange Bitget pauses withdrawals after $350 million stolen in hack",
-      "firstSeen": "2026-09-26T14:07:02.975Z",
-      "lastCovered": "2026-09-26T14:07:02.975Z",
-      "coverageCount": 1,
-      "category": "tech",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-09-26-bitget-hack-xrp-cannot-freeze"
-      ],
-      "eventUri": "eng-12042398",
-      "summary": "Bitget lost about $350-388M in unauthorised transfers and froze customer withdrawals. The technical detail to lead with comes from CoinDesk: the hacker has already moved $83M in stolen XRP, and another $75M sits in wallets that Ripple cannot freeze under the network's current rules. The piece explains the gap between 'user funds are safe' and code-level custody. Mention possible North Korea links only if a source attributes them.",
-      "conceptUris": [
-        "http://en.wikipedia.org/wiki/Bitget",
-        "http://en.wikipedia.org/wiki/Security_hacker",
-        "http://en.wikipedia.org/wiki/Chief_executive_officer",
-        "http://en.wikipedia.org/wiki/Cryptocurrency_wallet",
-        "http://en.wikipedia.org/wiki/North_Korea",
-        "http://en.wikipedia.org/wiki/Blockchain",
-        "http://en.wikipedia.org/wiki/Ripple_(payment_protocol)",
-        "http://en.wikipedia.org/wiki/Cryptocurrency"
-      ]
-    },
-    {
-      "id": "ai-generated-song-evidence-murder-trial",
-      "label": "AI Love Song for Mistress Played at Murder Trial Is Most Excruciating Watch in Recent Memory",
-      "firstSeen": "2026-09-26T14:07:02.975Z",
-      "lastCovered": "2026-09-26T14:07:02.975Z",
-      "coverageCount": 1,
-      "category": "tech",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-09-26-ai-generated-song-evidence-murder-trial"
-      ],
-      "eventUri": null,
-      "summary": "AI-generated songs a defendant, Caleb Flynn, made for his mistress were played to a jury as evidence in his murder trial. The angle is that generative-AI output has become courtroom evidence of intent and state of mind. Explain what prosecutors used the songs to argue and why this sets a pattern for how such material is admitted. Keep the tone sober rather than lurid.",
-      "conceptUris": []
-    },
-    {
-      "id": "world-of-warcraft-mod-blocks-asmongold-fans-moderation",
-      "label": "This 'World of Warcraft: Forever' Mod Blocks All Interactions With Asmongold Fans",
-      "firstSeen": "2026-09-26T14:07:02.975Z",
-      "lastCovered": "2026-09-26T14:07:02.975Z",
-      "coverageCount": 1,
-      "category": "tech",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-09-26-world-of-warcraft-mod-blocks-asmongold-fans-moderation"
-      ],
-      "eventUri": null,
-      "summary": "Players built a mod that silences a streamer's followers, who were flooding World of Warcraft's public spaces with slurs, because Blizzard's own moderation had not stopped them. The mechanism is user-built, client-side moderation filling a platform's enforcement gap. Explain how it works and what it shows about who actually polices online spaces.",
-      "conceptUris": []
-    },
-    {
-      "id": "malawi-copper-ingots-kipushi-lead-isotopes",
-      "label": "Lead isotopes trace Malawi's mysterious copper ingot hoard to Congo's Kipushi mine",
-      "firstSeen": "2026-09-26T14:07:02.975Z",
-      "lastCovered": "2026-09-26T14:07:02.975Z",
-      "coverageCount": 1,
-      "category": "science",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-09-26-malawi-copper-ingots-kipushi-lead-isotopes"
-      ],
-      "eventUri": null,
-      "summary": "A Malawian farmer found eight buried copper ingots in 1967. Lead-isotope analysis now traces the metal to the Kipushi mine in Congo, about 800 km away. Lead with the distance. The method is the finding: an isotopic fingerprint proves long-distance precolonial African trade networks that no written record describes. Dateline Malawi.",
-      "conceptUris": []
-    },
-    {
-      "id": "human-animal-chimeras-organs-brain-exclusion",
-      "label": "Engineering Animals to Grow Human Organs — But Not Human Minds",
-      "firstSeen": "2026-09-26T14:07:02.975Z",
-      "lastCovered": "2026-09-26T14:07:02.975Z",
-      "coverageCount": 1,
-      "category": "science",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-09-26-human-animal-chimeras-organs-brain-exclusion"
-      ],
-      "eventUri": null,
-      "summary": "Researchers are building human–animal chimeras as a possible source of organs for transplant, and they are trying to engineer the animals so that human cells stay out of the brain. Explain that mechanism and the current state of the science, including Jun Wu's lab. The ethical line being drawn is about the organ shortage against the moral status of the animal. Report the research, not the essay's opinions.",
       "conceptUris": []
     }
   ]
