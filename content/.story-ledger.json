@@ -2,13 +2,152 @@
   "version": 1,
   "stories": [
     {
+      "id": "hormuz-qeshm-blasts-us-iran-talks-gap",
+      "label": "Trump expects 'more talks' with Iran soon -- RT World News",
+      "firstSeen": "2026-09-27T22:02:55.962Z",
+      "lastCovered": "2026-09-27T22:02:55.962Z",
+      "coverageCount": 1,
+      "category": "politics",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-09-27-hormuz-qeshm-blasts-us-iran-talks-gap"
+      ],
+      "eventUri": "eng-12044805",
+      "summary": "New since yesterday's roadmap rejection: explosions were reported near Qeshm Island in the Strait of Hormuz hours after Trump turned down Iran's proposal to reopen it, and the WSJ reports Washington now wants nuclear concessions before talks can resume. Trump says he expects 'more talks', but a source close to Iran's UN delegation told IRNA there are no plans to negotiate in New York. CENTCOM also denies that the IRGC captured its underwater drone. Lead with the blasts and the widening gap between the two sides. Include Ghalibaf's argument that shipping and insurance prices show who controls the strait, and attribute it to him. Attribute the Qeshm blasts to Iranian media.",
+      "conceptUris": [
+        "http://en.wikipedia.org/wiki/Iran",
+        "http://en.wikipedia.org/wiki/Strait_of_Hormuz",
+        "http://en.wikipedia.org/wiki/Donald_Trump",
+        "http://en.wikipedia.org/wiki/United_States",
+        "http://en.wikipedia.org/wiki/Tehran",
+        "http://en.wikipedia.org/wiki/Washington,_D.C.",
+        "http://en.wikipedia.org/wiki/Petroleum",
+        "http://en.wikipedia.org/wiki/New_York_City"
+      ]
+    },
+    {
+      "id": "al-aqsa-storming-turkiye-condemns",
+      "label": "Türkiye slams storming of Al-Aqsa Mosque by Israeli extremist groups",
+      "firstSeen": "2026-09-27T22:02:55.962Z",
+      "lastCovered": "2026-09-27T22:02:55.962Z",
+      "coverageCount": 1,
+      "category": "politics",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-09-27-al-aqsa-storming-turkiye-condemns"
+      ],
+      "eventUri": "tur-1370358",
+      "summary": "Israeli settler groups again entered the Al-Aqsa compound under police protection, six days after Ben-Gvir led an incursion on 09-21. The repeated entries are wearing down the status quo that bars non-Muslim worship at the site, and Ankara says the Netanyahu government is using them to inflame the region. The only source is TRT World, which is Turkish state media. Attribute the claims to it and to Türkiye's foreign ministry, and do not state the details of the incursion as fact. No independent outlet in the feed covers this event.",
+      "conceptUris": [
+        "http://en.wikipedia.org/wiki/Al-Aqsa_Mosque",
+        "http://en.wikipedia.org/wiki/Israel",
+        "http://en.wikipedia.org/wiki/Jerusalem",
+        "http://en.wikipedia.org/wiki/Temple_Mount",
+        "http://en.wikipedia.org/wiki/Palestinians",
+        "http://en.wikipedia.org/wiki/Talmud",
+        "http://en.wikipedia.org/wiki/Jews",
+        "http://en.wikipedia.org/wiki/Muslims"
+      ]
+    },
+    {
+      "id": "vucic-resigns-serbia-presidency-prime-minister",
+      "label": "Serbia's Longtime President Aleksandar Vucic Resigns Post",
+      "firstSeen": "2026-09-27T22:02:55.962Z",
+      "lastCovered": "2026-09-27T22:02:55.962Z",
+      "coverageCount": 1,
+      "category": "politics",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-09-27-vucic-resigns-serbia-presidency-prime-minister"
+      ],
+      "eventUri": "srp-241224",
+      "summary": "Aleksandar Vucic, one of Europe's longest-serving leaders, resigned as Serbia's president so that he can run for prime minister in next month's elections. The resignation keeps him in power rather than ending his rule. Lead with the mechanism: by changing office he stays at the top without facing the presidential term limit. Datelined Belgrade.",
+      "conceptUris": []
+    },
+    {
+      "id": "india-late-monsoon-floods-18-dead",
+      "label": "Severe floods across India claim 18 lives, displace thousands amid heavy monsoon rains",
+      "firstSeen": "2026-09-27T22:02:55.962Z",
+      "lastCovered": "2026-09-27T22:02:55.962Z",
+      "coverageCount": 1,
+      "category": "politics",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-09-27-india-late-monsoon-floods-18-dead"
+      ],
+      "eventUri": "eng-12044319",
+      "summary": "Late-monsoon downpours over 48 hours killed at least 18 people across Uttar Pradesh, Bihar, Odisha and Chhattisgarh, forced thousands from their homes and damaged crops shortly before harvest. The IMD has issued heavy-rain alerts for 23 states. Lead with the toll and with how late in the season the rains came. Filed as politics, as a disaster story, not as science. Datelined Lucknow.",
+      "conceptUris": [
+        "http://en.wikipedia.org/wiki/Uttar_Pradesh",
+        "http://en.wikipedia.org/wiki/India_Meteorological_Department",
+        "http://en.wikipedia.org/wiki/Uttarakhand",
+        "http://en.wikipedia.org/wiki/Thunderstorm",
+        "http://en.wikipedia.org/wiki/Madhya_Pradesh",
+        "http://en.wikipedia.org/wiki/Chhattisgarh",
+        "http://en.wikipedia.org/wiki/Delhi",
+        "http://en.wikipedia.org/wiki/Lucknow"
+      ]
+    },
+    {
+      "id": "russia-offers-india-unlimited-oil-hormuz",
+      "label": "Russia ready to supply India with as much oil as it needs -- ambassador",
+      "firstSeen": "2026-09-27T22:02:55.962Z",
+      "lastCovered": "2026-09-27T22:02:55.962Z",
+      "coverageCount": 1,
+      "category": "economy",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-09-27-russia-offers-india-unlimited-oil-hormuz"
+      ],
+      "eventUri": "eng-12047644",
+      "summary": "With Hormuz traffic choked, Russia's ambassador in New Delhi offered to supply India with 'as much oil as it needs'. In the same interview he said Moscow is open to Indian proposals on ending the Ukraine war. The pairing matters: Russia is using India's Gulf supply shock to tie it more closely on both energy and diplomacy. The only source is TASS, Russian state media. Attribute everything to the ambassador through TASS. Datelined New Delhi.",
+      "conceptUris": []
+    },
+    {
+      "id": "unitedhealthcare-prior-authorization-medicare-advantage-gap",
+      "label": "UnitedHealthcare Is Dropping Prior Authorization for Roughly 1,700 Medical Procedures in October. Only About 120 Apply to Medicare Advantage, Where It Denied 17% of Standard Requests - AOL",
+      "firstSeen": "2026-09-27T22:02:55.962Z",
+      "lastCovered": "2026-09-27T22:02:55.962Z",
+      "coverageCount": 1,
+      "category": "economy",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-09-27-unitedhealthcare-prior-authorization-medicare-advantage-gap"
+      ],
+      "eventUri": "eng-12045800",
+      "summary": "The largest US health insurer is advertising the removal of prior authorization for about 1,700 procedure codes from October 1. Only about 120 of those codes apply to Medicare Advantage, the plan type where it denied 17% of standard requests. Lead with the gap between the headline number and the coverage that actually changes. It is a case study of how an insurer's gatekeeping stays in place behind a PR concession. Datelined Minnetonka.",
+      "conceptUris": []
+    },
+    {
+      "id": "amodei-trump-white-house-dinner-ai-slowdown",
+      "label": "Dario Amodei of Anthropic to Dine With Trump at White House",
+      "firstSeen": "2026-09-27T22:02:55.962Z",
+      "lastCovered": "2026-09-27T22:02:55.962Z",
+      "coverageCount": 1,
+      "category": "tech",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-09-27-amodei-trump-white-house-dinner-ai-slowdown"
+      ],
+      "eventUri": "eng-12040158",
+      "summary": "Trump is hosting Anthropic CEO Dario Amodei at the White House tonight, two weeks after Amodei's call for an AI slowdown angered the president. That call has since drawn an antitrust suit against the labs (09-20) and a refusal from Beijing (09-23), and this week OpenAI paused frontier training. Lead with the reversal from anger to a dinner invitation. The question is whether Washington is moving toward a state-brokered slowdown, which would need the antitrust waiver Amodei has asked for.",
+      "conceptUris": []
+    },
+    {
       "id": "afghanistan-pakistan-nuristan-balochistan-clashes",
       "label": "Afghanistan says 28 fighters killed as Islamabad, Kabul trade accusations",
       "firstSeen": "2026-09-27T18:07:57.272Z",
       "lastCovered": "2026-09-27T18:07:57.272Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-09-27-afghanistan-pakistan-nuristan-balochistan-clashes"
@@ -33,7 +172,7 @@
       "lastCovered": "2026-09-27T18:07:57.272Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-09-27-ukraine-strikes-after-lavrov-wadephul-talks"
@@ -58,7 +197,7 @@
       "lastCovered": "2026-09-27T18:07:57.272Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-09-27-naqeebullah-mehsud-final-officers-acquitted"
@@ -74,7 +213,7 @@
       "lastCovered": "2026-09-27T18:07:57.272Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-09-27-kano-durbar-ban-rival-emirs"
@@ -90,7 +229,7 @@
       "lastCovered": "2026-09-27T18:07:57.272Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-09-27-pope-leo-france-abuse-assisted-dying"
@@ -115,7 +254,7 @@
       "lastCovered": "2026-09-27T18:07:57.272Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-09-27-parvesh-verma-slap-video-delhi"
@@ -140,7 +279,7 @@
       "lastCovered": "2026-09-27T18:07:57.272Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-09-27-maharashtra-drought-list-revenue-circle"
@@ -165,7 +304,7 @@
       "lastCovered": "2026-09-27T18:07:57.272Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-09-27-nepal-himlung-avalanche-guides-missing"
@@ -190,7 +329,7 @@
       "lastCovered": "2026-09-27T18:07:57.272Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-09-27-authors-guild-openai-unsealed-briefs-piracy"
@@ -206,7 +345,7 @@
       "lastCovered": "2026-09-27T18:07:57.272Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-09-27-bill-gates-ai-laws-self-regulation"
@@ -222,7 +361,7 @@
       "lastCovered": "2026-09-27T18:07:57.272Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-09-27-buterin-ethereum-2030-hegota-proofs"
@@ -238,7 +377,7 @@
       "lastCovered": "2026-09-27T18:07:57.272Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-09-27-pakistan-glacial-lakes-suparco-40-to-105"
@@ -254,7 +393,7 @@
       "lastCovered": "2026-09-27T14:06:19.564Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-09-27-raf-fairford-evacuation-arrests"
@@ -279,7 +418,7 @@
       "lastCovered": "2026-09-27T14:06:19.564Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-09-27-smotrich-annexation-gaza-lebanon-west-bank-war"
@@ -295,7 +434,7 @@
       "lastCovered": "2026-09-27T14:06:19.564Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-09-27-rsf-drones-gezira-fuel-depot-wad-madani"
@@ -311,7 +450,7 @@
       "lastCovered": "2026-09-27T14:06:19.564Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-09-27-oleshky-drone-food-deliveries-occupied-kherson"
@@ -336,7 +475,7 @@
       "lastCovered": "2026-09-27T14:06:19.564Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-09-27-irgc-captures-second-remus-600-uuv-hormuz"
@@ -361,7 +500,7 @@
       "lastCovered": "2026-09-27T14:06:19.564Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-09-27-burnham-heathrow-third-runway"
@@ -386,7 +525,7 @@
       "lastCovered": "2026-09-27T14:06:19.564Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-09-27-india-bank-strike-five-day-week"
@@ -411,7 +550,7 @@
       "lastCovered": "2026-09-27T14:06:19.564Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-09-27-haiti-informal-vendors-protest-gang-warfare"
@@ -427,7 +566,7 @@
       "lastCovered": "2026-09-27T14:06:19.564Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-09-27-clarity-act-crypto-bill-collapse"
@@ -443,7 +582,7 @@
       "lastCovered": "2026-09-27T14:06:19.564Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-09-27-chemosynthetic-bacteria-reef-fish-gills"
@@ -459,7 +598,7 @@
       "lastCovered": "2026-09-27T10:06:19.186Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-09-27-south-africa-fochville-bar-shooting-17-killed"
@@ -484,7 +623,7 @@
       "lastCovered": "2026-09-27T10:06:19.186Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-09-26-apple-taction-haptics-patent-5-7-billion"
@@ -509,7 +648,7 @@
       "lastCovered": "2026-09-27T10:06:19.186Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-09-26-jaishankar-unga-global-south-war-costs"
@@ -534,7 +673,7 @@
       "lastCovered": "2026-09-27T10:06:19.186Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-09-27-burnham-universal-social-care-labour-conference"
@@ -559,7 +698,7 @@
       "lastCovered": "2026-09-27T10:06:19.186Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-09-27-assam-police-detain-cjp-ranka-42-guwahati"
@@ -584,7 +723,7 @@
       "lastCovered": "2026-09-27T10:06:19.186Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-09-27-serap-cbn-diverted-funds-anchor-borrowers"
@@ -600,7 +739,7 @@
       "lastCovered": "2026-09-27T10:06:19.186Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-09-26-japan-tightens-rules-foreign-residents"
@@ -616,7 +755,7 @@
       "lastCovered": "2026-09-27T10:06:19.186Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-09-27-turlov-elected-fide-president-samarkand"
@@ -641,7 +780,7 @@
       "lastCovered": "2026-09-27T05:07:24.342Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-09-27-hamas-israel-election-gaza-blood-abbas"
@@ -666,7 +805,7 @@
       "lastCovered": "2026-09-27T05:07:24.342Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-09-27-swiss-neutrality-referendum-vote"
@@ -691,7 +830,7 @@
       "lastCovered": "2026-09-27T05:07:24.342Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-09-27-xi-skips-un-han-zheng-china-iran-war"
@@ -716,7 +855,7 @@
       "lastCovered": "2026-09-27T05:07:24.342Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-09-27-india-cec-gyanesh-kumar-bjp-ticket-claim-sir"
@@ -741,7 +880,7 @@
       "lastCovered": "2026-09-27T05:07:24.342Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-09-27-hormuz-pgsa-blacklist-saudi-rejects-fees"
@@ -766,7 +905,7 @@
       "lastCovered": "2026-09-27T05:07:24.342Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-09-27-openai-pauses-frontier-training-safety-incidents"
@@ -782,7 +921,7 @@
       "lastCovered": "2026-09-27T05:07:24.342Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-09-27-trump-rolls-back-fuel-economy-rules-oil-shock"
@@ -807,7 +946,7 @@
       "lastCovered": "2026-09-27T05:07:24.342Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-09-27-malaria-funding-cut-146-million-cases-africa"
@@ -823,7 +962,7 @@
       "lastCovered": "2026-09-27T05:07:24.342Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-09-27-manipur-naga-kuki-violence-soo-pact"
@@ -848,7 +987,7 @@
       "lastCovered": "2026-09-27T05:07:24.342Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-09-27-ai-weather-models-hurricane-intensity-gap"
@@ -864,7 +1003,7 @@
       "lastCovered": "2026-09-26T22:06:36.099Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-09-26-cuba-unga-us-oil-blockade-collective-punishment"
@@ -889,7 +1028,7 @@
       "lastCovered": "2026-09-26T22:06:36.099Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-09-26-hurricane-polo-category-5-baja-california-landfall"
@@ -914,7 +1053,7 @@
       "lastCovered": "2026-09-26T22:06:36.099Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-09-26-supreme-court-blocks-missouri-map-third-time"
@@ -939,7 +1078,7 @@
       "lastCovered": "2026-09-26T22:06:36.099Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-09-26-egypt-unga-bab-al-mandab-tigray-madbuly"
@@ -955,7 +1094,7 @@
       "lastCovered": "2026-09-26T22:06:36.099Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-09-26-lavrov-s400-turkey-transfer-f35"
@@ -971,7 +1110,7 @@
       "lastCovered": "2026-09-26T22:06:36.099Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-09-26-rana-sanaullah-islamabad-protest-ban-pti"
@@ -987,7 +1126,7 @@
       "lastCovered": "2026-09-26T22:06:36.099Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-09-26-dmitriev-nord-stream-restart-germany-afd"
@@ -1003,7 +1142,7 @@
       "lastCovered": "2026-09-26T22:06:36.099Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-09-26-nigeria-un-pandemic-financing-vaccine-equity"
@@ -1019,7 +1158,7 @@
       "lastCovered": "2026-09-26T22:06:36.099Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-09-26-enceladus-ocean-microbes-survive-life-detection"
@@ -1035,7 +1174,7 @@
       "lastCovered": "2026-09-26T22:06:36.099Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-09-26-boeing-737-max-software-update-landing-glitch"
@@ -1051,7 +1190,7 @@
       "lastCovered": "2026-09-26T22:06:36.099Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-09-26-instagram-womens-health-posts-40-percent-ads"
@@ -1067,275 +1206,13 @@
       "lastCovered": "2026-09-26T22:06:36.099Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-09-26-space-force-lasers-cape-canaveral-drones"
       ],
       "eventUri": null,
       "summary": "The US Space Force is deploying directed-energy laser weapons at Cape Canaveral to shoot down drones over the spaceport. Lead with what it signals: counter-drone lasers moving from war zones to domestic infrastructure, driven by the cost asymmetry of cheap drones versus interceptor missiles that Ukraine and the Red Sea exposed. Explain the system, its range and its limits (weather, dwell time). US dateline #3 of 3.",
-      "conceptUris": []
-    },
-    {
-      "id": "trump-rejects-iran-hormuz-seven-day-roadmap",
-      "label": "Where Things Stand After Trump Rejects Iran's Hormuz Proposal",
-      "firstSeen": "2026-09-26T18:05:05.426Z",
-      "lastCovered": "2026-09-26T18:05:05.426Z",
-      "coverageCount": 1,
-      "category": "politics",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-09-26-trump-rejects-iran-hormuz-seven-day-roadmap"
-      ],
-      "eventUri": "spa-4355456",
-      "summary": "New development on the Hormuz arc: Trump rejected Iran's seven-day roadmap to reopen the strait and halt fighting, calling it unacceptable while saying Tehran 'wants to make a deal'. Lead with what the offer contained (reopening within a week) and what its rejection means for the shipping and fuel shock already forcing diesel caps and export bans abroad; note China's UNGA speech the same day telling the 'relevant country' to stop threatening Gulf sovereignty. Dateline where it lands: the Strait of Hormuz/Tehran, not Washington.",
-      "conceptUris": [
-        "http://en.wikipedia.org/wiki/Iran",
-        "http://en.wikipedia.org/wiki/Strait_of_Hormuz",
-        "http://en.wikipedia.org/wiki/United_States",
-        "http://en.wikipedia.org/wiki/Donald_Trump",
-        "http://en.wikipedia.org/wiki/Tehran",
-        "http://en.wikipedia.org/wiki/Washington,_D.C.",
-        "http://en.wikipedia.org/wiki/New_York_City",
-        "http://en.wikipedia.org/wiki/The_Wall_Street_Journal"
-      ]
-    },
-    {
-      "id": "dera-ismail-khan-suicide-blast-ttp-khyber-pakhtunkhwa",
-      "label": "Deadly blast hits Pakistan's Khyber Pakhtunkhwa",
-      "firstSeen": "2026-09-26T18:05:05.426Z",
-      "lastCovered": "2026-09-26T18:05:05.426Z",
-      "coverageCount": 1,
-      "category": "politics",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-09-26-dera-ismail-khan-suicide-blast-ttp-khyber-pakhtunkhwa"
-      ],
-      "eventUri": "eng-12045214",
-      "summary": "A suicide blast in Dera Ismail Khan killed at least 11 (Rescue 1122; other reports say 13) and wounded about 30, with the TTP reportedly claiming it. Name the victims' town and the checkpoint target, give the toll with its source, and place it in the pattern: the same week families fled militancy operations in Bannu, KP's civilians are caught between TTP attacks and military operations along the Afghan border.",
-      "conceptUris": [
-        "http://en.wikipedia.org/wiki/Pakistan",
-        "http://en.wikipedia.org/wiki/Dera_Ismail_Khan",
-        "http://en.wikipedia.org/wiki/Suicide_attack",
-        "http://en.wikipedia.org/wiki/Khyber_Pakhtunkhwa",
-        "http://en.wikipedia.org/wiki/Pakistani_Taliban",
-        "http://en.wikipedia.org/wiki/Drazanda",
-        "http://en.wikipedia.org/wiki/Afghanistan",
-        "http://en.wikipedia.org/wiki/Security_checkpoint"
-      ]
-    },
-    {
-      "id": "china-us-30-billion-tariff-cut-ai-safety-channel",
-      "label": "China, US agree to set up channel for AI safety incidents",
-      "firstSeen": "2026-09-26T18:05:05.426Z",
-      "lastCovered": "2026-09-26T18:05:05.426Z",
-      "coverageCount": 1,
-      "category": "economy",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-09-26-china-us-30-billion-tariff-cut-ai-safety-channel"
-      ],
-      "eventUri": "eng-12044976",
-      "summary": "Beijing announced the summit's concrete output: a $30 billion reciprocal tariff-reduction package plus a US-China channel for reporting AI safety incidents. Lead with the $30bn and which goods it covers; then the AI channel as the first bilateral mechanism of its kind, set against the AOL report that there was no broader AI agreement. Watch item from the audit: whether trade pledges are tied to Taiwan/Iran security conditions.",
-      "conceptUris": [
-        "http://en.wikipedia.org/wiki/China",
-        "http://en.wikipedia.org/wiki/Donald_Trump",
-        "http://en.wikipedia.org/wiki/Xi_Jinping",
-        "http://en.wikipedia.org/wiki/Artificial_intelligence",
-        "http://en.wikipedia.org/wiki/United_States",
-        "http://en.wikipedia.org/wiki/White_House",
-        "http://en.wikipedia.org/wiki/Washington,_D.C.",
-        "http://en.wikipedia.org/wiki/Beijing"
-      ]
-    },
-    {
-      "id": "lavrov-wadephul-russia-germany-first-talks-since-2022",
-      "label": "At UN, Russia and Germany's top diplomats hold first talks since 2022",
-      "firstSeen": "2026-09-26T18:05:05.426Z",
-      "lastCovered": "2026-09-26T18:05:05.426Z",
-      "coverageCount": 1,
-      "category": "politics",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-09-26-lavrov-wadephul-russia-germany-first-talks-since-2022"
-      ],
-      "eventUri": "deu-2179413",
-      "summary": "Lavrov and Germany's Johann Wadephul met on the UNGA sidelines, the first Russia–Germany foreign-minister talks since before the 2022 invasion. Lead with the break in a four-year freeze by Europe's largest economy and what each side said was discussed; context: Putin's denial of plans for a European conflict and the US proposal for trilateral talks in the UAE.",
-      "conceptUris": [
-        "http://en.wikipedia.org/wiki/Sergey_Lavrov",
-        "http://en.wikipedia.org/wiki/Russia",
-        "http://en.wikipedia.org/wiki/Germany",
-        "http://en.wikipedia.org/wiki/Ukraine",
-        "http://en.wikipedia.org/wiki/New_York_City",
-        "http://en.wikipedia.org/wiki/United_Nations",
-        "http://en.wikipedia.org/wiki/United_Nations_General_Assembly",
-        "http://en.wikipedia.org/wiki/Foreign_minister"
-      ]
-    },
-    {
-      "id": "zelensky-patriot-production-refused-uae-trilateral-talks",
-      "label": "A week of mixed results for Volodymyr Zelensky",
-      "firstSeen": "2026-09-26T18:05:05.426Z",
-      "lastCovered": "2026-09-26T18:05:05.426Z",
-      "coverageCount": 1,
-      "category": "politics",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-09-26-zelensky-patriot-production-refused-uae-trilateral-talks"
-      ],
-      "eventUri": "fra-1347632",
-      "summary": "Zelensky left the UNGA with a US proposal for trilateral Russia–Ukraine–US talks in the UAE, but Trump declined to let Ukraine manufacture Patriot missiles, and Zelensky says he urged Trump to enlist China. Lead with the Patriot refusal — Ukraine's air defence stays dependent on US supply while Russian strikes shut Kryvyi Rih's steelworks. Dateline Kyiv.",
-      "conceptUris": [
-        "http://en.wikipedia.org/wiki/Donald_Trump",
-        "http://en.wikipedia.org/wiki/Volodymyr_Zelenskyy",
-        "http://en.wikipedia.org/wiki/Ukraine",
-        "http://en.wikipedia.org/wiki/Russia",
-        "http://en.wikipedia.org/wiki/MIM-104_Patriot",
-        "http://en.wikipedia.org/wiki/United_States",
-        "http://en.wikipedia.org/wiki/Kiev",
-        "http://en.wikipedia.org/wiki/Missile"
-      ]
-    },
-    {
-      "id": "belfast-court-halts-orange-order-garvaghy-road-march",
-      "label": "Northern Irish court temporarily stops Orange Order march through Catholic area",
-      "firstSeen": "2026-09-26T18:05:05.426Z",
-      "lastCovered": "2026-09-26T18:05:05.426Z",
-      "coverageCount": 1,
-      "category": "politics",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-09-26-belfast-court-halts-orange-order-garvaghy-road-march"
-      ],
-      "eventUri": "eng-12041751",
-      "summary": "Belfast's High Court granted Garvaghy Road residents a temporary injunction against Sunday's Orange Order parade, after the Parades Commission overturned a near-30-year ban on the Drumcree route. Lead with the residents' challenge succeeding within a day of the march; the mechanism is who decides contested parades — the commission or the courts — on the route that caused the 1990s Drumcree standoffs.",
-      "conceptUris": [
-        "http://en.wikipedia.org/wiki/Orange_Order",
-        "http://en.wikipedia.org/wiki/Parades_Commission",
-        "http://en.wikipedia.org/wiki/Portadown",
-        "http://en.wikipedia.org/wiki/Irish_nationalism",
-        "http://en.wikipedia.org/wiki/Drumcree_conflict",
-        "http://en.wikipedia.org/wiki/Drumcree_Church",
-        "http://en.wikipedia.org/wiki/Northern_Ireland",
-        "http://en.wikipedia.org/wiki/Garvaghy_(civil_parish)"
-      ]
-    },
-    {
-      "id": "yemen-houthis-count-1059-saudi-strikes-marib",
-      "label": "Yemen releases latest statement on no. of Saudi aristrikes",
-      "firstSeen": "2026-09-26T18:05:05.426Z",
-      "lastCovered": "2026-09-26T18:05:05.426Z",
-      "coverageCount": 1,
-      "category": "politics",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-09-26-yemen-houthis-count-1059-saudi-strikes-marib"
-      ],
-      "eventUri": null,
-      "summary": "The Houthi-run Yemeni Armed Forces' spokesman Yahya Saree says Saudi airstrikes and missile attacks have reached 1,059 since the latest escalation, focused around Marib. State-media, party-claim sourcing: attribute throughout ('Iran's Mehr News Agency, citing the Houthi military spokesman, reported…'), do not state the count as fact. Context: renewed Saudi–Houthi war after Houthi drones on Riyadh and Houthi gains near Bab al-Mandab; the cost falls on Yemeni civilians already in the world's worst humanitarian crisis.",
-      "conceptUris": []
-    },
-    {
-      "id": "khyber-pakhtunkhwa-mpa-arrest-speaker-approval-naqvi-pti",
-      "label": "Naqvi assails PTI's 'version of equality before law' after KP IG told to ensure speaker's approval for any MPA's arrest",
-      "firstSeen": "2026-09-26T18:05:05.426Z",
-      "lastCovered": "2026-09-26T18:05:05.426Z",
-      "coverageCount": 1,
-      "category": "politics",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-09-26-khyber-pakhtunkhwa-mpa-arrest-speaker-approval-naqvi-pti"
-      ],
-      "eventUri": "eng-12045259",
-      "summary": "Khyber Pakhtunkhwa's assembly told its police chief that no MPA may be arrested without the speaker's prior approval; Interior Minister Mohsin Naqvi called it PTI's 'version of equality before law'. The same day CM Sohail Afridi offered dialogue but warned a federal 'misadventure' could reach a point of no return as PTI prepares nationwide protests. Lead with the arrest-immunity order as the mechanism: a province using legislative privilege to shield its lawmakers from federal policing.",
-      "conceptUris": []
-    },
-    {
-      "id": "kraken-payward-financial-infrastructure-no-ipo",
-      "label": "Kraken's parent Payward is building a financial empire that goes far beyond crypto trading",
-      "firstSeen": "2026-09-26T18:05:05.426Z",
-      "lastCovered": "2026-09-26T18:05:05.426Z",
-      "coverageCount": 1,
-      "category": "economy",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-09-26-kraken-payward-financial-infrastructure-no-ipo"
-      ],
-      "eventUri": null,
-      "summary": "Payward, Kraken's Wyoming-based parent, has spent two years buying banking, derivatives and futures businesses and says it is profitable with no rush to IPO. Lead with the acquisitions and what they add up to: a crypto exchange becoming regulated financial infrastructure outside the bank charter system — and what that means for who supervises it.",
-      "conceptUris": []
-    },
-    {
-      "id": "county-championship-somerset-build-big-lead-against-surrey",
-      "label": "County Championship: Somerset build big lead against Surrey",
-      "firstSeen": "2026-09-26T18:05:05.426Z",
-      "lastCovered": "2026-09-26T18:05:05.426Z",
-      "coverageCount": 1,
-      "category": "economy",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-09-26-county-championship-somerset-build-big-lead-against-surrey"
-      ],
-      "eventUri": null,
-      "summary": "[Auto-backfill for economy floor] Rothesay County Championship, Division One, Cooper Associates County Ground, Taunton (day three)\n\nSurrey 422: Lawrence 139, Sibley 72, Foakes 64; Leach 4-91, Gregory 3-85\n\nSomerset 691-8: Abell 284*, Lammonby 229, Pretorius 72*; Lomror 4-196\n\nSomerset (5 pts) lead Surrey (4 pts) by 269 runs with two",
-      "conceptUris": []
-    },
-    {
-      "id": "resolving-temporal-threat-uncertainty-by-observational-learn",
-      "label": "Resolving temporal threat uncertainty by observational learning involves the amygdala, hippocampus and anterior insula - Translational Psychiatry",
-      "firstSeen": "2026-09-26T18:05:05.426Z",
-      "lastCovered": "2026-09-26T18:05:05.426Z",
-      "coverageCount": 1,
-      "category": "tech",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-09-26-resolving-temporal-threat-uncertainty-by-observational-learn"
-      ],
-      "eventUri": null,
-      "summary": "[Auto-backfill for tech floor] We're sharing this article early to provide faster access to peer-reviewed, accepted research. It is citable and carries a permanent DOI. This version is subject to further edits and will be replaced automatically by the final Version of Record. All legal disclaimers apply.\n\nBy observing others' exp",
-      "conceptUris": []
-    },
-    {
-      "id": "cymru-premier-bumper-crowd-see-penybont-victory-and-flint-fi",
-      "label": "Cymru Premier: Bumper crowd see Penybont victory and Flint finally win",
-      "firstSeen": "2026-09-26T18:05:05.426Z",
-      "lastCovered": "2026-09-26T18:05:05.426Z",
-      "coverageCount": 1,
-      "category": "tech",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-09-26-cymru-premier-bumper-crowd-see-penybont-victory-and-flint-fi"
-      ],
-      "eventUri": null,
-      "summary": "[Auto-backfill for tech floor] Penybont came from behind to beat Airbus UK Broughton in front of a crowd of 2,666 to keep their unbeaten start going.\n\nThe bumper crowd of over 2,500 is the biggest attendance at a Cymru Premier game for 22 years, and the fourth highest in league history.\n\nThey were treated to an entertaining game ",
-      "conceptUris": []
-    },
-    {
-      "id": "shinty-big-wins-for-top-two-light-up-premiership-title-race",
-      "label": "Shinty: Big wins for top two light up Premiership title race",
-      "firstSeen": "2026-09-26T18:05:05.426Z",
-      "lastCovered": "2026-09-26T18:05:05.426Z",
-      "coverageCount": 1,
-      "category": "tech",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-09-26-shinty-big-wins-for-top-two-light-up-premiership-title-race"
-      ],
-      "eventUri": null,
-      "summary": "[Auto-backfill for tech floor] Both Newtonmore and Kingussie recorded thumping 7-0 victories as the Mowi Premiership title race looks set to go down to goal difference.\n\nA penalty from Steven MacDonald and a goal from Conor Jones gave leaders Newtonmore an early 2-0 lead against bottom side Kyles Athletic, before Struan Ross grab",
       "conceptUris": []
     }
   ]
