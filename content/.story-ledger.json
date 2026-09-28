@@ -2,13 +2,241 @@
   "version": 1,
   "stories": [
     {
+      "id": "france-national-rally-senate-group-first-time",
+      "label": "France's far-right National Rally surges in Senate elections",
+      "firstSeen": "2026-09-28T14:06:19.150Z",
+      "lastCovered": "2026-09-28T14:06:19.150Z",
+      "coverageCount": 1,
+      "category": "politics",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-09-28-france-national-rally-senate-group-first-time"
+      ],
+      "eventUri": "fra-1348228",
+      "summary": "The National Rally won 15 Senate seats in Sunday's indirect election, enough to form its own parliamentary group in the upper house for the first time. Lead with that threshold: the Senate is elected by about 160,000 local officials, not voters, so the breakthrough shows the party is now rooted in town halls, not just protest votes. Pair it with the new Toluna-Harris poll showing Le Pen widening her second-round lead for 2027, and explain what a Senate group gains: speaking time, committee seats, and a say in constitutional amendments.",
+      "conceptUris": [
+        "http://en.wikipedia.org/wiki/National_Rally",
+        "http://en.wikipedia.org/wiki/Senate_(France)",
+        "http://en.wikipedia.org/wiki/Marine_Le_Pen",
+        "http://en.wikipedia.org/wiki/Upper_house",
+        "http://en.wikipedia.org/wiki/France",
+        "http://en.wikipedia.org/wiki/Parliamentary_group",
+        "http://en.wikipedia.org/wiki/Far-right_politics",
+        "http://en.wikipedia.org/wiki/Jordan_Bardella"
+      ]
+    },
+    {
+      "id": "ujjain-shahi-masjid-demolition-clashes",
+      "label": "People clash with police, stone-pelting, tear gas fired: What's happening in Ujjain",
+      "firstSeen": "2026-09-28T14:06:19.150Z",
+      "lastCovered": "2026-09-28T14:06:19.150Z",
+      "coverageCount": 1,
+      "category": "politics",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-09-28-ujjain-shahi-masjid-demolition-clashes"
+      ],
+      "eventUri": "eng-12047886",
+      "summary": "Police in Ujjain fired tear gas at crowds gathered where part of the Shahi Masjid is to be demolished for a road-widening project near the Mahakaleshwar temple corridor. Lead with the demolition order and who issued it (the Madhya Pradesh government under Mohan Yadav), not the stone-throwing. The mechanism is 'road widening' and 'encroachment' as the legal route by which mosques are cut back or razed across BJP-run states, and what the High Court allowed. Report the clashes precisely, attribute the police account, and name any injured or detained.",
+      "conceptUris": [
+        "http://en.wikipedia.org/wiki/Ujjain",
+        "http://en.wikipedia.org/wiki/Mosque",
+        "http://en.wikipedia.org/wiki/Tear_gas",
+        "http://en.wikipedia.org/wiki/Madhya_Pradesh",
+        "http://en.wikipedia.org/wiki/Madhya_Pradesh_High_Court",
+        "http://en.wikipedia.org/wiki/Hindu_Shahis",
+        "http://en.wikipedia.org/wiki/Muslims",
+        "http://en.wikipedia.org/wiki/Ummah"
+      ]
+    },
+    {
+      "id": "venezuela-rally-machado-return-elections",
+      "label": "Venezuelans rally for opposition leader's return and presidential elections",
+      "firstSeen": "2026-09-28T14:06:19.150Z",
+      "lastCovered": "2026-09-28T14:06:19.150Z",
+      "coverageCount": 1,
+      "category": "politics",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-09-28-venezuela-rally-machado-return-elections"
+      ],
+      "eventUri": "spa-4358072",
+      "summary": "Hundreds rallied in Caracas and other cities demanding safe passage home for exiled opposition leader and Nobel laureate María Corina Machado, and a presidential election. Lead with what is being demanded and who stands in the way: who controls the airport, the electoral council and the date of any vote. Explain why Machado is still abroad and what guarantees her return would need. Keep the turnout figures as reported; hundreds is not a mass movement.",
+      "conceptUris": [
+        "http://en.wikipedia.org/wiki/Venezuela",
+        "http://en.wikipedia.org/wiki/María_Corina_Machado",
+        "http://en.wikipedia.org/wiki/Caracas",
+        "http://en.wikipedia.org/wiki/Come_Venezuela",
+        "http://en.wikipedia.org/wiki/Nobel_Peace_Prize",
+        "http://en.wikipedia.org/wiki/Maiquetía",
+        "http://en.wikipedia.org/wiki/United_States",
+        "http://en.wikipedia.org/wiki/Exile"
+      ]
+    },
+    {
+      "id": "lao-activist-khieo-lapchanh-vanishes-thailand",
+      "label": "Another Lao Activist Vanishes in Thailand",
+      "firstSeen": "2026-09-28T14:06:19.150Z",
+      "lastCovered": "2026-09-28T14:06:19.150Z",
+      "coverageCount": 1,
+      "category": "politics",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-09-28-lao-activist-khieo-lapchanh-vanishes-thailand"
+      ],
+      "eventUri": null,
+      "summary": "Lao exile Khieo Lapchanh has disappeared in Thailand, the latest in a run of dissidents from Laos, Cambodia and Vietnam who have been abducted, killed or deported from Thai soil. Lead with the name and the pattern: a count of prior cases with no prosecutions, as the source documents them. The mechanism is 'swap mart' cooperation between Mekong governments, which trade exiles living on each other's territory. Name Thailand's obligations under its own 2023 anti-enforced-disappearance law.",
+      "conceptUris": []
+    },
+    {
+      "id": "egypt-blocks-bp-asset-sale-energean",
+      "label": "Govt tells BP it would block sale of company's Egypt assets to Energean",
+      "firstSeen": "2026-09-28T14:06:19.150Z",
+      "lastCovered": "2026-09-28T14:06:19.150Z",
+      "coverageCount": 1,
+      "category": "economy",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-09-28-egypt-blocks-bp-asset-sale-energean"
+      ],
+      "eventUri": null,
+      "summary": "Egypt's government told BP it will reject the sale of part of its Egyptian oil and gas assets to Israeli majority-owned Energean, according to two sources who spoke to Mada Masr, one of whom works for the company. Lead with the veto: Cairo keeps buying Israeli gas, yet will not let an Israeli-owned firm hold Egyptian upstream assets. Explain which fields are involved, what legal lever the Petroleum Ministry holds over asset transfers, and what the block costs BP. Attribute to Mada Masr's anonymous sources throughout.",
+      "conceptUris": []
+    },
+    {
+      "id": "sub-saharan-africa-diesel-generators-grid-iran-war",
+      "label": "Half of sub-Saharan Africa relies more on generators than grid",
+      "firstSeen": "2026-09-28T14:06:19.150Z",
+      "lastCovered": "2026-09-28T14:06:19.150Z",
+      "coverageCount": 1,
+      "category": "economy",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-09-28-sub-saharan-africa-diesel-generators-grid-iran-war"
+      ],
+      "eventUri": "eng-12048411",
+      "summary": "Energy for Growth finds that half of sub-Saharan African countries get more power from diesel generators than from the grid, which leaves them exposed as the Iran war pushes diesel prices up. Lead with that ratio and name the most generator-dependent economies the analysis lists. The mechanism: when the grid fails, households and firms become retail diesel buyers, so a war in the Gulf feeds straight into the cost of running a clinic or a shop. Use DW on diesel supply shortages and a possible US export ban for the supply side.",
+      "conceptUris": [
+        "http://en.wikipedia.org/wiki/Donald_Trump",
+        "http://en.wikipedia.org/wiki/Diesel_engine",
+        "http://en.wikipedia.org/wiki/Oil_refinery",
+        "http://en.wikipedia.org/wiki/Gasoline",
+        "http://en.wikipedia.org/wiki/United_States",
+        "http://en.wikipedia.org/wiki/Petroleum",
+        "http://en.wikipedia.org/wiki/Diesel_fuel",
+        "http://en.wikipedia.org/wiki/Russia"
+      ]
+    },
+    {
+      "id": "lula-amazon-deforestation-20000km2-saved",
+      "label": "Analysis: Lula presidency saved at least 20,000km2 of Brazilian Amazon since 2022",
+      "firstSeen": "2026-09-28T14:06:19.150Z",
+      "lastCovered": "2026-09-28T14:06:19.150Z",
+      "coverageCount": 1,
+      "category": "science",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-09-28-lula-amazon-deforestation-20000km2-saved"
+      ],
+      "eventUri": null,
+      "summary": "Carbon Brief's counterfactual analysis finds that at least 20,000 km² of Brazilian Amazon, roughly the size of New Jersey, is still standing because deforestation fell under Lula rather than continuing on its earlier trend. Lead with the area and the carbon it holds. Explain the method: satellite deforestation data measured against a projected baseline, and why any counterfactual is uncertain. Name the policies the analysis credits and whether they would survive a change of government.",
+      "conceptUris": []
+    },
+    {
+      "id": "spacex-starship-first-orbit-flight-14",
+      "label": "Watch: SpaceX launches Starship rocket into orbit for first time",
+      "firstSeen": "2026-09-28T14:06:19.150Z",
+      "lastCovered": "2026-09-28T14:06:19.150Z",
+      "coverageCount": 1,
+      "category": "science",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-09-28-spacex-starship-first-orbit-flight-14"
+      ],
+      "eventUri": null,
+      "summary": "On its 14th test flight, Starship reached orbit for the first time; earlier flights flew suborbital arcs. Lead with that milestone and what it unlocks: orbital propellant transfer, which NASA's Artemis lunar landing depends on, and deployment of full-size Starlink satellites. Report only what was confirmed about the flight and any recovery, not launch-day hype. Put the 100-person Mars claim last, as an aspiration.",
+      "conceptUris": []
+    },
+    {
+      "id": "microsoft-copilot-prompts-human-contractors-review",
+      "label": "Humans Are Reading Copilot Prompts — And They're Horrified",
+      "firstSeen": "2026-09-28T14:06:19.150Z",
+      "lastCovered": "2026-09-28T14:06:19.150Z",
+      "coverageCount": 1,
+      "category": "tech",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-09-28-microsoft-copilot-prompts-human-contractors-review"
+      ],
+      "eventUri": null,
+      "summary": "Internal documents obtained by 404 Media show that human contractors review Microsoft Copilot users' prompts and uploaded images, including a stream of requests for sexual AI images. Lead with the gap between the product's privacy framing and the fact that a stranger may read what you type. Explain the mechanism: human review for safety and quality labelling, outsourced to contractors. Say what Microsoft's terms actually disclose, and cover the toll on the reviewers themselves.",
+      "conceptUris": []
+    },
+    {
+      "id": "poland-medical-software-cyberattack-patient-data",
+      "label": "Cyberattack on Polish medical software provider exposed patient data",
+      "firstSeen": "2026-09-28T14:06:19.150Z",
+      "lastCovered": "2026-09-28T14:06:19.150Z",
+      "coverageCount": 1,
+      "category": "tech",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-09-28-poland-medical-software-cyberattack-patient-data"
+      ],
+      "eventUri": null,
+      "summary": "Hackers stole patient data from a Polish healthcare software vendor, the latest in a run of attacks on Poland's medical sector in recent months. Lead with the supply-chain point: one breached vendor exposes every clinic that runs its software. Give how many facilities and patients are affected and what data was taken. Place it in the pattern of attacks on Polish hospitals and labs without asserting an attribution the source does not make.",
+      "conceptUris": []
+    },
+    {
+      "id": "samsung-sk-hynix-hbm-memory-ai-chokepoint",
+      "label": "South Korea's AI chip giants are fighting for a bigger role in America's AI boom",
+      "firstSeen": "2026-09-28T14:06:19.150Z",
+      "lastCovered": "2026-09-28T14:06:19.150Z",
+      "coverageCount": 1,
+      "category": "tech",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-09-28-samsung-sk-hynix-hbm-memory-ai-chokepoint"
+      ],
+      "eventUri": null,
+      "summary": "Samsung and SK Hynix dominate high-bandwidth memory, the stacked DRAM every AI accelerator needs, and are competing to become indispensable to Nvidia and OpenAI. Lead with the chokepoint: AI compute is limited by memory as much as by GPUs, and two Korean firms make most of it. Explain where each firm stands on the next HBM generation, and what the dependence means for Seoul's leverage with Washington. Dateline Seoul.",
+      "conceptUris": []
+    },
+    {
+      "id": "uk-raf-space-effects-squadron-counterspace",
+      "label": "UK Creates Space Effects Squadron to Protect Its Satellites",
+      "firstSeen": "2026-09-28T14:06:19.150Z",
+      "lastCovered": "2026-09-28T14:06:19.150Z",
+      "coverageCount": 1,
+      "category": "tech",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-09-28-uk-raf-space-effects-squadron-counterspace"
+      ],
+      "eventUri": null,
+      "summary": "The RAF has formed No. III Space Effects Squadron, the UK's first unit whose stated mission is to 'disrupt, degrade and deny' hostile threats in space. Lead with that wording: it is an offensive counterspace mandate, not only satellite protection. Explain what 'space effects' usually means in practice (jamming, dazzling, cyber operations against ground stations) and how the UK joins the US, France and others in treating orbit as a warfighting domain, which weakens arms-control norms in space.",
+      "conceptUris": []
+    },
+    {
       "id": "taiz-market-strike-saudi-houthi-front",
       "label": "Inside Yemen's front-line city as Houthis battle for control",
       "firstSeen": "2026-09-28T10:05:21.104Z",
       "lastCovered": "2026-09-28T10:05:21.104Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-09-28-taiz-market-strike-saudi-houthi-front"
@@ -33,7 +261,7 @@
       "lastCovered": "2026-09-28T10:05:21.104Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-09-28-kazakhstan-caspian-exercise-14-dead-defence-minister-fired"
@@ -58,7 +286,7 @@
       "lastCovered": "2026-09-28T10:05:21.104Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-09-28-netanyahu-secret-abu-dhabi-trip-october-7-warning"
@@ -83,7 +311,7 @@
       "lastCovered": "2026-09-28T10:05:21.104Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-09-28-taiwan-pushback-trump-xi-summit-wwii-weapons-offer"
@@ -108,7 +336,7 @@
       "lastCovered": "2026-09-28T10:05:21.104Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-09-28-hungary-lifts-immunity-magyar-orban-ministers"
@@ -133,7 +361,7 @@
       "lastCovered": "2026-09-28T10:05:21.104Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-09-28-socar-eni-italy-fuel-price-cap"
@@ -158,7 +386,7 @@
       "lastCovered": "2026-09-28T10:05:21.104Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-09-28-anambra-debt-peter-obi-dmo-records"
@@ -174,7 +402,7 @@
       "lastCovered": "2026-09-28T10:05:21.104Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-09-28-h5n1-human-patient-variants-receptor-binding"
@@ -190,7 +418,7 @@
       "lastCovered": "2026-09-28T10:05:21.104Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-09-28-herring-fishery-collapse-400-years-rebound"
@@ -206,7 +434,7 @@
       "lastCovered": "2026-09-28T10:05:21.104Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-09-28-ai-agents-rogue-liability-gap"
@@ -222,7 +450,7 @@
       "lastCovered": "2026-09-28T10:05:21.104Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-09-28-redotpay-stablecoin-audit-us-ipo"
@@ -238,7 +466,7 @@
       "lastCovered": "2026-09-28T05:05:04.443Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-09-28-south-korea-ukraine-pow-transfer-apology"
@@ -263,7 +491,7 @@
       "lastCovered": "2026-09-28T05:05:04.443Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-09-28-netanyahu-icc-case-erdogan-leverage"
@@ -288,7 +516,7 @@
       "lastCovered": "2026-09-28T05:05:04.443Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-09-28-uttar-pradesh-floods-62-dead"
@@ -313,7 +541,7 @@
       "lastCovered": "2026-09-28T05:05:04.443Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-09-28-siti-hasmah-mahathir-wife-dies-100"
@@ -338,7 +566,7 @@
       "lastCovered": "2026-09-28T05:05:04.443Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-09-28-australia-senate-summons-altman-amodei-ai-agents"
@@ -363,7 +591,7 @@
       "lastCovered": "2026-09-28T05:05:04.443Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-09-28-pakistan-hangor-submarine-live-fire-china"
@@ -388,7 +616,7 @@
       "lastCovered": "2026-09-28T05:05:04.443Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-09-28-sensex-seven-week-losing-streak-oil-iran"
@@ -404,7 +632,7 @@
       "lastCovered": "2026-09-28T05:05:04.443Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-09-28-khyber-pakhtunkhwa-sehat-card-hospital-deductions"
@@ -420,7 +648,7 @@
       "lastCovered": "2026-09-28T05:05:04.443Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-09-28-soil-smell-microbes-electronic-nose"
@@ -436,7 +664,7 @@
       "lastCovered": "2026-09-27T22:02:55.962Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-09-27-hormuz-qeshm-blasts-us-iran-talks-gap"
@@ -461,7 +689,7 @@
       "lastCovered": "2026-09-27T22:02:55.962Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-09-27-al-aqsa-storming-turkiye-condemns"
@@ -486,7 +714,7 @@
       "lastCovered": "2026-09-27T22:02:55.962Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-09-27-vucic-resigns-serbia-presidency-prime-minister"
@@ -502,7 +730,7 @@
       "lastCovered": "2026-09-27T22:02:55.962Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-09-27-india-late-monsoon-floods-18-dead"
@@ -527,7 +755,7 @@
       "lastCovered": "2026-09-27T22:02:55.962Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-09-27-russia-offers-india-unlimited-oil-hormuz"
@@ -543,7 +771,7 @@
       "lastCovered": "2026-09-27T22:02:55.962Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-09-27-unitedhealthcare-prior-authorization-medicare-advantage-gap"
@@ -559,7 +787,7 @@
       "lastCovered": "2026-09-27T22:02:55.962Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-09-27-amodei-trump-white-house-dinner-ai-slowdown"
@@ -575,7 +803,7 @@
       "lastCovered": "2026-09-27T18:07:57.272Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-09-27-afghanistan-pakistan-nuristan-balochistan-clashes"
@@ -600,7 +828,7 @@
       "lastCovered": "2026-09-27T18:07:57.272Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-09-27-ukraine-strikes-after-lavrov-wadephul-talks"
@@ -625,7 +853,7 @@
       "lastCovered": "2026-09-27T18:07:57.272Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-09-27-naqeebullah-mehsud-final-officers-acquitted"
@@ -641,7 +869,7 @@
       "lastCovered": "2026-09-27T18:07:57.272Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-09-27-kano-durbar-ban-rival-emirs"
@@ -657,7 +885,7 @@
       "lastCovered": "2026-09-27T18:07:57.272Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-09-27-pope-leo-france-abuse-assisted-dying"
@@ -682,7 +910,7 @@
       "lastCovered": "2026-09-27T18:07:57.272Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-09-27-parvesh-verma-slap-video-delhi"
@@ -707,7 +935,7 @@
       "lastCovered": "2026-09-27T18:07:57.272Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-09-27-maharashtra-drought-list-revenue-circle"
@@ -732,7 +960,7 @@
       "lastCovered": "2026-09-27T18:07:57.272Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-09-27-nepal-himlung-avalanche-guides-missing"
@@ -757,7 +985,7 @@
       "lastCovered": "2026-09-27T18:07:57.272Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-09-27-authors-guild-openai-unsealed-briefs-piracy"
@@ -773,7 +1001,7 @@
       "lastCovered": "2026-09-27T18:07:57.272Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-09-27-bill-gates-ai-laws-self-regulation"
@@ -789,7 +1017,7 @@
       "lastCovered": "2026-09-27T18:07:57.272Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-09-27-buterin-ethereum-2030-hegota-proofs"
@@ -805,7 +1033,7 @@
       "lastCovered": "2026-09-27T18:07:57.272Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-09-27-pakistan-glacial-lakes-suparco-40-to-105"
@@ -821,7 +1049,7 @@
       "lastCovered": "2026-09-27T14:06:19.564Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-09-27-raf-fairford-evacuation-arrests"
@@ -846,7 +1074,7 @@
       "lastCovered": "2026-09-27T14:06:19.564Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-09-27-smotrich-annexation-gaza-lebanon-west-bank-war"
@@ -862,7 +1090,7 @@
       "lastCovered": "2026-09-27T14:06:19.564Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-09-27-rsf-drones-gezira-fuel-depot-wad-madani"
@@ -878,7 +1106,7 @@
       "lastCovered": "2026-09-27T14:06:19.564Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-09-27-oleshky-drone-food-deliveries-occupied-kherson"
@@ -903,7 +1131,7 @@
       "lastCovered": "2026-09-27T14:06:19.564Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-09-27-irgc-captures-second-remus-600-uuv-hormuz"
@@ -928,7 +1156,7 @@
       "lastCovered": "2026-09-27T14:06:19.564Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-09-27-burnham-heathrow-third-runway"
@@ -953,7 +1181,7 @@
       "lastCovered": "2026-09-27T14:06:19.564Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-09-27-india-bank-strike-five-day-week"
@@ -978,7 +1206,7 @@
       "lastCovered": "2026-09-27T14:06:19.564Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-09-27-haiti-informal-vendors-protest-gang-warfare"
@@ -994,7 +1222,7 @@
       "lastCovered": "2026-09-27T14:06:19.564Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-09-27-clarity-act-crypto-bill-collapse"
@@ -1010,7 +1238,7 @@
       "lastCovered": "2026-09-27T14:06:19.564Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-09-27-chemosynthetic-bacteria-reef-fish-gills"
@@ -1018,188 +1246,6 @@
       "eventUri": null,
       "summary": "Chemosynthetic bacteria were known from worms and molluscs, but this is the first time they have been found on fish: DNA from coral reef fish gills carries chemosynthesis genes. Lead with the surprise that fish carry a microbiome able to make energy from chemicals. Explain why it matters: gill microbes may shape fish metabolism, immunity and health, which bears on reef resilience.",
       "conceptUris": []
-    },
-    {
-      "id": "south-africa-fochville-bar-shooting-17-killed",
-      "label": "Gunmen kill 17 in South Africa bar shooting, 15 wounded: police",
-      "firstSeen": "2026-09-27T10:06:19.186Z",
-      "lastCovered": "2026-09-27T10:06:19.186Z",
-      "coverageCount": 1,
-      "category": "politics",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-09-27-south-africa-fochville-bar-shooting-17-killed"
-      ],
-      "eventUri": "eng-12046515",
-      "summary": "Eight gunmen with assault rifles killed 17 and wounded 15 at a bar near Fochville, west of Johannesburg, searching patrons and taking phones before fleeing; a separate Cape Town attack took the weekend toll to 27. Lead with the numbers, then the mechanism: tavern massacres recur because illegal mining gangs and extortion networks operate where policing is thin, and firearm-control reforms remain unenforced. Who bears it: working-class township residents.",
-      "conceptUris": [
-        "http://en.wikipedia.org/wiki/South_Africa",
-        "http://en.wikipedia.org/wiki/Johannesburg",
-        "http://en.wikipedia.org/wiki/Cape_Town",
-        "http://en.wikipedia.org/wiki/Police",
-        "http://en.wikipedia.org/wiki/Township_(South_Africa)",
-        "http://en.wikipedia.org/wiki/Fochville",
-        "http://en.wikipedia.org/wiki/Mass_shooting",
-        "http://en.wikipedia.org/wiki/AK-47"
-      ]
-    },
-    {
-      "id": "apple-taction-haptics-patent-5-7-billion",
-      "label": "Patent Ruling: Apple Ordered to Pay $5.7 Billion",
-      "firstSeen": "2026-09-27T10:06:19.186Z",
-      "lastCovered": "2026-09-27T10:06:19.186Z",
-      "coverageCount": 1,
-      "category": "tech",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-09-26-apple-taction-haptics-patent-5-7-billion"
-      ],
-      "eventUri": "eng-12045470",
-      "summary": "A San Diego federal jury found Apple owes haptics firm Taction Technology more than $5.7 billion for infringing two patents in iPhone and Apple Watch vibration hardware — a record patent verdict. Lead with the size, then the mechanism: US juries price damages as a share of device revenue, so a small component patent can reach billions. Apple denies using the technology and will appeal; the question is whether the award survives, as most outsized verdicts are cut on appeal.",
-      "conceptUris": [
-        "http://en.wikipedia.org/wiki/Apple_Inc.",
-        "http://en.wikipedia.org/wiki/Apple_Watch",
-        "http://en.wikipedia.org/wiki/Patent",
-        "http://en.wikipedia.org/wiki/IPhone",
-        "http://en.wikipedia.org/wiki/United_States_dollar",
-        "http://en.wikipedia.org/wiki/Haptic_technology",
-        "http://en.wikipedia.org/wiki/Prototype",
-        "http://en.wikipedia.org/wiki/Sensor"
-      ]
-    },
-    {
-      "id": "jaishankar-unga-global-south-war-costs",
-      "label": "'Countries far from conflicts being penalised': Jaishankar invokes PM Modi's remark at UNGA",
-      "firstSeen": "2026-09-27T10:06:19.186Z",
-      "lastCovered": "2026-09-27T10:06:19.186Z",
-      "coverageCount": 1,
-      "category": "politics",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-09-26-jaishankar-unga-global-south-war-costs"
-      ],
-      "eventUri": "eng-12045780",
-      "summary": "At the UN General Assembly, India's foreign minister argued that countries far from today's wars — the Iran/Hormuz oil shock and Ukraine — are paying for them in fuel, food and fertiliser prices, positioning India as spokesman for the Global South's cost-of-war grievance. Lead with that claim and the mechanism (energy import bills, shipping disruption); note he also attacked Pakistan as a 'serial practitioner of terrorism', which reads as a tension with the Global-South-unity framing. Dateline New York.",
-      "conceptUris": [
-        "http://en.wikipedia.org/wiki/United_Nations_General_Assembly",
-        "http://en.wikipedia.org/wiki/Jaishankar",
-        "http://en.wikipedia.org/wiki/Terrorism",
-        "http://en.wikipedia.org/wiki/India",
-        "http://en.wikipedia.org/wiki/Pakistan",
-        "http://en.wikipedia.org/wiki/S._Jaishankar",
-        "http://en.wikipedia.org/wiki/Minister_of_External_Affairs_(India)",
-        "http://en.wikipedia.org/wiki/United_Nations"
-      ]
-    },
-    {
-      "id": "burnham-universal-social-care-labour-conference",
-      "label": "UK's Burnham pledges to offer social care reform at next election",
-      "firstSeen": "2026-09-27T10:06:19.186Z",
-      "lastCovered": "2026-09-27T10:06:19.186Z",
-      "coverageCount": 1,
-      "category": "politics",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-09-27-burnham-universal-social-care-labour-conference"
-      ],
-      "eventUri": "eng-12045917",
-      "summary": "Ahead of his first Labour conference as prime minister in Liverpool, Andy Burnham pledged to put a universal, NHS-style social care service — free at the point of use and funded by everybody — into Labour's next manifesto. Lead with the scale of the promise and the unanswered funding question (who pays, and how). Fold in the same weekend's housing announcement: a revived Help to Buy-style 'Your First Home' scheme with 2.5% deposits and up to 20% state equity loans on new builds under £600,000 — critics say such schemes inflate prices. Dateline Liverpool.",
-      "conceptUris": [
-        "http://en.wikipedia.org/wiki/Andy_Burnham",
-        "http://en.wikipedia.org/wiki/Labour_Party_(UK)",
-        "http://en.wikipedia.org/wiki/United_Kingdom",
-        "http://en.wikipedia.org/wiki/Liverpool",
-        "http://en.wikipedia.org/wiki/Keir_Starmer",
-        "http://en.wikipedia.org/wiki/Prime_Minister_of_the_United_Kingdom",
-        "http://en.wikipedia.org/wiki/Brexit",
-        "http://en.wikipedia.org/wiki/John_Healey_(politician)"
-      ]
-    },
-    {
-      "id": "assam-police-detain-cjp-ranka-42-guwahati",
-      "label": "CJP Demands Immediate Release After Ashutosh Ranka, 41 Volunteers Detained In Assam Before Key Meet",
-      "firstSeen": "2026-09-27T10:06:19.186Z",
-      "lastCovered": "2026-09-27T10:06:19.186Z",
-      "coverageCount": 1,
-      "category": "politics",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-09-27-assam-police-detain-cjp-ranka-42-guwahati"
-      ],
-      "eventUri": "eng-12046510",
-      "summary": "Assam police detained Cockroach Janta Party co-convener Ashutosh Ranka and 41 volunteers in Guwahati before they could hold a supporters' meeting. Lead with the pre-emptive detention of 42 people for planning a meeting — the mechanism is preventive policing used against a new opposition outfit under Chief Minister Himanta Biswa Sarma's government. Name who ordered it, what law was invoked if reported, and whether charges were filed. Dateline Guwahati.",
-      "conceptUris": [
-        "http://en.wikipedia.org/wiki/Assam",
-        "http://en.wikipedia.org/wiki/Guwahati",
-        "http://en.wikipedia.org/wiki/Assam_Police",
-        "http://en.wikipedia.org/wiki/Himanta_Biswa_Sarma",
-        "http://en.wikipedia.org/wiki/Chief_minister",
-        "http://en.wikipedia.org/wiki/Northeast_India",
-        "http://en.wikipedia.org/wiki/Kaziranga_National_Park",
-        "http://en.wikipedia.org/wiki/Secretariat_(administrative_office)"
-      ]
-    },
-    {
-      "id": "serap-cbn-diverted-funds-anchor-borrowers",
-      "label": "SERAP asks CBN to account for allegedly diverted $6.23m, ₦1.63trn",
-      "firstSeen": "2026-09-27T10:06:19.186Z",
-      "lastCovered": "2026-09-27T10:06:19.186Z",
-      "coverageCount": 1,
-      "category": "economy",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-09-27-serap-cbn-diverted-funds-anchor-borrowers"
-      ],
-      "eventUri": null,
-      "summary": "Nigerian rights group SERAP gave the Central Bank governor a deadline to account for ₦1.63 trillion and $6.23 million allegedly diverted, citing audit findings, plus ₦262.86 billion disbursed under the Anchor Borrowers' Programme with no published list of beneficiaries. Lead with the sums against Nigeria's cost-of-living crisis; the mechanism is central-bank development lending run outside budget oversight. Note SERAP's usual next step is a lawsuit if the bank does not respond. Dateline Lagos (or Abuja per the report).",
-      "conceptUris": []
-    },
-    {
-      "id": "japan-tightens-rules-foreign-residents",
-      "label": "Japan moves to tighten rules for foreigners",
-      "firstSeen": "2026-09-27T10:06:19.186Z",
-      "lastCovered": "2026-09-27T10:06:19.186Z",
-      "coverageCount": 1,
-      "category": "economy",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-09-26-japan-tightens-rules-foreign-residents"
-      ],
-      "eventUri": null,
-      "summary": "Japan is tightening rules for foreign residents even as its shrinking, ageing workforce depends on them — throwing the futures of foreign workers and students into doubt. Lead with who is affected (which visa categories, how many residents) and the contradiction: a labour-short economy restricting the labour it imports. Mechanism: domestic political pressure over immigration versus industry demand. Fills the thin East Asia coverage. Dateline Tokyo.",
-      "conceptUris": []
-    },
-    {
-      "id": "turlov-elected-fide-president-samarkand",
-      "label": "Russian-born businessman elected as new world chess chief -- RT World News",
-      "firstSeen": "2026-09-27T10:06:19.186Z",
-      "lastCovered": "2026-09-27T10:06:19.186Z",
-      "coverageCount": 1,
-      "category": "politics",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-09-27-turlov-elected-fide-president-samarkand"
-      ],
-      "eventUri": "eng-12045211",
-      "summary": "Timur Turlov, a Russian-born Kazakh businessman (Freedom Holding), was elected FIDE president by 196 national federations in Samarkand, after Russian predecessor Arkady Dvorkovich resigned under EU pressure. Angle: how sanctions politics reshapes global sports governance, and Central Asia's rise as the broker. State media only — attribute to 'Russian state broadcaster RT reported' and do not state contested claims as fact. Dateline Samarkand.",
-      "conceptUris": [
-        "http://en.wikipedia.org/wiki/FIDE",
-        "http://en.wikipedia.org/wiki/Chess",
-        "http://en.wikipedia.org/wiki/Kazakhstan",
-        "http://en.wikipedia.org/wiki/Samarkand",
-        "http://en.wikipedia.org/wiki/Russia",
-        "http://en.wikipedia.org/wiki/President_(government_title)",
-        "http://en.wikipedia.org/wiki/Timur",
-        "http://en.wikipedia.org/wiki/Germany"
-      ]
     }
   ]
 }
