@@ -1,38 +1,38 @@
 {
-  "date": "2026-09-27",
+  "date": "2026-09-28",
   "metrics": {
-    "articles": { "value": 42, "detail": "5 cycles, all completed, avg 8 published/cycle (51 yesterday); 1 article quarantined" },
-    "freshness": { "median": 0.5, "p90": 0.5, "max": 0.5, "target": 1.0, "met": true },
-    "categories": { "politics": 21, "economy": 11, "science": 3, "tech": 7 },
-    "multiSource": { "pct": 43, "target": 30, "met": true },
+    "articles": { "value": 59, "detail": "5 cycles, 4 completed, avg 9 published/cycle (42 yesterday); 0 quarantined" },
+    "freshness": { "median": 0.5, "p90": 0.7, "max": 0.7, "target": 1.0, "met": true },
+    "categories": { "politics": 25, "economy": 14, "science": 7, "tech": 13 },
+    "multiSource": { "pct": 29, "target": 30, "met": false },
     "usDatelines": { "pct": 21, "target": 25, "met": true },
-    "latAmDatelines": { "pct": 5, "target": 5, "met": true },
+    "latAmDatelines": { "pct": 7, "target": 5, "met": true },
     "sameEventDuplicates": { "value": 0, "target": 0, "met": true },
     "missingDatelines": { "value": 0, "target": 0, "met": true },
-    "stateOrAdvocacyOnly": 4,
-    "imageUrlPct": 100,
-    "regions": { "count": 5, "target": 4, "met": true, "breakdown": { "ME": 11, "AM": 11, "EU": 9, "AS": 7, "AF": 4 } },
-    "sciTech": { "ratio": 24, "target": 25, "met": false },
-    "topSourceShare": { "source": "Al Jazeera Online / Dawn (tied)", "pct": 14, "target": 20, "met": true },
-    "uniqueSources": 48,
+    "stateOrAdvocacyOnly": 2,
+    "imageUrlPct": 98,
+    "regions": { "count": 6, "target": 4, "met": true, "breakdown": { "AM": 17, "EU": 13, "ME": 13, "AS": 9, "AF": 6, "OC": 1 } },
+    "sciTech": { "ratio": 34, "target": 25, "met": true },
+    "topSourceShare": { "source": "Ars Technica", "pct": 8, "target": 20, "met": true },
+    "uniqueSources": 60,
     "duplicates": 0,
-    "avgCycleDuration": 963
+    "avgCycleDuration": 1242
   },
-  "experiment": "Skipped — no active experiments and no pause gate, but today is the first clean day after five pipeline changes on 09-25/26 (US cap, 12h pool, running-story dedup, optional science floor, pool widening). One day is not a baseline; revisit on 2026-09-30 with three clean days.",
-  "weakestArea": "Science is furthest from target at 3/5 (5 yesterday), pulling sci+tech to 24% against 25%. The science floor is optional by design since 2026-09-26, and only Phys.org and Dawn supplied science. If the shortfall holds through 09-30, the next lever is widening science sources in CURATED_SOURCES, provided it stays NewsAPI token-neutral, rather than raising the floor.",
+  "experiment": "Skipped. No experiments are active and there is no pause gate. Today is the second clean day after the 09-25/26 pipeline changes, and every target except multi-source was met. The plan from 09-27 stands: revisit on 2026-09-30 with three clean days.",
+  "weakestArea": "Multi-source share is 29% against a 30% target (18 of 58 articles), down from 43% yesterday. It is one article short, and the multi-source count was 18 on both days, so the drop comes from 17 more articles, almost all single-source, not from fewer corroborated stories. If it stays under 30% through 09-30, look at the selector's multi-source enforcement before touching feed parameters. The 2026-05-09 floor-3 experiment was reverted, so do not repeat it.",
   "watching": [
-    "Strait of Hormuz: IRGC seized a second REMUS 600 drone, Qeshm blasts, and a Saudi rejection of the PGSA transit fees, while US-Iran talks stall.",
-    "Serbia: Vučić resigns the presidency to run for prime minister.",
-    "Gaza and the West Bank: Smotrich's annexation push and the fallout from the Al-Aqsa storming.",
-    "AI safety: OpenAI paused frontier training after safety incidents (state/advocacy-only sourcing so far), alongside the Amodei–Trump dinner.",
-    "Sudan: RSF drone strikes on the Wad Madani fuel depot in Gezira.",
-    "Switzerland's neutrality referendum result."
+    "Iran: Trump is weighing sanctions relief through Qatari mediators while Marines were hurt in a Hormuz strike and oil spiked on Iran's rejection. The relief story is state-or-advocacy-only sourced so far.",
+    "Nigeria: the AAC is suing Tinubu over his absence and a power transfer to Shettima, while the Senate panel halted the Discos sale.",
+    "France: the RN won a Senate group, and Bardella is fighting the Mediapart antisemitism reporting.",
+    "Venezuela: rallies for Machado, one of three Latin American stories alongside El Salvador's gang war and Lula's Amazon record.",
+    "Russia: Putin's decree raises the army ceiling to 2.44 million, and there are reports of a mystery missile aiding Russia.",
+    "Pakistan: TTAP joins PTI's October 4 march, and the Hangor missile test."
   ],
   "coverageGaps": [
-    "Science: 3 stories from 2 outlets; nothing from dedicated science journals or agencies beyond Phys.org.",
-    "India skews the Asia count: about 6 of 7 AS stories are Indian domestic (Assam, Manipur, Maharashtra, Delhi, the CEC, the bank strike), and East and Southeast Asia is almost absent.",
-    "No Oceania stories, and Latin America has just enough coverage to meet its target (Haiti only).",
-    "Freshness was computed on only 2 of 42 articles today, so the median is not representative."
+    "Oceania has one story (Australia summoning Altman and Amodei), and nothing is regional to the Pacific.",
+    "Freshness was measured on only 6 of 59 articles, so the median is not representative.",
+    "India still takes a large share of Asia (Ujjain, Uttar Pradesh, Sensex, Tata Trusts). East and Southeast Asia coverage improved, with Korea, Malaysia and Laos/Thailand.",
+    "One of five cycles did not complete, and the average cycle took 1242s, up from 963s."
   ],
-  "context": "US datelines fell from 40% to 21%, and Latin America reached 5% on the first full day under the US cap and the widened pool. Both targets were met for the first time, but that is one day of data. Multi-source share held at 43%, and there were no same-event duplicates. One article (Oleshky drone deliveries) was quarantined as .md.bad."
+  "context": "Science recovered to 7 (from 3) across four dedicated outlets (Nature Communications, Phys.org, Carbon Brief, Ars Technica), which argues against changing the science floor. US datelines held at 21% and Latin America rose to 7%, so the US cap and pool widening met both geography targets for a second day. There were no same-event duplicates and nothing was quarantined."
 }
