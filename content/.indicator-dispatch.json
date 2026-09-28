@@ -2205,8 +2205,60 @@
         "2026-09-27-hormuz-pgsa-blacklist-saudi-rejects-fees"
       ],
       "generatedAt": "2026-09-28T10:22:23.296Z"
+    },
+    "poly-will-douard-philippe-win-the-2027-french-preside": {
+      "standingFingerprint": "5eaaf6f7b034e44b",
+      "recentFingerprint": "c2dea8596c0642a4",
+      "standing": "A Polymarket contract that pays out if Édouard Philippe, Macron's first prime minister and now mayor of Le Havre, wins France's 2027 presidential election. Its price is what traders will pay for that outcome.",
+      "recent": "",
+      "citations": [],
+      "generatedAt": "2026-09-28T14:29:07.547Z"
+    },
+    "poly-us-iran-final-nuclear-deal-by-october-31-2026": {
+      "standingFingerprint": "ddb58e2313f63f5c",
+      "recentFingerprint": "c2666d0df2a5b7c3",
+      "standing": "A Polymarket contract that pays out if Washington and Tehran reach a nuclear agreement before the end of October 2026. Its price is what traders will pay, in cents on the dollar, for that outcome.",
+      "recent": "Iran offered in New York to reopen Hormuz 7 days after a US agreement, and Trump rejected it. Explosions hit Qeshm Island hours later, the WSJ reports Washington now wants nuclear concessions before talks resume, and a source close to Iran's UN delegation told IRNA there are no plans to negotiate in New York.",
+      "citations": [
+        "2026-09-26-trump-rejects-iran-hormuz-seven-day-roadmap",
+        "2026-09-27-hormuz-qeshm-blasts-us-iran-talks-gap",
+        "2026-09-25-iran-7-day-ceasefire-proposal-hormuz"
+      ],
+      "generatedAt": "2026-09-28T14:29:11.268Z"
+    },
+    "poly-trump-renames-ai-by-september-30": {
+      "standingFingerprint": "2be6b4dac0b33da2",
+      "recentFingerprint": "d826c4fc1575327d",
+      "standing": "A Polymarket contract on whether Donald Trump gives artificial intelligence a new official name before its deadline. Its price is what traders pay for a yes, and it moves on what the White House says about the technology.",
+      "recent": "Washington's AI news in this period was about policy, not naming. Trump invited Anthropic's Dario Amodei to the White House after Amodei's call for an AI slowdown angered him, and Beijing and Washington paired $30bn in tariff cuts with an AI safety channel. None of it involved a new name for AI.",
+      "citations": [
+        "2026-09-27-amodei-trump-white-house-dinner-ai-slowdown",
+        "2026-09-26-china-us-30-billion-tariff-cut-ai-safety-channel"
+      ],
+      "generatedAt": "2026-09-28T14:29:12.950Z"
+    },
+    "stocks:BP": {
+      "standingFingerprint": "f83e9d6385559c7b",
+      "recentFingerprint": "3bb770dab782d825",
+      "standing": "London-based BP is one of the oil majors, producing, refining and trading oil and gas worldwide; this is its New York-listed share. It moves with crude and with the cash its upstream fields return to shareholders.",
+      "recent": "The one BP story in the input arrived after this window closed: Egypt's Petroleum Minister Karim Badawy told BP that Cairo would reject the sale of part of its Egyptian oil and gas assets to Israeli majority-owned Energean, according to sources speaking to Mada Masr. Nothing in the input explains the earlier rise.",
+      "citations": [
+        "2026-09-28-egypt-blocks-bp-asset-sale-energean"
+      ],
+      "generatedAt": "2026-09-28T14:29:21.450Z"
+    },
+    "stocks:000660.KS": {
+      "standingFingerprint": "95ee3f02909fc320",
+      "recentFingerprint": "7f61932d05a349f6",
+      "standing": "South Korea's second-largest company by market value, listed on the Korea Exchange in Seoul, and one of the world's biggest memory-chip makers. It is a leading supplier of the high-bandwidth memory that AI accelerators depend on.",
+      "recent": "SK Hynix was reported to want Intel to make its memory chips in the US, at an Ohio fab, although Intel has not made memory since the 1980s. Together with Samsung it controls 83% of memory chips, and AI hardware depends on that supply. Neither story accounts for the share price's path.",
+      "citations": [
+        "2026-09-28-samsung-sk-hynix-hbm-memory-ai-chokepoint",
+        "2026-09-16-a-logic-fab-cannot-make-memory-sk-hynix-intel-ohio"
+      ],
+      "generatedAt": "2026-09-28T14:29:25.674Z"
     }
   },
-  "generatedAt": "2026-09-28T10:22:23.296Z",
+  "generatedAt": "2026-09-28T14:29:25.674Z",
   "windowDays": 14
 }
