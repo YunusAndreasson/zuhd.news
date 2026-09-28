@@ -2,13 +2,248 @@
   "version": 1,
   "stories": [
     {
+      "id": "oil-climbs-trump-rejects-iran-proposal",
+      "label": "Oil Prices Climb on Continued Impasse in U.S.-Iran Talks",
+      "firstSeen": "2026-09-28T18:07:04.336Z",
+      "lastCovered": "2026-09-28T18:07:04.336Z",
+      "coverageCount": 1,
+      "category": "economy",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-09-28-oil-climbs-trump-rejects-iran-proposal"
+      ],
+      "eventUri": "eng-12048008",
+      "summary": "New development: Trump publicly rejected Iran's peace proposal on Saturday and Brent jumped about 2.5% on Monday, with bond yields holding at last week's highs. Lead with the rejection and the price move; the mechanism is that Gulf energy flows through Hormuz stay hostage to the talks, and importers in Asia (India, Pakistan) pay first. Note the Qatar-mediated talks that trimmed gains.",
+      "conceptUris": [
+        "http://en.wikipedia.org/wiki/Iran",
+        "http://en.wikipedia.org/wiki/Donald_Trump",
+        "http://en.wikipedia.org/wiki/Petroleum",
+        "http://en.wikipedia.org/wiki/Strait_of_Hormuz",
+        "http://en.wikipedia.org/wiki/United_States_dollar",
+        "http://en.wikipedia.org/wiki/West_Texas_Intermediate",
+        "http://en.wikipedia.org/wiki/Price_of_oil",
+        "http://en.wikipedia.org/wiki/United_States"
+      ]
+    },
+    {
+      "id": "tether-iran-sanctions-senate-report",
+      "label": "Tether is a 'lifeline' for Iranian regime, Senate Dems say in new report",
+      "firstSeen": "2026-09-28T18:07:04.336Z",
+      "lastCovered": "2026-09-28T18:07:04.336Z",
+      "coverageCount": 1,
+      "category": "politics",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-09-28-tether-iran-sanctions-senate-report"
+      ],
+      "eventUri": "eng-12049773",
+      "summary": "A report from Senate Democrats on the Permanent Subcommittee finds the dollar-pegged stablecoin USDT is Tehran's go-to tool for moving money around sanctions. The mechanism to explain: a private company's token now does the work of the correspondent banks sanctions shut. Attribute the findings to the minority report; note who bears sanctions' cost inside Iran versus who routes around them.",
+      "conceptUris": []
+    },
+    {
+      "id": "dati-prosecutors-four-years-renault-nissan",
+      "label": "French Prosecutors Seek Prison Time for Ex-Minister Dati in Renault-Nissan Case",
+      "firstSeen": "2026-09-28T18:07:04.336Z",
+      "lastCovered": "2026-09-28T18:07:04.336Z",
+      "coverageCount": 1,
+      "category": "politics",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-09-28-dati-prosecutors-four-years-renault-nissan"
+      ],
+      "eventUri": "fra-1348267",
+      "summary": "Prosecutors asked for a four-year sentence for Rachida Dati, France's former justice minister, over alleged paid lobbying for Renault-Nissan under Carlos Ghosn while she sat as an MEP (2009-2013). Lead with the requested sentence; the accountability angle is a former justice minister tried for corruption and influence peddling. Datelined Paris.",
+      "conceptUris": [
+        "http://en.wikipedia.org/wiki/Rachida_Dati",
+        "http://en.wikipedia.org/wiki/Corruption",
+        "http://fr.wikipedia.org/wiki/Parquet_national_financier",
+        "http://en.wikipedia.org/wiki/Carlos_Ghosn",
+        "http://en.wikipedia.org/wiki/Renault–Nissan–Mitsubishi_Alliance",
+        "http://en.wikipedia.org/wiki/Euro",
+        "http://en.wikipedia.org/wiki/Ankle_monitor",
+        "http://en.wikipedia.org/wiki/Ministère_public_(France)"
+      ]
+    },
+    {
+      "id": "settlers-attack-west-bank-olive-harvest",
+      "label": "Oil exports see modest rebound; Senate map expands for Dems; Israeli settlers attack Palestinian olive harvest",
+      "firstSeen": "2026-09-28T18:07:04.336Z",
+      "lastCovered": "2026-09-28T18:07:04.336Z",
+      "coverageCount": 1,
+      "category": "politics",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-09-28-settlers-attack-west-bank-olive-harvest"
+      ],
+      "eventUri": null,
+      "summary": "Write only the West Bank item: Israeli settlers attacking Palestinian farmers at the start of the olive harvest. The harvest is the livelihood of tens of thousands of families, and attacks each season, under army cover, are how land is emptied. Name the villages, the injured, and the absence of arrests; link to the annexation push being watched this week. Dateline in the West Bank.",
+      "conceptUris": []
+    },
+    {
+      "id": "ttap-joins-pti-october-4-islamabad-march",
+      "label": "TTAP to 'fully participate' in PTI's Oct 4 protest",
+      "firstSeen": "2026-09-28T18:07:04.336Z",
+      "lastCovered": "2026-09-28T18:07:04.336Z",
+      "coverageCount": 1,
+      "category": "politics",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-09-28-ttap-joins-pti-october-4-islamabad-march"
+      ],
+      "eventUri": null,
+      "summary": "The opposition alliance TTAP has joined PTI's rescheduled October 4 nationwide protest and march on Islamabad to demand Imran Khan's release. The mechanism is a broadening front against a government that has jailed the country's most popular politician; say what the state did to past marches and what is at stake on the 4th.",
+      "conceptUris": []
+    },
+    {
+      "id": "mystery-manpads-russian-service-foreign-origin",
+      "label": "Mystery Shoulder-Fired Surface-To-Air Missile Appears In Russian Service",
+      "firstSeen": "2026-09-28T18:07:04.336Z",
+      "lastCovered": "2026-09-28T18:07:04.336Z",
+      "coverageCount": 1,
+      "category": "politics",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-09-28-mystery-manpads-russian-service-foreign-origin"
+      ],
+      "eventUri": null,
+      "summary": "An unidentified MANPADS has appeared with Russian troops, and its design points to foreign origin, raising the question of whether Beijing or Tehran is supplying Moscow. Lead with the visual evidence and what analysts can and cannot establish; the stakes are the arms pipeline between Russia, China and Iran. Keep attribution tight.",
+      "conceptUris": []
+    },
+    {
+      "id": "tata-trusts-merger-plan-avoid-listing",
+      "label": "Tata family scion hits back with plan to keep holding company private",
+      "firstSeen": "2026-09-28T18:07:04.336Z",
+      "lastCovered": "2026-09-28T18:07:04.336Z",
+      "coverageCount": 1,
+      "category": "economy",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-09-28-tata-trusts-merger-plan-avoid-listing"
+      ],
+      "eventUri": "eng-12046741",
+      "summary": "The Tata Trusts, which own 66% of Tata Sons, propose merging the holding company with two subsidiaries to escape the Reserve Bank of India's forced-listing rule. Mechanism: a charity-controlled conglomerate trying to stay out of public-market scrutiny, versus a regulator's rule for large non-bank lenders. Say what a listing would expose and who (the Shapoorji Pallonji stake) wants it.",
+      "conceptUris": [
+        "http://en.wikipedia.org/wiki/Tata_Sons",
+        "http://en.wikipedia.org/wiki/Sir_Ratan_Tata_Trust",
+        "http://en.wikipedia.org/wiki/Tata_Group",
+        "http://en.wikipedia.org/wiki/Reserve_Bank_of_India",
+        "http://en.wikipedia.org/wiki/Holding_company",
+        "http://en.wikipedia.org/wiki/Indian_rupee",
+        "http://en.wikipedia.org/wiki/Crore",
+        "http://en.wikipedia.org/wiki/Electronics"
+      ]
+    },
+    {
+      "id": "pakistan-senate-panel-halt-discos-privatisation",
+      "label": "Senate panel seeks halt to Discos privatisation, says matter must go to Council of Common Interests",
+      "firstSeen": "2026-09-28T18:07:04.336Z",
+      "lastCovered": "2026-09-28T18:07:04.336Z",
+      "coverageCount": 1,
+      "category": "economy",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-09-28-pakistan-senate-panel-halt-discos-privatisation"
+      ],
+      "eventUri": null,
+      "summary": "A Senate sub-committee told Pakistan's Privatisation Commission to stop selling the power distribution companies until the provinces' Council of Common Interests approves it, or face a privilege motion. Mechanism: the IMF-backed sell-off of loss-making Discos runs into the 18th Amendment's federal-provincial power split; say who pays if tariffs rise after sale.",
+      "conceptUris": []
+    },
+    {
+      "id": "egypt-bread-price-review-postponed",
+      "label": "Supply Ministry postpones bread price review amid ongoing push from bakeries, mills",
+      "firstSeen": "2026-09-28T18:07:04.336Z",
+      "lastCovered": "2026-09-28T18:07:04.336Z",
+      "coverageCount": 1,
+      "category": "economy",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-09-28-egypt-bread-price-review-postponed"
+      ],
+      "eventUri": null,
+      "summary": "Egypt's supply minister has delayed for a week a request from bakeries and mills to raise guideline prices for non-subsidised bread — their second request in months. Bread is the most politically sensitive price in Egypt; lead with the second request in a few months and explain the cost pressure (wheat imports, energy, the pound) squeezing households who have already lost subsidised loaves.",
+      "conceptUris": []
+    },
+    {
+      "id": "cop31-fossil-fuel-transition-roadmap-split",
+      "label": "The world agreed to quit fossil fuels. Now it disagrees over the plan",
+      "firstSeen": "2026-09-28T18:07:04.336Z",
+      "lastCovered": "2026-09-28T18:07:04.336Z",
+      "coverageCount": 1,
+      "category": "economy",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-09-28-cop31-fossil-fuel-transition-roadmap-split"
+      ],
+      "eventUri": null,
+      "summary": "The UN's first fossil-fuel transition roadmap, due at COP31 in November, is splitting along one line: countries embrace clean-energy build-out but resist cutting production. Name which producers (Gulf, US, others) resist supply-side language and what the draft contains; the stake is whether the 2023 'transition away' pledge ever gets a mechanism.",
+      "conceptUris": []
+    },
+    {
+      "id": "new-mexico-jury-meta-privacy-deception",
+      "label": "New Mexico jury finds Meta deceived consumers about data privacy practices",
+      "firstSeen": "2026-09-28T18:07:04.336Z",
+      "lastCovered": "2026-09-28T18:07:04.336Z",
+      "coverageCount": 1,
+      "category": "tech",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-09-28-new-mexico-jury-meta-privacy-deception"
+      ],
+      "eventUri": null,
+      "summary": "A New Mexico jury found Meta violated state consumer-protection law nearly 44 million times by lying about its data privacy practices. Lead with the violation count and the per-violation penalty exposure; the precedent is a state jury, not a federal regulator, holding a platform to account for privacy claims. Datelined Santa Fe.",
+      "conceptUris": []
+    },
+    {
+      "id": "iss-canadarm2-robotic-arm-failure",
+      "label": "The large robotic arm on the International Space Station has stopped working",
+      "firstSeen": "2026-09-28T18:07:04.336Z",
+      "lastCovered": "2026-09-28T18:07:04.336Z",
+      "coverageCount": 1,
+      "category": "tech",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-09-28-iss-canadarm2-robotic-arm-failure"
+      ],
+      "eventUri": null,
+      "summary": "Canadarm2, the ISS's 58-foot robotic arm, failed during a routine walk-off manoeuvre. Explain what the arm does (berthing cargo ships, moving spacewalkers) and what operations stall without it, on an ageing station due for retirement around 2030.",
+      "conceptUris": []
+    },
+    {
+      "id": "1840s-space-weather-telegraph-storms",
+      "label": "Scientists solve 1840s space weather mystery",
+      "firstSeen": "2026-09-28T18:07:04.336Z",
+      "lastCovered": "2026-09-28T18:07:04.336Z",
+      "coverageCount": 1,
+      "category": "science",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-09-28-1840s-space-weather-telegraph-storms"
+      ],
+      "eventUri": null,
+      "summary": "Researchers traced telegraph disturbances from the late 1840s, a decade before the 1859 Carrington Event, to identify earlier geomagnetic storms, starting from an anonymous 1871 report in Nature. The stake is that a longer record of extreme storms improves estimates of how often grid-killing events occur.",
+      "conceptUris": []
+    },
+    {
       "id": "france-national-rally-senate-group-first-time",
       "label": "France's far-right National Rally surges in Senate elections",
       "firstSeen": "2026-09-28T14:06:19.150Z",
       "lastCovered": "2026-09-28T14:06:19.150Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-09-28-france-national-rally-senate-group-first-time"
@@ -33,7 +268,7 @@
       "lastCovered": "2026-09-28T14:06:19.150Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-09-28-ujjain-shahi-masjid-demolition-clashes"
@@ -58,7 +293,7 @@
       "lastCovered": "2026-09-28T14:06:19.150Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-09-28-venezuela-rally-machado-return-elections"
@@ -83,7 +318,7 @@
       "lastCovered": "2026-09-28T14:06:19.150Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-09-28-lao-activist-khieo-lapchanh-vanishes-thailand"
@@ -99,7 +334,7 @@
       "lastCovered": "2026-09-28T14:06:19.150Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-09-28-egypt-blocks-bp-asset-sale-energean"
@@ -115,7 +350,7 @@
       "lastCovered": "2026-09-28T14:06:19.150Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-09-28-sub-saharan-africa-diesel-generators-grid-iran-war"
@@ -140,7 +375,7 @@
       "lastCovered": "2026-09-28T14:06:19.150Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-09-28-lula-amazon-deforestation-20000km2-saved"
@@ -156,7 +391,7 @@
       "lastCovered": "2026-09-28T14:06:19.150Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-09-28-spacex-starship-first-orbit-flight-14"
@@ -172,7 +407,7 @@
       "lastCovered": "2026-09-28T14:06:19.150Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-09-28-microsoft-copilot-prompts-human-contractors-review"
@@ -188,7 +423,7 @@
       "lastCovered": "2026-09-28T14:06:19.150Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-09-28-poland-medical-software-cyberattack-patient-data"
@@ -204,7 +439,7 @@
       "lastCovered": "2026-09-28T14:06:19.150Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-09-28-samsung-sk-hynix-hbm-memory-ai-chokepoint"
@@ -220,7 +455,7 @@
       "lastCovered": "2026-09-28T14:06:19.150Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-09-28-uk-raf-space-effects-squadron-counterspace"
@@ -236,7 +471,7 @@
       "lastCovered": "2026-09-28T10:05:21.104Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-09-28-taiz-market-strike-saudi-houthi-front"
@@ -261,7 +496,7 @@
       "lastCovered": "2026-09-28T10:05:21.104Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-09-28-kazakhstan-caspian-exercise-14-dead-defence-minister-fired"
@@ -286,7 +521,7 @@
       "lastCovered": "2026-09-28T10:05:21.104Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-09-28-netanyahu-secret-abu-dhabi-trip-october-7-warning"
@@ -311,7 +546,7 @@
       "lastCovered": "2026-09-28T10:05:21.104Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-09-28-taiwan-pushback-trump-xi-summit-wwii-weapons-offer"
@@ -336,7 +571,7 @@
       "lastCovered": "2026-09-28T10:05:21.104Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-09-28-hungary-lifts-immunity-magyar-orban-ministers"
@@ -361,7 +596,7 @@
       "lastCovered": "2026-09-28T10:05:21.104Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-09-28-socar-eni-italy-fuel-price-cap"
@@ -386,7 +621,7 @@
       "lastCovered": "2026-09-28T10:05:21.104Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-09-28-anambra-debt-peter-obi-dmo-records"
@@ -402,7 +637,7 @@
       "lastCovered": "2026-09-28T10:05:21.104Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-09-28-h5n1-human-patient-variants-receptor-binding"
@@ -418,7 +653,7 @@
       "lastCovered": "2026-09-28T10:05:21.104Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-09-28-herring-fishery-collapse-400-years-rebound"
@@ -434,7 +669,7 @@
       "lastCovered": "2026-09-28T10:05:21.104Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-09-28-ai-agents-rogue-liability-gap"
@@ -450,7 +685,7 @@
       "lastCovered": "2026-09-28T10:05:21.104Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-09-28-redotpay-stablecoin-audit-us-ipo"
@@ -466,7 +701,7 @@
       "lastCovered": "2026-09-28T05:05:04.443Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-09-28-south-korea-ukraine-pow-transfer-apology"
@@ -491,7 +726,7 @@
       "lastCovered": "2026-09-28T05:05:04.443Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-09-28-netanyahu-icc-case-erdogan-leverage"
@@ -516,7 +751,7 @@
       "lastCovered": "2026-09-28T05:05:04.443Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-09-28-uttar-pradesh-floods-62-dead"
@@ -541,7 +776,7 @@
       "lastCovered": "2026-09-28T05:05:04.443Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-09-28-siti-hasmah-mahathir-wife-dies-100"
@@ -566,7 +801,7 @@
       "lastCovered": "2026-09-28T05:05:04.443Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-09-28-australia-senate-summons-altman-amodei-ai-agents"
@@ -591,7 +826,7 @@
       "lastCovered": "2026-09-28T05:05:04.443Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-09-28-pakistan-hangor-submarine-live-fire-china"
@@ -616,7 +851,7 @@
       "lastCovered": "2026-09-28T05:05:04.443Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-09-28-sensex-seven-week-losing-streak-oil-iran"
@@ -632,7 +867,7 @@
       "lastCovered": "2026-09-28T05:05:04.443Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-09-28-khyber-pakhtunkhwa-sehat-card-hospital-deductions"
@@ -648,7 +883,7 @@
       "lastCovered": "2026-09-28T05:05:04.443Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-09-28-soil-smell-microbes-electronic-nose"
@@ -664,7 +899,7 @@
       "lastCovered": "2026-09-27T22:02:55.962Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-09-27-hormuz-qeshm-blasts-us-iran-talks-gap"
@@ -689,7 +924,7 @@
       "lastCovered": "2026-09-27T22:02:55.962Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-09-27-al-aqsa-storming-turkiye-condemns"
@@ -714,7 +949,7 @@
       "lastCovered": "2026-09-27T22:02:55.962Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-09-27-vucic-resigns-serbia-presidency-prime-minister"
@@ -730,7 +965,7 @@
       "lastCovered": "2026-09-27T22:02:55.962Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-09-27-india-late-monsoon-floods-18-dead"
@@ -755,7 +990,7 @@
       "lastCovered": "2026-09-27T22:02:55.962Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-09-27-russia-offers-india-unlimited-oil-hormuz"
@@ -771,7 +1006,7 @@
       "lastCovered": "2026-09-27T22:02:55.962Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-09-27-unitedhealthcare-prior-authorization-medicare-advantage-gap"
@@ -787,7 +1022,7 @@
       "lastCovered": "2026-09-27T22:02:55.962Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-09-27-amodei-trump-white-house-dinner-ai-slowdown"
@@ -803,7 +1038,7 @@
       "lastCovered": "2026-09-27T18:07:57.272Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-09-27-afghanistan-pakistan-nuristan-balochistan-clashes"
@@ -828,7 +1063,7 @@
       "lastCovered": "2026-09-27T18:07:57.272Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-09-27-ukraine-strikes-after-lavrov-wadephul-talks"
@@ -853,7 +1088,7 @@
       "lastCovered": "2026-09-27T18:07:57.272Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-09-27-naqeebullah-mehsud-final-officers-acquitted"
@@ -869,7 +1104,7 @@
       "lastCovered": "2026-09-27T18:07:57.272Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-09-27-kano-durbar-ban-rival-emirs"
@@ -885,7 +1120,7 @@
       "lastCovered": "2026-09-27T18:07:57.272Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-09-27-pope-leo-france-abuse-assisted-dying"
@@ -910,7 +1145,7 @@
       "lastCovered": "2026-09-27T18:07:57.272Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-09-27-parvesh-verma-slap-video-delhi"
@@ -935,7 +1170,7 @@
       "lastCovered": "2026-09-27T18:07:57.272Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-09-27-maharashtra-drought-list-revenue-circle"
@@ -960,7 +1195,7 @@
       "lastCovered": "2026-09-27T18:07:57.272Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-09-27-nepal-himlung-avalanche-guides-missing"
@@ -985,7 +1220,7 @@
       "lastCovered": "2026-09-27T18:07:57.272Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-09-27-authors-guild-openai-unsealed-briefs-piracy"
@@ -1001,7 +1236,7 @@
       "lastCovered": "2026-09-27T18:07:57.272Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-09-27-bill-gates-ai-laws-self-regulation"
@@ -1017,7 +1252,7 @@
       "lastCovered": "2026-09-27T18:07:57.272Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-09-27-buterin-ethereum-2030-hegota-proofs"
@@ -1033,218 +1268,13 @@
       "lastCovered": "2026-09-27T18:07:57.272Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-09-27-pakistan-glacial-lakes-suparco-40-to-105"
       ],
       "eventUri": null,
       "summary": "Satellite imagery assessed by Suparco shows Pakistan's unfrozen glacial lakes rose from 40 to 105 between July and August. Lead with the jump from 40 to 105; the mechanism is meltwater pooling behind unstable moraine dams, the precondition for glacial lake outburst floods that hit Gilgit-Baltistan and Chitral villages downstream.",
-      "conceptUris": []
-    },
-    {
-      "id": "raf-fairford-evacuation-arrests",
-      "label": "UK police evacuate homes near air base used by US",
-      "firstSeen": "2026-09-27T14:06:19.564Z",
-      "lastCovered": "2026-09-27T14:06:19.564Z",
-      "coverageCount": 1,
-      "category": "politics",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-09-27-raf-fairford-evacuation-arrests"
-      ],
-      "eventUri": "eng-12046625",
-      "summary": "Police evacuated homes in Whelford near RAF Fairford and arrested five people after villagers reported suspicious vans overnight. The US Air Force flies strikes on Iran from this base. Lead with the arrests and the bomb-disposal operation. The structural point: Britain's decision to lend Fairford to the Iran war has brought the war's security risk into a Gloucestershire village. Do not speculate about motive beyond what police have said.",
-      "conceptUris": [
-        "http://en.wikipedia.org/wiki/United_Kingdom",
-        "http://en.wikipedia.org/wiki/RAF_Fairford",
-        "http://en.wikipedia.org/wiki/Explosive",
-        "http://en.wikipedia.org/wiki/United_States_Air_Force",
-        "http://en.wikipedia.org/wiki/Gloucestershire",
-        "http://en.wikipedia.org/wiki/Air_base",
-        "http://en.wikipedia.org/wiki/Bomb_disposal",
-        "http://en.wikipedia.org/wiki/Iran"
-      ]
-    },
-    {
-      "id": "smotrich-annexation-gaza-lebanon-west-bank-war",
-      "label": "Israeli minister calls for West Bank war, annexation of Lebanon, Gaza areas",
-      "firstSeen": "2026-09-27T14:06:19.564Z",
-      "lastCovered": "2026-09-27T14:06:19.564Z",
-      "coverageCount": 1,
-      "category": "politics",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-09-27-smotrich-annexation-gaza-lebanon-west-bank-war"
-      ],
-      "eventUri": "eng-12046844",
-      "summary": "Finance Minister Bezalel Smotrich called on Sunday for Israel to annex Gaza at least up to the 'yellow line', along with parts of south Lebanon, and for forces to 'go to war' against Palestinians in the occupied West Bank. Lead with his own words. This is a sitting cabinet minister openly stating annexation as policy, with Gaza's ceasefire lines as the template. Name who would be displaced, and note that annexation of occupied territory is barred under international law.",
-      "conceptUris": []
-    },
-    {
-      "id": "rsf-drones-gezira-fuel-depot-wad-madani",
-      "label": "RSF drones strike El Gezira fuel depot as both sides report shootdowns",
-      "firstSeen": "2026-09-27T14:06:19.564Z",
-      "lastCovered": "2026-09-27T14:06:19.564Z",
-      "coverageCount": 1,
-      "category": "politics",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-09-27-rsf-drones-gezira-fuel-depot-wad-madani"
-      ],
-      "eventUri": null,
-      "summary": "RSF drones hit the Umm Alila fuel depot east of Wad Madani shortly after dawn prayers and set it on fire, while both sides reported shooting down drones elsewhere. Lead with the target. Fuel is what keeps Gezira's pumps, bakeries and hospitals running in a state the army retook, and the RSF's drone war now reaches civilian supply lines far behind the front. Continuing coverage of the war and the siege of Sudan's civilians.",
-      "conceptUris": []
-    },
-    {
-      "id": "oleshky-drone-food-deliveries-occupied-kherson",
-      "label": "Ukrainian military delivers 4 tons of food to occupied Oleshky by drones, according to regional authorities",
-      "firstSeen": "2026-09-27T14:06:19.564Z",
-      "lastCovered": "2026-09-27T14:06:19.564Z",
-      "coverageCount": 1,
-      "category": "politics",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-09-27-oleshky-drone-food-deliveries-occupied-kherson"
-      ],
-      "eventUri": "ukr-368106",
-      "summary": "Civilians trapped in occupied Oleshky, on the Dnipro's left bank, are being fed by drone: about four tons of food dropped at 100 points across the town, according to the Kherson regional administration. Lead with the method. It shows how cut off the front-line town is, since drones are the only way in. Attribute the figures to the Ukrainian authorities. The same night, Russian strikes killed at least four people and hit a data centre in Kyiv.",
-      "conceptUris": [
-        "http://en.wikipedia.org/wiki/Oleshky",
-        "http://en.wikipedia.org/wiki/Kherson_Oblast",
-        "http://en.wikipedia.org/wiki/Unmanned_aerial_vehicle",
-        "http://en.wikipedia.org/wiki/Marines",
-        "http://en.wikipedia.org/wiki/National_Guard_of_Ukraine",
-        "http://en.wikipedia.org/wiki/Humanitarian_aid",
-        "http://en.wikipedia.org/wiki/FC_Borysfen_Boryspil",
-        "http://en.wikipedia.org/wiki/Russia"
-      ]
-    },
-    {
-      "id": "irgc-captures-second-remus-600-uuv-hormuz",
-      "label": "Iran's IRGC Navy captures 2nd US-made Remus 600 UUV in Hormuz",
-      "firstSeen": "2026-09-27T14:06:19.564Z",
-      "lastCovered": "2026-09-27T14:06:19.564Z",
-      "coverageCount": 1,
-      "category": "tech",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-09-27-irgc-captures-second-remus-600-uuv-hormuz"
-      ],
-      "eventUri": "rus-2131661",
-      "summary": "The IRGC Navy says it has captured a second US-made Remus 600 unmanned underwater vehicle in the Strait of Hormuz. Attribute the claim to Iran's state Mehr News Agency, because there is no US confirmation. Lead with the hardware: the Remus 600 is an autonomous mine-hunting and survey vehicle, and a second capture suggests the US is mapping the strait's seabed. Iran's navy is harvesting the robots sent to do that mapping. The capture comes a day after Trump rejected Tehran's truce offer.",
-      "conceptUris": [
-        "http://en.wikipedia.org/wiki/Strait_of_Hormuz",
-        "http://en.wikipedia.org/wiki/Islamic_Revolutionary_Guard_Corps",
-        "http://en.wikipedia.org/wiki/Iran",
-        "http://en.wikipedia.org/wiki/United_States",
-        "http://en.wikipedia.org/wiki/Unmanned_aerial_vehicle",
-        "http://en.wikipedia.org/wiki/Submarine",
-        "http://en.wikipedia.org/wiki/United_States_Navy",
-        "http://en.wikipedia.org/wiki/Espionage"
-      ]
-    },
-    {
-      "id": "burnham-heathrow-third-runway",
-      "label": "Burnham refuses to back 'contested' Heathrow third runway",
-      "firstSeen": "2026-09-27T14:06:19.564Z",
-      "lastCovered": "2026-09-27T14:06:19.564Z",
-      "coverageCount": 1,
-      "category": "economy",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-09-27-burnham-heathrow-third-runway"
-      ],
-      "eventUri": "eng-12044842",
-      "summary": "Prime Minister Andy Burnham has declined to back the £49bn Heathrow third runway, calling it 'contested' and a matter for Londoners. That breaks with Rachel Reeves's growth-first enthusiasm. Lead with the size of the project now in doubt. The mechanism: Britain's flagship infrastructure bet is running into a new leader's political base, and investors and airlines have been planning around a runway that may not come.",
-      "conceptUris": [
-        "http://en.wikipedia.org/wiki/Heathrow_Airport",
-        "http://en.wikipedia.org/wiki/Expansion_of_Heathrow_Airport",
-        "http://en.wikipedia.org/wiki/Runway",
-        "http://en.wikipedia.org/wiki/Andy_Burnham",
-        "http://en.wikipedia.org/wiki/Airport",
-        "http://en.wikipedia.org/wiki/Planning_permission",
-        "http://en.wikipedia.org/wiki/Rachel_Reeves",
-        "http://en.wikipedia.org/wiki/London"
-      ]
-    },
-    {
-      "id": "india-bank-strike-five-day-week",
-      "label": "Bank strike tomorrow: Full list of banks facing work disruption; will HDFC Bank, Axis Bank, SBI, PNB & ICICI Bank remain closed?",
-      "firstSeen": "2026-09-27T14:06:19.564Z",
-      "lastCovered": "2026-09-27T14:06:19.564Z",
-      "coverageCount": 1,
-      "category": "economy",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-09-27-india-bank-strike-five-day-week"
-      ],
-      "eventUri": "eng-12045219",
-      "summary": "Indian bank unions start a three-day nationwide strike from September 28 to 30, demanding a five-day working week. SBI, PNB, Bank of India and Central Bank of India have warned customers that branch services will be disrupted. Lead with the scale: public-sector banks that hold most of India's deposits will go dark over quarter-end. The mechanism is a labour dispute that the finance ministry and the RBI have left unresolved.",
-      "conceptUris": [
-        "http://en.wikipedia.org/wiki/Bank",
-        "http://en.wikipedia.org/wiki/Strike_action",
-        "http://en.wikipedia.org/wiki/Public_sector",
-        "http://en.wikipedia.org/wiki/State_Bank_of_India",
-        "http://en.wikipedia.org/wiki/Automated_teller_machine",
-        "http://en.wikipedia.org/wiki/Reserve_Bank_of_India",
-        "http://en.wikipedia.org/wiki/India",
-        "http://en.wikipedia.org/wiki/Ministry_of_Finance_(India)"
-      ]
-    },
-    {
-      "id": "haiti-informal-vendors-protest-gang-warfare",
-      "label": "‘We cannot take it anymore’: Haiti’s informal vendors protest over gang warfare",
-      "firstSeen": "2026-09-27T14:06:19.564Z",
-      "lastCovered": "2026-09-27T14:06:19.564Z",
-      "coverageCount": 1,
-      "category": "economy",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-09-27-haiti-informal-vendors-protest-gang-warfare"
-      ],
-      "eventUri": null,
-      "summary": "Since early August, informal street vendors in Port-au-Prince have been protesting because gang warfare has driven them out of the markets they depend on, and they are asking the government for support. Lead with the vendors' own words. The mechanism is that gangs control the markets and roads, so the informal economy most Haitians live on has collapsed. This is a Latin America dateline the site has been missing.",
-      "conceptUris": []
-    },
-    {
-      "id": "clarity-act-crypto-bill-collapse",
-      "label": "How months of work on the crypto Clarity Act all fell apart",
-      "firstSeen": "2026-09-27T14:06:19.564Z",
-      "lastCovered": "2026-09-27T14:06:19.564Z",
-      "coverageCount": 1,
-      "category": "tech",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-09-27-clarity-act-crypto-bill-collapse"
-      ],
-      "eventUri": "eng-12040350",
-      "summary": "The Digital Asset Market Clarity Act, the US bill meant to define who regulates crypto, is dead after months of Senate Banking Committee work. Lead with what that leaves behind: no federal market-structure law, so SEC-versus-CFTC jurisdiction and enforcement-by-lawsuit continue, while stablecoins keep growing. Explain the political and policy factors that sank it. Keep it factual and leave out CoinDesk's analysis framing.",
-      "conceptUris": []
-    },
-    {
-      "id": "chemosynthetic-bacteria-reef-fish-gills",
-      "label": "DNA reveals chemosynthesis genes in bacteria living on coral reef fish gills",
-      "firstSeen": "2026-09-27T14:06:19.564Z",
-      "lastCovered": "2026-09-27T14:06:19.564Z",
-      "coverageCount": 1,
-      "category": "science",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-09-27-chemosynthetic-bacteria-reef-fish-gills"
-      ],
-      "eventUri": null,
-      "summary": "Chemosynthetic bacteria were known from worms and molluscs, but this is the first time they have been found on fish: DNA from coral reef fish gills carries chemosynthesis genes. Lead with the surprise that fish carry a microbiome able to make energy from chemicals. Explain why it matters: gill microbes may shape fish metabolism, immunity and health, which bears on reef resilience.",
       "conceptUris": []
     }
   ]
