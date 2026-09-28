@@ -2,23 +2,22 @@
   "items": {
     "uk-cpi-2026-10": {
       "standingFingerprint": "d2de00bd6534466c",
-      "recentFingerprint": "31529b6deb264622",
-      "standing": "The Office for National Statistics' monthly measure of UK consumer prices, the gauge the Bank of England's 2% inflation target is judged against and a reference point for wage talks and index-linked payments.",
-      "recent": "The Office for National Statistics reports how fast UK consumer prices rose in the year to September. This month's reading is the one that sets next year's uprating of many state benefits.",
+      "recentFingerprint": "2dfb17e7ff995eb7",
+      "standing": "The Office for National Statistics' monthly consumer price index, the measure the Bank of England targets at 2%. It feeds into rate decisions, wage settlements and benefit uprating, and sterling and gilt yields move on it.",
+      "recent": "The September figure is the one UK benefit uprating is set against, so this release settles more than a monthly reading: it fixes next year's increase for most working-age benefits as well as showing where consumer prices stood through September.",
       "citations": [],
-      "generatedAt": "2026-09-26T05:25:15.026Z"
+      "generatedAt": "2026-09-28T05:27:53.685Z"
     },
     "fomc-2026-10": {
       "standingFingerprint": "7461ec820c9cf170",
-      "recentFingerprint": "30d07515f15544f5",
-      "standing": "The Federal Reserve's Federal Open Market Committee meets eight times a year to set the target range for the federal funds rate. Its decisions set borrowing costs across the US and, through the dollar, far beyond it.",
-      "recent": "September's unanimous 12-0 hike tightened into a supply shock whose cause is a closed strait, and defied Trump's calls to lower rates. The war has since shown up in US consumer prices, up 0.4% in August. This meeting settles whether the Fed treats that hike as a single response or keeps tightening against prices set by a shipping route it does not control.",
+      "recentFingerprint": "e6c493fa357ad881",
+      "standing": "The Federal Reserve's Federal Open Market Committee meets eight times a year to set the federal funds rate target. Its decisions set the cost of dollar borrowing worldwide, from US mortgages to emerging-market debt.",
+      "recent": "In September the committee voted 12-0 to raise rates, defying Trump's calls to lower them, and the cause was a closed strait that had pushed Brent crude near $110 a barrel. This meeting settles whether the Fed keeps tightening into a supply shock it cannot reach, with the cost landing on households already paying more for fuel.",
       "citations": [
         "2026-09-16-tightening-into-a-supply-shock-and-who-pays-twice",
-        "2026-09-11-us-cpi-august-the-war-in-the-price-index",
-        "2026-09-13-twenty-five-basis-points-the-dollar-is-the-export"
+        "2026-09-14-eleven-point-five-a-rate-set-in-the-gulf"
       ],
-      "generatedAt": "2026-09-25T04:42:33.040Z"
+      "generatedAt": "2026-09-28T05:27:50.795Z"
     },
     "ecb-2026-10": {
       "standingFingerprint": "644eb225dab9953a",
@@ -105,13 +104,13 @@
     },
     "fred-us-gdp-2026-09-30": {
       "standingFingerprint": "f941ab836edf2e53",
-      "recentFingerprint": "4115192781a78cd6",
-      "standing": "The Bureau of Economic Analysis's measure of everything the US economy produces, published each quarter in successive estimates. It sets the official read on growth that the Fed, Treasury yields and the dollar all trade on.",
-      "recent": "The OECD has just said the U.S. economy will grow faster than its allies, carried by an AI investment boom it expects to offset the Middle East energy shock for now, even as it raised its 2027 inflation forecast to 3.6%. This release is the official count of how much of that AI spending is showing up in output, and how much the energy shock is taking back.",
+      "recentFingerprint": "e62cee7e2db4c405",
+      "standing": "The Bureau of Economic Analysis's measure of US gross domestic product, published each quarter in three successive estimates. It is the broadest gauge of the world's largest economy, and it feeds rate policy, Treasury yields and the dollar.",
+      "recent": "Last week the OECD said AI investment is carrying the U.S. economy faster than its allies and offsetting the Middle East energy shock for now, as the Nasdaq hit an all-time high. This release tests that claim against official output data: how much of the growth is AI spending, and how much is left once it is set aside.",
       "citations": [
         "2026-09-23-oecd-outlook-ai-investment-energy-shock-2027"
       ],
-      "generatedAt": "2026-09-27T05:22:12.224Z"
+      "generatedAt": "2026-09-28T05:27:50.417Z"
     },
     "fred-us-pce-2026-09-30": {
       "standingFingerprint": "f7794ed88caf73b9",
@@ -130,6 +129,6 @@
       "generatedAt": "2026-09-25T04:42:17.550Z"
     }
   },
-  "generatedAt": "2026-09-27T05:22:14.870Z",
+  "generatedAt": "2026-09-28T05:27:53.685Z",
   "windowDays": 14
 }
