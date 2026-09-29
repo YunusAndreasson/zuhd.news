@@ -2,13 +2,505 @@
   "version": 1,
   "stories": [
     {
+      "id": "regeni-italy-convicts-egyptian-agents",
+      "label": "Italian court convicts three Egyptian agents for kidnap of Giulio Regeni",
+      "firstSeen": "2026-09-29T05:06:16.955Z",
+      "lastCovered": "2026-09-29T05:06:16.955Z",
+      "coverageCount": 1,
+      "category": "politics",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-09-29-regeni-italy-convicts-egyptian-agents"
+      ],
+      "eventUri": "ita-950505",
+      "summary": "A Rome court sentenced three Egyptian security officers to 10 years for the aggravated kidnapping of Cambridge student Giulio Regeni, tortured to death in Cairo in 2016; a fourth was acquitted. Lead with the conviction of serving agents of a foreign state tried in absentia after Cairo refused for years to serve papers. The mechanism: Italy tried them without Egypt's cooperation, and Rome kept selling Cairo arms and buying its gas throughout. What's next: the sentences cannot be enforced while Egypt shields the men, so the verdict is a record, not a punishment. Dateline Rome.",
+      "conceptUris": [
+        "http://en.wikipedia.org/wiki/Egypt",
+        "http://en.wikipedia.org/wiki/Murder_of_Giulio_Regeni",
+        "http://en.wikipedia.org/wiki/Rome",
+        "http://en.wikipedia.org/wiki/Cairo",
+        "http://en.wikipedia.org/wiki/Torture",
+        "http://en.wikipedia.org/wiki/Assizes",
+        "http://en.wikipedia.org/wiki/Kidnapping",
+        "http://en.wikipedia.org/wiki/Italy"
+      ]
+    },
+    {
+      "id": "israel-revokes-dutch-diplomats-west-bank",
+      "label": "Israel revokes accreditation of Netherlands diplomats based in West Bank",
+      "firstSeen": "2026-09-29T05:06:16.955Z",
+      "lastCovered": "2026-09-29T05:06:16.955Z",
+      "coverageCount": 1,
+      "category": "politics",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-09-29-israel-revokes-dutch-diplomats-west-bank"
+      ],
+      "eventUri": "eng-12049065",
+      "summary": "Israel stripped accreditation from Dutch diplomats posted to the occupied West Bank, retaliation for Western pressure over settlements. Lead with the mechanism: by controlling who may be accredited to serve Palestinians in Ramallah, Israel exercises sovereign power over territory it occupies, and uses it to punish states that criticise settlement expansion. Name Foreign Minister Gideon Sa'ar as the decision-maker, note that the Netherlands only 'regretted' it, and connect to this week's settler attacks during the olive harvest. Dateline Ramallah.",
+      "conceptUris": [
+        "http://en.wikipedia.org/wiki/Israel",
+        "http://en.wikipedia.org/wiki/Netherlands",
+        "http://en.wikipedia.org/wiki/West_Bank",
+        "http://en.wikipedia.org/wiki/Ramallah",
+        "http://en.wikipedia.org/wiki/Gideon_Sa'ar",
+        "http://en.wikipedia.org/wiki/Israeli_settlement",
+        "http://en.wikipedia.org/wiki/Diplomacy",
+        "http://en.wikipedia.org/wiki/Palestinians"
+      ]
+    },
+    {
+      "id": "minna-nscdc-custody-deaths-37-miners",
+      "label": "Minna's Cell of Death: Survivors recount how 37 mining suspect died in NSCDC custody",
+      "firstSeen": "2026-09-29T05:06:16.955Z",
+      "lastCovered": "2026-09-29T05:06:16.955Z",
+      "coverageCount": 1,
+      "category": "politics",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-09-29-minna-nscdc-custody-deaths-37-miners"
+      ],
+      "eventUri": null,
+      "summary": "A Premium Times investigation: 37 people arrested as illegal-mining suspects died in a single cramped detention cell of Nigeria's Civil Defence Corps (NSCDC) in Minna, Niger State, on 17 September. Lead with the survivor, 19-year-old Adamu Isah, still carrying bite marks from a suffocating cellmate. The accountability question: who ordered the mass arrests, why dozens of unconvicted detainees were packed into one cell, and whether any officer has been suspended or charged. Frame the wider pattern of mining crackdowns that sweep up poor labourers. Dateline Minna.",
+      "conceptUris": []
+    },
+    {
+      "id": "france-high-school-protests-164-arrested-strike",
+      "label": "France High School Protests Spread As 164 Arrested, Political Row Erupts Ahead Of Strike",
+      "firstSeen": "2026-09-29T05:06:16.955Z",
+      "lastCovered": "2026-09-29T05:06:16.955Z",
+      "coverageCount": 1,
+      "category": "politics",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-09-29-france-high-school-protests-164-arrested-strike"
+      ],
+      "eventUri": "fra-1348337",
+      "summary": "Student protests spread to lycées across France on Monday, with more than 160 arrests and dozens injured, a day before a nationwide public-sector strike. Lead with teenagers being arrested en masse, then the political row between Lecornu's government and La France Insoumise over the policing. The structural why: a minority government pushing austerity faces the street on several fronts at once, the week the National Rally won its first Senate group. Wire reporting via AFP/AP/DW; the writer should confirm the arrest count against the fetched text. Dateline Paris.",
+      "conceptUris": [
+        "http://fr.wikipedia.org/wiki/Lycée_en_France",
+        "http://en.wikipedia.org/wiki/La_France_Insoumise",
+        "http://en.wikipedia.org/wiki/Police",
+        "http://en.wikipedia.org/wiki/Blockade",
+        "http://en.wikipedia.org/wiki/Sébastien_Lecornu",
+        "http://en.wikipedia.org/wiki/Government_of_France",
+        "http://en.wikipedia.org/wiki/Mobilization",
+        "http://en.wikipedia.org/wiki/Syndicate"
+      ]
+    },
+    {
+      "id": "falklands-argentina-economic-warfare-oil",
+      "label": "Falkland Islanders grapple with Argentina's 'economic warfare'",
+      "firstSeen": "2026-09-29T05:06:16.955Z",
+      "lastCovered": "2026-09-29T05:06:16.955Z",
+      "coverageCount": 1,
+      "category": "economy",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-09-29-falklands-argentina-economic-warfare-oil"
+      ],
+      "eventUri": "spa-4359119",
+      "summary": "The Falklands government says Argentina under Milei is waging 'economic warfare': squeezing flights, fishing and the offshore oil development the islands' economy now hangs on. Lead with the lever: Buenos Aires does not need guns to contest sovereignty when it can choke logistics and deter oil investors. Explain the hydrocarbon stakes and the law-of-the-sea angle, and give Argentina's position as its own, not only through the islanders. Dateline Stanley.",
+      "conceptUris": [
+        "http://en.wikipedia.org/wiki/United_Kingdom",
+        "http://en.wikipedia.org/wiki/Argentina",
+        "http://es.wikipedia.org/wiki/Islas_Malvinas",
+        "http://en.wikipedia.org/wiki/Javier_Milei",
+        "http://en.wikipedia.org/wiki/Petroleum",
+        "http://en.wikipedia.org/wiki/International_Tribunal_for_the_Law_of_the_Sea",
+        "http://en.wikipedia.org/wiki/Hydrocarbon",
+        "http://en.wikipedia.org/wiki/President_(government_title)"
+      ]
+    },
+    {
+      "id": "gold-seven-week-low-treasury-yield-18-year-high",
+      "label": "Gold lingers near seven-week low ahead of US economic data",
+      "firstSeen": "2026-09-29T05:06:16.955Z",
+      "lastCovered": "2026-09-29T05:06:16.955Z",
+      "coverageCount": 1,
+      "category": "economy",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-09-29-gold-seven-week-low-treasury-yield-18-year-high"
+      ],
+      "eventUri": "eng-12048423",
+      "summary": "Gold sits at a seven-week low near $4,125 as the US 10-year Treasury yield touches an 18-year high and the Iran war keeps oil climbing. Lead with the yield, not the metal: war-driven oil is feeding inflation fears, the Fed is expected to hold rates higher for longer, and that makes a non-yielding haven less attractive even in wartime. Explain who pays: dollar-borrowing emerging economies and households in gold-saving countries like India and Pakistan. Dateline Singapore.",
+      "conceptUris": [
+        "http://en.wikipedia.org/wiki/Gold",
+        "http://en.wikipedia.org/wiki/Inflation",
+        "http://en.wikipedia.org/wiki/Silver",
+        "http://en.wikipedia.org/wiki/United_States_dollar",
+        "http://en.wikipedia.org/wiki/Price_of_oil",
+        "http://en.wikipedia.org/wiki/Futures_contract",
+        "http://en.wikipedia.org/wiki/Precious_metal",
+        "http://en.wikipedia.org/wiki/Federal_Reserve"
+      ]
+    },
+    {
+      "id": "trump-iowa-steel-mill-15bn-midterms",
+      "label": "How a Planned Steel Mill in Iowa Reveals Trump's Midterm Strategy",
+      "firstSeen": "2026-09-29T05:06:16.955Z",
+      "lastCovered": "2026-09-29T05:06:16.955Z",
+      "coverageCount": 1,
+      "category": "economy",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-09-29-trump-iowa-steel-mill-15bn-midterms"
+      ],
+      "eventUri": "eng-12049657",
+      "summary": "Trump announced a $15bn steel mill in Iowa five weeks before midterms in which Republicans are trailing. Lead with the gap between the headline number and what is committed: who is financing it, when it would produce steel, and where its iron ore comes from (the Mesabi Range). The mechanism is industrial policy as campaign event, announced while tariffs gutted by the Supreme Court and an Iran war squeeze farm-state voters. Dateline Iowa; this is one of three US-datelined picks.",
+      "conceptUris": [
+        "http://en.wikipedia.org/wiki/Donald_Trump",
+        "http://en.wikipedia.org/wiki/Iowa",
+        "http://en.wikipedia.org/wiki/Steel_mill",
+        "http://en.wikipedia.org/wiki/Steel",
+        "http://en.wikipedia.org/wiki/White_House",
+        "http://en.wikipedia.org/wiki/Mesabi_Range",
+        "http://en.wikipedia.org/wiki/Minnesota",
+        "http://en.wikipedia.org/wiki/Iron_ore"
+      ]
+    },
+    {
+      "id": "florida-court-block-chatgpt-openai",
+      "label": "Florida authorities ask court to block OpenAI's ChatGPT over safety issues",
+      "firstSeen": "2026-09-29T05:06:16.955Z",
+      "lastCovered": "2026-09-29T05:06:16.955Z",
+      "coverageCount": 1,
+      "category": "tech",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-09-29-florida-court-block-chatgpt-openai"
+      ],
+      "eventUri": "eng-12049895",
+      "summary": "Florida's attorney general asked a state court to stop OpenAI developing ChatGPT until it adopts guardrails for users and children: 'Stop calling it safe. Stop pretending it's human. Stop selling it to kids.' New development on the AI-safety arc: this is the first US state seeking a court order against a frontier model itself, days after OpenAI paused frontier training (covered 09-27) and, per DW, shelved a next-generation model after internal testing. Lead with the injunction request and what relief it seeks; do not re-tell the pause beyond one line of context. Dateline Tallahassee; one of three US-datelined picks.",
+      "conceptUris": [
+        "http://en.wikipedia.org/wiki/OpenAI",
+        "http://en.wikipedia.org/wiki/Artificial_intelligence",
+        "http://en.wikipedia.org/wiki/Florida",
+        "http://en.wikipedia.org/wiki/ChatGPT",
+        "http://en.wikipedia.org/wiki/Florida_Attorney_General",
+        "http://en.wikipedia.org/wiki/Injunction",
+        "http://en.wikipedia.org/wiki/Lawsuit",
+        "http://en.wikipedia.org/wiki/Sam_Altman"
+      ]
+    },
+    {
+      "id": "meta-enterprise-ai-platform-saas-stocks",
+      "label": "Meta's AI ambitions put BlackRock's prediction under spotlight",
+      "firstSeen": "2026-09-29T05:06:16.955Z",
+      "lastCovered": "2026-09-29T05:06:16.955Z",
+      "coverageCount": 1,
+      "category": "tech",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-09-29-meta-enterprise-ai-platform-saas-stocks"
+      ],
+      "eventUri": "eng-12049517",
+      "summary": "Meta launched Meta Enterprise Platform to sell its AI models to businesses, with Chirantan Desai reporting directly to Zuckerberg, and enterprise software stocks (Salesforce, ServiceNow, Snowflake) fell on the news. Lead with the strategic turn: a company that gave its models away as open weights now wants to charge for them, after spending hundreds of billions on compute that ads alone must pay back. The mechanism is the incumbent SaaS moat being priced as vulnerable. Dateline Menlo Park; one of three US-datelined picks.",
+      "conceptUris": [
+        "http://en.wikipedia.org/wiki/Artificial_intelligence",
+        "http://en.wikipedia.org/wiki/Muse_(band)",
+        "http://en.wikipedia.org/wiki/Mark_Zuckerberg",
+        "http://en.wikipedia.org/wiki/Meta_Platforms",
+        "http://en.wikipedia.org/wiki/Chief_executive_officer",
+        "http://en.wikipedia.org/wiki/MongoDB",
+        "http://pt.wikipedia.org/wiki/Meta_(departamento)",
+        "http://pt.wikipedia.org/wiki/Empresa"
+      ]
+    },
+    {
+      "id": "bhutan-eliminates-dog-rabies",
+      "label": "Bhutan recognized for eliminating dog-transmitted rabies ahead of World Rabies Day",
+      "firstSeen": "2026-09-29T05:06:16.955Z",
+      "lastCovered": "2026-09-29T05:06:16.955Z",
+      "coverageCount": 1,
+      "category": "science",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-09-29-bhutan-eliminates-dog-rabies"
+      ],
+      "eventUri": "eng-12048030",
+      "summary": "Bhutan has been recognised for eliminating dog-transmitted rabies, a disease that still kills tens of thousands a year, mostly children in Asia and Africa. Lead with how: mass dog vaccination and sterilisation rather than culling, and post-exposure care. Contrast with Pakistan, where Sindh's chief secretary used World Rabies Day to warn citizens after bites, to show the method is replicable and what it costs. Dateline Thimphu.",
+      "conceptUris": [
+        "http://en.wikipedia.org/wiki/Rabies",
+        "http://en.wikipedia.org/wiki/Dog",
+        "http://en.wikipedia.org/wiki/Vaccination",
+        "http://en.wikipedia.org/wiki/Cat",
+        "http://en.wikipedia.org/wiki/Vaccine",
+        "http://en.wikipedia.org/wiki/Virus",
+        "http://en.wikipedia.org/wiki/Veterinary_medicine",
+        "http://en.wikipedia.org/wiki/World_Rabies_Day"
+      ]
+    },
+    {
+      "id": "raf-fairford-suspects-bailed-iran-denies",
+      "label": "Confusion around the UK bomb plotting probe",
+      "firstSeen": "2026-09-28T22:04:49.897Z",
+      "lastCovered": "2026-09-28T22:04:49.897Z",
+      "coverageCount": 1,
+      "category": "politics",
+      "importance": 5,
+      "arc": "breaking",
+      "articles": [
+        "2026-09-28-raf-fairford-suspects-bailed-iran-denies"
+      ],
+      "eventUri": "eng-12046625",
+      "summary": "New development on the RAF Fairford story covered 09-27: all five men arrested near the US bomber base are being released on police bail, even as a UK minister warned of Iranian 'proxies' and Tehran denied any link. Lead with the bail release. The stakes: a major incident, evacuated homes and an attribution to Iran were made public before police had evidence that could hold anyone. Fairford hosts US B-52s used in the Iran war, which is why the attribution matters. Dateline Gloucestershire.",
+      "conceptUris": [
+        "http://en.wikipedia.org/wiki/United_Kingdom",
+        "http://en.wikipedia.org/wiki/Terrorism",
+        "http://en.wikipedia.org/wiki/Iran",
+        "http://en.wikipedia.org/wiki/RAF_Fairford",
+        "http://en.wikipedia.org/wiki/United_States",
+        "http://en.wikipedia.org/wiki/Explosive",
+        "http://en.wikipedia.org/wiki/Gloucestershire",
+        "http://en.wikipedia.org/wiki/United_States_Air_Force"
+      ]
+    },
+    {
+      "id": "aac-sues-tinubu-power-transfer-shettima",
+      "label": "Sowore's AAC sues Tinubu, others over failure to transfer power to Shettima",
+      "firstSeen": "2026-09-28T22:04:49.897Z",
+      "lastCovered": "2026-09-28T22:04:49.897Z",
+      "coverageCount": 1,
+      "category": "politics",
+      "importance": 5,
+      "arc": "breaking",
+      "articles": [
+        "2026-09-28-aac-sues-tinubu-power-transfer-shettima"
+      ],
+      "eventUri": "eng-12050246",
+      "summary": "The African Action Congress has asked the Federal High Court in Abuja to rule that President Tinubu broke the constitution by leaving on a long European vacation without transmitting power to Vice President Shettima. The mechanism is Section 145, the clause that was at the centre of the Yar'Adua crisis in 2010, when an absent president left Nigeria without a lawful acting leader for months. Lead with the lawsuit and the length of the absence. The question is who is governing Africa's most populous country, and whether any court will enforce the rule. Dateline Abuja.",
+      "conceptUris": []
+    },
+    {
+      "id": "trump-iran-sanctions-relief-qatar-mediators",
+      "label": "Trump ready to ease Iranian sanctions if progress on nuclear dossier is reached -- Axios",
+      "firstSeen": "2026-09-28T22:04:49.897Z",
+      "lastCovered": "2026-09-28T22:04:49.897Z",
+      "coverageCount": 1,
+      "category": "politics",
+      "importance": 5,
+      "arc": "breaking",
+      "articles": [
+        "2026-09-28-trump-iran-sanctions-relief-qatar-mediators"
+      ],
+      "eventUri": null,
+      "summary": "This advances the covered 'Trump rejects Iran proposal' story. Axios reports, via Russian state news agency TASS, that Trump would ease sanctions and unfreeze Iran's immobilised assets in exchange for nuclear concessions, and Iranian state agency Mehr says Araghchi is meeting Qatari mediators in New York. Both sources are state media, so attribute every claim: 'TASS, citing Axios, reported…' and 'Iran's state-run Mehr news agency said…'. Lead with the shift from rejecting a proposal to offering money on the table, then Qatar's role as broker while Hormuz stays contested. Dateline Tehran.",
+      "conceptUris": []
+    },
+    {
+      "id": "hormuz-marines-injured-mystery-vessel-st-helena",
+      "label": "Claims Swirl Around U.S. Marines Injured Aboard Mystery Vessel Attacked In The Strait Of Hormuz",
+      "firstSeen": "2026-09-28T22:04:49.897Z",
+      "lastCovered": "2026-09-28T22:04:49.897Z",
+      "coverageCount": 1,
+      "category": "politics",
+      "importance": 5,
+      "arc": "breaking",
+      "articles": [
+        "2026-09-28-hormuz-marines-injured-mystery-vessel-st-helena"
+      ],
+      "eventUri": null,
+      "summary": "US Marines were injured aboard a vessel attacked in the Strait of Hormuz, and the ship appears to be the former Royal Mail ship St Helena. Nobody has explained what it was doing there. Lead with what is confirmed (the attack, the injured Marines) and keep that separate from what is claimed about the ship's mission. The significance: US personnel on an unmarked civilian-looking hull blur the line the IRGC uses to justify seizures, while US-Iran talks stall. Dateline Strait of Hormuz.",
+      "conceptUris": []
+    },
+    {
+      "id": "bukele-gang-war-el-salvador-insight-crime",
+      "label": "How Bukele's War on Gangs Transformed El Salvador",
+      "firstSeen": "2026-09-28T22:04:49.897Z",
+      "lastCovered": "2026-09-28T22:04:49.897Z",
+      "coverageCount": 1,
+      "category": "politics",
+      "importance": 5,
+      "arc": "breaking",
+      "articles": [
+        "2026-09-28-bukele-gang-war-el-salvador-insight-crime"
+      ],
+      "eventUri": null,
+      "summary": "InSight Crime's flagship investigation finds that Bukele's emergency regime crippled MS13 and Barrio 18, and that the model is now being copied across Latin America. The price is mass detention without due process, deaths in custody, and power concentrated in the presidency. Lead with the scale of detention and the new findings on what happened to the gangs' structures. This is not the 08-12 'emergency regimes spread' piece again: focus on the investigation's evidence of the cost inside El Salvador. Dateline San Salvador.",
+      "conceptUris": []
+    },
+    {
+      "id": "bardella-mediapart-antisemitism-messages",
+      "label": "French far-right leader Bardella refutes anti-Semitism allegations",
+      "firstSeen": "2026-09-28T22:04:49.897Z",
+      "lastCovered": "2026-09-28T22:04:49.897Z",
+      "coverageCount": 1,
+      "category": "politics",
+      "importance": 5,
+      "arc": "breaking",
+      "articles": [
+        "2026-09-28-bardella-mediapart-antisemitism-messages"
+      ],
+      "eventUri": "fra-1348500",
+      "summary": "Mediapart reports that National Rally president Jordan Bardella sent antisemitic private messages, which he denies. This comes days after the RN formed its first Senate group, so it is not a repeat of that story. Lead with what Mediapart says the messages contain and Bardella's denial. The structural point: the party spent a decade 'de-demonising' by casting itself as a defender of Jews against Muslims, and its likely 2027 candidate now faces the charge it aimed at others. Dateline Paris.",
+      "conceptUris": [
+        "http://en.wikipedia.org/wiki/Antisemitism",
+        "http://en.wikipedia.org/wiki/Mediapart",
+        "http://en.wikipedia.org/wiki/National_Rally",
+        "http://en.wikipedia.org/wiki/Jordan_Bardella",
+        "http://en.wikipedia.org/wiki/Jews",
+        "http://en.wikipedia.org/wiki/Marine_Le_Pen",
+        "http://en.wikipedia.org/wiki/Activism",
+        "http://en.wikipedia.org/wiki/Israel"
+      ]
+    },
+    {
+      "id": "putin-decree-russian-army-2-44-million",
+      "label": "Putin sets personnel ceiling of Russian armed forces at over 2.44 million",
+      "firstSeen": "2026-09-28T22:04:49.897Z",
+      "lastCovered": "2026-09-28T22:04:49.897Z",
+      "coverageCount": 1,
+      "category": "politics",
+      "importance": 5,
+      "arc": "breaking",
+      "articles": [
+        "2026-09-28-putin-decree-russian-army-2-44-million"
+      ],
+      "eventUri": null,
+      "summary": "A decree on Russia's official legal portal sets the authorised strength of the armed forces at more than 2.44 million, 1.55 million of them active troops. This is the latest in a series of increases since 2022. The source is Russian state news agency TASS, so attribute it, though the decree itself is a published legal act. Lead with the number and how it compares with previous ceilings (about 2.39 million in 2024). The mechanism: Moscow is putting its wartime army on a permanent legal footing while NATO argues over Kaliningrad and the Baltic. Dateline Moscow.",
+      "conceptUris": []
+    },
+    {
+      "id": "nvidia-150bn-buyback-china-chips-huang",
+      "label": "Nvidia's biggest-ever buyback plan signals confidence in AI boom",
+      "firstSeen": "2026-09-28T22:04:49.897Z",
+      "lastCovered": "2026-09-28T22:04:49.897Z",
+      "coverageCount": 1,
+      "category": "economy",
+      "importance": 5,
+      "arc": "breaking",
+      "articles": [
+        "2026-09-28-nvidia-150bn-buyback-china-chips-huang"
+      ],
+      "eventUri": "eng-12049134",
+      "summary": "Nvidia authorised a record $150bn share buyback, beating Apple's $110bn from 2024, while its stock trades near its lowest valuation in more than a decade. Ars Technica reports that Jensen Huang's growing influence with Trump may reopen China chip sales even though export controls were never discussed at the Trump–Xi summit. Lead with the contradiction: record cash returned to shareholders at a decade-low multiple. The mechanism: the market is pricing in AI-demand risk, and China access is the lever Huang is pulling. Merged into one Nvidia entry. Dateline Santa Clara.",
+      "conceptUris": [
+        "http://en.wikipedia.org/wiki/Nvidia",
+        "http://en.wikipedia.org/wiki/Artificial_intelligence",
+        "http://en.wikipedia.org/wiki/United_States_dollar",
+        "http://en.wikipedia.org/wiki/Share_repurchase",
+        "http://en.wikipedia.org/wiki/Apple_Inc.",
+        "http://en.wikipedia.org/wiki/Shareholder",
+        "http://en.wikipedia.org/wiki/Chief_executive_officer",
+        "http://en.wikipedia.org/wiki/Integrated_circuit"
+      ]
+    },
+    {
+      "id": "coal-lobby-letter-trump-plant-rescue",
+      "label": "The Coal Industry Asked for a Rescue. Trump Obliged.",
+      "firstSeen": "2026-09-28T22:04:49.897Z",
+      "lastCovered": "2026-09-28T22:04:49.897Z",
+      "coverageCount": 1,
+      "category": "economy",
+      "importance": 5,
+      "arc": "breaking",
+      "articles": [
+        "2026-09-28-coal-lobby-letter-trump-plant-rescue"
+      ],
+      "eventUri": "eng-12048610",
+      "summary": "Accountability story. A top coal lobbyist wrote to Energy Secretary Chris Wright warning that about a third of US coal plants would close within five years, and the administration then delivered what the letter asked for. Lead with the letter-to-policy match, item by item. The mechanism: emergency orders and regulatory rollbacks keep uneconomic plants running, and ratepayers and people living downwind pay for it. Dateline Washington.",
+      "conceptUris": []
+    },
+    {
+      "id": "merck-recarbrio-antibiotic-discontinued-superbugs",
+      "label": "Merck discontinues a crucial antibiotic despite concerns over superbug resistance",
+      "firstSeen": "2026-09-28T22:04:49.897Z",
+      "lastCovered": "2026-09-28T22:04:49.897Z",
+      "coverageCount": 1,
+      "category": "economy",
+      "importance": 5,
+      "arc": "breaking",
+      "articles": [
+        "2026-09-28-merck-recarbrio-antibiotic-discontinued-superbugs"
+      ],
+      "eventUri": null,
+      "summary": "Merck quietly stopped supplying Recarbrio, a last-line antibiotic for resistant hospital pneumonia, in the US market. Lead with the drug's role against carbapenem-resistant infections. The mechanism is a broken market: new antibiotics are held in reserve and sell little, so large drugmakers exit even as the WHO ranks antimicrobial resistance a top global threat. Draw on Ars Technica's same-day reporting on patent thickets for the contrast: pharma defends high-volume drugs and abandons the ones public health needs. Dateline Rahway, New Jersey.",
+      "conceptUris": []
+    },
+    {
+      "id": "carbon-capture-battery-electrochemical-co2-pump",
+      "label": "New device captures carbon dioxide by pumping it across a battery",
+      "firstSeen": "2026-09-28T22:04:49.897Z",
+      "lastCovered": "2026-09-28T22:04:49.897Z",
+      "coverageCount": 1,
+      "category": "science",
+      "importance": 5,
+      "arc": "breaking",
+      "articles": [
+        "2026-09-28-carbon-capture-battery-electrochemical-co2-pump"
+      ],
+      "eventUri": null,
+      "summary": "Carbon capture normally absorbs CO2 and then heats the absorber to release it, and that heat is most of the cost. The new device instead moves CO2, as carbonate, across a battery-like electrochemical cell, running on electricity rather than heat. Lead with the energy mechanism. Give the energy-per-tonne figure if the paper reports one, compared with thermal capture. Say plainly how far it is from scale. Dateline at the research institution.",
+      "conceptUris": []
+    },
+    {
+      "id": "africa-internet-shutdowns-telcos-protests",
+      "label": "When telcos shut down the internet, they shut down protests for the government",
+      "firstSeen": "2026-09-28T22:04:49.897Z",
+      "lastCovered": "2026-09-28T22:04:49.897Z",
+      "coverageCount": 1,
+      "category": "tech",
+      "importance": 5,
+      "arc": "breaking",
+      "articles": [
+        "2026-09-28-africa-internet-shutdowns-telcos-protests"
+      ],
+      "eventUri": null,
+      "summary": "African governments are pairing arrests and curfews with internet blackouts, and the telecom operators, often foreign-owned or state-linked, carry out the orders. Lead with Niger's state telecom and recent shutdown cases. The accountability mechanism: licence conditions make telcos the enforcement arm, so when protest moves online, the operator decides whether it survives. Name the operators and the governments. Dateline Niamey.",
+      "conceptUris": []
+    },
+    {
+      "id": "shinyhunters-oracle-peoplesoft-mandiant",
+      "label": "ShinyHunters exploiting workarounds for Oracle PeopleSoft bug, Mandiant warns",
+      "firstSeen": "2026-09-28T22:04:49.897Z",
+      "lastCovered": "2026-09-28T22:04:49.897Z",
+      "coverageCount": 1,
+      "category": "tech",
+      "importance": 5,
+      "arc": "breaking",
+      "articles": [
+        "2026-09-28-shinyhunters-oracle-peoplesoft-mandiant"
+      ],
+      "eventUri": null,
+      "summary": "New development: Mandiant says ShinyHunters, the group behind the FBI employee-data theft, is running a fresh campaign that exploits workarounds for an Oracle PeopleSoft vulnerability. PeopleSoft is HR and payroll software used by universities and governments worldwide. The same day, the group told 404 Media it will never publish the FBI trove. Lead with the new PeopleSoft campaign and the fact that patching alone may not close it. Mention the FBI claim briefly as context, not as the lead. Dateline wherever Mandiant's advisory places the victims, not Washington.",
+      "conceptUris": []
+    },
+    {
+      "id": "nigeria-court-dismisses-meta-privacy-suit",
+      "label": "Court dismisses $25 million privacy suit against Meta in Delta",
+      "firstSeen": "2026-09-28T22:04:49.897Z",
+      "lastCovered": "2026-09-28T22:04:49.897Z",
+      "coverageCount": 1,
+      "category": "tech",
+      "importance": 5,
+      "arc": "breaking",
+      "articles": [
+        "2026-09-28-nigeria-court-dismisses-meta-privacy-suit"
+      ],
+      "eventUri": null,
+      "summary": "A Nigerian high court threw out a $25m fundamental-rights suit against Meta, ruling that the applicant had not shown Meta violated her privacy or unlawfully processed her data. Lead with the evidentiary bar. The court required proof of what Meta did with her data, and only Meta holds that proof. This is the structural obstacle facing African privacy litigation against Big Tech under Nigeria's 2023 Data Protection Act. Contrast it with this week's New Mexico jury finding against Meta for privacy deception. Dateline Iho, Imo State.",
+      "conceptUris": []
+    },
+    {
       "id": "oil-climbs-trump-rejects-iran-proposal",
       "label": "Oil Prices Climb on Continued Impasse in U.S.-Iran Talks",
       "firstSeen": "2026-09-28T18:07:04.336Z",
       "lastCovered": "2026-09-28T18:07:04.336Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 6,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-09-28-oil-climbs-trump-rejects-iran-proposal"
@@ -33,7 +525,7 @@
       "lastCovered": "2026-09-28T18:07:04.336Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 6,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-09-28-tether-iran-sanctions-senate-report"
@@ -49,7 +541,7 @@
       "lastCovered": "2026-09-28T18:07:04.336Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 6,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-09-28-dati-prosecutors-four-years-renault-nissan"
@@ -74,7 +566,7 @@
       "lastCovered": "2026-09-28T18:07:04.336Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 6,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-09-28-settlers-attack-west-bank-olive-harvest"
@@ -90,7 +582,7 @@
       "lastCovered": "2026-09-28T18:07:04.336Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 6,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-09-28-ttap-joins-pti-october-4-islamabad-march"
@@ -106,7 +598,7 @@
       "lastCovered": "2026-09-28T18:07:04.336Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 6,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-09-28-mystery-manpads-russian-service-foreign-origin"
@@ -122,7 +614,7 @@
       "lastCovered": "2026-09-28T18:07:04.336Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 6,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-09-28-tata-trusts-merger-plan-avoid-listing"
@@ -147,7 +639,7 @@
       "lastCovered": "2026-09-28T18:07:04.336Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 6,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-09-28-pakistan-senate-panel-halt-discos-privatisation"
@@ -163,7 +655,7 @@
       "lastCovered": "2026-09-28T18:07:04.336Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 6,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-09-28-egypt-bread-price-review-postponed"
@@ -179,7 +671,7 @@
       "lastCovered": "2026-09-28T18:07:04.336Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 6,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-09-28-cop31-fossil-fuel-transition-roadmap-split"
@@ -195,7 +687,7 @@
       "lastCovered": "2026-09-28T18:07:04.336Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 6,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-09-28-new-mexico-jury-meta-privacy-deception"
@@ -211,7 +703,7 @@
       "lastCovered": "2026-09-28T18:07:04.336Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 6,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-09-28-iss-canadarm2-robotic-arm-failure"
@@ -227,7 +719,7 @@
       "lastCovered": "2026-09-28T18:07:04.336Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 6,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-09-28-1840s-space-weather-telegraph-storms"
@@ -243,7 +735,7 @@
       "lastCovered": "2026-09-28T14:06:19.150Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 5,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-09-28-france-national-rally-senate-group-first-time"
@@ -268,7 +760,7 @@
       "lastCovered": "2026-09-28T14:06:19.150Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 5,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-09-28-ujjain-shahi-masjid-demolition-clashes"
@@ -293,7 +785,7 @@
       "lastCovered": "2026-09-28T14:06:19.150Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 5,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-09-28-venezuela-rally-machado-return-elections"
@@ -318,7 +810,7 @@
       "lastCovered": "2026-09-28T14:06:19.150Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 5,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-09-28-lao-activist-khieo-lapchanh-vanishes-thailand"
@@ -334,7 +826,7 @@
       "lastCovered": "2026-09-28T14:06:19.150Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 5,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-09-28-egypt-blocks-bp-asset-sale-energean"
@@ -350,7 +842,7 @@
       "lastCovered": "2026-09-28T14:06:19.150Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 5,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-09-28-sub-saharan-africa-diesel-generators-grid-iran-war"
@@ -375,7 +867,7 @@
       "lastCovered": "2026-09-28T14:06:19.150Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 5,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-09-28-lula-amazon-deforestation-20000km2-saved"
@@ -391,7 +883,7 @@
       "lastCovered": "2026-09-28T14:06:19.150Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 5,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-09-28-spacex-starship-first-orbit-flight-14"
@@ -407,7 +899,7 @@
       "lastCovered": "2026-09-28T14:06:19.150Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 5,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-09-28-microsoft-copilot-prompts-human-contractors-review"
@@ -423,7 +915,7 @@
       "lastCovered": "2026-09-28T14:06:19.150Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 5,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-09-28-poland-medical-software-cyberattack-patient-data"
@@ -439,7 +931,7 @@
       "lastCovered": "2026-09-28T14:06:19.150Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 5,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-09-28-samsung-sk-hynix-hbm-memory-ai-chokepoint"
@@ -455,7 +947,7 @@
       "lastCovered": "2026-09-28T14:06:19.150Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 5,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-09-28-uk-raf-space-effects-squadron-counterspace"
@@ -471,7 +963,7 @@
       "lastCovered": "2026-09-28T10:05:21.104Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 4,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-09-28-taiz-market-strike-saudi-houthi-front"
@@ -496,7 +988,7 @@
       "lastCovered": "2026-09-28T10:05:21.104Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 4,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-09-28-kazakhstan-caspian-exercise-14-dead-defence-minister-fired"
@@ -521,7 +1013,7 @@
       "lastCovered": "2026-09-28T10:05:21.104Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 4,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-09-28-netanyahu-secret-abu-dhabi-trip-october-7-warning"
@@ -546,7 +1038,7 @@
       "lastCovered": "2026-09-28T10:05:21.104Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 4,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-09-28-taiwan-pushback-trump-xi-summit-wwii-weapons-offer"
@@ -571,7 +1063,7 @@
       "lastCovered": "2026-09-28T10:05:21.104Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 4,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-09-28-hungary-lifts-immunity-magyar-orban-ministers"
@@ -596,7 +1088,7 @@
       "lastCovered": "2026-09-28T10:05:21.104Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 4,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-09-28-socar-eni-italy-fuel-price-cap"
@@ -621,7 +1113,7 @@
       "lastCovered": "2026-09-28T10:05:21.104Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 4,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-09-28-anambra-debt-peter-obi-dmo-records"
@@ -637,7 +1129,7 @@
       "lastCovered": "2026-09-28T10:05:21.104Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 4,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-09-28-h5n1-human-patient-variants-receptor-binding"
@@ -653,7 +1145,7 @@
       "lastCovered": "2026-09-28T10:05:21.104Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 4,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-09-28-herring-fishery-collapse-400-years-rebound"
@@ -669,7 +1161,7 @@
       "lastCovered": "2026-09-28T10:05:21.104Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 4,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-09-28-ai-agents-rogue-liability-gap"
@@ -685,7 +1177,7 @@
       "lastCovered": "2026-09-28T10:05:21.104Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 4,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-09-28-redotpay-stablecoin-audit-us-ipo"
@@ -701,7 +1193,7 @@
       "lastCovered": "2026-09-28T05:05:04.443Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 3,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-09-28-south-korea-ukraine-pow-transfer-apology"
@@ -726,7 +1218,7 @@
       "lastCovered": "2026-09-28T05:05:04.443Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 3,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-09-28-netanyahu-icc-case-erdogan-leverage"
@@ -751,7 +1243,7 @@
       "lastCovered": "2026-09-28T05:05:04.443Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 3,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-09-28-uttar-pradesh-floods-62-dead"
@@ -776,7 +1268,7 @@
       "lastCovered": "2026-09-28T05:05:04.443Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 3,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-09-28-siti-hasmah-mahathir-wife-dies-100"
@@ -801,7 +1293,7 @@
       "lastCovered": "2026-09-28T05:05:04.443Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 3,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-09-28-australia-senate-summons-altman-amodei-ai-agents"
@@ -826,7 +1318,7 @@
       "lastCovered": "2026-09-28T05:05:04.443Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 3,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-09-28-pakistan-hangor-submarine-live-fire-china"
@@ -851,7 +1343,7 @@
       "lastCovered": "2026-09-28T05:05:04.443Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 3,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-09-28-sensex-seven-week-losing-streak-oil-iran"
@@ -867,7 +1359,7 @@
       "lastCovered": "2026-09-28T05:05:04.443Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 3,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-09-28-khyber-pakhtunkhwa-sehat-card-hospital-deductions"
@@ -883,398 +1375,13 @@
       "lastCovered": "2026-09-28T05:05:04.443Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 3,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-09-28-soil-smell-microbes-electronic-nose"
       ],
       "eventUri": null,
       "summary": "Ecologist Rosa Boone found that soil's smell, which comes from the volatile compounds made by its fungi and bacteria, can be captured and analysed in a lab to read the microbial community. That opens the way to an 'electronic nose' sensor for field monitoring. Lead with the finding: the old farmer's sniff test has a measurable basis. The why is that EU soil-monitoring rules are coming, and DNA sequencing is too slow and costly to scale. For smallholders, a cheap sensor matters more than a lab. This is a real finding; science is under its floor this cycle.",
-      "conceptUris": []
-    },
-    {
-      "id": "hormuz-qeshm-blasts-us-iran-talks-gap",
-      "label": "Trump expects 'more talks' with Iran soon -- RT World News",
-      "firstSeen": "2026-09-27T22:02:55.962Z",
-      "lastCovered": "2026-09-27T22:02:55.962Z",
-      "coverageCount": 1,
-      "category": "politics",
-      "importance": 2,
-      "arc": "breaking",
-      "articles": [
-        "2026-09-27-hormuz-qeshm-blasts-us-iran-talks-gap"
-      ],
-      "eventUri": "eng-12044805",
-      "summary": "New since yesterday's roadmap rejection: explosions were reported near Qeshm Island in the Strait of Hormuz hours after Trump turned down Iran's proposal to reopen it, and the WSJ reports Washington now wants nuclear concessions before talks can resume. Trump says he expects 'more talks', but a source close to Iran's UN delegation told IRNA there are no plans to negotiate in New York. CENTCOM also denies that the IRGC captured its underwater drone. Lead with the blasts and the widening gap between the two sides. Include Ghalibaf's argument that shipping and insurance prices show who controls the strait, and attribute it to him. Attribute the Qeshm blasts to Iranian media.",
-      "conceptUris": [
-        "http://en.wikipedia.org/wiki/Iran",
-        "http://en.wikipedia.org/wiki/Strait_of_Hormuz",
-        "http://en.wikipedia.org/wiki/Donald_Trump",
-        "http://en.wikipedia.org/wiki/United_States",
-        "http://en.wikipedia.org/wiki/Tehran",
-        "http://en.wikipedia.org/wiki/Washington,_D.C.",
-        "http://en.wikipedia.org/wiki/Petroleum",
-        "http://en.wikipedia.org/wiki/New_York_City"
-      ]
-    },
-    {
-      "id": "al-aqsa-storming-turkiye-condemns",
-      "label": "Türkiye slams storming of Al-Aqsa Mosque by Israeli extremist groups",
-      "firstSeen": "2026-09-27T22:02:55.962Z",
-      "lastCovered": "2026-09-27T22:02:55.962Z",
-      "coverageCount": 1,
-      "category": "politics",
-      "importance": 2,
-      "arc": "breaking",
-      "articles": [
-        "2026-09-27-al-aqsa-storming-turkiye-condemns"
-      ],
-      "eventUri": "tur-1370358",
-      "summary": "Israeli settler groups again entered the Al-Aqsa compound under police protection, six days after Ben-Gvir led an incursion on 09-21. The repeated entries are wearing down the status quo that bars non-Muslim worship at the site, and Ankara says the Netanyahu government is using them to inflame the region. The only source is TRT World, which is Turkish state media. Attribute the claims to it and to Türkiye's foreign ministry, and do not state the details of the incursion as fact. No independent outlet in the feed covers this event.",
-      "conceptUris": [
-        "http://en.wikipedia.org/wiki/Al-Aqsa_Mosque",
-        "http://en.wikipedia.org/wiki/Israel",
-        "http://en.wikipedia.org/wiki/Jerusalem",
-        "http://en.wikipedia.org/wiki/Temple_Mount",
-        "http://en.wikipedia.org/wiki/Palestinians",
-        "http://en.wikipedia.org/wiki/Talmud",
-        "http://en.wikipedia.org/wiki/Jews",
-        "http://en.wikipedia.org/wiki/Muslims"
-      ]
-    },
-    {
-      "id": "vucic-resigns-serbia-presidency-prime-minister",
-      "label": "Serbia's Longtime President Aleksandar Vucic Resigns Post",
-      "firstSeen": "2026-09-27T22:02:55.962Z",
-      "lastCovered": "2026-09-27T22:02:55.962Z",
-      "coverageCount": 1,
-      "category": "politics",
-      "importance": 2,
-      "arc": "breaking",
-      "articles": [
-        "2026-09-27-vucic-resigns-serbia-presidency-prime-minister"
-      ],
-      "eventUri": "srp-241224",
-      "summary": "Aleksandar Vucic, one of Europe's longest-serving leaders, resigned as Serbia's president so that he can run for prime minister in next month's elections. The resignation keeps him in power rather than ending his rule. Lead with the mechanism: by changing office he stays at the top without facing the presidential term limit. Datelined Belgrade.",
-      "conceptUris": []
-    },
-    {
-      "id": "india-late-monsoon-floods-18-dead",
-      "label": "Severe floods across India claim 18 lives, displace thousands amid heavy monsoon rains",
-      "firstSeen": "2026-09-27T22:02:55.962Z",
-      "lastCovered": "2026-09-27T22:02:55.962Z",
-      "coverageCount": 1,
-      "category": "politics",
-      "importance": 2,
-      "arc": "breaking",
-      "articles": [
-        "2026-09-27-india-late-monsoon-floods-18-dead"
-      ],
-      "eventUri": "eng-12044319",
-      "summary": "Late-monsoon downpours over 48 hours killed at least 18 people across Uttar Pradesh, Bihar, Odisha and Chhattisgarh, forced thousands from their homes and damaged crops shortly before harvest. The IMD has issued heavy-rain alerts for 23 states. Lead with the toll and with how late in the season the rains came. Filed as politics, as a disaster story, not as science. Datelined Lucknow.",
-      "conceptUris": [
-        "http://en.wikipedia.org/wiki/Uttar_Pradesh",
-        "http://en.wikipedia.org/wiki/India_Meteorological_Department",
-        "http://en.wikipedia.org/wiki/Uttarakhand",
-        "http://en.wikipedia.org/wiki/Thunderstorm",
-        "http://en.wikipedia.org/wiki/Madhya_Pradesh",
-        "http://en.wikipedia.org/wiki/Chhattisgarh",
-        "http://en.wikipedia.org/wiki/Delhi",
-        "http://en.wikipedia.org/wiki/Lucknow"
-      ]
-    },
-    {
-      "id": "russia-offers-india-unlimited-oil-hormuz",
-      "label": "Russia ready to supply India with as much oil as it needs -- ambassador",
-      "firstSeen": "2026-09-27T22:02:55.962Z",
-      "lastCovered": "2026-09-27T22:02:55.962Z",
-      "coverageCount": 1,
-      "category": "economy",
-      "importance": 2,
-      "arc": "breaking",
-      "articles": [
-        "2026-09-27-russia-offers-india-unlimited-oil-hormuz"
-      ],
-      "eventUri": "eng-12047644",
-      "summary": "With Hormuz traffic choked, Russia's ambassador in New Delhi offered to supply India with 'as much oil as it needs'. In the same interview he said Moscow is open to Indian proposals on ending the Ukraine war. The pairing matters: Russia is using India's Gulf supply shock to tie it more closely on both energy and diplomacy. The only source is TASS, Russian state media. Attribute everything to the ambassador through TASS. Datelined New Delhi.",
-      "conceptUris": []
-    },
-    {
-      "id": "unitedhealthcare-prior-authorization-medicare-advantage-gap",
-      "label": "UnitedHealthcare Is Dropping Prior Authorization for Roughly 1,700 Medical Procedures in October. Only About 120 Apply to Medicare Advantage, Where It Denied 17% of Standard Requests - AOL",
-      "firstSeen": "2026-09-27T22:02:55.962Z",
-      "lastCovered": "2026-09-27T22:02:55.962Z",
-      "coverageCount": 1,
-      "category": "economy",
-      "importance": 2,
-      "arc": "breaking",
-      "articles": [
-        "2026-09-27-unitedhealthcare-prior-authorization-medicare-advantage-gap"
-      ],
-      "eventUri": "eng-12045800",
-      "summary": "The largest US health insurer is advertising the removal of prior authorization for about 1,700 procedure codes from October 1. Only about 120 of those codes apply to Medicare Advantage, the plan type where it denied 17% of standard requests. Lead with the gap between the headline number and the coverage that actually changes. It is a case study of how an insurer's gatekeeping stays in place behind a PR concession. Datelined Minnetonka.",
-      "conceptUris": []
-    },
-    {
-      "id": "amodei-trump-white-house-dinner-ai-slowdown",
-      "label": "Dario Amodei of Anthropic to Dine With Trump at White House",
-      "firstSeen": "2026-09-27T22:02:55.962Z",
-      "lastCovered": "2026-09-27T22:02:55.962Z",
-      "coverageCount": 1,
-      "category": "tech",
-      "importance": 2,
-      "arc": "breaking",
-      "articles": [
-        "2026-09-27-amodei-trump-white-house-dinner-ai-slowdown"
-      ],
-      "eventUri": "eng-12040158",
-      "summary": "Trump is hosting Anthropic CEO Dario Amodei at the White House tonight, two weeks after Amodei's call for an AI slowdown angered the president. That call has since drawn an antitrust suit against the labs (09-20) and a refusal from Beijing (09-23), and this week OpenAI paused frontier training. Lead with the reversal from anger to a dinner invitation. The question is whether Washington is moving toward a state-brokered slowdown, which would need the antitrust waiver Amodei has asked for.",
-      "conceptUris": []
-    },
-    {
-      "id": "afghanistan-pakistan-nuristan-balochistan-clashes",
-      "label": "Afghanistan says 28 fighters killed as Islamabad, Kabul trade accusations",
-      "firstSeen": "2026-09-27T18:07:57.272Z",
-      "lastCovered": "2026-09-27T18:07:57.272Z",
-      "coverageCount": 1,
-      "category": "politics",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-09-27-afghanistan-pakistan-nuristan-balochistan-clashes"
-      ],
-      "eventUri": "eng-12046773",
-      "summary": "Two Muslim neighbours are killing across their shared border on the same day: the Taliban defence ministry says it killed 28 fighters who crossed from Pakistan into Nuristan, while Pakistan says it killed dozens of 'India-backed terrorists' in Balochistan. Lead with the 28 in Nuristan; the mechanism is each capital blaming the other's proxies, which lets both avoid accountability for civilians in the border belt. Name who says what and do not state either side's labels as fact.",
-      "conceptUris": [
-        "http://en.wikipedia.org/wiki/Afghanistan",
-        "http://en.wikipedia.org/wiki/Pakistan",
-        "http://en.wikipedia.org/wiki/Nuristan_Province",
-        "http://en.wikipedia.org/wiki/Islamic_State",
-        "http://en.wikipedia.org/wiki/Taliban",
-        "http://en.wikipedia.org/wiki/Islamabad",
-        "http://en.wikipedia.org/wiki/Kabul",
-        "http://en.wikipedia.org/wiki/Militia"
-      ]
-    },
-    {
-      "id": "ukraine-strikes-after-lavrov-wadephul-talks",
-      "label": "Strikes kill 6 in Ukraine, 1 in Russia after Moscow rejects German calls to de-escalate",
-      "firstSeen": "2026-09-27T18:07:57.272Z",
-      "lastCovered": "2026-09-27T18:07:57.272Z",
-      "coverageCount": 1,
-      "category": "politics",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-09-27-ukraine-strikes-after-lavrov-wadephul-talks"
-      ],
-      "eventUri": "eng-12045699",
-      "summary": "Continues the Lavrov-Wadephul thread with a material development: the first Russia-Germany foreign-minister talks in years ended with Moscow rejecting Berlin's de-escalation call, and within hours strikes killed 6 in Ukraine and 1 in Russia. Russia's defence ministry (TASS, RT — label as state media) says it hit an Omega Telecom data centre in Kyiv and a Nova Poshta depot in Odesa. Lead with the dead; the mechanism is diplomacy at the UN running alongside strikes on civilian-dual-use infrastructure. Dateline Kyiv.",
-      "conceptUris": [
-        "http://en.wikipedia.org/wiki/Russia",
-        "http://en.wikipedia.org/wiki/Sergey_Lavrov",
-        "http://en.wikipedia.org/wiki/Germany",
-        "http://en.wikipedia.org/wiki/Ukraine",
-        "http://en.wikipedia.org/wiki/Moscow",
-        "http://en.wikipedia.org/wiki/Europe",
-        "http://en.wikipedia.org/wiki/New_York_City",
-        "http://en.wikipedia.org/wiki/United_Nations"
-      ]
-    },
-    {
-      "id": "naqeebullah-mehsud-final-officers-acquitted",
-      "label": "If they didn't, then who killed Naqeebullah Mehsud?",
-      "firstSeen": "2026-09-27T18:07:57.272Z",
-      "lastCovered": "2026-09-27T18:07:57.272Z",
-      "coverageCount": 1,
-      "category": "politics",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-09-27-naqeebullah-mehsud-final-officers-acquitted"
-      ],
-      "eventUri": "eng-12046294",
-      "summary": "An anti-terrorism court has acquitted the final seven police officers accused in the 2018 killing of Naqeebullah Mehsud, the young Pashtun shot in a staged 'encounter' in Karachi under SSP Rao Anwar. Report the acquittal as the news, not the column's voice: eight years on, no one is convicted for a killing the state's own inquiry called extrajudicial. The mechanism is impunity for police encounter killings, the grievance that launched the Pashtun Tahaffuz Movement.",
-      "conceptUris": []
-    },
-    {
-      "id": "kano-durbar-ban-rival-emirs",
-      "label": "Kano govt restricts durbar after former emir Bayero's public appearance",
-      "firstSeen": "2026-09-27T18:07:57.272Z",
-      "lastCovered": "2026-09-27T18:07:57.272Z",
-      "coverageCount": 1,
-      "category": "politics",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-09-27-kano-durbar-ban-rival-emirs"
-      ],
-      "eventUri": "eng-12047123",
-      "summary": "Kano State banned durbar processions in the metropolis after the deposed 15th emir, Aminu Ado-Bayero, made an unexpected public appearance, to head off clashes between supporters of two rival claimants to one throne. Lead with the ban; the mechanism is a traditional Muslim institution turned into a proxy fight between the state government and federal-aligned rivals, with ordinary Kano residents caught between them.",
-      "conceptUris": []
-    },
-    {
-      "id": "pope-leo-france-abuse-assisted-dying",
-      "label": "Pope Leo urges Church to face failings",
-      "firstSeen": "2026-09-27T18:07:57.272Z",
-      "lastCovered": "2026-09-27T18:07:57.272Z",
-      "coverageCount": 1,
-      "category": "politics",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-09-27-pope-leo-france-abuse-assisted-dying"
-      ],
-      "eventUri": "deu-2179388",
-      "summary": "On his France trip Pope Leo XIV told bishops to keep confronting clerical sex abuse and, at Lourdes, called assisted dying 'false compassion' as France legislates on end-of-life law. Lead with the two-track message: accountability for the Church's own abuse record, and direct pressure on a secular state's lawmakers. Dateline Lourdes.",
-      "conceptUris": [
-        "http://en.wikipedia.org/wiki/Pope",
-        "http://en.wikipedia.org/wiki/France",
-        "http://en.wikipedia.org/wiki/Paris",
-        "http://en.wikipedia.org/wiki/Catholic_Church",
-        "http://en.wikipedia.org/wiki/Mass_(liturgy)",
-        "http://en.wikipedia.org/wiki/Place_de_la_Concorde",
-        "http://en.wikipedia.org/wiki/Lourdes",
-        "http://en.wikipedia.org/wiki/Baptism"
-      ]
-    },
-    {
-      "id": "parvesh-verma-slap-video-delhi",
-      "label": "Are Netas In Power Becoming Arrogant? Parvesh Verma Slap Row, Scindia's Guna Video Raise Questions",
-      "firstSeen": "2026-09-27T18:07:57.272Z",
-      "lastCovered": "2026-09-27T18:07:57.272Z",
-      "coverageCount": 1,
-      "category": "politics",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-09-27-parvesh-verma-slap-video-delhi"
-      ],
-      "eventUri": "eng-12046891",
-      "summary": "Delhi PWD minister Parvesh Verma was filmed appearing to slap a young man who questioned him during a road inspection in Tilak Nagar; AAP is protesting and Rahul Gandhi has tied it to 'vote chori'. Lead with the video and what the young man asked; the accountability question is what happens to citizens who question ministers in person, and whether any consequence follows for the minister.",
-      "conceptUris": [
-        "http://en.wikipedia.org/wiki/Delhi",
-        "http://en.wikipedia.org/wiki/Parvesh_Verma",
-        "http://en.wikipedia.org/wiki/Aam_Aadmi_Party",
-        "http://en.wikipedia.org/wiki/Member_of_the_Legislative_Assembly_(India)",
-        "http://en.wikipedia.org/wiki/Tilak_Nagar_(Delhi)",
-        "http://en.wikipedia.org/wiki/Jarnail_Singh_(politician,_born_1981)",
-        "http://en.wikipedia.org/wiki/Bharatiya_Janata_Party",
-        "http://en.wikipedia.org/wiki/Disability"
-      ]
-    },
-    {
-      "id": "maharashtra-drought-list-revenue-circle",
-      "label": "Maharashtra drought list misses dry pockets; experts say revenue circle a better measure",
-      "firstSeen": "2026-09-27T18:07:57.272Z",
-      "lastCovered": "2026-09-27T18:07:57.272Z",
-      "coverageCount": 1,
-      "category": "economy",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-09-27-maharashtra-drought-list-revenue-circle"
-      ],
-      "eventUri": "eng-12044827",
-      "summary": "Farmers in Kolhapur and Nashik with stunted crops and empty soybean pods are shut out of drought relief because Maharashtra declares drought by taluka averages, which wash out dry pockets. Lead with the empty pods; the mechanism is the unit of measurement — experts want the smaller revenue circle — deciding who gets compensation, loan relief and power-bill waivers.",
-      "conceptUris": [
-        "http://en.wikipedia.org/wiki/Tehsil",
-        "http://en.wikipedia.org/wiki/Drought",
-        "http://en.wikipedia.org/wiki/Maharashtra",
-        "http://en.wikipedia.org/wiki/Government_of_Maharashtra",
-        "http://en.wikipedia.org/wiki/Agriculture",
-        "http://en.wikipedia.org/wiki/District",
-        "http://en.wikipedia.org/wiki/Devendra_Fadnavis",
-        "http://en.wikipedia.org/wiki/Electricity"
-      ]
-    },
-    {
-      "id": "nepal-himlung-avalanche-guides-missing",
-      "label": "Nepal avalanche kills at least 2, leaves several missing",
-      "firstSeen": "2026-09-27T18:07:57.272Z",
-      "lastCovered": "2026-09-27T18:07:57.272Z",
-      "coverageCount": 1,
-      "category": "economy",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-09-27-nepal-himlung-avalanche-guides-missing"
-      ],
-      "eventUri": "eng-12046513",
-      "summary": "An avalanche hit a staging camp near Himlung Himal in Manang, killing at least 2 and leaving about 10 Nepali guides missing before their clients arrived. Lead with who was on the mountain: local guides who carry the risk of a foreign-client expedition industry, fixing routes ahead of paying climbers. Frame as labour and risk in Nepal's mountaineering economy, not as science.",
-      "conceptUris": [
-        "http://en.wikipedia.org/wiki/Avalanche",
-        "http://en.wikipedia.org/wiki/Nepal",
-        "http://en.wikipedia.org/wiki/Mountaineering",
-        "http://en.wikipedia.org/wiki/Himalayas",
-        "http://en.wikipedia.org/wiki/Snow",
-        "http://en.wikipedia.org/wiki/Manang_District,_Nepal",
-        "http://en.wikipedia.org/wiki/Mountain",
-        "http://en.wikipedia.org/wiki/Tibet"
-      ]
-    },
-    {
-      "id": "authors-guild-openai-unsealed-briefs-piracy",
-      "label": "Unsealed Briefs in Authors' Case v. Microsoft/OpenAI",
-      "firstSeen": "2026-09-27T18:07:57.272Z",
-      "lastCovered": "2026-09-27T18:07:57.272Z",
-      "coverageCount": 1,
-      "category": "tech",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-09-27-authors-guild-openai-unsealed-briefs-piracy"
-      ],
-      "eventUri": null,
-      "summary": "Newly unsealed briefs in the Authors Guild's case against OpenAI and Microsoft allege top executives knew that training on mass-pirated book collections was illegal. Lead with what the documents show executives knew and when; the mechanism is that knowledge undercuts a fair-use defence and exposes the companies to wilful-infringement damages. Attribute every claim to the plaintiffs' filings; the Authors Guild is a party.",
-      "conceptUris": []
-    },
-    {
-      "id": "bill-gates-ai-laws-self-regulation",
-      "label": "Why does Bill Gates want AI laws? He says self-regulation is not enough",
-      "firstSeen": "2026-09-27T18:07:57.272Z",
-      "lastCovered": "2026-09-27T18:07:57.272Z",
-      "coverageCount": 1,
-      "category": "tech",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-09-27-bill-gates-ai-laws-self-regulation"
-      ],
-      "eventUri": "eng-12044066",
-      "summary": "Microsoft co-founder Bill Gates says AI needs laws from Congress, not company promises, days after OpenAI paused frontier training over safety incidents. Lead with the co-founder of OpenAI's largest backer rejecting self-regulation; the mechanism is that voluntary commitments have no enforcement when a lab's incentives run the other way. Do not re-report the OpenAI pause beyond one line of context.",
-      "conceptUris": []
-    },
-    {
-      "id": "buterin-ethereum-2030-hegota-proofs",
-      "label": "ETH news: Ethereum may not be 'just a blockchain' in 2030, Vitalik Buterin says",
-      "firstSeen": "2026-09-27T18:07:57.272Z",
-      "lastCovered": "2026-09-27T18:07:57.272Z",
-      "coverageCount": 1,
-      "category": "tech",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-09-27-buterin-ethereum-2030-hegota-proofs"
-      ],
-      "eventUri": "eng-12047209",
-      "summary": "Vitalik Buterin laid out a 2030 roadmap in which Ethereum becomes a proof-verification layer more than a blockchain, accelerating after the Hegotá upgrade — but only if developers make zero-knowledge proofs cheaper and coordinate parallel client work securely. Lead with the engineering bottleneck, not the vision; name what has to get cheaper and why.",
-      "conceptUris": []
-    },
-    {
-      "id": "pakistan-glacial-lakes-suparco-40-to-105",
-      "label": "Number of unfrozen lakes in Pakistan grows by 65 in less than 2 months: Suparco",
-      "firstSeen": "2026-09-27T18:07:57.272Z",
-      "lastCovered": "2026-09-27T18:07:57.272Z",
-      "coverageCount": 1,
-      "category": "science",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-09-27-pakistan-glacial-lakes-suparco-40-to-105"
-      ],
-      "eventUri": null,
-      "summary": "Satellite imagery assessed by Suparco shows Pakistan's unfrozen glacial lakes rose from 40 to 105 between July and August. Lead with the jump from 40 to 105; the mechanism is meltwater pooling behind unstable moraine dams, the precondition for glacial lake outburst floods that hit Gilgit-Baltistan and Chitral villages downstream.",
       "conceptUris": []
     }
   ]
