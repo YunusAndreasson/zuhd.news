@@ -102,7 +102,7 @@ function condenseViaClaude(articleText) {
   const res = spawnSync(
     'claude',
     [
-      '--model', process.env.ZUHD_MODEL || 'claude-sonnet-5',
+      '--model', process.env.ZUHD_MODEL || 'claude-sonnet-5-5',
       '--effort', 'medium',
       '--no-session-persistence',
       '--max-turns', '1',

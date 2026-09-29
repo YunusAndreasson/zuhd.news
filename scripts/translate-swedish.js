@@ -27,7 +27,7 @@
 //
 //   --dry-run              list what would be translated, call nothing
 //   --window <hours>       override the 48h window
-//   ZUHD_SV_MODEL          default claude-sonnet-5 — register is the whole
+//   ZUHD_SV_MODEL          default claude-sonnet-5-5 — register is the whole
 //                          point, and Haiku writes translated English
 //   ZUHD_SV_EFFORT         default high. This was `low` until a measured
 //                          A/B said otherwise: nine runs of the same six
@@ -63,7 +63,7 @@ const CONTENT_DIR = join(ROOT, 'content', 'articles')
 const CACHE_PATH = join(ROOT, 'content', '.sv.json')
 const PROMPT_PATH = join(ROOT, 'scripts', 'sv-prompt.md')
 
-const MODEL = process.env.ZUHD_SV_MODEL || 'claude-sonnet-5'
+const MODEL = process.env.ZUHD_SV_MODEL || 'claude-sonnet-5-5'
 const EFFORT = process.env.ZUHD_SV_EFFORT || 'high'
 const FORCE = process.env.ZUHD_SV_FORCE === '1'
 const DRY_RUN = hasFlag('dry-run')
