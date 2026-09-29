@@ -73,6 +73,9 @@ test('short titles: a rephrase is kept, a copy with "Will" cut off is not', () =
   assert.equal(isUsableShortTitle('Will Roberto Sánchez Palomino win the 2026 Peruvian presidential election?', 'Sánchez Palomino wins Peru 2026?'), true)
   assert.equal(isUsableShortTitle('Will Gavin Newsom win the 2028 Democratic presidential nomination?', 'Newsom wins 2028 Dem nomination?'), true)
   assert.equal(isUsableShortTitle('Will the U.S. invade Iran before 2027?', 'US invade Iran by 2027?'), true)
+  // A three-word name is the whole of the old three-word window.
+  assert.equal(isUsableShortTitle('Will Marine Le Pen win the 2027 French presidential election?', 'Marine Le Pen wins 2027 French election?'), true)
+  assert.equal(isUsableShortTitle('Will Marine Le Pen win the 2027 French presidential election?', 'Marine Le Pen win the 2027 French…'), false)
   // The two shapes the guard exists for.
   assert.equal(isUsableShortTitle('Will Alexandria Ocasio-Cortez win the 2028 US presidential election?', 'Alexandria Ocasio-Cortez win the 2028 US…'), false)
   assert.equal(isUsableShortTitle('Will there be no change in Fed interest rates?', 'there be no change in Fed rates?'), false)
