@@ -1,119 +1,5 @@
 [
   {
-    "timestamp": "2026-09-07T17:26:21.168Z",
-    "candidateCount": 13,
-    "candidates": [
-      {
-        "slug": "2026-09-07-russia-german-consulate-closure-leipzig-drone-reciprocity",
-        "title": "Russia Shuts German Consulate",
-        "category": "politics",
-        "eventCoverage": 507,
-        "importance": 6
-      },
-      {
-        "slug": "2026-09-07-openai-wiki-incident-agent-containment-disclosure-delay",
-        "title": "OpenAI Agents Broke Containment",
-        "category": "tech",
-        "eventCoverage": 173,
-        "importance": 6
-      },
-      {
-        "slug": "2026-09-07-portsmouth-dockside-obstruction-asylum-processing",
-        "title": "Masked Crowds Block Migrant Buses",
-        "category": "politics",
-        "eventCoverage": 165,
-        "importance": 6
-      },
-      {
-        "slug": "2026-09-07-germany-icj-nicaragua-standing-objection-arms-complicity",
-        "title": "Germany Fights Genocide Case",
-        "category": "politics",
-        "eventCoverage": 105,
-        "importance": 6
-      },
-      {
-        "slug": "2026-09-07-serbia-snap-election-vucic-office-swap-executive-power",
-        "title": "Vucic Seeks Weaker Office",
-        "category": "politics",
-        "eventCoverage": 68,
-        "importance": 6
-      },
-      {
-        "slug": "2026-09-07-pakistan-acid-attack-death-penalty-bill-enforcement-gap",
-        "title": "Senate Backs Acid Death Penalty",
-        "category": "politics",
-        "eventCoverage": 0,
-        "importance": 6
-      },
-      {
-        "slug": "2026-09-07-dangote-refinery-ipo-single-owner-dependency-listed",
-        "title": "Dangote Refinery Opens to Public",
-        "category": "economy",
-        "eventCoverage": 0,
-        "importance": 6
-      },
-      {
-        "slug": "2026-09-07-zondacrypto-fifth-charge-licensed-exchange-custody-gap",
-        "title": "Fifth Charge in Crypto Collapse",
-        "category": "economy",
-        "eventCoverage": 0,
-        "importance": 6
-      },
-      {
-        "slug": "2026-09-07-nahcon-hajj-deadline-naira-riyal-currency-risk-pilgrims",
-        "title": "Hajj Deadline Locks In Currency Risk",
-        "category": "economy",
-        "eventCoverage": 0,
-        "importance": 6
-      },
-      {
-        "slug": "2026-09-07-super-el-nino-amazon-drought-forecast-tipping-point",
-        "title": "Record Amazon Drought Looms",
-        "category": "science",
-        "eventCoverage": 0,
-        "importance": 6
-      },
-      {
-        "slug": "2026-09-07-pims-fire-fourteen-infants-vacant-engineering-posts",
-        "title": "Vacant Posts Followed Fatal Fire",
-        "category": "science",
-        "eventCoverage": 0,
-        "importance": 6
-      },
-      {
-        "slug": "2026-09-07-lg-tv-screen-off-audio-local-network-scanning",
-        "title": "LG TVs Record With Screens Off",
-        "category": "tech",
-        "eventCoverage": 0,
-        "importance": 6
-      },
-      {
-        "slug": "2026-09-07-chatbot-dice-problem-thirteen-minutes-cheap-verification",
-        "title": "Chatbot Cracks Decade-Old Puzzle",
-        "category": "science",
-        "eventCoverage": 0,
-        "importance": 6
-      }
-    ],
-    "selected": {
-      "slug": "2026-09-07-openai-wiki-incident-agent-containment-disclosure-delay",
-      "title": "OpenAI Agents Broke Containment",
-      "category": "tech",
-      "body": "AI agents hijacked an obscure German",
-      "eventCoverage": 173,
-      "importance": 6
-    },
-    "skipReason": null,
-    "sent": true,
-    "pushTitle": "Breaking News",
-    "pushBody": "OpenAI says AI agents bypassed containment, gained write access to wiki",
-    "response": {
-      "pushed": 1,
-      "skipped": 0,
-      "tokens": 9
-    }
-  },
-  {
     "timestamp": "2026-09-07T22:25:25.456Z",
     "candidateCount": 12,
     "candidates": [
@@ -10070,6 +9956,99 @@
     "sent": true,
     "pushTitle": "Breaking News",
     "pushBody": "Oil prices jump $4 after Trump rejects Iran's Hormuz proposal",
+    "response": {
+      "pushed": 1,
+      "skipped": 0,
+      "tokens": 6
+    }
+  },
+  {
+    "timestamp": "2026-09-29T05:25:03.933Z",
+    "candidateCount": 10,
+    "candidates": [
+      {
+        "slug": "2026-09-29-trump-iowa-steel-mill-15bn-midterms",
+        "title": "Trump Unveils Iowa Steel Mill",
+        "category": "economy",
+        "eventCoverage": 193,
+        "importance": 6
+      },
+      {
+        "slug": "2026-09-29-falklands-argentina-economic-warfare-oil",
+        "title": "Argentina Squeezes Falklands Oil",
+        "category": "economy",
+        "eventCoverage": 161,
+        "importance": 6
+      },
+      {
+        "slug": "2026-09-29-bhutan-eliminates-dog-rabies",
+        "title": "Bhutan Eliminates Dog Rabies",
+        "category": "science",
+        "eventCoverage": 157,
+        "importance": 6
+      },
+      {
+        "slug": "2026-09-29-meta-enterprise-ai-platform-saas-stocks",
+        "title": "Meta Launches Paid AI Platform",
+        "category": "tech",
+        "eventCoverage": 152,
+        "importance": 6
+      },
+      {
+        "slug": "2026-09-29-gold-seven-week-low-treasury-yield-18-year-high",
+        "title": "Gold Slides As Yields Surge",
+        "category": "economy",
+        "eventCoverage": 120,
+        "importance": 6
+      },
+      {
+        "slug": "2026-09-29-israel-revokes-dutch-diplomats-west-bank",
+        "title": "Israel Expels Dutch Diplomats",
+        "category": "politics",
+        "eventCoverage": 98,
+        "importance": 6
+      },
+      {
+        "slug": "2026-09-29-france-high-school-protests-164-arrested-strike",
+        "title": "Paris Student Protests Spread",
+        "category": "politics",
+        "eventCoverage": 80,
+        "importance": 6
+      },
+      {
+        "slug": "2026-09-29-regeni-italy-convicts-egyptian-agents",
+        "title": "Italy Convicts Regeni Killers",
+        "category": "politics",
+        "eventCoverage": 74,
+        "importance": 6
+      },
+      {
+        "slug": "2026-09-29-florida-court-block-chatgpt-openai",
+        "title": "Florida Sues To Halt ChatGPT",
+        "category": "tech",
+        "eventCoverage": 63,
+        "importance": 6
+      },
+      {
+        "slug": "2026-09-29-minna-nscdc-custody-deaths-37-miners",
+        "title": "Nigeria Cell Deaths Probed",
+        "category": "politics",
+        "eventCoverage": 0,
+        "importance": 6
+      }
+    ],
+    "selected": {
+      "slug": "2026-09-29-falklands-argentina-economic-warfare-oil",
+      "title": "Argentina Squeezes Falklands Oil",
+      "category": "economy",
+      "body": "[Argentina](country:AR) gave [Britain](country:GB) 2 weeks to halt Falklands'",
+      "eventCoverage": 161,
+      "importance": 6
+    },
+    "skipReason": null,
+    "sent": true,
+    "pushTitle": "Breaking News",
+    "pushBody": "Argentina gives Britain 2 weeks to halt Falklands oil project",
     "response": {
       "pushed": 1,
       "skipped": 0,
