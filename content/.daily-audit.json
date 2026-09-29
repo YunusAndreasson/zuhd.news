@@ -1,38 +1,40 @@
 {
-  "date": "2026-09-28",
+  "date": "2026-09-29",
   "metrics": {
-    "articles": { "value": 59, "detail": "5 cycles, 4 completed, avg 9 published/cycle (42 yesterday); 0 quarantined" },
-    "freshness": { "median": 0.5, "p90": 0.7, "max": 0.7, "target": 1.0, "met": true },
-    "categories": { "politics": 25, "economy": 14, "science": 7, "tech": 13 },
-    "multiSource": { "pct": 29, "target": 30, "met": false },
-    "usDatelines": { "pct": 21, "target": 25, "met": true },
-    "latAmDatelines": { "pct": 7, "target": 5, "met": true },
+    "articles": { "value": 62, "detail": "5 cycles, 5 completed, avg 12 published/cycle (59 yesterday); 0 quarantined" },
+    "freshness": { "median": 0, "p90": 1, "max": 1, "target": 1.0, "met": true },
+    "categories": { "politics": 25, "economy": 16, "science": 8, "tech": 13 },
+    "multiSource": { "pct": 26, "target": 30, "met": false },
+    "usDatelines": { "pct": 23, "target": 25, "met": true },
+    "latAmDatelines": { "pct": 3, "target": 5, "met": false },
     "sameEventDuplicates": { "value": 0, "target": 0, "met": true },
     "missingDatelines": { "value": 0, "target": 0, "met": true },
-    "stateOrAdvocacyOnly": 2,
-    "imageUrlPct": 98,
-    "regions": { "count": 6, "target": 4, "met": true, "breakdown": { "AM": 17, "EU": 13, "ME": 13, "AS": 9, "AF": 6, "OC": 1 } },
+    "stateOrAdvocacyOnly": 4,
+    "imageUrlPct": 95,
+    "regions": { "count": 6, "target": 4, "met": true, "breakdown": { "AM": 16, "AF": 15, "AS": 10, "ME": 10, "EU": 10, "OC": 1 } },
     "sciTech": { "ratio": 34, "target": 25, "met": true },
-    "topSourceShare": { "source": "Ars Technica", "pct": 8, "target": 20, "met": true },
-    "uniqueSources": 60,
+    "topSourceShare": { "source": "Dawn", "pct": 15, "target": 20, "met": true },
+    "uniqueSources": 52,
     "duplicates": 0,
-    "avgCycleDuration": 1242
+    "avgCycleDuration": 1309
   },
-  "experiment": "Skipped. No experiments are active and there is no pause gate. Today is the second clean day after the 09-25/26 pipeline changes, and every target except multi-source was met. The plan from 09-27 stands: revisit on 2026-09-30 with three clean days.",
-  "weakestArea": "Multi-source share is 29% against a 30% target (18 of 58 articles), down from 43% yesterday. It is one article short, and the multi-source count was 18 on both days, so the drop comes from 17 more articles, almost all single-source, not from fewer corroborated stories. If it stays under 30% through 09-30, look at the selector's multi-source enforcement before touching feed parameters. The 2026-05-09 floor-3 experiment was reverted, so do not repeat it.",
+  "experiment": "Skipped. There are no active experiments and no pause gate, but the writer and editor moved from sonnet-5 to sonnet-5-5 today (2026-09-29). Any change started now would be confounded with that swap. The 09-27 plan to revisit on 09-30 now needs clean post-swap days, so hold until about 2026-10-02.",
+  "weakestArea": "Multi-source share is 26% against a 30% target (16 of 62 articles). It fell for a third day in a row (43%, then 31% by metrics or 29% by audit, then 26%). The count of corroborated stories slipped from 18 to 16, while Dawn (9) and Premium Times Nigeria (6) added single-source regional pieces. The 2026-05-09 floor-3 experiment was reverted and must not be repeated. If it is still under 30% after the model-swap baseline, look at how the selector uses multiSourceStories in politics, where most corroborated stories sit.",
   "watching": [
-    "Iran: Trump is weighing sanctions relief through Qatari mediators while Marines were hurt in a Hormuz strike and oil spiked on Iran's rejection. The relief story is state-or-advocacy-only sourced so far.",
-    "Nigeria: the AAC is suing Tinubu over his absence and a power transfer to Shettima, while the Senate panel halted the Discos sale.",
-    "France: the RN won a Senate group, and Bardella is fighting the Mediapart antisemitism reporting.",
-    "Venezuela: rallies for Machado, one of three Latin American stories alongside El Salvador's gang war and Lula's Amazon record.",
-    "Russia: Putin's decree raises the army ceiling to 2.44 million, and there are reports of a mystery missile aiding Russia.",
-    "Pakistan: TTAP joins PTI's October 4 march, and the Hangor missile test."
+    "Regeni: an Italian court convicted Egyptian officers. It was published twice across cycles, from Al Jazeera on 09-28 and Mada Masr on 09-29, and sameEventDuplicates did not catch it (details in coverageGaps).",
+    "Red Sea: the Houthis seized the Bab al-Mandab coast near Mokha, Yanbu loadings resumed, and diesel hit a record in Houston.",
+    "Pakistan: the IMF review opened alongside a fuel price cut and a motorcycle subsidy scheme, while Afridi defies Islamabad in Peshawar.",
+    "Iraq: US forces exit.",
+    "Moldova: Dodon claims Sandu faces impeachment. This story is sourced only from state or advocacy outlets.",
+    "Nigeria: NNPC picked Chinese refinery partners, an anti-laundering review is under way, Atiku rebutted a corruption report, and deaths in custody in Minna are being probed.",
+    "AI regulation: Anthropic filed an extinction-risk warning, Florida is suing to halt ChatGPT, tech chiefs signed a non-binding pledge, and OpenAI halted its Astra launch."
   ],
   "coverageGaps": [
-    "Oceania has one story (Australia summoning Altman and Amodei), and nothing is regional to the Pacific.",
-    "Freshness was measured on only 6 of 59 articles, so the median is not representative.",
-    "India still takes a large share of Asia (Ujjain, Uttar Pradesh, Sensex, Tata Trusts). East and Southeast Asia coverage improved, with Korea, Malaysia and Laos/Thailand.",
-    "One of five cycles did not complete, and the average cycle took 1242s, up from 963s."
+    "sameEventDuplicates reported 0, but the Regeni sentencing ran twice: 2026-09-29-regeni-italy-convicts-egyptian-agents (Al Jazeera, dated 09-28T19:45) and 2026-09-29-regeni-egyptian-officers-sentenced-rome (Mada Masr). They have different outlets, different titles and no shared URL, so the detector missed a cross-cycle pair. Both are still live; one should be removed or merged.",
+    "Latin America is at 3%, with Brazil (a science piece) and Stanley (a Falklands oil story datelined in a British territory) and no hard news from mainland Latin America. Yesterday was 7%, so this is one bad day, not a trend.",
+    "Six datelines are countries or 'Global', not cities: India, Nigeria, Ukraine, Brazil, United Kingdom, Global. That breaks the city-only location rule mobile's dateline strip relies on, and the missingDateline check does not count it.",
+    "Oceania has one story (Perth iron ore), and Pacific coverage is nil.",
+    "Freshness was measured on only 9 of 62 articles."
   ],
-  "context": "Science recovered to 7 (from 3) across four dedicated outlets (Nature Communications, Phys.org, Carbon Brief, Ars Technica), which argues against changing the science floor. US datelines held at 21% and Latin America rose to 7%, so the US cap and pool widening met both geography targets for a second day. There were no same-event duplicates and nothing was quarantined."
+  "context": "All five cycles completed, up from four yesterday, and output rose to 62. The average cycle took 1309s, up from 1242s, and the writer averaged 349s, which could be the first sign of the sonnet-5-5 swap and is worth watching. Science held at 8 across dedicated outlets (Nature, Nature Communications, Phys.org, Mongabay), and US datelines stayed under the cap at 23%. Four stories were state-or-advocacy-only (RT/TASS on Moldova and Mali, Declassified UK, and a Jalud settlers story), up from two."
 }
