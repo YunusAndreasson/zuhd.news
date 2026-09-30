@@ -5,7 +5,9 @@ import { readFileSync, existsSync, readdirSync, renameSync, writeFileSync } from
 import { basename, join, resolve } from 'node:path'
 import { splitBlocks } from './lib/blocks.js'
 import { normalizeUrl } from './lib/dedup.js'
+import { canonicalIndicatorId } from './lib/entity-registry.js'
 import { parseFrontmatter } from './lib/frontmatter.js'
+import { chartProblem, citesFigure } from './lib/indicator-offer.js'
 import { bodyNamesOutlet, soleClassifiedSource } from './lib/outlet-class.js'
 
 const files = readFileSync('/tmp/zuhd-new-articles.txt', 'utf8').trim().split('\n').filter(Boolean)
@@ -34,6 +36,32 @@ for (const name of readdirSync(ARTICLES_DIR)) {
   } catch { /* an unparseable neighbour is its own problem, not this article's */ }
 }
 const DATELINE = /^([^\n—]{2,60}?) — /
+
+// ── The story chart ────────────────────────────────────────────────────────
+//
+// `chart:` names the one series drawn under the story, and the writer may
+// only name one it was offered as chartable for that story — the offer is on
+// the selection (`attach-indicators.js`), keyed by the slug the writer saves
+// under. A chart that fails is dropped from the file and the article ships
+// without it: a missing chart costs one figure, a quarantine costs the story.
+// With no selection on disk (a rerun) the fallback is any id the build can
+// resolve.
+const offeredBySlug = new Map()
+try {
+  for (const story of JSON.parse(readFileSync('/tmp/zuhd-selection.json', 'utf8'))) {
+    if (story?.suggestedSlug) offeredBySlug.set(story.suggestedSlug, story.indicators || [])
+  }
+} catch { /* no selection: the known-id fallback below */ }
+const knownIds = new Set()
+{
+  const read = (path) => { try { return JSON.parse(readFileSync(path, 'utf8')) } catch { return null } }
+  const trendsDir = resolve('content/trends')
+  const snaps = existsSync(trendsDir) ? readdirSync(trendsDir).filter((n) => /^\d{4}-\d{2}-\d{2}\.json$/.test(n)).sort() : []
+  for (const ind of (snaps.length ? read(join(trendsDir, snaps.at(-1))) : null)?.indicators || []) knownIds.add(ind.id)
+  for (const c of read(resolve('content/.chokepoints.json'))?.chokepoints || []) knownIds.add(`cp:${c.id}`)
+  for (const m of read(resolve('content/.markets.json'))?.exchanges || []) knownIds.add(`mkt:${m.id}`)
+}
+const charts = { set: 0, dropped: 0, cited: 0 }
 /** Block text → the batch files that carry it. */
 const sentenceSeen = new Map()
 
@@ -123,6 +151,22 @@ for (const f of files) {
   }
   published.push({ slug: basename(f), t, title, url })
 
+  if (meta.chart != null) {
+    charts.set++
+    const id = canonicalIndicatorId(String(meta.chart).trim())
+    const offered = offeredBySlug.size ? (offeredBySlug.get(basename(f, '.md')) ?? []) : null
+    const problem = chartProblem(id, { offered, known: knownIds })
+    if (problem) {
+      const current = readFileSync(full, 'utf8')
+      writeFileSync(full, current.replace(/^(---\n[\s\S]*?)^chart:.*\n([\s\S]*?\n---)/m, '$1$2'))
+      charts.dropped++
+      console.log(`CHART DROPPED (${problem}): ${f}`)
+    } else {
+      const row = offered?.find((r) => r.id === id)
+      if (row && citesFigure(body, row)) charts.cited++
+    }
+  }
+
   // State-media or advocacy as the only sourcing: allowed, but the body must
   // say whose claim it is (lib/outlet-class.js has the why).
   for (const b of blocks.slice(1)) {
@@ -149,5 +193,9 @@ for (const where of sentenceSeen.values()) {
     console.log(`WARN (same block in ${where.length} articles: ${where.map((w) => w.file).join(', ')}): "${where[0].text.slice(0, 90)}…"`)
   }
 }
+
+// A measurement, not a gate: under "the subject decides" a chart may carry a
+// figure the prose leaves out, so `cite` is how often the two meet.
+if (charts.set) console.log(`Charts: ${charts.set} set, ${charts.dropped} dropped, ${charts.cited} cite the figure`)
 
 console.log(`Validated ${files.length} articles, ${bad} removed${repaired ? `, ${repaired} dateline(s) repaired` : ''}`)

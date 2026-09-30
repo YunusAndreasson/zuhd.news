@@ -1,0 +1,564 @@
+// What the writer is offered for one selected story: the live figures it may
+// cite, and the one it may attach as the story's chart.
+//
+// Pure, so it can be tested and replayed; `attach-indicators.js` (Stage 1.7)
+// is the I/O around it and `validate-articles.js` reads its chart check.
+//
+// ── What a row is ──────────────────────────────────────────────────────────
+//
+// Four kinds, each carrying the numbers the app's card for that id prints, so
+// a sentence built from a row and the chart drawn under it cannot disagree:
+//
+//   series    a trends-snapshot series (FRED, OER, crypto): level, change
+//   strait    `cp:<id>` from `.chokepoints.json`: 7-day traffic vs its normal
+//   odds      `poly-*`: a contract's price, its moves in *points*
+//   exchange  `mkt:<id>` from `.markets.json`: the index level, its change
+//
+// `chart: true` marks a row the app can draw — the same gate
+// `instrumentCardFor` applies (mobile/lib/instrument-catalog.ts): a strait
+// with a series, or any id the desk has written a `standing` for. A chart id
+// the app cannot resolve draws nothing, which is harmless and also a wasted
+// decision by the writer.
+
+import { CC_TO_TOPOJSON_NAME } from '../../shared/countries/iso.ts'
+import { extractEntities, tagMatcher } from './entity-registry.js'
+
+/** Four significant figures — what a sentence can carry and what the rail
+ *  prints. A writer given 71.2047 will print 71.2047. */
+export const sig4 = (n) => (Number.isFinite(n) ? Number(Number(n).toPrecision(4)) : null)
+
+/**
+ * How stale a level may be before it stops being a level.
+ *
+ * A monthly series is legitimately two months behind its own publication and
+ * still current; a daily one two months behind is broken. Beyond this the
+ * indicator is dropped rather than dated, because a writer handed a figure will
+ * use it and the caveat is the first thing a 450-character article cuts.
+ */
+const MAX_AGE_DAYS = { monthly: 45, weekly: 30 }
+const STALE_DEFAULT = 12
+
+/**
+ * The two windows offered per cadence, in observations.
+ *
+ * Fixed at 7 and 30 first, which on a monthly series is seven months and
+ * **twenty-two** — a nearly two-year swing offered beside a daily one as though
+ * they were the same kind of statement. A window is only useful if a reader
+ * would recognise it as a period: a quarter and a year for a monthly print, a
+ * week and a month for a daily one.
+ */
+const WINDOWS = { monthly: [3, 12], weekly: [4, 26] }
+const WINDOWS_DEFAULT = [7, 30]
+
+/** At most this many rows per story, and at most one contract among them. A
+ *  story is about one or two things, and a longer list reads as a menu the
+ *  writer is expected to work through. */
+const MAX_ROWS = 4
+
+const DAY = 86400_000
+
+/**
+ * The change across the last `n` published points, with the period named.
+ *
+ * **The period comes from the cadence, and getting that wrong is the whole
+ * hazard of this stage.** `values` is a list of observations, not of days:
+ * `wheat` and `rice` are monthly, so the last seven points are seven *months*.
+ * The first version labelled every one of them `change7d`, which offered a
+ * writer a 12-month commodity swing as a fortnight's move — a wrong number in
+ * an article, produced by a stage whose whole purpose is getting numbers into
+ * articles.
+ */
+export const change = (values, cadence, n) => {
+  const v = (values || []).filter(Number.isFinite)
+  if (v.length < 2) return null
+  const steps = Math.min(n, v.length - 1)
+  const from = v[v.length - 1 - steps]
+  const to = v[v.length - 1]
+  if (!Number.isFinite(from) || from === 0) return null
+  const unit = cadence === 'monthly' ? 'month' : cadence === 'weekly' ? 'week' : 'day'
+  return {
+    pct: Number((((to - from) / Math.abs(from)) * 100).toFixed(1)),
+    over: `${steps} ${unit}${steps === 1 ? '' : 's'}`,
+  }
+}
+
+/**
+ * Days since a published `asOf`, or null.
+ *
+ * **A monthly observation is aged from the end of its month.** FRED dates a
+ * monthly print to the month's first day, so August's CPI carries `asOf:
+ * 2026-08-01` and is published in mid-September. Aged from the 1st it passed
+ * the 45-day limit a week after it came out, and US inflation and unemployment
+ * were dropped as stale on most days they were the newest figures there are.
+ */
+export const ageDays = (asOf, cadence, now) => {
+  const t = Date.parse(`${asOf}T00:00:00Z`)
+  if (!Number.isFinite(t)) return null
+  let from = t
+  if (cadence === 'monthly') {
+    const d = new Date(t)
+    from = Date.UTC(d.getUTCFullYear(), d.getUTCMonth() + 1, 0)
+  }
+  return Math.max(0, Math.round((now - from) / DAY))
+}
+
+const isStale = (age, cadence) => age != null && age > (MAX_AGE_DAYS[cadence] ?? STALE_DEFAULT)
+
+/**
+ * What a story is about: the title and the selector's angle — **never the
+ * source bodies**.
+ *
+ * The bodies were included first, on the reasoning that they are the prose
+ * the writer works from. They are also full news articles, and a full news
+ * article contains every incidental noun in the English language: the first
+ * run offered a **wheat price to a story about a solar eclipse**, because a
+ * paragraph describing where to stand in Spain mentioned "wheat fields and
+ * rolling hills". That is precisely the wrong-crossreference failure this
+ * work exists to remove, arriving one stage earlier than usual.
+ *
+ * A title, an angle and a concept list are *statements of what the story is
+ * about*. A body is everything the outlet happened to write. Only the first
+ * kind can decide whether a number belongs in front of a writer.
+ */
+export const storyText = (story) => {
+  const concepts = (Array.isArray(story.concepts) ? story.concepts : [])
+    .map((c) => (c && typeof c === 'object' ? c.label : c))
+    .filter((s) => typeof s === 'string')
+  return [story.title, story.angle, ...concepts].filter(Boolean).join('\n')
+}
+
+// ── Matching a contract or an event to a story ─────────────────────────────
+
+const COUNTRY_NAMES = new Set([
+  ...Object.values(CC_TO_TOPOJSON_NAME).map((n) => n.toLowerCase()),
+  // How prose names the two countries whose Natural Earth names nobody writes.
+  'us', 'usa', 'america', 'united states', 'uk', 'britain',
+])
+
+/**
+ * The country a word names — itself, or through its demonym — or null.
+ *
+ * "Israeli" is the place as an adjective and carries no more about a story
+ * than "Israel" does, so the two resolve to one country and count once. They
+ * counted twice at first, and a replay of a week's stories hung the
+ * *Netanyahu next prime minister?* contract off every story that wrote both
+ * words — settlers in Jalud, a flight diverted to Saudi Arabia.
+ */
+const countryOf = (word) => {
+  const w = word.toLowerCase()
+  if (COUNTRY_NAMES.has(w)) return w === 'usa' || w === 'america' ? 'us' : w === 'britain' ? 'uk' : w
+  if (!/(an|ian|i|ese|ish|ic)$/.test(w)) return null
+  for (const name of COUNTRY_NAMES) {
+    if (name.length >= 4 && !name.includes(' ') && w.startsWith(name.slice(0, Math.max(4, name.length - 1)))) return name
+  }
+  return null
+}
+
+/** Aliases a country is written as, for the calendar's country check. */
+const COUNTRY_ALIASES = {
+  US: ['us', 'u.s.', 'united states', 'american', 'america', 'washington'],
+  GB: ['uk', 'britain', 'british', 'united kingdom', 'london'],
+}
+const namesCountry = (code, lower) =>
+  [CC_TO_TOPOJSON_NAME[code]?.toLowerCase(), ...(COUNTRY_ALIASES[code] || [])]
+    .filter(Boolean)
+    .some((n) => tagMatcher(n).test(lower))
+
+/**
+ * Whether one key appears in the story.
+ *
+ * A key of three letters or fewer — `fed`, `cpi`, `boe` — is matched only as
+ * the capitalised or upper-case word, against the original text. On the
+ * lowercased haystack `fed` is "fed up" and `mpc` is a fragment of anything.
+ */
+const hasKey = (key, text, lower) => {
+  if (key.length <= 3) {
+    const k = key.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')
+    const cap = k[0].toUpperCase() + k.slice(1).toLowerCase()
+    return new RegExp(`\\b(?:${k.toUpperCase()}|${cap})\\b`).test(text)
+  }
+  return tagMatcher(key.toLowerCase()).test(lower)
+}
+
+/** Tags every contract carries, or that name a kind of question rather than
+ *  its subject. `ceasefire` is weak rather than absent: alone it would hang an
+ *  Israel–Iran contract off a Sudanese truce, beside a country it is decisive. */
+const ODDS_DROP_TAGS = new Set(['prediction', 'polymarket', 'odds', 'election'])
+const ODDS_WEAK_TAGS = new Set(['ceasefire'])
+
+/** Capitalised words that open or shape a question without naming anything. */
+const LABEL_STOP = new Set([
+  'Will', 'Another', 'No', 'Next', 'The', 'By', 'Before', 'After', 'President',
+  'Prime', 'Minister', 'PM', 'Dem', 'Democratic', 'Republican', 'Jan', 'Feb',
+  'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Sept', 'Oct', 'Nov', 'Dec',
+  'January', 'February', 'March', 'April', 'June', 'July', 'August',
+  'September', 'October', 'November', 'December',
+])
+
+/**
+ * A contract's match keys, each marked weak or specific.
+ *
+ * Its own tags, plus the proper nouns of its question — the tags alone miss
+ * the subject of most elections (`Flávio Bolsonaro wins Brazil 2026?` is
+ * tagged only `election`). A name is a run of capitalised words, plus its last
+ * word when that is long enough to be a surname on its own ("Bolsonaro").
+ * Names are matched case-sensitively, so `Marine Le Pen` is not a marine
+ * biology story.
+ */
+export const oddsKeys = (ind) => {
+  /** @type {Map<string, {weak: boolean, exact: boolean}>} */
+  const keys = new Map()
+  for (const tag of ind.topicTags || []) {
+    const t = String(tag).toLowerCase()
+    if (ODDS_DROP_TAGS.has(t)) continue
+    keys.set(t, { weak: ODDS_WEAK_TAGS.has(t) || countryOf(t) != null, exact: false })
+  }
+  const words = String(ind.label || '').split(/[^\p{L}.'’]+/u).filter(Boolean)
+  let run = []
+  const flush = () => {
+    if (!run.length) return
+    const name = run.join(' ')
+    const add = (k) => {
+      if (keys.has(k.toLowerCase())) return
+      keys.set(k, { weak: countryOf(k) != null, exact: true })
+    }
+    add(name)
+    const last = run[run.length - 1]
+    if (run.length > 1 && last.length >= 5) add(last)
+    run = []
+  }
+  for (const w of words) {
+    const clean = w.replace(/[.'’]+$/, '')
+    const cap = /^\p{Lu}/u.test(clean)
+    const particle = run.length > 0 && /^(Le|La|de|da|van|von|al|bin)$/.test(clean)
+    if ((cap && !LABEL_STOP.has(clean) && clean.length > 1 && clean !== 'U.S') || particle) run.push(clean)
+    else flush()
+  }
+  flush()
+  return keys
+}
+
+/**
+ * Whether a contract is about this story: one of its specific keys (a name,
+ * a waterway, the Fed), or three weak ones together.
+ *
+ * Two weak keys was the first threshold, and a week's replay showed what two
+ * countries buy: *Putin out by June 2027?* (tagged `ukraine`, naming Russia)
+ * on every story of the war. Three is what a contract actually about a
+ * relationship needs — Israel *and* Iran *and* the ceasefire is the ceasefire
+ * contract's story; Iran alone is not "the US invades Iran".
+ *
+ * Returns a score for ranking (specific keys count double), 0 when not
+ * offered.
+ */
+export const oddsScore = (ind, text, lower) => {
+  let specific = 0
+  const weak = new Set()
+  const seen = new Set()
+  for (const [key, { weak: isWeak, exact }] of oddsKeys(ind)) {
+    const k = key.toLowerCase()
+    if (seen.has(k)) continue
+    const hit = exact
+      ? new RegExp(`(^|[^\\p{L}])${key.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')}([^\\p{L}]|$)`, 'u').test(text)
+      : hasKey(key, text, lower)
+    if (!hit) continue
+    seen.add(k)
+    if (isWeak) weak.add(countryOf(k) ?? k)
+    else specific++
+  }
+  if (!specific && weak.size < 3) return 0
+  return specific * 2 + weak.size
+}
+
+/**
+ * The value at the latest observation on or before `days` before the last.
+ *
+ * Contracts are sampled more than once a day (`Sep 30, Sep 30`), so counting
+ * observations is not counting days. The period labels carry no year; it comes
+ * from `asOf`, stepping back a year when the label's month is later.
+ */
+const valueDaysBack = (ind, days, slackDays = Infinity) => {
+  const values = ind.values || []
+  const periods = ind.periods || []
+  const end = Date.parse(`${ind.asOf}T00:00:00Z`)
+  if (!Number.isFinite(end) || values.length !== periods.length) return null
+  const year = new Date(end).getUTCFullYear()
+  const target = end - days * DAY
+  for (let i = periods.length - 1; i >= 0; i--) {
+    let t = Date.parse(`${periods[i]} ${year} 00:00:00 UTC`)
+    if (!Number.isFinite(t)) return null
+    if (t > end) t = Date.parse(`${periods[i]} ${year - 1} 00:00:00 UTC`)
+    if (t <= target && Number.isFinite(values[i])) return t >= target - slackDays * DAY ? values[i] : null
+  }
+  return null
+}
+
+/**
+ * The move the app's chart prints beside a daily series: seven calendar days,
+ * anchored on the last observation on or before a week before the newest, and
+ * none when that anchor is more than three days late (`gaugeMove`,
+ * mobile/lib/cards/week-move.ts — the same rule, so the same number).
+ *
+ * This replaced seven *observations*, which on a series that skips weekends is
+ * nine days. And it is the move the prompt says to cite for a charted series:
+ * the first real run wrote "Brent crude's 23% monthly jump" over a chart whose
+ * chip said ▼12% over 7 days — both true, and a contradiction to anyone
+ * reading one under the other.
+ */
+const weekMove = (ind) => {
+  const last = (ind.values || []).filter(Number.isFinite).at(-1)
+  const then = valueDaysBack(ind, 7, 3)
+  if (!Number.isFinite(last) || then == null || then === 0) return null
+  return { pct: Number((((last - then) / Math.abs(then)) * 100).toFixed(1)), over: '7 days' }
+}
+
+const pointsMove = (ind, days) => {
+  const last = (ind.values || []).at(-1)
+  const then = valueDaysBack(ind, days)
+  if (!Number.isFinite(last) || then == null) return null
+  return { points: Math.round(last - then), over: `${days} days` }
+}
+
+/** Event tags that name a kind of decision rather than whose: "interest rate"
+ *  is every central bank's, "cpi" every statistics office's. They count only
+ *  beside a country the event belongs to. */
+const EVENT_GENERIC_TAGS = new Set([
+  'interest rate', 'interest rates', 'cpi', 'consumer price index', 'gdp',
+  'gross domestic product', 'unemployment rate', 'summit', 'inflation',
+])
+const CALENDAR_DAYS = 60
+const CLOSING_DAYS = 3
+const MAX_CALENDAR = 2
+
+// ── The offer ──────────────────────────────────────────────────────────────
+
+/**
+ * @param {any} story   A selection entry.
+ * @param {object} sources
+ * @param {any} [sources.trends]       The trends snapshot.
+ * @param {any[]} [sources.chokepoints] `.chokepoints.json`'s `chokepoints`.
+ * @param {any[]} [sources.markets]     `.markets.json`'s `exchanges`.
+ * @param {any} [sources.dispatch]      `.indicator-dispatch.json`'s `items`.
+ * @param {number} [sources.now]
+ */
+export function offerFor(story, { trends, chokepoints = [], markets = [], dispatch = {}, now = Date.now() } = {}) {
+  const text = storyText(story)
+  const lower = text.toLowerCase()
+  const indicators = (trends?.indicators || []).filter((i) => i?.id)
+  const byId = new Map(indicators.map((i) => [i.id, i]))
+  const hasStanding = (id) => Boolean(dispatch?.[id]?.standing)
+  let stale = 0
+
+  const rows = []
+  const push = (row) => {
+    if (!rows.some((r) => r.id === row.id)) rows.push(row)
+  }
+
+  // Ambiguous mentions are deliberately dropped rather than defaulted. The
+  // entity stage resolves `rupee` and `pound` with a Haiku call it is already
+  // making; guessing here would put a Pakistani rupee level in front of a
+  // writer covering Delhi, and a wrong number in an article is far worse than
+  // an absent one.
+  const { resolved } = extractEntities(text)
+  const straits = []
+  const exchanges = []
+  for (const e of resolved) {
+    if (e.indicatorId.startsWith('cp:')) {
+      straits.push(e.indicatorId)
+      continue
+    }
+    if (e.indicatorId.startsWith('mkt:')) {
+      exchanges.push(e.indicatorId)
+      continue
+    }
+    const ind = byId.get(e.indicatorId)
+    if (!ind || !Array.isArray(ind.values)) continue
+    const values = ind.values.filter(Number.isFinite)
+    if (values.length < 2) continue
+    const cadence = ind.cadence || 'daily'
+    const asOf = ind.asOf || trends?.asOf || ''
+    const age = ageDays(asOf, cadence, now)
+    if (isStale(age, cadence)) {
+      stale++
+      continue
+    }
+    const [near, far] = WINDOWS[cadence] ?? WINDOWS_DEFAULT
+    push({
+      id: ind.id,
+      kind: 'series',
+      label: ind.label,
+      level: sig4(values[values.length - 1]),
+      unit: ind.unit || '',
+      cadence,
+      // "Aug 2026" for a monthly print: the month it measures, which is how a
+      // sentence dates it ("US inflation was 2.9% in August").
+      period: Array.isArray(ind.periods) ? ind.periods.at(-1) : undefined,
+      // A daily series' `recent` is the chart's own week; a monthly print has
+      // no week, and keeps its quarter.
+      recent: cadence === 'daily' ? weekMove(ind) : change(values, cadence, near),
+      wider: change(values, cadence, far),
+      // Non-negotiable: a figure a writer cannot date is a figure they will
+      // present as today's.
+      asOf,
+      ageDays: age,
+      chart: hasStanding(ind.id),
+    })
+  }
+
+  // A strait is read from its own payload, the numbers its card prints
+  // (`straitCardFor`, mobile/lib/cards/markets.ts): seven-day traffic, all
+  // ships, against the 90-day normal. These ids were looked up in the trends
+  // snapshot until 2026-09-30, which has no `cp:*` rows — so every Hormuz,
+  // Suez and Bab-el-Mandeb story reached the writer with no figure at all.
+  for (const id of straits) {
+    const c = chokepoints.find((x) => `cp:${x.id}` === id)
+    const level = c?.last7Avg?.n_total
+    const series = c?.series?.total
+    if (!c || !Number.isFinite(level) || !Array.isArray(series) || series.length < 2) continue
+    const age = ageDays(c.asOf, 'daily', now)
+    if (isStale(age, 'daily')) {
+      stale++
+      continue
+    }
+    const d = c.delta7vs90?.n_total
+    push({
+      id,
+      kind: 'strait',
+      label: `${c.name} traffic`,
+      level: sig4(level),
+      unit: 'ships a day, 7-day average, all ships',
+      normal: sig4(c.baseline90Avg?.n_total),
+      vsNormalPct: Number.isFinite(d) ? Math.round(d * 100) : null,
+      asOf: c.asOf,
+      ageDays: age,
+      chart: true,
+    })
+  }
+
+  // One contract at most: the best-scoring, the snapshot's own order breaking
+  // ties (it ranks incumbents and waterway questions first).
+  let best = null
+  for (const ind of indicators) {
+    if (ind.source !== 'polymarket' || !Array.isArray(ind.values) || !ind.values.length) continue
+    // A question in its last days is not a forecast of what's next — "Iran
+    // charges Hormuz fees by September 30?" won every Hormuz story of its
+    // final day in a replay, over the contract on whether traffic recovers.
+    const end = Date.parse(ind.endDate ?? '')
+    if (Number.isFinite(end) && end - now < CLOSING_DAYS * DAY) continue
+    const score = oddsScore(ind, text, lower)
+    if (score > 0 && (!best || score > best.score)) best = { ind, score }
+  }
+  if (best) {
+    const { ind } = best
+    const age = ageDays(ind.asOf, 'daily', now)
+    if (isStale(age, 'daily')) stale++
+    else {
+      push({
+        id: ind.id,
+        kind: 'odds',
+        question: ind.label,
+        level: Math.round(ind.values.at(-1)),
+        unit: '% (price of a Yes share)',
+        recent: pointsMove(ind, 7),
+        wider: pointsMove(ind, 30),
+        source: 'Polymarket',
+        asOf: ind.asOf,
+        ageDays: age,
+        chart: hasStanding(ind.id),
+      })
+    }
+  }
+
+  for (const id of exchanges) {
+    const m = markets.find((x) => `mkt:${x.id}` === id)
+    const values = (m?.series?.values || []).filter(Number.isFinite)
+    if (!m || values.length < 2) continue
+    const age = ageDays(m.asOf, 'daily', now)
+    if (isStale(age, 'daily')) {
+      stale++
+      continue
+    }
+    push({
+      id,
+      kind: 'exchange',
+      label: `${m.indexName} (${m.name})`,
+      level: sig4(values.at(-1)),
+      unit: `index points${m.currency ? `, priced in ${m.currency}` : ''}`,
+      recent: weekMove({ values: m.series.values, periods: m.series.periods, asOf: m.asOf }),
+      wider: change(values, 'daily', 30),
+      asOf: m.asOf,
+      ageDays: age,
+      chart: hasStanding(id),
+    })
+  }
+
+  // Everything above is in match order, and a contract is capped at one — so
+  // the cap below cuts exchanges first and contracts never crowd out a price.
+  const offered = rows.slice(0, MAX_ROWS)
+
+  const today = new Date(now).toISOString().slice(0, 10)
+  const horizon = new Date(now + CALENDAR_DAYS * DAY).toISOString().slice(0, 10)
+  const calendar = (trends?.events || [])
+    .filter((e) => e?.date && e.date >= today && e.date <= horizon)
+    .filter((e) => {
+      const tags = (e.topicTags || []).map((t) => String(t).toLowerCase())
+      if (tags.some((t) => !EVENT_GENERIC_TAGS.has(t) && hasKey(t, text, lower))) return true
+      return (
+        tags.some((t) => EVENT_GENERIC_TAGS.has(t) && hasKey(t, text, lower)) &&
+        (e.countryTags || []).some((cc) => namesCountry(cc, lower))
+      )
+    })
+    .sort((a, b) => a.date.localeCompare(b.date))
+    .slice(0, MAX_CALENDAR)
+    .map((e) => ({ title: e.title, institution: e.institution, date: e.date }))
+
+  return { indicators: offered, calendar, stale }
+}
+
+// ── The chart a written article carries ────────────────────────────────────
+
+/**
+ * Whether an article's `chart:` stands, or the reason it is dropped.
+ *
+ * A chart id must be one this story was offered as chartable: the writer can
+ * name only what it was handed, and a series it was not handed is either an
+ * invention or another story's. With no selection to check against (a rerun,
+ * a hand-written article) any id the build can resolve stands.
+ *
+ * Returns `null` when the chart stands.
+ *
+ * @param {string} id
+ * @param {{ offered?: any[] | null, known?: Set<string> }} ctx
+ */
+export function chartProblem(id, { offered = null, known = new Set() } = {}) {
+  if (typeof id !== 'string' || !id.trim()) return 'empty'
+  if (offered) {
+    const row = offered.find((r) => r.id === id)
+    if (!row) return `"${id}" was not offered for this story`
+    if (!row.chart) return `"${id}" has no chart the app can draw`
+    return null
+  }
+  return known.has(id) ? null : `"${id}" is not a known series`
+}
+
+/** The figures a row offers, for the cite check. */
+const rowFigures = (row) =>
+  [row.level, row.normal, row.vsNormalPct, row.recent?.pct, row.wider?.pct, row.recent?.points, row.wider?.points]
+    .filter(Number.isFinite)
+    .map(Math.abs)
+
+/**
+ * Whether the body quotes one of the row's figures — within 5%, the same
+ * proportional tolerance `validateNumbers` (lib/grounding.js) allows, so
+ * `$88.9` cites a level of 88.90 and `53%` a change of −53.
+ *
+ * A measurement, never a gate: under the "subject decides" rule a chart is
+ * allowed to carry a number the prose leaves out.
+ */
+export function citesFigure(body, row) {
+  const figures = rowFigures(row)
+  const numbers = (String(body).replace(/\[([^\]]+)\]\([^)]+\)/g, '$1').match(/\d[\d,]*(?:\.\d+)?/g) || [])
+    .map((s) => Number(s.replace(/,/g, '')))
+    .filter(Number.isFinite)
+  return numbers.some((n) => figures.some((f) => Math.abs(f - n) <= Math.max(Math.abs(n) * 0.05, 0.05)))
+}

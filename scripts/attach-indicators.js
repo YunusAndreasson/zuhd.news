@@ -8,10 +8,19 @@
 // writer the number instead makes the link *earned* — "Brent at $71.20, down
 // 8% in a fortnight" is a sentence the chart is genuinely about.
 //
-// Deterministic and free: no model call and no API call. It reads the trends
-// snapshot already on disk and the same `entity-registry.js` rules
-// `extract-entities.js` uses, so the ids offered to the writer are exactly the
-// ids the entity stage will resolve afterwards.
+// Deterministic and free: no model call and no API call. It reads the payloads
+// already on disk — the trends snapshot, `.chokepoints.json`, `.markets.json`
+// and the desk's `.indicator-dispatch.json` — and the same `entity-registry.js`
+// rules `extract-entities.js` uses, so the ids offered to the writer are
+// exactly the ids the entity stage will resolve afterwards.
+//
+// Each story gets `indicators` (figures, some marked `chart: true`, which the
+// writer may attach as the story's chart) and `calendar` (the next scheduled
+// decision on its subject, for the future block). What is offered and why is
+// `lib/indicator-offer.js`; this file is the reading and writing around it.
+//
+// `--selection <path>` and `--dry-run` replay it against any selection without
+// touching the cycle's file.
 //
 // ── On staleness, which is not a defect here ──────────────────────────────
 //
@@ -26,10 +35,12 @@
 
 import { readFileSync, writeFileSync, existsSync, readdirSync } from 'node:fs'
 import { join } from 'node:path'
-import { extractEntities } from './lib/entity-registry.js'
+import { argAt, hasFlag } from './lib/argv.js'
+import { offerFor } from './lib/indicator-offer.js'
 
 const ROOT = new URL('..', import.meta.url).pathname
-const SELECTION = '/tmp/zuhd-selection.json'
+const SELECTION = argAt('selection', '/tmp/zuhd-selection.json')
+const DRY_RUN = hasFlag('dry-run')
 
 if (!existsSync(SELECTION)) {
   console.log('No selection file — skipping indicator attach.')
@@ -46,72 +57,32 @@ const latestTrends = () => {
   return names.length ? join(dir, names[names.length - 1]) : null
 }
 
+/** A payload's parsed JSON, or null. Each source is fail-soft on its own: a
+ *  missing `.markets.json` costs the exchange rows and nothing else. */
+const readJson = (path) => {
+  try {
+    return JSON.parse(readFileSync(path, 'utf8'))
+  } catch {
+    return null
+  }
+}
+
 const path = latestTrends()
 if (!path) {
   console.log('No trends snapshot — skipping indicator attach.')
   process.exit(0)
 }
-
-const trends = JSON.parse(readFileSync(path, 'utf8'))
-const byId = new Map((trends.indicators || []).map((i) => [i.id, i]))
-
-/**
- * The change across the last `n` published points, with the period named.
- *
- * **The period comes from the cadence, and getting that wrong is the whole
- * hazard of this stage.** `values` is a list of observations, not of days:
- * `wheat` and `rice` are monthly, so the last seven points are seven *months*.
- * The first version labelled every one of them `change7d`, which offered a
- * writer a 12-month commodity swing as a fortnight's move — a wrong number in
- * an article, produced by a stage whose whole purpose is getting numbers into
- * articles.
- */
-const change = (ind, n) => {
-  const v = (ind.values || []).filter(Number.isFinite)
-  if (v.length < 2) return null
-  const steps = Math.min(n, v.length - 1)
-  const from = v[v.length - 1 - steps]
-  const to = v[v.length - 1]
-  if (!Number.isFinite(from) || from === 0) return null
-  const unit = ind.cadence === 'monthly' ? 'month' : ind.cadence === 'weekly' ? 'week' : 'day'
-  return {
-    pct: Number((((to - from) / Math.abs(from)) * 100).toFixed(1)),
-    over: `${steps} ${unit}${steps === 1 ? '' : 's'}`,
-  }
+const trends = readJson(path)
+if (!trends) {
+  console.log(`Trends snapshot unreadable (${path}) — skipping indicator attach.`)
+  process.exit(0)
 }
-
-/** Days since a published `asOf`, or null. */
-const ageDays = (asOf) => {
-  const t = Date.parse(`${asOf}T00:00:00Z`)
-  return Number.isFinite(t) ? Math.round((Date.now() - t) / 86400_000) : null
+const sources = {
+  trends,
+  chokepoints: readJson(join(ROOT, 'content', '.chokepoints.json'))?.chokepoints || [],
+  markets: readJson(join(ROOT, 'content', '.markets.json'))?.exchanges || [],
+  dispatch: readJson(join(ROOT, 'content', '.indicator-dispatch.json'))?.items || {},
 }
-
-/**
- * How stale a level may be before it stops being a level.
- *
- * A monthly series is legitimately two months behind its own publication and
- * still current; a daily one two months behind is broken. Beyond this the
- * indicator is dropped rather than dated, because a writer handed a figure will
- * use it and the caveat is the first thing a 450-character article cuts.
- */
-const MAX_AGE_DAYS = { monthly: 45, weekly: 30 }
-const STALE_DEFAULT = 12
-
-/**
- * The two windows offered per cadence, in observations.
- *
- * Fixed at 7 and 30 first, which on a monthly series is seven months and
- * **twenty-two** — a nearly two-year swing offered beside a daily one as though
- * they were the same kind of statement. A window is only useful if a reader
- * would recognise it as a period: a quarter and a year for a monthly print, a
- * week and a month for a daily one.
- */
-const WINDOWS = { monthly: [3, 12], weekly: [4, 26] }
-const WINDOWS_DEFAULT = [7, 30]
-
-/** Four significant figures — what a sentence can carry and what the rail
- *  prints. A writer given 71.2047 will print 71.2047. */
-const sig4 = (n) => (Number.isFinite(n) ? Number(Number(n).toPrecision(4)) : null)
 
 let selection
 try {
@@ -125,74 +96,42 @@ if (!Array.isArray(selection)) {
   process.exit(0)
 }
 
+const kinds = { series: 0, strait: 0, odds: 0, exchange: 0 }
 let attached = 0
+let chartable = 0
 let stale = 0
 let stories = 0
+let dated = 0
 
 for (const story of selection) {
   if (!story || typeof story !== 'object') continue
-  /**
-   * The title, the selector's angle, and the concepts — **never the source
-   * bodies**.
-   *
-   * The bodies were included first, on the reasoning that they are the prose
-   * the writer works from. They are also full news articles, and a full news
-   * article contains every incidental noun in the English language: the first
-   * run offered a **wheat price to a story about a solar eclipse**, because a
-   * paragraph describing where to stand in Spain mentioned "wheat fields and
-   * rolling hills". That is precisely the wrong-crossreference failure this
-   * work exists to remove, arriving one stage earlier than usual.
-   *
-   * A title, an angle and a concept list are *statements of what the story is
-   * about*. A body is everything the outlet happened to write. Only the first
-   * kind can decide whether a number belongs in front of a writer.
-   */
-  const text = [story.title, story.angle].filter(Boolean).join('\n')
-
-  const { resolved } = extractEntities(text, story.concepts)
-  const rows = []
-  for (const e of resolved) {
-    const ind = byId.get(e.indicatorId)
-    if (!ind || !Array.isArray(ind.values)) continue
-    const values = ind.values.filter(Number.isFinite)
-    if (values.length < 2) continue
-    const asOf = ind.asOf || trends.asOf || ''
-    const age = ageDays(asOf)
-    const limit = MAX_AGE_DAYS[ind.cadence] ?? STALE_DEFAULT
-    if (age != null && age > limit) {
-      stale++
-      continue
-    }
-    rows.push({
-      id: ind.id,
-      label: ind.label,
-      level: sig4(values[values.length - 1]),
-      unit: ind.unit || '',
-      cadence: ind.cadence || 'daily',
-      recent: change(ind, (WINDOWS[ind.cadence] ?? WINDOWS_DEFAULT)[0]),
-      wider: change(ind, (WINDOWS[ind.cadence] ?? WINDOWS_DEFAULT)[1]),
-      // Non-negotiable: a figure a writer cannot date is a figure they will
-      // present as today's.
-      asOf,
-      ageDays: age,
-    })
+  const offer = offerFor(story, sources)
+  stale += offer.stale
+  // Written even when empty, so a rerun over a selection that already carries
+  // an offer replaces it rather than leaving the last run's behind.
+  story.indicators = offer.indicators
+  story.calendar = offer.calendar
+  if (!story.indicators.length) delete story.indicators
+  if (!story.calendar.length) delete story.calendar
+  dated += offer.calendar.length
+  if (offer.indicators.length) stories++
+  for (const row of offer.indicators) {
+    attached++
+    kinds[row.kind]++
+    if (row.chart) chartable++
   }
-
-  // Ambiguous mentions are deliberately dropped rather than defaulted. The
-  // entity stage resolves `rupee` and `pound` with a Haiku call it is already
-  // making; guessing here would put a Pakistani rupee level in front of a
-  // writer covering Delhi, and a wrong number in an article is far worse than
-  // an absent one.
-  if (!rows.length) continue
-  // Three at most. A story is about one or two things, and a longer list reads
-  // as a menu the writer is expected to work through.
-  story.indicators = rows.slice(0, 3)
-  attached += story.indicators.length
-  stories++
+  if (DRY_RUN && (offer.indicators.length || offer.calendar.length)) {
+    console.log(`\n${story.title}`)
+    for (const row of offer.indicators) {
+      console.log(`  ${row.chart ? '▣' : '·'} ${row.kind.padEnd(8)} ${row.id.padEnd(40)} ${row.level} ${row.unit}${row.normal != null ? ` (normal ${row.normal})` : ''}  as of ${row.asOf}`)
+    }
+    for (const e of offer.calendar) console.log(`  ◷ ${e.date} ${e.title}`)
+  }
 }
 
-writeFileSync(SELECTION, JSON.stringify(selection, null, 2))
+if (!DRY_RUN) writeFileSync(SELECTION, JSON.stringify(selection, null, 2))
 console.log(
-  `Indicators: ${attached} level(s) attached across ${stories}/${selection.length} stories, ${stale} dropped as stale ` +
-    `(snapshot ${trends.asOf || 'undated'})`,
+  `Indicators: ${attached} across ${stories}/${selection.length} stories ` +
+    `(series ${kinds.series}, strait ${kinds.strait}, odds ${kinds.odds}, exchange ${kinds.exchange}; chartable ${chartable}), ` +
+    `calendar ${dated}, ${stale} dropped as stale (snapshot ${trends.asOf || 'undated'})${DRY_RUN ? ' — dry run, nothing written' : ''}`,
 )

@@ -6,6 +6,8 @@
 // Ambiguous mentions (rupee → PKR or INR? peso → MXN or ARS?) fall through
 // to a Haiku disambiguation pass that uses article context.
 //
+import { MARKET_CATALOG } from './market-metadata.js'
+
 // Adding new entries: drop a row below. Match is case-insensitive, whole-
 // word, applied to article body text. `mention` strings with spaces match
 // literal space-separated sequences ("Strait of Hormuz" matches verbatim).
@@ -22,6 +24,10 @@
  *  @property {string} indicatorId   Matching id in the trends-registry catalog.
  *  @property {string} kind          Semantic class for the mobile EntitySheet.
  *  @property {boolean} [ambiguous]  If true, only emit when disambiguation agrees.
+ *  @property {boolean} [caseSensitive]
+ *        Match the mention's own capitalisation. For a proper noun that is also
+ *        an ordinary word or fragment: `Fed` is the central bank and "fed up"
+ *        is not, `ECB` is a bank and no lowercase text is.
  *  @property {EntityCandidate[]} [candidates]
  *        The ordered options an ambiguous mention resolves between; the first
  *        is the fallback when Haiku errors out. Present on every `ambiguous`
@@ -29,6 +35,23 @@
  *        typedef until 2026-08-01, which is what made the rules below fail to
  *        typecheck against their own declared shape.
  */
+
+/**
+ * Index names that are something else first, so they never become a rule.
+ * `IPC` is the famine classification this site maps; `SMI` and `AEX` are
+ * acronyms before they are indices; `B3` is a vitamin. The S&P 500 is already
+ * `sp500`, the series the rest of the site charts.
+ */
+const EXCHANGE_SKIP = new Set(['IPC', 'SMI', 'AEX', 'B3', 'S&P 500'])
+
+/** The spellings prose actually uses, where they differ from the catalog's. */
+const EXCHANGE_ALIASES = {
+  tse: ['Nikkei'],
+  bse: ['Sensex'],
+  krx: ['Kospi'],
+  bist: ['Borsa Istanbul'],
+  tadawul: ['Tadawul'],
+}
 
 /** @type {EntityRule[]} */
 export const ENTITY_RULES = [
@@ -51,6 +74,15 @@ export const ENTITY_RULES = [
   { mention: 'wheat',          indicatorId: 'wheat',      kind: 'commodity' },
   { mention: 'rice',           indicatorId: 'rice',       kind: 'commodity' },
   { mention: 'copper',         indicatorId: 'copper',     kind: 'commodity' },
+  // Not bare "silver": that is a medal, a lining and a screen more often than
+  // it is a metal.
+  { mention: 'silver price',   indicatorId: 'xag',        kind: 'commodity' },
+  { mention: 'silver futures', indicatorId: 'xag',        kind: 'commodity' },
+  // The US retail price, so the mention names the US: bare "gasoline" and
+  // "pump prices" hung it off Italian and Pakistani fuel caps in a replay.
+  { mention: 'US gasoline',    indicatorId: 'us-gas-retail', kind: 'commodity' },
+  { mention: 'US gas prices',  indicatorId: 'us-gas-retail', kind: 'commodity' },
+  { mention: 'American gas prices', indicatorId: 'us-gas-retail', kind: 'commodity' },
 
   // ── Indices / macro ────────────────────────────────────────────────────────
   { mention: 'S&P 500',        indicatorId: 'sp500',      kind: 'index' },
@@ -59,6 +91,20 @@ export const ENTITY_RULES = [
   { mention: 'VIX',            indicatorId: 'vix',        kind: 'index' },
   { mention: '10-year yield',  indicatorId: 'us-10y',     kind: 'index' },
   { mention: '10-year Treasury', indicatorId: 'us-10y',   kind: 'index' },
+  { mention: 'Federal Reserve', indicatorId: 'fed-funds', kind: 'index' },
+  { mention: 'Fed',            indicatorId: 'fed-funds',  kind: 'index', caseSensitive: true },
+  { mention: 'FOMC',           indicatorId: 'fed-funds',  kind: 'index' },
+  { mention: 'European Central Bank', indicatorId: 'ecb-rate', kind: 'index' },
+  { mention: 'ECB',            indicatorId: 'ecb-rate',   kind: 'index', caseSensitive: true },
+  // US-only series, so every mention names the US: bare "inflation" or
+  // "unemployment" would hang an American print off a story about Turkey.
+  { mention: 'US inflation',   indicatorId: 'us-cpi',     kind: 'index' },
+  { mention: 'U.S. inflation', indicatorId: 'us-cpi',     kind: 'index' },
+  { mention: 'US consumer prices', indicatorId: 'us-cpi', kind: 'index' },
+  { mention: 'US unemployment', indicatorId: 'us-unemployment', kind: 'index' },
+  { mention: 'US jobless',     indicatorId: 'us-unemployment', kind: 'index' },
+  { mention: 'nonfarm payrolls', indicatorId: 'us-unemployment', kind: 'index' },
+  { mention: 'payrolls',       indicatorId: 'us-unemployment', kind: 'index' },
 
   // ── Currencies — unambiguous by name ───────────────────────────────────────
   { mention: 'yen',            indicatorId: 'fx-jpy',     kind: 'currency' },
@@ -71,6 +117,7 @@ export const ENTITY_RULES = [
   { mention: 'ruble',          indicatorId: 'fx-rub',     kind: 'currency' },
   { mention: 'rand',           indicatorId: 'fx-zar',     kind: 'currency' },
   { mention: 'euro',           indicatorId: 'fx-eur',     kind: 'currency' },
+  { mention: 'Brazilian real', indicatorId: 'fx-brl',     kind: 'currency' },
   // Ambiguous — require a Haiku disambiguation pass. The extractor batches
   // each ambiguous match into one Haiku call per cycle, resolves by article
   // context, and writes the winner. Structure: `candidates` is the ordered
@@ -147,7 +194,33 @@ export const ENTITY_RULES = [
   { mention: 'Bosphorus',      indicatorId: 'cp:bosporus',           kind: 'chokepoint' },
   { mention: 'Kerch Strait',   indicatorId: 'cp:kerch',              kind: 'chokepoint' },
   { mention: 'Cape of Good Hope', indicatorId: 'cp:cape-of-good-hope', kind: 'chokepoint' },
+
+  // ── Exchanges ──────────────────────────────────────────────────────────────
+  // `kind: 'index'` because `EntityKind` is a published union; the app reads
+  // an exchange through the same sheet as any other index.
+  ...exchangeRules(),
 ]
+
+/**
+ * One rule per drawn exchange, from `MARKET_CATALOG` rather than a second list
+ * of the same thirty names. Case-sensitive, because an index name is a proper
+ * noun and its lowercase twin ("set index", "dax") is not.
+ *
+ * Until these existed no article carried an `mkt:*` id at all, and the market
+ * signal join's first arm (`entityIds.includes('mkt:…')`) matched nothing.
+ */
+function exchangeRules() {
+  const rules = []
+  for (const m of MARKET_CATALOG) {
+    if (!m.available) continue
+    const mentions = new Set([m.name, m.indexName, ...(EXCHANGE_ALIASES[m.id] || [])])
+    for (const mention of mentions) {
+      if (!mention || EXCHANGE_SKIP.has(mention)) continue
+      rules.push({ mention, indicatorId: `mkt:${m.id}`, kind: 'index', caseSensitive: true })
+    }
+  }
+  return rules
+}
 
 /**
  * Published frontmatter ids that have been renamed, old → new.
@@ -180,11 +253,11 @@ export const ENTITY_RULES_SORTED = [...ENTITY_RULES].sort(
 
 /** Regex-safe pattern for one mention — whole-word where possible. "Bitcoin"
  *  shouldn't match "Bitcoins" (plural). Handle punctuation and ampersands. */
-export function mentionToRegex(mention) {
+export function mentionToRegex(mention, { caseSensitive = false } = {}) {
   const escaped = mention.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')
   // Word-boundary both sides; allow optional 's' for plural nouns at the end
   // so "rupees" / "tankers" still match — but block "Hormuzian" (letters).
-  return new RegExp(`\\b${escaped}(?:s)?\\b`, 'gi')
+  return new RegExp(`\\b${escaped}(?:s)?\\b`, caseSensitive ? 'g' : 'gi')
 }
 
 /**
@@ -247,7 +320,7 @@ export function extractEntities(body, concepts = []) {
   const pending = []
 
   for (const rule of ENTITY_RULES_SORTED) {
-    const re = mentionToRegex(rule.mention)
+    const re = mentionToRegex(rule.mention, rule)
     const match = re.exec(haystack)
     if (!match) continue
     if (rule.ambiguous) {

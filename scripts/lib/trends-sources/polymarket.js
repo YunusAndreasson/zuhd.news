@@ -738,6 +738,10 @@ export async function fetchPolymarketTop({ incumbents = [] } = {}) {
       asOf,
       marketUrl: eventUrl,
       outcomeLabel: tokens.label,
+      // The question's own deadline, so a consumer can tell a forecast from a
+      // question about to close: the writer's offer skips a contract in its
+      // last days (lib/indicator-offer.js). Null for an open-ended market.
+      endDate: m.endDate ?? m.endDateIso ?? null,
       // 24h movement in percentage points, straight from the list response
       // (zero extra calls) — lets consumers rank "biggest movers".
       change24h: Number.isFinite(Number(m.oneDayPriceChange)) ? Math.round(Number(m.oneDayPriceChange) * 100) : null,

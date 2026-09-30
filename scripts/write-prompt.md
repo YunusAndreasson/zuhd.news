@@ -49,6 +49,7 @@ sources:
 eventCoverage: 268
 concepts:
   - "Key Entity"
+chart: "cp:hormuz"
 ---
 
 Hook block — one tight sentence.
@@ -70,7 +71,7 @@ The body is **markdown paragraphs separated by a blank line**. The blank line is
 
 Spend that budget on reporting, not on length. An article that says everything it has in 380 characters is finished at 380; padding it to 450 is the excess zuhd exists to refuse. The ceiling rose because the reader's screen has room for a fifth fact, not because articles should be longer.
 
-List every source from the selection's `sources` array (see task step 2). `eventCoverage` and `concepts` are filled automatically by a post-writer script if missing.
+List every source from the selection's `sources` array (see task step 2). `eventCoverage` and `concepts` are filled automatically by a post-writer script if missing. `chart` is optional and most articles have none — `<principles>` "Data" says when to set it.
 
 </format>
 
@@ -118,12 +119,27 @@ Each block is one markdown paragraph and **exactly one sentence**. The word ceil
 
 **Quote sparingly and exactly.** At most one direct quotation per article, in block 4, verbatim. Never quote a phrase inside another block to add colour — a quoted fragment in the mechanism block reads as a writer who could not paraphrase. Never quote an institution ("the ministry said 'we will respond'"); quote a person with a name and a role.
 
-**Live levels, where a story has them.** A selection entry may carry an `indicators` array — the current level of a commodity, currency, rate or index this story is about, with `unit`, a `recent` and `wider` change, and the `asOf` date the figure was published. Use one **when it sharpens the story**, and prefer it to a vague phrase: "Brent at $88.90, down 15.6% in a week" says something "oil prices fell" does not. Three rules, in order of how badly breaking them reads:
+**Data, where a story has it.** A selection entry may carry an `indicators` array — live figures on what this story is about — and a `calendar` array — the next scheduled decision on its subject. Each indicator row has an `id`, a `kind`, its figures and the `asOf` date they were published. The kinds:
 
-- **Date it.** These are published series with their own lag — `asOf` is often several days behind today. Say "as of 3 August", or use the change rather than the level. Never present a dated figure as today's.
+- `series` — a price, currency, rate or index: `level` in `unit`, a `recent` and `wider` change in percent, and for a monthly print the `period` it measures ("Aug 2026").
+- `strait` — ship traffic through a chokepoint: `level` ships a day (7-day average) against its 90-day `normal`, and `vsNormalPct`.
+- `odds` — a prediction-market contract: the `question`, the price of a Yes share in percent, and its moves in **points**.
+- `exchange` — a stock index: `level` and its change.
+
+Use a figure **when it sharpens the story**, and prefer it to a vague phrase: "Brent at $88.90, down 15.6% in a week" says something "oil prices fell" does not; "3.1 ships a day against a 90-day normal of 6.3" says what "traffic slowed" cannot. Rules, in order of how badly breaking them reads:
+
+- **Date it.** These are published series with their own lag — `asOf` is often several days behind today. Say "as of 3 August", name the month of a monthly print, or use the change rather than the level. Never present a dated figure as today's.
 - **Never invent one.** Only the numbers in `indicators` are available to you. Do not compute a different window, round a level into a different figure, or add an indicator the array does not carry.
 - **A source's own figure wins.** If a source body states a price or level for the same quantity, use the source's figure, not the indicator's — two numbers for one price in one day's articles is a contradiction the reader sees. Never make an indicator level the whole why-it-matters block, and never reuse another article's indicator sentence.
-- **Skip it when it is not the story.** This is permission, not an instruction. A number that does not bear on what happened is filler. Most stories will carry no indicator at all, and most that do should use at most one.
+- **Odds are traders' prices, never the site's forecast.** Attribute them every time — "traders on Polymarket price a return to normal traffic by 31 December at 21%, down 19 points in a week" — and give a move in points, never percent. A contract belongs in the future block, and only when its question is this story's next step.
+- **The calendar is for the future block**, and only when that decision is this story's next step: "The Federal Reserve decides on 28 October." A scheduled date is the kind of named deadline block 5 asks for.
+- **Skip it when it is not the story.** This is permission, not an instruction. A number that does not bear on what happened is filler. Most stories will carry no figure at all, and most that do should use at most one.
+
+**The chart.** Set `chart:` in the frontmatter to the `id` of **one** row marked `chart: true` when that series is **what the story is about** — Hormuz traffic under a story about tankers turned back at Hormuz, Brent under a story about an OPEC cut, the ceasefire contract under a story about the ceasefire fraying. The reader sees it drawn directly under the article, with its level, its move and its date, so the prose does not have to recite the number to earn it; spend the characters on reporting. If the prose does cite that series, use the row's `level` and date exactly, and for a move use **`recent`** — the chart prints that move beside the line, so a sentence citing `wider` ("a 23% monthly jump") sits over a chip saying "▼12% over 7 days" and reads as a contradiction.
+
+- **One chart, and only one the story is about.** Never chart a series that is merely nearby: Brent under an Iranian election, the lira under a Turkish earthquake. If you have to explain to yourself why the chart belongs, it does not.
+- **Only an `id` from this story's own `indicators`, and only a row with `chart: true`.** Any other id is removed before publishing.
+- **No clear subject, no `chart:` line.** Most articles have none.
 
 **Report, don't theorize.** The body reports what happened and how the mechanism works. It does not claim what something "gives cover to," what "credibility" someone "gains," or how a "gap widens" — those are opinion columns, not wire copy. If a source makes a causal claim, attribute it to them by name. If no source made the claim, cut it.
 
@@ -237,7 +253,7 @@ State-backed Viettel and Vietnam Posts face a February 2027 deadline to match th
 </example>
 
 <example>
-Block 4 is a **counterpoint** that shrinks the headline figure. The hook carries a dated indicator level rather than "freight costs rose."
+Block 4 is a **counterpoint** that shrinks the headline figure. The hook carries a dated figure rather than "freight costs rose." The story is about traffic avoiding the Red Sea, so `chart:` attaches the strait's traffic — which the prose never recites, because the chart under it shows the reader. (The id is the shape; your story's own `indicators` decide yours, and most stories have none. Copy the shape, never the words.)
 
 ---
 title: "Red Sea Reroute Raises Freight"
@@ -253,6 +269,7 @@ sources:
   - name: "Lloyd's List"
     url: "https://lloydslist.com/example"
     country: "GB"
+chart: "cp:bab-el-mandeb"
 ---
 
 Colombo — Asia-Europe container rates hit $4,820 a box on 27 February.

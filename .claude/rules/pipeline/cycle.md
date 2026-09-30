@@ -591,3 +591,56 @@ Status.
   regardless (the sorted top-six headline set moves most days, so the
   "steady state costs nothing" claim holds for a handful), but a prompt edit
   should reach *all* of them, once, and now does.
+
+## The story chart (2026-09-30)
+
+- **An article can carry one chart: `chart: <id>` in its frontmatter**, drawn
+  under the story by the app (`mobile/components/StoryChart.tsx`, resolved by
+  `lib/story-chart.ts`). The writer sets it; it may name only a row Stage 1.7
+  offered that story with `chart: true`, and `validate-articles.js` removes any
+  other — **removes the line, never quarantines the article**: a missing chart
+  costs one figure, a quarantine costs the story. `Charts: n set, d dropped, c
+  cite the figure` in the cycle log is the health line.
+- **The subject decides, not the prose** (user decision). A chart prints its
+  own reading, move and date, so an article about tankers turned back at
+  Hormuz carries Hormuz traffic whether or not a sentence recites 3.1 ships a
+  day. `cite` in the log measures how often they meet and gates nothing.
+- **`chart: true` is the app's own gate**, not a pipeline opinion: a strait
+  with a series, or an id the desk has written a `standing` for
+  (`.indicator-dispatch.json`) — what `instrumentCardFor` resolves. An id the
+  app cannot draw would ship a field that renders nothing.
+- **Every chokepoint match was lost until this.** `entity-registry.js` has
+  resolved straits to `cp:*` since 2026-08-08, and `attach-indicators.js`
+  looked every id up in the trends snapshot, which carries `portwatch-*` rows
+  and no `cp:*` — so Hormuz, the most-covered subject of September (81
+  articles, 75 with a chip), reached the writer with no figure and 6 of them
+  cited one. Straits are read from `.chokepoints.json` now, with the numbers
+  their card prints: seven-day traffic, all ships, against the 90-day normal.
+- **Odds move in points.** `change()` is relative, which turns a contract
+  going 40 → 21 into "−47.5%". And a contract's periods repeat within a day
+  (`Sep 30, Sep 30`), so its windows are counted in days, not observations.
+- **A contract needs its subject, not its country.** Keys are its tags plus
+  the names in its question, matched case-sensitively (Marine Le Pen is not a
+  marine heatwave). One specific key offers it; weak keys — countries,
+  demonyms, `ceasefire` — need three, with a country and its demonym counted
+  once. Measured on a week's replay: at two weak keys *Netanyahu next PM?* hung
+  off every story naming Israel and Israelis, and *Putin out by 2027?* off every
+  story of the war.
+- **A monthly print is aged from the end of the month it measures.** FRED dates
+  August's CPI `2026-08-01` and publishes it mid-September, so aged from the 1st
+  it failed the 45-day limit a week after release — so the rules for US
+  inflation and jobs added below would have offered nothing most days.
+- **Rules added**: the Fed (case-sensitive, so not "fed up"), the ECB, US
+  inflation and jobs, silver prices, the Brazilian real, US gasoline (named as
+  US: bare "gasoline" matched Italian fuel caps), and the thirty drawn
+  exchanges generated from `MARKET_CATALOG`, case-sensitive, with `IPC`, `SMI`,
+  `AEX` and `B3` skipped. These feed `extract-entities.js` too, which is the
+  first time any article has carried an `mkt:*` id.
+- **The editor was told to cut offered figures.** `check-prompt.md` said to
+  cut any number no source body contains, and an indicator level is in no
+  body — a plausible reason so few levels survived to publication, not
+  measured. It now treats a figure matching its `indicators` row as sourced.
+- **Replay before changing any of it**: `node scripts/attach-indicators.js
+  --selection <file> --dry-run` prints every offer without writing. The match
+  list is the thing to read — the eclipse in the wheat fields was found that
+  way, and so was each correction above.
