@@ -117,7 +117,7 @@ function captionViaClaude() {
     'claude',
     [
       '--model',
-      process.env.ZUHD_MODEL || 'claude-sonnet-5',
+      process.env.ZUHD_MODEL || 'claude-sonnet-5-5',
       '--effort',
       'medium',
       '--no-session-persistence',

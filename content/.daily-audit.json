@@ -1,92 +1,40 @@
 {
-  "date": "2026-09-26",
+  "date": "2026-09-29",
   "metrics": {
-    "articles": {
-      "value": 48,
-      "detail": "5 cycles, all completed, avg ~9.6/cycle (56 yesterday); first day on the 05/10/14/18/22 UTC schedule"
-    },
-    "freshness": {
-      "median": 0.5,
-      "p90": 0.7,
-      "max": 1.3,
-      "target": 1.0,
-      "met": true
-    },
-    "categories": {
-      "politics": 23,
-      "economy": 11,
-      "science": 5,
-      "tech": 9
-    },
-    "multiSource": {
-      "pct": 48,
-      "target": 30,
-      "met": true
-    },
-    "usDatelines": {
-      "pct": 40,
-      "target": 25,
-      "met": false
-    },
-    "latAmDatelines": {
-      "pct": 0,
-      "target": 5,
-      "met": false
-    },
-    "sameEventDuplicates": {
-      "value": 0,
-      "target": 0,
-      "met": true
-    },
-    "missingDatelines": {
-      "value": 0,
-      "target": 0,
-      "met": true
-    },
+    "articles": { "value": 62, "detail": "5 cycles, 5 completed, avg 12 published/cycle (59 yesterday); 0 quarantined" },
+    "freshness": { "median": 0, "p90": 1, "max": 1, "target": 1.0, "met": true },
+    "categories": { "politics": 25, "economy": 16, "science": 8, "tech": 13 },
+    "multiSource": { "pct": 26, "target": 30, "met": false },
+    "usDatelines": { "pct": 23, "target": 25, "met": true },
+    "latAmDatelines": { "pct": 3, "target": 5, "met": false },
+    "sameEventDuplicates": { "value": 0, "target": 0, "met": true },
+    "missingDatelines": { "value": 0, "target": 0, "met": true },
     "stateOrAdvocacyOnly": 4,
-    "imageUrlPct": 100,
-    "regions": {
-      "count": 6,
-      "target": 4,
-      "met": true,
-      "breakdown": {
-        "AM": 19,
-        "ME": 12,
-        "EU": 8,
-        "AF": 5,
-        "AS": 3,
-        "GL": 1
-      }
-    },
-    "sciTech": {
-      "ratio": 29,
-      "target": 25,
-      "met": true
-    },
-    "topSourceShare": {
-      "source": "Dawn",
-      "pct": 15,
-      "target": 20,
-      "met": true
-    },
-    "uniqueSources": 55,
+    "imageUrlPct": 95,
+    "regions": { "count": 6, "target": 4, "met": true, "breakdown": { "AM": 16, "AF": 15, "AS": 10, "ME": 10, "EU": 10, "OC": 1 } },
+    "sciTech": { "ratio": 34, "target": 25, "met": true },
+    "topSourceShare": { "source": "Dawn", "pct": 15, "target": 20, "met": true },
+    "uniqueSources": 52,
     "duplicates": 0,
-    "avgCycleDuration": 744
+    "avgCycleDuration": 1309
   },
-  "experiment": "There were no active experiments to evaluate and no pause gate. No new experiment was proposed, because the pipeline changed several times today: the US cap of 3 (982f561b, late on 09-25), the 12-hour selector pool (eb71a380), running-story dedup and thin-pick drops (dfa68da3), the optional science floor (bd8ee3e6), and pool widening with backfill removed (1de1c29b, 18:19 UTC). A parameter change now would be confounded with all of them, so the earliest clean baseline is 2026-09-27 onward.",
-  "weakestArea": "US datelines are furthest from target at 40% against a 25% cap (43% yesterday). The US cap of 3 per cycle has not brought the daily share down yet. The count is inflated by eight articles datelined only \"United States\", mostly crypto and tech wire copy (Binance, Solana, Zcash, Boeing, Instagram, Blackbeard). Latin America reads 0%, but the metric misses at least one Latin American story: Hurricane Polo is datelined \"Baja California Sur\", which is in Mexico. The two Cuba stories carry New York and Washington datelines.",
+  "experiment": "Skipped. There are no active experiments and no pause gate, but the writer and editor moved from sonnet-5 to sonnet-5-5 today (2026-09-29). Any change started now would be confounded with that swap. The 09-27 plan to revisit on 09-30 now needs clean post-swap days, so hold until about 2026-10-02.",
+  "weakestArea": "Multi-source share is 26% against a 30% target (16 of 62 articles). It fell for a third day in a row (43%, then 31% by metrics or 29% by audit, then 26%). The count of corroborated stories slipped from 18 to 16, while Dawn (9) and Premium Times Nigeria (6) added single-source regional pieces. The 2026-05-09 floor-3 experiment was reverted and must not be repeated. If it is still under 30% after the model-swap baseline, look at how the selector uses multiSourceStories in politics, where most corroborated stories sit.",
   "watching": [
-    "Trump rejected Iran's 7-day Hormuz roadmap and Iraq halted all flights to and from Iran under US sanctions, so the oil-shock story is widening from fuel policy into aviation and sanctions enforcement.",
-    "The Houthis sent drones toward Riyadh and published a count of 1,059 Saudi strikes on Marib, which puts the Mecca pact under direct test.",
-    "Hurricane Polo made landfall in Baja California Sur as a Category 5, and follow-up damage reporting would give Latin America a dateline of its own.",
-    "The US and China agreed a $30 billion tariff cut together with an AI-safety channel, which turns the summit pledges into concrete terms.",
-    "Lavrov met Wadephul at the UN in the first Russia–Germany talks in years, while Dmitriev is floating a Nord Stream restart, so this is a possible opening in Europe's stance toward Russia."
+    "Regeni: an Italian court convicted Egyptian officers. It was published twice across cycles, from Al Jazeera on 09-28 and Mada Masr on 09-29, and sameEventDuplicates did not catch it (details in coverageGaps).",
+    "Red Sea: the Houthis seized the Bab al-Mandab coast near Mokha, Yanbu loadings resumed, and diesel hit a record in Houston.",
+    "Pakistan: the IMF review opened alongside a fuel price cut and a motorcycle subsidy scheme, while Afridi defies Islamabad in Peshawar.",
+    "Iraq: US forces exit.",
+    "Moldova: Dodon claims Sandu faces impeachment. This story is sourced only from state or advocacy outlets.",
+    "Nigeria: NNPC picked Chinese refinery partners, an anti-laundering review is under way, Atiku rebutted a corruption report, and deaths in custody in Minna are being probed.",
+    "AI regulation: Anthropic filed an extinction-risk warning, Florida is suing to halt ChatGPT, tech chiefs signed a non-binding pledge, and OpenAI halted its Astra launch."
   ],
   "coverageGaps": [
-    "Latin America has no datelined article today apart from the missed Baja landfall; Cuba is covered only from New York and Washington.",
-    "East Asia is thin, with 3 AS-region articles out of 48 and only one of them (Beijing) from China, Japan or Korea.",
-    "Two of the five science picks are disasters (the Athens gas explosion and the Bangkok flooding), which is the kind of filler the 09-26 science-floor decision meant to stop.",
-    "Eleven articles use a country or region as the dateline (\"United States\" ×8, Yemen, Malawi, Seychelles) instead of a city, which breaks the city-only location convention."
+    "sameEventDuplicates reported 0, but the Regeni sentencing ran twice: 2026-09-29-regeni-italy-convicts-egyptian-agents (Al Jazeera, dated 09-28T19:45) and 2026-09-29-regeni-egyptian-officers-sentenced-rome (Mada Masr). They have different outlets, different titles and no shared URL, so the detector missed a cross-cycle pair. Both are still live; one should be removed or merged.",
+    "Latin America is at 3%, with Brazil (a science piece) and Stanley (a Falklands oil story datelined in a British territory) and no hard news from mainland Latin America. Yesterday was 7%, so this is one bad day, not a trend.",
+    "Six datelines are countries or 'Global', not cities: India, Nigeria, Ukraine, Brazil, United Kingdom, Global. That breaks the city-only location rule mobile's dateline strip relies on, and the missingDateline check does not count it.",
+    "Oceania has one story (Perth iron ore), and Pacific coverage is nil.",
+    "Freshness was measured on only 9 of 62 articles."
   ],
-  "context": "This is the first full day under the new cycle schedule and the 12-hour selector pool. Output fell to 48 articles, but multi-source share rose to 48% (from 36%) and image URLs reached 100%. The dateline metrics need attention in the code before they can be tuned: country-level datelines inflate usDatelinePct, and region names such as \"Baja California Sur\" are not mapped to Latin America."
+  "context": "All five cycles completed, up from four yesterday, and output rose to 62. The average cycle took 1309s, up from 1242s, and the writer averaged 349s, which could be the first sign of the sonnet-5-5 swap and is worth watching. Science held at 8 across dedicated outlets (Nature, Nature Communications, Phys.org, Mongabay), and US datelines stayed under the cap at 23%. Four stories were state-or-advocacy-only (RT/TASS on Moldova and Mali, Declassified UK, and a Jalud settlers story), up from two."
 }

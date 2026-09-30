@@ -34,7 +34,8 @@ fi
 # 2026-07-01: writer/editor default moved sonnet-4-6 → sonnet-5. Sonnet 5 self-revises
 # just-written files with Edit, so Edit must stay in TOOLS_WRITER (missing it stalls the
 # writer on permission prompts — 43 articles lost 07-01→07-03 before this was diagnosed).
-CLAUDE_MODEL="${ZUHD_MODEL:-claude-sonnet-5}"
+# 2026-09-29: sonnet-5 → sonnet-5-5 at user request (every Sonnet pin moves with it).
+CLAUDE_MODEL="${ZUHD_MODEL:-claude-sonnet-5-5}"
 CLAUDE_SELECTOR_MODEL="${ZUHD_SELECTOR_MODEL:-claude-opus-5-5}"
 export ZUHD_MODEL="$CLAUDE_MODEL"
 

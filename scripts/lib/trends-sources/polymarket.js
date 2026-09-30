@@ -323,11 +323,16 @@ export function isUsableShortTitle(raw, short) {
   // Warsh confirmed as Fed Chair?", "Sánchez Palomino wins Peru 2026?") — so
   // nearly every "Will <name> win …" market fell back to the regex and shipped
   // cut mid-phrase ("Will Gavin Newsom win the 2028 Democratic…").
+  // Four words, not three: three is the whole of "Marine Le Pen", so a correct
+  // "Marine Le Pen wins 2027 French election?" matched and was rejected, and the
+  // market shipped the regex cut on every cycle it stayed in the deck. The
+  // fourth word is the verb, which is the part a copy leaves bare.
   const words = (t) => t.toLowerCase().replace(/[?…]/g, '').split(/\s+/).filter(Boolean)
   const after = /^Will\s+(?!the\s)(.*)$/i.exec(raw.trim())
   if (after && !/^Will\b/i.test(s)) {
-    const q = words(after[1]).slice(0, 3).join(' ')
-    if (q.split(' ').length === 3 && words(s).slice(0, 3).join(' ') === q) return false
+    const q = words(after[1])
+    const n = Math.min(4, q.length)
+    if (n >= 3 && words(s).slice(0, n).join(' ') === q.slice(0, n).join(' ')) return false
   }
   return true
 }
@@ -447,6 +452,16 @@ const HAIKU_CONCURRENCY = 4
 // Override with PM_HAIKU_TIMEOUT_MS.
 const HAIKU_TIMEOUT_MS = Number(process.env.PM_HAIKU_TIMEOUT_MS) || 100_000
 
+// Sonnet since 2026-09-29, though the names here still say Haiku. Measured on
+// the same live deck of 12: Sonnet at low effort took 13-15s per chunk against
+// Haiku's 26-47s, which is the latency tail the ceiling above keeps being
+// resized for, and its labels read more naturally ("Flávio Bolsonaro wins
+// Brazil 2026?" against "…wins 2026 Brazil?"). The 27% rejection rate that
+// prompted the switch was mostly `isUsableShortTitle`, not the model; see there.
+// An empty PM_TITLE_EFFORT drops the flag, which running this on Haiku needs.
+const TITLE_MODEL = process.env.PM_TITLE_MODEL || 'claude-sonnet-5-5'
+const TITLE_EFFORT = process.env.PM_TITLE_EFFORT ?? 'low'
+
 /**
  * Shorten and country-tag every title, in parallel chunks.
  *
@@ -533,7 +548,8 @@ No commentary, no markdown fences.`
   let res
   try {
     res = await run('claude', [
-      '--model', 'claude-haiku-4-5-20251001',
+      '--model', TITLE_MODEL,
+      ...(TITLE_EFFORT ? ['--effort', TITLE_EFFORT] : []),
       '--no-session-persistence',
       '--max-turns', '1',
       '--output-format', 'json',
@@ -826,6 +842,7 @@ export async function fetchPolymarketTop({ incumbents = [] } = {}) {
           fresh[i].label = proposed
         } else {
           rejected++
+          console.log(`  · polymarket: rejected short title ${JSON.stringify(proposed)} for ${JSON.stringify(fresh[i].rawTitle)}`)
           fresh[i].label = shortenTitleRegex(fresh[i].rawTitle)
         }
       }
