@@ -981,4 +981,14 @@ export function makeSheetStyles(colors: ColorPalette) {
   });
 }
 
-export const API_BASE = 'https://zuhd-news.pages.dev';
+/**
+ * Where every payload comes from. A dev build may point it at a local build
+ * of the site (`EXPO_PUBLIC_API_BASE=http://10.0.2.2:8788` from the Android
+ * emulator), to try a reader surface against stories the live feed does not
+ * carry yet. `__DEV__` is false in a release bundle, so no store build can be
+ * redirected whatever its environment held (and undefined under jest, which
+ * gets the live host).
+ */
+export const API_BASE =
+  (typeof __DEV__ !== 'undefined' && __DEV__ && process.env.EXPO_PUBLIC_API_BASE) ||
+  'https://zuhd-news.pages.dev';

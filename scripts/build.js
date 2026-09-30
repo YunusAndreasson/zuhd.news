@@ -124,8 +124,8 @@ const markdownToHtml = (md) => {
 // city name to the right of every other row's margin.
 const DATELINE_RE = /^([^\n—]+?)\s+—\s+/
 
-const buildArticle = (filename) => {
-  const raw = readFileSync(join(CONTENT_DIR, filename), 'utf-8')
+const buildArticle = (filename, dir = CONTENT_DIR) => {
+  const raw = readFileSync(join(dir, filename), 'utf-8')
   const { meta, body } = parseFrontmatter(raw)
 
   const sources = Array.isArray(meta.sources) ? meta.sources : []
@@ -733,12 +733,31 @@ const BUILD_VERBOSE = process.env.ZUHD_BUILD_VERBOSE === '1'
 // When each article was published, stable across the box's rebases
 // (lib/published-at.js); mtime for what the log does not name.
 const addTimes = publishedTimes(ROOT, BUILD_WINDOW_DAYS)
-const articles = readdirSync(CONTENT_DIR)
-  .filter(f => f.endsWith('.md') && f !== 'example.md' && f.slice(0, 10) >= buildCutoffDate)
-  .map(file => {
-    const article = buildArticle(file)
+/*
+ * Local-only fixture articles, for trying a reader surface against a story the
+ * corpus does not have yet (a `chart:` before any writer sets one). Read from a
+ * directory outside `content/`, so a fixture can never be committed or reach
+ * the pipeline's build, and announced loudly so a dist built with them cannot
+ * pass for a real one.
+ */
+const EXTRA_ARTICLES = process.env.ZUHD_EXTRA_ARTICLES || ''
+if (EXTRA_ARTICLES && process.env.npm_lifecycle_event === 'publish') {
+  console.error('ZUHD_EXTRA_ARTICLES is set — refusing to build fixtures for a publish.')
+  process.exit(1)
+}
+if (EXTRA_ARTICLES) console.warn(`  !! FIXTURES INCLUDED from ${EXTRA_ARTICLES} — never publish this dist`)
+const articles = [
+  ...readdirSync(CONTENT_DIR)
+    .filter(f => f.endsWith('.md') && f !== 'example.md' && f.slice(0, 10) >= buildCutoffDate)
+    .map(file => ({ file, dir: CONTENT_DIR })),
+  ...(EXTRA_ARTICLES
+    ? readdirSync(EXTRA_ARTICLES).filter(f => f.endsWith('.md')).map(file => ({ file, dir: EXTRA_ARTICLES }))
+    : []),
+]
+  .map(({ file, dir }) => {
+    const article = buildArticle(file, dir)
     if (BUILD_VERBOSE) console.log(`  Built: ${article.slug}`)
-    const addedAt = statSync(join(CONTENT_DIR, file)).mtimeMs
+    const addedAt = statSync(join(dir, file)).mtimeMs
     return { ...article, addedAt, publishedAt: addTimes.get(basename(file, '.md')) ?? addedAt }
   })
 console.log(`  Built: ${articles.length} articles (last ${BUILD_WINDOW_DAYS}d window)`)
@@ -893,6 +912,15 @@ const apiCategories = Object.fromEntries(
             }))
           return entities.length ? { entities } : {}
         })(),
+        /*
+         * The one series the prose cites, drawn under the story (`chart:` in
+         * frontmatter). Unfiltered for the reason `entities` is: the app
+         * resolves it against its own live catalog and draws nothing for an id
+         * it cannot, which is the whole fallback.
+         */
+        ...(typeof meta.chart === 'string' && meta.chart.trim()
+          ? { chart: canonicalIndicatorId(meta.chart.trim()) }
+          : {}),
         location: meta.location || null,
         lat: meta.lat != null ? Number(meta.lat) : null,
         lng: meta.lng != null ? Number(meta.lng) : null,
@@ -1944,6 +1972,12 @@ for (const a of sorted) {
             label: indicatorMap.get(e.indicatorId).label || e.mention || e.indicatorId,
           }))
         return entities.length ? { entities } : {}
+      })(),
+      // The story's chart, filtered like the strip: an id this build does not
+      // publish would open an empty panel.
+      ...(() => {
+        const id = typeof a.meta.chart === 'string' ? canonicalIndicatorId(a.meta.chart.trim()) : ''
+        return id && indicatorMap.has(id) ? { chart: id } : {}
       })(),
       ...(thread?.threadLabel ? { threadLabel: thread.threadLabel } : {}),
     }),

@@ -32,6 +32,7 @@ import {
   getSnapshot as getBookmarks,
   subscribe as subscribeBookmarks,
 } from '../../lib/bookmark-store';
+import type { GraphCard } from '../../lib/cards/types';
 import { ACTIONS_ROW } from '../../lib/deck-layout';
 import { useNewSpent } from '../../lib/fresh-store';
 import type { StoryRow } from '../../lib/map-feed';
@@ -45,6 +46,7 @@ import { articleThreadContext, hookOf, restOf } from '../../lib/story-card';
 import type { TapResult } from '../globe/MiniGlobe';
 import { OddsLine } from '../OddsLine';
 import { Pressable, Text } from '../primitives';
+import { StoryChart } from '../StoryChart';
 
 /**
  * One story, as the sheet holds it — at rest and open, the same element.
@@ -85,6 +87,9 @@ import { Pressable, Text } from '../primitives';
 interface StoryCardProps {
   row: StoryRow;
   odds: StoryOdds | null;
+  /** The series the prose cites (`lib/story-chart.ts`). Where there is one it
+   *  takes the odds line's place: one data line under a story, never two. */
+  chart?: GraphCard | null;
   /** Indicator ids an entity sheet can actually open. */
   resolvableEntityIds?: ReadonlySet<string>;
   /** The sheet has settled open: the rest of the story takes touches. */
@@ -102,6 +107,7 @@ interface StoryCardProps {
   onCountryPress: (result: TapResult) => void;
   onEntityPress: (entity: Entity) => void;
   onOddsPress: (odds: StoryOdds) => void;
+  onChartPress?: (card: GraphCard) => void;
   onSources: (article: Article) => void;
   onBookmark: (article: RiverArticle) => void;
   onShare: (article: RiverArticle) => void;
@@ -207,6 +213,7 @@ const Veil = memo(function Veil({
 export const StoryCard = memo(function StoryCard({
   row,
   odds,
+  chart,
   resolvableEntityIds,
   open,
   progress,
@@ -217,6 +224,7 @@ export const StoryCard = memo(function StoryCard({
   onCountryPress,
   onEntityPress,
   onOddsPress,
+  onChartPress,
   onSources,
   onBookmark,
   onShare,
@@ -406,7 +414,11 @@ export const StoryCard = memo(function StoryCard({
         >
           {rest}
 
-          {odds ? <OddsLine odds={odds} onPress={onOddsPress} /> : null}
+          {chart ? (
+            <StoryChart card={chart} onPress={onChartPress} />
+          ) : odds ? (
+            <OddsLine odds={odds} onPress={onOddsPress} />
+          ) : null}
 
           {threadContext ? (
             <Text variant="labelXs" tone="secondary" style={styles.threadContext}>

@@ -50,7 +50,7 @@ import {
 
 type Pt = { x: number; y: number };
 
-const CHART_HEIGHT = { article: 180, context: 148 } as const;
+const CHART_HEIGHT = { article: 180, context: 148, inline: 64 } as const;
 const STROKE_WIDTH = 1.5;
 const DATA_DOT_R = 2;
 const EVENT_DOT_R = 4;
@@ -71,6 +71,25 @@ const CHART_BOTTOM_PAD = 14;
 // so neither the number nor its unit runs into the chart edge.
 const CHART_RIGHT_PAD = 72;
 const CHART_LEFT_PAD = 2;
+
+/**
+ * The plot's insets. An axis chart keeps a gutter on the right for its
+ * extremes and a row above for cited-story labels. The inline chart prints
+ * neither, and a blank 72pt gutter under a story is exactly the failure the
+ * web's sparkline record describes — so it keeps room for the end ring and
+ * nothing else.
+ */
+interface PlotInsets {
+  top: number;
+  bottom: number;
+  right: number;
+}
+const AXIS_INSETS: PlotInsets = {
+  top: CHART_TOP_PAD,
+  bottom: CHART_BOTTOM_PAD,
+  right: CHART_RIGHT_PAD,
+};
+const INLINE_INSETS: PlotInsets = { top: 8, bottom: 8, right: 10 };
 const MAX_SERIES = 3;
 const SCRUB_LABEL_W_SINGLE = 96;
 const SCRUB_LABEL_W_MULTI = 132;
@@ -119,6 +138,7 @@ interface ChartProps {
   scale: 'linear' | 'log';
   showDataDots: boolean;
   xPositions: number[];
+  insets: PlotInsets;
 }
 
 // Memoized: an active scrub gesture re-renders the parent TrendBlock on every
@@ -140,6 +160,7 @@ const Chart = memo(function Chart({
   scale,
   showDataDots,
   xPositions,
+  insets,
 }: ChartProps) {
   const { seriesPaths, bandPath, points, minY, maxY, referenceY } = useMemo(() => {
     const flat: number[] = [];
@@ -151,8 +172,8 @@ const Chart = memo(function Chart({
     const [eMin, eMax] = extent(flat) as [number, number];
     const safeMin = eMin ?? 0;
     const safeMax = eMax ?? 1;
-    const innerTop = CHART_TOP_PAD;
-    const innerBottom = height - CHART_BOTTOM_PAD;
+    const innerTop = insets.top;
+    const innerBottom = height - insets.bottom;
     const yDomain: [number, number] =
       scale === 'log' && safeMin > 0
         ? [safeMin, safeMax === safeMin ? safeMin * 10 : safeMax]
@@ -198,9 +219,9 @@ const Chart = memo(function Chart({
       maxY: yScale(safeMax),
       referenceY: reference ? yScale(reference.value) : null,
     };
-  }, [series, band, reference, height, scale, colors, xPositions]);
+  }, [series, band, reference, height, scale, colors, xPositions, insets]);
 
-  const chartRightX = width - CHART_RIGHT_PAD;
+  const chartRightX = width - insets.right;
 
   const activeCx = useDerivedValue(() => {
     const idx = scrubIdx.value >= 0 ? scrubIdx.value : defaultHighlightIdx;
@@ -217,12 +238,12 @@ const Chart = memo(function Chart({
   const crosshairP1 = useDerivedValue(() => {
     const idx = scrubIdx.value;
     const x = idx >= 0 ? (points[idx]?.x ?? 0) : 0;
-    return vec(x, CHART_TOP_PAD);
+    return vec(x, insets.top);
   });
   const crosshairP2 = useDerivedValue(() => {
     const idx = scrubIdx.value;
     const x = idx >= 0 ? (points[idx]?.x ?? 0) : 0;
-    return vec(x, height - CHART_BOTTOM_PAD);
+    return vec(x, height - insets.bottom);
   });
 
   const canvasStyle = useMemo(() => ({ width, height }), [width, height]);
@@ -486,7 +507,9 @@ export const TrendBlock = memo(function TrendBlock({
 }: TrendBlockProps) {
   const { colors, font } = useTheme();
   const isContext = variant === 'context';
-  const height = isContext ? CHART_HEIGHT.context : CHART_HEIGHT.article;
+  const isInline = variant === 'inline';
+  const height = CHART_HEIGHT[variant];
+  const insets = isInline ? INLINE_INSETS : AXIS_INSETS;
 
   // Normalize to an array of series. If `series` is provided, use it (capped
   // at MAX_SERIES). Otherwise wrap `values` in a single-series array. Empty
@@ -533,17 +556,17 @@ export const TrendBlock = memo(function TrendBlock({
         seriesLengths: normalizedSeries.map((item) => item.values.length),
         bandLengths: band ? [band.low.length, band.high.length] : undefined,
         left: CHART_LEFT_PAD,
-        right: width - CHART_RIGHT_PAD,
+        right: width - insets.right,
       }),
-    [periods, normalizedSeries, band, width],
+    [periods, normalizedSeries, band, width, insets],
   );
 
   // Compute primary-series points for hit testing (scrub), and where the
   // reference line lands on the same scale, for its label.
   const { points, referenceY } = useMemo<{ points: Pt[]; referenceY: number | null }>(() => {
     if (width <= 0 || primaryValues.length === 0) return { points: [], referenceY: null };
-    const innerTop = CHART_TOP_PAD;
-    const innerBottom = height - CHART_BOTTOM_PAD;
+    const innerTop = insets.top;
+    const innerBottom = height - insets.bottom;
     const yDomain: [number, number] =
       scale === 'log' && min > 0
         ? [min, max === min ? min * 10 : max]
@@ -559,7 +582,7 @@ export const TrendBlock = memo(function TrendBlock({
       })),
       referenceY: reference ? yScale(reference.value) : null,
     };
-  }, [primaryValues, xLayout.positions, width, height, scale, min, max, reference]);
+  }, [primaryValues, xLayout.positions, width, height, scale, min, max, reference, insets]);
 
   const citedPoints = useMemo(
     () => new Set((annotations ?? []).map((a) => a.atIndex)),
@@ -593,7 +616,7 @@ export const TrendBlock = memo(function TrendBlock({
       labelWidth: text.length * REFERENCE_LABEL_CHAR_WIDTH,
       labelHeight: LABEL_ROW_HEIGHT,
       minLeft: CHART_LEFT_PAD,
-      maxRight: width - CHART_RIGHT_PAD,
+      maxRight: width - insets.right,
       step: REFERENCE_LABEL_STEP,
     });
     if (!spot) return { left: CHART_LEFT_PAD, top: aboveTop };
@@ -601,7 +624,7 @@ export const TrendBlock = memo(function TrendBlock({
       left: spot.left,
       top: spot.above ? aboveTop : Math.min(referenceY + 2, height - LABEL_ROW_HEIGHT),
     };
-  }, [points, reference, referenceY, width, height]);
+  }, [points, reference, referenceY, width, height, insets]);
 
   const scrubIdx = useSharedValue(-1);
   const timeTicks: TrendTimeTick[] | null = xLayout.ticks;
@@ -672,9 +695,11 @@ export const TrendBlock = memo(function TrendBlock({
           on the screen — bigger than the kicker, the ticks and the source —
           and it sat directly under the title, where it read as a subtitle
           rather than as "what this axis measures". */}
-      <Text variant={isContext ? 'labelXs' : 'labelSm'} numberOfLines={2} style={styles.label}>
-        {label}
-      </Text>
+      {isInline ? null : (
+        <Text variant={isContext ? 'labelXs' : 'labelSm'} numberOfLines={2} style={styles.label}>
+          {label}
+        </Text>
+      )}
 
       {legend ? (
         <View style={styles.legendRow}>
@@ -714,6 +739,7 @@ export const TrendBlock = memo(function TrendBlock({
                 // Skia circles there adds cost and visual noise without
                 // exposing any interaction or information the line lacks.
                 showDataDots={scrubbable}
+                insets={insets}
               />
               {annotationLabels.map((a) => {
                 const LABEL_W = 72;
@@ -758,16 +784,30 @@ export const TrendBlock = memo(function TrendBlock({
                   looser than `leadingTight`, which is the right register for
                   two stacked axis labels. `numberOfLines` caps it so no unit
                   can ever reach a third line and clip again. */}
-              <View pointerEvents="none" style={[styles.yAxis, styles.yAxisMax]}>
-                <Text variant="tabular" tone="secondary" numberOfLines={2} style={styles.yAxisText}>
-                  {formatBlockNumber(max, unit).replace(' ', '\n')}
-                </Text>
-              </View>
-              <View pointerEvents="none" style={[styles.yAxis, styles.yAxisMin]}>
-                <Text variant="tabular" tone="secondary" numberOfLines={2} style={styles.yAxisText}>
-                  {formatBlockNumber(min, unit).replace(' ', '\n')}
-                </Text>
-              </View>
+              {isInline ? null : (
+                <>
+                  <View pointerEvents="none" style={[styles.yAxis, styles.yAxisMax]}>
+                    <Text
+                      variant="tabular"
+                      tone="secondary"
+                      numberOfLines={2}
+                      style={styles.yAxisText}
+                    >
+                      {formatBlockNumber(max, unit).replace(' ', '\n')}
+                    </Text>
+                  </View>
+                  <View pointerEvents="none" style={[styles.yAxis, styles.yAxisMin]}>
+                    <Text
+                      variant="tabular"
+                      tone="secondary"
+                      numberOfLines={2}
+                      style={styles.yAxisText}
+                    >
+                      {formatBlockNumber(min, unit).replace(' ', '\n')}
+                    </Text>
+                  </View>
+                </>
+              )}
               {/* On the line, at its left end, rather than in the right gutter:
                   a disrupted strait's normal sits near the top of its own
                   range, exactly where the max label already is, and a label
@@ -801,7 +841,7 @@ export const TrendBlock = memo(function TrendBlock({
         </View>
       </GestureDetector>
 
-      {timeTicks ? (
+      {isInline ? null : timeTicks ? (
         <View style={styles.timeAxisRow}>
           {timeTicks.map((t, i) => (
             <Text

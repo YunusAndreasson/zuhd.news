@@ -8,7 +8,7 @@ import {
 } from './cards/markets';
 import type { SwipeCard } from './cards/rank';
 import { admitted } from './cards/sections';
-import type { CardDelta } from './cards/types';
+import type { Card, CardDelta } from './cards/types';
 import { gaugeMove } from './cards/week-move';
 import { type Exchange, exchangeCard, exchangeDelta, stockMarketPlace } from './markets';
 import { stripLabel } from './now';
@@ -172,6 +172,75 @@ function seriesGroup(indicator: Indicator): SeriesGroup | 'currencies' | null {
   return indicator.source === 'oer' ? 'currencies' : 'economy';
 }
 
+/** A published series' card: the pool's where it has one — its market
+ *  signal first, since that carries the desk's account of the move — and
+ *  otherwise built the way the menu builds it. */
+function seriesCard(
+  indicator: Indicator,
+  group: SeriesGroup | 'currencies',
+  {
+    trends,
+    analysis,
+    articles,
+  }: { trends: TrendsSnapshot; analysis: AnalysisById; articles: Article[] },
+  take: (id: string) => SwipeCard | undefined,
+): Card | null {
+  return (
+    take(`market-signal:${indicator.id}`) ??
+    take(indicator.id) ??
+    take(`${indicator.id}-mover`) ??
+    (group === 'currencies'
+      ? currencyCard(trends, analysis, articles, indicator)
+      : indicatorCard(
+          trends,
+          analysis,
+          articles,
+          indicator.id,
+          SERIES_BY_ID.get(indicator.id)?.kicker ?? 'markets',
+        ))
+  );
+}
+
+/**
+ * The card one id names, the same object the menu row for it opens — so a
+ * story's chart and the card a press on it opens cannot disagree about the
+ * series, the move or the 90-day normal.
+ *
+ * Ids are the article namespace (`Entity.indicatorId`, `Article.chart`):
+ * `cp:<id>` is a strait, whose card is `strait-<id>`; `mkt:<id>` an
+ * exchange; `poly-…` a contract, which only the pool builds; anything else a
+ * published series. Null for an id nothing publishes, a series the menu does
+ * not list (single companies, pageviews), and a card that fails the deck's
+ * gate — a chart without the desk's paragraph is not drawn anywhere.
+ */
+export function instrumentCardFor(id: string, inputs: CatalogInputs): SwipeCard | null {
+  const { ranked, trends, chokepoints, analysis, articles, exchanges, now = new Date() } = inputs;
+  const pool = new Map(ranked.map((c) => [c.id, c]));
+  const take = (key: string) => pool.get(key);
+  const gate = (card: Card | null | undefined): SwipeCard | null =>
+    card && admitted(card) ? card : null;
+
+  if (id.startsWith('cp:')) {
+    const key = id.slice(3);
+    const chokepoint = chokepoints.find((c) => c.id === key);
+    return gate(
+      take(`strait-${key}`) ?? (chokepoint ? straitCardFor(chokepoint, trends, now) : null),
+    );
+  }
+  if (id.startsWith('mkt:')) {
+    const exchange = exchanges.find((e) => `mkt:${e.id}` === id);
+    return gate(
+      take(`market-signal:${id}`) ?? take(id) ?? (exchange ? exchangeCard(exchange) : null),
+    );
+  }
+  const pooled = take(id);
+  if (pooled?.kind === 'belief') return gate(pooled);
+  const indicator = trends?.indicators.find((i) => i.id === id);
+  const group = indicator ? seriesGroup(indicator) : null;
+  if (!trends || !indicator || !group) return null;
+  return gate(seriesCard(indicator, group, { trends, analysis, articles }, take));
+}
+
 function rowFor(
   card: SwipeCard,
   now: number,
@@ -266,21 +335,7 @@ export function buildInstrumentCatalog({
       const group = seriesGroup(indicator);
       if (!group) continue;
       if (group === 'stocks' && quoted.has(indicator.label.toLowerCase())) continue;
-      const pooled =
-        take(`market-signal:${indicator.id}`) ??
-        take(indicator.id) ??
-        take(`${indicator.id}-mover`);
-      const built =
-        pooled ??
-        (group === 'currencies'
-          ? currencyCard(trends, analysis, articles, indicator)
-          : indicatorCard(
-              trends,
-              analysis,
-              articles,
-              indicator.id,
-              SERIES_BY_ID.get(indicator.id)?.kicker ?? 'markets',
-            ));
+      const built = seriesCard(indicator, group, { trends, analysis, articles }, take);
       if (built && admitted(built)) rows[group].push(rowFor(built, at));
     }
   }

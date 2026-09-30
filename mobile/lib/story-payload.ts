@@ -21,6 +21,10 @@ export interface StoryPayload {
   sentimentDivergence?: number | null;
   bodyHtml: string;
   sources?: { name: string; url: string; country?: string; sentiment?: number | null }[];
+  /** The series the prose cites, already filtered to ones the build
+   *  publishes. (Its `entities` are the map's `{ id, label }` reshape, which
+   *  drops the word the body used, so they cannot be re-tagged here.) */
+  chart?: string;
 }
 
 export const isStoryPayload = (v: unknown): v is StoryPayload => {
@@ -88,6 +92,7 @@ export function articleFromStory(
       lat: null,
       lng: null,
       sentences,
+      ...(typeof story.chart === 'string' && story.chart ? { chart: story.chart } : {}),
     },
   };
 }

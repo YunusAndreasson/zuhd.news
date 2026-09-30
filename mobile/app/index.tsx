@@ -47,6 +47,7 @@ import {
 import { FRAMING_WIDEST } from '../components/globe/projection';
 import { HintOverlay } from '../components/HintOverlay';
 import { type MenuHazards, MenuSheet } from '../components/MenuSheet';
+import { ALERT_ROW, AlertPill } from '../components/map/AlertPill';
 import { GlobeGestureLayer } from '../components/map/GlobeGestureLayer';
 import { MapHeader } from '../components/map/MapHeader';
 import { MapSheet, type MapSheetDetent, type MapSheetRef } from '../components/map/MapSheet';
@@ -127,6 +128,7 @@ import { oddsByStory, oddsLabels, type StoryOdds } from '../lib/predictions';
 import { getSnapshot as getReadSlugs, pruneRead } from '../lib/read-store';
 import { resumeLanding, unreadNewBehind } from '../lib/resume-landing';
 import { maybeRequestReview } from '../lib/store-review';
+import { storyCharts } from '../lib/story-chart';
 import { buildStoryPlaces, foundProgress } from '../lib/story-places';
 
 /**
@@ -416,7 +418,6 @@ export default function HomeScreen() {
   // the dock until 2026-09-22), so the cards end above the dock alone, and a
   // top toast starts under the player.
   const [playerHeight, setPlayerHeight] = useState(0);
-  const topToastOffset = topChromeHeight + (briefingVisible ? playerHeight : 0);
   // Keyed on its two numbers. Written inline in the JSX, the object was
   // rebuilt whenever the compiler's cached block around `<MiniGlobe>` was, so
   // a swipe landing handed the globe a fresh object with the same two numbers
@@ -433,10 +434,6 @@ export default function HomeScreen() {
   }));
 
   const marketBottom = screenHeight - layout.peek;
-  const marketViewport = useMemo(
-    () => ({ top: topChromeHeight, bottom: marketBottom }),
-    [topChromeHeight, marketBottom],
-  );
 
   // ---------------------------------------------------------------------
   // Derived content
@@ -494,6 +491,21 @@ export default function HomeScreen() {
     });
     return lastCatalogRef.current;
   }, [menuOpen, rankedInstruments, trends, chokepoints, analysis, river, exchanges]);
+
+  /** The series each story's prose cites, as the card a press opens — built
+   *  only for the few ids the river names, not the whole catalog. */
+  const charts = useMemo(
+    () =>
+      storyCharts(river, {
+        ranked: rankedInstruments,
+        trends,
+        chokepoints,
+        analysis,
+        articles: river,
+        exchanges,
+      }),
+    [rankedInstruments, trends, chokepoints, analysis, river, exchanges],
+  );
 
   /** The alerts the globe draws, chosen once for the globe and for the
    *  menu's list of them, so the list holds exactly the marks. */
@@ -651,6 +663,18 @@ export default function HomeScreen() {
   storyRowsRef.current = storyRows;
   const rankedRef = useRef(rankedInstruments);
   rankedRef.current = rankedInstruments;
+  // A live Red alert is one line under the gauges (`AlertPill`), below the
+  // player when it is up; a top toast and the globe's market marks start
+  // under it, so neither lands on it.
+  const alertTitle = now[0]?.title ?? null;
+  const alertTop = topChromeHeight + (briefingVisible ? playerHeight : 0);
+  const topToastOffset = alertTop + (alertTitle ? ALERT_ROW : 0);
+  const marketTop = topChromeHeight + (alertTitle ? ALERT_ROW : 0);
+  const marketViewport = useMemo(
+    () => ({ top: marketTop, bottom: marketBottom }),
+    [marketTop, marketBottom],
+  );
+
   const nowRef = useRef(now);
   nowRef.current = now;
 
@@ -1627,6 +1651,7 @@ export default function HomeScreen() {
         <StoryCard
           row={row}
           odds={odds.get(row.slug) ?? null}
+          chart={charts.get(row.slug) ?? null}
           resolvableEntityIds={resolvableEntityIds}
           // Only the card in front is ever open. Handed to all three mounted
           // cards, every open and close re-rendered the two off-screen
@@ -1640,6 +1665,7 @@ export default function HomeScreen() {
           onCountryPress={handleCountryPress}
           onEntityPress={handleEntityPress}
           onOddsPress={handleOddsPress}
+          onChartPress={openCard}
           onSources={handleSourcesPress}
           onBookmark={handleArticleBookmark}
           onShare={handleShare}
@@ -1657,6 +1683,8 @@ export default function HomeScreen() {
       handleShare,
       handleSourcesPress,
       odds,
+      charts,
+      openCard,
       resolvableEntityIds,
       sheetProgress,
       storyOpen,
@@ -1702,9 +1730,12 @@ export default function HomeScreen() {
               r.article.threadArc,
               r.article.threadDay,
               odds.has(r.slug),
+              // A contract's chart carries two caption lines a reading's
+              // does not, so the kind is part of the height.
+              charts.get(r.slug)?.kind ?? null,
             ]),
           ),
-    [measureNeeded, screenWidth, fontScale, font, typography, storyRows, odds],
+    [measureNeeded, screenWidth, fontScale, font, typography, storyRows, odds, charts],
   );
   // biome-ignore lint/correctness/useExhaustiveDependencies: `cardHeightsVersion` is when the ref's map gained heights
   const unmeasured = useMemo(
@@ -1733,6 +1764,7 @@ export default function HomeScreen() {
         <StoryCard
           row={row}
           odds={odds.get(row.slug) ?? null}
+          chart={charts.get(row.slug) ?? null}
           resolvableEntityIds={resolvableEntityIds}
           open={false}
           progress={sheetProgress}
@@ -1747,7 +1779,7 @@ export default function HomeScreen() {
         />
       );
     },
-    [odds, resolvableEntityIds, sheetProgress, storyRows],
+    [odds, charts, resolvableEntityIds, sheetProgress, storyRows],
   );
   const unmeasuredRef = useRef(unmeasured);
   unmeasuredRef.current = unmeasured;
@@ -1836,8 +1868,6 @@ export default function HomeScreen() {
         count={storyCount}
         position={storyProgress}
         progress={progress}
-        alert={now[0]?.title ?? null}
-        onAlertPress={handleMastheadAlertPress}
         onSeek={goToStory}
         timeAt={storyTimeAt}
         categoryAt={storyCategoryAt}
@@ -1865,8 +1895,6 @@ export default function HomeScreen() {
       storyCount,
       storyProgress,
       progress,
-      now,
-      handleMastheadAlertPress,
     ],
   );
 
@@ -1979,6 +2007,10 @@ export default function HomeScreen() {
           onListenPress={handleBriefingPress}
         />
       </View>
+
+      {alertTitle ? (
+        <AlertPill title={alertTitle} top={alertTop} onPress={handleMastheadAlertPress} />
+      ) : null}
 
       <MapSheet
         ref={mapSheetRef}

@@ -1,5 +1,5 @@
 import { memo, useCallback, useEffect, useMemo, useState } from 'react';
-import { type AccessibilityActionEvent, Pressable, StyleSheet, View } from 'react-native';
+import { type AccessibilityActionEvent, StyleSheet, View } from 'react-native';
 import {
   type SharedValue,
   useAnimatedReaction,
@@ -7,7 +7,7 @@ import {
   useSharedValue,
 } from 'react-native-reanimated';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
-import { mixHex, PRESSED_STYLE, SPACING } from '../../constants/theme';
+import { mixHex, SPACING } from '../../constants/theme';
 import { useScrub } from '../../hooks/useScrub';
 import { useTheme } from '../../hooks/useTheme';
 import { announce } from '../../lib/announce';
@@ -77,8 +77,6 @@ export const StoryDock = memo(function StoryDock({
   count,
   position,
   progress,
-  alert,
-  onAlertPress,
   onSeek,
   onClaim,
   timeAt,
@@ -100,10 +98,6 @@ export const StoryDock = memo(function StoryDock({
   position: SharedValue<number>;
   /** Found on the globe — spoken, not printed. */
   progress?: FoundProgress;
-  /** The newest live Red alert's title, if any. */
-  alert?: string | null;
-  /** Opens the alert. */
-  onAlertPress?: () => void;
   /** Jump to a story from the track. */
   onSeek?: (index: number) => void;
   /** UI worklet: a scrub supersedes pending camera input immediately. */
@@ -159,8 +153,11 @@ export const StoryDock = memo(function StoryDock({
     [unreadNew.first, onSeek],
   );
   const insets = useSafeAreaInsets();
-  const showingAlert = !refreshing && !!alert;
-  const status = refreshing ? 'checking for new stories' : showingAlert ? `now · ${alert}` : null;
+  // Only a refresh takes the track's row, and only for the second it runs. A
+  // live Red alert took it too until 2026-09-30, for as long as it was live —
+  // days, for a cyclone — and the reader lost the day's scrubber with it; the
+  // alert is `AlertPill`, under the gauges, now.
+  const status = refreshing ? 'checking for new stories' : null;
   // The status line is a live region, which only Android speaks.
   useEffect(() => {
     if (status) announce(status, { liveRegion: true });
@@ -358,17 +355,11 @@ export const StoryDock = memo(function StoryDock({
         ]}
       >
         {status ? (
-          <Pressable
-            onPress={showingAlert ? onAlertPress : undefined}
-            disabled={!showingAlert || !onAlertPress}
-            accessibilityLiveRegion="polite"
-            accessibilityRole={showingAlert ? 'button' : 'text'}
-            style={({ pressed }) => [styles.status, pressed && showingAlert ? PRESSED_STYLE : null]}
-          >
+          <View accessibilityLiveRegion="polite" style={styles.status}>
             <Text variant="caption" tone="secondary" numberOfLines={2}>
               {status}
             </Text>
-          </Pressable>
+          </View>
         ) : count > 0 ? (
           <ScrubBar
             scrub={scrub}

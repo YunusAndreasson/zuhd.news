@@ -105,8 +105,13 @@ whole time; nothing said so.
   with no article yet, whose globe mark needs an accessible row. It holds no
   stories and no conflict events (UCDP publishes months in arrears, and NOW
   over a March event is a false claim). **Alerts never enter the deck**: the
-  camera track is stories only. They reach the reader as the dock's line in
-  place of the story track (`now · …`, which opens the alert). A contract
+  camera track is stories only. They reach the reader as one pill under the
+  gauges (`AlertPill`: `now · …`, which opens the alert), over the globe the
+  alert is about, below the player when it is up, and through an open story.
+  Until 2026-09-30 it took the dock's row in place of the story track, so a
+  cyclone live for days took the scrubber with it; the user moved it to the
+  top the same day. A top toast and the globe's market marks start under it.
+  A contract
   reaches the sheet the one honest way: as the odds on the story it settles.
 - **The strip scrolls sideways and holds the ten readings that moved most this
   week, largest move first.** It was three fixed slots, and the reader asked for

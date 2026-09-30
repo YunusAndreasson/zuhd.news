@@ -238,6 +238,11 @@ export interface Article {
    *  Missing array or empty array both mean "no tappable entities"; mobile
    *  never fails on an absent field. */
   entities?: Entity[];
+  /** The one series the prose cites, drawn under the story — an id in the
+   *  same namespace as `Entity.indicatorId` (`brent`, `cp:hormuz`,
+   *  `poly-…`). Absent on most stories; an id the client cannot resolve
+   *  draws nothing. */
+  chart?: string;
 }
 
 interface ContextIndexEntry {
@@ -582,6 +587,9 @@ export interface Indicator {
   change24h?: number | null;
   /** Polymarket only: the outcome the price is for — "Yes". */
   outcomeLabel?: string;
+  /** Polymarket only: the question's own deadline (ISO), or `null` for an
+   *  open-ended market. */
+  endDate?: string | null;
   /**
    * One written paragraph saying what this indicator is and why a move in it
    * reaches an ordinary life — "fuel, freight and fertiliser move after it".
