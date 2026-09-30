@@ -1,98 +1,5 @@
 [
   {
-    "timestamp": "2026-09-08T22:21:30.929Z",
-    "candidateCount": 10,
-    "candidates": [
-      {
-        "slug": "2026-09-08-pisa-oecd-ai-reading-decline-attribution-claim",
-        "title": "OECD Links AI To Decline",
-        "category": "politics",
-        "eventCoverage": 886,
-        "importance": 6
-      },
-      {
-        "slug": "2026-09-08-carney-eu-pivot-north-south-infrastructure-limit",
-        "title": "Carney Deepens Europe Pivot",
-        "category": "economy",
-        "eventCoverage": 575,
-        "importance": 6
-      },
-      {
-        "slug": "2026-09-08-us-strikes-iranian-tankers-kharg-jask-escalation-ladder",
-        "title": "US Strikes Iranian Tankers",
-        "category": "politics",
-        "eventCoverage": 567,
-        "importance": 6
-      },
-      {
-        "slug": "2026-09-08-ground-zero-records-air-safe-assurances-latency",
-        "title": "Officials Hid Ground Zero Risks",
-        "category": "politics",
-        "eventCoverage": 185,
-        "importance": 6
-      },
-      {
-        "slug": "2026-09-08-brics-local-currency-settlement-rails-new-delhi",
-        "title": "BRICS Explores Local Payments",
-        "category": "economy",
-        "eventCoverage": 172,
-        "importance": 6
-      },
-      {
-        "slug": "2026-09-08-hrw-taliban-normalisation-measurable-benchmarks",
-        "title": "HRW Warns Against Normalization",
-        "category": "politics",
-        "eventCoverage": 0,
-        "importance": 6
-      },
-      {
-        "slug": "2026-09-07-kazakhstan-water-women-unpaid-hours-accounting",
-        "title": "Kazakh Women Carry Water",
-        "category": "politics",
-        "eventCoverage": 0,
-        "importance": 6
-      },
-      {
-        "slug": "2026-09-08-india-germany-green-workforce-recruiter-pipeline",
-        "title": "India Powers Germany's Green Jobs",
-        "category": "economy",
-        "eventCoverage": 0,
-        "importance": 6
-      },
-      {
-        "slug": "2026-09-08-sea-anemone-venom-klebsiella-amr-discovery-gap",
-        "title": "Anemone Venom Fights Superbug",
-        "category": "science",
-        "eventCoverage": 0,
-        "importance": 6
-      },
-      {
-        "slug": "2026-09-08-navier-stokes-blow-up-claim-verification-burden",
-        "title": "AI Claims Navier-Stokes Proof",
-        "category": "tech",
-        "eventCoverage": 0,
-        "importance": 6
-      }
-    ],
-    "selected": {
-      "slug": "2026-09-08-us-strikes-iranian-tankers-kharg-jask-escalation-ladder",
-      "title": "US Strikes Iranian Tankers",
-      "category": "politics",
-      "body": "The US struck multiple Iranian tankers",
-      "eventCoverage": 567,
-      "importance": 6
-    },
-    "skipReason": null,
-    "sent": true,
-    "pushTitle": "Breaking News",
-    "pushBody": "US strikes multiple Iranian oil tankers near Strait of Hormuz",
-    "response": {
-      "pushed": 1,
-      "skipped": 0,
-      "tokens": 9
-    }
-  },
-  {
     "timestamp": "2026-09-09T04:21:48.789Z",
     "candidateCount": 12,
     "candidates": [
@@ -10056,6 +9963,113 @@
     "sent": true,
     "pushTitle": "Breaking News",
     "pushBody": "Landmines wound 3 South Korean soldiers at DMZ, UN Command says",
+    "response": {
+      "pushed": 1,
+      "skipped": 0,
+      "tokens": 5
+    }
+  },
+  {
+    "timestamp": "2026-09-30T10:16:22.694Z",
+    "candidateCount": 12,
+    "candidates": [
+      {
+        "slug": "2026-09-30-flydubai-tel-aviv-flight-hijack-code-saudi-diversion",
+        "title": "Flydubai Diverts to Saudi Arabia",
+        "category": "politics",
+        "eventCoverage": 759,
+        "importance": 6
+      },
+      {
+        "slug": "2026-09-30-russia-kaliningrad-nuclear-warning-nato-baltic",
+        "title": "Russia Threatens NATO Over Kaliningrad",
+        "category": "politics",
+        "eventCoverage": 153,
+        "importance": 6
+      },
+      {
+        "slug": "2026-09-30-apple-pay-india-launch-no-upi-axis-bank",
+        "title": "Apple Pay Enters India Card-Only",
+        "category": "economy",
+        "eventCoverage": 130,
+        "importance": 6
+      },
+      {
+        "slug": "2026-09-30-gaza-mortality-report-2025-child-deaths-double",
+        "title": "Gaza Child Mortality Doubles",
+        "category": "politics",
+        "eventCoverage": 128,
+        "importance": 6
+      },
+      {
+        "slug": "2026-09-30-copernicus-ozone-pollution-40-percent-exposed",
+        "title": "Ozone Harms 40% of Humanity",
+        "category": "science",
+        "eventCoverage": 110,
+        "importance": 6
+      },
+      {
+        "slug": "2026-09-30-french-inflation-3-percent-september-energy",
+        "title": "French Inflation Hits 3%",
+        "category": "economy",
+        "eventCoverage": 99,
+        "importance": 6
+      },
+      {
+        "slug": "2026-09-30-iran-receives-us-reply-hormuz-conditions",
+        "title": "Iran Reports US Hormuz Reply",
+        "category": "politics",
+        "eventCoverage": 0,
+        "importance": 6
+      },
+      {
+        "slug": "2026-09-30-openai-30-billion-raise-1-4-trillion-ipo-delay",
+        "title": "OpenAI Delays IPO, Seeks Capital",
+        "category": "economy",
+        "eventCoverage": 0,
+        "importance": 6
+      },
+      {
+        "slug": "2026-09-30-vcn01-oncolytic-virus-pancreatic-cancer-trial",
+        "title": "Virus Therapy Lifts Pancreatic Survival",
+        "category": "science",
+        "eventCoverage": 0,
+        "importance": 6
+      },
+      {
+        "slug": "2026-09-29-boeing-wins-fa-xx-navy-drone-ships",
+        "title": "Boeing Wins Navy F/A-XX",
+        "category": "tech",
+        "eventCoverage": 0,
+        "importance": 6
+      },
+      {
+        "slug": "2026-09-30-china-ev-weight-carbon-footprint",
+        "title": "China's Electric Cars Bulk Up",
+        "category": "tech",
+        "eventCoverage": 0,
+        "importance": 6
+      },
+      {
+        "slug": "2026-09-30-bahawalpur-teen-ai-assisted-poisoning-nccia",
+        "title": "Teen Jailed Over AI Poisoning Query",
+        "category": "tech",
+        "eventCoverage": 0,
+        "importance": 6
+      }
+    ],
+    "selected": {
+      "slug": "2026-09-30-flydubai-tel-aviv-flight-hijack-code-saudi-diversion",
+      "title": "Flydubai Diverts to Saudi Arabia",
+      "category": "politics",
+      "body": "Flight FZ1073 squawked hijack code and dropped 14,000",
+      "eventCoverage": 759,
+      "importance": 6
+    },
+    "skipReason": null,
+    "sent": true,
+    "pushTitle": "Breaking News",
+    "pushBody": "Flydubai jet squawks hijack code, diverts to Saudi Arabia with 174 aboard",
     "response": {
       "pushed": 1,
       "skipped": 0,
