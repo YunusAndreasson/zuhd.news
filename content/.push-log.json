@@ -1,112 +1,5 @@
 [
   {
-    "timestamp": "2026-09-08T17:24:42.113Z",
-    "candidateCount": 12,
-    "candidates": [
-      {
-        "slug": "2026-09-08-canada-retaliatory-tariffs-in-force-target-selection",
-        "title": "Canada Tariffs Take Effect",
-        "category": "economy",
-        "eventCoverage": 699,
-        "importance": 6
-      },
-      {
-        "slug": "2026-09-08-israel-closes-british-consulate-settlement-goods-ban",
-        "title": "Israel Shuts British Consulate",
-        "category": "politics",
-        "eventCoverage": 655,
-        "importance": 6
-      },
-      {
-        "slug": "2026-09-08-tumen-river-road-bridge-sanctions-enforcement-gap",
-        "title": "Russia, North Korea Open Bridge",
-        "category": "economy",
-        "eventCoverage": 415,
-        "importance": 6
-      },
-      {
-        "slug": "2026-09-08-hungary-expels-ten-russian-diplomats-veto-reversal",
-        "title": "Hungary Expels Russian Envoys",
-        "category": "politics",
-        "eventCoverage": 382,
-        "importance": 6
-      },
-      {
-        "slug": "2026-09-08-yemen-18500-displaced-saudi-escalation-warning",
-        "title": "Yemen Fighting Displaces Thousands",
-        "category": "politics",
-        "eventCoverage": 278,
-        "importance": 6
-      },
-      {
-        "slug": "2026-09-08-ali-al-taher-ridge-lebanon-terrain-as-leverage",
-        "title": "Israeli Ridge Claim Reshapes Talks",
-        "category": "politics",
-        "eventCoverage": 117,
-        "importance": 6
-      },
-      {
-        "slug": "2026-09-08-isdb-bangladesh-refining-capacity-import-exposure",
-        "title": "Islamic Bank Funds Bangladesh Refining",
-        "category": "economy",
-        "eventCoverage": 0,
-        "importance": 6
-      },
-      {
-        "slug": "2026-09-08-dhs-predictive-policing-financial-data-pretext-stops",
-        "title": "Homeland Security Profiles Drivers",
-        "category": "tech",
-        "eventCoverage": 0,
-        "importance": 6
-      },
-      {
-        "slug": "2026-09-08-mistral-three-billion-open-weights-sovereign-ai",
-        "title": "Mistral Raises €3 Billion",
-        "category": "tech",
-        "eventCoverage": 0,
-        "importance": 6
-      },
-      {
-        "slug": "2026-09-08-european-cdn-concentration-tls-termination-sovereignty",
-        "title": "Cloudflare Dominates European Web",
-        "category": "tech",
-        "eventCoverage": 0,
-        "importance": 6
-      },
-      {
-        "slug": "2026-09-08-himalayan-flood-attribution-what-evidence-supports",
-        "title": "Himalaya Flood Science Explained",
-        "category": "science",
-        "eventCoverage": 0,
-        "importance": 6
-      },
-      {
-        "slug": "2026-09-08-seaweed-carbon-durability-offset-accounting",
-        "title": "Seaweed Carbon Claims Overstated",
-        "category": "science",
-        "eventCoverage": 0,
-        "importance": 6
-      }
-    ],
-    "selected": {
-      "slug": "2026-09-08-hungary-expels-ten-russian-diplomats-veto-reversal",
-      "title": "Hungary Expels Russian Envoys",
-      "category": "politics",
-      "body": "[Hungary](country:HU)'s first anti-Kremlin act in 16",
-      "eventCoverage": 382,
-      "importance": 6
-    },
-    "skipReason": null,
-    "sent": true,
-    "pushTitle": "Breaking News",
-    "pushBody": "Hungary expels 10 Russian diplomats, ending 16 years of Kremlin alignment",
-    "response": {
-      "pushed": 1,
-      "skipped": 0,
-      "tokens": 9
-    }
-  },
-  {
     "timestamp": "2026-09-08T22:21:30.929Z",
     "candidateCount": 10,
     "candidates": [
@@ -10070,6 +9963,99 @@
     "sent": true,
     "pushTitle": "Breaking News",
     "pushBody": "US diesel price hits record $6.53 a gallon, AAA data show",
+    "response": {
+      "pushed": 1,
+      "skipped": 0,
+      "tokens": 5
+    }
+  },
+  {
+    "timestamp": "2026-09-30T05:12:38.602Z",
+    "candidateCount": 10,
+    "candidates": [
+      {
+        "slug": "2026-09-30-north-korea-dmz-landmine-blast-denial",
+        "title": "North Korea Denies DMZ Blasts",
+        "category": "politics",
+        "eventCoverage": 416,
+        "importance": 6
+      },
+      {
+        "slug": "2026-09-30-openai-devday-dots-agents-gpt-6-1-sol",
+        "title": "OpenAI Launches Dots Agents",
+        "category": "tech",
+        "eventCoverage": 280,
+        "importance": 6
+      },
+      {
+        "slug": "2026-09-30-supreme-court-third-country-deportations",
+        "title": "Court Revives Third-Country Deportations",
+        "category": "politics",
+        "eventCoverage": 130,
+        "importance": 6
+      },
+      {
+        "slug": "2026-09-30-australia-inflation-august-rba-rate-hikes-fuel",
+        "title": "Australian Inflation Defies Hikes",
+        "category": "economy",
+        "eventCoverage": 129,
+        "importance": 6
+      },
+      {
+        "slug": "2026-09-30-france-public-sector-strike-pay-budget-cuts",
+        "title": "French Public Workers Strike",
+        "category": "politics",
+        "eventCoverage": 109,
+        "importance": 6
+      },
+      {
+        "slug": "2026-09-30-malaysia-deports-myanmar-migrants-lumut",
+        "title": "Malaysia Sends Myanmar Migrants Home",
+        "category": "politics",
+        "eventCoverage": 96,
+        "importance": 6
+      },
+      {
+        "slug": "2026-09-30-dangote-lamu-refinery-kenya-16-billion",
+        "title": "Dangote Builds Kenyan Refinery",
+        "category": "economy",
+        "eventCoverage": 77,
+        "importance": 6
+      },
+      {
+        "slug": "2026-09-30-america-gov-ai-chatbot-government-services",
+        "title": "America.gov Launches Chatbot",
+        "category": "tech",
+        "eventCoverage": 70,
+        "importance": 6
+      },
+      {
+        "slug": "2026-09-30-nsw-hunter-valley-coal-approval-2045",
+        "title": "NSW Approves Giant Coal Mine",
+        "category": "economy",
+        "eventCoverage": 0,
+        "importance": 6
+      },
+      {
+        "slug": "2026-09-30-nigeria-election-results-ai-civic-tech-irev",
+        "title": "AI Tracks Nigerian Election Results",
+        "category": "tech",
+        "eventCoverage": 0,
+        "importance": 6
+      }
+    ],
+    "selected": {
+      "slug": "2026-09-30-north-korea-dmz-landmine-blast-denial",
+      "title": "North Korea Denies DMZ Blasts",
+      "category": "politics",
+      "body": "Landmines wounded 3 South Korean soldiers in the Demilitarized",
+      "eventCoverage": 416,
+      "importance": 6
+    },
+    "skipReason": null,
+    "sent": true,
+    "pushTitle": "Breaking News",
+    "pushBody": "Landmines wound 3 South Korean soldiers at DMZ, UN Command says",
     "response": {
       "pushed": 1,
       "skipped": 0,
