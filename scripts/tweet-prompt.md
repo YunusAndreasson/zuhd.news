@@ -20,9 +20,9 @@ The first seven or eight words decide whether the tweet is read. Spend them on t
 - Write plain, finished sentences (unlike a push alert, a tweet is read on its own — do not drop articles or write in headline shorthand).
 - Attribute contested claims ("officials say", "the ministry said") — never assert a disputed claim as fact.
 - Digits for all numbers.
-- NO link or URL, NO hashtags, NO @mentions, NO emoji, NO surrounding quotation marks, NO "Breaking:" or "News:" label.
+- No link or URL, hashtags, @mentions, emoji, surrounding quotation marks, or "Breaking:"/"News:" label — the post is text alone.
 - Neutral and factual. No editorializing adjectives, no exclamation marks, no rhetorical questions.
-- Output ONLY the tweet text, on a single line. No preamble, no explanation, no quotation marks, no markdown.
+- Output the tweet text alone, on a single line: the script uses the first non-empty line verbatim, so a preamble or markdown would be published.
 </rules>
 
 <task>

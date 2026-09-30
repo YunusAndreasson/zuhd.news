@@ -59,6 +59,8 @@ Parameters in `scripts/select-prompt.md`:
 | Politics category floor | Category floors line | 3 | 2 | 4 | Min politics stories per cycle |
 | Economy category floor | Category floors line | 3 | 2 | 4 | Min economy stories per cycle |
 
+A floor change edits two files in the same commit: the "Category floors" line in `scripts/select-prompt.md` and `CATEGORY_FLOORS` in `scripts/lib/dedup.js`, which the dedup warning and the autoresearch scorer read. The constant once lagged the prompt by three months.
+
 You may also adjust the source lists in `fetch-news-api.js` (CURATED_SOURCES, READER_ALIGNED, GAP_COUNTRIES) to improve diversity. Do not add or remove RSS sources in `fetch-news.js`.
 
 </tunable_parameters>
@@ -73,7 +75,7 @@ Every experiment specifies: hypothesis, parameter + change, target metric, sampl
 - Wait for data — do not evaluate before `evaluateAfter`.
 - Skip if healthy — all metrics within targets means no experiment needed.
 - Learn from history — do not repeat failed experiments.
-- Only edit parameter files listed above. Do not edit prompts.
+- Only edit the parameters listed above. The category-floor line is the one part of any prompt you may change — leave the rest of `select-prompt.md` and every other prompt as it is.
 - **Honor the pause gate.** If `content/.experiments.json` has a top-level `noNewExperimentsUntil` field, do not propose any new experiment until that date passes. Continue evaluating already-active experiments normally. The gate exists to let model/prompt changes baseline before new variables are introduced — proposing during the pause confounds the next round of measurements. When the gate's date passes, drop the field; do not auto-extend it.
 - **Note `confounded` experiments.** If an active experiment carries a `confounded` field, treat its target metric as unattributable for the duration of the noted contamination. Do not keep/revert based on movement during that window — extend `evaluateAfter` past the contamination window if not already extended, or use only the pre-contamination data if the window is long enough.
 </rules>

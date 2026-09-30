@@ -130,6 +130,7 @@ try {
     '--model', process.env.ZUHD_BRIEFING_MODEL || 'claude-opus-5-5',
     '--effort', 'medium',
     '--no-session-persistence',
+    '--tools', '',
     '--max-turns', '1',
     '--output-format', 'json',
     '--exclude-dynamic-system-prompt-sections',

@@ -17,7 +17,7 @@ Score each candidate 1–10 for social-attention potential and choose the highes
 - Novelty and surprise: a first-ever, a record, a sharp reversal, an unexpected actor or outcome.
 - Broad recognition: places, people, companies, or conflicts a global audience already follows.
 - A single vivid, concrete fact the card can lead with (a number, a named consequence).
-Downrank: incremental process stories, narrow/technical items with no wide hook, and anything whose interest depends on prior context a scroller won't have. Do NOT reward outrage-bait or sensationalism — a serious story told sharply beats a lurid one.
+Downrank: incremental process stories, narrow/technical items with no wide hook, and anything whose interest depends on prior context a scroller won't have. Outrage-bait and sensationalism score low — a serious story told sharply beats a lurid one.
 </pick>
 
 <headline>
@@ -29,9 +29,9 @@ Write the card headline for the chosen story:
 </headline>
 
 <output>
-Output ONLY a single line of minified JSON, no markdown, no preamble:
+Output a single line of minified JSON and nothing else — no markdown, no preamble:
 {"slug":"<chosen slug>","socialTitle":"<card headline>","score":<1-10 integer>,"reason":"<≤12 words>"}
-The slug MUST be exactly one of the candidate slugs given below.
+The slug is exactly one of the candidate slugs given below — any other value is ignored and the story with the most coverage is posted instead.
 </output>
 
 <task>

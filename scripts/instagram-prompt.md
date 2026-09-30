@@ -20,10 +20,10 @@ On a feed, the first line is often all that shows before "…more". It has to ma
 - End with exactly this line, on its own: Full story in the app — link in bio.
 - Attribute contested claims ("officials say", "the ministry said") — never assert a disputed claim as fact.
 - Digits for all numbers.
-- NO hashtags, NO emoji, NO @mentions, NO links or URLs, NO "Breaking:" or "News:" label, NO surrounding quotation marks.
+- No hashtags, emoji, @mentions, links or URLs, "Breaking:"/"News:" label, or surrounding quotation marks.
 - Neutral and factual. No editorializing adjectives, no exclamation marks, no rhetorical questions.
 - Plain finished sentences. Keep the whole caption under about 60 words.
-- Output ONLY the caption text. No preamble, no explanation, no markdown.
+- Output the caption text alone — it is posted verbatim, so a preamble or markdown would be published.
 </rules>
 
 <task>

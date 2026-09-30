@@ -66,6 +66,9 @@ export function parseClaudeEnvelope(stdout) {
  * The flags are the part worth having once: `--no-session-persistence` and
  * `--max-turns 1` are what make these micro-tasks rather than sessions, and a
  * copy that lost either would still work, cost more, and leave state behind.
+ * `--tools ''` keeps the tool definitions out of the request: none of these
+ * calls can use a tool in one turn, and loading them measured at ~17k extra
+ * input tokens a call.
  *
  * `CLAUDECODE` is dropped so the subprocess does not inherit the parent
  * session's marker.
@@ -82,6 +85,7 @@ export function runHaiku(prompt, { timeout, maxBuffer }) {
     [
       '--model', 'claude-haiku-4-5-20251001',
       '--no-session-persistence',
+      '--tools', '',
       '--max-turns', '1',
       '--output-format', 'json',
       '-p', prompt,

@@ -16,8 +16,6 @@ Plain past and present tense for what has already happened; plain future tense
 only for the scheduled event itself ("meets", "reports", "decides"). Active
 voice. Specific over generic.
 
-## The two fields
-
 ## About the examples in this file
 
 **Every example below is written about an institution this pipeline does not
@@ -30,6 +28,8 @@ rule below exists to prevent.
 
 So: **copy the shape, never the words.** If your sentence could be pasted into
 this file as a new example, it is the wrong sentence.
+
+## The two fields
 
 ### `standing` — what this event is
 

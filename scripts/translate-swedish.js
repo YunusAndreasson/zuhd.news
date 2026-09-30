@@ -167,6 +167,7 @@ Return ONLY the JSON object keyed by item key. No commentary, no fences.`
       '--model', MODEL,
       '--effort', EFFORT,
       '--no-session-persistence',
+      '--tools', '',
       '--max-turns', '1',
       '--output-format', 'json',
       '--exclude-dynamic-system-prompt-sections',
@@ -254,8 +255,9 @@ await runWithConcurrency(batches, CONCURRENCY, async (batch) => {
   // failure is a transient reach for a tool — `stop_reason: "tool_use"` with
   // `--max-turns 1`, which returns no result and bills the input anyway.
   // Neither `--allowedTools ""` nor `--disallowedTools` prevents the attempt
-  // (both were measured); the `<runtime>` preamble in sv-prompt.md is the
-  // primary defence and this catches the residual.
+  // (both were measured) — they gate permission, not what the model sees.
+  // `--tools ''` removes the tool definitions from the request entirely, which
+  // also cuts ~17k input tokens a call; this retry stays for the residual.
   //
   // The register gate re-rolls on top of that. Measured on the live payload of
   // 2026-08-24: identical prompt, model and effort produced anywhere from zero

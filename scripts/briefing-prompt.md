@@ -27,6 +27,8 @@ Prioritise by:
 5. **Novelty and surprise** — first-time events beat incremental updates. Stories with counterintuitive facts, unexpected actors, or startling scale grab the listener.
 6. **No redundancy** — if context (e.g. "Geneva talks") appears in multiple stories, mention it once in the most relevant one.
 
+All four categories appear in every briefing. Science and tech matter — a war-heavy news cycle does not push them out.
+
 If two articles cover the same event, merge them into one story. If a category label seems wrong, reassign or skip.
 
 If `editorialContext.topStories` is present:
@@ -95,18 +97,9 @@ The script is sent to the voice exactly as written, so the only markup is the se
 - Write for the ear, not the eye. If a punctuation mark creates an awkward pause when spoken, remove it.
 </script_rules>
 
-<pre_output_check>
-Before writing the `<speak>` document, verify:
-1. **Story count**: 14–16 stories including lead.
-2. **Category balance**: all four categories represented. Science and tech matter — don't let a war-heavy news cycle push them out.
-3. **Numbers and dates as words**: no digits anywhere.
-4. **Markup**: only `---` dividers, `<short pause>` and `<long pause>`. No SSML, no other tags, no stage directions.
-5. **No country repeated**: each country appears in at most one story.
-6. **Word count**: 1200–1400 words (~10 minutes of audio).
-7. **Sections**: intro and lead first; a `---` line before each category.
-8. **Sign-off**: `<long pause>` then "That's your briefing." at the end of the last category.
-9. **Contractions**: using "it's", "they've", "won't" etc. — not "it is", "they have", "will not".
-</pre_output_check>
+<recap>
+The script goes straight to the voice, so these are the ones a listener hears break: 14–16 stories, 1200–1400 words, no digits, and no markup beyond `---`, `<short pause>` and `<long pause>`.
+</recap>
 
 <example>
 This example demonstrates the section dividers, the pause tags, abbreviations spelled out, and contractions for natural speech. All numbers and dates are words. There is no pause before a heading or at a `---`: musical transitions are added there during audio production.

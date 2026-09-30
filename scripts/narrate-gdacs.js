@@ -338,6 +338,7 @@ Output ONLY the JSON object \`{ "narrative": "..." }\`. No markdown, no fences.`
       '--effort',
       EFFORT,
       '--no-session-persistence',
+      '--tools', '',
       '--max-turns',
       '1',
       '--output-format',

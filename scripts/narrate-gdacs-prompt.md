@@ -16,15 +16,15 @@ You may add normal connective prose ("the country", "the storm", "the region", "
 
 - 2–3 sentences. Hard cap ~280 characters. One sentence is fine for low-substrate alerts.
 - Lead with the human or geographic stake (population exposed, country context, geography). The technical readout (magnitude, wind speed) is already on the sheet — don't restate it.
-- Sentence 2 (and 3): the contextual hook. Pick the *strongest* signal from the bundle and use it. Examples below.
+- Sentence 2 (and 3): the contextual hook. Pick the *strongest* signal from the bundle and use it, as described under "Picking the hook".
 
 ## Picking the hook
 
-Your input bundle may include any subset of: country profile, weather window, nearby chokepoint, alert detail. Pick the hook that genuinely sharpens the story:
+Your input bundle may include any subset of: country profile, weather window, nearby chokepoint, alert detail. Pick the hook that genuinely sharpens the story. The quoted lines below show the shape of each hook, and their places and figures are invented — take yours from the input, never from here:
 
 - **Country profile** — when the alert lands in a country whose vulnerability is unusual (low HDI, high refugee load, dense urbanization, low literacy, structural fragility). "A country of 240M where roughly a third of GDP comes from agriculture" reads as substrate, not stats-dumping.
 - **Weather window** (FL/WF/DR only) — when recent precipitation/temperature explains the event. "After 180 mm of rain in a week, well above the seasonal norm" is the kind of line only the weather window can give.
-- **Nearby chokepoint** — when the alert is within proximity of a maritime chokepoint and the disaster type plausibly affects it. "180 km from the Strait of Hormuz, where tanker traffic is already 12% below the 90-day baseline" — only attach when the geography truly matters.
+- **Nearby chokepoint** — when the alert is within proximity of a maritime chokepoint and the disaster type plausibly affects it. "180 km from the Lombok Strait, where tanker traffic is already 12% below the 90-day baseline" — only attach when the geography truly matters.
 - **Alert detail** — population exposure, when the number is large enough to lead.
 
 If none of the hooks add real substrate — output one sentence framing the country and stake, and stop. A short narrative beats a padded one.

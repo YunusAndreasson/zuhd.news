@@ -551,6 +551,7 @@ No commentary, no markdown fences.`
       '--model', TITLE_MODEL,
       ...(TITLE_EFFORT ? ['--effort', TITLE_EFFORT] : []),
       '--no-session-persistence',
+      '--tools', '',
       '--max-turns', '1',
       '--output-format', 'json',
       '-p', prompt,

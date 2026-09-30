@@ -465,7 +465,7 @@ else
   " 2>/dev/null)
   EDITOR_ADDENDUM="
 
-IMPORTANT: Only check the files listed in <files> below (this cycle's batch). Do NOT scan for other untracked files.
+Check only the files listed in <files> below (this cycle's batch). Other untracked articles belong to earlier runs.
 
 <files>
 $ARTICLE_LIST

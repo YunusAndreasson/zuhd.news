@@ -227,6 +227,7 @@ Output ONLY the JSON object \`{ "standing": "...", "recent": "...", "citations":
       '--model', MODEL,
       '--effort', EFFORT,
       '--no-session-persistence',
+      '--tools', '',
       '--max-turns', '1',
       '--output-format', 'json',
       '--exclude-dynamic-system-prompt-sections',
