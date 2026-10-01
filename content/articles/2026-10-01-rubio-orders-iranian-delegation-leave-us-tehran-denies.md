@@ -40,6 +40,7 @@ concepts:
   - "Marco Rubio"
 eventCoverage: 171
 sentimentDivergence: 0.37
+chart: "cp:hormuz"
 entities:
   - mention: "Strait of Hormuz"
     indicatorId: "cp:hormuz"

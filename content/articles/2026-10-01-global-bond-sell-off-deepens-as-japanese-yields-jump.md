@@ -26,6 +26,7 @@ concepts:
   - "Middle East"
 eventCoverage: 65
 sentimentDivergence: 0.01
+chart: "us-10y"
 entities:
   - mention: "Federal Reserve"
     indicatorId: "fed-funds"
