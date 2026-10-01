@@ -91,6 +91,9 @@ export const ENTITY_RULES = [
   { mention: 'VIX',            indicatorId: 'vix',        kind: 'index' },
   { mention: '10-year yield',  indicatorId: 'us-10y',     kind: 'index' },
   { mention: '10-year Treasury', indicatorId: 'us-10y',   kind: 'index' },
+  // How a headline names it: "Treasury yields highest since 2002" carries no
+  // "10-year", and the benchmark is what an unqualified one means.
+  { mention: 'Treasury yield', indicatorId: 'us-10y',     kind: 'index' },
   { mention: 'Federal Reserve', indicatorId: 'fed-funds', kind: 'index' },
   { mention: 'Fed',            indicatorId: 'fed-funds',  kind: 'index', caseSensitive: true },
   { mention: 'FOMC',           indicatorId: 'fed-funds',  kind: 'index' },

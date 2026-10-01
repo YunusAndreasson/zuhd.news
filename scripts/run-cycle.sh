@@ -186,7 +186,7 @@ echo "" | tee -a "$LOG_FILE"
 echo "--- Stage 0: API + RSS feed fetch ---" | tee -a "$LOG_FILE"
 T0=$SECONDS
 
-# Step 1: NewsAPI.ai event-grouped fetch (5 queries = 9 tokens, + up to 8 per-event calls)
+# Step 1: NewsAPI.ai event-grouped fetch (6 queries = 10 tokens, + up to 8 per-event calls)
 rm -f /tmp/zuhd-feed-api.json
 node scripts/fetch-news-api.js 2>>"$LOG_FILE"
 API_EXIT=$?

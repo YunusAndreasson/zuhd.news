@@ -4,6 +4,8 @@
 // Output: /tmp/zuhd-feed-api.json
 import { writeFileSync, mkdirSync, readdirSync, statSync, unlinkSync } from 'node:fs'
 import { eventCoveredRecently, loadDedupContext } from './lib/dedup.js'
+import { MAX_FEED_AGE_MS } from './lib/feed-age.js'
+import { pickTracked, TRACKED_KEYWORDS } from './lib/tracked-stories.js'
 import { slugify, zuhdCategory } from './lib/utils.js'
 
 const API_KEY = process.env.NEWSAPI_KEY
@@ -401,6 +403,37 @@ async function fetchBroadArticles() {
   return data.articles?.results || []
 }
 
+// Q6: Stories about the series the site charts — a headline that names oil,
+// a strait, a currency, the Fed (1 token). The other queries sample the day
+// by size and by recency, and a wire's market desk is a few items among
+// hundreds: of 149 raw items on 2026-10-01 18:00, four were about any of it,
+// while Reuters ran three tankers hit at Hormuz. What is asked for and which
+// results get a slot is `lib/tracked-stories.js`.
+//
+// **Fail-soft, unlike the five above.** They are the feed; this is an
+// addition to it, and a rejected keyword list must not cost the cycle its API
+// stories.
+async function fetchTrackedArticles() {
+  try {
+    const data = await apiPost('article/getArticles', {
+      ...ARTICLE_DEFAULTS,
+      articlesSortBy: 'date',
+      keyword: TRACKED_KEYWORDS,
+      keywordOper: 'or',
+      keywordLoc: 'title',
+      // "gold" is also a medal and a film; the category filter is what keeps
+      // the Asian Games out.
+      categoryUri: INCLUDE_CATEGORIES,
+      ignoreCategoryUri: EXCLUDE_CATEGORIES,
+      sourceUri: CURATED_SOURCES,
+    }, 'articles')
+    return data.articles?.results || []
+  } catch (e) {
+    console.error(`Q6 tracked-series query failed, continuing without it: ${e.message}`)
+    return []
+  }
+}
+
 // mapCategory alias — uses shared zuhdCategory with API category arrays
 const mapCategory = (categories) => zuhdCategory(categories || [])
 
@@ -483,11 +516,18 @@ async function main() {
     fetchGapArticles(),
     fetchBroadArticles(),
   ])
+  // Q6 runs after them, never beside them (1 token). Five at once is the
+  // API's ceiling: as a sixth parallel request it drew a 429 on the first
+  // real run — and on Q4, not on itself, so its own catch could not contain
+  // it and the cycle would have gone RSS-only.
+  const trackedArticles = await fetchTrackedArticles()
 
-  console.error(`Q1: ${events.length} events, Q2: ${readerArticles.length} reader, Q3: ${curatedArticles.length} curated, Q4: ${gapArticles.length} gap, Q5: ${broadArticles.length} broad`)
+  console.error(`Q1: ${events.length} events, Q2: ${readerArticles.length} reader, Q3: ${curatedArticles.length} curated, Q4: ${gapArticles.length} gap, Q5: ${broadArticles.length} broad, Q6: ${trackedArticles.length} tracked`)
 
-  // Annotate all articles with country codes
-  const allArticles = [...readerArticles, ...curatedArticles, ...gapArticles, ...broadArticles]
+  // Annotate all articles with country codes. Tracked articles join the pool,
+  // so one about an event already in Q1 lands in that event's panel.
+  const trackedUris = new Set(trackedArticles.map(a => a.uri))
+  const allArticles = [...readerArticles, ...curatedArticles, ...gapArticles, ...broadArticles, ...trackedArticles]
   const seen = new Set()
   const dedupedArticles = []
   for (const a of allArticles) {
@@ -700,6 +740,53 @@ async function main() {
 
   // Also include articles from Q2/Q3 that matched events but weren't in a panel
   const panelUris = new Set(stories.flatMap(s => s.sources.map(src => src.url)))
+
+  // Stories about a charted series take their slots first: the standalone
+  // pass below ranks by outlet, and would spend its 22 before reaching them.
+  const storyFingerprints = new Set(stories.map(s => s.title.toLowerCase().replace(/[^a-z0-9]/g, '').slice(0, 30)))
+  const trackedGroups = pickTracked(dedupedArticles.filter(a => trackedUris.has(a.uri)), {
+    usedEventUris,
+    usedUrls: panelUris,
+    maxAgeMs: MAX_FEED_AGE_MS,
+  })
+  let tracked = 0
+  for (const group of trackedGroups) {
+    const panel = group.length > 1 ? assembleSourcePanel(group, null) : group
+    const primary = panel[0]
+    const storyTitle = panel.length > 1 ? bestTitle(panel, primary.title) : primary.title
+    const fp = storyTitle.toLowerCase().replace(/[^a-z0-9]/g, '').slice(0, 30)
+    if (storyFingerprints.has(fp)) continue
+    storyFingerprints.add(fp)
+    for (const a of group) panelUris.add(a.url)
+    stories.push({
+      title: storyTitle,
+      description: (primary.body || '').slice(0, 300),
+      link: primary.url || '',
+      pubDate: primary.dateTimePub || primary.dateTime,
+      category: mapCategory(primary.categories || []),
+      source: sourceName(primary),
+      suggestedSlug: slugify(storyTitle, primary.dateTimePub || primary.dateTime),
+      eventUri: primary.eventUri || null,
+      eventCoverage: null,
+      socialScore: articleSocialScore(primary),
+      sources: panel.map(a => ({
+        name: sourceName(a),
+        url: a.url || '',
+        country: a._sourceCountry,
+        body: (a.body || '').slice(0, MAX_BODY),
+        importanceRank: a.source?.ranking?.importanceRank || null,
+        sentiment: a.sentiment != null ? +a.sentiment.toFixed(2) : null,
+        image: a.image || null,
+      })),
+      concepts: extractConcepts(panel),
+      location: primary.location?.label?.eng || null,
+      sentiment: avg(panel.map(a => a.sentiment).filter(s => s != null)),
+      sentimentDivergence: sentimentSpread(panel),
+      origin: 'api',
+    })
+    tracked++
+  }
+  console.error(`Tracked-series stories: ${tracked} (${trackedGroups.filter(g => g.length > 1).length} multi-source)`)
   const unmatched = dedupedArticles.filter(a =>
     !panelUris.has(a.url) && !standaloneArticles.includes(a)
   )
@@ -714,7 +801,6 @@ async function main() {
   })
 
   // Dedupe + cap per source to prevent one outlet dominating standalone
-  const storyFingerprints = new Set(stories.map(s => s.title.toLowerCase().replace(/[^a-z0-9]/g, '').slice(0, 30)))
   const sourceCount = {}
 
   let added = 0
