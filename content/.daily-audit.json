@@ -1,40 +1,40 @@
 {
-  "date": "2026-09-29",
+  "date": "2026-09-30",
   "metrics": {
-    "articles": { "value": 62, "detail": "5 cycles, 5 completed, avg 12 published/cycle (59 yesterday); 0 quarantined" },
-    "freshness": { "median": 0, "p90": 1, "max": 1, "target": 1.0, "met": true },
-    "categories": { "politics": 25, "economy": 16, "science": 8, "tech": 13 },
-    "multiSource": { "pct": 26, "target": 30, "met": false },
-    "usDatelines": { "pct": 23, "target": 25, "met": true },
-    "latAmDatelines": { "pct": 3, "target": 5, "met": false },
+    "articles": { "value": 63, "detail": "5 cycles, 5 completed, avg 10 published/cycle (63 yesterday); 0 quarantined" },
+    "freshness": { "median": 0, "p90": 0.2, "max": 0.2, "target": 1.0, "met": true },
+    "categories": { "politics": 24, "economy": 17, "science": 8, "tech": 14 },
+    "multiSource": { "pct": 25, "target": 30, "met": false },
+    "usDatelines": { "pct": 21, "target": 25, "met": true },
+    "latAmDatelines": { "pct": 5, "target": 5, "met": true },
     "sameEventDuplicates": { "value": 0, "target": 0, "met": true },
     "missingDatelines": { "value": 0, "target": 0, "met": true },
     "stateOrAdvocacyOnly": 4,
-    "imageUrlPct": 95,
-    "regions": { "count": 6, "target": 4, "met": true, "breakdown": { "AM": 16, "AF": 15, "AS": 10, "ME": 10, "EU": 10, "OC": 1 } },
-    "sciTech": { "ratio": 34, "target": 25, "met": true },
-    "topSourceShare": { "source": "Dawn", "pct": 15, "target": 20, "met": true },
-    "uniqueSources": 52,
+    "imageUrlPct": 98,
+    "regions": { "count": 6, "target": 4, "met": true, "breakdown": { "EU": 16, "AM": 16, "ME": 12, "AS": 11, "AF": 6, "OC": 2 } },
+    "sciTech": { "ratio": 35, "target": 25, "met": true },
+    "topSourceShare": { "source": "Al Jazeera Online", "pct": 10, "target": 20, "met": true },
+    "uniqueSources": 55,
     "duplicates": 0,
-    "avgCycleDuration": 1309
+    "avgCycleDuration": 805
   },
-  "experiment": "Skipped. There are no active experiments and no pause gate, but the writer and editor moved from sonnet-5 to sonnet-5-5 today (2026-09-29). Any change started now would be confounded with that swap. The 09-27 plan to revisit on 09-30 now needs clean post-swap days, so hold until about 2026-10-02.",
-  "weakestArea": "Multi-source share is 26% against a 30% target (16 of 62 articles). It fell for a third day in a row (43%, then 31% by metrics or 29% by audit, then 26%). The count of corroborated stories slipped from 18 to 16, while Dawn (9) and Premium Times Nigeria (6) added single-source regional pieces. The 2026-05-09 floor-3 experiment was reverted and must not be repeated. If it is still under 30% after the model-swap baseline, look at how the selector uses multiSourceStories in politics, where most corroborated stories sit.",
+  "experiment": "Skipped. There are no active experiments and no pause gate, but two changes are still baselining: writer and editor moved to sonnet-5-5 on 2026-09-29, and commit 4d2027a3 rewrote select-prompt.md and other pipeline prompts at about 19:30 UTC today. That commit touched only the 22:00 cycle. A multi-source experiment started now would be confounded with both, so revisit about 2026-10-03 with three clean post-audit days.",
+  "weakestArea": "Multi-source share is 25% against a 30% target (16 of 63 articles). It is down a fourth day in a row (43, 31, 26, now 25). The count of corroborated stories stayed at 16 while single-source regional and specialist pieces filled the rest. The 2026-05-09 politics/economy floor-3 experiment was reverted and must not be repeated. Raising TOP_EVENTS_TO_FETCH is off the table because of the NewsAPI budget, so the next lever to test is selector use of multiSourceStories, once the prompt audit has baselined.",
   "watching": [
-    "Regeni: an Italian court convicted Egyptian officers. It was published twice across cycles, from Al Jazeera on 09-28 and Mada Masr on 09-29, and sameEventDuplicates did not catch it (details in coverageGaps).",
-    "Red Sea: the Houthis seized the Bab al-Mandab coast near Mokha, Yanbu loadings resumed, and diesel hit a record in Houston.",
-    "Pakistan: the IMF review opened alongside a fuel price cut and a motorcycle subsidy scheme, while Afridi defies Islamabad in Peshawar.",
-    "Iraq: US forces exit.",
-    "Moldova: Dodon claims Sandu faces impeachment. This story is sourced only from state or advocacy outlets.",
-    "Nigeria: NNPC picked Chinese refinery partners, an anti-laundering review is under way, Atiku rebutted a corruption report, and deaths in custody in Minna are being probed.",
-    "AI regulation: Anthropic filed an extinction-risk warning, Florida is suing to halt ChatGPT, tech chiefs signed a non-binding pledge, and OpenAI halted its Astra launch."
+    "Hormuz: Iran says it received the US reply on its Hormuz conditions. This story is sourced only from state or advocacy outlets.",
+    "Iraq: the last US troops left through Erbil, following yesterday's exit story.",
+    "Russia–NATO: Moscow threatened NATO over Kaliningrad, and the Vatican envoy Zuppi visited Ukrainian prisoners in Moscow.",
+    "Iran: a school bombing in Minab killed children.",
+    "AI and tech: OpenAI delayed its IPO, launched Dots agents and accused Moonshot AI; America.gov launched a chatbot; ChatGPT invented witnesses in a New Mexico murder appeal.",
+    "Pentagon: Hegseth cut general officers by 20% and Musk joined a warfare study.",
+    "Nigeria: unions threatened a strike, and AI is tracking election results."
   ],
   "coverageGaps": [
-    "sameEventDuplicates reported 0, but the Regeni sentencing ran twice: 2026-09-29-regeni-italy-convicts-egyptian-agents (Al Jazeera, dated 09-28T19:45) and 2026-09-29-regeni-egyptian-officers-sentenced-rome (Mada Masr). They have different outlets, different titles and no shared URL, so the detector missed a cross-cycle pair. Both are still live; one should be removed or merged.",
-    "Latin America is at 3%, with Brazil (a science piece) and Stanley (a Falklands oil story datelined in a British territory) and no hard news from mainland Latin America. Yesterday was 7%, so this is one bad day, not a trend.",
-    "Six datelines are countries or 'Global', not cities: India, Nigeria, Ukraine, Brazil, United Kingdom, Global. That breaks the city-only location rule mobile's dateline strip relies on, and the missingDateline check does not count it.",
-    "Oceania has one story (Perth iron ore), and Pacific coverage is nil.",
-    "Freshness was measured on only 9 of 62 articles."
+    "The Regeni duplicate from 09-29 is still live: 2026-09-29-regeni-italy-convicts-egyptian-agents and 2026-09-29-regeni-egyptian-officers-sentenced-rome. sameEventDuplicates still does not catch cross-outlet, cross-title pairs, and one of the two should be removed.",
+    "Eight datelines are countries, regions or states rather than cities: India, Kazakhstan, Nigeria, South Africa, European Union, Spain, Panama and New Mexico. That is up from six yesterday. It breaks the city-only location rule, and missingDateline does not count it.",
+    "Latin America reached exactly 5% (Rio de Janeiro, Sabana de Torres, Panama). The Panama item is a science story with a country dateline, so mainland Latin American hard news is only two items.",
+    "Freshness was measured on only 5 of 63 articles, so a median of 0 says little.",
+    "Africa fell from 15 to 6, and Oceania is at 2 (both Sydney)."
   ],
-  "context": "All five cycles completed, up from four yesterday, and output rose to 62. The average cycle took 1309s, up from 1242s, and the writer averaged 349s, which could be the first sign of the sonnet-5-5 swap and is worth watching. Science held at 8 across dedicated outlets (Nature, Nature Communications, Phys.org, Mongabay), and US datelines stayed under the cap at 23%. Four stories were state-or-advocacy-only (RT/TASS on Moldova and Mali, Declassified UK, and a Jalud settlers story), up from two."
+  "context": "All five cycles completed. The average cycle dropped sharply to 805s from 1309s (selector 130s, writer 162s, editor 70s), so the writer slowdown from the sonnet-5-5 swap flagged yesterday did not persist. Science held at 8 from dedicated outlets (Nature, Nature Medicine, Quanta, Phys.org), and US datelines fell to 21%. Four stories were state-or-advocacy-only, the same as yesterday (Iran Hormuz reply, Jalud, the Zuppi visit, and the Anduril Ohio tax story)."
 }
