@@ -1,112 +1,5 @@
 [
   {
-    "timestamp": "2026-09-09T17:24:43.150Z",
-    "candidateCount": 12,
-    "candidates": [
-      {
-        "slug": "2026-09-09-netanyahu-uae-warning-a-warning-that-stopped-at-the-desk",
-        "title": "Report Says Netanyahu Knew",
-        "category": "politics",
-        "eventCoverage": 722,
-        "importance": 6
-      },
-      {
-        "slug": "2026-09-09-white-house-cash-gifts-a-second-payer-for-a-public-office",
-        "title": "Ethics Lawyers Flag Trump Gifts",
-        "category": "politics",
-        "eventCoverage": 253,
-        "importance": 6
-      },
-      {
-        "slug": "2026-09-09-google-finland-datacentres-a-customer-keeps-a-reactor-open",
-        "title": "Google Funds Finnish Reactor",
-        "category": "economy",
-        "eventCoverage": 164,
-        "importance": 6
-      },
-      {
-        "slug": "2026-09-09-sudan-clinics-close-aid-cuts-collapse-from-the-edge-inward",
-        "title": "Sudan's Clinics Go Dark",
-        "category": "politics",
-        "eventCoverage": 0,
-        "importance": 6
-      },
-      {
-        "slug": "2026-09-09-el-obeid-ohchr-count-pressure-that-decays",
-        "title": "Pressure Fades in Kordofan",
-        "category": "politics",
-        "eventCoverage": 0,
-        "importance": 6
-      },
-      {
-        "slug": "2026-09-09-india-citizenship-proof-the-undefined-standard",
-        "title": "Millions Face Citizenship Screening",
-        "category": "politics",
-        "eventCoverage": 0,
-        "importance": 6
-      },
-      {
-        "slug": "2026-09-09-uae-oman-land-trade-the-bypass-and-its-ceiling",
-        "title": "Hormuz Closure Reroutes Trade",
-        "category": "economy",
-        "eventCoverage": 0,
-        "importance": 6
-      },
-      {
-        "slug": "2026-09-09-milne-epishelf-lake-a-threshold-not-a-slope",
-        "title": "Milne Shelf Loss Confirmed",
-        "category": "science",
-        "eventCoverage": 0,
-        "importance": 6
-      },
-      {
-        "slug": "2026-09-09-noaa-priorities-when-the-stock-assessment-becomes-negotiable",
-        "title": "Fisheries Science Loses Ground",
-        "category": "science",
-        "eventCoverage": 0,
-        "importance": 6
-      },
-      {
-        "slug": "2026-09-09-chrome-zero-day-shared-exploit-the-quartermaster-model",
-        "title": "Beijing-Linked Hackers Share Tool",
-        "category": "tech",
-        "eventCoverage": 0,
-        "importance": 6
-      },
-      {
-        "slug": "2026-09-09-take-it-down-act-first-sentence-synthetic-image-priced",
-        "title": "First Deepfake Sentence Lands",
-        "category": "tech",
-        "eventCoverage": 0,
-        "importance": 6
-      },
-      {
-        "slug": "2026-09-09-post-quantum-migration-the-key-you-already-published",
-        "title": "Crypto Races Quantum Clock",
-        "category": "tech",
-        "eventCoverage": 0,
-        "importance": 6
-      }
-    ],
-    "selected": {
-      "slug": "2026-09-09-netanyahu-uae-warning-a-warning-that-stopped-at-the-desk",
-      "title": "Report Says Netanyahu Knew",
-      "category": "politics",
-      "body": "A new report says the Emirati president warned Netanyahu",
-      "eventCoverage": 722,
-      "importance": 6
-    },
-    "skipReason": null,
-    "sent": true,
-    "pushTitle": "Breaking News",
-    "pushBody": "UAE president warns Netanyahu of Hamas attack days before October 7",
-    "response": {
-      "pushed": 1,
-      "skipped": 0,
-      "tokens": 9
-    }
-  },
-  {
     "timestamp": "2026-09-09T22:26:02.332Z",
     "candidateCount": 13,
     "candidates": [
@@ -10098,6 +9991,99 @@
     "sent": true,
     "pushTitle": "Breaking News",
     "pushBody": "OpenAI accuses China's Moonshot AI of copying its models",
+    "response": {
+      "pushed": 1,
+      "skipped": 0,
+      "tokens": 5
+    }
+  },
+  {
+    "timestamp": "2026-10-01T05:15:20.700Z",
+    "candidateCount": 10,
+    "candidates": [
+      {
+        "slug": "2026-10-01-flydubai-suspends-israel-flights-cockpit-attack-probe",
+        "title": "flydubai Suspends Israel Flights",
+        "category": "politics",
+        "eventCoverage": 2515,
+        "importance": 6
+      },
+      {
+        "slug": "2026-09-30-us-regulator-launches-probe-into-ai-companies",
+        "title": "FTC Probes AI Labs",
+        "category": "tech",
+        "eventCoverage": 150,
+        "importance": 6
+      },
+      {
+        "slug": "2026-10-01-lpg-gets-8pc-costlier-ahead-of-winter",
+        "title": "Pakistan LPG Price Rises",
+        "category": "economy",
+        "eventCoverage": 119,
+        "importance": 6
+      },
+      {
+        "slug": "2026-10-01-google-gemini-4-argon-announced-limited-release",
+        "title": "Google Holds Gemini 4 Argon",
+        "category": "tech",
+        "eventCoverage": 102,
+        "importance": 6
+      },
+      {
+        "slug": "2026-10-01-uk-accuses-chinese-agency-of-spying-on-ai-research",
+        "title": "MI5 Names Chinese Research Funder",
+        "category": "politics",
+        "eventCoverage": 76,
+        "importance": 6
+      },
+      {
+        "slug": "2026-10-01-global-bond-sell-off-deepens-as-japanese-yields-jump",
+        "title": "Japan Bond Yields Climb",
+        "category": "economy",
+        "eventCoverage": 65,
+        "importance": 6
+      },
+      {
+        "slug": "2026-10-01-india-pm-dhara-transmission-scheme-135-gw-renewables",
+        "title": "India Funds Grid Expansion",
+        "category": "economy",
+        "eventCoverage": 54,
+        "importance": 6
+      },
+      {
+        "slug": "2026-09-30-us-judge-rules-wisconsin-mosque-leader-salah-sarsour-can-be",
+        "title": "Judge Rules Mosque Leader Deportable",
+        "category": "politics",
+        "eventCoverage": 53,
+        "importance": 6
+      },
+      {
+        "slug": "2026-10-01-swiss-glaciers-lose-more-than-5-of-ice-after-record-heatwave",
+        "title": "Swiss Glaciers Lose 5% Ice",
+        "category": "science",
+        "eventCoverage": 0,
+        "importance": 6
+      },
+      {
+        "slug": "2026-10-01-ai-agents-tried-to-hack-canadian-government-website-research",
+        "title": "AI Agents Probed Canadian Archive",
+        "category": "tech",
+        "eventCoverage": 0,
+        "importance": 6
+      }
+    ],
+    "selected": {
+      "slug": "2026-10-01-flydubai-suspends-israel-flights-cockpit-attack-probe",
+      "title": "flydubai Suspends Israel Flights",
+      "category": "politics",
+      "body": "flydubai says its copilot stabbed the captain",
+      "eventCoverage": 2515,
+      "importance": 6
+    },
+    "skipReason": null,
+    "sent": true,
+    "pushTitle": "Breaking News",
+    "pushBody": "flydubai suspends all Israel flights after copilot stabs captain mid-flight",
     "response": {
       "pushed": 1,
       "skipped": 0,
