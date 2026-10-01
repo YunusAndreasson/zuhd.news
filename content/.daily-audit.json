@@ -1,40 +1,42 @@
 {
-  "date": "2026-09-30",
+  "date": "2026-10-01",
   "metrics": {
-    "articles": { "value": 63, "detail": "5 cycles, 5 completed, avg 10 published/cycle (63 yesterday); 0 quarantined" },
-    "freshness": { "median": 0, "p90": 0.2, "max": 0.2, "target": 1.0, "met": true },
-    "categories": { "politics": 24, "economy": 17, "science": 8, "tech": 14 },
-    "multiSource": { "pct": 25, "target": 30, "met": false },
-    "usDatelines": { "pct": 21, "target": 25, "met": true },
-    "latAmDatelines": { "pct": 5, "target": 5, "met": true },
+    "articles": { "value": 53, "detail": "5 cycles, 5 completed; cycle commits record 10/10/11/15/11 (67 yesterday); 1 quarantined" },
+    "freshness": { "median": 0, "p90": 1, "max": 1, "target": 1.0, "met": true },
+    "categories": { "politics": 19, "economy": 13, "science": 6, "tech": 15 },
+    "multiSource": { "pct": 28, "target": 30, "met": false },
+    "usDatelines": { "pct": 26, "target": 25, "met": false },
+    "latAmDatelines": { "pct": 2, "target": 5, "met": false },
     "sameEventDuplicates": { "value": 0, "target": 0, "met": true },
     "missingDatelines": { "value": 0, "target": 0, "met": true },
     "stateOrAdvocacyOnly": 4,
     "imageUrlPct": 98,
-    "regions": { "count": 6, "target": 4, "met": true, "breakdown": { "EU": 16, "AM": 16, "ME": 12, "AS": 11, "AF": 6, "OC": 2 } },
-    "sciTech": { "ratio": 35, "target": 25, "met": true },
-    "topSourceShare": { "source": "Al Jazeera Online", "pct": 10, "target": 20, "met": true },
-    "uniqueSources": 55,
+    "regions": { "count": 5, "target": 4, "met": true, "breakdown": { "AM": 16, "EU": 12, "AS": 11, "ME": 11, "AF": 3, "OC": 0 } },
+    "sciTech": { "ratio": 40, "target": 25, "met": true },
+    "topSourceShare": { "source": "Al Jazeera Online", "pct": 13, "target": 20, "met": true },
+    "uniqueSources": 48,
     "duplicates": 0,
-    "avgCycleDuration": 805
+    "avgCycleDuration": 873
   },
-  "experiment": "Skipped. There are no active experiments and no pause gate, but two changes are still baselining: writer and editor moved to sonnet-5-5 on 2026-09-29, and commit 4d2027a3 rewrote select-prompt.md and other pipeline prompts at about 19:30 UTC today. That commit touched only the 22:00 cycle. A multi-source experiment started now would be confounded with both, so revisit about 2026-10-03 with three clean post-audit days.",
-  "weakestArea": "Multi-source share is 25% against a 30% target (16 of 63 articles). It is down a fourth day in a row (43, 31, 26, now 25). The count of corroborated stories stayed at 16 while single-source regional and specialist pieces filled the rest. The 2026-05-09 politics/economy floor-3 experiment was reverted and must not be repeated. Raising TOP_EVENTS_TO_FETCH is off the table because of the NewsAPI budget, so the next lever to test is selector use of multiSourceStories, once the prompt audit has baselined.",
+  "experiment": "Skipped. No experiment is active and no pause gate is set, but the baseline moved again: commit c23e3054 (19:24 UTC today) added a sixth feed query (Q6, tracked-series headlines) to fetch-news-api.js and edited select-prompt.md and write-prompt.md, on top of the 09-29 sonnet-5-5 swap and the 09-30 prompt audit. Only the 22:00 cycle ran on it, so a feed or selector experiment started now would be confounded; the earliest clean start is about 2026-10-04.",
+  "weakestArea": "Latin America is furthest from target at 2% against 5%: one dateline (La Paz) in 53 articles, down from 4% yesterday. US datelines are 26% against 25% and multi-source is 28% against 30% (15 of 53), both narrow misses. The 2026-09-18 GAP_COUNTRIES experiment added Mexico and Argentina and produced no datelines from either, so that lever should not be repeated as designed.",
   "watching": [
-    "Hormuz: Iran says it received the US reply on its Hormuz conditions. This story is sourced only from state or advocacy outlets.",
-    "Iraq: the last US troops left through Erbil, following yesterday's exit story.",
-    "Russia–NATO: Moscow threatened NATO over Kaliningrad, and the Vatican envoy Zuppi visited Ukrainian prisoners in Moscow.",
-    "Iran: a school bombing in Minab killed children.",
-    "AI and tech: OpenAI delayed its IPO, launched Dots agents and accused Moonshot AI; America.gov launched a chatbot; ChatGPT invented witnesses in a New Mexico murder appeal.",
-    "Pentagon: Hegseth cut general officers by 20% and Musk joined a warfare study.",
-    "Nigeria: unions threatened a strike, and AI is tracking election results."
+    "Gulf build-up: a third US carrier and 10,000 troops are reported for the Middle East, sourced only from state or advocacy outlets, while Putin renewed an offer to take Iran's enriched uranium and Iran denied a Rubio expulsion claim.",
+    "Russia and Ukraine: Putin rejected a strike truce, and Ukraine fielded swimming robots at Kostiantynivka.",
+    "Horn of Africa: drones hit Addis Ababa.",
+    "Pakistan and Afghanistan: Rawalpindi issued a warning to Kabul, and LPG prices rose in Pakistan.",
+    "India and the US: the trade deal stalled and a Modi-Trump call covered Russian oil; the call story is state-or-advocacy-only.",
+    "Venezuela: BP and Shell are entering oil and gas after the Maduro seizure, also state-or-advocacy-only.",
+    "South China Sea: Manila confronted a Chinese survey ship.",
+    "AI and tech: Google is holding back Gemini 4 Argon, a judge dismissed AI suits against Google, and a Pentagon breach exposed troop data."
   ],
   "coverageGaps": [
-    "The Regeni duplicate from 09-29 is still live: 2026-09-29-regeni-italy-convicts-egyptian-agents and 2026-09-29-regeni-egyptian-officers-sentenced-rome. sameEventDuplicates still does not catch cross-outlet, cross-title pairs, and one of the two should be removed.",
-    "Eight datelines are countries, regions or states rather than cities: India, Kazakhstan, Nigeria, South Africa, European Union, Spain, Panama and New Mexico. That is up from six yesterday. It breaks the city-only location rule, and missingDateline does not count it.",
-    "Latin America reached exactly 5% (Rio de Janeiro, Sabana de Torres, Panama). The Panama item is a science story with a country dateline, so mainland Latin American hard news is only two items.",
-    "Freshness was measured on only 5 of 63 articles, so a median of 0 says little.",
-    "Africa fell from 15 to 6, and Oceania is at 2 (both Sydney)."
+    "Latin America has one dateline (La Paz) and Oceania has none, so the region count fell from 6 to 5.",
+    "Africa fell to 3 (Abuja, Addis Ababa, Johannesburg) from 6 yesterday and 15 on 09-29.",
+    "Science is 6, above the floor of 5, but two of its datelines are countries (China, South Korea) and one is a US test site, and its sources include Aol and The War Zone rather than dedicated science outlets.",
+    "Country-level datelines dropped from eight to two (China, South Korea); missingDateline still does not count them.",
+    "The Regeni pair from 09-29 is still live (regeni-italy-convicts-egyptian-agents and regeni-egyptian-officers-sentenced-rome); one should be removed, and sameEventDuplicates does not catch it.",
+    "Freshness was measured on 4 of 53 articles, so the median of 0 says little."
   ],
-  "context": "All five cycles completed. The average cycle dropped sharply to 805s from 1309s (selector 130s, writer 162s, editor 70s), so the writer slowdown from the sonnet-5-5 swap flagged yesterday did not persist. Science held at 8 from dedicated outlets (Nature, Nature Medicine, Quanta, Phys.org), and US datelines fell to 21%. Four stories were state-or-advocacy-only, the same as yesterday (Iran Hormuz reply, Jalud, the Zuppi visit, and the Anduril Ohio tax story)."
+  "context": "All five cycles completed at an average of 873s (selector 229s, writer 143s, editor 59s). The new Q6 query spends one more NewsAPI token per cycle; it is an operator change, and the 22:00 log shows it returning 100 items without a 429. Tech held at 15 and sci+tech rose to 40% as politics and economy fell with total volume (53 from 67). One article was quarantined by the validator, against none yesterday."
 }
