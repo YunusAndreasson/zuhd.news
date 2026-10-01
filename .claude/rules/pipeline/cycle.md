@@ -644,3 +644,59 @@ Status.
   --selection <file> --dry-run` prints every offer without writing. The match
   list is the thing to read — the eclipse in the wheat fields was found that
   way, and so was each correction above.
+
+
+### No chart for a day, and why (2026-10-01)
+
+The first five cycles set **0 charts in ~60 articles**, from 28 chartable
+offers. The causes, in order of how much each mattered:
+
+- **The feed had nothing to chart.** Of 149 raw items in the 18:00 fetch, four
+  had a headline about any tracked series, while the same hour's wires ran
+  "Three oil tankers hit by projectiles in Hormuz strait" and "10-year Treasury
+  yields highest since 2002". Nothing filtered them out: the fetch samples the
+  day by event size and by recency, and a market desk is a few items among
+  hundreds. `fetch-news-api.js` now asks for them by headline (**Q6**, one
+  token, `lib/tracked-stories.js`), and up to eight take a guaranteed slot —
+  only ones inside the feed's 12 h age cut, which `merge-feeds.js` would
+  drop anyway.
+  - **Q6 runs after the five, never beside them.** As a sixth parallel request
+    it drew a 429 on its first real run — on Q4, so its own catch could not
+    contain it and the cycle would have gone RSS-only. It is also the only
+    query that fails soft.
+  - **Slots are spread across series** (`pickTracked`): each takes one before
+    any takes a second. Ranked on outlet count alone, six of eight went to Fed
+    speakers and a bank's bitcoin target, and Hormuz — one Reuters report — got
+    none. Two wires carrying one speech is not weight.
+  - **The keywords are hand-picked, not the registry's mentions**, which
+    resolve a word inside a chosen story (`oil`, `rice`, `euro`) and as a
+    headline search return the rice harvest. A test holds each keyword to a
+    series it resolves to.
+- **The selector was never told.** `select-prompt.md` ("The things we chart")
+  now says a hard-news story about a tracked series is a strong economy pick —
+  one or two a cycle, never a price recap or an analyst target — and to name
+  the series in the `angle`, because Stage 1.7 reads title and angle only.
+- **The writer's bar could not be met.** "What the story is about", "if you
+  have to explain to yourself why the chart belongs, it does not" and "most
+  articles have none", read together, refused Hormuz traffic under talks on
+  reopening Hormuz. The rule is now three positive cases — the series is the
+  **subject**, the **cause**, or **what is being decided** — with the
+  exclusions named (a shared country, company or sector; a contract whose
+  question is not the story's next step). Measured by handing 37 real stories
+  and their offers to the writer's model under each wording: **6 charts under
+  the old rule, 14 under the new**, none of them on a nearby series; on the 21
+  that had actually been published, 0 and 4.
+- **Most offers were noise, which taught the writer to refuse.** A contract's
+  name keys are the capitalised words of its question, so *Google best AI
+  model?* was offered to ten stories that said "AI" and *Balance of Power: R
+  Senate, R House* to Indian power stocks. A question made of single words now
+  needs two of them (`oddsScore`); a full name, a lone surname or a tag still
+  stands alone. On the same replay 13 offers went, every one of them wrong.
+- **`Treasury yield` resolves to `us-10y`.** A headline says "Treasury yields",
+  not "10-year yield", and the bond sell-off story reached the writer with no
+  row for it.
+
+**To check it is working**: `Q6: n tracked` and `Tracked-series stories: n` in
+the fetch log, then `Charts: n set` after validation. Expect two to four charts
+a day; zero for a day again means the selector is passing over the tracked
+stories — read its summary before touching the writer's rule.

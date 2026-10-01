@@ -71,7 +71,7 @@ The body is **markdown paragraphs separated by a blank line**. The blank line is
 
 Spend that budget on reporting, not on length. An article that says everything it has in 380 characters is finished at 380; padding it to 450 is the excess zuhd exists to refuse. The ceiling rose because the reader's screen has room for a fifth fact, not because articles should be longer.
 
-List every source from the selection's `sources` array (see task step 2). `eventCoverage` and `concepts` are filled automatically by a post-writer script if missing. `chart` is optional and most articles have none — `<principles>` "Data" says when to set it.
+List every source from the selection's `sources` array (see task step 2). `eventCoverage` and `concepts` are filled automatically by a post-writer script if missing. `chart` is optional — `<principles>` "Data" says when to set it, and when it applies, set it.
 
 </format>
 
@@ -135,11 +135,22 @@ Use a figure **when it sharpens the story**, and prefer it to a vague phrase: "B
 - **The calendar is for the future block**, and only when that decision is this story's next step: "The Federal Reserve decides on 28 October." A scheduled date is the kind of named deadline block 5 asks for.
 - **Skip it when it is not the story.** This is permission, not an instruction. A number that does not bear on what happened is filler. Most stories will carry no figure at all, and most that do should use at most one.
 
-**The chart.** Set `chart:` in the frontmatter to the `id` of **one** row marked `chart: true` when that series is **what the story is about** — Hormuz traffic under a story about tankers turned back at Hormuz, Brent under a story about an OPEC cut, the ceasefire contract under a story about the ceasefire fraying. The reader sees it drawn directly under the article, with its level, its move and its date, so the prose does not have to recite the number to earn it; spend the characters on reporting. If the prose does cite that series, use the row's `level` and date exactly, and for a move use **`recent`** — the chart prints that move beside the line, so a sentence citing `wider` ("a 23% monthly jump") sits over a chip saying "▼12% over 7 days" and reads as a contradiction.
+**The chart.** A row marked `chart: true` can be drawn directly under the article — its line, its level, its move and its date. Set `chart:` in the frontmatter to that row's `id` when the series is **part of what happened**, which is one of three things:
 
-- **One chart, and only one the story is about.** Never chart a series that is merely nearby: Brent under an Iranian election, the lira under a Turkish earthquake. If you have to explain to yourself why the chart belongs, it does not.
-- **Only an `id` from this story's own `indicators`, and only a row with `chart: true`.** Any other id is removed before publishing.
-- **No clear subject, no `chart:` line.** Most articles have none.
+- **It is the subject.** The story reports on the thing the series measures: tankers hit or turned back at Hormuz carry Hormuz traffic; Treasury yields at a twenty-year high carry the 10-year yield; the lira at a record low carries the lira.
+- **It is the cause.** What happened, happened because of where that line stands, and the sources say so: a fuel strike or a subsidy cut while crude is at $114 carries Brent; a shortage the sources put down to the closed strait carries that strait's traffic.
+- **It is what is being decided.** The event is a negotiation, a vote or a fight over the thing itself: talks on reopening the strait carry its traffic; a central banker signalling the next move carries the rate; a ceasefire fraying carries the ceasefire contract.
+
+The test is the reader's next question. Someone who has just read that talks on reopening Hormuz collapsed wants to know how many ships are getting through, and the chart is the answer. When one of the three holds, set the chart: an article about a strait with no traffic line under it is the weaker article, and a chart costs no characters. The prose does not have to recite the number to earn it; spend the characters on reporting. If the prose does cite that series, use the row's `level` and date exactly, and for a move use **`recent`** — the chart prints that move beside the line, so a sentence citing `wider` ("a 23% monthly jump") sits over a chip saying "▼12% over 7 days" and reads as a contradiction.
+
+What is not a chart:
+
+- **A series that only shares a country, a company or a sector with the story.** The naira under a Nigerian infrastructure bond, Brent under an oil major's new licence or an Iranian election, the lira under a Turkish earthquake, the Fed rate under a story about the Fed's building costs. The story would read the same wherever that line stood.
+- **A contract whose question is not this story's own next step.** "Which lab has the best AI model?" is not the chart for a story about AI cameras; "Netanyahu the next prime minister?" is not the chart for a flight diverted from Tel Aviv.
+- **A second chart.** One per article. If two rows pass, take the series the story reports on directly: an oil-price story carries Brent even when the strait is why the price moved.
+- **An id you were not offered.** Only an `id` from this story's own `indicators`, and only a row with `chart: true`; any other is removed before publishing.
+
+A story with no `indicators`, or none that passes, has no `chart:` line.
 
 **Report, don't theorize.** The body reports what happened and how the mechanism works. It does not claim what something "gives cover to," what "credibility" someone "gains," or how a "gap widens" — those are opinion columns, not wire copy. If a source makes a causal claim, attribute it to them by name. If no source made the claim, cut it.
 

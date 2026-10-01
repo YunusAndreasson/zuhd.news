@@ -248,14 +248,29 @@ export const oddsKeys = (ind) => {
  * relationship needs — Israel *and* Iran *and* the ceasefire is the ceasefire
  * contract's story; Iran alone is not "the US invades Iran".
  *
+ * **A question made of single words needs two of them.** A name key is any
+ * capitalised word of the question, which for *Google best AI model?* is
+ * `Google` and `AI`, and for *Balance of Power: R Senate, R House* is four
+ * ordinary nouns. One of those alone is a topic, not the question: over two
+ * days of selections the Google contract was offered to ten stories — AI
+ * cameras in Delhi, deepfakes, a BMW plant — and *Balance of Power* to Indian
+ * power stocks. A question with one such word (`Netanyahu`, `Gemini`) or a
+ * full name (`JD Vance`) still stands on it, and so does a tag (`hormuz`,
+ * `fed`), which someone chose as the subject.
+ *
  * Returns a score for ranking (specific keys count double), 0 when not
  * offered.
  */
 export const oddsScore = (ind, text, lower) => {
   let specific = 0
+  let decisive = 0
   const weak = new Set()
   const seen = new Set()
-  for (const [key, { weak: isWeak, exact }] of oddsKeys(ind)) {
+  const keys = oddsKeys(ind)
+  const isLooseWord = (key, { weak: isWeak, exact }) => exact && !isWeak && !key.includes(' ')
+  const looseWords = [...keys].filter(([key, k]) => isLooseWord(key, k)).length
+  for (const [key, meta] of keys) {
+    const { weak: isWeak, exact } = meta
     const k = key.toLowerCase()
     if (seen.has(k)) continue
     const hit = exact
@@ -264,9 +279,12 @@ export const oddsScore = (ind, text, lower) => {
     if (!hit) continue
     seen.add(k)
     if (isWeak) weak.add(countryOf(k) ?? k)
-    else specific++
+    else {
+      specific++
+      if (looseWords < 2 || !isLooseWord(key, meta)) decisive++
+    }
   }
-  if (!specific && weak.size < 3) return 0
+  if (!decisive && specific < 2 && weak.size < 3) return 0
   return specific * 2 + weak.size
 }
 

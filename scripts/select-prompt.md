@@ -55,6 +55,10 @@ Prioritize stories that reveal, surprise, or teach. Balance across these dimensi
 
 **Geographic diversity.** Countries in Africa, Asia, Latin America, and the Muslim world are actors with agency, not settings for Western policy. If most candidates involve the US or Europe, seek stories where non-Western nations are the subject.
 
+**The things we chart.** The site draws live series under a story that is about one of them: Brent and WTI crude, natural gas, gold, copper, wheat, bitcoin, the US 10-year yield, the Fed and ECB rates, US inflation and jobs, the major and Muslim-world currencies (yen, yuan, euro, lira, naira, ruble, rupiah, taka), and daily ship traffic through Hormuz, Bab el-Mandeb, Suez, Panama and the other straits. The feed carries a handful of stories fetched because their headline names one of these. When one of them is hard news — tankers attacked in a strait, a currency at a record low and who pays for it, a rate decision, an oil price moved by a war or a cartel — it is a strong economy pick, because the reader gets the report and the line together. Take one or two a cycle when the feed has them, more only on a day the market is itself the news. The **Consequence** rule still holds: a price that moved is not a story, and what moved it or who it lands on is. Skip price recaps with no cause ("stocks slip", "bitcoin flat"), analyst targets and forecasts, and one official's remarks with no decision attached.
+
+When you pick such a story, name the series in the `angle` in plain words — "Brent crude", "the yen", "the US 10-year Treasury yield", "ship traffic through the Strait of Hormuz" — because the stage that attaches the figures reads the title and the angle, not the source text.
+
 **Reader-aligned sources.** As a tiebreaker when two candidates are equally strong, prefer:
 - Hacker/AI: The Register, 404 Media, Hacker News, The Decoder, Ars Technica
 - Macro-economics: Bloomberg, Financial Times, The Economist, CoinDesk

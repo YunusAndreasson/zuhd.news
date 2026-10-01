@@ -122,6 +122,28 @@ test('two countries, or a country and its demonym, are not a contract’s subjec
   assert.ok(ids(offer('Netanyahu calls early vote')).includes('poly-pm'))
 })
 
+test('a question made of single words needs two of them', () => {
+  // Replayed over two days of selections: "Google best AI model?" was offered
+  // to ten stories that said AI or Google, "Balance of Power" to power stocks.
+  const withAi = {
+    ...sources,
+    trends: {
+      ...trends,
+      indicators: [
+        ...trends.indicators,
+        contract('poly-google', 'Google best AI model end of Oct 2026?', []),
+        contract('poly-congress', '2026 Balance of Power: R Senate, R House', []),
+      ],
+    },
+  }
+  const odds = (title, angle) => offerFor({ title, angle }, withAi).indicators.filter((r) => r.kind === 'odds').map((r) => r.id)
+  assert.deepEqual(odds('Delhi roads to get 2,500 AI cameras'), [])
+  assert.deepEqual(odds('Viral Google Maps images show Gaza ruins'), [])
+  assert.deepEqual(odds('Power stocks fall despite grid scheme'), [])
+  assert.deepEqual(odds('Google unveils Gemini 4 Argon', 'Its most powerful AI model yet'), ['poly-google'])
+  assert.deepEqual(odds('Republicans defend Senate and House majorities'), ['poly-congress'])
+})
+
 test('a contract moves in points over days, not percent over observations', () => {
   const row = offer('Israel strikes Iran again', 'The ceasefire is fraying.').indicators.find((r) => r.id === 'poly-truce')
   assert.equal(row.level, 21)
