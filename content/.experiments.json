@@ -1,6 +1,39 @@
 {
   "version": 1,
-  "activeExperiments": [],
+  "activeExperiments": [
+    {
+      "id": "2026-10-03-odds-in-future-block",
+      "startDate": "2026-10-03",
+      "evaluateAfter": "2026-10-06",
+      "prNumber": null,
+      "commit": "1d5a5e8e",
+      "hypothesis": "The writer never cites a prediction-market contract because three rules told it not to: figures were \"permission, not an instruction\"; the example odds sentence ran to 20 words inside a future block capped at 18; and the editor counted an indicator figure as sourced only with its asOf date stated. Making an apt contract the default sentence of the future block (attributed to traders, in points, up to 22 words, no date needed because the row is fetched the day of writing) should put odds into the prose of the stories whose next step a contract prices, without touching the gate that keeps a loosely matched contract out.",
+      "parameter": "How an `odds` indicator row is written: writer rule (future block) and the matching editor rule",
+      "file": "scripts/write-prompt.md, scripts/check-prompt.md",
+      "oldValue": "Odds optional (\"permission, not an instruction\"); example sentence 20 words; future block <=18 words; editor requires asOf stated",
+      "newValue": "An odds row whose question is the story's next step is used as the future block's one sentence; 18-word example, block may reach 22; the move dates it; editor told not to cut it for length or date",
+      "targetMetric": "Share of offered odds rows that reach the prose. Denominator: the sum of `odds N` in the \"Indicators:\" line of every logs/cycle-*.log from the 05:00 UTC cycle on 2026-10-03 onward. Numerator: articles added since then whose body names Polymarket — `git log --since=2026-10-03T04:55:00Z --diff-filter=A --name-only --format= -- content/articles | sort -u | xargs grep -il polymarket` — leaving out stories that are about Polymarket itself. Not in /tmp/zuhd-metrics.json; compute it from the logs and the corpus.",
+      "targetDirection": "increase",
+      "successCriteria": "Keep if at least 25% of offered odds rows are cited AND every citing article attributes the price to traders, gives the move in points, and cites a contract whose question is that story's own next step (read each one; there will be few). Revert if under 10% with at least 15 rows offered, or if any article presents odds as the site's forecast or cites a contract about something else. Between the two, or with fewer than 15 rows offered, extend evaluateAfter to 2026-10-09 once.",
+      "guardrails": [
+        "Share of bodies over the 560-character ceiling must not rise by more than 20% against the week before",
+        "No article may lead with odds or use them outside the future block",
+        "Editor wall-time must not rise by more than 20%"
+      ],
+      "baseline": {
+        "window": "logs/cycle-2026-09-30_2200.log -> logs/cycle-2026-10-02_2203.log (every cycle since the writer was first offered figures)",
+        "cycles": 11,
+        "storiesSelected": 132,
+        "storiesOfferedAnyFigure": 47,
+        "oddsRowsOffered": 23,
+        "articlesCitingOdds": 0,
+        "shareCited": 0.0,
+        "articlesAddedInWindow": 128
+      },
+      "rollback": "git revert 1d5a5e8e (restores the previous odds rule in both prompts)",
+      "notes": "Registered from an operator session on 2026-10-02 at 22:20 UTC, after the 22:03 cycle had finished; the parameter change was pushed first (merge b0269aa1), so the list is not ahead of the code. Matching is by subject tag and can be loose: in the 22:03 cycle on 2026-10-02 the one odds row offered was \"No Fed rate change after Dec 2026?\" on a story about the DoJ declining to reopen a probe of Jay Powell, which is not that story's next step and should be passed over. A low share with mostly loose offers is evidence about the matching (scripts/lib/indicator-offer.js), not about this rule: say which it was when evaluating."
+    }
+  ],
   "activeExperiment": null,
   "history": [
     {
