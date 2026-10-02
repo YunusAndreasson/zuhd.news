@@ -266,14 +266,7 @@ async function fetchWeather(lat, lng) {
     url.searchParams.set('end_date', end)
     url.searchParams.set('daily', 'precipitation_sum,temperature_2m_max,temperature_2m_min')
     url.searchParams.set('timezone', 'UTC')
-    const controller = new AbortController()
-    const timer = setTimeout(() => controller.abort(), 8000)
-    let res
-    try {
-      res = await fetch(url, { signal: controller.signal })
-    } finally {
-      clearTimeout(timer)
-    }
+    const res = await fetch(url, { signal: AbortSignal.timeout(8000) })
     if (!res.ok) return null
     const json = await res.json()
     const daily = json?.daily

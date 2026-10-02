@@ -2,9 +2,10 @@
 // Docs: https://fred.stlouisfed.org/docs/api/fred/series_observations.html
 // Free, public-domain data. Key registration: https://fred.stlouisfed.org/docs/api/api_key.html
 
+import { ZUHD_UA } from '../http.js'
+
 const FRED_BASE = 'https://api.stlouisfed.org/fred/series/observations'
 const FRED_RELEASES_DATES = 'https://api.stlouisfed.org/fred/releases/dates'
-const USER_AGENT = 'zuhd-news/1.0 (+https://zuhd.news)'
 
 // High-signal US data releases worth an editorial "what's next" line.
 // releases/dates returns ~300 releases; anything not matching is noise here.
@@ -85,7 +86,7 @@ export async function fetchFredSeries(indicator, apiKey) {
   try {
     const res = await fetch(url, {
       signal: AbortSignal.timeout(10000),
-      headers: { 'User-Agent': USER_AGENT },
+      headers: { 'User-Agent': ZUHD_UA },
     })
     if (!res.ok) throw new Error(`HTTP ${res.status}`)
     const data = await res.json()
@@ -136,7 +137,7 @@ export async function fetchFredReleaseCalendar(apiKey, days = 10) {
     // timeout than the observation calls. Trends-stage budget is 120s.
     const res = await fetch(url, {
       signal: AbortSignal.timeout(30000),
-      headers: { 'User-Agent': USER_AGENT },
+      headers: { 'User-Agent': ZUHD_UA },
     })
     if (!res.ok) throw new Error(`HTTP ${res.status}`)
     const data = await res.json()

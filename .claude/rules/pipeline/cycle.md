@@ -224,6 +224,10 @@ is in the root CLAUDE.md; this is what the stages assume about each other.
   rules out. `readJson` returns the fallback on a missing *or* corrupt file and
   logs the corrupt case, so a bad snapshot neither kills a stage nor reads as a
   quiet day.
+  `fetchOk`/`fetchJson`/`fetchText` (`lib/http.js`) are the GET with a deadline,
+  `ZUHD_UA` and a throw on non-2xx. The eight hand-rolled `AbortController`
+  timers it replaced cleared on the *headers*, so a stalled body ran until the
+  stage's outer `timeout` killed it; `AbortSignal.timeout` bounds the body too.
 
 ## The selector's pool is cut at 12 hours
 

@@ -13,6 +13,7 @@ import { slugify, fingerprint, zuhdCategory } from './lib/utils.js'
 import { shouldSkip, recordResult } from './lib/block-cache.js'
 import { ROOT } from './lib/paths.js'
 import { writeJson } from './lib/json-file.js'
+import { ZUHD_UA } from './lib/http.js'
 
 const CONTENT_DIR = join(ROOT, 'content', 'articles')
 
@@ -218,7 +219,7 @@ function isRelevant(item) {
 /** @returns {Promise<FeedResult>} */
 async function fetchSource(source, retries = 1) {
   try {
-    const res = await fetch(source.url, { signal: AbortSignal.timeout(10000), headers: { 'User-Agent': 'zuhd-news/1.0 (+https://zuhd.news)' } })
+    const res = await fetch(source.url, { signal: AbortSignal.timeout(10000), headers: { 'User-Agent': ZUHD_UA } })
     if (!res.ok) throw new Error(`HTTP ${res.status}`)
     const xml = await res.text()
     const feed = rssParser.parse(xml)

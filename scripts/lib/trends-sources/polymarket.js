@@ -38,10 +38,10 @@
 
 import { runWithConcurrency } from '../concurrency.js'
 import { CC_TO_TOPOJSON_NAME } from '../../../shared/countries/iso.ts'
+import { ZUHD_UA } from '../http.js'
 
 const GAMMA_BASE = 'https://gamma-api.polymarket.com'
 const CLOB_BASE = 'https://clob.polymarket.com'
-const USER_AGENT = 'zuhd-news/1.0 (+https://zuhd.news)'
 
 const TOP_N = 20
 
@@ -177,7 +177,7 @@ async function fetchTopMarkets(limit) {
 
   const res = await fetch(url, {
     signal: AbortSignal.timeout(10000),
-    headers: { 'User-Agent': USER_AGENT },
+    headers: { 'User-Agent': ZUHD_UA },
   })
   if (!res.ok) throw new Error(`HTTP ${res.status}`)
   const data = await res.json()
@@ -248,7 +248,7 @@ async function fetchPriceHistory(clobTokenId) {
 
   const res = await fetch(url, {
     signal: AbortSignal.timeout(10000),
-    headers: { 'User-Agent': USER_AGENT },
+    headers: { 'User-Agent': ZUHD_UA },
   })
   if (!res.ok) throw new Error(`HTTP ${res.status}`)
   const data = await res.json()

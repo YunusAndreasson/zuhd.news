@@ -110,13 +110,7 @@ async function marineRequest(lat, lng) {
   url.searchParams.set('hourly', 'wave_height')
   url.searchParams.set('past_days', '1')
   url.searchParams.set('forecast_days', '1')
-  const controller = new AbortController()
-  const timer = setTimeout(() => controller.abort(), MARINE_TIMEOUT_MS)
-  try {
-    return await fetch(url, { signal: controller.signal })
-  } finally {
-    clearTimeout(timer)
-  }
+  return fetch(url, { signal: AbortSignal.timeout(MARINE_TIMEOUT_MS) })
 }
 
 async function fetchMarineWeatherBatch(points) {

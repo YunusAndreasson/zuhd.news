@@ -10,6 +10,8 @@
 // shared/types.ts so mobile can consume the snapshot with structural validation
 // and zero parsing.
 
+import { fetchOk } from './http.js'
+
 export const GDACS_GEOJSON_URL =
   'https://www.gdacs.org/gdacsapi/api/events/geteventlist/EVENTS4APP'
 
@@ -276,24 +278,9 @@ function findBufferImpactUrl(props, kind) {
  *        not part of this function's type.
  */
 async function fetchJson(url, validate, { signal, timeoutMs = 8000 } = {}) {
-  const controller = new AbortController()
-  const timer = setTimeout(() => controller.abort(), timeoutMs)
-  // Chain caller's abort signal into the timeout controller.
-  const onAbort = () => controller.abort()
-  if (signal) signal.addEventListener('abort', onAbort, { once: true })
-  try {
-    const res = await fetch(url, {
-      signal: controller.signal,
-      headers: { 'user-agent': 'zuhd-news/1.0 (+https://zuhd.news)' },
-    })
-    if (!res.ok) throw new Error(`HTTP ${res.status}`)
-    const json = await res.json()
-    if (!validate(json)) throw new Error('schema mismatch')
-    return json
-  } finally {
-    clearTimeout(timer)
-    if (signal) signal.removeEventListener('abort', onAbort)
-  }
+  const json = await fetchOk(url, { signal, timeoutMs }).then((res) => res.json())
+  if (!validate(json)) throw new Error('schema mismatch')
+  return json
 }
 
 export async function fetchGdacsDetail(alert, signal) {

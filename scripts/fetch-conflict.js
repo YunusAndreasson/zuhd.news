@@ -26,6 +26,7 @@ import { join } from 'node:path'
 import { filterRecentWindow, mapUcdpRow, parseCsv, rowsToObjects } from './lib/conflict.js'
 import { ROOT } from './lib/paths.js'
 import { writeJson } from './lib/json-file.js'
+import { fetchOk } from './lib/http.js'
 
 const OUTPUT_PATH = join(ROOT, 'content', '.conflict.json')
 // UCDP candidate release version — bump monthly when UCDP publishes the next
@@ -86,19 +87,8 @@ if (cacheFresh()) {
   process.exit(0)
 }
 
-async function fetchWithTimeout(url, extraHeaders = {}) {
-  const controller = new AbortController()
-  const timer = setTimeout(() => controller.abort(), FETCH_TIMEOUT_MS)
-  try {
-    const res = await fetch(url, {
-      signal: controller.signal,
-      headers: { 'user-agent': 'zuhd-news/1.0 (+https://zuhd.news)', ...extraHeaders },
-    })
-    if (!res.ok) throw new Error(`HTTP ${res.status}`)
-    return res
-  } finally {
-    clearTimeout(timer)
-  }
+function fetchWithTimeout(url, extraHeaders = {}) {
+  return fetchOk(url, { timeoutMs: FETCH_TIMEOUT_MS, headers: extraHeaders })
 }
 
 // Primary: UCDP JSON API — paginated, a few hundred KB total vs the ~50 MB CSV.

@@ -8,8 +8,8 @@
 // The orchestrator treats a null return as "skip this indicator this run".
 
 import { CHOKEPOINT_BY_ID, CHOKEPOINT_CATALOG } from '../chokepoint-metadata.js'
+import { ZUHD_UA } from '../http.js'
 
-const USER_AGENT = 'zuhd-news/1.0 (+https://zuhd.news)'
 
 // IMF PortWatch "Daily Chokepoints Data" feature service (ArcGIS).
 // Schema: date, portname, n_total + per-type counts. `date` was an epoch-ms
@@ -110,7 +110,7 @@ export async function fetchPortWatchChokepoint(indicator) {
   try {
     const res = await fetch(url, {
       signal: AbortSignal.timeout(15000),
-      headers: { 'User-Agent': USER_AGENT },
+      headers: { 'User-Agent': ZUHD_UA },
     })
     if (!res.ok) throw new Error(`HTTP ${res.status}`)
     const data = await res.json()
@@ -196,7 +196,7 @@ export async function fetchAllChokepointsSnapshot() {
   try {
     const res = await fetch(url, {
       signal: AbortSignal.timeout(20000),
-      headers: { 'User-Agent': USER_AGENT },
+      headers: { 'User-Agent': ZUHD_UA },
     })
     if (!res.ok) throw new Error(`HTTP ${res.status}`)
     const data = await res.json()

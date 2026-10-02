@@ -11,9 +11,9 @@
 
 import { existsSync, readFileSync, writeFileSync, mkdirSync } from 'node:fs'
 import { dirname } from 'node:path'
+import { ZUHD_UA } from '../http.js'
 
 const OER_BASE = 'https://openexchangerates.org/api'
-const USER_AGENT = 'zuhd-news/1.0 (+https://zuhd.news)'
 const HISTORY_DAYS = 30
 
 function ymd(d) {
@@ -30,7 +30,7 @@ async function fetchOneDay(date, appId) {
   const url = `${OER_BASE}/historical/${date}.json?app_id=${appId}`
   const res = await fetch(url, {
     signal: AbortSignal.timeout(10000),
-    headers: { 'User-Agent': USER_AGENT },
+    headers: { 'User-Agent': ZUHD_UA },
   })
   if (!res.ok) throw new Error(`HTTP ${res.status}`)
   const data = await res.json()
