@@ -1,4 +1,3 @@
-import { COUNTRY_DATA } from '@shared/countries/country-data';
 import type { GdacsAlert, GdacsDetail } from '@shared/types';
 import { memo, useCallback, useMemo } from 'react';
 import { StyleSheet } from 'react-native';
@@ -17,7 +16,13 @@ import { severityTint } from '../lib/severity';
 import { makeStaggerEnter } from '../lib/stagger';
 import { HOUR_MS } from '../lib/time';
 import { Markdown, Text } from './primitives';
-import { SheetFlagRow, SheetHero, SheetScrollView, SheetSourceFooter } from './SheetContent';
+import {
+  countryFlags,
+  SheetFlagRow,
+  SheetHero,
+  SheetScrollView,
+  SheetSourceFooter,
+} from './SheetContent';
 import { type BaseSheetProps, SheetLayout } from './SheetLayout';
 
 interface DisasterBodyProps {
@@ -136,20 +141,17 @@ export const DisasterBody = memo(function DisasterBody({
 
   const hero = useMemo(() => (alert ? parseSeverityHero(alert) : null), [alert]);
 
-  const flags = useMemo(() => {
-    if (!alert) return [] as { name: string; flag: string }[];
-    const names = alert.affectedCountries.length > 0 ? alert.affectedCountries : [alert.country];
-    const seen = new Set<string>();
-    const out: { name: string; flag: string }[] = [];
-    for (const n of names) {
-      const data = COUNTRY_DATA[n];
-      if (data?.flag && !seen.has(n)) {
-        seen.add(n);
-        out.push({ name: n, flag: data.flag });
-      }
-    }
-    return out;
-  }, [alert]);
+  const flags = useMemo(
+    () =>
+      countryFlags(
+        !alert
+          ? []
+          : alert.affectedCountries.length > 0
+            ? alert.affectedCountries
+            : [alert.country],
+      ),
+    [alert],
+  );
 
   const enter = makeStaggerEnter();
 
@@ -214,12 +216,7 @@ export const DisasterBody = memo(function DisasterBody({
           </Animated.View>
 
           {flags.length > 0 && (
-            <SheetFlagRow
-              entering={enter()}
-              flags={flags}
-              borderColor={colors.rule}
-              onPress={onCountryPress}
-            />
+            <SheetFlagRow entering={enter()} flags={flags} onPress={onCountryPress} />
           )}
 
           {alert.description.length > 0 && (

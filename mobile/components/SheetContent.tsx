@@ -1,4 +1,5 @@
 import { BottomSheetFlatList, BottomSheetScrollView } from '@expo/ui/community/bottom-sheet';
+import { COUNTRY_DATA } from '@shared/countries/country-data';
 import type { ComponentProps, Ref } from 'react';
 import { type FlatList, type FlatListProps, type ScrollView, StyleSheet } from 'react-native';
 import Animated from 'react-native-reanimated';
@@ -150,27 +151,36 @@ export function SheetHero({ entering, eyebrow, focal, tint, secondary }: SheetHe
   );
 }
 
+export interface CountryFlag {
+  name: string;
+  flag: string;
+}
+
+/** The flags of the countries named, once each and in order, for those that
+ *  have one. The three event sheets each looked them up their own way. */
+export function countryFlags(names: readonly (string | undefined)[]): CountryFlag[] {
+  const out: CountryFlag[] = [];
+  for (const name of names) {
+    const flag = name ? COUNTRY_DATA[name]?.flag : undefined;
+    if (name && flag && !out.some((f) => f.name === name)) out.push({ name, flag });
+  }
+  return out;
+}
+
 interface SheetFlagRowProps {
   entering?: EnteringAnimation;
-  flags: { name: string; flag: string }[];
-  borderColor: string;
+  flags: CountryFlag[];
   onPress?: (countryName: string) => void;
 }
 
 /** Wrapping row of affected-country flag chips. Renders nothing when empty —
  *  callers gate the `entering` call on non-empty so stagger order is stable. */
-export function SheetFlagRow({ entering, flags, borderColor, onPress }: SheetFlagRowProps) {
+export function SheetFlagRow({ entering, flags, onPress }: SheetFlagRowProps) {
   if (flags.length === 0) return null;
   return (
     <Animated.View entering={entering} style={styles.flagsRow}>
       {flags.map((f) => (
-        <FlagChip
-          key={f.name}
-          name={f.name}
-          flag={f.flag}
-          borderColor={borderColor}
-          onPress={onPress}
-        />
+        <FlagChip key={f.name} name={f.name} flag={f.flag} onPress={onPress} />
       ))}
     </Animated.View>
   );

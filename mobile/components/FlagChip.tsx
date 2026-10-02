@@ -1,6 +1,7 @@
 import { memo, useCallback } from 'react';
 import { Text as RNText, StyleSheet, View } from 'react-native';
 import { FLAG, HIT_SLOP, RADIUS, SPACING } from '../constants/theme';
+import { useTheme } from '../hooks/useTheme';
 import { displayCountryName } from '../lib/place-names';
 import { Pressable, Text } from './primitives';
 
@@ -34,15 +35,15 @@ const flagStyles = StyleSheet.create({
 interface FlagChipProps {
   name: string;
   flag: string;
-  borderColor: string;
   /** When provided, the chip becomes a button that opens that country's sheet. */
   onPress?: (countryName: string) => void;
 }
 
-/** Bordered flag-glyph + country-name chip. Shared by ConflictSheet and
- *  DisasterSheet so the "affected country" affordance reads identically in
- *  both. Static when `onPress` is omitted, a button otherwise. */
-export function FlagChip({ name, flag, borderColor, onPress }: FlagChipProps) {
+/** Flag-glyph + country-name chip, edged in the sheet's rule. Shared by the
+ *  event sheets so the "affected country" affordance reads identically in
+ *  each. Static when `onPress` is omitted, a button otherwise. */
+export function FlagChip({ name, flag, onPress }: FlagChipProps) {
+  const borderColor = useTheme().colors.rule;
   const display = displayCountryName(name) ?? name;
   const handlePress = useCallback(() => onPress?.(name), [name, onPress]);
   if (!onPress) {

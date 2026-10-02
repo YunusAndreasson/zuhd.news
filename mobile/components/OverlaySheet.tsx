@@ -1,4 +1,3 @@
-import { COUNTRY_DATA } from '@shared/countries/country-data';
 import { topojsonNameFromCode } from '@shared/countries/iso';
 import type { Category } from '@shared/types';
 import { memo, useCallback, useMemo } from 'react';
@@ -15,7 +14,13 @@ import { type OverlaySelection, thermalPlace } from '../lib/overlays';
 import { makeStaggerEnter } from '../lib/stagger';
 import { ArticleRow } from './ArticleRow';
 import { Text } from './primitives';
-import { SheetFlagRow, SheetHero, SheetScrollView, SheetSourceFooter } from './SheetContent';
+import {
+  countryFlags,
+  SheetFlagRow,
+  SheetHero,
+  SheetScrollView,
+  SheetSourceFooter,
+} from './SheetContent';
 import { type BaseSheetProps, SheetLayout } from './SheetLayout';
 
 /**
@@ -53,12 +58,6 @@ function formatIsoDate(iso: string): string {
   const month = MONTH_ABBR[Number(m[2]) - 1];
   if (!month) return iso;
   return m[3] ? `${Number(m[3])} ${month} ${m[1]}` : `${month} ${m[1]}`;
-}
-
-function flagFor(name: string | undefined): { name: string; flag: string }[] {
-  if (!name) return [];
-  const data = COUNTRY_DATA[name];
-  return data?.flag ? [{ name, flag: data.flag }] : [];
 }
 
 /** The handle's title: what the layer is. */
@@ -114,6 +113,16 @@ export const OverlayBody = memo(function OverlayBody({
     else if (genocideUrl) openLink(genocideUrl);
   }, [overlay, genocideUrl, openLink]);
 
+  // The country an area or a finding is in, for its flag row: a famine area by
+  // its ISO code, a genocide situation by its profile.
+  const flags = countryFlags([
+    overlay?.kind === 'famine' && overlay.area.iso2
+      ? topojsonNameFromCode(overlay.area.iso2)
+      : overlay?.kind === 'genocide'
+        ? overlay.situation.profile
+        : undefined,
+  ]);
+
   const enter = makeStaggerEnter();
 
   return (
@@ -143,12 +152,9 @@ export const OverlayBody = memo(function OverlayBody({
               {`analysis of ${overlay.area.vintage}`}
             </Text>
           </Animated.View>
-          <SheetFlagRow
-            entering={enter()}
-            flags={flagFor(overlay.area.iso2 ? topojsonNameFromCode(overlay.area.iso2) : undefined)}
-            borderColor={colors.rule}
-            onPress={onCountryPress}
-          />
+          {flags.length > 0 && (
+            <SheetFlagRow entering={enter()} flags={flags} onPress={onCountryPress} />
+          )}
           <SheetSourceFooter
             entering={enter()}
             source="Integrated Food Security Phase Classification"
@@ -235,12 +241,9 @@ export const OverlayBody = memo(function OverlayBody({
               {`${overlay.situation.document} · ${formatIsoDate(overlay.situation.date)}`}
             </Text>
           </Animated.View>
-          <SheetFlagRow
-            entering={enter()}
-            flags={flagFor(overlay.situation.profile)}
-            borderColor={colors.rule}
-            onPress={onCountryPress}
-          />
+          {flags.length > 0 && (
+            <SheetFlagRow entering={enter()} flags={flags} onPress={onCountryPress} />
+          )}
           <SheetSourceFooter
             entering={enter()}
             source={overlay.situation.body}
