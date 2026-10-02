@@ -42,7 +42,7 @@ export function DemographyCard({ data }: DemographyCardProps) {
     >
       <TrajectoryChart
         {...trajectory}
-        thresholds={[{ value: 2.1, label: 'replacement', tone: 'neutral' }]}
+        thresholds={[{ value: 2.1, label: 'replacement' }]}
         formatY={(n) => `${n.toFixed(1)}×`}
         accessibilityLabel={`Fertility rate ${headline} children per woman. ${subtitle} Replacement is 2.1. Comparison line shows world median.`}
       />
