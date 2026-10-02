@@ -1,4 +1,3 @@
-import type { ComponentProps } from 'react';
 import { memo, type ReactNode } from 'react';
 import { StyleSheet, View } from 'react-native';
 import { LAYOUT, RADIUS, SPACING } from '../constants/theme';
@@ -10,17 +9,9 @@ interface SheetHandleProps {
   title?: ReactNode;
   /** If provided, a back chevron appears on the leading edge, vertically centered with the title. */
   onBack?: () => void;
-  /** One control on the trailing edge, mirroring `onBack`. */
-  action?: SheetHandleAction;
 }
 
-export interface SheetHandleAction {
-  icon: ComponentProps<typeof Icon>['name'];
-  label: string;
-  onPress: () => void;
-}
-
-export const SheetHandle = memo(function SheetHandle({ title, onBack, action }: SheetHandleProps) {
+export const SheetHandle = memo(function SheetHandle({ title, onBack }: SheetHandleProps) {
   const { colors, typography } = useTheme();
   // Tighten line-height to match glyph height so flex center + absolute center
   // align against the same reference (no 1–2px optical drift from line-leading).
@@ -36,10 +27,10 @@ export const SheetHandle = memo(function SheetHandle({ title, onBack, action }: 
         accessibilityElementsHidden
         importantForAccessibility="no-hide-descendants"
       />
-      {(title || onBack || action) && (
-        // A title's height even without one: the back and action buttons are
-        // absolute, so a page with no title (a card, which heads itself) had
-        // a 0pt row and a back button of no size — nothing to tap.
+      {(title || onBack) && (
+        // A title's height even without one: the back button is absolute, so
+        // a page with no title (a card, which heads itself) had a 0pt row and
+        // a back button of no size — nothing to tap.
         <View style={[styles.titleRow, { minHeight: typography.sizeBase }]}>
           {onBack && (
             <IconButton onPress={onBack} style={styles.back} accessibilityLabel="Back">
@@ -62,15 +53,6 @@ export const SheetHandle = memo(function SheetHandle({ title, onBack, action }: 
             </Text>
           ) : (
             title
-          )}
-          {action && (
-            <IconButton
-              onPress={action.onPress}
-              style={styles.action}
-              accessibilityLabel={action.label}
-            >
-              <Icon name={action.icon} tone="secondary" />
-            </IconButton>
           )}
         </View>
       )}
@@ -105,16 +87,9 @@ const styles = StyleSheet.create({
   },
   textTitle: {
     flexShrink: 1,
-    // Both sides stay clear even when only Back is present, keeping the
-    // heading centered without long event names covering either control.
+    // Both sides stay clear, keeping the heading centered without a long
+    // event name running under Back.
     marginHorizontal: SPACING.screenPadding + LAYOUT.controlHeight,
     textAlign: 'center',
-  },
-  action: {
-    position: 'absolute',
-    right: SPACING.screenPadding,
-    top: 0,
-    bottom: 0,
-    justifyContent: 'center',
   },
 });

@@ -939,7 +939,9 @@ about what a card may say is about the card, not where it is shown.
     under the open sheet, and the strip of earth above is the top of the disc.
     The gesture layer is tap-to-collapse there, so a touch puts the story down
     rather than turning the earth out from under it. Do not bring the shrink
-    back to show the place.
+    back to show the place. Its remains — `grownGlobeTransform`, `grownReach`
+    and the globe's never-passed `canvasTransform`/`canvasReach` props, still
+    looped over in the beacon's per-frame style — went on 2026-10-02.
   - **The globe slides up with the sheet, so the place stays in sight**
     (2026-09-23, `globeLiftStyle` in `app/index.tsx`). A *view* translate of
     the globe layer, `storyCenterY − centerY` times the sheet's progress: the

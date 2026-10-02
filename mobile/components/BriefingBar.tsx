@@ -1,5 +1,5 @@
 import { BlurView } from 'expo-blur';
-import { memo, useCallback, useEffect, useRef } from 'react';
+import { memo, type ReactNode, useCallback, useEffect, useRef } from 'react';
 import {
   type AccessibilityActionEvent,
   ActivityIndicator,
@@ -247,28 +247,16 @@ export const BriefingBar = memo(function BriefingBar({
  *  the dock; a lit coastline now) showed behind `briefing · Sep 19`. Both wrap the bar's
  *  rounded-rect with the same border radius and clip overflow so the inner
  *  edge-to-edge progress strip follows the corner curve. */
-const BarBackground = memo(function BarBackground({
-  children,
-  onLayout,
-  tintColor,
-}: {
-  children: React.ReactNode;
-  onLayout?: (e: LayoutChangeEvent) => void;
-  tintColor: string;
-}) {
+function BarBackground({ children, tintColor }: { children: ReactNode; tintColor: string }) {
   if (Platform.OS === 'ios') {
     return (
-      <BlurView intensity={60} tint="systemThinMaterial" style={styles.bar} onLayout={onLayout}>
+      <BlurView intensity={60} tint="systemThinMaterial" style={styles.bar}>
         {children}
       </BlurView>
     );
   }
-  return (
-    <View style={[styles.bar, { backgroundColor: tintColor }]} onLayout={onLayout}>
-      {children}
-    </View>
-  );
-});
+  return <View style={[styles.bar, { backgroundColor: tintColor }]}>{children}</View>;
+}
 
 const styles = StyleSheet.create({
   // Just under the top bar's 48pt row, whose gauge labels sit mid-row, so

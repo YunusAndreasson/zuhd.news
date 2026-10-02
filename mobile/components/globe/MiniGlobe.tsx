@@ -24,7 +24,6 @@ import {
   type SkPath,
   type SkPathBuilder,
   type SkPicture,
-  type SkPoint,
   type SkShader,
   StrokeCap,
   StrokeJoin,
@@ -993,15 +992,6 @@ interface MiniGlobeProps {
    */
   viewLat?: SharedValue<number>;
   viewLng?: SharedValue<number>;
-  /**
-   * The grown-story transform, applied to the drawing inside the canvas. A
-   * view transform would scale the canvas's pixels and cut a zoomed globe at
-   * the canvas's edge; this one shrinks ground the projection drew past it.
-   */
-  canvasTransform?: SharedValue<Transforms3d>;
-  /** How far from the globe's centre the projection must reach: past the
-   *  screen when `canvasTransform` can shrink it (`grownReach`). */
-  canvasReach?: number;
   tick?: number;
   ref?: React.Ref<MiniGlobeRef>;
 }
@@ -1797,8 +1787,9 @@ type SettledGeometry = {
 };
 function recordGlobeFrame(f: GlobeState, s: FrameStyle): FramePictures {
   const { colors, light, fonts, textures } = s;
-  // Recorded well past the canvas: a grown story shrinks the drawing, and what
-  // lies outside the screen at rest has to come into it (`canvasTransform`).
+  // Recorded well past the canvas: between projections the warp slides and
+  // scales the pictures (`warp`, `MOTION_REACH`), and what lies past the
+  // screen's edge has to be in them to come into view.
   const bounds = Skia.XYWHRect(-s.width, -s.height, 3 * s.width, 3 * s.height);
   const haloOpacity = light ? LABEL_HALO_OPACITY_LIGHT : LABEL_HALO_OPACITY_DARK;
   const haloOpacitySoft = light ? LABEL_HALO_OPACITY_LIGHT_SOFT : LABEL_HALO_OPACITY_DARK_SOFT;
@@ -2491,8 +2482,6 @@ export const MiniGlobe = memo(function MiniGlobe({
   thermalEvents,
   genocideSituations,
   storyProgress,
-  canvasTransform,
-  canvasReach = 0,
   cameraTrack,
   cameraOwner,
   cameraLat,
@@ -2881,21 +2870,13 @@ export const MiniGlobe = memo(function MiniGlobe({
   // The current story's dot holds still. It breathed for three cycles each time
   // a story landed, and the user asked for it to go (2026-09-19): the location
   // label beside it is larger instead, and says which place is being read.
-  // A tiny native overlay, placed and sized from the globe's translate and
-  // scale. It kept its screen size while the globe shrank into the open
-  // story's band, and the label beside it — drawn in the scaled picture —
-  // slid under it: the band read `●yiv`. It shrinks with its label now.
+  // A tiny native overlay over the dot's place in the picture. It used to be
+  // scaled with the drawing too, while an open story shrank the globe into
+  // the band above it (removed 2026-09-21; the props that carried that
+  // transform went on 2026-10-02).
   const beaconStyle = useAnimatedStyle(() => {
     const dot = framePictures.value.activeDot;
-    let scale = 1;
-    let tx = 0;
-    let ty = 0;
-    for (const transform of canvasTransform?.value ?? []) {
-      if ('scale' in transform) scale = transform.scale;
-      if ('translateX' in transform) tx += transform.translateX;
-      if ('translateY' in transform) ty += transform.translateY;
-    }
-    // Carried by the warp first, like the ground under it.
+    // Carried by the warp, like the ground under it.
     let wx = dot ? dot.x : 0;
     let wy = dot ? dot.y : 0;
     let ws = 1;
@@ -2908,17 +2889,13 @@ export const MiniGlobe = memo(function MiniGlobe({
       wx += (ws - 1) * dot.x;
       wy += (ws - 1) * dot.y;
     }
-    const x = dot ? width / 2 + (wx - width / 2) * scale + tx : 0;
-    const y = dot ? height / 2 + (wy - height / 2) * scale + ty : 0;
+    const x = dot ? wx : 0;
+    const y = dot ? wy : 0;
     return {
       opacity: dot ? 1 : 0,
       backgroundColor: framePictures.value.activeColor,
       borderColor: colors.bg,
-      transform: [
-        { translateX: x - 9 },
-        { translateY: y - 9 },
-        { scale: ((ACTIVE_DOT_R + 2) / 9) * scale },
-      ],
+      transform: [{ translateX: x - 9 }, { translateY: y - 9 }, { scale: (ACTIVE_DOT_R + 2) / 9 }],
     };
   });
 
@@ -3335,8 +3312,8 @@ export const MiniGlobe = memo(function MiniGlobe({
   clipOutRef.current = clipOut;
   const storyClipOutRef = useRef(storyClipOut);
   storyClipOutRef.current = storyClipOut;
-  const layoutRef = useRef({ globeRadius, cx, cy, width, height, canvasReach, marketViewport });
-  layoutRef.current = { globeRadius, cx, cy, width, height, canvasReach, marketViewport };
+  const layoutRef = useRef({ globeRadius, cx, cy, width, height, marketViewport });
+  layoutRef.current = { globeRadius, cx, cy, width, height, marketViewport };
   // Mirror of the last frame drawn — avoids reading SharedValues outside
   // worklets. A JS read of `overrideActive`/`overrideAngle` blocks on the UI
   // thread (`runOnUISync`) whenever the UI thread has written them, and a
@@ -3377,7 +3354,6 @@ export const MiniGlobe = memo(function MiniGlobe({
         cy: centerY,
         width: canvasW,
         height: canvasH,
-        canvasReach: grownReach,
       } = layoutRef.current;
       const geoData = articleGeoRef.current;
 
@@ -3484,10 +3460,7 @@ export const MiniGlobe = memo(function MiniGlobe({
       // has ground to carry into view until the next projection lands.
       const viewAngle = viewAngleFor(
         projScale,
-        Math.max(
-          grownReach,
-          reachFor(centerX, centerY, canvasW, canvasH) * (nearSettled ? 1 : MOTION_REACH),
-        ),
+        reachFor(centerX, centerY, canvasW, canvasH) * (nearSettled ? 1 : MOTION_REACH),
       );
       const clipRad = (viewAngle * Math.PI) / 180;
       const clipCos = Math.cos(clipRad);
@@ -4583,17 +4556,13 @@ export const MiniGlobe = memo(function MiniGlobe({
       width: canvasW,
       height: canvasH,
     } = layoutRef.current;
-    const grownReach = layoutRef.current.canvasReach;
     const coords = coordsRef.current;
     const lat = coords[index * 2];
     const lng = coords[index * 2 + 1];
     if (lat == null || lng == null) return;
     const clip = clipAngleForCountry(articleGeoRef.current[index]?.countryName ?? null);
     const projScale = r / Math.sin((clip * Math.PI) / 180);
-    const viewAngle = viewAngleFor(
-      projScale,
-      Math.max(grownReach, reachFor(centerX, centerY, canvasW, canvasH)),
-    );
+    const viewAngle = viewAngleFor(projScale, reachFor(centerX, centerY, canvasW, canvasH));
     const tier = geographyTier(projScale, false);
     const key = settledKey(tier, lng, lat, projScale, viewAngle, centerX, centerY);
     const cache = settledGeometryRef.current;
@@ -5145,7 +5114,6 @@ export const MiniGlobe = memo(function MiniGlobe({
     cy,
     width,
     height,
-    canvasReach,
     enrichedMarketMarks,
     enrichedChokepoints,
     placeMarks,
@@ -5495,8 +5463,6 @@ export const MiniGlobe = memo(function MiniGlobe({
     },
   }));
 
-  const canvasOrigin = useMemo(() => vec(width / 2, height / 2), [width, height]);
-
   // What is still to find, as a ring just outside the globe. The track is the
   // day's stories with a place; the arc is what is left, starting at twelve
   // o'clock and shrinking back toward it with each find — after the burst, so
@@ -5533,8 +5499,6 @@ export const MiniGlobe = memo(function MiniGlobe({
     <GlobeCanvas
       width={width}
       height={height}
-      canvasTransform={canvasTransform}
-      canvasOrigin={canvasOrigin}
       prevWarp={prevWarp}
       warp={warp}
       prevGroundPicture={prevGroundPicture}
@@ -5584,8 +5548,6 @@ type Value<T> = SharedValue<T> | DerivedValue<T>;
 const GlobeCanvas = memo(function GlobeCanvas({
   width,
   height,
-  canvasTransform,
-  canvasOrigin,
   prevWarp,
   warp,
   prevGroundPicture,
@@ -5615,8 +5577,6 @@ const GlobeCanvas = memo(function GlobeCanvas({
 }: {
   width: number;
   height: number;
-  canvasTransform?: SharedValue<Transforms3d>;
-  canvasOrigin: SkPoint;
   prevWarp: Value<Transforms3d>;
   warp: Value<Transforms3d>;
   prevGroundPicture: Value<SkPicture>;
@@ -5648,86 +5608,78 @@ const GlobeCanvas = memo(function GlobeCanvas({
   return (
     <>
       <Canvas style={[styles.canvas, { width, height }]} pointerEvents="none">
-        <Group transform={canvasTransform} origin={canvasOrigin}>
-          {/* Ground — the atmospheric rim, the ocean, the subsolar glint,
-          daylight, the graticule, land, ice, borders, night, city lights and
-          the inner-limb glaze. Recorded per projection; see
-          `recordGlobeFrame`. */}
-          <Group transform={prevWarp}>
-            <Picture picture={prevGroundPicture} />
-          </Group>
-          <Group transform={warp}>
-            <Picture picture={groundPicture} />
+        {/* Ground — the atmospheric rim, the ocean, the subsolar glint,
+        daylight, the graticule, land, ice, borders, night, city lights and
+        the inner-limb glaze. Recorded per projection; see
+        `recordGlobeFrame`. */}
+        <Group transform={prevWarp}>
+          <Picture picture={prevGroundPicture} />
+        </Group>
+        <Group transform={warp}>
+          <Picture picture={groundPicture} />
 
-            {/* Marks — hotspots, straits, exchanges, hazards, the country
-            highlight, rivers, arcs, stories and the settled dot. */}
-            <Picture picture={marksPicture} />
-          </Group>
+          {/* Marks — hotspots, straits, exchanges, hazards, the country
+          highlight, rivers, arcs, stories and the settled dot. */}
+          <Picture picture={marksPicture} />
+        </Group>
 
-          {/* Still to find — see `ringLeft`. */}
-          {ring ? (
-            <Group>
-              <Circle
-                cx={cx}
-                cy={cy}
-                r={ringRadius}
-                color={ringColor}
-                style="stroke"
-                strokeWidth={RING_WIDTH}
-              />
-              <Path
-                path={ringPath}
-                start={0}
-                end={ringLeft}
-                color={ringLeftColor}
-                style="stroke"
-                strokeWidth={RING_WIDTH}
-                strokeCap="round"
-              />
-            </Group>
-          ) : null}
-
-          {/* Tap pulse — stroked ring (selection cartouche) rather than a blurred
-          fill. The globe's vocabulary is *rings* (chokepoint arcs, earthquake
-          glyphs, hotspot halos, GDACS Red alarm ring); a soft-blur ripple
-          read as generic mobile-UI chrome borrowed from any other app. The
-          stroke now belongs to the same drawing family as everything else
-          on the canvas, so the gesture confirmation feels diegetic. No
-          BlurMask = one less filter pass per tap. */}
-          <Circle
-            cx={pulseX}
-            cy={pulseY}
-            r={pulseR}
-            color={pulseColor}
-            opacity={pulseOpacity}
-            style="stroke"
-            strokeWidth={1.4}
-          />
-
-          {/* Found burst — see `collect`. */}
-          <Group opacity={collectOpacity}>
+        {/* Still to find — see `ringLeft`. */}
+        {ring ? (
+          <Group>
             <Circle
-              cx={collectX}
-              cy={collectY}
-              r={collectDiscR}
-              color={collectColor}
-              opacity={0.5}
-            />
-            <Circle
-              cx={collectX}
-              cy={collectY}
-              r={collectRingR}
-              color={collectColor}
+              cx={cx}
+              cy={cy}
+              r={ringRadius}
+              color={ringColor}
               style="stroke"
-              strokeWidth={1.6}
+              strokeWidth={RING_WIDTH}
+            />
+            <Path
+              path={ringPath}
+              start={0}
+              end={ringLeft}
+              color={ringLeftColor}
+              style="stroke"
+              strokeWidth={RING_WIDTH}
+              strokeCap="round"
             />
           </Group>
+        ) : null}
 
-          {/* Labels — water, neighbours, the focused country, the dot label
-          and the poles, above the tap pulse. */}
-          <Group transform={warp}>
-            <Picture picture={labelsPicture} />
-          </Group>
+        {/* Tap pulse — stroked ring (selection cartouche) rather than a blurred
+        fill. The globe's vocabulary is *rings* (chokepoint arcs, earthquake
+        glyphs, hotspot halos, GDACS Red alarm ring); a soft-blur ripple
+        read as generic mobile-UI chrome borrowed from any other app. The
+        stroke now belongs to the same drawing family as everything else
+        on the canvas, so the gesture confirmation feels diegetic. No
+        BlurMask = one less filter pass per tap. */}
+        <Circle
+          cx={pulseX}
+          cy={pulseY}
+          r={pulseR}
+          color={pulseColor}
+          opacity={pulseOpacity}
+          style="stroke"
+          strokeWidth={1.4}
+        />
+
+        {/* Found burst — see `collect`. */}
+        <Group opacity={collectOpacity}>
+          <Circle cx={collectX} cy={collectY} r={collectDiscR} color={collectColor} opacity={0.5} />
+          <Circle
+            cx={collectX}
+            cy={collectY}
+            r={collectRingR}
+            color={collectColor}
+            style="stroke"
+            strokeWidth={1.6}
+          />
+        </Group>
+
+        {/* Labels — water, neighbours, the focused country, the dot label
+        and the poles, above the tap pulse. */}
+        <Group transform={warp}>
+          <Picture picture={labelsPicture} />
         </Group>
       </Canvas>
       <Animated.View

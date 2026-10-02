@@ -2,8 +2,6 @@ import {
   BAND_MIN,
   computeDeckLayout,
   type DeckLayoutInput,
-  grownGlobeTransform,
-  grownReach,
   openHeightNeedsMeasuring,
   openStoryHeight,
 } from '../lib/deck-layout';
@@ -126,46 +124,6 @@ describe('computeDeckLayout', () => {
   it('keeps the globe a fifth of a tall window with a story open', () => {
     const layout = computeDeckLayout(tall());
     expect(layout.full).toBe(932 - 171 - Math.round(0.2 * 932));
-  });
-});
-
-describe('grownGlobeTransform', () => {
-  it('lands the resting centre on the open centre at the open radius', () => {
-    const layout = computeDeckLayout(small());
-    const { scale, translateY } = grownGlobeTransform(layout, 640);
-    expect(scale * layout.radius).toBeCloseTo(0.46 * layout.storyBand);
-    // Scaling about the canvas centre, then translating.
-    const landed = 320 + scale * (layout.centerY - 320) + translateY;
-    expect(landed).toBeCloseTo(layout.storyCenterY);
-  });
-
-  it('never draws the open disc larger than the resting one', () => {
-    const roomy = computeDeckLayout(tall({ height: 1100 }));
-    expect(grownGlobeTransform(roomy, 1100).scale).toBeLessThanOrEqual(1);
-  });
-});
-
-describe('grownReach', () => {
-  it('covers every screen corner under the open transform', () => {
-    const layout = computeDeckLayout(small());
-    const reach = grownReach(layout, 640);
-    const { scale, translateY } = grownGlobeTransform(layout, 640);
-    for (const [px, py] of [
-      [0, 0],
-      [360, 0],
-      [0, 640],
-      [360, 640],
-    ] as const) {
-      // The canvas point a screen corner shows once the drawing is shrunk.
-      const x = 180 + (px - 180) / scale;
-      const y = 320 + (py - 320 - translateY) / scale;
-      expect(Math.hypot(x - 180, y - layout.centerY)).toBeLessThanOrEqual(reach + 1);
-    }
-  });
-
-  it('reaches past the resting screen, which the shrink uncovers', () => {
-    const layout = computeDeckLayout(small());
-    expect(grownReach(layout, 640)).toBeGreaterThan(Math.hypot(180, 640 - layout.centerY));
   });
 });
 

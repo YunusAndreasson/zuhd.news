@@ -1,4 +1,4 @@
-import { memo, type ReactNode, useCallback, useMemo } from 'react';
+import { memo, type ReactNode, useMemo } from 'react';
 import { StyleSheet, View } from 'react-native';
 import {
   GestureDetector,
@@ -26,25 +26,19 @@ const SWIPE_THRESHOLD = -ACTION_WIDTH * 0.6;
 
 interface SwipeableRowProps {
   children: ReactNode;
+  /** No haptic of its own: the action is a committed change of state, and
+   *  its owner gives the notification for that (a second buzz here read as a
+   *  double knock). */
   onSwipeAction: () => void;
-  actionLabel?: string;
 }
 
 export const SwipeableRow = memo(function SwipeableRow({
   children,
   onSwipeAction,
-  actionLabel = 'remove',
 }: SwipeableRowProps) {
   const { colors } = useTheme();
   const translateX = useSharedValue(0);
   const ratchetThresholdFired = useSharedValue(false);
-
-  // No haptic of its own: the action is a committed change of state, and
-  // its owner gives the notification for that (a second buzz here read as a
-  // double knock).
-  const fireAction = useCallback(() => {
-    onSwipeAction();
-  }, [onSwipeAction]);
 
   const panConfig = useMemo(
     (): PanGestureConfig => ({
@@ -77,11 +71,11 @@ export const SwipeableRow = memo(function SwipeableRow({
         // A cancelled swipe (a sheet dragged away, a system gesture) also
         // deactivates, and must only spring back — it deleted the row once.
         if (!e.canceled && released < SWIPE_THRESHOLD) {
-          scheduleOnRN(fireAction);
+          scheduleOnRN(onSwipeAction);
         }
       },
     }),
-    [translateX, ratchetThresholdFired, fireAction],
+    [translateX, ratchetThresholdFired, onSwipeAction],
   );
   const panGesture = usePanGesture(panConfig);
 
@@ -109,7 +103,7 @@ export const SwipeableRow = memo(function SwipeableRow({
       <Animated.View
         style={[styles.actionContainer, { backgroundColor: colors.bg }, actionOpacity]}
       >
-        <Text variant="labelXs">{actionLabel}</Text>
+        <Text variant="labelXs">remove</Text>
       </Animated.View>
       <GestureDetector gesture={panGesture}>
         <Animated.View style={[{ backgroundColor: colors.sheetBg }, rowStyle]}>

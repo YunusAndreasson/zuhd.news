@@ -167,7 +167,6 @@ export function useBriefingPlayer(
   const lockScreenDurationKnown = useRef(false);
   const lockScreenActivationPending = useRef(false);
   const lockScreenActivationToken = useRef(0);
-  const backgroundAt = useRef<number>(0);
   // Single timer reused by the status-driven start. Holds the give-up
   // deadline for a play() that hasn't taken yet — when status reports
   // `playing:true` we clear it; if the deadline fires, we tear down.
@@ -225,10 +224,7 @@ export function useBriefingPlayer(
   useEffect(() => {
     let disposed = false;
     const sub = AppState.addEventListener('change', async (state: AppStateStatus) => {
-      if (state !== 'active') {
-        backgroundAt.current = Date.now();
-        return;
-      }
+      if (state !== 'active') return;
       const player = playerRef.current;
       if (!player) return;
       const token = toggleTokenRef.current;
