@@ -11,7 +11,7 @@ import {
   SUB_EVENT_LABEL,
 } from '../lib/conflict';
 import { relativeTime } from '../lib/date-format';
-import { useOpenLink } from '../lib/open-link';
+import { openExternal } from '../lib/open-link';
 import { displayCountryName } from '../lib/place-names';
 import { severityTint } from '../lib/severity';
 import { makeStaggerEnter } from '../lib/stagger';
@@ -60,12 +60,11 @@ export const ConflictBody = memo(function ConflictBody({
   onCountryPress,
 }: ConflictBodyProps) {
   const { colors } = useTheme();
-  const openLink = useOpenLink();
   // On `event`, not `event?.sourceUrl`: the compiler keeps a memo only on
   // what it reads, and on the narrower key this whole body skipped it.
   const handleSourcePress = useCallback(() => {
-    if (event?.sourceUrl) openLink(event.sourceUrl);
-  }, [event, openLink]);
+    if (event?.sourceUrl) openExternal(event.sourceUrl);
+  }, [event]);
 
   // Focal tint: fatalities > 0 reads in the unfavorable tone (the "people
   // killed" framing earns the same visual weight as a Red GDACS alert);

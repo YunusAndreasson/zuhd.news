@@ -118,7 +118,7 @@ import {
   markHintDone,
   recordArticleSnap,
 } from '../lib/onboarding-store';
-import { useOpenLink } from '../lib/open-link';
+import { openExternal } from '../lib/open-link';
 import type { OverlaySelection } from '../lib/overlays';
 import { oddsByStory, oddsLabels, type StoryOdds } from '../lib/predictions';
 import { getSnapshot as getReadSlugs, pruneRead } from '../lib/read-store';
@@ -893,16 +893,15 @@ export default function HomeScreen() {
     [flyTo],
   );
 
-  const openLink = useOpenLink();
   /** The contract's own card where the deck admitted it; otherwise the market
    *  itself — a price is only worth printing if the reader can check it. */
   const handleOddsPress = useCallback(
     (value: StoryOdds) => {
       const card = rankedRef.current.find((c) => c.id === value.id);
       if (card) openCard(card);
-      else if (value.marketUrl) openLink(value.marketUrl);
+      else if (value.marketUrl) openExternal(value.marketUrl);
     },
-    [openCard, openLink],
+    [openCard],
   );
 
   /** The gauge a menu row stands for: its slot or its mark, so the globe

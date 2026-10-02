@@ -1,4 +1,3 @@
-import { useCallback } from 'react';
 import { Linking } from 'react-native';
 
 /**
@@ -10,12 +9,9 @@ import { Linking } from 'react-native';
  * RN Modal, and it is still true of the platform sheets that replaced them.
  * An external browser preserves sheet state across the round trip.
  */
-/** Open a URL in the OS default browser, swallowing failures. Plain-function
- *  form for non-hook call sites (e.g. markdown's default link opener). */
+/** Open a URL in the OS default browser, swallowing failures. A module
+ *  function, stable by nature: there was a `useOpenLink` hook that returned
+ *  this through `useCallback(…, [])`, which is this. */
 export function openExternal(url: string): void {
   Linking.openURL(url).catch(() => {});
-}
-
-export function useOpenLink(): (url: string) => void {
-  return useCallback(openExternal, []);
 }

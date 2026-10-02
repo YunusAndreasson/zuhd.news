@@ -38,7 +38,7 @@ import { useNewSpent } from '../../lib/fresh-store';
 import type { StoryRow } from '../../lib/map-feed';
 import { COUNTRY_URL_SCHEME, makeMarkdownStyles, renderSentences } from '../../lib/markdown';
 import type { RiverArticle } from '../../lib/news-order';
-import { useOpenLink } from '../../lib/open-link';
+import { openExternal } from '../../lib/open-link';
 import type { StoryOdds } from '../../lib/predictions';
 import { useReadSlugs } from '../../lib/read-store';
 import { unreadNewBehind } from '../../lib/resume-landing';
@@ -269,7 +269,6 @@ export const StoryCard = memo(function StoryCard({
     return usable.length > 0 ? usable : undefined;
   }, [article.entities, resolvableEntityIds]);
 
-  const rawOpenLink = useOpenLink();
   const openLink = useCallback(
     (url: string) => {
       if (url.startsWith(COUNTRY_URL_SCHEME)) {
@@ -284,9 +283,9 @@ export const StoryCard = memo(function StoryCard({
         });
         return;
       }
-      rawOpenLink(url);
+      openExternal(url);
     },
-    [onCountryPress, rawOpenLink],
+    [onCountryPress],
   );
 
   // One pass over every sentence, then split: entity mentions are tagged on

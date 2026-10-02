@@ -6,7 +6,7 @@ import { useTheme } from '../../hooks/useTheme';
 import { citedAnnotations, windowReference } from '../../lib/cards/card-chart';
 import type { SwipeCard } from '../../lib/cards/rank';
 import type { CardDelta, CardFigure, CardSeries } from '../../lib/cards/types';
-import { useOpenLink } from '../../lib/open-link';
+import { openExternal } from '../../lib/open-link';
 import { TrendBlock } from '../blocks/TrendBlock';
 import { Text } from '../primitives';
 import { CardFrame } from './CardFrame';
@@ -102,10 +102,9 @@ export const CardView = memo(function CardView({
   /** Opens one of the stories the card cites. */
   onStoryPress?: (slug: string) => void;
 }) {
-  const openLink = useOpenLink();
   const onPress = useCallback(() => {
-    if (card.link) openLink(card.link);
-  }, [card.link, openLink]);
+    if (card.link) openExternal(card.link);
+  }, [card.link]);
 
   return (
     <CardFrame card={card} onStoryPress={onStoryPress}>

@@ -9,7 +9,7 @@ import { articleTime, formatTimeAgo } from '../lib/article-utils';
 import { formatCount, formatNumber } from '../lib/cards/format';
 import { MONTH_ABBR } from '../lib/date-format';
 import type { RiverArticle } from '../lib/news-order';
-import { useOpenLink } from '../lib/open-link';
+import { openExternal } from '../lib/open-link';
 import { type OverlaySelection, thermalPlace } from '../lib/overlays';
 import { makeStaggerEnter } from '../lib/stagger';
 import { ArticleRow } from './ArticleRow';
@@ -97,7 +97,6 @@ export const OverlayBody = memo(function OverlayBody({
   onCountryPress,
 }: OverlayBodyProps) {
   const { colors } = useTheme();
-  const openLink = useOpenLink();
 
   const related = useMemo(() => {
     if (overlay?.kind !== 'thermal') return [];
@@ -108,10 +107,10 @@ export const OverlayBody = memo(function OverlayBody({
   const genocideUrl = overlay?.kind === 'genocide' ? overlay.situation.url : undefined;
   const handleSourcePress = useCallback(() => {
     if (!overlay) return;
-    if (overlay.kind === 'famine') openLink(IPC_URL);
-    else if (overlay.kind === 'thermal') openLink(FIRMS_URL);
-    else if (genocideUrl) openLink(genocideUrl);
-  }, [overlay, genocideUrl, openLink]);
+    if (overlay.kind === 'famine') openExternal(IPC_URL);
+    else if (overlay.kind === 'thermal') openExternal(FIRMS_URL);
+    else if (genocideUrl) openExternal(genocideUrl);
+  }, [overlay, genocideUrl]);
 
   // The country an area or a finding is in, for its flag row: a famine area by
   // its ISO code, a genocide situation by its profile.

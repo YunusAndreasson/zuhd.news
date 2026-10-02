@@ -6,7 +6,7 @@ import { useTheme } from '../../hooks/useTheme';
 import { MAX_CITED } from '../../lib/cards/card-chart';
 import type { DeckCard } from '../../lib/cards/types';
 import { observationDate } from '../../lib/data-freshness';
-import { useOpenLink } from '../../lib/open-link';
+import { openExternal } from '../../lib/open-link';
 import { SourceCaption } from '../blocks/SourceCaption';
 import { DeltaChip } from '../DeltaChip';
 import { Pressable, Text } from '../primitives';
@@ -154,7 +154,6 @@ const CitedStories = memo(function CitedStories({
 
 export const CardFrame = memo(function CardFrame({ card, children, onStoryPress }: CardFrameProps) {
   const observed = observationDate(card.asOf);
-  const openLink = useOpenLink();
 
   // The one word, if any, that opens the kicker line.
   const mark = card.lead ? 'current' : null;
@@ -252,7 +251,7 @@ export const CardFrame = memo(function CardFrame({ card, children, onStoryPress 
         {card.sources?.map((source) => (
           <Pressable
             key={source.url}
-            onPress={() => openLink(source.url)}
+            onPress={() => openExternal(source.url)}
             hitSlop={INLINE_HIT_SLOP}
             accessibilityRole="link"
             accessibilityLabel={source.label}

@@ -4,7 +4,7 @@ import { StyleSheet, View } from 'react-native';
 import Animated from 'react-native-reanimated';
 import { ANIMATION, SPACING } from '../constants/theme';
 import { useTheme } from '../hooks/useTheme';
-import { useOpenLink } from '../lib/open-link';
+import { openExternal } from '../lib/open-link';
 import { makeStaggerEnter, staggerEnter } from '../lib/stagger';
 import { MenuRow, SectionLabel } from './MenuRow';
 import { Icon, Text } from './primitives';
@@ -186,7 +186,6 @@ interface SheetAboutPageProps {
  */
 export function SheetAboutPage({ articles, version }: SheetAboutPageProps) {
   const { colors } = useTheme();
-  const openLink = useOpenLink();
   const [providersOpen, setProvidersOpen] = useState(false);
 
   const recentSources = useMemo(() => aggregateSources(articles), [articles]);
@@ -299,7 +298,7 @@ export function SheetAboutPage({ articles, version }: SheetAboutPageProps) {
                   description={l.domain}
                   trailing="leave"
                   accessibilityRole="link"
-                  onPress={() => openLink(l.url)}
+                  onPress={() => openExternal(l.url)}
                 />
               </Animated.View>
             ))}
@@ -322,7 +321,7 @@ export function SheetAboutPage({ articles, version }: SheetAboutPageProps) {
 
       <Animated.View entering={enter()}>
         <SectionLabel label="colophon" />
-        <SheetLink label={MAKER_BYLINE} onPress={() => openLink(MAKER_PROJECTS)} />
+        <SheetLink label={MAKER_BYLINE} onPress={() => openExternal(MAKER_PROJECTS)} />
         {version ? (
           <Text selectable variant="caption" style={styles.aside}>
             version {version}

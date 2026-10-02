@@ -8,7 +8,7 @@ import { memo, useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import { type FlatList, StyleSheet, View } from 'react-native';
 import { HIT_SLOP, LAYOUT, SPACING } from '../constants/theme';
 import { useTheme } from '../hooks/useTheme';
-import { useOpenLink } from '../lib/open-link';
+import { openExternal } from '../lib/open-link';
 import { displayCountryName } from '../lib/place-names';
 import { FlagGlyph } from './FlagChip';
 import { Pressable, Text } from './primitives';
@@ -129,12 +129,11 @@ export const CountryRankingView = memo(function CountryRankingView({
 
   const totalLabel = `#${currentIndex + 1} of ${ranking.length}`;
   const meta = METRICS[metric];
-  const openLink = useOpenLink();
   const openSource = useCallback(() => {
     if (!meta.sourceUrl) return;
     onRequestClose?.();
-    openLink(meta.sourceUrl);
-  }, [meta.sourceUrl, openLink, onRequestClose]);
+    openExternal(meta.sourceUrl);
+  }, [meta.sourceUrl, onRequestClose]);
 
   return (
     <SheetFlatList

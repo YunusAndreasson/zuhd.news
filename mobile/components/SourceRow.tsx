@@ -4,7 +4,7 @@ import { StyleSheet, View } from 'react-native';
 import { SOURCES } from '../constants/sources';
 import { SPACING, type TextTone } from '../constants/theme';
 import { ccToFlag } from '../lib/article-utils';
-import { useOpenLink } from '../lib/open-link';
+import { openExternal } from '../lib/open-link';
 import { Box, Icon, Pressable, Text } from './primitives';
 import { SheetLink } from './SheetContent';
 
@@ -34,7 +34,6 @@ export function SourceRow({ source, isExpanded, isLast, onPress }: SourceRowProp
   const tone = toneOf(source.sentiment);
   const toneWord = tone ? TONE_LABELS[tone] : 'unknown';
   const toneTextTone: TextTone = tone ? (TONE_TEXT[tone] ?? 'secondary') : 'secondary';
-  const openLink = useOpenLink();
   const url = source.url || null;
 
   // The chevron used to promise an expansion that two thirds of rows could not
@@ -92,7 +91,7 @@ export function SourceRow({ source, isExpanded, isLast, onPress }: SourceRowProp
             <SheetLink
               label="read the original"
               accessibilityLabel={`Read the original at ${source.name}`}
-              onPress={() => openLink(url)}
+              onPress={() => openExternal(url)}
             />
           )}
         </>

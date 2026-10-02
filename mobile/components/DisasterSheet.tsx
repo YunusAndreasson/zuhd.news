@@ -11,7 +11,7 @@ import {
   gdacsDetailFor,
   parseSeverityHero,
 } from '../lib/gdacs';
-import { useOpenLink } from '../lib/open-link';
+import { openExternal } from '../lib/open-link';
 import { severityTint } from '../lib/severity';
 import { makeStaggerEnter } from '../lib/stagger';
 import { HOUR_MS } from '../lib/time';
@@ -108,12 +108,11 @@ export const DisasterBody = memo(function DisasterBody({
   onCountryPress,
 }: DisasterBodyProps) {
   const { colors } = useTheme();
-  const openLink = useOpenLink();
   // On `alert`, not `alert?.reportUrl`: the compiler keeps a memo only on
   // what it reads, and on the narrower key this whole body skipped it.
   const handleReportPress = useCallback(() => {
-    if (alert?.reportUrl) openLink(alert.reportUrl);
-  }, [alert, openLink]);
+    if (alert?.reportUrl) openExternal(alert.reportUrl);
+  }, [alert]);
   // Per-event detail — population estimates for EQ and TC. Pre-fetched
   // server-side (stage 3.4c of run-cycle) and shipped with the alert list,
   // so this is a synchronous map lookup and the population row renders the
