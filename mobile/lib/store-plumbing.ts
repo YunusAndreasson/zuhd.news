@@ -1,12 +1,18 @@
 import type { File } from 'expo-file-system';
 
 /**
- * The two halves every local store here repeats.
+ * What every local store here repeats.
  *
  * `bookmark-store`, `found-store` and `onboarding-store` each carried their own
- * copy of both — a listener set for `useSyncExternalStore` and a debounced
- * synchronous write flushed when the app backgrounds — and `found-store`'s
- * header said "same shape as `bookmark-store.ts`" instead of sharing it.
+ * copy of a listener set for `useSyncExternalStore` and a debounced synchronous
+ * write flushed when the app backgrounds — and `found-store`'s header said
+ * "same shape as `bookmark-store.ts`" instead of sharing it. Deleting the file
+ * an older build kept a store in joined them for the same reason.
+ *
+ * **Nothing here imports at run time**, and that is load-bearing: the data
+ * meter takes its listeners from here, every test that reaches the fetch
+ * layer loads it, and a runtime import of the kv store (`stored-json.ts`)
+ * failed four suites that do not mock it.
  */
 
 /** Listeners for `useSyncExternalStore`: `subscribe` is its first argument. */

@@ -20,6 +20,7 @@ jest.mock('../lib/validate', () => {
     isGdacsSnapshot: any,
     isGenocideSnapshot: any,
     isHeatmapResponse: any,
+    isStringMap: jest.requireActual('../lib/validate').isStringMap,
     isThermalSnapshot: any,
     isTrendsSnapshot: any,
   };

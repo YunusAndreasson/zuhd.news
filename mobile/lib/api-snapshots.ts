@@ -4,6 +4,7 @@ import Storage from 'expo-sqlite/kv-store';
 import { API_BASE } from '../constants/theme';
 import { fetchJsonIfChanged } from './fetchJson';
 import { isMarketsSnapshot } from './markets';
+import { readStoredJson } from './stored-json';
 import {
   isAnalysisSnapshot,
   isChokepointSnapshot,
@@ -12,6 +13,7 @@ import {
   isGdacsSnapshot,
   isGenocideSnapshot,
   isHeatmapResponse,
+  isStringMap,
   isThermalSnapshot,
   isTrendsSnapshot,
 } from './validate';
@@ -73,16 +75,7 @@ export const API_SNAPSHOTS = {
  * would leave the layer empty.
  */
 const ETAGS_KEY = 'zuhd_snapshot_etags_v1';
-let etags: Record<string, string> = {};
-try {
-  const stored = Storage.getItemSync(ETAGS_KEY);
-  if (stored) {
-    const parsed: unknown = JSON.parse(stored);
-    if (parsed && typeof parsed === 'object') etags = parsed as Record<string, string>;
-  }
-} catch {
-  etags = {};
-}
+let etags: Record<string, string> = readStoredJson(ETAGS_KEY, isStringMap) ?? {};
 
 /** Note each file's new tag, and write the map once: an arrival that changed
  *  eleven files rewrote it eleven times, synchronously, just before the

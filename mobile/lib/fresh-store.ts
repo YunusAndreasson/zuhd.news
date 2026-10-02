@@ -2,6 +2,7 @@ import Storage from 'expo-sqlite/kv-store';
 import { useCallback, useSyncExternalStore } from 'react';
 import { isPrunable } from './slug-time-store';
 import { createDebouncedWrite, createListeners } from './store-plumbing';
+import { readStoredJson } from './stored-json';
 import { isTimestampMap } from './validate';
 
 /**
@@ -65,21 +66,11 @@ export interface FreshState {
 }
 
 /** Null until a feed has ever been noted on this install. */
-let known: KnownMap | null = null;
+let known: KnownMap | null = readStoredJson(KNOWN_KEY, isTimestampMap);
 /** The `generated` stamp last noted; a feed is noted once. */
 let notedFeed: string | null = null;
 let state: FreshState = { fresh: new Set(), landed: new Set(), spent: new Set() };
 const listeners = createListeners();
-
-try {
-  const stored = Storage.getItemSync(KNOWN_KEY);
-  if (stored) {
-    const parsed: unknown = JSON.parse(stored);
-    if (isTimestampMap(parsed)) known = parsed;
-  }
-} catch {
-  known = null;
-}
 
 /** What is on disk: the known set and everything landed since it was taken. */
 const persist = createDebouncedWrite(() => {

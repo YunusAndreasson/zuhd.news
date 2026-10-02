@@ -1,6 +1,7 @@
 import Storage from 'expo-sqlite/kv-store';
 import { useSyncExternalStore } from 'react';
 import { createDebouncedWrite, createListeners } from './store-plumbing';
+import { readStoredJson } from './stored-json';
 import { DAY_MS } from './time';
 import { isTimestampMap } from './validate';
 
@@ -53,16 +54,7 @@ export interface SlugTimeStore {
 
 /** `max` caps the set, dropping the oldest first. */
 export function createSlugTimeStore(key: string, max: number): SlugTimeStore {
-  let times: Record<string, number> = {};
-  try {
-    const stored = Storage.getItemSync(key);
-    if (stored) {
-      const parsed: unknown = JSON.parse(stored);
-      if (isTimestampMap(parsed)) times = parsed;
-    }
-  } catch {
-    times = {};
-  }
+  let times: Record<string, number> = readStoredJson(key, isTimestampMap) ?? {};
   let snapshot: ReadonlySet<string> = new Set(Object.keys(times));
   const listeners = createListeners();
   const persist = createDebouncedWrite(() => {
