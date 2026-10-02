@@ -1,24 +1,3 @@
-import type { CardDelta } from '../../lib/cards/types';
-import {
-  STRAIT_SIGN_R,
-  type StraitState,
-  straitMapChange,
-  straitReach,
-  straitSignDx,
-  straitStateFor,
-  straitWeekChange,
-} from '../../lib/strait-map';
-
-('use no memo');
-
-// React Compiler is enabled app-wide (app.json experiments.reactCompiler) with
-// no other opt-out for this file. This component's reprojection hot path
-// depends on several `useCallback(..., [])` closures that are DELIBERATELY
-// stale (see the `biome-ignore lint/correctness/useExhaustiveDependencies`
-// comments below, e.g. `callReproject`) — they read the latest state through
-// refs on purpose, for perf, not by oversight. The compiler's job is to
-// rewrite exactly that pattern, so it must not run on this file.
-
 import { COUNTRY_DATA, type CountryData } from '@shared/countries/country-data';
 import { CITY_TZ, COUNTRY_TZ, SOURCE_COORDS, zoneAt } from '@shared/globe/coordinates';
 import type { Article, Chokepoint, ConflictEvent, GdacsAlert, HeatmapPoint } from '@shared/types';
@@ -90,6 +69,7 @@ import {
 } from '../../constants/theme';
 import { useTheme } from '../../hooks/useTheme';
 import { articleTime } from '../../lib/article-utils';
+import type { CardDelta } from '../../lib/cards/types';
 import { collapseConflictVisuals, eventAgeDays } from '../../lib/conflict';
 import { alertAgeDays, gdacsGlyphScale } from '../../lib/gdacs';
 import {
@@ -132,6 +112,15 @@ import {
   topUnfound,
   unfoundSlugs,
 } from '../../lib/story-places';
+import {
+  STRAIT_SIGN_R,
+  type StraitState,
+  straitMapChange,
+  straitReach,
+  straitSignDx,
+  straitStateFor,
+  straitWeekChange,
+} from '../../lib/strait-map';
 import {
   CITY_LIGHT_COUNT,
   CITY_LIGHT_DEEP_NIGHT_DOT,
@@ -2522,6 +2511,22 @@ export const MiniGlobe = memo(function MiniGlobe({
   tick: _tick,
   ref,
 }: MiniGlobeProps) {
+  // React Compiler is enabled app-wide (app.json experiments.reactCompiler).
+  // This component's reprojection hot path depends on several
+  // `useCallback(..., [])` closures that are DELIBERATELY stale (see the
+  // `biome-ignore lint/correctness/useExhaustiveDependencies` comments below,
+  // e.g. `callReproject`) — they read the latest state through refs on
+  // purpose, for perf, not by oversight. The compiler's job is to rewrite
+  // exactly that pattern, so it must not run on this component.
+  //
+  // The opt-out is the first statement of this body, where a directive is
+  // one. It sat at the top of the file after the imports until 2026-10-02,
+  // which is not a directive position: the formatter wrapped it in
+  // parentheses and it opted nothing out — `MiniGlobe` escaped the compiler
+  // only by bailing on other shapes in it. `GlobeCanvas` and
+  // `useGlowTexture` are compiled, as they were then
+  // (`__tests__/directives.test.ts`).
+  'use no memo';
   const { colors, resolvedAppearance } = useTheme();
   const light = resolvedAppearance === 'light';
   // Gates the globe's two *discrete* animations (zoom transition, tap pulse

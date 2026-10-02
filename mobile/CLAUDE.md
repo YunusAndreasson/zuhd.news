@@ -1364,12 +1364,23 @@ Prefer the `scale` prop on `<Text>` over style overrides. `fontVariant` override
   `Forget(...)` before adding any. But **not every component compiles**: a
   function with a ref write during render, a `try/finally`, or other
   compiler-unsupported shapes silently bails out of the whole function, and
-  existing manual memoization there is still load-bearing (`app/index.tsx`
-  writes several refs directly in the render body — `sheetOpenRef`,
-  `notificationsOnRef`, and others — which was the *documented* reason it
-  bailed out when the compiler was enabled; unconfirmed whether that's still
-  true today). `components/globe/MiniGlobe.tsx` carries a `'use no memo'`
-  directive at the top of the file for the same class of reason: it relies on
-  several deliberately-stale `useCallback(..., [])` closures in its
-  reprojection hot path (`callReproject` etc., `biome-ignore`-marked) that the
-  compiler is documented to rewrite given the chance.
+  existing manual memoization there is still load-bearing. `HomeScreen`
+  (`app/index.tsx`) does not compile — confirmed 2026-10-02 with
+  `babel-plugin-react-compiler` 1.0: a `try/finally` in `handleRefresh` and a
+  `??=` stop it before the compiler reaches the refs it writes in the render
+  body (`sheetOpenRef`, `notificationsOnRef` and others), which bail it too.
+  `MiniGlobe` carries a `'use no memo'` directive as the **first statement of
+  its body** for the same class of reason: it relies on several
+  deliberately-stale `useCallback(..., [])` closures in its reprojection hot
+  path (`callReproject` etc., `biome-ignore`-marked) that the compiler is
+  documented to rewrite given the chance. The directive sat after the file's
+  imports until 2026-10-02, which is no directive position: the formatter
+  wrapped it in parentheses and it opted nothing out — a probe component in
+  that shape compiles — so `MiniGlobe` escaped only by bailing on other
+  shapes, and `GlobeCanvas` and `useGlowTexture` in the same file were (and
+  are) compiled. `__tests__/directives.test.ts` fails on any string statement
+  outside a directive position, which also covers a slipped `'worklet'`. To
+  see what compiles, run the plugin with a `logger` and read its
+  `CompileSuccess` / `CompileError` / `CompileSkip` events — note that an
+  opted-out function is still attempted, so a body that cannot compile logs
+  `CompileError` with or without its directive.
