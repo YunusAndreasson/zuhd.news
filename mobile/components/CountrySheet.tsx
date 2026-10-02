@@ -5,7 +5,7 @@ import { memo, useCallback, useState } from 'react';
 import { Text as RNText, StyleSheet, View } from 'react-native';
 import { GestureDetector } from 'react-native-gesture-handler';
 import Animated from 'react-native-reanimated';
-import { FLAG, MAX_FONT_SCALE, OPACITY, SPACING } from '../constants/theme';
+import { MAX_FONT_SCALE, OPACITY, SPACING } from '../constants/theme';
 import { useSheetBackNavigation } from '../hooks/useSheetBackNavigation';
 import { useTheme } from '../hooks/useTheme';
 import { parseSeverityHero } from '../lib/gdacs';
@@ -14,6 +14,7 @@ import { severityTint } from '../lib/severity';
 import { staggerEnter } from '../lib/stagger';
 import { CountryRankingView } from './CountryRankingView';
 import { CountryCardsCarousel } from './country-cards/CountryCardsCarousel';
+import { FlagGlyph } from './FlagChip';
 import { EVENT_TYPE_LABEL, GLYPH_HALF, getGlyphPath } from './globe/disaster-glyphs';
 import type { TapResult } from './globe/MiniGlobe';
 import { Icon, Pressable, Text } from './primitives';
@@ -270,11 +271,7 @@ export function CountryTitle({
   return (
     <View style={[styles.handleRow, hasBack && styles.handleRowWithBack]}>
       <View style={styles.handleIdent}>
-        {flag && (
-          <RNText allowFontScaling={false} style={styles.handleFlag}>
-            {flag}
-          </RNText>
-        )}
+        {flag && <FlagGlyph flag={flag} size="inline" />}
         {/* 21pt semibold so the country name reads as the canonical
          *  identifier above every card headline (also 21pt) and metric
          *  row label (13pt small-caps). `flexShrink` lets a long name
@@ -386,7 +383,14 @@ export const CountryBody = memo(function CountryBody({
       )}
       {activeAlerts && activeAlerts.length > 0 && onAlertPress && (
         <Animated.View entering={staggerEnter(2)} style={styles.alertsSection}>
-          <Text variant="labelXs" tone="secondary" style={styles.alertsHeading}>
+          {/* `labelSm`, as a section label in a sheet is, and as `on the map`
+              below it was: this one was a size smaller. */}
+          <Text
+            variant="labelSm"
+            tone="secondary"
+            accessibilityRole="header"
+            style={styles.alertsHeading}
+          >
             {activeAlerts.length === 1 ? 'active alert' : `${activeAlerts.length} active alerts`}
           </Text>
           {activeAlerts.map((a) => (
@@ -396,7 +400,12 @@ export const CountryBody = memo(function CountryBody({
       )}
       {hazards && hazards.length > 0 && (
         <Animated.View entering={staggerEnter(3)} style={styles.alertsSection}>
-          <Text variant="labelSm" tone="secondary" style={styles.alertsHeading}>
+          <Text
+            variant="labelSm"
+            tone="secondary"
+            accessibilityRole="header"
+            style={styles.alertsHeading}
+          >
             on the map
           </Text>
           {hazards.map((h) => (
@@ -417,7 +426,6 @@ export const CountrySheet = memo(function CountrySheet({
   bottomInset,
   onDismiss,
 }: CountrySheetProps) {
-  const { resolvedAppearance } = useTheme();
   const [activeRanking, setActiveRanking] = useState<MetricKey | null>(null);
   const onBackToCountry = useCallback(() => setActiveRanking(null), []);
 
@@ -463,10 +471,7 @@ export const CountrySheet = memo(function CountrySheet({
           </View>
         </GestureDetector>
       ) : (
-        <SheetScrollView
-          bottomInset={bottomInset}
-          indicatorStyle={resolvedAppearance === 'dark' ? 'white' : 'black'}
-        >
+        <SheetScrollView bottomInset={bottomInset}>
           <CountryBody
             country={country}
             activeAlerts={activeAlerts}
@@ -508,10 +513,6 @@ const styles = StyleSheet.create({
     gap: SPACING.sm,
     flexShrink: 1,
     minWidth: 0,
-  },
-  handleFlag: {
-    fontSize: FLAG.inline,
-    lineHeight: FLAG.inline * 1.125,
   },
   handleName: {
     flexShrink: 1,

@@ -121,7 +121,7 @@ const CitedStories = memo(function CitedStories({
   const { colors } = useTheme();
   return (
     <View style={styles.cited}>
-      <Text variant="labelSm" tone="secondary">
+      <Text variant="labelSm" tone="secondary" accessibilityRole="header">
         in the news
       </Text>
       {cited.slice(0, MAX_CITED).map((story, i) => (

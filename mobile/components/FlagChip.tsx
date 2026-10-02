@@ -1,8 +1,35 @@
-import { useCallback } from 'react';
+import { memo, useCallback } from 'react';
 import { Text as RNText, StyleSheet, View } from 'react-native';
 import { FLAG, HIT_SLOP, RADIUS, SPACING } from '../constants/theme';
 import { displayCountryName } from '../lib/place-names';
 import { Pressable, Text } from './primitives';
+
+/**
+ * A flag at one of the `FLAG` sizes. A flag is a pictogram, not type, so it
+ * keeps its size at every Dynamic Type setting — one in a ranking's row, which
+ * is a fixed height for `getItemLayout`, scaled with the text and outgrew the
+ * row — on a line tall enough for the emoji's ascent. Three places drew one,
+ * each its own way.
+ */
+export const FlagGlyph = memo(function FlagGlyph({
+  flag,
+  size = 'row',
+}: {
+  flag: string;
+  size?: keyof typeof FLAG;
+}) {
+  return (
+    <RNText allowFontScaling={false} style={flagStyles[size]}>
+      {flag}
+    </RNText>
+  );
+});
+
+const flagStyles = StyleSheet.create({
+  row: { fontSize: FLAG.row, lineHeight: FLAG.row * 1.125 },
+  inline: { fontSize: FLAG.inline, lineHeight: FLAG.inline * 1.125 },
+  display: { fontSize: FLAG.display, lineHeight: FLAG.display * 1.125 },
+});
 
 interface FlagChipProps {
   name: string;
@@ -21,9 +48,7 @@ export function FlagChip({ name, flag, borderColor, onPress }: FlagChipProps) {
   if (!onPress) {
     return (
       <View style={[styles.flagChip, { borderColor }]}>
-        <RNText allowFontScaling={false} style={styles.flagGlyph}>
-          {flag}
-        </RNText>
+        <FlagGlyph flag={flag} />
         <Text variant="labelSm" numberOfLines={1}>
           {display}
         </Text>
@@ -38,9 +63,7 @@ export function FlagChip({ name, flag, borderColor, onPress }: FlagChipProps) {
       accessibilityRole="button"
       accessibilityLabel={`Open ${display}`}
     >
-      <RNText allowFontScaling={false} style={styles.flagGlyph}>
-        {flag}
-      </RNText>
+      <FlagGlyph flag={flag} />
       <Text variant="labelSm" numberOfLines={1}>
         {display}
       </Text>
@@ -57,9 +80,5 @@ const styles = StyleSheet.create({
     paddingHorizontal: SPACING.sm,
     borderRadius: RADIUS.floating,
     borderWidth: StyleSheet.hairlineWidth,
-  },
-  flagGlyph: {
-    fontSize: FLAG.row,
-    lineHeight: FLAG.row * 1.125,
   },
 });

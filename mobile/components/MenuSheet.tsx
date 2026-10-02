@@ -1,4 +1,3 @@
-import { BottomSheetFlatList } from '@expo/ui/community/bottom-sheet';
 import { METRICS, type MetricKey } from '@shared/countries/country-ranking';
 import type { Article, Category, ConflictEvent, GdacsAlert, GdacsDetail } from '@shared/types';
 import Constants from 'expo-constants';
@@ -87,7 +86,7 @@ import { Pressable, Text } from './primitives';
 import { SegmentedControl, type SegmentOption } from './SegmentedControl';
 import { SheetAboutPage } from './SheetAboutPage';
 import { SheetBookmarksPage } from './SheetBookmarksPage';
-import { SheetScrollView } from './SheetContent';
+import { SheetFlatList, SheetScrollView } from './SheetContent';
 import { SheetHandle } from './SheetHandle';
 import { type InfoSection, SheetInfoPage } from './SheetInfoPage';
 import { type BaseSheetProps, SheetLayout } from './SheetLayout';
@@ -392,7 +391,7 @@ function EraseControl({ onDone }: { onDone: (message: string) => void }) {
 
   return (
     <>
-      <Text variant="labelSm" style={styles.eraseHeading}>
+      <Text variant="labelSm" accessibilityRole="header" style={styles.eraseHeading}>
         erase local data
       </Text>
       <Text selectable variant="body">
@@ -1210,13 +1209,12 @@ function GroupPage({
           </View>
         ) : null}
       </View>
-      <BottomSheetFlatList
+      <SheetFlatList
         key={filter}
-        style={styles.list}
         data={rows}
         keyExtractor={rowKey}
         renderItem={renderItem}
-        contentContainerStyle={{ paddingBottom: bottomInset + SPACING.md }}
+        bottomInset={bottomInset}
         ListEmptyComponent={<EmptyState message="No matching markets" />}
       />
     </>
@@ -1273,13 +1271,13 @@ function HazardPage({
     [onSelect],
   );
   return (
-    <BottomSheetFlatList
-      style={styles.list}
+    <SheetFlatList
       data={rows}
       keyExtractor={markKey}
       renderItem={renderItem}
       {...LIST_WINDOW}
-      contentContainerStyle={[styles.markList, { paddingBottom: bottomInset + SPACING.md }]}
+      bottomInset={bottomInset}
+      contentContainerStyle={styles.markList}
       ListHeaderComponent={
         note ? (
           <Text variant="caption" style={styles.markNote}>
@@ -1296,7 +1294,6 @@ const styles = StyleSheet.create({
   // measures to nothing in an auto-height column (see `SheetSearchPage`).
   listPage: { flexShrink: 1 },
   lockup: { flexDirection: 'row', alignItems: 'center', gap: SPACING.sm },
-  list: { flexShrink: 1 },
   intro: {
     paddingHorizontal: SPACING.screenPadding,
     gap: SPACING.xs,

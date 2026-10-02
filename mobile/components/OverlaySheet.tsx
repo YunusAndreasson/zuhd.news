@@ -181,7 +181,12 @@ export const OverlayBody = memo(function OverlayBody({
           </Animated.View>
           {related.length > 0 && (
             <Animated.View entering={enter()} style={styles.block}>
-              <Text variant="labelSm" tone="secondary" style={styles.heading}>
+              <Text
+                variant="labelSm"
+                tone="secondary"
+                accessibilityRole="header"
+                style={styles.heading}
+              >
                 {related.length === 1 ? 'in the news' : `${related.length} stories`}
               </Text>
               {/* The river's own row: a story looks the same in every list. */}

@@ -1,4 +1,4 @@
-import { BottomSheetFlatList, BottomSheetTextInput } from '@expo/ui/community/bottom-sheet';
+import { BottomSheetTextInput } from '@expo/ui/community/bottom-sheet';
 import type { Article, Category } from '@shared/types';
 import { useCallback, useDeferredValue, useEffect, useMemo, useRef, useState } from 'react';
 import { AccessibilityInfo, Pressable, StyleSheet, type TextInput, View } from 'react-native';
@@ -9,6 +9,7 @@ import { articleTime } from '../lib/article-utils';
 import { ArticleRow } from './ArticleRow';
 import { EmptyState } from './EmptyState';
 import { Icon, Text } from './primitives';
+import { SheetFlatList } from './SheetContent';
 
 interface SearchResult extends Article {
   category: Category;
@@ -149,17 +150,12 @@ export function SheetSearchPage({ grouped, bottomInset, onSelectArticle }: Sheet
           <EmptyState message="no stories found" hint="Try a different term" />
         </View>
       ) : (
-        <BottomSheetFlatList
+        <SheetFlatList
           data={results}
           renderItem={renderItem}
           keyExtractor={keyExtractor}
-          // Its flex is load-bearing under native sheets, and it is
-          // `flexShrink`, not `flex` — see `styles.list`. gorhom used to supply
-          // one from inside its scrollable HOC; `BottomSheetFlatList` is a
-          // plain RN `FlatList` now, so it has to be set here.
-          style={styles.list}
-          contentContainerStyle={[styles.listContent, { paddingBottom: bottomInset + SPACING.lg }]}
-          indicatorStyle={resolvedAppearance === 'dark' ? 'white' : 'black'}
+          bottomInset={bottomInset}
+          contentContainerStyle={styles.listContent}
           keyboardShouldPersistTaps="handled"
           keyboardDismissMode="on-drag"
           ListHeaderComponent={
@@ -199,9 +195,6 @@ const styles = StyleSheet.create({
   // and collapses the list to zero. `flexShrink: 1` fits the list to the cap
   // when the results overflow it and is inert when they don't.
   emptyFill: {
-    flexShrink: 1,
-  },
-  list: {
     flexShrink: 1,
   },
   listContent: {

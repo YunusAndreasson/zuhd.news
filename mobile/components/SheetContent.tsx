@@ -1,6 +1,6 @@
-import { BottomSheetScrollView } from '@expo/ui/community/bottom-sheet';
+import { BottomSheetFlatList, BottomSheetScrollView } from '@expo/ui/community/bottom-sheet';
 import type { ComponentProps, Ref } from 'react';
-import { type ScrollView, StyleSheet } from 'react-native';
+import { type FlatList, type FlatListProps, type ScrollView, StyleSheet } from 'react-native';
 import Animated from 'react-native-reanimated';
 import { HIT_SLOP, SPACING } from '../constants/theme';
 import { useTheme } from '../hooks/useTheme';
@@ -53,10 +53,11 @@ export function SheetScrollView({
   children,
   ...rest
 }: SheetScrollViewProps) {
-  const { sheetStyles } = useTheme();
+  const { sheetStyles, resolvedAppearance } = useTheme();
   return (
     <BottomSheetScrollView
       nestedScrollEnabled
+      indicatorStyle={resolvedAppearance === 'dark' ? 'white' : 'black'}
       style={[styles.scroll, style]}
       contentContainerStyle={[
         sheetStyles.content,
@@ -67,6 +68,38 @@ export function SheetScrollView({
     >
       {children}
     </BottomSheetScrollView>
+  );
+}
+
+interface SheetFlatListProps<T> extends Omit<FlatListProps<T>, 'contentContainerStyle' | 'style'> {
+  ref?: Ref<FlatList<T>>;
+  bottomInset: number;
+  contentContainerStyle?: FlatListProps<T>['contentContainerStyle'];
+  style?: FlatListProps<T>['style'];
+}
+
+/**
+ * `SheetScrollView`'s twin for a virtualised list: the same `flexShrink: 1`
+ * (see above — a list is a scroll view), the same `bottomInset + SPACING.lg`
+ * tail and the same scroll indicator. Four lists re-inlined that recipe and
+ * had drifted: the menu's ended `SPACING.md` short of the others, and only
+ * two of them chose an indicator for the theme. No `sheetStyles.content`:
+ * a list's rows run to the sheet's edges and pad themselves.
+ */
+export function SheetFlatList<T>({
+  bottomInset,
+  contentContainerStyle,
+  style,
+  ...rest
+}: SheetFlatListProps<T>) {
+  const { resolvedAppearance } = useTheme();
+  return (
+    <BottomSheetFlatList
+      indicatorStyle={resolvedAppearance === 'dark' ? 'white' : 'black'}
+      style={[styles.scroll, style]}
+      contentContainerStyle={[{ paddingBottom: bottomInset + SPACING.lg }, contentContainerStyle]}
+      {...rest}
+    />
   );
 }
 

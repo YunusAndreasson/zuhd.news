@@ -30,7 +30,7 @@ export function SheetInfoPage({ sections, footer }: SheetInfoPageProps) {
           style={i > 0 ? styles.section : undefined}
         >
           {section.heading && (
-            <Text variant="labelSm" style={styles.heading}>
+            <Text variant="labelSm" accessibilityRole="header" style={styles.heading}>
               {section.heading}
             </Text>
           )}
