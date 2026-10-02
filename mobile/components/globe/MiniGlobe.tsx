@@ -874,6 +874,14 @@ export interface TapResult {
   candidates?: TapResult[];
 }
 
+/** A tap on a mark rather than a country: no place, no clock, no country
+ *  data, and the one field that says which mark it was. */
+function markTap(
+  mark: Omit<TapResult, 'countryName' | 'location' | 'localTime' | 'data'>,
+): TapResult {
+  return { countryName: '', location: null, localTime: null, data: null, ...mark };
+}
+
 export interface MiniGlobeRef {
   hitTest: (x: number, y: number) => TapResult | null;
   showPulse: (x: number, y: number) => void;
@@ -5279,16 +5287,7 @@ export const MiniGlobe = memo(function MiniGlobe({
         }
         for (const m of frame.marketMarks)
           overlay = Math.min(overlay, marketHitDistanceSquared(m, x, y));
-        if (story.d2 <= overlay) {
-          return {
-            countryName: '',
-            location: null,
-            localTime: null,
-            data: null,
-            storySlug: story.slug,
-            storyColor: story.color,
-          };
-        }
+        if (story.d2 <= overlay) return markTap({ storySlug: story.slug, storyColor: story.color });
       }
 
       const candidates: TapResult[] = [];
@@ -5313,28 +5312,15 @@ export const MiniGlobe = memo(function MiniGlobe({
       // rings are still reliably tappable, but smaller than the article-dot
       // window so chokepoints near the settled pin don't eat its taps.
       for (const c of frame.chokepoints) {
-        if (isNear(x, y, c.x, c.y, 1296)) {
-          candidates.push({
-            countryName: '',
-            location: null,
-            localTime: null,
-            data: null,
-            chokepointId: c.id,
-          });
+        if (isNear(x, y, c.x, c.y, MARK_HIT_PX2)) {
+          candidates.push(markTap({ chokepointId: c.id }));
         }
       }
 
       // Every member of a numbered market target opens in the chooser.
       for (const m of frame.marketMarks) {
         if (Number.isFinite(marketHitDistanceSquared(m, x, y))) {
-          for (const id of m.ids)
-            candidates.push({
-              countryName: '',
-              location: null,
-              localTime: null,
-              data: null,
-              marketSignalId: id,
-            });
+          for (const id of m.ids) candidates.push(markTap({ marketSignalId: id }));
         }
       }
 
@@ -5343,14 +5329,8 @@ export const MiniGlobe = memo(function MiniGlobe({
       // (`gdacsGlyphScale`) and the target is not: a finger is the same
       // size whatever the alert.
       for (const m of frame.gdacsMarks) {
-        if (isNear(x, y, m.x, m.y, 1296)) {
-          candidates.push({
-            countryName: '',
-            location: null,
-            localTime: null,
-            data: null,
-            gdacsEventId: m.eventid,
-          });
+        if (isNear(x, y, m.x, m.y, MARK_HIT_PX2)) {
+          candidates.push(markTap({ gdacsEventId: m.eventid }));
         }
       }
 
@@ -5358,14 +5338,8 @@ export const MiniGlobe = memo(function MiniGlobe({
       // theatre like Sudan or Gaza will produce overlapping hits regularly;
       // those resolve to the disambiguation chooser via the candidates path.
       for (const m of frame.conflictMarks) {
-        if (isNear(x, y, m.x, m.y, 1296)) {
-          candidates.push({
-            countryName: '',
-            location: null,
-            localTime: null,
-            data: null,
-            conflictEventId: m.id,
-          });
+        if (isNear(x, y, m.x, m.y, MARK_HIT_PX2)) {
+          candidates.push(markTap({ conflictEventId: m.id }));
         }
       }
 
@@ -5373,35 +5347,17 @@ export const MiniGlobe = memo(function MiniGlobe({
       // Sudan and a conflict event beside it resolve through the chooser.
       for (const g of frame.genocideMarks) {
         if (isNear(x, y, g.x, g.y, MARK_HIT_PX2)) {
-          candidates.push({
-            countryName: '',
-            location: null,
-            localTime: null,
-            data: null,
-            genocideId: g.id,
-          });
+          candidates.push(markTap({ genocideId: g.id }));
         }
       }
       for (const a of frame.famineMarks) {
         if (isNear(x, y, a.x, a.y, MARK_HIT_PX2)) {
-          candidates.push({
-            countryName: '',
-            location: null,
-            localTime: null,
-            data: null,
-            famineAreaId: a.id,
-          });
+          candidates.push(markTap({ famineAreaId: a.id }));
         }
       }
       for (const e of frame.thermalMarks) {
         if (isNear(x, y, e.x, e.y, MARK_HIT_PX2)) {
-          candidates.push({
-            countryName: '',
-            location: null,
-            localTime: null,
-            data: null,
-            thermalEventId: e.id,
-          });
+          candidates.push(markTap({ thermalEventId: e.id }));
         }
       }
 
@@ -5433,15 +5389,7 @@ export const MiniGlobe = memo(function MiniGlobe({
       }
 
       if (candidates.length === 1) return candidates[0] ?? null;
-      if (candidates.length > 1) {
-        return {
-          countryName: '',
-          location: null,
-          localTime: null,
-          data: null,
-          candidates,
-        };
-      }
+      if (candidates.length > 1) return markTap({ candidates });
 
       // Full-globe fallback — tap any visible land mass to identify the country
       const { cx: hitCx, cy: hitCy, globeRadius: hitR } = layoutRef.current;
