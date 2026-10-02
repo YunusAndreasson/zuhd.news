@@ -7,6 +7,7 @@ import type {
   TrendsSnapshot,
 } from '@shared/types';
 import { indicatorObservation, isCurrentObservation, oldestObservation } from '../data-freshness';
+import { DAY_MS } from '../time';
 import { VESSEL_CLASSES } from '../vessel-classes';
 import {
   deltaFrom,
@@ -1066,7 +1067,7 @@ function daysUntil(iso: string, now: Date): number | null {
   const then = Date.parse(`${iso}T00:00:00Z`);
   if (!Number.isFinite(then)) return null;
   const today = Date.UTC(now.getFullYear(), now.getMonth(), now.getDate());
-  return Math.round((then - today) / 86_400_000);
+  return Math.round((then - today) / DAY_MS);
 }
 
 /** The distance, in the words a reader would use. This is the card's reading —

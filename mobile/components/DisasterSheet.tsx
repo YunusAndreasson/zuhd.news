@@ -15,6 +15,7 @@ import {
 import { useOpenLink } from '../lib/open-link';
 import { severityTint } from '../lib/severity';
 import { makeStaggerEnter } from '../lib/stagger';
+import { HOUR_MS } from '../lib/time';
 import { Markdown, Text } from './primitives';
 import { SheetFlagRow, SheetHero, SheetScrollView, SheetSourceFooter } from './SheetContent';
 import { type BaseSheetProps, SheetLayout } from './SheetLayout';
@@ -51,7 +52,7 @@ function formatStatus(alert: GdacsAlert, now: number = Date.now()): string {
   }
   const modified = Date.parse(alert.modifiedDate);
   const from = Date.parse(alert.fromDate);
-  if (Number.isFinite(modified) && Number.isFinite(from) && modified - from > 3_600_000) {
+  if (Number.isFinite(modified) && Number.isFinite(from) && modified - from > HOUR_MS) {
     return `updated ${relativeTime(alert.modifiedDate, now)}`;
   }
   return '';

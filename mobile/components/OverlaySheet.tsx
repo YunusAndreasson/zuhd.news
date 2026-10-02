@@ -8,6 +8,7 @@ import { SPACING } from '../constants/theme';
 import { useTheme } from '../hooks/useTheme';
 import { articleTime, formatTimeAgo } from '../lib/article-utils';
 import { formatCount, formatNumber } from '../lib/cards/format';
+import { MONTH_ABBR } from '../lib/date-format';
 import type { RiverArticle } from '../lib/news-order';
 import { useOpenLink } from '../lib/open-link';
 import { type OverlaySelection, thermalPlace } from '../lib/overlays';
@@ -45,13 +46,11 @@ interface OverlayBodyProps {
 const IPC_URL = 'https://www.ipcinfo.org/ipc-country-analysis/en/';
 const FIRMS_URL = 'https://firms.modaps.eosdis.nasa.gov/map/';
 
-const MONTHS = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
-
 /** `2025-09-16` → `16 Sep 2025`; `2023-10` → `Oct 2023`. Anything else as given. */
 function formatIsoDate(iso: string): string {
   const m = /^(\d{4})-(\d{2})(?:-(\d{2}))?/.exec(iso);
   if (!m) return iso;
-  const month = MONTHS[Number(m[2]) - 1];
+  const month = MONTH_ABBR[Number(m[2]) - 1];
   if (!month) return iso;
   return m[3] ? `${Number(m[3])} ${month} ${m[1]}` : `${month} ${m[1]}`;
 }

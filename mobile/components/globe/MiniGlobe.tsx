@@ -123,6 +123,7 @@ import {
   straitSignDx,
   straitStateFor,
 } from '../../lib/strait-map';
+import { HOUR_MS } from '../../lib/time';
 import {
   CITY_LIGHT_COUNT,
   CITY_LIGHT_DEEP_NIGHT_DOT,
@@ -2674,7 +2675,7 @@ export const MiniGlobe = memo(function MiniGlobe({
       const country = findCountry(coords[0], coords[1], a.location);
       const countryName = country?.properties?.name ?? null;
       const rank = ranks.get(a.slug) ?? STORY_UNKNOWN_RANK;
-      const ageHours = Math.max(0, (now - articleTime(a)) / 3_600_000);
+      const ageHours = Math.max(0, (now - articleTime(a)) / HOUR_MS);
       return {
         lat: coords[0],
         lng: coords[1],
@@ -3020,7 +3021,7 @@ export const MiniGlobe = memo(function MiniGlobe({
         lng: z.lng,
         unit: unit(z.lng, z.lat),
         intensity: Math.log(z.total + 1) / logMax,
-        recency: Math.exp(-DECAY_LAMBDA * ((now - z.newestT) / 3_600_000)),
+        recency: Math.exp(-DECAY_LAMBDA * ((now - z.newestT) / HOUR_MS)),
         labels: [],
         countryName: z.countryName,
       }));
@@ -3032,7 +3033,7 @@ export const MiniGlobe = memo(function MiniGlobe({
     >();
 
     for (const pt of heatmapPoints) {
-      const ageHours = (now - pt.t) / 3_600_000;
+      const ageHours = (now - pt.t) / HOUR_MS;
       const decay = Math.exp(-DECAY_LAMBDA * ageHours);
       const weight = Math.max(pt.c, 1) * decay;
       if (weight < 0.03) continue;
@@ -3063,7 +3064,7 @@ export const MiniGlobe = memo(function MiniGlobe({
         lng: z.lng,
         unit: unit(z.lng, z.lat),
         intensity: Math.log(z.total + 1) / logMax,
-        recency: Math.exp(-DECAY_LAMBDA * ((now - z.newestT) / 3_600_000)),
+        recency: Math.exp(-DECAY_LAMBDA * ((now - z.newestT) / HOUR_MS)),
         labels: [...z.labels],
         countryName: country?.properties?.name ?? null,
       };

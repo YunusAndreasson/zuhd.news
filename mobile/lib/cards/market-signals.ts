@@ -1,4 +1,5 @@
 import type { MarketSignalsSnapshot } from '@shared/market-signals';
+import { DAY_MS } from '../time';
 import { formatNumber } from './format';
 import type { SwipeCard } from './rank';
 
@@ -20,9 +21,9 @@ export function marketSignalCards(
   snapshot: MarketSignalsSnapshot | null,
   now = Date.now(),
 ): SwipeCard[] {
-  if (!snapshot || now - Date.parse(snapshot.generatedAt) > 7 * 86400000) return [];
+  if (!snapshot || now - Date.parse(snapshot.generatedAt) > 7 * DAY_MS) return [];
   return snapshot.signals
-    .filter((s) => now - Date.parse(s.asOf) <= 7 * 86400000)
+    .filter((s) => now - Date.parse(s.asOf) <= 7 * DAY_MS)
     .map((s) => {
       const p = s.pattern;
       const label = {

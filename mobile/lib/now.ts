@@ -5,6 +5,7 @@ import type { CardDelta } from './cards/types';
 import { type GaugeMove, gaugeMove } from './cards/week-move';
 import { EVENT_TYPE_EYEBROW } from './gdacs';
 import { type Exchange, stockMarketPlace } from './markets';
+import { DAY_MS } from './time';
 
 /**
  * What the app says is happening, before the reader scrolls.
@@ -250,7 +251,7 @@ function toStripItem(
  *  every Orange alert is a block nobody reads — the same reasoning that keeps
  *  severity single-tier in `lib/severity.ts`. */
 function hazardItems(alerts: GdacsAlert[], now: number): NowItem[] {
-  const cutoff = now - HAZARD_MAX_AGE_DAYS * 86_400_000;
+  const cutoff = now - HAZARD_MAX_AGE_DAYS * DAY_MS;
   const items: NowItem[] = [];
   for (const alert of alerts) {
     if (alert.alertlevel !== 'Red') continue;

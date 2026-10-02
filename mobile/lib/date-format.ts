@@ -12,7 +12,13 @@
 // a labelXs Text.
 
 import { utcFormat } from 'd3-time-format';
-import { DAY_MS } from './time';
+import { DAY_MS, HOUR_MS } from './time';
+
+/** The month abbreviations every period label is written in — `Sep 12`,
+ *  `Sep 2026` — as the pipeline's `formatPeriod` writes them and the cards
+ *  read them back. English, not the device's: they are the payload's words. */
+export const MONTH_ABBR: readonly string[] =
+  'Jan Feb Mar Apr May Jun Jul Aug Sep Oct Nov Dec'.split(' ');
 
 const fmtYear = utcFormat('%Y');
 const fmtMonthYear = utcFormat("%b '%y");
@@ -68,7 +74,7 @@ export function relativeTime(iso: string, now: number = Date.now()): string {
   const t = Date.parse(iso);
   if (!Number.isFinite(t)) return '';
   const diffMs = Math.abs(now - t);
-  const diffHours = Math.floor(diffMs / 3_600_000);
+  const diffHours = Math.floor(diffMs / HOUR_MS);
   if (diffHours < 1) return 'just now';
   if (diffHours < 24) return `${diffHours}h ago`;
   const diffDays = Math.floor(diffHours / 24);
