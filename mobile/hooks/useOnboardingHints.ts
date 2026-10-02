@@ -32,29 +32,8 @@ const DWELL_MS: Record<HintId, number> = {
  */
 const HINT_VISIBLE_MS = 8_000;
 
-/**
- * Where the reader is, because a lesson only makes sense where its gesture
- * does something.
- *
- * There is one surface now. Stories are read on the map, in the sheet's card,
- * so both lessons are taught there: the sideways swipe first, because it is
- * how the news is browsed, and then the globe, because nobody discovers that
- * the lights are tappable. `sources` and `bookmark` are never taught any more
- * — the grown card prints them as words, and a visible control does not need
- * a hint pill explaining it. Their ids stay in the store so old state loads.
- */
-export type HintSurface = 'map';
-
 interface HintContext {
   screenReader: boolean;
-  surface: HintSurface;
-}
-
-/** Which surface a lesson belongs to. A pill whose surface the reader has
- *  just left is hidden rather than left pointing at a gesture that no longer
- *  applies. */
-export function hintSurface(_id: HintId): HintSurface {
-  return 'map';
 }
 
 function showable(state: OnboardingState, id: HintId): boolean {
@@ -64,6 +43,15 @@ function showable(state: OnboardingState, id: HintId): boolean {
 
 /** Pure eligibility: the single hint that may arm right now, or null.
  *  One hint on screen at a time, ever — first match in order wins.
+ *
+ *  Every lesson is taught on the map, where stories are read, in the sheet's
+ *  card: the sideways swipe first, because it is how the news is browsed, and
+ *  then the globe, because nobody discovers that the lights are tappable.
+ *  (There were two surfaces once, and a pill was hidden on the one its lesson
+ *  did not belong to.) `sources` and `bookmark` are never taught any more —
+ *  the grown card prints them as words, and a visible control does not need a
+ *  hint pill explaining it. Their ids stay in the store so old state loads.
+ *
  *  Both lessons are withheld from screen-reader users: the globe's gesture
  *  layer is hidden from the a11y tree, and the card's swipe has named
  *  accessibility actions (`next story`, `previous story`) that a screen reader
@@ -87,17 +75,12 @@ export function eligibleHint(
 
 /** Decides which single onboarding hint pill is visible. `ready` gates until
  *  the feed + globe have painted; `suppressed` hides hints while any sheet or
- *  the briefing player owns the pill's airspace; `surface` says whether the
- *  reader is looking at the map or reading. */
-export function useOnboardingHints(opts: {
-  ready: boolean;
-  suppressed: boolean;
-  surface: HintSurface;
-}): {
+ *  the briefing player owns the pill's airspace. */
+export function useOnboardingHints(opts: { ready: boolean; suppressed: boolean }): {
   activeHint: HintId | null;
   dismissActiveHint: () => void;
 } {
-  const { ready, suppressed, surface } = opts;
+  const { ready, suppressed } = opts;
   const state = useSyncExternalStore(subscribe, getSnapshot);
   const [screenReader, setScreenReader] = useState(false);
   const [activeHint, setActiveHint] = useState<HintId | null>(null);
@@ -120,23 +103,17 @@ export function useOnboardingHints(opts: {
   // hide — that status lands on the final permitted showing and only blocks
   // future sessions.
   const activeStatus = activeHint ? state.hints[activeHint].status : null;
-  const offSurface = activeHint !== null && hintSurface(activeHint) !== surface;
   useEffect(() => {
-    if (
-      activeHint &&
-      (suppressed || offSurface || activeStatus === 'done' || activeStatus === 'dismissed')
-    ) {
+    if (activeHint && (suppressed || activeStatus === 'done' || activeStatus === 'dismissed')) {
       setActiveHint(null);
     }
-  }, [activeHint, activeStatus, offSurface, suppressed]);
+  }, [activeHint, activeStatus, suppressed]);
 
   // Lessons that timed out on screen this session; never persisted.
   const [rested, setRested] = useState<ReadonlySet<HintId>>(() => new Set());
 
   const eligible =
-    ready && !suppressed && !activeHint
-      ? eligibleHint(state, { screenReader, surface }, rested)
-      : null;
+    ready && !suppressed && !activeHint ? eligibleHint(state, { screenReader }, rested) : null;
   const armId = eligible === 'swipe' && launchedViaPushRef.current ? null : eligible;
 
   // Arm after the dwell. `snapCount` in the deps restarts the countdown on

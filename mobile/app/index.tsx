@@ -1238,7 +1238,6 @@ export default function HomeScreen() {
     // Not on the end card either: every lesson there points at a next story
     // or a story to open, and the end card has neither.
     suppressed: sheetOpen || briefingVisible || deckIndex >= storyRows.length,
-    surface: 'map',
   });
 
   const notificationsOnRef = useRef(preferences.notifications);

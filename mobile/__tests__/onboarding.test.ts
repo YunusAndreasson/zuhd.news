@@ -239,26 +239,26 @@ describe('actions', () => {
 });
 
 describe('eligibleHint', () => {
-  const map = { screenReader: false, surface: 'map' as const };
+  const ctx = { screenReader: false };
 
   it('fresh state → swipe, the gesture that browses the news', () => {
     const s = loadStore();
     const h = loadHints();
-    expect(h.eligibleHint(s.getSnapshot(), map)).toBe('swipe');
+    expect(h.eligibleHint(s.getSnapshot(), ctx)).toBe('swipe');
   });
 
   it('the globe lesson follows once the swipe has been performed', () => {
     const s = loadStore();
     const h = loadHints();
     s.recordArticleSnap(); // the first swipe retires the swipe lesson
-    expect(h.eligibleHint(s.getSnapshot(), map)).toBe('globe');
+    expect(h.eligibleHint(s.getSnapshot(), ctx)).toBe('globe');
   });
 
   it('the globe lesson follows a dismissed swipe lesson', () => {
     const s = loadStore();
     const h = loadHints();
     s.dismissHint('swipe');
-    expect(h.eligibleHint(s.getSnapshot(), map)).toBe('globe');
+    expect(h.eligibleHint(s.getSnapshot(), ctx)).toBe('globe');
   });
 
   it('the masthead lesson follows the globe lesson', () => {
@@ -266,18 +266,18 @@ describe('eligibleHint', () => {
     const h = loadHints();
     s.recordArticleSnap();
     s.markHintDone('globe');
-    expect(h.eligibleHint(s.getSnapshot(), map)).toBe('masthead');
+    expect(h.eligibleHint(s.getSnapshot(), ctx)).toBe('masthead');
     s.markHintDone('masthead');
-    expect(h.eligibleHint(s.getSnapshot(), map)).toBeNull();
+    expect(h.eligibleHint(s.getSnapshot(), ctx)).toBeNull();
   });
 
   it('a lesson that timed out on screen rests for the session, and the next follows', () => {
     const s = loadStore();
     const h = loadHints();
     s.recordArticleSnap();
-    expect(h.eligibleHint(s.getSnapshot(), map, new Set(['globe']))).toBe('masthead');
+    expect(h.eligibleHint(s.getSnapshot(), ctx, new Set(['globe']))).toBe('masthead');
     // Not dismissed: a later session, with nothing rested, teaches it again.
-    expect(h.eligibleHint(s.getSnapshot(), map)).toBe('globe');
+    expect(h.eligibleHint(s.getSnapshot(), ctx)).toBe('globe');
   });
 
   it('never teaches sources or bookmark — the grown card prints both as words', () => {
@@ -288,24 +288,15 @@ describe('eligibleHint', () => {
     s.markHintDone('masthead');
     s.recordArticleSnap();
     s.recordArticleSnap();
-    expect(h.eligibleHint(s.getSnapshot(), map)).toBeNull();
+    expect(h.eligibleHint(s.getSnapshot(), ctx)).toBeNull();
   });
 
   it('hints are withheld from screen-reader users', () => {
     const s = loadStore();
     const h = loadHints();
-    expect(h.eligibleHint(s.getSnapshot(), { ...map, screenReader: true })).toBeNull();
+    expect(h.eligibleHint(s.getSnapshot(), { ...ctx, screenReader: true })).toBeNull();
     s.recordArticleSnap();
-    expect(h.eligibleHint(s.getSnapshot(), { ...map, screenReader: true })).toBeNull();
-  });
-
-  it('every lesson is taught on the map', () => {
-    const h = loadHints();
-    expect(h.hintSurface('globe')).toBe('map');
-    expect(h.hintSurface('swipe')).toBe('map');
-    expect(h.hintSurface('sources')).toBe('map');
-    expect(h.hintSurface('bookmark')).toBe('map');
-    expect(h.hintSurface('masthead')).toBe('map');
+    expect(h.eligibleHint(s.getSnapshot(), { ...ctx, screenReader: true })).toBeNull();
   });
 
   it('an exhausted showCount blocks a still-pending hint', () => {
@@ -324,14 +315,14 @@ describe('eligibleHint', () => {
     s2 = loadStore();
     s2.recordHintShown('swipe');
     // The exhausted swipe lesson steps aside for the next one.
-    expect(h.eligibleHint(s2.getSnapshot(), map)).toBe('globe');
+    expect(h.eligibleHint(s2.getSnapshot(), ctx)).toBe('globe');
   });
 
   it('existing users are never eligible for anything', () => {
     mockFiles.set(LAST_SEEN_PATH, '1');
     const s = loadStore();
     const h = loadHints();
-    expect(h.eligibleHint(s.getSnapshot(), map)).toBeNull();
+    expect(h.eligibleHint(s.getSnapshot(), ctx)).toBeNull();
   });
 });
 
