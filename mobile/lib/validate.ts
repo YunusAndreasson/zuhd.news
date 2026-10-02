@@ -343,6 +343,10 @@ const isBookmark = (v: unknown): v is Bookmark =>
 export const isBookmarkArray = (v: unknown): v is Bookmark[] =>
   Array.isArray(v) && v.every(isBookmark);
 
+/** A slug → when map, as the found, read and known stores persist it. */
+export const isTimestampMap = (v: unknown): v is Record<string, number> =>
+  isObject(v) && Object.values(v).every((at) => typeof at === 'number');
+
 // Hazard overlays ported from the web map. Narrow on purpose: each checks only
 // the fields the app reads, so a field the web adds cannot fail the app's
 // fetch. A malformed row fails the whole snapshot, like every validator here —
