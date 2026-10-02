@@ -27,8 +27,9 @@ import {
   withTiming,
 } from 'react-native-reanimated';
 import { scheduleOnRN } from 'react-native-worklets';
-import { SPACING } from '../../constants/theme';
+import { type ColorPalette, SPACING } from '../../constants/theme';
 import { useTheme } from '../../hooks/useTheme';
+import { nearestIndex } from '../../lib/arrays';
 import { citedLabels } from '../../lib/cards/card-chart';
 import { clearLabelSpot } from '../../lib/chart-label';
 import { hapticTick } from '../../lib/haptics';
@@ -116,6 +117,38 @@ function resolveHighlightIndex(values: number[], mode: TrendHighlight | undefine
   }
 }
 
+/** A series' ink, for its line and for its swatch in the legend: the first in
+ *  emphasis, the second in the accent, any other secondary. */
+function seriesColor(index: number, colors: ColorPalette): string {
+  return index === 0 ? colors.textEmphasis : index === 1 ? colors.accent : colors.textSecondary;
+}
+
+/**
+ * The one y-axis a trend is drawn on, from its extent (the series, the band and
+ * the reference together) between the plot's top and bottom. A log scale needs
+ * a positive floor and falls back to linear without one; a flat series is
+ * given one step of height, a decade on a log scale.
+ *
+ * The chart drew its lines on one copy of this and the block placed the scrub
+ * stops, the cited marks and the reference label on another: two copies that
+ * had to agree for a dot to sit on its line.
+ */
+function trendYScale(
+  min: number,
+  max: number,
+  scale: 'linear' | 'log',
+  top: number,
+  bottom: number,
+): (value: number) => number {
+  const domain: [number, number] =
+    scale === 'log' && min > 0
+      ? [min, max === min ? min * 10 : max]
+      : [min, max === min ? min + 1 : max];
+  return scale === 'log' && domain[0] > 0
+    ? scaleLog().domain(domain).range([bottom, top])
+    : scaleLinear().domain(domain).range([bottom, top]);
+}
+
 /** A level the series is measured against — a strait's 90-day normal —
  *  drawn as a dashed hairline with its label at the left end. It joins the
  *  y-extent, so the line is always on the canvas. */
@@ -127,29 +160,39 @@ interface TrendReference {
 interface ChartProps {
   series: TrendSeries[];
   band?: TrendBand;
-  reference?: TrendReference;
+  /** `trendYScale`, and the extent it was built from, for the two rules. */
+  yScale: (value: number) => number;
+  min: number;
+  max: number;
+  /** The primary series on the canvas — the scrub stops — and where the
+   *  reference rule lands; the block places its labels from the same. */
+  points: Pt[];
+  referenceY: number | null;
   width: number;
   height: number;
   defaultHighlightIdx: number;
   progress: SharedValue<number>;
   scrubIdx: SharedValue<number>;
-  colors: ReturnType<typeof useTheme>['colors'];
+  colors: ColorPalette;
   annotations?: TrendAnnotation[];
-  scale: 'linear' | 'log';
   showDataDots: boolean;
   xPositions: number[];
   insets: PlotInsets;
 }
 
-// Memoized: an active scrub gesture re-renders the parent TrendBlock on every
-// pointer move (to update the JS-side scrub readout), but Chart's own props are
-// stable across those renders (normalizedSeries/defaultHighlightIdx are
-// memoized, progress/scrubIdx are shared values, colors is theme-stable). Memo
-// lets the whole Skia canvas subtree skip reconciliation during a scrub.
+// Memoized: `TrendBlock` itself is not compiled (its gesture config writes a
+// shared value), so nothing else keeps a render of the block that changed
+// nothing here from reconciling the whole Skia canvas. Every prop is a value
+// the block memoizes, a shared value, a number, or the theme's palette. (A
+// scrub no longer renders the block at all: `ScrubReadout` holds the index.)
 const Chart = memo(function Chart({
   series,
   band,
-  reference,
+  yScale,
+  min,
+  max,
+  points,
+  referenceY,
   width,
   height,
   defaultHighlightIdx,
@@ -157,41 +200,18 @@ const Chart = memo(function Chart({
   scrubIdx,
   colors,
   annotations,
-  scale,
   showDataDots,
   xPositions,
   insets,
 }: ChartProps) {
-  const { seriesPaths, bandPath, points, minY, maxY, referenceY } = useMemo(() => {
-    const flat: number[] = [];
-    for (const s of series) flat.push(...s.values);
-    if (band) {
-      flat.push(...band.low, ...band.high);
-    }
-    if (reference) flat.push(reference.value);
-    const [eMin, eMax] = extent(flat) as [number, number];
-    const safeMin = eMin ?? 0;
-    const safeMax = eMax ?? 1;
-    const innerTop = insets.top;
-    const innerBottom = height - insets.bottom;
-    const yDomain: [number, number] =
-      scale === 'log' && safeMin > 0
-        ? [safeMin, safeMax === safeMin ? safeMin * 10 : safeMax]
-        : [safeMin, safeMax === safeMin ? safeMin + 1 : safeMax];
-    const yScale =
-      scale === 'log' && yDomain[0] > 0
-        ? scaleLog().domain(yDomain).range([innerBottom, innerTop])
-        : scaleLinear().domain(yDomain).range([innerBottom, innerTop]);
-
+  const { seriesPaths, bandPath } = useMemo(() => {
     const xFor = (i: number) => xPositions[i] ?? CHART_LEFT_PAD;
 
     const seriesPaths: { path: SkPath; color: string }[] = series.map((s, sIdx) => {
       const pts = s.values.map((v, i) => ({ x: xFor(i), y: yScale(v) }));
       const d = buildTrendLinePath(pts);
       const path = Skia.Path.MakeFromSVGString(d) ?? Skia.PathBuilder.Make().detach();
-      const color =
-        sIdx === 0 ? colors.textEmphasis : sIdx === 1 ? colors.accent : colors.textSecondary;
-      return { path, color };
+      return { path, color: seriesColor(sIdx, colors) };
     });
 
     let bandPath: SkPath | null = null;
@@ -204,22 +224,10 @@ const Chart = memo(function Chart({
       const d = buildTrendAreaPath(bandPts);
       bandPath = Skia.Path.MakeFromSVGString(d) ?? Skia.PathBuilder.Make().detach();
     }
-
-    // Use the FIRST series for scrub dots / data ticks; multi-series scrub
-    // shows all readouts in the readout label, but the crosshair anchors on
-    // the primary series so the highlight dot lands somewhere meaningful.
-    const primary = series[0];
-    const points = (primary?.values ?? []).map((v, i) => ({ x: xFor(i), y: yScale(v) }));
-
-    return {
-      seriesPaths,
-      bandPath,
-      points,
-      minY: yScale(safeMin),
-      maxY: yScale(safeMax),
-      referenceY: reference ? yScale(reference.value) : null,
-    };
-  }, [series, band, reference, height, scale, colors, xPositions, insets]);
+    return { seriesPaths, bandPath };
+  }, [series, band, yScale, colors, xPositions]);
+  const minY = yScale(min);
+  const maxY = yScale(max);
 
   const chartRightX = width - insets.right;
 
@@ -561,20 +569,17 @@ export const TrendBlock = memo(function TrendBlock({
     [periods, normalizedSeries, band, width, insets],
   );
 
-  // Compute primary-series points for hit testing (scrub), and where the
-  // reference line lands on the same scale, for its label.
+  const yScale = useMemo(
+    () => trendYScale(min, max, scale, insets.top, height - insets.bottom),
+    [min, max, scale, insets, height],
+  );
+
+  // The primary series on the canvas: the scrub stops, the cited marks and
+  // the crosshair's anchor — a multi-series scrub reads every series out, but
+  // the dot lands on the first. And where the reference rule lands, for its
+  // label.
   const { points, referenceY } = useMemo<{ points: Pt[]; referenceY: number | null }>(() => {
     if (width <= 0 || primaryValues.length === 0) return { points: [], referenceY: null };
-    const innerTop = insets.top;
-    const innerBottom = height - insets.bottom;
-    const yDomain: [number, number] =
-      scale === 'log' && min > 0
-        ? [min, max === min ? min * 10 : max]
-        : [min, max === min ? min + 1 : max];
-    const yScale =
-      scale === 'log' && yDomain[0] > 0
-        ? scaleLog().domain(yDomain).range([innerBottom, innerTop])
-        : scaleLinear().domain(yDomain).range([innerBottom, innerTop]);
     return {
       points: primaryValues.map((v, i) => ({
         x: xLayout.positions[i] ?? CHART_LEFT_PAD,
@@ -582,7 +587,7 @@ export const TrendBlock = memo(function TrendBlock({
       })),
       referenceY: reference ? yScale(reference.value) : null,
     };
-  }, [primaryValues, xLayout.positions, width, height, scale, min, max, reference, insets]);
+  }, [primaryValues, xLayout.positions, width, yScale, reference]);
 
   const citedPoints = useMemo(
     () => new Set((annotations ?? []).map((a) => a.atIndex)),
@@ -635,16 +640,7 @@ export const TrendBlock = memo(function TrendBlock({
     const scrubTo = (e: { x: number }) => {
       'worklet';
       if (pointsX.length === 0) return;
-      let best = 0;
-      let bestD = Number.POSITIVE_INFINITY;
-      for (let i = 0; i < pointsX.length; i++) {
-        const d = Math.abs((pointsX[i] ?? 0) - e.x);
-        if (d < bestD) {
-          bestD = d;
-          best = i;
-        }
-      }
-      scrubIdx.value = best;
+      scrubIdx.value = nearestIndex(pointsX, e.x);
     };
     return {
       // Disabled rather than unmounted: the detector stays in the tree so the
@@ -684,7 +680,7 @@ export const TrendBlock = memo(function TrendBlock({
     normalizedSeries.length > 1
       ? normalizedSeries.map((s, i) => ({
           label: s.label,
-          color: i === 0 ? colors.textEmphasis : i === 1 ? colors.accent : colors.textSecondary,
+          color: seriesColor(i, colors),
         }))
       : null;
 
@@ -724,7 +720,11 @@ export const TrendBlock = memo(function TrendBlock({
               <Chart
                 series={normalizedSeries}
                 band={band}
-                reference={reference}
+                yScale={yScale}
+                min={min}
+                max={max}
+                points={points}
+                referenceY={referenceY}
                 width={width}
                 height={height}
                 defaultHighlightIdx={defaultHighlightIdx}
@@ -732,7 +732,6 @@ export const TrendBlock = memo(function TrendBlock({
                 scrubIdx={scrubIdx}
                 colors={colors}
                 annotations={annotations}
-                scale={scale}
                 xPositions={xLayout.positions}
                 // Point markers communicate the scrub stops in interactive
                 // charts. Card previews do not scrub, so mounting dozens of
