@@ -84,8 +84,8 @@ is deliberately **not** in CI — `logs.test.js` reads gitignored `logs/` and
 
 ## Shared modules — check before writing a helper
 
-Eleven small files, each holding one thing that used to be held in several. Four
-of the twelve groups they replaced **had already parted**, and in each case the
+Small files, each holding one thing that used to be held in several. Four of
+the first twelve groups they replaced **had already parted**, and in each case the
 wrong copy looked exactly like the right one. The rationale for each is in its
 own header; this is the index.
 
@@ -103,6 +103,13 @@ own header; this is the index.
 | `public/islands/_dom.ts` | `el` / `svgEl` — 5 copies |
 | `public/islands/_entity-panel.ts` | the `follows` panel — 2 copies whose comments promised they could not disagree |
 | `scripts/lib/serve-dist.js` | the local `dist/` server + its MIME table — 2 copies, caught at the second |
+| `scripts/lib/claude-envelope.js` → `claudeArgs` | the `claude` argv — 15 copies, drifted on `--tools ''` and caching flags |
+| `scripts/lib/paths.js` | `ROOT` — 40 copies of a form that percent-encoded the path |
+| `scripts/lib/json-file.js` | `readJson` / atomic `writeJson` — ~70 hand-rolled reads and writes |
+| `scripts/lib/http.js` | fetch + deadline + UA — 8 timers that let a stalled body run on |
+| `scripts/lib/article-files.js` | the corpus window by filename — 3 stages parsed all 10k articles |
+| `scripts/lib/trends-snapshot.js` | the newest `content/trends/*.json` — 8 copies |
+| `scripts/lib/hash.js` | the narrators' sha1 cache keys — 10 copies |
 
 **Rule: duplication is only free while the copies agree, and nothing here was
 checking that they did.** Prefer a parameter (class names, a link renderer) over
