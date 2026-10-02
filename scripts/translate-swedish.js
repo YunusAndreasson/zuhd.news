@@ -46,7 +46,7 @@ import { existsSync, readFileSync, readdirSync, writeFileSync } from 'node:fs'
 import { join } from 'node:path'
 import { argAt, hasFlag } from './lib/argv.js'
 import { splitBlocks } from './lib/blocks.js'
-import { parseClaudeEnvelopeWithUsage, spawnClaude } from './lib/claude-envelope.js'
+import { callClaudeJson } from './lib/claude-envelope.js'
 import { runWithConcurrency } from './lib/concurrency.js'
 import { parseFrontmatter } from './lib/frontmatter.js'
 import {
@@ -162,49 +162,19 @@ ${JSON.stringify(items.map((i) => i.payload), null, 2)}
 
 Return ONLY the JSON object keyed by item key. No commentary, no fences.`
 
-  const res = await spawnClaude(
-    [
-      '--model', MODEL,
-      '--effort', EFFORT,
-      '--no-session-persistence',
-      '--tools', '',
-      '--max-turns', '1',
-      '--output-format', 'json',
-      '--exclude-dynamic-system-prompt-sections',
-      '-p', prompt,
-    ],
-    { timeout: 240_000, maxBuffer: 4 * 1024 * 1024 },
-  )
-
-  if (res.status !== 0) {
-    // Both streams: a non-zero `claude` exit often reports on stdout and leaves
-    // stderr empty, which reads as "exit 1: " and says nothing at all.
-    const why =
-      String(res.stderr || '').trim() || String(res.stdout || '').trim() || '(no output)'
-    console.log(`  ✗ swedish ${label}: claude exit ${res.status}: ${why.slice(0, 300)}`)
+  const res = await callClaudeJson(prompt, { model: MODEL, effort: EFFORT, timeout: 240_000, maxBuffer: 4 * 1024 * 1024 })
+  if (res.error) {
+    console.log(`  ✗ swedish ${label}: ${res.error}`)
     return { out: new Map(), costUsd: 0 }
   }
 
-  let envelope
-  try {
-    envelope = parseClaudeEnvelopeWithUsage(res.stdout)
-  } catch (err) {
-    console.log(`  ✗ swedish ${label}: parse — ${err.message}`)
-    return { out: new Map(), costUsd: 0 }
-  }
-
-  const obj = envelope.result
-  if (!obj || typeof obj !== 'object') {
-    console.log(`  ✗ swedish ${label}: no object in result`)
-    return { out: new Map(), costUsd: 0 }
-  }
-
+  const obj = res.out
   const out = new Map()
   for (const it of items) {
     const entry = obj[it.key]
     if (entry) out.set(it.slug, entry)
   }
-  return { out, costUsd: envelope.total_cost_usd || 0 }
+  return { out, costUsd: res.costUsd || 0 }
 }
 
 const batches = []

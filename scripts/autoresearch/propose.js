@@ -8,7 +8,7 @@
 
 import { existsSync, readFileSync } from 'node:fs'
 import { join, dirname } from 'node:path'
-import { spawnSync } from 'node:child_process'
+import { claudeArgs, runClaudeSync } from '../lib/claude-envelope.js'
 import { fileURLToPath } from 'node:url'
 
 const argv = process.argv.slice(2)
@@ -85,21 +85,10 @@ ${Object.entries(surfaceContents)
 
 Return ONE diff as JSON. No prose, no fences.`
 
-const env = { ...process.env }
-delete env.CLAUDECODE
-
-const res = spawnSync(
-  'claude',
-  [
-    '--no-session-persistence',
-    '--effort', 'medium',
-    '--model', 'claude-opus-5-5',
-    '--max-turns', '1',
-    '--tools', '',
-    '-p', fullPrompt,
-  ],
-  { encoding: 'utf-8', env, timeout: 300_000, maxBuffer: 8 * 1024 * 1024 },
-)
+const res = runClaudeSync(claudeArgs(fullPrompt, { model: 'claude-opus-5-5', json: false }), {
+  timeout: 300_000,
+  maxBuffer: 8 * 1024 * 1024,
+})
 
 if (res.status !== 0) {
   console.error(`proposer claude exit ${res.status}: ${(res.stderr || '').slice(0, 500)}`)

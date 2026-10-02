@@ -22,7 +22,7 @@
 
 import { readFileSync, writeFileSync, existsSync } from 'node:fs'
 import { join } from 'node:path'
-import { spawnSync } from 'node:child_process'
+import { claudeArgs, claudeFailure, runClaudeSync } from './lib/claude-envelope.js'
 import { parseFrontmatter } from './lib/frontmatter.js'
 
 const ROOT = new URL('..', import.meta.url).pathname
@@ -93,22 +93,15 @@ function pickViaClaude(cands) {
     )
     .join('\n\n')
   const prompt = `${readFileSync(PROMPT_PATH, 'utf8')}\n${block}\n`
-  const env = { ...process.env }
-  delete env.CLAUDECODE // don't inherit the parent Claude session marker
-  const res = spawnSync(
-    'claude',
-    [
-      '--model', process.env.ZUHD_SOCIAL_PICK_MODEL || process.env.ZUHD_MODEL || 'claude-sonnet-5-5',
-      '--effort', 'medium',
-      '--no-session-persistence',
-      '--max-turns', '1',
-      '--tools', '',
-      '-p', prompt,
-    ],
-    { encoding: 'utf-8', timeout: 45_000, maxBuffer: 512 * 1024, env },
+  const res = runClaudeSync(
+    claudeArgs(prompt, {
+      model: process.env.ZUHD_SOCIAL_PICK_MODEL || process.env.ZUHD_MODEL || 'claude-sonnet-5-5',
+      json: false,
+    }),
+    { timeout: 45_000, maxBuffer: 512 * 1024 },
   )
   if (res.status !== 0) {
-    note(`claude exit ${res.status}: ${(res.stderr || '').slice(0, 200)}`)
+    note(claudeFailure(res, 45_000))
     return null
   }
   // Take the first {...} JSON object in the output (tolerate stray prose).

@@ -20,7 +20,7 @@ import { readFileSync, writeFileSync, existsSync } from 'node:fs'
 import { join } from 'node:path'
 import { createHash } from 'node:crypto'
 import { loadShared } from './build/shared-ts.js'
-import { parseClaudeEnvelopeWithUsage, spawnClaude } from './lib/claude-envelope.js'
+import { callClaudeJson } from './lib/claude-envelope.js'
 import { runWithConcurrency } from './lib/concurrency.js'
 import { validateGrounding } from './lib/grounding.js'
 
@@ -330,43 +330,13 @@ ${JSON.stringify(bundle, null, 2)}
 
 Output ONLY the JSON object \`{ "narrative": "..." }\`. No markdown, no fences.`
 
-  const t0 = Date.now()
-  const result = await spawnClaude(
-    [
-      '--model',
-      MODEL,
-      '--effort',
-      EFFORT,
-      '--no-session-persistence',
-      '--tools', '',
-      '--max-turns',
-      '1',
-      '--output-format',
-      'json',
-      '--exclude-dynamic-system-prompt-sections',
-      '-p',
-      fullPrompt,
-    ],
-    { timeout: 120_000, maxBuffer: 1 * 1024 * 1024 },
-  )
-  const elapsedMs = Date.now() - t0
-
-  if (result.status !== 0) {
-    return {
-      elapsedMs,
-      error: `claude exit ${result.status}: ${result.stderr?.slice(0, 200)}`,
-    }
+  const res = await callClaudeJson(fullPrompt, { model: MODEL, effort: EFFORT })
+  if (res.error) return { elapsedMs: res.elapsedMs, error: res.error }
+  const narrative = res.out.narrative
+  if (typeof narrative !== 'string' || narrative.trim().length === 0) {
+    return { elapsedMs: res.elapsedMs, error: 'no narrative in result' }
   }
-  try {
-    const env = parseClaudeEnvelopeWithUsage(result.stdout)
-    const narrative = env.result?.narrative
-    if (typeof narrative !== 'string' || narrative.trim().length === 0) {
-      return { elapsedMs, error: 'no narrative in result' }
-    }
-    return { elapsedMs, narrative, costUsd: env.total_cost_usd }
-  } catch (err) {
-    return { elapsedMs, error: `parse: ${err.message}` }
-  }
+  return { elapsedMs: res.elapsedMs, narrative, costUsd: res.costUsd }
 }
 
 function sanitizeNarrative(s) {

@@ -5,10 +5,9 @@
 
 import { readFileSync, writeFileSync, existsSync, appendFileSync, mkdirSync } from 'node:fs'
 import { join, basename, dirname } from 'node:path'
-import { spawnSync } from 'node:child_process'
 import { parseFrontmatter } from './lib/frontmatter.js'
 import { buildTimelineWithCharts, loadTrendsSnapshot, buildTrendsPromptSection, selectOfferedIndicators } from './lib/trends-expand.js'
-import { parseClaudeEnvelopeWithUsage } from './lib/claude-envelope.js'
+import { claudeArgs, claudeFailure, parseClaudeEnvelopeWithUsage, runClaudeSync } from './lib/claude-envelope.js'
 
 const ROOT = new URL('..', import.meta.url).pathname
 const BRIEFS_PATH = join(ROOT, 'content', '.context-briefs.json')
@@ -161,8 +160,6 @@ if (offeredIndicators.length) {
 // was ~2x, consistently. Cost: ~Nx input tokens (base prompt repeats), ~Nx
 // wall-clock (sequential). Upside: per-brief quality climbs toward dry-run.
 
-const env = { ...process.env }
-delete env.CLAUDECODE
 const offeredIds = offeredIndicators.map((i) => i.id)
 
 /** Run one Claude call for one candidate. Returns the parsed brief envelope
@@ -188,19 +185,14 @@ ${singleBlock}
 Generate the educational context brief for this article. Output ONLY the JSON object keyed by slug — no markdown fences, no commentary.`
 
   const t0 = Date.now()
-  const result = spawnSync('claude', [
-    '--model', 'claude-sonnet-5-5',
-    '--effort', 'medium',
-    '--no-session-persistence',
-    '--max-turns', '3',
-    '--output-format', 'json',
-    '--exclude-dynamic-system-prompt-sections',
-    '-p', fullPrompt,
-  ], { encoding: 'utf-8', timeout: 300_000, maxBuffer: 2 * 1024 * 1024, env })
+  const result = runClaudeSync(
+    claudeArgs(fullPrompt, { model: 'claude-sonnet-5-5', maxTurns: 3, tools: null }),
+    { timeout: 300_000, maxBuffer: 2 * 1024 * 1024 },
+  )
   const elapsedMs = Date.now() - t0
 
   if (result.status !== 0) {
-    return { elapsedMs, error: `claude exit ${result.status}: ${result.stderr?.slice(0, 200)}` }
+    return { elapsedMs, error: claudeFailure(result, 300_000) }
   }
   try {
     const env = parseClaudeEnvelopeWithUsage(result.stdout)

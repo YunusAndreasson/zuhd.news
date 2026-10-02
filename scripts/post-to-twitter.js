@@ -22,7 +22,7 @@
 
 import { readFileSync, writeFileSync, existsSync } from 'node:fs'
 import { join } from 'node:path'
-import { spawnSync } from 'node:child_process'
+import { claudeArgs, claudeFailure, runClaudeSync } from './lib/claude-envelope.js'
 import { createHmac, randomBytes } from 'node:crypto'
 import { parseFrontmatter } from './lib/frontmatter.js'
 import { buildIgJpeg, IG_FEED, igLead } from './lib/ig-image.js'
@@ -95,24 +95,12 @@ function truncate(text, max) {
 
 function condenseViaClaude(articleText) {
   const prompt = `${readFileSync(PROMPT_PATH, 'utf8')}\n${articleText}`
-  const env = { ...process.env }
-  // The Haiku/Sonnet micro-task callers drop CLAUDECODE so the subprocess
-  // doesn't inherit the parent Claude session marker (see backfill-country-tags.js).
-  delete env.CLAUDECODE
-  const res = spawnSync(
-    'claude',
-    [
-      '--model', process.env.ZUHD_MODEL || 'claude-sonnet-5-5',
-      '--effort', 'medium',
-      '--no-session-persistence',
-      '--max-turns', '1',
-      '--tools', '',
-      '-p', prompt,
-    ],
-    { encoding: 'utf-8', timeout: 30_000, maxBuffer: 512 * 1024, env },
-  )
+  const res = runClaudeSync(claudeArgs(prompt, { model: process.env.ZUHD_MODEL || 'claude-sonnet-5-5', json: false }), {
+    timeout: 30_000,
+    maxBuffer: 512 * 1024,
+  })
   if (res.status !== 0) {
-    console.error(`post-to-twitter: claude exit ${res.status}: ${(res.stderr || '').slice(0, 200)}`)
+    console.error(`post-to-twitter: ${claudeFailure(res, 30_000)}`)
     return null
   }
   // Plain-text output (no --output-format json): take the first non-empty line.

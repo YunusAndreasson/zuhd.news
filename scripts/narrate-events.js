@@ -37,7 +37,7 @@
 import { readFileSync, writeFileSync, existsSync, readdirSync } from 'node:fs'
 import { join } from 'node:path'
 import { createHash } from 'node:crypto'
-import { parseClaudeEnvelopeWithUsage, spawnClaude } from './lib/claude-envelope.js'
+import { callClaudeJson } from './lib/claude-envelope.js'
 import { runWithConcurrency } from './lib/concurrency.js'
 import { promptEcho, promptExamples, validateNumbers, validateProperNouns } from './lib/grounding.js'
 import { matchesAnyTag } from './lib/entity-registry.js'
@@ -221,35 +221,7 @@ ${JSON.stringify(bundle, null, 2)}
 
 Output ONLY the JSON object \`{ "standing": "...", "recent": "...", "citations": [...] }\`. No markdown, no fences.`
 
-  const t0 = Date.now()
-  const result = await spawnClaude(
-    [
-      '--model', MODEL,
-      '--effort', EFFORT,
-      '--no-session-persistence',
-      '--tools', '',
-      '--max-turns', '1',
-      '--output-format', 'json',
-      '--exclude-dynamic-system-prompt-sections',
-      '-p', fullPrompt,
-    ],
-    { timeout: 120_000, maxBuffer: 1024 * 1024 },
-  )
-  const elapsedMs = Date.now() - t0
-
-  if (result.status !== 0) {
-    const why =
-      String(result.stderr || '').trim() || String(result.stdout || '').trim() || '(no output)'
-    return { elapsedMs, error: `claude exit ${result.status}: ${why.slice(0, 300)}` }
-  }
-  try {
-    const envelope = parseClaudeEnvelopeWithUsage(result.stdout)
-    const r = envelope.result
-    if (!r || typeof r !== 'object') return { elapsedMs, error: 'no object in result' }
-    return { elapsedMs, out: r, costUsd: envelope.total_cost_usd, usage: envelope.usage }
-  } catch (err) {
-    return { elapsedMs, error: `parse: ${err.message}` }
-  }
+  return callClaudeJson(fullPrompt, { model: MODEL, effort: EFFORT })
 }
 
 const clean = (s) =>

@@ -28,7 +28,7 @@
 
 import { readFileSync, writeFileSync, existsSync, mkdirSync } from 'node:fs'
 import { join } from 'node:path'
-import { spawnSync } from 'node:child_process'
+import { claudeArgs, claudeFailure, runClaudeSync } from './lib/claude-envelope.js'
 import { parseFrontmatter } from './lib/frontmatter.js'
 import { buildIgJpeg, IG_FEED, IG_STORY, igLead } from './lib/ig-image.js'
 import { argAt, hasFlag } from './lib/argv.js'
@@ -109,29 +109,12 @@ const article = {
 function captionViaClaude() {
   const articleText = `${meta.title || ''}\n\n${body}`.trim()
   const prompt = `${readFileSync(PROMPT_PATH, 'utf8')}\n${articleText}`
-  const env = { ...process.env }
-  // Drop CLAUDECODE so the subprocess doesn't inherit the parent session marker
-  // (same micro-task idiom as post-to-twitter.js / backfill-country-tags.js).
-  delete env.CLAUDECODE
-  const res = spawnSync(
-    'claude',
-    [
-      '--model',
-      process.env.ZUHD_MODEL || 'claude-sonnet-5-5',
-      '--effort',
-      'medium',
-      '--no-session-persistence',
-      '--max-turns',
-      '1',
-      '--tools',
-      '',
-      '-p',
-      prompt,
-    ],
-    { encoding: 'utf-8', timeout: 30_000, maxBuffer: 512 * 1024, env },
-  )
+  const res = runClaudeSync(claudeArgs(prompt, { model: process.env.ZUHD_MODEL || 'claude-sonnet-5-5', json: false }), {
+    timeout: 30_000,
+    maxBuffer: 512 * 1024,
+  })
   if (res.status !== 0) {
-    console.error(`post-to-instagram: claude exit ${res.status}: ${(res.stderr || '').slice(0, 200)}`)
+    console.error(`post-to-instagram: ${claudeFailure(res, 30_000)}`)
     return null
   }
   // Multi-line caption (unlike the tweet): keep the whole thing, just tidy it.

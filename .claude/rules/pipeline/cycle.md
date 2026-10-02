@@ -258,12 +258,19 @@ is in the root CLAUDE.md; this is what the stages assume about each other.
 
 ## Claude CLI stages
 
-- **`runHaiku(prompt, { timeout, maxBuffer })` in `lib/claude-envelope.js`** is
-  the one place the argv is spelled. `--no-session-persistence --max-turns 1`
-  are what make these micro-tasks rather than sessions: a copy that lost either
-  would still work, cost more, and leave state behind. `CLAUDECODE` is deleted
-  from the child env so the subprocess does not inherit the parent session
-  marker.
+- **`claudeArgs(prompt, opts)` in `lib/claude-envelope.js`** is the one place
+  the argv is spelled, for every Node caller (`run-cycle.sh` spells its own).
+  `--no-session-persistence --max-turns 1` are what make these micro-tasks
+  rather than sessions: a copy that lost either would still work, cost more,
+  and leave state behind. Fifteen hand-written copies had drifted in exactly
+  that way — some without `--tools ''` (~17k input tokens a call), some without
+  `--exclude-dynamic-system-prompt-sections`. Run it with `runClaudeSync`
+  (one call, nothing to overlap), `spawnClaude` (inside a pool), or
+  `callClaudeJson` (the narrators' timed, never-throwing JSON call);
+  `runHaiku` is the Haiku shorthand. All of them drop `CLAUDECODE` from the
+  child env so the subprocess does not inherit the parent session marker, and
+  `claudeFailure(res)` is the one rendering of a non-zero exit — it reads
+  stdout when stderr is empty, which is where the CLI usually reports.
 - **`parseClaudeEnvelope(stdout)`** handles the `{type:"result", result:"…"}`
   wrapper, a fenced payload, and raw JSON. Do not re-implement it inline —
   `extract-entities.js` had two hand-rolled copies.

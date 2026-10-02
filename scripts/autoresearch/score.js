@@ -10,7 +10,7 @@
 
 import { existsSync, readFileSync } from 'node:fs'
 import { join, basename } from 'node:path'
-import { spawnSync } from 'node:child_process'
+import { claudeArgs, runClaudeSync } from '../lib/claude-envelope.js'
 import { CATEGORY_FLOORS, FLOORS_MAY_GO_UNMET } from '../lib/dedup.js'
 import { REGION_CODES, regionFromCoords } from '../lib/regions.js'
 import { MODELS, REPO_ROOT } from './replay-utils.js'
@@ -436,20 +436,7 @@ async function fabricationJudge(item, brief) {
 }
 
 function callJudge(prompt, model) {
-  const env = { ...process.env }
-  delete env.CLAUDECODE
-  const res = spawnSync(
-    'claude',
-    [
-      '--no-session-persistence',
-      '--effort', 'medium',
-      '--model', model,
-      '--max-turns', '1',
-      '--tools', '',
-      '-p', prompt,
-    ],
-    { encoding: 'utf-8', env, timeout: 180_000, maxBuffer: 4 * 1024 * 1024 },
-  )
+  const res = runClaudeSync(claudeArgs(prompt, { model, json: false }), { timeout: 180_000, maxBuffer: 4 * 1024 * 1024 })
   if (res.status !== 0) throw new Error(`judge ${model} exit ${res.status}: ${(res.stderr || '').slice(0, 200)}`)
   return res.stdout || ''
 }

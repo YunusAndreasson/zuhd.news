@@ -6,6 +6,7 @@
 // reason as run-cycle.sh: comparable iteration deltas across a session.
 
 import { spawnSync } from 'node:child_process'
+import { claudeArgs, runClaudeSync } from '../lib/claude-envelope.js'
 import {
   copyFileSync,
   existsSync,
@@ -164,22 +165,9 @@ export function stageTrendsDigest(trendsSnapshotPath) {
  *          timeoutSec: number, cwd: string, env?: Record<string, string|undefined> }} opts
  */
 export function runClaude({ prompt, model, allowedTools, maxTurns, timeoutSec, cwd, env }) {
-  const fullEnv = { ...process.env, ...(env || {}) }
-  // Production runs without CLAUDECODE so the headless CLI is honored
-  delete fullEnv.CLAUDECODE
-  const args = [
-    '--no-session-persistence',
-    '--effort', 'medium',
-    '--model', model,
-    '--allowedTools', allowedTools,
-    '--max-turns', String(maxTurns),
-    '--exclude-dynamic-system-prompt-sections',
-    '-p', prompt,
-  ]
-  const res = spawnSync('claude', args, {
+  const res = runClaudeSync(claudeArgs(prompt, { model, allowedTools, maxTurns, json: false }), {
     cwd: cwd || REPO_ROOT,
-    env: fullEnv,
-    encoding: 'utf-8',
+    env: { ...process.env, ...(env || {}) },
     timeout: timeoutSec * 1000,
     maxBuffer: 20 * 1024 * 1024,
   })
