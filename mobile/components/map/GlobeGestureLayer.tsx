@@ -2,6 +2,9 @@ import { memo, useCallback, useEffect, useMemo, useRef } from 'react';
 import { StyleSheet, View } from 'react-native';
 import {
   GestureDetector,
+  type PanGestureConfig,
+  type PinchGestureConfig,
+  type TapGestureConfig,
   useCompetingGestures,
   usePanGesture,
   usePinchGesture,
@@ -206,18 +209,15 @@ export const GlobeGestureLayer = memo(function GlobeGestureLayer({
     [canvasTop, globeRef, onCollapse, onImpact, onTap, requestEpoch],
   );
 
+  // Each config is its builder's return type rather than the `useMemo`'s
+  // type argument: only the first checks an object literal for keys it does
+  // not know, so a v2 callback name (`onEnd`, `onStart`, `onChange`) beside
+  // valid ones fails the typecheck instead of compiling and never firing. The
+  // events are typed by it too.
   const tapConfig = useMemo(
-    () => ({
+    (): TapGestureConfig => ({
       enabled: tapEnabledSV,
-      onDeactivate: ({
-        absoluteX,
-        absoluteY,
-        canceled,
-      }: {
-        absoluteX: number;
-        absoluteY: number;
-        canceled: boolean;
-      }) => {
+      onDeactivate: ({ absoluteX, absoluteY, canceled }) => {
         'worklet';
         if (canceled) return;
         scheduleOnRN(handleTap, absoluteX, absoluteY, requestEpoch.value);
@@ -227,7 +227,7 @@ export const GlobeGestureLayer = memo(function GlobeGestureLayer({
   );
 
   const panConfig = useMemo(
-    () => ({
+    (): PanGestureConfig => ({
       enabled: turnableSV,
       // Enough travel that a slightly imprecise tap is still a tap.
       minDistance: 6,
@@ -252,7 +252,7 @@ export const GlobeGestureLayer = memo(function GlobeGestureLayer({
         'worklet';
         takeCamera(cameraOwner, cameraLat, cameraLng, viewLat, viewLng);
       },
-      onUpdate: ({ changeX, changeY }: { changeX: number; changeY: number }) => {
+      onUpdate: ({ changeX, changeY }) => {
         'worklet';
         const d = dragDelta(changeX, changeY, clip.value, radius, cameraLat.value);
         // Keep longitude in (−180, 180] so the slerp that resumes on the next
@@ -264,15 +264,7 @@ export const GlobeGestureLayer = memo(function GlobeGestureLayer({
         const lat = cameraLat.value + d.dLat;
         cameraLat.value = lat > MAX_LAT ? MAX_LAT : lat < -MAX_LAT ? -MAX_LAT : lat;
       },
-      onDeactivate: ({
-        velocityX,
-        velocityY,
-        canceled,
-      }: {
-        velocityX: number;
-        velocityY: number;
-        canceled: boolean;
-      }) => {
+      onDeactivate: ({ velocityX, velocityY, canceled }) => {
         'worklet';
         if (canceled || reduceMotion) return;
         const v = flingVelocity(velocityX, velocityY, clip.value, radius, cameraLat.value);
@@ -309,20 +301,16 @@ export const GlobeGestureLayer = memo(function GlobeGestureLayer({
   const touchOffsetX = useSharedValue(0);
   const touchOffsetY = useSharedValue(0);
   const pinchConfig = useMemo(
-    () => ({
+    (): PinchGestureConfig => ({
       enabled: turnableSV,
-      onTouchesDown: ({
-        allTouches,
-      }: {
-        allTouches: { x: number; y: number; absoluteX: number; absoluteY: number }[];
-      }) => {
+      onTouchesDown: ({ allTouches }) => {
         'worklet';
         const touch = allTouches[0];
         if (!touch) return;
         touchOffsetX.value = touch.absoluteX - touch.x;
         touchOffsetY.value = touch.absoluteY - touch.y;
       },
-      onActivate: ({ focalX, focalY }: { focalX: number; focalY: number }) => {
+      onActivate: ({ focalX, focalY }) => {
         'worklet';
         // Through `cancelFlight`, as the pan does: stopping the tween alone
         // left the flight's plan standing, so the deck read a flight still
@@ -341,17 +329,7 @@ export const GlobeGestureLayer = memo(function GlobeGestureLayer({
         focusX.value = focalX + touchOffsetX.value;
         focusY.value = focalY + touchOffsetY.value - canvasTop;
       },
-      onUpdate: ({
-        scaleChange,
-        focalX,
-        focalY,
-        numberOfPointers,
-      }: {
-        scaleChange: number;
-        focalX: number;
-        focalY: number;
-        numberOfPointers: number;
-      }) => {
+      onUpdate: ({ scaleChange, focalX, focalY, numberOfPointers }) => {
         'worklet';
         // The frames while a finger lifts carry one pointer: the focal point
         // snaps to the finger that stayed and the scale collapses (0.47 was

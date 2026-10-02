@@ -629,7 +629,7 @@ export const TrendBlock = memo(function TrendBlock({
   const scrubIdx = useSharedValue(-1);
   const timeTicks: TrendTimeTick[] | null = xLayout.ticks;
 
-  const panConfig = useMemo<PanGestureConfig>(() => {
+  const panConfig = useMemo((): PanGestureConfig => {
     const pointsX = points.map((p) => p.x);
     // The nearest point to the finger, on touch-down and as it moves.
     const scrubTo = (e: { x: number }) => {

@@ -33,6 +33,11 @@ React Native + Expo app for zuhd.news. Voice + philosophy in root `../foundation
   Keep the config object in a `useMemo`. The hook owns the handler tag, so
   there is no gesture object to keep stable any more, but a fresh config
   identity re-pushes the whole config to the native side on every render.
+  Type it as the builder's return type — `useMemo((): PanGestureConfig =>
+  ({…}), deps)` — never as `useMemo<PanGestureConfig>(…)`: only the first
+  checks the literal for keys it does not know, so a stale `onEnd` beside
+  valid keys fails the typecheck there and compiles silently in the second.
+  The events are typed by it too; don't hand-write their shapes.
 
 ## Dependencies Expo does not manage
 

@@ -171,8 +171,8 @@ export function useScrub({
     updateLabel,
   ]);
 
-  const panConfig = useMemo<PanGestureConfig>(
-    () => ({
+  const panConfig = useMemo(
+    (): PanGestureConfig => ({
       enabled,
       activeOffsetX: [-2, 2],
       failOffsetY: [-10, 10],
@@ -227,8 +227,8 @@ export function useScrub({
     ],
   );
 
-  const tapConfig = useMemo<TapGestureConfig>(
-    () => ({
+  const tapConfig = useMemo(
+    (): TapGestureConfig => ({
       enabled,
       maxDuration: 400,
       onDeactivate: (e) => {

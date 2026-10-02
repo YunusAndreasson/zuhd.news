@@ -46,8 +46,8 @@ export const SwipeableRow = memo(function SwipeableRow({
     onSwipeAction();
   }, [onSwipeAction]);
 
-  const panConfig = useMemo<PanGestureConfig>(
-    () => ({
+  const panConfig = useMemo(
+    (): PanGestureConfig => ({
       // Leftward only: a single negative value sets the start bound alone.
       activeOffsetX: -12,
       failOffsetY: [-10, 10],
