@@ -13,7 +13,6 @@ import Animated, {
   FadeInDown,
   FadeOutUp,
   LinearTransition,
-  useReducedMotion,
   useSharedValue,
   withTiming,
 } from 'react-native-reanimated';
@@ -72,21 +71,18 @@ export const BriefingBar = memo(function BriefingBar({
   const progress = duration > 0 ? Math.max(0, Math.min(elapsed / duration, 1)) : 0;
   const progressSV = useSharedValue(0);
   const scrubbingRef = useRef(false);
-  const reduceMotion = useReducedMotion();
   useEffect(() => {
     // The gesture owns progressSV while the finger is down. Native playback
     // status can briefly report the pre-seek position; letting that value start
     // a timing animation here made the fill fight the finger and snap backward.
     if (scrubbingRef.current) return;
-    if (reduceMotion) {
-      progressSV.value = progress;
-    } else {
-      // Slow fill for smooth playback tracking (matches the elapsed-update
-      // cadence). Linear: an eased tween restarted on every status tick
-      // accelerates and brakes once a second, so the fill pulsed.
-      progressSV.value = withTiming(progress, { duration: ANIMATION.long, easing: Easing.linear });
-    }
-  }, [progress, reduceMotion, progressSV]);
+    // Slow fill for smooth playback tracking (matches the elapsed-update
+    // cadence). Linear: an eased tween restarted on every status tick
+    // accelerates and brakes once a second, so the fill pulsed. Under Reduce
+    // Motion Reanimated lands it at once (`ReduceMotion.System`), which a
+    // branch of its own here used to repeat.
+    progressSV.value = withTiming(progress, { duration: ANIMATION.long, easing: Easing.linear });
+  }, [progress, progressSV]);
 
   // The scrub owns `progressSV` while a finger is down (see the effect above);
   // one latest-value seek is committed when it lifts. `useScrub` holds the

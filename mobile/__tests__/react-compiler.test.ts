@@ -10,9 +10,10 @@ import { join } from 'node:path';
  * These were all skipped until 2026-10-02: the menu for a function declared
  * after its `return` (and a `useSyncExternalStore` on the data meter that
  * re-rendered it, closed, on every download), the hazard and country bodies
- * for `useMemo`/`useCallback` dependencies the compiler could not keep, saved
- * stories for a ref written during render. This runs the compiler as
- * babel-preset-expo configures it and holds them compiled.
+ * for `useMemo`/`useCallback` dependencies the compiler could not keep, and
+ * saved stories and the briefing's chrome for a ref written during render.
+ * This runs the compiler as babel-preset-expo configures it and holds them
+ * compiled.
  *
  * The opposite list is short and deliberate: `MiniGlobe` opts out
  * (`directives.test.ts`), and the gesture-driven components that write
@@ -25,6 +26,7 @@ const MUST_COMPILE: Record<string, string[]> = {
   'components/DisasterSheet.tsx': ['DisasterSheet', 'DisasterBody'],
   'components/CountrySheet.tsx': ['CountrySheet', 'CountryBody'],
   'components/SheetBookmarksPage.tsx': ['SheetBookmarksPage'],
+  'components/BriefingChrome.tsx': ['BriefingChrome'],
   'components/map/StoryCard.tsx': ['StoryCard', 'StoryActions'],
   'components/globe/MiniGlobe.tsx': ['GlobeCanvas'],
 };

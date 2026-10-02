@@ -1,4 +1,4 @@
-import { forwardRef, useCallback, useEffect, useImperativeHandle, useRef, useState } from 'react';
+import { type Ref, useCallback, useEffect, useImperativeHandle, useState } from 'react';
 import { useBriefingPlayer } from '../hooks/useBriefingPlayer';
 import { BriefingBar } from './BriefingBar';
 
@@ -33,6 +33,8 @@ interface BriefingChromeProps {
   topOffset: number;
   /** The bar's measured height, so top toasts can start under it. */
   onHeightChange?: (height: number) => void;
+  /** React 19: a prop. This was the app's last `forwardRef`. */
+  ref?: Ref<BriefingChromeRef>;
 }
 
 /**
@@ -59,89 +61,92 @@ interface BriefingChromeProps {
  * appeared. It clears an open story without that, because the open sheet
  * always leaves the globe at least `BAND_MIN` under the top bar.
  */
-export const BriefingChrome = forwardRef<BriefingChromeRef, BriefingChromeProps>(
-  function BriefingChrome(
-    {
-      date,
-      duration,
-      recorded,
-      onUnavailable,
-      onPlaybackError,
-      onVisibilityChange,
-      onStatusChange,
-      topOffset,
-      onHeightChange,
-    },
-    ref,
-  ) {
-    const player = useBriefingPlayer(date, duration, recorded);
-    const [presented, setPresented] = useState(false);
-    const visible = presented && player.state !== 'idle';
+export function BriefingChrome({
+  date,
+  duration,
+  recorded,
+  onUnavailable,
+  onPlaybackError,
+  onVisibilityChange,
+  onStatusChange,
+  topOffset,
+  onHeightChange,
+  ref,
+}: BriefingChromeProps) {
+  const player = useBriefingPlayer(date, duration, recorded);
+  // Called as functions, not as `player.toggle()`: a method call reads as a
+  // change to `player`, and the compiler could not keep the callbacks below
+  // memoized on the function alone.
+  const { available, toggle, dismiss } = player;
+  const [presented, setPresented] = useState(false);
+  const visible = presented && player.state !== 'idle';
 
-    const handleToggle = useCallback(() => {
-      if (!player.available) {
-        onUnavailable();
-        return;
-      }
-      setPresented(true);
-      player.toggle();
-    }, [onUnavailable, player.available, player.toggle]);
-
-    const handleDismiss = useCallback(() => {
-      setPresented(false);
-      player.dismiss();
-    }, [player.dismiss]);
-
-    useImperativeHandle(ref, () => ({ toggle: handleToggle }), [handleToggle]);
-
-    useEffect(() => {
-      onVisibilityChange(visible);
-    }, [onVisibilityChange, visible]);
-
-    // The heard share follows `elapsed`, which ticks twice a second while
-    // playing — the very field this component exists to keep from reaching
-    // HomeScreen. It is only read while the player is down (the top bar's
-    // button is hidden while it plays), so it holds its last value until then,
-    // and it moves in fortieths.
-    const heardRef = useRef(0);
-    if (player.state !== 'playing' && player.state !== 'preparing') {
-      const at = player.elapsed > 0 ? player.elapsed : player.resumeAt;
-      heardRef.current =
-        player.resumable && player.duration > 0
-          ? Math.round(Math.min(1, at / player.duration) * HEARD_STEPS) / HEARD_STEPS
-          : 0;
+  const handleToggle = useCallback(() => {
+    if (!available) {
+      onUnavailable();
+      return;
     }
-    const heard = heardRef.current;
+    setPresented(true);
+    toggle();
+  }, [onUnavailable, available, toggle]);
 
-    useEffect(() => {
-      onStatusChange({
-        available: player.available,
-        resumable: player.resumable,
-        duration: player.duration,
-        heard,
-      });
-    }, [onStatusChange, player.available, player.resumable, player.duration, heard]);
+  const handleDismiss = useCallback(() => {
+    setPresented(false);
+    dismiss();
+  }, [dismiss]);
 
-    useEffect(() => {
-      if (player.failureCount === 0) return;
-      setPresented(false);
-      onPlaybackError();
-    }, [onPlaybackError, player.failureCount]);
+  useImperativeHandle(ref, () => ({ toggle: handleToggle }), [handleToggle]);
 
-    if (!visible) return null;
+  useEffect(() => {
+    onVisibilityChange(visible);
+  }, [onVisibilityChange, visible]);
 
-    return (
-      <BriefingBar
-        state={player.state}
-        elapsed={player.elapsed}
-        duration={player.duration}
-        date={player.date}
-        onToggle={player.toggle}
-        onSeek={player.seek}
-        onDismiss={handleDismiss}
-        topOffset={topOffset}
-        onHeightChange={onHeightChange}
-      />
-    );
-  },
-);
+  // The heard share follows `elapsed`, which ticks twice a second while
+  // playing — the very field this component exists to keep from reaching
+  // HomeScreen. It is only read while the player is down (the top bar's
+  // button is hidden while it plays), so it holds its last value until then,
+  // and it moves in fortieths. Held as state, set during render when it
+  // moves — React's pattern for a value kept from earlier renders; a ref
+  // written during render did the same and kept this component from React
+  // Compiler.
+  const [heard, setHeard] = useState(0);
+  if (player.state !== 'playing' && player.state !== 'preparing') {
+    const at = player.elapsed > 0 ? player.elapsed : player.resumeAt;
+    const next =
+      player.resumable && player.duration > 0
+        ? Math.round(Math.min(1, at / player.duration) * HEARD_STEPS) / HEARD_STEPS
+        : 0;
+    if (next !== heard) setHeard(next);
+  }
+
+  useEffect(() => {
+    onStatusChange({
+      available: player.available,
+      resumable: player.resumable,
+      duration: player.duration,
+      heard,
+    });
+  }, [onStatusChange, player.available, player.resumable, player.duration, heard]);
+
+  useEffect(() => {
+    if (player.failureCount === 0) return;
+    setPresented(false);
+    onPlaybackError();
+  }, [onPlaybackError, player.failureCount]);
+
+  if (!visible) return null;
+
+  return (
+    <BriefingBar
+      state={player.state}
+      elapsed={player.elapsed}
+      duration={player.duration}
+      date={player.date}
+      onToggle={player.toggle}
+      onSeek={player.seek}
+      onDismiss={handleDismiss}
+      topOffset={topOffset}
+      onHeightChange={onHeightChange}
+    />
+  );
+}

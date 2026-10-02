@@ -1,6 +1,6 @@
 import { NavigationBar } from 'expo-navigation-bar';
 import * as SystemUI from 'expo-system-ui';
-import { createContext, use, useCallback, useContext, useEffect, useMemo, useState } from 'react';
+import { createContext, use, useCallback, useEffect, useMemo, useState } from 'react';
 import { Appearance, useColorScheme } from 'react-native';
 import { IS_ANDROID } from '../constants/platform';
 import {
@@ -59,13 +59,13 @@ const ThemeContext = createContext<Theme | null>(null);
 const PreferencesContext = createContext<PreferencesApi | null>(null);
 
 export function useTheme(): Theme {
-  const ctx = useContext(ThemeContext);
+  const ctx = use(ThemeContext);
   if (!ctx) throw new Error('useTheme must be used within ThemeProvider');
   return ctx;
 }
 
 export function usePreferences(): PreferencesApi {
-  const ctx = useContext(PreferencesContext);
+  const ctx = use(PreferencesContext);
   if (!ctx) throw new Error('usePreferences must be used within ThemeProvider');
   return ctx;
 }
