@@ -3,13 +3,14 @@
 // Reads this cycle's new articles, identifies candidates for educational context,
 // calls Opus to select 2-4 and generate explainer briefs, saves to .context-briefs.json.
 
-import { readFileSync, writeFileSync, existsSync, appendFileSync, mkdirSync } from 'node:fs'
+import { readFileSync, existsSync, appendFileSync, mkdirSync } from 'node:fs'
 import { join, basename, dirname } from 'node:path'
 import { parseFrontmatter } from './lib/frontmatter.js'
 import { buildTimelineWithCharts, loadTrendsSnapshot, buildTrendsPromptSection, selectOfferedIndicators } from './lib/trends-expand.js'
 import { claudeArgs, claudeFailure, parseClaudeEnvelopeWithUsage, runClaudeSync } from './lib/claude-envelope.js'
+import { ROOT } from './lib/paths.js'
+import { readJson, writeJson } from './lib/json-file.js'
 
-const ROOT = new URL('..', import.meta.url).pathname
 const BRIEFS_PATH = join(ROOT, 'content', '.context-briefs.json')
 const PROMPT_PATH = join(ROOT, 'scripts', 'edu-context-prompt.md')
 const NEW_ARTICLES_PATH = '/tmp/zuhd-new-articles.txt'
@@ -29,7 +30,7 @@ if (newFiles.length === 0) {
   process.exit(0)
 }
 
-const briefs = existsSync(BRIEFS_PATH) ? JSON.parse(readFileSync(BRIEFS_PATH, 'utf8')) : {}
+const briefs = readJson(BRIEFS_PATH, {})
 const basePrompt = readFileSync(PROMPT_PATH, 'utf8')
 
 // Ensure the audit log directory exists up-front so a broken path surfaces
@@ -143,9 +144,7 @@ if (conceptLibrary) {
 }
 
 // --- Load trends digest + snapshot (optional — graceful if missing) ---
-const trendsDigest = existsSync(TRENDS_DIGEST_PATH)
-  ? JSON.parse(readFileSync(TRENDS_DIGEST_PATH, 'utf8'))
-  : null
+const trendsDigest = readJson(TRENDS_DIGEST_PATH, null)
 const trendsSnapshot = loadTrendsSnapshot(ROOT)
 const trendsSection = buildTrendsPromptSection(trendsDigest)
 const offeredIndicators = selectOfferedIndicators(trendsDigest)
@@ -302,7 +301,7 @@ if (trendsDigest?.indicators?.length) {
 }
 
 if (generated > 0) {
-  writeFileSync(BRIEFS_PATH, `${JSON.stringify(briefs, null, 2)}\n`)
+  writeJson(BRIEFS_PATH, briefs)
   console.log(`\n=== Saved ${generated} edu brief(s) — ${Object.keys(briefs).length} total in briefs file ===`)
 } else {
   console.log('\n=== No edu briefs generated this cycle ===')

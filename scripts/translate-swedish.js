@@ -42,7 +42,7 @@
 //                          reasoning task about register and false friends
 //   ZUHD_SV_FORCE=1        ignore the cache and re-translate everything
 
-import { existsSync, readFileSync, readdirSync, writeFileSync } from 'node:fs'
+import { existsSync, readFileSync, readdirSync } from 'node:fs'
 import { join } from 'node:path'
 import { argAt, hasFlag } from './lib/argv.js'
 import { splitBlocks } from './lib/blocks.js'
@@ -57,8 +57,9 @@ import {
   translationFault,
 } from './lib/sv-payload.js'
 import { createHash } from 'node:crypto'
+import { ROOT } from './lib/paths.js'
+import { writeJson } from './lib/json-file.js'
 
-const ROOT = new URL('..', import.meta.url).pathname
 const CONTENT_DIR = join(ROOT, 'content', 'articles')
 const CACHE_PATH = join(ROOT, 'content', '.sv.json')
 const PROMPT_PATH = join(ROOT, 'scripts', 'sv-prompt.md')
@@ -201,7 +202,7 @@ let totalCostUsd = 0
 // interleave between batches, never inside one.
 const persist = () => {
   cache.generatedAt = new Date().toISOString()
-  writeFileSync(CACHE_PATH, `${JSON.stringify(cache, null, 2)}\n`)
+  writeJson(CACHE_PATH, cache)
 }
 
 /** Register faults across a whole batch's returned translations. The gate is

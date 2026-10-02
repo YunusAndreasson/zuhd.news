@@ -24,8 +24,9 @@ import { readFileSync, writeFileSync, existsSync } from 'node:fs'
 import { join } from 'node:path'
 import { claudeArgs, claudeFailure, runClaudeSync } from './lib/claude-envelope.js'
 import { parseFrontmatter } from './lib/frontmatter.js'
+import { ROOT } from './lib/paths.js'
+import { writeJson } from './lib/json-file.js'
 
-const ROOT = new URL('..', import.meta.url).pathname
 const LEDGER = join(ROOT, 'content/.story-ledger.json')
 const LAST_CYCLE = join(ROOT, 'content/.last-cycle.json')
 const PICK_PATH = join(ROOT, 'content/.breaking-pick.json')
@@ -180,7 +181,7 @@ try {
     }
   }
 
-  writeFileSync(PICK_PATH, `${JSON.stringify(record, null, 2)}\n`)
+  writeJson(PICK_PATH, record)
   note(`picked ${chosen.slug} (score ${record.score ?? '?'}) of ${cands.length} candidates.`)
 } catch (e) {
   note(`${e.message} — non-fatal, cycle continues with legacy selection.`)

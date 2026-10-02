@@ -2,18 +2,19 @@
 // Fetches news from NewsAPI.ai (Event Registry).
 // Strategy: events endpoint for story discovery + article queries for source diversity.
 // Output: /tmp/zuhd-feed-api.json
-import { writeFileSync, mkdirSync, readdirSync, statSync, unlinkSync } from 'node:fs'
+import { mkdirSync, readdirSync, statSync, unlinkSync } from 'node:fs'
 import { eventCoveredRecently, loadDedupContext } from './lib/dedup.js'
 import { MAX_FEED_AGE_MS } from './lib/feed-age.js'
 import { pickTracked, TRACKED_KEYWORDS } from './lib/tracked-stories.js'
 import { slugify, zuhdCategory } from './lib/utils.js'
+import { writeJson } from './lib/json-file.js'
 
 const API_KEY = process.env.NEWSAPI_KEY
 const OUTPUT = '/tmp/zuhd-feed-api.json'
 if (!API_KEY) {
   console.error('NEWSAPI_KEY not set')
   // Write empty feed so merge-feeds.js doesn't use stale data
-  writeFileSync(OUTPUT, JSON.stringify({ fetchedAt: new Date().toISOString(), events: 0, stories: [] }))
+  writeJson(OUTPUT, { fetchedAt: new Date().toISOString(), events: 0, stories: [] }, { pretty: false })
   process.exit(1)
 }
 
@@ -849,7 +850,7 @@ async function main() {
     stories,
   }
 
-  writeFileSync(OUTPUT, JSON.stringify(output, null, 2))
+  writeJson(OUTPUT, output)
   console.error(`Wrote ${stories.length} stories: ${withSources} with articles (${multiSource} multi-source), ${stories.length - withSources} headline-only`)
   console.error(`NewsAPI tokens this cycle: ~${tokenStats.estTokens} (events=${tokenStats.eventCalls}×5 articles=${tokenStats.articleCalls}×1 perEvent=${tokenStats.perEventCalls}×1 other=${tokenStats.otherCalls})`)
   console.log(`${stories.length} stories from ${events.length} events`)
@@ -881,7 +882,7 @@ async function main() {
     }
     const stamp = new Date().toISOString().replace(/[:.]/g, '-').slice(0, 16)
     const snapPath = `${SNAP_DIR}/${stamp}.json`
-    writeFileSync(snapPath, JSON.stringify(slim))
+    writeJson(snapPath, slim, { pretty: false })
     // Rotate: keep last 30 days only
     const cutoff = Date.now() - 30 * 86400000
     for (const f of readdirSync(SNAP_DIR)) {

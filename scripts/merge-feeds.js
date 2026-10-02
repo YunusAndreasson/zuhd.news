@@ -1,9 +1,10 @@
 #!/usr/bin/env node
 // Merges API feed (/tmp/zuhd-feed-api.json) and RSS feed (/tmp/zuhd-feed-rss.json)
 // into a single /tmp/zuhd-feed.json. Deduplicates by title fingerprint.
-import { readFileSync, writeFileSync, existsSync, mkdirSync, readdirSync, unlinkSync } from 'node:fs'
+import { readFileSync, existsSync, mkdirSync, readdirSync, unlinkSync } from 'node:fs'
 import { feedItemAgeMs, isFreshFeedItem, poolAgeCapMs } from './lib/feed-age.js'
 import { fingerprint } from './lib/utils.js'
+import { writeJson } from './lib/json-file.js'
 
 function loadFeed(path) {
   if (!existsSync(path)) return []
@@ -62,7 +63,7 @@ const output = {
   nicheStories,
 }
 
-writeFileSync('/tmp/zuhd-feed.json', JSON.stringify(output, null, 2))
+writeJson('/tmp/zuhd-feed.json', output)
 
 // Slim feed for selector: strip article bodies to reduce token count (~75K → ~18K tokens)
 // Selector only needs title/description/metadata for editorial decisions; writer gets full feed
@@ -77,7 +78,7 @@ const slimOutput = {
   multiSourceStories: stripBodies(multiSourceStories),
   nicheStories: stripBodies(nicheStories),
 }
-writeFileSync('/tmp/zuhd-feed-slim.json', JSON.stringify(slimOutput, null, 2))
+writeJson('/tmp/zuhd-feed-slim.json', slimOutput)
 
 // Archive merged (post-RSS-merge, pre-prefilter) snapshot for replay/backtest.
 // fetch-news-api.js already snapshots its output, but that one is API-only —
@@ -86,7 +87,7 @@ try {
   const SNAP_DIR = 'content/.feed-snapshots-merged'
   mkdirSync(SNAP_DIR, { recursive: true })
   const ts = output.fetchedAt.replace(/:/g, '-').replace(/\..+/, '').replace('T', 'T').slice(0, 16)
-  writeFileSync(`${SNAP_DIR}/${ts}.json`, JSON.stringify(slimOutput, null, 2))
+  writeJson(`${SNAP_DIR}/${ts}.json`, slimOutput)
   // Rotation: this directory had none and reached 700 files / 86 MB by
   // 2026-09-25, five a day. The narrators read a 14-day window
   // (lib/coverage-window.js); 45 days leaves replay-recap-dedup a backtest

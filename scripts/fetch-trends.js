@@ -13,13 +13,14 @@
 //  - Missing API keys → skip that source with a warning (graceful), do not abort.
 //  - Idempotent: writing the same day twice overwrites the snapshot.
 
-import { existsSync, mkdirSync, readdirSync, readFileSync, unlinkSync, writeFileSync } from 'node:fs'
+import { existsSync, mkdirSync, readdirSync, readFileSync, unlinkSync } from 'node:fs'
 import { join } from 'node:path'
 import { INDICATORS, SOURCES } from './lib/trends-registry.js'
 import { fetchFredReleaseCalendar } from './lib/trends-sources/fred.js'
 import { EVENT_CATALOG, matchFredRelease } from './lib/event-catalog.js'
+import { ROOT } from './lib/paths.js'
+import { writeJson } from './lib/json-file.js'
 
-const ROOT = new URL('..', import.meta.url).pathname
 const TRENDS_DIR = join(ROOT, 'content', 'trends')
 const FX_CACHE = join(TRENDS_DIR, '.fx-history.json')
 const DIGEST_PATH = '/tmp/zuhd-trends-digest.json'
@@ -156,7 +157,7 @@ const snapshot = {
   indicators,
 }
 
-writeFileSync(SNAPSHOT_PATH, JSON.stringify(snapshot, null, 2))
+writeJson(SNAPSHOT_PATH, snapshot)
 console.log(`Wrote ${SNAPSHOT_PATH} — ${indicators.length} indicators`)
 
 // Rotation. Every reader takes only the newest snapshot (each carries its own
@@ -201,7 +202,7 @@ const digest = {
   })),
 }
 
-writeFileSync(DIGEST_PATH, JSON.stringify(digest, null, 2))
+writeJson(DIGEST_PATH, digest)
 console.log(`Wrote ${DIGEST_PATH} — ${digest.indicators.length} entries`)
 
 const elapsed = Math.round((Date.now() - started) / 1000)

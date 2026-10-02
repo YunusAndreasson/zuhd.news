@@ -9,8 +9,8 @@ import { recapMatch, titleWords } from './lib/dedup.js'
 import { parseFrontmatter } from './lib/frontmatter.js'
 import { soleClassifiedSource } from './lib/outlet-class.js'
 import { regionFromCoords } from './lib/regions.js'
+import { ROOT } from './lib/paths.js'
 
-const ROOT = new URL('..', import.meta.url).pathname
 const ARTICLES_DIR = join(ROOT, 'content', 'articles')
 const LOGS_DIR = join(ROOT, 'logs')
 

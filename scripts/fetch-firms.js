@@ -38,7 +38,7 @@
 // So the layer's claim is narrow and checkable: heat the satellite saw, beside a
 // story we published, close enough in time to be the same event.
 
-import { existsSync, readdirSync, readFileSync, writeFileSync } from 'node:fs'
+import { existsSync, readdirSync, readFileSync } from 'node:fs'
 import { join } from 'node:path'
 import { parseFrontmatter } from './lib/frontmatter.js'
 import { runWithConcurrency } from './lib/concurrency.js'
@@ -50,8 +50,9 @@ import {
   minDistanceKm,
   parseFirmsCsv,
 } from './lib/firms.js'
+import { ROOT } from './lib/paths.js'
+import { writeJson } from './lib/json-file.js'
 
-const ROOT = new URL('..', import.meta.url).pathname
 const OUTPUT_PATH = join(ROOT, 'content', '.firms.json')
 const ARTICLES_DIR = join(ROOT, 'content', 'articles')
 
@@ -213,7 +214,7 @@ const payload = {
   skipped: { ...skipped, unattached },
 }
 
-writeFileSync(OUTPUT_PATH, `${JSON.stringify(payload)}\n`)
+writeJson(OUTPUT_PATH, payload, { pretty: false })
 
 const elapsed = ((Date.now() - started) / 1000).toFixed(1)
 console.log(

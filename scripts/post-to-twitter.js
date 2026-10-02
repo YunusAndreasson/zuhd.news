@@ -20,15 +20,16 @@
 //
 // Usage: node scripts/post-to-twitter.js --slug <slug> [--text "..."] [--dry-run]
 
-import { readFileSync, writeFileSync, existsSync } from 'node:fs'
+import { readFileSync, existsSync } from 'node:fs'
 import { join } from 'node:path'
 import { claudeArgs, claudeFailure, runClaudeSync } from './lib/claude-envelope.js'
 import { createHmac, randomBytes } from 'node:crypto'
 import { parseFrontmatter } from './lib/frontmatter.js'
 import { buildIgJpeg, IG_FEED, igLead } from './lib/ig-image.js'
 import { argAt, hasFlag } from './lib/argv.js'
+import { ROOT } from './lib/paths.js'
+import { writeJson } from './lib/json-file.js'
 
-const ROOT = new URL('..', import.meta.url).pathname
 const TWEET_LOG = join(ROOT, 'content/.tweet-log.json')
 const PROMPT_PATH = join(ROOT, 'scripts/tweet-prompt.md')
 const API_URL = 'https://api.twitter.com/2/tweets'
@@ -70,7 +71,7 @@ const readLog = () => {
 }
 const writeLog = (log) => {
   const trimmed = log.length > 100 ? log.slice(-100) : log
-  writeFileSync(TWEET_LOG, `${JSON.stringify(trimmed, null, 2)}\n`)
+  writeJson(TWEET_LOG, trimmed)
 }
 const log = readLog()
 if (log.some((e) => e.slug === slug && e.sent)) {

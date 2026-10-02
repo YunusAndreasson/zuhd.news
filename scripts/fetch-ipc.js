@@ -41,7 +41,7 @@
 // be missing. The licence is recorded in the payload so the surface drawing it
 // can say where it came from.
 
-import { existsSync, writeFileSync } from 'node:fs'
+import { existsSync } from 'node:fs'
 import { join } from 'node:path'
 import { representativePoint } from './lib/geo-point.js'
 import { runWithConcurrency } from './lib/concurrency.js'
@@ -51,8 +51,9 @@ import {
   joinAreas,
   parseIpcAreaCsv,
 } from './lib/ipc.js'
+import { ROOT } from './lib/paths.js'
+import { writeJson } from './lib/json-file.js'
 
-const ROOT = new URL('..', import.meta.url).pathname
 const OUTPUT_PATH = join(ROOT, 'content', '.ipc.json')
 
 const HDX = 'https://data.humdata.org/api/3/action/package_search'
@@ -272,7 +273,7 @@ const payload = {
   skipped,
 }
 
-writeFileSync(OUTPUT_PATH, `${JSON.stringify(payload)}\n`)
+writeJson(OUTPUT_PATH, payload, { pretty: false })
 
 const grave = areas.filter((a) => a.phase >= 4).length
 const catastrophe = areas.filter((a) => a.phase >= 5).length

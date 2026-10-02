@@ -34,7 +34,7 @@
 //   --dry-run                build bundles, print sizes, call nothing
 //   --only <id>               one event id (e.g. `fomc-2026-09`)
 
-import { readFileSync, writeFileSync, existsSync, readdirSync } from 'node:fs'
+import { readFileSync, existsSync, readdirSync } from 'node:fs'
 import { join } from 'node:path'
 import { createHash } from 'node:crypto'
 import { callClaudeJson } from './lib/claude-envelope.js'
@@ -43,8 +43,9 @@ import { promptEcho, promptExamples, validateNumbers, validateProperNouns } from
 import { matchesAnyTag } from './lib/entity-registry.js'
 import { loadArticles, loadFeedWindow } from './lib/coverage-window.js'
 import { argAt, hasFlag } from './lib/argv.js'
+import { ROOT } from './lib/paths.js'
+import { writeJson } from './lib/json-file.js'
 
-const ROOT = new URL('..', import.meta.url).pathname
 const CACHE_PATH = join(ROOT, 'content', '.events-dispatch.json')
 const LEDGER_PATH = join(ROOT, 'content', '.story-ledger.json')
 const PROMPT_PATH = join(ROOT, 'scripts', 'narrate-events-prompt.md')
@@ -367,7 +368,7 @@ const PRUNE_FLOOR = 0.6
 
 cache.generatedAt = new Date().toISOString()
 cache.windowDays = WINDOW_DAYS
-writeFileSync(CACHE_PATH, `${JSON.stringify(cache, null, 2)}\n`)
+writeJson(CACHE_PATH, cache)
 
 const elapsed = ((Date.now() - stageT0) / 1000).toFixed(1)
 console.log(

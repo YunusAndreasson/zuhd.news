@@ -16,6 +16,8 @@ content/audio/voice-tests/
 !/.claude/rules/
 mobile/.claude/
 .tmp-*
+# writeJson's sibling file, left only if a stage is killed between write and rename
+content/**/*.tmp
 # Transient: the per-cycle social pick, regenerated (and rm'd) each cycle.
 content/.breaking-pick.json
 

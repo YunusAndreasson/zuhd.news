@@ -13,12 +13,12 @@
 // leaving any previous .chokepoints.json intact (build.js skips the mirror
 // when the file is absent, so a missing snapshot degrades gracefully).
 
-import { writeFileSync } from 'node:fs'
 import { join } from 'node:path'
 import { CHOKEPOINT_BY_ID, CHOKEPOINT_CATALOG } from './lib/chokepoint-metadata.js'
 import { fetchAllChokepointsSnapshot } from './lib/trends-sources/portwatch.js'
+import { ROOT } from './lib/paths.js'
+import { writeJson } from './lib/json-file.js'
 
-const ROOT = new URL('..', import.meta.url).pathname
 const OUTPUT_PATH = join(ROOT, 'content', '.chokepoints.json')
 
 // Wave-height thresholds (combined sea + swell, peak over past 24h):
@@ -81,7 +81,7 @@ const payload = {
   chokepoints,
 }
 
-writeFileSync(OUTPUT_PATH, `${JSON.stringify(payload, null, 2)}\n`)
+writeJson(OUTPUT_PATH, payload)
 
 const missing = CHOKEPOINT_CATALOG.length - chokepoints.length
 const note = missing > 0 ? ` (${missing} missing)` : ''

@@ -16,15 +16,16 @@
 //   NARRATE_GDACS_MAX=N             cap total narrations this run
 //   NARRATE_GDACS_FORCE=1           ignore the cache (re-narrate everything)
 
-import { readFileSync, writeFileSync, existsSync } from 'node:fs'
+import { readFileSync, existsSync } from 'node:fs'
 import { join } from 'node:path'
 import { createHash } from 'node:crypto'
 import { loadShared } from './build/shared-ts.js'
 import { callClaudeJson } from './lib/claude-envelope.js'
 import { runWithConcurrency } from './lib/concurrency.js'
 import { validateGrounding } from './lib/grounding.js'
+import { ROOT } from './lib/paths.js'
+import { readJson, writeJson } from './lib/json-file.js'
 
-const ROOT = new URL('..', import.meta.url).pathname
 const SNAPSHOT_PATH = join(ROOT, 'content', '.gdacs.json')
 const CACHE_PATH = join(ROOT, 'content', '.gdacs-narrations.json')
 const CHOKEPOINTS_PATH = join(ROOT, 'content', '.chokepoints.json')
@@ -49,7 +50,7 @@ if (!existsSync(PROMPT_PATH)) {
 }
 
 const snapshot = JSON.parse(readFileSync(SNAPSHOT_PATH, 'utf8'))
-const cache = existsSync(CACHE_PATH) ? JSON.parse(readFileSync(CACHE_PATH, 'utf8')) : {}
+const cache = readJson(CACHE_PATH, {})
 const basePrompt = readFileSync(PROMPT_PATH, 'utf8')
 
 const candidates = snapshot.alerts
@@ -152,8 +153,8 @@ function applyCacheToSnapshot() {
 }
 
 function writeAll() {
-  writeFileSync(SNAPSHOT_PATH, `${JSON.stringify(snapshot)}\n`)
-  writeFileSync(CACHE_PATH, `${JSON.stringify(cache, null, 2)}\n`)
+  writeJson(SNAPSHOT_PATH, snapshot, { pretty: false })
+  writeJson(CACHE_PATH, cache)
 }
 
 async function buildBundle(alert) {

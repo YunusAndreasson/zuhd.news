@@ -17,8 +17,9 @@ import { parseClaudeEnvelope, runHaiku } from './lib/claude-envelope.js'
 import { parseFrontmatter } from './lib/frontmatter.js'
 import { extractEntities } from './lib/entity-registry.js'
 import { fetchYahooStock } from './lib/trends-sources/stocks.js'
+import { ROOT } from './lib/paths.js'
+import { writeJson } from './lib/json-file.js'
 
-const ROOT = new URL('..', import.meta.url).pathname
 const NEW_ARTICLES_PATH = '/tmp/zuhd-new-articles.txt'
 const TRENDS_SNAPSHOT_PATH = join(
   ROOT,
@@ -226,7 +227,7 @@ function appendIndicatorsToSnapshot(newIndicators) {
     const byId = new Map(existing.map((i) => [i.id, i]))
     for (const ind of newIndicators) byId.set(ind.id, ind)
     snapshot.indicators = [...byId.values()]
-    writeFileSync(TRENDS_SNAPSHOT_PATH, `${JSON.stringify(snapshot, null, 2)}\n`)
+    writeJson(TRENDS_SNAPSHOT_PATH, snapshot)
     console.log(
       `  · stocks: appended ${newIndicators.length} indicator(s) → ${basename(TRENDS_SNAPSHOT_PATH)} (${snapshot.indicators.length} total)`,
     )

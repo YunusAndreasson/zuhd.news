@@ -1,4 +1,4 @@
-import { readFileSync, writeFileSync, existsSync, readdirSync, renameSync } from 'node:fs'
+import { existsSync, readdirSync } from 'node:fs'
 import { join } from 'node:path'
 import { createHash } from 'node:crypto'
 import { normalizeMarkets, selectMarketSignals, factualSummary } from './lib/market-signals.js'
@@ -6,14 +6,10 @@ import { loadArticles } from './lib/coverage-window.js'
 import { matchesAnyTag } from './lib/entity-registry.js'
 import { callIndicatorModel } from './lib/indicator-model.js'
 import { validateNumbers, validateProperNouns } from './lib/grounding.js'
+import { ROOT } from './lib/paths.js'
+import { readJson, writeJson } from './lib/json-file.js'
 
-const ROOT = new URL('..', import.meta.url).pathname
 const hash = (v) => createHash('sha256').update(JSON.stringify(v)).digest('hex').slice(0, 16)
-const read = (path, fallback) => { try { return JSON.parse(readFileSync(path, 'utf8')) } catch { return fallback } }
-const atomicWrite = (path, data) => {
-  writeFileSync(`${path}.tmp`, JSON.stringify(data))
-  renameSync(`${path}.tmp`, path)
-}
 
 /**
  * @param {any} out       The model's parsed object.
@@ -53,17 +49,17 @@ export function validateMarketComment(out, bundle, reasons = []) {
  *   of it — the real one is async (see `spawnClaude`), test doubles need not be.
  */
 export async function runMarketSignals({ dryRun = false, noLlm = false, now = Date.now(), root = ROOT, suppliedArticles = null, callModel = callIndicatorModel } = {}) {
-  const markets = read(join(root, 'content/.markets.json'), {})
+  const markets = readJson(join(root, 'content/.markets.json'), {})
   const dir = join(root, 'content/trends')
   const latest = existsSync(dir) ? readdirSync(dir).filter((f) => /^\d{4}-\d{2}-\d{2}\.json$/.test(f)).sort().at(-1) : null
-  const trends = latest ? read(join(dir, latest), {}) : {}
+  const trends = latest ? readJson(join(dir, latest), {}) : {}
   // The definitional sentence `narrate-indicators.js` already wrote for this
   // exact id. Reused rather than re-asked: a second model writing a second
   // definition of BIST 100 is two paraphrases that can disagree, and this
   // stage's own call is capped at 360 characters of *causal* prose.
-  const dispatch = read(join(root, 'content/.indicator-dispatch.json'), {}).items || {}
+  const dispatch = readJson(join(root, 'content/.indicator-dispatch.json'), {}).items || {}
   const statePath = join(root, 'content/.market-signal-state.json')
-  const old = read(statePath, { events: {}, commentary: {} })
+  const old = readJson(statePath, { events: {}, commentary: {} })
   const articles = (suppliedArticles || loadArticles(now - 100 * 86400000)).map((a) => ({ ...a, date: String(a.date).slice(0, 10) }))
   const selection = selectMarketSignals(normalizeMarkets(markets, trends, dispatch), old.events, now, articles)
   if (dryRun) {
@@ -183,10 +179,10 @@ INPUT:\n${JSON.stringify(bundle)}`)
       commentary: comment?.text || '', citations: comment?.citations || [] })
   }
   const generatedAt = new Date(now).toISOString()
-  atomicWrite(join(root, 'content/.market-signals.json'), { version: 1, generatedAt, signals: published })
+  writeJson(join(root, 'content/.market-signals.json'), { version: 1, generatedAt, signals: published }, { pretty: false })
   // Keep only recently observed events; bounded storage even as the catalog evolves.
   const events = Object.fromEntries(Object.entries(selection.state).filter(([, e]) => now - Date.parse(e.lastDate) <= 30 * 86400000))
-  atomicWrite(statePath, { events, commentary: Object.fromEntries(Object.entries(commentary).filter(([id]) => id in events)) })
+  writeJson(statePath, { events, commentary: Object.fromEntries(Object.entries(commentary).filter(([id]) => id in events)) }, { pretty: false })
   console.log(JSON.stringify({ marketSignals: published.length, llmCalls: calls,
     commented: published.filter((p) => p.commentary).length, rejections, skipped,
     reports: selection.reports }))

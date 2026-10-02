@@ -2,8 +2,9 @@
 // Pre-filter: removes feed stories that match already-published articles.
 // Runs after merge-feeds.js, before the selector, so the LLM never wastes
 // picks on stories that would be deduped downstream.
-import { readFileSync, writeFileSync, existsSync } from 'node:fs'
+import { readFileSync, existsSync } from 'node:fs'
 import { THIN_BODY, isThin, loadDedupContext, wouldDedup } from './lib/dedup.js'
+import { writeJson } from './lib/json-file.js'
 
 const FEED = '/tmp/zuhd-feed.json'
 const SLIM = '/tmp/zuhd-feed-slim.json'
@@ -35,7 +36,7 @@ feed.multiSourceStories = filterSection(feed.multiSourceStories || [])
 feed.nicheStories = filterSection(feed.nicheStories || [])
 
 const total = Object.values(counts).reduce((a, b) => a + b, 0)
-writeFileSync(FEED, JSON.stringify(feed, null, 2))
+writeJson(FEED, feed)
 
 // Also update the slim feed so selector sees the same filtered set
 if (existsSync(SLIM)) {
@@ -62,7 +63,7 @@ if (existsSync(SLIM)) {
     if (thinSlugs.has(s.suggestedSlug)) { s.thin = true; thin++ }
   }
   if (thin > 0) console.log(`Marked ${thin} thin-body stories (<${THIN_BODY} chars of source text)`)
-  writeFileSync(SLIM, JSON.stringify(slim, null, 2))
+  writeJson(SLIM, slim)
 }
 
 if (total > 0) {

@@ -20,8 +20,8 @@ import { randomUUID } from 'node:crypto'
 import { runHaiku } from './lib/claude-envelope.js'
 import { parseFrontmatter } from './lib/frontmatter.js'
 import { fetchSourceText } from './lib/fetch-source-text.js'
+import { ROOT } from './lib/paths.js'
 
-const ROOT = new URL('..', import.meta.url).pathname
 const NEW_ARTICLES_PATH = '/tmp/zuhd-new-articles.txt'
 const FETCH_CONCURRENCY = 5
 const SOURCE_TEXT_FOR_HAIKU = 1400 // chars per source passed to Haiku

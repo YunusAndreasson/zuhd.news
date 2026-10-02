@@ -9,14 +9,15 @@
 //   - .env with FRED_API_KEY / OER_APP_ID (optional — fetcher skips missing)
 //   - an article markdown file at content/articles/<slug>.md
 
-import { readFileSync, writeFileSync, existsSync, mkdirSync, appendFileSync } from 'node:fs'
+import { readFileSync, existsSync, mkdirSync, appendFileSync } from 'node:fs'
 import { join, dirname } from 'node:path'
 import { spawnSync } from 'node:child_process'
 import { parseFrontmatter } from './lib/frontmatter.js'
 import { buildTimelineWithCharts, loadTrendsSnapshot, loadTrendsDigest, buildTrendsPromptSection } from './lib/trends-expand.js'
 import { claudeArgs, claudeFailure, parseClaudeEnvelope, runClaudeSync } from './lib/claude-envelope.js'
+import { ROOT } from './lib/paths.js'
+import { writeJson } from './lib/json-file.js'
 
-const ROOT = new URL('..', import.meta.url).pathname
 const ARTICLES_DIR = join(ROOT, 'content', 'articles')
 const PROMPT_PATH = join(ROOT, 'scripts', 'edu-context-prompt.md')
 const DIGEST_PATH = '/tmp/zuhd-trends-digest.json'
@@ -146,7 +147,7 @@ const brief = {
 }
 
 mkdirSync(dirname(DEV_DEMO_JSON), { recursive: true })
-writeFileSync(DEV_DEMO_JSON, JSON.stringify(brief, null, 2))
+writeJson(DEV_DEMO_JSON, brief)
 
 // Append to the picks log so multiple dry-runs accumulate for analysis.
 try {

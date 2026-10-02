@@ -19,12 +19,12 @@
 // leaving any previous .markets.json intact (build.js skips the endpoint when
 // the file is absent, so a missing snapshot degrades to "no layer this run").
 
-import { writeFileSync } from 'node:fs'
 import { join } from 'node:path'
 import { MARKET_CATALOG, MARKET_TRACKED, instrumentMismatch } from './lib/market-metadata.js'
 import { fetchYahooStock, isStaleAsOf } from './lib/trends-sources/stocks.js'
+import { ROOT } from './lib/paths.js'
+import { writeJson } from './lib/json-file.js'
 
-const ROOT = new URL('..', import.meta.url).pathname
 const OUTPUT_PATH = join(ROOT, 'content', '.markets.json')
 
 // A quarter of daily closes. The 1mo default gives ~21 points, which is a
@@ -109,10 +109,7 @@ if (exchanges.length === 0) {
   process.exit(0)
 }
 
-writeFileSync(
-  OUTPUT_PATH,
-  `${JSON.stringify({ generated: new Date().toISOString(), exchanges }, null, 2)}\n`,
-)
+writeJson(OUTPUT_PATH, { generated: new Date().toISOString(), exchanges })
 
 for (const r of rejected) console.error(`  ✗ rejected ${r}`)
 

@@ -2,7 +2,7 @@
 // RSS fetcher — niche sources not in the NewsAPI.ai index.
 // These provide editorial taste: specialist tech, investigative, Muslim world.
 // Output: /tmp/zuhd-feed-rss.json (merged with API feed by merge-feeds.js)
-import { readFileSync, writeFileSync, readdirSync, existsSync } from 'node:fs'
+import { readFileSync, readdirSync, existsSync } from 'node:fs'
 import { join } from 'node:path'
 import { XMLParser } from 'fast-xml-parser'
 import { Readability } from '@mozilla/readability'
@@ -11,8 +11,9 @@ import { htmlForReadability } from './lib/fetch-source-text.js'
 import { JSDOM } from 'jsdom'
 import { slugify, fingerprint, zuhdCategory } from './lib/utils.js'
 import { shouldSkip, recordResult } from './lib/block-cache.js'
+import { ROOT } from './lib/paths.js'
+import { writeJson } from './lib/json-file.js'
 
-const ROOT = new URL('..', import.meta.url).pathname
 const CONTENT_DIR = join(ROOT, 'content', 'articles')
 
 // Shared parser — reused across all sources (same options for RSS/Atom/RDF)
@@ -345,7 +346,7 @@ async function main() {
     error: rssResults[i].length === 0 && rssResults[i]._error ? rssResults[i]._error : null,
   }))
   sourceStats.push({ name: 'Hacker News', fetched: hnItems.length, used: Math.min(hnItems.length, capFor('Hacker News')), error: hnItems._error || null })
-  try { writeFileSync('/tmp/zuhd-feed-source-stats.json', JSON.stringify({ fetchedAt: new Date().toISOString(), sources: sourceStats })) } catch {}
+  try { writeJson('/tmp/zuhd-feed-source-stats.json', { fetchedAt: new Date().toISOString(), sources: sourceStats }, { pretty: false }) } catch {}
 
   const allItems = [
     ...rssResults.flatMap((items, i) => items.slice(0, capFor(SOURCES[i].name))),
@@ -388,7 +389,7 @@ async function main() {
 
   const output = { fetchedAt: new Date().toISOString(), stories }
   const outPath = '/tmp/zuhd-feed-rss.json'
-  writeFileSync(outPath, JSON.stringify(output, null, 2))
+  writeJson(outPath, output)
   console.error(`Wrote ${stories.length} stories to ${outPath}`)
   console.log(`${stories.length} stories from ${SOURCES.length} sources`)
 }

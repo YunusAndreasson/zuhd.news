@@ -6,9 +6,10 @@
 //
 // Every metric maps to a rule in write-prompt.md or check-prompt.md.
 
-import { readFileSync, writeFileSync, readdirSync, existsSync } from 'node:fs'
+import { readFileSync, readdirSync, existsSync } from 'node:fs'
 import { join } from 'node:path'
 import { splitBlocks } from './lib/blocks.js'
+import { writeJson } from './lib/json-file.js'
 
 const ARTICLES_DIR = 'content/articles'
 const TREND_PATH = 'content/.quality-trend.json'
@@ -217,7 +218,7 @@ const snapshot = {
   },
 }
 
-writeFileSync(OUT_PATH, JSON.stringify(snapshot, null, 2))
+writeJson(OUT_PATH, snapshot)
 
 // ── Append to trend (replace same-week snapshot for idempotent reruns) ──
 let trend = []
@@ -227,7 +228,7 @@ if (existsSync(TREND_PATH)) {
 trend = trend.filter(t => t.week !== snapshot.week)
 trend.push(snapshot)
 if (trend.length > 52) trend = trend.slice(-52)
-writeFileSync(TREND_PATH, JSON.stringify(trend, null, 2))
+writeJson(TREND_PATH, trend)
 
 // ── Summary to stdout ─────────────────────────────────────
 const m = snapshot.metrics

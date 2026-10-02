@@ -21,11 +21,12 @@
 //        WINDOW_DAYS=3 node scripts/fetch-conflict.js
 //        FORCE=1 node scripts/fetch-conflict.js  (bypass the freshness cache)
 
-import { writeFileSync, readFileSync, existsSync } from 'node:fs'
+import { readFileSync, existsSync } from 'node:fs'
 import { join } from 'node:path'
 import { filterRecentWindow, mapUcdpRow, parseCsv, rowsToObjects } from './lib/conflict.js'
+import { ROOT } from './lib/paths.js'
+import { writeJson } from './lib/json-file.js'
 
-const ROOT = new URL('..', import.meta.url).pathname
 const OUTPUT_PATH = join(ROOT, 'content', '.conflict.json')
 // UCDP candidate release version — bump monthly when UCDP publishes the next
 // candidate (26.0.1 … 26.0.5 monthly, 26.01.26.03 quarterly). One constant
@@ -216,7 +217,7 @@ const snapshot = {
   events: kept,
 }
 
-writeFileSync(OUTPUT_PATH, `${JSON.stringify(snapshot, null, 2)}\n`)
+writeJson(OUTPUT_PATH, snapshot)
 
 const elapsedMs = Date.now() - started
 console.log(`Wrote ${kept.length} events to ${OUTPUT_PATH} in ${elapsedMs}ms`)

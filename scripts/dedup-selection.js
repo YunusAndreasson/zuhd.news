@@ -14,8 +14,9 @@
 // skyroot-vikram-1-india-first-private-orbital-launch /
 // skyroot-vikram-1-india-private-orbital-rocket, both 2026-07-18, 83% overlap)
 // sailed through as two "new" stories and both got written.
-import { readFileSync, writeFileSync, existsSync } from 'node:fs'
+import { readFileSync, existsSync } from 'node:fs'
 import { CATEGORY_FLOORS, FLOORS_MAY_GO_UNMET, buildWordSets, fuzzyMatch, loadDedupContext, wouldDedup } from './lib/dedup.js'
+import { writeJson } from './lib/json-file.js'
 
 const SELECTION = '/tmp/zuhd-selection.json'
 if (!existsSync(SELECTION)) process.exit(0)
@@ -42,7 +43,7 @@ const filtered = selection.filter(s => {
 })
 
 if (filtered.length < before) {
-  writeFileSync(SELECTION, JSON.stringify(filtered, null, 2))
+  writeJson(SELECTION, filtered)
   console.log(`Deduped selection: ${before} → ${filtered.length} (${before - filtered.length} duplicates removed)`)
 } else {
   console.log(`Dedup check: all ${before} stories are new`)

@@ -19,8 +19,8 @@ import { build } from 'esbuild'
 import { mkdtempSync, rmSync, writeFileSync } from 'node:fs'
 import { tmpdir } from 'node:os'
 import { join } from 'node:path'
+import { ROOT } from './paths.js'
 
-const ROOT = new URL('../..', import.meta.url).pathname
 
 /**
  * A scratch directory that removes itself when the process ends.

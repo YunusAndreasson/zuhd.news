@@ -41,7 +41,7 @@
 //   --only <id>                  one namespaced id (e.g. `wiki-iran`, `cp:hormuz`)
 //   --new-only                   only instruments with no cache entry at all
 
-import { readFileSync, writeFileSync, existsSync, readdirSync } from 'node:fs'
+import { readFileSync, existsSync, readdirSync } from 'node:fs'
 import { join } from 'node:path'
 import { createHash } from 'node:crypto'
 import { callIndicatorModel } from './lib/indicator-model.js'
@@ -50,6 +50,8 @@ import { promptEcho, promptExamples, seriesEchoes, validateNumbers, validateProp
 import { matchesAnyTag } from './lib/entity-registry.js'
 import { loadArticles, loadFeedWindow } from './lib/coverage-window.js'
 import { argAt, hasFlag } from './lib/argv.js'
+import { ROOT } from './lib/paths.js'
+import { writeJson } from './lib/json-file.js'
 
 if (hasFlag('market-signals')) {
   const { runMarketSignals } = await import('./narrate-market-signals.js')
@@ -57,7 +59,6 @@ if (hasFlag('market-signals')) {
   process.exit(0)
 }
 
-const ROOT = new URL('..', import.meta.url).pathname
 const CACHE_PATH = join(ROOT, 'content', '.indicator-dispatch.json')
 const CHOKEPOINTS_PATH = join(ROOT, 'content', '.chokepoints.json')
 const MARKETS_PATH = join(ROOT, 'content', '.markets.json')
@@ -494,7 +495,7 @@ if (DRY_RUN) {
  * the prune and `generatedAt` still belong to the end of a complete run.
  */
 const CHECKPOINT_EVERY = 10
-const writeCache = () => writeFileSync(CACHE_PATH, `${JSON.stringify(cache, null, 2)}\n`)
+const writeCache = () => writeJson(CACHE_PATH, cache)
 process.once('SIGTERM', () => {
   writeCache()
   console.log(`  ⚠ SIGTERM — checkpointed ${generated} new items before exit`)

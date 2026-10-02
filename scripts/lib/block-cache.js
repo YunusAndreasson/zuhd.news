@@ -1,11 +1,5 @@
-// Domain-level block cache. Skips publisher fetches for outlets that have
-// repeatedly 403'd us (Cloudflare / Akamai / custom anti-bot). Persists to
-// content/.block-cache.json so skip state survives across cycles.
-//
-// Design: skip after 5 consecutive blocks within 7 days, but ALWAYS try
-// with 5% probability so we notice if the outlet un-blocks us. Writing
-// off a domain forever would mean citations slowly rot without signal.
-import { readFileSync, writeFileSync, existsSync } from 'node:fs'
+
+import { readJson, writeJson } from './json-file.js'
 
 const CACHE_PATH = 'content/.block-cache.json'
 const BLOCK_THRESHOLD = 5
@@ -15,14 +9,14 @@ const REPROBE_PROBABILITY = 0.05
 let cache = null
 function load() {
   if (cache) return cache
-  try { cache = existsSync(CACHE_PATH) ? JSON.parse(readFileSync(CACHE_PATH, 'utf8')) : {} }
+  try { cache = readJson(CACHE_PATH, {}) }
   catch { cache = {} }
   return cache
 }
 
 function save() {
   if (!cache) return
-  try { writeFileSync(CACHE_PATH, JSON.stringify(cache, null, 2)) } catch { /* best effort */ }
+  try { writeJson(CACHE_PATH, cache) } catch { /* best effort */ }
 }
 
 function domainOf(url) {

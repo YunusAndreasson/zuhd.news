@@ -17,8 +17,9 @@ import { claudeArgs, claudeFailure, formatUsage, parseClaudeText, runClaudeSync 
 import { runWithConcurrency } from './lib/concurrency.js'
 import { parseFrontmatter } from './lib/frontmatter.js'
 import { GEMINI_TTS_MODEL, GEMINI_TTS_VOICE, geminiKey, synthesizeGemini, transcribeGemini } from './lib/gemini-tts.js'
+import { ROOT } from './lib/paths.js'
+import { writeJson } from './lib/json-file.js'
 
-const ROOT = new URL('..', import.meta.url).pathname
 const ARTICLES_DIR = join(ROOT, 'content', 'articles')
 const AUDIO_DIR = argAt('out') || join(ROOT, 'content', 'audio')
 const LEDGER_PATH = join(ROOT, 'content', '.story-ledger.json')
@@ -408,7 +409,7 @@ try {
 
 // Write metadata
 const metaPath = join(AUDIO_DIR, 'briefing-meta.json')
-writeFileSync(metaPath, JSON.stringify({
+writeJson(metaPath, {
   date: today,
   generated: new Date().toISOString(),
   articles: articles.length,
@@ -416,7 +417,7 @@ writeFileSync(metaPath, JSON.stringify({
   engines: [...engines],
   scriptLength: script.length,
   duration: durationSec
-}, null, 2))
+})
 console.log(`Metadata saved: ${metaPath}`)
 
 // Clean up MP3s and scripts older than 7 days (.ssml: the pre-Gemini scripts)

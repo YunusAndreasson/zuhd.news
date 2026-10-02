@@ -32,8 +32,9 @@ import { claudeArgs, claudeFailure, runClaudeSync } from './lib/claude-envelope.
 import { parseFrontmatter } from './lib/frontmatter.js'
 import { buildIgJpeg, IG_FEED, IG_STORY, igLead } from './lib/ig-image.js'
 import { argAt, hasFlag } from './lib/argv.js'
+import { ROOT } from './lib/paths.js'
+import { writeJson } from './lib/json-file.js'
 
-const ROOT = new URL('..', import.meta.url).pathname
 const IG_LOG = join(ROOT, 'content/.instagram-log.json')
 const PROMPT_PATH = join(ROOT, 'scripts/instagram-prompt.md')
 const SITE = 'https://zuhd.news'
@@ -70,7 +71,7 @@ const readLog = () => {
 }
 const writeLog = (log) => {
   const trimmed = log.length > 100 ? log.slice(-100) : log
-  writeFileSync(IG_LOG, `${JSON.stringify(trimmed, null, 2)}\n`)
+  writeJson(IG_LOG, trimmed)
 }
 const log = readLog()
 if (log.some((e) => e.slug === slug && e.sent)) {

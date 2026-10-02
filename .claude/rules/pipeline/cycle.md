@@ -215,7 +215,15 @@ is in the root CLAUDE.md; this is what the stages assume about each other.
 - **Use the shared helpers**: `runWithConcurrency` (`lib/concurrency.js`) for
   per-item HTTP, `argAt`/`hasFlag` (`lib/argv.js`) for flags,
   `regionFromCoords` (`lib/regions.js`) for the coverage bbox ladder. Each of
-  those existed in three to five copies before 2026-08-01.
+  those existed in three to five copies before 2026-08-01. Since 2026-10-02
+  also `ROOT` (`lib/paths.js`, thirty copies of a form that percent-encoded the
+  path) and `readJson`/`writeJson` (`lib/json-file.js`). **`writeJson` is
+  atomic** — sibling file, then rename — because every stage runs under
+  `timeout`, and a SIGTERM mid-`writeFileSync` leaves a truncated snapshot where
+  the last good one was: the exact outcome "degrade to the previous snapshot"
+  rules out. `readJson` returns the fallback on a missing *or* corrupt file and
+  logs the corrupt case, so a bad snapshot neither kills a stage nor reads as a
+  quiet day.
 
 ## The selector's pool is cut at 12 hours
 

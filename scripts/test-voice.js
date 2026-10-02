@@ -7,8 +7,8 @@
 import { writeFileSync, mkdirSync } from 'node:fs'
 import { join } from 'node:path'
 import textToSpeech from '@google-cloud/text-to-speech'
+import { ROOT } from './lib/paths.js'
 
-const ROOT = new URL('..', import.meta.url).pathname
 const OUT_DIR = join(ROOT, 'content', 'audio', 'voice-tests')
 
 const VOICES = ['Charon', 'Fenrir', 'Orus', 'Puck', 'Aoede', 'Kore', 'Leda', 'Zephyr']

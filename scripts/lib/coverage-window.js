@@ -8,8 +8,8 @@ import { readFileSync, existsSync, readdirSync } from 'node:fs'
 import { join } from 'node:path'
 import { parseFrontmatter } from './frontmatter.js'
 import { canonicalIndicatorId } from './entity-registry.js'
+import { ROOT } from './paths.js'
 
-const ROOT = new URL('../..', import.meta.url).pathname
 const ARTICLES_DIR = join(ROOT, 'content', 'articles')
 const FEED_SNAP_DIR = join(ROOT, 'content', '.feed-snapshots-merged')
 

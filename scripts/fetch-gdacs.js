@@ -12,7 +12,6 @@
 // skips the API mirror when the file is absent, and mobile renders an empty
 // alert list when /api/gdacs.json 404s — same fail-soft path as chokepoints.
 
-import { writeFileSync } from 'node:fs'
 import { join } from 'node:path'
 import { runWithConcurrency } from './lib/concurrency.js'
 import {
@@ -21,8 +20,9 @@ import {
   fetchGdacsDetail,
   isGdacsFeatureCollection,
 } from './lib/gdacs.js'
+import { ROOT } from './lib/paths.js'
+import { writeJson } from './lib/json-file.js'
 
-const ROOT = new URL('..', import.meta.url).pathname
 const OUTPUT_PATH = join(ROOT, 'content', '.gdacs.json')
 
 // Concurrency cap for per-event detail fetches. GDACS publishes detail
@@ -100,7 +100,7 @@ const payload = {
   details,
 }
 
-writeFileSync(OUTPUT_PATH, `${JSON.stringify(payload)}\n`)
+writeJson(OUTPUT_PATH, payload, { pretty: false })
 
 const elapsed = ((Date.now() - started) / 1000).toFixed(1)
 console.log(
