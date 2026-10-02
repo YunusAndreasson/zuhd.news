@@ -125,36 +125,50 @@ export function useScrub({
     },
     [labelFor, detailFor],
   );
+  // One hop per step, carrying both effects. Two `scheduleOnRN` calls are two
+  // JS tasks, and the notch and the label they carried could land on
+  // different frames — the same frame is the promise above.
+  const onStep = useCallback(
+    (f: number, notch: boolean, relabel: boolean) => {
+      // `hapticImpact`, not `hapticTick`: iOS suppresses `selectionAsync()`
+      // while an AVAudioSession is in playback mode.
+      if (notch) hapticImpact();
+      if (relabel) updateLabel(f);
+    },
+    [updateLabel],
+  );
   const start = onScrubStart ?? noop;
   const end = onScrubEnd ?? noop;
 
   const notches = stepAt != null || detents > 0;
   const lastNotchAt = useSharedValue(0);
 
+  /** Move the fill to `x`. `held` is a drag: only a finger holding the track
+   *  feels notches and reads a label — a tap's tooltip never shows, and a drag
+   *  relabels on its first frame whatever a tap left (`lastStep` resets). */
   const track = useMemo(() => {
-    const fn = (x: number, notch: boolean) => {
+    const fn = (x: number, held: boolean) => {
       'worklet';
       const w = width.value;
       if (w <= 0) return;
       const f = Math.max(0, Math.min(1, x / w));
       fraction.value = f;
       pending.value = f;
+      if (!held) return;
       const step = stepAt ? stepAt(f) : Math.floor(f * steps);
       const detent = stepAt ? step : Math.round(f * detents);
+      let notch = false;
       if (detent !== lastDetent.value) {
         lastDetent.value = detent;
         const now = Date.now();
-        if (notch && notches && now - lastNotchAt.value >= NOTCH_MIN_MS) {
+        if (notches && now - lastNotchAt.value >= NOTCH_MIN_MS) {
           lastNotchAt.value = now;
-          // `hapticImpact`, not `hapticTick`: iOS suppresses `selectionAsync()`
-          // while an AVAudioSession is in playback mode.
-          scheduleOnRN(hapticImpact);
+          notch = true;
         }
       }
-      if (step !== lastStep.value) {
-        lastStep.value = step;
-        scheduleOnRN(updateLabel, f);
-      }
+      const relabel = step !== lastStep.value;
+      lastStep.value = step;
+      if (notch || relabel) scheduleOnRN(onStep, f, notch, relabel);
     };
     return fn;
   }, [
@@ -168,7 +182,7 @@ export function useScrub({
     steps,
     stepAt,
     lastStep,
-    updateLabel,
+    onStep,
   ]);
 
   const panConfig = useMemo(
@@ -235,13 +249,11 @@ export function useScrub({
         'worklet';
         if (e.canceled) return;
         onClaim?.();
-        lastDetent.value = -1;
-        lastStep.value = -1;
         track(e.x, false);
         scheduleOnRN(onCommit, pending.value);
       },
     }),
-    [enabled, lastDetent, lastStep, track, onCommit, onClaim, pending],
+    [enabled, track, onCommit, onClaim, pending],
   );
 
   const pan = usePanGesture(panConfig);
