@@ -19,6 +19,7 @@ import { parseFrontmatter } from './lib/frontmatter.js'
 import { GEMINI_TTS_MODEL, GEMINI_TTS_VOICE, geminiKey, synthesizeGemini, transcribeGemini } from './lib/gemini-tts.js'
 import { ROOT } from './lib/paths.js'
 import { writeJson } from './lib/json-file.js'
+import { articleFilesSince } from './lib/article-files.js'
 
 const ARTICLES_DIR = join(ROOT, 'content', 'articles')
 const AUDIO_DIR = argAt('out') || join(ROOT, 'content', 'audio')
@@ -36,16 +37,20 @@ const today = new Date().toISOString().slice(0, 10)
 console.log('=== Stage 1: Collecting articles ===')
 
 const cutoff = Date.now() - 24 * 60 * 60 * 1000
+// A file can qualify by its date or by its mtime, so the name window narrows
+// what is *parsed* and the mtime (a stat, not a read) keeps the rest eligible.
+const nameWindow = new Set(articleFilesSince(ARTICLES_DIR, cutoff))
 const files = readdirSync(ARTICLES_DIR).filter(f => f.endsWith('.md') && f !== 'example.md')
 
 let articles = []
 for (const file of files) {
+  // Use the later of source date and file mtime (articles may have older source dates)
+  const fileTime = statSync(join(ARTICLES_DIR, file)).mtimeMs
+  if (!nameWindow.has(file) && fileTime < cutoff) continue
   const raw = readFileSync(join(ARTICLES_DIR, file), 'utf-8')
   const { meta, body } = parseFrontmatter(raw)
   if (!meta.date) continue
-  // Use the later of source date and file mtime (articles may have older source dates)
   const sourceTime = new Date(meta.date).getTime()
-  const fileTime = statSync(join(ARTICLES_DIR, file)).mtimeMs
   const addedTime = Math.max(sourceTime, fileTime)
   if (addedTime < cutoff) continue
   const sources = Array.isArray(meta.sources) ? meta.sources : []

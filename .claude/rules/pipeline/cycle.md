@@ -228,6 +228,11 @@ is in the root CLAUDE.md; this is what the stages assume about each other.
   `ZUHD_UA` and a throw on non-2xx. The eight hand-rolled `AbortController`
   timers it replaced cleared on the *headers*, so a stalled body ran until the
   stage's outer `timeout` killed it; `AbortSignal.timeout` bounds the body too.
+  `articleFilesSince(dir, sinceMs)` (`lib/article-files.js`) is the corpus
+  window by filename. Three stages parsed all 10.8k articles to keep a day or a
+  fortnight of them — the dedup context alone was ~750ms, three times a cycle.
+  Its margin (31 days) is against a measured worst case of frontmatter `date`
+  running 7 days ahead of the filename's.
 
 ## The selector's pool is cut at 12 hours
 

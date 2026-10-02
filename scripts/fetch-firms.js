@@ -38,7 +38,7 @@
 // So the layer's claim is narrow and checkable: heat the satellite saw, beside a
 // story we published, close enough in time to be the same event.
 
-import { existsSync, readdirSync, readFileSync } from 'node:fs'
+import { existsSync, readFileSync } from 'node:fs'
 import { join } from 'node:path'
 import { parseFrontmatter } from './lib/frontmatter.js'
 import { runWithConcurrency } from './lib/concurrency.js'
@@ -53,6 +53,7 @@ import {
 import { ROOT } from './lib/paths.js'
 import { writeJson } from './lib/json-file.js'
 import { fetchText } from './lib/http.js'
+import { articleFilesSince } from './lib/article-files.js'
 
 const OUTPUT_PATH = join(ROOT, 'content', '.firms.json')
 const ARTICLES_DIR = join(ROOT, 'content', 'articles')
@@ -97,8 +98,7 @@ const windowStart = Date.now() - WINDOW_DAYS * 86_400_000
 const seeds = []
 
 if (existsSync(ARTICLES_DIR)) {
-  for (const file of readdirSync(ARTICLES_DIR)) {
-    if (!file.endsWith('.md')) continue
+  for (const file of articleFilesSince(ARTICLES_DIR, windowStart)) {
     try {
       const { meta } = parseFrontmatter(readFileSync(join(ARTICLES_DIR, file), 'utf8'))
       if (meta?.lat == null || meta?.lng == null) continue

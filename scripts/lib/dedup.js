@@ -1,8 +1,9 @@
 // Shared dedup logic — used by prefilter-feed.js and dedup-selection.js.
 // Single source of truth for matching rules and category floors.
-import { readdirSync, readFileSync, existsSync } from 'node:fs'
+import { readFileSync, existsSync } from 'node:fs'
 import { join } from 'node:path'
 import { parseFrontmatter } from './frontmatter.js'
+import { articleFilesSince } from './article-files.js'
 
 // Must mirror the category-floor lines in select-prompt.md (tech raised 2→3 by
 // experiment 2026-04-12-tech-floor-3; this constant lagged until 2026-07-03).
@@ -104,8 +105,7 @@ const TRACKING_PARAMS = new Set([
 export function loadRecentArticles(cutoffMs = 48 * 3600 * 1000) {
   const cutoff = Date.now() - cutoffMs
   try {
-    return readdirSync(ARTICLES_DIR)
-      .filter(f => f.endsWith('.md'))
+    return articleFilesSince(ARTICLES_DIR, cutoff)
       .map(f => {
         try {
           const content = readFileSync(join(ARTICLES_DIR, f), 'utf-8')
@@ -342,12 +342,12 @@ const RECAP_LOOKBACK_MS = 14 * 24 * 3600 * 1000
 
 /** Load all dedup context in one call. */
 export function loadDedupContext(cutoffMs = 48 * 3600 * 1000) {
-  const recentArticles = loadRecentArticles(cutoffMs)
-  const recentSlugs = recentArticles.map(a => a.slug)
+  // One read at the wider window; the slug-fuzzy window is a filter of it.
+  const recapArticles = loadRecentArticles(Math.max(cutoffMs, RECAP_LOOKBACK_MS))
+  const cutoff = Date.now() - cutoffMs
+  const recentSlugs = recapArticles.filter(a => a.date >= cutoff).map(a => a.slug)
   const ledgerEventUris = loadLedgerEventUris()
   const recentWordSets = buildWordSets(recentSlugs)
-  // Recap layer reads titles independently with a wider lookback.
-  const recapArticles = loadRecentArticles(Math.max(cutoffMs, RECAP_LOOKBACK_MS))
   const recentTitleSets = buildTitleSets(recapArticles)
   const ledgerLabelSets = buildTitleSets(loadLedgerLabels(Math.max(cutoffMs, RECAP_LOOKBACK_MS)))
   // URL → slug over the recap window, not the 48h one. A same-URL republish is
