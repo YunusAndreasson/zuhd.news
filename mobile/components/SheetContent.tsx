@@ -3,7 +3,7 @@ import { COUNTRY_DATA } from '@shared/countries/country-data';
 import type { ComponentProps, Ref } from 'react';
 import { type FlatList, type FlatListProps, type ScrollView, StyleSheet } from 'react-native';
 import Animated from 'react-native-reanimated';
-import { HIT_SLOP, SPACING } from '../constants/theme';
+import { HIT_SLOP, LAYOUT, SPACING } from '../constants/theme';
 import { useTheme } from '../hooks/useTheme';
 import { FlagChip } from './FlagChip';
 import { Pressable, Text } from './primitives';
@@ -294,5 +294,10 @@ const styles = StyleSheet.create({
     gap: SPACING.md,
   },
   sourceName: { flex: 1, minWidth: 0 },
-  sourceLink: { flexShrink: 0, maxWidth: '45%', minHeight: 44, justifyContent: 'center' },
+  sourceLink: {
+    flexShrink: 0,
+    maxWidth: '45%',
+    minHeight: LAYOUT.controlHeight,
+    justifyContent: 'center',
+  },
 });

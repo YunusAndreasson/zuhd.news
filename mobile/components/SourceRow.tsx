@@ -107,7 +107,10 @@ export function SourceRow({ source, isExpanded, isLast, onPress }: SourceRowProp
   return (
     <Pressable
       onPress={onPress}
-      hitSlop={{ top: 6, bottom: 6, left: 16, right: 16 }}
+      // Sideways only. A row is ~56pt tall already, and rows are stacked: a
+      // later row is hit-tested first, so its top slop took the bottom 6pt of
+      // the row above, and a tap there opened the wrong source.
+      hitSlop={SIDE_SLOP}
       accessibilityRole="button"
       accessibilityLabel={source.name}
       accessibilityState={{ expanded: isExpanded }}
@@ -116,6 +119,8 @@ export function SourceRow({ source, isExpanded, isLast, onPress }: SourceRowProp
     </Pressable>
   );
 }
+
+const SIDE_SLOP = { left: 16, right: 16 };
 
 const styles = StyleSheet.create({
   header: {
