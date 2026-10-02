@@ -14,7 +14,7 @@ import { readFileSync, writeFileSync, existsSync } from 'node:fs'
 import { join, basename } from 'node:path'
 import { randomUUID } from 'node:crypto'
 import { parseClaudeEnvelope, runHaiku } from './lib/claude-envelope.js'
-import { parseFrontmatter } from './lib/frontmatter.js'
+import { parseFrontmatter, replaceFrontmatterKey } from './lib/frontmatter.js'
 import { extractEntities } from './lib/entity-registry.js'
 import { fetchYahooStock } from './lib/trends-sources/stocks.js'
 import { ROOT } from './lib/paths.js'
@@ -249,31 +249,7 @@ function writeEntitiesToFrontmatter(raw, entities) {
       ).join('\n')}`
     : 'entities: []'
 
-  const fmMatch = raw.match(/^---\n([\s\S]*?)\n---\n/)
-  if (!fmMatch) return raw
-  const fm = fmMatch[1]
-  const rest = raw.slice(fmMatch[0].length)
-
-  // Strip any existing entities block: drop "entities:" line + all following
-  // lines that start with whitespace (its children) until a non-indented
-  // line (next top-level key) or EOF.
-  const lines = fm.split('\n')
-  const stripped = []
-  let skipping = false
-  for (const line of lines) {
-    if (skipping) {
-      if (line.length === 0 || /^\s/.test(line)) continue // still inside block
-      skipping = false
-    }
-    if (/^entities:/.test(line)) {
-      skipping = true
-      continue
-    }
-    stripped.push(line)
-  }
-
-  const updatedFm = `${stripped.join('\n').trimEnd()}\n${yamlBlock}`
-  return `---\n${updatedFm}\n---\n${rest}`
+  return replaceFrontmatterKey(raw, 'entities', yamlBlock.split('\n'))
 }
 
 // --- Main loop — pass 1: static extraction + collect ambiguous matches ---
