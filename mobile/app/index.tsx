@@ -89,6 +89,7 @@ import {
   restore as restoreBookmark,
   toggle as toggleBookmark,
 } from '../lib/bookmark-store';
+import { markMove } from '../lib/cards/format';
 import { buildInstrumentCards, straitCardFor } from '../lib/cards/markets';
 import type { SwipeCard } from '../lib/cards/rank';
 import { buildRankedInstruments } from '../lib/cards/sections';
@@ -602,9 +603,8 @@ export default function HomeScreen() {
         id: item.id,
         // Two lines on the globe: the name, then the move under it, larger.
         label: item.label,
-        // A week that rounds to nothing prints `−0%`, as a strait's does; the
-        // chip's word `unchanged` does not belong under a name on the map.
-        move: `${item.delta.direction === 'up' ? '↑' : item.delta.direction === 'down' ? '↓' : '−'}${item.delta.direction === 'flat' ? '0%' : item.delta.magnitude}${item.stale ? '*' : ''}`,
+        // As a strait's does (`markMove`), an asterisk on an older quote.
+        move: `${markMove(item.delta)}${item.stale ? '*' : ''}`,
         direction: item.delta.direction,
         lat: item.coords[0],
         lng: item.coords[1],
@@ -2132,6 +2132,7 @@ export default function HomeScreen() {
         sheetRef={disambiguationSheetRef}
         candidates={chooserCandidates}
         chokepoints={chokepoints}
+        straitMoves={straitMoves}
         alerts={gdacsAlerts}
         conflictEvents={conflictEvents}
         instruments={rankedInstruments}

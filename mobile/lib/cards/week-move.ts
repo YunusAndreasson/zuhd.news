@@ -1,12 +1,6 @@
 import type { Indicator } from '@shared/types';
 import { type Exchange, exchangeCard, exchangeDelta } from '../markets';
-import {
-  deltaFrom,
-  formatMagnitudePct,
-  isMonthlyRate,
-  windowChange,
-  windowPointChange,
-} from './format';
+import { deltaFrom, deltaOf, isMonthlyRate, windowChange, windowPointChange } from './format';
 import { currencyMove } from './markets';
 import type { SwipeCard } from './rank';
 import type { CardDelta } from './types';
@@ -143,12 +137,8 @@ export function gaugeMove(card: SwipeCard, now = Date.now()): GaugeMove | null {
   const move = weekMove(card.series.values, card.series.periods, year);
   if (!move) return null;
   const pct = card.id.startsWith('fx-') ? currencyMove(move.pct) : move.pct;
-  const magnitude = formatMagnitudePct(pct);
-  const window = WEEK_WINDOW;
-  const size = Math.abs(pct);
-  if (magnitude === null)
-    return { delta: { direction: 'flat', magnitude: 'unchanged', window, size } };
-  return { delta: { direction: pct > 0 ? 'up' : 'down', magnitude, window, size } };
+  const delta = deltaOf(pct, { window: WEEK_WINDOW });
+  return delta ? { delta } : null;
 }
 
 /**
@@ -191,11 +181,6 @@ export function indicatorMove(indicator: Indicator, now = Date.now()): CardDelta
   }
   const year = yearOf(indicator.asOf, new Date(now).getUTCFullYear());
   const week = weekMove(indicator.values, indicator.periods, year);
-  if (week) {
-    return deltaFrom(
-      { pct: week.pct, from: week.from, to: '', points: week.points.length - 1 },
-      { window: WEEK_WINDOW },
-    );
-  }
+  if (week) return deltaOf(week.pct, { window: WEEK_WINDOW });
   return deltaFrom(windowChange(indicator, 1));
 }

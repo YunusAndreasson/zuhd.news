@@ -41,6 +41,7 @@ import {
   getSnapshot as getBookmarks,
   subscribe as subscribeBookmarks,
 } from '../lib/bookmark-store';
+import { spokenDelta } from '../lib/cards/format';
 import { conflictChooserDetails } from '../lib/conflict';
 import { observationDate } from '../lib/data-freshness';
 import {
@@ -998,11 +999,7 @@ const GroupRow = memo(function GroupRow({
         ) : undefined
       }
       detailLabel={
-        lead
-          ? [subject, move ? `${move.direction} ${move.magnitude} this week` : '']
-              .filter(Boolean)
-              .join(', ')
-          : undefined
+        lead ? [subject, move ? spokenDelta(move) : ''].filter(Boolean).join(', ') : undefined
       }
       trailing="push"
       onPress={onPress}

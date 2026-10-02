@@ -115,11 +115,10 @@ import {
 import {
   STRAIT_SIGN_R,
   type StraitState,
-  straitMapChange,
+  straitChange,
   straitReach,
   straitSignDx,
   straitStateFor,
-  straitWeekChange,
 } from '../../lib/strait-map';
 import {
   CITY_LIGHT_COUNT,
@@ -3209,8 +3208,7 @@ export const MiniGlobe = memo(function MiniGlobe({
         // centimetres up, printed the week, and one strait read ↓62% on the
         // globe and ▼38% in the strip. The glyph's brightness and outranking
         // stay on the normal (`delta`, below): that is the strait's state.
-        const week = straitMoves?.[cp.id];
-        const change = week ? straitWeekChange(week) : straitMapChange(cp.delta7vs90.n_total);
+        const change = straitChange(straitMoves?.[cp.id], cp.delta7vs90.n_total);
         return {
           id: cp.id,
           // Mixed case (not UPPERCASE): chokepoints are passages — straits,

@@ -2,14 +2,16 @@ import type { Chokepoint, ConflictEvent, GdacsAlert } from '@shared/types';
 import { memo, useCallback, useMemo } from 'react';
 import Animated from 'react-native-reanimated';
 import { ANIMATION } from '../constants/theme';
+import { markMove } from '../lib/cards/format';
 import type { SwipeCard } from '../lib/cards/rank';
+import type { CardDelta } from '../lib/cards/types';
 import { gaugeMove } from '../lib/cards/week-move';
 import { chooserTitle } from '../lib/chooser-title';
 import { conflictChooserDetails } from '../lib/conflict';
 import type { FamineArea, GenocideSituation, ThermalEvent } from '../lib/overlays';
 import { displayCountryName } from '../lib/place-names';
 import { staggerEnter } from '../lib/stagger';
-import { straitMapChange, straitStateFor } from '../lib/strait-map';
+import { straitChange, straitStateFor } from '../lib/strait-map';
 import type { TapResult } from './globe/MiniGlobe';
 import {
   conflictMarkRow,
@@ -31,6 +33,9 @@ interface DisambiguationSheetProps extends BaseSheetProps {
   /** Resolution context: same data the parent already holds for opening
    *  individual sheets. Used here to derive readable labels per row. */
   chokepoints: Chokepoint[];
+  /** Each strait's seven-day move, as the globe labels it (`straitMoves`), so
+   *  a strait's row reads the number its mark under the finger does. */
+  straitMoves: Readonly<Record<string, CardDelta>>;
   alerts: GdacsAlert[];
   conflictEvents: ConflictEvent[];
   /** The ranked instruments, so a flagged exchange's row can name its index
@@ -48,6 +53,7 @@ function buildRow(
   result: TapResult,
   index: number,
   chokepointsById: Map<string, Chokepoint>,
+  straitMoves: Readonly<Record<string, CardDelta>>,
   alertsById: Map<string, GdacsAlert>,
   conflictById: Map<string, ConflictEvent>,
   marketsById: Map<string, SwipeCard>,
@@ -84,7 +90,7 @@ function buildRow(
       key: `chokepoint-${cp.id}`,
       result,
       primary: cp.name,
-      secondary: `all ships · ${straitMapChange(cp.delta7vs90.n_total)?.label ?? 'comparison unavailable'} · ${cp.asOf}`,
+      secondary: `all ships · ${straitChange(straitMoves[cp.id], cp.delta7vs90.n_total)?.label ?? 'comparison unavailable'} · ${cp.asOf}`,
       kind: 'chokepoint',
       straitState: straitStateFor(cp.delta7vs90.n_total ?? 0),
     };
@@ -92,19 +98,17 @@ function buildRow(
   if (result.marketSignalId) {
     const card = marketsById.get(result.marketSignalId);
     if (!card) return null;
-    // The week, as the mark under the finger and the strip print it; the
-    // card's own session move is the card's to show, with its window.
-    const week = gaugeMove(card)?.delta;
-    const delta = week ?? card.delta;
+    // The week, as the mark under the finger and the strip print it, in the
+    // mark's own grammar (`markMove`); where there is no week, the card's
+    // move — with its window either way, so a session is never read as a week.
+    const delta = gaugeMove(card)?.delta ?? card.delta;
     return {
       key: `market-${card.id}`,
       result,
       primary: card.title,
       secondary: [
         card.kicker,
-        delta
-          ? `${delta.direction === 'up' ? '↑' : delta.direction === 'down' ? '↓' : '−'} ${delta.magnitude}${week ? ' past week' : ''}`
-          : null,
+        delta ? [markMove(delta), delta.window].filter(Boolean).join(' ') : null,
         card.asOf,
       ]
         .filter(Boolean)
@@ -157,6 +161,7 @@ export const DisambiguationSheet = memo(function DisambiguationSheet({
   sheetRef,
   candidates,
   chokepoints,
+  straitMoves,
   alerts,
   conflictEvents,
   instruments,
@@ -183,6 +188,7 @@ export const DisambiguationSheet = memo(function DisambiguationSheet({
         candidates[i] as TapResult,
         i,
         cpById,
+        straitMoves,
         alertById,
         conflictById,
         marketById,
@@ -206,6 +212,7 @@ export const DisambiguationSheet = memo(function DisambiguationSheet({
   }, [
     candidates,
     chokepoints,
+    straitMoves,
     alerts,
     conflictEvents,
     instruments,

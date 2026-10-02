@@ -1,4 +1,5 @@
 import { CHOKEPOINT_DISRUPTED } from '@shared/chokepoint-thresholds';
+import { markMove } from './cards/format';
 import type { CardDelta } from './cards/types';
 import { straitSqueezed } from './valence';
 
@@ -24,15 +25,23 @@ export function straitMapChange(delta: number | undefined) {
  * screen. No basis: the strip prints none either.
  */
 export function straitWeekChange(delta: CardDelta) {
-  const direction = delta.direction;
-  const value =
-    direction === 'flat' ? '−0%' : `${direction === 'up' ? '↑' : '↓'}${delta.magnitude}`;
+  const value = markMove(delta);
   return {
-    direction,
+    direction: delta.direction,
     value,
     basis: undefined,
     label: `${value} over 7 days`,
   } as const;
+}
+
+/**
+ * The number a strait prints: the strip's seven-day move where the strip has
+ * one (`week`, from `straitMoves`), else the gap from its 90-day normal.
+ * The globe's label and the chooser's row both ask here, so the row under a
+ * finger reads what the mark under it does.
+ */
+export function straitChange(week: CardDelta | undefined, normal: number | undefined) {
+  return week ? straitWeekChange(week) : straitMapChange(normal);
 }
 
 /** What a strait's glyph says about its traffic against the 90-day normal. */

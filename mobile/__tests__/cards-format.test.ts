@@ -1,6 +1,7 @@
 import type { Article } from '@shared/types';
 import {
   deltaFrom,
+  deltaOf,
   formatCount,
   formatMagnitudePct,
   formatMagnitudePoints,
@@ -9,8 +10,10 @@ import {
   formatReading,
   formatSignedPct,
   GRAMS_PER_TROY_OUNCE,
+  markMove,
   nisab,
   relatedForTags,
+  spokenDelta,
   windowChange,
   windowPointChange,
 } from '../lib/cards/format';
@@ -215,6 +218,46 @@ describe('deltaFrom', () => {
   it('returns nothing at all rather than a chip that says nothing', () => {
     expect(deltaFrom(null)).toBeUndefined();
     expect(deltaFrom({ pct: Number.NaN, from: 'a', to: 'b', points: 1 })).toBeUndefined();
+  });
+});
+
+describe('deltaOf', () => {
+  it('is deltaFrom for a move measured some other way', () => {
+    for (const pct of [-57.2, -6.8, -0.04, 0, 0.5, 6.8, 231]) {
+      expect(deltaOf(pct, { window: 'over 7 days' })).toEqual(
+        deltaFrom({ pct, from: 'x', to: 'y', points: 7 }, { window: 'over 7 days' }),
+      );
+    }
+    expect(deltaOf(Number.POSITIVE_INFINITY)).toBeUndefined();
+  });
+
+  it('prints the word its caller gives a move that rounds to nothing', () => {
+    // A strait at its own normal is not "unchanged": it is where it usually is.
+    expect(deltaOf(0.04, { window: 'vs its 90-day normal', flat: 'at its normal' })).toEqual({
+      direction: 'flat',
+      magnitude: 'at its normal',
+      window: 'vs its 90-day normal',
+      size: 0.04,
+    });
+  });
+});
+
+describe('a move in words and in marks', () => {
+  const up = { direction: 'up', magnitude: '5%', window: 'over 7 days', size: 5 } as const;
+  const down = { direction: 'down', magnitude: '2.9%', window: 'over 7 days' } as const;
+  const flat = { direction: 'flat', magnitude: 'unchanged', window: 'over 7 days' } as const;
+
+  it('marks a move with an arrow, and one that rounds to nothing as −0%', () => {
+    expect(markMove(up)).toBe('↑5%');
+    expect(markMove(down)).toBe('↓2.9%');
+    expect(markMove(flat)).toBe('−0%');
+  });
+
+  it('speaks the direction as a word and never says "flat unchanged"', () => {
+    expect(spokenDelta(up)).toBe('up 5% over 7 days');
+    expect(spokenDelta(flat)).toBe('unchanged over 7 days');
+    expect(spokenDelta(up, { window: false })).toBe('up 5%');
+    expect(spokenDelta({ direction: 'down', magnitude: '1%' })).toBe('down 1%');
   });
 });
 

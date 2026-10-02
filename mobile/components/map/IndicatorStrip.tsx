@@ -11,6 +11,7 @@ import { ScrollView } from 'react-native-gesture-handler';
 import { useReducedMotion } from 'react-native-reanimated';
 import { MAX_FONT_SCALE, SPACING } from '../../constants/theme';
 import { useTheme } from '../../hooks/useTheme';
+import { spokenDelta } from '../../lib/cards/format';
 import { CONTROL_ROW } from '../../lib/deck-layout';
 import { hapticSwipe } from '../../lib/haptics';
 import type { StripItem } from '../../lib/now';
@@ -134,9 +135,7 @@ const Slot = memo(function Slot({
     item.short !== item.label ? item.label : null,
     item.reading,
     item.readingNote,
-    item.delta.direction !== 'flat'
-      ? `${item.delta.direction} ${item.delta.magnitude}`
-      : 'unchanged',
+    spokenDelta(item.delta, { window: false }),
     item.delta.window,
     linkedColor ? 'in the open story' : null,
   ]

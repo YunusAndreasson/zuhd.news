@@ -1,6 +1,7 @@
 import { memo } from 'react';
 import { StyleSheet, View } from 'react-native';
 import { MAX_FONT_SCALE, SPACING } from '../constants/theme';
+import { spokenDelta } from '../lib/cards/format';
 import type { CardDelta } from '../lib/cards/types';
 import { moveTone } from '../lib/valence';
 import { Icon, Text } from './primitives';
@@ -65,9 +66,7 @@ export const DeltaChip = memo(function DeltaChip({
         tone={tone}
         scale={scale}
         maxFontSizeMultiplier={MAX_FONT_SCALE.tabular}
-        accessibilityLabel={
-          delta.direction === 'flat' ? delta.magnitude : `${delta.direction} ${delta.magnitude}`
-        }
+        accessibilityLabel={spokenDelta(delta, { window: false })}
       >
         {delta.magnitude}
       </Text>

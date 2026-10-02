@@ -10,8 +10,8 @@ import { indicatorObservation, isCurrentObservation, oldestObservation } from '.
 import { VESSEL_CLASSES } from '../vessel-classes';
 import {
   deltaFrom,
+  deltaOf,
   formatCount,
-  formatMagnitudePct,
   formatMagnitudePoints,
   formatQuantity,
   formatReading,
@@ -659,11 +659,7 @@ function straitWhy(c: Chokepoint): string | undefined {
 
 /** The distance from a strait's own 90-day normal, as a chip. */
 function straitDelta(d: number): CardDelta | undefined {
-  const magnitude = formatMagnitudePct(d * 100);
-  const window = 'vs its 90-day normal';
-  const size = Math.abs(d * 100);
-  if (magnitude === null) return { direction: 'flat', magnitude: 'at its normal', window, size };
-  return { direction: d > 0 ? 'up' : 'down', magnitude, window, size };
+  return deltaOf(d * 100, { window: 'vs its 90-day normal', flat: 'at its normal' });
 }
 
 function totalTrafficDelta(c: Chokepoint): number | null {
