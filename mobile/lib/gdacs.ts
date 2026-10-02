@@ -11,7 +11,11 @@
 // What remains local is `alertAgeDays`, which depends on `./time` and on the
 // app's opacity conventions — the web map ages markers on its own decay curve.
 
-import { parseSeverityHero as parseSharedSeverityHero } from '@shared/gdacs';
+import {
+  detailKey,
+  EVENT_TYPE_EYEBROW,
+  parseSeverityHero as parseSharedSeverityHero,
+} from '@shared/gdacs';
 import type { GdacsAlert, GdacsDetail } from '@shared/types';
 import { ageDaysFromIso } from './time';
 
@@ -41,7 +45,7 @@ export function gdacsDetailFor(
   details: Record<string, GdacsDetail>,
 ): GdacsDetail | null {
   if (!alert || (alert.eventtype !== 'EQ' && alert.eventtype !== 'TC')) return null;
-  return details[`${alert.eventtype}:${alert.eventid}`] ?? null;
+  return details[detailKey(alert)] ?? null;
 }
 
 /**
@@ -71,7 +75,8 @@ export function gdacsGlyphScale(level: GdacsAlert['alertlevel']): number {
  * the marks the globe draws — it is their accessible path.
  */
 const GREEN_CAP = 100;
-const GDACS_TYPES: GdacsAlert['eventtype'][] = ['EQ', 'TC', 'FL', 'VO', 'DR', 'WF'];
+/** Every event type, in the eyebrow table's order: the round-robin's. */
+const GDACS_TYPES = Object.keys(EVENT_TYPE_EYEBROW) as GdacsAlert['eventtype'][];
 
 export function globeGdacsAlerts(alerts: readonly GdacsAlert[]): GdacsAlert[] {
   const byType: Record<string, GdacsAlert[]> = {};
