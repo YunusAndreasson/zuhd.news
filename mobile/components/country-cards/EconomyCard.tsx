@@ -1,3 +1,4 @@
+import { formatCount } from '../../lib/cards/format';
 import type { EconomyCardData } from '../../lib/country-cards';
 import { alignToYears, getGlobalBenchmarks, latest, near } from '../../lib/country-cards';
 import { TrajectoryChart } from '../charts/TrajectoryChart';
@@ -10,7 +11,7 @@ interface EconomyCardProps {
 function fmtUSD(n: number): string {
   if (n >= 100_000) return `$${Math.round(n / 1000)}K`;
   if (n >= 10_000) return `$${(n / 1000).toFixed(1)}K`;
-  if (n >= 1_000) return `$${Math.round(n).toLocaleString()}`;
+  if (n >= 1_000) return `$${formatCount(n)}`;
   return `$${Math.round(n)}`;
 }
 

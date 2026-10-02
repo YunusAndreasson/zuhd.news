@@ -7,6 +7,7 @@ import Animated from 'react-native-reanimated';
 import { SPACING } from '../constants/theme';
 import { useTheme } from '../hooks/useTheme';
 import { articleTime, formatTimeAgo } from '../lib/article-utils';
+import { formatCount, formatNumber } from '../lib/cards/format';
 import type { RiverArticle } from '../lib/news-order';
 import { useOpenLink } from '../lib/open-link';
 import { type OverlaySelection, thermalPlace } from '../lib/overlays';
@@ -130,9 +131,9 @@ export const OverlayBody = memo(function OverlayBody({
           {overlay.area.pop?.p3plus ? (
             <Animated.View entering={enter()} style={styles.block}>
               <Text variant="body" selectable>
-                {`${overlay.area.pop.p3plus.toLocaleString('en-US')} people in crisis or worse${
+                {`${formatNumber(overlay.area.pop.p3plus)} people in crisis or worse${
                   overlay.area.pop.total
-                    ? `, of ${overlay.area.pop.total.toLocaleString('en-US')} analysed`
+                    ? `, of ${formatNumber(overlay.area.pop.total)} analysed`
                     : ''
                 }.`}
               </Text>
@@ -164,7 +165,7 @@ export const OverlayBody = memo(function OverlayBody({
           <SheetHero
             entering={enter()}
             eyebrow="fire radiative power"
-            focal={`${Math.round(overlay.event.frp).toLocaleString('en-US')} MW`}
+            focal={`${formatCount(overlay.event.frp)} MW`}
             tint={colors.markThermal}
             secondary={thermalPlace(overlay.event)}
           />

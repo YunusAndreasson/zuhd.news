@@ -1,5 +1,19 @@
 import type { MarketSignalsSnapshot } from '@shared/market-signals';
+import { formatNumber } from './format';
 import type { SwipeCard } from './rank';
+
+/** One formatter for every session's label — there is one per point of every
+ *  signal's series, rebuilt on each arrival, and `toLocaleDateString` builds a
+ *  formatter per call. */
+let sessionFormat: Intl.DateTimeFormat | undefined;
+function sessionLabel(date: string): string {
+  sessionFormat ??= new Intl.DateTimeFormat('en-US', {
+    month: 'short',
+    day: 'numeric',
+    timeZone: 'UTC',
+  });
+  return sessionFormat.format(new Date(`${date}T00:00:00Z`));
+}
 
 /** The server owns selection and revision; the client owns presentation only. */
 export function marketSignalCards(
@@ -43,6 +57,7 @@ export function marketSignalCards(
        * `standing`.
        */
       const why = [standing, commentary].filter(Boolean).join('\n\n') || s.facts;
+      const latest = s.series.values.at(-1);
       return {
         id: `market-signal:${s.id}`,
         kind: 'reading',
@@ -73,8 +88,7 @@ export function marketSignalCards(
         // this field is for.
         changed: exchange ? label : undefined,
         asOf: s.asOf,
-        reading:
-          s.series.values.at(-1)?.toLocaleString('en-US', { maximumFractionDigits: 0 }) ?? '',
+        reading: latest === undefined ? '' : formatNumber(latest, 0),
         readingNote: 'index points',
         delta: {
           direction: p.direction > 0 ? 'up' : 'down',
@@ -87,13 +101,7 @@ export function marketSignalCards(
         sources: s.citations.map((c) => ({ label: c.title, url: c.url })),
         series: {
           values: s.series.values,
-          periods: s.series.dates.map((d) =>
-            new Date(`${d}T00:00:00Z`).toLocaleDateString('en-US', {
-              month: 'short',
-              day: 'numeric',
-              timeZone: 'UTC',
-            }),
-          ),
+          periods: s.series.dates.map(sessionLabel),
           label: 'Index points',
           unit: 'points',
         },

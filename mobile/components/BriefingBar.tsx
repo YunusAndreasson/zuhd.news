@@ -1,5 +1,5 @@
 import { BlurView } from 'expo-blur';
-import { memo, useCallback, useEffect, useMemo, useRef } from 'react';
+import { memo, useCallback, useEffect, useRef } from 'react';
 import {
   type AccessibilityActionEvent,
   ActivityIndicator,
@@ -20,6 +20,7 @@ import Animated, {
 import { ANIMATION, EASING, RADIUS, SPACING } from '../constants/theme';
 import { useScrub } from '../hooks/useScrub';
 import { useTheme } from '../hooks/useTheme';
+import { observationDate } from '../lib/data-freshness';
 import { Icon, IconButton, Text } from './primitives';
 import { ScrubBar, ScrubTooltip } from './ScrubBar';
 
@@ -125,16 +126,9 @@ export const BriefingBar = memo(function BriefingBar({
   // Gone is zero: a card leaving room for a bar that has closed is a gap.
   useEffect(() => () => onHeightChange?.(0), [onHeightChange]);
 
-  const dateLabel = useMemo(() => {
-    try {
-      return new Date(`${date}T00:00:00`).toLocaleDateString('en-US', {
-        month: 'short',
-        day: 'numeric',
-      });
-    } catch {
-      return date;
-    }
-  }, [date]);
+  // The date grammar every card's kicker uses: `Sep 19`. The `try` this
+  // replaced could catch nothing — an unreadable date printed `Invalid Date`.
+  const dateLabel = observationDate(date);
 
   return (
     <Animated.View

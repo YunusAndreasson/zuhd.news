@@ -106,6 +106,31 @@ export function isMonthlyRate(indicator: Pick<Indicator, 'cadence' | 'unit'>): b
   return indicator.cadence === 'monthly' && indicator.unit === '%';
 }
 
+const numberFormats = new Map<string, Intl.NumberFormat>();
+
+/**
+ * A number grouped as the app prints every number — `1,234.5`, in en-US
+ * whatever the phone's language, as the rest of the copy is English — to at
+ * most `maxDecimals` places (`toLocaleString`'s own three by default) and at
+ * least `minDecimals`.
+ *
+ * One formatter per precision, kept for the session: `toLocaleString` builds a
+ * new one on every call, which on Android is a trip through ICU (~9 ms for a
+ * date, `formatLocalTime`), and a chart's scrub formats a number per step.
+ */
+export function formatNumber(n: number, maxDecimals = 3, minDecimals = 0): string {
+  const key = `${minDecimals}:${maxDecimals}`;
+  let format = numberFormats.get(key);
+  if (!format) {
+    format = new Intl.NumberFormat('en-US', {
+      minimumFractionDigits: minDecimals,
+      maximumFractionDigits: maxDecimals,
+    });
+    numberFormats.set(key, format);
+  }
+  return format.format(n);
+}
+
 /**
  * The reading itself — one number at arm's length.
  *
@@ -116,7 +141,7 @@ export function isMonthlyRate(indicator: Pick<Indicator, 'cadence' | 'unit'>): b
 export function formatReading(value: number, unit?: string): string {
   if (!Number.isFinite(value)) return '—';
   if (unit === '%' || Math.abs(value) < 10) return value.toFixed(2);
-  return Math.round(value).toLocaleString('en-US');
+  return formatCount(value);
 }
 
 /** A signed percentage, one decimal, with a true minus sign rather than a
@@ -213,7 +238,7 @@ export function formatSignedRatePoints(points: number): string {
  */
 export function formatQuantity(n: number): string {
   if (!Number.isFinite(n)) return '—';
-  if (Math.abs(n) >= 10) return Math.round(n).toLocaleString('en-US');
+  if (Math.abs(n) >= 10) return formatCount(n);
   return Number(n.toFixed(1)).toString();
 }
 
@@ -228,7 +253,7 @@ export function formatVsNormal(delta: number, { bare = false } = {}): string {
 
 /** US-grouped integer with no unit. For populations and counts. */
 export function formatCount(n: number): string {
-  return Math.round(n).toLocaleString('en-US');
+  return formatNumber(Math.round(n), 0);
 }
 
 // ---------------------------------------------------------------------------

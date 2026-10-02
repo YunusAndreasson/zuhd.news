@@ -4,6 +4,7 @@
 // the full data layer.
 
 import type { ConflictEvent, ConflictEventFamily, ConflictSubEvent } from '@shared/types';
+import { formatNumber } from './cards/format';
 import { displayCountryName } from './place-names';
 import { ageDaysFromIso } from './time';
 
@@ -122,7 +123,7 @@ export interface ConflictHero {
 export function parseConflictHero(event: ConflictEvent): ConflictHero {
   if (event.fatalities > 0) {
     return {
-      focal: `${event.fatalities.toLocaleString('en-US')} killed`,
+      focal: `${formatNumber(event.fatalities)} killed`,
       secondary: SUB_EVENT_LABEL[event.subEvent],
     };
   }

@@ -1,8 +1,10 @@
 import type { Article } from '@shared/types';
 import {
   deltaFrom,
+  formatCount,
   formatMagnitudePct,
   formatMagnitudePoints,
+  formatNumber,
   formatQuantity,
   formatReading,
   formatSignedPct,
@@ -75,6 +77,29 @@ describe('formatting', () => {
     expect(formatSignedPct(-9.14)).toBe('−9.1%');
     expect(formatSignedPct(16.2)).toBe('+16%');
     expect(formatSignedPct(0)).toBe('unchanged');
+  });
+
+  it('prints exactly what toLocaleString did, through one formatter per precision', () => {
+    // The sites it replaced each built a formatter per call; the strings they
+    // printed must not move by a character.
+    const values = [0, -0, 0.5, 1.005, 12.5, 999.9995, 1234.5678, -78317.84, 1e7 + 0.25];
+    const precisions: [number, number][] = [
+      [3, 0],
+      [0, 0],
+      [1, 0],
+      [2, 0],
+      [2, 2],
+      [4, 4],
+    ];
+    for (const n of values) {
+      expect(formatNumber(n)).toBe(n.toLocaleString('en-US'));
+      for (const [max, min] of precisions) {
+        expect(formatNumber(n, max, min)).toBe(
+          n.toLocaleString('en-US', { maximumFractionDigits: max, minimumFractionDigits: min }),
+        );
+      }
+      expect(formatCount(n)).toBe(Math.round(n).toLocaleString('en-US'));
+    }
   });
 });
 

@@ -1,4 +1,5 @@
 import { displayNameFromCode } from '@shared/countries/iso';
+import { formatNumber } from './cards/format';
 import type { SwipeCard } from './cards/rank';
 import type { CardDelta } from './cards/types';
 
@@ -148,7 +149,7 @@ export function exchangeCard(e: Exchange): SwipeCard {
     title: INDEX_DISPLAY_NAMES[e.indexName] ?? e.indexName,
     kicker: `${e.name} · ${e.city}`,
     asOf: e.asOf,
-    reading: e.level.toLocaleString('en-US', { maximumFractionDigits: 2 }),
+    reading: formatNumber(e.level, 2),
     readingNote: 'index points',
     delta: exchangeDelta(e),
     changed: exchangeIsStale(e)
