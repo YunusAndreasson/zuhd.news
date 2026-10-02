@@ -67,10 +67,10 @@ import { resetOnboarding } from '../lib/onboarding-store';
 import type { FamineArea, GenocideSituation, ThermalEvent } from '../lib/overlays';
 import { MARKET_CAVEAT } from '../lib/predictions';
 import { makeStaggerEnter } from '../lib/stagger';
+import { markTap, type TapResult } from '../lib/tap-result';
 import { eraseLocalData } from '../lib/wipe';
 import { DeltaChip } from './DeltaChip';
 import { EmptyState } from './EmptyState';
-import type { TapResult } from './globe/MiniGlobe';
 import { InstrumentRow } from './InstrumentRow';
 import {
   conflictMarkRow,
@@ -281,16 +281,6 @@ export interface MenuHazards {
   genocide: GenocideSituation[];
   fires: ThermalEvent[];
 }
-
-/** A mark's row carries the tap the globe would have produced on it, so the
- *  screen opens it the same way whichever way the reader came. */
-const markTap = (ids: Partial<TapResult>): TapResult => ({
-  countryName: '',
-  location: null,
-  localTime: null,
-  data: null,
-  ...ids,
-});
 
 function hazardRows(key: HazardKey, hazards: MenuHazards): MarkRowData[] {
   switch (key) {

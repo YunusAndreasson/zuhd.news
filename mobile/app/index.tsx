@@ -1,4 +1,4 @@
-import { COUNTRY_DATA, type CountryData } from '@shared/countries/country-data';
+import type { CountryData } from '@shared/countries/country-data';
 import type {
   Article,
   ArticleSource,
@@ -38,12 +38,7 @@ import { DisasterSheet } from '../components/DisasterSheet';
 import { EmptyState } from '../components/EmptyState';
 import { EntitySheet } from '../components/EntitySheet';
 import { ErrorState } from '../components/ErrorState';
-import {
-  COLLECT_MS,
-  MiniGlobe,
-  type MiniGlobeRef,
-  type TapResult,
-} from '../components/globe/MiniGlobe';
+import { COLLECT_MS, MiniGlobe, type MiniGlobeRef } from '../components/globe/MiniGlobe';
 import { FRAMING_WIDEST } from '../components/globe/projection';
 import { HintOverlay } from '../components/HintOverlay';
 import { type MenuHazards, MenuSheet } from '../components/MenuSheet';
@@ -131,6 +126,7 @@ import { resumeLanding, unreadNewBehind } from '../lib/resume-landing';
 import { maybeRequestReview } from '../lib/store-review';
 import { storyCharts } from '../lib/story-chart';
 import { buildStoryPlaces, foundProgress } from '../lib/story-places';
+import { countryTap, type TapResult } from '../lib/tap-result';
 
 /**
  * One screen.
@@ -1202,13 +1198,10 @@ export default function HomeScreen() {
     [handOffSheet],
   );
 
-  const openCountry = useCallback(
-    (countryName: string, data: CountryData | null = COUNTRY_DATA[countryName] ?? null) => {
-      setCountrySheet({ countryName, location: null, localTime: null, data });
-      countrySheetRef.current?.present();
-    },
-    [],
-  );
+  const openCountry = useCallback((countryName: string, data?: CountryData | null) => {
+    setCountrySheet(countryTap(countryName, data));
+    countrySheetRef.current?.present();
+  }, []);
 
   const handleEntityPress = useCallback(
     (entity: Entity) => {

@@ -16,6 +16,7 @@ import {
 } from '../lib/overlays';
 import { displayCountryName } from '../lib/place-names';
 import type { StraitState } from '../lib/strait-map';
+import type { TapResult } from '../lib/tap-result';
 import {
   CONFLICT_FAMILY_LABEL,
   EVENT_TYPE_LABEL,
@@ -24,7 +25,6 @@ import {
   getStraitPath,
   marketDirectionPath,
 } from './globe/disaster-glyphs';
-import type { TapResult } from './globe/MiniGlobe';
 import {
   FAMINE_FRAME_PATH,
   FAMINE_FRAME_STROKE,

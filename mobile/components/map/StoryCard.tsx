@@ -43,7 +43,7 @@ import type { StoryOdds } from '../../lib/predictions';
 import { useReadSlugs } from '../../lib/read-store';
 import { unreadNewBehind } from '../../lib/resume-landing';
 import { articleThreadContext, hookOf, restOf } from '../../lib/story-card';
-import type { TapResult } from '../globe/MiniGlobe';
+import type { TapResult } from '../../lib/tap-result';
 import { OddsLine } from '../OddsLine';
 import { Pressable, Text } from '../primitives';
 import { StoryChart } from '../StoryChart';

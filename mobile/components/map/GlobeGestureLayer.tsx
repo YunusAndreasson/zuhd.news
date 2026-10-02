@@ -30,7 +30,8 @@ import {
   projScaleFor,
   takeCamera,
 } from '../../lib/globe-camera';
-import type { MiniGlobeRef, TapResult } from '../globe/MiniGlobe';
+import type { TapResult } from '../../lib/tap-result';
+import type { MiniGlobeRef } from '../globe/MiniGlobe';
 
 /**
  * The earth, as something you can touch.

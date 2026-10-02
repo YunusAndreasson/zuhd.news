@@ -12,7 +12,7 @@ import type { FamineArea, GenocideSituation, ThermalEvent } from '../lib/overlay
 import { displayCountryName } from '../lib/place-names';
 import { staggerEnter } from '../lib/stagger';
 import { straitChange, straitStateFor } from '../lib/strait-map';
-import type { TapResult } from './globe/MiniGlobe';
+import type { TapResult } from '../lib/tap-result';
 import {
   conflictMarkRow,
   famineMarkRow,
