@@ -1,5 +1,5 @@
 import type { ComplexityCardData } from '../../lib/country-cards';
-import { alignToYears, getGlobalBenchmarks, latest, near } from '../../lib/country-cards';
+import { getGlobalBenchmarks, latest, near, trajectoryOf } from '../../lib/country-cards';
 import { TrajectoryChart } from '../charts/TrajectoryChart';
 import { CardShell } from './CardShell';
 
@@ -11,8 +11,9 @@ export function ComplexityCard({ data }: ComplexityCardProps) {
   const eciLatest = latest(data.eci);
   const rankLatest = latest(data.eciRank);
   const rankOld = near(data.eciRank, 1995);
+  const trajectory = trajectoryOf(data.eci, getGlobalBenchmarks().complexity?.eci);
 
-  if (!eciLatest || !rankLatest) {
+  if (!eciLatest || !rankLatest || !trajectory) {
     return (
       <CardShell
         eyebrow="economic complexity"
@@ -44,17 +45,6 @@ export function ComplexityCard({ data }: ComplexityCardProps) {
     subtitle = `Rank within the world’s exporters by export basket sophistication.`;
   }
 
-  // ECI value series for the trajectory. Hard-coded y-bounds give every
-  // country the same visual scale so users can compare cards across the
-  // carousel. The world line is the only reference: a dashed rule at zero
-  // labelled "world median" drew the same thing a second time, on top of it,
-  // and the grey line ran through its label.
-  const series = data.eci ?? [];
-  const startYear = series[0]?.[0] ?? 1995;
-  const endYear = series[series.length - 1]?.[0] ?? new Date().getFullYear();
-  const globalSeries = getGlobalBenchmarks().complexity?.eci ?? [];
-  const comparisonValues = alignToYears(globalSeries, startYear, endYear);
-
   return (
     <CardShell
       eyebrow="economic complexity"
@@ -62,11 +52,13 @@ export function ComplexityCard({ data }: ComplexityCardProps) {
       subtitle={subtitle}
       source="Harvard Growth Lab"
     >
+      {/* The ECI value's trajectory. Hard-coded y-bounds give every country
+          the same visual scale so readers can compare cards across the
+          carousel. The world line is the only reference: a dashed rule at
+          zero labelled "world median" drew the same thing a second time, on
+          top of it, and the grey line ran through its label. */}
       <TrajectoryChart
-        values={series.map(([, v]) => v)}
-        startYear={startYear}
-        endYear={endYear}
-        comparison={{ values: comparisonValues, label: 'world' }}
+        {...trajectory}
         minY={-3}
         maxY={3}
         // No scale strip: it printed `−3.0–+3.0`, the bounds of a unitless

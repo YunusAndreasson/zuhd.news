@@ -2,6 +2,7 @@ import { memo, useCallback } from 'react';
 import { StyleSheet, View } from 'react-native';
 import { SPACING } from '../constants/theme';
 import { useTheme } from '../hooks/useTheme';
+import { spokenDelta } from '../lib/cards/format';
 import { WEEK_WINDOW } from '../lib/cards/week-move';
 import { observationDate } from '../lib/data-freshness';
 import type { CatalogRow } from '../lib/instrument-catalog';
@@ -63,7 +64,7 @@ export const InstrumentRow = memo(function InstrumentRow({
         title,
         kicker,
         [reading, unit].filter(Boolean).join(' '),
-        move ? `${move.direction} ${move.magnitude} ${move.window ?? ''}` : '',
+        move ? spokenDelta(move) : '',
         date,
       ]
         .filter(Boolean)

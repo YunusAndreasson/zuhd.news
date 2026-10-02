@@ -1,9 +1,10 @@
 const mockKv = new Map<string, string>();
+const mockSetItemSync = jest.fn((k: string, v: string) => mockKv.set(k, v));
 jest.mock('expo-sqlite/kv-store', () => ({
   __esModule: true,
   default: {
     getItemSync: (k: string) => mockKv.get(k) ?? null,
-    setItemSync: (k: string, v: string) => mockKv.set(k, v),
+    setItemSync: (k: string, v: string) => mockSetItemSync(k, v),
     removeItemSync: (k: string) => mockKv.delete(k),
   },
 }));
@@ -19,6 +20,7 @@ jest.mock('../lib/validate', () => {
     isGdacsSnapshot: any,
     isGenocideSnapshot: any,
     isHeatmapResponse: any,
+    isStringMap: jest.requireActual('../lib/validate').isStringMap,
     isThermalSnapshot: any,
     isTrendsSnapshot: any,
   };
@@ -75,4 +77,19 @@ it('never sends a tag for a layer the app does not hold: a 304 would leave it em
   mockFetch.mockClear();
   await fetchAllSnapshots(() => false);
   expect(sentTag(TRENDS)).toBeUndefined();
+});
+
+it('writes the tags once for an arrival, however many layers it changed', async () => {
+  // Synchronous, and just before the commit that shows the arrival.
+  let n = 0;
+  mockFetch.mockImplementation(async () => respond(200, { ok: 1 }, `W/"v${++n}"`));
+  mockSetItemSync.mockClear();
+  const changed = await fetchAllSnapshots(() => true);
+  expect(changed.length).toBeGreaterThan(1);
+  expect(mockSetItemSync).toHaveBeenCalledTimes(1);
+  // Nothing new, nothing written.
+  mockSetItemSync.mockClear();
+  mockFetch.mockImplementation(async () => respond(304));
+  await fetchAllSnapshots(() => true);
+  expect(mockSetItemSync).not.toHaveBeenCalled();
 });

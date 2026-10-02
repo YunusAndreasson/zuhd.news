@@ -47,28 +47,3 @@ export function stripSnapOffsets(
   if (max > 0) offsets.push(max);
   return offsets;
 }
-
-/**
- * Which offset the row is resting on — the settle tick's only question. Offsets
- * are ascending, so the nearer of the two neighbours wins and both ends clamp.
- */
-export function nearestOffsetIndex(offsets: readonly number[], x: number): number {
-  let best = 0;
-  let bestDistance = Number.POSITIVE_INFINITY;
-  for (let i = 0; i < offsets.length; i++) {
-    const distance = Math.abs((offsets[i] ?? 0) - x);
-    if (distance < bestDistance) {
-      bestDistance = distance;
-      best = i;
-    }
-  }
-  return best;
-}
-
-/** Whether two offset lists say the same thing, so the row hands the scroll
- *  view a new array only when the geometry actually moved. */
-export function sameOffsets(a: readonly number[], b: readonly number[]): boolean {
-  if (a.length !== b.length) return false;
-  for (let i = 0; i < a.length; i++) if (a[i] !== b[i]) return false;
-  return true;
-}

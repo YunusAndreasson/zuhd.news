@@ -1,18 +1,14 @@
 import { StyleSheet } from 'react-native';
 import Animated from 'react-native-reanimated';
 import { SPACING } from '../constants/theme';
-import { useOpenLink } from '../lib/open-link';
 import { staggerEnter } from '../lib/stagger';
 import { Text } from './primitives';
-import { SheetLink } from './SheetContent';
 
+/** A section of a prose page. It once took a link or a list of them; no page
+ *  did, and a list of links is a list of `MenuRow`s with the `leave` mark. */
 export interface InfoSection {
   heading?: string;
   body: string;
-  link?: { label: string; url: string };
-  /** Multiple links stacked vertically — useful when a section references
-   *  several external sources (e.g. the About page's data-source list). */
-  links?: { label: string; url: string }[];
 }
 
 interface SheetInfoPageProps {
@@ -23,9 +19,8 @@ interface SheetInfoPageProps {
   footer?: React.ReactNode;
 }
 
-/** Prose-heavy sheet page: optional heading, body, optional link per section. */
+/** Prose-heavy sheet page: an optional heading and a body per section. */
 export function SheetInfoPage({ sections, footer }: SheetInfoPageProps) {
-  const openLink = useOpenLink();
   return (
     <>
       {sections.map((section, i) => (
@@ -35,7 +30,7 @@ export function SheetInfoPage({ sections, footer }: SheetInfoPageProps) {
           style={i > 0 ? styles.section : undefined}
         >
           {section.heading && (
-            <Text variant="labelSm" style={styles.heading}>
+            <Text variant="labelSm" accessibilityRole="header" style={styles.heading}>
               {section.heading}
             </Text>
           )}
@@ -50,15 +45,6 @@ export function SheetInfoPage({ sections, footer }: SheetInfoPageProps) {
               {section.body}
             </Text>
           )}
-          {section.link && (
-            <SheetLink
-              label={section.link.label}
-              onPress={() => section.link?.url && openLink(section.link.url)}
-            />
-          )}
-          {section.links?.map((l) => (
-            <SheetLink key={l.url} label={l.label} onPress={() => openLink(l.url)} />
-          ))}
         </Animated.View>
       ))}
       {footer && (

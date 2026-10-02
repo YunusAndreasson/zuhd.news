@@ -1,7 +1,7 @@
-import type { Category } from '@shared/types';
+import type { Category, GroupedArticles } from '@shared/types';
 import { router, useLocalSearchParams } from 'expo-router';
 import { useEffect } from 'react';
-import { categoryOf, type GroupedArticles } from './usePendingNotification';
+import { categoryOf } from './usePendingNotification';
 
 /** Open a linked story once the feed is ready, then clear its route param. */
 export function useLinkedStory(

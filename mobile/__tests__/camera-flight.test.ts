@@ -4,6 +4,7 @@ import type { SharedValue } from 'react-native-reanimated';
 import { useCameraFlight } from '../hooks/useCameraFlight';
 import {
   arcDegrees,
+  crossingFlies,
   DECK_SETTLE_MS,
   flyCurve,
   flyMs,
@@ -138,13 +139,15 @@ it('hands a landed swipe to a flight only where that would not hurry it', () => 
       const ms = flyMs(flyCurve(from, to, travel));
       expect(ms).toBeGreaterThanOrEqual(last);
       last = ms;
+      // The rule both the claim and the landing ask is this comparison.
+      expect(crossingFlies(from, to, travel)).toBe(ms > DECK_SETTLE_MS);
       if (ms > DECK_SETTLE_MS) flying = true;
       // Never back under the bar once over it.
       else expect(flying).toBe(false);
     }
     // A neighbouring city rides the card; the far side of the planet flies.
-    expect(flyMs(flyCurve(from, to, 3))).toBeLessThanOrEqual(DECK_SETTLE_MS);
-    expect(flyMs(flyCurve(from, to, 120))).toBeGreaterThan(DECK_SETTLE_MS);
+    expect(crossingFlies(from, to, 3)).toBe(false);
+    expect(crossingFlies(from, to, 120)).toBe(true);
   }
 });
 

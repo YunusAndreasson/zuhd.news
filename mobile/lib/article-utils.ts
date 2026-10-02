@@ -33,6 +33,11 @@ export const articleTime = (
 export const eventTime = (a: Pick<Article, 'eventAt' | 'date' | 'addedAt'>): number =>
   a.eventAt ?? (Date.parse(a.date) || a.addedAt);
 
+/** One formatter for the date a story older than a week prints, in the
+ *  phone's own locale as it always was. It runs per row and per step of the
+ *  dock's scrub, and `toLocaleDateString` builds a formatter per call. */
+let dayMonthFormat: Intl.DateTimeFormat | undefined;
+
 export function formatTimeAgo(addedAt: number): string {
   const diffMs = Date.now() - addedAt;
   const diffMin = Math.floor(diffMs / 60_000);
@@ -42,7 +47,8 @@ export function formatTimeAgo(addedAt: number): string {
   if (diffHours < 24) return `${diffHours}h ago`;
   const diffDays = Math.floor(diffHours / 24);
   if (diffDays < 7) return `${diffDays}d ago`;
-  return new Date(addedAt).toLocaleDateString(undefined, { day: 'numeric', month: 'short' });
+  dayMonthFormat ??= new Intl.DateTimeFormat(undefined, { day: 'numeric', month: 'short' });
+  return dayMonthFormat.format(new Date(addedAt));
 }
 
 export function ccToFlag(cc: string): string {

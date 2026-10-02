@@ -8,7 +8,7 @@ import {
   parseInline,
   renderSegments,
 } from '../../lib/markdown';
-import { useOpenLink } from '../../lib/open-link';
+import { openExternal } from '../../lib/open-link';
 import { Text } from './Text';
 
 export interface MarkdownProps {
@@ -19,7 +19,7 @@ export interface MarkdownProps {
   selectable?: boolean;
   /** Custom link handler — typically used to intercept the `country:XX`
    *  scheme and dispatch through CountrySheet rather than the OS
-   *  browser (see `StoryCard`). Defaults to `useOpenLink()`, which
+   *  browser (see `StoryCard`). Defaults to `openExternal`, which
    *  routes everything through `Linking.openURL`. */
   openLink?: LinkOpener;
   style?: TextStyle;
@@ -47,8 +47,7 @@ export const Markdown = memo(function Markdown({
     () => makeMarkdownStyles(colors, font, typography),
     [colors, font, typography],
   );
-  const defaultOpenLink = useOpenLink();
-  const handleLink = openLink ?? defaultOpenLink;
+  const handleLink = openLink ?? openExternal;
 
   if (!children) return null;
   return (

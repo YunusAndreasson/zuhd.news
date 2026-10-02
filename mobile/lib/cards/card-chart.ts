@@ -1,4 +1,5 @@
 import type { RelatedArticleRef, TrendAnnotation } from '@shared/types';
+import { MONTH_ABBR } from '../date-format';
 import type { CardDelta, CardSeries } from './types';
 
 /**
@@ -9,7 +10,6 @@ import type { CardDelta, CardSeries } from './types';
  * into the series. A miss has to draw nothing, never the wrong day.
  */
 
-const MONTHS = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
 /** The chip's window names the day it opened on: "since Jul 24", "weaker since Jul 24". */
 const SINCE = /(?:^|\s)since (.+)$/;
 
@@ -45,7 +45,7 @@ function labelsFor(date: string | undefined): [day: string, month: string] | nul
   const t = Date.parse(date);
   if (!Number.isFinite(t)) return null;
   const d = new Date(t);
-  const month = MONTHS[d.getUTCMonth()] as string;
+  const month = MONTH_ABBR[d.getUTCMonth()] as string;
   return [`${month} ${d.getUTCDate()}`, `${month} ${d.getUTCFullYear()}`];
 }
 

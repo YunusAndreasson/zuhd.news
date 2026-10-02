@@ -2,6 +2,7 @@ import { memo, useCallback } from 'react';
 import { StyleSheet, View } from 'react-native';
 import { SPACING } from '../constants/theme';
 import { useTheme } from '../hooks/useTheme';
+import { spokenDelta } from '../lib/cards/format';
 import type { GraphCard } from '../lib/cards/types';
 import { gaugeMove } from '../lib/cards/week-move';
 import { observationDate } from '../lib/data-freshness';
@@ -48,9 +49,7 @@ export const StoryChart = memo(function StoryChart({
   // no week — a monthly print, a contract — keeps the card's move, and the
   // chip prints its window either way.
   const delta = gaugeMove(card)?.delta ?? card.delta;
-  const move = delta
-    ? `${delta.direction === 'flat' ? '' : `${delta.direction} `}${delta.magnitude}${delta.window ? ` ${delta.window}` : ''}`
-    : null;
+  const move = delta ? spokenDelta(delta) : null;
   const spoken = (
     belief
       ? [`Traders price ${subject} at ${card.reading}`, move, MARKET_CAVEAT]

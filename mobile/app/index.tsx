@@ -1,4 +1,4 @@
-import { COUNTRY_DATA, type CountryData } from '@shared/countries/country-data';
+import type { CountryData } from '@shared/countries/country-data';
 import type {
   Article,
   ArticleSource,
@@ -38,12 +38,7 @@ import { DisasterSheet } from '../components/DisasterSheet';
 import { EmptyState } from '../components/EmptyState';
 import { EntitySheet } from '../components/EntitySheet';
 import { ErrorState } from '../components/ErrorState';
-import {
-  COLLECT_MS,
-  MiniGlobe,
-  type MiniGlobeRef,
-  type TapResult,
-} from '../components/globe/MiniGlobe';
+import { COLLECT_MS, MiniGlobe, type MiniGlobeRef } from '../components/globe/MiniGlobe';
 import { FRAMING_WIDEST } from '../components/globe/projection';
 import { HintOverlay } from '../components/HintOverlay';
 import { type MenuHazards, MenuSheet } from '../components/MenuSheet';
@@ -89,6 +84,7 @@ import {
   restore as restoreBookmark,
   toggle as toggleBookmark,
 } from '../lib/bookmark-store';
+import { markMove } from '../lib/cards/format';
 import { buildInstrumentCards, straitCardFor } from '../lib/cards/markets';
 import type { SwipeCard } from '../lib/cards/rank';
 import { buildRankedInstruments } from '../lib/cards/sections';
@@ -99,14 +95,14 @@ import { computeDeckLayout, openHeightNeedsMeasuring, openStoryHeight } from '..
 import { getSnapshot as getFound, markFound, pruneFound, useFoundSlugs } from '../lib/found-store';
 import { markLanded, spendNew, useFreshSlugs } from '../lib/fresh-store';
 import { globeGdacsAlerts } from '../lib/gdacs';
-import { arcDegrees, DECK_SETTLE_MS, flyCurve, flyMs } from '../lib/globe-camera';
+import { arcDegrees, crossingFlies } from '../lib/globe-camera';
 import { hapticError, hapticImpact, hapticNotification, hapticSwipe } from '../lib/haptics';
 import {
   buildInstrumentCatalog,
   type CatalogGroup,
   type CatalogRow,
 } from '../lib/instrument-catalog';
-import { buildStoryRows, cameraTrackOf } from '../lib/map-feed';
+import { buildStoryRows, cameraTrackOf, type StoryRow } from '../lib/map-feed';
 import { exchangeCard, exchangeIsStale } from '../lib/markets';
 import { orderNewsRiver, type RiverArticle, recentRiver, riverAnchor } from '../lib/news-order';
 import {
@@ -122,7 +118,7 @@ import {
   markHintDone,
   recordArticleSnap,
 } from '../lib/onboarding-store';
-import { useOpenLink } from '../lib/open-link';
+import { openExternal } from '../lib/open-link';
 import type { OverlaySelection } from '../lib/overlays';
 import { oddsByStory, oddsLabels, type StoryOdds } from '../lib/predictions';
 import { getSnapshot as getReadSlugs, pruneRead } from '../lib/read-store';
@@ -130,6 +126,7 @@ import { resumeLanding, unreadNewBehind } from '../lib/resume-landing';
 import { maybeRequestReview } from '../lib/store-review';
 import { storyCharts } from '../lib/story-chart';
 import { buildStoryPlaces, foundProgress } from '../lib/story-places';
+import { countryTap, type TapResult } from '../lib/tap-result';
 
 /**
  * One screen.
@@ -189,6 +186,26 @@ interface FocusOptions {
   afterBurst?: boolean;
   /** Grow the card into the whole story. */
   grow?: boolean;
+}
+
+/**
+ * Whether the swipe from story `from` to story `to` flies rather than riding
+ * the card (`crossingFlies`) — asked once per river for every claim
+ * (`ridesFinger`) and again at each landing (`handleDeckSettle`). A story with
+ * no place has no crossing to fly; a framing the globe cannot say yet is the
+ * widest.
+ */
+function swipeFlies(
+  rows: readonly StoryRow[],
+  from: number,
+  to: number,
+  framingFor: (index: number) => number,
+): boolean {
+  const a = rows[from]?.coords;
+  const b = rows[to]?.coords;
+  if (!a || !b) return false;
+  const toClip = framingFor(to) || FRAMING_WIDEST;
+  return crossingFlies(framingFor(from) || toClip, toClip, arcDegrees(a[0], a[1], b[0], b[1]));
 }
 
 export default function HomeScreen() {
@@ -582,9 +599,8 @@ export default function HomeScreen() {
         id: item.id,
         // Two lines on the globe: the name, then the move under it, larger.
         label: item.label,
-        // A week that rounds to nothing prints `−0%`, as a strait's does; the
-        // chip's word `unchanged` does not belong under a name on the map.
-        move: `${item.delta.direction === 'up' ? '↑' : item.delta.direction === 'down' ? '↓' : '−'}${item.delta.direction === 'flat' ? '0%' : item.delta.magnitude}${item.stale ? '*' : ''}`,
+        // As a strait's does (`markMove`), an asterisk on an older quote.
+        move: `${markMove(item.delta)}${item.stale ? '*' : ''}`,
         direction: item.delta.direction,
         lat: item.coords[0],
         lng: item.coords[1],
@@ -697,16 +713,7 @@ export default function HomeScreen() {
   // makes at the lift, made once per river so the pan can read it on the UI
   // thread the moment it claims a swipe.
   useEffect(() => {
-    ridesFinger.value = storyRows.map((row, i) => {
-      const next = storyRows[i + 1];
-      if (!row.coords || !next?.coords) return true;
-      const crossing = flyCurve(
-        framingFor(i) || FRAMING_WIDEST,
-        framingFor(i + 1) || FRAMING_WIDEST,
-        arcDegrees(row.coords[0], row.coords[1], next.coords[0], next.coords[1]),
-      );
-      return flyMs(crossing) <= DECK_SETTLE_MS;
-    });
+    ridesFinger.value = storyRows.map((_, i) => !swipeFlies(storyRows, i, i + 1, framingFor));
   }, [framingFor, ridesFinger, storyRows]);
 
   // The story in front, for a swipe to decide whether the camera is still on it.
@@ -886,16 +893,15 @@ export default function HomeScreen() {
     [flyTo],
   );
 
-  const openLink = useOpenLink();
   /** The contract's own card where the deck admitted it; otherwise the market
    *  itself — a price is only worth printing if the reader can check it. */
   const handleOddsPress = useCallback(
     (value: StoryOdds) => {
       const card = rankedRef.current.find((c) => c.id === value.id);
       if (card) openCard(card);
-      else if (value.marketUrl) openLink(value.marketUrl);
+      else if (value.marketUrl) openExternal(value.marketUrl);
     },
-    [openCard, openLink],
+    [openCard],
   );
 
   /** The gauge a menu row stands for: its slot or its mark, so the globe
@@ -1191,13 +1197,10 @@ export default function HomeScreen() {
     [handOffSheet],
   );
 
-  const openCountry = useCallback(
-    (countryName: string, data: CountryData | null = COUNTRY_DATA[countryName] ?? null) => {
-      setCountrySheet({ countryName, location: null, localTime: null, data });
-      countrySheetRef.current?.present();
-    },
-    [],
-  );
+  const openCountry = useCallback((countryName: string, data?: CountryData | null) => {
+    setCountrySheet(countryTap(countryName, data));
+    countrySheetRef.current?.present();
+  }, []);
 
   const handleEntityPress = useCallback(
     (entity: Entity) => {
@@ -1227,7 +1230,6 @@ export default function HomeScreen() {
     // Not on the end card either: every lesson there points at a next story
     // or a story to open, and the end card has neither.
     suppressed: sheetOpen || briefingVisible || deckIndex >= storyRows.length,
-    surface: 'map',
   });
 
   const notificationsOnRef = useRef(preferences.notifications);
@@ -1268,7 +1270,6 @@ export default function HomeScreen() {
   const handleDeckSettle = useCallback(
     (index: number) => {
       const leavingIndex = deckIndexRef.current;
-      const leaving = storyRowsRef.current[leavingIndex]?.coords ?? null;
       deckIndexRef.current = index;
       setDeckIndex(index);
       // A screen reader moves the deck through the card's next/previous
@@ -1291,15 +1292,7 @@ export default function HomeScreen() {
       if (!said) hapticSwipe();
       if (row?.coords) {
         const framing = framingFor(index);
-        const travel = leaving
-          ? arcDegrees(leaving[0], leaving[1], row.coords[0], row.coords[1])
-          : 0;
-        const crossing = flyCurve(
-          framingFor(leavingIndex) || framing || FRAMING_WIDEST,
-          framing || FRAMING_WIDEST,
-          travel,
-        );
-        if (flyMs(crossing) > DECK_SETTLE_MS) {
+        if (swipeFlies(storyRowsRef.current, leavingIndex, index, framingFor)) {
           // Longer than the card's own landing: the camera leaves the deck
           // here, at the lift, and flies the rest from wherever the finger got
           // it to, at the pace the distance asks for. The landing hands it
@@ -2130,6 +2123,7 @@ export default function HomeScreen() {
         sheetRef={disambiguationSheetRef}
         candidates={chooserCandidates}
         chokepoints={chokepoints}
+        straitMoves={straitMoves}
         alerts={gdacsAlerts}
         conflictEvents={conflictEvents}
         instruments={rankedInstruments}

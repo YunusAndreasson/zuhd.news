@@ -1,21 +1,22 @@
 import { getMetricValue, getRanking, type MetricKey } from '@shared/countries/country-ranking';
 import type { GdacsAlert } from '@shared/types';
 import { Canvas, Circle, Path } from '@shopify/react-native-skia';
-import { memo, useCallback, useMemo, useState } from 'react';
+import { memo, useCallback, useState } from 'react';
 import { Text as RNText, StyleSheet, View } from 'react-native';
 import { GestureDetector } from 'react-native-gesture-handler';
 import Animated from 'react-native-reanimated';
-import { FLAG, MAX_FONT_SCALE, OPACITY, SPACING } from '../constants/theme';
+import { MAX_FONT_SCALE, OPACITY, SPACING } from '../constants/theme';
 import { useSheetBackNavigation } from '../hooks/useSheetBackNavigation';
 import { useTheme } from '../hooks/useTheme';
 import { parseSeverityHero } from '../lib/gdacs';
 import { displayCountryName, displayLocation } from '../lib/place-names';
 import { severityTint } from '../lib/severity';
 import { staggerEnter } from '../lib/stagger';
+import type { TapResult } from '../lib/tap-result';
 import { CountryRankingView } from './CountryRankingView';
 import { CountryCardsCarousel } from './country-cards/CountryCardsCarousel';
+import { FlagGlyph } from './FlagChip';
 import { EVENT_TYPE_LABEL, GLYPH_HALF, getGlyphPath } from './globe/disaster-glyphs';
-import type { TapResult } from './globe/MiniGlobe';
 import { Icon, Pressable, Text } from './primitives';
 import { SheetScrollView } from './SheetContent';
 import { SheetHandle } from './SheetHandle';
@@ -270,11 +271,7 @@ export function CountryTitle({
   return (
     <View style={[styles.handleRow, hasBack && styles.handleRowWithBack]}>
       <View style={styles.handleIdent}>
-        {flag && (
-          <RNText allowFontScaling={false} style={styles.handleFlag}>
-            {flag}
-          </RNText>
-        )}
+        {flag && <FlagGlyph flag={flag} size="inline" />}
         {/* 21pt semibold so the country name reads as the canonical
          *  identifier above every card headline (also 21pt) and metric
          *  row label (13pt small-caps). `flexShrink` lets a long name
@@ -312,6 +309,46 @@ interface CountryBodyProps {
   onRankingPress: (metric: MetricKey) => void;
 }
 
+interface MetricRow {
+  key: MetricKey;
+  label: string;
+  value: string;
+  rank: number | null;
+  total: number;
+}
+
+/** A country's place in one ranking: 1-based, or null where it is not ranked. */
+function rankIn(metric: MetricKey, countryName: string): { rank: number | null; total: number } {
+  const entries = getRanking(metric);
+  const idx = entries.findIndex((e) => e.name === countryName);
+  return { rank: idx >= 0 ? idx + 1 : null, total: entries.length };
+}
+
+/**
+ * The country's metrics with its place in each, best placed first and the
+ * unranked last. A plain function: `CountryBody` is compiled, which keeps the
+ * result until the country changes — the two `useMemo`s it was built in
+ * listed dependencies the compiler could not keep, so the body skipped it.
+ */
+function metricRows(country: TapResult | null): MetricRow[] {
+  if (!country?.data) return [];
+  const name = country.countryName;
+  const rows: MetricRow[] = [];
+  for (const m of MORE_METRICS) {
+    const value = getMetricValue(name ?? '', country.data, m.key);
+    if (value == null) continue;
+    const { rank, total } = name ? rankIn(m.key, name) : { rank: null, total: 0 };
+    rows.push({ key: m.key, label: m.label, value, rank, total });
+  }
+  rows.sort((a, b) => {
+    if (a.rank == null && b.rank == null) return 0;
+    if (a.rank == null) return 1;
+    if (b.rank == null) return -1;
+    return a.rank - b.rank;
+  });
+  return rows;
+}
+
 /** The country's cards, its ranked metrics, its alerts and the marks in it —
  *  the sheet's content without the sheet, which the menu shows as a page. */
 export const CountryBody = memo(function CountryBody({
@@ -321,39 +358,7 @@ export const CountryBody = memo(function CountryBody({
   hazards,
   onRankingPress,
 }: CountryBodyProps) {
-  const rankFor = useMemo(() => {
-    const targetName = country?.countryName;
-    if (!targetName) return () => ({ rank: null as number | null, total: 0 });
-    return (metric: MetricKey): { rank: number | null; total: number } => {
-      const entries = getRanking(metric);
-      const idx = entries.findIndex((e) => e.name === targetName);
-      return { rank: idx >= 0 ? idx + 1 : null, total: entries.length };
-    };
-  }, [country?.countryName]);
-
-  const rankedRows = useMemo(() => {
-    if (!country?.data) return [];
-    const rows: {
-      key: MetricKey;
-      label: string;
-      value: string;
-      rank: number | null;
-      total: number;
-    }[] = [];
-    for (const m of MORE_METRICS) {
-      const value = getMetricValue(country.countryName ?? '', country.data, m.key);
-      if (value == null) continue;
-      const { rank, total } = rankFor(m.key);
-      rows.push({ key: m.key, label: m.label, value, rank, total });
-    }
-    rows.sort((a, b) => {
-      if (a.rank == null && b.rank == null) return 0;
-      if (a.rank == null) return 1;
-      if (b.rank == null) return -1;
-      return a.rank - b.rank;
-    });
-    return rows;
-  }, [country?.data, country?.countryName, rankFor]);
+  const rankedRows = metricRows(country);
 
   return (
     <>
@@ -378,7 +383,14 @@ export const CountryBody = memo(function CountryBody({
       )}
       {activeAlerts && activeAlerts.length > 0 && onAlertPress && (
         <Animated.View entering={staggerEnter(2)} style={styles.alertsSection}>
-          <Text variant="labelXs" tone="secondary" style={styles.alertsHeading}>
+          {/* `labelSm`, as a section label in a sheet is, and as `on the map`
+              below it was: this one was a size smaller. */}
+          <Text
+            variant="labelSm"
+            tone="secondary"
+            accessibilityRole="header"
+            style={styles.alertsHeading}
+          >
             {activeAlerts.length === 1 ? 'active alert' : `${activeAlerts.length} active alerts`}
           </Text>
           {activeAlerts.map((a) => (
@@ -388,7 +400,12 @@ export const CountryBody = memo(function CountryBody({
       )}
       {hazards && hazards.length > 0 && (
         <Animated.View entering={staggerEnter(3)} style={styles.alertsSection}>
-          <Text variant="labelSm" tone="secondary" style={styles.alertsHeading}>
+          <Text
+            variant="labelSm"
+            tone="secondary"
+            accessibilityRole="header"
+            style={styles.alertsHeading}
+          >
             on the map
           </Text>
           {hazards.map((h) => (
@@ -409,19 +426,15 @@ export const CountrySheet = memo(function CountrySheet({
   bottomInset,
   onDismiss,
 }: CountrySheetProps) {
-  const { resolvedAppearance } = useTheme();
   const [activeRanking, setActiveRanking] = useState<MetricKey | null>(null);
   const onBackToCountry = useCallback(() => setActiveRanking(null), []);
 
   const hasBack = activeRanking !== null;
-  const CountryHandle = useCallback(
-    () => (
-      <SheetHandle
-        onBack={hasBack ? onBackToCountry : undefined}
-        title={<CountryTitle country={country} hasBack={hasBack} />}
-      />
-    ),
-    [hasBack, onBackToCountry, country],
+  const handle = (
+    <SheetHandle
+      onBack={hasBack ? onBackToCountry : undefined}
+      title={<CountryTitle country={country} hasBack={hasBack} />}
+    />
   );
 
   const handleDismiss = useCallback(() => {
@@ -439,7 +452,7 @@ export const CountrySheet = memo(function CountrySheet({
   return (
     <SheetLayout
       sheetRef={sheetRef}
-      handleComponent={CountryHandle}
+      handle={handle}
       onDismiss={handleDismiss}
       onBackPress={hasBack ? onBackToCountry : undefined}
     >
@@ -455,10 +468,7 @@ export const CountrySheet = memo(function CountrySheet({
           </View>
         </GestureDetector>
       ) : (
-        <SheetScrollView
-          bottomInset={bottomInset}
-          indicatorStyle={resolvedAppearance === 'dark' ? 'white' : 'black'}
-        >
+        <SheetScrollView bottomInset={bottomInset}>
           <CountryBody
             country={country}
             activeAlerts={activeAlerts}
@@ -500,10 +510,6 @@ const styles = StyleSheet.create({
     gap: SPACING.sm,
     flexShrink: 1,
     minWidth: 0,
-  },
-  handleFlag: {
-    fontSize: FLAG.inline,
-    lineHeight: FLAG.inline * 1.125,
   },
   handleName: {
     flexShrink: 1,

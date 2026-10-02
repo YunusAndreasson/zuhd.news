@@ -1,5 +1,5 @@
 import { BlurView } from 'expo-blur';
-import { memo, useCallback, useEffect, useMemo, useRef } from 'react';
+import { memo, type ReactNode, useCallback, useEffect, useRef } from 'react';
 import {
   type AccessibilityActionEvent,
   ActivityIndicator,
@@ -13,13 +13,13 @@ import Animated, {
   FadeInDown,
   FadeOutUp,
   LinearTransition,
-  useReducedMotion,
   useSharedValue,
   withTiming,
 } from 'react-native-reanimated';
 import { ANIMATION, EASING, RADIUS, SPACING } from '../constants/theme';
 import { useScrub } from '../hooks/useScrub';
 import { useTheme } from '../hooks/useTheme';
+import { observationDate } from '../lib/data-freshness';
 import { Icon, IconButton, Text } from './primitives';
 import { ScrubBar, ScrubTooltip } from './ScrubBar';
 
@@ -71,21 +71,18 @@ export const BriefingBar = memo(function BriefingBar({
   const progress = duration > 0 ? Math.max(0, Math.min(elapsed / duration, 1)) : 0;
   const progressSV = useSharedValue(0);
   const scrubbingRef = useRef(false);
-  const reduceMotion = useReducedMotion();
   useEffect(() => {
     // The gesture owns progressSV while the finger is down. Native playback
     // status can briefly report the pre-seek position; letting that value start
     // a timing animation here made the fill fight the finger and snap backward.
     if (scrubbingRef.current) return;
-    if (reduceMotion) {
-      progressSV.value = progress;
-    } else {
-      // Slow fill for smooth playback tracking (matches the elapsed-update
-      // cadence). Linear: an eased tween restarted on every status tick
-      // accelerates and brakes once a second, so the fill pulsed.
-      progressSV.value = withTiming(progress, { duration: ANIMATION.long, easing: Easing.linear });
-    }
-  }, [progress, reduceMotion, progressSV]);
+    // Slow fill for smooth playback tracking (matches the elapsed-update
+    // cadence). Linear: an eased tween restarted on every status tick
+    // accelerates and brakes once a second, so the fill pulsed. Under Reduce
+    // Motion Reanimated lands it at once (`ReduceMotion.System`), which a
+    // branch of its own here used to repeat.
+    progressSV.value = withTiming(progress, { duration: ANIMATION.long, easing: Easing.linear });
+  }, [progress, progressSV]);
 
   // The scrub owns `progressSV` while a finger is down (see the effect above);
   // one latest-value seek is committed when it lifts. `useScrub` holds the
@@ -125,16 +122,9 @@ export const BriefingBar = memo(function BriefingBar({
   // Gone is zero: a card leaving room for a bar that has closed is a gap.
   useEffect(() => () => onHeightChange?.(0), [onHeightChange]);
 
-  const dateLabel = useMemo(() => {
-    try {
-      return new Date(`${date}T00:00:00`).toLocaleDateString('en-US', {
-        month: 'short',
-        day: 'numeric',
-      });
-    } catch {
-      return date;
-    }
-  }, [date]);
+  // The date grammar every card's kicker uses: `Sep 19`. The `try` this
+  // replaced could catch nothing — an unreadable date printed `Invalid Date`.
+  const dateLabel = observationDate(date);
 
   return (
     <Animated.View
@@ -253,28 +243,16 @@ export const BriefingBar = memo(function BriefingBar({
  *  the dock; a lit coastline now) showed behind `briefing · Sep 19`. Both wrap the bar's
  *  rounded-rect with the same border radius and clip overflow so the inner
  *  edge-to-edge progress strip follows the corner curve. */
-const BarBackground = memo(function BarBackground({
-  children,
-  onLayout,
-  tintColor,
-}: {
-  children: React.ReactNode;
-  onLayout?: (e: LayoutChangeEvent) => void;
-  tintColor: string;
-}) {
+function BarBackground({ children, tintColor }: { children: ReactNode; tintColor: string }) {
   if (Platform.OS === 'ios') {
     return (
-      <BlurView intensity={60} tint="systemThinMaterial" style={styles.bar} onLayout={onLayout}>
+      <BlurView intensity={60} tint="systemThinMaterial" style={styles.bar}>
         {children}
       </BlurView>
     );
   }
-  return (
-    <View style={[styles.bar, { backgroundColor: tintColor }]} onLayout={onLayout}>
-      {children}
-    </View>
-  );
-});
+  return <View style={[styles.bar, { backgroundColor: tintColor }]}>{children}</View>;
+}
 
 const styles = StyleSheet.create({
   // Just under the top bar's 48pt row, whose gauge labels sit mid-row, so

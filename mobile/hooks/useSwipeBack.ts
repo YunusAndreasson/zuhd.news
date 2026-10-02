@@ -30,8 +30,8 @@ export function useSwipeBackGesture({ enabled, onBack }: { enabled: boolean; onB
   // The config still has to be, though: `usePanGesture` re-pushes it to the
   // native side whenever its identity changes, and an inline object literal
   // with an inline worklet is a fresh identity on every render.
-  const config = useMemo<PanGestureConfig>(
-    () => ({
+  const config = useMemo(
+    (): PanGestureConfig => ({
       enabled,
       activeOffsetX: ACTIVE_OFFSET_X,
       failOffsetY: FAIL_OFFSET_Y,

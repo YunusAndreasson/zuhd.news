@@ -40,15 +40,20 @@ function normalizedSeriesMovement(series: CardSeries): number {
   return strongest;
 }
 
-function newsRelevance(card: DeckCard, articles: Article[]): number {
+/** The river by slug, with each story's place in it, and its length. */
+interface RiverIndex {
+  bySlug: ReadonlyMap<string, { article: Article; index: number }>;
+  length: number;
+}
+
+function newsRelevance(card: DeckCard, river: RiverIndex): number {
   if (!card.related || card.related.length === 0) return 0;
-  const bySlug = new Map(articles.map((article, index) => [article.slug, { article, index }]));
   const matches = card.related.flatMap((related) => {
-    const match = bySlug.get(related.slug);
+    const match = river.bySlug.get(related.slug);
     if (!match) return [];
     // Coverage carries editorial weight; position rewards a tie to the top of
     // the already-ranked news river without allowing position to beat coverage.
-    return [(match.article.eventCoverage ?? 0) * 100 + (articles.length - match.index)];
+    return [(match.article.eventCoverage ?? 0) * 100 + (river.length - match.index)];
   });
   if (matches.length === 0) return 0;
   // Use the strongest live connection, not the sum. Aggregate cards carry far
@@ -66,9 +71,10 @@ function compareRanked(a: RankedCard, b: RankedCard): number {
   if (news !== 0) return news;
   const movement = b.ranking.normalizedMovement - a.ranking.normalizedMovement;
   if (movement !== 0) return movement;
-  const editorial = a.ranking.editorialOrder - b.ranking.editorialOrder;
-  if (editorial !== 0) return editorial;
-  return a.card.id.localeCompare(b.card.id);
+  // Every card's place in the editorial order is its own, so this is the last
+  // word. (An id comparison after it could only ever compare a card with
+  // itself.)
+  return a.ranking.editorialOrder - b.ranking.editorialOrder;
 }
 
 /** Keep a deck from turning into a hidden sub-tab. Two related pieces may
@@ -109,6 +115,11 @@ function capConsecutiveKickers(ranked: RankedCard[], max = 2): RankedCard[] {
  * lane while otherwise preserving the ranked order.
  */
 export function prepareSwipeCards(cards: DeckCard[], articles: Article[]): SwipeCard[] {
+  // Once per ranking, not once per card: it was rebuilt for each of them.
+  const river: RiverIndex = {
+    bySlug: new Map(articles.map((article, index) => [article.slug, { article, index }])),
+    length: articles.length,
+  };
   const prepared: RankedCard[] = [];
   cards.forEach((card, editorialOrder) => {
     if (!card.why?.trim() && !card.changed?.trim()) return;
@@ -116,7 +127,7 @@ export function prepareSwipeCards(cards: DeckCard[], articles: Article[]): Swipe
       card,
       ranking: {
         urgent: card.lead ? 1 : 0,
-        newsRelevance: newsRelevance(card, articles),
+        newsRelevance: newsRelevance(card, river),
         // A scheduled date has no line to measure. It ranks on urgency —
         // which for an event is imminence, set by the builder — and on the
         // stories tied to it, which is the right pair of questions to ask of a

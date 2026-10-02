@@ -1,4 +1,4 @@
-import { memo, type ReactNode, useCallback, useMemo } from 'react';
+import { memo, type ReactNode, useMemo } from 'react';
 import { StyleSheet, View } from 'react-native';
 import {
   GestureDetector,
@@ -26,28 +26,28 @@ const SWIPE_THRESHOLD = -ACTION_WIDTH * 0.6;
 
 interface SwipeableRowProps {
   children: ReactNode;
-  onSwipeAction: () => void;
-  actionLabel?: string;
+  /** What the row stands for, handed back to `onSwipeAction` — so the owner
+   *  passes one stable callback for every row, as `ArticleRow` takes its
+   *  `slug`. A closure per row was a new pan config for every row, re-sent to
+   *  the native side, whenever the list re-rendered. */
+  id: string;
+  /** No haptic of its own: the action is a committed change of state, and
+   *  its owner gives the notification for that (a second buzz here read as a
+   *  double knock). */
+  onSwipeAction: (id: string) => void;
 }
 
 export const SwipeableRow = memo(function SwipeableRow({
   children,
+  id,
   onSwipeAction,
-  actionLabel = 'remove',
 }: SwipeableRowProps) {
   const { colors } = useTheme();
   const translateX = useSharedValue(0);
   const ratchetThresholdFired = useSharedValue(false);
 
-  // No haptic of its own: the action is a committed change of state, and
-  // its owner gives the notification for that (a second buzz here read as a
-  // double knock).
-  const fireAction = useCallback(() => {
-    onSwipeAction();
-  }, [onSwipeAction]);
-
-  const panConfig = useMemo<PanGestureConfig>(
-    () => ({
+  const panConfig = useMemo(
+    (): PanGestureConfig => ({
       // Leftward only: a single negative value sets the start bound alone.
       activeOffsetX: -12,
       failOffsetY: [-10, 10],
@@ -77,11 +77,11 @@ export const SwipeableRow = memo(function SwipeableRow({
         // A cancelled swipe (a sheet dragged away, a system gesture) also
         // deactivates, and must only spring back — it deleted the row once.
         if (!e.canceled && released < SWIPE_THRESHOLD) {
-          scheduleOnRN(fireAction);
+          scheduleOnRN(onSwipeAction, id);
         }
       },
     }),
-    [translateX, ratchetThresholdFired, fireAction],
+    [translateX, ratchetThresholdFired, onSwipeAction, id],
   );
   const panGesture = usePanGesture(panConfig);
 
@@ -109,7 +109,7 @@ export const SwipeableRow = memo(function SwipeableRow({
       <Animated.View
         style={[styles.actionContainer, { backgroundColor: colors.bg }, actionOpacity]}
       >
-        <Text variant="labelXs">{actionLabel}</Text>
+        <Text variant="labelXs">remove</Text>
       </Animated.View>
       <GestureDetector gesture={panGesture}>
         <Animated.View style={[{ backgroundColor: colors.sheetBg }, rowStyle]}>

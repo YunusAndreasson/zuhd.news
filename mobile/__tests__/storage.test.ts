@@ -25,6 +25,9 @@ jest.mock('expo-file-system', () => ({
     write(value: string) {
       mockFiles.set(this.path, value);
     }
+    delete() {
+      mockFiles.delete(this.path);
+    }
   },
 }));
 
@@ -85,6 +88,17 @@ describe('SQLite-backed UX storage', () => {
 
     await expect(loadStorage().getPreferences()).resolves.toEqual(customPrefs);
     expect(mockKv.get('zuhd_preferences_v2')).toBe(serialized);
+    // Moved, not copied: a copy left behind is moved again after an erase.
+    expect(mockFiles.has('/doc/zuhd-preferences.json')).toBe(false);
+  });
+
+  it('moves the last-seen file and deletes it, so an erase of the kv key sticks', async () => {
+    mockFiles.set('/doc/zuhd-last-seen', '1751970000000');
+    const storage = loadStorage();
+    await expect(storage.getLastSeenAt()).resolves.toBe(1751970000000);
+    expect(mockFiles.has('/doc/zuhd-last-seen')).toBe(false);
+    mockKv.delete('zuhd_last_seen');
+    await expect(storage.getLastSeenAt()).resolves.toBe(0);
   });
 
   it('does not promote malformed legacy preferences into the active store', async () => {
@@ -92,6 +106,7 @@ describe('SQLite-backed UX storage', () => {
 
     await expect(loadStorage().getPreferences()).resolves.toEqual(DEFAULT_PREFS);
     expect(mockKv.has('zuhd_preferences_v2')).toBe(false);
+    expect(mockFiles.has('/doc/zuhd-preferences.json')).toBe(true);
   });
 
   it('migrates SecureStore last-seen state and removes the legacy secret', async () => {

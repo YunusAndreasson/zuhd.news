@@ -1,6 +1,8 @@
 import { displayNameFromCode } from '@shared/countries/iso';
+import { formatNumber } from './cards/format';
 import type { SwipeCard } from './cards/rank';
 import type { CardDelta } from './cards/types';
+import { DAY_MS } from './time';
 
 /** Published /api/markets.json contract. Every exchange, not only scored highlights. */
 export interface Exchange {
@@ -100,7 +102,7 @@ export function exchangeDelta(e: Exchange): CardDelta {
   };
 }
 export function exchangeIsStale(e: Exchange, now = Date.now()): boolean {
-  return Boolean(e.stale) || now - Date.parse(e.asOf) > 4 * 86_400_000;
+  return Boolean(e.stale) || now - Date.parse(e.asOf) > 4 * DAY_MS;
 }
 /**
  * Index names that mean something else on this globe. Mexico's index is
@@ -148,7 +150,7 @@ export function exchangeCard(e: Exchange): SwipeCard {
     title: INDEX_DISPLAY_NAMES[e.indexName] ?? e.indexName,
     kicker: `${e.name} · ${e.city}`,
     asOf: e.asOf,
-    reading: e.level.toLocaleString('en-US', { maximumFractionDigits: 2 }),
+    reading: formatNumber(e.level, 2),
     readingNote: 'index points',
     delta: exchangeDelta(e),
     changed: exchangeIsStale(e)

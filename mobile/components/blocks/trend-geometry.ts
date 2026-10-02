@@ -1,5 +1,5 @@
 import { scaleUtc } from 'd3-scale';
-import { curveLinear, area as d3Area, line as d3Line } from 'd3-shape';
+import { curveLinear, line as d3Line } from 'd3-shape';
 import { formatTickLabel, parseFlexibleDate } from '../../lib/date-format';
 
 export interface TrendPoint {
@@ -21,7 +21,6 @@ export interface TrendXLayout {
 interface TrendXLayoutOptions {
   periods?: string[];
   seriesLengths: number[];
-  bandLengths?: [number, number];
   left: number;
   right: number;
   maxTicks?: number;
@@ -44,13 +43,11 @@ function indexPositions(count: number, left: number, right: number): number[] {
 export function buildTrendXLayout({
   periods,
   seriesLengths,
-  bandLengths,
   left,
   right,
   maxTicks = 4,
 }: TrendXLayoutOptions): TrendXLayout {
-  const lengths = bandLengths ? [...seriesLengths, ...bandLengths] : seriesLengths;
-  const pointCount = Math.max(0, ...lengths);
+  const pointCount = Math.max(0, ...seriesLengths);
   const fallback = (): TrendXLayout => ({
     mode: 'index',
     positions: indexPositions(pointCount, left, right),
@@ -61,7 +58,7 @@ export function buildTrendXLayout({
     pointCount < 2 ||
     !periods ||
     periods.length !== pointCount ||
-    lengths.some((length) => length !== pointCount)
+    seriesLengths.some((length) => length !== pointCount)
   ) {
     return fallback();
   }
@@ -115,18 +112,6 @@ export function buildTrendLinePath(points: TrendPoint[]): string {
     d3Line<TrendPoint>()
       .x((point) => point.x)
       .y((point) => point.y)
-      .curve(curveLinear)(points) ?? ''
-  );
-}
-
-export function buildTrendAreaPath(
-  points: Array<{ x: number; low: number; high: number }>,
-): string {
-  return (
-    d3Area<{ x: number; low: number; high: number }>()
-      .x((point) => point.x)
-      .y0((point) => point.low)
-      .y1((point) => point.high)
       .curve(curveLinear)(points) ?? ''
   );
 }

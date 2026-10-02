@@ -1,5 +1,6 @@
+import { formatCount } from '../../lib/cards/format';
 import type { EconomyCardData } from '../../lib/country-cards';
-import { alignToYears, getGlobalBenchmarks, latest, near } from '../../lib/country-cards';
+import { getGlobalBenchmarks, latest, near, trajectoryOf } from '../../lib/country-cards';
 import { TrajectoryChart } from '../charts/TrajectoryChart';
 import { CardShell } from './CardShell';
 
@@ -10,15 +11,19 @@ interface EconomyCardProps {
 function fmtUSD(n: number): string {
   if (n >= 100_000) return `$${Math.round(n / 1000)}K`;
   if (n >= 10_000) return `$${(n / 1000).toFixed(1)}K`;
-  if (n >= 1_000) return `$${Math.round(n).toLocaleString()}`;
+  if (n >= 1_000) return `$${formatCount(n)}`;
   return `$${Math.round(n)}`;
 }
 
 export function EconomyCard({ data }: EconomyCardProps) {
   const gdpLatest = latest(data.gdpPerCapita);
   const gdp2000 = near(data.gdpPerCapita, 2000);
+  // GDP per capita is the chart; inflation rolls in as a soft overlay later
+  // if we add multi-line cards. For now one signal — the trajectory tells the
+  // story without colour noise.
+  const trajectory = trajectoryOf(data.gdpPerCapita, getGlobalBenchmarks().economy?.gdpPerCapita);
 
-  if (!gdpLatest) {
+  if (!gdpLatest || !trajectory) {
     return (
       <CardShell
         eyebrow="economic momentum"
@@ -42,15 +47,6 @@ export function EconomyCard({ data }: EconomyCardProps) {
     subtitle = `GDP per capita, current US$.`;
   }
 
-  // Use GDP per capita as the chart series; inflation rolls in as a soft
-  // overlay later if we add multi-line cards. For now keep one signal —
-  // the trajectory tells the story without color noise.
-  const series = data.gdpPerCapita ?? [];
-  const startYear = series[0]?.[0] ?? 1990;
-  const endYear = series[series.length - 1]?.[0] ?? new Date().getFullYear();
-  const globalSeries = getGlobalBenchmarks().economy?.gdpPerCapita ?? [];
-  const comparisonValues = alignToYears(globalSeries, startYear, endYear);
-
   return (
     <CardShell
       eyebrow="economic momentum"
@@ -59,10 +55,7 @@ export function EconomyCard({ data }: EconomyCardProps) {
       source="World Bank"
     >
       <TrajectoryChart
-        values={series.map(([, v]) => v)}
-        startYear={startYear}
-        endYear={endYear}
-        comparison={{ values: comparisonValues, label: 'world' }}
+        {...trajectory}
         formatY={(n) => (n >= 1000 ? `$${Math.round(n / 1000)}K` : `$${Math.round(n)}`)}
         accessibilityLabel={`GDP per capita ${headline}, ${subtitle.toLowerCase()} Comparison line shows world median.`}
       />

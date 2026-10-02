@@ -4,6 +4,7 @@ import { type ComponentProps, memo, useCallback } from 'react';
 import { StyleSheet, View } from 'react-native';
 import { SPACING, straitMarkColor, withAlpha } from '../constants/theme';
 import { useTheme } from '../hooks/useTheme';
+import { formatCount, formatNumber } from '../lib/cards/format';
 import { SUB_EVENT_LABEL } from '../lib/conflict';
 import { parseSeverityHero } from '../lib/gdacs';
 import {
@@ -15,6 +16,7 @@ import {
 } from '../lib/overlays';
 import { displayCountryName } from '../lib/place-names';
 import type { StraitState } from '../lib/strait-map';
+import type { TapResult } from '../lib/tap-result';
 import {
   CONFLICT_FAMILY_LABEL,
   EVENT_TYPE_LABEL,
@@ -23,7 +25,6 @@ import {
   getStraitPath,
   marketDirectionPath,
 } from './globe/disaster-glyphs';
-import type { TapResult } from './globe/MiniGlobe';
 import {
   FAMINE_FRAME_PATH,
   FAMINE_FRAME_STROKE,
@@ -94,7 +95,7 @@ export function thermalMarkRow(e: ThermalEvent, result: TapResult): MarkRowData 
     key: `thermal-${e.id}`,
     result,
     primary: thermalPlace(e) ?? 'Thermal anomaly',
-    secondary: `thermal anomaly · ${Math.round(e.frp).toLocaleString('en-US')} MW`,
+    secondary: `thermal anomaly · ${formatCount(e.frp)} MW`,
     kind: 'thermal',
   };
 }
@@ -137,7 +138,7 @@ export function conflictMarkRow(evt: ConflictEvent, result: TapResult): MarkRowD
   const country = displayCountryName(evt.country) ?? evt.country;
   const primary =
     evt.fatalities > 0
-      ? `${evt.fatalities.toLocaleString('en-US')} killed · ${SUB_EVENT_LABEL[evt.subEvent]}`
+      ? `${formatNumber(evt.fatalities)} killed · ${SUB_EVENT_LABEL[evt.subEvent]}`
       : SUB_EVENT_LABEL[evt.subEvent];
   return {
     key: `conflict-${evt.id}`,

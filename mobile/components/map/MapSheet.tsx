@@ -8,7 +8,11 @@ import {
   useState,
 } from 'react';
 import { StyleSheet, View } from 'react-native';
-import { GestureDetector, usePanGesture } from 'react-native-gesture-handler';
+import {
+  GestureDetector,
+  type PanGestureConfig,
+  usePanGesture,
+} from 'react-native-gesture-handler';
 import Animated, {
   cancelAnimation,
   interpolateColor,
@@ -252,17 +256,20 @@ export function MapSheet({
     onPullDown?.();
   }, [onPullDown]);
 
+  // The builder's return type, not the `useMemo`'s type argument: only the
+  // first checks the literal for keys it does not know (a v2 `onEnd` beside
+  // valid keys compiles and never fires otherwise), and it types the events.
   const panConfig = useMemo(
-    () => ({
+    (): PanGestureConfig => ({
       // Vertical drags only; a horizontal swipe on a row belongs to the row.
-      activeOffsetY: [-CLAIM_SLOP, CLAIM_SLOP] as [number, number],
-      failOffsetX: [-24, 24] as [number, number],
+      activeOffsetY: [-CLAIM_SLOP, CLAIM_SLOP],
+      failOffsetX: [-24, 24],
       onBegin: () => {
         'worklet';
         owner.value = UNDECIDED;
         pull.value = 0;
       },
-      onActivate: (e: { translationY: number }) => {
+      onActivate: (e) => {
         'worklet';
         // Catch a settling sheet at activation, before the first update.
         // A tap or a horizontal swipe must leave its animation running.
@@ -273,7 +280,7 @@ export function MapSheet({
         dragStartY.value =
           Math.sign(e.translationY) * Math.min(Math.abs(e.translationY), CLAIM_SLOP);
       },
-      onUpdate: (e: { translationY: number }) => {
+      onUpdate: (e) => {
         'worklet';
         if (owner.value === UNDECIDED) {
           // The first update can carry no translation at all — on the
@@ -301,7 +308,7 @@ export function MapSheet({
           offset.value = next < 0 ? 0 : next;
         }
       },
-      onDeactivate: (e: { velocityY: number; canceled: boolean }) => {
+      onDeactivate: (e) => {
         'worklet';
         // Activation already stopped the animation, even if no update chose
         // an owner yet. Always restore it on cancellation, without committing

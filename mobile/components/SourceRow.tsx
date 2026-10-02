@@ -4,7 +4,7 @@ import { StyleSheet, View } from 'react-native';
 import { SOURCES } from '../constants/sources';
 import { SPACING, type TextTone } from '../constants/theme';
 import { ccToFlag } from '../lib/article-utils';
-import { useOpenLink } from '../lib/open-link';
+import { openExternal } from '../lib/open-link';
 import { Box, Icon, Pressable, Text } from './primitives';
 import { SheetLink } from './SheetContent';
 
@@ -34,7 +34,6 @@ export function SourceRow({ source, isExpanded, isLast, onPress }: SourceRowProp
   const tone = toneOf(source.sentiment);
   const toneWord = tone ? TONE_LABELS[tone] : 'unknown';
   const toneTextTone: TextTone = tone ? (TONE_TEXT[tone] ?? 'secondary') : 'secondary';
-  const openLink = useOpenLink();
   const url = source.url || null;
 
   // The chevron used to promise an expansion that two thirds of rows could not
@@ -92,7 +91,7 @@ export function SourceRow({ source, isExpanded, isLast, onPress }: SourceRowProp
             <SheetLink
               label="read the original"
               accessibilityLabel={`Read the original at ${source.name}`}
-              onPress={() => openLink(url)}
+              onPress={() => openExternal(url)}
             />
           )}
         </>
@@ -108,7 +107,10 @@ export function SourceRow({ source, isExpanded, isLast, onPress }: SourceRowProp
   return (
     <Pressable
       onPress={onPress}
-      hitSlop={{ top: 6, bottom: 6, left: 16, right: 16 }}
+      // Sideways only. A row is ~56pt tall already, and rows are stacked: a
+      // later row is hit-tested first, so its top slop took the bottom 6pt of
+      // the row above, and a tap there opened the wrong source.
+      hitSlop={SIDE_SLOP}
       accessibilityRole="button"
       accessibilityLabel={source.name}
       accessibilityState={{ expanded: isExpanded }}
@@ -117,6 +119,8 @@ export function SourceRow({ source, isExpanded, isLast, onPress }: SourceRowProp
     </Pressable>
   );
 }
+
+const SIDE_SLOP = { left: 16, right: 16 };
 
 const styles = StyleSheet.create({
   header: {

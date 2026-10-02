@@ -9,16 +9,28 @@ import {
   useAudioPlayer,
   useAudioPlayerStatus,
 } from 'expo-audio';
-import { getItemAsync } from 'expo-secure-store';
 import Storage from 'expo-sqlite/kv-store';
 import { useCallback, useEffect, useRef, useState } from 'react';
 import { AppState, type AppStateStatus } from 'react-native';
 import { API_BASE } from '../constants/theme';
 import { resolveAudioDuration } from '../lib/audio-duration';
 import { resolveDownloadedAudioSource } from '../lib/audio-source';
+import { readMigrated } from '../lib/legacy-store';
 
 const POSITION_KEY = 'zuhd_briefing_pos';
 const DATE_KEY = 'zuhd_briefing_date';
+
+/**
+ * The saved place: the position, and the recording it belongs to. Read before
+ * playback (so idle can say resume) and again as playback starts. The earlier
+ * encrypted store kept each under the same name; they move on first read.
+ */
+function readSavedPlace(): Promise<[string | null, string | null]> {
+  return Promise.all([
+    readMigrated(POSITION_KEY, { secureKey: POSITION_KEY }),
+    readMigrated(DATE_KEY, { secureKey: DATE_KEY }),
+  ]);
+}
 const PLAYBACK_STATUS_UPDATE = 'playbackStatusUpdate';
 // The CDN currently answers byte-range requests with the complete MP3, which
 // lets AVPlayer play while duration remains unknown. Give a local cache write
@@ -155,7 +167,6 @@ export function useBriefingPlayer(
   const lockScreenDurationKnown = useRef(false);
   const lockScreenActivationPending = useRef(false);
   const lockScreenActivationToken = useRef(0);
-  const backgroundAt = useRef<number>(0);
   // Single timer reused by the status-driven start. Holds the give-up
   // deadline for a play() that hasn't taken yet — when status reports
   // `playing:true` we clear it; if the deadline fires, we tear down.
@@ -185,21 +196,8 @@ export function useBriefingPlayer(
       setResumable(false);
       return;
     }
-    Promise.all([Storage.getItem(POSITION_KEY), Storage.getItem(DATE_KEY)])
-      .then(async ([storedPos, storedDate]) => {
-        if (cancelled) return;
-        let savedPos = storedPos;
-        let savedDateStr = storedDate;
-        if (savedPos === null && savedDateStr === null) {
-          [savedPos, savedDateStr] = await Promise.all([
-            getItemAsync(POSITION_KEY),
-            getItemAsync(DATE_KEY),
-          ]);
-          await Promise.all([
-            savedPos === null ? Promise.resolve() : Storage.setItem(POSITION_KEY, savedPos),
-            savedDateStr === null ? Promise.resolve() : Storage.setItem(DATE_KEY, savedDateStr),
-          ]);
-        }
+    readSavedPlace()
+      .then(([savedPos, savedDateStr]) => {
         if (cancelled) return;
         const pos = savedPos ? Number.parseInt(savedPos, 10) : 0;
         const valid =
@@ -226,10 +224,7 @@ export function useBriefingPlayer(
   useEffect(() => {
     let disposed = false;
     const sub = AppState.addEventListener('change', async (state: AppStateStatus) => {
-      if (state !== 'active') {
-        backgroundAt.current = Date.now();
-        return;
-      }
+      if (state !== 'active') return;
       const player = playerRef.current;
       if (!player) return;
       const token = toggleTokenRef.current;
@@ -607,20 +602,7 @@ export function useBriefingPlayer(
       // Restore persisted progress only after the source exists; opening the
       // app remains free of audio I/O.
       try {
-        let [savedPos, savedDateStr] = await Promise.all([
-          Storage.getItem(POSITION_KEY),
-          Storage.getItem(DATE_KEY),
-        ]);
-        if (savedPos === null && savedDateStr === null) {
-          [savedPos, savedDateStr] = await Promise.all([
-            getItemAsync(POSITION_KEY),
-            getItemAsync(DATE_KEY),
-          ]);
-          await Promise.all([
-            savedPos === null ? Promise.resolve() : Storage.setItem(POSITION_KEY, savedPos),
-            savedDateStr === null ? Promise.resolve() : Storage.setItem(DATE_KEY, savedDateStr),
-          ]);
-        }
+        const [savedPos, savedDateStr] = await readSavedPlace();
         if (isSameRecording(savedDateStr, effectiveDate, recording) && savedPos) {
           const pos = Number.parseInt(savedPos, 10);
           if (pos > 0) {

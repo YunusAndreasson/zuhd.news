@@ -15,6 +15,9 @@ jest.mock('expo-sqlite/kv-store', () => ({
 
 jest.mock('expo-secure-store', () => ({
   getItemAsync: jest.fn(async (key: string) => mockSecure.get(key) ?? null),
+  deleteItemAsync: jest.fn(async (key: string) => {
+    mockSecure.delete(key);
+  }),
 }));
 
 jest.mock('expo-store-review', () => ({
@@ -61,6 +64,8 @@ describe('store-review persistence and gating', () => {
     expect(mockKv.get('zuhd_review_prompted')).toBe(String(Date.now() - 1_000));
     expect(mockRequestReview).not.toHaveBeenCalled();
     expect(mockKv.get('zuhd_review_count')).toBe('20');
+    // Moved, not copied: left behind, it came back after the privacy erase.
+    expect(mockSecure.has('zuhd_review_prompted')).toBe(false);
   });
 
   it('does not claim a prompt occurred when the platform has no review action', async () => {

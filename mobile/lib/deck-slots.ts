@@ -35,8 +35,3 @@ export function assignSlots(
   }
   return next;
 }
-
-/** The same window, in the same order. */
-export function sameKeys(a: readonly string[], b: readonly string[]): boolean {
-  return a.length === b.length && a.every((key, i) => key === b[i]);
-}

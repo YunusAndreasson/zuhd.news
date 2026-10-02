@@ -1,17 +1,5 @@
-import { type QueryClient, useQuery } from '@tanstack/react-query';
-import { API_JSON_QUERY_KEY, type ApiSnapshot, fetchSnapshot } from '../lib/api-snapshots';
-
-export { API_JSON_QUERY_KEY };
-
-/**
- * Mark every API snapshot stale, so each mounted one refetches.
- *
- * A return to the app no longer goes through this: an arrival fetches every
- * snapshot and applies them with the feed in one commit (`useArticles`).
- */
-export function invalidateApiJson(queryClient: QueryClient): Promise<void> {
-  return queryClient.invalidateQueries({ queryKey: API_JSON_QUERY_KEY });
-}
+import { useQuery } from '@tanstack/react-query';
+import { type ApiSnapshot, fetchSnapshot } from '../lib/api-snapshots';
 
 /**
  * Read-only API JSON hook over `useQuery`. Cache-first via TanStack Query's

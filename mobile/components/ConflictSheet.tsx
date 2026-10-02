@@ -1,4 +1,3 @@
-import { COUNTRY_DATA } from '@shared/countries/country-data';
 import type { ConflictEvent } from '@shared/types';
 import { memo, useCallback, useMemo } from 'react';
 import { StyleSheet } from 'react-native';
@@ -12,12 +11,18 @@ import {
   SUB_EVENT_LABEL,
 } from '../lib/conflict';
 import { relativeTime } from '../lib/date-format';
-import { useOpenLink } from '../lib/open-link';
+import { openExternal } from '../lib/open-link';
 import { displayCountryName } from '../lib/place-names';
 import { severityTint } from '../lib/severity';
 import { makeStaggerEnter } from '../lib/stagger';
 import { Text } from './primitives';
-import { SheetFlagRow, SheetHero, SheetScrollView, SheetSourceFooter } from './SheetContent';
+import {
+  countryFlags,
+  SheetFlagRow,
+  SheetHero,
+  SheetScrollView,
+  SheetSourceFooter,
+} from './SheetContent';
 import { type BaseSheetProps, SheetLayout } from './SheetLayout';
 
 interface ConflictBodyProps {
@@ -55,10 +60,11 @@ export const ConflictBody = memo(function ConflictBody({
   onCountryPress,
 }: ConflictBodyProps) {
   const { colors } = useTheme();
-  const openLink = useOpenLink();
+  // On `event`, not `event?.sourceUrl`: the compiler keeps a memo only on
+  // what it reads, and on the narrower key this whole body skipped it.
   const handleSourcePress = useCallback(() => {
-    if (event?.sourceUrl) openLink(event.sourceUrl);
-  }, [event?.sourceUrl, openLink]);
+    if (event?.sourceUrl) openExternal(event.sourceUrl);
+  }, [event]);
 
   // Focal tint: fatalities > 0 reads in the unfavorable tone (the "people
   // killed" framing earns the same visual weight as a Red GDACS alert);
@@ -68,11 +74,7 @@ export const ConflictBody = memo(function ConflictBody({
   // sheets' quiet tiers were two different inks.
   const tint = severityTint(colors, { fatalities: event?.fatalities }, undefined);
   const hero = useMemo(() => (event ? parseConflictHero(event) : null), [event]);
-  const flag = useMemo(() => {
-    if (!event) return null;
-    const data = COUNTRY_DATA[event.country];
-    return data?.flag ? { name: event.country, flag: data.flag } : null;
-  }, [event]);
+  const flags = useMemo(() => countryFlags([event?.country]), [event]);
 
   // Actor line shape:
   //   • Two-sided (battles, non-state) → "Group A vs Group B"
@@ -140,13 +142,8 @@ export const ConflictBody = memo(function ConflictBody({
             </Text>
           </Animated.View>
 
-          {flag && (
-            <SheetFlagRow
-              entering={enter()}
-              flags={[flag]}
-              borderColor={colors.rule}
-              onPress={onCountryPress}
-            />
+          {flags.length > 0 && (
+            <SheetFlagRow entering={enter()} flags={flags} onPress={onCountryPress} />
           )}
 
           {/* Footer — source name + tappable URL when published.

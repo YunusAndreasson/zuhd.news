@@ -1,5 +1,5 @@
 import { dataDecimals } from '@shared/chart/series';
-import type { TrendAnnotation, TrendBand, TrendHighlight, TrendSeries } from '@shared/types';
+import type { TrendAnnotation, TrendHighlight, TrendSeries } from '@shared/types';
 import {
   Canvas,
   Circle,
@@ -11,7 +11,7 @@ import {
   vec,
 } from '@shopify/react-native-skia';
 import { extent } from 'd3-array';
-import { scaleLinear, scaleLog } from 'd3-scale';
+import { scaleLinear } from 'd3-scale';
 import { memo, useCallback, useMemo, useState } from 'react';
 import { StyleSheet, useWindowDimensions, View } from 'react-native';
 import {
@@ -27,13 +27,13 @@ import {
   withTiming,
 } from 'react-native-reanimated';
 import { scheduleOnRN } from 'react-native-worklets';
-import { SPACING } from '../../constants/theme';
+import { type ColorPalette, SPACING } from '../../constants/theme';
 import { useTheme } from '../../hooks/useTheme';
+import { nearestIndex } from '../../lib/arrays';
 import { citedLabels } from '../../lib/cards/card-chart';
 import { clearLabelSpot } from '../../lib/chart-label';
 import { hapticTick } from '../../lib/haptics';
 import { Pressable, Text } from '../primitives';
-import { SourceCaption } from './SourceCaption';
 import {
   type BlockVariant,
   blockContainerStyle,
@@ -41,16 +41,11 @@ import {
   formatBlockNumber,
   useChartDrawProgress,
 } from './shared';
-import {
-  buildTrendAreaPath,
-  buildTrendLinePath,
-  buildTrendXLayout,
-  type TrendTimeTick,
-} from './trend-geometry';
+import { buildTrendLinePath, buildTrendXLayout, type TrendTimeTick } from './trend-geometry';
 
 type Pt = { x: number; y: number };
 
-const CHART_HEIGHT = { article: 180, context: 148, inline: 64 } as const;
+const CHART_HEIGHT = { context: 148, inline: 64 } as const;
 const STROKE_WIDTH = 1.5;
 const DATA_DOT_R = 2;
 const EVENT_DOT_R = 4;
@@ -116,6 +111,27 @@ function resolveHighlightIndex(values: number[], mode: TrendHighlight | undefine
   }
 }
 
+/** A series' ink, for its line and for its swatch in the legend: the first in
+ *  emphasis, the second in the accent, any other secondary. */
+function seriesColor(index: number, colors: ColorPalette): string {
+  return index === 0 ? colors.textEmphasis : index === 1 ? colors.accent : colors.textSecondary;
+}
+
+/**
+ * The one y-axis a trend is drawn on, from its extent (the series and the
+ * reference together) between the plot's top and bottom. A flat series is
+ * given one step of height.
+ *
+ * The chart drew its lines on one copy of this and the block placed the scrub
+ * stops, the cited marks and the reference label on another: two copies that
+ * had to agree for a dot to sit on its line.
+ */
+function trendYScale(min: number, max: number, top: number, bottom: number) {
+  return scaleLinear()
+    .domain([min, max === min ? min + 1 : max])
+    .range([bottom, top]);
+}
+
 /** A level the series is measured against — a strait's 90-day normal —
  *  drawn as a dashed hairline with its label at the left end. It joins the
  *  y-extent, so the line is always on the canvas. */
@@ -126,30 +142,38 @@ interface TrendReference {
 
 interface ChartProps {
   series: TrendSeries[];
-  band?: TrendBand;
-  reference?: TrendReference;
+  /** `trendYScale`, and the extent it was built from, for the two rules. */
+  yScale: (value: number) => number;
+  min: number;
+  max: number;
+  /** The primary series on the canvas — the scrub stops — and where the
+   *  reference rule lands; the block places its labels from the same. */
+  points: Pt[];
+  referenceY: number | null;
   width: number;
   height: number;
   defaultHighlightIdx: number;
   progress: SharedValue<number>;
   scrubIdx: SharedValue<number>;
-  colors: ReturnType<typeof useTheme>['colors'];
+  colors: ColorPalette;
   annotations?: TrendAnnotation[];
-  scale: 'linear' | 'log';
   showDataDots: boolean;
   xPositions: number[];
   insets: PlotInsets;
 }
 
-// Memoized: an active scrub gesture re-renders the parent TrendBlock on every
-// pointer move (to update the JS-side scrub readout), but Chart's own props are
-// stable across those renders (normalizedSeries/defaultHighlightIdx are
-// memoized, progress/scrubIdx are shared values, colors is theme-stable). Memo
-// lets the whole Skia canvas subtree skip reconciliation during a scrub.
+// Memoized: `TrendBlock` itself is not compiled (its gesture config writes a
+// shared value), so nothing else keeps a render of the block that changed
+// nothing here from reconciling the whole Skia canvas. Every prop is a value
+// the block memoizes, a shared value, a number, or the theme's palette. (A
+// scrub no longer renders the block at all: `ScrubReadout` holds the index.)
 const Chart = memo(function Chart({
   series,
-  band,
-  reference,
+  yScale,
+  min,
+  max,
+  points,
+  referenceY,
   width,
   height,
   defaultHighlightIdx,
@@ -157,69 +181,22 @@ const Chart = memo(function Chart({
   scrubIdx,
   colors,
   annotations,
-  scale,
   showDataDots,
   xPositions,
   insets,
 }: ChartProps) {
-  const { seriesPaths, bandPath, points, minY, maxY, referenceY } = useMemo(() => {
-    const flat: number[] = [];
-    for (const s of series) flat.push(...s.values);
-    if (band) {
-      flat.push(...band.low, ...band.high);
-    }
-    if (reference) flat.push(reference.value);
-    const [eMin, eMax] = extent(flat) as [number, number];
-    const safeMin = eMin ?? 0;
-    const safeMax = eMax ?? 1;
-    const innerTop = insets.top;
-    const innerBottom = height - insets.bottom;
-    const yDomain: [number, number] =
-      scale === 'log' && safeMin > 0
-        ? [safeMin, safeMax === safeMin ? safeMin * 10 : safeMax]
-        : [safeMin, safeMax === safeMin ? safeMin + 1 : safeMax];
-    const yScale =
-      scale === 'log' && yDomain[0] > 0
-        ? scaleLog().domain(yDomain).range([innerBottom, innerTop])
-        : scaleLinear().domain(yDomain).range([innerBottom, innerTop]);
-
-    const xFor = (i: number) => xPositions[i] ?? CHART_LEFT_PAD;
-
-    const seriesPaths: { path: SkPath; color: string }[] = series.map((s, sIdx) => {
-      const pts = s.values.map((v, i) => ({ x: xFor(i), y: yScale(v) }));
-      const d = buildTrendLinePath(pts);
-      const path = Skia.Path.MakeFromSVGString(d) ?? Skia.PathBuilder.Make().detach();
-      const color =
-        sIdx === 0 ? colors.textEmphasis : sIdx === 1 ? colors.accent : colors.textSecondary;
-      return { path, color };
-    });
-
-    let bandPath: SkPath | null = null;
-    if (band) {
-      const bandPts = band.low.map((low, i) => ({
-        x: xFor(i),
-        low: yScale(low),
-        high: yScale(band.high[i] ?? low),
-      }));
-      const d = buildTrendAreaPath(bandPts);
-      bandPath = Skia.Path.MakeFromSVGString(d) ?? Skia.PathBuilder.Make().detach();
-    }
-
-    // Use the FIRST series for scrub dots / data ticks; multi-series scrub
-    // shows all readouts in the readout label, but the crosshair anchors on
-    // the primary series so the highlight dot lands somewhere meaningful.
-    const primary = series[0];
-    const points = (primary?.values ?? []).map((v, i) => ({ x: xFor(i), y: yScale(v) }));
-
-    return {
-      seriesPaths,
-      bandPath,
-      points,
-      minY: yScale(safeMin),
-      maxY: yScale(safeMax),
-      referenceY: reference ? yScale(reference.value) : null,
-    };
-  }, [series, band, reference, height, scale, colors, xPositions, insets]);
+  const seriesPaths = useMemo(
+    (): { path: SkPath; color: string }[] =>
+      series.map((s, sIdx) => {
+        const pts = s.values.map((v, i) => ({ x: xPositions[i] ?? CHART_LEFT_PAD, y: yScale(v) }));
+        const d = buildTrendLinePath(pts);
+        const path = Skia.Path.MakeFromSVGString(d) ?? Skia.PathBuilder.Make().detach();
+        return { path, color: seriesColor(sIdx, colors) };
+      }),
+    [series, yScale, colors, xPositions],
+  );
+  const minY = yScale(min);
+  const maxY = yScale(max);
 
   const chartRightX = width - insets.right;
 
@@ -259,16 +236,6 @@ const Chart = memo(function Chart({
 
   return (
     <Canvas style={canvasStyle}>
-      {bandPath ? (
-        <Path
-          path={bandPath}
-          color={colors.textEmphasis}
-          opacity={0.07}
-          style="fill"
-          start={0}
-          end={progress}
-        />
-      ) : null}
       <Line
         p1={vec(CHART_LEFT_PAD, maxY)}
         p2={vec(chartRightX, maxY)}
@@ -464,12 +431,11 @@ interface TrendBlockProps {
   periods?: string[];
   highlight?: TrendHighlight;
   annotations?: TrendAnnotation[];
-  scale?: 'linear' | 'log';
-  band?: TrendBand;
   reference?: TrendReference;
-  variant?: BlockVariant;
+  /** A card's or a sheet's chart (`context`), or the line alone under a
+   *  story's prose (`inline`). */
+  variant: BlockVariant;
   onPress?: () => void;
-  sourceLabel?: string;
   /**
    * Whether dragging across the chart scrubs it.
    *
@@ -497,16 +463,12 @@ export const TrendBlock = memo(function TrendBlock({
   periods,
   highlight,
   annotations,
-  scale = 'linear',
-  band,
   reference,
-  variant = 'article',
+  variant,
   onPress,
-  sourceLabel,
   scrubbable = true,
 }: TrendBlockProps) {
   const { colors, font } = useTheme();
-  const isContext = variant === 'context';
   const isInline = variant === 'inline';
   const height = CHART_HEIGHT[variant];
   const insets = isInline ? INLINE_INSETS : AXIS_INSETS;
@@ -535,10 +497,9 @@ export const TrendBlock = memo(function TrendBlock({
   const flatExtent = useMemo(() => {
     const flat: number[] = [];
     for (const s of normalizedSeries) flat.push(...s.values);
-    if (band) flat.push(...band.low, ...band.high);
     if (reference) flat.push(reference.value);
     return extent(flat) as [number, number];
-  }, [normalizedSeries, band, reference]);
+  }, [normalizedSeries, reference]);
   const min = flatExtent[0] ?? 0;
   const max = flatExtent[1] ?? 0;
 
@@ -554,27 +515,23 @@ export const TrendBlock = memo(function TrendBlock({
       buildTrendXLayout({
         periods,
         seriesLengths: normalizedSeries.map((item) => item.values.length),
-        bandLengths: band ? [band.low.length, band.high.length] : undefined,
         left: CHART_LEFT_PAD,
         right: width - insets.right,
       }),
-    [periods, normalizedSeries, band, width, insets],
+    [periods, normalizedSeries, width, insets],
   );
 
-  // Compute primary-series points for hit testing (scrub), and where the
-  // reference line lands on the same scale, for its label.
+  const yScale = useMemo(
+    () => trendYScale(min, max, insets.top, height - insets.bottom),
+    [min, max, insets, height],
+  );
+
+  // The primary series on the canvas: the scrub stops, the cited marks and
+  // the crosshair's anchor — a multi-series scrub reads every series out, but
+  // the dot lands on the first. And where the reference rule lands, for its
+  // label.
   const { points, referenceY } = useMemo<{ points: Pt[]; referenceY: number | null }>(() => {
     if (width <= 0 || primaryValues.length === 0) return { points: [], referenceY: null };
-    const innerTop = insets.top;
-    const innerBottom = height - insets.bottom;
-    const yDomain: [number, number] =
-      scale === 'log' && min > 0
-        ? [min, max === min ? min * 10 : max]
-        : [min, max === min ? min + 1 : max];
-    const yScale =
-      scale === 'log' && yDomain[0] > 0
-        ? scaleLog().domain(yDomain).range([innerBottom, innerTop])
-        : scaleLinear().domain(yDomain).range([innerBottom, innerTop]);
     return {
       points: primaryValues.map((v, i) => ({
         x: xLayout.positions[i] ?? CHART_LEFT_PAD,
@@ -582,7 +539,7 @@ export const TrendBlock = memo(function TrendBlock({
       })),
       referenceY: reference ? yScale(reference.value) : null,
     };
-  }, [primaryValues, xLayout.positions, width, height, scale, min, max, reference, insets]);
+  }, [primaryValues, xLayout.positions, width, yScale, reference]);
 
   const citedPoints = useMemo(
     () => new Set((annotations ?? []).map((a) => a.atIndex)),
@@ -629,22 +586,13 @@ export const TrendBlock = memo(function TrendBlock({
   const scrubIdx = useSharedValue(-1);
   const timeTicks: TrendTimeTick[] | null = xLayout.ticks;
 
-  const panConfig = useMemo<PanGestureConfig>(() => {
+  const panConfig = useMemo((): PanGestureConfig => {
     const pointsX = points.map((p) => p.x);
     // The nearest point to the finger, on touch-down and as it moves.
     const scrubTo = (e: { x: number }) => {
       'worklet';
       if (pointsX.length === 0) return;
-      let best = 0;
-      let bestD = Number.POSITIVE_INFINITY;
-      for (let i = 0; i < pointsX.length; i++) {
-        const d = Math.abs((pointsX[i] ?? 0) - e.x);
-        if (d < bestD) {
-          bestD = d;
-          best = i;
-        }
-      }
-      scrubIdx.value = best;
+      scrubIdx.value = nearestIndex(pointsX, e.x);
     };
     return {
       // Disabled rather than unmounted: the detector stays in the tree so the
@@ -684,19 +632,19 @@ export const TrendBlock = memo(function TrendBlock({
     normalizedSeries.length > 1
       ? normalizedSeries.map((s, i) => ({
           label: s.label,
-          color: i === 0 ? colors.textEmphasis : i === 1 ? colors.accent : colors.textSecondary,
+          color: seriesColor(i, colors),
         }))
       : null;
 
   const inner = (
     <View style={blockContainerStyle[variant]}>
-      {/* On a card the caption steps down to the axis furniture's own
-          register. At `labelSm` it was the second-largest small-caps thing
-          on the screen — bigger than the kicker, the ticks and the source —
-          and it sat directly under the title, where it read as a subtitle
-          rather than as "what this axis measures". */}
+      {/* The caption is in the axis furniture's own register. At `labelSm`
+          it was the second-largest small-caps thing on a card — bigger than
+          the kicker, the ticks and the source — and it sat directly under the
+          title, where it read as a subtitle rather than as "what this axis
+          measures". */}
       {isInline ? null : (
-        <Text variant={isContext ? 'labelXs' : 'labelSm'} numberOfLines={2} style={styles.label}>
+        <Text variant="labelXs" numberOfLines={2} style={styles.label}>
           {label}
         </Text>
       )}
@@ -723,8 +671,11 @@ export const TrendBlock = memo(function TrendBlock({
             <>
               <Chart
                 series={normalizedSeries}
-                band={band}
-                reference={reference}
+                yScale={yScale}
+                min={min}
+                max={max}
+                points={points}
+                referenceY={referenceY}
                 width={width}
                 height={height}
                 defaultHighlightIdx={defaultHighlightIdx}
@@ -732,7 +683,6 @@ export const TrendBlock = memo(function TrendBlock({
                 scrubIdx={scrubIdx}
                 colors={colors}
                 annotations={annotations}
-                scale={scale}
                 xPositions={xLayout.positions}
                 // Point markers communicate the scrub stops in interactive
                 // charts. Card previews do not scrub, so mounting dozens of
@@ -870,8 +820,6 @@ export const TrendBlock = memo(function TrendBlock({
           </Text>
         </View>
       ) : null}
-
-      {sourceLabel ? <SourceCaption label={sourceLabel} /> : null}
     </View>
   );
 
@@ -890,9 +838,9 @@ export const TrendBlock = memo(function TrendBlock({
 });
 
 const styles = StyleSheet.create({
-  // Slightly roomier than the shared `blockSharedStyles.label` (xs): the
-  // multi-series legend can sit directly beneath this label, so the extra
-  // breathing room keeps the label from crowding the legend row.
+  // `sm`, not `xs`: the multi-series legend can sit directly beneath this
+  // label, so the extra breathing room keeps the label from crowding the
+  // legend row.
   label: {
     marginBottom: SPACING.sm,
   },

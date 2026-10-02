@@ -1,4 +1,12 @@
-import { COUNTRY_URL_SCHEME, parseInline, smartTypography } from '../lib/markdown';
+import type { Entity } from '@shared/types';
+import type { ReactElement, ReactNode } from 'react';
+import {
+  COUNTRY_URL_SCHEME,
+  type MarkdownStyles,
+  parseInline,
+  renderSentences,
+  smartTypography,
+} from '../lib/markdown';
 
 describe('smartTypography', () => {
   it('converts straight double quotes to curly quotes', () => {
@@ -189,5 +197,35 @@ describe('parseInline', () => {
         .map((s) => s.text)
         .join(''),
     ).toBe('(\u201cquoted\u201d)');
+  });
+});
+
+describe('renderSentences', () => {
+  const styles = {} as MarkdownStyles;
+  const brent: Entity = { mention: 'Brent', indicatorId: 'brent', kind: 'commodity' };
+  type Element = ReactElement<{ children: ReactNode[]; accessibilityLabel?: string }>;
+  /** Each block's runs: a plain string, or `[entity]` for a tappable mention. */
+  const runs = (blocks: ReactNode[]) =>
+    (blocks as Element[]).map((block) =>
+      block.props.children.map((run) =>
+        typeof run === 'string' ? run : `[${(run as Element).props.children}]`,
+      ),
+    );
+
+  it('makes one block per sentence, and taps a mention on its first appearance only', () => {
+    const blocks = renderSentences(['Brent rose and brents rallied.', 'Brent fell back.'], styles, {
+      entities: [brent],
+    });
+    expect(runs(blocks)).toEqual([['[Brent]', ' rose and brents rallied.'], ['Brent fell back.']]);
+  });
+
+  it('cuts the dateline place from the head of the first sentence and nowhere else', () => {
+    const blocks = renderSentences(
+      ['Cairo \u2014 Traffic fell.', 'Cairo \u2014 not a dateline here.'],
+      styles,
+      { location: 'Cairo' },
+    );
+    // Not cut, and typeset: a spaced dash never starts a line (`smartTypography`).
+    expect(runs(blocks)).toEqual([['Traffic fell.'], ['Cairo\u00a0\u2014 not a dateline here.']]);
   });
 });

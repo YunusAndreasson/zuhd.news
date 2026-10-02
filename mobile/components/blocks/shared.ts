@@ -8,20 +8,16 @@ import {
   withTiming,
 } from 'react-native-reanimated';
 import { ANIMATION, EASING, RADIUS, SPACING } from '../../constants/theme';
+import { formatNumber } from '../../lib/cards/format';
 
-/** Where a block is being rendered. `article` variant is the full-bleed
- *  article-page look; `context` is the embedded-in-timeline look (smaller
- *  visual weight, no self-animation); `inline` is a chart set under a story's
- *  prose — the line alone, its reading printed by the caller. Lives here —
- *  not in index.tsx — so individual block components can import without
- *  creating a require cycle with the barrel that also imports them. */
-export type BlockVariant = 'article' | 'context' | 'inline';
+/** Where a chart is rendered: `context` is a card's or a sheet's chart, with
+ *  its caption and axes; `inline` is a chart set under a story's prose — the
+ *  line alone, its reading printed by the caller. (`article`, the full-bleed
+ *  look of the article blocks, went with the last of them.) */
+export type BlockVariant = 'context' | 'inline';
 
-/** Shared outer-container spacing for every non-prose block. Keeps margin
- *  rhythm consistent between ActorsBlock, LocationsBlock,
- *  QuoteBlock and TrendBlock without per-component style duplication. */
+/** A chart's outer spacing, per variant. */
 export const blockContainerStyle = StyleSheet.create({
-  article: { marginBottom: SPACING.md },
   context: { marginVertical: SPACING.sm },
   inline: {},
 });
@@ -30,9 +26,6 @@ export const blockContainerStyle = StyleSheet.create({
  *  same token everywhere (the swatch radius and label gap had drifted between
  *  literal `2`/`RADIUS.handle` and `xs`/`sm`/`xxs` across blocks). */
 export const blockSharedStyles = StyleSheet.create({
-  /** Gap below a block's `labelSm` header. One value so adjacent blocks in an
-   *  article share the same label-to-body rhythm. */
-  label: { marginBottom: SPACING.xs },
   /** Positioning context for an absolutely-laid-out chart overlay (axis
    *  labels, scrub readouts) on top of a Skia canvas. Height is applied
    *  inline per block. */
@@ -63,18 +56,16 @@ const PREFIX_UNITS = new Set(['$', '€', '£', '¥', '₹']);
  *
  *  Grouping is applied to fractions too. `toFixed(1)` was used for those and
  *  it drops the separators, so one chart could show `78317.8` above `62,802`
- *  — same axis, same series, two different ways of writing a number. */
+ *  — same axis, same series, two different ways of writing a number.
+ *
+ *  In en-US, as the card above the chart prints its reading (`formatNumber`):
+ *  in the phone's own locale a German reader saw `$2,418` over an axis that
+ *  read `$2.515`. */
 export function formatBlockNumber(n: number, unit?: string, decimals?: number): string {
   // `decimals` is the source's own precision (`dataDecimals`), for a readout of
   // one observation: at one decimal Brent's 124.24 and 124.16 both read 124.2,
   // and the scrubber showed the same number on two different days.
-  const s =
-    decimals === undefined
-      ? n.toLocaleString(undefined, { maximumFractionDigits: 1 })
-      : n.toLocaleString(undefined, {
-          minimumFractionDigits: decimals,
-          maximumFractionDigits: decimals,
-        });
+  const s = decimals === undefined ? formatNumber(n, 1) : formatNumber(n, decimals, decimals);
   if (!unit) return s;
   if (PREFIX_UNITS.has(unit)) return `${unit}${s}`;
   if (unit === '%') return `${s}${unit}`;

@@ -9,7 +9,13 @@ import {
   useState,
 } from 'react';
 import { StyleSheet, View } from 'react-native';
-import { GestureDetector, useNativeGesture, usePanGesture } from 'react-native-gesture-handler';
+import {
+  GestureDetector,
+  type NativeGestureConfig,
+  type PanGestureConfig,
+  useNativeGesture,
+  usePanGesture,
+} from 'react-native-gesture-handler';
 import Animated, {
   cancelAnimation,
   type SharedValue,
@@ -23,7 +29,8 @@ import Animated, {
 } from 'react-native-reanimated';
 import { scheduleOnRN } from 'react-native-worklets';
 import { ANIMATION, KEEP_MOTION } from '../../constants/theme';
-import { assignSlots, sameKeys } from '../../lib/deck-slots';
+import { sameItems } from '../../lib/arrays';
+import { assignSlots } from '../../lib/deck-slots';
 import { deckTarget, rubberBand } from '../../lib/deck-swipe';
 
 /**
@@ -196,7 +203,10 @@ const DeckSlot = memo(function DeckSlot({
     // restart this mapper on every slot at every landing.
   }, [position, pitch, progress, peekFade]);
 
-  const nativeConfig = useMemo(() => ({ simultaneousWith: sheetGesture }), [sheetGesture]);
+  const nativeConfig = useMemo(
+    (): NativeGestureConfig => ({ simultaneousWith: sheetGesture }),
+    [sheetGesture],
+  );
   const native = useNativeGesture(nativeConfig);
   const scrollPosition = useSharedValue(0);
   const closingScroll = useSharedValue(0);
@@ -337,11 +347,14 @@ export const StoryDeck = memo(function StoryDeck({
     [committed, count, onDragStart, onSettle, progress],
   );
 
+  // The builder's return type, not the `useMemo`'s type argument: only the
+  // first checks the literal for keys it does not know (a v2 `onEnd` beside
+  // valid keys compiles and never fires otherwise), and it types the events.
   const panConfig = useMemo(
-    () => ({
-      activeOffsetX: [-CLAIM_X, CLAIM_X] as [number, number],
-      failOffsetY: [-12, 12] as [number, number],
-      onActivate: (e: { translationX: number }) => {
+    (): PanGestureConfig => ({
+      activeOffsetX: [-CLAIM_X, CLAIM_X],
+      failOffsetY: [-12, 12],
+      onActivate: (e) => {
         'worklet';
         // Catch a card that is still landing where it is, not where it was going.
         cancelAnimation(progress);
@@ -358,11 +371,11 @@ export const StoryDeck = memo(function StoryDeck({
         if (onClaim) onClaim(e.translationX < 0 ? 1 : -1);
         scheduleOnRN(onDragStart);
       },
-      onUpdate: (e: { translationX: number }) => {
+      onUpdate: (e) => {
         'worklet';
         progress.value = rubberBand(start.value - (e.translationX - startX.value) / pitch, count);
       },
-      onDeactivate: (e: { translationX: number; velocityX: number; canceled: boolean }) => {
+      onDeactivate: (e) => {
         'worklet';
         const position = start.value - (e.translationX - startX.value) / pitch;
         const velocity = e.canceled ? 0 : -e.velocityX / pitch;
@@ -410,7 +423,7 @@ export const StoryDeck = memo(function StoryDeck({
     slots: assignSlots(windowKeys, new Map()),
   }));
   let slotOf = assigned.slots;
-  if (!sameKeys(assigned.keys, windowKeys)) {
+  if (!sameItems(assigned.keys, windowKeys)) {
     slotOf = assignSlots(windowKeys, assigned.slots);
     setAssigned({ keys: windowKeys, slots: slotOf });
   }

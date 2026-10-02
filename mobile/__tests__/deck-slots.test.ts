@@ -1,4 +1,5 @@
-import { assignSlots, sameKeys } from '../lib/deck-slots';
+import { sameItems } from '../lib/arrays';
+import { assignSlots } from '../lib/deck-slots';
 
 const slotsOf = (keys: string[], previous = new Map<string, number>()) => {
   const map = assignSlots(keys, previous);
@@ -42,10 +43,10 @@ describe('assignSlots', () => {
   });
 });
 
-describe('sameKeys', () => {
+describe('the same window (sameItems)', () => {
   it('is order-sensitive', () => {
-    expect(sameKeys(['a', 'b'], ['a', 'b'])).toBe(true);
-    expect(sameKeys(['a', 'b'], ['b', 'a'])).toBe(false);
-    expect(sameKeys(['a'], ['a', 'b'])).toBe(false);
+    expect(sameItems(['a', 'b'], ['a', 'b'])).toBe(true);
+    expect(sameItems(['a', 'b'], ['b', 'a'])).toBe(false);
+    expect(sameItems(['a'], ['a', 'b'])).toBe(false);
   });
 });

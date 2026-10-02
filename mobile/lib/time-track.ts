@@ -160,21 +160,6 @@ export function timeTrackLayout(
   return { centers, cells: byRiver, marks };
 }
 
-/** The story whose centre is nearest `x` points along the track. */
-export function nearestStory(centers: readonly number[], x: number): number {
-  'worklet';
-  let best = 0;
-  let bestDistance = Number.POSITIVE_INFINITY;
-  for (let i = 0; i < centers.length; i++) {
-    const distance = Math.abs((centers[i] ?? 0) - x);
-    if (distance < bestDistance) {
-      bestDistance = distance;
-      best = i;
-    }
-  }
-  return best;
-}
-
 /** Where a float position in the river (`2.4`) sits along the track. */
 export function positionAt(centers: readonly number[], position: number): number {
   'worklet';

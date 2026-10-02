@@ -7,15 +7,14 @@ jest.mock('@tanstack/react-query', () => ({
   useQuery: (options: unknown) => mockUseQuery(options),
 }));
 
-import { API_JSON_QUERY_KEY, invalidateApiJson, useApiJson } from '../hooks/useApiJson';
-import { API_SNAPSHOTS } from '../lib/api-snapshots';
+import { useApiJson } from '../hooks/useApiJson';
+import { API_JSON_QUERY_KEY, API_SNAPSHOTS } from '../lib/api-snapshots';
 
 describe('useApiJson', () => {
   it('does not refetch on focus, and keys every query under the shared prefix', () => {
     // Every foreground return after five minutes used to re-download ~150KB of
-    // snapshots whether or not the site had been rebuilt. The feed's meta
-    // probe decides that now, through `invalidateApiJson`, and the prefix is
-    // the contract between the two files.
+    // snapshots whether or not the site had been rebuilt. An arrival carries
+    // them now (`lib/arrival.ts`), and the prefix keys every one of them.
     useApiJson(API_SNAPSHOTS.trends);
     const options = mockUseQuery.mock.calls[0]?.[0] as unknown as {
       queryKey: unknown[];
@@ -26,11 +25,5 @@ describe('useApiJson', () => {
     expect(options.refetchOnReconnect).toBe(true);
     expect(options.queryKey[0]).toBe(API_JSON_QUERY_KEY[0]);
     expect(String(options.queryKey[1])).toContain('/api/trends.json');
-  });
-
-  it('invalidates by that prefix and nothing narrower', async () => {
-    const invalidateQueries = jest.fn(() => Promise.resolve());
-    await invalidateApiJson({ invalidateQueries } as never);
-    expect(invalidateQueries).toHaveBeenCalledWith({ queryKey: API_JSON_QUERY_KEY });
   });
 });

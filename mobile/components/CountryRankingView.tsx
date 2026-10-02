@@ -1,4 +1,3 @@
-import { BottomSheetFlatList } from '@expo/ui/community/bottom-sheet';
 import {
   getRanking,
   METRICS,
@@ -6,12 +5,14 @@ import {
   type RankingEntry,
 } from '@shared/countries/country-ranking';
 import { memo, useCallback, useEffect, useMemo, useRef, useState } from 'react';
-import { type FlatList, Text as RNText, StyleSheet, View } from 'react-native';
-import { FLAG, HIT_SLOP, LAYOUT, SPACING } from '../constants/theme';
+import { type FlatList, StyleSheet, View } from 'react-native';
+import { HIT_SLOP, LAYOUT, SPACING } from '../constants/theme';
 import { useTheme } from '../hooks/useTheme';
-import { useOpenLink } from '../lib/open-link';
+import { openExternal } from '../lib/open-link';
 import { displayCountryName } from '../lib/place-names';
+import { FlagGlyph } from './FlagChip';
 import { Pressable, Text } from './primitives';
+import { SheetFlatList } from './SheetContent';
 
 interface Props {
   metric: MetricKey;
@@ -92,7 +93,7 @@ export const CountryRankingView = memo(function CountryRankingView({
           <Text variant="labelXs" style={styles.rank}>
             {index + 1}
           </Text>
-          <RNText style={styles.flag}>{item.flag}</RNText>
+          <FlagGlyph flag={item.flag} />
           <Text
             variant="caption"
             tone={isCurrent ? 'emphasis' : 'default'}
@@ -128,17 +129,15 @@ export const CountryRankingView = memo(function CountryRankingView({
 
   const totalLabel = `#${currentIndex + 1} of ${ranking.length}`;
   const meta = METRICS[metric];
-  const openLink = useOpenLink();
   const openSource = useCallback(() => {
     if (!meta.sourceUrl) return;
     onRequestClose?.();
-    openLink(meta.sourceUrl);
-  }, [meta.sourceUrl, openLink, onRequestClose]);
+    openExternal(meta.sourceUrl);
+  }, [meta.sourceUrl, onRequestClose]);
 
   return (
-    <BottomSheetFlatList
-      ref={listRef as never}
-      style={styles.list}
+    <SheetFlatList
+      ref={listRef}
       onLayout={(event) => setViewportHeight(event.nativeEvent.layout.height)}
       onContentSizeChange={(_, height) => setContentHeight(height)}
       data={ranking}
@@ -149,7 +148,7 @@ export const CountryRankingView = memo(function CountryRankingView({
           ? undefined
           : (_, index) => ({ length: rowHeight, offset: headerHeight + rowHeight * index, index })
       }
-      contentContainerStyle={{ paddingBottom: bottomInset + SPACING.lg }}
+      bottomInset={bottomInset}
       ListHeaderComponent={
         <View onLayout={(event) => setHeaderHeight(event.nativeEvent.layout.height)}>
           {titled || currentIndex >= 0 ? (
@@ -197,7 +196,6 @@ export const CountryRankingView = memo(function CountryRankingView({
 const ROW_HEIGHT = 40;
 
 const styles = StyleSheet.create({
-  list: { flexShrink: 1 },
   header: {
     flexDirection: 'row',
     justifyContent: 'space-between',
@@ -231,9 +229,6 @@ const styles = StyleSheet.create({
   rank: {
     width: 28,
     fontVariant: ['oldstyle-nums'],
-  },
-  flag: {
-    fontSize: FLAG.row,
   },
   name: {
     flex: 1,

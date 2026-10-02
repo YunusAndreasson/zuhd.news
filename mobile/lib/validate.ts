@@ -1,3 +1,4 @@
+import { EVENT_TYPE_EYEBROW } from '@shared/gdacs';
 import type {
   AnalysisSnapshot,
   Article,
@@ -6,9 +7,7 @@ import type {
   ChokepointCounts,
   ChokepointSnapshot,
   ConflictEvent,
-  ConflictEventFamily,
   ConflictSnapshot,
-  ConflictSubEvent,
   FeedResponse,
   GdacsAlert,
   GdacsDetail,
@@ -20,6 +19,7 @@ import type {
 } from '@shared/types';
 import type { Preferences } from '../constants/theme';
 import type { Bookmark } from './bookmark-store';
+import { FAMILY_EYEBROW, SUB_EVENT_LABEL } from './conflict';
 import { isIsoDate } from './data-freshness';
 import type { FamineSnapshot, GenocideSnapshot, ThermalSnapshot } from './overlays';
 
@@ -152,7 +152,11 @@ export const isAnalysisSnapshot = (v: unknown): v is AnalysisSnapshot =>
 const isRelatedArticleRef = (r: unknown): boolean =>
   isObject(r) && typeof r.slug === 'string' && typeof r.title === 'string';
 
-const GDACS_EVENT_TYPES: ReadonlySet<string> = new Set(['EQ', 'TC', 'FL', 'VO', 'DR', 'WF']);
+/** The types, families and sub-events the app has words for. Each label table
+ *  is a `Record` over its union, so it is complete by type: the validator
+ *  accepts exactly what the sheets can name, and a value added to one cannot
+ *  be missing from the other — which would reject the whole snapshot. */
+const GDACS_EVENT_TYPES: ReadonlySet<string> = new Set(Object.keys(EVENT_TYPE_EYEBROW));
 const GDACS_ALERT_LEVELS: ReadonlySet<string> = new Set(['Green', 'Orange', 'Red']);
 
 const isGdacsAlert = (v: unknown): v is GdacsAlert => {
@@ -199,20 +203,8 @@ export const isGdacsSnapshot = (v: unknown): v is GdacsSnapshot => {
 // useConflictEvents; will be reused unchanged when the hook swaps to a
 // network fetch from /api/conflict.json. Mirror the GDACS pair above.
 
-const CONFLICT_FAMILIES: ReadonlySet<ConflictEventFamily> = new Set(['kinetic', 'unrest']);
-const CONFLICT_SUB_EVENTS: ReadonlySet<ConflictSubEvent> = new Set([
-  'armed_clash',
-  'air_drone_strike',
-  'shelling_artillery',
-  'remote_explosive_ied',
-  'attack_on_civilians',
-  'abduction_disappearance',
-  'sexual_violence',
-  'peaceful_protest',
-  'protest_intervention',
-  'violent_demonstration',
-  'mob_violence',
-]);
+const CONFLICT_FAMILIES: ReadonlySet<string> = new Set(Object.keys(FAMILY_EYEBROW));
+const CONFLICT_SUB_EVENTS: ReadonlySet<string> = new Set(Object.keys(SUB_EVENT_LABEL));
 
 const isOptionalString = (v: unknown): boolean => v === undefined || typeof v === 'string';
 const isOptionalNonNegInt = (v: unknown): boolean =>
@@ -228,10 +220,10 @@ const isConflictEvent = (v: unknown): v is ConflictEvent => {
   if (!isObject(v)) return false;
   if (typeof v.id !== 'string' || v.id.length === 0) return false;
   if (!isIsoDate(v.eventDate)) return false;
-  if (typeof v.family !== 'string' || !CONFLICT_FAMILIES.has(v.family as ConflictEventFamily)) {
+  if (typeof v.family !== 'string' || !CONFLICT_FAMILIES.has(v.family)) {
     return false;
   }
-  if (typeof v.subEvent !== 'string' || !CONFLICT_SUB_EVENTS.has(v.subEvent as ConflictSubEvent)) {
+  if (typeof v.subEvent !== 'string' || !CONFLICT_SUB_EVENTS.has(v.subEvent)) {
     return false;
   }
   if (typeof v.actor1 !== 'string') return false;
@@ -342,6 +334,14 @@ const isBookmark = (v: unknown): v is Bookmark =>
 
 export const isBookmarkArray = (v: unknown): v is Bookmark[] =>
   Array.isArray(v) && v.every(isBookmark);
+
+/** A slug → when map, as the found, read and known stores persist it. */
+export const isTimestampMap = (v: unknown): v is Record<string, number> =>
+  isObject(v) && Object.values(v).every((at) => typeof at === 'number');
+
+/** A key → string map, as the snapshot fetcher keeps each file's ETag. */
+export const isStringMap = (v: unknown): v is Record<string, string> =>
+  isObject(v) && Object.values(v).every((s) => typeof s === 'string');
 
 // Hazard overlays ported from the web map. Narrow on purpose: each checks only
 // the fields the app reads, so a field the web adds cannot fail the app's

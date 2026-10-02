@@ -217,6 +217,120 @@ const Segment = memo(function Segment({
   );
 });
 
+/*
+ * The three indicators — the fill, the thumb and the playhead — are components
+ * of their own so their animated styles exist only where they are drawn. A
+ * style's mapper runs on the UI thread on every change of what it reads,
+ * whether or not a view wears it, and the dock's `fraction` changes on every
+ * frame of a swipe: the dock draws only the playhead, the briefing only the
+ * fill and the thumb, and each ran the others' mappers frame by frame.
+ *
+ * Each updater also runs once on the JS thread when it mounts, and the dock
+ * remounts the bar whenever its status line gives way — possibly mid-landing,
+ * while the deck's spring is writing `fraction` on the UI thread. A JS read of
+ * a value the UI thread has changed blocks until the UI thread answers (the
+ * stall `StoryDeck`'s `DeckSlot` documents). So the first style is the one an
+ * unmeasured bar has anyway — nothing shown — and the UI mapper, which runs
+ * straight after, draws the real one.
+ */
+
+interface IndicatorProps {
+  fraction: SharedValue<number>;
+  /** The track's measured width (`Scrub.width`). */
+  width: SharedValue<number>;
+  height: number;
+}
+
+/**
+ * The fill up to `fraction`, revealed rather than stretched: a clip slides in
+ * from the left while its content slides back by the same distance, so
+ * segments keep their shape at every fraction and nothing lays out per frame.
+ */
+const ScrubFill = memo(function ScrubFill({
+  fraction,
+  width,
+  height,
+  segments,
+  color,
+}: IndicatorProps & { segments?: number; color: string }) {
+  const clipStyle = useAnimatedStyle(() => {
+    if (globalThis.__RUNTIME_KIND === 1) return { opacity: 0 };
+    return {
+      opacity: width.value > 0 ? 1 : 0,
+      transform: [{ translateX: (fraction.value - 1) * width.value }],
+    };
+  });
+  const contentStyle = useAnimatedStyle(() => {
+    if (globalThis.__RUNTIME_KIND === 1) return {};
+    return { transform: [{ translateX: (1 - fraction.value) * width.value }] };
+  });
+  return (
+    <Animated.View style={[StyleSheet.absoluteFill, styles.clip, clipStyle]}>
+      <Animated.View style={[styles.row, contentStyle]}>
+        <Segments count={segments} color={color} height={height} />
+      </Animated.View>
+    </Animated.View>
+  );
+});
+
+/** The thumb, shown while a finger holds the track (`Scrub.shown`). */
+const ScrubThumb = memo(function ScrubThumb({
+  fraction,
+  width,
+  height,
+  shown,
+  color,
+}: IndicatorProps & { shown: SharedValue<number>; color: string | SharedValue<string> }) {
+  const thumbStyle = useAnimatedStyle(() => {
+    if (globalThis.__RUNTIME_KIND === 1) return { opacity: 0 };
+    return {
+      backgroundColor: typeof color === 'string' ? color : color.value,
+      opacity: shown.value,
+      transform: [{ translateX: fraction.value * width.value - THUMB / 2 }],
+    };
+  });
+  return (
+    <Animated.View
+      pointerEvents="none"
+      style={[styles.thumb, { top: (height - THUMB) / 2 }, thumbStyle]}
+    />
+  );
+});
+
+/**
+ * **The playhead is what the finger picks up, and there is only one**
+ * (2026-09-24, the user's request). It rides `fraction` on the UI thread: the
+ * finger while a scrub holds the track, the deck's live position otherwise, so
+ * it also glides with a sideways swipe. The first version parked a second
+ * playhead at the committed story, placed by React: on a drop the finger's one
+ * faded out while the parked one faded in at the story being left — the new
+ * index had not reached React yet — and then slid over. It went back and forth
+ * twice on every drop.
+ */
+const ScrubPlayhead = memo(function ScrubPlayhead({
+  fraction,
+  width,
+  height,
+  color,
+}: IndicatorProps & { color: string }) {
+  const playheadStyle = useAnimatedStyle(() => {
+    if (globalThis.__RUNTIME_KIND === 1) return { opacity: 0 };
+    return {
+      opacity: width.value > 0 ? 1 : 0,
+      transform: [{ translateX: fraction.value * width.value - PLAYHEAD_HEAD / 2 }],
+    };
+  });
+  return (
+    <Animated.View
+      pointerEvents="none"
+      style={[styles.playhead, { top: height / 2 - PLAYHEAD_UP }, playheadStyle]}
+    >
+      <View style={[styles.playheadStem, { backgroundColor: color }]} />
+      <View style={[styles.playheadHead, { backgroundColor: color }]} />
+    </Animated.View>
+  );
+});
+
 interface ScrubBarProps
   extends Pick<
     ViewProps,
@@ -241,12 +355,10 @@ interface ScrubBarProps
   trackColor: string;
   /** The fill up to `fraction`. A track without one — the dock's, whose
    *  segments say what has been read rather than what is behind the finger —
-   *  shows where it is by the raised segment and, while held, the thumb. */
+   *  shows where it is by its playhead. */
   fillColor?: string;
   /** One colour per segment for what is still ahead, overriding `trackColor`. */
   trackColors?: readonly string[];
-  /** One colour per segment for what the fill has passed, overriding `fillColor`. */
-  fillColors?: readonly string[];
   /** Per segment: done with — drawn as a hairline (the dock's read stories). */
   faded?: readonly boolean[];
   /** Per placed segment: stands taller than the track (most covered). */
@@ -270,14 +382,8 @@ interface ScrubBarProps
   children?: ReactNode;
 }
 
-/**
- * The track, its fill and its thumb, under `useScrub`'s gesture.
- *
- * The fill, where there is one, is revealed rather than stretched: a clip
- * slides in from the left while its content slides back by the same distance,
- * so segments keep their shape at every fraction and nothing lays out per
- * frame.
- */
+/** The track and its indicators — a fill, the thumb or the playhead — under
+ *  `useScrub`'s gesture. */
 export const ScrubBar = memo(function ScrubBar({
   scrub,
   fraction,
@@ -289,7 +395,6 @@ export const ScrubBar = memo(function ScrubBar({
   trackColor,
   fillColor,
   trackColors,
-  fillColors,
   faded,
   cells,
   cellKeys,
@@ -317,54 +422,13 @@ export const ScrubBar = memo(function ScrubBar({
     },
     [onLayout, onTrackWidth],
   );
-  // Each updater runs once on the JS thread when the bar mounts, and the dock
-  // remounts it whenever its status line gives way — possibly mid-landing,
-  // while the deck's spring is writing `fraction` on the UI thread. A JS read
-  // of a value the UI thread has changed blocks until the UI thread answers
-  // (the stall `StoryDeck`'s `DeckSlot` documents). So the first style is the
-  // one an unmeasured bar has anyway — no fill, no thumb — and the UI mapper,
-  // which runs straight after, draws the real one.
-  const clipStyle = useAnimatedStyle(() => {
-    if (globalThis.__RUNTIME_KIND === 1) return { opacity: 0 };
-    return {
-      opacity: width.value > 0 ? 1 : 0,
-      transform: [{ translateX: (fraction.value - 1) * width.value }],
-    };
-  });
-  const contentStyle = useAnimatedStyle(() => {
-    if (globalThis.__RUNTIME_KIND === 1) return {};
-    return { transform: [{ translateX: (1 - fraction.value) * width.value }] };
-  });
-  const thumbStyle = useAnimatedStyle(() => {
-    if (globalThis.__RUNTIME_KIND === 1) return { opacity: 0 };
-    return {
-      backgroundColor: typeof thumbColor === 'string' ? thumbColor : thumbColor.value,
-      opacity: shown.value,
-      transform: [{ translateX: fraction.value * width.value - THUMB / 2 }],
-    };
-  });
-  // **The playhead is what the finger picks up, and there is only one**
-  // (2026-09-24, the user's request). It rides `fraction` on the UI thread:
-  // the finger while a scrub holds the track, the deck's live position
-  // otherwise, so it also glides with a sideways swipe. The first version
-  // parked a second playhead at the committed story, placed by React: on a
-  // drop the finger's one faded out while the parked one faded in at the
-  // story being left — the new index had not reached React yet — and then
-  // slid over. It went back and forth twice on every drop.
-  const playheadStyle = useAnimatedStyle(() => {
-    if (globalThis.__RUNTIME_KIND === 1) return { opacity: 0 };
-    return {
-      opacity: width.value > 0 ? 1 : 0,
-      transform: [{ translateX: fraction.value * width.value - PLAYHEAD_HEAD / 2 }],
-    };
-  });
   const placed = cells && cells.length === segments ? cells : null;
   // `activeSegment === segments` is the end card: the playhead stays on the
   // track at the last story rather than vanishing, which left the reader with
   // no place on the day at all.
   const playhead =
     activeSegment !== undefined && activeSegment >= 0 && activeSegment <= (segments ?? 0)
-      ? (activeSegmentColor ?? fillColors?.[activeSegment] ?? fillColor ?? trackColor)
+      ? (activeSegmentColor ?? fillColor ?? trackColor)
       : null;
 
   const bar = (
@@ -445,24 +509,23 @@ export const ScrubBar = memo(function ScrubBar({
             )
           : null}
         {fillColor ? (
-          <Animated.View style={[StyleSheet.absoluteFill, styles.clip, clipStyle]}>
-            <Animated.View style={[styles.row, contentStyle]}>
-              <Segments count={segments} color={fillColor} colors={fillColors} height={height} />
-            </Animated.View>
-          </Animated.View>
+          <ScrubFill
+            fraction={fraction}
+            width={width}
+            height={height}
+            segments={segments}
+            color={fillColor}
+          />
         ) : null}
         {playhead ? (
-          <Animated.View
-            pointerEvents="none"
-            style={[styles.playhead, { top: height / 2 - PLAYHEAD_UP }, playheadStyle]}
-          >
-            <View style={[styles.playheadStem, { backgroundColor: playhead }]} />
-            <View style={[styles.playheadHead, { backgroundColor: playhead }]} />
-          </Animated.View>
+          <ScrubPlayhead fraction={fraction} width={width} height={height} color={playhead} />
         ) : interactive ? (
-          <Animated.View
-            pointerEvents="none"
-            style={[styles.thumb, { top: (height - THUMB) / 2 }, thumbStyle]}
+          <ScrubThumb
+            fraction={fraction}
+            width={width}
+            height={height}
+            shown={shown}
+            color={thumbColor}
           />
         ) : null}
       </View>

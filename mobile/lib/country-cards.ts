@@ -99,10 +99,9 @@ export function latest(series: YearValue[] | undefined): YearValue | null {
 }
 
 /** Align a YearValue series to a [startYear, endYear] range, returning a
- *  dense `(number | null)[]` with one entry per year. Used to make the
- *  global benchmark comparable to a country's series on the same x-axis
- *  even when the year ranges differ slightly. */
-export function alignToYears(
+ *  dense `(number | null)[]` with one entry per year — null for a year the
+ *  series does not have. */
+function alignToYears(
   series: YearValue[] | undefined,
   startYear: number,
   endYear: number,
@@ -116,6 +115,43 @@ export function alignToYears(
     out.push(v == null ? null : v);
   }
   return out;
+}
+
+/** A country's line and the world's, as `TrajectoryChart` draws them. */
+export interface Trajectory {
+  values: (number | null)[];
+  startYear: number;
+  endYear: number;
+  comparison: { values: (number | null)[]; label: string };
+}
+
+/**
+ * A country's series against the world median, both on one axis: a value for
+ * every year from the country's first to its last, null where either has
+ * none. Null for a country with no series.
+ *
+ * `TrajectoryChart` spaces a line by index, so both lines have to be
+ * year-aligned for either to sit on its decade ticks. Each card aligned the
+ * world's and passed the country's raw: dense everywhere but Luxembourg's
+ * fertility, 63 values over 65 years, whose line ran up to two years ahead of
+ * the axis. Missing years are a gap in the line, which is how the chart draws
+ * one.
+ */
+export function trajectoryOf(
+  series: YearValue[] | undefined,
+  world: YearValue[] | undefined,
+): Trajectory | null {
+  const first = series?.[0];
+  const last = series?.[series.length - 1];
+  if (!first || !last) return null;
+  const [startYear] = first;
+  const [endYear] = last;
+  return {
+    values: alignToYears(series, startYear, endYear),
+    startYear,
+    endYear,
+    comparison: { values: alignToYears(world, startYear, endYear), label: 'world' },
+  };
 }
 
 /** Year/value pair near a target year (closest match). Used for "vs 1995" comparisons. */

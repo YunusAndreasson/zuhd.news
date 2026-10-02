@@ -2,25 +2,23 @@ import { Canvas, Circle, DashPathEffect, Line, Path, Skia, vec } from '@shopify/
 import { extent } from 'd3-array';
 import { scaleLinear } from 'd3-scale';
 import { curveMonotoneX, line as d3Line } from 'd3-shape';
-import { memo, useEffect, useMemo, useState } from 'react';
+import { memo, useMemo, useState } from 'react';
 import { StyleSheet, useWindowDimensions, View } from 'react-native';
-import {
-  cancelAnimation,
-  useReducedMotion,
-  useSharedValue,
-  withTiming,
-} from 'react-native-reanimated';
-import { ANIMATION, EASING, SPACING } from '../../constants/theme';
+import { ANIMATION, SPACING } from '../../constants/theme';
 import { useTheme } from '../../hooks/useTheme';
 import { type ChartPoint, clearLabelSpot } from '../../lib/chart-label';
+import { useChartDrawProgress } from '../blocks/shared';
 import { Text } from '../primitives';
 
 // d3 line generator is stateless once configured — build it once at module
 // scope so we don't re-allocate per useMemo run (twice today: once for the
-// country path, once for the comparison path).
-const lineGenerator = d3Line<{ x: number; y: number }>()
-  .x((d) => d.x)
-  .y((d) => d.y)
+// country path, once for the comparison path). A missing year is a null, and
+// `defined` lifts the line across it: one subpath per run of years, each
+// curved on its own, rather than a bridge over the gap.
+const lineGenerator = d3Line<ChartPoint | null>()
+  .defined((d) => d !== null)
+  .x((d) => d?.x ?? 0)
+  .y((d) => d?.y ?? 0)
   .curve(curveMonotoneX);
 
 // Horizontal graticule fractions of the inner chart height — read as
@@ -28,16 +26,18 @@ const lineGenerator = d3Line<{ x: number; y: number }>()
 // stays stable across renders.
 const GRID_FRACTIONS = [0.25, 0.5, 0.75] as const;
 
+/**
+ * A reference level under the trajectory — replacement fertility — drawn in
+ * secondary ink, dashed, like a card chart's normal. There were gold and rose
+ * tones for "soft" and "hard" limits once, and nothing used either: gold is
+ * the brand and the globe's economy hue, a baseline in it reads as a verdict
+ * (DESIGN.md), and rose is reserved for the most urgent state there is.
+ */
 export interface TrajectoryThreshold {
-  /** Y-value where the reference line sits (e.g. 1.5 for the Paris ceiling). */
+  /** Y-value where the reference line sits (e.g. 2.1 for replacement). */
   value: number;
-  /** Caption rendered at the right edge of the line. */
+  /** Caption, placed on the first stretch of the line both lines leave clear. */
   label: string;
-  /** 'warn' (gold) for soft thresholds, 'crit' (red-ish) for hard limits,
-   *  'neutral' (secondary ink) for baselines like 0 or replacement fertility —
-   *  a reference, drawn like a card chart's dashed normal. Gold is the brand
-   *  and the globe's economy hue; a baseline in it reads as a verdict. */
-  tone?: 'warn' | 'crit' | 'neutral';
 }
 
 interface TrajectoryChartProps {
@@ -68,16 +68,14 @@ interface TrajectoryChartProps {
    *  page boundary. Include the unit in the formatter (the headline carries
    *  the unit too, but the strip stands alone as a chart annotation). */
   formatY?: (n: number) => string;
-  /** Trajectory line color. Defaults to `colors.textEmphasis`. */
-  accent?: string;
-  /** Total chart height. Default 140. */
-  height?: number;
   /** One-line description for screen readers. Should summarise the
    *  trajectory's story (current value, direction, comparison) in plain
    *  language — the visual is opaque to assistive tech otherwise. */
   accessibilityLabel?: string;
 }
 
+/** The chart's height, on every country card. */
+const HEIGHT = 140;
 // Thin stroke + light threshold dashes match the documentary aesthetic of
 // the metric-row percentile strips below. Thicker strokes start to feel
 // dashboard-y; 1.4 is the sweet spot at 140pt chart height.
@@ -103,6 +101,10 @@ const PAD_LEFT = 4;
 // The user no longer has to read a number off the right gutter — the chart
 // IS the trajectory, the headline IS the number.
 const PAD_RIGHT = 12;
+const INNER_BOTTOM = HEIGHT - PAD_BOTTOM;
+/** Horizontal graticule: hairlines at GRID_FRACTIONS of the inner height, very
+ *  low opacity so the eye reads it as a hint, not chrome. */
+const GRID_YS = GRID_FRACTIONS.map((f) => PAD_TOP + (INNER_BOTTOM - PAD_TOP) * f);
 const THRESHOLD_LABEL_INDENT = 6;
 const THRESHOLD_LABEL_HEIGHT = 14;
 /** One lowercase `labelXs` character in the regular face, with its tracking,
@@ -153,29 +155,15 @@ export const TrajectoryChart = memo(function TrajectoryChart({
   minY,
   maxY,
   formatY,
-  accent,
-  height = 140,
   accessibilityLabel,
 }: TrajectoryChartProps) {
   const { colors, font } = useTheme();
-  const reduceMotion = useReducedMotion();
   const { width: windowWidth } = useWindowDimensions();
   // Start with the current reactive window width; onLayout replaces this
   // estimate with the exact content width after the first layout pass.
   const [width, setWidth] = useState(() => windowWidth - SPACING.screenPadding * 2);
 
-  const progress = useSharedValue(reduceMotion ? 1 : 0);
-  useEffect(() => {
-    if (reduceMotion) {
-      cancelAnimation(progress);
-      progress.value = 1;
-      return;
-    }
-    progress.value = withTiming(1, { duration: ANIMATION.long, easing: EASING.out });
-    return () => cancelAnimation(progress);
-  }, [reduceMotion, progress]);
-
-  const lineColor = accent ?? colors.textEmphasis;
+  const progress = useChartDrawProgress(ANIMATION.long);
 
   const { path, comparisonPath, yScale, computedMinY, computedMaxY, endPoint, lines } =
     useMemo(() => {
@@ -206,104 +194,61 @@ export const TrajectoryChart = memo(function TrajectoryChart({
       // −$18, and the scale strip printed `$-18–$17K`.
       if (minY == null && eMin >= 0 && lo < 0) lo = 0;
 
-      const innerBottom = height - PAD_BOTTOM;
       const innerRight = (width || 1) - PAD_RIGHT;
 
-      const yScaleFn = scaleLinear().domain([lo, hi]).range([innerBottom, PAD_TOP]);
-      const xFor = (i: number, len: number) =>
-        len <= 1 ? PAD_LEFT : PAD_LEFT + (i / (len - 1)) * (innerRight - PAD_LEFT);
-
-      const buildPath = (vs: (number | null)[]) => {
-        // Fast path: no gaps. Build a single SVG path string and parse it
-        // once — saves the empty builder + addPath() round-trip that the
-        // segmented path requires. Most country series are dense (climate
-        // is annual ERA5, World Bank fills back-years), so the fast path
-        // hits ~95% of the time in practice.
-        if (!vs.includes(null)) {
-          const points = vs.map((v, i) => ({
-            x: xFor(i, vs.length),
-            y: yScaleFn(v as number),
-          }));
-          return (
-            Skia.Path.MakeFromSVGString(lineGenerator(points) ?? '') ??
-            Skia.PathBuilder.Make().detach()
-          );
-        }
-        // Gappy data — split into contiguous segments at each null so the
-        // line lifts cleanly across missing years instead of bridging them.
-        const builder = Skia.PathBuilder.Make();
-        let segment: { x: number; y: number }[] = [];
-        const flush = () => {
-          if (segment.length === 0) return;
-          const sub = Skia.Path.MakeFromSVGString(lineGenerator(segment) ?? '');
-          if (sub) builder.addPath(sub);
-          segment = [];
-        };
-        for (let i = 0; i < vs.length; i++) {
-          const v = vs[i];
-          if (v == null) {
-            flush();
-            continue;
-          }
-          segment.push({ x: xFor(i, vs.length), y: yScaleFn(v) });
-        }
-        flush();
-        return builder.detach();
-      };
-
-      // Both lines as points, split at gaps, for placing threshold labels
-      // clear of them (`clearLabelSpot`).
-      const toLines = (vs: (number | null)[]) => {
-        const lines: ChartPoint[][] = [];
+      const yScaleFn = scaleLinear().domain([lo, hi]).range([INNER_BOTTOM, PAD_TOP]);
+      // Each line spans the plot by its own index; both arrive aligned to one
+      // run of years (`trajectoryOf`), so index and year agree.
+      const toPoints = (vs: (number | null)[]) =>
+        vs.map((v, i) =>
+          v == null
+            ? null
+            : {
+                x:
+                  vs.length <= 1
+                    ? PAD_LEFT
+                    : PAD_LEFT + (i / (vs.length - 1)) * (innerRight - PAD_LEFT),
+                y: yScaleFn(v),
+              },
+        );
+      const pathOf = (points: (ChartPoint | null)[]) =>
+        Skia.Path.MakeFromSVGString(lineGenerator(points) ?? '') ??
+        Skia.PathBuilder.Make().detach();
+      // Both lines as runs of points, split at gaps, for placing threshold
+      // labels clear of them (`clearLabelSpot`).
+      const toRuns = (points: (ChartPoint | null)[]) => {
+        const runs: ChartPoint[][] = [];
         let run: ChartPoint[] = [];
-        for (let i = 0; i < vs.length; i++) {
-          const v = vs[i];
-          if (v == null) {
-            if (run.length > 0) lines.push(run);
+        for (const p of points) {
+          if (p) {
+            run.push(p);
+          } else if (run.length > 0) {
+            runs.push(run);
             run = [];
-            continue;
           }
-          run.push({ x: xFor(i, vs.length), y: yScaleFn(v) });
         }
-        if (run.length > 0) lines.push(run);
-        return lines;
+        if (run.length > 0) runs.push(run);
+        return runs;
       };
 
-      const lastEndpoint = (vs: (number | null)[]) => {
-        for (let i = vs.length - 1; i >= 0; i--) {
-          const v = vs[i];
-          if (v != null) return { x: xFor(i, vs.length), y: yScaleFn(v) };
-        }
-        return null;
-      };
-
+      const country = toPoints(cleaned);
+      const world = toPoints(cleanedCmp);
+      let endPoint: ChartPoint | null = null;
+      for (let i = country.length - 1; i >= 0 && !endPoint; i--) endPoint = country[i] ?? null;
       return {
-        path: buildPath(cleaned),
-        comparisonPath: cleanedCmp.length > 0 ? buildPath(cleanedCmp) : null,
+        path: pathOf(country),
+        comparisonPath: world.length > 0 ? pathOf(world) : null,
         yScale: yScaleFn,
         computedMinY: lo,
         computedMaxY: hi,
-        endPoint: lastEndpoint(cleaned),
-        lines: [...toLines(cleaned), ...toLines(cleanedCmp)],
+        endPoint,
+        lines: [...toRuns(country), ...toRuns(world)],
       };
-    }, [values, comparison, thresholds, minY, maxY, width, height]);
-
-  const toneColor = (tone: TrajectoryThreshold['tone']): string => {
-    switch (tone) {
-      case 'warn':
-        return colors.dome;
-      case 'crit':
-        return colors.toneUnfavorableText;
-      default:
-        return colors.textSecondary;
-    }
-  };
+    }, [values, comparison, thresholds, minY, maxY, width]);
 
   // Inner chart bounds. PAD_LEFT and PAD_TOP are static constants used
-  // directly; only innerRight/innerBottom move with the measured width
-  // and the configured chart height respectively.
+  // directly; only innerRight moves, with the measured width.
   const innerRight = (width || 1) - PAD_RIGHT;
-  const innerBottom = height - PAD_BOTTOM;
 
   // Each threshold's label, on the first stretch of its rule that neither line
   // crosses — above it by preference. It was pinned at the left end, where
@@ -332,13 +277,6 @@ export const TrajectoryChart = memo(function TrajectoryChart({
     [thresholds, yScale, lines, innerRight],
   );
 
-  // Horizontal graticule: hairlines at GRID_FRACTIONS of inner height,
-  // very low opacity so the eye reads it as a hint, not chrome.
-  const gridYs = useMemo(
-    () => GRID_FRACTIONS.map((f) => PAD_TOP + (innerBottom - PAD_TOP) * f),
-    [innerBottom],
-  );
-
   // Vertical graticule + year ticks: one hairline + label per decade
   // boundary inside [startYear, endYear].
   const decadeXs = useMemo(() => {
@@ -350,20 +288,20 @@ export const TrajectoryChart = memo(function TrajectoryChart({
     }));
   }, [startYear, endYear, innerRight]);
 
-  const canvasStyle = useMemo(() => ({ width, height }), [width, height]);
+  const canvasStyle = useMemo(() => ({ width, height: HEIGHT }), [width]);
 
   return (
     <View
       accessible
       accessibilityRole="image"
       accessibilityLabel={accessibilityLabel}
-      style={[styles.wrap, { height }]}
+      style={styles.wrap}
       onLayout={(e) => setWidth(e.nativeEvent.layout.width)}
     >
       {width > 0 ? (
         <>
           <Canvas style={canvasStyle}>
-            {gridYs.map((gy, i) => (
+            {GRID_YS.map((gy, i) => (
               <Line
                 key={`grid-h-${i}`}
                 p1={vec(PAD_LEFT, gy)}
@@ -377,7 +315,7 @@ export const TrajectoryChart = memo(function TrajectoryChart({
               <Line
                 key={`grid-v-${year}`}
                 p1={vec(x, PAD_TOP)}
-                p2={vec(x, innerBottom)}
+                p2={vec(x, INNER_BOTTOM)}
                 color={colors.textSecondary}
                 opacity={0.12}
                 strokeWidth={StyleSheet.hairlineWidth}
@@ -391,7 +329,7 @@ export const TrajectoryChart = memo(function TrajectoryChart({
                   key={`thresh-${i}`}
                   p1={vec(PAD_LEFT, y)}
                   p2={vec(innerRight, y)}
-                  color={toneColor(t.tone)}
+                  color={colors.textSecondary}
                   opacity={0.4}
                   strokeWidth={StyleSheet.hairlineWidth}
                 >
@@ -421,12 +359,12 @@ export const TrajectoryChart = memo(function TrajectoryChart({
               strokeWidth={STROKE}
               strokeJoin="round"
               strokeCap="round"
-              color={lineColor}
+              color={colors.textEmphasis}
               start={0}
               end={progress}
             />
             {endPoint ? (
-              <Circle cx={endPoint.x} cy={endPoint.y} r={ENDPOINT_R} color={lineColor} />
+              <Circle cx={endPoint.x} cy={endPoint.y} r={ENDPOINT_R} color={colors.textEmphasis} />
             ) : null}
           </Canvas>
 
@@ -440,11 +378,7 @@ export const TrajectoryChart = memo(function TrajectoryChart({
                 pointerEvents="none"
                 style={[styles.thresholdLabel, spot]}
               >
-                <Text
-                  variant="labelXs"
-                  numberOfLines={1}
-                  style={[{ color: toneColor(t.tone) }, font.regular]}
-                >
+                <Text variant="labelXs" tone="secondary" numberOfLines={1} style={font.regular}>
                   {t.label}
                 </Text>
               </View>
@@ -510,6 +444,7 @@ export const TrajectoryChart = memo(function TrajectoryChart({
 const styles = StyleSheet.create({
   wrap: {
     width: '100%',
+    height: HEIGHT,
     position: 'relative',
     // overflow:visible on the chart wrap is intentional — descenders and
     // accessibility-scaled label glyphs can extend a couple of pixels past

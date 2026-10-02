@@ -1,12 +1,8 @@
 import type { Indicator } from '@shared/types';
+import { MONTH_ABBR } from '../date-format';
 import { type Exchange, exchangeCard, exchangeDelta } from '../markets';
-import {
-  deltaFrom,
-  formatMagnitudePct,
-  isMonthlyRate,
-  windowChange,
-  windowPointChange,
-} from './format';
+import { DAY_MS } from '../time';
+import { deltaFrom, deltaOf, isMonthlyRate, windowChange, windowPointChange } from './format';
 import { currencyMove } from './markets';
 import type { SwipeCard } from './rank';
 import type { CardDelta } from './types';
@@ -48,8 +44,6 @@ export const WEEK_WINDOW = `over ${WEEK_DAYS} days`;
  */
 const ANCHOR_SLACK_DAYS = 3;
 
-const MS_PER_DAY = 86_400_000;
-const MONTHS = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
 const ISO_DAY = /^(\d{4})-(\d{2})-(\d{2})$/;
 const DAY_LABEL = /^([A-Z][a-z]{2}) (\d{1,2})$/;
 
@@ -66,18 +60,18 @@ export function periodDays(periods: readonly string[], year: number): (number | 
     const label = periods[i] ?? '';
     const iso = ISO_DAY.exec(label);
     if (iso) {
-      out[i] = Date.UTC(Number(iso[1]), Number(iso[2]) - 1, Number(iso[3])) / MS_PER_DAY;
+      out[i] = Date.UTC(Number(iso[1]), Number(iso[2]) - 1, Number(iso[3])) / DAY_MS;
       y = Number(iso[1]);
       laterMonth = Number(iso[2]) - 1;
       continue;
     }
     const day = DAY_LABEL.exec(label);
     if (!day) return out;
-    const month = MONTHS.indexOf(day[1] as string);
+    const month = MONTH_ABBR.indexOf(day[1] as string);
     if (month < 0) return out;
     if (laterMonth !== null && month > laterMonth) y -= 1;
     laterMonth = month;
-    out[i] = Date.UTC(y, month, Number(day[2])) / MS_PER_DAY;
+    out[i] = Date.UTC(y, month, Number(day[2])) / DAY_MS;
   }
   return out;
 }
@@ -143,12 +137,8 @@ export function gaugeMove(card: SwipeCard, now = Date.now()): GaugeMove | null {
   const move = weekMove(card.series.values, card.series.periods, year);
   if (!move) return null;
   const pct = card.id.startsWith('fx-') ? currencyMove(move.pct) : move.pct;
-  const magnitude = formatMagnitudePct(pct);
-  const window = WEEK_WINDOW;
-  const size = Math.abs(pct);
-  if (magnitude === null)
-    return { delta: { direction: 'flat', magnitude: 'unchanged', window, size } };
-  return { delta: { direction: pct > 0 ? 'up' : 'down', magnitude, window, size } };
+  const delta = deltaOf(pct, { window: WEEK_WINDOW });
+  return delta ? { delta } : null;
 }
 
 /**
@@ -191,11 +181,6 @@ export function indicatorMove(indicator: Indicator, now = Date.now()): CardDelta
   }
   const year = yearOf(indicator.asOf, new Date(now).getUTCFullYear());
   const week = weekMove(indicator.values, indicator.periods, year);
-  if (week) {
-    return deltaFrom(
-      { pct: week.pct, from: week.from, to: '', points: week.points.length - 1 },
-      { window: WEEK_WINDOW },
-    );
-  }
+  if (week) return deltaOf(week.pct, { window: WEEK_WINDOW });
   return deltaFrom(windowChange(indicator, 1));
 }

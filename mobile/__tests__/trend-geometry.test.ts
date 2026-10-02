@@ -1,8 +1,4 @@
-import {
-  buildTrendAreaPath,
-  buildTrendLinePath,
-  buildTrendXLayout,
-} from '../components/blocks/trend-geometry';
+import { buildTrendLinePath, buildTrendXLayout } from '../components/blocks/trend-geometry';
 import { formatTickLabel } from '../lib/date-format';
 
 describe('trend chart geometry', () => {
@@ -49,32 +45,15 @@ describe('trend chart geometry', () => {
     expect(layout).toEqual({ mode: 'index', positions: [0, 45, 90], ticks: null });
   });
 
-  it('falls back when a confidence band is not aligned', () => {
-    const layout = buildTrendXLayout({
-      periods: ['2026-08-01', '2026-08-02', '2026-08-10'],
-      seriesLengths: [3],
-      bandLengths: [3, 2],
-      left: 0,
-      right: 90,
-    });
-
-    expect(layout.mode).toBe('index');
-  });
-
-  it('uses literal straight segments for lines and bands', () => {
+  it('uses literal straight segments for lines', () => {
     const line = buildTrendLinePath([
       { x: 0, y: 10 },
       { x: 20, y: 5 },
       { x: 90, y: 15 },
     ]);
-    const area = buildTrendAreaPath([
-      { x: 0, low: 10, high: 5 },
-      { x: 90, low: 15, high: 8 },
-    ]);
 
     expect(line).toBe('M0,10L20,5L90,15');
     expect(line).not.toMatch(/[CQ]/);
-    expect(area).not.toMatch(/[CQ]/);
   });
 
   it('formats date-only ticks in UTC at a timezone-sensitive boundary', () => {

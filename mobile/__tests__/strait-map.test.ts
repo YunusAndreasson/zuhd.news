@@ -4,6 +4,7 @@ import {
   STRAIT_BULGE,
   STRAIT_SIGN_R,
   type StraitState,
+  straitChange,
   straitMapChange,
   straitReach,
   straitSignDx,
@@ -39,6 +40,15 @@ test('the globe prints the strip’s seven-day move, so one strait reads one num
   });
   expect(change).toMatchObject({ direction: 'down', value: '↓38%', basis: undefined });
   expect(straitWeekChange({ direction: 'up', magnitude: '5%' })).toMatchObject({ value: '↑5%' });
+});
+
+test('a strait prints its week where the strip has one, and its normal where not', () => {
+  // The globe's label and the chooser's row both ask `straitChange`: the
+  // chooser printed the 90-day gap under a finger whose mark read the week.
+  const week = { direction: 'down', magnitude: '38%', window: 'over 7 days' } as const;
+  expect(straitChange(week, -0.62)?.label).toBe('↓38% over 7 days');
+  expect(straitChange(undefined, -0.62)?.label).toBe('↓62% vs 90d');
+  expect(straitChange(undefined, undefined)).toBeNull();
 });
 
 describe('a strait’s glyph says its state in its shape', () => {

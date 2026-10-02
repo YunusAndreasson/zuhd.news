@@ -1,4 +1,3 @@
-import { COUNTRY_DATA } from '@shared/countries/country-data';
 import { topojsonNameFromCode } from '@shared/countries/iso';
 import type { Category } from '@shared/types';
 import { memo, useCallback, useMemo } from 'react';
@@ -7,13 +6,21 @@ import Animated from 'react-native-reanimated';
 import { SPACING } from '../constants/theme';
 import { useTheme } from '../hooks/useTheme';
 import { articleTime, formatTimeAgo } from '../lib/article-utils';
+import { formatCount, formatNumber } from '../lib/cards/format';
+import { MONTH_ABBR } from '../lib/date-format';
 import type { RiverArticle } from '../lib/news-order';
-import { useOpenLink } from '../lib/open-link';
+import { openExternal } from '../lib/open-link';
 import { type OverlaySelection, thermalPlace } from '../lib/overlays';
 import { makeStaggerEnter } from '../lib/stagger';
 import { ArticleRow } from './ArticleRow';
 import { Text } from './primitives';
-import { SheetFlagRow, SheetHero, SheetScrollView, SheetSourceFooter } from './SheetContent';
+import {
+  countryFlags,
+  SheetFlagRow,
+  SheetHero,
+  SheetScrollView,
+  SheetSourceFooter,
+} from './SheetContent';
 import { type BaseSheetProps, SheetLayout } from './SheetLayout';
 
 /**
@@ -31,8 +38,6 @@ import { type BaseSheetProps, SheetLayout } from './SheetLayout';
  * `overall_phase`; a genocide finding is quoted from the body that made it.
  */
 
-export type { OverlaySelection };
-
 interface OverlayBodyProps {
   overlay: OverlaySelection | null;
   /** The river, so a thermal anomaly can name the stories it was joined to. */
@@ -44,21 +49,13 @@ interface OverlayBodyProps {
 const IPC_URL = 'https://www.ipcinfo.org/ipc-country-analysis/en/';
 const FIRMS_URL = 'https://firms.modaps.eosdis.nasa.gov/map/';
 
-const MONTHS = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
-
 /** `2025-09-16` → `16 Sep 2025`; `2023-10` → `Oct 2023`. Anything else as given. */
 function formatIsoDate(iso: string): string {
   const m = /^(\d{4})-(\d{2})(?:-(\d{2}))?/.exec(iso);
   if (!m) return iso;
-  const month = MONTHS[Number(m[2]) - 1];
+  const month = MONTH_ABBR[Number(m[2]) - 1];
   if (!month) return iso;
   return m[3] ? `${Number(m[3])} ${month} ${m[1]}` : `${month} ${m[1]}`;
-}
-
-function flagFor(name: string | undefined): { name: string; flag: string }[] {
-  if (!name) return [];
-  const data = COUNTRY_DATA[name];
-  return data?.flag ? [{ name, flag: data.flag }] : [];
 }
 
 /** The handle's title: what the layer is. */
@@ -98,7 +95,6 @@ export const OverlayBody = memo(function OverlayBody({
   onCountryPress,
 }: OverlayBodyProps) {
   const { colors } = useTheme();
-  const openLink = useOpenLink();
 
   const related = useMemo(() => {
     if (overlay?.kind !== 'thermal') return [];
@@ -109,10 +105,20 @@ export const OverlayBody = memo(function OverlayBody({
   const genocideUrl = overlay?.kind === 'genocide' ? overlay.situation.url : undefined;
   const handleSourcePress = useCallback(() => {
     if (!overlay) return;
-    if (overlay.kind === 'famine') openLink(IPC_URL);
-    else if (overlay.kind === 'thermal') openLink(FIRMS_URL);
-    else if (genocideUrl) openLink(genocideUrl);
-  }, [overlay, genocideUrl, openLink]);
+    if (overlay.kind === 'famine') openExternal(IPC_URL);
+    else if (overlay.kind === 'thermal') openExternal(FIRMS_URL);
+    else if (genocideUrl) openExternal(genocideUrl);
+  }, [overlay, genocideUrl]);
+
+  // The country an area or a finding is in, for its flag row: a famine area by
+  // its ISO code, a genocide situation by its profile.
+  const flags = countryFlags([
+    overlay?.kind === 'famine' && overlay.area.iso2
+      ? topojsonNameFromCode(overlay.area.iso2)
+      : overlay?.kind === 'genocide'
+        ? overlay.situation.profile
+        : undefined,
+  ]);
 
   const enter = makeStaggerEnter();
 
@@ -130,9 +136,9 @@ export const OverlayBody = memo(function OverlayBody({
           {overlay.area.pop?.p3plus ? (
             <Animated.View entering={enter()} style={styles.block}>
               <Text variant="body" selectable>
-                {`${overlay.area.pop.p3plus.toLocaleString('en-US')} people in crisis or worse${
+                {`${formatNumber(overlay.area.pop.p3plus)} people in crisis or worse${
                   overlay.area.pop.total
-                    ? `, of ${overlay.area.pop.total.toLocaleString('en-US')} analysed`
+                    ? `, of ${formatNumber(overlay.area.pop.total)} analysed`
                     : ''
                 }.`}
               </Text>
@@ -143,12 +149,9 @@ export const OverlayBody = memo(function OverlayBody({
               {`analysis of ${overlay.area.vintage}`}
             </Text>
           </Animated.View>
-          <SheetFlagRow
-            entering={enter()}
-            flags={flagFor(overlay.area.iso2 ? topojsonNameFromCode(overlay.area.iso2) : undefined)}
-            borderColor={colors.rule}
-            onPress={onCountryPress}
-          />
+          {flags.length > 0 && (
+            <SheetFlagRow entering={enter()} flags={flags} onPress={onCountryPress} />
+          )}
           <SheetSourceFooter
             entering={enter()}
             source="Integrated Food Security Phase Classification"
@@ -164,7 +167,7 @@ export const OverlayBody = memo(function OverlayBody({
           <SheetHero
             entering={enter()}
             eyebrow="fire radiative power"
-            focal={`${Math.round(overlay.event.frp).toLocaleString('en-US')} MW`}
+            focal={`${formatCount(overlay.event.frp)} MW`}
             tint={colors.markThermal}
             secondary={thermalPlace(overlay.event)}
           />
@@ -180,7 +183,12 @@ export const OverlayBody = memo(function OverlayBody({
           </Animated.View>
           {related.length > 0 && (
             <Animated.View entering={enter()} style={styles.block}>
-              <Text variant="labelSm" tone="secondary" style={styles.heading}>
+              <Text
+                variant="labelSm"
+                tone="secondary"
+                accessibilityRole="header"
+                style={styles.heading}
+              >
                 {related.length === 1 ? 'in the news' : `${related.length} stories`}
               </Text>
               {/* The river's own row: a story looks the same in every list. */}
@@ -230,12 +238,9 @@ export const OverlayBody = memo(function OverlayBody({
               {`${overlay.situation.document} · ${formatIsoDate(overlay.situation.date)}`}
             </Text>
           </Animated.View>
-          <SheetFlagRow
-            entering={enter()}
-            flags={flagFor(overlay.situation.profile)}
-            borderColor={colors.rule}
-            onPress={onCountryPress}
-          />
+          {flags.length > 0 && (
+            <SheetFlagRow entering={enter()} flags={flags} onPress={onCountryPress} />
+          )}
           <SheetSourceFooter
             entering={enter()}
             source={overlay.situation.body}

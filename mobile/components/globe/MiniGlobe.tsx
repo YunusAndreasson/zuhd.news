@@ -1,25 +1,4 @@
-import type { CardDelta } from '../../lib/cards/types';
-import {
-  STRAIT_SIGN_R,
-  type StraitState,
-  straitMapChange,
-  straitReach,
-  straitSignDx,
-  straitStateFor,
-  straitWeekChange,
-} from '../../lib/strait-map';
-
-('use no memo');
-
-// React Compiler is enabled app-wide (app.json experiments.reactCompiler) with
-// no other opt-out for this file. This component's reprojection hot path
-// depends on several `useCallback(..., [])` closures that are DELIBERATELY
-// stale (see the `biome-ignore lint/correctness/useExhaustiveDependencies`
-// comments below, e.g. `callReproject`) — they read the latest state through
-// refs on purpose, for perf, not by oversight. The compiler's job is to
-// rewrite exactly that pattern, so it must not run on this file.
-
-import { COUNTRY_DATA, type CountryData } from '@shared/countries/country-data';
+import { COUNTRY_DATA } from '@shared/countries/country-data';
 import { CITY_TZ, COUNTRY_TZ, SOURCE_COORDS, zoneAt } from '@shared/globe/coordinates';
 import type { Article, Chokepoint, ConflictEvent, GdacsAlert, HeatmapPoint } from '@shared/types';
 import {
@@ -45,7 +24,6 @@ import {
   type SkPath,
   type SkPathBuilder,
   type SkPicture,
-  type SkPoint,
   type SkShader,
   StrokeCap,
   StrokeJoin,
@@ -90,7 +68,12 @@ import {
 } from '../../constants/theme';
 import { useTheme } from '../../hooks/useTheme';
 import { articleTime } from '../../lib/article-utils';
-import { collapseConflictVisuals, eventAgeDays } from '../../lib/conflict';
+import type { CardDelta } from '../../lib/cards/types';
+import {
+  type ConflictVisualCluster,
+  collapseConflictVisuals,
+  eventAgeDays,
+} from '../../lib/conflict';
 import { alertAgeDays, gdacsGlyphScale } from '../../lib/gdacs';
 import {
   arcDegrees,
@@ -132,6 +115,16 @@ import {
   topUnfound,
   unfoundSlugs,
 } from '../../lib/story-places';
+import {
+  STRAIT_SIGN_R,
+  type StraitState,
+  straitChange,
+  straitReach,
+  straitSignDx,
+  straitStateFor,
+} from '../../lib/strait-map';
+import { markTap, type TapResult } from '../../lib/tap-result';
+import { HOUR_MS } from '../../lib/time';
 import {
   CITY_LIGHT_COUNT,
   CITY_LIGHT_DEEP_NIGHT_DOT,
@@ -313,10 +306,9 @@ function overlayAtlas(
  *  the sprite — filling its transparent bounding box with solid squares. */
 function conflictAtlas(
   spec: GlowSpec,
-  marks: { x: number; y: number; recencyAlpha: number; scale: number }[],
+  visuals: readonly ConflictVisualCluster[],
   rgb: readonly [number, number, number],
 ) {
-  const visuals = collapseConflictVisuals(marks);
   if (visuals.length === 0) return null;
   const sprites: ReturnType<typeof rect>[] = [];
   const transforms: ReturnType<typeof Skia.RSXform>[] = [];
@@ -845,45 +837,6 @@ const TWILIGHT_RADIUS = 96;
  *  view is smaller and so is the path. */
 const MOTION_RESAMPLE_SCALE = 400;
 
-export interface TapResult {
-  countryName: string;
-  location: string | null;
-  localTime: string | null;
-  data: CountryData | null;
-  hotspotLabels?: string[];
-  isHotspot?: boolean;
-  /** Set when the tap landed on an ambient chokepoint ring. The parent
-   *  resolves the ID to the full Chokepoint payload and opens the strait's card. */
-  chokepointId?: string;
-  /** Set when the tap landed on a GDACS disaster marker. The parent resolves
-   *  the eventid against the alerts list and opens DisasterSheet. */
-  gdacsEventId?: string;
-  /** Set when the tap landed on a conflict-event marker. The parent
-   *  resolves the id against the events list and opens ConflictSheet. */
-  conflictEventId?: string;
-  /** Set when the tap landed on an exchange whose index has moved. The
-   *  parent resolves it against the ranked instruments and opens the card. */
-  marketSignalId?: string;
-  /** Set when the tap landed on a story mark: the newest story at that place
-   *  the reader has not found yet. The parent opens it in the sheet, and the
-   *  mark stops being drawn once the found store records it. */
-  storySlug?: string;
-  /** The tapped mark's hue, so the found burst is drawn in the same colour. */
-  storyColor?: string;
-  /** An IPC famine classification — opens `OverlaySheet`. */
-  famineAreaId?: string;
-  /** A FIRMS thermal anomaly — opens `OverlaySheet`. */
-  thermalEventId?: string;
-  /** A UN genocide determination — opens `OverlaySheet`. */
-  genocideId?: string;
-  /** Populated when the tap lands on 2+ overlapping markers. The parent
-   *  presents a chooser sheet listing these candidates; tapping one
-   *  re-dispatches that candidate through the same hit handler. When set,
-   *  it has length ≥ 2 and the outer fields (`countryName`, etc.) carry
-   *  no meaning — read from the candidates instead. */
-  candidates?: TapResult[];
-}
-
 export interface MiniGlobeRef {
   hitTest: (x: number, y: number) => TapResult | null;
   showPulse: (x: number, y: number) => void;
@@ -1005,15 +958,6 @@ interface MiniGlobeProps {
    */
   viewLat?: SharedValue<number>;
   viewLng?: SharedValue<number>;
-  /**
-   * The grown-story transform, applied to the drawing inside the canvas. A
-   * view transform would scale the canvas's pixels and cut a zoomed globe at
-   * the canvas's edge; this one shrinks ground the projection drew past it.
-   */
-  canvasTransform?: SharedValue<Transforms3d>;
-  /** How far from the globe's centre the projection must reach: past the
-   *  screen when `canvasTransform` can shrink it (`grownReach`). */
-  canvasReach?: number;
   tick?: number;
   ref?: React.Ref<MiniGlobeRef>;
 }
@@ -1178,6 +1122,10 @@ interface GlobeState {
   /** The conflict counts printed beside their glows: stacks of three or more,
    *  clear of every story count (which wins). Decided in the reprojection. */
   conflictCounts: { x: number; y: number; count: number }[];
+  /** `conflictMarks` collapsed where their glows touch
+   *  (`collapseConflictVisuals`), once per projection: the counts above and
+   *  the glow atlas both read it, and each used to collapse the marks itself. */
+  conflictGlows: ConflictVisualCluster[];
   /** Neighbour-country labels — every country within the camera's visible
    *  hemisphere EXCEPT the highlighted one. Emerges when the camera is
    *  zoomed past PLACES_APPEAR_CLIP, giving the reader geographic context
@@ -1277,6 +1225,7 @@ const EMPTY_GLOBE: GlobeState = {
   gdacsMarks: [],
   conflictMarks: [],
   conflictCounts: [],
+  conflictGlows: [],
   neighborLabels: [],
   waterLabels: [],
   riversPath: null,
@@ -1809,8 +1758,9 @@ type SettledGeometry = {
 };
 function recordGlobeFrame(f: GlobeState, s: FrameStyle): FramePictures {
   const { colors, light, fonts, textures } = s;
-  // Recorded well past the canvas: a grown story shrinks the drawing, and what
-  // lies outside the screen at rest has to come into it (`canvasTransform`).
+  // Recorded well past the canvas: between projections the warp slides and
+  // scales the pictures (`warp`, `MOTION_REACH`), and what lies past the
+  // screen's edge has to be in them to come into view.
   const bounds = Skia.XYWHRect(-s.width, -s.height, 3 * s.width, 3 * s.height);
   const haloOpacity = light ? LABEL_HALO_OPACITY_LIGHT : LABEL_HALO_OPACITY_DARK;
   const haloOpacitySoft = light ? LABEL_HALO_OPACITY_LIGHT_SOFT : LABEL_HALO_OPACITY_DARK_SOFT;
@@ -2124,7 +2074,7 @@ function recordGlobeFrame(f: GlobeState, s: FrameStyle): FramePictures {
   drawAtlasLayer(
     c,
     textures.ghost,
-    conflictAtlas(GHOST_GLOW, f.conflictMarks, hexRgb(colors.markConflict)),
+    conflictAtlas(GHOST_GLOW, f.conflictGlows, hexRgb(colors.markConflict)),
   );
   if (fonts.sub) {
     // In the conflict's own red, so a count says which mark it counts: a
@@ -2503,8 +2453,6 @@ export const MiniGlobe = memo(function MiniGlobe({
   thermalEvents,
   genocideSituations,
   storyProgress,
-  canvasTransform,
-  canvasReach = 0,
   cameraTrack,
   cameraOwner,
   cameraLat,
@@ -2522,6 +2470,22 @@ export const MiniGlobe = memo(function MiniGlobe({
   tick: _tick,
   ref,
 }: MiniGlobeProps) {
+  // React Compiler is enabled app-wide (app.json experiments.reactCompiler).
+  // This component's reprojection hot path depends on several
+  // `useCallback(..., [])` closures that are DELIBERATELY stale (see the
+  // `biome-ignore lint/correctness/useExhaustiveDependencies` comments below,
+  // e.g. `callReproject`) — they read the latest state through refs on
+  // purpose, for perf, not by oversight. The compiler's job is to rewrite
+  // exactly that pattern, so it must not run on this component.
+  //
+  // The opt-out is the first statement of this body, where a directive is
+  // one. It sat at the top of the file after the imports until 2026-10-02,
+  // which is not a directive position: the formatter wrapped it in
+  // parentheses and it opted nothing out — `MiniGlobe` escaped the compiler
+  // only by bailing on other shapes in it. `GlobeCanvas` and
+  // `useGlowTexture` are compiled, as they were then
+  // (`__tests__/directives.test.ts`).
+  'use no memo';
   const { colors, resolvedAppearance } = useTheme();
   const light = resolvedAppearance === 'light';
   // Gates the globe's two *discrete* animations (zoom transition, tap pulse
@@ -2665,7 +2629,7 @@ export const MiniGlobe = memo(function MiniGlobe({
       const country = findCountry(coords[0], coords[1], a.location);
       const countryName = country?.properties?.name ?? null;
       const rank = ranks.get(a.slug) ?? STORY_UNKNOWN_RANK;
-      const ageHours = Math.max(0, (now - articleTime(a)) / 3_600_000);
+      const ageHours = Math.max(0, (now - articleTime(a)) / HOUR_MS);
       return {
         lat: coords[0],
         lng: coords[1],
@@ -2877,21 +2841,13 @@ export const MiniGlobe = memo(function MiniGlobe({
   // The current story's dot holds still. It breathed for three cycles each time
   // a story landed, and the user asked for it to go (2026-09-19): the location
   // label beside it is larger instead, and says which place is being read.
-  // A tiny native overlay, placed and sized from the globe's translate and
-  // scale. It kept its screen size while the globe shrank into the open
-  // story's band, and the label beside it — drawn in the scaled picture —
-  // slid under it: the band read `●yiv`. It shrinks with its label now.
+  // A tiny native overlay over the dot's place in the picture. It used to be
+  // scaled with the drawing too, while an open story shrank the globe into
+  // the band above it (removed 2026-09-21; the props that carried that
+  // transform went on 2026-10-02).
   const beaconStyle = useAnimatedStyle(() => {
     const dot = framePictures.value.activeDot;
-    let scale = 1;
-    let tx = 0;
-    let ty = 0;
-    for (const transform of canvasTransform?.value ?? []) {
-      if ('scale' in transform) scale = transform.scale;
-      if ('translateX' in transform) tx += transform.translateX;
-      if ('translateY' in transform) ty += transform.translateY;
-    }
-    // Carried by the warp first, like the ground under it.
+    // Carried by the warp, like the ground under it.
     let wx = dot ? dot.x : 0;
     let wy = dot ? dot.y : 0;
     let ws = 1;
@@ -2904,17 +2860,13 @@ export const MiniGlobe = memo(function MiniGlobe({
       wx += (ws - 1) * dot.x;
       wy += (ws - 1) * dot.y;
     }
-    const x = dot ? width / 2 + (wx - width / 2) * scale + tx : 0;
-    const y = dot ? height / 2 + (wy - height / 2) * scale + ty : 0;
+    const x = dot ? wx : 0;
+    const y = dot ? wy : 0;
     return {
       opacity: dot ? 1 : 0,
       backgroundColor: framePictures.value.activeColor,
       borderColor: colors.bg,
-      transform: [
-        { translateX: x - 9 },
-        { translateY: y - 9 },
-        { scale: ((ACTIVE_DOT_R + 2) / 9) * scale },
-      ],
+      transform: [{ translateX: x - 9 }, { translateY: y - 9 }, { scale: (ACTIVE_DOT_R + 2) / 9 }],
     };
   });
 
@@ -3023,7 +2975,7 @@ export const MiniGlobe = memo(function MiniGlobe({
         lng: z.lng,
         unit: unit(z.lng, z.lat),
         intensity: Math.log(z.total + 1) / logMax,
-        recency: Math.exp(-DECAY_LAMBDA * ((now - z.newestT) / 3_600_000)),
+        recency: Math.exp(-DECAY_LAMBDA * ((now - z.newestT) / HOUR_MS)),
         labels: [],
         countryName: z.countryName,
       }));
@@ -3035,7 +2987,7 @@ export const MiniGlobe = memo(function MiniGlobe({
     >();
 
     for (const pt of heatmapPoints) {
-      const ageHours = (now - pt.t) / 3_600_000;
+      const ageHours = (now - pt.t) / HOUR_MS;
       const decay = Math.exp(-DECAY_LAMBDA * ageHours);
       const weight = Math.max(pt.c, 1) * decay;
       if (weight < 0.03) continue;
@@ -3066,7 +3018,7 @@ export const MiniGlobe = memo(function MiniGlobe({
         lng: z.lng,
         unit: unit(z.lng, z.lat),
         intensity: Math.log(z.total + 1) / logMax,
-        recency: Math.exp(-DECAY_LAMBDA * ((now - z.newestT) / 3_600_000)),
+        recency: Math.exp(-DECAY_LAMBDA * ((now - z.newestT) / HOUR_MS)),
         labels: [...z.labels],
         countryName: country?.properties?.name ?? null,
       };
@@ -3204,8 +3156,7 @@ export const MiniGlobe = memo(function MiniGlobe({
         // centimetres up, printed the week, and one strait read ↓62% on the
         // globe and ▼38% in the strip. The glyph's brightness and outranking
         // stay on the normal (`delta`, below): that is the strait's state.
-        const week = straitMoves?.[cp.id];
-        const change = week ? straitWeekChange(week) : straitMapChange(cp.delta7vs90.n_total);
+        const change = straitChange(straitMoves?.[cp.id], cp.delta7vs90.n_total);
         return {
           id: cp.id,
           // Mixed case (not UPPERCASE): chokepoints are passages — straits,
@@ -3332,8 +3283,8 @@ export const MiniGlobe = memo(function MiniGlobe({
   clipOutRef.current = clipOut;
   const storyClipOutRef = useRef(storyClipOut);
   storyClipOutRef.current = storyClipOut;
-  const layoutRef = useRef({ globeRadius, cx, cy, width, height, canvasReach, marketViewport });
-  layoutRef.current = { globeRadius, cx, cy, width, height, canvasReach, marketViewport };
+  const layoutRef = useRef({ globeRadius, cx, cy, width, height, marketViewport });
+  layoutRef.current = { globeRadius, cx, cy, width, height, marketViewport };
   // Mirror of the last frame drawn — avoids reading SharedValues outside
   // worklets. A JS read of `overrideActive`/`overrideAngle` blocks on the UI
   // thread (`runOnUISync`) whenever the UI thread has written them, and a
@@ -3374,7 +3325,6 @@ export const MiniGlobe = memo(function MiniGlobe({
         cy: centerY,
         width: canvasW,
         height: canvasH,
-        canvasReach: grownReach,
       } = layoutRef.current;
       const geoData = articleGeoRef.current;
 
@@ -3481,10 +3431,7 @@ export const MiniGlobe = memo(function MiniGlobe({
       // has ground to carry into view until the next projection lands.
       const viewAngle = viewAngleFor(
         projScale,
-        Math.max(
-          grownReach,
-          reachFor(centerX, centerY, canvasW, canvasH) * (nearSettled ? 1 : MOTION_REACH),
-        ),
+        reachFor(centerX, centerY, canvasW, canvasH) * (nearSettled ? 1 : MOTION_REACH),
       );
       const clipRad = (viewAngle * Math.PI) / 180;
       const clipCos = Math.cos(clipRad);
@@ -3938,8 +3885,10 @@ export const MiniGlobe = memo(function MiniGlobe({
       // A conflict stack's count is set like a story's, in the same ink, so
       // the two collided — "5" and "8" at Washington read as "58". A story's
       // count is kept; the conflict glow still says something happened there.
+      const conflictGlows = collapseConflictVisuals(conflictMarks);
       const conflictCounts: (GlobeState['conflictCounts'][number] & { hidden?: boolean })[] = [];
-      for (const v of collapseConflictVisuals(conflictMarks).sort((a, b) => b.count - a.count)) {
+      // Largest first, on a copy: the atlas draws the glows in their own order.
+      for (const v of [...conflictGlows].sort((a, b) => b.count - a.count)) {
         if (v.count < 3) continue;
         const box = conflictCountBox(v, subFontRef.current);
         if (countBoxes.some((b) => boxesMeet(b, box, COUNT_GAP))) continue;
@@ -4549,6 +4498,7 @@ export const MiniGlobe = memo(function MiniGlobe({
         gdacsMarks,
         conflictMarks,
         conflictCounts: conflictCounts.filter((c) => !c.hidden),
+        conflictGlows,
         neighborLabels: keptNeighbours,
         waterLabels: keptWaters,
         riversPath,
@@ -4580,17 +4530,13 @@ export const MiniGlobe = memo(function MiniGlobe({
       width: canvasW,
       height: canvasH,
     } = layoutRef.current;
-    const grownReach = layoutRef.current.canvasReach;
     const coords = coordsRef.current;
     const lat = coords[index * 2];
     const lng = coords[index * 2 + 1];
     if (lat == null || lng == null) return;
     const clip = clipAngleForCountry(articleGeoRef.current[index]?.countryName ?? null);
     const projScale = r / Math.sin((clip * Math.PI) / 180);
-    const viewAngle = viewAngleFor(
-      projScale,
-      Math.max(grownReach, reachFor(centerX, centerY, canvasW, canvasH)),
-    );
+    const viewAngle = viewAngleFor(projScale, reachFor(centerX, centerY, canvasW, canvasH));
     const tier = geographyTier(projScale, false);
     const key = settledKey(tier, lng, lat, projScale, viewAngle, centerX, centerY);
     const cache = settledGeometryRef.current;
@@ -5142,7 +5088,6 @@ export const MiniGlobe = memo(function MiniGlobe({
     cy,
     width,
     height,
-    canvasReach,
     enrichedMarketMarks,
     enrichedChokepoints,
     placeMarks,
@@ -5297,16 +5242,7 @@ export const MiniGlobe = memo(function MiniGlobe({
         }
         for (const m of frame.marketMarks)
           overlay = Math.min(overlay, marketHitDistanceSquared(m, x, y));
-        if (story.d2 <= overlay) {
-          return {
-            countryName: '',
-            location: null,
-            localTime: null,
-            data: null,
-            storySlug: story.slug,
-            storyColor: story.color,
-          };
-        }
+        if (story.d2 <= overlay) return markTap({ storySlug: story.slug, storyColor: story.color });
       }
 
       const candidates: TapResult[] = [];
@@ -5331,28 +5267,15 @@ export const MiniGlobe = memo(function MiniGlobe({
       // rings are still reliably tappable, but smaller than the article-dot
       // window so chokepoints near the settled pin don't eat its taps.
       for (const c of frame.chokepoints) {
-        if (isNear(x, y, c.x, c.y, 1296)) {
-          candidates.push({
-            countryName: '',
-            location: null,
-            localTime: null,
-            data: null,
-            chokepointId: c.id,
-          });
+        if (isNear(x, y, c.x, c.y, MARK_HIT_PX2)) {
+          candidates.push(markTap({ chokepointId: c.id }));
         }
       }
 
       // Every member of a numbered market target opens in the chooser.
       for (const m of frame.marketMarks) {
         if (Number.isFinite(marketHitDistanceSquared(m, x, y))) {
-          for (const id of m.ids)
-            candidates.push({
-              countryName: '',
-              location: null,
-              localTime: null,
-              data: null,
-              marketSignalId: id,
-            });
+          for (const id of m.ids) candidates.push(markTap({ marketSignalId: id }));
         }
       }
 
@@ -5361,14 +5284,8 @@ export const MiniGlobe = memo(function MiniGlobe({
       // (`gdacsGlyphScale`) and the target is not: a finger is the same
       // size whatever the alert.
       for (const m of frame.gdacsMarks) {
-        if (isNear(x, y, m.x, m.y, 1296)) {
-          candidates.push({
-            countryName: '',
-            location: null,
-            localTime: null,
-            data: null,
-            gdacsEventId: m.eventid,
-          });
+        if (isNear(x, y, m.x, m.y, MARK_HIT_PX2)) {
+          candidates.push(markTap({ gdacsEventId: m.eventid }));
         }
       }
 
@@ -5376,14 +5293,8 @@ export const MiniGlobe = memo(function MiniGlobe({
       // theatre like Sudan or Gaza will produce overlapping hits regularly;
       // those resolve to the disambiguation chooser via the candidates path.
       for (const m of frame.conflictMarks) {
-        if (isNear(x, y, m.x, m.y, 1296)) {
-          candidates.push({
-            countryName: '',
-            location: null,
-            localTime: null,
-            data: null,
-            conflictEventId: m.id,
-          });
+        if (isNear(x, y, m.x, m.y, MARK_HIT_PX2)) {
+          candidates.push(markTap({ conflictEventId: m.id }));
         }
       }
 
@@ -5391,35 +5302,17 @@ export const MiniGlobe = memo(function MiniGlobe({
       // Sudan and a conflict event beside it resolve through the chooser.
       for (const g of frame.genocideMarks) {
         if (isNear(x, y, g.x, g.y, MARK_HIT_PX2)) {
-          candidates.push({
-            countryName: '',
-            location: null,
-            localTime: null,
-            data: null,
-            genocideId: g.id,
-          });
+          candidates.push(markTap({ genocideId: g.id }));
         }
       }
       for (const a of frame.famineMarks) {
         if (isNear(x, y, a.x, a.y, MARK_HIT_PX2)) {
-          candidates.push({
-            countryName: '',
-            location: null,
-            localTime: null,
-            data: null,
-            famineAreaId: a.id,
-          });
+          candidates.push(markTap({ famineAreaId: a.id }));
         }
       }
       for (const e of frame.thermalMarks) {
         if (isNear(x, y, e.x, e.y, MARK_HIT_PX2)) {
-          candidates.push({
-            countryName: '',
-            location: null,
-            localTime: null,
-            data: null,
-            thermalEventId: e.id,
-          });
+          candidates.push(markTap({ thermalEventId: e.id }));
         }
       }
 
@@ -5451,15 +5344,7 @@ export const MiniGlobe = memo(function MiniGlobe({
       }
 
       if (candidates.length === 1) return candidates[0] ?? null;
-      if (candidates.length > 1) {
-        return {
-          countryName: '',
-          location: null,
-          localTime: null,
-          data: null,
-          candidates,
-        };
-      }
+      if (candidates.length > 1) return markTap({ candidates });
 
       // Full-globe fallback — tap any visible land mass to identify the country
       const { cx: hitCx, cy: hitCy, globeRadius: hitR } = layoutRef.current;
@@ -5491,8 +5376,6 @@ export const MiniGlobe = memo(function MiniGlobe({
       return null;
     },
   }));
-
-  const canvasOrigin = useMemo(() => vec(width / 2, height / 2), [width, height]);
 
   // What is still to find, as a ring just outside the globe. The track is the
   // day's stories with a place; the arc is what is left, starting at twelve
@@ -5530,8 +5413,6 @@ export const MiniGlobe = memo(function MiniGlobe({
     <GlobeCanvas
       width={width}
       height={height}
-      canvasTransform={canvasTransform}
-      canvasOrigin={canvasOrigin}
       prevWarp={prevWarp}
       warp={warp}
       prevGroundPicture={prevGroundPicture}
@@ -5581,8 +5462,6 @@ type Value<T> = SharedValue<T> | DerivedValue<T>;
 const GlobeCanvas = memo(function GlobeCanvas({
   width,
   height,
-  canvasTransform,
-  canvasOrigin,
   prevWarp,
   warp,
   prevGroundPicture,
@@ -5612,8 +5491,6 @@ const GlobeCanvas = memo(function GlobeCanvas({
 }: {
   width: number;
   height: number;
-  canvasTransform?: SharedValue<Transforms3d>;
-  canvasOrigin: SkPoint;
   prevWarp: Value<Transforms3d>;
   warp: Value<Transforms3d>;
   prevGroundPicture: Value<SkPicture>;
@@ -5645,86 +5522,78 @@ const GlobeCanvas = memo(function GlobeCanvas({
   return (
     <>
       <Canvas style={[styles.canvas, { width, height }]} pointerEvents="none">
-        <Group transform={canvasTransform} origin={canvasOrigin}>
-          {/* Ground — the atmospheric rim, the ocean, the subsolar glint,
-          daylight, the graticule, land, ice, borders, night, city lights and
-          the inner-limb glaze. Recorded per projection; see
-          `recordGlobeFrame`. */}
-          <Group transform={prevWarp}>
-            <Picture picture={prevGroundPicture} />
-          </Group>
-          <Group transform={warp}>
-            <Picture picture={groundPicture} />
+        {/* Ground — the atmospheric rim, the ocean, the subsolar glint,
+        daylight, the graticule, land, ice, borders, night, city lights and
+        the inner-limb glaze. Recorded per projection; see
+        `recordGlobeFrame`. */}
+        <Group transform={prevWarp}>
+          <Picture picture={prevGroundPicture} />
+        </Group>
+        <Group transform={warp}>
+          <Picture picture={groundPicture} />
 
-            {/* Marks — hotspots, straits, exchanges, hazards, the country
-            highlight, rivers, arcs, stories and the settled dot. */}
-            <Picture picture={marksPicture} />
-          </Group>
+          {/* Marks — hotspots, straits, exchanges, hazards, the country
+          highlight, rivers, arcs, stories and the settled dot. */}
+          <Picture picture={marksPicture} />
+        </Group>
 
-          {/* Still to find — see `ringLeft`. */}
-          {ring ? (
-            <Group>
-              <Circle
-                cx={cx}
-                cy={cy}
-                r={ringRadius}
-                color={ringColor}
-                style="stroke"
-                strokeWidth={RING_WIDTH}
-              />
-              <Path
-                path={ringPath}
-                start={0}
-                end={ringLeft}
-                color={ringLeftColor}
-                style="stroke"
-                strokeWidth={RING_WIDTH}
-                strokeCap="round"
-              />
-            </Group>
-          ) : null}
-
-          {/* Tap pulse — stroked ring (selection cartouche) rather than a blurred
-          fill. The globe's vocabulary is *rings* (chokepoint arcs, earthquake
-          glyphs, hotspot halos, GDACS Red alarm ring); a soft-blur ripple
-          read as generic mobile-UI chrome borrowed from any other app. The
-          stroke now belongs to the same drawing family as everything else
-          on the canvas, so the gesture confirmation feels diegetic. No
-          BlurMask = one less filter pass per tap. */}
-          <Circle
-            cx={pulseX}
-            cy={pulseY}
-            r={pulseR}
-            color={pulseColor}
-            opacity={pulseOpacity}
-            style="stroke"
-            strokeWidth={1.4}
-          />
-
-          {/* Found burst — see `collect`. */}
-          <Group opacity={collectOpacity}>
+        {/* Still to find — see `ringLeft`. */}
+        {ring ? (
+          <Group>
             <Circle
-              cx={collectX}
-              cy={collectY}
-              r={collectDiscR}
-              color={collectColor}
-              opacity={0.5}
-            />
-            <Circle
-              cx={collectX}
-              cy={collectY}
-              r={collectRingR}
-              color={collectColor}
+              cx={cx}
+              cy={cy}
+              r={ringRadius}
+              color={ringColor}
               style="stroke"
-              strokeWidth={1.6}
+              strokeWidth={RING_WIDTH}
+            />
+            <Path
+              path={ringPath}
+              start={0}
+              end={ringLeft}
+              color={ringLeftColor}
+              style="stroke"
+              strokeWidth={RING_WIDTH}
+              strokeCap="round"
             />
           </Group>
+        ) : null}
 
-          {/* Labels — water, neighbours, the focused country, the dot label
-          and the poles, above the tap pulse. */}
-          <Group transform={warp}>
-            <Picture picture={labelsPicture} />
-          </Group>
+        {/* Tap pulse — stroked ring (selection cartouche) rather than a blurred
+        fill. The globe's vocabulary is *rings* (chokepoint arcs, earthquake
+        glyphs, hotspot halos, GDACS Red alarm ring); a soft-blur ripple
+        read as generic mobile-UI chrome borrowed from any other app. The
+        stroke now belongs to the same drawing family as everything else
+        on the canvas, so the gesture confirmation feels diegetic. No
+        BlurMask = one less filter pass per tap. */}
+        <Circle
+          cx={pulseX}
+          cy={pulseY}
+          r={pulseR}
+          color={pulseColor}
+          opacity={pulseOpacity}
+          style="stroke"
+          strokeWidth={1.4}
+        />
+
+        {/* Found burst — see `collect`. */}
+        <Group opacity={collectOpacity}>
+          <Circle cx={collectX} cy={collectY} r={collectDiscR} color={collectColor} opacity={0.5} />
+          <Circle
+            cx={collectX}
+            cy={collectY}
+            r={collectRingR}
+            color={collectColor}
+            style="stroke"
+            strokeWidth={1.6}
+          />
+        </Group>
+
+        {/* Labels — water, neighbours, the focused country, the dot label
+        and the poles, above the tap pulse. */}
+        <Group transform={warp}>
+          <Picture picture={labelsPicture} />
         </Group>
       </Canvas>
       <Animated.View

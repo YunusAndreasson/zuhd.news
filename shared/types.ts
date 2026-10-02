@@ -285,6 +285,10 @@ export interface FeedResponse {
   contexts?: Record<string, ContextIndexEntry>;
 }
 
+/** The feed's stories by category once merged: every category present, empty
+ *  or not — what the app reads, where `FeedResponse.categories` may omit one. */
+export type GroupedArticles = Record<Category, Article[]>;
+
 export interface MetaResponse {
   generated: string;
 }

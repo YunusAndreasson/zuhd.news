@@ -1,4 +1,3 @@
-import { COUNTRY_DATA } from '@shared/countries/country-data';
 import { METRICS, type MetricKey } from '@shared/countries/country-ranking';
 import type { Category, ConflictEvent, GdacsAlert, GdacsDetail } from '@shared/types';
 import { memo, type ReactNode, useCallback, useMemo } from 'react';
@@ -8,12 +7,12 @@ import { alertsInCountry, marksInCountry } from '../lib/country-hazards';
 import type { RiverArticle } from '../lib/news-order';
 import type { OverlaySelection } from '../lib/overlays';
 import { displayCountryName } from '../lib/place-names';
+import { countryTap } from '../lib/tap-result';
 import { ConflictBody, conflictTitle } from './ConflictSheet';
 import { CountryRankingView } from './CountryRankingView';
 import { CountryBody, type CountryHazard, CountryTitle } from './CountrySheet';
 import { CardView } from './cards/CardView';
 import { DisasterBody, disasterTitle } from './DisasterSheet';
-import type { TapResult } from './globe/MiniGlobe';
 import type { MenuHazards } from './MenuSheet';
 import { OverlayBody, overlayTitle } from './OverlaySheet';
 import { SheetScrollView } from './SheetContent';
@@ -61,13 +60,6 @@ export function menuDetailLabel(detail: MenuDetail): string {
       return METRICS[detail.metric]?.label ?? 'ranking';
   }
 }
-
-const countryTap = (name: string): TapResult => ({
-  countryName: name,
-  location: null,
-  localTime: null,
-  data: COUNTRY_DATA[name] ?? null,
-});
 
 /** The handle's title for a page: a country's flag and name, as its sheet
  *  sets them; nothing for a card, which prints its kicker under the handle;

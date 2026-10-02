@@ -1,8 +1,9 @@
-import { BottomSheetScrollView } from '@expo/ui/community/bottom-sheet';
+import { BottomSheetFlatList, BottomSheetScrollView } from '@expo/ui/community/bottom-sheet';
+import { COUNTRY_DATA } from '@shared/countries/country-data';
 import type { ComponentProps, Ref } from 'react';
-import { type ScrollView, StyleSheet } from 'react-native';
+import { type FlatList, type FlatListProps, type ScrollView, StyleSheet } from 'react-native';
 import Animated from 'react-native-reanimated';
-import { HIT_SLOP, SPACING } from '../constants/theme';
+import { HIT_SLOP, LAYOUT, SPACING } from '../constants/theme';
 import { useTheme } from '../hooks/useTheme';
 import { FlagChip } from './FlagChip';
 import { Pressable, Text } from './primitives';
@@ -53,10 +54,11 @@ export function SheetScrollView({
   children,
   ...rest
 }: SheetScrollViewProps) {
-  const { sheetStyles } = useTheme();
+  const { sheetStyles, resolvedAppearance } = useTheme();
   return (
     <BottomSheetScrollView
       nestedScrollEnabled
+      indicatorStyle={resolvedAppearance === 'dark' ? 'white' : 'black'}
       style={[styles.scroll, style]}
       contentContainerStyle={[
         sheetStyles.content,
@@ -67,6 +69,38 @@ export function SheetScrollView({
     >
       {children}
     </BottomSheetScrollView>
+  );
+}
+
+interface SheetFlatListProps<T> extends Omit<FlatListProps<T>, 'contentContainerStyle' | 'style'> {
+  ref?: Ref<FlatList<T>>;
+  bottomInset: number;
+  contentContainerStyle?: FlatListProps<T>['contentContainerStyle'];
+  style?: FlatListProps<T>['style'];
+}
+
+/**
+ * `SheetScrollView`'s twin for a virtualised list: the same `flexShrink: 1`
+ * (see above — a list is a scroll view), the same `bottomInset + SPACING.lg`
+ * tail and the same scroll indicator. Four lists re-inlined that recipe and
+ * had drifted: the menu's ended `SPACING.md` short of the others, and only
+ * two of them chose an indicator for the theme. No `sheetStyles.content`:
+ * a list's rows run to the sheet's edges and pad themselves.
+ */
+export function SheetFlatList<T>({
+  bottomInset,
+  contentContainerStyle,
+  style,
+  ...rest
+}: SheetFlatListProps<T>) {
+  const { resolvedAppearance } = useTheme();
+  return (
+    <BottomSheetFlatList
+      indicatorStyle={resolvedAppearance === 'dark' ? 'white' : 'black'}
+      style={[styles.scroll, style]}
+      contentContainerStyle={[{ paddingBottom: bottomInset + SPACING.lg }, contentContainerStyle]}
+      {...rest}
+    />
   );
 }
 
@@ -117,27 +151,36 @@ export function SheetHero({ entering, eyebrow, focal, tint, secondary }: SheetHe
   );
 }
 
+export interface CountryFlag {
+  name: string;
+  flag: string;
+}
+
+/** The flags of the countries named, once each and in order, for those that
+ *  have one. The three event sheets each looked them up their own way. */
+export function countryFlags(names: readonly (string | undefined)[]): CountryFlag[] {
+  const out: CountryFlag[] = [];
+  for (const name of names) {
+    const flag = name ? COUNTRY_DATA[name]?.flag : undefined;
+    if (name && flag && !out.some((f) => f.name === name)) out.push({ name, flag });
+  }
+  return out;
+}
+
 interface SheetFlagRowProps {
   entering?: EnteringAnimation;
-  flags: { name: string; flag: string }[];
-  borderColor: string;
+  flags: CountryFlag[];
   onPress?: (countryName: string) => void;
 }
 
 /** Wrapping row of affected-country flag chips. Renders nothing when empty —
  *  callers gate the `entering` call on non-empty so stagger order is stable. */
-export function SheetFlagRow({ entering, flags, borderColor, onPress }: SheetFlagRowProps) {
+export function SheetFlagRow({ entering, flags, onPress }: SheetFlagRowProps) {
   if (flags.length === 0) return null;
   return (
     <Animated.View entering={entering} style={styles.flagsRow}>
       {flags.map((f) => (
-        <FlagChip
-          key={f.name}
-          name={f.name}
-          flag={f.flag}
-          borderColor={borderColor}
-          onPress={onPress}
-        />
+        <FlagChip key={f.name} name={f.name} flag={f.flag} onPress={onPress} />
       ))}
     </Animated.View>
   );
@@ -251,5 +294,10 @@ const styles = StyleSheet.create({
     gap: SPACING.md,
   },
   sourceName: { flex: 1, minWidth: 0 },
-  sourceLink: { flexShrink: 0, maxWidth: '45%', minHeight: 44, justifyContent: 'center' },
+  sourceLink: {
+    flexShrink: 0,
+    maxWidth: '45%',
+    minHeight: LAYOUT.controlHeight,
+    justifyContent: 'center',
+  },
 });

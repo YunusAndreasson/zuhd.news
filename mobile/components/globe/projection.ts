@@ -7,6 +7,7 @@
 
 import { COUNTRY_OVERRIDES } from '@shared/globe/coordinates';
 import { geoContains } from 'd3-geo';
+import { DAY_MS } from '../../lib/time';
 import { getGlobeGeography } from './geography';
 import { countries, countryAreas, countryBboxes } from './shared';
 
@@ -149,7 +150,7 @@ export function getSunPosition(): [number, number] {
   if (now - sunPosTs < 60000) return cachedSunPos;
   sunPosTs = now;
   const d = new Date(now);
-  const dayOfYear = Math.floor((now - Date.UTC(d.getUTCFullYear(), 0, 1)) / 86400000);
+  const dayOfYear = Math.floor((now - Date.UTC(d.getUTCFullYear(), 0, 1)) / DAY_MS);
   const declination = -23.44 * Math.cos((2 * Math.PI * (dayOfYear + 10)) / 365);
   const hourAngle = ((d.getUTCHours() + d.getUTCMinutes() / 60) / 24) * 360 - 180;
   cachedSunPos = [-hourAngle, declination];

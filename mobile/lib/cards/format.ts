@@ -106,6 +106,31 @@ export function isMonthlyRate(indicator: Pick<Indicator, 'cadence' | 'unit'>): b
   return indicator.cadence === 'monthly' && indicator.unit === '%';
 }
 
+const numberFormats = new Map<string, Intl.NumberFormat>();
+
+/**
+ * A number grouped as the app prints every number — `1,234.5`, in en-US
+ * whatever the phone's language, as the rest of the copy is English — to at
+ * most `maxDecimals` places (`toLocaleString`'s own three by default) and at
+ * least `minDecimals`.
+ *
+ * One formatter per precision, kept for the session: `toLocaleString` builds a
+ * new one on every call, which on Android is a trip through ICU (~9 ms for a
+ * date, `formatLocalTime`), and a chart's scrub formats a number per step.
+ */
+export function formatNumber(n: number, maxDecimals = 3, minDecimals = 0): string {
+  const key = `${minDecimals}:${maxDecimals}`;
+  let format = numberFormats.get(key);
+  if (!format) {
+    format = new Intl.NumberFormat('en-US', {
+      minimumFractionDigits: minDecimals,
+      maximumFractionDigits: maxDecimals,
+    });
+    numberFormats.set(key, format);
+  }
+  return format.format(n);
+}
+
 /**
  * The reading itself — one number at arm's length.
  *
@@ -116,14 +141,21 @@ export function isMonthlyRate(indicator: Pick<Indicator, 'cadence' | 'unit'>): b
 export function formatReading(value: number, unit?: string): string {
   if (!Number.isFinite(value)) return '—';
   if (unit === '%' || Math.abs(value) < 10) return value.toFixed(2);
-  return Math.round(value).toLocaleString('en-US');
+  return formatCount(value);
+}
+
+/** A percentage at the precision the app prints one: whole from ten up,
+ *  one decimal below. Shared, so a chip and a sentence can never disagree
+ *  about whether something moved. */
+function roundPct(pct: number): number {
+  return Math.abs(pct) >= 10 ? Math.round(pct) : Number(pct.toFixed(1));
 }
 
 /** A signed percentage, one decimal, with a true minus sign rather than a
  *  hyphen — the column is typographic, not code. */
 export function formatSignedPct(pct: number): string {
   if (!Number.isFinite(pct)) return '—';
-  const rounded = Math.abs(pct) >= 10 ? Math.round(pct) : Number(pct.toFixed(1));
+  const rounded = roundPct(pct);
   if (rounded === 0) return 'unchanged';
   return `${rounded > 0 ? '+' : '−'}${Math.abs(rounded)}%`;
 }
@@ -143,24 +175,66 @@ export function formatSignedPct(pct: number): string {
  */
 export function deltaFrom(
   change: WindowChange | null,
-  options: { window?: string; unit?: 'percent' | 'points' | 'rate' } = {},
+  options: DeltaOptions = {},
 ): CardDelta | undefined {
-  if (!change || !Number.isFinite(change.pct)) return undefined;
-  const { window = `since ${change.from}`, unit = 'percent' } = options;
+  if (!change) return undefined;
+  return deltaOf(change.pct, { ...options, window: options.window ?? `since ${change.from}` });
+}
+
+export interface DeltaOptions {
+  window?: string;
+  unit?: 'percent' | 'points' | 'rate';
+  /** What a move that rounds to nothing prints: `unchanged`, or a strait's
+   *  `at its normal`. */
+  flat?: string;
+}
+
+/**
+ * A move of `pct` over `window` as a chip — `deltaFrom` for a move measured
+ * some other way: a week (`gaugeMove`), a strait's distance from its normal.
+ * Those built the chip by hand, a copy of this body each.
+ */
+export function deltaOf(
+  pct: number,
+  { window, unit = 'percent', flat = 'unchanged' }: DeltaOptions = {},
+): CardDelta | undefined {
+  if (!Number.isFinite(pct)) return undefined;
   const magnitude =
     unit === 'points'
-      ? formatMagnitudePoints(change.pct)
+      ? formatMagnitudePoints(pct)
       : unit === 'rate'
-        ? formatMagnitudeRatePoints(change.pct)
-        : formatMagnitudePct(change.pct);
-  // "unchanged" is what the formatters return once the move rounds to nothing.
-  // A flat chip carries no arrow — there is no direction to point — and reads
+        ? formatMagnitudeRatePoints(pct)
+        : formatMagnitudePct(pct);
+  // `null` is what the formatters return once the move rounds to nothing. A
+  // flat chip carries no arrow — there is no direction to point — and reads
   // slate, the quietest of the three.
-  const size = unit === 'percent' ? Math.abs(change.pct) : undefined;
+  const size = unit === 'percent' ? Math.abs(pct) : undefined;
   const points = unit === 'points' ? ({ unit: 'points' } as const) : {};
-  if (magnitude === null)
-    return { direction: 'flat', magnitude: 'unchanged', window, size, ...points };
-  return { direction: change.pct > 0 ? 'up' : 'down', magnitude, window, size, ...points };
+  if (magnitude === null) return { direction: 'flat', magnitude: flat, window, size, ...points };
+  return { direction: pct > 0 ? 'up' : 'down', magnitude, window, size, ...points };
+}
+
+/**
+ * A move as the globe prints it beside a mark, and the chooser beside the
+ * mark's row: `↑5%`, `↓0.3 points`, and `−0%` for a move that rounds to
+ * nothing — the chip's word `unchanged` does not belong under a name on the
+ * map. One function, so the mark and its row cannot differ.
+ */
+export function markMove(delta: CardDelta): string {
+  if (delta.direction === 'flat') return '−0%';
+  return `${delta.direction === 'up' ? '↑' : '↓'}${delta.magnitude}`;
+}
+
+/**
+ * A move as a screen reader hears it: `up 5% over 7 days`, `unchanged over 7
+ * days` — the direction as a word, because the arrow is not one, and a flat
+ * move's magnitude already says it. `window: false` where the window is
+ * spoken on its own.
+ */
+export function spokenDelta(delta: CardDelta, { window = true } = {}): string {
+  const move =
+    delta.direction === 'flat' ? delta.magnitude : `${delta.direction} ${delta.magnitude}`;
+  return window && delta.window ? `${move} ${delta.window}` : move;
 }
 
 /** The magnitude alone, unsigned, or null when it rounds to nothing. Rounding
@@ -168,7 +242,7 @@ export function deltaFrom(
  *  whether something moved. */
 export function formatMagnitudePct(pct: number): string | null {
   if (!Number.isFinite(pct)) return null;
-  const rounded = Math.abs(pct) >= 10 ? Math.round(pct) : Number(pct.toFixed(1));
+  const rounded = roundPct(pct);
   if (rounded === 0) return null;
   return `${Math.abs(rounded)}%`;
 }
@@ -213,7 +287,7 @@ export function formatSignedRatePoints(points: number): string {
  */
 export function formatQuantity(n: number): string {
   if (!Number.isFinite(n)) return '—';
-  if (Math.abs(n) >= 10) return Math.round(n).toLocaleString('en-US');
+  if (Math.abs(n) >= 10) return formatCount(n);
   return Number(n.toFixed(1)).toString();
 }
 
@@ -228,7 +302,7 @@ export function formatVsNormal(delta: number, { bare = false } = {}): string {
 
 /** US-grouped integer with no unit. For populations and counts. */
 export function formatCount(n: number): string {
-  return Math.round(n).toLocaleString('en-US');
+  return formatNumber(Math.round(n), 0);
 }
 
 // ---------------------------------------------------------------------------
@@ -273,14 +347,41 @@ export function nisab(goldPerOunce: number, silverPerOunce: number): Nisab | nul
 // The tie to the news
 // ---------------------------------------------------------------------------
 
+/** A concept as a tag is matched against it: lowercased, and its words. */
+interface ConceptKey {
+  lower: string;
+  words: ReadonlySet<string>;
+}
+
+/**
+ * Each article's concepts as `ConceptKey`s, once per river. Every card asks
+ * `relatedForTags` about the same articles — some thirty-five builders on each
+ * river, forty more when the menu's catalog builds — and each concept was
+ * lowercased and split again for every tag of every card.
+ */
+const conceptKeys = new WeakMap<readonly Article[], readonly (readonly ConceptKey[])[]>();
+
+function conceptKeysOf(articles: readonly Article[]): readonly (readonly ConceptKey[])[] {
+  let keys = conceptKeys.get(articles);
+  if (!keys) {
+    keys = articles.map((article) =>
+      article.concepts.map((concept) => {
+        const lower = concept.toLowerCase();
+        return { lower, words: new Set(lower.split(/[^a-z0-9]+/)) };
+      }),
+    );
+    conceptKeys.set(articles, keys);
+  }
+  return keys;
+}
+
 /** Article concepts are proper nouns ("Strait of Hormuz"); indicator topic
  *  tags are lowercase keywords ("hormuz"). Match a tag against whole words of
  *  a concept, and against the whole concept for multi-word tags. */
-function conceptMatchesTag(concept: string, tag: string): boolean {
-  const c = concept.toLowerCase();
-  if (c === tag) return true;
-  if (tag.includes(' ')) return c.includes(tag);
-  return c.split(/[^a-z0-9]+/).includes(tag);
+function conceptMatchesTag(concept: ConceptKey, tag: string): boolean {
+  if (concept.lower === tag) return true;
+  if (tag.includes(' ')) return concept.lower.includes(tag);
+  return concept.words.has(tag);
 }
 
 /** Shortest tag worth matching. Two-letter tags are ISO codes and one-letter
@@ -305,11 +406,13 @@ export function relatedForTags(
   // both mention Iran. Ranking by how many distinct tags an article touches
   // puts the story that is actually about the subject first, and the weak
   // matches fall off the end of `max`.
+  const keys = conceptKeysOf(articles);
   const scored = articles
     .map((article, order) => {
+      const concepts = keys[order] ?? [];
       let score = 0;
       for (const tag of usable) {
-        if (article.concepts.some((concept) => conceptMatchesTag(concept, tag))) score += 1;
+        if (concepts.some((concept) => conceptMatchesTag(concept, tag))) score += 1;
       }
       return { article, score, order };
     })

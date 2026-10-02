@@ -1,7 +1,9 @@
 import Storage from 'expo-sqlite/kv-store';
 import { useCallback, useSyncExternalStore } from 'react';
+import { isPrunable } from './slug-time-store';
 import { createDebouncedWrite, createListeners } from './store-plumbing';
-import { DAY_MS } from './time';
+import { readStoredJson } from './stored-json';
+import { isTimestampMap } from './validate';
 
 /**
  * Which stories are new to this reader, and which of those they have had in
@@ -17,8 +19,9 @@ import { DAY_MS } from './time';
  *
  *   - `known` — slugs the reader has had: in a feed before anything was new
  *     to them, or new and then landed on. Persisted with when each became
- *     known, and pruned as `found-store` prunes: only once a slug has left the
- *     feed *and* is two weeks old, so one short payload cannot relight a day.
+ *     known, and pruned as `found-store` prunes (`isPrunable`): only once a
+ *     slug has left the feed *and* is two weeks old, so one short payload
+ *     cannot relight a day.
  *   - `fresh` — the feed's slugs that are not known, taken each time a new
  *     feed arrives (`noteFeed`). A snapshot on purpose: a card's `new` does not
  *     vanish the moment the reader lands on it, which would take the word off
@@ -48,7 +51,6 @@ import { DAY_MS } from './time';
 const KNOWN_KEY = 'zuhd_known_v1';
 /** A cycle is ~13 stories and there are five a day: two weeks, with room. */
 const MAX_KNOWN = 2000;
-const PRUNE_AFTER_MS = 14 * DAY_MS;
 
 type KnownMap = Record<string, number>;
 
@@ -63,28 +65,12 @@ export interface FreshState {
   spent: ReadonlySet<string>;
 }
 
-function isKnownMap(value: unknown): value is KnownMap {
-  if (!value || typeof value !== 'object' || Array.isArray(value)) return false;
-  for (const v of Object.values(value)) if (typeof v !== 'number') return false;
-  return true;
-}
-
 /** Null until a feed has ever been noted on this install. */
-let known: KnownMap | null = null;
+let known: KnownMap | null = readStoredJson(KNOWN_KEY, isTimestampMap);
 /** The `generated` stamp last noted; a feed is noted once. */
 let notedFeed: string | null = null;
 let state: FreshState = { fresh: new Set(), landed: new Set(), spent: new Set() };
 const listeners = createListeners();
-
-try {
-  const stored = Storage.getItemSync(KNOWN_KEY);
-  if (stored) {
-    const parsed: unknown = JSON.parse(stored);
-    if (isKnownMap(parsed)) known = parsed;
-  }
-} catch {
-  known = null;
-}
 
 /** What is on disk: the known set and everything landed since it was taken. */
 const persist = createDebouncedWrite(() => {
@@ -125,7 +111,7 @@ export function noteFeed(
 
   const live = new Set(stories.map((story) => story.slug));
   for (const [slug, at] of Object.entries(next)) {
-    if (!live.has(slug) && now - at > PRUNE_AFTER_MS) delete next[slug];
+    if (isPrunable(slug, at, live, now)) delete next[slug];
   }
   const slugs = Object.keys(next);
   if (slugs.length > MAX_KNOWN) {

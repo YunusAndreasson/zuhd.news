@@ -1,10 +1,5 @@
-import {
-  labelledMarks,
-  nearestStory,
-  positionAt,
-  TRACK_PITCH,
-  timeTrackLayout,
-} from '../lib/time-track';
+import { nearestIndex } from '../lib/arrays';
+import { labelledMarks, positionAt, TRACK_PITCH, timeTrackLayout } from '../lib/time-track';
 import { HOUR_MS } from '../lib/time';
 
 const W = 350;
@@ -84,9 +79,9 @@ test('older than a day sits at the right end', () => {
 
 test('the finger lands on the nearest story, and the deck position slides between them', () => {
   const centers = [10, 50, 200];
-  expect(nearestStory(centers, 0)).toBe(0);
-  expect(nearestStory(centers, 120)).toBe(1);
-  expect(nearestStory(centers, 130)).toBe(2);
+  expect(nearestIndex(centers, 0)).toBe(0);
+  expect(nearestIndex(centers, 120)).toBe(1);
+  expect(nearestIndex(centers, 130)).toBe(2);
   expect(positionAt(centers, 1.5)).toBe(125);
   expect(positionAt(centers, 7)).toBe(200);
 });

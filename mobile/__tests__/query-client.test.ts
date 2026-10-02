@@ -41,10 +41,19 @@ jest.mock('react-native', () => ({
   },
 }));
 
+const mockLegacyFile = { exists: false, text: '' };
 jest.mock('expo-file-system', () => ({
   Paths: { cache: '/cache' },
   File: class MockFile {
-    exists = false;
+    get exists() {
+      return mockLegacyFile.exists;
+    }
+    textSync() {
+      return mockLegacyFile.text;
+    }
+    delete() {
+      mockLegacyFile.exists = false;
+    }
   },
 }));
 
@@ -53,6 +62,36 @@ jest.mock('expo-sqlite/kv-store', () => ({ __esModule: true, default: mockStorag
 beforeEach(() => {
   jest.clearAllMocks();
   mockGetNetworkState.mockResolvedValue({ isConnected: true });
+  mockLegacyFile.exists = false;
+  mockLegacyFile.text = '';
+});
+
+describe('the cache an older build kept in a file', () => {
+  it('costs a launch nothing once it is gone', () => {
+    // Asked about first, the kv store read the whole persisted cache — the
+    // feed and every snapshot — synchronously, before the first frame.
+    jest.isolateModules(() => require('../lib/query-client'));
+    expect(mockStorage.getItemSync).not.toHaveBeenCalled();
+  });
+
+  it('is moved once and deleted', () => {
+    mockLegacyFile.exists = true;
+    mockLegacyFile.text = JSON.stringify({ REACT_QUERY_OFFLINE_CACHE: '{"clientState":{}}' });
+    jest.isolateModules(() => require('../lib/query-client'));
+    expect(mockStorage.setItemSync).toHaveBeenCalledWith(
+      'REACT_QUERY_OFFLINE_CACHE',
+      '{"clientState":{}}',
+    );
+    expect(mockLegacyFile.exists).toBe(false);
+  });
+
+  it('is deleted unread when it cannot be read, rather than asked about every launch', () => {
+    mockLegacyFile.exists = true;
+    mockLegacyFile.text = '{broken';
+    jest.isolateModules(() => require('../lib/query-client'));
+    expect(mockStorage.setItemSync).not.toHaveBeenCalled();
+    expect(mockLegacyFile.exists).toBe(false);
+  });
 });
 
 describe('TanStack Query native lifecycle configuration', () => {
