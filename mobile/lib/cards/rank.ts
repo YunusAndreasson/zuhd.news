@@ -71,9 +71,10 @@ function compareRanked(a: RankedCard, b: RankedCard): number {
   if (news !== 0) return news;
   const movement = b.ranking.normalizedMovement - a.ranking.normalizedMovement;
   if (movement !== 0) return movement;
-  const editorial = a.ranking.editorialOrder - b.ranking.editorialOrder;
-  if (editorial !== 0) return editorial;
-  return a.card.id.localeCompare(b.card.id);
+  // Every card's place in the editorial order is its own, so this is the last
+  // word. (An id comparison after it could only ever compare a card with
+  // itself.)
+  return a.ranking.editorialOrder - b.ranking.editorialOrder;
 }
 
 /** Keep a deck from turning into a hidden sub-tab. Two related pieces may

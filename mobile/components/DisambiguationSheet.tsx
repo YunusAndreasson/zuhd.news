@@ -1,5 +1,5 @@
 import type { Chokepoint, ConflictEvent, GdacsAlert } from '@shared/types';
-import { memo, useCallback, useMemo } from 'react';
+import { memo, useMemo } from 'react';
 import Animated from 'react-native-reanimated';
 import { ANIMATION } from '../constants/theme';
 import { markMove } from '../lib/cards/format';
@@ -221,13 +221,6 @@ export const DisambiguationSheet = memo(function DisambiguationSheet({
     genocideSituations,
   ]);
 
-  const handleSelect = useCallback(
-    (result: TapResult) => {
-      onSelect(result);
-    },
-    [onSelect],
-  );
-
   return (
     <SheetLayout
       sheetRef={sheetRef}
@@ -236,7 +229,7 @@ export const DisambiguationSheet = memo(function DisambiguationSheet({
     >
       <SheetScrollView bottomInset={bottomInset}>
         {rows.map((row, i) => (
-          <CandidateRow key={row.key} row={row} index={i} onPress={handleSelect} />
+          <CandidateRow key={row.key} row={row} index={i} onPress={onSelect} />
         ))}
       </SheetScrollView>
     </SheetLayout>

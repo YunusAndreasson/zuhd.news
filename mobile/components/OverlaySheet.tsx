@@ -38,8 +38,6 @@ import { type BaseSheetProps, SheetLayout } from './SheetLayout';
  * `overall_phase`; a genocide finding is quoted from the body that made it.
  */
 
-export type { OverlaySelection };
-
 interface OverlayBodyProps {
   overlay: OverlaySelection | null;
   /** The river, so a thermal anomaly can name the stories it was joined to. */
