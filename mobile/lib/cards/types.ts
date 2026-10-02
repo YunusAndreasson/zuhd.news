@@ -98,7 +98,7 @@ interface CardBase {
   changed?: string;
   /** Live pipeline analysis, shown on the recurring card surface: the day's
    *  account of why this moved, or the standing definition where the desk
-   *  wrote no account today. `lib/cards/markets.ts`'s `whyFor` picks. */
+   *  wrote no account today. `lib/cards/markets.ts`'s `deskText` picks. */
   why?: string;
   /** News ties used to rank the card; not repeated on its visible surface. */
   related?: RelatedArticleRef[];

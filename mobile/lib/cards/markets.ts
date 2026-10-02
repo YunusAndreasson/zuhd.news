@@ -85,17 +85,58 @@ export type AnalysisById = ReadonlyMap<string, IndicatorAnalysis>;
  * `/api/analysis.json` carries none at all. Both cases land back on exactly
  * the card this app shipped before. Neither string is composed here — the app
  * does not editorialise over the desk.
+ *
+ * With it, `cited`: the stories the day's analysis was grounded in, which the
+ * chart marks. Every card the desk writes about carries the pair, spread in.
  */
-function whyFor(
+function deskText(
   analysis: AnalysisById,
-  id: string,
-  indicator: Pick<Indicator, 'standing'>,
-): string | undefined {
-  return analysis.get(id)?.recent?.trim() || indicator.standing?.trim() || undefined;
+  indicator: Pick<Indicator, 'id' | 'standing'>,
+): Pick<ReadingCard, 'why' | 'cited'> {
+  const entry = analysis.get(indicator.id);
+  return {
+    why: entry?.recent?.trim() || indicator.standing?.trim() || undefined,
+    cited: entry?.relatedArticles,
+  };
 }
 
 const byId = (snapshot: TrendsSnapshot, id: string): Indicator | undefined =>
   snapshot.indicators.find((i) => i.id === id);
+
+/**
+ * Two instruments read as one card — wheat and rice, gold and silver: both
+ * present, both with a latest value, and observed as of the older of the two,
+ * because the card is only as current as its staler half.
+ */
+function pairOf(snapshot: TrendsSnapshot, aId: string, bId: string) {
+  const a = byId(snapshot, aId);
+  const b = byId(snapshot, bId);
+  if (!a || !b) return null;
+  const aNow = latestOf(a);
+  const bNow = latestOf(b);
+  if (aNow == null || bNow == null) return null;
+  const asOf = oldestObservation(
+    indicatorObservation(a, snapshot.asOf),
+    indicatorObservation(b, snapshot.asOf),
+  );
+  return { a, b, aNow, bNow, asOf };
+}
+
+/** One series over another, observation by observation, as a series of its
+ *  own: NaN where the denominator is zero, so the line breaks rather than
+ *  spikes. The pair must share its periods. */
+function ratioOf(num: Indicator, den: Indicator): number[] {
+  return num.values.map((n, i) => {
+    const d = den.values[i];
+    return typeof d === 'number' && d !== 0 ? n / d : Number.NaN;
+  });
+}
+
+/** Both instruments' topic tags, for the tie to the day's news. */
+const pairTags = (a: Indicator, b: Indicator): string[] => [
+  ...(a.topicTags ?? []),
+  ...(b.topicTags ?? []),
+];
 
 /** The pipeline writes units the way a data column does — `$/bbl`, `$/mt`. A
  *  card is read aloud, so the denominator becomes English and the currency mark
@@ -187,13 +228,9 @@ function staplesCard(
   analysis: AnalysisById,
   articles: Article[],
 ): ReadingCard | null {
-  const wheat = byId(snapshot, 'wheat');
-  const rice = byId(snapshot, 'rice');
-  if (!wheat || !rice) return null;
-  const wheatNow = latestOf(wheat);
-  const riceNow = latestOf(rice);
-  if (wheatNow == null || riceNow == null) return null;
-  if (wheat.periods.length !== rice.periods.length) return null;
+  const pair = pairOf(snapshot, 'wheat', 'rice');
+  if (!pair || pair.a.periods.length !== pair.b.periods.length) return null;
+  const { a: wheat, b: rice, aNow: wheatNow, bNow: riceNow } = pair;
 
   const wheatSpan = windowChange(wheat, wheat.values.length - 1);
   const riceSpan = windowChange(rice, rice.values.length - 1);
@@ -216,10 +253,7 @@ function staplesCard(
 
   // The chip measures the ratio, because the ratio is the reading; the
   // sentence retains the two directions that reach a shopping bill.
-  const ratioSeries = wheat.values.map((w, i) => {
-    const r = rice.values[i];
-    return typeof r === 'number' && typeof w === 'number' && w !== 0 ? r / w : Number.NaN;
-  });
+  const ratioSeries = ratioOf(rice, wheat);
   const delta = deltaFrom(
     windowChange({ values: ratioSeries, periods: wheat.periods }, ratioSeries.length - 1),
   );
@@ -228,17 +262,13 @@ function staplesCard(
     id: 'staples',
     kind: 'reading',
     kicker: 'staples',
-    asOf: oldestObservation(
-      indicatorObservation(wheat, snapshot.asOf),
-      indicatorObservation(rice, snapshot.asOf),
-    ),
+    asOf: pair.asOf,
     title: 'Wheat and rice',
     reading: `${ratio.toFixed(1)}×`,
     readingNote: 'rice against wheat',
     delta,
     changed,
-    why: whyFor(analysis, wheat.id, wheat),
-    cited: analysis.get(wheat.id)?.relatedArticles,
+    ...deskText(analysis, wheat),
     series: {
       values: wheat.values,
       periods: wheat.periods,
@@ -249,7 +279,7 @@ function staplesCard(
         { values: rice.values, label: 'rice', highlight: 'last' },
       ],
     },
-    related: relatedForTags(articles, [...(wheat.topicTags ?? []), ...(rice.topicTags ?? [])]),
+    related: relatedForTags(articles, pairTags(wheat, rice)),
     sourceLabel: wheat.sourceLabel,
   };
 }
@@ -259,7 +289,7 @@ function staplesCard(
 // ---------------------------------------------------------------------------
 
 /** A live indicator with its pipeline analysis. Hand-written copy stays out of
- * the graph-card path: the section gate requires a `why`, and `whyFor` will
+ * the graph-card path: the section gate requires a `why`, and `deskText` will
  * only ever hand it something the desk wrote. */
 export function indicatorCard(
   snapshot: TrendsSnapshot,
@@ -286,15 +316,8 @@ export function indicatorCard(
     // A daily series has said everything it has to say in the chip; only a
     // monthly one has a second window worth a sentence.
     changed: monthly ? describeYearChange(indicator) : undefined,
-    why: whyFor(analysis, indicator.id, indicator),
-    cited: analysis.get(indicator.id)?.relatedArticles,
-    series: {
-      values: indicator.values,
-      periods: indicator.periods,
-      label: axisCaption(indicator.unit, indicator.label),
-      unit: indicator.unit,
-      highlight: indicator.defaultHighlight ?? 'last',
-    },
+    ...deskText(analysis, indicator),
+    series: seriesOf(indicator),
     related: relatedForTags(articles, indicator.topicTags),
     sourceLabel: indicator.sourceLabel,
   };
@@ -314,13 +337,10 @@ export function indicatorCard(
  * madhhab. That is the same commitment the prayer curves make to Umm al-Qura.
  */
 function nisabCard(snapshot: TrendsSnapshot, analysis: AnalysisById): ReadingCard | null {
-  const gold = byId(snapshot, 'paxg');
-  const silver = byId(snapshot, 'xag');
-  if (!gold || !silver) return null;
-  const goldPrice = latestOf(gold);
-  const silverPrice = latestOf(silver);
-  if (goldPrice == null || silverPrice == null) return null;
-  const n = nisab(goldPrice, silverPrice);
+  const pair = pairOf(snapshot, 'paxg', 'xag');
+  if (!pair) return null;
+  const { a: gold, b: silver } = pair;
+  const n = nisab(pair.aNow, pair.bNow);
   if (!n) return null;
 
   const bindingIndicator = n.binding === 'silver' ? silver : gold;
@@ -342,10 +362,7 @@ function nisabCard(snapshot: TrendsSnapshot, analysis: AnalysisById): ReadingCar
     id: 'nisab',
     kind: 'reading',
     kicker: 'zakat',
-    asOf: oldestObservation(
-      indicatorObservation(gold, snapshot.asOf),
-      indicatorObservation(silver, snapshot.asOf),
-    ),
+    asOf: pair.asOf,
     title: 'Nisab threshold',
     reading: `$${formatCount(n.threshold)}`,
     readingNote: `set by ${n.binding}`,
@@ -355,8 +372,7 @@ function nisabCard(snapshot: TrendsSnapshot, analysis: AnalysisById): ReadingCar
     // number it prints. Until this card carried any analysis at all it was
     // built and then silently dropped by `hasGraphAndAnalysis`, which is how
     // the card this column is documented as opening with never opened it.
-    why: whyFor(analysis, bindingIndicator.id, bindingIndicator),
-    cited: analysis.get(bindingIndicator.id)?.relatedArticles,
+    ...deskText(analysis, bindingIndicator),
     // `weight` draws the bar under each row, and the bar is the point: the
     // two thresholds differ by an order of magnitude, and "set by silver"
     // is a claim a reader can now see rather than take on trust.
@@ -403,24 +419,17 @@ function metalsPairCard(
   analysis: AnalysisById,
   articles: Article[],
 ): ReadingCard | null {
-  const gold = byId(snapshot, 'paxg');
-  const silver = byId(snapshot, 'xag');
-  if (!gold || !silver) return null;
-  const goldNow = latestOf(gold);
-  const silverNow = latestOf(silver);
-  if (goldNow == null || silverNow == null) return null;
-  if (gold.periods.length !== silver.periods.length) return null;
+  const pair = pairOf(snapshot, 'paxg', 'xag');
+  if (!pair || pair.a.periods.length !== pair.b.periods.length) return null;
+  const { a: gold, b: silver } = pair;
 
-  const ratio = goldNow / silverNow;
+  const ratio = pair.aNow / pair.bNow;
   const goldMove = windowChange(gold, DAILY_WINDOW);
   const silverMove = windowChange(silver, DAILY_WINDOW);
 
   // The ratio's own move: a reading of how the two metals are being held
   // against each other.
-  const ratioSeries = gold.values.map((g, i) => {
-    const sv = silver.values[i];
-    return typeof sv === 'number' && typeof g === 'number' && sv !== 0 ? g / sv : Number.NaN;
-  });
+  const ratioSeries = ratioOf(gold, silver);
   const delta = deltaFrom(
     windowChange({ values: ratioSeries, periods: gold.periods }, DAILY_WINDOW),
   );
@@ -429,10 +438,7 @@ function metalsPairCard(
     id: 'metals',
     kind: 'reading',
     kicker: 'metal',
-    asOf: oldestObservation(
-      indicatorObservation(gold, snapshot.asOf),
-      indicatorObservation(silver, snapshot.asOf),
-    ),
+    asOf: pair.asOf,
     title: 'Gold against silver',
     // The ratio, not either price. The relationship is the thing neither raw
     // quote says alone, and removing those duplicate rows gives the day's
@@ -445,15 +451,14 @@ function metalsPairCard(
       goldMove && silverMove
         ? `Since ${goldMove.from}, gold ${formatSignedPct(goldMove.pct)} and silver ${formatSignedPct(silverMove.pct)}.`
         : undefined,
-    why: whyFor(analysis, gold.id, gold),
-    cited: analysis.get(gold.id)?.relatedArticles,
+    ...deskText(analysis, gold),
     series: {
       values: ratioSeries,
       periods: gold.periods,
       label: 'ounces of silver to one of gold',
       highlight: 'last',
     },
-    related: relatedForTags(articles, [...(gold.topicTags ?? []), ...(silver.topicTags ?? [])]),
+    related: relatedForTags(articles, pairTags(gold, silver)),
     sourceLabel: gold.sourceLabel,
   };
 }
@@ -618,8 +623,7 @@ export function currencyCard(
     // currency, and the date it ended on was already on the kicker line.
     // The chip says the move and the desk's paragraph says why; nothing
     // is left for a third line to add.
-    why: whyFor(analysis, indicator.id, indicator),
-    cited: analysis.get(indicator.id)?.relatedArticles,
+    ...deskText(analysis, indicator),
     series: {
       values: indicator.values,
       periods: indicator.periods,
@@ -662,9 +666,18 @@ function straitDelta(d: number): CardDelta | undefined {
   return deltaOf(d * 100, { window: 'vs its 90-day normal', flat: 'at its normal' });
 }
 
-function totalTrafficDelta(c: Chokepoint): number | null {
+/**
+ * How far a strait's total traffic sits from its own 90-day normal — when the
+ * strait has the reading and the history a card charts. Null otherwise, and
+ * then there is no card: the deck's and a globe mark's alike.
+ */
+function chartedTrafficDelta(c: Chokepoint): number | null {
   const d = c.delta7vs90.n_total;
-  return typeof d === 'number' && Number.isFinite(d) ? d : null;
+  if (typeof d !== 'number' || !Number.isFinite(d)) return null;
+  const last7 = c.last7Avg.n_total;
+  if (typeof last7 !== 'number' || !Number.isFinite(last7)) return null;
+  const { total, periods } = c.series;
+  return total.length >= 2 && total.length === periods.length ? d : null;
 }
 
 /** How far total traffic has to fall below its normal for a strait card to be
@@ -802,18 +815,11 @@ function straitCards(
   snapshot: TrendsSnapshot,
   now: Date,
 ): ReadingCard[] {
-  const ranked = chokepoints
-    .map((c) => ({ c, d: totalTrafficDelta(c) }))
+  return chokepoints
+    .map((c) => ({ c, d: chartedTrafficDelta(c) }))
     .filter((x): x is { c: Chokepoint; d: number } => x.d !== null)
-    .filter(
-      ({ c }) =>
-        typeof c.last7Avg.n_total === 'number' &&
-        Number.isFinite(c.last7Avg.n_total) &&
-        c.series.total.length >= 2 &&
-        c.series.total.length === c.series.periods.length,
-    )
-    .sort((a, b) => Math.abs(b.d) - Math.abs(a.d));
-  return ranked.map(({ c, d }) => straitCard(c, d, snapshot, now));
+    .sort((a, b) => Math.abs(b.d) - Math.abs(a.d))
+    .map(({ c, d }) => straitCard(c, d, snapshot, now));
 }
 
 /**
@@ -829,17 +835,8 @@ export function straitCardFor(
   snapshot: TrendsSnapshot | null,
   now: Date,
 ): (ReadingCard & { series: CardSeries }) | null {
-  const d = totalTrafficDelta(c);
-  if (
-    d === null ||
-    typeof c.last7Avg.n_total !== 'number' ||
-    !Number.isFinite(c.last7Avg.n_total) ||
-    c.series.total.length < 2 ||
-    c.series.total.length !== c.series.periods.length
-  ) {
-    return null;
-  }
-  return straitCard(c, d, snapshot, now);
+  const d = chartedTrafficDelta(c);
+  return d === null ? null : straitCard(c, d, snapshot, now);
 }
 
 function straitCard(
@@ -1025,8 +1022,7 @@ function beliefCards(
         // a contract sitting at 88 has never been below 80 or got there from
         // 30 last week. Two numbers the reader had already seen, with dates.
         changed: dayMove,
-        why: whyFor(analysis, indicator.id, indicator),
-        cited: analysis.get(indicator.id)?.relatedArticles,
+        ...deskText(analysis, indicator),
         series: {
           values: indicator.values,
           periods: indicator.periods,
