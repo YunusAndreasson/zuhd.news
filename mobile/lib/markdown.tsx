@@ -1,5 +1,5 @@
 import type { Entity } from '@shared/types';
-import { Fragment, type ReactNode } from 'react';
+import type { ReactNode } from 'react';
 import { StyleSheet, Text, type TextStyle } from 'react-native';
 import { ANDROID_TEXT_BASE } from '../constants/platform';
 import {
@@ -149,6 +149,22 @@ export function parseInline(line: string): Segment[] {
   return segments.length ? segments : [{ type: 'text', text: smart(stripStrayEmphasis(line)) }];
 }
 
+/** Each mention's pattern: case-insensitive, on word boundaries, with an
+ *  optional plural `s`. Compiled once per mention, not once per sentence for
+ *  each of the two passes that look for it. No `g` flag, so a shared pattern
+ *  keeps no `lastIndex` between uses. */
+const mentionPatterns = new Map<string, RegExp>();
+
+function mentionPattern(mention: string): RegExp {
+  let re = mentionPatterns.get(mention);
+  if (!re) {
+    const escaped = mention.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+    re = new RegExp(`\\b${escaped}(?:s)?\\b`, 'i');
+    mentionPatterns.set(mention, re);
+  }
+  return re;
+}
+
 /** Split plain-text segments on any entity mentions, in-place, preserving
  *  surrounding text. Matches the mention string with a case-insensitive,
  *  word-boundary regex (+ optional plural 's'). First occurrence per entity
@@ -168,9 +184,7 @@ function splitSegmentsWithEntities(segments: Segment[], entities: Entity[]): Seg
     type Hit = { start: number; end: number; entity: Entity };
     const hits: Hit[] = [];
     for (const e of entities) {
-      const escaped = e.mention.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
-      const re = new RegExp(`\\b${escaped}(?:s)?\\b`, 'i');
-      const m = re.exec(text);
+      const m = mentionPattern(e.mention).exec(text);
       if (m && m.index != null) {
         hits.push({ start: m.index, end: m.index + m[0].length, entity: e });
       }
@@ -226,7 +240,6 @@ export interface MarkdownStyles {
    *  `country:` scheme before hitting Linking. */
   countryLink: TextStyle;
   entity: TextStyle;
-  dateline: TextStyle;
 }
 
 /** URL scheme for tappable country mentions in article markdown.
@@ -261,10 +274,9 @@ export function makeMarkdownStyles(
       fontVariant: ['oldstyle-nums'],
     },
     // Re-declare `fontVariant` on each emphasis style. RN drops fontVariant
-    // across a font-family switch on Android (same gotcha noted on `dateline`
-    // below), so without it a bolded "$106" inside body prose silently flips
-    // to lining figures and breaks column alignment with surrounding oldstyle
-    // digits.
+    // across a font-family switch on Android, so without it a bolded "$106"
+    // inside body prose silently flips to lining figures and breaks column
+    // alignment with surrounding oldstyle digits.
     bold: {
       ...font.bold,
       fontVariant: ['oldstyle-nums'],
@@ -303,20 +315,6 @@ export function makeMarkdownStyles(
       textDecorationLine: 'underline',
       textDecorationStyle: 'dotted',
       textDecorationColor: colors.textSecondary,
-    },
-    // Inline dateline: matches the design system's small-caps tiers
-    // (label/labelSm/labelXs) — secondary tone so the temporal frame reads
-    // as quiet metadata against the body, plus the same caps tracking so
-    // glyphs breathe at small sizes. fontVariant must be set *here* and not
-    // relied on from the parent `sentence` style: RN doesn't reliably
-    // propagate fontVariant across a fontFamily switch, so without this the
-    // SC font defaulted to lining figures — making the "8" in "8h ago"
-    // tower over the small-cap "h ago" at cap height.
-    dateline: {
-      ...font.smallCaps,
-      color: colors.textSecondary,
-      letterSpacing: typography.trackingCaps,
-      fontVariant: ['oldstyle-nums'],
     },
   });
 }
@@ -390,31 +388,28 @@ export function renderSegments(
   });
 }
 
+export interface SentenceOptions {
+  /** The story's dateline place, cut from the head of the first sentence. */
+  location?: string | null;
+  openLink?: LinkOpener;
+  /** Tappable rich-noun mentions in the body — each one's first occurrence
+   *  across the sentence list becomes a tappable `<Text>` with `onEntityPress`. */
+  entities?: Entity[];
+  onEntityPress?: EntityPressHandler;
+}
+
+/**
+ * A story's blocks, one block `Text` each.
+ *
+ * It also took a font size, a dateline printed above the first block and a
+ * press for it, which no caller has passed since the full-screen reader went;
+ * they, the dateline's style and a second copy of the block renderer are gone.
+ */
 export function renderSentences(
   sentences: string[],
   mdStyles: MarkdownStyles,
-  typography: Typography,
-  fontSize?: number,
-  location?: string | null,
-  dateline?: string | null,
-  openLink: LinkOpener = defaultOpenLink,
-  /** If provided, the inline dateline becomes tappable (e.g. to reveal the
-   *  exact timestamp in a toast). */
-  onDatelinePress?: () => void,
-  /** Tappable rich-noun mentions in the body — each one's first occurrence
-   *  across the sentence list becomes a tappable `<Text>` with `onEntityPress`. */
-  entities?: Entity[],
-  onEntityPress?: EntityPressHandler,
+  { location, openLink = defaultOpenLink, entities, onEntityPress }: SentenceOptions = {},
 ): ReactNode[] {
-  const size = fontSize ?? typography.sizeBase;
-  const sizeStyle = fontSize
-    ? {
-        fontSize: size,
-        lineHeight: size * typography.leadingBody,
-        marginBottom: size * 0.5,
-      }
-    : null;
-
   // Entities fire on first occurrence only across the whole body — track
   // which indicator ids have already been consumed so later sentences don't
   // double-tag them. Mutates per render but local to this call.
@@ -430,9 +425,7 @@ export function renderSentences(
       .join(' ');
     const next: Entity[] = [];
     for (const e of remaining) {
-      const escaped = e.mention.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
-      const re = new RegExp(`\\b${escaped}(?:s)?\\b`, 'i');
-      if (re.test(plain)) used.push(e);
+      if (mentionPattern(e.mention).test(plain)) used.push(e);
       else next.push(e);
     }
     remaining.length = 0;
@@ -447,56 +440,19 @@ export function renderSentences(
    *  several blocks as one paragraph and save the gaps. That merge is what
    *  `<blank line between blocks>` in `scripts/write-prompt.md` exists to
    *  prevent, and it is gone: a block is a block on screen. */
-  const perSentence = (key: number, segments: Segment[]): ReactNode => (
-    <Text
-      key={key}
-      {...SENTENCE_TEXT_PROPS}
-      style={[mdStyles.sentence, sizeStyle]}
-      maxFontSizeMultiplier={MAX_FONT_SCALE.body}
-    >
-      {renderSegments(segments, mdStyles, openLink, onEntityPress)}
-    </Text>
-  );
-
   return sentences.map((sentence, i) => {
-    if (i === 0) {
-      const baseSegments = parseInline(withoutDateline(sentence, location));
-      const segmentsForRender = entities?.length
-        ? splitSegmentsWithEntities(baseSegments, consume(baseSegments))
-        : baseSegments;
-      // Dateline (e.g. time ago) in small-caps, on its own line above the
-      // first sentence, sharing the body's left margin. Keeps the body
-      // flush-left with no first-line inset; pays ~13px vertical (small-
-      // caps height) instead of pushing the body's first wrap.
-      // One step above `sizeSm` (labelSm) so the time-ago glyphs sit firmly
-      // in the section-heading family without dipping to the labelXs whisper
-      // tier — was `size * 0.9` which scaled with the body and read as
-      // ~14–18pt, towering over every other small-caps run.
-      if (dateline) {
-        const datelineSize = typography.sizeSm + 1;
-        return (
-          <Fragment key={i}>
-            <Text style={[mdStyles.dateline, { fontSize: datelineSize }]} onPress={onDatelinePress}>
-              {dateline}
-            </Text>
-            {perSentence(i, segmentsForRender)}
-          </Fragment>
-        );
-      }
-      return perSentence(i, segmentsForRender);
-    }
-    const baseSegments = parseInline(sentence);
-    const segmentsForRender = entities?.length
-      ? splitSegmentsWithEntities(baseSegments, consume(baseSegments))
-      : baseSegments;
+    const segments = parseInline(i === 0 ? withoutDateline(sentence, location) : sentence);
+    const rendered = entities?.length
+      ? splitSegmentsWithEntities(segments, consume(segments))
+      : segments;
     return (
       <Text
         key={i}
         {...SENTENCE_TEXT_PROPS}
-        style={[mdStyles.sentence, sizeStyle]}
+        style={mdStyles.sentence}
         maxFontSizeMultiplier={MAX_FONT_SCALE.body}
       >
-        {renderSegments(segmentsForRender, mdStyles, openLink, onEntityPress)}
+        {renderSegments(rendered, mdStyles, openLink, onEntityPress)}
       </Text>
     );
   });

@@ -84,9 +84,16 @@ try {
   etags = {};
 }
 
-function rememberEtag(url: string, etag: string | null): void {
-  if (!etag || etags[url] === etag) return;
-  etags = { ...etags, [url]: etag };
+/** Note each file's new tag, and write the map once: an arrival that changed
+ *  eleven files rewrote it eleven times, synchronously, just before the
+ *  commit that shows them. */
+function rememberEtags(tags: readonly (readonly [url: string, etag: string | null])[]): void {
+  let next = etags;
+  for (const [url, etag] of tags) {
+    if (etag && next[url] !== etag) next = { ...next, [url]: etag };
+  }
+  if (next === etags) return;
+  etags = next;
   try {
     Storage.setItemSync(ETAGS_KEY, JSON.stringify(etags));
   } catch {}
@@ -111,7 +118,7 @@ export async function fetchSnapshot<T>(
   });
   // Without a tag sent the site cannot answer 304.
   if (!result.changed) throw new Error(`Unexpected 304 from ${snap.url}`);
-  rememberEtag(snap.url, result.etag);
+  rememberEtags([[snap.url, result.etag]]);
   return result.data;
 }
 
@@ -143,11 +150,13 @@ export async function fetchAllSnapshots(
     ),
   );
   const out: FetchedSnapshot[] = [];
+  const tags: [string, string | null][] = [];
   settled.forEach((result, i) => {
     const snap = all[i];
     if (!snap || result.status !== 'fulfilled' || !result.value.changed) return;
-    rememberEtag(snap.url, result.value.etag);
+    tags.push([snap.url, result.value.etag]);
     out.push({ queryKey: snap.queryKey, data: result.value.data });
   });
+  rememberEtags(tags);
   return out;
 }

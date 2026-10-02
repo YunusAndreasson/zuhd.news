@@ -294,27 +294,13 @@ export const StoryCard = memo(function StoryCard({
   // name once in the hook and again in the rest.
   const sentences = useMemo(
     () =>
-      renderSentences(
-        article.sentences,
-        mdStyles,
-        typography,
-        undefined,
-        article.location,
-        null,
+      renderSentences(article.sentences, mdStyles, {
+        location: article.location,
         openLink,
-        undefined,
-        tappableEntities,
+        entities: tappableEntities,
         onEntityPress,
-      ),
-    [
-      article.sentences,
-      article.location,
-      mdStyles,
-      typography,
-      openLink,
-      tappableEntities,
-      onEntityPress,
-    ],
+      }),
+    [article.sentences, article.location, mdStyles, openLink, tappableEntities, onEntityPress],
   );
   // A block per paragraph, with the gap `mdStyles.sentence`'s marginBottom
   // draws between them. Everything after the hook ran on as ONE paragraph

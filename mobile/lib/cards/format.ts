@@ -347,14 +347,41 @@ export function nisab(goldPerOunce: number, silverPerOunce: number): Nisab | nul
 // The tie to the news
 // ---------------------------------------------------------------------------
 
+/** A concept as a tag is matched against it: lowercased, and its words. */
+interface ConceptKey {
+  lower: string;
+  words: ReadonlySet<string>;
+}
+
+/**
+ * Each article's concepts as `ConceptKey`s, once per river. Every card asks
+ * `relatedForTags` about the same articles — some thirty-five builders on each
+ * river, forty more when the menu's catalog builds — and each concept was
+ * lowercased and split again for every tag of every card.
+ */
+const conceptKeys = new WeakMap<readonly Article[], readonly (readonly ConceptKey[])[]>();
+
+function conceptKeysOf(articles: readonly Article[]): readonly (readonly ConceptKey[])[] {
+  let keys = conceptKeys.get(articles);
+  if (!keys) {
+    keys = articles.map((article) =>
+      article.concepts.map((concept) => {
+        const lower = concept.toLowerCase();
+        return { lower, words: new Set(lower.split(/[^a-z0-9]+/)) };
+      }),
+    );
+    conceptKeys.set(articles, keys);
+  }
+  return keys;
+}
+
 /** Article concepts are proper nouns ("Strait of Hormuz"); indicator topic
  *  tags are lowercase keywords ("hormuz"). Match a tag against whole words of
  *  a concept, and against the whole concept for multi-word tags. */
-function conceptMatchesTag(concept: string, tag: string): boolean {
-  const c = concept.toLowerCase();
-  if (c === tag) return true;
-  if (tag.includes(' ')) return c.includes(tag);
-  return c.split(/[^a-z0-9]+/).includes(tag);
+function conceptMatchesTag(concept: ConceptKey, tag: string): boolean {
+  if (concept.lower === tag) return true;
+  if (tag.includes(' ')) return concept.lower.includes(tag);
+  return concept.words.has(tag);
 }
 
 /** Shortest tag worth matching. Two-letter tags are ISO codes and one-letter
@@ -379,11 +406,13 @@ export function relatedForTags(
   // both mention Iran. Ranking by how many distinct tags an article touches
   // puts the story that is actually about the subject first, and the weak
   // matches fall off the end of `max`.
+  const keys = conceptKeysOf(articles);
   const scored = articles
     .map((article, order) => {
+      const concepts = keys[order] ?? [];
       let score = 0;
       for (const tag of usable) {
-        if (article.concepts.some((concept) => conceptMatchesTag(concept, tag))) score += 1;
+        if (concepts.some((concept) => conceptMatchesTag(concept, tag))) score += 1;
       }
       return { article, score, order };
     })
