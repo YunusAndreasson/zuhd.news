@@ -13,7 +13,7 @@ import { slugify, fingerprint, zuhdCategory } from './lib/utils.js'
 import { shouldSkip, recordResult } from './lib/block-cache.js'
 import { ROOT } from './lib/paths.js'
 import { writeJson } from './lib/json-file.js'
-import { ZUHD_UA } from './lib/http.js'
+import { BROWSER_UA, ZUHD_UA } from './lib/http.js'
 
 const CONTENT_DIR = join(ROOT, 'content', 'articles')
 
@@ -112,7 +112,6 @@ function stripHtml(str) { return str.replace(/<[^>]*>/g, '') }
 // Chrome UA unblocks ~half of the outlets that 401/403 our honest bot UA
 // (Reuters and similar). We keep the honest UA for RSS feeds below, since
 // feed publishers generally whitelist named crawlers and don't bot-wall.
-const BROWSER_UA = 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0 Safari/537.36'
 
 async function fetchArticleBody(url) {
   if (shouldSkip(url)) return null

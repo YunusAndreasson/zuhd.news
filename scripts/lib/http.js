@@ -13,6 +13,14 @@
 export const ZUHD_UA = 'zuhd-news/1.0 (+https://zuhd.news)'
 
 /**
+ * A current desktop Chrome, for fetching *article pages* (never feeds or APIs,
+ * which get `ZUHD_UA`): it unblocks about half of the outlets that 401/403 an
+ * honest bot UA. Two identical copies, which had to be bumped together.
+ */
+export const BROWSER_UA =
+  'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0 Safari/537.36'
+
+/**
  * `fetch(url)` with a deadline covering headers *and* body, our UA (callers'
  * `headers` win), and `HTTP <status>` thrown for anything but 2xx. A caller's
  * own `signal` is combined with the deadline, not replaced by it.

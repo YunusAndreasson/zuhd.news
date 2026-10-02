@@ -9,9 +9,8 @@
 import { Readability } from '@mozilla/readability'
 import { JSDOM } from 'jsdom'
 import { shouldSkip, recordResult } from './block-cache.js'
+import { BROWSER_UA } from './http.js'
 
-const USER_AGENT =
-  'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0 Safari/537.36'
 const TIMEOUT_MS = 8000
 const MAX_TEXT = 3500 // enough for Haiku to judge the angle; more is diminishing returns
 
@@ -92,7 +91,7 @@ export async function fetchSourceText(url) {
       signal: AbortSignal.timeout(TIMEOUT_MS),
       redirect: 'follow',
       headers: {
-        'User-Agent': USER_AGENT,
+        'User-Agent': BROWSER_UA,
         accept: 'text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8',
         'accept-language': 'en-US,en;q=0.9',
       },
