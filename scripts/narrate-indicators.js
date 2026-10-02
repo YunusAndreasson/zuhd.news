@@ -50,7 +50,7 @@ import { matchesAnyTag } from './lib/entity-registry.js'
 import { loadArticles, loadFeedWindow } from './lib/coverage-window.js'
 import { argAt, hasFlag } from './lib/argv.js'
 import { ROOT } from './lib/paths.js'
-import { writeJson } from './lib/json-file.js'
+import { readJson, writeJson } from './lib/json-file.js'
 import { sha1Hex } from './lib/hash.js'
 import { cleanProse } from './lib/claude-envelope.js'
 import { latestTrendsPath } from './lib/trends-snapshot.js'
@@ -158,7 +158,7 @@ const PROMPT_EXAMPLES = promptExamples(basePrompt)
  * standings written the same day against Warsaw and Doha examples peaked at 0.2.
  */
 const PROMPT_ECHO_REJECT = 0.5
-const cache = existsSync(CACHE_PATH) ? JSON.parse(readFileSync(CACHE_PATH, 'utf8')) : { items: {} }
+const cache = readJson(CACHE_PATH, { items: {} })
 if (!cache.items) cache.items = {}
 
 const stageT0 = Date.now()
@@ -169,15 +169,9 @@ const iso = (t) => new Date(t).toISOString().slice(0, 10)
 
 const trendsPath = latestTrendsPath()
 const trends = trendsPath ? JSON.parse(readFileSync(trendsPath, 'utf8')) : { indicators: [] }
-const chokepoints = existsSync(CHOKEPOINTS_PATH)
-  ? JSON.parse(readFileSync(CHOKEPOINTS_PATH, 'utf8')).chokepoints || []
-  : []
-const exchanges = existsSync(MARKETS_PATH)
-  ? JSON.parse(readFileSync(MARKETS_PATH, 'utf8')).exchanges || []
-  : []
-const ledger = existsSync(LEDGER_PATH)
-  ? JSON.parse(readFileSync(LEDGER_PATH, 'utf8')).stories || []
-  : []
+const chokepoints = readJson(CHOKEPOINTS_PATH)?.chokepoints || []
+const exchanges = readJson(MARKETS_PATH)?.exchanges || []
+const ledger = readJson(LEDGER_PATH)?.stories || []
 
 // `loadArticles`/`loadFeedWindow` live in `lib/coverage-window.js` — the same
 // join `narrate-events.js` needs, extracted so the two stages cannot drift.

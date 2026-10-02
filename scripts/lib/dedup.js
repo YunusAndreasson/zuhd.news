@@ -4,6 +4,7 @@ import { readFileSync, existsSync } from 'node:fs'
 import { join } from 'node:path'
 import { parseFrontmatter } from './frontmatter.js'
 import { articleFilesSince } from './article-files.js'
+import { readJson } from './json-file.js'
 
 // Must mirror the category-floor lines in select-prompt.md (tech raised 2→3 by
 // experiment 2026-04-12-tech-floor-3; this constant lagged until 2026-07-03).
@@ -125,26 +126,20 @@ export function loadRecentArticles(cutoffMs = 48 * 3600 * 1000) {
 /** Load eventUri → article slug arrays from the story ledger. */
 export function loadLedgerEventUris() {
   const map = new Map()
-  try {
-    const ledger = JSON.parse(readFileSync(LEDGER_PATH, 'utf-8'))
-    for (const story of ledger.stories || []) {
-      if (story.eventUri && story.articles?.length > 0) {
-        map.set(story.eventUri, story.articles)
-      }
+  for (const story of readJson(LEDGER_PATH)?.stories || []) {
+    if (story.eventUri && story.articles?.length > 0) {
+      map.set(story.eventUri, story.articles)
     }
-  } catch {}
+  }
   return map
 }
 
 /** Load ledger labels with first-seen timestamps for recap matching. */
 export function loadLedgerLabels(cutoffMs = 10 * 24 * 3600 * 1000) {
   const cutoff = Date.now() - cutoffMs
-  try {
-    const ledger = JSON.parse(readFileSync(LEDGER_PATH, 'utf-8'))
-    return (ledger.stories || [])
-      .map(s => ({ slug: s.id, label: s.label || '', firstSeen: s.firstSeen ? new Date(s.firstSeen).getTime() : 0 }))
-      .filter(s => s.label && s.firstSeen >= cutoff)
-  } catch { return [] }
+  return (readJson(LEDGER_PATH)?.stories || [])
+    .map(s => ({ slug: s.id, label: s.label || '', firstSeen: s.firstSeen ? new Date(s.firstSeen).getTime() : 0 }))
+    .filter(s => s.label && s.firstSeen >= cutoff)
 }
 
 /** Strip YYYY-MM-DD- prefix from a slug, return word set (words > 2 chars). */

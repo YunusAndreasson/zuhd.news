@@ -13,7 +13,7 @@ import { existsSync, readFileSync } from 'node:fs'
 import { join } from 'node:path'
 import { scoreReplay } from './autoresearch/score.js'
 import { ROOT } from './lib/paths.js'
-import { writeJson } from './lib/json-file.js'
+import { readJson, writeJson } from './lib/json-file.js'
 
 const NEW_ARTICLES_PATH = '/tmp/zuhd-new-articles.txt'
 const TREND_PATH = join(ROOT, 'content', '.rvs-trend.json')
@@ -84,10 +84,7 @@ async function main() {
     degenerate,
   }
 
-  let trend = []
-  if (existsSync(TREND_PATH)) {
-    try { trend = JSON.parse(readFileSync(TREND_PATH, 'utf-8')) } catch {}
-  }
+  let trend = readJson(TREND_PATH, [])
   trend.push(record)
   // Keep last 365 records (~73 days at 5 cycles/day)
   if (trend.length > 365) trend = trend.slice(-365)

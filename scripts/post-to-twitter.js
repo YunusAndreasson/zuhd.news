@@ -28,7 +28,7 @@ import { parseFrontmatter } from './lib/frontmatter.js'
 import { buildIgJpeg, IG_FEED, igLead } from './lib/ig-image.js'
 import { argAt, hasFlag } from './lib/argv.js'
 import { ROOT } from './lib/paths.js'
-import { writeJson } from './lib/json-file.js'
+import { readJson, writeJson } from './lib/json-file.js'
 
 const TWEET_LOG = join(ROOT, 'content/.tweet-log.json')
 const PROMPT_PATH = join(ROOT, 'scripts/tweet-prompt.md')
@@ -62,13 +62,7 @@ if (!haveCreds && !dryRun) {
 }
 
 // --- dedup log ---
-const readLog = () => {
-  try {
-    return JSON.parse(readFileSync(TWEET_LOG, 'utf8'))
-  } catch {
-    return []
-  }
-}
+const readLog = () => readJson(TWEET_LOG, [])
 const writeLog = (log) => {
   const trimmed = log.length > 100 ? log.slice(-100) : log
   writeJson(TWEET_LOG, trimmed)

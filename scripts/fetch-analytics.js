@@ -5,8 +5,7 @@
 // Fail-soft: if the token lacks permission or the API is down, writes an error marker
 // and exits 0 so it never breaks the cycle.
 
-import { existsSync, readFileSync } from 'node:fs'
-import { writeJson } from './lib/json-file.js'
+import { readJson, writeJson } from './lib/json-file.js'
 
 const ZONE_ID = '2e290179ae62b061719437bb31373426'  // zuhd.news
 const TOKEN = process.env.CLOUDFLARE_API_TOKEN
@@ -109,8 +108,7 @@ async function main() {
   const totalRequests = Object.values(perDay).reduce((a, b) => a + b, 0)
 
   // Append to rolling history; dedupe by fetchedAt day-stamp (last run wins per UTC day)
-  let history = { runs: [] }
-  if (existsSync(HISTORY)) { try { history = JSON.parse(readFileSync(HISTORY, 'utf-8')) } catch {} }
+  const history = readJson(HISTORY, { runs: [] })
   const dayKey = now.toISOString().slice(0, 10)
   history.runs = (history.runs || []).filter(r => r.dayKey !== dayKey)
   history.runs.push({ dayKey, fetchedAt: now.toISOString(), totalRequests, articles: sortedArticles })

@@ -43,7 +43,7 @@ import { matchesAnyTag } from './lib/entity-registry.js'
 import { loadArticles, loadFeedWindow } from './lib/coverage-window.js'
 import { argAt, hasFlag } from './lib/argv.js'
 import { ROOT } from './lib/paths.js'
-import { writeJson } from './lib/json-file.js'
+import { readJson, writeJson } from './lib/json-file.js'
 import { sha1Hex } from './lib/hash.js'
 import { latestTrendsPath } from './lib/trends-snapshot.js'
 
@@ -81,7 +81,7 @@ const promptHash = sha1Hex(basePrompt, 8)
  *  example between them, added the night before to stop a different repetition. */
 const PROMPT_EXAMPLES = promptExamples(basePrompt)
 const PROMPT_ECHO_REJECT = 0.5
-const cache = existsSync(CACHE_PATH) ? JSON.parse(readFileSync(CACHE_PATH, 'utf8')) : { items: {} }
+const cache = readJson(CACHE_PATH, { items: {} })
 if (!cache.items) cache.items = {}
 
 const stageT0 = Date.now()
@@ -93,9 +93,7 @@ const todayIso = iso(Date.now())
 
 const trendsPath = latestTrendsPath()
 const trends = trendsPath ? JSON.parse(readFileSync(trendsPath, 'utf8')) : { events: [] }
-const ledger = existsSync(LEDGER_PATH)
-  ? JSON.parse(readFileSync(LEDGER_PATH, 'utf8')).stories || []
-  : []
+const ledger = readJson(LEDGER_PATH)?.stories || []
 
 const articles = loadArticles(windowStart)
 const feedWindow = loadFeedWindow(windowStart)

@@ -74,9 +74,7 @@ const countryAugMod = await loadShared('countries/country-augmented.ts')
 const COUNTRY_DATA = countryDataMod.COUNTRY_DATA
 const COUNTRY_AUGMENTED = countryAugMod.COUNTRY_AUGMENTED
 
-const chokepoints = existsSync(CHOKEPOINTS_PATH)
-  ? JSON.parse(readFileSync(CHOKEPOINTS_PATH, 'utf8')).chokepoints || []
-  : []
+const chokepoints = readJson(CHOKEPOINTS_PATH)?.chokepoints || []
 
 // ── build bundles + run LLM with concurrency cap ─────────────────────────
 

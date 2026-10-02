@@ -10,17 +10,14 @@
 // - Add new entries for selected stories not in ledger
 // - Keep 15-30 active entries
 // - Collect conceptUris from selection concepts
-import { readFileSync, existsSync } from 'node:fs'
-import { writeJson } from './lib/json-file.js'
+import { readFileSync } from 'node:fs'
+import { readJson, writeJson } from './lib/json-file.js'
 
 const LEDGER_PATH = 'content/.story-ledger.json'
 const SELECTION_PATH = '/tmp/zuhd-selection.json'
 
 // Load existing ledger
-let ledger = { version: 1, stories: [] }
-if (existsSync(LEDGER_PATH)) {
-  try { ledger = JSON.parse(readFileSync(LEDGER_PATH, 'utf-8')) } catch {}
-}
+const ledger = readJson(LEDGER_PATH, { version: 1, stories: [] })
 
 // Load selection
 let selection = []
