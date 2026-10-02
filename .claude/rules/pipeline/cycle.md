@@ -234,6 +234,20 @@ is in the root CLAUDE.md; this is what the stages assume about each other.
   Its margin (31 days) is against a measured worst case of frontmatter `date`
   running 7 days ahead of the filename's.
 
+## NewsAPI.ai: the one fetch with no outer timeout
+
+- **`fetch-news-api.js` runs bare in `run-cycle.sh`** (no `timeout`), and
+  `apiPost` had no deadline either, so a single hung connection stalled the
+  cycle before the selector — no publish, nothing logged. `apiPost` carries a
+  90s `AbortSignal.timeout` (2026-10-02).
+- **The per-event panel calls run four at a time** (five concurrent is the
+  API's ceiling — Q6's comment). Which events to buy is settled before any
+  call, so they merge in scan order and the output is identical to the serial
+  loop (checked against a mocked API with completions reversed).
+- **A failed per-event call costs its own panel, not the API feed.** Before,
+  one 5xx threw out of `main()` and the cycle went RSS-only. The per-event log
+  line carries `error=` for it.
+
 ## The selector's pool is cut at 12 hours
 
 - **A story's pubDate is the time every reader sees on it.** The writer copies

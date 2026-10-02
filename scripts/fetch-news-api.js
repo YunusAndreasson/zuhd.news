@@ -8,6 +8,7 @@ import { MAX_FEED_AGE_MS } from './lib/feed-age.js'
 import { pickTracked, TRACKED_KEYWORDS } from './lib/tracked-stories.js'
 import { slugify, zuhdCategory } from './lib/utils.js'
 import { writeJson } from './lib/json-file.js'
+import { runWithConcurrency } from './lib/concurrency.js'
 
 const API_KEY = process.env.NEWSAPI_KEY
 const OUTPUT = '/tmp/zuhd-feed-api.json'
@@ -200,6 +201,7 @@ function assembleSourcePanel(articles, eventLocation) {
 
 // Token accounting — NewsAPI.ai charges ~5 tokens per event search, ~1 per article search.
 // Tracks every apiPost so cycles can log actual cost vs budgeted cost.
+const API_TIMEOUT_MS = 90_000
 const tokenStats = { eventCalls: 0, articleCalls: 0, perEventCalls: 0, otherCalls: 0, estTokens: 0 }
 
 async function apiPost(endpoint, params, tag = 'other') {
@@ -215,6 +217,10 @@ async function apiPost(endpoint, params, tag = 'other') {
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify({ apiKey: API_KEY, ...params }),
+    // `run-cycle.sh` runs this stage with no outer `timeout`, so without a
+    // deadline here one hung connection stalled the whole cycle before the
+    // selector ever ran. Covers the body too.
+    signal: AbortSignal.timeout(API_TIMEOUT_MS),
   })
   if (!res.ok) {
     // Surface a sliver of the body so 401/429/5xx are diagnosable from logs.
@@ -356,52 +362,50 @@ const READER_ALIGNED = [
   'rappler.com', 'irrawaddy.com', 'news.mongabay.com', 'disruptafrica.com', 'caixinglobal.com',
 ]
 
-async function fetchReaderAlignedArticles() {
-  const data = await apiPost('article/getArticles', {
-    ...ARTICLE_DEFAULTS,
+/** One `article/getArticles` query over `ARTICLE_DEFAULTS` (1 token). */
+async function queryArticles(params) {
+  const data = await apiPost('article/getArticles', { ...ARTICLE_DEFAULTS, ...params }, 'articles')
+  return data.articles?.results || []
+}
+
+function fetchReaderAlignedArticles() {
+  return queryArticles({
     articlesSortBy: 'date',
     sourceUri: READER_ALIGNED,
-  }, 'articles')
-  return data.articles?.results || []
+  })
 }
 
 // Q3: Remaining curated sources — wire, regional, science (1 token)
 const CURATED_REMAINING = CURATED_SOURCES.filter(s => !READER_ALIGNED.includes(s))
 
-async function fetchCuratedArticles() {
-  const data = await apiPost('article/getArticles', {
-    ...ARTICLE_DEFAULTS,
+function fetchCuratedArticles() {
+  return queryArticles({
     articlesSortBy: 'date',
     sourceUri: CURATED_REMAINING,
-  }, 'articles')
-  return data.articles?.results || []
+  })
 }
 
 // Q3: Gap-region sources — different countries, sorted by importance (1 token)
-async function fetchGapArticles() {
-  const data = await apiPost('article/getArticles', {
-    ...ARTICLE_DEFAULTS,
+function fetchGapArticles() {
+  return queryArticles({
     articlesSortBy: 'sourceImportance',
     eventFilter: 'skipArticlesWithoutEvent',
     categoryUri: INCLUDE_CATEGORIES,
     ignoreCategoryUri: EXCLUDE_CATEGORIES,
     sourceLocationUri: GAP_COUNTRIES,
-  }, 'articles')
-  return data.articles?.results || []
+  })
 }
 
 // Q4: Broad global news — top-ranked sources, catches events Q2/Q3 missed (1 token)
-async function fetchBroadArticles() {
-  const data = await apiPost('article/getArticles', {
-    ...ARTICLE_DEFAULTS,
+function fetchBroadArticles() {
+  return queryArticles({
     articlesSortBy: 'date',
     eventFilter: 'skipArticlesWithoutEvent',
     categoryUri: INCLUDE_CATEGORIES,
     ignoreCategoryUri: EXCLUDE_CATEGORIES,
     startSourceRankPercentile: 0,
     endSourceRankPercentile: 20,
-  }, 'articles')
-  return data.articles?.results || []
+  })
 }
 
 // Q6: Stories about the series the site charts — a headline that names oil,
@@ -416,8 +420,7 @@ async function fetchBroadArticles() {
 // stories.
 async function fetchTrackedArticles() {
   try {
-    const data = await apiPost('article/getArticles', {
-      ...ARTICLE_DEFAULTS,
+    return await queryArticles({
       articlesSortBy: 'date',
       keyword: TRACKED_KEYWORDS,
       keywordOper: 'or',
@@ -427,8 +430,7 @@ async function fetchTrackedArticles() {
       categoryUri: INCLUDE_CATEGORIES,
       ignoreCategoryUri: EXCLUDE_CATEGORIES,
       sourceUri: CURATED_SOURCES,
-    }, 'articles')
-    return data.articles?.results || []
+    })
   } catch (e) {
     console.error(`Q6 tracked-series query failed, continuing without it: ${e.message}`)
     return []
@@ -565,13 +567,20 @@ async function main() {
   // run. `eventCoveredRecently` is prefilter's own test, over prefilter's
   // own 7-day window.
   const TOP_EVENTS_TO_FETCH = 8
+  const PER_EVENT_CONCURRENCY = 4
   const MAX_EVENTS_SCANNED = 24
   const dedupCtx = loadDedupContext(7 * 24 * 3600 * 1000)
   let perEventFetched = 0
   let perEventCalls = 0
   const perEventLog = []
+  // Which events to buy is decided before any call — it depends on coverage
+  // and Q1–Q5's counts, never on what a per-event call returns — so the calls
+  // run together and merge in scan order, which keeps `seen` and the log
+  // exactly as the serial loop had them. Four at once: five is the API's
+  // ceiling (see Q6 above).
+  const targets = []
   for (const event of events.slice(0, MAX_EVENTS_SCANNED)) {
-    if (perEventCalls >= TOP_EVENTS_TO_FETCH) break
+    if (targets.length >= TOP_EVENTS_TO_FETCH) break
     const uri = event.uri
     const covered = eventCoveredRecently(uri, dedupCtx)
     if (covered) {
@@ -584,30 +593,43 @@ async function main() {
       perEventLog.push({ uri, cov: event.totalArticleCount, skipped: 'already>=3', preCount, tokens: 0 })
       continue
     }
+    const log = { uri, cov: event.totalArticleCount, preCount, returned: 0, tokens: 1 }
+    perEventLog.push(log)
+    targets.push({ uri, log, data: null })
+  }
 
+  await runWithConcurrency(targets, PER_EVENT_CONCURRENCY, async (t) => {
     // Fetch articles for this event (skip info/redirect check — saves 1 token per event;
-    // if the URI was redirected the query returns empty and we move on)
-    const artData = await apiPost('event/getEvent', {
-      eventUri: uri,
-      resultType: 'articles',
-      articlesCount: 15,
-      articlesLang: 'eng',
-      articlesSortBy: 'sourceImportance',
-      articleBodyLen: -1,
-      // Top-half sources only — same bound Q5 uses. Without it the 15-article
-      // budget fills with bottom-tier reprints of the same wire copy.
-      startSourceRankPercentile: 0,
-      endSourceRankPercentile: 50,
-      includeSourceLocation: true,
-      includeSourceRanking: true,
-      includeArticleSentiment: true,
-      includeArticleConcepts: true,
-      includeArticleLocation: true,
-    }, 'perEvent')
-    perEventCalls++
+    // if the URI was redirected the query returns empty and we move on).
+    // Fail-soft: a panel is an enrichment, and one failed call used to throw
+    // out of main() and cost the cycle every API story.
+    try {
+      t.data = await apiPost('event/getEvent', {
+        eventUri: t.uri,
+        resultType: 'articles',
+        articlesCount: 15,
+        articlesLang: 'eng',
+        articlesSortBy: 'sourceImportance',
+        articleBodyLen: -1,
+        // Top-half sources only — same bound Q5 uses. Without it the 15-article
+        // budget fills with bottom-tier reprints of the same wire copy.
+        startSourceRankPercentile: 0,
+        endSourceRankPercentile: 50,
+        includeSourceLocation: true,
+        includeSourceRanking: true,
+        includeArticleSentiment: true,
+        includeArticleConcepts: true,
+        includeArticleLocation: true,
+      }, 'perEvent')
+    } catch (e) {
+      t.log.error = e.message
+    }
+  })
+  perEventCalls = targets.length
 
-    const fetchedArts = artData[uri]?.articles?.results || []
-    perEventLog.push({ uri, cov: event.totalArticleCount, preCount, returned: fetchedArts.length, tokens: 1 })
+  for (const { uri, log, data } of targets) {
+    const fetchedArts = data?.[uri]?.articles?.results || []
+    log.returned = fetchedArts.length
     if (fetchedArts.length > 0) {
       // Annotate and add to the event's article pool
       for (const a of fetchedArts) {
@@ -623,7 +645,7 @@ async function main() {
   console.error(`Per-event fetch: enriched ${perEventFetched}/${perEventCalls} uncovered events (${perEventLog.filter(e => e.skipped?.startsWith('covered')).length} already-covered skipped)`)
   // Per-event detail log — one line per event so experiments can audit waste/yield
   for (const e of perEventLog) {
-    const tail = e.skipped ? `skipped=${e.skipped}` : `returned=${e.returned}`
+    const tail = e.skipped ? `skipped=${e.skipped}` : e.error ? `error=${e.error}` : `returned=${e.returned}`
     console.error(`  per-event ${e.uri} cov=${e.cov||0} preCount=${e.preCount} tokens=${e.tokens} ${tail}`)
   }
 
