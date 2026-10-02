@@ -1,10 +1,9 @@
-import type { Article, Category } from '@shared/types';
+import type { Article, Category, GroupedArticles } from '@shared/types';
 import { useCallback, useRef } from 'react';
 import { API_BASE, CATEGORIES } from '../constants/theme';
 import { getSnapshot as getBookmarks } from '../lib/bookmark-store';
 import { fetchJson } from '../lib/fetchJson';
 import { articleFromStory, isStoryPayload } from '../lib/story-payload';
-import type { GroupedArticles } from './usePendingNotification';
 
 /** Resolve the exact requested story, including stories outside the feed. */
 export function useStoryOpener(

@@ -1,10 +1,8 @@
-import type { Article, Category } from '@shared/types';
+import type { Category, GroupedArticles } from '@shared/types';
 import * as Notifications from 'expo-notifications';
 import { useEffect, useRef } from 'react';
 import { CATEGORIES } from '../constants/theme';
 import { getSnapshot as getBookmarks } from '../lib/bookmark-store';
-
-export type GroupedArticles = Record<Category, Article[]>;
 
 /** Dispatch each notification tap once after the feed is ready. Missing stories
  * are resolved by the opener through the per-story endpoint. */

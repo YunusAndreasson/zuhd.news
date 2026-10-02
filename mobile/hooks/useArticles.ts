@@ -1,4 +1,4 @@
-import type { Article, Category, FeedResponse } from '@shared/types';
+import type { Article, Category, FeedResponse, GroupedArticles } from '@shared/types';
 import { useQuery, useQueryClient } from '@tanstack/react-query';
 import { useCallback, useEffect, useEffectEvent, useMemo, useRef, useState } from 'react';
 import { STALE_THRESHOLD } from '../constants/theme';
@@ -20,8 +20,6 @@ import { flushOnboarding } from '../lib/onboarding-store';
 import { flushRead } from '../lib/read-store';
 import { getLastSeenAt, saveLastSeenAt } from '../lib/storage';
 import { useAppResume } from './useAppResume';
-
-type GroupedArticles = Record<Category, Article[]>;
 
 const emptyGrouped: GroupedArticles = {
   politics: [],

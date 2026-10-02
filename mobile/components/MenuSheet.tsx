@@ -1,5 +1,11 @@
 import { METRICS, type MetricKey } from '@shared/countries/country-ranking';
-import type { Article, Category, ConflictEvent, GdacsAlert, GdacsDetail } from '@shared/types';
+import type {
+  Category,
+  ConflictEvent,
+  GdacsAlert,
+  GdacsDetail,
+  GroupedArticles,
+} from '@shared/types';
 import Constants from 'expo-constants';
 import * as StoreReview from 'expo-store-review';
 import {
@@ -416,7 +422,7 @@ function EraseControl({ onDone }: { onDone: (message: string) => void }) {
 }
 
 interface MenuSheetProps extends BaseSheetProps {
-  grouped: Record<Category, Article[]>;
+  grouped: GroupedArticles;
   onSelectArticle: (slug: string, category: Category) => void;
   /** Every instrument, in its group (`buildInstrumentCatalog`). */
   catalog: CatalogGroup[];

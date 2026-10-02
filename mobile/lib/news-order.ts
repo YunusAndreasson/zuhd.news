@@ -1,4 +1,4 @@
-import type { Article, Category } from '@shared/types';
+import type { Article, Category, GroupedArticles } from '@shared/types';
 import { CATEGORIES } from '../constants/theme';
 import { articleTime, eventTime } from './article-utils';
 import { isMostCovered } from './coverage';
@@ -77,7 +77,7 @@ function compareNewsRecency(a: RiverArticle, b: RiverArticle): number {
  * one commit and so one time already; runs matter for payloads built before
  * it, whose times are mtimes.
  */
-export function orderNewsRiver(grouped: Record<Category, Article[]>): RiverArticle[] {
+export function orderNewsRiver(grouped: GroupedArticles): RiverArticle[] {
   const flat: RiverArticle[] = [];
   for (const category of CATEGORIES) {
     for (const article of grouped[category] ?? []) flat.push({ ...article, category });

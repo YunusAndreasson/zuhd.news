@@ -1,5 +1,5 @@
 import { BottomSheetTextInput } from '@expo/ui/community/bottom-sheet';
-import type { Article, Category } from '@shared/types';
+import type { Article, Category, GroupedArticles } from '@shared/types';
 import { useCallback, useDeferredValue, useEffect, useMemo, useRef, useState } from 'react';
 import { AccessibilityInfo, Pressable, StyleSheet, type TextInput, View } from 'react-native';
 import { IS_ANDROID } from '../constants/platform';
@@ -21,7 +21,7 @@ interface IndexedArticle {
   corpus: string;
 }
 
-function buildSearchIndex(grouped: Record<Category, Article[]>): IndexedArticle[] {
+function buildSearchIndex(grouped: GroupedArticles): IndexedArticle[] {
   const index: IndexedArticle[] = [];
   for (const cat of CATEGORIES) {
     for (const a of grouped[cat]) {
@@ -48,7 +48,7 @@ function searchArticles(index: IndexedArticle[], query: string): SearchResult[] 
 }
 
 interface SheetSearchPageProps {
-  grouped: Record<Category, Article[]>;
+  grouped: GroupedArticles;
   bottomInset: number;
   onSelectArticle: (slug: string, category: Category) => void;
 }
