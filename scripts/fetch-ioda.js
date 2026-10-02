@@ -42,10 +42,12 @@
 // and the thing it was running *for* was being discarded — which is a quieter
 // failure than a layer drawing the wrong thing, and lasted longer.
 
-import { writeFileSync, readFileSync, existsSync } from 'node:fs'
+import { readFileSync, existsSync } from 'node:fs'
 import { join } from 'node:path'
+import { ROOT } from './lib/paths.js'
+import { writeJson } from './lib/json-file.js'
+import { fetchJson } from './lib/http.js'
 
-const ROOT = new URL('..', import.meta.url).pathname
 const OUTPUT_PATH = join(ROOT, 'content', '.ioda.json')
 
 const API = 'https://api.ioda.inetintel.cc.gatech.edu/v2/outages/summary'
@@ -64,34 +66,23 @@ const started = Date.now()
 console.log('Fetching IODA country outage summary')
 
 const pull = async (from, until) => {
-  const controller = new AbortController()
-  const timer = setTimeout(() => controller.abort(), TIMEOUT_MS)
-  try {
-    const url = `${API}?from=${from}&until=${until}&entityType=country&limit=300`
-    const res = await fetch(url, {
-      signal: controller.signal,
-      headers: { 'user-agent': 'zuhd-news/1.0 (+https://zuhd.news)' },
-    })
-    if (!res.ok) throw new Error(`HTTP ${res.status}`)
-    const json = await res.json()
-    // IODA answers 200 with an `error` string for a bad window rather than a
-    // 4xx, so a status check alone would let a malformed request through as an
-    // empty snapshot and quietly overwrite a good one.
-    if (json.error) throw new Error(json.error)
-    if (!Array.isArray(json.data)) throw new Error('no data array')
-    return new Map(
-      json.data.map((d) => [
-        d.entity?.code,
-        {
-          name: d.entity?.name ?? d.entity?.code,
-          score: d.scores?.overall ?? 0,
-          events: d.event_cnt ?? 0,
-        },
-      ]),
-    )
-  } finally {
-    clearTimeout(timer)
-  }
+  const url = `${API}?from=${from}&until=${until}&entityType=country&limit=300`
+  const json = await fetchJson(url, { timeoutMs: TIMEOUT_MS })
+  // IODA answers 200 with an `error` string for a bad window rather than a
+  // 4xx, so a status check alone would let a malformed request through as an
+  // empty snapshot and quietly overwrite a good one.
+  if (json.error) throw new Error(json.error)
+  if (!Array.isArray(json.data)) throw new Error('no data array')
+  return new Map(
+    json.data.map((d) => [
+      d.entity?.code,
+      {
+        name: d.entity?.name ?? d.entity?.code,
+        score: d.scores?.overall ?? 0,
+        events: d.event_cnt ?? 0,
+      },
+    ]),
+  )
 }
 
 const now = Math.floor(Date.now() / 1000)
@@ -142,15 +133,12 @@ countries.sort((a, b) => {
   return b.ratio - a.ratio
 })
 
-writeFileSync(
-  OUTPUT_PATH,
-  JSON.stringify({
+writeJson(OUTPUT_PATH, {
     generated: new Date().toISOString(),
     recentDays: RECENT_DAYS,
     baselineDays: BASELINE_DAYS,
     countries,
-  }),
-)
+  }, { pretty: false })
 
 /**
  * The baseline this fetch exists for.
@@ -189,7 +177,7 @@ try {
     const ts = Date.parse(r?.t)
     return Number.isFinite(ts) && ts >= cutoff
   })
-  writeFileSync(HISTORY_PATH, JSON.stringify({ historyDays: HISTORY_DAYS, records: kept }))
+  writeJson(HISTORY_PATH, { historyDays: HISTORY_DAYS, records: kept }, { pretty: false })
   console.log(`  ✓ baseline: ${kept.length} readings held over ${HISTORY_DAYS}d`)
 } catch (err) {
   // Best-effort, like the snapshot: a history write must never fail the stage.

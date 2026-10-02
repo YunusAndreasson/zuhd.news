@@ -5,7 +5,7 @@
 // Fail-soft: if the token lacks permission or the API is down, writes an error marker
 // and exits 0 so it never breaks the cycle.
 
-import { writeFileSync, existsSync, readFileSync } from 'node:fs'
+import { readJson, writeJson } from './lib/json-file.js'
 
 const ZONE_ID = '2e290179ae62b061719437bb31373426'  // zuhd.news
 const TOKEN = process.env.CLOUDFLARE_API_TOKEN
@@ -70,11 +70,11 @@ async function main() {
     const msg = body.errors.map(e => e.message).join('; ')
     console.error(`analytics API error: ${msg}`)
     // Preserve prior file if we have one; write a marker alongside.
-    writeFileSync('content/.analytics-error.json', JSON.stringify({
+    writeJson('content/.analytics-error.json', {
       fetchedAt: now.toISOString(),
       error: msg,
       hint: 'Token likely needs: Zone > Analytics > Read on zone zuhd.news',
-    }, null, 2))
+    })
     process.exit(0)
   }
 
@@ -108,14 +108,13 @@ async function main() {
   const totalRequests = Object.values(perDay).reduce((a, b) => a + b, 0)
 
   // Append to rolling history; dedupe by fetchedAt day-stamp (last run wins per UTC day)
-  let history = { runs: [] }
-  if (existsSync(HISTORY)) { try { history = JSON.parse(readFileSync(HISTORY, 'utf-8')) } catch {} }
+  const history = readJson(HISTORY, { runs: [] })
   const dayKey = now.toISOString().slice(0, 10)
   history.runs = (history.runs || []).filter(r => r.dayKey !== dayKey)
   history.runs.push({ dayKey, fetchedAt: now.toISOString(), totalRequests, articles: sortedArticles })
   // Keep last 60 days
   history.runs = history.runs.slice(-60)
-  writeFileSync(HISTORY, JSON.stringify(history, null, 2))
+  writeJson(HISTORY, history)
 
   // Aggregate: merge per-article views across all retained history days
   const mergedArticles = {}
@@ -139,7 +138,7 @@ async function main() {
     articles: aggregatedArticles,
     articleCount: aggregatedArticles.length,
   }
-  writeFileSync(OUT, JSON.stringify(out, null, 2))
+  writeJson(OUT, out)
   console.error(`analytics: today ${totalRequests} requests, rolling ${out.totalRequests} across ${out.windowDays} day(s), ${aggregatedArticles.length} articles tracked`)
   if (aggregatedArticles.length) {
     console.error('  top 5 (rolling):')

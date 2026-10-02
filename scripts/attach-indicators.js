@@ -33,12 +33,14 @@
 // that the writer knows the date, so `asOf` travels with every level and the
 // prompt requires it be stated.
 
-import { readFileSync, writeFileSync, existsSync, readdirSync } from 'node:fs'
+import { readFileSync, existsSync } from 'node:fs'
 import { join } from 'node:path'
 import { argAt, hasFlag } from './lib/argv.js'
 import { offerFor } from './lib/indicator-offer.js'
+import { ROOT } from './lib/paths.js'
+import { readJson, writeJson } from './lib/json-file.js'
+import { latestTrendsPath } from './lib/trends-snapshot.js'
 
-const ROOT = new URL('..', import.meta.url).pathname
 const SELECTION = argAt('selection', '/tmp/zuhd-selection.json')
 const DRY_RUN = hasFlag('dry-run')
 
@@ -47,27 +49,7 @@ if (!existsSync(SELECTION)) {
   process.exit(0)
 }
 
-/** Newest daily trends snapshot, or null. */
-const latestTrends = () => {
-  const dir = join(ROOT, 'content', 'trends')
-  if (!existsSync(dir)) return null
-  const names = readdirSync(dir)
-    .filter((f) => /^\d{4}-\d{2}-\d{2}\.json$/.test(f))
-    .sort()
-  return names.length ? join(dir, names[names.length - 1]) : null
-}
-
-/** A payload's parsed JSON, or null. Each source is fail-soft on its own: a
- *  missing `.markets.json` costs the exchange rows and nothing else. */
-const readJson = (path) => {
-  try {
-    return JSON.parse(readFileSync(path, 'utf8'))
-  } catch {
-    return null
-  }
-}
-
-const path = latestTrends()
+const path = latestTrendsPath()
 if (!path) {
   console.log('No trends snapshot — skipping indicator attach.')
   process.exit(0)
@@ -129,7 +111,7 @@ for (const story of selection) {
   }
 }
 
-if (!DRY_RUN) writeFileSync(SELECTION, JSON.stringify(selection, null, 2))
+if (!DRY_RUN) writeJson(SELECTION, selection)
 console.log(
   `Indicators: ${attached} across ${stories}/${selection.length} stories ` +
     `(series ${kinds.series}, strait ${kinds.strait}, odds ${kinds.odds}, exchange ${kinds.exchange}; chartable ${chartable}), ` +

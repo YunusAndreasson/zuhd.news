@@ -9,6 +9,8 @@ import { canonicalIndicatorId } from './lib/entity-registry.js'
 import { parseFrontmatter } from './lib/frontmatter.js'
 import { chartProblem, citesFigure } from './lib/indicator-offer.js'
 import { bodyNamesOutlet, soleClassifiedSource } from './lib/outlet-class.js'
+import { latestTrendsPath } from './lib/trends-snapshot.js'
+import { readJson } from './lib/json-file.js'
 
 const files = readFileSync('/tmp/zuhd-new-articles.txt', 'utf8').trim().split('\n').filter(Boolean)
 let bad = 0
@@ -54,12 +56,10 @@ try {
 } catch { /* no selection: the known-id fallback below */ }
 const knownIds = new Set()
 {
-  const read = (path) => { try { return JSON.parse(readFileSync(path, 'utf8')) } catch { return null } }
-  const trendsDir = resolve('content/trends')
-  const snaps = existsSync(trendsDir) ? readdirSync(trendsDir).filter((n) => /^\d{4}-\d{2}-\d{2}\.json$/.test(n)).sort() : []
-  for (const ind of (snaps.length ? read(join(trendsDir, snaps.at(-1))) : null)?.indicators || []) knownIds.add(ind.id)
-  for (const c of read(resolve('content/.chokepoints.json'))?.chokepoints || []) knownIds.add(`cp:${c.id}`)
-  for (const m of read(resolve('content/.markets.json'))?.exchanges || []) knownIds.add(`mkt:${m.id}`)
+  const trendsPath = latestTrendsPath()
+  for (const ind of (trendsPath ? readJson(trendsPath) : null)?.indicators || []) knownIds.add(ind.id)
+  for (const c of readJson(resolve('content/.chokepoints.json'))?.chokepoints || []) knownIds.add(`cp:${c.id}`)
+  for (const m of readJson(resolve('content/.markets.json'))?.exchanges || []) knownIds.add(`mkt:${m.id}`)
 }
 const charts = { set: 0, dropped: 0, cited: 0 }
 /** Block text → the batch files that carry it. */

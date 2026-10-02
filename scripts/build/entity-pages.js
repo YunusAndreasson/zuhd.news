@@ -14,35 +14,15 @@
 // when a reader opens an entity sheet (from an article's entity strip
 // or a future globe affordance) without leaving the page they're on.
 
-import { readFileSync, writeFileSync, mkdirSync, existsSync, readdirSync } from 'node:fs'
+import { readFileSync, writeFileSync, mkdirSync } from 'node:fs'
 import { join } from 'node:path'
 import { escHtml } from '../lib/html.js'
 import { footerStatusLine } from '../lib/site-chrome.js'
 import { listRow } from '../lib/list-row.js'
 import { canonicalIndicatorId } from '../lib/entity-registry.js'
 import { loadShared } from './shared-ts.js'
+import { latestTrendsPath } from '../lib/trends-snapshot.js'
 
-const ROOT = new URL('../..', import.meta.url).pathname
-
-/**
- * Newest daily trends snapshot on disk, or null.
- *
- * Exported because build.js needs the same answer for `/api/trends.json`. It
- * used to look up `content/trends/${today}.json` directly, which is only
- * present after that day's fetch stage has run — so on any build that happened
- * before the fetch, or on a day the fetch failed, the endpoint silently did
- * not exist. Entity pages never had that problem because they came through
- * here; now neither does the API.
- */
-export const latestTrendsPath = () => {
-  const dir = join(ROOT, 'content', 'trends')
-  if (!existsSync(dir)) return null
-  const names = readdirSync(dir)
-    .filter((f) => /^\d{4}-\d{2}-\d{2}\.json$/.test(f))
-    .sort()
-  const latest = names[names.length - 1]
-  return latest ? join(dir, latest) : null
-}
 
 const formatValue = (v, unit) => {
   if (v == null || !Number.isFinite(v)) return '—'

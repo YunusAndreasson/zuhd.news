@@ -18,10 +18,10 @@ import { readFileSync, writeFileSync, existsSync } from 'node:fs'
 import { join, basename } from 'node:path'
 import { randomUUID } from 'node:crypto'
 import { runHaiku } from './lib/claude-envelope.js'
-import { parseFrontmatter } from './lib/frontmatter.js'
+import { parseFrontmatter, replaceFrontmatterKey } from './lib/frontmatter.js'
 import { fetchSourceText } from './lib/fetch-source-text.js'
+import { ROOT } from './lib/paths.js'
 
-const ROOT = new URL('..', import.meta.url).pathname
 const NEW_ARTICLES_PATH = '/tmp/zuhd-new-articles.txt'
 const FETCH_CONCURRENCY = 5
 const SOURCE_TEXT_FOR_HAIKU = 1400 // chars per source passed to Haiku
@@ -184,27 +184,6 @@ Return ONLY the JSON object. No commentary, no markdown fences.`
  *  and robust to whatever ordering the upstream put them in.
  *  Preserves every source field we know about plus any new angle/sentiment. */
 function writeSourcesToFrontmatter(raw, sources) {
-  const fmMatch = raw.match(/^---\n([\s\S]*?)\n---\n/)
-  if (!fmMatch) return raw
-  const fm = fmMatch[1]
-  const rest = raw.slice(fmMatch[0].length)
-
-  // Strip existing sources block.
-  const lines = fm.split('\n')
-  const stripped = []
-  let skipping = false
-  for (const line of lines) {
-    if (skipping) {
-      if (line.length === 0 || /^\s/.test(line)) continue
-      skipping = false
-    }
-    if (/^sources:/.test(line)) {
-      skipping = true
-      continue
-    }
-    stripped.push(line)
-  }
-
   // Serialize fresh sources block.
   const sourceLines = []
   sourceLines.push('sources:')
@@ -220,17 +199,11 @@ function writeSourcesToFrontmatter(raw, sources) {
       else if (typeof value === 'number' && Number.isFinite(value)) sourceLines.push(`    ${key}: ${value}`)
     }
   }
-  // Try to preserve roughly the original position: sources is typically near
-  // the top, before concepts/eventCoverage. Insert after the first blank
-  // line or at a reasonable top position.
-  const insertAt = stripped.findIndex((l) => /^(concepts|eventCoverage|sentimentDivergence|entities):/.test(l))
-  if (insertAt >= 0) {
-    stripped.splice(insertAt, 0, ...sourceLines)
-  } else {
-    stripped.push(...sourceLines)
-  }
-
-  return `---\n${stripped.join('\n').trimEnd()}\n---\n${rest}`
+  // Sources sit ahead of concepts/eventCoverage when the file has them, which
+  // is where the writer puts them.
+  return replaceFrontmatterKey(raw, 'sources', sourceLines, {
+    before: /^(concepts|eventCoverage|sentimentDivergence|entities):/,
+  })
 }
 
 // --- Main flow ---

@@ -21,11 +21,13 @@
 //        WINDOW_DAYS=3 node scripts/fetch-conflict.js
 //        FORCE=1 node scripts/fetch-conflict.js  (bypass the freshness cache)
 
-import { writeFileSync, readFileSync, existsSync } from 'node:fs'
+import { readFileSync, existsSync } from 'node:fs'
 import { join } from 'node:path'
 import { filterRecentWindow, mapUcdpRow, parseCsv, rowsToObjects } from './lib/conflict.js'
+import { ROOT } from './lib/paths.js'
+import { writeJson } from './lib/json-file.js'
+import { fetchOk } from './lib/http.js'
 
-const ROOT = new URL('..', import.meta.url).pathname
 const OUTPUT_PATH = join(ROOT, 'content', '.conflict.json')
 // UCDP candidate release version — bump monthly when UCDP publishes the next
 // candidate (26.0.1 … 26.0.5 monthly, 26.01.26.03 quarterly). One constant
@@ -55,6 +57,7 @@ const WINDOW_DAYS = Math.max(1, parseInt(process.env.WINDOW_DAYS ?? '7', 10) || 
 // upstream bandwidth and ~10s of cycle wall time.
 const CACHE_MAX_AGE_MS = 6 * 60 * 60 * 1000
 const FETCH_TIMEOUT_MS = 60_000
+const CSV_TIMEOUT_MS = 105_000
 
 // Freshness comes from the `generated` stamp INSIDE the snapshot, never the
 // file mtime. `run-cycle.sh` runs `git pull --rebase --autostash` three times a
@@ -85,19 +88,8 @@ if (cacheFresh()) {
   process.exit(0)
 }
 
-async function fetchWithTimeout(url, extraHeaders = {}) {
-  const controller = new AbortController()
-  const timer = setTimeout(() => controller.abort(), FETCH_TIMEOUT_MS)
-  try {
-    const res = await fetch(url, {
-      signal: controller.signal,
-      headers: { 'user-agent': 'zuhd-news/1.0 (+https://zuhd.news)', ...extraHeaders },
-    })
-    if (!res.ok) throw new Error(`HTTP ${res.status}`)
-    return res
-  } finally {
-    clearTimeout(timer)
-  }
+function fetchWithTimeout(url, extraHeaders = {}) {
+  return fetchOk(url, { timeoutMs: FETCH_TIMEOUT_MS, headers: extraHeaders })
 }
 
 // Primary: UCDP JSON API — paginated, a few hundred KB total vs the ~50 MB CSV.
@@ -137,7 +129,10 @@ async function fetchRowsFromApi() {
 // Fallback: the legacy multi-MB CSV download.
 async function fetchRowsFromCsv() {
   console.log(`Falling back to CSV: ${UCDP_URL}`)
-  const res = await fetchWithTimeout(UCDP_URL)
+  // Its own deadline: the shared one now bounds the body as well as the
+  // headers, and 60s is close to what ~50MB takes from a slow mirror. Inside
+  // the stage's `timeout 120`, with room to log the failure.
+  const res = await fetchOk(UCDP_URL, { timeoutMs: CSV_TIMEOUT_MS })
   const csv = await res.text()
   console.log(`Downloaded ${csv.length.toLocaleString('en-US')} bytes`)
   return rowsToObjects(parseCsv(csv))
@@ -216,7 +211,7 @@ const snapshot = {
   events: kept,
 }
 
-writeFileSync(OUTPUT_PATH, `${JSON.stringify(snapshot, null, 2)}\n`)
+writeJson(OUTPUT_PATH, snapshot)
 
 const elapsedMs = Date.now() - started
 console.log(`Wrote ${kept.length} events to ${OUTPUT_PATH} in ${elapsedMs}ms`)

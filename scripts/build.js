@@ -13,7 +13,8 @@ import { buildIslands } from './build/islands.js'
 import { buildMapSources } from './build/basemap.js'
 import { buildCountryPages } from './build/country-pages.js'
 import { buildCountryMetrics } from './build/country-metrics.js'
-import { buildEntityPages, latestTrendsPath } from './build/entity-pages.js'
+import { buildEntityPages } from './build/entity-pages.js'
+import { latestTrendsPath } from './lib/trends-snapshot.js'
 import { canonicalIndicatorId } from './lib/entity-registry.js'
 import { loadShared } from './build/shared-ts.js'
 import {
@@ -26,8 +27,8 @@ import { escHtml, escXml } from './lib/html.js'
 import { ARCHETYPE_HEADER, siteFooter, WORDMARK, footerStatusLine } from './lib/site-chrome.js'
 import { listRow } from './lib/list-row.js'
 import { publishedTimes } from './lib/published-at.js'
+import { ROOT } from './lib/paths.js'
 
-const ROOT = new URL('..', import.meta.url).pathname
 const CONTENT_DIR = join(ROOT, 'content', 'articles')
 const DIST_DIR = join(ROOT, 'dist')
 const TEMPLATES_DIR = join(ROOT, 'templates')
@@ -1882,14 +1883,8 @@ if (existsSync(ipcSrc)) {
 const indicatorMap = new Map()
 {
   const today = new Date().toISOString().slice(0, 10)
-  const candidates = [join(ROOT, 'content', 'trends', `${today}.json`)]
-  // Fall back to the most recent snapshot when today's hasn't been
-  // generated yet — identical to what entity-pages.js does internally.
-  const trendsDir = join(ROOT, 'content', 'trends')
-  if (existsSync(trendsDir)) {
-    const names = readdirSync(trendsDir).filter((f) => /^\d{4}-\d{2}-\d{2}\.json$/.test(f)).sort()
-    if (names.length) candidates.push(join(trendsDir, names[names.length - 1]))
-  }
+  // Fall back to the most recent snapshot when today's hasn't been generated yet.
+  const candidates = [join(ROOT, 'content', 'trends', `${today}.json`), latestTrendsPath()].filter(Boolean)
   for (const p of candidates) {
     if (!existsSync(p)) continue
     const trends = JSON.parse(readFileSync(p, 'utf8'))

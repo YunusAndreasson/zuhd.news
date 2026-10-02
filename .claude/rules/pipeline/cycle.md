@@ -215,7 +215,38 @@ is in the root CLAUDE.md; this is what the stages assume about each other.
 - **Use the shared helpers**: `runWithConcurrency` (`lib/concurrency.js`) for
   per-item HTTP, `argAt`/`hasFlag` (`lib/argv.js`) for flags,
   `regionFromCoords` (`lib/regions.js`) for the coverage bbox ladder. Each of
-  those existed in three to five copies before 2026-08-01.
+  those existed in three to five copies before 2026-08-01. Since 2026-10-02
+  also `ROOT` (`lib/paths.js`, thirty copies of a form that percent-encoded the
+  path) and `readJson`/`writeJson` (`lib/json-file.js`). **`writeJson` is
+  atomic** — sibling file, then rename — because every stage runs under
+  `timeout`, and a SIGTERM mid-`writeFileSync` leaves a truncated snapshot where
+  the last good one was: the exact outcome "degrade to the previous snapshot"
+  rules out. `readJson` returns the fallback on a missing *or* corrupt file and
+  logs the corrupt case, so a bad snapshot neither kills a stage nor reads as a
+  quiet day.
+  `fetchOk`/`fetchJson`/`fetchText` (`lib/http.js`) are the GET with a deadline,
+  `ZUHD_UA` and a throw on non-2xx. The eight hand-rolled `AbortController`
+  timers it replaced cleared on the *headers*, so a stalled body ran until the
+  stage's outer `timeout` killed it; `AbortSignal.timeout` bounds the body too.
+  `articleFilesSince(dir, sinceMs)` (`lib/article-files.js`) is the corpus
+  window by filename. Three stages parsed all 10.8k articles to keep a day or a
+  fortnight of them — the dedup context alone was ~750ms, three times a cycle.
+  Its margin (31 days) is against a measured worst case of frontmatter `date`
+  running 7 days ahead of the filename's.
+
+## NewsAPI.ai: the one fetch with no outer timeout
+
+- **`fetch-news-api.js` runs bare in `run-cycle.sh`** (no `timeout`), and
+  `apiPost` had no deadline either, so a single hung connection stalled the
+  cycle before the selector — no publish, nothing logged. `apiPost` carries a
+  90s `AbortSignal.timeout` (2026-10-02).
+- **The per-event panel calls run four at a time** (five concurrent is the
+  API's ceiling — Q6's comment). Which events to buy is settled before any
+  call, so they merge in scan order and the output is identical to the serial
+  loop (checked against a mocked API with completions reversed).
+- **A failed per-event call costs its own panel, not the API feed.** Before,
+  one 5xx threw out of `main()` and the cycle went RSS-only. The per-event log
+  line carries `error=` for it.
 
 ## The selector's pool is cut at 12 hours
 
@@ -258,12 +289,19 @@ is in the root CLAUDE.md; this is what the stages assume about each other.
 
 ## Claude CLI stages
 
-- **`runHaiku(prompt, { timeout, maxBuffer })` in `lib/claude-envelope.js`** is
-  the one place the argv is spelled. `--no-session-persistence --max-turns 1`
-  are what make these micro-tasks rather than sessions: a copy that lost either
-  would still work, cost more, and leave state behind. `CLAUDECODE` is deleted
-  from the child env so the subprocess does not inherit the parent session
-  marker.
+- **`claudeArgs(prompt, opts)` in `lib/claude-envelope.js`** is the one place
+  the argv is spelled, for every Node caller (`run-cycle.sh` spells its own).
+  `--no-session-persistence --max-turns 1` are what make these micro-tasks
+  rather than sessions: a copy that lost either would still work, cost more,
+  and leave state behind. Fifteen hand-written copies had drifted in exactly
+  that way — some without `--tools ''` (~17k input tokens a call), some without
+  `--exclude-dynamic-system-prompt-sections`. Run it with `runClaudeSync`
+  (one call, nothing to overlap), `spawnClaude` (inside a pool), or
+  `callClaudeJson` (the narrators' timed, never-throwing JSON call);
+  `runHaiku` is the Haiku shorthand. All of them drop `CLAUDECODE` from the
+  child env so the subprocess does not inherit the parent session marker, and
+  `claudeFailure(res)` is the one rendering of a non-zero exit — it reads
+  stdout when stderr is empty, which is where the CLI usually reports.
 - **`parseClaudeEnvelope(stdout)`** handles the `{type:"result", result:"…"}`
   wrapper, a fenced payload, and raw JSON. Do not re-implement it inline —
   `extract-entities.js` had two hand-rolled copies.

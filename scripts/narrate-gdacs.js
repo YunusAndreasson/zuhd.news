@@ -16,15 +16,16 @@
 //   NARRATE_GDACS_MAX=N             cap total narrations this run
 //   NARRATE_GDACS_FORCE=1           ignore the cache (re-narrate everything)
 
-import { readFileSync, writeFileSync, existsSync } from 'node:fs'
+import { readFileSync, existsSync } from 'node:fs'
 import { join } from 'node:path'
-import { createHash } from 'node:crypto'
 import { loadShared } from './build/shared-ts.js'
-import { parseClaudeEnvelopeWithUsage, spawnClaude } from './lib/claude-envelope.js'
+import { callClaudeJson, cleanProse } from './lib/claude-envelope.js'
 import { runWithConcurrency } from './lib/concurrency.js'
 import { validateGrounding } from './lib/grounding.js'
+import { ROOT } from './lib/paths.js'
+import { readJson, writeJson } from './lib/json-file.js'
+import { sha1Hex } from './lib/hash.js'
 
-const ROOT = new URL('..', import.meta.url).pathname
 const SNAPSHOT_PATH = join(ROOT, 'content', '.gdacs.json')
 const CACHE_PATH = join(ROOT, 'content', '.gdacs-narrations.json')
 const CHOKEPOINTS_PATH = join(ROOT, 'content', '.chokepoints.json')
@@ -49,7 +50,7 @@ if (!existsSync(PROMPT_PATH)) {
 }
 
 const snapshot = JSON.parse(readFileSync(SNAPSHOT_PATH, 'utf8'))
-const cache = existsSync(CACHE_PATH) ? JSON.parse(readFileSync(CACHE_PATH, 'utf8')) : {}
+const cache = readJson(CACHE_PATH, {})
 const basePrompt = readFileSync(PROMPT_PATH, 'utf8')
 
 const candidates = snapshot.alerts
@@ -73,9 +74,7 @@ const countryAugMod = await loadShared('countries/country-augmented.ts')
 const COUNTRY_DATA = countryDataMod.COUNTRY_DATA
 const COUNTRY_AUGMENTED = countryAugMod.COUNTRY_AUGMENTED
 
-const chokepoints = existsSync(CHOKEPOINTS_PATH)
-  ? JSON.parse(readFileSync(CHOKEPOINTS_PATH, 'utf8')).chokepoints || []
-  : []
+const chokepoints = readJson(CHOKEPOINTS_PATH)?.chokepoints || []
 
 // ── build bundles + run LLM with concurrency cap ─────────────────────────
 
@@ -103,7 +102,7 @@ await runWithConcurrency(candidates, CONCURRENCY, async (alert) => {
     return
   }
 
-  const narrative = sanitizeNarrative(result.narrative)
+  const narrative = cleanProse(result.narrative)
   const reason = validateGrounding(narrative, bundle)
   if (reason) {
     validatorRejected++
@@ -152,8 +151,8 @@ function applyCacheToSnapshot() {
 }
 
 function writeAll() {
-  writeFileSync(SNAPSHOT_PATH, `${JSON.stringify(snapshot)}\n`)
-  writeFileSync(CACHE_PATH, `${JSON.stringify(cache, null, 2)}\n`)
+  writeJson(SNAPSHOT_PATH, snapshot, { pretty: false })
+  writeJson(CACHE_PATH, cache)
 }
 
 async function buildBundle(alert) {
@@ -265,14 +264,7 @@ async function fetchWeather(lat, lng) {
     url.searchParams.set('end_date', end)
     url.searchParams.set('daily', 'precipitation_sum,temperature_2m_max,temperature_2m_min')
     url.searchParams.set('timezone', 'UTC')
-    const controller = new AbortController()
-    const timer = setTimeout(() => controller.abort(), 8000)
-    let res
-    try {
-      res = await fetch(url, { signal: controller.signal })
-    } finally {
-      clearTimeout(timer)
-    }
+    const res = await fetch(url, { signal: AbortSignal.timeout(8000) })
     if (!res.ok) return null
     const json = await res.json()
     const daily = json?.daily
@@ -316,7 +308,7 @@ function hashFingerprint(bundle) {
       : null,
     weather: w,
   }
-  return createHash('sha1').update(JSON.stringify(stable)).digest('hex').slice(0, 16)
+  return sha1Hex(stable)
 }
 
 async function callClaude(bundle) {
@@ -330,47 +322,13 @@ ${JSON.stringify(bundle, null, 2)}
 
 Output ONLY the JSON object \`{ "narrative": "..." }\`. No markdown, no fences.`
 
-  const t0 = Date.now()
-  const result = await spawnClaude(
-    [
-      '--model',
-      MODEL,
-      '--effort',
-      EFFORT,
-      '--no-session-persistence',
-      '--tools', '',
-      '--max-turns',
-      '1',
-      '--output-format',
-      'json',
-      '--exclude-dynamic-system-prompt-sections',
-      '-p',
-      fullPrompt,
-    ],
-    { timeout: 120_000, maxBuffer: 1 * 1024 * 1024 },
-  )
-  const elapsedMs = Date.now() - t0
-
-  if (result.status !== 0) {
-    return {
-      elapsedMs,
-      error: `claude exit ${result.status}: ${result.stderr?.slice(0, 200)}`,
-    }
+  const res = await callClaudeJson(fullPrompt, { model: MODEL, effort: EFFORT })
+  if (res.error) return { elapsedMs: res.elapsedMs, error: res.error }
+  const narrative = res.out.narrative
+  if (typeof narrative !== 'string' || narrative.trim().length === 0) {
+    return { elapsedMs: res.elapsedMs, error: 'no narrative in result' }
   }
-  try {
-    const env = parseClaudeEnvelopeWithUsage(result.stdout)
-    const narrative = env.result?.narrative
-    if (typeof narrative !== 'string' || narrative.trim().length === 0) {
-      return { elapsedMs, error: 'no narrative in result' }
-    }
-    return { elapsedMs, narrative, costUsd: env.total_cost_usd }
-  } catch (err) {
-    return { elapsedMs, error: `parse: ${err.message}` }
-  }
-}
-
-function sanitizeNarrative(s) {
-  return s.trim().replace(/\s+/g, ' ').replace(/^["']|["']$/g, '')
+  return { elapsedMs: res.elapsedMs, narrative, costUsd: res.costUsd }
 }
 
 /* The numeric validator moved to `lib/grounding.js` on 2026-08-08, unchanged in

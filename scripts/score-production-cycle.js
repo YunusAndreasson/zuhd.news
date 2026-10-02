@@ -9,12 +9,12 @@
 // Reads /tmp/zuhd-new-articles.txt (set earlier in the cycle) for the list
 // of paths. Slugs map to entries in content/.context-briefs.json.
 
-import { existsSync, readFileSync, writeFileSync } from 'node:fs'
-import { join, dirname } from 'node:path'
-import { fileURLToPath } from 'node:url'
+import { existsSync, readFileSync } from 'node:fs'
+import { join } from 'node:path'
 import { scoreReplay } from './autoresearch/score.js'
+import { ROOT } from './lib/paths.js'
+import { readJson, writeJson } from './lib/json-file.js'
 
-const ROOT = join(dirname(fileURLToPath(import.meta.url)), '..')
 const NEW_ARTICLES_PATH = '/tmp/zuhd-new-articles.txt'
 const TREND_PATH = join(ROOT, 'content', '.rvs-trend.json')
 
@@ -84,14 +84,11 @@ async function main() {
     degenerate,
   }
 
-  let trend = []
-  if (existsSync(TREND_PATH)) {
-    try { trend = JSON.parse(readFileSync(TREND_PATH, 'utf-8')) } catch {}
-  }
+  let trend = readJson(TREND_PATH, [])
   trend.push(record)
   // Keep last 365 records (~73 days at 5 cycles/day)
   if (trend.length > 365) trend = trend.slice(-365)
-  writeFileSync(TREND_PATH, JSON.stringify(trend, null, 2))
+  writeJson(TREND_PATH, trend)
 
   console.log(`Production RVS: ${record.rvs.toFixed(2)}  (writing=${record.clusters.writing.toFixed(0)}  sourcing=${record.clusters.sourcing.toFixed(0)}  coverage=${record.clusters.coverage.toFixed(0)})`)
 }

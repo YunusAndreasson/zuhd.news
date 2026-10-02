@@ -12,8 +12,8 @@
 import { readdirSync, readFileSync } from 'node:fs'
 import { join } from 'node:path'
 import { parseFrontmatter } from './lib/frontmatter.js'
+import { ROOT } from './lib/paths.js'
 
-const ROOT = new URL('..', import.meta.url).pathname
 const USER_AGENT = 'zuhd-news/1.0 (+https://zuhd.news; editorial@zuhd.news)'
 const COVERAGE_WINDOW_DAYS = 7
 const MAX_LINES = 10

@@ -41,15 +41,19 @@
 //   --only <id>                  one namespaced id (e.g. `wiki-iran`, `cp:hormuz`)
 //   --new-only                   only instruments with no cache entry at all
 
-import { readFileSync, writeFileSync, existsSync, readdirSync } from 'node:fs'
+import { readFileSync, existsSync } from 'node:fs'
 import { join } from 'node:path'
-import { createHash } from 'node:crypto'
 import { callIndicatorModel } from './lib/indicator-model.js'
 import { runWithConcurrency } from './lib/concurrency.js'
 import { promptEcho, promptExamples, seriesEchoes, validateNumbers, validateProperNouns } from './lib/grounding.js'
 import { matchesAnyTag } from './lib/entity-registry.js'
 import { loadArticles, loadFeedWindow } from './lib/coverage-window.js'
 import { argAt, hasFlag } from './lib/argv.js'
+import { ROOT } from './lib/paths.js'
+import { readJson, writeJson } from './lib/json-file.js'
+import { sha1Hex } from './lib/hash.js'
+import { cleanProse } from './lib/claude-envelope.js'
+import { latestTrendsPath } from './lib/trends-snapshot.js'
 
 if (hasFlag('market-signals')) {
   const { runMarketSignals } = await import('./narrate-market-signals.js')
@@ -57,13 +61,11 @@ if (hasFlag('market-signals')) {
   process.exit(0)
 }
 
-const ROOT = new URL('..', import.meta.url).pathname
 const CACHE_PATH = join(ROOT, 'content', '.indicator-dispatch.json')
 const CHOKEPOINTS_PATH = join(ROOT, 'content', '.chokepoints.json')
 const MARKETS_PATH = join(ROOT, 'content', '.markets.json')
 const LEDGER_PATH = join(ROOT, 'content', '.story-ledger.json')
 const PROMPT_PATH = join(ROOT, 'scripts', 'narrate-indicators-prompt.md')
-
 
 const CONCURRENCY = 3
 /** The window everything recent is measured over. Two weeks is long enough that
@@ -143,7 +145,7 @@ const basePrompt = readFileSync(PROMPT_PATH, 'utf8')
  *  the next full pass rather than only the ones whose story happens to move
  *  that day. The output is a function of the prompt and the input; a cache
  *  key that ignored half of that let a rewritten prompt sit unapplied. */
-const promptHash = createHash('sha1').update(basePrompt).digest('hex').slice(0, 8)
+const promptHash = sha1Hex(basePrompt, 8)
 /** The prompt's own worked examples, so `promptEcho` measures against the file
  *  this run is sending rather than a list that has to be kept in step. */
 const PROMPT_EXAMPLES = promptExamples(basePrompt)
@@ -156,7 +158,7 @@ const PROMPT_EXAMPLES = promptExamples(basePrompt)
  * standings written the same day against Warsaw and Doha examples peaked at 0.2.
  */
 const PROMPT_ECHO_REJECT = 0.5
-const cache = existsSync(CACHE_PATH) ? JSON.parse(readFileSync(CACHE_PATH, 'utf8')) : { items: {} }
+const cache = readJson(CACHE_PATH, { items: {} })
 if (!cache.items) cache.items = {}
 
 const stageT0 = Date.now()
@@ -165,29 +167,11 @@ const iso = (t) => new Date(t).toISOString().slice(0, 10)
 
 // ── Sources ───────────────────────────────────────────────────────────────
 
-/** Newest daily trends snapshot. Same answer `build/entity-pages.js` computes;
- *  duplicated here only because that module is ESM under `scripts/build/` and
- *  importing it would pull the whole page builder into a pipeline stage. */
-const latestTrendsPath = () => {
-  const dir = join(ROOT, 'content', 'trends')
-  if (!existsSync(dir)) return null
-  const names = readdirSync(dir)
-    .filter((f) => /^\d{4}-\d{2}-\d{2}\.json$/.test(f))
-    .sort()
-  return names.length ? join(dir, names[names.length - 1]) : null
-}
-
 const trendsPath = latestTrendsPath()
 const trends = trendsPath ? JSON.parse(readFileSync(trendsPath, 'utf8')) : { indicators: [] }
-const chokepoints = existsSync(CHOKEPOINTS_PATH)
-  ? JSON.parse(readFileSync(CHOKEPOINTS_PATH, 'utf8')).chokepoints || []
-  : []
-const exchanges = existsSync(MARKETS_PATH)
-  ? JSON.parse(readFileSync(MARKETS_PATH, 'utf8')).exchanges || []
-  : []
-const ledger = existsSync(LEDGER_PATH)
-  ? JSON.parse(readFileSync(LEDGER_PATH, 'utf8')).stories || []
-  : []
+const chokepoints = readJson(CHOKEPOINTS_PATH)?.chokepoints || []
+const exchanges = readJson(MARKETS_PATH)?.exchanges || []
+const ledger = readJson(LEDGER_PATH)?.stories || []
 
 // `loadArticles`/`loadFeedWindow` live in `lib/coverage-window.js` — the same
 // join `narrate-events.js` needs, extracted so the two stages cannot drift.
@@ -393,10 +377,7 @@ const buildBundle = (item) => ({
  * already busts on a prompt edit.
  */
 const standingFingerprint = (item) =>
-  createHash('sha1')
-    .update(JSON.stringify({ ...item.identity, klass: item.klass, blurb: item.catalogBlurb, prompt: promptHash }))
-    .digest('hex')
-    .slice(0, 16)
+  sha1Hex({ ...item.identity, klass: item.klass, blurb: item.catalogBlurb, prompt: promptHash })
 
 /**
  * What `recent` is about — **the story, not the number**.
@@ -420,22 +401,17 @@ const standingFingerprint = (item) =>
  */
 const recentFingerprint = (bundle) => {
   const band = (pct) => (Number.isFinite(pct) ? Math.round(pct / 5) : null)
-  return createHash('sha1')
-    .update(
-      JSON.stringify({
-        prompt: promptHash,
-        move: band(bundle.series.changePctOverSeries),
-        dayMove: band(bundle.series.dayChangePct),
-        baseline: band(bundle.series.last7VsBaseline90Pct),
-        peakOn: bundle.series.extremes?.high?.on ?? null,
-        troughOn: bundle.series.extremes?.low?.on ?? null,
-        alert: bundle.series.weatherAlert ?? null,
-        slugs: bundle.coverage.map((c) => c.slug).slice(0, 6).sort(),
-        feed: bundle.feedWindow.map((f) => f.headline).slice(0, 6).sort(),
-      }),
-    )
-    .digest('hex')
-    .slice(0, 16)
+  return sha1Hex({
+    prompt: promptHash,
+    move: band(bundle.series.changePctOverSeries),
+    dayMove: band(bundle.series.dayChangePct),
+    baseline: band(bundle.series.last7VsBaseline90Pct),
+    peakOn: bundle.series.extremes?.high?.on ?? null,
+    troughOn: bundle.series.extremes?.low?.on ?? null,
+    alert: bundle.series.weatherAlert ?? null,
+    slugs: bundle.coverage.map((c) => c.slug).slice(0, 6).sort(),
+    feed: bundle.feedWindow.map((f) => f.headline).slice(0, 6).sort(),
+  })
 }
 
 // ── The call ──────────────────────────────────────────────────────────────
@@ -453,9 +429,6 @@ Output ONLY the JSON object \`{ "standing": "...", "recent": "...", "citations":
 
   return callIndicatorModel(fullPrompt)
 }
-
-const clean = (s) =>
-  typeof s === 'string' ? s.trim().replace(/\s+/g, ' ').replace(/^["']|["']$/g, '') : ''
 
 // ── Main ──────────────────────────────────────────────────────────────────
 
@@ -494,7 +467,7 @@ if (DRY_RUN) {
  * the prune and `generatedAt` still belong to the end of a complete run.
  */
 const CHECKPOINT_EVERY = 10
-const writeCache = () => writeFileSync(CACHE_PATH, `${JSON.stringify(cache, null, 2)}\n`)
+const writeCache = () => writeJson(CACHE_PATH, cache)
 process.once('SIGTERM', () => {
   writeCache()
   console.log(`  ⚠ SIGTERM — checkpointed ${generated} new items before exit`)
@@ -521,9 +494,9 @@ await runWithConcurrency(selected, CONCURRENCY, async (item) => {
   if (typeof result.costUsd === 'number') totalCostUsd += result.costUsd
 
   const standing = BLURB_IS_DEFINITION.has(item.klass)
-    ? item.catalogBlurb || clean(result.out.standing)
-    : clean(result.out.standing) || item.catalogBlurb
-  const recentRaw = clean(result.out.recent)
+    ? item.catalogBlurb || cleanProse(result.out.standing)
+    : cleanProse(result.out.standing) || item.catalogBlurb
+  const recentRaw = cleanProse(result.out.recent)
 
   // **`standing` is not grounding-checked, and that is the field's definition
   // rather than an oversight.** It is the one place general knowledge is the

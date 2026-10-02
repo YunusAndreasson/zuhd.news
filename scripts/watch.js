@@ -20,8 +20,8 @@
 import { spawn } from 'node:child_process'
 import { watch as fsWatch } from 'node:fs'
 import { join } from 'node:path'
+import { ROOT } from './lib/paths.js'
 
-const ROOT = new URL('..', import.meta.url).pathname
 const NODE = process.execPath
 
 const ROOTS = [

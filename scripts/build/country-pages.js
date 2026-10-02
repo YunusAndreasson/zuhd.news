@@ -17,8 +17,8 @@ import { escHtml } from '../lib/html.js'
 import { footerStatusLine } from '../lib/site-chrome.js'
 import { listRow } from '../lib/list-row.js'
 import { loadShared } from './shared-ts.js'
+import { ROOT } from '../lib/paths.js'
 
-const ROOT = new URL('../..', import.meta.url).pathname
 
 /**
  * One row in the metric list: label · value · rank strip · source.

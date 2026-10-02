@@ -57,41 +57,167 @@ export function parseClaudeEnvelope(stdout) {
   return parseClaudeEnvelopeWithUsage(stdout).result
 }
 
+const HAIKU_MODEL = 'claude-haiku-4-5-20251001'
+
 /**
- * One batched Haiku call: `claude -p <prompt> --output-format json`.
+ * The argv for one non-interactive `claude -p` call.
  *
- * Three call sites spelled this out — `extract-entities.js` twice and
- * `extract-source-angles.js` once — with an identical five-flag argv and an
- * identical `delete env.CLAUDECODE`, differing only in the timeout and buffer.
- * The flags are the part worth having once: `--no-session-persistence` and
- * `--max-turns 1` are what make these micro-tasks rather than sessions, and a
- * copy that lost either would still work, cost more, and leave state behind.
- * `--tools ''` keeps the tool definitions out of the request: none of these
- * calls can use a tool in one turn, and loading them measured at ~17k extra
- * input tokens a call.
+ * Fifteen call sites spelled this out by hand — the narrators, the posters,
+ * the briefing, the edu brief, the autoresearch harness — and they had drifted
+ * in exactly the ways that cost money without failing: some lost `--tools ''`
+ * (~17k input tokens of tool definitions a call), some lost
+ * `--exclude-dynamic-system-prompt-sections` (the per-run sections that keep
+ * the system prompt from caching). The defaults are the micro-task shape:
  *
- * `CLAUDECODE` is dropped so the subprocess does not inherit the parent
- * session's marker.
+ * - `--no-session-persistence` and `--max-turns 1` are what make a call a
+ *   micro-task rather than a session; a copy that lost either would still
+ *   work, cost more, and leave state behind. Always on.
+ * - `tools: ''` keeps tool definitions out of the request. Pass `null` to let
+ *   the CLI load its defaults (a multi-turn call that may use them), or
+ *   `allowedTools` to name the ones it may use.
+ * - `effort: null` omits the flag, for a model that does not take one (Haiku).
+ * - `json: false` returns the model's text on stdout instead of the envelope.
  *
- * Returns the raw `spawnSync` result — the callers each log their own stage
- * name on a non-zero exit, and swallowing that here would cost the one line
- * that says which of the three failed.
+ * @param {string} prompt
+ * @param {{ model: string, effort?: string | null, maxTurns?: number, tools?: string | null,
+ *   allowedTools?: string, json?: boolean, excludeDynamic?: boolean }} opts
+ * @returns {string[]}
+ */
+export function claudeArgs(
+  prompt,
+  { model, effort = 'medium', maxTurns = 1, tools = '', allowedTools, json = true, excludeDynamic = true },
+) {
+  const args = ['--model', model]
+  if (effort) args.push('--effort', effort)
+  args.push('--no-session-persistence')
+  if (allowedTools) args.push('--allowedTools', allowedTools)
+  else if (tools != null) args.push('--tools', tools)
+  args.push('--max-turns', String(maxTurns))
+  if (json) args.push('--output-format', 'json')
+  if (excludeDynamic) args.push('--exclude-dynamic-system-prompt-sections')
+  args.push('-p', prompt)
+  return args
+}
+
+/** `env` without `CLAUDECODE`, so a child never inherits the parent session marker. */
+const childEnv = (env) => {
+  const out = { ...env }
+  delete out.CLAUDECODE
+  return out
+}
+
+/**
+ * Synchronous `claude` call — for a script that makes one call and has nothing
+ * to overlap it with. **Never inside a `runWithConcurrency` worker**: use
+ * `spawnClaude`, or the pool runs one at a time.
+ *
+ * Returns the raw `spawnSync` result; `claudeFailure` renders a non-zero one.
+ *
+ * @param {string[]} args
+ * @param {{ timeout?: number, maxBuffer?: number, cwd?: string, env?: NodeJS.ProcessEnv }} [opts]
+ */
+export function runClaudeSync(args, { timeout = 120_000, maxBuffer = 1024 * 1024, cwd, env = process.env } = {}) {
+  return spawnSync('claude', args, { encoding: 'utf-8', timeout, maxBuffer, cwd, env: childEnv(env) })
+}
+
+/**
+ * One batched Haiku call with JSON output. Returns the raw `spawnSync` result
+ * — the callers each log their own stage name on a non-zero exit, and
+ * swallowing that here would cost the one line that says which one failed.
  */
 export function runHaiku(prompt, { timeout, maxBuffer }) {
-  const env = { ...process.env }
-  delete env.CLAUDECODE
-  return spawnSync(
-    'claude',
-    [
-      '--model', 'claude-haiku-4-5-20251001',
-      '--no-session-persistence',
-      '--tools', '',
-      '--max-turns', '1',
-      '--output-format', 'json',
-      '-p', prompt,
-    ],
-    { encoding: 'utf-8', timeout, maxBuffer, env },
-  )
+  return runClaudeSync(claudeArgs(prompt, { model: HAIKU_MODEL, effort: null }), { timeout, maxBuffer })
+}
+
+/**
+ * The one-line reason a `claude` child did not exit 0.
+ *
+ * Both streams: a non-zero exit often reports on stdout and leaves stderr
+ * empty, which read as "exit 1: " and said nothing at all — three callers had
+ * learnt that separately and the rest still printed the empty line.
+ *
+ * @param {{ status: number | null, stdout?: string, stderr?: string, error?: Error & { code?: string } }} res
+ * @param {number} [timeoutMs] named in the message when the child was killed for it
+ */
+export function claudeFailure(res, timeoutMs) {
+  if (res.error?.code === 'ETIMEDOUT') {
+    return timeoutMs ? `claude timed out after ${Math.round(timeoutMs / 1000)}s` : 'claude timed out'
+  }
+  const why = String(res.stderr || '').trim() || String(res.stdout || '').trim() || res.error?.message || '(no output)'
+  return `claude exit ${res.status}: ${why.slice(0, 300)}`
+}
+
+/**
+ * Unwrap a `--output-format json` envelope whose `result` is prose rather
+ * than JSON (the briefing script). Throws on anything that is not a result.
+ *
+ * @param {string} stdout
+ * @returns {{ text: string, usage?: Record<string, number>, total_cost_usd?: number, duration_ms?: number }}
+ */
+export function parseClaudeText(stdout) {
+  const outer = JSON.parse(String(stdout || '').trim())
+  if (outer?.type !== 'result' || outer.result == null) {
+    throw new Error(`unexpected claude envelope: ${String(stdout).slice(0, 200)}`)
+  }
+  return {
+    text: String(outer.result),
+    usage: outer.usage,
+    total_cost_usd: outer.total_cost_usd,
+    duration_ms: outer.duration_ms,
+  }
+}
+
+/**
+ * One async JSON call: the narrators' shape, run inside a pool.
+ *
+ * Four copies — the indicator dispatch, the events dispatch, the GDACS
+ * narrator and the Swedish translation — each timed the call, rendered the
+ * failure, unwrapped the envelope and checked for an object, and each had a
+ * slightly different idea of what a failure said. Never throws: the result
+ * carries `error` instead, because every caller logs and moves to the next
+ * item.
+ *
+ * @param {string} prompt
+ * @param {{ model: string, effort?: string, timeout?: number, maxBuffer?: number }} opts
+ * @returns {Promise<{ elapsedMs: number, out?: Record<string, any>, costUsd?: number,
+ *   usage?: Record<string, number>, error?: string }>}
+ */
+export async function callClaudeJson(prompt, { model, effort = 'medium', timeout = 120_000, maxBuffer = 1024 * 1024 }) {
+  const t0 = Date.now()
+  const res = await spawnClaude(claudeArgs(prompt, { model, effort }), { timeout, maxBuffer })
+  const elapsedMs = Date.now() - t0
+  if (res.status !== 0) return { elapsedMs, error: claudeFailure(res, timeout) }
+  try {
+    const envelope = parseClaudeEnvelopeWithUsage(res.stdout)
+    const out = envelope.result
+    if (!out || typeof out !== 'object') return { elapsedMs, error: 'no object in result' }
+    return { elapsedMs, out, costUsd: envelope.total_cost_usd, usage: envelope.usage }
+  } catch (err) {
+    return { elapsedMs, error: `parse: ${err.message}` }
+  }
+}
+
+/**
+ * A model's sentence as it should be stored: one line, trimmed, and without
+ * the quotation marks a model sometimes wraps prose in. Anything that is not
+ * a string is `''`, so a missing field reads as empty rather than throwing.
+ * Three narrators carried this regex.
+ *
+ * @param {unknown} s
+ */
+export const cleanProse = (s) =>
+  typeof s === 'string' ? s.trim().replace(/\s+/g, ' ').replace(/^["']|["']$/g, '') : ''
+
+/**
+ * `Claude usage: $0.1234 in 5678ms (cache read N, create M)` — the line that
+ * says whether prompt caching is firing.
+ *
+ * @param {{ usage?: Record<string, number>, total_cost_usd?: number, duration_ms?: number }} envelope
+ */
+export function formatUsage(envelope) {
+  const read = envelope.usage?.cache_read_input_tokens ?? 0
+  const create = envelope.usage?.cache_creation_input_tokens ?? 0
+  return `$${(envelope.total_cost_usd ?? 0).toFixed(4)} in ${envelope.duration_ms ?? '?'}ms (cache read ${read}, create ${create})`
 }
 
 /**
@@ -115,10 +241,8 @@ export function runHaiku(prompt, { timeout, maxBuffer }) {
  * @returns {Promise<{ status: number | null, stdout: string, stderr: string, error?: Error & { code?: string } }>}
  */
 export function spawnClaude(args, { timeout = 120_000, maxBuffer = 1024 * 1024, env = process.env, command = 'claude' } = {}) {
-  const childEnv = { ...env }
-  delete childEnv.CLAUDECODE
   return new Promise((resolve) => {
-    const child = spawn(command, args, { env: childEnv, stdio: ['ignore', 'pipe', 'pipe'] })
+    const child = spawn(command, args, { env: childEnv(env), stdio: ['ignore', 'pipe', 'pipe'] })
     let stdout = ''
     let stderr = ''
     /** @type {(Error & { code?: string }) | undefined} */

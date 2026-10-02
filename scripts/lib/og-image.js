@@ -15,8 +15,8 @@ import { geoOrthographic, geoPath } from 'd3-geo'
 import { feature } from 'topojson-client'
 import { escXml } from './html.js'
 import { SHARE_PALETTE } from './share-palette.js'
+import { ROOT } from './paths.js'
 
-const ROOT = new URL('../..', import.meta.url).pathname
 
 let _assets = null
 /**

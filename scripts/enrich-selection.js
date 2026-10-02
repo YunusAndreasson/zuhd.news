@@ -5,11 +5,12 @@
 //
 // The matching itself lives in scripts/lib/selection-match.js — its five layers,
 // and why the last one is deliberately hard to satisfy, are documented there.
-import { readFileSync, writeFileSync } from 'node:fs'
+import { readFileSync } from 'node:fs'
 import { runWithConcurrency } from './lib/concurrency.js'
 import { THIN_BODY, isThin, titleWords } from './lib/dedup.js'
 import { fetchSourceText } from './lib/fetch-source-text.js'
 import { createMatcher } from './lib/selection-match.js'
+import { writeJson } from './lib/json-file.js'
 
 const feed = JSON.parse(readFileSync('/tmp/zuhd-feed.json', 'utf-8'))
 const selection = JSON.parse(readFileSync('/tmp/zuhd-selection.json', 'utf-8'))
@@ -134,7 +135,7 @@ for (const entry of selection) {
 const enrichedSelection = selection.filter(e => Array.isArray(e.sources) && e.sources.length > 0)
 const dropped = selection.length - enrichedSelection.length
 
-writeFileSync('/tmp/zuhd-selection.json', JSON.stringify(enrichedSelection, null, 2))
+writeJson('/tmp/zuhd-selection.json', enrichedSelection)
 const layerSummary = Object.entries(matchLayers).filter(([, v]) => v > 0).map(([k, v]) => `${k}:${v}`).join(' ')
 console.log(`Enriched ${enriched}/${selection.length} stories [${layerSummary}]` +
   (missing ? ` (${missing} not found: ${missingEntries.join(', ')})` : ''))

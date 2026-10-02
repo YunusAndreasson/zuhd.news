@@ -38,7 +38,7 @@
 // So the layer's claim is narrow and checkable: heat the satellite saw, beside a
 // story we published, close enough in time to be the same event.
 
-import { existsSync, readdirSync, readFileSync, writeFileSync } from 'node:fs'
+import { existsSync, readFileSync } from 'node:fs'
 import { join } from 'node:path'
 import { parseFrontmatter } from './lib/frontmatter.js'
 import { runWithConcurrency } from './lib/concurrency.js'
@@ -50,8 +50,11 @@ import {
   minDistanceKm,
   parseFirmsCsv,
 } from './lib/firms.js'
+import { ROOT } from './lib/paths.js'
+import { writeJson } from './lib/json-file.js'
+import { fetchText } from './lib/http.js'
+import { articleFilesSince } from './lib/article-files.js'
 
-const ROOT = new URL('..', import.meta.url).pathname
 const OUTPUT_PATH = join(ROOT, 'content', '.firms.json')
 const ARTICLES_DIR = join(ROOT, 'content', 'articles')
 
@@ -95,8 +98,7 @@ const windowStart = Date.now() - WINDOW_DAYS * 86_400_000
 const seeds = []
 
 if (existsSync(ARTICLES_DIR)) {
-  for (const file of readdirSync(ARTICLES_DIR)) {
-    if (!file.endsWith('.md')) continue
+  for (const file of articleFilesSince(ARTICLES_DIR, windowStart)) {
     try {
       const { meta } = parseFrontmatter(readFileSync(join(ARTICLES_DIR, file), 'utf8'))
       if (meta?.lat == null || meta?.lng == null) continue
@@ -127,25 +129,14 @@ const cellUrl = (bbox) =>
   `https://firms.modaps.eosdis.nasa.gov/api/area/csv/${key}/${SOURCE}/${bbox.join(',')}/${DAY_RANGE}`
 
 async function fetchCell(cell) {
-  const controller = new AbortController()
-  const timer = setTimeout(() => controller.abort(), REQUEST_TIMEOUT_MS)
-  try {
-    const res = await fetch(cellUrl(cell.bbox), {
-      signal: controller.signal,
-      headers: { 'user-agent': 'zuhd-news/1.0 (+https://zuhd.news)' },
-    })
-    if (!res.ok) throw new Error(`HTTP ${res.status}`)
-    const text = await res.text()
-    // FIRMS answers a bad key or an over-quota caller with 200 and a sentence,
-    // not a status code. Without this the CSV parser throws "missing expected
-    // columns" once per cell and the real reason never reaches the log.
-    if (/invalid|error|exceed/i.test(text.slice(0, 200)) && !text.startsWith('latitude')) {
-      throw new Error(`upstream said: ${text.slice(0, 120).replace(/\s+/g, ' ').trim()}`)
-    }
-    return parseFirmsCsv(text)
-  } finally {
-    clearTimeout(timer)
+  const text = await fetchText(cellUrl(cell.bbox), { timeoutMs: REQUEST_TIMEOUT_MS })
+  // FIRMS answers a bad key or an over-quota caller with 200 and a sentence,
+  // not a status code. Without this the CSV parser throws "missing expected
+  // columns" once per cell and the real reason never reaches the log.
+  if (/invalid|error|exceed/i.test(text.slice(0, 200)) && !text.startsWith('latitude')) {
+    throw new Error(`upstream said: ${text.slice(0, 120).replace(/\s+/g, ' ').trim()}`)
   }
+  return parseFirmsCsv(text)
 }
 
 const rows = []
@@ -213,7 +204,7 @@ const payload = {
   skipped: { ...skipped, unattached },
 }
 
-writeFileSync(OUTPUT_PATH, `${JSON.stringify(payload)}\n`)
+writeJson(OUTPUT_PATH, payload, { pretty: false })
 
 const elapsed = ((Date.now() - started) / 1000).toFixed(1)
 console.log(

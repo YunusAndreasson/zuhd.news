@@ -42,11 +42,11 @@
 //                          reasoning task about register and false friends
 //   ZUHD_SV_FORCE=1        ignore the cache and re-translate everything
 
-import { existsSync, readFileSync, readdirSync, writeFileSync } from 'node:fs'
+import { readFileSync, readdirSync } from 'node:fs'
 import { join } from 'node:path'
 import { argAt, hasFlag } from './lib/argv.js'
 import { splitBlocks } from './lib/blocks.js'
-import { parseClaudeEnvelopeWithUsage, spawnClaude } from './lib/claude-envelope.js'
+import { callClaudeJson } from './lib/claude-envelope.js'
 import { runWithConcurrency } from './lib/concurrency.js'
 import { parseFrontmatter } from './lib/frontmatter.js'
 import {
@@ -56,9 +56,10 @@ import {
   registerFault,
   translationFault,
 } from './lib/sv-payload.js'
-import { createHash } from 'node:crypto'
+import { ROOT } from './lib/paths.js'
+import { readJson, writeJson } from './lib/json-file.js'
+import { sha1Hex } from './lib/hash.js'
 
-const ROOT = new URL('..', import.meta.url).pathname
 const CONTENT_DIR = join(ROOT, 'content', 'articles')
 const CACHE_PATH = join(ROOT, 'content', '.sv.json')
 const PROMPT_PATH = join(ROOT, 'scripts', 'sv-prompt.md')
@@ -88,14 +89,9 @@ const basePrompt = readFileSync(PROMPT_PATH, 'utf8')
 // later. Editing sv-prompt.md and seeing nothing improve is the failure this
 // prevents. The cost of being wrong in the other direction is one cycle that
 // re-translates the whole window, which is minutes and cents.
-const RECIPE = createHash('sha1')
-  .update(`${basePrompt}\n${MODEL}\n${EFFORT}`)
-  .digest('hex')
-  .slice(0, 12)
+const RECIPE = sha1Hex(`${basePrompt}\n${MODEL}\n${EFFORT}`, 12)
 
-const cache = existsSync(CACHE_PATH)
-  ? JSON.parse(readFileSync(CACHE_PATH, 'utf8'))
-  : { articles: {} }
+const cache = readJson(CACHE_PATH, { articles: {} })
 if (!cache.articles) cache.articles = {}
 
 // ── Collect the window ─────────────────────────────────────────────────────
@@ -162,49 +158,19 @@ ${JSON.stringify(items.map((i) => i.payload), null, 2)}
 
 Return ONLY the JSON object keyed by item key. No commentary, no fences.`
 
-  const res = await spawnClaude(
-    [
-      '--model', MODEL,
-      '--effort', EFFORT,
-      '--no-session-persistence',
-      '--tools', '',
-      '--max-turns', '1',
-      '--output-format', 'json',
-      '--exclude-dynamic-system-prompt-sections',
-      '-p', prompt,
-    ],
-    { timeout: 240_000, maxBuffer: 4 * 1024 * 1024 },
-  )
-
-  if (res.status !== 0) {
-    // Both streams: a non-zero `claude` exit often reports on stdout and leaves
-    // stderr empty, which reads as "exit 1: " and says nothing at all.
-    const why =
-      String(res.stderr || '').trim() || String(res.stdout || '').trim() || '(no output)'
-    console.log(`  ✗ swedish ${label}: claude exit ${res.status}: ${why.slice(0, 300)}`)
+  const res = await callClaudeJson(prompt, { model: MODEL, effort: EFFORT, timeout: 240_000, maxBuffer: 4 * 1024 * 1024 })
+  if (res.error) {
+    console.log(`  ✗ swedish ${label}: ${res.error}`)
     return { out: new Map(), costUsd: 0 }
   }
 
-  let envelope
-  try {
-    envelope = parseClaudeEnvelopeWithUsage(res.stdout)
-  } catch (err) {
-    console.log(`  ✗ swedish ${label}: parse — ${err.message}`)
-    return { out: new Map(), costUsd: 0 }
-  }
-
-  const obj = envelope.result
-  if (!obj || typeof obj !== 'object') {
-    console.log(`  ✗ swedish ${label}: no object in result`)
-    return { out: new Map(), costUsd: 0 }
-  }
-
+  const obj = res.out
   const out = new Map()
   for (const it of items) {
     const entry = obj[it.key]
     if (entry) out.set(it.slug, entry)
   }
-  return { out, costUsd: envelope.total_cost_usd || 0 }
+  return { out, costUsd: res.costUsd || 0 }
 }
 
 const batches = []
@@ -231,7 +197,7 @@ let totalCostUsd = 0
 // interleave between batches, never inside one.
 const persist = () => {
   cache.generatedAt = new Date().toISOString()
-  writeFileSync(CACHE_PATH, `${JSON.stringify(cache, null, 2)}\n`)
+  writeJson(CACHE_PATH, cache)
 }
 
 /** Register faults across a whole batch's returned translations. The gate is

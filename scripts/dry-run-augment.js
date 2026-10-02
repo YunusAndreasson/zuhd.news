@@ -9,14 +9,15 @@
 //   - .env with FRED_API_KEY / OER_APP_ID (optional — fetcher skips missing)
 //   - an article markdown file at content/articles/<slug>.md
 
-import { readFileSync, writeFileSync, existsSync, mkdirSync, appendFileSync } from 'node:fs'
+import { readFileSync, existsSync, mkdirSync, appendFileSync } from 'node:fs'
 import { join, dirname } from 'node:path'
 import { spawnSync } from 'node:child_process'
 import { parseFrontmatter } from './lib/frontmatter.js'
 import { buildTimelineWithCharts, loadTrendsSnapshot, loadTrendsDigest, buildTrendsPromptSection } from './lib/trends-expand.js'
-import { parseClaudeEnvelope } from './lib/claude-envelope.js'
+import { claudeArgs, claudeFailure, parseClaudeEnvelope, runClaudeSync } from './lib/claude-envelope.js'
+import { ROOT } from './lib/paths.js'
+import { writeJson } from './lib/json-file.js'
 
-const ROOT = new URL('..', import.meta.url).pathname
 const ARTICLES_DIR = join(ROOT, 'content', 'articles')
 const PROMPT_PATH = join(ROOT, 'scripts', 'edu-context-prompt.md')
 const DIGEST_PATH = '/tmp/zuhd-trends-digest.json'
@@ -98,19 +99,13 @@ Generate an educational context brief for this article. Output ONLY the JSON obj
 // ── Step 3: invoke Claude CLI ───────────────────────────────────────────────
 
 console.log(`Calling ${model} (dry-run, single article)…`)
-const env = { ...process.env }
-delete env.CLAUDECODE
-const result = spawnSync('claude', [
-  '--model', model,
-  '--effort', 'medium',
-  '--no-session-persistence',
-  '--max-turns', '3',
-  '--output-format', 'json',
-  '-p', fullPrompt,
-], { encoding: 'utf-8', timeout: 300_000, maxBuffer: 2 * 1024 * 1024, env })
+const result = runClaudeSync(claudeArgs(fullPrompt, { model, maxTurns: 3, tools: null }), {
+  timeout: 300_000,
+  maxBuffer: 2 * 1024 * 1024,
+})
 
 if (result.status !== 0) {
-  console.error('Claude CLI error:', result.stderr?.slice(0, 500))
+  console.error(`Claude CLI error: ${claudeFailure(result, 300_000)}`)
   process.exit(1)
 }
 
@@ -152,7 +147,7 @@ const brief = {
 }
 
 mkdirSync(dirname(DEV_DEMO_JSON), { recursive: true })
-writeFileSync(DEV_DEMO_JSON, JSON.stringify(brief, null, 2))
+writeJson(DEV_DEMO_JSON, brief)
 
 // Append to the picks log so multiple dry-runs accumulate for analysis.
 try {

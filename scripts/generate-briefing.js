@@ -13,11 +13,14 @@ import { spawnSync } from 'node:child_process'
 import textToSpeech from '@google-cloud/text-to-speech'
 import { argAt } from './lib/argv.js'
 import { parseBriefingScript, scriptToSsml, splitForSynthesis, unheardSentences } from './lib/briefing-script.js'
+import { claudeArgs, claudeFailure, formatUsage, parseClaudeText, runClaudeSync } from './lib/claude-envelope.js'
 import { runWithConcurrency } from './lib/concurrency.js'
 import { parseFrontmatter } from './lib/frontmatter.js'
 import { GEMINI_TTS_MODEL, GEMINI_TTS_VOICE, geminiKey, synthesizeGemini, transcribeGemini } from './lib/gemini-tts.js'
+import { ROOT } from './lib/paths.js'
+import { writeJson } from './lib/json-file.js'
+import { articleFilesSince } from './lib/article-files.js'
 
-const ROOT = new URL('..', import.meta.url).pathname
 const ARTICLES_DIR = join(ROOT, 'content', 'articles')
 const AUDIO_DIR = argAt('out') || join(ROOT, 'content', 'audio')
 const LEDGER_PATH = join(ROOT, 'content', '.story-ledger.json')
@@ -34,16 +37,20 @@ const today = new Date().toISOString().slice(0, 10)
 console.log('=== Stage 1: Collecting articles ===')
 
 const cutoff = Date.now() - 24 * 60 * 60 * 1000
+// A file can qualify by its date or by its mtime, so the name window narrows
+// what is *parsed* and the mtime (a stat, not a read) keeps the rest eligible.
+const nameWindow = new Set(articleFilesSince(ARTICLES_DIR, cutoff))
 const files = readdirSync(ARTICLES_DIR).filter(f => f.endsWith('.md') && f !== 'example.md')
 
 let articles = []
 for (const file of files) {
+  // Use the later of source date and file mtime (articles may have older source dates)
+  const fileTime = statSync(join(ARTICLES_DIR, file)).mtimeMs
+  if (!nameWindow.has(file) && fileTime < cutoff) continue
   const raw = readFileSync(join(ARTICLES_DIR, file), 'utf-8')
   const { meta, body } = parseFrontmatter(raw)
   if (!meta.date) continue
-  // Use the later of source date and file mtime (articles may have older source dates)
   const sourceTime = new Date(meta.date).getTime()
-  const fileTime = statSync(join(ARTICLES_DIR, file)).mtimeMs
   const addedTime = Math.max(sourceTime, fileTime)
   if (addedTime < cutoff) continue
   const sources = Array.isArray(meta.sources) ? meta.sources : []
@@ -124,33 +131,15 @@ const prompt = promptTemplate.replace(
 )
 let claudeOutput
 try {
-  const env = { ...process.env }
-  delete env.CLAUDECODE
-  const result = spawnSync('claude', [
-    '--model', process.env.ZUHD_BRIEFING_MODEL || 'claude-opus-5-5',
-    '--effort', 'medium',
-    '--no-session-persistence',
-    '--tools', '',
-    '--max-turns', '1',
-    '--output-format', 'json',
-    '--exclude-dynamic-system-prompt-sections',
-    '-p', prompt
-  ], { encoding: 'utf-8', timeout: 720_000, maxBuffer: 4 * 1024 * 1024, env })
-  if (result.status !== 0) {
-    throw new Error(result.stderr || `Exit code ${result.status}`)
-  }
-  // Briefing returns a plain-text script (not JSON), so unwrap the envelope manually
-  // instead of going through parseClaudeEnvelopeWithUsage which expects JSON.
-  const envelope = JSON.parse(result.stdout.trim())
-  if (envelope?.type !== 'result' || envelope.result == null) {
-    throw new Error(`unexpected claude envelope: ${result.stdout.slice(0, 200)}`)
-  }
-  claudeOutput = String(envelope.result)
-  if (envelope.total_cost_usd != null) {
-    const cacheRead = envelope.usage?.cache_read_input_tokens ?? 0
-    const cacheCreate = envelope.usage?.cache_creation_input_tokens ?? 0
-    console.log(`Claude usage: $${envelope.total_cost_usd.toFixed(4)} in ${envelope.duration_ms ?? '?'}ms (cache read ${cacheRead}, create ${cacheCreate})`)
-  }
+  const result = runClaudeSync(
+    claudeArgs(prompt, { model: process.env.ZUHD_BRIEFING_MODEL || 'claude-opus-5-5' }),
+    { timeout: 720_000, maxBuffer: 4 * 1024 * 1024 },
+  )
+  if (result.status !== 0) throw new Error(claudeFailure(result, 720_000))
+  // Briefing returns a plain-text script (not JSON) inside the envelope.
+  const envelope = parseClaudeText(result.stdout)
+  claudeOutput = envelope.text
+  if (envelope.total_cost_usd != null) console.log(`Claude usage: ${formatUsage(envelope)}`)
 } catch (err) {
   console.error('Claude CLI failed:', err.message)
   process.exit(1)
@@ -425,7 +414,7 @@ try {
 
 // Write metadata
 const metaPath = join(AUDIO_DIR, 'briefing-meta.json')
-writeFileSync(metaPath, JSON.stringify({
+writeJson(metaPath, {
   date: today,
   generated: new Date().toISOString(),
   articles: articles.length,
@@ -433,7 +422,7 @@ writeFileSync(metaPath, JSON.stringify({
   engines: [...engines],
   scriptLength: script.length,
   duration: durationSec
-}, null, 2))
+})
 console.log(`Metadata saved: ${metaPath}`)
 
 // Clean up MP3s and scripts older than 7 days (.ssml: the pre-Gemini scripts)

@@ -12,6 +12,7 @@ import { createServer } from 'node:http'
 import { readFile } from 'node:fs/promises'
 import { existsSync } from 'node:fs'
 import { join, extname } from 'node:path'
+import { ROOT } from './paths.js'
 
 /**
  * Not optional extras, any of them.
@@ -52,7 +53,7 @@ const MIME = {
  * @returns {Promise<{ server: import('node:http').Server, base: string, close: () => void }>}
  */
 export async function serveDist(opts = {}) {
-  const dist = opts.dist ?? join(new URL('../..', import.meta.url).pathname, 'dist')
+  const dist = opts.dist ?? join(ROOT, 'dist')
   const server = createServer(async (req, res) => {
     try {
       let path = decodeURIComponent((req.url ?? '/').split('?')[0])

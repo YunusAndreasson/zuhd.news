@@ -9,11 +9,11 @@ import { execSync } from 'node:child_process'
 import { parseFrontmatter } from '../lib/frontmatter.js'
 import { scoreDir } from '../lib/quality-score.js'
 import { regionFromCoords } from '../lib/regions.js'
+import { ROOT } from '../lib/paths.js'
 
 const PORT = 7777
 const HOST = '127.0.0.1'
 
-const ROOT = new URL('../..', import.meta.url).pathname
 const LOGS_DIR = join(ROOT, 'logs')
 const ARTICLES_DIR = join(ROOT, 'content', 'articles')
 const DIST_DIR = join(ROOT, 'dist')

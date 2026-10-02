@@ -29,13 +29,11 @@
  * @param {(item: T) => Promise<unknown>} worker
  */
 export async function runWithConcurrency(items, limit, worker) {
-  const queue = items.slice()
-  const runners = Array.from({ length: Math.min(limit, queue.length) }, async () => {
-    while (queue.length > 0) {
-      const next = queue.shift()
-      if (next === undefined) return
-      await worker(next)
-    }
+  // A shared cursor rather than `queue.shift()`: shift is O(n) per call, and
+  // it also stopped a runner at an `undefined` item rather than passing it on.
+  let next = 0
+  const runners = Array.from({ length: Math.min(limit, items.length) }, async () => {
+    while (next < items.length) await worker(items[next++])
   })
   await Promise.all(runners)
 }

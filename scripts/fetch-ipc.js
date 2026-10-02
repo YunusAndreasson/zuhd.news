@@ -41,7 +41,7 @@
 // be missing. The licence is recorded in the payload so the surface drawing it
 // can say where it came from.
 
-import { existsSync, writeFileSync } from 'node:fs'
+import { existsSync } from 'node:fs'
 import { join } from 'node:path'
 import { representativePoint } from './lib/geo-point.js'
 import { runWithConcurrency } from './lib/concurrency.js'
@@ -51,8 +51,10 @@ import {
   joinAreas,
   parseIpcAreaCsv,
 } from './lib/ipc.js'
+import { ROOT } from './lib/paths.js'
+import { writeJson } from './lib/json-file.js'
+import { fetchJson, fetchText } from './lib/http.js'
 
-const ROOT = new URL('..', import.meta.url).pathname
 const OUTPUT_PATH = join(ROOT, 'content', '.ipc.json')
 
 const HDX = 'https://data.humdata.org/api/3/action/package_search'
@@ -66,7 +68,6 @@ const GLOBAL_CSV = 'ipc_global_area_wide_latest.csv'
 const REQUEST_TIMEOUT_MS = 60_000
 /** Concurrent GeoJSON requests. Politeness, not a documented limit. */
 const FETCH_CONCURRENCY = 4
-const UA = 'zuhd-news/1.0 (+https://zuhd.news)'
 
 const started = Date.now()
 const now = started
@@ -78,29 +79,8 @@ const bail = (message) => {
   process.exit(0)
 }
 
-const getJson = async (url) => {
-  const controller = new AbortController()
-  const timer = setTimeout(() => controller.abort(), REQUEST_TIMEOUT_MS)
-  try {
-    const res = await fetch(url, { signal: controller.signal, headers: { 'user-agent': UA } })
-    if (!res.ok) throw new Error(`HTTP ${res.status}`)
-    return await res.json()
-  } finally {
-    clearTimeout(timer)
-  }
-}
-
-const getText = async (url) => {
-  const controller = new AbortController()
-  const timer = setTimeout(() => controller.abort(), REQUEST_TIMEOUT_MS)
-  try {
-    const res = await fetch(url, { signal: controller.signal, headers: { 'user-agent': UA } })
-    if (!res.ok) throw new Error(`HTTP ${res.status}`)
-    return await res.text()
-  } finally {
-    clearTimeout(timer)
-  }
-}
+const getJson = (url) => fetchJson(url, { timeoutMs: REQUEST_TIMEOUT_MS })
+const getText = (url) => fetchText(url, { timeoutMs: REQUEST_TIMEOUT_MS })
 
 // --- Catalogue -------------------------------------------------------------
 
@@ -272,7 +252,7 @@ const payload = {
   skipped,
 }
 
-writeFileSync(OUTPUT_PATH, `${JSON.stringify(payload)}\n`)
+writeJson(OUTPUT_PATH, payload, { pretty: false })
 
 const grave = areas.filter((a) => a.phase >= 4).length
 const catastrophe = areas.filter((a) => a.phase >= 5).length

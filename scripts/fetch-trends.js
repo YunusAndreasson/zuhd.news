@@ -13,13 +13,15 @@
 //  - Missing API keys → skip that source with a warning (graceful), do not abort.
 //  - Idempotent: writing the same day twice overwrites the snapshot.
 
-import { existsSync, mkdirSync, readdirSync, readFileSync, unlinkSync, writeFileSync } from 'node:fs'
+import { mkdirSync, readdirSync, unlinkSync } from 'node:fs'
 import { join } from 'node:path'
 import { INDICATORS, SOURCES } from './lib/trends-registry.js'
 import { fetchFredReleaseCalendar } from './lib/trends-sources/fred.js'
 import { EVENT_CATALOG, matchFredRelease } from './lib/event-catalog.js'
+import { ROOT } from './lib/paths.js'
+import { readJson, writeJson } from './lib/json-file.js'
+import { latestTrendsPath } from './lib/trends-snapshot.js'
 
-const ROOT = new URL('..', import.meta.url).pathname
 const TRENDS_DIR = join(ROOT, 'content', 'trends')
 const FX_CACHE = join(TRENDS_DIR, '.fx-history.json')
 const DIGEST_PATH = '/tmp/zuhd-trends-digest.json'
@@ -37,17 +39,8 @@ const SNAPSHOT_PATH = join(TRENDS_DIR, `${today}.json`)
  * deck chosen from scratch.
  */
 const priorSnapshot = (() => {
-  if (!existsSync(TRENDS_DIR)) return null
-  const latest = readdirSync(TRENDS_DIR)
-    .filter((f) => /^\d{4}-\d{2}-\d{2}\.json$/.test(f))
-    .sort()
-    .at(-1)
-  if (!latest) return null
-  try {
-    return JSON.parse(readFileSync(join(TRENDS_DIR, latest), 'utf8'))
-  } catch {
-    return null
-  }
+  const latest = latestTrendsPath()
+  return latest ? readJson(latest) : null
 })()
 
 // ── Run ────────────────────────────────────────────────────────────────────
@@ -156,7 +149,7 @@ const snapshot = {
   indicators,
 }
 
-writeFileSync(SNAPSHOT_PATH, JSON.stringify(snapshot, null, 2))
+writeJson(SNAPSHOT_PATH, snapshot)
 console.log(`Wrote ${SNAPSHOT_PATH} — ${indicators.length} indicators`)
 
 // Rotation. Every reader takes only the newest snapshot (each carries its own
@@ -201,7 +194,7 @@ const digest = {
   })),
 }
 
-writeFileSync(DIGEST_PATH, JSON.stringify(digest, null, 2))
+writeJson(DIGEST_PATH, digest)
 console.log(`Wrote ${DIGEST_PATH} — ${digest.indicators.length} entries`)
 
 const elapsed = Math.round((Date.now() - started) / 1000)

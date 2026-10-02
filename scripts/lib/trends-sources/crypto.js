@@ -6,8 +6,9 @@
 // pool. Set COINGECKO_API_KEY in the systemd service to enable; absent key
 // keeps the old keyless behavior.
 
+import { ZUHD_UA } from '../http.js'
+
 const CG_BASE = 'https://api.coingecko.com/api/v3'
-const USER_AGENT = 'zuhd-news/1.0 (+https://zuhd.news)'
 const CG_KEY = process.env.COINGECKO_API_KEY || ''
 
 /** Format "Mar 18" from a unix-ms timestamp. */
@@ -29,7 +30,7 @@ export async function fetchCoinGeckoSeries(indicator) {
   url.searchParams.set('days', '30')
   url.searchParams.set('interval', 'daily')
 
-  const headers = { 'User-Agent': USER_AGENT, accept: 'application/json' }
+  const headers = { 'User-Agent': ZUHD_UA, accept: 'application/json' }
   if (CG_KEY) headers['x-cg-demo-api-key'] = CG_KEY
 
   try {

@@ -12,7 +12,6 @@
 // skips the API mirror when the file is absent, and mobile renders an empty
 // alert list when /api/gdacs.json 404s — same fail-soft path as chokepoints.
 
-import { writeFileSync } from 'node:fs'
 import { join } from 'node:path'
 import { runWithConcurrency } from './lib/concurrency.js'
 import {
@@ -21,8 +20,10 @@ import {
   fetchGdacsDetail,
   isGdacsFeatureCollection,
 } from './lib/gdacs.js'
+import { ROOT } from './lib/paths.js'
+import { writeJson } from './lib/json-file.js'
+import { fetchJson } from './lib/http.js'
 
-const ROOT = new URL('..', import.meta.url).pathname
 const OUTPUT_PATH = join(ROOT, 'content', '.gdacs.json')
 
 // Concurrency cap for per-event detail fetches. GDACS publishes detail
@@ -35,19 +36,8 @@ const LIST_TIMEOUT_MS = 10_000
 const started = Date.now()
 console.log('Fetching GDACS snapshot (EVENTS4APP)')
 
-async function fetchList() {
-  const controller = new AbortController()
-  const timer = setTimeout(() => controller.abort(), LIST_TIMEOUT_MS)
-  try {
-    const res = await fetch(GDACS_GEOJSON_URL, {
-      signal: controller.signal,
-      headers: { 'user-agent': 'zuhd-news/1.0 (+https://zuhd.news)' },
-    })
-    if (!res.ok) throw new Error(`HTTP ${res.status}`)
-    return await res.json()
-  } finally {
-    clearTimeout(timer)
-  }
+function fetchList() {
+  return fetchJson(GDACS_GEOJSON_URL, { timeoutMs: LIST_TIMEOUT_MS })
 }
 
 let collection
@@ -100,7 +90,7 @@ const payload = {
   details,
 }
 
-writeFileSync(OUTPUT_PATH, `${JSON.stringify(payload)}\n`)
+writeJson(OUTPUT_PATH, payload, { pretty: false })
 
 const elapsed = ((Date.now() - started) / 1000).toFixed(1)
 console.log(

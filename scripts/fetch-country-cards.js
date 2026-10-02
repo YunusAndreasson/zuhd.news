@@ -8,26 +8,17 @@
 //
 // Run: node scripts/fetch-country-cards.js [--only=economy,demography,complexity]
 
-import { readFileSync, writeFileSync, existsSync, mkdirSync, renameSync } from 'node:fs'
-import { dirname, join } from 'node:path'
-import { fileURLToPath } from 'node:url'
+import { readFileSync, existsSync } from 'node:fs'
+import { join } from 'node:path'
 import { COUNTRY_DATA } from '../shared/countries/country-data.ts'
 import { CC_TO_TOPOJSON_NAME } from '../shared/countries/iso.ts'
+import { ROOT } from './lib/paths.js'
+import { writeJson } from './lib/json-file.js'
 
-const ROOT = dirname(dirname(fileURLToPath(import.meta.url)))
 const OUT = join(ROOT, 'shared', 'data', 'country-cards.json')
 
-/** Atomic-ish checkpoint write: serialize to a sibling tmp file then rename
- *  over the destination. Avoids leaving a half-written JSON on disk if the
- *  process is killed mid-write — restart-safe iff the OS rename is atomic
- *  (it is on POSIX local filesystems). */
-function writeCheckpoint(data) {
-  mkdirSync(dirname(OUT), { recursive: true })
-  const tmp = `${OUT}.tmp`
-  writeFileSync(tmp, JSON.stringify(data))
-  // Node's renameSync is atomic on POSIX.
-  renameSync(tmp, OUT)
-}
+/** Checkpoint write — atomic, so a killed run leaves the last checkpoint. */
+const writeCheckpoint = (data) => writeJson(OUT, data, { pretty: false })
 
 const args = new Set(process.argv.slice(2))
 const onlyArg = [...args].find(a => a.startsWith('--only='))?.slice('--only='.length)

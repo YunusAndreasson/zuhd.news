@@ -10,8 +10,8 @@ import { build } from 'esbuild'
 import { copyFileSync, existsSync } from 'node:fs'
 import { readdirSync, mkdirSync } from 'node:fs'
 import { join } from 'node:path'
+import { ROOT } from '../lib/paths.js'
 
-const ROOT = new URL('../..', import.meta.url).pathname
 const ISLAND_DIR = join(ROOT, 'public', 'islands')
 const OUT_DIR = join(ROOT, 'dist', 'islands')
 
