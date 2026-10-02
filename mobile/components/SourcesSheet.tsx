@@ -1,6 +1,6 @@
 import { divergenceNote } from '@shared/source-framing';
 import type { ArticleSource } from '@shared/types';
-import { memo, useEffect, useState } from 'react';
+import { memo, useState } from 'react';
 import { StyleSheet } from 'react-native';
 import Animated from 'react-native-reanimated';
 import { SPACING } from '../constants/theme';
@@ -48,11 +48,17 @@ export const SourcesSheet = memo(function SourcesSheet({
   bottomInset,
   onDismiss,
 }: SourcesSheetProps) {
-  const [expandedSource, setExpandedSource] = useState<number | null>(null);
-
-  useEffect(() => {
-    setExpandedSource(sources.length === 1 ? 0 : null);
-  }, [sources]);
+  // A single source opens expanded. Reset for a new story during render, the
+  // pattern the menu uses for the same reason: in an effect, the sheet painted
+  // a frame with the last story's row open — and a single source mounted
+  // collapsed before it expanded.
+  const opened = (list: readonly ArticleSource[]) => (list.length === 1 ? 0 : null);
+  const [expandedSource, setExpandedSource] = useState<number | null>(() => opened(sources));
+  const [seenSources, setSeenSources] = useState(sources);
+  if (sources !== seenSources) {
+    setSeenSources(sources);
+    setExpandedSource(opened(sources));
+  }
 
   // The count is the sheet's title, in the handle where every other sheet's
   // title is; it used to be a heading in the body under an empty handle.
