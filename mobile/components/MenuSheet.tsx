@@ -470,10 +470,12 @@ export const MenuSheet = memo(function MenuSheet({
   const prefsApi = usePreferences();
   const { preferences } = prefsApi;
   const nav = useSheetNavigation<PageKey>();
+  // Called as functions, not as `nav.push()`: a method call reads as a change
+  // to `nav`, and the compiler could not keep the callbacks below memoized on
+  // `nav.push` alone.
+  const { push, pop, reset } = nav;
   const [canRate, setCanRate] = useState(false);
   const [notificationPermissionDenied, setNotificationPermissionDenied] = useState(false);
-  const dataUsed = useSyncExternalStore(subscribeDataUsage, getDataUsage);
-  const savedCount = useSyncExternalStore(subscribeBookmarks, getBookmarks).length;
 
   // The pages a row opened, by key. Kept until the menu closes: a key popped
   // off the stack is never pushed again, so a stale entry is only memory.
@@ -489,26 +491,26 @@ export const MenuSheet = memo(function MenuSheet({
 
   const navPush = useCallback(
     (page: PageKey) => {
-      nav.push(page);
+      push(page);
       AccessibilityInfo.announceForAccessibility(pageTitle(page));
     },
-    [nav.push],
+    [push],
   );
   const navPop = useCallback(() => {
-    nav.pop();
+    pop();
     const next = nav.stack[nav.stack.length - 2];
     AccessibilityInfo.announceForAccessibility(next ? titleOf(next) : 'menu');
-  }, [nav.pop, nav.stack, titleOf]);
+  }, [pop, nav.stack, titleOf]);
   /** Push whatever a row opened, as a page: back is the list it came from. */
   const openDetail = useCallback(
     (detail: MenuDetail) => {
       detailSeq.current += 1;
       const key: PageKey = `detail:${detailSeq.current}`;
       setDetails((all) => ({ ...all, [key]: detail }));
-      nav.push(key);
+      push(key);
       AccessibilityInfo.announceForAccessibility(menuDetailLabel(detail));
     },
-    [nav.push],
+    [push],
   );
   const currentDetail =
     nav.current && isDetailKey(nav.current) ? (details[nav.current] ?? null) : null;
@@ -519,7 +521,7 @@ export const MenuSheet = memo(function MenuSheet({
   const [seenRootKey, setSeenRootKey] = useState(rootKey);
   if (rootKey !== seenRootKey) {
     setSeenRootKey(rootKey);
-    nav.reset();
+    reset();
     setDetails({});
   }
 
@@ -618,76 +620,8 @@ export const MenuSheet = memo(function MenuSheet({
       : undefined;
   const keptHazard = parentListKey && isHazardKey(parentListKey) ? parentListKey : null;
 
-  return (
-    <SheetLayout
-      sheetRef={sheetRef}
-      handleComponent={Handle}
-      onDismiss={handleDismiss}
-      // Android's back pops a page before it closes the menu, as the
-      // country sheet's ranking does. It closed the whole menu from any page.
-      onBackPress={nav.depth > 0 ? navPop : undefined}
-    >
-      {nav.current === 'search' ? (
-        <SheetSearchPage
-          grouped={grouped}
-          bottomInset={bottomInset}
-          onSelectArticle={onSelectArticle}
-        />
-      ) : groupKey || activeHazard || currentDetail ? (
-        // A list page is a sibling of the scroll view, never inside it: a
-        // virtualised list nested in a scroll view renders every row. A
-        // detail page brings its own scroll view, as its sheet does.
-        <GestureDetector gesture={swipeBack}>
-          <View style={styles.listPage}>
-            {keptGroup ? (
-              <RetainedListPage hidden={!activeGroup}>
-                <GroupPage
-                  key={keptGroup.key}
-                  group={keptGroup}
-                  bottomInset={bottomInset}
-                  onSelect={handleRow}
-                />
-              </RetainedListPage>
-            ) : keptHazard ? (
-              <RetainedListPage hidden={!activeHazard}>
-                <HazardPage
-                  key={keptHazard}
-                  layer={keptHazard}
-                  hazards={hazards}
-                  bottomInset={bottomInset}
-                  onSelect={handleMark}
-                />
-              </RetainedListPage>
-            ) : groupKey ? (
-              <EmptyState message="Nothing to list right now" />
-            ) : null}
-            {currentDetail ? (
-              <MenuDetailPage
-                detail={currentDetail}
-                bottomInset={bottomInset}
-                hazards={hazards}
-                gdacsDetails={gdacsDetails}
-                articles={articles}
-                onOpen={openDetail}
-                onStoryPress={onStoryPress}
-                onArticlePress={onSelectArticle}
-                onRequestClose={() => sheetRef.current?.dismiss()}
-              />
-            ) : null}
-          </View>
-        </GestureDetector>
-      ) : (
-        <GestureDetector gesture={swipeBack}>
-          {/* Each page owns its scroll origin; reusing the native scroll view
-              carried the menu's offset into rankings, settings and prose. */}
-          <SheetScrollView key={nav.current ?? 'root'} bottomInset={bottomInset}>
-            {renderPage()}
-          </SheetScrollView>
-        </GestureDetector>
-      )}
-    </SheetLayout>
-  );
-
+  // Declared before the return, where React Compiler can read it: hoisted from
+  // after it, the whole menu silently skipped the compiler.
   function renderPage() {
     const current = nav.current;
     if (current === null) {
@@ -724,13 +658,7 @@ export const MenuSheet = memo(function MenuSheet({
             trailing="push"
             onPress={() => navPush('search')}
           />
-          <MenuRow
-            title="saved"
-            description="Stories you have kept"
-            value={savedCount > 0 ? String(savedCount) : undefined}
-            trailing="push"
-            onPress={() => navPush('saved')}
-          />
+          <SavedRow onPress={() => navPush('saved')} />
           <MenuRow
             title="map key"
             description="What each mark on the globe means"
@@ -910,15 +838,7 @@ export const MenuSheet = memo(function MenuSheet({
 
           <Animated.View entering={enter()}>
             <SectionLabel label="data" />
-            {/* A number the reader can watch, rather than a claim they have to
-                accept. This is the app's central promise made checkable — see
-                lib/data-usage.ts for what it counts and why it counts high. */}
-            <MenuRow
-              first
-              title="data used"
-              description="Fetched since you opened the app"
-              value={formatBytes(dataUsed)}
-            />
+            <DataUsedRow />
             <MenuRow
               title="show tips again"
               // "tips" — the reader's word, and this row's. The code calls
@@ -958,6 +878,115 @@ export const MenuSheet = memo(function MenuSheet({
 
     return null;
   }
+
+  return (
+    <SheetLayout
+      sheetRef={sheetRef}
+      handleComponent={Handle}
+      onDismiss={handleDismiss}
+      // Android's back pops a page before it closes the menu, as the
+      // country sheet's ranking does. It closed the whole menu from any page.
+      onBackPress={nav.depth > 0 ? navPop : undefined}
+    >
+      {nav.current === 'search' ? (
+        <SheetSearchPage
+          grouped={grouped}
+          bottomInset={bottomInset}
+          onSelectArticle={onSelectArticle}
+        />
+      ) : groupKey || activeHazard || currentDetail ? (
+        // A list page is a sibling of the scroll view, never inside it: a
+        // virtualised list nested in a scroll view renders every row. A
+        // detail page brings its own scroll view, as its sheet does.
+        <GestureDetector gesture={swipeBack}>
+          <View style={styles.listPage}>
+            {keptGroup ? (
+              <RetainedListPage hidden={!activeGroup}>
+                <GroupPage
+                  key={keptGroup.key}
+                  group={keptGroup}
+                  bottomInset={bottomInset}
+                  onSelect={handleRow}
+                />
+              </RetainedListPage>
+            ) : keptHazard ? (
+              <RetainedListPage hidden={!activeHazard}>
+                <HazardPage
+                  key={keptHazard}
+                  layer={keptHazard}
+                  hazards={hazards}
+                  bottomInset={bottomInset}
+                  onSelect={handleMark}
+                />
+              </RetainedListPage>
+            ) : groupKey ? (
+              <EmptyState message="Nothing to list right now" />
+            ) : null}
+            {currentDetail ? (
+              <MenuDetailPage
+                detail={currentDetail}
+                bottomInset={bottomInset}
+                hazards={hazards}
+                gdacsDetails={gdacsDetails}
+                articles={articles}
+                onOpen={openDetail}
+                onStoryPress={onStoryPress}
+                onArticlePress={onSelectArticle}
+                onRequestClose={() => sheetRef.current?.dismiss()}
+              />
+            ) : null}
+          </View>
+        </GestureDetector>
+      ) : (
+        <GestureDetector gesture={swipeBack}>
+          {/* Each page owns its scroll origin; reusing the native scroll view
+              carried the menu's offset into rankings, settings and prose. */}
+          <SheetScrollView key={nav.current ?? 'root'} bottomInset={bottomInset}>
+            {renderPage()}
+          </SheetScrollView>
+        </GestureDetector>
+      )}
+    </SheetLayout>
+  );
+});
+
+/**
+ * The saved row, subscribed to the bookmarks itself: saving a story re-renders
+ * this row, not the menu. The house rule — what changes re-renders only what
+ * shows it.
+ */
+const SavedRow = memo(function SavedRow({ onPress }: { onPress: () => void }) {
+  const count = useSyncExternalStore(subscribeBookmarks, getBookmarks).length;
+  return (
+    <MenuRow
+      title="saved"
+      description="Stories you have kept"
+      value={count > 0 ? String(count) : undefined}
+      trailing="push"
+      onPress={onPress}
+    />
+  );
+});
+
+/**
+ * The data meter's row, subscribed itself. The meter moves on every download,
+ * and subscribed in the menu it re-rendered the whole menu — closed or not,
+ * since iOS keeps a sheet's content mounted — once for each file an arrival
+ * fetched.
+ */
+const DataUsedRow = memo(function DataUsedRow() {
+  // A number the reader can watch, rather than a claim they have to accept.
+  // This is the app's central promise made checkable — see lib/data-usage.ts
+  // for what it counts and why it counts high.
+  const used = useSyncExternalStore(subscribeDataUsage, getDataUsage);
+  return (
+    <MenuRow
+      first
+      title="data used"
+      description="Fetched since you opened the app"
+      value={formatBytes(used)}
+    />
+  );
 });
 
 /**

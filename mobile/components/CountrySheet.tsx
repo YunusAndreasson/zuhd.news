@@ -1,7 +1,7 @@
 import { getMetricValue, getRanking, type MetricKey } from '@shared/countries/country-ranking';
 import type { GdacsAlert } from '@shared/types';
 import { Canvas, Circle, Path } from '@shopify/react-native-skia';
-import { memo, useCallback, useMemo, useState } from 'react';
+import { memo, useCallback, useState } from 'react';
 import { Text as RNText, StyleSheet, View } from 'react-native';
 import { GestureDetector } from 'react-native-gesture-handler';
 import Animated from 'react-native-reanimated';
@@ -312,6 +312,46 @@ interface CountryBodyProps {
   onRankingPress: (metric: MetricKey) => void;
 }
 
+interface MetricRow {
+  key: MetricKey;
+  label: string;
+  value: string;
+  rank: number | null;
+  total: number;
+}
+
+/** A country's place in one ranking: 1-based, or null where it is not ranked. */
+function rankIn(metric: MetricKey, countryName: string): { rank: number | null; total: number } {
+  const entries = getRanking(metric);
+  const idx = entries.findIndex((e) => e.name === countryName);
+  return { rank: idx >= 0 ? idx + 1 : null, total: entries.length };
+}
+
+/**
+ * The country's metrics with its place in each, best placed first and the
+ * unranked last. A plain function: `CountryBody` is compiled, which keeps the
+ * result until the country changes — the two `useMemo`s it was built in
+ * listed dependencies the compiler could not keep, so the body skipped it.
+ */
+function metricRows(country: TapResult | null): MetricRow[] {
+  if (!country?.data) return [];
+  const name = country.countryName;
+  const rows: MetricRow[] = [];
+  for (const m of MORE_METRICS) {
+    const value = getMetricValue(name ?? '', country.data, m.key);
+    if (value == null) continue;
+    const { rank, total } = name ? rankIn(m.key, name) : { rank: null, total: 0 };
+    rows.push({ key: m.key, label: m.label, value, rank, total });
+  }
+  rows.sort((a, b) => {
+    if (a.rank == null && b.rank == null) return 0;
+    if (a.rank == null) return 1;
+    if (b.rank == null) return -1;
+    return a.rank - b.rank;
+  });
+  return rows;
+}
+
 /** The country's cards, its ranked metrics, its alerts and the marks in it —
  *  the sheet's content without the sheet, which the menu shows as a page. */
 export const CountryBody = memo(function CountryBody({
@@ -321,39 +361,7 @@ export const CountryBody = memo(function CountryBody({
   hazards,
   onRankingPress,
 }: CountryBodyProps) {
-  const rankFor = useMemo(() => {
-    const targetName = country?.countryName;
-    if (!targetName) return () => ({ rank: null as number | null, total: 0 });
-    return (metric: MetricKey): { rank: number | null; total: number } => {
-      const entries = getRanking(metric);
-      const idx = entries.findIndex((e) => e.name === targetName);
-      return { rank: idx >= 0 ? idx + 1 : null, total: entries.length };
-    };
-  }, [country?.countryName]);
-
-  const rankedRows = useMemo(() => {
-    if (!country?.data) return [];
-    const rows: {
-      key: MetricKey;
-      label: string;
-      value: string;
-      rank: number | null;
-      total: number;
-    }[] = [];
-    for (const m of MORE_METRICS) {
-      const value = getMetricValue(country.countryName ?? '', country.data, m.key);
-      if (value == null) continue;
-      const { rank, total } = rankFor(m.key);
-      rows.push({ key: m.key, label: m.label, value, rank, total });
-    }
-    rows.sort((a, b) => {
-      if (a.rank == null && b.rank == null) return 0;
-      if (a.rank == null) return 1;
-      if (b.rank == null) return -1;
-      return a.rank - b.rank;
-    });
-    return rows;
-  }, [country?.data, country?.countryName, rankFor]);
+  const rankedRows = metricRows(country);
 
   return (
     <>

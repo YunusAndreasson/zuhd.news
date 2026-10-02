@@ -1,5 +1,5 @@
 import type { Category } from '@shared/types';
-import { useCallback, useMemo, useRef, useState, useSyncExternalStore } from 'react';
+import { useCallback, useMemo, useState, useSyncExternalStore } from 'react';
 import Animated from 'react-native-reanimated';
 import { HIT_SLOP } from '../constants/theme';
 import { announce } from '../lib/announce';
@@ -19,11 +19,11 @@ interface SheetBookmarksPageProps {
 export function SheetBookmarksPage({ onSelectArticle }: SheetBookmarksPageProps) {
   const bookmarks = useSyncExternalStore(subscribe, getSnapshot);
   const [removed, setRemoved] = useState<Bookmark[]>([]);
-  const bookmarksRef = useRef(bookmarks);
-  bookmarksRef.current = bookmarks;
-
+  // The store's own snapshot, read when the swipe lands: the latest list, with
+  // no ref mirrored from it during render — which kept the page from React
+  // Compiler.
   const handleRemove = useCallback((slug: string) => {
-    const bookmark = bookmarksRef.current.find((b) => b.article.slug === slug);
+    const bookmark = getSnapshot().find((b) => b.article.slug === slug);
     if (bookmark) {
       toggle(bookmark.article, bookmark.category);
       setRemoved((previous) => [...previous, bookmark]);

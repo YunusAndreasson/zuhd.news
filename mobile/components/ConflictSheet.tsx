@@ -56,9 +56,11 @@ export const ConflictBody = memo(function ConflictBody({
 }: ConflictBodyProps) {
   const { colors } = useTheme();
   const openLink = useOpenLink();
+  // On `event`, not `event?.sourceUrl`: the compiler keeps a memo only on
+  // what it reads, and on the narrower key this whole body skipped it.
   const handleSourcePress = useCallback(() => {
     if (event?.sourceUrl) openLink(event.sourceUrl);
-  }, [event?.sourceUrl, openLink]);
+  }, [event, openLink]);
 
   // Focal tint: fatalities > 0 reads in the unfavorable tone (the "people
   // killed" framing earns the same visual weight as a Red GDACS alert);
