@@ -30,7 +30,10 @@ if (newFiles.length === 0) {
   process.exit(0)
 }
 
-const briefs = readJson(BRIEFS_PATH, {})
+// Strict, unlike a cache: this file is the archive the build serves, and it is
+// written back below. Read leniently, a corrupt file would come back as `{}`
+// and the write would replace every brief with this run's.
+const briefs = existsSync(BRIEFS_PATH) ? JSON.parse(readFileSync(BRIEFS_PATH, 'utf8')) : {}
 const basePrompt = readFileSync(PROMPT_PATH, 'utf8')
 
 // Ensure the audit log directory exists up-front so a broken path surfaces

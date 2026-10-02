@@ -57,6 +57,7 @@ const WINDOW_DAYS = Math.max(1, parseInt(process.env.WINDOW_DAYS ?? '7', 10) || 
 // upstream bandwidth and ~10s of cycle wall time.
 const CACHE_MAX_AGE_MS = 6 * 60 * 60 * 1000
 const FETCH_TIMEOUT_MS = 60_000
+const CSV_TIMEOUT_MS = 105_000
 
 // Freshness comes from the `generated` stamp INSIDE the snapshot, never the
 // file mtime. `run-cycle.sh` runs `git pull --rebase --autostash` three times a
@@ -128,7 +129,10 @@ async function fetchRowsFromApi() {
 // Fallback: the legacy multi-MB CSV download.
 async function fetchRowsFromCsv() {
   console.log(`Falling back to CSV: ${UCDP_URL}`)
-  const res = await fetchWithTimeout(UCDP_URL)
+  // Its own deadline: the shared one now bounds the body as well as the
+  // headers, and 60s is close to what ~50MB takes from a slow mirror. Inside
+  // the stage's `timeout 120`, with room to log the failure.
+  const res = await fetchOk(UCDP_URL, { timeoutMs: CSV_TIMEOUT_MS })
   const csv = await res.text()
   console.log(`Downloaded ${csv.length.toLocaleString('en-US')} bytes`)
   return rowsToObjects(parseCsv(csv))
