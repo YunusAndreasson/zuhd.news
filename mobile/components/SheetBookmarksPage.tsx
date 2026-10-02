@@ -69,7 +69,7 @@ export function SheetBookmarksPage({ onSelectArticle }: SheetBookmarksPageProps)
       ) : null}
       {bookmarks.map((b, i) => (
         <Animated.View key={b.article.slug} entering={staggerEnter(i)}>
-          <SwipeableRow onSwipeAction={() => handleRemove(b.article.slug)}>
+          <SwipeableRow id={b.article.slug} onSwipeAction={handleRemove}>
             <ArticleRow
               slug={b.article.slug}
               title={b.article.title}

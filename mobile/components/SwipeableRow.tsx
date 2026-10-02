@@ -26,14 +26,20 @@ const SWIPE_THRESHOLD = -ACTION_WIDTH * 0.6;
 
 interface SwipeableRowProps {
   children: ReactNode;
+  /** What the row stands for, handed back to `onSwipeAction` — so the owner
+   *  passes one stable callback for every row, as `ArticleRow` takes its
+   *  `slug`. A closure per row was a new pan config for every row, re-sent to
+   *  the native side, whenever the list re-rendered. */
+  id: string;
   /** No haptic of its own: the action is a committed change of state, and
    *  its owner gives the notification for that (a second buzz here read as a
    *  double knock). */
-  onSwipeAction: () => void;
+  onSwipeAction: (id: string) => void;
 }
 
 export const SwipeableRow = memo(function SwipeableRow({
   children,
+  id,
   onSwipeAction,
 }: SwipeableRowProps) {
   const { colors } = useTheme();
@@ -71,11 +77,11 @@ export const SwipeableRow = memo(function SwipeableRow({
         // A cancelled swipe (a sheet dragged away, a system gesture) also
         // deactivates, and must only spring back — it deleted the row once.
         if (!e.canceled && released < SWIPE_THRESHOLD) {
-          scheduleOnRN(onSwipeAction);
+          scheduleOnRN(onSwipeAction, id);
         }
       },
     }),
-    [translateX, ratchetThresholdFired, onSwipeAction],
+    [translateX, ratchetThresholdFired, onSwipeAction, id],
   );
   const panGesture = usePanGesture(panConfig);
 
