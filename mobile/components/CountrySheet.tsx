@@ -430,14 +430,11 @@ export const CountrySheet = memo(function CountrySheet({
   const onBackToCountry = useCallback(() => setActiveRanking(null), []);
 
   const hasBack = activeRanking !== null;
-  const CountryHandle = useCallback(
-    () => (
-      <SheetHandle
-        onBack={hasBack ? onBackToCountry : undefined}
-        title={<CountryTitle country={country} hasBack={hasBack} />}
-      />
-    ),
-    [hasBack, onBackToCountry, country],
+  const handle = (
+    <SheetHandle
+      onBack={hasBack ? onBackToCountry : undefined}
+      title={<CountryTitle country={country} hasBack={hasBack} />}
+    />
   );
 
   const handleDismiss = useCallback(() => {
@@ -455,7 +452,7 @@ export const CountrySheet = memo(function CountrySheet({
   return (
     <SheetLayout
       sheetRef={sheetRef}
-      handleComponent={CountryHandle}
+      handle={handle}
       onDismiss={handleDismiss}
       onBackPress={hasBack ? onBackToCountry : undefined}
     >

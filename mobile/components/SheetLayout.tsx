@@ -1,6 +1,5 @@
 import { BottomSheetModal, type BottomSheetProps } from '@expo/ui/community/bottom-sheet';
-import type { ComponentType } from 'react';
-import { memo, useMemo } from 'react';
+import { memo, type ReactNode, useMemo } from 'react';
 import { StyleSheet, useWindowDimensions } from 'react-native';
 import { GestureHandlerRootView } from 'react-native-gesture-handler';
 import { LAYOUT } from '../constants/theme';
@@ -32,15 +31,19 @@ type OmittedModalProps = 'ref' | 'enablePanDownToClose' | 'backgroundStyle' | 'h
 interface SheetLayoutProps extends Omit<BottomSheetProps, OmittedModalProps> {
   sheetRef: React.RefObject<BottomSheetMethodsRef | null>;
   handleTitle?: string;
-  /** Replaces the default titled handle. Rendered as the sheet's first child,
-   *  not as `handleComponent` — see the note on the render below. */
-  handleComponent?: ComponentType | null;
+  /** Replaces the default titled handle. An element, so a sheet that changes
+   *  its title or its back button re-renders the handle in place: it was a
+   *  component type, rebuilt whenever its inputs changed, and every rebuild
+   *  remounted the handle — a page change took a screen reader's focus off
+   *  the back button it had just pressed. Rendered as the sheet's first
+   *  child, not as `handleComponent` — see the note on the render below. */
+  handle?: ReactNode;
 }
 
 export const SheetLayout = memo(function SheetLayout({
   sheetRef,
   handleTitle,
-  handleComponent: Handle,
+  handle,
   children,
   enableDynamicSizing = true,
   ...rest
@@ -98,7 +101,7 @@ export const SheetLayout = memo(function SheetLayout({
       {...rest}
     >
       <GestureHandlerRootView style={fitToContents ? capStyle : styles.fill}>
-        {Handle ? <Handle /> : <SheetHandle title={handleTitle} />}
+        {handle ?? <SheetHandle title={handleTitle} />}
         {children}
       </GestureHandlerRootView>
     </BottomSheetModal>

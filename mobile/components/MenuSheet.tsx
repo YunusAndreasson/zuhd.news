@@ -241,10 +241,9 @@ const isDetailKey = (k: PageKey): k is `detail:${number}` => k.startsWith('detai
 
 /** What a fixed page is called — in its handle and when a screen reader
  *  announces it. A group's key is a code (`stocks`), which no reader should
- *  hear. Static, not read off the catalog: the handle is a component type that
- *  depends on it, and a catalog rebuilt by an arrival would remount the handle
- *  — and the back button a screen reader's focus is on. A detail page's title
- *  is its detail's (`menuDetailLabel`). */
+ *  hear. Static, not read off the catalog: a list's name does not change when
+ *  an arrival rebuilds what is in it. A detail page's title is its detail's
+ *  (`menuDetailLabel`). */
 function pageTitle(key: PageKey): string {
   if (isGroupKey(key)) return GROUP_TITLES[key];
   if (isHazardKey(key)) return HAZARD_TITLES[key];
@@ -554,38 +553,26 @@ export const MenuSheet = memo(function MenuSheet({
   // that says whose it is — the top bar names nothing, and the `Z` that sat
   // top left went on 2026-09-13 — and in the handle it costs no row.
   const markSize = Math.round(typography.sizeWordmark * MARK_TO_WORDMARK);
-  const Handle = useCallback(
-    () => (
-      <SheetHandle
-        title={
-          currentDetail ? (
-            menuDetailHandleTitle(currentDetail)
-          ) : nav.current ? (
-            pageTitle(nav.current)
-          ) : (
-            <View style={styles.lockup}>
-              {/* In the ink of `zuhd`, so the mark and the name are one unit. */}
-              <ZuhdMark size={markSize} color={colors.textSecondary} />
-              <Text variant="wordmark" accessibilityRole="header" accessibilityLabel="zuhd.news">
-                <RNText style={{ ...font.bold, color: colors.textSecondary }}>zuhd</RNText>
-                <RNText style={{ ...font.regular, color: colors.accent }}>.news</RNText>
-              </Text>
-            </View>
-          )
-        }
-        onBack={nav.depth > 0 ? navPop : undefined}
-      />
-    ),
-    [
-      nav.current,
-      nav.depth,
-      navPop,
-      currentDetail,
-      font,
-      colors.textSecondary,
-      colors.accent,
-      markSize,
-    ],
+  const handle = (
+    <SheetHandle
+      title={
+        currentDetail ? (
+          menuDetailHandleTitle(currentDetail)
+        ) : nav.current ? (
+          pageTitle(nav.current)
+        ) : (
+          <View style={styles.lockup}>
+            {/* In the ink of `zuhd`, so the mark and the name are one unit. */}
+            <ZuhdMark size={markSize} color={colors.textSecondary} />
+            <Text variant="wordmark" accessibilityRole="header" accessibilityLabel="zuhd.news">
+              <RNText style={{ ...font.bold, color: colors.textSecondary }}>zuhd</RNText>
+              <RNText style={{ ...font.regular, color: colors.accent }}>.news</RNText>
+            </Text>
+          </View>
+        )
+      }
+      onBack={nav.depth > 0 ? navPop : undefined}
+    />
   );
 
   // The pages stay when the menu closes; `rootKey` decides where it opens.
@@ -877,7 +864,7 @@ export const MenuSheet = memo(function MenuSheet({
   return (
     <SheetLayout
       sheetRef={sheetRef}
-      handleComponent={Handle}
+      handle={handle}
       onDismiss={handleDismiss}
       // Android's back pops a page before it closes the menu, as the
       // country sheet's ranking does. It closed the whole menu from any page.
