@@ -99,14 +99,14 @@ import { computeDeckLayout, openHeightNeedsMeasuring, openStoryHeight } from '..
 import { getSnapshot as getFound, markFound, pruneFound, useFoundSlugs } from '../lib/found-store';
 import { markLanded, spendNew, useFreshSlugs } from '../lib/fresh-store';
 import { globeGdacsAlerts } from '../lib/gdacs';
-import { arcDegrees, DECK_SETTLE_MS, flyCurve, flyMs } from '../lib/globe-camera';
+import { arcDegrees, crossingFlies } from '../lib/globe-camera';
 import { hapticError, hapticImpact, hapticNotification, hapticSwipe } from '../lib/haptics';
 import {
   buildInstrumentCatalog,
   type CatalogGroup,
   type CatalogRow,
 } from '../lib/instrument-catalog';
-import { buildStoryRows, cameraTrackOf } from '../lib/map-feed';
+import { buildStoryRows, cameraTrackOf, type StoryRow } from '../lib/map-feed';
 import { exchangeCard, exchangeIsStale } from '../lib/markets';
 import { orderNewsRiver, type RiverArticle, recentRiver, riverAnchor } from '../lib/news-order';
 import {
@@ -189,6 +189,26 @@ interface FocusOptions {
   afterBurst?: boolean;
   /** Grow the card into the whole story. */
   grow?: boolean;
+}
+
+/**
+ * Whether the swipe from story `from` to story `to` flies rather than riding
+ * the card (`crossingFlies`) — asked once per river for every claim
+ * (`ridesFinger`) and again at each landing (`handleDeckSettle`). A story with
+ * no place has no crossing to fly; a framing the globe cannot say yet is the
+ * widest.
+ */
+function swipeFlies(
+  rows: readonly StoryRow[],
+  from: number,
+  to: number,
+  framingFor: (index: number) => number,
+): boolean {
+  const a = rows[from]?.coords;
+  const b = rows[to]?.coords;
+  if (!a || !b) return false;
+  const toClip = framingFor(to) || FRAMING_WIDEST;
+  return crossingFlies(framingFor(from) || toClip, toClip, arcDegrees(a[0], a[1], b[0], b[1]));
 }
 
 export default function HomeScreen() {
@@ -697,16 +717,7 @@ export default function HomeScreen() {
   // makes at the lift, made once per river so the pan can read it on the UI
   // thread the moment it claims a swipe.
   useEffect(() => {
-    ridesFinger.value = storyRows.map((row, i) => {
-      const next = storyRows[i + 1];
-      if (!row.coords || !next?.coords) return true;
-      const crossing = flyCurve(
-        framingFor(i) || FRAMING_WIDEST,
-        framingFor(i + 1) || FRAMING_WIDEST,
-        arcDegrees(row.coords[0], row.coords[1], next.coords[0], next.coords[1]),
-      );
-      return flyMs(crossing) <= DECK_SETTLE_MS;
-    });
+    ridesFinger.value = storyRows.map((_, i) => !swipeFlies(storyRows, i, i + 1, framingFor));
   }, [framingFor, ridesFinger, storyRows]);
 
   // The story in front, for a swipe to decide whether the camera is still on it.
@@ -1268,7 +1279,6 @@ export default function HomeScreen() {
   const handleDeckSettle = useCallback(
     (index: number) => {
       const leavingIndex = deckIndexRef.current;
-      const leaving = storyRowsRef.current[leavingIndex]?.coords ?? null;
       deckIndexRef.current = index;
       setDeckIndex(index);
       // A screen reader moves the deck through the card's next/previous
@@ -1291,15 +1301,7 @@ export default function HomeScreen() {
       if (!said) hapticSwipe();
       if (row?.coords) {
         const framing = framingFor(index);
-        const travel = leaving
-          ? arcDegrees(leaving[0], leaving[1], row.coords[0], row.coords[1])
-          : 0;
-        const crossing = flyCurve(
-          framingFor(leavingIndex) || framing || FRAMING_WIDEST,
-          framing || FRAMING_WIDEST,
-          travel,
-        );
-        if (flyMs(crossing) > DECK_SETTLE_MS) {
+        if (swipeFlies(storyRowsRef.current, leavingIndex, index, framingFor)) {
           // Longer than the card's own landing: the camera leaves the deck
           // here, at the lift, and flies the rest from wherever the finger got
           // it to, at the pace the distance asks for. The landing hands it

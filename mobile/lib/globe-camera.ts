@@ -440,6 +440,16 @@ export function flyMs(c: FlyCurve): number {
 }
 
 /**
+ * Whether a crossing flies rather than rides the card: its own flight outlasts
+ * the deck's landing spring (`DECK_SETTLE_MS`). One rule for a swipe's claim
+ * (`ridesFinger`, decided once per river so the pan can read it on the UI
+ * thread) and for its landing (`handleDeckSettle`), which made it twice.
+ */
+export function crossingFlies(fromClip: number, toClip: number, travelDeg: number): boolean {
+  return flyMs(flyCurve(fromClip, toClip, travelDeg)) > DECK_SETTLE_MS;
+}
+
+/**
  * A point partway along the great circle between two places, `[lat, lng]`.
  *
  * The globe turns along the surface of the sphere, the way a finger tracing a
