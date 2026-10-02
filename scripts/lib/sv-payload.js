@@ -10,8 +10,8 @@
 // the payload is malformed on the page, so it is cheaper to drop an article
 // here than to defend against it there.
 
-import { createHash } from 'node:crypto'
 import { regionFromCoords } from './regions.js'
+import { sha1Hex } from './hash.js'
 
 /** Inline country markup: `[Label](country:XX)`. ~52% of articles carry it. */
 const COUNTRY_LINK = /\[([^\]]*)\]\(country:([A-Za-z]{2})\)/g
@@ -40,7 +40,7 @@ export const countryTargets = (text) =>
  *  Hashing title+body means a re-run costs nothing and a corrected article is
  *  picked up on the next cycle without a flag. */
 export const articleFingerprint = (title, body) =>
-  createHash('sha1').update(`${title}\n\n${body}`).digest('hex').slice(0, 16)
+  sha1Hex(`${title}\n\n${body}`)
 
 /**
  * Does this translation survive contact with the renderer?

@@ -198,6 +198,17 @@ export async function callClaudeJson(prompt, { model, effort = 'medium', timeout
 }
 
 /**
+ * A model's sentence as it should be stored: one line, trimmed, and without
+ * the quotation marks a model sometimes wraps prose in. Anything that is not
+ * a string is `''`, so a missing field reads as empty rather than throwing.
+ * Three narrators carried this regex.
+ *
+ * @param {unknown} s
+ */
+export const cleanProse = (s) =>
+  typeof s === 'string' ? s.trim().replace(/\s+/g, ' ').replace(/^["']|["']$/g, '') : ''
+
+/**
  * `Claude usage: $0.1234 in 5678ms (cache read N, create M)` — the line that
  * says whether prompt caching is firing.
  *

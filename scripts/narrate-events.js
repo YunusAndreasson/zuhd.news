@@ -36,8 +36,7 @@
 
 import { readFileSync, existsSync, readdirSync } from 'node:fs'
 import { join } from 'node:path'
-import { createHash } from 'node:crypto'
-import { callClaudeJson } from './lib/claude-envelope.js'
+import { callClaudeJson, cleanProse } from './lib/claude-envelope.js'
 import { runWithConcurrency } from './lib/concurrency.js'
 import { promptEcho, promptExamples, validateNumbers, validateProperNouns } from './lib/grounding.js'
 import { matchesAnyTag } from './lib/entity-registry.js'
@@ -45,6 +44,7 @@ import { loadArticles, loadFeedWindow } from './lib/coverage-window.js'
 import { argAt, hasFlag } from './lib/argv.js'
 import { ROOT } from './lib/paths.js'
 import { writeJson } from './lib/json-file.js'
+import { sha1Hex } from './lib/hash.js'
 
 const CACHE_PATH = join(ROOT, 'content', '.events-dispatch.json')
 const LEDGER_PATH = join(ROOT, 'content', '.story-ledger.json')
@@ -74,7 +74,7 @@ if (!existsSync(PROMPT_PATH)) {
 const basePrompt = readFileSync(PROMPT_PATH, 'utf8')
 /** Part of `recentFingerprint` — the same reason as `narrate-indicators.js`:
  *  a prompt edit reaches every event once, at the next full pass. */
-const promptHash = createHash('sha1').update(basePrompt).digest('hex').slice(0, 8)
+const promptHash = sha1Hex(basePrompt, 8)
 /** See `narrate-indicators.js` for the calibration and the run that produced
  *  it — the three FOMC cards this stage shipped on 2026-09-05 were the same
  *  example between them, added the night before to stop a different repetition. */
@@ -174,7 +174,7 @@ const buildBundle = (item) => ({
  *  so the FOMC's definitional sentence is written once and not once per
  *  meeting date. */
 const standingFingerprint = (item) =>
-  createHash('sha1').update(JSON.stringify(item.identity)).digest('hex').slice(0, 16)
+  sha1Hex(item.identity)
 
 /** The countdown bucket a date falls into, coarse enough that a date moving
  *  by a day or two (a meeting slipping, a cycle running a few hours later)
@@ -197,17 +197,12 @@ const countdownBucket = (daysUntil) => {
  * to make true and this stage exists to keep true for events too.
  */
 const recentFingerprint = (bundle) =>
-  createHash('sha1')
-    .update(
-      JSON.stringify({
-        prompt: promptHash,
-        bucket: countdownBucket(bundle.event.daysUntil),
-        slugs: bundle.coverage.map((c) => c.slug).slice(0, 6).sort(),
-        feed: bundle.feedWindow.map((f) => f.headline).slice(0, 6).sort(),
-      }),
-    )
-    .digest('hex')
-    .slice(0, 16)
+  sha1Hex({
+    prompt: promptHash,
+    bucket: countdownBucket(bundle.event.daysUntil),
+    slugs: bundle.coverage.map((c) => c.slug).slice(0, 6).sort(),
+    feed: bundle.feedWindow.map((f) => f.headline).slice(0, 6).sort(),
+  })
 
 // ── The call ──────────────────────────────────────────────────────────────
 
@@ -224,9 +219,6 @@ Output ONLY the JSON object \`{ "standing": "...", "recent": "...", "citations":
 
   return callClaudeJson(fullPrompt, { model: MODEL, effort: EFFORT })
 }
-
-const clean = (s) =>
-  typeof s === 'string' ? s.trim().replace(/\s+/g, ' ').replace(/^["']|["']$/g, '') : ''
 
 // ── Main ──────────────────────────────────────────────────────────────────
 
@@ -275,8 +267,8 @@ await runWithConcurrency(selected, CONCURRENCY, async (item) => {
   }
   if (typeof result.costUsd === 'number') totalCostUsd += result.costUsd
 
-  const standing = clean(result.out.standing)
-  const recentRaw = clean(result.out.recent)
+  const standing = cleanProse(result.out.standing)
+  const recentRaw = cleanProse(result.out.recent)
 
   const recentEcho = recentRaw ? promptEcho(recentRaw, PROMPT_EXAMPLES) : null
   const recentBad = recentRaw

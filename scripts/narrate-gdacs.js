@@ -18,13 +18,13 @@
 
 import { readFileSync, existsSync } from 'node:fs'
 import { join } from 'node:path'
-import { createHash } from 'node:crypto'
 import { loadShared } from './build/shared-ts.js'
-import { callClaudeJson } from './lib/claude-envelope.js'
+import { callClaudeJson, cleanProse } from './lib/claude-envelope.js'
 import { runWithConcurrency } from './lib/concurrency.js'
 import { validateGrounding } from './lib/grounding.js'
 import { ROOT } from './lib/paths.js'
 import { readJson, writeJson } from './lib/json-file.js'
+import { sha1Hex } from './lib/hash.js'
 
 const SNAPSHOT_PATH = join(ROOT, 'content', '.gdacs.json')
 const CACHE_PATH = join(ROOT, 'content', '.gdacs-narrations.json')
@@ -104,7 +104,7 @@ await runWithConcurrency(candidates, CONCURRENCY, async (alert) => {
     return
   }
 
-  const narrative = sanitizeNarrative(result.narrative)
+  const narrative = cleanProse(result.narrative)
   const reason = validateGrounding(narrative, bundle)
   if (reason) {
     validatorRejected++
@@ -310,7 +310,7 @@ function hashFingerprint(bundle) {
       : null,
     weather: w,
   }
-  return createHash('sha1').update(JSON.stringify(stable)).digest('hex').slice(0, 16)
+  return sha1Hex(stable)
 }
 
 async function callClaude(bundle) {
@@ -331,10 +331,6 @@ Output ONLY the JSON object \`{ "narrative": "..." }\`. No markdown, no fences.`
     return { elapsedMs: res.elapsedMs, error: 'no narrative in result' }
   }
   return { elapsedMs: res.elapsedMs, narrative, costUsd: res.costUsd }
-}
-
-function sanitizeNarrative(s) {
-  return s.trim().replace(/\s+/g, ' ').replace(/^["']|["']$/g, '')
 }
 
 /* The numeric validator moved to `lib/grounding.js` on 2026-08-08, unchanged in

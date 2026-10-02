@@ -42,7 +42,7 @@
 //                          reasoning task about register and false friends
 //   ZUHD_SV_FORCE=1        ignore the cache and re-translate everything
 
-import { existsSync, readFileSync, readdirSync } from 'node:fs'
+import { readFileSync, readdirSync } from 'node:fs'
 import { join } from 'node:path'
 import { argAt, hasFlag } from './lib/argv.js'
 import { splitBlocks } from './lib/blocks.js'
@@ -56,9 +56,9 @@ import {
   registerFault,
   translationFault,
 } from './lib/sv-payload.js'
-import { createHash } from 'node:crypto'
 import { ROOT } from './lib/paths.js'
-import { writeJson } from './lib/json-file.js'
+import { readJson, writeJson } from './lib/json-file.js'
+import { sha1Hex } from './lib/hash.js'
 
 const CONTENT_DIR = join(ROOT, 'content', 'articles')
 const CACHE_PATH = join(ROOT, 'content', '.sv.json')
@@ -89,14 +89,9 @@ const basePrompt = readFileSync(PROMPT_PATH, 'utf8')
 // later. Editing sv-prompt.md and seeing nothing improve is the failure this
 // prevents. The cost of being wrong in the other direction is one cycle that
 // re-translates the whole window, which is minutes and cents.
-const RECIPE = createHash('sha1')
-  .update(`${basePrompt}\n${MODEL}\n${EFFORT}`)
-  .digest('hex')
-  .slice(0, 12)
+const RECIPE = sha1Hex(`${basePrompt}\n${MODEL}\n${EFFORT}`, 12)
 
-const cache = existsSync(CACHE_PATH)
-  ? JSON.parse(readFileSync(CACHE_PATH, 'utf8'))
-  : { articles: {} }
+const cache = readJson(CACHE_PATH, { articles: {} })
 if (!cache.articles) cache.articles = {}
 
 // ── Collect the window ─────────────────────────────────────────────────────

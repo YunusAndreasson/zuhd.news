@@ -43,7 +43,6 @@
 
 import { readFileSync, existsSync, readdirSync } from 'node:fs'
 import { join } from 'node:path'
-import { createHash } from 'node:crypto'
 import { callIndicatorModel } from './lib/indicator-model.js'
 import { runWithConcurrency } from './lib/concurrency.js'
 import { promptEcho, promptExamples, seriesEchoes, validateNumbers, validateProperNouns } from './lib/grounding.js'
@@ -52,6 +51,8 @@ import { loadArticles, loadFeedWindow } from './lib/coverage-window.js'
 import { argAt, hasFlag } from './lib/argv.js'
 import { ROOT } from './lib/paths.js'
 import { writeJson } from './lib/json-file.js'
+import { sha1Hex } from './lib/hash.js'
+import { cleanProse } from './lib/claude-envelope.js'
 
 if (hasFlag('market-signals')) {
   const { runMarketSignals } = await import('./narrate-market-signals.js')
@@ -144,7 +145,7 @@ const basePrompt = readFileSync(PROMPT_PATH, 'utf8')
  *  the next full pass rather than only the ones whose story happens to move
  *  that day. The output is a function of the prompt and the input; a cache
  *  key that ignored half of that let a rewritten prompt sit unapplied. */
-const promptHash = createHash('sha1').update(basePrompt).digest('hex').slice(0, 8)
+const promptHash = sha1Hex(basePrompt, 8)
 /** The prompt's own worked examples, so `promptEcho` measures against the file
  *  this run is sending rather than a list that has to be kept in step. */
 const PROMPT_EXAMPLES = promptExamples(basePrompt)
@@ -394,10 +395,7 @@ const buildBundle = (item) => ({
  * already busts on a prompt edit.
  */
 const standingFingerprint = (item) =>
-  createHash('sha1')
-    .update(JSON.stringify({ ...item.identity, klass: item.klass, blurb: item.catalogBlurb, prompt: promptHash }))
-    .digest('hex')
-    .slice(0, 16)
+  sha1Hex({ ...item.identity, klass: item.klass, blurb: item.catalogBlurb, prompt: promptHash })
 
 /**
  * What `recent` is about — **the story, not the number**.
@@ -421,22 +419,17 @@ const standingFingerprint = (item) =>
  */
 const recentFingerprint = (bundle) => {
   const band = (pct) => (Number.isFinite(pct) ? Math.round(pct / 5) : null)
-  return createHash('sha1')
-    .update(
-      JSON.stringify({
-        prompt: promptHash,
-        move: band(bundle.series.changePctOverSeries),
-        dayMove: band(bundle.series.dayChangePct),
-        baseline: band(bundle.series.last7VsBaseline90Pct),
-        peakOn: bundle.series.extremes?.high?.on ?? null,
-        troughOn: bundle.series.extremes?.low?.on ?? null,
-        alert: bundle.series.weatherAlert ?? null,
-        slugs: bundle.coverage.map((c) => c.slug).slice(0, 6).sort(),
-        feed: bundle.feedWindow.map((f) => f.headline).slice(0, 6).sort(),
-      }),
-    )
-    .digest('hex')
-    .slice(0, 16)
+  return sha1Hex({
+    prompt: promptHash,
+    move: band(bundle.series.changePctOverSeries),
+    dayMove: band(bundle.series.dayChangePct),
+    baseline: band(bundle.series.last7VsBaseline90Pct),
+    peakOn: bundle.series.extremes?.high?.on ?? null,
+    troughOn: bundle.series.extremes?.low?.on ?? null,
+    alert: bundle.series.weatherAlert ?? null,
+    slugs: bundle.coverage.map((c) => c.slug).slice(0, 6).sort(),
+    feed: bundle.feedWindow.map((f) => f.headline).slice(0, 6).sort(),
+  })
 }
 
 // ── The call ──────────────────────────────────────────────────────────────
@@ -454,9 +447,6 @@ Output ONLY the JSON object \`{ "standing": "...", "recent": "...", "citations":
 
   return callIndicatorModel(fullPrompt)
 }
-
-const clean = (s) =>
-  typeof s === 'string' ? s.trim().replace(/\s+/g, ' ').replace(/^["']|["']$/g, '') : ''
 
 // ── Main ──────────────────────────────────────────────────────────────────
 
@@ -522,9 +512,9 @@ await runWithConcurrency(selected, CONCURRENCY, async (item) => {
   if (typeof result.costUsd === 'number') totalCostUsd += result.costUsd
 
   const standing = BLURB_IS_DEFINITION.has(item.klass)
-    ? item.catalogBlurb || clean(result.out.standing)
-    : clean(result.out.standing) || item.catalogBlurb
-  const recentRaw = clean(result.out.recent)
+    ? item.catalogBlurb || cleanProse(result.out.standing)
+    : cleanProse(result.out.standing) || item.catalogBlurb
+  const recentRaw = cleanProse(result.out.recent)
 
   // **`standing` is not grounding-checked, and that is the field's definition
   // rather than an oversight.** It is the one place general knowledge is the
