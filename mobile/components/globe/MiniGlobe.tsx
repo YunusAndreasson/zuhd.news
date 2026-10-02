@@ -69,7 +69,11 @@ import {
 import { useTheme } from '../../hooks/useTheme';
 import { articleTime } from '../../lib/article-utils';
 import type { CardDelta } from '../../lib/cards/types';
-import { collapseConflictVisuals, eventAgeDays } from '../../lib/conflict';
+import {
+  type ConflictVisualCluster,
+  collapseConflictVisuals,
+  eventAgeDays,
+} from '../../lib/conflict';
 import { alertAgeDays, gdacsGlyphScale } from '../../lib/gdacs';
 import {
   arcDegrees,
@@ -300,10 +304,9 @@ function overlayAtlas(
  *  the sprite — filling its transparent bounding box with solid squares. */
 function conflictAtlas(
   spec: GlowSpec,
-  marks: { x: number; y: number; recencyAlpha: number; scale: number }[],
+  visuals: readonly ConflictVisualCluster[],
   rgb: readonly [number, number, number],
 ) {
-  const visuals = collapseConflictVisuals(marks);
   if (visuals.length === 0) return null;
   const sprites: ReturnType<typeof rect>[] = [];
   const transforms: ReturnType<typeof Skia.RSXform>[] = [];
@@ -1156,6 +1159,10 @@ interface GlobeState {
   /** The conflict counts printed beside their glows: stacks of three or more,
    *  clear of every story count (which wins). Decided in the reprojection. */
   conflictCounts: { x: number; y: number; count: number }[];
+  /** `conflictMarks` collapsed where their glows touch
+   *  (`collapseConflictVisuals`), once per projection: the counts above and
+   *  the glow atlas both read it, and each used to collapse the marks itself. */
+  conflictGlows: ConflictVisualCluster[];
   /** Neighbour-country labels — every country within the camera's visible
    *  hemisphere EXCEPT the highlighted one. Emerges when the camera is
    *  zoomed past PLACES_APPEAR_CLIP, giving the reader geographic context
@@ -1255,6 +1262,7 @@ const EMPTY_GLOBE: GlobeState = {
   gdacsMarks: [],
   conflictMarks: [],
   conflictCounts: [],
+  conflictGlows: [],
   neighborLabels: [],
   waterLabels: [],
   riversPath: null,
@@ -2103,7 +2111,7 @@ function recordGlobeFrame(f: GlobeState, s: FrameStyle): FramePictures {
   drawAtlasLayer(
     c,
     textures.ghost,
-    conflictAtlas(GHOST_GLOW, f.conflictMarks, hexRgb(colors.markConflict)),
+    conflictAtlas(GHOST_GLOW, f.conflictGlows, hexRgb(colors.markConflict)),
   );
   if (fonts.sub) {
     // In the conflict's own red, so a count says which mark it counts: a
@@ -3914,8 +3922,10 @@ export const MiniGlobe = memo(function MiniGlobe({
       // A conflict stack's count is set like a story's, in the same ink, so
       // the two collided — "5" and "8" at Washington read as "58". A story's
       // count is kept; the conflict glow still says something happened there.
+      const conflictGlows = collapseConflictVisuals(conflictMarks);
       const conflictCounts: (GlobeState['conflictCounts'][number] & { hidden?: boolean })[] = [];
-      for (const v of collapseConflictVisuals(conflictMarks).sort((a, b) => b.count - a.count)) {
+      // Largest first, on a copy: the atlas draws the glows in their own order.
+      for (const v of [...conflictGlows].sort((a, b) => b.count - a.count)) {
         if (v.count < 3) continue;
         const box = conflictCountBox(v, subFontRef.current);
         if (countBoxes.some((b) => boxesMeet(b, box, COUNT_GAP))) continue;
@@ -4525,6 +4535,7 @@ export const MiniGlobe = memo(function MiniGlobe({
         gdacsMarks,
         conflictMarks,
         conflictCounts: conflictCounts.filter((c) => !c.hidden),
+        conflictGlows,
         neighborLabels: keptNeighbours,
         waterLabels: keptWaters,
         riversPath,
