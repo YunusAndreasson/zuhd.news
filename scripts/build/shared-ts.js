@@ -10,8 +10,8 @@ import { build } from 'esbuild'
 import { join } from 'node:path'
 import { mkdtempSync, rmSync, writeFileSync } from 'node:fs'
 import { tmpdir } from 'node:os'
+import { ROOT } from '../lib/paths.js'
 
-const ROOT = new URL('../..', import.meta.url).pathname
 const SHARED = join(ROOT, 'shared')
 
 const cache = new Map()

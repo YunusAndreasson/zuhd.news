@@ -34,7 +34,7 @@
 //   --dry-run                build bundles, print sizes, call nothing
 //   --only <id>               one event id (e.g. `fomc-2026-09`)
 
-import { readFileSync, existsSync, readdirSync } from 'node:fs'
+import { readFileSync, existsSync } from 'node:fs'
 import { join } from 'node:path'
 import { callClaudeJson, cleanProse } from './lib/claude-envelope.js'
 import { runWithConcurrency } from './lib/concurrency.js'
@@ -45,6 +45,7 @@ import { argAt, hasFlag } from './lib/argv.js'
 import { ROOT } from './lib/paths.js'
 import { writeJson } from './lib/json-file.js'
 import { sha1Hex } from './lib/hash.js'
+import { latestTrendsPath } from './lib/trends-snapshot.js'
 
 const CACHE_PATH = join(ROOT, 'content', '.events-dispatch.json')
 const LEDGER_PATH = join(ROOT, 'content', '.story-ledger.json')
@@ -89,16 +90,6 @@ const iso = (t) => new Date(t).toISOString().slice(0, 10)
 const todayIso = iso(Date.now())
 
 // ── Sources ───────────────────────────────────────────────────────────────
-
-/** Newest daily trends snapshot — same lookup `narrate-indicators.js` uses. */
-const latestTrendsPath = () => {
-  const dir = join(ROOT, 'content', 'trends')
-  if (!existsSync(dir)) return null
-  const names = readdirSync(dir)
-    .filter((f) => /^\d{4}-\d{2}-\d{2}\.json$/.test(f))
-    .sort()
-  return names.length ? join(dir, names[names.length - 1]) : null
-}
 
 const trendsPath = latestTrendsPath()
 const trends = trendsPath ? JSON.parse(readFileSync(trendsPath, 'utf8')) : { events: [] }

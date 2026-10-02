@@ -41,7 +41,7 @@
 //   --only <id>                  one namespaced id (e.g. `wiki-iran`, `cp:hormuz`)
 //   --new-only                   only instruments with no cache entry at all
 
-import { readFileSync, existsSync, readdirSync } from 'node:fs'
+import { readFileSync, existsSync } from 'node:fs'
 import { join } from 'node:path'
 import { callIndicatorModel } from './lib/indicator-model.js'
 import { runWithConcurrency } from './lib/concurrency.js'
@@ -53,6 +53,7 @@ import { ROOT } from './lib/paths.js'
 import { writeJson } from './lib/json-file.js'
 import { sha1Hex } from './lib/hash.js'
 import { cleanProse } from './lib/claude-envelope.js'
+import { latestTrendsPath } from './lib/trends-snapshot.js'
 
 if (hasFlag('market-signals')) {
   const { runMarketSignals } = await import('./narrate-market-signals.js')
@@ -65,7 +66,6 @@ const CHOKEPOINTS_PATH = join(ROOT, 'content', '.chokepoints.json')
 const MARKETS_PATH = join(ROOT, 'content', '.markets.json')
 const LEDGER_PATH = join(ROOT, 'content', '.story-ledger.json')
 const PROMPT_PATH = join(ROOT, 'scripts', 'narrate-indicators-prompt.md')
-
 
 const CONCURRENCY = 3
 /** The window everything recent is measured over. Two weeks is long enough that
@@ -166,18 +166,6 @@ const windowStart = Date.now() - WINDOW_DAYS * 86400_000
 const iso = (t) => new Date(t).toISOString().slice(0, 10)
 
 // ── Sources ───────────────────────────────────────────────────────────────
-
-/** Newest daily trends snapshot. Same answer `build/entity-pages.js` computes;
- *  duplicated here only because that module is ESM under `scripts/build/` and
- *  importing it would pull the whole page builder into a pipeline stage. */
-const latestTrendsPath = () => {
-  const dir = join(ROOT, 'content', 'trends')
-  if (!existsSync(dir)) return null
-  const names = readdirSync(dir)
-    .filter((f) => /^\d{4}-\d{2}-\d{2}\.json$/.test(f))
-    .sort()
-  return names.length ? join(dir, names[names.length - 1]) : null
-}
 
 const trendsPath = latestTrendsPath()
 const trends = trendsPath ? JSON.parse(readFileSync(trendsPath, 'utf8')) : { indicators: [] }

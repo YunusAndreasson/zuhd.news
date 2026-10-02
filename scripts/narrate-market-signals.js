@@ -1,4 +1,4 @@
-import { existsSync, readdirSync } from 'node:fs'
+
 import { join } from 'node:path'
 import { createHash } from 'node:crypto'
 import { normalizeMarkets, selectMarketSignals, factualSummary } from './lib/market-signals.js'
@@ -8,6 +8,7 @@ import { callIndicatorModel } from './lib/indicator-model.js'
 import { validateNumbers, validateProperNouns } from './lib/grounding.js'
 import { ROOT } from './lib/paths.js'
 import { readJson, writeJson } from './lib/json-file.js'
+import { latestTrendsPath } from './lib/trends-snapshot.js'
 
 const hash = (v) => createHash('sha256').update(JSON.stringify(v)).digest('hex').slice(0, 16)
 
@@ -50,9 +51,8 @@ export function validateMarketComment(out, bundle, reasons = []) {
  */
 export async function runMarketSignals({ dryRun = false, noLlm = false, now = Date.now(), root = ROOT, suppliedArticles = null, callModel = callIndicatorModel } = {}) {
   const markets = readJson(join(root, 'content/.markets.json'), {})
-  const dir = join(root, 'content/trends')
-  const latest = existsSync(dir) ? readdirSync(dir).filter((f) => /^\d{4}-\d{2}-\d{2}\.json$/.test(f)).sort().at(-1) : null
-  const trends = latest ? readJson(join(dir, latest), {}) : {}
+  const latest = latestTrendsPath(root)
+  const trends = latest ? readJson(latest, {}) : {}
   // The definitional sentence `narrate-indicators.js` already wrote for this
   // exact id. Reused rather than re-asked: a second model writing a second
   // definition of BIST 100 is two paraphrases that can disagree, and this

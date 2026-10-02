@@ -25,8 +25,7 @@
 //     [--out /tmp/zuhd-replay-recap-dedup.json]
 
 import { existsSync, readdirSync, readFileSync, writeFileSync } from 'node:fs'
-import { join, dirname } from 'node:path'
-import { fileURLToPath } from 'node:url'
+import { join } from 'node:path'
 import {
   NICHE_SOURCES,
   buildWordSets,
@@ -36,8 +35,8 @@ import {
   recapMatch,
 } from '../lib/dedup.js'
 import { parseFrontmatter } from '../lib/frontmatter.js'
+import { ROOT } from '../lib/paths.js'
 
-const ROOT = join(dirname(fileURLToPath(import.meta.url)), '..', '..')
 const ARTICLES_DIR = join(ROOT, 'content', 'articles')
 const LEDGER_PATH = join(ROOT, 'content', '.story-ledger.json')
 const SNAP_DIR_API = join(ROOT, 'content', '.feed-snapshots')
