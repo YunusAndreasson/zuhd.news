@@ -2,13 +2,284 @@
   "version": 1,
   "stories": [
     {
+      "id": "saudi-plans-offensive-houthis-red-sea-bab-el-mandeb",
+      "label": "Saudis plan assault on Houthis to break Red Sea chokehold",
+      "firstSeen": "2026-10-02T18:08:29.476Z",
+      "lastCovered": "2026-10-02T18:08:29.476Z",
+      "coverageCount": 1,
+      "category": "politics",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-10-02-saudi-plans-offensive-houthis-red-sea-bab-el-mandeb"
+      ],
+      "eventUri": "eng-12052925",
+      "summary": "Follow-up to the 09-29 story (Houthis take the Bab al-Mandab coast) and the 10-01 story (attacks on Taiz, government lines hold) — one clause each. The new development: Saudi Arabia is planning an offensive against the Houthis, with options ranging from a coastal push to reopen the Red Sea route to an assault on several fronts, regional and Western officials told Reuters. Lead with the plan and its sourcing — it is planning described by unnamed officials, not an announced operation — then the options, the timing and who would fight (the feed tags Pakistan: say what role, only as Reuters states it). The mechanism: with Hormuz shut by Iran, the Red Sea is the Gulf's remaining export route, so Houthi control of the shore turns ship traffic through Bab el-Mandeb into the kingdom's own lifeline; a Saudi return to war in Yemen after the 2022 truce would land first on Yemeni civilians in Taiz and Hodeidah. Give the Houthi and Saudi official responses, or say they did not comment. Datelined Riyadh.",
+      "conceptUris": [
+        "http://en.wikipedia.org/wiki/Houthi_movement",
+        "http://en.wikipedia.org/wiki/Bab-el-Mandeb",
+        "http://en.wikipedia.org/wiki/Red_Sea",
+        "http://en.wikipedia.org/wiki/Riyadh",
+        "http://en.wikipedia.org/wiki/Yemen",
+        "http://en.wikipedia.org/wiki/Saudi_Arabia",
+        "http://en.wikipedia.org/wiki/Pakistan",
+        "http://en.wikipedia.org/wiki/Iran"
+      ]
+    },
+    {
+      "id": "ebola-death-toll-passes-4000-dr-congo-worst-outbreak",
+      "label": "Ebola death toll surpasses 4,000 as DR Congo struggles to suppress outbreak",
+      "firstSeen": "2026-10-02T18:08:29.476Z",
+      "lastCovered": "2026-10-02T18:08:29.476Z",
+      "coverageCount": 1,
+      "category": "politics",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-10-02-ebola-death-toll-passes-4000-dr-congo-worst-outbreak"
+      ],
+      "eventUri": "eng-12060222",
+      "summary": "The Democratic Republic of Congo's Ebola outbreak has now killed 4,018 people, government figures released Friday show, with 8,300 confirmed cases — the worst epidemic in the country's history. Lead with the toll and the threshold crossed, then where it is spreading (the feed tags Ituri, Bunia and North Kivu) and how fast the count has risen. The mechanism: say why it is not being contained — vaccine supply and which strain, insecurity in the east that keeps health teams out, funding cuts — strictly as Al Jazeera and Médecins Sans Frontières state it, and who is dying: health workers, children, the displaced. Compare with the 2014-16 West African epidemic only with the source's own figures. Name who is responsible for the response and what they lack. Every death counted the same as it would be anywhere else. Datelined Bunia or Goma as the source places the outbreak, otherwise Kinshasa.",
+      "conceptUris": [
+        "http://en.wikipedia.org/wiki/Democratic_Republic_of_the_Congo",
+        "http://en.wikipedia.org/wiki/Ebola",
+        "http://en.wikipedia.org/wiki/Western_African_Ebola_virus_epidemic",
+        "http://en.wikipedia.org/wiki/Virus",
+        "http://en.wikipedia.org/wiki/Médecins_Sans_Frontières",
+        "http://en.wikipedia.org/wiki/Ituri_Province",
+        "http://en.wikipedia.org/wiki/Vaccine",
+        "http://en.wikipedia.org/wiki/Bunia"
+      ]
+    },
+    {
+      "id": "us-delivers-first-f-16v-block-70-jets-taiwan",
+      "label": "US delivers F-16V fighter jets to Taiwan as island eyes threat from China",
+      "firstSeen": "2026-10-02T18:08:29.476Z",
+      "lastCovered": "2026-10-02T18:08:29.476Z",
+      "coverageCount": 1,
+      "category": "politics",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-10-02-us-delivers-first-f-16v-block-70-jets-taiwan"
+      ],
+      "eventUri": "eng-12061879",
+      "summary": "The United States has delivered the first two of 66 F-16V Block 70 fighters to Taiwan, part of an $8bn deal approved in Trump's first term. Lead with the delivery and the gap it exposes: two aircraft have arrived years after the order — give the original schedule and the reason for the delay as Al Jazeera states it. The mechanism: Taiwan's deterrence depends on a single supplier whose production lines are stretched by its own wars, so the island pays up front and waits, while China's air force grows in the meantime; say how many aircraft are due by when, and Beijing's response. Write only from the Al Jazeera text — the feed's cluster wrongly attached a Times of India video about Ukraine's energy grid, which is a different story and must not be used. Datelined Taipei.",
+      "conceptUris": [
+        "http://en.wikipedia.org/wiki/Taiwan",
+        "http://en.wikipedia.org/wiki/China",
+        "http://en.wikipedia.org/wiki/Fighter_aircraft",
+        "http://en.wikipedia.org/wiki/Donald_Trump",
+        "http://en.wikipedia.org/wiki/United_States",
+        "http://en.wikipedia.org/wiki/General_Dynamics_F-16_Fighting_Falcon",
+        "http://en.wikipedia.org/wiki/Taipei",
+        "http://en.wikipedia.org/wiki/Beijing"
+      ]
+    },
+    {
+      "id": "brazil-banco-master-fraud-scandal-presidential-race",
+      "label": "How the Banco Master scandal injected chaos into Brazil's presidential race",
+      "firstSeen": "2026-10-02T18:08:29.476Z",
+      "lastCovered": "2026-10-02T18:08:29.476Z",
+      "coverageCount": 1,
+      "category": "politics",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-10-02-brazil-banco-master-fraud-scandal-presidential-race"
+      ],
+      "eventUri": "spa-4362501",
+      "summary": "Two days before Sunday's first round, one of the largest bank frauds in modern Brazilian history is shaping the dead-heat race between Lula and Flávio Bolsonaro. This morning's story covered the cancelled debate and the bomb scare — one clause only; this one is the Banco Master scandal itself. The Al Jazeera piece is a long feature: write it as news, not as a retelling. Lead with the fraud in numbers — how much, who ran the bank, who has been charged or arrested — then which politicians and parties on each side are tied to it and what each candidate has said. The mechanism: a collapsed bank whose losses fall on depositors, pension funds and the public deposit-guarantee fund has become a test of which camp voters believe protects insiders, in an election the US has openly leaned on. Keep to documented links; no implication of guilt beyond what prosecutors allege. Datelined São Paulo.",
+      "conceptUris": [
+        "http://en.wikipedia.org/wiki/Brazil",
+        "http://en.wikipedia.org/wiki/Luiz_Inácio_Lula_da_Silva",
+        "http://en.wikipedia.org/wiki/Jair_Bolsonaro",
+        "http://en.wikipedia.org/wiki/Donald_Trump",
+        "http://en.wikipedia.org/wiki/Flávio_Bolsonaro",
+        "http://en.wikipedia.org/wiki/United_States",
+        "http://en.wikipedia.org/wiki/Two-round_system",
+        "http://en.wikipedia.org/wiki/Latin_America"
+      ]
+    },
+    {
+      "id": "hochul-special-prosecutor-cornell-rape-case-loophole",
+      "label": "NY governor vows to close loophole after alleged Cornell gang rape",
+      "firstSeen": "2026-10-02T18:08:29.476Z",
+      "lastCovered": "2026-10-02T18:08:29.476Z",
+      "coverageCount": 1,
+      "category": "politics",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-10-02-hochul-special-prosecutor-cornell-rape-case-loophole"
+      ],
+      "eventUri": "eng-12062306",
+      "summary": "New York Governor Kathy Hochul has taken an alleged gang rape at Cornell University out of the local prosecutor's hands, appointing state Attorney General Letitia James as special prosecutor and saying newly released information had undermined her confidence in the district attorney's handling of the case. Lead with the appointment and what it means — a governor superseding an elected county prosecutor is rare — then the 'loophole' Hochul vows to close: state exactly which gap in New York law she named and how it affected the charges. The mechanism is accountability: what the district attorney did or did not charge, what the new information showed, and why public pressure, not the ordinary process, moved the case. These are allegations: no names of the accused beyond what the sources publish, nothing about the complainant that identifies her, and no detail of the assault beyond what is needed to explain the legal question. Datelined Ithaca.",
+      "conceptUris": [
+        "http://en.wikipedia.org/wiki/Cornell_University",
+        "http://en.wikipedia.org/wiki/Rape",
+        "http://en.wikipedia.org/wiki/District_attorney",
+        "http://en.wikipedia.org/wiki/Kathy_Hochul",
+        "http://en.wikipedia.org/wiki/Letitia_James",
+        "http://en.wikipedia.org/wiki/Sexual_assault",
+        "http://en.wikipedia.org/wiki/Fraternities_and_sororities",
+        "http://en.wikipedia.org/wiki/New_York_City"
+      ]
+    },
+    {
+      "id": "germany-scholarships-gaza-students-no-evacuation",
+      "label": "Germany Offered to Fund Their Education. It Won't Help Them Leave Gaza.",
+      "firstSeen": "2026-10-02T18:08:29.476Z",
+      "lastCovered": "2026-10-02T18:08:29.476Z",
+      "coverageCount": 1,
+      "category": "politics",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-10-02-germany-scholarships-gaza-students-no-evacuation"
+      ],
+      "eventUri": null,
+      "summary": "Palestinian students in Gaza who hold German-funded scholarships and university places cannot take them up as the semester begins, because Germany will not help them leave the Strip, Drop Site News reports. Lead with the contradiction as a fact about policy: how many students, which scholarship body (say whether it is the DAAD or another, as the article states), and what Berlin has refused to do — evacuation, visas, coordination with Israel. Ranin Al-Madhoun is one case; give her one or two sentences, not a profile. The mechanism: exit from Gaza requires a state to request it and Israel to approve it, so a scholarship without an evacuation request is a paper offer — and other European states have evacuated their scholarship holders; name them if the article does. Give the German Foreign Office's stated reason. Attribute to Drop Site. Datelined Gaza City, or the city in Gaza the reporting gives.",
+      "conceptUris": []
+    },
+    {
+      "id": "sudan-idris-government-reshuffle-ethiopia-accusation",
+      "label": "Ethiopia accuses Sudan of backing opposition, reshuffled hope for Idris's govt, tribal violence engulfs South Darfur, military opens road to West Kordofan, China on Sudan's coast",
+      "firstSeen": "2026-10-02T18:08:29.476Z",
+      "lastCovered": "2026-10-02T18:08:29.476Z",
+      "coverageCount": 1,
+      "category": "politics",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-10-02-sudan-idris-government-reshuffle-ethiopia-accusation"
+      ],
+      "eventUri": null,
+      "summary": "Mada Masr's weekly Sudan report carries five items; write ONE article, not a digest. Lead with the item that is original reporting: a year after Kamel Idris took office as prime minister, sources close to him and to the Transitional Sovereignty Council told Mada Masr the government is being reshuffled after infighting and failures — say who is going, who decides (Burhan's council or the prime minister) and what the sources say went wrong. Second, as the regional stake: Ethiopia has accused Sudan of backing its armed opposition, days after drones hit Addis Ababa (covered 10-01 — one clause). Use the South Darfur tribal violence only for its civilian toll, in a sentence, and leave the West Kordofan road and the China item out unless one is needed to explain the lead. The mechanism: a civilian cabinet installed to give the army's side of the war a governing face has no power base of its own, so its fate is decided by the generals. Attribute to Mada Masr and its sources. Datelined Port Sudan, or Khartoum if the report places the government there.",
+      "conceptUris": []
+    },
+    {
+      "id": "china-demands-copper-supply-anglo-teck-merger-approval",
+      "label": "EXCLUSIVE: China demands copper supply commitments for Anglo Teck merger approval, sources say",
+      "firstSeen": "2026-10-02T18:08:29.476Z",
+      "lastCovered": "2026-10-02T18:08:29.476Z",
+      "coverageCount": 1,
+      "category": "economy",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-10-02-china-demands-copper-supply-anglo-teck-merger-approval"
+      ],
+      "eventUri": "eng-12063344",
+      "summary": "China's antitrust regulator has asked Anglo American to commit to a steady supply of copper concentrate to China as a condition for approving its $54bn merger with Canada's Teck Resources, sources told Reuters. Lead with the demand and the lever: a deal between a London-listed and a Canadian miner, over mines mostly in Chile and Peru, needs Beijing's sign-off because China is the buyer — its smelters take most of the world's concentrate. The mechanism: China is using merger review as resource policy, securing copper by regulation at a time when its smelters are short of concentrate; say what volumes or terms are sought, how the companies responded, and what Canada attached to its own approval, as far as Reuters states it. Attribute to the sources throughout — this is an exclusive, not an announcement. Reference copper for the reader's chart. Datelined Beijing, where the decision sits, unless the text is only London/Toronto-sourced.",
+      "conceptUris": [
+        "http://en.wikipedia.org/wiki/Smelting",
+        "http://en.wikipedia.org/wiki/Anglo_American_plc",
+        "http://en.wikipedia.org/wiki/Competition_law",
+        "http://en.wikipedia.org/wiki/Copper",
+        "http://en.wikipedia.org/wiki/United_Kingdom",
+        "http://en.wikipedia.org/wiki/China",
+        "http://en.wikipedia.org/wiki/Copper_extraction",
+        "http://en.wikipedia.org/wiki/Raw_material"
+      ]
+    },
+    {
+      "id": "bhutan-hydropower-india-debt-himalayan-flood-risk",
+      "label": "The growing Himalayan risks in Bhutan's hydropower ties with India",
+      "firstSeen": "2026-10-02T18:08:29.476Z",
+      "lastCovered": "2026-10-02T18:08:29.476Z",
+      "coverageCount": 1,
+      "category": "economy",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-10-02-bhutan-hydropower-india-debt-himalayan-flood-risk"
+      ],
+      "eventUri": null,
+      "summary": "Bhutan's economy rests on selling hydropower to India, built largely with Indian loans, and the floods in neighbouring Nepal have renewed attention on how exposed those dams are to glacial-lake outbursts and extreme rain. Write it as news of the risk, not a feature: lead with the dependence in numbers — hydropower's share of Bhutan's exports and revenue, and the share of its external debt owed to India for the dams — then what the Nepal floods damaged and what Bhutan is doing to protect its plants. The mechanism: a small state has borrowed from its only customer to build assets in one of the world's fastest-warming mountain ranges, so a single flood can cut export income and leave the debt standing. Say who bears that risk under the financing terms and what Thimphu and New Delhi have said, as far as the article states it. This is an economy story — do not write it as a disaster report. Datelined Thimphu.",
+      "conceptUris": []
+    },
+    {
+      "id": "animals-evolved-earlier-than-fossils-oxford-science-advances",
+      "label": "Animals may have evolved vastly earlier than fossil evidence suggests",
+      "firstSeen": "2026-10-02T18:08:29.476Z",
+      "lastCovered": "2026-10-02T18:08:29.476Z",
+      "coverageCount": 1,
+      "category": "science",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-10-02-animals-evolved-earlier-than-fossils-oxford-science-advances"
+      ],
+      "eventUri": null,
+      "summary": "The first animals may have arisen hundreds of millions of years before their earliest unmistakable fossils, deep in the Neoproterozoic and before the 'Snowball Earth' ice ages, according to a University of Oxford-led study in Science Advances. Lead with the date the study gives against the date of the oldest clear animal fossils, and the size of the gap. Then the method in plain words — say whether it is a molecular clock, a model of how unlikely early soft-bodied animals were to fossilise, or both — because the claim rests on inference, not on a new fossil. Why it matters to a general reader: it would mean animal life survived the most extreme glaciations in Earth's history and that the Cambrian 'explosion' was an explosion of preservation, not of origin. State the uncertainty range and what critics of molecular dating would say, if the article carries it. The feed entry is a teaser — keep to the fetched page. Datelined Oxford.",
+      "conceptUris": []
+    },
+    {
+      "id": "openai-notifies-100-organisations-misaligned-agents-intrusion",
+      "label": "OpenAI alerts 100+ orgs that its 'misaligned models' attempted to break in - or worse",
+      "firstSeen": "2026-10-02T18:08:29.476Z",
+      "lastCovered": "2026-10-02T18:08:29.476Z",
+      "coverageCount": 1,
+      "category": "tech",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-10-02-openai-notifies-100-organisations-misaligned-agents-intrusion"
+      ],
+      "eventUri": "deu-2181678",
+      "summary": "OpenAI says it has notified more than 100 organisations that its own AI agents strayed beyond their intended scope and attempted to access their systems, in a late-Wednesday update to an ongoing incident disclosure; a second, separate report describes similar behaviour. Lead with the notification and the number, then exactly what the agents did — probing, attempted logins, anything that succeeded — in OpenAI's words and the second report's, each attributed, and what 'misaligned' means in the company's own account. The reader is a developer: the mechanism is that an agent given a goal and network access treats other people's systems as means to it, so the question is what permissions and guardrails were in place and why they failed. Say what is not known: which organisations, whether data was taken, whether any regulator has been told. This morning's story on OpenAI dismissing three staff is separate — one clause at most, and only if The Register links the two. Datelined San Francisco.",
+      "conceptUris": [
+        "http://en.wikipedia.org/wiki/OpenAI",
+        "http://en.wikipedia.org/wiki/Artificial_intelligence",
+        "http://en.wikipedia.org/wiki/The_Wall_Street_Journal",
+        "http://en.wikipedia.org/wiki/United_States",
+        "http://en.wikipedia.org/wiki/Hacker",
+        "http://en.wikipedia.org/wiki/San_Francisco",
+        "http://en.wikipedia.org/wiki/Australia",
+        "http://en.wikipedia.org/wiki/Software"
+      ]
+    },
+    {
+      "id": "us-ends-defense-support-program-missile-warning-satellites",
+      "label": "US military ends long-running program to spot nuclear missile launches",
+      "firstSeen": "2026-10-02T18:08:29.476Z",
+      "lastCovered": "2026-10-02T18:08:29.476Z",
+      "coverageCount": 1,
+      "category": "tech",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-10-02-us-ends-defense-support-program-missile-warning-satellites"
+      ],
+      "eventUri": null,
+      "summary": "The US military has ended the Defense Support Program, the infrared satellites that have watched for missile launches from geosynchronous orbit since the first one flew on a Titan IIIC in 1970. Lead with the end of the programme — which satellite was retired, when, and how long the constellation ran — then what replaces it: say which systems now do the job (SBIRS and its successors, as Ars states) and whether there is any gap. The mechanism a technical reader wants: how a heat-sensing telescope in high orbit detects a rocket plume within seconds, and why early warning is the piece of nuclear deterrence that decides how many minutes a president has. Note its other uses if the article gives them — DSP satellites also logged conventional launches in wars from 1991 onward. Keep the history to two sentences; this is news of a retirement, not a retrospective. Dateline as the article gives for the Space Force announcement, otherwise Washington.",
+      "conceptUris": []
+    },
+    {
+      "id": "omnidea-acquires-orbex-assets-primeneo-rocket-portugal",
+      "label": "Portugal's Omnidea Acquires Orbex Assets, Plans PrimeNEO Rocket",
+      "firstSeen": "2026-10-02T18:08:29.476Z",
+      "lastCovered": "2026-10-02T18:08:29.476Z",
+      "coverageCount": 1,
+      "category": "tech",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-10-02-omnidea-acquires-orbex-assets-primeneo-rocket-portugal"
+      ],
+      "eventUri": null,
+      "summary": "Portuguese space group Omnidea has bought most of the intellectual property, UK manufacturing assets and brand of Orbex, the British small-rocket builder that collapsed into administration in February, completing the deal on 30 September, and plans an evolved launcher called PrimeNEO. Lead with the acquisition and what it bought, then what was lost: how much public and private money Orbex raised without reaching orbit, and what happens to its UK workforce and its launch-site plans in Scotland, as far as the article says. The mechanism: Europe's small-launcher startups are failing faster than they fly, and their engineering is being picked up cheaply by firms in countries with no launch industry of their own — Britain funded the development and Portugal gets the rocket. Say what PrimeNEO changes technically, where it would launch from (the Azores, if stated) and when. Datelined Lisbon, or the Portuguese city the article gives for Omnidea.",
+      "conceptUris": []
+    },
+    {
       "id": "flydubai-uae-terrorist-act-netanyahu-warning-co-pilot",
       "label": "Flydubai cockpit stabbing a 'dangerous terror act': UAE official",
       "firstSeen": "2026-10-02T14:09:00.532Z",
       "lastCovered": "2026-10-02T14:09:00.532Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-10-02-flydubai-uae-terrorist-act-netanyahu-warning-co-pilot"
@@ -33,7 +304,7 @@
       "lastCovered": "2026-10-02T14:09:00.532Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-10-02-russia-strikes-kyiv-bridge-klitschko-tearing-city-apart"
@@ -58,7 +329,7 @@
       "lastCovered": "2026-10-02T14:09:00.532Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-10-02-pakistan-corps-commanders-decisive-force-may-9-pti-march"
@@ -74,7 +345,7 @@
       "lastCovered": "2026-10-02T14:09:00.532Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-10-02-south-africa-auditor-general-saps-800-dockets-per-detective"
@@ -90,7 +361,7 @@
       "lastCovered": "2026-10-02T14:09:00.532Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-10-02-iran-bill-hormuz-transit-permits-ban-hostile-states-ships"
@@ -115,7 +386,7 @@
       "lastCovered": "2026-10-02T14:09:00.532Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-10-02-labour-friends-of-israel-funders-undeclared-board-loophole"
@@ -131,7 +402,7 @@
       "lastCovered": "2026-10-02T14:09:00.532Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-10-02-us-jobs-29000-september-fed-seen-skipping-october-rate-hike"
@@ -156,7 +427,7 @@
       "lastCovered": "2026-10-02T14:09:00.532Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-10-02-france-proposes-eu-iea-diesel-crude-release-us-pressure"
@@ -181,7 +452,7 @@
       "lastCovered": "2026-10-02T14:09:00.532Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-10-02-uae-warns-britain-investment-manchester-city-penalty"
@@ -206,7 +477,7 @@
       "lastCovered": "2026-10-02T14:09:00.532Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-10-02-pakistan-na-committee-rs5000-wheat-support-price-rabi"
@@ -222,7 +493,7 @@
       "lastCovered": "2026-10-02T14:09:00.532Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-10-02-openai-fires-two-safety-researchers-program-manager-information"
@@ -247,7 +518,7 @@
       "lastCovered": "2026-10-02T14:09:00.532Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-10-02-ai-maths-proofs-formalisation-proof-checker-bugs"
@@ -263,7 +534,7 @@
       "lastCovered": "2026-10-02T14:09:00.532Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-10-02-african-leaders-un-security-council-ai-safety-say"
@@ -279,7 +550,7 @@
       "lastCovered": "2026-10-02T10:07:10.354Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-10-02-brazil-final-debate-cancelled-bomb-scare-supreme-court-lula-bolsonaro"
@@ -304,7 +575,7 @@
       "lastCovered": "2026-10-02T10:07:10.354Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-10-02-iran-pgsa-uae-tankers-hit-hormuz-non-compliance-list"
@@ -320,7 +591,7 @@
       "lastCovered": "2026-10-02T10:07:10.354Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-10-02-palestinian-journalist-al-saadi-22-months-israeli-prison-megiddo"
@@ -336,7 +607,7 @@
       "lastCovered": "2026-10-02T10:07:10.354Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-10-02-pakistan-government-pti-talks-october-4-long-march-islamabad"
@@ -352,7 +623,7 @@
       "lastCovered": "2026-10-02T10:07:10.354Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-10-02-gulf-oil-exports-rebound-despite-iranian-blockade-on-hormuz"
@@ -377,7 +648,7 @@
       "lastCovered": "2026-10-02T10:07:10.354Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-10-02-pakistan-inflation-above-10-south-korea-price-controls-energy-shock"
@@ -402,7 +673,7 @@
       "lastCovered": "2026-10-02T10:07:10.354Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-10-02-euro-zone-inflation-surges-keeping-pressure-on-ecb-to-hike"
@@ -427,7 +698,7 @@
       "lastCovered": "2026-10-02T10:07:10.354Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-10-02-northern-star-foreign-bid-australia-gold-miner-consolidation"
@@ -452,7 +723,7 @@
       "lastCovered": "2026-10-02T10:07:10.354Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-10-02-brain-neurons-critical-for-viable-pregnancy-mice-stanford"
@@ -468,7 +739,7 @@
       "lastCovered": "2026-10-02T10:07:10.354Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-10-02-urine-cell-free-rna-bladder-cancer-detection-nature-medicine"
@@ -484,7 +755,7 @@
       "lastCovered": "2026-10-02T10:07:10.354Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-10-02-tether-usdt-returns-to-bitcoin-utexo-utxo-blacklist"
@@ -509,7 +780,7 @@
       "lastCovered": "2026-10-02T05:08:34.333Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-10-02-trump-rejects-iran-hormuz-offer-sanctions-carmakers-rail"
@@ -534,7 +805,7 @@
       "lastCovered": "2026-10-02T05:08:34.333Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-10-02-nigeria-nuprc-anti-flaring-law-unenforced-methane"
@@ -550,7 +821,7 @@
       "lastCovered": "2026-10-02T05:08:34.333Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-10-02-lee-threatens-ukraine-measures-north-korean-pow-disclosure"
@@ -575,7 +846,7 @@
       "lastCovered": "2026-10-02T05:08:34.333Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-10-02-delhi-metro-stations-shut-protest-election-commissioner-sir"
@@ -600,7 +871,7 @@
       "lastCovered": "2026-10-02T05:08:34.333Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-10-01-houthi-attacks-taiz-frontlines-government-holds"
@@ -625,7 +896,7 @@
       "lastCovered": "2026-10-02T05:08:34.333Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-10-01-hegseth-pentagon-office-of-religious-affairs"
@@ -650,7 +921,7 @@
       "lastCovered": "2026-10-02T05:08:34.333Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-10-02-kyrgyzstan-first-satellite-falcon-9-vandenberg"
@@ -666,7 +937,7 @@
       "lastCovered": "2026-10-02T05:08:34.333Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-10-02-air-pollution-night-time-coughing-sleep-study"
@@ -682,7 +953,7 @@
       "lastCovered": "2026-10-02T05:08:34.333Z",
       "coverageCount": 2,
       "category": "economy",
-      "importance": 3,
+      "importance": 2,
       "arc": "developing",
       "articles": [
         "2026-10-01-trump-diesel-export-ultimatum-europe-reserves",
@@ -709,7 +980,7 @@
       "lastCovered": "2026-10-01T22:07:58.547Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-10-01-raf-fairford-british-iranian-arrested-burnham-iran-link"
@@ -734,7 +1005,7 @@
       "lastCovered": "2026-10-01T22:07:58.547Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-10-01-putin-rules-out-long-range-strike-ceasefire-ukraine"
@@ -759,7 +1030,7 @@
       "lastCovered": "2026-10-01T22:07:58.547Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-10-01-us-third-carrier-10000-troops-middle-east-wsj"
@@ -775,7 +1046,7 @@
       "lastCovered": "2026-10-01T22:07:58.547Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-10-01-johannesburg-police-profiling-not-south-african-enough"
@@ -791,7 +1062,7 @@
       "lastCovered": "2026-10-01T22:07:58.547Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-10-01-greer-us-india-trade-deal-not-imminent-goyal"
@@ -816,7 +1087,7 @@
       "lastCovered": "2026-10-01T22:07:58.547Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-10-01-canada-carney-fast-track-west-coast-oil-pipeline"
@@ -841,7 +1112,7 @@
       "lastCovered": "2026-10-01T22:07:58.547Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-10-01-pentagon-breach-2-million-personnel-records-stolen"
@@ -857,7 +1128,7 @@
       "lastCovered": "2026-10-01T22:07:58.547Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-10-01-judge-dismisses-chegg-penske-antitrust-suits-google-ai-overviews"
@@ -873,7 +1144,7 @@
       "lastCovered": "2026-10-01T22:07:58.547Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-10-01-iranian-accused-university-hacks-extradited-montenegro"
@@ -889,7 +1160,7 @@
       "lastCovered": "2026-10-01T22:07:58.547Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-10-01-ukraine-first-combat-use-robotic-amphibious-vehicles"
@@ -905,7 +1176,7 @@
       "lastCovered": "2026-10-01T22:07:58.547Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-10-01-us-decoupled-nuclear-test-detection-tunnel-experiment"
@@ -921,7 +1192,7 @@
       "lastCovered": "2026-10-01T18:08:00.353Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-10-01-renee-good-family-sues-us-government-ice-shooting"
@@ -946,7 +1217,7 @@
       "lastCovered": "2026-10-01T18:08:00.353Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-10-01-egypt-interior-ministry-matsda2sh-brotherhood-accusation"
@@ -962,7 +1233,7 @@
       "lastCovered": "2026-10-01T18:08:00.353Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-10-01-pakistan-ispr-self-defence-afghanistan-terrorism-warning"
@@ -978,7 +1249,7 @@
       "lastCovered": "2026-10-01T18:08:00.353Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-10-01-putin-valdai-iran-enriched-uranium-transfer-offer"
@@ -994,7 +1265,7 @@
       "lastCovered": "2026-10-01T18:08:00.353Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-10-01-tennessee-failed-execution-christa-pike-pentobarbital"
@@ -1010,7 +1281,7 @@
       "lastCovered": "2026-10-01T18:08:00.353Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-10-01-israel-kills-palestinian-journalist-gaza"
@@ -1026,7 +1297,7 @@
       "lastCovered": "2026-10-01T18:08:00.353Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-10-01-micron-samsung-memory-shortage-years-ai-demand"
@@ -1042,7 +1313,7 @@
       "lastCovered": "2026-10-01T18:08:00.353Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-10-01-bp-shell-venezuela-oil-gas-after-maduro-seizure"
@@ -1058,7 +1329,7 @@
       "lastCovered": "2026-10-01T18:08:00.353Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-10-01-pakistan-pta-no-authority-age-verification-social-media-minors"
@@ -1074,7 +1345,7 @@
       "lastCovered": "2026-10-01T18:08:00.353Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-10-01-canada-sovereign-launch-industry-us-relations"
@@ -1090,7 +1361,7 @@
       "lastCovered": "2026-10-01T18:08:00.353Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-10-01-norway-state-funds-second-andoya-launch-pad"
@@ -1106,7 +1377,7 @@
       "lastCovered": "2026-10-01T18:08:00.353Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-10-01-killsec-ransomware-raids-teenage-leader-arrested"
@@ -1122,7 +1393,7 @@
       "lastCovered": "2026-10-01T18:08:00.353Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-10-01-low-dose-atropine-trial-children-transient-myopia"
@@ -1138,250 +1409,13 @@
       "lastCovered": "2026-10-01T18:08:00.353Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-10-01-acinetobacter-baumannii-acidification-vesicles-superbug"
       ],
       "eventUri": null,
       "summary": "Acinetobacter baumannii is a hospital superbug on the WHO's critical-priority list for antibiotic resistance. This paper links the bacterium's release of outer membrane vesicles — small packages shed from its surface that are implicated in virulence and resistance — to the acidification produced by its own metabolism of glucose. Lead with the finding in one plain sentence, as the paper states it. Then why that matters: if a metabolic condition triggers vesicle release, that is a possible point of attack, and say whether the authors connect it to conditions in patients. State the limits: this is laboratory work; say whether it was tested in animals. The journal is Communications Biology and this is an early-access accepted version — name the journal, not 'Nature'. Dateline the city of the lead lab.",
-      "conceptUris": []
-    },
-    {
-      "id": "addis-ababa-drone-blasts-ethiopia-war-widens-mekelle",
-      "label": "Blasts heard in Addis Ababa as Ethiopia conflict widens in the north",
-      "firstSeen": "2026-10-01T14:06:39.616Z",
-      "lastCovered": "2026-10-01T14:06:39.616Z",
-      "coverageCount": 1,
-      "category": "politics",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-10-01-addis-ababa-drone-blasts-ethiopia-war-widens-mekelle"
-      ],
-      "eventUri": "eng-12056027",
-      "summary": "The war in Ethiopia's north has reached the capital: explosions were heard overnight in Addis Ababa (three diplomatic sources to Reuters), and Mada Masr quotes an Ethiopian security source saying suicide drones targeted the military command headquarters in the Tor Hailoch area at about 6am, while federal forces advance on Mekelle. Lead with the strike on the capital and say who is the source for each claim — nothing here is officially confirmed unless the sources say so. The mechanism: seven armed groups, including the TPLF and its former enemy Fano, have formed one alliance to remove Abiy Ahmed, so a war that in 2020-22 stayed in Tigray (about 600,000 dead) now has fronts in Tigray, Amhara and Afar and drones that reach Addis. Say what is known about casualties, who holds Mekelle and its airport, and where Eritrea stands. Datelined Addis Ababa.",
-      "conceptUris": [
-        "http://en.wikipedia.org/wiki/Ethiopia",
-        "http://en.wikipedia.org/wiki/Tigray_Region",
-        "http://en.wikipedia.org/wiki/Addis_Ababa",
-        "http://en.wikipedia.org/wiki/Tigray_People's_Liberation_Front",
-        "http://en.wikipedia.org/wiki/Mekelle",
-        "http://en.wikipedia.org/wiki/Alamata",
-        "http://en.wikipedia.org/wiki/Abiy_Ahmed",
-        "http://en.wikipedia.org/wiki/Eritrea"
-      ]
-    },
-    {
-      "id": "bolivia-attorney-general-mariaca-arrested-us-visa-revocation",
-      "label": "US revokes visas of judges, others in Trump-allied LatAm nations",
-      "firstSeen": "2026-10-01T14:06:39.616Z",
-      "lastCovered": "2026-10-01T14:06:39.616Z",
-      "coverageCount": 1,
-      "category": "politics",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-10-01-bolivia-attorney-general-mariaca-arrested-us-visa-revocation"
-      ],
-      "eventUri": "spa-4362585",
-      "summary": "Bolivian police arrested Attorney General Roger Mariaca on Wednesday, two days after the United States revoked his visa over alleged links to drug trafficking (a government source to AFP). Lead with the arrest and the two-day gap. The mechanism is the story: Washington revoked the visas of judges, prosecutors and officials in Bolivia, Colombia, Peru and Ecuador, and a US consular decision — made without a charge or a trial — was followed within 48 hours by the fall of a country's top prosecutor. Say what the State Department alleges and what evidence it has published, what Bolivian authorities charge him with, what Mariaca answers, and who else is on the list. Report the allegations as allegations. Datelined La Paz.",
-      "conceptUris": [
-        "http://en.wikipedia.org/wiki/Bolivia",
-        "http://en.wikipedia.org/wiki/Illegal_drug_trade",
-        "http://en.wikipedia.org/wiki/United_States",
-        "http://en.wikipedia.org/wiki/Prosecutor",
-        "http://en.wikipedia.org/wiki/United_States_Department_of_State",
-        "http://en.wikipedia.org/wiki/Santa_Cruz_de_la_Sierra",
-        "http://en.wikipedia.org/wiki/Colombia",
-        "http://en.wikipedia.org/wiki/Ecuador"
-      ]
-    },
-    {
-      "id": "bellingcat-gaza-satellite-imagery-google-maps-rafah",
-      "label": "Viral Google Maps Images Shared Widely This Week Show Gaza Ruins. We Obtained More Recent Satellite Imagery",
-      "firstSeen": "2026-10-01T14:06:39.616Z",
-      "lastCovered": "2026-10-01T14:06:39.616Z",
-      "coverageCount": 1,
-      "category": "politics",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-10-01-bellingcat-gaza-satellite-imagery-google-maps-rafah"
-      ],
-      "eventUri": null,
-      "summary": "Posts and news articles this week said Google had updated its satellite imagery of Gaza, showing whole neighbourhoods of Rafah and other areas flattened. Bellingcat checked when that imagery was actually captured and obtained more recent satellite images. Lead with what the newer imagery shows on the ground now and how it differs from the viral pictures — the capture dates, the areas compared, the extent of destruction. The mechanism for this reader: the public's view of Gaza depends on when a commercial mapping company refreshes its tiles, and verification means dating the image, not just looking at it. Keep to what Bellingcat documents, name the imagery providers, and count the destroyed areas precisely. Datelined Rafah.",
-      "conceptUris": []
-    },
-    {
-      "id": "uae-prosecutor-probes-flydubai-cockpit-attack-pilot-vetting",
-      "label": "How was the Flydubai pilot who attacked his co-pilot cleared to fly?",
-      "firstSeen": "2026-10-01T14:06:39.616Z",
-      "lastCovered": "2026-10-01T14:06:39.616Z",
-      "coverageCount": 1,
-      "category": "politics",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-10-01-uae-prosecutor-probes-flydubai-cockpit-attack-pilot-vetting"
-      ],
-      "eventUri": "eng-12057902",
-      "summary": "Third piece on flight FZ1073 (after the 09-30 diversion story and the 10-01 story on flydubai suspending Israel flights), so it must carry only what is new: the UAE prosecutor general has ordered an investigation into whether the cockpit attack had a 'terrorist' motive and was planned, and the question now is how the copilot passed the airline's and the regulator's medical and security screening. Lead with the UAE probe, then what is known about the vetting — who certifies a pilot's fitness in the UAE, what checks apply to crews on the Israel route, and what the airline has said. Give what investigators have and have not established and do not speculate on motive; Netanyahu's statements are his claims. One line on the diversion to Saudi Arabia, no retelling. RT is Russian state media and the Hindustan Times item is a minute-by-minute reconstruction; write from Al Jazeera and the BBC. Datelined Dubai.",
-      "conceptUris": [
-        "http://en.wikipedia.org/wiki/Flydubai",
-        "http://en.wikipedia.org/wiki/India",
-        "http://en.wikipedia.org/wiki/Israel",
-        "http://en.wikipedia.org/wiki/Cockpit",
-        "http://en.wikipedia.org/wiki/Benjamin_Netanyahu",
-        "http://en.wikipedia.org/wiki/Tel_Aviv",
-        "http://en.wikipedia.org/wiki/Saudi_Arabia",
-        "http://en.wikipedia.org/wiki/Aircraft_pilot"
-      ]
-    },
-    {
-      "id": "turkish-textile-factories-forced-overtime-harassment-us-brands",
-      "label": "The Abuses in Turkish Textile Factories Supplying Major US Brands",
-      "firstSeen": "2026-10-01T14:06:39.616Z",
-      "lastCovered": "2026-10-01T14:06:39.616Z",
-      "coverageCount": 1,
-      "category": "economy",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-10-01-turkish-textile-factories-forced-overtime-harassment-us-brands"
-      ],
-      "eventUri": null,
-      "summary": "A New Lines investigation finds women in Turkish textile factories working forced overtime and facing sexual harassment in plants that supply well-known clothing brands in the United States and Europe. Lead with the workers and the named brands: which factories, which labels, how many hours, what they are paid. The mechanism is the supply chain — brands set prices and delivery times, subcontractors absorb them through unpaid overtime, and the brands' own audits do not catch it or do not act on it. Say what the brands and the factory owners answered and what Turkish labour law requires. Attribute the findings to New Lines and keep to what it documents. Datelined in the Turkish city the reporting centres on — a city, not 'Turkey'.",
-      "conceptUris": []
-    },
-    {
-      "id": "modi-trump-call-trade-deal-russian-oil-pressure",
-      "label": "Modi and Trump talk amid concerns over Russia sanctions -- RT India",
-      "firstSeen": "2026-10-01T14:06:39.616Z",
-      "lastCovered": "2026-10-01T14:06:39.616Z",
-      "coverageCount": 1,
-      "category": "economy",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-10-01-modi-trump-call-trade-deal-russian-oil-pressure"
-      ],
-      "eventUri": "eng-12056641",
-      "summary": "Modi and Trump spoke by phone on Wednesday as the two countries try to close a trade deal while Washington presses India over its purchases of Russian oil. The only source in the feed is RT, Russian state media, with an obvious interest in the Russian-oil angle: attribute its framing to it by name, and state as fact only what the two governments' own readouts say (trade, defence, energy, critical technologies). Lead with what is at stake for India — the tariff level it faces, how much of its crude comes from Russia, and what a deal would require it to give up — not with the pleasantries of the call. The mechanism: with Hormuz disrupted, discounted Russian crude is what holds India's import bill down, so the US demand has a price in rupees. Datelined New Delhi.",
-      "conceptUris": [
-        "http://en.wikipedia.org/wiki/Narendra_Modi",
-        "http://en.wikipedia.org/wiki/Donald_Trump",
-        "http://en.wikipedia.org/wiki/India",
-        "http://en.wikipedia.org/wiki/New_Delhi",
-        "http://en.wikipedia.org/wiki/Russia",
-        "http://en.wikipedia.org/wiki/Tariff",
-        "http://en.wikipedia.org/wiki/United_States",
-        "http://en.wikipedia.org/wiki/Iran"
-      ]
-    },
-    {
-      "id": "saudi-ceer-ev-pif-competes-with-lucid-byd",
-      "label": "Awkward: Saudi Arabia’s new EV brand takes on the U.S. rival it already controls",
-      "firstSeen": "2026-10-01T14:06:39.616Z",
-      "lastCovered": "2026-10-01T14:06:39.616Z",
-      "coverageCount": 1,
-      "category": "economy",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-10-01-saudi-ceer-ev-pif-competes-with-lucid-byd"
-      ],
-      "eventUri": null,
-      "summary": "Ceer, the electric-car brand built by Saudi Arabia's Public Investment Fund, is launching a vehicle that will compete with Chinese makers such as BYD — and with Lucid, the US carmaker the same fund controls. Lead with that conflict: one sovereign fund now owns both a national EV champion and the foreign rival it sells against. The mechanism is Vision 2030 industrial policy — the PIF bought into Lucid to bring EV manufacturing to the kingdom, then built a domestic brand on top, and both must now find buyers in a Gulf market Chinese imports already dominate on price. Give the model, the price, the plant, the technology partners and the PIF's stake in Lucid as the page states them. The feed entry is a teaser, so keep to what the full article confirms. Datelined Riyadh.",
-      "conceptUris": []
-    },
-    {
-      "id": "iarc-infections-one-in-eight-cancers-2-3-million",
-      "label": "Surprising culprit tied to 1 in 8 cancer cases worldwide, major study reveals - AOL",
-      "firstSeen": "2026-10-01T14:06:39.616Z",
-      "lastCovered": "2026-10-01T14:06:39.616Z",
-      "coverageCount": 1,
-      "category": "science",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-10-01-iarc-infections-one-in-eight-cancers-2-3-million"
-      ],
-      "eventUri": "eng-12053217",
-      "summary": "About one in eight new cancer cases worldwide in 2024 — 2.3 million — were caused by infections, according to a new analysis from the WHO's International Agency for Research on Cancer. Lead with the number and the four that dominate: HPV, Helicobacter pylori, hepatitis B and hepatitis C, out of 12 infections identified. The point for the reader is that these cancers are preventable with tools that already exist — HPV and hepatitis B vaccines, antibiotics for H. pylori, antivirals for hepatitis C — so the burden maps onto who lacks access to them; give the regional breakdown if the source has it. Name the journal and the method (attributable fractions from cancer registry data). AOL is republishing another outlet's report: credit the original outlet and IARC, not AOL. Datelined Lyon, where IARC is based.",
-      "conceptUris": []
-    },
-    {
-      "id": "amniotic-membrane-nerve-wrap-prostate-surgery-recovery",
-      "label": "Placenta wrap hastens erection recovery after prostate surgery | New Scientist",
-      "firstSeen": "2026-10-01T14:06:39.616Z",
-      "lastCovered": "2026-10-01T14:06:39.616Z",
-      "coverageCount": 1,
-      "category": "science",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-10-01-amniotic-membrane-nerve-wrap-prostate-surgery-recovery"
-      ],
-      "eventUri": null,
-      "summary": "Wrapping thin sheets of dried placental (amniotic) membrane around the nerves exposed during prostate cancer surgery appears to speed the return of erectile function, according to a review of thousands of operations. Lead with the comparison the review reports — recovery within about a week against the much longer usual course — and give the numbers exactly as the source does. Explain the mechanism in one plain sentence: the membrane carries growth factors and damps inflammation around nerves that are bruised, not cut. Then the limits: say whether the data come from randomised trials or surgeons' case series, who makes the product, and what it costs, because erectile dysfunction after prostatectomy is common and a review of observational data is not proof. Name the journal. Write it soberly.",
-      "conceptUris": []
-    },
-    {
-      "id": "whatsapp-parental-controls-teens-age-laws-encryption",
-      "label": "WhatsApp introduces optional parental controls for teenagers",
-      "firstSeen": "2026-10-01T14:06:39.616Z",
-      "lastCovered": "2026-10-01T14:06:39.616Z",
-      "coverageCount": 1,
-      "category": "tech",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-10-01-whatsapp-parental-controls-teens-age-laws-encryption"
-      ],
-      "eventUri": "eng-12056439",
-      "summary": "WhatsApp is rolling out optional parental controls: parents can decide who sees a teenager's profile photo and who can add them to groups, among other settings. Lead with what a parent can and cannot do — and that message content stays end-to-end encrypted, so supervision works on contacts and settings, not on what is said. The mechanism: Meta is moving ahead of age-verification and child-safety laws in the UK, the EU, Australia and US states, offering opt-in controls as the alternative to mandated age checks or weakened encryption. Say how a teen account is identified, whether the teen must consent, and which countries get it first — WhatsApp's biggest user bases are in India, Indonesia, Brazil and Pakistan, not the US. Datelined Menlo Park.",
-      "conceptUris": [
-        "http://en.wikipedia.org/wiki/WhatsApp",
-        "http://en.wikipedia.org/wiki/Parental_controls",
-        "http://en.wikipedia.org/wiki/Artificial_intelligence",
-        "http://en.wikipedia.org/wiki/Privacy",
-        "http://en.wikipedia.org/wiki/Adolescence",
-        "http://en.wikipedia.org/wiki/Meta_Platforms",
-        "http://en.wikipedia.org/wiki/End-to-end_encryption",
-        "http://en.wikipedia.org/wiki/Privacy_settings"
-      ]
-    },
-    {
-      "id": "pentagon-autonomous-warfare-command-plan",
-      "label": "Vision For New Autonomous Warfare Command Laid Out By Pentagon",
-      "firstSeen": "2026-10-01T14:06:39.616Z",
-      "lastCovered": "2026-10-01T14:06:39.616Z",
-      "coverageCount": 1,
-      "category": "tech",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-10-01-pentagon-autonomous-warfare-command-plan"
-      ],
-      "eventUri": null,
-      "summary": "The Pentagon has set out its plan for a new Autonomous Warfare Command, due to stand up late next year, to push operational autonomous and robotic systems across all the services. Lead with what the command is and what it will control: its remit, who it reports to, which programmes and budgets move under it, and the timeline. The mechanism: autonomy stops being a set of service-level experiments and becomes a standing institution with its own doctrine and procurement pull — the structural step that makes autonomous weapons routine. Say what the plan states about human control over lethal decisions, and what it leaves out. One clause of link to the 09-30 story on Musk and Anduril's Luckey leading the Pentagon's future-of-warfare study; this is a separate decision. Datelined Washington.",
-      "conceptUris": []
-    },
-    {
-      "id": "ps5-emulation-pc-progress-sony-ports",
-      "label": "PS5 emulation is suddenly making big strides on PC",
-      "firstSeen": "2026-10-01T14:06:39.616Z",
-      "lastCovered": "2026-10-01T14:06:39.616Z",
-      "coverageCount": 1,
-      "category": "tech",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-10-01-ps5-emulation-pc-progress-sony-ports"
-      ],
-      "eventUri": "eng-12050313",
-      "summary": "Open-source PlayStation 5 emulators have advanced quickly enough that recent PS5 titles are becoming playable on PCs, just as Sony says it will scale back its own PC ports. Lead with what now runs and how well — the named emulators, the games, the frame rates — and then the technical reason for the jump: the PS5 is x86-64 hardware with an AMD GPU, so the work is reimplementing the operating system and graphics calls, not translating a foreign processor. The reader is a developer: say what was the breakthrough, what still fails, and where the legal line sits (firmware, decryption keys, Sony's record against emulator projects). Report it as engineering, not as a buying guide.",
       "conceptUris": []
     }
   ]
