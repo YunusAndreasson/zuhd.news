@@ -10,19 +10,14 @@ import {
 import { ANIMATION, EASING, RADIUS, SPACING } from '../../constants/theme';
 import { formatNumber } from '../../lib/cards/format';
 
-/** Where a block is being rendered. `article` variant is the full-bleed
- *  article-page look; `context` is the embedded-in-timeline look (smaller
- *  visual weight, no self-animation); `inline` is a chart set under a story's
- *  prose — the line alone, its reading printed by the caller. Lives here —
- *  not in index.tsx — so individual block components can import without
- *  creating a require cycle with the barrel that also imports them. */
-export type BlockVariant = 'article' | 'context' | 'inline';
+/** Where a chart is rendered: `context` is a card's or a sheet's chart, with
+ *  its caption and axes; `inline` is a chart set under a story's prose — the
+ *  line alone, its reading printed by the caller. (`article`, the full-bleed
+ *  look of the article blocks, went with the last of them.) */
+export type BlockVariant = 'context' | 'inline';
 
-/** Shared outer-container spacing for every non-prose block. Keeps margin
- *  rhythm consistent between ActorsBlock, LocationsBlock,
- *  QuoteBlock and TrendBlock without per-component style duplication. */
+/** A chart's outer spacing, per variant. */
 export const blockContainerStyle = StyleSheet.create({
-  article: { marginBottom: SPACING.md },
   context: { marginVertical: SPACING.sm },
   inline: {},
 });
@@ -31,9 +26,6 @@ export const blockContainerStyle = StyleSheet.create({
  *  same token everywhere (the swatch radius and label gap had drifted between
  *  literal `2`/`RADIUS.handle` and `xs`/`sm`/`xxs` across blocks). */
 export const blockSharedStyles = StyleSheet.create({
-  /** Gap below a block's `labelSm` header. One value so adjacent blocks in an
-   *  article share the same label-to-body rhythm. */
-  label: { marginBottom: SPACING.xs },
   /** Positioning context for an absolutely-laid-out chart overlay (axis
    *  labels, scrub readouts) on top of a Skia canvas. Height is applied
    *  inline per block. */
