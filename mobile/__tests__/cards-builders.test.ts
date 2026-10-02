@@ -1223,15 +1223,12 @@ describe('belief titles', () => {
 });
 
 describe('an event countdown', () => {
-  const tz = process.env.TZ;
-  afterEach(() => {
-    process.env.TZ = tz;
-  });
-
   it("counts from the reader's own date, not UTC's", () => {
     // 00:02 on 27 September in Stockholm is still the 26th in UTC, and the
     // menu read `US GDP · in 4 days` for the 30th (seen on the emulator).
-    process.env.TZ = 'Europe/Stockholm';
+    // The suite runs in Stockholm (`jest.global-setup.js`): a test cannot set
+    // its own zone, because `process.env` here is jest's copy.
+    expect(new Date('2026-09-26T22:02:00Z').getDate()).toBe(27);
     const trends = snapshot([indicator({ id: 'brent' })], {
       events: [
         { id: 'gdp', title: 'US GDP', institution: 'BEA', kind: 'release', date: '2026-09-30' },
