@@ -1,5 +1,6 @@
 let mockFiles: Map<string, string>;
 let mockKv: Map<string, string>;
+let mockSecure: Map<string, string>;
 
 jest.mock('expo-file-system', () => ({
   Paths: { document: '/doc', cache: '/cache' },
@@ -48,9 +49,15 @@ jest.mock('expo-sqlite/kv-store', () => ({
 }));
 
 jest.mock('expo-secure-store', () => ({
-  getItemAsync: jest.fn(() => Promise.resolve(null)),
-  setItemAsync: jest.fn(() => Promise.resolve()),
-  deleteItemAsync: jest.fn(() => Promise.resolve()),
+  getItemAsync: jest.fn((key: string) => Promise.resolve(mockSecure.get(key) ?? null)),
+  setItemAsync: jest.fn((key: string, value: string) => {
+    mockSecure.set(key, value);
+    return Promise.resolve();
+  }),
+  deleteItemAsync: jest.fn((key: string) => {
+    mockSecure.delete(key);
+    return Promise.resolve();
+  }),
 }));
 
 jest.mock('expo-notifications', () => ({
@@ -74,6 +81,7 @@ import type { Article, Category } from '@shared/types';
 import { getSnapshot as getBookmarks, toggle as toggleBookmark } from '../lib/bookmark-store';
 import { getSnapshot as getDataUsage, recordBytes } from '../lib/data-usage';
 import { queryClient } from '../lib/query-client';
+import { getLastSeenAt } from '../lib/storage';
 import { eraseLocalData } from '../lib/wipe';
 
 const article = (slug: string): Article => ({
@@ -95,6 +103,7 @@ const article = (slug: string): Article => ({
 beforeEach(() => {
   mockFiles = new Map();
   mockKv = new Map();
+  mockSecure = new Map();
 });
 
 describe('eraseLocalData', () => {
@@ -146,6 +155,34 @@ describe('eraseLocalData', () => {
 
     expect(mockKv.get('zuhd_preferences_v2')).toBe('{"fontSize":"large","appearance":"light"}');
     expect(mockKv.get('zuhd_notif_asked')).toBe('1');
+  });
+
+  it('erases what older builds left behind, so the next launch cannot move it back', async () => {
+    // Migrated by an older build and never deleted: the erase emptied the kv
+    // store, and the next launch's migration moved these straight back.
+    mockFiles.set('/doc/zuhd-last-seen', '1751970000000');
+    mockFiles.set('/doc/zuhd-bookmarks.json', '[]');
+    mockFiles.set('/doc/zuhd-onboarding.json', '{}');
+    mockFiles.set('/cache/query-cache.json', '{}');
+    for (const key of [
+      'zuhd_lastSeenAt',
+      'zuhd_review_count',
+      'zuhd_review_prompted',
+      'zuhd_briefing_pos',
+      'zuhd_briefing_date',
+    ]) {
+      mockSecure.set(key, '42');
+    }
+    // What the erase promises to leave: the notification prompt's history
+    // and the display preferences.
+    mockSecure.set('zuhd_notif_asked', '1');
+    mockSecure.set('zuhd_preferences', '{}');
+
+    await eraseLocalData();
+
+    expect([...mockFiles.keys()]).toEqual([]);
+    expect([...mockSecure.keys()].sort()).toEqual(['zuhd_notif_asked', 'zuhd_preferences']);
+    await expect(getLastSeenAt()).resolves.toBe(0);
   });
 
   it('is safe to run twice', async () => {

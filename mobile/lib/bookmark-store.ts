@@ -1,7 +1,7 @@
 import type { Article, Category } from '@shared/types';
 import { File, Paths } from 'expo-file-system';
 import Storage from 'expo-sqlite/kv-store';
-import { createDebouncedWrite, createListeners } from './store-plumbing';
+import { createDebouncedWrite, createListeners, deleteLegacyFile } from './store-plumbing';
 import { isBookmarkArray } from './validate';
 
 // ---------------------------------------------------------------------------
@@ -26,7 +26,9 @@ const listeners = createListeners();
 
 // Load synchronously on import so UI has instant state. A schema-drift
 // bookmark (e.g. missing `sentences`) would crash on first render — validate
-// and drop the whole file if any entry is malformed.
+// and drop the whole file if any entry is malformed. The file is where builds
+// before the kv store kept them: moved once, and deleted as it moves
+// (`legacy-store.ts`).
 try {
   const stored = Storage.getItemSync(BOOKMARKS_KEY);
   const text = stored ?? (BOOKMARKS_FILE.exists ? BOOKMARKS_FILE.textSync() : null);
@@ -34,7 +36,10 @@ try {
     const parsed: unknown = JSON.parse(text);
     if (isBookmarkArray(parsed)) {
       bookmarks = parsed;
-      if (stored === null) Storage.setItemSync(BOOKMARKS_KEY, text);
+      if (stored === null) {
+        Storage.setItemSync(BOOKMARKS_KEY, text);
+        deleteLegacyFile(BOOKMARKS_FILE);
+      }
     } else {
       bookmarks = [];
     }

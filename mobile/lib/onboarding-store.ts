@@ -3,7 +3,7 @@ import * as Notifications from 'expo-notifications';
 import * as SecureStore from 'expo-secure-store';
 import Storage from 'expo-sqlite/kv-store';
 import { getPreferences } from './storage';
-import { createDebouncedWrite, createListeners } from './store-plumbing';
+import { createDebouncedWrite, createListeners, deleteLegacyFile } from './store-plumbing';
 
 // ---------------------------------------------------------------------------
 // First-run onboarding state: the one-at-a-time hint pills (contextual
@@ -140,7 +140,12 @@ try {
     const parsed: unknown = JSON.parse(text);
     if (isOnboardingState(parsed)) {
       state = withAddedHints(parsed);
-      if (stored === null) Storage.setItemSync(ONBOARDING_KEY, text);
+      // Moved out of the file builds before the kv store kept it in, and
+      // deleted as it moves (`legacy-store.ts`).
+      if (stored === null) {
+        Storage.setItemSync(ONBOARDING_KEY, text);
+        deleteLegacyFile(ONBOARDING_FILE);
+      }
     } else {
       state = seed(isExistingUser());
       justSeeded = true;

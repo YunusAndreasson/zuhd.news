@@ -4,6 +4,7 @@ import { File, Paths } from 'expo-file-system';
 import * as Network from 'expo-network';
 import Storage from 'expo-sqlite/kv-store';
 import { AppState } from 'react-native';
+import { deleteLegacyFile } from './store-plumbing';
 import { DAY_MS } from './time';
 
 // TanStack Query's browser focus/network listeners do not exist in React
@@ -36,14 +37,27 @@ const QUERY_CACHE_KEY = 'REACT_QUERY_OFFLINE_CACHE';
 
 // One-time migration from the previous file-backed AsyncStorage shim. The
 // shim stored the persister's already-serialized value inside a JSON object.
+//
+// The file is asked about first and deleted once moved. The other order read
+// the whole persisted cache — the feed and every snapshot — synchronously at
+// import, before the first frame, on every launch, to learn whether a
+// migration that had already happened was needed; and the file, never
+// deleted, kept the question open and outlived the privacy page's erase.
 try {
-  if (Storage.getItemSync(QUERY_CACHE_KEY) === null && CACHE_FILE.exists) {
-    const parsed: unknown = JSON.parse(CACHE_FILE.textSync());
-    const legacy =
-      parsed && typeof parsed === 'object'
-        ? (parsed as Record<string, unknown>)[QUERY_CACHE_KEY]
-        : undefined;
-    if (typeof legacy === 'string') Storage.setItemSync(QUERY_CACHE_KEY, legacy);
+  if (CACHE_FILE.exists) {
+    try {
+      if (Storage.getItemSync(QUERY_CACHE_KEY) === null) {
+        const parsed: unknown = JSON.parse(CACHE_FILE.textSync());
+        const legacy =
+          parsed && typeof parsed === 'object'
+            ? (parsed as Record<string, unknown>)[QUERY_CACHE_KEY]
+            : undefined;
+        if (typeof legacy === 'string') Storage.setItemSync(QUERY_CACHE_KEY, legacy);
+      }
+    } finally {
+      // Moved or unreadable, it is never asked about again: it is a cache.
+      deleteLegacyFile(CACHE_FILE);
+    }
   }
 } catch {}
 

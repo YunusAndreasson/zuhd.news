@@ -1,6 +1,6 @@
-import { getItemAsync } from 'expo-secure-store';
 import Storage from 'expo-sqlite/kv-store';
 import * as StoreReview from 'expo-store-review';
+import { readMigrated } from './legacy-store';
 import { DAY_MS } from './time';
 
 const COUNT_KEY = 'zuhd_review_count';
@@ -18,25 +18,13 @@ async function hydrate() {
   if (hydrated) return;
   hydrated = true;
   try {
-    let [countStr, promptedStr] = await Promise.all([
-      Storage.getItem(COUNT_KEY),
-      Storage.getItem(PROMPTED_KEY),
+    // The earlier encrypted store kept each under the same name. Each key
+    // migrates on its own, so a partial SQLite write cannot hide the other
+    // legacy value. These counters are UX state, not secrets.
+    const [countStr, promptedStr] = await Promise.all([
+      readMigrated(COUNT_KEY, { secureKey: COUNT_KEY }),
+      readMigrated(PROMPTED_KEY, { secureKey: PROMPTED_KEY }),
     ]);
-    // One-time migration from the earlier encrypted store. Migrate each key
-    // independently so a partial SQLite write cannot hide the other legacy
-    // value. These counters are UX state, not secrets.
-    if (countStr === null || promptedStr === null) {
-      const [legacyCount, legacyPrompted] = await Promise.all([
-        countStr === null ? getItemAsync(COUNT_KEY) : Promise.resolve(null),
-        promptedStr === null ? getItemAsync(PROMPTED_KEY) : Promise.resolve(null),
-      ]);
-      countStr ??= legacyCount;
-      promptedStr ??= legacyPrompted;
-      await Promise.all([
-        legacyCount === null ? Promise.resolve() : Storage.setItem(COUNT_KEY, legacyCount),
-        legacyPrompted === null ? Promise.resolve() : Storage.setItem(PROMPTED_KEY, legacyPrompted),
-      ]);
-    }
     memCount = parseInt(countStr ?? '0', 10) || 0;
     memPromptedAt = parseInt(promptedStr ?? '0', 10) || 0;
   } catch {

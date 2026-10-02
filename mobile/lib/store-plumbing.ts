@@ -1,3 +1,5 @@
+import type { File } from 'expo-file-system';
+
 /**
  * The two halves every local store here repeats.
  *
@@ -50,4 +52,16 @@ export function createDebouncedWrite(write: () => void, delayMs: number) {
       if (timer) now();
     },
   };
+}
+
+/**
+ * Delete a file an older build kept a store in, once its contents have moved
+ * into the kv store (`legacy-store.ts`) — quietly: one that is already gone is
+ * the goal. Never let it throw into a loader: a store whose load fails reseeds
+ * itself, and the seed would then be written over the value just moved.
+ */
+export function deleteLegacyFile(file: File): void {
+  try {
+    if (file.exists) file.delete();
+  } catch {}
 }

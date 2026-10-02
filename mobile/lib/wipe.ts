@@ -1,3 +1,4 @@
+import { File, Paths } from 'expo-file-system';
 import Storage from 'expo-sqlite/kv-store';
 import { clearSnapshotEtags } from './api-snapshots';
 import { clearBookmarks } from './bookmark-store';
@@ -5,6 +6,7 @@ import { resetDataUsage } from './data-usage';
 import { feedCache } from './feed-source';
 import { clearFound } from './found-store';
 import { clearKnown } from './fresh-store';
+import { deleteLegacy, type LegacyCopy } from './legacy-store';
 import { resetOnboarding } from './onboarding-store';
 import { queryClient } from './query-client';
 import { clearRead } from './read-store';
@@ -37,6 +39,26 @@ const KEYS = [
   'zuhd_card_history_v1', // viewed-card history, written only by older builds
 ];
 
+/**
+ * Where builds before the kv store kept the same records: document files, and
+ * the encrypted store, mostly under the kv keys' own names. Their migrations
+ * delete each copy as they move it (`legacy-store.ts`), but one an older build
+ * moved and left behind was moved straight back on the launch after an erase
+ * — the review counters, the briefing's place and the last-seen time came
+ * back that way until 2026-10-02. Never the preferences' or the notification
+ * prompt's: the erase leaves those, as above.
+ */
+const LEGACY_COPIES: LegacyCopy[] = [
+  { file: new File(Paths.document, 'zuhd-last-seen'), secureKey: 'zuhd_lastSeenAt' },
+  { file: new File(Paths.document, 'zuhd-bookmarks.json') },
+  { file: new File(Paths.document, 'zuhd-onboarding.json') },
+  { file: new File(Paths.cache, 'query-cache.json') },
+  { secureKey: 'zuhd_review_count' },
+  { secureKey: 'zuhd_review_prompted' },
+  { secureKey: 'zuhd_briefing_pos' },
+  { secureKey: 'zuhd_briefing_date' },
+];
+
 export async function eraseLocalData(): Promise<void> {
   // In-memory stores first, so nothing flushes itself back over the cleared
   // keys afterwards.
@@ -51,5 +73,9 @@ export async function eraseLocalData(): Promise<void> {
   // The cache's version tags, with the cache they describe.
   clearSnapshotEtags();
 
-  await Promise.all([feedCache.clear(), ...KEYS.map((k) => Storage.removeItem(k).catch(() => {}))]);
+  await Promise.all([
+    feedCache.clear(),
+    ...KEYS.map((k) => Storage.removeItem(k).catch(() => {})),
+    ...LEGACY_COPIES.map(deleteLegacy),
+  ]);
 }
