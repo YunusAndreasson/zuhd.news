@@ -67,6 +67,35 @@ basemap is built from belongs in `BASEMAP_V`** — `/basemap/*` is served
 for a reader to force it. That is how the map went on printing "Tel Aviv" after
 the build had started emitting "Yafa".
 
+## A layer's stamp moves only when the layer does
+
+The app fetches each map layer with the `ETag` of the copy it holds, and an
+unchanged file answers 304 with no body. **Unchanged means the same bytes, and
+a clock in the payload changes them.** `ipc.json` and `firms.json` carried the
+build's time; `gdacs.json`, `conflict.json` and `chokepoints.json` the time
+their fetcher last ran. Measured 2026-10-02: the famine table got a new tag on
+every build, and `conflict.json` — 30.8 KB gzipped, a UCDP window that had
+closed a month earlier — went to every reader again each time its fetcher's
+six-hour cache expired. Nothing failed; the tag did its job on a file whose
+stamp said it had changed.
+
+`apiStamps` (`lib/stable-stamp.js`, tested) publishes those five with the
+stamp they had when their content last changed: a hash of everything but the
+stamp, kept in `.cache/api-stamps.json` beside the card caches. The sources in
+`content/` are untouched — `fetch-conflict.js` keys its own cache on its
+stamp — so a published `generated` on these layers now reads "as of", not
+"last checked". A lost ledger costs one download of each layer.
+
+- **Not the feed, the heatmap or `meta.json`.** Their `generated` is the
+  build's, and a moved one is how the app learns there is a build to fetch.
+- **A new layer the app holds by tag goes through `apiStamps.hold`**, or its
+  own stamp will defeat its own tag. So does anything else that varies per
+  build without the data varying — a count of "seconds since", a sort that is
+  not stable.
+- The two passthroughs are parsed and re-serialised now rather than copied, so
+  `conflict.json` also lost its indentation: 231 KB → 176 KB decoded, about
+  3 KB less gzipped, on the day's file.
+
 ## Islands bundling
 
 `scripts/build/islands.js` runs esbuild over the non-underscore island sources,

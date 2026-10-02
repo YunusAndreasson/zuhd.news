@@ -27,6 +27,7 @@ import { escHtml, escXml } from './lib/html.js'
 import { ARCHETYPE_HEADER, siteFooter, WORDMARK, footerStatusLine } from './lib/site-chrome.js'
 import { listRow } from './lib/list-row.js'
 import { publishedTimes } from './lib/published-at.js'
+import { openStampLedger } from './lib/stable-stamp.js'
 import { ROOT } from './lib/paths.js'
 
 const CONTENT_DIR = join(ROOT, 'content', 'articles')
@@ -834,6 +835,11 @@ ms.setActionHandler('seekforward',d=>{a.currentTime=Math.min(a.duration||0,a.cur
 // element. Field name is `sentences` for mobile-client compatibility; each
 // entry is a markdown paragraph (block), not necessarily a single sentence.
 const generated = new Date().toISOString()
+// The map layers are published with the stamp they had when their content last
+// changed, so a layer that did not move keeps its bytes and its ETag — see
+// `lib/stable-stamp.js`. Not the feed, the heatmap or `meta.json`: their
+// `generated` is this build's, and a moved one is how the app knows to look.
+const apiStamps = openStampLedger(join(ROOT, '.cache', 'api-stamps.json'))
 const apiGrouped = groupByWindow(sorted, cutoff)
 const apiCategories = Object.fromEntries(
   Object.entries(apiGrouped).map(([cat, articles]) => [
@@ -1127,7 +1133,10 @@ if (existsSync(chokepointsSrc)) {
       }
     }),
   }
-  writeFileSync(join(DIST_DIR, 'api', 'chokepoints.json'), JSON.stringify(enriched))
+  writeFileSync(
+    join(DIST_DIR, 'api', 'chokepoints.json'),
+    JSON.stringify(apiStamps.hold('chokepoints', enriched)),
+  )
   console.log(`  Built: api/chokepoints.json (${enriched.chokepoints.length} chokepoints)`)
   for (const c of enriched.chokepoints) {
     // `series.total`, not `series.values` — the one field name this payload
@@ -1233,25 +1242,31 @@ if (existsSync(marketsSrc)) {
 
 // GDACS disaster snapshot — pre-fetched alert list + EQ/TC population
 // details, one server-side fetch per cycle replacing N fetches per install.
-// Pure passthrough: the pipeline writes the API-shape directly, build just
-// mirrors it under dist/api/. Missing input degrades gracefully (mobile
-// renders an empty disaster layer when the endpoint 404s).
+// Passthrough: the pipeline writes the API-shape directly, and the build
+// mirrors it under dist/api/ with its stamp held (`apiStamps`). Missing input
+// degrades gracefully (mobile renders an empty disaster layer when the
+// endpoint 404s).
 const gdacsSrc = join(ROOT, 'content', '.gdacs.json')
 if (existsSync(gdacsSrc)) {
-  cpSync(gdacsSrc, join(DIST_DIR, 'api', 'gdacs.json'))
   const g = JSON.parse(readFileSync(gdacsSrc, 'utf8'))
+  writeFileSync(join(DIST_DIR, 'api', 'gdacs.json'), JSON.stringify(apiStamps.hold('gdacs', g)))
   const detailCount = g.details ? Object.keys(g.details).length : 0
   console.log(`  Built: api/gdacs.json (${g.alerts?.length ?? 0} alerts, ${detailCount} details)`)
 }
 
 // Conflict-events snapshot — UCDP candidate GED, parallel to GDACS but
-// for the mobile globe's conflict layer. Pure passthrough: pipeline
-// writes the API-shape directly, build mirrors. Missing input degrades
-// gracefully (mobile renders an empty conflict layer on 404).
+// for the mobile globe's conflict layer. Passthrough: pipeline writes the
+// API-shape directly, build mirrors it with its stamp held (`apiStamps`) —
+// the fetcher re-stamps the snapshot every six hours and the events move
+// about monthly. Missing input degrades gracefully (mobile renders an empty
+// conflict layer on 404).
 const conflictSrc = join(ROOT, 'content', '.conflict.json')
 if (existsSync(conflictSrc)) {
-  cpSync(conflictSrc, join(DIST_DIR, 'api', 'conflict.json'))
   const c = JSON.parse(readFileSync(conflictSrc, 'utf8'))
+  writeFileSync(
+    join(DIST_DIR, 'api', 'conflict.json'),
+    JSON.stringify(apiStamps.hold('conflict', c)),
+  )
   console.log(`  Built: api/conflict.json (${c.events?.length ?? 0} events, ${c.windowStart} → ${c.windowEnd})`)
 }
 
@@ -1770,19 +1785,21 @@ if (existsSync(firmsSrc)) {
   }
   writeFileSync(
     join(DIST_DIR, 'api', 'firms.json'),
-    JSON.stringify({
-      generated,
-      source: raw.source,
-      dayRange: raw.dayRange,
-      joinRadiusKm: raw.joinRadiusKm,
-      events: firmsEvents,
-      // What was dropped and why, carried through from the fetcher and extended.
-      // A bounded layer that does not say what it left out reads as complete.
-      skipped: {
-        ...(raw.skipped ?? {}),
-        unjoined: (raw.events?.length ?? 0) - firmsEvents.length,
-      },
-    }),
+    JSON.stringify(
+      apiStamps.hold('firms', {
+        generated,
+        source: raw.source,
+        dayRange: raw.dayRange,
+        joinRadiusKm: raw.joinRadiusKm,
+        events: firmsEvents,
+        // What was dropped and why, carried through from the fetcher and extended.
+        // A bounded layer that does not say what it left out reads as complete.
+        skipped: {
+          ...(raw.skipped ?? {}),
+          unjoined: (raw.events?.length ?? 0) - firmsEvents.length,
+        },
+      }),
+    ),
   )
   console.log(
     `  Built: api/firms.json (${firmsEvents.length} anomalies joined to coverage, ` +
@@ -1853,19 +1870,21 @@ if (existsSync(ipcSrc)) {
   ipcAreas.sort((a, b) => b.phase - a.phase || a.ageMonths - b.ageMonths)
   writeFileSync(
     join(DIST_DIR, 'api', 'ipc.json'),
-    JSON.stringify({
-      generated,
-      source: raw.source,
-      license: raw.license,
-      ageLimitMonths: raw.ageLimitMonths,
-      countries: [...new Set(ipcAreas.map((a) => a.iso3))].sort(),
-      areas: ipcAreas,
-      skipped: {
-        ...(raw.skipped ?? {}),
-        // What the publication bar itself dropped, which the fetcher cannot know.
-        belowBar: all.length - ipcAreas.length,
-      },
-    }),
+    JSON.stringify(
+      apiStamps.hold('ipc', {
+        generated,
+        source: raw.source,
+        license: raw.license,
+        ageLimitMonths: raw.ageLimitMonths,
+        countries: [...new Set(ipcAreas.map((a) => a.iso3))].sort(),
+        areas: ipcAreas,
+        skipped: {
+          ...(raw.skipped ?? {}),
+          // What the publication bar itself dropped, which the fetcher cannot know.
+          belowBar: all.length - ipcAreas.length,
+        },
+      }),
+    ),
   )
   console.log(
     `  Built: api/ipc.json (${ipcAreas.length} areas at Emergency or worse across ` +
@@ -2441,5 +2460,9 @@ for (const page of staticPages) {
   )
   console.log(`  Built: ${page}.html`)
 }
+
+// After the last file: a build that died half-way leaves the ledger describing
+// the last build that finished, which is the one that was deployed.
+apiStamps.save()
 
 console.log('Done.')
