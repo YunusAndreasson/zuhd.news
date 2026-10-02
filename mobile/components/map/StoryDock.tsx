@@ -11,11 +11,12 @@ import { mixHex, SPACING } from '../../constants/theme';
 import { useScrub } from '../../hooks/useScrub';
 import { useTheme } from '../../hooks/useTheme';
 import { announce } from '../../lib/announce';
+import { nearestIndex } from '../../lib/arrays';
 import { CONTROL_ROW } from '../../lib/deck-layout';
 import { useReadSlugs } from '../../lib/read-store';
 import { unreadNewBehind } from '../../lib/resume-landing';
 import type { FoundProgress } from '../../lib/story-places';
-import { labelledMarks, nearestStory, positionAt, timeTrackLayout } from '../../lib/time-track';
+import { labelledMarks, positionAt, timeTrackLayout } from '../../lib/time-track';
 import { Icon, IconButton, Text } from '../primitives';
 import { MARK_LABEL_WIDTH, ScrubBar, ScrubTooltip } from '../ScrubBar';
 
@@ -65,7 +66,7 @@ import { MARK_LABEL_WIDTH, ScrubBar, ScrubTooltip } from '../ScrubBar';
  */
 function storyAt(fraction: number, count: number, centers: readonly number[] | null): number {
   'worklet';
-  if (centers && centers.length === count && count > 0) return nearestStory(centers, fraction);
+  if (centers && centers.length === count && count > 0) return nearestIndex(centers, fraction);
   return Math.max(0, Math.min(count - 1, Math.ceil(fraction * count) - 1));
 }
 
@@ -279,7 +280,7 @@ export const StoryDock = memo(function StoryDock({
       // is taking the deck to. From the deck's position instead, the playhead
       // went back to the story being left until the commit reached the deck.
       if (previous?.held && centers && centers.length === count) {
-        fraction.value = centers[nearestStory(centers, fraction.value)] ?? fraction.value;
+        fraction.value = centers[nearestIndex(centers, fraction.value)] ?? fraction.value;
         return;
       }
       const at = centers ? positionAt(centers, p) : count > 0 ? (p + 1) / count : 0;

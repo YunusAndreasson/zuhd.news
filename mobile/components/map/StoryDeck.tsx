@@ -29,7 +29,8 @@ import Animated, {
 } from 'react-native-reanimated';
 import { scheduleOnRN } from 'react-native-worklets';
 import { ANIMATION, KEEP_MOTION } from '../../constants/theme';
-import { assignSlots, sameKeys } from '../../lib/deck-slots';
+import { sameItems } from '../../lib/arrays';
+import { assignSlots } from '../../lib/deck-slots';
 import { deckTarget, rubberBand } from '../../lib/deck-swipe';
 
 /**
@@ -422,7 +423,7 @@ export const StoryDeck = memo(function StoryDeck({
     slots: assignSlots(windowKeys, new Map()),
   }));
   let slotOf = assigned.slots;
-  if (!sameKeys(assigned.keys, windowKeys)) {
+  if (!sameItems(assigned.keys, windowKeys)) {
     slotOf = assignSlots(windowKeys, assigned.slots);
     setAssigned({ keys: windowKeys, slots: slotOf });
   }

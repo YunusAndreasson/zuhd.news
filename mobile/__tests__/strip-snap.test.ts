@@ -1,4 +1,5 @@
-import { nearestOffsetIndex, sameOffsets, stripSnapOffsets } from '../lib/strip-snap';
+import { nearestIndex, sameItems } from '../lib/arrays';
+import { stripSnapOffsets } from '../lib/strip-snap';
 
 describe('stripSnapOffsets', () => {
   it('rests on every slot start the row can reach, then on the end of the row', () => {
@@ -40,30 +41,30 @@ describe('stripSnapOffsets', () => {
   });
 });
 
-describe('nearestOffsetIndex', () => {
+describe('the offset the row rests on (nearestIndex)', () => {
   const offsets = [0, 90, 180, 270, 300];
 
   it('takes the nearer of two neighbours', () => {
-    expect(nearestOffsetIndex(offsets, 44)).toBe(0);
-    expect(nearestOffsetIndex(offsets, 46)).toBe(1);
-    expect(nearestOffsetIndex(offsets, 90)).toBe(1);
+    expect(nearestIndex(offsets, 44)).toBe(0);
+    expect(nearestIndex(offsets, 46)).toBe(1);
+    expect(nearestIndex(offsets, 90)).toBe(1);
   });
 
   it('clamps at either end', () => {
-    expect(nearestOffsetIndex(offsets, -40)).toBe(0);
-    expect(nearestOffsetIndex(offsets, 9000)).toBe(4);
+    expect(nearestIndex(offsets, -40)).toBe(0);
+    expect(nearestIndex(offsets, 9000)).toBe(4);
   });
 
   it('answers 0 for a row that snaps nowhere', () => {
-    expect(nearestOffsetIndex([], 120)).toBe(0);
+    expect(nearestIndex([], 120)).toBe(0);
   });
 });
 
-describe('sameOffsets', () => {
+describe('new offsets only when they moved (sameItems)', () => {
   it('is true only when the geometry has not moved', () => {
-    expect(sameOffsets([0, 90, 300], [0, 90, 300])).toBe(true);
-    expect(sameOffsets([0, 90, 300], [0, 91, 300])).toBe(false);
-    expect(sameOffsets([0, 90], [0, 90, 300])).toBe(false);
-    expect(sameOffsets([], [])).toBe(true);
+    expect(sameItems([0, 90, 300], [0, 90, 300])).toBe(true);
+    expect(sameItems([0, 90, 300], [0, 91, 300])).toBe(false);
+    expect(sameItems([0, 90], [0, 90, 300])).toBe(false);
+    expect(sameItems([], [])).toBe(true);
   });
 });

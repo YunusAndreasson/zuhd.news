@@ -11,11 +11,12 @@ import { ScrollView } from 'react-native-gesture-handler';
 import { useReducedMotion } from 'react-native-reanimated';
 import { MAX_FONT_SCALE, SPACING } from '../../constants/theme';
 import { useTheme } from '../../hooks/useTheme';
+import { nearestIndex, sameItems } from '../../lib/arrays';
 import { spokenDelta } from '../../lib/cards/format';
 import { CONTROL_ROW } from '../../lib/deck-layout';
 import { hapticSwipe } from '../../lib/haptics';
 import type { StripItem } from '../../lib/now';
-import { nearestOffsetIndex, sameOffsets, stripSnapOffsets } from '../../lib/strip-snap';
+import { stripSnapOffsets } from '../../lib/strip-snap';
 import { DeltaChip } from '../DeltaChip';
 import { Icon, Pressable, Text } from '../primitives';
 
@@ -251,7 +252,7 @@ export const IndicatorStrip = memo(function IndicatorStrip({
     const next = stripSnapOffsets(starts, content, viewport);
     // A fresh array every layout would re-push the whole list to the native
     // side for nothing.
-    setOffsets((prev) => (sameOffsets(prev, next) ? prev : next));
+    setOffsets((prev) => (sameItems(prev, next) ? prev : next));
     geometry.current = { offsets: next, max: Math.max(0, content - viewport) };
     // A rotation or a change of type size moves every landing, and the row was
     // resting on one of them. Put it back on the same slot rather than leaving
@@ -259,7 +260,7 @@ export const IndicatorStrip = memo(function IndicatorStrip({
     if (lastViewport.current !== viewport) {
       lastViewport.current = viewport;
       const target = next[Math.min(settled.current, next.length - 1)] ?? 0;
-      settled.current = nearestOffsetIndex(next, target);
+      settled.current = nearestIndex(next, target);
       scrollRef.current?.scrollTo({ x: target, animated: false });
     }
   }, [items, content, viewport, placements]);
@@ -273,7 +274,7 @@ export const IndicatorStrip = memo(function IndicatorStrip({
       const quiet = programmatic.current;
       programmatic.current = false;
       if (offsets.length === 0) return;
-      const index = nearestOffsetIndex(offsets, e.nativeEvent.contentOffset.x);
+      const index = nearestIndex(offsets, e.nativeEvent.contentOffset.x);
       if (index === settled.current) return;
       settled.current = index;
       if (!quiet) hapticSwipe();
@@ -293,7 +294,7 @@ export const IndicatorStrip = memo(function IndicatorStrip({
     // slot at rest sat flush. One vocabulary of rest positions now.
     const { offsets: known, max } = geometry.current;
     const target = Math.max(0, max > 0 ? Math.min(Math.round(x), max) : Math.round(x));
-    settled.current = nearestOffsetIndex(known, target);
+    settled.current = nearestIndex(known, target);
     // Only an animated scroll ends in a momentum event there is a tick to keep
     // quiet.
     programmatic.current = !reduceMotion;
