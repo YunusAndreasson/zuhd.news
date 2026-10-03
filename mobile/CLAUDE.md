@@ -338,6 +338,16 @@ whole time; nothing said so.
     of a hundred is mostly Green), and the 27 rankings under seven headings
     (`lib/metric-groups.ts`, tested: every metric listed once, a new one
     under `other`).
+  - **A row that opens a list names what leads it, not what the list is**
+    (2026-10-03, the user's request; `leadNames`, `lib/row-leaders.ts`,
+    tested): up to three whole names, fewer where three would run past one
+    line. A ranking's row is its top countries (`rankingLeaders`); a hazard
+    layer's is its gravest (`hazardLead`, `lib/hazard-leaders.ts`, tested:
+    famine by country, conflict with `as of` the source's last day, disasters
+    counted by kind on a day with no Red or Orange); `saved` is the story
+    saved last; `settings` is what the settings are (`settingsSummary`). The
+    sentence each replaced is still the screen reader's hint. A new list row
+    with a caption that only describes its list is the regression.
   - `MarketBrowserSheet` held all of this until 2026-09-26: exchanges with a
     rising/falling filter, and every other card unsplit under `other data`.
     Its filter lives on in `stock markets`, its row as `InstrumentRow`.

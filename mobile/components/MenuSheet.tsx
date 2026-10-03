@@ -55,17 +55,20 @@ import {
   subscribe as subscribeDataUsage,
 } from '../lib/data-usage';
 import { hapticError, hapticNotification, hapticTick } from '../lib/haptics';
+import { hazardLead } from '../lib/hazard-leaders';
 import {
   type CatalogGroup,
   type CatalogRow,
   GROUP_TITLES,
   type GroupKey,
 } from '../lib/instrument-catalog';
-import { metricGroups } from '../lib/metric-groups';
+import { metricGroups, rankingLeaders } from '../lib/metric-groups';
 import type { RiverArticle } from '../lib/news-order';
 import { resetOnboarding } from '../lib/onboarding-store';
 import type { FamineArea, GenocideSituation, ThermalEvent } from '../lib/overlays';
 import { MARKET_CAVEAT } from '../lib/predictions';
+import { LEADERS_SEPARATOR } from '../lib/row-leaders';
+import { settingsSummary } from '../lib/settings-summary';
 import { makeStaggerEnter } from '../lib/stagger';
 import { markTap, type TapResult } from '../lib/tap-result';
 import { eraseLocalData } from '../lib/wipe';
@@ -674,12 +677,25 @@ export const MenuSheet = memo(function MenuSheet({
     }
 
     if (current === 'settings & about') {
+      const settingsLine = settingsSummary({
+        fontSize: preferences.fontSize,
+        appearance: preferences.appearance,
+        notifications: preferences.notifications && !notificationPermissionDenied,
+      });
       return (
         <>
+          {/* What the settings are, not what the page holds: the headings
+              are the screen reader's hint. */}
           <MenuRow
             first
             title="settings"
             description="Text size, appearance, haptics, notifications"
+            detail={
+              <Text variant="caption" style={styles.teaser}>
+                {settingsLine}
+              </Text>
+            }
+            detailLabel={settingsLine}
             trailing="push"
             onPress={() => navPush('settings')}
           />
@@ -729,16 +745,31 @@ export const MenuSheet = memo(function MenuSheet({
           {metricGroups().map((group, g) => (
             <Fragment key={group.label}>
               <SectionLabel label={group.label} first={g === 0} />
-              {group.metrics.map((key, i) => (
-                <MenuRow
-                  key={key}
-                  first={i === 0}
-                  title={METRICS[key].label}
-                  description={METRICS[key].description}
-                  trailing="push"
-                  onPress={() => openDetail({ kind: 'ranking', metric: key, country: null })}
-                />
-              ))}
+              {group.metrics.map((key, i) => {
+                // The row says who leads, as a data group's row prints its
+                // first reading. It printed the measure's definition, which
+                // the ranking's own page opens with; that sentence is still
+                // the screen reader's hint.
+                const leaders = rankingLeaders(key);
+                return (
+                  <MenuRow
+                    key={key}
+                    first={i === 0}
+                    title={METRICS[key].label}
+                    description={METRICS[key].description}
+                    detail={
+                      leaders.length > 0 ? (
+                        <Text variant="caption" style={styles.teaser}>
+                          {leaders.join(LEADERS_SEPARATOR)}
+                        </Text>
+                      ) : undefined
+                    }
+                    detailLabel={leaders.length > 0 ? `led by ${leaders.join(', ')}` : undefined}
+                    trailing="push"
+                    onPress={() => openDetail({ kind: 'ranking', metric: key, country: null })}
+                  />
+                );
+              })}
             </Fragment>
           ))}
         </>
@@ -953,11 +984,23 @@ export const MenuSheet = memo(function MenuSheet({
  * shows it.
  */
 const SavedRow = memo(function SavedRow({ onPress }: { onPress: () => void }) {
-  const count = useSyncExternalStore(subscribeBookmarks, getBookmarks).length;
+  const bookmarks = useSyncExternalStore(subscribeBookmarks, getBookmarks);
+  const count = bookmarks.length;
+  // Newest first, so this is the story saved last. One line: a second would
+  // grow the root, which already fills the sheet at the large text size.
+  const latest = bookmarks[0]?.article.title;
   return (
     <MenuRow
       title="saved"
       description="Stories you have kept"
+      detail={
+        latest ? (
+          <Text variant="caption" numberOfLines={1} style={styles.teaser}>
+            {latest}
+          </Text>
+        ) : undefined
+      }
+      detailLabel={latest ? `last saved, ${latest}` : undefined}
       value={count > 0 ? String(count) : undefined}
       trailing="push"
       onPress={onPress}
@@ -1110,17 +1153,32 @@ function HazardLayers({
 }) {
   return (
     <>
-      {hazardLayers(hazards).map((layer, i) => (
-        <MenuRow
-          key={layer.key}
-          first={i === 0}
-          title={HAZARD_TITLES[layer.key]}
-          description={layer.note}
-          value={String(layer.count)}
-          trailing="push"
-          onPress={() => onPress(layer.key)}
-        />
-      ))}
+      {hazardLayers(hazards).map((layer, i) => {
+        // What leads the layer's list today (`lib/hazard-leaders.ts`). The
+        // standing sentence — what the layer is and whose it is — stays the
+        // screen reader's hint, and the line where a layer has nothing to
+        // name; every page behind these rows names its source.
+        const lead = hazardLead(layer.key, hazards);
+        return (
+          <MenuRow
+            key={layer.key}
+            first={i === 0}
+            title={HAZARD_TITLES[layer.key]}
+            description={layer.note}
+            detail={
+              lead ? (
+                <Text variant="caption" style={styles.teaser}>
+                  {lead}
+                </Text>
+              ) : undefined
+            }
+            detailLabel={lead || undefined}
+            value={String(layer.count)}
+            trailing="push"
+            onPress={() => onPress(layer.key)}
+          />
+        );
+      })}
     </>
   );
 }
