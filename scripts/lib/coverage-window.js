@@ -54,6 +54,13 @@ export const loadArticles = (windowStart) => {
           .map((e) => e?.indicatorId)
           .filter(Boolean)
           .map(canonicalIndicatorId),
+        // As the frontmatter carries them, for a join that reads more than an
+        // id: which words a ticker was tied to, and which instruments the
+        // entity stage judged the story to be *about* (`lib/companies.js`).
+        // `subjects` is absent on a story that stage never read.
+        concepts,
+        entities: Array.isArray(meta.entities) ? meta.entities : [],
+        ...(Array.isArray(meta.subjects) ? { subjects: meta.subjects } : {}),
         hay: [meta.title, meta.location, ...concepts].join(' ').toLowerCase(),
         // The ISO-2 codes the body links, which is the one place an article
         // states which countries it is *about* — `hay` carries a dateline and a
