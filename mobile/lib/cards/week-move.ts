@@ -114,7 +114,8 @@ export function weekMove(
   return null;
 }
 
-function yearOf(asOf: string | undefined, fallback: number): number {
+/** The year a series' last label falls in: its card's `asOf`, or `fallback`. */
+export function yearOf(asOf: string | undefined, fallback: number): number {
   const m = asOf ? /^(\d{4})/.exec(asOf) : null;
   return m ? Number(m[1]) : fallback;
 }

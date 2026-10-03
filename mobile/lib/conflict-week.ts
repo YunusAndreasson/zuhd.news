@@ -128,15 +128,22 @@ export function countryWeekFor(
   );
 }
 
-/** The whole week in a line: `195 events · 648 killed · 200 civilians`. */
-export function weekLine(week: ConflictWeek): string {
+/** The week's dead, and the civilians counted among them (a floor). The one
+ *  place the whole week is added up: its line and the menu's overview both
+ *  read it. */
+export function weekToll(week: ConflictWeek): { killed: number; civilians: number } {
   let killed = 0;
   let civilians = 0;
   for (const e of week.events) {
     killed += e.fatalities;
     civilians += civiliansOf(e);
   }
-  return countryWeekLine({ events: week.events, killed, civilians });
+  return { killed, civilians };
+}
+
+/** The whole week in a line: `195 events · 648 killed · 200 civilians`. */
+export function weekLine(week: ConflictWeek): string {
+  return countryWeekLine({ events: week.events, ...weekToll(week) });
 }
 
 /**

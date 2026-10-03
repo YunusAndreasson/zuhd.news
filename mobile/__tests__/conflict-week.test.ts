@@ -7,6 +7,7 @@ import {
   countryWeekFor,
   countryWeekLine,
   weekLine,
+  weekToll,
   weekWindow,
 } from '../lib/conflict-week';
 
@@ -48,6 +49,12 @@ describe('the conflict week', () => {
     expect(
       conflictWeekOf({ generated: '', windowStart: '', windowEnd: '', events: [] }),
     ).toBeNull();
+  });
+
+  it('adds the week up once, for its line and for the menu’s overview', () => {
+    const toll = weekToll(WEEK);
+    expect(toll).toEqual({ killed: 104, civilians: 47 });
+    expect(weekLine(WEEK)).toBe('5 events · 104 killed · 47 civilians');
   });
 
   it('names its dates, within a month and across one', () => {

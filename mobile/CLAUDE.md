@@ -213,11 +213,38 @@ whole time; nothing said so.
   the strip is never conditional, and opens the menu, whose root leads with
   the data (2026-09-26, the user's request): `stock markets`, `largest
   companies`, `straits`, `currencies`, `energy, food & metals`, `rates,
-  inflation & jobs`, `crypto`, `predictions`, `coming up`, then `world
-  hazards` and `country rankings`, each a pushed page.
+  inflation & jobs`, `crypto`, `predictions`, `coming up`, then `country
+  rankings`, each a pushed page, under an `overview` (below) that holds
+  `world hazards`.
   Each group's row prints its count and its first row — the week's largest
   move, the strip's own number — so the menu says what is in it before it is
   opened. The app's own pages fold behind one `settings & about` row.
+  - **The root opens on an `overview`: four compound lines, each in its own
+    unit** (2026-10-04, the user's request for "top metrics… maybe even our
+    own index"; `lib/world-summary.ts`, tested; `Overview` in `MenuSheet`).
+    - `world stocks` is the index: the exchanges' weeks averaged, each counted
+      once, with how many rose and fell. **It can only be equal-weight** — no
+      payload carries a market's value or volume — and its hint and the
+      `stock markets` page both say so. It is the web rail's `meanIndex`
+      rebased at the week's start, read off the rows' own moves, so its tally
+      is the page's (`exchangeTally`) and cannot differ from it.
+    - `shipping` is ships through every strait, added day by day: one unit, so
+      a count and not an index. Only straits ending on the same day are added,
+      and only days all of them have. The web removed a straits composite
+      (2026-08-08) because one number hid which strait moved; here the caption
+      says how many are disrupted (`straitSqueezed`, the globe's pinch) and
+      the `straits` row under it still names the mover.
+    - `currencies` is a count and never an average: the basket holds the euro
+      and the Lebanese pound.
+    - `world hazards` is people — the conflict week's dead **with its dates**,
+      the people in hunger — and has no move: neither source has a "before".
+      Its line was the layers counted in marks. The hunger part is a sum of
+      analyses from different months (`hungerTotal`), absent until the site
+      publishes the totals.
+    - **One score across all four was considered and rejected**: it needs
+      weights nobody publishes and a colour that calls the result good or
+      bad. The label is `overview`, not "this week", for the hazards' sake.
+      "This week against the week before" was offered and not chosen.
   - **The lists hold every published series, not the ranked pool**
     (`lib/instrument-catalog.ts`, tested). The pool is the strip's, and short
     on purpose: two currencies of fifteen, Brent without WTI, no Fed rate. The
