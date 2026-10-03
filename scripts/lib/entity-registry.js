@@ -108,6 +108,27 @@ export const ENTITY_RULES = [
   { mention: 'US jobless',     indicatorId: 'us-unemployment', kind: 'index' },
   { mention: 'nonfarm payrolls', indicatorId: 'us-unemployment', kind: 'index' },
   { mention: 'payrolls',       indicatorId: 'us-unemployment', kind: 'index' },
+  // The rates added 2026-10-03. A central bank is named for itself, never
+  // for its country: "Turkey" is not a mention of Turkey's policy rate.
+  { mention: 'Bank of England', indicatorId: 'boe-rate',  kind: 'index' },
+  { mention: 'Bank of Japan',  indicatorId: 'boj-rate',   kind: 'index' },
+  { mention: 'BOJ',            indicatorId: 'boj-rate',   kind: 'index', caseSensitive: true },
+  { mention: 'Turkish central bank', indicatorId: 'tcmb-rate', kind: 'index' },
+  { mention: "People's Bank of China", indicatorId: 'pboc-rate', kind: 'index' },
+  { mention: 'PBOC',           indicatorId: 'pboc-rate',  kind: 'index', caseSensitive: true },
+  { mention: 'loan prime rate', indicatorId: 'pboc-rate', kind: 'index' },
+  { mention: 'Bank of Russia', indicatorId: 'cbr-rate',   kind: 'index' },
+  { mention: 'Russian central bank', indicatorId: 'cbr-rate', kind: 'index' },
+  { mention: 'Selic',          indicatorId: 'bcb-rate',   kind: 'index' },
+  { mention: 'Bank Indonesia', indicatorId: 'bi-rate',    kind: 'index' },
+  { mention: '2-year yield',   indicatorId: 'us-2y',      kind: 'index' },
+  { mention: 'two-year yield', indicatorId: 'us-2y',      kind: 'index' },
+  { mention: '2-year Treasury', indicatorId: 'us-2y',     kind: 'index' },
+  { mention: 'US mortgage rates', indicatorId: 'us-mortgage', kind: 'index' },
+  { mention: '30-year mortgage', indicatorId: 'us-mortgage', kind: 'index' },
+  { mention: 'eurozone inflation', indicatorId: 'ez-cpi', kind: 'index' },
+  { mention: 'euro zone inflation', indicatorId: 'ez-cpi', kind: 'index' },
+  { mention: 'euro area inflation', indicatorId: 'ez-cpi', kind: 'index' },
 
   // ── Currencies — unambiguous by name ───────────────────────────────────────
   { mention: 'yen',            indicatorId: 'fx-jpy',     kind: 'currency' },
@@ -156,6 +177,16 @@ export const ENTITY_RULES = [
   { mention: 'ETH',            indicatorId: 'eth',        kind: 'crypto' },
   { mention: 'Monero',         indicatorId: 'xmr',        kind: 'crypto' },
   { mention: 'XMR',            indicatorId: 'xmr',        kind: 'crypto' },
+  // Names and tickers only. Not "Ripple" (the company, not the coin), not
+  // bare "Tron" (a film) and not "SOL", "LINK" or "HYPE", which are words.
+  { mention: 'BNB',            indicatorId: 'bnb',        kind: 'crypto', caseSensitive: true },
+  { mention: 'XRP',            indicatorId: 'xrp',        kind: 'crypto', caseSensitive: true },
+  { mention: 'Solana',         indicatorId: 'sol',        kind: 'crypto' },
+  { mention: 'TRX',            indicatorId: 'trx',        kind: 'crypto', caseSensitive: true },
+  { mention: 'Zcash',          indicatorId: 'zec',        kind: 'crypto' },
+  { mention: 'Hyperliquid',    indicatorId: 'hype',       kind: 'crypto' },
+  { mention: 'Dogecoin',       indicatorId: 'doge',       kind: 'crypto' },
+  { mention: 'Chainlink',      indicatorId: 'link',       kind: 'crypto' },
 
   // ── Chokepoints ────────────────────────────────────────────────────────────
   //

@@ -1,7 +1,7 @@
 // CoinGecko crypto price fetcher.
 // Docs: https://docs.coingecko.com/v3.0.1/reference/coins-id-market-chart
 // Works keyless, but keyless traffic shares an IP-based rate pool and we saw
-// recurring HTTP 429 on the 4-coin fan-out. A free Demo key (100 calls/min,
+// recurring HTTP 429 on the 4-coin fan-out (thirteen since 2026-10-03). A free Demo key (100 calls/min,
 // sent via x-cg-demo-api-key against the same host) moves us to a private
 // pool. Set COINGECKO_API_KEY in the systemd service to enable; absent key
 // keeps the old keyless behavior.
@@ -16,6 +16,22 @@ function formatPeriod(ms) {
   const d = new Date(ms)
   const month = d.toLocaleDateString('en-US', { month: 'short', timeZone: 'UTC' })
   return `${month} ${d.getUTCDate()}`
+}
+
+/**
+ * A dollar price at the precision its size needs.
+ *
+ * Two decimals was the rule while every coin here cost tens of dollars or
+ * more. At two, Dogecoin at $0.0931 is `0.09` on every day of the month — a
+ * flat line and a week's move of nothing — so a price under ten dollars keeps
+ * four decimals and one under a dollar six. From ten up it is unchanged.
+ *
+ * @param {number} price
+ * @returns {number}
+ */
+export function roundPrice(price) {
+  const abs = Math.abs(price)
+  return Number(price.toFixed(abs >= 10 ? 2 : abs >= 1 ? 4 : 6))
 }
 
 /**
@@ -48,7 +64,7 @@ export async function fetchCoinGeckoSeries(indicator) {
       return null
     }
 
-    const values = prices.map(([, p]) => Number(p.toFixed(2)))
+    const values = prices.map(([, p]) => roundPrice(p))
     const periods = prices.map(([ms]) => formatPeriod(ms))
     const asOf = new Date(prices[prices.length - 1][0]).toISOString().slice(0, 10)
 

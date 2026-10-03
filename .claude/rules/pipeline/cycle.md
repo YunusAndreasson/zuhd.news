@@ -155,6 +155,49 @@ is in the root CLAUDE.md; this is what the stages assume about each other.
   attribute, which is the line that would have caught this in April.
   `parseArcgisDate` reads either serialisation and both fetchers go through it.
 
+## Policy rates come from the BIS, and a coin's price keeps its decimals (2026-10-03)
+
+The app split its `rates & crypto` list in two and each half was thin (five
+rows, three), so eighteen series were added: seven policy rates, two US rates,
+euro-area inflation, eight coins.
+
+- **FRED has two central banks.** Its Bank of England rate stopped in 2017 and
+  its Bank of Japan rate in 2023; the nearest live series are overnight
+  *market* rates, which are not what a committee sets. The BIS collects each
+  bank's own rate daily, keyless (`trends-sources/bis.js`, `source: 'bis'`,
+  one batched call). `detail=dataonly` is not optional: without it every row
+  repeats the series' compilation note, megabytes for two years of seven
+  countries.
+- **Drawn as the Fed's is**: a point a month over two years, the rate in force
+  at each month's last observation, and the current month as far as it has
+  got, so a change made last week is the reading today (`monthlyFromDaily`,
+  tested in `bis-rates.test.js`).
+- **A series whose newest observation is over 45 days old is dropped, with a
+  log line.** India's ran 72 days behind on the day this was written, and a
+  policy rate printed as current when it may have changed is worse than no
+  row. Pakistan, Egypt and Nigeria are not collected at all.
+- **Named for the country, tagged for the bank.** `Turkey interest rate`
+  needs no finance to read. The tags and the entity mentions name the bank or
+  the decision and never the country alone: the offer matches tags alone, and
+  a bare `turkey` would hang a policy rate off every story about Ankara. A
+  test holds that.
+- **`BOJ` is a mention now**, so "Yen weakens as BOJ summary damps rate-hike
+  bets" is filed under the Bank of Japan's rate rather than the yen by
+  `seriesOf` (`tracked-stories.js`). Still one series, one slot.
+- **A price under ten dollars keeps four decimals, under one dollar six**
+  (`roundPrice`). At the old two, Dogecoin at $0.0931 was `0.09` on every day
+  of the month: a flat line and a week's move of nothing. From ten dollars up
+  nothing changed.
+- **The coins are the ten largest by market value that are not pegged to
+  something**, plus Monero, which was already here. A coin's tags are its own
+  name and ticker: `crypto` is on Bitcoin and Ethereum, and eight more
+  answering to it would offer the writer ten charts for one story.
+- **Cost**: `api/trends.json` 22.9KB → 26.5KB gzipped, eight more price calls
+  a cycle (thirteen; the server's key allows thirty a minute, and a keyless
+  laptop was refused on the eighth), and eighteen more items in the daily
+  narration. A new series reaches the app the cycle after its first, when it
+  has a `standing`: the app's gate drops a card with no paragraph.
+
 ## The trends payload's country tags
 
 - **Only the currency basket knew what country it was about, and that was 15 of
