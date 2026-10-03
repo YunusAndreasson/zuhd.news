@@ -4,6 +4,7 @@ import * as Reanimated from 'react-native-reanimated';
 import type { SharedValue } from 'react-native-reanimated';
 import { StoryDeck } from '../components/map/StoryDeck';
 
+jest.mock('../hooks/useTheme', () => ({ useTheme: () => ({ colors: {} }) }));
 jest.mock('react-native-gesture-handler', () => ({
   usePanGesture: (config: unknown) => config,
   useNativeGesture: (config: unknown) => config,

@@ -1399,6 +1399,26 @@ Prefer the `scale` prop on `<Text>` over style overrides. `fontVariant` override
     that mounts while its inputs animate returns a style computed from props
     when `globalThis.__RUNTIME_KIND === 1`, and keeps those props out of its
     dependency list.
+- **What moves with the sheet costs a native update per frame on iOS, and
+  three shapes make it cost more than they show** (2026-10-03, found when
+  opening a story lagged on an iPhone Pro and never on the emulator). On iOS
+  Reanimated commits the shadow tree for every animated frame
+  (`IOS_SYNCHRONOUSLY_UPDATE_UI_PROPS` is off; turning it on needs RNGH
+  `Pressable`s, breaks `Text` links in moving views, and needs Reanimated
+  built from source on SDK 57). Keep the per-frame set to what visibly moves:
+  - **No opacity between 0 and 1 on a view with children.** iOS draws it off
+    screen as a group every such frame; Android and the emulator's host GPU
+    hide the cost. Fade a leaf instead — a plain `sheetBg` view over the
+    content is the same picture over a solid sheet (`DeckSlot`'s dimming) —
+    or switch 0/1 (`StoryCard`'s veil). Never animate opacity on a view with
+    `experimental_backgroundImage`: any change rebuilds its gradient layers.
+  - **A `transform` array defeats the diff.** Reanimated skips an update only
+    when every value is `===` the last, and a fresh array never is, so a
+    style returning one is re-sent each time its mapper runs. Keep a
+    transform in a style whose inputs change only when it does.
+  - **No layout props per frame** (`top`, `bottom`, `height`): each re-runs
+    layout. Snap to the stops when only the stops matter
+    (`GlobeGestureLayer`'s bounds).
 - **Reduce Motion is Reanimated's by default** (`ReduceMotion.System` on every
   animation and layout builder: it jumps to the end). Don't add
   `useReducedMotion()` branches for Reanimated animations; spread `KEEP_MOTION`

@@ -29,6 +29,7 @@ import Animated, {
 } from 'react-native-reanimated';
 import { scheduleOnRN } from 'react-native-worklets';
 import { ANIMATION, KEEP_MOTION } from '../../constants/theme';
+import { useTheme } from '../../hooks/useTheme';
 import { sameItems } from '../../lib/arrays';
 import { assignSlots } from '../../lib/deck-slots';
 import { deckTarget, rubberBand } from '../../lib/deck-swipe';
@@ -98,7 +99,8 @@ import { deckTarget, rubberBand } from '../../lib/deck-swipe';
 /** How far a finger travels sideways before the deck's pan claims it. */
 const CLAIM_X = 16;
 
-/** Neighbours fade in as they enter during a horizontal swipe. */
+/** How much of a neighbour shows through its dimming at rest; it comes up to
+ *  full as it enters during a horizontal swipe. */
 const PEEK_OPACITY = 0.4;
 
 type SheetGesture = ReturnType<typeof usePanGesture>;
@@ -171,37 +173,54 @@ const DeckSlot = memo(function DeckSlot({
   onScrollOffset: SharedValue<number>;
   children: ReactNode;
 }) {
+  const { colors } = useTheme();
   const scrollRef = useAnimatedRef<Animated.ScrollView>();
-  const slotStyle = useAnimatedStyle(() => {
-    // Reanimated runs this once on the JS thread when the slot mounts, for its
-    // first style. A slot mounted as every swipe landed until slots were
-    // recycled (2026-09-25), and still can mid-spring when the window first
-    // grows to three, while the spring is writing
-    // `progress` on the UI thread, and a JS read of a value the UI thread has
-    // changed blocks until the UI thread answers (`runOnUISync`): 150–290 ms
-    // of every landing's commit on the emulator, with the globe's reproject
-    // queued behind it. So the first style is the one the slot rests at,
-    // computed from props, and the UI mapper, which starts straight after,
-    // draws the real one; a frame drawn before it takes over matches at rest.
+  // Reanimated runs both styles once on the JS thread when the slot mounts,
+  // for their first values. A slot mounted as every swipe landed until slots
+  // were recycled (2026-09-25), and still can mid-spring when the window first
+  // grows to three, while the spring is writing
+  // `progress` on the UI thread, and a JS read of a value the UI thread has
+  // changed blocks until the UI thread answers (`runOnUISync`): 150–290 ms
+  // of every landing's commit on the emulator, with the globe's reproject
+  // queued behind it. So the first style is the one the slot rests at,
+  // computed from props, and the UI mapper, which starts straight after,
+  // draws the real one; a frame drawn before it takes over matches at rest.
+  // `restOffset` only picks that first style; left to the closure it would
+  // restart these mappers on every slot at every landing.
+  //
+  // **The slide and the dimming are two styles, and the sheet moves neither**
+  // (2026-10-03). As one style, every frame of a story opening or closing
+  // updated all three slots on the native side: `peekFade` is the sheet's
+  // rise, and Reanimated skips an update only when every value is the same
+  // object, which a fresh `transform` array never is — so the card in front,
+  // whose numbers do not change, was re-sent each frame, and the neighbours
+  // off screen were re-faded. The slide reads only the deck's `progress`.
+  const slideStyle = useAnimatedStyle(() => {
     if (globalThis.__RUNTIME_KIND === 1) {
-      const rest = Math.min(1, Math.abs(restOffset));
-      return {
-        opacity: 1 - (1 - PEEK_OPACITY) * rest,
-        transform: [{ translateX: restOffset * pitch }],
-      };
+      return { transform: [{ translateX: restOffset * pitch }] };
     }
-    const offset = position - progress.value;
-    const away = Math.min(1, Math.abs(offset));
-    // A resting neighbour fades with the grown sheet; one being swiped in comes
-    // back as it arrives, so a swipe while reading still shows what is coming.
-    const fade = peekFade ? Math.min(1, Math.max(0, peekFade.value)) : 0;
-    return {
-      opacity: (1 - (1 - PEEK_OPACITY) * away) * (1 - fade * away),
-      transform: [{ translateX: offset * pitch }],
-    };
-    // `restOffset` only picks the first style; left to the closure it would
-    // restart this mapper on every slot at every landing.
-  }, [position, pitch, progress, peekFade]);
+    return { transform: [{ translateX: (position - progress.value) * pitch }] };
+  }, [position, pitch, progress]);
+  // **A neighbour is dimmed by a veil of the sheet's ground, not by its own
+  // opacity** (2026-10-03). On iOS a translucent view with sublayers is drawn
+  // off screen as a group on every frame its opacity is between 0 and 1 — the
+  // lesson of the story veil — and a slot is a whole card, faded on every
+  // frame of a swipe. A plain view of `sheetBg` over the card is one layer,
+  // and the picture is the same: the sheet is solid `sheetBg` behind every
+  // slot, so a card at 40% over it is the card under a 60% veil of it.
+  //
+  // A resting neighbour fades with the grown sheet; one being swiped in comes
+  // back as it arrives, so a swipe while reading still shows what is coming.
+  // The sheet's rise is read as open or not: the neighbours are off screen
+  // while it moves, so a fade tracking it drew nothing and cost a frame each.
+  const dimStyle = useAnimatedStyle(() => {
+    if (globalThis.__RUNTIME_KIND === 1) {
+      return { opacity: (1 - PEEK_OPACITY) * Math.min(1, Math.abs(restOffset)) };
+    }
+    const away = Math.min(1, Math.abs(position - progress.value));
+    const fade = peekFade && peekFade.value > 0.5 ? 1 : 0;
+    return { opacity: 1 - (1 - (1 - PEEK_OPACITY) * away) * (1 - fade * away) };
+  }, [position, progress, peekFade]);
 
   const nativeConfig = useMemo(
     (): NativeGestureConfig => ({ simultaneousWith: sheetGesture }),
@@ -267,7 +286,7 @@ const DeckSlot = memo(function DeckSlot({
 
   return (
     <Animated.View
-      style={[styles.slot, { width }, slotStyle]}
+      style={[styles.slot, { width }, slideStyle]}
       pointerEvents={current ? 'auto' : 'none'}
       accessibilityElementsHidden={!current}
       importantForAccessibility={current ? 'auto' : 'no-hide-descendants'}
@@ -286,6 +305,11 @@ const DeckSlot = memo(function DeckSlot({
           {children}
         </Animated.ScrollView>
       </GestureDetector>
+      <Animated.View
+        style={[StyleSheet.absoluteFill, { backgroundColor: colors.sheetBg }, dimStyle]}
+        pointerEvents="none"
+        importantForAccessibility="no"
+      />
     </Animated.View>
   );
 });

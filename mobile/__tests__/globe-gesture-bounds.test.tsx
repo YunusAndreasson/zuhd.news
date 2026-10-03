@@ -94,12 +94,15 @@ function setup(progress = 0, collapseMode = false) {
 
 beforeEach(() => jest.clearAllMocks());
 
+// The edge is at one of the sheet's two stops, never in between: following
+// the sheet, it re-ran layout on every frame of every open and close.
 it.each([
   [0, 300],
-  [0.5, 450],
+  [0.005, 300],
+  [0.5, 600],
   [1, 600],
   [2, 600],
-])('limits the native touch surface to the exposed globe at progress %s', (progress, bottom) => {
+])('limits the native touch surface to the sheet stop at progress %s', (progress, bottom) => {
   setup(progress);
   expect(mockBounds).toContainEqual({ top: 100, bottom });
 });

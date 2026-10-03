@@ -81,11 +81,16 @@ import type { MiniGlobeRef } from '../globe/MiniGlobe';
  *  is what a MapLibre throw feels like. */
 const FLING_DECELERATION = 0.994;
 
+/** The sheet's rise, as a share of its travel, below which it counts as at
+ *  rest and the gesture surface reaches down to peek. */
+const SHEET_AT_REST = 0.01;
+
 interface GlobeGestureLayerProps {
   globeRef: React.RefObject<MiniGlobeRef | null>;
   /** Distance from the top of the window to the top of the globe canvas. */
   canvasTop: number;
-  /** The gesture surface starts below the header and ends at the moving sheet. */
+  /** The gesture surface starts below the header and ends at the sheet's
+   *  stop: peek at rest, the open sheet's top once it has left rest. */
   topChromeHeight: number;
   sheetPeekHeight: number;
   sheetFullHeight: number;
@@ -177,13 +182,19 @@ export const GlobeGestureLayer = memo(function GlobeGestureLayer({
   // Header buttons and the story have their own gesture owners. Restrict the
   // native hit surface itself so their touches never reach the globe's pan,
   // pinch or tap recognizers (including the pan's flight-cancelling onBegin).
-  const boundsStyle = useAnimatedStyle(() => {
-    const progress = Math.max(0, Math.min(1, sheetProgress.value));
-    return {
-      top: topChromeHeight,
-      bottom: sheetPeekHeight + (sheetFullHeight - sheetPeekHeight) * progress,
-    };
-  });
+  //
+  // **The bottom edge jumps between the two stops; it does not ride the
+  // sheet** (2026-10-03). `bottom` is a layout prop, and following the sheet
+  // it re-ran layout on every frame of every story opening and closing — the
+  // pattern Reanimated's performance guide warns against, on the frames the
+  // iPhone already found hardest. Nothing needs the edge in between: a finger
+  // moving the sheet is on the sheet, and while it springs the globe between
+  // the open sheet's top and the sheet's is untouchable for half a second.
+  // Reanimated updates the view only when the edge changes, so twice a trip.
+  const boundsStyle = useAnimatedStyle(() => ({
+    top: topChromeHeight,
+    bottom: sheetProgress.value > SHEET_AT_REST ? sheetFullHeight : sheetPeekHeight,
+  }));
 
   const handleTap = useCallback(
     (x: number, y: number, epoch: number) => {
