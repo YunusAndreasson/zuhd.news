@@ -65,6 +65,24 @@ export function formatPeople(n: number): string {
   return `${formatNumber(millions, millions < 100 ? 1 : 0)} million`;
 }
 
+/**
+ * Every analysed country's people in Crisis or worse, added up, and how many
+ * countries that is. Null where the site publishes no totals.
+ *
+ * The sum is of each country's latest analysis, and those are of different
+ * months: it is a count of people the IPC has classified, not of one moment.
+ * The famine list says each analysis's month; a line that prints this sum
+ * cannot, so it is for the menu's overview and nowhere a month is expected.
+ */
+export function hungerTotal(
+  totals: readonly FamineCountryTotal[],
+): { people: number; countries: number } | null {
+  if (totals.length === 0) return null;
+  let people = 0;
+  for (const total of totals) people += total.p3plus;
+  return { people, countries: totals.length };
+}
+
 /** The country a total is of, as the app keys countries; undefined for a code
  *  the app has no country for. */
 function famineTotalCountry(total: Pick<FamineCountryTotal, 'iso2'>): string | undefined {

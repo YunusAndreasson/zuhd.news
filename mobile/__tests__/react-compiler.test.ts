@@ -21,7 +21,14 @@ import { join } from 'node:path';
  * is its own change, to be profiled on hardware.
  */
 const MUST_COMPILE: Record<string, string[]> = {
-  'components/MenuSheet.tsx': ['MenuSheet', 'SavedRow', 'DataUsedRow', 'GroupRow', 'GroupPage'],
+  'components/MenuSheet.tsx': [
+    'MenuSheet',
+    'SavedRow',
+    'DataUsedRow',
+    'GroupRow',
+    'GroupPage',
+    'Overview',
+  ],
   'components/ConflictSheet.tsx': ['ConflictSheet', 'ConflictBody'],
   'components/DisasterSheet.tsx': ['DisasterSheet', 'DisasterBody'],
   'components/CountrySheet.tsx': ['CountrySheet', 'CountryBody'],

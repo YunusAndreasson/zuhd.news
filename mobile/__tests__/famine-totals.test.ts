@@ -5,6 +5,7 @@ import {
   formatPeople,
   hungerLine,
   hungerRows,
+  hungerTotal,
 } from '../lib/famine-totals';
 import type { FamineCountryTotal } from '../lib/overlays';
 
@@ -49,6 +50,13 @@ describe('famineTotalsOf', () => {
       null,
     ]);
     expect(rows.map((r) => r.iso3)).toEqual(['SDN', 'PSE']);
+  });
+});
+
+describe('hungerTotal', () => {
+  it('adds every country’s people in crisis or worse, and is null with none', () => {
+    expect(hungerTotal([SUDAN, GAZA])).toEqual({ people: 20_706_190, countries: 2 });
+    expect(hungerTotal([])).toBeNull();
   });
 });
 
