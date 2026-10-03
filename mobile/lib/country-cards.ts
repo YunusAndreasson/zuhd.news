@@ -168,3 +168,36 @@ export function near(series: YearValue[] | undefined, year: number): YearValue |
   }
   return best;
 }
+
+/** A year's price rise as it is printed: `58.5%`, `220%` past a hundred, and a
+ *  true minus for a year prices fell. */
+export function formatInflation(pct: number): string {
+  const magnitude =
+    Math.abs(pct) >= 100 ? Math.round(Math.abs(pct)).toString() : Math.abs(pct).toFixed(1);
+  return `${pct < 0 ? '−' : ''}${magnitude}%`;
+}
+
+/**
+ * A country's inflation in a headline and a sentence: its latest year's rise in
+ * consumer prices, the year, and the world's median for that same year.
+ *
+ * The year is always said. The series is annual and the World Bank's, so the
+ * newest figure is a year or two old, and for a few countries much older
+ * (Sudan's stops at 2022): without the year the number reads as today's.
+ * Null for a country with no series.
+ */
+export function inflationSummary(
+  series: YearValue[] | undefined,
+  world: YearValue[] | undefined,
+): { headline: string; subtitle: string } | null {
+  const last = latest(series);
+  if (!last) return null;
+  const [year, value] = last;
+  const median = world?.find(([y]) => y === year);
+  return {
+    headline: formatInflation(value),
+    subtitle: `A year’s rise in consumer prices, in ${year}.${
+      median ? ` The world’s median was ${formatInflation(median[1])}.` : ''
+    }`,
+  };
+}

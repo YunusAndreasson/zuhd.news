@@ -21,12 +21,13 @@ import { Pressable } from '../primitives';
 import { ComplexityCard } from './ComplexityCard';
 import { DemographyCard } from './DemographyCard';
 import { EconomyCard } from './EconomyCard';
+import { PricesCard } from './PricesCard';
 
 interface CountryCardsCarouselProps {
   countryName: string | null;
 }
 
-type SlotKey = 'complexity' | 'economy' | 'demography';
+type SlotKey = 'complexity' | 'economy' | 'prices' | 'demography';
 
 interface SlotEntry {
   key: SlotKey;
@@ -44,6 +45,12 @@ const SLOTS: SlotEntry[] = [
   {
     key: 'economy',
     render: (d) => (d.economy?.gdpPerCapita ? <EconomyCard data={d.economy} /> : null),
+  },
+  {
+    // Beside the economy it qualifies: income in dollars, then what a year
+    // did to prices at home.
+    key: 'prices',
+    render: (d) => (d.economy?.inflation?.length ? <PricesCard data={d.economy} /> : null),
   },
   {
     key: 'demography',
