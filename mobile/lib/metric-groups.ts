@@ -1,4 +1,6 @@
-import { METRICS, type MetricKey } from '@shared/countries/country-ranking';
+import { getRanking, METRICS, type MetricKey } from '@shared/countries/country-ranking';
+import { displayCountryName } from './place-names';
+import { leadNames } from './row-leaders';
 
 /**
  * The country rankings, in the groups the menu lists them under. Twenty-seven
@@ -53,4 +55,18 @@ export function metricGroups(): MetricGroup[] {
   }));
   if (other.length > 0) groups.push({ label: 'other', metrics: other });
   return groups.filter((g) => g.metrics.length > 0);
+}
+
+/**
+ * The countries a ranking opens on, for its row in the menu: up to three, and
+ * fewer where three names would not fit one line (fertility's third is the
+ * Democratic Republic of the Congo). The order is the ranking's own, so a
+ * measure where lower is better leads with its best.
+ */
+export function rankingLeaders(metric: MetricKey): string[] {
+  return leadNames(
+    getRanking(metric)
+      .slice(0, 3)
+      .map((entry) => displayCountryName(entry.name) ?? entry.name),
+  );
 }
