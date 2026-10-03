@@ -1027,17 +1027,52 @@ about what a card may say is about the card, not where it is shown.
     above a row held at the sheet's foot, over the dock. No gap either way and
     nothing measured — layout does it. Pinned to the foot whatever the text
     did (tried 2026-09-19), it left a hole under short stories; that is the
-    one shape not to bring back. The words are `captionEmphasis` in the
-    text's ink, not grey small caps, which made the card's only buttons look
-    like its labels. Their targets are the row's height plus 4pt (48), and a
+    one shape not to bring back. The words are `captionEmphasis` in
+    `accent`, the palette's second voice — one step softer than the text —
+    and `saved` is the emphasis ink (2026-10-03, the user's question). In
+    grey small caps the card's only buttons looked like its labels; in the
+    text's own ink, once the row's rules had gone, they read as a last line
+    of the story. **The row has no rule over it and none under it** (the
+    same day, the user's request: the lines were not necessary). A hairline
+    closed it above and the dock's closed it below, and the two boxed three
+    words in. What the upper one was for is kept without it: a story longer
+    than the sheet scrolls behind the row, and with nothing there its text
+    was cut through the middle of a line, a few points over `1 source` (seen
+    on the emulator at a phone's height). So the text goes out into the
+    sheet's ground over its last 16pt (`styles.fade`, a still gradient on the
+    footer). It is always mounted: for a day it was there only while the
+    story was open, and the hard cut came back wherever else the row is in
+    sight — on the card coming in on a sideways swipe, and through a closing
+    spring (a review's finding). At rest it lies under the dock with the row,
+    and the resting card is the same picture with it and without, pixel for
+    pixel (compared on the emulator). It is the fifth gradient carve-out in
+    `DESIGN.md`. That is the space every story
+    already ends on, so a story that fits shows nothing of it; nothing of a
+    story may be set in its last 16pt (the thread line took a margin for
+    this). Their targets are the row's height plus 4pt (48), and a
     press counts only as a tap (`Pressable`'s `tapSlop`): the row is where the
     thumb rests and where sideways swipes start. A measured card height is
-    the story alone; `computeDeckLayout` adds `ACTIONS_ROW`. The order is
-    `sources · share · save`: `save` is last because its word grows to
-    `saved`, and between the others it needed a hidden spacer that left the
-    gaps uneven. A chart or odds line that ends a story drops its bottom rule
-    (`last`), since the row's own rule follows — two hairlines 24pt apart
-    read as a double rule (all three seen on the emulator the same day).
+    the story alone; `computeDeckLayout` adds `ACTIONS_ROW`. **The row is
+    three words at the right: `save · share · sources`** (2026-10-03, the
+    user's requests, in four steps). All three at the left were the far
+    corner from the hand holding the phone. Moved right, `2 sources` did not
+    sit with the other two — a number and a noun beside two plain words —
+    and for one step it stayed at the left alone. Then the number went: it
+    was the row's one piece of noise, it changed from story to story, and the
+    count is the first thing the sheet it opens shows. A screen reader hears
+    `Sources, 2`: the word on screen first, so "tap sources" finds it on a
+    one-source story too. Last, `sources` and `save` changed ends: `sources` is
+    in the corner, the user's choice. That also puts `save` at the row's free
+    end, which is where a word that changes length belongs: the row is set to
+    the right, so `saved` grows to the left into the empty row and the other
+    two never move (seen on the emulator: `share` and `sources` in the same
+    place saved and unsaved). While `save` was last, its slot had to be held
+    at the width of `saved`, and both ways of holding it failed first: a word
+    laid over an unseen `saved` broke into `save` over a clipped `d`, and a
+    `d` coloured `transparent` was drawn in the word's ink — that colour is
+    the value 0, and Android's text renderer reads 0 as no colour set. A chart or odds
+    line that ends a story drops its bottom rule (`last`): it would be the
+    rule over the row by another name.
   - **A slot that comes to the front tells the sheet it is at its top**
     (`DeckSlot`, 2026-10-03, found driving the emulator). The sheet closes on
     a downward drag only when the front story's scroll offset is 0, and only

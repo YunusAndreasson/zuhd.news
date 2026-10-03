@@ -37,8 +37,8 @@ export const StoryChart = memo(function StoryChart({
   onPress,
 }: {
   card: GraphCard;
-  /** Nothing follows it in the story: the footer's rule closes the frame
-   *  (`styles.last`). */
+  /** Nothing follows it in the story but `save · share · sources`: no bottom
+   *  rule (`styles.last`). */
   last?: boolean;
   onPress?: (card: GraphCard) => void;
 }) {
@@ -136,10 +136,10 @@ const styles = StyleSheet.create({
     borderTopWidth: StyleSheet.hairlineWidth,
     borderBottomWidth: StyleSheet.hairlineWidth,
   },
-  // The last thing in a story is followed by the footer's own rule
-  // (`StoryFooter`). With this frame's bottom rule and margin as well, two
-  // hairlines sat 24pt apart with nothing between them (seen on the
-  // emulator, 2026-10-03).
+  // The last thing in a story is followed by `save · share · sources`
+  // (`StoryFooter`), which takes no rule over it: this frame's bottom rule
+  // there was that rule by another name. The top one still parts the line
+  // from the prose.
   last: { borderBottomWidth: 0, marginBottom: 0 },
   reading: {
     flexDirection: 'row',

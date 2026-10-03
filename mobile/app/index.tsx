@@ -1901,7 +1901,7 @@ export default function HomeScreen() {
         hues={storyHues}
         fresh={storyFresh}
         slugs={storySlugs}
-        ruled={storyOpen}
+        open={storyOpen}
       />
     ),
     [

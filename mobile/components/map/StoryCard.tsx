@@ -426,7 +426,7 @@ export const StoryCard = memo(function StoryCard({
               ) : null}
 
               {threadContext ? (
-                <Text variant="labelXs" tone="secondary">
+                <Text variant="labelXs" tone="secondary" style={styles.thread}>
                   {threadContext}
                 </Text>
               ) : null}
@@ -454,7 +454,7 @@ export const StoryCard = memo(function StoryCard({
 const ACTION_SLOP = { top: 4, bottom: 4, left: 12, right: 12 } as const;
 
 /**
- * `sources · save · share`, under an open story's text — outside the card, so
+ * `save · share · sources`, under an open story's text — outside the card, so
  * the deck can hold it in sight (`DeckSlot`).
  *
  * **It follows the text and never leaves the sheet** (2026-10-03, the user's
@@ -472,9 +472,18 @@ const ACTION_SLOP = { top: 4, bottom: 4, left: 12, right: 12 } as const;
  * was then sized for the longest story and the row sat at its foot whatever
  * the text did; following the text is what removes the hole.
  *
- * **Words in the text's ink, not small caps** (the same day): in grey small
+ * **`save · share · sources`, at the right, under the thumb** (the same day,
+ * the user's requests). All three were at the left, the far corner from the
+ * hand holding the phone. Moved right, `2 sources` did not sit with the
+ * other two — a number and a noun beside two plain words — so the number
+ * went: it was the row's one piece of noise, and three words of a kind are
+ * one group. `sources` is in the corner, the user's choice.
+ *
+ * **Words, one step softer than the text** (the same day). In grey small
  * caps the card's only three buttons looked like its two labels, the kicker
- * and the thread line. A swipe can start here — it is where the thumb rests —
+ * and the thread line; in the text's own ink, once the rules over and under
+ * the row went, they read as a last line of the story. They are `accent`, the
+ * palette's second voice, and `saved` is the emphasis ink: on is brighter. A swipe can start here — it is where the thumb rests —
  * so a press counts only as a tap (`tapSlop`).
  *
  * The words mount when the JS thread is next idle, or at once when the story
@@ -503,8 +512,24 @@ export const StoryFooter = memo(function StoryFooter({
     const id = requestIdleCallback(() => setIdle(true), { timeout: 1000 });
     return () => cancelIdleCallback(id);
   }, [idle]);
+  // The sheet's ground coming up over the last points of the text above. A
+  // view's own gradient, still: nothing here animates (the `Veil`'s notes say
+  // what animating one costs), and it is never mounted or unmounted with the
+  // sheet. It was, for a day, only while the story was open — and every
+  // other time the row is in sight had the hard cut back: the card coming in
+  // on a sideways swipe, and the whole of a closing spring (a review's
+  // finding). At rest it lies under the dock with the row; the resting card
+  // is the same picture with it and without, pixel for pixel.
+  const fade = useMemo(
+    () => ({
+      experimental_backgroundImage: `linear-gradient(to bottom, ${withAlpha(colors.sheetBg, 0)}, ${withAlpha(colors.sheetBg, 1)})`,
+      experimental_backgroundRepeat: 'no-repeat',
+    }),
+    [colors.sheetBg],
+  );
   return (
-    <View style={[styles.footer, { borderTopColor: colors.rule }]}>
+    <View style={styles.footer}>
+      <View style={[styles.fade, fade]} pointerEvents="none" />
       {idle || open ? (
         <StoryActions
           article={article}
@@ -543,35 +568,9 @@ const StoryActions = memo(function StoryActions({
 
   return (
     <View style={styles.actions}>
-      {sourceCount > 0 ? (
-        <Pressable
-          onPress={handleSources}
-          tapSlop={TAP_SLOP}
-          style={styles.action}
-          accessibilityRole="button"
-          accessibilityLabel={`${sourceCount} ${sourceCount === 1 ? 'source' : 'sources'}`}
-          hitSlop={ACTION_SLOP}
-        >
-          <Text variant="captionEmphasis">
-            {`${sourceCount} ${sourceCount === 1 ? 'source' : 'sources'}`}
-          </Text>
-        </Pressable>
-      ) : null}
-      <Pressable
-        onPress={handleShare}
-        tapSlop={TAP_SLOP}
-        style={styles.action}
-        accessibilityRole="button"
-        accessibilityLabel="Share this story"
-        accessibilityHint="Opens the system share sheet"
-        hitSlop={ACTION_SLOP}
-      >
-        <Text variant="captionEmphasis">share</Text>
-      </Pressable>
-      {/* Last, because its word changes length: `saved` grows into the empty
-          row. Between the other two it needed a hidden `saved` to hold its
-          width so `share` stayed put, which left the gap after `save` a
-          letter wider than the gap before it. */}
+      {/* First, at the row's free end, because its word changes length: the
+          row is set to the right, so `saved` grows to the left, into the empty
+          row, and `share` and `sources` stay where they are. */}
       <Pressable
         onPress={handleBookmark}
         tapSlop={TAP_SLOP}
@@ -581,10 +580,46 @@ const StoryActions = memo(function StoryActions({
         accessibilityState={{ selected: saved }}
         hitSlop={ACTION_SLOP}
       >
-        <Text variant="captionEmphasis" tone={saved ? 'emphasis' : 'default'}>
+        <Text variant="captionEmphasis" tone={saved ? 'emphasis' : 'accent'}>
           {saved ? 'saved' : 'save'}
         </Text>
       </Pressable>
+      <Pressable
+        onPress={handleShare}
+        tapSlop={TAP_SLOP}
+        style={styles.action}
+        accessibilityRole="button"
+        accessibilityLabel="Share this story"
+        accessibilityHint="Opens the system share sheet"
+        hitSlop={ACTION_SLOP}
+      >
+        <Text variant="captionEmphasis" tone="accent">
+          share
+        </Text>
+      </Pressable>
+      {/* Last, in the corner under the thumb (the user's choice). The word,
+          not the count: `2 sources` was a number and a noun beside two plain
+          words, the one thing in the row that changed from story to story,
+          and the count is the first thing the sheet it opens shows. A screen
+          reader still hears it: there it is information, not clutter. The
+          word is the sheet's name, so it is `sources` for one source too,
+          and never changes width. */}
+      {sourceCount > 0 ? (
+        <Pressable
+          onPress={handleSources}
+          tapSlop={TAP_SLOP}
+          style={styles.action}
+          accessibilityRole="button"
+          // The word on screen, then the count: `1 source` did not contain
+          // `sources`, so "tap sources" found nothing on a one-source story.
+          accessibilityLabel={`Sources, ${sourceCount}`}
+          hitSlop={ACTION_SLOP}
+        >
+          <Text variant="captionEmphasis" tone="accent">
+            sources
+          </Text>
+        </Pressable>
+      ) : null}
     </View>
   );
 });
@@ -634,8 +669,9 @@ export const EndCard = memo(function EndCard({
 const styles = StyleSheet.create({
   fill: { flex: 1 },
   // `sm` under the last line: with that block's own gap, about a paragraph's
-  // space before the footer's rule, so the row reads as the story's end and
-  // not as a second section.
+  // space before the footer's row, so the row reads as the story's end and
+  // not as a second section. It is also the room the footer's fade lies in
+  // (`styles.fade`): nothing of a story may be set in its last `md`.
   card: { paddingHorizontal: SPACING.articlePadding, paddingBottom: SPACING.sm },
   kicker: { flexDirection: 'row', alignItems: 'center', marginBottom: SPACING.xs },
   kickerText: { flexShrink: 1 },
@@ -644,14 +680,30 @@ const styles = StyleSheet.create({
   afterProse: { paddingTop: AFTER_PROSE_GAP },
 
   title: { marginBottom: SPACING.sm },
-  // A hairline over the row: where a long story's text scrolls out from
-  // under, and where a short one ends. The dock's own rule closes it below.
+  // No rule over the row and none under it (2026-10-03, the user's request).
+  // A hairline closed it above and the dock's closed it below, and the two
+  // boxed three words in. The row is told apart from the prose by its ink —
+  // one step softer — and its place, and from the track by being words.
   footer: {
     height: ACTIONS_ROW,
     paddingHorizontal: SPACING.articlePadding,
-    borderTopWidth: StyleSheet.hairlineWidth,
   },
-  actions: { flex: 1, flexDirection: 'row', gap: SPACING.lg },
+  // What the rule over the row was for, without the rule. A story longer than
+  // the sheet scrolls behind this row, and with nothing there its text was cut
+  // through the middle of a line, a few points over the row's words (seen on
+  // the emulator at a phone's height). The text now goes out into the sheet's
+  // ground over its last `md`. That is the space every story already ends on
+  // — a paragraph's gap, a chart's padding or the thread line's margin, plus
+  // the card's own — so a story that fits, and the end of one that scrolls,
+  // have nothing under the fade and look as they did.
+  fade: { position: 'absolute', left: 0, right: 0, top: -SPACING.md, height: SPACING.md },
+  // Keeps the thread line clear of that fade when it ends the story.
+  thread: { marginBottom: SPACING.sm },
+  // Three words, set to the right: the row sits over the dock, at the foot of
+  // the screen, and its right end is where the thumb of the hand holding the
+  // phone already is. `share` and `sources` never change width, so they are
+  // in one place on every story.
+  actions: { flex: 1, flexDirection: 'row', justifyContent: 'flex-end', gap: SPACING.lg },
   // Each word's target is the row's whole height, the word centred in it.
   action: { justifyContent: 'center' },
 });

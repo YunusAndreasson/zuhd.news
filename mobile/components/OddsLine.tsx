@@ -28,8 +28,8 @@ export const OddsLine = memo(function OddsLine({
   onPress,
 }: {
   odds: StoryOdds;
-  /** Nothing follows it in the story: the footer's rule closes the frame, as
-   *  for `StoryChart`. */
+  /** Nothing follows it in the story but `save · share · sources`: no bottom
+   *  rule, as for `StoryChart`. */
   last?: boolean;
   onPress?: (odds: StoryOdds) => void;
 }) {

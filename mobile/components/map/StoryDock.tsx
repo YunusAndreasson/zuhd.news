@@ -89,7 +89,7 @@ export const StoryDock = memo(function StoryDock({
   hues,
   fresh,
   slugs,
-  ruled = false,
+  open = false,
 }: {
   /** A pull on the resting sheet is checking for a new cycle. */
   refreshing?: boolean;
@@ -125,10 +125,10 @@ export const StoryDock = memo(function StoryDock({
   fresh?: readonly boolean[];
   /** Per story, its slug: what the read store is keyed on. */
   slugs?: readonly string[];
-  /** A story is open, and its text scrolls up under the dock: draw the rule
-   *  it scrolls under. At rest the card's veil already fades the text out
-   *  above the track, and a rule there cut the fading line across. */
-  ruled?: boolean;
+  /** A story is open: `save · share · sources` sit just over the dock, and
+   *  the `‹ n new` pill is not shown beside them. (It also drew a rule over
+   *  the dock until 2026-10-03; the user asked for the row's two rules gone.) */
+  open?: boolean;
 }) {
   const { colors, resolvedAppearance } = useTheme();
   // Read is subscribed here, not on the screen. A story turns read two
@@ -340,13 +340,15 @@ export const StoryDock = memo(function StoryDock({
     // its width. It sits over the track's left end, where the new stories are,
     // the way a feed's "new posts" pill floats over the list it jumps.
     // **It yields to an open story** (2026-09-27): a story's last lines and
-    // its `sources · save · share` scroll up to the dock, and the pill's touch
-    // box sat over them — a tap on `1 source` jumped to another story. The
-    // pill is a way back into the day, and it returns when the story is put
-    // down. The end card has nothing under it and says the count the pill
+    // its footer row scroll up to the dock, and the pill's touch box sat over
+    // the row's words, then at the left — a tap on `1 source` jumped to
+    // another story. The words are at the right since 2026-10-03, and the
+    // pill still stays away: in the row's band it would read as a fourth
+    // word of it. It is a way back into the day, and it returns when the
+    // story is put down. The end card has nothing under it and says the count the pill
     // jumps to, so there it stays.
     <View style={styles.foot} pointerEvents="box-none">
-      {newCount > 0 && onNewPress && !(ruled && index < count) ? (
+      {newCount > 0 && onNewPress && !(open && index < count) ? (
         <Animated.View style={[styles.newSlot, pillStyle]}>
           <IconButton
             onPress={onNewPress}
@@ -379,8 +381,6 @@ export const StoryDock = memo(function StoryDock({
             paddingRight: Math.max(SPACING.articlePadding, insets.right),
             paddingBottom: insets.bottom,
             backgroundColor: colors.sheetBg,
-            // Transparent rather than no border, so the dock keeps its height.
-            borderColor: ruled ? colors.rule : 'transparent',
           },
         ]}
       >
@@ -478,8 +478,6 @@ const styles = StyleSheet.create({
   dock: {
     flexDirection: 'row',
     alignItems: 'center',
-    // A hairline, not a shadow: the text scrolls up out from under it.
-    borderTopWidth: StyleSheet.hairlineWidth,
   },
   shrink: { flex: 1 },
   status: { flex: 1, minHeight: CONTROL_ROW, justifyContent: 'center' },
