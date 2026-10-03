@@ -885,7 +885,7 @@ about what a card may say is about the card, not where it is shown.
   2026-09-19, was half of every article, and readers felt they had to read
   every story to get past it. Pulled up or tapped, the same card is the whole
   story: every sentence, `OddsLine`, live country and entity links, and
-  `sources · save · share` as words after the text — risen over the globe,
+  `sources · save · share` as words under the text — risen over the globe,
   which stays where it is, and with the strip still in place (it used to recede;
   it never covered the story, so hiding it only took the markets away). Nothing mounts or reflows when
   it grows: every sentence after the hook is laid out all along under a
@@ -945,9 +945,14 @@ about what a card may say is about the card, not where it is shown.
     globe, and the user chose the scroll on the grounds that nothing above the
     prose moves with it — the globe and the dock's track are both outside
     the scrolling area. Two things follow that were true of an
-    exception and are not true of a norm: `showsVerticalScrollIndicator` is
-    off, so nothing says there is more below, and `sources · save · share`
-    sits at the end of the card, which means below the fold on most stories. It used to stop
+    exception and are not true of a norm, and both were answered on
+    2026-10-03. `sources · save · share` sat at the end of the card, so below
+    the fold on most stories — out of sight on opening for an estimated
+    58–87% of a fortnight's stories on a 393×852 phone; it is now
+    `StoryFooter`, outside the card (below). And nothing said a story went
+    on — the indicator was off — so the scroll indicator now shows while an
+    open story scrolls and flashes once as a story becomes the one being read
+    (`DeckSlot`). It used to stop
     at each story's own height (`contentHeight`), and a swipe while reading
     re-sprang the sheet *and* rescaled the globe — the text jumped by three or
     four lines on every story, which the user asked to have gone. Do not
@@ -955,6 +960,33 @@ about what a card may say is about the card, not where it is shown.
     or five blank lines under a typical one, which the user also flagged; the
     spare space now sits after `sources · save · share`, at the end of the
     story, rather than between the text and buttons pinned to the dock.
+  - **`sources · save · share` follows the text and never leaves the sheet**
+    (`StoryFooter`, 2026-10-03, the user's choice). It is outside the card:
+    each deck slot is a scroll area as tall as its story, up to the room there
+    is (`styles.fit`, `flexGrow: 0`), with the row straight after it. A story
+    that fits ends on its row, the spare sheet below; a longer one scrolls
+    above a row held at the sheet's foot, over the dock. No gap either way and
+    nothing measured — layout does it. Pinned to the foot whatever the text
+    did (tried 2026-09-19), it left a hole under short stories; that is the
+    one shape not to bring back. The words are `captionEmphasis` in the
+    text's ink, not grey small caps, which made the card's only buttons look
+    like its labels. Their targets are the row's height plus 4pt (48), and a
+    press counts only as a tap (`Pressable`'s `tapSlop`): the row is where the
+    thumb rests and where sideways swipes start. A measured card height is
+    the story alone; `computeDeckLayout` adds `ACTIONS_ROW`. The order is
+    `sources · share · save`: `save` is last because its word grows to
+    `saved`, and between the others it needed a hidden spacer that left the
+    gaps uneven. A chart or odds line that ends a story drops its bottom rule
+    (`last`), since the row's own rule follows — two hairlines 24pt apart
+    read as a double rule (all three seen on the emulator the same day).
+  - **A slot that comes to the front tells the sheet it is at its top**
+    (`DeckSlot`, 2026-10-03, found driving the emulator). The sheet closes on
+    a downward drag only when the front story's scroll offset is 0, and only
+    the front slot writes that offset, as it scrolls. After a long story was
+    scrolled and the reader swiped on, the offset was still the old story's:
+    the next one could not be pulled down, and one too short to scroll never
+    corrected it. Every slot is back at its top before it can come forward,
+    so the fix is a write of 0 on becoming current — not a read.
   - **Every block is its own paragraph, with the gap the reader sees between
     them.** `mdStyles.sentence`'s `marginBottom` draws it, and
     `renderSentences` returns one block `Text` per sentence.
@@ -973,6 +1005,24 @@ about what a card may say is about the card, not where it is shown.
     keeps. `computeDeckLayout`'s stand-in estimate counts both
     (`STORY_LINES` per block, `BLOCK_GAP_RATIO` between them); the real
     heights come from `StoryMeasure` and need no arithmetic.
+  - **The hook is the lede, and space groups the card** (2026-10-03, a
+    hierarchy pass with the user). Open, the hook was paragraph one of five —
+    one size, one ink, one gap — so the sentence the reader opened the story
+    for sank into the blocks explaining it. It is now the web's phone lede:
+    the same 17pt, so the resting card's lines are unchanged, in emphasis ink
+    (the title too, as the web's), with twice a paragraph's gap under it
+    (`mdStyles.lede`, `LEDE_GAP_RATIO`). The chart or odds line follows the
+    prose after a section gap (`AFTER_PROSE_GAP`, ~`SPACING.lg` with the last
+    block's own), and the thread line under it closes the card. The ladder — line, paragraph, lede,
+    section — is in `DESIGN.md`. A test holds the estimate's ratios to the
+    renderer's margins. The peek does not count the lede's gap: under a
+    two-line hook the veiled line still clears the dock.
+  - **At rest the card is one button.** The hook's country and entity links
+    are its plain words until the story is open (`renderSentences`'
+    `plainBlocks`; a separate `restingHook` memo, so opening swaps that one
+    block mid-spring and nothing else). A country in the hook opened a
+    country sheet instead of the story, and its underline — solid on Android
+    — was the heaviest mark in the sentence a swiping reader decides on.
   - **Body text carries no `letterSpacing`.** On Android a paragraph with any
     tracking measures a line taller than it draws, and `textAlignVertical:
     'center'` split that phantom line into blank space above and below it —

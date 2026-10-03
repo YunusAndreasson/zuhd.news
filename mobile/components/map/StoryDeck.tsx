@@ -130,6 +130,9 @@ interface StoryDeckProps {
   bottomInset?: number;
   keyOf: (index: number) => string;
   renderStory: (index: number) => ReactNode;
+  /** What sits under a story's scroll area — `sources · save · share`
+   *  (`StoryFooter`). The end card has none. */
+  renderFooter?: (index: number) => ReactNode;
   renderEnd: () => ReactNode;
   /** A finger has started a swipe. Must be a stable, named callback. */
   onDragStart: () => void;
@@ -156,8 +159,12 @@ const DeckSlot = memo(function DeckSlot({
   sheetGesture,
   scrollEnabled,
   onScrollOffset,
+  footer,
   children,
 }: {
+  /** Set under the scroll area: straight after a story that fits, and at the
+   *  slot's foot while a longer one scrolls above it. */
+  footer?: ReactNode;
   position: number;
   /** The story drawn here. A slot outlives its stories (`assignSlots`). */
   storyKey: string;
@@ -262,6 +269,16 @@ const DeckSlot = memo(function DeckSlot({
   );
 
   const readable = current && scrollEnabled;
+  // **An open story says it goes on.** Most open stories scroll — the open
+  // sheet is one height, and the cap binds on a phone (`lib/deck-layout.ts`) —
+  // and with no indicator, the last block, the chart and `sources · save ·
+  // share` sat below an edge that looked like the story's end. The platform's
+  // own sign, then: the indicator while a story scrolls, flashed once as it
+  // becomes the one being read (opened, or swiped to while open), and only
+  // when there is more than fits — both platforms draw nothing otherwise.
+  useEffect(() => {
+    if (readable) scrollRef.current?.flashScrollIndicators();
+  }, [readable, scrollRef]);
   // A card leaving the front, or a sheet coming down to rest, goes back to its
   // top: at rest the card is its kicker, title and lead, never its middle.
   useEffect(() => {
@@ -273,6 +290,18 @@ const DeckSlot = memo(function DeckSlot({
     scrollPosition.value = 0;
     if (current) onScrollOffset.value = 0;
   }, [current, onScrollOffset, peekFade, readable, scrollPosition, scrollRef]);
+  // **A slot that comes to the front says it is at its top** (2026-10-03,
+  // found on the emulator). The sheet reads this offset to decide whether a
+  // downward drag on an open story closes it (`MapSheet`, `atTop`), and only
+  // the front slot writes it — as it scrolls. So after a long story was
+  // scrolled and the reader swiped on, the offset was still the story they
+  // had left: the next one could not be pulled down, and one too short to
+  // scroll could never correct it. A slot is always at its top when it
+  // arrives — it was put back there when it left the front (above) — so this
+  // is a write, never a read of the scroll position.
+  useEffect(() => {
+    if (current) onScrollOffset.value = 0;
+  }, [current, onScrollOffset]);
   // A new story in this slot starts at its top, even open: a jump from a
   // story read halfway down would otherwise open the next one there.
   const shownKey = useRef(storyKey);
@@ -291,20 +320,38 @@ const DeckSlot = memo(function DeckSlot({
       accessibilityElementsHidden={!current}
       importantForAccessibility={current ? 'auto' : 'no-hide-descendants'}
     >
+      {/* **The scroll area is as tall as its story, up to the room there is**
+          (`styles.fit`), and the footer comes straight after it. So a story
+          that fits ends on its footer with the spare sheet below, and a longer
+          one fills the slot and scrolls above a footer held at its foot —
+          layout's own doing, with nothing measured. Sized to fill, the footer
+          sat at the foot whatever the text did, and a short story had a hole
+          between its last line and its buttons (tried 2026-09-19). */}
       <GestureDetector gesture={native}>
         <Animated.ScrollView
           ref={scrollRef}
-          style={styles.fill}
+          style={footer ? styles.fit : styles.fill}
           scrollEnabled={readable}
           onScroll={scrollHandler}
           scrollEventThrottle={16}
           bounces={false}
           overScrollMode="never"
-          showsVerticalScrollIndicator={false}
+          showsVerticalScrollIndicator={readable}
         >
           {children}
         </Animated.ScrollView>
       </GestureDetector>
+      {/* Pressed only on the story being read: at rest it lies under the
+          dock, off screen, where a screen reader would still find it. */}
+      {footer ? (
+        <View
+          pointerEvents={readable ? 'auto' : 'none'}
+          accessibilityElementsHidden={!readable}
+          importantForAccessibility={readable ? 'auto' : 'no-hide-descendants'}
+        >
+          {footer}
+        </View>
+      ) : null}
       <Animated.View
         style={[StyleSheet.absoluteFill, { backgroundColor: colors.sheetBg }, dimStyle]}
         pointerEvents="none"
@@ -326,6 +373,7 @@ export const StoryDeck = memo(function StoryDeck({
   bottomInset = 0,
   keyOf,
   renderStory,
+  renderFooter,
   renderEnd,
   onDragStart,
   onClaim,
@@ -469,6 +517,7 @@ export const StoryDeck = memo(function StoryDeck({
             sheetGesture={sheetGesture}
             scrollEnabled={scrollEnabled}
             onScrollOffset={onScrollOffset}
+            footer={i === count ? undefined : renderFooter?.(i)}
           >
             {i === count ? renderEnd() : renderStory(i)}
           </DeckSlot>
@@ -480,5 +529,7 @@ export const StoryDeck = memo(function StoryDeck({
 
 const styles = StyleSheet.create({
   fill: { flex: 1 },
+  // Its content's height, and no taller than what the footer leaves it.
+  fit: { flexGrow: 0, flexShrink: 1 },
   slot: { position: 'absolute', top: 0, bottom: 0, left: 0 },
 });
