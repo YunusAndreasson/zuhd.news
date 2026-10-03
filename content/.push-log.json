@@ -1,98 +1,5 @@
 [
   {
-    "timestamp": "2026-09-12T04:21:36.963Z",
-    "candidateCount": 10,
-    "candidates": [
-      {
-        "slug": "2026-09-12-saudi-east-west-pipeline-shut-bypass-gone",
-        "title": "Drones Shut Saudi Pipeline",
-        "category": "economy",
-        "eventCoverage": 127,
-        "importance": 6
-      },
-      {
-        "slug": "2026-09-12-cia-declassified-briefs-three-years-of-warnings",
-        "title": "Spy Agency Warned Two Presidents",
-        "category": "politics",
-        "eventCoverage": 126,
-        "importance": 6
-      },
-      {
-        "slug": "2026-09-12-cyclospora-outbreak-water-in-the-field",
-        "title": "Officials End Lettuce Outbreak",
-        "category": "science",
-        "eventCoverage": 117,
-        "importance": 6
-      },
-      {
-        "slug": "2026-09-12-north-korea-missiles-drills-signalling-loop",
-        "title": "Pyongyang Fires After Drills",
-        "category": "politics",
-        "eventCoverage": 106,
-        "importance": 6
-      },
-      {
-        "slug": "2026-09-12-anthropic-yemen-missile-misuse-vendor-as-regulator",
-        "title": "Claude Used For Missiles",
-        "category": "tech",
-        "eventCoverage": 84,
-        "importance": 6
-      },
-      {
-        "slug": "2026-09-12-hormuz-transit-fees-oman-talks",
-        "title": "Iran Weighs Hormuz Tolls",
-        "category": "politics",
-        "eventCoverage": 80,
-        "importance": 6
-      },
-      {
-        "slug": "2026-09-12-yemen-red-sea-coast-50000-displaced",
-        "title": "Houthi Advance Displaces Yemenis",
-        "category": "politics",
-        "eventCoverage": 0,
-        "importance": 6
-      },
-      {
-        "slug": "2026-09-12-colombia-minerals-deal-security-for-access",
-        "title": "Colombia Trades Minerals For Security",
-        "category": "economy",
-        "eventCoverage": 0,
-        "importance": 6
-      },
-      {
-        "slug": "2026-09-12-sma-myostatin-drug-the-other-half-of-the-disease",
-        "title": "Regulators Approve Muscle-Wasting Drug",
-        "category": "science",
-        "eventCoverage": 0,
-        "importance": 6
-      },
-      {
-        "slug": "2026-09-12-automattic-wordpress-one-man-governance",
-        "title": "One Man Runs WordPress",
-        "category": "tech",
-        "eventCoverage": 0,
-        "importance": 6
-      }
-    ],
-    "selected": {
-      "slug": "2026-09-12-anthropic-yemen-missile-misuse-vendor-as-regulator",
-      "title": "Claude Used For Missiles",
-      "category": "tech",
-      "body": "A [Yemen](country:YE) cell used Claude for missile",
-      "eventCoverage": 84,
-      "importance": 6
-    },
-    "skipReason": null,
-    "sent": true,
-    "pushTitle": "Breaking News",
-    "pushBody": "Yemen militants use Claude AI for missile guidance, Anthropic says",
-    "response": {
-      "pushed": 1,
-      "skipped": 0,
-      "tokens": 9
-    }
-  },
-  {
     "timestamp": "2026-09-12T08:22:58.057Z",
     "candidateCount": 11,
     "candidates": [
@@ -10007,6 +9914,71 @@
     "sent": true,
     "pushTitle": "Breaking News",
     "pushBody": "UK police charge murder suspect with terrorism offences over Farage plot",
+    "response": {
+      "pushed": 1,
+      "skipped": 0,
+      "tokens": 5
+    }
+  },
+  {
+    "timestamp": "2026-10-03T10:10:31.510Z",
+    "candidateCount": 6,
+    "candidates": [
+      {
+        "slug": "2026-10-03-cornell-da-declined-review-additional-evidence-records",
+        "title": "Prosecutor Skipped Cornell Evidence",
+        "category": "politics",
+        "eventCoverage": 264,
+        "importance": 6
+      },
+      {
+        "slug": "2026-10-03-ethiopia-eritrea-sever-diplomatic-ties-tigray-fighting",
+        "title": "Eritrea Severs Ties With Ethiopia",
+        "category": "politics",
+        "eventCoverage": 181,
+        "importance": 6
+      },
+      {
+        "slug": "2026-10-03-heat-deaths-western-europe-34600-warmest-summer-study",
+        "title": "Heat Kills 34,600 Europeans",
+        "category": "science",
+        "eventCoverage": 124,
+        "importance": 6
+      },
+      {
+        "slug": "2026-10-03-apple-mac-privacy-controls-ai-agents-full-disk-access-meta-muse",
+        "title": "Apple Restricts Mac Disk Access",
+        "category": "tech",
+        "eventCoverage": 58,
+        "importance": 6
+      },
+      {
+        "slug": "2026-10-03-pakistan-afridi-long-march-goes-ahead-second-round-talks",
+        "title": "Afridi Insists on Long March",
+        "category": "politics",
+        "eventCoverage": 0,
+        "importance": 6
+      },
+      {
+        "slug": "2026-10-03-indus-waters-treaty-abeyance-unhrc-event-millions-at-risk",
+        "title": "Indus Treaty Suspension Alarms Geneva",
+        "category": "politics",
+        "eventCoverage": 0,
+        "importance": 6
+      }
+    ],
+    "selected": {
+      "slug": "2026-10-03-heat-deaths-western-europe-34600-warmest-summer-study",
+      "title": "Heat Kills 34,600 Europeans",
+      "category": "science",
+      "body": "Heat killed more than 34,600 people in five western European countries,",
+      "eventCoverage": 124,
+      "importance": 6
+    },
+    "skipReason": null,
+    "sent": true,
+    "pushTitle": "Breaking News",
+    "pushBody": "Heat kills more than 34,600 in western Europe in record summer, estimates show",
     "response": {
       "pushed": 1,
       "skipped": 0,
