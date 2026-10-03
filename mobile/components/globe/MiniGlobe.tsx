@@ -4644,6 +4644,25 @@ export const MiniGlobe = memo(function MiniGlobe({
   const lastTimeRef = useSharedValue(0);
   const hasFired = useSharedValue(false);
   const reprojectBusy = useSharedValue(false);
+  // **The throttle's trailing edge.** The reaction below runs only on a frame
+  // in which something it reads has changed, so a change it skips inside the
+  // 32 ms window was dropped for good if it was the last one: a finger lifting
+  // off the globe, the end of a glide, a flight to a gauge. The frame on
+  // screen then stayed whatever was last published — the coarse motion tier —
+  // until the next touch. Nothing else caught it: the redraw at full detail
+  // is asked for by the run that sees the last projection finish
+  // (`previous.busy`), and a projection that starts and finishes between two
+  // runs, which is one display frame, is never seen in flight. On a fast
+  // phone that is a coin flip per gesture; a dev build on the emulator
+  // projects slower than a frame and never showed it (2026-10-03, the user's
+  // report: the map stayed coarse about half the time).
+  //
+  // So a skipped run asks for the next frame's by writing to something the
+  // reaction reads. It polls only inside the window: the first run past it
+  // goes through, publishes the last position, and the one after that finds
+  // the camera still and redraws it at full detail. At rest nothing writes
+  // and nothing runs.
+  const retick = useSharedValue(0);
   const runScrollReproject = useCallback(
     (
       geoLng: number,
@@ -4800,6 +4819,8 @@ export const MiniGlobe = memo(function MiniGlobe({
       owner: cameraOwner ? cameraOwner.value : 0,
       dragLat: cameraLat ? cameraLat.value : 0,
       dragLng: cameraLng ? cameraLng.value : 0,
+      // Read so that a write to it re-runs this (`retick`); its value is not used.
+      retick: retick.value,
     }),
     ({ sy, oA, oG, len, busy, owner, dragLat, dragLng }, previous) => {
       if (len === 0) return;
@@ -4904,8 +4925,11 @@ export const MiniGlobe = memo(function MiniGlobe({
         !justReleased &&
         hasFired.value &&
         now - lastTimeRef.value < 32
-      )
+      ) {
+        // Come back next frame: this may have been the last change (`retick`).
+        retick.value += 1;
         return;
+      }
       hasFired.value = true;
       lastTimeRef.value = now;
 
@@ -4924,8 +4948,11 @@ export const MiniGlobe = memo(function MiniGlobe({
         ) {
           if (landingDrawn.value === target.story) return;
           // The override is dropped at the landing; the story's framing is
-          // the clip it lands at.
-          drawLanding(target.story, target.lat, target.lng, 0, oG);
+          // the clip it lands at. Recorded as the angle too, since the
+          // flight's last step ends on it: recorded as the angle of this
+          // frame, half a degree out, the landing never matched the no-op
+          // check and was projected a second time.
+          drawLanding(target.story, target.lat, target.lng, 0, framing);
           return;
         }
         const cameraMoved =
@@ -5013,7 +5040,10 @@ export const MiniGlobe = memo(function MiniGlobe({
           return;
         }
       }
-      landingDrawn.value = -1;
+      // Forgotten once the deck moves off it, not while it rests on it: the
+      // landing's frame is still the one on screen, and the first points of
+      // the next swipe would draw it again.
+      if (!isStorySettled(frac)) landingDrawn.value = -1;
 
       // No-op short-circuit — bail when nothing meaningful changed since the
       // last frame. Skipping when sy is stable handles the steady-state
