@@ -213,7 +213,7 @@ whole time; nothing said so.
   the strip is never conditional, and opens the menu, whose root leads with
   the data (2026-09-26, the user's request): `stock markets`, `largest
   companies`, `straits`, `currencies`, `energy, food & metals`, `rates,
-  inflation & jobs`, `crypto`, `predictions`, `coming up`, then `country
+  inflation & jobs`, `crypto`, `AI models`, `predictions`, `coming up`, then `country
   rankings`, each a pushed page, under an `overview` (below) that holds
   `world hazards`.
   Each group's row prints its count and its first row — the week's largest
@@ -335,6 +335,37 @@ whole time; nothing said so.
     - **The catalog lists the pool's own card** (`take`), so a row and its
       strip slot open one object; built anew, the pool's copy was claimed by
       no list and was swept into the rates list with the leftovers.
+  - **`AI models` is ten labs, each with its best model's score, and it is
+    not a ranking** (2026-10-04, the user's request to track "how different
+    models develop"; `lib/ai-models.ts`, tested; the pipeline's half is in
+    `.claude/rules/pipeline/cycle.md`). Scores are Epoch AI's capability
+    index, read from its open files once a day and credited on every card
+    and in About.
+    - **A row is a lab, not a model.** 270 scored models is a leaderboard;
+      what was asked is how far each lab has come. The line on a card is the
+      lab's best at each release that raised it.
+    - **The order is by score and the note says what that is worth.** The top
+      two labs' ranges overlapped the day this shipped (164–172, 163–171).
+      The list's note says scores a few points apart are within the margin,
+      and each card prints the range as its first figure. Do not add a rank
+      number, a `#1`, or a leader's badge.
+    - **The move is a year, in the index's points** (`deltaOf` `unit:
+      'score'`, one decimal, coloured like any move). A percentage of a score
+      means nothing on a scale with no zero. A lab under a year old is
+      measured from its first model and its chip names that window.
+    - **No week, so no strip, no overview row, no ranked pool.** A best
+      changes a few times a year. The rows are built without `rowFor`: two
+      releases a week apart would otherwise read as a weekly mover.
+    - **Money is Epoch's reports, dated, and an estimate says so**
+      (`yearly revenue $65B · Jul 2026, estimate`). Three labs are divisions
+      of listed companies and have none. A report over a year old is dropped
+      by the pipeline.
+    - **The paragraph is the catalog's standing sentence.** No daily account
+      and no `in the news` yet: the entity stage tags listed companies, and
+      most labs are not listed.
+    - Not on the globe, and the data centres Epoch also publishes were left
+      out on purpose: 77 of its 93 sites are in the US, on a globe already
+      crowded there.
   - **A monthly rate moves in points** (`deltaFrom` `unit: 'rate'`, two
     decimals, coloured like any move). Rounded to whole points a 25-basis-point
     cut read "unchanged"; as a percentage of itself it read "−6.3%". The

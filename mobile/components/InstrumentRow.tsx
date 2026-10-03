@@ -98,7 +98,15 @@ export const InstrumentRow = memo(function InstrumentRow({
             {unit}
           </Text>
         ) : null}
-        {move ? <DeltaChip delta={move} window={move.window !== WEEK_WINDOW} scale={1} /> : null}
+        {move ? (
+          <DeltaChip
+            delta={move}
+            // The week is never printed, and neither is a window the list's
+            // own note has already said (`CatalogRow.saidWindow`).
+            window={move.window !== WEEK_WINDOW && move.window !== row.saidWindow}
+            scale={1}
+          />
+        ) : null}
       </View>
     </Pressable>
   );

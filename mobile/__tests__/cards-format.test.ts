@@ -226,6 +226,19 @@ describe('deltaFrom', () => {
     expect(deltaFrom(up)?.unit).toBeUndefined();
   });
 
+  it('prints an index’s move in its own points, to the decimal the index has', () => {
+    // An AI lab's best score: 146.8 → 167.4 is 20.6 points, not 14%.
+    expect(deltaOf(20.6, { unit: 'score', window: 'over the past year' })).toEqual({
+      direction: 'up',
+      magnitude: '20.6 points',
+      window: 'over the past year',
+      size: undefined,
+    });
+    expect(deltaOf(0.04, { unit: 'score' })?.direction).toBe('flat');
+    // Not a contract's points: nothing marks it to be left uncoloured.
+    expect(deltaOf(-3, { unit: 'score' })).not.toHaveProperty('unit');
+  });
+
   it('returns nothing at all rather than a chip that says nothing', () => {
     expect(deltaFrom(null)).toBeUndefined();
     expect(deltaFrom({ pct: Number.NaN, from: 'a', to: 'b', points: 1 })).toBeUndefined();

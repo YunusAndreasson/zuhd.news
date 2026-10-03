@@ -95,6 +95,9 @@ const DATA_SOURCES: { name: string; domain: string; url: string }[] = [
   { name: 'IMF PortWatch', domain: 'portwatch.imf.org', url: 'https://portwatch.imf.org/' },
   { name: 'Open-Meteo', domain: 'open-meteo.com', url: 'https://open-meteo.com/' },
   { name: 'Yahoo Finance', domain: 'finance.yahoo.com', url: 'https://finance.yahoo.com/' },
+  // The AI labs' scores and company figures, CC BY: the credit is the licence's
+  // one condition.
+  { name: 'Epoch AI', domain: 'epoch.ai', url: 'https://epoch.ai/benchmarks' },
   {
     name: 'Open Exchange Rates',
     domain: 'openexchangerates.org',

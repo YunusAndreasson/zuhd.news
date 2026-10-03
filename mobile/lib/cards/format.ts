@@ -187,7 +187,7 @@ export function deltaFrom(
 
 export interface DeltaOptions {
   window?: string;
-  unit?: 'percent' | 'points' | 'rate';
+  unit?: 'percent' | 'points' | 'rate' | 'score';
   /** What a move that rounds to nothing prints: `unchanged`, or a strait's
    *  `at its normal`. */
   flat?: string;
@@ -208,7 +208,9 @@ export function deltaOf(
       ? formatMagnitudePoints(pct)
       : unit === 'rate'
         ? formatMagnitudeRatePoints(pct)
-        : formatMagnitudePct(pct);
+        : unit === 'score'
+          ? formatMagnitudeScorePoints(pct)
+          : formatMagnitudePct(pct);
   // `null` is what the formatters return once the move rounds to nothing. A
   // flat chip carries no arrow — there is no direction to point — and reads
   // slate, the quietest of the three.
@@ -272,6 +274,19 @@ export function formatMagnitudePoints(points: number): string | null {
 function formatMagnitudeRatePoints(points: number): string | null {
   if (!Number.isFinite(points)) return null;
   const magnitude = Math.abs(points).toFixed(2);
+  if (Number(magnitude) === 0) return null;
+  return `${magnitude} points`;
+}
+
+/**
+ * A move in an index's own points, at the one decimal the index is printed
+ * to: an AI lab's best score, up `20.5 points` in a year (`lib/ai-models.ts`).
+ * Coloured like any move and without a `size`, as a rate's: points on an
+ * index and a percentage are not one scale to sort on.
+ */
+function formatMagnitudeScorePoints(points: number): string | null {
+  if (!Number.isFinite(points)) return null;
+  const magnitude = Math.abs(points).toFixed(1);
   if (Number(magnitude) === 0) return null;
   return `${magnitude} points`;
 }

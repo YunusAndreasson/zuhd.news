@@ -303,6 +303,9 @@ const GROUP_NOTES: Readonly<Record<GroupKey, string>> = {
   rates:
     'What borrowing costs, how fast prices rise and how many are out of work. A central bank’s rate and a monthly figure show the move on the month, in percentage points; the others the past week. Green up, red down.',
   crypto: 'Each coin’s price in dollars, and its move over the past week: green up, red down.',
+  // The margin is said here, over the rows: a list has an order, and without
+  // it the order reads as a ranking the measure cannot support.
+  ai: 'Each lab’s best model on Epoch AI’s capability index, one score made from dozens of tests, and how far that best has risen over the past year. Scores a few points apart are within the measure’s margin.',
   predictions: `What a prediction market prices each outcome at — ${MARKET_CAVEAT}. Moves are in points.`,
   calendar: 'Decisions and releases ahead, nearest first.',
 };
@@ -1147,7 +1150,8 @@ const GroupRow = memo(function GroupRow({
   const card = lead?.card;
   const moved = lead?.move && lead.weekly && group.key !== 'predictions';
   const subject =
-    group.key === 'predictions' || group.key === 'calendar'
+    // A lab's row leads with a score, not a week's move: the same line.
+    group.key === 'predictions' || group.key === 'calendar' || group.key === 'ai'
       ? `${card?.title ?? ''} · ${card?.reading ?? ''}`
       : (lead?.short ?? '');
   const move = moved ? lead.move : undefined;

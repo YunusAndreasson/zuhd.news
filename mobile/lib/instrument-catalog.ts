@@ -1,4 +1,5 @@
 import type { Article, Chokepoint, Indicator, TrendsSnapshot } from '@shared/types';
+import { type AiModelsSnapshot, aiLabCard, aiLabCardId, YEAR_WINDOW } from './ai-models';
 import { ccToFlag } from './article-utils';
 import {
   type AnalysisById,
@@ -40,6 +41,7 @@ export type GroupKey =
   | 'commodities'
   | 'rates'
   | 'crypto'
+  | 'ai'
   | 'predictions'
   | 'calendar';
 
@@ -55,6 +57,7 @@ export const GROUP_TITLES: Readonly<Record<GroupKey, string>> = {
   // The first is named for all three things in it, the way the list above is.
   rates: 'rates, inflation & jobs',
   crypto: 'crypto',
+  ai: 'AI models',
   predictions: 'predictions',
   calendar: 'coming up',
 };
@@ -68,6 +71,9 @@ const GROUP_ORDER: readonly GroupKey[] = [
   'commodities',
   'rates',
   'crypto',
+  // After everything with a price. A lab's score moves a few times a year,
+  // so it is looked up, not followed: it has no week and no slot in the strip.
+  'ai',
   'predictions',
   'calendar',
 ];
@@ -107,6 +113,10 @@ export interface CatalogRow {
    *  country to show (a series no exchange quotes), so the names in a list
    *  start on one line; absent, the list has no flags. */
   flag?: string;
+  /** The window the list's own note already states, so the row does not
+   *  repeat it under every number: an AI lab's `over the past year`. A row
+   *  whose move covers another window still prints its own. */
+  saidWindow?: string;
   /** An exchange's row carries it for its city and its "older quote". */
   exchange?: Exchange;
   chokepoint?: Chokepoint;
@@ -130,6 +140,8 @@ export interface CatalogInputs {
   /** The company list (`useCompanies`). The ones with a fresh quote are in
    *  `ranked` too, as the strip's slots; the list holds all of them. */
   companies?: Company[] | null;
+  /** The AI labs (`useAiModels`). Never in `ranked`: a score has no week. */
+  aiModels?: AiModelsSnapshot | null;
   now?: Date;
 }
 
@@ -277,6 +289,7 @@ export function instrumentCardFor(id: string, inputs: CatalogInputs): SwipeCard 
     articles,
     exchanges,
     companies,
+    aiModels,
     now = new Date(),
   } = inputs;
   const pool = new Map(ranked.map((c) => [c.id, c]));
@@ -300,6 +313,10 @@ export function instrumentCardFor(id: string, inputs: CatalogInputs): SwipeCard 
   if (id.startsWith('co:')) {
     const company = companies?.find((c) => companyCardId(c.id) === id);
     return gate(take(id) ?? (company ? companyCard(company) : null));
+  }
+  if (id.startsWith('ai:')) {
+    const lab = aiModels?.labs.find((l) => aiLabCardId(l.id) === id);
+    return gate(lab && aiModels ? aiLabCard(lab, aiModels.frontier, now.getTime()) : null);
   }
   const pooled = take(id);
   if (pooled?.kind === 'belief') return gate(pooled);
@@ -372,6 +389,7 @@ export function buildInstrumentCatalog({
   articles,
   exchanges,
   companies,
+  aiModels,
   now = new Date(),
 }: CatalogInputs): CatalogGroup[] {
   const at = now.getTime();
@@ -385,6 +403,7 @@ export function buildInstrumentCatalog({
     commodities: [],
     rates: [],
     crypto: [],
+    ai: [],
     predictions: [],
     calendar: [],
   };
@@ -411,6 +430,24 @@ export function buildInstrumentCatalog({
     if (!admitted(card)) continue;
     const { unit } = sharePrice(company.level, company.currency, company.currencyName);
     rows.companies.push({ ...rowFor(card, at), note: unit });
+  }
+
+  // Every AI lab, in the payload's order: highest score first. Built without
+  // `rowFor`, which asks every card for a week: a lab's line is its releases,
+  // and two of them a week apart would read as a weekly mover.
+  for (const lab of aiModels?.labs ?? []) {
+    const card = aiLabCard(lab, aiModels?.frontier ?? { score: 0, model: '', lab: '' }, at);
+    if (!admitted(card)) continue;
+    rows.ai.push({
+      id: card.id,
+      card,
+      move: card.delta,
+      weekly: false,
+      short: lab.name,
+      // The list's note says what the number is, once.
+      note: '',
+      saidWindow: YEAR_WINDOW,
+    });
   }
 
   // Every strait the globe draws, with or without a history to chart.

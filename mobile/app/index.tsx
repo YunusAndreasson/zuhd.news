@@ -57,6 +57,7 @@ import type { BottomSheetMethodsRef } from '../components/SheetLayout';
 import { SourcesSheet } from '../components/SourcesSheet';
 import { Toast, type ToastRef } from '../components/Toast';
 import { CATEGORIES, categoryMarkColor, EDITORIAL, VARIANT_CAP } from '../constants/theme';
+import { useAiModels } from '../hooks/useAiModels';
 import { useAnalysis } from '../hooks/useAnalysis';
 import type { AppReturn } from '../hooks/useArticles';
 import { useArticles } from '../hooks/useArticles';
@@ -260,6 +261,7 @@ export default function HomeScreen() {
   const exchanges = useMemo(() => marketsSnapshot?.exchanges ?? [], [marketsSnapshot]);
   const companiesSnapshot = useCompanies();
   const companies = useMemo(() => companiesSnapshot?.companies ?? [], [companiesSnapshot]);
+  const aiModels = useAiModels();
   const offline = useOffline();
 
   const [briefingVisible, setBriefingVisible] = useState(false);
@@ -523,9 +525,20 @@ export default function HomeScreen() {
       articles: river,
       exchanges,
       companies,
+      aiModels,
     });
     return lastCatalogRef.current;
-  }, [menuOpen, rankedInstruments, trends, chokepoints, analysis, river, exchanges, companies]);
+  }, [
+    menuOpen,
+    rankedInstruments,
+    trends,
+    chokepoints,
+    analysis,
+    river,
+    exchanges,
+    companies,
+    aiModels,
+  ]);
 
   /** The series each story's prose cites, as the card a press opens — built
    *  only for the few ids the river names, not the whole catalog. */
