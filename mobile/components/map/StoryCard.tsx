@@ -181,32 +181,47 @@ const Veil = memo(function Veil({
   // swipe lands, and each new canvas made Skia redraw on the JS thread and
   // serialize its tree for the UI thread in that commit (~14 ms, dev build,
   // profiled 2026-09-22). The native view draws the same two stops.
+  // `no-repeat` because the default `repeat` wraps the one gradient in two
+  // `CAReplicatorLayer`s on iOS, to tile an image exactly the view's size.
   const gradient = useMemo(
     () => ({
       height,
       experimental_backgroundImage: `linear-gradient(to bottom, ${withAlpha(color, VEIL_TOP)}, ${withAlpha(color, 1)})`,
+      experimental_backgroundRepeat: 'no-repeat',
     }),
     [height, color],
   );
   // The same first-frame guard as `DeckSlot`'s: a card mounts as a swipe
   // lands, and a JS read of a value the UI thread is writing waits for it. Lifted by the time the sheet is half open, so the rest reads as
   // it rises rather than arriving at the stop.
-  const style = useAnimatedStyle(() => {
+  const fade = useAnimatedStyle(() => {
     if (globalThis.__RUNTIME_KIND === 1) return { opacity: open ? 0 : 1 };
     return { opacity: 1 - Math.min(1, Math.max(0, progress.value / 0.5)) };
   }, [progress]);
+  // **The fade is on the two parts, never on a group of them** (2026-10-03,
+  // the user's report: opening a story lagged on an iPhone Pro and not on the
+  // emulator, and only while the veil faded). It was on one view over the
+  // gradient and the fill, and on iOS a translucent layer with sublayers is
+  // drawn off screen as a group, every frame it sits between 0 and 1 — here
+  // most of the card, the whole rest of the story. The fill is a plain view
+  // now, so its opacity is applied as it composites; only the two-line strip
+  // is still a group. Same picture: the two do not overlap. And the opacity
+  // never goes on the gradient view itself, where every change rebuilds its
+  // background-image layers (`invalidateLayer`, RCTViewComponentView.mm).
   return (
-    <Animated.View
-      style={[StyleSheet.absoluteFill, style]}
+    <View
+      style={StyleSheet.absoluteFill}
       pointerEvents={open ? 'none' : 'auto'}
       importantForAccessibility="no-hide-descendants"
       accessibilityElementsHidden
     >
       <RNPressable style={styles.fill} {...tap} accessible={false}>
-        <View style={gradient} pointerEvents="none" />
-        <View style={[styles.fill, { backgroundColor: color }]} />
+        <Animated.View style={fade} pointerEvents="none">
+          <View style={gradient} />
+        </Animated.View>
+        <Animated.View style={[styles.fill, { backgroundColor: color }, fade]} />
       </RNPressable>
-    </Animated.View>
+    </View>
   );
 });
 
