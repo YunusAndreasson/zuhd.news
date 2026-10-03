@@ -214,37 +214,52 @@ whole time; nothing said so.
   the data (2026-09-26, the user's request): `stock markets`, `largest
   companies`, `straits`, `currencies`, `energy, food & metals`, `rates,
   inflation & jobs`, `crypto`, `AI models`, `predictions`, `coming up`, then `country
-  rankings`, each a pushed page, under an `overview` (below) that holds
-  `world hazards`.
-  Each group's row prints its count and its first row — the week's largest
-  move, the strip's own number — so the menu says what is in it before it is
-  opened. The app's own pages fold behind one `settings & about` row.
-  - **The root opens on an `overview`: four compound lines, each in its own
-    unit** (2026-10-04, the user's request for "top metrics… maybe even our
-    own index"; `lib/world-summary.ts`, tested; `Overview` in `MenuSheet`).
-    - `world stocks` is the index: the exchanges' weeks averaged, each counted
-      once, with how many rose and fell. **It can only be equal-weight** — no
-      payload carries a market's value or volume — and its hint and the
-      `stock markets` page both say so. It is the web rail's `meanIndex`
-      rebased at the week's start, read off the rows' own moves, so its tally
-      is the page's (`exchangeTally`) and cannot differ from it.
-    - `shipping` is ships through every strait, added day by day: one unit, so
-      a count and not an index. Only straits ending on the same day are added,
-      and only days all of them have. The web removed a straits composite
-      (2026-08-08) because one number hid which strait moved; here the caption
-      says how many are disrupted (`straitSqueezed`, the globe's pinch) and
-      the `straits` row under it still names the mover.
-    - `currencies` is a count and never an average: the basket holds the euro
-      and the Lebanese pound.
-    - `world hazards` is people — the conflict week's dead **with its dates**,
-      the people in hunger — and has no move: neither source has a "before".
-      Its line was the layers counted in marks. The hunger part is a sum of
-      analyses from different months (`hungerTotal`), absent until the site
-      publishes the totals.
-    - **One score across all four was considered and rejected**: it needs
+  rankings`, each a pushed page, with `world hazards` before the rankings.
+  Each group's row prints its whole list as one number (below), so the menu
+  says how each has moved before it is opened. The app's own pages fold behind one `settings & about` row.
+  - **A category's row is its name and one number: the summary of its whole
+    list** (2026-10-04, the user's design; `groupFigure` in
+    `lib/world-summary.ts`, tested; `GroupRow` in `MenuSheet`). Every figure
+    is the past seven days in percent, green up and red down, so the column
+    reads down the root as how the world moved this week.
+    - `stock markets` is the index the user asked for ("maybe even our own
+      index"): the exchanges' weeks averaged, each counted once. **It can
+      only be equal-weight** — no payload carries a market's value or volume.
+      It is the web rail's `meanIndex` rebased at the week's start.
+    - `largest companies`, `energy, food & metals` and `crypto` are averaged
+      the same way. A monthly price has no week and is left out; so is a card
+      built from two others (`COMPOSITES`), which would count gold twice.
+    - `currencies` is the **median** currency's week against the dollar. A
+      mean of fifteen currencies is whichever fell furthest: the list holds
+      the euro and the Lebanese pound.
+    - `straits` is ships through every strait, added day by day: one unit,
+      so a count and not an index. Only straits ending on the same day are
+      added, and only days all of them have.
+    - `AI models` and `coming up` print a level in plain ink (the best score,
+      the nearest date). `rates, inflation & jobs` and `predictions` print
+      nothing: their members are not one quantity.
+    - Each list's own note says what the number beside it is and that it is
+      unweighted: an index that does not state its bound reads as the whole.
+    - **No subtitle, no count, never the largest mover.** The row printed a
+      count and its lead mover until then; the top strip already shows the
+      movers. The user, in three messages: "the number of items in each
+      category is not interesting, better put the red/green number there";
+      "for each category I want the summary of all values, not the top one";
+      "this also makes the list cleaner since we won't need the subtitle".
+    - **Two versions before it were duplication, and are not to come back.**
+      A block of four menu rows over the lists (`world stocks`, `shipping`,
+      `currencies`, `world hazards`), each opening the list of nearly the
+      same name under it: "now it feels like you just created new duplicated
+      categories". Then a band of four numbers over the lists, replaced
+      before it shipped: "that replaces the idea of the overview". There is
+      one surface for these numbers, and it is the rows.
+    - **`world hazards` keeps a line under its name**: it has no week, and
+      its summary is people — the conflict week's dead **with its dates**,
+      the people in hunger (`hazardParts`, `hungerTotal`; the second is
+      absent until the site publishes the totals).
+    - **One score across everything was considered and rejected**: it needs
       weights nobody publishes and a colour that calls the result good or
-      bad. The label is `overview`, not "this week", for the hazards' sake.
-      "This week against the week before" was offered and not chosen.
+      bad.
   - **The lists hold every published series, not the ranked pool**
     (`lib/instrument-catalog.ts`, tested). The pool is the strip's, and short
     on purpose: two currencies of fifteen, Brent without WTI, no Fed rate. The

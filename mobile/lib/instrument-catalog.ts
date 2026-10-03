@@ -217,7 +217,7 @@ const NOT_LISTED = new Set(['wikipedia', 'portwatch', 'stocks', 'polymarket']);
 
 /** The pool's two-line and derived cards, which have no series of their own
  *  to be listed by. */
-const COMPOSITES: ReadonlyMap<string, SeriesGroup> = new Map([
+export const COMPOSITES: ReadonlyMap<string, SeriesGroup> = new Map([
   ['nisab', 'commodities'],
   ['metals', 'commodities'],
   ['staples', 'commodities'],

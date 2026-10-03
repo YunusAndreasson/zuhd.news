@@ -4,42 +4,61 @@ import type { CardDelta, CardSeries } from './cards/types';
 import { WEEK_WINDOW, weekMove, yearOf } from './cards/week-move';
 import { type ConflictWeek, weekToll, weekWindow } from './conflict-week';
 import { hungerTotal } from './famine-totals';
-import type { CatalogGroup, CatalogRow, GroupKey } from './instrument-catalog';
+import {
+  type CatalogGroup,
+  type CatalogRow,
+  COMPOSITES,
+  type GroupKey,
+} from './instrument-catalog';
 import type { FamineCountryTotal } from './overlays';
 import { leadNames } from './row-leaders';
 import { straitSqueezed } from './valence';
 
 /**
- * The menu's overview: how things are going, a line per area.
+ * Each list on the menu's first page as one number: the summary of everything
+ * in it, not its largest mover.
  *
- * The root's rows each print their list's largest mover, which says what
- * moved most and nothing about the whole. The user asked for compound figures
- * worth reading daily, "maybe even our own index" (2026-10-04). These are
- * four, each in its own unit, and none of them mixes two areas:
+ * The user asked for compound figures worth reading daily, "maybe even our
+ * own index" (2026-10-04). Every figure is the same quantity — a move over
+ * the past seven days, in percent, green up and red down — so the column
+ * reads down the page as how the world moved this week:
  *
- * - **stocks** — the exchanges' weeks, averaged, each counted once. It is the
- *   web rail's `meanIndex` (`public/islands/_map/markets.ts`) rebased at the
- *   week's start, and it is the only index the data allows: no payload
- *   carries a market's value or volume, so there is nothing to weight by. It
- *   is unweighted and its membership is editorial, and the row's hint and the
- *   list it opens both say so.
- * - **shipping** — ships through every strait, summed. Ships are one unit, so
- *   the sum is a count and not an index. The web removed a straits composite
- *   (2026-08-08) because one number hid which strait had moved; here the
- *   caption says how many are disrupted and the `straits` row under it still
- *   names the largest mover.
- * - **currencies** — a count and no average: the basket holds the euro and
- *   the Lebanese pound, and a mean of their weeks would be one member's.
- * - **hazards** — people, with the dates the source gives. No move: the
- *   conflict file is one week and the hunger analyses are months old, so
- *   there is no "before" to measure against.
+ * - **stock markets** — the exchanges' weeks averaged, each counted once. It
+ *   is the web rail's `meanIndex` (`public/islands/_map/markets.ts`) rebased
+ *   at the week's start, and it is the only index the data allows: no payload
+ *   carries a market's value or volume, so there is nothing to weight by.
+ * - **largest companies**, **energy, food & metals**, **crypto** — the
+ *   members' weeks, averaged the same way. A monthly price has no week and is
+ *   left out; so is a card derived from two others (`COMPOSITES`), which
+ *   would count gold twice.
+ * - **currencies** — the middle currency's week against the dollar. The
+ *   median, not the mean: the list holds the euro and the Lebanese pound, and
+ *   one collapsing currency would be the whole average.
+ * - **straits** — ships through every strait, added day by day. Ships are one
+ *   unit, so the sum is a count and not an index.
+ * - **AI models**, **coming up** — a level in plain ink, the list's first:
+ *   the best score, the nearest date. Neither has a week.
+ * - **rates, inflation & jobs**, **predictions** — no figure. A central
+ *   bank's rate, a price index and a jobless rate are not one quantity, and
+ *   an average of contracts on different questions is of nothing.
  *
- * **One score across all four was considered and rejected.** It needs weights
- * nobody publishes, and a colour that calls the result good or bad, which is
- * the judgement `moveTone` exists to keep off the screen.
+ * Each figure is unweighted and exactly as broad as its list; the list's own
+ * note says so, where its members are.
  *
- * Every figure is the week the strip prints, read off the catalog's own rows,
- * so a line here cannot disagree with the list it opens.
+ * **How it got here, the same day.** First a block of four menu rows over the
+ * lists, named almost as the lists under them: "it feels like much
+ * duplication… now it feels like you just created new duplicated
+ * categories". Then, half built, a band of four numbers over the lists. The
+ * user's own design replaced both: "for each category I want the summary of
+ * all values, not the top one… that replaces the idea of the overview… this
+ * also makes the list cleaner since we won't need the subtitle". The rows
+ * printed their largest mover until then, which the top strip already shows.
+ *
+ * **One score across every list was considered and rejected.** It needs
+ * weights nobody publishes, and a colour that calls the result good or bad.
+ *
+ * Every figure is read off the catalog's own rows, so a row's number cannot
+ * disagree with the list it opens.
  */
 
 const groupOf = (catalog: readonly CatalogGroup[], key: GroupKey): CatalogGroup | undefined =>
@@ -90,6 +109,10 @@ function weekPct(row: CatalogRow): number | null {
   return move.direction === 'up' ? move.size : -move.size;
 }
 
+/** Every figure here is the week. One that rounds to nothing prints `0.0%`:
+ *  the chip's word, `unchanged`, is a sentence among three numbers. */
+const WEEK = { window: WEEK_WINDOW, flat: '0.0%' } as const;
+
 /** Fewer members than this is one market's week under another name. */
 const MIN_MEMBERS = 2;
 
@@ -104,16 +127,38 @@ export interface StocksSummary {
 export function stocksSummary(catalog: readonly CatalogGroup[]): StocksSummary | null {
   const exchanges = groupOf(catalog, 'stocks')?.rows.filter((row) => row.exchange) ?? [];
   if (exchanges.length === 0) return null;
+  return { tally: tallyOf(exchanges), ...meanWeek(exchanges) };
+}
+
+/** The mean of the rows' weeks, each counted once, and how many it is of. */
+function meanWeek(rows: readonly CatalogRow[]): { move?: CardDelta; members: number } {
   let sum = 0;
   let members = 0;
-  for (const row of exchanges) {
+  for (const row of rows) {
     const pct = weekPct(row);
     if (pct === null) continue;
     sum += pct;
     members += 1;
   }
-  const move = members >= MIN_MEMBERS ? deltaOf(sum / members, { window: WEEK_WINDOW }) : undefined;
-  return { tally: tallyOf(exchanges), move, members };
+  return {
+    move: members >= MIN_MEMBERS ? deltaOf(sum / members, WEEK) : undefined,
+    members,
+  };
+}
+
+export interface CompaniesSummary {
+  /** The largest companies' weeks averaged, each counted once. */
+  move?: CardDelta;
+  members: number;
+  total: number;
+}
+
+/** The largest companies as one number. A company with an old quote has no
+ *  week and is left out of the average, as an exchange is. */
+export function companiesSummary(catalog: readonly CatalogGroup[]): CompaniesSummary | null {
+  const rows = groupOf(catalog, 'companies')?.rows ?? [];
+  if (rows.length === 0) return null;
+  return { ...meanWeek(rows), total: rows.length };
 }
 
 type Series = Pick<CardSeries, 'values' | 'periods'>;
@@ -203,7 +248,7 @@ export function shippingSummary(
   if (summed && summed.members >= MIN_MEMBERS) {
     const year = yearOf(charted[0]?.asOf, new Date(now).getUTCFullYear());
     const week = weekMove(summed.sum.values, summed.sum.periods, year);
-    if (week) move = deltaOf(week.pct, { window: WEEK_WINDOW });
+    if (week) move = deltaOf(week.pct, WEEK);
   }
   return { total: straits.length, disrupted, move, members: summed?.members ?? 0 };
 }
@@ -219,19 +264,89 @@ export function shippingCaption({ total, disrupted }: ShippingSummary): string {
 const isCurrency = (row: CatalogRow): boolean =>
   /^fx-[a-z]{3}$/.test(row.id.replace(/^market-signal:/, '').replace(/-mover$/, ''));
 
-/**
- * How many currencies rose and fell against the dollar this week. The rows
- * already quote the currency, not the published rate (`currencyMove`), so
- * `rose` is a currency that buys more dollars than it did. A currency with no
- * week is left out: it cannot be said to have done either.
- */
-export function currencySummary(catalog: readonly CatalogGroup[]): Tally | null {
-  const rows =
-    groupOf(catalog, 'currencies')?.rows.filter((row) => isCurrency(row) && row.weekly) ?? [];
-  return rows.length > 0 ? tallyOf(rows) : null;
+export const CURRENCY_TAIL = 'against the dollar';
+
+export interface CurrenciesSummary {
+  /** The middle currency's week against the dollar. */
+  move?: CardDelta;
+  /** How many currencies rose and fell against it. */
+  tally: Tally;
 }
 
-export const CURRENCY_TAIL = 'against the dollar';
+/**
+ * The currencies as one number: the median currency's week against the
+ * dollar, in the list's own sense (down is weaker).
+ *
+ * The median, because a mean of fifteen currencies is whichever one fell
+ * furthest: a pound that loses a fifth of its value in a week would move the
+ * average more than the euro, the yen and the yuan together.
+ */
+export function currenciesSummary(catalog: readonly CatalogGroup[]): CurrenciesSummary | null {
+  const rows =
+    groupOf(catalog, 'currencies')?.rows.filter((row) => isCurrency(row) && row.weekly) ?? [];
+  if (rows.length === 0) return null;
+  const weeks = rows
+    .map(weekPct)
+    .filter((pct): pct is number => pct !== null)
+    .sort((a, b) => a - b);
+  const n = weeks.length;
+  const mid = Math.floor(n / 2);
+  const median =
+    n === 0
+      ? null
+      : n % 2 === 1
+        ? (weeks[mid] ?? 0)
+        : ((weeks[mid - 1] ?? 0) + (weeks[mid] ?? 0)) / 2;
+  return {
+    tally: tallyOf(rows),
+    move: median !== null && n >= MIN_MEMBERS ? deltaOf(median, WEEK) : undefined,
+  };
+}
+
+export interface GroupFigure {
+  /** The list's week as one number. */
+  move?: CardDelta;
+  /** For a list with no week: its first row's level, in plain ink. */
+  level?: string;
+  /** What stands behind the number, for a screen reader: `21 of 26 fell`. */
+  detail?: string;
+}
+
+/**
+ * A list's figure on the menu's first page: the summary of everything in it.
+ * Empty for a list that has none to give (see the header for which, and why).
+ */
+export function groupFigure(group: CatalogGroup, now = Date.now()): GroupFigure {
+  const catalog = [group];
+  switch (group.key) {
+    case 'stocks': {
+      const stocks = stocksSummary(catalog);
+      return stocks ? { move: stocks.move, detail: tallyCaption(stocks.tally) } : {};
+    }
+    case 'companies':
+      return { move: companiesSummary(catalog)?.move };
+    case 'straits': {
+      const shipping = shippingSummary(catalog, now);
+      return shipping ? { move: shipping.move, detail: shippingCaption(shipping) } : {};
+    }
+    case 'currencies': {
+      const currencies = currenciesSummary(catalog);
+      return currencies
+        ? { move: currencies.move, detail: tallyCaption(currencies.tally, CURRENCY_TAIL) }
+        : {};
+    }
+    case 'commodities':
+    case 'crypto':
+      // A card built from two others is not a price of its own.
+      return { move: meanWeek(group.rows.filter((row) => !COMPOSITES.has(row.id))).move };
+    case 'ai':
+    case 'calendar':
+      return { level: group.rows[0]?.card?.reading };
+    case 'rates':
+    case 'predictions':
+      return {};
+  }
+}
 
 /** People, short enough to share a line: `134,808`, `19.5M`, `128M`. */
 function compactPeople(n: number): string {

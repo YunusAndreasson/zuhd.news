@@ -39,6 +39,9 @@ interface MenuRowProps {
   detailLabel?: string;
   /** A short figure before the trailing mark — a count, a size. */
   value?: string;
+  /** In the value's place, a figure that is not plain text: a group's week
+   *  as a coloured chip. Its words belong in `detailLabel`. */
+  figure?: ReactNode;
   trailing?: RowTrailing;
   /** Omit for a read-only row: it renders as one accessible fact, not a button. */
   onPress?: () => void;
@@ -56,6 +59,7 @@ export const MenuRow = memo(function MenuRow({
   detail,
   detailLabel,
   value,
+  figure,
   trailing,
   onPress,
   first,
@@ -78,11 +82,12 @@ export const MenuRow = memo(function MenuRow({
           </Text>
         ) : null}
       </View>
-      {value ? (
-        <Text variant="body" tone="secondary" style={styles.value}>
-          {value}
-        </Text>
-      ) : null}
+      {figure ??
+        (value ? (
+          <Text variant="body" tone="secondary" style={styles.value}>
+            {value}
+          </Text>
+        ) : null)}
       {trailing === 'push' ? (
         <Icon name="chevron-forward" size="sm" tone="secondary" />
       ) : trailing === 'leave' ? (

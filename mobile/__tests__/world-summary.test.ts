@@ -7,7 +7,9 @@ import type { Exchange } from '../lib/markets';
 import type { FamineCountryTotal } from '../lib/overlays';
 import {
   CURRENCY_TAIL,
-  currencySummary,
+  companiesSummary,
+  currenciesSummary,
+  groupFigure,
   exchangeTally,
   hazardParts,
   shippingCaption,
@@ -174,21 +176,131 @@ describe('shipping', () => {
   });
 });
 
+describe('the largest companies', () => {
+  it('are one number: their weeks averaged, each counted once', () => {
+    const summary = companiesSummary([
+      group('companies', [weekRow('co:a', 6), weekRow('co:b', -2), weekRow('co:c', 2)]),
+    ]);
+    expect(summary?.move).toMatchObject({ direction: 'up', magnitude: '2%', window: WEEK_WINDOW });
+    expect(summary).toMatchObject({ members: 3, total: 3 });
+  });
+
+  it('print a week that rounds to nothing as a number, not a word', () => {
+    const summary = companiesSummary([
+      group('companies', [weekRow('co:a', 1), weekRow('co:b', -1)]),
+    ]);
+    expect(summary?.move).toMatchObject({ direction: 'flat', magnitude: '0.0%' });
+  });
+
+  it('leave a company with an old quote out of the average, and hold the slot', () => {
+    const old = weekRow('co:c', 50, { weekly: false });
+    const summary = companiesSummary([group('companies', [weekRow('co:a', 6), old])]);
+    // One member is one company's week, not the list's.
+    expect(summary).toMatchObject({ members: 1, total: 2 });
+    expect(summary?.move).toBeUndefined();
+    expect(companiesSummary([])).toBeNull();
+  });
+});
+
 describe('currencies', () => {
-  it('counts the currencies with a week, whatever the pool calls their card', () => {
-    const tally = currencySummary([
+  it('are the middle currency’s week against the dollar', () => {
+    const summary = currenciesSummary([
       group('currencies', [
         weekRow('fx-try-mover', -5),
         weekRow('market-signal:fx-egp', -2),
         weekRow('fx-eur', 1),
         // No week: it cannot be said to have risen or fallen.
-        weekRow('fx-lbp', 3, { weekly: false }),
+        weekRow('fx-jpy', 3, { weekly: false }),
         // Not a currency.
-        weekRow('usd-index', 2),
+        weekRow('usd-index', 9),
       ]),
     ]);
-    expect(tally).toEqual({ total: 3, rose: 1, fell: 2 });
-    expect(currencySummary([group('currencies', [weekRow('usd-index', 2)])])).toBeNull();
+    expect(summary?.move).toMatchObject({
+      direction: 'down',
+      magnitude: '2%',
+      window: WEEK_WINDOW,
+    });
+    expect(summary?.tally).toEqual({ total: 3, rose: 1, fell: 2 });
+  });
+
+  it('are the median, so one collapsing currency is not the whole number', () => {
+    const summary = currenciesSummary([
+      group('currencies', [
+        weekRow('fx-lbp', -40),
+        weekRow('fx-eur', 0.4),
+        weekRow('fx-jpy', 0.2),
+        weekRow('fx-cny', 0.6),
+      ]),
+    ]);
+    // Mean −9.7%; the middle of the four is +0.3%.
+    expect(summary?.move).toMatchObject({ direction: 'up', magnitude: '0.3%' });
+  });
+
+  it('have no number of one currency, and none with no currency', () => {
+    expect(currenciesSummary([group('currencies', [weekRow('fx-eur', 1)])])?.move).toBeUndefined();
+    expect(currenciesSummary([group('currencies', [weekRow('usd-index', 2)])])).toBeNull();
+    expect(currenciesSummary([])).toBeNull();
+  });
+});
+
+describe('a list’s figure on the menu’s first page', () => {
+  it('is the summary of everything in it, never its largest mover', () => {
+    // Sorted as the catalog sorts: the largest move first.
+    const stocks = group('stocks', [market('a', -9), market('b', 2), market('c', 1)]);
+    const figure = groupFigure(stocks, NOW);
+    expect(figure.move).toMatchObject({ direction: 'down', magnitude: '2%' });
+    expect(figure.detail).toBe('2 of 3 rose');
+    expect(
+      groupFigure(group('companies', [weekRow('co:a', 6), weekRow('co:b', -2)])).move,
+    ).toMatchObject({ direction: 'up', magnitude: '2%' });
+  });
+
+  it('adds the straits’ ships and says how many are disrupted', () => {
+    const straits = group('straits', [
+      strait('a', DAYS, [100, 110, 120], -0.3),
+      strait('b', DAYS, [100, 90, 100]),
+    ]);
+    expect(groupFigure(straits, NOW)).toMatchObject({
+      move: { direction: 'up', magnitude: '10%' },
+      detail: '1 of 2 straits disrupted',
+    });
+  });
+
+  it('averages prices, leaving out a monthly one and a card built from two others', () => {
+    const figure = groupFigure(
+      group('commodities', [
+        weekRow('brent', 4),
+        weekRow('paxg', 2),
+        // Derived from gold and silver: counting it counts them twice.
+        weekRow('nisab', 30),
+        // A month's move is not a week's.
+        weekRow('wheat', -20, { weekly: false }),
+      ]),
+    );
+    expect(figure.move).toMatchObject({ direction: 'up', magnitude: '3%' });
+    expect(
+      groupFigure(group('crypto', [weekRow('btc', 1), weekRow('eth', -3)])).move,
+    ).toMatchObject({
+      direction: 'down',
+      magnitude: '1%',
+    });
+  });
+
+  it('prints a level, in plain ink, for a list with no week', () => {
+    const lab = weekRow('ai:alpha', 0, {
+      weekly: false,
+      card: { reading: '167.4' } as SwipeCard,
+    });
+    expect(groupFigure(group('ai', [lab]))).toEqual({ level: '167.4' });
+    const date = weekRow('fomc', 0, { weekly: false, card: { reading: 'in 4 days' } as SwipeCard });
+    expect(groupFigure(group('calendar', [date]))).toEqual({ level: 'in 4 days' });
+  });
+
+  it('prints nothing for a list whose members are not one quantity', () => {
+    expect(groupFigure(group('rates', [weekRow('us-10y', 1), weekRow('us-2y', 2)]))).toEqual({});
+    expect(groupFigure(group('predictions', [weekRow('poly-x', 5)]))).toEqual({});
+    // Nor a number of one member, which would be that member's.
+    expect(groupFigure(group('crypto', [weekRow('btc', 1)])).move).toBeUndefined();
   });
 });
 

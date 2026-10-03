@@ -47,7 +47,6 @@ import {
   subscribe as subscribeBookmarks,
 } from '../lib/bookmark-store';
 import { spokenDelta } from '../lib/cards/format';
-import type { CardDelta } from '../lib/cards/types';
 import { conflictChooserDetails } from '../lib/conflict';
 import {
   type ConflictWeek,
@@ -86,18 +85,8 @@ import { LEADERS_SEPARATOR } from '../lib/row-leaders';
 import { settingsSummary } from '../lib/settings-summary';
 import { makeStaggerEnter } from '../lib/stagger';
 import { countryTap, markTap, type TapResult } from '../lib/tap-result';
-import { CHOKEPOINT_DISRUPTED } from '../lib/valence';
 import { eraseLocalData } from '../lib/wipe';
-import {
-  CURRENCY_TAIL,
-  currencySummary,
-  exchangeTally,
-  hazardParts,
-  shippingCaption,
-  shippingSummary,
-  stocksSummary,
-  tallyCaption,
-} from '../lib/world-summary';
+import { exchangeTally, groupFigure, hazardParts } from '../lib/world-summary';
 import { DeltaChip } from './DeltaChip';
 import { EmptyState } from './EmptyState';
 import { InstrumentRow } from './InstrumentRow';
@@ -117,7 +106,7 @@ import {
   menuDetailLabel,
 } from './MenuDetail';
 import { MenuControlRow, MenuRow, SectionLabel } from './MenuRow';
-import { Icon, Pressable, Text } from './primitives';
+import { Pressable, Text } from './primitives';
 import { SegmentedControl, type SegmentOption } from './SegmentedControl';
 import { SheetAboutPage } from './SheetAboutPage';
 import { SheetBookmarksPage } from './SheetBookmarksPage';
@@ -289,20 +278,23 @@ function pageTitle(key: PageKey): string {
 const GROUP_NOTES: Readonly<Record<GroupKey, string>> = {
   // A row opens its card here, and the globe turns to its place behind the
   // menu, so closing the menu leaves the reader on it.
-  // `world stocks` is said here, where its members are: an index that does
-  // not state its bound reads as the whole market.
+  // The number beside each list on the menu's first page is said here, where
+  // its members are: an index that does not state its bound reads as the
+  // whole market.
   stocks:
-    'Moves over the past week: green up, red down. World stocks, on the menu’s first page, is the average of these exchanges’ weeks, each counted once.',
+    'Moves over the past week: green up, red down. The number beside this list on the menu’s first page is the average of these exchanges’ weeks, each counted once.',
   companies:
-    'Twenty of the world’s largest companies by market value. Each share’s price at its last close, and its move over the past week: green up, red down.',
-  straits: 'Ships a day, and the move over the past week: green up, red down.',
+    'Twenty of the world’s largest companies by market value. Each share’s price at its last close, and its move over the past week: green up, red down. The number beside this list on the menu’s first page is the average of these weeks.',
+  straits:
+    'Ships a day, and the move over the past week: green up, red down. The number beside this list on the menu’s first page is the ships through all of these, added up.',
   currencies:
-    'Each currency against the dollar, over the past week: green is stronger, red weaker.',
+    'Each currency against the dollar, over the past week: green is stronger, red weaker. The number beside this list on the menu’s first page is the middle currency’s move.',
   commodities:
-    'Moves over the past week: green up, red down. A price published monthly shows its month.',
+    'Moves over the past week: green up, red down. A price published monthly shows its month. The number beside this list on the menu’s first page is the average of the weekly moves here.',
   rates:
     'What borrowing costs, how fast prices rise and how many are out of work. A central bank’s rate and a monthly figure show the move on the month, in percentage points; the others the past week. Green up, red down.',
-  crypto: 'Each coin’s price in dollars, and its move over the past week: green up, red down.',
+  crypto:
+    'Each coin’s price in dollars, and its move over the past week: green up, red down. The number beside this list on the menu’s first page is the average of these weeks.',
   // The margin is said here, over the rows: a list has an order, and without
   // it the order reads as a ranking the measure cannot support.
   ai: 'Each lab’s best model on Epoch AI’s capability index, one score made from dozens of tests, and how far that best has risen over the past year. Scores a few points apart are within the measure’s margin.',
@@ -722,15 +714,11 @@ export const MenuSheet = memo(function MenuSheet({
     if (current === null) {
       return (
         <>
-          {/* How things are going, before the lists (2026-10-04). It draws
-              the `markets & data` label over them too. */}
-          <Overview catalog={catalog} hazards={hazards} onPress={navPush} />
           {/* The data first (2026-09-26, the user's request): the menu was
               four reading rows over five rows about the app, and opening it
-              found nothing to read. Each group's row prints its first row —
-              the week's largest move, the strip's own number — so the menu
-              says what is in it before it is opened. The count is what the
-              page lists. */}
+              found nothing to read. Each group's row prints the summary of
+              its whole list as one number (`GroupRow`), so the column reads
+              down the page as how the world moved this week. */}
           {catalog.map((group, i) => (
             <GroupRow
               key={group.key}
@@ -739,11 +727,10 @@ export const MenuSheet = memo(function MenuSheet({
               onPress={() => navPush(group.key)}
             />
           ))}
+          <HazardsRow hazards={hazards} first={catalog.length === 0} onPress={navPush} />
           <MenuRow
-            first={catalog.length === 0}
             title="country rankings"
             description={`Every country by ${METRICS.population.label}, ${METRICS.gdp.label.toUpperCase()} and ${METRIC_KEYS.length - 2} more measures`}
-            value={String(METRIC_KEYS.length)}
             trailing="push"
             onPress={() => navPush('country rankings')}
           />
@@ -1132,10 +1119,24 @@ const DataUsedRow = memo(function DataUsedRow() {
 });
 
 /**
- * A group's row on the root: its name, how many it lists, and its first row —
- * the subject and its move, so the menu says what is in each list before it
- * is opened. A contract prints its price (odds are never tinted, and a
- * question has no short name), a date its distance.
+ * A group's row on the root: its name, and its whole list as one number at
+ * the row's trailing edge (`groupFigure`, `lib/world-summary.ts`) — the
+ * exchanges' weeks averaged, the straits' ships added up, the middle
+ * currency's week. Green up, red down, as everywhere.
+ *
+ * The user's design (2026-10-04), in three steps the same day: "the number of
+ * items in each category is not interesting, better put the red/green number
+ * there"; "for each category I want the summary of all values, not the top
+ * one"; "this also makes the list cleaner since we won't need the subtitle".
+ * Until then the row printed a count and, under its name, its largest mover,
+ * which the top strip already shows.
+ *
+ * - **No subtitle.** A row is its name and its number. Do not put the lead
+ *   mover back under it.
+ * - **No count.**
+ * - A list with no week prints its first row's level in plain ink (the best
+ *   AI score, the nearest date); a list whose members are not one quantity
+ *   prints nothing.
  */
 const GroupRow = memo(function GroupRow({
   group,
@@ -1146,32 +1147,26 @@ const GroupRow = memo(function GroupRow({
   first: boolean;
   onPress: () => void;
 }) {
-  const lead = group.rows[0];
-  const card = lead?.card;
-  const moved = lead?.move && lead.weekly && group.key !== 'predictions';
-  const subject =
-    // A lab's row leads with a score, not a week's move: the same line.
-    group.key === 'predictions' || group.key === 'calendar' || group.key === 'ai'
-      ? `${card?.title ?? ''} · ${card?.reading ?? ''}`
-      : (lead?.short ?? '');
-  const move = moved ? lead.move : undefined;
+  const { move, level, detail } = groupFigure(group);
+  // Built with statements: a ternary holding `??` beside `||` is a shape the
+  // compiler skips the whole component for (`react-compiler.test.ts`).
+  const said: string[] = [];
+  if (move) said.push(spokenDelta(move));
+  else if (level) said.push(level);
+  if (detail) said.push(detail);
   return (
     <MenuRow
       first={first}
       title={group.title}
-      value={String(group.rows.length)}
-      detail={
-        lead ? (
-          <>
-            <Text variant="caption" style={styles.teaser}>
-              {subject}
-            </Text>
-            {move ? <DeltaChip delta={move} window={false} scale={1} /> : null}
-          </>
+      detailLabel={said.length > 0 ? said.join(', ') : undefined}
+      figure={
+        move ? (
+          <DeltaChip delta={move} window={false} />
+        ) : level ? (
+          <Text variant="body" tone="secondary" style={styles.level}>
+            {level}
+          </Text>
         ) : undefined
-      }
-      detailLabel={
-        lead ? [subject, move ? spokenDelta(move) : ''].filter(Boolean).join(', ') : undefined
       }
       trailing="push"
       onPress={onPress}
@@ -1218,82 +1213,21 @@ function hazardLayers(hazards: MenuHazards): { key: HazardKey; count: number; no
   ].filter((layer) => layer.count > 0);
 }
 
-/** A row of the overview: a name, its line, and its week at the trailing
- *  edge where it has one. Each opens the list its figure is of. */
-function OverviewRow({
-  title,
-  caption,
-  hint,
-  move,
+/** `world hazards` on the root. Its line is people where the app can count
+ *  them: the conflict week's dead with its dates, the people in hunger
+ *  (`hazardParts`). The layers counted in marks are its hint, and its line
+ *  while nothing has loaded to count. */
+const HazardsRow = memo(function HazardsRow({
+  hazards,
   first,
   onPress,
 }: {
-  title: string;
-  caption: string;
-  /** What the figure is, for a screen reader. */
-  hint: string;
-  move?: CardDelta;
-  first: boolean;
-  onPress: () => void;
-}) {
-  return (
-    <MenuRow
-      first={first}
-      title={title}
-      description={hint}
-      detail={
-        <Text variant="caption" style={styles.teaser}>
-          {caption}
-        </Text>
-      }
-      detailLabel={[caption, move ? spokenDelta(move) : ''].filter(Boolean).join(', ')}
-      trailing={
-        move ? (
-          <View style={styles.overviewMove}>
-            <DeltaChip delta={move} window={false} scale={1} />
-            <Icon name="chevron-forward" size="sm" tone="secondary" />
-          </View>
-        ) : (
-          'push'
-        )
-      }
-      onPress={onPress}
-    />
-  );
-}
-
-/**
- * How things are going, a line per area, over the lists (2026-10-04, the
- * user's request). The arithmetic and what each line may claim are in
- * `lib/world-summary.ts`.
- *
- * - **A row is here exactly when its list is.** Each reads its own group of
- *   the catalog, so it comes and goes with the row that opens the same list
- *   and never on its own (`DESIGN.md`: a page's rows are settled as the menu
- *   opens).
- * - **`world hazards` moved up; it is not here twice.** Its line was the
- *   layers counted in marks (`195 conflict events · 94 famine areas`). It is
- *   people now, and that sentence is its hint and its line while nothing has
- *   loaded to count.
- * - **The label is `overview`, not "this week"**: the conflict toll under it
- *   is of a week about five weeks back, and says its dates.
- * - It draws `markets & data` too: whether that label is the page's first
- *   line depends on whether anything above it was drawn.
- */
-const Overview = memo(function Overview({
-  catalog,
-  hazards,
-  onPress,
-}: {
-  catalog: CatalogGroup[];
   hazards: MenuHazards;
+  first: boolean;
   onPress: (page: PageKey) => void;
 }) {
-  const stocks = stocksSummary(catalog);
-  const shipping = shippingSummary(catalog);
-  const currencies = currencySummary(catalog);
   const layers = hazardLayers(hazards);
-
+  if (layers.length === 0) return null;
   const counted = (n: number, one: string, many: string) => `${n} ${n === 1 ? one : many}`;
   // The count of the list the row leads to: the week's, where it is held.
   const conflictCount = hazards.conflictWeek?.events.length ?? hazards.conflict.length;
@@ -1310,58 +1244,22 @@ const Overview = memo(function Overview({
     .slice(0, 2)
     .join(LEADERS_SEPARATOR);
   const people = hazardParts(hazards).join(LEADERS_SEPARATOR);
-
-  const rows = [
-    stocks ? (
-      <OverviewRow
-        key="stocks"
-        first
-        title="world stocks"
-        caption={tallyCaption(stocks.tally)}
-        hint="The average of these exchanges’ weeks, each counted once"
-        move={stocks.move}
-        onPress={() => onPress('stocks')}
-      />
-    ) : null,
-    shipping ? (
-      <OverviewRow
-        key="shipping"
-        first={!stocks}
-        title="shipping"
-        caption={shippingCaption(shipping)}
-        hint={`Ships through the straits, added up, over the past week. A strait is disrupted at ${Math.round(CHOKEPOINT_DISRUPTED * 100)}% or more under its 90-day normal`}
-        move={shipping.move}
-        onPress={() => onPress('straits')}
-      />
-    ) : null,
-    currencies ? (
-      <OverviewRow
-        key="currencies"
-        first={!stocks && !shipping}
-        title="currencies"
-        caption={tallyCaption(currencies, CURRENCY_TAIL)}
-        hint="How many currencies rose and fell against the dollar over the past week"
-        onPress={() => onPress('currencies')}
-      />
-    ) : null,
-    layers.length > 0 ? (
-      <OverviewRow
-        key="hazards"
-        first={!stocks && !shipping && !currencies}
-        title="world hazards"
-        caption={people || marks}
-        hint={marks}
-        onPress={() => onPress('world hazards')}
-      />
-    ) : null,
-  ].filter((row) => row !== null);
-
   return (
-    <>
-      {rows.length > 0 ? <SectionLabel first label="overview" /> : null}
-      {rows}
-      <SectionLabel first={rows.length === 0} label="markets & data" />
-    </>
+    <MenuRow
+      first={first}
+      title="world hazards"
+      description={marks}
+      detail={
+        people ? (
+          <Text variant="caption" style={styles.teaser}>
+            {people}
+          </Text>
+        ) : undefined
+      }
+      detailLabel={people || undefined}
+      trailing="push"
+      onPress={() => onPress('world hazards')}
+    />
   );
 });
 
@@ -1575,8 +1473,8 @@ const styles = StyleSheet.create({
   introRuled: { borderBottomWidth: StyleSheet.hairlineWidth },
   filters: { paddingTop: SPACING.sm },
   teaser: { flexShrink: 1 },
-  // The week, then the chevron every pushing row ends on.
-  overviewMove: { flexDirection: 'row', alignItems: 'center', gap: SPACING.sm },
+  // A level at the row's edge, digit for digit under the chips above it.
+  level: { fontVariant: ['tabular-nums'] },
   markList: { paddingHorizontal: SPACING.screenPadding },
   markNote: { paddingBottom: SPACING.sm },
   eraseHeading: {
