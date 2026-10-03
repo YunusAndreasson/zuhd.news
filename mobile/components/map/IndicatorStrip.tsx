@@ -57,7 +57,7 @@ import { Icon, Pressable, Text } from '../primitives';
  *
  * Each slot carries its subject and the week's percentage move on one line,
  * green up and red down (`moveTone`). Subjects are words, not codes
- * (`stripLabel`: `Turkey stocks`, `Hormuz ships`, `Oil`). The test is that a
+ * (`stripLabel`: `Turkey stocks`, `Hormuz`, `Oil`). The test is that a
  * reader gets it by looking (2026-09-25, the user's request). The window is
  * not printed in the row: a `past week` label at its start cost the first
  * view most of a slot, and the user asked for it gone the same day. Every

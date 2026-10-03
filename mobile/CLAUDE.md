@@ -181,11 +181,26 @@ whole time; nothing said so.
   - **A subject is words, not a code** (`stripLabel`, 2026-09-25, the user's
     request: "it should be self-explanatory, we shouldn't try to be smart in a
     way no one understands"). An index is its country's stocks (`Turkey
-    stocks`, `stockMarketPlace`), a strait the ships through it (`Hormuz
-    ships`), and a few codes their plain names (`Oil`, `US 10-year rate`,
-    `Fear index`). It printed `BIST 100`, `KOSPI`, `TA-125`, `VIX` and
-    `Hormuz Str.`. The card keeps the index's name, and a screen reader hears
-    both. The globe's marks keep the index name: they sit on the city.
+    stocks`, `stockMarketPlace`), a strait its name (`Hormuz`), and a few
+    codes their plain names (`Oil`, `US 10-year rate`, `Fear index`). It
+    printed `BIST 100`, `KOSPI`, `TA-125`, `VIX` and `Hormuz Str.`. The card
+    keeps the index's name, and a screen reader hears both. The globe's marks
+    keep the index name: they sit on the city.
+  - **A name, and no word the reader will learn without; the row is
+    optimized for space** (2026-10-03, the user's requests). A strait was
+    `Hormuz ships` and the nisab `Nisab threshold`: the second word said what
+    the number counts, on every visit, to a reader who learned it on the
+    first. `BOSPORUS STRAIT SHIPS ▼8.1%` took 43% of a phone's width, and
+    with two straits leading the row a strip sized for 3.4 gauges showed one
+    and a half. Now: a strait is its name (`Bosporus`), without the word
+    "strait" wherever the name stands alone — one named for a country keeps
+    it (`Taiwan Strait`, `KEEPS_STRAIT`), a canal or a cape is never
+    shortened; the nisab is `Nisab`; a ratio is a slash, the way round its
+    card divides (`Gold/silver`, `Rice/wheat`). **`stocks` stays**, on the
+    user's word: that a country's name means its stock market is not
+    intuitive. A currency keeps its country (`peso`, `pound` and `rupee` are
+    each several). Under a story, `StoryChart` gives a strait its `ships`
+    back: that line prints the reading (`50`) with no unit.
 - **The sheet is hand-built on purpose, and it is the only one.** A platform
   sheet is modal: it scrims the globe, caps Android at two detents it picks,
   and cannot persist. `MapSheet` owns three rules that remove gesture conflicts
@@ -196,9 +211,10 @@ whole time; nothing said so.
   the group.** Brent, gold, the ten-year, nisab, currencies and every contract
   have no honest location, so they are not on the globe. `all →` at the end of
   the strip is never conditional, and opens the menu, whose root leads with
-  the data (2026-09-26, the user's request): `stock markets`, `straits`,
-  `currencies`, `energy, food & metals`, `rates & crypto`, `predictions`,
-  `coming up`, then `world hazards` and `country rankings`, each a pushed page.
+  the data (2026-09-26, the user's request): `stock markets`, `largest
+  companies`, `straits`, `currencies`, `energy, food & metals`, `rates &
+  crypto`, `predictions`, `coming up`, then `world hazards` and `country
+  rankings`, each a pushed page.
   Each group's row prints its count and its first row — the week's largest
   move, the strip's own number — so the menu says what is in it before it is
   opened. The app's own pages fold behind one `settings & about` row.
@@ -211,10 +227,53 @@ whole time; nothing said so.
     row, its slot and its card are one thing — and holding every new card to
     the deck's gate (`admitted`). A series the table does not name is listed
     by its `source`, so one the pipeline adds is not silently absent;
-    `wiki-*`, `portwatch-*` and `stocks:*` are left out on purpose. An index
+    `wiki-*`, `portwatch-*` and `stocks:*` are left out on purpose (the
+    twenty largest companies have a list of their own, below). An index
     an exchange quotes is that exchange's row (the NYSE's index is the S&P
     500). Rows sort by the week's move, and a month is never sorted against a
     week: monthly series follow, in the table's order.
+  - **`largest companies` is twenty share prices, in the menu and nowhere
+    else** (2026-10-03, the user's request; `lib/companies.ts`, tested). One
+    close a day from `/api/companies.json`. Not in the strip: a single share
+    swings more than an index, and in a row sorted by the week's largest move
+    they would take it from the straits and currencies it is for. Not on the
+    globe: a headquarters is not a place a price is about.
+    - **A row is a name, what the company does and where it is from** (`Nvidia`
+      / `AI chips · US`), never a ticker, which is a code only a reader who
+      already follows the share knows. The price carries `$` or `€` where the
+      mark means one currency and the currency in words where it does not
+      (`2,500` / `Taiwan dollars`). **A row does not say `a share`**: the line
+      over the list says it once, and twenty rows repeating it told the reader
+      what the first had (`CatalogRow.note`). The card says it in full.
+    - **The paragraph is the catalog's standing sentence, and the card says
+      nothing it has not got.** The desk writes no daily account of these, so
+      there is no `recent`; what follows the sentence is `in the news`, the
+      stories about the company, marked on the line by their number. Which
+      stories those are is the pipeline's judgement (the entity stage's model
+      says whether a story is about a company or names it;
+      `.claude/rules/pipeline/cycle.md`), so a story that mentions Microsoft
+      is not on Microsoft's card.
+    - **It is the one list fetched when the menu opens, not with a build**
+      (`COMPANIES_SNAPSHOT`, `useCompanies`). About 9KB gzipped, changing each
+      time a stock market closes: in `API_SNAPSHOTS` it would ride every
+      arrival and the hourly background task, roughly a tenth more data a day
+      for every reader, most of whom never open it. Reopened inside five
+      minutes it asks nothing; after that it asks with the tag of the copy it
+      holds, and an unchanged file answers 304 (seen on the emulator against
+      a stand-in site: 200, then 304).
+    - **Its row is in the menu from the moment the menu opens, loaded or not**
+      (`CatalogGroup.wait`). With no copy yet the row holds its place and
+      prints what the list is, on the line its teaser takes, so nothing under
+      it moves when the prices land. **And it keeps the place when they do
+      not.** The first version gave the row up when the fetch failed: on a
+      slow connection that was five seconds after the menu opened, every row
+      under it moved up one, and a tap on `largest companies` opened
+      `straits` (found driving the emulator). A list that could not be
+      fetched says so on its own page; the next opening of the menu asks
+      again. Do not make a menu row appear or leave while the menu is open.
+    - **Ship the pipeline first.** An app that asks before the site publishes
+      the file gets a 404, which is the failed state: a row that opens onto
+      "could not be loaded".
   - **A monthly rate moves in points** (`deltaFrom` `unit: 'rate'`, two
     decimals, coloured like any move). Rounded to whole points a 25-basis-point
     cut read "unchanged"; as a percentage of itself it read "−6.3%". The
@@ -1118,6 +1177,18 @@ about what a card may say is about the card, not where it is shown.
       `12 of 48` over `politics · 12h ago` in 11pt secondary ink; in a river
       ordered by time, when is what a scrubbing reader is reading for, and
       the position is already the finger's place on the track.
+    - **And which story (2026-10-03).** A run's stories share one time, so
+      the tooltip read `8h ago · politics` for sixteen stories in a row and
+      the finger chose among them blind. The headline sits under the two
+      lines, in `captionEmphasis`, two lines held whatever its length so the
+      box does not change height under a moving finger (`useScrub`
+      `captionFor`, `ScrubTooltip`). The box is `PREVIEW_WIDTH` wide, never
+      wider than the track, and solid (`playerBg`, the pill's hairline edge):
+      it rests on the card's own title and hook, which `toastBg` let through
+      behind a second headline. When still leads, at its size. The briefing's
+      scrubber passes no caption and keeps its small tooltip. `‹ 3 new` steps
+      aside while a finger holds the track (a switch on `holding`, never a
+      fade): the box hangs over the track's left end, where the pill is.
     - **A read story is a hairline (2026-09-22, the user's request).** Read is
       `lib/read-store.ts`: two seconds in front of the reader, at rest or
       open (`useReadTracking`, `READ_DWELL_MS` — it was 15 s of the *open*

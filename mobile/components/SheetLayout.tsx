@@ -2,7 +2,9 @@ import { BottomSheetModal, type BottomSheetProps } from '@expo/ui/community/bott
 import { memo, type ReactNode, useMemo } from 'react';
 import { StyleSheet, useWindowDimensions } from 'react-native';
 import { GestureHandlerRootView } from 'react-native-gesture-handler';
-import { LAYOUT } from '../constants/theme';
+import { useSafeAreaInsets } from 'react-native-safe-area-context';
+import { LAYOUT, SPACING } from '../constants/theme';
+import { useKeyboardTop } from '../hooks/useKeyboardTop';
 import { useTheme } from '../hooks/useTheme';
 import { SheetHandle } from './SheetHandle';
 
@@ -38,18 +40,24 @@ interface SheetLayoutProps extends Omit<BottomSheetProps, OmittedModalProps> {
    *  the back button it had just pressed. Rendered as the sheet's first
    *  child, not as `handleComponent` — see the note on the render below. */
   handle?: ReactNode;
+  /** The sheet holds a text field. On Android the keyboard pushes a platform
+   *  sheet up whole, so its cap becomes the room above the keyboard. */
+  avoidKeyboard?: boolean;
 }
 
 export const SheetLayout = memo(function SheetLayout({
   sheetRef,
   handleTitle,
   handle,
+  avoidKeyboard = false,
   children,
   enableDynamicSizing = true,
   ...rest
 }: SheetLayoutProps) {
   const { sheetStyles } = useTheme();
   const { height } = useWindowDimensions();
+  const keyboardTop = useKeyboardTop(avoidKeyboard);
+  const { top: topInset } = useSafeAreaInsets();
   // A content-sized sheet needs a ceiling, and the native side cannot give it
   // one. `enableDynamicSizing` with no `snapPoints` puts the library in
   // `fitToContents`, which measures the RN content's *natural* height and makes
@@ -67,11 +75,19 @@ export const SheetLayout = memo(function SheetLayout({
   // Fixed-snap sheets must NOT get the wrapper: they are handed a bounded
   // column already, and `SheetScrollView`'s `flexShrink: 1` fits the content to
   // it. Capping those at 70% would leave dead space inside an 85% sheet.
+  //
+  // **With the keyboard up, the cap is the room above it** (2026-10-03).
+  // Android lifts the sheet by the keyboard's height, and a sheet 85% of the
+  // window tall on top of a keyboard 35% tall put its first 20% past the top
+  // of the screen: any search with more than a handful of results pushed the
+  // search field, the title and the back chevron off the screen, with the
+  // reader still typing into a field they could no longer see.
   const fitToContents = enableDynamicSizing && !(rest.snapPoints && rest.snapPoints.length > 0);
-  const capStyle = useMemo(
-    () => [styles.fitted, { maxHeight: Math.round(height * LAYOUT.sheetMaxFraction) }],
-    [height],
-  );
+  const capStyle = useMemo(() => {
+    const cap = Math.round(height * LAYOUT.sheetMaxFraction);
+    const room = keyboardTop === null ? cap : Math.round(keyboardTop - topInset - SPACING.sm);
+    return [styles.fitted, { maxHeight: Math.min(cap, room) }];
+  }, [height, keyboardTop, topInset]);
   // `handleComponent` is deliberately pinned to `null` and our handle rendered
   // as ordinary content instead. Native sheets do not render a custom handle —
   // `@expo/ui` only reads null-vs-non-null off that prop to decide whether to

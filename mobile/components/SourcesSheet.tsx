@@ -90,6 +90,7 @@ export const SourcesSheet = memo(function SourcesSheet({
                   source={s}
                   isExpanded={expandedSource === i}
                   isLast={i === sources.length - 1}
+                  alone={sources.length === 1}
                   onPress={() => setExpandedSource(expandedSource === i ? null : i)}
                 />
               </Animated.View>

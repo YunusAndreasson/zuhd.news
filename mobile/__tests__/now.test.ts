@@ -220,7 +220,7 @@ describe('buildNowSurfaces — the strip', () => {
   it('prints what a strait counts and keeps the full name to speak', () => {
     // `Hormuz Str.` beside a percentage did not say what had moved.
     const { strip } = base({ ranked: [reading('strait-hormuz', { title: 'Strait of Hormuz' })] });
-    expect(strip[0]?.short).toBe('Hormuz ships');
+    expect(strip[0]?.short).toBe('Hormuz');
     expect(strip[0]?.label).toBe('Strait of Hormuz');
   });
 
@@ -254,13 +254,19 @@ describe('buildNowSurfaces — the strip', () => {
 });
 
 describe('stripLabel', () => {
-  it('says what a strait\'s number counts, dropping only "Strait of"', () => {
-    expect(stripLabel({ id: 'strait-gibraltar', title: 'Strait of Gibraltar' })).toBe(
-      'Gibraltar ships',
-    );
-    // Kept: `Taiwan ships` would read as Taiwan's own ships.
-    expect(stripLabel({ id: 'strait-taiwan', title: 'Taiwan Strait' })).toBe('Taiwan Strait ships');
-    expect(stripLabel({ id: 'strait-suez', title: 'Suez Canal' })).toBe('Suez Canal ships');
+  it('names a strait by its name alone', () => {
+    // No `ships`, and no `strait` where the name stands without it:
+    // `Bosporus Strait ships` was 43% of a phone's width.
+    expect(stripLabel({ id: 'strait-gibraltar', title: 'Strait of Gibraltar' })).toBe('Gibraltar');
+    expect(stripLabel({ id: 'strait-bosporus', title: 'Bosporus Strait' })).toBe('Bosporus');
+    expect(stripLabel({ id: 'strait-bab', title: 'Bab el-Mandeb' })).toBe('Bab el-Mandeb');
+  });
+
+  it('keeps the word where the name alone is something else', () => {
+    // `Taiwan` would read as the country.
+    expect(stripLabel({ id: 'strait-taiwan', title: 'Taiwan Strait' })).toBe('Taiwan Strait');
+    expect(stripLabel({ id: 'strait-suez', title: 'Suez Canal' })).toBe('Suez Canal');
+    expect(stripLabel({ id: 'strait-cape', title: 'Cape of Good Hope' })).toBe('Cape of Good Hope');
   });
 
   it("names an index by its market's country", () => {
@@ -272,6 +278,10 @@ describe('stripLabel', () => {
     expect(stripLabel({ id: 'brent', title: 'Brent crude' })).toBe('Oil');
     expect(stripLabel({ id: 'us-10y', title: 'US 10y Treasury' })).toBe('US 10-year rate');
     expect(stripLabel({ id: 'vix', title: 'VIX' })).toBe('Fear index');
+    expect(stripLabel({ id: 'nisab', title: 'Nisab threshold' })).toBe('Nisab');
+    // A ratio is a slash, the way round the card divides.
+    expect(stripLabel({ id: 'metals', title: 'Gold against silver' })).toBe('Gold/silver');
+    expect(stripLabel({ id: 'staples', title: 'Wheat and rice' })).toBe('Rice/wheat');
     expect(stripLabel({ id: 'fx-zar', title: 'South African rand' })).toBe('South African rand');
   });
 });

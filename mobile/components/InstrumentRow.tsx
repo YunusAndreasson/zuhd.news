@@ -48,7 +48,10 @@ export const InstrumentRow = memo(function InstrumentRow({
   // What the number counts: `52` beside `Egyptian pound` does not say which
   // way round the rate is, and `$115` not what the dollars buy. A date's note
   // is its day, which the row's date line already prints.
-  const unit = card?.kind === 'scheduled' ? undefined : card?.readingNote;
+  // A company's row prints only its currency, and none for a `$`: its list
+  // says `a share` once, over the rows (`CatalogRow.note`).
+  const unit =
+    card?.kind === 'scheduled' ? undefined : (row.note ?? card?.readingNote) || undefined;
   // `Sep 21`, as every card and chart prints a day. A date has no day it was
   // read — its line is the day it falls on.
   const asOf = exchange?.asOf ?? card?.asOf;

@@ -261,6 +261,8 @@ const GROUP_NOTES: Readonly<Record<GroupKey, string>> = {
   // A row opens its card here, and the globe turns to its place behind the
   // menu, so closing the menu leaves the reader on it.
   stocks: 'Moves over the past week: green up, red down.',
+  companies:
+    'Twenty of the world’s largest companies by market value. Each share’s price at its last close, and its move over the past week: green up, red down.',
   straits: 'Ships a day, and the move over the past week: green up, red down.',
   currencies:
     'Each currency against the dollar, over the past week: green is stronger, red weaker.',
@@ -490,11 +492,18 @@ export const MenuSheet = memo(function MenuSheet({
     },
     [push],
   );
+  // What the reader searched for, held here so it outlives the page: the menu
+  // closes when a result opens its story, and it reopens on this page
+  // (`MENU_RESUME_MS`). The page kept the words itself, so it reopened empty,
+  // and the second result of a search cost the search again. Leaving the page
+  // by its back, or the menu going back to its root, clears it.
+  const [searchQuery, setSearchQuery] = useState('');
   const navPop = useCallback(() => {
+    if (nav.current === 'search') setSearchQuery('');
     pop();
     const next = nav.stack[nav.stack.length - 2];
     AccessibilityInfo.announceForAccessibility(next ? titleOf(next) : 'menu');
-  }, [pop, nav.stack, titleOf]);
+  }, [pop, nav.current, nav.stack, titleOf]);
   /** Push whatever a row opened, as a page: back is the list it came from. */
   const openDetail = useCallback(
     (detail: MenuDetail) => {
@@ -517,6 +526,7 @@ export const MenuSheet = memo(function MenuSheet({
     setSeenRootKey(rootKey);
     reset();
     setDetails({});
+    setSearchQuery('');
   }
 
   const handleRow = useCallback(
@@ -636,7 +646,7 @@ export const MenuSheet = memo(function MenuSheet({
           <MenuRow
             first
             title="search"
-            description="Every story, by title, topic or place"
+            description="Recent stories, by title, topic or place"
             trailing="push"
             onPress={() => navPush('search')}
           />
@@ -869,11 +879,15 @@ export const MenuSheet = memo(function MenuSheet({
       // Android's back pops a page before it closes the menu, as the
       // country sheet's ranking does. It closed the whole menu from any page.
       onBackPress={nav.depth > 0 ? navPop : undefined}
+      // The search page's field brings the keyboard up.
+      avoidKeyboard
     >
       {nav.current === 'search' ? (
         <SheetSearchPage
           grouped={grouped}
           bottomInset={bottomInset}
+          query={searchQuery}
+          onQueryChange={setSearchQuery}
           onSelectArticle={onSelectArticle}
         />
       ) : groupKey || activeHazard || currentDetail ? (
@@ -988,6 +1002,11 @@ const GroupRow = memo(function GroupRow({
 }) {
   const lead = group.rows[0];
   const card = lead?.card;
+  // A list with nothing fetched yet has no first row to print. It says what
+  // it holds instead, on the line the teaser takes, so the row is the same
+  // height before and after and nothing under it moves when the prices land
+  // (`CatalogGroup.wait`).
+  const waiting = Boolean(group.wait) && !lead;
   const moved = lead?.move && lead.weekly && group.key !== 'predictions';
   const subject =
     group.key === 'predictions' || group.key === 'calendar'
@@ -998,7 +1017,8 @@ const GroupRow = memo(function GroupRow({
     <MenuRow
       first={first}
       title={group.title}
-      value={String(group.rows.length)}
+      value={waiting ? undefined : String(group.rows.length)}
+      description={waiting ? COMPANIES_WAITING : undefined}
       detail={
         lead ? (
           <>
@@ -1017,6 +1037,9 @@ const GroupRow = memo(function GroupRow({
     />
   );
 });
+
+/** The company list's line on the root while there are no prices to print. */
+const COMPANIES_WAITING = 'Share prices of twenty of the world’s largest';
 
 /** Each layer's count and what it is, in the globe's order of gravity. */
 function hazardLayers(hazards: MenuHazards): { key: HazardKey; count: number; note: string }[] {
@@ -1198,7 +1221,18 @@ function GroupPage({
         keyExtractor={rowKey}
         renderItem={renderItem}
         bottomInset={bottomInset}
-        ListEmptyComponent={<EmptyState message="No matching markets" />}
+        ListEmptyComponent={
+          group.wait === 'waiting' ? (
+            <EmptyState message="Loading share prices…" />
+          ) : group.wait === 'failed' ? (
+            <EmptyState
+              message="Share prices could not be loaded"
+              hint="Check the connection, then open the menu again"
+            />
+          ) : (
+            <EmptyState message="No matching markets" />
+          )
+        }
       />
     </>
   );

@@ -166,37 +166,64 @@ function locateCard(
   return null;
 }
 
-/** Readings whose published name is a code or a security, in the words the
- *  number is about. Their cards keep the published name. */
+/** Readings whose published name is a code, a security, or longer than the
+ *  slot needs, in the words the number is about. Their cards keep the
+ *  published name. */
 const PLAIN_NAMES: Readonly<Record<string, string>> = {
   brent: 'Oil',
   'us-10y': 'US 10-year rate',
   vix: 'Fear index',
+  nisab: 'Nisab',
+  // A ratio is a slash, the way round its card divides: gold by silver, and
+  // rice by wheat (`Wheat and rice` on its card, which reads rice in wheats).
+  metals: 'Gold/silver',
+  staples: 'Rice/wheat',
 };
+
+/** Straits named for a country: `Taiwan` alone would read as the country. */
+const KEEPS_STRAIT: ReadonlySet<string> = new Set(['Taiwan']);
 
 /**
  * A slot's subject, on one line, in words a reader needs no finance to read.
  *
- * The strip is read at a glance, so its subject has to say what the number
- * counts (2026-09-25, the user's request: the screen should explain itself).
- * It printed codes a reader could read only if they already knew them —
- * `BIST 100`, `KOSPI`, `TA-125`, `VIX`, `Hormuz Str.`:
+ * The strip is read at a glance, so its subject is a name a reader can read,
+ * never a code (2026-09-25, the user's request: the screen should explain
+ * itself). It printed codes a reader could read only if they already knew
+ * them — `BIST 100`, `KOSPI`, `TA-125`, `VIX`, `Hormuz Str.`:
  *
  *   an exchange      its country's stocks (`stockMarketPlace`): `Turkey stocks`
- *   a strait         the ships through it: `Hormuz ships`, `Suez Canal ships`
+ *   a strait         its name: `Hormuz`, `Bosporus`, `Suez Canal`
  *   a code           its plain name: `Oil`, `US 10-year rate`, `Fear index`
  *
- * Currencies, bitcoin and the nisab already said what they were. The card
- * keeps the full name, and a screen reader hears both. One line, never cut:
- * a slot widens for a longer subject. Straits wrapped to two lines once, which
- * made the whole strip two caps lines tall; only the "Strait of" is dropped.
+ * **A name, and no word the reader will learn without** (2026-10-03, the
+ * user's request). A strait was `Hormuz ships` and the nisab `Nisab
+ * threshold`: the second word said what the number counts, on every visit,
+ * to a reader who learned it on the first — and `BOSPORUS STRAIT SHIPS ▼8.1%`
+ * took 43% of a phone's width, so a strip sized for 3.4 gauges showed one and
+ * a half. A strait is its name, without the word "strait" wherever the name
+ * stands alone; one named for a country keeps it (`Taiwan Strait`,
+ * `KEEPS_STRAIT`), and a canal or a cape is never shortened. A ratio is a
+ * slash (`Gold/silver`, was `Gold against silver`). **The row is optimized
+ * for space**: every slot a word shorter is another gauge in the first view.
+ * `stocks` stays, on the user's word the same day: that a country's name
+ * means its stock market is not something a reader works out, and it is what
+ * tells the market from the currency two slots along. A currency keeps its
+ * country for the same reason (`peso`, `pound` and `rupee` are each several).
+ *
+ * Where a reading is printed beside the subject with no unit of its own, the
+ * word still has work to do — `StoryChart` adds `ships` back for a strait.
+ * The card keeps the full name, and a screen reader hears both. One line,
+ * never cut: a slot widens for a longer subject.
  */
 export function stripLabel(
   card: Pick<SwipeCard, 'id' | 'title'>,
   /** The exchange's country, for an index. */
   place?: string | null,
 ): string {
-  if (card.id.startsWith('strait-')) return `${card.title.replace(/^Strait of /, '')} ships`;
+  if (card.id.startsWith('strait-')) {
+    const bare = card.title.replace(/^Strait of /, '').replace(/ Strait$/, '');
+    return KEEPS_STRAIT.has(bare) ? card.title : bare;
+  }
   if (place) return `${place} stocks`;
   return PLAIN_NAMES[card.id] ?? card.title;
 }
