@@ -892,10 +892,16 @@ about what a card may say is about the card, not where it is shown.
   `Veil` — the
   sheet's ground over them, the first line at half strength fading to
   nothing by the second, which the user preferred to blank space as the sign
-  that the card opens. It lifts with the sheet's `progress` (computing its
-  first style from `open`, because the card mounts as a swipe lands), a tap
-  on it opens the story, and the rest takes no touches and is hidden from
-  screen readers until the sheet settles open.
+  that the card opens. It is on at rest and off the moment the sheet's
+  `progress` leaves it (computing its first style from `open`, because the
+  card mounts as a swipe lands), a tap on it opens the story, and the rest
+  takes no touches and is hidden from screen readers until the sheet settles
+  open. **It never fades** (2026-10-03, the user's call): faded with the
+  sheet, it lagged opening and stalled a close just before it landed on an
+  iPhone Pro, not on the emulator — iOS draws a translucent layer with
+  sublayers off screen as a group on every frame between 0 and 1. And opacity
+  never goes on the gradient view itself: on iOS any opacity change rebuilds
+  a `backgroundImage` view's gradient layers.
   - **Peek is computed from type, never a fraction** (`lib/deck-layout.ts`,
     tested): kicker, two title lines, three hook lines and the dock at the
     reader's font scale, capped so the globe keeps 34% of the window, floored

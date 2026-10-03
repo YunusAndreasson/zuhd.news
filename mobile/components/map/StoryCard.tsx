@@ -64,7 +64,8 @@ import { StoryChart } from '../StoryChart';
  * over them: the first line shows through at half strength and the second
  * fades to nothing, which says "there is more" without handing the reader a
  * second sentence to read — the whole point of resting on the hook. The veil
- * lifts as the sheet rises (`progress`) and a tap on it opens the story. The
+ * goes as soon as the sheet leaves rest (`progress`), comes back as it lands,
+ * and a tap on it opens the story. The
  * rest takes no touches and is hidden from screen readers until the sheet has
  * settled open, so a veiled country link can never be tapped. There is no
  * second reading surface to open and no earth to lose: the globe stays above
@@ -117,6 +118,10 @@ interface StoryCardProps {
 const VEIL_LINES = 2;
 /** How much of the sheet's ground lies over the veil's first line. */
 const VEIL_TOP = 0.5;
+/** How far the sheet rises, as a share of its travel, before the veil goes:
+ *  any rise at all, so a drag up shows the whole story at once and a close
+ *  brings the veil back only on its last few points. */
+const VEIL_AWAY = 0.01;
 
 /**
  * The fade over the rest of a resting story: `VEIL_LINES` of gradient from
@@ -191,37 +196,36 @@ const Veil = memo(function Veil({
     }),
     [height, color],
   );
+  // **The veil is on or off, never fading** (2026-10-03, the user's call). It
+  // faded out over the first half of the sheet's rise and back in over the
+  // last half of its fall, and on an iPhone Pro both lagged where the emulator
+  // did not — a close stalled just before it landed, which is where the fade
+  // ran. On iOS a translucent layer with sublayers is drawn off screen as a
+  // group on every frame its opacity sits between 0 and 1; splitting the fade
+  // across the gradient and the fill shrank that and did not end it. At 0 and
+  // 1 there is no group to draw, and Reanimated touches the view only when the
+  // style changes, so a whole open or close costs two updates. The opacity
+  // still never goes on the gradient view itself, where any change rebuilds
+  // its background-image layers (`invalidateLayer`, RCTViewComponentView.mm).
+  //
   // The same first-frame guard as `DeckSlot`'s: a card mounts as a swipe
-  // lands, and a JS read of a value the UI thread is writing waits for it. Lifted by the time the sheet is half open, so the rest reads as
-  // it rises rather than arriving at the stop.
-  const fade = useAnimatedStyle(() => {
+  // lands, and a JS read of a value the UI thread is writing waits for it.
+  const shown = useAnimatedStyle(() => {
     if (globalThis.__RUNTIME_KIND === 1) return { opacity: open ? 0 : 1 };
-    return { opacity: 1 - Math.min(1, Math.max(0, progress.value / 0.5)) };
+    return { opacity: progress.value > VEIL_AWAY ? 0 : 1 };
   }, [progress]);
-  // **The fade is on the two parts, never on a group of them** (2026-10-03,
-  // the user's report: opening a story lagged on an iPhone Pro and not on the
-  // emulator, and only while the veil faded). It was on one view over the
-  // gradient and the fill, and on iOS a translucent layer with sublayers is
-  // drawn off screen as a group, every frame it sits between 0 and 1 — here
-  // most of the card, the whole rest of the story. The fill is a plain view
-  // now, so its opacity is applied as it composites; only the two-line strip
-  // is still a group. Same picture: the two do not overlap. And the opacity
-  // never goes on the gradient view itself, where every change rebuilds its
-  // background-image layers (`invalidateLayer`, RCTViewComponentView.mm).
   return (
-    <View
-      style={StyleSheet.absoluteFill}
+    <Animated.View
+      style={[StyleSheet.absoluteFill, shown]}
       pointerEvents={open ? 'none' : 'auto'}
       importantForAccessibility="no-hide-descendants"
       accessibilityElementsHidden
     >
       <RNPressable style={styles.fill} {...tap} accessible={false}>
-        <Animated.View style={fade} pointerEvents="none">
-          <View style={gradient} />
-        </Animated.View>
-        <Animated.View style={[styles.fill, { backgroundColor: color }, fade]} />
+        <View style={gradient} pointerEvents="none" />
+        <View style={[styles.fill, { backgroundColor: color }]} />
       </RNPressable>
-    </View>
+    </Animated.View>
   );
 });
 
