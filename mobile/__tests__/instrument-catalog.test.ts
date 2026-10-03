@@ -7,6 +7,7 @@ import {
   type CatalogInputs,
   type GroupKey,
   instrumentCardFor,
+  rowFlag,
 } from '../lib/instrument-catalog';
 import { type Company, companyCard } from '../lib/companies';
 import type { Exchange } from '../lib/markets';
@@ -204,6 +205,33 @@ describe('buildInstrumentCatalog', () => {
     const row = group(build({ trends }), 'currencies')?.rows[0];
     expect(row?.weekly).toBe(true);
     expect(row?.move?.direction).toBe('down');
+  });
+
+  it('flags a country’s market and its money, and holds the slot where there is no country', () => {
+    const groups = build({
+      exchanges: [exchange('bist', 'TR', [100, 95])],
+      trends: snapshot([
+        indicator({ id: 'fx-egp', source: 'oer', unit: 'EGP / USD' }),
+        indicator({ id: 'fx-eur', source: 'oer', unit: 'EUR / USD' }),
+        indicator({ id: 'nasdaq100', label: 'NASDAQ-100' }),
+        indicator({ id: 'vix', label: 'VIX' }),
+        indicator({ id: 'brent' }),
+      ]),
+    });
+    const flags = (key: GroupKey) =>
+      Object.fromEntries((group(groups, key)?.rows ?? []).map((r) => [r.id, r.flag]));
+    expect(flags('stocks')).toEqual({ 'mkt:bist': '🇹🇷', nasdaq100: '🇺🇸', vix: '' });
+    expect(flags('currencies')).toEqual({ 'fx-egp': '🇪🇬', 'fx-eur': '🇪🇺' });
+    // No flags outside those two lists: the row has no slot at all.
+    expect(group(groups, 'commodities')?.rows.every((r) => r.flag === undefined)).toBe(true);
+  });
+
+  it('reads a currency’s flag through a signal’s prefix and a mover’s suffix', () => {
+    expect(rowFlag({ id: 'market-signal:fx-try' })).toBe('🇹🇷');
+    expect(rowFlag({ id: 'fx-try-mover' })).toBe('🇹🇷');
+    // A code that opens with X is no country's.
+    expect(rowFlag({ id: 'fx-xau' })).toBe('');
+    expect(rowFlag({ id: 'gold-silver' })).toBe('');
   });
 
   it('lets a market signal stand for its exchange, keeping the exchange for its city', () => {

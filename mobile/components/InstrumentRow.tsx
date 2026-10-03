@@ -1,6 +1,6 @@
 import { memo, useCallback } from 'react';
 import { StyleSheet, View } from 'react-native';
-import { SPACING } from '../constants/theme';
+import { FLAG, SPACING } from '../constants/theme';
 import { useTheme } from '../hooks/useTheme';
 import { spokenDelta } from '../lib/cards/format';
 import { WEEK_WINDOW } from '../lib/cards/week-move';
@@ -9,6 +9,7 @@ import type { CatalogRow } from '../lib/instrument-catalog';
 import { exchangeIsStale } from '../lib/markets';
 import { rowKicker } from '../lib/now';
 import { DeltaChip } from './DeltaChip';
+import { FlagGlyph } from './FlagChip';
 import { Pressable, Text } from './primitives';
 
 /**
@@ -74,6 +75,13 @@ export const InstrumentRow = memo(function InstrumentRow({
         .join(', ')}
       style={[styles.row, { borderBottomColor: colors.rule }]}
     >
+      {/* A country's market or money carries its flag, as a ranking's row
+          does (the user's request, 2026-10-03). The slot is held where a row
+          in such a list has none, so every name starts on one line. The
+          row's label is explicit, so a screen reader hears the name once. */}
+      {row.flag !== undefined ? (
+        <View style={styles.flag}>{row.flag ? <FlagGlyph flag={row.flag} /> : null}</View>
+      ) : null}
       <View style={styles.subject}>
         <Text variant="rowTitle">{title}</Text>
         <Text variant="caption">{kicker}</Text>
@@ -96,6 +104,9 @@ export const InstrumentRow = memo(function InstrumentRow({
   );
 });
 
+/** An emoji flag at `FLAG.row` is a little wider than its size. */
+const FLAG_SLOT = FLAG.row + 6;
+
 const styles = StyleSheet.create({
   row: {
     minHeight: 64,
@@ -106,6 +117,8 @@ const styles = StyleSheet.create({
     gap: SPACING.sm,
     borderBottomWidth: StyleSheet.hairlineWidth,
   },
+  // Beside the name, not the middle of the row's three lines.
+  flag: { width: FLAG_SLOT, alignSelf: 'flex-start', alignItems: 'center' },
   subject: { flex: 1, gap: SPACING.xxs },
   figures: { alignItems: 'flex-end', maxWidth: '38%', gap: SPACING.xs },
   reading: { fontVariant: ['tabular-nums'] },

@@ -1,4 +1,5 @@
 import type { Article, Chokepoint, Indicator, TrendsSnapshot } from '@shared/types';
+import { ccToFlag } from './article-utils';
 import {
   type AnalysisById,
   calendarCards,
@@ -101,6 +102,11 @@ export interface CatalogRow {
    *  already said part of the card's (`sharePrice`): empty for none. Absent,
    *  the row prints the card's `readingNote`. */
   note?: string;
+  /** The flag at the row's start, in the two lists where a row is a
+   *  country's market or money. Empty holds the slot for a row with no
+   *  country to show (a series no exchange quotes), so the names in a list
+   *  start on one line; absent, the list has no flags. */
+  flag?: string;
   /** An exchange's row carries it for its city and its "older quote". */
   exchange?: Exchange;
   chokepoint?: Chokepoint;
@@ -323,6 +329,31 @@ function rowFor(
   };
 }
 
+/** The lists whose rows are each one country's: its stock market, its money. */
+const FLAGGED: ReadonlySet<GroupKey> = new Set(['stocks', 'currencies']);
+
+const flagOf = (code: string | undefined): string =>
+  code && /^[A-Za-z]{2}$/.test(code) ? ccToFlag(code) : '';
+
+/** The indexes no exchange quotes, whose country the row's caption already
+ *  says (`US stocks`). The fear index is a measure, not a market: no flag. */
+const INDEX_COUNTRY: Readonly<Record<string, string>> = { sp500: 'US', nasdaq100: 'US' };
+
+/**
+ * A row's flag: its exchange's country, an index's, or its currency's. A
+ * currency's code opens with its country's (`TRY` is Turkey's, `EUR` the
+ * EU's), which is how ISO 4217 is built; the codes that open with `X` belong
+ * to no country. Read off the row's id, which a market signal prefixes and a
+ * mover suffixes.
+ */
+export function rowFlag(row: Pick<CatalogRow, 'id' | 'exchange'>): string {
+  if (row.exchange) return flagOf(row.exchange.iso2);
+  const series = row.id.replace(/^market-signal:/, '').replace(/-mover$/, '');
+  const currency = /^fx-([a-z]{3})$/.exec(series)?.[1];
+  if (currency) return currency.startsWith('x') ? '' : flagOf(currency.slice(0, 2));
+  return flagOf(INDEX_COUNTRY[series]);
+}
+
 /** Week movers first, largest first; then the rest in the list's own order.
  *  A month's move is never sorted against a week's (`week-move.ts`), and
  *  `sort` is stable, so equal moves keep the list's order. */
@@ -443,9 +474,12 @@ export function buildInstrumentCatalog({
     rows[group].push(rowFor(card, at));
   }
 
-  return GROUP_ORDER.map((key) => ({
-    key,
-    title: GROUP_TITLES[key],
-    rows: SORTED_BY_WEEK.has(key) ? byWeek(rows[key]) : rows[key],
-  })).filter((group) => group.rows.length > 0);
+  return GROUP_ORDER.map((key) => {
+    const sorted = SORTED_BY_WEEK.has(key) ? byWeek(rows[key]) : rows[key];
+    return {
+      key,
+      title: GROUP_TITLES[key],
+      rows: FLAGGED.has(key) ? sorted.map((row) => ({ ...row, flag: rowFlag(row) })) : sorted,
+    };
+  }).filter((group) => group.rows.length > 0);
 }

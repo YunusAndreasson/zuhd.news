@@ -349,6 +349,10 @@ whole time; nothing said so.
     sentence each replaced is still the screen reader's hint. A new list row
     with a caption that only describes its list is the regression.
   - `MarketBrowserSheet` held all of this until 2026-09-26: exchanges with a
+  - **`stock markets` and `currencies` rows open with a flag** (2026-10-03,
+    the user's request; `CatalogRow.flag`, `rowFlag`, tested). An empty flag
+    holds the slot (the fear index), an absent one means the list has none.
+    The caption lines above stay words.
     rising/falling filter, and every other card unsplit under `other data`.
     Its filter lives on in `stock markets`, its row as `InstrumentRow`.
     `InstrumentsSheet` did it until 2026-09-20 and was deleted on 09-25.
