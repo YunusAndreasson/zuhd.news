@@ -28,6 +28,7 @@ import { ARCHETYPE_HEADER, siteFooter, WORDMARK, footerStatusLine } from './lib/
 import { listRow } from './lib/list-row.js'
 import { publishedTimes } from './lib/published-at.js'
 import { openStampLedger } from './lib/stable-stamp.js'
+import { companiesPayload } from './lib/companies.js'
 import { ROOT } from './lib/paths.js'
 
 const CONTENT_DIR = join(ROOT, 'content', 'articles')
@@ -1238,6 +1239,33 @@ if (existsSync(marketsSrc)) {
   console.log(
     `  Built: api/markets.json (${enriched.exchanges.length} exchanges, ${withCoverage} with coverage)`,
   )
+}
+
+// Company quotes — the app's `largest companies` list. No web surface reads
+// it. The catalog's standing sentence rides along as `blurb`; what the build
+// adds is each company's stories, joined by the tickers their `entities[]`
+// name and by tag (`lib/companies.js`). The stamp is held: after New York
+// closes on a Friday nothing in it moves until Sunday's Riyadh close, and an
+// unheld `generated` would send it to every reader again each cycle anyway.
+//
+// Caught, unlike the layers above: nothing on the site reads this file, and a
+// snapshot the fetcher half-wrote must cost the app one list, never the cycle
+// its build.
+const companiesSrc = join(ROOT, 'content', '.companies.json')
+if (existsSync(companiesSrc)) {
+  try {
+    const payload = companiesPayload(JSON.parse(readFileSync(companiesSrc, 'utf8')), sorted)
+    writeFileSync(
+      join(DIST_DIR, 'api', 'companies.json'),
+      JSON.stringify(apiStamps.hold('companies', payload)),
+    )
+    const withCoverage = payload.companies.filter((c) => c.relatedArticles.length).length
+    console.log(
+      `  Built: api/companies.json (${payload.companies.length} companies, ${withCoverage} with coverage)`,
+    )
+  } catch (err) {
+    console.error(`  WARNING: api/companies.json not built — ${err?.message || err}`)
+  }
 }
 
 // GDACS disaster snapshot — pre-fetched alert list + EQ/TC population

@@ -533,6 +533,17 @@ $BODY_LENGTHS
   MARKETS_EXIT=$?
   echo "Markets exit: $MARKETS_EXIT — $((SECONDS - T34B2))s" | tee -a "$LOG_FILE"
 
+  # Stage 3.4b3: Company quotes — the app's `largest companies` list. The same
+  # fetcher and the same sequential rule as the exchanges above (~10s for 20).
+  # Fail-soft: leaves the previous snapshot in place, and the build skips the
+  # endpoint when there is none.
+  echo "" | tee -a "$LOG_FILE"
+  echo "--- Stage 3.4b3: Company quotes ---" | tee -a "$LOG_FILE"
+  T34B3=$SECONDS
+  timeout 90 node scripts/fetch-companies.js >> "$LOG_FILE" 2>&1
+  COMPANIES_EXIT=$?
+  echo "Companies exit: $COMPANIES_EXIT — $((SECONDS - T34B3))s" | tee -a "$LOG_FILE"
+
   # Stage 3.4c: GDACS snapshot — disaster layer on mobile. Pulls EVENTS4APP
   # list + per-event population details (EQ shakepop, TC JTWC buffer impact)
   # in one batch so every install reads from /api/gdacs.json instead of

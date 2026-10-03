@@ -29,6 +29,9 @@ paths:
   - "scripts/lib/entity-registry.js"
   - "scripts/lib/trends-*.js"
   - "scripts/lib/trends-sources/**"
+  - "scripts/lib/companies.js"
+  - "scripts/lib/company-metadata.js"
+  - "scripts/lib/stock-mentions.js"
   - "scripts/lib/logs.test.js"
   - "scripts/*-prompt.md"
 ---
@@ -738,3 +741,70 @@ offers. The causes, in order of how much each mattered:
 the fetch log, then `Charts: n set` after validation. Expect two to four charts
 a day; zero for a day again means the selector is passing over the tracked
 stories — read its summary before touching the writer's rule.
+
+## The company list, and what a story is about (2026-10-03)
+
+`/api/companies.json` is the app's `largest companies` list: twenty share
+prices, fetched by `fetch-companies.js` (Stage 3.4b3) from the catalog in
+`lib/company-metadata.js`, joined to coverage at build time by
+`lib/companies.js`. No web surface reads it. `fetch-markets.js` is its model,
+and three things differ.
+
+- **Completed sessions only.** A cycle that runs while New York is open would
+  publish a price of that minute under yesterday's date, and change the file
+  on every cycle of a trading day. The list prints one close a day, so the
+  fetcher keeps one (`completedCloses`), and the build holds the file's stamp
+  (`apiStamps`): it changes when a market closes, about four times a trading
+  day, and not between a Friday close and Sunday's in Riyadh.
+- **The name is pinned as well as the currency and zone** (`companyMismatch`).
+  Fifteen of the twenty are dollar shares in New York, which the exchange
+  catalog's two assertions cannot tell apart; a ticker reassigned to a fund
+  would publish that fund's price under the company's name.
+- **No daily narration.** An exchange gets a paragraph a day from the
+  indicator dispatch; a company carries its catalog `blurb` — what it is, with
+  no rank, price or year in it — and the stories about it. The list is looked
+  up, not followed, and twenty more instruments is twenty more for the model
+  to read a fortnight's coverage against. The app drops a card with nothing
+  under its chart, so a company without a blurb is a company nobody sees.
+- **The list is editorial and fixed**: the twenty largest by market value as
+  ranked on 2026-10-03, home listings (TSMC is `2330.TW` in Taiwan dollars, so
+  the week's move is the share's and not the exchange rate's). The quote
+  source carries no market value, so nothing re-ranks itself. Probe a symbol
+  before adding it and pin what it reports.
+
+**Which stories are a company's is a judgement, and the model makes it.** The
+card prints them under the chart as `in the news` and marks them on the line,
+so a story that only mentions the company must not be there. Both joins the
+other layers use failed that on the first run:
+
+- A ticker in `entities[]` is a mention, and sometimes not that: a forum in
+  Baku listed under Microsoft because Microsoft attended, and a Saudi carmaker
+  under TSMC because the entity stage gave Foxconn TSMC's ticker.
+- The tail of `concepts` is noise: a euro-zone inflation story carried
+  `Amazon (company)` fourth of five, beside `Fullscreen (company)`.
+
+So the entity stage's company scan — the Haiku call that already reads every
+new article for tickers — answers one more thing per company: `subject`, true
+when the article is about it (`lib/stock-mentions.js`). No second call. Checked
+on a dozen live stories before it shipped: the forum was a mention of
+Microsoft, the Mac story about Apple and a mention of Meta, and Foxconn got
+its own ticker.
+
+- **It is recorded as `subjects:` in frontmatter, its own key.** `entities[]`
+  is published to the app and the map; a field added to its items would ride
+  out with them. `subjects: []` means read and about no company, which is a
+  different answer from no key at all (never read: everything before
+  2026-10-03, and a cycle whose scan timed out — the scan returns null then,
+  where it used to return an empty map that read as "nothing found").
+- **A subject is believed only when its words name the company**: the
+  entity's `mention` has to match the company's tags. That is what keeps a
+  wrong ticker off a card.
+- **A title that carries a tag lists the story whatever the model said.** The
+  model can miss, and a headline that says Nvidia is about Nvidia.
+- **An unread story falls back to two weaker signs**: the bare name in the
+  title when the name is an ordinary word (`commonName` — `apple`, `amazon`),
+  with the ticker or a concept agreeing; or a tag in the first two concepts.
+  A tag is never an ordinary word, as in `market-metadata.js`.
+- The scan's prompt told the model SpaceX was private. It is listed now, and
+  the prompt says so; a model that does not know a ticker lists nothing.
+

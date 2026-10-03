@@ -17,6 +17,7 @@ import { parseClaudeEnvelope, runHaiku } from './lib/claude-envelope.js'
 import { parseFrontmatter, replaceFrontmatterKey } from './lib/frontmatter.js'
 import { extractEntities } from './lib/entity-registry.js'
 import { fetchYahooStock } from './lib/trends-sources/stocks.js'
+import { parseStockMentions, stockMentionsPrompt, subjectsBlock } from './lib/stock-mentions.js'
 import { ROOT } from './lib/paths.js'
 import { writeJson } from './lib/json-file.js'
 
@@ -112,65 +113,25 @@ Return ONLY the JSON object. No commentary, no markdown fences.`
 /**
  * Extract publicly-traded company mentions from a set of articles via a
  * single batched Haiku call. Returns a Map keyed by slug → array of
- * `{mention, ticker, name}`. The mention string is what the article used
- * (case preserved); the ticker is a Yahoo Finance symbol we can feed
- * straight into fetchYahooStock.
+ * `{mention, ticker, name, subject}` — an entry for every article the model
+ * answered for, empty where it named no company. The mention string is what
+ * the article used (case preserved); the ticker is a Yahoo Finance symbol we
+ * can feed straight into fetchYahooStock; `subject` is whether the article is
+ * about the company rather than naming it (`lib/stock-mentions.js`).
  *
  * Haiku handles the fuzzy work: disambiguating "Meta" the company from
  * "meta-analysis"; picking BABA vs 9988.HK based on context; skipping
  * private firms (OpenAI, Aramco's subsidiaries).
  *
- * Fail-safe: any error returns an empty map. No ticker gets extracted
- * this cycle, which is fine — next cycle retries.
+ * Fail-safe: any error returns null. No ticker gets extracted this cycle,
+ * which is fine — next cycle retries. Null rather than an empty map so the
+ * caller can tell "the scan did not run" from "the scan found nothing": only
+ * the second is recorded on the article.
  */
 function extractStocksViaHaiku(articles) {
   if (articles.length === 0) return new Map()
   const invocationId = randomUUID().slice(0, 8)
-
-  const blocks = articles
-    .map(
-      (a) =>
-        `---
-slug: ${a.slug}
-title: ${a.title || ''}
-body:
-"""
-${a.body.slice(0, 1500).replace(/"""/g, "'''")}
-"""`,
-    )
-    .join('\n')
-
-  const prompt = `You extract publicly-traded company mentions from news articles so we can attach a live stock chart to each mention. For EACH article below, list only companies that:
-  - Are mentioned substantively in the body (not just in a source byline or a one-word drive-by)
-  - Are publicly traded with a known stable ticker
-  - You can confidently resolve to a Yahoo Finance symbol
-
-For each company, give:
-  - mention: the exact string used in the body (preserve case, e.g. "Meta", "Nvidia", "TSMC")
-  - ticker: Yahoo Finance symbol ("META", "NVDA", "TSM" for TSMC's ADR or "2330.TW" for Taiwan listing; use the main ADR when one exists)
-  - name: human-readable company name ("Meta Platforms", "Nvidia", "Taiwan Semiconductor")
-
-Skip (do NOT list):
-  - Private firms: OpenAI, Anthropic, SpaceX, Stripe, Boeing Defence, Aramco-the-government-entity (Saudi Aramco Public IS listed as 2222.SR — include only if named as the listed entity)
-  - Ambiguous-ticker mentions: if you're not confident which ticker is right, omit
-  - Countries, governments, people, agencies, indices (we cover those elsewhere)
-  - Generic mentions ("a tech company", "big tech", "hyperscalers" without naming specific firms)
-
-Return ONLY a JSON object keyed by slug, mapping to an array of company objects. Articles with no qualifying companies get an empty array.
-
-Example output:
-{
-  "2026-04-18-meta-8000-layoffs-ai-capex-gpu-reallocation-zuckerberg": [
-    {"mention": "Meta", "ticker": "META", "name": "Meta Platforms"},
-    {"mention": "Nvidia", "ticker": "NVDA", "name": "Nvidia"}
-  ],
-  "2026-04-18-some-pure-mechanism-science-article": []
-}
-
-Articles:
-${blocks}
-
-Return ONLY the JSON object. No commentary, no markdown fences.`
+  const prompt = stockMentionsPrompt(articles)
 
   // 60s, not 30s: the batched 10-13 article scan routinely needed 30-35s and
   // hit a 30s wall, SIGTERM-killing (exit 143) ~28% of cycles and losing all
@@ -182,27 +143,13 @@ Return ONLY the JSON object. No commentary, no markdown fences.`
 
   if (res.status !== 0) {
     console.error(`  ✗ stocks-haiku ${invocationId}: exit ${res.status}`)
-    return new Map()
+    return null
   }
   try {
-    const obj = parseClaudeEnvelope(res.stdout)
-    const out = new Map()
-    for (const slug of Object.keys(obj)) {
-      const arr = Array.isArray(obj[slug]) ? obj[slug] : []
-      const clean = arr.filter(
-        (c) =>
-          c &&
-          typeof c.mention === 'string' &&
-          typeof c.ticker === 'string' &&
-          /^[A-Z0-9.-]{1,15}$/i.test(c.ticker) &&
-          typeof c.name === 'string',
-      )
-      if (clean.length > 0) out.set(slug, clean)
-    }
-    return out
+    return parseStockMentions(parseClaudeEnvelope(res.stdout))
   } catch (err) {
     console.error(`  ✗ stocks-haiku ${invocationId}: parse — ${err.message}`)
-    return new Map()
+    return null
   }
 }
 
@@ -323,12 +270,21 @@ for (const item of ambiguousQueue) {
 // EntitySheet can chart them, (b) stock entity entries added to per-article
 // frontmatter so the mention is tappable.
 let stocksHits = new Map()
+/** Slug → the companies the scan judged the article to be about, for every
+ *  article it answered for. Empty when the scan did not run. */
+const subjectsBySlug = new Map()
 const newStockIndicators = []
 if (files.length > 0) {
   console.log(`  · stocks-haiku: scanning ${files.length} article(s) for tickers`)
-  stocksHits = extractStocksViaHaiku(
+  const scanned = extractStocksViaHaiku(
     files.map((f) => ({ slug: f.slug, title: f.title, body: f.body })),
   )
+  stocksHits = scanned ?? new Map()
+  // Only the articles the model answered for were read. One it left out — an
+  // answer cut short — has no judgement, and is not recorded as "about none".
+  for (const f of files) {
+    if (stocksHits.has(f.slug)) subjectsBySlug.set(f.slug, [])
+  }
 
   // Collect unique tickers across all articles; skip duplicates.
   const uniqueTickers = new Map() // ticker → { name, mentionExample }
@@ -383,6 +339,7 @@ if (files.length > 0) {
     for (const c of companies) {
       const id = `stocks:${c.ticker.toUpperCase()}`
       if (!resolvedIds.has(id)) continue
+      if (c.subject) subjectsBySlug.get(slug)?.push(id)
       if (file.resolved.some((e) => e.indicatorId === id)) continue
       file.resolved.push({ mention: c.mention, indicatorId: id, kind: 'stock' })
     }
@@ -396,7 +353,13 @@ const kindCounts = {}
 
 for (const file of files) {
   const { fullPath, raw, resolved } = file
-  const updated = writeEntitiesToFrontmatter(raw, resolved)
+  // `subjects` only for an article the company scan read: one it did not
+  // reach keeps no key, and the build falls back to the headline for it.
+  const subjects = subjectsBySlug.get(file.slug)
+  const withEntities = writeEntitiesToFrontmatter(raw, resolved)
+  const updated = subjects
+    ? replaceFrontmatterKey(withEntities, 'subjects', subjectsBlock(subjects))
+    : withEntities
   if (updated !== raw) {
     writeFileSync(fullPath, updated)
   }
