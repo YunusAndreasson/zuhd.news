@@ -463,6 +463,9 @@ else
       } catch {}
     }
   " 2>/dev/null)
+  # Hooks that say the title again (lib/title-echo.js) — a list for the
+  # editor's title-echo test, never a gate: about 7 in 10 flags are echoes.
+  TITLE_ECHO=$(node scripts/flag-title-echo.js /tmp/zuhd-new-articles.txt 2>/dev/null)
   EDITOR_ADDENDUM="
 
 Check only the files listed in <files> below (this cycle's batch). Other untracked articles belong to earlier runs.
@@ -473,7 +476,11 @@ $ARTICLE_LIST
 
 <body-lengths>
 $BODY_LENGTHS
-</body-lengths>"
+</body-lengths>
+
+<title-echo>
+$TITLE_ECHO
+</title-echo>"
   # --add-dir /tmp: the editor's first rule is checking figures and quotes
   # against the sources, and the source text lives only in
   # /tmp/zuhd-selection.json. Without it the editor said, every cycle, that it

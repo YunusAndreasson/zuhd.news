@@ -10,6 +10,7 @@ paths:
   - "scripts/run-cycle.sh"
   - "scripts/narrate-*.js"
   - "scripts/attach-indicators.js"
+  - "scripts/flag-title-echo.js"
   - "scripts/translate-swedish.js"
   - "scripts/pick-breaking-social.js"
   - "scripts/generate-*.js"
@@ -31,6 +32,7 @@ paths:
   - "scripts/lib/indicator-offer.js"
   - "scripts/lib/indicator-model.js"
   - "scripts/lib/market-signals.js"
+  - "scripts/lib/title-echo.js"
   - "scripts/lib/coverage-window.js"
   - "scripts/lib/tracked-stories.js"
   - "scripts/lib/feed-age.js"
@@ -156,6 +158,9 @@ each other.
   (`grounding.test.js`).
 - A validator states why it rejected (`validateMarketComment`'s `reasons`):
   a bare `null` reads as a quiet day.
+- `<title-echo>` (`flag-title-echo.js`) is a flag for the editor, never a
+  gate: an overlap measure cannot see a stake in words.
+- In a hook, attribution follows the claim.
 - An offered figure is permission, not obligation. The editor treats one
   matching its `indicators` row as sourced.
 
