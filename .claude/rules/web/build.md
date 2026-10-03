@@ -88,6 +88,10 @@ stamp — so a published `generated` on these layers now reads "as of", not
 
 - **Not the feed, the heatmap or `meta.json`.** Their `generated` is the
   build's, and a moved one is how the app learns there is a build to fetch.
+- **`companies.json` is held as well** (2026-10-03). Its fetcher keeps
+  completed sessions only, so its content moves when a stock market closes
+  and not on every cycle; unheld, the fetcher's own `generated` would change
+  it five times a day regardless.
 - **A new layer the app holds by tag goes through `apiStamps.hold`**, or its
   own stamp will defeat its own tag. So does anything else that varies per
   build without the data varying — a count of "seconds since", a sort that is
