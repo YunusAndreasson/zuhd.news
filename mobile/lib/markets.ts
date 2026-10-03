@@ -165,5 +165,12 @@ export function exchangeCard(e: Exchange): SwipeCard {
       unit: 'points',
     },
     related: e.relatedArticles,
+    // With an account of the move, the build publishes the stories that
+    // account was written from here (`citedOr`, `scripts/build.js`), and the
+    // card lists them as every other card lists its own. Without one they are
+    // tag matches — a story that names the country — and stay ranking input.
+    // Until 2026-10-04 they were only ever that: thirty exchanges carried
+    // their stories and no card printed one.
+    ...(e.recent && e.relatedArticles?.length ? { cited: e.relatedArticles } : {}),
   };
 }

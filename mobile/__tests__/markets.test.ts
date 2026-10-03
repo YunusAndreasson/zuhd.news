@@ -60,6 +60,21 @@ test('older quotes retain their real date and never invent chart observations', 
   expect(exchangeIsStale({ ...e, stale: true }, Date.parse('2026-09-20'))).toBe(true);
   expect(exchangeIsStale(e, Date.parse('2026-09-25'))).toBe(true);
 });
+test('lists the stories its account was written from, and never a tag match', () => {
+  const stories = [{ slug: 'a-story', title: 'A Story', date: '2026-09-18' }];
+  // With an account, the build's stories are the ones it cites.
+  expect(
+    exchangeCard({ ...e, recent: 'Fell on a rate rise.', relatedArticles: stories }),
+  ).toMatchObject({
+    cited: stories,
+    related: stories,
+  });
+  // Without one they only name the country: ranking input, as before.
+  const quiet = exchangeCard({ ...e, relatedArticles: stories });
+  expect(quiet.related).toEqual(stories);
+  expect(quiet.cited).toBeUndefined();
+  expect(exchangeCard({ ...e, recent: 'Fell.', relatedArticles: [] }).cited).toBeUndefined();
+});
 test("names an exchange's market by its country, short where the atlas name is long", () => {
   expect(stockMarketPlace('TR')).toBe('Turkey');
   expect(stockMarketPlace('kr')).toBe('South Korea');
