@@ -166,6 +166,109 @@ function capOf(units: Float64Array[]): Cap {
   return { x: sx, y: sy, z: sz, radius: radius >= HALF_PI ? PI : radius };
 }
 
+/** Below this share of a ring's gross signed area, its net is too close to
+ *  nothing to read a winding from, and d3 is asked. */
+const WINDING_FLOOR = 0.05;
+/** And below this share of its extent squared it is rounding: three points on
+ *  one meridian — what a sub-pixel island simplifies to — sum to noise that
+ *  the share above cannot see, because their gross is noise as well. */
+const WINDING_NOISE = 1e-9;
+
+/**
+ * Whether d3 reads a ring as the rest of the sphere — `geoArea` over 2π, a
+ * ring wound the other way — for a ring whose vertices fit a cap narrower
+ * than a hemisphere (`cap.radius < PI`).
+ *
+ * It was `geoArea` itself on every polygon of every layer: five
+ * transcendental calls and an exact-sum `Adder` per vertex through d3's
+ * stream, 58% of building a layer and 330 ms of decoding the regional tier on
+ * the emulator (2026-10-02), to answer a question that is only which way the
+ * ring turns. Seen from the cap's centre through the gnomonic projection a
+ * great-circle edge is a straight line, so the ring is a planar polygon and
+ * its winding is the sign of the shoelace sum over the unit vectors the layer
+ * has already computed — no trigonometry. A ring whose sum nearly cancels (a
+ * sliver, a collapsed island, a figure of eight) is still d3's to answer.
+ */
+function woundOutward(ring: GeoJSON.Position[], u: Float64Array, n: number, cap: Cap): boolean {
+  if (n >= 3) {
+    // A basis of the tangent plane with e1 × e2 = the cap's axis, so a ring
+    // counterclockwise from outside the sphere sums positive.
+    const { x: cx, y: cy, z: cz } = cap;
+    // The axis crossed with the coordinate axis it leans on least.
+    const ax = Math.abs(cx);
+    const ay = Math.abs(cy);
+    const az = Math.abs(cz);
+    let e1x: number;
+    let e1y: number;
+    let e1z: number;
+    if (ax <= ay && ax <= az) {
+      e1x = 0;
+      e1y = cz;
+      e1z = -cy;
+    } else if (ay <= az) {
+      e1x = -cz;
+      e1y = 0;
+      e1z = cx;
+    } else {
+      e1x = cy;
+      e1y = -cx;
+      e1z = 0;
+    }
+    const norm = Math.hypot(e1x, e1y, e1z);
+    e1x /= norm;
+    e1y /= norm;
+    e1z /= norm;
+    const e2x = cy * e1z - cz * e1y;
+    const e2y = cz * e1x - cx * e1z;
+    const e2z = cx * e1y - cy * e1x;
+
+    const last = (n - 1) * 3;
+    let px = u[last] as number;
+    let py = u[last + 1] as number;
+    let pz = u[last + 2] as number;
+    let d = px * cx + py * cy + pz * cz;
+    let x0 = (px * e1x + py * e1y + pz * e1z) / d;
+    let y0 = (px * e2x + py * e2y + pz * e2z) / d;
+    let net = 0;
+    let gross = 0;
+    let extent2 = 0;
+    for (let i = 0; i < n * 3; i += 3) {
+      px = u[i] as number;
+      py = u[i + 1] as number;
+      pz = u[i + 2] as number;
+      d = px * cx + py * cy + pz * cz;
+      const x1 = (px * e1x + py * e1y + pz * e1z) / d;
+      const y1 = (px * e2x + py * e2y + pz * e2z) / d;
+      const term = x0 * y1 - x1 * y0;
+      net += term;
+      gross += Math.abs(term);
+      const r2 = x1 * x1 + y1 * y1;
+      if (r2 > extent2) extent2 = r2;
+      x0 = x1;
+      y0 = y1;
+    }
+    // d3 winds a small ring clockwise from outside; the other way is the
+    // rest of the sphere.
+    const size = Math.abs(net);
+    if (Number.isFinite(net) && size > WINDING_FLOOR * gross && size > WINDING_NOISE * extent2) {
+      return net > 0;
+    }
+  }
+  return geoArea({ type: 'Polygon', coordinates: [ring] }) > TAU;
+}
+
+/**
+ * `woundOutward` for a bare ring, as a layer asks it of a polygon's outer
+ * ring: null where the ring does not fit a cap narrower than a hemisphere and
+ * the layer never asks. Exported so the test can hold it against `geoArea`.
+ */
+export function ringWoundOutward(ring: GeoJSON.Position[]): boolean | null {
+  const n = Math.max(0, ring.length - 1);
+  const u = unitsOf(ring, n);
+  const cap = capOf([u]);
+  return cap.radius < PI ? woundOutward(ring, u, n, cap) : null;
+}
+
 // ── Per-frame state ────────────────────────────────────────────────────────
 //
 // One draw at a time; the state lives at module level so the hot loops close
@@ -961,7 +1064,13 @@ export function createOrthoLayer(input: Input): OrthoLayer {
     // is the ring's small side. d3 reads a ring wound the other way as the
     // rest of the sphere, which no cap this narrow holds — so it never culls.
     const outer = coords[0];
-    if (cap.radius < PI && outer && geoArea({ type: 'Polygon', coordinates: [outer] }) > TAU) {
+    const outerRing = rings[0];
+    if (
+      cap.radius < PI &&
+      outer &&
+      outerRing &&
+      woundOutward(outer, outerRing.u, outerRing.n, cap)
+    ) {
       cap.radius = PI;
     }
     polygons.push({ ...cap, rings, coords, refInside: null, refInside2: null });

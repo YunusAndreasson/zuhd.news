@@ -139,7 +139,12 @@ import {
   getSeas,
 } from './detail-geo';
 import { GLYPH_HALF, getGlyphPath, getStraitPath } from './disaster-glyphs';
-import { geographyTier, getGlobeGeography } from './geography';
+import {
+  type GeographyTier,
+  geographyTier,
+  getGlobeGeography,
+  warmGlobeGeography,
+} from './geography';
 import { createOrthoLayer, type OrthoLayer } from './ortho-stream';
 import {
   FAMINE_FRAME_PATH,
@@ -4522,7 +4527,16 @@ export const MiniGlobe = memo(function MiniGlobe({
   // own framing, so once a frame has settled, JS idle time fills the cache for
   // both neighbours. Only while settled: a prefetch that ran during motion
   // would hold up the frames the warp is waiting for.
-  const prefetchSettled = useCallback((index: number) => {
+  //
+  // **It never decodes a tier in the slot it projects in.** Story framings sit
+  // either side of the `overview`/`regional` boundary, so the first small
+  // country a swipe away asked for a tier nothing had drawn at, and this
+  // decoded it whole before projecting: 2.2–2.8 s of one idle slot on the
+  // emulator (2026-10-02), the first swipe of most sessions, with the next
+  // swipes' cards and globe frames waiting behind it. A tier is warmed a stage
+  // per slot (`warmGlobeGeography`) and the path waits for the slot after.
+  // False is "come back": a stage was decoded and the path is still owed.
+  const prefetchSettled = useCallback((index: number): boolean => {
     const {
       globeRadius: r,
       cx: centerX,
@@ -4533,14 +4547,15 @@ export const MiniGlobe = memo(function MiniGlobe({
     const coords = coordsRef.current;
     const lat = coords[index * 2];
     const lng = coords[index * 2 + 1];
-    if (lat == null || lng == null) return;
+    if (lat == null || lng == null) return true;
     const clip = clipAngleForCountry(articleGeoRef.current[index]?.countryName ?? null);
     const projScale = r / Math.sin((clip * Math.PI) / 180);
     const viewAngle = viewAngleFor(projScale, reachFor(centerX, centerY, canvasW, canvasH));
     const tier = geographyTier(projScale, false);
     const key = settledKey(tier, lng, lat, projScale, viewAngle, centerX, centerY);
     const cache = settledGeometryRef.current;
-    if (cache.has(key)) return;
+    if (cache.has(key)) return true;
+    if (!warmGlobeGeography(tier)) return false;
     const geography = getGlobeGeography(tier);
     const view = orthoView(lng, lat, projScale, centerX, centerY);
     const build = (
@@ -4567,6 +4582,26 @@ export const MiniGlobe = memo(function MiniGlobe({
       if (oldest === undefined) break;
       cache.delete(oldest);
     }
+    return true;
+  }, []);
+  /**
+   * A stage of the first tier today's river rests at that is not decoded yet;
+   * true when every one is. The neighbours come first (`schedulePrefetch`),
+   * then this, so the tier a story further on needs is ready before the
+   * reader reaches it rather than a swipe ahead of them.
+   */
+  const warmRiverTiers = useCallback((): boolean => {
+    const r = layoutRef.current.globeRadius;
+    const geos = articleGeoRef.current;
+    const seen = new Set<GeographyTier>();
+    for (let i = 0; i < coordsRef.current.length / 2; i++) {
+      const clip = clipAngleForCountry(geos[i]?.countryName ?? null);
+      const tier = geographyTier(r / Math.sin((clip * Math.PI) / 180), false);
+      if (seen.has(tier)) continue;
+      seen.add(tier);
+      if (!warmGlobeGeography(tier)) return false;
+    }
+    return true;
   }, []);
   const prefetchIdleRef = useRef<number | null>(null);
   const schedulePrefetch = useCallback(() => {
@@ -4579,13 +4614,18 @@ export const MiniGlobe = memo(function MiniGlobe({
     const step = () => {
       prefetchIdleRef.current = null;
       if (!frameRef.current.settled || lastSettled.current !== around) return;
-      const next = queue.shift();
-      if (next === undefined) return;
-      prefetchSettled(next);
-      if (queue.length > 0) prefetchIdleRef.current = requestIdleCallback(step);
+      const next = queue[0];
+      let more = true;
+      if (next === undefined) {
+        more = !warmRiverTiers();
+      } else if (prefetchSettled(next)) {
+        // A neighbour stays at the head of the queue until its path is built.
+        queue.shift();
+      }
+      if (more) prefetchIdleRef.current = requestIdleCallback(step);
     };
     prefetchIdleRef.current = requestIdleCallback(step);
-  }, [prefetchSettled]);
+  }, [prefetchSettled, warmRiverTiers]);
   useEffect(
     () => () => {
       if (prefetchIdleRef.current !== null) cancelIdleCallback(prefetchIdleRef.current);

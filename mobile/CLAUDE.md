@@ -568,7 +568,7 @@ whole time; nothing said so.
     frame and the whole of a swipe landing's stall, because d3 rotates, clips
     and projects every vertex with six to ten trigonometric calls and an array
     allocation between stages. A layer's unit vectors are computed once when
-    its tier decodes (`geography.ts`); a frame is a 3×3 rotation, one compare
+    the layer is first read (`geography.ts`); a frame is a 3×3 rotation, one compare
     against the clip's cosine and two multiply-adds per vertex, with d3's
     horizon cut, limb stitching (`clipRejoin`), whole-view fill and resampling
     ported in cartesian form. `__tests__/ortho-stream.test.ts` holds every
@@ -584,6 +584,41 @@ whole time; nothing said so.
     the tick after the first settled frame** (`warmDetailGeo`). The resting
     tier plus two 50m topologies used to sit between launch and the first
     pixel; a frame drawn without them is what every moving frame already is.
+  - **A tier is decoded in parts, and never whole in the slot that needs it**
+    (2026-10-02). `geographyTier` switches at scale 500 and story framings on
+    a phone straddle it (radius 189: 24° is 465, 18° is 612), so most sessions
+    need `overview` *and* `regional`, and the second one arrived with the
+    first small country a swipe away: `getGlobeGeography` decoded it whole
+    inside the idle prefetch, 2.2–2.8 s of one synchronous call on the
+    emulator, the first swipe of a cold start, with the next swipes' cards and
+    globe frames queued behind it (a JS heartbeat showed one 2,817 ms gap).
+    Three changes:
+    - **Each country's bounds are a table in the asset**
+      (`scripts/generate-globe-geography.mjs`, `bounds`). `geoBounds` over
+      every vertex of every country was 57–59% of decoding any tier, to feed
+      the prefilter of `countryAt` — which only a globe tap and `findCountry`
+      call. The table is d3's own answer widened by 1e-4°, so it can only let
+      a point through to `geoContains`; `__tests__/globe-geography.test.ts`
+      holds it to `geoBounds` and holds `countryAt` to what d3 found.
+      **Regenerating the tiers regenerates it**; nothing else writes it.
+    - **A polygon's winding is read from its unit vectors** (`ortho-stream.ts`
+      `woundOutward`), not from `geoArea` per polygon, which was 58% of
+      building a layer. A ring too thin to read (a three-point island on one
+      meridian sums to rounding noise) is still d3's;
+      `__tests__/ortho-winding.test.ts` holds every ring of three tiers to d3,
+      wound both ways, and counts how often d3 is asked.
+    - **`getGlobeGeography` returns at once and each part decodes when first
+      read**: a lookup builds no layer, the highlight converts one country
+      and not 255, and `warmGlobeGeography` does one stage a call. The idle
+      prefetch warms a neighbour's tier a stage per slot and builds its path
+      in the slot after, then warms whatever other tier the day's river rests
+      at (`warmRiverTiers`).
+    Measured on the emulator, dev build: a tier's decode 2,030 → 415 ms
+    (`regional`) and 810 → 195 ms (`overview`), old and new interleaved in one
+    evaluate; the swipe bench's JS-thread CPU 6,170 → 3,310–3,470 ms; all six
+    landings commit on time where the second and third used to wait 3 s.
+    Unmeasured on hardware and in a release build. Still one slot each: a
+    neighbour's settled paths (~300 ms dev), which predate this.
   - **A resting globe carries the detail a reader looks for, not only the
     giants' names.** At the story framings (then 30°–40°) the globe named anchor
     countries and nothing inside them — Mali and Australia were an outline and
@@ -813,6 +848,13 @@ about what a card may say is about the card, not where it is shown.
   alone is 30KB and changes about monthly — and the hourly background task
   did it for readers who never opened the app. A tag is sent only while the
   app still holds that layer's data, or a 304 would leave it empty.
+  **The site has to keep its half**: a 304 needs identical bytes, and until
+  2026-10-02 five layers carried a build or fetch time that changed them on
+  every build, so famine, conflict, straits and alerts were downloaded whole
+  with nothing new in them. The build holds those stamps now
+  (`.claude/rules/web/build.md`, "A layer's stamp moves only when the layer
+  does"). Found with a network inspector, not in this code: here everything
+  was working.
 - **Where a return lands** (`lib/resume-landing.ts`, tested; the user's
   choice, 2026-09-23). Under an hour away the reader stays on their story and,
   if stories arrived, a top toast `3 new · tap to see` goes where `‹ 3 new`

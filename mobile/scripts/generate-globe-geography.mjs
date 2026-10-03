@@ -1,6 +1,6 @@
 /** Generate shared-arc render tiers from Natural Earth 10m. Run with node. */
 import { readFileSync, writeFileSync } from 'node:fs';
-import { geoArea } from 'd3-geo';
+import { geoArea, geoBounds } from 'd3-geo';
 import { feature, mergeArcs } from 'topojson-client';
 
 const source = JSON.parse(
@@ -106,6 +106,24 @@ function encodeArc(arc) {
   return result;
 }
 
+// Each country's `geoBounds`, as `[west, south, east, north]` in degrees, in
+// the order of `objects.countries.geometries`: the prefilter `countryAt` runs
+// before `geoContains` (`components/globe/geography.ts`). Computed on the
+// device it was d3's bounds stream over every vertex of every country, 57–59%
+// of decoding a tier — 0.9 s of the regional tier on the emulator
+// (2026-10-02), for a table that is a function of this file's output. Widened
+// by a ten-thousandth of a degree and a step more, so rounding can only let a
+// point through to `geoContains`, never keep one from it; west > east is a
+// country across the antimeridian, as d3 has it. Null is a country this tier
+// kept no polygon of.
+const BOUNDS_STEP = 1e4;
+function outward([[west, south], [east, north]]) {
+  if (![west, south, east, north].every(Number.isFinite)) return null;
+  const down = (v, min) => Math.max(min, (Math.floor(v * BOUNDS_STEP) - 1) / BOUNDS_STEP);
+  const up = (v, max) => Math.min(max, (Math.ceil(v * BOUNDS_STEP) + 1) / BOUNDS_STEP);
+  return [down(west, -180), down(south, -90), up(east, 180), up(north, 90)];
+}
+
 for (const [name, tolerance] of [
   ['motion', 0.01],
   ['overview', 0.001],
@@ -126,7 +144,10 @@ for (const [name, tolerance] of [
     }
   }
   normalize(output);
-  const json = JSON.stringify({ ...output, arcs: output.arcs.map(encodeArc) });
+  const bounds = output.objects.countries.geometries.map((country) =>
+    outward(geoBounds(feature(output, country))),
+  );
+  const json = JSON.stringify({ ...output, arcs: output.arcs.map(encodeArc), bounds });
   writeFileSync(new URL(`../assets/geo/countries-${name}.json`, import.meta.url), json);
   console.log(
     `${name}: ${arcs.reduce((n, arc) => n + arc.length, 0)} vertices, ${json.length} bytes`,

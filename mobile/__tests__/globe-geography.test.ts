@@ -1,4 +1,4 @@
-import { geoArea, geoOrthographic, geoPath } from 'd3-geo';
+import { geoArea, geoBounds, geoContains, geoOrthographic, geoPath } from 'd3-geo';
 import { feature, mesh } from 'topojson-client';
 import type { GeometryCollection, Topology } from 'topojson-specification';
 import { geographyTier, getGlobeGeography } from '../components/globe/geography';
@@ -150,4 +150,163 @@ it.each([
     }
   }
   expect(maxError).toBeLessThanOrEqual(tolerance + 1e-12);
+});
+
+// `countryAt` tests a point against each country's bounds before it asks
+// `geoContains`. The bounds were d3's, computed on the device over every
+// vertex of every country each time a tier was decoded; they are a table in
+// the asset now, written by the generator. A table that falls behind the arcs
+// it was computed from would keep points from the country they are in.
+it.each(tiers)('%s carries bounds that hold every country as d3 bounds it', (tier) => {
+  const topology = load(tier);
+  const baked = (require(`../assets/geo/countries-${tier}.json`) as { bounds: unknown[] }).bounds;
+  const countries = feature(topology, topology.objects.countries) as GeoJSON.FeatureCollection;
+  expect(baked).toHaveLength(countries.features.length);
+  // Widened outward, by rounding to 1e-4 of a degree and one step more.
+  const slack = 2.5e-4;
+  countries.features.forEach((country, i) => {
+    const [[west, south], [east, north]] = geoBounds(country);
+    const bbox = baked[i] as [number, number, number, number] | null;
+    if (![west, south, east, north].every(Number.isFinite)) {
+      expect(bbox).toBeNull();
+      return;
+    }
+    expect(bbox).not.toBeNull();
+    const [w, s, e, n] = bbox!;
+    // The same side of the antimeridian as d3 has it.
+    expect(w > e).toBe(west > east);
+    for (const [ours, d3, sign] of [
+      [w, west, -1],
+      [s, south, -1],
+      [e, east, 1],
+      [n, north, 1],
+    ] as const) {
+      const widened = (ours - d3) * sign;
+      expect(widened).toBeGreaterThanOrEqual(0);
+      expect(widened).toBeLessThanOrEqual(slack);
+    }
+  });
+});
+
+it.each(['overview', 'regional'] as const)(
+  '%s finds the country d3 finds, from the table and one country at a time',
+  (tier) => {
+    const topology = load(tier);
+    const countries = feature(topology, topology.objects.countries) as GeoJSON.FeatureCollection;
+    const bounds = countries.features.map((country) => geoBounds(country));
+    // What `countryAt` was: d3's bounds, then d3's containment, first match.
+    const d3CountryAt = (lng: number, lat: number) =>
+      countries.features.find((country, i) => {
+        const [[west, south], [east, north]] = bounds[i]!;
+        const withinLng = west <= east ? lng >= west && lng <= east : lng >= west || lng <= east;
+        return withinLng && lat >= south && lat <= north && geoContains(country, [lng, lat]);
+      })?.properties?.name;
+    const points: [number, number][] = [
+      [103.82, 1.35],
+      [179.5, -17],
+      [-179.2, -16.6],
+      [0, -82],
+      [0, -90],
+      [-180, 65],
+      [179.9, 66.5],
+      [-169.5, 65.5],
+      [37.6, 55.75],
+      [-76.5, 42.44],
+      [28.2, -29.6],
+      [12.45, 41.9],
+      [-150, -40],
+    ];
+    let seed = 11;
+    const rand = () => {
+      seed = (seed * 16807) % 2147483647;
+      return seed / 2147483647;
+    };
+    for (let i = 0; i < 400; i++) points.push([rand() * 360 - 180, rand() * 180 - 90]);
+    const geography = getGlobeGeography(tier);
+    let onLand = 0;
+    for (const [lng, lat] of points) {
+      const found = geography.countryAt(lng, lat);
+      expect(found?.properties?.name).toBe(d3CountryAt(lng, lat));
+      if (found) {
+        onLand++;
+        // One object per country, whichever way it was reached.
+        expect(geography.countryNamed(found.properties?.name as string)).toBe(found);
+        expect(geography.countryAt(lng, lat)).toBe(found);
+      }
+    }
+    expect(onLand).toBeGreaterThan(80);
+  },
+);
+
+describe('a tier decoded in parts', () => {
+  type Geography = typeof import('../components/globe/geography');
+  type OrthoStream = typeof import('../components/globe/ortho-stream');
+  /** A copy of the module nothing has read from yet, and a count of the layers it builds. */
+  function fresh(run: (geography: Geography, layersBuilt: () => number) => void) {
+    jest.isolateModules(() => {
+      jest.doMock('../components/globe/ortho-stream', () => {
+        const actual = jest.requireActual<OrthoStream>('../components/globe/ortho-stream');
+        return { ...actual, createOrthoLayer: jest.fn(actual.createOrthoLayer) };
+      });
+      const { createOrthoLayer } = require('../components/globe/ortho-stream') as {
+        createOrthoLayer: jest.Mock;
+      };
+      run(require('../components/globe/geography'), () => createOrthoLayer.mock.calls.length);
+    });
+    jest.dontMock('../components/globe/ortho-stream');
+  }
+
+  // `findCountry` asks the overview tier where each story is while the app
+  // launches. It decoded the land, the borders and the ice to answer.
+  it('answers a lookup without building a layer', () => {
+    fresh((geography, layersBuilt) => {
+      const overview = geography.getGlobeGeography('overview');
+      expect(overview.countryAt(18.07, 59.33)?.properties?.name).toBe('Sweden');
+      expect(overview.countryNamed('Japan')?.properties?.name).toBe('Japan');
+      expect(layersBuilt()).toBe(0);
+      expect(overview.land.partCount).toBeGreaterThan(100);
+      expect(layersBuilt()).toBe(1);
+      // The highlight is that country alone, not a pass over all of them.
+      expect(overview.country('Japan')).toBe(overview.country('Japan'));
+      expect(layersBuilt()).toBe(2);
+    });
+  });
+
+  // The idle prefetch decodes a tier a stage per slot (`warmGlobeGeography`),
+  // so no slot holds the whole of it.
+  it('warms a stage a call, and says when there is nothing left', () => {
+    fresh((geography, layersBuilt) => {
+      const built: number[] = [];
+      let calls = 0;
+      while (!geography.warmGlobeGeography('motion')) {
+        built.push(layersBuilt());
+        calls++;
+        expect(calls).toBeLessThan(10);
+      }
+      // The asset, its arcs, then one layer a stage: land, borders, ice.
+      expect(built).toEqual([0, 0, 1, 2, 3]);
+      expect(geography.warmGlobeGeography('motion')).toBe(true);
+      // A frame reads what the stages built.
+      const motion = geography.getGlobeGeography('motion');
+      expect([motion.land, motion.borders, motion.ice].every((layer) => layer.partCount > 0)).toBe(
+        true,
+      );
+      expect(layersBuilt()).toBe(3);
+    });
+  });
+
+  it('lets a frame take what is left of a half-warmed tier at once', () => {
+    fresh((geography, layersBuilt) => {
+      expect(geography.warmGlobeGeography('motion')).toBe(false);
+      const motion = geography.getGlobeGeography('motion');
+      expect(motion.land.partCount).toBeGreaterThan(0);
+      expect(motion.ice.partCount).toBeGreaterThan(0);
+      expect(layersBuilt()).toBe(2);
+      // The stages already read are no work, and the last one still runs.
+      let calls = 0;
+      while (!geography.warmGlobeGeography('motion')) calls++;
+      expect(calls).toBe(4);
+      expect(layersBuilt()).toBe(3);
+    });
+  });
 });
