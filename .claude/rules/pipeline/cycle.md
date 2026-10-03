@@ -630,6 +630,40 @@ tuning stage, tracked on the dashboard's Experiment tab. Create with
 `/experiment`. Tunables: selector category floors (`select-prompt.md`), feed
 params (`fetch-news-api.js`, `fetch-news.js`), build params (`build.js`).
 
+## The title echo, and attribution in the hook (2026-10-03)
+
+A hook that repeats its title spends the one sentence the reader sees before
+opening a story — the app's resting card, the X and Instagram dek — on
+nothing. Both prompts forbade it and it doubled anyway: hooks repeating two
+thirds of their title's words with no figure of their own went from 11.8% of
+357 articles (09-20..09-25) to 19.6% of 409 (09-26..10-03), measured with
+`lib/title-echo.js`.
+
+- **The editor gets the list** (`scripts/flag-title-echo.js` → `<title-echo>`
+  in Stage 3, beside `<body-lengths>`), about two flags a cycle. **A flag, not
+  a gate**: of 30 read by hand, 20 were echoes, 2 borderline, and 8 carried a
+  stake in words rather than digits, which an overlap measure cannot see. The
+  test pins one of those so the limit stays visible. Do not quarantine on it.
+- **Attribution is most of what changed.** Hooks carrying attribution
+  ("…, officials say", "estimates show", a state outlet) went from 11% to 21%
+  of articles across 09-25, the day the editor started checking every
+  article's figures and the state-media rule landed. They echo the title more
+  (26% against 15%) and run past 11 words three times as often; the 17 that
+  *opened* on a state outlet ("Russian state news agency TASS: …") echoed 41%
+  of the time. Both prompts now put attribution after the claim, and the
+  validator's `bodyNamesOutlet` reads the whole body, so the position is free.
+- **Echoes without attribution rose too (9% → 15%)**, and nothing here
+  explains that part. The cycle logs show the editor catching a few a day when
+  it looks; whether its figure checks strip numbers out of hooks is not
+  measured — the logs do not keep the writer's version.
+- **Checked and not a problem, so no rule was added**: no published
+  coordinate falls in the sea at 10m (the 71 that did at 50m were the coarse
+  coastline), and state-only stories are datelined where the event happened,
+  not at the outlet's home city. The writer prompt's claim that a hook "past
+  about 11 words runs under the dock" was wrong — no hook in 766 exceeds three
+  card lines, and 11 words is about 66 characters — and now says what the
+  card actually does.
+
 ## Editorial lists are editorial
 
 `STATE_OUTLETS`, `THERMAL_VOCABULARY`, `MARKET_CATALOG`'s `available: false`
