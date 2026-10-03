@@ -1101,10 +1101,39 @@ function countdown(days: number): string {
  * release is matched on its id, because the institution does not identify it:
  * the BLS publishes the jobs report, the CPI and the PPI, and keying on the
  * institution drew the unemployment staircase under all three. Only series
- * that are honestly the event's own are here — see `ScheduledCard.series` for
- * why the Bank of England and the Bank of Japan are deliberately absent rather
- * than filled with the nearest proxy.
+ * that are honestly the event's own are here — see `ScheduledCard.series`. The
+ * Bank of England and the Bank of Japan were absent until 2026-10-03, rather
+ * than filled with the nearest proxy; the pipeline publishes each bank's own
+ * rate now (`boe-rate`, `boj-rate`), and a card draws nothing until it does.
  */
+/**
+ * What each coin is, in a few plain words: the line over its name on its
+ * card and under it in the menu's list.
+ *
+ * Every coin's kicker was `crypto`. Among oil and the ten-year that said what
+ * kind of thing Bitcoin was; in a list named `crypto` it said the list's name
+ * eleven times (2026-10-03). The companies' list does the same for the same
+ * reason (`AI chips · US`). Here, not in the catalog, because the strip's
+ * Bitcoin and Ethereum cards are built in this file and a row has to open
+ * the object its slot opens.
+ */
+const COIN_KICKERS: Readonly<Record<string, string>> = {
+  btc: 'the first coin, and the largest',
+  eth: 'network for apps & tokens',
+  bnb: 'Binance’s coin',
+  xrp: 'cross-border payments',
+  sol: 'network for apps & tokens',
+  trx: 'network for dollar tokens',
+  zec: 'private payments',
+  hype: 'trading platform’s coin',
+  doge: 'meme coin',
+  link: 'data feeds for blockchains',
+  xmr: 'private payments',
+};
+
+/** A coin's kicker; `coin` for one the table has not been told about. */
+export const coinKicker = (id: string): string => COIN_KICKERS[id] ?? 'coin';
+
 interface EventSeriesRule {
   match: (ev: TrendEvent) => boolean;
   id: string;
@@ -1113,8 +1142,10 @@ interface EventSeriesRule {
 const EVENT_SERIES: readonly EventSeriesRule[] = [
   { match: (ev) => ev.institution === 'Federal Reserve', id: 'fed-funds' },
   { match: (ev) => ev.institution === 'European Central Bank', id: 'ecb-rate' },
+  { match: (ev) => ev.institution === 'Bank of England', id: 'boe-rate' },
+  { match: (ev) => ev.institution === 'Bank of Japan', id: 'boj-rate' },
   { match: (ev) => ev.id.startsWith('fred-us-jobs-report'), id: 'us-unemployment' },
-  // Inert until the pipeline publishes a `us-cpi` series; the PPI has none.
+  // The PPI has no series.
   { match: (ev) => ev.id.startsWith('fred-us-cpi'), id: 'us-cpi' },
 ];
 
@@ -1321,8 +1352,8 @@ export function buildInstrumentCards({
       // ordinary life. An index *level* cannot do either.
       indicatorCard(trends, analysis, articles, 'us-10y', 'money'),
       indicatorCard(trends, analysis, articles, 'vix', 'volatility'),
-      indicatorCard(trends, analysis, articles, 'btc', 'crypto'),
-      indicatorCard(trends, analysis, articles, 'eth', 'crypto'),
+      indicatorCard(trends, analysis, articles, 'btc', coinKicker('btc')),
+      indicatorCard(trends, analysis, articles, 'eth', coinKicker('eth')),
       ...fxMoverCards(trends, analysis, articles),
     ]),
 

@@ -2,6 +2,7 @@ import type { MarketSignal } from '@shared/market-signals';
 import type { Chokepoint, GdacsAlert } from '@shared/types';
 import type { SwipeCard } from '../lib/cards/rank';
 import type { CardDelta, GraphCard, ReadingCard } from '../lib/cards/types';
+import { type Company, companyGauges } from '../lib/companies';
 import type { Exchange } from '../lib/markets';
 import type { RiverArticle } from '../lib/news-order';
 import {
@@ -185,6 +186,45 @@ describe('buildNowSurfaces — the strip', () => {
   it('keeps the ranked order between equal moves', () => {
     const ranked: SwipeCard[] = ['b', 'a', 'c'].map((id) => reading(id, { series: week(3) }));
     expect(base({ ranked }).strip.map((s) => s.id)).toEqual(['b', 'a', 'c']);
+  });
+
+  it('gives a company a slot among the other gauges, by the week it had', () => {
+    const company = (id: string, name: string, pct: number): Company => ({
+      id,
+      name,
+      about: 'chips',
+      symbol: id.toUpperCase(),
+      iso2: 'US',
+      currency: 'USD',
+      currencyName: 'US dollars',
+      level: 100 + pct,
+      asOf: '2026-09-11',
+      sourceLabel: 'Provider',
+      blurb: `${name} makes things.`,
+      series: { values: week(pct).values, periods: WEEK },
+      relatedArticles: [{ slug: `${id}-story`, title: `${name} in the news` }],
+    });
+    const { strip } = base({
+      ranked: [
+        reading('brent', { series: week(-5, 'brent') }),
+        ...companyGauges(
+          [company('nvidia', 'Nvidia', 8), company('samsung', 'Samsung Electronics', -2)],
+          NOW,
+        ),
+      ],
+    });
+    // Sorted with everything else: a company is not ranked apart.
+    expect(strip.map((item) => item.id)).toEqual(['co:nvidia', 'brent', 'co:samsung']);
+    // A name, never a ticker; a long one cut to the word a reader says, with
+    // the full name kept to speak.
+    expect(strip[0]).toMatchObject({ short: 'Nvidia', reading: '$108.00', readingNote: 'a share' });
+    expect(strip[2]).toMatchObject({ short: 'Samsung', label: 'Samsung Electronics' });
+    // No place: a headquarters is not where a price is about.
+    expect(strip[0]?.coords).toBeNull();
+    // And an open story about the company marks its gauge.
+    expect([...linkedGaugeIds(strip, { slug: 'nvidia-story', entities: [] })]).toEqual([
+      'co:nvidia',
+    ]);
   });
 
   it('leaves out a reading with no seven-day move, such as a monthly series', () => {

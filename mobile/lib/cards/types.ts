@@ -184,13 +184,14 @@ export interface ScheduledCard extends CardBase {
    * follows — the graph is the headline's history — because the headline is
    * "the Fed decides in 18 days" and what they have decided is the picture.
    *
-   * Optional because it is honestly optional: of the fifteen events in the
-   * payload, the Fed, the ECB and the US jobs report have a current published
-   * series and the rest do not. A G20 summit has no series by nature; the Bank
-   * of England's rate died on FRED in 2017 and the nearest substitute is SONIA,
-   * an overnight *market* rate that is not Bank Rate. Drawing it under "Bank of
-   * England rate decision" would be the graph disagreeing with the headline,
-   * which is the one thing a card here may not do. Those keep the countdown.
+   * Optional because it is honestly optional: a G20 summit has no series by
+   * nature, and a release whose series the pipeline does not publish has none
+   * here. Those keep the countdown. A stand-in is never drawn: until
+   * 2026-10-03 the Bank of England's and the Bank of Japan's decisions had no
+   * graph, because the nearest thing on offer was an overnight *market* rate
+   * (SONIA is not Bank Rate), and a graph disagreeing with its headline is the
+   * one thing a card here may not do. Each bank's own rate is published now
+   * (`EVENT_SERIES`).
    */
   series?: CardSeries;
 }

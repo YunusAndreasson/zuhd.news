@@ -26,13 +26,7 @@ jest.mock('../lib/validate', () => {
   };
 });
 
-import {
-  API_SNAPSHOTS,
-  COMPANIES_SNAPSHOT,
-  clearSnapshotEtags,
-  fetchAllSnapshots,
-  fetchSnapshotIfChanged,
-} from '../lib/api-snapshots';
+import { API_SNAPSHOTS, clearSnapshotEtags, fetchAllSnapshots } from '../lib/api-snapshots';
 import { fetchWithTimeout } from '../lib/fetch';
 
 const mockFetch = jest.mocked(fetchWithTimeout);
@@ -100,51 +94,22 @@ it('writes the tags once for an arrival, however many layers it changed', async 
   expect(mockSetItemSync).not.toHaveBeenCalled();
 });
 
-describe('the company list, fetched when the menu asks', () => {
-  const COMPANIES = COMPANIES_SNAPSHOT.url;
-  const payload = { generated: '2026-10-03T05:00:00.000Z', companies: [] };
+describe('the company list', () => {
+  const COMPANIES = API_SNAPSHOTS.companies.url;
 
-  it('is no part of an arrival', async () => {
-    // ~9KB gzipped, changing at every market close, read only in the menu.
-    mockFetch.mockImplementation(async () => respond(200, { ok: 1 }, 'W/"v1"'));
-    await fetchAllSnapshots(() => true);
-    expect(mockFetch.mock.calls.some(([url]) => url === COMPANIES)).toBe(false);
-    expect(Object.values(API_SNAPSHOTS).some((s) => s.url === COMPANIES)).toBe(false);
-  });
-
-  it('downloads once, then asks with the tag and keeps the copy it holds on a 304', async () => {
-    mockFetch.mockResolvedValueOnce(respond(200, payload, 'W/"c1"'));
-    const first = await fetchSnapshotIfChanged(COMPANIES_SNAPSHOT, undefined);
-    expect(first).toEqual(payload);
-    expect(sentTag(COMPANIES)).toBeUndefined();
+  it('rides an arrival like the strip\u2019s other readings, and costs nothing unchanged', async () => {
+    // It was fetched only when the menu opened, until the companies took
+    // slots in the top strip, which is on screen from launch.
+    const payload = { generated: '2026-10-03T05:00:00.000Z', companies: [] };
+    mockFetch.mockImplementation(async (url) =>
+      url === COMPANIES ? respond(200, payload, 'W/"c1"') : respond(500),
+    );
+    const first = await fetchAllSnapshots(() => true);
+    expect(first.map((s) => s.data)).toEqual([payload]);
 
     mockFetch.mockReset();
-    mockFetch.mockResolvedValueOnce(respond(304));
-    const second = await fetchSnapshotIfChanged(COMPANIES_SNAPSHOT, first);
+    mockFetch.mockImplementation(async (url) => (url === COMPANIES ? respond(304) : respond(500)));
+    expect(await fetchAllSnapshots(() => true)).toEqual([]);
     expect(sentTag(COMPANIES)).toBe('W/"c1"');
-    // The same object: nothing that reads it re-renders.
-    expect(second).toBe(first);
-  });
-
-  it('takes the new file when a market has closed since', async () => {
-    mockFetch.mockResolvedValueOnce(respond(200, payload, 'W/"c1"'));
-    const first = await fetchSnapshotIfChanged(COMPANIES_SNAPSHOT, undefined);
-    const next = { ...payload, generated: '2026-10-03T22:00:00.000Z' };
-    mockFetch.mockResolvedValueOnce(respond(200, next, 'W/"c2"'));
-    expect(await fetchSnapshotIfChanged(COMPANIES_SNAPSHOT, first)).toEqual(next);
-  });
-
-  it('sends no tag with nothing held, and fails on a 304 it could not have asked for', async () => {
-    mockFetch.mockResolvedValueOnce(respond(200, payload, 'W/"c1"'));
-    await fetchSnapshotIfChanged(COMPANIES_SNAPSHOT, undefined);
-    mockFetch.mockReset();
-    mockFetch.mockResolvedValueOnce(respond(304));
-    await expect(fetchSnapshotIfChanged(COMPANIES_SNAPSHOT, undefined)).rejects.toThrow(/304/);
-    expect(sentTag(COMPANIES)).toBeUndefined();
-  });
-
-  it('fails when the site publishes no such file, so the menu shows no list', async () => {
-    mockFetch.mockResolvedValueOnce(respond(404));
-    await expect(fetchSnapshotIfChanged(COMPANIES_SNAPSHOT, undefined)).rejects.toThrow(/404/);
   });
 });

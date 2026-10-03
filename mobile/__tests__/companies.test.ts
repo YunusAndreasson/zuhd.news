@@ -4,6 +4,7 @@ import { gaugeMove, WEEK_WINDOW } from '../lib/cards/week-move';
 import {
   type Company,
   companyCard,
+  companyGauges,
   companyKicker,
   isCompaniesSnapshot,
   sharePrice,
@@ -116,6 +117,19 @@ describe('companyCard', () => {
     expect(admitted(companyCard(company({ blurb: '' })))).toBe(false);
   });
 
+  it('leads with the account of the move, and falls back to what the company is', () => {
+    const told = companyCard(company({ recent: 'It authorised a record buyback.' }));
+    expect(told.why).toBe('It authorised a record buyback.');
+    // One of them, never both: the kicker already says what the company does.
+    expect(told.why).not.toContain('Designs the processors');
+    // Absent or blank, the card still has a paragraph, so it stays in the list.
+    for (const recent of [undefined, '', '   ']) {
+      const quiet = companyCard(company({ recent }));
+      expect(quiet.why).toBe('Designs the processors most AI models are trained on.');
+      expect(admitted(quiet)).toBe(true);
+    }
+  });
+
   it('measures thirty sessions, and the chart can draw where that started', () => {
     const card = companyCard(company());
     if (card.kind !== 'reading' || !card.series) throw new Error('expected a reading');
@@ -156,6 +170,21 @@ describe('companyCard', () => {
   });
 });
 
+describe('companyGauges', () => {
+  it('makes a gauge of every company with a fresh quote', () => {
+    const gauges = companyGauges([company(), company({ id: 'apple', name: 'Apple' })], NOW);
+    expect(gauges.map((c) => c.id)).toEqual(['co:nvidia', 'co:apple']);
+  });
+
+  it('leaves out a company whose quote is old: its week is not this week', () => {
+    const flagged = company({ id: 'flagged', stale: true });
+    const silent = company({ id: 'silent', asOf: '2026-09-20' });
+    expect(companyGauges([flagged, silent, company()], NOW).map((c) => c.id)).toEqual([
+      'co:nvidia',
+    ]);
+  });
+});
+
 describe('isCompaniesSnapshot', () => {
   const good = () => ({ generated: '2026-10-03T05:00:00.000Z', companies: [company()] });
 
@@ -164,6 +193,13 @@ describe('isCompaniesSnapshot', () => {
     expect(isCompaniesSnapshot({ generated: '2026-10-03T05:00:00.000Z', companies: [] })).toBe(
       true,
     );
+  });
+
+  it('accepts a company with the desk\u2019s account, and one without', () => {
+    expect(
+      isCompaniesSnapshot({ ...good(), companies: [company({ recent: 'It rose on orders.' })] }),
+    ).toBe(true);
+    expect('recent' in company()).toBe(false);
   });
 
   it('accepts a company with no stories', () => {
@@ -179,6 +215,7 @@ describe('isCompaniesSnapshot', () => {
     ['a missing currency name', { ...good(), companies: [{ ...company(), currencyName: 3 }] }],
     ['a price of nothing', { ...good(), companies: [{ ...company(), level: 0 }] }],
     ['a day that is not one', { ...good(), companies: [{ ...company(), asOf: 'yesterday' }] }],
+    ['an account that is not text', { ...good(), companies: [{ ...company(), recent: 3 }] }],
     [
       'a series whose halves differ in length',
       { ...good(), companies: [{ ...company(), series: { values: [1, 2], periods: ['Oct 1'] } }] },

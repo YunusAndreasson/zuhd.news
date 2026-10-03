@@ -69,6 +69,17 @@ describe('formatting', () => {
     expect(formatReading(4352.19)).toBe('4,352');
   });
 
+  it('keeps four decimals on a price under a dollar', () => {
+    // At two, Dogecoin at $0.0931 read `0.09` whatever it did that week.
+    expect(formatReading(0.093117, '$')).toBe('0.0931');
+    expect(formatReading(0.335863, '$')).toBe('0.3359');
+    // From a dollar up, and for anything that is not a price, as before.
+    expect(formatReading(1.4879, '$')).toBe('1.49');
+    expect(formatReading(2.91, '$/MMBtu')).toBe('2.91');
+    expect(formatReading(0.85)).toBe('0.85');
+    expect(formatReading(0.5, '%')).toBe('0.50');
+  });
+
   it('formats a count of ships differently from a price', () => {
     // 0.9 ships a day is a different fact from 1; the second digit of 128 is not.
     expect(formatQuantity(0.9)).toBe('0.9');
