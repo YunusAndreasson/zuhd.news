@@ -1542,6 +1542,29 @@ Prefer the `scale` prop on `<Text>` over style overrides. `fontVariant` override
   tier there had also drawn the resting geometry mid-spring whenever a
   landing found a story. `finalizeReproject` still reads them live: it runs
   after motion has stopped, to catch the values the last frame missed.
+- **The globe's redraw throttle has a trailing edge** (`MiniGlobe` `retick`,
+  2026-10-03, the user's report: after dragging the globe the map stayed at
+  the coarse motion tier about half the time). The reaction that publishes a
+  projection runs once per display frame, and only on a frame in which
+  something it reads changed. Two things followed. A change skipped inside
+  the 32 ms window was dropped for good if it was the last one — a finger
+  lifting, a glide ending, a flight to a gauge. And the redraw at full detail
+  was asked for by the run that saw the last projection finish
+  (`previous.busy`), which a projection that starts and finishes inside one
+  frame never shows. So the detail came back only when the last coarse frame
+  took longer than a frame to project: always on the emulator's dev build,
+  where this was written, and a coin flip on a fast phone — more often
+  missed with every speed-up to the projection. A skipped run now asks for
+  the next frame's by writing a value the reaction reads; it polls only
+  inside the window and nothing runs at rest. A story swipe's landing never
+  depended on this (`drawLanding`, and the exact landing passes the
+  throttle). Two things keep the trailing run from costing a landing a
+  second projection: a flight's landing frame records the framing as its
+  angle, and a landing stays marked drawn while the deck rests on it.
+  **Unmeasured on a device**: the cause is read from the code and the
+  library's scheduler, not reproduced. Check it by dragging the globe on a
+  release build, and count frames at rest (`gfxinfo`) to confirm the poll
+  stops.
 - **The deck recycles its three slots** (`lib/deck-slots.ts`, tested;
   2026-09-25). Keyed by slug, every landing unmounted one card and mounted
   another — scroll view, native gesture, animated style, scroll handler and a
