@@ -2,6 +2,7 @@ import type { Article, Chokepoint, Indicator, TrendsSnapshot } from '@shared/typ
 import {
   type AnalysisById,
   calendarCards,
+  coinKicker,
   currencyCard,
   indicatorCard,
   straitCardFor,
@@ -36,7 +37,8 @@ export type GroupKey =
   | 'straits'
   | 'currencies'
   | 'commodities'
-  | 'economy'
+  | 'rates'
+  | 'crypto'
   | 'predictions'
   | 'calendar';
 
@@ -47,7 +49,11 @@ export const GROUP_TITLES: Readonly<Record<GroupKey, string>> = {
   straits: 'straits',
   currencies: 'currencies',
   commodities: 'energy, food & metals',
-  economy: 'rates & crypto',
+  // Two lists since 2026-10-03, on the user's word: they were one, `rates &
+  // crypto`, and a central bank's rate has nothing to do with a coin's price.
+  // The first is named for all three things in it, the way the list above is.
+  rates: 'rates, inflation & jobs',
+  crypto: 'crypto',
   predictions: 'predictions',
   calendar: 'coming up',
 };
@@ -59,7 +65,8 @@ const GROUP_ORDER: readonly GroupKey[] = [
   'straits',
   'currencies',
   'commodities',
-  'economy',
+  'rates',
+  'crypto',
   'predictions',
   'calendar',
 ];
@@ -73,7 +80,8 @@ const SORTED_BY_WEEK: ReadonlySet<GroupKey> = new Set([
   'straits',
   'currencies',
   'commodities',
-  'economy',
+  'rates',
+  'crypto',
 ]);
 
 export interface CatalogRow {
@@ -102,19 +110,6 @@ export interface CatalogGroup {
   key: GroupKey;
   title: string;
   rows: CatalogRow[];
-  /**
-   * Set on a list with no rows to show yet (`companies`, the one group that
-   * is not downloaded with a build): its first fetch is on its way, or did
-   * not arrive.
-   *
-   * Such a group keeps its row in the menu, in both states. A row that came
-   * when the prices landed pushed every row under it down a place; and one
-   * that held a place and gave it up when the fetch timed out pulled them
-   * back up, five seconds after the menu opened — on the emulator a tap on
-   * this list opened `straits`. So which rows the menu has is settled when it
-   * opens, and a list that could not be fetched says so on its own page.
-   */
-  wait?: 'waiting' | 'failed';
 }
 
 export interface CatalogInputs {
@@ -126,21 +121,25 @@ export interface CatalogInputs {
   analysis: AnalysisById;
   articles: Article[];
   exchanges: Exchange[];
-  /** The company list (`useCompanies`): absent or null where it has not been
-   *  fetched. Never part of `ranked` — these are in the menu only. */
+  /** The company list (`useCompanies`). The ones with a fresh quote are in
+   *  `ranked` too, as the strip's slots; the list holds all of them. */
   companies?: Company[] | null;
-  /** Where that list stands while there is no copy of it (`CatalogGroup.wait`). */
-  companiesWait?: 'waiting' | 'failed' | null;
   now?: Date;
 }
 
-type SeriesGroup = Extract<GroupKey, 'stocks' | 'commodities' | 'economy'>;
+type SeriesGroup = Extract<GroupKey, 'stocks' | 'commodities' | 'rates' | 'crypto'>;
 
 /**
  * The series the pool leaves out, by group, and the kicker each card carries
  * — the builders' own words where the pool already has the card (`energy`,
- * `money`, `volatility`, `crypto`). Order is the group's order for rows with
- * no week to sort on.
+ * `money`, `volatility`). Order is the group's order for rows with no week to
+ * sort on.
+ *
+ * A policy rate's kicker is the bank that sets it. The series is named for
+ * its country (`Turkey interest rate`), which a reader needs no finance to
+ * read; the line under it is for the reader who knows the bank. The Fed's and
+ * the ECB's rows are named for the bank, as everyone names them, so theirs
+ * says whose bank it is.
  */
 const SERIES: ReadonlyArray<{ id: string; group: SeriesGroup; kicker: string }> = [
   { id: 'sp500', group: 'stocks', kicker: 'US stocks' },
@@ -156,14 +155,30 @@ const SERIES: ReadonlyArray<{ id: string; group: SeriesGroup; kicker: string }> 
   { id: 'paxg', group: 'commodities', kicker: 'metal' },
   { id: 'xag', group: 'commodities', kicker: 'metal' },
   { id: 'copper', group: 'commodities', kicker: 'metal' },
-  { id: 'fed-funds', group: 'economy', kicker: 'money' },
-  { id: 'ecb-rate', group: 'economy', kicker: 'money' },
-  { id: 'us-10y', group: 'economy', kicker: 'money' },
-  { id: 'us-cpi', group: 'economy', kicker: 'prices' },
-  { id: 'us-unemployment', group: 'economy', kicker: 'jobs' },
-  { id: 'btc', group: 'economy', kicker: 'crypto' },
-  { id: 'eth', group: 'economy', kicker: 'crypto' },
-  { id: 'xmr', group: 'economy', kicker: 'crypto' },
+  // What a central bank sets, largest economies first.
+  { id: 'fed-funds', group: 'rates', kicker: 'US central bank' },
+  { id: 'ecb-rate', group: 'rates', kicker: 'eurozone central bank' },
+  { id: 'pboc-rate', group: 'rates', kicker: 'People’s Bank of China' },
+  { id: 'boj-rate', group: 'rates', kicker: 'Bank of Japan' },
+  { id: 'boe-rate', group: 'rates', kicker: 'Bank of England' },
+  { id: 'bcb-rate', group: 'rates', kicker: 'Central Bank of Brazil' },
+  { id: 'cbr-rate', group: 'rates', kicker: 'Bank of Russia' },
+  { id: 'bi-rate', group: 'rates', kicker: 'Bank Indonesia' },
+  { id: 'tcmb-rate', group: 'rates', kicker: 'Central Bank of Turkey' },
+  // What a market or a lender charges.
+  { id: 'us-10y', group: 'rates', kicker: 'money' },
+  { id: 'us-2y', group: 'rates', kicker: 'money' },
+  { id: 'us-mortgage', group: 'rates', kicker: 'home loans' },
+  { id: 'us-cpi', group: 'rates', kicker: 'prices' },
+  { id: 'ez-cpi', group: 'rates', kicker: 'prices' },
+  { id: 'us-unemployment', group: 'rates', kicker: 'jobs' },
+  // By market value, largest first (2026-10-03).
+  // What each is, not `crypto` eleven times (`coinKicker`).
+  ...['btc', 'eth', 'bnb', 'xrp', 'sol', 'trx', 'zec', 'hype', 'doge', 'link', 'xmr'].map((id) => ({
+    id,
+    group: 'crypto' as const,
+    kicker: coinKicker(id),
+  })),
 ];
 
 const SERIES_BY_ID = new Map(SERIES.map((s) => [s.id, s]));
@@ -193,13 +208,15 @@ const COMPOSITES: ReadonlyMap<string, SeriesGroup> = new Map([
 /**
  * A series the table does not name goes by its source, so one the pipeline
  * adds later is listed rather than silently absent: a currency from `oer`
- * with the currencies, anything else with the rates.
+ * with the currencies, a coin with the coins, anything else with the rates.
+ * The two metals priced through a coin (`paxg`, `xag`) are named above.
  */
 function seriesGroup(indicator: Indicator): SeriesGroup | 'currencies' | null {
   if (NOT_LISTED.has(indicator.source)) return null;
   const known = SERIES_BY_ID.get(indicator.id);
   if (known) return known.group;
-  return indicator.source === 'oer' ? 'currencies' : 'economy';
+  if (indicator.source === 'oer') return 'currencies';
+  return indicator.source === 'crypto' ? 'crypto' : 'rates';
 }
 
 /** A published series' card: the pool's where it has one — its market
@@ -226,7 +243,8 @@ function seriesCard(
           analysis,
           articles,
           indicator.id,
-          SERIES_BY_ID.get(indicator.id)?.kicker ?? 'markets',
+          SERIES_BY_ID.get(indicator.id)?.kicker ??
+            (group === 'crypto' ? coinKicker(indicator.id) : 'markets'),
         ))
   );
 }
@@ -275,7 +293,7 @@ export function instrumentCardFor(id: string, inputs: CatalogInputs): SwipeCard 
   }
   if (id.startsWith('co:')) {
     const company = companies?.find((c) => companyCardId(c.id) === id);
-    return gate(company ? companyCard(company) : null);
+    return gate(take(id) ?? (company ? companyCard(company) : null));
   }
   const pooled = take(id);
   if (pooled?.kind === 'belief') return gate(pooled);
@@ -323,7 +341,6 @@ export function buildInstrumentCatalog({
   articles,
   exchanges,
   companies,
-  companiesWait = null,
   now = new Date(),
 }: CatalogInputs): CatalogGroup[] {
   const at = now.getTime();
@@ -335,7 +352,8 @@ export function buildInstrumentCatalog({
     straits: [],
     currencies: [],
     commodities: [],
-    economy: [],
+    rates: [],
+    crypto: [],
     predictions: [],
     calendar: [],
   };
@@ -354,9 +372,11 @@ export function buildInstrumentCatalog({
     rows.stocks.push(rowFor(signal ?? quote ?? exchangeCard(exchange), at, { exchange }));
   }
 
-  // Every company in the list, held to the deck's gate like any other card.
+  // Every company in the list, held to the deck's gate like any other card:
+  // the pool's own card where it has one, so a row and its strip slot open
+  // one object.
   for (const company of companies ?? []) {
-    const card = companyCard(company);
+    const card = take(companyCardId(company.id)) ?? companyCard(company);
     if (!admitted(card)) continue;
     const { unit } = sharePrice(company.level, company.currency, company.currencyName);
     rows.companies.push({ ...rowFor(card, at), note: unit });
@@ -419,19 +439,13 @@ export function buildInstrumentCatalog({
     if (card.kind === 'scheduled') continue;
     const group = card.id.startsWith('market-signal:')
       ? 'stocks'
-      : (COMPOSITES.get(card.id) ?? 'economy');
+      : (COMPOSITES.get(card.id) ?? 'rates');
     rows[group].push(rowFor(card, at));
   }
 
-  const waitOf = (key: GroupKey) =>
-    key === 'companies' && rows.companies.length === 0 ? companiesWait : null;
-  return GROUP_ORDER.map((key): CatalogGroup => {
-    const wait = waitOf(key);
-    return {
-      key,
-      title: GROUP_TITLES[key],
-      rows: SORTED_BY_WEEK.has(key) ? byWeek(rows[key]) : rows[key],
-      ...(wait ? { wait } : {}),
-    };
-  }).filter((group) => group.rows.length > 0 || group.wait);
+  return GROUP_ORDER.map((key) => ({
+    key,
+    title: GROUP_TITLES[key],
+    rows: SORTED_BY_WEEK.has(key) ? byWeek(rows[key]) : rows[key],
+  })).filter((group) => group.rows.length > 0);
 }

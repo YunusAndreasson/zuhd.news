@@ -53,6 +53,12 @@ export const API_SNAPSHOTS = {
   chokepoints: snapshot('/api/chokepoints.json', isChokepointSnapshot),
   markets: snapshot('/api/markets.json', isMarketsSnapshot),
   marketSignals: snapshot('/api/market-signals.json', isMarketSignalsSnapshot),
+  // Share prices of the largest companies. With the strip's other readings
+  // since 2026-10-03: for half a day it was fetched only when the menu opened
+  // — ~9KB gzipped, changing at every market close, for a list most sessions
+  // never open — and then the user asked for the companies in the top strip,
+  // which is on screen from launch and opens a card on a tap.
+  companies: snapshot('/api/companies.json', isCompaniesSnapshot),
   gdacs: snapshot('/api/gdacs.json', isGdacsSnapshot),
   conflict: snapshot('/api/conflict.json', isConflictSnapshot),
   famine: snapshot('/api/ipc.json', isFamineSnapshot),
@@ -68,21 +74,6 @@ export const API_SNAPSHOTS = {
     timeoutMs: 8000,
   },
 } as const;
-
-/**
- * Share prices of the largest companies, for the menu's list — and so not in
- * `API_SNAPSHOTS`.
- *
- * Everything in that list is drawn on the map screen, and arrives with every
- * build and with the hourly background task. This file is read in the menu,
- * which is opened a few times a week, and it changes each time a stock market
- * closes: about 9KB gzipped, four times a trading day. In the arrival it would
- * have added roughly a tenth to what the app downloads in a day, for every
- * reader, including the ones who never open the list. It is fetched when the
- * menu opens instead (`useCompanies`), with the tag of the copy the app holds,
- * so reopening the menu between two closes costs a 304.
- */
-export const COMPANIES_SNAPSHOT = snapshot('/api/companies.json', isCompaniesSnapshot);
 
 /**
  * Each file's version tag (`ETag`), as of the copy the app last took. Kept on
@@ -127,31 +118,6 @@ export async function fetchSnapshot<T>(
   });
   // Without a tag sent the site cannot answer 304.
   if (!result.changed) throw new Error(`Unexpected 304 from ${snap.url}`);
-  rememberEtags([[snap.url, result.etag]]);
-  return result.data;
-}
-
-/**
- * One snapshot, asked for with the tag of the copy the caller holds (`held`):
- * a file that has not changed answers 304 and `held` comes back as it was,
- * the same object, so nothing that reads it re-renders. With nothing held it
- * is a plain fetch. For a snapshot outside the arrival (`COMPANIES_SNAPSHOT`).
- */
-export async function fetchSnapshotIfChanged<T>(
-  snap: ApiSnapshot<T>,
-  held: T | undefined,
-  opts: { signal?: AbortSignal } = {},
-): Promise<T> {
-  const result = await fetchJsonIfChanged<T>(snap.url, snap.validate, {
-    ...opts,
-    cache: 'no-store',
-    etag: held === undefined ? null : etags[snap.url],
-    ...(snap.timeoutMs ? { timeoutMs: snap.timeoutMs } : {}),
-  });
-  if (!result.changed) {
-    if (held === undefined) throw new Error(`Unexpected 304 from ${snap.url}`);
-    return held;
-  }
   rememberEtags([[snap.url, result.etag]]);
   return result.data;
 }

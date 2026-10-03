@@ -268,8 +268,9 @@ const GROUP_NOTES: Readonly<Record<GroupKey, string>> = {
     'Each currency against the dollar, over the past week: green is stronger, red weaker.',
   commodities:
     'Moves over the past week: green up, red down. A price published monthly shows its month.',
-  economy:
-    'Moves over the past week: green up, red down. A rate published monthly shows its month, in percentage points.',
+  rates:
+    'What borrowing costs, how fast prices rise and how many are out of work. A central bank’s rate and a monthly figure show the move on the month, in percentage points; the others the past week. Green up, red down.',
+  crypto: 'Each coin’s price in dollars, and its move over the past week: green up, red down.',
   predictions: `What a prediction market prices each outcome at — ${MARKET_CAVEAT}. Moves are in points.`,
   calendar: 'Decisions and releases ahead, nearest first.',
 };
@@ -1002,11 +1003,6 @@ const GroupRow = memo(function GroupRow({
 }) {
   const lead = group.rows[0];
   const card = lead?.card;
-  // A list with nothing fetched yet has no first row to print. It says what
-  // it holds instead, on the line the teaser takes, so the row is the same
-  // height before and after and nothing under it moves when the prices land
-  // (`CatalogGroup.wait`).
-  const waiting = Boolean(group.wait) && !lead;
   const moved = lead?.move && lead.weekly && group.key !== 'predictions';
   const subject =
     group.key === 'predictions' || group.key === 'calendar'
@@ -1017,8 +1013,7 @@ const GroupRow = memo(function GroupRow({
     <MenuRow
       first={first}
       title={group.title}
-      value={waiting ? undefined : String(group.rows.length)}
-      description={waiting ? COMPANIES_WAITING : undefined}
+      value={String(group.rows.length)}
       detail={
         lead ? (
           <>
@@ -1037,9 +1032,6 @@ const GroupRow = memo(function GroupRow({
     />
   );
 });
-
-/** The company list's line on the root while there are no prices to print. */
-const COMPANIES_WAITING = 'Share prices of twenty of the world’s largest';
 
 /** Each layer's count and what it is, in the globe's order of gravity. */
 function hazardLayers(hazards: MenuHazards): { key: HazardKey; count: number; note: string }[] {
@@ -1221,18 +1213,7 @@ function GroupPage({
         keyExtractor={rowKey}
         renderItem={renderItem}
         bottomInset={bottomInset}
-        ListEmptyComponent={
-          group.wait === 'waiting' ? (
-            <EmptyState message="Loading share prices…" />
-          ) : group.wait === 'failed' ? (
-            <EmptyState
-              message="Share prices could not be loaded"
-              hint="Check the connection, then open the menu again"
-            />
-          ) : (
-            <EmptyState message="No matching markets" />
-          )
-        }
+        ListEmptyComponent={<EmptyState message="No matching markets" />}
       />
     </>
   );

@@ -212,9 +212,9 @@ whole time; nothing said so.
   have no honest location, so they are not on the globe. `all →` at the end of
   the strip is never conditional, and opens the menu, whose root leads with
   the data (2026-09-26, the user's request): `stock markets`, `largest
-  companies`, `straits`, `currencies`, `energy, food & metals`, `rates &
-  crypto`, `predictions`, `coming up`, then `world hazards` and `country
-  rankings`, each a pushed page.
+  companies`, `straits`, `currencies`, `energy, food & metals`, `rates,
+  inflation & jobs`, `crypto`, `predictions`, `coming up`, then `world
+  hazards` and `country rankings`, each a pushed page.
   Each group's row prints its count and its first row — the week's largest
   move, the strip's own number — so the menu says what is in it before it is
   opened. The app's own pages fold behind one `settings & about` row.
@@ -222,7 +222,7 @@ whole time; nothing said so.
     (`lib/instrument-catalog.ts`, tested). The pool is the strip's, and short
     on purpose: two currencies of fifteen, Brent without WTI, no Fed rate. The
     catalog lists all fifteen currencies, WTI, both gases, retail gasoline,
-    copper, gold, silver, the Fed and ECB rates, inflation, jobs, Monero and
+    copper, gold, silver, nine central banks' rates, eleven coins and
     every future date, reusing the pool's card object wherever it has one — a
     row, its slot and its card are one thing — and holding every new card to
     the deck's gate (`admitted`). A series the table does not name is listed
@@ -232,12 +232,48 @@ whole time; nothing said so.
     an exchange quotes is that exchange's row (the NYSE's index is the S&P
     500). Rows sort by the week's move, and a month is never sorted against a
     week: monthly series follow, in the table's order.
-  - **`largest companies` is twenty share prices, in the menu and nowhere
-    else** (2026-10-03, the user's request; `lib/companies.ts`, tested). One
-    close a day from `/api/companies.json`. Not in the strip: a single share
-    swings more than an index, and in a row sorted by the week's largest move
-    they would take it from the straits and currencies it is for. Not on the
-    globe: a headquarters is not a place a price is about.
+  - **Rates and coins are two lists, and neither is thin** (2026-10-03, the
+    user's request: they were one, `rates & crypto`, and are not related).
+    Split, they held five rows and three, so the pipeline publishes more
+    (`.claude/rules/pipeline/cycle.md`): `rates, inflation & jobs` is nine
+    central banks' rates, three US market rates, US and euro-area inflation
+    and US unemployment; `crypto` is the ten largest coins and Monero.
+    - **A policy rate is named for its country and captioned with its bank**
+      (`Turkey interest rate` / `Central Bank of Turkey`); the Fed's and the
+      ECB's rows keep the names everyone uses, and their caption says whose
+      bank it is.
+    - **A coin's caption says what it is** (`coinKicker`: `private payments`,
+      `meme coin`), on its card too. Every coin's was `crypto`, which in a
+      list named `crypto` said the list's name eleven times.
+    - **A price under a dollar prints four decimals** (`formatReading`): at
+      two, Dogecoin read `$0.09` whatever it did.
+    - **A series neither table names goes with the coins if its source is
+      the coin prices, and with the rates otherwise.** An app from before the
+      split lists every new series under `rates & crypto`.
+    - The Bank of England's and the Bank of Japan's decision cards draw the
+      rate being decided now (`EVENT_SERIES`), where they had a countdown and
+      nothing else for want of an honest series.
+    - Still open: a daily `%` series (the two Treasuries, the mortgage rate)
+      prints its week as a percentage of itself, beside monthly rates that
+      move in points. The strip sorts on that number, so changing it is the
+      strip's decision.
+  - **`largest companies` is twenty share prices: a list in the menu, and
+    gauges in the strip** (2026-10-03, the user's requests; `lib/companies.ts`,
+    tested). One close a day from `/api/companies.json`. Not on the globe: a
+    headquarters is not a place a price is about.
+    - **In the strip they are gauges like any other** (`companyGauges`, joined
+      to the ranked pool beside the exchanges). They were menu-only for half a
+      day, on the worry that a single share swings more than an index and would
+      crowd straits and currencies out of a row sorted by the week's largest
+      move; the user asked for them in the row. Nothing caps them: the row is
+      still the ten largest weeks, whatever they are, and on an earnings week
+      most of the ten can be companies. A slot is the company's name
+      (`NVIDIA`), which beside a week's move reads as its share; four long
+      names are cut to the word a reader says (`Aramco`, `Samsung`,
+      `Berkshire`, `JPMorgan`, in `stripLabel`'s table), and the card and the
+      list keep the full one. A company with an old quote takes no slot — its
+      week ended days ago — and keeps its row in the list. An open story about
+      a company marks its gauge (`linkedGaugeIds`, through the card's `cited`).
     - **A row is a name, what the company does and where it is from** (`Nvidia`
       / `AI chips · US`), never a ticker, which is a code only a reader who
       already follows the share knows. The price carries `$` or `€` where the
@@ -245,35 +281,33 @@ whole time; nothing said so.
       (`2,500` / `Taiwan dollars`). **A row does not say `a share`**: the line
       over the list says it once, and twenty rows repeating it told the reader
       what the first had (`CatalogRow.note`). The card says it in full.
-    - **The paragraph is the catalog's standing sentence, and the card says
-      nothing it has not got.** The desk writes no daily account of these, so
-      there is no `recent`; what follows the sentence is `in the news`, the
-      stories about the company, marked on the line by their number. Which
-      stories those are is the pipeline's judgement (the entity stage's model
-      says whether a story is about a company or names it;
-      `.claude/rules/pipeline/cycle.md`), so a story that mentions Microsoft
-      is not on Microsoft's card.
-    - **It is the one list fetched when the menu opens, not with a build**
-      (`COMPANIES_SNAPSHOT`, `useCompanies`). About 9KB gzipped, changing each
-      time a stock market closes: in `API_SNAPSHOTS` it would ride every
-      arrival and the hourly background task, roughly a tenth more data a day
-      for every reader, most of whom never open it. Reopened inside five
-      minutes it asks nothing; after that it asks with the tag of the copy it
-      holds, and an unchanged file answers 304 (seen on the emulator against
-      a stand-in site: 200, then 304).
-    - **Its row is in the menu from the moment the menu opens, loaded or not**
-      (`CatalogGroup.wait`). With no copy yet the row holds its place and
-      prints what the list is, on the line its teaser takes, so nothing under
-      it moves when the prices land. **And it keeps the place when they do
-      not.** The first version gave the row up when the fetch failed: on a
-      slow connection that was five seconds after the menu opened, every row
-      under it moved up one, and a tap on `largest companies` opened
-      `straits` (found driving the emulator). A list that could not be
-      fetched says so on its own page; the next opening of the menu asks
-      again. Do not make a menu row appear or leave while the menu is open.
-    - **Ship the pipeline first.** An app that asks before the site publishes
-      the file gets a 404, which is the failed state: a row that opens onto
-      "could not be loaded".
+    - **The paragraph answers why the share moved, where the desk can say.**
+      `why` is the pipeline's `recent` — the daily narration's account, since
+      the companies took slots in the strip, where a tapped `ASML ▲8.6%`
+      opening onto "a Dutch company…" was the definition answering a question
+      nobody had asked — and the catalog's standing sentence (`blurb`) on a
+      day there is none. One of them, never both: the kicker already says
+      what the company does. Under it, `in the news`: the stories the account
+      was built from, or with no account the stories about the company,
+      marked on the line by their number. Which stories are about a company
+      is the pipeline's judgement (the entity stage's model says whether a
+      story is about it or names it; `.claude/rules/pipeline/cycle.md`), so a
+      story that mentions Microsoft is not on Microsoft's card.
+    - **The prices arrive with every build, in `API_SNAPSHOTS`.** For half a
+      day they were fetched only when the menu opened — about 9KB gzipped,
+      changing each time a stock market closes (about four times a trading
+      day), for a list most sessions never open — with a row that held its
+      place in the menu while they loaded. The strip is on screen from launch
+      and a slot opens its card on a tap, so the list cannot wait for the
+      menu, and that machinery went (`useCompanies` is `useApiJson` again). The
+      cost is the 9KB at each close for every reader; an unchanged file still
+      answers 304. What it taught stays a rule: a menu row never appears or
+      leaves while the menu is open (`DESIGN.md`) — the first version gave its
+      row up when a fetch timed out, the rows under it moved up one, and a tap
+      on `largest companies` opened `straits`.
+    - **The catalog lists the pool's own card** (`take`), so a row and its
+      strip slot open one object; built anew, the pool's copy was claimed by
+      no list and was swept into the rates list with the leftovers.
   - **A monthly rate moves in points** (`deltaFrom` `unit: 'rate'`, two
     decimals, coloured like any move). Rounded to whole points a 25-basis-point
     cut read "unchanged"; as a percentage of itself it read "−6.3%". The

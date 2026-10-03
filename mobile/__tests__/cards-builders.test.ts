@@ -894,15 +894,55 @@ describe('scheduled events', () => {
     // the level, and the level is the question on a rate-decision card.
     expect(fomc?.changed).toBe('Now 3.75%, down from 4.00% in Feb 2026.');
 
-    // The Bank of England has no current published rate on FRED and the nearest
-    // substitute is SONIA, an overnight market rate that is not Bank Rate.
-    // Drawing that under this headline would be the graph disagreeing with the
-    // title, so the card keeps its countdown and nothing else.
+    // A decision whose rate is not in the payload keeps its countdown and
+    // nothing else: the Bank of England's own rate (`boe-rate`) is published
+    // since 2026-10-03, and until a build carries it — or on a day its fetch
+    // failed — no substitute is drawn. The nearest one is SONIA, an overnight
+    // market rate that is not Bank Rate, and a graph may not disagree with
+    // its headline.
     const boe = find(columns.scheduled, 'event-boe-2026-09');
     expect(boe?.kind === 'scheduled' ? boe.series : undefined).toBeUndefined();
     expect(boe?.changed).toBeUndefined();
     // Still a full card — the gate asks for analysis, never for a graph.
     expect(buildRankedInstruments(columns, [], []).map((c) => c.id)).toContain('event-boe-2026-09');
+  });
+
+  it('graphs the Bank of England’s and the Bank of Japan’s own rates under their decisions', () => {
+    const rate = (id: string, label: string, values: number[]) =>
+      indicator({
+        id,
+        label,
+        unit: '%',
+        cadence: 'monthly',
+        values,
+        periods: ['Jul 2026', 'Aug 2026', 'Sep 2026'],
+      });
+    const decision = (id: string, institution: string, date: string) => ({
+      id,
+      title: `${institution} rate decision`,
+      institution,
+      kind: 'central-bank',
+      date,
+      standing: 'The committee that sets the rate.',
+    });
+    const trends = snapshot(
+      [
+        rate('boe-rate', 'UK interest rate', [3.75, 3.75, 3.75]),
+        rate('boj-rate', 'Japan interest rate', [1, 1, 1.25]),
+      ],
+      {
+        events: [
+          decision('boe-2026-09', 'Bank of England', '2026-09-17'),
+          decision('boj-2026-09', 'Bank of Japan', '2026-09-18'),
+        ],
+      } as never,
+    );
+    const columns = build({ trends, chokepoints: [], articles: [], now: NOW });
+    const boe = find(columns.scheduled, 'event-boe-2026-09');
+    const boj = find(columns.scheduled, 'event-boj-2026-09');
+    expect(boe?.kind === 'scheduled' ? boe.series?.values : undefined).toEqual([3.75, 3.75, 3.75]);
+    expect(boj?.kind === 'scheduled' ? boj.series?.values : undefined).toEqual([1, 1, 1.25]);
+    expect(boj?.changed).toBe('Now 1.25%, up from 1.00% in Aug 2026.');
   });
 
   it('does not admit a date the desk has written nothing about', () => {

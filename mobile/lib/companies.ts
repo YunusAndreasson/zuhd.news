@@ -8,15 +8,21 @@ import { exchangeIsStale, stockMarketPlace } from './markets';
  * contract, and the card each company opens.
  *
  * Share prices of twenty of the world's largest listed companies, one close a
- * day. They are in the menu and nowhere else. A single share swings more than
- * an index does, so in a strip sorted by the week's largest move they would
- * take the row from the straits and currencies it is for; and a company has a
- * headquarters, not a place its price is about, so none is drawn on the globe.
+ * day. In the menu's list, and in the top strip among its other gauges
+ * (`companyGauges`; 2026-10-03, the user's request — they were menu-only for
+ * half a day, on the worry that a single share swings more than an index and
+ * would crowd the straits and currencies out of a row sorted by the week's
+ * largest move). Not on the globe: a company has a headquarters, not a place
+ * its price is about.
  *
- * The paragraph under a company's chart is the catalog's standing sentence
- * (`blurb`): what the company is. The desk writes no daily account of these,
- * so the card does not pretend to one; the stories the desk ran about the
- * company are listed under it instead, and marked on the line.
+ * The paragraph under a company's chart answers the question the chart
+ * raises: the desk's account of what happened to the share and why (`recent`,
+ * from the daily narration, since the companies took slots in the strip),
+ * and, on a day the desk has nothing to say, the catalog's standing sentence
+ * of what the company is (`blurb`). One of them, never both: the kicker over
+ * the name already says what the company does. Under it are the stories the
+ * account was built from, or the stories about the company, marked on the
+ * line.
  */
 export interface Company {
   id: string;
@@ -34,7 +40,11 @@ export interface Company {
   level: number;
   asOf: string;
   sourceLabel: string;
+  /** What the company is: the catalog's sentence, and the card's fallback. */
   blurb: string;
+  /** What happened to the share lately, and why. Absent when the desk wrote
+   *  none — never an empty string. */
+  recent?: string;
   stale?: boolean;
   series: { periods: string[]; values: number[] };
   relatedArticles?: RelatedArticleRef[];
@@ -79,7 +89,8 @@ export function isCompaniesSnapshot(v: unknown): v is CompaniesSnapshot {
       !Number.isFinite(c.level) ||
       Number(c.level) <= 0 ||
       !Number.isFinite(Date.parse(String(c.asOf))) ||
-      (c.stale !== undefined && typeof c.stale !== 'boolean')
+      (c.stale !== undefined && typeof c.stale !== 'boolean') ||
+      (c.recent !== undefined && typeof c.recent !== 'string')
     )
       return false;
     if (
@@ -164,7 +175,9 @@ export function companyCard(c: Company): SwipeCard {
     readingNote: note,
     delta: deltaFrom(windowChange(c.series, CARD_WINDOW)),
     changed: exchangeIsStale(c) ? 'Older quote · last available observation' : undefined,
-    why: c.blurb,
+    // The account of the move where the desk wrote one, as every other
+    // card's `why` is (`whyFor`); what the company is, where it did not.
+    why: c.recent?.trim() || c.blurb,
     sourceLabel: c.sourceLabel,
     series: {
       values: c.series.values,
@@ -173,9 +186,21 @@ export function companyCard(c: Company): SwipeCard {
       unit: CURRENCY_MARKS[c.currency] ?? c.currency,
     },
     related: c.relatedArticles,
-    // The stories about the company, listed under the paragraph and marked on
-    // the line by their number. The build keeps this list to stories the
-    // company is the subject of; a mention is not on it.
+    // Listed under the paragraph and marked on the line by their number: the
+    // stories the account was built from, or with no account the stories the
+    // company is the subject of (the build decides; a mention is on neither).
     cited: c.relatedArticles,
   };
+}
+
+/**
+ * The companies as gauges for the top strip: every one with a fresh quote.
+ *
+ * A company whose quote is old is left out. The strip sorts each reading's
+ * past seven days against the others', and a week that ended days ago is not
+ * this week. It keeps its row in the menu's list, whose card says the quote
+ * is old.
+ */
+export function companyGauges(companies: readonly Company[], now = Date.now()): SwipeCard[] {
+  return companies.filter((company) => !exchangeIsStale(company, now)).map(companyCard);
 }

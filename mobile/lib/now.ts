@@ -178,6 +178,13 @@ const PLAIN_NAMES: Readonly<Record<string, string>> = {
   // rice by wheat (`Wheat and rice` on its card, which reads rice in wheats).
   metals: 'Gold/silver',
   staples: 'Rice/wheat',
+  // A company is its name: a name beside a week's move reads as its share,
+  // the way a ticker's does. Four are cut to the word a reader says, for the
+  // row's width; the card and the menu's list keep the full name.
+  'co:aramco': 'Aramco',
+  'co:samsung': 'Samsung',
+  'co:berkshire': 'Berkshire',
+  'co:jpmorgan': 'JPMorgan',
 };
 
 /** Straits named for a country: `Taiwan` alone would read as the country. */

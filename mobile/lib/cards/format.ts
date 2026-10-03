@@ -137,9 +137,13 @@ export function formatNumber(n: number, maxDecimals = 3, minDecimals = 0): strin
  * Percentages and sub-10 values keep two decimals (4.69% is a different rate
  * from 4.7%); everything larger rounds and groups, because the fourth
  * significant digit of a wheat price is noise the reader will never repeat.
+ *
+ * A price under a dollar keeps four: at two, a coin at $0.0931 reads `$0.09`,
+ * and a tenth of its value can come and go without the reading changing.
  */
 export function formatReading(value: number, unit?: string): string {
   if (!Number.isFinite(value)) return '—';
+  if (unit?.startsWith('$') && Math.abs(value) < 1) return value.toFixed(4);
   if (unit === '%' || Math.abs(value) < 10) return value.toFixed(2);
   return formatCount(value);
 }

@@ -91,6 +91,7 @@ import type { SwipeCard } from '../lib/cards/rank';
 import { buildRankedInstruments } from '../lib/cards/sections';
 import type { CardDelta } from '../lib/cards/types';
 import { exchangeMove } from '../lib/cards/week-move';
+import { companyGauges } from '../lib/companies';
 import { alertsInCountry, marksInCountry } from '../lib/country-hazards';
 import { computeDeckLayout, openHeightNeedsMeasuring, openStoryHeight } from '../lib/deck-layout';
 import { getSnapshot as getFound, markFound, pruneFound, useFoundSlugs } from '../lib/found-store';
@@ -247,6 +248,8 @@ export default function HomeScreen() {
   const { cards: marketSignals, signals: rawSignals } = useMarketSignals();
   const marketsSnapshot = useMarkets();
   const exchanges = useMemo(() => marketsSnapshot?.exchanges ?? [], [marketsSnapshot]);
+  const companiesSnapshot = useCompanies();
+  const companies = useMemo(() => companiesSnapshot?.companies ?? [], [companiesSnapshot]);
   const offline = useOffline();
 
   const [briefingVisible, setBriefingVisible] = useState(false);
@@ -486,8 +489,11 @@ export default function HomeScreen() {
     () => [
       ...buildRankedInstruments(columns, marketSignals, river),
       ...exchanges.map(exchangeCard),
+      // The largest companies, as gauges like any other (2026-10-03, the
+      // user's request).
+      ...companyGauges(companies),
     ],
-    [columns, marketSignals, river, exchanges],
+    [columns, marketSignals, river, exchanges, companies],
   );
 
   /** Every instrument, in the menu's groups: every published series, the
@@ -497,9 +503,6 @@ export default function HomeScreen() {
    *  it keeps what it last showed, so the rows do not vanish from a menu
    *  still sliding away. */
   const lastCatalogRef = useRef<CatalogGroup[]>([]);
-  // The one list that is not downloaded with a build: fetched when the menu
-  // opens, since the menu is the only place it is read (`useCompanies`).
-  const { companies, wait: companiesWait } = useCompanies(menuOpen);
   const catalog = useMemo(() => {
     if (!menuOpen) return lastCatalogRef.current;
     lastCatalogRef.current = buildInstrumentCatalog({
@@ -510,20 +513,9 @@ export default function HomeScreen() {
       articles: river,
       exchanges,
       companies,
-      companiesWait,
     });
     return lastCatalogRef.current;
-  }, [
-    menuOpen,
-    rankedInstruments,
-    trends,
-    chokepoints,
-    analysis,
-    river,
-    exchanges,
-    companies,
-    companiesWait,
-  ]);
+  }, [menuOpen, rankedInstruments, trends, chokepoints, analysis, river, exchanges, companies]);
 
   /** The series each story's prose cites, as the card a press opens — built
    *  only for the few ids the river names, not the whole catalog. */

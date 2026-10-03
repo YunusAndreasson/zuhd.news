@@ -8,7 +8,7 @@ import {
   type GroupKey,
   instrumentCardFor,
 } from '../lib/instrument-catalog';
-import type { Company } from '../lib/companies';
+import { type Company, companyCard } from '../lib/companies';
 import type { Exchange } from '../lib/markets';
 
 const NOW = new Date('2026-09-08T12:00:00Z');
@@ -115,7 +115,7 @@ describe('buildInstrumentCatalog', () => {
     const groups = build({ trends });
     expect(ids(groups, 'commodities')).toEqual(['brent', 'wti']);
     expect(ids(groups, 'stocks')).toEqual(['sp500']);
-    expect(ids(groups, 'economy')).toEqual(['btc']);
+    expect(ids(groups, 'crypto')).toEqual(['btc']);
     expect(ids(groups, 'currencies')).toEqual(['fx-egp']);
     const listed = groups.flatMap((g) => g.rows.map((r) => r.id));
     for (const left of ['wiki-iran', 'portwatch-hormuz-tanker', 'stocks:COIN']) {
@@ -130,8 +130,58 @@ describe('buildInstrumentCatalog', () => {
         indicator({ id: 'fx-kes', source: 'oer', unit: 'KES / USD' }),
       ]),
     });
-    expect(ids(groups, 'economy')).toEqual(['new-fred-series']);
+    expect(ids(groups, 'rates')).toEqual(['new-fred-series']);
     expect(ids(groups, 'currencies')).toEqual(['fx-kes']);
+  });
+
+  it('keeps rates and coins in two lists', () => {
+    // They were one list, `rates & crypto`, until 2026-10-03: a central
+    // bank's rate and a coin's price have nothing to do with each other.
+    const groups = build({
+      trends: snapshot([
+        monthly({ id: 'fed-funds', unit: '%', values: [4, 3.75] }),
+        monthly({ id: 'boe-rate', source: 'bis', unit: '%', values: [4, 3.75] }),
+        monthly({ id: 'us-cpi', unit: '%', values: [3, 2.9] }),
+        indicator({ id: 'us-10y', unit: '%' }),
+        indicator({ id: 'btc', source: 'crypto' }),
+        indicator({ id: 'doge', source: 'crypto' }),
+        // Gold and silver are priced through a coin and are still metals.
+        indicator({ id: 'paxg', source: 'crypto' }),
+        // Neither table names these: a coin goes with the coins, a rate from
+        // the central banks' service with the rates.
+        indicator({ id: 'new-coin', source: 'crypto' }),
+        monthly({ id: 'new-bank-rate', source: 'bis', unit: '%', values: [2, 2.25] }),
+      ]),
+    });
+    expect(group(groups, 'rates')?.title).toBe('rates, inflation & jobs');
+    expect(group(groups, 'crypto')?.title).toBe('crypto');
+    expect(new Set(ids(groups, 'rates'))).toEqual(
+      new Set(['us-10y', 'fed-funds', 'boe-rate', 'us-cpi', 'new-bank-rate']),
+    );
+    expect(new Set(ids(groups, 'crypto'))).toEqual(new Set(['btc', 'doge', 'new-coin']));
+    expect(ids(groups, 'commodities')).toEqual(['paxg']);
+    // Beside each other, after the things they are priced against.
+    const order = groups.map((g) => g.key);
+    expect(order.indexOf('crypto')).toBe(order.indexOf('rates') + 1);
+  });
+
+  it('names a policy rate’s bank under it, since its title names only the country', () => {
+    const groups = build({
+      trends: snapshot([
+        monthly({
+          id: 'tcmb-rate',
+          source: 'bis',
+          label: 'Turkey interest rate',
+          unit: '%',
+          values: [38, 37],
+        }),
+        monthly({ id: 'fed-funds', label: 'Fed target rate', unit: '%', values: [4, 3.75] }),
+      ]),
+    });
+    const kicker = (id: string) =>
+      group(groups, 'rates')?.rows.find((r) => r.id === id)?.card?.kicker;
+    expect(kicker('tcmb-rate')).toBe('Central Bank of Turkey');
+    expect(kicker('fed-funds')).toBe('US central bank');
   });
 
   it('reuses the pool’s card as the same object, so a row opens what its strip slot opens', () => {
@@ -220,7 +270,7 @@ describe('buildInstrumentCatalog', () => {
     const groups = build({
       trends: snapshot([monthly({ id: 'fed-funds', unit: '%', values: [4, 3.75] })]),
     });
-    const card = group(groups, 'economy')?.rows[0]?.card as ReadingCard | undefined;
+    const card = group(groups, 'rates')?.rows[0]?.card as ReadingCard | undefined;
     expect(card?.delta).toMatchObject({ direction: 'down', magnitude: '0.25 points' });
     // Coloured like any move: `unit: 'points'` is a contract's, which stays slate.
     expect(card?.delta?.unit).toBeUndefined();
@@ -311,7 +361,6 @@ describe('largest companies', () => {
     expect(list?.rows.map((r) => r.short)).toEqual(['loud', 'quiet']);
     expect(list?.rows.every((r) => r.weekly)).toBe(true);
     expect(list?.rows[0]?.id).toBe('co:loud');
-    expect(list?.wait).toBeUndefined();
   });
 
   it('is absent where the list was never fetched', () => {
@@ -320,20 +369,19 @@ describe('largest companies', () => {
     }
   });
 
-  it('keeps its row while there are no prices yet, whether they are coming or not', () => {
-    // A row that gave its place up when the fetch failed moved every row
-    // under it, five seconds after the menu opened.
-    for (const wait of ['waiting', 'failed'] as const) {
-      const groups = buildInstrumentCatalog(inputs({ companies: null, companiesWait: wait }));
-      expect(groups.map((g) => g.key)).toEqual(['stocks', 'companies']);
-      expect(groups[1]).toMatchObject({ rows: [], wait });
-    }
-    // Once the prices are there the group is an ordinary one.
-    const filled = buildInstrumentCatalog(
-      inputs({ companies: [company('a', [100, 110])], companiesWait: 'waiting' }),
+  it('lists the pool\u2019s own card where the strip holds one, and lists it once', () => {
+    // The companies are in the ranked pool as the strip's gauges. Built anew
+    // here, a row and its slot would open two objects — and the pool's copy,
+    // claimed by no list, was swept into the rates list with the leftovers.
+    const a = company('a', [100, 110]);
+    const pooled = companyCard(a);
+    const groups = buildInstrumentCatalog(
+      inputs({ ranked: [pooled], companies: [a, company('b', [100, 105])] }),
     );
-    expect(filled[1]?.wait).toBeUndefined();
-    expect(filled[1]?.rows).toHaveLength(1);
+    expect(groups.map((g) => g.key)).toEqual(['stocks', 'companies']);
+    expect(groups[1]?.rows.map((r) => r.id)).toEqual(['co:a', 'co:b']);
+    expect(groups[1]?.rows[0]?.card).toBe(pooled);
+    expect(instrumentCardFor('co:a', inputs({ ranked: [pooled], companies: [a] }))).toBe(pooled);
   });
 
   it('drops a company with nothing under its chart', () => {
