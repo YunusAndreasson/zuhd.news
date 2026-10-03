@@ -17,6 +17,7 @@ import {
   PHASE_NAMES,
   PUBLISH_MIN_PHASE,
   analysisAgeMonths,
+  countryTotals,
   featureClassification,
   gateByAge,
   joinAreas,
@@ -297,4 +298,85 @@ test('a Crisis area with nobody in Catastrophe stays off the map', () => {
   // 674 areas across 21 countries.
   assert.equal(publishable({ phase: 3, population: { p3: 500000, p4: 0, p5: 0 } }), false)
   assert.equal(publishable({ phase: 3, population: { p3: 500000 } }), false)
+})
+
+// ---------------------------------------------------------------------------
+// 6. A country's caseload
+// ---------------------------------------------------------------------------
+
+const area = (iso3, phase, population, extra = {}) => ({
+  iso3,
+  area: `${iso3}-${phase}`,
+  phase,
+  vintage: 'May 2026',
+  ageMonths: 3.3,
+  population,
+  ...extra,
+})
+
+test('a country is counted over every area, not only the ones drawn', () => {
+  // Gaza as measured: five areas at Phase 3 and nobody in Catastrophe, so none
+  // is drawn — and 1.2 million people in Crisis or worse.
+  const gaza = [
+    area('PSE', 3, { total: 718248, p3plus: 395037, p4: 71825, p5: 0 }),
+    area('PSE', 3, { total: 688334, p3plus: 413000, p4: 68833, p5: 0 }),
+  ]
+  assert.equal(gaza.some((a) => publishable(a)), false)
+  assert.deepEqual(countryTotals(gaza), [
+    {
+      iso3: 'PSE',
+      iso2: 'PS',
+      vintage: 'May 2026',
+      ageMonths: 3.3,
+      phase: 3,
+      areas: 2,
+      analysed: 1406582,
+      p3plus: 808037,
+      p4: 140658,
+      p5: 0,
+    },
+  ])
+})
+
+test('the largest caseload leads, and a country with nobody in Crisis is no row', () => {
+  const rows = countryTotals([
+    area('KEN', 2, { total: 900000, p3plus: 0, p4: 0, p5: 0 }),
+    area('SOM', 4, { total: 100000, p3plus: 60000, p4: 20000, p5: 0 }),
+    area('SDN', 4, { total: 500000, p3plus: 300000, p4: 90000, p5: 12683 }),
+    area('SDN', 2, { total: 400000, p3plus: 50000, p4: 0, p5: 0 }),
+  ])
+  assert.deepEqual(
+    rows.map((r) => [r.iso3, r.phase, r.areas, r.analysed, r.p3plus, r.p5]),
+    [
+      ['SDN', 4, 2, 900000, 350000, 12683],
+      ['SOM', 4, 1, 100000, 60000, 0],
+    ],
+  )
+})
+
+test('an area with no caseload figure is left out, never counted as zero people', () => {
+  const [row] = countryTotals([
+    area('YEM', 4, { total: 200000, p3plus: 120000, p4: 40000, p5: null }),
+    area('YEM', 3, { total: null, p3plus: null, p4: null, p5: null }),
+    area('YEM', null, { total: 999999, p3plus: 999999 }),
+  ])
+  assert.equal(row.areas, 1)
+  assert.equal(row.analysed, 200000)
+  assert.equal(row.p3plus, 120000)
+  assert.equal(row.p5, 0)
+})
+
+test('a total is one analysis, never two added together', () => {
+  const [row] = countryTotals([
+    area('SOM', 4, { total: 100000, p3plus: 60000, p4: 20000, p5: 0 }),
+    area(
+      'SOM',
+      4,
+      { total: 100000, p3plus: 90000, p4: 50000, p5: 0 },
+      { vintage: 'Oct 2025', ageMonths: 10.1 },
+    ),
+  ])
+  assert.equal(row.vintage, 'May 2026')
+  assert.equal(row.areas, 1)
+  assert.equal(row.p3plus, 60000)
 })

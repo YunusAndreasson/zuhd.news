@@ -4,7 +4,7 @@ import { join, basename } from 'node:path'
 import { createHash } from 'node:crypto'
 import { parseFrontmatter } from './lib/frontmatter.js'
 import { isThermallyRelevant, nearestStories } from './lib/firms.js'
-import { ISO3_TO_ISO2, PHASE_NAMES, publishable, windowCoveringDay } from './lib/ipc.js'
+import { countryTotals, ISO3_TO_ISO2, PHASE_NAMES, publishable, windowCoveringDay } from './lib/ipc.js'
 import { splitBlocks } from './lib/blocks.js'
 import { SV_WINDOW_MS, eventTime as svEventTime, svFeedItem } from './lib/sv-payload.js'
 import { buildCategoryOgPng, buildOgPng, buildSiteOgPng } from './lib/og-image.js'
@@ -1910,6 +1910,12 @@ if (existsSync(ipcSrc)) {
         ageLimitMonths: raw.ageLimitMonths,
         countries: [...new Set(ipcAreas.map((a) => a.iso3))].sort(),
         areas: ipcAreas,
+        // Each country's caseload over every analysed area, drawn or not: the
+        // bar above decides what is a mark, never who is counted. Gaza has no
+        // area over it and 1.2 million people in Crisis or worse. A new key
+        // beside `areas`, which is all any reader of this file has ever
+        // validated.
+        totals: countryTotals(all),
         skipped: {
           ...(raw.skipped ?? {}),
           // What the publication bar itself dropped, which the fetcher cannot know.
@@ -1921,7 +1927,7 @@ if (existsSync(ipcSrc)) {
   console.log(
     `  Built: api/ipc.json (${ipcAreas.length} areas at Emergency or worse across ` +
       `${new Set(ipcAreas.map((a) => a.iso3)).size} countries, ` +
-      `${all.length - ipcAreas.length} below the bar)`,
+      `${all.length - ipcAreas.length} below the bar; ${countryTotals(all).length} country totals)`,
   )
 }
 

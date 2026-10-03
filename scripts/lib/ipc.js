@@ -436,3 +436,70 @@ export const publishable = (area, minPhase = PUBLISH_MIN_PHASE) => {
   if (area.phase >= minPhase) return true
   return (area.population?.p5 ?? 0) > 0
 }
+
+/**
+ * Each country's caseload: its areas' populations, added up.
+ *
+ * The map draws the grave end — 94 areas in four countries on the payload this
+ * was written against — and a reader of that list cannot tell that the same
+ * analysis counts 19 million people in Crisis or worse across Sudan, or 1.2
+ * million in Gaza, where no area clears the bar at all. An area classification
+ * is a threshold; the caseload is the number of people, and it is the country's
+ * that a reader can hold.
+ *
+ * Summed over every gated, classified area, not only the publishable ones:
+ * the bar decides what is drawn, never who is counted. `analysed` is the
+ * population the IPC analysed, which is not the country's — the share printed
+ * beside a total is of that and has to say so.
+ *
+ * One analysis per country. Areas from an older analysis than the country's
+ * newest are left out, so a total is never two analyses added together; none
+ * mixed on the payload measured, and this is what keeps it so. An area with no
+ * caseload figure is left out of both sums rather than counted as zero people.
+ */
+export function countryTotals(areas) {
+  const newest = new Map()
+  for (const a of areas ?? []) {
+    if (!a?.iso3 || !Number.isFinite(a.ageMonths)) continue
+    const seen = newest.get(a.iso3)
+    if (!seen || a.ageMonths < seen.ageMonths) newest.set(a.iso3, a)
+  }
+
+  const byCountry = new Map()
+  for (const a of areas ?? []) {
+    const lead = newest.get(a?.iso3)
+    if (!lead || a.vintage !== lead.vintage) continue
+    if (!Number.isFinite(a.phase)) continue
+    const p = a.population
+    if (!Number.isFinite(p?.total) || !Number.isFinite(p?.p3plus)) continue
+    let row = byCountry.get(a.iso3)
+    if (!row) {
+      row = {
+        iso3: a.iso3,
+        iso2: ISO3_TO_ISO2[a.iso3] ?? undefined,
+        vintage: lead.vintage,
+        ageMonths: lead.ageMonths,
+        // The gravest classification any of its areas carries — the IPC's own,
+        // never one derived from the sums below.
+        phase: a.phase,
+        areas: 0,
+        analysed: 0,
+        p3plus: 0,
+        p4: 0,
+        p5: 0,
+      }
+      byCountry.set(a.iso3, row)
+    }
+    row.areas++
+    if (a.phase > row.phase) row.phase = a.phase
+    row.analysed += p.total
+    row.p3plus += p.p3plus
+    row.p4 += Number.isFinite(p.p4) ? p.p4 : 0
+    row.p5 += Number.isFinite(p.p5) ? p.p5 : 0
+  }
+
+  // Largest caseload first. A country with nobody in Crisis is not a row.
+  return [...byCountry.values()]
+    .filter((row) => row.p3plus > 0)
+    .sort((a, b) => b.p3plus - a.p3plus || (a.iso3 < b.iso3 ? -1 : 1))
+}
