@@ -13,6 +13,18 @@ describe('redirectSystemPath', () => {
     expect(go('/a/some-slug?utm_source=x')).toBe('/?story=some-slug');
   });
 
+  it("opens a story from the website's own links", () => {
+    expect(go('https://zuhd.news/a/2026-09-26-trump-rejects-iran')).toBe(
+      '/?story=2026-09-26-trump-rejects-iran',
+    );
+    expect(go('https://zuhd.news/s/some-slug/')).toBe('/?story=some-slug');
+    expect(go('https://www.zuhd.news/a/some-slug?utm_source=x#top')).toBe('/?story=some-slug');
+    expect(go('https://zuhd.news/privacy')).toBe('/');
+    expect(go('https://zuhd.news')).toBe('/');
+    // Another site's story path is not ours to open.
+    expect(go('https://zuhd.news.example.com/a/some-slug')).toBe('/');
+  });
+
   it('sends every other path to the map, never to an unmatched route', () => {
     // Any other path rendered Expo Router's development "Unmatched Route"
     // page, `Sitemap` link and all (seen on the emulator, 2026-09-27).
