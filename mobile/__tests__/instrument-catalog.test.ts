@@ -10,6 +10,7 @@ import {
   rowFlag,
 } from '../lib/instrument-catalog';
 import { type Company, companyCard } from '../lib/companies';
+import { type AiModelsSnapshot, YEAR_WINDOW } from '../lib/ai-models';
 import type { Exchange } from '../lib/markets';
 
 const NOW = new Date('2026-09-08T12:00:00Z');
@@ -345,6 +346,73 @@ describe('buildInstrumentCatalog', () => {
 
   it('leaves an empty group out rather than offering a row that opens nothing', () => {
     expect(build({}).map((g) => g.key)).toEqual([]);
+  });
+});
+
+describe('AI models', () => {
+  const lab = (id: string, score: number, values: number[]) => ({
+    id,
+    name: id,
+    iso2: 'US',
+    blurb: `${id} makes models.`,
+    model: `${id} 5`,
+    score,
+    asOf: '2026-09-01',
+    series: {
+      // Two releases a week apart: `rowFor` would read them as a week's move.
+      periods: ['2025-01-01', '2026-08-25', '2026-09-01'].slice(-values.length),
+      values,
+      models: values.map((_, i) => `${id} ${i}`),
+    },
+  });
+  const aiSnapshot = (labs: AiModelsSnapshot['labs']): AiModelsSnapshot => ({
+    generated: '2026-09-08T00:00:00.000Z',
+    frontier: { score: 160, model: 'alpha 5', lab: 'alpha' },
+    labs,
+  });
+
+  it('lists the labs after the coins, in the payload’s order, with no week', () => {
+    const groups = build({
+      trends: snapshot([indicator({ id: 'btc', source: 'crypto' })]),
+      aiModels: aiSnapshot([lab('alpha', 160, [120, 150, 160]), lab('beta', 150, [100, 140, 150])]),
+    });
+    expect(groups.map((g) => g.key)).toEqual(['crypto', 'ai']);
+    const list = group(groups, 'ai');
+    expect(list?.title).toBe('AI models');
+    expect(list?.rows.map((r) => r.id)).toEqual(['ai:alpha', 'ai:beta']);
+    for (const row of list?.rows ?? []) {
+      expect(row.weekly).toBe(false);
+      expect(row.move?.window).toBe(YEAR_WINDOW);
+      // The list's note says the window and what the number is, once.
+      expect(row.saidWindow).toBe(YEAR_WINDOW);
+      expect(row.note).toBe('');
+    }
+  });
+
+  it('has no list on a site from before the endpoint, and drops a lab with no sentence', () => {
+    expect(group(build({}), 'ai')).toBeUndefined();
+    expect(group(build({ aiModels: null }), 'ai')).toBeUndefined();
+    const groups = build({
+      aiModels: aiSnapshot([{ ...lab('alpha', 160, [120, 150, 160]), blurb: '' }]),
+    });
+    expect(group(groups, 'ai')).toBeUndefined();
+  });
+
+  it('resolves a lab’s id to the card its row opens', () => {
+    const aiModels = aiSnapshot([lab('alpha', 160, [120, 150, 160])]);
+    const inputs: CatalogInputs = {
+      ranked: [],
+      trends: null,
+      chokepoints: [],
+      analysis: new Map(),
+      articles: [],
+      exchanges: [],
+      aiModels,
+      now: NOW,
+    };
+    const row = group(buildInstrumentCatalog(inputs), 'ai')?.rows[0];
+    expect(instrumentCardFor('ai:alpha', inputs)).toEqual(row?.card);
+    expect(instrumentCardFor('ai:nobody', inputs)).toBeNull();
   });
 });
 

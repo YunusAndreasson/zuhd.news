@@ -2,6 +2,7 @@ import { isMarketSignalsSnapshot } from '@shared/market-signals';
 import type { QueryKey } from '@tanstack/react-query';
 import Storage from 'expo-sqlite/kv-store';
 import { API_BASE } from '../constants/theme';
+import { isAiModelsSnapshot } from './ai-models';
 import { isCompaniesSnapshot } from './companies';
 import { fetchJsonIfChanged } from './fetchJson';
 import { isMarketsSnapshot } from './markets';
@@ -59,6 +60,10 @@ export const API_SNAPSHOTS = {
   // never open — and then the user asked for the companies in the top strip,
   // which is on screen from launch and opens a card on a tap.
   companies: snapshot('/api/companies.json', isCompaniesSnapshot),
+  // The AI labs' scores, for the menu's `AI models` list. ~3KB gzipped and
+  // changing a few times a week; here rather than fetched when the menu
+  // opens, because a menu row never appears while the menu is open.
+  aiModels: snapshot('/api/ai-models.json', isAiModelsSnapshot),
   gdacs: snapshot('/api/gdacs.json', isGdacsSnapshot),
   conflict: snapshot('/api/conflict.json', isConflictSnapshot),
   famine: snapshot('/api/ipc.json', isFamineSnapshot),
