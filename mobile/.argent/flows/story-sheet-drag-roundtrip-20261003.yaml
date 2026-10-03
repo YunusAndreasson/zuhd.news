@@ -1,0 +1,28 @@
+steps:
+  - tool: gesture-swipe
+    args: { fromX: 0.5, fromY: 0.76, toX: 0.5, toY: 0.3, durationMs: 300 }
+    delayMs: 1000
+  - tool: gesture-swipe
+    args: { fromX: 0.5, fromY: 0.35, toX: 0.5, toY: 0.9, durationMs: 300 }
+    delayMs: 1300
+  - tool: gesture-swipe
+    args: { fromX: 0.5, fromY: 0.76, toX: 0.5, toY: 0.3, durationMs: 300 }
+    delayMs: 1000
+  - tool: gesture-swipe
+    args: { fromX: 0.5, fromY: 0.35, toX: 0.5, toY: 0.9, durationMs: 300 }
+    delayMs: 1300
+  - tool: gesture-swipe
+    args: { fromX: 0.5, fromY: 0.76, toX: 0.5, toY: 0.3, durationMs: 300 }
+    delayMs: 1000
+  - tool: gesture-swipe
+    args: { fromX: 0.5, fromY: 0.35, toX: 0.5, toY: 0.9, durationMs: 300 }
+    delayMs: 1300
+  - tool: gesture-swipe
+    args: { fromX: 0.5, fromY: 0.76, toX: 0.5, toY: 0.3, durationMs: 300 }
+    delayMs: 1000
+  - tool: gesture-swipe
+    args: { fromX: 0.5, fromY: 0.35, toX: 0.5, toY: 0.9, durationMs: 300 }
+    delayMs: 1300
+executionPrerequisite: Android emulator-5554, zuhd foreground on the map, story
+  sheet at rest (peek), default font scale. Four open/close round trips by
+  dragging the sheet — the iOS veil-lag investigation of 2026-10-03.
