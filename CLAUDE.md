@@ -147,7 +147,7 @@ touching only `content/`.
   current page by the `doc-sheet` island
 - `/feed.xml`, `/sitemap.xml`, `/api/og/**` (generated share cards)
 - JSON APIs for mobile (`articles`, `feed`, `feed-lite`, `heatmap`, `context`,
-  `trends`, `companies`, `meta`, …) and for the map (`map`, `map-leads`, `story/{slug}`,
+  `trends`, `companies`, `ai-models`, `meta`, …) and for the map (`map`, `map-leads`, `story/{slug}`,
   `gdacs`, `conflict`, `genocide`, `markets`, `firms`, `ipc`, `chokepoints`)
 
 ## Islands
