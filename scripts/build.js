@@ -1241,10 +1241,12 @@ if (existsSync(marketsSrc)) {
   )
 }
 
-// Company quotes — the app's `largest companies` list. No web surface reads
-// it. The catalog's standing sentence rides along as `blurb`; what the build
-// adds is each company's stories, joined by the tickers their `entities[]`
-// name and by tag (`lib/companies.js`). The stamp is held: after New York
+// Company quotes — the app's `largest companies` list and its strip gauges.
+// No web surface reads it. The catalog's standing sentence rides along as
+// `blurb`; what the build adds is the desk's account of each share where it
+// wrote one (`recent`, from the indicator dispatch's `co:<id>`), and the
+// stories behind that account or, without one, the stories about the company
+// (`lib/companies.js`). The stamp is held: after New York
 // closes on a Friday nothing in it moves until Sunday's Riyadh close, and an
 // unheld `generated` would send it to every reader again each cycle anyway.
 //
@@ -1254,7 +1256,9 @@ if (existsSync(marketsSrc)) {
 const companiesSrc = join(ROOT, 'content', '.companies.json')
 if (existsSync(companiesSrc)) {
   try {
-    const payload = companiesPayload(JSON.parse(readFileSync(companiesSrc, 'utf8')), sorted)
+    const payload = companiesPayload(JSON.parse(readFileSync(companiesSrc, 'utf8')), sorted, {
+      dispatch,
+    })
     writeFileSync(
       join(DIST_DIR, 'api', 'companies.json'),
       JSON.stringify(apiStamps.hold('companies', payload)),

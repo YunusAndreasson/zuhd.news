@@ -45,6 +45,10 @@ test('every company has what its card and its join need', () => {
     assert.ok(c.tickers.includes(c.symbol), `${c.id}: tickers lack ${c.symbol}`)
     // The app drops a card with nothing under its chart.
     assert.ok(c.blurb.length > 40, `${c.id}: blurb`)
+    // The narration stage keeps the blurb as `standing` and refuses an item
+    // whose standing is over its cap — which would leave the company without
+    // an account of its share, and re-ask the model for one every day.
+    assert.ok(c.blurb.length <= 240, `${c.id}: blurb is ${c.blurb.length} characters, cap 240`)
     for (const tag of c.topicTags) assert.equal(tag, tag.toLowerCase(), `${c.id}: tag ${tag}`)
   }
 })
@@ -310,6 +314,50 @@ test('companiesPayload publishes no field only the join needed', () => {
   assert.equal(apple.commonName, undefined)
   assert.deepEqual(company.relatedArticles, [])
   assert.deepEqual(Object.keys(company.series), ['values', 'periods'])
+})
+
+// ── the desk's account ─────────────────────────────────────────────────────
+
+test('companiesPayload carries the dispatch paragraph and the stories it was built from', () => {
+  const articles = [
+    article('about-it', '2026-10-02T10:00:00Z', { title: "Nvidia's Record Share Buyback" }),
+    article('the-cause', '2026-10-01T10:00:00Z', { title: 'Chip Export Rules Tighten' }),
+  ]
+  const dispatch = {
+    'co:nvidia': {
+      standing: 'unused: the catalog sentence is the definition',
+      recent: 'Washington tightened the rules on chip sales, and the company answered with a buyback. ',
+      citations: ['the-cause', 'withdrawn-since'],
+    },
+  }
+  const [company] = companiesPayload(raw(), articles, { now: NOW, dispatch }).companies
+  assert.equal(
+    company.recent,
+    'Washington tightened the rules on chip sales, and the company answered with a buyback.',
+  )
+  // The account's own evidence, resolved against the corpus: a slug that has
+  // since been withdrawn is dropped, and the stories merely about the company
+  // step back.
+  assert.deepEqual(company.relatedArticles.map((a) => a.slug), ['the-cause'])
+  assert.equal(company.standing, undefined)
+})
+
+test('with no account, a company keeps the stories about it and gains no field', () => {
+  const articles = [article('about-it', '2026-10-02T10:00:00Z', { title: 'Nvidia Books Record Orders' })]
+  for (const dispatch of [undefined, {}, { 'co:nvidia': { recent: '', citations: ['about-it'] } }]) {
+    const [company] = companiesPayload(raw(), articles, { now: NOW, dispatch }).companies
+    // Absent, never an empty string: the app falls back on absence.
+    assert.equal('recent' in company, false)
+    assert.deepEqual(company.relatedArticles.map((a) => a.slug), ['about-it'])
+  }
+})
+
+test('an account that cites nothing still lists the stories about the company', () => {
+  const articles = [article('about-it', '2026-10-02T10:00:00Z', { title: 'Nvidia Books Record Orders' })]
+  const dispatch = { 'co:nvidia': { recent: 'Orders rose.', citations: [] } }
+  const [company] = companiesPayload(raw(), articles, { now: NOW, dispatch }).companies
+  assert.equal(company.recent, 'Orders rose.')
+  assert.deepEqual(company.relatedArticles.map((a) => a.slug), ['about-it'])
 })
 
 test('companiesPayload is the same bytes for the same inputs', () => {

@@ -133,19 +133,55 @@ const escapeRe = (s) => s.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')
 /** A tag on a word boundary, never inside a word: `amd` is not in `amdahl`. */
 const tagMatcher = (tag) => new RegExp(`(^|[^a-z0-9])${escapeRe(tag.toLowerCase())}([^a-z0-9]|$)`)
 const lower = (s) => String(s || '').toLowerCase()
+const tickerOf = (id) => String(id || '').slice('stocks:'.length).toUpperCase()
 
 /** How many of a story's concepts are trusted to say what it is about. */
 const LEADING_CONCEPTS = 2
 
 /**
- * `/api/companies.json`: the snapshot with each company's stories joined on,
- * and the fields only the join needed left behind.
+ * What a story says about which companies it concerns, read once per story.
  *
- * The rows are printed under the company's chart as `in the news` and marked
- * on its line, so the join is held to stories *about* the company, and a
- * story that only mentions it is left out. Measured on the first run
- * (2026-10-03), the two looser joins the other layers use both put the wrong
- * story on a card:
+ * @param {{ title?: string, concepts?: any[], entities?: any, subjects?: any }} story
+ *   `concepts` as labels or `{ label }`; `entities` and `subjects` as the
+ *   article's frontmatter carries them.
+ */
+export function storyFacts(story) {
+  const concepts = (story.concepts || []).map((x) => lower(typeof x === 'object' ? x?.label : x))
+  const stocks = (Array.isArray(story.entities) ? story.entities : []).filter((e) =>
+    String(e?.indicatorId || '').startsWith('stocks:'),
+  )
+  const judged = Array.isArray(story.subjects)
+  const subjects = new Set(judged ? story.subjects.map(tickerOf) : [])
+  return {
+    title: lower(story.title),
+    leading: concepts.slice(0, LEADING_CONCEPTS).join(' | '),
+    concepts: concepts.join(' | '),
+    judged,
+    stocks: new Set(stocks.map((e) => tickerOf(e.indicatorId))),
+    /** The words the model tied to each ticker it called a subject. */
+    subjectMentions: stocks
+      .filter((e) => subjects.has(tickerOf(e.indicatorId)))
+      .map((e) => ({ ticker: tickerOf(e.indicatorId), mention: lower(e.mention) })),
+  }
+}
+
+/** A company's side of the join, compiled once per company. */
+export function companyMatcher({ tickers = [], topicTags = [], commonName }) {
+  return {
+    wanted: new Set(tickers.map((t) => String(t).toUpperCase())),
+    tags: topicTags.map(tagMatcher),
+    common: commonName ? tagMatcher(commonName) : null,
+  }
+}
+
+/**
+ * Is this story *about* this company, rather than naming it?
+ *
+ * The rows it decides are printed under the company's chart as `in the news`
+ * and marked on its line, and they are what the narration stage is offered
+ * first as the reason a share moved — so a story that only mentions the
+ * company must not pass. Measured on the first run (2026-10-03), the two
+ * looser joins the other layers use both put the wrong story on a card:
  *
  * - **A ticker in `entities[]` is a mention, and sometimes not even that.**
  *   A forum in Baku listed under Microsoft because Microsoft attended; a Saudi
@@ -169,61 +205,89 @@ const LEADING_CONCEPTS = 2
  *      entities, or a tag anywhere in its concepts, or
  *   4. a tag is in one of its first two concepts, which is how a story about
  *      Aramco's pipeline is found when its title names the port.
- * Newest first, and only inside the charted quarter.
+ *
+ * @param {ReturnType<typeof storyFacts>} facts
+ * @param {ReturnType<typeof companyMatcher>} matcher
+ */
+export function isAboutCompany(facts, { wanted, tags, common }) {
+  const named = (text) => tags.some((re) => re.test(text)) || Boolean(common?.test(text))
+  return (
+    facts.subjectMentions.some((s) => wanted.has(s.ticker) && named(s.mention)) ||
+    tags.some((re) => re.test(facts.title)) ||
+    (!facts.judged &&
+      ((Boolean(common?.test(facts.title)) &&
+        ([...wanted].some((t) => facts.stocks.has(t)) || tags.some((re) => re.test(facts.concepts)))) ||
+        tags.some((re) => re.test(facts.leading))))
+  )
+}
+
+/**
+ * `/api/companies.json`: the snapshot with each company's stories and the
+ * desk's account of its share joined on, and the fields only the join needed
+ * left behind.
+ *
+ * **`recent`** is the indicator dispatch's paragraph for `co:<id>` — what
+ * happened to the share and why, where the fortnight's coverage says. It is
+ * left out when the desk wrote none, so the app's fallback to the catalog
+ * sentence fires on absence and never on an empty string.
+ *
+ * **`relatedArticles`** are the stories that paragraph was built from, when
+ * it has any; otherwise the stories about the company (`isAboutCompany`),
+ * newest first, inside the charted quarter. The same rule the strait and
+ * exchange payloads follow (`citedOr` in `build.js`): a list under an account
+ * is the account's evidence.
  *
  * @param {{ generated: string, companies: any[] }} raw
  * @param {any[]} articles  the build's articles, newest first
- * @param {{ now?: number }} [opts]
+ * @param {{ now?: number, dispatch?: Record<string, any> }} [opts]
+ *   `dispatch`: `content/.indicator-dispatch.json`'s `items`.
  */
-export function companiesPayload(raw, articles, { now = Date.now() } = {}) {
+export function companiesPayload(raw, articles, { now = Date.now(), dispatch = {} } = {}) {
   const since = now - COMPANY_STORY_DAYS * 86400_000
-  const ticker = (id) => String(id || '').slice('stocks:'.length).toUpperCase()
   const index = []
+  const rowBySlug = new Map()
   for (const a of articles) {
     const t = Date.parse(a.meta?.date)
     if (!Number.isFinite(t) || t < since) continue
-    const concepts = (a.concepts || []).map((x) => lower(typeof x === 'object' ? x.label : x))
-    const stocks = (Array.isArray(a.meta.entities) ? a.meta.entities : []).filter((e) =>
-      String(e?.indicatorId || '').startsWith('stocks:'),
-    )
-    const judged = Array.isArray(a.meta.subjects)
-    const subjects = new Set(judged ? a.meta.subjects.map(ticker) : [])
+    const row = { slug: a.slug, title: a.title, date: a.meta.date, dateFormatted: a.dateFormatted }
+    rowBySlug.set(a.slug, row)
     index.push({
-      row: { slug: a.slug, title: a.title, date: a.meta.date, dateFormatted: a.dateFormatted },
-      title: lower(a.title),
-      leading: concepts.slice(0, LEADING_CONCEPTS).join(' | '),
-      concepts: concepts.join(' | '),
-      judged,
-      stocks: new Set(stocks.map((e) => ticker(e.indicatorId))),
-      /** The words the model tied to each ticker it called a subject. */
-      subjectMentions: stocks
-        .filter((e) => subjects.has(ticker(e.indicatorId)))
-        .map((e) => ({ ticker: ticker(e.indicatorId), mention: lower(e.mention) })),
+      row,
+      facts: storyFacts({
+        title: a.title,
+        concepts: a.concepts,
+        entities: a.meta.entities,
+        subjects: a.meta.subjects,
+      }),
     })
   }
   return {
     generated: raw.generated,
     companies: (raw.companies || []).map(
       ({ tickers = [], topicTags = [], commonName, ...company }) => {
-        const wanted = new Set(tickers.map((t) => String(t).toUpperCase()))
-        const tags = topicTags.map(tagMatcher)
-        const common = commonName ? tagMatcher(commonName) : null
-        const named = (text) => tags.some((re) => re.test(text)) || Boolean(common?.test(text))
-        const relatedArticles = []
+        const matcher = companyMatcher({ tickers, topicTags, commonName })
+        const about = []
         for (const a of index) {
-          const about =
-            a.subjectMentions.some((s) => wanted.has(s.ticker) && named(s.mention)) ||
-            tags.some((re) => re.test(a.title)) ||
-            (!a.judged &&
-              ((common?.test(a.title) &&
-                ([...wanted].some((t) => a.stocks.has(t)) ||
-                  tags.some((re) => re.test(a.concepts)))) ||
-                tags.some((re) => re.test(a.leading))))
-          if (!about) continue
-          relatedArticles.push(a.row)
-          if (relatedArticles.length >= COMPANY_STORIES) break
+          if (!isAboutCompany(a.facts, matcher)) continue
+          about.push(a.row)
+          if (about.length >= COMPANY_STORIES) break
         }
-        return { ...company, relatedArticles }
+        const d = dispatch?.[`co:${company.id}`]
+        const recent = typeof d?.recent === 'string' ? d.recent.trim() : ''
+        // Resolved against the corpus here, not trusted: the dispatch is a
+        // committed file, and a story can be withdrawn between the run that
+        // wrote it and this build.
+        const cited = recent
+          ? (Array.isArray(d.citations) ? d.citations : [])
+              .map((slug) => rowBySlug.get(slug))
+              .filter(Boolean)
+              .slice(0, COMPANY_STORIES)
+          : []
+        return {
+          ...company,
+          ...(recent ? { recent } : {}),
+          relatedArticles: cited.length ? cited : about,
+        }
       },
     ),
   }

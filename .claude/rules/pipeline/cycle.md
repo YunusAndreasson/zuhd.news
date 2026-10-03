@@ -760,12 +760,37 @@ and three things differ.
   Fifteen of the twenty are dollar shares in New York, which the exchange
   catalog's two assertions cannot tell apart; a ticker reassigned to a fund
   would publish that fund's price under the company's name.
-- **No daily narration.** An exchange gets a paragraph a day from the
-  indicator dispatch; a company carries its catalog `blurb` — what it is, with
-  no rank, price or year in it — and the stories about it. The list is looked
-  up, not followed, and twenty more instruments is twenty more for the model
-  to read a fortnight's coverage against. The app drops a card with nothing
-  under its chart, so a company without a blurb is a company nobody sees.
+- **The companies are in the indicator dispatch, as `co:<id>`, and their
+  `standing` is the catalog's `blurb`.** They were left out for half a day —
+  the list was looked up, not followed, and twenty more instruments is twenty
+  more for the model to read a fortnight's coverage against — until the user
+  put them in the app's top strip, where a reader who taps a share that moved
+  9% in a week is asking why and the card answered what the company is. So
+  `narrate-indicators.js` writes each a `recent`, about +18% on a pass that
+  took ~500–570 s of its 1,500 (2026-09-30 to 10-03); the first run after a
+  deploy narrates all twenty as `--new-only`.
+  - `company` is in `BLURB_IS_DEFINITION`, beside `chokepoint`: the blurb was
+    written for exactly that slot, it is what the card falls back to, and
+    `companies.test.js` holds each to the 240-character cap — an over-cap
+    standing rejects the item, which would leave the company with no account
+    and re-ask the model for one every day.
+  - **Its first tier of coverage is the stories *about* the company**
+    (`isAboutCompany`, the rule the build lists stories by), not an
+    `entities[]` hit: for a share that is a mention, and offered first a
+    mention is what the model reaches for when asked why a price moved. The
+    prompt's `company` paragraph says the same from its side: a customer, a
+    supplier or a move in the whole market does not explain this share, and
+    `recent` is empty when nothing in the input is about the company's own
+    business.
+  - Tried before shipping on four companies, against the laptop's corpus and
+    no feed window: Nvidia's account was its buyback and its Gulf model,
+    Apple's ended "None of it explains the share's climb over the window",
+    Aramco's was the Hormuz blockade and the Yanbu shutdown, and ASML's, with
+    nothing to go on, was empty.
+  - The build puts `recent` on `/api/companies.json` (absent when empty, never
+    blank) and lists the account's own citations under it; with no account,
+    the stories about the company. The app drops a card with nothing under
+    its chart, so a company without a blurb is a company nobody sees.
 - **The list is editorial and fixed**: the twenty largest by market value as
   ranked on 2026-10-03, home listings (TSMC is `2330.TW` in Taiwan dollars, so
   the week's move is the share's and not the exchange rate's). The quote

@@ -1,8 +1,9 @@
 #!/usr/bin/env node
 // Indicator dispatch. For every instrument the site shows a number for — the
-// trends indicators, the shipping chokepoints and the stock exchanges — build a
-// grounded INPUT bundle and ask Opus for two sentences of prose: what the thing
-// *is*, and what has actually happened to it recently and why.
+// trends indicators, the shipping chokepoints, the stock exchanges and the
+// largest companies' shares — build a grounded INPUT bundle and ask Opus for
+// two sentences of prose: what the thing *is*, and what has actually happened
+// to it recently and why.
 //
 // This exists because the rail told readers that something moved and never why.
 // Five sentences of hand-written copy covered 57 indicators; one of them, shown
@@ -47,6 +48,7 @@ import { callIndicatorModel } from './lib/indicator-model.js'
 import { runWithConcurrency } from './lib/concurrency.js'
 import { promptEcho, promptExamples, seriesEchoes, validateNumbers, validateProperNouns } from './lib/grounding.js'
 import { matchesAnyTag } from './lib/entity-registry.js'
+import { companyMatcher, isAboutCompany, storyFacts } from './lib/companies.js'
 import { loadArticles, loadFeedWindow } from './lib/coverage-window.js'
 import { argAt, hasFlag } from './lib/argv.js'
 import { ROOT } from './lib/paths.js'
@@ -64,6 +66,7 @@ if (hasFlag('market-signals')) {
 const CACHE_PATH = join(ROOT, 'content', '.indicator-dispatch.json')
 const CHOKEPOINTS_PATH = join(ROOT, 'content', '.chokepoints.json')
 const MARKETS_PATH = join(ROOT, 'content', '.markets.json')
+const COMPANIES_PATH = join(ROOT, 'content', '.companies.json')
 const LEDGER_PATH = join(ROOT, 'content', '.story-ledger.json')
 const PROMPT_PATH = join(ROOT, 'scripts', 'narrate-indicators-prompt.md')
 
@@ -102,8 +105,14 @@ const STANDING_CAP = 240
  * material it is told to keep — the editorial claim survives, the
  * identification goes in front of it, and the catalog is still the fallback if
  * the model's sentence is missing or over cap.
+ *
+ * **A company's blurb is the definition too** (2026-10-03). It was written for
+ * exactly this slot — what the company is, with no rank, price or year in it
+ * (`lib/company-metadata.js`) — and it is the sentence the app's card falls
+ * back to on a day with nothing to say, so it has to be the one the catalog
+ * holds and not a paraphrase that drifts from it.
  */
-const BLURB_IS_DEFINITION = new Set(['chokepoint'])
+const BLURB_IS_DEFINITION = new Set(['chokepoint', 'company'])
 const RECENT_CAP = 360
 
 const FORCE = process.env.NARRATE_INDICATORS_FORCE === '1'
@@ -171,6 +180,7 @@ const trendsPath = latestTrendsPath()
 const trends = trendsPath ? JSON.parse(readFileSync(trendsPath, 'utf8')) : { indicators: [] }
 const chokepoints = readJson(CHOKEPOINTS_PATH)?.chokepoints || []
 const exchanges = readJson(MARKETS_PATH)?.exchanges || []
+const companies = readJson(COMPANIES_PATH)?.companies || []
 const ledger = readJson(LEDGER_PATH)?.stories || []
 
 // `loadArticles`/`loadFeedWindow` live in `lib/coverage-window.js` — the same
@@ -291,6 +301,57 @@ for (const ex of exchanges) {
   })
 }
 
+/** Each article's side of the company join, read once: twenty companies ask. */
+const articleFacts = new WeakMap()
+const factsOf = (article) => {
+  let facts = articleFacts.get(article)
+  if (!facts) {
+    facts = storyFacts(article)
+    articleFacts.set(article, facts)
+  }
+  return facts
+}
+
+// The largest companies' shares (`fetch-companies.js`). They joined this pass
+// when they took slots in the app's top strip: a reader who taps a share that
+// moved 9% in a week is asking why, and the card answered what the company is.
+for (const co of companies) {
+  if (!co?.id) continue
+  const values = (co.series?.values || []).filter(Number.isFinite)
+  if (values.length < 2) continue
+  const last = values[values.length - 1]
+  const prior = values[values.length - 2]
+  const matcher = companyMatcher(co)
+  items.push({
+    key: `co:${co.id}`,
+    klass: 'company',
+    identity: {
+      label: co.name,
+      unit: `${co.currency} a share`,
+      source: co.sourceLabel || 'Yahoo Finance',
+      cadence: 'daily',
+      business: co.about || '',
+      country: co.iso2 || '',
+    },
+    series: {
+      windowDays: values.length,
+      latest: sig4(last),
+      dayChangePct: sig4(prior ? ((last - prior) / Math.abs(prior)) * 100 : null),
+      changePctOverSeries: sig4(changePct(values)),
+      extremes: extremes(co.series?.values, co.series?.periods),
+      asOf: co.asOf || '',
+    },
+    wikiTitle: null,
+    topicTags: co.topicTags || [],
+    catalogBlurb: co.blurb || null,
+    // The first tier of coverage is the stories *about* the company, by the
+    // rule the build lists them under its chart with. An `entities[]` hit is
+    // only a mention here — a forum the company attended — and offered first,
+    // a mention is what the model reaches for when asked why a share moved.
+    about: (article) => isAboutCompany(factsOf(article), matcher),
+  })
+}
+
 const selected = items
   .filter((it) => (ONLY ? it.key === ONLY : true))
   .filter((it) => (NEW_ONLY ? !cache.items[it.key]?.standing : true))
@@ -311,7 +372,9 @@ console.log(
  * the citation list from filling with stories that merely say "sanctions".
  */
 const coverageFor = (item) => {
-  const direct = articles.filter((a) => a.entityIds.includes(item.key))
+  const direct = articles.filter((a) =>
+    item.about ? item.about(a) : a.entityIds.includes(item.key),
+  )
   const tagged = articles.filter(
     (a) => !direct.includes(a) && matchesAnyTag(item.topicTags, a.hay),
   )
@@ -599,7 +662,7 @@ const PRUNE_FLOOR = 0.6
 // Wikipedia series are re-picked from our own concepts every cycle, so without
 // this the file grows a tail of instruments the site no longer shows.
 //
-// The daily pass only. `items` is assembled from three payloads that each
+// The daily pass only. `items` is assembled from four payloads that each
 // degrade to `[]` when their file is unreadable, so a prune is only as safe as
 // the weakest source that ran — and a `--new-only` pass, which happens four
 // more times a day, has nothing to gain from bookkeeping the 04:00 run does
