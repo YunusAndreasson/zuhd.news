@@ -14,6 +14,7 @@
 //   3. Add registry entries here (skip step 3 for dynamic sources).
 // The fetch-trends.js orchestrator iterates SOURCES — no new code needed.
 
+import { fetchBisPolicyRates } from './trends-sources/bis.js'
 import { fetchFredSeries } from './trends-sources/fred.js'
 import { fetchOerRates } from './trends-sources/oer.js'
 import { fetchPolymarketTop } from './trends-sources/polymarket.js'
@@ -57,6 +58,11 @@ export const SOURCES = {
     requiredEnv: [],
     mode: 'perIndicator',
   },
+  bis: {
+    fetcher: fetchBisPolicyRates,
+    requiredEnv: [],
+    mode: 'batched',
+  },
   wikipedia: {
     fetcher: fetchWikipediaTrendingConcepts,
     requiredEnv: [],
@@ -70,8 +76,8 @@ export const SOURCES = {
  *  @property {string} id            Stable ID used by editor + logs.
  *  @property {string} label         Display title (TrendBlock.label).
  *  @property {string} [unit]        Axis unit (TrendBlock.unit).
- *  @property {'fred'|'oer'|'polymarket'|'portwatch'|'crypto'|'wikipedia'} source
- *  @property {string} [seriesId]    Source-specific identifier (FRED series, OER currency, etc.)
+ *  @property {'fred'|'oer'|'polymarket'|'portwatch'|'crypto'|'wikipedia'|'bis'} source
+ *  @property {string} [seriesId]    Source-specific identifier (FRED series, OER currency, BIS country code, etc.)
  *  @property {string} [field]       PortWatch only: which vessel column to read
  *        (`n_container`, `n_tanker`, …). Read by trends-sources/portwatch.js,
  *        which falls back to `n_total` when it is absent or unrecognised — and
@@ -227,6 +233,156 @@ export const INDICATORS = [
     countryTags: ['US'],
     defaultHighlight: 'last',
     sourceLabel: 'FRED · BLS',
+  },
+  {
+    // The euro area's own print, so the app's rates list is not the US alone.
+    // The harmonised index, as a year-on-year rate (`pc1`), for the reason
+    // `us-cpi` is one. Tags name the euro area, as that one's name the US.
+    id: 'ez-cpi',
+    label: 'Eurozone inflation (y/y)',
+    unit: '%',
+    source: 'fred',
+    seriesId: 'CP0000EZ19M086NEST',
+    units: 'pc1',
+    cadence: 'monthly',
+    topicTags: ['eurozone inflation', 'euro zone inflation', 'euro area inflation', 'euro-area inflation', 'hicp'],
+    countryTags: ['EU'],
+    defaultHighlight: 'last',
+    sourceLabel: 'FRED · Eurostat',
+  },
+
+  // ── What borrowing costs: two more US rates (FRED) ─────────────────────────
+  //
+  // Added 2026-10-03 with the policy rates below, when the app gave rates a
+  // list of their own (they shared one with crypto, and it held five rows).
+  {
+    id: 'us-2y',
+    label: 'US 2y Treasury',
+    unit: '%',
+    source: 'fred',
+    seriesId: 'DGS2',
+    cadence: 'daily',
+    topicTags: ['2-year treasury', 'two-year treasury', '2-year yield', 'two-year yield', 'yield curve'],
+    countryTags: ['US'],
+    defaultHighlight: 'last',
+    sourceLabel: 'FRED · Board of Governors',
+  },
+  {
+    // Weekly (Freddie Mac's Thursday survey), carried as `daily` the way
+    // `us-gas-retail` is: ninety days is thirteen prints, each with its day.
+    id: 'us-mortgage',
+    label: 'US 30-year mortgage rate',
+    unit: '%',
+    source: 'fred',
+    seriesId: 'MORTGAGE30US',
+    cadence: 'daily',
+    topicTags: ['us mortgage rate', 'us mortgage rates', 'u.s. mortgage rates', '30-year mortgage', 'freddie mac'],
+    countryTags: ['US'],
+    defaultHighlight: 'last',
+    sourceLabel: 'FRED · Freddie Mac',
+  },
+
+  // ── Policy rates beyond the Fed and the ECB (BIS, keyless) ─────────────────
+  //
+  // Each central bank's own rate, collected daily by the BIS and drawn as the
+  // Fed's is: a point a month over two years (`trends-sources/bis.js`). The
+  // Bank of England and the Bank of Japan have decision dates in the event
+  // catalog, so their cards in the app can now draw the rate being decided.
+  //
+  // Named for the country, not the bank: `Turkey interest rate` needs no
+  // finance to read, and `TCMB one-week repo` does. `sourceLabel` carries the
+  // bank. Tags name the bank or the decision and never the country alone —
+  // `attach-indicators.js` matches tags alone, and a bare `turkey` would hang
+  // a policy rate off every story about Ankara.
+  //
+  // Not here: India (the BIS daily series ran 72 days behind on 2026-10-03,
+  // past the fetcher's staleness bar), and Pakistan, Egypt and Nigeria, which
+  // the BIS does not collect.
+  {
+    id: 'boe-rate',
+    label: 'UK interest rate',
+    unit: '%',
+    source: 'bis',
+    seriesId: 'GB',
+    cadence: 'monthly',
+    topicTags: ['bank of england', 'boe', 'bank rate', 'uk interest rate', 'uk interest rates', 'threadneedle street'],
+    countryTags: ['GB'],
+    defaultHighlight: 'last',
+    sourceLabel: 'BIS · Bank of England',
+  },
+  {
+    id: 'boj-rate',
+    label: 'Japan interest rate',
+    unit: '%',
+    source: 'bis',
+    seriesId: 'JP',
+    cadence: 'monthly',
+    topicTags: ['bank of japan', 'boj', 'japan interest rate', 'japan interest rates', 'ueda'],
+    countryTags: ['JP'],
+    defaultHighlight: 'last',
+    sourceLabel: 'BIS · Bank of Japan',
+  },
+  {
+    id: 'tcmb-rate',
+    label: 'Turkey interest rate',
+    unit: '%',
+    source: 'bis',
+    seriesId: 'TR',
+    cadence: 'monthly',
+    topicTags: ['turkish central bank', 'turkey central bank', "turkey's central bank", 'tcmb', 'turkey interest rate', 'turkish interest rates'],
+    countryTags: ['TR'],
+    defaultHighlight: 'last',
+    sourceLabel: 'BIS · Central Bank of Türkiye',
+  },
+  {
+    // The one-year loan prime rate: what the BIS records as China's policy
+    // rate since 2019, and the one Chinese lenders price loans off.
+    id: 'pboc-rate',
+    label: 'China interest rate',
+    unit: '%',
+    source: 'bis',
+    seriesId: 'CN',
+    cadence: 'monthly',
+    topicTags: ["people's bank of china", 'pboc', 'loan prime rate', 'china interest rate', 'china interest rates', 'china rate cut'],
+    countryTags: ['CN'],
+    defaultHighlight: 'last',
+    sourceLabel: "BIS · People's Bank of China",
+  },
+  {
+    id: 'cbr-rate',
+    label: 'Russia interest rate',
+    unit: '%',
+    source: 'bis',
+    seriesId: 'RU',
+    cadence: 'monthly',
+    topicTags: ['bank of russia', 'russian central bank', "russia's central bank", 'key rate', 'nabiullina', 'russia interest rate'],
+    countryTags: ['RU'],
+    defaultHighlight: 'last',
+    sourceLabel: 'BIS · Bank of Russia',
+  },
+  {
+    id: 'bcb-rate',
+    label: 'Brazil interest rate',
+    unit: '%',
+    source: 'bis',
+    seriesId: 'BR',
+    cadence: 'monthly',
+    topicTags: ['selic', 'copom', 'brazilian central bank', "brazil's central bank", 'banco central do brasil', 'brazil interest rate'],
+    countryTags: ['BR'],
+    defaultHighlight: 'last',
+    sourceLabel: 'BIS · Central Bank of Brazil',
+  },
+  {
+    id: 'bi-rate',
+    label: 'Indonesia interest rate',
+    unit: '%',
+    source: 'bis',
+    seriesId: 'ID',
+    cadence: 'monthly',
+    topicTags: ['bank indonesia', "indonesia's central bank", 'indonesian central bank', 'bi rate', 'indonesia interest rate'],
+    countryTags: ['ID'],
+    defaultHighlight: 'last',
+    sourceLabel: 'BIS · Bank Indonesia',
   },
 
   // ── Tier 1: ummah currency basket (OER) ────────────────────────────────────
@@ -475,6 +631,108 @@ export const INDICATORS = [
     seriesId: 'monero',
     cadence: 'daily',
     topicTags: ['monero', 'xmr', 'privacy coin', 'ransomware', 'darknet', 'sanctions evasion', 'ddos payment', 'anonymity', 'delisting'],
+    defaultHighlight: 'last',
+    sourceLabel: 'CoinGecko',
+  },
+
+  // ── The largest other coins (CoinGecko) ────────────────────────────────────
+  //
+  // Added 2026-10-03, when the app gave crypto a list of its own and it held
+  // three rows. With Bitcoin and Ethereum these are the ten largest coins by
+  // market value on that day that are not pegged to something else — no
+  // dollar stablecoin (their price is the peg, so there is no line to draw)
+  // and no tokenised loan book. Monero, above, is eleventh and stays for the
+  // coverage it draws. A ranking drifts: re-check it when one of these has
+  // plainly left the top of the table, not on a schedule.
+  //
+  // Tags are the coin's own name and ticker. `crypto` is on Bitcoin and
+  // Ethereum already, and eight more coins answering to it would offer the
+  // writer ten charts for one story.
+  {
+    id: 'bnb',
+    label: 'BNB',
+    unit: '$',
+    source: 'crypto',
+    seriesId: 'binancecoin',
+    cadence: 'daily',
+    topicTags: ['bnb', 'binance coin', 'bnb chain', 'binance smart chain'],
+    defaultHighlight: 'last',
+    sourceLabel: 'CoinGecko',
+  },
+  {
+    id: 'xrp',
+    label: 'XRP',
+    unit: '$',
+    source: 'crypto',
+    seriesId: 'ripple',
+    cadence: 'daily',
+    topicTags: ['xrp', 'ripple', 'xrp ledger'],
+    defaultHighlight: 'last',
+    sourceLabel: 'CoinGecko',
+  },
+  {
+    id: 'sol',
+    label: 'Solana',
+    unit: '$',
+    source: 'crypto',
+    seriesId: 'solana',
+    cadence: 'daily',
+    topicTags: ['solana'],
+    defaultHighlight: 'last',
+    sourceLabel: 'CoinGecko',
+  },
+  {
+    id: 'trx',
+    label: 'Tron',
+    unit: '$',
+    source: 'crypto',
+    seriesId: 'tron',
+    cadence: 'daily',
+    topicTags: ['tron network', 'tron blockchain', 'trx', 'justin sun'],
+    defaultHighlight: 'last',
+    sourceLabel: 'CoinGecko',
+  },
+  {
+    id: 'zec',
+    label: 'Zcash',
+    unit: '$',
+    source: 'crypto',
+    seriesId: 'zcash',
+    cadence: 'daily',
+    topicTags: ['zcash', 'zec'],
+    defaultHighlight: 'last',
+    sourceLabel: 'CoinGecko',
+  },
+  {
+    id: 'hype',
+    label: 'Hyperliquid',
+    unit: '$',
+    source: 'crypto',
+    seriesId: 'hyperliquid',
+    cadence: 'daily',
+    topicTags: ['hyperliquid'],
+    defaultHighlight: 'last',
+    sourceLabel: 'CoinGecko',
+  },
+  {
+    id: 'doge',
+    label: 'Dogecoin',
+    unit: '$',
+    source: 'crypto',
+    seriesId: 'dogecoin',
+    cadence: 'daily',
+    topicTags: ['dogecoin', 'doge coin'],
+    defaultHighlight: 'last',
+    sourceLabel: 'CoinGecko',
+  },
+  {
+    id: 'link',
+    label: 'Chainlink',
+    unit: '$',
+    source: 'crypto',
+    seriesId: 'chainlink',
+    cadence: 'daily',
+    topicTags: ['chainlink'],
     defaultHighlight: 'last',
     sourceLabel: 'CoinGecko',
   },

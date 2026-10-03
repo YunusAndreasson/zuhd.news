@@ -103,9 +103,13 @@ test('every series takes a slot before any takes a second', () => {
     ],
     { slots: 4 },
   )
+  // The yen headline names the Bank of Japan, whose rate is a series of its
+  // own since 2026-10-03 (`boj-rate`); it was filed under the yen before.
+  // Either way it is one more series, and takes its slot before the Fed's
+  // second.
   assert.deepEqual(
     picked.map((g) => seriesOf(g[0].title)),
-    ['fed-funds', 'cp:hormuz', 'fx-jpy', 'fed-funds'],
+    ['fed-funds', 'cp:hormuz', 'boj-rate', 'fed-funds'],
   )
 })
 
