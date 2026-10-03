@@ -1,7 +1,9 @@
 import { topojsonNameFromCode } from '@shared/countries/iso';
 import type { ConflictEvent, GdacsAlert } from '@shared/types';
+import { type ConflictWeek, conflictWeekByCountry, weekWindow } from './conflict-week';
 import { observationDate } from './data-freshness';
-import type { FamineArea, GenocideSituation, ThermalEvent } from './overlays';
+import { hungerRows } from './famine-totals';
+import type { FamineArea, FamineCountryTotal, GenocideSituation, ThermalEvent } from './overlays';
 import { displayCountryName } from './place-names';
 import { LEADERS_LINE, LEADERS_SEPARATOR, leadNames } from './row-leaders';
 
@@ -12,7 +14,16 @@ export interface HazardLayers {
   famine: readonly FamineArea[];
   genocide: readonly GenocideSituation[];
   fires: readonly ThermalEvent[];
+  /** Each country's caseload, where the site publishes it: the famine list
+   *  leads with these, so its row does too. */
+  famineTotals?: readonly FamineCountryTotal[];
+  /** The source's whole week, of which `conflict` is the last day: the
+   *  conflict list holds the week, so its row names the week's deadliest. */
+  conflictWeek?: ConflictWeek | null;
 }
+
+/** The layers themselves: the keys of `HazardLayers` that are a list of marks. */
+type HazardLayerKey = 'disasters' | 'conflict' | 'famine' | 'genocide' | 'fires';
 
 /** A kind of alert, counted: `1 flood`, `27 earthquakes`. */
 const ALERT_KIND: Readonly<Record<GdacsAlert['eventtype'], readonly [string, string]>> = {
@@ -53,7 +64,14 @@ function disasterLead(alerts: readonly GdacsAlert[]): string[] {
  * IDPs (Ceel Barde, Rab Dhuure, Tayeeglow and Wajid)`, and ninety of them are
  * four countries.
  */
-function famineLead(areas: readonly FamineArea[]): string[] {
+function famineLead(
+  areas: readonly FamineArea[],
+  totals: readonly FamineCountryTotal[] = [],
+): string[] {
+  // By people where the site counts them: by areas, Somalia's hundred small
+  // districts led a Sudan with three times its caseload.
+  const byPeople = hungerRows(totals);
+  if (byPeople.length > 0) return leadNames(byPeople.map((row) => row.name));
   const byCountry = new Map<string, { phase: number; count: number }>();
   for (const area of areas) {
     const country = area.iso2 ? topojsonNameFromCode(area.iso2) : undefined;
@@ -74,7 +92,16 @@ function famineLead(areas: readonly FamineArea[]): string[] {
  * publishes weeks behind, so the day stays on the row: without it the line
  * reads as today's.
  */
-function conflictLead(events: readonly ConflictEvent[]): string[] {
+function conflictLead(events: readonly ConflictEvent[], week?: ConflictWeek | null): string[] {
+  if (week) {
+    // The week's dates in place of `as of`: the line is the week's toll.
+    const dates = weekWindow(week);
+    const countries = leadNames(
+      conflictWeekByCountry(week.events).map((row) => row.name),
+      LEADERS_LINE - (dates ? dates.length + LEADERS_SEPARATOR.length : 0),
+    );
+    return countries.length > 0 && dates ? [...countries, dates] : countries;
+  }
   let latest = '';
   for (const e of events) if (e.eventDate > latest) latest = e.eventDate;
   const day = observationDate(latest);
@@ -93,15 +120,15 @@ function conflictLead(events: readonly ConflictEvent[]): string[] {
  * order. Empty where the layer has nothing a line can name, and the row keeps
  * its standing sentence.
  */
-export function hazardLead(key: keyof HazardLayers, hazards: HazardLayers): string {
+export function hazardLead(key: HazardLayerKey, hazards: HazardLayers): string {
   const parts = ((): string[] => {
     switch (key) {
       case 'genocide':
         return leadNames(hazards.genocide.map((g) => g.name));
       case 'conflict':
-        return conflictLead(hazards.conflict);
+        return conflictLead(hazards.conflict, hazards.conflictWeek);
       case 'famine':
-        return famineLead(hazards.famine);
+        return famineLead(hazards.famine, hazards.famineTotals);
       case 'disasters':
         return disasterLead(hazards.disasters);
       case 'fires':

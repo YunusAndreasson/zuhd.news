@@ -8,6 +8,7 @@ import Animated from 'react-native-reanimated';
 import { MAX_FONT_SCALE, OPACITY, SPACING } from '../constants/theme';
 import { useSheetBackNavigation } from '../hooks/useSheetBackNavigation';
 import { useTheme } from '../hooks/useTheme';
+import type { CountryFact } from '../lib/country-hazards';
 import { parseSeverityHero } from '../lib/gdacs';
 import { displayCountryName, displayLocation } from '../lib/place-names';
 import { severityTint } from '../lib/severity';
@@ -305,6 +306,12 @@ interface CountryBodyProps {
    * screen readers, so these rows are the accessible path to those marks.
    */
   hazards?: CountryHazard[];
+  /**
+   * What the hazard sources count in the country as a whole — its people in
+   * crisis, its week of conflict (`countryFacts`). Statements with their
+   * source and dates, not rows: they open nothing.
+   */
+  facts?: CountryFact[];
   /** A metric row opens that metric's ranking, with this country marked. */
   onRankingPress: (metric: MetricKey) => void;
 }
@@ -356,6 +363,7 @@ export const CountryBody = memo(function CountryBody({
   activeAlerts,
   onAlertPress,
   hazards,
+  facts,
   onRankingPress,
 }: CountryBodyProps) {
   const rankedRows = metricRows(country);
@@ -398,6 +406,24 @@ export const CountryBody = memo(function CountryBody({
           ))}
         </Animated.View>
       )}
+      {facts?.map((fact) => (
+        <Animated.View key={fact.key} entering={staggerEnter(3)} style={styles.alertsSection}>
+          <Text
+            variant="labelSm"
+            tone="secondary"
+            accessibilityRole="header"
+            style={styles.alertsHeading}
+          >
+            {fact.heading}
+          </Text>
+          <Text variant="bodyEmphasis" tone="emphasis" selectable>
+            {fact.title}
+          </Text>
+          <Text variant="labelXs" tone="secondary" style={styles.factDetail}>
+            {fact.detail}
+          </Text>
+        </Animated.View>
+      ))}
       {hazards && hazards.length > 0 && (
         <Animated.View entering={staggerEnter(3)} style={styles.alertsSection}>
           <Text
@@ -423,6 +449,7 @@ export const CountrySheet = memo(function CountrySheet({
   activeAlerts,
   onAlertPress,
   hazards,
+  facts,
   bottomInset,
   onDismiss,
 }: CountrySheetProps) {
@@ -474,6 +501,7 @@ export const CountrySheet = memo(function CountrySheet({
             activeAlerts={activeAlerts}
             onAlertPress={onAlertPress}
             hazards={hazards}
+            facts={facts}
             onRankingPress={setActiveRanking}
           />
         </SheetScrollView>
@@ -570,6 +598,9 @@ const styles = StyleSheet.create({
   },
   alertsHeading: {
     marginBottom: SPACING.xs,
+  },
+  factDetail: {
+    marginTop: SPACING.xxs,
   },
   alertChip: {
     flexDirection: 'row',

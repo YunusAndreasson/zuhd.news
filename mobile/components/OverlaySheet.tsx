@@ -6,8 +6,9 @@ import Animated from 'react-native-reanimated';
 import { SPACING } from '../constants/theme';
 import { useTheme } from '../hooks/useTheme';
 import { articleTime, formatTimeAgo } from '../lib/article-utils';
-import { formatCount, formatNumber } from '../lib/cards/format';
+import { formatCount } from '../lib/cards/format';
 import { MONTH_ABBR } from '../lib/date-format';
+import { areaCaseload } from '../lib/famine-totals';
 import type { RiverArticle } from '../lib/news-order';
 import { openExternal } from '../lib/open-link';
 import { type OverlaySelection, thermalPlace } from '../lib/overlays';
@@ -120,6 +121,8 @@ export const OverlayBody = memo(function OverlayBody({
         : undefined,
   ]);
 
+  const caseload = overlay?.kind === 'famine' ? areaCaseload(overlay.area.pop) : [];
+
   const enter = makeStaggerEnter();
 
   return (
@@ -133,14 +136,13 @@ export const OverlayBody = memo(function OverlayBody({
             tint={colors.markFamine}
             secondary={overlay.area.area}
           />
-          {overlay.area.pop?.p3plus ? (
+          {/* The people, then how many of them are in the two graver phases:
+              the second line was downloaded all along and never printed
+              (`areaCaseload`). */}
+          {caseload.length > 0 ? (
             <Animated.View entering={enter()} style={styles.block}>
               <Text variant="body" selectable>
-                {`${formatNumber(overlay.area.pop.p3plus)} people in crisis or worse${
-                  overlay.area.pop.total
-                    ? `, of ${formatNumber(overlay.area.pop.total)} analysed`
-                    : ''
-                }.`}
+                {caseload.join(' ')}
               </Text>
             </Animated.View>
           ) : null}

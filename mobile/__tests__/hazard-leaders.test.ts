@@ -70,6 +70,38 @@ describe('hazardLead', () => {
     );
   });
 
+  it('names the week’s deadliest countries and its dates, where the week is held', () => {
+    const events = [
+      { country: 'Nigeria', fatalities: 30, eventDate: '2026-08-28' },
+      { country: 'Ukraine', fatalities: 38, eventDate: '2026-08-28' },
+      { country: 'Nigeria', fatalities: 26, eventDate: '2026-08-31' },
+      { country: 'Yemen', fatalities: 29, eventDate: '2026-08-29' },
+    ] as ConflictEvent[];
+    const conflictWeek = { windowStart: '2026-08-25', windowEnd: '2026-08-31', events };
+    // Nigeria's two events outweigh Ukraine's one: the week is a toll, not a
+    // single worst day.
+    expect(hazardLead('conflict', layers({ conflict: events.slice(2, 3), conflictWeek }))).toBe(
+      'Nigeria · Ukraine · Yemen · Aug 25–31',
+    );
+  });
+
+  it('leads famine by people where the site counts them, areas or not', () => {
+    const total = (iso3: string, iso2: string, p3plus: number) => ({
+      iso3,
+      iso2,
+      vintage: 'Jan 2026',
+      phase: 4,
+      areas: 1,
+      analysed: p3plus * 2,
+      p3plus,
+      p4: 0,
+      p5: 0,
+    });
+    const famine = [{ iso2: 'SO', phase: 4, area: 'Bakool' }] as FamineArea[];
+    const famineTotals = [total('SDN', 'SD', 19_000_000), total('PSE', 'PS', 1_200_000)];
+    expect(hazardLead('famine', layers({ famine, famineTotals }))).toBe('Sudan · Palestine');
+  });
+
   it('names Red and Orange alerts, gravest first', () => {
     const disasters = [
       alert('WF', 'Green', 'Forest fires in Brazil'),

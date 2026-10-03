@@ -3,7 +3,7 @@ import type { Category, ConflictEvent, GdacsAlert, GdacsDetail } from '@shared/t
 import { memo, type ReactNode, useCallback, useMemo } from 'react';
 import { StyleSheet } from 'react-native';
 import type { SwipeCard } from '../lib/cards/rank';
-import { alertsInCountry, marksInCountry } from '../lib/country-hazards';
+import { alertsInCountry, countryFacts, marksInCountry } from '../lib/country-hazards';
 import type { RiverArticle } from '../lib/news-order';
 import type { OverlaySelection } from '../lib/overlays';
 import { displayCountryName } from '../lib/place-names';
@@ -173,6 +173,10 @@ function CountryPage({
       })),
     [name, hazards.genocide, hazards.famine, onOpen],
   );
+  const facts = useMemo(
+    () => countryFacts(name, hazards.famineTotals, hazards.conflictWeek),
+    [name, hazards.famineTotals, hazards.conflictWeek],
+  );
   const openAlert = useCallback((alert: GdacsAlert) => onOpen({ kind: 'alert', alert }), [onOpen]);
   const openRanking = useCallback(
     (metric: MetricKey) => onOpen({ kind: 'ranking', metric, country: name }),
@@ -185,6 +189,7 @@ function CountryPage({
         activeAlerts={alerts}
         onAlertPress={openAlert}
         hazards={marks}
+        facts={facts}
         onRankingPress={openRanking}
       />
     </SheetScrollView>

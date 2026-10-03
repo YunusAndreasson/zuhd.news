@@ -1,6 +1,13 @@
 import { topojsonNameFromCode } from '@shared/countries/iso';
 import type { GdacsAlert } from '@shared/types';
-import type { FamineArea, GenocideSituation, OverlaySelection } from './overlays';
+import { type ConflictWeek, countryWeekFor, countryWeekLine, weekWindow } from './conflict-week';
+import { famineTotalFor, hungerLine } from './famine-totals';
+import type {
+  FamineArea,
+  FamineCountryTotal,
+  GenocideSituation,
+  OverlaySelection,
+} from './overlays';
 
 /**
  * What the globe marks inside one country, for the country's page — the
@@ -57,4 +64,42 @@ export function marksInCountry(
     });
   }
   return rows;
+}
+
+export interface CountryFact {
+  key: string;
+  /** The section's label: `hunger`, `conflict`. */
+  heading: string;
+  title: string;
+  /** Whose count it is, and of when. */
+  detail: string;
+}
+
+/**
+ * What the hazard sources count in a country as a whole: its people in Crisis
+ * or worse, and its week of conflict. Statements, not marks — they open
+ * nothing, and a country can have one with no mark on the globe at all (Gaza's
+ * 1.2 million, with no area over the famine layer's bar).
+ *
+ * Each carries its source and its dates: the IPC's analysis is months old and
+ * the conflict week about five weeks behind.
+ */
+export function countryFacts(
+  name: string,
+  famineTotals: readonly FamineCountryTotal[],
+  conflictWeek: ConflictWeek | null | undefined,
+): CountryFact[] {
+  const facts: CountryFact[] = [];
+  const total = famineTotalFor(name, famineTotals);
+  if (total) facts.push({ key: 'hunger', heading: 'hunger', ...hungerLine(total) });
+  const week = countryWeekFor(name, conflictWeek);
+  if (week && conflictWeek) {
+    facts.push({
+      key: 'conflict',
+      heading: 'conflict',
+      title: countryWeekLine(week),
+      detail: `${weekWindow(conflictWeek)}, the latest week from UCDP`,
+    });
+  }
+  return facts;
 }

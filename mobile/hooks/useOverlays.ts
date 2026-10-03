@@ -1,6 +1,12 @@
 import { useMemo } from 'react';
 import { API_SNAPSHOTS } from '../lib/api-snapshots';
-import type { FamineArea, GenocideSituation, ThermalEvent } from '../lib/overlays';
+import { famineTotalsOf } from '../lib/famine-totals';
+import type {
+  FamineArea,
+  FamineCountryTotal,
+  GenocideSituation,
+  ThermalEvent,
+} from '../lib/overlays';
 import { useApiJson } from './useApiJson';
 
 /**
@@ -17,6 +23,17 @@ const EMPTY_GENOCIDE: GenocideSituation[] = [];
 export function useFamineAreas(): FamineArea[] {
   const data = useApiJson(API_SNAPSHOTS.famine);
   return data?.areas ?? EMPTY_FAMINE;
+}
+
+/**
+ * Each country's caseload, largest first — every analysed area's people, not
+ * only the areas grave enough to be marks. Empty on a site that publishes
+ * none; kept by the snapshot, so an arrival that changes nothing changes
+ * nothing here.
+ */
+export function useFamineTotals(): FamineCountryTotal[] {
+  const data = useApiJson(API_SNAPSHOTS.famine);
+  return useMemo(() => famineTotalsOf(data?.totals), [data]);
 }
 
 export function useThermalEvents(): ThermalEvent[] {

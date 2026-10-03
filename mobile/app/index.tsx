@@ -71,7 +71,12 @@ import { useMarketSignals } from '../hooks/useMarketSignals';
 import { useMarkets } from '../hooks/useMarkets';
 import { useOffline } from '../hooks/useOffline';
 import { useOnboardingHints } from '../hooks/useOnboardingHints';
-import { useFamineAreas, useGenocideSituations, useThermalEvents } from '../hooks/useOverlays';
+import {
+  useFamineAreas,
+  useFamineTotals,
+  useGenocideSituations,
+  useThermalEvents,
+} from '../hooks/useOverlays';
 import { usePendingNotification } from '../hooks/usePendingNotification';
 import { useReadTracking } from '../hooks/useReadTracking';
 import { useStoryOpener } from '../hooks/useStoryOpener';
@@ -92,7 +97,8 @@ import { buildRankedInstruments } from '../lib/cards/sections';
 import type { CardDelta } from '../lib/cards/types';
 import { exchangeMove } from '../lib/cards/week-move';
 import { companyGauges } from '../lib/companies';
-import { alertsInCountry, marksInCountry } from '../lib/country-hazards';
+import { conflictWeekOf } from '../lib/conflict-week';
+import { alertsInCountry, countryFacts, marksInCountry } from '../lib/country-hazards';
 import { computeDeckLayout, openHeightNeedsMeasuring, openStoryHeight } from '../lib/deck-layout';
 import { getSnapshot as getFound, markFound, pruneFound, useFoundSlugs } from '../lib/found-store';
 import { markLanded, spendNew, useFreshSlugs } from '../lib/fresh-store';
@@ -239,8 +245,12 @@ export default function HomeScreen() {
   const { points: heatmapPoints, ready: heatmapReady } = useHeatmap(generated);
   const { chokepoints } = useChokepoints();
   const { alerts: gdacsAlerts, details: gdacsDetails } = useGdacsAlerts();
-  const { events: conflictEvents } = useConflictEvents();
+  const { events: conflictEvents, snapshot: conflictSnapshot } = useConflictEvents();
+  /** The source's whole week. The globe draws `conflictEvents`, its last day;
+   *  the menu's list and a country's page read the week. */
+  const conflictWeek = useMemo(() => conflictWeekOf(conflictSnapshot), [conflictSnapshot]);
   const famineAreas = useFamineAreas();
+  const famineTotals = useFamineTotals();
   const thermalEvents = useThermalEvents();
   const genocideSituations = useGenocideSituations();
   const { byId: indicatorsById, snapshot: trends } = useTrendsSnapshot();
@@ -545,8 +555,18 @@ export default function HomeScreen() {
       famine: famineAreas,
       genocide: genocideSituations,
       fires: thermalEvents,
+      famineTotals,
+      conflictWeek,
     }),
-    [globeAlerts, conflictEvents, famineAreas, genocideSituations, thermalEvents],
+    [
+      globeAlerts,
+      conflictEvents,
+      famineAreas,
+      genocideSituations,
+      thermalEvents,
+      famineTotals,
+      conflictWeek,
+    ],
   );
 
   const { strip, now } = useMemo(
@@ -677,6 +697,8 @@ export default function HomeScreen() {
   gdacsAlertsRef.current = gdacsAlerts;
   const conflictEventsRef = useRef(conflictEvents);
   conflictEventsRef.current = conflictEvents;
+  const conflictWeekRef = useRef(conflictWeek);
+  conflictWeekRef.current = conflictWeek;
   const famineAreasRef = useRef(famineAreas);
   famineAreasRef.current = famineAreas;
   const thermalEventsRef = useRef(thermalEvents);
@@ -1010,8 +1032,12 @@ export default function HomeScreen() {
       return at(thermalEventsRef.current.find((e) => e.id === result.thermalEventId));
     if (result.gdacsEventId)
       return at(gdacsAlertsRef.current.find((a) => a.eventid === result.gdacsEventId));
-    if (result.conflictEventId)
-      return at(conflictEventsRef.current.find((e) => e.id === result.conflictEventId));
+    if (result.conflictEventId) {
+      // The week's: the menu lists events the globe does not draw, and a row
+      // still turns the earth to its place.
+      const events = conflictWeekRef.current?.events ?? conflictEventsRef.current;
+      return at(events.find((e) => e.id === result.conflictEventId));
+    }
     return null;
   }, []);
 
@@ -1194,6 +1220,15 @@ export default function HomeScreen() {
       onPress: () => handOffSheet(countrySheetRef, () => openOverlay(selection)),
     }));
   }, [countrySheet?.countryName, famineAreas, genocideSituations, handOffSheet, openOverlay]);
+
+  /** What the hazard sources count in the open country — see `CountrySheet.facts`. */
+  const countryFactRows = useMemo(
+    () =>
+      countrySheet?.countryName
+        ? countryFacts(countrySheet.countryName, famineTotals, conflictWeek)
+        : [],
+    [countrySheet?.countryName, famineTotals, conflictWeek],
+  );
 
   const handleCountryAlertPress = useCallback(
     (alert: GdacsAlert) => {
@@ -2113,6 +2148,7 @@ export default function HomeScreen() {
         activeAlerts={countryAlerts}
         onAlertPress={handleCountryAlertPress}
         hazards={countryHazards}
+        facts={countryFactRows}
         bottomInset={insets.bottom}
         onDismiss={handleCountryDismiss}
       />

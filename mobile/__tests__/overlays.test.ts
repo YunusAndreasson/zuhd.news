@@ -7,6 +7,7 @@ import {
   thermalBox,
   thermalPlace,
 } from '../lib/overlays';
+import { famineTotalsOf } from '../lib/famine-totals';
 import { isFamineSnapshot, isGenocideSnapshot, isThermalSnapshot } from '../lib/validate';
 
 // Shapes copied from the live payloads on 2026-09-12, trimmed to one row.
@@ -93,6 +94,17 @@ describe('overlay validators', () => {
       isGenocideSnapshot({ situations: [{ ...GENOCIDE.situations[0], finding: 'alleged' }] }),
     ).toBe(false);
     expect(isFamineSnapshot(null)).toBe(false);
+  });
+
+  it('keep the famine marks whatever the country totals beside them hold', () => {
+    // The totals are an addition to a layer that worked without them: a
+    // malformed `totals` is read as none (`famineTotalsOf`), never a failed
+    // payload.
+    for (const totals of [undefined, 'soon', [{ iso3: 'SDN' }], [null]]) {
+      const payload = { ...IPC, totals };
+      expect(isFamineSnapshot(payload)).toBe(true);
+      expect(famineTotalsOf(payload.totals)).toEqual([]);
+    }
   });
 });
 

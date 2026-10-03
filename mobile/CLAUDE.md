@@ -343,16 +343,17 @@ whole time; nothing said so.
     tested): up to three whole names, fewer where three would run past one
     line. A ranking's row is its top countries (`rankingLeaders`); a hazard
     layer's is its gravest (`hazardLead`, `lib/hazard-leaders.ts`, tested:
-    famine by country, conflict with `as of` the source's last day, disasters
+    famine by country (by people, where the site counts them), conflict by
+    the week's toll with the week's dates, disasters
     counted by kind on a day with no Red or Orange); `saved` is the story
     saved last; `settings` is what the settings are (`settingsSummary`). The
     sentence each replaced is still the screen reader's hint. A new list row
     with a caption that only describes its list is the regression.
-  - `MarketBrowserSheet` held all of this until 2026-09-26: exchanges with a
   - **`stock markets` and `currencies` rows open with a flag** (2026-10-03,
     the user's request; `CatalogRow.flag`, `rowFlag`, tested). An empty flag
     holds the slot (the fear index), an absent one means the list has none.
     The caption lines above stay words.
+  - `MarketBrowserSheet` held all of this until 2026-09-26: exchanges with a
     rising/falling filter, and every other card unsplit under `other data`.
     Its filter lives on in `stock markets`, its row as `InstrumentRow`.
     `InstrumentsSheet` did it until 2026-09-20 and was deleted on 09-25.
@@ -577,6 +578,37 @@ whole time; nothing said so.
   `OverlaySheet`. Their accessible path is `CountrySheet`'s "on the map"
   rows; thermal events carry no country, so theirs is the stories they were
   joined to.
+- **Hunger and conflict are counted in people, and the lists hold more than
+  the marks** (2026-10-04, from an audit of data the app held and did not
+  show). Two sources were being read for their marks alone.
+  - **Famine.** The marks are areas at Emergency or worse — 94 in four
+    countries that day, names like `Um Baru IDPs` — and nothing said that the
+    same analysis counts 19 million people in Crisis or worse across Sudan, or
+    1.2 million in Gaza, where no area clears the bar and so nothing was drawn
+    or listed at all. The build now sums every analysed area per country
+    (`countryTotals`, `scripts/lib/ipc.js`; a `totals` key beside `areas` on
+    `/api/ipc.json`, which is all any reader of that file validates), and
+    `lib/famine-totals.ts` (tested) prints them: the famine list leads with
+    countries by people, each opening its country page, and a country's page
+    has a `hunger` line. An area's page prints its Emergency and Catastrophe
+    caseloads, which were downloaded all along and narrowed away by the type.
+    **A total is one analysis and says its month** (Sudan's was January in
+    October), **and its share is of the people analysed, never of the
+    country.** A malformed `totals` reads as none; it must not cost the layer
+    its marks.
+  - **Conflict.** The file is a week (195 events, 648 killed that day) and
+    the app kept its last day for the globe and discarded the rest; on every
+    event the civilian count, the range the reports gave and the number of
+    reports were validated and unread. `lib/conflict-week.ts` (tested): the
+    conflict list is the whole week under each country's toll, deadliest
+    first; a country's page has a `conflict` line; an event's page says who
+    the dead were (`conflictToll`) and names the conflict where the actors do
+    not (`Israel: Palestine`). **The globe still draws the last day only**
+    (marker density). **Every line that names the week names its dates**: the
+    source runs about five weeks behind, and a toll with no dates reads as
+    this week's. Civilians are a floor — an event with no breakdown adds none.
+  - The count of civilians is not the UN's or a ministry's: it is UCDP's sum
+    over the events it has coded. Do not print it as a country's death toll.
 - **The globe moves the way the web's map moves.** A drag keeps the ground
   under the finger (`dragDelta`: the projection's own `radius / sin(clip)`,
   not a fixed degrees-per-point, which turned the earth at half the finger's
@@ -828,9 +860,10 @@ whole time; nothing said so.
   be complete.** VoiceOver activates an element at its geometric centre, which
   on a globe is a lottery country. Every mark that matters has a row in the
   strip, the story cards or the menu — its groups, and `world hazards`, which
-  lists exactly the marks each hazard layer draws (`globeGdacsAlerts` is the
+  lists every mark each hazard layer draws (`globeGdacsAlerts` is the
   globe's GDACS selection, shared) and gave conflict and fire marks the row
-  they lacked. That is the accessible path, and a new mark layer without a row
+  they lacked. Two lists hold more than their marks: conflict the source's
+  whole week, famine each country's people (above). That is the accessible path, and a new mark layer without a row
   is an accessibility regression. The card
   itself carries `next story` / `previous story` / `read the whole story` as
   accessibility actions — not the `adjustable` role, which would take over

@@ -48,12 +48,20 @@ import {
 } from '../lib/bookmark-store';
 import { spokenDelta } from '../lib/cards/format';
 import { conflictChooserDetails } from '../lib/conflict';
+import {
+  type ConflictWeek,
+  conflictWeekByCountry,
+  countryWeekLine,
+  weekLine,
+  weekWindow,
+} from '../lib/conflict-week';
 import { observationDate } from '../lib/data-freshness';
 import {
   formatBytes,
   getSnapshot as getDataUsage,
   subscribe as subscribeDataUsage,
 } from '../lib/data-usage';
+import { hungerRows } from '../lib/famine-totals';
 import { hapticError, hapticNotification, hapticTick } from '../lib/haptics';
 import { hazardLead } from '../lib/hazard-leaders';
 import {
@@ -65,12 +73,18 @@ import {
 import { metricGroups, rankingLeaders } from '../lib/metric-groups';
 import type { RiverArticle } from '../lib/news-order';
 import { resetOnboarding } from '../lib/onboarding-store';
-import type { FamineArea, GenocideSituation, ThermalEvent } from '../lib/overlays';
+import {
+  type FamineArea,
+  type FamineCountryTotal,
+  famineBlocks,
+  type GenocideSituation,
+  type ThermalEvent,
+} from '../lib/overlays';
 import { MARKET_CAVEAT } from '../lib/predictions';
 import { LEADERS_SEPARATOR } from '../lib/row-leaders';
 import { settingsSummary } from '../lib/settings-summary';
 import { makeStaggerEnter } from '../lib/stagger';
-import { markTap, type TapResult } from '../lib/tap-result';
+import { countryTap, markTap, type TapResult } from '../lib/tap-result';
 import { eraseLocalData } from '../lib/wipe';
 import { DeltaChip } from './DeltaChip';
 import { EmptyState } from './EmptyState';
@@ -285,6 +299,12 @@ export interface MenuHazards {
   famine: FamineArea[];
   genocide: GenocideSituation[];
   fires: ThermalEvent[];
+  /** Each country's caseload, which is not a mark: the famine list leads with
+   *  it. Empty on a site that publishes none. */
+  famineTotals: FamineCountryTotal[];
+  /** The source's whole week. `conflict` is its last day, which is all the
+   *  globe draws; the conflict list holds the week. Null until it loads. */
+  conflictWeek: ConflictWeek | null;
 }
 
 function hazardRows(key: HazardKey, hazards: MenuHazards): MarkRowData[] {
@@ -316,6 +336,62 @@ function hazardRows(key: HazardKey, hazards: MenuHazards): MarkRowData[] {
   }
 }
 
+/**
+ * A hazard page's list, with the headings that make it more than its marks.
+ *
+ * Famine leads with countries by people: the marks are areas at Emergency or
+ * worse, ninety-odd names in four countries, and no row among them said that
+ * the same analysis counts 19 million people in Crisis across Sudan, or 1.2
+ * million in Gaza, where no area is a mark at all.
+ *
+ * Conflict is the source's whole week under each country's toll, deadliest
+ * country first. The globe draws the last day alone, and that day was all the
+ * list held: four fifths of the file went unread.
+ */
+function hazardItems(layer: HazardKey, hazards: MenuHazards): HazardItem[] {
+  if (layer === 'famine') {
+    const areas = hazardRows(layer, hazards);
+    const countries = hungerRows(hazards.famineTotals).map(
+      (row): MarkRowData => ({
+        key: row.key,
+        result: countryTap(row.country),
+        primary: row.name,
+        secondary: row.detail,
+        kind: 'famine',
+        blocks: famineBlocks(row.phase),
+      }),
+    );
+    if (countries.length === 0) return areas;
+    return [
+      { key: 'label-countries', label: 'people in crisis or worse' },
+      ...countries,
+      ...(areas.length > 0
+        ? [{ key: 'label-areas', label: 'areas in emergency or worse' }, ...areas]
+        : []),
+    ];
+  }
+  if (layer === 'conflict' && hazards.conflictWeek) {
+    const items: HazardItem[] = [];
+    for (const country of conflictWeekByCountry(hazards.conflictWeek.events)) {
+      items.push({
+        key: `label-${country.country}`,
+        label: `${country.name} · ${countryWeekLine(country)}`,
+      });
+      for (const e of country.events) {
+        const row = conflictMarkRow(e, markTap({ conflictEventId: e.id }));
+        // The heading names the country; the row says the day and the place.
+        const where = [observationDate(e.eventDate), e.location || e.admin1]
+          .filter(Boolean)
+          .join(' · ');
+        items.push({ ...row, secondary: where || row.secondary });
+      }
+    }
+    return items;
+  }
+  const marks = hazardRows(layer, hazards);
+  return layer === 'disasters' ? withAlertHeadings(marks) : marks;
+}
+
 /** The page a hazard row opens: the mark its tap names, found in the layers
  *  the list was built from. */
 function markDetail(result: TapResult, hazards: MenuHazards): MenuDetail | null {
@@ -324,7 +400,10 @@ function markDetail(result: TapResult, hazards: MenuHazards): MenuDetail | null 
     return alert ? { kind: 'alert', alert } : null;
   }
   if (result.conflictEventId) {
-    const event = hazards.conflict.find((e) => e.id === result.conflictEventId);
+    // The week's, where the list is the week: most of its rows are events the
+    // globe does not draw.
+    const events = hazards.conflictWeek?.events ?? hazards.conflict;
+    const event = events.find((e) => e.id === result.conflictEventId);
     return event ? { kind: 'conflict', event } : null;
   }
   if (result.famineAreaId) {
@@ -339,6 +418,8 @@ function markDetail(result: TapResult, hazards: MenuHazards): MenuDetail | null 
     const event = hazards.fires.find((e) => e.id === result.thermalEventId);
     return event ? { kind: 'overlay', overlay: { kind: 'thermal', event } } : null;
   }
+  // A row that is a country and no mark: the famine list's caseloads.
+  if (result.countryName) return { kind: 'country', name: result.countryName };
   return null;
 }
 
@@ -1079,19 +1160,28 @@ const GroupRow = memo(function GroupRow({
 /** Each layer's count and what it is, in the globe's order of gravity. */
 function hazardLayers(hazards: MenuHazards): { key: HazardKey; count: number; note: string }[] {
   const conflictDay = observationDate(hazards.conflict[0]?.eventDate);
+  const week = hazards.conflictWeek;
   return [
     { key: 'genocide' as const, count: hazards.genocide.length, note: 'As determined by the UN' },
     {
       key: 'conflict' as const,
-      count: hazards.conflict.length,
-      // UCDP publishes weeks behind events, so its latest day is said, never
-      // "today" (the reason `NOW` holds no conflict).
-      note: conflictDay ? `Events recorded on ${conflictDay}, from UCDP` : 'From UCDP',
+      count: week ? week.events.length : hazards.conflict.length,
+      // UCDP publishes weeks behind events, so its dates are said, never
+      // "today" (the reason `NOW` holds no conflict). With the week, the line
+      // is its toll: the one place the whole week is added up.
+      note: week
+        ? `${weekWindow(week)}, the latest week from UCDP: ${weekLine(week)}. The globe shows its last day.`
+        : conflictDay
+          ? `Events recorded on ${conflictDay}, from UCDP`
+          : 'From UCDP',
     },
     {
       key: 'famine' as const,
       count: hazards.famine.length,
-      note: 'Areas in crisis or worse, from the IPC',
+      note:
+        hazards.famineTotals.length > 0
+          ? 'People in crisis or worse in each country analysed, and the areas in emergency or worse, from the IPC. A share is of the people analysed, not of the country.'
+          : 'Areas in crisis or worse, from the IPC',
     },
     {
       key: 'disasters' as const,
@@ -1120,10 +1210,10 @@ const HazardsRow = memo(function HazardsRow({
   const layers = hazardLayers(hazards);
   if (layers.length === 0) return null;
   const counted = (n: number, one: string, many: string) => `${n} ${n === 1 ? one : many}`;
+  // The count of the list the row leads to: the week's, where it is held.
+  const conflictCount = hazards.conflictWeek?.events.length ?? hazards.conflict.length;
   const parts = [
-    hazards.conflict.length > 0
-      ? counted(hazards.conflict.length, 'conflict event', 'conflict events')
-      : null,
+    conflictCount > 0 ? counted(conflictCount, 'conflict event', 'conflict events') : null,
     hazards.famine.length > 0
       ? counted(hazards.famine.length, 'famine area', 'famine areas')
       : null,
@@ -1312,10 +1402,7 @@ function HazardPage({
   bottomInset: number;
   onSelect: (result: TapResult) => void;
 }) {
-  const rows = useMemo<HazardItem[]>(() => {
-    const marks = hazardRows(layer, hazards);
-    return layer === 'disasters' ? withAlertHeadings(marks) : marks;
-  }, [layer, hazards]);
+  const rows = useMemo<HazardItem[]>(() => hazardItems(layer, hazards), [layer, hazards]);
   const note = hazardLayers(hazards).find((l) => l.key === layer)?.note;
   const renderItem = useCallback(
     ({ item, index }: { item: HazardItem; index: number }) =>

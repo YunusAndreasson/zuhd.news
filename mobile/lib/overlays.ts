@@ -30,11 +30,43 @@ export interface FamineArea {
   /** `"Jun 2026"` — the analysis month. */
   vintage: string;
   ageMonths: number;
-  pop?: { total?: number; p3plus?: number };
+  /** People, by the IPC's own count: analysed, in Crisis or worse (3+), in
+   *  Emergency (4) and in Catastrophe (5). A figure the analysis did not
+   *  publish is null, never zero. */
+  pop?: {
+    total?: number | null;
+    p3plus?: number | null;
+    p4?: number | null;
+    p5?: number | null;
+  };
+}
+
+/**
+ * One country's caseload: every analysed area's people added up by the build
+ * (`countryTotals`, `scripts/lib/ipc.js`), whether or not an area is grave
+ * enough to be a mark. Gaza has no area on the globe and 1.2 million people in
+ * Crisis or worse; the areas alone could never say so.
+ */
+export interface FamineCountryTotal {
+  iso3: string;
+  iso2?: string;
+  /** `"Jan 2026"` — the one analysis the sums are of. */
+  vintage: string;
+  /** The gravest phase any of its areas is classified at. */
+  phase: number;
+  areas: number;
+  /** People the IPC analysed, which is not the country's population. */
+  analysed: number;
+  p3plus: number;
+  p4: number;
+  p5: number;
 }
 
 export interface FamineSnapshot {
   areas: FamineArea[];
+  /** Unvalidated: a site from before the totals has none, and a malformed row
+   *  must not cost the layer its marks. Read through `famineTotalsOf`. */
+  totals?: unknown;
 }
 
 export interface ThermalEvent {

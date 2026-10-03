@@ -10,6 +10,7 @@ import {
   parseConflictHero,
   SUB_EVENT_LABEL,
 } from '../lib/conflict';
+import { conflictNameBeside, conflictToll } from '../lib/conflict-week';
 import { relativeTime } from '../lib/date-format';
 import { openExternal } from '../lib/open-link';
 import { displayCountryName } from '../lib/place-names';
@@ -95,6 +96,14 @@ export const ConflictBody = memo(function ConflictBody({
         .join(' · ')
     : '';
 
+  // Who the dead were, how far the reports disagree and how many there are —
+  // the source's own figures, on every event and unread until 2026-10-04.
+  const toll = event ? conflictToll(event) : [];
+  // UCDP's name for the conflict the event belongs to. It is what says an
+  // event filed under Israel is `Israel: Palestine`; left out where it only
+  // repeats the actors above it.
+  const conflictName = event ? conflictNameBeside(event, actorLine) : '';
+
   const enter = makeStaggerEnter();
 
   return (
@@ -111,6 +120,14 @@ export const ConflictBody = memo(function ConflictBody({
             tint={tint}
             secondary={hero?.secondary}
           />
+
+          {toll.length > 0 && (
+            <Animated.View entering={enter()} style={styles.metaRow}>
+              <Text variant="labelSm" tone="secondary" selectable>
+                {toll.join(' · ')}
+              </Text>
+            </Animated.View>
+          )}
 
           {/* Actors — who's involved. The "vs" form is ACLED's
                 convention; one-actor events (peaceful_protest by
@@ -136,7 +153,7 @@ export const ConflictBody = memo(function ConflictBody({
           {/* Meta — when + where, joined as one quiet caption. */}
           <Animated.View entering={enter()} style={styles.metaRow}>
             <Text variant="labelXs" tone="secondary">
-              {[relativeTime(event.eventDate), locationLine]
+              {[relativeTime(event.eventDate), locationLine, conflictName]
                 .filter((s) => s.length > 0)
                 .join(' · ')}
             </Text>
