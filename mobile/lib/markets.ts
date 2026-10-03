@@ -101,7 +101,7 @@ export function exchangeDelta(e: Exchange): CardDelta {
     window: 'vs prior close',
   };
 }
-export function exchangeIsStale(e: Exchange, now = Date.now()): boolean {
+export function exchangeIsStale(e: Pick<Exchange, 'stale' | 'asOf'>, now = Date.now()): boolean {
   return Boolean(e.stale) || now - Date.parse(e.asOf) > 4 * DAY_MS;
 }
 /**

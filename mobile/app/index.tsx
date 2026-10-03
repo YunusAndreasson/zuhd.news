@@ -62,6 +62,7 @@ import type { AppReturn } from '../hooks/useArticles';
 import { useArticles } from '../hooks/useArticles';
 import { useCameraFlight } from '../hooks/useCameraFlight';
 import { useChokepoints } from '../hooks/useChokepoints';
+import { useCompanies } from '../hooks/useCompanies';
 import { useConflictEvents } from '../hooks/useConflictEvents';
 import { useGdacsAlerts } from '../hooks/useGdacsAlerts';
 import { useHeatmap } from '../hooks/useHeatmap';
@@ -496,6 +497,9 @@ export default function HomeScreen() {
    *  it keeps what it last showed, so the rows do not vanish from a menu
    *  still sliding away. */
   const lastCatalogRef = useRef<CatalogGroup[]>([]);
+  // The one list that is not downloaded with a build: fetched when the menu
+  // opens, since the menu is the only place it is read (`useCompanies`).
+  const { companies, wait: companiesWait } = useCompanies(menuOpen);
   const catalog = useMemo(() => {
     if (!menuOpen) return lastCatalogRef.current;
     lastCatalogRef.current = buildInstrumentCatalog({
@@ -505,9 +509,21 @@ export default function HomeScreen() {
       analysis,
       articles: river,
       exchanges,
+      companies,
+      companiesWait,
     });
     return lastCatalogRef.current;
-  }, [menuOpen, rankedInstruments, trends, chokepoints, analysis, river, exchanges]);
+  }, [
+    menuOpen,
+    rankedInstruments,
+    trends,
+    chokepoints,
+    analysis,
+    river,
+    exchanges,
+    companies,
+    companiesWait,
+  ]);
 
   /** The series each story's prose cites, as the card a press opens — built
    *  only for the few ids the river names, not the whole catalog. */
@@ -1624,6 +1640,10 @@ export default function HomeScreen() {
     (index: number) => storyRowsRef.current[index]?.article.category ?? '',
     [],
   );
+  const storyTitleAt = useCallback(
+    (index: number) => storyRowsRef.current[index]?.article.title ?? '',
+    [],
+  );
   const storyHues = useMemo(
     () => storyRows.map((row) => categoryMarkColor(row.article.category, colors)),
     [storyRows, colors],
@@ -1875,6 +1895,7 @@ export default function HomeScreen() {
         onSeek={goToStory}
         timeAt={storyTimeAt}
         categoryAt={storyCategoryAt}
+        titleAt={storyTitleAt}
         ages={storyAges}
         mostCovered={storyMostCovered}
         hues={storyHues}
@@ -1888,6 +1909,7 @@ export default function HomeScreen() {
       goToStory,
       storyTimeAt,
       storyCategoryAt,
+      storyTitleAt,
       storyAges,
       storyMostCovered,
       storyHues,

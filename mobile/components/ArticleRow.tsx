@@ -5,6 +5,7 @@ import { categoryMarkColor, SPACING } from '../constants/theme';
 import { useTheme } from '../hooks/useTheme';
 import { formatTimeAgo } from '../lib/article-utils';
 import { displayLocation } from '../lib/place-names';
+import type { SearchNote } from '../lib/search';
 import { Box, Pressable, Text } from './primitives';
 
 interface ArticleRowProps {
@@ -17,6 +18,9 @@ interface ArticleRowProps {
   category: Category;
   location: string | null;
   onPress: (slug: string, category: Category) => void;
+  /** Why the row is in a search's results when its title does not show it:
+   *  the words around the match, the match itself in stronger ink. */
+  note?: SearchNote;
   /** A second thing the row can do, reached by a gesture the row's owner
    *  draws (Saved's swipe-to-remove). Offered to screen readers as an
    *  accessibility action, which is the only way they can reach it. */
@@ -30,6 +34,7 @@ export const ArticleRow = memo(function ArticleRow({
   category,
   location,
   onPress,
+  note,
   secondaryAction,
 }: ArticleRowProps) {
   const { colors } = useTheme();
@@ -53,7 +58,7 @@ export const ArticleRow = memo(function ArticleRow({
     <Pressable
       onPress={handlePress}
       accessibilityRole="button"
-      accessibilityLabel={title}
+      accessibilityLabel={note ? `${title}. ${note.before}${note.match}${note.after}` : title}
       accessibilityActions={actions}
       onAccessibilityAction={actions ? handleAction : undefined}
     >
@@ -70,6 +75,13 @@ export const ArticleRow = memo(function ArticleRow({
             {location ? ` · ${displayLocation(location)}` : ''}
           </Text>
         </View>
+        {note ? (
+          <Text variant="caption" numberOfLines={2} style={styles.note}>
+            {note.before}
+            <Text variant="captionEmphasis">{note.match}</Text>
+            {note.after}
+          </Text>
+        ) : null}
       </Box>
     </Pressable>
   );
@@ -81,4 +93,5 @@ const styles = StyleSheet.create({
   meta: { flexDirection: 'row', alignItems: 'center', marginTop: SPACING.xs },
   dot: { width: DOT, height: DOT, borderRadius: DOT / 2, marginRight: SPACING.xs },
   metaText: { flex: 1 },
+  note: { marginTop: SPACING.xs },
 });

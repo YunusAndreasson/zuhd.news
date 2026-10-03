@@ -6,6 +6,7 @@ import { IS_ANDROID } from '../constants/platform';
 import { CATEGORIES, HIT_SLOP, LAYOUT, PRESSED_STYLE, SPACING } from '../constants/theme';
 import { useTheme } from '../hooks/useTheme';
 import { articleTime } from '../lib/article-utils';
+import { buildSearchIndex, plainText, type SearchDoc, type SearchNote } from '../lib/search';
 import { ArticleRow } from './ArticleRow';
 import { EmptyState } from './EmptyState';
 import { Icon, Text } from './primitives';
@@ -13,56 +14,55 @@ import { SheetFlatList } from './SheetContent';
 
 interface SearchResult extends Article {
   category: Category;
+  /** Why it is here, when its title does not say (`lib/search.ts`). */
+  note?: SearchNote;
 }
 
-interface IndexedArticle {
-  article: Article;
-  category: Category;
-  corpus: string;
-}
-
-function buildSearchIndex(grouped: GroupedArticles): IndexedArticle[] {
-  const index: IndexedArticle[] = [];
-  for (const cat of CATEGORIES) {
-    for (const a of grouped[cat]) {
-      const corpus = [a.title, a.location ?? '', ...a.concepts, ...a.sentences]
-        .join('\n')
-        .toLowerCase();
-      index.push({ article: a, category: cat, corpus });
+/** The feed as search reads it: the words on the card, not its markdown. */
+function searchDocs(grouped: GroupedArticles): SearchDoc<SearchResult>[] {
+  const docs: SearchDoc<SearchResult>[] = [];
+  for (const category of CATEGORIES) {
+    for (const article of grouped[category]) {
+      docs.push({
+        item: { ...article, category },
+        time: articleTime(article),
+        title: article.title,
+        place: article.location ?? '',
+        topics: article.concepts,
+        body: article.sentences.map(plainText),
+      });
     }
   }
-  index.sort((a, b) => articleTime(b.article) - articleTime(a.article));
-  return index;
-}
-
-function searchArticles(index: IndexedArticle[], query: string): SearchResult[] {
-  if (!query) return [];
-  const q = query.toLowerCase();
-  const results: SearchResult[] = [];
-  for (const entry of index) {
-    if (entry.corpus.includes(q)) {
-      results.push({ ...entry.article, category: entry.category });
-    }
-  }
-  return results;
+  return docs;
 }
 
 interface SheetSearchPageProps {
   grouped: GroupedArticles;
   bottomInset: number;
+  /** The words searched for, held by the menu so they outlive this page. */
+  query: string;
+  onQueryChange: (query: string) => void;
   onSelectArticle: (slug: string, category: Category) => void;
 }
 
-export function SheetSearchPage({ grouped, bottomInset, onSelectArticle }: SheetSearchPageProps) {
+export function SheetSearchPage({
+  grouped,
+  bottomInset,
+  query,
+  onQueryChange: setQuery,
+  onSelectArticle,
+}: SheetSearchPageProps) {
   const { colors, textVariants, resolvedAppearance } = useTheme();
-  const [query, setQuery] = useState('');
   const deferredQuery = useDeferredValue(query.trim());
   const inputRef = useRef<TextInput>(null);
   const prevCountRef = useRef(0);
 
-  const searchIndex = useMemo(() => buildSearchIndex(grouped), [grouped]);
+  const searchIndex = useMemo(() => buildSearchIndex(searchDocs(grouped)), [grouped]);
   const results = useMemo(
-    () => searchArticles(searchIndex, deferredQuery),
+    () =>
+      searchIndex
+        .search(deferredQuery)
+        .map((hit): SearchResult => ({ ...hit.item, note: hit.note })),
     [searchIndex, deferredQuery],
   );
 
@@ -76,10 +76,15 @@ export function SheetSearchPage({ grouped, bottomInset, onSelectArticle }: Sheet
     );
   }, [deferredQuery, resultCount]);
 
+  // The keyboard comes up for a search still to be typed. Reopened on one
+  // already made, the page is its results: a keyboard there covered half of
+  // them, for a reader who came back to pick the next.
+  const [startedEmpty] = useState(() => query.length === 0);
   useEffect(() => {
+    if (!startedEmpty) return;
     const h = setTimeout(() => inputRef.current?.focus(), 50);
     return () => clearTimeout(h);
-  }, []);
+  }, [startedEmpty]);
 
   const renderItem = useCallback(
     ({ item }: { item: SearchResult }) => (
@@ -89,6 +94,7 @@ export function SheetSearchPage({ grouped, bottomInset, onSelectArticle }: Sheet
         time={articleTime(item)}
         category={item.category}
         location={item.location}
+        note={item.note}
         onPress={onSelectArticle}
       />
     ),
@@ -143,11 +149,13 @@ export function SheetSearchPage({ grouped, bottomInset, onSelectArticle }: Sheet
 
       {deferredQuery.length === 0 ? (
         <View style={styles.emptyFill}>
-          <EmptyState message="search every story" hint="By title, topic, or location" />
+          {/* The feed is the last couple of days. It said "every story", which
+              promised an archive the app does not hold. */}
+          <EmptyState message="search recent stories" hint="By title, topic or place" />
         </View>
       ) : results.length === 0 ? (
         <View style={styles.emptyFill}>
-          <EmptyState message="no stories found" hint="Try a different term" />
+          <EmptyState message="no recent story matches" hint="Try fewer words, or another one" />
         </View>
       ) : (
         <SheetFlatList

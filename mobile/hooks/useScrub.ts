@@ -43,6 +43,11 @@ export interface ScrubOptions {
   labelFor: (fraction: number) => string;
   /** A quieter second line under it — when the story at that fraction ran. */
   detailFor?: (fraction: number) => string;
+  /** What the finger is on, in its own words — the story's headline. A time
+   *  and a category are the same for every story of a run, so without it a
+   *  scrub across sixteen stories read `8h ago · politics` sixteen times and
+   *  the reader chose a story blind. */
+  captionFor?: (fraction: number) => string;
   /** The finger lifted, or tapped: go there. */
   onCommit: (fraction: number) => void;
   /** Optional worklet: claim input before any JS callback or pending camera action. */
@@ -84,6 +89,7 @@ export function useScrub({
   stepAt,
   labelFor,
   detailFor,
+  captionFor,
   onCommit,
   onClaim,
   onScrubStart,
@@ -111,19 +117,30 @@ export function useScrub({
 
   const [label, setLabel] = useState('');
   const [detail, setDetail] = useState('');
+  const [caption, setCaption] = useState('');
   const labelRef = useRef('');
   const detailRef = useRef('');
+  const captionRef = useRef('');
   const updateLabel = useCallback(
     (f: number) => {
       const next = labelFor(f);
       const nextDetail = detailFor ? detailFor(f) : '';
-      if (next === labelRef.current && nextDetail === detailRef.current) return;
+      const nextCaption = captionFor ? captionFor(f) : '';
+      if (
+        next === labelRef.current &&
+        nextDetail === detailRef.current &&
+        nextCaption === captionRef.current
+      ) {
+        return;
+      }
       labelRef.current = next;
       detailRef.current = nextDetail;
+      captionRef.current = nextCaption;
       setLabel(next);
       setDetail(nextDetail);
+      setCaption(nextCaption);
     },
-    [labelFor, detailFor],
+    [labelFor, detailFor, captionFor],
   );
   // One hop per step, carrying both effects. Two `scheduleOnRN` calls are two
   // JS tasks, and the notch and the label they carried could land on
@@ -292,6 +309,7 @@ export function useScrub({
     tooltipWidth,
     label,
     detail,
+    caption,
   };
 }
 

@@ -24,10 +24,14 @@ interface SourceRowProps {
   source: ArticleSource;
   isExpanded: boolean;
   isLast?: boolean;
+  /** The story's only source: its details are the sheet, so the row is not a
+   *  control. As a toggle it could close the one thing the sheet opened to
+   *  show, and a tap anywhere on the paragraph did. */
+  alone?: boolean;
   onPress: () => void;
 }
 
-export function SourceRow({ source, isExpanded, isLast, onPress }: SourceRowProps) {
+export function SourceRow({ source, isExpanded, isLast, alone, onPress }: SourceRowProps) {
   const info = SOURCES[source.name];
   const cc = source.country?.toUpperCase();
   const flag = cc ? ccToFlag(cc) : null;
@@ -42,25 +46,53 @@ export function SourceRow({ source, isExpanded, isLast, onPress }: SourceRowProp
   // so the row opened onto nothing. Now the affordance is only drawn when
   // there is something behind it, and `url` means most rows have something.
   const expandable = !!(info || source.angle || url);
+  const toggles = expandable && !alone;
+  const open = expandable && (alone || isExpanded);
 
-  const body = (
-    <Box paddingY="md" rule={isLast ? undefined : 'bottom'}>
-      <View style={styles.header}>
-        <Text variant="bodyEmphasis" numberOfLines={1} style={styles.name}>
-          {flag ? `${flag} ` : ''}
-          {source.name}
+  const header = (
+    <View style={[styles.header, open ? styles.headerOpen : styles.headerClosed]}>
+      <Text variant="bodyEmphasis" numberOfLines={1} style={styles.name}>
+        {flag ? `${flag} ` : ''}
+        {source.name}
+      </Text>
+      <View style={styles.right}>
+        <Text variant="labelXs" tone={toneTextTone} numberOfLines={1}>
+          {toneWord}
         </Text>
-        <View style={styles.right}>
-          <Text variant="labelXs" tone={toneTextTone} numberOfLines={1}>
-            {toneWord}
-          </Text>
-          {expandable && (
-            <Icon name={isExpanded ? 'chevron-up' : 'chevron-down'} size="sm" tone="secondary" />
-          )}
-        </View>
+        {toggles && (
+          <Icon name={isExpanded ? 'chevron-up' : 'chevron-down'} size="sm" tone="secondary" />
+        )}
       </View>
-      {isExpanded && expandable && (
-        <>
+    </View>
+  );
+
+  return (
+    <Box rule={isLast ? undefined : 'bottom'}>
+      {toggles ? (
+        // Only the header is the button. The details sat inside it too, so a
+        // tap on the paragraph closed it and a long press to copy a sentence
+        // ended in the same close.
+        <Pressable
+          onPress={onPress}
+          // Sideways only. Rows are stacked: a later row is hit-tested first,
+          // so its top slop took the bottom 6pt of the row above, and a tap
+          // there opened the wrong source.
+          hitSlop={SIDE_SLOP}
+          accessibilityRole="button"
+          accessibilityLabel={`${source.name}, ${toneWord}`}
+          accessibilityState={{ expanded: isExpanded }}
+        >
+          {header}
+        </Pressable>
+      ) : (
+        // A row with nothing behind it, or the story's only source, is not a
+        // control: a screen reader announces a citation, not a button.
+        <View accessible accessibilityLabel={`${source.name}, ${toneWord}`}>
+          {header}
+        </View>
+      )}
+      {open && (
+        <View style={styles.details}>
           {info && (
             <Text selectable variant="labelXs" style={styles.typeLine}>
               {info.type} · {info.location}
@@ -94,29 +126,9 @@ export function SourceRow({ source, isExpanded, isLast, onPress }: SourceRowProp
               onPress={() => openExternal(url)}
             />
           )}
-        </>
+        </View>
       )}
     </Box>
-  );
-
-  // A row with nothing behind it is not a control. Render it as plain content
-  // so screen readers announce a citation rather than a button that does
-  // nothing, and so the press animation doesn't imply an action.
-  if (!expandable) return <View accessible>{body}</View>;
-
-  return (
-    <Pressable
-      onPress={onPress}
-      // Sideways only. A row is ~56pt tall already, and rows are stacked: a
-      // later row is hit-tested first, so its top slop took the bottom 6pt of
-      // the row above, and a tap there opened the wrong source.
-      hitSlop={SIDE_SLOP}
-      accessibilityRole="button"
-      accessibilityLabel={source.name}
-      accessibilityState={{ expanded: isExpanded }}
-    >
-      {body}
-    </Pressable>
   );
 }
 
@@ -128,6 +140,18 @@ const styles = StyleSheet.create({
     justifyContent: 'space-between',
     alignItems: 'center',
     gap: SPACING.sm,
+    paddingTop: SPACING.md,
+  },
+  // The row's own padding, so the whole band is the header's target; open,
+  // the details close the row instead.
+  headerClosed: {
+    paddingBottom: SPACING.md,
+  },
+  headerOpen: {
+    paddingBottom: SPACING.sm,
+  },
+  details: {
+    paddingBottom: SPACING.md,
   },
   right: {
     flexDirection: 'row',
@@ -138,7 +162,6 @@ const styles = StyleSheet.create({
     flex: 1,
   },
   typeLine: {
-    marginTop: SPACING.sm,
     marginBottom: SPACING.sm,
   },
   description: {

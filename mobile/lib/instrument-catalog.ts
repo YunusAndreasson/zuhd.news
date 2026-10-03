@@ -10,6 +10,7 @@ import type { SwipeCard } from './cards/rank';
 import { admitted } from './cards/sections';
 import type { Card, CardDelta } from './cards/types';
 import { gaugeMove } from './cards/week-move';
+import { type Company, companyCard, companyCardId, sharePrice } from './companies';
 import { type Exchange, exchangeCard, exchangeDelta, stockMarketPlace } from './markets';
 import { stripLabel } from './now';
 
@@ -31,6 +32,7 @@ import { stripLabel } from './now';
 
 export type GroupKey =
   | 'stocks'
+  | 'companies'
   | 'straits'
   | 'currencies'
   | 'commodities'
@@ -41,6 +43,7 @@ export type GroupKey =
 /** Each group's name, as its menu row and its page's handle print it. */
 export const GROUP_TITLES: Readonly<Record<GroupKey, string>> = {
   stocks: 'stock markets',
+  companies: 'largest companies',
   straits: 'straits',
   currencies: 'currencies',
   commodities: 'energy, food & metals',
@@ -51,6 +54,8 @@ export const GROUP_TITLES: Readonly<Record<GroupKey, string>> = {
 
 const GROUP_ORDER: readonly GroupKey[] = [
   'stocks',
+  // Beside the markets they trade on.
+  'companies',
   'straits',
   'currencies',
   'commodities',
@@ -64,6 +69,7 @@ const GROUP_ORDER: readonly GroupKey[] = [
  *  their own order. */
 const SORTED_BY_WEEK: ReadonlySet<GroupKey> = new Set([
   'stocks',
+  'companies',
   'straits',
   'currencies',
   'commodities',
@@ -81,8 +87,12 @@ export interface CatalogRow {
   /** Whether `move` is the week, rather than the card's own window. */
   weekly: boolean;
   /** The subject in the strip's words (`stripLabel`): `Turkey stocks`,
-   *  `Hormuz ships`, `Oil`. The menu root's teaser. */
+   *  `Hormuz`, `Oil`. The menu root's teaser. */
   short: string;
+  /** The line under the row's reading, where the list's own heading has
+   *  already said part of the card's (`sharePrice`): empty for none. Absent,
+   *  the row prints the card's `readingNote`. */
+  note?: string;
   /** An exchange's row carries it for its city and its "older quote". */
   exchange?: Exchange;
   chokepoint?: Chokepoint;
@@ -92,6 +102,19 @@ export interface CatalogGroup {
   key: GroupKey;
   title: string;
   rows: CatalogRow[];
+  /**
+   * Set on a list with no rows to show yet (`companies`, the one group that
+   * is not downloaded with a build): its first fetch is on its way, or did
+   * not arrive.
+   *
+   * Such a group keeps its row in the menu, in both states. A row that came
+   * when the prices landed pushed every row under it down a place; and one
+   * that held a place and gave it up when the fetch timed out pulled them
+   * back up, five seconds after the menu opened — on the emulator a tap on
+   * this list opened `straits`. So which rows the menu has is settled when it
+   * opens, and a list that could not be fetched says so on its own page.
+   */
+  wait?: 'waiting' | 'failed';
 }
 
 export interface CatalogInputs {
@@ -103,6 +126,11 @@ export interface CatalogInputs {
   analysis: AnalysisById;
   articles: Article[];
   exchanges: Exchange[];
+  /** The company list (`useCompanies`): absent or null where it has not been
+   *  fetched. Never part of `ranked` — these are in the menu only. */
+  companies?: Company[] | null;
+  /** Where that list stands while there is no copy of it (`CatalogGroup.wait`). */
+  companiesWait?: 'waiting' | 'failed' | null;
   now?: Date;
 }
 
@@ -146,7 +174,9 @@ const SERIES_ORDER = new Map(SERIES.map((s, i) => [s.id, i]));
  * - `wikipedia` — pageviews measure readers, not the world; the web keeps
  *   them in their own `attention` block, and the app has no such group.
  * - `portwatch` — a strait's vessel classes, already figures on its card.
- * - `stocks` — single companies, published without the desk's paragraph.
+ * - `stocks` — a company a story named, published without a paragraph. The
+ *   twenty largest have a list of their own, from their own payload
+ *   (`lib/companies.ts`), each with the catalog's standing sentence.
  * Contracts (`polymarket`) come from the pool, where `beliefCards` already
  * built every one.
  */
@@ -208,13 +238,23 @@ function seriesCard(
  *
  * Ids are the article namespace (`Entity.indicatorId`, `Article.chart`):
  * `cp:<id>` is a strait, whose card is `strait-<id>`; `mkt:<id>` an
- * exchange; `poly-…` a contract, which only the pool builds; anything else a
- * published series. Null for an id nothing publishes, a series the menu does
- * not list (single companies, pageviews), and a card that fails the deck's
- * gate — a chart without the desk's paragraph is not drawn anywhere.
+ * exchange; `co:<id>` a company in the menu's list; `poly-…` a contract,
+ * which only the pool builds; anything else a published series. Null for an
+ * id nothing publishes, a series the menu does not list (a company a story
+ * named, pageviews), and a card that fails the deck's gate — a chart without
+ * a paragraph under it is not drawn anywhere.
  */
 export function instrumentCardFor(id: string, inputs: CatalogInputs): SwipeCard | null {
-  const { ranked, trends, chokepoints, analysis, articles, exchanges, now = new Date() } = inputs;
+  const {
+    ranked,
+    trends,
+    chokepoints,
+    analysis,
+    articles,
+    exchanges,
+    companies,
+    now = new Date(),
+  } = inputs;
   const pool = new Map(ranked.map((c) => [c.id, c]));
   const take = (key: string) => pool.get(key);
   const gate = (card: Card | null | undefined): SwipeCard | null =>
@@ -232,6 +272,10 @@ export function instrumentCardFor(id: string, inputs: CatalogInputs): SwipeCard 
     return gate(
       take(`market-signal:${id}`) ?? take(id) ?? (exchange ? exchangeCard(exchange) : null),
     );
+  }
+  if (id.startsWith('co:')) {
+    const company = companies?.find((c) => companyCardId(c.id) === id);
+    return gate(company ? companyCard(company) : null);
   }
   const pooled = take(id);
   if (pooled?.kind === 'belief') return gate(pooled);
@@ -278,6 +322,8 @@ export function buildInstrumentCatalog({
   analysis,
   articles,
   exchanges,
+  companies,
+  companiesWait = null,
   now = new Date(),
 }: CatalogInputs): CatalogGroup[] {
   const at = now.getTime();
@@ -285,6 +331,7 @@ export function buildInstrumentCatalog({
   const listed = new Set<string>();
   const rows: Record<GroupKey, CatalogRow[]> = {
     stocks: [],
+    companies: [],
     straits: [],
     currencies: [],
     commodities: [],
@@ -305,6 +352,14 @@ export function buildInstrumentCatalog({
     const signal = take(`market-signal:${id}`);
     const quote = take(id);
     rows.stocks.push(rowFor(signal ?? quote ?? exchangeCard(exchange), at, { exchange }));
+  }
+
+  // Every company in the list, held to the deck's gate like any other card.
+  for (const company of companies ?? []) {
+    const card = companyCard(company);
+    if (!admitted(card)) continue;
+    const { unit } = sharePrice(company.level, company.currency, company.currencyName);
+    rows.companies.push({ ...rowFor(card, at), note: unit });
   }
 
   // Every strait the globe draws, with or without a history to chart.
@@ -368,9 +423,15 @@ export function buildInstrumentCatalog({
     rows[group].push(rowFor(card, at));
   }
 
-  return GROUP_ORDER.map((key) => ({
-    key,
-    title: GROUP_TITLES[key],
-    rows: SORTED_BY_WEEK.has(key) ? byWeek(rows[key]) : rows[key],
-  })).filter((group) => group.rows.length > 0);
+  const waitOf = (key: GroupKey) =>
+    key === 'companies' && rows.companies.length === 0 ? companiesWait : null;
+  return GROUP_ORDER.map((key): CatalogGroup => {
+    const wait = waitOf(key);
+    return {
+      key,
+      title: GROUP_TITLES[key],
+      rows: SORTED_BY_WEEK.has(key) ? byWeek(rows[key]) : rows[key],
+      ...(wait ? { wait } : {}),
+    };
+  }).filter((group) => group.rows.length > 0 || group.wait);
 }

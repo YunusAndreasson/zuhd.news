@@ -550,12 +550,16 @@ export const ScrubBar = memo(function ScrubBar({
 export const ScrubTooltip = memo(function ScrubTooltip({
   scrub,
   backgroundColor,
+  borderColor,
   stemColor,
   labelScale,
   below = false,
 }: {
   scrub: Scrub;
   backgroundColor: string;
+  /** A hairline edge, for a solid box that rests on text: the sheet's own
+   *  control material is close to the sheet's ground. */
+  borderColor?: string;
   stemColor?: string | SharedValue<string>;
   below?: boolean;
   /** Grows the label from the tabular size, for a readout that is the one
@@ -585,6 +589,7 @@ export const ScrubTooltip = memo(function ScrubTooltip({
           below
             ? { top: '100%', width: scrub.tooltipWidth, backgroundColor, marginTop: lift }
             : { bottom: '100%', width: scrub.tooltipWidth, backgroundColor, marginBottom: lift },
+          borderColor ? { borderColor, borderWidth: StyleSheet.hairlineWidth } : null,
           scrub.tooltipStyle,
         ]}
       >
@@ -595,6 +600,21 @@ export const ScrubTooltip = memo(function ScrubTooltip({
           <Text variant="tabular" tone="secondary" style={styles.tooltipText}>
             {scrub.detail}
           </Text>
+        ) : null}
+        {scrub.caption ? (
+          // Two lines are held whatever the headline's length, so the box
+          // does not change height from one story to the next under a moving
+          // finger. The spacer is two empty lines at the reader's type size.
+          <View style={styles.caption}>
+            <Text variant="captionEmphasis" style={styles.captionSpace} accessible={false}>
+              {'\n'}
+            </Text>
+            <View style={[StyleSheet.absoluteFill, styles.captionWords]}>
+              <Text variant="captionEmphasis" numberOfLines={2} style={styles.tooltipText}>
+                {scrub.caption}
+              </Text>
+            </View>
+          </View>
         ) : null}
       </Animated.View>
     </>
@@ -646,5 +666,8 @@ const styles = StyleSheet.create({
     alignItems: 'center',
   },
   tooltipText: { textAlign: 'center' },
+  caption: { alignSelf: 'stretch', marginTop: SPACING.xxs },
+  captionSpace: { opacity: 0 },
+  captionWords: { justifyContent: 'center', paddingHorizontal: SPACING.sm },
   stem: { position: 'absolute', bottom: '100%', left: 0, width: STEM_WIDTH },
 });

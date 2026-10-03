@@ -2,6 +2,7 @@ import { isMarketSignalsSnapshot } from '@shared/market-signals';
 import type { QueryKey } from '@tanstack/react-query';
 import Storage from 'expo-sqlite/kv-store';
 import { API_BASE } from '../constants/theme';
+import { isCompaniesSnapshot } from './companies';
 import { fetchJsonIfChanged } from './fetchJson';
 import { isMarketsSnapshot } from './markets';
 import { readStoredJson } from './stored-json';
@@ -69,6 +70,21 @@ export const API_SNAPSHOTS = {
 } as const;
 
 /**
+ * Share prices of the largest companies, for the menu's list — and so not in
+ * `API_SNAPSHOTS`.
+ *
+ * Everything in that list is drawn on the map screen, and arrives with every
+ * build and with the hourly background task. This file is read in the menu,
+ * which is opened a few times a week, and it changes each time a stock market
+ * closes: about 9KB gzipped, four times a trading day. In the arrival it would
+ * have added roughly a tenth to what the app downloads in a day, for every
+ * reader, including the ones who never open the list. It is fetched when the
+ * menu opens instead (`useCompanies`), with the tag of the copy the app holds,
+ * so reopening the menu between two closes costs a 304.
+ */
+export const COMPANIES_SNAPSHOT = snapshot('/api/companies.json', isCompaniesSnapshot);
+
+/**
  * Each file's version tag (`ETag`), as of the copy the app last took. Kept on
  * disk so a headless background run can ask too. A tag is only sent when the
  * caller still holds that file's data (`has`): a 304 with nothing to keep
@@ -111,6 +127,31 @@ export async function fetchSnapshot<T>(
   });
   // Without a tag sent the site cannot answer 304.
   if (!result.changed) throw new Error(`Unexpected 304 from ${snap.url}`);
+  rememberEtags([[snap.url, result.etag]]);
+  return result.data;
+}
+
+/**
+ * One snapshot, asked for with the tag of the copy the caller holds (`held`):
+ * a file that has not changed answers 304 and `held` comes back as it was,
+ * the same object, so nothing that reads it re-renders. With nothing held it
+ * is a plain fetch. For a snapshot outside the arrival (`COMPANIES_SNAPSHOT`).
+ */
+export async function fetchSnapshotIfChanged<T>(
+  snap: ApiSnapshot<T>,
+  held: T | undefined,
+  opts: { signal?: AbortSignal } = {},
+): Promise<T> {
+  const result = await fetchJsonIfChanged<T>(snap.url, snap.validate, {
+    ...opts,
+    cache: 'no-store',
+    etag: held === undefined ? null : etags[snap.url],
+    ...(snap.timeoutMs ? { timeoutMs: snap.timeoutMs } : {}),
+  });
+  if (!result.changed) {
+    if (held === undefined) throw new Error(`Unexpected 304 from ${snap.url}`);
+    return held;
+  }
   rememberEtags([[snap.url, result.etag]]);
   return result.data;
 }

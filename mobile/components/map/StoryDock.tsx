@@ -1,8 +1,9 @@
 import { memo, useCallback, useEffect, useMemo, useState } from 'react';
 import { type AccessibilityActionEvent, StyleSheet, View } from 'react-native';
-import {
+import Animated, {
   type SharedValue,
   useAnimatedReaction,
+  useAnimatedStyle,
   useDerivedValue,
   useSharedValue,
 } from 'react-native-reanimated';
@@ -82,6 +83,7 @@ export const StoryDock = memo(function StoryDock({
   onClaim,
   timeAt,
   categoryAt,
+  titleAt,
   ages,
   mostCovered,
   hues,
@@ -108,6 +110,8 @@ export const StoryDock = memo(function StoryDock({
   timeAt: (index: number) => string;
   /** A story's category, the tooltip's quieter second line. */
   categoryAt?: (index: number) => string;
+  /** A story's headline, under them: which story the finger is on. */
+  titleAt?: (index: number) => string;
   /** Per story, how long before the river's day ends it ran, in ms: where it
    *  sits on the track. Without it the track is one equal cell per story. */
   ages?: readonly number[];
@@ -227,6 +231,14 @@ export const StoryDock = memo(function StoryDock({
     },
     [categoryAt, count, centers],
   );
+  // **And which story** (2026-10-03). A run's stories share one time, so the
+  // tooltip read `8h ago · politics` for sixteen stories in a row and the
+  // finger chose among them blind; the headline is what a reader scrubbing
+  // for a story is looking for. When still leads, at its size.
+  const captionFor = useMemo(
+    () => (titleAt ? (f: number) => titleAt(storyAt(f, count, centers)) : undefined),
+    [titleAt, count, centers],
+  );
   // Each segment in its story's category hue — the globe's beacons and the
   // card's category word, so a teal segment is a teal light — a touch below
   // full: at full strength the row was the loudest colour on the sheet after
@@ -266,12 +278,24 @@ export const StoryDock = memo(function StoryDock({
     stepAt,
     labelFor,
     detailFor,
+    captionFor,
     onCommit: handleCommit,
     onClaim,
-    tooltipWidth: TOOLTIP_WIDTH,
+    // Never wider than the track it rides: clamped at both ends, a box wider
+    // than its track would hang off the screen.
+    tooltipWidth: titleAt ? Math.min(PREVIEW_WIDTH, trackWidth || PREVIEW_WIDTH) : TOOLTIP_WIDTH,
     enabled: count > 0 && !!onSeek,
   });
   const holding = scrub.holding;
+  // The pill steps aside while a finger scrubs: the preview hangs over the
+  // track's left end, where the pill is, and the two crowded each other. A
+  // switch, never a fade (a translucent view with children is drawn off
+  // screen on iOS), and decided on the UI thread: the pill often mounts as a
+  // scrub drops, while `holding` is still changing.
+  const pillStyle = useAnimatedStyle(() => {
+    if (globalThis.__RUNTIME_KIND === 1) return {};
+    return { opacity: holding.value ? 0 : 1 };
+  });
   useAnimatedReaction(
     () => ({ p: position.value, held: holding.value }),
     ({ p, held }, previous) => {
@@ -323,23 +347,28 @@ export const StoryDock = memo(function StoryDock({
     // jumps to, so there it stays.
     <View style={styles.foot} pointerEvents="box-none">
       {newCount > 0 && onNewPress && !(ruled && index < count) ? (
-        <IconButton
-          onPress={onNewPress}
-          hitSlop={0}
-          style={[styles.newAction, { marginLeft: inset }]}
-          accessibilityLabel={`${newCount} new ${newCount === 1 ? 'story' : 'stories'}`}
-          accessibilityHint="Goes to the newest story you have not seen"
-        >
-          {/* Solid: it rests on the card's text, which `pillBg` lets through. */}
-          <View
-            style={[styles.newPill, { backgroundColor: colors.playerBg, borderColor: colors.rule }]}
+        <Animated.View style={[styles.newSlot, pillStyle]}>
+          <IconButton
+            onPress={onNewPress}
+            hitSlop={0}
+            style={[styles.newAction, { marginLeft: inset }]}
+            accessibilityLabel={`${newCount} new ${newCount === 1 ? 'story' : 'stories'}`}
+            accessibilityHint="Goes to the newest story you have not seen"
           >
-            <Icon name="chevron-back" size="sm" tone="emphasis" />
-            <Text variant="labelXs" tone="emphasis">
-              {`${newCount} new`}
-            </Text>
-          </View>
-        </IconButton>
+            {/* Solid: it rests on the card's text, which `pillBg` lets through. */}
+            <View
+              style={[
+                styles.newPill,
+                { backgroundColor: colors.playerBg, borderColor: colors.rule },
+              ]}
+            >
+              <Icon name="chevron-back" size="sm" tone="emphasis" />
+              <Text variant="labelXs" tone="emphasis">
+                {`${newCount} new`}
+              </Text>
+            </View>
+          </IconButton>
+        </Animated.View>
       ) : null}
       <View
         style={[
@@ -399,7 +428,10 @@ export const StoryDock = memo(function StoryDock({
           >
             <ScrubTooltip
               scrub={scrub}
-              backgroundColor={colors.toastBg}
+              // Solid, with the pill's edge: it rests on the card's own title
+              // and hook, and `toastBg` let them through behind a headline.
+              backgroundColor={colors.playerBg}
+              borderColor={colors.rule}
               stemColor={destinationHue}
               labelScale={TIME_SCALE}
             />
@@ -428,6 +460,9 @@ const PILL = 28;
 const TIME_SCALE = 17 / 11;
 /** Wide enough for `45m ago` at `TIME_SCALE`, and a category under it. */
 const TOOLTIP_WIDTH = 112;
+/** Wide enough for a headline in two lines at caption size: the writer's
+ *  titles run to about forty characters. */
+const PREVIEW_WIDTH = 264;
 /** How far an unread segment's hue is mixed toward the sheet: still plainly
  *  its category, a touch under the globe's beacons. */
 const UNREAD_MIX = { dark: 0.15, light: 0.15 } as const;
@@ -448,10 +483,10 @@ const styles = StyleSheet.create({
   },
   shrink: { flex: 1 },
   status: { flex: 1, minHeight: CONTROL_ROW, justifyContent: 'center' },
+  newSlot: { alignSelf: 'flex-start' },
   // A full-height target, sized to its words.
   newAction: {
     height: CONTROL_ROW,
-    alignSelf: 'flex-start',
     justifyContent: 'center',
   },
   // Hairline edge so the pill holds its shape on the sheet without a shadow.

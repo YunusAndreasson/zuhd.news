@@ -8,6 +8,7 @@ import type { CardDelta } from '../lib/cards/types';
 import { gaugeMove } from '../lib/cards/week-move';
 import { chooserTitle } from '../lib/chooser-title';
 import { conflictChooserDetails } from '../lib/conflict';
+import { observationDate } from '../lib/data-freshness';
 import type { FamineArea, GenocideSituation, ThermalEvent } from '../lib/overlays';
 import { displayCountryName } from '../lib/place-names';
 import { staggerEnter } from '../lib/stagger';
@@ -90,7 +91,9 @@ function buildRow(
       key: `chokepoint-${cp.id}`,
       result,
       primary: cp.name,
-      secondary: `all ships · ${straitChange(straitMoves[cp.id], cp.delta7vs90.n_total)?.label ?? 'comparison unavailable'} · ${cp.asOf}`,
+      // The day as every card prints it (`Sep 27`): the rows printed the
+      // payload's own `2026-09-27`.
+      secondary: `all ships · ${straitChange(straitMoves[cp.id], cp.delta7vs90.n_total)?.label ?? 'comparison unavailable'} · ${observationDate(cp.asOf) || cp.asOf}`,
       kind: 'chokepoint',
       straitState: straitStateFor(cp.delta7vs90.n_total ?? 0),
     };
@@ -109,7 +112,7 @@ function buildRow(
       secondary: [
         card.kicker,
         delta ? [markMove(delta), delta.window].filter(Boolean).join(' ') : null,
-        card.asOf,
+        observationDate(card.asOf) || card.asOf,
       ]
         .filter(Boolean)
         .join(' · '),

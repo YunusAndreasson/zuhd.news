@@ -45,7 +45,11 @@ export const StoryChart = memo(function StoryChart({
   const { colors } = useTheme();
   const handlePress = useCallback(() => onPress?.(card), [card, onPress]);
   const belief = card.kind === 'belief';
-  const subject = belief ? card.title : stripLabel(card);
+  // The strip's name for it. A strait gets `ships` back here: this line
+  // prints the reading (`50`) with no unit, and the strip, which dropped the
+  // word, prints none.
+  const name = stripLabel(card);
+  const subject = belief ? card.title : card.id.startsWith('strait-') ? `${name} ships` : name;
   const observed = observationDate(card.asOf);
   // The week, as the strip and the menu print it: one number per thing
   // wherever it is printed. The card's own window (`since Aug 10`) put a

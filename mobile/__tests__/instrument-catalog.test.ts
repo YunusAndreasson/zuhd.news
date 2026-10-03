@@ -6,7 +6,9 @@ import {
   type CatalogGroup,
   type CatalogInputs,
   type GroupKey,
+  instrumentCardFor,
 } from '../lib/instrument-catalog';
+import type { Company } from '../lib/companies';
 import type { Exchange } from '../lib/markets';
 
 const NOW = new Date('2026-09-08T12:00:00Z');
@@ -190,7 +192,7 @@ describe('buildInstrumentCatalog', () => {
     expect(rows.map((r) => r.id).sort()).toEqual(['strait-hormuz', 'strait-kerch']);
     const kerch = rows.find((r) => r.id === 'strait-kerch');
     expect(kerch?.card).toBeNull();
-    expect(kerch?.short).toBe('Kerch ships');
+    expect(kerch?.short).toBe('Kerch');
   });
 
   it('drops a series the desk has written nothing about', () => {
@@ -265,5 +267,111 @@ describe('buildInstrumentCatalog', () => {
 
   it('leaves an empty group out rather than offering a row that opens nothing', () => {
     expect(build({}).map((g) => g.key)).toEqual([]);
+  });
+});
+
+describe('largest companies', () => {
+  /** Two closes a week apart, so each has the week the list sorts on. */
+  function company(id: string, values: number[], over: Partial<Company> = {}): Company {
+    return {
+      id,
+      name: id,
+      about: 'chips',
+      symbol: id.toUpperCase(),
+      iso2: 'US',
+      currency: 'USD',
+      currencyName: 'US dollars',
+      level: values.at(-1) ?? 0,
+      asOf: '2026-09-08',
+      sourceLabel: 'Provider',
+      blurb: `${id} makes things.`,
+      series: { values, periods: ['Sep 1', 'Sep 8'] },
+      ...over,
+    };
+  }
+
+  const inputs = (over: Partial<CatalogInputs> = {}): CatalogInputs => ({
+    ranked: [],
+    trends: null,
+    chokepoints: [],
+    analysis: new Map(),
+    articles: [],
+    exchanges: [exchange('bist', 'TR', [100, 97])],
+    now: NOW,
+    ...over,
+  });
+
+  it('is a group of its own beside the markets, largest week first', () => {
+    const groups = buildInstrumentCatalog(
+      inputs({ companies: [company('quiet', [100, 101]), company('loud', [100, 120])] }),
+    );
+    expect(groups.map((g) => g.key)).toEqual(['stocks', 'companies']);
+    const list = groups[1];
+    expect(list?.title).toBe('largest companies');
+    expect(list?.rows.map((r) => r.short)).toEqual(['loud', 'quiet']);
+    expect(list?.rows.every((r) => r.weekly)).toBe(true);
+    expect(list?.rows[0]?.id).toBe('co:loud');
+    expect(list?.wait).toBeUndefined();
+  });
+
+  it('is absent where the list was never fetched', () => {
+    for (const companies of [undefined, null, []]) {
+      expect(buildInstrumentCatalog(inputs({ companies })).map((g) => g.key)).toEqual(['stocks']);
+    }
+  });
+
+  it('keeps its row while there are no prices yet, whether they are coming or not', () => {
+    // A row that gave its place up when the fetch failed moved every row
+    // under it, five seconds after the menu opened.
+    for (const wait of ['waiting', 'failed'] as const) {
+      const groups = buildInstrumentCatalog(inputs({ companies: null, companiesWait: wait }));
+      expect(groups.map((g) => g.key)).toEqual(['stocks', 'companies']);
+      expect(groups[1]).toMatchObject({ rows: [], wait });
+    }
+    // Once the prices are there the group is an ordinary one.
+    const filled = buildInstrumentCatalog(
+      inputs({ companies: [company('a', [100, 110])], companiesWait: 'waiting' }),
+    );
+    expect(filled[1]?.wait).toBeUndefined();
+    expect(filled[1]?.rows).toHaveLength(1);
+  });
+
+  it('drops a company with nothing under its chart', () => {
+    const groups = buildInstrumentCatalog(
+      inputs({ companies: [company('bare', [100, 110], { blurb: '' }), company('a', [100, 110])] }),
+    );
+    expect(groups[1]?.rows.map((r) => r.short)).toEqual(['a']);
+  });
+
+  it('leaves `a share` to the line over the list, and keeps a currency no mark says', () => {
+    const groups = buildInstrumentCatalog(
+      inputs({
+        companies: [
+          company('dollars', [100, 120]),
+          company('won', [100, 110], { currency: 'KRW', currencyName: 'Korean won' }),
+        ],
+      }),
+    );
+    const [dollars, won] = groups[1]?.rows ?? [];
+    expect(dollars?.note).toBe('');
+    expect(won?.note).toBe('Korean won');
+    // The card a row opens still says it in full.
+    expect(dollars?.card?.readingNote).toBe('a share');
+    expect(won?.card?.readingNote).toBe('Korean won a share');
+    // No other list's rows carry a line of their own.
+    expect(groups[0]?.rows.every((r) => r.note === undefined)).toBe(true);
+  });
+
+  it('never enters the stock markets list or its tally of exchanges', () => {
+    const groups = buildInstrumentCatalog(inputs({ companies: [company('a', [100, 110])] }));
+    expect(groups[0]?.rows.map((r) => r.id)).toEqual(['mkt:bist']);
+    expect(groups[1]?.rows[0]?.exchange).toBeUndefined();
+  });
+
+  it('answers for a company by its card id', () => {
+    const all = inputs({ companies: [company('a', [100, 110])] });
+    expect(instrumentCardFor('co:a', all)?.title).toBe('a');
+    expect(instrumentCardFor('co:missing', all)).toBeNull();
+    expect(instrumentCardFor('co:a', inputs())).toBeNull();
   });
 });
