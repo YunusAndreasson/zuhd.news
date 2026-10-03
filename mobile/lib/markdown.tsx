@@ -227,8 +227,28 @@ function withoutDateline(sentence: string, location?: string | null): string {
   return sentence.startsWith(prefix) ? sentence.slice(prefix.length) : sentence;
 }
 
+/** The gap under a block, in the block's own type size — a paragraph's, and
+ *  the lede's, which is twice it. `lib/deck-layout.ts` estimates both as a
+ *  fraction of a body line, and `__tests__/deck-layout.test.ts` holds the two
+ *  files to the same numbers. */
+const BLOCK_GAP_EM = 0.5;
+const LEDE_GAP_EM = 1;
+
 export interface MarkdownStyles {
   sentence: TextStyle;
+  /**
+   * The first block — the hook — as the story's lede, laid over `sentence`.
+   *
+   * At rest the hook is the one sentence the card shows: it is the news. Open,
+   * it was paragraph one of five, in the same ink and with the same gap as the
+   * blocks that explain it, so the sentence the reader opened the story for
+   * sank into it. The web's reader sets it apart in its emphasis ink with a
+   * larger gap after it, at about body size on a phone, and so does this: the
+   * same size, so the resting card's lines are the same; one ink step up; and
+   * twice the paragraph gap, so the title and the lede read as one group —
+   * what the reader saw at rest — and the explanation as another.
+   */
+  lede: TextStyle;
   bold: TextStyle;
   italic: TextStyle;
   boldItalic: TextStyle;
@@ -270,8 +290,12 @@ export function makeMarkdownStyles(
       // column rhythm.
       paddingRight: 2,
       color: colors.text,
-      marginBottom: typography.sizeBase * 0.5,
+      marginBottom: typography.sizeBase * BLOCK_GAP_EM,
       fontVariant: ['oldstyle-nums'],
+    },
+    lede: {
+      color: colors.textEmphasis,
+      marginBottom: typography.sizeBase * LEDE_GAP_EM,
     },
     // Re-declare `fontVariant` on each emphasis style. RN drops fontVariant
     // across a font-family switch on Android, so without it a bolded "$106"
@@ -396,10 +420,30 @@ export interface SentenceOptions {
    *  across the sentence list becomes a tappable `<Text>` with `onEntityPress`. */
   entities?: Entity[];
   onEntityPress?: EntityPressHandler;
+  /**
+   * How many leading blocks set their links and mentions as plain words. The
+   * words are the same and so are the lines — a link only adds ink and an
+   * underline — but nothing in those blocks takes a press of its own.
+   *
+   * The resting card is one button: a tap on its hook opens the story. A
+   * country in the hook was a second, underlined target inside it — the
+   * heaviest mark in the one sentence a swiping reader is deciding on, solid
+   * on Android — and a tap on it opened a country sheet instead of the story.
+   * `StoryCard` passes 1 at rest and 0 once the story is open. Mentions in
+   * these blocks are still consumed, so a later block never tags the same one.
+   */
+  plainBlocks?: number;
+}
+
+/** A link or a mention as the words it shows, for a block that takes no press. */
+function asPlain(segments: Segment[]): Segment[] {
+  return segments.map(
+    (s): Segment => (s.type === 'link' || s.type === 'entity' ? { type: 'text', text: s.text } : s),
+  );
 }
 
 /**
- * A story's blocks, one block `Text` each.
+ * A story's blocks, one block `Text` each. The first is the lede.
  *
  * It also took a font size, a dateline printed above the first block and a
  * press for it, which no caller has passed since the full-screen reader went;
@@ -408,7 +452,13 @@ export interface SentenceOptions {
 export function renderSentences(
   sentences: string[],
   mdStyles: MarkdownStyles,
-  { location, openLink = defaultOpenLink, entities, onEntityPress }: SentenceOptions = {},
+  {
+    location,
+    openLink = defaultOpenLink,
+    entities,
+    onEntityPress,
+    plainBlocks = 0,
+  }: SentenceOptions = {},
 ): ReactNode[] {
   // Entities fire on first occurrence only across the whole body — track
   // which indicator ids have already been consumed so later sentences don't
@@ -442,14 +492,15 @@ export function renderSentences(
    *  prevent, and it is gone: a block is a block on screen. */
   return sentences.map((sentence, i) => {
     const segments = parseInline(i === 0 ? withoutDateline(sentence, location) : sentence);
-    const rendered = entities?.length
+    const tagged = entities?.length
       ? splitSegmentsWithEntities(segments, consume(segments))
       : segments;
+    const rendered = i < plainBlocks ? asPlain(tagged) : tagged;
     return (
       <Text
         key={i}
         {...SENTENCE_TEXT_PROPS}
-        style={mdStyles.sentence}
+        style={i === 0 ? [mdStyles.sentence, mdStyles.lede] : mdStyles.sentence}
         maxFontSizeMultiplier={MAX_FONT_SCALE.body}
       >
         {renderSegments(rendered, mdStyles, openLink, onEntityPress)}

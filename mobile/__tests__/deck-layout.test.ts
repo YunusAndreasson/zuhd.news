@@ -1,10 +1,14 @@
+import { DARK_COLORS, FONT_SOURCE, makeTypography } from '../constants/theme';
 import {
   BAND_MIN,
+  BLOCK_GAP_RATIO,
   computeDeckLayout,
   type DeckLayoutInput,
+  LEDE_GAP_RATIO,
   openHeightNeedsMeasuring,
   openStoryHeight,
 } from '../lib/deck-layout';
+import { makeMarkdownStyles } from '../lib/markdown';
 
 // Line heights as `makeTextVariants` resolves them on a 360-wide window
 // (`fs` scale 0.96): caption 12×1.55, labelXs 11×1.55, title 20×1.2, body 16×1.55.
@@ -85,15 +89,16 @@ describe('computeDeckLayout', () => {
     // estimate outgrew a 1100pt window, where `storyCap` — not the story —
     // decided the height and this test stopped testing what it says.
     const layout = computeDeckLayout(tall({ height: 1300 }));
-    // 16 + 19 + 4 + 56 + 8 + 15×29 story + 40 block gaps + 16 + 22 odds
-    // + 8 + 40 actions + 82 dock
+    // 16 + 19 + 4 + 56 + 8 + 15×29 story + 50 block gaps + 16 section gap
+    // + 16 + 22 odds + 40 actions + 82 dock
     //
     // 15 is STORY_LINES: the writer's 560-character ceiling counted per block
-    // at ~43 characters a line. 40 is the four gaps between five blocks, at
-    // `mdStyles.sentence`'s marginBottom. Both move with the writer's budget;
+    // at ~43 characters a line. 50 is the four gaps between five blocks: the
+    // lede's (`mdStyles.lede`, 20) and three paragraphs' (`mdStyles.sentence`,
+    // 10 each). STORY_LINES moves with the writer's budget;
     // `scripts/lib/article-budget.test.js` is what holds them together.
-    expect(layout.full).toBe(746);
-    expect(layout.storyBand).toBe(1300 - 171 - 746);
+    expect(layout.full).toBe(764);
+    expect(layout.storyBand).toBe(1300 - 171 - 764);
   });
 
   it('lets the globe band cap the estimate on a real phone', () => {
@@ -108,9 +113,9 @@ describe('computeDeckLayout', () => {
 
   it('opens to the measured card height once there is one, not the estimate', () => {
     const estimated = computeDeckLayout(tall({ height: 1100 }));
-    // 16 handle + a 300pt card (its actions included) + 82 dock
+    // 16 handle + a 300pt card + the footer's 40pt row + 82 dock
     const measured = computeDeckLayout(tall({ height: 1100, storyContent: 300 }));
-    expect(measured.full).toBe(398);
+    expect(measured.full).toBe(438);
     expect(measured.full).toBeLessThan(estimated.full);
     // The peek does not depend on it.
     expect(measured.peek).toBe(estimated.peek);
@@ -179,5 +184,22 @@ describe('openHeightNeedsMeasuring', () => {
     const stories = Array.from({ length: 44 }, () => linked);
     expect(openHeightNeedsMeasuring(tall(), stories)).toBe(false);
     expect(openHeightNeedsMeasuring(tall(), [])).toBe(false);
+  });
+});
+
+// The estimate counts the renderer's gaps as fractions of a body line, and
+// neither file reads the other's numbers: this is what keeps them one.
+describe('the gaps the estimate counts', () => {
+  const typography = makeTypography(1);
+  const md = makeMarkdownStyles(DARK_COLORS, FONT_SOURCE, typography);
+  const line = typography.sizeBase * typography.leadingBody;
+
+  it('are the paragraph gap the renderer draws', () => {
+    expect(Number(md.sentence.marginBottom) / line).toBeCloseTo(BLOCK_GAP_RATIO, 6);
+  });
+
+  it('are the lede’s gap, twice a paragraph’s', () => {
+    expect(Number(md.lede.marginBottom) / line).toBeCloseTo(LEDE_GAP_RATIO, 6);
+    expect(LEDE_GAP_RATIO).toBeCloseTo(2 * BLOCK_GAP_RATIO, 6);
   });
 });

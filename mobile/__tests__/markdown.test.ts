@@ -228,4 +228,39 @@ describe('renderSentences', () => {
     // Not cut, and typeset: a spaced dash never starts a line (`smartTypography`).
     expect(runs(blocks)).toEqual([['Traffic fell.'], ['Cairo\u00a0\u2014 not a dateline here.']]);
   });
+
+  it('sets the first block as the lede and no other', () => {
+    const sentence = { color: 'body' };
+    const lede = { color: 'emphasis' };
+    const blocks = renderSentences(['Hook.', 'Why.', 'How.'], {
+      sentence,
+      lede,
+    } as MarkdownStyles) as ReactElement<{ style: unknown }>[];
+    expect(blocks.map((b) => b.props.style)).toEqual([[sentence, lede], sentence, sentence]);
+  });
+
+  // The resting card is one button: its hook's links are words until it opens.
+  describe('plainBlocks', () => {
+    const story = [
+      'Strikes hit [Ukraine](country:UA) as Brent rose.',
+      'Brent fell in [Russia](country:RU).',
+    ];
+
+    it('sets the leading blocks\u2019 links and mentions as the same words, pressing nothing', () => {
+      const blocks = renderSentences(story, styles, { entities: [brent], plainBlocks: 1 });
+      expect(runs(blocks)).toEqual([
+        ['Strikes hit ', 'Ukraine', ' as ', 'Brent', ' rose.'],
+        // The hook consumed the mention, so the next block does not tag it.
+        ['Brent fell in ', '[Russia]', '.'],
+      ]);
+    });
+
+    it('presses them once the story is open', () => {
+      const blocks = renderSentences(story, styles, { entities: [brent], plainBlocks: 0 });
+      expect(runs(blocks)).toEqual([
+        ['Strikes hit ', '[Ukraine]', ' as ', '[Brent]', ' rose.'],
+        ['Brent fell in ', '[Russia]', '.'],
+      ]);
+    });
+  });
 });

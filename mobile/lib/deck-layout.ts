@@ -79,7 +79,11 @@ const STORY_BLOCKS = 5;
  *  of a line and scales with the reader's type without either file knowing the
  *  other's numbers. `__tests__/deck-layout.test.ts` pins them together — change
  *  the margin there and this estimate is wrong everywhere until it is updated. */
-const BLOCK_GAP_RATIO = 0.5 / 1.45;
+export const BLOCK_GAP_RATIO = 0.5 / 1.45;
+/** The gap under the lede — the first block — which is twice a paragraph's
+ *  (`mdStyles.lede`), so the title and the lede group apart from the blocks
+ *  that explain them. Pinned to the renderer by the same test. */
+export const LEDE_GAP_RATIO = 1 / 1.45;
 /** The globe's share of the window at rest, before the card yields. */
 const PEEK_BAND_FRACTION = 0.34;
 /** The globe's share of the window while a story is open. */
@@ -91,8 +95,16 @@ export const BAND_MIN = 140;
  *  the story track in the dock. */
 export const CONTROL_ROW = 48;
 
-/** The open card's row of words — sources, save, share — at its end. */
+/** The row of words under an open story — sources, save, share
+ *  (`StoryFooter`). Not part of the card: a measured card height is the story
+ *  alone, and the sheet adds this row to it. */
 export const ACTIONS_ROW = CONTROL_ROW - SPACING.sm;
+
+/** The space `StoryCard` puts between the prose and what follows it — the
+ *  story's chart or odds, the thread line, the row of words. With the last
+ *  block's own gap it is about `SPACING.lg`, the section tier, so the exhibit
+ *  reads as an exhibit and not as one more paragraph. */
+export const AFTER_PROSE_GAP = SPACING.md;
 
 /** The share of today's cards the open sheet fits whole; the rest scroll. */
 const STORY_FIT_SHARE = 0.75;
@@ -133,8 +145,9 @@ export interface DeckLayoutInput {
   /** `VARIANT_CAP` for the same four variants. */
   caps: DeckLines;
   /** The card height the open sheet is sized for, from today's cards as
-   *  rendered (`openStoryHeight`). Until they are measured, the type estimate
-   *  for the longest possible story stands in. */
+   *  rendered (`openStoryHeight`) — the story alone; the footer's row is added
+   *  here. Until they are measured, the type estimate for the longest possible
+   *  story stands in. */
   storyContent?: number;
 }
 
@@ -174,6 +187,9 @@ export function computeDeckLayout(input: DeckLayoutInput): DeckLayout {
     SPACING.sm;
   const body = lineHeight(input, 'body');
 
+  // The lede's gap is not counted, on purpose: it lies under the hook, and
+  // under a two-line hook the veiled line still clears the dock — about 1pt of
+  // its fading foot does not. Counting it would take ~8pt from every globe.
   const content = above + HOOK_LINES * body + SPACING.md + dock;
   const floor = above + body + dock;
   const bandCap = height - topChrome - Math.round(PEEK_BAND_FRACTION * height);
@@ -182,18 +198,19 @@ export function computeDeckLayout(input: DeckLayoutInput): DeckLayout {
   const peek = Math.round(Math.min(Math.max(Math.min(content, bandCap), floor), absoluteCap));
   const band = height - topChrome - peek;
 
-  // The whole story — its lines and the gaps between its blocks — then the odds
-  // or thread line and the pinned row of words above the dock. Measured where
-  // it can be; this arm is only the first frame's stand-in.
+  // The whole story — its lines and the gaps between its blocks, the lede's
+  // twice the rest — then the section gap, the odds or thread line and the row
+  // of words above the dock. Measured where it can be; this arm is only the
+  // first frame's stand-in.
   const story =
     input.storyContent !== undefined
-      ? HANDLE + input.storyContent + dock
+      ? HANDLE + input.storyContent + ACTIONS_ROW + dock
       : above +
         STORY_LINES * body +
-        Math.round((STORY_BLOCKS - 1) * BLOCK_GAP_RATIO * body) +
+        Math.round(((STORY_BLOCKS - 2) * BLOCK_GAP_RATIO + LEDE_GAP_RATIO) * body) +
+        AFTER_PROSE_GAP +
         SPACING.md +
         lineHeight(input, 'caption') +
-        SPACING.sm +
         ACTIONS_ROW +
         dock;
   const storyCap = storyCapOf(input);
@@ -252,8 +269,7 @@ export function openHeightNeedsMeasuring(
     SPACING.xs +
     lineHeight(input, 'title') +
     SPACING.sm +
-    // Always in a measurement: until `sources · save · share` mounts (when JS
-    // is next idle), the card holds an empty box of this same height.
+    // The footer's row under every story (`StoryFooter`), whatever its length.
     ACTIONS_ROW +
     CONTROL_ROW +
     input.bottomInset;

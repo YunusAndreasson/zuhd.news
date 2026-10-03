@@ -24,9 +24,13 @@ import { Pressable, Text } from './primitives';
  */
 export const OddsLine = memo(function OddsLine({
   odds,
+  last,
   onPress,
 }: {
   odds: StoryOdds;
+  /** Nothing follows it in the story: the footer's rule closes the frame, as
+   *  for `StoryChart`. */
+  last?: boolean;
   onPress?: (odds: StoryOdds) => void;
 }) {
   const { colors } = useTheme();
@@ -59,7 +63,7 @@ export const OddsLine = memo(function OddsLine({
   return onPress ? (
     <Pressable
       onPress={handlePress}
-      style={[styles.odds, { borderColor: colors.rule }]}
+      style={[styles.odds, { borderColor: colors.rule }, last && styles.last]}
       accessibilityRole="button"
       accessibilityLabel={spoken}
       accessibilityHint="Opens the market's chart"
@@ -68,7 +72,7 @@ export const OddsLine = memo(function OddsLine({
     </Pressable>
   ) : (
     <View
-      style={[styles.odds, { borderColor: colors.rule }]}
+      style={[styles.odds, { borderColor: colors.rule }, last && styles.last]}
       accessible
       accessibilityRole="text"
       accessibilityLabel={spoken}
@@ -89,6 +93,7 @@ const styles = StyleSheet.create({
     borderTopWidth: StyleSheet.hairlineWidth,
     borderBottomWidth: StyleSheet.hairlineWidth,
   },
+  last: { borderBottomWidth: 0, marginBottom: 0 },
   oddsRow: {
     flexDirection: 'row',
     alignItems: 'baseline',

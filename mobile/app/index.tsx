@@ -46,7 +46,7 @@ import { ALERT_ROW, AlertPill } from '../components/map/AlertPill';
 import { GlobeGestureLayer } from '../components/map/GlobeGestureLayer';
 import { MapHeader } from '../components/map/MapHeader';
 import { MapSheet, type MapSheetDetent, type MapSheetRef } from '../components/map/MapSheet';
-import { EndCard, StoryCard } from '../components/map/StoryCard';
+import { EndCard, StoryCard, StoryFooter } from '../components/map/StoryCard';
 import { StoryDeck, type StoryDeckRef } from '../components/map/StoryDeck';
 import { StoryDock } from '../components/map/StoryDock';
 import { StoryMeasure } from '../components/map/StoryMeasure';
@@ -1659,22 +1659,16 @@ export default function HomeScreen() {
           onEntityPress={handleEntityPress}
           onOddsPress={handleOddsPress}
           onChartPress={openCard}
-          onSources={handleSourcesPress}
-          onBookmark={handleArticleBookmark}
-          onShare={handleShare}
         />
       );
     },
     [
       expandSheet,
-      handleArticleBookmark,
       handleCountryPress,
       handleEntityPress,
       handleNextStory,
       handleOddsPress,
       handlePreviousStory,
-      handleShare,
-      handleSourcesPress,
       odds,
       charts,
       openCard,
@@ -1684,6 +1678,24 @@ export default function HomeScreen() {
       frontIndex,
       storyRows,
     ],
+  );
+
+  // `sources · save · share`, under each card's scroll area (`DeckSlot`).
+  const renderStoryFooter = useCallback(
+    (index: number) => {
+      const row = storyRows[index];
+      if (!row) return null;
+      return (
+        <StoryFooter
+          article={row.article}
+          open={storyOpen && index === frontIndex}
+          onSources={handleSourcesPress}
+          onBookmark={handleArticleBookmark}
+          onShare={handleShare}
+        />
+      );
+    },
+    [frontIndex, handleArticleBookmark, handleShare, handleSourcesPress, storyOpen, storyRows],
   );
 
   // Only when the measurement could change the open height at all
@@ -1766,9 +1778,6 @@ export default function HomeScreen() {
           onCountryPress={noop}
           onEntityPress={noop}
           onOddsPress={noop}
-          onSources={noop}
-          onBookmark={noop}
-          onShare={noop}
         />
       );
     },
@@ -1828,6 +1837,7 @@ export default function HomeScreen() {
         bottomInset={layout.dock}
         keyOf={keyOfDeck}
         renderStory={renderStory}
+        renderFooter={renderStoryFooter}
         renderEnd={renderEnd}
         onDragStart={handleDeckDragStart}
         onClaim={claimForDeck}
@@ -1845,6 +1855,7 @@ export default function HomeScreen() {
       keyOfDeck,
       renderEnd,
       renderStory,
+      renderStoryFooter,
       sheetProgress,
       screenWidth,
       storyCount,

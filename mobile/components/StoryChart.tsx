@@ -33,9 +33,13 @@ import { Pressable, Text } from './primitives';
  */
 export const StoryChart = memo(function StoryChart({
   card,
+  last,
   onPress,
 }: {
   card: GraphCard;
+  /** Nothing follows it in the story: the footer's rule closes the frame
+   *  (`styles.last`). */
+  last?: boolean;
   onPress?: (card: GraphCard) => void;
 }) {
   const { colors } = useTheme();
@@ -65,7 +69,7 @@ export const StoryChart = memo(function StoryChart({
   return (
     <Pressable
       onPress={handlePress}
-      style={[styles.frame, { borderColor: colors.rule }]}
+      style={[styles.frame, { borderColor: colors.rule }, last && styles.last]}
       accessibilityRole="button"
       accessibilityLabel={spoken}
       accessibilityHint="Opens the chart"
@@ -128,6 +132,11 @@ const styles = StyleSheet.create({
     borderTopWidth: StyleSheet.hairlineWidth,
     borderBottomWidth: StyleSheet.hairlineWidth,
   },
+  // The last thing in a story is followed by the footer's own rule
+  // (`StoryFooter`). With this frame's bottom rule and margin as well, two
+  // hairlines sat 24pt apart with nothing between them (seen on the
+  // emulator, 2026-10-03).
+  last: { borderBottomWidth: 0, marginBottom: 0 },
   reading: {
     flexDirection: 'row',
     alignItems: 'baseline',

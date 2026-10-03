@@ -19,13 +19,7 @@ import {
   View,
 } from 'react-native';
 import Animated, { type SharedValue, useAnimatedStyle } from 'react-native-reanimated';
-import {
-  categoryTextColor,
-  HIT_SLOP,
-  MAX_FONT_SCALE,
-  SPACING,
-  withAlpha,
-} from '../../constants/theme';
+import { categoryTextColor, MAX_FONT_SCALE, SPACING, withAlpha } from '../../constants/theme';
 import { useTheme } from '../../hooks/useTheme';
 import { articleTime, formatTimeAgo } from '../../lib/article-utils';
 import {
@@ -33,7 +27,7 @@ import {
   subscribe as subscribeBookmarks,
 } from '../../lib/bookmark-store';
 import type { GraphCard } from '../../lib/cards/types';
-import { ACTIONS_ROW } from '../../lib/deck-layout';
+import { ACTIONS_ROW, AFTER_PROSE_GAP } from '../../lib/deck-layout';
 import { useNewSpent } from '../../lib/fresh-store';
 import type { StoryRow } from '../../lib/map-feed';
 import { COUNTRY_URL_SCHEME, makeMarkdownStyles, renderSentences } from '../../lib/markdown';
@@ -74,11 +68,10 @@ import { StoryChart } from '../StoryChart';
  * **Nothing clamps.** A third title line or a long hook pushes the rest down
  * and scrolls when open — the card never ends a sentence with an ellipsis.
  *
- * **Sources, save and share are words you can see**, at the end of the story.
- * For a day they were pinned above the dock so they never moved, which put
- * the open card's spare space between the last sentence and the buttons — a
- * hole in the middle of the card. After the text, the spare space is where a
- * story ends.
+ * **Sources, save and share are not in the card.** They are `StoryFooter`,
+ * which the deck sets under the card's scroll area (`DeckSlot`): directly
+ * after a story that fits, and held at the sheet's foot while a longer one
+ * scrolls above it. See `StoryFooter` for why they left the end of the text.
  *
  * **The map supplies the place.** The kicker shows category and time only;
  * the dateline prefix is stripped from the prose. The accessible title still
@@ -109,9 +102,6 @@ interface StoryCardProps {
   onEntityPress: (entity: Entity) => void;
   onOddsPress: (odds: StoryOdds) => void;
   onChartPress?: (card: GraphCard) => void;
-  onSources: (article: Article) => void;
-  onBookmark: (article: RiverArticle) => void;
-  onShare: (article: RiverArticle) => void;
 }
 
 /** Body lines the veil takes to go from half strength to nothing. */
@@ -245,9 +235,6 @@ export const StoryCard = memo(function StoryCard({
   onEntityPress,
   onOddsPress,
   onChartPress,
-  onSources,
-  onBookmark,
-  onShare,
 }: StoryCardProps) {
   const { colors, font, typography } = useTheme();
   const { fontScale } = useWindowDimensions();
@@ -258,22 +245,6 @@ export const StoryCard = memo(function StoryCard({
   }, [article]);
 
   const threadContext = articleThreadContext(article);
-
-  // `sources · save · share` mount when the JS thread is next idle, not with
-  // the card. A card mounts as a swipe lands — the neighbour coming into the
-  // deck's window, off screen — and the three pressables were 25 ms of that
-  // commit's 103 (dev build, profiled 2026-09-22), in the frames where the
-  // globe resumes reprojecting. Until then the row is an empty box of the
-  // same fixed height (`ACTIONS_ROW`), so nothing moves when they arrive; at
-  // rest they are under the veil and hidden from screen readers anyway, and
-  // opening the card mounts them at once.
-  const [actionsIdle, setActionsIdle] = useState(false);
-  useEffect(() => {
-    if (actionsIdle) return;
-    const id = requestIdleCallback(() => setActionsIdle(true), { timeout: 1000 });
-    return () => cancelIdleCallback(id);
-  }, [actionsIdle]);
-  const showActions = actionsIdle || open;
 
   const mdStyles = useMemo(
     () => makeMarkdownStyles(colors, font, typography),
@@ -321,6 +292,21 @@ export const StoryCard = memo(function StoryCard({
       }),
     [article.sentences, article.location, mdStyles, openLink, tappableEntities, onEntityPress],
   );
+  // **At rest the hook's links are its words** (`plainBlocks`): the resting
+  // card is one button, and a country in the hook was a second, underlined
+  // target inside it that opened a country sheet instead of the story. Open,
+  // they are links again; the lines are the same either way, so nothing
+  // reflows. Built apart from the pass above so that opening swaps this one
+  // block and leaves the rest's elements as they were: `open` changes as the
+  // finger lets the sheet go, in the commit that starts its spring.
+  const restingHook = useMemo(
+    () =>
+      renderSentences(hookOf(article.sentences), mdStyles, {
+        location: article.location,
+        plainBlocks: 1,
+      }),
+    [article.sentences, article.location, mdStyles],
+  );
   // A block per paragraph, with the gap `mdStyles.sentence`'s marginBottom
   // draws between them. Everything after the hook ran on as ONE paragraph
   // between 2026-09-19 and 2026-09-20, to buy back the vertical the gaps
@@ -329,7 +315,7 @@ export const StoryCard = memo(function StoryCard({
   // a paragraph of its format section telling the writer that the blank line
   // between blocks is what the reader sees as separation, and the web reader
   // has rendered one `<p>` per block all along. The app was the odd one out.
-  const hook = hookOf(sentences);
+  const hook = open ? hookOf(sentences) : restingHook;
   const rest = restOf(sentences);
 
   const openTap = useTapOnly(onOpen);
@@ -400,7 +386,14 @@ export const StoryCard = memo(function StoryCard({
             ) : null}
           </Text>
         </View>
-        <Text variant="title" maxFontSizeMultiplier={MAX_FONT_SCALE.heading} style={styles.title}>
+        {/* Emphasis ink, as the web's title: never quieter than the lede
+            under it, which is set in the same step. */}
+        <Text
+          variant="title"
+          tone="emphasis"
+          maxFontSizeMultiplier={MAX_FONT_SCALE.heading}
+          style={styles.title}
+        >
           {row.title}
         </Text>
       </RNPressable>
@@ -419,28 +412,26 @@ export const StoryCard = memo(function StoryCard({
         >
           {rest}
 
-          {chart ? (
-            <StoryChart card={chart} onPress={onChartPress} />
-          ) : odds ? (
-            <OddsLine odds={odds} onPress={onOddsPress} />
-          ) : null}
+          {/* What follows the prose is set apart by space, not a rule beyond
+              the exhibit's own: a section gap, so the chart reads as an
+              exhibit and not as one more paragraph under "what's next" (its
+              top rule sat a paragraph gap from the last sentence), and the
+              thread line under it closes the story. */}
+          {chart || odds || threadContext ? (
+            <View style={styles.afterProse}>
+              {chart ? (
+                <StoryChart card={chart} last={!threadContext} onPress={onChartPress} />
+              ) : odds ? (
+                <OddsLine odds={odds} last={!threadContext} onPress={onOddsPress} />
+              ) : null}
 
-          {threadContext ? (
-            <Text variant="labelXs" tone="secondary" style={styles.threadContext}>
-              {threadContext}
-            </Text>
+              {threadContext ? (
+                <Text variant="labelXs" tone="secondary">
+                  {threadContext}
+                </Text>
+              ) : null}
+            </View>
           ) : null}
-
-          {showActions ? (
-            <StoryActions
-              article={article}
-              onSources={onSources}
-              onBookmark={onBookmark}
-              onShare={onShare}
-            />
-          ) : (
-            <View style={styles.actions} />
-          )}
         </View>
         {veil ? (
           <Veil
@@ -458,8 +449,74 @@ export const StoryCard = memo(function StoryCard({
   );
 });
 
-/** Sources, save and share, as words, at the end of the story. Under the
- *  veil at rest, like the rest of it. */
+/** The row's targets: its whole height and 4pt past it — Material's 48dp,
+ *  which also covers Apple's 44. They were the words' own 20pt plus 12. */
+const ACTION_SLOP = { top: 4, bottom: 4, left: 12, right: 12 } as const;
+
+/**
+ * `sources · save · share`, under an open story's text — outside the card, so
+ * the deck can hold it in sight (`DeckSlot`).
+ *
+ * **It follows the text and never leaves the sheet** (2026-10-03, the user's
+ * choice). The slot's scroll area is as tall as the story up to the room
+ * there is, and this row comes straight after it: under the last line of a
+ * story that fits, and at the sheet's foot, over the dock, while a longer one
+ * scrolls above. No gap either way, and nothing measured to get there.
+ *
+ * It was the last thing *in* the card. Since most open stories scroll, that
+ * put it out of sight when a story opened for an estimated 58–87% of a
+ * fortnight's stories on a 393×852 phone, and somewhere different on each of
+ * the rest — the only way the app has to save or share a story, a scroll
+ * away. Pinned above the dock was tried once before (2026-09-19) and left
+ * four or five blank lines between the text and the row, because the sheet
+ * was then sized for the longest story and the row sat at its foot whatever
+ * the text did; following the text is what removes the hole.
+ *
+ * **Words in the text's ink, not small caps** (the same day): in grey small
+ * caps the card's only three buttons looked like its two labels, the kicker
+ * and the thread line. A swipe can start here — it is where the thumb rests —
+ * so a press counts only as a tap (`tapSlop`).
+ *
+ * The words mount when the JS thread is next idle, or at once when the story
+ * opens: a slot's first mount lands as a swipe does, and the three pressables
+ * were 25 ms of that commit (profiled 2026-09-22). The row keeps its height
+ * meanwhile, so nothing moves when they arrive.
+ */
+export const StoryFooter = memo(function StoryFooter({
+  article,
+  open,
+  onSources,
+  onBookmark,
+  onShare,
+}: {
+  article: RiverArticle;
+  /** The story is open and in front: mount the words now. */
+  open: boolean;
+  onSources: (article: Article) => void;
+  onBookmark: (article: RiverArticle) => void;
+  onShare: (article: RiverArticle) => void;
+}) {
+  const { colors } = useTheme();
+  const [idle, setIdle] = useState(false);
+  useEffect(() => {
+    if (idle) return;
+    const id = requestIdleCallback(() => setIdle(true), { timeout: 1000 });
+    return () => cancelIdleCallback(id);
+  }, [idle]);
+  return (
+    <View style={[styles.footer, { borderTopColor: colors.rule }]}>
+      {idle || open ? (
+        <StoryActions
+          article={article}
+          onSources={onSources}
+          onBookmark={onBookmark}
+          onShare={onShare}
+        />
+      ) : null}
+    </View>
+  );
+});
+
 const StoryActions = memo(function StoryActions({
   article,
   onSources,
@@ -489,42 +546,43 @@ const StoryActions = memo(function StoryActions({
       {sourceCount > 0 ? (
         <Pressable
           onPress={handleSources}
+          tapSlop={TAP_SLOP}
+          style={styles.action}
           accessibilityRole="button"
           accessibilityLabel={`${sourceCount} ${sourceCount === 1 ? 'source' : 'sources'}`}
-          hitSlop={HIT_SLOP}
+          hitSlop={ACTION_SLOP}
         >
-          <Text variant="labelSm" tone="secondary">
+          <Text variant="captionEmphasis">
             {`${sourceCount} ${sourceCount === 1 ? 'source' : 'sources'}`}
           </Text>
         </Pressable>
       ) : null}
       <Pressable
-        onPress={handleBookmark}
-        accessibilityRole="button"
-        accessibilityLabel={saved ? 'Saved. Remove from saved stories' : 'Save this story'}
-        accessibilityState={{ selected: saved }}
-        hitSlop={HIT_SLOP}
-      >
-        {/* Held at the longer word's width, so `share` stays put when the
-            word changes under the finger. */}
-        <View>
-          <Text variant="labelSm" style={styles.reserve} importantForAccessibility="no">
-            saved
-          </Text>
-          <Text variant="labelSm" tone={saved ? 'emphasis' : 'secondary'} style={styles.word}>
-            {saved ? 'saved' : 'save'}
-          </Text>
-        </View>
-      </Pressable>
-      <Pressable
         onPress={handleShare}
+        tapSlop={TAP_SLOP}
+        style={styles.action}
         accessibilityRole="button"
         accessibilityLabel="Share this story"
         accessibilityHint="Opens the system share sheet"
-        hitSlop={HIT_SLOP}
+        hitSlop={ACTION_SLOP}
       >
-        <Text variant="labelSm" tone="secondary">
-          share
+        <Text variant="captionEmphasis">share</Text>
+      </Pressable>
+      {/* Last, because its word changes length: `saved` grows into the empty
+          row. Between the other two it needed a hidden `saved` to hold its
+          width so `share` stayed put, which left the gap after `save` a
+          letter wider than the gap before it. */}
+      <Pressable
+        onPress={handleBookmark}
+        tapSlop={TAP_SLOP}
+        style={styles.action}
+        accessibilityRole="button"
+        accessibilityLabel={saved ? 'Saved. Remove from saved stories' : 'Save this story'}
+        accessibilityState={{ selected: saved }}
+        hitSlop={ACTION_SLOP}
+      >
+        <Text variant="captionEmphasis" tone={saved ? 'emphasis' : 'default'}>
+          {saved ? 'saved' : 'save'}
         </Text>
       </Pressable>
     </View>
@@ -561,7 +619,7 @@ export const EndCard = memo(function EndCard({
       <Text variant="labelXs" tone="emphasis" style={styles.kicker}>
         {unread > 0 ? 'end of the day' : 'caught up'}
       </Text>
-      <Text variant="title" style={styles.title}>
+      <Text variant="title" tone="emphasis" style={styles.title}>
         That is today’s news.
       </Text>
       <Text variant="body" tone="secondary">
@@ -575,18 +633,25 @@ export const EndCard = memo(function EndCard({
 
 const styles = StyleSheet.create({
   fill: { flex: 1 },
-  card: { paddingHorizontal: SPACING.articlePadding, paddingBottom: SPACING.md },
+  // `sm` under the last line: with that block's own gap, about a paragraph's
+  // space before the footer's rule, so the row reads as the story's end and
+  // not as a second section.
+  card: { paddingHorizontal: SPACING.articlePadding, paddingBottom: SPACING.sm },
   kicker: { flexDirection: 'row', alignItems: 'center', marginBottom: SPACING.xs },
   kickerText: { flexShrink: 1 },
-  threadContext: { marginBottom: SPACING.sm },
+  // With the last block's own gap, about `SPACING.lg` from the prose: the
+  // section tier, over the paragraph's.
+  afterProse: { paddingTop: AFTER_PROSE_GAP },
 
   title: { marginBottom: SPACING.sm },
-  actions: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    gap: SPACING.lg,
+  // A hairline over the row: where a long story's text scrolls out from
+  // under, and where a short one ends. The dock's own rule closes it below.
+  footer: {
     height: ACTIONS_ROW,
+    paddingHorizontal: SPACING.articlePadding,
+    borderTopWidth: StyleSheet.hairlineWidth,
   },
-  reserve: { opacity: 0 },
-  word: { position: 'absolute', top: 0, left: 0 },
+  actions: { flex: 1, flexDirection: 'row', gap: SPACING.lg },
+  // Each word's target is the row's whole height, the word centred in it.
+  action: { justifyContent: 'center' },
 });
