@@ -2,13 +2,236 @@
   "version": 1,
   "stories": [
     {
+      "id": "two-tankers-struck-hormuz-fire-near-aramco-riyadh",
+      "label": "Oil tankers attacked in Hormuz, smoke seen near Aramco in Riyadh",
+      "firstSeen": "2026-10-03T14:05:21.467Z",
+      "lastCovered": "2026-10-03T14:05:21.467Z",
+      "coverageCount": 1,
+      "category": "economy",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-10-03-two-tankers-struck-hormuz-fire-near-aramco-riyadh"
+      ],
+      "eventUri": "eng-12065695",
+      "summary": "New incident, not the 10-02 strikes on three UAE-owned tankers (one clause): UKMTO reported two oil tankers hit by 'unidentified projectiles' in two separate incidents in the Strait of Hormuz early Saturday, and a witness told Reuters of smoke and fire near an Aramco facility in Riyadh. Lead with the two tanker strikes and what UKMTO states about crews, damage and location, then the Riyadh fire — say plainly that no one has claimed either and that no link between them is established. The mechanism: with Iran's blockade in place, every hit cuts ship traffic through the Strait of Hormuz further and lands on Brent crude and on the Gulf exporters now rerouting through the Red Sea; a strike near the Saudi capital comes a day after reports that Riyadh is planning an offensive against the Houthis. Dateline Dubai or as the source gives the UKMTO report; not a US dateline.",
+      "conceptUris": [
+        "http://en.wikipedia.org/wiki/Saudi_Aramco",
+        "http://en.wikipedia.org/wiki/Oil_tanker",
+        "http://en.wikipedia.org/wiki/Strait_of_Hormuz",
+        "http://en.wikipedia.org/wiki/Riyadh",
+        "http://en.wikipedia.org/wiki/Houthi_movement",
+        "http://en.wikipedia.org/wiki/Ballistic_missile",
+        "http://en.wikipedia.org/wiki/Unmanned_aerial_vehicle",
+        "http://en.wikipedia.org/wiki/Reuters"
+      ]
+    },
+    {
+      "id": "russia-warns-diplomats-leave-kyiv-strikes-kill-six",
+      "label": "'Mortal danger': Russia warns diplomats to leave Kyiv as fresh strikes kill 6 across Ukraine",
+      "firstSeen": "2026-10-03T14:05:21.467Z",
+      "lastCovered": "2026-10-03T14:05:21.467Z",
+      "coverageCount": 1,
+      "category": "politics",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-10-03-russia-warns-diplomats-leave-kyiv-strikes-kill-six"
+      ],
+      "eventUri": "rus-2135116",
+      "summary": "Follow-up to the 10-02 story on strikes paralysing Kyiv (one clause). The new development: Russia's foreign ministry on Saturday told diplomats and foreigners to leave Kyiv or face 'mortal danger', announcing further 'massive' strikes, as overnight attacks killed six people across Ukraine. Lead with the warning and its exact words, then the six dead — where, and who they were, as the sources give it. The mechanism: a state publicly telling embassies to evacuate a capital is announcing strikes on a city of civilians in advance, and it tests whether foreign missions stay; say which embassies have responded and what Ukraine said. TRT World is Turkish state media — the Times of India report in `sources` is the independent base. Dateline Kyiv.",
+      "conceptUris": [
+        "http://en.wikipedia.org/wiki/Ukraine",
+        "http://en.wikipedia.org/wiki/Kiev",
+        "http://en.wikipedia.org/wiki/Russia",
+        "http://en.wikipedia.org/wiki/Ministry_of_Foreign_Affairs_(Russia)",
+        "http://en.wikipedia.org/wiki/Russian_Armed_Forces",
+        "http://en.wikipedia.org/wiki/Moscow",
+        "http://en.wikipedia.org/wiki/Unmanned_aerial_vehicle",
+        "http://en.wikipedia.org/wiki/Volodymyr_Zelenskyy"
+      ]
+    },
+    {
+      "id": "spain-housing-protests-congress-rejects-tenant-protections",
+      "label": "Fresh protests over housing flare in Spain after lawmakers reject relief measures",
+      "firstSeen": "2026-10-03T14:05:21.467Z",
+      "lastCovered": "2026-10-03T14:05:21.467Z",
+      "coverageCount": 1,
+      "category": "politics",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-10-03-spain-housing-protests-congress-rejects-tenant-protections"
+      ],
+      "eventUri": "ita-952128",
+      "summary": "Tens of thousands marched in Madrid and other Spanish cities on Saturday after the Congress of Deputies narrowly rejected the Sánchez government's measures to strengthen protection for tenants. Lead with the vote and the march together: what the measures would have done (rent caps, eviction limits — as the sources state), the margin, and which parties voted them down. The mechanism: a minority government cannot pass housing law against the People's Party, Vox and its own wavering allies, so the cost stays with renters — give the sources' figures on rents and evictions and crowd sizes only as reported. Say what the tenants' unions demand next and what the government says it will do. Dateline Madrid.",
+      "conceptUris": [
+        "http://en.wikipedia.org/wiki/Spain",
+        "http://en.wikipedia.org/wiki/Pedro_Sánchez",
+        "http://en.wikipedia.org/wiki/Madrid",
+        "http://en.wikipedia.org/wiki/People's_Party_(Spain)",
+        "http://en.wikipedia.org/wiki/Vox_(political_party)",
+        "http://en.wikipedia.org/wiki/Government",
+        "http://en.wikipedia.org/wiki/Parliament",
+        "http://en.wikipedia.org/wiki/Congress_of_Deputies"
+      ]
+    },
+    {
+      "id": "egypt-matsda2sh-six-journalists-detention-order-disputed",
+      "label": "UPDATE: EIPR head: State security prosecution head denied issue of detention order for Matsda2sh team",
+      "firstSeen": "2026-10-03T14:05:21.467Z",
+      "lastCovered": "2026-10-03T14:05:21.467Z",
+      "coverageCount": 1,
+      "category": "politics",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-10-03-egypt-matsda2sh-six-journalists-detention-order-disputed"
+      ],
+      "eventUri": null,
+      "summary": "Six journalists from the editorial team of the Egyptian outlet Matsda2sh were arrested this week, and their legal status is now unknown: Al-Masry Al-Youm reported that the Supreme State Security Prosecution ordered them held for 15 days, while the head of the Egyptian Initiative for Personal Rights says the prosecution's chief denied issuing any such order, and no official announcement exists. Lead with the six detained and the contradiction over whether an order was issued. The mechanism: detention without a published order, plus accusations aired through security leaks to friendly media, leaves lawyers and the Journalists Syndicate with nothing to challenge in court — say what Matsda2sh does (fact-checking), what the journalists are accused of and where they are held, strictly as Mada Masr reports. Dateline Cairo.",
+      "conceptUris": []
+    },
+    {
+      "id": "latvia-parliamentary-election-russia-cost-of-living",
+      "label": "Latvia holds election as concerns over Russia, inflation dominate",
+      "firstSeen": "2026-10-03T14:05:21.467Z",
+      "lastCovered": "2026-10-03T14:05:21.467Z",
+      "coverageCount": 1,
+      "category": "politics",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-10-03-latvia-parliamentary-election-russia-cost-of-living"
+      ],
+      "eventUri": "eng-12059940",
+      "summary": "Latvia votes on Saturday in a parliamentary election shaped by fear of Russia next door and the cost of living, with Prime Minister Andris Kulbergs's centre-right United List leading. Lead with the vote and what is at stake for a NATO state on Russia's border, then the mechanism: no party governs alone, so the result decides which coalition forms and how much room populist and Russian-speaking-minority parties get — give the poll figures and party names as the article states them. Polls are still open or just closing: report no result the source does not give, and say when results are due. Dateline Riga.",
+      "conceptUris": [
+        "http://en.wikipedia.org/wiki/Coalition_government",
+        "http://en.wikipedia.org/wiki/Populism",
+        "http://en.wikipedia.org/wiki/Russia",
+        "http://en.wikipedia.org/wiki/Latvia",
+        "http://en.wikipedia.org/wiki/United_List_(Latvia)",
+        "http://en.wikipedia.org/wiki/Pro-Europeanism",
+        "http://en.wikipedia.org/wiki/New_Unity",
+        "http://en.wikipedia.org/wiki/National_Alliance_(Latvia)"
+      ]
+    },
+    {
+      "id": "irkutsk-laboratory-worker-plague-death-200-observed",
+      "label": "Panic in Russia as outbreak of 'Black Death Plague' sparks Covid style clamp ...",
+      "firstSeen": "2026-10-03T14:05:21.467Z",
+      "lastCovered": "2026-10-03T14:05:21.467Z",
+      "coverageCount": 1,
+      "category": "politics",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-10-03-irkutsk-laboratory-worker-plague-death-200-observed"
+      ],
+      "eventUri": "rus-2134749",
+      "summary": "A laboratory worker in Siberia's Irkutsk region died of what health authorities called an 'unspecified form of plague', and nearly 200 people are under medical observation. The source is a tabloid: drop its framing ('panic', 'Black Death', 'Covid-style') and write only what the regional health authorities are quoted as saying — who died, which laboratory, how many contacts, what restrictions are in place and where (the feed also tags Buryatia). The mechanism worth one paragraph: plague is endemic in rodents in parts of Siberia and treatable with antibiotics, so a death inside a laboratory points to a biosafety failure, not a wild outbreak — state that only as far as the article supports it, and say what is not yet known. Dateline Irkutsk.",
+      "conceptUris": [
+        "http://en.wikipedia.org/wiki/Plague_(disease)",
+        "http://en.wikipedia.org/wiki/Russia",
+        "http://en.wikipedia.org/wiki/Quarantine",
+        "http://en.wikipedia.org/wiki/Irkutsk",
+        "http://en.wikipedia.org/wiki/Siberia",
+        "http://en.wikipedia.org/wiki/Buryatia",
+        "http://en.wikipedia.org/wiki/Irkutsk_Oblast",
+        "http://en.wikipedia.org/wiki/Infection"
+      ]
+    },
+    {
+      "id": "kushner-partners-profit-lukoil-russian-oil-deal-nyt",
+      "label": "Jared Kushner tied to new 'alarming' deal day after he blasted 'misleading' scandal story",
+      "firstSeen": "2026-10-03T14:05:21.467Z",
+      "lastCovered": "2026-10-03T14:05:21.467Z",
+      "coverageCount": 1,
+      "category": "economy",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-10-03-kushner-partners-profit-lukoil-russian-oil-deal-nyt"
+      ],
+      "eventUri": "eng-12065510",
+      "summary": "The New York Times reported Saturday that business partners of Jared Kushner stand to profit from a Russian oil deal involving Lukoil that he helped broker as a negotiator, a day after Kushner publicly called an earlier report misleading. Raw Story is relaying the Times: attribute every factual claim to the New York Times' reporting, leave out Raw Story's adjectives ('alarming', 'scandal') and any commentary it quotes, and give Kushner's response. Lead with who profits and how — which partners, which assets, what the deal does. The mechanism: an unpaid presidential envoy with private investors negotiates the terms on which sanctioned Russian oil assets change hands, so the line between US policy toward Russia and Ukraine and a private return disappears, and no disclosure rule covers it. Dateline Washington.",
+      "conceptUris": [
+        "http://en.wikipedia.org/wiki/Russia",
+        "http://en.wikipedia.org/wiki/The_New_York_Times",
+        "http://en.wikipedia.org/wiki/Lukoil",
+        "http://en.wikipedia.org/wiki/Petroleum",
+        "http://en.wikipedia.org/wiki/United_States",
+        "http://en.wikipedia.org/wiki/Vladimir_Putin",
+        "http://en.wikipedia.org/wiki/Ukraine",
+        "http://en.wikipedia.org/wiki/Donald_Trump"
+      ]
+    },
+    {
+      "id": "who-global-health-estimates-ncds-74-percent-deaths",
+      "label": "Non-communicable diseases caused 74% of global deaths in 2023 - WHO",
+      "firstSeen": "2026-10-03T14:05:21.467Z",
+      "lastCovered": "2026-10-03T14:05:21.467Z",
+      "coverageCount": 1,
+      "category": "science",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-10-03-who-global-health-estimates-ncds-74-percent-deaths"
+      ],
+      "eventUri": "eng-12063121",
+      "summary": "The World Health Organization's latest Global Health Estimates find that non-communicable diseases — heart disease, cancer, diabetes, chronic lung disease — caused 74% of deaths worldwide in 2023, as people live longer and dementia and mental-health conditions take a growing share. Lead with the 74% and the leading causes with their figures, then what changed against earlier estimates and after Covid. The mechanism the reader should take away: the burden has moved to chronic illness faster than health systems in low- and middle-income countries, still built and funded for infectious disease, have moved with it — give the report's numbers for Africa and Nigeria where Premium Times does. A finding from a dataset: say what years and countries it covers. Dateline Geneva.",
+      "conceptUris": [
+        "http://en.wikipedia.org/wiki/World_Health_Organization",
+        "http://en.wikipedia.org/wiki/Life_expectancy",
+        "http://en.wikipedia.org/wiki/Coronavirus",
+        "http://en.wikipedia.org/wiki/Dementia",
+        "http://en.wikipedia.org/wiki/Non-communicable_disease",
+        "http://en.wikipedia.org/wiki/Public_health",
+        "http://en.wikipedia.org/wiki/Cardiovascular_disease",
+        "http://en.wikipedia.org/wiki/Health_system"
+      ]
+    },
+    {
+      "id": "outer-solar-system-terminal-instability-sun-death-study",
+      "label": "Our Solar System Is Terminally Unstable and Will Be Completely Destroyed, Study Finds",
+      "firstSeen": "2026-10-03T14:05:21.467Z",
+      "lastCovered": "2026-10-03T14:05:21.467Z",
+      "coverageCount": 1,
+      "category": "science",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-10-03-outer-solar-system-terminal-instability-sun-death-study"
+      ],
+      "eventUri": null,
+      "summary": "A study of what happens to the planets as the Sun dies cuts the estimated lifespan of the outer solar system from about 100 billion years to a few billion, finding a 'terminal instability' that eventually scatters the giant planets. Lead with the revised number and what replaces the old picture of outer planets orbiting a white dwarf more or less forever. Then the mechanism in plain words: how the Sun's mass loss loosens the orbits and what sets the planets against each other, the method (how many simulations, over what timescale), the journal and the lead authors as 404 Media gives them. Say what remains uncertain. Keep the headline's drama out — this is a result in orbital dynamics. Dateline the lead institution's city; if that is in the US, it is a study dateline, not Washington.",
+      "conceptUris": []
+    },
+    {
+      "id": "nasa-sr-71-blackbird-844-return-to-flight",
+      "label": "Former SR-71 Engineer Talks NASA’s Blackbird Revival Program",
+      "firstSeen": "2026-10-03T14:05:21.467Z",
+      "lastCovered": "2026-10-03T14:05:21.467Z",
+      "coverageCount": 1,
+      "category": "tech",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-10-02-nasa-sr-71-blackbird-844-return-to-flight"
+      ],
+      "eventUri": null,
+      "summary": "NASA is working to return SR-71 Blackbird #844 to flight, and a former engineer on the aircraft sets out its current condition, what it would take to fly again and what the agency may want it for. Write it as news of the programme, not as an interview: lead with the fact of the revival and its status, then the engineering obstacles a technical reader will want — engines, the special fuel, spares, tooling and people who no longer exist — and the reason to bother: what a Mach 3 testbed offers that current aircraft do not (hypersonics research is the likely answer; state it only as the source does). Say what is confirmed by NASA and what is the engineer's judgment. Dateline the NASA centre the article names (Armstrong, at Edwards, California, if so stated).",
+      "conceptUris": []
+    },
+    {
       "id": "ethiopia-eritrea-sever-diplomatic-ties-tigray-fighting",
       "label": "Ethiopia conflict risks wider regional war",
       "firstSeen": "2026-10-03T10:04:06.550Z",
       "lastCovered": "2026-10-03T10:04:06.550Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-10-03-ethiopia-eritrea-sever-diplomatic-ties-tigray-fighting"
@@ -33,7 +256,7 @@
       "lastCovered": "2026-10-03T10:04:06.550Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-10-03-pakistan-afridi-long-march-goes-ahead-second-round-talks"
@@ -49,7 +272,7 @@
       "lastCovered": "2026-10-03T10:04:06.550Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-10-03-indus-waters-treaty-abeyance-unhrc-event-millions-at-risk"
@@ -65,7 +288,7 @@
       "lastCovered": "2026-10-03T10:04:06.550Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-10-03-cornell-da-declined-review-additional-evidence-records"
@@ -90,7 +313,7 @@
       "lastCovered": "2026-10-03T10:04:06.550Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-10-03-heat-deaths-western-europe-34600-warmest-summer-study"
@@ -115,7 +338,7 @@
       "lastCovered": "2026-10-03T10:04:06.550Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-10-03-apple-mac-privacy-controls-ai-agents-full-disk-access-meta-muse"
@@ -140,7 +363,7 @@
       "lastCovered": "2026-10-03T05:05:55.057Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-10-03-india-cjp-mumbai-protest-election-commissioner-ultimatum"
@@ -165,7 +388,7 @@
       "lastCovered": "2026-10-03T05:05:55.057Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-10-03-uk-kerry-charged-farage-terror-plot-widdecombe-murder"
@@ -190,7 +413,7 @@
       "lastCovered": "2026-10-03T05:05:55.057Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-10-03-uk-two-iranians-charged-plot-jewish-community-manchester"
@@ -215,7 +438,7 @@
       "lastCovered": "2026-10-03T05:05:55.057Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-10-03-nigeria-benue-operation-zenda-extrajudicial-killings"
@@ -231,7 +454,7 @@
       "lastCovered": "2026-10-03T05:05:55.057Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-10-03-iran-minab-school-strike-witnesses-drop-site"
@@ -247,7 +470,7 @@
       "lastCovered": "2026-10-03T05:05:55.057Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-10-03-us-ukraine-fund-first-critical-minerals-deal-bgv"
@@ -272,7 +495,7 @@
       "lastCovered": "2026-10-03T05:05:55.057Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-10-03-vietnam-high-tech-ambitions-electricity-shortfall-lng"
@@ -288,7 +511,7 @@
       "lastCovered": "2026-10-03T05:05:55.057Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-10-02-peru-export-boom-copper-china-rising-poverty"
@@ -304,7 +527,7 @@
       "lastCovered": "2026-10-03T05:05:55.057Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-10-02-trump-clayton-intelligence-chief-ai-tsar"
@@ -329,7 +552,7 @@
       "lastCovered": "2026-10-03T05:05:55.057Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-10-02-vfa-41-super-hornet-munitions-tally-iran-war"
@@ -345,7 +568,7 @@
       "lastCovered": "2026-10-02T22:07:58.017Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-10-02-france-student-protests-560-schools-riot-police"
@@ -370,7 +593,7 @@
       "lastCovered": "2026-10-02T22:07:58.017Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-10-02-ethiopia-tigray-fighting-escalates-regional-war-fears"
@@ -386,7 +609,7 @@
       "lastCovered": "2026-10-02T22:07:58.017Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-10-02-nigeria-appeal-court-cama-cac-powers-religious-bodies"
@@ -402,7 +625,7 @@
       "lastCovered": "2026-10-02T22:07:58.017Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-10-02-honduras-garifuna-land-iacthr-rulings-leaders-criminalised"
@@ -418,7 +641,7 @@
       "lastCovered": "2026-10-02T22:07:58.017Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-10-02-brazil-us-australia-close-consulates-police-warrants-election"
@@ -443,7 +666,7 @@
       "lastCovered": "2026-10-02T22:07:58.017Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-10-02-gaza-mass-funeral-drop-site-daily"
@@ -459,7 +682,7 @@
       "lastCovered": "2026-10-02T22:07:58.017Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-10-02-doj-will-not-reopen-powell-probe-fed-inspector-general"
@@ -484,7 +707,7 @@
       "lastCovered": "2026-10-02T22:07:58.017Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-10-02-iea-releases-100-million-barrels-diesel-birol"
@@ -509,7 +732,7 @@
       "lastCovered": "2026-10-02T22:07:58.017Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-10-02-colombia-illegal-alluvial-gold-mining-afro-colombian-land"
@@ -534,7 +757,7 @@
       "lastCovered": "2026-10-02T22:07:58.017Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-10-02-probiotics-prevented-coral-bleaching-red-sea-heat-wave"
@@ -559,7 +782,7 @@
       "lastCovered": "2026-10-02T22:07:58.017Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-10-02-federal-judge-flock-search-mass-surveillance-unconstitutional"
@@ -575,7 +798,7 @@
       "lastCovered": "2026-10-02T22:07:58.017Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-10-02-judge-dismisses-el-faro-pegasus-nso-case-jurisdiction"
@@ -591,7 +814,7 @@
       "lastCovered": "2026-10-02T22:07:58.017Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-10-02-germany-f125-frigates-iris-t-slm-air-defence"
@@ -607,7 +830,7 @@
       "lastCovered": "2026-10-03T10:04:06.550Z",
       "coverageCount": 2,
       "category": "politics",
-      "importance": 3,
+      "importance": 2,
       "arc": "developing",
       "articles": [
         "2026-10-02-flydubai-uae-terrorist-act-netanyahu-warning-co-pilot",
@@ -633,7 +856,7 @@
       "lastCovered": "2026-10-02T18:08:29.476Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-10-02-saudi-plans-offensive-houthis-red-sea-bab-el-mandeb"
@@ -658,7 +881,7 @@
       "lastCovered": "2026-10-02T18:08:29.476Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-10-02-ebola-death-toll-passes-4000-dr-congo-worst-outbreak"
@@ -683,7 +906,7 @@
       "lastCovered": "2026-10-02T18:08:29.476Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-10-02-us-delivers-first-f-16v-block-70-jets-taiwan"
@@ -708,7 +931,7 @@
       "lastCovered": "2026-10-02T18:08:29.476Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-10-02-brazil-banco-master-fraud-scandal-presidential-race"
@@ -733,7 +956,7 @@
       "lastCovered": "2026-10-02T18:08:29.476Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-10-02-hochul-special-prosecutor-cornell-rape-case-loophole"
@@ -758,7 +981,7 @@
       "lastCovered": "2026-10-02T18:08:29.476Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-10-02-germany-scholarships-gaza-students-no-evacuation"
@@ -774,7 +997,7 @@
       "lastCovered": "2026-10-02T18:08:29.476Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-10-02-sudan-idris-government-reshuffle-ethiopia-accusation"
@@ -790,7 +1013,7 @@
       "lastCovered": "2026-10-02T18:08:29.476Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-10-02-china-demands-copper-supply-anglo-teck-merger-approval"
@@ -815,7 +1038,7 @@
       "lastCovered": "2026-10-02T18:08:29.476Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-10-02-bhutan-hydropower-india-debt-himalayan-flood-risk"
@@ -831,7 +1054,7 @@
       "lastCovered": "2026-10-02T18:08:29.476Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-10-02-animals-evolved-earlier-than-fossils-oxford-science-advances"
@@ -847,7 +1070,7 @@
       "lastCovered": "2026-10-02T18:08:29.476Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-10-02-openai-notifies-100-organisations-misaligned-agents-intrusion"
@@ -872,7 +1095,7 @@
       "lastCovered": "2026-10-02T18:08:29.476Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-10-02-us-ends-defense-support-program-missile-warning-satellites"
@@ -888,7 +1111,7 @@
       "lastCovered": "2026-10-02T18:08:29.476Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-10-02-omnidea-acquires-orbex-assets-primeneo-rocket-portugal"
@@ -904,7 +1127,7 @@
       "lastCovered": "2026-10-02T14:09:00.532Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-10-02-russia-strikes-kyiv-bridge-klitschko-tearing-city-apart"
@@ -929,7 +1152,7 @@
       "lastCovered": "2026-10-02T14:09:00.532Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-10-02-pakistan-corps-commanders-decisive-force-may-9-pti-march"
@@ -945,7 +1168,7 @@
       "lastCovered": "2026-10-02T14:09:00.532Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-10-02-south-africa-auditor-general-saps-800-dockets-per-detective"
@@ -961,7 +1184,7 @@
       "lastCovered": "2026-10-02T14:09:00.532Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-10-02-iran-bill-hormuz-transit-permits-ban-hostile-states-ships"
@@ -986,7 +1209,7 @@
       "lastCovered": "2026-10-02T14:09:00.532Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-10-02-labour-friends-of-israel-funders-undeclared-board-loophole"
@@ -1002,7 +1225,7 @@
       "lastCovered": "2026-10-02T14:09:00.532Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-10-02-us-jobs-29000-september-fed-seen-skipping-october-rate-hike"
@@ -1027,7 +1250,7 @@
       "lastCovered": "2026-10-02T14:09:00.532Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-10-02-france-proposes-eu-iea-diesel-crude-release-us-pressure"
@@ -1052,7 +1275,7 @@
       "lastCovered": "2026-10-02T14:09:00.532Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-10-02-uae-warns-britain-investment-manchester-city-penalty"
@@ -1077,7 +1300,7 @@
       "lastCovered": "2026-10-02T14:09:00.532Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-10-02-pakistan-na-committee-rs5000-wheat-support-price-rabi"
@@ -1093,7 +1316,7 @@
       "lastCovered": "2026-10-02T14:09:00.532Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-10-02-openai-fires-two-safety-researchers-program-manager-information"
@@ -1118,7 +1341,7 @@
       "lastCovered": "2026-10-02T14:09:00.532Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-10-02-ai-maths-proofs-formalisation-proof-checker-bugs"
@@ -1134,7 +1357,7 @@
       "lastCovered": "2026-10-02T14:09:00.532Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-10-02-african-leaders-un-security-council-ai-safety-say"
@@ -1142,236 +1365,6 @@
       "eventUri": null,
       "summary": "African leaders are pressing at the UN Security Council for a say in how AI safety is defined and governed, while African companies race to adopt American and Chinese models with little attention paid to safety, Rest of World reports. The feed entry is a teaser, so keep strictly to what the full page states. Lead with the concrete act: which governments or leaders, in what forum, asking for what — a seat, a standard, a fund. The mechanism: safety testing is done by and for the countries that build the models — in their languages, against their risks — so the continent that imports the systems inherits evaluations that never examined its languages, its elections or its payment systems, and has no vote on the rules. Name the African institutions doing safety work and what they lack, and what the US and China answered. Africa here is the actor, not the setting. Dateline the African city the reporting centres on, otherwise New York for the Security Council.",
       "conceptUris": []
-    },
-    {
-      "id": "brazil-final-debate-cancelled-bomb-scare-supreme-court-lula-bolsonaro",
-      "label": "Election debate cancelled in Brazil, bomb scare outside Supreme Court",
-      "firstSeen": "2026-10-02T10:07:10.354Z",
-      "lastCovered": "2026-10-02T10:07:10.354Z",
-      "coverageCount": 1,
-      "category": "politics",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-10-02-brazil-final-debate-cancelled-bomb-scare-supreme-court-lula-bolsonaro"
-      ],
-      "eventUri": "por-1340146",
-      "summary": "Two days before Brazil votes on Sunday, the final presidential debate was cancelled after Flávio Bolsonaro withdrew, and a bomb scare outside the Supreme Court raised the temperature; polls put him and President Lula in a dead heat. Lead with the cancelled debate and the bomb scare — what police found and what they have said — then the numbers: the latest poll figures as the sources give them, and that a runoff on 25 October follows if no one clears 50%. The mechanism: Flávio runs as the moderate heir of a father serving 27 years for an attempted coup, and the Supreme Court that convicted Jair Bolsonaro is the institution now threatened, while Washington has openly leaned on Lula's government with tariffs. Keep the US role to what Al Jazeera and France 24 state. The France 24 link is a video page — write from the Al Jazeera text. Datelined Brasília.",
-      "conceptUris": [
-        "http://en.wikipedia.org/wiki/Luiz_Inácio_Lula_da_Silva",
-        "http://en.wikipedia.org/wiki/Flávio_Bolsonaro",
-        "http://en.wikipedia.org/wiki/Brazil",
-        "http://pt.wikipedia.org/wiki/TV_Globo",
-        "http://en.wikipedia.org/wiki/Jair_Bolsonaro",
-        "http://en.wikipedia.org/wiki/Superior_Electoral_Court",
-        "http://en.wikipedia.org/wiki/President_of_Brazil",
-        "http://en.wikipedia.org/wiki/Workers'_Party_(Brazil)"
-      ]
-    },
-    {
-      "id": "iran-pgsa-uae-tankers-hit-hormuz-non-compliance-list",
-      "label": "3 UAE-owned tankers hit after breaching Hormuz rules",
-      "firstSeen": "2026-10-02T10:07:10.354Z",
-      "lastCovered": "2026-10-02T10:07:10.354Z",
-      "coverageCount": 1,
-      "category": "politics",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-10-02-iran-pgsa-uae-tankers-hit-hormuz-non-compliance-list"
-      ],
-      "eventUri": "tur-1371703",
-      "summary": "Iran's Persian Gulf Strait Authority says the three Emirati tankers struck in the Strait of Hormuz in recent days were already on its 'non-compliance list' — in effect an acknowledgement that ships which ignore Tehran's transit rules get hit. The only feed source is Iran's state-run Mehr News Agency: write 'Mehr reported, citing the PGSA statement', and state as fact only that the statement was made. Lead with the admission and what the list is: who is put on it, for what, and what the PGSA says happens to listed ships. Then the ships — names, owners, damage, casualties — as far as Mehr gives them; if it does not, say so. The mechanism: Iran is running the strait as a permit regime enforced by force, so ship traffic through the Strait of Hormuz, and with it Brent crude, turns on who accepts Tehran's rules. This is the enforcement side of the standoff; Trump's rejection of Iran's Hormuz offer was covered this morning — one clause only. Give the UAE's response if the source carries it. Datelined Tehran.",
-      "conceptUris": []
-    },
-    {
-      "id": "palestinian-journalist-al-saadi-22-months-israeli-prison-megiddo",
-      "label": "Cruelty, Deprivation, Indignity: My 22 Months in Israeli Prison",
-      "firstSeen": "2026-10-02T10:07:10.354Z",
-      "lastCovered": "2026-10-02T10:07:10.354Z",
-      "coverageCount": 1,
-      "category": "politics",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-10-02-palestinian-journalist-al-saadi-22-months-israeli-prison-megiddo"
-      ],
-      "eventUri": null,
-      "summary": "Palestinian journalist Mujahed Al-Saadi, arrested at his home in Jenin two years ago, has published an account of 22 months in Israeli detention, including Megiddo prison. Write it as news of testimony, not as an essay: lead with who he is, how long he was held and on what legal basis — say whether he was ever charged or was held under administrative detention, as the page states — then the specific conditions he documents (food, beatings, medical neglect, deaths he witnessed), each attributed to him. The mechanism: detention without charge removes a reporter from the West Bank for two years with no trial to contest, and what happens inside is known only when a detainee is released and speaks. Give the Israel Prison Service's position if the page carries it, and the number of Palestinian journalists currently held with its source. This is one man's first-hand account — attribute throughout and do not generalise beyond what he reports. Datelined Jenin.",
-      "conceptUris": []
-    },
-    {
-      "id": "pakistan-government-pti-talks-october-4-long-march-islamabad",
-      "label": "Talks between govt, opposition underway as PTI's Oct 4 protest looms over federal capital",
-      "firstSeen": "2026-10-02T10:07:10.354Z",
-      "lastCovered": "2026-10-02T10:07:10.354Z",
-      "coverageCount": 1,
-      "category": "politics",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-10-02-pakistan-government-pti-talks-october-4-long-march-islamabad"
-      ],
-      "eventUri": "eng-12060801",
-      "summary": "Pakistan's ruling coalition and the PTI-led opposition are in talks two days before the party's planned 4 October long march on Islamabad. Lead with the talks and the deadline, then what each side wants: the PTI's demands as Dawn states them (Imran Khan's release and whatever else is listed) and what the government has offered or threatened — the feed tags president's/governor's rule, so say plainly whether that is on the table and for which province. The mechanism: the march is the opposition's only leverage while its leader is in prison, and the government's choice is between conceding something at the table or sealing the capital again, as it has before. Name who sits on each negotiating team and what was agreed, if anything. Datelined Islamabad.",
-      "conceptUris": []
-    },
-    {
-      "id": "gulf-oil-exports-rebound-despite-iranian-blockade-on-hormuz",
-      "label": "Gulf oil exports rebound despite Iranian blockade on Hormuz",
-      "firstSeen": "2026-10-02T10:07:10.354Z",
-      "lastCovered": "2026-10-02T10:07:10.354Z",
-      "coverageCount": 1,
-      "category": "economy",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-10-02-gulf-oil-exports-rebound-despite-iranian-blockade-on-hormuz"
-      ],
-      "eventUri": "eng-12051848",
-      "summary": "Crude exports from the Gulf are recovering even though Iran's blockade of the Strait of Hormuz is still in place, while Brent crude and WTI held steady on Friday after rallying more than 4% the day before. Lead with the rebound in numbers — barrels a day now against the pre-war level and the low, and which exporters (Saudi Arabia, the UAE, Iraq, Kuwait) account for it. The mechanism is the story: say how the oil is getting out — bypass pipelines to the Red Sea and Fujairah, cargoes transiting under Iran's rules, or both — because that decides who still depends on Tehran's permission and who does not. Then why the price has not followed supply down: the risk premium on ship traffic through the Strait of Hormuz persists. Do not retell Trump's rejection of Iran's offer (covered this morning) or the tanker strikes (a separate story this cycle) beyond one clause. Datelined Abu Dhabi or Dubai, as The National gives it.",
-      "conceptUris": [
-        "http://en.wikipedia.org/wiki/Price_of_oil",
-        "http://en.wikipedia.org/wiki/Strait_of_Hormuz",
-        "http://en.wikipedia.org/wiki/Barrel_(unit)",
-        "http://en.wikipedia.org/wiki/Middle_East",
-        "http://en.wikipedia.org/wiki/Iran",
-        "http://en.wikipedia.org/wiki/Petroleum",
-        "http://en.wikipedia.org/wiki/West_Texas_Intermediate",
-        "http://en.wikipedia.org/wiki/United_Arab_Emirates"
-      ]
-    },
-    {
-      "id": "pakistan-inflation-above-10-south-korea-price-controls-energy-shock",
-      "label": "Pakistan Inflation Stays Above 10% as Energy Risks Persist",
-      "firstSeen": "2026-10-02T10:07:10.354Z",
-      "lastCovered": "2026-10-02T10:07:10.354Z",
-      "coverageCount": 1,
-      "category": "economy",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-10-02-pakistan-inflation-above-10-south-korea-price-controls-energy-shock"
-      ],
-      "eventUri": "eng-12053461",
-      "summary": "The feed has paired two September inflation prints from Asian energy importers under one entry: Bloomberg on Pakistan, where consumer inflation stayed above 10% as energy risks persist, and Reuters on South Korea, where it slowed to 2.9% on government price controls and cheaper farm produce. Write one article on that contrast, each figure attributed to its own source and statistics office. Lead with Pakistan — the exact rate, what drove it (fuel, LPG, power tariffs) and who it lands on — then Korea as the counter-case. The mechanism: the same Hormuz energy shock reaches households at very different rates depending on whether the state can afford to hold prices down; Seoul can cap them, Islamabad, under an IMF programme, passes them through. Say what each central bank is expected to do next if the sources state it. If only the Reuters text is available, write the South Korea story alone, lead with the price controls, and dateline it Seoul; otherwise dateline Islamabad.",
-      "conceptUris": [
-        "http://en.wikipedia.org/wiki/Consumer_price_index",
-        "http://en.wikipedia.org/wiki/Inflation",
-        "http://en.wikipedia.org/wiki/South_Korea",
-        "http://en.wikipedia.org/wiki/Pakistan",
-        "http://en.wikipedia.org/wiki/Price_controls",
-        "http://en.wikipedia.org/wiki/Agriculture",
-        "http://en.wikipedia.org/wiki/Pakistan_Bureau_of_Statistics",
-        "http://en.wikipedia.org/wiki/Bloomberg_L.P."
-      ]
-    },
-    {
-      "id": "euro-zone-inflation-surges-keeping-pressure-on-ecb-to-hike",
-      "label": "Euro zone inflation surges, keeping pressure on ECB to hike",
-      "firstSeen": "2026-10-02T10:07:10.354Z",
-      "lastCovered": "2026-10-02T10:07:10.354Z",
-      "coverageCount": 1,
-      "category": "economy",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-10-02-euro-zone-inflation-surges-keeping-pressure-on-ecb-to-hike"
-      ],
-      "eventUri": null,
-      "summary": "Euro zone inflation jumped in September, Eurostat's flash estimate shows, keeping pressure on the European Central Bank to raise the ECB rate. Lead with the headline figure against last month's and against the 2% target, then what drove it — energy first, and say how much of the rise is diesel and gas since the Hormuz disruption — and the core rate. The mechanism and who pays: a rate rise meant to contain an imported energy shock raises borrowing costs for the bloc's most indebted governments, and bond markets are already pricing that — France's premium over Germany is at its widest in 14 years, which is why some traders now bet on fewer hikes. Give the date of the ECB's next meeting and what is priced in, and the effect on the euro. State only figures the Reuters text carries; if it gives no September number, say what it does report. Datelined Frankfurt.",
-      "conceptUris": [
-        "http://en.wikipedia.org/wiki/Inflation",
-        "http://en.wikipedia.org/wiki/Eurozone",
-        "http://en.wikipedia.org/wiki/European_Central_Bank",
-        "http://en.wikipedia.org/wiki/Amazon_(company)",
-        "http://en.wikipedia.org/wiki/Fullscreen_(company)",
-        "http://en.wikipedia.org/wiki/Keyboard_shortcut",
-        "http://en.wikipedia.org/wiki/White_people",
-        "http://en.wikipedia.org/wiki/Eurostat"
-      ]
-    },
-    {
-      "id": "northern-star-foreign-bid-australia-gold-miner-consolidation",
-      "label": "Foreign bid highlights Australia's battle to forge a gold champion",
-      "firstSeen": "2026-10-02T10:07:10.354Z",
-      "lastCovered": "2026-10-02T10:07:10.354Z",
-      "coverageCount": 1,
-      "category": "economy",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-10-02-northern-star-foreign-bid-australia-gold-miner-consolidation"
-      ],
-      "eventUri": "eng-12057512",
-      "summary": "A foreign bid for Northern Star Resources, Australia's largest gold miner, would take the country's best candidate for a global gold company out of Australian hands. Lead with the bid: who is bidding (the feed tags Gold Fields of South Africa — confirm in the text), the price and premium, and what the board and the government's foreign-investment review have said. The mechanism: the record gold price has lifted miners' valuations enough to set off consolidation, and Australia — home of BHP and Rio Tinto — has repeatedly seen its gold producers bought by foreign groups instead of growing into majors (Newmont's purchase of Newcrest is the precedent; say so if the FT does). Say who gains and loses: shareholders, the mine workforce in Western Australia, and royalties. The FT piece is analysis — take the facts of the bid, not its framing. Datelined Perth, Northern Star's headquarters, unless the text places the news elsewhere.",
-      "conceptUris": [
-        "http://en.wikipedia.org/wiki/The_Northern_Star",
-        "http://en.wikipedia.org/wiki/Gold_Fields",
-        "http://en.wikipedia.org/wiki/Gold_mining",
-        "http://en.wikipedia.org/wiki/Australian_dollar",
-        "http://en.wikipedia.org/wiki/Mining",
-        "http://en.wikipedia.org/wiki/Gold",
-        "http://en.wikipedia.org/wiki/Denver",
-        "http://en.wikipedia.org/wiki/South_Africa"
-      ]
-    },
-    {
-      "id": "brain-neurons-critical-for-viable-pregnancy-mice-stanford",
-      "label": "Brain area discovered that may be critical for viable pregnancies | New Scientist",
-      "firstSeen": "2026-10-02T10:07:10.354Z",
-      "lastCovered": "2026-10-02T10:07:10.354Z",
-      "coverageCount": 1,
-      "category": "science",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-10-02-brain-neurons-critical-for-viable-pregnancy-mice-stanford"
-      ],
-      "eventUri": null,
-      "summary": "A small set of neurons deep in the brain is needed for a pregnancy to stay viable in mice, a team led by Nirao Shah at Stanford University has found, and the same cells exist in women's brains. Lead with the finding in one plain sentence: where the neurons are, what the researchers did to them (silenced or removed) and what happened to the pregnancies. The surprise for a general reader is the organ: pregnancy loss is studied in the uterus, the embryo and the hormones, and this places a necessary control point in the brain. Say what the cells appear to do — which hormone or signal they govern — and why that could bear on unexplained recurrent miscarriage and failed IVF. State the limits firmly: this is a mouse study; the human cells have been observed, not tested. Name the journal. Datelined Stanford.",
-      "conceptUris": []
-    },
-    {
-      "id": "urine-cell-free-rna-bladder-cancer-detection-nature-medicine",
-      "label": "Urine cell-free RNA for bladder cancer detection and treatment response prediction - Nature Medicine",
-      "firstSeen": "2026-10-02T10:07:10.354Z",
-      "lastCovered": "2026-10-02T10:07:10.354Z",
-      "coverageCount": 1,
-      "category": "science",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-10-02-urine-cell-free-rna-bladder-cancer-detection-nature-medicine"
-      ],
-      "eventUri": null,
-      "summary": "Researchers report in Nature Medicine that RNA fragments floating free in urine can detect bladder cancer and predict whether a patient will respond to treatment. Lead with the result in plain numbers: how many patients, how accurately the test separated cancer from no cancer (sensitivity and specificity), and how well it predicted response — the feed tags BCG, the standard bladder immunotherapy. Why a general reader should care: bladder cancer recurs often, so patients are followed for years with repeated cystoscopy, a camera passed through the urethra; a urine test that works would replace an invasive, costly procedure, which matters most where urologists are scarce. State the limits: say whether this was validated in an independent cohort, what it missed, and that it is not yet a clinical test. Name the journal as Nature Medicine. Dateline the city of the lead institution.",
-      "conceptUris": []
-    },
-    {
-      "id": "tether-usdt-returns-to-bitcoin-utexo-utxo-blacklist",
-      "label": "Tether's $190 billion USDT stablecoin is coming back to the Bitcoin network",
-      "firstSeen": "2026-10-02T10:07:10.354Z",
-      "lastCovered": "2026-10-02T10:07:10.354Z",
-      "coverageCount": 1,
-      "category": "tech",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-10-02-tether-usdt-returns-to-bitcoin-utexo-utxo-blacklist"
-      ],
-      "eventUri": "eng-12059564",
-      "summary": "Tether is bringing its $190 billion USDT stablecoin back to the Bitcoin network this month through a system called Utexo, more than a decade after it first issued there, with the Lightning Network to follow. Lead with the return and the launch date, then the design detail that matters to a technical reader: instead of freezing addresses, as Tether does on Ethereum and Tron, Utexo would blacklist individual UTXOs linked to sanctioned or illicit activity. Explain in one plain sentence what that means — a compliance and censorship lever built on top of a chain designed to have none — and who decides what is listed. The mechanism: dollar stablecoins are how much of the Global South holds dollars outside banks, and whoever issues them carries US sanctions enforcement onto whatever network they run on. Say why Tether left Bitcoin (the Omni layer) and what is technically different now. Write the launch as news, not CoinDesk's market commentary; this is not a bitcoin price story. Dateline the city the article gives for Tether or the announcement.",
-      "conceptUris": [
-        "http://en.wikipedia.org/wiki/Bitcoin",
-        "http://en.wikipedia.org/wiki/Exchange-traded_fund",
-        "http://en.wikipedia.org/wiki/United_States_dollar",
-        "http://en.wikipedia.org/wiki/Cryptocurrency",
-        "http://en.wikipedia.org/wiki/Ethereum",
-        "http://en.wikipedia.org/wiki/Inflation",
-        "http://en.wikipedia.org/wiki/Federal_Reserve",
-        "http://en.wikipedia.org/wiki/Macroeconomics"
-      ]
     }
   ]
 }
