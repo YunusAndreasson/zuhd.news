@@ -1,0 +1,12 @@
+[
+  {
+    "relation": ["delegate_permission/common.handle_all_urls"],
+    "target": {
+      "namespace": "android_app",
+      "package_name": "news.zuhd.app",
+      "sha256_cert_fingerprints": [
+        "12:3C:E6:93:07:81:F4:7F:0A:D6:A0:AE:D7:45:9F:84:DF:C6:28:57:6A:64:B8:8E:4A:C2:6B:84:F4:B2:50:6C"
+      ]
+    }
+  }
+]

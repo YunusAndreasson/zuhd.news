@@ -15,6 +15,13 @@
   Permissions-Policy: camera=(), microphone=(), geolocation=()
   Content-Security-Policy: default-src 'none'; script-src 'self' 'unsafe-inline'; worker-src 'self' blob:; child-src 'self' blob:; style-src 'self' 'unsafe-inline'; font-src 'self'; connect-src 'self'; img-src 'self' data: blob:; media-src 'self'; base-uri 'self'; form-action 'none'; frame-ancestors 'none'
 
+# What lets iOS open `/a/{slug}` and `/s/{slug}` in the app. Apple names the
+# file without an extension and reads it only as JSON; Pages would serve an
+# extensionless file as a download. Android's `assetlinks.json` sits beside it
+# and needs no rule. The story paths they claim are `mobile/app.json`'s.
+/.well-known/apple-app-site-association
+  Content-Type: application/json
+
 /fonts/*
   Cache-Control: public, max-age=31536000, immutable
 
