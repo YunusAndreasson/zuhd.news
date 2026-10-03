@@ -596,6 +596,15 @@ export const ANIMATION = {
   /** The story sheet and the story deck landing on a stop: critically damped,
    *  so neither the sheet nor the globe that follows the deck ever rebounds past it. */
   springSettle: { duration: 350, dampingRatio: 1, overshootClamping: true },
+  /** The story sheet landing on peek or full: a hair under critical, so it
+   *  reaches its stop and `overshootClamping` ends it there, at ~45 pt/s —
+   *  ~280 ms, where critical damping crawled its last points to ~530 ms. The
+   *  crawl read as the sheet hesitating before it landed, and the veil, which
+   *  waits for the spring to end, appeared after it (2026-10-03, the user on
+   *  an iPhone Pro; timings from Reanimated's own spring math). Not the
+   *  deck's: `DECK_SETTLE_MS` and the camera's hand-off are measured on
+   *  `springSettle`. */
+  springSheet: { duration: 350, dampingRatio: 0.9, overshootClamping: true },
   /** How long zoom takes to hand back to the story's framing after a pinch. */
   zoomRelease: 260,
   staggerStep: 40,

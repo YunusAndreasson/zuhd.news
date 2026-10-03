@@ -240,7 +240,7 @@ export function MapSheet({
       // as broken, not accessible. A programmatic move (a tap on the card or
       // the globe, an accessibility action) is a plain `springSettle`, which
       // Reanimated itself snaps when Reduce Motion is on.
-      offset.value = withSpring(target, { ...ANIMATION.springSettle, ...KEEP_MOTION, velocity });
+      offset.value = withSpring(target, { ...ANIMATION.springSheet, ...KEEP_MOTION, velocity });
       // Publish on the UI thread before the JS callback so a second drag
       // can be canceled back to this stop while JS is still busy.
       committedDetent.value = next;
@@ -317,7 +317,7 @@ export function MapSheet({
           owner.value = UNDECIDED;
           pull.value = 0;
           const target = committedDetent.value === 'full' ? 0 : travel;
-          offset.value = withSpring(target, { ...ANIMATION.springSettle, velocity: 0 });
+          offset.value = withSpring(target, { ...ANIMATION.springSheet, velocity: 0 });
           return;
         }
         if (owner.value !== SHEET) return;
@@ -362,12 +362,12 @@ export function MapSheet({
     ref,
     () => ({
       expand: () => {
-        offset.value = withSpring(0, ANIMATION.springSettle);
+        offset.value = withSpring(0, ANIMATION.springSheet);
         committedDetent.value = 'full';
         settle('full');
       },
       collapse: () => {
-        offset.value = withSpring(travel, ANIMATION.springSettle);
+        offset.value = withSpring(travel, ANIMATION.springSheet);
         committedDetent.value = 'peek';
         settle('peek');
       },
@@ -382,7 +382,7 @@ export function MapSheet({
   const handleAccessibilityAction = useCallback(
     (event: { nativeEvent: { actionName: string } }) => {
       const expand = event.nativeEvent.actionName === 'increment';
-      offset.value = withSpring(expand ? 0 : travel, ANIMATION.springSettle);
+      offset.value = withSpring(expand ? 0 : travel, ANIMATION.springSheet);
       committedDetent.value = expand ? 'full' : 'peek';
       settle(expand ? 'full' : 'peek');
     },
