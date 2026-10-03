@@ -31,7 +31,18 @@
         "articlesAddedInWindow": 128
       },
       "rollback": "git revert 1d5a5e8e (restores the previous odds rule in both prompts)",
-      "notes": "Registered from an operator session on 2026-10-02 at 22:20 UTC, after the 22:03 cycle had finished; the parameter change was pushed first (merge b0269aa1), so the list is not ahead of the code. Matching is by subject tag and can be loose: in the 22:03 cycle on 2026-10-02 the one odds row offered was \"No Fed rate change after Dec 2026?\" on a story about the DoJ declining to reopen a probe of Jay Powell, which is not that story's next step and should be passed over. A low share with mostly loose offers is evidence about the matching (scripts/lib/indicator-offer.js), not about this rule: say which it was when evaluating."
+      "notes": "Registered from an operator session on 2026-10-02 at 22:20 UTC, after the 22:03 cycle had finished; the parameter change was pushed first (merge b0269aa1), so the list is not ahead of the code. Matching is by subject tag and can be loose: in the 22:03 cycle on 2026-10-02 the one odds row offered was \"No Fed rate change after Dec 2026?\" on a story about the DoJ declining to reopen a probe of Jay Powell, which is not that story's next step and should be passed over. A low share with mostly loose offers is evidence about the matching (scripts/lib/indicator-offer.js), not about this rule: say which it was when evaluating.",
+      "interimObservations": [
+        {
+          "date": "2026-10-03",
+          "cycles": 5,
+          "oddsRowsOffered": 2,
+          "articlesCitingOdds": 1,
+          "shareCited": 0.5,
+          "read": "Not an evaluation; evaluateAfter is 2026-10-06. Odds rows were offered in one cycle of five (14:02, 2 rows); the other four offered 0. One article cites a contract: 2026-10-03-two-tankers-struck-hormuz-fire-near-aramco-riyadh closes with \"Polymarket traders give Hormuz traffic a 21% chance of normalising by 31 December, down 7 points in a week\" (19 words). It attributes the price to traders, gives the move in points, sits in the future block, and the contract is that story's own next step. The second offered row was not checked against its story. At 2 rows a day the 15-row minimum will not be reached by 10-06, so the single extension to 10-09 is the likely outcome; the binding constraint is how few odds rows are offered, not what the writer does with them.",
+          "guardrails": "Editor wall-time averaged 60s against 52s on 10-02 (+15%, inside the 20% limit, on five cycles of 39-97s). No article leads with odds. The over-560-character share was not measured today; it needs the weekly quality snapshot."
+        }
+      ]
     }
   ],
   "activeExperiment": null,
