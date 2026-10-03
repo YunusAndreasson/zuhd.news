@@ -18,15 +18,8 @@ import {
   useWindowDimensions,
   View,
 } from 'react-native';
-import Animated, {
-  type SharedValue,
-  useAnimatedReaction,
-  useAnimatedStyle,
-  useSharedValue,
-  withTiming,
-} from 'react-native-reanimated';
+import Animated, { type SharedValue, useAnimatedStyle } from 'react-native-reanimated';
 import {
-  ANIMATION,
   categoryTextColor,
   HIT_SLOP,
   MAX_FONT_SCALE,
@@ -125,10 +118,6 @@ interface StoryCardProps {
 const VEIL_LINES = 2;
 /** How much of the sheet's ground lies over the veil's first line. */
 const VEIL_TOP = 0.5;
-/** How far the sheet rises, as a share of its travel, before the veil goes:
- *  any rise at all, so a drag up shows the whole story at once and a close
- *  starts the veil's fade back in only on its last few points. */
-const VEIL_AWAY = 0.01;
 
 /**
  * The fade over the rest of a resting story: `VEIL_LINES` of gradient from
@@ -203,51 +192,41 @@ const Veil = memo(function Veil({
     }),
     [height, color],
   );
-  // **The veil never fades while the sheet moves** (2026-10-03). It faded out
-  // over the first half of the sheet's rise and back in over the last half of
-  // its fall, and on an iPhone Pro both lagged where the emulator did not — a
-  // close stalled just before it landed, which is where the fade ran. On iOS
-  // a translucent layer with sublayers is drawn off screen as a group on every
-  // frame its opacity sits between 0 and 1. So it goes at once as the sheet
-  // leaves rest, and comes back only once the sheet has landed, over
-  // `ANIMATION.normal`: switched on in one frame it popped in, which read as a
-  // glitch (the user's report the same day). The opacity is on the fill and
-  // on a wrapper round the strip, never on one group of both — the fill is a
-  // plain view and composites its own opacity, so that fade draws only the
-  // two-line strip off screen — and never on the gradient view itself, where
-  // any change rebuilds its background-image layers (`invalidateLayer`,
-  // RCTViewComponentView.mm). Reanimated touches the views only when the
-  // value changes: an open costs one update, a close one fade.
-  const veil = useSharedValue(open ? 0 : 1);
-  useAnimatedReaction(
-    () => progress.value > VEIL_AWAY,
-    (away, wasAway) => {
-      if (away === wasAway) return;
-      // A card mounting mid-open, as a swipe lands on a grown sheet, starts
-      // where it is; only a landing fades.
-      veil.value = away ? 0 : wasAway === null ? 1 : withTiming(1, { duration: ANIMATION.normal });
-    },
-  );
+  // **The veil is on only with the sheet at rest, and switches, never fades**
+  // (2026-10-03, three rounds with the user on an iPhone Pro):
+  // - Faded with the sheet, it lagged opening and stalled a close just before
+  //   it landed, where the emulator did not: on iOS a translucent layer with
+  //   sublayers is drawn off screen as a group on every frame its opacity sits
+  //   between 0 and 1.
+  // - Switched on within 1% of rest, it popped in while the sheet still had a
+  //   few points to crawl — the critically damped landing spends its last
+  //   ~100 ms there — which read as a glitch.
+  // - Faded in after that, it looked strange.
+  // So it is on when the sheet is exactly at rest — `progress` is exactly 0
+  // once the landing spring ends on its target, and at peek or under a pull —
+  // and off whenever it is anywhere above. Reanimated touches the view only
+  // when the value changes: two updates a trip. Opacity never goes on the
+  // gradient view itself, where any change rebuilds its background-image
+  // layers (`invalidateLayer`, RCTViewComponentView.mm).
+  //
   // The same first-frame guard as `DeckSlot`'s: a card mounts as a swipe
   // lands, and a JS read of a value the UI thread is writing waits for it.
   const shown = useAnimatedStyle(() => {
     if (globalThis.__RUNTIME_KIND === 1) return { opacity: open ? 0 : 1 };
-    return { opacity: veil.value };
-  }, [veil]);
+    return { opacity: progress.value > 0 ? 0 : 1 };
+  }, [progress]);
   return (
-    <View
-      style={StyleSheet.absoluteFill}
+    <Animated.View
+      style={[StyleSheet.absoluteFill, shown]}
       pointerEvents={open ? 'none' : 'auto'}
       importantForAccessibility="no-hide-descendants"
       accessibilityElementsHidden
     >
       <RNPressable style={styles.fill} {...tap} accessible={false}>
-        <Animated.View style={shown} pointerEvents="none">
-          <View style={gradient} />
-        </Animated.View>
-        <Animated.View style={[styles.fill, { backgroundColor: color }, shown]} />
+        <View style={gradient} pointerEvents="none" />
+        <View style={[styles.fill, { backgroundColor: color }]} />
       </RNPressable>
-    </View>
+    </Animated.View>
   );
 });
 

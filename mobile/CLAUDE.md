@@ -896,14 +896,14 @@ about what a card may say is about the card, not where it is shown.
   `progress` leaves it (computing its first style from `open`, because the
   card mounts as a swipe lands), a tap on it opens the story, and the rest
   takes no touches and is hidden from screen readers until the sheet settles
-  open. **It never fades while the sheet moves** (2026-10-03): faded with
-  the sheet, it lagged opening and stalled a close just before it landed on
-  an iPhone Pro, not on the emulator — iOS draws a translucent layer with
-  sublayers off screen as a group on every frame between 0 and 1. It goes at
-  once and comes back over `ANIMATION.normal` once the sheet has landed;
-  switched straight on, it popped in, which the user read as a glitch. The
-  fade is on the fill and the strip's wrapper, never one group of both, and
-  never on the gradient view itself: on iOS any opacity change rebuilds a
+  open. **It is on only with the sheet exactly at rest (`progress` 0), and
+  switches, never fades** (2026-10-03, three rounds on an iPhone Pro): faded
+  with the sheet it lagged opening and stalled a close just before it landed,
+  where the emulator did not — iOS draws a translucent layer with sublayers
+  off screen as a group on every frame between 0 and 1; switched on within 1%
+  of rest it popped in while the critically damped landing still crawled its
+  last points; faded in after landing it looked strange. Opacity never goes
+  on the gradient view itself: on iOS any opacity change rebuilds a
   `backgroundImage` view's gradient layers.
   - **Peek is computed from type, never a fraction** (`lib/deck-layout.ts`,
     tested): kicker, two title lines, three hook lines and the dock at the
@@ -1413,9 +1413,8 @@ Prefer the `scale` prop on `<Text>` over style overrides. `fontVariant` override
     screen as a group every such frame; Android and the emulator's host GPU
     hide the cost. Fade a leaf instead — a plain `sheetBg` view over the
     content is the same picture over a solid sheet (`DeckSlot`'s dimming) —
-    or fade only once the motion is over (`StoryCard`'s veil, which switches
-    off as the sheet leaves rest and fades back after it lands — a 0/1 switch
-    alone popped in). Never animate opacity on a view with
+    or switch 0/1 at the motion's true end, not near it (`StoryCard`'s veil:
+    within 1% of rest it popped in mid-crawl). Never animate opacity on a view with
     `experimental_backgroundImage`: any change rebuilds its gradient layers.
   - **A `transform` array defeats the diff.** Reanimated skips an update only
     when every value is `===` the last, and a fresh array never is, so a
