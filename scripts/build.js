@@ -29,6 +29,7 @@ import { listRow } from './lib/list-row.js'
 import { publishedTimes } from './lib/published-at.js'
 import { openStampLedger } from './lib/stable-stamp.js'
 import { companiesPayload } from './lib/companies.js'
+import { aiModelsPayload } from './lib/ai-models.js'
 import { ROOT } from './lib/paths.js'
 
 const CONTENT_DIR = join(ROOT, 'content', 'articles')
@@ -1269,6 +1270,29 @@ if (existsSync(companiesSrc)) {
     )
   } catch (err) {
     console.error(`  WARNING: api/companies.json not built — ${err?.message || err}`)
+  }
+}
+
+// AI labs — the app's `AI models` list: each lab's best score on Epoch AI's
+// capabilities index at each release, and its newest reported revenue and
+// valuation (`lib/ai-models.js`). No web surface reads it. The stamp is held,
+// and the fetcher's own `fetched` clock is left behind: the scores change a
+// few times a week, the fetch happens daily, and either stamp unheld would
+// send ten unchanged labs to every reader each day.
+//
+// Caught, for the companies' reason: nothing on the site reads this file.
+const aiModelsSrc = join(ROOT, 'content', '.ai-models.json')
+if (existsSync(aiModelsSrc)) {
+  try {
+    const payload = aiModelsPayload(JSON.parse(readFileSync(aiModelsSrc, 'utf8')))
+    if (!Array.isArray(payload.labs) || payload.labs.length === 0) throw new Error('no labs')
+    writeFileSync(
+      join(DIST_DIR, 'api', 'ai-models.json'),
+      JSON.stringify(apiStamps.hold('ai-models', payload)),
+    )
+    console.log(`  Built: api/ai-models.json (${payload.labs.length} labs)`)
+  } catch (err) {
+    console.error(`  WARNING: api/ai-models.json not built — ${err?.message || err}`)
   }
 }
 

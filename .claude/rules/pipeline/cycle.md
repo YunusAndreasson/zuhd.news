@@ -30,6 +30,8 @@ paths:
   - "scripts/lib/trends-*.js"
   - "scripts/lib/trends-sources/**"
   - "scripts/lib/companies.js"
+  - "scripts/lib/ai-models.js"
+  - "scripts/lib/ai-lab-metadata.js"
   - "scripts/lib/company-metadata.js"
   - "scripts/lib/stock-mentions.js"
   - "scripts/lib/logs.test.js"
@@ -876,3 +878,41 @@ its own ticker.
 - The scan's prompt told the model SpaceX was private. It is listed now, and
   the prompt says so; a model that does not know a ticker lists nothing.
 
+## AI labs' scores, from Epoch AI (2026-10-04)
+
+`/api/ai-models.json` is the app's `AI models` list: ten labs, each with the
+best score any of its models has on Epoch AI's Capabilities Index, the line of
+that best at each release, and its newest reported revenue and valuation.
+`fetch-ai-models.js` (Stage 3.4b4) reads three CSVs from `epoch.ai/data` — no
+key, CC BY 4.0, and the credit is the licence's one condition (the card's
+source line and About's provider list in the app). `lib/ai-models.js` is the
+arithmetic and `lib/ai-lab-metadata.js` the catalog. No web surface reads it.
+
+- **A lab, not a model.** The scores file holds 270 models; publishing them is
+  a leaderboard. A row is a lab and its line is its running best, which only
+  rises.
+- **The catalog is editorial and fixed**, with each lab's `Organization`
+  strings pinned. A model filed under `Google DeepMind,Google` is matched on
+  the comma-separated parts. A lab is added by hand, after probing its
+  strings against the file.
+- **A lab with no model scored in 365 days is left out, and `skipped` says
+  so** (`AI_LAB_STALE_DAYS`). The same cut applies to money: xAI's newest
+  revenue report was a year old, and beside this year's valuation it read as
+  the revenue that valuation was paid for.
+- **Fetched once a day, called every cycle.** The script keeps a snapshot
+  whose `fetched` stamp is under 20 hours old and exits; `--force` overrides.
+  A weekly clock gate was the alternative, and the cycle's gates have no
+  run-once marker: one missed run would skip the week.
+- **The scores file is the gate; the company files are a side dish.** Too few
+  models or a missing column rejects the fetch and keeps the previous
+  snapshot. A company file that fails keeps the figures the last snapshot
+  had, until they age out.
+- **Never compare a score with one an earlier snapshot held.** The index is
+  rescaled when Epoch adds a benchmark, so every model's score can shift at
+  once. History is the file's own, read whole each time.
+- **`fetched` does not reach the endpoint** (`aiModelsPayload`): it moves
+  daily whatever Epoch did, and the app holds the file by its tag.
+- **The standing sentence carries no number** (`ai-models.test.js`): no rank,
+  score, model version or year, each of which goes stale. There is no daily
+  account and no `in the news` join yet: the entity stage tags listed
+  companies by ticker, and most of these labs have none.

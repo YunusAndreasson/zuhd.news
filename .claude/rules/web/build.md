@@ -92,6 +92,9 @@ stamp — so a published `generated` on these layers now reads "as of", not
   completed sessions only, so its content moves when a stock market closes
   and not on every cycle; unheld, the fetcher's own `generated` would change
   it five times a day regardless.
+- **`ai-models.json` too** (2026-10-04), and it leaves the fetcher's `fetched`
+  clock behind (`aiModelsPayload`): the fetch is daily and the scores change
+  a few times a week.
 - **A new layer the app holds by tag goes through `apiStamps.hold`**, or its
   own stamp will defeat its own tag. So does anything else that varies per
   build without the data varying — a count of "seconds since", a sort that is

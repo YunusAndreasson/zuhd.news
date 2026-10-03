@@ -544,6 +544,17 @@ $BODY_LENGTHS
   COMPANIES_EXIT=$?
   echo "Companies exit: $COMPANIES_EXIT — $((SECONDS - T34B3))s" | tee -a "$LOG_FILE"
 
+  # Stage 3.4b4: AI model scores — the app's `AI models` list, from Epoch AI's
+  # open CSVs. Called every cycle and fetched once a day: the script keeps a
+  # snapshot under 20 hours old and exits (no clock gate, which would skip a
+  # week on one missed run). Fail-soft, as above.
+  echo "" | tee -a "$LOG_FILE"
+  echo "--- Stage 3.4b4: AI model scores ---" | tee -a "$LOG_FILE"
+  T34B4=$SECONDS
+  timeout 90 node scripts/fetch-ai-models.js >> "$LOG_FILE" 2>&1
+  AI_MODELS_EXIT=$?
+  echo "AI models exit: $AI_MODELS_EXIT — $((SECONDS - T34B4))s" | tee -a "$LOG_FILE"
+
   # Stage 3.4c: GDACS snapshot — disaster layer on mobile. Pulls EVENTS4APP
   # list + per-event population details (EQ shakepop, TC JTWC buffer impact)
   # in one batch so every install reads from /api/gdacs.json instead of
