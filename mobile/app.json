@@ -12,7 +12,7 @@
       "ios",
       "android"
     ],
-    "runtimeVersion": "2.8.0",
+    "runtimeVersion": "2.7.0",
     "updates": {
       "url": "https://u.expo.dev/14c4589a-a039-41ad-b3f6-23cff746c7a8"
     },
@@ -20,9 +20,6 @@
       "supportsTablet": false,
       "bundleIdentifier": "zuhd.news",
       "buildNumber": "289",
-      "associatedDomains": [
-        "applinks:zuhd.news"
-      ],
       "privacyManifests": {
         "NSPrivacyTracking": false,
         "NSPrivacyTrackingDomains": [],
@@ -46,28 +43,6 @@
         "monochromeImage": "./assets/android-icon-monochrome.png"
       },
       "versionCode": 289,
-      "intentFilters": [
-        {
-          "action": "VIEW",
-          "autoVerify": true,
-          "data": [
-            {
-              "scheme": "https",
-              "host": "zuhd.news",
-              "pathPrefix": "/a/"
-            },
-            {
-              "scheme": "https",
-              "host": "zuhd.news",
-              "pathPrefix": "/s/"
-            }
-          ],
-          "category": [
-            "BROWSABLE",
-            "DEFAULT"
-          ]
-        }
-      ],
       "permissions": [
         "android.permission.FOREGROUND_SERVICE",
         "android.permission.FOREGROUND_SERVICE_MEDIA_PLAYBACK",
