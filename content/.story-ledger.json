@@ -2,13 +2,227 @@
   "version": 1,
   "stories": [
     {
+      "id": "yemen-government-forces-strike-sanaa-saada-houthis-claim-aramco",
+      "label": "Sanaa, Riyadh rattled by strikes as war widens",
+      "firstSeen": "2026-10-04T05:05:28.208Z",
+      "lastCovered": "2026-10-04T05:05:28.208Z",
+      "coverageCount": 1,
+      "category": "politics",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-10-04-yemen-government-forces-strike-sanaa-saada-houthis-claim-aramco"
+      ],
+      "eventUri": "eng-12065948",
+      "summary": "Follow-up to the 10-02 report that Riyadh was planning an offensive against the Houthis and the 10-03 fire near an Aramco site in Riyadh (one clause each). The new development: forces of Yemen's internationally recognised government say they are striking Houthi targets in Sanaa and the group's northern stronghold of Saada, amid reported Saudi strikes on the capital, and the Houthis have claimed the Aramco attack. Lead with the strikes on Sanaa and who says they carried them out, then the Houthi claim. Count and identify any dead and say what was hit, as Reuters and The National report it; say plainly what is claimed by each side (Al-Masirah is the Houthis' own channel) and what is independently confirmed. The mechanism: the Yemen front, quiet since the truce, has reopened inside the wider US-Iran war, and Yemenis in a city of millions are again under air attack while the Houthis answer on Saudi oil infrastructure. TRT World is Turkish state media; Reuters, Dawn and The National are the independent base. Dateline Sanaa, not a US dateline.",
+      "conceptUris": [
+        "http://en.wikipedia.org/wiki/Yemen",
+        "http://en.wikipedia.org/wiki/Houthi_movement",
+        "http://en.wikipedia.org/wiki/Sanaa",
+        "http://en.wikipedia.org/wiki/Saudi_Arabia",
+        "http://en.wikipedia.org/wiki/Riyadh",
+        "http://en.wikipedia.org/wiki/Petroleum",
+        "http://en.wikipedia.org/wiki/Saudi_Aramco",
+        "http://en.wikipedia.org/wiki/Al-Masirah"
+      ]
+    },
+    {
+      "id": "uk-burnham-scraps-plan-curb-jury-trials-court-backlog",
+      "label": "Burnham scraps controversial plans to curb jury trials",
+      "firstSeen": "2026-10-04T05:05:28.208Z",
+      "lastCovered": "2026-10-04T05:05:28.208Z",
+      "coverageCount": 1,
+      "category": "politics",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-10-04-uk-burnham-scraps-plan-curb-jury-trials-court-backlog"
+      ],
+      "eventUri": "eng-12066510",
+      "summary": "Prime Minister Andy Burnham has dropped the plan, introduced under Keir Starmer, to let judges alone decide cases carrying a likely sentence of under three years; the Ministry of Justice says only complex fraud cases would still be affected (state the remaining carve-out exactly as the BBC and Reuters do). Lead with the reversal and what the scrapped proposal would have removed: the right to be tried by a jury for a large class of offences. The mechanism: the curb was the government's answer to a record Crown Court backlog, so abandoning it after a backlash from lawyers and Labour MPs leaves the backlog — and the defendants and victims waiting years for trial — where it was; say what the government now proposes instead and give the backlog figure if the sources do. Dateline London.",
+      "conceptUris": [
+        "http://en.wikipedia.org/wiki/Jury_trial",
+        "http://en.wikipedia.org/wiki/Andy_Burnham",
+        "http://en.wikipedia.org/wiki/Keir_Starmer",
+        "http://en.wikipedia.org/wiki/Secretary_of_State_for_Justice_(UK)",
+        "http://en.wikipedia.org/wiki/David_Lammy",
+        "http://en.wikipedia.org/wiki/Labour_Party_(UK)",
+        "http://en.wikipedia.org/wiki/Magistrate",
+        "http://en.wikipedia.org/wiki/Ministry_of_Justice_(United_Kingdom)"
+      ]
+    },
+    {
+      "id": "japan-protests-us-marine-arrested-okinawa-woman-death",
+      "label": "Japan Protests After U.S. Marine Is Accused of Killing Woman in Okinawa",
+      "firstSeen": "2026-10-04T05:05:28.208Z",
+      "lastCovered": "2026-10-04T05:05:28.208Z",
+      "coverageCount": 1,
+      "category": "politics",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-10-04-japan-protests-us-marine-arrested-okinawa-woman-death"
+      ],
+      "eventUri": "eng-12066724",
+      "summary": "Japan's government lodged a rare formal protest with the United States on Sunday after a US Marine was arrested in connection with the death of a woman in Okinawa. Lead with the death, the arrest and the protest — who the woman was and what the Marine is accused of, strictly as the report states; it is an accusation, not a conviction. The mechanism: Okinawa hosts the bulk of US forces in Japan on a fraction of its land, and under the Status of Forces Agreement custody and jurisdiction over American personnel are negotiated rather than automatic, so each killing reopens the question of who answers to Japanese courts — say who holds the suspect now, what Tokyo demanded and what the US military said. Mention earlier cases only if the source does. Dateline Naha, or Tokyo if the report places the protest there; not a US dateline.",
+      "conceptUris": []
+    },
+    {
+      "id": "brazil-votes-first-round-president-congress-governors",
+      "label": "Brazil to hold first round of presidential election",
+      "firstSeen": "2026-10-04T05:05:28.208Z",
+      "lastCovered": "2026-10-04T05:05:28.208Z",
+      "coverageCount": 1,
+      "category": "politics",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-10-04-brazil-votes-first-round-president-congress-governors"
+      ],
+      "eventUri": null,
+      "summary": "Brazil votes today, Sunday 4 October, in the first round of its general election: the presidency, the governors of every state and the Federal District, the whole Chamber of Deputies and a third of the Senate. Lead with the vote and what is decided today, and the rule that matters — a candidate needs more than half the valid votes or the top two go to a run-off; give the run-off date and the candidates and poll figures only if the source states them. Earlier coverage gets one clause: the final debate was cancelled after a bomb scare, and the US and Australia closed consulates. Polls are open as this is written: report no result. The only source in the feed is Mehr, an Iranian state-affiliated agency, so attribute the report to it by name; the facts here are the electoral calendar, not a contested claim. Dateline Brasília.",
+      "conceptUris": []
+    },
+    {
+      "id": "trump-ohio-rally-defends-data-centers-husted-brown-senate",
+      "label": "Trump Promotes Data Centers at Rally With Republican Facing Heat on Them",
+      "firstSeen": "2026-10-04T05:05:28.208Z",
+      "lastCovered": "2026-10-04T05:05:28.208Z",
+      "coverageCount": 1,
+      "category": "politics",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-10-04-trump-ohio-rally-defends-data-centers-husted-brown-senate"
+      ],
+      "eventUri": "eng-12065483",
+      "summary": "Campaigning in Ohio on Saturday for Republican senator Jon Husted, Trump defended the data centres that power the AI industry — the issue that has become a liability for Husted in his race against Democrat Sherrod Brown. Do not write a rally report. Lead with the fact that AI data centres are now unpopular enough to threaten a Senate seat, and that the president chose to defend them anyway. The mechanism: the complexes draw electricity and water at a scale that residents see in their bills and their land, while the jobs and the profits go elsewhere, so the costs of the AI build-out have become a ballot issue a month before the midterms — give the sources' figures on Ohio power prices, the number of sites and the polling only as reported. Quote what Trump said about them and what Brown says. Dateline the Ohio city the reports name, not Washington.",
+      "conceptUris": [
+        "http://en.wikipedia.org/wiki/Donald_Trump",
+        "http://en.wikipedia.org/wiki/Ohio",
+        "http://en.wikipedia.org/wiki/United_States_Senate",
+        "http://en.wikipedia.org/wiki/Republican_Party_(United_States)",
+        "http://en.wikipedia.org/wiki/Jon_Husted",
+        "http://en.wikipedia.org/wiki/Democratic_Party_(United_States)",
+        "http://en.wikipedia.org/wiki/Sherrod_Brown",
+        "http://en.wikipedia.org/wiki/Data_center"
+      ]
+    },
+    {
+      "id": "north-korea-claims-hypersonic-missile-test-1000-km-kim",
+      "label": "North Korean hypersonic missile hits target 1,000 km away -- news agency",
+      "firstSeen": "2026-10-04T05:05:28.208Z",
+      "lastCovered": "2026-10-04T05:05:28.208Z",
+      "coverageCount": 1,
+      "category": "politics",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-10-04-north-korea-claims-hypersonic-missile-test-1000-km-kim"
+      ],
+      "eventUri": null,
+      "summary": "North Korea says it launched a 'strategic' intermediate-range hypersonic missile that hit a target 1,000 km away in the Sea of Japan, in a drill Kim Jong Un observed in person. The chain of sourcing is state media twice over — KCNA, North Korea's agency, relayed by TASS, Russia's — so attribute every detail to KCNA via TASS by name and state none of the missile's performance as fact; the feed carries no confirmation from Seoul or Tokyo, and the article should say so. Lead with the launch, the claimed range and Kim's presence, then what KCNA says the drill was for. The mechanism in one paragraph: an intermediate-range missile with a manoeuvring warhead is aimed at US bases in Japan and Guam, not at Seoul, and a manoeuvring warhead is built to defeat the interceptors those bases rely on. Recent context (Seoul's dispute with Kyiv over North Korean prisoners of war) gets one clause at most. Dateline Pyongyang.",
+      "conceptUris": []
+    },
+    {
+      "id": "opec-plus-ministers-meet-output-compliance-hormuz-brent",
+      "label": "OPEC+ Joint Ministerial Monitoring Committee to review oil market situation",
+      "firstSeen": "2026-10-04T05:05:28.208Z",
+      "lastCovered": "2026-10-04T05:05:28.208Z",
+      "coverageCount": 1,
+      "category": "economy",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-10-04-opec-plus-ministers-meet-output-compliance-hormuz-brent"
+      ],
+      "eventUri": "rus-2134282",
+      "summary": "OPEC+ ministers meet on Sunday 4 October: the Joint Ministerial Monitoring Committee reviews the oil market and members' compliance with the output agreement, alongside the group of seven producers — Saudi Arabia, Russia, Iraq, Kuwait, Kazakhstan, Oman and the others the report names — that sets monthly production. Lead with the meeting and what is on the table, as TASS reports it; the meeting has not happened yet, so report no decision. The mechanism: the cartel is setting quotas while its Gulf members cannot ship freely — tankers were struck in the Strait of Hormuz this week and Saudi oil sites are under attack — so a quota on paper and barrels that actually reach buyers have come apart, and that gap is what moves Brent crude. Say which members are over or under their quotas if the report does. This bears on Brent crude and on ship traffic through the Strait of Hormuz. The only source is TASS, Russian state media, and Russia is a party to the agreement: attribute by name. Dateline Vienna, or as the report gives it.",
+      "conceptUris": [
+        "http://en.wikipedia.org/wiki/OPEC",
+        "http://en.wikipedia.org/wiki/Petroleum",
+        "http://en.wikipedia.org/wiki/Saudi_Arabia",
+        "http://en.wikipedia.org/wiki/Russia",
+        "http://en.wikipedia.org/wiki/Oman",
+        "http://en.wikipedia.org/wiki/Kazakhstan",
+        "http://en.wikipedia.org/wiki/Kuwait",
+        "http://en.wikipedia.org/wiki/Iraq"
+      ]
+    },
+    {
+      "id": "openai-safety-leader-robinson-quits-culture-broken",
+      "label": "OpenAI safety leader quits, warning AI company's culture is 'broken'",
+      "firstSeen": "2026-10-04T05:05:28.208Z",
+      "lastCovered": "2026-10-04T05:05:28.208Z",
+      "coverageCount": 1,
+      "category": "tech",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-10-04-openai-safety-leader-robinson-quits-culture-broken"
+      ],
+      "eventUri": "eng-12065901",
+      "summary": "David Robinson, a safety leader at OpenAI, has resigned, saying the company's culture is broken and that AI firms are not 'being nearly careful enough'; he argues the industry needs layered safety of the kind used in aviation and nuclear power instead of trial and error. Follow-up context in one clause: OpenAI fired two safety researchers and notified about 100 organisations of an intrusion by misaligned agents (both covered 10-02) — this is a third departure from the safety side in a week, and a voluntary one. Lead with who he is, what he ran and his exact words, then the mechanism a technical reader wants: what specific practices he says are missing (independent checks, redundancy, incident reporting) and why a company racing competitors has no outside body able to require them. Give OpenAI's response. Report his claims as his. Dateline San Francisco.",
+      "conceptUris": [
+        "http://en.wikipedia.org/wiki/Artificial_intelligence",
+        "http://en.wikipedia.org/wiki/OpenAI",
+        "http://en.wikipedia.org/wiki/The_Atlantic",
+        "http://en.wikipedia.org/wiki/Trial_and_error",
+        "http://en.wikipedia.org/wiki/AI_safety",
+        "http://en.wikipedia.org/wiki/Nuclear_power_plant",
+        "http://en.wikipedia.org/wiki/Nuclear_power",
+        "http://en.wikipedia.org/wiki/ChatGPT"
+      ]
+    },
+    {
+      "id": "aleph-alpha-kolibri-sovereign-open-weight-model",
+      "label": "Kolibri: A Sovereign Open-Weight Model",
+      "firstSeen": "2026-10-04T05:05:28.208Z",
+      "lastCovered": "2026-10-04T05:05:28.208Z",
+      "coverageCount": 1,
+      "category": "tech",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-10-04-aleph-alpha-kolibri-sovereign-open-weight-model"
+      ],
+      "eventUri": null,
+      "summary": "The German AI company Aleph Alpha has released Kolibri, which it calls a 'sovereign' open-weight language model; the announcement drew 547 points and 308 comments on Hacker News. Lead with what was released and under what terms — parameter count, licence, what 'open-weight' covers (weights, not necessarily training data or code), where it was trained and on whose hardware — as the company's post states. The mechanism: 'sovereign' is a claim about dependency — a model a European government or firm can run on its own machines without a US provider's API, terms or export rules — so say what in the stack is actually European and what is not (chips, cloud, data). The source is the company's own blog: attribute benchmarks to Aleph Alpha and say they are not independently verified. Dateline Heidelberg, where the company is based, unless the post says otherwise.",
+      "conceptUris": []
+    },
+    {
+      "id": "appeals-court-blocks-minnesota-ai-nude-image-ban-xai",
+      "label": "US court halts AI nude-image ban challenged by Musk -- RT World News",
+      "firstSeen": "2026-10-04T05:05:28.208Z",
+      "lastCovered": "2026-10-04T05:05:28.208Z",
+      "coverageCount": 1,
+      "category": "tech",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-10-04-appeals-court-blocks-minnesota-ai-nude-image-ban-xai"
+      ],
+      "eventUri": "ukr-369086",
+      "summary": "A US federal appeals court has blocked Minnesota's law banning AI-generated fake nude images while Elon Musk's xAI challenges it as a violation of free-speech protections. Lead with the order: which court, what the law prohibited and whom it bound (the companies whose tools make the images, not only the people who post them), and what stays unenforced for now. The mechanism: the people harmed are those — mostly women and girls — whose likeness is stripped without consent, and the company whose image generator does it is arguing that the First Amendment protects the tool; an early win at the appeals level sets the terms for every other state drafting the same law. This is a preliminary block, not a final ruling — say so, and give Minnesota's response. The only source is RT, Russian state media: attribute the report to it by name and use only the court facts, none of its framing. Dateline St. Paul, or the court's seat if the report names it.",
+      "conceptUris": [
+        "http://en.wikipedia.org/wiki/Minnesota",
+        "http://en.wikipedia.org/wiki/Elon_Musk",
+        "http://en.wikipedia.org/wiki/Artificial_intelligence",
+        "http://en.wikipedia.org/wiki/Constitution_of_the_United_States",
+        "http://en.wikipedia.org/wiki/Freedom_of_speech",
+        "http://en.wikipedia.org/wiki/Lawsuit",
+        "http://en.wikipedia.org/wiki/United_States_courts_of_appeals",
+        "http://en.wikipedia.org/wiki/Court"
+      ]
+    },
+    {
       "id": "zelensky-more-strikes-russian-energy-civilian-doctrine",
       "label": "Moscow unveils new doctrine targeting Ukrainian civilians, Zelensky vows to respond with more energy strikes",
       "firstSeen": "2026-10-03T22:03:58.752Z",
       "lastCovered": "2026-10-03T22:03:58.752Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-10-03-zelensky-more-strikes-russian-energy-civilian-doctrine"
@@ -33,7 +247,7 @@
       "lastCovered": "2026-10-03T22:03:58.752Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-10-03-iraq-state-tanker-2-million-barrels-hormuz-first-in-decades"
@@ -56,7 +270,7 @@
       "lastCovered": "2026-10-03T22:03:58.752Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-10-03-nigeria-imo-police-located-19-kidnapped-nysc-members-cannot-strike"
@@ -72,7 +286,7 @@
       "lastCovered": "2026-10-03T22:03:58.752Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-10-03-nigeria-uyo-obi-kwankwaso-movement-leaders-released-detention"
@@ -88,7 +302,7 @@
       "lastCovered": "2026-10-03T22:03:58.752Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-10-03-trump-posts-cotton-phone-number-sunshine-protection-act"
@@ -113,7 +327,7 @@
       "lastCovered": "2026-10-03T22:03:58.752Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-10-03-medvedev-tehran-russia-iran-defence-cooperation-hormuz"
@@ -129,7 +343,7 @@
       "lastCovered": "2026-10-03T22:03:58.752Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-10-03-bucharest-farmers-protest-coordinated-accounts-facebook-tiktok"
@@ -145,7 +359,7 @@
       "lastCovered": "2026-10-03T22:03:58.752Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-10-03-kaist-study-group-belonging-dissent-stronger-arguments"
@@ -161,7 +375,7 @@
       "lastCovered": "2026-10-03T18:08:08.445Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-10-03-flydubai-co-pilot-identified-omani-barred-from-flying"
@@ -186,7 +400,7 @@
       "lastCovered": "2026-10-03T18:08:08.445Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-10-03-delhi-police-detain-160-anti-cec-march-bhushan-yadav"
@@ -211,7 +425,7 @@
       "lastCovered": "2026-10-03T18:08:08.445Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-10-03-gaza-hospital-israeli-strikes-kill-five"
@@ -236,7 +450,7 @@
       "lastCovered": "2026-10-03T18:08:08.445Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-10-03-egypt-journalists-syndicate-sit-in-matsda2sh-whereabouts-unknown"
@@ -252,7 +466,7 @@
       "lastCovered": "2026-10-03T18:08:08.445Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-10-03-germany-unity-day-marches-against-conscription-rearmament"
@@ -268,7 +482,7 @@
       "lastCovered": "2026-10-03T18:08:08.445Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-10-03-florida-deputy-acquitted-roger-fortson-shooting"
@@ -284,7 +498,7 @@
       "lastCovered": "2026-10-03T18:08:08.445Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-10-03-trump-90-dollar-checks-medicare-seniors-before-midterms"
@@ -309,7 +523,7 @@
       "lastCovered": "2026-10-03T18:08:08.445Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-10-03-pakistan-used-car-imports-surge-september-rules-eased"
@@ -325,7 +539,7 @@
       "lastCovered": "2026-10-03T18:08:08.445Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-10-03-nigeria-north-east-governors-regional-airline-10-8-billion-naira"
@@ -341,7 +555,7 @@
       "lastCovered": "2026-10-03T18:08:08.445Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-10-03-northrop-talon-blue-collaborative-combat-aircraft-first-flight"
@@ -357,7 +571,7 @@
       "lastCovered": "2026-10-03T18:08:08.445Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-10-03-india-air-force-chief-fighter-shortfall-mrfa-no-drone-force"
@@ -382,7 +596,7 @@
       "lastCovered": "2026-10-03T18:08:08.445Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-10-03-iran-space-research-center-launch-plans-mokari"
@@ -398,7 +612,7 @@
       "lastCovered": "2026-10-03T18:08:08.445Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-10-03-netherlands-study-recovery-after-intimate-partner-violence"
@@ -414,7 +628,7 @@
       "lastCovered": "2026-10-03T14:05:21.467Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-10-03-two-tankers-struck-hormuz-fire-near-aramco-riyadh"
@@ -439,7 +653,7 @@
       "lastCovered": "2026-10-03T14:05:21.467Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-10-03-russia-warns-diplomats-leave-kyiv-strikes-kill-six"
@@ -464,7 +678,7 @@
       "lastCovered": "2026-10-03T14:05:21.467Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-10-03-spain-housing-protests-congress-rejects-tenant-protections"
@@ -489,7 +703,7 @@
       "lastCovered": "2026-10-03T14:05:21.467Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-10-03-egypt-matsda2sh-six-journalists-detention-order-disputed"
@@ -505,7 +719,7 @@
       "lastCovered": "2026-10-03T14:05:21.467Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-10-03-latvia-parliamentary-election-russia-cost-of-living"
@@ -530,7 +744,7 @@
       "lastCovered": "2026-10-03T14:05:21.467Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-10-03-irkutsk-laboratory-worker-plague-death-200-observed"
@@ -555,7 +769,7 @@
       "lastCovered": "2026-10-03T14:05:21.467Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-10-03-kushner-partners-profit-lukoil-russian-oil-deal-nyt"
@@ -580,7 +794,7 @@
       "lastCovered": "2026-10-03T14:05:21.467Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-10-03-who-global-health-estimates-ncds-74-percent-deaths"
@@ -605,7 +819,7 @@
       "lastCovered": "2026-10-03T14:05:21.467Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-10-03-outer-solar-system-terminal-instability-sun-death-study"
@@ -621,7 +835,7 @@
       "lastCovered": "2026-10-03T14:05:21.467Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-10-02-nasa-sr-71-blackbird-844-return-to-flight"
@@ -637,7 +851,7 @@
       "lastCovered": "2026-10-03T10:04:06.550Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-10-03-ethiopia-eritrea-sever-diplomatic-ties-tigray-fighting"
@@ -662,7 +876,7 @@
       "lastCovered": "2026-10-03T10:04:06.550Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-10-03-pakistan-afridi-long-march-goes-ahead-second-round-talks"
@@ -678,7 +892,7 @@
       "lastCovered": "2026-10-03T10:04:06.550Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-10-03-indus-waters-treaty-abeyance-unhrc-event-millions-at-risk"
@@ -694,7 +908,7 @@
       "lastCovered": "2026-10-03T10:04:06.550Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-10-03-cornell-da-declined-review-additional-evidence-records"
@@ -719,7 +933,7 @@
       "lastCovered": "2026-10-03T10:04:06.550Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-10-03-heat-deaths-western-europe-34600-warmest-summer-study"
@@ -744,7 +958,7 @@
       "lastCovered": "2026-10-03T10:04:06.550Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-10-03-apple-mac-privacy-controls-ai-agents-full-disk-access-meta-muse"
@@ -769,7 +983,7 @@
       "lastCovered": "2026-10-03T05:05:55.057Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-10-03-india-cjp-mumbai-protest-election-commissioner-ultimatum"
@@ -794,7 +1008,7 @@
       "lastCovered": "2026-10-03T05:05:55.057Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-10-03-uk-kerry-charged-farage-terror-plot-widdecombe-murder"
@@ -819,7 +1033,7 @@
       "lastCovered": "2026-10-03T05:05:55.057Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-10-03-uk-two-iranians-charged-plot-jewish-community-manchester"
@@ -844,7 +1058,7 @@
       "lastCovered": "2026-10-03T05:05:55.057Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-10-03-nigeria-benue-operation-zenda-extrajudicial-killings"
@@ -860,7 +1074,7 @@
       "lastCovered": "2026-10-03T05:05:55.057Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-10-03-iran-minab-school-strike-witnesses-drop-site"
@@ -876,7 +1090,7 @@
       "lastCovered": "2026-10-03T05:05:55.057Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-10-03-us-ukraine-fund-first-critical-minerals-deal-bgv"
@@ -901,7 +1115,7 @@
       "lastCovered": "2026-10-03T05:05:55.057Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-10-03-vietnam-high-tech-ambitions-electricity-shortfall-lng"
@@ -917,7 +1131,7 @@
       "lastCovered": "2026-10-03T05:05:55.057Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-10-02-peru-export-boom-copper-china-rising-poverty"
@@ -933,7 +1147,7 @@
       "lastCovered": "2026-10-03T05:05:55.057Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-10-02-trump-clayton-intelligence-chief-ai-tsar"
@@ -958,275 +1172,13 @@
       "lastCovered": "2026-10-03T05:05:55.057Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-10-02-vfa-41-super-hornet-munitions-tally-iran-war"
       ],
       "eventUri": null,
       "summary": "A tally of what one US Navy squadron, VFA-41's F/A-18F Super Hornets, fired during the war on Iran: hundreds of air-to-surface and air-to-air weapons. Lead with the numbers by weapon type, then what they reveal — the scale of munitions a single squadron expended, what was aimed at ground targets versus drones and missiles, and what that implies for US stockpiles. State where the figures come from (the squadron's own record, as TWZ reports). Keep it factual; the weapons landed on Iran, so say what they hit where the source does.",
-      "conceptUris": []
-    },
-    {
-      "id": "france-student-protests-560-schools-riot-police",
-      "label": "Riot police clash with students as education protests rage in France",
-      "firstSeen": "2026-10-02T22:07:58.017Z",
-      "lastCovered": "2026-10-02T22:07:58.017Z",
-      "coverageCount": 1,
-      "category": "politics",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-10-02-france-student-protests-560-schools-riot-police"
-      ],
-      "eventUri": "spa-4360096",
-      "summary": "Thousands of French high-school pupils disrupted more than 560 schools on Friday over teacher shortages, overcrowded classrooms and run-down buildings, and riot police clashed with them as fires burned in the streets. Lead with the 560 figure and what the students are demanding, then the policing: arrests, injuries and where (Paris, Marseille, Île-de-France) as the sources give them. The mechanism: say how many teaching posts are unfilled and what the budget did to education spending, as far as BBC and Al Jazeera state it — the protest is by minors against a state that has not staffed their classrooms, and the state's first answer was riot police. Give the education ministry's response and whether teacher unions have joined or called further action. Datelined Paris.",
-      "conceptUris": [
-        "http://en.wikipedia.org/wiki/France",
-        "http://en.wikipedia.org/wiki/Paris",
-        "http://en.wikipedia.org/wiki/Marseille",
-        "http://en.wikipedia.org/wiki/Violence",
-        "http://en.wikipedia.org/wiki/Police",
-        "http://en.wikipedia.org/wiki/Île-de-France",
-        "http://en.wikipedia.org/wiki/Secondary_school",
-        "http://en.wikipedia.org/wiki/Conflagration"
-      ]
-    },
-    {
-      "id": "ethiopia-tigray-fighting-escalates-regional-war-fears",
-      "label": "What to Know About Fighting Between Ethiopia and Rebels in Tigray",
-      "firstSeen": "2026-10-02T22:07:58.017Z",
-      "lastCovered": "2026-10-02T22:07:58.017Z",
-      "coverageCount": 1,
-      "category": "politics",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-10-02-ethiopia-tigray-fighting-escalates-regional-war-fears"
-      ],
-      "eventUri": "eng-12056027",
-      "summary": "Fighting between Ethiopia's federal government and the authorities in Tigray has escalated sharply in recent days, raising fears of a regional war that draws in Eritrea, Egypt, the UAE and Saudi Arabia. The NYT piece is an explainer: write it as news of the escalation, not as a Q&A. Lead with what has happened on the ground this week — where the fighting is, who attacked, casualties and displacement as far as the article gives them — then the collapse it represents: the 2022 Pretoria agreement ended a war that killed hundreds of thousands, and it is now failing. The mechanism: name which outside power backs which side and why (Eritrea's role, Egypt and the Nile dispute, Gulf money), because that is what turns a federal-regional conflict into a Horn of Africa war. The drone strikes on Addis Ababa (10-01) and Ethiopia's accusation against Sudan (covered today) get one clause each. Civilians in Tigray first: what they face in aid access and communications. Datelined Mekelle if the reporting places the fighting there, otherwise Addis Ababa.",
-      "conceptUris": []
-    },
-    {
-      "id": "nigeria-appeal-court-cama-cac-powers-religious-bodies",
-      "label": "Appeal court affirms nullification of CAMA provisions on CAC powers over religious, others",
-      "firstSeen": "2026-10-02T22:07:58.017Z",
-      "lastCovered": "2026-10-02T22:07:58.017Z",
-      "coverageCount": 1,
-      "category": "politics",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-10-02-nigeria-appeal-court-cama-cac-powers-religious-bodies"
-      ],
-      "eventUri": null,
-      "summary": "Nigeria's Court of Appeal in Abuja has upheld a Federal High Court judgment striking down sections 839 and 842-848 of the Companies and Allied Matters Act, which let the Corporate Affairs Commission suspend the trustees of religious bodies, charities and other associations and take over their accounts. Lead with the ruling and what the state can no longer do, in plain words — a regulator could remove the leadership of a mosque, church or NGO and appoint its own managers without a trial. The mechanism: the court held the provisions breach constitutional rights to freedom of thought, conscience, religion, association and assembly, which sets a precedent in Africa's most populous country for how far a government may reach into civil society through company law. Say who brought the case, what the government argued, and whether it can still go to the Supreme Court. Datelined Abuja.",
-      "conceptUris": []
-    },
-    {
-      "id": "honduras-garifuna-land-iacthr-rulings-leaders-criminalised",
-      "label": "The Garífuna’s Fight for Land on Honduras’ Cocaine Coast",
-      "firstSeen": "2026-10-02T22:07:58.017Z",
-      "lastCovered": "2026-10-02T22:07:58.017Z",
-      "coverageCount": 1,
-      "category": "politics",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-10-02-honduras-garifuna-land-iacthr-rulings-leaders-criminalised"
-      ],
-      "eventUri": null,
-      "summary": "Honduras has still not carried out Inter-American Court of Human Rights rulings ordering it to return land to the Afro-Indigenous Garífuna in Punta Piedra and three other communities, and InSight Crime reports the state has moved from failing to protect them to accusing their leaders of organised crime. Write it as news of the investigation's findings, not as a feature. Lead with the reversal — a state under a binding court order prosecuting the people the order protects — then the dates of the rulings, what they required and what has been done. The mechanism: the land sits on a cocaine trafficking corridor and is wanted by tourism and palm-oil interests, so traffickers and businesses both gain from the Garífuna leaving, and an international court has no means to enforce its judgment. Name the leaders charged or killed and the companies or officials the article names, attributed to InSight Crime. Datelined Punta Piedra, or the Honduran town the reporting centres on.",
-      "conceptUris": []
-    },
-    {
-      "id": "brazil-us-australia-close-consulates-police-warrants-election",
-      "label": "US and Australia suspend consular services in Brazil ahead of election citing security concerns",
-      "firstSeen": "2026-10-02T22:07:58.017Z",
-      "lastCovered": "2026-10-02T22:07:58.017Z",
-      "coverageCount": 1,
-      "category": "politics",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-10-02-brazil-us-australia-close-consulates-police-warrants-election"
-      ],
-      "eventUri": "fra-1349574",
-      "summary": "Third Brazil election story today; the cancelled debate and bomb scare, and the Banco Master scandal, are covered — one clause each. The new development: US consular services and the Australian embassy in Brazil closed on Friday citing security concerns, two days before Sunday's vote, and Brazil's federal police executed search and seizure warrants the same day. Lead with the closures and what each government said prompted them, then the police operation: who was searched, for what, and whether it is tied to the Supreme Court bomb scare — only as AP states it. The mechanism: foreign missions shutting before an election is a public judgment that the vote may turn violent, and it comes from Washington, which has openly leaned on Lula's government; say what Brazilian authorities answered and what security is planned for polling day. Do not speculate on a link the source does not make. Datelined Rio de Janeiro as AP gives it, or Brasília if the police action is the lead.",
-      "conceptUris": [
-        "http://en.wikipedia.org/wiki/Brazil",
-        "http://en.wikipedia.org/wiki/Luiz_Inácio_Lula_da_Silva",
-        "http://en.wikipedia.org/wiki/Jair_Bolsonaro",
-        "http://en.wikipedia.org/wiki/United_States",
-        "http://en.wikipedia.org/wiki/Donald_Trump",
-        "http://en.wikipedia.org/wiki/Diplomatic_mission",
-        "http://en.wikipedia.org/wiki/Brasília",
-        "http://en.wikipedia.org/wiki/Consulate"
-      ]
-    },
-    {
-      "id": "gaza-mass-funeral-drop-site-daily",
-      "label": "U.S. deploys another carrier to the Middle East; Putin escalates Kaliningrad threats; Mass funeral in Gaza",
-      "firstSeen": "2026-10-02T22:07:58.017Z",
-      "lastCovered": "2026-10-02T22:07:58.017Z",
-      "coverageCount": 1,
-      "category": "politics",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-10-02-gaza-mass-funeral-drop-site-daily"
-      ],
-      "eventUri": null,
-      "summary": "Drop Site's daily digest carries several items; write ONE article, not a round-up. Lead with the item not yet covered: the mass funeral in Gaza — who was buried, how many, who killed them, when and where, each fact attributed to Drop Site and the sources it cites. Every one of the dead counted and, where the digest gives names, named. The mechanism: say what the killing shows about conditions in the Strip now — strikes, aid access, the state of any ceasefire — strictly as reported. The carrier deployment was covered on 10-01 from a single newspaper report; give it one sentence, and only if the digest adds something concrete (the ship's name, a Pentagon confirmation, a date). Leave the Kaliningrad item out. If the page gives too little on the funeral to stand as an article, lead instead with the carrier confirmation and say plainly what is and is not confirmed. Datelined the city in Gaza the digest names.",
-      "conceptUris": []
-    },
-    {
-      "id": "doj-will-not-reopen-powell-probe-fed-inspector-general",
-      "label": "DoJ will not reopen criminal probe of Fed's Jay Powell",
-      "firstSeen": "2026-10-02T22:07:58.017Z",
-      "lastCovered": "2026-10-02T22:07:58.017Z",
-      "coverageCount": 1,
-      "category": "economy",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-10-02-doj-will-not-reopen-powell-probe-fed-inspector-general"
-      ],
-      "eventUri": "eng-12057210",
-      "summary": "The US Justice Department will not reopen its criminal investigation of former Federal Reserve chair Jay Powell over the central bank's $2.5bn headquarters renovation, after the Fed's independent inspector general cleared him of criminal wrongdoing; Deputy Attorney General Todd Blanche said so, per Reuters citing Bloomberg. Lead with the decision and the inspector general's finding, then what the report did criticise, if anything. The mechanism: the probe was the lever by which the White House could push a sitting Fed governor off the board, so closing it decides who votes on the Fed rate — say whether Powell remains a governor, until when, and what other routes to removing him exist (the Bloomberg piece is an explainer on exactly that; the feed's tags suggest it also covers the mortgage-fraud case against governor Lisa Cook — one sentence, only if stated). Why it matters beyond the US: a central bank whose members can be prosecuted out of office sets borrowing costs for every dollar debtor. The feed's 'Jay Powell (baseball)' tag is wrong — ignore it. Datelined Washington.",
-      "conceptUris": [
-        "http://en.wikipedia.org/wiki/Jay_Powell_(baseball)",
-        "http://en.wikipedia.org/wiki/United_States_Department_of_Justice",
-        "http://en.wikipedia.org/wiki/Central_bank",
-        "http://en.wikipedia.org/wiki/Board_of_directors",
-        "http://en.wikipedia.org/wiki/Donald_Trump",
-        "http://en.wikipedia.org/wiki/Governor",
-        "http://en.wikipedia.org/wiki/Cook_County,_Illinois",
-        "http://en.wikipedia.org/wiki/Mortgage_fraud"
-      ]
-    },
-    {
-      "id": "iea-releases-100-million-barrels-diesel-birol",
-      "label": "IEA's Birol says oil prices starting to fall after reserve release decision",
-      "firstSeen": "2026-10-02T22:07:58.017Z",
-      "lastCovered": "2026-10-02T22:07:58.017Z",
-      "coverageCount": 1,
-      "category": "economy",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-10-02-iea-releases-100-million-barrels-diesel-birol"
-      ],
-      "eventUri": "eng-12064401",
-      "summary": "The diesel arc reaches a decision: after Trump's ultimatum (10-01), the US demand and France's proposal (both covered today — one clause in total), the International Energy Agency has decided to release 100 million barrels of oil and fuel reserves, with a first step on diesel, its chief Fatih Birol said in Istanbul, adding that prices have started to fall. Lead with the 100 million barrels — whose stocks, how much is diesel and how much crude, over what period — and not with Birol's remark on prices. The mechanism: emergency reserves built for supply cuts are being spent while Hormuz is still shut, so every barrel released now is one not available later; say how this compares with earlier releases in this war and how many days of cover members keep. Then the price: what Brent crude did after the announcement, as Reuters gives it, and who gains — European diesel buyers, and a US administration that demanded the release. Datelined Istanbul, where Birol spoke.",
-      "conceptUris": [
-        "http://en.wikipedia.org/wiki/Price_of_oil",
-        "http://en.wikipedia.org/wiki/Fatih_Birol",
-        "http://en.wikipedia.org/wiki/International_Energy_Agency",
-        "http://en.wikipedia.org/wiki/Barrel_(unit)",
-        "http://en.wikipedia.org/wiki/Diesel_fuel",
-        "http://en.wikipedia.org/wiki/Turkey",
-        "http://en.wikipedia.org/wiki/Istanbul",
-        "http://en.wikipedia.org/wiki/Thomson_Reuters"
-      ]
-    },
-    {
-      "id": "colombia-illegal-alluvial-gold-mining-afro-colombian-land",
-      "label": "Colombia reports expansion of mostly illegal alluvial gold mining",
-      "firstSeen": "2026-10-02T22:07:58.017Z",
-      "lastCovered": "2026-10-02T22:07:58.017Z",
-      "coverageCount": 1,
-      "category": "economy",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-10-02-colombia-illegal-alluvial-gold-mining-afro-colombian-land"
-      ],
-      "eventUri": null,
-      "summary": "Alluvial gold mining in Colombia, most of it illegal, expanded 4.5% by area in 2025 to 118,410 hectares, with the increase falling mainly on Afro-Colombian communities' land, a report by the UN Office on Drugs and Crime and the government shows. Lead with the area and whose land it is, then the share that is illegal and where it concentrates (departments, rivers, overlap with coca and with Indigenous reserves) as Reuters gives it. The mechanism: a high gold price makes river dredging more profitable than coca for armed groups, and the metal is far easier to launder into legal exports than cocaine, so the cost — mercury in rivers, cleared forest, communities displaced from collectively titled land — is carried by people who hold the title and not the power. Cite the gold price only if Reuters does. Say what the government says it will do and which armed groups the report names. Datelined Bogotá.",
-      "conceptUris": [
-        "http://en.wikipedia.org/wiki/Alluvium",
-        "http://en.wikipedia.org/wiki/Hectare",
-        "http://en.wikipedia.org/wiki/Mining",
-        "http://en.wikipedia.org/wiki/Colombia",
-        "http://en.wikipedia.org/wiki/Afro-Colombians",
-        "http://en.wikipedia.org/wiki/United_Nations_Office_on_Drugs_and_Crime",
-        "http://en.wikipedia.org/wiki/Indigenous_peoples_of_the_Americas",
-        "http://en.wikipedia.org/wiki/Placer_mining"
-      ]
-    },
-    {
-      "id": "probiotics-prevented-coral-bleaching-red-sea-heat-wave",
-      "label": "Probiotics prevented coral bleaching during a Red Sea heat wave: Study",
-      "firstSeen": "2026-10-02T22:07:58.017Z",
-      "lastCovered": "2026-10-02T22:07:58.017Z",
-      "coverageCount": 1,
-      "category": "science",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-10-02-probiotics-prevented-coral-bleaching-red-sea-heat-wave"
-      ],
-      "eventUri": "eng-12054283",
-      "summary": "During a 2022 marine heat wave, a patch of corals on a reef 15km off Saudi Arabia's Red Sea coast that had been dosed with beneficial bacteria did not bleach while untreated corals around it did, a study reports — a field result, on a real reef in a real heat wave, where earlier evidence came from tanks. Lead with that contrast and the numbers: how many colonies, how much less bleaching, how long the protection lasted. Then the method in plain words — which microbes, how they were applied, how often — and the journal and institution (name the lead researcher, Raquel Peixoto, and her university as Mongabay states them). The mechanism: say how the bacteria are thought to help a coral keep its algae under heat stress. Then the limits the researchers themselves give: cost, scale, the need to keep re-applying, and that it buys time without cooling the water. Datelined Thuwal if the article places the lab there, otherwise the Saudi location it gives.",
-      "conceptUris": [
-        "http://en.wikipedia.org/wiki/Coral_bleaching",
-        "http://en.wikipedia.org/wiki/Reef",
-        "http://en.wikipedia.org/wiki/Red_Sea",
-        "http://en.wikipedia.org/wiki/Coral",
-        "http://en.wikipedia.org/wiki/Probiotic",
-        "http://en.wikipedia.org/wiki/Heat_wave",
-        "http://en.wikipedia.org/wiki/Ocean",
-        "http://en.wikipedia.org/wiki/Tank"
-      ]
-    },
-    {
-      "id": "federal-judge-flock-search-mass-surveillance-unconstitutional",
-      "label": "Federal Judge Rules a Flock Search Was ‘Indiscriminate Mass Surveillance’ and Unconstitutional",
-      "firstSeen": "2026-10-02T22:07:58.017Z",
-      "lastCovered": "2026-10-02T22:07:58.017Z",
-      "coverageCount": 1,
-      "category": "tech",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-10-02-federal-judge-flock-search-mass-surveillance-unconstitutional"
-      ],
-      "eventUri": null,
-      "summary": "A US federal judge has ruled that a police search of Flock's licence-plate camera network was 'indiscriminate mass surveillance' and unconstitutional, writing that the nationwide network is 'approaching dragnet-type law enforcement practice' and that the officer should have obtained a warrant. Lead with the ruling and those words, then the case: which court and judge, what the officer searched for, across how many cameras or agencies, and what happens to the evidence. The mechanism a technical reader wants: Flock pools plate reads from thousands of local customers into one searchable database, so a single query reconstructs a person's movements across states with no judge involved — the court treated the aggregate, not the single camera, as the search. Say how this sits with earlier rulings that went the other way and whether it binds anyone beyond this case. Give Flock's and the police department's responses. Dateline the city of the court.",
-      "conceptUris": []
-    },
-    {
-      "id": "judge-dismisses-el-faro-pegasus-nso-case-jurisdiction",
-      "label": "Judge dismisses spyware case brought by Salvadoran journalists targeted with Pegasus",
-      "firstSeen": "2026-10-02T22:07:58.017Z",
-      "lastCovered": "2026-10-02T22:07:58.017Z",
-      "coverageCount": 1,
-      "category": "tech",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-10-02-judge-dismisses-el-faro-pegasus-nso-case-jurisdiction"
-      ],
-      "eventUri": null,
-      "summary": "A US judge has dismissed the lawsuit brought against Pegasus maker NSO Group by journalists of El Faro, the independent Salvadoran outlet whose staff's phones were infected with the spyware, finding they had not shown the case belonged in a California court. Lead with the dismissal and its ground — jurisdiction, not the facts of the hacking — then who the plaintiffs are and what was done to them: how many journalists, how many infections, over what period, as The Record states it. The mechanism: spyware built in Israel, sold to governments and run against reporters abroad leaves its targets with no court that will hear them — their own state is the suspected customer, and the US courts where the servers and phone makers sit say the harm happened elsewhere. Say whether an appeal is planned and how the ruling sits beside WhatsApp's successful case against NSO. The feed entry is a teaser — keep strictly to the fetched page. Datelined San Salvador, where the journalists were targeted.",
-      "conceptUris": []
-    },
-    {
-      "id": "germany-f125-frigates-iris-t-slm-air-defence",
-      "label": "Germany Is Finally Giving Its F125 Frigates Some More Teeth With IRIS-T SLM Surface-To-Air Missiles",
-      "firstSeen": "2026-10-02T22:07:58.017Z",
-      "lastCovered": "2026-10-02T22:07:58.017Z",
-      "coverageCount": 1,
-      "category": "tech",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-10-02-germany-f125-frigates-iris-t-slm-air-defence"
-      ],
-      "eventUri": null,
-      "summary": "Germany is fitting its four 7,200-ton F125 frigates with the IRIS-T SLM surface-to-air missile, addressing the notoriously light armament the ships were built with. Lead with the decision and what it adds — the missile's range, how it is mounted on a ship designed without a launcher for it, the timetable and cost as The War Zone gives them. The mechanism: the F125 was designed in the 2000s for long stabilisation and anti-piracy patrols, the largest frigate in the world with almost no air defence, and drones and anti-ship missiles in the Red Sea and Black Sea have made that design untenable — so a land-based system proven in Ukraine is being put to sea rather than new ships being built. Say what the ships still lack and what it shows about European navies rearming with what industry can deliver now. News of the decision, not a ship history. Datelined Berlin, or the German city the article gives for the navy or the manufacturer.",
       "conceptUris": []
     }
   ]
