@@ -1,98 +1,5 @@
 [
   {
-    "timestamp": "2026-09-13T12:21:05.769Z",
-    "candidateCount": 10,
-    "candidates": [
-      {
-        "slug": "2026-09-13-brics-ai-community-a-second-dependency",
-        "title": "Xi Pitches BRICS AI Bloc",
-        "category": "tech",
-        "eventCoverage": 108,
-        "importance": 6
-      },
-      {
-        "slug": "2026-09-13-kyiv-warsaw-train-the-only-civilian-exit",
-        "title": "Drone Hits Warsaw-Bound Train",
-        "category": "politics",
-        "eventCoverage": 61,
-        "importance": 6
-      },
-      {
-        "slug": "2026-09-13-abu-dhabi-tehran-the-channel-that-never-closed",
-        "title": "Abu Dhabi Meets Tehran",
-        "category": "politics",
-        "eventCoverage": 54,
-        "importance": 6
-      },
-      {
-        "slug": "2026-09-13-bangsamoro-first-parliament-a-movement-converts",
-        "title": "Bangsamoro Elects First Parliament",
-        "category": "politics",
-        "eventCoverage": 38,
-        "importance": 6
-      },
-      {
-        "slug": "2026-09-13-nabatieh-shelling-a-ceasefire-that-grades-itself",
-        "title": "Israel Shells South Lebanon",
-        "category": "politics",
-        "eventCoverage": 0,
-        "importance": 6
-      },
-      {
-        "slug": "2026-09-13-shehbaz-fuel-relief-who-the-subsidy-reaches",
-        "title": "Pakistan Unveils Fuel Relief",
-        "category": "economy",
-        "eventCoverage": 0,
-        "importance": 6
-      },
-      {
-        "slug": "2026-09-13-shadow-fleet-seizures-the-precedent-travels",
-        "title": "Putin Warns Over Ship Seizures",
-        "category": "economy",
-        "eventCoverage": 0,
-        "importance": 6
-      },
-      {
-        "slug": "2026-09-13-john-deere-self-repair-the-part-is-still-locked",
-        "title": "Deere's Self-Repair Gap",
-        "category": "tech",
-        "eventCoverage": 0,
-        "importance": 6
-      },
-      {
-        "slug": "2026-09-13-primordial-helium-a-count-of-what-existed",
-        "title": "Universe's First Helium Measured",
-        "category": "science",
-        "eventCoverage": 0,
-        "importance": 6
-      },
-      {
-        "slug": "2026-09-13-cancer-pain-videos-a-gap-the-feed-fills",
-        "title": "Cancer Pain Videos Scored",
-        "category": "science",
-        "eventCoverage": 0,
-        "importance": 6
-      }
-    ],
-    "selected": {
-      "slug": "2026-09-13-kyiv-warsaw-train-the-only-civilian-exit",
-      "title": "Drone Hits Warsaw-Bound Train",
-      "category": "politics",
-      "body": "A drone hit a Warsaw-bound train two kilometers from",
-      "eventCoverage": 61,
-      "importance": 6
-    },
-    "skipReason": null,
-    "sent": true,
-    "pushTitle": "Breaking News",
-    "pushBody": "Drone strikes Warsaw-bound train 2km from Poland border, Ukraine says",
-    "response": {
-      "pushed": 1,
-      "skipped": 0,
-      "tokens": 9
-    }
-  },
-  {
     "timestamp": "2026-09-13T17:25:15.059Z",
     "candidateCount": 9,
     "candidates": [
@@ -9930,6 +9837,113 @@
     "sent": true,
     "pushTitle": "Breaking News",
     "pushBody": "Russia says it will step up strikes on Kyiv, TASS reports",
+    "response": {
+      "pushed": 1,
+      "skipped": 0,
+      "tokens": 5
+    }
+  },
+  {
+    "timestamp": "2026-10-04T18:16:21.251Z",
+    "candidateCount": 12,
+    "candidates": [
+      {
+        "slug": "2026-10-04-spain-housing-protests-valencia-clashes-snap-election-question",
+        "title": "Valencia Police Fire Rubber Bullets",
+        "category": "politics",
+        "eventCoverage": 178,
+        "importance": 6
+      },
+      {
+        "slug": "2026-10-04-delhi-500-detained-day-three-cec-protests-thackerays-mumbai-march",
+        "title": "Election Protests Spread to Mumbai",
+        "category": "politics",
+        "eventCoverage": 118,
+        "importance": 6
+      },
+      {
+        "slug": "2026-10-04-palestinian-education-ministry-800-teachers-killed-since-2023",
+        "title": "Palestinian Teachers Killed, Ministry Says",
+        "category": "politics",
+        "eventCoverage": 111,
+        "importance": 6
+      },
+      {
+        "slug": "2026-10-04-uk-green-party-conference-zionism-racism-motion-brighton",
+        "title": "Greens Back Single Palestinian State",
+        "category": "politics",
+        "eventCoverage": 56,
+        "importance": 6
+      },
+      {
+        "slug": "2026-10-04-india-jaishankar-beyond-advocacy-talks-russia-ukraine-mediation",
+        "title": "India Steps Into Ukraine Diplomacy",
+        "category": "politics",
+        "eventCoverage": 53,
+        "importance": 6
+      },
+      {
+        "slug": "2026-10-04-yemen-government-declares-operation-against-houthis-al-jawf",
+        "title": "Yemen Declares Houthi Offensive",
+        "category": "politics",
+        "eventCoverage": 0,
+        "importance": 6
+      },
+      {
+        "slug": "2026-10-04-sudan-dilling-rsf-drone-strikes-four-civilians-killed",
+        "title": "Drones Kill Four in Dilling",
+        "category": "politics",
+        "eventCoverage": 0,
+        "importance": 6
+      },
+      {
+        "slug": "2026-10-04-egypt-matsda2sh-abu-emaira-15-day-detention-five-still-missing",
+        "title": "Egypt Detains Fact-Checking Journalist",
+        "category": "politics",
+        "eventCoverage": 0,
+        "importance": 6
+      },
+      {
+        "slug": "2026-10-04-south-darfur-kass-hailstorms-destroy-3750-farms-before-harvest",
+        "title": "Hail Destroys Darfur Farms",
+        "category": "politics",
+        "eventCoverage": 0,
+        "importance": 6
+      },
+      {
+        "slug": "2026-10-04-us-secondary-sanctions-russia-trade-partners-october-18-wright",
+        "title": "US Weighs Russia Secondary Sanctions",
+        "category": "economy",
+        "eventCoverage": 0,
+        "importance": 6
+      },
+      {
+        "slug": "2026-10-04-iran-nigc-admits-south-pars-gas-output-drop-supply-claim",
+        "title": "Iran Admits Gas Delivery Drop",
+        "category": "economy",
+        "eventCoverage": 0,
+        "importance": 6
+      },
+      {
+        "slug": "2026-10-04-giant-clam-shell-monthly-climate-record-great-barrier-reef-200-years",
+        "title": "Clam Shell Records Reef Climate",
+        "category": "science",
+        "eventCoverage": 0,
+        "importance": 6
+      }
+    ],
+    "selected": {
+      "slug": "2026-10-04-spain-housing-protests-valencia-clashes-snap-election-question",
+      "title": "Valencia Police Fire Rubber Bullets",
+      "category": "politics",
+      "body": "Police fired rubber bullets at protesters outside a property",
+      "eventCoverage": 178,
+      "importance": 6
+    },
+    "skipReason": null,
+    "sent": true,
+    "pushTitle": "Breaking News",
+    "pushBody": "Spanish police fire rubber bullets at housing protesters in Valencia",
     "response": {
       "pushed": 1,
       "skipped": 0,
