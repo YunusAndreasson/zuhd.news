@@ -6,7 +6,8 @@ import { useTheme } from '../hooks/useTheme';
 import { formatTimeAgo } from '../lib/article-utils';
 import { displayLocation } from '../lib/place-names';
 import type { SearchNote } from '../lib/search';
-import { Box, Pressable, Text } from './primitives';
+import { ListRow } from './ListRow';
+import { Text } from './primitives';
 
 interface ArticleRowProps {
   slug: string;
@@ -17,6 +18,8 @@ interface ArticleRowProps {
   time: number;
   category: Category;
   location: string | null;
+  /** The first row of its list draws no rule above it. */
+  first?: boolean;
   onPress: (slug: string, category: Category) => void;
   /** Why the row is in a search's results when its title does not show it:
    *  the words around the match, the match itself in stronger ink. */
@@ -33,6 +36,7 @@ export const ArticleRow = memo(function ArticleRow({
   time,
   category,
   location,
+  first,
   onPress,
   note,
   secondaryAction,
@@ -55,43 +59,38 @@ export const ArticleRow = memo(function ArticleRow({
   );
 
   return (
-    <Pressable
+    <ListRow
+      title={title}
+      titleLines={2}
+      first={first}
       onPress={handlePress}
-      accessibilityRole="button"
       accessibilityLabel={note ? `${title}. ${note.before}${note.match}${note.after}` : title}
       accessibilityActions={actions}
       onAccessibilityAction={actions ? handleAction : undefined}
     >
-      <Box paddingY="screenPadding" rule="bottom">
-        {/* `rowTitle`, like the sheet's river: a list of headlines is one
-            tier under the story it opens. The dot is the story's globe hue. */}
-        <Text variant="rowTitle" numberOfLines={2}>
-          {title}
+      {/* The dot is the story's globe hue. */}
+      <View style={styles.meta}>
+        <View style={[styles.dot, { backgroundColor: categoryMarkColor(category, colors) }]} />
+        <Text variant="caption" numberOfLines={1} style={styles.metaText}>
+          {category} · {formatTimeAgo(time)}
+          {location ? ` · ${displayLocation(location)}` : ''}
         </Text>
-        <View style={styles.meta}>
-          <View style={[styles.dot, { backgroundColor: categoryMarkColor(category, colors) }]} />
-          <Text variant="labelXs" numberOfLines={1} style={styles.metaText}>
-            {category} · {formatTimeAgo(time)}
-            {location ? ` · ${displayLocation(location)}` : ''}
-          </Text>
-        </View>
-        {note ? (
-          <Text variant="caption" numberOfLines={2} style={styles.note}>
-            {note.before}
-            <Text variant="captionEmphasis">{note.match}</Text>
-            {note.after}
-          </Text>
-        ) : null}
-      </Box>
-    </Pressable>
+      </View>
+      {note ? (
+        <Text variant="caption" numberOfLines={2}>
+          {note.before}
+          <Text variant="captionEmphasis">{note.match}</Text>
+          {note.after}
+        </Text>
+      ) : null}
+    </ListRow>
   );
 });
 
 const DOT = 7;
 
 const styles = StyleSheet.create({
-  meta: { flexDirection: 'row', alignItems: 'center', marginTop: SPACING.xs },
+  meta: { flexDirection: 'row', alignItems: 'center' },
   dot: { width: DOT, height: DOT, borderRadius: DOT / 2, marginRight: SPACING.xs },
   metaText: { flex: 1 },
-  note: { marginTop: SPACING.xs },
 });

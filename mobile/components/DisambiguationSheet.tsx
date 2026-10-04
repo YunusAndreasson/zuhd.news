@@ -9,20 +9,20 @@ import { gaugeMove } from '../lib/cards/week-move';
 import { chooserTitle } from '../lib/chooser-title';
 import { conflictChooserDetails } from '../lib/conflict';
 import { observationDate } from '../lib/data-freshness';
-import type { FamineArea, GenocideSituation, ThermalEvent } from '../lib/overlays';
-import { displayCountryName } from '../lib/place-names';
-import { staggerEnter } from '../lib/stagger';
-import { straitChange, straitStateFor } from '../lib/strait-map';
-import type { TapResult } from '../lib/tap-result';
 import {
   conflictMarkRow,
   famineMarkRow,
   gdacsMarkRow,
   genocideMarkRow,
-  MarkRow,
   type MarkRowData,
   thermalMarkRow,
-} from './MarkRow';
+} from '../lib/mark-rows';
+import type { FamineArea, GenocideSituation, ThermalEvent } from '../lib/overlays';
+import { displayCountryName } from '../lib/place-names';
+import { staggerEnter } from '../lib/stagger';
+import { straitChange, straitStateFor } from '../lib/strait-map';
+import type { TapResult } from '../lib/tap-result';
+import { MarkRow } from './MarkRow';
 import { SheetScrollView } from './SheetContent';
 import { type BaseSheetProps, SheetLayout } from './SheetLayout';
 
@@ -155,7 +155,7 @@ function CandidateRow({
 }) {
   return (
     <Animated.View entering={staggerEnter(index, ANIMATION.fast)}>
-      <MarkRow row={row} onPress={onPress} />
+      <MarkRow row={row} first={index === 0} onPress={onPress} />
     </Animated.View>
   );
 }

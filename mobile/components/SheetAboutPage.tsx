@@ -5,7 +5,7 @@ import Animated from 'react-native-reanimated';
 import { ANIMATION, SPACING } from '../constants/theme';
 import { useTheme } from '../hooks/useTheme';
 import { openExternal } from '../lib/open-link';
-import { makeStaggerEnter, staggerEnter } from '../lib/stagger';
+import { staggerEnter } from '../lib/stagger';
 import { MenuRow, SectionLabel } from './MenuRow';
 import { Icon, Text } from './primitives';
 import { SheetLink } from './SheetContent';
@@ -195,25 +195,23 @@ export function SheetAboutPage({ articles, version }: SheetAboutPageProps) {
   const visibleSources = recentSources.slice(0, 10);
   const extraCount = Math.max(0, recentSources.length - visibleSources.length);
 
-  const enter = makeStaggerEnter();
-
   return (
     <>
-      <Animated.View entering={enter()}>
+      <View>
         <Text selectable variant="lead">
           {LEAD}
         </Text>
-      </Animated.View>
+      </View>
 
       {MANIFESTO.map((line) => (
-        <Animated.View key={line} entering={enter()} style={styles.block}>
+        <View key={line} style={styles.block}>
           <Text selectable variant="body">
             {line}
           </Text>
-        </Animated.View>
+        </View>
       ))}
 
-      <Animated.View entering={enter()}>
+      <View>
         <SectionLabel label="every story" />
         <View style={styles.list}>
           {WHATS.map((item) => (
@@ -222,16 +220,16 @@ export function SheetAboutPage({ articles, version }: SheetAboutPageProps) {
             </Text>
           ))}
         </View>
-      </Animated.View>
+      </View>
 
-      <Animated.View entering={enter()}>
+      <View>
         <SectionLabel label="whose story" />
         <Text selectable variant="body">
           {STANCE}
         </Text>
-      </Animated.View>
+      </View>
 
-      <Animated.View entering={enter()}>
+      <View>
         <SectionLabel label="left out" />
         <View style={styles.list}>
           {SUBTRACTIONS.map((item) => (
@@ -243,9 +241,9 @@ export function SheetAboutPage({ articles, version }: SheetAboutPageProps) {
         <Text selectable variant="body" style={styles.block}>
           {NO_PROFILE_LINE}
         </Text>
-      </Animated.View>
+      </View>
 
-      <Animated.View entering={enter()}>
+      <View>
         <SectionLabel label="the newsroom" />
         <Text selectable variant="body">
           {NEWSROOM_LINE}
@@ -253,9 +251,9 @@ export function SheetAboutPage({ articles, version }: SheetAboutPageProps) {
         <Text selectable variant="body" style={styles.block}>
           {FLOW_LINE}
         </Text>
-      </Animated.View>
+      </View>
 
-      <Animated.View entering={enter()}>
+      <View>
         <SectionLabel label="sources" />
         <Text selectable variant="body">
           {SOURCES_BODY}
@@ -269,9 +267,9 @@ export function SheetAboutPage({ articles, version }: SheetAboutPageProps) {
               : `Recent stories draw on ${prose(visibleSources)}.`}
           </Text>
         )}
-      </Animated.View>
+      </View>
 
-      <Animated.View entering={enter()}>
+      <View>
         <SectionLabel label="context" />
         <Text selectable variant="body">
           {CONTEXT_BODY}
@@ -306,9 +304,9 @@ export function SheetAboutPage({ articles, version }: SheetAboutPageProps) {
               </Animated.View>
             ))}
         </View>
-      </Animated.View>
+      </View>
 
-      <Animated.View entering={enter()}>
+      <View>
         <SectionLabel label="principles" />
         {PRINCIPLES.map((p, idx) => (
           <View key={p.term} style={idx > 0 ? styles.principle : undefined}>
@@ -320,9 +318,9 @@ export function SheetAboutPage({ articles, version }: SheetAboutPageProps) {
             </Text>
           </View>
         ))}
-      </Animated.View>
+      </View>
 
-      <Animated.View entering={enter()}>
+      <View>
         <SectionLabel label="colophon" />
         <SheetLink label={MAKER_BYLINE} onPress={() => openExternal(MAKER_PROJECTS)} />
         {version ? (
@@ -330,7 +328,7 @@ export function SheetAboutPage({ articles, version }: SheetAboutPageProps) {
             version {version}
           </Text>
         ) : null}
-      </Animated.View>
+      </View>
     </>
   );
 }

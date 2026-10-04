@@ -9,7 +9,8 @@ import { articleTime } from '../lib/article-utils';
 import { buildSearchIndex, plainText, type SearchDoc, type SearchNote } from '../lib/search';
 import { ArticleRow } from './ArticleRow';
 import { EmptyState } from './EmptyState';
-import { Icon, Text } from './primitives';
+import { ListIntro, listStyles } from './ListRow';
+import { Icon } from './primitives';
 import { SheetFlatList } from './SheetContent';
 
 interface SearchResult extends Article {
@@ -87,7 +88,7 @@ export function SheetSearchPage({
   }, [startedEmpty]);
 
   const renderItem = useCallback(
-    ({ item }: { item: SearchResult }) => (
+    ({ item, index }: { item: SearchResult; index: number }) => (
       <ArticleRow
         slug={item.slug}
         title={item.title}
@@ -95,6 +96,7 @@ export function SheetSearchPage({
         category={item.category}
         location={item.location}
         note={item.note}
+        first={index === 0}
         onPress={onSelectArticle}
       />
     ),
@@ -163,15 +165,14 @@ export function SheetSearchPage({
           renderItem={renderItem}
           keyExtractor={keyExtractor}
           bottomInset={bottomInset}
-          contentContainerStyle={styles.listContent}
+          contentContainerStyle={listStyles.content}
           keyboardShouldPersistTaps="handled"
           keyboardDismissMode="on-drag"
           ListHeaderComponent={
-            results.length > 0 ? (
-              <Text variant="labelXs" style={styles.resultCount}>
-                {results.length} {results.length === 1 ? 'story' : 'stories'}
-              </Text>
-            ) : null
+            <ListIntro
+              note={`${results.length} ${results.length === 1 ? 'story' : 'stories'}`}
+              style={styles.resultCount}
+            />
           }
         />
       )}
@@ -205,11 +206,7 @@ const styles = StyleSheet.create({
   emptyFill: {
     flexShrink: 1,
   },
-  listContent: {
-    paddingHorizontal: SPACING.screenPadding,
-  },
   resultCount: {
     paddingTop: SPACING.md,
-    paddingBottom: SPACING.xs,
   },
 });

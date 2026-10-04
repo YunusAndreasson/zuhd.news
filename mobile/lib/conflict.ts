@@ -93,6 +93,11 @@ export const FAMILY_EYEBROW: Record<ConflictEventFamily, string> = {
   unrest: 'CIVIL UNREST',
 };
 
+export const CONFLICT_FAMILY_LABEL: Readonly<Record<ConflictEventFamily, string>> = {
+  kinetic: 'Kinetic event',
+  unrest: 'Civil unrest',
+};
+
 /** Sentence-case sub-event labels used in the sheet's secondary line and
  *  in DisambiguationSheet rows. ACLED's machine codes (snake_case) are
  *  unreadable in UI; this is the human form. */

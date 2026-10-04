@@ -272,6 +272,10 @@ describe('buildInstrumentCatalog', () => {
     const kerch = rows.find((r) => r.id === 'strait-kerch');
     expect(kerch?.card).toBeNull();
     expect(kerch?.short).toBe('Kerch');
+    // `ships a day` is said once, over the list.
+    const hormuz = rows.find((r) => r.id === 'strait-hormuz');
+    expect(hormuz?.card?.readingNote).toBe('ships a day');
+    expect(hormuz?.note).toBe('');
   });
 
   it('drops a series the desk has written nothing about', () => {
@@ -502,8 +506,9 @@ describe('largest companies', () => {
     // The card a row opens still says it in full.
     expect(dollars?.card?.readingNote).toBe('a share');
     expect(won?.card?.readingNote).toBe('Korean won a share');
-    // No other list's rows carry a line of their own.
-    expect(groups[0]?.rows.every((r) => r.note === undefined)).toBe(true);
+    // An exchange's unit is every exchange's: its list says it once too.
+    expect(groups[0]?.rows.every((r) => r.note === '')).toBe(true);
+    expect(groups[0]?.rows[0]?.card?.readingNote).toBe('index points');
   });
 
   it('never enters the stock markets list or its tally of exchanges', () => {

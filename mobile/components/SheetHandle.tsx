@@ -1,17 +1,28 @@
 import { memo, type ReactNode } from 'react';
 import { StyleSheet, View } from 'react-native';
 import { LAYOUT, RADIUS, SPACING } from '../constants/theme';
+import type { SheetMove } from '../hooks/useSheetNavigation';
 import { useTheme } from '../hooks/useTheme';
 import { Icon, IconButton, Text } from './primitives';
+import { PageVeil } from './SheetPager';
 
 interface SheetHandleProps {
   /** String renders as a themed title; a ReactNode is rendered as-is (e.g. flag + name). */
   title?: ReactNode;
   /** If provided, a back chevron appears on the leading edge, vertically centered with the title. */
   onBack?: () => void;
+  /** A sheet of pages passes its page and the move that reached it, and the
+   *  title arrives as the page does (`SheetPager`). */
+  pageKey?: string;
+  move?: SheetMove;
 }
 
-export const SheetHandle = memo(function SheetHandle({ title, onBack }: SheetHandleProps) {
+export const SheetHandle = memo(function SheetHandle({
+  title,
+  onBack,
+  pageKey,
+  move,
+}: SheetHandleProps) {
   const { colors, typography } = useTheme();
   // Tighten line-height to match glyph height so flex center + absolute center
   // align against the same reference (no 1–2px optical drift from line-leading).
@@ -54,6 +65,14 @@ export const SheetHandle = memo(function SheetHandle({ title, onBack }: SheetHan
           ) : (
             title
           )}
+          {pageKey !== undefined && move ? (
+            <PageVeil
+              pageKey={pageKey}
+              move={move}
+              // Clear of the back chevron, which does not change with the page.
+              style={onBack ? styles.veilPastBack : undefined}
+            />
+          ) : null}
         </View>
       )}
     </View>
@@ -85,6 +104,7 @@ const styles = StyleSheet.create({
     bottom: 0,
     justifyContent: 'center',
   },
+  veilPastBack: { left: SPACING.screenPadding + SPACING.lg },
   textTitle: {
     flexShrink: 1,
     // Both sides stay clear, keeping the heading centered without a long

@@ -1,7 +1,5 @@
-import { StyleSheet } from 'react-native';
-import Animated from 'react-native-reanimated';
+import { StyleSheet, View } from 'react-native';
 import { SPACING } from '../constants/theme';
-import { staggerEnter } from '../lib/stagger';
 import { Text } from './primitives';
 
 /** A section of a prose page. It once took a link or a list of them; no page
@@ -24,11 +22,7 @@ export function SheetInfoPage({ sections, footer }: SheetInfoPageProps) {
   return (
     <>
       {sections.map((section, i) => (
-        <Animated.View
-          key={i}
-          entering={staggerEnter(i)}
-          style={i > 0 ? styles.section : undefined}
-        >
+        <View key={i} style={i > 0 ? styles.section : undefined}>
           {section.heading && (
             <Text variant="labelSm" accessibilityRole="header" style={styles.heading}>
               {section.heading}
@@ -45,13 +39,9 @@ export function SheetInfoPage({ sections, footer }: SheetInfoPageProps) {
               {section.body}
             </Text>
           )}
-        </Animated.View>
+        </View>
       ))}
-      {footer && (
-        <Animated.View entering={staggerEnter(sections.length)} style={styles.section}>
-          {footer}
-        </Animated.View>
-      )}
+      {footer && <View style={styles.section}>{footer}</View>}
     </>
   );
 }

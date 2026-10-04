@@ -43,6 +43,10 @@ interface SheetLayoutProps extends Omit<BottomSheetProps, OmittedModalProps> {
   /** The sheet holds a text field. On Android the keyboard pushes a platform
    *  sheet up whole, so its cap becomes the room above the keyboard. */
   avoidKeyboard?: boolean;
+  /** Hold a content-sized sheet at its ceiling whatever it shows. For a sheet
+   *  of pages: a platform sheet resizes in one frame, so pages of different
+   *  heights made the whole sheet jump at every change of page. */
+  fill?: boolean;
 }
 
 export const SheetLayout = memo(function SheetLayout({
@@ -50,6 +54,7 @@ export const SheetLayout = memo(function SheetLayout({
   handleTitle,
   handle,
   avoidKeyboard = false,
+  fill = false,
   children,
   enableDynamicSizing = true,
   ...rest
@@ -86,8 +91,9 @@ export const SheetLayout = memo(function SheetLayout({
   const capStyle = useMemo(() => {
     const cap = Math.round(height * LAYOUT.sheetMaxFraction);
     const room = keyboardTop === null ? cap : Math.round(keyboardTop - topInset - SPACING.sm);
-    return [styles.fitted, { maxHeight: Math.min(cap, room) }];
-  }, [height, keyboardTop, topInset]);
+    const ceiling = Math.min(cap, room);
+    return fill ? { height: ceiling } : [styles.fitted, { maxHeight: ceiling }];
+  }, [height, keyboardTop, topInset, fill]);
   // `handleComponent` is deliberately pinned to `null` and our handle rendered
   // as ordinary content instead. Native sheets do not render a custom handle —
   // `@expo/ui` only reads null-vs-non-null off that prop to decide whether to

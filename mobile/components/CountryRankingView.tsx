@@ -5,14 +5,15 @@ import {
   type RankingEntry,
 } from '@shared/countries/country-ranking';
 import { memo, useCallback, useEffect, useMemo, useRef, useState } from 'react';
-import { type FlatList, StyleSheet, View } from 'react-native';
-import { HIT_SLOP, LAYOUT, SPACING } from '../constants/theme';
+import { type FlatList, StyleSheet, useWindowDimensions, View } from 'react-native';
+import { LAYOUT, SPACING } from '../constants/theme';
 import { useTheme } from '../hooks/useTheme';
 import { openExternal } from '../lib/open-link';
 import { displayCountryName } from '../lib/place-names';
 import { FlagGlyph } from './FlagChip';
-import { Pressable, Text } from './primitives';
-import { SheetFlatList } from './SheetContent';
+import { ListIntro, ListRow, listStyles, ROW_LEADING, RowReading } from './ListRow';
+import { Text } from './primitives';
+import { SheetFlatList, SheetLink } from './SheetContent';
 
 interface Props {
   metric: MetricKey;
@@ -23,7 +24,7 @@ interface Props {
    * Makes each row open its country. The menu's `country rankings` passes it:
    * reached from there, a ranking is a way into the countries rather than a
    * detail of one, and a list of names that could not be pressed would be a
-   * dead end. Rows grow to the menu's row height to be a target.
+   * dead end.
    */
   onSelectCountry?: (name: string) => void;
   /** Print the metric's name over the list. Off where the sheet's handle
@@ -40,8 +41,14 @@ export const CountryRankingView = memo(function CountryRankingView({
   onSelectCountry,
   titled = true,
 }: Props) {
-  const { colors } = useTheme();
-  const rowHeight = onSelectCountry ? LAYOUT.rowMinHeight : ROW_HEIGHT;
+  // Fixed, for `getItemLayout`, and tall enough for the reading's line at
+  // the reader's text size.
+  const { textVariants } = useTheme();
+  const { fontScale } = useWindowDimensions();
+  const rowHeight = Math.max(
+    LAYOUT.rowMinHeight,
+    Math.ceil((textVariants.bodyEmphasis.lineHeight ?? 0) * fontScale) + 2 * SPACING.smPlus,
+  );
   const ranking = useMemo(() => getRanking(metric), [metric]);
   const currentIndex = useMemo(
     () => (currentCountryName ? ranking.findIndex((r) => r.name === currentCountryName) : -1),
@@ -86,45 +93,30 @@ export const CountryRankingView = memo(function CountryRankingView({
 
   const renderItem = useCallback(
     ({ item, index }: { item: RankingEntry; index: number }) => {
-      const isCurrent = item.name === currentCountryName;
-      const name = displayCountryName(item.name);
-      const content = (
-        <>
-          <Text variant="labelXs" style={styles.rank}>
-            {index + 1}
-          </Text>
-          <FlagGlyph flag={item.flag} />
-          <Text
-            variant="caption"
-            tone={isCurrent ? 'emphasis' : 'default'}
-            numberOfLines={1}
-            style={styles.name}
-          >
-            {name}
-          </Text>
-          <Text variant="caption" tone="default" style={styles.value}>
-            {item.value}
-          </Text>
-        </>
-      );
-      const style = [
-        styles.row,
-        { height: rowHeight, borderBottomColor: colors.rule },
-        isCurrent && { backgroundColor: colors.pillBg },
-      ];
-      if (!onSelectCountry) return <View style={style}>{content}</View>;
+      const name = displayCountryName(item.name) ?? item.name;
       return (
-        <Pressable
-          onPress={() => onSelectCountry(item.name)}
-          style={style}
-          accessibilityRole="button"
+        <ListRow
+          title={name}
+          titleLines={1}
+          first={index === 0}
+          current={item.name === currentCountryName}
+          height={rowHeight}
+          onPress={onSelectCountry ? () => onSelectCountry(item.name) : undefined}
           accessibilityLabel={`${index + 1}. ${name}, ${item.value}`}
-        >
-          {content}
-        </Pressable>
+          leadingWidth={RANK_LEADING}
+          leading={
+            <View style={styles.rank}>
+              <Text variant="labelXs" style={styles.rankDigits}>
+                {index + 1}
+              </Text>
+              <FlagGlyph flag={item.flag} />
+            </View>
+          }
+          trailing={<RowReading>{item.value}</RowReading>}
+        />
       );
     },
-    [colors, currentCountryName, onSelectCountry, rowHeight],
+    [currentCountryName, onSelectCountry, rowHeight],
   );
 
   const totalLabel = `#${currentIndex + 1} of ${ranking.length}`;
@@ -149,91 +141,43 @@ export const CountryRankingView = memo(function CountryRankingView({
           : (_, index) => ({ length: rowHeight, offset: headerHeight + rowHeight * index, index })
       }
       bottomInset={bottomInset}
+      contentContainerStyle={listStyles.content}
       ListHeaderComponent={
         <View onLayout={(event) => setHeaderHeight(event.nativeEvent.layout.height)}>
-          {titled || currentIndex >= 0 ? (
-            <View style={styles.header}>
-              {titled ? <Text variant="labelXs">{meta.label}</Text> : <View />}
-              {currentIndex >= 0 && (
-                <Text variant="labelXs" tone="emphasis" style={styles.totalNum}>
+          <ListIntro
+            note={titled ? meta.label : meta.description}
+            figure={
+              currentIndex >= 0 ? (
+                <Text variant="caption" tone="emphasis" style={styles.rankDigits}>
                   {totalLabel}
                 </Text>
-              )}
-            </View>
-          ) : null}
-          {(meta.description || meta.source) && (
-            <View style={[styles.meta, { borderBottomColor: colors.rule }]}>
-              {meta.description && (
-                <Text variant="caption" style={styles.descr}>
-                  {meta.description}
-                </Text>
-              )}
-              {meta.source &&
-                (meta.sourceUrl ? (
-                  <Pressable
-                    onPress={openSource}
-                    hitSlop={HIT_SLOP}
-                    accessibilityRole="link"
-                    accessibilityLabel={`Source: ${meta.source}`}
-                  >
-                    <Text variant="labelXs" tone="dome" style={styles.sourceLine}>
-                      {meta.source} ↗
-                    </Text>
-                  </Pressable>
-                ) : (
-                  <Text variant="labelXs" style={styles.sourceLine}>
-                    {meta.source}
-                  </Text>
-                ))}
-            </View>
-          )}
+              ) : undefined
+            }
+          >
+            {titled && meta.description ? <Text variant="caption">{meta.description}</Text> : null}
+            {meta.source ? (
+              meta.sourceUrl ? (
+                <SheetLink
+                  label={meta.source}
+                  onPress={openSource}
+                  accessibilityLabel={`Source: ${meta.source}`}
+                />
+              ) : (
+                <Text variant="caption">{meta.source}</Text>
+              )
+            ) : null}
+          </ListIntro>
         </View>
       }
     />
   );
 });
 
-const ROW_HEIGHT = 40;
+const RANK_WIDTH = 28;
+/** A rank and a flag, as one mark before the name. */
+const RANK_LEADING = RANK_WIDTH + SPACING.sm + ROW_LEADING;
 
 const styles = StyleSheet.create({
-  header: {
-    flexDirection: 'row',
-    justifyContent: 'space-between',
-    alignItems: 'center',
-    paddingHorizontal: SPACING.screenPadding,
-    paddingTop: SPACING.sm,
-    paddingBottom: SPACING.xs,
-  },
-  totalNum: {
-    fontVariant: ['oldstyle-nums'],
-  },
-  meta: {
-    paddingHorizontal: SPACING.screenPadding,
-    paddingBottom: SPACING.md,
-    borderBottomWidth: StyleSheet.hairlineWidth,
-  },
-  descr: {
-    // description reads tight vs the labelSm above — uses caption variant's
-    // own leading; no extra margin needed.
-  },
-  sourceLine: {
-    marginTop: SPACING.xxs,
-  },
-  row: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    gap: SPACING.sm,
-    paddingHorizontal: SPACING.screenPadding,
-    borderBottomWidth: StyleSheet.hairlineWidth,
-  },
-  rank: {
-    width: 28,
-    fontVariant: ['oldstyle-nums'],
-  },
-  name: {
-    flex: 1,
-  },
-  value: {
-    fontVariant: ['oldstyle-nums'],
-  },
+  rank: { flexDirection: 'row', alignItems: 'center', gap: SPACING.sm },
+  rankDigits: { fontVariant: ['tabular-nums'] },
 });

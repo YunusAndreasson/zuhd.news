@@ -1,11 +1,11 @@
 import { METRICS, type MetricKey } from '@shared/countries/country-ranking';
-import type { Category, ConflictEvent, GdacsAlert, GdacsDetail } from '@shared/types';
+import type { Category, GdacsAlert, GdacsDetail } from '@shared/types';
 import { memo, type ReactNode, useCallback, useMemo } from 'react';
 import { StyleSheet } from 'react-native';
 import type { SwipeCard } from '../lib/cards/rank';
 import { alertsInCountry, countryFacts, marksInCountry } from '../lib/country-hazards';
+import type { MarkDetail, MenuHazards } from '../lib/menu-hazards';
 import type { RiverArticle } from '../lib/news-order';
-import type { OverlaySelection } from '../lib/overlays';
 import { displayCountryName } from '../lib/place-names';
 import { countryTap } from '../lib/tap-result';
 import { ConflictBody, conflictTitle } from './ConflictSheet';
@@ -13,7 +13,6 @@ import { CountryRankingView } from './CountryRankingView';
 import { CountryBody, type CountryHazard, CountryTitle } from './CountrySheet';
 import { CardView } from './cards/CardView';
 import { DisasterBody, disasterTitle } from './DisasterSheet';
-import type { MenuHazards } from './MenuSheet';
 import { OverlayBody, overlayTitle } from './OverlaySheet';
 import { SheetScrollView } from './SheetContent';
 
@@ -33,11 +32,8 @@ import { SheetScrollView } from './SheetContent';
  * what the menu is closed for.
  */
 export type MenuDetail =
+  | MarkDetail
   | { kind: 'card'; card: SwipeCard }
-  | { kind: 'alert'; alert: GdacsAlert }
-  | { kind: 'conflict'; event: ConflictEvent }
-  | { kind: 'overlay'; overlay: OverlaySelection }
-  | { kind: 'country'; name: string }
   /** A metric's ranking; `country` is marked in it when one led here. */
   | { kind: 'ranking'; metric: MetricKey; country: string | null };
 

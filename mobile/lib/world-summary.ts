@@ -43,7 +43,7 @@ import { straitSqueezed } from './valence';
  *   an average of contracts on different questions is of nothing.
  *
  * Each figure is unweighted and exactly as broad as its list; the list's own
- * note says so, where its members are.
+ * page prints it again over its members, named (`GroupFigure.measure`).
  *
  * **How it got here, the same day.** First a block of four menu rows over the
  * lists, named almost as the lists under them: "it feels like much
@@ -306,6 +306,8 @@ export function currenciesSummary(catalog: readonly CatalogGroup[]): CurrenciesS
 export interface GroupFigure {
   /** The list's week as one number. */
   move?: CardDelta;
+  /** What `move` is of its list's rows, as the list's own page names it. */
+  measure?: 'average' | 'median' | 'total';
   /** For a list with no week: its first row's level, in plain ink. */
   level?: string;
   /** What stands behind the number, for a screen reader: `21 of 26 fell`. */
@@ -321,24 +323,35 @@ export function groupFigure(group: CatalogGroup, now = Date.now()): GroupFigure 
   switch (group.key) {
     case 'stocks': {
       const stocks = stocksSummary(catalog);
-      return stocks ? { move: stocks.move, detail: tallyCaption(stocks.tally) } : {};
+      return stocks
+        ? { move: stocks.move, measure: 'average', detail: tallyCaption(stocks.tally) }
+        : {};
     }
     case 'companies':
-      return { move: companiesSummary(catalog)?.move };
+      return { move: companiesSummary(catalog)?.move, measure: 'average' };
     case 'straits': {
       const shipping = shippingSummary(catalog, now);
-      return shipping ? { move: shipping.move, detail: shippingCaption(shipping) } : {};
+      return shipping
+        ? { move: shipping.move, measure: 'total', detail: shippingCaption(shipping) }
+        : {};
     }
     case 'currencies': {
       const currencies = currenciesSummary(catalog);
       return currencies
-        ? { move: currencies.move, detail: tallyCaption(currencies.tally, CURRENCY_TAIL) }
+        ? {
+            move: currencies.move,
+            measure: 'median',
+            detail: tallyCaption(currencies.tally, CURRENCY_TAIL),
+          }
         : {};
     }
     case 'commodities':
     case 'crypto':
       // A card built from two others is not a price of its own.
-      return { move: meanWeek(group.rows.filter((row) => !COMPOSITES.has(row.id))).move };
+      return {
+        move: meanWeek(group.rows.filter((row) => !COMPOSITES.has(row.id))).move,
+        measure: 'average',
+      };
     case 'ai':
     case 'calendar':
       return { level: group.rows[0]?.card?.reading };

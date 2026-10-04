@@ -1,7 +1,6 @@
 import { memo, useCallback } from 'react';
 import { StyleSheet, View } from 'react-native';
-import { FLAG, SPACING } from '../constants/theme';
-import { useTheme } from '../hooks/useTheme';
+import { SPACING } from '../constants/theme';
 import { spokenDelta } from '../lib/cards/format';
 import { WEEK_WINDOW } from '../lib/cards/week-move';
 import { observationDate } from '../lib/data-freshness';
@@ -10,32 +9,31 @@ import { exchangeIsStale } from '../lib/markets';
 import { rowKicker } from '../lib/now';
 import { DeltaChip } from './DeltaChip';
 import { FlagGlyph } from './FlagChip';
-import { Pressable, Text } from './primitives';
+import { ListRow, RowReading } from './ListRow';
+import { Text } from './primitives';
 
 /**
- * One instrument in the menu's lists: what it is, where or what kind, the day
- * it was read, and the reading with its move.
+ * One instrument in the menu's lists: what it is, where or what kind and the
+ * day it was read, and the reading with its move.
  *
- * It was the markets browser's row, which printed the same week the strip
- * prints; the browser folded into the menu on 2026-09-26 and every group's
- * list speaks this row now. The move is the week where the reading has one,
- * so a row, its strip slot and its globe mark never disagree; a monthly
- * series or a contract keeps its own move, and prints the window it covers.
+ * The move is the week where the reading has one, so a row, its strip slot
+ * and its globe mark never disagree; a monthly series or a contract keeps its
+ * own move, and prints the window it covers.
  */
 export const InstrumentRow = memo(function InstrumentRow({
   row,
+  first,
   onPress,
 }: {
   row: CatalogRow;
+  first?: boolean;
   onPress: (row: CatalogRow) => void;
 }) {
-  const { colors } = useTheme();
   const { card, exchange, chokepoint, move } = row;
   const handlePress = useCallback(() => onPress(row), [onPress, row]);
-  // An exchange's row is named in words, as the strip and the menu's own
-  // line name it — `Turkey stocks`, not `BIST 100` (the user's rule for the
-  // strip, 2026-09-25: a reader should not need to know the code). The index
-  // and its city follow, for the reader who does.
+  // An exchange's row is named in words, as the strip names it — `Turkey
+  // stocks`, not `BIST 100`. The index and its city follow, for the reader
+  // who knows the code.
   const title = exchange ? row.short : (card?.title ?? chokepoint?.name ?? row.short);
   // Where no place can be named the title is the index, so the exchange
   // takes its place in the caption rather than the index twice.
@@ -47,10 +45,10 @@ export const InstrumentRow = memo(function InstrumentRow({
       ? rowKicker(card)
       : 'shipping';
   // What the number counts: `52` beside `Egyptian pound` does not say which
-  // way round the rate is, and `$115` not what the dollars buy. A date's note
-  // is its day, which the row's date line already prints.
-  // A company's row prints only its currency, and none for a `$`: its list
-  // says `a share` once, over the rows (`CatalogRow.note`).
+  // way round the rate is. Empty where the list's own line has said it for
+  // every row (`CatalogRow.note`); a screen reader still hears it. A date's
+  // note is its day, which the row's caption prints.
+  const said = card?.kind === 'scheduled' ? undefined : card?.readingNote || undefined;
   const unit =
     card?.kind === 'scheduled' ? undefined : (row.note ?? card?.readingNote) || undefined;
   // `Sep 21`, as every card and chart prints a day. A date has no day it was
@@ -61,74 +59,48 @@ export const InstrumentRow = memo(function InstrumentRow({
   const date = exchange && exchangeIsStale(exchange) ? `${day} · older quote` : day;
   const reading = card?.reading ?? '—';
   return (
-    <Pressable
+    <ListRow
+      title={title}
+      first={first}
       onPress={handlePress}
-      accessibilityRole="button"
       accessibilityLabel={[
         title,
         kicker,
-        [reading, unit].filter(Boolean).join(' '),
+        [reading, unit ?? said].filter(Boolean).join(' '),
         move ? spokenDelta(move) : '',
         date,
       ]
         .filter(Boolean)
         .join(', ')}
-      style={[styles.row, { borderBottomColor: colors.rule }]}
+      // A country's market or money carries its flag, as a ranking's row
+      // does. The slot is held where a row in such a list has none.
+      leading={row.flag === undefined ? undefined : row.flag ? <FlagGlyph flag={row.flag} /> : null}
+      trailing={
+        <View style={styles.figures}>
+          <RowReading>{reading}</RowReading>
+          {unit ? (
+            <Text variant="caption" tone="secondary" style={styles.unit}>
+              {unit}
+            </Text>
+          ) : null}
+          {move ? (
+            <DeltaChip
+              delta={move}
+              // The week is never printed, and neither is a window the list's
+              // own line has already said (`CatalogRow.saidWindow`).
+              window={move.window !== WEEK_WINDOW && move.window !== row.saidWindow}
+              scale={1}
+            />
+          ) : null}
+        </View>
+      }
     >
-      {/* A country's market or money carries its flag, as a ranking's row
-          does (the user's request, 2026-10-03). The slot is held where a row
-          in such a list has none, so every name starts on one line. The
-          row's label is explicit, so a screen reader hears the name once. */}
-      {row.flag !== undefined ? (
-        <View style={styles.flag}>{row.flag ? <FlagGlyph flag={row.flag} /> : null}</View>
-      ) : null}
-      <View style={styles.subject}>
-        <Text variant="rowTitle">{title}</Text>
-        <Text variant="caption">{kicker}</Text>
-        {date ? <Text variant="labelXs">{date}</Text> : null}
-      </View>
-      <View style={styles.figures}>
-        {/* The figure the row is for, at body size: it was 11pt, the
-            smallest type on the row, under a 16pt name. */}
-        <Text variant="bodyEmphasis" style={styles.reading}>
-          {reading}
-        </Text>
-        {unit ? (
-          <Text variant="caption" tone="secondary" style={styles.unit}>
-            {unit}
-          </Text>
-        ) : null}
-        {move ? (
-          <DeltaChip
-            delta={move}
-            // The week is never printed, and neither is a window the list's
-            // own note has already said (`CatalogRow.saidWindow`).
-            window={move.window !== WEEK_WINDOW && move.window !== row.saidWindow}
-            scale={1}
-          />
-        ) : null}
-      </View>
-    </Pressable>
+      <Text variant="caption">{[kicker, date].filter(Boolean).join(' · ')}</Text>
+    </ListRow>
   );
 });
 
-/** An emoji flag at `FLAG.row` is a little wider than its size. */
-const FLAG_SLOT = FLAG.row + 6;
-
 const styles = StyleSheet.create({
-  row: {
-    minHeight: 64,
-    paddingVertical: SPACING.md,
-    paddingHorizontal: SPACING.screenPadding,
-    flexDirection: 'row',
-    alignItems: 'center',
-    gap: SPACING.sm,
-    borderBottomWidth: StyleSheet.hairlineWidth,
-  },
-  // Beside the name, not the middle of the row's three lines.
-  flag: { width: FLAG_SLOT, alignSelf: 'flex-start', alignItems: 'center' },
-  subject: { flex: 1, gap: SPACING.xxs },
   figures: { alignItems: 'flex-end', maxWidth: '38%', gap: SPACING.xs },
-  reading: { fontVariant: ['tabular-nums'] },
   unit: { textAlign: 'right' },
 });

@@ -419,7 +419,11 @@ export function buildInstrumentCatalog({
     const id = `mkt:${exchange.id}`;
     const signal = take(`market-signal:${id}`);
     const quote = take(id);
-    rows.stocks.push(rowFor(signal ?? quote ?? exchangeCard(exchange), at, { exchange }));
+    // `index points` is every exchange's unit: the list says it once.
+    rows.stocks.push({
+      ...rowFor(signal ?? quote ?? exchangeCard(exchange), at, { exchange }),
+      note: '',
+    });
   }
 
   // Every company in the list, held to the deck's gate like any other card:
@@ -454,7 +458,8 @@ export function buildInstrumentCatalog({
   for (const chokepoint of chokepoints) {
     const card = take(`strait-${chokepoint.id}`) ?? straitCardFor(chokepoint, trends, now);
     if (card && admitted(card)) {
-      rows.straits.push(rowFor(card, at, { chokepoint }));
+      // `ships a day`, said once over the list.
+      rows.straits.push({ ...rowFor(card, at, { chokepoint }), note: '' });
     } else {
       rows.straits.push({
         id: `strait-${chokepoint.id}`,

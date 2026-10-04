@@ -1,4 +1,4 @@
-import type { ConflictEventFamily, GdacsEventType as EventType } from '@shared/types';
+import type { GdacsEventType as EventType } from '@shared/types';
 import { Skia, type SkPath } from '@shopify/react-native-skia';
 import { STRAIT_BULGE, STRAIT_END_DX, type StraitState } from '../../lib/strait-map';
 
@@ -193,20 +193,6 @@ const STRAIT_PATHS: Readonly<Record<StraitState, SkPath>> = {
 export function getStraitPath(state: StraitState): SkPath {
   return STRAIT_PATHS[state];
 }
-
-export const EVENT_TYPE_LABEL: Readonly<Record<EventType, string>> = {
-  EQ: 'Earthquake',
-  TC: 'Tropical cyclone',
-  FL: 'Flood',
-  VO: 'Volcano',
-  DR: 'Drought',
-  WF: 'Wildfire',
-};
-
-export const CONFLICT_FAMILY_LABEL: Readonly<Record<ConflictEventFamily, string>> = {
-  kinetic: 'Kinetic event',
-  unrest: 'Civil unrest',
-};
 
 /** Direction glyphs shared by the market chooser and map key. */
 export function marketDirectionPath(direction: 'up' | 'down' | 'flat'): SkPath {

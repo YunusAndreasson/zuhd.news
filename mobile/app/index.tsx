@@ -41,7 +41,7 @@ import { ErrorState } from '../components/ErrorState';
 import { COLLECT_MS, MiniGlobe, type MiniGlobeRef } from '../components/globe/MiniGlobe';
 import { FRAMING_WIDEST } from '../components/globe/projection';
 import { HintOverlay } from '../components/HintOverlay';
-import { type MenuHazards, MenuSheet } from '../components/MenuSheet';
+import { MenuSheet } from '../components/MenuSheet';
 import { ALERT_ROW, AlertPill } from '../components/map/AlertPill';
 import { GlobeGestureLayer } from '../components/map/GlobeGestureLayer';
 import { MapHeader } from '../components/map/MapHeader';
@@ -113,6 +113,7 @@ import {
 } from '../lib/instrument-catalog';
 import { buildStoryRows, cameraTrackOf, type StoryRow } from '../lib/map-feed';
 import { exchangeCard, exchangeIsStale } from '../lib/markets';
+import type { MenuHazards } from '../lib/menu-hazards';
 import { orderNewsRiver, type RiverArticle, recentRiver, riverAnchor } from '../lib/news-order';
 import {
   buildNowSurfaces,

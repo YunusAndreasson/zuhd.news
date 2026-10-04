@@ -1,31 +1,11 @@
 import { CHOKEPOINT_DISRUPTED } from '@shared/chokepoint-thresholds';
-import {
-  Canvas,
-  Circle,
-  Group,
-  Path,
-  RadialGradient,
-  type SkPath,
-  vec,
-} from '@shopify/react-native-skia';
+import { Canvas, Circle } from '@shopify/react-native-skia';
 import { memo, type ReactNode } from 'react';
 import { StyleSheet, View } from 'react-native';
-import { type ColorPalette, LAYOUT, SPACING, straitMarkColor, withAlpha } from '../constants/theme';
+import type { ColorPalette } from '../constants/theme';
 import { useTheme } from '../hooks/useTheme';
-import {
-  GLYPH_HALF,
-  getGlyphPath,
-  getStraitPath,
-  marketDirectionPath,
-} from './globe/disaster-glyphs';
-import {
-  FAMINE_FRAME_PATH,
-  FAMINE_FRAME_STROKE,
-  getFamineBlocksPath,
-  THERMAL_CORE_PATH,
-  THERMAL_RAY_STROKE,
-  THERMAL_RAYS_PATH,
-} from './globe/overlay-glyphs';
+import { ListRow, ROW_LEADING } from './ListRow';
+import { type Mark, MarkGlyph } from './MarkGlyph';
 import { SectionLabel } from './MenuRow';
 import { Text } from './primitives';
 
@@ -45,40 +25,15 @@ import { Text } from './primitives';
  * The strait threshold is printed from the constant the globe tests against.
  */
 
-const BOX = 28;
+const BOX = ROW_LEADING;
 const C = BOX / 2;
 
-/** A glyph authored in the globe's 22-unit box, centred in the key's cell. */
-function Glyph({
-  path,
-  color,
-  stroke,
-  fill,
-}: {
-  path: SkPath;
-  color: string;
-  stroke?: number;
-  fill?: boolean;
-}) {
-  return (
-    <Group transform={[{ translateX: C - GLYPH_HALF }, { translateY: C - GLYPH_HALF }]}>
-      <Path
-        path={path}
-        color={color}
-        style={fill ? 'fill' : 'stroke'}
-        strokeWidth={stroke ?? 1}
-        strokeJoin="round"
-        strokeCap="round"
-      />
-    </Group>
-  );
-}
-
-interface KeyEntry {
-  label: string;
-  meaning: string;
-  draw: (colors: ColorPalette) => ReactNode;
-}
+/** A mark the globe stamps from a glyph (`MarkGlyph`), or one it draws as
+ *  circles, which only the key draws again. */
+type KeyEntry = { label: string; meaning: string } & (
+  | { mark: Mark }
+  | { draw: (colors: ColorPalette) => ReactNode }
+);
 
 const STORIES: readonly KeyEntry[] = [
   {
@@ -137,31 +92,23 @@ const SHIPPING: readonly KeyEntry[] = [
     // and a busier one drawn teal.
     meaning:
       'A shipping strait. The arrow and the figure are its ships over the past week, as in the strip: green ↑ more, red ↓ fewer. Its shape and colour are its traffic against the 90-day normal.',
-    draw: (colors) => (
-      <Glyph path={getStraitPath('rest')} color={straitMarkColor('rest', colors)} />
-    ),
+    mark: { kind: 'strait', state: 'rest' },
   },
   {
     label: 'strait, squeezed',
     meaning: `Traffic ${Math.round(CHOKEPOINT_DISRUPTED * 100)}% or more below its normal: the shores close in.`,
-    draw: (colors) => (
-      <Glyph path={getStraitPath('pinch')} color={straitMarkColor('pinch', colors)} />
-    ),
+    mark: { kind: 'strait', state: 'pinch' },
   },
   {
     label: 'strait, busier',
     meaning: `Traffic more than ${Math.round(CHOKEPOINT_DISRUPTED * 100)}% above its normal, usually ships rerouted from a strait that is not: the shores open.`,
-    draw: (colors) => (
-      <Glyph path={getStraitPath('surge')} color={straitMarkColor('surge', colors)} />
-    ),
+    mark: { kind: 'strait', state: 'surge' },
   },
   {
     label: 'exchange',
     meaning:
       'A stock exchange over the past week, as in the strip: green ↑ up, red ↓ down, − unchanged. * marks an older quote. A numbered circle is several exchanges close together; tap it for all of them, or zoom in to separate them.',
-    draw: (colors) => (
-      <Glyph path={marketDirectionPath('up')} color={colors.markMarketUp} stroke={1.2} />
-    ),
+    mark: { kind: 'market', direction: 'up' },
   },
   {
     label: 'selected',
@@ -184,52 +131,28 @@ const CRISES: readonly KeyEntry[] = [
   {
     label: 'hazard',
     meaning: 'An earthquake, cyclone, flood or other natural hazard on the UN–EU alert system.',
-    draw: (colors) => <Glyph path={getGlyphPath('EQ')} color={colors.markGdacs} stroke={1.1} />,
+    mark: { kind: 'gdacs', eventtype: 'EQ' },
   },
   {
     label: 'hunger',
     meaning: 'An area in food crisis or worse on the IPC scale. The column fills with the phase.',
-    draw: (colors) => (
-      <>
-        <Glyph path={FAMINE_FRAME_PATH} color={colors.markFamine} stroke={FAMINE_FRAME_STROKE} />
-        <Glyph path={getFamineBlocksPath(2)} color={colors.markFamine} fill />
-      </>
-    ),
+    mark: { kind: 'famine', blocks: 2 },
   },
   {
     label: 'heat',
     meaning: 'Heat a satellite saw where a story is: a fire, a strike, a flare.',
-    draw: (colors) => (
-      <>
-        <Glyph path={THERMAL_CORE_PATH} color={colors.markThermal} fill />
-        <Glyph path={THERMAL_RAYS_PATH} color={colors.markThermal} stroke={THERMAL_RAY_STROKE} />
-      </>
-    ),
+    mark: { kind: 'thermal' },
   },
   {
     label: 'conflict',
     meaning:
       'Fighting or unrest on the latest day the conflict data covers. Larger where more people were killed. A red number beside it is how many events are close together.',
-    draw: (colors) => (
-      <Circle cx={C} cy={C} r={9}>
-        <RadialGradient
-          c={vec(C, C)}
-          r={9}
-          colors={[colors.markConflict, withAlpha(colors.markConflict, 0)]}
-        />
-      </Circle>
-    ),
+    mark: { kind: 'conflict' },
   },
   {
     label: 'genocide',
     meaning: 'A situation a UN body has determined to be genocide.',
-    draw: (colors) => (
-      <>
-        <Circle cx={C} cy={C} r={9} color={colors.markGenocideCore} />
-        <Circle cx={C} cy={C} r={9} color={colors.markGenocide} style="stroke" strokeWidth={1.6} />
-        <Circle cx={C} cy={C} r={3} color={colors.markGenocide} />
-      </>
-    ),
+    mark: { kind: 'genocide' },
   },
 ];
 
@@ -243,40 +166,29 @@ const SECTIONS: readonly { label: string; entries: readonly KeyEntry[] }[] = [
 ];
 
 const KeyRow = memo(function KeyRow({ entry, first }: { entry: KeyEntry; first: boolean }) {
-  const { colors, textVariants } = useTheme();
-  // The glyph centres on the title's line, not the row's top: a 28pt box
-  // hung from the top of a ~20pt line sat a few points low of the word it
-  // names.
-  const lift = ((textVariants.rowTitle.lineHeight ?? BOX) - BOX) / 2;
+  const { colors } = useTheme();
   return (
-    <View
-      style={[
-        styles.row,
-        !first && { borderTopColor: colors.rule, borderTopWidth: StyleSheet.hairlineWidth },
-      ]}
-      accessible
+    <ListRow
+      title={entry.label}
+      first={first}
       accessibilityLabel={`${entry.label}: ${entry.meaning}`}
+      leading={
+        <Canvas style={styles.glyph} pointerEvents="none">
+          {'mark' in entry ? <MarkGlyph mark={entry.mark} colors={colors} /> : entry.draw(colors)}
+        </Canvas>
+      }
     >
-      <Canvas style={[styles.glyph, { marginTop: lift }]} pointerEvents="none">
-        {entry.draw(colors)}
-      </Canvas>
-      <View style={styles.text}>
-        <Text variant="rowTitle">{entry.label}</Text>
-        <Text variant="caption">{entry.meaning}</Text>
-      </View>
-    </View>
+      <Text variant="caption">{entry.meaning}</Text>
+    </ListRow>
   );
 });
 
 export const SheetMapKeyPage = memo(function SheetMapKeyPage() {
   return (
     <View>
-      <Text variant="body" tone="secondary" style={styles.intro}>
-        Every mark on the globe can be tapped, and opens what it stands for.
-      </Text>
-      {SECTIONS.map((section) => (
+      {SECTIONS.map((section, s) => (
         <View key={section.label}>
-          <SectionLabel label={section.label} />
+          <SectionLabel label={section.label} first={s === 0} />
           {section.entries.map((entry, i) => (
             <KeyRow key={entry.label} entry={entry} first={i === 0} />
           ))}
@@ -287,14 +199,5 @@ export const SheetMapKeyPage = memo(function SheetMapKeyPage() {
 });
 
 const styles = StyleSheet.create({
-  intro: { marginBottom: SPACING.xs },
-  row: {
-    flexDirection: 'row',
-    alignItems: 'flex-start',
-    gap: SPACING.md,
-    minHeight: LAYOUT.rowMinHeight,
-    paddingVertical: SPACING.smPlus,
-  },
   glyph: { width: BOX, height: BOX },
-  text: { flex: 1, minWidth: 0, gap: SPACING.xxs },
 });

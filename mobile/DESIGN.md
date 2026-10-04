@@ -103,6 +103,12 @@ a primitive at the third caller.
 - Pages are a stack (`useSheetNavigation`). Back is wired three ways:
   `SheetHandle`'s `onBack`, the swipe (`useSheetBackNavigation`), and
   `onBackPress` on `SheetLayout`, since an Android dialog takes Back first.
+- A platform sheet animates its own rise and nothing inside it. A sheet of
+  pages passes `fill` and wraps them in `SheetPager`: one height for every
+  page, and the page moves, not the sheet. The handle's title arrives with it
+  (`SheetHandle`'s `pageKey` and `move`).
+- A page has one entrance, the pager's. A body that staggers its blocks in
+  its own sheet sits under `LayoutAnimationConfig skipEntering` as a page.
 - One platform sheet at a time, chained through `handOffSheet`; iOS rejects
   a present during a dismissal.
 - Android: a closing sheet swallows taps for half a second, and a sheet has
@@ -118,19 +124,33 @@ a primitive at the third caller.
 
 ### Rows
 
-- `MenuRow`: a `rowTitle`, an optional `caption`, an optional `figure`, then
-  what a press does: `push`, `leave`, a `Toggle`, or nothing. At least
-  `LAYOUT.rowMinHeight` tall. `SectionLabel` names a group.
+- Every list row is `ListRow`: an optional mark in the `ROW_LEADING` slot, a
+  `rowTitle` over `caption` lines, then the trailing edge, at least
+  `LAYOUT.rowMinHeight` tall. A new kind of row is new content for it, never
+  a new layout.
+- A rule sits above every row but a group's first (`first`), and the list's
+  container pads (`listStyles.content`), not the row.
+- The mark sits on the title's line, not the row's middle. In a list with
+  flags, a row without one keeps the slot (`leading={null}`).
+- `MenuRow`: an optional `description` or live `teaser`, an optional
+  `figure`, then what a press does: `push`, `leave`, a `Toggle`, or nothing.
+  A row whose name says enough prints no line: what it opens is its `hint`.
+  `SectionLabel` names a group.
 - A list of links is `MenuRow`s with `leave`. A choice among a few is a
   `SegmentedControl`.
-- `InstrumentRow`: title over a `caption` and a date; at the right the
-  reading, its unit and a `DeltaChip`. In a list with flags, a row without
-  one keeps the slot.
-- `MarkRow`: the globe's own glyph, a name and one line.
+- `InstrumentRow`: title over one `caption` line, the kind and the date; at
+  the right the reading (`RowReading`), its unit and a `DeltaChip`.
+- `MarkRow`: the globe's own glyph, a name and one line. A mark is drawn off
+  the globe only by `MarkGlyph`: the lists, the chooser, the map key and a
+  country's alerts cannot show one mark two ways.
+- `ArticleRow`: a headline over its category, age and place, the category's
+  dot in the caption line.
 - `SourceRow`: only the header is the button, so the details can be selected.
 - A menu row never appears or leaves while the menu is open. A list that
   loads late must hold its row from the start and keep it if the fetch fails.
-- A unit every row shares is said once, over the list.
+- `ListIntro` opens a list: one `caption` line for what every row shares (a
+  unit, a window, a source), and the list's own figure beside it. Never a
+  sentence on how to read the screen.
 
 ### Cards (the card tiers)
 

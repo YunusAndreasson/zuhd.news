@@ -18,6 +18,8 @@ paths:
   - "mobile/lib/markets.ts"
   - "mobile/lib/row-leaders.ts"
   - "mobile/lib/hazard-leaders.ts"
+  - "mobile/lib/menu-hazards.ts"
+  - "mobile/lib/mark-rows.ts"
   - "mobile/lib/famine-totals.ts"
   - "mobile/lib/conflict-week.ts"
   - "mobile/lib/metric-groups.ts"
@@ -51,7 +53,11 @@ paths:
 - A group's row is its name and one number that summarizes its whole list
   (`groupFigure`, `lib/world-summary.ts`). No subtitle, no count, never the
   largest mover. No overview block or band that repeats the categories. No
-  single score across everything. Each list's note says what its number is.
+  single score across everything. The list's own page prints that number
+  again over its rows, named (`GroupFigure.measure`).
+- A list opens with one line (`GROUP_NOTES`, `ListIntro`): the unit and the
+  window its rows share, so no row repeats them (`CatalogRow.note`). Never a
+  sentence on how to read the screen.
 - `world hazards` keeps a line under its name (`hazardParts`): alerts standing
   now, then the week's dead with its dates, then people in hunger; two at
   most.
@@ -118,8 +124,11 @@ paths:
 - Famine: the list leads with countries by people (`lib/famine-totals.ts`). A
   total says its month, and its share is of the people analysed, never of the
   country.
+- What a hazard list holds, its headings and the page a row opens are data
+  (`lib/menu-hazards.ts`), tested there; `MenuSheet` only renders them.
 - Conflict: the list is the source's whole week under each country's toll
-  (`lib/conflict-week.ts`). Every line that names the week names its dates.
+  (`lib/conflict-week.ts`). The country is the heading; its toll is a line
+  under it, never set in the heading's caps. Every line that names the week names its dates.
   Civilians are a floor. It is UCDP's sum over coded events; never print it as
   a country's death toll.
 - Thermal events carry no country.

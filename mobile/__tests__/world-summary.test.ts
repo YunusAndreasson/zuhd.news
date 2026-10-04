@@ -255,6 +255,15 @@ describe('a list’s figure on the menu’s first page', () => {
     ).toMatchObject({ direction: 'up', magnitude: '2%' });
   });
 
+  it('names what the figure is of its rows, for the list’s own page', () => {
+    const two = (key: GroupKey) => group(key, [weekRow(`${key}:a`, 3), weekRow(`${key}:b`, 1)]);
+    expect(groupFigure(group('stocks', [market('a', 3), market('b', 1)])).measure).toBe('average');
+    expect(groupFigure(two('companies')).measure).toBe('average');
+    expect(groupFigure(two('crypto')).measure).toBe('average');
+    // No figure, so nothing to name.
+    expect(groupFigure(two('rates'))).toEqual({});
+  });
+
   it('adds the straits’ ships and says how many are disrupted', () => {
     const straits = group('straits', [
       strait('a', DAYS, [100, 110, 120], -0.3),

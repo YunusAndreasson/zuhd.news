@@ -1,27 +1,29 @@
 import { getMetricValue, getRanking, type MetricKey } from '@shared/countries/country-ranking';
 import type { GdacsAlert } from '@shared/types';
-import { Canvas, Circle, Path } from '@shopify/react-native-skia';
-import { memo, useCallback, useState } from 'react';
+import { memo, useCallback } from 'react';
 import { Text as RNText, StyleSheet, View } from 'react-native';
 import { GestureDetector } from 'react-native-gesture-handler';
-import Animated from 'react-native-reanimated';
+import Animated, { LayoutAnimationConfig } from 'react-native-reanimated';
 import { MAX_FONT_SCALE, OPACITY, SPACING } from '../constants/theme';
 import { useSheetBackNavigation } from '../hooks/useSheetBackNavigation';
+import { useSheetNavigation } from '../hooks/useSheetNavigation';
 import { useTheme } from '../hooks/useTheme';
 import type { CountryFact } from '../lib/country-hazards';
-import { parseSeverityHero } from '../lib/gdacs';
+import { EVENT_TYPE_LABEL, parseSeverityHero } from '../lib/gdacs';
 import { displayCountryName, displayLocation } from '../lib/place-names';
-import { severityTint } from '../lib/severity';
 import { staggerEnter } from '../lib/stagger';
 import type { TapResult } from '../lib/tap-result';
 import { CountryRankingView } from './CountryRankingView';
 import { CountryCardsCarousel } from './country-cards/CountryCardsCarousel';
 import { FlagGlyph } from './FlagChip';
-import { EVENT_TYPE_LABEL, GLYPH_HALF, getGlyphPath } from './globe/disaster-glyphs';
+import { ListRow } from './ListRow';
+import { MarkIcon } from './MarkGlyph';
+import { MenuRow, SectionLabel } from './MenuRow';
 import { Icon, Pressable, Text } from './primitives';
 import { SheetScrollView } from './SheetContent';
 import { SheetHandle } from './SheetHandle';
 import { type BaseSheetProps, SheetLayout } from './SheetLayout';
+import { SheetPager } from './SheetPager';
 
 const MORE_METRICS: { key: MetricKey; label: string }[] = [
   { key: 'population', label: 'population' },
@@ -157,89 +159,39 @@ export interface CountryHazard {
   onPress: () => void;
 }
 
-const HazardRow = memo(function HazardRow({ hazard }: { hazard: CountryHazard }) {
-  const { colors } = useTheme();
-  return (
-    <Pressable
-      onPress={hazard.onPress}
-      style={[styles.alertChip, { borderColor: colors.rule }]}
-      accessibilityRole="button"
-      accessibilityLabel={`${hazard.title}, ${hazard.detail}`}
-    >
-      <View style={styles.alertChipText}>
-        <Text variant="labelSm" tone="emphasis" numberOfLines={1}>
-          {hazard.title}
-        </Text>
-        <Text variant="labelXs" tone="secondary" numberOfLines={1}>
-          {hazard.detail}
-        </Text>
-      </View>
-      <Icon name="chevron-forward" size="sm" tone="secondary" />
-    </Pressable>
-  );
-});
-
-const ALERT_CHIP_GLYPH = 28;
-const ALERT_CHIP_DOT_SIZE = 6;
-
-function AlertChip({
+/** One alert touching the country: the hazard's own glyph, as its mark and
+ *  its row in `disasters` draw it, and the alert's measure. */
+function AlertRow({
   alert,
+  first,
   onPress,
 }: {
   alert: GdacsAlert;
+  first: boolean;
   onPress: (alert: GdacsAlert) => void;
 }) {
-  const { colors } = useTheme();
-  // Red gets the foreground rose tint; lower tiers read in `text` —
-  // severity remains legible from the focal number on the chip itself.
-  const tint = severityTint(colors, { alertLevel: alert.alertlevel }, colors.text);
   const handlePress = useCallback(() => onPress(alert), [alert, onPress]);
+  const measure = alert.eventtype === 'FL' ? parseSeverityHero(alert).focal : alert.severityText;
   return (
-    <Pressable
+    <ListRow
+      title={EVENT_TYPE_LABEL[alert.eventtype]}
+      titleLines={1}
+      first={first}
       onPress={handlePress}
-      style={[styles.alertChip, { borderColor: colors.rule }]}
-      accessibilityRole="button"
       accessibilityLabel={`${alert.alertlevel} alert: ${EVENT_TYPE_LABEL[alert.eventtype]}`}
+      leading={
+        <MarkIcon
+          mark={{ kind: 'gdacs', eventtype: alert.eventtype, red: alert.alertlevel === 'Red' }}
+        />
+      }
+      trailing={<Icon name="chevron-forward" size="sm" tone="secondary" />}
     >
-      <Canvas style={{ width: ALERT_CHIP_GLYPH, height: ALERT_CHIP_GLYPH }}>
-        <Circle
-          cx={ALERT_CHIP_GLYPH / 2}
-          cy={ALERT_CHIP_GLYPH / 2}
-          r={ALERT_CHIP_GLYPH / 2}
-          color={tint}
-          opacity={0.18}
-        />
-        <Path
-          path={getGlyphPath(alert.eventtype)}
-          color={tint}
-          style="stroke"
-          strokeWidth={1.4}
-          strokeJoin="round"
-          strokeCap="round"
-          transform={[
-            { translateX: ALERT_CHIP_GLYPH / 2 - GLYPH_HALF },
-            { translateY: ALERT_CHIP_GLYPH / 2 - GLYPH_HALF },
-          ]}
-        />
-      </Canvas>
-      <View style={styles.alertChipText}>
-        <View style={styles.alertChipTitleRow}>
-          <Text variant="labelSm" tone="emphasis" numberOfLines={1} style={styles.alertChipTitle}>
-            {EVENT_TYPE_LABEL[alert.eventtype]}
-          </Text>
-          {/* Tiny level dot — restates the alert tier in chrome that's
-              visible at a glance. Same color family as the glyph so the
-              chip reads as a single unit, not stitched-together pieces. */}
-          <View style={[styles.alertChipDot, { backgroundColor: tint }]} />
-        </View>
-        {alert.severityText.length > 0 && (
-          <Text variant="labelXs" tone="secondary" numberOfLines={1}>
-            {alert.eventtype === 'FL' ? parseSeverityHero(alert).focal : alert.severityText}
-          </Text>
-        )}
-      </View>
-      <Icon name="chevron-forward" size="sm" tone="secondary" />
-    </Pressable>
+      {measure ? (
+        <Text variant="caption" numberOfLines={1}>
+          {measure}
+        </Text>
+      ) : null}
+    </ListRow>
   );
 }
 
@@ -390,52 +342,41 @@ export const CountryBody = memo(function CountryBody({
         </Animated.View>
       )}
       {activeAlerts && activeAlerts.length > 0 && onAlertPress && (
-        <Animated.View entering={staggerEnter(2)} style={styles.alertsSection}>
-          {/* `labelSm`, as a section label in a sheet is, and as `on the map`
-              below it was: this one was a size smaller. */}
-          <Text
-            variant="labelSm"
-            tone="secondary"
-            accessibilityRole="header"
-            style={styles.alertsHeading}
-          >
-            {activeAlerts.length === 1 ? 'active alert' : `${activeAlerts.length} active alerts`}
-          </Text>
-          {activeAlerts.map((a) => (
-            <AlertChip key={a.eventid} alert={a} onPress={onAlertPress} />
+        <Animated.View entering={staggerEnter(2)}>
+          <SectionLabel
+            label={
+              activeAlerts.length === 1 ? 'active alert' : `${activeAlerts.length} active alerts`
+            }
+          />
+          {activeAlerts.map((a, i) => (
+            <AlertRow key={a.eventid} alert={a} first={i === 0} onPress={onAlertPress} />
           ))}
         </Animated.View>
       )}
       {facts?.map((fact) => (
-        <Animated.View key={fact.key} entering={staggerEnter(3)} style={styles.alertsSection}>
-          <Text
-            variant="labelSm"
-            tone="secondary"
-            accessibilityRole="header"
-            style={styles.alertsHeading}
-          >
-            {fact.heading}
-          </Text>
+        <Animated.View key={fact.key} entering={staggerEnter(3)}>
+          <SectionLabel label={fact.heading} />
           <Text variant="bodyEmphasis" tone="emphasis" selectable>
             {fact.title}
           </Text>
-          <Text variant="labelXs" tone="secondary" style={styles.factDetail}>
+          <Text variant="caption" style={styles.factDetail}>
             {fact.detail}
           </Text>
         </Animated.View>
       ))}
       {hazards && hazards.length > 0 && (
-        <Animated.View entering={staggerEnter(3)} style={styles.alertsSection}>
-          <Text
-            variant="labelSm"
-            tone="secondary"
-            accessibilityRole="header"
-            style={styles.alertsHeading}
-          >
-            on the map
-          </Text>
-          {hazards.map((h) => (
-            <HazardRow key={h.key} hazard={h} />
+        <Animated.View entering={staggerEnter(3)}>
+          <SectionLabel label="on the map" />
+          {hazards.map((h, i) => (
+            <MenuRow
+              key={h.key}
+              first={i === 0}
+              title={h.title}
+              description={h.detail}
+              accessibilityLabel={`${h.title}, ${h.detail}`}
+              trailing="push"
+              onPress={h.onPress}
+            />
           ))}
         </Animated.View>
       )}
@@ -453,72 +394,74 @@ export const CountrySheet = memo(function CountrySheet({
   bottomInset,
   onDismiss,
 }: CountrySheetProps) {
-  const [activeRanking, setActiveRanking] = useState<MetricKey | null>(null);
-  const onBackToCountry = useCallback(() => setActiveRanking(null), []);
+  // Two pages: the country, and one of its rankings.
+  const nav = useSheetNavigation<MetricKey>();
+  const { push, pop, reset } = nav;
+  const activeRanking = nav.current;
 
   const hasBack = activeRanking !== null;
   const handle = (
     <SheetHandle
-      onBack={hasBack ? onBackToCountry : undefined}
+      onBack={hasBack ? pop : undefined}
       title={<CountryTitle country={country} hasBack={hasBack} />}
     />
   );
 
   const handleDismiss = useCallback(() => {
-    setActiveRanking(null);
+    reset();
     onDismiss();
-  }, [onDismiss]);
+  }, [reset, onDismiss]);
 
   // A left-edge swipe pops the ranking sub-page. Shared with MenuSheet so
   // every multi-page sheet goes back identically (DESIGN §Sheets).
-  const swipeBack = useSheetBackNavigation({
-    canGoBack: activeRanking !== null,
-    onBack: onBackToCountry,
-  });
+  const swipeBack = useSheetBackNavigation({ canGoBack: hasBack, onBack: pop });
 
   return (
     <SheetLayout
       sheetRef={sheetRef}
       handle={handle}
       onDismiss={handleDismiss}
-      onBackPress={hasBack ? onBackToCountry : undefined}
+      onBackPress={hasBack ? pop : undefined}
+      // One height for both pages, so only the page moves between them.
+      fill
     >
-      {activeRanking ? (
-        <GestureDetector gesture={swipeBack}>
-          <View style={styles.rankingWrap}>
-            <CountryRankingView
-              metric={activeRanking}
-              currentCountryName={country?.countryName ?? null}
-              bottomInset={bottomInset}
-              onRequestClose={() => sheetRef.current?.dismiss()}
-            />
-          </View>
-        </GestureDetector>
-      ) : (
-        <SheetScrollView bottomInset={bottomInset}>
-          <CountryBody
-            country={country}
-            activeAlerts={activeAlerts}
-            onAlertPress={onAlertPress}
-            hazards={hazards}
-            facts={facts}
-            onRankingPress={setActiveRanking}
-          />
-        </SheetScrollView>
-      )}
+      <SheetPager pageKey={activeRanking ?? 'country'} move={nav.move}>
+        {activeRanking ? (
+          <GestureDetector gesture={swipeBack}>
+            <View style={styles.page}>
+              <CountryRankingView
+                metric={activeRanking}
+                currentCountryName={country?.countryName ?? null}
+                bottomInset={bottomInset}
+                onRequestClose={() => sheetRef.current?.dismiss()}
+              />
+            </View>
+          </GestureDetector>
+        ) : (
+          // The blocks rise as the sheet opens; back from a ranking, the page
+          // arrives as one.
+          <LayoutAnimationConfig skipEntering={nav.move.direction !== 0}>
+            <SheetScrollView bottomInset={bottomInset} style={styles.page}>
+              <CountryBody
+                country={country}
+                activeAlerts={activeAlerts}
+                onAlertPress={onAlertPress}
+                hazards={hazards}
+                facts={facts}
+                onRankingPress={push}
+              />
+            </SheetScrollView>
+          </LayoutAnimationConfig>
+        )}
+      </SheetPager>
     </SheetLayout>
   );
 });
 
 const styles = StyleSheet.create({
-  // Host view so GestureDetector has a ref-holding child to attach the
-  // swipe-back to; flex:1 lets the ranking list fill the sheet body.
-  // `flexShrink`, not `flex` — the sheet is content-sized, so this sits in an
-  // auto-height box with a `maxHeight` cap, where `flex: 1`'s `flexBasis: 0`
-  // would measure the ranking list as zero and collapse it.
-  rankingWrap: {
-    flexShrink: 1,
-  },
+  // The sheet holds one height (`fill`), so a page fills it. The view is the
+  // ref-holding child the swipe back attaches to.
+  page: { flex: 1 },
   handleRow: {
     flexDirection: 'row',
     alignItems: 'center',
@@ -593,37 +536,7 @@ const styles = StyleSheet.create({
   value: {
     fontVariant: ['oldstyle-nums'],
   },
-  alertsSection: {
-    marginTop: SPACING.lg,
-  },
-  alertsHeading: {
-    marginBottom: SPACING.xs,
-  },
   factDetail: {
     marginTop: SPACING.xxs,
-  },
-  alertChip: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    gap: SPACING.sm,
-    paddingVertical: SPACING.sm,
-    borderTopWidth: StyleSheet.hairlineWidth,
-  },
-  alertChipText: {
-    flex: 1,
-    gap: 1,
-  },
-  alertChipTitleRow: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    gap: SPACING.xs,
-  },
-  alertChipTitle: {
-    flexShrink: 1,
-  },
-  alertChipDot: {
-    width: ALERT_CHIP_DOT_SIZE,
-    height: ALERT_CHIP_DOT_SIZE,
-    borderRadius: ALERT_CHIP_DOT_SIZE / 2,
   },
 });

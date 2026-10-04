@@ -16,7 +16,7 @@ import {
   EVENT_TYPE_EYEBROW,
   parseSeverityHero as parseSharedSeverityHero,
 } from '@shared/gdacs';
-import type { GdacsAlert, GdacsDetail } from '@shared/types';
+import type { GdacsAlert, GdacsDetail, GdacsEventType } from '@shared/types';
 import { ageDaysFromIso } from './time';
 
 export {
@@ -109,3 +109,13 @@ export function globeGdacsAlerts(alerts: readonly GdacsAlert[]): GdacsAlert[] {
   const reds = alerts.filter((a) => a.alertlevel === 'Red');
   return [...greens, ...oranges, ...reds];
 }
+
+/** A hazard's kind in words: a row's title where the alert has no name. */
+export const EVENT_TYPE_LABEL: Readonly<Record<GdacsEventType, string>> = {
+  EQ: 'Earthquake',
+  TC: 'Tropical cyclone',
+  FL: 'Flood',
+  VO: 'Volcano',
+  DR: 'Drought',
+  WF: 'Wildfire',
+};

@@ -1,20 +1,14 @@
 import { memo, type ReactNode } from 'react';
 import { type AccessibilityRole, type AccessibilityState, StyleSheet, View } from 'react-native';
-import { LAYOUT, SPACING } from '../constants/theme';
+import { SPACING } from '../constants/theme';
 import { useTheme } from '../hooks/useTheme';
-import { Icon, Pressable, Text } from './primitives';
+import { ListRow } from './ListRow';
+import { Icon, Text } from './primitives';
 
 /**
- * The menu's one row grammar — the root, settings, the map key's entries and
- * About's data providers all speak it: a `rowTitle` in text ink, an optional
- * `caption` under it saying what the row is for, and at the trailing edge
- * what a press does.
- *
- * It replaced four row components in `MenuSheet` that set every title in
- * 17pt small caps. Small caps draw lowercase at x-height, so each title read
- * as ~12pt capitals in a column of identical capitals, and the descriptions
- * that would have told the rows apart were spoken to screen readers only. The
- * map key already set its entries this way; now every page of the menu does.
+ * The menu's row — the root, settings and About's data providers speak it:
+ * `ListRow` with one `caption` line under the title, a quiet figure, and at
+ * the trailing edge what a press does.
  */
 
 /** What a press does, drawn at the row's trailing edge. */
@@ -28,20 +22,23 @@ export type RowTrailing =
 
 interface MenuRowProps {
   title: string;
+  /** What the row is for, under its title. */
   description?: string;
-  /**
-   * A live line in the caption's place — the menu root's data rows print
-   * their group's first reading here, a subject and its move. `description`
-   * stays the screen reader's hint; `detailLabel` is what the line says, and
-   * joins the row's label, which is explicit and would otherwise skip it.
-   */
-  detail?: ReactNode;
-  detailLabel?: string;
+  /** Spoken, never printed: for a row whose name says enough to the eye.
+   *  Defaults to the description. */
+  hint?: string;
+  /** A live line in the description's place: what leads the list the row
+   *  opens. It joins the row's spoken label. */
+  teaser?: string;
+  teaserLines?: number;
+  /** Spoken in the teaser's place, where the line needs its context. */
+  teaserLabel?: string;
   /** A short figure before the trailing mark — a count, a size. */
   value?: string;
   /** In the value's place, a figure that is not plain text: a group's week
-   *  as a coloured chip. Its words belong in `detailLabel`. */
+   *  as a coloured chip. Its words are `figureLabel`. */
   figure?: ReactNode;
+  figureLabel?: string;
   trailing?: RowTrailing;
   /** Omit for a read-only row: it renders as one accessible fact, not a button. */
   onPress?: () => void;
@@ -49,73 +46,64 @@ interface MenuRowProps {
   first?: boolean;
   accessibilityRole?: AccessibilityRole;
   accessibilityState?: AccessibilityState;
-  /** Defaults to the title, then the value and the detail. */
+  /** Defaults to the title, then the value, the figure and the teaser. */
   accessibilityLabel?: string;
 }
 
 export const MenuRow = memo(function MenuRow({
   title,
   description,
-  detail,
-  detailLabel,
+  hint,
+  teaser,
+  teaserLines,
+  teaserLabel,
   value,
   figure,
+  figureLabel,
   trailing,
   onPress,
   first,
-  accessibilityRole = 'button',
+  accessibilityRole,
   accessibilityState,
   accessibilityLabel,
 }: MenuRowProps) {
-  const { colors } = useTheme();
-  const style = [styles.row, !first && { ...styles.ruled, borderTopColor: colors.rule }];
-  const label = accessibilityLabel ?? [title, value, detailLabel].filter(Boolean).join(', ');
-  const content = (
-    <>
-      <View style={styles.text}>
-        <Text variant="rowTitle">{title}</Text>
-        {detail ? (
-          <View style={[styles.description, styles.detail]}>{detail}</View>
-        ) : description ? (
-          <Text variant="caption" style={styles.description}>
-            {description}
-          </Text>
-        ) : null}
-      </View>
-      {figure ??
-        (value ? (
-          <Text variant="body" tone="secondary" style={styles.value}>
-            {value}
-          </Text>
-        ) : null)}
-      {trailing === 'push' ? (
-        <Icon name="chevron-forward" size="sm" tone="secondary" />
-      ) : trailing === 'leave' ? (
-        <Icon name="open-outline" size="sm" tone="secondary" />
-      ) : (
-        trailing
-      )}
-    </>
-  );
-
-  if (!onPress) {
-    return (
-      <View style={style} accessible accessibilityLabel={label} accessibilityHint={description}>
-        {content}
-      </View>
-    );
-  }
+  const line = teaser || description;
   return (
-    <Pressable
+    <ListRow
+      title={title}
+      first={first}
       onPress={onPress}
-      style={style}
       accessibilityRole={accessibilityRole}
       accessibilityState={accessibilityState}
-      accessibilityLabel={label}
-      accessibilityHint={description}
+      accessibilityLabel={
+        accessibilityLabel ??
+        [title, value, figureLabel, teaserLabel ?? teaser].filter(Boolean).join(', ')
+      }
+      accessibilityHint={hint ?? description}
+      trailing={
+        <>
+          {figure ??
+            (value ? (
+              <Text variant="body" tone="secondary" style={styles.value}>
+                {value}
+              </Text>
+            ) : null)}
+          {trailing === 'push' ? (
+            <Icon name="chevron-forward" size="sm" tone="secondary" />
+          ) : trailing === 'leave' ? (
+            <Icon name="open-outline" size="sm" tone="secondary" />
+          ) : (
+            trailing
+          )}
+        </>
+      }
     >
-      {content}
-    </Pressable>
+      {line ? (
+        <Text variant="caption" numberOfLines={teaser ? teaserLines : undefined}>
+          {line}
+        </Text>
+      ) : null}
+    </ListRow>
   );
 });
 
@@ -167,18 +155,8 @@ export function SectionLabel({ label, first }: { label: string; first?: boolean 
 }
 
 const styles = StyleSheet.create({
-  row: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    gap: SPACING.md,
-    minHeight: LAYOUT.rowMinHeight,
-    paddingVertical: SPACING.smPlus,
-  },
   ruled: { borderTopWidth: StyleSheet.hairlineWidth },
-  text: { flex: 1, minWidth: 0 },
   description: { marginTop: SPACING.xxs },
-  // A subject and a chip on one line, wrapping whole at large type.
-  detail: { flexDirection: 'row', flexWrap: 'wrap', alignItems: 'center', columnGap: SPACING.sm },
   value: { fontVariant: ['tabular-nums'] },
   block: { paddingVertical: SPACING.smPlus },
   control: { marginTop: SPACING.sm },

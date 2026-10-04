@@ -76,6 +76,7 @@ export function SheetBookmarksPage({ onSelectArticle }: SheetBookmarksPageProps)
               time={articleTime(b.article)}
               category={b.category}
               location={b.article.location}
+              first={i === 0}
               onPress={onSelectArticle}
               secondaryAction={removeAction}
             />
