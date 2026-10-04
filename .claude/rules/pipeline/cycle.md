@@ -7,7 +7,10 @@ paths:
   - "scripts/prefilter-feed.js"
   - "scripts/merge-feeds.js"
   - "scripts/scaffold-articles.js"
-  - "scripts/narrate-gdacs.js"
+  - "scripts/run-cycle.sh"
+  - "scripts/narrate-*.js"
+  - "scripts/attach-indicators.js"
+  - "scripts/translate-swedish.js"
   - "scripts/pick-breaking-social.js"
   - "scripts/generate-*.js"
   - "scripts/measure-quality.js"
@@ -24,6 +27,12 @@ paths:
   - "scripts/lib/argv.js"
   - "scripts/lib/regions.js"
   - "scripts/lib/dedup.js"
+  - "scripts/lib/grounding.js"
+  - "scripts/lib/indicator-offer.js"
+  - "scripts/lib/indicator-model.js"
+  - "scripts/lib/market-signals.js"
+  - "scripts/lib/coverage-window.js"
+  - "scripts/lib/tracked-stories.js"
   - "scripts/lib/feed-age.js"
   - "scripts/lib/quality-score.js"
   - "scripts/lib/entity-registry.js"
@@ -40,879 +49,163 @@ paths:
 
 # The editorial cycle
 
-Five runs a day on a remote server, committing only `content/`. The stage list
-is in the root CLAUDE.md; this is what the stages assume about each other.
-
-## Polymarket's `active` flag does not mean live
-
-- **A market whose deadline has passed keeps `active: true, closed: false`**
-  until UMA resolves it, which can take months. Probed against the live Gamma
-  API: *"Will Adanech Abiebie be the next Prime Minister of Ethiopia?"* carried
-  `endDate: 2026-06-01` — two months gone — with both flags saying it was live.
-  On the rail this showed as *"US x Iran Effective Ceasefire by July 31"* sitting
-  at **62% four days after July 31**. A probability on a question whose date has
-  passed is not a forecast; it is the last price before everyone stopped caring,
-  and beside live markets it makes the whole block untrustworthy in a way a
-  reader has no means to check.
-- **The source's own `endDate` is the test**, so nothing is inferred from the
-  question text and no model is involved. Markets carrying no end date are
-  **kept**: an open-ended market is a real thing, and dropping one for a missing
-  field would be reading absence as expiry.
-
-## Polymarket's filter was one dead field and one word list
-
-- **`m.category` is `undefined` on every row `/markets` returns**, and had been
-  for as long as anyone measured. `KEEP_CATEGORIES` — eight categories, written
-  to prioritise ummah-relevant geopolitics — therefore matched nothing, ever, and
-  the entire subject filter was the keyword regex beside it, applied to a pool
-  that volume-ranks roughly four-fifths football, baseball and esports. Probed
-  live 2026-08-29: 60 markets fetched, **3 distinct events kept**. That was the
-  whole reason the app's outlook column was two cards deep, and nothing in the
-  logs said so — a filter that silently keeps three things looks exactly like a
-  day with three things worth keeping.
-- **`/events` is the same data one level up and carries the taxonomy `category`
-  was supposed to be**: `sports`, `esports`, `games`, `politics`, `geopolitics`,
-  `economic-policy`, with the markets nested inside and their `clobTokenIds`
-  intact. So the filter inverted — a short list of tags we drop, rather than a
-  long list of words we hope to see. Same probe after: 60 events, 18 kept. The
-  keyword list was dropping *Strait of Hormuz traffic returns to normal* and
-  *Bab el-Mandeb Strait effectively closed*, questions about the exact waterways
-  the shipping column charts, because "hormuz" was not one of its words.
-- **A drop list is the right shape here and an allow list was not.** Missing an
-  entry costs one odd card; missing a word cost a whole subject, silently. The
-  list stays short and each entry carries its reason, per "editorial lists are
-  editorial".
-- **One market per event, chosen before the history calls.** An event is a
-  question and its markets are the outcomes — "Presidential Election Winner
-  2028" carries several hundred. Flattening them all gave 627 markets from 12
-  events and the `slice(TOP_N)` then cut *inside* the first two, so the widened
-  filter produced **fewer** cards than the broken one. Picked on volume among
-  outcomes that are not already decided, which `lastTradePrice` answers for free.
-- **The enrichment call was the next thing to break, and `runWithConcurrency`
-  could not save it.** One Haiku call shortens titles and returns the countries
-  each question is about. At three questions it fit inside 40s; at ten it
-  measured **98s** and was SIGTERM-killed every run, so every question silently
-  lost its country tags. Chunking it made things *worse* until the real bug
-  showed: it was `spawnSync`, which blocks the event loop, so three "concurrent"
-  chunks ran strictly one after another. **A concurrency limiter can only limit
-  work that yields** — it is `execFile` now.
-- **The countries come from the source's own tags, and the model is the bonus.**
-  Gamma tags an event `iran`, `france`, `brazil`, `united-states`; 23 of 34
-  observed slugs resolve straight off `CC_TO_TOPOJSON_NAME` and every
-  non-country slug resolves to nothing, which is the failure mode we want. Tags
-  cannot see that an FOMC market is about the US, so the two are unioned rather
-  than swapped. The point is that a killed call now costs a long header instead
-  of a data field. Measured after: 7 questions, **7 of 7 country-tagged**, ~45s.
-
-## Polymarket's selection is sticky
-
-- **The deck re-rolled by 24h volume on every cycle, and the desk narrates
-  once a day.** Cycle N's newcomers were narrated after cycle N's build
-  (`--new-only`) and displaced by cycle N+1's roll, so the paragraph shipped
-  for a market the payload no longer carried. Measured on the live payload
-  2026-09-04: **12 of 76 `analysis.json` items keyed to markets not in
-  `trends.json`** — 4KB the app downloaded on every launch and attached to
-  nothing; the *Strait of Hormuz traffic returns to normal* market narrated
-  but absent, so the app's strait-odds join (`straitOdds`) matched none of the
-  eleven straits; and a market that entered with no `standing` dropped by the
-  app's deck gate until the next 04:00. Nothing in the logs said any of it.
-- **Incumbents keep their slot while they stay eligible.** `fetch-trends.js`
-  reads the previous snapshot and hands each dynamic source its own rows;
-  `orderCandidates` in the Polymarket fetcher ranks incumbents first, then
-  `PIN_TITLE_RE` subjects (waterways and oil — what the shipping column joins
-  on), then the rest, each tier by volume, and the existing expiry, decided
-  and drop filters run unchanged before it. **Zero extra API calls**: the
-  previous snapshot is on disk and the top-60 response is the one the cycle
-  already makes. `INCUMBENT_CAP` (`TOP_N − 3`) keeps a full deck from freezing
-  out a newcomer. An incumbent that leaves the top 60 is gone, and the fetch
-  log's `incumbents gone` count is the number to watch.
-- **Only newcomers pay for Haiku.** The title-shortening call had no cache and
-  ran on every row every cycle; an incumbent now reuses the label and country
-  tags it was given on entry, so a steady cycle runs zero chunks. The cost is
-  that a regex-fallback label from a cycle whose call was killed persists
-  until the market re-enters.
-- **`build.js` drops `analysis.json` items whose id is not in the snapshot**,
-  and logs the count. That number is the health metric for all of the above:
-  12 on the day this was written, and it should sit near zero.
-
-## PortWatch's `date` became a string, and the per-indicator fetcher went dark
-
-- **Eight `portwatch-*` registry rows produced nothing from 2026-04-28 to
-  2026-09-04.** The ArcGIS service re-published `date` as
-  `esriFieldTypeDateOnly` — `"2026-08-30"` where there had been epoch ms — and
-  `fetchPortWatchChokepoint` compared it against a number: `NaN >= n` is false
-  for every row, every row was filtered, and the empty branch returned `null`
-  **without logging**. Every other failure in that function logged; this one
-  looked like a quiet day. The batched snapshot fetcher that feeds
-  `api/chokepoints.json` survived only by accident: it filters on the server,
-  and its own numeric sort — also `NaN` — was handed rows the server had
-  already put in date order.
-- **What it cost:** the writer's indicator attach had no Hormuz tanker figure
-  for 130 days; eight `/e/portwatch-*` pages and eight `analysis.json`
-  paragraphs did not exist; `entity-registry.js` was rewritten (2026-08-08)
-  to explain an absence whose cause was this.
-- **The rule:** an empty result after a non-empty response is a schema change
-  until proven otherwise, and the branch that handles it must print what it
-  saw — the fix's log line prints the feature count and the first `date`
-  attribute, which is the line that would have caught this in April.
-  `parseArcgisDate` reads either serialisation and both fetchers go through it.
-
-## Policy rates come from the BIS, and a coin's price keeps its decimals (2026-10-03)
-
-The app split its `rates & crypto` list in two and each half was thin (five
-rows, three), so eighteen series were added: seven policy rates, two US rates,
-euro-area inflation, eight coins.
-
-- **FRED has two central banks.** Its Bank of England rate stopped in 2017 and
-  its Bank of Japan rate in 2023; the nearest live series are overnight
-  *market* rates, which are not what a committee sets. The BIS collects each
-  bank's own rate daily, keyless (`trends-sources/bis.js`, `source: 'bis'`,
-  one batched call). `detail=dataonly` is not optional: without it every row
-  repeats the series' compilation note, megabytes for two years of seven
-  countries.
-- **Drawn as the Fed's is**: a point a month over two years, the rate in force
-  at each month's last observation, and the current month as far as it has
-  got, so a change made last week is the reading today (`monthlyFromDaily`,
-  tested in `bis-rates.test.js`).
-- **A series whose newest observation is over 45 days old is dropped, with a
-  log line.** India's ran 72 days behind on the day this was written, and a
-  policy rate printed as current when it may have changed is worse than no
-  row. Pakistan, Egypt and Nigeria are not collected at all.
-- **Named for the country, tagged for the bank.** `Turkey interest rate`
-  needs no finance to read. The tags and the entity mentions name the bank or
-  the decision and never the country alone: the offer matches tags alone, and
-  a bare `turkey` would hang a policy rate off every story about Ankara. A
-  test holds that.
-- **`BOJ` is a mention now**, so "Yen weakens as BOJ summary damps rate-hike
-  bets" is filed under the Bank of Japan's rate rather than the yen by
-  `seriesOf` (`tracked-stories.js`). Still one series, one slot.
-- **A price under ten dollars keeps four decimals, under one dollar six**
-  (`roundPrice`). At the old two, Dogecoin at $0.0931 was `0.09` on every day
-  of the month: a flat line and a week's move of nothing. From ten dollars up
-  nothing changed.
-- **The coins are the ten largest by market value that are not pegged to
-  something**, plus Monero, which was already here. A coin's tags are its own
-  name and ticker: `crypto` is on Bitcoin and Ethereum, and eight more
-  answering to it would offer the writer ten charts for one story.
-- **Cost**: `api/trends.json` 22.9KB → 26.5KB gzipped, eight more price calls
-  a cycle (thirteen; the server's key allows thirty a minute, and a keyless
-  laptop was refused on the eighth), and eighteen more items in the daily
-  narration. A new series reaches the app the cycle after its first, when it
-  has a `standing`: the app's gate drops a card with no paragraph.
-
-## The trends payload's country tags
-
-- **Only the currency basket knew what country it was about, and that was 15 of
-  56** (2026-08-03). Every indicator carries `topicTags`; `countryTags` existed
-  in the type and on exactly one source, OER's FX pairs, covering 19 countries.
-  So anything keyed on country — a country profile, a viewport-aware rail, a
-  click on the land — could reach a quarter of the payload. Two sources are now
-  tagged and the reasoning differs for each, which is the point of writing it
-  down.
-- **Wikipedia is a lookup, not a classifier.** The attention series are fetched
-  *by article title*, and measured against a live payload **10 of the 15 are
-  country articles** — Iran, India, Russia, China, Pakistan, Saudi Arabia,
-  Israel, Ukraine, United States, Nigeria — with the other five being
-  `Artificial intelligence`, `Bitcoin`, `Donald Trump`, `Strait of Hormuz` and
-  `Wildfire`. So the title *is* the answer and `codeFromTopojsonName` resolves
-  nine of the ten outright. `TITLE_ALIASES` covers only genuine divergences
-  between Wikipedia's name and Natural Earth's — `United States` →
-  `United States of America`, `Eswatini` → `eSwatini` (case, not spelling), the
-  two Congos, Ireland, Côte d'Ivoire, Timor-Leste, Palestine. **No identity
-  entries**: `Czechia`, `Myanmar`, `Turkey` and both Koreas resolve directly, and
-  an alias for them would be dead weight that reads as coverage. Verified: 21 of
-  27 candidate titles resolve, the six that do not being the five non-countries
-  plus Cabo Verde, which the 1:110m set does not carry at all.
-- **Polymarket rides the call it was already making.** The subject of a
-  prediction market lives in its question text, so this needs a model — and one
-  was already there, shortening titles to fit a 42-character header. It now
-  returns `{title, countries}` instead of a bare string, at the same batch size
-  and the same single call, so **the token cost is unchanged in kind**. Three
-  things that had to come with it: every deduped row goes through now rather
-  than only the over-long ones (the call is there for the countries, and
-  skipping short titles left the most quotable markets as the only untagged
-  ones) — but a title already inside the budget **keeps its own words**, because
-  rewriting a label that did not need it is a change nobody asked for; the
-  parser still accepts a bare string, because a model occasionally answers last
-  week's question; and every code is filtered through `CC_TO_TOPOJSON_NAME`,
-  because a model asked for ISO-2 will offer `UK` or `EU`, and **an unresolvable
-  tag is worse than no tag — it looks like coverage and matches nothing.**
-  Dry-run against Haiku with five live questions: correct shape, correct codes,
-  and `Bitcoin` correctly empty.
-- **It reaches the payload on the next cycle, not on deploy.** These are
-  fetchers; `content/trends/*.json` is written by stage 3.4 and the site serves
-  what the last cycle wrote.
+Five runs a day on a remote server, committing only `content/` (Stage 6, the
+tuning session, also merges experiment edits to the tunables in `scripts/`).
+The stage list is in the root CLAUDE.md; this is what the stages assume about
+each other.
 
 ## The shape of a stage
 
-- **A stage must not be able to stop the publish.** `run-cycle.sh` is written so
-  build + commit + deploy runs even when an earlier stage times out — that is
-  what stops one slow dependency becoming a no-publish cascade. Anything
-  advisory (the typecheck, the quality score) runs behind a `timeout` and a
-  `|| echo WARNING`. The cost is a failure nobody reads, so `logs.test.js`
-  ratchets on those warnings at a baseline of zero.
-- **Degrade to the previous snapshot, never to nothing.** Every `fetch-*.js`
-  writes `content/.<name>.json` and leaves the old file in place on failure; the
-  build reads whatever is there. A missing key logs a skip and the layer is
-  absent (`FIRMS_MAP_KEY` is the worked example).
-- **Say what was left out.** A bounded dataset that does not report its
-  exclusions reads as complete coverage. `fetch-firms.js` and `fetch-ipc.js`
-  both carry a `skipped` tally with a reason per bucket, and both keep the wider
-  evidence in `content/.*.json` while publishing only the part that can be
-  accounted for.
-- **Use the shared helpers**: `runWithConcurrency` (`lib/concurrency.js`) for
-  per-item HTTP, `argAt`/`hasFlag` (`lib/argv.js`) for flags,
-  `regionFromCoords` (`lib/regions.js`) for the coverage bbox ladder. Each of
-  those existed in three to five copies before 2026-08-01. Since 2026-10-02
-  also `ROOT` (`lib/paths.js`, thirty copies of a form that percent-encoded the
-  path) and `readJson`/`writeJson` (`lib/json-file.js`). **`writeJson` is
-  atomic** — sibling file, then rename — because every stage runs under
-  `timeout`, and a SIGTERM mid-`writeFileSync` leaves a truncated snapshot where
-  the last good one was: the exact outcome "degrade to the previous snapshot"
-  rules out. `readJson` returns the fallback on a missing *or* corrupt file and
-  logs the corrupt case, so a bad snapshot neither kills a stage nor reads as a
-  quiet day.
-  `fetchOk`/`fetchJson`/`fetchText` (`lib/http.js`) are the GET with a deadline,
-  `ZUHD_UA` and a throw on non-2xx. The eight hand-rolled `AbortController`
-  timers it replaced cleared on the *headers*, so a stalled body ran until the
-  stage's outer `timeout` killed it; `AbortSignal.timeout` bounds the body too.
-  `articleFilesSince(dir, sinceMs)` (`lib/article-files.js`) is the corpus
-  window by filename. Three stages parsed all 10.8k articles to keep a day or a
-  fortnight of them — the dedup context alone was ~750ms, three times a cycle.
-  Its margin (31 days) is against a measured worst case of frontmatter `date`
-  running 7 days ahead of the filename's.
-
-## NewsAPI.ai: the one fetch with no outer timeout
-
-- **`fetch-news-api.js` runs bare in `run-cycle.sh`** (no `timeout`), and
-  `apiPost` had no deadline either, so a single hung connection stalled the
-  cycle before the selector — no publish, nothing logged. `apiPost` carries a
-  90s `AbortSignal.timeout` (2026-10-02).
-- **The per-event panel calls run four at a time** (five concurrent is the
-  API's ceiling — Q6's comment). Which events to buy is settled before any
-  call, so they merge in scan order and the output is identical to the serial
-  loop (checked against a mocked API with completions reversed).
-- **A failed per-event call costs its own panel, not the API feed.** Before,
-  one 5xx threw out of `main()` and the cycle went RSS-only. The per-event log
-  line carries `error=` for it.
-
-## The selector's pool is cut at 12 hours
-
-- **A story's pubDate is the time every reader sees on it.** The writer copies
-  the source's pubDate into `date`, the build publishes it as `eventAt`, and the
-  app orders its river and dates every card by it. So a late pick is not a
-  late story, it is an old one: the 10:01 cycle of 2026-09-26 published two
-  stories 21 h after their events, and the app filed them 36 places deep under
-  `21h ago · new`. Past 24 h a story lands outside the app's river the moment
-  it arrives, and nobody swiping the day ever sees it.
-- **The prompt asked for this and the cut did not.** `select-prompt.md` has
-  always said a previous cycle's stories have had their chance, while
-  `merge-feeds.js` handed the selector 48 h of them. Over three weeks 18% of
-  what shipped was more than 12 h old at publish and 6% more than 24 h. The
-  selector reads what it is given; the rule has to be in the cut.
-- **12 h is two chances** at 05/10/14/18/22 UTC: the longest gap is the 7 h
-  overnight. Replayed over 70 archived pools it left at least 35 items a cycle
-  (median 50) for ~12 picks; multi-source stories thin the most (as few as 3), and the prompt's
-  multi-source floors already only apply "when the feed supplies them".
-- **A thin cycle widens the cut, never past 24 h** (2026-09-26). The first
-  12 h cycle — 18:00 that Saturday — held **39 usable stories for a target of
-  15**: the selector found 11, and backfill filled the gaps with county cricket
-  (as economy) and Cymru Premier football and shinty (as tech). The fetch was
-  healthy (77 RSS stories); the day was simply quiet. `poolAgeCapMs` keeps 12 h
-  when at least `MIN_POOL_ITEMS` (60) usable stories survive it, and otherwise
-  reaches back exactly as far as holds 60, capped at 24 h — past a day a story
-  lands outside the app's river, which is what the cut is for. Replayed on that
-  cycle's feed: 12 h 39, 24 h 54, 48 h 84, so on a thin evening it runs to 24 h
-  and stops short of 60. `Pool age cut:` in the cycle log says which cut ran.
-- **Backfill is gone** (2026-09-26, same cycle). It topped category floors up
-  from the feed by category tag, and the tag is noisy (a Mehr war report as
-  science, sport as tech). A slot left short beats one the writer must refuse;
-  `select-prompt.md` already says to fill the target from other categories.
-- **`logs.test.js`'s niche sentinel reads `RSS fetch:`**, not the merged niche
-  count, which after the cut measures freshness rather than feed health.
-- **A date with no time is aged from the end of its day** (`feedItemAgeMs`):
-  7% of stories carry a midnight pubDate (date-only RSS, the events API's
-  fallback), and aged from midnight every one would be gone by noon.
-  `lib/feed-age.js`, tested.
+- **Never** let an advisory stage stop the publish. From the writer on,
+  `run-cycle.sh` builds, commits and deploys whatever a timeout left; only a
+  selector failure or a writer with no article ends a cycle unpublished.
+  Advisory work runs behind `timeout`, and `logs.test.js` ratchets the
+  typecheck warning at zero.
+- Degrade to the previous snapshot, never to nothing: a failed `fetch-*.js`
+  leaves `content/.<name>.json` in place, and a missing key logs a skip.
+- A bounded dataset reports what it left out (`skipped`), or it reads as
+  complete coverage.
+- An empty result after a non-empty response is a schema change: that branch
+  must log what it saw.
+- A new series reaches the app the cycle after its first, once it has a
+  `standing`: the app drops a card with no paragraph.
 
 ## Claude CLI stages
 
-- **`claudeArgs(prompt, opts)` in `lib/claude-envelope.js`** is the one place
-  the argv is spelled, for every Node caller (`run-cycle.sh` spells its own).
-  `--no-session-persistence --max-turns 1` are what make these micro-tasks
-  rather than sessions: a copy that lost either would still work, cost more,
-  and leave state behind. Fifteen hand-written copies had drifted in exactly
-  that way — some without `--tools ''` (~17k input tokens a call), some without
-  `--exclude-dynamic-system-prompt-sections`. Run it with `runClaudeSync`
-  (one call, nothing to overlap), `spawnClaude` (inside a pool), or
-  `callClaudeJson` (the narrators' timed, never-throwing JSON call);
-  `runHaiku` is the Haiku shorthand. All of them drop `CLAUDECODE` from the
-  child env so the subprocess does not inherit the parent session marker, and
-  `claudeFailure(res)` is the one rendering of a non-zero exit — it reads
-  stdout when stderr is empty, which is where the CLI usually reports.
-- **`parseClaudeEnvelope(stdout)`** handles the `{type:"result", result:"…"}`
-  wrapper, a fenced payload, and raw JSON. Do not re-implement it inline —
-  `extract-entities.js` had two hand-rolled copies.
-  `parseClaudeEnvelopeWithUsage` additionally returns cache token counts, which
-  is how you tell whether prompt caching is firing.
-- **`lib/grounding.js` is the one grounding validator**, extracted from
-  `narrate-gdacs.js` when the dispatch stage needed the same check. Two
-  functions: `validateNumbers` for prose about what happened, and
-  `validateProperNouns` for the names in it, opt-in per call site because a
-  definitional sentence draws on general knowledge by design.
-- **A validator's calibration is a measurement, not a preference.** The first
-  version checked every capitalised token and the numeric tolerance was gated to
-  figures of 100 and above. Run over twelve real indicators it produced **two
-  rejections, both false positives, and caught nothing** — it deleted a good
-  sentence for writing "America's" where the bundle said `US`, and rejected a
-  definitional one over the `500` in "S&P 500". A validator that discards good
-  output at 17% and catches nothing is not protecting a reader; it is deleting
-  the feature. What ships: the tolerance is proportional at every scale (so
-  `4.7%` matches an input of `4.65%` and `12%` still fails against `8%`), only
-  **runs of two or more non-generic capitals** are name-checked (`Aban Tether`
-  is, `America's` and `The Fed` are not), and `standing` is not grounding-checked
-  at all. Measured after: 1 drop in 98, itself a false positive on a hyphenated
-  demonym, since fixed.
-- **Timeouts are measured, not guessed.** The batched stock scan sat at 30s and
-  was SIGTERM-killed (exit 143) on ~28% of cycles, discarding output whose input
-  tokens were already billed; it is 60s against a 180s stage budget.
+- **Never** call the Anthropic API: stages run the subscription's `claude` CLI.
+- `claudeArgs` (`lib/claude-envelope.js`) spells the argv for Node callers.
+  `--no-session-persistence`, `--max-turns 1` and `--tools ''` keep a call a
+  cheap micro-task. `trends-sources/polymarket.js` still spells its own; do
+  not copy it.
+- Run it with `runClaudeSync`, `callClaudeJson`, `runHaiku`, or `spawnClaude`
+  inside a pool: `runWithConcurrency` only limits work that yields. All drop
+  `CLAUDECODE` from the child env.
+- Parse with `parseClaudeEnvelope`; render a failure with `claudeFailure`.
+- `lib/grounding.js` is the one grounding validator. `validateProperNouns` is
+  opt-in and `standing` is unchecked: a definition draws on general knowledge.
+- Calibrate a validator or a timeout on real runs: rejected good prose
+  deletes the feature, and a killed call's input is already billed.
+
+## The selector's pool
+
+- `merge-feeds.js` cuts the pool at 12 hours (`MAX_FEED_AGE_MS`), two cycles'
+  chances. The rule lives in the cut: the selector reads what it is given.
+- A thin cycle widens the cut to hold `MIN_POOL_ITEMS`, never past 24 hours
+  (`poolAgeCapMs`): a late pick publishes as an old story.
+- Do not bring backfill back: it filled floors by a noisy feed tag, and a
+  short slot beats one the writer must refuse.
+- `logs.test.js` reads feed health from `RSS fetch:`: after the cut the merged
+  count measures freshness.
+
+## Upstream sources that lie
+
+- Polymarket keeps `active: true, closed: false` past a deadline. `endDate` is
+  the test; a market with none is kept.
+- Polymarket's `m.category` is undefined. Filter `/events` by `DROP_TAGS`: an
+  allow list silently lost whole subjects.
+- Polymarket's selection is sticky (`orderCandidates`, `INCUMBENT_CAP`):
+  narration is daily, so a re-rolled deck orphans its paragraphs. Watch the
+  `dropped` count `build.js` logs for `analysis.json`.
+- Country tags are the source's own tags and the model's, each filtered
+  through `CC_TO_TOPOJSON_NAME`: an unresolvable tag looks like coverage.
+- PortWatch's `date` is a string or epoch ms. Read it with `parseArcgisDate`;
+  a raw compare is `NaN` and drops every row.
+- Policy rates other than the Fed's and the ECB's come from the BIS
+  (`trends-sources/bis.js`); FRED's BoE and BoJ series stopped.
+  `detail=dataonly` is required, a series older than
+  `STALE_DAYS` is dropped, and tags name the bank, never the bare country.
+- `fetch-news-api.js` runs with no outer `timeout`: `apiPost` must keep its own
+  deadline. A failed per-event call costs its panel, not the feed.
 
 ## The indicator dispatch
 
-- **The rail said what moved and never why, and the gap was structural rather
-  than an omission.** Five sentences of explanatory copy existed for 57
-  indicators: three hand-written `note` strings on `brent`/`vix`/`us-10y`, plus
-  one block-wide constant per block. The attention block's read *"How many people
-  read this article on Wikipedia each day…"* — a correct description of the
-  metric, shown identically on twelve rows, at the exact moment a reader had
-  asked what was happening. `/e/{id}` carried no prose at all. `narrate-indicators.js`
-  (Stage 3.8, 04:00) writes two fields per instrument instead: `standing`, what
-  the thing is, and `recent`, what has happened to it and why.
-- **The two fields are fingerprinted separately, and that is the cost model.**
-  `standing` is definitional and stable, so its fingerprint is the item's
-  identity and it is written approximately once. `recent` is a claim about the
-  last fortnight. **Its fingerprint is the story, not the number** — the top six
-  coverage slugs and feed headlines sorted, the move in 5-point bands, and the
-  *dates* of the extremes. The first version hashed the series itself, which
-  meant every daily-cadence indicator busted its own cache every day and the
-  "steady state costs nothing" claim was false for all 98 items. Measured after
-  the fix: 98 items / $17.60 cold, **0 calls and $0.00 when nothing changed**,
-  6 items / $1.26 after one cycle published 12 articles.
-- **The grounding is free, and that is what makes the attention block
-  answerable.** `merge-feeds.js` has archived every merged feed to
-  `content/.feed-snapshots-merged/` five times a day since May, ~200 stories
-  each, carrying `concepts[].uri` — Wikipedia article URLs. Those are the same
-  keys `wiki-*` ids are minted from, so a `wiki-iran` bundle can carry every
-  story in the window tagged `en.wikipedia.org/wiki/Iran`, **including the ~190
-  per cycle we never published**, aligned against the days the series spiked.
-  The prompt's hardest rule follows from it: an attention row must explain the
-  *event*, never write that attention rose because the topic was in the news.
-  That answer is circular and is the boilerplate the stage replaced.
-- **`citations` is the crossreference, and it is why the related lists are worth
-  reading.** The model returns which of the offered slugs its `recent` was
-  actually built from, and the build prefers those over the tag matches for the
-  chokepoint and exchange cards. A tag list is the first eight articles
-  containing one of eleven words; a citation list is a claim that these stories
-  explain this movement. Validated against the offered set and re-resolved
-  against the corpus at build time, since an article can be renamed between the
-  run that wrote the file and the build that reads it.
-- **Catalog prose wins over generated prose — for a chokepoint, and only
-  there.** A strait's blurb *is* a definition: *"One-fifth of global seaborne
-  oil passes through this 21-mile strait between Iran and Oman"* answers what,
-  where and why in one line, and paraphrasing it would be the failure
-  "editorial lists are editorial" is about.
-- **The same rule applied to exchanges answered a question nobody asked.** All
-  30 blurbs are colour written for a reader who already knows the ticker —
-  *"Trades Sunday to Thursday. Heavily weighted to banks, defence and
-  technology"* never says that TA-125 is the Tel Aviv Stock Exchange's largest
-  125 listings, and *"The Arab world's oldest exchange, founded in Alexandria in
-  1883"* says nothing at all about the number EGX 30 puts on a card. Underneath
-  that is a subject mismatch: **the blurb describes the exchange while every
-  surface headlines the index**, so a reader arriving at `BIST 100` was handed
-  Borsa İstanbul's biography and still could not read the chart. The model
-  writes the exchange `standing` now, with the blurb in the bundle as material
-  it is told to keep and as the fallback if its sentence is missing or over cap
-  — the editorial claim survives, the identification goes in front of it.
-  Measured on five live exchanges: *"The 100 largest companies on Borsa
-  İstanbul, Türkiye's only stock exchange. Priced in lira, so its index level
-  carries the country's inflation as much as its earnings"* — the blurb's whole
-  claim, after an answer to the question the card raises.
-- **Worked examples in a prompt get copied verbatim onto the instruments they
-  name.** The first version illustrated the rule with TA-125 and EGX 30, both in
-  the catalog, and the very first live call returned the example sentence
-  word-for-word as TA-125's standing. The examples are Warsaw and Doha now —
-  indices this catalog does not carry — under a line saying to copy the shape
-  and not the words. Any example naming a real row is a template, not an
-  illustration.
-- **`promptHash` is in `standingFingerprint` too.** It was only in
-  `recentFingerprint`, so a rewritten standing rubric reached nothing: the
-  standing key hashes *identity*, and identity is exactly what never changes.
-  It costs no calls — both fields come back from one call, and the recent
-  fingerprint already busts on any prompt edit.
-- **The exchange blurbs no longer take 30 items out of the first run**, only the
-  11 chokepoints. In practice this is free for the same reason: those 30 were
-  being called anyway and having half the answer thrown away.
-- **The writer is handed the number, and matched on the subject rather than the
-  prose.** `attach-indicators.js` (Stage 1.7) puts current levels on the
-  selection before Stage 2, so an article can say "Brent at $88.90, down 15.6%
-  in a week" instead of "oil prices fell" — which is what makes the chart
-  `extract-entities.js` later attaches an *earned* link rather than a decoration
-  on a sentence that never engaged with it. Two corrections it needed, both
-  found by running it against a live selection:
-  - **It matches `title` + `angle` + `concepts`, never the source bodies.** The
-    bodies are the prose the writer works from, and they are also full news
-    articles containing every incidental noun there is: the first run offered a
-    **wheat price to a story about a solar eclipse**, off a sentence describing
-    "wheat fields and rolling hills" in the viewing area. A title and an angle
-    state what a story is *about*; a body is what an outlet happened to write.
-  - **The window is named from the cadence, and stale levels are dropped.**
-    `values` is a list of observations, not of days — `wheat` and `rice` are
-    monthly, so a fixed seven-point window is seven *months*, and a thirty-point
-    one is nearly two years. Windows are now `[3, 12]` for monthly and `[7, 30]`
-    for daily, each labelled with its real period, and anything older than 45
-    days (monthly) or 12 (daily) is dropped rather than dated — a writer handed
-    a figure will use it, and the caveat is the first thing a 450-character
-    article cuts. Ambiguous mentions are dropped too: guessing `rupee` would put
-    a Pakistani level in front of a writer covering Delhi.
-  The prompt rule is framed as **permission, not obligation** — a mandate here
-  produces a numeric tic on every article, which `measure-quality.js` would
-  score as filler. Measured on a live selection: 2 of 13 stories carried a
-  level, which is the intended precision.
-- **A rejected `recent` is not a rejected item.** The standing sentence still
-  ships; only the claim about last week is dropped. Partial output beats none,
-  and the alternative is an item that silently loses all its prose over one
-  unverifiable name.
-- **`recent` reaches three surfaces by three routes, and the split is a payload
-  decision rather than an editorial one.** The chokepoint and exchange payloads
-  carry it inline — those are 41 items and a few KB. The 55 bare indicators do
-  not, because `api/trends.json` is what the homepage's instrument rail
-  downloads on every visit and no rail row prints a paragraph; on the web it
-  arrives per-instrument from `/api/entity/{id}.json`, on the press that opens
-  a card. The app has neither that page nor that press: its graph decks build a
-  whole column up front and drop any card with no prose, so it needs every
-  paragraph before it renders anything. Hence `api/analysis.json` (2026-08-29),
-  17.2KB, prose only — carrying `citations` measured 34.7KB, half the file for
-  a list no card shows. Three routes, one writer, and nothing duplicated between
-  them.
-  - **The citations joined it on 2026-09-13, because something did need them.**
-    The app's odds line under a story is a contract's cited stories inverted,
-    and it read `relatedArticles` off `trends.json` indicators, which the build
-    never put there — so it rendered for nobody while its tests, whose fixtures
-    carried the field, passed. Joined onto `trends.json` they measured +24KB
-    (+35%) on the homepage payload; on `analysis.json` they cost the app alone
-    (~41KB, 13KB gzipped).
+- `narrate-indicators.js` (Stage 3.8, the `DAILY_HOUR` cycle) writes two
+  fields per instrument: `standing`, what the thing is, and `recent`, what
+  happened to it this fortnight and why.
+- `recentFingerprint` hashes the top stories, the move in bands and the
+  extremes' dates, never a raw series value, which changes daily. `promptHash`
+  is in both fingerprints so a prompt edit reaches all.
+- An attention row explains the event, never "the topic was in the news".
+- **Never** let the chart be a source for `recent`: a number in `series`
+  stays out, and the extremes' dates are for finding the story. With no cause
+  it says what the coverage carried and that none of it explains the move, or
+  is empty. It is never a description of the line.
+- A rejected `recent` is not a rejected item. Only `recent` is gated
+  (`PROMPT_ECHO_REJECT`); echoes in `standing` and `seriesEchoes` are only
+  counted, because a dropped `standing` drops the app's card.
+- `citations` are the offered slugs `recent` was built from; the build
+  prefers them to tag matches.
+- `BLURB_IS_DEFINITION` (`chokepoint`, `company`): the catalog blurb is
+  `standing`. An exchange's is the model's: its blurb describes the exchange,
+  not the index.
+- `recent` is inline on the chokepoint, exchange and company payloads, on
+  `/api/entity/{id}.json` for the web and on `api/analysis.json` (with
+  `relatedArticles`) for the app. **Never** join an indicator's onto
+  `api/trends.json`, which every homepage visit loads. That file's `events`
+  do carry theirs inline: an event has no `/e/{id}`.
+- The prune is the daily pass's only (`!NEW_ONLY`), and `PRUNE_FLOOR` declines
+  it when the live set collapses: a half-written payload reads as `[]`.
 
-## The grounding validator's quantifier was the bug
+## Prompts and validators
 
-- **It required *every* token of a name to be in the bundle, and that deletes
-  good prose for being more specific than its source.** What the check exists
-  for is an *invented* actor — a person, company or place the desk never
-  mentioned. A run that shares a token with the input is not an invention, it
-  is an elaboration. Measured on one production run: the corpus wrote `Warsh`,
-  the sentence wrote *"Kevin Warsh's Jackson Hole debut"*, and **both FOMC
-  meetings lost their entire explanation over a first name** — the two most
-  important events on the calendar, silently blank. `g20-2026-miami` went the
-  same way on "United States" where the bundle said `US`. It is **any token**
-  now; `Aban Tether`, the case it exists for, is still caught because neither
-  token appears anywhere.
-- **A demonym is the place as an adjective, not a second place.** `mkt:hkex`
-  and `mkt:sse` died on "Chinese" against a bundle saying China, `mkt:jse` on
-  "African" against South Africa — three exchange cards in one run, rejected
-  for their grammar. Two conditions, because either alone is wrong: a prefix
-  test has to be five characters to avoid noise and five misses `China` by one
-  letter, while a suffix test alone accepts `Aban` for ending in `-an`.
-  Together they are narrow.
-- **The structural words of country names are generic.** `United`, `States`,
-  `Kingdom`, `Republic`, `Emirates`, `Union`, and the compass words. None is
-  the identifying part of anything — the claim in "United States", "United Arab
-  Emirates" and "South Africa" lives in the other token.
-- **This is the third recalibration and each one was measured, not argued.**
-  `scripts/lib/grounding.test.js` now pins every sentence a production run threw
-  away, quoted from the cycle log that dropped it, alongside two inventions that
-  must keep failing. The record this file already kept — *"a validator that
-  discards good output at 17% and catches nothing is not protecting a reader; it
-  is deleting the feature"* — was right, and the fix it described was
-  incomplete rather than wrong.
+- A worked example in a prompt is handed back as a template. Illustrate with
+  instruments the catalog does not carry, and say to copy the shape, never
+  the words.
+- The grounding check (`lib/grounding.js`) is for an invented actor: a name
+  passes when any token is in the bundle, not every one
+  (`grounding.test.js`).
+- A validator states why it rejected (`validateMarketComment`'s `reasons`):
+  a bare `null` reads as a quiet day.
+- An offered figure is permission, not obligation. The editor treats one
+  matching its `indicators` row as sourced.
 
-## A worked example is a template, and the model will hand it back
+## The story chart and the market-signal join
 
-- **This is the third failure mode of an example, after "too vague" and "too
-  long", and it has now bitten twice in two days.** Measured across the
-  2026-09-05 dispatch: the site's definition of Brent crude was
-  `narrate-indicators-prompt.md`'s own sample sentence at **100% — every word**,
-  and `fomc-2026-09`, `-10` and `-12` shipped one shared paragraph at 49–63% of
-  the ✓ example in `narrate-events-prompt.md`. That example had been added the
-  previous night to fix *"five central-bank events recited the same 4.81%
-  ten-year"*. The duplication was moved, not removed: the cards stopped reciting
-  the chart and started reciting the prompt, and nothing said so.
-- **Both prompts now illustrate with instruments this pipeline does not carry** —
-  Newcastle coal, the Chilean peso, Chad, the Reserve Bank of India, the Bank of
-  Canada — under a heading that says why, and an explicit line: *copy the shape,
-  never the words; if your sentence could be pasted into this file as a new
-  example, it is the wrong sentence.* Verified live after the change: the same
-  FOMC item came back with *"Warsh arrives at his first September meeting having
-  spent Jackson Hole testing how much of the Fed's independence he intends to
-  spend"* — 0% echo.
-- **`promptEcho` (`lib/grounding.js`) is how you find out it stopped working.**
-  It reads the examples out of the prompt the run is actually sending, so it can
-  never fall out of step with the file, and reports the share of the output's
-  5-grams that appear in one. **It gates `recent` at 0.5 and only counts
-  `standing`**, and the asymmetry is what dropping costs: a rejected `recent`
-  ships an empty paragraph on the established "a rejected recent is not a
-  rejected item" path, while a rejected `standing` drops the whole item and the
-  app's decks gate membership on having prose — so gating there would delete a
-  card to avoid a sentence that is at least true. `prompt-echo` joins
-  `chart-echo` in both `Dispatch:` lines.
-- **Two ratchets in `corpus.test.js` measure the artifact rather than the
-  intent**: no shipped sentence is ≥50% its own prompt's example, and no two
-  instruments' `recent` share ≥30% of their 6-grams. The second carries the
-  three known FOMC pairs as a named baseline that **should be deleted** once the
-  next 04:00 pass rewrites them — the file's header is explicit that baselines
-  are observed values, and the point is to catch a *new* pair.
+- Offers (`lib/indicator-offer.js`, Stage 1.7) match a story's title, angle
+  and concepts, **never** the source bodies, which hold every incidental noun.
+  Replay before changing them: `attach-indicators.js --selection <file>
+  --dry-run`.
+- A stale or ambiguous level is dropped, not dated. Odds move in points
+  (`pointsMove`), and a contract is offered on its subject, not its country
+  (`oddsScore`).
+- `chart: <id>` may name only a row offered with `chart: true`, which is what
+  the app can draw. `validate-articles.js` removes any other and never
+  quarantines. The subject earns a chart, not a recited figure.
+- A day with no charts is the feed or the selector first: read `Q6: n
+  tracked` and "The things we chart" in `select-prompt.md`. Q6 runs after
+  the five queries, never beside them, on hand-picked keywords.
+- The market-signal join takes a name tag or `countryTags` against
+  `countries`, its own field in `loadArticles`: two-letter codes in the
+  haystack match prose. A tag is never an ordinary word.
 
-## The prune deletes what a half-written payload could not describe
+## Companies and AI labs
 
-- **`items` is assembled from payload files that each degrade to `[]` when
-  unreadable, and the prune trims the cache to match it.** So a mid-write
-  `.chokepoints.json` on the 04:00 pass deletes every chokepoint's prose — the
-  exact trade the code comment says is not worth making, with nothing stopping
-  it. The `!NEW_ONLY` guard beside it protects the four other daily passes and
-  does nothing for the one that actually prunes.
-- **Reproduced twice by accident**, testing a prompt change against a checkout
-  whose payloads were a month old: `--only mkt:tase` deleted 37 indicator
-  entries and `--only fomc-2026-09` deleted 7 of 16 events. Both would have been
-  committed but for a backup taken by habit.
-- **`PRUNE_FLOOR` (0.6) declines the prune when the live set has collapsed
-  against the cache**, and logs. Rotation is real — Polymarket questions close,
-  `wiki-*` is re-picked every cycle — but it moves a handful of ids a day, not a
-  third of the file. Below the floor the honest read is "a source did not load",
-  and a stale entry costs a card nobody notices while a wrong prune costs every
-  card that source feeds.
-
-## The market-signal join read half its own signal
-
-- **Not one `mkt:*` entity id exists anywhere in the corpus**, and the coverage
-  join's first arm is `a.entityIds.includes('mkt:tase')`. `extract-entities.js`
-  mints `brent` (437 articles), `cp:hormuz` (70), `nasdaq100` (20) and
-  `stocks:*`; it has never minted an exchange. So for all 30 exchanges that arm
-  is dead, and with it `directNews` — which feeds the ranking tiebreak and the
-  "shared explanatory story" dedup in `selectMarketSignals`. TA-125 drew **0
-  articles from a 327-story window** and its card shipped with no explanation.
-- **`countryTags` is the arm that was missing.** `build.js` has joined the
-  exchange cards' related lists on tags-or-country all along; this stage read
-  tags only. `loadArticles` now returns `countries` — the ISO-2 codes an article
-  links in its body — as a field of its own rather than more words in `hay`,
-  because two-letter codes folded into a substring haystack would have `us`,
-  `in` and `it` matching ordinary prose. **Partial by nature: 5,035 of 9,276
-  articles carry a link**, so it supplements and is ranked below a name match,
-  never replaces one. Measured: TA-125 0 → 12, BIST 7 → 8.
-- **`real` and `won` were tags.** Word-boundary matching stops `smi` matching
-  "transmission" and cannot save a tag that is itself an English word: Ibovespa's
-  two "explanatory" articles for a 5.4% São Paulo rally were a piece on European
-  housing and one on the Pentagon's maintenance backlog, both matched on *real
-  estate*; `won` on the KOSPI is the past tense of "win". Both gone, and b3's
-  bundle went 2 wrong → 1 right. **Country names stay** — removing `turkey` from
-  BIST was tried and measurably cost a Black Sea shipping story the country arm
-  could not see, because only half the corpus carries a link.
-- **Eight ways to fail, all of them `null`, none of them logged.**
-  `validateMarketComment` returned a bare `null` for every rejection and the
-  caller discarded `result.error` in silence, so three cards shipping without an
-  explanation looked exactly like three quiet days. It takes a `reasons` array
-  now (optional, so no caller changed) and the stage logs the reason, the
-  rejected text, and a `commented` count — the same discipline
-  `narrate-indicators.js` has had all along.
-
-## Tunable parameters and experiments
-
-One variable, one experiment, minimum three days, ≤20% of a parameter's range.
-Registered in `content/.experiments.json`, auto-evaluated by the 22:00 UTC
-tuning stage, tracked on the dashboard's Experiment tab. Create with
-`/experiment`. Tunables: selector category floors (`select-prompt.md`), feed
-params (`fetch-news-api.js`, `fetch-news.js`), build params (`build.js`).
+- `lib/company-metadata.js` is editorial and fixed. Probe a symbol before
+  adding it; `companyMismatch` pins name, currency and zone, and
+  `completedCloses` keeps an open session's price out.
+- Whether a story is about a company is the entity stage's model answer
+  (`subject`, `lib/stock-mentions.js`): a ticker in `entities[]` is only a
+  mention. `isAboutCompany` (`lib/companies.js`) guards it: the mention must
+  match the company's tags or `commonName`. A company tag in the title also
+  passes, and a story the model never read falls back to weaker tag signs.
+- `subjects:` is its own frontmatter key, because `entities[]` is published.
+  `[]` means read and about none; no key means never read.
+- `/api/ai-models.json` rows are labs, not models, which would be a
+  leaderboard.
+- **Never** compare a score with an earlier snapshot's: Epoch rescales the
+  index. Epoch AI is credited wherever its scores print.
+- `fetched` stays off the endpoint (`aiModelsPayload`): the app holds the
+  file by its tag.
+- A lab or money report older than `AI_LAB_STALE_DAYS` is left out.
 
 ## Editorial lists are editorial
 
-`STATE_OUTLETS`, `THERMAL_VOCABULARY`, `MARKET_CATALOG`'s `available: false`
-rows, `shared/genocide.ts` — these are judgements, kept short, each entry
-carrying its reason. They are not heuristics to be widened when something is
-missed. `MARKET_CATALOG` in particular records the exchanges the free data
-commons does *not* cover with a reason each, so the gap gets revisited rather
-than quietly becoming a fact about our coverage.
+- `STATE_OUTLETS`, `THERMAL_VOCABULARY`, `MARKET_CATALOG`'s `available: false`
+  rows, `shared/genocide.ts` and the company and lab catalogs are judgements,
+  each list with its reason. **Never** widen one as a heuristic.
 
-## Dashboard
+## Experiments
 
-`localhost:7777` over an SSH tunnel, `zuhd-dashboard.service`,
-`scripts/dashboard/`. Six tabs: Pipeline, Quality, Logs, Experiment, Editorial,
-Status.
-
-## The chart is not a source for `recent`
-
-- **The desk's `recent` was the chart read aloud.** Measured on the 2026-09-04
-  dispatch: 121 of 123 instruments carried one, the median held four figures,
-  and the usual opening was the series described back to the reader — *"the
-  index sits near 3,956, down about 2.5% over the window from its 4,163 high
-  on Jun 22, with the low of 3,764 on Jul 17"* — under a chart that draws
-  exactly that. Five central-bank events recited the same two figures (a 4.81%
-  ten-year, a 6.71% mortgage rate) because the coverage carried them, so five
-  cards said one thing. The prompt already said "lead with the cause, not the
-  number"; it also said "where the input gives you a date for an extreme, use
-  it", and the model used it by printing it.
-- **Both prompts now name what the reader is looking at and forbid it.** The
-  `series` block is context; the dates of the extremes are for *finding* the
-  story in that day's coverage; a number that appears in `series` does not
-  appear in `recent`; and an input that does not explain the move gets one
-  sentence about what the fortnight's coverage did carry, or an empty string —
-  never a description of the line. Events write about *this* institution's
-  decision: a backdrop sentence equally true under another bank's name is not
-  about this one.
-- **`seriesEchoes` (`lib/grounding.js`) measures it and does not gate.** A
-  `recent` that repeats a `series` value is logged (`~ key: reads the chart
-  (3,956, 4,163)`) and counted in the `Dispatch:` line as `chart-echo`. A gate
-  would delete "held at 3.75% since December", which is the level plus a fact
-  about it, in exchange for no explanation at all. The prompt is the fix; the
-  count in the next 04:00 log is how you know whether it worked.
-- **The prompt's hash is part of `recentFingerprint`, in both stages.** It was
-  not, so a prompt edit reached only the items whose story or 5-point band
-  happened to move that day. The full pass rewrites ~102 of ~110 items daily
-  regardless (the sorted top-six headline set moves most days, so the
-  "steady state costs nothing" claim holds for a handful), but a prompt edit
-  should reach *all* of them, once, and now does.
-
-## The story chart (2026-09-30)
-
-- **An article can carry one chart: `chart: <id>` in its frontmatter**, drawn
-  under the story by the app (`mobile/components/StoryChart.tsx`, resolved by
-  `lib/story-chart.ts`). The writer sets it; it may name only a row Stage 1.7
-  offered that story with `chart: true`, and `validate-articles.js` removes any
-  other — **removes the line, never quarantines the article**: a missing chart
-  costs one figure, a quarantine costs the story. `Charts: n set, d dropped, c
-  cite the figure` in the cycle log is the health line.
-- **The subject decides, not the prose** (user decision). A chart prints its
-  own reading, move and date, so an article about tankers turned back at
-  Hormuz carries Hormuz traffic whether or not a sentence recites 3.1 ships a
-  day. `cite` in the log measures how often they meet and gates nothing.
-- **`chart: true` is the app's own gate**, not a pipeline opinion: a strait
-  with a series, or an id the desk has written a `standing` for
-  (`.indicator-dispatch.json`) — what `instrumentCardFor` resolves. An id the
-  app cannot draw would ship a field that renders nothing.
-- **Every chokepoint match was lost until this.** `entity-registry.js` has
-  resolved straits to `cp:*` since 2026-08-08, and `attach-indicators.js`
-  looked every id up in the trends snapshot, which carries `portwatch-*` rows
-  and no `cp:*` — so Hormuz, the most-covered subject of September (81
-  articles, 75 with a chip), reached the writer with no figure and 6 of them
-  cited one. Straits are read from `.chokepoints.json` now, with the numbers
-  their card prints: seven-day traffic, all ships, against the 90-day normal.
-- **Odds move in points.** `change()` is relative, which turns a contract
-  going 40 → 21 into "−47.5%". And a contract's periods repeat within a day
-  (`Sep 30, Sep 30`), so its windows are counted in days, not observations.
-- **A contract needs its subject, not its country.** Keys are its tags plus
-  the names in its question, matched case-sensitively (Marine Le Pen is not a
-  marine heatwave). One specific key offers it; weak keys — countries,
-  demonyms, `ceasefire` — need three, with a country and its demonym counted
-  once. Measured on a week's replay: at two weak keys *Netanyahu next PM?* hung
-  off every story naming Israel and Israelis, and *Putin out by 2027?* off every
-  story of the war.
-- **A monthly print is aged from the end of the month it measures.** FRED dates
-  August's CPI `2026-08-01` and publishes it mid-September, so aged from the 1st
-  it failed the 45-day limit a week after release — so the rules for US
-  inflation and jobs added below would have offered nothing most days.
-- **Rules added**: the Fed (case-sensitive, so not "fed up"), the ECB, US
-  inflation and jobs, silver prices, the Brazilian real, US gasoline (named as
-  US: bare "gasoline" matched Italian fuel caps), and the thirty drawn
-  exchanges generated from `MARKET_CATALOG`, case-sensitive, with `IPC`, `SMI`,
-  `AEX` and `B3` skipped. These feed `extract-entities.js` too, which is the
-  first time any article has carried an `mkt:*` id.
-- **The editor was told to cut offered figures.** `check-prompt.md` said to
-  cut any number no source body contains, and an indicator level is in no
-  body — a plausible reason so few levels survived to publication, not
-  measured. It now treats a figure matching its `indicators` row as sourced.
-- **Replay before changing any of it**: `node scripts/attach-indicators.js
-  --selection <file> --dry-run` prints every offer without writing. The match
-  list is the thing to read — the eclipse in the wheat fields was found that
-  way, and so was each correction above.
-
-
-### No chart for a day, and why (2026-10-01)
-
-The first five cycles set **0 charts in ~60 articles**, from 28 chartable
-offers. The causes, in order of how much each mattered:
-
-- **The feed had nothing to chart.** Of 149 raw items in the 18:00 fetch, four
-  had a headline about any tracked series, while the same hour's wires ran
-  "Three oil tankers hit by projectiles in Hormuz strait" and "10-year Treasury
-  yields highest since 2002". Nothing filtered them out: the fetch samples the
-  day by event size and by recency, and a market desk is a few items among
-  hundreds. `fetch-news-api.js` now asks for them by headline (**Q6**, one
-  token, `lib/tracked-stories.js`), and up to eight take a guaranteed slot —
-  only ones inside the feed's 12 h age cut, which `merge-feeds.js` would
-  drop anyway.
-  - **Q6 runs after the five, never beside them.** As a sixth parallel request
-    it drew a 429 on its first real run — on Q4, so its own catch could not
-    contain it and the cycle would have gone RSS-only. It is also the only
-    query that fails soft.
-  - **Slots are spread across series** (`pickTracked`): each takes one before
-    any takes a second. Ranked on outlet count alone, six of eight went to Fed
-    speakers and a bank's bitcoin target, and Hormuz — one Reuters report — got
-    none. Two wires carrying one speech is not weight.
-  - **The keywords are hand-picked, not the registry's mentions**, which
-    resolve a word inside a chosen story (`oil`, `rice`, `euro`) and as a
-    headline search return the rice harvest. A test holds each keyword to a
-    series it resolves to.
-- **The selector was never told.** `select-prompt.md` ("The things we chart")
-  now says a hard-news story about a tracked series is a strong economy pick —
-  one or two a cycle, never a price recap or an analyst target — and to name
-  the series in the `angle`, because Stage 1.7 reads title and angle only.
-- **The writer's bar could not be met.** "What the story is about", "if you
-  have to explain to yourself why the chart belongs, it does not" and "most
-  articles have none", read together, refused Hormuz traffic under talks on
-  reopening Hormuz. The rule is now three positive cases — the series is the
-  **subject**, the **cause**, or **what is being decided** — with the
-  exclusions named (a shared country, company or sector; a contract whose
-  question is not the story's next step). Measured by handing 37 real stories
-  and their offers to the writer's model under each wording: **6 charts under
-  the old rule, 14 under the new**, none of them on a nearby series; on the 21
-  that had actually been published, 0 and 4.
-- **Most offers were noise, which taught the writer to refuse.** A contract's
-  name keys are the capitalised words of its question, so *Google best AI
-  model?* was offered to ten stories that said "AI" and *Balance of Power: R
-  Senate, R House* to Indian power stocks. A question made of single words now
-  needs two of them (`oddsScore`); a full name, a lone surname or a tag still
-  stands alone. On the same replay 13 offers went, every one of them wrong.
-- **`Treasury yield` resolves to `us-10y`.** A headline says "Treasury yields",
-  not "10-year yield", and the bond sell-off story reached the writer with no
-  row for it.
-
-**To check it is working**: `Q6: n tracked` and `Tracked-series stories: n` in
-the fetch log, then `Charts: n set` after validation. Expect two to four charts
-a day; zero for a day again means the selector is passing over the tracked
-stories — read its summary before touching the writer's rule.
-
-## The company list, and what a story is about (2026-10-03)
-
-`/api/companies.json` is the app's `largest companies` list: twenty share
-prices, fetched by `fetch-companies.js` (Stage 3.4b3) from the catalog in
-`lib/company-metadata.js`, joined to coverage at build time by
-`lib/companies.js`. No web surface reads it. `fetch-markets.js` is its model,
-and three things differ.
-
-- **Completed sessions only.** A cycle that runs while New York is open would
-  publish a price of that minute under yesterday's date, and change the file
-  on every cycle of a trading day. The list prints one close a day, so the
-  fetcher keeps one (`completedCloses`), and the build holds the file's stamp
-  (`apiStamps`): it changes when a market closes, about four times a trading
-  day, and not between a Friday close and Sunday's in Riyadh.
-- **The name is pinned as well as the currency and zone** (`companyMismatch`).
-  Fifteen of the twenty are dollar shares in New York, which the exchange
-  catalog's two assertions cannot tell apart; a ticker reassigned to a fund
-  would publish that fund's price under the company's name.
-- **The companies are in the indicator dispatch, as `co:<id>`, and their
-  `standing` is the catalog's `blurb`.** They were left out for half a day —
-  the list was looked up, not followed, and twenty more instruments is twenty
-  more for the model to read a fortnight's coverage against — until the user
-  put them in the app's top strip, where a reader who taps a share that moved
-  9% in a week is asking why and the card answered what the company is. So
-  `narrate-indicators.js` writes each a `recent`, about +18% on a pass that
-  took ~500–570 s of its 1,500 (2026-09-30 to 10-03); the first run after a
-  deploy narrates all twenty as `--new-only`.
-  - `company` is in `BLURB_IS_DEFINITION`, beside `chokepoint`: the blurb was
-    written for exactly that slot, it is what the card falls back to, and
-    `companies.test.js` holds each to the 240-character cap — an over-cap
-    standing rejects the item, which would leave the company with no account
-    and re-ask the model for one every day.
-  - **Its first tier of coverage is the stories *about* the company**
-    (`isAboutCompany`, the rule the build lists stories by), not an
-    `entities[]` hit: for a share that is a mention, and offered first a
-    mention is what the model reaches for when asked why a price moved. The
-    prompt's `company` paragraph says the same from its side: a customer, a
-    supplier or a move in the whole market does not explain this share, and
-    `recent` is empty when nothing in the input is about the company's own
-    business.
-  - Tried before shipping on four companies, against the laptop's corpus and
-    no feed window: Nvidia's account was its buyback and its Gulf model,
-    Apple's ended "None of it explains the share's climb over the window",
-    Aramco's was the Hormuz blockade and the Yanbu shutdown, and ASML's, with
-    nothing to go on, was empty.
-  - The build puts `recent` on `/api/companies.json` (absent when empty, never
-    blank) and lists the account's own citations under it; with no account,
-    the stories about the company. The app drops a card with nothing under
-    its chart, so a company without a blurb is a company nobody sees.
-- **The list is editorial and fixed**: the twenty largest by market value as
-  ranked on 2026-10-03, home listings (TSMC is `2330.TW` in Taiwan dollars, so
-  the week's move is the share's and not the exchange rate's). The quote
-  source carries no market value, so nothing re-ranks itself. Probe a symbol
-  before adding it and pin what it reports.
-
-**Which stories are a company's is a judgement, and the model makes it.** The
-card prints them under the chart as `in the news` and marks them on the line,
-so a story that only mentions the company must not be there. Both joins the
-other layers use failed that on the first run:
-
-- A ticker in `entities[]` is a mention, and sometimes not that: a forum in
-  Baku listed under Microsoft because Microsoft attended, and a Saudi carmaker
-  under TSMC because the entity stage gave Foxconn TSMC's ticker.
-- The tail of `concepts` is noise: a euro-zone inflation story carried
-  `Amazon (company)` fourth of five, beside `Fullscreen (company)`.
-
-So the entity stage's company scan — the Haiku call that already reads every
-new article for tickers — answers one more thing per company: `subject`, true
-when the article is about it (`lib/stock-mentions.js`). No second call. Checked
-on a dozen live stories before it shipped: the forum was a mention of
-Microsoft, the Mac story about Apple and a mention of Meta, and Foxconn got
-its own ticker.
-
-- **It is recorded as `subjects:` in frontmatter, its own key.** `entities[]`
-  is published to the app and the map; a field added to its items would ride
-  out with them. `subjects: []` means read and about no company, which is a
-  different answer from no key at all (never read: everything before
-  2026-10-03, and a cycle whose scan timed out — the scan returns null then,
-  where it used to return an empty map that read as "nothing found").
-- **A subject is believed only when its words name the company**: the
-  entity's `mention` has to match the company's tags. That is what keeps a
-  wrong ticker off a card.
-- **A title that carries a tag lists the story whatever the model said.** The
-  model can miss, and a headline that says Nvidia is about Nvidia.
-- **An unread story falls back to two weaker signs**: the bare name in the
-  title when the name is an ordinary word (`commonName` — `apple`, `amazon`),
-  with the ticker or a concept agreeing; or a tag in the first two concepts.
-  A tag is never an ordinary word, as in `market-metadata.js`.
-- The scan's prompt told the model SpaceX was private. It is listed now, and
-  the prompt says so; a model that does not know a ticker lists nothing.
-
-## AI labs' scores, from Epoch AI (2026-10-04)
-
-`/api/ai-models.json` is the app's `AI models` list: ten labs, each with the
-best score any of its models has on Epoch AI's Capabilities Index, the line of
-that best at each release, and its newest reported revenue and valuation.
-`fetch-ai-models.js` (Stage 3.4b4) reads three CSVs from `epoch.ai/data` — no
-key, CC BY 4.0, and the credit is the licence's one condition (the card's
-source line and About's provider list in the app). `lib/ai-models.js` is the
-arithmetic and `lib/ai-lab-metadata.js` the catalog. No web surface reads it.
-
-- **A lab, not a model.** The scores file holds 270 models; publishing them is
-  a leaderboard. A row is a lab and its line is its running best, which only
-  rises.
-- **The catalog is editorial and fixed**, with each lab's `Organization`
-  strings pinned. A model filed under `Google DeepMind,Google` is matched on
-  the comma-separated parts. A lab is added by hand, after probing its
-  strings against the file.
-- **A lab with no model scored in 365 days is left out, and `skipped` says
-  so** (`AI_LAB_STALE_DAYS`). The same cut applies to money: xAI's newest
-  revenue report was a year old, and beside this year's valuation it read as
-  the revenue that valuation was paid for.
-- **Fetched once a day, called every cycle.** The script keeps a snapshot
-  whose `fetched` stamp is under 20 hours old and exits; `--force` overrides.
-  A weekly clock gate was the alternative, and the cycle's gates have no
-  run-once marker: one missed run would skip the week.
-- **The scores file is the gate; the company files are a side dish.** Too few
-  models or a missing column rejects the fetch and keeps the previous
-  snapshot. A company file that fails keeps the figures the last snapshot
-  had, until they age out.
-- **Never compare a score with one an earlier snapshot held.** The index is
-  rescaled when Epoch adds a benchmark, so every model's score can shift at
-  once. History is the file's own, read whole each time.
-- **`fetched` does not reach the endpoint** (`aiModelsPayload`): it moves
-  daily whatever Epoch did, and the app holds the file by its tag.
-- **The standing sentence carries no number** (`ai-models.test.js`): no rank,
-  score, model version or year, each of which goes stale. There is no daily
-  account and no `in the news` join yet: the entity stage tags listed
-  companies by ticker, and most of these labs have none.
+- One variable per experiment, three days minimum, at most 20% of a
+  parameter's range, in `content/.experiments.json`. The tunables are listed
+  in `tune-prompt.md`'s `<tunable_parameters>`.

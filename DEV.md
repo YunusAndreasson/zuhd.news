@@ -17,8 +17,7 @@
 | File | Purpose |
 |------|---------|
 | `scripts/fetch-news.js` | Multi-source RSS fetcher with cross-source dedup |
-| `scripts/prefetch-articles.js` | Pre-fetches article content for writer (eliminates WebFetch tool calls) |
-| `scripts/build.js` | Markdown → HTML static site generator (custom, ~145 lines) |
+| `scripts/build.js` | Markdown → HTML static site generator (custom) |
 | `scripts/validate-articles.js` | Validates frontmatter/structure before deploy; moves malformed articles aside |
 | `scripts/write-last-cycle.js` | Writes `content/.last-cycle.json` from validated articles (selector dedup signal) |
 | `scripts/coverage-map.js` | Generates compact topic-group coverage map injected into selector prompt |

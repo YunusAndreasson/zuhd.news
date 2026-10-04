@@ -1,487 +1,303 @@
 # Mobile Design System
 
-Typography-first, dark-default, hairline-everywhere. Source Sans 3 only. `#c9a84c` dome gold as the sole accent. Hierarchy through type, not color.
+The reference for choosing a variant, a token or a motion. Values are in
+`constants/theme.ts`, the philosophy in root `foundation.md`, and the
+non-negotiables (hex, `fontSize`, icons, typeface) in `CLAUDE.md`.
 
-See root `foundation.md` for the philosophy. This document is the operational reference: tokens, primitives, rules. If you're building or changing UI in `mobile/`, read it.
+How the screen behaves is in the repo root's `.claude/rules/mobile/`, which
+loads with the files it covers; this document is what things look like.
 
 ## Voice
 
-The deck marks every story that arrived since the reader last had the feed
-with a `new` ink step on its kicker, and the first one after them that the
-reader already had with `earlier`; landing on that card is the caught-up
-moment. `new` on every new card is recent (2026-09-21): the river went to time
-order, and a reader coming back asked to see what had arrived. A card whose content changed since the reader last viewed it
-opens its kicker line with `updated`, in stronger ink, in the slot `current`
-uses — and a card is never both, because each is the app saying "look". There
-is no “New to you” and no “Previously viewed”: both restated the reader's
-position as one more small-caps line to decipher before reaching the number.
-Status never borrows the favorable/unfavorable delta colors. Content
-signatures ignore observation timestamps and editorial promotion; history
-stays on-device and is included in the privacy erase action.
-
-One typeface family. Whitespace is designed. Color carries meaning only — every non-monochrome element must justify its hue. No shadows, no gradients, no decorative icons — the carve-outs (the `BriefingBar`'s iOS-only frosted glass, the top bar's shade, the resting story's veil, the fade where an open story scrolls behind its footer row) are listed in §Native chrome carve-outs. Restraint is the brand.
+- Hierarchy comes from type and whitespace, not from colour.
+- Colour carries meaning only. `dome` gold is the one brand accent.
+- Quiet is an ink step (`text`, `accent`, `textSecondary`), never opacity.
+- A kicker's status word (`new`, `earlier`, `current`) is an ink step, never
+  a move's colour.
 
 ## Tokens — `constants/theme.ts`
 
-All design tokens live in one file. Components consume via `useTheme()`.
+| Token | Role |
+|---|---|
+| `bg`, `sheetBg` | The screen's ground; a sheet's ground |
+| `pillBg`, `playerBg`, `toastBg` | A button's or current row's fill on a sheet; solid chrome over the globe or text; toast |
+| `textEmphasis`, `text`, `accent`, `textSecondary` | Inks, strong to quiet; `accent` is not a brand colour |
+| `rule` | Every hairline |
+| `tone*Text` | Sentiment inks |
+| `mark*`, `categoryText*` | Globe marks, in the web map's hues; a category's word |
+| `SPACING` | `articlePadding` insets the reading column, `screenPadding` sheets |
+| `GAP`, `RADIUS`, `FLAG`, `OPACITY` | Named tiers; never a literal |
+| `ICON` | Four sizes; `xs` only for a move chip's caret |
+| `HIT_SLOP`, `INLINE_HIT_SLOP` | Tap targets; the second for links in prose |
 
-| Token group       | Export                                          | What it is                                    |
-|-------------------|-------------------------------------------------|-----------------------------------------------|
-| Colors            | `DARK_COLORS`, `LIGHT_COLORS` (via theme hook)  | Semantic keys — never inline a hex. Brand accent is `dome` (gold); `accent` is a soft text tier, not a brand color. |
-| Typography        | `makeTypography` → `sizeBase`, `sizeLg`, etc.   | Responsive scale + leading (`leadingBody` / `leadingHeading` / `leadingTight`) + `trackingCaps` / `trackingHeading` / `trackingWordmark`. `leadingTight` (1.1) is the single tight single-line leading for small-caps labels/captions — use it instead of an ad-hoc `× 1.1`. |
-| Variants          | `makeTextVariants` → 15 roles                   | The `<Text variant>` catalog (see below)      |
-| Variant caps      | `VARIANT_CAP`                                   | Dynamic Type ceiling per variant              |
-| Variant breaking  | `VARIANT_TEXT_PROPS`, `PROSE_BREAK_PROPS`       | Per-role line-breaking + iOS Dynamic Type ramp props, auto-applied by `<Text>`: prose hyphenates (Android) and uses iOS `standard` breaking; display/title use `balanced`/`push-out` widow control. Article sentences in `lib/markdown.tsx` get the body set via `PROSE_BREAK_PROPS`. |
-| Spacing           | `SPACING` (xxs → xxl + `smPlus`, `screenPadding`, `articlePadding`) | Four-pt-ish scale. `articlePadding` (14) is the reading column's inset — the story card, the dock, the gauges and the cards; platform sheets keep `screenPadding` (18). |
-| Gap tokens        | `GAP` (none, tight, row, item, section)         | Named Stack gap tiers derived from SPACING    |
-| Radii             | `RADIUS` (handle, pill, floating)               | Three semantic tiers, intent-named            |
-| Icons             | `ICON` (xs=11, sm=14, md=20, lg=26)             | Four tiers; `xs` is a chip caret beside 11pt figures only. Anything else is a mistake. |
-| Flag emoji        | `FLAG` (row=18, inline=22, display=32)          | Pictogram sizing — flags aren't type          |
-| Animation         | `ANIMATION`, `EASING`, `KEEP_MOTION`            | Durations, spring configs, Reanimated easings — see §Motion |
-| Opacity           | `OPACITY`                                       | Named tiers — never inline decimals           |
-| Hit slop          | `HIT_SLOP`                                      | Standard expanded tap target                  |
-| Tones             | `TextTone` + `toneColor(tone, colors)`          | Semantic color override (`default`, `secondary`, `accent`, `emphasis`, `dome`, `favorable`, `unfavorable`, `neutral`, `rise`, `fall` (a move's direction, `moveTone`), `inverse` — text on a `colors.text`-filled surface) |
-| Title scale       | `titleFontScale(length)`                        | Encapsulates "shrink long titles"             |
-
-### Rules
-
-- **Never write a hex code** in a component. Pull colors from `useTheme().colors` or pass a `tone` to primitives.
-- **Never write a `fontSize`** in a component. Use `<Text variant>`; if you need to shrink, use the `scale` prop. If no variant fits, add a new one to `theme.ts` (with a comment explaining the editorial role).
-- **Never write a raw spacing literal** (e.g. `padding: 12`). Use `SPACING`, `GAP`, or a primitive's padding prop.
-- **Never import `@expo/vector-icons` directly**. Go through `<Icon>`.
-- **Never set decorative `fontFamily`** (bold/semibold/italic) in a component for a role that exists as a variant. Font overrides via `font.X` are an escape hatch, documented with a comment when used.
-- `fontVariant: ['oldstyle-nums']` / `['tabular-nums']` as style overrides are allowed — they're orthogonal to typography size/weight and some variants need them situationally.
-
-**One documented exception to all of the above:** `ErrorBoundary` renders *above* `ThemeProvider` (it has to catch errors thrown inside the provider itself), so it genuinely cannot call `useTheme()` or use the `<Text>` / `Pressable` primitives. Its inline dark-mode styles are intentional — don't "fix" them to tokens.
+`ErrorBoundary` renders above `ThemeProvider`, so its inline styles are the
+one exception.
 
 ### Sentiment / severity color
 
-- **`colors.toneFavorableText / toneUnfavorableText / toneNeutralText`** — the sentiment hues (sage / rose / slate) for foreground text. **One luminance for all three** (dark 8.2–9.0:1 on `bg`, light 5.5–5.9:1; `__tests__/palette.test.ts`): a hue that says good or bad must not also say it more quietly. Until 2026-09-23 dark rose sat at 5.5:1 beside sage's 7.3:1, so every fall read as the weaker figure, and at 0.18 saturation both read as grey over the globe. The globe's market arrows are the same two inks (`markMarketUp/Down`), so there is one green and one red in the app. The `tone="favorable|unfavorable|neutral"` prop on `<Text>` resolves to these. The background-fill tones that once paired with them went with the last blocks that drew tone pills (`CompareBlock`, `TimelineBlock`, `TreemapBlock`).
-
-**A move is green up, red down, slate unmoved, on every surface (2026-09-25, the
-user's request).** `moveTone` in `lib/valence.ts`; `<Text tone="rise|fall">`
-resolves to the globe's market inks (`markMarketUp/Down`), so the chip, the
-strip, the markets list, the globe's arrows and a strait's traffic sign are one
-green and one red. A contract's points stay slate: odds are never tinted. The
-rule it replaced is below — colour as *consequence*, where oil rising was rose
-and bitcoin slate — and it failed the user's test that the screen explain itself
-by looking: one ▲ in three colours, for a reason only a sentence in the markets
-list gave, beside globe arrows that were direction all along. What a move means
-is the card's prose to say. Before 2026-09-23 the strip alone coloured direction
-and the card it opened colour consequence, so Brent was green on the gauge and
-rose on its card; one rule everywhere is what keeps that from coming back. The
-gauges' subjects are `text` ink (`labelXsTight`), not secondary: 11pt caps over a
-lit globe fell to ~5:1.
-
-**Colour-as-consequence was the rule until 2026-09-25, and was removed.**
-`lib/valence.ts` held a table of what a rise in each published series did to a
-reader (`RISE_MEANS`, `riseMeansFor`, `valenceOf`): oil rising was rose, a fall
-in it sage, bitcoin slate because the app would not say. The caret and the
-colour were two channels on purpose. It was careful and invisible — nothing on
-screen said the colour was a claim — and the user's rule is that the screen
-explains itself. Two lessons from it stand:
-
-- **One module answers the colour of a move.** Three surfaces once answered
-  separately and all three disagreed — a card chip in sage/rose, `EntitySheet`
-  tinting on *magnitude* in the globe's dome gold, `ChokepointSheet` calling a
-  strait disrupted at 15% where the card said 10%. A second rule anywhere is
-  the regression.
-- **Slate is a colour, not an absence.** An unmoved reading or a contract's
-  points is slate, never the `emphasis` ink of the label beside it: that is how
-  two thirds of the readings once looked uncoloured.
-
-A corollary that outlived it: **quote the quantity whose sign matches its
-meaning.** FX mover cards report the currency's own move rather than the
-published local-currency-per-dollar rate, so `▼` means the currency fell.
-
-**The neutral ladder has the same steps in both themes** (`__tests__/palette.test.ts`). `accent` sits about two thirds of the way from `text` down to `textSecondary`, at least 1.3× in contrast from each; on cream it was 6.2:1 beside secondary's 5.1, so the second voice and the quiet one were one grey. `rule` is as strong on the sheet in light as in dark (≥ 1.3:1; OKLab ΔL ~0.09 against 0.10) — it was half that on cream, where the sheet's handle, the toggles' off track and every row rule sit. A reference line on a chart (a card's 90-day normal, replacement fertility) is secondary ink, dashed; gold is the brand and the economy hue, and a baseline drawn in it reads as a verdict. A monochrome glow does not invert at the same strength: the globe's coverage hotspots lift the dark ground in `text` ink, and at the same alpha on cream they were a grey cloud around the story's dot, so light draws the halo at half (`HOTSPOT_LIGHT`).
-
-**Severity** (GDACS / conflict / weather) is single-tier: only the most editorially urgent state — Red disaster, fatal conflict, very-rough seas — earns the `toneUnfavorableText` hue. Lower tiers read in monochrome (`text` / `textEmphasis` / `textSecondary`); severity remains legible from the focal number, eyebrow, and metadata. This is the "color carries meaning only" rule from `foundation.md` taken literally.
+- A move is green up, red down and slate unmoved. `moveTone`
+  (`lib/valence.ts`) decides wherever a `DeltaChip` prints one, returning
+  `rise`, `fall` or `neutral`; the globe's marks draw up and down in the same
+  two inks. A second colour rule is the regression.
+- Colour never says what a move means; the card's prose does.
+- Slate is a colour: an unmoved reading never takes its label's ink. A
+  contract's points are always slate, because odds are never tinted.
+- Quote the quantity whose sign matches its meaning: a currency's own move,
+  not its rate against the dollar.
+- The tone inks share one luminance (`__tests__/palette.test.ts`).
+- Severity is single-tier. `severityTint` (`lib/severity.ts`) gives
+  `toneUnfavorableText` only to a Red GDACS alert or a conflict event with
+  deaths. Lower tiers are monochrome.
+- A chart's reference line is secondary ink, dashed, never gold or rose.
 
 ## Primitives — `components/primitives/`
 
-Eight primitives. Composition over configuration.
+| Primitive | Purpose |
+|---|---|
+| `Text` | All text: `variant`, `tone`, `scale` |
+| `Stack` | Flex layout with a `gap` |
+| `Box` | Background, radius, hairline (`rule`) |
+| `Screen` | Screen scaffold |
+| `Pressable` | Spring press, no haptic; `tapSlop` where swipes start |
+| `IconButton` | Icon-only button with `HIT_SLOP` |
+| `Icon` | One icon API for both platforms |
+| `Markdown` | Inline bold, italic and links (`openLink`) |
 
-| Primitive    | Purpose                                  | Key props                                                                  |
-|--------------|------------------------------------------|----------------------------------------------------------------------------|
-| `Text`       | All text — variants + tone + scale       | `variant` (required), `tone`, `scale`, `numberOfLines`, `selectable`       |
-| `Stack`      | Flex layout                              | `direction`, `gap`, `align`, `justify`, `padding*`, `fill`, `wrap`         |
-| `Box`        | Decorative container                     | `background`, `radius`, `padding*`, `rule` (`top`/`bottom`/`left`/`right`) |
-| `Screen`     | Top-level screen scaffold                | `edges`, `padded`                                                          |
-| `Pressable`  | Full-bleed row press (spring, no haptic) | `onPress`, all RN Pressable props                                          |
-| `IconButton` | Icon-only chrome button                  | `onPress`, `accessibilityLabel`, icon child                                |
-| `Icon`       | Ionicons wrapper — four sizes + tone     | `name`, `size` (`xs`/`sm`/`md`/`lg`), `tone`                               |
-| `Markdown`   | Inline markdown text (`**b**`, `*i*`, links) | `children`, `variant`, `tone`, `onLinkPress` (handles the `country:XX` scheme) |
-
-### Don't use if…
-
-- `Pressable` — if you need a static-feedback element (no spring), use raw RN `Pressable` + `PRESSED_STYLE`. `Toast` dismiss, the hint pill and the search field's clear button are the references. Anything in a reading surface — the card's `sources · save · share`, the odds line, a row — uses the spring primitive: small chrome still deserves motion, and two press styles side by side read as two kinds of control.
-- `Stack` vs `Box` — Stack = flex container with gap. Box = decorative wrapper (background/radius/rule). If you need both, nest them.
-
-### Not shipped (add when needed)
-
-`Divider`, `Spacer`, `Button` were planned but had zero consumers after the first pass. For a one-off hairline, use `Box rule="bottom"` or a raw `View` with `StyleSheet.hairlineWidth`. For buttons, `Pressable` + `<Text variant="label">` + a local pill style covers the current call sites. Add a primitive back when a third caller needs the same pattern.
+Raw RN `Pressable` with `PRESSED_STYLE` is for static chrome only. There is
+no `Divider` or `Button`: use `Box rule`, or `Pressable` around a `label` text. Add
+a primitive at the third caller.
 
 ## `<Text>` variants
 
-Each variant is a complete typographic decision. Pick the closest match; if none fit, add a new variant (don't style inline).
+| Variant | Role |
+|---|---|
+| `display` | A card's reading; an event sheet's focal number |
+| `title` | An opened story's title, a sheet's subject |
+| `rowTitle` | A headline in a list; a menu row's title |
+| `lead` | A prose page's opening paragraph |
+| `body`, `bodyEmphasis`, `bodyItalic` | Prose; source and mark names, a row's reading; italic terms |
+| `caption` | Metadata sentences, never pages of prose |
+| `captionEmphasis` | Toast and pill labels, action words |
+| `label`, `labelSm`, `labelXs` | Caps: sheet titles, section labels, metadata |
+| `labelXsTight` | One caps line beside its move: the gauges |
+| `tabular`, `tabularEmphasis` | Time and count readouts; scrub tooltips |
+| `sectionHeading` | The italic line over a group of sources |
+| `wordmark` | The app's wordmark |
 
-| Variant           | Size    | Weight/Style | Color             | Use for                                           |
-|-------------------|---------|--------------|-------------------|---------------------------------------------------|
-| `display`         | sizeH1  | bold         | text              | An event sheet's focal number (`SheetHero`)       |
-| `title`           | sizeLg  | semiBold     | text              | An opened story's title in a sheet, block titles  |
-| `rowTitle`        | ~16pt   | semiBold     | text              | Headlines in a list — river, search, saved, instruments — and every menu row's title (`MenuRow`); the story card's kicker sets its category word in the category's colour (`categoryText*`; no dot since 2026-09-23) |
-| `lead`            | sizeLg  | regular      | accent            | Subtitle under a display; About-page opener      |
-| `body`            | sizeBase| regular      | text (oldstyle#)  | Paragraph prose                                   |
-| `bodyEmphasis`    | sizeBase| semiBold     | emphasis          | Pull quotes, lead sentences, source names         |
-| `bodyItalic`      | sizeBase| italic       | text              | Editorial block quotes                            |
-| `caption`         | sizeSm  | regular      | textSecondary     | Secondary body, metadata sentences                |
-| `captionEmphasis` | sizeSm  | semiBold     | text              | Toast/pill labels, chrome copy at caption size    |
-| `label`           | sizeBase| smallCaps    | textSecondary     | Sheet titles, primary labels                      |
-| `labelSm`         | sizeSm  | smallCaps    | textSecondary     | Section labels                                    |
-| `labelXs`         | sizeXs  | smallCaps    | textSecondary     | Metadata labels, swipe actions                    |
-| `labelXsTight`    | sizeXs  | smallCaps    | text              | One-line caps set solid over a reading — the strip's gauges |
-| `tabular`         | sizeXs  | regular (tab)| text              | Time/count readouts                               |
-| `tabularEmphasis` | sizeXs  | semiBold (tab)| emphasis         | Scrub tooltips, emphasised readouts               |
-| `sectionHeading`  | sizeSm  | italic       | accent            | "How each outlet framed this story" lines         |
-| `wordmark`        | sizeWm  | bold (neg tr)| text              | App wordmark (`zuhd.news`)                        |
-
-Override color with `tone`; scale by a fraction with `scale` prop. Caps from `VARIANT_CAP` auto-apply — override only for a documented reason.
-
-**Typesetting that happens for you, and what it asks of copy.**
-- A spaced dash never starts a line: `Text` turns the space before an em or en dash into a no-break space, and `smartTypography` does the same for story text, run by run. About printed "— zuhd:" at the head of a line before it.
-- A country or entity a reader can open is the body's own ink, underlined — the web's `.country-link`. It was `accent`, a step lighter than the words around it, so a word you could open read as a faded one (2026-09-23). A link is never quieter than its sentence — and that includes a plain link to the web, which is the body's ink with an `accent` underline, the web's own `a` (it was still `accent` ink until 2026-09-25).
-- Story text gets its quotes and apostrophes from `smartTypography`, which reads each run with the character before it: text straight after a link or emphasis is not the start of a line, so `[China](country:CN)'s` is `China’s`, not `China‘s`.
-- UI copy is typed as it should print — `today’s`, `“caught up”` — because it does not pass through `smartTypography`. A straight `'` in a visible string is a bug; in an accessibility label it does not matter.
+- UI copy is typed as it prints (`today’s`); a straight `'` on screen is a
+  bug.
+- A link is never quieter than its sentence: the body's ink, underlined.
 
 ## Patterns
 
 ### Sheets
-- Use `SheetLayout` (wraps `BottomSheetModal` with theme-styled background) + a `SheetHandle` for the drag indicator. `MenuSheet`, `CountrySheet`, `SourcesSheet` are the references.
-- **`MapSheet` is the one sheet that is not a platform sheet, and must stay the only one.** It is the map screen's persistent story card, and a platform sheet is modal: it scrims the globe, caps Android at two detents it chooses, and cannot persist. It owns three rules that remove gesture conflicts instead of arbitrating them — at peek the card does not scroll, nothing in it bounces, and the pan decides ownership once per gesture and holds it. A second hand-built sheet is the regression; everything that opens *from* the map is a platform sheet.
-- **Sheets are platform sheets** — SwiftUI on iOS, Material3 `ModalBottomSheet` on Android, via `@expo/ui/community/bottom-sheet`. Three consequences, and all three are why code that used to exist no longer does:
-  - A custom `SheetHandle` is passed to `SheetLayout` as `handle` — an element, never a component type, which remounted the handle (and dropped a screen reader's focus off its back button) every time its inputs changed — and is **rendered as the sheet's first child**, not handed to the native sheet. Native sheets don't render a custom handle — the library reads only null-vs-non-null off its `handleComponent` prop to decide whether to draw the platform's own indicator. `SheetLayout` pins that to `null` so our handle, its title, and the back chevron survive. Don't "fix" it back to `handleComponent={Handle}`; it silently deletes the title and the way multi-page sheets navigate.
-  - **There is no backdrop to render.** The scrim is the system's. `renderBackdrop` and the `BottomSheetBackdrop` that fed it are gone from every sheet and from `BaseSheetProps`.
-  - **The content-sized ceiling moved into `SheetLayout`.** gorhom's `maxDynamicContentSize` prop is gone, but the cap it provided is not optional: `fitToContents` measures the RN content's *natural* height, so a long page grew past the window and pushed its own handle, title and back chevron off the top of the screen — About and privacy rendered as prose running under the status bar with no way back. `SheetLayout` applies `LAYOUT.sheetMaxFraction` itself, and only in content-sized mode; a fixed-snap sheet is already handed a bounded column and capping it would leave dead space inside an 85% sheet.
-  - **There is no backdrop opacity to set** — `OPACITY.backdrop` is gone with it — and no `BottomSheetModalProvider` in `app/_layout.tsx`, because a platform sheet presents itself rather than rendering into a JS portal.
-- Content wraps in `SheetScrollView` (`components/SheetContent.tsx`) — a `BottomSheetScrollView` pre-wired with `sheetStyles.content` + the `bottomInset + SPACING.lg` safe-area tail. Don't re-inline that padding recipe; extra props (`indicatorStyle`, more `contentContainerStyle`) pass through. Note the scroll views are plain React Native ones under the new library: a native sheet coordinates scrolling itself, so none of gorhom's gesture-arbitration wrappers are needed.
-- **A scrollable inside a sheet must carry its own flex, and which one depends on the sheet's mode.** The re-exported RN `ScrollView`/`FlatList` do not receive it from a wrapper. A sheet with explicit `snapPoints` (`CardSheet`) gives its content a bounded column, so `flex: 1` is right there. A content-sized sheet — every other one, including the search page's list and `CountrySheet`'s `rankingWrap`, which use `flexShrink: 1` — gives it an *auto* height, where `flex: 1`'s `flexBasis: 0` measures the content as zero and collapses the sheet. `SheetScrollView` serves both, so it uses `flexShrink: 1`, which shrinks to fit when bounded and is inert when not.
-- Prose sheet pages (About, privacy) share one type ramp: an unheaded opening paragraph is `lead`, headed sections are `labelSm` + `body`. Never `caption` — that tier is for metadata sentences, not pages of prose, and it forced hawk vision on the privacy policy; About's format beats and its list of what the app does without were captions until 2026-09-25. External links go through `SheetLink` (`SheetContent.tsx`), which owns the treatment — body ink, `accent` underline, the web's `a` — so a link on About and a link on privacy cannot drift apart. A list of links is a list of `MenuRow`s with the `leave` mark, not a block of underlines.
-- Vertical rhythm inside a sheet has exactly two tiers: `SPACING.md` (16) between paragraphs of one thought, `SPACING.lg` (24) between labeled sections. `SheetAboutPage`, `SheetInfoPage` and `EntitySheet` all key off this — a section that carries its own heading gets `lg`, never `md`.
-- **The menu speaks one row grammar** (`components/MenuRow.tsx`, 2026-09-25). Every row on every page of the menu — the root, settings, the map key's entries, About's data providers — is a `rowTitle` in text ink, an optional `caption` under it saying what the row is for, and at the trailing edge what a press does: a chevron for a page or sheet (`push`), the open-outside glyph for mail, the store or a website (`leave`), a `Toggle` for a switch, nothing for an action done in place. At least `LAYOUT.rowMinHeight` (48) tall. Groups are named by a `SectionLabel` (`labelSm`), the only small caps left in the menu's lists. It replaced rows that set every title in 17pt small caps — which draw lowercase at x-height, so each read as ~12pt capitals in a column of identical capitals — with the descriptions spoken to screen readers only, and a group divider that drew exactly like the rules between rows.
-  - **The root's title is the mark and the wordmark, in the handle** where every page's title sits: the Z drawn from the site's own paths (`ZuhdMark`, `lib/zuhd-mark.ts`, held equal to `public/logo.svg` by a test) in the ink of `zuhd`, a little taller than its capitals. It is the one place in the app that says whose it is, and in the handle it costs no row. **The data comes first (2026-09-26, the user's request)**: `stock markets`, `largest companies`, `straits`, `currencies`, `energy, food & metals`, `rates, inflation & jobs`, `crypto` (one list with the rates until 2026-10-03), `AI models` (2026-10-04), `predictions`, `coming up`, `world hazards`, `country rankings`, each pushing its list — then `reading` (search, saved with its count, map key), then `the app`, one row, `settings & about`, behind which settings, about, privacy, contact and rate sit as they did on the root. The menu was four reading rows over five rows about the app, and opening it found nothing to read.
-  - **`AI models` is a list of labs, and reads like the lists beside it** (2026-10-04; `lib/ai-models.ts`, tested). A row is a lab, its caption the model that holds its best score and its country (`Claude Opus 5.5 · US`), its number that score, its chip the gain in points. The list's note says the window (`over the past year`) and that scores a few points apart are within the measure's margin, so the rows print neither: `CatalogRow.saidWindow` drops a window the note has said, and a lab measured over another window (`since Dec 2025`) still prints its own. On the root its number is the best score, `167.4`, in plain ink: there is no week. The card is the existing one: range, revenue and valuation as figures, the best of any lab as the dashed rule.
-  - **A group's row is its name and one number: the summary of its whole list** (`MenuRow` `figure`; `groupFigure`, `lib/world-summary.ts`, tested; 2026-10-04, the user's design). The exchanges' weeks averaged, the largest companies' and the coins' the same way, ships through every strait added up, the middle currency's week against the dollar, the weekly prices of `energy, food & metals` averaged. It is the week's move as a `DeltaChip` without its window, green up and red down, at the row's trailing edge, so the column reads down the page as how the world moved this week. **No subtitle, no count, and never the list's largest mover**, which the row printed until then and the top strip already shows ("the number of items in each category is not interesting, better put the red/green number there"; "for each category I want the summary of all values, not the top one"; "this also makes the list cleaner since we won't need the subtitle"). A week that rounds to nothing prints `0.0%`. A list with no week prints its first row's level in plain ink (`AI models` the best score, `coming up` the nearest date); a list whose members are not one quantity (`rates, inflation & jobs`, `predictions`) prints nothing. Each list's own note says what the number beside it is. A block of summary rows over the lists, and then a band of four numbers, were both tried the same day and both read as duplication: do not add a second surface for these numbers. `detailLabel` carries the line into the row's accessible label. Each list opens with one caption saying what its numbers are — the week, green up and red down, a month where the series is monthly — because the rows, like the strip, do not print the week. **A row that opens a list names what leads the list, not what the list is** (2026-10-03, the user's request): up to three whole names, fewer where three would run past one line (`leadNames`, `lib/row-leaders.ts`, tested). The sentence it replaced stays the row's accessibility hint, and its line where there is nothing to name.
-    - `country rankings`: a measure's row is its top countries (`rankingLeaders`), where it printed the definition the ranking's own page opens with.
-    - `world hazards` (`hazardLead`, `lib/hazard-leaders.ts`, tested): genocide is the situations' names; famine is countries, gravest phase first (an area's name is a sentence, and ninety areas are four countries); conflict is where the deadliest events were and `as of` the source's last day, because UCDP runs weeks behind; disasters is the Red and Orange alerts by name, or on a day with none the kinds counted (`67 wildfires · 27 earthquakes`); fires is the places. The rows named the layer and its source; each page behind them names the source.
-    - **A flag opens a row that is one country's** (2026-10-03, the user's request): each row of `stock markets` and `currencies` (`CatalogRow.flag`, `rowFlag`, tested), as each row of an open ranking already did. An exchange's is its country's, a currency's its code's first two letters (`EUR` is the EU's), the two US indexes no exchange quotes the US's; the fear index has none and keeps the slot, so every name in the list starts on one line. Not in the one-line captions above: three flags a row is eighty on the rankings page, and half of what those lines name (`Gaza`, `67 wildfires`) has no flag.
-    - `saved` is the title of the story saved last, on one line. `settings` is what the settings are (`Large text · dark · notifications on`, `settingsSummary`), where it listed the page's headings.
-  - **A choice among a few is a `SegmentedControl`** (text size, font, appearance, and the stock markets list's filter): the `Toggle`'s material laid sideways — a `rule` track, the chosen segment filled with `text` ink and its word in `inverse` — so "on" looks the same in both controls. The size picker sets each size in itself and the font picker each family in itself. The fill slides, and the words never recolour: a second copy of the labels in `inverse` rides inside the fill, counter-translated. The options were bare words told apart by a step of grey, ~30pt tall.
-  - **Settings are grouped** — `display`, `touch and alerts`, `data` — and the version is printed once, in About's colophon.
-- Event sheets (`ConflictSheet`, `DisasterSheet`) share `SheetHero` / `SheetFlagRow` / `SheetSourceFooter` from `SheetContent.tsx` so the "one family" hero/flags/footer read identically. The severity → focal-tint decision routes through `severityTint` (`lib/severity.ts`) — the "only Red / fatal earns the rose hue" rule lives there, never inline.
-- Staggered row entrances use `staggerEnter(i)` / `makeStaggerEnter()` (drop-in `FadeInDown`) or `staggerFadeIn(i)` (opacity-only, for in-place block rows) from `lib/stagger.ts` — never re-inline `FadeInDown.duration(...).delay(staggerDelay(...))`.
-- Swipe-back is wired in `MenuSheet` and `CountrySheet` through `useSheetBackNavigation`. Android dialogs consume Back before React Native's `BackHandler`; the local Expo UI patch adds a native `onBackPress` callback. `CountrySheet` supplies it while a ranking is open, so Back returns to the country overview, and `MenuSheet` on every pushed page, so Back pops one page (it closed the whole menu until 2026-09-26). At the root, Back dismisses normally. Other sheets keep their existing dismissal behavior.
-- **A sheet's title lives in its handle** (`handleTitle`), never as a heading in the body, and `SheetHandle` draws it lowercase — small caps set a capital at full height, so a title arriving in data case (a GDACS event name) read as another tier. `SheetHero` does the same for its eyebrow. Section labels inside a sheet are `labelSm`.
-- **Gestures inside a sheet need the root `SheetLayout` gives them.** On Android `@expo/ui` hosts sheet content under a React `RootView`, where gesture handler stops looking for its root, so `SheetLayout` wraps every sheet's content in its own `GestureHandlerRootView`. Without it the menu's swipe-back, Saved's swipe-to-remove and a chart's scrub were never recognised on Android.
-- **A two-stop sheet lifts before its content scrolls.** A Material sheet at its first stop lays its content out at the full stop and shows the top of it, and a React Native `ScrollView` offers its drags to no one unless `nestedScrollEnabled` is set: `CardSheet` at half height scrolled inside itself to an end that was off the screen, and the cited stories and the source under a card's analysis could not be reached. `SheetScrollView` sets it, and `@expo/ui` relays the drag to the sheet.
-- **What a menu row opens is a page of the menu, not a sheet** (`MenuDetail`, 2026-09-26): a card, a disaster, a country, a ranking, each pushed on the menu's stack and rendered from its sheet's own body, so back is the list the reader came from. Handing a row off to its own sheet closed the menu, and closing that sheet left the reader on the map with their place lost. Only a story leaves the menu.
-- **Selectable text in a sheet is switched on after the sheet is up** (`Text`, Android, 2026-10-03). A platform sheet is a new window, and a new window does not know it is in touch mode until after its views attach. React Native re-applies `selectable` on attach, which makes the text focusable at that moment, so the window handed it the focus and Android painted its focus highlight over it: a grey band on the first selectable text of every sheet — a source's description, About's opening paragraph, a hazard's focal number. `Text` passes `selectable` 600 ms after mount on Android; a long press still selects. Do not put `selectable` on a raw RN `Text` inside a sheet.
-- **A sheet with a text field is capped to the room above the keyboard** (`SheetLayout` `avoidKeyboard`, `useKeyboardTop`, Android). Android lifts the sheet by the keyboard's height, and at 85% of the window it went past the top of the screen: any search with more than a handful of results pushed the field, the title and the back chevron off screen. iOS leaves the sheet where it is and needs nothing.
-- **A source's row: the header is the button, the details are text** (`SourceRow`). The whole row was the button, so a tap on the paragraph closed it and a long press to copy a sentence ended in the same close. A story's only source is not a button at all (`alone`): as a toggle it could hide the one thing the sheet opened to show.
-- **Search is `lib/search.ts`, and it says why a row is there** (tested). A term has to start a word (`oil` found `Turmoil`, first), every term has to be somewhere in the story, the index holds the words a reader sees and not the markdown (`country` found every story that links one), and a story with the terms in its title comes before one that mentions them. A hit the title does not explain carries an excerpt around the word, the word in `captionEmphasis` (`ArticleRow` `note`), or `topic · …`. The copy says *recent stories*: the feed is about two days, and "every story" promised an archive. The menu keeps the words searched for, so reopening it within `MENU_RESUME_MS` returns to the results, without the keyboard, for a reader picking the next one.
-- **Which rows a menu page has is settled when the menu opens** (2026-10-03). A row that arrives a moment later pushes every row under it down a place, and one that leaves pulls them up, in both cases under a finger already on its way: on the emulator a tap on a row that had just given up its place opened the row below it. That was a list fetched as the menu opened; its data arrives with every build now, and the rule stands for the next one: a list still loading keeps its row from the start, with one `caption` line in the slot its teaser will take so the row is the same height before and after, and keeps it if the fetch fails, saying so on the list's own page.
-- **A list says its unit once, over the rows, when every row shares it.** `largest companies` prints `Each share’s price at its last close` in its opening line and `$233.95` on the row; `a share` under twenty prices in a column was the list repeating its own heading. A row keeps the part that differs (`Korean won`). The card a row opens says it in full.
-- **One platform sheet at a time.** Going from one sheet to another — a country from a disaster, a card from the strip — goes through `handOffSheet` in `app/index.tsx`, which presents the next sheet from the first one's `onDismiss`. Presented while SwiftUI is still dismissing, iOS rejects it; presented over an open sheet, it stacks two modals.
 
-### Story chart (`components/StoryChart.tsx`, 2026-09-30)
+- Build a sheet from `SheetLayout`, its title in the handle (`handleTitle`),
+  never in the body.
+- Pass a custom handle as the `handle` element, never as `handleComponent`:
+  a platform sheet drops it, with the title and the back chevron.
+- Content scrolls in `SheetScrollView` or `SheetFlatList`
+  (`SheetContent.tsx`), which own the flex and the safe-area tail.
+- Any other scrollable in a content-sized sheet takes `flexShrink: 1`.
+  `flex: 1` collapses it; it is right only under `snapPoints` (`CardSheet`).
+- Pages are a stack (`useSheetNavigation`). Back is wired three ways:
+  `SheetHandle`'s `onBack`, the swipe (`useSheetBackNavigation`), and
+  `onBackPress` on `SheetLayout`, since an Android dialog takes Back first.
+- One platform sheet at a time, chained through `handOffSheet`; iOS rejects
+  a present during a dismissal.
+- Android: a closing sheet swallows taps for half a second, and a sheet has
+  only a half and a full stop.
+- A sheet with a text field passes `avoidKeyboard`: Android lifts it.
+- `selectable` text goes through the `Text` primitive. A raw RN `Text` paints
+  a focus band when an Android sheet opens.
+- Two spacing tiers: `SPACING.md` between paragraphs, `SPACING.lg` before a
+  headed section.
+- Prose pages: opening paragraph `lead`, sections `labelSm` over `body`, never
+  `caption`. Links are `SheetLink`.
+- An event sheet is `SheetHero`, `SheetFlagRow` and `SheetSourceFooter`.
 
-- **One series under a story, the one its prose cites** (`Article.chart`, resolved by `lib/story-chart.ts` through `instrumentCardFor` to the card the menu row holds — the same object, so the chart, the card a press opens and the strip cannot disagree). An id that resolves to nothing, or to a card without the desk's paragraph, draws nothing; that is the whole fallback.
-- **Small by rule.** The open story is one height for every story, so the chart is `TrendBlock variant="inline"`: the line, its end dot and a strait's dashed 90-day normal, 64pt, no axis, no labels, no scrub — a drag across it is the deck's swipe. Its presence and kind are part of the measure key.
-- **The move is the week**, `gaugeMove`, as the strip and the menu print it, with its window printed; a series with no week keeps the card's own move and window. It showed the card's window first, and put `▲24%` under a story while the strip over it said `Oil ▼12%`.
-- **`OddsLine`'s frame**: ruled above and below, never filled, after the prose and before `sources · save · share`. It replaces the odds line where both exist. A contract states its question before its price, moves in points in slate, and always prints `MARKET_CAVEAT`.
+### Rows
 
-### Cards (`components/cards/`) — opened in `CardSheet`
+- `MenuRow`: a `rowTitle`, an optional `caption`, an optional `figure`, then
+  what a press does: `push`, `leave`, a `Toggle`, or nothing. At least
+  `LAYOUT.rowMinHeight` tall. `SectionLabel` names a group.
+- A list of links is `MenuRow`s with `leave`. A choice among a few is a
+  `SegmentedControl`.
+- `InstrumentRow`: title over a `caption` and a date; at the right the
+  reading, its unit and a `DeltaChip`. In a list with flags, a row without
+  one keeps the slot.
+- `MarkRow`: the globe's own glyph, a name and one line.
+- `SourceRow`: only the header is the button, so the details can be selected.
+- A menu row never appears or leaves while the menu is open. A list that
+  loads late must hold its row from the start and keep it if the fetch fails.
+- A unit every row shares is said once, over the list.
 
-- **The rule that decides what exists.** A card earns a screen if a reader who
-  gives it four seconds can tell someone else something true they did not know.
-  Everything that fails is not in the primary deck. Applied to the live
-  payloads it cuts dozens of candidate readings to a focused graph set.
-- **Live analysis is the point**, owned by `CardFrame`. The recurring surface
-  shows the reading, graph, the desk's pipeline-written analysis and movement.
-  That analysis is the day's account of *why this moved* where the desk wrote
-  one, and the standing definition only where it did not — a chart that just
-  fell raises the first question, not the second. One paragraph, never both.
-  The surface does not repeat related headlines already covered by that
-  analysis, and it has no static-definition info control. Static copy does not
-  satisfy the deck gate or travel in the card model.
-- **The hierarchy follows the kind of claim.** A measured quantity leads with
-  its reading, unit and movement before naming the series; a belief states its
-  question before showing the probability, because a percentage without an
-  outcome has no meaning. The reading remains the largest type on both. Live
-  analysis is primary body copy; the baseline or second-window sentence is
-  supporting caption copy beneath it. Source attribution is the quietest
-  tier. Long titles scale but never truncate, and a card that still outgrows
-  the screen scrolls.
-- **Four tiers, and every line on the card belongs to one.** The answer —
-  reading, unit and move, in `display` over a single `caption` row where the
-  coloured magnitude is the only bold thing. The subject — `title`. The
-  picture — the chart, whose caption, legend, axis extremes and ticks all sit
-  in the quietest register (`labelXs` / `tabular`) so none of them reads as a
-  subtitle. The account — `body` analysis, one `caption` sentence where the
-  chip cannot carry the fact, and the source. Above all four, one `labelXs`
-  line of metadata: an ink-step word if the card earned one, the kicker, the
-  observation date. A polish round in September 2026 found eight type
-  treatments and six small-caps items competing on one screen, which is why
-  the delta window is caption rather than caps, the chart caption is `labelXs`
-  on a card, figures are one caption-sized line each, and the status line is
-  gone. Adding a fifth tier, or a second metadata line, is the regression.
-- **Proximity carries the grouping.** Reading, unit and delta are one tight
-  group. The chart begins after an item gap; the explanatory group begins
-  after a larger group gap, with supporting movement copy kept close to the
-  analysis it qualifies. Do not add dividers or headings merely to restate
-  those groups.
-- **Colour is semantic, not sectional.** Green and red belong to the
-  movement chip and mean up and down (`moveTone`); belief moves are
-  neutral. Reading, title, analysis, chart structure and `current` stay in the
-  monochrome ink hierarchy. Do not tint sections or spend dome gold as card
-  decoration.
-- **`lead` says why the card is here at all.** A builder that gated a card on
-  its own data being new sets `lead: true`, and `CardFrame` prints `current ·`
-  before the kicker. Without it a newly escalated hazard and the
-  gold-to-silver ratio arrive in identical weight, and the reader can only
-  tell them apart by already knowing which cards are event-gated — which is
-  knowing the implementation. It is an **ink step, never a colour**: the
-  chromatic budget is spent on `CardDelta`. A strait whose total traffic fell
-  at least 30% carries it.
-- **Pipeline analysis replaces duplicate definitions.** The pipeline text
-  remains visible beneath the graph; static fallback copy is not part of the
-  card model.
-- **The move belongs in the chip, not in a sentence.** "−5.2% since 22 Jul." is
-  not prose and gains nothing from being set as prose; what is left for part
-  three is whatever neither the chip nor the chart can show — the second
-  window on a monthly series, the two grains' separate directions under a
-  ratio, the level a rate has sat at and since when. A percentage that
-  appears in both is the same fact twice, and so is a range the y-axis
-  already prints: a belief's "low 26%, high 86%" was the chart read back as
-  prose, and went. A level the chip measures *against* — a strait's 90-day
-  normal — is not a sentence either: it is a dashed reference line on the
-  chart (`CardSeries.reference`), because the place to show what a percentage
-  is divided by is beside the line it divides. Nor is the deck's selection
-  rule a sentence: "largest monthly fall in this 15-currency set" described
-  the builder, not the currency.
-- **Two graph-card kinds.** Builders describe graph-backed `Reading` and
-  `Belief` cards. `CardView` is typed to that boundary so unreachable table or
-  condition rendering branches cannot return unnoticed.
-- **A card ships because it changed, not because it matters.** This is a news
-  app: a screen earns its place by having something new on it this morning.
-  Apply the same test to anything added here.
-- **Builders are pure functions in `lib/cards/`**, not components —
-  `buildInstrumentCards` covers markets, shipping and outlook. It returns a shorter column
-  rather than a placeholder when a payload is missing, so a partial snapshot
-  degrades to fewer cards and never a broken screen. Because they are pure,
-  the arithmetic is pinned by tests rather than by looking at a simulator.
-- **One ranked list across every instrument family.** `buildRankedInstruments`
-  (`lib/cards/sections.ts`) applies the admission gate — a valid series and
-  pipeline analysis, or a scheduled date with analysis — and then calls
-  `prepareSwipeCards` once over the union. The three desks used to rank each
-  pool against itself, which could only ever compare a strait with other
-  straits; one strip needs the comparison across kinds. The menu's lists are
-  not the pool: `lib/instrument-catalog.ts` lists every published series in
-  groups, reusing the pool's cards and holding new ones to the same gate.
-  `prepareSwipeCards` sorts urgent updates before the strongest tie to today's
-  news, unusual movement against the series' own history, and finally the
-  builder's stable editorial order. Relevance uses the strongest linked story
-  rather than summing matches, so a broad aggregate cannot win merely by
-  carrying more tags. Raw display units are never compared.
-- **Market signals rank like everything else.** The server owns their
-  *selection* and *revision*; which three of forty instruments occupy three
-  fixed slots is presentation, so they join the pool with `lead: true` rather
-  than being prepended unranked — prepending would hand two slots to whichever
-  exchanges qualified, over a strait that had closed.
-- **Number grammar lives in `lib/cards/format.ts`, and using it is not
-  optional.** Two rules there exist because getting them wrong produces a
-  plausible, wrong sentence: a change is always measured over a window the card
-  can name (`windowChange` returns the period labels with the percentage,
-  because a "daily" series holds observations, not days), and anything already
-  in percent moves in **points** (`windowPointChange`) — a contract going 26 →
-  86 moved 60 points, and "+231%" is arithmetic pretending to be journalism.
-- Graph cards reuse `TrendBlock` at `variant="context"`. Dormant comparison
-  builders still use `weight` as the raw magnitude and keep the sign in their
-  display-formatted `value`; `tone` is only for a direction that means
-  something to the person holding it (a currency weakening), never for
-  "number went down".
-- **A comparison gets one visible expression per fact.** When the headline is
-  a ratio and the graph already names both series, do not add raw-value figure
-  rows for those same series. The ratio, legend, graph and one movement
-  sentence are the compact card; detailed quotes belong in a sheet. Figures
-  remain valid where they introduce different information, such as the two
-  metal weights that define the nisab threshold.
+### Cards (the card tiers)
 
-### Blocks (`components/blocks/`)
-- Data-display components, used directly by the surfaces that need them:
-  `TrendBlock` and `SourceCaption` (`EntitySheet`, the cards). Import the
-  component; there is no data-driven dispatcher.
-- Every block accepts `variant: 'article' | 'context'` — full-bleed vs embedded sizing.
-- `blockContainerStyle` (in `blocks/shared.ts`) supplies the outer margin rhythm. Use it.
-- `blocks/locations-geo.ts` is not a block — it's the hi-res lake/river/sea
-  geometry the globe's `detail-geo.ts` loads. It lives here for historical
-  reasons; don't assume the directory is UI-only.
-- **History:** this directory once held a full `ArticleBlock` renderer (a
-  `renderBlocks` dispatcher plus prose/quiz/quote/rank/actors/sankey/treemap/
-  timeline/locations components) feeding a `ContextSheet`. The sheet's entry
-  point was removed in `eeba139d` and the rest sat unreachable — still bundled,
-  still pulling `d3-sankey`/`d3-hierarchy`/`d3-scale-chromatic` — until it was
-  deleted. If context briefs come back, recover it from git rather than
-  rewriting: `git show eeba139d^:mobile/components/blocks/index.tsx`.
+`CardFrame` is the shell. One `labelXs` line of metadata (the kicker and the
+date) sits above four tiers, in this order:
 
-### Screens
-- Root `app/index.tsx` is the only route, and it is one screen. Overlays use sheets, not pushed routes.
-- **One earth, and every surface is a layer over it.** `MiniGlobe` is mounted once at the screen root; the bar and the sheet sit above the same canvas. Stories are read on the map, never over it: there is no full-screen reader, because covering the earth to read a 450-character story lost the one thing this screen is for.
-- **Two surfaces, and each answers a different question.**
-  - **The bar** (`MapHeader`) — one row above the earth: the gauges (`IndicatorStrip`) scrolling sideways from the left inset to two fixed controls at the top right — the briefing's `▶` and the menu (three lines) — over a shade of the screen's own ground that fades out below the row so the labels read over lit land and city lights. The two are bare 20pt glyphs in one shared box (`HeaderControl`), so they sit on exactly one line; `▶` hides while the player bar is up and keeps its slot, and a paused briefing draws its heard arc round it. The player bar hangs just under the row and drops in from it, floating rather than taking layout, so the globe and the sheet do not move when it appears; top toasts start under it. The name is not spelled out. The data, search, saved, settings, the map key and the pages open from the menu — the one control out of thumb reach, on purpose: it is opened a few times a week, and a rare destination belongs in the top corner, out of the way of a thumb that could hit it by accident. It is three lines rather than a cog because a cog promises only settings, and nobody looks for search or a saved story under a gear; it is at the right rather than the left because the left is where the gauges start, largest move first. It uses default ink for clear contrast. The gauges stay, and stay tappable, while a story is open: they used to fade out to quiet the screen for reading, but the open story's globe band starts under the row, so they never covered it — hiding them only took the markets away while a story about them was on screen. The gauges: subject, direction glyph and percentage move on one line (absolute readings and graphs stay in the detail sheet), for the ten markets, straits and currencies that moved most this week, largest move first (`STRIP_SLOTS`; the rest are behind `all →`). *How much, and how.* One seven-day window for every slot, spoken by accessibility without a leading label taking up row space, because a row sorted by size is only a comparison if every slot measures the same thing; the card a slot opens keeps its own window and prints it. The slot whose card is open carries a 2pt emphasis bar, and the globe rings its place. Slots grow to fit their label and move without wrapping, and a label is words, never a code, and no word the reader will learn without (a strait prints its name, `Hormuz`; the nisab `Nisab`; a ratio a slash, `Gold/silver`; an index its country's stocks, where the word is what makes it readable — `stripLabel`); a partial slot at the edge signals that the row continues; a swipe lands on a slot's own left edge and never between two, ticking as it settles — at 3.4 across only one edge can be clean, and the cut belongs at the right, where it is the signal rather than a row that looks broken (`lib/strip-snap.ts`, measured offsets, since a longer name widens its slot and there is no pitch to snap to); no marquee, because a ticker moves when nothing has happened, which is an engagement mechanic.
-  - **The sheet** (`MapSheet`) — news only, one story at a time (`StoryDeck` → `StoryCard`), swiped sideways, newest first across every category — it was four category bands until 2026-09-21, which put the day's newest stories in four places. At rest the card is its kicker, `title` and **hook** — the first sentence, and nothing else; open, it is the whole story, risen over the earth, which stays where it is — scaling the earth into the band above cost a replay of the whole globe for every frame the sheet moved. *What, and what happened.* The card rested on the hook and the why-it-matters sentence until 2026-09-19, which was half of every article: a reader swiping forty stories read each one to get past it, and the day felt like an obligation. The rest of the story is laid out under the hook all along, so nothing reflows when it opens; at rest a veil of the sheet's own ground lies over it (see §Native chrome carve-outs), so its first line shows at half strength and its second fades to nothing — a sign that there is more, not a second sentence to read. The veil goes the moment the sheet rises and returns the moment it has landed — switched, never faded, which lagged on iOS — and a tap on it opens the story.
-    - **The story card reads in six tiers, and space is what groups them** (2026-10-03). Kicker (`labelXs`, the category word in its hue) · title (`title`, emphasis ink, as the web's `.article-title`) · **the lede** — the hook, at body size in emphasis ink with twice a paragraph's gap under it (`mdStyles.lede`), the web's lede on a phone · the blocks (body, `text` ink) · the exhibit, a story chart or odds line, with the thread line under it · the footer, `sources · save · share`, outside the card (below). The gaps are a ladder: line (leading alone) → paragraph (0.5 em, ~16pt seen) → lede (1 em, ~25pt) → section (`AFTER_PROSE_GAP` over the last block's own, ~`SPACING.lg`, before the exhibit). So the title and lede — what the reader saw at rest — read as one group and the explanation as another, and the chart reads as an exhibit, not a sixth paragraph. Open, the hook used to be paragraph one of five, one size, one ink, one gap; the chart's top rule sat a paragraph's gap under "what's next"; and the thread line floated between the chart and the actions. No labels and no extra rules: position carries each block's role (`scripts/write-prompt.md`), and type and space separate them.
-    - **At rest the card is one button.** The hook's country and entity links are set as their words until the story is open (`plainBlocks` in `renderSentences`), so a tap anywhere on the resting card opens the story. The same words, so nothing reflows when they become links. A country in the hook opened a country sheet instead, and its underline — solid on Android — was the heaviest mark in the sentence a swiping reader decides on.
-    - **`sources · save · share` follows the text and stays in sight** (`StoryFooter`, 2026-10-03, the user's choice). The row is not in the card: the deck sets it under each story's scroll area, which is as tall as its text up to the room there is. A story that fits ends on the row, with the spare sheet below it; a longer one scrolls above a row held at the sheet's foot, over the dock — the same place on every long story, in the thumb's reach, and no gap in either case. As the last thing in the card it was out of sight on opening for most stories (an estimated 58–87% of a fortnight's on a 393×852 phone) and somewhere different on the rest. The words are `captionEmphasis`; in grey small caps the card's only three buttons looked like its two labels, the kicker and the thread line. Each target is the row's height and 4pt past it (48), and a press counts only as a tap, because sideways swipes start here. The row is three words at the right, `save · share · sources`, where the thumb is; `sources` is in the corner. **No count on `sources`**: a number and a noun beside two plain words was the row's one piece of noise and the one thing in it that changed from story to story; the count is in the sheet the word opens and in its screen-reader label. `save` is first, at the free end of a row set to the right, because its word changes length: `saved` grows to the left into the empty row and the other two never move. (**A hidden glyph inside a line is never `color: 'transparent'`**: that is the value 0, which Android's text renderer reads as no colour, and the glyph is drawn in the line's ink. Tried here to hold a slot's width; use a clear colour that is not 0 if it is ever needed.) The words are `accent`, one step softer than the story's ink, and `saved` is the emphasis ink: in the text's own ink, with no rule round them, they read as a last line of the story. **The row has no rule over it and none under it.** Where a longer story scrolls behind it, the text goes out into the sheet's ground over its last `md` (a still gradient above the footer, always there: at rest it lies under the dock with the row, and the resting card is the same picture with it and without) — the hard cut the rule used to cover put half a line of prose a few points over `1 source`. That `md` is the space every story already ends on, so nothing of a story may be set in it. A chart or odds line that ends the story drops its own bottom rule: it would be the row's rule by another name.
-    - **An open story says it goes on.** Most open stories scroll (the open sheet is one height), so the scroll indicator shows while one scrolls and flashes once as a story becomes the one being read — opened, or swiped to while open — and only when there is more than fits.
-  - **The dock** (`StoryDock`) — one row pinned to the foot of the screen, not to the sheet, so it is in the same place at rest and open: `(‹ 3 new) [story track]`. It used to be a masthead on top of the sheet — mid-screen at rest, near the top with a story open, where no thumb holding the phone reaches. **The track is the day (2026-09-23, the user's request)**: now at its left end, a day ago at its right, each story's cell at the time it ran, and a tick every six hours with `6h` / `12h` / `18h` in quiet tabular ink under it — inside the row's own 48pt, so the dock is no taller. A quiet stretch is bare track, which is what a quiet night looks like. A cycle's burst of stories spreads about its own time so every cell keeps 5pt a finger can find (`lib/time-track.ts`, tested), and the ticks are placed through that same mapping, so a tick always falls between the stories either side of its hour. Before it, one equal segment per story said the order and nothing about when. **The most covered stories' cells stand taller** — 8pt, rising from the track like a histogram's bar, the convention of a video scrubber's most-replayed graph — and its card's kicker ends with the count, `· 884 reports`, in the `new` ink step, as does the scrub tooltip when the finger is on a tall cell: one claim in words and in shape. Only stories over the bar print a count — most carry no figure, and a count on some kickers would make the rest read as zero — and the unit is reports, never outlets. The kicker has no dot; its category word is set in its colour (`categoryText*`, a deeper step on cream), and `· new` / `· earlier` close the line so the category always starts at the text's edge. A coloured bar beside the kicker was tried and not understood — reach is a word in every news app (Jakob's law) — and `trending` was turned down for promising a momentum the figure does not measure. The bar is 400 reports in the news API's event cluster (`lib/coverage.ts`): a fixed bar, never a rank within the day, and a story with no figure (about three in five) claims nothing. A read story is a hairline whatever its reach: what is left to read carries the shape. The track scrubs like the briefing player's (`useScrub` + `ScrubBar`); each segment is its story's category hue (the globe's beacons, the card's category word), and **a story the reader has read is a hairline** — 1pt in a far quieter step of its hue (`mixHex` toward the sheet, never an opacity) — so what is left to read is the part of the track with weight, by shape as well as colour. Read is two seconds in front of the reader, at rest or open (`useReadTracking`); it replaced a position fill that called everything behind the reader read, arrivals and scrubbed-over stories included (2026-09-22). The newest story is at the track's left end. The track draws nothing for a new story — a 2pt rule over new stories' segments was removed on 2026-09-22 at the user's request, a second row that said what the kicker's `· new` and the pill already say. When new stories the reader has not had sit behind the one in front — a refresh put them ahead of where they were reading, or a scrub skipped them — a `‹ 3 new` pill (28pt, `pillBg`, hairline edge) floats over the track's left end and jumps to the newest of them; it is ink, not a badge, and it goes when nothing is left behind the reader. While scrubbing, a tooltip says when the destination ran — `5h ago` at body size, its category quiet under it — and not its position, which the finger already marks (2026-09-22). A live Red hazard alert replaces the track and opens its details when pressed. **The dock has no buttons (2026-09-22, at the user's request): the swipe is the way through.** It ended in `⌃` (open and close the story) and `›` (the next story) until then, two 40pt circles that each copied a gesture the sheet already answers — sideways on the card for the next story, up to read, down or a tap on the globe to put it back — and the track now runs margin to margin. Screen readers keep both moves as the card's `next story` / `previous story` actions and the sheet handle's adjustable value. The briefing's `▶` was the dock's first circle until 2026-09-21; it is in the top bar now. Bottom toasts end above the dock. The briefing player bar is not here: it hangs under the top bar, where the `▶` that opened it was (2026-09-22).
-  - **There is no list of every story.** A headlines list was tried twice — as the sheet's front door, and on 2026-09-19 as a sheet behind the dock — and removed both times. The short card, the time-ordered track and the swipe are the way through the day.
-- **One day of news.** The river, and so the deck and the globe's lights, is the last 24 hours (anchored on the newest story if the desk has not published in a day). An older story appears only when a reader asks for it by name — a saved story, a notification.
-- **Information appears exactly once.** The strip prints instruments; the sheet prints news; alerts never enter the deck. A series reaches a story only as its story chart, and a contract only as that chart or the odds line — never both on one card (`StoryChart`, below). The scrubber is a way to jump through the same deck, not a second set of facts.
-- **The card is sized from type, not a fraction of the window, and never from the story in front.** `lib/deck-layout.ts` fits the kicker, two title lines, three lines of hook and the dock at the reader's font scale, keeps the globe at least 34% of the window (140pt absolute), and is computed once per window and font scale. Open, the sheet is **one height for every story**, measured from the day's own cards: `StoryMeasure` lays them out off screen and `openStoryHeight` takes the height three in four of them fit whole, never taller than leaves the globe 20%. It used to stop at each story's own height, and reading meant watching the text, the earth and the controls jump by three or four lines on every swipe; sized for the longest possible story instead, it left four or five blank lines under a typical one. Now a short story leaves a line or two after its last row, and the tallest quarter scroll a line or two. `sources · save · share` comes right after the text of a story that fits, so the spare space is where the story ends, not a hole between the last sentence and the buttons; under a story that scrolls it holds the sheet's foot (`StoryFooter`).
-- **Salience is named, not enlarged.** On a day something matters, the opening camera turns the planet to it and its mark carries a label. Mark size stays normalised within its own layer — coverage percentile for stories — exactly as the web map does it. A bigger dot asks the reader to compare areas, which people do badly; a name asks them to read, which is the app's whole medium.
-- **The earth reads as a sphere, not a map in a circle.** Zooming makes the planet larger — past the screen's edges when it outgrows them — rather than magnifying the ground inside a fixed disc; the horizon is always the real limb. A swipe between two stories rises in proportion to the distance and comes down close over the next story, the way a map's fly-to does; stories are framed within a narrow range so the planet does not swell and shrink on its own. The web's 30° graticule sits under the land, and the day side is lifted in `daylight` so night is visible over the sea, not only on the continents.
-- **The globe shares the web map’s geographic symbols, with compact direction signs for markets and shipping.** Shape says what a mark is; its colour is the web's colour for that thing (`mark*` tokens in `constants/theme.ts`, based on `public/islands/_map/style.ts`, with the tone inks for market and shipping changes). Stories are beacons in their **category** hue — politics, economy, science, tech — sized by coverage and faded by age, with the web's contested ring (in light, the same warm ink at the dark pole — the web's near-white ring measured 1.04:1 on cream and vanished); straits are two facing coastlines — slate at rest, and pinched straight and gold when traffic falls away, bowed open and teal when it surges: the web's three shapes, so the state survives without its colour (`STRAIT_BULGE`), with the traffic sign set clear of the right-hand shore; exchanges use compact green up / red down arrows (26dp visible, 48dp touch targets); nearby exchanges share a numbered target and chooser; GDACS hazards are their pictograms in amber, sized by alert level (`gdacsGlyphScale`: Green 0.8, Orange 0.9, Red 1 of the 22 pt box, so a faded Green alert is no longer as large as a Red one) — and drought is a sun on cracked ground, not a radial sun, because the thermal burst is the one radial mark and shares its orange; conflict is a red glow; famine is the IPC column in violet; thermal anomalies are a burst in orange; a UN genocide determination is a dark disc with a red ring and an always-on label. Story beacons run 3.4–7.5 pt in radius by coverage, the web's `story-points`. A numeral says which mark it counts by its ink: a story's (unfound stories at that place) is white, a conflict stack's (events close together) is its red (`markConflictText`), and the key says both. The tap chooser is titled by what is under the finger (`6 exchanges here`, `3 marks here` when mixed; `lib/chooser-title.ts`) and draws each row in its mark's globe hue and shape — a strait in its state, a hazard in amber with the Red ring, conflict as its glow — because the row names the mark under the finger. This is a deliberate exception to "hierarchy through type, not colour": on the globe, colour *is* the legend, and a phone map that disagreed with the website about what a mark is would be two maps. Reference layers retain the web silhouettes; market arrows are the tone inks (green up, red down — for an index the direction is the consequence), and a strait's traffic sign is red only when the strait is disrupted.
-- **A story is found by opening it, and a found place is dimmed, never erased.** Tapping a beacon plays a burst in its hue and jumps the deck to that story's card; once every story at a place is found, its beacon becomes a small hollow ring in the same hue, which reopens the newest story when tapped. A thin ring just outside the globe is what is left to find, shrinking back toward twelve o'clock after each burst — no number anywhere on screen: the ring is the status, and the exact count is spoken by the story track's accessibility label. Growing a card, or swiping onto one while grown, counts too; swiping past a card at rest does not. Read progress is recorded after 15 uninterrupted seconds in the expanded reader with the app active and no covering sheet or briefing. Opening or swiping past a story does not mark it read; the article itself retains normal contrast. Read progress persists locally, separately from found globe markers. State lives in `lib/found-store.ts`, places in `lib/story-places.ts`.
-- **Gesture ownership is spatial, and each axis has one job.** On the globe at rest: a drag turns it (and a release glides), a pinch zooms about the fingers, a tap hit-tests; with a story grown, a tap puts it down. On the bar: sideways scrolls instruments. On the sheet: sideways is the river (next story left, newer right), vertical is depth — pull up or tap to read, pull down to put the story back, pull down at rest to refresh — and an open card scrolls. The deck's pan and the sheet's pan are never simultaneous, so a drag is a swipe or a sheet move, never half of each. The dock sits outside both: its scrub never contends with either.
-- **The camera belongs to whoever touched last.** Swiping the deck turns the globe along the great circle between two datelines under the finger; a drag on the globe, or a selection from the strip or an alert, takes it; the next swipe gives it back, flying first if the earth was left somewhere else. The app opens on the deck's first story — the newest run's most reported (`compareHeat`) — so at rest the card and the globe agree.
-- **Stories use the full reading width.** Cards retain the 14pt reader inset on both sides, without reserving room for a neighbouring headline. The category scrubber provides navigation context. Width stays fixed while growing the sheet, so dragging does not reflow paragraphs.
-- **Overflow scrolls; it must never truncate.** No card text clamps: a long title or hook runs on under the dock at rest and scrolls when open. The only single-line truncation is metadata (kickers, meta lines).
-- **The river is newest first, whatever the category** — see `lib/news-order.ts`. Newest means when zuhd published a story (`articleTime`), one run per cycle; within a run the most reported comes first (`compareHeat`: past the 400-report bar by its count, then by how many outlets the desk cited), then the newest event. Reach orders a run and never moves a story out of one. It was category bands, newest first within each, until 2026-09-21.
-- **Every mark on the globe has a row somewhere, because the globe is hidden from screen readers.** VoiceOver activates an element at its geometric centre, which on a globe is a lottery country. The bar's gauges, the story cards, the dock's alert and the menu — its groups, and `world hazards`, which lists exactly the marks each hazard layer draws — provide accessible controls for the globe's content; a mark layer without one is an accessibility regression. The story card's swipe is reachable as its `next story` / `previous story` accessibility actions.
-- For new screens, wrap in `<Screen edges={...} padded>` to get bg + safe-area + padding for free.
+- The answer: the reading in `display` over one `caption` row, the unit and
+  the `DeltaChip`.
+- The subject: `title`. On a `belief` or `scheduled` card it comes before the
+  reading: a percentage means nothing without its question.
+- The picture: the chart, its labels `labelXs` or `tabular`.
+- The account: `body` analysis, one `caption` sentence, the cited stories,
+  the source.
 
-### Onboarding (contextual hint pills + notification primer)
-- **No tutorial mode, no synthetic content.** Never inject fake/self-referential content (welcome articles, sample data) into the feed — teaching happens on REAL articles the reader is already looking at. This was tried and rejected.
-- **Hint pills** (`components/HintOverlay.tsx`): one small-caps `labelSm` line on an INVERTED pill (`colors.text` fill + `tone="inverse"` text — monochrome flipped for maximum visibility; the quiet `pillBg` recipe was tried and got overlooked), bottom-centered, ONE at a time, ever. Both lessons are taught on the map (`hooks/useOnboardingHints.ts`): the sideways swipe first, because it is how the news is browsed, then the globe, because nobody discovers the lights are tappable. Sources and save are never taught — the grown card prints them as words, and a visible control does not need a pill. A third, after both, names the wordless `▶` in the top bar, which carries no word because a word would take the gauges' room on a small phone (it named the dock's `⌃` too, until that went on 2026-09-22). All three are withheld from screen-reader users, whose path is the card's and scrubber's accessibility actions. Every hint is retired forever by performing the action or tapping the pill, and expires after 3 ignored sessions. State in `lib/onboarding-store.ts` (bookmark-store pattern). No icon, no dome gold — a hint is chrome whispering, not the accent speaking. Don't add new always-on chrome for teaching; extend this system.
-- **Notification primer** (`components/NotificationPrimerSheet.tsx`): the OS permission dialog is never fired cold. The one-time primer sheet (presented at the first "caught up" moment, session 2+) is the only ask path; the MenuSheet toggle is the durable control. Any new permission ask must follow this soft-primer shape.
-- **Replay**: settings has a "show tips again" row → `resetOnboarding()` (re-arms hints + reading depth; never re-arms the primer).
+No fifth tier, no second metadata line, no dividers between tiers. Space
+groups them:
+`SPACING.md` before the chart, `SPACING.lg` before the account.
+
+- The card's move is the chip. The caption sentence carries only what the chip
+  cannot: a second window, a ratio's two parts. A level it is measured against
+  (a strait's normal) is a dashed line on the chart (`CardSeries.reference`).
+- A fact appears once: no figure rows for series the chart names.
+- A title scales and a long reading shrinks; neither is cut.
+
+### Charts and blocks
+
+- `TrendBlock` is the chart for cards, sheets and stories: `variant="context"`
+  on a card or sheet, `variant="inline"` under a story (the line alone, no
+  scrub). `TrajectoryChart` is the country cards'.
+- `StoryChart` sits in `OddsLine`'s frame, ruled and never filled, and
+  replaces the odds line.
+
+### The map screen
+
+- `app/index.tsx` is the only route. Anything else is a sheet.
+- The top bar's ground is a gradient of `bg` (`Shade` in `MapHeader`), never
+  a plate. Keep `SHADE_ROW` at 0.82 or above: under it, secondary ink over
+  city lights fails AA.
+- A gauge is a `labelXsTight` label in default ink beside its move. The open
+  card's slot takes a 2pt `textEmphasis` bar. No ticker.
+- Card inks: kicker `labelXs`, its category word in `categoryText*`; `title`
+  and the lede in emphasis ink; blocks in `text`; footer words
+  `captionEmphasis` in `accent`, `saved` in emphasis.
+- Card text never clamps; it scrolls. Only the kicker is cut to one line.
+- Chrome that floats over card text (`‹ n new`, the scrub tooltip) is solid
+  `playerBg` with a `rule` edge. `pillBg` lets the text through.
+
+### The story card's spacing ladder
+
+Space groups the card. Add no labels and no rules between blocks.
+
+- Line: the variant's leading alone.
+- Paragraph: 0.5 em under every block (`mdStyles.sentence`).
+- Lede: 1 em under the hook (`mdStyles.lede`); it groups title and lede.
+- Section: `AFTER_PROSE_GAP` over the last block's own gap, about
+  `SPACING.lg`, before the chart or odds line. The thread line closes it.
+- Set nothing in a story's last `SPACING.md`: the footer's fade covers it.
+
+### Onboarding
+
+- Teach on real stories. No tutorial mode, welcome article or sample data.
+- A hint pill (`HintOverlay`) is only for what the screen does not say: the
+  swipe, the globe's lights, the wordless `▶`. One at a time. Don't add
+  always-on chrome to teach.
+- The pill is inverted: `colors.text` fill, `labelSm` in `tone="inverse"`, no
+  icon, no accent. A quiet pill was overlooked.
+- `HINT_COPY` must be true of the current gestures. A wrong hint costs trust.
+- A hint retires when its action is done, when it is tapped, or when any
+  swipe or story open begins. It leaves after `HINT_VISIBLE_MS` and expires
+  after `MAX_HINT_SHOWS` sessions.
+  Screen readers get none.
+- Never fire an OS permission dialog cold. `NotificationPrimerSheet` asks
+  once; `resetOnboarding` re-arms hints, never the primer.
 
 ## Motion
 
-Tokens in `constants/theme.ts` (`ANIMATION`, `EASING`, `KEEP_MOTION`); the rules they enforce, each learned from a bug:
-
-- **Every spring states its physics** — a mass, or a `duration` and `dampingRatio`. Reanimated 4 fills a missing mass with 4, which quietly made `ANIMATION.spring` a 2.6-second wobble. `__tests__/motion-tokens.test.ts` holds the rule.
-- **Reduce Motion is the library's job.** Every Reanimated animation and layout builder defaults to `ReduceMotion.System` and jumps to its end with the setting on, so a discrete animation needs no `useReducedMotion()` branch of its own — the branches that did exist made "a shorter timing" that ran instantly anyway. Keep a JS-side check only for what Reanimated cannot see: a timer, an RN `scrollTo({ animated })`, an initial value.
-- **`KEEP_MOTION` is for what must not snap, and nothing else**: a spring released from a finger (the sheet, the deck's landing) and the cross-fade that stands in for movement under the setting (the globe's tap ring, which otherwise was never seen).
-- **Two landings, one shape.** The deck settles with the critically damped `springSettle`; the story sheet with `springSheet`, a hair under critical (0.9), so it reaches its stop and ends there at ~280 ms instead of crawling its last points to ~530 ms — a crawl that read as the sheet hesitating, with the veil waiting for it (2026-10-03). The deck keeps critical damping because `DECK_SETTLE_MS` and the camera's hand-off are measured on it. Camera moves share `EASING.camera`.
-- **The camera has one way of travelling.** A swipe, a tapped mark, a scrub, a gauge and a notification all move the globe along the great circle (`slerpLatLng`) on van Wijk & Nuij's path (`flyCurve`) — the one MapLibre's `flyTo` flies, at the web map's own `curve: 1.35` — rising out of its way by as much as the crossing is long and coming down close. One ρ sets the rise and the pacing together, so the ground crosses the screen at a constant speed; a flight (`hooks/useCameraFlight.ts`) lasts as long as its own path (`flyMs`), and a flight to a story lands on that story's framing and hands the camera back to the deck on the same frame, so the country highlight and the place's label arrive with the landing.
-- **A crossing the card cannot pace belongs to the camera.** The deck's landing spring settles in ~525 ms whatever the distance (`DECK_SETTLE_MS` — Reanimated's `duration` is perceptual, actual is 1.5× it). Where a crossing's own `flyMs` is longer, the camera leaves the deck at the finger's lift and flies the rest: the card snaps, the earth takes the time the distance asks for. Comparing the two durations, rather than picking an arc, is what keeps the hand-off from ever *hurrying* a crossing.
-- **Anything anchored to the settled story fades through the middle of a swipe.** `settledIndex` flips at `frac = 0.5`, so the source arcs, the country highlight, the country's name and the place label all ride one smoothstep (`ARC_WINDOW`) that dissolves to nothing across the central band. It is a dissolve through zero, never an overlap, so a second country is never projected; at rest `frac` is exactly 0 or 1 and the fade is exactly 1, so nothing changes where the reader stops.
+- Every spring states its physics: a `mass`, or a `duration` with a
+  `dampingRatio` (`__tests__/motion-tokens.test.ts`).
+- Reduce Motion is the library's job. Reanimated animations default to
+  `ReduceMotion.System` and jump to their end, so a discrete animation needs
+  no `useReducedMotion()` branch. Check in JS only what Reanimated cannot
+  see: a timer, an RN `scrollTo({ animated })`, an initial value.
+- `KEEP_MOTION` is only for what must not snap: a spring released from a
+  finger, and the cross-fade that stands in for movement (the tap ring).
+- Motion that tracks a finger is exempt. Gate the transition, not the
+  tracking, and prefer a cross-fade to no feedback.
+- Camera moves ease on `EASING.camera`.
 
 ## Haptics
 
-**A haptic answers a finger, and only when it tells the hand something the eye might miss** (`lib/haptics.ts`, 2026-09-26): a threshold crossed while the finger is down, a swipe landing, a notch that stands for an item, a hit on the globe (the one tap with no press state), a state committed or refused. **Never an ordinary press** — opening a sheet, a story, a link, share, play, back. No system button on either platform knocks, and until 2026-09-26 every `Pressable` here did (~40 of them); `Pressable` has no `haptic` prop now, and a handler that commits something fires its own.
+A haptic answers a finger, and only when it tells the hand something the eye
+might miss. Never an ordinary press or a move the app makes itself. One
+event, one haptic (`lib/haptics.ts`).
 
-Four tiers, by meaning: **swipe** — a sideways swipe landing (the deck, the gauge row, the country cards), the softest there is; **tick** — pull-to-refresh and swipe-to-remove crossing their threshold, a sheet *released* onto a new detent (a move the app makes is silent), a chart scrub on grab and on a cited story's point, a toggle turned on or an option picked; **impact** — a globe tap that hit something, and a notch per story on the story track (impact because iOS silences selection feedback while audio plays), at most one per 50 ms; **notification** — saved, removed, undone, erased, caught up, every story found, with `hapticError` for what could not be done. **One event, one haptic**: where two would fire, the more meaningful wins (a swipe landing on the last story found gives only the success). The briefing's scrubber has no notches — they stood for nothing in the audio.
+| Call | When |
+|---|---|
+| `hapticSwipe` | A sideways swipe landing |
+| `hapticTick` | A threshold crossed under a finger, a sheet released onto a stop, a pick |
+| `hapticImpact` | A globe tap that hit; a notch per story on the track |
+| `hapticNotification` | State committed: saved, removed, erased, caught up |
+| `hapticError` | What could not be done |
 
-Android goes through `performAndroidHapticsAsync` (`View.performHapticFeedback`) only: it follows the system's touch-feedback setting. `impactAsync`, `selectionAsync` and `notificationAsync` are raw `Vibrator` buzz on Android and are iOS-only here; below the API level a constant arrived in, an older View constant stands in (`__tests__/haptics.test.ts`). The app stays on `expo-haptics`: it ships over the air, and the system patterns are what both platforms ask for. Pulsar (`react-native-pulsar`) is the path if a swipe must be softer than `Soft`, at the cost of a native module and a store build.
+Android uses `performAndroidHapticsAsync` only.
 
-## Anti-patterns (don't)
+## Anti-patterns
 
-- Inline hex codes (`#141414`, `#e8e8e8`) — always via `useTheme().colors` or `tone`.
-- Setting `fontSize` or `lineHeight` in a component — use a variant, or add one.
-- A second font family. The app ships Source Sans 3 only.
-- Decorative icons just to pad a label. Use words.
-- Shadows, gradients, box-shadows (the `BriefingBar` iOS frosted-glass, the top bar's shade, the resting story's veil and the fade over an open story's footer row are the carve-outs — see §Native chrome carve-outs).
-- A full-screen reader or modal per story on the map. It covers the earth the story is placed on; the story card grows in place instead.
-- Raw `@expo/vector-icons` or `expo-symbols` imports outside `Icon.tsx`.
-- Introducing a styling library (NativeWind, Unistyles, Tamagui, Restyle). Vanilla StyleSheet + theme hooks is the decision — documented, don't re-litigate.
+- A `lineHeight`, spacing literal or opacity decimal in a component.
+- An icon that only pads a label.
+- `expo-symbols` imported outside `Icon.tsx`.
+- A shadow, blur or gradient outside the carve-outs.
+- Opacity that quiets text meant to be read.
 
 ## Native chrome carve-outs
 
-The "no native chrome" rule has five specific, intentional carve-outs:
+Five. Nothing else in the app's chrome gets a blur or a gradient. The globe's
+marks and their row glyphs are drawn as the map draws them, and sheets are the
+platform's.
 
-- **Icons on iOS resolve to SF Symbols.** `components/primitives/Icon.tsx` switches on `Platform.OS`: iOS renders the matching SF Symbol via `expo-symbols` (sharper optical sizing, automatic tinting, system feel); Android renders Ionicons. The public `<Icon name="..." size="sm|md|lg" tone="..." />` API stays unified — call sites pass an Ionicons name and the mapping table in `Icon.tsx` resolves to SF Symbol on iOS. An Ionicons name not in the mapping table silently falls back to Ionicons on both platforms — no missing-glyph placeholder.
-- **BriefingBar uses iOS frosted glass.** The floating audio chrome on the dock uses `BlurView` (`tint="systemThinMaterial"`) on iOS so the bar reads as a native floating surface. Android keeps a solid `playerBg` fill (`pillBg` over the sheet, composited — `pillBg` itself is 88% and let the story card's lines show through the bar) because Android's BlurView implementations are uneven. This is the only sheet-or-bar surface allowed to blur — editorial sheets stay typography-first.
-- **The top bar sits on a shade.** `MapHeader` floats over the globe, and caps gauge labels over a lit coastline were hard to read. Behind it, one vertical gradient of `bg` — strongest under the status bar, still holding under the row, gone `SPACING.xl` below it — so the earth runs up into the bar instead of stopping at an edge. It is a legibility scrim, the web map's HUD answer, not decoration.
-- **The resting story is veiled below its hook.** `StoryCard`'s `Veil`: two body lines of gradient from half the sheet's ground to all of it, then solid ground, attached to the rest of the story (never to a place on screen, so it cannot lie over the hook). It quiets text by opacity only because that text is not meant to be read at rest: the card rests on the hook so the day is a choice rather than a queue, and the fade is the sign that opening it reveals more.
-- **An open story goes out into the sheet where it scrolls behind its footer row** (`StoryFooter`'s `fade`, 2026-10-03). The row had a hairline over it; the user asked for the row's two rules gone, and without that one a story longer than the sheet was cut through the middle of a line, a few points over the row's words. So the sheet's own ground comes up over the last `SPACING.md` of the scroll area: a still gradient, never animated and never mounted with the sheet. It lies over the space every story already ends on, so the last line of a story is never under it — it quiets only text that is on its way out of the viewport, which is the one other place opacity may touch text. It is a scroll edge, not decoration; the alternative is the rule. Nothing else gets a gradient.
+1. Icons on iOS are SF Symbols, mapped from Ionicons names in `Icon.tsx`.
+2. `BriefingBar` is frosted glass on iOS, the only surface that blurs.
+   Android gets solid `playerBg`.
+3. The top bar's shade (`MapHeader`): a gradient of `bg`, a legibility scrim.
+4. The resting story's veil (`StoryCard`): a gradient over text not meant
+   to be read at rest.
+5. The footer fade (`StoryFooter`): the sheet's ground over the last
+   `SPACING.md` of a story scrolling behind its action row. No story text
+   is set under it.
 
 ## Accessibility checklist
 
-Every interactive element must have:
+- `accessibilityRole` and `accessibilityLabel` on every interactive
+  element; `accessibilityHint` where the result is not obvious.
+- `accessibilityState` for selected, expanded and disabled.
+- A tap target of `HIT_SLOP` or `LAYOUT.rowMinHeight`.
+- No `maxFontSizeMultiplier` override without a reason.
+- An `adjustable` control states its position in `accessibilityValue`.
+- A change with no focus on it goes through `announce()`.
+- Reduce Motion as in Motion; motion that tracks a finger is exempt.
+- AA contrast (4.5:1 for body text) in both themes, at default and largest
+  text.
 
-- `accessibilityRole` — `button`, `link`, `tab`, `radio`, `switch`, `adjustable`, `search`, `alert`, `header`.
-- `accessibilityLabel` — what it is. `accessibilityHint` — what happens when activated, if not obvious.
-- `accessibilityState` — `selected`, `expanded`, `disabled` when applicable.
-- `hitSlop` — use `HIT_SLOP` default. `IconButton` applies it automatically.
-- Dynamic Type — `VARIANT_CAP` auto-applies; override via `maxFontSizeMultiplier` only with reason.
-- Reduce Motion — see §Motion. Reanimated snaps every discrete animation by itself; what needs care is the motion that must *not* snap. See also the memory note on battery saver.
-  - **Exempt: motion that tracks direct manipulation.** The story deck follows a sideways swipe, the sheet follows a drag, and the globe scales with the sheet as a story grows — and their release springs (`KEEP_MOTION`) carry the finger on. Reduce Motion targets discrete, decorative, or unexpected motion; snapping a finger-tracked element reads as broken, not accessible. Gate the transition, not the tracking.
-- Announcements — `accessibilityLiveRegion` is Android-only. Anything that changes with no focus on it (a toast, the dock's status line, a story swapped in by an accessibility action) goes through `announce()` (`lib/announce.ts`).
-- `adjustable` controls carry their position as `accessibilityValue`, not in the label, so VoiceOver reads the new value after each adjustment.
-  - Prefer a cross-fade to removing feedback entirely — `MiniGlobe.showPulse` still draws its ring under Reduce Motion, just at final radius without the expansion.
-- WCAG AA contrast — the dark and light palettes meet 4.5:1 body / 3:1 large at normal text weights.
+## Adding a component or a variant
 
-## Adding a new component
+A component: compose primitives, give every text a variant, use `tone`
+before a colour and `scale` before a size, then run the checklist.
 
-1. Read `foundation.md` — the design voice is sacrosanct.
-2. Sketch the layout using existing primitives. If you can't express it, consider: can a new variant cover this? Can `Stack`/`Box` compose it?
-3. Pick `<Text variant>` for every text element. Never set `fontSize`.
-4. Use `tone` before a color override. Use `scale` before a `fontSize` override.
-5. Wire a11y props — `role` + `label` minimum.
-6. Verify light + dark modes at default and max Dynamic Type.
-7. If the component introduces a reusable pattern (three+ usages likely), add an example to this doc.
+A variant: only for a distinct role, named for it (`rankDigit`, not
+`xsBoldAccent`). Add it to `makeTextVariants` with a JSDoc line, give it a
+`VARIANT_CAP`, add a row above, and migrate the call sites.
 
-## Adding a new variant
+## Globe detail
 
-Add it only if it's a distinct editorial/interaction role, not a one-off size tweak. Workflow:
-
-1. Name it semantically (`rankDigit`, not `xsBoldAccent`).
-2. Add the entry to `makeTextVariants` in `theme.ts` with a one-line JSDoc explaining the role.
-3. Add the `MAX_FONT_SCALE` tier to `VARIANT_CAP`.
-4. Update this doc's variant table.
-5. Migrate existing call sites that match the new role.
-
-## References
-
-- Voice & manifesto — `/foundation.md`
-- Theme file — `mobile/constants/theme.ts`
-- Primitives — `mobile/components/primitives/`
-- `useTheme` hook — `mobile/hooks/useTheme.tsx`
-- Shared press animation — `mobile/hooks/useSpringPress.ts`
-- Shared sheet content (scroll/hero/flags/footer) — `mobile/components/SheetContent.tsx`
-- Stagger entrances — `mobile/lib/stagger.ts`
-- Severity → tint rule — `mobile/lib/severity.ts`
-- Haptics — `mobile/lib/haptics.ts`
-
-## Globe geography detail
-
-While the story deck moves, expensive globe detail waits for the exact story
-endpoint. Arc fades keep their existing timing. The final detail transition
-must bypass frame throttling and numeric no-op filtering, but still respect
-projection backpressure so an interrupted swipe cannot restore stale detail.
-
-The news scrubber keeps its two muted segment palettes stable across landings;
-the raised current-story marker carries the full category hue separately.
-
-The mobile globe renders tiers generated from Natural Earth 10m by
-`node scripts/generate-globe-geography.mjs`. Borders, coastline, ice and the
-country highlight must use the same tier. Resting detail follows projected
-scale; the lightweight motion tier is replaced on the final stopped frame.
-Country taps use the resting tier. Do not restore 110m as the resting map.
-The generator corrects reversed island rings before merging land and simplifies
-shared arcs once, preserving alignment. Projection resampling remains enabled
-so long edges curve smoothly when magnified.
-
-
-### Map exploration (September 2026)
-
-The mobile globe includes every exchange published in `/api/markets.json`, not just scored highlights. Market signs show the move over the past week — the strip's number, `exchangeMove` — with an asterisk for older quotes; they showed the session against the prior close until 2026-09-25, so a gauge and the mark it flew to could point opposite ways. The strip's `all →` opens the menu, whose `stock markets` list keeps the all / rising / falling filter; commodities, currencies, straits, rates, predictions and dates are groups of their own beside it. Selecting an exchange or a strait flies to its actual coordinates and opens its source, date, history and context. Non-geographic indicators stay in the menu's lists.
-
-The market marker is 26dp across with a separate 48dp touch target. Screen-space clusters preserve every exchange, split as zoom creates space, and expose members in a chooser. Placement avoids story and hazard targets; short leader lines connect displaced signs to their geographic origin. Labels pack around higher-priority text and stay within the map viewport.
-
-Straits retain their coastline silhouettes and disruption hues. A compact arrow and percentage label, green up and red down like every move (`moveTone`; how bad a fall is, is the glyph's pinch to say), show the strait's ships over the past week, the strip's number (`straitWeekChange`); only where there is no week does it fall back to the seven-day average against the 90-day normal, marked `vs 90d`. Missing traffic comparisons receive no invented direction.
-
-**A market's or strait's label is two lines (2026-09-22, the user's request).** The name, then the move under it: `Strait of Hormuz` over `↓57% vs 90d`, `BIST 100` over `↓4.8%`. It was one 11pt line tinted end to end in the move's colour, which ran a third of the way across a phone and put the name in a traffic colour. The hierarchy is the data map's: the figure carries the weight, the name says what it is. The name is 11pt in plain `text` ink — upright semibold for an exchange, the water labels' italic for a strait, the atlas convention for a passage. The move is 13pt semibold (`MARK_VALUE_PT`) in its direction's colour; a strait's `vs 90d` stays 11pt `textSecondary` after it, a qualifier rather than a second figure. One halo covers every line. The story's location (16pt) is still the largest text on the globe, and a cluster's `3 markets` stays one line, since it has no single move. Two lines are narrower and taller, so in a crowded region a label now finds room more often sideways and less often vertically; with no room either way it is dropped as before, and the mark stays tappable.
+- Shape says what a mark is, so its state survives without colour: a strait
+  pinches or bows (`STRAIT_BULGE`), a hazard grows with its level
+  (`gdacsGlyphScale`). The thermal burst is the only radial mark.
+- A mark's size is a rank or a level, never a raw figure: a story's coverage
+  rank in the day, a hazard's level, a conflict mark's dead.
+- The story's place is the largest label (`DOT_LABEL_PT`). Countries are
+  small caps; water and straits are italic.
+- A mark's name is `text` ink, never the move's colour. The move sits under
+  it, larger (`MARK_VALUE_PT`), in its colour.
+- A story count is `textEmphasis`; a conflict count is `markConflictText`.
+- Quiet neighbour labels never go under `ANCHOR_LABEL_OPACITY_LIGHT`/`_DARK`:
+  the one place opacity quiets text.
+- Capitals and lakes over `LAKE_FILL_MIN_AREA` show at every zoom, on settled
+  frames. Rivers
+  show at rest under `RIVERS_REST_CLIP`, always under `RIVERS_APPEAR_CLIP`.
+- Land, borders, ice and the highlight share one tier (`geographyTier`).
+- The grid and the `daylight` lift are drawn under the land. The grid is 0.8
+  wide; thinner vanishes.
