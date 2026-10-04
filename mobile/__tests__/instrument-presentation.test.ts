@@ -30,7 +30,7 @@ it('shows an observation month instead of its storage date', () => {
   expect(cardObservation(row('price', 'over 7 days', 'Sep 1').card!)).toBe('Sep 1');
 });
 
-it('only shares dates when every reading has that date', () => {
+it('shares a majority date while explicitly marking exceptions', () => {
   const group: CatalogGroup = {
     key: 'rates',
     title: 'rates',
@@ -38,8 +38,17 @@ it('only shares dates when every reading has that date', () => {
   };
   expect(listContext(group)).toMatchObject({ date: 'Sep 2026', window: 'on the month' });
   group.rows.push(row('older', 'since Jul 2026', 'Aug 2026'));
-  expect(listContext(group)).toMatchObject({ date: undefined, window: 'on the month' });
+  expect(listContext(group)).toMatchObject({
+    date: 'Sep 2026',
+    dateLabel: 'Sep 2026 unless noted',
+    window: 'on the month',
+  });
   expect(group.rows[2]?.move?.window).toBe('since Jul 2026');
+  group.rows.push(row('another-older', 'on the month', 'Aug 2026'));
+  expect(listContext(group).date).toBeUndefined();
+  group.rows.pop();
+  group.rows.push({ ...row('missing'), card: null });
+  expect(listContext(group).date).toBeUndefined();
 });
 
 it('keeps contextual country names out of unrelated lists and leaves unknown banks intact', () => {

@@ -205,9 +205,9 @@ const styles = StyleSheet.create({
     gap: SPACING.md,
   },
   leading: { flexDirection: 'row', alignItems: 'center', justifyContent: 'center' },
-  // No height of its own: a glyph taller than the title's line overflows it
-  // evenly, and the line stays the title's.
-  mark: { height: 0, justifyContent: 'center', alignItems: 'center' },
+  // Overlay the title-height strut. A zero-height flex container collapses
+  // native emoji Text even though fixed-size canvas glyphs still draw.
+  mark: { position: 'absolute', inset: 0, justifyContent: 'center', alignItems: 'center' },
   text: { flex: 1, minWidth: 0, gap: SPACING.xxs },
   reading: { fontVariant: ['tabular-nums'] },
   intro: { gap: SPACING.xs, paddingBottom: SPACING.md },

@@ -55,8 +55,12 @@ export const InstrumentRow = memo(function InstrumentRow({
   // every row (`CatalogRow.note`); a screen reader still hears it. A date's
   // note is its day, which the row's caption prints.
   const said = card?.kind === 'scheduled' ? undefined : card?.readingNote || undefined;
-  const unit =
+  const fullUnit =
     card?.kind === 'scheduled' ? undefined : (row.note ?? card?.readingNote) || undefined;
+  const sharedUnit =
+    context?.group === 'currencies' ||
+    (context?.group === 'stocks' && (fullUnit === 'index' || fullUnit === 'index points'));
+  const unit = sharedUnit ? undefined : fullUnit;
   // `Sep 21`, as every card and chart prints a day. A date has no day it was
   // read — its line is the day it falls on.
   const asOf = exchange?.asOf ?? card?.asOf;
@@ -95,7 +99,7 @@ export const InstrumentRow = memo(function InstrumentRow({
       accessibilityLabel={[
         title,
         kicker,
-        [reading, unit ?? said].filter(Boolean).join(' '),
+        [reading, fullUnit ?? said].filter(Boolean).join(' '),
         move ? spokenDelta(move) : '',
         date,
       ]
