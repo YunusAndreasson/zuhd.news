@@ -970,13 +970,6 @@ function HazardLayers({
   );
 }
 
-type StockFilter = 'all' | 'rising' | 'falling';
-const STOCK_FILTERS: SegmentOption<StockFilter>[] = [
-  { value: 'all', label: 'all' },
-  { value: 'rising', label: 'rising' },
-  { value: 'falling', label: 'falling' },
-];
-
 function RetainedListPage({ hidden, children }: { hidden: boolean; children: React.ReactNode }) {
   const [height, setHeight] = useState(0);
   return (
@@ -997,7 +990,6 @@ function RetainedListPage({ hidden, children }: { hidden: boolean; children: Rea
 /**
  * One group's list, under the line that says what its rows share and the
  * list's own figure: the number its row on the root prints, named.
- * `stock markets` keeps its filter.
  */
 function GroupPage({
   group,
@@ -1008,15 +1000,6 @@ function GroupPage({
   bottomInset: number;
   onSelect: (row: CatalogRow) => void;
 }) {
-  const [filter, setFilter] = useState<StockFilter>('all');
-  const stocks = group.key === 'stocks';
-  const rows = useMemo(
-    () =>
-      !stocks || filter === 'all'
-        ? group.rows
-        : group.rows.filter((r) => r.move?.direction === (filter === 'rising' ? 'up' : 'down')),
-    [group.rows, stocks, filter],
-  );
   const context = useMemo(() => listContext(group), [group]);
   const time =
     context.window === 'over 7 days'
@@ -1045,28 +1028,13 @@ function GroupPage({
   );
   return (
     <SheetFlatList
-      data={rows}
+      data={group.rows}
       keyExtractor={rowKey}
       renderItem={renderItem}
       bottomInset={bottomInset}
       contentContainerStyle={listStyles.content}
-      ListHeaderComponent={
-        <ListIntro note={note}>
-          {stocks ? (
-            <View style={styles.filters}>
-              <SegmentedControl
-                role="tab"
-                size="compact"
-                accessibilityLabel="Filter markets"
-                options={STOCK_FILTERS}
-                selected={filter}
-                onSelect={setFilter}
-              />
-            </View>
-          ) : null}
-        </ListIntro>
-      }
-      ListEmptyComponent={<EmptyState message="No matching markets" />}
+      ListHeaderComponent={<ListIntro note={note} />}
+      ListEmptyComponent={<EmptyState message="No readings available" />}
     />
   );
 }
@@ -1122,7 +1090,6 @@ const styles = StyleSheet.create({
   // The menu holds one height (`fill`), so a page fills it: the swipe back
   // works under a short list too.
   listPage: { flex: 1 },
-  filters: { paddingTop: SPACING.sm },
   // The list's figure and its name, as one unit.
   groupFigure: { alignItems: 'flex-end', gap: SPACING.xs },
 });
