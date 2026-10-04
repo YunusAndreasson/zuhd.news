@@ -1,105 +1,5 @@
 [
   {
-    "timestamp": "2026-09-13T08:21:46.210Z",
-    "candidateCount": 11,
-    "candidates": [
-      {
-        "slug": "2026-09-13-java-sea-ferry-the-manifest-and-the-count",
-        "title": "Java Sea Ferry Vanishes",
-        "category": "politics",
-        "eventCoverage": 251,
-        "importance": 6
-      },
-      {
-        "slug": "2026-09-13-chokepoints-named-by-those-who-hold-them",
-        "title": "Modi Flags Tech Weaponization",
-        "category": "tech",
-        "eventCoverage": 46,
-        "importance": 6
-      },
-      {
-        "slug": "2026-09-13-fema-cuts-nullification-by-staffing",
-        "title": "Court Blocks Disaster-Agency Cuts",
-        "category": "politics",
-        "eventCoverage": 32,
-        "importance": 6
-      },
-      {
-        "slug": "2026-09-13-manghopir-the-funeral-held-open",
-        "title": "Karachi Family Refuses Burial",
-        "category": "politics",
-        "eventCoverage": 0,
-        "importance": 6
-      },
-      {
-        "slug": "2026-09-13-south-africa-coalitions-88-to-110",
-        "title": "Hung Councils Set To Rise",
-        "category": "politics",
-        "eventCoverage": 0,
-        "importance": 6
-      },
-      {
-        "slug": "2026-09-13-npt-article-x-the-inspectors-leave-first",
-        "title": "Iran Weighs Treaty Exit",
-        "category": "politics",
-        "eventCoverage": 0,
-        "importance": 6
-      },
-      {
-        "slug": "2026-09-13-barkin-ladi-arrests-without-prosecutions",
-        "title": "Soldiers Arrest Plateau Suspects",
-        "category": "politics",
-        "eventCoverage": 0,
-        "importance": 6
-      },
-      {
-        "slug": "2026-09-13-three-routes-one-gun-red-sea-oil",
-        "title": "Saudi Oil Routes Besieged",
-        "category": "economy",
-        "eventCoverage": 0,
-        "importance": 6
-      },
-      {
-        "slug": "2026-09-13-daachi-the-channel-that-lasts-two-days",
-        "title": "Karachi Fair Bypasses Middlemen",
-        "category": "economy",
-        "eventCoverage": 0,
-        "importance": 6
-      },
-      {
-        "slug": "2026-09-13-the-model-learned-the-hospital",
-        "title": "Model Learned Hospital Quirks",
-        "category": "tech",
-        "eventCoverage": 0,
-        "importance": 6
-      },
-      {
-        "slug": "2026-09-13-fourteen-days-of-heat-the-window-no-alert-covers",
-        "title": "Heat Strain Builds Undetected",
-        "category": "science",
-        "eventCoverage": 0,
-        "importance": 6
-      }
-    ],
-    "selected": {
-      "slug": "2026-09-13-java-sea-ferry-the-manifest-and-the-count",
-      "title": "Java Sea Ferry Vanishes",
-      "category": "politics",
-      "body": "140 of 243 aboard remain missing, rescuers",
-      "eventCoverage": 251,
-      "importance": 6
-    },
-    "skipReason": null,
-    "sent": true,
-    "pushTitle": "Breaking News",
-    "pushBody": "Indonesian ferry capsizes off Banjarmasin, 140 of 243 aboard missing",
-    "response": {
-      "pushed": 1,
-      "skipped": 0,
-      "tokens": 9
-    }
-  },
-  {
     "timestamp": "2026-09-13T12:21:05.769Z",
     "candidateCount": 10,
     "candidates": [
@@ -9958,6 +9858,78 @@
     "sent": true,
     "pushTitle": "Breaking News",
     "pushBody": "Russia strikes Kyiv bridge as Germany's Merz arrives by train",
+    "response": {
+      "pushed": 1,
+      "skipped": 0,
+      "tokens": 5
+    }
+  },
+  {
+    "timestamp": "2026-10-04T14:14:17.749Z",
+    "candidateCount": 7,
+    "candidates": [
+      {
+        "slug": "2026-10-04-russia-defence-ministry-vows-more-strikes-kyiv-response-zelensky",
+        "title": "Moscow Declares Strike Escalation",
+        "category": "politics",
+        "eventCoverage": 142,
+        "importance": 6
+      },
+      {
+        "slug": "2026-10-04-catalonia-floods-two-dead-one-missing-mini-hurricane",
+        "title": "Catalonia Floods Kill Two",
+        "category": "politics",
+        "eventCoverage": 92,
+        "importance": 6
+      },
+      {
+        "slug": "2026-10-04-trump-names-clayton-ai-czar-white-house-task-force",
+        "title": "Trump Names AI Czar",
+        "category": "tech",
+        "eventCoverage": 79,
+        "importance": 6
+      },
+      {
+        "slug": "2026-10-04-opec-plus-seven-keep-november-output-unchanged",
+        "title": "OPEC+ Holds November Quotas",
+        "category": "economy",
+        "eventCoverage": 0,
+        "importance": 6
+      },
+      {
+        "slug": "2026-10-04-tether-usdt-returns-to-bitcoin-rgb-protocol",
+        "title": "Tether Relaunches Dollar Token",
+        "category": "economy",
+        "eventCoverage": 0,
+        "importance": 6
+      },
+      {
+        "slug": "2026-10-04-pakistan-dera-ismail-khan-operation-eight-killed-state-media",
+        "title": "Pakistan Reports Eight Killed",
+        "category": "politics",
+        "eventCoverage": 0,
+        "importance": 6
+      },
+      {
+        "slug": "2026-10-04-inka-coca-leaves-sacrificed-llamas-tambo-viejo-peru",
+        "title": "Inka Coca Ritual Confirmed",
+        "category": "science",
+        "eventCoverage": 0,
+        "importance": 6
+      }
+    ],
+    "selected": {
+      "slug": "2026-10-04-russia-defence-ministry-vows-more-strikes-kyiv-response-zelensky",
+      "title": "Moscow Declares Strike Escalation",
+      "category": "politics",
+      "body": "[Russia](country:RU) will step up Kyiv strikes, Russian state news agency TASS",
+      "eventCoverage": 142,
+      "importance": 6
+    },
+    "skipReason": null,
+    "sent": true,
+    "pushTitle": "Breaking News",
+    "pushBody": "Russia says it will step up strikes on Kyiv, TASS reports",
     "response": {
       "pushed": 1,
       "skipped": 0,
