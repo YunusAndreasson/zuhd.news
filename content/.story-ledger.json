@@ -2,13 +2,161 @@
   "version": 1,
   "stories": [
     {
+      "id": "opec-plus-seven-keep-november-output-unchanged",
+      "label": "OPEC+ seven keep November oil production plan unchanged",
+      "firstSeen": "2026-10-04T14:06:49.507Z",
+      "lastCovered": "2026-10-04T14:06:49.507Z",
+      "coverageCount": 1,
+      "category": "economy",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-10-04-opec-plus-seven-keep-november-output-unchanged"
+      ],
+      "eventUri": null,
+      "summary": "Follow-up to this morning's preview of the OPEC+ meeting (one clause). The new development is the decision: the seven producers making voluntary cuts — Russia, Saudi Arabia, Iraq, Kazakhstan, Kuwait, Oman and Algeria — kept their November production plan unchanged, and the Joint Ministerial Monitoring Committee, meeting online, reviewed July and August output, voiced concern over attacks on energy infrastructure and set its next meeting for 29 November. Lead with the unchanged quota and give the figures as reported. The mechanism: Bloomberg's delegates say the war has shut in swaths of the group's output, so a quota on paper no longer describes the barrels that reach buyers through the Strait of Hormuz — the cartel is holding a number it cannot fill, and Russia's Novak calls the market tense with a supply deficit. That gap is what moves Brent crude. TASS is Russian state media and Russia is a party to the deal: attribute its reports by name; Bloomberg is the independent source. One article from all the reports in `sources`. Dateline Vienna, or as the reports give it.",
+      "conceptUris": [
+        "http://en.wikipedia.org/wiki/OPEC",
+        "http://en.wikipedia.org/wiki/Petroleum",
+        "http://en.wikipedia.org/wiki/Barrel_(unit)",
+        "http://en.wikipedia.org/wiki/TASS",
+        "http://en.wikipedia.org/wiki/Saudi_Arabia",
+        "http://en.wikipedia.org/wiki/Russia",
+        "http://en.wikipedia.org/wiki/Iraq",
+        "http://en.wikipedia.org/wiki/Oman"
+      ]
+    },
+    {
+      "id": "tether-usdt-returns-to-bitcoin-rgb-protocol",
+      "label": "Tether Brings Its $184 Billion Stablecoin Back to Bitcoin: Will BTC Regain Its Role as a Payments Network? - AOL",
+      "firstSeen": "2026-10-04T14:06:49.507Z",
+      "lastCovered": "2026-10-04T14:06:49.507Z",
+      "coverageCount": 1,
+      "category": "economy",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-10-04-tether-usdt-returns-to-bitcoin-rgb-protocol"
+      ],
+      "eventUri": "eng-12063506",
+      "summary": "Tether is relaunching USDT, its $184 billion dollar stablecoin, on bitcoin this month, twelve years after it left the network for faster and cheaper chains such as Tron and Ethereum. Lead with the return and the size of the token. The mechanism a technical reader wants: the relaunch uses the RGB protocol, which keeps most USDT transaction data off bitcoin's main chain, so the network gains a dollar payments layer while its miners collect almost no fees from it — say what is settled on-chain and what is not. Who it lands on: stablecoins are how people in high-inflation economies hold dollars, so say where USDT is actually used, as the report gives it. The headline's question is the outlet's; do not answer it, and leave out any investment framing or price forecast. AOL is carrying a syndicated markets piece: use its facts, attribute claims about adoption to Tether. Dateline San Salvador, where Tether is based, unless the report says otherwise; not a US dateline.",
+      "conceptUris": []
+    },
+    {
+      "id": "trump-names-clayton-ai-czar-white-house-task-force",
+      "label": "Trump names AI czar to head White House task force",
+      "firstSeen": "2026-10-04T14:06:49.507Z",
+      "lastCovered": "2026-10-04T14:06:49.507Z",
+      "coverageCount": 1,
+      "category": "tech",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-10-04-trump-names-clayton-ai-czar-white-house-task-force"
+      ],
+      "eventUri": "eng-12067424",
+      "summary": "Trump on Sunday announced a White House task force to coordinate the administration's response to artificial intelligence and named Jay Clayton, a lawyer and former securities regulator, to lead it as AI czar. Do not write an appointment notice. Lead with who was chosen and what the body can actually do — whether it has authority over agencies, budgets or rules, or only coordinates — and who else sits on it (the Director of National Intelligence is tagged), as DW reports. The mechanism: the appointment follows a week in which OpenAI disclosed an intrusion by misaligned agents and lost safety staff (covered 10-02 and 10-04 — one clause), and data centres became a midterm liability in Ohio; the administration's answer is a coordinator from finance and prosecution, not a regulator with powers over the companies. Say what the task force is charged with and by when, and what it is not. Dateline Washington. US dateline (1 of 3).",
+      "conceptUris": [
+        "http://en.wikipedia.org/wiki/Donald_Trump",
+        "http://en.wikipedia.org/wiki/Artificial_intelligence",
+        "http://en.wikipedia.org/wiki/United_States",
+        "http://en.wikipedia.org/wiki/White_House",
+        "http://en.wikipedia.org/wiki/Jay_Clayton_(attorney)",
+        "http://en.wikipedia.org/wiki/Director_of_National_Intelligence",
+        "http://en.wikipedia.org/wiki/Jay_Clayton_(musician)",
+        "http://en.wikipedia.org/wiki/Federal_government_of_the_United_States"
+      ]
+    },
+    {
+      "id": "russia-defence-ministry-vows-more-strikes-kyiv-response-zelensky",
+      "label": "Moscow vows to ramp up strikes on Ukraine after Zelensky's threat -- RT Russia & Former Soviet Union",
+      "firstSeen": "2026-10-04T14:06:49.507Z",
+      "lastCovered": "2026-10-04T14:06:49.507Z",
+      "coverageCount": 1,
+      "category": "politics",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-10-04-russia-defence-ministry-vows-more-strikes-kyiv-response-zelensky"
+      ],
+      "eventUri": "rus-2135501",
+      "summary": "Follow-up to Zelensky's pledge to hit Russian energy sites (10-03) and the strike on Kyiv's Northern Bridge during Merz's visit (this morning) — one clause each. The new development: Russia's Defence Ministry has now said on the record that its massive strikes on Kyiv and other regions are a response to Zelensky, and that it will step them up against what it calls military and defence-industry facilities. Lead with the ministry's statement as a declared policy of escalation, quoted. The mechanism: each side now names the other's statements as the reason for its next strike, and Moscow's description of its targets as military sits against a bridge and housing hit in a city of millions — set the ministry's words beside what was actually struck, using only what earlier reports established. Both sources are Russian state media (TASS and RT): attribute everything to the ministry via them by name, state none of its claims as fact, and say the feed carries no Ukrainian or independent account of this statement. Dateline Moscow.",
+      "conceptUris": [
+        "http://en.wikipedia.org/wiki/Kiev",
+        "http://en.wikipedia.org/wiki/Ukraine",
+        "http://en.wikipedia.org/wiki/Russia",
+        "http://en.wikipedia.org/wiki/Volodymyr_Zelenskyy",
+        "http://en.wikipedia.org/wiki/Ministry_of_Defence_(Russia)",
+        "http://en.wikipedia.org/wiki/Moscow",
+        "http://en.wikipedia.org/wiki/Russian_Armed_Forces",
+        "http://en.wikipedia.org/wiki/Unmanned_aerial_vehicle"
+      ]
+    },
+    {
+      "id": "catalonia-floods-two-dead-one-missing-mini-hurricane",
+      "label": "Spain floods: 2 dead as heavy rain hits Catalonia",
+      "firstSeen": "2026-10-04T14:06:49.507Z",
+      "lastCovered": "2026-10-04T14:06:49.507Z",
+      "coverageCount": 1,
+      "category": "politics",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-10-04-catalonia-floods-two-dead-one-missing-mini-hurricane"
+      ],
+      "eventUri": "fra-1350519",
+      "summary": "Torrential rain and flooding have left two people dead and one missing in Catalonia, Deutsche Welle reports, after forecasters warned of a Mediterranean 'mini-hurricane' bringing more than 200 litres of rain per square metre in about six hours. Lead with the dead and the missing — who and where (Tordera and Montornès del Vallès are tagged) — taking the toll from DW, the latest of the three reports; the Euro Weekly News and Anadolu pieces are the warnings from the day before. The mechanism: Meteocat forecast the storm and Civil Protection had the ES-Alert phone warning ready, so say whether and when the alert was sent and what people were told to do — after Valencia in 2024 the question in Spain is not whether the rain was predicted but whether the warning reached people in time. A disaster report, not a science story: no climate attribution unless a source makes it. Anadolu is Turkish state media; DW is the factual base. Dateline Tordera, or Barcelona if DW files from there.",
+      "conceptUris": [
+        "http://en.wikipedia.org/wiki/Catalonia",
+        "http://en.wikipedia.org/wiki/Barcelona",
+        "http://en.wikipedia.org/wiki/Spain",
+        "http://en.wikipedia.org/wiki/Tordera",
+        "http://en.wikipedia.org/wiki/Flood",
+        "http://en.wikipedia.org/wiki/Montornès_del_Vallès",
+        "http://en.wikipedia.org/wiki/Province_of_Barcelona",
+        "http://en.wikipedia.org/wiki/Firefighter"
+      ]
+    },
+    {
+      "id": "pakistan-dera-ismail-khan-operation-eight-killed-state-media",
+      "label": "Security forces kill 8 terrorists in Dera Ismail Khan IBO: state media",
+      "firstSeen": "2026-10-04T14:06:49.507Z",
+      "lastCovered": "2026-10-04T14:06:49.507Z",
+      "coverageCount": 1,
+      "category": "politics",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-10-04-pakistan-dera-ismail-khan-operation-eight-killed-state-media"
+      ],
+      "eventUri": "eng-12066101",
+      "summary": "Pakistani security forces killed eight people they describe as militants of the banned Tehreek-i-Taliban Pakistan in an intelligence-based operation in Dera Ismail Khan, Khyber Pakhtunkhwa, according to security sources quoted by state-run Radio Pakistan and carried by Dawn. Lead with the eight dead and exactly who says so: the account comes from unnamed security sources through state radio, with no independent confirmation of who the dead were — say that plainly, and note that 'Fitna al Khawarij' is the state's own term for the TTP, as Dawn explains. The mechanism: these operations are reported only by the force that carries them out, in the same province whose government is today marching on Islamabad (PTI march, covered this morning — one clause), so the public record of the war in KP is a series of military statements. Give any figures Dawn has on recent attacks and operations in the district. Dateline Dera Ismail Khan.",
+      "conceptUris": []
+    },
+    {
+      "id": "inka-coca-leaves-sacrificed-llamas-tambo-viejo-peru",
+      "label": "Inka scattered sacred coca leaves over sacrificed llamas, excavation suggests",
+      "firstSeen": "2026-10-04T14:06:49.507Z",
+      "lastCovered": "2026-10-04T14:06:49.507Z",
+      "coverageCount": 1,
+      "category": "science",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-10-04-inka-coca-leaves-sacrificed-llamas-tambo-viejo-peru"
+      ],
+      "eventUri": null,
+      "summary": "Archaeologists excavating Tambo Viejo, an Inka provincial centre in Peru's Acarí Valley, have found coca leaves still caught in the wool of sacrificed llamas — the first direct evidence of how the Inka used one of their most sacred plants in ritual, where until now there were only a few seeds and stored leaves. Lead with the leaves in the wool and what they show: coca was scattered over the animals as part of the sacrifice. The mechanism: say how the find was made and dated, how the leaves were identified, and why it matters — Spanish chroniclers described coca offerings, but physical evidence rarely survives, and the dry coast preserved it; give the journal and the team as Phys.org reports them. The site's tasselled llamas and adorned guinea pigs get one clause. A finding, not a travel piece. Dateline Acarí, Peru.",
+      "conceptUris": []
+    },
+    {
       "id": "russia-strikes-kyiv-bridge-as-merz-visits-pledges-aid",
       "label": "Germany's Merz Arrives in Kyiv, Warns of Putin's Threat to West",
       "firstSeen": "2026-10-04T10:04:17.285Z",
       "lastCovered": "2026-10-04T10:04:17.285Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-10-04-russia-strikes-kyiv-bridge-as-merz-visits-pledges-aid"
@@ -33,7 +181,7 @@
       "lastCovered": "2026-10-04T10:04:17.285Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-10-04-pakistan-pti-march-begins-lakki-marwat-talks-fail"
@@ -58,7 +206,7 @@
       "lastCovered": "2026-10-04T10:04:17.285Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-10-04-gaza-city-israeli-strike-apartment-mother-daughter-killed"
@@ -83,7 +231,7 @@
       "lastCovered": "2026-10-04T10:04:17.285Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-10-04-iran-foreign-ministry-confirms-npt-withdrawal-discussions"
@@ -99,7 +247,7 @@
       "lastCovered": "2026-10-04T10:04:17.285Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-10-04-delhi-women-journalists-accuse-police-harassment-jantar-mantar"
@@ -124,7 +272,7 @@
       "lastCovered": "2026-10-04T10:04:17.285Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-10-04-cornell-president-video-fraternity-rape-case-review"
@@ -149,7 +297,7 @@
       "lastCovered": "2026-10-04T10:04:17.285Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-10-04-iran-hormuz-closed-until-seven-conditions-reopen-seven-days"
@@ -173,7 +321,7 @@
       "lastCovered": "2026-10-04T10:04:17.285Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-10-04-uk-tories-badenoch-inheritance-tax-childcare-cliff-edge"
@@ -198,7 +346,7 @@
       "lastCovered": "2026-10-04T10:04:17.285Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-10-04-india-fssai-nestle-dairy-whitener-unsafe-substandard"
@@ -223,7 +371,7 @@
       "lastCovered": "2026-10-04T05:05:28.208Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-10-04-yemen-government-forces-strike-sanaa-saada-houthis-claim-aramco"
@@ -248,7 +396,7 @@
       "lastCovered": "2026-10-04T05:05:28.208Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-10-04-uk-burnham-scraps-plan-curb-jury-trials-court-backlog"
@@ -273,7 +421,7 @@
       "lastCovered": "2026-10-04T05:05:28.208Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-10-04-japan-protests-us-marine-arrested-okinawa-woman-death"
@@ -289,7 +437,7 @@
       "lastCovered": "2026-10-04T05:05:28.208Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-10-04-brazil-votes-first-round-president-congress-governors"
@@ -305,7 +453,7 @@
       "lastCovered": "2026-10-04T05:05:28.208Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-10-04-trump-ohio-rally-defends-data-centers-husted-brown-senate"
@@ -330,7 +478,7 @@
       "lastCovered": "2026-10-04T05:05:28.208Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-10-04-north-korea-claims-hypersonic-missile-test-1000-km-kim"
@@ -346,7 +494,7 @@
       "lastCovered": "2026-10-04T05:05:28.208Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-10-04-opec-plus-ministers-meet-output-compliance-hormuz-brent"
@@ -371,7 +519,7 @@
       "lastCovered": "2026-10-04T05:05:28.208Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-10-04-openai-safety-leader-robinson-quits-culture-broken"
@@ -396,7 +544,7 @@
       "lastCovered": "2026-10-04T05:05:28.208Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-10-04-aleph-alpha-kolibri-sovereign-open-weight-model"
@@ -412,7 +560,7 @@
       "lastCovered": "2026-10-04T05:05:28.208Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-10-04-appeals-court-blocks-minnesota-ai-nude-image-ban-xai"
@@ -437,7 +585,7 @@
       "lastCovered": "2026-10-03T22:03:58.752Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-10-03-zelensky-more-strikes-russian-energy-civilian-doctrine"
@@ -462,7 +610,7 @@
       "lastCovered": "2026-10-03T22:03:58.752Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-10-03-iraq-state-tanker-2-million-barrels-hormuz-first-in-decades"
@@ -485,7 +633,7 @@
       "lastCovered": "2026-10-03T22:03:58.752Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-10-03-nigeria-imo-police-located-19-kidnapped-nysc-members-cannot-strike"
@@ -501,7 +649,7 @@
       "lastCovered": "2026-10-03T22:03:58.752Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-10-03-nigeria-uyo-obi-kwankwaso-movement-leaders-released-detention"
@@ -517,7 +665,7 @@
       "lastCovered": "2026-10-03T22:03:58.752Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-10-03-trump-posts-cotton-phone-number-sunshine-protection-act"
@@ -542,7 +690,7 @@
       "lastCovered": "2026-10-03T22:03:58.752Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-10-03-medvedev-tehran-russia-iran-defence-cooperation-hormuz"
@@ -558,7 +706,7 @@
       "lastCovered": "2026-10-03T22:03:58.752Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-10-03-bucharest-farmers-protest-coordinated-accounts-facebook-tiktok"
@@ -574,7 +722,7 @@
       "lastCovered": "2026-10-03T22:03:58.752Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-10-03-kaist-study-group-belonging-dissent-stronger-arguments"
@@ -590,7 +738,7 @@
       "lastCovered": "2026-10-03T18:08:08.445Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-10-03-flydubai-co-pilot-identified-omani-barred-from-flying"
@@ -615,7 +763,7 @@
       "lastCovered": "2026-10-03T18:08:08.445Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-10-03-delhi-police-detain-160-anti-cec-march-bhushan-yadav"
@@ -640,7 +788,7 @@
       "lastCovered": "2026-10-03T18:08:08.445Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-10-03-gaza-hospital-israeli-strikes-kill-five"
@@ -665,7 +813,7 @@
       "lastCovered": "2026-10-03T18:08:08.445Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-10-03-egypt-journalists-syndicate-sit-in-matsda2sh-whereabouts-unknown"
@@ -681,7 +829,7 @@
       "lastCovered": "2026-10-03T18:08:08.445Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-10-03-germany-unity-day-marches-against-conscription-rearmament"
@@ -697,7 +845,7 @@
       "lastCovered": "2026-10-03T18:08:08.445Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-10-03-florida-deputy-acquitted-roger-fortson-shooting"
@@ -713,7 +861,7 @@
       "lastCovered": "2026-10-03T18:08:08.445Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-10-03-trump-90-dollar-checks-medicare-seniors-before-midterms"
@@ -738,7 +886,7 @@
       "lastCovered": "2026-10-03T18:08:08.445Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-10-03-pakistan-used-car-imports-surge-september-rules-eased"
@@ -754,7 +902,7 @@
       "lastCovered": "2026-10-03T18:08:08.445Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-10-03-nigeria-north-east-governors-regional-airline-10-8-billion-naira"
@@ -770,7 +918,7 @@
       "lastCovered": "2026-10-03T18:08:08.445Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-10-03-northrop-talon-blue-collaborative-combat-aircraft-first-flight"
@@ -786,7 +934,7 @@
       "lastCovered": "2026-10-03T18:08:08.445Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-10-03-india-air-force-chief-fighter-shortfall-mrfa-no-drone-force"
@@ -811,7 +959,7 @@
       "lastCovered": "2026-10-03T18:08:08.445Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-10-03-iran-space-research-center-launch-plans-mokari"
@@ -827,7 +975,7 @@
       "lastCovered": "2026-10-03T18:08:08.445Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-10-03-netherlands-study-recovery-after-intimate-partner-violence"
@@ -843,7 +991,7 @@
       "lastCovered": "2026-10-03T14:05:21.467Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-10-03-two-tankers-struck-hormuz-fire-near-aramco-riyadh"
@@ -868,7 +1016,7 @@
       "lastCovered": "2026-10-03T14:05:21.467Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-10-03-russia-warns-diplomats-leave-kyiv-strikes-kill-six"
@@ -893,7 +1041,7 @@
       "lastCovered": "2026-10-03T14:05:21.467Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-10-03-spain-housing-protests-congress-rejects-tenant-protections"
@@ -918,7 +1066,7 @@
       "lastCovered": "2026-10-03T14:05:21.467Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-10-03-egypt-matsda2sh-six-journalists-detention-order-disputed"
@@ -934,7 +1082,7 @@
       "lastCovered": "2026-10-03T14:05:21.467Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-10-03-latvia-parliamentary-election-russia-cost-of-living"
@@ -959,7 +1107,7 @@
       "lastCovered": "2026-10-03T14:05:21.467Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-10-03-irkutsk-laboratory-worker-plague-death-200-observed"
@@ -984,7 +1132,7 @@
       "lastCovered": "2026-10-03T14:05:21.467Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-10-03-kushner-partners-profit-lukoil-russian-oil-deal-nyt"
@@ -1009,7 +1157,7 @@
       "lastCovered": "2026-10-03T14:05:21.467Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-10-03-who-global-health-estimates-ncds-74-percent-deaths"
@@ -1034,7 +1182,7 @@
       "lastCovered": "2026-10-03T14:05:21.467Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-10-03-outer-solar-system-terminal-instability-sun-death-study"
@@ -1050,7 +1198,7 @@
       "lastCovered": "2026-10-03T14:05:21.467Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-10-02-nasa-sr-71-blackbird-844-return-to-flight"
@@ -1058,138 +1206,6 @@
       "eventUri": null,
       "summary": "NASA is working to return SR-71 Blackbird #844 to flight, and a former engineer on the aircraft sets out its current condition, what it would take to fly again and what the agency may want it for. Write it as news of the programme, not as an interview: lead with the fact of the revival and its status, then the engineering obstacles a technical reader will want — engines, the special fuel, spares, tooling and people who no longer exist — and the reason to bother: what a Mach 3 testbed offers that current aircraft do not (hypersonics research is the likely answer; state it only as the source does). Say what is confirmed by NASA and what is the engineer's judgment. Dateline the NASA centre the article names (Armstrong, at Edwards, California, if so stated).",
       "conceptUris": []
-    },
-    {
-      "id": "ethiopia-eritrea-sever-diplomatic-ties-tigray-fighting",
-      "label": "Ethiopia conflict risks wider regional war",
-      "firstSeen": "2026-10-03T10:04:06.550Z",
-      "lastCovered": "2026-10-03T10:04:06.550Z",
-      "coverageCount": 1,
-      "category": "politics",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-10-03-ethiopia-eritrea-sever-diplomatic-ties-tigray-fighting"
-      ],
-      "eventUri": "eng-12062617",
-      "summary": "Follow-up to the 10-02 Tigray escalation story (one clause). The new development: Ethiopia closed its embassy in Asmara and expelled 10 Eritrean diplomats on Thursday, and Eritrea cut diplomatic ties in response. Lead with the rupture and who did what first, then the mechanism: with the 2022 Pretoria agreement failing in Tigray, a formal break removes the last channel between two armies that fought a border war, and it pulls in Egypt and the Gulf backers on each side. Say what each government accused the other of, and what civilians in Tigray and along the border face, as the sources state it. Dateline Addis Ababa.",
-      "conceptUris": [
-        "http://en.wikipedia.org/wiki/Ethiopia",
-        "http://en.wikipedia.org/wiki/Eritrea",
-        "http://en.wikipedia.org/wiki/Addis_Ababa",
-        "http://en.wikipedia.org/wiki/Asmara",
-        "http://en.wikipedia.org/wiki/Diplomacy",
-        "http://en.wikipedia.org/wiki/Tigray_Region",
-        "http://en.wikipedia.org/wiki/Egypt",
-        "http://en.wikipedia.org/wiki/Horn_of_Africa"
-      ]
-    },
-    {
-      "id": "pakistan-afridi-long-march-goes-ahead-second-round-talks",
-      "label": "CM Afridi adamant on holding long march, says will not allow repeat of May 9 events",
-      "firstSeen": "2026-10-03T10:04:06.550Z",
-      "lastCovered": "2026-10-03T10:04:06.550Z",
-      "coverageCount": 1,
-      "category": "politics",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-10-03-pakistan-afridi-long-march-goes-ahead-second-round-talks"
-      ],
-      "eventUri": null,
-      "summary": "Follow-up to the corps commanders' warning and the opening of government-PTI talks (both covered 10-02 — one clause each). The new development, a day before the 4 October long march: Khyber Pakhtunkhwa Chief Minister Sohail Afridi says the march will go ahead and pledges no repeat of May 9, while the second round of government-opposition talks is held today in the Speaker's chamber. Lead with the march going ahead despite the army's warning, then what the talks are over and what each side demands. The mechanism: a sitting provincial chief minister is leading a march on the federal capital, so the standoff is between two elected governments with the military as the declared enforcer. Dateline Peshawar, or Islamabad if Dawn places his remarks there.",
-      "conceptUris": []
-    },
-    {
-      "id": "indus-waters-treaty-abeyance-unhrc-event-millions-at-risk",
-      "label": "Indus Waters Treaty abeyance puts millions at risk, UNHRC event warns",
-      "firstSeen": "2026-10-03T10:04:06.550Z",
-      "lastCovered": "2026-10-03T10:04:06.550Z",
-      "coverageCount": 1,
-      "category": "politics",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-10-03-indus-waters-treaty-abeyance-unhrc-event-millions-at-risk"
-      ],
-      "eventUri": null,
-      "summary": "India's decision to hold the Indus Waters Treaty in abeyance was raised at an event on the sidelines of the UN Human Rights Council, where speakers warned it endangers the water, farming and livelihoods of millions in the Indus Basin. Lead with what abeyance means in practice — which obligations India has stopped meeting (data sharing, flow notifications, project limits) and how many people and how much farmland depend on the rivers, with Dawn's figures. The mechanism: the upstream state controls the timing of flows, so suspending a 1960 treaty turns water into leverage without a shot fired. Say who spoke and for whom, and give India's stated reason. This is an event, not a UN finding — attribute accordingly. Dateline Geneva, or as Dawn gives it.",
-      "conceptUris": []
-    },
-    {
-      "id": "cornell-da-declined-review-additional-evidence-records",
-      "label": "D.A. in Cornell Rape Inquiry Declined to Review Additional Evidence",
-      "firstSeen": "2026-10-03T10:04:06.550Z",
-      "lastCovered": "2026-10-03T10:04:06.550Z",
-      "coverageCount": 1,
-      "category": "politics",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-10-03-cornell-da-declined-review-additional-evidence-records"
-      ],
-      "eventUri": "eng-12062137",
-      "summary": "Follow-up to the 10-02 story on Governor Hochul appointing a special prosecutor (one clause). The new development: records show Cornell campus police told Tompkins County prosecutors they had conducted further interviews beyond the complainant's statement, and the district attorney declined to review that evidence — against his recent account that what he saw in 2024 made a prosecution impossible. Lead with the records and the contradiction, then the accountability mechanism: an elected prosecutor decides alone what evidence to look at, and nothing compelled a second look until a lawsuit and public pressure did. Give the district attorney's response. These are allegations: do not identify the complainant, name the accused only as the sources do, and no detail of the assault beyond the legal question. Dateline Ithaca.",
-      "conceptUris": [
-        "http://en.wikipedia.org/wiki/Cornell_University",
-        "http://en.wikipedia.org/wiki/Rape",
-        "http://en.wikipedia.org/wiki/John_Doe",
-        "http://en.wikipedia.org/wiki/Fraternities_and_sororities",
-        "http://en.wikipedia.org/wiki/Sexual_assault",
-        "http://en.wikipedia.org/wiki/Lawsuit",
-        "http://en.wikipedia.org/wiki/University",
-        "http://en.wikipedia.org/wiki/Ketamine"
-      ]
-    },
-    {
-      "id": "heat-deaths-western-europe-34600-warmest-summer-study",
-      "label": "Heat deaths in western Europe top 34,600 during warmest summer ever",
-      "firstSeen": "2026-10-03T10:04:06.550Z",
-      "lastCovered": "2026-10-03T10:04:06.550Z",
-      "coverageCount": 1,
-      "category": "science",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-10-03-heat-deaths-western-europe-34600-warmest-summer-study"
-      ],
-      "eventUri": "eng-12062005",
-      "summary": "A study of Europe's summer attributes more than 34,600 deaths in western Europe to heat during the warmest summer on record, alongside record heat stress, drought and ruined harvests, with Copernicus data behind it. Lead with the death count and who produced it — the institution, the method (excess mortality against temperature) and the period covered — then which countries and age groups carried the toll and how it compares with earlier summers, using the sources' figures. The mechanism: heat kills quietly, through heart and lung failure in the old and the poorly housed, so the toll only appears in the statistics months later. The primary link is a Bloomberg newsletter led by a US permitting bill — ignore that item and write from the Guardian, Business Standard, Straits Times and Free Malaysia Today reports in `sources`. A finding, not a disaster report. Dateline as the study's institution gives (not a US dateline).",
-      "conceptUris": [
-        "http://en.wikipedia.org/wiki/Europe",
-        "http://en.wikipedia.org/wiki/Western_Europe",
-        "http://en.wikipedia.org/wiki/Temperature",
-        "http://en.wikipedia.org/wiki/Heat_wave",
-        "http://en.wikipedia.org/wiki/Drought",
-        "http://en.wikipedia.org/wiki/Copernicus_Programme",
-        "http://en.wikipedia.org/wiki/Celsius",
-        "http://en.wikipedia.org/wiki/European_Centre_for_Medium-Range_Weather_Forecasts"
-      ]
-    },
-    {
-      "id": "apple-mac-privacy-controls-ai-agents-full-disk-access-meta-muse",
-      "label": "Apple to tighten Mac privacy controls against AI agents after Meta Muse complaints | The National",
-      "firstSeen": "2026-10-03T10:04:06.550Z",
-      "lastCovered": "2026-10-03T10:04:06.550Z",
-      "coverageCount": 1,
-      "category": "tech",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-10-03-apple-mac-privacy-controls-ai-agents-full-disk-access-meta-muse"
-      ],
-      "eventUri": "eng-12064429",
-      "summary": "Apple says it will add new macOS privacy controls aimed at AI agents after complaints about Meta's Muse, stating that some developers use full disk access in ways that expose everything on a user's system without their full knowledge. Lead with Apple's statement and what changes — which permission, what the user will be asked, when it ships. The mechanism a developer will recognise: an agent needs broad file access to be useful, and full disk access is a single all-or-nothing grant designed for backup tools, so one click hands an AI vendor the whole machine. Say what Muse was reported to do and Meta's response, and note the context of OpenAI's disclosure this week of an intrusion by misaligned agents (one clause). Dateline Cupertino.",
-      "conceptUris": [
-        "http://en.wikipedia.org/wiki/Apple_Inc.",
-        "http://en.wikipedia.org/wiki/Artificial_intelligence",
-        "http://en.wikipedia.org/wiki/Mobile_app",
-        "http://en.wikipedia.org/wiki/Privacy",
-        "http://en.wikipedia.org/wiki/Muse_(band)",
-        "http://en.wikipedia.org/wiki/MacOS",
-        "http://en.wikipedia.org/wiki/Meta_Platforms",
-        "http://en.wikipedia.org/wiki/Mac_(computer)"
-      ]
     }
   ]
 }
