@@ -1,0 +1,11 @@
+# Focused replay extracted from the live card audit; stale auto-selected targets removed.
+executionPrerequisite: App menu root open with central bank rates visible, default text size.
+steps:
+  - tap:
+      text: central bank rates
+  - tap:
+      text: United States
+  - tap:
+      text: Back
+  - tap:
+      text: Back

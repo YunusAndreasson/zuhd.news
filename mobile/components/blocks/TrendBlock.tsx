@@ -424,6 +424,8 @@ const ScrubReadout = memo(function ScrubReadout({
 });
 
 interface TrendBlockProps {
+  /** Keep the accessible chart name when nearby text already names its unit. */
+  showLabel?: boolean;
   values?: number[];
   series?: TrendSeries[];
   label: string;
@@ -456,6 +458,7 @@ function periodPreposition(period: string): 'on' | 'in' {
 }
 
 export const TrendBlock = memo(function TrendBlock({
+  showLabel = true,
   values,
   series,
   label,
@@ -643,7 +646,7 @@ export const TrendBlock = memo(function TrendBlock({
           the kicker, the ticks and the source — and it sat directly under the
           title, where it read as a subtitle rather than as "what this axis
           measures". */}
-      {isInline ? null : (
+      {isInline || !showLabel ? null : (
         <Text variant="labelXs" numberOfLines={2} style={styles.label}>
           {label}
         </Text>
@@ -734,7 +737,7 @@ export const TrendBlock = memo(function TrendBlock({
                   looser than `leadingTight`, which is the right register for
                   two stacked axis labels. `numberOfLines` caps it so no unit
                   can ever reach a third line and clip again. */}
-              {isInline ? null : (
+              {isInline || !showLabel ? null : (
                 <>
                   <View pointerEvents="none" style={[styles.yAxis, styles.yAxisMax]}>
                     <Text

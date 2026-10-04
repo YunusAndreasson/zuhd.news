@@ -10,12 +10,12 @@ import Animated, {
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import { mixHex, SPACING } from '../../constants/theme';
 import { useScrub } from '../../hooks/useScrub';
+import { useStoryArrivals } from '../../hooks/useStoryArrivals';
 import { useTheme } from '../../hooks/useTheme';
 import { announce } from '../../lib/announce';
 import { nearestIndex } from '../../lib/arrays';
 import { CONTROL_ROW } from '../../lib/deck-layout';
 import { useReadSlugs } from '../../lib/read-store';
-import { unreadNewBehind } from '../../lib/resume-landing';
 import type { FoundProgress } from '../../lib/story-places';
 import { labelledMarks, positionAt, timeTrackLayout } from '../../lib/time-track';
 import { Icon, IconButton, Text } from '../primitives';
@@ -44,11 +44,11 @@ import { MARK_LABEL_WIDTH, ScrubBar, ScrubTooltip } from '../ScrubBar';
  *
  * **What arrived is visible from the dock (2026-09-21).** When new stories sit
  * between the head of the river and the story in front — a refresh put them
- * ahead of where the reader was, or a scrub skipped them — `‹ 3 new` floats
+ * ahead of where the reader was — `‹ 3 new` floats
  * over the track's left end and jumps to the newest of them. It is a pill in
  * the sheet's control material (`playerBg`, a hairline edge), not a badge: ink, no colour, no count
- * on the icon, and it goes when there is nothing left behind the reader to
- * catch up on. The track itself carries no mark for new stories: a dashed
+ * on the icon, and it goes when the reader reaches the arrivals. Merely
+ * skipping unread stories does not create a notice. The track itself carries no mark for new stories: a dashed
  * rule over their segments was drawn for a day (2026-09-21) and removed at
  * the user's request (2026-09-22) — a second row that said what each card's
  * `· new` and this pill already say.
@@ -78,6 +78,8 @@ export const StoryDock = memo(function StoryDock({
   index,
   count,
   position,
+  committedPosition,
+  onScrubSeek,
   progress,
   onSeek,
   onClaim,
@@ -89,6 +91,7 @@ export const StoryDock = memo(function StoryDock({
   hues,
   fresh,
   slugs,
+  anchorSlug,
   open = false,
 }: {
   /** A pull on the resting sheet is checking for a new cycle. */
@@ -99,6 +102,9 @@ export const StoryDock = memo(function StoryDock({
   count: number;
   /** The deck's live position, in stories. */
   position: SharedValue<number>;
+  /** Shared with the deck: a swipe starts at the released scrub target. */
+  committedPosition?: SharedValue<number>;
+  onScrubSeek?: (index: number) => void;
   /** Found on the globe — spoken, not printed. */
   progress?: FoundProgress;
   /** Jump to a story from the track. */
@@ -125,6 +131,8 @@ export const StoryDock = memo(function StoryDock({
   fresh?: readonly boolean[];
   /** Per story, its slug: what the read store is keyed on. */
   slugs?: readonly string[];
+  /** The held story during a feed insertion, before its index is remapped. */
+  anchorSlug?: string;
   /** A story is open: `save · share · sources` sit just over the dock, and
    *  the `‹ n new` pill is not shown beside them. (It also drew a rule over
    *  the dock until 2026-10-03; the user asked for the row's two rules gone.) */
@@ -138,15 +146,7 @@ export const StoryDock = memo(function StoryDock({
   // 2026-09-22).
   const readSlugs = useReadSlugs();
   const read = useMemo(() => slugs?.map((slug) => readSlugs.has(slug)), [slugs, readSlugs]);
-  // New stories the reader has not read, between the head of the river and
-  // the story in front: arrivals a refresh put ahead of where they are
-  // reading, or new ones they scrubbed or swiped straight past. The pill
-  // offers a jump to the newest of them. New stories still ahead of the
-  // reader are not counted — they will get there. Read is the track's rule,
-  // so the pill and the hairlines agree: it counted any story merely landed
-  // on until 2026-09-22, and a new story swiped past in a second stayed bold
-  // on the track while the pill said nothing was left.
-  const unreadNew = useMemo(() => unreadNewBehind(fresh, read, index), [fresh, read, index]);
+  const unreadNew = useStoryArrivals(slugs, index, anchorSlug);
   const { count: newCount } = unreadNew;
   const onNewPress = useMemo(
     () =>
@@ -261,16 +261,30 @@ export const StoryDock = memo(function StoryDock({
   const handleCommit = useCallback(
     (f: number) => {
       const i = storyAt(f, count, centers);
-      // The playhead to the chosen story's centre, whatever committed it. A
-      // tap never holds the track, so the reaction's drop snap misses it, and
-      // a tap on the story already in front moves no deck: the playhead was
-      // left wherever the finger touched.
-      const at = centers?.[i];
-      if (at !== undefined) fraction.value = at;
-      onSeek?.(i);
+      (onScrubSeek ?? onSeek)?.(i);
     },
-    [onSeek, count, centers, fraction],
+    [onSeek, onScrubSeek, count, centers],
   );
+  // Settle on UI at release, including taps on the already-selected story.
+  // Doing this in the JS commit can pull a newer held drag to the old target.
+  const snapTo = useCallback(
+    (f: number) => {
+      'worklet';
+      return centers?.[storyAt(f, count, centers)] ?? f;
+    },
+    [count, centers],
+  );
+  const commitOnUI = useMemo(
+    () => (f: number) => {
+      'worklet';
+      if (!committedPosition) return;
+      const target = storyAt(f, count, centers);
+      committedPosition.value = target;
+      position.value = target;
+    },
+    [committedPosition, position, count, centers],
+  );
+
   const scrub = useScrub({
     fraction,
     detents: count,
@@ -280,6 +294,8 @@ export const StoryDock = memo(function StoryDock({
     detailFor,
     captionFor,
     onCommit: handleCommit,
+    onCommitUI: commitOnUI,
+    snapTo,
     onClaim,
     // Never wider than the track it rides: clamped at both ends, a box wider
     // than its track would hang off the screen.

@@ -56,7 +56,6 @@ export function SheetSearchPage({
   const { colors, textVariants, resolvedAppearance } = useTheme();
   const deferredQuery = useDeferredValue(query.trim());
   const inputRef = useRef<TextInput>(null);
-  const prevCountRef = useRef(0);
 
   const searchIndex = useMemo(() => buildSearchIndex(searchDocs(grouped)), [grouped]);
   const results = useMemo(
@@ -70,11 +69,14 @@ export function SheetSearchPage({
   const resultCount = results.length;
   useEffect(() => {
     if (!deferredQuery) return;
-    if (resultCount === prevCountRef.current) return;
-    prevCountRef.current = resultCount;
-    AccessibilityInfo.announceForAccessibility(
-      resultCount === 0 ? 'No results' : `${resultCount} result${resultCount === 1 ? '' : 's'}`,
-    );
+    // A different query deserves feedback even when its count is unchanged,
+    // including the first search returning zero matches.
+    const timer = setTimeout(() => {
+      AccessibilityInfo.announceForAccessibility(
+        resultCount === 0 ? 'No results' : `${resultCount} result${resultCount === 1 ? '' : 's'}`,
+      );
+    }, 300);
+    return () => clearTimeout(timer);
   }, [deferredQuery, resultCount]);
 
   // The keyboard comes up for a search still to be typed. Reopened on one

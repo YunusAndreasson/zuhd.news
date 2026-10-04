@@ -356,7 +356,9 @@ function nisabCard(snapshot: TrendsSnapshot, analysis: AnalysisById): ReadingCar
   // metal falling *lowers* the bar, so more wealth is zakatable. The
   // percentage itself is now in the chip and is not repeated here.
   const changed = move
-    ? `The threshold ${move.pct < 0 ? 'fell' : move.pct > 0 ? 'rose' : 'held'} with ${metalName} — ${move.pct < 0 ? 'more' : 'less'} wealth is zakatable than a month ago.`
+    ? move.pct === 0
+      ? `The threshold held with ${metalName} since ${move.from}.`
+      : `The threshold ${move.pct < 0 ? 'fell' : 'rose'} with ${metalName} — ${move.pct < 0 ? 'more' : 'less'} wealth is zakatable since ${move.from}.`
     : undefined;
 
   return {
@@ -1286,7 +1288,8 @@ function eventCard(
     // is none.
     why: ev.recent?.trim() || ev.standing?.trim() || undefined,
     changed: ind ? describeLevel(ind) : undefined,
-    series: ind ? seriesOf(ind) : undefined,
+    series: ind ? { ...seriesOf(ind), label: ind.label } : undefined,
+    sourceLabel: ind?.sourceLabel,
     related: ev.relatedArticles ?? relatedForTags(articles, ev.topicTags),
   };
 }

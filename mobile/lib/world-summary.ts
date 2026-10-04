@@ -1,8 +1,10 @@
 import type { GdacsAlert } from '@shared/types';
+import { AI_CHANGE_WINDOW, aiScoreChange } from './ai-models';
 import { deltaOf, formatCount, formatNumber } from './cards/format';
 import type { CardDelta, CardSeries } from './cards/types';
-import { WEEK_WINDOW, weekMove, yearOf } from './cards/week-move';
+import { periodDays, WEEK_WINDOW, weekMove, yearOf } from './cards/week-move';
 import { type ConflictWeek, weekToll, weekWindow } from './conflict-week';
+import { MONTH_ABBR } from './date-format';
 import { hungerTotal } from './famine-totals';
 import {
   type CatalogGroup,
@@ -12,6 +14,7 @@ import {
 } from './instrument-catalog';
 import type { FamineCountryTotal } from './overlays';
 import { leadNames } from './row-leaders';
+import { DAY_MS } from './time';
 import { straitSqueezed } from './valence';
 
 /**
@@ -19,31 +22,37 @@ import { straitSqueezed } from './valence';
  * in it, not its largest mover.
  *
  * The user asked for compound figures worth reading daily, "maybe even our
- * own index" (2026-10-04). Every figure is the same quantity — a move over
- * the past seven days, in percent, green up and red down — so the column
- * reads down the page as how the world moved this week:
+ * own index" (2026-10-04). Figures use seven-day changes where available,
+ * with monthly changes and current levels explicitly labelled:
  *
  * - **stock markets** — the exchanges' weeks averaged, each counted once. It
  *   is the web rail's `meanIndex` (`public/islands/_map/markets.ts`) rebased
  *   at the week's start, and it is the only index the data allows: no payload
  *   carries a market's value or volume, so there is nothing to weight by.
- * - **largest companies**, **energy, food & metals**, **crypto** — the
- *   members' weeks, averaged the same way. A monthly price has no week and is
- *   left out; so is a card derived from two others (`COMPOSITES`), which
- *   would count gold twice.
+ * - **largest companies**, **crypto** — the members' weekly returns averaged.
+ * - **energy**, **food**, **metals** — returns over matching dates, averaged.
+ *   Monthly prices are excluded from weekly baskets; groups with only monthly
+ *   data use matching months. Derived cards (`COMPOSITES`) are excluded to
+ *   avoid counting their underlying prices twice.
  * - **currencies** — the middle currency's week against the dollar. The
  *   median, not the mean: the list holds the euro and the Lebanese pound, and
  *   one collapsing currency would be the whole average.
  * - **straits** — ships through every strait, added day by day. Ships are one
  *   unit, so the sum is a count and not an index.
- * - **AI models**, **coming up** — a level in plain ink, the list's first:
- *   the best score, the nearest date. Neither has a week.
- * - **rates, inflation & jobs**, **predictions** — no figure. A central
- *   bank's rate, a price index and a jobless rate are not one quantity, and
- *   an average of contracts on different questions is of nothing.
+ * - **AI models** — average 90-day point gain for labs with 90 days of
+ *   history in the same published index; current mean if history is insufficient.
+ * - **coming up** — the nearest date, in plain ink. Neither has a week.
+ * - **central bank rates**, **inflation** — median policy rate and mean
+ *   annual inflation, each at the latest month all its members share.
+ * - **US unemployment** — the single published labour reading and monthly change.
+ * - **borrowing costs** — an equal-weight basket of US yields and mortgage
+ *   rates on shared dates, with its weekly change in percentage points.
+ * - **other indicators**, **predictions** — no aggregate of mixed measures
+ *   or contracts on unrelated questions.
  *
- * Each figure is unweighted and exactly as broad as its list; the list's own
- * page prints it again over its members, named (`GroupFigure.measure`).
+ * Each figure is unweighted and uses eligible readings in its list; the
+ * price pages name their coverage and matching observation dates.
+ * The list prints the same figure over its members (`GroupFigure.measure`).
  *
  * **How it got here, the same day.** First a block of four menu rows over the
  * lists, named almost as the lists under them: "it feels like much
@@ -103,15 +112,30 @@ export function tallyCaption({ total, rose, fell }: Tally, tail = ''): string {
 
 /** A row's week as a signed percentage, or null where it has none. */
 function weekPct(row: CatalogRow): number | null {
+  if (!row.weekly) return null;
+  if (typeof row.weeklyPct === 'number' && Number.isFinite(row.weeklyPct)) return row.weeklyPct;
   const move = row.move;
   if (!row.weekly || !move || typeof move.size !== 'number') return null;
   if (move.direction === 'flat') return 0;
   return move.direction === 'up' ? move.size : -move.size;
 }
 
-/** Every figure here is the week. One that rounds to nothing prints `0.0%`:
- *  the chip's word, `unchanged`, is a sentence among three numbers. */
+/** Every move here is the week. An exact zero prints `0.0%`; tiny nonzero
+ *  moves keep their sign (`summaryDelta`). */
 const WEEK = { window: WEEK_WINDOW, flat: '0.0%' } as const;
+
+/** A small net move can hide substantial offsetting moves. Keep its sign
+ *  and two decimals; reserve zero for an actual zero, not a rounding result. */
+function summaryDelta(pct: number): CardDelta | undefined {
+  if (!Number.isFinite(pct)) return undefined;
+  if (pct === 0 || Math.abs(pct) >= 0.1) return deltaOf(pct, WEEK);
+  return {
+    direction: pct > 0 ? 'up' : 'down',
+    magnitude: Math.abs(pct) < 0.005 ? '<0.01%' : `${Math.abs(pct).toFixed(2)}%`,
+    size: Math.abs(pct),
+    window: WEEK_WINDOW,
+  };
+}
 
 /** Fewer members than this is one market's week under another name. */
 const MIN_MEMBERS = 2;
@@ -141,7 +165,7 @@ function meanWeek(rows: readonly CatalogRow[]): { move?: CardDelta; members: num
     members += 1;
   }
   return {
-    move: members >= MIN_MEMBERS ? deltaOf(sum / members, WEEK) : undefined,
+    move: members >= MIN_MEMBERS ? summaryDelta(sum / members) : undefined,
     members,
   };
 }
@@ -248,7 +272,7 @@ export function shippingSummary(
   if (summed && summed.members >= MIN_MEMBERS) {
     const year = yearOf(charted[0]?.asOf, new Date(now).getUTCFullYear());
     const week = weekMove(summed.sum.values, summed.sum.periods, year);
-    if (week) move = deltaOf(week.pct, WEEK);
+    if (week) move = summaryDelta(week.pct);
   }
   return { total: straits.length, disrupted, move, members: summed?.members ?? 0 };
 }
@@ -299,19 +323,162 @@ export function currenciesSummary(catalog: readonly CatalogGroup[]): CurrenciesS
         : ((weeks[mid - 1] ?? 0) + (weeks[mid] ?? 0)) / 2;
   return {
     tally: tallyOf(rows),
-    move: median !== null && n >= MIN_MEMBERS ? deltaOf(median, WEEK) : undefined,
+    move: median !== null && n >= MIN_MEMBERS ? summaryDelta(median) : undefined,
   };
 }
 
 export interface GroupFigure {
-  /** The list's week as one number. */
+  /** The group's change, with its period and unit carried by the delta. */
   move?: CardDelta;
   /** What `move` is of its list's rows, as the list's own page names it. */
-  measure?: 'average' | 'median' | 'total';
-  /** For a list with no week: its first row's level, in plain ink. */
+  measure?: 'average' | 'median' | 'total' | 'rate';
+  /** For a list with no week: its aggregate level or nearest date, in plain ink. */
   level?: string;
   /** What stands behind the number, for a screen reader: `21 of 26 fell`. */
   detail?: string;
+  /** Visible coverage note on the list, also spoken with its menu figure. */
+  coverage?: string;
+}
+
+/** Price returns, never an average of prices in unlike units. Every member
+ *  uses the same two dates. Prefer weekly data; use monthly when that is all
+ *  the group publishes, and name excluded readings in the coverage. */
+function priceFigure(group: CatalogGroup, now: number): GroupFigure {
+  const rows = group.rows.filter((row) => !COMPOSITES.has(row.id));
+  const histories = rows.flatMap((row) => {
+    const card = row.card;
+    const series = card?.kind === 'reading' ? card.series : undefined;
+    if (!series || series.multi) return [];
+    const monthly = series.periods.every((period) => /^[A-Z][a-z]{2} \d{4}$/.test(period));
+    const periods = monthly
+      ? series.periods.map((period) => {
+          const [name, year] = period.split(' ');
+          const month = MONTH_ABBR.indexOf(name as string);
+          return month < 0 ? null : Number(year) * 12 + month;
+        })
+      : periodDays(series.periods, yearOf(card?.asOf, new Date(now).getUTCFullYear()));
+    const values = new Map<number, number>();
+    periods.forEach((period, i) => {
+      const value = series.values[i];
+      if (period != null && typeof value === 'number' && Number.isFinite(value))
+        values.set(period, value);
+    });
+    return values.size >= 2 ? [{ row, monthly, values }] : [];
+  });
+  const monthly = !histories.some((history) => !history.monthly);
+  const members = histories.filter((history) => history.monthly === monthly);
+  const step = monthly ? 1 : 7;
+  const shared = [...(members[0]?.values.keys() ?? [])].filter((period) =>
+    members.every(({ values }) => values.has(period)),
+  );
+  const end = Math.max(...shared);
+  const start = end - step;
+  if (
+    !Number.isFinite(end) ||
+    !members.every(({ values }) => values.has(start) && values.get(start) !== 0)
+  )
+    return { coverage: 'No comparable change available for matching dates' };
+  const mean =
+    members.reduce((sum, { values }) => {
+      const previous = values.get(start) as number;
+      return sum + (((values.get(end) as number) - previous) / Math.abs(previous)) * 100;
+    }, 0) / members.length;
+  const label = (period: number) => {
+    if (monthly) return `${MONTH_ABBR[period % 12]} ${Math.floor(period / 12)}`;
+    return new Date(period * DAY_MS).toISOString().slice(0, 10);
+  };
+  const move = summaryDelta(mean);
+  return {
+    move: move ? { ...move, window: monthly ? 'on the month' : WEEK_WINDOW } : undefined,
+    measure: members.length > 1 ? 'average' : undefined,
+    coverage: `${label(start)}–${label(end)} · ${members.length > 1 ? 'equal-weight average' : members[0]?.row.short} · ${members.length} of ${rows.length} prices${members.length < rows.length ? ' · other readings excluded' : ''}`,
+  };
+}
+
+/** Combine rates at a shared observation period: months for policy, prices
+ *  and labour; days for the borrowing basket. Changes use the same members
+ *  at both ends and never parse formatted display values. */
+function rateFigure(group: CatalogGroup, now: number): GroupFigure {
+  const isBorrowing = group.key === 'borrowing';
+  const isJobs = group.key === 'jobs';
+  const rows = isJobs ? group.rows.filter((row) => row.id === 'us-unemployment') : group.rows;
+  if (rows.length < (isJobs ? 1 : MIN_MEMBERS)) return {};
+  const histories = rows.map((row) => {
+    const series = row.card?.kind === 'reading' ? row.card.series : undefined;
+    const months = new Map<number, number>();
+    if (!series || series.multi || series.unit !== '%') return months;
+    if (isBorrowing) {
+      const days = periodDays(
+        series.periods,
+        yearOf(row.card?.asOf, new Date(now).getUTCFullYear()),
+      );
+      for (let i = 0; i < days.length; i++) {
+        const day = days[i];
+        const value = series.values[i];
+        if (day != null && typeof value === 'number' && Number.isFinite(value))
+          months.set(day, value);
+      }
+      return months;
+    }
+    for (let i = 0; i < series.periods.length; i++) {
+      const match = /^([A-Z][a-z]{2}) (\d{4})$/.exec(series.periods[i] ?? '');
+      const value = series.values[i];
+      if (!match || typeof value !== 'number' || !Number.isFinite(value)) continue;
+      const month = MONTH_ABBR.indexOf(match[1] as string);
+      if (month >= 0) months.set(Number(match[2]) * 12 + month, value);
+    }
+    return months;
+  });
+  const shared = [...(histories[0]?.keys() ?? [])].filter((month) =>
+    histories.every((history) => history.has(month)),
+  );
+  if (shared.length === 0) return {};
+  const month = Math.max(...shared);
+  const isPolicy = group.key === 'rates';
+  const aggregate = (at: number): number | undefined => {
+    if (!histories.every((history) => history.has(at))) return undefined;
+    const values = histories.map((history) => history.get(at) as number).sort((a, b) => a - b);
+    if (!isPolicy) return values.reduce((sum, n) => sum + n, 0) / values.length;
+    const middle = Math.floor(values.length / 2);
+    const upper = values[middle];
+    const lower = values[middle - 1];
+    if (upper === undefined || lower === undefined) return undefined;
+    return values.length % 2 ? upper : (lower + upper) / 2;
+  };
+  const value = aggregate(month);
+  if (value === undefined) return {};
+  // Compare the same members at the matching prior period; never bridge a gap.
+  const previous = aggregate(month - (isBorrowing ? 7 : 1));
+  const move =
+    previous === undefined
+      ? undefined
+      : deltaOf(value - previous, {
+          unit: 'rate',
+          window: isBorrowing ? 'over 7 days' : 'on the month',
+          flat: '0.00 points',
+        });
+  const date = new Date(month * DAY_MS);
+  const period = isBorrowing
+    ? `${MONTH_ABBR[date.getUTCMonth()]} ${date.getUTCDate()}, ${date.getUTCFullYear()}`
+    : `${MONTH_ABBR[month % 12]} ${Math.floor(month / 12)}`;
+  const borrowingNames: Record<string, string> = {
+    'us-2y': '2-year Treasury',
+    'us-10y': '10-year Treasury',
+    'us-mortgage': '30-year mortgage',
+  };
+  const coverage = isBorrowing
+    ? `${period} · equal-weight US basket: ${rows.map((row) => borrowingNames[row.id] ?? row.card?.title ?? row.id).join(', ')} · weekly change in percentage points`
+    : isPolicy
+      ? `${period} · median of ${rows.length} central banks · policy rates`
+      : isJobs
+        ? `${period} · US unemployment rate · monthly change in percentage points`
+        : `${period} · US and eurozone · equal-weight average of annual CPI inflation`;
+  return {
+    level: `${formatNumber(value, 2, 2)}%`,
+    measure: isPolicy ? 'median' : isJobs ? 'rate' : 'average',
+    move,
+    coverage,
+  };
 }
 
 /**
@@ -345,17 +512,58 @@ export function groupFigure(group: CatalogGroup, now = Date.now()): GroupFigure 
           }
         : {};
     }
-    case 'commodities':
+    case 'energy':
+    case 'food':
+    case 'metals':
+      return priceFigure(group, now);
     case 'crypto':
       // A card built from two others is not a price of its own.
       return {
         move: meanWeek(group.rows.filter((row) => !COMPOSITES.has(row.id))).move,
         measure: 'average',
       };
-    case 'ai':
+    case 'ai': {
+      const scores = group.rows
+        .map((row) => row.score)
+        .filter((score): score is number => typeof score === 'number' && Number.isFinite(score));
+      if (scores.length < MIN_MEMBERS) return {};
+      const mean = scores.reduce((sum, score) => sum + score, 0) / scores.length;
+      // Compare a fixed cohort on the current index scale. Releases are
+      // steps: carry the latest score available at each boundary forward.
+      // Never average formatted row deltas or mix shorter windows into the quarter.
+      const gains: number[] = [];
+      for (const row of group.rows) {
+        const series = row.card?.series;
+        if (!series || row.score === undefined || !Number.isFinite(row.score)) continue;
+        const change = aiScoreChange(series, now);
+        if (change?.fullWindow) gains.push(change.points);
+      }
+      if (gains.length >= MIN_MEMBERS) {
+        return {
+          level: formatNumber(mean, 1, 1),
+          measure: 'average',
+          move: deltaOf(gains.reduce((sum, gain) => sum + gain, 0) / gains.length, {
+            unit: 'score',
+            window: AI_CHANGE_WINDOW,
+          }),
+          detail: 'average 90-day capability-score gain',
+          coverage: `${gains.length} of ${scores.length} labs with 90 days of history · Epoch AI index points`,
+        };
+      }
+      return {
+        level: formatNumber(mean, 1, 1),
+        measure: 'average',
+        detail: 'average capability score across labs',
+      };
+    }
     case 'calendar':
       return { level: group.rows[0]?.card?.reading };
     case 'rates':
+    case 'inflation':
+    case 'jobs':
+    case 'borrowing':
+      return rateFigure(group, now);
+    case 'other':
     case 'predictions':
       return {};
   }

@@ -191,6 +191,8 @@ const REFRESH_MIN_MS = 1000;
 const MENU_RESUME_MS = 5 * 60_000;
 
 interface FocusOptions {
+  /** The scrubber already committed the deck on the UI thread. */
+  deckMoved?: boolean;
   cameraEpoch?: number;
   /** A mark was tapped: the camera waits for its burst before it flies. */
   afterBurst?: boolean;
@@ -315,6 +317,7 @@ export default function HomeScreen() {
   // or a target (a drag on the globe, a flight) is moving the earth.
   // ---------------------------------------------------------------------
   const storyProgress = useSharedValue(0);
+  const storyCommitted = useSharedValue(0);
   const cameraOwner = useSharedValue(0);
   const cameraLat = useSharedValue(0);
   const cameraLng = useSharedValue(0);
@@ -833,7 +836,7 @@ export default function HomeScreen() {
       if (coords) holdCamera(options.cameraEpoch);
       deckIndexRef.current = index;
       currentSlugRef.current = slug;
-      storyProgress.value = index;
+      if (!options.deckMoved) storyProgress.value = index;
       setDeckIndex(index);
 
       if (coords) {
@@ -1373,6 +1376,13 @@ export default function HomeScreen() {
     },
     [focusStory],
   );
+  const goToScrubbedStory = useCallback(
+    (index: number) => {
+      const row = storyRowsRef.current[index];
+      if (row) focusStory(row.slug, { deckMoved: true });
+    },
+    [focusStory],
+  );
   // The card's accessibility actions slide the deck one story, exactly as a
   // swipe would; `goToStory` is a jump, for the scrubber.
   const handleNextStory = useCallback(() => deckRef.current?.step(1), []);
@@ -1573,6 +1583,10 @@ export default function HomeScreen() {
   const frontSlug = storyRows[frontIndex]?.slug;
   const leftSlugRef = useRef<string | undefined>(undefined);
   useEffect(() => {
+    // A feed insertion remaps the held slug in the effect above. This render
+    // still has the old numeric index: do not mark its replacement as landed
+    // or overwrite the anchor before the remapped render arrives.
+    if (frontIndex !== deckIndexRef.current) return;
     // A story read and then left stops saying `new` (`fresh-store` `spent`) —
     // on leaving, so the word never goes off the card being read. The end
     // card has no slug, and leaving for it counts.
@@ -1587,7 +1601,7 @@ export default function HomeScreen() {
     // globe snapped to the new story's place with no flight.
     currentSlugRef.current = frontSlug;
     launchFrontSlugRef.current ??= frontSlug;
-  }, [frontSlug]);
+  }, [frontSlug, frontIndex]);
 
   // Where a return lands the reader (`lib/resume-landing.ts`). Called inside
   // the arrival's flush, so what is set here renders with the stories:
@@ -1891,6 +1905,7 @@ export default function HomeScreen() {
         peekFade={sheetProgress}
         index={frontIndex}
         progress={storyProgress}
+        committedPosition={storyCommitted}
         width={screenWidth}
         sheetGesture={sheetGesture}
         scrollEnabled={scrollEnabled}
@@ -1921,6 +1936,7 @@ export default function HomeScreen() {
       screenWidth,
       storyCount,
       storyProgress,
+      storyCommitted,
     ],
   );
 
@@ -1932,6 +1948,8 @@ export default function HomeScreen() {
         index={frontIndex}
         count={storyCount}
         position={storyProgress}
+        committedPosition={storyCommitted}
+        onScrubSeek={goToScrubbedStory}
         progress={progress}
         onSeek={goToStory}
         timeAt={storyTimeAt}
@@ -1942,12 +1960,15 @@ export default function HomeScreen() {
         hues={storyHues}
         fresh={storyFresh}
         slugs={storySlugs}
+        anchorSlug={currentSlugRef.current ?? undefined}
         open={storyOpen}
       />
     ),
     [
       cancelFlight,
       goToStory,
+      goToScrubbedStory,
+      storyCommitted,
       storyTimeAt,
       storyCategoryAt,
       storyTitleAt,

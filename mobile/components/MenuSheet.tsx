@@ -12,14 +12,7 @@ import {
   useState,
   useSyncExternalStore,
 } from 'react';
-import {
-  AccessibilityInfo,
-  Linking,
-  Text as RNText,
-  StyleSheet,
-  type TextStyle,
-  View,
-} from 'react-native';
+import { AccessibilityInfo, Linking, StyleSheet, type TextStyle, View } from 'react-native';
 import { GestureDetector } from 'react-native-gesture-handler';
 import { LayoutAnimationConfig } from 'react-native-reanimated';
 import {
@@ -52,6 +45,7 @@ import {
   GROUP_TITLES,
   type GroupKey,
 } from '../lib/instrument-catalog';
+import { listContext, menuCard } from '../lib/instrument-presentation';
 import {
   HAZARD_TITLES,
   type HazardItem,
@@ -68,7 +62,6 @@ import type { RiverArticle } from '../lib/news-order';
 import { resetOnboarding } from '../lib/onboarding-store';
 import { MARKET_CAVEAT } from '../lib/predictions';
 import { LEADERS_SEPARATOR } from '../lib/row-leaders';
-import { settingsSummary } from '../lib/settings-summary';
 import type { TapResult } from '../lib/tap-result';
 import { groupFigure, hazardParts } from '../lib/world-summary';
 import { DeltaChip } from './DeltaChip';
@@ -95,7 +88,6 @@ import { SheetPager } from './SheetPager';
 import { SheetPrivacyPage } from './SheetPrivacyPage';
 import { SheetSearchPage } from './SheetSearchPage';
 import { Toggle } from './Toggle';
-import { ZuhdMark } from './ZuhdMark';
 
 const APP_VERSION = Constants.expoConfig?.version ?? '';
 const CONTACT_EMAIL = 'contact@zuhd.news';
@@ -125,7 +117,6 @@ type PageKey =
   | 'privacy'
   | 'about'
   | 'settings'
-  | 'settings & about'
   | 'search'
   | 'saved'
   | 'map key'
@@ -159,28 +150,29 @@ function pageTitle(key: PageKey): string {
  * figure is stands beside it, as a word (`GroupFigure.measure`).
  */
 const GROUP_NOTES: Readonly<Record<GroupKey, string>> = {
-  stocks: 'Index points · past week',
-  companies: 'Share price · past week',
-  straits: 'Ships a day · past week',
+  stocks: 'Index points',
+  companies: 'Share prices',
+  straits: 'Ships a day',
   // The reading is the rate and the move is the currency's own, so the two
   // can point opposite ways.
-  currencies: 'Against the dollar, up is stronger · past week',
-  commodities: 'Past week, unless a row names its window',
-  rates: 'Past week, unless a row names its window',
-  crypto: 'Past week',
+  currencies: 'Against the dollar · up means stronger',
+  energy: 'Prices',
+  food: 'Prices',
+  metals: 'Prices',
+  rates: 'Policy rates',
+  inflation: 'Annual consumer-price inflation',
+  jobs: 'US unemployment rate',
+  borrowing: 'Bond yields and mortgage rates',
+  other: 'Each reading names its unit and window',
+  crypto: 'Prices',
   // The margin is said here, over the rows: a list has an order, and without
   // it the order reads as a ranking the measure cannot support.
-  ai: 'Each lab’s best score on Epoch AI’s capability index · past year. A few points apart is within the margin.',
-  predictions: `Each price is ${MARKET_CAVEAT} · moves in points`,
+  ai: 'Each lab’s best Epoch AI score. A few points apart is within the margin.',
+  predictions: `Prices from ${MARKET_CAVEAT}`,
   calendar: '',
 };
 
 const METRIC_KEYS = Object.keys(METRICS) as MetricKey[];
-
-/** The mark's box against the wordmark's size: the drawn Z fills 72% of its
- *  box, so at 1.5× it stands a little taller than the name's capitals, as a
- *  mark beside a name does. It scales with the reader's text size. */
-const MARK_TO_WORDMARK = 1.5;
 
 /** A list page's rows are the only thing that scrolls, and each hazard row
  *  is a canvas: build a screenful, not a hundred. */
@@ -236,7 +228,7 @@ export const MenuSheet = memo(function MenuSheet({
   rootKey,
   onToast,
 }: MenuSheetProps) {
-  const { colors, font, typography } = useTheme();
+  const { typography } = useTheme();
   const prefsApi = usePreferences();
   const { preferences } = prefsApi;
   const nav = useSheetNavigation<PageKey>();
@@ -305,12 +297,13 @@ export const MenuSheet = memo(function MenuSheet({
 
   const handleRow = useCallback(
     (row: CatalogRow) => {
-      if (!row.card) {
+      const card = menuCard(row);
+      if (!card) {
         onSelectRow(row);
         return;
       }
       onFocusRow(row);
-      openDetail({ kind: 'card', card: row.card });
+      openDetail({ kind: 'card', card });
     },
     [onFocusRow, onSelectRow, openDetail],
   );
@@ -319,9 +312,21 @@ export const MenuSheet = memo(function MenuSheet({
       const detail = markDetail(result, hazards);
       if (!detail) return;
       onFocusMark(result);
-      openDetail(detail);
+      openDetail(
+        detail.kind === 'country' && nav.current === 'famine'
+          ? { ...detail, leadingFact: 'hunger' }
+          : detail,
+      );
     },
-    [hazards, onFocusMark, openDetail],
+    [hazards, onFocusMark, openDetail, nav.current],
+  );
+  const handleGroup = useCallback(
+    (group: CatalogGroup) => {
+      const only = group.rows.length === 1 ? group.rows[0] : undefined;
+      if (only?.card) handleRow(only);
+      else navPush(group.key);
+    },
+    [handleRow, navPush],
   );
 
   useEffect(() => {
@@ -330,30 +335,14 @@ export const MenuSheet = memo(function MenuSheet({
       .catch(() => {});
   }, []);
 
-  // The root's title is the wordmark, in the handle where every page's title
-  // sits. It used to open the page body, 14pt over rows set larger than it,
-  // and the root was the one page whose handle was empty. The mark leads it
-  // (2026-09-26, the user's request): the menu is the one place in the app
-  // that says whose it is — the top bar names nothing, and the `Z` that sat
-  // top left went on 2026-09-13 — and in the handle it costs no row.
-  const markSize = Math.round(typography.sizeWordmark * MARK_TO_WORDMARK);
   const handle = (
     <SheetHandle
       title={
-        currentDetail ? (
-          menuDetailHandleTitle(currentDetail)
-        ) : nav.current ? (
-          pageTitle(nav.current)
-        ) : (
-          <View style={styles.lockup}>
-            {/* In the ink of `zuhd`, so the mark and the name are one unit. */}
-            <ZuhdMark size={markSize} color={colors.textSecondary} />
-            <Text variant="wordmark" accessibilityRole="header" accessibilityLabel="zuhd.news">
-              <RNText style={{ ...font.bold, color: colors.textSecondary }}>zuhd</RNText>
-              <RNText style={{ ...font.regular, color: colors.accent }}>.news</RNText>
-            </Text>
-          </View>
-        )
+        currentDetail
+          ? menuDetailHandleTitle(currentDetail)
+          : nav.current
+            ? pageTitle(nav.current)
+            : undefined
       }
       onBack={nav.depth > 0 ? navPop : undefined}
       pageKey={nav.current ?? 'root'}
@@ -396,118 +385,6 @@ export const MenuSheet = memo(function MenuSheet({
   // after it, the whole menu silently skipped the compiler.
   function renderPage() {
     const current = nav.current;
-    if (current === null) {
-      return (
-        <>
-          {/* The data first (2026-09-26, the user's request): the menu was
-              four reading rows over five rows about the app, and opening it
-              found nothing to read. Each group's row prints the summary of
-              its whole list as one number (`GroupRow`), so the column reads
-              down the page as how the world moved this week. */}
-          {catalog.map((group, i) => (
-            <GroupRow
-              key={group.key}
-              group={group}
-              first={i === 0}
-              onPress={() => navPush(group.key)}
-            />
-          ))}
-          <HazardsRow
-            hazards={hazards}
-            listed={layers.length > 0}
-            first={catalog.length === 0}
-            onPress={navPush}
-          />
-          {/* A root row is its name: what it opens is a screen reader's hint. */}
-          <MenuRow
-            title="country rankings"
-            hint={`Every country by ${METRICS.population.label}, ${METRICS.gdp.label.toUpperCase()} and ${METRIC_KEYS.length - 2} more measures`}
-            trailing="push"
-            onPress={() => navPush('country rankings')}
-          />
-
-          <SectionLabel label="reading" />
-          <MenuRow
-            first
-            title="search"
-            hint="Recent stories, by title, topic or place"
-            trailing="push"
-            onPress={() => navPush('search')}
-          />
-          <SavedRow onPress={() => navPush('saved')} />
-          <MenuRow
-            title="map key"
-            hint="What each mark on the globe means"
-            trailing="push"
-            onPress={() => navPush('map key')}
-          />
-
-          {/* The app's own pages, one row: they are opened rarely, and five
-              rows of them were most of what the menu used to show. */}
-          <SectionLabel label="the app" />
-          <MenuRow
-            first
-            title="settings & about"
-            hint="Text size, appearance, notifications, privacy, contact"
-            trailing="push"
-            onPress={() => navPush('settings & about')}
-          />
-        </>
-      );
-    }
-
-    if (current === 'settings & about') {
-      const settingsLine = settingsSummary({
-        fontSize: preferences.fontSize,
-        appearance: preferences.appearance,
-        notifications: preferences.notifications && !notificationPermissionDenied,
-      });
-      return (
-        <>
-          {/* What the settings are, not what the page holds: the headings
-              are the screen reader's hint. */}
-          <MenuRow
-            first
-            title="settings"
-            hint="Text size, appearance, haptics, notifications"
-            teaser={settingsLine}
-            trailing="push"
-            onPress={() => navPush('settings')}
-          />
-          {/* The rows below settings name themselves, so they carry no
-              description. They were the root's until 2026-09-26, where with
-              one each the root outgrew the sheet at the large text size. */}
-          <MenuRow title="about" trailing="push" onPress={() => navPush('about')} />
-          <MenuRow title="privacy" trailing="push" onPress={() => navPush('privacy')} />
-          {/* Straight to mail. It was a page holding one sentence and this
-              address, and the sheet shrank to a quarter of the screen to show
-              it. The address is the description, so a reader without a mail
-              app still has it. */}
-          <MenuRow
-            title="contact"
-            description={CONTACT_EMAIL}
-            trailing="leave"
-            onPress={() => {
-              Linking.openURL(`mailto:${CONTACT_EMAIL}`).catch(() =>
-                onToast?.(`Write to ${CONTACT_EMAIL}`),
-              );
-            }}
-          />
-          {canRate && (
-            <MenuRow
-              title="rate"
-              // Not "in the App Store" — this row also ships on Google Play.
-              accessibilityLabel="Rate zuhd.news"
-              trailing="leave"
-              onPress={() => {
-                StoreReview.requestReview().catch(() => {});
-              }}
-            />
-          )}
-        </>
-      );
-    }
-
     if (current === 'world hazards') {
       return <HazardLayers layers={layers} hazards={hazards} onPress={navPush} />;
     }
@@ -624,7 +501,9 @@ export const MenuSheet = memo(function MenuSheet({
 
           <SectionLabel label="data" />
           <DataUsedRow />
+          <SectionLabel label="help & about" />
           <MenuRow
+            first
             title="show tips again"
             // "tips" — the reader's word, and this row's. The code calls
             // them hints (HintId, HINT_COPY); no screen does.
@@ -635,6 +514,32 @@ export const MenuSheet = memo(function MenuSheet({
               sheetRef.current?.dismiss();
             }}
           />
+          <MenuRow title="about" trailing="push" onPress={() => navPush('about')} />
+          <MenuRow title="privacy" trailing="push" onPress={() => navPush('privacy')} />
+          {/* Straight to mail. It was a page holding one sentence and this
+              address, and the sheet shrank to a quarter of the screen to show
+              it. The address is the description, so a reader without a mail
+              app still has it. */}
+          <MenuRow
+            title="contact"
+            description={CONTACT_EMAIL}
+            trailing="leave"
+            onPress={() => {
+              Linking.openURL(`mailto:${CONTACT_EMAIL}`).catch(() =>
+                onToast?.(`Write to ${CONTACT_EMAIL}`),
+              );
+            }}
+          />
+          {canRate && (
+            <MenuRow
+              title="rate the app"
+              // Not "in the App Store" — this row also ships on Google Play.
+              accessibilityLabel="Rate zuhd.news"
+              onPress={() => {
+                StoreReview.requestReview().catch(() => {});
+              }}
+            />
+          )}
         </>
       );
     }
@@ -672,7 +577,22 @@ export const MenuSheet = memo(function MenuSheet({
       fill
     >
       <SheetPager pageKey={nav.current ?? 'root'} move={nav.move}>
-        {nav.current === 'search' ? (
+        {/* Back reveals the same menu, including its scroll position. Rebuilding
+            these rows also rebuilt every press animation on each return. */}
+        <RetainedListPage hidden={nav.current !== null}>
+          <LayoutAnimationConfig skipEntering>
+            <SheetScrollView bottomInset={bottomInset} style={styles.listPage}>
+              <MenuRootPage
+                catalog={catalog}
+                hazards={hazards}
+                hasLayers={layers.length > 0}
+                navPush={navPush}
+                onGroup={handleGroup}
+              />
+            </SheetScrollView>
+          </LayoutAnimationConfig>
+        </RetainedListPage>
+        {nav.current === null ? null : nav.current === 'search' ? (
           <SheetSearchPage
             grouped={grouped}
             bottomInset={bottomInset}
@@ -746,6 +666,105 @@ export const MenuSheet = memo(function MenuSheet({
   );
 });
 
+const MENU_SECTIONS = ['markets & trade', 'economy', 'explore'] as const;
+const MENU_SECTION: Record<GroupKey, (typeof MENU_SECTIONS)[number]> = {
+  stocks: 'markets & trade',
+  companies: 'markets & trade',
+  currencies: 'markets & trade',
+  crypto: 'markets & trade',
+  energy: 'markets & trade',
+  food: 'markets & trade',
+  metals: 'markets & trade',
+  straits: 'markets & trade',
+  rates: 'economy',
+  borrowing: 'economy',
+  inflation: 'economy',
+  jobs: 'economy',
+  other: 'economy',
+  ai: 'explore',
+  predictions: 'explore',
+  calendar: 'explore',
+};
+
+/** The root does not depend on the current page. Keeping its callbacks here
+ * lets React Compiler reuse the rows while navigation hides or reveals them. */
+function MenuRootPage({
+  catalog,
+  hazards,
+  hasLayers,
+  navPush,
+  onGroup,
+}: {
+  catalog: CatalogGroup[];
+  hazards: MenuHazards;
+  hasLayers: boolean;
+  navPush: (page: PageKey) => void;
+  onGroup: (group: CatalogGroup) => void;
+}) {
+  return (
+    <>
+      {MENU_SECTIONS.map((section, sectionIndex) => {
+        const groups = catalog.filter((group) => MENU_SECTION[group.key] === section);
+        if (groups.length === 0 && section !== 'explore') return null;
+        return (
+          <Fragment key={section}>
+            <SectionLabel label={section} first={sectionIndex === 0} />
+            {sectionIndex === 0 ? (
+              <Text variant="caption" tone="secondary">
+                7-day changes unless noted
+              </Text>
+            ) : null}
+            {groups.map((group, i) => (
+              <GroupRow
+                key={group.key}
+                group={group}
+                first={i === 0}
+                onPress={() => onGroup(group)}
+              />
+            ))}
+          </Fragment>
+        );
+      })}
+      <HazardsRow
+        hazards={hazards}
+        listed={hasLayers}
+        first={!catalog.some((group) => MENU_SECTION[group.key] === 'explore')}
+        onPress={navPush}
+      />
+      {/* A root row is its name: what it opens is a screen reader's hint. */}
+      <MenuRow
+        title="country rankings"
+        hint={`Every country by ${METRICS.population.label}, ${METRICS.gdp.label.toUpperCase()} and ${METRIC_KEYS.length - 2} more measures`}
+        trailing="push"
+        onPress={() => navPush('country rankings')}
+      />
+
+      <SectionLabel label="tools" />
+      <MenuRow
+        first
+        title="search"
+        hint="Recent stories, by title, topic or place"
+        trailing="push"
+        onPress={() => navPush('search')}
+      />
+      <SavedRow onPress={() => navPush('saved')} />
+      <MenuRow
+        title="map key"
+        hint="What each mark on the globe means"
+        trailing="push"
+        onPress={() => navPush('map key')}
+      />
+
+      <MenuRow
+        title="settings"
+        hint="Text size, appearance, notifications, privacy, contact"
+        trailing="push"
+        onPress={() => navPush('settings')}
+      />
+    </>
+  );
+}
+
 /**
  * The saved row, subscribed to the bookmarks itself: saving a story re-renders
  * this row, not the menu. The house rule — what changes re-renders only what
@@ -754,16 +773,10 @@ export const MenuSheet = memo(function MenuSheet({
 const SavedRow = memo(function SavedRow({ onPress }: { onPress: () => void }) {
   const bookmarks = useSyncExternalStore(subscribeBookmarks, getBookmarks);
   const count = bookmarks.length;
-  // Newest first, so this is the story saved last. One line: a second would
-  // grow the root, which already fills the sheet at the large text size.
-  const latest = bookmarks[0]?.article.title;
   return (
     <MenuRow
       title="saved"
       hint="Stories you have kept"
-      teaser={latest}
-      teaserLines={1}
-      teaserLabel={latest ? `last saved, ${latest}` : undefined}
       value={count > 0 ? String(count) : undefined}
       trailing="push"
       onPress={onPress}
@@ -808,9 +821,8 @@ const DataUsedRow = memo(function DataUsedRow() {
  * - **No subtitle.** A row is its name and its number. Do not put the lead
  *   mover back under it.
  * - **No count.**
- * - A list with no week prints its first row's level in plain ink (the best
- *   AI score, the nearest date); a list whose members are not one quantity
- *   prints nothing.
+ * - AI uses a labelled 90-day average point gain; dates show the nearest
+ *   event. A list whose members are not one quantity prints nothing.
  */
 const GroupRow = memo(function GroupRow({
   group,
@@ -821,21 +833,46 @@ const GroupRow = memo(function GroupRow({
   first: boolean;
   onPress: () => void;
 }) {
-  const { move, level, detail } = groupFigure(group);
+  const { move, level, detail, coverage } = groupFigure(group);
   // Built with statements: a ternary holding `??` beside `||` is a shape the
   // compiler skips the whole component for (`react-compiler.test.ts`).
   const said: string[] = [];
   // A level is the row's `value`, which the row speaks itself.
   if (move) said.push(spokenDelta(move));
+  else if (group.key === 'ai' && level) said.push(level, 'current score');
   if (detail) said.push(detail);
+  if (coverage) said.push(coverage);
+  const exception =
+    group.key === 'ai' && move
+      ? '90-day average'
+      : move && move.window !== 'over 7 days'
+        ? 'monthly'
+        : group.key === 'ai'
+          ? 'average score'
+          : undefined;
   return (
     <MenuRow
       first={first}
       title={group.title}
       figureLabel={said.length > 0 ? said.join(', ') : undefined}
       // The size the list's own page and its rows print a move at.
-      figure={move ? <DeltaChip delta={move} window={false} scale={1} /> : undefined}
-      value={move ? undefined : level}
+      figure={
+        move || exception ? (
+          <View style={styles.groupFigure}>
+            {move ? (
+              <DeltaChip delta={move} window={false} scale={1} />
+            ) : (
+              <Text variant="tabularEmphasis">{level}</Text>
+            )}
+            {exception ? (
+              <Text variant="caption" tone="secondary">
+                {exception}
+              </Text>
+            ) : null}
+          </View>
+        ) : undefined
+      }
+      value={move || exception ? undefined : level}
       trailing="push"
       onPress={onPress}
     />
@@ -968,12 +1005,31 @@ function GroupPage({
         : group.rows.filter((r) => r.move?.direction === (filter === 'rising' ? 'up' : 'down')),
     [group.rows, stocks, filter],
   );
-  const { move, measure } = groupFigure(group);
+  const context = useMemo(() => listContext(group), [group]);
+  const time =
+    context.window === 'over 7 days'
+      ? '7-day changes'
+      : context.window === 'on the month'
+        ? 'Monthly changes'
+        : context.window
+          ? `Changes ${context.window}`
+          : '';
+  const pointChanges = ['rates', 'borrowing', 'inflation', 'jobs', 'predictions'].includes(
+    group.key,
+  );
+  const note = [
+    GROUP_NOTES[group.key],
+    group.key === 'ai' ? groupFigure(group).coverage : undefined,
+    context.date,
+    time && `${time}${pointChanges ? ' in percentage points' : ''}`,
+  ]
+    .filter(Boolean)
+    .join(' · ');
   const renderItem = useCallback(
     ({ item, index }: { item: CatalogRow; index: number }) => (
-      <InstrumentRow row={item} first={index === 0} onPress={onSelect} />
+      <InstrumentRow row={item} first={index === 0} onPress={onSelect} context={context} />
     ),
-    [onSelect],
+    [onSelect, context],
   );
   return (
     <SheetFlatList
@@ -983,17 +1039,7 @@ function GroupPage({
       bottomInset={bottomInset}
       contentContainerStyle={listStyles.content}
       ListHeaderComponent={
-        <ListIntro
-          note={GROUP_NOTES[group.key]}
-          figure={
-            move && measure ? (
-              <View style={styles.measure}>
-                <Text variant="caption">{measure}</Text>
-                <DeltaChip delta={move} window={false} scale={1} />
-              </View>
-            ) : undefined
-          }
-        >
+        <ListIntro note={note}>
           {stocks ? (
             <View style={styles.filters}>
               <SegmentedControl
@@ -1064,8 +1110,7 @@ const styles = StyleSheet.create({
   // The menu holds one height (`fill`), so a page fills it: the swipe back
   // works under a short list too.
   listPage: { flex: 1 },
-  lockup: { flexDirection: 'row', alignItems: 'center', gap: SPACING.sm },
   filters: { paddingTop: SPACING.sm },
   // The list's figure and its name, as one unit.
-  measure: { flexDirection: 'row', alignItems: 'center', gap: SPACING.sm },
+  groupFigure: { alignItems: 'flex-end', gap: SPACING.xs },
 });

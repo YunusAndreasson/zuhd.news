@@ -6,7 +6,7 @@ import {
   aiLabMove,
   compactUsd,
   isAiModelsSnapshot,
-  YEAR_WINDOW,
+  AI_CHANGE_WINDOW,
 } from '../lib/ai-models';
 import { admitted } from '../lib/cards/sections';
 import type { CardSeries, ReadingCard } from '../lib/cards/types';
@@ -60,17 +60,21 @@ describe('a lab’s card', () => {
     expect(admitted(card({ blurb: '' }))).toBe(false);
   });
 
-  it('moves in points over the past year, green up like any move', () => {
-    // A year before 2026-10-04 the best was Alpha 4, 146.8.
+  it('moves in points over 90 days, green up like any move', () => {
+    // At the 90-day boundary the best available release scored 150.1.
     const delta = card().delta;
-    expect(delta).toMatchObject({ direction: 'up', magnitude: '20.6 points', window: YEAR_WINDOW });
+    expect(delta).toMatchObject({
+      direction: 'up',
+      magnitude: '17.3 points',
+      window: AI_CHANGE_WINDOW,
+    });
     // Points on an index are not a percentage to sort the strip on…
     expect(delta?.size).toBeUndefined();
     // …and not a contract's points either, which stay slate.
     expect(delta && moveTone(delta)).toBe('rise');
   });
 
-  it('says so when the lab’s best has not moved in a year', () => {
+  it('says so when the lab’s best has not moved in 90 days', () => {
     const still = lab({
       series: {
         periods: ['2024-01-01', '2025-06-01'],
@@ -78,13 +82,13 @@ describe('a lab’s card', () => {
         models: ['One', 'Two'],
       },
     });
-    expect(aiLabMove(still, NOW)).toMatchObject({ direction: 'flat', window: YEAR_WINDOW });
+    expect(aiLabMove(still, NOW)).toMatchObject({ direction: 'flat', window: AI_CHANGE_WINDOW });
   });
 
-  it('measures a lab under a year old from its first model, and names that window', () => {
+  it('measures a lab under 90 days old from its first model, and names that window', () => {
     const young = lab({
       series: {
-        periods: ['2025-12-22', '2026-08-14'],
+        periods: ['2026-07-22', '2026-08-14'],
         values: [149.2, 155.8],
         models: ['First', 'Second'],
       },
@@ -92,10 +96,10 @@ describe('a lab’s card', () => {
     expect(aiLabMove(young, NOW)).toMatchObject({
       direction: 'up',
       magnitude: '6.6 points',
-      window: 'since Dec 2025',
+      window: 'since Jul 22',
     });
     expect(
-      aiLabMove(lab({ series: { periods: ['2026-01-01'], values: [1], models: ['x'] } }), NOW),
+      aiLabMove(lab({ series: { periods: ['2026-09-22'], values: [1], models: ['x'] } }), NOW),
     ).toBeUndefined();
   });
 

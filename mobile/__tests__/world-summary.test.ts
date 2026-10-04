@@ -1,6 +1,7 @@
 import type { Chokepoint, ConflictEvent, GdacsAlert } from '@shared/types';
 import { deltaOf } from '../lib/cards/format';
 import type { SwipeCard } from '../lib/cards/rank';
+import type { ReadingCard } from '../lib/cards/types';
 import { WEEK_WINDOW } from '../lib/cards/week-move';
 import type { CatalogGroup, CatalogRow, GroupKey } from '../lib/instrument-catalog';
 import type { Exchange } from '../lib/markets';
@@ -26,6 +27,7 @@ const weekRow = (id: string, pct: number, over: Partial<CatalogRow> = {}): Catal
   card: null,
   move: deltaOf(pct, { window: WEEK_WINDOW }),
   weekly: true,
+  weeklyPct: pct,
   short: id,
   ...over,
 });
@@ -177,6 +179,24 @@ describe('shipping', () => {
 });
 
 describe('the largest companies', () => {
+  it.each([-0.04198, 0.03659])('preserves the sign of a near-zero average (%s)', (pct) => {
+    const summary = companiesSummary([
+      group('companies', [weekRow('co:a', pct), weekRow('co:b', pct)]),
+    ]);
+    expect(summary?.move).toMatchObject({
+      direction: pct < 0 ? 'down' : 'up',
+      magnitude: '0.04%',
+    });
+    expect(summary?.move?.size).toBeCloseTo(Math.abs(pct));
+  });
+
+  it('retains tiny constituents when larger moves almost cancel', () => {
+    const summary = companiesSummary([
+      group('companies', [weekRow('co:a', 1), weekRow('co:b', -1), weekRow('co:c', -0.003)]),
+    ]);
+    expect(summary?.move).toMatchObject({ direction: 'down', magnitude: '<0.01%' });
+  });
+
   it('are one number: their weeks averaged, each counted once', () => {
     const summary = companiesSummary([
       group('companies', [weekRow('co:a', 6), weekRow('co:b', -2), weekRow('co:c', 2)]),
@@ -244,6 +264,112 @@ describe('currencies', () => {
 });
 
 describe('a list’s figure on the menu’s first page', () => {
+  const rate = (id: string, periods: string[], values: number[]): CatalogRow =>
+    weekRow(id, 0, {
+      weekly: false,
+      card: { kind: 'reading', series: { periods, values, unit: '%' } } as SwipeCard,
+    });
+
+  it('takes the median central-bank rate at the newest month all banks share', () => {
+    const figure = groupFigure(
+      group('rates', [
+        rate('fed-funds', ['Aug 2026', 'Sep 2026'], [4, 4.5]),
+        rate('ecb-rate', ['Aug 2026'], [2.5]),
+        rate('tcmb-rate', ['Aug 2026', 'Sep 2026'], [37, 38]),
+      ]),
+    );
+    expect(figure).toMatchObject({ level: '4.00%', measure: 'median' });
+    expect(figure.coverage).toContain('Aug 2026 · median of 3 central banks');
+  });
+
+  it('averages inflation levels for a common reporting month, including negative inflation', () => {
+    const figure = groupFigure(
+      group('inflation', [
+        rate('us-cpi', ['Dec 2025', 'Jan 2026'], [3, 2]),
+        rate('ez-cpi', ['Dec 2025', 'Jan 2026'], [5, -1]),
+      ]),
+    );
+    expect(figure).toMatchObject({ level: '0.50%', measure: 'average' });
+    expect(figure.move).toMatchObject({
+      direction: 'down',
+      magnitude: '3.50 points',
+      window: 'on the month',
+    });
+    expect(figure.coverage).toContain('Jan 2026 · US and eurozone');
+  });
+
+  it('does not combine different months, units, missing data or a single economy', () => {
+    const a = rate('us-cpi', ['Aug 2026'], [3]);
+    expect(groupFigure(group('inflation', [a]))).toEqual({});
+    expect(groupFigure(group('inflation', [a, rate('ez-cpi', ['Sep 2026'], [4])]))).toEqual({});
+    expect(groupFigure(group('inflation', [a, rate('ez-cpi', ['Aug 2026'], [NaN])]))).toEqual({});
+    const wrongUnit = rate('ez-cpi', ['Aug 2026'], [4]);
+    (wrongUnit.card as ReadingCard).series!.unit = '$';
+    expect(groupFigure(group('inflation', [a, wrongUnit]))).toEqual({});
+    const jobs = groupFigure(group('jobs', [rate('us-unemployment', ['Aug 2026'], [4])]));
+    expect(jobs.level).toBe('4.00%');
+    expect(jobs.move).toBeUndefined();
+  });
+
+  it('changes the median level, not the median of each bank’s changes', () => {
+    const figure = groupFigure(
+      group('rates', [
+        rate('fed-funds', ['Aug 2026', 'Sep 2026'], [1, 4]),
+        rate('ecb-rate', ['Aug 2026', 'Sep 2026'], [2, 2]),
+        rate('boe-rate', ['Aug 2026', 'Sep 2026'], [3, 3]),
+      ]),
+    );
+    expect(figure.level).toBe('3.00%');
+    expect(figure.move).toMatchObject({ direction: 'up', magnitude: '1.00 points' });
+    expect(figure.move?.unit).toBeUndefined(); // Economic moves retain up/down colour.
+  });
+
+  it('shows US unemployment’s monthly change without pretending it is an average', () => {
+    const figure = groupFigure(
+      group('jobs', [rate('us-unemployment', ['Aug 2026', 'Sep 2026'], [4.1, 4.2])]),
+    );
+    expect(figure).toMatchObject({
+      level: '4.20%',
+      measure: 'rate',
+      move: { direction: 'up', magnitude: '0.10 points' },
+    });
+    expect(figure.coverage).toContain('US unemployment');
+  });
+
+  it('uses shared dates and percentage-point changes for the borrowing basket', () => {
+    const figure = groupFigure(
+      group('borrowing', [
+        rate('us-2y', ['2026-09-24', '2026-10-01', '2026-10-02'], [4, 4.3, 9]),
+        rate('us-10y', ['2026-09-24', '2026-10-01'], [5, 5.3]),
+        rate('us-mortgage', ['2026-09-24', '2026-10-01'], [6, 6.3]),
+      ]),
+    );
+    expect(figure).toMatchObject({
+      level: '5.30%',
+      measure: 'average',
+      move: { direction: 'up', magnitude: '0.30 points', window: 'over 7 days' },
+    });
+    expect(figure.coverage).toContain('Oct 1, 2026');
+  });
+
+  it('does not turn a missing prior period into a monthly or weekly change', () => {
+    const figure = groupFigure(
+      group('inflation', [
+        rate('us-cpi', ['Jun 2026', 'Aug 2026'], [3, 4]),
+        rate('ez-cpi', ['Jun 2026', 'Aug 2026'], [2, 3]),
+      ]),
+    );
+    expect(figure.level).toBe('3.50%');
+    expect(figure.move).toBeUndefined();
+    const borrowing = groupFigure(
+      group('borrowing', [
+        rate('us-2y', ['2026-09-17', '2026-10-01'], [4, 5]),
+        rate('us-10y', ['2026-09-17', '2026-10-01'], [5, 6]),
+      ]),
+    );
+    expect(borrowing.move).toBeUndefined();
+  });
+
   it('is the summary of everything in it, never its largest mover', () => {
     // Sorted as the catalog sorts: the largest move first.
     const stocks = group('stocks', [market('a', -9), market('b', 2), market('c', 1)]);
@@ -275,32 +401,117 @@ describe('a list’s figure on the menu’s first page', () => {
     });
   });
 
-  it('averages prices, leaving out a monthly one and a card built from two others', () => {
+  const price = (id: string, periods: string[], values: number[]) =>
+    weekRow(id, 99, {
+      card: { kind: 'reading', series: { periods, values, unit: '$' } } as SwipeCard,
+    });
+
+  it('splits price averages by matching dates and excludes composites and monthly readings', () => {
     const figure = groupFigure(
-      group('commodities', [
-        weekRow('brent', 4),
-        weekRow('paxg', 2),
-        // Derived from gold and silver: counting it counts them twice.
-        weekRow('nisab', 30),
-        // A month's move is not a week's.
-        weekRow('wheat', -20, { weekly: false }),
+      group('metals', [
+        price('paxg', ['2026-09-24', '2026-10-01', '2026-10-02'], [100, 104, 150]),
+        price('xag', ['2026-09-24', '2026-10-01'], [200, 204]),
+        price('nisab', ['2026-09-24', '2026-10-01'], [100, 190]),
+        price('copper', ['Aug 2026', 'Sep 2026'], [100, 80]),
       ]),
     );
-    expect(figure.move).toMatchObject({ direction: 'up', magnitude: '3%' });
+    expect(figure.move).toMatchObject({ direction: 'up', magnitude: '3%', window: WEEK_WINDOW });
+    expect(figure.measure).toBe('average');
+    expect(figure.coverage).toBe(
+      '2026-09-24–2026-10-01 · equal-weight average · 2 of 3 prices · other readings excluded',
+    );
+  });
+
+  it('averages monthly food returns over matching months, including year rollover', () => {
+    const figure = groupFigure(
+      group('food', [
+        price('wheat', ['Dec 2025', 'Jan 2026', 'Feb 2026'], [100, 110, 200]),
+        price('rice', ['Dec 2025', 'Jan 2026'], [200, 180]),
+      ]),
+    );
+    expect(figure.move).toMatchObject({
+      direction: 'flat',
+      magnitude: '0.0%',
+      window: 'on the month',
+    });
+    expect(figure.coverage).toContain('Dec 2025–Jan 2026');
+  });
+
+  it('shows a single price change without calling it an average', () => {
+    const figure = groupFigure(
+      group('energy', [price('brent', ['2026-09-24', '2026-10-01'], [100, 105])]),
+    );
+    expect(figure.move).toMatchObject({ direction: 'up', magnitude: '5%' });
+    expect(figure.measure).toBeUndefined();
+    expect(figure.coverage).toContain('brent · 1 of 1 prices');
+  });
+
+  it('does not mix unmatched weeks, bridge monthly gaps, or divide by zero', () => {
+    const cases = [
+      [
+        price('brent', ['2026-09-24', '2026-10-01'], [100, 105]),
+        price('wti', ['2026-09-23', '2026-09-30'], [100, 110]),
+      ],
+      [price('wheat', ['Jul 2026', 'Sep 2026'], [100, 105])],
+      [price('brent', ['2026-09-24', '2026-10-01'], [0, 105])],
+    ];
+    for (const rows of cases) expect(groupFigure(group('energy', rows)).move).toBeUndefined();
+  });
+
+  it('still averages crypto weekly changes', () => {
     expect(
       groupFigure(group('crypto', [weekRow('btc', 1), weekRow('eth', -3)])).move,
-    ).toMatchObject({
-      direction: 'down',
-      magnitude: '1%',
+    ).toMatchObject({ direction: 'down', magnitude: '1%' });
+  });
+
+  it('averages every lab’s unrounded capability score, not only the leader', () => {
+    const labs = [167.44, 150.44, 140.44].map((score, i) =>
+      weekRow(`ai:${i}`, 0, { weekly: false, score }),
+    );
+    const figure = groupFigure(group('ai', labs));
+    expect(figure).toEqual({
+      level: '152.8',
+      measure: 'average',
+      detail: 'average capability score across labs',
+    });
+    expect(groupFigure(group('ai', [...labs].reverse()))).toEqual(figure);
+    expect(groupFigure(group('ai', [...labs, weekRow('missing', 0)]))).toEqual(figure);
+    expect(groupFigure(group('ai', [labs[0]!, weekRow('invalid', 0, { score: NaN })]))).toEqual({});
+  });
+
+  it('averages matched 90-day score gains, excluding new labs and future releases', () => {
+    const a = {
+      ...price(
+        'ai:a',
+        ['2025-01-01', '2026-07-01', '2026-09-01', '2026-12-01'],
+        [100, 150, 167.44, 250],
+      ),
+      score: 167.44,
+    };
+    const b = { ...price('ai:b', ['2025-01-01', '2026-08-01'], [140, 150.44]), score: 150.44 };
+    const young = { ...price('ai:new', ['2026-08-01', '2026-09-01'], [50, 200]), score: 200 };
+    const figure = groupFigure(group('ai', [a, b, young]), Date.UTC(2026, 9, 4));
+    expect(figure.move).toMatchObject({
+      direction: 'up',
+      magnitude: '13.9 points',
+      window: 'over 90 days',
+    });
+    expect(figure.coverage).toContain('2 of 3 labs');
+    expect(figure.move?.size).toBeUndefined();
+    expect(groupFigure(group('ai', [young, b, a]), Date.UTC(2026, 9, 4))).toEqual(figure);
+    expect(groupFigure(group('ai', [a, young]), Date.UTC(2026, 9, 4)).move).toBeUndefined();
+  });
+
+  it('counts labs with no releases during the quarter as unchanged', () => {
+    const a = { ...price('ai:a', ['2025-01-01'], [150]), score: 150 };
+    const b = { ...price('ai:b', ['2025-01-01'], [160]), score: 160 };
+    expect(groupFigure(group('ai', [a, b]), NOW).move).toMatchObject({
+      direction: 'flat',
+      window: 'over 90 days',
     });
   });
 
-  it('prints a level, in plain ink, for a list with no week', () => {
-    const lab = weekRow('ai:alpha', 0, {
-      weekly: false,
-      card: { reading: '167.4' } as SwipeCard,
-    });
-    expect(groupFigure(group('ai', [lab]))).toEqual({ level: '167.4' });
+  it('keeps the nearest date for a list of upcoming events', () => {
     const date = weekRow('fomc', 0, { weekly: false, card: { reading: 'in 4 days' } as SwipeCard });
     expect(groupFigure(group('calendar', [date]))).toEqual({ level: 'in 4 days' });
   });

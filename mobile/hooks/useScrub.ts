@@ -50,6 +50,11 @@ export interface ScrubOptions {
   captionFor?: (fraction: number) => string;
   /** The finger lifted, or tapped: go there. */
   onCommit: (fraction: number) => void;
+  /** Worklet: settle the released playhead at a content boundary, before JS
+   *  receives the commit. A delayed commit must not move a newer held drag. */
+  snapTo?: (fraction: number) => number;
+  /** Worklet: commit shared content position before another gesture starts. */
+  onCommitUI?: (fraction: number) => void;
   /** Optional worklet: claim input before any JS callback or pending camera action. */
   onClaim?: () => void;
   onScrubStart?: () => void;
@@ -91,6 +96,8 @@ export function useScrub({
   detailFor,
   captionFor,
   onCommit,
+  snapTo,
+  onCommitUI,
   onClaim,
   onScrubStart,
   onScrubEnd,
@@ -230,7 +237,11 @@ export function useScrub({
         'worklet';
         if (holding.value) {
           if (e.canceled) fraction.value = beforeDrag.value;
-          else scheduleOnRN(onCommit, pending.value);
+          else {
+            if (snapTo) fraction.value = snapTo(pending.value);
+            onCommitUI?.(pending.value);
+            scheduleOnRN(onCommit, pending.value);
+          }
           scheduleOnRN(end);
           holding.value = 0;
         }
@@ -252,6 +263,8 @@ export function useScrub({
       lastNotchAt,
       track,
       onCommit,
+      snapTo,
+      onCommitUI,
       onClaim,
       pending,
       end,
@@ -267,10 +280,12 @@ export function useScrub({
         if (e.canceled) return;
         onClaim?.();
         track(e.x, false);
+        if (snapTo) fraction.value = snapTo(pending.value);
+        onCommitUI?.(pending.value);
         scheduleOnRN(onCommit, pending.value);
       },
     }),
-    [enabled, track, onCommit, onClaim, pending],
+    [enabled, track, onCommit, onClaim, pending, fraction, snapTo, onCommitUI],
   );
 
   const pan = usePanGesture(panConfig);

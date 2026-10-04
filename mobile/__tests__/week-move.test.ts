@@ -118,6 +118,12 @@ describe('gaugeMove', () => {
       magnitude: 'unchanged',
     });
   });
+
+  it('keeps the signed raw move even when the chip rounds to unchanged', () => {
+    const result = gaugeMove(card('tiny', [100, 1, 1, 1, 1, 1, 1, 99.99], week));
+    expect(result?.delta.direction).toBe('flat');
+    expect(result?.pct).toBeCloseTo(-0.01);
+  });
 });
 
 describe('indicatorMove', () => {

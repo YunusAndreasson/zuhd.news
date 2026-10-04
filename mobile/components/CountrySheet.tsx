@@ -264,6 +264,8 @@ interface CountryBodyProps {
    * source and dates, not rows: they open nothing.
    */
   facts?: CountryFact[];
+  /** Preserve the subject followed from a hazard list. */
+  leadingFact?: string;
   /** A metric row opens that metric's ranking, with this country marked. */
   onRankingPress: (metric: MetricKey) => void;
 }
@@ -308,6 +310,20 @@ function metricRows(country: TapResult | null): MetricRow[] {
   return rows;
 }
 
+function CountryFactView({ fact }: { fact: CountryFact }) {
+  return (
+    <View>
+      <SectionLabel label={fact.heading} />
+      <Text variant="bodyEmphasis" tone="emphasis" selectable>
+        {fact.title}
+      </Text>
+      <Text variant="caption" style={styles.factDetail}>
+        {fact.detail}
+      </Text>
+    </View>
+  );
+}
+
 /** The country's cards, its ranked metrics, its alerts and the marks in it —
  *  the sheet's content without the sheet, which the menu shows as a page. */
 export const CountryBody = memo(function CountryBody({
@@ -316,12 +332,18 @@ export const CountryBody = memo(function CountryBody({
   onAlertPress,
   hazards,
   facts,
+  leadingFact,
   onRankingPress,
 }: CountryBodyProps) {
   const rankedRows = metricRows(country);
 
   return (
     <>
+      {facts
+        ?.filter((fact) => fact.key === leadingFact)
+        .map((fact) => (
+          <CountryFactView key={fact.key} fact={fact} />
+        ))}
       {country?.countryName && (
         <Animated.View entering={staggerEnter(0)}>
           <CountryCardsCarousel key={country.countryName} countryName={country.countryName} />
@@ -353,17 +375,11 @@ export const CountryBody = memo(function CountryBody({
           ))}
         </Animated.View>
       )}
-      {facts?.map((fact) => (
-        <Animated.View key={fact.key} entering={staggerEnter(3)}>
-          <SectionLabel label={fact.heading} />
-          <Text variant="bodyEmphasis" tone="emphasis" selectable>
-            {fact.title}
-          </Text>
-          <Text variant="caption" style={styles.factDetail}>
-            {fact.detail}
-          </Text>
-        </Animated.View>
-      ))}
+      {facts
+        ?.filter((fact) => fact.key !== leadingFact)
+        .map((fact) => (
+          <CountryFactView key={fact.key} fact={fact} />
+        ))}
       {hazards && hazards.length > 0 && (
         <Animated.View entering={staggerEnter(3)}>
           <SectionLabel label="on the map" />

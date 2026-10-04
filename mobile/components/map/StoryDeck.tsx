@@ -27,7 +27,7 @@ import Animated, {
   useSharedValue,
   withSpring,
 } from 'react-native-reanimated';
-import { scheduleOnRN } from 'react-native-worklets';
+import { scheduleOnRN, scheduleOnUI } from 'react-native-worklets';
 import { ANIMATION, KEEP_MOTION } from '../../constants/theme';
 import { useTheme } from '../../hooks/useTheme';
 import { sameItems } from '../../lib/arrays';
@@ -120,6 +120,7 @@ interface StoryDeckProps {
   index: number;
   /** Position in stories, shared with the globe's camera. */
   progress: SharedValue<number>;
+  committedPosition?: SharedValue<number>;
   width: number;
   sheetGesture: SheetGesture;
   /** The sheet is grown: the current card scrolls. */
@@ -366,6 +367,7 @@ export const StoryDeck = memo(function StoryDeck({
   peekFade,
   index,
   progress,
+  committedPosition,
   width,
   sheetGesture,
   scrollEnabled,
@@ -390,15 +392,21 @@ export const StoryDeck = memo(function StoryDeck({
   const start = useSharedValue(0);
   const startX = useSharedValue(0);
   /** The story last handed to `onSettle`, so a caught card is not re-committed. */
-  const committed = useSharedValue(index);
+  const localCommitted = useSharedValue(index);
+  const committed = committedPosition ?? localCommitted;
   /** Where the last `step` sent the deck, so a second tap before React has
    *  caught up goes one further. JS-side on purpose: reading `committed`
    *  from JS would wait on the UI thread. */
   const stepTarget = useRef(index);
   useEffect(() => {
-    committed.value = index;
+    // A queued render must not undo a newer scrub or swipe. External jumps
+    // put progress at their index; swipe landings already committed on UI.
+    scheduleOnUI((next: number) => {
+      'worklet';
+      if (progress.value === next) committed.value = next;
+    }, index);
     stepTarget.current = index;
-  }, [committed, index]);
+  }, [committed, index, progress]);
 
   useImperativeHandle(
     ref,

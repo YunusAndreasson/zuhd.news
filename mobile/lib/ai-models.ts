@@ -128,11 +128,11 @@ export function isAiModelsSnapshot(v: unknown): v is AiModelsSnapshot {
 /** The card id of a lab: its own namespace, beside `co:` and `mkt:`. */
 export const aiLabCardId = (id: string): string => `ai:${id}`;
 
-/** The window every lab with a year behind it moves over. The list's note
+/** The window every lab with 90 days behind it moves over. The list's note
  *  says it once, so a row prints its window only when it is not this one. */
-export const YEAR_WINDOW = 'over the past year';
+export const AI_CHANGE_WINDOW = 'over 90 days';
 
-const YEAR_MS = 365 * 86400_000;
+export const AI_CHANGE_DAYS = 90;
 
 /** A score as it is printed: one decimal, always, so a column of them lines
  *  up and `130` is not read as rounder than `130.4`. */
@@ -160,24 +160,45 @@ export function compactUsd(usd: number): string {
 }
 
 /**
- * How far the lab's best has risen: over the past year where its line reaches
+ * How far the lab's best has risen: over 90 days where its line reaches
  * back that far, and otherwise since its first scored model, which the window
  * then names. In the index's own points, never a percentage: 147 to 167 is
  * twenty points on a scale with no zero that means anything.
  */
-export function aiLabMove(lab: Pick<AiLab, 'series'>, now = Date.now()): CardDelta | undefined {
-  const { periods, values } = lab.series;
-  const last = values.at(-1);
-  if (values.length < 2 || last === undefined) return undefined;
-  const yearAgo = new Date(now - YEAR_MS).toISOString().slice(0, 10);
-  let anchor = -1;
-  for (let i = 0; i < periods.length; i++) {
-    if ((periods[i] ?? '') <= yearAgo) anchor = i;
+/** Release scores carry forward until a newer release replaces them. */
+export function aiScoreChange(
+  series: Pick<AiLab['series'], 'values' | 'periods'>,
+  now = Date.now(),
+): { points: number; fullWindow: boolean; window: string } | undefined {
+  const cutoff = now - AI_CHANGE_DAYS * 86400_000;
+  let first: { value: number; period: string } | undefined;
+  let before: number | undefined;
+  let latest: number | undefined;
+  let observations = 0;
+  for (let i = 0; i < series.periods.length; i++) {
+    const period = series.periods[i] ?? '';
+    if (!/^\d{4}-\d{2}-\d{2}$/.test(period)) continue;
+    const at = Date.parse(period);
+    const value = series.values[i];
+    if (!Number.isFinite(at) || at > now || value === undefined || !Number.isFinite(value))
+      continue;
+    first ??= { value, period };
+    observations++;
+    if (at <= cutoff) before = value;
+    latest = value;
   }
-  const from = values[anchor < 0 ? 0 : anchor];
-  if (from === undefined) return undefined;
-  const window = anchor < 0 ? `since ${monthYear(periods[0] ?? '')}` : YEAR_WINDOW;
-  return deltaOf(last - from, { unit: 'score', window });
+  if (!first || latest === undefined) return undefined;
+  if (before === undefined && observations < 2) return undefined;
+  return {
+    points: latest - (before ?? first.value),
+    fullWindow: before !== undefined,
+    window: before === undefined ? `since ${dayOrMonth(first.period, now)}` : AI_CHANGE_WINDOW,
+  };
+}
+
+export function aiLabMove(lab: Pick<AiLab, 'series'>, now = Date.now()): CardDelta | undefined {
+  const change = aiScoreChange(lab.series, now);
+  return change ? deltaOf(change.points, { unit: 'score', window: change.window }) : undefined;
 }
 
 const moneyFigure = (label: string, money: AiLabMoney): CardFigure => ({

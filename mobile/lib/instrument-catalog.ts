@@ -1,6 +1,7 @@
 import type { Article, Chokepoint, Indicator, TrendsSnapshot } from '@shared/types';
-import { type AiModelsSnapshot, aiLabCard, aiLabCardId, YEAR_WINDOW } from './ai-models';
+import { AI_CHANGE_WINDOW, type AiModelsSnapshot, aiLabCard, aiLabCardId } from './ai-models';
 import { ccToFlag } from './article-utils';
+import { deltaOf } from './cards/format';
 import {
   type AnalysisById,
   calendarCards,
@@ -12,7 +13,7 @@ import {
 import type { SwipeCard } from './cards/rank';
 import { admitted } from './cards/sections';
 import type { Card, CardDelta } from './cards/types';
-import { gaugeMove } from './cards/week-move';
+import { gaugeMove, WEEK_WINDOW, weekMove, yearOf } from './cards/week-move';
 import { type Company, companyCard, companyCardId, sharePrice } from './companies';
 import { type Exchange, exchangeCard, exchangeDelta, stockMarketPlace } from './markets';
 import { stripLabel } from './now';
@@ -38,8 +39,14 @@ export type GroupKey =
   | 'companies'
   | 'straits'
   | 'currencies'
-  | 'commodities'
+  | 'energy'
+  | 'food'
+  | 'metals'
   | 'rates'
+  | 'inflation'
+  | 'jobs'
+  | 'borrowing'
+  | 'other'
   | 'crypto'
   | 'ai'
   | 'predictions'
@@ -51,29 +58,41 @@ export const GROUP_TITLES: Readonly<Record<GroupKey, string>> = {
   companies: 'largest companies',
   straits: 'straits',
   currencies: 'currencies',
-  commodities: 'energy, food & metals',
-  // Two lists since 2026-10-03, on the user's word: they were one, `rates &
-  // crypto`, and a central bank's rate has nothing to do with a coin's price.
-  // The first is named for all three things in it, the way the list above is.
-  rates: 'rates, inflation & jobs',
+  energy: 'energy',
+  food: 'food',
+  metals: 'metals',
+  rates: 'central bank rates',
+  inflation: 'inflation',
+  jobs: 'unemployment (US)',
+  borrowing: 'borrowing costs',
+  other: 'other indicators',
   crypto: 'crypto',
-  ai: 'AI models',
+  ai: 'ai models',
   predictions: 'predictions',
   calendar: 'coming up',
 };
 
 const GROUP_ORDER: readonly GroupKey[] = [
+  // Financial markets: exchanges, their companies, money and digital assets.
   'stocks',
-  // Beside the markets they trade on.
   'companies',
-  'straits',
   'currencies',
-  'commodities',
-  'rates',
   'crypto',
-  // After everything with a price. A lab's score moves a few times a year,
-  // so it is looked up, not followed: it has no week and no slot in the strip.
+  // Physical goods and the routes that carry them.
+  'energy',
+  'food',
+  'metals',
+  'straits',
+  // Policy and borrowing together, followed by prices and employment.
+  'rates',
+  'borrowing',
+  'inflation',
+  'jobs',
+  // Capability scores are levels, separate from financial/economic changes.
   'ai',
+  // Lists without a summary follow those with one. Keep this order stable
+  // while data loads, so rows never jump under a reader's hand.
+  'other',
   'predictions',
   'calendar',
 ];
@@ -86,13 +105,17 @@ const SORTED_BY_WEEK: ReadonlySet<GroupKey> = new Set([
   'companies',
   'straits',
   'currencies',
-  'commodities',
+  'energy',
+  'food',
+  'metals',
   'rates',
   'crypto',
 ]);
 
 export interface CatalogRow {
   id: string;
+  /** An AI lab's unrounded capability score, for the list's average. */
+  score?: number;
   /** Null only for a strait with no traffic history to chart: it is drawn on
    *  the globe, so it still has a row, which flies there. */
   card: SwipeCard | null;
@@ -101,6 +124,8 @@ export interface CatalogRow {
   move?: CardDelta;
   /** Whether `move` is the week, rather than the card's own window. */
   weekly: boolean;
+  /** Signed week before chip rounding, so tiny declines retain their sign. */
+  weeklyPct?: number;
   /** The subject in the strip's words (`stripLabel`): `Turkey stocks`,
    *  `Hormuz`, `Oil`. The menu root's teaser. */
   short: string;
@@ -114,7 +139,7 @@ export interface CatalogRow {
    *  start on one line; absent, the list has no flags. */
   flag?: string;
   /** The window the list's own note already states, so the row does not
-   *  repeat it under every number: an AI lab's `over the past year`. A row
+   *  repeat it under every number: an AI lab's `over 90 days`. A row
    *  whose move covers another window still prints its own. */
   saidWindow?: string;
   /** An exchange's row carries it for its city and its "older quote". */
@@ -145,7 +170,10 @@ export interface CatalogInputs {
   now?: Date;
 }
 
-type SeriesGroup = Extract<GroupKey, 'stocks' | 'commodities' | 'rates' | 'crypto'>;
+type SeriesGroup = Exclude<
+  GroupKey,
+  'companies' | 'straits' | 'currencies' | 'ai' | 'predictions' | 'calendar'
+>;
 
 /**
  * The series the pool leaves out, by group, and the kicker each card carries
@@ -163,16 +191,16 @@ const SERIES: ReadonlyArray<{ id: string; group: SeriesGroup; kicker: string }> 
   { id: 'sp500', group: 'stocks', kicker: 'US stocks' },
   { id: 'nasdaq100', group: 'stocks', kicker: 'US stocks' },
   { id: 'vix', group: 'stocks', kicker: 'volatility' },
-  { id: 'brent', group: 'commodities', kicker: 'energy' },
-  { id: 'wti', group: 'commodities', kicker: 'energy' },
-  { id: 'natgas-hh', group: 'commodities', kicker: 'energy' },
-  { id: 'natgas-ttf', group: 'commodities', kicker: 'energy' },
-  { id: 'us-gas-retail', group: 'commodities', kicker: 'energy' },
-  { id: 'wheat', group: 'commodities', kicker: 'food' },
-  { id: 'rice', group: 'commodities', kicker: 'food' },
-  { id: 'paxg', group: 'commodities', kicker: 'metal' },
-  { id: 'xag', group: 'commodities', kicker: 'metal' },
-  { id: 'copper', group: 'commodities', kicker: 'metal' },
+  { id: 'brent', group: 'energy', kicker: 'energy' },
+  { id: 'wti', group: 'energy', kicker: 'energy' },
+  { id: 'natgas-hh', group: 'energy', kicker: 'energy' },
+  { id: 'natgas-ttf', group: 'energy', kicker: 'energy' },
+  { id: 'us-gas-retail', group: 'energy', kicker: 'energy' },
+  { id: 'wheat', group: 'food', kicker: 'food' },
+  { id: 'rice', group: 'food', kicker: 'food' },
+  { id: 'paxg', group: 'metals', kicker: 'metal' },
+  { id: 'xag', group: 'metals', kicker: 'metal' },
+  { id: 'copper', group: 'metals', kicker: 'metal' },
   // What a central bank sets, largest economies first.
   { id: 'fed-funds', group: 'rates', kicker: 'US central bank' },
   { id: 'ecb-rate', group: 'rates', kicker: 'eurozone central bank' },
@@ -184,12 +212,12 @@ const SERIES: ReadonlyArray<{ id: string; group: SeriesGroup; kicker: string }> 
   { id: 'bi-rate', group: 'rates', kicker: 'Bank Indonesia' },
   { id: 'tcmb-rate', group: 'rates', kicker: 'Central Bank of Turkey' },
   // What a market or a lender charges.
-  { id: 'us-10y', group: 'rates', kicker: 'money' },
-  { id: 'us-2y', group: 'rates', kicker: 'money' },
-  { id: 'us-mortgage', group: 'rates', kicker: 'home loans' },
-  { id: 'us-cpi', group: 'rates', kicker: 'prices' },
-  { id: 'ez-cpi', group: 'rates', kicker: 'prices' },
-  { id: 'us-unemployment', group: 'rates', kicker: 'jobs' },
+  { id: 'us-10y', group: 'borrowing', kicker: 'money' },
+  { id: 'us-2y', group: 'borrowing', kicker: 'money' },
+  { id: 'us-mortgage', group: 'borrowing', kicker: 'home loans' },
+  { id: 'us-cpi', group: 'inflation', kicker: 'prices' },
+  { id: 'ez-cpi', group: 'inflation', kicker: 'prices' },
+  { id: 'us-unemployment', group: 'jobs', kicker: 'jobs' },
   // By market value, largest first (2026-10-03).
   // What each is, not `crypto` eleven times (`coinKicker`).
   ...['btc', 'eth', 'bnb', 'xrp', 'sol', 'trx', 'zec', 'hype', 'doge', 'link', 'xmr'].map((id) => ({
@@ -218,15 +246,15 @@ const NOT_LISTED = new Set(['wikipedia', 'portwatch', 'stocks', 'polymarket']);
 /** The pool's two-line and derived cards, which have no series of their own
  *  to be listed by. */
 export const COMPOSITES: ReadonlyMap<string, SeriesGroup> = new Map([
-  ['nisab', 'commodities'],
-  ['metals', 'commodities'],
-  ['staples', 'commodities'],
+  ['nisab', 'metals'],
+  ['metals', 'metals'],
+  ['staples', 'food'],
 ]);
 
 /**
  * A series the table does not name goes by its source, so one the pipeline
  * adds later is listed rather than silently absent: a currency from `oer`
- * with the currencies, a coin with the coins, anything else with the rates.
+ * with the currencies, a coin with the coins, anything unknown kept separately.
  * The two metals priced through a coin (`paxg`, `xag`) are named above.
  */
 function seriesGroup(indicator: Indicator): SeriesGroup | 'currencies' | null {
@@ -234,7 +262,7 @@ function seriesGroup(indicator: Indicator): SeriesGroup | 'currencies' | null {
   const known = SERIES_BY_ID.get(indicator.id);
   if (known) return known.group;
   if (indicator.source === 'oer') return 'currencies';
-  return indicator.source === 'crypto' ? 'crypto' : 'rates';
+  return indicator.source === 'crypto' ? 'crypto' : 'other';
 }
 
 /** A published series' card: the pool's where it has one — its market
@@ -341,6 +369,7 @@ function rowFor(
     card,
     move,
     weekly: week !== null,
+    weeklyPct: week?.pct,
     short: stripLabel(card, place),
     ...extra,
   };
@@ -400,8 +429,14 @@ export function buildInstrumentCatalog({
     companies: [],
     straits: [],
     currencies: [],
-    commodities: [],
+    energy: [],
+    food: [],
+    metals: [],
     rates: [],
+    inflation: [],
+    jobs: [],
+    borrowing: [],
+    other: [],
     crypto: [],
     ai: [],
     predictions: [],
@@ -444,13 +479,14 @@ export function buildInstrumentCatalog({
     if (!admitted(card)) continue;
     rows.ai.push({
       id: card.id,
+      score: lab.score,
       card,
       move: card.delta,
       weekly: false,
       short: lab.name,
       // The list's note says what the number is, once.
       note: '',
-      saidWindow: YEAR_WINDOW,
+      saidWindow: AI_CHANGE_WINDOW,
     });
   }
 
@@ -484,7 +520,25 @@ export function buildInstrumentCatalog({
       if (!group) continue;
       if (group === 'stocks' && quoted.has(indicator.label.toLowerCase())) continue;
       const built = seriesCard(indicator, group, { trends, analysis, articles }, take);
-      if (built && admitted(built)) rows[group].push(rowFor(built, at));
+      if (built && admitted(built)) {
+        const row = rowFor(built, at);
+        // Yields are percentages already: 4% to 4.1% is 0.10 percentage
+        // points, not a 2.5% increase beside the rate.
+        if (group === 'borrowing' && built.series) {
+          const week = weekMove(
+            built.series.values,
+            built.series.periods,
+            yearOf(built.asOf, now.getUTCFullYear()),
+          );
+          if (week) {
+            const first = week.points[0];
+            const last = week.points.at(-1);
+            if (first != null && last != null)
+              row.move = deltaOf(last - first, { unit: 'rate', window: WEEK_WINDOW });
+          }
+        }
+        rows[group].push(row);
+      }
     }
   }
 
@@ -512,7 +566,7 @@ export function buildInstrumentCatalog({
     if (card.kind === 'scheduled') continue;
     const group = card.id.startsWith('market-signal:')
       ? 'stocks'
-      : (COMPOSITES.get(card.id) ?? 'rates');
+      : (COMPOSITES.get(card.id) ?? 'other');
     rows[group].push(rowFor(card, at));
   }
 

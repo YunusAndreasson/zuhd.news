@@ -127,6 +127,7 @@ export const MenuDetailPage = memo(function MenuDetailPage({
       return (
         <CountryPage
           name={detail.name}
+          leadingFact={detail.leadingFact}
           bottomInset={bottomInset}
           hazards={hazards}
           onOpen={onOpen}
@@ -150,11 +151,13 @@ export const MenuDetailPage = memo(function MenuDetailPage({
 /** A country as a page: its sheet's body, with every link a page too. */
 function CountryPage({
   name,
+  leadingFact,
   bottomInset,
   hazards,
   onOpen,
 }: {
   name: string;
+  leadingFact?: string;
   bottomInset: number;
   hazards: MenuHazards;
   onOpen: (detail: MenuDetail) => void;
@@ -186,6 +189,7 @@ function CountryPage({
         onAlertPress={openAlert}
         hazards={marks}
         facts={facts}
+        leadingFact={leadingFact}
         onRankingPress={openRanking}
       />
     </SheetScrollView>

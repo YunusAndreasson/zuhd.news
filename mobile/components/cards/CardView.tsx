@@ -1,12 +1,11 @@
 import type { RelatedArticleRef } from '@shared/types';
-import { memo, useCallback, useMemo } from 'react';
+import { memo, useMemo } from 'react';
 import { StyleSheet, View } from 'react-native';
 import { SPACING } from '../../constants/theme';
 import { useTheme } from '../../hooks/useTheme';
 import { citedAnnotations, windowReference } from '../../lib/cards/card-chart';
 import type { SwipeCard } from '../../lib/cards/rank';
 import type { CardDelta, CardFigure, CardSeries } from '../../lib/cards/types';
-import { openExternal } from '../../lib/open-link';
 import { TrendBlock } from '../blocks/TrendBlock';
 import { Text } from '../primitives';
 import { CardFrame } from './CardFrame';
@@ -102,13 +101,9 @@ export const CardView = memo(function CardView({
   /** Opens one of the stories the card cites. */
   onStoryPress?: (slug: string) => void;
 }) {
-  const onPress = useCallback(() => {
-    if (card.link) openExternal(card.link);
-  }, [card.link]);
-
   return (
     <CardFrame card={card} onStoryPress={onStoryPress}>
-      {renderBody(card, onPress)}
+      {renderBody(card)}
     </CardFrame>
   );
 });
@@ -129,12 +124,12 @@ const CardTrend = memo(function CardTrend({
   series,
   delta,
   cited,
-  onPress,
+  showLabel = true,
 }: {
   series: CardSeries;
   delta?: CardDelta;
   cited?: RelatedArticleRef[];
-  onPress?: () => void;
+  showLabel?: boolean;
 }) {
   const reference = useMemo(
     () => series.reference ?? windowReference(series, delta),
@@ -152,32 +147,33 @@ const CardTrend = memo(function CardTrend({
       reference={reference}
       annotations={annotations}
       variant="context"
-      onPress={onPress}
+      showLabel={showLabel}
     />
   );
 });
 
-function renderBody(card: SwipeCard, onPress: () => void) {
+function renderBody(card: SwipeCard) {
   switch (card.kind) {
     case 'reading':
       return (
         <>
           {card.figures ? <Figures figures={card.figures} /> : null}
-          <CardTrend series={card.series} delta={card.delta} cited={card.cited} />
+          <CardTrend
+            series={card.series}
+            delta={card.delta}
+            cited={card.cited}
+            showLabel={
+              !['per cent', 'index points', 'index'].includes(card.series.label.toLowerCase()) &&
+              card.series.label !== card.readingNote
+            }
+          />
         </>
       );
 
     case 'belief':
-      // The market page is the only way to check the claim, and a belief
-      // card that cannot be checked is just a number with a mood.
-      return (
-        <CardTrend
-          series={card.series}
-          delta={card.delta}
-          cited={card.cited}
-          onPress={card.link ? onPress : undefined}
-        />
-      );
+      // The explicit source link below the account opens the market. The
+      // chart itself is solely for inspecting its history.
+      return <CardTrend series={card.series} delta={card.delta} cited={card.cited} />;
 
     // The history of the thing being decided, where the desk publishes one —
     // two years of the Fed target range under "FOMC decides in 18 days". Where

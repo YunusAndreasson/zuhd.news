@@ -10,7 +10,7 @@ import {
   rowFlag,
 } from '../lib/instrument-catalog';
 import { type Company, companyCard } from '../lib/companies';
-import { type AiModelsSnapshot, YEAR_WINDOW } from '../lib/ai-models';
+import { type AiModelsSnapshot, AI_CHANGE_WINDOW } from '../lib/ai-models';
 import type { Exchange } from '../lib/markets';
 
 const NOW = new Date('2026-09-08T12:00:00Z');
@@ -102,6 +102,25 @@ const group = (groups: CatalogGroup[], key: GroupKey) => groups.find((g) => g.ke
 const ids = (groups: CatalogGroup[], key: GroupKey) => group(groups, key)?.rows.map((r) => r.id);
 
 describe('buildInstrumentCatalog', () => {
+  it('compares borrowing rates in percentage points over the same week as the list', () => {
+    const groups = build({
+      trends: snapshot([
+        indicator({ id: 'us-10y', unit: '%', values: [4, 4.1] }),
+        indicator({ id: 'us-2y', unit: '%', values: [4, 3.9] }),
+      ]),
+    });
+    const rows = group(groups, 'borrowing')?.rows;
+    expect(rows?.[0]?.move).toMatchObject({
+      direction: 'up',
+      magnitude: '0.10 points',
+      window: 'over 7 days',
+    });
+    expect(rows?.[1]?.move).toMatchObject({
+      direction: 'down',
+      magnitude: '0.10 points',
+      window: 'over 7 days',
+    });
+  });
   it('lists every published series in a group, and leaves out only what it means to', () => {
     const trends = snapshot([
       indicator({ id: 'brent' }),
@@ -115,7 +134,7 @@ describe('buildInstrumentCatalog', () => {
       indicator({ id: 'stocks:COIN', source: 'stocks' }),
     ]);
     const groups = build({ trends });
-    expect(ids(groups, 'commodities')).toEqual(['brent', 'wti']);
+    expect(ids(groups, 'energy')).toEqual(['brent', 'wti']);
     expect(ids(groups, 'stocks')).toEqual(['sp500']);
     expect(ids(groups, 'crypto')).toEqual(['btc']);
     expect(ids(groups, 'currencies')).toEqual(['fx-egp']);
@@ -125,6 +144,33 @@ describe('buildInstrumentCatalog', () => {
     }
   });
 
+  it('keeps energy, food and metals in separate lists', () => {
+    const groups = build({
+      trends: snapshot([
+        indicator({ id: 'brent' }),
+        indicator({ id: 'wti' }),
+        indicator({ id: 'natgas-hh' }),
+        indicator({ id: 'natgas-ttf' }),
+        indicator({ id: 'us-gas-retail' }),
+        monthly({ id: 'wheat' }),
+        monthly({ id: 'rice' }),
+        indicator({ id: 'paxg' }),
+        indicator({ id: 'xag' }),
+        monthly({ id: 'copper' }),
+      ]),
+    });
+    expect(ids(groups, 'energy')).toEqual([
+      'brent',
+      'wti',
+      'natgas-hh',
+      'natgas-ttf',
+      'us-gas-retail',
+    ]);
+    expect(ids(groups, 'food')).toEqual(['wheat', 'rice']);
+    expect(ids(groups, 'metals')).toEqual(['paxg', 'xag', 'copper']);
+    expect(groups.map((g) => g.title)).toEqual(['energy', 'food', 'metals']);
+  });
+
   it('lists a series the table has never heard of by its source, so it cannot vanish', () => {
     const groups = build({
       trends: snapshot([
@@ -132,7 +178,7 @@ describe('buildInstrumentCatalog', () => {
         indicator({ id: 'fx-kes', source: 'oer', unit: 'KES / USD' }),
       ]),
     });
-    expect(ids(groups, 'rates')).toEqual(['new-fred-series']);
+    expect(ids(groups, 'other')).toEqual(['new-fred-series']);
     expect(ids(groups, 'currencies')).toEqual(['fx-kes']);
   });
 
@@ -150,21 +196,22 @@ describe('buildInstrumentCatalog', () => {
         // Gold and silver are priced through a coin and are still metals.
         indicator({ id: 'paxg', source: 'crypto' }),
         // Neither table names these: a coin goes with the coins, a rate from
-        // the central banks' service with the rates.
+        // an unknown series stays separate until its meaning is classified.
         indicator({ id: 'new-coin', source: 'crypto' }),
         monthly({ id: 'new-bank-rate', source: 'bis', unit: '%', values: [2, 2.25] }),
       ]),
     });
-    expect(group(groups, 'rates')?.title).toBe('rates, inflation & jobs');
+    expect(group(groups, 'rates')?.title).toBe('central bank rates');
     expect(group(groups, 'crypto')?.title).toBe('crypto');
-    expect(new Set(ids(groups, 'rates'))).toEqual(
-      new Set(['us-10y', 'fed-funds', 'boe-rate', 'us-cpi', 'new-bank-rate']),
-    );
+    expect(new Set(ids(groups, 'rates'))).toEqual(new Set(['fed-funds', 'boe-rate']));
+    expect(ids(groups, 'inflation')).toEqual(['us-cpi']);
+    expect(ids(groups, 'borrowing')).toEqual(['us-10y']);
+    expect(ids(groups, 'other')).toEqual(['new-bank-rate']);
     expect(new Set(ids(groups, 'crypto'))).toEqual(new Set(['btc', 'doge', 'new-coin']));
-    expect(ids(groups, 'commodities')).toEqual(['paxg']);
-    // Beside each other, after the things they are priced against.
+    expect(ids(groups, 'metals')).toEqual(['paxg']);
+    // The price groups precede the monthly policy-rate summary.
     const order = groups.map((g) => g.key);
-    expect(order.indexOf('crypto')).toBe(order.indexOf('rates') + 1);
+    expect(order.indexOf('crypto')).toBeLessThan(order.indexOf('rates'));
   });
 
   it('names a policy rate’s bank under it, since its title names only the country', () => {
@@ -224,7 +271,7 @@ describe('buildInstrumentCatalog', () => {
     expect(flags('stocks')).toEqual({ 'mkt:bist': '🇹🇷', nasdaq100: '🇺🇸', vix: '' });
     expect(flags('currencies')).toEqual({ 'fx-egp': '🇪🇬', 'fx-eur': '🇪🇺' });
     // No flags outside those two lists: the row has no slot at all.
-    expect(group(groups, 'commodities')?.rows.every((r) => r.flag === undefined)).toBe(true);
+    expect(group(groups, 'energy')?.rows.every((r) => r.flag === undefined)).toBe(true);
   });
 
   it('reads a currency’s flag through a signal’s prefix and a mover’s suffix', () => {
@@ -285,18 +332,18 @@ describe('buildInstrumentCatalog', () => {
         indicator({ id: 'copper', standing: undefined }),
       ]),
     });
-    expect(ids(groups, 'commodities')).toEqual(['wti']);
+    expect(ids(groups, 'energy')).toEqual(['wti']);
   });
 
   it('sorts by the week’s move, largest first, and puts a month after every week', () => {
     const groups = build({
       trends: snapshot([
-        monthly({ id: 'wheat' }),
+        monthly({ id: 'natgas-ttf' }),
         indicator({ id: 'brent', values: [100, 101] }),
         indicator({ id: 'wti', values: [100, 90] }),
       ]),
     });
-    expect(ids(groups, 'commodities')).toEqual(['wti', 'brent', 'wheat']);
+    expect(ids(groups, 'energy')).toEqual(['wti', 'brent', 'natgas-ttf']);
   });
 
   it('moves a published rate in points, not in a percentage of itself', () => {
@@ -344,7 +391,7 @@ describe('buildInstrumentCatalog', () => {
       series: { values: [50, 62], periods: ['Sep 1', 'Sep 8'] },
     } as SwipeCard;
     const groups = build({ ranked: [nisab, belief] });
-    expect(ids(groups, 'commodities')).toEqual(['nisab']);
+    expect(ids(groups, 'metals')).toEqual(['nisab']);
     expect(ids(groups, 'predictions')).toEqual(['poly-x']);
   });
 
@@ -382,15 +429,45 @@ describe('AI models', () => {
     });
     expect(groups.map((g) => g.key)).toEqual(['crypto', 'ai']);
     const list = group(groups, 'ai');
-    expect(list?.title).toBe('AI models');
+    expect(list?.title).toBe('ai models');
     expect(list?.rows.map((r) => r.id)).toEqual(['ai:alpha', 'ai:beta']);
     for (const row of list?.rows ?? []) {
       expect(row.weekly).toBe(false);
-      expect(row.move?.window).toBe(YEAR_WINDOW);
+      expect(row.move?.window).toBe(AI_CHANGE_WINDOW);
       // The list's note says the window and what the number is, once.
-      expect(row.saidWindow).toBe(YEAR_WINDOW);
+      expect(row.saidWindow).toBe(AI_CHANGE_WINDOW);
       expect(row.note).toBe('');
     }
+    expect(list?.rows.map((row) => row.score)).toEqual([160, 150]);
+  });
+
+  it('groups markets, physical prices and economic readings before scores and events', () => {
+    const groups = build({
+      trends: snapshot(
+        [
+          indicator({ id: 'btc', source: 'crypto' }),
+          monthly({ id: 'fed-funds' }),
+          indicator({ id: 'brent' }),
+          indicator({ id: 'us-10y' }),
+          monthly({ id: 'us-cpi' }),
+          monthly({ id: 'us-unemployment' }),
+        ],
+        [event('fomc', '2026-09-20')],
+      ),
+      aiModels: aiSnapshot([lab('alpha', 160, [150, 160]), lab('beta', 150, [140, 150])]),
+      exchanges: [exchange('a', 'US', [100, 101])],
+    });
+    expect(groups.map((g) => g.key)).toEqual([
+      'stocks',
+      'crypto',
+      'energy',
+      'rates',
+      'borrowing',
+      'inflation',
+      'jobs',
+      'ai',
+      'calendar',
+    ]);
   });
 
   it('has no list on a site from before the endpoint, and drops a lab with no sentence', () => {

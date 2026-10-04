@@ -122,6 +122,8 @@ export function yearOf(asOf: string | undefined, fallback: number): number {
 
 export interface GaugeMove {
   delta: CardDelta;
+  /** Signed, unrounded percentage for aggregation, before display rounding. */
+  pct: number;
 }
 
 /**
@@ -139,7 +141,7 @@ export function gaugeMove(card: SwipeCard, now = Date.now()): GaugeMove | null {
   if (!move) return null;
   const pct = card.id.startsWith('fx-') ? currencyMove(move.pct) : move.pct;
   const delta = deltaOf(pct, { window: WEEK_WINDOW });
-  return delta ? { delta } : null;
+  return delta ? { delta, pct } : null;
 }
 
 /**

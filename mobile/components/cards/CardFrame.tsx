@@ -5,11 +5,11 @@ import { INLINE_HIT_SLOP, MAX_FONT_SCALE, SPACING, titleFontScale } from '../../
 import { useTheme } from '../../hooks/useTheme';
 import { MAX_CITED } from '../../lib/cards/card-chart';
 import type { DeckCard } from '../../lib/cards/types';
-import { observationDate } from '../../lib/data-freshness';
+import { cardObservation } from '../../lib/instrument-presentation';
 import { openExternal } from '../../lib/open-link';
 import { SourceCaption } from '../blocks/SourceCaption';
 import { DeltaChip } from '../DeltaChip';
-import { Pressable, Text } from '../primitives';
+import { Icon, Pressable, Text } from '../primitives';
 
 /**
  * The card anatomy, as a component.
@@ -61,13 +61,8 @@ const CardReading = memo(function CardReading({
       {card.readingNote || card.delta ? (
         <View style={styles.readingMeta}>
           {card.readingNote ? (
-            <Text variant="caption" tone="secondary" numberOfLines={1}>
-              {card.readingNote}
-            </Text>
-          ) : null}
-          {card.readingNote && card.delta ? (
             <Text variant="caption" tone="secondary">
-              ·
+              {card.readingNote}
             </Text>
           ) : null}
           {card.delta ? <DeltaChip delta={card.delta} /> : null}
@@ -153,10 +148,23 @@ const CitedStories = memo(function CitedStories({
 });
 
 export const CardFrame = memo(function CardFrame({ card, children, onStoryPress }: CardFrameProps) {
-  const observed = observationDate(card.asOf);
+  const observed = cardObservation(card);
 
   // The one word, if any, that opens the kicker line.
   const mark = card.lead ? 'current' : null;
+  const kicker = [
+    'markets',
+    'money',
+    'prices',
+    'jobs',
+    'energy',
+    'food',
+    'metal',
+    'shipping',
+    'currency',
+  ].includes(card.kicker ?? '')
+    ? undefined
+    : card.kicker;
 
   return (
     <View style={styles.column}>
@@ -181,15 +189,15 @@ export const CardFrame = memo(function CardFrame({ card, children, onStoryPress 
               it, so both restated the reader's position in the register the
               kicker was already using — one more line to decipher before
               reaching the number. */}
-        {mark || card.kicker || observed ? (
+        {mark || kicker || observed ? (
           <Text variant="labelXs" tone="secondary">
             {mark ? (
               <Text variant="labelXs" tone="emphasis">
-                {card.kicker || observed ? `${mark} · ` : mark}
+                {kicker || observed ? `${mark} · ` : mark}
               </Text>
             ) : null}
-            {card.kicker}
-            {card.kicker && observed ? ' · ' : null}
+            {kicker}
+            {kicker && observed ? ' · ' : null}
             {observed}
           </Text>
         ) : null}
@@ -211,6 +219,11 @@ export const CardFrame = memo(function CardFrame({ card, children, onStoryPress 
         )}
       </View>
 
+      {card.kind === 'scheduled' && card.changed ? (
+        <Text variant="caption" tone="secondary" style={styles.block}>
+          {card.changed}
+        </Text>
+      ) : null}
       {children ? (
         <View style={styles.block} testID="card-chart-region">
           {children}
@@ -225,7 +238,7 @@ export const CardFrame = memo(function CardFrame({ card, children, onStoryPress 
       <View style={styles.analysis} testID="card-text-region">
         {card.why ? <Text variant="body">{card.why}</Text> : null}
 
-        {card.changed ? (
+        {card.kind !== 'scheduled' && card.changed ? (
           <Text variant="caption" tone="secondary" style={card.why ? styles.supporting : undefined}>
             {card.changed}
           </Text>
@@ -235,7 +248,21 @@ export const CardFrame = memo(function CardFrame({ card, children, onStoryPress 
           <CitedStories cited={card.cited} onPress={onStoryPress} />
         ) : null}
 
-        {card.sourceLabel ? (
+        {card.link ? (
+          <Pressable
+            onPress={() => {
+              if (card.link) openExternal(card.link);
+            }}
+            accessibilityRole="link"
+            accessibilityLabel={`Open ${card.sourceLabel ?? 'source'} in browser`}
+            style={[styles.source, styles.sourceAction]}
+          >
+            <Text variant="caption" style={styles.sourceText}>
+              {card.sourceLabel ?? 'Source'}
+            </Text>
+            <Icon name="open-outline" size="sm" />
+          </Pressable>
+        ) : card.sourceLabel ? (
           <View style={styles.source}>
             <SourceCaption label={card.sourceLabel} />
           </View>
@@ -257,7 +284,7 @@ export const CardFrame = memo(function CardFrame({ card, children, onStoryPress 
             accessibilityLabel={source.label}
             style={styles.sourceLink}
           >
-            <Text variant="caption" tone="secondary" numberOfLines={1} style={styles.sourceText}>
+            <Text variant="caption" style={styles.sourceText}>
               {source.label}
             </Text>
           </Pressable>
@@ -306,5 +333,11 @@ const styles = StyleSheet.create({
   citedNumber: { width: SPACING.md, fontVariant: ['tabular-nums'] },
   citedText: { flex: 1, minWidth: 0 },
   sourceLink: { marginTop: SPACING.xs, alignSelf: 'flex-end', maxWidth: '100%' },
-  sourceText: { textAlign: 'right' },
+  sourceAction: {
+    flexDirection: 'row',
+    justifyContent: 'flex-end',
+    alignItems: 'center',
+    gap: SPACING.xs,
+  },
+  sourceText: { textAlign: 'right', textDecorationLine: 'underline', flexShrink: 1 },
 });

@@ -73,7 +73,7 @@ export const MarkRow = memo(function MarkRow({
   return (
     <ListRow
       title={row.primary}
-      titleLines={1}
+      titleLines={2}
       first={first}
       onPress={handlePress}
       accessibilityLabel={`${row.primary}, ${row.secondary}`}

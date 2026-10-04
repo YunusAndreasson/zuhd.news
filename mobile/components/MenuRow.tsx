@@ -88,10 +88,14 @@ export const MenuRow = memo(function MenuRow({
                 {value}
               </Text>
             ) : null)}
-          {trailing === 'push' ? (
-            <Icon name="chevron-forward" size="sm" tone="secondary" />
-          ) : trailing === 'leave' ? (
-            <Icon name="open-outline" size="sm" tone="secondary" />
+          {trailing === 'push' || trailing === 'leave' ? (
+            <View accessibilityElementsHidden importantForAccessibility="no-hide-descendants">
+              <Icon
+                name={trailing === 'push' ? 'chevron-forward' : 'open-outline'}
+                size="sm"
+                tone="secondary"
+              />
+            </View>
           ) : (
             trailing
           )}

@@ -94,7 +94,9 @@ export const BriefingBar = memo(function BriefingBar({
     scrubbingRef.current = false;
   }, []);
   const handleCommit = useCallback((f: number) => onSeek(f * duration), [onSeek, duration]);
-  const labelFor = useCallback((f: number) => formatTime(Math.round(f * duration)), [duration]);
+  // Playback publishes whole elapsed seconds; the preview must use the same
+  // rounding or releasing can appear to land a second before the chosen time.
+  const labelFor = useCallback((f: number) => formatTime(Math.floor(f * duration)), [duration]);
   const scrub = useScrub({
     fraction: progressSV,
     detents: SCRUB_DETENTS,

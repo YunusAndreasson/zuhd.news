@@ -50,7 +50,7 @@ export type MarkDetail =
   | { kind: 'alert'; alert: GdacsAlert }
   | { kind: 'conflict'; event: ConflictEvent }
   | { kind: 'overlay'; overlay: OverlaySelection }
-  | { kind: 'country'; name: string };
+  | { kind: 'country'; name: string; leadingFact?: string };
 
 /** A heading between a list's rows; `note` is what the source counts under
  *  it, in plain type. */

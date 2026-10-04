@@ -2,9 +2,8 @@ import { memo, useCallback } from 'react';
 import { StyleSheet, View } from 'react-native';
 import { SPACING } from '../constants/theme';
 import { spokenDelta } from '../lib/cards/format';
-import { WEEK_WINDOW } from '../lib/cards/week-move';
-import { observationDate } from '../lib/data-freshness';
 import type { CatalogRow } from '../lib/instrument-catalog';
+import { cardObservation, contextualTitle, type listContext } from '../lib/instrument-presentation';
 import { exchangeIsStale } from '../lib/markets';
 import { rowKicker } from '../lib/now';
 import { DeltaChip } from './DeltaChip';
@@ -24,8 +23,10 @@ export const InstrumentRow = memo(function InstrumentRow({
   row,
   first,
   onPress,
+  context,
 }: {
   row: CatalogRow;
+  context?: ReturnType<typeof listContext>;
   first?: boolean;
   onPress: (row: CatalogRow) => void;
 }) {
@@ -34,7 +35,12 @@ export const InstrumentRow = memo(function InstrumentRow({
   // An exchange's row is named in words, as the strip names it — `Turkey
   // stocks`, not `BIST 100`. The index and its city follow, for the reader
   // who knows the code.
-  const title = exchange ? row.short : (card?.title ?? chokepoint?.name ?? row.short);
+  const country = contextualTitle(row, context?.group);
+  const title = country
+    ? country
+    : exchange
+      ? row.short
+      : (card?.title ?? chokepoint?.name ?? row.short);
   // Where no place can be named the title is the index, so the exchange
   // takes its place in the caption rather than the index twice.
   const kicker = exchange
@@ -55,9 +61,32 @@ export const InstrumentRow = memo(function InstrumentRow({
   // read — its line is the day it falls on.
   const asOf = exchange?.asOf ?? card?.asOf;
   const day =
-    card?.kind === 'scheduled' ? (card.readingNote ?? '') : observationDate(asOf) || asOf || '';
+    card?.kind === 'scheduled'
+      ? (card.readingNote ?? '')
+      : (card ? cardObservation(card) : '') || asOf || '';
   const date = exchange && exchangeIsStale(exchange) ? `${day} · older quote` : day;
   const reading = card?.reading ?? '—';
+  const generic = [
+    'markets',
+    'money',
+    'prices',
+    'jobs',
+    'energy',
+    'food',
+    'staples',
+    'metal',
+    'shipping',
+    'currency',
+    'crypto',
+  ];
+  const detail =
+    context &&
+    (context.group === 'borrowing' ||
+      country ||
+      kicker === context.kicker ||
+      generic.includes(kicker))
+      ? ''
+      : kicker;
   return (
     <ListRow
       title={title}
@@ -83,19 +112,20 @@ export const InstrumentRow = memo(function InstrumentRow({
               {unit}
             </Text>
           ) : null}
-          {move ? (
-            <DeltaChip
-              delta={move}
-              // The week is never printed, and neither is a window the list's
-              // own line has already said (`CatalogRow.saidWindow`).
-              window={move.window !== WEEK_WINDOW && move.window !== row.saidWindow}
-              scale={1}
-            />
+          {move ? <DeltaChip delta={move} window={false} scale={1} /> : null}
+          {move?.window && move.window !== (context ? context.window : row.saidWindow) ? (
+            <Text variant="caption" tone="secondary" style={styles.unit}>
+              {move.window}
+            </Text>
           ) : null}
         </View>
       }
     >
-      <Text variant="caption">{[kicker, date].filter(Boolean).join(' · ')}</Text>
+      {detail || (date && date !== context?.date) ? (
+        <Text variant="caption">
+          {[detail, date !== context?.date ? date : ''].filter(Boolean).join(' · ')}
+        </Text>
+      ) : null}
     </ListRow>
   );
 });
