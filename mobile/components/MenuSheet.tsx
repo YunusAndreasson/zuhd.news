@@ -155,7 +155,7 @@ const GROUP_NOTES: Readonly<Record<GroupKey, string>> = {
   straits: 'Ships a day',
   // The reading is the rate and the move is the currency's own, so the two
   // can point opposite ways.
-  currencies: 'Against the dollar · up means stronger',
+  currencies: 'Units per US dollar · up means stronger',
   energy: 'Prices',
   food: 'Prices',
   metals: 'Prices',
@@ -713,6 +713,10 @@ function MenuRootPage({
               <Text variant="caption" tone="secondary">
                 7-day changes unless noted
               </Text>
+            ) : section === 'economy' ? (
+              <Text variant="caption" tone="secondary">
+                Monthly changes unless noted
+              </Text>
             ) : null}
             {groups.map((group, i) => (
               <GroupRow
@@ -842,7 +846,7 @@ const GroupRow = memo(function GroupRow({
   else if (group.key === 'ai' && level) said.push(level, 'current score');
   if (detail) said.push(detail);
   if (coverage) said.push(coverage);
-  const exception =
+  let exception =
     group.key === 'ai' && move
       ? '90-day average'
       : move && move.window !== 'over 7 days'
@@ -850,6 +854,14 @@ const GroupRow = memo(function GroupRow({
         : group.key === 'ai'
           ? 'average score'
           : undefined;
+  if (MENU_SECTION[group.key] === 'economy' && move) {
+    exception =
+      move.window === 'on the month'
+        ? undefined
+        : move.window === 'over 7 days'
+          ? '7 days'
+          : move.window;
+  }
   return (
     <MenuRow
       first={first}
@@ -1020,7 +1032,7 @@ function GroupPage({
   const note = [
     GROUP_NOTES[group.key],
     group.key === 'ai' ? groupFigure(group).coverage : undefined,
-    context.date,
+    context.dateLabel,
     time && `${time}${pointChanges ? ' in percentage points' : ''}`,
   ]
     .filter(Boolean)
