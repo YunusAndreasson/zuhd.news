@@ -2,13 +2,229 @@
   "version": 1,
   "stories": [
     {
+      "id": "brazil-first-round-count-flavio-bolsonaro-early-lead-lula",
+      "label": "Results trickle in as Brazil awaits results of high-stakes election",
+      "firstSeen": "2026-10-04T22:07:27.049Z",
+      "lastCovered": "2026-10-04T22:07:27.049Z",
+      "coverageCount": 1,
+      "category": "politics",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-10-04-brazil-first-round-count-flavio-bolsonaro-early-lead-lula"
+      ],
+      "eventUri": "spa-4366600",
+      "summary": "Follow-up to this morning's report that Brazil was voting (one clause). The new development is the count: Senator Flavio Bolsonaro took an early lead over President Lula as first-round results began to come in on Sunday afternoon. Lead with the latest tally each source gives, the share counted, and whether a runoff is now certain (a candidate needs over 50%; say the runoff date). The mechanism: early returns in Brazil come disproportionately from particular regions, so say which states had reported and what the sources say about where the remaining votes are - do not call a winner the sources do not call. Then what is at stake beyond the presidency: Congress and the governors elected the same day, and the Trump administration's open backing of the Bolsonaro camp, as Reuters, the BBC and Al Jazeera report it. Yahoo carries Reuters copy; RT is Russian state media - take nothing from it the others lack. Dateline Brasília.",
+      "conceptUris": [
+        "http://en.wikipedia.org/wiki/Brazil",
+        "http://en.wikipedia.org/wiki/Luiz_Inácio_Lula_da_Silva",
+        "http://en.wikipedia.org/wiki/Jair_Bolsonaro",
+        "http://en.wikipedia.org/wiki/Donald_Trump",
+        "http://en.wikipedia.org/wiki/Flávio_Bolsonaro",
+        "http://en.wikipedia.org/wiki/Two-round_system",
+        "http://en.wikipedia.org/wiki/Latin_America",
+        "http://en.wikipedia.org/wiki/Senate"
+      ]
+    },
+    {
+      "id": "us-withdraws-all-bombers-raf-fairford-after-alleged-plot",
+      "label": "US removes all bombers from RAF Fairford back to home stations",
+      "firstSeen": "2026-10-04T22:07:27.049Z",
+      "lastCovered": "2026-10-04T22:07:27.049Z",
+      "coverageCount": 1,
+      "category": "politics",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-10-04-us-withdraws-all-bombers-raf-fairford-after-alleged-plot"
+      ],
+      "eventUri": "eng-12068090",
+      "summary": "Follow-up to the 10-01 report of a British-Iranian man arrested over an incident at RAF Fairford (one clause). The new development is a decision: a US official confirmed on Sunday that all American bombers - B-1s, per the reports - have been withdrawn from the Gloucestershire base to their home stations, while counter-terrorism police investigate the alleged Iran-linked plot. Lead with the withdrawal and who confirmed it. The mechanism: Fairford is the forward base from which US heavy bombers fly missions in the Iran war, so a suspected plot on British soil has, in effect, moved part of the US strike force out of Europe - say what reason the US gave (security, or a routine rotation), what the Pentagon and the UK government each say, and what the police have and have not alleged. Allegations stay allegations: no charge is a conviction. The Jerusalem Post and India Today frame it as an Iranian plot; take the facts from the BBC, NYT and SCMP. Dateline Fairford, England - not a US dateline.",
+      "conceptUris": [
+        "http://en.wikipedia.org/wiki/Bomber",
+        "http://en.wikipedia.org/wiki/United_Kingdom",
+        "http://en.wikipedia.org/wiki/RAF_Fairford",
+        "http://en.wikipedia.org/wiki/United_States",
+        "http://en.wikipedia.org/wiki/Iran",
+        "http://en.wikipedia.org/wiki/Rockwell_B-1_Lancer",
+        "http://en.wikipedia.org/wiki/The_Pentagon",
+        "http://en.wikipedia.org/wiki/United_States_Air_Force"
+      ]
+    },
+    {
+      "id": "tennessee-christa-pike-ventilator-after-failed-execution",
+      "label": "US execution survivor critically ill on ventilator, lawyer says",
+      "firstSeen": "2026-10-04T22:07:27.049Z",
+      "lastCovered": "2026-10-04T22:07:27.049Z",
+      "coverageCount": 1,
+      "category": "politics",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-10-04-tennessee-christa-pike-ventilator-after-failed-execution"
+      ],
+      "eventUri": "spa-4365968",
+      "summary": "Follow-up to the 10-01 report that Tennessee's attempt to execute Christa Pike with pentobarbital failed (one clause). The new development: Pike is critically ill and on a ventilator, her lawyer says, days after the state injected her at Riverbend Maximum Security Institution in Nashville and she did not die. Lead with her condition and who reports it, then what the state has said about what went wrong and whether it intends to try again. The mechanism: a single-drug pentobarbital protocol is presented as a painless medical procedure, but it is carried out without doctors and with drugs from undisclosed suppliers - say what is known about the dose, the IV placement and how long the attempt lasted, strictly as the BBC reports, and what the governor and the courts have done since. Take the facts from the BBC; the NYT link is an opinion piece by an anaesthesiologist who consulted on her case - quote him only as a named expert with that interest stated; the Times of Israel link is a live-blog entry. Dateline Nashville. US dateline (1 of 3).",
+      "conceptUris": [
+        "http://en.wikipedia.org/wiki/Tennessee",
+        "http://en.wikipedia.org/wiki/Capital_punishment",
+        "http://en.wikipedia.org/wiki/Lawyer",
+        "http://en.wikipedia.org/wiki/Lethal_injection",
+        "http://en.wikipedia.org/wiki/Christa_Pike",
+        "http://en.wikipedia.org/wiki/Pentobarbital",
+        "http://en.wikipedia.org/wiki/Governor",
+        "http://en.wikipedia.org/wiki/Pike_County,_Illinois"
+      ]
+    },
+    {
+      "id": "israel-agencies-trade-blame-flydubai-co-pilot-vetting-failure",
+      "label": "Israeli Authorities Trade Blame for Failure to Flag FlyDubai Co-Pilot",
+      "firstSeen": "2026-10-04T22:07:27.049Z",
+      "lastCovered": "2026-10-04T22:07:27.049Z",
+      "coverageCount": 1,
+      "category": "politics",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-10-04-israel-agencies-trade-blame-flydubai-co-pilot-vetting-failure"
+      ],
+      "eventUri": "eng-12066793",
+      "summary": "Follow-up to the 10-03 reports that identified the Flydubai co-pilot accused of attacking his captain with the cockpit axe and noted he had earlier been barred from flying (one clause). The new development is the accountability fight: Israeli agencies are now blaming one another for failing to flag a man already deemed a security risk before he was rostered on a flight to Tel Aviv. Lead with which bodies are named and what each says the other should have done. The mechanism: crew on flights into Israel are vetted through lists passed between the airline, the UAE and Israeli security services, so say where, on the sources' account, the earlier bar over alleged 'extremist' views was recorded and why it did not stop him - a gap in data-sharing between states that normalised ties, not one man's act. Give the UAE and Flydubai positions as reported; 'extremist' is the authorities' word, so attribute it. No regional outlet beyond Al Jazeera in the feed. Dateline Tel Aviv.",
+      "conceptUris": [
+        "http://en.wikipedia.org/wiki/Israel",
+        "http://en.wikipedia.org/wiki/Flydubai",
+        "http://en.wikipedia.org/wiki/Oman",
+        "http://en.wikipedia.org/wiki/United_Arab_Emirates",
+        "http://en.wikipedia.org/wiki/Tel_Aviv",
+        "http://en.wikipedia.org/wiki/Benjamin_Netanyahu",
+        "http://en.wikipedia.org/wiki/Cockpit",
+        "http://en.wikipedia.org/wiki/Captain_(armed_forces)"
+      ]
+    },
+    {
+      "id": "zelenskyy-ready-trilateral-talks-us-russia-this-month",
+      "label": "Ukraine ready for US-backed talks with Russia: Zelenskyy",
+      "firstSeen": "2026-10-04T22:07:27.049Z",
+      "lastCovered": "2026-10-04T22:07:27.049Z",
+      "coverageCount": 1,
+      "category": "politics",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-10-04-zelenskyy-ready-trilateral-talks-us-russia-this-month"
+      ],
+      "eventUri": "ukr-369155",
+      "summary": "Follow-up to the strike on Kyiv's Northern Bridge during Merz's visit and Moscow's vow to step up strikes (both covered today - one clause each). The new development: at the news conference with Merz, Zelenskyy said Ukraine is ready for trilateral talks with the United States and Russia this month and backs a swift timeline. Lead with the offer and its terms - when, where (the UAE is tagged) and at what level, as Al Jazeera reports. The mechanism: the offer comes in the same week both sides declared escalation and two weeks before Washington's 18 October date for secondary sanctions on Russia's trade partners, so say what Zelenskyy is asking of Washington and what, if anything, Moscow and the White House have answered; if there is no Russian response in the report, say so. A statement of readiness, not an agreed meeting - write it as such. Dateline Kyiv.",
+      "conceptUris": [
+        "http://en.wikipedia.org/wiki/Ukraine",
+        "http://en.wikipedia.org/wiki/Russia",
+        "http://en.wikipedia.org/wiki/Volodymyr_Zelenskyy",
+        "http://en.wikipedia.org/wiki/United_States",
+        "http://en.wikipedia.org/wiki/United_Arab_Emirates",
+        "http://en.wikipedia.org/wiki/Kiev",
+        "http://en.wikipedia.org/wiki/President_of_Ukraine",
+        "http://en.wikipedia.org/wiki/President_(government_title)"
+      ]
+    },
+    {
+      "id": "bosnia-general-election-preliminary-results-becirovic-leads",
+      "label": "BiH Central Election Commission announced preliminary results of general elections",
+      "firstSeen": "2026-10-04T22:07:27.049Z",
+      "lastCovered": "2026-10-04T22:07:27.049Z",
+      "coverageCount": 1,
+      "category": "politics",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-10-04-bosnia-general-election-preliminary-results-becirovic-leads"
+      ],
+      "eventUri": null,
+      "summary": "Bosnia and Herzegovina voted in general elections on Sunday, and the Central Election Commission's preliminary count has Denis Bećirović of the Social Democratic Party leading the race for the Bosniak seat on the three-member presidency with 38.12%. Lead with the preliminary figures for all three presidency seats (Bosniak, Croat, Serb) and the share of votes counted, exactly as the commission gives them. The mechanism a reader needs: the Dayton constitution splits the presidency by ethnicity and the country into two entities, so say who leads in Republika Srpska, where the secessionist question sits, and what the result means for a state whose Muslim plurality shares power by treaty. Preliminary numbers only - call no winner the commission has not. The sole source is TASS, Russian state media, filing from Belgrade and relaying the commission: attribute by name, take the figures and none of the framing. No regional or independent outlet in the feed carries the result. Dateline Sarajevo.",
+      "conceptUris": []
+    },
+    {
+      "id": "explosions-near-tanker-off-mokha-yemen-ukmto-bab-el-mandeb",
+      "label": "Multiple explosions reported near tanker off Yemen: UKMTO",
+      "firstSeen": "2026-10-04T22:07:27.049Z",
+      "lastCovered": "2026-10-04T22:07:27.049Z",
+      "coverageCount": 1,
+      "category": "economy",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-10-04-explosions-near-tanker-off-mokha-yemen-ukmto-bab-el-mandeb"
+      ],
+      "eventUri": "eng-12064929",
+      "summary": "The United Kingdom Maritime Trade Operations reported on Sunday that a tanker detected multiple explosions close to the vessel about 60 nautical miles south of Mokha, Yemen - on the approach to Bab el-Mandeb. Lead with the incident, the position and what UKMTO says about the ship and crew. The mechanism: this comes the day Yemen's government declared an operation against the Houthis and days after three commercial vessels were struck near Hormuz (covered - one clause each), so both of the region's chokepoints are now under fire at once; ship traffic through Bab el-Mandeb and the Suez route behind it is what is at risk, and with it the insurance and freight cost carried by Brent crude. Say whether anyone has claimed the attack; if not, say so and attribute nothing. The fact comes from UKMTO, relayed by Mehr, an Iranian state-affiliated agency: attribute to UKMTO via Mehr by name. The feed cluster is mislabelled ('Iran war to end very soon: Trump') - the Dawn and Middle East Eye links are context on the wider war and the earlier Hormuz strikes, the MEE one a live-blog entry; use Trump's remark in one clause only if Dawn reports it. Dateline Mokha, Yemen - not a US dateline.",
+      "conceptUris": [
+        "http://en.wikipedia.org/wiki/Strait_of_Hormuz",
+        "http://en.wikipedia.org/wiki/United_Kingdom",
+        "http://en.wikipedia.org/wiki/Tanker_(ship)",
+        "http://en.wikipedia.org/wiki/Oil_tanker",
+        "http://en.wikipedia.org/wiki/Iran",
+        "http://en.wikipedia.org/wiki/Oman",
+        "http://en.wikipedia.org/wiki/Strait",
+        "http://en.wikipedia.org/wiki/Conflagration"
+      ]
+    },
+    {
+      "id": "trump-5000-dollar-checks-if-republicans-hold-congress-kelly",
+      "label": "Mark Kelly calls Trump's $5,000 check plan a \"payoff\"",
+      "firstSeen": "2026-10-04T22:07:27.049Z",
+      "lastCovered": "2026-10-04T22:07:27.049Z",
+      "coverageCount": 1,
+      "category": "economy",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-10-04-trump-5000-dollar-checks-if-republicans-hold-congress-kelly"
+      ],
+      "eventUri": "eng-12066048",
+      "summary": "An economy story, not a talk-show quote. Trump has proposed sending a $5,000 check to every adult American if Republicans keep control of Congress in the 3 November midterms; Senator Mark Kelly said on CBS's Face the Nation that it is an attempt to 'buy votes'. Lead with the proposal itself and its condition - payment contingent on an election result - then Kelly's charge. The mechanism: say what the plan would cost and how it would be paid for, only as Newsweek reports (tariff revenue, borrowing, or unstated), whether it needs an act of Congress, and how it follows the $90 checks to Medicare seniors (covered 10-03 - one clause). Who it lands on: a transfer of that size bears on US inflation and on the US 10-year Treasury yield through the borrowing it implies - state that as the question economists raise only if the report does. Give the White House's defence in its own words. Single source; Kelly is a partisan opponent, so attribute his characterisation. Dateline Washington. US dateline (2 of 3).",
+      "conceptUris": [
+        "http://en.wikipedia.org/wiki/Donald_Trump",
+        "http://en.wikipedia.org/wiki/Republican_Party_(United_States)",
+        "http://en.wikipedia.org/wiki/United_States",
+        "http://en.wikipedia.org/wiki/United_States_dollar",
+        "http://en.wikipedia.org/wiki/United_States_Congress",
+        "http://en.wikipedia.org/wiki/United_States_House_of_Representatives",
+        "http://en.wikipedia.org/wiki/Democratic_Party_(United_States)",
+        "http://en.wikipedia.org/wiki/Medicare_(United_States)"
+      ]
+    },
+    {
+      "id": "trump-ai-accord-light-touch-super-intelligence-order-spacexsi",
+      "label": "Trump Accord Enshrines Light-Touch Regulation of AI",
+      "firstSeen": "2026-10-04T22:07:27.049Z",
+      "lastCovered": "2026-10-04T22:07:27.049Z",
+      "coverageCount": 1,
+      "category": "tech",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-10-04-trump-ai-accord-light-touch-super-intelligence-order-spacexsi"
+      ],
+      "eventUri": "spa-4366657",
+      "summary": "Distinct from the AI czar appointment covered this morning (one clause). Two linked facts: Trump signed an executive order directing federal agencies to replace the term 'artificial intelligence' with 'super intelligence', and an accord with the industry that, on the Daily Caller's account, enshrines light-touch regulation; Elon Musk has answered by saying SpaceXAI will be renamed SpaceXSI. Lead with what the order and the accord actually bind anyone to - which agencies, which companies signed, what rules are waived or pre-empted - and treat the rename as the visible symptom, not the story. The mechanism: the administration is setting AI policy by voluntary accord and vocabulary rather than statute, days after OpenAI's safety departures, so say what obligations on testing, disclosure or liability the accord contains and what it leaves out; if the reports give only the branding, say so plainly. The Daily Caller is a partisan outlet favourable to the administration and the Economic Times is reporting Musk's post: attribute each, state no characterisation as fact. Dateline Washington. US dateline (3 of 3).",
+      "conceptUris": [
+        "http://en.wikipedia.org/wiki/Donald_Trump",
+        "http://en.wikipedia.org/wiki/Artificial_intelligence",
+        "http://en.wikipedia.org/wiki/United_States",
+        "http://en.wikipedia.org/wiki/Superintelligence",
+        "http://en.wikipedia.org/wiki/White_House",
+        "http://en.wikipedia.org/wiki/Federal_government_of_the_United_States",
+        "http://en.wikipedia.org/wiki/Technology",
+        "http://en.wikipedia.org/wiki/Intelligence"
+      ]
+    },
+    {
       "id": "uk-green-party-conference-zionism-racism-motion-brighton",
       "label": "UK's Green Party adopts 'Zionism is racism' policy",
       "firstSeen": "2026-10-04T18:05:51.824Z",
       "lastCovered": "2026-10-04T18:05:51.824Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-10-04-uk-green-party-conference-zionism-racism-motion-brighton"
@@ -33,7 +249,7 @@
       "lastCovered": "2026-10-04T18:05:51.824Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-10-04-delhi-500-detained-day-three-cec-protests-thackerays-mumbai-march"
@@ -58,7 +274,7 @@
       "lastCovered": "2026-10-04T18:05:51.824Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-10-04-spain-housing-protests-valencia-clashes-snap-election-question"
@@ -83,7 +299,7 @@
       "lastCovered": "2026-10-04T18:05:51.824Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-10-04-india-jaishankar-beyond-advocacy-talks-russia-ukraine-mediation"
@@ -108,7 +324,7 @@
       "lastCovered": "2026-10-04T18:05:51.824Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-10-04-palestinian-education-ministry-800-teachers-killed-since-2023"
@@ -133,7 +349,7 @@
       "lastCovered": "2026-10-04T18:05:51.824Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-10-04-yemen-government-declares-operation-against-houthis-al-jawf"
@@ -149,7 +365,7 @@
       "lastCovered": "2026-10-04T18:05:51.824Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-10-04-sudan-dilling-rsf-drone-strikes-four-civilians-killed"
@@ -165,7 +381,7 @@
       "lastCovered": "2026-10-04T18:05:51.824Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-10-04-egypt-matsda2sh-abu-emaira-15-day-detention-five-still-missing"
@@ -181,7 +397,7 @@
       "lastCovered": "2026-10-04T18:05:51.824Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-10-04-south-darfur-kass-hailstorms-destroy-3750-farms-before-harvest"
@@ -197,7 +413,7 @@
       "lastCovered": "2026-10-04T18:05:51.824Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-10-04-us-secondary-sanctions-russia-trade-partners-october-18-wright"
@@ -213,7 +429,7 @@
       "lastCovered": "2026-10-04T18:05:51.824Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-10-04-iran-nigc-admits-south-pars-gas-output-drop-supply-claim"
@@ -229,7 +445,7 @@
       "lastCovered": "2026-10-04T18:05:51.824Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-10-04-giant-clam-shell-monthly-climate-record-great-barrier-reef-200-years"
@@ -245,7 +461,7 @@
       "lastCovered": "2026-10-04T14:06:49.507Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-10-04-opec-plus-seven-keep-november-output-unchanged"
@@ -270,7 +486,7 @@
       "lastCovered": "2026-10-04T14:06:49.507Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-10-04-tether-usdt-returns-to-bitcoin-rgb-protocol"
@@ -286,7 +502,7 @@
       "lastCovered": "2026-10-04T14:06:49.507Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-10-04-trump-names-clayton-ai-czar-white-house-task-force"
@@ -311,7 +527,7 @@
       "lastCovered": "2026-10-04T14:06:49.507Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-10-04-russia-defence-ministry-vows-more-strikes-kyiv-response-zelensky"
@@ -336,7 +552,7 @@
       "lastCovered": "2026-10-04T14:06:49.507Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-10-04-catalonia-floods-two-dead-one-missing-mini-hurricane"
@@ -361,7 +577,7 @@
       "lastCovered": "2026-10-04T14:06:49.507Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-10-04-pakistan-dera-ismail-khan-operation-eight-killed-state-media"
@@ -377,7 +593,7 @@
       "lastCovered": "2026-10-04T14:06:49.507Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-10-04-inka-coca-leaves-sacrificed-llamas-tambo-viejo-peru"
@@ -393,7 +609,7 @@
       "lastCovered": "2026-10-04T10:04:17.285Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-10-04-russia-strikes-kyiv-bridge-as-merz-visits-pledges-aid"
@@ -418,7 +634,7 @@
       "lastCovered": "2026-10-04T10:04:17.285Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-10-04-pakistan-pti-march-begins-lakki-marwat-talks-fail"
@@ -443,7 +659,7 @@
       "lastCovered": "2026-10-04T10:04:17.285Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-10-04-gaza-city-israeli-strike-apartment-mother-daughter-killed"
@@ -468,7 +684,7 @@
       "lastCovered": "2026-10-04T10:04:17.285Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-10-04-iran-foreign-ministry-confirms-npt-withdrawal-discussions"
@@ -484,7 +700,7 @@
       "lastCovered": "2026-10-04T10:04:17.285Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-10-04-delhi-women-journalists-accuse-police-harassment-jantar-mantar"
@@ -509,7 +725,7 @@
       "lastCovered": "2026-10-04T10:04:17.285Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-10-04-cornell-president-video-fraternity-rape-case-review"
@@ -534,7 +750,7 @@
       "lastCovered": "2026-10-04T10:04:17.285Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-10-04-iran-hormuz-closed-until-seven-conditions-reopen-seven-days"
@@ -558,7 +774,7 @@
       "lastCovered": "2026-10-04T10:04:17.285Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-10-04-uk-tories-badenoch-inheritance-tax-childcare-cliff-edge"
@@ -583,7 +799,7 @@
       "lastCovered": "2026-10-04T10:04:17.285Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-10-04-india-fssai-nestle-dairy-whitener-unsafe-substandard"
@@ -608,7 +824,7 @@
       "lastCovered": "2026-10-04T05:05:28.208Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-10-04-yemen-government-forces-strike-sanaa-saada-houthis-claim-aramco"
@@ -633,7 +849,7 @@
       "lastCovered": "2026-10-04T05:05:28.208Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-10-04-uk-burnham-scraps-plan-curb-jury-trials-court-backlog"
@@ -658,7 +874,7 @@
       "lastCovered": "2026-10-04T05:05:28.208Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-10-04-japan-protests-us-marine-arrested-okinawa-woman-death"
@@ -674,7 +890,7 @@
       "lastCovered": "2026-10-04T05:05:28.208Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-10-04-brazil-votes-first-round-president-congress-governors"
@@ -690,7 +906,7 @@
       "lastCovered": "2026-10-04T05:05:28.208Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-10-04-trump-ohio-rally-defends-data-centers-husted-brown-senate"
@@ -715,7 +931,7 @@
       "lastCovered": "2026-10-04T05:05:28.208Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-10-04-north-korea-claims-hypersonic-missile-test-1000-km-kim"
@@ -731,7 +947,7 @@
       "lastCovered": "2026-10-04T05:05:28.208Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-10-04-opec-plus-ministers-meet-output-compliance-hormuz-brent"
@@ -756,7 +972,7 @@
       "lastCovered": "2026-10-04T05:05:28.208Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-10-04-openai-safety-leader-robinson-quits-culture-broken"
@@ -781,7 +997,7 @@
       "lastCovered": "2026-10-04T05:05:28.208Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-10-04-aleph-alpha-kolibri-sovereign-open-weight-model"
@@ -797,7 +1013,7 @@
       "lastCovered": "2026-10-04T05:05:28.208Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-10-04-appeals-court-blocks-minnesota-ai-nude-image-ban-xai"
@@ -822,7 +1038,7 @@
       "lastCovered": "2026-10-03T22:03:58.752Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-10-03-zelensky-more-strikes-russian-energy-civilian-doctrine"
@@ -847,7 +1063,7 @@
       "lastCovered": "2026-10-03T22:03:58.752Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-10-03-iraq-state-tanker-2-million-barrels-hormuz-first-in-decades"
@@ -870,7 +1086,7 @@
       "lastCovered": "2026-10-03T22:03:58.752Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-10-03-nigeria-imo-police-located-19-kidnapped-nysc-members-cannot-strike"
@@ -886,7 +1102,7 @@
       "lastCovered": "2026-10-03T22:03:58.752Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-10-03-nigeria-uyo-obi-kwankwaso-movement-leaders-released-detention"
@@ -902,7 +1118,7 @@
       "lastCovered": "2026-10-03T22:03:58.752Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-10-03-trump-posts-cotton-phone-number-sunshine-protection-act"
@@ -927,7 +1143,7 @@
       "lastCovered": "2026-10-03T22:03:58.752Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-10-03-medvedev-tehran-russia-iran-defence-cooperation-hormuz"
@@ -943,7 +1159,7 @@
       "lastCovered": "2026-10-03T22:03:58.752Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-10-03-bucharest-farmers-protest-coordinated-accounts-facebook-tiktok"
@@ -959,266 +1175,13 @@
       "lastCovered": "2026-10-03T22:03:58.752Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-10-03-kaist-study-group-belonging-dissent-stronger-arguments"
       ],
       "eventUri": null,
       "summary": "A research team at KAIST in South Korea finds that group members who feel securely accepted voice dissent in more detail and more persuasively, and that the rest of the group is then more willing to use those objections in its decision. Lead with the finding and give the journal, the sample size and the experimental design as Phys.org reports them. The mechanism: say what the researchers think links belonging to the quality of an objection — and why that runs against the assumption that the outsider is the one who speaks freely — only as far as the study does, and what it could not measure (laboratory groups versus real organisations). A finding, not management advice: no second-person guidance. The feed entry is a teaser; if the page does not give the journal and method, say what is missing. Dateline Daejeon.",
-      "conceptUris": []
-    },
-    {
-      "id": "flydubai-co-pilot-identified-omani-barred-from-flying",
-      "label": "Who is the mystery co-pilot behind the Flydubai attack?",
-      "firstSeen": "2026-10-03T18:08:08.445Z",
-      "lastCovered": "2026-10-03T18:08:08.445Z",
-      "coverageCount": 1,
-      "category": "politics",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-10-03-flydubai-co-pilot-identified-omani-barred-from-flying"
-      ],
-      "eventUri": "eng-12064706",
-      "summary": "Follow-up to the Flydubai cockpit attack and the UAE official's 'terror act' statement (covered — one clause). The new development: media reports, including the New York Times, identify the co-pilot as an Omani national who had previously been barred from flying in Oman over concerns about alleged extremist views — and there is still no official confirmation of his identity. Lead with the identification and who reported it, then the mechanism: a pilot grounded by one Gulf regulator was hired and cleared to fly by an airline in the next state, so the question is what vetting and information-sharing exists between Gulf aviation authorities. Say plainly what is reported versus confirmed, and what the UAE, Oman and Flydubai have said. Dateline Dubai, not Tel Aviv.",
-      "conceptUris": [
-        "http://en.wikipedia.org/wiki/Flydubai",
-        "http://en.wikipedia.org/wiki/Oman",
-        "http://en.wikipedia.org/wiki/United_Arab_Emirates",
-        "http://en.wikipedia.org/wiki/Israel",
-        "http://en.wikipedia.org/wiki/Terrorism",
-        "http://en.wikipedia.org/wiki/Tel_Aviv",
-        "http://en.wikipedia.org/wiki/Aircraft_pilot",
-        "http://en.wikipedia.org/wiki/Cockpit"
-      ]
-    },
-    {
-      "id": "delhi-police-detain-160-anti-cec-march-bhushan-yadav",
-      "label": "IYC holds protest against detention of students in Delhi",
-      "firstSeen": "2026-10-03T18:08:08.445Z",
-      "lastCovered": "2026-10-03T18:08:08.445Z",
-      "coverageCount": 1,
-      "category": "politics",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-10-03-delhi-police-detain-160-anti-cec-march-bhushan-yadav"
-      ],
-      "eventUri": "eng-12059970",
-      "summary": "Follow-up to the Mumbai Shivaji Park protest and the ultimatum to Chief Election Commissioner Gyanesh Kumar (covered this morning — one clause). The new development: Delhi Police on Saturday detained 160 protesters during a march against the election commissioner, among them senior advocate Prashant Bhushan, activist Yogendra Yadav, AISA president Neha Bora and Anjali Bhardwaj, and Yadav has called a further march for October 4. Lead with the 160 detentions and the names, then the mechanism: the dispute is over the special intensive revision (SIR) of voter rolls, and the state's answer to a protest about who gets to vote was to detain lawyers and student leaders in the capital — which widened it, with the Youth Congress now protesting the detentions themselves. Say where they were held, whether they were released, and what police gave as the legal ground. Dateline New Delhi.",
-      "conceptUris": [
-        "http://en.wikipedia.org/wiki/Jantar_Mantar",
-        "http://en.wikipedia.org/wiki/Delhi_Police",
-        "http://en.wikipedia.org/wiki/Delhi",
-        "http://en.wikipedia.org/wiki/Chief_Election_Commissioner_of_India",
-        "http://en.wikipedia.org/wiki/New_Delhi",
-        "http://en.wikipedia.org/wiki/Aam_Aadmi_Party",
-        "http://en.wikipedia.org/wiki/All_India_Students_Association",
-        "http://en.wikipedia.org/wiki/Connaught_Place,_New_Delhi"
-      ]
-    },
-    {
-      "id": "gaza-hospital-israeli-strikes-kill-five",
-      "label": "Co-pilot in FlyDubai attack is identified, and other Mideast developments",
-      "firstSeen": "2026-10-03T18:08:08.445Z",
-      "lastCovered": "2026-10-03T18:08:08.445Z",
-      "coverageCount": 1,
-      "category": "politics",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-10-03-gaza-hospital-israeli-strikes-kill-five"
-      ],
-      "eventUri": "eng-12065171",
-      "summary": "This is a wire round-up; write ONE article and NOT the Flydubai item, which is a separate story this cycle. Lead with the Gaza item: a hospital in Gaza says Israeli strikes killed five people. Name the actor (Israel) and count and identify the dead as far as the report does — who they were, where the strikes hit, which hospital received them, and what the Israeli military said. The mechanism: say what the killings show about the state of the Strip now — whether a ceasefire is nominally in force, and what continues regardless — strictly as the report states it. The Flydubai identification gets no more than one clause. If the page gives too little on Gaza to stand as an article, say so rather than padding from the other items. Dateline the city in Gaza the report names.",
-      "conceptUris": [
-        "http://en.wikipedia.org/wiki/Flydubai",
-        "http://en.wikipedia.org/wiki/Oman",
-        "http://en.wikipedia.org/wiki/Extremism",
-        "http://en.wikipedia.org/wiki/United_Arab_Emirates",
-        "http://en.wikipedia.org/wiki/Israel",
-        "http://en.wikipedia.org/wiki/Diplomat",
-        "http://en.wikipedia.org/wiki/First_officer_(aviation)",
-        "http://en.wikipedia.org/wiki/Cockpit"
-      ]
-    },
-    {
-      "id": "egypt-journalists-syndicate-sit-in-matsda2sh-whereabouts-unknown",
-      "label": "Dozens join syndicate demonstration to call for Matsda2sh journalists’ release",
-      "firstSeen": "2026-10-03T18:08:08.445Z",
-      "lastCovered": "2026-10-03T18:08:08.445Z",
-      "coverageCount": 1,
-      "category": "politics",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-10-03-egypt-journalists-syndicate-sit-in-matsda2sh-whereabouts-unknown"
-      ],
-      "eventUri": null,
-      "summary": "Follow-up to this morning's story on the disputed detention order for six Matsda2sh journalists (one clause). The new development: dozens of journalists held a sit-in inside Egypt's Journalists Syndicate on Saturday, and when it was due to end at 5 pm several members of the general assembly announced they would stay inside — an open-ended occupation of the syndicate — while the six, arrested on Monday, remain at an unknown location. Lead with the sit-in turning open-ended and the fact that five days on no authority has said where the six are. The mechanism: with no published order there is nothing to appeal, so the syndicate building is the one place the profession can apply pressure; say what the protesters demand, what the syndicate's board has done, and any response from the prosecution, strictly as Mada Masr reports. Dateline Cairo.",
-      "conceptUris": []
-    },
-    {
-      "id": "germany-unity-day-marches-against-conscription-rearmament",
-      "label": "Thousands of Germans demonstrators oppose rearmament, urge dialogue with Russia",
-      "firstSeen": "2026-10-03T18:08:08.445Z",
-      "lastCovered": "2026-10-03T18:08:08.445Z",
-      "coverageCount": 1,
-      "category": "politics",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-10-03-germany-unity-day-marches-against-conscription-rearmament"
-      ],
-      "eventUri": null,
-      "summary": "On German Unity Day thousands marched in Berlin and Stuttgart against the possible return of military conscription and Germany's rearmament; police put the Berlin crowd at about 5,800. The only source is TASS, Russian state media, with an obvious interest in the story: attribute the report to it by name, use the police figure rather than any organisers' claim, and leave out TASS's framing about 'dialogue with Russia' except as a quoted demand of the marchers. Lead with the police count and what the demonstrators oppose, then the mechanism: Germany is debating bringing back conscription and is spending at a scale unseen since the Cold War, and those who would be drafted are the ones on the street — say who organised the marches and what stage the conscription law is at, only as far as the report supports it. Dateline Berlin.",
-      "conceptUris": []
-    },
-    {
-      "id": "florida-deputy-acquitted-roger-fortson-shooting",
-      "label": "Ex-Sheriff's Deputy Acquitted in Fatal Shooting of Airman Roger Fortson",
-      "firstSeen": "2026-10-03T18:08:08.445Z",
-      "lastCovered": "2026-10-03T18:08:08.445Z",
-      "coverageCount": 1,
-      "category": "politics",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-10-03-florida-deputy-acquitted-roger-fortson-shooting"
-      ],
-      "eventUri": "eng-12060697",
-      "summary": "A Florida jury on Friday acquitted former sheriff's deputy Eddie Duran of manslaughter in the 2024 killing of US Air Force airman Roger Fortson, who answered a knock at his own apartment in Fort Walton Beach holding a gun and was shot within seconds. Lead with the acquittal and the facts not in dispute — his own home, a legally held gun, seconds between the door opening and the shots. The mechanism: the verdict turns on what a jury accepts as an officer's reasonable fear, in a state where residents are entitled to answer their door armed, so the right to bear arms and the licence to shoot an armed man meet at the same doorway and the officer prevails. Give the charge, what each side argued, the family's response and whether any civil case continues. Dateline Fort Walton Beach.",
-      "conceptUris": []
-    },
-    {
-      "id": "trump-90-dollar-checks-medicare-seniors-before-midterms",
-      "label": "See where Trump's $90 checks to 20 million seniors are going",
-      "firstSeen": "2026-10-03T18:08:08.445Z",
-      "lastCovered": "2026-10-03T18:08:08.445Z",
-      "coverageCount": 1,
-      "category": "economy",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-10-03-trump-90-dollar-checks-medicare-seniors-before-midterms"
-      ],
-      "eventUri": "eng-12065144",
-      "summary": "Trump says he will send one-time $90 payments this month to more than 20 million older Americans enrolled in Medicare Part B — roughly $1.8 billion, weeks before the November midterm elections. Lead with the amount, the number of recipients and the timing, then the mechanism the reader should check: which funds pay for it and under what authority, since Congress holds the power of the purse and the piece describes it as the latest in a series of pre-election disbursements of government money. Say who is excluded, what the White House gives as the reason (offsetting healthcare costs) and what critics and budget experts say about its legality. Give the total only if the sources state it; otherwise give the two figures. Skip the state-by-state map. Dateline Washington.",
-      "conceptUris": [
-        "http://en.wikipedia.org/wiki/Donald_Trump",
-        "http://en.wikipedia.org/wiki/Medicare_(United_States)",
-        "http://en.wikipedia.org/wiki/United_States_Congress",
-        "http://en.wikipedia.org/wiki/White_House",
-        "http://en.wikipedia.org/wiki/Republican_Party_(United_States)",
-        "http://en.wikipedia.org/wiki/United_States",
-        "http://en.wikipedia.org/wiki/United_States_dollar",
-        "http://en.wikipedia.org/wiki/Truth_Social"
-      ]
-    },
-    {
-      "id": "pakistan-used-car-imports-surge-september-rules-eased",
-      "label": "Local automakers voice concerns as imports of used cars surge in Sept",
-      "firstSeen": "2026-10-03T18:08:08.445Z",
-      "lastCovered": "2026-10-03T18:08:08.445Z",
-      "coverageCount": 1,
-      "category": "economy",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-10-03-pakistan-used-car-imports-surge-september-rules-eased"
-      ],
-      "eventUri": null,
-      "summary": "Used-car imports into Pakistan surged in September after the government eased the rules, following a brief dip when it abolished the Personal Baggage Scheme. Lead with the September figure against the previous months, as Dawn gives them, then the mechanism: Pakistan's car assemblers have operated for decades behind import barriers, and opening the door to used imports pits buyers who want cheaper cars against local plants and their jobs — while every imported car is paid for in dollars by a country with inflation above 10% and scarce reserves. Say which rule changed and why (state whether it is an IMF commitment only if Dawn does), what manufacturers and importers each argue, and what the duties are. Dateline Islamabad.",
-      "conceptUris": []
-    },
-    {
-      "id": "nigeria-north-east-governors-regional-airline-10-8-billion-naira",
-      "label": "North-east governors raise ₦10.8 billion to form regional airline",
-      "firstSeen": "2026-10-03T18:08:08.445Z",
-      "lastCovered": "2026-10-03T18:08:08.445Z",
-      "coverageCount": 1,
-      "category": "economy",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-10-03-nigeria-north-east-governors-regional-airline-10-8-billion-naira"
-      ],
-      "eventUri": "eng-12061082",
-      "summary": "The six states of Nigeria's north-east have raised ₦10.8 billion in counterpart funding to launch a regional airline, Borno governor Babagana Zulum told the North East Governors' Forum in Maiduguri. Lead with the sum, who put it up and what it buys. The mechanism: this is the region emptied by the Boko Haram insurgency, where roads are unsafe and commercial carriers serve few routes, so state governments are pooling public money to build the link the market and the federal government have not — say which states contribute, who will operate the airline, when it is meant to fly, and what else the forum decided on security, as Premium Times reports. Note the record of state-owned airlines in Nigeria only if the article does. Dateline Maiduguri.",
-      "conceptUris": []
-    },
-    {
-      "id": "northrop-talon-blue-collaborative-combat-aircraft-first-flight",
-      "label": "Northrop Grumman’s Talon Blue Collaborative Combat Aircraft Has Flown",
-      "firstSeen": "2026-10-03T18:08:08.445Z",
-      "lastCovered": "2026-10-03T18:08:08.445Z",
-      "coverageCount": 1,
-      "category": "tech",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-10-03-northrop-talon-blue-collaborative-combat-aircraft-first-flight"
-      ],
-      "eventUri": null,
-      "summary": "Northrop Grumman's Talon Blue, its entry for the US Air Force's Collaborative Combat Aircraft programme, has made its first flight. Lead with the flight — when, where, and what was demonstrated — then what the aircraft is: an uncrewed jet meant to fly alongside crewed fighters, carrying sensors or weapons at a fraction of a fighter's cost. The mechanism a technical reader wants: how much autonomy the aircraft has versus control from the fighter it accompanies, what it costs per airframe, and which competitors it is up against for the next production increment, as TWZ reports. Say what is confirmed by the company or the Air Force and what is TWZ's analysis. Dateline the test site the article names.",
-      "conceptUris": []
-    },
-    {
-      "id": "india-air-force-chief-fighter-shortfall-mrfa-no-drone-force",
-      "label": "IAF Chief rules out separate drone force, calls them evolutionary",
-      "firstSeen": "2026-10-03T18:08:08.445Z",
-      "lastCovered": "2026-10-03T18:08:08.445Z",
-      "coverageCount": 1,
-      "category": "tech",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-10-03-india-air-force-chief-fighter-shortfall-mrfa-no-drone-force"
-      ],
-      "eventUri": "eng-12065293",
-      "summary": "India's air force chief, Air Chief Marshal AP Singh, set out the service's position on Saturday: no separate drone force, a fighter fleet that is shrinking, delays in inducting the home-built Tejas, a need to fast-track the AMCA fifth-generation fighter against China's, and a multi-role fighter (MRFA) purchase that could be finalised in the 2026-27 fiscal year. Do not write it as a speech report. Lead with the hard numbers — squadron strength against the sanctioned figure, the Tejas delivery shortfall, the size of the MRFA order — then the mechanism: an air force that cannot get its domestic jet on time must buy abroad while its neighbours field fifth-generation aircraft, and its chief is saying drones do not close that gap. Say what is decided (a timeline for MRFA) and what is only his view. Dateline New Delhi.",
-      "conceptUris": [
-        "http://en.wikipedia.org/wiki/Indian_Air_Force",
-        "http://en.wikipedia.org/wiki/Air_chief_marshal",
-        "http://en.wikipedia.org/wiki/India",
-        "http://en.wikipedia.org/wiki/HAL_AMCA",
-        "http://en.wikipedia.org/wiki/Fighter_aircraft",
-        "http://en.wikipedia.org/wiki/Squadron_(aviation)",
-        "http://en.wikipedia.org/wiki/Fifth-generation_fighter",
-        "http://en.wikipedia.org/wiki/Dassault_Rafale"
-      ]
-    },
-    {
-      "id": "iran-space-research-center-launch-plans-mokari",
-      "label": "Iranian center unveils projects to advance access to space",
-      "firstSeen": "2026-10-03T18:08:08.445Z",
-      "lastCovered": "2026-10-03T18:08:08.445Z",
-      "coverageCount": 1,
-      "category": "tech",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-10-03-iran-space-research-center-launch-plans-mokari"
-      ],
-      "eventUri": null,
-      "summary": "Nader Mokari, head of the Iranian Space Research Center, set out at a press conference the projects Iran is pursuing for cheaper and more reliable access to orbit, including work to reduce mission failures. The only source is Mehr, an Iranian state-affiliated agency: attribute the plans to Mokari and to Mehr by name and state none of the capabilities as fact. Lead with the concrete items — which launchers, orbital-transfer or solid-propellant stages, which satellites and what dates — and the admission that failures need reducing. The mechanism: Iran is under sanctions and at war, so its space programme is built on domestic solid-fuel technology that overlaps with missile work, which is why outside governments watch each launch; say that only in one sentence and as context. Dateline Tehran.",
-      "conceptUris": []
-    },
-    {
-      "id": "netherlands-study-recovery-after-intimate-partner-violence",
-      "label": "Recovery after intimate partner violence: New study reveals what works",
-      "firstSeen": "2026-10-03T18:08:08.445Z",
-      "lastCovered": "2026-10-03T18:08:08.445Z",
-      "coverageCount": 1,
-      "category": "science",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-10-03-netherlands-study-recovery-after-intimate-partner-violence"
-      ],
-      "eventUri": null,
-      "summary": "A Dutch study examines what helps people recover after violence by a current or former partner, in a country where more than 1 million people aged 16 and over experience domestic violence each year. Lead with the finding — which forms of support were associated with recovery and which were not — and give the institution, the journal, the sample size and the method, as Phys.org reports them. The mechanism: say what the researchers think explains the difference (safety first, social support, professional help, time) only as far as the study does, and what it could not measure. A finding, not advice: no second-person guidance. Dateline the university's city.",
       "conceptUris": []
     }
   ]
