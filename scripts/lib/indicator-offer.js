@@ -323,7 +323,7 @@ const valueDaysBack = (ind, days, slackDays = Infinity) => {
  * chip said ▼12% over 7 days — both true, and a contradiction to anyone
  * reading one under the other.
  */
-const weekMove = (ind) => {
+export const weekMove = (ind) => {
   const last = (ind.values || []).filter(Number.isFinite).at(-1)
   const then = valueDaysBack(ind, 7, 3)
   if (!Number.isFinite(last) || then == null || then === 0) return null

@@ -27,6 +27,7 @@
     //    --no-config-hints so the command reports findings, not config advice.
     "scripts/build.js",
     "scripts/compute-metrics.js",
+    "scripts/company-gaps.js",
     "scripts/coverage-map.js",
     "scripts/dedup-selection.js",
     "scripts/enrich-selection.js",
@@ -47,6 +48,7 @@
     "scripts/fetch-news-api.js",
     "scripts/fetch-news.js",
     "scripts/fetch-trends.js",
+    "scripts/flag-title-echo.js",
     "scripts/generate-briefing.js",
     "scripts/measure-quality.js",
     "scripts/merge-feeds.js",

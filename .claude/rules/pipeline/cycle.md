@@ -10,6 +10,7 @@ paths:
   - "scripts/run-cycle.sh"
   - "scripts/narrate-*.js"
   - "scripts/attach-indicators.js"
+  - "scripts/flag-title-echo.js"
   - "scripts/translate-swedish.js"
   - "scripts/pick-breaking-social.js"
   - "scripts/generate-*.js"
@@ -31,6 +32,7 @@ paths:
   - "scripts/lib/indicator-offer.js"
   - "scripts/lib/indicator-model.js"
   - "scripts/lib/market-signals.js"
+  - "scripts/lib/title-echo.js"
   - "scripts/lib/coverage-window.js"
   - "scripts/lib/tracked-stories.js"
   - "scripts/lib/feed-age.js"
@@ -39,6 +41,8 @@ paths:
   - "scripts/lib/trends-*.js"
   - "scripts/lib/trends-sources/**"
   - "scripts/lib/companies.js"
+  - "scripts/lib/company-gaps.js"
+  - "scripts/company-gaps.js"
   - "scripts/lib/ai-models.js"
   - "scripts/lib/ai-lab-metadata.js"
   - "scripts/lib/company-metadata.js"
@@ -156,6 +160,9 @@ each other.
   (`grounding.test.js`).
 - A validator states why it rejected (`validateMarketComment`'s `reasons`):
   a bare `null` reads as a quiet day.
+- `<title-echo>` (`flag-title-echo.js`) is a flag for the editor, never a
+  gate: an overlap measure cannot see a stake in words.
+- In a hook, attribution follows the claim.
 - An offered figure is permission, not obligation. The editor treats one
   matching its `indicators` row as sourced.
 
@@ -188,6 +195,10 @@ each other.
   mention. `isAboutCompany` (`lib/companies.js`) guards it: the mention must
   match the company's tags or `commonName`. A company tag in the title also
   passes, and a story the model never read falls back to weaker tag signs.
+- A share that moved `MOVER_PCT` in a week with no story about it is asked
+  for by name in Q6 and named to the selector (`unexplainedMovers`,
+  `lib/company-gaps.js`): the narration can explain a move only from a story
+  the site ran. A signal, never a quota; a `commonName` is never searched.
 - `subjects:` is its own frontmatter key, because `entities[]` is published.
   `[]` means read and about none; no key means never read.
 - `/api/ai-models.json` rows are labs, not models, which would be a

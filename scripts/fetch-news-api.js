@@ -5,7 +5,8 @@
 import { mkdirSync, readdirSync, statSync, unlinkSync } from 'node:fs'
 import { eventCoveredRecently, loadDedupContext } from './lib/dedup.js'
 import { MAX_FEED_AGE_MS } from './lib/feed-age.js'
-import { pickTracked, TRACKED_KEYWORDS } from './lib/tracked-stories.js'
+import { readUnexplainedMovers } from './lib/company-gaps.js'
+import { namedSeries, pickTracked, TRACKED_KEYWORDS } from './lib/tracked-stories.js'
 import { slugify, zuhdCategory } from './lib/utils.js'
 import { writeJson } from './lib/json-file.js'
 import { runWithConcurrency } from './lib/concurrency.js'
@@ -418,11 +419,16 @@ function fetchBroadArticles() {
 // **Fail-soft, unlike the five above.** They are the feed; this is an
 // addition to it, and a rejected keyword list must not cost the cycle its API
 // stories.
+//
+// It also asks, by name, for a company whose share moved sharply this week
+// with no story here to say why (`lib/company-gaps.js`): the same token.
+const MOVERS = readUnexplainedMovers()
+
 async function fetchTrackedArticles() {
   try {
     return await queryArticles({
       articlesSortBy: 'date',
-      keyword: TRACKED_KEYWORDS,
+      keyword: [...TRACKED_KEYWORDS, ...MOVERS.flatMap((m) => m.keyword ?? [])],
       keywordOper: 'or',
       keywordLoc: 'title',
       // "gold" is also a medal and a film; the category filter is what keeps
@@ -771,6 +777,7 @@ async function main() {
     usedEventUris,
     usedUrls: panelUris,
     maxAgeMs: MAX_FEED_AGE_MS,
+    named: namedSeries(MOVERS),
   })
   let tracked = 0
   for (const group of trackedGroups) {
@@ -810,6 +817,9 @@ async function main() {
     tracked++
   }
   console.error(`Tracked-series stories: ${tracked} (${trackedGroups.filter(g => g.length > 1).length} multi-source)`)
+  if (MOVERS.length > 0) {
+    console.error(`Unexplained movers asked for by name: ${MOVERS.map((m) => `${m.keyword ?? `${m.name} (not searched)`} ${m.pct > 0 ? '+' : ''}${m.pct}%`).join(', ')}`)
+  }
   const unmatched = dedupedArticles.filter(a =>
     !panelUris.has(a.url) && !standaloneArticles.includes(a)
   )

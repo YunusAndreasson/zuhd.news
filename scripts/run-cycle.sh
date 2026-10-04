@@ -249,6 +249,19 @@ ${TRENDING_GAPS}
 </trending-uncovered>"
   echo "Injecting trending-gaps signal ($(echo "$TRENDING_GAPS" | wc -l) titles) into selector prompt" | tee -a "$LOG_FILE"
 fi
+# Inject the shares that moved with no story here to say why
+# (lib/company-gaps.js). The app charts each, and its card can explain a move
+# only from a story the site has run. Local read; fail-soft (empty → nothing).
+COMPANY_GAPS=$(timeout 15 node scripts/company-gaps.js 2>/dev/null)
+if [ -n "$COMPANY_GAPS" ]; then
+  SELECT_PROMPT="${SELECT_PROMPT}
+
+Shares among the twenty largest companies that moved sharply over the past week, with no story on zuhd.news in a fortnight that says why. The app charts each one, and can explain a move only from a story the site has published. If the feed carries a report of what moved one — results, an order, a ruling, a deal, a ban — it is a strong economy or tech pick, and the Consequence rule still holds: say what moved it or who it lands on. If the feed has only the price, or only analyst talk, skip it; the list is a signal, never a quota.
+<unexplained-movers>
+${COMPANY_GAPS}
+</unexplained-movers>"
+  echo "Injecting unexplained-movers signal ($(echo "$COMPANY_GAPS" | wc -l) companies) into selector prompt" | tee -a "$LOG_FILE"
+fi
 # How many stories this cycle picks follows how much news arrived since the
 # last one (measured 2026-09-25 across 14 global outlets: 05:00 ≈11% of the
 # day's publishing, 10:00 ≈16%, 14:00 ≈20%, 18:00 ≈28%, 22:00 ≈25%). A fixed
@@ -463,6 +476,9 @@ else
       } catch {}
     }
   " 2>/dev/null)
+  # Hooks that say the title again (lib/title-echo.js) — a list for the
+  # editor's title-echo test, never a gate: about 7 in 10 flags are echoes.
+  TITLE_ECHO=$(node scripts/flag-title-echo.js /tmp/zuhd-new-articles.txt 2>/dev/null)
   EDITOR_ADDENDUM="
 
 Check only the files listed in <files> below (this cycle's batch). Other untracked articles belong to earlier runs.
@@ -473,7 +489,11 @@ $ARTICLE_LIST
 
 <body-lengths>
 $BODY_LENGTHS
-</body-lengths>"
+</body-lengths>
+
+<title-echo>
+$TITLE_ECHO
+</title-echo>"
   # --add-dir /tmp: the editor's first rule is checking figures and quotes
   # against the sources, and the source text lives only in
   # /tmp/zuhd-selection.json. Without it the editor said, every cycle, that it
