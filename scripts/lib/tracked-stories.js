@@ -58,10 +58,27 @@ const timeOf = (a) => Date.parse(a?.dateTimePub || a?.dateTime || '') || 0
  * "three oil tankers hit in Hormuz" is the strait's story, and `oil` would
  * file it with every price report of the day.
  */
-export const seriesOf = (title) => {
+export const seriesOf = (title, named = []) => {
   const ids = extractEntities(title).resolved.map((e) => e.indicatorId).filter((id) => !/^(stocks|mkt):/.test(id))
-  return ids.find((id) => id.startsWith('cp:')) ?? ids[0] ?? 'other'
+  return ids.find((id) => id.startsWith('cp:')) ?? ids[0] ?? named.find((n) => n.re.test(title))?.id ?? 'other'
 }
+
+/**
+ * The companies the query also asked for by name this cycle
+ * (`unexplainedMovers`, `lib/company-gaps.js`), each a series of its own: left
+ * in `other`, a share's one report would wait behind every headline that names
+ * no series at all.
+ *
+ * @param {{ id: string, keyword: string | null }[]} movers
+ * @returns {{ id: string, re: RegExp }[]}
+ */
+export const namedSeries = (movers) =>
+  (movers || [])
+    .filter((m) => m.keyword)
+    .map((m) => ({
+      id: `co:${m.id}`,
+      re: new RegExp(`(^|[^a-z0-9])${m.keyword.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')}([^a-z0-9]|$)`, 'i'),
+    }))
 
 /**
  * The tracked-series stories that get a slot, best first.
@@ -95,6 +112,7 @@ export const seriesOf = (title) => {
  *   report is past it is dropped by `merge-feeds.js`, and would spend a slot
  *   on nothing: the query reaches back a day, the pool twelve hours.
  * @param {number} [opts.now]
+ * @param {{ id: string, re: RegExp }[]} [opts.named]  `namedSeries`.
  * @returns {any[][]} Groups of articles, each one story.
  */
 export function pickTracked(
@@ -107,6 +125,7 @@ export function pickTracked(
     perOutlet = 2,
     maxAgeMs = Infinity,
     now = Date.now(),
+    named = [],
   } = {},
 ) {
   /** @type {Map<string, any[]>} */
@@ -131,7 +150,7 @@ export function pickTracked(
     .sort((a, b) => b.length - a.length || timeOf(b[0]) - timeOf(a[0]))
     .map((group) => ({
       group,
-      series: group.map((a) => seriesOf(a.title)).find((id) => id !== 'other') ?? 'other',
+      series: group.map((a) => seriesOf(a.title, named)).find((id) => id !== 'other') ?? 'other',
     }))
 
   const picked = []
