@@ -1,84 +1,5 @@
 [
   {
-    "timestamp": "2026-09-14T08:23:18.891Z",
-    "candidateCount": 8,
-    "candidates": [
-      {
-        "slug": "2026-09-14-eight-hundred-sixty-three-and-three-hundred-ninety-nine",
-        "title": "Drone War Nears Poland",
-        "category": "politics",
-        "eventCoverage": 90,
-        "importance": 6
-      },
-      {
-        "slug": "2026-09-14-sixty-two-of-one-twenty-the-next-threshold-is-higher",
-        "title": "Kurti Wins Slim Majority",
-        "category": "politics",
-        "eventCoverage": 52,
-        "importance": 6
-      },
-      {
-        "slug": "2026-09-14-the-more-you-deploy-the-less-you-control",
-        "title": "Gartner Calls AI Unready",
-        "category": "tech",
-        "eventCoverage": 31,
-        "importance": 6
-      },
-      {
-        "slug": "2026-09-14-one-thousand-again-the-bid-is-global",
-        "title": "European Gas Hits $1,000",
-        "category": "economy",
-        "eventCoverage": 0,
-        "importance": 6
-      },
-      {
-        "slug": "2026-09-14-the-market-priced-the-caution",
-        "title": "Markets Price AI Slowdown",
-        "category": "tech",
-        "eventCoverage": 0,
-        "importance": 6
-      },
-      {
-        "slug": "2026-09-14-zero-at-the-smokestack",
-        "title": "Biomass Rules Hide Deforestation",
-        "category": "science",
-        "eventCoverage": 0,
-        "importance": 6
-      },
-      {
-        "slug": "2026-09-14-the-busiest-day-the-service-ever-had",
-        "title": "Heatwave Broke Ambulance Records",
-        "category": "science",
-        "eventCoverage": 0,
-        "importance": 6
-      },
-      {
-        "slug": "2026-09-14-the-tumour-has-to-build-its-own-membrane",
-        "title": "Enzyme Drives Glioblastoma Growth",
-        "category": "science",
-        "eventCoverage": 0,
-        "importance": 6
-      }
-    ],
-    "selected": {
-      "slug": "2026-09-14-eight-hundred-sixty-three-and-three-hundred-ninety-nine",
-      "title": "Drone War Nears Poland",
-      "category": "politics",
-      "body": "[Russia](country:RU) launched 863 drones at [Ukraine](country:UA)",
-      "eventCoverage": 90,
-      "importance": 6
-    },
-    "skipReason": null,
-    "sent": true,
-    "pushTitle": "Breaking News",
-    "pushBody": "Russia launches 863 drones at Ukraine overnight, killing four",
-    "response": {
-      "pushed": 1,
-      "skipped": 0,
-      "tokens": 9
-    }
-  },
-  {
     "timestamp": "2026-09-14T12:22:04.404Z",
     "candidateCount": 4,
     "candidates": [
@@ -9937,6 +9858,99 @@
     "sent": true,
     "pushTitle": "Breaking News",
     "pushBody": "US answers Iran's 7-day proposal via Qatar, Tehran reviewing reply",
+    "response": {
+      "pushed": 1,
+      "skipped": 0,
+      "tokens": 5
+    }
+  },
+  {
+    "timestamp": "2026-10-05T10:17:18.607Z",
+    "candidateCount": 10,
+    "candidates": [
+      {
+        "slug": "2026-10-05-nobel-prize-in-medicine-2026-awarded-for-research-on-mysteri",
+        "title": "Nobel Honours Optogenetics Pioneers",
+        "category": "science",
+        "eventCoverage": 235,
+        "importance": 6
+      },
+      {
+        "slug": "2026-10-05-modified-form-6-not-approved-by-us-cji-observes-on-modified",
+        "title": "Court Questions Voter Form",
+        "category": "politics",
+        "eventCoverage": 127,
+        "importance": 6
+      },
+      {
+        "slug": "2026-10-05-saudi-backed-yemeni-forces-seize-vital-strait-from-houthi-re",
+        "title": "Yemen Claims Dhubab Gains",
+        "category": "politics",
+        "eventCoverage": 84,
+        "importance": 6
+      },
+      {
+        "slug": "2026-10-05-kremlin-declines-comment-on-report-that-ukraine-talks-are-li",
+        "title": "Kremlin Silent on Oil Deal",
+        "category": "economy",
+        "eventCoverage": 74,
+        "importance": 6
+      },
+      {
+        "slug": "2026-10-05-estonia-actively-redeploying-troops-to-russian-border-ft",
+        "title": "Estonia Redeploys Troops East",
+        "category": "politics",
+        "eventCoverage": 56,
+        "importance": 6
+      },
+      {
+        "slug": "2026-10-05-spanish-pm-sanchez-calls-snap-election",
+        "title": "Sánchez Calls Snap Election",
+        "category": "politics",
+        "eventCoverage": 0,
+        "importance": 6
+      },
+      {
+        "slug": "2026-10-05-reconciliation-not-possible-without-including-imran-pti-says",
+        "title": "PTI Talks Collapse",
+        "category": "politics",
+        "eventCoverage": 0,
+        "importance": 6
+      },
+      {
+        "slug": "2026-10-05-more-qatari-lng-cargoes-transit-strait-of-hormuz-despite-ong",
+        "title": "Qatar LNG Crosses Hormuz",
+        "category": "economy",
+        "eventCoverage": 0,
+        "importance": 6
+      },
+      {
+        "slug": "2026-10-05-euro-zone-business-growth-hits-over-3-1-2-year-high-despite",
+        "title": "Euro Zone Growth Surges",
+        "category": "economy",
+        "eventCoverage": 0,
+        "importance": 6
+      },
+      {
+        "slug": "2026-10-05-the-us-companies-cashing-in-on-the-ukraine-war",
+        "title": "US Tech Firms Arm Ukraine",
+        "category": "tech",
+        "eventCoverage": 0,
+        "importance": 6
+      }
+    ],
+    "selected": {
+      "slug": "2026-10-05-nobel-prize-in-medicine-2026-awarded-for-research-on-mysteri",
+      "title": "Nobel Honours Optogenetics Pioneers",
+      "category": "science",
+      "body": "Light now switches individual neurons on and off in living",
+      "eventCoverage": 235,
+      "importance": 6
+    },
+    "skipReason": null,
+    "sent": true,
+    "pushTitle": "Breaking News",
+    "pushBody": "Nobel Prize in Medicine goes to 3 optogenetics pioneers",
     "response": {
       "pushed": 1,
       "skipped": 0,
