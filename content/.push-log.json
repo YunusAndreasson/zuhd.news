@@ -1,56 +1,5 @@
 [
   {
-    "timestamp": "2026-09-15T17:25:19.545Z",
-    "candidateCount": 4,
-    "candidates": [
-      {
-        "slug": "2026-09-15-femicide-is-a-legal-category-in-mexico",
-        "title": "Mexico Probes Student's Femicide",
-        "category": "politics",
-        "eventCoverage": 632,
-        "importance": 6
-      },
-      {
-        "slug": "2026-09-15-us-loss-to-iran-attacks-revealed-bases-posture",
-        "title": "US Reveals Iran War Losses",
-        "category": "politics",
-        "eventCoverage": 301,
-        "importance": 6
-      },
-      {
-        "slug": "2026-09-15-the-lure-was-a-medical-result",
-        "title": "Iran Used Fake MRI Lure",
-        "category": "tech",
-        "eventCoverage": 0,
-        "importance": 6
-      },
-      {
-        "slug": "2026-09-15-the-vendor-s-price-set-the-charge",
-        "title": "Decoy Camera Case Downgraded",
-        "category": "tech",
-        "eventCoverage": 0,
-        "importance": 6
-      }
-    ],
-    "selected": {
-      "slug": "2026-09-15-us-loss-to-iran-attacks-revealed-bases-posture",
-      "title": "US Reveals Iran War Losses",
-      "category": "politics",
-      "body": "18 US troops died fighting [Iran](country:IR).",
-      "eventCoverage": 301,
-      "importance": 6
-    },
-    "skipReason": null,
-    "sent": true,
-    "pushTitle": "Breaking News",
-    "pushBody": "Pentagon reveals 18 US troops killed fighting Iran, officials say",
-    "response": {
-      "pushed": 1,
-      "skipped": 0,
-      "tokens": 9
-    }
-  },
-  {
     "timestamp": "2026-09-15T22:18:42.942Z",
     "candidateCount": 4,
     "candidates": [
@@ -10091,6 +10040,134 @@
     "sent": true,
     "pushTitle": "Breaking News",
     "pushBody": "Ukraine drones kill 2 near Moscow, governor says",
+    "response": {
+      "pushed": 1,
+      "skipped": 0,
+      "tokens": 5
+    }
+  },
+  {
+    "timestamp": "2026-10-06T18:17:03.455Z",
+    "candidateCount": 15,
+    "candidates": [
+      {
+        "slug": "2026-10-06-russia-denies-anti-plague-measures-after-pneumonia-death",
+        "title": "Russia Denies Plague Measures",
+        "category": "politics",
+        "eventCoverage": 1157,
+        "importance": 6
+      },
+      {
+        "slug": "2026-10-06-france-tests-new-nuclear-capable-weapon",
+        "title": "France Fires M51.3 Missile",
+        "category": "politics",
+        "eventCoverage": 222,
+        "importance": 6
+      },
+      {
+        "slug": "2026-10-06-before-uk-greens-who-else-has-equated-zionism-with-racism",
+        "title": "UK Greens Pass Zionism Motion",
+        "category": "politics",
+        "eventCoverage": 189,
+        "importance": 6
+      },
+      {
+        "slug": "2026-10-06-quarter-million-protesters-rally-across-france-over-school-c",
+        "title": "France Marches Over Schools",
+        "category": "politics",
+        "eventCoverage": 171,
+        "importance": 6
+      },
+      {
+        "slug": "2026-10-06-uk-police-arrest-british-national-linked-to-airbase-incident",
+        "title": "Seventh Arrest Near Fairford",
+        "category": "politics",
+        "eventCoverage": 162,
+        "importance": 6
+      },
+      {
+        "slug": "2026-10-06-syndicate-submits-prosecution-complaint-regarding-matsda2sh",
+        "title": "Egypt Denies Torture Claims",
+        "category": "politics",
+        "eventCoverage": 0,
+        "importance": 6
+      },
+      {
+        "slug": "2026-10-06-groups-associated-with-india-s-far-right-receive-millions-th",
+        "title": "Hindu Nationalist Charities Get Millions",
+        "category": "politics",
+        "eventCoverage": 0,
+        "importance": 6
+      },
+      {
+        "slug": "2026-10-06-state-police-four-states-approve-constitutional-amendment-bi",
+        "title": "Four States Back State Police",
+        "category": "politics",
+        "eventCoverage": 0,
+        "importance": 6
+      },
+      {
+        "slug": "2026-10-06-why-is-nasa-bringing-7-500-contractors-back-to-work-as-civil",
+        "title": "NASA Reverses Outsourcing",
+        "category": "politics",
+        "eventCoverage": 0,
+        "importance": 6
+      },
+      {
+        "slug": "2026-10-06-fed-plans-to-overhaul-bank-supervision-responsibilities-bowm",
+        "title": "Fed Overhauls Bank Supervision",
+        "category": "economy",
+        "eventCoverage": 0,
+        "importance": 6
+      },
+      {
+        "slug": "2026-10-06-ai-could-reduce-poverty-but-poor-africans-risk-being-left-be",
+        "title": "AI Gains Risk Bypassing Poor",
+        "category": "economy",
+        "eventCoverage": 0,
+        "importance": 6
+      },
+      {
+        "slug": "2026-10-06-shoes-may-change-the-structure-of-our-ankle-bones-new-scient",
+        "title": "Shoes Reshape Ankle Bones",
+        "category": "science",
+        "eventCoverage": 0,
+        "importance": 6
+      },
+      {
+        "slug": "2026-10-06-mistral-large-4",
+        "title": "Mistral Previews Large 4",
+        "category": "tech",
+        "eventCoverage": 0,
+        "importance": 6
+      },
+      {
+        "slug": "2026-10-06-trump-mobile-customers-data-dumped-and-some-never-even-recei",
+        "title": "Trump Mobile Data Leaked",
+        "category": "tech",
+        "eventCoverage": 0,
+        "importance": 6
+      },
+      {
+        "slug": "2026-10-06-the-eu-extends-salto-deadline-again-as-themis-hop-test-slips",
+        "title": "Themis Hop Test Slips",
+        "category": "tech",
+        "eventCoverage": 0,
+        "importance": 6
+      }
+    ],
+    "selected": {
+      "slug": "2026-10-06-france-tests-new-nuclear-capable-weapon",
+      "title": "France Fires M51.3 Missile",
+      "category": "politics",
+      "body": "A warhead-free M51.3 landed hundreds of kilometres from any",
+      "eventCoverage": 222,
+      "importance": 6
+    },
+    "skipReason": null,
+    "sent": true,
+    "pushTitle": "Breaking News",
+    "pushBody": "France test-fires new M51.3 nuclear-capable missile from submarine",
     "response": {
       "pushed": 1,
       "skipped": 0,
