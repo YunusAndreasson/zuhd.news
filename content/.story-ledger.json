@@ -2,13 +2,284 @@
   "version": 1,
   "stories": [
     {
+      "id": "spain-lifts-arrest-warrant-for-catalan-separatist-leader-pui",
+      "label": "Spain lifts arrest warrant for Catalan separatist leader Puigdemont",
+      "firstSeen": "2026-10-06T14:06:34.251Z",
+      "lastCovered": "2026-10-06T14:06:34.251Z",
+      "coverageCount": 1,
+      "category": "politics",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-10-06-spain-lifts-arrest-warrant-for-catalan-separatist-leader-pui"
+      ],
+      "eventUri": "spa-4368694",
+      "summary": "Spain's Supreme Court has ruled that the amnesty law must apply to Catalan separatists even where they are accused of embezzling public funds, and lifted the arrest warrant that has kept Carles Puigdemont in exile since 2017. Lead with the ruling and what it removes: the embezzlement charge was the one ground on which the court had refused him amnesty. The mechanism: say which court forced the change (the Constitutional Court is tagged), what the Supreme Court judges had argued before, and what still stands between Puigdemont and a return (any remaining appeal, as reported). Why it matters now, in one clause: Pedro Sánchez called a snap election on 10-05 after his minority government, which depended on Puigdemont's Junts party, lost votes in Congress (covered 10-05), so the man returning is a kingmaker in the campaign. Give the response of the right-wing opposition and of Junts only as reported. Dateline Madrid.",
+      "conceptUris": [
+        "http://en.wikipedia.org/wiki/Carles_Puigdemont",
+        "http://en.wikipedia.org/wiki/Spain",
+        "http://en.wikipedia.org/wiki/Amnesty",
+        "http://en.wikipedia.org/wiki/Catalonia",
+        "http://en.wikipedia.org/wiki/Constitutional_Court_of_Spain",
+        "http://en.wikipedia.org/wiki/Embezzlement",
+        "http://en.wikipedia.org/wiki/Supreme_Court_of_Spain",
+        "http://en.wikipedia.org/wiki/Magistrate"
+      ]
+    },
+    {
+      "id": "bulgaria-searches-for-missing-crew-after-drones-hit-ships-in-black-sea",
+      "label": "Bulgaria searches for missing crew after drones hit ships in Black Sea",
+      "firstSeen": "2026-10-06T14:06:34.251Z",
+      "lastCovered": "2026-10-06T14:06:34.251Z",
+      "coverageCount": 1,
+      "category": "politics",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-10-06-bulgaria-searches-for-missing-crew-after-drones-hit-ships-in-black-sea"
+      ],
+      "eventUri": "eng-12072513",
+      "summary": "Two commercial ships were hit in the Black Sea inside the exclusive economic zone of Bulgaria, a NATO member: one sank with its crew missing, the other's crew was rescued (18 rescued, seven of them Indian, per MoneyControl). Lead with the sinking, the missing and who they are (flags, crew nationalities, cargo, as the AFP copy gives it), and with what Bulgaria's government and the Varna rescue chief Rumen Nikolov have said about what struck them. Attribution is the story: say who Sofia blames, if anyone, and what Russia and Ukraine each say; state no attribution as fact. The mechanism: an exclusive economic zone is not territorial water, so an attack there kills civilian seafarers on a NATO state's doorstep without triggering the alliance's defence clause; say what Bulgaria and NATO have done in response and what it means for the grain and oil shipping lane along the western Black Sea coast. This is a new attack, distinct from the ship attack covered 10-05 (one clause). The Express headline ('WW3 fears') is tabloid framing: do not use it, and take the facts from the AFP copy on Yahoo. The 'Togo' and 'Palau' tags are probably the ships' flags: say so only if the reports do. Dateline Varna or Sofia.",
+      "conceptUris": [
+        "http://en.wikipedia.org/wiki/Bulgaria",
+        "http://en.wikipedia.org/wiki/Black_Sea",
+        "http://en.wikipedia.org/wiki/Unmanned_aerial_vehicle",
+        "http://en.wikipedia.org/wiki/Ship",
+        "http://en.wikipedia.org/wiki/Rumen_Radev",
+        "http://en.wikipedia.org/wiki/Exclusive_economic_zone",
+        "http://en.wikipedia.org/wiki/Togo",
+        "http://en.wikipedia.org/wiki/Palau"
+      ]
+    },
+    {
+      "id": "2-saudi-airports-targeted-as-fighting-with-yemen-s-houthis-e",
+      "label": "2 Saudi airports targeted as fighting with Yemen's Houthis escalates",
+      "firstSeen": "2026-10-06T14:06:34.251Z",
+      "lastCovered": "2026-10-06T14:06:34.251Z",
+      "coverageCount": 1,
+      "category": "politics",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-10-06-2-saudi-airports-targeted-as-fighting-with-yemen-s-houthis-e"
+      ],
+      "eventUri": "eng-12072364",
+      "summary": "Follow-up to this morning's piece on the Mecca Defence Alliance activating collective deterrence, which carried the Houthi claim of strikes on Saudi airports as unconfirmed (one clause). The new development is Riyadh's confirmation: the Saudi aviation authority says King Abdullah bin Abdulaziz airport in Jazan and Najran International Airport were targeted on Monday evening and three people were injured. Lead with the confirmation, the two airports and the injured, and who they were if stated (civilians, workers, travellers). The mechanism: the war has crossed from Yemeni soil into Saudi civilian infrastructure within a day of Pakistan and Turkey agreeing to send troops, so say what was fired (missiles or drones, as reported), what was intercepted, whether flights were suspended, what the Houthis say they were aiming at and whether Saudi Aramco sites were hit as they claimed, and what the coalition has done in Yemen in reply, with Yemeni civilian casualties as reported. Count the injured on both sides of the border with the same care. Anadolu is Turkish state media: take the facts from the Reuters copy (U.S. News, Free Malaysia Today). Free Malaysia Today and Anadolu are the regional outlets. Dateline Jazan or Riyadh as the reports support.",
+      "conceptUris": [
+        "http://en.wikipedia.org/wiki/Saudi_Arabia",
+        "http://en.wikipedia.org/wiki/Houthi_movement",
+        "http://en.wikipedia.org/wiki/Yemen",
+        "http://en.wikipedia.org/wiki/Riyadh",
+        "http://en.wikipedia.org/wiki/Pakistan",
+        "http://en.wikipedia.org/wiki/Turkey",
+        "http://en.wikipedia.org/wiki/Red_Sea",
+        "http://en.wikipedia.org/wiki/Saudi_Aramco"
+      ]
+    },
+    {
+      "id": "ukraine-launches-major-drone-attack-on-russia-s-moscow-regio",
+      "label": "Ukraine launches major drone attack on Russia's Moscow region, killing two",
+      "firstSeen": "2026-10-06T14:06:34.251Z",
+      "lastCovered": "2026-10-06T14:06:34.251Z",
+      "coverageCount": 1,
+      "category": "politics",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-10-06-ukraine-launches-major-drone-attack-on-russia-s-moscow-regio"
+      ],
+      "eventUri": "eng-12072217",
+      "summary": "Russian officials say an overnight Ukrainian attack sent 650 drones towards Moscow, killing two people and setting a warehouse on fire in the capital; mayor Sergei Sobyanin says most were shot down. Lead with the two dead, named or described as the reports give them, and the scale: 650 is Sobyanin's figure, so attribute it to him. The mechanism: mass cheap drones are meant to saturate air defences, so that the few that get through matter more than the hundreds that do not; say what was hit and where, which airports closed, what Ukraine says it was targeting or that Kyiv has not commented, and how this compares with earlier attacks on the capital as the reports give it. Set it beside Russia's own strikes on Ukrainian cities in the same period, with those casualties as reported: civilian dead are counted the same on both sides. RT is Russian state media: use it only for officials' statements, attributed, and take the framing from Al Jazeera. Dateline Moscow.",
+      "conceptUris": [
+        "http://en.wikipedia.org/wiki/Moscow",
+        "http://en.wikipedia.org/wiki/Unmanned_aerial_vehicle",
+        "http://en.wikipedia.org/wiki/Russia",
+        "http://en.wikipedia.org/wiki/Ukraine",
+        "http://en.wikipedia.org/wiki/Moscow_Oblast",
+        "http://en.wikipedia.org/wiki/Anti-aircraft_warfare",
+        "http://en.wikipedia.org/wiki/Sergey_Sobyanin",
+        "http://en.wikipedia.org/wiki/Governor"
+      ]
+    },
+    {
+      "id": "south-korea-considers-steps-to-force-north-korea-apology-for",
+      "label": "South Korea considers steps to force North Korea apology for DMZ mine blast",
+      "firstSeen": "2026-10-06T14:06:34.251Z",
+      "lastCovered": "2026-10-06T14:06:34.251Z",
+      "coverageCount": 1,
+      "category": "politics",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-10-06-south-korea-considers-steps-to-force-north-korea-apology-for"
+      ],
+      "eventUri": "rus-2136474",
+      "summary": "A joint South Korean-United Nations Command investigation concluded on Monday on responsibility for a landmine blast that wounded three South Korean soldiers in the Demilitarized Zone, and Seoul's Defence Ministry says it is weighing measures to force an apology from Pyongyang. Lead with the finding, exactly as the investigators state it (whose mines, where they were laid, how they know), and the three wounded. The mechanism: the armistice gives Seoul few tools short of force, so say what measures are on the table (loudspeaker broadcasts, suspended agreements, military drills, as reported), what happened after the comparable 2015 mine blast if the report recalls it, and what North Korea has said or that it has not responded. One clause on the wider setting the report gives: North Korean missile activity and its troops and arms in Russia's war on Ukraine. Single source. Dateline Seoul.",
+      "conceptUris": [
+        "http://en.wikipedia.org/wiki/North_Korea",
+        "http://en.wikipedia.org/wiki/South_Korea",
+        "http://en.wikipedia.org/wiki/Seoul",
+        "http://en.wikipedia.org/wiki/Ukraine",
+        "http://en.wikipedia.org/wiki/Kim_Jong-un",
+        "http://en.wikipedia.org/wiki/Ballistic_missile",
+        "http://en.wikipedia.org/wiki/Pyongyang",
+        "http://en.wikipedia.org/wiki/Missile"
+      ]
+    },
+    {
+      "id": "franco-german-plan-urges-tougher-eu-stance-on-china",
+      "label": "Franco-German Plan Urges Tougher EU Stance on China",
+      "firstSeen": "2026-10-06T14:06:34.251Z",
+      "lastCovered": "2026-10-06T14:06:34.251Z",
+      "coverageCount": 1,
+      "category": "economy",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-10-06-franco-german-plan-urges-tougher-eu-stance-on-china"
+      ],
+      "eventUri": "eng-12070299",
+      "summary": "France and Germany have put a joint plan to the European Union calling for a more confrontational trade stance towards China. Lead with what the paper proposes, in concrete terms as Bloomberg reports it: which instruments (tariffs, procurement bans, export or investment controls, the mechanism RT's item calls a trade 'kill switch'), aimed at which Chinese sectors. The mechanism: Berlin was for years the brake on EU action against Beijing because of its carmakers' and machine builders' sales in China, so a paper co-signed by Friedrich Merz's government removes the veto that protected the status quo; say what changed for German industry, what the Commission must do next and which member states are likely to resist, and what Beijing has answered. Who it lands on: European manufacturers and their workers on one side, and on the other the consumers and the developing-country buyers who rely on cheap Chinese goods. Bloomberg's item is its Brussels newsletter: take only the news on the plan, not the bond-market commentary around it. RT is Russian state media: use it only to identify the 'kill switch' proposal, and state nothing from it that Bloomberg does not support. Dateline Brussels (the feed's 'Beijing' tag is wrong).",
+      "conceptUris": [
+        "http://en.wikipedia.org/wiki/China",
+        "http://en.wikipedia.org/wiki/European_Union",
+        "http://en.wikipedia.org/wiki/Beijing",
+        "http://en.wikipedia.org/wiki/Brussels",
+        "http://en.wikipedia.org/wiki/Europe",
+        "http://en.wikipedia.org/wiki/Friedrich_Merz",
+        "http://en.wikipedia.org/wiki/Germany",
+        "http://en.wikipedia.org/wiki/France"
+      ]
+    },
+    {
+      "id": "pm-shehbaz-orders-gas-load-management-plan-for-winter-steps",
+      "label": "PM Shehbaz orders gas load management plan for winter, steps for ensuring uninterrupted imports",
+      "firstSeen": "2026-10-06T14:06:34.251Z",
+      "lastCovered": "2026-10-06T14:06:34.251Z",
+      "coverageCount": 1,
+      "category": "economy",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-10-06-pm-shehbaz-orders-gas-load-management-plan-for-winter-steps"
+      ],
+      "eventUri": "eng-12073085",
+      "summary": "Pakistan's prime minister Shehbaz Sharif on Tuesday ordered a winter gas load-management plan, in plain terms a rationing schedule, and measures to keep imports of liquefied natural gas arriving 'given the regional situation'. Lead with the order and what it means for households and factories: who gets gas, at what hours, and who is cut first, as Dawn gives it. The mechanism: Pakistan's own gas fields are declining and it buys the balance as liquefied natural gas, most of it from Qatar, which must sail through the Strait of Hormuz; with ship traffic through the Strait of Hormuz restricted by the war on Iran and the price of natural gas up, a country with thin reserves and little foreign exchange rations instead of outbidding richer buyers. Say what the meeting was told about cargoes contracted and arrived, the shortfall expected in winter, and any figure for the import bill. Who it lands on: households that cook and heat with piped gas, and the textile and fertiliser plants that run on it. One clause of context: the government raised petrol prices on 10-05 (covered). The '10 Downing Street' tag is a mis-tag. Dawn is the regional outlet and the only source. Dateline Islamabad.",
+      "conceptUris": []
+    },
+    {
+      "id": "big-oil-asks-supreme-court-to-kill-climate-lawsuits-before-t",
+      "label": "Big Oil asks Supreme Court to kill climate lawsuits before trial",
+      "firstSeen": "2026-10-06T14:06:34.251Z",
+      "lastCovered": "2026-10-06T14:06:34.251Z",
+      "coverageCount": 1,
+      "category": "economy",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-10-06-big-oil-asks-supreme-court-to-kill-climate-lawsuits-before-t"
+      ],
+      "eventUri": null,
+      "summary": "The US Supreme Court heard arguments on Monday from oil companies seeking to end more than two dozen lawsuits by states and cities that accuse the industry of deceiving the public about climate change and seek potentially billions of dollars in damages. Lead with what is at stake in one ruling: every one of those cases, before any has reached a jury. The mechanism: the companies argue federal law pre-empts state-law claims, because emissions cross borders and are a matter for Congress and the federal regulator, so state courts cannot hear deception or nuisance suits at all; say which case is before the court, which companies and which plaintiffs, what the justices asked, and when a ruling is due. Accountability: the suits rest on the companies' own internal research about warming, so say what the plaintiffs allege the firms knew and when, as allegation, and give the companies' answer. Who pays if the cases die: the cities and states now funding sea walls, fire and flood costs from public money. Single source. Dateline Washington. US dateline (1 of 3).",
+      "conceptUris": []
+    },
+    {
+      "id": "nobel-prize-in-physics-is-awarded-to-francis-halzen",
+      "label": "Nobel Prize in Physics Is Awarded to Francis Halzen",
+      "firstSeen": "2026-10-06T14:06:34.251Z",
+      "lastCovered": "2026-10-06T14:06:34.251Z",
+      "coverageCount": 1,
+      "category": "science",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-10-06-nobel-prize-in-physics-is-awarded-to-francis-halzen"
+      ],
+      "eventUri": "eng-12072156",
+      "summary": "Francis Halzen, the Belgian-born physicist behind the IceCube Neutrino Observatory at the South Pole, won the 2026 Nobel Prize in Physics for the discovery of high-energy neutrinos of astrophysical origin. Lead with the prize and the discovery in plain terms: particles that pass through whole planets almost untouched, caught arriving from outside the galaxy. The mechanism for a technical reader: IceCube turns a cubic kilometre of Antarctic ice into a detector, with strings of light sensors frozen deep in it recording the faint blue flash when a neutrino very occasionally strikes an atom; say how the team separated cosmic neutrinos from the flood made in Earth's atmosphere, what sources they have since been traced to, and why neutrinos show what light cannot, since they travel straight from the most violent objects in the universe. Give the academy's citation, the prize money and Halzen's reaction as reported, and note that he is a sole laureate for work built by a collaboration of hundreds, if the reports say so. Al Jazeera is in the cluster. Dateline Stockholm.",
+      "conceptUris": [
+        "http://en.wikipedia.org/wiki/Neutrino",
+        "http://en.wikipedia.org/wiki/Nobel_Prize_in_Physics",
+        "http://en.wikipedia.org/wiki/IceCube_Neutrino_Observatory",
+        "http://en.wikipedia.org/wiki/South_Pole",
+        "http://en.wikipedia.org/wiki/Astrophysics",
+        "http://en.wikipedia.org/wiki/Francis_Halzen",
+        "http://en.wikipedia.org/wiki/Belgium",
+        "http://en.wikipedia.org/wiki/Physics"
+      ]
+    },
+    {
+      "id": "flu-season-could-kick-off-incredibly-early-what-scientists-a",
+      "label": "Flu season could kick off 'incredibly' early -- what scientists are watching",
+      "firstSeen": "2026-10-06T14:06:34.251Z",
+      "lastCovered": "2026-10-06T14:06:34.251Z",
+      "coverageCount": 1,
+      "category": "science",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-10-06-flu-season-could-kick-off-incredibly-early-what-scientists-a"
+      ],
+      "eventUri": null,
+      "summary": "Surveillance data show the share of influenza tests coming back positive is unusually high for early October in parts of the Northern Hemisphere, and scientists are asking whether annual vaccination should start earlier. Lead with the data: which countries, what positivity rate against the usual level for the date, as Nature gives it. The mechanism: flu vaccine protection wanes within months and campaigns are timed for a winter peak, so a season that starts weeks early catches people unvaccinated, while vaccinating too early leaves them less protected at the end; say which strains are circulating (H3N2 and H1N1 are tagged), what mutations researchers are watching and whether this year's vaccine matches them, and what the Southern Hemisphere season showed. State the uncertainty the scientists state: early positivity does not by itself predict a severe season. Who it concerns: the elderly, infants and the health systems that plan vaccine supply months ahead. This is Nature's news reporting, not a paper. No dateline.",
+      "conceptUris": []
+    },
+    {
+      "id": "lawmakers-introduce-multiple-laws-to-curb-flock-after-404-me",
+      "label": "Lawmakers Introduce Multiple Laws to Curb Flock After 404 Media Coverage",
+      "firstSeen": "2026-10-06T14:06:34.251Z",
+      "lastCovered": "2026-10-06T14:06:34.251Z",
+      "coverageCount": 1,
+      "category": "tech",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-10-06-lawmakers-introduce-multiple-laws-to-curb-flock-after-404-me"
+      ],
+      "eventUri": null,
+      "summary": "Senators Bernie Sanders and Jeff Merkley and Representative Alexandria Ocasio-Cortez introduced the Ban Flock Act on Friday, which would stop federal agencies from using automatic licence-plate readers, one of several bills now aimed at the surveillance company Flock. Lead with what the bill would prohibit and for whom, and list the other bills and where they were filed, as 404 Media gives it. The mechanism for a technical reader: Flock's cameras log every passing plate into a searchable network shared across thousands of police departments, so a local camera becomes a national tracking system that federal agencies, immigration enforcement among them, can query without a warrant; say what the reporting documented about those searches, what the bills would change (federal use, data sharing, retention), and what they leave untouched, since local police contracts are the bulk of the network. Give Flock's response and the bills' realistic prospects in this Congress, as reported. One clause of context: a Texas city demanded $2 million for public records on its Flock usage (covered 10-05). Single-source original reporting. Dateline Washington. US dateline (2 of 3).",
+      "conceptUris": []
+    },
+    {
+      "id": "licensing-costs-driving-90-percent-of-vmware-users-to-explor",
+      "label": "Licensing costs driving 90 percent of VMware users to explore options: Survey",
+      "firstSeen": "2026-10-06T14:06:34.251Z",
+      "lastCovered": "2026-10-06T14:06:34.251Z",
+      "coverageCount": 1,
+      "category": "tech",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-10-06-licensing-costs-driving-90-percent-of-vmware-users-to-explor"
+      ],
+      "eventUri": "eng-12073311",
+      "summary": "A survey of 300 organisations worldwide that run VMware finds about 90% are exploring alternatives because of licensing costs since Broadcom bought the company, yet operational complexity keeps most from leaving. Lead with the gap between the two numbers: how many want out against how many have actually migrated, as Ars gives it. The mechanism for a reader who runs infrastructure: Broadcom ended perpetual licences and bundled products into subscriptions, multiplying bills, and a hypervisor sits under everything (networking, storage, backup, staff skills), so the switching cost is the lock-in; say what price rises respondents report, which alternatives they are evaluating, and what the top barriers are. State the survey's interest plainly: it was published by Rimini Street, which sells third-party support to VMware customers and gains from the finding. Give Broadcom's position if Ars has it. Single source. No dateline: a published survey, not a US dateline.",
+      "conceptUris": []
+    },
+    {
+      "id": "clickfix-campaign-in-ukraine-compromises-over-100-websites-t",
+      "label": "ClickFix campaign in Ukraine compromises over 100 websites to spread Lunex malware",
+      "firstSeen": "2026-10-06T14:06:34.251Z",
+      "lastCovered": "2026-10-06T14:06:34.251Z",
+      "coverageCount": 1,
+      "category": "tech",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-10-06-clickfix-campaign-in-ukraine-compromises-over-100-websites-t"
+      ],
+      "eventUri": null,
+      "summary": "Ukraine's computer emergency response team, CERT-UA, found more than 100 compromised websites serving fake Cloudflare verification pages that trick visitors into infecting their own machines with the Lunex infostealer. Lead with the scale and the trick. The mechanism for a developer: ClickFix needs no exploit; the fake 'verify you are human' page copies a command to the clipboard and tells the visitor to paste it into the Run dialog or a terminal, so the user executes the malware and browser and mail-gateway defences never see a download; say how the sites were compromised, what Lunex steals (credentials, sessions, wallets, as reported), who the targets are and whether CERT-UA attributes the campaign to a state or criminal group, as attribution and not fact. Say what the report advises defenders to do. Thin feed entry, picked because tech is at its floor and no other security report in the feed is full: write only what the fetched page supports. Single source. Dateline Kyiv.",
+      "conceptUris": []
+    },
+    {
       "id": "germany-s-ex-spy-chief-arrested-for-espionage",
       "label": "Germany's Ex-Spy Chief Arrested for Espionage",
       "firstSeen": "2026-10-06T10:04:31.534Z",
       "lastCovered": "2026-10-06T10:04:31.534Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-10-06-germany-s-ex-spy-chief-arrested-for-espionage"
@@ -33,7 +304,7 @@
       "lastCovered": "2026-10-06T10:04:31.534Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-10-06-kenya-reports-first-ever-ebola-death"
@@ -58,7 +329,7 @@
       "lastCovered": "2026-10-06T10:04:31.534Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-10-06-congress-plans-nationwide-stir-seeking-cec-s-removal-restora"
@@ -83,7 +354,7 @@
       "lastCovered": "2026-10-06T10:04:31.534Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-10-05-mexico-seeks-evidence-of-border-shooting-that-prompted-us-tr"
@@ -108,7 +379,7 @@
       "lastCovered": "2026-10-06T10:04:31.534Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-10-06-pm-shehbaz-urges-pti-to-call-off-long-march-resolve-issues-t"
@@ -124,7 +395,7 @@
       "lastCovered": "2026-10-06T10:04:31.534Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-10-06-un-human-rights-council-extends-mandate-of-sudan-fact-findin"
@@ -140,7 +411,7 @@
       "lastCovered": "2026-10-06T10:04:31.534Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-10-06-lithuania-s-parliament-votes-to-remove-ban-on-nuclear-weapon"
@@ -156,7 +427,7 @@
       "lastCovered": "2026-10-06T10:04:31.534Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-10-06-arc-fmd-vaccine-privatisation-a-decision-long-overdue-farmer"
@@ -172,7 +443,7 @@
       "lastCovered": "2026-10-06T10:04:31.534Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-10-06-biodiversity-safeguards-ecosystem-services-and-functions-wor"
@@ -188,7 +459,7 @@
       "lastCovered": "2026-10-06T10:04:31.534Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-10-06-alzheimer-s-disease-neuropathological-characterization-of-th"
@@ -204,7 +475,7 @@
       "lastCovered": "2026-10-06T10:04:31.534Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-10-06-countries-weigh-banning-smart-glasses-over-privacy-concerns"
@@ -229,7 +500,7 @@
       "lastCovered": "2026-10-06T05:06:51.242Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-10-06-mecca-alliance-agrees-to-activate-collective-deterrence-meas"
@@ -254,7 +525,7 @@
       "lastCovered": "2026-10-06T05:06:51.242Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-10-06-trump-approves-firing-squad-execution-of-2009-fort-hood-shoo"
@@ -279,7 +550,7 @@
       "lastCovered": "2026-10-06T05:06:51.242Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-10-06-new-york-declares-measles-disaster-emergency-rt-world-news"
@@ -304,7 +575,7 @@
       "lastCovered": "2026-10-06T05:06:51.242Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-10-06-intense-heat-puts-births-in-jeopardy-un-tells-climate-talks"
@@ -329,7 +600,7 @@
       "lastCovered": "2026-10-06T05:06:51.242Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-10-06-uk-regulator-fca-to-investigate-how-it-handled-epstein-whist"
@@ -345,7 +616,7 @@
       "lastCovered": "2026-10-06T05:06:51.242Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-10-05-oil-slips-on-rising-mideast-crude-exports-g7-stocks-release"
@@ -370,7 +641,7 @@
       "lastCovered": "2026-10-06T05:06:51.242Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-10-06-boj-may-signal-underlying-inflation-has-hit-2-goal-sources-s"
@@ -395,7 +666,7 @@
       "lastCovered": "2026-10-06T05:06:51.242Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-10-06-intercontinental-exchange-launches-trading-in-gold-futures-i"
@@ -420,7 +691,7 @@
       "lastCovered": "2026-10-06T05:06:51.242Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-10-06-ai-regulation-ai-industry-insiders-voice-alarms-to-nyc-counc"
@@ -445,7 +716,7 @@
       "lastCovered": "2026-10-06T05:06:51.242Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-10-06-eth-news-ethereum-s-glamsterdam-test-gets-last-minute-fix-be"
@@ -461,7 +732,7 @@
       "lastCovered": "2026-10-06T05:06:51.242Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-10-05-first-release-of-usaf-s-new-hacm-hypersonic-cruise-missile-h"
@@ -477,7 +748,7 @@
       "lastCovered": "2026-10-05T22:06:07.207Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-10-05-trump-administration-backs-saudi-arabia-s-right-to-defend-it"
@@ -502,7 +773,7 @@
       "lastCovered": "2026-10-05T22:06:07.207Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-10-05-trump-says-terror-threats-forced-b-1-bombers-out-of-uk-base"
@@ -527,7 +798,7 @@
       "lastCovered": "2026-10-05T22:06:07.207Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-10-05-west-defying-serb-leader-celebrates-victory-in-bosnia-and-he"
@@ -552,7 +823,7 @@
       "lastCovered": "2026-10-05T22:06:07.207Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-10-05-state-security-prosecution-releases-journalist-rasha-azab-on"
@@ -568,7 +839,7 @@
       "lastCovered": "2026-10-05T22:06:07.207Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-10-05-r1-s-arrest-exposes-the-cjng-s-network-of-r-commanders"
@@ -584,7 +855,7 @@
       "lastCovered": "2026-10-05T22:06:07.207Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-10-05-judicial-impropriety-ex-cji-gavai-on-sitting-sc-judge-bhuyan"
@@ -609,7 +880,7 @@
       "lastCovered": "2026-10-05T22:06:07.207Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-10-05-health-situation-in-russia-s-irkutsk-region-remains-stable-h"
@@ -625,7 +896,7 @@
       "lastCovered": "2026-10-05T22:06:07.207Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-10-05-trump-just-let-slip-a-casual-admission-that-high-gas-prices"
@@ -650,7 +921,7 @@
       "lastCovered": "2026-10-05T22:06:07.207Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-10-05-exclusive-private-credit-worries-spur-fed-review"
@@ -675,7 +946,7 @@
       "lastCovered": "2026-10-05T22:06:07.207Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-10-05-govt-raises-petrol-price-by-re0-88-per-litre-reduces-high-sp"
@@ -691,7 +962,7 @@
       "lastCovered": "2026-10-05T22:06:07.207Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-10-05-wikimedia-foundation-openai-agents-tried-to-edit-pages-and-c"
@@ -707,7 +978,7 @@
       "lastCovered": "2026-10-05T22:06:07.207Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-10-05-texas-city-demands-2m-for-public-records-on-flock-usage"
@@ -723,7 +994,7 @@
       "lastCovered": "2026-10-05T18:05:24.262Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-10-05-brazil-s-bolsonaro-comeback-exposes-lula-s-weakness"
@@ -748,7 +1019,7 @@
       "lastCovered": "2026-10-05T18:05:24.262Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-10-05-ukraine-claims-russia-killed-civilians-in-black-sea-ship-att"
@@ -773,7 +1044,7 @@
       "lastCovered": "2026-10-05T18:05:24.262Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-10-05-german-spy-chief-warns-of-violent-conflict-risk-with-russia"
@@ -798,7 +1069,7 @@
       "lastCovered": "2026-10-05T18:05:24.262Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-10-05-cia-report-warns-israel-could-head-toward-civil-war-total-co"
@@ -814,7 +1085,7 @@
       "lastCovered": "2026-10-05T18:05:24.262Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-10-05-pakistan-reports-this-year-s-sixth-polio-case"
@@ -830,7 +1101,7 @@
       "lastCovered": "2026-10-05T18:05:24.262Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-10-05-replenishing-crude-fuel-supplies-could-take-two-years-saudi"
@@ -855,7 +1126,7 @@
       "lastCovered": "2026-10-05T18:05:24.262Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-10-05-swiss-president-visits-india-to-boost-trade-ties"
@@ -880,7 +1151,7 @@
       "lastCovered": "2026-10-05T18:05:24.262Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-10-05-what-will-washington-do-next-if-us-bond-yields-keep-rising"
@@ -905,7 +1176,7 @@
       "lastCovered": "2026-10-05T18:05:24.262Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-10-05-a-long-and-rocky-road-to-esg-for-chinese-overseas-mining"
@@ -921,7 +1192,7 @@
       "lastCovered": "2026-10-05T18:05:24.262Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-10-05-denmark-data-of-millions-compromised-in-hack"
@@ -946,7 +1217,7 @@
       "lastCovered": "2026-10-05T18:05:24.262Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-10-05-russian-drones-strike-ukraine-s-data-centers-by-exploiting-a"
@@ -962,7 +1233,7 @@
       "lastCovered": "2026-10-05T18:05:24.262Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-10-05-meta-rushed-to-fix-muse-vm-escape-vulnerability-soon-before"
@@ -978,7 +1249,7 @@
       "lastCovered": "2026-10-05T18:05:24.262Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-10-05-arxiv-is-rate-limiting-submissions-because-it-can-t-keep-up"
@@ -994,7 +1265,7 @@
       "lastCovered": "2026-10-05T18:05:24.262Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-10-05-giorgia-meloni-seeks-to-trademark-her-voice-to-counter-ai-de"
@@ -1019,7 +1290,7 @@
       "lastCovered": "2026-10-05T18:05:24.262Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-10-05-automated-vehicles-drive-safer-but-induce-riskier-behavior-i"
@@ -1035,7 +1306,7 @@
       "lastCovered": "2026-10-05T14:04:16.099Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-10-05-dozens-quarantined-in-siberia-after-plague-institute-lab-wor"
@@ -1060,7 +1331,7 @@
       "lastCovered": "2026-10-05T14:04:16.099Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-10-05-yemeni-army-aims-to-regain-control-of-entire-country-deputy"
@@ -1085,7 +1356,7 @@
       "lastCovered": "2026-10-05T14:04:16.099Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-10-05-matsda2sh-journalists-forced-to-read-false-confessions-state"
@@ -1101,7 +1372,7 @@
       "lastCovered": "2026-10-05T14:04:16.099Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-10-05-breaking-32-people-on-board-crashed-nigerian-military-aircra"
@@ -1117,7 +1388,7 @@
       "lastCovered": "2026-10-05T14:04:16.099Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-10-05-two-men-executed-in-iran-over-role-in-killing-police-officer"
@@ -1133,7 +1404,7 @@
       "lastCovered": "2026-10-05T14:04:16.099Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-10-05-oil-drops-as-hormuz-traffic-rebounds"
@@ -1158,7 +1429,7 @@
       "lastCovered": "2026-10-05T14:04:16.099Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-10-05-why-is-ptc-stock-surging-today-by-investing-com"
@@ -1183,7 +1454,7 @@
       "lastCovered": "2026-10-05T14:04:16.099Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-10-05-nnpc-revenue-plunges-by-n10-6trn-in-2025"
@@ -1199,7 +1470,7 @@
       "lastCovered": "2026-10-05T14:04:16.099Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-10-05-sec-approves-first-3x-bitcoin-and-ether-etfs-in-the-u-s"
@@ -1224,7 +1495,7 @@
       "lastCovered": "2026-10-05T14:04:16.099Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-10-05-japanese-media-group-nikkei-discloses-cyberattack-targeting"
@@ -1240,7 +1511,7 @@
       "lastCovered": "2026-10-05T14:04:16.099Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-10-05-the-ai-boom-is-making-the-world-s-cheapest-smartphones-disap"
@@ -1256,7 +1527,7 @@
       "lastCovered": "2026-10-05T14:04:16.099Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-10-05-iran-able-to-disable-starlink-operations-during-war"
@@ -1272,234 +1543,13 @@
       "lastCovered": "2026-10-05T14:04:16.099Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-10-05-china-and-the-race-to-fish-a-tiny-animal-with-a-vast-climate"
       ],
       "eventUri": null,
       "summary": "Antarctic krill, a thumb-length crustacean, moves large amounts of carbon to the deep ocean and feeds the whales, seals and penguins of the Southern Ocean, and China is expanding its fleet to catch more of it. Lead with the science the report rests on: how much carbon krill are estimated to sink each year and by what route (faecal pellets and moulted shells), with the study or researchers named. Then the pressure: the size of the catch, China's share and its new vessels, and the catch limit set by the Antarctic conservation commission CCAMLR, whose members meet this month, where proposals for protected areas have been blocked. The mechanism: the limit is set for the whole region but the fishing concentrates in the small areas where predators feed, so a catch that is legal overall can strip a local ecosystem. Give the industry's case (a protein and omega-3 source) as the report does. Write it as findings and decisions, not as a feature: no scene-setting. Single source. Dateline none beyond the Southern Ocean unless the report gives one.",
-      "conceptUris": []
-    },
-    {
-      "id": "saudi-backed-yemeni-forces-seize-vital-strait-from-houthi-re",
-      "label": "Saudi-backed Yemeni forces seize vital strait from Houthi rebels",
-      "firstSeen": "2026-10-05T10:07:08.993Z",
-      "lastCovered": "2026-10-05T10:07:08.993Z",
-      "coverageCount": 1,
-      "category": "politics",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-10-05-saudi-backed-yemeni-forces-seize-vital-strait-from-houthi-re"
-      ],
-      "eventUri": "eng-12067496",
-      "summary": "Follow-up to the government's declaration of an operation against the Houthis and the explosions near a tanker off Mokha (both covered 10-04, one clause each). The new development is territory: Yemeni government troops backed by Saudi Arabia say they have taken positions at Dhubab on the Bab el-Mandeb coast from the Houthis. Lead with what was taken, by whom and from whom, and write it as the government's claim where Al Jazeera does ('claim to seize'); give the Houthi account or say there is none. The mechanism: whoever holds the Dhubab shore holds the launch sites that threaten ship traffic through Bab el-Mandeb, so say what the FT and Al Jazeera report about shipping, Saudi air support and the role of Rashad al-Alimi's government, and what the fighting costs civilians in Taiz governorate, only as reported. Al Jazeera is the regional voice. Dateline Dhubab, Yemen, or Taiz if the reports file from there.",
-      "conceptUris": [
-        "http://en.wikipedia.org/wiki/Houthi_movement",
-        "http://en.wikipedia.org/wiki/Yemen",
-        "http://en.wikipedia.org/wiki/Taiz",
-        "http://en.wikipedia.org/wiki/Saudi_Arabia",
-        "http://en.wikipedia.org/wiki/Rashad_al-Alimi",
-        "http://en.wikipedia.org/wiki/Bab-el-Mandeb",
-        "http://en.wikipedia.org/wiki/Red_Sea",
-        "http://en.wikipedia.org/wiki/Sanaa"
-      ]
-    },
-    {
-      "id": "spanish-pm-sanchez-calls-snap-election",
-      "label": "Spanish PM Sanchez calls snap election",
-      "firstSeen": "2026-10-05T10:07:08.993Z",
-      "lastCovered": "2026-10-05T10:07:08.993Z",
-      "coverageCount": 1,
-      "category": "politics",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-10-05-spanish-pm-sanchez-calls-snap-election"
-      ],
-      "eventUri": "eng-12068865",
-      "summary": "Follow-up to the housing protests and Valencia clashes after Congress rejected the government's tenant protections (covered 10-03 and 10-04, one clause). The new development is the decision yesterday's piece only asked about: Pedro Sánchez has called a snap election. Lead with the announcement and the date, then why now. The mechanism: a minority government that could not pass its housing bill has chosen the ballot over governing without a majority, with the far-right Vox positioned to gain; say what the report gives on polls, coalition arithmetic and the scandals that weakened him. One clause on what is at stake outside Spain: Sánchez has been the EU leader most outspoken on Palestinian statehood. Daily Maverick carries Reuters copy; single source. Dateline Madrid.",
-      "conceptUris": []
-    },
-    {
-      "id": "modified-form-6-not-approved-by-us-cji-observes-on-modified",
-      "label": "\"Modified Form 6 not approved by us\": CJI observes on modified form for enrolling new voters",
-      "firstSeen": "2026-10-05T10:07:08.993Z",
-      "lastCovered": "2026-10-05T10:07:08.993Z",
-      "coverageCount": 1,
-      "category": "politics",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-10-05-modified-form-6-not-approved-by-us-cji-observes-on-modified"
-      ],
-      "eventUri": "eng-12067499",
-      "summary": "Follow-up to three days of protests demanding Chief Election Commissioner Gyanesh Kumar's removal, with about 500 detained in Delhi (covered 10-04, one clause). The new development: the fight has reached the Supreme Court, where Chief Justice Surya Kant said the court never approved the modified Form 6 used to enrol new voters and asked who changed it, while declining to pass orders against Kumar on the basis of media reports. Lead with the court's statement that the form was not its doing. The mechanism: Form 6 is the gate to the electoral roll, so an unauthorised change to it during the Special Intensive Revision decides who can vote; say what was changed in the form, what the petitioners allege against Kumar, what the Election Commission answered, and what the bench ordered or listed next. Observations from the bench are not a ruling: write them as such. All three sources are Indian. Dateline New Delhi.",
-      "conceptUris": [
-        "http://en.wikipedia.org/wiki/Chief_Election_Commissioner_of_India",
-        "http://en.wikipedia.org/wiki/Supreme_Court_of_India",
-        "http://en.wikipedia.org/wiki/Sukhbir_Singh_Badal",
-        "http://en.wikipedia.org/wiki/Chief_Justice_of_India",
-        "http://en.wikipedia.org/wiki/Election_Commission_of_India",
-        "http://en.wikipedia.org/wiki/Surya_Kant_(judge)",
-        "http://en.wikipedia.org/wiki/Electoral_roll",
-        "http://en.wikipedia.org/wiki/Dalit"
-      ]
-    },
-    {
-      "id": "estonia-actively-redeploying-troops-to-russian-border-ft",
-      "label": "Estonia actively redeploying troops to Russian border -- FT",
-      "firstSeen": "2026-10-05T10:07:08.993Z",
-      "lastCovered": "2026-10-05T10:07:08.993Z",
-      "coverageCount": 1,
-      "category": "politics",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-10-05-estonia-actively-redeploying-troops-to-russian-border-ft"
-      ],
-      "eventUri": "ukr-369219",
-      "summary": "Estonia is moving its 1st Brigade, the main combat-ready part of its land forces, to a newly expanded base less than 50 km from the Russian border, its commander Tarmo Kundla told the Financial Times. Lead with the move and the distance. The mechanism is a change of doctrine: a small NATO state is abandoning the plan of trading ground for time until allies arrive and instead placing its army to fight at the border from the first hour; say what Kundla gives as the reason, where the base is (Jõhvi and Narva are tagged), and what it implies about confidence in reinforcement. Give Moscow's reading as attributed claims only: TASS and RT are Russian state media, and RT frames the story around missiles aimed at St Petersburg, so take the facts from the Kyiv Independent's account of the FT interview and nothing from RT the others lack. Dateline Tallinn, or Jõhvi if the report places the base there.",
-      "conceptUris": [
-        "http://en.wikipedia.org/wiki/Estonia",
-        "http://en.wikipedia.org/wiki/Russia",
-        "http://en.wikipedia.org/wiki/NATO",
-        "http://en.wikipedia.org/wiki/Moscow",
-        "http://en.wikipedia.org/wiki/Baltic_states",
-        "http://en.wikipedia.org/wiki/Narva",
-        "http://en.wikipedia.org/wiki/Jõhvi",
-        "http://en.wikipedia.org/wiki/War_of_aggression"
-      ]
-    },
-    {
-      "id": "reconciliation-not-possible-without-including-imran-pti-says",
-      "label": "Reconciliation not possible without including Imran, PTI says",
-      "firstSeen": "2026-10-05T10:07:08.993Z",
-      "lastCovered": "2026-10-05T10:07:08.993Z",
-      "coverageCount": 1,
-      "category": "politics",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-10-05-reconciliation-not-possible-without-including-imran-pti-says"
-      ],
-      "eventUri": null,
-      "summary": "Follow-up to the PTI protest march from Khyber Pakhtunkhwa (covered 10-04, one clause). The new development: talks between the government and the PTI collapsed over the weekend, and the party's leaders, secretary general Salman Akram Raja among them, now say no reconciliation is possible unless the jailed Imran Khan is part of it. Lead with the failure of the talks and the condition. The mechanism: the government is negotiating with a party whose leader it holds in prison, so say what each side offered and why it broke down, as PTI narrates it and as the government answers. Set beside it federal minister Amir Muqam's statement the same day (second Dawn link) that Islamabad does not favour governor's rule in KP but sees security risks from the march: the threat of suspending an elected provincial government is the lever on the table. Attribute each side's account. Dateline Islamabad.",
-      "conceptUris": []
-    },
-    {
-      "id": "kremlin-declines-comment-on-report-that-ukraine-talks-are-li",
-      "label": "Kremlin declines comment on report that Ukraine talks are linked to multi-billion dollar oil deal",
-      "firstSeen": "2026-10-05T10:07:08.993Z",
-      "lastCovered": "2026-10-05T10:07:08.993Z",
-      "coverageCount": 1,
-      "category": "economy",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-10-05-kremlin-declines-comment-on-report-that-ukraine-talks-are-li"
-      ],
-      "eventUri": "tur-1373275",
-      "summary": "The New York Times reports that US-Russia talks on ending the war in Ukraine have widened to include a multibillion-dollar oil deal; the Kremlin declined to comment on the report, while spokesman Dmitry Peskov confirmed that energy cooperation is under discussion. Lead with what the reported deal is (Lukoil and Jared Kushner are tagged: say who would buy or operate what, only as Reuters relays it) and with Peskov's non-denial. The mechanism: a peace negotiation in which the mediator's envoys are also negotiating commercial energy terms, days after Zelenskyy offered trilateral talks this month and two weeks before Washington's 18 October date for secondary sanctions on buyers of Russian oil (both covered 10-04, one clause each); say what the deal would mean for sanctions on Russian crude and so for Brent crude. A report and a refusal to comment, not a confirmed agreement: write it as such, and include Kyiv's and Washington's responses or say Reuters has none. Single source. Dateline Moscow.",
-      "conceptUris": [
-        "http://en.wikipedia.org/wiki/Russia",
-        "http://en.wikipedia.org/wiki/Ukraine",
-        "http://en.wikipedia.org/wiki/Kiev",
-        "http://en.wikipedia.org/wiki/Germany",
-        "http://en.wikipedia.org/wiki/Vladimir_Putin",
-        "http://en.wikipedia.org/wiki/Lukoil",
-        "http://en.wikipedia.org/wiki/Friedrich_Merz",
-        "http://en.wikipedia.org/wiki/Jared_Kushner"
-      ]
-    },
-    {
-      "id": "more-qatari-lng-cargoes-transit-strait-of-hormuz-despite-ong",
-      "label": "More Qatari LNG cargoes transit Strait of Hormuz despite ongoing risks",
-      "firstSeen": "2026-10-05T10:07:08.993Z",
-      "lastCovered": "2026-10-05T10:07:08.993Z",
-      "coverageCount": 1,
-      "category": "economy",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-10-05-more-qatari-lng-cargoes-transit-strait-of-hormuz-despite-ong"
-      ],
-      "eventUri": null,
-      "summary": "Distinct from this morning's piece on crude exports (one clause): this is gas. More liquefied natural gas cargoes loaded at Qatar's Ras Laffan reappeared outside the Strait of Hormuz over the weekend, extending a recent rise in Qatari LNG traffic through a waterway Iran says is shut. Lead with how many cargoes got through and how Reuters knows (ship-tracking data: tankers go dark inside the strait and reappear outside it). The mechanism: Qatar cannot bypass Hormuz by pipeline as Saudi crude can, so every LNG cargo is a transit under risk; say where the cargoes are headed, how the volume compares with before the war, and what that does to natural gas prices for the Asian and European buyers who depend on it. This is about ship traffic through the Strait of Hormuz and the price of natural gas: give figures only as reported. No Gulf outlet in the feed reports the data. Dateline Ras Laffan, Qatar; Reuters files from Singapore.",
-      "conceptUris": [
-        "http://en.wikipedia.org/wiki/Liquefied_natural_gas",
-        "http://en.wikipedia.org/wiki/Strait_of_Hormuz",
-        "http://en.wikipedia.org/wiki/Qatar",
-        "http://en.wikipedia.org/wiki/Ras_Laffan_Industrial_City",
-        "http://en.wikipedia.org/wiki/Reuters",
-        "http://en.wikipedia.org/wiki/Iran"
-      ]
-    },
-    {
-      "id": "euro-zone-business-growth-hits-over-3-1-2-year-high-despite",
-      "label": "Euro zone business growth hits over 3-1/2-year high despite inflation worries, PMI shows",
-      "firstSeen": "2026-10-05T10:07:08.993Z",
-      "lastCovered": "2026-10-05T10:07:08.993Z",
-      "coverageCount": 1,
-      "category": "economy",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-10-05-euro-zone-business-growth-hits-over-3-1-2-year-high-despite"
-      ],
-      "eventUri": "eng-12068875",
-      "summary": "Euro zone business activity grew in September at its fastest pace in nearly three and a half years, the S&P Global PMI survey shows, while the same survey recorded resurgent price pressures from the Middle East war. Lead with the headline index and the price readings as Reuters gives them. The mechanism: strong demand plus rising input costs is the combination that keeps the ECB rate going up, and the European Central Bank has already been raising it; say what the survey shows on prices charged, which countries and sectors drove the growth, and what economists in the report expect the ECB to do next. Who it lands on: borrowers and households in the euro area paying for an energy shock twice, at the pump and through the ECB rate. A survey, not official output data: say so. Single source. Dateline Frankfurt or Brussels as the report supports; Reuters files from Bengaluru.",
-      "conceptUris": [
-        "http://en.wikipedia.org/wiki/Inflation",
-        "http://en.wikipedia.org/wiki/Eurozone",
-        "http://en.wikipedia.org/wiki/S&P_Global",
-        "http://en.wikipedia.org/wiki/Interest_rate",
-        "http://en.wikipedia.org/wiki/Middle_East",
-        "http://en.wikipedia.org/wiki/European_Central_Bank",
-        "http://en.wikipedia.org/wiki/Chris_Williamson_(politician)",
-        "http://en.wikipedia.org/wiki/Economist"
-      ]
-    },
-    {
-      "id": "nobel-prize-in-medicine-2026-awarded-for-research-on-mysteri",
-      "label": "Nobel prize in medicine 2026 awarded for research on mysteries of brain",
-      "firstSeen": "2026-10-05T10:07:08.993Z",
-      "lastCovered": "2026-10-05T10:07:08.993Z",
-      "coverageCount": 1,
-      "category": "science",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-10-05-nobel-prize-in-medicine-2026-awarded-for-research-on-mysteri"
-      ],
-      "eventUri": "eng-12069188",
-      "summary": "The 2026 Nobel Prize in Physiology or Medicine went to Karl Deisseroth, Peter Hegemann and Georg Nagel for light-gated ion channels and optogenetics. Lead with the three names and, in one plain sentence, what they made possible: switching chosen neurons on and off with light. The mechanism is the science, not the ceremony: Hegemann and Nagel characterised channelrhodopsins, light-sensitive proteins from green algae that open an ion channel when lit; Deisseroth put the gene into mammalian neurons so that a pulse of light fires a specific cell type. Say what that let researchers establish that electrodes and drugs could not (cause, not correlation, in circuits for movement, memory, fear), and what has reached patients so far, such as the partial restoration of vision in a blind patient, only as the sources report. Note who is not on the list if the reports raise it; the three-laureate limit has been argued over for this field for years. Prize money 12m Swedish kronor. Dateline Stockholm.",
-      "conceptUris": [
-        "http://en.wikipedia.org/wiki/Nobel_Prize_in_Physiology_or_Medicine",
-        "http://en.wikipedia.org/wiki/Medicine",
-        "http://en.wikipedia.org/wiki/Nobel_Prize",
-        "http://en.wikipedia.org/wiki/Karl_Deisseroth",
-        "http://en.wikipedia.org/wiki/Optogenetics",
-        "http://en.wikipedia.org/wiki/Stockholm",
-        "http://en.wikipedia.org/wiki/Alfred_Nobel",
-        "http://en.wikipedia.org/wiki/Peter_Hegemann"
-      ]
-    },
-    {
-      "id": "the-us-companies-cashing-in-on-the-ukraine-war",
-      "label": "The US Companies Cashing In on the Ukraine War",
-      "firstSeen": "2026-10-05T10:07:08.993Z",
-      "lastCovered": "2026-10-05T10:07:08.993Z",
-      "coverageCount": 1,
-      "category": "tech",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-10-05-the-us-companies-cashing-in-on-the-ukraine-war"
-      ],
-      "eventUri": null,
-      "summary": "Beyond American weapons, a set of US technology companies now supply the war in Ukraine with software, data, satellite and AI services, Inkstick reports. Lead with the named companies and what each sells to whom, with contract values where the report gives them; if it names none, the piece is not worth writing. The mechanism for a technical reader: a battlefield is the proving ground and the sales pitch, so say what systems are being fielded (targeting, drone autonomy, satellite links, data fusion), who pays (Kyiv, Washington, European donors), and what the firms take away in data and in follow-on contracts with other governments. The accountability gap: say what export control or oversight applies to software and models as opposed to munitions, as the report describes it. Write it as reported findings, not as a feature, and attribute characterisations such as 'cashing in' to Inkstick. Single source. Dateline Kyiv, not a US dateline.",
       "conceptUris": []
     }
   ]
