@@ -1,4 +1,5 @@
 import { act, render, renderHook } from '@testing-library/react';
+import { useEffect, useRef } from 'react';
 import type { PanGestureConfig } from 'react-native-gesture-handler';
 import * as Reanimated from 'react-native-reanimated';
 import type { SharedValue } from 'react-native-reanimated';
@@ -20,11 +21,40 @@ jest.mock('../lib/haptics', () => ({ hapticTick: jest.fn(), hapticImpact: jest.f
 jest.mock('../hooks/useTheme', () => ({ useTheme: () => ({ colors: {} }) }));
 
 const spring = jest.fn((to: number, _config: unknown) => to);
+interface Reaction {
+  prepare: () => unknown;
+  react: (next: unknown, previous: unknown) => void;
+  previous: unknown;
+}
+const reactions = new Set<Reaction>();
 Object.assign(Reanimated, {
   withSpring: spring,
   withTiming: (to: number) => to,
   cancelAnimation: jest.fn(),
+  // Held, not run: nothing here moves a value on a UI thread. `land` runs
+  // them, as a frame would once a value they read had changed.
+  useAnimatedReaction: (prepare: Reaction['prepare'], react: Reaction['react']) => {
+    const held = useRef<Reaction>({ prepare, react, previous: null });
+    held.current.prepare = prepare;
+    held.current.react = react;
+    useEffect(() => {
+      const reaction = held.current;
+      reactions.add(reaction);
+      return () => {
+        reactions.delete(reaction);
+      };
+    }, []);
+  },
 });
+/** The frame after a spring: `withSpring` above puts a value on its target at once. */
+const land = () =>
+  act(() => {
+    for (const reaction of reactions) {
+      const next = reaction.prepare();
+      reaction.react(next, reaction.previous);
+      reaction.previous = next;
+    }
+  });
 const shared = (value: number) => ({ value }) as SharedValue<number>;
 const event = (data: object) => data as never;
 
@@ -117,6 +147,7 @@ it.each(['peek', 'full'] as const)(
       }),
     );
     if (detent === 'full') act(() => ref.current?.expand());
+    land();
     onDetentChange.mockClear();
     act(() => {
       mockPan.onBegin?.(event({}));
@@ -125,6 +156,7 @@ it.each(['peek', 'full'] as const)(
       mockPan.onDeactivate?.(event({ velocityY: 2500, canceled: true }));
       mockPan.onFinalize?.(event({ canceled: true }));
     });
+    land();
     expect(spring).toHaveBeenLastCalledWith(
       detent === 'full' ? 0 : 400,
       expect.objectContaining({ velocity: 0 }),
@@ -191,5 +223,41 @@ it('keeps the distance of a vertical drag whose activation arrives late', () => 
     mockPan.onDeactivate?.(event({ velocityY: 0, canceled: false }));
   });
   expect(spring).toHaveBeenLastCalledWith(0, expect.objectContaining({ velocity: 0 }));
+  land();
   expect(onDetentChange).toHaveBeenCalledWith('full');
+});
+
+it('tells the screen of a new stop when the sheet lands on it, not as the finger lets go', () => {
+  const onDetentChange = jest.fn();
+  const ref = { current: null as MapSheetRef | null };
+  renderHook(() =>
+    MapSheet({
+      peek: 300,
+      full: 700,
+      progress: shared(0),
+      renderList: () => <div />,
+      onDetentChange,
+      ref,
+    }),
+  );
+  land();
+  // Dragged to the open stop and held there: the finger can still take it away.
+  act(() => {
+    mockPan.onBegin?.(event({}));
+    mockPan.onActivate?.(event({ translationY: -8 }));
+    if (typeof mockPan.onUpdate === 'function') mockPan.onUpdate(event({ translationY: -600 }));
+  });
+  land();
+  expect(onDetentChange).not.toHaveBeenCalled();
+  // Let go: the release alone says nothing, the landing does, once.
+  act(() => mockPan.onDeactivate?.(event({ velocityY: 0, canceled: false })));
+  expect(onDetentChange).not.toHaveBeenCalled();
+  land();
+  land();
+  expect(onDetentChange.mock.calls).toEqual([['full']]);
+  // A move the app makes waits for its landing too.
+  act(() => ref.current?.collapse());
+  expect(onDetentChange).toHaveBeenCalledTimes(1);
+  land();
+  expect(onDetentChange.mock.calls).toEqual([['full'], ['peek']]);
 });

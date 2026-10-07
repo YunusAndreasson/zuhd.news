@@ -58,8 +58,9 @@ import { hapticTick } from '../../lib/haptics';
  * Three rules, and each removes a class of conflict rather than arbitrating it:
  *
  *  1. **At peek the list does not scroll at all** (`scrollEnabled` follows the
- *     settled detent, so it never changes under a finger). Every drag on the
- *     sheet is therefore a sheet drag, with nothing to arbitrate.
+ *     detent the sheet has landed on, so it never changes under a finger or
+ *     in a spring). Every drag on the sheet is therefore a sheet drag, with
+ *     nothing to arbitrate.
  *  2. **The list never bounces.** With `bounces={false}`, a list already at
  *     the top that is pulled down does nothing — so the pan can take that drag
  *     simultaneously without the content rubber-banding under it.
@@ -191,13 +192,17 @@ export function MapSheet({
     },
   );
 
-  // The last detent the sheet settled on, held in a ref so `settle` can
+  // The last detent the screen was told of, held in a ref so `settle` can
   // decide whether anything changed *before* touching state. The haptic and
   // the parent's callback used to run inside a `setDetent` updater — which
   // React calls during render, so it fired twice under StrictMode and, once a
   // parent started keeping the detent in its own state, would have been a
   // setState on another component in the middle of this one's render.
   const detentRef = useRef<MapSheetDetent>('peek');
+  // The stop the sheet is on or springing to. It leads `detentRef` by the
+  // length of a spring: a release ticks against it, and a change of `travel`
+  // re-pins to it.
+  const targetRef = useRef<MapSheetDetent>('peek');
 
   // `travel` changes once the screen has measured its top chrome, because the
   // expanded stop is "under the gauges" rather than a fixed share of the
@@ -206,7 +211,7 @@ export function MapSheet({
   // sliver more or less than peek.
   useEffect(() => {
     travelSV.value = travel;
-    offset.value = detentRef.current === 'full' ? 0 : travel;
+    offset.value = targetRef.current === 'full' ? 0 : travel;
   }, [offset, travel, travelSV]);
 
   const settle = useCallback(
@@ -219,17 +224,36 @@ export function MapSheet({
     [onDetentChange],
   );
 
+  // **The screen is told of a stop when the sheet is on it, not as the finger
+  // lets go.** `settle` re-renders this sheet and the screen that holds it,
+  // and Reanimated holds its own frames back from the moment React commits
+  // until that commit has mounted (`ReanimatedCommitHook` pauses,
+  // `ReanimatedMountHook` resumes). Told at the release, the commit fell in
+  // the first frames of the spring, where the sheet moves fastest, and the
+  // sheet and the globe stood still for it — on every open and every close.
+  // On the stop nothing is moving. The spring ends on its target exactly, so
+  // the test is equality; and a finger holding the sheet on a stop has not
+  // left it there yet.
+  useAnimatedReaction(
+    (): MapSheetDetent | null => {
+      if (owner.value === SHEET) return null;
+      if (offset.value === 0) return 'full';
+      return offset.value === travelSV.value ? 'peek' : null;
+    },
+    (landed, was) => {
+      if (landed !== null && landed !== was) scheduleOnRN(settle, landed);
+    },
+  );
+
   // Only a finger letting the sheet go onto a new stop ticks. A move the app
   // makes — a tap on the card, a story opened from a list, an accessibility
   // action, a return to the app collapsing it — is silent: the tap is not a
-  // haptic event, and a return ticked with no touch at all.
-  const settleFromFinger = useCallback(
-    (next: MapSheetDetent) => {
-      if (detentRef.current !== next) hapticTick();
-      settle(next);
-    },
-    [settle],
-  );
+  // haptic event, and a return ticked with no touch at all. The tick is at
+  // the release, where the hand is; only the screen waits for the landing.
+  const headFromFinger = useCallback((next: MapSheetDetent) => {
+    if (targetRef.current !== next) hapticTick();
+    targetRef.current = next;
+  }, []);
 
   const animateTo = useCallback(
     (target: number, velocity: number, next: MapSheetDetent) => {
@@ -244,9 +268,9 @@ export function MapSheet({
       // Publish on the UI thread before the JS callback so a second drag
       // can be canceled back to this stop while JS is still busy.
       committedDetent.value = next;
-      scheduleOnRN(settleFromFinger, next);
+      scheduleOnRN(headFromFinger, next);
     },
-    [committedDetent, offset, settleFromFinger],
+    [committedDetent, offset, headFromFinger],
   );
 
   // Named, because `scheduleOnRN` must never be handed an inline arrow from a
@@ -364,15 +388,15 @@ export function MapSheet({
       expand: () => {
         offset.value = withSpring(0, ANIMATION.springSheet);
         committedDetent.value = 'full';
-        settle('full');
+        targetRef.current = 'full';
       },
       collapse: () => {
         offset.value = withSpring(travel, ANIMATION.springSheet);
         committedDetent.value = 'peek';
-        settle('peek');
+        targetRef.current = 'peek';
       },
     }),
-    [committedDetent, offset, settle, travel],
+    [committedDetent, offset, travel],
   );
 
   // The detents reachable without a drag. A sheet whose only control is a
@@ -384,9 +408,9 @@ export function MapSheet({
       const expand = event.nativeEvent.actionName === 'increment';
       offset.value = withSpring(expand ? 0 : travel, ANIMATION.springSheet);
       committedDetent.value = expand ? 'full' : 'peek';
-      settle(expand ? 'full' : 'peek');
+      targetRef.current = expand ? 'full' : 'peek';
     },
-    [committedDetent, offset, settle, travel],
+    [committedDetent, offset, travel],
   );
 
   const sheetStyle = useAnimatedStyle(() => ({
