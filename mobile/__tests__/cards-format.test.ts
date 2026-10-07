@@ -11,6 +11,7 @@ import {
   formatSignedPct,
   GRAMS_PER_TROY_OUNCE,
   markMove,
+  moveRuns,
   nisab,
   relatedForTags,
   spokenDelta,
@@ -275,6 +276,46 @@ describe('a move in words and in marks', () => {
     expect(markMove(up)).toBe('↑5%');
     expect(markMove(down)).toBe('↓2.9%');
     expect(markMove(flat)).toBe('−0%');
+  });
+
+  it('finds the moves a line prints, each with the way it went', () => {
+    // What the card's sentence, a rate's year and the chooser's row print.
+    expect(moveRuns('Since Jul 7, wheat +14% and rice −29%.')).toEqual([
+      { text: 'Since Jul 7, wheat ' },
+      { text: '+14%', direction: 'up' },
+      { text: ' and rice ' },
+      { text: '−29%', direction: 'down' },
+      { text: '.' },
+    ]);
+    expect(moveRuns('−0.25 points against a year ago.')[0]).toEqual({
+      text: '−0.25 points',
+      direction: 'down',
+    });
+    for (const delta of [up, down, flat]) {
+      expect(moveRuns(`markets · ${markMove(delta)} over 7 days · Sep 27`)[1]).toEqual({
+        text: markMove(delta),
+        direction: delta.direction,
+      });
+    }
+    expect(moveRuns(`rice ${formatSignedPct(-9.14)}`)[1]?.direction).toBe('down');
+    // A move of nothing is a word in a sentence, and still a move: slate.
+    expect(moveRuns(`wheat ${formatSignedPct(0)} and rice −29%`)[1]).toEqual({
+      text: 'unchanged',
+      direction: 'flat',
+    });
+    expect(moveRuns('Unchanged against a year ago.')[0]?.direction).toBe('flat');
+  });
+
+  it('leaves a line with no move, a date range or a level as it is', () => {
+    for (const line of [
+      'The threshold fell with silver — more wealth is zakatable since Jul 7.',
+      'Now 4.25%, down from 4.50% in Aug 2026.',
+      'M 4.9 · 64 km deep',
+      'Sep 21–27 · 90-day normal',
+      'Down 12 points in a day.',
+    ]) {
+      expect(moveRuns(line)).toEqual([{ text: line }]);
+    }
   });
 
   it('speaks the direction as a word and never says "flat unchanged"', () => {

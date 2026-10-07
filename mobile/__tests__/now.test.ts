@@ -142,6 +142,19 @@ describe('buildNowSurfaces — the strip', () => {
     ]);
   });
 
+  it('prints a yield in points and keeps the place its week earns', () => {
+    // 100 to 105 is five points on a series in per cent, and a 5% week: the
+    // slot sits between a 6% and a 4% price, where it sat as `▲5%`.
+    const ranked: SwipeCard[] = [
+      reading('copper', { series: week(4) }),
+      reading('us-10y', { series: { ...week(5), unit: '%' } }),
+      reading('brent', { series: week(-6) }),
+    ];
+    const { strip } = base({ ranked });
+    expect(strip.map((s) => s.id)).toEqual(['brent', 'us-10y', 'copper']);
+    expect(strip[1]?.delta).toMatchObject({ direction: 'up', magnitude: '5.00 points' });
+  });
+
   it("sorts on the week, not on each card's own window", () => {
     // The strait is 57% off its 90-day normal but flat on the week; the index
     // moved 3% this week over a four-session streak. They used to sort on the

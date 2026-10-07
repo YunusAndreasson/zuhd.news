@@ -98,12 +98,21 @@ export function windowPointChange(
  * went from 4.00% to 3.75% fell a quarter of a point, and "−6.3%" is the
  * mistake `windowPointChange` exists to prevent.
  *
- * Monthly only, for now. The ten-year is a daily `%` series whose relative
- * move the strip sorts on beside prices; moving it to points takes it out of
- * that sort, which is a change to the strip and its own decision.
+ * A daily one, a bond yield, moves in points too (`movesInPoints`); this is
+ * the monthly case, which has a month and a year to compare and no week.
  */
 export function isMonthlyRate(indicator: Pick<Indicator, 'cadence' | 'unit'>): boolean {
-  return indicator.cadence === 'monthly' && indicator.unit === '%';
+  return indicator.cadence === 'monthly' && movesInPoints(indicator.unit);
+}
+
+/**
+ * Whether a series is already in per cent, at any cadence: a policy rate,
+ * inflation, a bond yield. Its move is the difference in percentage points.
+ * A yield going 4% to 4.1% rose 0.10 points, not 2.5%, and the ten-year
+ * printed the second on the strip and its card beside the first in the menu.
+ */
+export function movesInPoints(unit: string | undefined): boolean {
+  return unit === '%';
 }
 
 const numberFormats = new Map<string, Intl.NumberFormat>();
@@ -231,6 +240,40 @@ export function markMove(delta: CardDelta): string {
   return `${delta.direction === 'up' ? '↑' : '↓'}${delta.magnitude}`;
 }
 
+/** One stretch of a sentence: its words, or a move with the way it went. */
+interface MoveRun {
+  text: string;
+  direction?: CardDelta['direction'];
+}
+
+/** A move as a sentence or a row prints one: `+14%`, `−0.25 points`, or the
+ *  word for none (`formatSignedPct`, `formatSignedRatePoints`), and `↑5%`,
+ *  `−0%` (`markMove`). */
+const PRINTED_MOVE = /[+−↑↓]\d[\d,.]*(?:%| points?)|\b[Uu]nchanged\b/g;
+
+/**
+ * A line of text apart from the moves printed in it, so each can take its
+ * colour (`MoveCaption`): `wheat +14% and rice −29%` is four runs, two of
+ * them moves. The sign is the direction, and a move of nothing is flat:
+ * slate, never its sentence's grey.
+ */
+export function moveRuns(text: string): MoveRun[] {
+  const runs: MoveRun[] = [];
+  let from = 0;
+  for (const match of text.matchAll(PRINTED_MOVE)) {
+    const move = match[0];
+    if (match.index > from) runs.push({ text: text.slice(from, match.index) });
+    const sign = move[0];
+    runs.push({
+      text: move,
+      direction: !/[1-9]/.test(move) ? 'flat' : sign === '+' || sign === '↑' ? 'up' : 'down',
+    });
+    from = match.index + move.length;
+  }
+  if (from < text.length) runs.push({ text: text.slice(from) });
+  return runs;
+}
+
 /**
  * A move as a screen reader hears it: `up 5% over 7 days`, `unchanged over 7
  * days` — the direction as a word, because the arrow is not one, and a flat
@@ -308,15 +351,6 @@ export function formatQuantity(n: number): string {
   if (!Number.isFinite(n)) return '—';
   if (Math.abs(n) >= 10) return formatCount(n);
   return Number(n.toFixed(1)).toString();
-}
-
-/** A strait's traffic against its own 90-day normal, as the card and the
- *  sheet it opens both print it. `delta` is a fraction (−0.57 is 57% below).
- *  `bare` drops the basis, for a row under a heading that already names it. */
-export function formatVsNormal(delta: number, { bare = false } = {}): string {
-  const signed = formatSignedPct(delta * 100);
-  if (signed === 'unchanged') return 'at its normal';
-  return bare ? signed : `${signed} vs its normal`;
 }
 
 /** US-grouped integer with no unit. For populations and counts. */

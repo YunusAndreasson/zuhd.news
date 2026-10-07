@@ -37,8 +37,9 @@ paths:
   the menu. Only the row is cut; `strip` keeps every mover for lookups.
 - Every number is the same seven calendar days (`gaugeMove`,
   `lib/cards/week-move.ts`). The globe's marks, the chooser and the menu's
-  lists print that same week. A card keeps its own window and prints it. The
-  row prints no window label.
+  lists print that same week. A card prints it first, then its own window
+  (`cardMoves`), so the number pressed is the first one read. The row prints
+  no window label.
 - A monthly series has no week and takes no slot. Neither does a contract or a
   date.
 - A label is one line, never cut; the slot widens. It is words, not a code
@@ -81,8 +82,9 @@ paths:
 - `AI models`: a row is a lab, not a model. No rank number, `#1` or leader's
   badge; the scores overlap within the margin. The move is a year, in points, taken inside one
   snapshot's history.
-- A monthly rate moves in points (`unit: 'rate'`). A price under a dollar
-  prints four decimals.
+- A series in per cent moves in points at any cadence (`movesInPoints`): a
+  monthly rate, a bond yield, on the strip as in the lists. A price under a
+  dollar prints four decimals.
 
 ## Cards
 

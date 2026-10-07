@@ -7,6 +7,7 @@ import { citedAnnotations, windowReference } from '../../lib/cards/card-chart';
 import type { SwipeCard } from '../../lib/cards/rank';
 import type { CardDelta, CardFigure, CardSeries } from '../../lib/cards/types';
 import { TrendBlock } from '../blocks/TrendBlock';
+import { DeltaChip } from '../DeltaChip';
 import { Text } from '../primitives';
 import { CardFrame } from './CardFrame';
 
@@ -46,6 +47,14 @@ import { CardFrame } from './CardFrame';
  *  "set by silver" — the two thresholds differ by an order of magnitude, and
  *  a bar shows that in a way two numbers do not. It is also the only rule the
  *  list draws, so the rows do not need another. */
+function FigureLabel({ figure }: { figure: CardFigure }) {
+  return (
+    <Text variant="caption" tone="secondary" style={styles.figureLabel}>
+      {figure.note ? `${figure.label} · ${figure.note}` : figure.label}
+    </Text>
+  );
+}
+
 const Figures = memo(function Figures({ figures }: { figures: CardFigure[] }) {
   const { colors } = useTheme();
   const maxWeight = Math.max(0, ...figures.map((figure) => figure.weight ?? 0));
@@ -67,9 +76,17 @@ const Figures = memo(function Figures({ figures }: { figures: CardFigure[] }) {
             </Text>
           ) : null}
           <View style={styles.figureMainRow}>
-            <Text variant="caption" tone="secondary" style={styles.figureLabel}>
-              {f.note ? `${f.label} · ${f.note}` : f.label}
-            </Text>
+            {/* A figure's move is a chip, at the row's own size, in its
+                colour. Folded into the label as `· −82%` it was four moves in
+                grey under a card whose own move was red. */}
+            {f.delta ? (
+              <View style={styles.figureSubject}>
+                <FigureLabel figure={f} />
+                <DeltaChip delta={f.delta} window={false} scale={1} />
+              </View>
+            ) : (
+              <FigureLabel figure={f} />
+            )}
             <Text variant="captionEmphasis" style={styles.figureValue}>
               {f.value}
             </Text>
@@ -192,6 +209,14 @@ const styles = StyleSheet.create({
   // card's opening and its chart, and every point of padding here comes
   // straight off the bottom of part four.
   figureRow: { paddingVertical: SPACING.xs },
+  // The label and its move wrap as one group, clear of the value's column.
+  figureSubject: {
+    flexShrink: 1,
+    flexDirection: 'row',
+    alignItems: 'center',
+    flexWrap: 'wrap',
+    columnGap: SPACING.sm,
+  },
   figureLabel: { flexShrink: 1 },
   figureMainRow: {
     flexDirection: 'row',

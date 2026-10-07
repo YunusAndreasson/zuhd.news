@@ -149,6 +149,9 @@ export interface CardFigure {
   label: string;
   value: string;
   note?: string;
+  /** How far the figure sits from its basis — a vessel class from its own
+   *  normal — printed beside the label as a chip, in the move's colour. */
+  delta?: CardDelta;
   /** Rows that share a basis share this, printed once above the first of
    *  them — a strait's vessel classes, each against its own normal. Printed
    *  on every row it was "vs its normal" five times in a column. */

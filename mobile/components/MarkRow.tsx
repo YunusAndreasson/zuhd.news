@@ -5,6 +5,7 @@ import type { MarkRowData } from '../lib/mark-rows';
 import type { TapResult } from '../lib/tap-result';
 import { ListRow, ROW_LEADING } from './ListRow';
 import { type Mark, MarkIcon } from './MarkGlyph';
+import { MoveCaption } from './MoveCaption';
 import { Text } from './primitives';
 
 /** The globe mark a row stands for, or null for a story's row: stories have
@@ -79,7 +80,14 @@ export const MarkRow = memo(function MarkRow({
       accessibilityLabel={`${row.primary}, ${row.secondary}`}
       leading={mark ? <MarkIcon mark={mark} /> : <StoryIcon several={row.kind === 'hotspot'} />}
     >
-      <Text variant="caption">{row.secondary}</Text>
+      {/* A market's or a strait's line carries its move (`markMove`), in the
+          colour its glyph and its mark on the globe are drawn in. Only those
+          two: a hazard's line is its source's own words. */}
+      {row.kind === 'market' || row.kind === 'chokepoint' ? (
+        <MoveCaption>{row.secondary}</MoveCaption>
+      ) : (
+        <Text variant="caption">{row.secondary}</Text>
+      )}
     </ListRow>
   );
 });

@@ -351,7 +351,9 @@ export function buildNowSurfaces({
     const move = gaugeMove(card, now);
     if (move) moved.push({ card, order, move });
   });
-  moved.sort((a, b) => (b.move.delta.size ?? 0) - (a.move.delta.size ?? 0) || a.order - b.order);
+  // On the relative move, not the chip's `size`: a yield's chip is in points,
+  // which carry none, and it keeps the place its week earns.
+  moved.sort((a, b) => Math.abs(b.move.pct) - Math.abs(a.move.pct) || a.order - b.order);
   // One slot per subject. An index that cleared a pattern score arrives twice
   // — as its market signal and as its exchange's quote — and the strip printed
   // `BIST 100 ▼6.3%` in two neighbouring slots with two readings (2026-09-23).

@@ -581,7 +581,8 @@ describe('buildInstrumentCards', () => {
       {
         label: 'tankers',
         value: '2.4 a day',
-        note: '\u221243%',
+        // A move, so the row prints it in its colour: it was the note `−43%`.
+        delta: expect.objectContaining({ direction: 'down', magnitude: '43%' }),
         group: 'ships by type · vs 90-day normal',
       },
     ]);
@@ -745,7 +746,7 @@ describe('buildInstrumentCards', () => {
       {
         label: 'container ships',
         value: '6.2 a day',
-        note: '\u221244%',
+        delta: expect.objectContaining({ direction: 'down', magnitude: '44%' }),
         group: 'ships by type · vs 90-day normal',
       },
       { label: 'Bab el-Mandeb Strait effectively closed by Dec 31?', value: '18%' },
