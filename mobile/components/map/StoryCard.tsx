@@ -297,8 +297,8 @@ export const StoryCard = memo(function StoryCard({
   // target inside it that opened a country sheet instead of the story. Open,
   // they are links again; the lines are the same either way, so nothing
   // reflows. Built apart from the pass above so that opening swaps this one
-  // block and leaves the rest's elements as they were: `open` changes as the
-  // finger lets the sheet go, in the commit that starts its spring.
+  // block and leaves the rest's elements as they were: `open` changes in the
+  // commit that follows the sheet's landing (`MapSheet`).
   const restingHook = useMemo(
     () =>
       renderSentences(hookOf(article.sentences), mdStyles, {

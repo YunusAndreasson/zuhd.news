@@ -79,6 +79,9 @@ paths:
   horizontal and fails at 12pt vertical; the sheet claims at 8pt vertical and
   fails at 24pt horizontal. Neither is `simultaneousWith` the other.
 - Commit the new index when the finger lifts, not in the spring's callback.
+- The screen learns of a new sheet stop when the sheet lands on it (`MapSheet`'s
+  landing reaction), not as the finger lets go: a React commit holds
+  Reanimated's frames back until it has mounted.
 - A slot that comes to the front writes scroll offset 0 for the sheet, or the
   next story cannot be pulled down.
 - The deck recycles three slots keyed by slot (`lib/deck-slots.ts`), not by
