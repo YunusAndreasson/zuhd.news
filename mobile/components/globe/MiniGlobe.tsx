@@ -25,12 +25,13 @@ import {
   type SkPathBuilder,
   type SkPicture,
   type SkShader,
+  type SkTypeface,
   StrokeCap,
   StrokeJoin,
   TileMode,
   type Transforms3d,
-  useFont,
   useTexture,
+  useTypeface,
   vec,
 } from '@shopify/react-native-skia';
 import { geoCentroid, geoDistance, geoOrthographic } from 'd3-geo';
@@ -213,6 +214,13 @@ function useGlowTexture(spec: GlowSpec, color: string) {
     spec.size,
     [color],
   );
+}
+
+/** A loaded face at one size; null until the face is in. `useFont` reads and
+ *  parses its file on every call, so the labels' six fonts were six reads of
+ *  three files, and six re-renders of the globe as they landed. */
+function useSizedFont(typeface: SkTypeface | null, size: number): SkFont | null {
+  return useMemo(() => (typeface ? Skia.Font(typeface, size) : null), [typeface, size]);
 }
 
 /** Build Atlas inputs (sprites + translate-only RSXforms) for a glow at the
@@ -2564,14 +2572,18 @@ export const MiniGlobe = memo(function MiniGlobe({
   //     case. Standard atlas convention for hydrography and named passages.
   //   - subFont (SemiBold 11) stays for the dot-label sub (HH:MM time) since
   //     that line is part of the dot-label editorial marker, not atlas chrome.
-  const labelFont = useFont(require('../../assets/fonts/SourceSans3-SemiBold.ttf'), DOT_LABEL_PT);
-  const subFont = useFont(require('../../assets/fonts/SourceSans3-SemiBold.ttf'), 11);
-  const countryFont = useFont(require('../../assets/fonts/SourceSans3SC-SemiBold.ttf'), 12);
-  const neighborFont = useFont(require('../../assets/fonts/SourceSans3SC-SemiBold.ttf'), 11.5);
-  const waterFont = useFont(require('../../assets/fonts/SourceSans3-Italic.ttf'), 11);
+  // Three faces, each read once; a font is a face at a size (`useSizedFont`).
+  const semiBold = useTypeface(require('../../assets/fonts/SourceSans3-SemiBold.ttf'));
+  const smallCaps = useTypeface(require('../../assets/fonts/SourceSans3SC-SemiBold.ttf'));
+  const italic = useTypeface(require('../../assets/fonts/SourceSans3-Italic.ttf'));
+  const labelFont = useSizedFont(semiBold, DOT_LABEL_PT);
+  const subFont = useSizedFont(semiBold, 11);
+  const countryFont = useSizedFont(smallCaps, 12);
+  const neighborFont = useSizedFont(smallCaps, 11.5);
+  const waterFont = useSizedFont(italic, 11);
   //   - valueFont (SemiBold 13) is a market's or strait's move, the larger
   //     second line under its 11pt name (`MARK_VALUE_PT`).
-  const valueFont = useFont(require('../../assets/fonts/SourceSans3-SemiBold.ttf'), MARK_VALUE_PT);
+  const valueFont = useSizedFont(semiBold, MARK_VALUE_PT);
   // Dynamic-text rendering polish for every map label. Skia's defaults
   // (integer-snapped positioning, outline hinting, plain anti-alias) are
   // tuned for static UI text. Each frame on the globe nudges every label to
