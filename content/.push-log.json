@@ -1,91 +1,5 @@
 [
   {
-    "timestamp": "2026-09-16T04:21:17.174Z",
-    "candidateCount": 9,
-    "candidates": [
-      {
-        "slug": "2026-09-16-the-statute-was-written-after-reconstruction",
-        "title": "Patel Open To Poll Deployment",
-        "category": "politics",
-        "eventCoverage": 231,
-        "importance": 6
-      },
-      {
-        "slug": "2026-09-16-forty-thousand-one-ton-bombs-and-a-fifteen-day-window",
-        "title": "US Approves Israel Bomb Sale",
-        "category": "politics",
-        "eventCoverage": 181,
-        "importance": 6
-      },
-      {
-        "slug": "2026-09-16-india-faces-100-tariff-risk-as-russia-sanctions-bill-advance",
-        "title": "House Advances Russia Sanctions",
-        "category": "economy",
-        "eventCoverage": 113,
-        "importance": 6
-      },
-      {
-        "slug": "2026-09-16-a-visa-decision-is-reviewable-by-no-court",
-        "title": "US Sanctions South African Officials",
-        "category": "politics",
-        "eventCoverage": 0,
-        "importance": 6
-      },
-      {
-        "slug": "2026-09-16-a-quadcopter-costs-a-few-hundred-dollars",
-        "title": "Quadcopter Attack Kills Two",
-        "category": "politics",
-        "eventCoverage": 0,
-        "importance": 6
-      },
-      {
-        "slug": "2026-09-16-nobody-can-name-the-firm-whose-absence-idles-a-fab",
-        "title": "Lithuania's Lasers Guard Taiwan",
-        "category": "tech",
-        "eventCoverage": 0,
-        "importance": 6
-      },
-      {
-        "slug": "2026-09-16-the-supplement-that-was-meant-to-be-free",
-        "title": "Closed Clinic Deepens Crisis",
-        "category": "science",
-        "eventCoverage": 0,
-        "importance": 6
-      },
-      {
-        "slug": "2026-09-16-they-hand-over-the-tool-only-for-the-hard-task",
-        "title": "Chimps Teach Tool Use",
-        "category": "science",
-        "eventCoverage": 0,
-        "importance": 6
-      },
-      {
-        "slug": "2026-09-16-the-share-rises-because-everything-else-falls",
-        "title": "UK Aviation Emissions Surge",
-        "category": "science",
-        "eventCoverage": 0,
-        "importance": 6
-      }
-    ],
-    "selected": {
-      "slug": "2026-09-16-forty-thousand-one-ton-bombs-and-a-fifteen-day-window",
-      "title": "US Approves Israel Bomb Sale",
-      "category": "politics",
-      "body": "The package holds 40,000 one-ton bombs, all",
-      "eventCoverage": 181,
-      "importance": 6
-    },
-    "skipReason": null,
-    "sent": true,
-    "pushTitle": "Breaking News",
-    "pushBody": "US approves sale of 40,000 bombs to Israel",
-    "response": {
-      "pushed": 1,
-      "skipped": 0,
-      "tokens": 8
-    }
-  },
-  {
     "timestamp": "2026-09-16T08:23:04.784Z",
     "candidateCount": 10,
     "candidates": [
@@ -10208,5 +10122,84 @@
     "selected": null,
     "skipReason": "all 11 candidates below coverage threshold 1",
     "sent": false
+  },
+  {
+    "timestamp": "2026-10-07T05:11:58.846Z",
+    "candidateCount": 8,
+    "candidates": [
+      {
+        "slug": "2026-10-06-christa-pike-regains-consciousness-after-her-failed-executio",
+        "title": "Pike Wakes After Failed Execution",
+        "category": "politics",
+        "eventCoverage": 511,
+        "importance": 6
+      },
+      {
+        "slug": "2026-10-06-ship-ablaze-near-sochi-huge-plume-of-smoke-rising-over-sea-p",
+        "title": "Tanker Burns Off Sochi",
+        "category": "economy",
+        "eventCoverage": 308,
+        "importance": 6
+      },
+      {
+        "slug": "2026-10-07-trump-allies-try-to-sideline-ai-safety-advocates",
+        "title": "Trump Allies Sideline AI Safety",
+        "category": "tech",
+        "eventCoverage": 167,
+        "importance": 6
+      },
+      {
+        "slug": "2026-10-07-india-s-central-bank-hikes-rates-for-the-first-time-since-20",
+        "title": "India's Central Bank Hikes Rates",
+        "category": "economy",
+        "eventCoverage": 131,
+        "importance": 6
+      },
+      {
+        "slug": "2026-10-07-rahul-priyanka-gandhi-booked-for-akashvani-bhawan-entry",
+        "title": "Gandhis Booked After Protest",
+        "category": "politics",
+        "eventCoverage": 127,
+        "importance": 6
+      },
+      {
+        "slug": "2026-10-06-us-firm-gets-2-9bn-sub-deal-after-boss-joins-war-study-with",
+        "title": "Anduril Wins Submarine Contract",
+        "category": "economy",
+        "eventCoverage": 90,
+        "importance": 6
+      },
+      {
+        "slug": "2026-10-07-south-korean-president-calls-for-creation-of-tools-that-stop",
+        "title": "Lee Orders AI Cyber Defence",
+        "category": "tech",
+        "eventCoverage": 81,
+        "importance": 6
+      },
+      {
+        "slug": "2026-10-07-oman-evacuates-injured-crew-from-attacked-tanker-in-strait-o",
+        "title": "Tanker Struck in Hormuz",
+        "category": "economy",
+        "eventCoverage": 0,
+        "importance": 6
+      }
+    ],
+    "selected": {
+      "slug": "2026-10-06-christa-pike-regains-consciousness-after-her-failed-executio",
+      "title": "Pike Wakes After Failed Execution",
+      "category": "politics",
+      "body": "Pike, 50, is speaking after surviving two pentobarbital",
+      "eventCoverage": 511,
+      "importance": 6
+    },
+    "skipReason": null,
+    "sent": true,
+    "pushTitle": "Breaking News",
+    "pushBody": "Tennessee inmate Christa Pike survives 2 lethal injection doses, lawyers say",
+    "response": {
+      "pushed": 1,
+      "skipped": 0,
+      "tokens": 5
+    }
   }
 ]
