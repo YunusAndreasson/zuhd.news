@@ -64,6 +64,13 @@ it('carries the followed comparison into the detail without changing the origina
   expect(item.card?.delta?.window).toBe('since Aug 1');
 });
 
+it('opens a row with a week as the card itself, which prints that week first', () => {
+  // The row's week and the card's first chip are one `gaugeMove`: swapping
+  // the row's number in dropped the card's own window from the menu alone.
+  const item = { ...row('price', 'over 7 days'), weekly: true };
+  expect(menuCard(item)).toBe(item.card);
+});
+
 it('explains currency direction once and keeps flat currencies neutral', () => {
   const item = row('fx-eur', 'over 7 days');
   expect(menuCard(item)?.delta?.window).toBe('stronger over 7 days');

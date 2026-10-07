@@ -1,4 +1,5 @@
 import type { SwipeCard } from './cards/rank';
+import { namingCurrency } from './cards/week-move';
 import { observationDate } from './data-freshness';
 import type { CatalogGroup, CatalogRow } from './instrument-catalog';
 import { rowKicker } from './now';
@@ -65,19 +66,13 @@ export function listContext(group: CatalogGroup) {
   return { date, dateLabel, kicker, window, group: group.key };
 }
 
-/** The number a reader follows into a card keeps the same comparison. */
+/**
+ * The number a reader follows into a card leads it. A row's week is the
+ * card's own first chip (`cardMoves`, from the same `gaugeMove`), so the card
+ * opens as it is; a row with no week prints one move, and the card prints
+ * that one.
+ */
 export function menuCard(row: CatalogRow): SwipeCard | null {
-  if (!row.card || !row.move) return row.card;
-  let delta = row.move;
-  if (
-    row.card.id.startsWith('fx-') &&
-    delta.direction !== 'flat' &&
-    !/^(stronger|weaker)\b/.test(delta.window ?? '')
-  ) {
-    delta = {
-      ...delta,
-      window: `${delta.direction === 'up' ? 'stronger' : 'weaker'} ${delta.window ?? ''}`.trim(),
-    };
-  }
-  return { ...row.card, delta };
+  if (!row.card || !row.move || row.weekly) return row.card;
+  return { ...row.card, delta: namingCurrency(row.card, row.move) };
 }

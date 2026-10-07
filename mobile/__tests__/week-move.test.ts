@@ -1,6 +1,7 @@
 import type { ReadingCard } from '../lib/cards/types';
 import type { Indicator } from '@shared/types';
 import {
+  cardMoves,
   exchangeMove,
   gaugeMove,
   indicatorMove,
@@ -126,6 +127,76 @@ describe('gaugeMove', () => {
   });
 });
 
+describe('cardMoves', () => {
+  const week = labels(4, 11);
+  const own = { direction: 'up', magnitude: '23%', window: 'since Aug 17' } as const;
+
+  it('leads with the week the strip printed, then the card’s own window', () => {
+    // Oil on 2026-10-06: ▼ on the strip, ▲23% since Aug 17 on the card it opened.
+    const c = card('brent', [100, 1, 1, 1, 1, 1, 1, 94], week, { delta: own });
+    expect(cardMoves(c)).toEqual([gaugeMove(c)?.delta, own]);
+    expect(cardMoves(c)[0]).toMatchObject({ direction: 'down', magnitude: '6%' });
+  });
+
+  it('prints the card’s own move alone where the series has no week', () => {
+    const monthly = card('wheat', [1, 2], ['Jun 2026', 'Jul 2026'], { delta: own });
+    expect(cardMoves(monthly)).toEqual([own]);
+    expect(cardMoves(card('bare', [1, 2], ['Jun 2026', 'Jul 2026']))).toEqual([]);
+  });
+
+  it('prints the week once where it is the card’s own move too', () => {
+    const c = card('brent', [100, 1, 1, 1, 1, 1, 1, 94], week);
+    c.delta = gaugeMove(c)?.delta;
+    expect(cardMoves(c)).toEqual([c.delta]);
+  });
+
+  it('prints once a move that is the week under another name', () => {
+    // A market signal measured over five sessions has the week's own anchor:
+    // the card read `▲12% over 7 days` over `▲12.3% 5 sessions`.
+    const c = card('market-signal:mkt:b3', [100, 1, 1, 1, 1, 1, 1, 112.34], week, {
+      delta: { direction: 'up', magnitude: '12.3%', size: 12.34, window: '5 sessions' },
+    });
+    expect(cardMoves(c)).toEqual([gaugeMove(c)?.delta]);
+    // The same size the other way, or over another span, is another fact.
+    c.delta = { direction: 'down', magnitude: '12.3%', size: 12.34, window: '5 sessions' };
+    expect(cardMoves(c)).toHaveLength(2);
+    c.delta = { direction: 'up', magnitude: '14.1%', size: 14.1, window: '20 sessions' };
+    expect(cardMoves(c)).toHaveLength(2);
+  });
+
+  it('gives an AI lab no week: its line is releases, in points', () => {
+    // Two releases eight days apart are not a week's move, least of all a
+    // percentage of an index.
+    const points = { direction: 'up', magnitude: '6.3 points', window: 'over 90 days' } as const;
+    const lab = card('ai:deepseek', [150, 151], ['2026-09-03', '2026-09-11'], { delta: points });
+    expect(gaugeMove(lab)).toBeNull();
+    expect(cardMoves(lab)).toEqual([points]);
+  });
+
+  it('moves a yield in points, the week and its own window alike', () => {
+    // The ten-year on 2026-10-06: `▲2.1%` on the strip and its card,
+    // `▲0.11 points` in the menu. 4% to 4.09% is 0.09 points.
+    const own = { direction: 'up', magnitude: '0.61 points', window: 'since Aug 20' } as const;
+    const c = card('us-10y', [4, 1, 1, 1, 1, 1, 1, 4.09], week, { delta: own });
+    c.series = { ...c.series, unit: '%' };
+    const g = gaugeMove(c);
+    expect(g?.delta).toEqual({ direction: 'up', magnitude: '0.09 points', window: WEEK_WINDOW });
+    // Still placed among the strip's percentages by its relative move.
+    expect(g?.pct).toBeCloseTo(2.25);
+    expect(cardMoves(c)).toEqual([g?.delta, own]);
+  });
+
+  it('says which way a currency went, as its own chip does', () => {
+    const c = card('fx-rub-mover', [80, 1, 1, 1, 1, 1, 1, 88], week, {
+      delta: { direction: 'down', magnitude: '3%', window: 'weaker since Sep 1' },
+    });
+    expect(cardMoves(c).map((move) => move.window)).toEqual([
+      'weaker over 7 days',
+      'weaker since Sep 1',
+    ]);
+  });
+});
+
 describe('indicatorMove', () => {
   const indicator = (extra: Partial<Indicator>): Indicator => ({
     id: 'brent',
@@ -146,6 +217,20 @@ describe('indicatorMove', () => {
   it('falls back to the last step, naming the day it started', () => {
     const monthly = indicator({ values: [100, 95], periods: ['Jun 2026', 'Jul 2026'] });
     expect(indicatorMove(monthly)).toMatchObject({ direction: 'down', window: 'since Jun 2026' });
+  });
+
+  it('moves a yield in points over its week, as the strip and its card do', () => {
+    const tenYear = indicator({
+      id: 'us-10y',
+      unit: '%',
+      cadence: 'daily',
+      values: [4, 4.01, 4.02, 4.03, 4.04, 4.05, 4.06, 4.09],
+    });
+    expect(indicatorMove(tenYear)).toEqual({
+      direction: 'up',
+      magnitude: '0.09 points',
+      window: WEEK_WINDOW,
+    });
   });
 
   it('moves a published rate in points, the number its card prints', () => {

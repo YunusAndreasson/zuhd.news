@@ -1,7 +1,6 @@
 import type { Article, Chokepoint, Indicator, TrendsSnapshot } from '@shared/types';
 import { AI_CHANGE_WINDOW, type AiModelsSnapshot, aiLabCard, aiLabCardId } from './ai-models';
 import { ccToFlag } from './article-utils';
-import { deltaOf } from './cards/format';
 import {
   type AnalysisById,
   calendarCards,
@@ -13,7 +12,7 @@ import {
 import type { SwipeCard } from './cards/rank';
 import { admitted } from './cards/sections';
 import type { Card, CardDelta } from './cards/types';
-import { gaugeMove, WEEK_WINDOW, weekMove, yearOf } from './cards/week-move';
+import { gaugeMove } from './cards/week-move';
 import { type Company, companyCard, companyCardId, sharePrice } from './companies';
 import { type Exchange, exchangeCard, exchangeDelta, stockMarketPlace } from './markets';
 import { stripLabel } from './now';
@@ -521,23 +520,7 @@ export function buildInstrumentCatalog({
       if (group === 'stocks' && quoted.has(indicator.label.toLowerCase())) continue;
       const built = seriesCard(indicator, group, { trends, analysis, articles }, take);
       if (built && admitted(built)) {
-        const row = rowFor(built, at);
-        // Yields are percentages already: 4% to 4.1% is 0.10 percentage
-        // points, not a 2.5% increase beside the rate.
-        if (group === 'borrowing' && built.series) {
-          const week = weekMove(
-            built.series.values,
-            built.series.periods,
-            yearOf(built.asOf, now.getUTCFullYear()),
-          );
-          if (week) {
-            const first = week.points[0];
-            const last = week.points.at(-1);
-            if (first != null && last != null)
-              row.move = deltaOf(last - first, { unit: 'rate', window: WEEK_WINDOW });
-          }
-        }
-        rows[group].push(row);
+        rows[group].push(rowFor(built, at));
       }
     }
   }

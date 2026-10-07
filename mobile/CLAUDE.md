@@ -102,8 +102,8 @@ Across the layers:
   new mark layer without one is an accessibility regression. It also needs an
   entry in the map key (`SheetMapKeyPage`).
 - **One number per thing.** A reading printed in two places is the same number
-  from the same function. The strip, the globe's marks and the menu's lists
-  print the past seven days wherever the series has a week.
+  from the same function. The strip, the globe's marks, the menu's lists and
+  a card's first chip print the past seven days wherever the series has a week.
 - **A count of people or a week names its date.** Sources run weeks behind.
 - **Nothing without an honest place goes on the globe**: no prices, currencies,
   contracts, companies or AI labs.

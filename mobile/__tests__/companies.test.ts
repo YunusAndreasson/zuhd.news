@@ -156,8 +156,15 @@ describe('companyCard', () => {
   });
 
   it('says when the quote is old', () => {
-    expect(companyCard(company()).changed).toBeUndefined();
-    expect(companyCard(company({ stale: true })).changed).toMatch(/Older quote/);
+    // Beside `NOW`, not the real clock: the fixture's day turns old on its own
+    // four days after it, and this failed from 2026-10-06.
+    const clock = jest.spyOn(Date, 'now').mockReturnValue(NOW);
+    try {
+      expect(companyCard(company()).changed).toBeUndefined();
+      expect(companyCard(company({ stale: true })).changed).toMatch(/Older quote/);
+    } finally {
+      clock.mockRestore();
+    }
   });
 
   it('charts in the share’s own currency', () => {

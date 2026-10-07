@@ -39,6 +39,9 @@ one exception.
   (`lib/valence.ts`) decides wherever a `DeltaChip` prints one, returning
   `rise`, `fall` or `neutral`; the globe's marks draw up and down in the same
   two inks. A second colour rule is the regression.
+- A move outside the card's chip takes the same colour: a figure row's is a
+  chip of its own (`CardFigure.delta`), one in a caption line is tinted by
+  `MoveCaption`. Never a contract's.
 - Colour never says what a move means; the card's prose does.
 - Slate is a colour: an unmoved reading never takes its label's ink. A
   contract's points are always slate, because odds are never tinted.
@@ -157,8 +160,9 @@ a primitive at the third caller.
 `CardFrame` is the shell. One `labelXs` line of metadata (the kicker and the
 date) sits above four tiers, in this order:
 
-- The answer: the reading in `display` over one `caption` row, the unit and
-  the `DeltaChip`.
+- The answer: the reading in `display` over its unit and its moves, each a
+  `DeltaChip` beside its window: the past seven days, then the card's own
+  (`cardMoves`). One move shares the unit's line; two stack under it.
 - The subject: `title`. On a `belief` or `scheduled` card it comes before the
   reading: a percentage means nothing without its question.
 - The picture: the chart, its labels `labelXs` or `tabular`.
@@ -169,9 +173,10 @@ No fifth tier, no second metadata line, no dividers between tiers. Space
 groups them:
 `SPACING.md` before the chart, `SPACING.lg` before the account.
 
-- The card's move is the chip. The caption sentence carries only what the chip
-  cannot: a second window, a ratio's two parts. A level it is measured against
-  (a strait's normal) is a dashed line on the chart (`CardSeries.reference`).
+- The card's moves are the chips. The caption sentence carries only what a
+  chip cannot: a monthly series' year, a ratio's two parts. A level it is
+  measured against (a strait's normal) is a dashed line on the chart
+  (`CardSeries.reference`).
 - A fact appears once: no figure rows for series the chart names.
 - A title scales and a long reading shrinks; neither is cut.
 

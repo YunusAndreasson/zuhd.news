@@ -5,10 +5,12 @@ import { INLINE_HIT_SLOP, MAX_FONT_SCALE, SPACING, titleFontScale } from '../../
 import { useTheme } from '../../hooks/useTheme';
 import { MAX_CITED } from '../../lib/cards/card-chart';
 import type { DeckCard } from '../../lib/cards/types';
+import { cardMoves } from '../../lib/cards/week-move';
 import { cardObservation } from '../../lib/instrument-presentation';
 import { openExternal } from '../../lib/open-link';
 import { SourceCaption } from '../blocks/SourceCaption';
 import { DeltaChip } from '../DeltaChip';
+import { MoveCaption } from '../MoveCaption';
 import { Icon, Pressable, Text } from '../primitives';
 
 /**
@@ -46,6 +48,7 @@ const CardReading = memo(function CardReading({
   afterTitle?: boolean;
 }) {
   const readingScale = card.reading.length > LONG_READING ? LONG_READING_SCALE : READING_SCALE;
+  const moves = cardMoves(card);
 
   return (
     <View>
@@ -58,14 +61,20 @@ const CardReading = memo(function CardReading({
       >
         {card.reading}
       </Text>
-      {card.readingNote || card.delta ? (
-        <View style={styles.readingMeta}>
+      {/* The week first, the number the reader pressed to get here, then the
+          card's own window (`cardMoves`). Two moves stack under the unit, each
+          beside its window, so neither is read as the other; one keeps the
+          unit's line. */}
+      {card.readingNote || moves.length > 0 ? (
+        <View style={moves.length > 1 ? styles.readingMoves : styles.readingMeta}>
           {card.readingNote ? (
             <Text variant="caption" tone="secondary">
               {card.readingNote}
             </Text>
           ) : null}
-          {card.delta ? <DeltaChip delta={card.delta} /> : null}
+          {moves.map((move) => (
+            <DeltaChip key={move.window ?? move.magnitude} delta={move} />
+          ))}
         </View>
       ) : null}
     </View>
@@ -238,10 +247,16 @@ export const CardFrame = memo(function CardFrame({ card, children, onStoryPress 
       <View style={styles.analysis} testID="card-text-region">
         {card.why ? <Text variant="body">{card.why}</Text> : null}
 
-        {card.kind !== 'scheduled' && card.changed ? (
+        {/* The moves the sentence quotes take their colour, as the chip's
+            does. Never a contract's: odds are not tinted (`moveTone`). */}
+        {card.kind === 'belief' && card.changed ? (
           <Text variant="caption" tone="secondary" style={card.why ? styles.supporting : undefined}>
             {card.changed}
           </Text>
+        ) : card.kind === 'reading' && card.changed ? (
+          <MoveCaption tone="secondary" style={card.why ? styles.supporting : undefined}>
+            {card.changed}
+          </MoveCaption>
         ) : null}
 
         {card.cited && card.cited.length > 0 && onStoryPress ? (
@@ -315,6 +330,7 @@ const styles = StyleSheet.create({
     flexWrap: 'wrap',
     gap: SPACING.sm,
   },
+  readingMoves: { marginTop: SPACING.xxs, alignItems: 'flex-start', gap: SPACING.xxs },
   titleAfterMetric: { marginTop: SPACING.smPlus },
   titleBeforeMetric: { marginTop: SPACING.sm },
   block: { marginTop: SPACING.md },

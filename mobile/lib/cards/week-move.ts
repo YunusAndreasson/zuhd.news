@@ -2,7 +2,7 @@ import type { Indicator } from '@shared/types';
 import { MONTH_ABBR } from '../date-format';
 import { type Exchange, exchangeCard, exchangeDelta } from '../markets';
 import { DAY_MS } from '../time';
-import { deltaFrom, deltaOf, isMonthlyRate, windowChange, windowPointChange } from './format';
+import { deltaFrom, deltaOf, movesInPoints, windowChange, windowPointChange } from './format';
 import { currencyMove } from './markets';
 import type { SwipeCard } from './rank';
 import type { CardDelta } from './types';
@@ -122,8 +122,27 @@ export function yearOf(asOf: string | undefined, fallback: number): number {
 
 export interface GaugeMove {
   delta: CardDelta;
-  /** Signed, unrounded percentage for aggregation, before display rounding. */
+  /** Signed, unrounded percentage for ordering and aggregation, before display
+   *  rounding. Relative even where the chip is in points: it is what places a
+   *  yield among the strip's percentages. */
   pct: number;
+}
+
+/**
+ * A week as a chip: a percentage, or percentage points for a series already
+ * in per cent (`movesInPoints`). One function, so a yield's week is one number
+ * on the strip, in the menu, on its card and in a story's sheet.
+ */
+function weekDelta(
+  week: WeekMove,
+  unit: string | undefined,
+  pct = week.pct,
+): CardDelta | undefined {
+  if (!movesInPoints(unit)) return deltaOf(pct, { window: WEEK_WINDOW });
+  const first = week.points[0];
+  const last = week.points.at(-1);
+  if (first === undefined || last === undefined) return undefined;
+  return deltaOf(last - first, { unit: 'rate', window: WEEK_WINDOW });
 }
 
 /**
@@ -136,12 +155,69 @@ export interface GaugeMove {
  */
 export function gaugeMove(card: SwipeCard, now = Date.now()): GaugeMove | null {
   if (card.kind !== 'reading' || !card.series || card.series.multi) return null;
+  // An AI lab's line is its releases, in index points: two of them a week
+  // apart are not a week's move, and never a percentage (`aiLabCard`).
+  if (card.id.startsWith('ai:')) return null;
   const year = yearOf(card.asOf, new Date(now).getUTCFullYear());
   const move = weekMove(card.series.values, card.series.periods, year);
   if (!move) return null;
   const pct = card.id.startsWith('fx-') ? currencyMove(move.pct) : move.pct;
-  const delta = deltaOf(pct, { window: WEEK_WINDOW });
+  const delta = weekDelta(move, card.series.unit, pct);
   return delta ? { delta, pct } : null;
+}
+
+/**
+ * A currency's move with the word that says which way it is: `weaker over 7
+ * days`. A caret beside a rate is only unambiguous once the line names what
+ * fell. A window that already says it, and a flat move, are left alone.
+ */
+export function namingCurrency(card: Pick<SwipeCard, 'id'>, delta: CardDelta): CardDelta {
+  if (
+    !card.id.startsWith('fx-') ||
+    delta.direction === 'flat' ||
+    /^(stronger|weaker)\b/.test(delta.window ?? '')
+  ) {
+    return delta;
+  }
+  const word = delta.direction === 'up' ? 'stronger' : 'weaker';
+  return { ...delta, window: `${word} ${delta.window ?? ''}`.trim() };
+}
+
+/**
+ * The moves a card prints under its reading: the past seven days first, then
+ * its own window.
+ *
+ * The week is the number the reader followed here. The strip, a globe mark, a
+ * menu row and a story's chart all print it, with no window beside it, and the
+ * card printed only its own: `Hormuz ▼10%` opened a card that said `▼43% vs
+ * its 90-day normal`, and `Oil ▼0.8%`, in red, one that said `▲23% since Aug
+ * 17`, in green. Against the live data every one of the strip's 61 gauges
+ * opened a card with another number, and 24 with the other colour
+ * (2026-10-06). Both now, each beside its window, so the first number on the
+ * card is the one that was pressed and the second says what else is true.
+ *
+ * A card with no week (a monthly series, a contract, a date) prints its own
+ * move alone. One whose own move is the week prints it once: under the week's
+ * name, or as the same move to the decimal a chip prints, which is what a
+ * market signal measured over five sessions is.
+ */
+export function cardMoves(card: SwipeCard, now = Date.now()): CardDelta[] {
+  const followed = gaugeMove(card, now)?.delta;
+  const own = card.delta;
+  if (!followed) return own ? [own] : [];
+  const week = namingCurrency(card, followed);
+  return own && !isSameMove(own, week) ? [week, own] : [week];
+}
+
+/** Half the decimal a chip prints a percentage to: nearer than this, two
+ *  moves are one number. */
+const SAME_MOVE_PCT = 0.05;
+
+function isSameMove(own: CardDelta, week: CardDelta): boolean {
+  if (own.window?.endsWith(WEEK_WINDOW)) return true;
+  if (own.direction === 'flat' || own.direction !== week.direction) return false;
+  if (own.size === undefined || week.size === undefined) return false;
+  return Math.abs(own.size - week.size) < SAME_MOVE_PCT;
 }
 
 /**
@@ -173,17 +249,17 @@ export function exchangeMove(
  * and down in the sheet. The quantity is the published series as it is: this
  * sheet prints the rate, not the currency, so there is no inversion here.
  * A prediction contract moves in points, never as a percentage of a percentage,
- * and so does a published rate, as its card prints it (`isMonthlyRate`).
+ * and so does a series already in per cent, as its card prints it
+ * (`movesInPoints`): a monthly rate by its last step, a yield by its week.
  */
 export function indicatorMove(indicator: Indicator, now = Date.now()): CardDelta | undefined {
   if (indicator.source === 'polymarket') {
     return deltaFrom(windowPointChange(indicator, 1), { unit: 'points' });
   }
-  if (isMonthlyRate(indicator)) {
-    return deltaFrom(windowPointChange(indicator, 1), { unit: 'rate' });
-  }
   const year = yearOf(indicator.asOf, new Date(now).getUTCFullYear());
   const week = weekMove(indicator.values, indicator.periods, year);
-  if (week) return deltaOf(week.pct, { window: WEEK_WINDOW });
-  return deltaFrom(windowChange(indicator, 1));
+  if (week) return weekDelta(week, indicator.unit);
+  return movesInPoints(indicator.unit)
+    ? deltaFrom(windowPointChange(indicator, 1), { unit: 'rate' })
+    : deltaFrom(windowChange(indicator, 1));
 }

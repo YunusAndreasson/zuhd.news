@@ -18,9 +18,9 @@ import {
   formatReading,
   formatSignedPct,
   formatSignedRatePoints,
-  formatVsNormal,
   isMonthlyRate,
   latestOf,
+  movesInPoints,
   nisab,
   relatedForTags,
   windowChange,
@@ -192,6 +192,11 @@ function money(value: number, unit?: string): { reading: string; note?: string }
  * "month on month".
  */
 function dailyDelta(indicator: Indicator): CardDelta | undefined {
+  // A yield is in per cent already, so it moves in points (`movesInPoints`):
+  // `▲13% since Aug 20` beside a reading of 5.28% was a percentage of one.
+  if (movesInPoints(indicator.unit)) {
+    return deltaFrom(windowPointChange(indicator, DAILY_WINDOW), { unit: 'rate' });
+  }
   return deltaFrom(windowChange(indicator, DAILY_WINDOW));
 }
 
@@ -733,7 +738,9 @@ function straitFigures(c: Chokepoint): CardFigure[] {
     figures.push({
       label: cls.plural,
       value: `${formatQuantity(v)} a day`,
-      note: formatVsNormal(d, { bare: true }),
+      // A chip, not a note: a class's distance from its normal is a move,
+      // and a move is printed in its colour. The heading names the basis.
+      delta: straitDelta(d),
       group: 'ships by type · vs 90-day normal',
     });
   }
