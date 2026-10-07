@@ -1,6 +1,6 @@
 import type { Article, Category, FeedResponse, GroupedArticles } from '@shared/types';
 import { useQuery, useQueryClient } from '@tanstack/react-query';
-import { useCallback, useEffect, useEffectEvent, useMemo, useRef, useState } from 'react';
+import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import { STALE_THRESHOLD } from '../constants/theme';
 import {
   type Arrival,
@@ -165,7 +165,10 @@ export function useArticles(
   // A return after more than STALE_THRESHOLD: one probe, and one arrival if
   // the site was rebuilt. The clock's tick and the return's report ride in
   // the arrival's flush, so the track is re-measured once, with the stories.
-  const handleResume = useEffectEvent(async (awayMs: number) => {
+  // A plain function, as `handleBackground` is: `useAppResume` reads the
+  // latest of each through its own effect events, and an effect event is not
+  // handed from one hook to another.
+  const handleResume = async (awayMs: number) => {
     if (refreshingRef.current) return;
     refreshingRef.current = true;
     const report = (feed: FeedResponse | undefined) => {
@@ -193,9 +196,9 @@ export function useArticles(
     } finally {
       refreshingRef.current = false;
     }
-  });
+  };
 
-  const handleBackground = useEffectEvent(() => {
+  const handleBackground = () => {
     seenAtBackgroundRef.current = feedSlugs(queryClient.getQueryData<FeedResponse>(FEED_QUERY_KEY));
     saveLastSeenAt(Date.now());
     flushBookmarks();
@@ -203,7 +206,7 @@ export function useArticles(
     flushKnown();
     flushRead();
     flushOnboarding();
-  });
+  };
 
   useAppResume(handleResume, STALE_THRESHOLD, handleBackground);
 

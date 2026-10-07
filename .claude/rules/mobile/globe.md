@@ -73,6 +73,8 @@ paths:
   tests. `projRef` survives only for `hitTest`'s `invert`.
 - Never read a Skia method per vertex. Hold `moveTo`/`lineTo`/`conicTo` and
   call them through `.call` (`createSkiaPathContext`).
+- A label font is a face at a size (`useSizedFont`), one `useTypeface` per
+  file. `useFont` reads and parses its file on every call.
 - A moving frame is the coarse motion tier. At story framings, lakes, rivers
   and resting detail are settled-frame work (`nearSettled`). The first frame
   is the motion tier.

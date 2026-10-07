@@ -33,6 +33,17 @@ const SCRUB_DETENTS = 0;
 
 const SEEK_ACTIONS = [{ name: 'increment' }, { name: 'decrement' }];
 
+// Drops from the top bar, where the `▶` that opened it was, and goes back up
+// into it: a plain fade out was the bottom bar's exit, and at the top it left
+// the bar vanishing in place rather than returning. Built once, out here: the
+// bar re-renders on every playback tick, and Reanimated configures an exit or
+// a layout move again whenever the builder it is handed is a new one.
+const BAR_ENTER = FadeInDown.duration(ANIMATION.normal)
+  .easing(EASING.out)
+  .withInitialValues({ translateY: -SPACING.md });
+const BAR_EXIT = FadeOutUp.duration(ANIMATION.fast).easing(EASING.in);
+const BAR_MOVE = LinearTransition.duration(ANIMATION.normal);
+
 function formatTime(seconds: number): string {
   const m = Math.floor(seconds / 60);
   const s = seconds % 60;
@@ -130,14 +141,9 @@ export const BriefingBar = memo(function BriefingBar({
 
   return (
     <Animated.View
-      // Drops from the top bar, where the `▶` that opened it was, and goes
-      // back up into it: a plain fade out was the bottom bar's exit, and at
-      // the top it left the bar vanishing in place rather than returning.
-      entering={FadeInDown.duration(ANIMATION.normal)
-        .easing(EASING.out)
-        .withInitialValues({ translateY: -SPACING.md })}
-      exiting={FadeOutUp.duration(ANIMATION.fast).easing(EASING.in)}
-      layout={LinearTransition.duration(ANIMATION.normal)}
+      entering={BAR_ENTER}
+      exiting={BAR_EXIT}
+      layout={BAR_MOVE}
       style={[styles.wrapper, { top: topOffset }]}
       onLayout={handleLayout}
       pointerEvents="box-none"
