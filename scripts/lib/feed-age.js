@@ -37,6 +37,9 @@ const DAY_MS = 24 * 60 * 60 * 1000
  * corpus). It happened at some point that day, so it is aged from the latest
  * moment it could have happened, the end of that day or now, whichever is
  * sooner. Aged from midnight, every date-only item would be dropped by 12:00.
+ *
+ * @param {string | number | Date} pubDate
+ * @param {number} [now]
  */
 export function feedItemAgeMs(pubDate, now = Date.now()) {
   const t = new Date(pubDate).getTime()
@@ -45,7 +48,13 @@ export function feedItemAgeMs(pubDate, now = Date.now()) {
   return now - (dateOnly ? Math.min(t + DAY_MS, now) : t)
 }
 
-/** Young enough for the selector's pool. An undated item never is. */
+/**
+ * Young enough for the selector's pool. An undated item never is.
+ *
+ * @param {string | number | Date} pubDate
+ * @param {number} [now]
+ * @param {number} [maxAgeMs]
+ */
 export function isFreshFeedItem(pubDate, now = Date.now(), maxAgeMs = MAX_FEED_AGE_MS) {
   const age = feedItemAgeMs(pubDate, now)
   return !Number.isNaN(age) && age < maxAgeMs

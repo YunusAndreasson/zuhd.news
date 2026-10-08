@@ -1,5 +1,9 @@
 // Shared utilities for the news pipeline
 
+/**
+ * @param {string} title
+ * @param {string | number | Date} date
+ */
 export function slugify(title, date) {
   const d = new Date(date)
   const prefix = Number.isNaN(d.getTime()) ? new Date().toISOString().slice(0, 10) : d.toISOString().slice(0, 10)
@@ -7,10 +11,16 @@ export function slugify(title, date) {
   return `${prefix}-${slug}`
 }
 
+/** @param {string} title */
 export function fingerprint(title) {
   return title.toLowerCase().replace(/[^a-z0-9]/g, '').slice(0, 40)
 }
 
+/**
+ * @param {{ uri?: string, label?: string }[] | unknown} categories
+ * @param {string} [title]
+ * @param {string} [description]
+ */
 export function zuhdCategory(categories, title = '', description = '') {
   // Accept either API category array or RSS text
   if (Array.isArray(categories)) {
