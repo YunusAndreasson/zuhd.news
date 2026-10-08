@@ -1,0 +1,38 @@
+{
+  // The pipeline's typed core, checked under `strict`.
+  //
+  // tsconfig.node.json keeps `strict` off for the untyped scripts and says why:
+  // its value is in what TypeScript infers, and thousands of implicit-any
+  // reports would bury that. It also says a file that wants real types gets
+  // JSDoc. This is where such a file is held to them: the modules the stages
+  // are being moved onto (the record of a cycle, the datasets, the article and
+  // the corpus), where a shape is the point.
+  //
+  // Leaf-first. tsc checks every file a listed one imports, under these flags,
+  // so a file can join only when everything it imports is clean too. That is
+  // why the list is spelled out and why it is short: `lib/dedup.js` alone
+  // reports 30 strict errors and brings `lib/frontmatter.js` in behind it.
+  //
+  // Every file here is also in tsconfig.node.json's globs, which is harmless:
+  // what passes strict passes loose. The one thing to avoid is
+  // `@ts-expect-error` for a strict-only complaint, which the loose project
+  // would then report as an unused directive.
+  //
+  // The cycle runs `npm run typecheck` and logs.test.js ratchets its warning at
+  // zero, so nothing lands here that is not green.
+  "extends": "./tsconfig.node.json",
+  "compilerOptions": {
+    "strict": true,
+    "noImplicitAny": true
+  },
+  "include": [
+    "scripts/cycle/record.js",
+    "scripts/lib/argv.js",
+    "scripts/lib/cycle-log.js",
+    "scripts/lib/json-file.js",
+    "scripts/lib/paths.js",
+    "scripts/lib/schema.js",
+    "types/**/*.d.ts"
+  ],
+  "exclude": ["node_modules"]
+}

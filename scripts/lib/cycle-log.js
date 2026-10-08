@@ -13,9 +13,14 @@
 
 import { RUN_RECORD_SCHEMA } from './schema.js'
 
-/** `Source angles`, `AI models`, `Dispatch (new-only)` → `source-angles`, `ai-models`, `dispatch-new-only`. */
+/**
+ * `Source angles`, `AI models`, `Dispatch (new-only)` → `source-angles`, `ai-models`, `dispatch-new-only`.
+ *
+ * @param {string} name
+ */
 const stageId = (name) => name.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '')
 
+/** @param {string | null | undefined} s */
 const int = (s) => (s == null ? null : Number.parseInt(s, 10))
 
 // `Selector exit: 0 — 188s`, `Build exit: 0`, `Writer retry exit: 1 — 9s`,
@@ -43,7 +48,11 @@ const ABORTS = [
   /^Build failed — skipping deploy/,
 ]
 
-/** `JSON.parse`, or null: a line cut short by a kill is still a line. */
+/**
+ * `JSON.parse`, or null: a line cut short by a kill is still a line.
+ *
+ * @param {string} text
+ */
 function jsonOrNull(text) {
   try {
     return JSON.parse(text)
@@ -108,8 +117,10 @@ export function parseCycleLog(text) {
   /** The push whose answer is the next `{"pushed":…}` line. */
   let awaiting = /** @type {{ kind: 'breaking' | 'briefing', payload: any, response: any } | null} */ (null)
 
+  /** @type {(name: string, exit: number | null, seconds: number | null) => void} */
   const attempt = (name, exit, seconds) => {
     const id = stageId(name)
+    /** @type {{ id: string, attempts: { exit: number | null, seconds: number | null }[] }} */
     const stage = stages.get(id) ?? { id, attempts: [] }
     stage.attempts.push({ exit, seconds })
     stages.set(id, stage)
@@ -234,6 +245,7 @@ function parseFunnel(lines) {
   const at = lines.lastIndexOf(FUNNEL)
   if (at === -1) return null
   const block = lines.slice(at + 1).join('\n')
+  /** @param {RegExp} re */
   const num = (re) => int(block.match(re)?.[1])
   const deduped = block.match(/^Deduped:\s+(\d+)(?:\s+\((.+)\))?/m)
   const validated = block.match(/^Validated:\s+(\d+)(?:\s+\((.+)\))?/m)
@@ -249,7 +261,11 @@ function parseFunnel(lines) {
   }
 }
 
-/** `cycle-2026-10-08_1804.log` → `2026-10-08_1804`, or null. */
+/**
+ * `cycle-2026-10-08_1804.log` → `2026-10-08_1804`, or null.
+ *
+ * @param {string} filename
+ */
 export function cycleIdOf(filename) {
   return String(filename).match(/cycle-(\d{4}-\d{2}-\d{2}_\d{4})\.log$/)?.[1] ?? null
 }
@@ -276,7 +292,11 @@ export function isoFromDateOutput(text) {
   return at.toISOString().replace('.000Z', 'Z')
 }
 
-/** `content/articles/2026-10-08-x.md` → `2026-10-08-x`. */
+/**
+ * `content/articles/2026-10-08-x.md` → `2026-10-08-x`.
+ *
+ * @param {string} file
+ */
 const slugOf = (file) => String(file).replace(/^.*\//, '').replace(/\.md$/, '')
 
 /**
@@ -296,6 +316,7 @@ function jobsOf(headers, known, startedAt) {
     const sunday = startedAt ? new Date(startedAt).getUTCDay() === 0 : false
     return { daily: known.startHour === known.dailyHour, tuning, weekly: tuning && sunday }
   }
+  /** @param {string} n */
   const ran = (n) => {
     const h = headers.find((x) => x.n === n)
     return h ? !h.skipped : null
@@ -318,6 +339,7 @@ function jobsOf(headers, known, startedAt) {
  */
 export function runRecord(log, known) {
   const startedAt = known.startedAt || isoFromDateOutput(log.startedText)
+  /** @param {string} id */
   const lastExit = (id) => log.stages.find((s) => s.id === id)?.attempts.at(-1)?.exit ?? null
 
   const funnel = log.funnel

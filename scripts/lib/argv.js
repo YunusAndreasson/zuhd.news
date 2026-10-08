@@ -16,11 +16,20 @@
  *
  * Only the `--name value` form. `--name=value` is not supported and never was;
  * a caller using it gets `fallback`, silently, as before.
+ *
+ * @template T
+ * @param {string} name
+ * @param {T} [fallback]
+ * @returns {string | T | undefined}
  */
 export const argAt = (name, fallback = undefined) => {
   const i = process.argv.indexOf(`--${name}`)
   return i === -1 ? fallback : process.argv[i + 1]
 }
 
-/** Whether `--name` was passed at all. */
+/**
+ * Whether `--name` was passed at all.
+ *
+ * @param {string} name
+ */
 export const hasFlag = (name) => process.argv.includes(`--${name}`)

@@ -16,7 +16,7 @@
     "lint:fix": "biome check --write",
     "deadcode": "knip --include files,dependencies,exports --no-config-hints",
     "deadcode:css": "node scripts/perf/css-usage.mjs",
-    "typecheck": "tsc -p tsconfig.islands.json && tsc -p tsconfig.node.json",
+    "typecheck": "tsc -p tsconfig.islands.json && tsc -p tsconfig.node.json && tsc -p tsconfig.pipeline.json",
     "verify": "npm run lint && npm run typecheck && npm test",
     "perf": "node scripts/perf/probe.mjs",
     "perf:idle": "node scripts/perf/idle-renders.mjs",

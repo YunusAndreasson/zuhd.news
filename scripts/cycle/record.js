@@ -28,6 +28,7 @@ const SERIES = join(LOGS_DIR, 'cycles.jsonl')
 // and only when it is this cycle's: the file outlives the cycle that wrote it.
 const NEW_ARTICLES = '/tmp/zuhd-new-articles.txt'
 
+/** @param {string} id */
 const runPath = (id) => join(RUNS_DIR, id, 'run.json')
 
 /** Whether `scripts/` differs from the commit it was checked out at. Null when git cannot say. */
@@ -45,7 +46,11 @@ function scriptsDirty() {
   }
 }
 
-/** The slugs the writer left this cycle, or none when the list on disk is an earlier cycle's. */
+/**
+ * The slugs the writer left this cycle, or none when the list on disk is an earlier cycle's.
+ *
+ * @param {string | undefined} startedAt
+ */
 function writtenSince(startedAt) {
   try {
     if (!startedAt || statSync(NEW_ARTICLES).mtimeMs < Date.parse(startedAt)) return []
@@ -75,7 +80,8 @@ function upsertSeries(records) {
   try {
     for (const line of lines) byId.set(JSON.parse(line).id, line)
   } catch (err) {
-    console.error(`record: ${SERIES} has a line that is not JSON (${err.message}) — appending, not rewriting`)
+    const { message } = /** @type {Error} */ (err)
+    console.error(`record: ${SERIES} has a line that is not JSON (${message}) — appending, not rewriting`)
     appendFileSync(SERIES, records.map((r) => `${JSON.stringify(r)}\n`).join(''))
     return
   }

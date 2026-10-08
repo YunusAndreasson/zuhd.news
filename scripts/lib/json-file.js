@@ -23,10 +23,9 @@ import { dirname } from 'node:path'
  * stdout a caller is parsing); a missing file is not — that is a normal state
  * for every snapshot on its first run.
  *
- * @template T
  * @param {string} path
- * @param {T} [fallback]
- * @returns {any | T}
+ * @param {unknown} [fallback]
+ * @returns {any}
  */
 export function readJson(path, fallback = null) {
   let text
@@ -38,7 +37,8 @@ export function readJson(path, fallback = null) {
   try {
     return JSON.parse(text)
   } catch (err) {
-    console.error(`readJson: ${path} is not valid JSON (${err.message}) — using the fallback`)
+    const { message } = /** @type {Error} */ (err)
+    console.error(`readJson: ${path} is not valid JSON (${message}) — using the fallback`)
     return fallback
   }
 }
