@@ -23,7 +23,7 @@
 import { readFileSync, writeFileSync, existsSync } from 'node:fs'
 import { join } from 'node:path'
 import { claudeArgs, claudeFailure, runClaudeSync } from './lib/claude-envelope.js'
-import { parseFrontmatter } from './lib/frontmatter.js'
+import { parseFrontmatter, setFrontmatterLine } from './lib/frontmatter.js'
 import { ROOT } from './lib/paths.js'
 import { writeJson } from './lib/json-file.js'
 
@@ -126,14 +126,7 @@ function writeSocialTitle(slug, socialTitle) {
   const fm = raw.match(/^---\n([\s\S]*?)\n---\n/)
   if (!fm) throw new Error('no frontmatter block')
   const value = JSON.stringify(socialTitle) // valid YAML double-quoted scalar
-  let block = fm[1]
-  if (/^socialTitle:/m.test(block)) {
-    block = block.replace(/^socialTitle:.*$/m, `socialTitle: ${value}`)
-  } else if (/^title:.*$/m.test(block)) {
-    block = block.replace(/^(title:.*)$/m, `$1\nsocialTitle: ${value}`)
-  } else {
-    block = `${block}\nsocialTitle: ${value}`
-  }
+  const block = setFrontmatterLine(fm[1], 'socialTitle', value, { after: 'title' })
   writeFileSync(path, `---\n${block}\n---\n${raw.slice(fm[0].length)}`)
 }
 

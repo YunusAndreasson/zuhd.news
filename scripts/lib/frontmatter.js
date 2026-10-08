@@ -73,3 +73,30 @@ export function replaceFrontmatterKey(raw, key, block, { before } = {}) {
     : `${kept.join('\n').trimEnd()}\n${block.join('\n')}`
   return `---\n${fm.trimEnd()}\n---\n${raw.slice(m[0].length)}`
 }
+
+/**
+ * Set the one-line top-level `key:` of a frontmatter block (the text between
+ * the `---` lines) to `value`, a scalar the caller has already serialised.
+ * The line is replaced where it stands; an absent key goes after the `after`
+ * key's line, or last.
+ *
+ * The replacements are functions because `String.replace` reads `$1`, `$&`
+ * and `` $` `` in a replacement *string*, and `value` is a headline. "Nvidia
+ * Authorizes Record $150 Billion Share Buyback" pasted the `title:` line into
+ * the middle of `socialTitle`, the block stopped parsing, the build died on
+ * it and the cycle published nothing: five times from 2026-08-14 to
+ * 2026-09-28, each on a dollar figure starting with 1.
+ *
+ * @param {string} block
+ * @param {string} key
+ * @param {string} value
+ * @param {{ after?: string }} [opts]
+ */
+export function setFrontmatterLine(block, key, value, { after } = {}) {
+  const line = `${key}: ${value}`
+  const own = new RegExp(`^${key}:.*$`, 'm')
+  if (own.test(block)) return block.replace(own, () => line)
+  const anchor = after ? new RegExp(`^${after}:.*$`, 'm') : null
+  if (anchor?.test(block)) return block.replace(anchor, (hit) => `${hit}\n${line}`)
+  return `${block}\n${line}`
+}
