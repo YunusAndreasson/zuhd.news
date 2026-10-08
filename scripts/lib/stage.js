@@ -22,6 +22,7 @@ import { appendFileSync, realpathSync } from 'node:fs'
  * @typedef {object} StageOutcome
  * @property {Record<string, number>} [counts]
  * @property {{ slug: string, reason: string }[]} [dropped]
+ * @property {{ slug: string, reason: string }[]} [flagged]
  * @property {string} [skipped] why it did nothing
  * @property {string} [degraded] why it kept the last good output
  */

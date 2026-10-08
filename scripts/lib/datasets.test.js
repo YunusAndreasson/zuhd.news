@@ -104,7 +104,6 @@ const STILL_SPELLING = [
   'scripts/test-voice.js',
   'scripts/translate-swedish.js',
   'scripts/trending-gaps.js',
-  'scripts/validate-articles.js',
   'scripts/watch.js',
 ]
 

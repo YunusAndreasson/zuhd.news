@@ -152,6 +152,7 @@ export const CATEGORIES = Object.freeze(['politics', 'economy', 'science', 'tech
  * @property {number} seconds
  * @property {Record<string, number>} [counts]
  * @property {{ slug: string, reason: string }[]} [dropped] the stories this stage removed, and why
+ * @property {{ slug: string, reason: string }[]} [flagged] the stories it let through with something wrong, and what
  * @property {string} [skipped] why it did nothing: a missing key, an empty input
  * @property {string} [degraded] why it kept the last good output instead of a new one
  * @property {string} [error]
