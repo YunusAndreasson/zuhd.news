@@ -94,7 +94,6 @@ const STILL_SPELLING = [
   'scripts/narrate-gdacs.js',
   'scripts/narrate-indicators.js',
   'scripts/narrate-market-signals.js',
-  'scripts/pick-breaking-social.js',
   'scripts/post-to-instagram.js',
   'scripts/post-to-twitter.js',
   'scripts/run-cycle.sh',

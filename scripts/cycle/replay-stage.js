@@ -7,6 +7,8 @@
 //   <inputs>/tmp/*           the stage's /tmp
 //   <inputs>/content/**      state to put under content/ first
 //   <inputs>/remove.txt      paths under content/ to remove first, one a line
+//   <inputs>/bin/*           commands to put ahead of the real ones (a `claude`
+//                            that answers from a file in /tmp, say)
 //
 // Run it for the tree as it was (`--tree`, a checkout of the commit before)
 // and again for the tree as it is, then `diff -r` the two directories. That
@@ -17,7 +19,7 @@
 // the real content/, or the network.
 
 import { existsSync, mkdirSync, readFileSync, readdirSync, rmSync, statSync, writeFileSync } from 'node:fs'
-import { dirname, join } from 'node:path'
+import { dirname, join, resolve } from 'node:path'
 import { argAt } from '../lib/argv.js'
 import { ROOT } from '../lib/paths.js'
 import { replayStage } from '../lib/stage-replay.js'
@@ -52,6 +54,7 @@ const run = await replayStage({
   args: dashes === -1 ? [] : process.argv.slice(dashes + 1),
   tmp: Object.fromEntries(under(join(inputs, 'tmp')).map((f) => [f, `@${join(inputs, 'tmp', f)}`])),
   content,
+  bin: existsSync(join(inputs, 'bin')) ? resolve(inputs, 'bin') : undefined,
 })
 
 rmSync(out, { recursive: true, force: true })

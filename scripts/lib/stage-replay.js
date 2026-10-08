@@ -46,6 +46,7 @@ function filesUnder(dir) {
  * @property {Record<string, string>} [tmp] files in `/tmp`, by name: the content, or `@path` to copy a file
  * @property {Record<string, string | null>} [content] changes to `content/` before the run, by path from it: the new content, `@path` to copy, or null to remove
  * @property {Record<string, string>} [env]
+ * @property {string} [bin] a directory of commands to put ahead of the real ones: a `claude` that answers from a file, where the real one would need the network
  */
 
 /**
@@ -54,7 +55,7 @@ function filesUnder(dir) {
  *   `written` is every file the stage created or changed, by the path it used
  *   (`/tmp/…` or `content/…`), with its content; null for one it removed
  */
-export async function replayStage({ script, now, args = [], tree = ROOT, tmp = {}, content = {}, env = {} }) {
+export async function replayStage({ script, now, args = [], tree = ROOT, tmp = {}, content = {}, env = {}, bin }) {
   const base = join(ROOT, '.cache', 'stage-replay')
   mkdirSync(base, { recursive: true })
   const box = mkdtempSync(join(base, 'run-'))
@@ -101,7 +102,7 @@ export async function replayStage({ script, now, args = [], tree = ROOT, tmp = {
     const res = await new Promise((resolve, reject) => {
       const child = spawn(UNSHARE, ['-m', '-n', '--', '/bin/bash', '-c', steps.join(' && '), 'stage', ...args], {
         stdio: ['ignore', 'pipe', 'pipe'],
-        env: { PATH: `${dirname(process.execPath)}:/usr/bin:/bin`, HOME: join(box, 'home'), ZUHD_FROZEN_NOW: now, ...env },
+        env: { PATH: `${bin ? `${bin}:` : ''}${dirname(process.execPath)}:/usr/bin:/bin`, HOME: join(box, 'home'), ZUHD_FROZEN_NOW: now, ...env },
       })
       let stdout = ''
       let stderr = ''

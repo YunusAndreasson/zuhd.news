@@ -18,165 +18,100 @@
 // Fail-soft by design: any error (no candidates, bad Claude output, write
 // failure) logs a note and exits 0 without a pick. The cycle continues.
 //
+// Who is a candidate is `lib/breaking.js`; what the model is asked and what is
+// made of its answer is `lib/social-pick.js`.
+//
 // Usage: node scripts/pick-breaking-social.js [--dry-run]
 
-import { readFileSync, writeFileSync, existsSync } from 'node:fs'
+import { existsSync, readFileSync, writeFileSync } from 'node:fs'
 import { join } from 'node:path'
+import { readArticle } from './lib/article.js'
+import { breakingCandidates } from './lib/breaking.js'
 import { claudeArgs, claudeFailure, runClaudeSync } from './lib/claude-envelope.js'
-import { parseFrontmatter, setFrontmatterLine } from './lib/frontmatter.js'
-import { ROOT } from './lib/paths.js'
+import { pathOf } from './lib/datasets.js'
 import { writeJson } from './lib/json-file.js'
+import { ROOT } from './lib/paths.js'
+import { parsePick, pickPrompt, socialTitleOf, withSocialTitle } from './lib/social-pick.js'
+import { runStage } from './lib/stage.js'
 
-const LEDGER = join(ROOT, 'content/.story-ledger.json')
-const LAST_CYCLE = join(ROOT, 'content/.last-cycle.json')
-const PICK_PATH = join(ROOT, 'content/.breaking-pick.json')
 const PROMPT_PATH = join(ROOT, 'scripts/social-pick-prompt.md')
-const ARTICLES_DIR = join(ROOT, 'content/articles')
-const MIN_PUSH_COVERAGE = 1 // mirror run-cycle.sh's push gate
+const TIMEOUT_MS = 45_000
 
-const dryRun = process.argv.includes('--dry-run')
+/** @param {string} m */
 const note = (m) => console.log(`pick-breaking-social: ${m}`)
 
-// A candidate lead for the prompt — first paragraph, dateline + markdown
-// stripped, cut to a clean sentence boundary (fuller than the push lead).
-function leadOf(body) {
-  let t = String(body || '')
-    .trim()
-    .split(/\n\n+/)[0]
-    .replace(/^[A-Z][\w .,'-]{0,28}\s—\s/, '')
-    .replace(/\[([^\]]+)\]\([^)]*\)/g, '$1')
-    .replace(/[*_`]/g, '')
-    .replace(/\s+/g, ' ')
-    .trim()
-  if (t.length > 320) {
-    const cut = t.slice(0, 320)
-    const end = cut.lastIndexOf('. ')
-    t = end > 160 ? cut.slice(0, end + 1) : `${cut.replace(/\s+\S*$/, '')}…`
-  }
-  return t
-}
+export function main() {
+  const dryRun = process.argv.includes('--dry-run')
+  const articlePath = (/** @type {string} */ slug) => join(pathOf('articles'), `${slug}.md`)
 
-// --- gather eligible breaking candidates (mirrors run-cycle.sh selection) ---
-function candidates() {
-  const ledger = JSON.parse(readFileSync(LEDGER, 'utf8'))
-  const cycle = JSON.parse(readFileSync(LAST_CYCLE, 'utf8'))
-  const slugs = new Set((cycle.articles || []).map((a) => a.slug))
-  const out = []
-  for (const s of ledger.stories || []) {
-    if (s.arc !== 'breaking' || s.coverageCount !== 1) continue
-    for (const slug of s.articles || []) {
-      if (!slugs.has(slug)) continue
-      const path = join(ARTICLES_DIR, `${slug}.md`)
-      if (!existsSync(path)) continue
-      const { meta, body } = parseFrontmatter(readFileSync(path, 'utf8'))
-      const eventCoverage = parseInt(meta.eventCoverage, 10) || 0
-      out.push({
-        slug,
-        title: meta.title || s.label || '',
-        category: meta.category || s.category || 'news',
-        lead: leadOf(body),
-        importance: s.importance || 0,
-        eventCoverage,
-      })
-    }
-  }
-  return out
-    .filter((c) => c.eventCoverage >= MIN_PUSH_COVERAGE)
-    .sort((a, b) => b.eventCoverage - a.eventCoverage)
-}
-
-// --- ask Claude to pick + write the card headline ---
-function pickViaClaude(cands) {
-  const block = cands
-    .map(
-      (c, i) =>
-        `${i + 1}. slug: ${c.slug}\n   category: ${c.category}  importance: ${c.importance}  eventCoverage: ${c.eventCoverage}\n   title: ${c.title}\n   lead: ${c.lead}`,
-    )
-    .join('\n\n')
-  const prompt = `${readFileSync(PROMPT_PATH, 'utf8')}\n${block}\n`
-  const res = runClaudeSync(
-    claudeArgs(prompt, {
-      model: process.env.ZUHD_SOCIAL_PICK_MODEL || process.env.ZUHD_MODEL || 'claude-sonnet-5-5',
-      json: false,
-    }),
-    { timeout: 45_000, maxBuffer: 512 * 1024 },
-  )
-  if (res.status !== 0) {
-    note(claudeFailure(res, 45_000))
-    return null
-  }
-  // Take the first {...} JSON object in the output (tolerate stray prose).
-  const m = (res.stdout || '').match(/\{[\s\S]*\}/)
-  if (!m) {
-    note(`no JSON in claude output: ${(res.stdout || '').slice(0, 120)}`)
-    return null
-  }
   try {
-    return JSON.parse(m[0])
-  } catch (e) {
-    note(`bad JSON from claude: ${e.message}`)
-    return null
-  }
-}
-
-// --- write socialTitle into the winner's frontmatter (minimal text edit) ---
-function writeSocialTitle(slug, socialTitle) {
-  const path = join(ARTICLES_DIR, `${slug}.md`)
-  const raw = readFileSync(path, 'utf8')
-  const fm = raw.match(/^---\n([\s\S]*?)\n---\n/)
-  if (!fm) throw new Error('no frontmatter block')
-  const value = JSON.stringify(socialTitle) // valid YAML double-quoted scalar
-  const block = setFrontmatterLine(fm[1], 'socialTitle', value, { after: 'title' })
-  writeFileSync(path, `---\n${block}\n---\n${raw.slice(fm[0].length)}`)
-}
-
-// --- run ---
-try {
-  const cands = candidates()
-  if (!cands.length) {
-    note('no eligible breaking candidates — no social pick (legacy selection applies).')
-    process.exit(0)
-  }
-
-  // A single validated candidate still gets an optimized card headline, but a
-  // one-item list needs no re-ranking to reason about.
-  const pick = pickViaClaude(cands)
-  const chosen = pick && cands.find((c) => c.slug === pick.slug)
-  if (!chosen) {
-    note(`claude returned no usable slug (got ${pick?.slug ?? 'none'}) — falling back to top coverage.`)
-    process.exit(0)
-  }
-
-  const socialTitle = String(pick.socialTitle || '').trim().replace(/^["'“”]+|["'“”]+$/g, '').slice(0, 80).trim()
-  const record = {
-    timestamp: new Date().toISOString(),
-    slug: chosen.slug,
-    socialTitle: socialTitle || null,
-    articleTitle: chosen.title,
-    score: Number(pick.score) || null,
-    reason: String(pick.reason || '').slice(0, 120),
-    candidateCount: cands.length,
-  }
-
-  if (dryRun) {
-    note('[dry-run] would pick:')
-    console.log(JSON.stringify(record, null, 2))
-    process.exit(0)
-  }
-
-  if (socialTitle) {
-    try {
-      writeSocialTitle(chosen.slug, socialTitle)
-      note(`wrote socialTitle to ${chosen.slug}: "${socialTitle}"`)
-    } catch (e) {
-      note(`could not write socialTitle (non-fatal, card uses article title): ${e.message}`)
-      record.socialTitle = null
+    const ledger = JSON.parse(readFileSync(pathOf('storyLedger'), 'utf8'))
+    const cycle = JSON.parse(readFileSync(pathOf('lastCycle'), 'utf8'))
+    const cands = breakingCandidates(ledger, cycle, (slug) => (existsSync(articlePath(slug)) ? readArticle(articlePath(slug)) : null))
+    if (!cands.length) {
+      note('no eligible breaking candidates — no social pick (legacy selection applies).')
+      return { skipped: 'no eligible breaking candidates' }
     }
-  }
 
-  writeJson(PICK_PATH, record)
-  note(`picked ${chosen.slug} (score ${record.score ?? '?'}) of ${cands.length} candidates.`)
-} catch (e) {
-  note(`${e.message} — non-fatal, cycle continues with legacy selection.`)
-  process.exit(0)
+    // A single validated candidate still gets an optimized card headline, but a
+    // one-item list needs no re-ranking to reason about.
+    const res = runClaudeSync(
+      claudeArgs(pickPrompt(readFileSync(PROMPT_PATH, 'utf8'), cands), {
+        model: process.env.ZUHD_SOCIAL_PICK_MODEL || process.env.ZUHD_MODEL || 'claude-sonnet-5-5',
+        json: false,
+      }),
+      { timeout: TIMEOUT_MS, maxBuffer: 512 * 1024 },
+    )
+    let pick = null
+    if (res.status !== 0) {
+      note(claudeFailure(res, TIMEOUT_MS))
+    } else {
+      const answer = parsePick(res.stdout)
+      if (answer.problem) note(answer.problem)
+      pick = answer.pick
+    }
+    const chosen = pick && cands.find((c) => c.slug === pick.slug)
+    if (!pick || !chosen) {
+      note(`claude returned no usable slug (got ${pick?.slug ?? 'none'}) — falling back to top coverage.`)
+      return { counts: { candidates: cands.length, picked: 0 }, degraded: 'no usable pick: the push keeps its own order' }
+    }
+
+    const socialTitle = socialTitleOf(pick)
+    const record = {
+      timestamp: new Date().toISOString(),
+      slug: chosen.slug,
+      socialTitle: socialTitle || null,
+      articleTitle: chosen.title,
+      score: Number(pick.score) || null,
+      reason: String(pick.reason || '').slice(0, 120),
+      candidateCount: cands.length,
+    }
+
+    if (dryRun) {
+      note('[dry-run] would pick:')
+      console.log(JSON.stringify(record, null, 2))
+      return { counts: { candidates: cands.length, picked: 0 }, skipped: 'dry run' }
+    }
+
+    if (socialTitle) {
+      try {
+        const path = articlePath(chosen.slug)
+        writeFileSync(path, withSocialTitle(readFileSync(path, 'utf8'), socialTitle))
+        note(`wrote socialTitle to ${chosen.slug}: "${socialTitle}"`)
+      } catch (e) {
+        note(`could not write socialTitle (non-fatal, card uses article title): ${/** @type {Error} */ (e).message}`)
+        record.socialTitle = null
+      }
+    }
+
+    writeJson(pathOf('breakingPick'), record)
+    note(`picked ${chosen.slug} (score ${record.score ?? '?'}) of ${cands.length} candidates.`)
+    return { counts: { candidates: cands.length, picked: 1, titled: record.socialTitle ? 1 : 0 } }
+  } catch (e) {
+    const why = /** @type {Error} */ (e).message
+    note(`${why} — non-fatal, cycle continues with legacy selection.`)
+    return { degraded: why }
+  }
 }
+
+await runStage(import.meta, 'pick-breaking-social', main)
