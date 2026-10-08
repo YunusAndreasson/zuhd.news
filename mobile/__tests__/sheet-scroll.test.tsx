@@ -50,10 +50,12 @@ function setup() {
       renderStory={() => null}
       renderEnd={() => null}
       onDragStart={jest.fn()}
+      onRelease={jest.fn()}
       onSettle={jest.fn()}
     />,
   );
-  const frame = reactions[0];
+  // The deck's own landing reaction registers first; the slot's follows it.
+  const frame = reactions[1];
   const scroll = handlers[0];
   if (!frame || !scroll) throw new Error('Missing current story scroll handlers');
   return { offset, frame, scroll };

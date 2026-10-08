@@ -80,3 +80,20 @@ it('cancels while Android loses focus without backgrounding', () => {
   });
   expect(markRead).toHaveBeenCalledWith('a');
 });
+
+it('begins the dwell again when asked, so a story being left cannot turn read on the way out', () => {
+  const { result } = renderHook(() => useReadTracking('a', true));
+  act(() => jest.advanceTimersByTime(READ_DWELL_MS - 1));
+  act(() => result.current());
+  act(() => jest.advanceTimersByTime(READ_DWELL_MS - 1));
+  expect(markRead).not.toHaveBeenCalled();
+  act(() => jest.advanceTimersByTime(1));
+  expect(markRead).toHaveBeenCalledWith('a');
+});
+
+it('has nothing to restart for a story that is covered', () => {
+  const { result } = renderHook(() => useReadTracking('a', false));
+  act(() => result.current());
+  act(() => jest.advanceTimersByTime(READ_DWELL_MS));
+  expect(markRead).not.toHaveBeenCalled();
+});

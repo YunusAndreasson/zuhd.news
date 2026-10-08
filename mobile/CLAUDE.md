@@ -62,7 +62,8 @@ silently routed to the legacy detector.
   nothing names the offender. Scan for it before touching the versions of
   `react-native`, `react-native-reanimated` or `react-native-worklets`.
 - Don't call `scheduleOnRN` from an animation's completion callback: it can
-  abort the app. Commit on the finger's lift, or use a JS timer.
+  abort the app. Tell JS from a reaction on the value, at the finger's lift, or
+  with a JS timer.
 - A native change needs a `runtimeVersion` bump and a store build.
 
 ## One screen

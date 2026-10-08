@@ -118,7 +118,7 @@ it('keeps a pinch’s own zoom when a finger stops a place flight', () => {
 });
 
 it('hands a landed swipe to a flight only where that would not hurry it', () => {
-  // `handleDeckSettle` compares the crossing's own duration against the deck
+  // `handleDeckRelease` compares the crossing's own duration against the deck
   // spring's rather than against an arc, and this is why: a flight's duration
   // rises with the distance and never falls back, so once a crossing is long
   // enough to fly, every longer one is too. One arc could not promise that —

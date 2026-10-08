@@ -2,6 +2,7 @@ import { type ReactNode, useLayoutEffect, useState } from 'react';
 import { type StyleProp, StyleSheet, type ViewStyle } from 'react-native';
 import Animated, {
   Keyframe,
+  type SharedValue,
   useAnimatedStyle,
   useSharedValue,
   withTiming,
@@ -25,10 +26,19 @@ import { useTheme } from '../hooks/useTheme';
  *
  * A page's own entrance (a stagger of its blocks) is its owner's to skip:
  * `LayoutAnimationConfig skipEntering`, keyed by the page.
+ *
+ * **A page swiped back goes with the finger** (`drag`, written by
+ * `useSwipeBack`): it slides out and a second veil of the ground closes over
+ * it as it goes, so by the time the page before it arrives — from under its
+ * own veil, as ever — there is little left of this one to swap. The page
+ * before it is not mounted underneath: that would be a React commit under the
+ * finger, or two live pages for the life of every sheet.
  */
 
 const SHIFT = SPACING.lg;
 const TIMING = { duration: ANIMATION.normal, easing: EASING.out };
+/** How far a page is dragged before the ground has closed over it. */
+const DRAG_FADE = 200;
 
 /** Opaque, then clear: the veil's own style is the cleared one. */
 const VEIL_LIFT = new Keyframe({ 0: { opacity: 1 }, 100: { opacity: 0 } }).duration(
@@ -72,12 +82,16 @@ export function PageVeil({
 export function SheetPager({
   pageKey,
   move,
+  drag,
   children,
 }: {
   pageKey: string;
   move: SheetMove;
+  /** A back swipe's pull on the page, in points (`useSheetBackNavigation`). */
+  drag?: SharedValue<number>;
   children: ReactNode;
 }) {
+  const { colors } = useTheme();
   const moving = useMoving(move);
   const shift = useSharedValue(0);
   useLayoutEffect(() => {
@@ -85,10 +99,31 @@ export function SheetPager({
     shift.set(move.direction * SHIFT);
     shift.set(withTiming(0, TIMING));
   }, [moving, move, shift]);
-  const slide = useAnimatedStyle(() => ({ transform: [{ translateX: shift.get() }] }));
+  // A page dragged away is put home as the page changes under the drag: the
+  // one arriving mounts under its own opaque veil, so the step is never seen.
+  // biome-ignore lint/correctness/useExhaustiveDependencies: `pageKey` is when to run
+  useLayoutEffect(() => {
+    drag?.set(0);
+  }, [pageKey, drag]);
+  // The first style is computed on the JS thread, where reading a value the
+  // UI thread writes would wait on it; at rest both are zero.
+  const slide = useAnimatedStyle(() => {
+    if (globalThis.__RUNTIME_KIND === 1) return { transform: [{ translateX: 0 }] };
+    return { transform: [{ translateX: shift.get() + (drag ? drag.get() : 0) }] };
+  });
+  const dragVeil = useAnimatedStyle(() => {
+    if (globalThis.__RUNTIME_KIND === 1 || !drag) return { opacity: 0 };
+    return { opacity: Math.min(1, drag.get() / DRAG_FADE) };
+  });
   return (
     <Animated.View style={[styles.page, slide]}>
       {children}
+      {drag ? (
+        <Animated.View
+          pointerEvents="none"
+          style={[StyleSheet.absoluteFill, { backgroundColor: colors.sheetBg }, dragVeil]}
+        />
+      ) : null}
       <PageVeil pageKey={pageKey} move={move} />
     </Animated.View>
   );

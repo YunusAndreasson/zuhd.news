@@ -41,7 +41,7 @@ const SEEK_ACTIONS = [{ name: 'increment' }, { name: 'decrement' }];
 const BAR_ENTER = FadeInDown.duration(ANIMATION.normal)
   .easing(EASING.out)
   .withInitialValues({ translateY: -SPACING.md });
-const BAR_EXIT = FadeOutUp.duration(ANIMATION.fast).easing(EASING.in);
+const BAR_EXIT = FadeOutUp.duration(ANIMATION.fast).easing(EASING.out);
 const BAR_MOVE = LinearTransition.duration(ANIMATION.normal);
 
 function formatTime(seconds: number): string {

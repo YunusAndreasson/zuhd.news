@@ -135,7 +135,7 @@ import { getSnapshot as getReadSlugs, pruneRead } from '../lib/read-store';
 import { resumeLanding, unreadNewBehind } from '../lib/resume-landing';
 import { maybeRequestReview } from '../lib/store-review';
 import { storyCharts } from '../lib/story-chart';
-import { buildStoryPlaces, foundProgress } from '../lib/story-places';
+import { buildStoryPlaces, completesFound, foundProgress } from '../lib/story-places';
 import { countryTap, type TapResult } from '../lib/tap-result';
 
 /**
@@ -203,7 +203,7 @@ interface FocusOptions {
 /**
  * Whether the swipe from story `from` to story `to` flies rather than riding
  * the card (`crossingFlies`) — asked once per river for every claim
- * (`ridesFinger`) and again at each landing (`handleDeckSettle`). A story with
+ * (`ridesFinger`) and again at each release (`handleDeckRelease`). A story with
  * no place has no crossing to fly; a framing the globe cannot say yet is the
  * widest.
  */
@@ -281,6 +281,13 @@ export default function HomeScreen() {
   /** The story in front of the deck. The end card is `storyRows.length`. */
   const [deckIndex, setDeckIndex] = useState(0);
   const deckIndexRef = useRef(0);
+  /** A swipe let go whose card has not landed: where it is heading, and the
+   *  story to record as found when it lands (it was let go with a story
+   *  open). `deckIndexRef` is already there; `deckIndex` follows at the
+   *  landing (`handleDeckLanded`). */
+  const releasedRef = useRef<{ index: number; find: string | null } | null>(null);
+  /** `useReadTracking`'s restart, for a handler declared before the hook. */
+  const restartDwellRef = useRef<() => void>(() => {});
   /** The slug in front, so a refresh that inserts stories keeps the reader on
    *  the story they were reading rather than on whatever moved into its slot.
    *  Null until the reader has moved the deck: an untouched deck stays on the
@@ -756,16 +763,20 @@ export default function HomeScreen() {
   /** The clip story `index` rests at, for a flight to land on. */
   const framingFor = useCallback((index: number) => globeRef.current?.framingFor(index) ?? 0, []);
 
-  // Which crossings ride the finger: the same comparison `handleDeckSettle`
+  // Which crossings ride the finger: the same comparison `handleDeckRelease`
   // makes at the lift, made once per river so the pan can read it on the UI
   // thread the moment it claims a swipe.
   useEffect(() => {
     ridesFinger.value = storyRows.map((_, i) => !swipeFlies(storyRows, i, i + 1, framingFor));
   }, [framingFor, ridesFinger, storyRows]);
 
-  // The story in front, for a swipe to decide whether the camera is still on it.
+  // The story in front, for a swipe to decide whether the camera is still on
+  // it. Read from the ref, which a swipe sets as it is let go: `deckIndex`
+  // follows a landing later, and a feed arriving in between would write the
+  // story being left back as the front.
+  // biome-ignore lint/correctness/useExhaustiveDependencies: `deckIndex` is when to run; the ref is what to read
   useEffect(() => {
-    setCameraFront(storyRows[deckIndex]?.coords ?? null);
+    setCameraFront(storyRows[deckIndexRef.current]?.coords ?? null);
   }, [deckIndex, setCameraFront, storyRows]);
 
   /** A pinch has ended: redraw at full detail once any hand-back has eased. */
@@ -784,12 +795,14 @@ export default function HomeScreen() {
    * Record a find, and mark the day complete once — with the one success
    * haptic the game has — when it was the last light on the globe. Says
    * whether it gave that haptic, so a swipe landing there gives no other.
+   * `haptic` is off for a swipe's landing: its lift already gave it
+   * (`handleDeckRelease`, by `completesFound`).
    */
-  const findStory = useCallback((slug: string): boolean => {
+  const findStory = useCallback((slug: string, haptic = true): boolean => {
     if (!markFound(slug)) return false;
     const { found, total } = foundProgress(storyRowsRef.current, getFound());
     if (total === 0 || found !== total) return false;
-    hapticNotification();
+    if (haptic) hapticNotification();
     toastRef.current?.show(
       `All ${total} found · new stories arrive through the day`,
       undefined,
@@ -836,7 +849,14 @@ export default function HomeScreen() {
       if (coords) holdCamera(options.cameraEpoch);
       deckIndexRef.current = index;
       currentSlugRef.current = slug;
-      if (!options.deckMoved) storyProgress.value = index;
+      releasedRef.current = null;
+      // `storyCommitted` too, not left to the deck's own sync: that runs when
+      // `deckIndex` changes, and with a swipe still landing React can already
+      // hold this very story — the one just left — so nothing would change.
+      if (!options.deckMoved) {
+        storyProgress.value = index;
+        storyCommitted.value = index;
+      }
       setDeckIndex(index);
 
       if (coords) {
@@ -859,6 +879,7 @@ export default function HomeScreen() {
       pinStory,
       reduceMotion,
       requestEpoch,
+      storyCommitted,
       storyProgress,
     ],
   );
@@ -882,9 +903,11 @@ export default function HomeScreen() {
     const previousIndex = deckIndexRef.current;
     deckIndexRef.current = index;
     currentSlugRef.current = storyRows[index]?.slug ?? null;
+    releasedRef.current = null;
     remapStory(previousIndex, index, sameStory);
+    storyCommitted.value = index;
     setDeckIndex(index);
-  }, [storyRows, remapStory]);
+  }, [storyRows, remapStory, storyCommitted]);
 
   const handleSelectArticle = useCallback(
     (slug: string, category: Category) => {
@@ -1327,27 +1350,38 @@ export default function HomeScreen() {
     dismissActiveHint();
   }, [dismissActiveHint]);
 
-  const handleDeckSettle = useCallback(
+  /**
+   * A swipe has been let go toward another story: the half of a landing that
+   * belongs to the hand. Nothing here sets React state. A commit now would
+   * fall in the first frames of the card's spring, and Reanimated holds its
+   * frames back until a commit has mounted (`StoryDeck`); the screen is told
+   * by `handleDeckLanded`.
+   */
+  const handleDeckRelease = useCallback(
     (index: number) => {
       const leavingIndex = deckIndexRef.current;
       deckIndexRef.current = index;
-      setDeckIndex(index);
+      const row = storyRowsRef.current[index];
+      currentSlugRef.current = row?.slug ?? null;
+      // Reading a story grown is opening it; swiping past one at rest is not.
+      const find = row && sheetDetentRef.current === 'full' ? row.slug : null;
+      releasedRef.current = { index, find };
+      // The next swipe's claim reads the front before `deckIndex` has moved.
+      setCameraFront(row?.coords ?? null);
+      // The story being left is still the one in front until the landing, and
+      // its dwell must not run out on the way.
+      restartDwellRef.current();
       // A screen reader moves the deck through the card's next/previous
       // actions, and the card that replaces the one it was reading has no
       // focus to announce itself.
-      const title = storyRowsRef.current[index]?.title;
-      if (title) announce(title);
-      recordArticleSnap();
-      maybeRequestReview();
-      const row = storyRowsRef.current[index];
-      currentSlugRef.current = row?.slug ?? null;
+      if (row?.title) announce(row.title);
       // One landing, one haptic: caught up or every story found says more
       // than the swipe does, so either takes its place.
       let said = false;
-      if (row) {
-        if (row.mark === 'earlier') said = handleCaughtUp();
-        // Reading a story grown is opening it; swiping past one at rest is not.
-        if (sheetDetentRef.current === 'full') said = findStory(row.slug) || said;
+      if (row?.mark === 'earlier') said = handleCaughtUp();
+      if (find && completesFound(storyRowsRef.current, getFound(), find)) {
+        hapticNotification();
+        said = true;
       }
       if (!said) hapticSwipe();
       if (row?.coords) {
@@ -1366,7 +1400,28 @@ export default function HomeScreen() {
         }
       }
     },
-    [findStory, flyToStory, flyToStoryIfHeld, framingFor, handleCaughtUp],
+    [flyToStory, flyToStoryIfHeld, framingFor, handleCaughtUp, setCameraFront],
+  );
+
+  /**
+   * The card is on the story a swipe released it toward, or a finger came
+   * down before it was: now the screen is told. Only for a release still
+   * waiting, and only while the deck is still heading there. A landing can
+   * reach JS after a tap has jumped the deck elsewhere, and its index set
+   * then would put React on one story with the cards on another; a jump or a
+   * scrub also lands the deck, and neither is a swipe.
+   */
+  const handleDeckLanded = useCallback(
+    (index: number) => {
+      const released = releasedRef.current;
+      if (released?.index !== index || deckIndexRef.current !== index) return;
+      releasedRef.current = null;
+      setDeckIndex(index);
+      recordArticleSnap();
+      maybeRequestReview();
+      if (released.find) findStory(released.find, false);
+    },
+    [findStory],
   );
 
   const goToStory = useCallback(
@@ -1649,11 +1704,13 @@ export default function HomeScreen() {
       holdCamera();
       deckIndexRef.current = 0;
       currentSlugRef.current = null;
+      releasedRef.current = null;
       storyProgress.value = 0;
+      storyCommitted.value = 0;
       setDeckIndex(0);
       frontFlightRef.current = true;
     },
-    [collapseSheet, holdCamera, showNewToast, storyProgress],
+    [collapseSheet, holdCamera, showNewToast, storyCommitted, storyProgress],
   );
   useEffect(() => {
     returnHandlerRef.current = handleReturn;
@@ -1681,7 +1738,7 @@ export default function HomeScreen() {
   // Read at rest as well as open: the resting card is the title and the
   // hook, and most of the day is read that way. Only a platform sheet over
   // the map hides the card.
-  useReadTracking(storyRows[frontIndex]?.slug ?? null, !sheetOpen);
+  restartDwellRef.current = useReadTracking(storyRows[frontIndex]?.slug ?? null, !sheetOpen);
 
   const keyOfDeck = useCallback(
     (index: number) => storyRows[index]?.slug ?? 'end-of-river',
@@ -1918,7 +1975,8 @@ export default function HomeScreen() {
         onDragStart={handleDeckDragStart}
         onClaim={claimForDeck}
         onRollback={releaseForDeck}
-        onSettle={handleDeckSettle}
+        onRelease={handleDeckRelease}
+        onSettle={handleDeckLanded}
       />
     ),
     [
@@ -1927,7 +1985,8 @@ export default function HomeScreen() {
       layout.dock,
       frontIndex,
       handleDeckDragStart,
-      handleDeckSettle,
+      handleDeckLanded,
+      handleDeckRelease,
       keyOfDeck,
       renderEnd,
       renderStory,
