@@ -6,6 +6,7 @@ import { createServer } from 'node:http'
 import { readFileSync, readdirSync, existsSync, statSync, watch, writeFileSync } from 'node:fs'
 import { join } from 'node:path'
 import { execSync } from 'node:child_process'
+import { parseCycleLog } from '../lib/cycle-log.js'
 import { parseFrontmatter } from '../lib/frontmatter.js'
 import { scoreDir } from '../lib/quality-score.js'
 import { regionFromCoords } from '../lib/regions.js'
@@ -19,90 +20,64 @@ const ARTICLES_DIR = join(ROOT, 'content', 'articles')
 const DIST_DIR = join(ROOT, 'dist')
 const DASHBOARD_DIR = new URL('.', import.meta.url).pathname
 
-// ── Log Parsing ─────────────────────────────────────────────────────
+// ── Cycle logs ──────────────────────────────────────────────────────
 
-function parseCycleLog(filepath) {
-  const content = readFileSync(filepath, 'utf-8')
+/**
+ * One cycle as the page reads it. The lines themselves are read by
+ * `lib/cycle-log.js`; this is the shape `index.html` was built against, which
+ * is why a retried stage still shows its first attempt here, as it always did.
+ *
+ * `edu`, `trends` and the two `backfill` fields are constants. The stages that
+ * printed them are gone and the panels that draw them are not, yet.
+ */
+function cycleView(filepath) {
   const filename = filepath.split('/').pop()
-
   // Date + scheduled hour from filename: cycle-2026-04-11_1702.log
   const fnMatch = filename.match(/cycle-(\d{4}-\d{2}-\d{2})_(\d{2})(\d{2})/)
-  const date = fnMatch ? fnMatch[1] : null
-  const scheduledHour = fnMatch ? fnMatch[2] : null
-
-  const started = content.match(/^Started: (.+)$/m)
-  const finished = content.match(/^Finished: (.+?) — total (\d+)s$/m)
-
-  // Stage timing + exit codes
-  const feed = content.match(/Merged feed:.*— (\d+)s/)
-  const selector = content.match(/Selector exit: (\d+) — (\d+)s/)
-  const writer = content.match(/Writer exit: (\d+) — (\d+)s/)
-  const editor = content.match(/Editor exit: (\d+) — (\d+)s/)
-  const edu = content.match(/Edu context exit: (\d+) — (\d+)s/)
-  const trends = content.match(/Trends: offered (\d+) indicators to editor, picked (\d+) across (\d+) articles/)
-  const build = content.match(/Build exit: (\d+)/)
-  const deploy = content.match(/Deploy exit: (\d+)/)
-  const briefing = content.match(/Briefing exit: (\d+)/)
-  const tuning = content.match(/Tuning exit: (\d+)/)
-
-  // Selection detail
-  const selCount = content.match(/Selection contains (\d+) stories/)
-  const dedupSel = content.match(/Deduped selection: (\d+) → (\d+)/)
-  const newArticles = content.match(/Found (\d+) new\/modified articles/)
-
-  // NewsAPI token usage + backfill operational signals
-  const newsApiTokens = content.match(/NewsAPI tokens this cycle:\s*~?(\d+)/)
-  const backfillFires = [...content.matchAll(/Backfill: added (\d+) stories/g)]
-  const backfillFailed = /Backfill: no viable candidates found/.test(content)
-
-  // Funnel block
-  const funnelFeed = content.match(/^Feed:\s+(.+)$/m)
-  const funnelSel = content.match(/^Selected:\s+(\d+)/m)
-  const funnelDed = content.match(/^Deduped:\s+(\d+)(?:\s+\((.+)\))?/m)
-  const funnelWrit = content.match(/^Written:\s+(\d+)/m)
-  const funnelVal = content.match(/^Validated:\s+(\d+)(?:\s+\((.+)\))?/m)
-  const funnelPub = content.match(/^Published:\s+(\d+)/m)
-
-  // Abort messages
-  const aborted = content.match(/Selector failed|No selection file|Selection is empty|All selections already published|No new articles/)
+  const log = parseCycleLog(readFileSync(filepath, 'utf-8'))
+  const first = (id) => log.stages.find((s) => s.id === id)?.attempts[0] ?? { exit: null, seconds: null }
+  const aborted = log.abort?.match(
+    /Both API and RSS fetches failed|Selector failed|No selection file|Selection is empty|No selection entry could be matched|All selections already published|No new articles/,
+  )
+  const funnel = log.funnel
 
   return {
     filename,
-    date,
-    scheduledHour,
-    startedAt: started ? started[1] : null,
-    finishedAt: finished ? finished[1] : null,
-    totalSeconds: finished ? parseInt(finished[2], 10) : null,
-    completed: !!finished,
+    date: fnMatch ? fnMatch[1] : null,
+    scheduledHour: fnMatch ? fnMatch[2] : null,
+    startedAt: log.startedText,
+    finishedAt: log.finishedText,
+    totalSeconds: log.totalSeconds,
+    completed: log.finishedText !== null,
     aborted: aborted ? aborted[0] : null,
     stages: {
-      feed:      { seconds: feed ? parseInt(feed[1], 10) : null },
-      selector:  { exit: selector ? parseInt(selector[1], 10) : null, seconds: selector ? parseInt(selector[2], 10) : null },
-      writer:    { exit: writer ? parseInt(writer[1], 10) : null, seconds: writer ? parseInt(writer[2], 10) : null },
-      editor:    { exit: editor ? parseInt(editor[1], 10) : null, seconds: editor ? parseInt(editor[2], 10) : null },
-      edu:       { exit: edu ? parseInt(edu[1], 10) : null, seconds: edu ? parseInt(edu[2], 10) : null },
-      trends:    { offered: trends ? parseInt(trends[1], 10) : null, picked: trends ? parseInt(trends[2], 10) : null, articles: trends ? parseInt(trends[3], 10) : null },
-      build:     { exit: build ? parseInt(build[1], 10) : null },
-      deploy:    { exit: deploy ? parseInt(deploy[1], 10) : null },
-      briefing:  { exit: briefing ? parseInt(briefing[1], 10) : null },
-      tuning:    { exit: tuning ? parseInt(tuning[1], 10) : null },
+      feed:      { seconds: log.feed.seconds },
+      selector:  { exit: first('selector').exit, seconds: first('selector').seconds },
+      writer:    { exit: first('writer').exit, seconds: first('writer').seconds },
+      editor:    { exit: first('editor').exit, seconds: first('editor').seconds },
+      edu:       { exit: null, seconds: null },
+      trends:    { offered: null, picked: null, articles: null },
+      build:     { exit: first('build').exit },
+      deploy:    { exit: first('deploy').exit },
+      briefing:  { exit: first('briefing').exit },
+      tuning:    { exit: first('tuning').exit },
     },
-    selectionCount: selCount ? parseInt(selCount[1], 10) : null,
-    dedupBefore: dedupSel ? parseInt(dedupSel[1], 10) : null,
-    dedupAfter: dedupSel ? parseInt(dedupSel[2], 10) : null,
-    articlesWritten: newArticles ? parseInt(newArticles[1], 10) : null,
-    newsApiTokens: newsApiTokens ? parseInt(newsApiTokens[1], 10) : null,
-    backfillAdded: backfillFires.reduce((sum, m) => sum + parseInt(m[1], 10), 0),
-    backfillFailed,
+    selectionCount: log.selection.count,
+    dedupBefore: log.selection.dedupBefore,
+    dedupAfter: log.selection.dedupAfter,
+    articlesWritten: log.selection.newArticles,
+    newsApiTokens: log.newsApiTokens,
+    backfillAdded: 0,
+    backfillFailed: false,
     funnel: {
-      feed: funnelFeed ? funnelFeed[1] : null,
-      selected: funnelSel ? parseInt(funnelSel[1], 10) : 0,
-      deduped: funnelDed ? parseInt(funnelDed[1], 10) : 0,
-      dedupNote: funnelDed ? funnelDed[2] || null : null,
-      written: funnelWrit ? parseInt(funnelWrit[1], 10) : 0,
-      validated: funnelVal ? parseInt(funnelVal[1], 10) : 0,
-      validNote: funnelVal ? funnelVal[2] || null : null,
-      published: funnelPub ? parseInt(funnelPub[1], 10) : 0,
+      feed: funnel?.feed ?? null,
+      selected: funnel?.selected ?? 0,
+      deduped: funnel?.deduped ?? 0,
+      dedupNote: funnel?.dedupNote ?? null,
+      written: funnel?.written ?? 0,
+      validated: funnel?.validated ?? 0,
+      validNote: funnel?.validNote ?? null,
+      published: funnel?.published ?? 0,
     },
   }
 }
@@ -116,7 +91,7 @@ function getLogFiles() {
 }
 
 function getAllCycles() {
-  return getLogFiles().map(f => parseCycleLog(join(LOGS_DIR, f)))
+  return getLogFiles().map(f => cycleView(join(LOGS_DIR, f)))
 }
 
 function getLogTail(filename, lines = 50) {
@@ -293,7 +268,7 @@ function handleCycleDetail(filename) {
   return cached(key, 60_000, () => {
     const filepath = join(LOGS_DIR, filename)
     if (!existsSync(filepath)) return null
-    const parsed = parseCycleLog(filepath)
+    const parsed = cycleView(filepath)
     parsed.tail = getLogTail(filename, 50)
     return parsed
   })
@@ -598,28 +573,20 @@ function handleMedia() {
   return cached('media', 120_000, () => {
     const result = { pushHistory: [], briefing: null }
 
-    // Parse push notifications from logs
-    const logFiles = getLogFiles()
-    for (const f of logFiles) {
+    // The breaking push of each cycle that sent one
+    for (const f of getLogFiles()) {
       try {
-        const content = readFileSync(join(LOGS_DIR, f), 'utf-8')
-        const pushMatch = content.match(/Pushing breaking news: (.+)/m)
-        if (pushMatch) {
-          try {
-            const payload = JSON.parse(pushMatch[1])
-            const responseMatch = content.match(/\{"pushed":\d+.*\}/m)
-            const response = responseMatch ? JSON.parse(responseMatch[0]) : null
-            const dateMatch = f.match(/cycle-(\d{4}-\d{2}-\d{2})_(\d{2})(\d{2})/)
-            result.pushHistory.push({
-              date: dateMatch ? dateMatch[1] : null,
-              hour: dateMatch ? `${dateMatch[2]}:${dateMatch[3]}` : null,
-              articles: payload.articles || [],
-              pushed: response?.pushed ?? null,
-              skipped: response?.skipped ?? null,
-              tokens: response?.tokens ?? null,
-            })
-          } catch {}
-        }
+        const push = parseCycleLog(readFileSync(join(LOGS_DIR, f), 'utf-8')).pushes.find((p) => p.kind === 'breaking')
+        if (!push?.payload) continue
+        const dateMatch = f.match(/cycle-(\d{4}-\d{2}-\d{2})_(\d{2})(\d{2})/)
+        result.pushHistory.push({
+          date: dateMatch ? dateMatch[1] : null,
+          hour: dateMatch ? `${dateMatch[2]}:${dateMatch[3]}` : null,
+          articles: push.payload.articles || [],
+          pushed: push.response?.pushed ?? null,
+          skipped: push.response?.skipped ?? null,
+          tokens: push.response?.tokens ?? null,
+        })
       } catch {}
     }
 
@@ -665,26 +632,13 @@ function handleFeedHealth() {
       } catch {}
     }
 
-    // Parse historical per-source data from logs (look for ✗ errors)
+    // Every `✗ name: message` line of the last week, whichever stage printed it
     const logFiles = getLogFiles().slice(0, 35) // Last 7 days
-    const sourceFails = {} // source name → count of cycles where it failed
+    const sourceFails = {} // name → count of lines
     for (const f of logFiles) {
       try {
-        const content = readFileSync(join(LOGS_DIR, f), 'utf-8')
-        // Find error lines: "  ✗ SourceName: error message"
-        const errors = content.matchAll(/✗ (.+?): (.+)/g)
-        const failedThisCycle = new Set()
-        for (const m of errors) {
-          const name = m[1]
-          failedThisCycle.add(name)
+        for (const { name } of parseCycleLog(readFileSync(join(LOGS_DIR, f), 'utf-8')).marks) {
           sourceFails[name] = (sourceFails[name] || 0) + 1
-        }
-        // Count OK from "Fetching N RSS" + "Raw items: N" lines
-        // Any source NOT in failedThisCycle was OK
-        const rssMatch = content.match(/Fetching (\d+) RSS/)
-        if (rssMatch) {
-          // We know the source list from the stats file or can infer
-          // For now just track failures
         }
       } catch {}
     }
