@@ -1,91 +1,5 @@
 [
   {
-    "timestamp": "2026-09-17T04:19:09.133Z",
-    "candidateCount": 9,
-    "candidates": [
-      {
-        "slug": "2026-09-17-a-canal-changes-which-provinces-can-export-pinglu",
-        "title": "China Opens Pinglu Canal",
-        "category": "economy",
-        "eventCoverage": 85,
-        "importance": 6
-      },
-      {
-        "slug": "2026-09-17-a-register-the-vendor-defines-openai-misalignment-reports",
-        "title": "OpenAI Discloses Six Model Incidents",
-        "category": "tech",
-        "eventCoverage": 74,
-        "importance": 6
-      },
-      {
-        "slug": "2026-09-17-an-embassy-is-harder-to-close-israel-morocco-upgrade",
-        "title": "Israel, Morocco Agree Embassies",
-        "category": "politics",
-        "eventCoverage": 67,
-        "importance": 6
-      },
-      {
-        "slug": "2026-09-17-the-host-state-is-also-a-party-pa-visa-bans",
-        "title": "US Bars Palestinian Officials Again",
-        "category": "politics",
-        "eventCoverage": 0,
-        "importance": 6
-      },
-      {
-        "slug": "2026-09-17-a-defence-that-needs-the-evidence-admitted-ulm-five-elbit",
-        "title": "Activists Face Elbit Trial",
-        "category": "politics",
-        "eventCoverage": 0,
-        "importance": 6
-      },
-      {
-        "slug": "2026-09-17-a-creditor-walked-out-a-debtor-petrosa-settlement",
-        "title": "PetroSA Faces R1.4bn Loss",
-        "category": "economy",
-        "eventCoverage": 0,
-        "importance": 6
-      },
-      {
-        "slug": "2026-09-17-a-cancelled-layout-strands-the-title-bahria-town-cda",
-        "title": "Regulator Cancels Bahria Town Plan",
-        "category": "economy",
-        "eventCoverage": 0,
-        "importance": 6
-      },
-      {
-        "slug": "2026-09-17-likely-is-the-strongest-honest-claim-nepal-glacier",
-        "title": "Warming Likely Triggered Glacier Collapse",
-        "category": "science",
-        "eventCoverage": 0,
-        "importance": 6
-      },
-      {
-        "slug": "2026-09-17-deleting-the-cockpit-from-a-certified-airframe-skycourier-ux",
-        "title": "Cessna Deletes SkyCourier Cockpit",
-        "category": "tech",
-        "eventCoverage": 0,
-        "importance": 6
-      }
-    ],
-    "selected": {
-      "slug": "2026-09-17-a-canal-changes-which-provinces-can-export-pinglu",
-      "title": "China Opens Pinglu Canal",
-      "category": "economy",
-      "body": "The Pinglu Canal cuts a 560km detour.",
-      "eventCoverage": 85,
-      "importance": 6
-    },
-    "skipReason": null,
-    "sent": true,
-    "pushTitle": "Breaking News",
-    "pushBody": "China opens Pinglu Canal, cuts Southeast Asia shipping route by 560km",
-    "response": {
-      "pushed": 1,
-      "skipped": 0,
-      "tokens": 8
-    }
-  },
-  {
     "timestamp": "2026-09-17T08:21:47.561Z",
     "candidateCount": 12,
     "candidates": [
@@ -10215,5 +10129,105 @@
     "selected": null,
     "skipReason": "all 12 candidates below coverage threshold 1",
     "sent": false
+  },
+  {
+    "timestamp": "2026-10-08T05:16:14.498Z",
+    "candidateCount": 11,
+    "candidates": [
+      {
+        "slug": "2026-10-08-maricarmen-whose-eviction-enraged-spaniards-dies-at-87",
+        "title": "Maricarmen Dies After Eviction",
+        "category": "politics",
+        "eventCoverage": 413,
+        "importance": 6
+      },
+      {
+        "slug": "2026-10-08-mamdani-slams-oct-7-attack-calls-gaza-war-ongoing-genocide",
+        "title": "Mamdani Statement Draws Fire",
+        "category": "politics",
+        "eventCoverage": 188,
+        "importance": 6
+      },
+      {
+        "slug": "2026-10-08-can-you-trust-chatgpt-for-teens-report-finds-unacceptable-ri",
+        "title": "Teen ChatGPT Fails Safety Tests",
+        "category": "tech",
+        "eventCoverage": 95,
+        "importance": 6
+      },
+      {
+        "slug": "2026-10-08-trump-planning-military-action-against-iran-before-us-midter",
+        "title": "Pentagon Drafts Iran Strike Options",
+        "category": "politics",
+        "eventCoverage": 58,
+        "importance": 6
+      },
+      {
+        "slug": "2026-10-08-come-all-the-way-back-to-eu-french-finance-minister-tells-br",
+        "title": "France Invites Britain Back",
+        "category": "politics",
+        "eventCoverage": 0,
+        "importance": 6
+      },
+      {
+        "slug": "2026-10-08-hormuz-traffic-hits-lowest-level-in-two-months-as-tanker-att",
+        "title": "Hormuz Traffic Hits Two-Month Low",
+        "category": "economy",
+        "eventCoverage": 0,
+        "importance": 6
+      },
+      {
+        "slug": "2026-10-08-gold-edges-higher-after-hitting-a-two-month-low",
+        "title": "Gold Slides Despite War",
+        "category": "economy",
+        "eventCoverage": 0,
+        "importance": 6
+      },
+      {
+        "slug": "2026-10-08-how-nigeria-s-population-commission-mismanaged-n245-billion",
+        "title": "Nigeria Audit Flags Census Spending",
+        "category": "economy",
+        "eventCoverage": 0,
+        "importance": 6
+      },
+      {
+        "slug": "2026-10-08-wheat-output-targets-delayed-till-finalisation-of-price",
+        "title": "Pakistan Delays Wheat Targets",
+        "category": "economy",
+        "eventCoverage": 0,
+        "importance": 6
+      },
+      {
+        "slug": "2026-10-07-us-posts-10-million-reward-for-accused-chinese-hafnium-hacke",
+        "title": "US Posts Hafnium Hacker Bounty",
+        "category": "tech",
+        "eventCoverage": 0,
+        "importance": 6
+      },
+      {
+        "slug": "2026-10-07-glaring-lack-of-investment-in-aircraft-shelters-highlighted",
+        "title": "B-1 Bombers Leave British Base",
+        "category": "tech",
+        "eventCoverage": 0,
+        "importance": 6
+      }
+    ],
+    "selected": {
+      "slug": "2026-10-08-trump-planning-military-action-against-iran-before-us-midter",
+      "title": "Pentagon Drafts Iran Strike Options",
+      "category": "politics",
+      "body": "Pentagon drafts [Iran](country:IR) strike options before 3 November, reports",
+      "eventCoverage": 58,
+      "importance": 6
+    },
+    "skipReason": null,
+    "sent": true,
+    "pushTitle": "Breaking News",
+    "pushBody": "Pentagon drafts Iran strike options before 3 November midterms, US media report",
+    "response": {
+      "pushed": 1,
+      "skipped": 0,
+      "tokens": 5
+    }
   }
 ]
