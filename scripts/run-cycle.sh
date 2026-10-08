@@ -59,6 +59,16 @@ mkdir -p "$LOG_DIR"
 TIMESTAMP=$(date +%Y-%m-%d_%H%M)
 LOG_FILE="$LOG_DIR/cycle-$TIMESTAMP.log"
 
+# The cycle's identity: the log's own stamp, when it began, and the commit it
+# began from. A cycle used to have no name its stages shared, only five
+# timestamps in five stores (the log, the feed snapshot, the commit, the RVS
+# record, .last-cycle.json), each a few minutes off the others. Exported, so
+# the record the exit trap writes can carry them and any stage can read them.
+ZUHD_RUN_ID="$TIMESTAMP"
+ZUHD_RUN_STARTED=$(date -u +%Y-%m-%dT%H:%M:%SZ)
+ZUHD_GIT_HEAD=$(git -C "$PROJECT_DIR" rev-parse HEAD 2>/dev/null || true)
+export ZUHD_RUN_ID ZUHD_RUN_STARTED ZUHD_GIT_HEAD
+
 # A cycle that ends without publishing writes content/.cycle-alert.json and a
 # loud ALERT line. On 2026-09-19 four cycles in a row died on an expired Claude
 # OAuth token — "Failed to authenticate", 0 articles, exit 1 — and nothing
@@ -161,6 +171,14 @@ cleanup() {
   echo "Finished: $(date) — total ${SECONDS}s" | tee -a "$LOG_FILE"
   on_cycle_exit "$exit_status"
   find "$LOG_DIR" -name "cycle-*.log" -mtime +7 -delete 2>/dev/null || true
+  # The cycle as a record: logs/runs/<id>/run.json and a line in
+  # logs/cycles.jsonl, read back out of the log this trap has just finished
+  # (scripts/cycle/record.js). Last, behind a timeout and `|| true`, and given
+  # only variables that are set by here or defaulted: under `set -u` an unset
+  # one ends an EXIT trap on the spot, and the alert above must never be what
+  # that costs. What it prints goes to the journal, not into the log it reads.
+  ZUHD_EXIT_STATUS="$exit_status" ZUHD_START_HOUR="${START_HOUR:-}" ZUHD_DAILY_HOUR="${DAILY_HOUR:-}" \
+    timeout 30 node "$SCRIPT_DIR/cycle/record.js" "$LOG_FILE" || true
 }
 trap cleanup EXIT
 
