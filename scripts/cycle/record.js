@@ -18,15 +18,16 @@ import { appendFileSync, existsSync, mkdirSync, readFileSync, readdirSync, renam
 import { join } from 'node:path'
 import { hasFlag } from '../lib/argv.js'
 import { cycleIdOf, parseCycleLog, runRecord } from '../lib/cycle-log.js'
+import { pathOf } from '../lib/datasets.js'
 import { writeJson } from '../lib/json-file.js'
 import { ROOT } from '../lib/paths.js'
 
-const LOGS_DIR = join(ROOT, 'logs')
-const RUNS_DIR = join(LOGS_DIR, 'runs')
-const SERIES = join(LOGS_DIR, 'cycles.jsonl')
+const LOGS_DIR = pathOf('cycleLogs')
+const RUNS_DIR = pathOf('cycleRuns')
+const SERIES = pathOf('cycleSeries')
 // The batch run-cycle.sh lists for the editor. Read only by the trap's call,
 // and only when it is this cycle's: the file outlives the cycle that wrote it.
-const NEW_ARTICLES = '/tmp/zuhd-new-articles.txt'
+const NEW_ARTICLES = pathOf('newArticles')
 
 /** @param {string} id */
 const runPath = (id) => join(RUNS_DIR, id, 'run.json')
