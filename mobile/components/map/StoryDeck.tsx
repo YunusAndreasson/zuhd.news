@@ -2,6 +2,7 @@ import {
   memo,
   type ReactNode,
   type Ref,
+  useCallback,
   useEffect,
   useImperativeHandle,
   useMemo,
@@ -67,21 +68,34 @@ import { deckTarget, rubberBand } from '../../lib/deck-swipe';
  * finger's velocity into the landing instead of starting from rest. A card
  * still settling can be caught by the next swipe exactly where it is.
  *
- * ## Why the index is committed on release, not when the spring lands
+ * ## A release is told twice: to the hand at the lift, to the screen at the landing
  *
- * Calling back to JS from an animation's completion callback aborted the app
- * once (worklets 0.10 `scheduleOnRN` from a `withTiming` callback), so the new
- * index is handed over the moment the finger lifts. That is safe here: the
- * slots are positioned by `progress`, not by index, and the window of mounted
- * cards around the new index still contains every card the spring is passing.
+ * `onRelease` runs as the finger lifts and is the hand's half: the haptic, the
+ * announcement, the camera. `onSettle` runs when the card is on its story and
+ * is where React is told. It used to be one call at the lift, and the commit
+ * it caused — the screen, the sheet, the dock, a recycled card's whole text —
+ * fell in the first frames of the spring: Reanimated holds its own frames back
+ * from a React commit until that commit has mounted, so the card stood still
+ * exactly where it moves fastest (`MapSheet` learnt the same on 2026-10-07).
+ * The slots are positioned by `progress`, not by index, and the three mounted
+ * around the story being left still hold every card the spring is passing.
+ *
+ * The landing is a reaction on the value, never the spring's completion
+ * callback: `scheduleOnRN` from one aborted the app once (worklets 0.10).
+ *
+ * **A finger that comes down before the card has landed tells the screen
+ * then.** A second quick flick heads for a story outside those three slots,
+ * and React has to hold the first before the second's card exists. From
+ * finger-down it has the claim's 16 pt of travel as a head start.
  *
  * ## Stepping without a finger
  *
  * The card's `next story` / `previous story` accessibility actions are
  * `step(±1)` on this deck's ref (the dock's `›` was too, until it went on
- * 2026-09-22), and a step lands exactly as a swipe released past halfway
- * would: the same `onDragStart` first, so the camera is handed over the same
- * way, the same spring, the same `onSettle`.
+ * 2026-09-22), and a step lands as a swipe released past halfway would: the
+ * same `onDragStart` first, so the camera is handed over the same way, and the
+ * same spring. It tells the screen at the tap, though, not at the landing: a
+ * screen reader's focus is on the card that is leaving.
  * It is not `focusStory` — a jump and a flight are for a story twenty cards
  * away, and the one beside the card should slide in. A second step before the
  * first has landed goes one further, not to the same story again.
@@ -143,7 +157,12 @@ interface StoryDeckProps {
   onClaim?: (direction: number) => void;
   /** A worklet, run as a swipe snaps back to the story it started on. */
   onRollback?: () => void;
-  /** The swipe ended on a different story. Must be a stable, named callback. */
+  /** A swipe was let go toward a different story. Runs at the lift and must
+   *  set no React state: a commit there holds the landing's first frames
+   *  back. Must be a stable, named callback. */
+  onRelease: (index: number) => void;
+  /** The card is on that story, or a finger came down before it was: where
+   *  the screen is told. Must be a stable, named callback. */
   onSettle: (index: number) => void;
   ref?: Ref<StoryDeckRef>;
 }
@@ -380,6 +399,7 @@ export const StoryDeck = memo(function StoryDeck({
   onDragStart,
   onClaim,
   onRollback,
+  onRelease,
   onSettle,
   ref,
 }: StoryDeckProps) {
@@ -394,19 +414,46 @@ export const StoryDeck = memo(function StoryDeck({
   /** The story last handed to `onSettle`, so a caught card is not re-committed. */
   const localCommitted = useSharedValue(index);
   const committed = committedPosition ?? localCommitted;
-  /** Where the last `step` sent the deck, so a second tap before React has
+  /** The story the screen holds or has been sent. `committed` leads it by a
+   *  landing: the gap is a swipe let go whose card is still on its way. */
+  const landed = useSharedValue(index);
+  /** Where the last swipe or `step` sent the deck, so a step before React has
    *  caught up goes one further. JS-side on purpose: reading `committed`
    *  from JS would wait on the UI thread. */
   const stepTarget = useRef(index);
   useEffect(() => {
     // A queued render must not undo a newer scrub or swipe. External jumps
-    // put progress at their index; swipe landings already committed on UI.
+    // put progress at their index. A landing the deck reported itself is
+    // committed already, and syncing it again could pull `committed` back
+    // under a swipe let go since.
     scheduleOnUI((next: number) => {
       'worklet';
-      if (progress.value === next) committed.value = next;
+      if (landed.value === next || progress.value !== next) return;
+      committed.value = next;
+      landed.value = next;
     }, index);
     stepTarget.current = index;
-  }, [committed, index, progress]);
+  }, [committed, index, landed, progress]);
+
+  const release = useCallback(
+    (target: number) => {
+      stepTarget.current = target;
+      onRelease(target);
+    },
+    [onRelease],
+  );
+
+  // The spring ends on its target exactly, so the test is equality, and a
+  // finger on the deck never sees it fire: `onBegin` has already sent
+  // whatever landing was owed.
+  useAnimatedReaction(
+    () => (progress.value === committed.value ? committed.value : -1),
+    (at) => {
+      if (at < 0 || at === landed.value) return;
+      landed.value = at;
+      scheduleOnRN(onSettle, at);
+    },
+  );
 
   useImperativeHandle(
     ref,
@@ -421,10 +468,12 @@ export const StoryDeck = memo(function StoryDeck({
         // swipe keeps its spring (`KEEP_MOTION`) because it continues a hand.
         progress.value = withSpring(target, ANIMATION.springSettle);
         committed.value = target;
+        landed.value = target;
+        onRelease(target);
         onSettle(target);
       },
     }),
-    [committed, count, onDragStart, onSettle, progress],
+    [committed, count, landed, onDragStart, onRelease, onSettle, progress],
   );
 
   // The builder's return type, not the `useMemo`'s type argument: only the
@@ -434,6 +483,12 @@ export const StoryDeck = memo(function StoryDeck({
     (): PanGestureConfig => ({
       activeOffsetX: [-CLAIM_X, CLAIM_X],
       failOffsetY: [-12, 12],
+      onBegin: () => {
+        'worklet';
+        if (landed.value === committed.value) return;
+        landed.value = committed.value;
+        scheduleOnRN(onSettle, committed.value);
+      },
       onActivate: (e) => {
         'worklet';
         // Catch a card that is still landing where it is, not where it was going.
@@ -478,13 +533,26 @@ export const StoryDeck = memo(function StoryDeck({
         });
         if (target !== committed.value) {
           committed.value = target;
-          scheduleOnRN(onSettle, target);
+          scheduleOnRN(release, target);
         } else if (onRollback) {
           onRollback();
         }
       },
     }),
-    [committed, count, onClaim, onDragStart, onRollback, onSettle, pitch, progress, start, startX],
+    [
+      committed,
+      count,
+      landed,
+      onClaim,
+      onDragStart,
+      onRollback,
+      onSettle,
+      pitch,
+      progress,
+      release,
+      start,
+      startX,
+    ],
   );
   const pan = usePanGesture(panConfig);
 

@@ -36,7 +36,7 @@ function getEntering(pos: ToastPosition) {
 
 function getExiting(pos: ToastPosition) {
   const base = pos === 'top' ? FadeOutUp : FadeOutDown;
-  return base.duration(ANIMATION.normal).easing(EASING.in);
+  return base.duration(ANIMATION.normal).easing(EASING.out);
 }
 
 export const Toast = memo(function Toast({

@@ -581,6 +581,9 @@ export const STALE_THRESHOLD = 5 * 60 * 1000; // 5 minutes
  * Spread `KEEP_MOTION` into those, and only those.
  */
 export const ANIMATION = {
+  /** A press coming down under a finger: shorter than `fast`, because the
+   *  answer has to be there before a quick tap has lifted. */
+  press: 120,
   fast: 150,
   normal: 250,
   slow: 400,
@@ -591,19 +594,28 @@ export const ANIMATION = {
   springSoft: { damping: 20, stiffness: 300, mass: 1 },
   /** A scrub tooltip popping up under the finger: a little overshoot says "here". */
   springPop: { damping: 8, stiffness: 260, mass: 0.7 },
-  /** Release of a press: underdamped, so a tap pops back rather than snapping. */
-  springPress: { damping: 10, stiffness: 280, mass: 0.6 },
-  /** The story sheet and the story deck landing on a stop: critically damped,
-   *  so neither the sheet nor the globe that follows the deck ever rebounds past it. */
-  springSettle: { duration: 350, dampingRatio: 1, overshootClamping: true },
+  /** The story deck landing on a story: critically damped, so the globe that
+   *  follows the deck never rebounds past it. The curve is a 350 ms spring's
+   *  (`DECK_CURVE_MS`), ended where the card is within half a point of its
+   *  stop: ~380 ms, where the whole curve ran to ~530 ms and spent the last
+   *  150 moving the card, the playhead and the globe by less than a point.
+   *  Reanimated solves the stiffness from `duration` and `energyThreshold`
+   *  together, so the two are one setting: change either alone and the curve
+   *  changes (the arithmetic and its check: `__tests__/motion-tokens.test.ts`). */
+  springSettle: {
+    duration: 254,
+    dampingRatio: 1,
+    energyThreshold: 2.9e-6,
+    overshootClamping: true,
+  },
   /** The story sheet landing on peek or full: a hair under critical, so it
    *  reaches its stop and `overshootClamping` ends it there, at ~45 pt/s —
    *  ~280 ms, where critical damping crawled its last points to ~530 ms. The
    *  crawl read as the sheet hesitating before it landed, and the veil, which
    *  waits for the spring to end, appeared after it (2026-10-03, the user on
    *  an iPhone Pro; timings from Reanimated's own spring math). Not the
-   *  deck's: `DECK_SETTLE_MS` and the camera's hand-off are measured on
-   *  `springSettle`. */
+   *  deck's: the camera rides the deck's spring, and a stop at 45 pt/s is a
+   *  stop the earth would make too. */
   springSheet: { duration: 350, dampingRatio: 0.9, overshootClamping: true },
   /** How long zoom takes to hand back to the story's framing after a pinch. */
   zoomRelease: 260,
@@ -618,8 +630,14 @@ export const KEEP_MOTION = { reduceMotion: ReduceMotion.Never } as const;
 
 /** Reusable Reanimated easing curves. Compose with ANIMATION durations in withTiming. */
 export const EASING = {
-  in: Easing.in(Easing.ease),
-  out: Easing.out(Easing.ease),
+  /**
+   * What arrives, what leaves and what answers a press: most of the move in
+   * its first third, then a long settle. The built-in `out(ease)` this
+   * replaced starts so gently that a 150 ms change read as a delay and then a
+   * jump. There is no ease-in: it spends its first frames barely moving, and
+   * those are the frames the eye is on, so an exit eases out too.
+   */
+  out: Easing.bezier(0.23, 1, 0.32, 1),
   inOut: Easing.inOut(Easing.ease),
   /**
    * Every camera move — a flight, a zoom handed back — so the globe has one
@@ -650,7 +668,7 @@ export const OPACITY = {
   muted: 0.28,
 } as const;
 
-/** Interactive transform scale — applied on Pressable press via PRESSED_STYLE. */
+/** Interactive transform scale — animated by `usePressScale`, static in PRESSED_STYLE. */
 export const PRESS_SCALE = 0.97;
 
 export function staggerDelay(index: number): number {

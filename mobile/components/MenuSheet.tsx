@@ -353,7 +353,10 @@ export const MenuSheet = memo(function MenuSheet({
   // The pages stay when the menu closes; `rootKey` decides where it opens.
   const handleDismiss = onDismiss;
 
-  const swipeBack = useSheetBackNavigation({ canGoBack: nav.depth > 0, onBack: navPop });
+  const { gesture: swipeBack, drag: backDrag } = useSheetBackNavigation({
+    canGoBack: nav.depth > 0,
+    onBack: navPop,
+  });
 
   // The size picker sets each size in itself — the size the whole app will
   // take, whatever size it is at now.
@@ -576,7 +579,7 @@ export const MenuSheet = memo(function MenuSheet({
       // One height for every page, so only the page moves between them.
       fill
     >
-      <SheetPager pageKey={nav.current ?? 'root'} move={nav.move}>
+      <SheetPager pageKey={nav.current ?? 'root'} move={nav.move} drag={backDrag}>
         {/* Back reveals the same menu, including its scroll position. Rebuilding
             these rows also rebuilt every press animation on each return. */}
         <RetainedListPage hidden={nav.current !== null}>

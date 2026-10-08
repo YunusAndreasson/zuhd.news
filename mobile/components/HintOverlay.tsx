@@ -64,7 +64,7 @@ export const HintOverlay = memo(function HintOverlay({
   const entering = FadeInUp.duration(ANIMATION.normal)
     .easing(EASING.out)
     .withInitialValues({ translateY: HINT_SLIDE_OFFSET });
-  const exiting = FadeOutDown.duration(ANIMATION.normal).easing(EASING.in);
+  const exiting = FadeOutDown.duration(ANIMATION.normal).easing(EASING.out);
 
   return (
     <View

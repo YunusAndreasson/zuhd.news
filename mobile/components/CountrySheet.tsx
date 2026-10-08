@@ -430,7 +430,10 @@ export const CountrySheet = memo(function CountrySheet({
 
   // A left-edge swipe pops the ranking sub-page. Shared with MenuSheet so
   // every multi-page sheet goes back identically (DESIGN §Sheets).
-  const swipeBack = useSheetBackNavigation({ canGoBack: hasBack, onBack: pop });
+  const { gesture: swipeBack, drag: backDrag } = useSheetBackNavigation({
+    canGoBack: hasBack,
+    onBack: pop,
+  });
 
   return (
     <SheetLayout
@@ -441,7 +444,7 @@ export const CountrySheet = memo(function CountrySheet({
       // One height for both pages, so only the page moves between them.
       fill
     >
-      <SheetPager pageKey={activeRanking ?? 'country'} move={nav.move}>
+      <SheetPager pageKey={activeRanking ?? 'country'} move={nav.move} drag={backDrag}>
         {activeRanking ? (
           <GestureDetector gesture={swipeBack}>
             <View style={styles.page}>

@@ -78,7 +78,13 @@ paths:
 - The deck and the sheet never share a drag. The deck claims at 16pt
   horizontal and fails at 12pt vertical; the sheet claims at 8pt vertical and
   fails at 24pt horizontal. Neither is `simultaneousWith` the other.
-- Commit the new index when the finger lifts, not in the spring's callback.
+- The screen learns of a new story when its card lands (`StoryDeck`'s landing
+  reaction, `onSettle`), or as a finger comes down before it has. The haptic,
+  the announcement and the camera stay at the lift (`onRelease`), which sets
+  no React state. Never from the spring's callback: `scheduleOnRN` there aborts.
+- Whatever jumps the deck from JS writes `storyCommitted` beside
+  `storyProgress`: with a swipe still landing, React can already hold the
+  story jumped to, and the deck's own sync would not run.
 - The screen learns of a new sheet stop when the sheet lands on it (`MapSheet`'s
   landing reaction), not as the finger lets go: a React commit holds
   Reanimated's frames back until it has mounted.
@@ -87,8 +93,9 @@ paths:
 - The deck recycles three slots keyed by slot (`lib/deck-slots.ts`), not by
   slug. Only the card in front takes `open`.
 - A swipe lands where the card would come to rest (`lib/deck-swipe.ts`), capped
-  at one story from the committed story. A swipe is never a tap: the card's
-  open targets use `useTapOnly`.
+  at one story from the committed story. A released sheet takes the stop
+  nearer where it would rest (`sheetStop`), not a speed bar. A swipe is never
+  a tap: the card's open targets use `useTapOnly`.
 - Android's back puts a grown story down before it leaves the app.
 - Opening a story lifts the globe with a view translate (`globeLiftStyle`). A
   touch on the globe above an open story collapses it.

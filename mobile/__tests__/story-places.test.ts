@@ -1,6 +1,12 @@
 import type { StoryRow } from '../lib/map-feed';
 import type { RiverArticle } from '../lib/news-order';
-import { buildStoryPlaces, foundProgress, topUnfound, unfoundSlugs } from '../lib/story-places';
+import {
+  buildStoryPlaces,
+  completesFound,
+  foundProgress,
+  topUnfound,
+  unfoundSlugs,
+} from '../lib/story-places';
 
 function row(
   slug: string,
@@ -100,5 +106,15 @@ describe('found helpers', () => {
   it('counts only stories that can be found on the globe', () => {
     const rows = [row('a', [1, 1]), row('b', [2, 2]), row('c', null)];
     expect(foundProgress(rows, new Set(['a', 'c']))).toEqual({ found: 1, total: 2 });
+  });
+
+  it('knows the last light before the store is told of it', () => {
+    const rows = [row('a', [1, 1]), row('b', [2, 2]), row('c', null)];
+    // What `foundProgress` will say once the find is written.
+    expect(completesFound(rows, new Set(['a']), 'b')).toBe(true);
+    expect(completesFound(rows, new Set(), 'b')).toBe(false);
+    // A story found already completes nothing a second time.
+    expect(completesFound(rows, new Set(['a', 'b']), 'b')).toBe(false);
+    expect(completesFound([row('c', null)], new Set(), 'c')).toBe(false);
   });
 });

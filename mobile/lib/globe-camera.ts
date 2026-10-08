@@ -243,12 +243,19 @@ export function viewAngleFor(scale: number, reach: number): number {
 /** A flight between neighbours, and one to the far side of the planet. */
 export const FLIGHT_MIN_MS = 450;
 export const FLIGHT_MAX_MS = 1000;
+/** The perceived length of the curve the deck's landing spring draws. */
+export const DECK_CURVE_MS = 350;
+
 /**
- * How long the deck's landing spring really takes to settle.
+ * How long that curve takes to settle, run to its end.
  *
  * Reanimated's `duration` is *perceptual*: `withSpring` documents the actual
- * settling as 1.5× it, so `ANIMATION.springSettle`'s 350 ms is about 525 ms of
- * travel. `__tests__/motion-tokens.test.ts` holds the two together.
+ * settling as 1.5× it, so 350 ms is about 525 ms of travel.
+ * `ANIMATION.springSettle` draws this curve and ends it early, once the card
+ * has arrived; this is still the whole of it, because it is a bar and not a
+ * timer: every flight runs 450 ms or more (`FLIGHT_MIN_MS`), so a bar at the
+ * spring's shortened end would send every crossing off on its own.
+ * `__tests__/motion-tokens.test.ts` holds the three together.
  *
  * It is the bar a landed swipe is measured against. The spring carried the
  * camera whatever the distance, so a quarter of the planet crossed in the same
@@ -264,7 +271,7 @@ export const FLIGHT_MAX_MS = 1000;
  * one arc could not, because the same distance flies at different speeds from
  * an 18° framing and a 24° one.
  */
-export const DECK_SETTLE_MS = Math.round(350 * 1.5);
+export const DECK_SETTLE_MS = Math.round(DECK_CURVE_MS * 1.5);
 
 /** The most a camera move zooms out on its way between two places, as a factor
  *  of the wider of the two framings. Never past the whole planet. */
@@ -443,7 +450,7 @@ export function flyMs(c: FlyCurve): number {
  * Whether a crossing flies rather than rides the card: its own flight outlasts
  * the deck's landing spring (`DECK_SETTLE_MS`). One rule for a swipe's claim
  * (`ridesFinger`, decided once per river so the pan can read it on the UI
- * thread) and for its landing (`handleDeckSettle`), which made it twice.
+ * thread) and for its release (`handleDeckRelease`), which made it twice.
  */
 export function crossingFlies(fromClip: number, toClip: number, travelDeg: number): boolean {
   return flyMs(flyCurve(fromClip, toClip, travelDeg)) > DECK_SETTLE_MS;

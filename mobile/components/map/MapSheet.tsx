@@ -25,6 +25,7 @@ import Animated, {
 import { scheduleOnRN } from 'react-native-worklets';
 import { ANIMATION, KEEP_MOTION, LAYOUT, RADIUS, SPACING } from '../../constants/theme';
 import { useTheme } from '../../hooks/useTheme';
+import { sheetStop } from '../../lib/deck-swipe';
 import { hapticTick } from '../../lib/haptics';
 
 /**
@@ -114,10 +115,6 @@ interface MapSheetProps {
   onPullDown?: () => void;
   ref?: React.Ref<MapSheetRef>;
 }
-
-/** A flick this fast decides the detent regardless of where the finger got to
- *  — the gesture was a throw, not a placement. */
-const FLICK_VELOCITY = 550;
 
 /** How far a drag must travel before the pan claims it, so a tap on a row
  *  does not nudge the sheet. */
@@ -356,10 +353,9 @@ export function MapSheet({
         }
         pull.value = 0;
         const v = e.velocityY;
-        // A throw decides on its own; otherwise the nearer stop wins.
-        const expand =
-          v < -FLICK_VELOCITY ? true : v > FLICK_VELOCITY ? false : offset.value < travel / 2;
-        animateTo(expand ? 0 : travel, v, expand ? 'full' : 'peek');
+        // The stop nearer where the sheet was heading, not where it was let go.
+        const stop = sheetStop(offset.value, v, travel);
+        animateTo(stop, v, stop === 0 ? 'full' : 'peek');
       },
       onFinalize: () => {
         'worklet';

@@ -61,7 +61,7 @@ one exception.
 | `Stack` | Flex layout with a `gap` |
 | `Box` | Background, radius, hairline (`rule`) |
 | `Screen` | Screen scaffold |
-| `Pressable` | Spring press, no haptic; `tapSlop` where swipes start |
+| `Pressable` | A short press scale, no fade, no haptic; `tapSlop` where swipes start |
 | `IconButton` | Icon-only button with `HIT_SLOP` |
 | `Icon` | One icon API for both platforms |
 | `Markdown` | Inline bold, italic and links (`openLink`) |
@@ -106,6 +106,7 @@ a primitive at the third caller.
 - Pages are a stack (`useSheetNavigation`). Back is wired three ways:
   `SheetHandle`'s `onBack`, the swipe (`useSheetBackNavigation`), and
   `onBackPress` on `SheetLayout`, since an Android dialog takes Back first.
+  The swipe moves the page with the finger: pass its `drag` to `SheetPager`.
 - A platform sheet animates its own rise and nothing inside it. A sheet of
   pages passes `fill` and wraps them in `SheetPager`: one height for every
   page, and the page moves, not the sheet. The handle's title arrives with it

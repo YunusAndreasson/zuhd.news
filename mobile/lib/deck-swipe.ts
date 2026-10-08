@@ -10,7 +10,7 @@
  *
  * Positions and velocities are in stories — `2.4` is a finger partway from the
  * third story to the fourth — because that is the unit the globe's camera
- * reads.
+ * reads. The sheet's release (`sheetStop`) is the same projection in points.
  */
 
 /**
@@ -62,4 +62,29 @@ export function deckTarget(
   if (target < origin - 1) target = origin - 1;
   if (target < 0) return 0;
   return target > count ? count : target;
+}
+
+/**
+ * Where a released sheet lands: the stop nearer the point it would come to
+ * rest at. It used to ask the two questions the deck stopped asking — faster
+ * than 550 pt/s, else the nearer stop — so speed under the bar counted for
+ * nothing, and a lazy open let go at 40% and still rising fell back shut.
+ *
+ * `offset` is how far the sheet is pushed down from open (0 open, `travel` at
+ * peek), and `velocity` is the finger's, in the same points.
+ */
+export function sheetStop(offset: number, velocity: number, travel: number): number {
+  'worklet';
+  return offset + projectedTravel(velocity) < travel / 2 ? 0 : travel;
+}
+
+/**
+ * Whether a page dragged `drag` points toward the one before it, and let go at
+ * `velocity`, goes back: it would come to rest past `distance`. So a flick
+ * goes back from a short drag, and a page let go while the finger is bringing
+ * it home stays, however far out it had been.
+ */
+export function swipeBackCommits(drag: number, velocity: number, distance: number): boolean {
+  'worklet';
+  return drag + projectedTravel(velocity) > distance;
 }

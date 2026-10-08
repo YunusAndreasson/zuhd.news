@@ -143,3 +143,24 @@ export function foundProgress(
   }
   return { found: count, total };
 }
+
+/**
+ * Whether finding `slug` now would leave every placed story found: what
+ * `foundProgress` would say once the store held it, asked before the store is
+ * written. For a caller that must answer at once and write later — a swipe's
+ * haptic belongs to the lift, its find to the landing.
+ */
+export function completesFound(
+  rows: readonly StoryRow[],
+  found: ReadonlySet<string>,
+  slug: string,
+): boolean {
+  if (found.has(slug)) return false;
+  let total = 0;
+  for (const row of rows) {
+    if (!row.coords) continue;
+    total += 1;
+    if (row.slug !== slug && !found.has(row.slug)) return false;
+  }
+  return total > 0;
+}
