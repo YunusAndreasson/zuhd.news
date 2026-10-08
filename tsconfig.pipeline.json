@@ -43,6 +43,7 @@
     "scripts/lib/frozen-clock.js",
     "scripts/lib/frontmatter.js",
     "scripts/lib/json-file.js",
+    "scripts/lib/last-cycle.js",
     "scripts/lib/ledger.js",
     "scripts/lib/merge-feeds.js",
     "scripts/lib/paths.js",
@@ -51,6 +52,7 @@
     "scripts/lib/stage.js",
     "scripts/lib/utils.js",
     "scripts/merge-feeds.js",
+    "scripts/write-last-cycle.js",
     "types/**/*.d.ts"
   ],
   "exclude": ["node_modules"]

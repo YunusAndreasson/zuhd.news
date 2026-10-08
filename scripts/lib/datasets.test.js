@@ -108,7 +108,6 @@ const STILL_SPELLING = [
   'scripts/trending-gaps.js',
   'scripts/validate-articles.js',
   'scripts/watch.js',
-  'scripts/write-last-cycle.js',
 ]
 
 test('no new file spells a state path, and a converted one leaves the list', () => {
