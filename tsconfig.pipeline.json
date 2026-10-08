@@ -27,6 +27,7 @@
   },
   "include": [
     "scripts/cycle/record.js",
+    "scripts/cycle/replay-stage.js",
     "scripts/lib/argv.js",
     "scripts/lib/article.js",
     "scripts/lib/blocks.js",
@@ -35,10 +36,12 @@
     "scripts/lib/cycle-scenarios.js",
     "scripts/lib/cycle-stub.js",
     "scripts/lib/datasets.js",
+    "scripts/lib/frozen-clock.js",
     "scripts/lib/frontmatter.js",
     "scripts/lib/json-file.js",
     "scripts/lib/paths.js",
     "scripts/lib/schema.js",
+    "scripts/lib/stage-replay.js",
     "scripts/lib/stage.js",
     "types/**/*.d.ts"
   ],
