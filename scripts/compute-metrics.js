@@ -5,6 +5,7 @@
 
 import { readFileSync, readdirSync, existsSync } from 'node:fs'
 import { join, basename } from 'node:path'
+import { parseCycleLog } from './lib/cycle-log.js'
 import { recapMatch, titleWords } from './lib/dedup.js'
 import { parseFrontmatter } from './lib/frontmatter.js'
 import { soleClassifiedSource } from './lib/outlet-class.js'
@@ -191,34 +192,25 @@ function parseLogs(datePrefix) {
     .filter(f => f.startsWith(`cycle-${datePrefix}`) && f.endsWith('.log'))
     .sort()
     .map(f => {
-      const content = readFileSync(join(LOGS_DIR, f), 'utf-8')
-      // Timing
-      const totalMatch = content.match(/total (\d+)s/)
-      const feedMatch = content.match(/Merged feed:.*— (\d+)s/)
-      const selectorMatch = content.match(/Selector exit: \d+ — (\d+)s/)
-      const writerMatch = content.match(/Writer exit: \d+ — (\d+)s/)
-      const editorMatch = content.match(/Editor exit: \d+ — (\d+)s/)
-      // Pipeline counts
-      const selectedMatch = content.match(/Selection contains (\d+) stories/)
-      const dedupMatch = content.match(/Deduped selection: (\d+) → (\d+)/)
-      const deployMatch = content.match(/Deploy exit: (\d+)/)
-      // Funnel (bottom of log)
-      const funnelWritten = content.match(/Written:\s+(\d+)/)
-      const funnelPublished = content.match(/Published:\s+(\d+)/)
+      // Read by lib/cycle-log.js. A stage's first attempt, as before; and the
+      // log of the cycle this runs inside has no funnel yet, so its counts are
+      // null, also as before.
+      const log = parseCycleLog(readFileSync(join(LOGS_DIR, f), 'utf-8'))
+      const first = id => log.stages.find(s => s.id === id)?.attempts[0] ?? null
 
       return {
         file: f,
-        totalSeconds: totalMatch ? parseInt(totalMatch[1], 10) : null,
-        feedSeconds: feedMatch ? parseInt(feedMatch[1], 10) : null,
-        selectorSeconds: selectorMatch ? parseInt(selectorMatch[1], 10) : null,
-        writerSeconds: writerMatch ? parseInt(writerMatch[1], 10) : null,
-        editorSeconds: editorMatch ? parseInt(editorMatch[1], 10) : null,
-        selected: selectedMatch ? +selectedMatch[1] : null,
-        dedupBefore: dedupMatch ? +dedupMatch[1] : null,
-        dedupAfter: dedupMatch ? +dedupMatch[2] : null,
-        written: funnelWritten ? +funnelWritten[1] : null,
-        published: funnelPublished ? +funnelPublished[1] : null,
-        deploySuccess: deployMatch ? deployMatch[1] === '0' : null,
+        totalSeconds: log.totalSeconds,
+        feedSeconds: log.feed.seconds,
+        selectorSeconds: first('selector')?.seconds ?? null,
+        writerSeconds: first('writer')?.seconds ?? null,
+        editorSeconds: first('editor')?.seconds ?? null,
+        selected: log.selection.count,
+        dedupBefore: log.selection.dedupBefore,
+        dedupAfter: log.selection.dedupAfter,
+        written: log.funnel?.written ?? null,
+        published: log.funnel?.published ?? null,
+        deploySuccess: first('deploy') ? first('deploy').exit === 0 : null,
       }
     })
 }

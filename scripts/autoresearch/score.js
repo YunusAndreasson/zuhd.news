@@ -11,6 +11,7 @@
 import { existsSync, readFileSync } from 'node:fs'
 import { join, basename } from 'node:path'
 import { claudeArgs, runClaudeSync } from '../lib/claude-envelope.js'
+import { parseCycleLog } from '../lib/cycle-log.js'
 import { CATEGORY_FLOORS, FLOORS_MAY_GO_UNMET } from '../lib/dedup.js'
 import { REGION_CODES, regionFromCoords } from '../lib/regions.js'
 import { MODELS, REPO_ROOT } from './replay-utils.js'
@@ -466,9 +467,7 @@ function computeReplayDrift(cycleId, replayCount) {
   const logPath = join(REPO_ROOT, logName)
   let actualCount = null
   try {
-    const log = readFileSync(logPath, 'utf-8')
-    const pub = log.match(/^Published:\s+(\d+)/m)
-    if (pub) actualCount = parseInt(pub[1], 10)
+    actualCount = parseCycleLog(readFileSync(logPath, 'utf-8')).funnel?.published ?? null
   } catch {
     return { available: false, reason: 'log not found', logPath: logName }
   }
