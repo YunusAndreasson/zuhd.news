@@ -4,6 +4,7 @@ import { readFileSync, existsSync } from 'node:fs'
 import { join } from 'node:path'
 import { parseFrontmatter } from './frontmatter.js'
 import { articleFilesSince } from './article-files.js'
+import { pathOf } from './datasets.js'
 import { readJson } from './json-file.js'
 
 // Must mirror the category-floor lines in select-prompt.md (tech raised 2→3 by
@@ -27,8 +28,8 @@ export function isThin(story) {
   return !(story.sources || []).some(src => (src?.body || '').length >= THIN_BODY)
 }
 
-const ARTICLES_DIR = 'content/articles'
-const LEDGER_PATH = 'content/.story-ledger.json'
+const ARTICLES_DIR = pathOf('articles')
+const LEDGER_PATH = pathOf('storyLedger')
 
 // Niche RSS sources — must mirror SOURCES in scripts/fetch-news.js.
 // A story whose every source is in this set is treated as niche-only and
