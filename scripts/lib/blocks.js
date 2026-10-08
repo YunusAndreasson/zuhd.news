@@ -2,6 +2,7 @@
 // (one `<p>` on web, one `<Text>` element on mobile — each separated by a
 // vertical gap). Block boundaries are markdown paragraph breaks: a blank
 // line between prose runs, which the writer declares explicitly.
+/** @param {string} text */
 export function splitBlocks(text) {
   return text.trim().split(/\n\s*\n/).map(s => s.trim()).filter(Boolean)
 }

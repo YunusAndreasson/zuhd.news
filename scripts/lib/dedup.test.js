@@ -6,6 +6,7 @@
 // niche outlets reword headlines and slug truncation drops endings.
 import { test } from 'node:test'
 import { strict as assert } from 'node:assert'
+import { readFileSync } from 'node:fs'
 import {
   normalizeUrl,
   titleWords,
@@ -143,6 +144,19 @@ test('NICHE_SOURCES list is non-empty and matches RSS source names', () => {
   assert.ok(!NICHE_SOURCES.has('Reuters'))
   assert.ok(!NICHE_SOURCES.has('BBC'))
   assert.ok(!NICHE_SOURCES.has('Al Jazeera'))
+})
+
+// `NICHE_SOURCES` says it "must mirror SOURCES in scripts/fetch-news.js", and
+// the comment was the only thing holding it there. A feed added to one and not
+// the other is a source whose recaps are never checked, or a wire treated as
+// niche. Hacker News is fetched through Algolia, not from the list.
+test('NICHE_SOURCES is exactly the RSS feeds fetch-news.js polls, plus Hacker News', () => {
+  const src = readFileSync(new URL('../fetch-news.js', import.meta.url), 'utf8')
+  const start = src.indexOf('const SOURCES = [')
+  const block = src.slice(start, src.indexOf('\n]', start))
+  const polled = [...block.matchAll(/name: '([^']+)'/g)].map((m) => m[1])
+  assert.ok(polled.length >= 20, 'fetch-news.js no longer declares SOURCES the way this reads it')
+  assert.deepEqual([...NICHE_SOURCES].sort(), [...polled, 'Hacker News'].sort())
 })
 
 // --- regression guard: existing slug-fuzzy behavior unchanged ---
