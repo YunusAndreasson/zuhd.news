@@ -33,87 +33,85 @@
 // that the writer knows the date, so `asOf` travels with every level and the
 // prompt requires it be stated.
 
-import { readFileSync, existsSync } from 'node:fs'
-import { join } from 'node:path'
+import { existsSync, readFileSync } from 'node:fs'
 import { argAt, hasFlag } from './lib/argv.js'
+import { pathOf } from './lib/datasets.js'
 import { offerFor } from './lib/indicator-offer.js'
-import { ROOT } from './lib/paths.js'
 import { readJson, writeJson } from './lib/json-file.js'
+import { runStage } from './lib/stage.js'
 import { latestTrendsPath } from './lib/trends-snapshot.js'
 
-const SELECTION = argAt('selection', '/tmp/zuhd-selection.json')
-const DRY_RUN = hasFlag('dry-run')
-
-if (!existsSync(SELECTION)) {
-  console.log('No selection file — skipping indicator attach.')
-  process.exit(0)
+/** Say why nothing was attached, in the line the cycle's log has always carried, and stop. */
+const skip = (why) => {
+  console.log(`${why} — skipping indicator attach.`)
+  return { skipped: why }
 }
 
-const path = latestTrendsPath()
-if (!path) {
-  console.log('No trends snapshot — skipping indicator attach.')
-  process.exit(0)
-}
-const trends = readJson(path)
-if (!trends) {
-  console.log(`Trends snapshot unreadable (${path}) — skipping indicator attach.`)
-  process.exit(0)
-}
-const sources = {
-  trends,
-  chokepoints: readJson(join(ROOT, 'content', '.chokepoints.json'))?.chokepoints || [],
-  markets: readJson(join(ROOT, 'content', '.markets.json'))?.exchanges || [],
-  dispatch: readJson(join(ROOT, 'content', '.indicator-dispatch.json'))?.items || {},
-}
+export function main() {
+  const SELECTION = argAt('selection', pathOf('selection'))
+  const DRY_RUN = hasFlag('dry-run')
 
-let selection
-try {
-  selection = JSON.parse(readFileSync(SELECTION, 'utf8'))
-} catch (err) {
-  console.log(`Selection unreadable (${err.message}) — skipping indicator attach.`)
-  process.exit(0)
-}
-if (!Array.isArray(selection)) {
-  console.log('Selection is not an array — skipping indicator attach.')
-  process.exit(0)
-}
+  if (!existsSync(SELECTION)) return skip('No selection file')
 
-const kinds = { series: 0, strait: 0, odds: 0, exchange: 0 }
-let attached = 0
-let chartable = 0
-let stale = 0
-let stories = 0
-let dated = 0
-
-for (const story of selection) {
-  if (!story || typeof story !== 'object') continue
-  const offer = offerFor(story, sources)
-  stale += offer.stale
-  // Written even when empty, so a rerun over a selection that already carries
-  // an offer replaces it rather than leaving the last run's behind.
-  story.indicators = offer.indicators
-  story.calendar = offer.calendar
-  if (!story.indicators.length) delete story.indicators
-  if (!story.calendar.length) delete story.calendar
-  dated += offer.calendar.length
-  if (offer.indicators.length) stories++
-  for (const row of offer.indicators) {
-    attached++
-    kinds[row.kind]++
-    if (row.chart) chartable++
+  const path = latestTrendsPath()
+  if (!path) return skip('No trends snapshot')
+  const trends = readJson(path)
+  if (!trends) return skip(`Trends snapshot unreadable (${path})`)
+  const sources = {
+    trends,
+    chokepoints: readJson(pathOf('chokepoints'))?.chokepoints || [],
+    markets: readJson(pathOf('markets'))?.exchanges || [],
+    dispatch: readJson(pathOf('indicatorDispatch'))?.items || {},
   }
-  if (DRY_RUN && (offer.indicators.length || offer.calendar.length)) {
-    console.log(`\n${story.title}`)
+
+  let selection
+  try {
+    selection = JSON.parse(readFileSync(SELECTION, 'utf8'))
+  } catch (err) {
+    return skip(`Selection unreadable (${err.message})`)
+  }
+  if (!Array.isArray(selection)) return skip('Selection is not an array')
+
+  const kinds = { series: 0, strait: 0, odds: 0, exchange: 0 }
+  let attached = 0
+  let chartable = 0
+  let stale = 0
+  let stories = 0
+  let dated = 0
+
+  for (const story of selection) {
+    if (!story || typeof story !== 'object') continue
+    const offer = offerFor(story, sources)
+    stale += offer.stale
+    // Written even when empty, so a rerun over a selection that already carries
+    // an offer replaces it rather than leaving the last run's behind.
+    story.indicators = offer.indicators
+    story.calendar = offer.calendar
+    if (!story.indicators.length) delete story.indicators
+    if (!story.calendar.length) delete story.calendar
+    dated += offer.calendar.length
+    if (offer.indicators.length) stories++
     for (const row of offer.indicators) {
-      console.log(`  ${row.chart ? '▣' : '·'} ${row.kind.padEnd(8)} ${row.id.padEnd(40)} ${row.level} ${row.unit}${row.normal != null ? ` (normal ${row.normal})` : ''}  as of ${row.asOf}`)
+      attached++
+      kinds[row.kind]++
+      if (row.chart) chartable++
     }
-    for (const e of offer.calendar) console.log(`  ◷ ${e.date} ${e.title}`)
+    if (DRY_RUN && (offer.indicators.length || offer.calendar.length)) {
+      console.log(`\n${story.title}`)
+      for (const row of offer.indicators) {
+        console.log(`  ${row.chart ? '▣' : '·'} ${row.kind.padEnd(8)} ${row.id.padEnd(40)} ${row.level} ${row.unit}${row.normal != null ? ` (normal ${row.normal})` : ''}  as of ${row.asOf}`)
+      }
+      for (const e of offer.calendar) console.log(`  ◷ ${e.date} ${e.title}`)
+    }
   }
+
+  if (!DRY_RUN) writeJson(SELECTION, selection)
+  console.log(
+    `Indicators: ${attached} across ${stories}/${selection.length} stories ` +
+      `(series ${kinds.series}, strait ${kinds.strait}, odds ${kinds.odds}, exchange ${kinds.exchange}; chartable ${chartable}), ` +
+      `calendar ${dated}, ${stale} dropped as stale (snapshot ${trends.asOf || 'undated'})${DRY_RUN ? ' — dry run, nothing written' : ''}`,
+  )
+  return { counts: { ...kinds, attached, stories, picked: selection.length, chartable, calendar: dated, stale } }
 }
 
-if (!DRY_RUN) writeJson(SELECTION, selection)
-console.log(
-  `Indicators: ${attached} across ${stories}/${selection.length} stories ` +
-    `(series ${kinds.series}, strait ${kinds.strait}, odds ${kinds.odds}, exchange ${kinds.exchange}; chartable ${chartable}), ` +
-    `calendar ${dated}, ${stale} dropped as stale (snapshot ${trends.asOf || 'undated'})${DRY_RUN ? ' — dry run, nothing written' : ''}`,
-)
+await runStage(import.meta, 'attach-indicators', main)
