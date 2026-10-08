@@ -5,9 +5,10 @@
 // Design: skip after 5 consecutive blocks within 7 days, but ALWAYS try
 // with 5% probability so we notice if the outlet un-blocks us. Writing
 // off a domain forever would mean citations slowly rot without signal.
+import { pathOf } from './datasets.js'
 import { readJson, writeJson } from './json-file.js'
 
-const CACHE_PATH = 'content/.block-cache.json'
+const CACHE_PATH = pathOf('blockCache')
 const BLOCK_THRESHOLD = 5
 const BLOCK_TTL_MS = 7 * 24 * 3600 * 1000
 const REPROBE_PROBABILITY = 0.05
