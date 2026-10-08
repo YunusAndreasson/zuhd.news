@@ -56,6 +56,13 @@ jobs:
       - name: Dead code
         run: npm run deadcode
 
+      # The tests that need nothing but the source. Before the build on
+      # purpose: with no dist/ the cases that read a built site skip, and what
+      # a runner builds from the snapshots git tracks is not the site those
+      # cases ratchet against.
+      - name: Unit tests
+        run: npm run test:unit
+
       # The real proof that the pipeline's modules still load and agree with
       # each other. SKIP_OG because the share-card rasteriser is the slow part
       # and renders nothing a type error could reach.
@@ -64,8 +71,12 @@ jobs:
           SKIP_OG: '1'
         run: node scripts/build.js
 
-      # `npm test` is deliberately NOT run here, and that is not an oversight.
-      # Several of those tests are ratchets over live state that does not exist
-      # on a runner: logs.test.js reads recent cycle logs out of logs/ (which is
-      # gitignored) and corpus.test.js asserts against the published corpus in
-      # content/. They are a local and on-server check, run by `npm run verify`.
+      # `npm test` as a whole is deliberately NOT run here, and that is not an
+      # oversight. The part left out is `test:live`: ratchets over state that
+      # does not exist on a runner, or that moves under it. logs.test.js reads
+      # recent cycle logs out of logs/ (which is gitignored), selection.test.js
+      # reads the running cycle's file in /tmp, and corpus.test.js,
+      # blocks.test.js and share-card-type.test.js assert against the published
+      # corpus in content/, which changes five times a day in commits this
+      # workflow ignores. They are a local and on-server check, run by
+      # `npm run verify`.

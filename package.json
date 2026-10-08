@@ -10,6 +10,8 @@
     "dev:og": "node scripts/build.js && npx wrangler pages dev dist",
     "build": "node scripts/build.js",
     "test": "node --test scripts/lib/*.test.js",
+    "test:unit": "node --test $(ls scripts/lib/*.test.js | grep -vE 'lib/(logs|corpus|selection|blocks|share-card-type)\\.test\\.js$')",
+    "test:live": "node --test scripts/lib/logs.test.js scripts/lib/corpus.test.js scripts/lib/selection.test.js scripts/lib/blocks.test.js scripts/lib/share-card-type.test.js",
     "lint": "biome check",
     "lint:fix": "biome check --write",
     "deadcode": "knip --include files,dependencies,exports --no-config-hints",

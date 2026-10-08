@@ -17,7 +17,7 @@
 import test from 'node:test'
 import assert from 'node:assert/strict'
 import { JSDOM } from 'jsdom'
-import { readFileSync, readdirSync } from 'node:fs'
+import { existsSync, readFileSync, readdirSync } from 'node:fs'
 import { join } from 'node:path'
 import { bundleIsland, scratchDir } from './island-bundle.js'
 
@@ -295,8 +295,12 @@ test("the article's follows chip unfolds the series under the strip", async () =
   }
 })
 
-test('no built page routes a reader into a chart dialog', () => {
+test('no built page routes a reader into a chart dialog', (t) => {
   const dist = join(ROOT, 'dist')
+  if (!existsSync(join(dist, 'a'))) {
+    t.skip('dist not built')
+    return
+  }
   let checked = 0
   const pages = readdirSync(join(dist, 'a')).slice(0, 400)
   for (const f of pages) {
