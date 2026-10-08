@@ -1,0 +1,68 @@
+exit: 0
+
+commands
+  git -C <repo> rev-parse HEAD
+      + PUSH_SECRET=not-a-secret
+      + ZUHD_MODEL=claude-sonnet-5-5
+  node scripts/fetch-news-api.js
+      + ZUHD_GIT_HEAD=0123456789abcdef0123456789abcdef01234567
+      + ZUHD_RUN_ID=2026-10-08_1804
+      + ZUHD_RUN_STARTED=2026-10-08T18:04:59Z
+  node -e «api-stats» sha1:bfa82a13
+  node scripts/fetch-news.js
+  node -e «rss-stats» sha1:ad743460
+  node scripts/merge-feeds.js
+  node -e «feed-stats» sha1:35552ca9
+  node scripts/prefilter-feed.js
+  node scripts/coverage-map.js
+  node scripts/trending-gaps.js
+  node scripts/company-gaps.js
+  claude --no-session-persistence --setting-sources project --disable-slash-commands --strict-mcp-config --effort medium --model claude-opus-5-5 --fallback-model claude-sonnet-5-5 --allowedTools Read,Write,Glob,Grep --max-turns 35 --exclude-dynamic-system-prompt-sections -p «text sha1:3896c734»
+  node -e «selection-count» sha1:176408dd
+  node -e «alert» sha1:ae079d9d
+      + ALERT_LOG=<repo>/logs/cycle-2026-10-08_1804.log
+      + ALERT_REASON=no articles published
+      + CYCLE_ALERT=<repo>/content/.cycle-alert.json
+  node <repo>/scripts/cycle/record.js <repo>/logs/cycle-2026-10-08_1804.log
+      + ZUHD_DAILY_HOUR=05
+      + ZUHD_EXIT_STATUS=0
+      + ZUHD_START_HOUR=18
+      - ALERT_LOG
+      - ALERT_REASON
+      - CYCLE_ALERT
+
+log
+  | === zuhd.news editorial cycle ===
+  | Started: Thu Oct  8 06:04:59 PM UTC 2026
+  |
+  | --- Stage 0: API + RSS feed fetch ---
+  | «fetch-api»
+  | API fetch: 80 stories from 50 events
+  | «fetch-rss»
+  | RSS fetch: 77 stories
+  | «node:merge-feeds»
+  | Merged feed: 13 multi + 47 niche — Ns
+  | node:prefilter-feed: stdout
+  | «node:prefilter-feed»
+  |
+  | --- Stage 1: Selector ---
+  | Injecting coverage map (1 topic groups) into selector prompt
+  | Injecting trending-gaps signal (1 titles) into selector prompt
+  | Injecting unexplained-movers signal (1 companies) into selector prompt
+  | Selection target: 15 stories (18:00 UTC)
+  | Nothing new.
+  | «selector»
+  | Selector exit: 0 — Ns
+  | Selection is empty (0 stories) — skipping writer and editor
+  |
+  | === Funnel ===
+  | Feed:      13 multi + 47 niche
+  | Selected:  0
+  | Deduped:   0
+  | Written:   0
+  | Validated: 0
+  | Published: 0
+  |
+  | Finished: Thu Oct  8 06:04:59 PM UTC 2026 — total Ns
+  | ALERT: no articles published (1 cycle(s) in a row since 2026-10-08T18:04:59.000Z)
+  | «alert»

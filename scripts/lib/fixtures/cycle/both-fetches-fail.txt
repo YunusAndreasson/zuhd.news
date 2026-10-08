@@ -1,0 +1,49 @@
+exit: 1
+
+commands
+  git -C <repo> rev-parse HEAD
+      + PUSH_SECRET=not-a-secret
+      + ZUHD_MODEL=claude-sonnet-5-5
+  node scripts/fetch-news-api.js
+      + ZUHD_GIT_HEAD=0123456789abcdef0123456789abcdef01234567
+      + ZUHD_RUN_ID=2026-10-08_1804
+      + ZUHD_RUN_STARTED=2026-10-08T18:04:59Z
+  node -e «api-stats» sha1:bfa82a13
+  node scripts/fetch-news.js
+  node -e «rss-stats» sha1:ad743460
+  node -e «alert» sha1:ae079d9d
+      + ALERT_LOG=<repo>/logs/cycle-2026-10-08_1804.log
+      + ALERT_REASON=cycle exited 1 before publishing
+      + CYCLE_ALERT=<repo>/content/.cycle-alert.json
+  node <repo>/scripts/cycle/record.js <repo>/logs/cycle-2026-10-08_1804.log
+      + ZUHD_DAILY_HOUR=05
+      + ZUHD_EXIT_STATUS=1
+      + ZUHD_START_HOUR=18
+      - ALERT_LOG
+      - ALERT_REASON
+      - CYCLE_ALERT
+
+log
+  | === zuhd.news editorial cycle ===
+  | Started: Thu Oct  8 06:04:59 PM UTC 2026
+  |
+  | --- Stage 0: API + RSS feed fetch ---
+  | «fetch-api»
+  | ⚠ API fetch failed (exit 1) — see log for error. RSS-only cycle.
+  | API fetch: 80 stories from 50 events
+  | «fetch-rss»
+  | ⚠ RSS fetch failed (exit 1)
+  | RSS fetch: 77 stories
+  | ✗ Both API and RSS fetches failed — aborting cycle
+  |
+  | === Funnel ===
+  | Feed:      ?
+  | Selected:  0
+  | Deduped:   0
+  | Written:   0
+  | Validated: 0
+  | Published: 0
+  |
+  | Finished: Thu Oct  8 06:04:59 PM UTC 2026 — total Ns
+  | ALERT: no articles published (1 cycle(s) in a row since 2026-10-08T18:04:59.000Z)
+  | «alert»

@@ -125,10 +125,14 @@ test('no new file spells a state path, and a converted one leaves the list', () 
   }
   for (const dir of ['articles', 'trends', 'audio']) tokens.push(`content/${dir}`, `'content', '${dir}'`, `"content", "${dir}"`)
 
+  // Not stages. The catalog is where the paths are; the harness builds the
+  // sandbox `run-cycle.sh` runs in, and the paths it spells are the script's
+  // own, inside that sandbox.
+  const exempt = /\.test\.js$|lib\/datasets\.js$|lib\/cycle-(harness|scenarios)\.js$/
   const walk = (dir) => readdirSync(dir).flatMap((n) => (statSync(join(dir, n)).isDirectory() ? walk(join(dir, n)) : [join(dir, n)]))
   const code = (file) => readFileSync(file, 'utf8').split('\n').filter((l) => !/^\s*(\/\/|\*|\/\*|#)/.test(l)).join('\n')
   const spelling = walk(join(ROOT, 'scripts'))
-    .filter((f) => /\.(js|mjs|sh)$/.test(f) && !f.endsWith('.test.js') && !f.endsWith('lib/datasets.js'))
+    .filter((f) => /\.(js|mjs|sh)$/.test(f) && !exempt.test(f))
     .filter((f) => tokens.some((t) => code(f).includes(t)))
     .map((f) => relative(ROOT, f))
     .sort()

@@ -30,6 +30,10 @@
     "scripts/company-gaps.js",
     "scripts/coverage-map.js",
     "scripts/cycle/record.js",
+    // Not run by run-cycle.sh but on it: the harness starts the stub by path,
+    // and `npm run test:cycle` names the golden test.
+    "scripts/cycle/golden.test.js",
+    "scripts/lib/cycle-stub.js",
     "scripts/dedup-selection.js",
     "scripts/enrich-selection.js",
     "scripts/attach-indicators.js",

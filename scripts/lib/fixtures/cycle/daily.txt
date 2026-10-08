@@ -1,0 +1,658 @@
+exit: 0
+
+commands
+  git -C <repo> rev-parse HEAD
+      + PUSH_SECRET=not-a-secret
+      + ZUHD_MODEL=claude-sonnet-5-5
+  node scripts/fetch-news-api.js
+      + ZUHD_GIT_HEAD=0123456789abcdef0123456789abcdef01234567
+      + ZUHD_RUN_ID=2026-10-08_0501
+      + ZUHD_RUN_STARTED=2026-10-08T05:01:52Z
+  node -e «api-stats» sha1:bfa82a13
+  node scripts/fetch-news.js
+  node -e «rss-stats» sha1:ad743460
+  node scripts/merge-feeds.js
+  node -e «feed-stats» sha1:35552ca9
+  node scripts/prefilter-feed.js
+  node scripts/coverage-map.js
+  node scripts/trending-gaps.js
+  node scripts/company-gaps.js
+  claude --no-session-persistence --setting-sources project --disable-slash-commands --strict-mcp-config --effort medium --model claude-opus-5-5 --fallback-model claude-sonnet-5-5 --allowedTools Read,Write,Glob,Grep --max-turns 35 --exclude-dynamic-system-prompt-sections -p «text 1»
+  node -e «selection-count» sha1:176408dd
+  node scripts/enrich-selection.js
+  node -e «selection-count» sha1:176408dd
+  node scripts/dedup-selection.js
+  node -e «selection-count» sha1:176408dd
+  node scripts/update-ledger.js
+  node scripts/attach-indicators.js
+  claude --no-session-persistence --setting-sources project --disable-slash-commands --strict-mcp-config --effort medium --model claude-sonnet-5-5 --allowedTools Read,Write,Edit --add-dir /tmp --max-turns 60 --exclude-dynamic-system-prompt-sections -p «write-prompt.md»
+  git diff --name-only content/articles/
+  git ls-files --others --exclude-standard content/articles/
+  git diff --name-only content/articles/
+  git ls-files --others --exclude-standard content/articles/
+  node scripts/scaffold-articles.js
+  node -e «body-lengths» sha1:6cc80f83
+  node scripts/flag-title-echo.js /tmp/zuhd-new-articles.txt
+  claude --no-session-persistence --setting-sources project --disable-slash-commands --strict-mcp-config --effort low --model claude-sonnet-5-5 --allowedTools Read,Edit,Glob,Grep --add-dir /tmp --max-turns 50 --exclude-dynamic-system-prompt-sections -p «text 2»
+  node scripts/fetch-trends.js
+  node scripts/fetch-chokepoints.js
+  node scripts/fetch-markets.js
+  node scripts/fetch-companies.js
+  node scripts/fetch-ai-models.js
+  node scripts/fetch-gdacs.js
+  node scripts/fetch-conflict.js
+  node scripts/fetch-ioda.js
+  node scripts/fetch-firms.js
+  node scripts/fetch-ipc.js
+  node scripts/narrate-gdacs.js
+  node scripts/extract-entities.js
+  node scripts/extract-source-angles.js
+  node scripts/translate-swedish.js
+  node scripts/narrate-indicators.js --market-signals
+  git add content/.market-signals.json content/.market-signal-state.json
+  git commit --only content/.market-signals.json content/.market-signal-state.json -m Market signals 2026-10-08T05:01
+  node scripts/validate-articles.js
+  node scripts/write-last-cycle.js
+  node scripts/pick-breaking-social.js
+  npm run typecheck
+  node scripts/build.js
+  git add content/articles/ content/.last-cycle.json content/.story-ledger.json content/.context-briefs.json content/.sv.json
+  git commit --only content/articles/ content/.last-cycle.json content/.story-ledger.json content/.context-briefs.json content/.sv.json -m Editorial cycle 2026-10-08 05:01 UTC: 2 articles
+  git pull --rebase --autostash origin master
+  npm install --no-audit --no-fund
+  git push origin master
+  npx wrangler pages deploy dist --project-name zuhd-news --branch master --commit-dirty=true
+  node -e «breaking-pick» sha1:c04ed8d8
+  node -e «push-slug» sha1:94d3b284
+      < {"articles":[{"slug":"2026-10-08-fed-raises-rates","title":"Fed Raises Rates","category":"economy","body":"The Federal Reserve raised","eventCoverage":12,"importance":6}]}
+  claude --no-session-persistence --setting-sources project --disable-slash-commands --strict-mcp-config --model claude-sonnet-5-5 --effort medium --tools '' -p «text 3»
+  node -e «push-inject» sha1:f9c56deb
+      + NOTIF=Fed raises interest rates by 25 basis points
+      < {"articles":[{"slug":"2026-10-08-fed-raises-rates","title":"Fed Raises Rates","category":"economy","body":"The Federal Reserve raised","eventCoverage":12,"importance":6}]}
+  curl -s -X POST https://zuhd.news/api/push -H Authorization: Bearer not-a-secret -H Content-Type: application/json -d {"articles":[{"slug":"2026-10-08-fed-raises-rates","title":"Breaking News","category":"economy","body":"Fed raises interest rates by 25 basis points","eventCoverage":12,"importance":6}]}
+      - NOTIF
+  node -e «push-log» sha1:abd76093
+      + BJSON={"articles":[{"slug":"2026-10-08-fed-raises-rates","title":"Breaking News","category":"economy","body":"Fed raises interest rates by 25 basis points","eventCoverage":12,"importance":6}]}
+      + PRESP={"pushed":1,"skipped":0,"tokens":5}
+  node scripts/post-to-twitter.js --slug 2026-10-08-fed-raises-rates
+      - BJSON
+      - PRESP
+  node scripts/post-to-instagram.js --slug 2026-10-08-fed-raises-rates
+  git add content/.push-log.json content/.tweet-log.json content/.instagram-log.json
+  git commit --only content/.push-log.json content/.tweet-log.json content/.instagram-log.json -m Push log 2026-10-08T05:01
+  node scripts/score-production-cycle.js
+  git add content/.rvs-trend.json
+  git commit --only content/.rvs-trend.json -m RVS trend 2026-10-08T05:01
+  node scripts/narrate-indicators.js
+  git add content/.indicator-dispatch.json
+  git commit --only content/.indicator-dispatch.json -m Indicator dispatch 2026-10-08T05:01
+  node scripts/narrate-events.js
+  git add content/.events-dispatch.json
+  git commit --only content/.events-dispatch.json -m Event dispatch 2026-10-08T05:01
+  node scripts/fetch-analytics.js
+  node scripts/generate-briefing.js
+  node scripts/build.js
+  git add content/audio/
+  git commit --only content/audio/ -m Audio briefing 2026-10-08
+  git pull --rebase --autostash origin master
+  npm install --no-audit --no-fund
+  git push origin master
+  npx wrangler pages deploy dist --project-name zuhd-news --branch master --commit-dirty=true
+  node -e «briefing-top» sha1:c5a1c40a
+  claude --no-session-persistence --setting-sources project --disable-slash-commands --strict-mcp-config --model claude-sonnet-5-5 --effort medium --tools '' -p «text 4»
+  node -e «briefing-payload» sha1:e840e690
+      + BODY=Fed raises rates · Hormuz traffic dips
+      + DATE=2026-10-08
+  curl -s -X POST https://zuhd.news/api/push -H Authorization: Bearer not-a-secret -H Content-Type: application/json -d «text 5»
+      - BODY
+      - DATE
+  node <repo>/scripts/cycle/record.js <repo>/logs/cycle-2026-10-08_0501.log
+      + ZUHD_DAILY_HOUR=05
+      + ZUHD_EXIT_STATUS=0
+      + ZUHD_START_HOUR=05
+
+«text 1»
+  | «select-prompt.md»
+  |
+  | Do not re-select stories already covered in the last 24 hours. Here is recent coverage grouped by topic — avoid duplicating any of these angles:
+  | <recent-coverage>
+  | node:coverage-map: stdout
+  | </recent-coverage>
+  |
+  | Yesterday's most-read Wikipedia articles that zuhd.news has NOT covered in the last 7 days. Most entries are entertainment noise — ignore those. But if one is verifiable hard news in our categories AND the feed carries sources for it, treat it as a public-attention signal that the story deserves selection weight:
+  | <trending-uncovered>
+  | node:trending-gaps: stdout
+  | </trending-uncovered>
+  |
+  | Shares among the twenty largest companies that moved sharply over the past week, with no story on zuhd.news in a fortnight that says why. The app charts each one, and can explain a move only from a story the site has published. If the feed carries a report of what moved one — results, an order, a ruling, a deal, a ban — it is a strong economy or tech pick, and the Consequence rule still holds: say what moved it or who it lands on. If the feed has only the price, or only analyst talk, skip it; the list is a signal, never a quota.
+  | <unexplained-movers>
+  | node:company-gaps: stdout
+  | </unexplained-movers>
+  |
+  | <cycle-target>
+  | Select 11 stories this cycle (05:00 UTC).
+  | </cycle-target>
+
+«text 2»
+  | «check-prompt.md»
+  |
+  | Check only the files listed in <files> below (this cycle's batch). Other untracked articles belong to earlier runs.
+  |
+  | <files>
+  | content/articles/2026-10-08-fed-raises-rates.md
+  | content/articles/2026-10-08-hormuz-traffic-dips.md
+  | </files>
+  |
+  | <body-lengths>
+  | ok 452 chars  4 blocks  content/articles/2026-10-08-fed-raises-rates.md
+  | OVER 571 chars  5 blocks  content/articles/2026-10-08-hormuz-traffic-dips.md
+  | </body-lengths>
+  |
+  | <title-echo>
+  | node:flag-title-echo: stdout
+  | </title-echo>
+
+«text 3»
+  | Write ONE push notification body for this article. Title is already 'Breaking News' — you write only the body.
+  |
+  | Write like a Reuters/AP wire alert. Match these in length and tone:
+  | - Fed raises interest rates by 25 basis points
+  | - Turkey earthquake kills more than 40,000, officials say
+  | - Oil prices surge past $100 a barrel
+  | - Ukraine's Zelenskiy says missile struck Odesa port
+  | - Supreme Court overturns Chevron doctrine in landmark ruling
+  | - Syria's Assad flees to Russia as rebels seize Damascus
+  | - North Korea fires ballistic missile over Japan
+  | - EU agrees to ban Russian oil imports by end of year
+  |
+  | Rules:
+  | - Present tense ('raises' not 'raised', 'kills' not 'killed')
+  | - Subject first, then active verb, then consequence
+  | - Drop articles (the, a, an) and auxiliary verbs (is, are, was)
+  | - Attribution at end if needed: 'officials say' or 'sources say'
+  | - Digits for all numbers
+  | - One fact only — no context, no hedging, no adjectives
+  | - No period at the end
+  | - 8-12 words
+  |
+  | Output ONLY the line, nothing else.
+  |
+  | Article:
+  | ---
+  | title: "Fed Raises Rates"
+  | date: "2026-10-08T17:27:44Z"
+  | category: "economy"
+  | location: "Washington"
+  | sources:
+  |   - name: "Dawn"
+  |     url: "https://www.dawn.com/news/1"
+  | ---
+  |
+  | Washington — One.
+  |
+  | Two.
+  |
+  | Three.
+  |
+  | Four.
+
+«text 4»
+  | Write ONE push notification body announcing today's daily news briefing audio is ready.
+  |
+  | Format: 2 or 3 short topic phrases separated by ' · ' (middle-dot, U+00B7). The reader should be able to scan it in two seconds.
+  |
+  | Examples:
+  | - Hormuz $106 · BJP defects in Punjab · El Niño by May
+  | - Russia hits Dnipro · NATO arms shipment · DeepSeek V4 ships
+  | - Sudan IMF stalls · Lebanon beekeeping · DOJ death penalty
+  |
+  | Rules:
+  | - 2 or 3 phrases, each 2-5 words
+  | - Middle-dot separator with single spaces around it
+  | - Prefer concrete subjects + active outcome over abstract topics
+  | - Drop articles (the, a, an) and auxiliary verbs (is, are, was)
+  | - Digits for all numbers
+  | - 30-65 chars total
+  | - No period at the end
+  |
+  | Output ONLY the line, nothing else.
+  |
+  | Top stories from today's briefing:
+  | [{"label":"Fed Raises Rates","category":"economy","arc":"breaking"}]
+
+«text 5»
+  | {"articles":[{"slug":"briefing-2026-10-08","title":"Today's Briefing","body":"Fed raises rates · Hormuz traffic dips","channelId":"briefing","priority":"normal","data":{"kind":"briefing","date":"2026-10-08"}}]}
+
+log
+  | === zuhd.news editorial cycle ===
+  | Started: Thu Oct  8 05:01:52 AM UTC 2026
+  |
+  | --- Stage 0: API + RSS feed fetch ---
+  | «fetch-api»
+  | API fetch: 80 stories from 50 events
+  | «fetch-rss»
+  | RSS fetch: 77 stories
+  | «node:merge-feeds»
+  | Merged feed: 13 multi + 47 niche — Ns
+  | node:prefilter-feed: stdout
+  | «node:prefilter-feed»
+  |
+  | --- Stage 1: Selector ---
+  | Injecting coverage map (1 topic groups) into selector prompt
+  | Injecting trending-gaps signal (1 titles) into selector prompt
+  | Injecting unexplained-movers signal (1 companies) into selector prompt
+  | Selection target: 11 stories (05:00 UTC)
+  | Selected 2 stories.
+  | «selector»
+  | Selector exit: 0 — Ns
+  | Selection contains 2 stories
+  | node:enrich-selection: stdout
+  | «node:enrich-selection»
+  | node:dedup-selection: stdout
+  | «node:dedup-selection»
+  | node:update-ledger: stdout
+  | «node:update-ledger»
+  | node:attach-indicators: stdout
+  | «node:attach-indicators»
+  |
+  | --- Stage 2: Writer ---
+  | Wrote 2 articles.
+  | «writer»
+  | Writer exit: 0 — Ns
+  | Found 2 new/modified articles
+  | node:scaffold-articles: stdout
+  | «node:scaffold-articles»
+  |
+  | --- Stage 3: Editor ---
+  | Trimmed one, left one.
+  | «editor»
+  | Editor exit: 0 — Ns
+  |
+  | --- Stage 3.4: Trends fetch ---
+  | node:fetch-trends: stdout
+  | «node:fetch-trends»
+  | Trends exit: 0 — Ns
+  |
+  | --- Stage 3.4b: Chokepoints snapshot ---
+  | node:fetch-chokepoints: stdout
+  | «node:fetch-chokepoints»
+  | Chokepoints exit: 0 — Ns
+  |
+  | --- Stage 3.4b2: Market snapshot ---
+  | node:fetch-markets: stdout
+  | «node:fetch-markets»
+  | Markets exit: 0 — Ns
+  |
+  | --- Stage 3.4b3: Company quotes ---
+  | node:fetch-companies: stdout
+  | «node:fetch-companies»
+  | Companies exit: 0 — Ns
+  |
+  | --- Stage 3.4b4: AI model scores ---
+  | node:fetch-ai-models: stdout
+  | «node:fetch-ai-models»
+  | AI models exit: 0 — Ns
+  |
+  | --- Stage 3.4c: GDACS snapshot ---
+  | node:fetch-gdacs: stdout
+  | «node:fetch-gdacs»
+  | GDACS exit: 0 — Ns
+  |
+  | --- Stage 3.4c2: Conflict snapshot ---
+  | node:fetch-conflict: stdout
+  | «node:fetch-conflict»
+  | Conflict exit: 0 — Ns
+  |
+  | --- Stage 3.4c3: IODA outage snapshot ---
+  | node:fetch-ioda: stdout
+  | «node:fetch-ioda»
+  | IODA exit: 0 — Ns
+  |
+  | --- Stage 3.4c4: Thermal anomaly snapshot ---
+  | node:fetch-firms: stdout
+  | «node:fetch-firms»
+  | FIRMS exit: 0 — Ns
+  |
+  | --- Stage 3.4c5: IPC food insecurity snapshot ---
+  | node:fetch-ipc: stdout
+  | «node:fetch-ipc»
+  | IPC exit: 0 — Ns
+  |
+  | --- Stage 3.4d: GDACS narration ---
+  | node:narrate-gdacs: stdout
+  | «node:narrate-gdacs»
+  | Narration exit: 0 — Ns
+  |
+  | --- Stage 3.6: Entity extraction ---
+  | node:extract-entities: stdout
+  | «node:extract-entities»
+  | Entities exit: 0 — Ns
+  |
+  | --- Stage 3.7: Source angles ---
+  | node:extract-source-angles: stdout
+  | «node:extract-source-angles»
+  | Source angles exit: 0 — Ns
+  |
+  | --- Stage 3.75: Swedish desk ---
+  | node:translate-swedish: stdout
+  | «node:translate-swedish»
+  | Swedish desk exit: 0 — Ns
+  | node:narrate-indicators: stdout
+  | «node:narrate-indicators»
+  | git:add: stdout
+  | «git:add»
+  | [master 1234567] committed
+  | «commit»
+  |
+  | --- Stage 3b: Build & Deploy ---
+  | Validated 2 articles, 0 removed
+  | «validate»
+  | node:write-last-cycle: stdout
+  | «node:write-last-cycle»
+  | node:pick-breaking-social: stdout
+  | «node:pick-breaking-social»
+  | npm:typecheck: stdout
+  | «npm:typecheck»
+  | Built 812 pages.
+  | «build»
+  | Build exit: 0
+  | git:add: stdout
+  | «git:add»
+  | [master 1234567] committed
+  | «commit»
+  | git:pull: stdout
+  | «git:pull»
+  | npm:install: stdout
+  | «npm:install»
+  | git:push: stdout
+  | «git:push»
+  | Deployment complete.
+  | «deploy»
+  | Deploy exit: 0
+  | «push-inject»
+  | Pushing breaking news: {"articles":[{"slug":"2026-10-08-fed-raises-rates","title":"Breaking News","category":"economy","body":"Fed raises interest rates by 25 basis points","eventCoverage":12,"importance":6}]}
+  | {"pushed":1,"skipped":0,"tokens":5}
+  | «push-log»
+  | node:post-to-twitter: stdout
+  | «node:post-to-twitter»
+  | node:post-to-instagram: stdout
+  | «node:post-to-instagram»
+  | git:add: stdout
+  | «git:add»
+  | [master 1234567] committed
+  | «commit»
+  | node:score-production-cycle: stdout
+  | «node:score-production-cycle»
+  | git:add: stdout
+  | «git:add»
+  | [master 1234567] committed
+  | «commit»
+  |
+  | --- Stage 3.8: Indicator dispatch ---
+  | node:narrate-indicators: stdout
+  | «node:narrate-indicators»
+  | Dispatch — Ns
+  | git:add: stdout
+  | «git:add»
+  | [master 1234567] committed
+  | «commit»
+  |
+  | --- Stage 3.8b: Event dispatch ---
+  | node:narrate-events: stdout
+  | «node:narrate-events»
+  | Event dispatch — Ns
+  | git:add: stdout
+  | «git:add»
+  | [master 1234567] committed
+  | «commit»
+  |
+  | --- Stage 3.9: Analytics fetch ---
+  | node:fetch-analytics: stdout
+  | «node:fetch-analytics»
+  | Analytics fetch — Ns
+  |
+  | --- Stage 4: Audio briefing ---
+  | Briefing written.
+  | «briefing»
+  | Briefing exit: 0
+  | Rebuilding and redeploying with audio...
+  | Built 812 pages.
+  | «build»
+  | Audio rebuild exit: 0
+  | git:add: stdout
+  | «git:add»
+  | [master 1234567] committed
+  | «commit»
+  | git:pull: stdout
+  | «git:pull»
+  | npm:install: stdout
+  | «npm:install»
+  | git:push: stdout
+  | «git:push»
+  | Deployment complete.
+  | «deploy»
+  | Audio deploy exit: 0
+  | «briefing-top»
+  | «briefing-payload»
+  | Pushing daily briefing: {"articles":[{"slug":"briefing-2026-10-08","title":"Today's Briefing","body":"Fed raises rates · Hormuz traffic dips","channelId":"briefing","priority":"normal","data":{"kind":"briefing","date":"2026-10-08"}}]}
+  | {"pushed":1,"skipped":0,"tokens":5}«push»
+  |
+  |
+  | --- Stage 5: Weekly quality snapshot (skipped — day 4 05:00 UTC, runs Sunday 22:00 only) ---
+  |
+  | --- Stage 6: Daily tuning (skipped — 05:xx UTC, runs at 22:00 only) ---
+  |
+  | === Funnel ===
+  | Feed:      13 multi + 47 niche
+  | Selected:  2
+  | Deduped:   2
+  | Written:   2
+  | Validated: 2
+  | Published: 2
+  |
+  | Finished: Thu Oct  8 05:01:52 AM UTC 2026 — total Ns
+
+journal
+  | WARNING: mise not found at <sbx>/no-mise — relying on existing PATH
+  | === zuhd.news editorial cycle ===
+  | Started: Thu Oct  8 05:01:52 AM UTC 2026
+  |
+  | --- Stage 0: API + RSS feed fetch ---
+  | API fetch: 80 stories from 50 events
+  | RSS fetch: 77 stories
+  | node:merge-feeds: stdout
+  | Merged feed: 13 multi + 47 niche — Ns
+  | node:prefilter-feed: stdout
+  | «node:prefilter-feed»
+  |
+  | --- Stage 1: Selector ---
+  | Injecting coverage map (1 topic groups) into selector prompt
+  | Injecting trending-gaps signal (1 titles) into selector prompt
+  | Injecting unexplained-movers signal (1 companies) into selector prompt
+  | Selection target: 11 stories (05:00 UTC)
+  | Selected 2 stories.
+  | «selector»
+  | Selector exit: 0 — Ns
+  | Selection contains 2 stories
+  | node:enrich-selection: stdout
+  | «node:enrich-selection»
+  | node:dedup-selection: stdout
+  | «node:dedup-selection»
+  | node:update-ledger: stdout
+  | «node:update-ledger»
+  | node:attach-indicators: stdout
+  | «node:attach-indicators»
+  |
+  | --- Stage 2: Writer ---
+  | Wrote 2 articles.
+  | «writer»
+  | Writer exit: 0 — Ns
+  | Found 2 new/modified articles
+  | node:scaffold-articles: stdout
+  | «node:scaffold-articles»
+  |
+  | --- Stage 3: Editor ---
+  | Trimmed one, left one.
+  | «editor»
+  | Editor exit: 0 — Ns
+  |
+  | --- Stage 3.4: Trends fetch ---
+  | Trends exit: 0 — Ns
+  |
+  | --- Stage 3.4b: Chokepoints snapshot ---
+  | Chokepoints exit: 0 — Ns
+  |
+  | --- Stage 3.4b2: Market snapshot ---
+  | Markets exit: 0 — Ns
+  |
+  | --- Stage 3.4b3: Company quotes ---
+  | Companies exit: 0 — Ns
+  |
+  | --- Stage 3.4b4: AI model scores ---
+  | AI models exit: 0 — Ns
+  |
+  | --- Stage 3.4c: GDACS snapshot ---
+  | GDACS exit: 0 — Ns
+  |
+  | --- Stage 3.4c2: Conflict snapshot ---
+  | Conflict exit: 0 — Ns
+  |
+  | --- Stage 3.4c3: IODA outage snapshot ---
+  | IODA exit: 0 — Ns
+  |
+  | --- Stage 3.4c4: Thermal anomaly snapshot ---
+  | FIRMS exit: 0 — Ns
+  |
+  | --- Stage 3.4c5: IPC food insecurity snapshot ---
+  | IPC exit: 0 — Ns
+  |
+  | --- Stage 3.4d: GDACS narration ---
+  | Narration exit: 0 — Ns
+  |
+  | --- Stage 3.6: Entity extraction ---
+  | node:extract-entities: stdout
+  | «node:extract-entities»
+  | Entities exit: 0 — Ns
+  |
+  | --- Stage 3.7: Source angles ---
+  | node:extract-source-angles: stdout
+  | «node:extract-source-angles»
+  | Source angles exit: 0 — Ns
+  |
+  | --- Stage 3.75: Swedish desk ---
+  | node:translate-swedish: stdout
+  | «node:translate-swedish»
+  | Swedish desk exit: 0 — Ns
+  | node:narrate-indicators: stdout
+  | «node:narrate-indicators»
+  | git:add: stdout
+  | «git:add»
+  | [master 1234567] committed
+  | «commit»
+  |
+  | --- Stage 3b: Build & Deploy ---
+  | node:write-last-cycle: stdout
+  | «node:write-last-cycle»
+  | node:pick-breaking-social: stdout
+  | «node:pick-breaking-social»
+  | npm:typecheck: stdout
+  | «npm:typecheck»
+  | Built 812 pages.
+  | «build»
+  | Build exit: 0
+  | git:add: stdout
+  | «git:add»
+  | [master 1234567] committed
+  | «commit»
+  | git:pull: stdout
+  | «git:pull»
+  | npm:install: stdout
+  | «npm:install»
+  | git:push: stdout
+  | «git:push»
+  | Deployment complete.
+  | «deploy»
+  | Deploy exit: 0
+  | «breaking-pick»
+  | «push-slug»
+  | Pushing breaking news: {"articles":[{"slug":"2026-10-08-fed-raises-rates","title":"Breaking News","category":"economy","body":"Fed raises interest rates by 25 basis points","eventCoverage":12,"importance":6}]}
+  | «push»
+  | {"pushed":1,"skipped":0,"tokens":5}
+  | node:post-to-twitter: stdout
+  | «node:post-to-twitter»
+  | node:post-to-instagram: stdout
+  | «node:post-to-instagram»
+  | git:add: stdout
+  | «git:add»
+  | [master 1234567] committed
+  | «commit»
+  | node:score-production-cycle: stdout
+  | «node:score-production-cycle»
+  | git:add: stdout
+  | «git:add»
+  | [master 1234567] committed
+  | «commit»
+  |
+  | --- Stage 3.8: Indicator dispatch ---
+  | node:narrate-indicators: stdout
+  | «node:narrate-indicators»
+  | Dispatch — Ns
+  | git:add: stdout
+  | «git:add»
+  | [master 1234567] committed
+  | «commit»
+  |
+  | --- Stage 3.8b: Event dispatch ---
+  | node:narrate-events: stdout
+  | «node:narrate-events»
+  | Event dispatch — Ns
+  | git:add: stdout
+  | «git:add»
+  | [master 1234567] committed
+  | «commit»
+  |
+  | --- Stage 3.9: Analytics fetch ---
+  | node:fetch-analytics: stdout
+  | «node:fetch-analytics»
+  | Analytics fetch — Ns
+  |
+  | --- Stage 4: Audio briefing ---
+  | Briefing written.
+  | «briefing»
+  | Briefing exit: 0
+  | Rebuilding and redeploying with audio...
+  | Built 812 pages.
+  | «build»
+  | Audio rebuild exit: 0
+  | git:add: stdout
+  | «git:add»
+  | [master 1234567] committed
+  | «commit»
+  | git:pull: stdout
+  | «git:pull»
+  | npm:install: stdout
+  | «npm:install»
+  | git:push: stdout
+  | «git:push»
+  | Deployment complete.
+  | «deploy»
+  | Audio deploy exit: 0
+  | Pushing daily briefing: {"articles":[{"slug":"briefing-2026-10-08","title":"Today's Briefing","body":"Fed raises rates · Hormuz traffic dips","channelId":"briefing","priority":"normal","data":{"kind":"briefing","date":"2026-10-08"}}]}
+  | {"pushed":1,"skipped":0,"tokens":5}«push»
+  |
+  |
+  | --- Stage 5: Weekly quality snapshot (skipped — day 4 05:00 UTC, runs Sunday 22:00 only) ---
+  |
+  | --- Stage 6: Daily tuning (skipped — 05:xx UTC, runs at 22:00 only) ---
+  |
+  | === Funnel ===
+  | Feed:      13 multi + 47 niche
+  | Selected:  2
+  | Deduped:   2
+  | Written:   2
+  | Validated: 2
+  | Published: 2
+  |
+  | Finished: Thu Oct  8 05:01:52 AM UTC 2026 — total Ns
+  | node:record: stdout
+  | «node:record»
