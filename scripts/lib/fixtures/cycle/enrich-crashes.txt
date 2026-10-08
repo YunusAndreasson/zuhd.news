@@ -18,7 +18,6 @@ commands
   node scripts/trending-gaps.js
   node scripts/company-gaps.js
   claude --no-session-persistence --setting-sources project --disable-slash-commands --strict-mcp-config --effort medium --model claude-opus-5-5 --fallback-model claude-sonnet-5-5 --allowedTools Read,Write,Glob,Grep --max-turns 35 --exclude-dynamic-system-prompt-sections -p «text sha1:3896c734»
-  claude --no-session-persistence --setting-sources project --disable-slash-commands --strict-mcp-config --effort medium --model claude-opus-5-5 --fallback-model claude-sonnet-5-5 --allowedTools Read,Write,Glob,Grep --max-turns 35 --exclude-dynamic-system-prompt-sections -p «text sha1:3896c734»
   node -e «selection-count» sha1:176408dd
   node scripts/enrich-selection.js
   node -e «selection-count» sha1:176408dd
@@ -119,17 +118,13 @@ log
   | Injecting trending-gaps signal (1 titles) into selector prompt
   | Injecting unexplained-movers signal (1 companies) into selector prompt
   | Selection target: 15 stories (18:00 UTC)
-  | What would you like me to do?
-  | «selector»
-  | Selector exit: 0 — Ns
-  | Selector returned 0 but produced no selection file — retrying once
   | Selected 2 stories.
   | «selector»
-  | Selector retry exit: 0 — Ns
+  | Selector exit: 0 — Ns
   | Selection contains 2 stories
-  | enrich: stdout
+  | SyntaxError: Unexpected end of JSON input
   | «enrich»
-  | Enrich exit: 0
+  | Enrich exit: 1
   | node:dedup-selection: stdout
   | «node:dedup-selection»
   | Dedup exit: 0

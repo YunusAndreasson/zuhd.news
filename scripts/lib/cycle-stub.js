@@ -91,9 +91,10 @@ try {
 } catch {
   /* the first call of the run */
 }
-// A call no rule names succeeds and says so on stdout, which shows where that
-// stream goes. Anything the script parses has a rule of its own.
-const answer = rule ? rule.answers[Math.min(seen, rule.answers.length - 1)] : { out: `${id}: stdout\n`, exit: 0 }
+// A call says its name on stdout unless its answer gives it something else to
+// say, which shows where that stream goes. Whatever the script parses is given.
+const answer = rule ? rule.answers[Math.min(seen, rule.answers.length - 1)] : {}
+const out = answer.out ?? `${id}: stdout\n`
 
 if (!SILENT) {
   const stdin = stdinText()
@@ -111,7 +112,7 @@ for (const [path, content] of Object.entries(answer.writes ?? {})) {
 }
 
 if (cmd === 'date') process.stdout.write(`${date(argv)}\n`)
-else if (answer.out != null) process.stdout.write(answer.out)
+else process.stdout.write(out)
 // Always on stderr, which the script never parses: where this lands (the log,
 // the journal, both or neither) is how that call's output is routed.
 if (!SILENT) process.stderr.write(`«${id}»\n`)

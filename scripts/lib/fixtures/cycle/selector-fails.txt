@@ -40,9 +40,11 @@ log
   | «fetch-rss»
   | RSS fetch: 77 stories
   | «node:merge-feeds»
+  | Merge exit: 0
   | Merged feed: 13 multi + 47 niche — Ns
   | node:prefilter-feed: stdout
   | «node:prefilter-feed»
+  | Prefilter exit: 0
   |
   | --- Stage 1: Selector ---
   | Injecting coverage map (1 topic groups) into selector prompt

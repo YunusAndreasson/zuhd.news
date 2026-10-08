@@ -42,6 +42,7 @@ const RUN = {
   status: 0,
   out: 'Selector exit: 0 — 188s\n«selector»\n',
   log: 'Selector exit: 0 — 188s\nFinished: Thu Oct  8 06:25:22 PM UTC 2026 — total 1261s\n',
+  kept: ['logs/runs/2026-10-08_1804/selection.1-selected.json'],
   trace: [
     { id: 'selector', cmd: 'claude', argv: ['--tools', '', '-p', 'one\ntwo'], cwd: '<repo>', env: { ZUHD_MODEL: 'm' } },
     { id: 'push-slug', cmd: 'node', argv: ['-e', 'const d = 1;\nconsole.log(d)'], cwd: '<repo>', stdin: '{"a":1}\n', env: { ZUHD_MODEL: 'm', NOTIF: 'x' } },
@@ -67,6 +68,9 @@ test('a run is written as its commands, what changed around each, and what they 
       '«text 1»',
       '  | one',
       '  | two',
+      '',
+      'kept',
+      '  logs/runs/2026-10-08_1804/selection.1-selected.json',
       '',
       'log',
       '  | Selector exit: 0 — Ns',

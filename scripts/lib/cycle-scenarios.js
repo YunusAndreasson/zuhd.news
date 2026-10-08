@@ -58,6 +58,7 @@ const healthy = () => [
   // The stages whose outcome the script acts on.
   rule('fetch-api', 'node', '^scripts/fetch-news-api\\.js$'),
   rule('fetch-rss', 'node', '^scripts/fetch-news\\.js$'),
+  rule('enrich', 'node', '^scripts/enrich-selection\\.js$'),
   rule('validate', 'node', '^scripts/validate-articles\\.js$', says('Validated 2 articles, 0 removed\n')),
   rule('build', 'node', '^scripts/build\\.js$', says('Built 812 pages.\n')),
   rule('briefing', 'node', '^scripts/generate-briefing\\.js$', says('Briefing written.\n')),
@@ -151,6 +152,9 @@ export const SCENARIOS = {
   'build-lock-clears': cycle(REGULAR, { answers: { build: [says('Another build is already running (lock: .build.lock) — exiting.\n', { exit: 1 }), says('Built 812 pages.\n')] } }),
 
   // ── Paths that skip part of the cycle and carry on ────────────────────
+  // A stage on the way to the writer dies, and the writer is handed whatever
+  // the file held before it.
+  'enrich-crashes': cycle(REGULAR, { answers: { enrich: [says('SyntaxError: Unexpected end of JSON input\n', { exit: 1 })] } }),
   'writer-writes-nothing': cycle(REGULAR, { answers: { 'new-articles': [says('')] } }),
   'writer-writes-nothing-daily': cycle(DAILY, { answers: { 'new-articles': [says('')] } }),
   'validator-quarantines-one': cycle(REGULAR, { answers: { validate: [says(`SKIP (6 blocks): ${B}\nValidated 2 articles, 1 removed\n`)] } }),

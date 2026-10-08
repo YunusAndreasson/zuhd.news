@@ -24,7 +24,7 @@ import { ROOT } from './paths.js'
 const STUB = fileURLToPath(new URL('./cycle-stub.js', import.meta.url))
 const STUBBED = ['node', 'claude', 'git', 'npm', 'npx', 'curl', 'date', 'sleep']
 // The real tools the script uses. None reaches outside the sandbox it is given.
-const TOOLS = ['bash', 'cat', 'dirname', 'find', 'flock', 'grep', 'head', 'mkdir', 'mount', 'rm', 'sort', 'tee', 'timeout', 'tr', 'wc']
+const TOOLS = ['bash', 'cat', 'cp', 'dirname', 'find', 'flock', 'grep', 'head', 'mkdir', 'mount', 'rm', 'sort', 'tee', 'timeout', 'tr', 'wc']
 // The prompts the script reads whole. Stood in for by one line each: the
 // harness pins what the orchestrator wraps around a prompt, not its text,
 // which changes weekly.
@@ -53,7 +53,7 @@ function realPath(tool) {
 /**
  * Run one cycle of `script` under `scenario`.
  *
- * @typedef {{ status: number | null, out: string, log: string, trace: { id: string, cmd: string, argv: string[], cwd: string, stdin?: string, env: Record<string, string> }[] }} CycleRun
+ * @typedef {{ status: number | null, out: string, log: string, kept: string[], trace: { id: string, cmd: string, argv: string[], cwd: string, stdin?: string, env: Record<string, string> }[] }} CycleRun
  *
  * @param {Scenario} scenario
  * @param {{ script?: string, keep?: boolean }} [opts]
@@ -118,11 +118,14 @@ export async function runCycle(scenario, { script = join(ROOT, 'scripts', 'run-c
     /** @param {string} text */
     const plain = (text) => text.replaceAll(repo, '<repo>').replaceAll(sbx, '<sbx>')
     const logs = readdirSync(join(repo, 'logs')).filter((f) => f.endsWith('.log'))
+    const runs = join(repo, 'logs', 'runs')
+    const kept = existsSync(runs) ? readdirSync(runs, { recursive: true, encoding: 'utf-8' }).filter((f) => f.includes('.')).sort() : []
     const tracePath = join(sbx, 'trace.jsonl')
     return {
       status: res.status,
       out: plain(res.out),
       log: logs.length ? plain(readFileSync(join(repo, 'logs', logs[0]), 'utf-8')) : '',
+      kept: kept.map((f) => `logs/runs/${f}`),
       trace: existsSync(tracePath)
         ? plain(readFileSync(tracePath, 'utf-8'))
             .split('\n')
@@ -172,7 +175,8 @@ const sha = (text) => createHash('sha1').update(text).digest('hex').slice(0, 8)
  * what a test compares. Every command on a line of its own with its
  * arguments; under it, whatever changed in its environment since the command
  * before, and its stdin. Then the long texts the commands were handed (a
- * prompt is an argument), the log and the journal.
+ * prompt is an argument), the files it kept beside the cycle's record, the
+ * log and the journal.
  *
  * An inline `node -e` program is shown by the name its rule gave it and a hash
  * of its text. Durations are `N`: the stubs answer at once, and how long the
@@ -220,6 +224,7 @@ export function renderCycle(run, { full = true } = {}) {
   texts.forEach((text, i) => {
     lines.push('', `«text ${i + 1}»`, ...quoted(text))
   })
+  if (run.kept.length) lines.push('', 'kept', ...run.kept.map((f) => `  ${f}`))
   lines.push('', 'log', ...quoted(timeless(run.log)))
   if (full) lines.push('', 'journal', ...quoted(timeless(run.out)))
   return `${lines.join('\n')}\n`

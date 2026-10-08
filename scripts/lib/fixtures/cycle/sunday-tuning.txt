@@ -186,6 +186,12 @@ commands
   |
   | Four.
 
+kept
+  logs/runs/2026-10-11_2203/selection.1-selected.json
+  logs/runs/2026-10-11_2203/selection.2-enriched.json
+  logs/runs/2026-10-11_2203/selection.3-deduped.json
+  logs/runs/2026-10-11_2203/selection.4-offered.json
+
 log
   | === zuhd.news editorial cycle ===
   | Started: Sun Oct 11 10:03:05 PM UTC 2026
@@ -196,9 +202,11 @@ log
   | «fetch-rss»
   | RSS fetch: 77 stories
   | «node:merge-feeds»
+  | Merge exit: 0
   | Merged feed: 13 multi + 47 niche — Ns
   | node:prefilter-feed: stdout
   | «node:prefilter-feed»
+  | Prefilter exit: 0
   |
   | --- Stage 1: Selector ---
   | Injecting coverage map (1 topic groups) into selector prompt
@@ -209,14 +217,18 @@ log
   | «selector»
   | Selector exit: 0 — Ns
   | Selection contains 2 stories
-  | node:enrich-selection: stdout
-  | «node:enrich-selection»
+  | enrich: stdout
+  | «enrich»
+  | Enrich exit: 0
   | node:dedup-selection: stdout
   | «node:dedup-selection»
+  | Dedup exit: 0
   | node:update-ledger: stdout
   | «node:update-ledger»
+  | Ledger exit: 0
   | node:attach-indicators: stdout
   | «node:attach-indicators»
+  | Indicators exit: 0
   |
   | --- Stage 2: Writer ---
   | Wrote 2 articles.
@@ -225,6 +237,7 @@ log
   | Found 2 new/modified articles
   | node:scaffold-articles: stdout
   | «node:scaffold-articles»
+  | Scaffold exit: 0
   |
   | --- Stage 3: Editor ---
   | Trimmed one, left one.
@@ -310,8 +323,10 @@ log
   | --- Stage 3b: Build & Deploy ---
   | Validated 2 articles, 0 removed
   | «validate»
+  | Validate exit: 0
   | node:write-last-cycle: stdout
   | «node:write-last-cycle»
+  | Last cycle exit: 0
   | node:pick-breaking-social: stdout
   | «node:pick-breaking-social»
   | npm:typecheck: stdout
@@ -398,12 +413,16 @@ journal
   | Started: Sun Oct 11 10:03:05 PM UTC 2026
   |
   | --- Stage 0: API + RSS feed fetch ---
+  | fetch-api: stdout
   | API fetch: 80 stories from 50 events
+  | fetch-rss: stdout
   | RSS fetch: 77 stories
   | node:merge-feeds: stdout
+  | Merge exit: 0
   | Merged feed: 13 multi + 47 niche — Ns
   | node:prefilter-feed: stdout
   | «node:prefilter-feed»
+  | Prefilter exit: 0
   |
   | --- Stage 1: Selector ---
   | Injecting coverage map (1 topic groups) into selector prompt
@@ -414,14 +433,18 @@ journal
   | «selector»
   | Selector exit: 0 — Ns
   | Selection contains 2 stories
-  | node:enrich-selection: stdout
-  | «node:enrich-selection»
+  | enrich: stdout
+  | «enrich»
+  | Enrich exit: 0
   | node:dedup-selection: stdout
   | «node:dedup-selection»
+  | Dedup exit: 0
   | node:update-ledger: stdout
   | «node:update-ledger»
+  | Ledger exit: 0
   | node:attach-indicators: stdout
   | «node:attach-indicators»
+  | Indicators exit: 0
   |
   | --- Stage 2: Writer ---
   | Wrote 2 articles.
@@ -430,6 +453,7 @@ journal
   | Found 2 new/modified articles
   | node:scaffold-articles: stdout
   | «node:scaffold-articles»
+  | Scaffold exit: 0
   |
   | --- Stage 3: Editor ---
   | Trimmed one, left one.
@@ -491,8 +515,10 @@ journal
   | «commit»
   |
   | --- Stage 3b: Build & Deploy ---
+  | Validate exit: 0
   | node:write-last-cycle: stdout
   | «node:write-last-cycle»
+  | Last cycle exit: 0
   | node:pick-breaking-social: stdout
   | «node:pick-breaking-social»
   | npm:typecheck: stdout

@@ -69,6 +69,17 @@ ZUHD_RUN_STARTED=$(date -u +%Y-%m-%dT%H:%M:%SZ)
 ZUHD_GIT_HEAD=$(git -C "$PROJECT_DIR" rev-parse HEAD 2>/dev/null || true)
 export ZUHD_RUN_ID ZUHD_RUN_STARTED ZUHD_GIT_HEAD
 
+# The selection as it stood after each stage that rewrites it, kept beside the
+# cycle's record. /tmp/zuhd-selection.json is one file that four stages write
+# in turn and the next cycle deletes, so which story was dropped where, and
+# what the writer was actually handed, could only be read off the log's prose.
+# Never the cycle's business if it fails: no stage reads these.
+RUN_DIR="$LOG_DIR/runs/$ZUHD_RUN_ID"
+keep_selection() {
+  mkdir -p "$RUN_DIR" 2>/dev/null || return 0
+  cp /tmp/zuhd-selection.json "$RUN_DIR/selection.$1.json" 2>/dev/null || true
+}
+
 # A cycle that ends without publishing writes content/.cycle-alert.json and a
 # loud ALERT line. On 2026-09-19 four cycles in a row died on an expired Claude
 # OAuth token — "Failed to authenticate", 0 articles, exit 1 — and nothing
@@ -171,6 +182,7 @@ cleanup() {
   echo "Finished: $(date) — total ${SECONDS}s" | tee -a "$LOG_FILE"
   on_cycle_exit "$exit_status"
   find "$LOG_DIR" -name "cycle-*.log" -mtime +7 -delete 2>/dev/null || true
+  find "$LOG_DIR/runs" -name "selection.*.json" -mtime +7 -delete 2>/dev/null || true
   # The cycle as a record: logs/runs/<id>/run.json and a line in
   # logs/cycles.jsonl, read back out of the log this trap has just finished
   # (scripts/cycle/record.js). Last, behind a timeout and `|| true`, and given
@@ -231,12 +243,14 @@ fi
 
 # Step 3: Merge into unified feed
 node scripts/merge-feeds.js 2>>"$LOG_FILE"
+echo "Merge exit: $?" | tee -a "$LOG_FILE"
 FEED_STATS=$(node -e "try{const d=JSON.parse(require('fs').readFileSync('/tmp/zuhd-feed.json'));console.log((d.multiSourceStories?.length||0)+' multi + '+(d.nicheStories?.length||0)+' niche')}catch{console.log('failed')}" 2>/dev/null)
 FUNNEL_FEED="$FEED_STATS"
 echo "Merged feed: $FEED_STATS — $((SECONDS - T0))s" | tee -a "$LOG_FILE"
 
 # Step 4: Pre-filter feed — remove stories that match already-published articles
 node scripts/prefilter-feed.js 2>&1 | tee -a "$LOG_FILE"
+echo "Prefilter exit: $?" | tee -a "$LOG_FILE"
 
 # Stage 1: Selector — read pre-fetched feed, pick stories, save selection
 echo "" | tee -a "$LOG_FILE"
@@ -340,10 +354,13 @@ if [ "$SELECTION_COUNT" -eq 0 ]; then
 fi
 FUNNEL_SELECTED=$SELECTION_COUNT
 echo "Selection contains $SELECTION_COUNT stories" | tee -a "$LOG_FILE"
+keep_selection 1-selected
 
 # Stage 1.3: Enrich selection with full article bodies from /tmp/zuhd-feed.json
 # (selector reads slim feed without bodies to save tokens; bodies restored here for the writer)
 node scripts/enrich-selection.js 2>&1 | tee -a "$LOG_FILE"
+echo "Enrich exit: $?" | tee -a "$LOG_FILE"
+keep_selection 2-enriched
 # Recount: enrich drops entries it could not match to source text, so without
 # this the drops are charged to dedup and reported as "already published".
 SELECTION_COUNT=$(node -e "const s=JSON.parse(require('fs').readFileSync('/tmp/zuhd-selection.json','utf8'));console.log(Array.isArray(s)?s.length:0)" 2>/dev/null || echo 0)
@@ -356,6 +373,8 @@ FUNNEL_SELECTED=$SELECTION_COUNT
 # Stage 1.5: Remove already-published stories from selection (deterministic, no LLM)
 # Runs BEFORE ledger update so only genuinely new stories enter the ledger
 node scripts/dedup-selection.js 2>&1 | tee -a "$LOG_FILE"
+echo "Dedup exit: $?" | tee -a "$LOG_FILE"
+keep_selection 3-deduped
 SELECTION_COUNT=$(node -e "const s=JSON.parse(require('fs').readFileSync('/tmp/zuhd-selection.json','utf8'));console.log(Array.isArray(s)?s.length:0)" 2>/dev/null || echo 0)
 FUNNEL_DEDUPED=$SELECTION_COUNT
 DEDUP_DROPPED=$((FUNNEL_SELECTED - FUNNEL_DEDUPED))
@@ -374,6 +393,7 @@ fi
 # Stage 1.6: Update story ledger deterministically (moved out of selector LLM to save turns)
 # Runs after dedup so only genuinely new stories get added to the ledger
 node scripts/update-ledger.js 2>&1 | tee -a "$LOG_FILE"
+echo "Ledger exit: $?" | tee -a "$LOG_FILE"
 
 # Stage 1.7: Attach live indicator levels to the selection, so the writer can
 # cite a number rather than say "oil prices fell". Deterministic — reads the
@@ -382,6 +402,8 @@ node scripts/update-ledger.js 2>&1 | tee -a "$LOG_FILE"
 # snapshot or an unreadable selection logs and exits 0, and the writer sees a
 # selection with no `indicators` key, which is the state it has always handled.
 node scripts/attach-indicators.js 2>&1 | tee -a "$LOG_FILE"
+echo "Indicators exit: $?" | tee -a "$LOG_FILE"
+keep_selection 4-offered
 
 # Stage 2: Writer — read selection (with pre-loaded article bodies), draft markdown
 echo "" | tee -a "$LOG_FILE"
@@ -463,6 +485,7 @@ else
 
   # Stage 2.5: Scaffold — enrich frontmatter with data from selection (no LLM needed)
   node scripts/scaffold-articles.js 2>&1 | tee -a "$LOG_FILE"
+  echo "Scaffold exit: $?" | tee -a "$LOG_FILE"
 
   # Stage 3: Editor — check only this cycle's articles against style rules
   echo "" | tee -a "$LOG_FILE"
@@ -735,6 +758,7 @@ $TITLE_ECHO
   # the article's mtime and the log is appended to right after, so the funnel
   # and the commit message counted quarantined articles as published.
   VALIDATE_OUT=$(node scripts/validate-articles.js 2>&1 | tee -a "$LOG_FILE")
+  echo "Validate exit: $?" | tee -a "$LOG_FILE"
   BAD_COUNT=$(printf '%s\n' "$VALIDATE_OUT" | grep -c '^SKIP (' || true)
   FUNNEL_VALIDATED=$((NEW_COUNT - BAD_COUNT))
   [ "$BAD_COUNT" -gt 0 ] && FUNNEL_VALID_NOTE="${BAD_COUNT} removed"
@@ -742,6 +766,7 @@ $TITLE_ECHO
   # Write .last-cycle.json from validated articles (not raw selection)
   # This ensures the selector next cycle only skips stories that were actually published
   node scripts/write-last-cycle.js 2>&1 | tee -a "$LOG_FILE"
+  echo "Last cycle exit: $?" | tee -a "$LOG_FILE"
 
   # Stage 3a.5: Social pick — re-rank the eligible breaking candidates for
   # social-attention potential and write an optimized `socialTitle` into the

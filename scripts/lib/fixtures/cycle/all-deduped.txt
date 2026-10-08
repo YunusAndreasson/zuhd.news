@@ -35,6 +35,11 @@ commands
       - ALERT_REASON
       - CYCLE_ALERT
 
+kept
+  logs/runs/2026-10-08_1804/selection.1-selected.json
+  logs/runs/2026-10-08_1804/selection.2-enriched.json
+  logs/runs/2026-10-08_1804/selection.3-deduped.json
+
 log
   | === zuhd.news editorial cycle ===
   | Started: Thu Oct  8 06:04:59 PM UTC 2026
@@ -45,9 +50,11 @@ log
   | «fetch-rss»
   | RSS fetch: 77 stories
   | «node:merge-feeds»
+  | Merge exit: 0
   | Merged feed: 13 multi + 47 niche — Ns
   | node:prefilter-feed: stdout
   | «node:prefilter-feed»
+  | Prefilter exit: 0
   |
   | --- Stage 1: Selector ---
   | Injecting coverage map (1 topic groups) into selector prompt
@@ -58,10 +65,12 @@ log
   | «selector»
   | Selector exit: 0 — Ns
   | Selection contains 2 stories
-  | node:enrich-selection: stdout
-  | «node:enrich-selection»
+  | enrich: stdout
+  | «enrich»
+  | Enrich exit: 0
   | node:dedup-selection: stdout
   | «node:dedup-selection»
+  | Dedup exit: 0
   | All selections already published — skipping writer and editor
   |
   | === Funnel ===
