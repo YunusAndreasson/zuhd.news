@@ -12,6 +12,13 @@
 export const RUN_RECORD_SCHEMA = 1
 
 /**
+ * The four desks. Also spelled in `shared/types.ts` (the app's `Category`),
+ * `CATEGORY_FLOORS`, `build.js`, the MCP worker and both prompts, none of
+ * which can import this; `article.test.js` reads each copy.
+ */
+export const CATEGORIES = Object.freeze(['politics', 'economy', 'science', 'tech'])
+
+/**
  * One attempt at a stage.
  *
  * @typedef {object} StageAttempt
@@ -149,3 +156,105 @@ export const RUN_RECORD_SCHEMA = 1
  * @property {string} [degraded] why it kept the last good output instead of a new one
  * @property {string} [error]
  */
+
+/**
+ * One source of a feed story. `body` is what the writer is given to work
+ * from, so a story whose every `body` is a teaser is thin and is dropped
+ * before the writer (`THIN_BODY`, `lib/dedup.js`). The selector reads a copy
+ * of the feed with every `body` taken out.
+ *
+ * @typedef {object} FeedSource
+ * @property {string} name
+ * @property {string} url
+ * @property {string | null} country ISO alpha-2
+ * @property {string} [body] absent in the slim feed
+ * @property {string | null} [image]
+ * @property {number | null} [importanceRank] NewsAPI stories only
+ * @property {number | null} [sentiment] NewsAPI stories only
+ */
+
+/**
+ * One story in the feed the selector picks from (`/tmp/zuhd-feed.json`, under
+ * `multiSourceStories` or `nicheStories`).
+ *
+ * Five places build one, `fetch-news.js` for RSS and four in
+ * `fetch-news-api.js`, and they do not build the same thing: an RSS story has
+ * no `eventDate`, `socialScore` or `sentimentDivergence`, a tracked series
+ * has no `eventDate`. The optional keys below are that difference, written
+ * down and not yet removed. The selector reads these objects as they stand,
+ * so making them uniform is a change to its input.
+ *
+ * @typedef {object} FeedItem
+ * @property {string} title
+ * @property {string} description
+ * @property {string} link
+ * @property {string} pubDate ISO; the dateline time on every surface
+ * @property {string} category
+ * @property {string} source the primary outlet's name
+ * @property {string} suggestedSlug `YYYY-MM-DD-words`; the article's filename, and the key every later stage joins on
+ * @property {string | null} eventUri NewsAPI's event id; null for RSS
+ * @property {number | null} eventCoverage how many articles NewsAPI filed under the event
+ * @property {FeedSource[]} sources
+ * @property {(string | { label: string, uri: string })[]} concepts
+ * @property {'rss' | 'api'} origin
+ * @property {string} [eventDate] NewsAPI events only
+ * @property {number | null} [socialScore] NewsAPI events only
+ * @property {number | null} [sentiment]
+ * @property {number | null} [sentimentDivergence] NewsAPI events with a panel of sources
+ * @property {unknown} [location]
+ * @property {true} [thin] slim feed only: no source carries enough text (`prefilter-feed.js`)
+ */
+
+/**
+ * One story the selector picked (`/tmp/zuhd-selection.json`, an array). The
+ * selector writes the first block; three stages then rewrite the file in turn.
+ *
+ * @typedef {object} SelectionEntry
+ * @property {string} title the selector, copied from the feed
+ * @property {string} link
+ * @property {string} source
+ * @property {string} pubDate
+ * @property {string} category one of `CATEGORIES`
+ * @property {string} angle the selector: what the writer should lead with
+ * @property {string} suggestedSlug the article's filename, and the join key from here on
+ * @property {FeedSource[]} sources the selector's, then replaced by the feed's own copies, bodies included (`enrich-selection.js`)
+ * @property {string | null} [eventUri]
+ * @property {number | null} [eventCoverage]
+ * @property {(string | { label: string, uri: string })[]} [concepts]
+ * @property {number | null} [sentimentDivergence]
+ * @property {unknown[]} [indicators] `attach-indicators.js`: the live levels the writer may cite
+ * @property {unknown[]} [calendar] `attach-indicators.js`
+ */
+
+const SLUG = /^\d{4}-\d{2}-\d{2}-[a-z0-9]+(?:-[a-z0-9]+)*$/
+
+/**
+ * What is wrong with a selection, as short phrases; empty when nothing is.
+ * The selector is a model writing JSON to a file, and until now the only
+ * check between it and the writer was whether the file held an array.
+ *
+ * It reports. Dropping an entry is the business of the stage that reads it.
+ *
+ * @param {unknown} selection
+ * @returns {string[]}
+ */
+export function selectionProblems(selection) {
+  if (!Array.isArray(selection)) return ['not an array']
+  /** @type {string[]} */
+  const problems = []
+  const seen = new Set()
+  selection.forEach((entry, i) => {
+    if (!entry || typeof entry !== 'object') {
+      problems.push(`#${i + 1}: not an object`)
+      return
+    }
+    const at = entry.suggestedSlug || `#${i + 1}`
+    for (const k of ['suggestedSlug', 'category', 'title', 'sources']) if (!entry[k]) problems.push(`${at}: missing ${k}`)
+    if (entry.suggestedSlug && !SLUG.test(entry.suggestedSlug)) problems.push(`${at}: slug is not YYYY-MM-DD-words`)
+    if (entry.category && !CATEGORIES.includes(entry.category)) problems.push(`${at}: invalid category ${entry.category}`)
+    if (entry.sources && !Array.isArray(entry.sources)) problems.push(`${at}: sources is not a list`)
+    if (entry.suggestedSlug && seen.has(entry.suggestedSlug)) problems.push(`${at}: slug picked twice`)
+    seen.add(entry.suggestedSlug)
+  })
+  return problems
+}

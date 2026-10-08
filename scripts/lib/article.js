@@ -10,13 +10,7 @@ import { readFileSync } from 'node:fs'
 import { basename } from 'node:path'
 import { splitBlocks } from './blocks.js'
 import { parseFrontmatter } from './frontmatter.js'
-
-/**
- * The four desks. Also spelled in `shared/types.ts` (the app's `Category`),
- * `CATEGORY_FLOORS`, `build.js`, the MCP worker and both prompts, none of
- * which can import this; `article.test.js` reads each copy.
- */
-export const CATEGORIES = Object.freeze(['politics', 'economy', 'science', 'tech'])
+import { CATEGORIES } from './schema.js'
 
 /**
  * @typedef {object} Article

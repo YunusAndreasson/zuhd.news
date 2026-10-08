@@ -4,9 +4,10 @@ import { mkdtempSync, readFileSync, rmSync, writeFileSync } from 'node:fs'
 import { tmpdir } from 'node:os'
 import { join } from 'node:path'
 import { test } from 'node:test'
-import { CATEGORIES, articleProblems, datelineOf, readArticle, tryReadArticle, visibleText } from './article.js'
+import { articleProblems, datelineOf, readArticle, tryReadArticle, visibleText } from './article.js'
 import { CATEGORY_FLOORS } from './dedup.js'
 import { ROOT } from './paths.js'
+import { CATEGORIES } from './schema.js'
 
 const GOOD = `---
 title: "Trade Body Doubles Growth Forecast"
