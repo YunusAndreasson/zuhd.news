@@ -355,3 +355,49 @@ export function loadDedupContext(cutoffMs = 48 * 3600 * 1000) {
   }
   return { recentSlugs, ledgerEventUris, recentWordSets, recentTitleSets, ledgerLabelSets, recentUrls }
 }
+
+/**
+ * Take out of a selection what is already published, and what it holds twice.
+ *
+ * The layers of `wouldDedup` only ever compare a pick against
+ * `content/articles/`, which holds nothing for a story still in this
+ * selection, so two picks describing the same event sailed through as two new
+ * stories and both got written (`skyroot-vikram-1-india-first-private-orbital-launch`
+ * and `…-india-private-orbital-rocket`, both 2026-07-18, 83% overlap). Each
+ * pick that survives is therefore also matched, by slug words, against the
+ * picks kept before it.
+ *
+ * `floors` names each category the result leaves under its minimum. Nothing
+ * refills one; `allowed` is whether that floor may go unmet.
+ *
+ * @param {any[]} selection
+ * @param {ReturnType<typeof loadDedupContext>} ctx
+ */
+export function dedupSelection(selection, ctx) {
+  /** @type {{ slug: string, reason: string, match: string }[]} */
+  const removed = []
+  /** @type {ReturnType<typeof buildWordSets>} */
+  const batch = []
+  const kept = selection.filter((s) => {
+    const result = wouldDedup(s, ctx)
+    if (result.deduped) {
+      removed.push({ slug: s.suggestedSlug, reason: result.reason, match: result.match })
+      return false
+    }
+    const twin = fuzzyMatch(s.suggestedSlug, batch)
+    if (twin) {
+      removed.push({ slug: s.suggestedSlug, reason: 'intra-batch', match: twin })
+      return false
+    }
+    batch.push(...buildWordSets([s.suggestedSlug]))
+    return true
+  })
+
+  /** @type {Record<string, number>} */
+  const perCategory = {}
+  for (const s of kept) perCategory[s.category] = (perCategory[s.category] || 0) + 1
+  const floors = Object.entries(CATEGORY_FLOORS)
+    .filter(([category, min]) => (perCategory[category] || 0) < min)
+    .map(([category, min]) => ({ category, count: perCategory[category] || 0, min, allowed: FLOORS_MAY_GO_UNMET.has(category) }))
+  return { kept, removed, floors }
+}

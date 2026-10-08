@@ -15,6 +15,7 @@ import {
   fuzzyMatch,
   buildWordSets,
   wouldDedup,
+  dedupSelection,
   isThin,
   NICHE_SOURCES,
   THIN_BODY,
@@ -284,4 +285,50 @@ test('tracking noise and param order are not identity', () => {
   )
   assert.equal(normalizeUrl('https://ex.com/a?b=2&a=1'), normalizeUrl('https://ex.com/a?a=1&b=2'))
   assert.equal(normalizeUrl('https://ex.com/a?fbclid=zz'), normalizeUrl('https://ex.com/a'))
+})
+
+// --- the selection as a whole ---
+
+const emptyCtx = () => ({
+  recentSlugs: [],
+  ledgerEventUris: new Map(),
+  recentWordSets: [],
+  recentTitleSets: [],
+  ledgerLabelSets: [],
+  recentUrls: new Map(),
+})
+const pick = (slug, category = 'politics') => ({ suggestedSlug: slug, category, title: slug, sources: [{ name: 'Reuters' }, { name: 'BBC' }] })
+
+// The shape of corpus.test.js's same-day pair (two Skyroot launch stories on
+// 2026-07-18), under names no article has: layer 1 looks on disk.
+test('two picks of one event are one story, and the first is the one kept', () => {
+  const out = dedupSelection(
+    [
+      pick('2026-07-18-zorbia-vikram-9-first-private-orbital-launch', 'science'),
+      pick('2026-07-18-zorbia-vikram-9-private-orbital-rocket', 'science'),
+      pick('2026-07-18-quasicrystal-nephology-wombat-theorem', 'economy'),
+    ],
+    emptyCtx(),
+  )
+  assert.deepEqual(out.kept.map((s) => s.suggestedSlug), ['2026-07-18-zorbia-vikram-9-first-private-orbital-launch', '2026-07-18-quasicrystal-nephology-wombat-theorem'])
+  assert.deepEqual(out.removed, [
+    { slug: '2026-07-18-zorbia-vikram-9-private-orbital-rocket', reason: 'intra-batch', match: '2026-07-18-zorbia-vikram-9-first-private-orbital-launch' },
+  ])
+})
+
+test('a pick already published is removed for the layer that caught it', () => {
+  const ctx = { ...emptyCtx(), recentUrls: new Map([[normalizeUrl('https://example.org/kramatorsk'), '2026-10-07-kramatorsk-bus-attack']]) }
+  const out = dedupSelection([{ ...pick('2026-10-08-a-new-headline-on-the-same-wire-copy'), link: 'https://example.org/kramatorsk' }], ctx)
+  assert.deepEqual(out.kept, [])
+  assert.deepEqual(out.removed, [{ slug: '2026-10-08-a-new-headline-on-the-same-wire-copy', reason: 'url', match: '2026-10-07-kramatorsk-bus-attack' }])
+})
+
+test('every category the result leaves short is named, and whether that is allowed', () => {
+  const { floors } = dedupSelection([pick('2026-10-08-zebrafish-quorum-paradox', 'science'), pick('2026-10-08-quasicrystal-nephology-wombat', 'economy')], emptyCtx())
+  assert.deepEqual(floors, [
+    { category: 'politics', count: 0, min: 3, allowed: false },
+    { category: 'economy', count: 1, min: 3, allowed: false },
+    { category: 'science', count: 1, min: 2, allowed: true },
+    { category: 'tech', count: 0, min: 3, allowed: false },
+  ])
 })

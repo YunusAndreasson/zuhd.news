@@ -65,7 +65,6 @@ const STILL_SPELLING = [
   'scripts/compute-metrics.js',
   'scripts/coverage-map.js',
   'scripts/dashboard/server.js',
-  'scripts/dedup-selection.js',
   'scripts/dry-run-augment.js',
   'scripts/enrich-selection.js',
   'scripts/extract-entities.js',
