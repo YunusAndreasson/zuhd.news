@@ -27,10 +27,13 @@
   },
   "include": [
     "scripts/cycle/record.js",
+    "scripts/coverage-map.js",
     "scripts/cycle/replay-stage.js",
     "scripts/lib/argv.js",
     "scripts/lib/article.js",
+    "scripts/lib/article-files.js",
     "scripts/lib/blocks.js",
+    "scripts/lib/coverage-map.js",
     "scripts/lib/cycle-harness.js",
     "scripts/lib/cycle-log.js",
     "scripts/lib/cycle-scenarios.js",
