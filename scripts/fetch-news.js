@@ -327,7 +327,10 @@ async function main() {
   console.error(`Fetching ${SOURCES.length} RSS niche sources + Hacker News...`)
 
   const [rssResults, hnItems] = await Promise.all([
-    Promise.all(SOURCES.map(fetchSource)),
+    // An arrow, not `SOURCES.map(fetchSource)`: `map` passes the index as the
+    // second argument, which is `retries`. The first feed got no retry and the
+    // twenty-sixth got 25, each after a 10 s sleep, in a stage with no timeout.
+    Promise.all(SOURCES.map((source) => fetchSource(source))),
     fetchHackerNews(),
   ])
   const MAX_PER_SOURCE = 3
