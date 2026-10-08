@@ -11,17 +11,26 @@
 import { test } from 'node:test'
 import { strict as assert } from 'node:assert'
 import { readFileSync, readdirSync, existsSync } from 'node:fs'
+import { parseCycleLog } from './cycle-log.js'
 
 const LOG_DIR = 'logs'
 const WINDOW = 14 // last N cycles
 
+// The lines are read by lib/cycle-log.js. This file had a regex of its own for
+// each of them, as four other readers did.
+const isCycleLog = f => f.startsWith('cycle-') && f.endsWith('.log')
+const read = f => ({ f, log: parseCycleLog(readFileSync(`${LOG_DIR}/${f}`, 'utf8')) })
+
 function loadRecent() {
   if (!existsSync(LOG_DIR)) return []
-  const files = readdirSync(LOG_DIR).filter(f => f.startsWith('cycle-') && f.endsWith('.log')).sort()
-  return files.slice(-WINDOW).map(f => ({ f, raw: readFileSync(`${LOG_DIR}/${f}`, 'utf8') }))
+  return readdirSync(LOG_DIR).filter(isCycleLog).sort().slice(-WINDOW).map(read)
 }
 
-const num = (raw, re) => { const m = raw.match(re); return m ? +m[1] : null }
+// Every log on disk, for the two ratchets that count across all of them.
+const loadAll = () => readdirSync(LOG_DIR).filter(isCycleLog).map(read)
+
+// A stage's first attempt: its own `<Stage> exit:` line, not a retry's.
+const firstExit = (log, id) => log.stages.find(s => s.id === id)?.attempts[0].exit ?? null
 
 // Silent stage failures: 2026-04-14 22:01 and 2026-04-17 17:03 both emitted
 // `Edu context exit: 1` with empty stderr. The cycle continued; articles
@@ -77,12 +86,11 @@ test('no new silent stage failures', () => {
   // 'Edu context' dropped 2026-06-19: that stage was removed from run-cycle.sh
   // (we no longer generate context briefs), so its log line no longer appears.
   const stages = ['Selector', 'Writer', 'Editor', 'Build', 'Deploy', 'Briefing']
-  for (const { f, raw } of loadRecent()) {
+  for (const { f, log } of loadRecent()) {
     for (const stage of stages) {
-      const re = new RegExp(`^${stage} exit: ([1-9]\\d*)`, 'm')
-      const m = raw.match(re)
-      if (m) {
-        const key = `${f}: ${stage} exit=${m[1]}`
+      const exit = firstExit(log, stage.toLowerCase())
+      if (exit) {
+        const key = `${f}: ${stage} exit=${exit}`
         if (!KNOWN_BAD.has(key)) failures.push(key)
       }
     }
@@ -108,8 +116,9 @@ test('no new silent stage failures', () => {
 // once they age out the count drops well under baseline (still passes). The
 // ratchet's real job is to fire when a NEW divergence cluster starts growing.
 test('git push failure rate does not grow', () => {
-  const all = readdirSync(LOG_DIR).filter(f => f.startsWith('cycle-') && f.endsWith('.log'))
-  const failed = all.filter(f => /WARNING: git push failed/.test(readFileSync(`${LOG_DIR}/${f}`, 'utf8')))
+  const failed = loadAll()
+    .filter(({ log }) => log.warnings.some(w => w.startsWith('WARNING: git push failed')))
+    .map(({ f }) => f)
   const BASELINE = 21 // 2026-05-27 reconciliation: May 22→27 divergence cluster (April logs already rotated off disk)
   assert.ok(failed.length <= BASELINE,
     `git push failures ${failed.length} > baseline ${BASELINE}; new:\n  ${failed.slice(BASELINE).join('\n  ')}`)
@@ -125,9 +134,9 @@ test('git push failure rate does not grow', () => {
 // reach this box at all — CI rejects it on push, and the only way past that is
 // a direct commit on the server.
 test('no cycle typechecked dirty', () => {
-  const failed = readdirSync(LOG_DIR)
-    .filter(f => f.startsWith('cycle-') && f.endsWith('.log'))
-    .filter(f => /WARNING: typecheck failed/.test(readFileSync(`${LOG_DIR}/${f}`, 'utf8')))
+  const failed = loadAll()
+    .filter(({ log }) => log.warnings.some(w => w.startsWith('WARNING: typecheck failed')))
+    .map(({ f }) => f)
   assert.deepEqual(failed, [], `cycles that built with type errors:\n  ${failed.join('\n  ')}`)
 })
 
@@ -139,8 +148,8 @@ test('no validator SKIPs in recent cycles after splitter fix', () => {
   const FIX_CUTOFF = 'cycle-2026-04-19_0803.log' // splitter fix applied after this cycle
   const recent = loadRecent().filter(({ f }) => f > FIX_CUTOFF)
   const skips = []
-  for (const { f, raw } of recent) {
-    for (const line of raw.split('\n')) if (/^SKIP \(/.test(line)) skips.push(`${f}: ${line}`)
+  for (const { f, log } of recent) {
+    for (const { reason, file } of log.skips) skips.push(`${f}: SKIP (${reason}): ${file}`)
   }
   assert.deepEqual(skips, [], `validator SKIPs after splitter fix:\n  ${skips.join('\n  ')}`)
 })
@@ -158,9 +167,9 @@ test('no validator SKIPs in recent cycles after splitter fix', () => {
 // while still publishing fine in CI.
 test('publish rate does not collapse', () => {
   const counts = []
-  for (const { raw } of loadRecent()) {
-    if (!/^Editor exit: 0/m.test(raw)) continue
-    const p = num(raw, /^Published:\s+(\d+)/m)
+  for (const { log } of loadRecent()) {
+    if (firstExit(log, 'editor') !== 0) continue
+    const p = log.funnel?.published
     if (p != null) counts.push(p)
   }
   if (counts.length < 3) return
@@ -197,13 +206,12 @@ test('no cycle reaches the writer and writes nothing', () => {
     'cycle-2026-07-30_0803.log', // exit 1, 8s — tool call could not be parsed
   ])
   const failures = []
-  for (const { f, raw } of loadRecent()) {
+  for (const { f, log } of loadRecent()) {
     if (KNOWN_BAD.has(f)) continue
     // Only cycles that actually got to the writer: an all-deduped selection
     // exits at Stage 1.5 and never prints a Writer line.
-    if (!/^Writer exit: /m.test(raw)) continue
-    const written = num(raw, /^Written:\s+(\d+)/m)
-    if (written === 0) failures.push(`${f}: reached the writer, wrote 0`)
+    if (!log.stages.some(s => s.id === 'writer')) continue
+    if (log.funnel?.written === 0) failures.push(`${f}: reached the writer, wrote 0`)
   }
   assert.deepEqual(failures, [], `writer produced nothing:\n  ${failures.join('\n  ')}`)
 })
@@ -228,12 +236,11 @@ test('no cycle reaches the writer and writes nothing', () => {
 // before the fetch line existed, still fall back to the merged count.
 test('feed niche volume above catastrophic floor', () => {
   const vols = []
-  for (const { raw } of loadRecent()) {
-    const m = raw.match(/Merged feed: (\d+) multi \+ (\d+) niche/)
-    if (!m) continue
-    if (+m[1] === 0) continue
-    const fetched = raw.match(/^RSS fetch: (\d+) stories/m)
-    vols.push(fetched ? +fetched[1] : +m[2])
+  for (const { log } of loadRecent()) {
+    const { multi, niche, rssStories } = log.feed
+    if (multi == null) continue
+    if (multi === 0) continue
+    vols.push(rssStories ?? niche)
   }
   const FLOOR = 50
   const low = vols.filter(v => v < FLOOR)
@@ -245,10 +252,10 @@ test('feed niche volume above catastrophic floor', () => {
 // or a new stage is silently dropping items. Cheap sentinel for prompt drift.
 test('funnel arithmetic balances', () => {
   const broken = []
-  for (const { f, raw } of loadRecent()) {
-    const selected = num(raw, /^Selected:\s+(\d+)/m)
-    const remaining = num(raw, /^Deduped:\s+(\d+)/m)
-    const alreadyPub = num(raw, /\((\d+) already published\)/) ?? 0
+  for (const { f, log } of loadRecent()) {
+    const selected = log.funnel?.selected ?? null
+    const remaining = log.funnel?.deduped ?? null
+    const alreadyPub = Number(log.funnel?.dedupNote?.match(/(\d+) already published/)?.[1] ?? 0)
     if (selected != null && remaining != null && selected !== remaining + alreadyPub) {
       broken.push(`${f}: ${selected} !== ${remaining} + ${alreadyPub}`)
     }
