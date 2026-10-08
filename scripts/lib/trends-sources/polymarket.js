@@ -458,7 +458,7 @@ const HAIKU_TIMEOUT_MS = Number(process.env.PM_HAIKU_TIMEOUT_MS) || 100_000
 // resized for, and its labels read more naturally ("Flávio Bolsonaro wins
 // Brazil 2026?" against "…wins 2026 Brazil?"). The 27% rejection rate that
 // prompted the switch was mostly `isUsableShortTitle`, not the model; see there.
-// An empty PM_TITLE_EFFORT drops the flag, which running this on Haiku needs.
+// An empty PM_TITLE_EFFORT drops the flag, which running this on Haiku 4.5 needs.
 const TITLE_MODEL = process.env.PM_TITLE_MODEL || 'claude-sonnet-5-5'
 const TITLE_EFFORT = process.env.PM_TITLE_EFFORT ?? 'low'
 

@@ -57,7 +57,7 @@ export function parseClaudeEnvelope(stdout) {
   return parseClaudeEnvelopeWithUsage(stdout).result
 }
 
-const HAIKU_MODEL = 'claude-haiku-4-5-20251001'
+const HAIKU_MODEL = 'claude-haiku-5-5'
 
 /**
  * The argv for one non-interactive `claude -p` call.
@@ -75,7 +75,8 @@ const HAIKU_MODEL = 'claude-haiku-4-5-20251001'
  * - `tools: ''` keeps tool definitions out of the request. Pass `null` to let
  *   the CLI load its defaults (a multi-turn call that may use them), or
  *   `allowedTools` to name the ones it may use.
- * - `effort: null` omits the flag, for a model that does not take one (Haiku).
+ * - `effort: null` omits the flag, for a model that does not take one (Haiku
+ *   4.5 and older).
  * - `json: false` returns the model's text on stdout instead of the envelope.
  *
  * @param {string} prompt
@@ -126,7 +127,7 @@ export function runClaudeSync(args, { timeout = 120_000, maxBuffer = 1024 * 1024
  * swallowing that here would cost the one line that says which one failed.
  */
 export function runHaiku(prompt, { timeout, maxBuffer }) {
-  return runClaudeSync(claudeArgs(prompt, { model: HAIKU_MODEL, effort: null }), { timeout, maxBuffer })
+  return runClaudeSync(claudeArgs(prompt, { model: HAIKU_MODEL }), { timeout, maxBuffer })
 }
 
 /**
