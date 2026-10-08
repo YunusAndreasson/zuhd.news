@@ -215,8 +215,16 @@ function isRelevant(item) {
  * @typedef {any[] & { _error?: string }} FeedResult
  */
 
+// Three retries, 10 s apart: a feed gets about 70 s before it is given up.
+// One was not enough when the resolver was slow (2026-10-08 22:03: 27 lookups
+// queue on node's four lookup threads, and the retry's lookup waits behind the
+// first round's). Measured that night, by the try on which each of the 26
+// feeds answered: 8 on the first, 10 by the second, 13 by the third, all 26 by
+// the fourth.
+const FEED_RETRIES = 3
+
 /** @returns {Promise<FeedResult>} */
-async function fetchSource(source, retries = 1) {
+async function fetchSource(source, retries = FEED_RETRIES) {
   try {
     const res = await fetch(source.url, { signal: AbortSignal.timeout(10000), headers: { 'User-Agent': ZUHD_UA } })
     if (!res.ok) throw new Error(`HTTP ${res.status}`)
@@ -330,6 +338,8 @@ async function main() {
     // An arrow, not `SOURCES.map(fetchSource)`: `map` passes the index as the
     // second argument, which is `retries`. The first feed got no retry and the
     // twenty-sixth got 25, each after a 10 s sleep, in a stage with no timeout.
+    // That accident was also what carried the stage through a slow resolver,
+    // which is why the count is now chosen (`FEED_RETRIES`).
     Promise.all(SOURCES.map((source) => fetchSource(source))),
     fetchHackerNews(),
   ])
