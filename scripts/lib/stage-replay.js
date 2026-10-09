@@ -22,11 +22,30 @@ import { ROOT } from './paths.js'
 const CLOCK = fileURLToPath(new URL('./frozen-clock.js', import.meta.url))
 const UNSHARE = '/usr/bin/unshare'
 
-/** Whether this machine lets us make the sandbox: root, `unshare`, and an overlay. */
+/** Where a run's scratch layers are kept, and removed from when it ends. */
+const SCRATCH = join(ROOT, '.cache', 'stage-replay')
+
+/**
+ * Whether this machine lets us make the sandbox: root, `unshare`, and an overlay.
+ *
+ * The probe mounts an overlay over four directories, and they are made and
+ * removed here, beside the ones a run uses. They were made by `mktemp -d`
+ * inside the probe's shell and never removed: the mount goes with the
+ * namespace, the directories do not, and every `npm test` left one more
+ * `/tmp/tmp.XXXXXXXXXX` behind (51 of them in the fourteen hours after this
+ * landed).
+ */
 export function canReplay() {
   if (!existsSync(UNSHARE)) return false
-  const probe = 'd=$(mktemp -d) && mkdir $d/l $d/u $d/w $d/m && mount -t overlay overlay -o lowerdir=$d/l,upperdir=$d/u,workdir=$d/w $d/m'
-  return spawnSync(UNSHARE, ['-m', '-n', '--', '/bin/bash', '-c', probe], { stdio: 'ignore' }).status === 0
+  mkdirSync(SCRATCH, { recursive: true })
+  const probe = mkdtempSync(join(SCRATCH, 'probe-'))
+  try {
+    for (const layer of ['l', 'u', 'w', 'm']) mkdirSync(join(probe, layer))
+    const mount = 'mount -t overlay overlay -o "lowerdir=$1/l,upperdir=$1/u,workdir=$1/w" "$1/m"'
+    return spawnSync(UNSHARE, ['-m', '-n', '--', '/bin/bash', '-c', mount, 'probe', probe], { stdio: 'ignore' }).status === 0
+  } finally {
+    rmSync(probe, { recursive: true, force: true })
+  }
 }
 
 /** @param {string} dir @returns {string[]} every file under `dir`, by path from it */

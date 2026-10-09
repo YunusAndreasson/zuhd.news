@@ -2,7 +2,7 @@
 //
 // Needs root and `unshare`, as the sandbox does; skipped where they are not.
 import assert from 'node:assert/strict'
-import { existsSync, mkdirSync, mkdtempSync, readFileSync, rmSync, writeFileSync } from 'node:fs'
+import { existsSync, mkdirSync, mkdtempSync, readFileSync, readdirSync, rmSync, writeFileSync } from 'node:fs'
 import { join } from 'node:path'
 import { test } from 'node:test'
 import { ROOT } from './paths.js'
@@ -23,6 +23,25 @@ async function replay(body, rest = {}) {
     rmSync(dir, { recursive: true, force: true })
   }
 }
+
+// The probe made its four directories with `mktemp -d` and left them: one
+// more `/tmp/tmp.XXXXXXXXXX` for every run of the tests.
+test('asking whether the sandbox can be made leaves nothing behind', () => {
+  mkdirSync(join(ROOT, '.cache'), { recursive: true })
+  const tmp = mkdtempSync(join(ROOT, '.cache', 'stage-replay-test-'))
+  const was = process.env.TMPDIR
+  process.env.TMPDIR = tmp
+  try {
+    canReplay()
+    assert.deepEqual(readdirSync(tmp), [], 'nothing where `mktemp` puts a directory')
+  } finally {
+    if (was === undefined) delete process.env.TMPDIR
+    else process.env.TMPDIR = was
+    rmSync(tmp, { recursive: true, force: true })
+  }
+  const left = readdirSync(join(ROOT, '.cache', 'stage-replay')).filter((name) => name.startsWith('probe-'))
+  assert.deepEqual(left, [], 'and nothing of its own')
+})
 
 test('the clock is held, and both streams and the status come back', { skip }, async () => {
   const r = await replay(`
