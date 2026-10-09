@@ -4,6 +4,7 @@
 // Pure, so both halves are tested without the network or a build
 // (`companies.test.js`). The catalog is `company-metadata.js`.
 
+import { tagMatcher } from './entity-registry.js'
 import { instrumentMismatch } from './market-metadata.js'
 
 /** How many of a company's stories the payload carries. The app's card lists
@@ -129,9 +130,10 @@ export function companyRecord(entry, data, { stale = false } = {}) {
   }
 }
 
-const escapeRe = (s) => s.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')
-/** A tag on a word boundary, never inside a word: `amd` is not in `amdahl`. */
-const tagMatcher = (tag) => new RegExp(`(^|[^a-z0-9])${escapeRe(tag.toLowerCase())}([^a-z0-9]|$)`)
+/** A tag on a word boundary, never inside a word: `amd` is not in `amdahl`.
+ *  The matcher is the registry's; a story's side is lowercased by `storyFacts`,
+ *  so the tag's is here. */
+const wholeTag = (tag) => tagMatcher(tag.toLowerCase())
 const lower = (s) => String(s || '').toLowerCase()
 const tickerOf = (id) => String(id || '').slice('stocks:'.length).toUpperCase()
 
@@ -169,8 +171,8 @@ export function storyFacts(story) {
 export function companyMatcher({ tickers = [], topicTags = [], commonName }) {
   return {
     wanted: new Set(tickers.map((t) => String(t).toUpperCase())),
-    tags: topicTags.map(tagMatcher),
-    common: commonName ? tagMatcher(commonName) : null,
+    tags: topicTags.map(wholeTag),
+    common: commonName ? wholeTag(commonName) : null,
   }
 }
 

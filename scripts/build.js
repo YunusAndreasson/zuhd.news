@@ -15,7 +15,7 @@ import { buildCountryPages } from './build/country-pages.js'
 import { buildCountryMetrics } from './build/country-metrics.js'
 import { buildEntityPages } from './build/entity-pages.js'
 import { latestTrendsPath } from './lib/trends-snapshot.js'
-import { canonicalIndicatorId } from './lib/entity-registry.js'
+import { canonicalIndicatorId, matchesAnyTag, tagMatcher } from './lib/entity-registry.js'
 import { loadShared } from './build/shared-ts.js'
 import {
   formatDate,
@@ -1100,8 +1100,11 @@ const chokepointsSrc = join(ROOT, 'content', '.chokepoints.json')
 if (existsSync(chokepointsSrc)) {
   const raw = JSON.parse(readFileSync(chokepointsSrc, 'utf8'))
   // Match articles against each chokepoint by topicTag. Tag hits against
-  // title + concepts + location; lowercased whole-ish word match. Cheap
-  // enough at 14-day window × 11 chokepoints (~200 × 11 = 2.2k lookups).
+  // title + concepts + location, lowercased, and a tag is matched whole
+  // (`matchesAnyTag`), as the exchange join below and the narration stage
+  // match it. This one was the bare `includes` that comment warns of: Taiwan
+  // carries the tag `pla`, and on the 2026-10-09 corpus 32 of the 54 stories
+  // it matched were "plan", "plague" and "displaced".
   const normalize = (s) => String(s || '').toLowerCase()
   const enriched = {
     ...raw,
@@ -1115,7 +1118,7 @@ if (existsSync(chokepointsSrc)) {
           a.meta.location,
           ...(a.concepts || []).map((x) => (typeof x === 'object' ? x.label : x)),
         ].map(normalize).join(' ')
-        if (tags.some((t) => hay.includes(t))) {
+        if (matchesAnyTag(tags, hay)) {
           hits.push({
             slug: a.slug,
             title: a.title,
@@ -1197,8 +1200,7 @@ if (existsSync(marketsSrc)) {
   // Swiss index) match "transmission" and hung eight unrelated tech stories off
   // Zurich; short tickers are exactly the tags a market catalog is full of.
   // Phrases work too — the boundary is on the whole tag, not on each word.
-  const escapeRe = (s) => s.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')
-  const tagMatcher = (tag) => new RegExp(`(^|[^a-z0-9])${escapeRe(tag)}([^a-z0-9]|$)`)
+  // The matcher is `tagMatcher` in `lib/entity-registry.js`.
   const enriched = {
     ...raw,
     exchanges: (raw.exchanges || []).map((e) => {
