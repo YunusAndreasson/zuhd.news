@@ -152,6 +152,10 @@ const MIN_HISTORY_POINTS = 5
 // last DECIDED_TAIL_FRACTION of points.
 const DECIDED_BAND = 3   // percentage points
 const DECIDED_TAIL_FRACTION = 1 / 3
+/** The same band on a last-trade price, which runs 0 to 1: one number, where
+ *  `0.03` and `0.97` were spelled beside it. */
+const UNDECIDED_FROM = DECIDED_BAND / 100
+const UNDECIDED_TO = (100 - DECIDED_BAND) / 100
 
 /**
  * The tags that disqualify an event, each for its own reason. Editorial, and
@@ -238,7 +242,7 @@ export function pickOutcome(ev, incumbentSlugs = new Set(), now = Date.now()) {
   const live = (ev.markets || [])
     .filter((m) => {
       const ltp = Number(m.lastTradePrice)
-      return !Number.isFinite(ltp) || (ltp > 0.03 && ltp < 0.97)
+      return !Number.isFinite(ltp) || (ltp > UNDECIDED_FROM && ltp < UNDECIDED_TO)
     })
     .filter((m) => m.active && !m.closed)
     .filter((m) => {
@@ -390,6 +394,13 @@ export function deckIds(deck) {
   })
 }
 
+/**
+ * The header a title is asked to fit, in characters. The model is told this
+ * number, and a title already inside it keeps its own words. The regex
+ * fallback below cuts at its own, longer `TARGET`, and says why.
+ */
+const HEADER_CHARS = 42
+
 /** Regex fallback — used only if Haiku fails. Strip "Will" prefix,
  *  collapse "U.S." → "US", ellipsis-truncate. Loses nuance on edge cases,
  *  which is why Haiku is the primary path. */
@@ -468,14 +479,6 @@ export function isUsableShortTitle(raw, short) {
   return true
 }
 
-/** Batch-shorten Polymarket titles via Haiku. One call, all titles, ~2s.
- *  Returns an array aligned to the input. On any failure (CLI error,
- *  parse error, wrong length) falls back to the regex shortener per-item
- *  so the pipeline never blocks on this.
- *
- *  @param {string[]} titles  Raw market questions.
- *  @returns {Promise<string[]>}
- */
 /**
  * The shape every path out of the shortener returns, so a caller never has to
  * ask which one it got. The regex fallback cannot infer a country, and an empty
@@ -485,15 +488,6 @@ function fallbackLabels(titles) {
   return titles.map((t) => ({ label: shortenTitleRegex(t), countryTags: [] }))
 }
 
-/**
- * Keep only codes the map can actually resolve.
- *
- * A model asked for ISO-2 will occasionally answer `UK`, `EU`, `PS-GZ` or a
- * country's name in full, and an unresolvable tag is worse than no tag: it
- * looks like coverage and silently matches nothing. `CC_TO_TOPOJSON_NAME` is
- * the same table the map draws its countries from, so a code that survives this
- * is a code something on the page can key on.
- */
 /**
  * ISO-2 codes from an event's own tag slugs.
  *
@@ -537,6 +531,15 @@ function countriesFromEventTags(tags) {
   return out
 }
 
+/**
+ * Keep only codes the map can actually resolve.
+ *
+ * A model asked for ISO-2 will occasionally answer `UK`, `EU`, `PS-GZ` or a
+ * country's name in full, and an unresolvable tag is worse than no tag: it
+ * looks like coverage and silently matches nothing. `CC_TO_TOPOJSON_NAME` is
+ * the same table the map draws its countries from, so a code that survives this
+ * is a code something on the page can key on.
+ */
 function validCodes(list) {
   if (!Array.isArray(list)) return []
   const out = []
@@ -548,14 +551,15 @@ function validCodes(list) {
   return out
 }
 
-/** How many titles one Haiku call is asked for. Measured: a chunk of 4 lands in
- *  25-35s, the whole 10-title batch took 98s — the call scales worse than
- *  linearly in batch size, and the trends stage has 120s for six sources. */
+/** How many titles one call is asked for. Measured on Haiku: a chunk of 4
+ *  landed in 25-35s and the whole 10-title batch took 98s, so the call scales
+ *  worse than linearly in batch size. On Sonnet a chunk is 10-15s (62 chunks
+ *  over the 41 cycles of 2026-10-01 to 10-09). */
 const HAIKU_CHUNK = 4
 
-/** How many of those run at once. Three chunks in flight covers a full deck in
- *  roughly one chunk's wall-clock; more would put four `claude` processes on a
- *  box that is also running the rest of the cycle. */
+/** How many of those run at once: four, so that a deck's newcomers (rarely
+ *  more than sixteen now that selection is sticky) are one wave and cost one
+ *  chunk's wall-clock. See the ceiling below for why a second wave matters. */
 const HAIKU_CONCURRENCY = 4
 
 // One chunk's ceiling. Measured, and it has been wrong twice: 40s held while a
@@ -571,15 +575,15 @@ const HAIKU_CONCURRENCY = 4
 //
 // 100s is sized against the stage, not picked round. `runWithConcurrency` runs
 // HAIKU_CONCURRENCY chunks at a time, so wall time is (waves x ceiling), and
-// the concurrency above is 4 so that an observed deck (10-14 questions, i.e.
-// 3-4 chunks of HAIKU_CHUNK) is a SINGLE wave. Worst case is then one ceiling,
-// not two: ~40s for the other five sources + 100s here = 140s inside the
-// `timeout 180` that run-cycle.sh gives the stage. Two waves at this ceiling
-// would exceed that budget, which is the thing to re-check if HAIKU_CHUNK,
-// HAIKU_CONCURRENCY or the deck size moves.
+// the concurrency above is 4 so that sixteen new questions are a SINGLE wave.
+// Worst case is then one ceiling, not two: the rest of the stage runs 40 to
+// 75s (measured over 41 cycles) and 100s on top of it is inside the stage's
+// `timeout 180`. Two waves at this ceiling would not be, which is the thing
+// to re-check if HAIKU_CHUNK, HAIKU_CONCURRENCY or `TOP_N` moves: a deck with
+// no incumbents at all is twenty new questions, five chunks, two waves.
 //
-// Overrun is not a publish risk: TRENDS_EXIT is logged and never acted on, so
-// a blown stage costs that cycle's trends data and nothing else.
+// Overrun is not a publish risk: the stage's exit is logged and never acted
+// on, so a blown stage costs that cycle's trends data and nothing else.
 // Override with PM_HAIKU_TIMEOUT_MS.
 const HAIKU_TIMEOUT_MS = Number(process.env.PM_HAIKU_TIMEOUT_MS) || 100_000
 
@@ -627,7 +631,7 @@ function titlePrompt(titles) {
   return `You are shortening prediction-market question titles so they fit as chart headers on a mobile phone.
 
 Constraints per title:
-- ≤42 characters
+- ≤${HEADER_CHARS} characters
 - Preserve the question mark if the original is a yes/no
 - Preserve the date horizon ("by 2027", "in 2026") if present — it is the market's whole point
 - Drop only filler ("Will the ...", "U.S." → "US", passive voice)
@@ -747,26 +751,14 @@ function parseOutcomeTokens(market) {
 }
 
 /**
- * Fetch top-N filtered Polymarket markets with daily price history.
+ * The deck: up to `TOP_N` markets, one an event, each a snapshot row with its
+ * daily price history, or null when the events could not be fetched.
  *
- * @returns {Promise<Array<{
- *   id: string,
- *   label: string,
- *   unit: '%',
- *   source: 'polymarket',
- *   seriesId: string,
- *   cadence: 'daily',
- *   topicTags: string[],
- *   defaultHighlight: 'last',
- *   sourceLabel: string,
- *   values: number[],
- *   periods: string[],
- *   asOf: string,
- *   marketUrl: string,
- *   outcomeLabel: string,
- * }> | null>}
- */
-/**
+ * A row is what a registry row is (`id`, `label`, `unit`, `source`,
+ * `seriesId`, `cadence`, `topicTags`, `countryTags`, `defaultHighlight`,
+ * `sourceLabel`, `values`, `periods`, `asOf`) and four keys of its own:
+ * `marketUrl`, `outcomeLabel`, `endDate` and `change24h`.
+ *
  * @param {{ incumbents?: Array<{ id?: string, seriesId?: string, label?: string, countryTags?: string[] }> }} [options]
  *        `incumbents`: the previous snapshot's Polymarket rows. `seriesId` is
  *        the market slug, which is how a row is recognised in this cycle's
@@ -896,16 +888,13 @@ export async function fetchPolymarketTop({ incumbents = [] } = {}) {
     console.log(`  · polymarket: ${parted.length} id(s) parted from a twin alike for 48 characters: ${parted.join(', ')}`)
   }
 
-  // Batch-shorten titles via Haiku in one call. Kept after dedup to avoid
-  // spending tokens on labels we'd drop anyway. Titles already within the
-  // 42-char header budget skip the call — smaller batches finish inside the
-  // 40s spawn timeout that used to SIGTERM full batches (exit 143), and a
-  // cycle where every title fits skips the Haiku call entirely.
-  // **Every deduped row now, not only the long ones.** The call also returns the
-  // countries each question is about, and that is worth having for a title that
-  // already fits — skipping those left the shortest, most quotable markets as
-  // the only untagged ones. It is the same single call and the same batch size
-  // order of magnitude, so the token cost is unchanged in kind.
+  // Titles go to the model once the deck is settled, so none is paid for that
+  // the deck will not carry.
+  // **Every new row, not only the long ones.** The call also returns the
+  // countries each question is about, and that is worth having for a title
+  // that already fits `HEADER_CHARS` — skipping those left the shortest, most
+  // quotable markets as the only untagged ones. Such a title keeps its own
+  // words (below); only its countries are taken.
   // **Only newcomers go to the model.** The call has no cache, so before
   // selection was sticky every row paid for it on every cycle — ~4 chunks of
   // 22-33s each. An incumbent keeps the label and country tags it was given
@@ -933,7 +922,7 @@ export async function fetchPolymarketTop({ incumbents = [] } = {}) {
       // A title already inside the header budget keeps its own words: the model
       // is here for the countries, and re-writing a label that did not need it
       // is a change nobody asked for and nobody can review.
-      if (fresh[i].rawTitle.length > 42) {
+      if (fresh[i].rawTitle.length > HEADER_CHARS) {
         const proposed = enriched[i].label
         if (isUsableShortTitle(fresh[i].rawTitle, proposed)) {
           fresh[i].label = proposed

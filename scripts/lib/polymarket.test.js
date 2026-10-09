@@ -148,6 +148,10 @@ test('the date is the market’s own, else the event’s, and a market with neit
   assert.equal(picked({ markets: [outcome('iso-only', 10, { endDate: undefined, endDateIso: '2026-09-01' })] }), null)
   assert.equal(picked({ markets: [outcome('a', 1, { lastTradePrice: 0.99 })] }), null, 'every outcome decided')
   assert.equal(picked({ markets: [outcome('no-price', 1, { lastTradePrice: undefined })] }), 'no-price')
+  // Decided is at or beyond 3% and 97%, the band `isDecidedSeries` uses.
+  for (const [price, live] of [[0.03, false], [0.031, true], [0.969, true], [0.97, false]]) {
+    assert.equal(picked({ markets: [outcome('edge', 1, { lastTradePrice: price })] }), live ? 'edge' : null, String(price))
+  }
 })
 
 test('the response’s events become one market each, with the event stitched in', () => {
@@ -287,6 +291,8 @@ test('the title call is the shared argv, with the ceiling and the buffer this st
   assert.deepEqual(opts, { timeout: 100_000, maxBuffer: 256 * 1024 })
   assert.match(prompt, /^You are shortening prediction-market question titles/)
   assert.ok(prompt.includes(`Titles to shorten:\n1. ${TITLES[0]}\n2. ${TITLES[1]}\n3. ${TITLES[2]}\n`))
+  // The budget is a named number now; the sentence the model reads is the same.
+  assert.ok(prompt.includes('\nConstraints per title:\n- ≤42 characters\n- Preserve the question mark'))
 })
 
 test('an answer becomes a label and the countries the map can resolve', async () => {
