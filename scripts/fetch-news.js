@@ -9,11 +9,11 @@ import { pathOf } from './lib/datasets.js'
 import { feedPubDate } from './lib/feed-age.js'
 import { rssItemImage } from './lib/feed-image.js'
 import { fetchSourcePage, stripTags } from './lib/fetch-source-text.js'
-import { bodiesFirst } from './lib/rss-feed.js'
+import { bestStoryIds, bodiesFirst, documentHolds, hackerNewsStories, worthRetrying } from './lib/rss-feed.js'
 import { slugify, fingerprint, zuhdCategory } from './lib/utils.js'
 import { ROOT } from './lib/paths.js'
 import { writeJson } from './lib/json-file.js'
-import { ZUHD_UA } from './lib/http.js'
+import { fetchJson, fetchText } from './lib/http.js'
 
 const CONTENT_DIR = join(ROOT, 'content', 'articles')
 const OUT = pathOf('feedRss')
@@ -187,29 +187,54 @@ function isRelevant(item) {
 // the fourth.
 const FEED_RETRIES = 3
 
+/**
+ * A feed that gave nothing, and why: on the log, and on the result for
+ * `sourceStats`.
+ *
+ * @param {{ name: string }} source
+ * @param {string} why
+ * @returns {FeedResult}
+ */
+function failedFeed(source, why) {
+  console.error(`  ✗ ${source.name}: ${why}`)
+  /** @type {FeedResult} */
+  const empty = []
+  empty._error = why
+  return empty
+}
+
 /** @returns {Promise<FeedResult>} */
 async function fetchSource(source, retries = FEED_RETRIES) {
+  let xml
   try {
-    const res = await fetch(source.url, { signal: AbortSignal.timeout(10000), headers: { 'User-Agent': ZUHD_UA } })
-    if (!res.ok) throw new Error(`HTTP ${res.status}`)
-    const xml = await res.text()
+    xml = await fetchText(source.url, { timeoutMs: 10_000 })
+  } catch (err) {
+    // Only what a wait can change is asked again (`worthRetrying`): a 403 or a
+    // 404 was retried like a timeout, three more times, ten seconds apart.
+    if (retries > 0 && worthRetrying(err)) {
+      await new Promise(r => setTimeout(r, 10000))
+      return fetchSource(source, retries - 1)
+    }
+    return failedFeed(source, err.message)
+  }
+  // From here nothing is asked again: a document that does not parse now will
+  // not parse in ten seconds. And an answer that holds no items says what it
+  // does hold. It was an empty list with no error, which is what a feed with
+  // nothing new looks like: a feed that changed format, or an address that now
+  // serves a page, read as a quiet day.
+  try {
     const feed = rssParser.parse(xml)
 
     const rawItems = source.format === 'rdf' ? parseRdfItems(feed)
       : source.format === 'atom' ? parseAtomItems(feed)
       : parseRss2Items(feed)
+    if (rawItems.length === 0) return failedFeed(source, `no items as ${source.format}: the document holds ${documentHolds(feed)}`)
 
-    return rawItems.map(raw => normalizeItem(raw, source)).filter(Boolean).filter(isRelevant)
+    const items = rawItems.map(raw => normalizeItem(raw, source)).filter(Boolean)
+    if (items.length === 0) return failedFeed(source, `${rawItems.length} items and no title in any: the first holds ${documentHolds({ item: rawItems[0] })}`)
+    return items.filter(isRelevant)
   } catch (err) {
-    if (retries > 0) {
-      await new Promise(r => setTimeout(r, 10000))
-      return fetchSource(source, retries - 1)
-    }
-    console.error(`  ✗ ${source.name}: ${err.message}`)
-    /** @type {any[] & { _error?: string }} */
-    const empty = []
-    empty._error = err.message
-    return empty
+    return failedFeed(source, `not a feed this can read (${err.message})`)
   }
 }
 
@@ -225,33 +250,23 @@ async function fetchHackerNews() {
     const algoliaUrl = `https://hn.algolia.com/api/v1/search?tags=story&numericFilters=points%3E100,num_comments%3E20,created_at_i%3E${cutoff}&hitsPerPage=30`
     const bestUrl = 'https://hacker-news.firebaseio.com/v0/beststories.json'
 
-    const [algolia, bestIds] = await Promise.all([
-      fetch(algoliaUrl, { signal: AbortSignal.timeout(8000) }).then(r => r.json()),
-      fetch(bestUrl, { signal: AbortSignal.timeout(8000) }).then(r => r.json()).catch(() => []),
+    // Through `fetchJson`, which reads the status: a 429 with a JSON body was
+    // parsed, found to have no hits, and counted as a quiet day on Hacker News.
+    const [algolia, bestAnswer] = await Promise.all([
+      fetchJson(algoliaUrl, { timeoutMs: 8000 }),
+      fetchJson(bestUrl, { timeoutMs: 8000 }).catch(() => null),
     ])
+    if (!Array.isArray(algolia?.hits)) console.error(`  ✗ Hacker News: Algolia answered without a list of hits: it holds ${documentHolds(algolia)}`)
 
     // Fetch metadata for top 15 best stories (catches peaked-and-fallen stories)
     const bestItems = await Promise.all(
-      bestIds.slice(0, 15).map(id =>
-        fetch(`https://hacker-news.firebaseio.com/v0/item/${id}.json`, { signal: AbortSignal.timeout(5000) })
-          .then(r => r.json()).catch(() => null)
+      bestStoryIds(bestAnswer).map(id =>
+        fetchJson(`https://hacker-news.firebaseio.com/v0/item/${id}.json`, { timeoutMs: 5000 }).catch(() => null)
       )
     )
 
     // Merge and deduplicate by HN story ID
-    const seen = new Set()
-    const all = []
-    for (const h of algolia.hits || []) {
-      if (!h.url || !h.objectID) continue
-      seen.add(h.objectID)
-      all.push({ title: h.title, url: h.url, score: h.points, comments: h.num_comments || 0, time: h.created_at_i })
-    }
-    for (const b of bestItems) {
-      if (!b?.url || seen.has(String(b.id))) continue
-      if ((b.score || 0) < 100) continue
-      seen.add(String(b.id))
-      all.push({ title: b.title, url: b.url, score: b.score, comments: b.descendants || 0, time: b.time })
-    }
+    const all = hackerNewsStories(algolia, bestItems)
 
     // Filter and sort by comment count (discussion = newsworthy)
     const filtered = all
@@ -262,7 +277,7 @@ async function fetchHackerNews() {
       .filter(s => isRelevant({ title: s.title, category: '' }))
       .sort((a, b) => b.comments - a.comments)
 
-    console.error(`  HN Algolia: ${filtered.length} stories (${algolia.hits?.length || 0} algolia + ${bestItems.filter(Boolean).length} best, after dedup/filter)`)
+    console.error(`  HN Algolia: ${filtered.length} stories (${algolia?.hits?.length || 0} algolia + ${bestItems.filter(Boolean).length} best, after dedup/filter)`)
 
     // Fetch article bodies for top HN stories (fetch 5; only 3 used, buffer for failures).
     // The same fetch and the same bar enrich-selection uses: a page counts as
@@ -271,30 +286,25 @@ async function fetchHackerNews() {
     // extractor.
     const toFetch = filtered.slice(0, 5)
     const bodies = await Promise.all(toFetch.map(s => fetchSourcePage(s.url)))
-    for (let i = 0; i < toFetch.length; i++) {
-      toFetch[i].bodyText = bodies[i]?.text || null
-      toFetch[i].image = bodies[i]?.image || null
-    }
+    const withPages = filtered.map((s, i) => ({ ...s, bodyText: bodies[i]?.text || null, image: bodies[i]?.image || null }))
     const fetched = bodies.filter(b => b?.text).length
     console.error(`  HN body fetch: ${fetched}/${toFetch.length} articles had extractable content`)
 
     // The ones that gave a body first: that is what the two spare fetches are for.
-    return bodiesFirst(filtered, toFetch.length).map(s => ({
+    return bodiesFirst(withPages, toFetch.length).map(s => ({
       title: s.title,
       description: `${s.score} points, ${s.comments} comments on Hacker News`,
       link: s.url,
-      pubDate: new Date(s.time * 1000).toISOString(),
+      // An item with no time is undated, like a feed item with none; an
+      // invalid Date here threw and took every Hacker News story with it.
+      pubDate: Number.isFinite(s.time) ? new Date(s.time * 1000).toISOString() : '',
       category: 'tech',
       contentText: s.bodyText || undefined,
       image: s.image || null,
       source: 'Hacker News',
     }))
   } catch (err) {
-    console.error(`  ✗ Hacker News: ${err.message}`)
-    /** @type {FeedResult} */
-    const empty = []
-    empty._error = err.message
-    return empty
+    return failedFeed({ name: 'Hacker News' }, err.message)
   }
 }
 
