@@ -50,7 +50,7 @@ import { promptEcho, promptExamples, seriesEchoes, validateNumbers, validateProp
 import { matchesAnyTag } from './lib/entity-registry.js'
 import { companyMatcher, isAboutCompany, storyFacts } from './lib/companies.js'
 import { loadArticles, loadFeedWindow } from './lib/coverage-window.js'
-import { offeredArticles, offeredStories, staleKeys, storedStanding } from './lib/dispatch.js'
+import { offeredArticles, offeredStories, staleKeys, stampRun, storedStanding } from './lib/dispatch.js'
 import { argAt, hasFlag } from './lib/argv.js'
 import { ROOT } from './lib/paths.js'
 import { readJson, writeJson } from './lib/json-file.js'
@@ -659,9 +659,8 @@ if (!NEW_ONLY) {
   }
 }
 
-cache.generatedAt = new Date().toISOString()
-cache.windowDays = WINDOW_DAYS
-writeCache()
+// A `--new-only` pass that found nothing new has nothing to stamp or write.
+if (stampRun(cache, { newOnly: NEW_ONLY, generated, windowDays: WINDOW_DAYS })) writeCache()
 
 const elapsed = ((Date.now() - stageT0) / 1000).toFixed(1)
 console.log(

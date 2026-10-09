@@ -1,7 +1,7 @@
 // Run: node --test scripts/lib/dispatch.test.js
 import assert from 'node:assert/strict'
 import { test } from 'node:test'
-import { offeredArticles, offeredStories, staleKeys, storedStanding } from './dispatch.js'
+import { offeredArticles, offeredStories, staleKeys, stampRun, storedStanding } from './dispatch.js'
 import { matchesAnyTag } from './entity-registry.js'
 
 // ── offeredArticles, offeredStories ───────────────────────────────────────
@@ -137,4 +137,27 @@ test('nothing live at all holds everything: one source, and it did not load', ()
   const { drop, held } = staleKeys(['fomc-2026-10', 'ecb-2026-10'], [])
   assert.deepEqual(drop, [])
   assert.deepEqual(held, { '': 2 })
+})
+
+// ── stampRun ──────────────────────────────────────────────────────────────
+
+test('a new-only pass that wrote nothing leaves the stamp alone and has nothing to write', () => {
+  // b5b81136, "Indicator dispatch 2026-10-08T10:18": one changed line,
+  // `generatedAt`, from a pass that selected no item.
+  const now = new Date('2026-10-08T10:18:03.994Z')
+  const cache = { items: {}, generatedAt: '2026-10-08T05:26:23.958Z', windowDays: 14 }
+  assert.equal(stampRun(cache, { newOnly: true, generated: 0, windowDays: 14, now }), false)
+  assert.equal(cache.generatedAt, '2026-10-08T05:26:23.958Z')
+
+  // It found a new instrument: the file changed, and says when.
+  assert.equal(stampRun(cache, { newOnly: true, generated: 2, windowDays: 14, now }), true)
+  assert.equal(cache.generatedAt, '2026-10-08T10:18:03.994Z')
+})
+
+test('the daily pass stamps whatever it wrote', () => {
+  // Every item a cache hit is still the day's pass, and its prune may have
+  // changed the file.
+  const cache = { items: {} }
+  assert.equal(stampRun(cache, { generated: 0, windowDays: 14, now: new Date('2026-10-09T05:26:00.000Z') }), true)
+  assert.deepEqual(cache, { items: {}, generatedAt: '2026-10-09T05:26:00.000Z', windowDays: 14 })
 })

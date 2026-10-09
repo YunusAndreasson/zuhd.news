@@ -100,6 +100,29 @@ export function storedStanding(items, key, fingerprint, { shared = false, prompt
 }
 
 /**
+ * Stamp a finished pass on its cache, and say whether it is worth writing.
+ *
+ * `generatedAt` is published: the build copies it onto `api/analysis.json`,
+ * which the app fetches by its tag, and an unchanged tag needs unchanged
+ * bytes. A `--new-only` pass runs four times a day and in steady state finds
+ * nothing to write, and it stamped and wrote all the same: five of the 51
+ * commits to the dispatch file from 2026-09-29 to 10-09 changed that one
+ * line. Such a pass now leaves the cache as it found it. A pass that
+ * wrote an entry stamps as before, and so does the daily one whatever it
+ * wrote: it is the day's pass, and its prune may have changed the file.
+ *
+ * @param {{ generatedAt?: string, windowDays?: number }} cache
+ * @param {{ newOnly?: boolean, generated: number, windowDays: number, now?: Date }} pass
+ * @returns {boolean} false when there is nothing to write
+ */
+export function stampRun(cache, { newOnly = false, generated, windowDays, now = new Date() }) {
+  if (newOnly && generated === 0) return false
+  cache.generatedAt = now.toISOString()
+  cache.windowDays = windowDays
+  return true
+}
+
+/**
  * The cached keys a prune may drop.
  *
  * A key is stale when no source carries it any more. It is dropped only when
