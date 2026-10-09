@@ -45,9 +45,9 @@ const healthy = () => [
   rule('rss-stats', 'node', '^scripts/cycle/tally\\.js feed-rss$', says('77\n')),
   rule('feed-stats', 'node', '^scripts/cycle/tally\\.js feed$', says('13 multi + 47 niche\n')),
   rule('selection-count', 'node', '^scripts/cycle/tally\\.js selection$', says('2\n')),
+  rule('body-lengths', 'node', '^scripts/body-lengths\\.js$', says(`ok 452 chars  4 blocks  ${A}\nOVER 571 chars  5 blocks  ${B}\n`)),
   // The programs the script still carries inline, each told apart by a
   // phrase only it contains.
-  rule('body-lengths', 'node', '^-e .*const CEILING', says(`ok 452 chars  4 blocks  ${A}\nOVER 571 chars  5 blocks  ${B}\n`)),
   rule('breaking-pick', 'node', '^-e .*MIN_PUSH_COVERAGE', says(`${PUSH}\n`)),
   rule('push-slug', 'node', '^-e .*d\\.articles\\[0\\]\\?\\.slug', says('2026-10-08-fed-raises-rates\n')),
   rule('push-inject', 'node', '^-e .*empty push body from claude', says(PUSHED)),

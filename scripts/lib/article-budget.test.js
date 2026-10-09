@@ -18,6 +18,8 @@ import assert from 'node:assert'
 import { readFileSync } from 'node:fs'
 import { fileURLToPath } from 'node:url'
 import { dirname, join } from 'node:path'
+import { ARTICLE_CEILING } from './article.js'
+import { bodyLengthLine } from './body-lengths.js'
 import { SCHEMA, qualitySnapshot } from './quality-metrics.js'
 
 const ROOT = join(dirname(fileURLToPath(import.meta.url)), '..', '..')
@@ -48,9 +50,13 @@ test('check-prompt enforces the same two numbers', () => {
 test('the run-cycle probe flags at the ceiling, not below it', () => {
   // This is the number that actually reaches the editor, so it is the one that
   // matters most and the one that drifted.
-  const m = read('scripts/run-cycle.sh').match(/const CEILING = (\d+);/)
-  assert.ok(m, 'run-cycle.sh <body-lengths> probe no longer declares a CEILING')
-  assert.equal(Number(m[1]), CEILING, 'run-cycle.sh probe ceiling disagrees with the prompts')
+  // The probe left run-cycle.sh for `scripts/body-lengths.js`; its ceiling is
+  // the article module's, and the probe is asked directly where it turns.
+  assert.equal(ARTICLE_CEILING, CEILING, 'the probe\'s ceiling disagrees with the prompts')
+  const line = (chars) => bodyLengthLine('a.md', `---\ntitle: "T"\n---\n\n${'x'.repeat(chars)}\n`)
+  assert.equal(line(CEILING), `ok ${CEILING} chars  1 blocks  a.md`)
+  assert.equal(line(CEILING + 1), `OVER ${CEILING + 1} chars  1 blocks  a.md`)
+  assert.match(read('scripts/run-cycle.sh'), /BODY_LENGTHS=\$\(node scripts\/body-lengths\.js /, 'run-cycle.sh no longer takes <body-lengths> from the probe')
 })
 
 test('the app sizes its open sheet from the same ceiling', () => {

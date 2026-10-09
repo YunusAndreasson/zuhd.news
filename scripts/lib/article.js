@@ -61,6 +61,15 @@ export function tryReadArticle(path) {
 export const visibleText = (text) => text.replace(/\[([^\]]+)\]\([^)]+\)/g, '$1')
 
 /**
+ * The hard ceiling on a body, in visible characters. 400-480 is the target
+ * window; past this the editor must trim. The number lives in write-prompt.md
+ * and check-prompt.md too, and `article-budget.test.js` holds them together:
+ * it drifted once, when the probe said 400 while both prompts said 440, for as
+ * long as nobody looked.
+ */
+export const ARTICLE_CEILING = 560
+
+/**
  * The dateline city a body opens with (`Geneva — The World Trade…`), or null.
  * By invariant it equals the frontmatter `location`.
  *

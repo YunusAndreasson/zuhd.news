@@ -32,7 +32,7 @@ commands
   git diff --name-only content/articles/
   git ls-files --others --exclude-standard content/articles/
   node scripts/scaffold-articles.js
-  node -e «body-lengths» sha1:6cc80f83
+  node scripts/body-lengths.js
   node scripts/flag-title-echo.js /tmp/zuhd-new-articles.txt
   claude --no-session-persistence --setting-sources project --disable-slash-commands --strict-mcp-config --effort low --model claude-sonnet-5-5 --allowedTools Read,Edit,Glob,Grep --add-dir /tmp --max-turns 50 --exclude-dynamic-system-prompt-sections -p «text sha1:ec3bd00f»
   node scripts/fetch-trends.js

@@ -25,6 +25,7 @@
     //    to be a readable mirror of run-cycle.sh, and a list with holes in it
     //    wherever npm happens to agree is not one. `npm run deadcode` passes
     //    --no-config-hints so the command reports findings, not config advice.
+    "scripts/body-lengths.js",
     "scripts/build.js",
     "scripts/compute-metrics.js",
     "scripts/company-gaps.js",
