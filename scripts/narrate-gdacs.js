@@ -21,6 +21,7 @@ import { join } from 'node:path'
 import { loadShared } from './build/shared-ts.js'
 import { callClaudeJson, cleanProse } from './lib/claude-envelope.js'
 import { runWithConcurrency } from './lib/concurrency.js'
+import { countryNameFromIso3 } from './lib/country-codes.js'
 import { validateGrounding } from './lib/grounding.js'
 import { ROOT } from './lib/paths.js'
 import { readJson, writeJson } from './lib/json-file.js'
@@ -159,8 +160,9 @@ function writeAll() {
 async function buildBundle(alert) {
   const detailKey = `${alert.eventtype}:${alert.eventid}`
   const detail = snapshot.details[detailKey] || null
-  const country = COUNTRY_DATA[alert.country] || null
-  const augmented = COUNTRY_AUGMENTED[alert.country] || null
+  const profile = profileKey(alert)
+  const country = profile ? COUNTRY_DATA[profile] : null
+  const augmented = profile ? COUNTRY_AUGMENTED[profile] || null : null
   const choke = nearestChokepoint(alert.lat, alert.lng)
   const weather = WEATHER_TYPES.has(alert.eventtype) ? await fetchWeather(alert.lat, alert.lng) : null
 
@@ -207,6 +209,27 @@ async function buildBundle(alert) {
     chokepoint: choke,
     weather,
   }
+}
+
+/**
+ * The key an alert's country profile is under, or null.
+ *
+ * By the alert's `iso3`, which is a join key, and only then by `country`,
+ * which is GDACS's display name and matches a profile's key by luck: it missed
+ * the United States, Russia and every alert over two countries (see
+ * `lib/country-codes.js`). An alert over two carries one code: `PNG` beside
+ * "Papua New Guinea, Indonesia".
+ *
+ * A miss is logged. An alert with a country and no profile is narrated on the
+ * storm alone, and nothing else would say why.
+ */
+function profileKey(alert) {
+  const byCode = countryNameFromIso3(alert.iso3)
+  const key = [byCode, alert.country].find((k) => k && Object.hasOwn(COUNTRY_DATA, k)) ?? null
+  if (!key && (alert.iso3 || alert.country)) {
+    console.log(`  · ${alert.eventtype}:${alert.eventid}: no country profile for "${alert.country}" (${alert.iso3 || 'no code'})`)
+  }
+  return key
 }
 
 function humanEventType(t) {
