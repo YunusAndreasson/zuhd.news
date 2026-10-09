@@ -39,6 +39,7 @@
 import { runWithConcurrency } from '../concurrency.js'
 import { CC_TO_TOPOJSON_NAME } from '../../../shared/countries/iso.ts'
 import { ISOLATION_FLAGS } from '../claude-envelope.js'
+import { sha1Hex } from '../hash.js'
 import { ZUHD_UA } from '../http.js'
 import { modelFor } from '../models.js'
 
@@ -259,6 +260,50 @@ async function fetchPriceHistory(clobTokenId) {
 
 function sanitizeSlug(s) {
   return (s || '').toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '').slice(0, 48)
+}
+
+/**
+ * The id each row of the deck ships under. Pure, so it has a test.
+ *
+ * `poly-` and the market's slug cut to 48 characters, which is every id on
+ * disk. The cut is also where two markets become one. The Fed's "no change"
+ * question has a slug per meeting and the month falls after the cut, so the
+ * October and December meetings both shipped as
+ * `poly-will-there-be-no-change-in-fed-interest-rates-af` in 9 of 41 cycles
+ * (2026-10-01 to 10-09), at 83% and 21% on 10-02. Everything downstream keys
+ * on the id: one dispatch paragraph for both, one `/api/entity/{id}.json`
+ * written twice, and an article's `chart:` free to draw the other meeting.
+ *
+ * An incumbent keeps the id its row had in the previous snapshot, so no id
+ * that is live changes and no paragraph is orphaned. A newcomer takes the cut
+ * slug unless a row of this deck holds it, and then a 41-character head and
+ * six hex characters of its whole slug's sha1: the same length, and its own
+ * from the next cycle on, when it is an incumbent. The incumbents' ids are
+ * set aside first, so a newcomer ranked above one cannot take its id. Two
+ * incumbents on one id (a snapshot written before this) part the same way,
+ * the first in deck order keeping it.
+ *
+ * @param {{ slug: string, incumbentId?: string | null }[]} deck in deck order
+ * @returns {string[]} one id a row, in that order
+ */
+export function deckIds(deck) {
+  const held = (d) => (typeof d.incumbentId === 'string' && d.incumbentId.startsWith('poly-') ? d.incumbentId : null)
+  /** @type {Map<string, number>} id → the first row that held it */
+  const holder = new Map()
+  deck.forEach((d, i) => {
+    const id = held(d)
+    if (id && !holder.has(id)) holder.set(id, i)
+  })
+  const taken = new Set(holder.keys())
+  return deck.map((d, i) => {
+    const kept = held(d)
+    if (kept && holder.get(kept) === i) return kept
+    const slug = sanitizeSlug(d.slug)
+    let id = `poly-${slug}`
+    if (taken.has(id)) id = `poly-${slug.slice(0, 41).replace(/-$/, '')}-${sha1Hex(d.slug, 6)}`
+    taken.add(id)
+    return id
+  })
 }
 
 /** Regex fallback — used only if Haiku fails. Strip "Will" prefix,
@@ -638,11 +683,12 @@ function parseOutcomeTokens(market) {
  * }> | null>}
  */
 /**
- * @param {{ incumbents?: Array<{ seriesId?: string, label?: string, countryTags?: string[] }> }} [options]
+ * @param {{ incumbents?: Array<{ id?: string, seriesId?: string, label?: string, countryTags?: string[] }> }} [options]
  *        `incumbents`: the previous snapshot's Polymarket rows. `seriesId` is
  *        the market slug, which is how a row is recognised in this cycle's
  *        response; `label` and `countryTags` are reused so an incumbent never
- *        pays the Haiku call twice.
+ *        pays the Haiku call twice, and `id` so that what was narrated under it
+ *        stays joined (`deckIds`).
  */
 export async function fetchPolymarketTop({ incumbents = [] } = {}) {
   let markets
@@ -736,14 +782,15 @@ export async function fetchPolymarketTop({ incumbents = [] } = {}) {
     const periods = history.map((h) => formatPeriod(h.t))
     const asOf = ymd(new Date((history[history.length - 1].t || 0) * 1000))
     const rawTitle = m.question || m.title || 'Untitled market'
-    const slug = sanitizeSlug(m.slug || rawTitle)
     const eventSlug = m.events?.[0]?.slug || null
     const eventUrl = eventSlug ? `https://polymarket.com/event/${eventSlug}` : ''
 
     // Shortened label is filled in by a batched Haiku call after the loop so
     // we spend one Claude call on all kept markets rather than one each.
     results.push({
-      id: `poly-${slug}`,
+      // Given once the deck is settled (`deckIds`): an id depends on the rows
+      // beside it.
+      id: '',
       label: rawTitle,
       rawTitle,
       unit: '%',
@@ -773,8 +820,11 @@ export async function fetchPolymarketTop({ incumbents = [] } = {}) {
       _eventSlug: eventSlug,
       _volume24hr: Number(m.volume24hr) || 0,
       // Internal — the previous snapshot's row for this market, so its label
-      // and country tags can be reused below instead of re-bought from Haiku.
+      // and country tags can be reused below instead of re-bought from Haiku,
+      // and its id kept.
       _incumbent: incumbentBySlug.get(m.slug) ?? null,
+      // Internal — what the id is cut from.
+      _slug: m.slug || rawTitle,
     })
   }
 
@@ -801,6 +851,13 @@ export async function fetchPolymarketTop({ incumbents = [] } = {}) {
 
   if (deduped.length < results.length) {
     console.log(`  · polymarket: deduped ${results.length} → ${deduped.length} (one per event)`)
+  }
+
+  const ids = deckIds(deduped.map((r) => ({ slug: r._slug, incumbentId: r._incumbent?.id })))
+  for (let i = 0; i < deduped.length; i++) deduped[i].id = ids[i]
+  const parted = ids.filter((id, i) => id !== `poly-${sanitizeSlug(deduped[i]._slug)}`)
+  if (parted.length > 0) {
+    console.log(`  · polymarket: ${parted.length} id(s) parted from a twin alike for 48 characters: ${parted.join(', ')}`)
   }
 
   // Batch-shorten titles via Haiku in one call. Kept after dedup to avoid
@@ -867,6 +924,7 @@ export async function fetchPolymarketTop({ incumbents = [] } = {}) {
     delete r.rawTitle
     delete r._eventTags
     delete r._incumbent
+    delete r._slug
   }
 
   return deduped

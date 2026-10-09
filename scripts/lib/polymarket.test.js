@@ -1,6 +1,6 @@
 import assert from 'node:assert/strict'
 import { test } from 'node:test'
-import { isUsableShortTitle, orderCandidates, PIN_TITLE_RE } from './trends-sources/polymarket.js'
+import { deckIds, isUsableShortTitle, orderCandidates, PIN_TITLE_RE } from './trends-sources/polymarket.js'
 
 // Selection used to re-roll by volume every cycle, orphaning the narration
 // written for the previous roll. These pin the tiers that keep it stable.
@@ -65,6 +65,59 @@ test('PIN_TITLE_RE names waterways and oil, not the Fed', () => {
   ]) {
     assert.equal(PIN_TITLE_RE.test(q), false, q)
   }
+})
+
+// The Fed's "no change" question, one slug a meeting, alike for the 48
+// characters an id keeps. Both were in the deck on 2026-10-02, at 83% and 21%,
+// under one id.
+const FED_OCT = 'will-there-be-no-change-in-fed-interest-rates-after-the-october-2026-meeting-20260617190324031'
+const FED_DEC = 'will-there-be-no-change-in-fed-interest-rates-after-the-december-2026-meeting-20260729232808635'
+const FED_ID = 'poly-will-there-be-no-change-in-fed-interest-rates-af'
+const FED_OCT_OWN = 'poly-will-there-be-no-change-in-fed-interest-r-584980'
+const FED_DEC_OWN = 'poly-will-there-be-no-change-in-fed-interest-r-9af44e'
+
+test('two markets alike for 48 characters ship under two ids', () => {
+  assert.deepEqual(deckIds([{ slug: FED_OCT }, { slug: FED_DEC }]), [FED_ID, FED_DEC_OWN])
+  assert.deepEqual(deckIds([{ slug: FED_DEC }, { slug: FED_OCT }]), [FED_ID, FED_OCT_OWN])
+  // The second form is no longer than the first: `poly-` and 48 characters.
+  assert.equal(FED_DEC_OWN.length, FED_ID.length)
+})
+
+test('an incumbent keeps its id wherever it stands in the deck', () => {
+  // The newcomer is ranked first and would have taken the id by arriving first.
+  assert.deepEqual(
+    deckIds([{ slug: FED_DEC }, { slug: FED_OCT, incumbentId: FED_ID }]),
+    [FED_DEC_OWN, FED_ID],
+  )
+  // And the newcomer's id is its own the next cycle, when it is an incumbent,
+  // whether or not the twin is still there.
+  assert.deepEqual(
+    deckIds([{ slug: FED_OCT, incumbentId: FED_ID }, { slug: FED_DEC, incumbentId: FED_DEC_OWN }]),
+    [FED_ID, FED_DEC_OWN],
+  )
+  assert.deepEqual(deckIds([{ slug: FED_DEC, incumbentId: FED_DEC_OWN }]), [FED_DEC_OWN])
+})
+
+test('two incumbents on one id part, and the first in the deck keeps it', () => {
+  assert.deepEqual(
+    deckIds([{ slug: FED_DEC, incumbentId: FED_ID }, { slug: FED_OCT, incumbentId: FED_ID }]),
+    [FED_ID, FED_OCT_OWN],
+  )
+})
+
+test('a slug that collides with nothing has the id it always had', () => {
+  // The rule before `deckIds`, restated: `poly-` and the slug cut to 48.
+  const cut = (s) => `poly-${s.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '').slice(0, 48)}`
+  const slugs = [
+    'strait-of-hormuz-traffic-returns-to-normal-by-december-31',
+    'will-flvio-bolsonaro-win-the-2026-brazilian-presidential-election',
+    'putin-out-before-2027-346',
+    'us-x-iran-permanent-peace-deal-by-december-31-2026',
+    FED_OCT,
+  ]
+  assert.deepEqual(deckIds(slugs.map((slug) => ({ slug }))), slugs.map(cut))
+  // With no id from the previous snapshot to keep, a row is a newcomer.
+  assert.deepEqual(deckIds([{ slug: 'putin-out-before-2027-346', incumbentId: null }]), ['poly-putin-out-before-2027-346'])
 })
 
 test('short titles: a rephrase is kept, a copy with "Will" cut off is not', () => {
