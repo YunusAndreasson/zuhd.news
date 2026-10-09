@@ -1,6 +1,10 @@
 // Run: node --test scripts/lib/merge-feeds.test.js
 import assert from 'node:assert/strict'
+import { existsSync, mkdirSync, mkdtempSync, readFileSync, rmSync, writeFileSync } from 'node:fs'
+import { tmpdir } from 'node:os'
+import { join } from 'node:path'
 import { test } from 'node:test'
+import { merge } from '../merge-feeds.js'
 import { mergeFeeds, stripBodies } from './merge-feeds.js'
 
 const NOW = Date.parse('2026-10-08T18:05:10Z')
@@ -81,4 +85,52 @@ test('the selector\'s copy loses the source text and nothing else', () => {
   ])
   assert.equal(slim.title, 'Fed Raises Rates')
   assert.equal(slim.suggestedSlug, '2026-10-08-fed-raises-rates')
+})
+
+// --- the stage, over a directory of its own ---------------------------------
+// `merge` takes the locations it reads and writes, so nothing here goes near
+// the cycle's scratch files; a name it was not given throws.
+function stageDir() {
+  const dir = mkdtempSync(join(tmpdir(), 'merge-stage-'))
+  const files = { feedApi: 'feed-api.json', feedRss: 'feed-rss.json', feed: 'feed.json', feedSlim: 'feed-slim.json', feedSnapshotsMerged: 'snapshots' }
+  /** @param {keyof typeof files} name */
+  const at = (name) => {
+    if (!(name in files)) throw new Error(`the stage asked for "${name}"`)
+    return join(dir, files[name])
+  }
+  return { dir, at }
+}
+const fresh = (title, n) => ({ ...story(title, 1, n), pubDate: new Date(Date.now() - 3_600_000).toISOString() })
+const LAST_CYCLE = '{"multiSourceStories":[],"nicheStories":[{"title":"A story from the cycle before"}]}\n'
+
+test('the stage writes the feed and the selector\'s copy of it', () => {
+  const { dir, at } = stageDir()
+  try {
+    writeFileSync(at('feedApi'), JSON.stringify({ stories: [fresh('Fed Raises Rates', 2)] }))
+    writeFileSync(at('feedRss'), JSON.stringify({ stories: [fresh('Lunar Hopper Booked For A Test', 1)] }))
+    writeFileSync(at('feedSlim'), LAST_CYCLE)
+    const out = merge(at)
+    assert.deepEqual([out.counts.multi, out.counts.niche], [1, 1])
+    const feed = JSON.parse(readFileSync(at('feed'), 'utf8'))
+    const slim = JSON.parse(readFileSync(at('feedSlim'), 'utf8'))
+    assert.equal(feed.multiSourceStories[0].sources[0].body, 'text')
+    assert.equal(slim.multiSourceStories[0].sources[0].body, undefined)
+    assert.deepEqual(slim.nicheStories.map((s) => s.title), ['Lunar Hopper Booked For A Test'])
+  } finally {
+    rmSync(dir, { recursive: true, force: true })
+  }
+})
+
+test('a merge that fails leaves the selector nothing from the cycle before', () => {
+  const { dir, at } = stageDir()
+  try {
+    writeFileSync(at('feedApi'), JSON.stringify({ stories: [fresh('Fed Raises Rates', 2)] }))
+    writeFileSync(at('feedSlim'), LAST_CYCLE)
+    // The full feed cannot be written: where it goes is a directory.
+    mkdirSync(at('feed'))
+    assert.throws(() => merge(at))
+    assert.equal(existsSync(at('feedSlim')), false, 'the selector would have picked from the last cycle\'s pool')
+  } finally {
+    rmSync(dir, { recursive: true, force: true })
+  }
 })

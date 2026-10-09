@@ -2,7 +2,7 @@
 // Merges the API feed and the RSS feed into the selector's pool: the full feed
 // for the stages after the selector, and a copy without source text for the
 // selector itself. What is merged, cut and split is `lib/merge-feeds.js`.
-import { existsSync, mkdirSync, readFileSync, readdirSync, unlinkSync } from 'node:fs'
+import { existsSync, mkdirSync, readFileSync, readdirSync, rmSync, unlinkSync } from 'node:fs'
 import { join } from 'node:path'
 import { pathOf } from './lib/datasets.js'
 import { writeJson } from './lib/json-file.js'
@@ -24,10 +24,21 @@ function loadFeed(path) {
   } catch { return [] }
 }
 
-export function main() {
+/**
+ * The stage, over the locations `at` names: `pathOf` in a cycle, a directory
+ * of its own in a test.
+ *
+ * @param {(name: 'feedApi' | 'feedRss' | 'feed' | 'feedSlim' | 'feedSnapshotsMerged') => string} at
+ */
+export function merge(at) {
   const now = Date.now()
-  const api = loadFeed(pathOf('feedApi'))
-  const rss = loadFeed(pathOf('feedRss'))
+  // The selector's copy goes first. The cycle clears the full feed when it
+  // starts and nothing cleared this one, so a merge that failed left the
+  // selector the pool of the cycle before, under a prompt that calls it this
+  // cycle's, and its picks then matched nothing in a feed that was not there.
+  rmSync(at('feedSlim'), { force: true })
+  const api = loadFeed(at('feedApi'))
+  const rss = loadFeed(at('feedRss'))
   const { multiSourceStories, nicheStories, capMs, counts } = mergeFeeds(api, rss, now)
 
   const output = {
@@ -37,20 +48,20 @@ export function main() {
     multiSourceStories,
     nicheStories,
   }
-  writeJson(pathOf('feed'), output)
+  writeJson(at('feed'), output)
 
   const slimOutput = {
     ...output,
     multiSourceStories: stripBodies(multiSourceStories),
     nicheStories: stripBodies(nicheStories),
   }
-  writeJson(pathOf('feedSlim'), slimOutput)
+  writeJson(at('feedSlim'), slimOutput)
 
   // Archive merged (post-RSS-merge, pre-prefilter) snapshot for replay/backtest.
   // fetch-news-api.js already snapshots its output, but that one is API-only —
   // the niche-RSS sources that the layer-4 recap rule targets only enter here.
   try {
-    const SNAP_DIR = pathOf('feedSnapshotsMerged')
+    const SNAP_DIR = at('feedSnapshotsMerged')
     mkdirSync(SNAP_DIR, { recursive: true })
     const ts = output.fetchedAt.replace(/:/g, '-').replace(/\..+/, '').slice(0, 16)
     writeJson(join(SNAP_DIR, `${ts}.json`), slimOutput)
@@ -73,5 +84,7 @@ export function main() {
   console.error(`Pool age cut: ${cap}h (${counts.usable} usable stories)`)
   return { counts }
 }
+
+export const main = () => merge(pathOf)
 
 await runStage(import.meta, 'merge-feeds', main)

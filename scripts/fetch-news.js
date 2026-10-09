@@ -2,9 +2,10 @@
 // RSS fetcher — niche sources not in the NewsAPI.ai index.
 // These provide editorial taste: specialist tech, investigative, Muslim world.
 // Output: /tmp/zuhd-feed-rss.json (merged with API feed by merge-feeds.js)
-import { readFileSync, readdirSync, existsSync } from 'node:fs'
+import { readFileSync, readdirSync, existsSync, rmSync } from 'node:fs'
 import { join } from 'node:path'
 import { XMLParser } from 'fast-xml-parser'
+import { pathOf } from './lib/datasets.js'
 import { feedPubDate } from './lib/feed-age.js'
 import { rssItemImage } from './lib/feed-image.js'
 import { fetchSourcePage, stripTags } from './lib/fetch-source-text.js'
@@ -15,6 +16,7 @@ import { writeJson } from './lib/json-file.js'
 import { ZUHD_UA } from './lib/http.js'
 
 const CONTENT_DIR = join(ROOT, 'content', 'articles')
+const OUT = pathOf('feedRss')
 
 // Shared parser — reused across all sources (same options for RSS/Atom/RDF)
 const rssParser = new XMLParser({
@@ -299,6 +301,10 @@ async function fetchHackerNews() {
 // ── Main ────────────────────────────────────────────────────────────
 
 async function main() {
+  // The last cycle's file goes first. Nothing else clears it, so a run that
+  // died before it wrote left the feed of the cycle before for merge-feeds.js
+  // to merge as this one's, and for the log to count (`RSS fetch: 77 stories`).
+  rmSync(OUT, { force: true })
   console.error(`Fetching ${SOURCES.length} RSS niche sources + Hacker News...`)
 
   const [rssResults, hnItems] = await Promise.all([
@@ -374,9 +380,8 @@ async function main() {
   }
 
   const output = { fetchedAt: new Date().toISOString(), stories }
-  const outPath = '/tmp/zuhd-feed-rss.json'
-  writeJson(outPath, output)
-  console.error(`Wrote ${stories.length} stories to ${outPath}`)
+  writeJson(OUT, output)
+  console.error(`Wrote ${stories.length} stories to ${OUT}`)
   console.log(`${stories.length} stories from ${SOURCES.length} sources`)
 }
 
