@@ -27,6 +27,7 @@ import { escHtml, escXml } from './lib/html.js'
 import { ARCHETYPE_HEADER, siteFooter, WORDMARK, footerStatusLine } from './lib/site-chrome.js'
 import { listRow } from './lib/list-row.js'
 import { publishedTimes } from './lib/published-at.js'
+import { pruneOlderThan } from './lib/prune-cache.js'
 import { openStampLedger } from './lib/stable-stamp.js'
 import { companiesPayload } from './lib/companies.js'
 import { aiModelsPayload } from './lib/ai-models.js'
@@ -2241,6 +2242,10 @@ if (process.env.SKIP_OG === '1') {
   console.log(
     `  Built: api/og/ (${sorted.length} OG images · ${cached} cached + ${rendered} rendered in ${((Date.now() - ogStart) / 1000).toFixed(1)}s)`,
   )
+  // A card is read again only for an article still in the window, so twice the
+  // window is a file nothing will ask for (`lib/prune-cache.js`).
+  const ogPruned = pruneOlderThan(OG_CACHE_DIR, 2 * BUILD_WINDOW_DAYS * 86_400_000)
+  if (ogPruned.removed > 0) console.log(`  Pruned: .cache/og (${ogPruned.removed} cards past ${2 * BUILD_WINDOW_DAYS}d, ${ogPruned.kept} kept)`)
 }
 
 // Instagram share cards at /api/ig/{slug}.jpg (+ .story.jpg) — the "headline
@@ -2261,6 +2266,7 @@ if (process.env.SKIP_OG === '1') {
   // cached card was composed against the old (truncating) layout.
   const IG_VERSION = 'v7' // bump when ig-image.js rendering changes
   const IG_RECENT = 20 // dev/manual fallback window
+  const IG_CACHE_DAYS = 3 // how long a rendered card is kept; see the prune below
   // The dek is `igLead`, in lib/ig-image.js beside the card it feeds — it used
   // to be declared here and again in each of the two posters, and the three had
   // parted over whether to cut on an ellipsis.
@@ -2314,6 +2320,10 @@ if (process.env.SKIP_OG === '1') {
   console.log(
     `  Built: api/ig/ (${igArticles.length} IG cards × 2 · ${igCached} cached + ${igRendered} rendered in ${((Date.now() - igStart) / 1000).toFixed(1)}s)`,
   )
+  // Only this cycle's articles get a card, so one from an earlier cycle is
+  // never read again. Three days covers a rebuild of the day's cycles.
+  const igPruned = pruneOlderThan(IG_CACHE_DIR, IG_CACHE_DAYS * 86_400_000)
+  if (igPruned.removed > 0) console.log(`  Pruned: .cache/ig (${igPruned.removed} cards past ${IG_CACHE_DAYS}d, ${igPruned.kept} kept)`)
 }
 
 // Per-category pages at /c/{category}.html — chronological list of
