@@ -29,10 +29,10 @@ export function main() {
     // has only the clock.
     const runStarted = Date.parse(process.env.ZUHD_RUN_STARTED ?? '')
     const record = rvsRecord(readBatch(files), { runId: process.env.ZUHD_RUN_ID || null, ...(Number.isNaN(runStarted) ? {} : { runStarted }) })
-    appendRecord(pathOf('rvsTrend'), record)
+    const written = appendRecord(pathOf('rvsTrend'), record)
     const { writing, sourcing, coverage } = record.clusters
     console.log(`Production RVS: ${record.rvs.toFixed(2)}  (writing=${writing.toFixed(0)}  sourcing=${sourcing.toFixed(0)}  coverage=${coverage.toFixed(0)})`)
-    return { counts: { articles: record.articleCount } }
+    return written ? { counts: { articles: record.articleCount } } : { degraded: 'the trend file does not parse: left as it is, record not written' }
   } catch (err) {
     // Never the cycle's failure: it exits 0, as it always has.
     const { message } = /** @type {Error} */ (err)

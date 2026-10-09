@@ -282,11 +282,11 @@ test('a batch under four articles is marked degenerate, and an empty one scores 
 test('the trend gains a record at its end, is made when there is none, and keeps its last 365', () => {
   const path = join(mkdtempSync(join(tmpdir(), 'rvs-')), 'trend.json')
   const record = rvsRecord([row()], { now: new Date('2026-10-09T05:15:32.349Z') })
-  appendRecord(path, record)
+  assert.equal(appendRecord(path, record), true)
   assert.deepEqual(JSON.parse(readFileSync(path, 'utf8')), [record])
 
   writeFileSync(path, JSON.stringify(Array.from({ length: 365 }, (_, i) => ({ n: i }))))
-  appendRecord(path, record)
+  assert.equal(appendRecord(path, record), true)
   const trend = JSON.parse(readFileSync(path, 'utf8'))
   assert.equal(trend.length, 365)
   assert.deepEqual([trend[0], trend[364]], [{ n: 1 }, record])
@@ -297,4 +297,20 @@ test('the trend gains a record at its end, is made when there is none, and keeps
 test('the stage that writes the record can be imported, and does not run when it is', async () => {
   const stage = await import('../score-production-cycle.js')
   assert.equal(typeof stage.main, 'function')
+})
+
+// Read with a fallback of `[]`, a file that did not parse became a series of
+// one: this cycle's record, written over the other 364 and then committed.
+test('a trend file that is there and does not parse is left exactly as it is, and says so', (t) => {
+  const said = t.mock.method(console, 'error', () => {})
+  const path = join(mkdtempSync(join(tmpdir(), 'rvs-')), 'trend.json')
+  const record = rvsRecord([row()])
+  const damaged = ['[\n  { "rvs": 70 },\n<<<<<<< Updated upstream\n  { "rvs": 71 }\n', '[{"rvs": 70}, {"rv', '', '{ "rvs": 70 }']
+  for (const text of damaged) {
+    writeFileSync(path, text)
+    assert.equal(appendRecord(path, record), false)
+    assert.equal(readFileSync(path, 'utf8'), text)
+  }
+  assert.ok(said.mock.calls.length >= damaged.length, 'each one is reported')
+  assert.ok(said.mock.calls.every((call) => String(call.arguments[0]).includes(path)), 'by the file it is')
 })

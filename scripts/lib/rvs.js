@@ -13,6 +13,7 @@
 // looked for a log under a name no log has. Here is what the record is made
 // from, and nothing else.
 
+import { existsSync } from 'node:fs'
 import { ARTICLE_CEILING, tryReadArticle, visibleText } from './article.js'
 import { CATEGORY_FLOORS, FLOORS_MAY_GO_UNMET } from './dedup.js'
 import { readJson, writeJson } from './json-file.js'
@@ -347,11 +348,23 @@ export function rvsRecord(articles, { now = new Date(), runStarted = now.getTime
 /**
  * Add a record to the trend file, which keeps its last `KEEP`.
  *
+ * A file that is there and does not read as a series is left exactly as it
+ * is, and the record is not written. The trend is a history: read leniently,
+ * a file with a merge conflict in it came back as `[]`, and the write that
+ * followed replaced 365 records with this cycle's one, which the cycle then
+ * committed.
+ *
  * @param {string} path
  * @param {ReturnType<typeof rvsRecord>} record
+ * @returns {boolean} whether the record was written
  */
 export function appendRecord(path, record) {
-  const trend = readJson(path, [])
+  const trend = existsSync(path) ? readJson(path, null) : []
+  if (!Array.isArray(trend)) {
+    console.error(`rvs: ${path} is there and is not a series — left as it is, and this cycle's record is not written`)
+    return false
+  }
   trend.push(record)
   writeJson(path, trend.slice(-KEEP))
+  return true
 }
