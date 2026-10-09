@@ -3,6 +3,7 @@
 // Strategy: events endpoint for story discovery + article queries for source diversity.
 // Output: /tmp/zuhd-feed-api.json
 import { mkdirSync, readdirSync, statSync, unlinkSync } from 'node:fs'
+import { hasHeadline, redact, resultsAt } from './lib/api-feed.js'
 import { eventCoveredRecently, loadDedupContext } from './lib/dedup.js'
 import { MAX_FEED_AGE_MS } from './lib/feed-age.js'
 import { readUnexplainedMovers } from './lib/company-gaps.js'
@@ -225,11 +226,23 @@ async function apiPost(endpoint, params, tag = 'other') {
   })
   if (!res.ok) {
     // Surface a sliver of the body so 401/429/5xx are diagnosable from logs.
+    // Without the key, should the body quote the request back.
     let detail = ''
-    try { detail = (await res.text()).slice(0, 200) } catch {}
+    try { detail = redact((await res.text()).slice(0, 200), API_KEY) } catch {}
     throw new Error(`NewsAPI.ai ${endpoint} ${res.status} ${res.statusText}${detail ? ` — ${detail}` : ''}`)
   }
   return res.json()
+}
+
+/**
+ * The list an answer carries at `path`. One that carries none is said, on a
+ * line the run record keeps as a warning: it read as "0 events" or "0
+ * articles", which is also what a quiet query gives.
+ */
+function listOf(data, path, endpoint) {
+  const { results, saw } = resultsAt(data, path)
+  if (saw) console.error(`⚠ NewsAPI ${endpoint} answered with ${redact(saw, API_KEY)}`)
+  return results
 }
 
 // ── Shared article query defaults ────────────────────────────────────
@@ -346,7 +359,7 @@ async function fetchEvents() {
     includeEventInfoArticle: true,
     includeEventSocialScore: true,
   }, 'events')
-  return (data.events?.results || []).filter(Boolean)
+  return listOf(data, ['events', 'results'], 'event/getEvents')
 }
 
 // Q2: Reader-aligned sources — guaranteed slot for niche sources the reader chose us for (1 token)
@@ -366,7 +379,7 @@ const READER_ALIGNED = [
 /** One `article/getArticles` query over `ARTICLE_DEFAULTS` (1 token). */
 async function queryArticles(params) {
   const data = await apiPost('article/getArticles', { ...ARTICLE_DEFAULTS, ...params }, 'articles')
-  return data.articles?.results || []
+  return listOf(data, ['articles', 'results'], 'article/getArticles')
 }
 
 function fetchReaderAlignedArticles() {
@@ -644,7 +657,11 @@ async function main() {
   perEventCalls = targets.length
 
   for (const { uri, log, data } of targets) {
-    const fetchedArts = data?.[uri]?.articles?.results || []
+    // A call that failed has its error on the line already. One that answered
+    // with no list of articles says what it held: a redirected event "returns
+    // empty and we move on", and nothing recorded what empty looked like.
+    const { results: fetchedArts, saw } = data ? resultsAt(data, [uri, 'articles', 'results']) : { results: [], saw: undefined }
+    if (saw) log.saw = redact(saw, API_KEY)
     log.returned = fetchedArts.length
     if (fetchedArts.length > 0) {
       // Annotate and add to the event's article pool
@@ -661,7 +678,7 @@ async function main() {
   console.error(`Per-event fetch: enriched ${perEventFetched}/${perEventCalls} uncovered events (${perEventLog.filter(e => e.skipped?.startsWith('covered')).length} already-covered skipped)`)
   // Per-event detail log — one line per event so experiments can audit waste/yield
   for (const e of perEventLog) {
-    const tail = e.skipped ? `skipped=${e.skipped}` : e.error ? `error=${e.error}` : `returned=${e.returned}`
+    const tail = e.skipped ? `skipped=${e.skipped}` : e.error ? `error=${e.error}` : `returned=${e.returned}${e.saw ? ` saw="${e.saw}"` : ''}`
     console.error(`  per-event ${e.uri} cov=${e.cov||0} preCount=${e.preCount} tokens=${e.tokens} ${tail}`)
   }
 
@@ -847,8 +864,12 @@ async function main() {
   const sourceCount = {}
 
   let added = 0
+  let untitled = 0
   for (const a of allCandidates) {
     if (added >= 22) break
+    // A story of its own needs a headline. An article with none threw here,
+    // after every token was spent and before the feed below was written.
+    if (!hasHeadline(a)) { untitled++; continue }
     const fp = a.title.toLowerCase().replace(/[^a-z0-9]/g, '').slice(0, 30)
     if (storyFingerprints.has(fp)) continue
     const srcName = a.source?.title || '?'
@@ -882,6 +903,7 @@ async function main() {
     })
     added++
   }
+  if (untitled > 0) console.error(`Standalone: ${untitled} article(s) with no title left out`)
 
   const withSources = stories.filter(s => s.sources.length > 0).length
   const multiSource = stories.filter(s => s.sources.length > 1).length
