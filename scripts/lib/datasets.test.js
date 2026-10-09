@@ -63,7 +63,6 @@ const STILL_SPELLING = [
   'scripts/lib/coverage-window.js',
   'scripts/lib/published-at.js',
   'scripts/lib/trends-snapshot.js',
-  'scripts/lib/trends-sources/stocks.js',
   'scripts/lib/trends-sources/wikipedia.js',
   'scripts/narrate-events.js',
   'scripts/narrate-gdacs.js',

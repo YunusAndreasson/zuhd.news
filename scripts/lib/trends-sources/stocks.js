@@ -2,8 +2,9 @@
 // Endpoint: /v8/finance/chart/<symbol>?interval=1d&range=<range>  (default 1mo)
 // Free, no auth, no key — but unofficial and degrading (crumb walls, 429s).
 // Hardening (2026-07-03):
-//   • host alternation: query1 → query2 on any failure (Yahoo rate-limits
-//     the hosts independently)
+//   • host alternation: query1 → query2 when a host fails (Yahoo rate-limits
+//     the hosts independently). Not when it answers with a series too short
+//     to chart: that is the data, and the other host has the same.
 //   • last-good cache: successful series are persisted to
 //     content/.stocks-cache.json; when both hosts fail, a <7-day-old cached
 //     series is served (marked stale) so a blocked cycle degrades to
@@ -13,13 +14,13 @@
 // "9988.HK"). The caller can namespace them into indicator ids (we use
 // `stocks:<TICKER>` so the id stays unique against other sources' ids).
 
-import { readFileSync, writeFileSync, existsSync } from 'node:fs'
+import { pathOf } from '../datasets.js'
+import { readJson, writeJson } from '../json-file.js'
 
 const YAHOO_HOSTS = ['https://query1.finance.yahoo.com', 'https://query2.finance.yahoo.com']
 const USER_AGENT =
   'Mozilla/5.0 (zuhd-news/1.0; +https://zuhd.news) AppleWebKit/537.36 (KHTML, like Gecko)'
 
-const CACHE_PATH = new URL('../../../content/.stocks-cache.json', import.meta.url).pathname
 const CACHE_MAX_AGE_MS = 7 * 86400_000
 const DEFAULT_RANGE = '1mo'
 
@@ -59,28 +60,50 @@ function formatPeriod(ms) {
   return `${month} ${d.getUTCDate()}`
 }
 
-function readCache() {
-  try {
-    if (existsSync(CACHE_PATH)) return JSON.parse(readFileSync(CACHE_PATH, 'utf-8'))
-  } catch {}
-  return {}
+/**
+ * The last-good cache, through the one read and the one write
+ * (`lib/json-file.js`), for the two things the hand-rolled pair got wrong.
+ *
+ * The write was a bare `writeFileSync` of the whole file, once for every
+ * symbol that succeeded: about fifty times a cycle, across three stages that
+ * each run under `timeout`. A stage killed during one leaves the file cut
+ * short. And the read caught everything and said nothing, so a cut file was
+ * an empty cache, the next success wrote that one entry back as the whole
+ * file, and every other last-good series was gone, on exactly the cycle a
+ * slow Yahoo had made the kill likely. Now the write is a rename, so the file
+ * is the old cache or the new one, and a file that will not parse is said.
+ *
+ * Still read and written per symbol and not held for the run: a stage killed
+ * half way keeps what it had fetched, and a run by hand beside a cycle does
+ * not write the cycle's entries back out of an older copy.
+ *
+ * @param {string} path
+ * @returns {Record<string, any>}
+ */
+function readCache(path) {
+  const cache = readJson(path, {})
+  return cache && typeof cache === 'object' && !Array.isArray(cache) ? cache : {}
 }
 
-function writeCache(key, entry) {
+function writeCache(path, key, entry, now) {
   try {
-    const cache = readCache()
-    cache[key] = { ...entry, cachedAt: Date.now() }
+    const cache = readCache(path)
+    cache[key] = { ...entry, cachedAt: now }
     // Rotate entries older than the max age so the file doesn't grow unbounded.
     for (const [k, v] of Object.entries(cache)) {
-      if (!v.cachedAt || Date.now() - v.cachedAt > CACHE_MAX_AGE_MS) delete cache[k]
+      if (!v?.cachedAt || now - v.cachedAt > CACHE_MAX_AGE_MS) delete cache[k]
     }
-    writeFileSync(CACHE_PATH, JSON.stringify(cache))
-  } catch {}
+    writeJson(path, cache, { pretty: false })
+  } catch (err) {
+    // The series is in hand either way; a cache that cannot be written costs
+    // the fallback, not the fetch.
+    console.error(`  ⚠ yahoo cache: not written (${/** @type {Error} */ (err).message})`)
+  }
 }
 
-function readCachedSeries(key) {
-  const entry = readCache()[key]
-  if (!entry?.cachedAt || Date.now() - entry.cachedAt > CACHE_MAX_AGE_MS) return null
+function readCachedSeries(path, key, now) {
+  const entry = readCache(path)[key]
+  if (!entry?.cachedAt || now - entry.cachedAt > CACHE_MAX_AGE_MS) return null
   const { cachedAt, ...series } = entry
   return { ...series, stale: true }
 }
@@ -99,16 +122,20 @@ const cacheKey = (symbol, range) => (range === DEFAULT_RANGE ? symbol : `${symbo
  * response. `currencyReported` and `timezone` are what let the caller confirm
  * the quote is the instrument it asked for before overlaying the price.
  *
- * @typedef {Error & { quote?: {
+ * `short` marks the failure as the host's answer and not the host's fault:
+ * the response arrived and the series in it is too short. `fetchYahooStock`
+ * does not ask the other host for the same data.
+ *
+ * @typedef {Error & { short?: true, quote?: {
  *   marketPrice: number,
  *   currencyReported: string,
  *   timezone: string,
  * } }} ShortSeriesError
  */
 
-async function fetchFromHost(host, symbol, range) {
+async function fetchFromHost(host, symbol, range, get, now) {
   const url = `${host}/v8/finance/chart/${encodeURIComponent(symbol)}?interval=1d&range=${range}`
-  const res = await fetch(url, {
+  const res = await get(url, {
     signal: AbortSignal.timeout(10000),
     headers: { 'User-Agent': USER_AGENT, accept: 'application/json' },
   })
@@ -116,7 +143,7 @@ async function fetchFromHost(host, symbol, range) {
   const data = await res.json()
   const result = data?.chart?.result?.[0]
   if (!result) throw new Error('no chart result')
-  return chartSeries(result, symbol)
+  return chartSeries(result, symbol, now)
 }
 
 /**
@@ -140,6 +167,7 @@ export function chartSeries(result, symbol, now = Date.now()) {
     // the level fresh; currency and zone ride along so it can verify the quote
     // describes the same instrument before trusting it.
     const err = /** @type {ShortSeriesError} */ (new Error(`only ${timestamps.length}/${closes.length} points`))
+    err.short = true
     if (typeof result.meta?.regularMarketPrice === 'number') {
       err.quote = {
         marketPrice: result.meta.regularMarketPrice,
@@ -172,7 +200,11 @@ export function chartSeries(result, symbol, now = Date.now()) {
     dates.push(date)
     completed.push(date < today || (date === today && Number.isFinite(sessionEnd) && now > sessionEnd * 1000 + 15 * 60000))
   }
-  if (values.length < 5) throw new Error('fewer than 5 usable closes')
+  if (values.length < 5) {
+    const err = /** @type {ShortSeriesError} */ (new Error('fewer than 5 usable closes'))
+    err.short = true
+    throw err
+  }
   const asOf = seriesAsOf(dates, completed)
   return {
     values,
@@ -205,9 +237,10 @@ export function chartSeries(result, symbol, now = Date.now()) {
  * Fetch daily closes for one Yahoo Finance symbol.
  *
  * @param {string} symbol  Yahoo ticker (e.g. "META", "2222.SR", "^TASI.SR")
- * @param {{ range?: string }} [opts]  Yahoo range token - "1mo" (default,
- *   ~21 closes) or "3mo" (~62), which is what the markets layer asks for so a
- *   sparkline has a shape rather than a wobble.
+ * @param {{ range?: string, fetch?: typeof fetch, cachePath?: string, now?: number }} [opts]
+ *   `range` is a Yahoo range token - "1mo" (default, ~21 closes) or "3mo"
+ *   (~62), which is what the markets layer asks for so a sparkline has a shape
+ *   rather than a wobble. The rest are what a test holds it by.
  * @returns {Promise<{
  *   values: number[],
  *   periods: string[],
@@ -225,19 +258,26 @@ export function chartSeries(result, symbol, now = Date.now()) {
  */
 export async function fetchYahooStock(symbol, opts = {}) {
   const range = opts.range || DEFAULT_RANGE
+  const get = opts.fetch ?? fetch
+  const cachePath = opts.cachePath ?? pathOf('stocksCache')
+  const now = opts.now ?? Date.now()
   const key = cacheKey(symbol, range)
   /** @type {ShortSeriesError | null} */
   let lastErr = null
   for (const host of YAHOO_HOSTS) {
     try {
-      const series = await fetchFromHost(host, symbol, range)
-      writeCache(key, series)
+      const series = await fetchFromHost(host, symbol, range, get, now)
+      writeCache(cachePath, key, series, now)
       return series
     } catch (err) {
-      lastErr = err
+      lastErr = /** @type {ShortSeriesError} */ (err)
+      // The host answered, and what it answered with is too short. The four
+      // indices whose history Yahoo stopped serving (TASI, DFMGI, SET, PSEI)
+      // were each asked of both hosts on every cycle, for the same one point.
+      if (lastErr.short) break
     }
   }
-  const cached = readCachedSeries(key)
+  const cached = readCachedSeries(cachePath, key, now)
   if (cached) {
     // Overlay a live quote onto the stale series when the failure still handed
     // us one — but only when it describes the same instrument. Yahoo answers an
@@ -256,7 +296,7 @@ export async function fetchYahooStock(symbol, opts = {}) {
       // prominent number on the card days out of date while claiming a fix.
       // `changePct` then reads from the last real close to today, which is the
       // move the data actually supports, on a card the UI already marks "cached".
-      const today = new Date().toISOString().slice(0, 10)
+      const today = new Date(now).toISOString().slice(0, 10)
       const live = Number(q.marketPrice.toFixed(2))
       const appended = cached.asOf !== today
       console.error(
@@ -270,7 +310,7 @@ export async function fetchYahooStock(symbol, opts = {}) {
       return {
         ...cached,
         values: [...(cached.values || []), live],
-        periods: [...(cached.periods || []), formatPeriod(Date.now())],
+        periods: [...(cached.periods || []), formatPeriod(now)],
         dates: [...(cached.dates || []), today],
         completed: [...(cached.completed || []), false],
         marketPrice: q.marketPrice,
