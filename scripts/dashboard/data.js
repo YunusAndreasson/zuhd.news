@@ -4,7 +4,7 @@
 // tested, and nothing was. The parts with a behaviour of their own live here
 // and the server is what wires them to a port.
 
-import { existsSync } from 'node:fs'
+import { existsSync, statSync } from 'node:fs'
 import { readJson, writeJson } from '../lib/json-file.js'
 
 /** What a route returns when it has written the response itself: a file, an event stream. */
@@ -195,4 +195,38 @@ export function keepDay(path, entry, keep) {
   if (JSON.stringify(kept) === JSON.stringify(series)) return { series, written: false }
   writeJson(path, series)
   return { series, written: true }
+}
+
+// ── What a file says, kept until the file changes ────────────────────
+
+/**
+ * `read(path)`, asked again only when the file's modification time or size
+ * has moved. For a file that is costly to read and seldom changes: a cycle
+ * log that is finished, the archive of context briefs.
+ *
+ * `keep` what `read` returns small. The value stays in memory for as long as
+ * the file stays as it is, and the server's unit is capped at 128 MB.
+ *
+ * @template T
+ * @param {(path: string) => T} read
+ * @returns {((path: string) => T) & { only: (paths: string[]) => void }}
+ */
+export function byFileState(read) {
+  /** @type {Map<string, { mtimeMs: number, size: number, value: T }>} */
+  const kept = new Map()
+  /** @param {string} path */
+  const ask = (path) => {
+    const { mtimeMs, size } = statSync(path)
+    const was = kept.get(path)
+    if (was && was.mtimeMs === mtimeMs && was.size === size) return was.value
+    const value = read(path)
+    kept.set(path, { mtimeMs, size, value })
+    return value
+  }
+  /** Forget every file but these: the ones that are still there. @param {string[]} paths */
+  ask.only = (paths) => {
+    const still = new Set(paths)
+    for (const path of kept.keys()) if (!still.has(path)) kept.delete(path)
+  }
+  return ask
 }

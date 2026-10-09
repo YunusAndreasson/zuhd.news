@@ -14,7 +14,7 @@ import { parseFrontmatter } from '../lib/frontmatter.js'
 import { scoreDir } from '../lib/quality-score.js'
 import { regionFromCoords } from '../lib/regions.js'
 import { ROOT } from '../lib/paths.js'
-import { SENT, SYSTEMD_SHOW, keepDay, listener, systemdView } from './data.js'
+import { SENT, SYSTEMD_SHOW, byFileState, keepDay, listener, systemdView } from './data.js'
 
 const PORT = 7777
 const HOST = '127.0.0.1'
@@ -30,9 +30,6 @@ const DASHBOARD_DIR = new URL('.', import.meta.url).pathname
  * One cycle as the page reads it. The lines themselves are read by
  * `lib/cycle-log.js`; this is the shape `index.html` was built against, which
  * is why a retried stage still shows its first attempt here, as it always did.
- *
- * `edu`, `trends` and the two `backfill` fields are constants. The stages that
- * printed them are gone and the panels that draw them are not, yet.
  */
 function cycleView(filepath) {
   const filename = filepath.split('/').pop()
@@ -59,8 +56,6 @@ function cycleView(filepath) {
       selector:  { exit: first('selector').exit, seconds: first('selector').seconds },
       writer:    { exit: first('writer').exit, seconds: first('writer').seconds },
       editor:    { exit: first('editor').exit, seconds: first('editor').seconds },
-      edu:       { exit: null, seconds: null },
-      trends:    { offered: null, picked: null, articles: null },
       build:     { exit: first('build').exit },
       deploy:    { exit: first('deploy').exit },
       briefing:  { exit: first('briefing').exit },
@@ -71,8 +66,6 @@ function cycleView(filepath) {
     dedupAfter: log.selection.dedupAfter,
     articlesWritten: log.selection.newArticles,
     newsApiTokens: log.newsApiTokens,
-    backfillAdded: 0,
-    backfillFailed: false,
     funnel: {
       feed: funnel?.feed ?? null,
       selected: funnel?.selected ?? 0,
@@ -333,17 +326,16 @@ function handleQuality() {
     result.categoriesPerDay = categoriesPerDay(7)
 
     // Edu context coverage
-    const briefsPath = join(ROOT, 'content', '.context-briefs.json')
-    if (existsSync(briefsPath)) {
+    if (existsSync(BRIEFS_PATH)) {
       try {
-        const allBriefs = JSON.parse(readFileSync(briefsPath, 'utf-8'))
-        const totalBriefs = Object.keys(allBriefs).length
+        const briefKeys = briefsDigest(BRIEFS_PATH).keys
+        const totalBriefs = briefKeys.length
         const articleFiles = existsSync(ARTICLES_DIR) ? readdirSync(ARTICLES_DIR).filter(f => f.endsWith('.md')) : []
         const totalArticles = articleFiles.length
         // Recent coverage (7 days)
         const recentDate = new Date(Date.now() - 7 * 86400000).toISOString().slice(0, 10)
         const recentArticles = articleFiles.filter(f => f >= recentDate).length
-        const recentBriefs = Object.keys(allBriefs).filter(k => k >= recentDate).length
+        const recentBriefs = briefKeys.filter(k => k >= recentDate).length
         result.eduContext = {
           totalBriefs, totalArticles,
           coveragePct: totalArticles > 0 ? Math.round(totalBriefs / totalArticles * 100) : 0,
@@ -641,7 +633,7 @@ function handleFeedHealth() {
   })
 }
 
-// ── Operations (NewsAPI tokens, trends pick rate, backfill) ─────────
+// ── Operations (NewsAPI tokens) ─────────────────────────────────────
 
 function handleOperations() {
   return cached('operations', 120_000, () => {
@@ -652,27 +644,17 @@ function handleOperations() {
       date: c.date,
       hour: c.scheduledHour,
       tokens: c.newsApiTokens,
-      trendsOffered: c.stages.trends?.offered ?? null,
-      trendsPicked: c.stages.trends?.picked ?? null,
-      trendsArticles: c.stages.trends?.articles ?? null,
-      backfillAdded: c.backfillAdded || 0,
-      backfillFailed: c.backfillFailed || false,
       published: c.funnel?.published ?? 0,
     }))
-    const tokenSum = series.reduce((s, c) => s + (c.tokens || 0), 0)
-    const tokenAvg = series.length ? Math.round(tokenSum / series.filter((c) => c.tokens != null).length) : 0
-    const pickedSum = series.reduce((s, c) => s + (c.trendsPicked || 0), 0)
-    const offeredSum = series.reduce((s, c) => s + (c.trendsOffered || 0), 0)
-    const trendsPickRate = offeredSum > 0 ? pickedSum / offeredSum : 0
+    const counted = series.filter((c) => c.tokens != null)
+    const tokenSum = counted.reduce((s, c) => s + c.tokens, 0)
     return {
       series,
       summary: {
         cycles: series.length,
         tokenSum,
-        tokenAvg,
-        trendsPickRate,
-        backfillFireCount: series.filter((c) => c.backfillAdded > 0).length,
-        backfillFailCount: series.filter((c) => c.backfillFailed).length,
+        // Over the cycles whose log has the figure; 0, not NaN, when none does.
+        tokenAvg: counted.length ? Math.round(tokenSum / counted.length) : 0,
       },
     }
   })
@@ -680,67 +662,84 @@ function handleOperations() {
 
 // ── Block-type adoption from context briefs ─────────────────────────
 
+const BRIEFS_PATH = join(ROOT, 'content', '.context-briefs.json')
+
+/**
+ * What the two brief panels need of `content/.context-briefs.json`: its keys
+ * (the coverage figures on `/api/quality`) and the block counts
+ * (`/api/blocks`).
+ *
+ * The file is 15.9 MB and has not changed since 2026-06-14, when the stage
+ * that wrote it had its last cycle. Each panel parsed it for itself and the
+ * Quality tab asks for both at once, in a unit capped at 128 MB. It is parsed
+ * when it changes, and only these two answers are kept: the parsed file
+ * would not fit beside everything else.
+ */
+const briefsDigest = byFileState((path) => {
+  const briefs = JSON.parse(readFileSync(path, 'utf-8'))
+  return { keys: Object.keys(briefs), blocks: blockAdoption(briefs) }
+})
+
 function handleBlocks() {
-  return cached('blocks', 300_000, () => {
-    const briefsPath = join(ROOT, 'content', '.context-briefs.json')
-    if (!existsSync(briefsPath)) return { empty: true }
-    const briefs = JSON.parse(readFileSync(briefsPath, 'utf-8'))
-    const SHAPE_SPECIFIC = new Set(['timeline', 'rank', 'sankey', 'treemap'])
-    const ALWAYS_CHEAP = new Set(['prose', 'quiz', 'locations', 'compare', 'actors', 'quote'])
+  if (!existsSync(BRIEFS_PATH)) return { empty: true }
+  return briefsDigest(BRIEFS_PATH).blocks
+}
 
-    // Per-day adoption: derive date from slug prefix (slugs start with YYYY-MM-DD-)
-    const byDay = {}
-    for (const [slug, brief] of Object.entries(briefs)) {
-      const m = slug.match(/^(\d{4}-\d{2}-\d{2})/)
-      if (!m) continue
-      const day = m[1]
-      if (!byDay[day]) byDay[day] = { day, briefs: 0, entries: 0, blocks: 0, types: {} }
-      const d = byDay[day]
-      d.briefs++
-      for (const e of brief.timeline || []) {
-        d.entries++
-        for (const b of e.blocks || []) {
-          d.blocks++
-          d.types[b.type] = (d.types[b.type] || 0) + 1
-        }
+function blockAdoption(briefs) {
+  const SHAPE_SPECIFIC = new Set(['timeline', 'rank', 'sankey', 'treemap'])
+  const ALWAYS_CHEAP = new Set(['prose', 'quiz', 'locations', 'compare', 'actors', 'quote'])
+  // Per-day adoption: derive date from slug prefix (slugs start with YYYY-MM-DD-)
+  const byDay = {}
+  for (const [slug, brief] of Object.entries(briefs)) {
+    const m = slug.match(/^(\d{4}-\d{2}-\d{2})/)
+    if (!m) continue
+    const day = m[1]
+    if (!byDay[day]) byDay[day] = { day, briefs: 0, entries: 0, blocks: 0, types: {} }
+    const d = byDay[day]
+    d.briefs++
+    for (const e of brief.timeline || []) {
+      d.entries++
+      for (const b of e.blocks || []) {
+        d.blocks++
+        d.types[b.type] = (d.types[b.type] || 0) + 1
       }
     }
-    const days = Object.values(byDay).sort((a, b) => a.day.localeCompare(b.day))
-    // Last 14 days
-    const recent = days.slice(-14)
+  }
+  const days = Object.values(byDay).sort((a, b) => a.day.localeCompare(b.day))
+  // Last 14 days
+  const recent = days.slice(-14)
 
-    // Aggregate type counts across all-time + last-14-day
-    const allTypes = {}
-    for (const [, b] of Object.entries(briefs)) {
-      for (const e of b.timeline || []) for (const blk of e.blocks || []) {
-        allTypes[blk.type] = (allTypes[blk.type] || 0) + 1
-      }
+  // Aggregate type counts across all-time + last-14-day
+  const allTypes = {}
+  for (const [, b] of Object.entries(briefs)) {
+    for (const e of b.timeline || []) for (const blk of e.blocks || []) {
+      allTypes[blk.type] = (allTypes[blk.type] || 0) + 1
     }
-    const recentTypes = {}
-    for (const d of recent) {
-      for (const [t, n] of Object.entries(d.types)) recentTypes[t] = (recentTypes[t] || 0) + n
-    }
+  }
+  const recentTypes = {}
+  for (const d of recent) {
+    for (const [t, n] of Object.entries(d.types)) recentTypes[t] = (recentTypes[t] || 0) + n
+  }
 
-    const tierTotals = (counts) => {
-      let shape = 0, cheap = 0, charts = 0, other = 0
-      for (const [t, n] of Object.entries(counts)) {
-        if (SHAPE_SPECIFIC.has(t)) shape += n
-        else if (ALWAYS_CHEAP.has(t)) cheap += n
-        else if (['trend', 'chart', 'multi-chart'].includes(t)) charts += n
-        else other += n
-      }
-      return { shape, cheap, charts, other }
+  const tierTotals = (counts) => {
+    let shape = 0, cheap = 0, charts = 0, other = 0
+    for (const [t, n] of Object.entries(counts)) {
+      if (SHAPE_SPECIFIC.has(t)) shape += n
+      else if (ALWAYS_CHEAP.has(t)) cheap += n
+      else if (['trend', 'chart', 'multi-chart'].includes(t)) charts += n
+      else other += n
     }
+    return { shape, cheap, charts, other }
+  }
 
-    return {
-      totalBriefs: Object.keys(briefs).length,
-      allTypes,
-      recentTypes,
-      allTiers: tierTotals(allTypes),
-      recentTiers: tierTotals(recentTypes),
-      recent: recent.map((d) => ({ ...d, tiers: tierTotals(d.types) })),
-    }
-  })
+  return {
+    totalBriefs: Object.keys(briefs).length,
+    allTypes,
+    recentTypes,
+    allTiers: tierTotals(allTypes),
+    recentTiers: tierTotals(recentTypes),
+    recent: recent.map((d) => ({ ...d, tiers: tierTotals(d.types) })),
+  }
 }
 
 // ── Production-cycle RVS trend ──────────────────────────────────────

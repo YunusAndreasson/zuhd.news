@@ -119,21 +119,6 @@
     </div>
   </details>
 
-  <details class="detail-section">
-    <summary>trends pick rate</summary>
-    <div class="detail-body">
-      <div id="ops-trends-summary" class="stat-row"></div>
-      <div id="chart-trends-pick"></div>
-    </div>
-  </details>
-
-  <details class="detail-section">
-    <summary>backfill activity</summary>
-    <div class="detail-body">
-      <div id="ops-backfill-summary"></div>
-    </div>
-  </details>
-
   <h2 class="group-divider">channels — downstream output</h2>
 
   <div class="section-grid-2">
@@ -669,26 +654,6 @@ function renderOperations(ops) {
   `
   const tokenData = ops.series.map((c) => ({ label: `${c.date?.slice(5)} ${c.hour}`, value: c.tokens || 0 }))
   renderLineChart(document.getElementById('chart-newsapi-tokens'), tokenData, 'value', { labelFn: (d) => d.label, unit: '' })
-
-  // Trends pick rate — line chart of picked / offered per cycle
-  const trendSummary = document.getElementById('ops-trends-summary')
-  trendSummary.innerHTML = `
-    <div class="stat"><span class="stat-value">${(ops.summary.trendsPickRate * 100).toFixed(0)}%</span><span class="stat-label">pick rate (rolling)</span></div>
-  `
-  const trendData = ops.series.map((c) => ({
-    label: `${c.date?.slice(5)} ${c.hour}`,
-    value: c.trendsOffered ? Math.round((c.trendsPicked || 0) / c.trendsOffered * 100) : 0,
-  }))
-  renderLineChart(document.getElementById('chart-trends-pick'), trendData, 'value', { labelFn: (d) => d.label, unit: '%' })
-
-  // Backfill — count of cycles that fired and that failed
-  const bfEl = document.getElementById('ops-backfill-summary')
-  bfEl.innerHTML = `
-    <div class="stat-row">
-      <div class="stat"><span class="stat-value">${ops.summary.backfillFireCount}</span><span class="stat-label">cycles needed backfill</span></div>
-      <div class="stat"><span class="stat-value" style="color:${ops.summary.backfillFailCount > 0 ? 'var(--amber)' : 'inherit'}">${ops.summary.backfillFailCount}</span><span class="stat-label">cycles backfill failed</span></div>
-    </div>
-  `
 }
 
 function renderFeedHealth(data) {
@@ -954,11 +919,10 @@ function renderStageBreakdown(cycles) {
     selector: c.stages.selector?.seconds || 0,
     writer: c.stages.writer?.seconds || 0,
     editor: c.stages.editor?.seconds || 0,
-    edu: c.stages.edu?.seconds || 0,
   }))
   renderStackedBars(document.getElementById('chart-stages'), data,
-    ['feed', 'selector', 'writer', 'editor', 'edu'],
-    ['#666', '#4a9a4a', '#5b8dd9', '#c4a000', '#7a5bb5'],
+    ['feed', 'selector', 'writer', 'editor'],
+    ['#666', '#4a9a4a', '#5b8dd9', '#c4a000'],
     { labelFn: d => d.label }
   )
 }
@@ -1375,7 +1339,6 @@ async function loadCycleDetail(filename) {
     ['selector', 'selector'],
     ['writer', 'writer'],
     ['editor', 'editor'],
-    ['edu', 'edu context'],
     ['build', 'build'],
     ['deploy', 'deploy'],
     ['briefing', 'briefing'],

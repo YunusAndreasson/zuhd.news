@@ -1,10 +1,10 @@
 // Run: node --test scripts/lib/dashboard.test.js
 import assert from 'node:assert/strict'
 import { test } from 'node:test'
-import { mkdtempSync, readFileSync, readdirSync, writeFileSync } from 'node:fs'
+import { mkdtempSync, readFileSync, readdirSync, rmSync, utimesSync, writeFileSync } from 'node:fs'
 import { tmpdir } from 'node:os'
 import { join } from 'node:path'
-import { CYCLE_UNITS, SENT, SYSTEMD_SHOW, isoFromSystemd, keepDay, listener, readSeries, systemdView, withDay } from '../dashboard/data.js'
+import { CYCLE_UNITS, SENT, SYSTEMD_SHOW, byFileState, isoFromSystemd, keepDay, listener, readSeries, systemdView, withDay } from '../dashboard/data.js'
 
 // ── The listener ─────────────────────────────────────────────────────
 
@@ -169,4 +169,49 @@ test('a trend file that is there and does not hold a series is left as it is', (
   }
   assert.ok(said.mock.calls.length >= 3)
   assert.deepEqual(readSeries(join(tmpdir(), 'dashboard-no-such-file.json')), [], 'no file yet is a place to start')
+})
+
+// ── A file read once for as long as it stays the same ────────────────
+
+// The Quality tab asks for two panels at once, and each parsed the 15.9 MB
+// archive of context briefs for itself, on every load.
+test('a file is read again only when its time or its size has moved', () => {
+  const dir = mkdtempSync(join(tmpdir(), 'dashboard-'))
+  const path = join(dir, 'briefs.json')
+  writeFileSync(path, '{"a":1}')
+  let reads = 0
+  const keys = byFileState((p) => {
+    reads++
+    return Object.keys(JSON.parse(readFileSync(p, 'utf8')))
+  })
+  assert.deepEqual([keys(path), keys(path), keys(path)], [['a'], ['a'], ['a']])
+  assert.equal(reads, 1)
+
+  const mtime = new Date('2026-06-14T04:32:00Z')
+  utimesSync(path, mtime, mtime)
+  assert.deepEqual(keys(path), ['a'])
+  assert.equal(reads, 2, 'a new time')
+  writeFileSync(path, '{"a":1,"b":2}')
+  utimesSync(path, mtime, mtime)
+  assert.deepEqual(keys(path), ['a', 'b'], 'a new size under the same time')
+  assert.equal(reads, 3)
+})
+
+test('each file has its own answer, a forgotten one is read again, and a missing one throws', () => {
+  const dir = mkdtempSync(join(tmpdir(), 'dashboard-'))
+  const [one, two] = [join(dir, 'cycle-1.log'), join(dir, 'cycle-2.log')]
+  writeFileSync(one, 'first')
+  writeFileSync(two, 'second')
+  let reads = 0
+  const text = byFileState((p) => {
+    reads++
+    return readFileSync(p, 'utf8')
+  })
+  assert.deepEqual([text(one), text(two), text(one)], ['first', 'second', 'first'])
+  assert.equal(reads, 2)
+  text.only([two])
+  assert.deepEqual([text(two), text(one)], ['second', 'first'])
+  assert.equal(reads, 3, 'only the one that was dropped')
+  rmSync(one)
+  assert.throws(() => text(one), /ENOENT/)
 })
