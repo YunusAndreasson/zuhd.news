@@ -34,7 +34,9 @@
 // Hormuz market narrated but absent — so the app's strait-odds join matched
 // nothing — and a market that entered with no `standing` dropped by the app.
 // `orderCandidates` keeps yesterday's markets while they remain eligible and
-// fills vacancies by volume; see it for the tiers and the cap.
+// fills vacancies by volume; see it for the tiers and the cap. `pickOutcome`
+// keeps the same outcome standing for an event, which is where the stickiness
+// has to start: an incumbent is a market, and the pick is made per event.
 
 import { runWithConcurrency } from '../concurrency.js'
 import { CC_TO_TOPOJSON_NAME } from '../../../shared/countries/iso.ts'
@@ -159,18 +161,134 @@ function ymd(d) {
 }
 
 /**
- * Top events by 24h volume, tag-filtered, flattened back to markets.
+ * The one outcome that stands for an event, or null when none is live. Pure,
+ * so it has a test.
+ *
+ * An event is a question and its markets are that question's outcomes:
+ * "Presidential Election Winner 2028" carries several hundred of them, one
+ * per candidate. Flattening them all produced 627 markets from 12 events, and
+ * the `slice(TOP_N)` in `fetchPolymarketTop` then cut *inside* the first two
+ * events, so widening the filter made the output smaller rather than larger.
+ * One per event, chosen before the history calls, costs no call per outcome.
+ *
+ * **The outcome the deck already carries, while it is live.** The pick was
+ * the highest 24h volume alone, made before `orderCandidates` could see who
+ * the incumbents were, so the selection was sticky by event and re-rolled
+ * inside each one. Of the 292 times an event was in the day's last snapshot
+ * on two consecutive days (2026-09-09 to 10-09), 116 changed outcome, and 114
+ * of the outcomes replaced were still undecided and inside their date:
+ * Brazil's election alternated between Lula and Flávio Bolsonaro almost
+ * daily. Each change is a new id, label and line, and the paragraph written
+ * for the old one orphaned, which is what the sticky selection exists to
+ * stop. 124 ids for 82 events in that month, and 121 of the dispatch's 140
+ * contract paragraphs keyed to markets the payload no longer shipped.
+ *
+ * Otherwise the highest 24h volume. `lastTradePrice` comes free on this
+ * payload, so skipping a 2% long-shot to reach the outcome people are
+ * actually trading costs nothing, and volume alone would hand a 500-candidate
+ * election its noisiest row.
+ *
+ * **Live is three tests, and `active` and `closed` are not the one for
+ * expiry: the API says so.** A market whose deadline has passed keeps
+ * `active: true, closed: false` until UMA resolves it, which can take months.
+ * Probed live: *"Will Adanech Abiebie be the next Prime Minister of
+ * Ethiopia?"* carried `endDate: 2026-06-01`, two months gone, alongside both
+ * flags saying it was live, and on the rail *"US x Iran Effective Ceasefire by
+ * July 31"* sat at 62% four days after July 31. A probability on a question
+ * whose date has passed is not a forecast; it is the last price before
+ * everyone stopped caring. The source's own `endDate` is the test, the
+ * event's where the market omits one (a nested market does not always carry
+ * it), and a market with neither is kept: an open-ended market is a real
+ * thing, and dropping one for a missing field would be reading absence as
+ * expiry.
+ *
+ * All three are asked of every outcome here, where they were asked of the
+ * pick alone: an event whose most-traded outcome had closed or run past its
+ * date was dropped whole, and now falls to its next live one. It is also what
+ * lets an incumbent be preferred: one that has expired is not held over a
+ * live sibling.
+ *
+ * @param {{ markets?: any[], endDate?: string | null }} ev
+ * @param {Set<string>} [incumbentSlugs] the previous snapshot's market slugs
+ * @param {number} [now]
+ * @returns {any | null}
+ */
+export function pickOutcome(ev, incumbentSlugs = new Set(), now = Date.now()) {
+  const live = (ev.markets || [])
+    .filter((m) => {
+      const ltp = Number(m.lastTradePrice)
+      return !Number.isFinite(ltp) || (ltp > 0.03 && ltp < 0.97)
+    })
+    .filter((m) => m.active && !m.closed)
+    .filter((m) => {
+      const end = Date.parse((m.endDate || ev.endDate) ?? m.endDateIso ?? '')
+      return !Number.isFinite(end) || end >= now
+    })
+    .sort((a, b) => (Number(b.volume24hr) || 0) - (Number(a.volume24hr) || 0))
+  return live.find((m) => incumbentSlugs.has(m.slug)) ?? live[0] ?? null
+}
+
+/**
+ * The response's events as the markets that stand for them: tag-filtered, one
+ * outcome each (`pickOutcome`). Pure, so it has a test.
+ *
+ * Each market is handed back with its parent event stitched into `events[0]`,
+ * because that is where the rest of this file already looks for the event slug
+ * it dedupes and builds the card URL from.
+ *
+ * `seen` is every market slug the response held, chosen or not. An incumbent
+ * missing from it has left the top of the volume table; one that is in it and
+ * not in `markets` was decided, closed, dated out or tagged away, and the log
+ * line in `fetchPolymarketTop` tells the two apart.
+ *
+ * @param {any[]} events
+ * @param {Set<string>} [incumbentSlugs]
+ * @param {number} [now]
+ * @returns {{ markets: any[], seen: Set<string>, droppedByTag: number, droppedNoneLive: number }}
+ */
+export function marketsFromEvents(events, incumbentSlugs = new Set(), now = Date.now()) {
+  let droppedByTag = 0
+  let droppedNoneLive = 0
+  const markets = []
+  /** @type {Set<string>} */
+  const seen = new Set()
+  for (const ev of events) {
+    for (const m of ev.markets || []) if (m?.slug) seen.add(m.slug)
+
+    const tags = (ev.tags || []).map((t) => String(t.slug || t.label || '').toLowerCase())
+    if (tags.some((t) => DROP_TAGS.has(t))) {
+      droppedByTag++
+      continue
+    }
+
+    const pick = pickOutcome(ev, incumbentSlugs, now)
+    if (!pick) {
+      droppedNoneLive++
+      continue
+    }
+    markets.push({
+      ...pick,
+      // The event's own date where the market omits one, as `pickOutcome` read it.
+      endDate: pick.endDate || ev.endDate,
+      events: [{ slug: ev.slug, title: ev.title }],
+      _eventTags: ev.tags || [],
+    })
+  }
+  return { markets, seen, droppedByTag, droppedNoneLive }
+}
+
+/**
+ * Top events by 24h volume, as `marketsFromEvents` reads them.
  *
  * Gamma sorts on `order=volume24hr` (camelCase). The public docs spell it
  * `volume_24hr` and that form returns essentially-random results — confirmed
  * against the live API 2026-04. We over-fetch to leave headroom after the tag
- * and decided pruning below.
+ * and decided pruning.
  *
- * Each market is handed back with its parent event stitched into `events[0]`,
- * because that is where the rest of this file already looks for the event slug
- * it dedupes and builds the card URL from. Nothing downstream had to change.
+ * @param {number} limit
+ * @param {Set<string>} incumbentSlugs
  */
-async function fetchTopMarkets(limit) {
+async function fetchTopMarkets(limit, incumbentSlugs) {
   const url = new URL(`${GAMMA_BASE}/events`)
   url.searchParams.set('order', 'volume24hr')
   url.searchParams.set('ascending', 'false')
@@ -186,57 +304,12 @@ async function fetchTopMarkets(limit) {
   const data = await res.json()
   const events = Array.isArray(data) ? data : data.data || data.events || []
 
-  let droppedByTag = 0
-  let droppedAllDecided = 0
-  const markets = []
-  for (const ev of events) {
-    const tags = (ev.tags || []).map((t) => String(t.slug || t.label || '').toLowerCase())
-    if (tags.some((t) => DROP_TAGS.has(t))) {
-      droppedByTag++
-      continue
-    }
-
-    /**
-     * One market per event, chosen here rather than after the history calls.
-     *
-     * An event is a question and its markets are that question's outcomes —
-     * "Presidential Election Winner 2028" carries several hundred of them, one
-     * per candidate. Flattening them all produced 627 markets from 12 events,
-     * and the `slice(TOP_N)` below then cut *inside* the first two events, so
-     * widening the filter made the output smaller rather than larger. The
-     * dedupe further down already wanted exactly one per event; doing it here
-     * means it costs no price-history calls instead of one per outcome.
-     *
-     * Highest 24h volume that is not already decided. `lastTradePrice` comes
-     * free on this payload, so skipping a 2% long-shot to reach the outcome
-     * people are actually trading costs nothing — and picking purely by volume
-     * would hand a 500-candidate election its noisiest row.
-     */
-    const live = (ev.markets || [])
-      .filter((m) => {
-        const ltp = Number(m.lastTradePrice)
-        return !Number.isFinite(ltp) || (ltp > 0.03 && ltp < 0.97)
-      })
-      .sort((a, b) => (Number(b.volume24hr) || 0) - (Number(a.volume24hr) || 0))
-    if (!live.length) {
-      droppedAllDecided++
-      continue
-    }
-    markets.push({
-      ...live[0],
-      // The event's own dates where the market omits them. An event that has
-      // ended is the expiry case the `endDate` filter downstream exists for,
-      // and a nested market does not always carry one.
-      endDate: live[0].endDate || ev.endDate,
-      events: [{ slug: ev.slug, title: ev.title }],
-      _eventTags: ev.tags || [],
-    })
-  }
+  const { markets, seen, droppedByTag, droppedNoneLive } = marketsFromEvents(events, incumbentSlugs)
   console.log(
     `  · polymarket: ${events.length} events — ${droppedByTag} dropped by tag, ` +
-      `${droppedAllDecided} with every outcome decided, ${markets.length} questions kept`,
+      `${droppedNoneLive} with no live outcome, ${markets.length} questions kept`,
   )
-  return markets
+  return { markets, seen }
 }
 
 async function fetchPriceHistory(clobTokenId) {
@@ -691,50 +764,30 @@ function parseOutcomeTokens(market) {
  *        stays joined (`deckIds`).
  */
 export async function fetchPolymarketTop({ incumbents = [] } = {}) {
-  let markets
-  try {
-    markets = await fetchTopMarkets(TOP_N)
-  } catch (err) {
-    console.error(`  ✗ polymarket markets: ${err.message}`)
-    return null
-  }
-
+  // Before the fetch: which outcome stands for an event depends on who the
+  // incumbents are (`pickOutcome`).
   const incumbentBySlug = new Map(
     incumbents.filter((i) => typeof i?.seriesId === 'string' && i.seriesId).map((i) => [i.seriesId, i]),
   )
   const incumbentSlugs = new Set(incumbentBySlug.keys())
 
-  const eligible = markets
-    .filter((m) => m.active && !m.closed)
-    /**
-     * **`active` and `closed` do not track expiry, and the API says so.**
-     *
-     * A market whose deadline has passed keeps `active: true, closed: false`
-     * until UMA resolves it, which can take months. Probed live: *"Will Adanech
-     * Abiebie be the next Prime Minister of Ethiopia?"* carried
-     * `endDate: 2026-06-01` — two months gone — alongside both flags saying it
-     * was live, and on the rail *"US x Iran Effective Ceasefire by July 31"* sat
-     * at 62% four days after July 31. A probability on a question whose date has
-     * passed is not a forecast; it is the last price before everyone stopped
-     * caring, and printing it beside live markets makes the block untrustworthy
-     * in a way a reader cannot check.
-     *
-     * The source's own `endDate` is the test, so nothing has to be inferred from
-     * the question text. Markets with no end date are kept: an open-ended market
-     * is a real thing, and dropping one for a missing field would be reading
-     * absence as expiry.
-     */
-    .filter((m) => {
-      const end = Date.parse(m.endDate ?? m.endDateIso ?? '')
-      return !Number.isFinite(end) || end >= Date.now()
-    })
-    // The subject filter is the event tags, applied in `fetchTopMarkets`. What
-    // is left here is the second net: a market whose event was tagged loosely.
-    // The keyword allow-list this replaced is gone rather than kept as a
-    // fallback — it was dropping the Strait of Hormuz for not being on it, and
-    // a list that silently decides what the app may cover is worse than no
-    // list once something better exists.
-    .filter((m) => !DROP_TITLE_RE.test(m.question || m.title || ''))
+  let markets
+  let seen
+  try {
+    ;({ markets, seen } = await fetchTopMarkets(TOP_N, incumbentSlugs))
+  } catch (err) {
+    console.error(`  ✗ polymarket markets: ${err.message}`)
+    return null
+  }
+
+  // Whether an outcome is live (undecided, open, inside its date) and the
+  // subject filter on the event's tags are both settled in `marketsFromEvents`.
+  // What is left here is the second net: a market whose event was tagged
+  // loosely. The keyword allow-list this replaced is gone rather than kept as a
+  // fallback — it was dropping the Strait of Hormuz for not being on it, and
+  // a list that silently decides what the app may cover is worse than no
+  // list once something better exists.
+  const eligible = markets.filter((m) => !DROP_TITLE_RE.test(m.question || m.title || ''))
 
   // Incumbents first, then pinned subjects, then volume — see `orderCandidates`.
   const filtered = orderCandidates(eligible, incumbentSlugs).slice(0, TOP_N)
@@ -745,8 +798,9 @@ export async function fetchPolymarketTop({ incumbents = [] } = {}) {
     const pinned = filtered.filter(
       (m) => !isIncumbent(m) && PIN_TITLE_RE.test(m.question || m.title || ''),
     ).length
-    const fetched = new Set(markets.map((m) => m.slug))
-    const goneAbsent = [...incumbentSlugs].filter((s) => !fetched.has(s)).length
+    // Against every outcome the response held, not the ones chosen: an
+    // incumbent that lost its event's pick was counted as gone from the top.
+    const goneAbsent = [...incumbentSlugs].filter((s) => !seen.has(s)).length
     const goneFiltered = incumbentSlugs.size - keptIncumbents - goneAbsent
     console.log(
       `  · polymarket: ${markets.length} considered, ${eligible.length} eligible, ${filtered.length} kept — ` +

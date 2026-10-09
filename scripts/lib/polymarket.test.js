@@ -1,6 +1,13 @@
 import assert from 'node:assert/strict'
 import { test } from 'node:test'
-import { deckIds, isUsableShortTitle, orderCandidates, PIN_TITLE_RE } from './trends-sources/polymarket.js'
+import {
+  deckIds,
+  isUsableShortTitle,
+  marketsFromEvents,
+  orderCandidates,
+  PIN_TITLE_RE,
+  pickOutcome,
+} from './trends-sources/polymarket.js'
 
 // Selection used to re-roll by volume every cycle, orphaning the narration
 // written for the previous roll. These pin the tiers that keep it stable.
@@ -65,6 +72,75 @@ test('PIN_TITLE_RE names waterways and oil, not the Fed', () => {
   ]) {
     assert.equal(PIN_TITLE_RE.test(q), false, q)
   }
+})
+
+// One outcome stands for an event. It was the most traded of the moment, so an
+// event kept its place in the deck and changed market under it: Brazil's
+// election went Lula, Bolsonaro, Lula on consecutive days of September 2026.
+
+const NOW = Date.parse('2026-10-09T10:00:00Z')
+const outcome = (slug, volume24hr, more = {}) => ({
+  slug,
+  volume24hr,
+  lastTradePrice: 0.4,
+  active: true,
+  closed: false,
+  endDate: '2026-11-30T00:00:00Z',
+  ...more,
+})
+const brazil = (...markets) => ({ slug: 'brazil-presidential-election', title: 'Brazil Presidential Election', markets })
+const picked = (ev, incumbents = []) => pickOutcome(ev, new Set(incumbents), NOW)?.slug ?? null
+
+test('an event keeps the outcome the deck already carries over a busier sibling', () => {
+  const ev = brazil(outcome('will-lula-win', 100), outcome('will-bolsonaro-win', 900))
+  assert.equal(picked(ev), 'will-bolsonaro-win', 'with no incumbent, the most traded')
+  assert.equal(picked(ev, ['will-lula-win']), 'will-lula-win')
+  assert.equal(picked(ev, ['some-other-market']), 'will-bolsonaro-win')
+})
+
+test('an incumbent outcome that is no longer live gives way to the most traded live one', () => {
+  const live = [outcome('by-october-31', 50), outcome('by-december-31', 20)]
+  for (const { why, gone } of [
+    { why: 'decided', gone: { lastTradePrice: 0.98 } },
+    { why: 'decided the other way', gone: { lastTradePrice: 0.02 } },
+    { why: 'closed', gone: { closed: true } },
+    { why: 'inactive', gone: { active: false } },
+    { why: 'past its date', gone: { endDate: '2026-09-30T00:00:00Z' } },
+  ]) {
+    const ev = brazil(outcome('by-september-30', 900, gone), ...live)
+    assert.equal(picked(ev, ['by-september-30']), 'by-october-31', why)
+    // And without an incumbent the event is no longer dropped for its busiest
+    // outcome: it falls to the next live one.
+    assert.equal(picked(ev), 'by-october-31', `${why}, no incumbent`)
+  }
+})
+
+test('the date is the market’s own, else the event’s, and a market with neither is kept', () => {
+  const undated = outcome('open-ended', 10, { endDate: undefined })
+  assert.equal(picked({ markets: [undated] }), 'open-ended')
+  assert.equal(picked({ endDate: '2026-12-01T00:00:00Z', markets: [undated] }), 'open-ended')
+  assert.equal(picked({ endDate: '2026-09-01T00:00:00Z', markets: [undated] }), null, 'the event has ended')
+  assert.equal(picked({ markets: [outcome('iso-only', 10, { endDate: undefined, endDateIso: '2026-09-01' })] }), null)
+  assert.equal(picked({ markets: [outcome('a', 1, { lastTradePrice: 0.99 })] }), null, 'every outcome decided')
+  assert.equal(picked({ markets: [outcome('no-price', 1, { lastTradePrice: undefined })] }), 'no-price')
+})
+
+test('the response’s events become one market each, with the event stitched in', () => {
+  const events = [
+    brazil(outcome('will-lula-win', 100), outcome('will-bolsonaro-win', 900)),
+    { slug: 'world-series', tags: [{ slug: 'sports' }], markets: [outcome('yankees', 5000)] },
+    { slug: 'ceasefire', endDate: '2026-12-31T00:00:00Z', tags: [{ slug: 'iran' }], markets: [outcome('ceasefire-by-dec', 70, { endDate: undefined })] },
+    { slug: 'decided', markets: [outcome('done', 10, { lastTradePrice: 1 })] },
+  ]
+  const { markets, seen, droppedByTag, droppedNoneLive } = marketsFromEvents(events, new Set(['will-lula-win']), NOW)
+  assert.deepEqual(markets.map((m) => m.slug), ['will-lula-win', 'ceasefire-by-dec'])
+  assert.deepEqual(markets[0].events, [{ slug: 'brazil-presidential-election', title: 'Brazil Presidential Election' }])
+  assert.equal(markets[1].endDate, '2026-12-31T00:00:00Z', 'the event’s date where the market has none')
+  assert.deepEqual(markets[1]._eventTags, [{ slug: 'iran' }])
+  assert.deepEqual([droppedByTag, droppedNoneLive], [1, 1])
+  // Every outcome the response held, chosen or not: an incumbent in here and
+  // not in `markets` was filtered, not lost from the top of the table.
+  assert.deepEqual([...seen].sort(), ['ceasefire-by-dec', 'done', 'will-bolsonaro-win', 'will-lula-win', 'yankees'])
 })
 
 // The Fed's "no change" question, one slug a meeting, alike for the 48
