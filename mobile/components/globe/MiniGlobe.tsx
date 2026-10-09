@@ -2809,7 +2809,18 @@ export const MiniGlobe = memo(function MiniGlobe({
       tapFrame.value = displayed;
     },
   );
-  const warp = useDerivedValue<Transforms3d>(() => toTransforms(tapFrame.value));
+  // Derived straight from the picture and the camera, not from `tapFrame`: a
+  // reaction's write reaches a derived value in the same pass only if the
+  // reaction happens to be registered first, and this one is registered again
+  // whenever the layout changes. Read through `tapFrame`, a new picture was
+  // drawn for a frame with the last picture's slide, which showed as a wobble
+  // just before a landing, where the settled picture is drawn ahead of the
+  // camera. `tapFrame` is for a tap, which can be a frame behind.
+  const warp = useDerivedValue<Transforms3d>(() =>
+    toTransforms(
+      globeTransform(framePictures.value.cam, liveCamera.value, cx, cy, width, height, globeRadius),
+    ),
+  );
   const prevWarp = useDerivedValue<Transforms3d>(() =>
     toTransforms(
       globeTransform(

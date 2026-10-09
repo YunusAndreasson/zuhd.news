@@ -85,6 +85,10 @@ paths:
 - Between projections the picture is warped on the UI thread, and a landing's
   settled frame is prefetched and faded in (`prefetchSettled`, `drawLanding`,
   `GROUND_FADE_MS`). Don't replace either with a hard swap.
+- The warp is one derived value over the picture and the camera (`warp`).
+  Never draw from a shared value a reaction writes, such as `tapFrame`: the
+  write can land a frame late, and a new picture is drawn with the last one's
+  slide, which shows as a wobble before a landing.
 
 ## Marks
 
