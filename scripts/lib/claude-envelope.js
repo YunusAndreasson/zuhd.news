@@ -309,7 +309,7 @@ const KILL_GRACE_MS = 5_000
  * Every narrator ran its calls through `runWithConcurrency(items, 3, …)` and
  * made them with `spawnSync`, which blocks the event loop for the whole call.
  * The pool therefore ran one call at a time while its comment said three, and
- * the 04:00 indicator dispatch — ~120 serial Opus calls at ~12s — hit its
+ * the daily indicator dispatch — ~120 serial Opus calls at ~12s — hit its
  * 1500s timeout every day and lost everything. A pool only overlaps what
  * yields, so a caller inside one must use this.
  *

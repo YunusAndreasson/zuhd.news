@@ -17,7 +17,8 @@
  * Rejections propagate: `Promise.all` settles on the first one, and the
  * remaining runners keep draining the queue in the background. A caller that
  * must not lose a whole stage to one bad response catches inside `worker`, or
- * uses `runSettled`, which does.
+ * uses `runSettled`, which does, or calls only what reports a failure without
+ * throwing (`callClaudeJson`, in the narrators).
  *
  * **The pool only overlaps work that yields.** A worker that calls `spawnSync`
  * blocks the event loop, and the pool silently runs one at a time — which is

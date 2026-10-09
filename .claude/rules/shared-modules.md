@@ -37,5 +37,7 @@ prefer a parameter (class names, a link renderer) over a copy, as
 | `scripts/lib/article-files.js` | the corpus window by filename |
 | `scripts/lib/trends-snapshot.js` | the newest `content/trends/*.json` |
 | `scripts/lib/hash.js` | sha1 cache keys |
+| `scripts/lib/dispatch.js` | the dispatch stages' loop, prune and answer checks; the INPUT prompt wrapper |
+| `scripts/lib/country-codes.js` | ISO alpha-3 to the name a country profile is keyed on |
 | `public/islands/_dom.ts` | `el`, `svgEl` |
 | `public/islands/_entity-panel.ts` | the `follows` panel |

@@ -4,13 +4,16 @@
 // a grounded INPUT bundle and ask Opus for two sentences of prose: what the
 // event *is*, and why this occurrence of it is worth watching.
 //
-// Sibling stage to `narrate-indicators.js` and built on the same two ideas:
+// Sibling stage to `narrate-indicators.js` and built on the same two ideas,
+// and on the same loop (`runDispatch`, `lib/dispatch.js`):
 //
 // ── The two fields, and why they are fingerprinted separately ──────────────
 //
 // `standing` is definitional and stable — what the FOMC is, how often OPEC+
 // meets — so its fingerprint is the event's *identity* (title/institution/
-// kind) and it is written approximately once per distinct kind of event.
+// kind) and it is written approximately once per distinct kind of event:
+// every meeting of one institution keeps the sentence the file already holds
+// for it (`storedStanding`).
 //
 // `recent` is a claim about why THIS occurrence matters, grounded in recent
 // coverage. Its fingerprint is the **countdown bucket** plus the set of
@@ -30,8 +33,11 @@
 // Env overrides for development:
 //   NARRATE_EVENTS_MAX=N     cap items considered this run
 //   NARRATE_EVENTS_FORCE=1   ignore the cache (re-narrate everything)
+//   ZUHD_EVENTS_MODEL=id     the model (`lib/models.js`, use `events`)
+//   ZUHD_EVENTS_EFFORT=level its effort; `medium` when unset
 // Flags:
-//   --dry-run                build bundles, print sizes, call nothing
+//   --dry-run                build bundles; print their sizes and whether the
+//                            cache answers each; call nothing
 //   --only <id>               one event id (e.g. `fomc-2026-09`)
 
 import { readFileSync } from 'node:fs'

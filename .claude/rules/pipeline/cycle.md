@@ -28,6 +28,7 @@ paths:
   - "scripts/lib/regions.js"
   - "scripts/lib/dedup.js"
   - "scripts/lib/dispatch.js"
+  - "scripts/lib/gdacs-narrations.js"
   - "scripts/lib/grounding.js"
   - "scripts/lib/indicator-offer.js"
   - "scripts/lib/market-signals.js"
@@ -137,6 +138,9 @@ stages assume about each other.
 - `recentFingerprint` hashes the top stories, the move in bands and the
   extremes' dates, never a raw series value, which changes daily. `promptHash`
   is in both fingerprints so a prompt edit reaches all.
+- `standing` is kept while its fingerprint stands (`storedStanding`,
+  `lib/dispatch.js`): the call is for `recent`, and a definition reworded daily
+  is churn on every surface. An event's entry records its `prompt` for this.
 - An attention row explains the event, never "the topic was in the news".
 - **Never** let the chart be a source for `recent`: a number in `series`
   stays out, and the extremes' dates are for finding the story. With no cause
@@ -192,7 +196,10 @@ stages assume about each other.
   the five queries, never beside them, on hand-picked keywords.
 - The market-signal join takes a name tag or `countryTags` against
   `countries`, its own field in `loadArticles`: two-letter codes in the
-  haystack match prose. A tag is never an ordinary word.
+  haystack match prose. A tag is never an ordinary word. The indicator
+  dispatch keeps the same split (`offeredArticles`, `offeredStories`).
+- A signal never goes back a session (`selectMarketSignals`): a fetch can
+  lose an exchange's newest bar for a night.
 
 ## Companies and AI labs
 

@@ -1,15 +1,18 @@
 #!/usr/bin/env node
 // Disaster narrator. For each Orange/Red alert in content/.gdacs.json, build a
 // grounded INPUT bundle (country profile + weather window for FL/WF/DR + nearby
-// chokepoint when geography matters + alert detail), call Sonnet 4.6 medium
-// for a 2-3 sentence narrative, validate that every number/proper-noun in the
-// output appears in the input, and write `narrative` back onto the alert.
+// chokepoint when geography matters + alert detail), call the model
+// `lib/models.js` names for `gdacs` (Opus) at medium effort for a 2-3 sentence
+// narrative, validate that every number in the output appears in the input
+// (the name scan is off here on purpose: see the foot of this file), and write
+// `narrative` back onto the alert.
 //
 // Cache: content/.gdacs-narrations.json keyed by `${eventtype}:${eventid}`.
 // Fingerprint hashes the inputs that should trigger a re-narrate (alert level,
 // severity, affected countries, population, rounded weather), so multi-day
 // floods aren't re-narrated each cycle. Stale entries (events that fell off
-// the feed) are pruned at the end.
+// the feed) are pruned at the end. The cached narratives are put back on the
+// snapshot before the first call as well as after the last.
 //
 // Env overrides for development:
 //   NARRATE_GDACS_INCLUDE_GREEN=1   also narrate Green alerts (testing)
@@ -365,10 +368,8 @@ async function callClaude(bundle) {
   return { elapsedMs: res.elapsedMs, narrative, costUsd: res.costUsd }
 }
 
-/* The numeric validator moved to `lib/grounding.js` on 2026-08-08, unchanged in
-   behaviour, when `narrate-indicators.js` needed the same check. It is imported
-   at the top of this file. The name scan that module also exports is
-   deliberately *not* switched on here: a disaster narrative's whole job is to
-   name the country and the storm, and this stage already constrains those
-   through the prompt's iron rule plus a bundle that carries every name it is
-   allowed to use. */
+/* The check on a narrative is `validateGrounding` (`lib/grounding.js`) with
+   numbers only. The name scan that module also has is deliberately *not*
+   switched on here: a disaster narrative's whole job is to name the country
+   and the storm, and this stage already constrains those through the prompt's
+   iron rule plus a bundle that carries every name it is allowed to use. */

@@ -105,13 +105,13 @@ export async function runMarketSignals({ dryRun = false, noLlm = false, now = Da
     /**
      * What the window's coverage says about this instrument.
      *
-     * Three arms, and the first one has never matched anything. `entityIds` is
-     * minted by `extract-entities.js`, which attaches `brent`, `cp:hormuz`,
-     * `nasdaq100` and `stocks:*` to articles — and **not one `mkt:*` id exists
-     * anywhere in the corpus**, so for all 30 exchanges this arm is dead. It
-     * stays because it is free and correct the day those ids are minted; what
-     * it may not do is stand in for a join that works, and it was doing exactly
-     * that. TA-125 came back with zero articles from a 327-story window.
+     * Three arms, and the first one is thin. `entityIds` is minted by
+     * `extract-entities.js`, which attached `brent`, `cp:hormuz`, `nasdaq100`
+     * and `stocks:*` to articles and, until `exchangeRules`
+     * (`lib/entity-registry.js`, 2026-09-30), not one `mkt:*` id: for all 30
+     * exchanges this arm matched nothing. Two articles carried one by
+     * 2026-10-09. It may not stand in for a join that works, and it was doing
+     * exactly that: TA-125 came back with zero articles from a 327-story window.
      *
      * `topicTags` is the arm that carries the load, and it is only as good as
      * an editorial list — Ibovespa's tags included `real`, so its two
@@ -176,9 +176,10 @@ If the news does not support useful commentary return {"recent":"","evidence":[]
 INPUT:\n${JSON.stringify(bundle)}`)
         // **Logged, both ways.** This branch used to discard `result.error` and
         // a failed validation in silence, so three cards shipping with no
-        // explanation looked identical to three quiet days — see `cycle.md`,
-        // "the caller logs rejected text so the gap stays visible", which the
-        // indicator stage has done all along and this one did not.
+        // explanation looked identical to three quiet days — see
+        // `lib/grounding.js`, "the caller logs rejected text so the gap stays
+        // visible", which the indicator stage has done all along and this one
+        // did not.
         if (result.error) {
           unheard = true
           rejections.push(`${signal.id}: model error — ${result.error}`)

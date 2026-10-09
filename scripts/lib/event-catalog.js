@@ -212,7 +212,7 @@ export const EVENT_CATALOG = [
  * call them — the same editorial shortlist that used to live in
  * `_map/markets.ts`'s client-side `nextRelease()`, moved server-side so the
  * catalog's central-bank rows and FRED's live feed can be de-duplicated
- * before either reaches the client (see `mergeEvents` in `fetch-trends.js`).
+ * before either reaches the client (`fetch-trends.js`, where it builds `events`).
  *
  * FOMC is deliberately absent here: `EVENT_CATALOG` already carries every
  * 2026 FOMC date from the Fed's own published calendar, and matching it again

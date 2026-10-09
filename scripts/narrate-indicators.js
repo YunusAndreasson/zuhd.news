@@ -15,12 +15,15 @@
 // `standing` is definitional and stable — what Brent is, why the US 10-year
 // prices everything else. General knowledge is the legitimate source for it and
 // it should not change from day to day, so its fingerprint is the item's
-// identity and it is written approximately once.
+// identity and it is written approximately once: a call made for `recent`
+// keeps the definition the cache already holds (`storedStanding`).
 //
 // `recent` is a claim about the last two weeks, so it is where a fabrication
-// would actually mislead. Its fingerprint is the rounded series tail plus the
-// set of articles offered to the model, which means a day on which neither the
-// number nor the coverage moved costs nothing.
+// would actually mislead. Its fingerprint is the story, not the number: the
+// stories offered to the model, the move in bands and the dates of the
+// extremes (`recentFingerprint`). A day on which none of those moved costs
+// nothing. Most days most of them move: the daily passes of 2026-10-02 to
+// 10-09 asked again for 72% to 93% of their items.
 //
 // Both are asked for in one call — a second call to refresh only one of them
 // would cost more than the tokens the discarded field is worth.
@@ -28,19 +31,26 @@
 // ── Where the grounding comes from, at no API cost ────────────────────────
 //
 // `merge-feeds.js` has been archiving every merged feed to
-// `content/.feed-snapshots-merged/` five times a day since May, and each file
-// carries ~200 stories with `concepts[].uri` — Wikipedia article URLs. Those are
-// the same keys the `wiki-*` indicators are built from. So "why is Iran being
-// read about" is answerable from stories we already fetched and mostly never
-// published, without one additional call to any news API.
+// `content/.feed-snapshots-merged/` five times a day since May: the cycle's
+// pool, some sixty stories a file and about 3,200 distinct over a fortnight,
+// most with `concepts` that name Wikipedia articles. Those are the same keys
+// the `wiki-*` indicators are built from. So "why is Iran being read about" is
+// answerable from stories we already fetched and mostly never published,
+// without one additional call to any news API.
 //
 // Env overrides for development:
 //   NARRATE_INDICATORS_MAX=N     cap items considered this run
 //   NARRATE_INDICATORS_FORCE=1   ignore the cache (re-narrate everything)
+//   ZUHD_DISPATCH_MODEL=id       the model (`lib/models.js`, use `dispatch`)
+//   ZUHD_DISPATCH_EFFORT=level   its effort; `medium` when unset
 // Flags:
-//   --dry-run                    build bundles, print sizes, call nothing
+//   --dry-run                    build bundles; print their sizes and whether
+//                                the cache answers each; call nothing
 //   --only <id>                  one namespaced id (e.g. `wiki-iran`, `cp:hormuz`)
 //   --new-only                   only instruments with no cache entry at all
+//   --market-signals             run the market-signal stage instead
+//                                (`narrate-market-signals.js`; takes --dry-run
+//                                and --no-llm)
 
 import { readFileSync } from 'node:fs'
 import { basename, join } from 'node:path'
@@ -108,7 +118,8 @@ const MAX_ITEMS = Number(process.env.NARRATE_INDICATORS_MAX) || Infinity
 const DRY_RUN = hasFlag('dry-run')
 const ONLY = argAt('only')
 /**
- * Only instruments this file has never seen — the non-04:00 pass.
+ * Only instruments this file has never seen — the pass of every cycle but the
+ * daily one (`DAILY_HOUR`, `lib/cycle-run.js`).
  *
  * The full run is daily and that is the right cadence for *rewriting* an
  * explanation. Appearing is a different event: a Polymarket question can enter
@@ -122,9 +133,9 @@ const ONLY = argAt('only')
  *
  * "Never seen" includes "seen, but with no `standing`": an entry with an empty
  * definition is one the app drops exactly as it drops a missing one, so it is
- * retried here rather than left for 04:00. (The writer below already refuses
- * to cache an empty standing, so this is a guard against older entries and a
- * partial write, not the common path.)
+ * retried here rather than left for the daily pass. (`runDispatch` already
+ * refuses to cache an empty standing, so this is a guard against older entries
+ * and a partial write, not the common path.)
  *
  * Not `FORCE`'s opposite and not a cheaper full run: an item already in the
  * cache is skipped here even when its fingerprints have moved, so this can

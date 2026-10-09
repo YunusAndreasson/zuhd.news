@@ -1,8 +1,9 @@
 // Grounding sources shared by the LLM narration stages: our own published
 // articles and the wider (mostly-unpublished) wire feed, both windowed back
 // from a caller-supplied instant. Extracted out of `narrate-indicators.js`
-// when `narrate-events.js` needed the identical join — see CLAUDE.md's
-// shared-modules table for why a second copy of this is the failure mode.
+// when `narrate-events.js` needed the identical join — see
+// `.claude/rules/shared-modules.md` for why a second copy of this is the
+// failure mode.
 
 import { readFileSync, existsSync, readdirSync } from 'node:fs'
 import { join } from 'node:path'
