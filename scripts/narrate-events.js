@@ -41,7 +41,7 @@ import { runWithConcurrency } from './lib/concurrency.js'
 import { promptEcho, promptExamples, validateNumbers, validateProperNouns } from './lib/grounding.js'
 import { matchesAnyTag } from './lib/entity-registry.js'
 import { loadArticles, loadFeedWindow } from './lib/coverage-window.js'
-import { staleKeys } from './lib/dispatch.js'
+import { staleKeys, storedStanding } from './lib/dispatch.js'
 import { argAt, hasFlag } from './lib/argv.js'
 import { ROOT } from './lib/paths.js'
 import { readJson, writeJson } from './lib/json-file.js'
@@ -258,7 +258,13 @@ await runWithConcurrency(selected, CONCURRENCY, async (item) => {
   }
   if (typeof result.costUsd === 'number') totalCostUsd += result.costUsd
 
-  const standing = cleanProse(result.out.standing)
+  // One sentence for one identity, written once (`storedStanding`): the
+  // definition the file already holds for this institution stands, whichever
+  // meeting it was written for. This fingerprint does not carry the prompt,
+  // so the entry's own `prompt` is what lets a rewritten rubric through.
+  const standing =
+    (FORCE ? '' : storedStanding(cache.items, item.key, sFp, { shared: true, prompt: promptHash })) ||
+    cleanProse(result.out.standing)
   const recentRaw = cleanProse(result.out.recent)
 
   const recentEcho = recentRaw ? promptEcho(recentRaw, PROMPT_EXAMPLES) : null
@@ -298,6 +304,8 @@ await runWithConcurrency(selected, CONCURRENCY, async (item) => {
   cache.items[item.key] = {
     standingFingerprint: sFp,
     recentFingerprint: rFp,
+    // The prompt `standing` was written under, for `storedStanding`.
+    prompt: promptHash,
     standing,
     recent,
     citations: recent ? citations : [],

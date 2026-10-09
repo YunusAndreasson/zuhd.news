@@ -1,7 +1,51 @@
 // Run: node --test scripts/lib/dispatch.test.js
 import assert from 'node:assert/strict'
 import { test } from 'node:test'
-import { staleKeys } from './dispatch.js'
+import { staleKeys, storedStanding } from './dispatch.js'
+
+// ── storedStanding ────────────────────────────────────────────────────────
+
+test('a definition stands while its fingerprint does', () => {
+  // `brent`, content/.indicator-dispatch.json: one fingerprint on 2026-10-07,
+  // 08 and 09, and a different sentence each day, because the `standing` that
+  // came back with each refreshed `recent` replaced the one before.
+  const items = {
+    brent: {
+      standingFingerprint: '46b7c3b0f3c54c37',
+      standing: 'Crude from the North Sea, and the reference against which about two-thirds of internationally traded oil is priced.',
+    },
+  }
+  assert.equal(storedStanding(items, 'brent', '46b7c3b0f3c54c37'), items.brent.standing)
+  assert.equal(storedStanding(items, 'brent', 'a-new-identity'), '', 'a changed identity is written again')
+  assert.equal(storedStanding(items, 'wti', '46b7c3b0f3c54c37'), '', 'another key is not looked at unless asked')
+  assert.equal(storedStanding({ brent: { standingFingerprint: 'x', standing: '' } }, 'brent', 'x'), '', 'an empty one is no definition')
+})
+
+test('entries that share an identity come to share one sentence', () => {
+  // content/.events-dispatch.json on 2026-10-09: the October and December
+  // ECB decisions under one fingerprint, saying the council "meets eight
+  // times a year" and "about every six weeks".
+  const items = {
+    'ecb-2026-10': { standingFingerprint: '644eb225dab9953a', prompt: 'p1', standing: 'The euro area’s central bank, whose Governing Council meets eight times a year.' },
+    'ecb-2026-12': { standingFingerprint: '644eb225dab9953a', prompt: 'p1', standing: 'The Governing Council, which meets about every six weeks.' },
+  }
+  const opts = { shared: true, prompt: 'p1' }
+  const first = items['ecb-2026-10'].standing
+  assert.equal(storedStanding(items, 'ecb-2026-10', '644eb225dab9953a', opts), first)
+  assert.equal(storedStanding(items, 'ecb-2026-12', '644eb225dab9953a', opts), first, 'the first in the file, for both')
+  assert.equal(storedStanding(items, 'ecb-2027-01', '644eb225dab9953a', opts), first, 'and for a meeting never seen')
+})
+
+test('a definition written under another prompt is not kept', () => {
+  // The events fingerprint is the identity alone. Without this a rewritten
+  // rubric would reach `recent` and never a definition.
+  const items = {
+    'fomc-2026-10': { standingFingerprint: 'f', prompt: 'old', standing: 'Written under the old rubric.' },
+    'fomc-2026-12': { standingFingerprint: 'f', standing: 'Written before entries recorded a prompt.' },
+  }
+  assert.equal(storedStanding(items, 'fomc-2026-10', 'f', { shared: true, prompt: 'new' }), '')
+  assert.equal(storedStanding(items, 'fomc-2026-10', 'f', { shared: true, prompt: 'old' }), 'Written under the old rubric.')
+})
 
 // ── staleKeys ─────────────────────────────────────────────────────────────
 

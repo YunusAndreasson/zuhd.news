@@ -7,6 +7,41 @@
 // it.
 
 /**
+ * The definition a cache already holds under a fingerprint, or `''`.
+ *
+ * `standing` says what a thing is, and `standingFingerprint` is the thing's
+ * identity: while one stands, so does the other. Both fields come back from
+ * one call, though, and the stages stored whichever `standing` arrived with a
+ * refreshed `recent`. So the fingerprint protected nothing. Brent's was
+ * `46b7c3b0f3c54c37` on 2026-10-07, 08 and 09 under three different
+ * sentences, and a daily pass rewrote about a hundred definitions whose
+ * identity had not moved.
+ *
+ * `shared`: an entry under another key will do, and it is the first in the
+ * file for every caller, so the entries that share an identity come to share
+ * one sentence. The October and December FOMC meetings carried two
+ * definitions of the committee, and the two ECB rows disagreed on how often
+ * it meets.
+ *
+ * `prompt`: the entry must also have been written under this prompt hash
+ * (its `prompt` key). For a fingerprint that does not itself carry the
+ * prompt, or a rewritten rubric would never reach a definition.
+ *
+ * @param {Record<string, any>} items the cache's entries, by key
+ * @param {string} key the item being written
+ * @param {string} fingerprint its `standingFingerprint`
+ * @param {{ shared?: boolean, prompt?: string }} [opts]
+ * @returns {string}
+ */
+export function storedStanding(items, key, fingerprint, { shared = false, prompt } = {}) {
+  const holds = (entry) =>
+    entry?.standingFingerprint === fingerprint && Boolean(entry.standing) && (prompt === undefined || entry.prompt === prompt)
+  if (!shared) return holds(items[key]) ? items[key].standing : ''
+  for (const entry of Object.values(items)) if (holds(entry)) return entry.standing
+  return ''
+}
+
+/**
  * The cached keys a prune may drop.
  *
  * A key is stale when no source carries it any more. It is dropped only when

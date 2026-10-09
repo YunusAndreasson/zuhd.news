@@ -50,7 +50,7 @@ import { promptEcho, promptExamples, seriesEchoes, validateNumbers, validateProp
 import { matchesAnyTag } from './lib/entity-registry.js'
 import { companyMatcher, isAboutCompany, storyFacts } from './lib/companies.js'
 import { loadArticles, loadFeedWindow } from './lib/coverage-window.js'
-import { staleKeys } from './lib/dispatch.js'
+import { staleKeys, storedStanding } from './lib/dispatch.js'
 import { argAt, hasFlag } from './lib/argv.js'
 import { ROOT } from './lib/paths.js'
 import { readJson, writeJson } from './lib/json-file.js'
@@ -557,9 +557,17 @@ await runWithConcurrency(selected, CONCURRENCY, async (item) => {
   }
   if (typeof result.costUsd === 'number') totalCostUsd += result.costUsd
 
+  // The definition already written for this identity stands while the identity
+  // does (`storedStanding`): the call was made for `recent`, and the `standing`
+  // that came back with it is a second paraphrase of a sentence the card
+  // already carries. A stored catalog blurb is the exception for a class
+  // whose blurb is not the definition: it was the fallback on a day the model
+  // wrote none, and keeping it would make that day permanent.
+  const held = FORCE ? '' : storedStanding(cache.items, item.key, sFp)
+  const written = cleanProse(result.out.standing)
   const standing = BLURB_IS_DEFINITION.has(item.klass)
-    ? item.catalogBlurb || cleanProse(result.out.standing)
-    : cleanProse(result.out.standing) || item.catalogBlurb
+    ? item.catalogBlurb || held || written
+    : (held !== item.catalogBlurb && held) || written || item.catalogBlurb
   const recentRaw = cleanProse(result.out.recent)
 
   // **`standing` is not grounding-checked, and that is the field's definition
