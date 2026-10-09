@@ -13,7 +13,7 @@
 import { readFileSync, writeFileSync, existsSync } from 'node:fs'
 import { join, basename } from 'node:path'
 import { randomUUID } from 'node:crypto'
-import { parseClaudeEnvelope, runHaiku } from './lib/claude-envelope.js'
+import { claudeFailure, parseClaudeEnvelope, runHaiku } from './lib/claude-envelope.js'
 import { parseFrontmatter, replaceFrontmatterKey } from './lib/frontmatter.js'
 import { extractEntities } from './lib/entity-registry.js'
 import { fetchYahooStock } from './lib/trends-sources/stocks.js'
@@ -92,7 +92,7 @@ Return ONLY the JSON object. No commentary, no markdown fences.`
   const res = runHaiku(prompt, { timeout: 20_000, maxBuffer: 256 * 1024 })
 
   if (res.status !== 0) {
-    console.error(`  ✗ entity-haiku ${invocationId}: exit ${res.status}`)
+    console.error(`  ✗ entity-haiku ${invocationId}: ${claudeFailure(res, 20_000)}`)
     return new Map()
   }
   try {
@@ -142,7 +142,7 @@ function extractStocksViaHaiku(articles) {
   const res = runHaiku(prompt, { timeout: 90_000, maxBuffer: 512 * 1024 })
 
   if (res.status !== 0) {
-    console.error(`  ✗ stocks-haiku ${invocationId}: exit ${res.status}`)
+    console.error(`  ✗ stocks-haiku ${invocationId}: ${claudeFailure(res, 90_000)}`)
     return null
   }
   try {

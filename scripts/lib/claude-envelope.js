@@ -15,7 +15,8 @@ import { modelFor } from './models.js'
 //                                  observability without re-parsing.
 //
 // Occasionally the inner `result` is raw text with JSON embedded somewhere;
-// we substring between the outer braces as a fallback. When the CLI runs
+// we substring between the outer braces as a fallback, and as a last resort
+// read a number written with a leading plus. When the CLI runs
 // without `--output-format json` (older versions, or direct JSON output) the
 // stdout is the payload itself — usage will be undefined in that case.
 //
@@ -43,7 +44,25 @@ export function parseClaudeEnvelopeWithUsage(stdout) {
     const s = text.indexOf('{')
     const e = text.lastIndexOf('}')
     if (s === -1 || e === -1) throw new Error('no JSON object found in claude result text')
-    result = JSON.parse(text.slice(s, e + 1))
+    const object = text.slice(s, e + 1)
+    try {
+      result = JSON.parse(object)
+    } catch (err) {
+      // A number written with its sign, `"sentiment": +0.15`, which JSON does
+      // not allow. A prompt that says "+1 = sharply favorable" is answered
+      // that way now and then, and one such token cost the 18:01 cycle of
+      // 2026-10-05 all 27 of its source angles, across 15 articles. Only an
+      // answer that has already failed to parse gets here, so a sound one is
+      // never rewritten; in one that has, a `: +1` inside a string loses its
+      // plus too, which is the price.
+      const unsigned = object.replace(/(:\s*)\+(?=\d)/g, '$1')
+      if (unsigned === object) throw err
+      try {
+        result = JSON.parse(unsigned)
+      } catch {
+        throw err
+      }
+    }
   }
 
   return {

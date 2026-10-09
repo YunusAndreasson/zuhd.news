@@ -1,7 +1,7 @@
 import assert from 'node:assert/strict'
 import { test } from 'node:test'
 import { runWithConcurrency } from './concurrency.js'
-import { ISOLATION_FLAGS, claudeArgs, claudeFailure, parseClaudeText, spawnClaude } from './claude-envelope.js'
+import { ISOLATION_FLAGS, claudeArgs, claudeFailure, parseClaudeEnvelope, parseClaudeText, spawnClaude } from './claude-envelope.js'
 
 // `command: 'node'` stands in for the CLI: the helper's job is the spawn, not
 // the flags, and a real `claude` call would cost money on every test run.
@@ -91,4 +91,40 @@ test('parseClaudeText unwraps a prose result and rejects anything else', () => {
   assert.equal(env.text, 'Good morning.')
   assert.equal(env.total_cost_usd, 0.5)
   assert.throws(() => parseClaudeText(JSON.stringify({ type: 'error' })))
+})
+
+/** The CLI's envelope around an answer. @param {string | null} result */
+const envelope = (result) => JSON.stringify({ type: 'result', result, total_cost_usd: 0.01 })
+
+test('an answer is read whole, or from its outer braces when prose is around it', () => {
+  assert.deepEqual(parseClaudeEnvelope(envelope('{"1": {"angle": null, "sentiment": 0.02}}')), { 1: { angle: null, sentiment: 0.02 } })
+  assert.deepEqual(parseClaudeEnvelope(envelope('Here it is:\n```json\n{"1": "fx-pkr"}\n```\nDone.')), { 1: 'fx-pkr' })
+  assert.throws(() => parseClaudeEnvelope(envelope('I could not decide.')), /no JSON object found/)
+})
+
+// The 18:01 cycle of 2026-10-05, as its log has it: `Unexpected token '+',
+// ..."ntiment": +0.15}, "... is not valid JSON`. 27 sources, no angle kept.
+test('a number written with a plus is read, where it cost a whole batch', () => {
+  const answer = '{\n  "1": {"angle": "Chinese mining firms lag on community relations; MSCI rates 80% as ESG laggards", "sentiment": -0.15},\n  "2": {"angle": "foregrounds the port\'s reopening", "sentiment": +0.15},\n  "3": {"angle": null, "sentiment":+1}\n}'
+  assert.throws(() => JSON.parse(answer), /Unexpected token '\+'/, 'the answer as the model gave it does not parse')
+  const out = parseClaudeEnvelope(envelope(answer))
+  assert.deepEqual([out[1].sentiment, out[2].sentiment, out[3].sentiment], [-0.15, 0.15, 1])
+  assert.equal(out[1].angle, 'Chinese mining firms lag on community relations; MSCI rates 80% as ESG laggards')
+})
+
+test('an answer that parses is never rewritten, and one past mending fails as it did', () => {
+  // A plus after a colon inside a string, in an answer with nothing wrong.
+  assert.equal(parseClaudeEnvelope(envelope('{"1": {"angle": "cites growth: +15% on the year", "sentiment": 0.1}}'))[1].angle, 'cites growth: +15% on the year')
+  assert.equal(parseClaudeEnvelope(envelope('Sure. {"1": {"angle": "cites growth: +15% on the year"}}'))[1].angle, 'cites growth: +15% on the year')
+  // Broken some other way: the first error is the one reported.
+  assert.throws(() => parseClaudeEnvelope(envelope('{"1": {"sentiment": +0.15, "angle": oops}}')), /Unexpected token '\+'/)
+  assert.throws(() => parseClaudeEnvelope(envelope('{"1": {"angle": oops}}')), /Unexpected token/)
+})
+
+// An answer with no text in it: a reach for a tool with `--max-turns 1`. The
+// source-angle stage unwrapped the envelope itself and read this as the
+// envelope, in which no item is found: no angles and no line saying why.
+test('an envelope with no text in it is an error, not an empty answer', () => {
+  assert.throws(() => parseClaudeEnvelope(envelope(null)), /no text result/)
+  assert.throws(() => parseClaudeEnvelope(''), /empty claude stdout/)
 })
