@@ -18,14 +18,14 @@ import { hapticSwipe } from '../../lib/haptics';
 import type { StripItem } from '../../lib/now';
 import { stripSnapOffsets } from '../../lib/strip-snap';
 import { DeltaChip } from '../DeltaChip';
-import { Icon, Pressable, Text } from '../primitives';
+import { Pressable, Text } from '../primitives';
 
 /** Weekly moves linked to the settled story, then the currencies of the
  * countries in view, then the gauges in view the globe could not name; a mark
  * the globe names is left to the globe. Global
  * movers fill the row when there is no meaningful match. Touch, momentum and
  * open instrument cards hold the snapshot.
- * The full catalog remains available through `all` and the hamburger menu.
+ * The full catalog is in the menu; the row does not end on a way into it.
  * Gesture Handler's ScrollView keeps strip swipes from turning the globe.
  */
 
@@ -118,7 +118,6 @@ export const IndicatorStrip = memo(function IndicatorStrip({
   locked = false,
   pinned,
   onSelect,
-  onAll,
   selectedId = null,
   linkedIds,
   initialViewport,
@@ -127,8 +126,6 @@ export const IndicatorStrip = memo(function IndicatorStrip({
   locked?: boolean;
   pinned?: StripItem;
   onSelect: (item: StripItem) => void;
-  /** Opens every instrument as one ranked list. */
-  onAll: () => void;
   /** The gauge whose card is open. */
   selectedId?: string | null;
   /** Gauges tied to the settled story: they lead the row. */
@@ -274,20 +271,6 @@ export const IndicatorStrip = memo(function IndicatorStrip({
           onPlaced={handlePlaced}
         />
       ))}
-      <Pressable
-        onPress={onAll}
-        style={styles.all}
-        accessibilityRole="button"
-        accessibilityLabel="All markets and data"
-        accessibilityHint="Opens the menu, with every market, strait, currency, prediction and date by group"
-      >
-        <View style={styles.allRow}>
-          <Text variant="labelXsTight" maxFontSizeMultiplier={MAX_FONT_SCALE.chrome}>
-            all
-          </Text>
-          <Icon name="chevron-forward" size="sm" tone="secondary" />
-        </View>
-      </Pressable>
     </ScrollView>
   );
 });
@@ -302,6 +285,4 @@ const styles = StyleSheet.create({
   value: { flexDirection: 'row', alignItems: 'center', gap: SPACING.xs },
   selected: { height: SELECTED_BAR, marginTop: SPACING.xxs, borderRadius: SELECTED_BAR / 2 },
   // Match the single-line gauges, reserving their selection-bar space.
-  all: { minHeight: CONTROL_ROW, justifyContent: 'center', paddingBottom: GAUGE_EXTRA },
-  allRow: { flexDirection: 'row', alignItems: 'center', gap: SPACING.xs },
 });

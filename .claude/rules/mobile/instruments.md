@@ -35,8 +35,8 @@ paths:
 - The row is what the map is not already saying (`contextualStrip`): the
   settled story's gauges, then what is in view and not printed on the globe,
   largest move first; with neither, the week's largest moves. At most
-  `STRIP_SLOTS`, then `all →`, which ends the row whenever there is a row and
-  opens the menu. Only the row is cut; `strip` keeps every mover for lookups.
+  `STRIP_SLOTS`, and nothing ends the row: every instrument is in the menu.
+  Only the row is cut; `strip` keeps every mover for lookups.
 - A mark the globe names takes no slot, so no number is printed twice. A
   story's own gauges are the exception: the story is why they are there.
 - In view means a mark the globe could not name, or the currency of a country
@@ -79,7 +79,7 @@ paths:
   menu.
 - A menu row never appears or leaves while the menu is open.
 - The menu reopens where it was for five minutes (`MENU_RESUME_MS` in
-  `app/index.tsx`). A longer gap, or `all →`, opens its root (the `rootKey`
+  `app/index.tsx`). A longer gap opens its root (the `rootKey`
   prop).
 - A row that opens a list names what leads it (`leadNames`), not what the list
   is. A row says what its number counts (`readingNote`) and names its subject

@@ -28,8 +28,8 @@ import { GAUGE_EXTRA, IndicatorStrip } from './IndicatorStrip';
  * of a thumb that could hit it by accident. The top *left* was considered and
  * passed over: it is where the gauges start, largest move first, and the
  * farthest reach for a right thumb. `markets`, which sat between the gauges
- * and the menu, is a row in the menu since 2026-09-21; the strip's own
- * `all →` still ends the row.
+ * and the menu, is a row in the menu since 2026-09-21, and the strip's own
+ * `all →` went once the menu was the one way in.
  *
  * **The briefing sits beside it, at the user's request (2026-09-21).** It was
  * the first of the dock's three circles. Up here it is a bare glyph like the
@@ -197,7 +197,6 @@ export const MapHeader = memo(function MapHeader({
   locked,
   pinned,
   onSelect,
-  onAll,
   onMenuPress,
   selectedId = null,
   linkedIds,
@@ -211,7 +210,6 @@ export const MapHeader = memo(function MapHeader({
   locked?: boolean;
   pinned?: StripItem;
   onSelect: (item: StripItem) => void;
-  onAll: () => void;
   onMenuPress: () => void;
   /** Today's briefing exists and its player is not already up. */
   listenAvailable?: boolean;
@@ -280,7 +278,6 @@ export const MapHeader = memo(function MapHeader({
           locked={locked}
           pinned={pinned}
           onSelect={onSelect}
-          onAll={onAll}
           selectedId={selectedId}
           linkedIds={linkedIds}
           initialViewport={stripViewport}

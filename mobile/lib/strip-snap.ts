@@ -18,9 +18,9 @@
  * measured offsets, which the row already collects from each slot's layout.
  *
  * **The end of the row is the one rest position that is not a slot start.** It
- * has to be, or `all →` could never be reached: the last slots begin past the
- * furthest the row can scroll, so they are dropped and the content's end stands
- * in for them.
+ * has to be, or the last slot could never be read whole: the last slots begin
+ * past the furthest the row can scroll, so they are dropped and the content's
+ * end stands in for them.
  */
 
 /**
