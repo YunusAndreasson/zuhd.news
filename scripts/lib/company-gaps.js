@@ -11,18 +11,17 @@
 // has nothing true to cite. This names the gap where it can be closed. The
 // feed asks for the company by name (`fetch-news-api.js`, Q6) so a report of
 // what moved it is in the pool, and the selector is told the share moved
-// (`company-gaps.js`, `run-cycle.sh`). The selector still decides: a move
-// with no cause in the feed is not a story.
+// (`scripts/company-gaps.js`, run by the selector step). The selector still
+// decides: a move with no cause in the feed is not a story.
 //
 // `unexplainedMovers` is pure, so the choice is tested and replayed
-// (`company-gaps.test.js`); `readUnexplainedMovers` is its one reader of disk.
+// (`company-gaps.test.js`); `loadUnexplainedMovers` is its one reader of disk.
 
-import { existsSync, readFileSync } from 'node:fs'
-import { join } from 'node:path'
 import { companyMatcher, isAboutCompany, storyFacts } from './companies.js'
 import { loadArticles } from './coverage-window.js'
+import { pathOf } from './datasets.js'
 import { weekMove } from './indicator-offer.js'
-import { ROOT } from './paths.js'
+import { readJson } from './json-file.js'
 
 /**
  * A week's move, in percent, that asks for a reason. Measured on the twenty
@@ -120,20 +119,37 @@ export function headlineName({ name, topicTags = [] }) {
 
 /**
  * The movers as of now, from the last cycle's quotes and the site's own
- * stories. Empty on a box with no snapshot, and on any unreadable one: the
- * feed and the selector run without the signal.
+ * stories, or why there is nothing to read them from.
  *
- * @param {{ now?: number, companiesPath?: string }} [opts]
+ * `skipped` tells "no share moved" from "nothing was read", which an empty
+ * list alone cannot: a snapshot that has gone missing or lost its `companies`
+ * would otherwise be a quiet week for as long as it lasted. A fault past that
+ * (a row this cannot read) throws, for the caller to decide what it costs.
+ *
+ * @param {{ now?: number, companiesPath?: string, articles?: Parameters<typeof unexplainedMovers>[1] }} [opts]
+ *   `articles` defaults to the site's stories of the last `MOVER_STORY_DAYS`.
+ * @returns {{ movers: ReturnType<typeof unexplainedMovers>, skipped?: string }}
  */
-export function readUnexplainedMovers({
-  now = Date.now(),
-  companiesPath = join(ROOT, 'content', '.companies.json'),
-} = {}) {
+export function loadUnexplainedMovers({ now = Date.now(), companiesPath = pathOf('companies'), articles } = {}) {
+  const snapshot = readJson(companiesPath)
+  if (!snapshot) return { movers: [], skipped: `no companies snapshot at ${companiesPath}` }
+  if (!Array.isArray(snapshot.companies)) {
+    return { movers: [], skipped: `the companies snapshot has no list (keys: ${Object.keys(snapshot).join(', ') || 'none'})` }
+  }
+  return { movers: unexplainedMovers(snapshot.companies, articles ?? loadArticles(now - MOVER_STORY_DAYS * DAY), { now }) }
+}
+
+/**
+ * The same, for the feed (`fetch-news-api.js`, Q6), which must run whatever
+ * state the snapshot is in: empty on a box with none, on an unreadable one
+ * and on any fault. The selector's line is `scripts/company-gaps.js`, which
+ * reads through `loadUnexplainedMovers` and reports what it found.
+ *
+ * @param {Parameters<typeof loadUnexplainedMovers>[0]} [opts]
+ */
+export function readUnexplainedMovers(opts) {
   try {
-    if (!existsSync(companiesPath)) return []
-    const companies = JSON.parse(readFileSync(companiesPath, 'utf8'))?.companies
-    if (!Array.isArray(companies)) return []
-    return unexplainedMovers(companies, loadArticles(now - MOVER_STORY_DAYS * DAY), { now })
+    return loadUnexplainedMovers(opts).movers
   } catch {
     return []
   }

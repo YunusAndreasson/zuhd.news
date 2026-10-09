@@ -4,21 +4,30 @@
 // (`lib/company-gaps.js`).
 //
 // Output: up to three lines of "Name (what it does): up 8.6% in a week" on
-// stdout; empty output (exit 0) when there are none or on any failure, so
-// run-cycle.sh simply skips the injection.
+// stdout, and nothing else there: the selector step pastes stdout into the
+// prompt. No lines when no share moved, when there is no snapshot to read
+// (`skipped`, with the reason) and when the stage fails, which it now does
+// out loud: a non-zero exit and the error on stderr. The step reads only
+// stdout, so each of those is still "no injection".
 //
 // Usage:
 //   node scripts/company-gaps.js
 //   node scripts/company-gaps.js --companies /path/to/companies.json   # replay
 
-import { moverLine, readUnexplainedMovers } from './lib/company-gaps.js'
+import { argAt } from './lib/argv.js'
+import { loadUnexplainedMovers, moverLine } from './lib/company-gaps.js'
+import { runStage } from './lib/stage.js'
 
-const at = process.argv.indexOf('--companies')
-const companiesPath = at > -1 ? process.argv[at + 1] : undefined
-
-try {
-  const lines = readUnexplainedMovers(companiesPath ? { companiesPath } : {}).map(moverLine)
+export function main() {
+  const companiesPath = argAt('companies')
+  const { movers, skipped } = loadUnexplainedMovers(companiesPath ? { companiesPath } : {})
+  if (skipped) {
+    console.error(`company-gaps: ${skipped}`)
+    return { skipped }
+  }
+  const lines = movers.map(moverLine)
   if (lines.length > 0) process.stdout.write(`${lines.join('\n')}\n`)
-} catch {
-  // Fail-soft: empty output, exit 0.
+  return { counts: { movers: lines.length } }
 }
+
+await runStage(import.meta, 'company-gaps', main)

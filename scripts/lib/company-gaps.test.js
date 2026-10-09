@@ -1,6 +1,9 @@
 import assert from 'node:assert/strict'
+import { mkdtempSync, writeFileSync } from 'node:fs'
+import { tmpdir } from 'node:os'
+import { join } from 'node:path'
 import { test } from 'node:test'
-import { headlineName, MOVER_PCT, moverLine, unexplainedMovers } from './company-gaps.js'
+import { headlineName, loadUnexplainedMovers, MOVER_PCT, moverLine, readUnexplainedMovers, unexplainedMovers } from './company-gaps.js'
 import { namedSeries, pickTracked, seriesOf } from './tracked-stories.js'
 
 const NOW = Date.parse('2026-10-04T10:00:00Z')
@@ -109,4 +112,42 @@ test('a mover’s report takes a slot of its own among the tracked stories', () 
     picked.some((g) => g[0].title.startsWith('ASML')),
     'two `other` slots would have gone to the first two unnamed headlines',
   )
+})
+
+// The reader of disk. "No share moved" and "nothing was read" were one empty
+// list, and the selector's script printed nothing for either.
+
+const dir = mkdtempSync(join(tmpdir(), 'company-gaps-'))
+const snapshotAt = (name, body) => {
+  const path = join(dir, name)
+  writeFileSync(path, typeof body === 'string' ? body : JSON.stringify(body))
+  return path
+}
+
+test('the movers are read from the companies snapshot and the stories given', () => {
+  const companiesPath = snapshotAt('companies.json', { generated: '2026-10-04T05:20:00Z', companies: [company('asml', 'ASML', 8.6), company('sap', 'SAP', 1)] })
+  const unexplained = loadUnexplainedMovers({ now: NOW, companiesPath, articles: [] })
+  assert.deepEqual(unexplained.movers.map((m) => m.id), ['asml'])
+  assert.equal(unexplained.skipped, undefined)
+  // A story about the company, and the move has its reason.
+  const explained = loadUnexplainedMovers({ now: NOW, companiesPath, articles: [story('ASML Nears Fully Booked 2027', '2026-09-28T10:00:00Z')] })
+  assert.deepEqual(explained.movers, [])
+  assert.deepEqual(readUnexplainedMovers({ now: NOW, companiesPath, articles: [] }).map((m) => m.id), ['asml'])
+})
+
+test('a snapshot that is missing, unreadable or has no list is said, not read as a quiet week', () => {
+  const error = console.error
+  console.error = () => {}
+  try {
+    const missing = join(dir, 'nowhere.json')
+    assert.deepEqual(loadUnexplainedMovers({ now: NOW, companiesPath: missing, articles: [] }), { movers: [], skipped: `no companies snapshot at ${missing}` })
+    const cut = snapshotAt('cut.json', '{"companies": [{"id": "as')
+    assert.match(loadUnexplainedMovers({ now: NOW, companiesPath: cut, articles: [] }).skipped, /^no companies snapshot at /)
+    const reshaped = snapshotAt('reshaped.json', { generated: '2026-10-04T05:20:00Z', rows: [] })
+    assert.equal(loadUnexplainedMovers({ now: NOW, companiesPath: reshaped, articles: [] }).skipped, 'the companies snapshot has no list (keys: generated, rows)')
+    // The feed asks through the wrapper that never throws and never explains.
+    for (const companiesPath of [missing, cut, reshaped]) assert.deepEqual(readUnexplainedMovers({ now: NOW, companiesPath, articles: [] }), [])
+  } finally {
+    console.error = error
+  }
 })
