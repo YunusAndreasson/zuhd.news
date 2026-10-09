@@ -91,8 +91,9 @@ if (stocks.kept.length + stocks.lapsed > 0) {
   )
 }
 
-// Catch silent ID collisions early — trends-expand.js's find() returns the
-// first match, so a dupe means a chart pick can resolve to the wrong series.
+// Catch silent ID collisions early: every reader joins on the id, and one that
+// finds by it takes the first match, so a dupe is a chart drawn from the wrong
+// series. `deckIds` keeps two contracts apart; this is the net under it.
 const seenIds = new Set()
 for (const i of indicators) {
   if (seenIds.has(i.id)) console.warn(`  ⚠ duplicate indicator id: ${i.id}`)
