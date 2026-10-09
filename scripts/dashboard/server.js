@@ -605,11 +605,11 @@ const BRIEFS_PATH = pathOf('contextBriefs')
  * (the coverage figures on `/api/quality`) and the block counts
  * (`/api/blocks`).
  *
- * The file is 15.9 MB and has not changed since 2026-06-14, when the stage
- * that wrote it had its last cycle. Each panel parsed it for itself and the
- * Quality tab asks for both at once, in a unit capped at 128 MB. It is parsed
- * when it changes, and only these two answers are kept: the parsed file
- * would not fit beside everything else.
+ * The file is 15.9 MB and has not changed since 2026-06-14; the stage that
+ * wrote it was removed five days later. Each panel parsed it for itself and
+ * the Quality tab asks for both at once, in a unit capped at 128 MB. It is
+ * parsed when it changes, and only these two answers are kept: the parsed
+ * file would not fit beside everything else.
  */
 const briefsDigest = byFileState((path) => {
   const briefs = JSON.parse(readFileSync(path, 'utf-8'))
