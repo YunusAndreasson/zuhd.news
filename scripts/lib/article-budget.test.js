@@ -21,6 +21,7 @@ import { dirname, join } from 'node:path'
 import { ARTICLE_CEILING } from './article.js'
 import { bodyLengthLine } from './body-lengths.js'
 import { SCHEMA, qualitySnapshot } from './quality-metrics.js'
+import { flagsOf } from './rvs.js'
 
 const ROOT = join(dirname(fileURLToPath(import.meta.url)), '..', '..')
 const read = (p) => readFileSync(join(ROOT, p), 'utf8')
@@ -93,7 +94,9 @@ test('the quality metrics measure the current budget', () => {
 
 test('the RVS writing scorer measures against the same ceiling', () => {
   // It said 350 for eleven days after the budget rose, and the dashboard showed
-  // the writing score halving overnight.
-  const s = read('scripts/autoresearch/score.js')
-  assert.match(s, new RegExp(`charInRange: len <= ${CEILING},`))
+  // the writing score halving overnight. The scorer takes the article module's
+  // ceiling now, and is asked where it turns rather than read as text.
+  const inRange = (chars) => flagsOf({ title: '', body: 'x'.repeat(chars), sourceNames: [] }).charInRange
+  assert.equal(inRange(CEILING), true)
+  assert.equal(inRange(CEILING + 1), false, `charInRange no longer turns at ${CEILING}`)
 })

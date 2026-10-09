@@ -92,7 +92,6 @@ const STILL_SPELLING = [
   'scripts/post-to-instagram.js',
   'scripts/post-to-twitter.js',
   'scripts/run-cycle.legacy.sh',
-  'scripts/score-production-cycle.js',
   'scripts/test-voice.js',
   'scripts/translate-swedish.js',
   'scripts/trending-gaps.js',
