@@ -1,29 +1,48 @@
-// Conflict-event transform. JS port of the schema in shared/types.ts ConflictEvent —
-// the same shape contract, just running server-side. Currently consumed only by
-// scripts/fetch-conflict-prototype.js (writes to mobile/lib/conflict-fixture.json
-// for the on-device prototype). When the backend picks this up:
+// Conflict events, as arithmetic: a UCDP candidate release in, the snapshot's
+// events out. `scripts/fetch-conflict.js` does the network and the file; the
+// build mirrors what it writes to `/api/conflict.json`, and the app takes that
+// payload whole or not at all (`isConflictSnapshot`, `mobile/lib/validate.ts`).
 //
-//   • Add scripts/fetch-conflict.js — same orchestrator pattern as fetch-gdacs.js,
-//     writes to content/.conflict.json, gets mirrored to /api/conflict.json by
-//     scripts/build.js exactly the way the GDACS snapshot is mirrored today.
-//   • Wire it into run-cycle.sh as a stage between Stage 3.4c (gdacs) and
-//     Stage 4 (briefing) — the cadence (every 4h) is appropriate for UCDP's
-//     monthly upstream and will also fit ACLED's daily updates later.
-//   • Mobile hook (useConflictEvents) swaps the bundled-fixture import for
-//     `useFetchJson(`${API_BASE}/api/conflict.json`, isConflictSnapshot)` —
-//     the validator is already in place at mobile/lib/validate.ts.
+// So an event here is the `ConflictEvent` of `shared/types.ts` exactly, and
+// every gate is a row that must not be drawn: a location known only to the
+// country, nobody killed, an actor with no name, a date the app cannot read.
 //
-// Public surface:
 //   parseCsv(text) → string[][]
-//   rowsToObjects(rows) → Record<string, string>[]   (validates required columns)
-//   mapUcdpRow(row) → ConflictEvent | null            (filters + transforms one row)
-//   filterRecentWindow(events, days) → ConflictEvent[]  (cap to last N days of dataset)
+//   rowsToObjects(rows) → Record<string, string>[]      throws on a missing column
+//   mapUcdpRow(row, tally?, { today }?) → ConflictEvent | null
+//   filterRecentWindow(events, days) → { kept, windowStart, windowEnd }
+//   emptyReleaseReport(rows, events) → string | null    a release with no event in it
+//   candidateCsvUrl(version), nextReleases(version)     the release's file, and what follows it
 //
-// Output objects exactly match the ConflictEvent shape declared in
-// shared/types.ts, so mobile (or any future consumer) can validate with
-// isConflictSnapshot and ship without re-parsing.
+// Nothing here touches the network or the clock, so all of it is tested
+// against fixtures: `conflict.test.js`.
 
 import { isIsoDate } from './iso-date.js'
+
+/**
+ * Where UCDP publishes a candidate release: `26.0.8` is `GEDEvent_v26_0_8.csv`.
+ *
+ * @param {string} version
+ */
+export const candidateCsvUrl = (version) =>
+  `https://ucdp.uu.se/downloads/candidateged/GEDEvent_v${version.replace(/\./g, '_')}.csv`
+
+/**
+ * The releases that can follow `version`, for the fetcher to ask after.
+ *
+ * A candidate's last number is its month: 26.0.8 is August 2026. So what
+ * follows is next month's, and after a December the first of the next year's,
+ * 27.0.1, which no amount of adding one to 26.0.12 arrives at. Both are
+ * returned every month rather than the second only in December: the question
+ * costs one HEAD, and a release that skips a number is found too.
+ *
+ * @param {string} version `year.0.month`
+ * @returns {string[]}
+ */
+export function nextReleases(version) {
+  const [year, minor, month] = version.split('.').map(Number)
+  return [`${year}.${minor}.${month + 1}`, `${year + 1}.${minor}.1`]
+}
 
 // CSV columns we depend on. If any of these are missing from the upstream
 // header, UCDP has changed its schema and rowsToObjects throws loudly
@@ -303,10 +322,18 @@ function intOrUndef(s) {
  *  is dropped from the event's list. Ten characters was the test before, and
  *  `31/03/2026` is ten characters.
  *
+ *  With `today`, a row dated after it is dropped (`tally.postdated`). The
+ *  dataset is a month in arrears, so such a date is a slip of the coder's
+ *  hand, and it is not harmless: `filterRecentWindow` anchors the window on
+ *  the newest date it is given, so one row in next year is a layer of one
+ *  event, with a lag alarm that sees a window ending in the future and says
+ *  nothing.
+ *
  *  @param {Record<string, string>} r
  *  @param {Record<string, number>} [tally] counts what is dropped, by reason
+ *  @param {{ today?: string }} [opts] `today` as `YYYY-MM-DD`; the fetcher's, so this stays off the clock
  */
-export function mapUcdpRow(r, tally) {
+export function mapUcdpRow(r, tally, { today } = {}) {
   const wherePrec = parseInt(r.where_prec, 10)
   if (!Number.isFinite(wherePrec) || wherePrec > MAX_WHERE_PREC) return null
 
@@ -326,6 +353,10 @@ export function mapUcdpRow(r, tally) {
   const dateStart = (r.date_start ?? '').slice(0, 10)
   if (!isIsoDate(dateStart)) {
     count(tally, 'undated')
+    return null
+  }
+  if (today && dateStart > today) {
+    count(tally, 'postdated')
     return null
   }
 

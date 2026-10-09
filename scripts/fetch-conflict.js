@@ -1,48 +1,58 @@
 #!/usr/bin/env node
-// Conflict-events snapshot fetcher for the mobile globe's conflict layer.
-// Mirrors the fetch-gdacs.js pattern: one server-side fetch per cycle
-// replaces N fetches per install. Pulls UCDP's Candidate GED dataset
-// (academic-grade geocoded violence records, freely redistributable under
-// CC-BY 4.0) and writes the canonical ConflictSnapshot to content/.conflict.json.
+// Conflict-events snapshot, for the conflict layer on the map and the globe.
+// One fetch on the server replaces one on every install. The source is UCDP's
+// Candidate Events Dataset: geocoded records of organised violence, coded by
+// hand at Uppsala, redistributable under CC-BY 4.0.
 //
-// Output: content/.conflict.json
-// Shape:  { generated, windowStart, windowEnd, events: ConflictEvent[] }
+// Output: content/.conflict.json, which the build mirrors to /api/conflict.json
+// Shape:  { generated, ucdpVersion, windowStart, windowEnd, events: ConflictEvent[] }
 //
-// UCDP candidate data refreshes monthly — we cap upstream churn with a
-// 6h cache (keyed on the snapshot's own `generated` stamp, not file mtime)
-// (5×/day = wasteful for monthly-cadence data). The cycle still runs
-// every iteration; the cache short-circuits when the snapshot is fresh.
+// A candidate release is one month, published about a month in arrears, as one
+// CSV: 1.4 MB and 1,806 rows for August 2026. About half the rows pass the
+// quality gates in `lib/conflict.js`, and the snapshot is the last week of the
+// release, counted back from its own newest date and never from today.
 //
-// Best-effort: any failure leaves the prior snapshot in place. Build.js
-// skips the API mirror when the file is absent, and mobile renders an
-// empty conflict layer when /api/conflict.json 404s.
+// The release is pinned (`UCDP_VERSION`), and the pin is the dataset's recency:
+// nothing fails while it goes stale. Two things watch it, both below. The lag
+// alarm warns when the window has fallen 45 days behind, and after each write
+// the fetcher asks UCDP whether the next release's file exists yet.
+//
+// The cycle calls this every run and it fetches when the snapshot is six hours
+// old, by the `generated` stamp inside it and never by the file's mtime.
+//
+// Best-effort: any failure, and any release with no usable event in it, leaves
+// the last snapshot in place and exits 0. The build skips the mirror when the
+// file is absent, and the app draws an empty layer when /api/conflict.json 404s.
 //
 // Usage: node scripts/fetch-conflict.js
 //        WINDOW_DAYS=3 node scripts/fetch-conflict.js
-//        FORCE=1 node scripts/fetch-conflict.js  (bypass the freshness cache)
+//        FORCE=1 node scripts/fetch-conflict.js  (fetch whatever the snapshot's age)
 
 import { readFileSync, existsSync } from 'node:fs'
 import { join } from 'node:path'
-import { emptyReleaseReport, filterRecentWindow, mapUcdpRow, parseCsv, rowsToObjects } from './lib/conflict.js'
+import {
+  candidateCsvUrl,
+  emptyReleaseReport,
+  filterRecentWindow,
+  mapUcdpRow,
+  nextReleases,
+  parseCsv,
+  rowsToObjects,
+} from './lib/conflict.js'
 import { ROOT } from './lib/paths.js'
 import { writeJson } from './lib/json-file.js'
 import { fetchOk } from './lib/http.js'
 
 const OUTPUT_PATH = join(ROOT, 'content', '.conflict.json')
-// UCDP candidate release version — bump monthly when UCDP publishes the next
-// candidate (26.0.1 … 26.0.5 monthly, 26.01.26.03 quarterly). One constant
-// drives both the JSON API path and the legacy CSV fallback URL.
+// The candidate release this reads. Its last number is the month: 26.0.8 is
+// August 2026, and the release after 26.0.12 is 27.0.1.
 // Was pinned at 26.0.3 until 2026-08-30, four releases behind, which is the
 // only reason the globe's conflict layer was showing a 25-31 March window in
 // late August. The bump is not optional maintenance: this constant IS the
-// dataset's recency, and nothing failed while it rotted — see DATASET_STALE_DAYS.
+// dataset's recency, and nothing failed while it rotted — see DATASET_STALE_DAYS
+// and the probe after the write.
 const UCDP_VERSION = '26.0.8'
-const UCDP_API_URL = `https://ucdpapi.pcr.uu.se/api/gedevents/${UCDP_VERSION}`
-const UCDP_URL = `https://ucdp.uu.se/downloads/candidateged/GEDEvent_v${UCDP_VERSION.replace(/\./g, '_')}.csv`
-// The JSON API (a few hundred KB paginated vs the ~50 MB CSV) requires a free
-// access token since 2026 (header x-ucdp-access-token; register at ucdp.uu.se).
-// Without UCDP_ACCESS_TOKEN in the env we skip straight to the CSV.
-const UCDP_TOKEN = process.env.UCDP_ACCESS_TOKEN || ''
+const UCDP_URL = candidateCsvUrl(UCDP_VERSION)
 
 // UCDP candidate is a daily-precision dataset trailing real-time by 1-3
 // months — narrow windows (1-2d) collapse to whatever the dataset's max
@@ -52,11 +62,11 @@ const UCDP_TOKEN = process.env.UCDP_ACCESS_TOKEN || ''
 // events globally, 30-50 visible per hemisphere on the globe).
 const WINDOW_DAYS = Math.max(1, parseInt(process.env.WINDOW_DAYS ?? '7', 10) || 7)
 
-// Skip re-fetch when the local snapshot is younger than this. UCDP
-// candidate updates monthly so 6h is plenty fresh; saves ~50 MB/day of
-// upstream bandwidth and ~10s of cycle wall time.
+// Skip the fetch when the snapshot is younger than this. The release changes
+// once a month and the file is the same 1.4 MB each time it is asked for.
 const CACHE_MAX_AGE_MS = 6 * 60 * 60 * 1000
-const FETCH_TIMEOUT_MS = 60_000
+// Generous for a file this size, which arrives in half a second: it was set
+// when the download was believed to be ~50 MB. Inside the stage's `timeout 120`.
 const CSV_TIMEOUT_MS = 105_000
 
 // Freshness comes from the `generated` stamp INSIDE the snapshot, never the
@@ -88,81 +98,29 @@ if (cacheFresh()) {
   process.exit(0)
 }
 
-function fetchWithTimeout(url, extraHeaders = {}) {
-  return fetchOk(url, { timeoutMs: FETCH_TIMEOUT_MS, headers: extraHeaders })
-}
-
-// Primary: UCDP JSON API — paginated, a few hundred KB total vs the ~50 MB CSV.
-// The candidate release is one bounded month, so we paginate the whole version
-// with NO server-side date filter: the dataset trails real-time by 1-3 months,
-// and filterRecentWindow anchors on the dataset's own max date, not on today.
-// Response shape: { TotalCount, TotalPages, Result: [...] } with the same
-// lowercase field names as the CSV, so mapUcdpRow consumes rows unchanged.
-async function fetchRowsFromApi() {
-  const PAGE_SIZE = 1000
-  const MAX_PAGES = 40 // defensive cap: a candidate month is a few thousand rows
-  const rows = []
-  let page = 0
-  let totalPages = 1
-  while (page < totalPages && page < MAX_PAGES) {
-    const res = await fetchWithTimeout(
-      `${UCDP_API_URL}?pagesize=${PAGE_SIZE}&page=${page}`,
-      { 'x-ucdp-access-token': UCDP_TOKEN },
-    )
-    const data = await res.json()
-    if (!Array.isArray(data.Result)) throw new Error('unexpected API shape (no Result array)')
-    // Stringify all values: the CSV path delivers strings, and mapUcdpRow's
-    // comparisons (e.g. type_of_violence === '3') depend on that.
-    for (const r of data.Result) {
-      rows.push(Object.fromEntries(Object.entries(r).map(([k, v]) => [k, v == null ? '' : String(v)])))
-    }
-    totalPages = Number(data.TotalPages) || 1
-    page++
-  }
-  if (page >= MAX_PAGES && totalPages > MAX_PAGES) {
-    console.error(`  ⚠ UCDP API pagination capped at ${MAX_PAGES} pages (${totalPages} reported) — window may be partial`)
-  }
-  console.log(`Fetched ${rows.length.toLocaleString('en-US')} rows from UCDP API (${page} pages)`)
-  return rows
-}
-
-// Fallback: the legacy multi-MB CSV download.
-async function fetchRowsFromCsv() {
-  console.log(`Falling back to CSV: ${UCDP_URL}`)
-  // Its own deadline: the shared one now bounds the body as well as the
-  // headers, and 60s is close to what ~50MB takes from a slow mirror. Inside
-  // the stage's `timeout 120`, with room to log the failure.
+// The release, as rows. There was a second way in, UCDP's paginated JSON API
+// behind an access token, written on the belief that the CSV was ~50 MB. It is
+// 1.4 MB, the token was never set, and the path had never run: it asked for up
+// to forty pages at sixty seconds each inside a 120-second stage and skipped
+// the column check below. It is gone; this is the one fetch.
+let rows
+try {
+  console.log(`Fetching UCDP candidate GED v${UCDP_VERSION}: ${UCDP_URL}`)
   const res = await fetchOk(UCDP_URL, { timeoutMs: CSV_TIMEOUT_MS })
   const csv = await res.text()
   console.log(`Downloaded ${csv.length.toLocaleString('en-US')} bytes`)
-  return rowsToObjects(parseCsv(csv))
-}
-
-let rows
-if (UCDP_TOKEN) {
-  try {
-    console.log(`Fetching UCDP candidate GED from ${UCDP_API_URL}`)
-    rows = await fetchRowsFromApi()
-  } catch (apiErr) {
-    console.error(`  ✗ UCDP API fetch failed (${apiErr.message}) — trying CSV fallback`)
-  }
-} else {
-  console.log('No UCDP_ACCESS_TOKEN — using CSV download (register a free token at ucdp.uu.se to switch to the ~KB JSON API)')
-}
-if (!rows) {
-  try {
-    rows = await fetchRowsFromCsv()
-  } catch (err) {
-    console.error(`  ✗ UCDP fetch failed (${err.message}) — leaving previous snapshot in place`)
-    process.exit(0)
-  }
+  rows = rowsToObjects(parseCsv(csv))
+} catch (err) {
+  console.error(`  ✗ UCDP fetch failed (${err.message}) — leaving previous snapshot in place`)
+  process.exit(0)
 }
 console.log(`Parsed ${rows.length.toLocaleString('en-US')} rows`)
 
 const events = []
 const dropped = {}
+const today = new Date().toISOString().slice(0, 10)
 for (const r of rows) {
-  const event = mapUcdpRow(r, dropped)
+  const event = mapUcdpRow(r, dropped, { today })
   if (event) events.push(event)
 }
 console.log(`Filtered to ${events.length.toLocaleString('en-US')} events after quality gates`)
@@ -171,6 +129,9 @@ if (dropped.undated || dropped.undatedSources || dropped.unreadableEnd) {
     `  ⚠ unreadable dates: ${dropped.undated ?? 0} events dropped, ` +
       `${dropped.undatedSources ?? 0} reported sources dropped, ${dropped.unreadableEnd ?? 0} end dates left off`,
   )
+}
+if (dropped.postdated) {
+  console.error(`  ⚠ ${dropped.postdated} events dropped: dated after today (${today}), in a dataset a month in arrears`)
 }
 
 // A release with no event in it is a changed file, never a month of peace, and
@@ -202,22 +163,6 @@ if (Number.isFinite(windowEndMs)) {
   }
 }
 
-// The next candidate release, asked directly. The lag alarm above is a proxy
-// that fires weeks late (26.0.8 was live while 26.0.7 was pinned and nothing
-// warned); a HEAD on the next file name is the fact itself. One request per
-// real fetch — the 6h snapshot cache means ~4 a day.
-{
-  const [maj, min, patch] = UCDP_VERSION.split('.').map(Number)
-  const next = `${maj}_${min}_${patch + 1}`
-  try {
-    const head = await fetch(`https://ucdp.uu.se/downloads/candidateged/GEDEvent_v${next}.csv`, {
-      method: 'HEAD',
-      signal: AbortSignal.timeout(15_000),
-    })
-    if (head.ok) console.error(`  ⚠ UCDP candidate v${next.replace(/_/g, '.')} is published — bump UCDP_VERSION (pinned ${UCDP_VERSION})`)
-  } catch { /* the probe is advisory; the fetch above already succeeded */ }
-}
-
 const snapshot = {
   generated: new Date().toISOString(),
   ucdpVersion: UCDP_VERSION,
@@ -230,3 +175,36 @@ writeJson(OUTPUT_PATH, snapshot)
 
 const elapsedMs = Date.now() - started
 console.log(`Wrote ${kept.length} events to ${OUTPUT_PATH} in ${elapsedMs}ms`)
+
+// The next release, asked directly. The lag alarm above is a proxy that fires
+// weeks late (26.0.8 was live while 26.0.7 was pinned and nothing warned); a
+// HEAD on the next file's name is the fact itself. Both names it could have are
+// asked: next month's, and the first of next year's, which is what follows a
+// December and which `patch + 1` alone would never find.
+//
+// After the write, because it is advice. Ahead of it, its fifteen seconds were
+// added to the download's 105 inside a 120-second stage, so a slow answer to a
+// question nobody needed answered could cost a snapshot already in hand.
+//
+// One line either way: "not yet" from a probe that works and silence from one
+// that has stopped working must not look the same in the log.
+{
+  const asked = await Promise.all(
+    nextReleases(UCDP_VERSION).map(async (version) => {
+      try {
+        const head = await fetch(candidateCsvUrl(version), { method: 'HEAD', signal: AbortSignal.timeout(15_000) })
+        return { version, ok: head.ok, said: `HTTP ${head.status}` }
+      } catch (err) {
+        return { version, ok: false, said: err.message }
+      }
+    }),
+  )
+  const out = asked.filter((a) => a.ok)
+  if (out.length > 0) {
+    console.error(
+      `  ⚠ UCDP candidate v${out.map((a) => a.version).join(', v')} is published — bump UCDP_VERSION (pinned ${UCDP_VERSION})`,
+    )
+  } else {
+    console.log(`  next release not yet published (${asked.map((a) => `v${a.version}: ${a.said}`).join('; ')})`)
+  }
+}

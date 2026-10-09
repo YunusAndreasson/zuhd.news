@@ -10,9 +10,11 @@
 import test from 'node:test'
 import assert from 'node:assert/strict'
 import {
+  candidateCsvUrl,
   emptyReleaseReport,
   filterRecentWindow,
   mapUcdpRow,
+  nextReleases,
   parseCsv,
   parseSourceArticle,
   rowsToObjects,
@@ -255,4 +257,35 @@ test('a row is an event only with a start the app can read; an unreadable end is
   const run = mapUcdpRow({ ...baseRow, date_end: '2026-04-02 00:00:00.000' }, tally)
   assert.equal(run.dateEnd, '2026-04-02')
   assert.deepEqual(tally, { undated: 3, unreadableEnd: 1 })
+})
+
+// --- the release, and what follows it ---
+
+test('what follows a release is next month, or the first of next year', () => {
+  // The last number is the month. The fetcher asked only for `patch + 1`, and
+  // after 26.0.12 that is a file that will never exist: the alarm that was added
+  // because the pin rotted unnoticed would have gone blind every January.
+  assert.deepEqual(nextReleases('26.0.8'), ['26.0.9', '27.0.1'])
+  assert.deepEqual(nextReleases('26.0.12'), ['26.0.13', '27.0.1'])
+  assert.equal(candidateCsvUrl('26.0.8'), 'https://ucdp.uu.se/downloads/candidateged/GEDEvent_v26_0_8.csv')
+  assert.equal(candidateCsvUrl('27.0.1'), 'https://ucdp.uu.se/downloads/candidateged/GEDEvent_v27_0_1.csv')
+})
+
+test('a row dated after today is not an event, and cannot move the window', () => {
+  // The window is anchored on the newest date in the release, so one mistyped
+  // year was the whole layer: a week ending in 2027 with one event in it.
+  const tally = {}
+  const rows = [
+    { ...baseRow, relid: 'A', date_start: '2026-03-30 00:00:00.000' },
+    { ...baseRow, relid: 'B', date_start: '2026-03-31 00:00:00.000' },
+    { ...baseRow, relid: 'C', date_start: '2027-03-31 00:00:00.000' },
+  ]
+  const events = rows.map((r) => mapUcdpRow(r, tally, { today: '2026-05-02' })).filter(Boolean)
+  assert.deepEqual(events.map((e) => e.id), ['UCDP-A', 'UCDP-B'])
+  assert.deepEqual(tally, { postdated: 1 })
+  assert.equal(filterRecentWindow(events, 7).windowEnd, '2026-03-31')
+
+  // A row dated today is kept, and with no `today` nothing is asked.
+  assert.ok(mapUcdpRow(rows[1], tally, { today: '2026-03-31' }))
+  assert.ok(mapUcdpRow(rows[2]))
 })
