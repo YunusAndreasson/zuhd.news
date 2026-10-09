@@ -109,6 +109,71 @@ export function parseStockMentions(obj) {
 }
 
 /**
+ * What an article's frontmatter gets from the companies the scan named in it:
+ * an entity for each one there is a chart for, and the ids of the ones the
+ * article is about.
+ *
+ * The two are decided apart. An entity is a mention a reader can press, and a
+ * press with no chart behind it opens nothing, so a ticker Yahoo did not
+ * answer for is no entity. Whether the article is *about* the company is the
+ * model's reading of the article and has nothing to do with Yahoo. They were
+ * decided together: a subject whose ticker Yahoo refused was dropped before
+ * it was noted, and the article went down as `subjects: []`, "read, and
+ * about none", which also turns off the weaker signs the build falls back on
+ * for an article nobody read. Seven tickers were refused in the 41 cycles to
+ * 2026-10-09, all symbols the model had out of date (SNE, ANTM, TTM).
+ *
+ * @param {StockMention[]} companies what the scan named in one article
+ * @param {Set<string>} charted the indicator ids a chart was fetched for
+ * @returns {{ entities: { mention: string, indicatorId: string, kind: 'stock' }[], subjects: string[] }}
+ */
+export function companyEntries(companies, charted) {
+  /** @type {{ mention: string, indicatorId: string, kind: 'stock' }[]} */
+  const entities = []
+  /** @type {string[]} */
+  const subjects = []
+  for (const c of companies) {
+    const id = `stocks:${c.ticker.toUpperCase()}`
+    if (c.subject && !subjects.includes(id)) subjects.push(id)
+    if (!charted.has(id) || entities.some((e) => e.indicatorId === id)) continue
+    entities.push({ mention: c.mention, indicatorId: id, kind: 'stock' })
+  }
+  return { entities, subjects }
+}
+
+/**
+ * A chart for each ticker, one request at a time, until time is up. No
+ * request is begun after `until`; the tickers that were not asked for are
+ * named, because a bounded job says what it left out.
+ *
+ * One at a time because Yahoo rate-limits a shared address. A request can
+ * take 20 s when both of its hosts hang, the loop ran after up to 110 s of
+ * model calls, and the stage is killed at 180 s with its only write still
+ * ahead of it: four slow tickers were enough to lose the whole batch.
+ *
+ * @template T
+ * @param {Iterable<string>} tickers
+ * @param {(ticker: string) => Promise<T | null>} fetchOne null when there is no chart to be had
+ * @param {{ until: number, now?: () => number }} opts `until` in epoch ms; `now` is for a test
+ * @returns {Promise<{ charts: Map<string, T>, unasked: string[] }>}
+ */
+export async function chartsUntil(tickers, fetchOne, { until, now = Date.now }) {
+  /** @type {Map<string, T>} */
+  const charts = new Map()
+  /** @type {string[]} */
+  const unasked = []
+  for (const ticker of tickers) {
+    if (now() >= until) {
+      unasked.push(ticker)
+      continue
+    }
+    const chart = await fetchOne(ticker)
+    if (chart) charts.set(ticker, chart)
+  }
+  return { charts, unasked }
+}
+
+/**
  * The frontmatter block recording which instruments an article is about, as
  * the model judged it: `subjects:` with one indicator id a line, or
  * `subjects: []` for an article that was read and is about none.

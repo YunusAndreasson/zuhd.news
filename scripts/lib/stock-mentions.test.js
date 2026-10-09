@@ -1,6 +1,6 @@
 import assert from 'node:assert/strict'
 import { test } from 'node:test'
-import { parseStockMentions, stockMentionsPrompt, subjectsBlock } from './stock-mentions.js'
+import { chartsUntil, companyEntries, parseStockMentions, stockMentionsPrompt, subjectsBlock } from './stock-mentions.js'
 
 test('the prompt carries each article and asks for the subject', () => {
   const prompt = stockMentionsPrompt([
@@ -68,4 +68,51 @@ test('subjectsBlock writes one id a line, once each, and says so when there are 
     '  - "stocks:MU"',
   ])
   assert.deepEqual(subjectsBlock([]), ['subjects: []'])
+})
+
+/** @param {string} mention @param {string} ticker @param {boolean} subject */
+const company = (mention, ticker, subject) => ({ mention, ticker, name: mention, subject })
+
+test('a company with a chart is an entity, and the one the article is about is a subject', () => {
+  const companies = [company('Nvidia', 'nvda', true), company('Microsoft', 'MSFT', false), company('NVIDIA Corp', 'NVDA', true)]
+  assert.deepEqual(companyEntries(companies, new Set(['stocks:NVDA', 'stocks:MSFT'])), {
+    entities: [
+      { mention: 'Nvidia', indicatorId: 'stocks:NVDA', kind: 'stock' },
+      { mention: 'Microsoft', indicatorId: 'stocks:MSFT', kind: 'stock' },
+    ],
+    subjects: ['stocks:NVDA'],
+  })
+  assert.deepEqual(companyEntries([], new Set(['stocks:NVDA'])), { entities: [], subjects: [] })
+})
+
+// The model still calls Sony SNE, and Yahoo has no such symbol. The article
+// about Sony was written down as `subjects: []`: read, and about no company.
+test('what an article is about does not depend on Yahoo answering for the ticker', () => {
+  const companies = [company('Sony', 'SNE', true), company('Nintendo', 'NTDOY', false)]
+  assert.deepEqual(companyEntries(companies, new Set()), { entities: [], subjects: ['stocks:SNE'] }, 'no chart, so nothing to press, and the subject stands')
+  assert.deepEqual(companyEntries(companies, new Set(['stocks:NTDOY'])), {
+    entities: [{ mention: 'Nintendo', indicatorId: 'stocks:NTDOY', kind: 'stock' }],
+    subjects: ['stocks:SNE'],
+  })
+})
+
+test('charts are fetched one at a time until time is up, and the tickers left out are named', async () => {
+  let clock = 0
+  /** @type {string[]} */
+  const asked = []
+  const fetchOne = async (/** @type {string} */ ticker) => {
+    asked.push(ticker)
+    clock += 20_000 // both hosts hung
+    return ticker === 'RMST' ? null : { values: [1, 2] }
+  }
+  const { charts, unasked } = await chartsUntil(['NVDA', 'RMST', 'MSFT', 'AAPL', 'TSM'], fetchOne, { until: 50_000, now: () => clock })
+  assert.deepEqual(asked, ['NVDA', 'RMST', 'MSFT'], 'none is begun after the deadline')
+  assert.deepEqual([...charts.keys()], ['NVDA', 'MSFT'], 'one with no chart to be had is not a chart')
+  assert.deepEqual(unasked, ['AAPL', 'TSM'])
+})
+
+test('with time in hand every ticker is asked for', async () => {
+  const { charts, unasked } = await chartsUntil(new Map([['NVDA', 1], ['MSFT', 2]]).keys(), async (t) => ({ t }), { until: Date.now() + 60_000 })
+  assert.deepEqual([[...charts.keys()], unasked], [['NVDA', 'MSFT'], []])
+  assert.deepEqual(await chartsUntil([], async () => null, { until: 0 }), { charts: new Map(), unasked: [] })
 })
