@@ -48,6 +48,91 @@ test('what the selection knows is added, and what the writer wrote is left as it
   assert.ok(out.endsWith('\n---\n\nGeneva — Body.\n'), 'the prose is untouched')
 })
 
+// To the byte. The frontmatter is edited as text, so what is written is these
+// characters and not only what they parse to: which line a key goes under, how
+// a number is printed, what is quoted and how.
+test('what is written, character for character', () => {
+  assert.equal(
+    scaffoldArticle(WRITTEN, story()),
+    [
+      '---',
+      'title: "Trade Body Doubles Growth Forecast"',
+      'date: "2026-10-08T17:27:44Z"',
+      'category: "economy"',
+      'location: "Geneva"',
+      'sources:',
+      '  - name: "Dawn"',
+      '    url: "https://www.dawn.com/news/2035725"',
+      '    country: "PK"',
+      '    sentiment: 0.30',
+      '    image: "https://i.dawn.com/a.webp"',
+      '  - name: "Reuters"',
+      '    url: "https://www.reuters.com/x"',
+      '    sentiment: -0.13',
+      'concepts:',
+      '  - "World Trade Organization"',
+      '  - "Pakistan"',
+      'eventCoverage: 41',
+      'sentimentDivergence: 0.3',
+      '---',
+      '',
+      'Geneva — Body.',
+      '',
+    ].join('\n'),
+  )
+})
+
+// Each source's entry is found by its name as scaffold would write it, and
+// reaches to the next entry, or to the end of the block for the last one. Here:
+// a source that already has a sentiment keeps it and gets its image under it,
+// a name with quotes in it is found, the last source has nothing to insert
+// after and the writer's own keys behind it, one source is not in the file,
+// and one has nothing to add.
+test('a source is found by name and filled where it stands, to the byte', () => {
+  const written = WRITTEN.replace(
+    '    url: "https://www.reuters.com/x"\n',
+    '    url: "https://www.reuters.com/x"\n    sentiment: 0.5\n  - name: "L\'Orient \\"Today\\""\n    country: "LB"\n  - name: "Bare"\neventCoverage: 7\nconcepts:\n  - "Own"\n',
+  )
+  const sources = [
+    { name: 'Reuters', sentiment: -0.2, image: 'https://img.reuters.com/$&/x.jpg' },
+    { name: 'L\'Orient "Today"', sentiment: 0, image: 'https://lorient.example/a---b.png' },
+    { name: 'Bare', sentiment: 0.9, image: 'https://bare.example/i.png' },
+    { name: 'Not In The File', sentiment: 0.1, image: 'https://x.example/i.png' },
+    { name: 'Dawn', sentiment: null, image: null },
+  ]
+  assert.equal(
+    scaffoldArticle(written, story({ sources })),
+    [
+      '---',
+      'title: "Trade Body Doubles Growth Forecast"',
+      'date: "2026-10-08T17:27:44Z"',
+      'category: "economy"',
+      'location: "Geneva"',
+      'sources:',
+      '  - name: "Dawn"',
+      '    url: "https://www.dawn.com/news/2035725"',
+      '    country: "PK"',
+      '  - name: "Reuters"',
+      '    url: "https://www.reuters.com/x"',
+      '    sentiment: 0.5',
+      '    image: "https://img.reuters.com/$&/x.jpg"',
+      '  - name: "L\'Orient \\"Today\\""',
+      '    country: "LB"',
+      '    sentiment: 0.00',
+      '    image: "https://lorient.example/a---b.png"',
+      '  - name: "Bare"',
+      'eventCoverage: 7',
+      'concepts:',
+      '  - "Own"',
+      'sentimentDivergence: 0.3',
+      '---',
+      '',
+      'Geneva — Body.',
+      '',
+    ].join('\n'),
+  )
+})
+
 // Three cycles in a row published nothing off this label.
 test('a label that carries quotes is still YAML afterwards', () => {
   const out = scaffoldArticle(WRITTEN, story({ concepts: [{ label: 'Ecologist Party "The Greens"' }, 'Back\\slash'] }))

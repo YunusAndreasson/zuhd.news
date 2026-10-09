@@ -18,6 +18,25 @@ const yamlStr = (/** @type {unknown} */ v) =>
     .replace(/\t/g, '\\t')}"`
 
 /**
+ * One source's entry in the frontmatter text: where its `name:` stands, and
+ * the text from there to the next entry, or to the end of the block for the
+ * last one. Null when no entry carries the name as it is written here, in
+ * double quotes.
+ *
+ * Both fills below look a source up, and each spelled this out.
+ *
+ * @param {string} yaml the frontmatter block
+ * @param {unknown} name the source's name on the selection
+ * @returns {{ nameIdx: number, block: string } | null}
+ */
+function sourceBlock(yaml, name) {
+  const nameIdx = yaml.indexOf(`name: ${yamlStr(name)}`)
+  if (nameIdx === -1) return null
+  const nextSourceIdx = yaml.indexOf('  - name:', nameIdx + 1)
+  return { nameIdx, block: nextSourceIdx === -1 ? yaml.slice(nameIdx) : yaml.slice(nameIdx, nextSourceIdx) }
+}
+
+/**
  * Fill what is missing from one article's frontmatter out of its selection
  * entry. Returns the new file text, or null when there was nothing to add or
  * the file has no frontmatter. What the writer wrote is never replaced.
@@ -60,12 +79,10 @@ export function scaffoldArticle(raw, story) {
     for (const selSrc of story.sources) {
       if (selSrc.sentiment == null) continue
       // Find matching source in YAML by name and add sentiment if missing
-      const namePattern = `name: ${yamlStr(selSrc.name)}`
-      const nameIdx = yaml.indexOf(namePattern)
-      if (nameIdx === -1) continue
+      const entry = sourceBlock(yaml, selSrc.name)
+      if (!entry) continue
+      const { nameIdx, block } = entry
       // Check if sentiment already exists for this source
-      const nextSourceIdx = yaml.indexOf('  - name:', nameIdx + 1)
-      const block = nextSourceIdx === -1 ? yaml.slice(nameIdx) : yaml.slice(nameIdx, nextSourceIdx)
       if (block.includes('sentiment:')) continue
       // Find the last property of this source entry and add sentiment after it
       const countryLine = block.match(/\n\s+country:.*/)
@@ -84,11 +101,9 @@ export function scaffoldArticle(raw, story) {
   if (story.sources?.some(s => s.image)) {
     for (const selSrc of story.sources) {
       if (!selSrc.image) continue
-      const namePattern = `name: ${yamlStr(selSrc.name)}`
-      const nameIdx = yaml.indexOf(namePattern)
-      if (nameIdx === -1) continue
-      const nextSourceIdx = yaml.indexOf('  - name:', nameIdx + 1)
-      const block = nextSourceIdx === -1 ? yaml.slice(nameIdx) : yaml.slice(nameIdx, nextSourceIdx)
+      const entry = sourceBlock(yaml, selSrc.name)
+      if (!entry) continue
+      const { nameIdx, block } = entry
       if (block.includes('image:')) continue
       // Insert after country/url, like sentiment
       const sentimentLine = block.match(/\n\s+sentiment:.*/)
