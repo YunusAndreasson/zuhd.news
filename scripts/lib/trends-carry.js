@@ -8,6 +8,69 @@
 
 import { isStaleAsOf } from './trends-sources/stocks.js'
 
+const DAY = 86400_000
+
+/**
+ * How long a registry row may stand on the fetch that last succeeded.
+ *
+ * Long enough for what it is for: a rate limit, a timeout, a source down over
+ * a weekend. Monero was missing from the day's last snapshot on 14 of the 16
+ * days from 2026-09-09 to 09-24, on CoinGecko 429s that cleared between
+ * cycles. Short enough that a series its source has stopped serving leaves
+ * the payload: past a week the row is not the source's answer any more, and
+ * the week is the bar `stocks.js` already holds a cached series to.
+ */
+export const CARRY_DAYS = 7
+
+/**
+ * The previous snapshot's row for a registry series this run fetched nothing
+ * for, or null when there is none that may stand.
+ *
+ * Every sibling fetcher leaves its last file in place when it gets nothing
+ * (`fetch-markets.js`, `fetch-chokepoints.js`, `fetch-companies.js`). This one
+ * cannot: one file holds seven sources, a failed one must not hold back the
+ * other six, and so each run wrote the rows it got. A row whose fetch failed
+ * was simply absent, from the app's list and from the writer's offer, until a
+ * cycle that fetched it.
+ *
+ * The row is the one fetched earlier, unchanged: its `asOf` already says how
+ * old the reading is, and the writer's offer drops a level by that date. It
+ * gains `fetchedAt`, the time of the snapshot that fetched it, kept across
+ * further carries, which is what `CARRY_DAYS` is counted from. A row with no
+ * `fetchedAt` was fetched by the snapshot it is in.
+ *
+ * Only the same series: a registry row since pointed at another source or
+ * series id is a different reading under an old name.
+ *
+ * @param {{ id: string, source: string, seriesId?: string }} ind the registry row
+ * @param {any} prior the snapshot being replaced, as it was read: any JSON, or none
+ * @param {number} [now]
+ * @returns {any | null}
+ */
+export function carriedRow(ind, prior, now = Date.now()) {
+  const row = (prior?.indicators ?? []).find((r) => r?.id === ind.id)
+  if (!row || row.source !== ind.source || row.seriesId !== ind.seriesId) return null
+  if (!Array.isArray(row.values) || row.values.length === 0) return null
+  const fetchedAt = row.fetchedAt ?? prior?.fetchedAt
+  const at = Date.parse(fetchedAt ?? '')
+  if (!Number.isFinite(at) || now - at > CARRY_DAYS * DAY) return null
+  return { ...row, fetchedAt }
+}
+
+/**
+ * The previous snapshot's release calendar, for a run whose own call for it
+ * failed: the entries still ahead. They are dated, so nothing else has to
+ * bound it.
+ *
+ * @param {any} prior the snapshot being replaced, as it was read
+ * @param {string} today `YYYY-MM-DD`
+ * @returns {{ date: string, release: string }[]}
+ */
+export function carriedCalendar(prior, today) {
+  const entries = Array.isArray(prior?.releaseCalendar) ? prior.releaseCalendar : []
+  return entries.filter((r) => typeof r?.date === 'string' && r.date >= today)
+}
+
 /**
  * The previous snapshot's stock rows that still stand.
  *
@@ -28,7 +91,7 @@ import { isStaleAsOf } from './trends-sources/stocks.js'
  * `extract-entities.js` replaces a carried row in place when a new article
  * names the ticker, which is what its own comment has always said it did.
  *
- * @param {{ indicators?: any[] } | null | undefined} prior the snapshot being replaced
+ * @param {any} prior the snapshot being replaced, as it was read: any JSON, or none
  * @param {Set<string>} held ids this run already has
  * @param {number} [now]
  * @returns {{ kept: any[], lapsed: number }} the rows to append, in their

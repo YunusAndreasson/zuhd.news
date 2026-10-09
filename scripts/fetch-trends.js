@@ -20,7 +20,7 @@ import { fetchFredReleaseCalendar } from './lib/trends-sources/fred.js'
 import { EVENT_CATALOG, matchFredRelease } from './lib/event-catalog.js'
 import { ROOT } from './lib/paths.js'
 import { readJson, writeJson } from './lib/json-file.js'
-import { carriedStocks } from './lib/trends-carry.js'
+import { carriedCalendar, carriedRow, carriedStocks } from './lib/trends-carry.js'
 import { latestTrendsPath } from './lib/trends-snapshot.js'
 
 const TRENDS_DIR = join(ROOT, 'content', 'trends')
@@ -49,15 +49,27 @@ const priorSnapshot = (() => {
 const started = Date.now()
 console.log(`Fetching trends for ${today}`)
 
-const indicators = [] // populated snapshot entries
+const indicators = [] // snapshot rows: fetched, and carried where a fetch returned nothing
+/** The registry rows this run could not fetch, standing as the previous snapshot left them. */
+const carried = []
+
+/** A registry row with nothing fresh for it takes the previous snapshot's, if that may stand (`carriedRow`). */
+const carry = (ind) => {
+  const row = carriedRow(ind, priorSnapshot)
+  if (!row) return
+  indicators.push(row)
+  carried.push(row)
+}
 
 // Generic dispatch: each source declares its mode in trends-registry.js.
 // Adding a new source = add one entry to SOURCES + registry rows. No
 // changes required here.
 for (const [name, def] of Object.entries(SOURCES)) {
+  const matched = INDICATORS.filter((i) => i.source === name)
   const missingEnv = def.requiredEnv.filter((k) => !process.env[k])
   if (missingEnv.length > 0) {
     console.warn(`  ⚠ ${name}: missing env ${missingEnv.join(', ')} — skipping`)
+    for (const ind of matched) carry(ind)
     continue
   }
 
@@ -71,7 +83,6 @@ for (const [name, def] of Object.entries(SOURCES)) {
     continue
   }
 
-  const matched = INDICATORS.filter((i) => i.source === name)
   if (matched.length === 0) continue
 
   if (def.mode === 'perIndicator') {
@@ -80,6 +91,7 @@ for (const [name, def] of Object.entries(SOURCES)) {
     for (const ind of matched) {
       const data = apiKey != null ? await def.fetcher(ind, apiKey) : await def.fetcher(ind)
       if (data) indicators.push(buildIndicatorEntry(ind, data))
+      else carry(ind)
     }
     continue
   }
@@ -89,16 +101,33 @@ for (const [name, def] of Object.entries(SOURCES)) {
     const seriesIds = matched.map((i) => i.seriesId)
     const apiKey = process.env[def.requiredEnv[0]]
     const map = await def.fetcher(seriesIds, apiKey, FX_CACHE)
-    if (map) {
-      for (const ind of matched) {
-        const data = map[ind.seriesId]
-        if (data) indicators.push(buildIndicatorEntry(ind, data))
-      }
+    for (const ind of matched) {
+      const data = map?.[ind.seriesId]
+      if (data) indicators.push(buildIndicatorEntry(ind, data))
+      // Only a batch that failed. One that answered and left a series out has
+      // judged it: the BIS fetcher drops a rate older than its `STALE_DAYS`,
+      // and carrying the old row would print as current what it refused.
+      else if (!map) carry(ind)
     }
   }
 }
 
-const fetched = indicators.length
+const fetched = indicators.length - carried.length
+if (carried.length > 0) {
+  console.log(
+    `  · ${carried.length} row(s) carried from the previous snapshot, no fresh answer: ` +
+      carried.map((r) => `${r.id} (as of ${r.asOf})`).join(', '),
+  )
+}
+
+// Every source came back empty: the network, most likely. The previous
+// snapshot stays the newest file, as every sibling fetcher leaves its own.
+// Before the rotation below, which would otherwise go on deleting the old
+// files of a directory that had stopped getting new ones.
+if (fetched === 0) {
+  console.error('  ✗ no source returned a row — leaving the previous snapshot in place')
+  process.exit(0)
+}
 
 // The stock rows the entity stage appended to the snapshot this one replaces
 // (`carriedStocks`), or the chip under a story resolves for one cycle. Last,
@@ -128,6 +157,15 @@ if (process.env.FRED_API_KEY) {
   releaseCalendar = await fetchFredReleaseCalendar(process.env.FRED_API_KEY)
   if (releaseCalendar.length > 0) {
     console.log(`  · fred: ${releaseCalendar.length} major releases in next 10d`)
+  }
+}
+// The call failed (it answers `[]` for that) or was not made: the previous
+// snapshot's entries that are still ahead, so a slow endpoint does not take
+// the CPI date off the rail for a cycle.
+if (releaseCalendar.length === 0) {
+  releaseCalendar = carriedCalendar(priorSnapshot, today)
+  if (releaseCalendar.length > 0) {
+    console.log(`  · fred: ${releaseCalendar.length} release(s) carried from the previous snapshot's calendar`)
   }
 }
 
