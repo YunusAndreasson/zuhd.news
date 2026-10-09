@@ -171,7 +171,10 @@ test('normTitle keeps letters, digits and single spaces', () => {
 })
 
 test('a chart the story was not offered is taken out, and the article ships', () => {
-  const offeredBySlug = new Map([['2026-10-08-trade-body', [{ id: 'brent', chart: true, level: 71.2 }, { id: 'gold', chart: false, level: 2650 }]]])
+  const offeredBySlug = new Map([
+    ['2026-10-08-trade-body', [{ id: 'brent', chart: true, level: 71.2 }, { id: 'gold', chart: false, level: 2650 }]],
+    ['2026-10-08-other', []],
+  ])
   const v = validator({ offeredBySlug })
   const out = v.check(article({ chart: '"wti"' }), FILE)
   assert.equal(out.bad, null)
@@ -182,6 +185,21 @@ test('a chart the story was not offered is taken out, and the article ships', ()
   // Another story's offer is not this one's.
   assert.deepEqual(v.check(article({ chart: '"brent"', title: '"A Third Headline"', sources: source('https://www.dawn.com/news/3') }), '2026-10-08-other.md').events, ['CHART DROPPED ("brent" was not offered for this story)'])
   assert.deepEqual(v.counts, { removed: 0, repaired: 0, chartsSet: 3, chartsDropped: 3, chartsCited: 0 })
+})
+
+// The batch is every article the last commit does not hold. One a failed build
+// or deploy left on disk is in the next cycle's batch, written from a selection
+// that is gone: against this cycle's it had been offered nothing, and its chart
+// was taken out as "not offered for this story".
+test('an article this selection does not name keeps a chart the build can resolve', () => {
+  const offeredBySlug = new Map([['2026-10-08-trade-body', [{ id: 'brent', chart: true, level: 71.2 }]]])
+  const v = validator({ offeredBySlug, knownIds: new Set(['brent', 'cp:hormuz']) })
+  assert.deepEqual(v.check(article({ chart: '"cp:hormuz"' }), '2026-10-07-carried-over.md'), { bad: null, text: null, events: [], problems: [] })
+  // Not any word: what the build cannot resolve still goes, as on a rerun.
+  assert.deepEqual(v.check(article({ chart: '"invented"', title: '"A Second Headline"', sources: source('https://www.dawn.com/news/2') }), '2026-10-07-also-carried.md').events, ['CHART DROPPED ("invented" is not a known series)'])
+  // And a story the selection does name is held to its own offer.
+  assert.deepEqual(v.check(article({ chart: '"cp:hormuz"', title: '"A Third Headline"', sources: source('https://www.dawn.com/news/3') }), FILE).events, ['CHART DROPPED ("cp:hormuz" was not offered for this story)'])
+  assert.deepEqual(v.counts, { removed: 0, repaired: 0, chartsSet: 3, chartsDropped: 2, chartsCited: 0 })
 })
 
 test('an offered chart stands, and is counted as cited when the prose quotes its figure', () => {
