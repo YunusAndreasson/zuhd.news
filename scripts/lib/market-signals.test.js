@@ -350,6 +350,8 @@ test('an exchange with no story naming it still gets its own country\'s coverage
       callModel:(p)=>{ seen = p; return {error:'unavailable', elapsedMs:0} }})
     assert.ok(seen, 'the model was never called — the country arm did not fire')
     assert.match(seen, /gaza-evac/)
+    // The cap is `RECENT_CAP` now, spelled into the prompt: the text is the same.
+    assert.match(seen, /^Write at most 360 characters of plain-language context for this observed stock-index pattern\.\n/)
   } finally { rmSync(root,{recursive:true,force:true}) }
 })
 test('a rejected comment says why, instead of looking like a quiet day', async () => {

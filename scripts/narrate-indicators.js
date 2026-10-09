@@ -50,6 +50,7 @@ import {
   MAX_COVERAGE, MAX_FEED, WINDOW_DAYS, askModel, coverageRow, dryRun, feedRow, loadPrompt, offeredArticles,
   offeredStories, openCache, promptWithInput, runDispatch, storedStanding, threadsFor,
 } from './lib/dispatch.js'
+import { sig4 } from './lib/indicator-offer.js'
 import { argAt, hasFlag } from './lib/argv.js'
 import { ROOT } from './lib/paths.js'
 import { readJson } from './lib/json-file.js'
@@ -167,10 +168,10 @@ console.log(
 
 // ── Item list ─────────────────────────────────────────────────────────────
 
-/** Round a series tail so cosmetic wobble does not bust the `recent` cache.
- *  Four significant figures is what the rail prints, so anything finer is a
- *  change no reader could see. */
-const sig4 = (n) => (Number.isFinite(n) ? Number(Number(n).toPrecision(4)) : null)
+// A series is rounded with `sig4` (`lib/indicator-offer.js`, where the writer's
+// offers round theirs): four significant figures is what the rail prints, so
+// anything finer is a change no reader could see. The move bands that
+// `recentFingerprint` hashes are taken from values rounded this way.
 
 const changePct = (values) => {
   const v = (values || []).filter(Number.isFinite)

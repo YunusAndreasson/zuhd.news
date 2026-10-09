@@ -9,6 +9,8 @@ import {
   runDispatch, staleKeys, stampRun, storedStanding, threadsFor,
 } from './dispatch.js'
 import { matchesAnyTag } from './entity-registry.js'
+import { haversineKm } from './firms.js'
+import { sig4 } from './indicator-offer.js'
 
 // ── offeredArticles, offeredStories ───────────────────────────────────────
 
@@ -469,4 +471,22 @@ test('a cache that is missing, or has no items yet, opens empty', () => {
   } finally {
     rmSync(dir, { recursive: true, force: true })
   }
+})
+
+// ── Two helpers the narrators borrow ──────────────────────────────────────
+
+test('`sig4` rounds as the indicator dispatch always has: its move bands are taken from it', () => {
+  // `narrate-indicators.js` carried its own copy and now imports this one.
+  // `recentFingerprint` hashes `Math.round(sig4(changePct) / 5)`, so a change
+  // of rounding here is every cached paragraph asked for again.
+  assert.deepEqual([125.4444, -12.34567, 0.000123456, 3956.4, 16933, 70035.71].map(sig4), [125.4, -12.35, 0.0001235, 3956, 16930, 70040])
+  assert.deepEqual([undefined, null, Number.NaN, Infinity, '12'].map(sig4), [null, null, null, null, null])
+})
+
+test('the distance the disaster narrator measures to a chokepoint', () => {
+  // `narrate-gdacs.js` carried its own haversine and now imports this one. A
+  // degree of longitude on the equator, and Bandar Abbas to the strait.
+  assert.equal(Math.round(haversineKm(0, 0, 0, 1)), 111)
+  assert.equal(Math.round(haversineKm(27.18, 56.27, 26.57, 56.25)), 68)
+  assert.equal(haversineKm(10, 20, 10, 20), 0)
 })

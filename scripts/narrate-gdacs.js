@@ -23,6 +23,7 @@ import { callClaudeJson, cleanProse } from './lib/claude-envelope.js'
 import { runWithConcurrency } from './lib/concurrency.js'
 import { countryNameFromIso3 } from './lib/country-codes.js'
 import { promptWithInput, staleKeys } from './lib/dispatch.js'
+import { haversineKm } from './lib/firms.js'
 import { narrativeFor } from './lib/gdacs-narrations.js'
 import { validateGrounding } from './lib/grounding.js'
 import { ROOT } from './lib/paths.js'
@@ -278,18 +279,6 @@ function nearestChokepoint(lat, lng) {
     }
   }
   return best
-}
-
-function haversineKm(lat1, lng1, lat2, lng2) {
-  const R = 6371
-  const dLat = ((lat2 - lat1) * Math.PI) / 180
-  const dLng = ((lng2 - lng1) * Math.PI) / 180
-  const a =
-    Math.sin(dLat / 2) ** 2 +
-    Math.cos((lat1 * Math.PI) / 180) *
-      Math.cos((lat2 * Math.PI) / 180) *
-      Math.sin(dLng / 2) ** 2
-  return 2 * R * Math.asin(Math.sqrt(a))
 }
 
 async function fetchWeather(lat, lng) {
