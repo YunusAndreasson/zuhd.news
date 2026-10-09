@@ -31,7 +31,7 @@ function formatPeriod(dateStr, cadence) {
 /**
  * Fetch observations for one FRED series.
  *
- * @param {{ id: string, seriesId: string, cadence: 'daily'|'monthly', frequency?: string, aggregation?: string, units?: string }} indicator
+ * @param {{ id: string, seriesId: string, cadence: 'daily'|'monthly', frequency?: string, units?: string }} indicator
  * @param {string} apiKey
  * @returns {Promise<{ values: number[], periods: string[], asOf: string, dates: string[], completed: boolean[] } | null>}
  */
@@ -69,7 +69,7 @@ export async function fetchFredSeries(indicator, apiKey) {
    */
   if (indicator.frequency) {
     url.searchParams.set('frequency', indicator.frequency)
-    url.searchParams.set('aggregation_method', indicator.aggregation ?? 'eop')
+    url.searchParams.set('aggregation_method', 'eop')
   }
   // A transformation FRED applies itself — `pc1` is per cent change from a
   // year ago, computed over the full series, so the first observation in the
@@ -99,19 +99,22 @@ export async function fetchFredSeries(indicator, apiKey) {
   }
 }
 
+/** How far ahead the release calendar looks, in days. */
+const CALENDAR_DAYS = 10
+
 /**
- * Upcoming major US data releases in the next `days` days — one extra call
- * per trends run. Concrete "what's next" substrate (e.g. "CPI lands Thursday")
- * for editorial surfaces. Fail-soft: returns [] on any error.
+ * Upcoming major US data releases in the next `CALENDAR_DAYS` days: one call
+ * a day (`fetch-trends.js` keeps the day's answer). Concrete "what's next"
+ * substrate (e.g. "CPI lands Thursday") for editorial surfaces. Fail-soft:
+ * returns [] on any error.
  *
  * @param {string} apiKey
- * @param {number} [days=10]
  * @returns {Promise<Array<{ date: string, release: string }>>}
  */
-export async function fetchFredReleaseCalendar(apiKey, days = 10) {
+export async function fetchFredReleaseCalendar(apiKey) {
   const start = new Date()
   const end = new Date()
-  end.setUTCDate(end.getUTCDate() + days)
+  end.setUTCDate(end.getUTCDate() + CALENDAR_DAYS)
 
   const url = new URL(FRED_RELEASES_DATES)
   url.searchParams.set('api_key', apiKey)
@@ -123,7 +126,7 @@ export async function fetchFredReleaseCalendar(apiKey, days = 10) {
 
   try {
     // releases/dates is a slow endpoint (~15-20s server-side) — needs a wider
-    // timeout than the observation calls. Trends-stage budget is 120s.
+    // timeout than the observation calls, inside the stage's 180s.
     const data = await fetchJson(url, { timeoutMs: 30_000 })
     const upcoming = (data.release_dates || [])
       .filter((r) => r.date >= isoDay(start) && r.date <= isoDay(end))

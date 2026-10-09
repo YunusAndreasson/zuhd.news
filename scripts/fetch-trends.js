@@ -5,11 +5,15 @@
 // committed by the cycle since 2026-08-09 (older ones survive only in git
 // history).
 //
-// Design principles copied from fetch-news.js:
-//  - Native fetch with 10s timeout + one retry (retry lives in the per-source module).
-//  - Partial-failure tolerant: one source failing doesn't block the others.
-//  - Missing API keys → skip that source with a warning (graceful), do not abort.
-//  - Idempotent: writing the same day twice overwrites the snapshot.
+// How it holds up:
+//  - Every request has a deadline, its source's own (10 to 30 s). None is
+//    retried but CoinGecko's, once, on a 429.
+//  - One source failing does not cost the others, and a registry row that got
+//    no answer stands on the previous snapshot's for up to a week
+//    (`lib/trends-collect.js`, `lib/trends-carry.js`).
+//  - A missing API key skips that source with a warning; it does not abort.
+//  - Writing the same day twice overwrites the snapshot. When no source
+//    answers, nothing is written and the previous snapshot stays the newest.
 
 import { mkdirSync, readdirSync, unlinkSync } from 'node:fs'
 import { join } from 'node:path'

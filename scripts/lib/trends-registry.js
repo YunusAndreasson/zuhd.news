@@ -1,6 +1,7 @@
-// Registry of live-data indicators the editor can embed as trend blocks in a
-// context brief. Each entry declares its fetch source, display metadata, and
-// tags the edu-context stage uses to decide when it's relevant to an article.
+// Registry of the live-data series the site and the app chart. Each entry
+// declares its fetch source, its display metadata, and the tags that join it
+// to stories: the writer's offer (`lib/indicator-offer.js`) and the desk's
+// narration both match on them.
 //
 // Keep this file flat and declarative. Per-source fetch logic lives in
 // ./trends-sources/*.js and reads the `source` + `seriesId` fields here.
@@ -70,8 +71,6 @@ export const SOURCES = {
   },
 }
 
-/** @typedef {'oil' | 'macro' | 'food' | 'fx' | 'shipping' | 'prediction' | 'energy'} Tier */
-
 /** @typedef {Object} IndicatorDef
  *  @property {string} id            Stable ID used by editor + logs.
  *  @property {string} label         Display title (TrendBlock.label).
@@ -87,9 +86,8 @@ export const SOURCES = {
  *  @property {'d'|'w'|'m'|'q'|'a'} [frequency] FRED only: ask the API to
  *    aggregate a higher-frequency series down to this. For a step function like
  *    a policy rate, 731 daily points carry six distinct values — see the
- *    downsample note in `trends-sources/fred.js`.
- *  @property {'eop'|'avg'|'sum'} [aggregation] FRED only, default `eop`. Never
- *    average a step function: it invents levels nobody set.
+ *    downsample note in `trends-sources/fred.js`. Always the period's last
+ *    value: an average of a step function invents levels nobody set.
  *  @property {'lin'|'chg'|'ch1'|'pch'|'pc1'|'pca'|'cch'|'cca'|'log'} [units]
  *    FRED only: a transformation the API applies (`pc1` = per cent change from
  *    a year ago). For a series whose level means nothing to a reader and whose

@@ -106,7 +106,8 @@ export async function collectRows({ sources, registry, prior, env = process.env,
       }
 
       if (def.mode === 'dynamic') {
-        say.log(`${name}: top markets`)
+        // "top markets" was printed here for Wikipedia's concepts too.
+        say.log(`${name}: rows of its own choosing`)
         // The previous snapshot's rows for this source, so a sticky fetcher
         // can recognise them. A fetcher that ignores the argument (Wikipedia)
         // is unaffected.
