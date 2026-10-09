@@ -1,8 +1,12 @@
 #!/usr/bin/env node
 // Deterministic editorial-quality scan over the last 7 days of articles.
-// Outputs:
-//   the `qualityMetrics` file — the current snapshot
-//   the `qualityTrend` file   — appended snapshot history (dashboard + git)
+// Its one output is the `qualityTrend` file: the series of weekly snapshots
+// the dashboard's writing-quality panel plots, with this week's on the end.
+// The file is tracked, and no stage commits it.
+//
+// It also wrote the snapshot alone to a scratch file in /tmp, which nothing
+// opened: the dashboard takes the series' last entry, and the tuner reads the
+// daily metrics (`compute-metrics.js`), not these.
 //
 // Every metric maps to a rule in write-prompt.md or check-prompt.md, and is
 // in `lib/quality-metrics.js`.
@@ -37,7 +41,6 @@ export function main() {
   }
 
   const snapshot = qualitySnapshot(articles, now)
-  writeJson(pathOf('qualityMetrics'), snapshot)
 
   // ── Append to trend (replace same-week snapshot for idempotent reruns) ──
   writeJson(TREND_PATH, withSnapshot(readJson(TREND_PATH, []), snapshot))

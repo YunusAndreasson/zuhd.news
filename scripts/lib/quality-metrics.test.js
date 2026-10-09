@@ -1,6 +1,8 @@
 // Run: node --test scripts/lib/quality-metrics.test.js
 import assert from 'node:assert/strict'
+import { readFileSync } from 'node:fs'
 import { test } from 'node:test'
+import { pathOf } from './datasets.js'
 import { SCHEMA, articleFlags, qualityRow, qualitySnapshot, qualitySummary, withSnapshot } from './quality-metrics.js'
 
 const NOW = Date.parse('2026-10-08T22:30:00Z')
@@ -204,4 +206,14 @@ test('the summary is six lines, the first with the count', () => {
   assert.equal(lines[0], 'Quality metrics: 2 articles in last 7d')
   assert.match(lines[1], /^ {2}length: charAvg=\d+ over480=0% over560=0% {2}wordAvg=\d+ inRange=0%$/)
   assert.equal(lines[5], '  source: top3Share=100% multiSrc=0%')
+})
+
+// The stage's one output is the series. It also wrote the snapshot alone to a
+// scratch file in /tmp that nothing opened. Asked of the stage's text, since
+// no test starts it: it writes the series in `content/`.
+test('the weekly stage writes the series and nothing beside it', () => {
+  const stage = readFileSync(new URL('../measure-quality.js', import.meta.url), 'utf8')
+  assert.deepEqual([...new Set(stage.match(/pathOf\('[A-Za-z]+'\)/g))], ["pathOf('articles')", "pathOf('qualityTrend')"])
+  assert.equal(stage.match(/\bwriteJson\(/g)?.length, 1)
+  assert.throws(() => pathOf('qualityMetrics'), /no dataset named "qualityMetrics"/)
 })

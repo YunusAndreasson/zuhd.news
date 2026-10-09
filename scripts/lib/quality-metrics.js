@@ -5,8 +5,9 @@
 // every metric at its top level. As a function of the week's articles and a
 // moment, a metric can be tested for what it counts.
 //
-// The snapshot goes onto an append-only series the dashboard plots and the
-// tuner reads, so every metric's pattern is moved exactly as it stood.
+// The snapshot goes onto an append-only series the dashboard plots, so a
+// metric that changes what it counts says so in `SCHEMA`. The tuner does not
+// read it: its input is the daily metrics (`lib/metrics.js`).
 
 import { ARTICLE_CEILING, stripDateline, visibleText } from './article.js'
 import { countBlocks } from './blocks.js'
@@ -211,7 +212,7 @@ export function qualitySnapshot(articles, now) {
   // `[Iran](country:IR)`, so scanning the raw body counted every link target as an
   // unexpanded acronym: the top five violators were CN, PK, RU, IN, IR — ISO codes
   // no reader ever sees — and 1,186 such links across the August corpus were
-  // inflating a metric the tuning stage reads as a writing fault. `visibleText` is
+  // inflating a metric that is read as a writing fault. `visibleText` is
   // the same `$1` substitution the visible length is measured with.
   /** @type {Map<string, number>} */
   const acronymTally = new Map()
