@@ -79,11 +79,12 @@ test('what a stage commits is in the catalog', () => {
   for (const s of STAGES) for (const name of s.commit?.datasets ?? []) assert.ok(name in DATASETS, `${s.id}: no dataset named ${name}`)
 })
 
-// While both exist, the list and the script it is to replace start the same
+// While both exist, the list and the script it replaced start the same
 // scripts. The recordings prove the order and the arguments; this is the list
 // of names, which a recording made on one path of the cycle does not cover.
-test('the list starts every script the shell script starts, and no other', () => {
-  const script = readFileSync(join(ROOT, 'scripts', 'run-cycle.sh'), 'utf8')
+const LEGACY = join(ROOT, 'scripts', 'run-cycle.legacy.sh')
+test('the list starts every script the shell script started, and no other', { skip: !existsSync(LEGACY) && 'the legacy script is gone' }, () => {
+  const script = readFileSync(LEGACY, 'utf8')
   const code = script.split('\n').filter((l) => !/^\s*#/.test(l)).join('\n')
   const inScript = new Set(code.match(/(?<=node (?:"\$SCRIPT_DIR\/|scripts\/))[\w/-]+\.js/g)?.map((n) => `scripts/${n}`))
   const steps = readFileSync(join(ROOT, 'scripts', 'lib', 'cycle-steps.js'), 'utf8').match(/'scripts\/[\w/-]+\.js'/g)?.map((a) => a.slice(1, -1)) ?? []

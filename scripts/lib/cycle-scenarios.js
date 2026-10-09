@@ -114,15 +114,15 @@ function named(id, answers) {
 
 /**
  * @param {string} now
- * @param {{ answers?: Record<string, Answer[]>, env?: Record<string, string>, lockHeld?: boolean, without?: string[] }} [change]
- *   `without` names files the repository does not hold in this scenario
+ * @param {{ answers?: Record<string, Answer[]>, env?: Record<string, string>, lockHeld?: boolean, without?: string[], files?: Record<string, string> }} [change]
+ *   `without` names files the repository does not hold in this scenario, `files` ones it holds besides
  * @returns {Scenario}
  */
-function cycle(now, { answers = {}, env = { PUSH_SECRET: 'not-a-secret' }, lockHeld = false, without = [] } = {}) {
+function cycle(now, { answers = {}, env = { PUSH_SECRET: 'not-a-secret' }, lockHeld = false, without = [], files: more = {} } = {}) {
   const rules = healthy().map((r) => (answers[r.id] ? { ...r, answers: answers[r.id] } : r))
   for (const id of Object.keys(answers)) if (!rules.some((r) => r.id === id)) rules.push(named(id, answers[id]))
   /** @type {Record<string, string>} */
-  const files = { ...STATE, [A]: article('Fed Raises Rates', 'Washington'), [B]: article('Hormuz Traffic Dips', 'Dubai') }
+  const files = { ...STATE, [A]: article('Fed Raises Rates', 'Washington'), [B]: article('Hormuz Traffic Dips', 'Dubai'), ...more }
   for (const path of without) delete files[path]
   return { now, rules, files, env, lockHeld }
 }
@@ -136,7 +136,7 @@ const DAILY = '2026-10-08T05:01:52Z'
 const TUNING = '2026-10-08T22:03:05Z'
 
 /** The healthy cycles, recorded in full: prompts, log and journal. */
-export const FULL = ['regular', 'daily', 'tuning', 'sunday-tuning', 'off-schedule']
+export const FULL = ['regular', 'daily', 'tuning', 'sunday-tuning', 'off-schedule', 'handed-back-by-flag']
 
 /** @type {Record<string, Scenario>} */
 export const SCENARIOS = {
@@ -147,6 +147,9 @@ export const SCENARIOS = {
   'sunday-tuning': cycle('2026-10-11T22:03:05Z'),
   // A catch-up run after the machine was off: no hour the schedule knows.
   'off-schedule': cycle('2026-10-08T07:40:00Z'),
+  // The way back: with this file in the repository, the wrapper hands the
+  // cycle to the shell script the runner replaced. The same cycle either way.
+  'handed-back-by-flag': cycle(REGULAR, { files: { '.cycle-legacy': '' } }),
 
   // ── The exits that end the whole script ──────────────────────────────
   'lock-held': cycle(REGULAR, { lockHeld: true }),

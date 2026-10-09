@@ -13,8 +13,8 @@ export const HAIKU = 'claude-haiku-5-5'
 
 /**
  * Each caller's model, and the environment variables that override it; the
- * first one set wins. `run-cycle.sh` exports `ZUHD_MODEL`, so within a cycle
- * the uses that read it follow the writer's model.
+ * first one set wins. A cycle exports `ZUHD_MODEL`, so within one the uses
+ * that read it follow the writer's model.
  *
  * @satisfies {Record<string, { model: string, env: string[] }>}
  */

@@ -2,7 +2,8 @@
 //
 // The endpoint (`functions/api/push.js`) takes `{ articles: [{ slug, title,
 // body, … }] }` and that shape is fixed: the app in both stores reads it.
-// `run-cycle.sh` put the payloads together in four programs carried inline;
+// The shell script that ran the cycle put the payloads together in four
+// programs carried inline;
 // these are those, moved as they stood.
 
 /**

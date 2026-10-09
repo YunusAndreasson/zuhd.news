@@ -1,13 +1,14 @@
 // Runs the orchestrator for real, with nothing real behind it.
 //
-// `run-cycle.sh` is the most-changed file in the pipeline and no test had ever
-// executed it: what it does on a selector failure, an empty selection or a
-// held build lock was known from reading it and from the cycles that found
-// out. This runs the script itself, start to finish, in a sandbox where every
-// command it calls is `cycle-stub.js`, and returns what it did: the commands
-// in order with their arguments, input and environment, the log it wrote, and
-// what it printed. Recorded per scenario, that is the orchestrator's
-// specification, and what a replacement has to reproduce.
+// The orchestrator was the most-changed file in the pipeline and no test had
+// ever executed it: what it does on a selector failure, an empty selection or
+// a held build lock was known from reading it and from the cycles that found
+// out. This runs the orchestrator itself (the wrapper `run-cycle.sh` and the
+// runner it starts, or the shell script they replaced), start to finish, in a
+// sandbox where every command it calls is `cycle-stub.js`, and returns what it
+// did: the commands in order with their arguments, input and environment, the
+// log it wrote, and what it printed. Recorded per scenario, that is the
+// orchestrator's specification, and what a replacement has to reproduce.
 //
 // Fail-closed. The script runs on a copy of itself in a scratch tree, with a
 // private `/tmp`, a network namespace that has no network, no `.env`, an empty
@@ -37,14 +38,15 @@ const PROMPTS = ['select-prompt.md', 'write-prompt.md', 'check-prompt.md', 'tune
 export const SENT_WHOLE = ['push-prompt.md', 'briefing-push-prompt.md']
 
 /**
- * The files a recording describes, by path from the root: the script and the
- * prompts it sends whole, and the runner that is held to the same recordings.
+ * The files a recording describes, by path from the root: the wrapper and the
+ * runner it starts, the prompts sent whole, and the shell script they
+ * replaced, which is held to the same recordings for as long as it is kept.
  * An edit to any of them has to be followed by a run of the scenarios.
  */
 export const RECORDED = [
   'scripts/run-cycle.sh',
   ...SENT_WHOLE.map((p) => `scripts/${p}`),
-  'scripts/run-cycle.next.sh',
+  'scripts/run-cycle.legacy.sh',
   'scripts/cycle/run.js',
   'scripts/cycle/stages.js',
   'scripts/lib/cycle-run.js',
@@ -99,6 +101,9 @@ export async function runCycle(scenario, { script = join(ROOT, 'scripts', 'run-c
     chmodSync(join(repo, 'scripts', 'run-cycle.sh'), 0o755)
     for (const p of PROMPTS) writeFileSync(join(repo, 'scripts', p), `«${p}»\n`)
     for (const p of SENT_WHOLE) cpSync(join(dirname(script), p), join(repo, 'scripts', p))
+    // The script the wrapper hands back to when it is told to.
+    const legacy = join(dirname(script), 'run-cycle.legacy.sh')
+    if (existsSync(legacy)) cpSync(legacy, join(repo, 'scripts', 'run-cycle.legacy.sh'))
     // The runner and what it imports, for an orchestrator that hands over to
     // it. Copied, so that the repository it works on is this scratch one: its
     // paths come from where its own files are.

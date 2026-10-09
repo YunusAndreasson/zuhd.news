@@ -9,7 +9,7 @@
 // for now (`lib/cycle-log.js`), plus the few things only the exit trap knows,
 // which arrive in the environment.
 //
-//   node scripts/cycle/record.js <cycle log>   the last thing run-cycle.sh's exit trap does
+//   node scripts/cycle/record.js <cycle log>   the last thing a cycle does on its way out
 //   node scripts/cycle/record.js --backfill    a record for each log on disk that has none
 //   node scripts/cycle/record.js --backfill --force   …rebuilding the ones that do
 
@@ -25,7 +25,7 @@ import { ROOT } from '../lib/paths.js'
 const LOGS_DIR = pathOf('cycleLogs')
 const RUNS_DIR = pathOf('cycleRuns')
 const SERIES = pathOf('cycleSeries')
-// The batch run-cycle.sh lists for the editor. Read only by the trap's call,
+// The batch the cycle lists for the editor. Read only by the trap's call,
 // and only when it is this cycle's: the file outlives the cycle that wrote it.
 const NEW_ARTICLES = pathOf('newArticles')
 

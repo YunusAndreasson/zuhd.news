@@ -1,5 +1,5 @@
 #!/usr/bin/env node
-// The two things `run-cycle.sh` does to the push log around a breaking push.
+// The two things the cycle does to the push log around a breaking push.
 //
 //   node scripts/cycle/breaking-push.js pick
 //       Choose the story to push from the cycle just deployed, add the

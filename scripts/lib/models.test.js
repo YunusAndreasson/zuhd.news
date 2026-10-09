@@ -1,6 +1,6 @@
 // Run: node --test scripts/lib/models.test.js
 import assert from 'node:assert/strict'
-import { readFileSync, readdirSync, statSync } from 'node:fs'
+import { existsSync, readFileSync, readdirSync, statSync } from 'node:fs'
 import { join, relative } from 'node:path'
 import { test } from 'node:test'
 import { HAIKU, MODEL_USES, OPUS, SONNET, modelFor } from './models.js'
@@ -57,7 +57,7 @@ test('no script spells a model id of its own', () => {
   const walk = (/** @type {string} */ dir) => readdirSync(dir).flatMap((n) => (statSync(join(dir, n)).isDirectory() ? walk(join(dir, n)) : [join(dir, n)]))
   // Not callers: this file's subject, tests and what tests record, and the
   // shell script, which cannot import and is held to the constants below.
-  const exempt = /\.test\.js$|lib\/models\.js$|lib\/fixtures\/|lib\/cycle-scenarios\.js$|run-cycle\.sh$/
+  const exempt = /\.test\.js$|lib\/models\.js$|lib\/fixtures\/|lib\/cycle-scenarios\.js$|run-cycle\.legacy\.sh$/
   const code = (/** @type {string} */ file) => readFileSync(file, 'utf8').split('\n').filter((l) => !/^\s*(\/\/|\*|\/\*|#)/.test(l)).join('\n')
   const spelling = walk(join(ROOT, 'scripts'))
     .filter((f) => /\.(js|mjs|sh)$/.test(f) && !exempt.test(f))
@@ -66,10 +66,11 @@ test('no script spells a model id of its own', () => {
   assert.deepEqual(spelling, [], `asks for a model by id instead of by use:\n  ${spelling.join('\n  ')}`)
 })
 
-// Bash cannot import a constant. Until the runner replaces it, the script's
-// three ids are these.
-test('run-cycle.sh names the same three models', () => {
-  const script = readFileSync(join(ROOT, 'scripts', 'run-cycle.sh'), 'utf8')
+// Bash cannot import a constant. For as long as the shell script the runner
+// replaced is kept, its three ids are these.
+const LEGACY = join(ROOT, 'scripts', 'run-cycle.legacy.sh')
+test('the legacy script names the same three models', { skip: !existsSync(LEGACY) && 'the legacy script is gone' }, () => {
+  const script = readFileSync(LEGACY, 'utf8')
   assert.ok(script.includes(`CLAUDE_MODEL="\${ZUHD_MODEL:-${SONNET}}"`), 'the writer and editor default')
   assert.ok(script.includes(`CLAUDE_SELECTOR_MODEL="\${ZUHD_SELECTOR_MODEL:-${OPUS}}"`), 'the selector default')
   assert.ok(script.includes(`--effort medium --model ${OPUS} --allowedTools $TOOLS_TUNE`), 'the tuner')

@@ -1,19 +1,20 @@
 // The orchestrator against its record.
 //
 //   npm run test:cycle                     run every scenario and compare
-//   UPDATE_GOLDENS=1 npm run test:cycle    record what the script does now
+//   UPDATE_GOLDENS=1 npm run test:cycle    record what the orchestrator does now
 //
-// Not in `npm test`: it runs the real `run-cycle.sh` some thirty times, about
-// a minute in all, and needs root and `unshare` to build its sandbox.
-// `lib/cycle-harness.test.js` is in `npm test`, and fails when the script has
-// changed since these were recorded.
+// Not in `npm test`: it runs a whole cycle for each scenario, on the runner and
+// again on the shell script it replaced, about three minutes in all, and needs
+// root and `unshare` to build its sandbox. `lib/cycle-harness.test.js` is in
+// `npm test`, and fails when the orchestrator has changed since these were
+// recorded.
 //
 // A recording is a claim about behaviour, so read the diff before keeping it:
 // a refactor changes none of them, and a deliberate change changes only the
 // scenarios it is about.
 import assert from 'node:assert/strict'
 import { createHash } from 'node:crypto'
-import { mkdirSync, readFileSync, writeFileSync } from 'node:fs'
+import { existsSync, mkdirSync, readFileSync, writeFileSync } from 'node:fs'
 import { join } from 'node:path'
 import { test } from 'node:test'
 import { runWithConcurrency } from '../lib/concurrency.js'
@@ -27,7 +28,7 @@ const update = process.env.UPDATE_GOLDENS === '1'
 /**
  * Every scenario, run on one orchestrator.
  *
- * @param {string} [script] the file started as `scripts/run-cycle.sh`; the script itself when absent
+ * @param {string} [script] the file started as `scripts/run-cycle.sh`; that file itself when absent
  */
 async function everyScenario(script) {
   /** @type {Map<string, string>} */
@@ -54,13 +55,12 @@ test('in every scenario the orchestrator does what it is recorded as doing', { s
   }
 })
 
-// The runner that is to take the script's place: the wrapper
-// (`run-cycle.next.sh`), `scripts/cycle/run.js` and the stage list. It is held
-// to the same recordings, which were made from the script and are never made
-// from this: the same commands with the same arguments, environment and input,
-// the same log, the same journal, the same exit, in every scenario.
-test('and the runner does the same', { skip: !canSandbox() && 'needs root and unshare' }, async (t) => {
-  const did = await everyScenario(join(ROOT, 'scripts', 'run-cycle.next.sh'))
+// The shell script the runner replaced, for as long as it is kept: the wrapper
+// hands the cycle back to it when a file named `.cycle-legacy` exists. It is
+// held to the same recordings, and never recorded from.
+const LEGACY = join(ROOT, 'scripts', 'run-cycle.legacy.sh')
+test('and the shell script it replaced still does the same', { skip: (!canSandbox() && 'needs root and unshare') || (!existsSync(LEGACY) && 'the legacy script is gone') }, async (t) => {
+  const did = await everyScenario(LEGACY)
   for (const name of Object.keys(SCENARIOS)) {
     await t.test(name, () => {
       assert.equal(did.get(name), readFileSync(join(DIR, `${name}.txt`), 'utf-8'))

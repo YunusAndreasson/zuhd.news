@@ -6,8 +6,9 @@
 // `lib/cycle-run.js` is how; the stages that are more than one command are
 // functions in `lib/cycle-steps.js`, named here.
 //
-// This was `run-cycle.sh`, where the same facts were spread through a
-// thousand lines of bash. To see what a given cycle would run:
+// This was one shell script (`run-cycle.legacy.sh`, while it is kept), where
+// the same facts were spread through a thousand lines of bash. To see what a
+// given cycle would run:
 //
 //   node scripts/cycle/run.js --plan --at 22 --dow 7
 

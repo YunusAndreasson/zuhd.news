@@ -56,7 +56,7 @@ test('the run-cycle probe flags at the ceiling, not below it', () => {
   const line = (chars) => bodyLengthLine('a.md', `---\ntitle: "T"\n---\n\n${'x'.repeat(chars)}\n`)
   assert.equal(line(CEILING), `ok ${CEILING} chars  1 blocks  a.md`)
   assert.equal(line(CEILING + 1), `OVER ${CEILING + 1} chars  1 blocks  a.md`)
-  assert.match(read('scripts/run-cycle.sh'), /BODY_LENGTHS=\$\(node scripts\/body-lengths\.js /, 'run-cycle.sh no longer takes <body-lengths> from the probe')
+  assert.match(read('scripts/lib/cycle-steps.js'), /\['node', 'scripts\/body-lengths\.js'\]/, 'the editor step no longer takes <body-lengths> from the probe')
 })
 
 test('the app sizes its open sheet from the same ceiling', () => {

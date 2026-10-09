@@ -1,10 +1,9 @@
 // Which of a cycle's stories are breaking news it may push.
 //
 // Two places decide this: the social pick before the build
-// (`scripts/pick-breaking-social.js`) and the push block after the deploy
-// (`run-cycle.sh`), which carries its own copy with its own frontmatter
-// reader. This is the first one's, moved out of the script so it has a test;
-// the second is to follow it here.
+// (`scripts/pick-breaking-social.js`) and the push after the deploy
+// (`scripts/cycle/breaking-push.js`). Both selections are here, and they are
+// not the same: the second half of this file says where they part.
 
 /** A story with no second source behind it is not pushed (experiment 2026-04-16-push-min-coverage). */
 export const MIN_PUSH_COVERAGE = 1
@@ -58,8 +57,9 @@ export function breakingCandidates(ledger, cycle, articleOf) {
 
 // ── The push after the deploy ────────────────────────────────────────
 //
-// `run-cycle.sh` chose the story to push with a program of its own, which is
-// what follows. It reads the same ledger and the same last cycle as
+// The push chose its story with a program of its own, written inside the shell
+// script that ran the cycle, which is what follows. It reads the same ledger
+// and the same last cycle as
 // `breakingCandidates`, and differs from it in ways small enough to miss:
 //
 // - it reads an article with line patterns, not the frontmatter parser

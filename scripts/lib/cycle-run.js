@@ -1,9 +1,10 @@
 // What a cycle is made of, for the runner (`scripts/cycle/run.js`) to run the
 // stage list (`scripts/cycle/stages.js`) with.
 //
-// `run-cycle.sh` was the orchestrator for two years: a thousand lines of bash
-// in which the order of the stages, what each one's failure does, and where
-// each one's output goes were all the same kind of line. This is that
+// A shell script was the orchestrator for two years (`run-cycle.legacy.sh`,
+// while it is kept): a thousand lines of bash in which the order of the
+// stages, what each one's failure does, and where each one's output goes were
+// all the same kind of line. This is that
 // behaviour as an engine, and nothing more: it starts commands, sends their
 // output where the script sent it, keeps the funnel, and on the way out does
 // what the script's exit trap did. Which commands, in which order, under

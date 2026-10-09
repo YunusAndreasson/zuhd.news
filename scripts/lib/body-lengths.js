@@ -3,7 +3,7 @@
 //
 // The line is the only form of the ceiling that reaches the editor as data,
 // and it goes into the editor's prompt as written. It was computed by a
-// program inside `run-cycle.sh`, with its own way of finding the body and
+// program inside the shell script that ran the cycle, with its own way of finding the body and
 // counting its blocks; both are kept exactly, since a different count is a
 // different prompt.
 

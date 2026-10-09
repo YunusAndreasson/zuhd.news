@@ -4,8 +4,7 @@
 // "Failed to authenticate", 0 articles, exit 1 — and nothing anywhere said so;
 // the next human look was the next day. The record carries the consecutive
 // count so a single quiet cycle (everything already covered) reads differently
-// from a dead pipeline. `run-cycle.sh` clears it on the first cycle that
-// publishes, and carried this arithmetic inline until it moved here.
+// from a dead pipeline. The first cycle that publishes clears it.
 
 /**
  * @typedef {object} CycleAlert

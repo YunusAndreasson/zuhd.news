@@ -1,5 +1,5 @@
 #!/usr/bin/env node
-// Print one of the counts `run-cycle.sh` takes between stages.
+// Print one of the counts the cycle takes between stages.
 //
 //   node scripts/cycle/tally.js feed-api | feed-rss | feed | selection
 //

@@ -1,6 +1,6 @@
 #!/usr/bin/env node
 // Record that a cycle ended without publishing, and say so on stdout.
-// Called from `run-cycle.sh`'s exit trap:
+// Called on a cycle's way out (`Cycle.alert`, `lib/cycle-run.js`):
 //
 //   CYCLE_ALERT=<file> ALERT_REASON=<why> ALERT_LOG=<log> node scripts/cycle/alert.js
 //

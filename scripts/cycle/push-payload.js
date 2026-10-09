@@ -1,5 +1,5 @@
 #!/usr/bin/env node
-// The steps `run-cycle.sh` takes to shape what it posts to the push endpoint.
+// The steps the cycle takes to shape what it posts to the push endpoint.
 //
 //   … | node scripts/cycle/push-payload.js slug
 //       The slug in a breaking payload on stdin.

@@ -2,7 +2,7 @@
 //
 // A cycle's outcome existed only as lines in `logs/cycle-<stamp>.log`, and five
 // programs each scraped them with regexes of their own: the dashboard, the
-// daily metrics, the log ratchets, the replay scorer and `run-cycle.sh` itself.
+// daily metrics, the log ratchets, the replay scorer and the cycle itself.
 // About 45 patterns, already apart: four of the dashboard's had no emitter
 // left, none of them saw a retry line, and one counted every stage's `✗` as a
 // dead RSS feed. This is the one place that knows what the lines look like.
@@ -36,7 +36,7 @@ const PUSH_RESPONSE = /^\{"pushed":\d+.*\}$/
 const MARK = /✗ (.+?): (.+)/
 const FUNNEL = '=== Funnel ==='
 
-/** The lines that end the editorial path early, in the order `run-cycle.sh` can print them. */
+/** The lines that end the editorial path early, in the order a cycle can print them. */
 const ABORTS = [
   /^✗ Both API and RSS fetches failed/,
   /^Selector failed \(exit \d+\)/,

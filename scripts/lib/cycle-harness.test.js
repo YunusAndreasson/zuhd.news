@@ -15,21 +15,22 @@ import { ROOT } from './paths.js'
 
 const DIR = join(ROOT, 'scripts', 'lib', 'fixtures', 'cycle')
 
-// A recording describes one exact script, and the two prompts it sends whole.
-// Any edit to one of them fails here until the scenarios have been run again,
-// so an orchestrator change cannot land with its record still describing the
-// one before.
-test('the recordings were made from the script and the prompts as they now stand', () => {
+// A recording describes one exact orchestrator: the wrapper, the runner, the
+// two prompts sent whole, and the shell script kept beside them. Any edit to
+// one of them fails here until the scenarios have been run again, so an
+// orchestrator change cannot land with its record still describing the one
+// before.
+test('the recordings were made from the orchestrator as it now stands', () => {
   const recorded = readFileSync(join(DIR, 'RECORDED_FROM'), 'utf-8')
   const now = RECORDED.map((f) => `${createHash('sha1').update(readFileSync(join(ROOT, f))).digest('hex')}  ${f}\n`).join('')
   assert.equal(now, recorded, 'one of these has changed: run `npm run test:cycle`, and `UPDATE_GOLDENS=1 npm run test:cycle` once the difference is the one you meant')
 })
 
-// A prompt the script cannot read is sent as an empty one: `$(cat …)` of a
-// file that is not there is nothing, and the model is handed what follows.
-test('every prompt the script reads is a file that is there', () => {
-  const script = readFileSync(join(ROOT, 'scripts', 'run-cycle.sh'), 'utf-8')
-  const read = [...script.matchAll(/=\$\(cat (scripts\/[a-z-]+\.md)\)/g)].map((m) => m[1])
+// A prompt the cycle cannot read is sent as an empty one, as `$(cat …)` of a
+// file that is not there was: the model is handed whatever follows it.
+test('every prompt the cycle reads is a file that is there', () => {
+  const steps = readFileSync(join(ROOT, 'scripts', 'lib', 'cycle-steps.js'), 'utf-8')
+  const read = [...steps.matchAll(/prompt\('([a-z-]+\.md)'\)/g)].map((m) => `scripts/${m[1]}`)
   assert.deepEqual(read.toSorted(), [
     'scripts/briefing-push-prompt.md',
     'scripts/check-prompt.md',
@@ -45,6 +46,13 @@ test('every prompt the script reads is a file that is there', () => {
 test('the two prompts sent whole end where what follows them begins', () => {
   assert.ok(readFileSync(join(ROOT, 'scripts', 'push-prompt.md'), 'utf-8').endsWith('\nOutput ONLY the line, nothing else.\n\nArticle:\n'))
   assert.ok(readFileSync(join(ROOT, 'scripts', 'briefing-push-prompt.md'), 'utf-8').endsWith("\nOutput ONLY the line, nothing else.\n\nTop stories from today's briefing:\n"))
+})
+
+// The wrapper's way back is the same cycle by another road: with the flag
+// file in the repository it runs the shell script, and the recording of that
+// is the regular cycle's, to the byte.
+test('a cycle handed back to the shell script is the regular cycle', () => {
+  assert.equal(readFileSync(join(DIR, 'handed-back-by-flag.txt'), 'utf-8'), readFileSync(join(DIR, 'regular.txt'), 'utf-8'))
 })
 
 test('every scenario has a recording, and every recording a scenario', () => {

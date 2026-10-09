@@ -1,7 +1,7 @@
 #!/usr/bin/env node
 // Measure body character counts for the cycle's new articles — gives the
 // editor exact data on which articles need trimming. One line an article, on
-// stdout, which `run-cycle.sh` puts into the editor's prompt. A file on the
+// stdout, which the cycle puts into the editor's prompt. A file on the
 // list that cannot be read gets no line. The line itself is
 // `lib/body-lengths.js`.
 import { readFileSync } from 'node:fs'

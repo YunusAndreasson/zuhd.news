@@ -1,10 +1,10 @@
 // What the orchestrator counts between stages, to print and to branch on.
 //
-// Four one-line programs carried inline in `run-cycle.sh`, six times between
-// them. Each said what it would answer when its file was missing or not what
-// it expected, and no two said the same: that is kept, word for word, because
-// one answer goes into the log's `API fetch:` line and another into a
-// comparison bash makes with `-eq`.
+// Four one-line programs the shell script that ran the cycle carried inline,
+// six times between them. Each said what it would answer when its file was
+// missing or not what it expected, and no two said the same: that is kept,
+// word for word, because one answer goes into the log's `API fetch:` line and
+// another is compared with 0 to decide whether the cycle goes on.
 
 /**
  * `80 stories from 50 events`, for the log. The API feed as
@@ -42,8 +42,8 @@ export const selectionCount = (selection) => (Array.isArray(selection) ? selecti
  * The answer for one kind, read from its file. A file that is missing or is
  * not what the count expects gets that kind's own answer: `failed` for the two
  * that are only printed, `0` for the RSS figure. The selection has none: it
- * throws, the process exits 1 with nothing on stdout, and the script's
- * `|| echo 0` speaks for it.
+ * throws, the process exits 1 with nothing on stdout, and the cycle reads
+ * that as 0 (`selectionCount`, `lib/cycle-steps.js`).
  *
  * @param {string} kind `feed-api`, `feed-rss`, `feed` or `selection`
  * @param {(name: 'feedApi' | 'feedRss' | 'feed' | 'selection') => string} read the named file's text; throws when there is none

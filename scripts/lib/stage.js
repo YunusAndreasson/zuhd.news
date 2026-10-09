@@ -1,8 +1,9 @@
 // What every stage does around its own work.
 //
 // A stage script ran on import, exported nothing, and decided for itself how
-// to say what had happened: `run-cycle.sh` acts on the exit status of four of
-// the thirty-nine it runs and reads the rest out of their prose. With
+// to say what had happened: the shell script that ran the cycle acted on the
+// exit status of four of the thirty-nine it ran and read the rest out of their
+// prose. With
 //
 //     export async function main() { … return { counts: { kept, dropped } } }
 //     await runStage(import.meta, 'merge-feeds', main)

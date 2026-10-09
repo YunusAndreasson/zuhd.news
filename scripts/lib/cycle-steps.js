@@ -1,5 +1,5 @@
-// The stages that are more than one command: the ones `run-cycle.sh` wrote as
-// a paragraph of bash, each a function of the cycle here.
+// The stages that are more than one command: the ones the shell script wrote
+// as a paragraph of bash, each a function of the cycle here.
 //
 // `scripts/cycle/stages.js` is the list and names these; `lib/cycle-run.js`
 // is what they are written with. Every line a stage prints, every argument it
