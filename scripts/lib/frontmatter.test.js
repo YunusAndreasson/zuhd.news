@@ -1,6 +1,6 @@
 import assert from 'node:assert/strict'
 import { test } from 'node:test'
-import { parseFrontmatter, removeFrontmatterKey, replaceFrontmatterKey, setFrontmatterLine, splitFrontmatter } from './frontmatter.js'
+import { parseFrontmatter, removeFrontmatterKey, replaceFrontmatterKey, setFrontmatterLine, splitFrontmatter, yamlString } from './frontmatter.js'
 
 const doc = `---
 title: "A"
@@ -116,4 +116,18 @@ test('the frontmatter ends at a line that is `---`, not at a `---` inside a valu
 test('a file with no frontmatter has no split', () => {
   assert.equal(splitFrontmatter('Just prose.\n'), null)
   assert.deepEqual(parseFrontmatter('Just prose.\n'), { meta: {}, body: 'Just prose.\n' })
+})
+
+// Two stages wrapped a value in quotes and escaped only the quotes inside it.
+// For a plain value that is these bytes; for one with a backslash or a line
+// break it is a block that does not parse.
+test('yamlString writes a value the parser reads back as it was, whatever is in it', () => {
+  const byHand = (/** @type {string} */ x) => `"${x.replace(/"/g, '\\"')}"`
+  for (const plain of ['Nvidia', 'stocks:2330.TW', 'L’Oréal', 'São Paulo', 'He said "no"', 'fx-pkr', '']) {
+    assert.equal(yamlString(plain), byHand(plain), `the same bytes as before for ${plain}`)
+  }
+  for (const value of ['AT&T', 'C:\\Users', 'two\nlines', 'tab\there', 'colon: and # hash', '- dash', 'yes', '007', 'a \\"quoted\\" slash']) {
+    assert.equal(parseFrontmatter(`---\nmention: ${yamlString(value)}\n---\nBody.`).meta.mention, value)
+  }
+  assert.throws(() => parseFrontmatter(`---\nmention: ${byHand('C:\\Users')}\n---\nBody.`), 'which is what the hand-written quoting did with a backslash')
 })

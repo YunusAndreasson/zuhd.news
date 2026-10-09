@@ -1,5 +1,4 @@
 import { spawn, spawnSync } from 'node:child_process'
-import { modelFor } from './models.js'
 
 // Parse the `claude --output-format json` envelope.
 //
@@ -76,8 +75,6 @@ export function parseClaudeEnvelopeWithUsage(stdout) {
 export function parseClaudeEnvelope(stdout) {
   return parseClaudeEnvelopeWithUsage(stdout).result
 }
-
-const HAIKU_MODEL = modelFor('haiku')
 
 /**
  * What keeps a headless call to what it was handed: the project's settings and
@@ -162,15 +159,6 @@ export function runClaudeSync(args, { timeout = 120_000, maxBuffer = 1024 * 1024
 }
 
 /**
- * One batched Haiku call with JSON output. Returns the raw `spawnSync` result
- * — the callers each log their own stage name on a non-zero exit, and
- * swallowing that here would cost the one line that says which one failed.
- */
-export function runHaiku(prompt, { timeout, maxBuffer }) {
-  return runClaudeSync(claudeArgs(prompt, { model: HAIKU_MODEL }), { timeout, maxBuffer })
-}
-
-/**
  * The one-line reason a `claude` child did not exit 0.
  *
  * Both streams: a non-zero exit often reports on stdout and leaves stderr
@@ -217,6 +205,10 @@ export function parseClaudeText(stdout) {
  * slightly different idea of what a failure said. Never throws: the result
  * carries `error` instead, because every caller logs and moves to the next
  * item.
+ *
+ * The entity and source-angle stages make their one batched Haiku call each
+ * through it as well. They had a synchronous helper of their own (`runHaiku`)
+ * and unwrapped its answer by hand, three more ideas of what a failure said.
  *
  * @param {string} prompt
  * @param {{ model: string, effort?: string, timeout?: number, maxBuffer?: number }} opts

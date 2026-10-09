@@ -14,49 +14,30 @@
 // one from Haiku, but now at least the fetched-successfully sources
 // also gain a distinctive-angle sentence.
 
-import { readFileSync, writeFileSync, existsSync } from 'node:fs'
-import { join, basename } from 'node:path'
+import { readFileSync, existsSync } from 'node:fs'
 import { randomUUID } from 'node:crypto'
+import { tryReadArticle } from './lib/article.js'
+import { batchFiles } from './lib/article-files.js'
 import { callClaudeJson } from './lib/claude-envelope.js'
-import { parseFrontmatter, replaceFrontmatterKey } from './lib/frontmatter.js'
+import { runWithConcurrency } from './lib/concurrency.js'
+import { pathOf } from './lib/datasets.js'
+import { replaceFrontmatterKey, yamlString } from './lib/frontmatter.js'
 import { fetchSourceText } from './lib/fetch-source-text.js'
+import { writeText } from './lib/json-file.js'
 import { modelFor } from './lib/models.js'
-import { ROOT } from './lib/paths.js'
 
-const NEW_ARTICLES_PATH = '/tmp/zuhd-new-articles.txt'
 const FETCH_CONCURRENCY = 5
 const SOURCE_TEXT_FOR_HAIKU = 1400 // chars per source passed to Haiku
 
-if (!existsSync(NEW_ARTICLES_PATH)) {
+if (!existsSync(pathOf('newArticles'))) {
   console.log('No new articles list found — skipping source-angle extraction.')
   process.exit(0)
 }
 
-const newFiles = readFileSync(NEW_ARTICLES_PATH, 'utf8').trim().split('\n').filter(Boolean)
+const newFiles = batchFiles()
 if (newFiles.length === 0) {
   console.log('No new articles — skipping source-angle extraction.')
   process.exit(0)
-}
-
-/** Run fn over items with at most `limit` in flight. Returns results aligned
- *  to input order. Rejections resolve to undefined so one bad fetch doesn't
- *  cascade. */
-async function pool(items, limit, fn) {
-  const results = new Array(items.length)
-  let i = 0
-  async function worker() {
-    while (true) {
-      const idx = i++
-      if (idx >= items.length) return
-      try {
-        results[idx] = await fn(items[idx])
-      } catch {
-        results[idx] = undefined
-      }
-    }
-  }
-  await Promise.all(Array.from({ length: Math.min(limit, items.length) }, worker))
-  return results
 }
 
 /** Collect all sources across all cycle articles into one flat list keyed
@@ -164,10 +145,10 @@ function writeSourcesToFrontmatter(raw, sources) {
   // `image:` from every article it touched — 355 of 413 in the week to
   // 2026-09-25 lost the publisher image URL scaffold-articles had just added.
   for (const s of sources) {
-    sourceLines.push(`  - name: ${JSON.stringify(s.name || '')}`)
+    sourceLines.push(`  - name: ${yamlString(s.name || '')}`)
     for (const [key, value] of Object.entries(s)) {
       if (key === 'name' || !/^[A-Za-z][\w-]*$/.test(key)) continue
-      if (typeof value === 'string' && value.length > 0) sourceLines.push(`    ${key}: ${JSON.stringify(value)}`)
+      if (typeof value === 'string' && value.length > 0) sourceLines.push(`    ${key}: ${yamlString(value)}`)
       else if (typeof value === 'number' && Number.isFinite(value)) sourceLines.push(`    ${key}: ${value}`)
     }
   }
@@ -182,13 +163,17 @@ function writeSourcesToFrontmatter(raw, sources) {
 const t0 = Date.now()
 const files = []
 
-for (const rel of newFiles) {
-  const filename = basename(rel)
+for (const { path: fullPath, name: filename } of newFiles) {
   if (!filename.endsWith('.md')) continue
-  const fullPath = join(ROOT, rel)
   if (!existsSync(fullPath)) continue
-  const raw = readFileSync(fullPath, 'utf8')
-  const { meta } = parseFrontmatter(raw)
+  // One that does not parse is the validator's to move aside, after this
+  // stage. It is not a reason for the rest of the batch to go without angles.
+  const { article, error } = tryReadArticle(fullPath)
+  if (!article) {
+    console.error(`  ✗ ${filename}: not read (${error.message.split('\n')[0]}) — no angles for it`)
+    continue
+  }
+  const { raw, meta } = article
   const title = typeof meta.title === 'string' ? meta.title : ''
   const sources = Array.isArray(meta.sources) ? meta.sources : []
   files.push({ fullPath, raw, title, sources })
@@ -213,7 +198,7 @@ if (tasks.length === 0) {
 // the selection does not hold, e.g. one the editor added.
 const heldBodies = new Map()
 try {
-  for (const entry of JSON.parse(readFileSync('/tmp/zuhd-selection.json', 'utf8'))) {
+  for (const entry of JSON.parse(readFileSync(pathOf('selection'), 'utf8'))) {
     for (const src of entry.sources || []) {
       if (src?.url && typeof src.body === 'string' && src.body.length >= 500) heldBodies.set(src.url, src.body.slice(0, 3500))
     }
@@ -221,8 +206,12 @@ try {
 } catch { /* no selection on disk (manual run) — every source is fetched */ }
 const toFetch = tasks.filter((t) => !heldBodies.has(t.url))
 console.log(`  · source-angles: ${tasks.length - toFetch.length}/${tasks.length} from held source text, fetching ${toFetch.length} (concurrency ${FETCH_CONCURRENCY})`)
-const fetchedTexts = await pool(toFetch, FETCH_CONCURRENCY, (t) => fetchSourceText(t.url))
-const fetchedByTask = new Map(toFetch.map((t, i) => [t, fetchedTexts[i]]))
+// One bad fetch costs its own source and nothing else: it is caught here,
+// because a pool passes a rejection on.
+const fetchedByTask = new Map()
+await runWithConcurrency(toFetch, FETCH_CONCURRENCY, async (t) => {
+  fetchedByTask.set(t, await fetchSourceText(t.url).catch(() => undefined))
+})
 const texts = tasks.map((t) => heldBodies.get(t.url) ?? fetchedByTask.get(t) ?? null)
 
 // Pass 2: build Haiku batch from successful fetches only.
@@ -291,7 +280,7 @@ for (const file of files) {
     continue
   }
   const updated = writeSourcesToFrontmatter(file.raw, updatedSources)
-  if (updated !== file.raw) writeFileSync(file.fullPath, updated)
+  if (updated !== file.raw) writeText(file.fullPath, updated)
   processed++
 }
 

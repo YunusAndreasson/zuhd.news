@@ -10,32 +10,32 @@
 // predictable. Ambiguous mentions (rupee, peso, pound) are skipped; a Haiku
 // disambiguation pass lands in a later revision.
 
-import { readFileSync, writeFileSync, existsSync } from 'node:fs'
-import { join, basename } from 'node:path'
+import { readFileSync, existsSync } from 'node:fs'
+import { basename } from 'node:path'
 import { randomUUID } from 'node:crypto'
 import { tryReadArticle } from './lib/article.js'
-import { claudeFailure, parseClaudeEnvelope, runHaiku } from './lib/claude-envelope.js'
-import { replaceFrontmatterKey } from './lib/frontmatter.js'
+import { batchFiles } from './lib/article-files.js'
+import { callClaudeJson } from './lib/claude-envelope.js'
+import { pathOf } from './lib/datasets.js'
+import { replaceFrontmatterKey, yamlString } from './lib/frontmatter.js'
 import { extractEntities } from './lib/entity-registry.js'
 import { fetchYahooStock } from './lib/trends-sources/stocks.js'
 import { chartsUntil, companyEntries, parseStockMentions, stockMentionsPrompt, subjectsBlock } from './lib/stock-mentions.js'
-import { ROOT } from './lib/paths.js'
-import { writeJson } from './lib/json-file.js'
+import { writeJson, writeText } from './lib/json-file.js'
+import { modelFor } from './lib/models.js'
 import { latestTrendsPath } from './lib/trends-snapshot.js'
-
-const NEW_ARTICLES_PATH = '/tmp/zuhd-new-articles.txt'
 
 // The cycle kills this stage at 180 s (`cycle/stages.js`). No request to Yahoo
 // is begun after 150: one can take 20 s, and what is left is for the writes.
 const STAGE_STARTED = Date.now()
 const YAHOO_UNTIL = STAGE_STARTED + 150_000
 
-if (!existsSync(NEW_ARTICLES_PATH)) {
+if (!existsSync(pathOf('newArticles'))) {
   console.log('No new articles list found — skipping entity extraction.')
   process.exit(0)
 }
 
-const newFiles = readFileSync(NEW_ARTICLES_PATH, 'utf8').trim().split('\n').filter(Boolean)
+const newFiles = batchFiles()
 if (newFiles.length === 0) {
   console.log('No new articles — skipping entity extraction.')
   process.exit(0)
@@ -56,7 +56,7 @@ if (newFiles.length === 0) {
  * empty map. Callers are expected to fall back to the first candidate
  * (usually the registry default) when a key is missing from the result.
  */
-function disambiguateViaHaiku(items) {
+async function disambiguateViaHaiku(items) {
   if (items.length === 0) return new Map()
   const invocationId = randomUUID().slice(0, 8)
 
@@ -90,25 +90,19 @@ ${blocks}
 
 Return ONLY the JSON object. No commentary, no markdown fences.`
 
-  const res = runHaiku(prompt, { timeout: 20_000, maxBuffer: 256 * 1024 })
-
-  if (res.status !== 0) {
-    console.error(`  ✗ entity-haiku ${invocationId}: ${claudeFailure(res, 20_000)}`)
+  const res = await callClaudeJson(prompt, { model: modelFor('haiku'), timeout: 20_000, maxBuffer: 256 * 1024 })
+  if (res.error) {
+    console.error(`  ✗ entity-haiku ${invocationId}: ${res.error}`)
     return new Map()
   }
-  try {
-    const obj = parseClaudeEnvelope(res.stdout)
-    const out = new Map()
-    for (const it of items) {
-      const chosen = obj[String(it.key)] ?? obj[it.key]
-      const valid = it.candidates.some((c) => c.id === chosen)
-      if (valid) out.set(it.key, chosen)
-    }
-    return out
-  } catch (err) {
-    console.error(`  ✗ entity-haiku ${invocationId}: parse — ${err.message}`)
-    return new Map()
+  const obj = res.out
+  const out = new Map()
+  for (const it of items) {
+    const chosen = obj[String(it.key)] ?? obj[it.key]
+    const valid = it.candidates.some((c) => c.id === chosen)
+    if (valid) out.set(it.key, chosen)
   }
+  return out
 }
 
 /**
@@ -129,7 +123,7 @@ Return ONLY the JSON object. No commentary, no markdown fences.`
  * caller can tell "the scan did not run" from "the scan found nothing": only
  * the second is recorded on the article.
  */
-function extractStocksViaHaiku(articles) {
+async function extractStocksViaHaiku(articles) {
   if (articles.length === 0) return new Map()
   const invocationId = randomUUID().slice(0, 8)
   const prompt = stockMentionsPrompt(articles)
@@ -140,18 +134,12 @@ function extractStocksViaHaiku(articles) {
   // then — the kill just discarded paid-for output. Raised to 90s on
   // 2026-09-25: 60s still killed 4 of ~40 cycles. The stage budget is 180s and
   // the entity-haiku call that follows is capped at 20s, so this still fits.
-  const res = runHaiku(prompt, { timeout: 90_000, maxBuffer: 512 * 1024 })
-
-  if (res.status !== 0) {
-    console.error(`  ✗ stocks-haiku ${invocationId}: ${claudeFailure(res, 90_000)}`)
+  const res = await callClaudeJson(prompt, { model: modelFor('haiku'), timeout: 90_000, maxBuffer: 512 * 1024 })
+  if (res.error) {
+    console.error(`  ✗ stocks-haiku ${invocationId}: ${res.error}`)
     return null
   }
-  try {
-    return parseStockMentions(parseClaudeEnvelope(res.stdout))
-  } catch (err) {
-    console.error(`  ✗ stocks-haiku ${invocationId}: parse — ${err.message}`)
-    return null
-  }
+  return parseStockMentions(res.out)
 }
 
 /**
@@ -170,7 +158,7 @@ function appendIndicatorsToSnapshot(newIndicators) {
   if (newIndicators.length === 0) return
   const path = latestTrendsPath()
   if (!path) {
-    console.log('  · stocks: no trends snapshot in content/trends — skipping append')
+    console.log('  · stocks: no trends snapshot to append to — skipping')
     return
   }
   try {
@@ -197,7 +185,7 @@ function appendIndicatorsToSnapshot(newIndicators) {
 function writeEntitiesToFrontmatter(raw, entities) {
   const yamlBlock = entities.length > 0
     ? `entities:\n${entities.map(e =>
-        `  - mention: "${e.mention.replace(/"/g, '\\"')}"\n    indicatorId: "${e.indicatorId}"\n    kind: "${e.kind}"`
+        `  - mention: ${yamlString(e.mention)}\n    indicatorId: ${yamlString(e.indicatorId)}\n    kind: ${yamlString(e.kind)}`
       ).join('\n')}`
     : 'entities: []'
 
@@ -215,10 +203,8 @@ const files = []
 const ambiguousQueue = []
 let nextKey = 1
 
-for (const rel of newFiles) {
-  const filename = basename(rel)
+for (const { path: fullPath, name: filename } of newFiles) {
   if (!filename.endsWith('.md')) continue
-  const fullPath = join(ROOT, rel)
   if (!existsSync(fullPath)) continue
 
   // An article whose frontmatter does not parse is the validator's to move
@@ -267,7 +253,7 @@ function writeFile(file, subjects) {
     ? replaceFrontmatterKey(withEntities, 'subjects', subjectsBlock(subjects))
     : withEntities
   if (updated === file.raw) return
-  writeFileSync(file.fullPath, updated)
+  writeText(file.fullPath, updated)
   file.raw = updated
 }
 
@@ -284,7 +270,7 @@ for (const file of files) writeFile(file)
 let disambiguations = new Map()
 if (ambiguousQueue.length > 0) {
   console.log(`  · entity-haiku: resolving ${ambiguousQueue.length} ambiguous mention(s)`)
-  disambiguations = disambiguateViaHaiku(ambiguousQueue)
+  disambiguations = await disambiguateViaHaiku(ambiguousQueue)
 }
 
 for (const item of ambiguousQueue) {
@@ -313,7 +299,7 @@ const subjectsBySlug = new Map()
 const newStockIndicators = []
 if (files.length > 0) {
   console.log(`  · stocks-haiku: scanning ${files.length} article(s) for tickers`)
-  const scanned = extractStocksViaHaiku(
+  const scanned = await extractStocksViaHaiku(
     files.map((f) => ({ slug: f.slug, title: f.title, body: f.body })),
   )
   stocksHits = scanned ?? new Map()

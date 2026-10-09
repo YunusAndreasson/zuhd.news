@@ -23,13 +23,13 @@
 //
 // Usage: node scripts/pick-breaking-social.js [--dry-run]
 
-import { existsSync, readFileSync, writeFileSync } from 'node:fs'
+import { existsSync, readFileSync } from 'node:fs'
 import { join } from 'node:path'
 import { readArticle } from './lib/article.js'
 import { breakingCandidates } from './lib/breaking.js'
 import { claudeArgs, claudeFailure, runClaudeSync } from './lib/claude-envelope.js'
 import { pathOf } from './lib/datasets.js'
-import { writeJson } from './lib/json-file.js'
+import { writeJson, writeText } from './lib/json-file.js'
 import { ROOT } from './lib/paths.js'
 import { parsePick, pickPrompt, socialTitleOf, withSocialTitle } from './lib/social-pick.js'
 import { runStage } from './lib/stage.js'
@@ -97,7 +97,7 @@ export function main() {
     if (socialTitle) {
       try {
         const path = articlePath(chosen.slug)
-        writeFileSync(path, withSocialTitle(readFileSync(path, 'utf8'), socialTitle))
+        writeText(path, withSocialTitle(readFileSync(path, 'utf8'), socialTitle))
         note(`wrote socialTitle to ${chosen.slug}: "${socialTitle}"`)
       } catch (e) {
         note(`could not write socialTitle (non-fatal, card uses article title): ${/** @type {Error} */ (e).message}`)

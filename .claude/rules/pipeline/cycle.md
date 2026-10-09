@@ -81,8 +81,8 @@ stages assume about each other.
   `--no-session-persistence`, `--max-turns 1` and `--tools ''` keep a call a
   cheap micro-task. `trends-sources/polymarket.js` still spells its own; do
   not copy it.
-- Run it with `runClaudeSync`, `callClaudeJson`, `runHaiku`, or `spawnClaude`
-  inside a pool: `runWithConcurrency` only limits work that yields. All drop
+- Run it with `runClaudeSync`, `callClaudeJson`, or `spawnClaude` inside a
+  pool: `runWithConcurrency` only limits work that yields. All drop
   `CLAUDECODE` from the child env.
 - Parse with `parseClaudeEnvelope`; render a failure with `claudeFailure`.
 - `lib/grounding.js` is the one grounding validator. `validateProperNouns` is

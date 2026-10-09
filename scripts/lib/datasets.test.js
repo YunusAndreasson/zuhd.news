@@ -55,8 +55,6 @@ test('every path a prompt names is in the catalog', () => {
 // Comment lines do not count: a path in prose is not a path that is opened.
 const STILL_SPELLING = [
   'scripts/build.js',
-  'scripts/extract-entities.js',
-  'scripts/extract-source-angles.js',
   'scripts/fetch-ai-models.js',
   'scripts/fetch-analytics.js',
   'scripts/fetch-chokepoints.js',

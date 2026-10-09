@@ -21,7 +21,7 @@ prefer a parameter (class names, a link renderer) over a copy, as
 | `scripts/lib/concurrency.js` | `runWithConcurrency` |
 | `scripts/lib/argv.js` | `--flag value` parsing |
 | `scripts/lib/island-bundle.js` | the esbuild + jsdom test harness |
-| `scripts/lib/claude-envelope.js` | envelope parsing, `runHaiku`, and `claudeArgs` (the `claude` argv) |
+| `scripts/lib/claude-envelope.js` | envelope parsing, `callClaudeJson`, and `claudeArgs` (the `claude` argv) |
 | `scripts/lib/ig-image.js` | `igLead`, the card's lead; it never cuts on an ellipsis |
 | `scripts/lib/serve-dist.js` | the local `dist/` server and its MIME table |
 | `scripts/lib/paths.js` | `ROOT` |

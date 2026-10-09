@@ -7,7 +7,7 @@
 
 import { isDeepStrictEqual } from 'node:util'
 import { stripDateline } from './article.js'
-import { parseFrontmatter, setFrontmatterLine } from './frontmatter.js'
+import { parseFrontmatter, setFrontmatterLine, yamlString } from './frontmatter.js'
 
 /** @typedef {import('./breaking.js').BreakingCandidate} BreakingCandidate */
 
@@ -93,8 +93,7 @@ export const socialTitleOf = (pick) => String(pick.socialTitle || '').trim().rep
 export function withSocialTitle(raw, socialTitle) {
   const fm = raw.match(/^---\n([\s\S]*?)\n---\n/)
   if (!fm) throw new Error('no frontmatter block')
-  const value = JSON.stringify(socialTitle) // valid YAML double-quoted scalar
-  const block = setFrontmatterLine(fm[1], 'socialTitle', value, { after: 'title' })
+  const block = setFrontmatterLine(fm[1], 'socialTitle', yamlString(socialTitle), { after: 'title' })
   const next = `---\n${block}\n---\n${raw.slice(fm[0].length)}`
 
   const { socialTitle: _was, ...before } = parseFrontmatter(raw).meta

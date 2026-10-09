@@ -10,6 +10,8 @@
 // two apart is reading, which is the model's work and was already being paid
 // for: one more field on a call that reads every new article anyway.
 
+import { yamlString } from './frontmatter.js'
+
 /**
  * @typedef {{ mention: string, ticker: string, name: string, subject: boolean }} StockMention
  */
@@ -187,5 +189,5 @@ export async function chartsUntil(tickers, fetchOne, { until, now = Date.now }) 
 export function subjectsBlock(ids) {
   const unique = [...new Set(ids)]
   if (unique.length === 0) return ['subjects: []']
-  return ['subjects:', ...unique.map((id) => `  - "${id.replace(/"/g, '\\"')}"`)]
+  return ['subjects:', ...unique.map((id) => `  - ${yamlString(id)}`)]
 }

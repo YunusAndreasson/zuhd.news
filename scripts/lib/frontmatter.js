@@ -51,6 +51,23 @@ export function parseFrontmatter(content) {
 }
 
 /**
+ * A string as a YAML scalar: in double quotes, with whatever YAML would
+ * misread inside them escaped. JSON's string is YAML's double-quoted one, so
+ * this is `JSON.stringify` under the name of what it is used for.
+ *
+ * The stages that write a frontmatter block quoted in two ways. Three places
+ * called `JSON.stringify`. Two wrapped the value in quotes and escaped only
+ * the quotes inside it (`"${x.replace(/"/g, '\\"')}"`), which is the same
+ * bytes for any value without a backslash or a line break in it, and a block
+ * that does not parse for one with. One of those values is the `mention` a
+ * model returns for a company, and the stage that writes it runs before the
+ * validator: the article would be quarantined for it.
+ *
+ * @param {string} value
+ */
+export const yamlString = (value) => JSON.stringify(String(value))
+
+/**
  * Replace the top-level `key:` block of an article's frontmatter — the key's
  * line and every indented or blank line under it — with `block`, leaving every
  * other line exactly as written. Text surgery, not a YAML round-trip, so a
