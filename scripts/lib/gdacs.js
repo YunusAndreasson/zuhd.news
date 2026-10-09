@@ -197,6 +197,34 @@ export function collectionToAlerts(collection, now = Date.now()) {
   return out
 }
 
+/** What `collectionToAlerts` reads of a feature before it keeps or drops it. */
+const FILTERED_ON = ['iscurrent', 'eventtype', 'alertlevel', 'eventid', 'datemodified']
+
+/**
+ * What to say of a list that gave no alert, or null when it gave some.
+ *
+ * GDACS lists about a hundred events at any hour, so a list with none is not a
+ * quiet world: it is a response that stopped meaning what it did. `iscurrent`
+ * has already arrived as both `true` and `'true'`, and a third spelling drops
+ * every feature at the first filter. Written to the snapshot, that would be an
+ * empty disaster layer in the app and every narration pruned as stale. So the
+ * fetcher keeps the last snapshot, and this is the line it leaves: what the
+ * first feature held under the fields the filters read.
+ *
+ * @param {{ features: any[] }} collection
+ * @param {unknown[]} alerts what `collectionToAlerts` made of it
+ * @returns {string | null}
+ */
+export function emptyListReport(collection, alerts) {
+  if (alerts.length > 0) return null
+  const { features } = collection
+  if (features.length === 0) return 'the list held no features'
+  const first = features[0]
+  const saw = FILTERED_ON.map((key) => `${key}=${JSON.stringify(first?.properties?.[key])}`)
+  saw.push(`geometry=${JSON.stringify(first?.geometry?.type)}`)
+  return `${features.length} features and no usable alert; the first has ${saw.join(' ')}`
+}
+
 // ── Per-event detail (population estimates) ────────────────────────────────
 
 const EMPTY_DETAIL = {

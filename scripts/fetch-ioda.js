@@ -73,8 +73,13 @@ const pull = async (from, until) => {
   // empty snapshot and quietly overwrite a good one.
   if (json.error) throw new Error(json.error)
   if (!Array.isArray(json.data)) throw new Error('no data array')
-  return new Map(
-    json.data.map((d) => [
+  return json.data
+}
+
+/** A response's rows, by country code. */
+const byCountry = (rows) =>
+  new Map(
+    rows.map((d) => [
       d.entity?.code,
       {
         name: d.entity?.name ?? d.entity?.code,
@@ -83,11 +88,11 @@ const pull = async (from, until) => {
       },
     ]),
   )
-}
 
 const now = Math.floor(Date.now() / 1000)
 const recentFrom = now - RECENT_DAYS * DAY
 
+let recentRows
 let recent
 let baseline
 try {
@@ -95,10 +100,13 @@ try {
   // pins every country whose only outage in three months is the current one at
   // exactly BASELINE_DAYS/RECENT_DAYS, which looks like a ranking and is an
   // artifact of the arithmetic.
-  ;[recent, baseline] = await Promise.all([
+  const [recentData, baselineData] = await Promise.all([
     pull(recentFrom, now),
     pull(recentFrom - BASELINE_DAYS * DAY, recentFrom),
   ])
+  recentRows = recentData
+  recent = byCountry(recentData)
+  baseline = byCountry(baselineData)
 } catch (err) {
   console.error(`  ✗ fetch failed (${err.message}) — leaving previous snapshot in place`)
   process.exit(0)
@@ -132,6 +140,19 @@ countries.sort((a, b) => {
   if (b.ratio === null) return -1
   return b.ratio - a.ratio
 })
+
+// No country at all is a changed response, never two days without an outage
+// anywhere: the summary has named about thirty on every run. Written out it
+// would also be a reading in the baseline below, an empty one among real ones,
+// and the baseline is what this fetch is for. So nothing is written, and the
+// line says what the first row held.
+if (countries.length === 0) {
+  const first = recentRows.length > 0 ? `; the first is ${JSON.stringify(recentRows[0]).slice(0, 200)}` : ''
+  console.error(
+    `  ✗ ${recentRows.length} rows for the last ${RECENT_DAYS}d and no country among them${first} — leaving previous snapshot in place`,
+  )
+  process.exit(0)
+}
 
 writeJson(OUTPUT_PATH, {
     generated: new Date().toISOString(),

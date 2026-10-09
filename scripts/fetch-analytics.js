@@ -99,6 +99,17 @@ async function main() {
     .map(([slug, views]) => ({ slug, views }))
     .sort((a, b) => b.views - a.views)
 
+  // A day with no article among the paths is a changed response, never a day
+  // nobody read anything: every run has held two or three hundred. Pushed into
+  // the history it would replace today's run with an empty one, so nothing is
+  // written and the line says what the first row held.
+  if (sortedArticles.length === 0) {
+    const rows = zone.topPaths || []
+    const first = rows.length > 0 ? `; the first is ${JSON.stringify(rows[0]).slice(0, 200)}` : ''
+    console.error(`analytics: ${rows.length} paths and no article among them${first} — keeping the previous snapshot`)
+    process.exit(0)
+  }
+
   const perDay = {}
   for (const row of zone.perDay || []) {
     const d = row.dimensions?.date

@@ -8,7 +8,13 @@
 
 import test from 'node:test'
 import assert from 'node:assert/strict'
-import { collectionToAlerts, featureToDetail, isGdacsFeatureCollection, readImpactScalar } from './gdacs.js'
+import {
+  collectionToAlerts,
+  emptyListReport,
+  featureToDetail,
+  isGdacsFeatureCollection,
+  readImpactScalar,
+} from './gdacs.js'
 
 const validFeature = {
   type: 'Feature',
@@ -130,6 +136,25 @@ test('collectionToAlerts drops alerts older than 30 days', () => {
   const out = collectionToAlerts({ type: 'FeatureCollection', features: [old, validFeature] }, FIXTURE_NOW)
   assert.equal(out.length, 1)
   assert.equal(out[0].modifiedDate, '2026-05-01T08:00:00')
+})
+
+test('a list that gives no alert is reported, with what its first feature held', () => {
+  // `iscurrent` has arrived as `true` and as `'true'`. A third spelling drops
+  // every feature at the first filter, and the snapshot is published as written:
+  // an empty one is an empty disaster layer and every narration pruned.
+  const respelled = { ...validFeature, properties: { ...validFeature.properties, iscurrent: 'True' } }
+  const collection = { type: 'FeatureCollection', features: [respelled, respelled] }
+  const alerts = collectionToAlerts(collection, FIXTURE_NOW)
+  assert.deepEqual(alerts, [])
+  assert.equal(
+    emptyListReport(collection, alerts),
+    '2 features and no usable alert; the first has iscurrent="True" eventtype="EQ" alertlevel="Red" ' +
+      'eventid=1234567 datemodified="2026-05-01T08:00:00" geometry="Point"',
+  )
+  assert.equal(emptyListReport({ type: 'FeatureCollection', features: [] }, []), 'the list held no features')
+
+  const good = { type: 'FeatureCollection', features: [validFeature] }
+  assert.equal(emptyListReport(good, collectionToAlerts(good, FIXTURE_NOW)), null, 'a list with an alert in it is written')
 })
 
 test('featureToDetail parses non-zero string-typed population fields', () => {

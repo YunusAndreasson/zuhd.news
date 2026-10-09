@@ -9,7 +9,14 @@
 
 import test from 'node:test'
 import assert from 'node:assert/strict'
-import { filterRecentWindow, mapUcdpRow, parseCsv, parseSourceArticle, rowsToObjects } from './conflict.js'
+import {
+  emptyReleaseReport,
+  filterRecentWindow,
+  mapUcdpRow,
+  parseCsv,
+  parseSourceArticle,
+  rowsToObjects,
+} from './conflict.js'
 
 const baseRow = {
   id: '1',
@@ -121,6 +128,25 @@ test('filterRecentWindow anchors on the dataset max date, not Date.now()', () =>
 test('filterRecentWindow handles empty input without throwing', () => {
   const out = filterRecentWindow([], 1)
   assert.deepEqual(out, { kept: [], windowStart: '', windowEnd: '' })
+})
+
+test('a release that gives no event is reported, with what its first row held', () => {
+  // That empty window, written out, is a blank conflict layer and a payload the
+  // app refuses for its `windowStart: ''`. A column that changes what it holds
+  // gets there with every row parsed: here `best` arrives as a word.
+  const rows = [
+    { ...baseRow, best: 'five' },
+    { ...baseRow, best: 'two' },
+  ]
+  const events = rows.map(mapUcdpRow).filter(Boolean)
+  assert.deepEqual(events, [])
+  assert.equal(
+    emptyReleaseReport(rows, events),
+    '2 rows and none past the quality gates; the first has date_start="2026-03-31 00:00:00.000" ' +
+      'where_prec="1" best="five" latitude="15.5" longitude="32.5" side_a="Group A"',
+  )
+  assert.equal(emptyReleaseReport([], []), 'the release held no rows', 'a header and no body')
+  assert.equal(emptyReleaseReport([baseRow], [mapUcdpRow(baseRow)]), null, 'a release with an event in it is written')
 })
 
 // --- enrichment fields (2026-05-02 expansion) ---

@@ -17,6 +17,7 @@ import { runWithConcurrency } from './lib/concurrency.js'
 import {
   GDACS_GEOJSON_URL,
   collectionToAlerts,
+  emptyListReport,
   fetchGdacsDetail,
   isGdacsFeatureCollection,
 } from './lib/gdacs.js'
@@ -62,6 +63,14 @@ if (!isGdacsFeatureCollection(collection)) {
 }
 
 const alerts = collectionToAlerts(collection)
+
+// A list with no alert in it is a changed response, never a quiet world, and
+// this snapshot is published as it is written.
+const empty = emptyListReport(collection, alerts)
+if (empty) {
+  console.error(`  ✗ ${empty} — leaving previous snapshot in place`)
+  process.exit(0)
+}
 console.log(`  ✓ list: ${alerts.length} current alerts (within 30d age cliff)`)
 
 // Pre-fetch detail for EQ + TC alerts. Other event types (FL/VO/DR/WF)

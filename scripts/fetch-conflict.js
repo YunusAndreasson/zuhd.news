@@ -23,7 +23,7 @@
 
 import { readFileSync, existsSync } from 'node:fs'
 import { join } from 'node:path'
-import { filterRecentWindow, mapUcdpRow, parseCsv, rowsToObjects } from './lib/conflict.js'
+import { emptyReleaseReport, filterRecentWindow, mapUcdpRow, parseCsv, rowsToObjects } from './lib/conflict.js'
 import { ROOT } from './lib/paths.js'
 import { writeJson } from './lib/json-file.js'
 import { fetchOk } from './lib/http.js'
@@ -165,6 +165,14 @@ for (const r of rows) {
   if (event) events.push(event)
 }
 console.log(`Filtered to ${events.length.toLocaleString('en-US')} events after quality gates`)
+
+// A release with no event in it is a changed file, never a month of peace, and
+// this snapshot is published as it is written.
+const empty = emptyReleaseReport(rows, events)
+if (empty) {
+  console.error(`  ✗ ${empty} — leaving previous snapshot in place`)
+  process.exit(0)
+}
 
 const { kept, windowStart, windowEnd } = filterRecentWindow(events, WINDOW_DAYS)
 console.log(

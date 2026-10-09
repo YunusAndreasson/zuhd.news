@@ -367,6 +367,32 @@ export function mapUcdpRow(r) {
   return event
 }
 
+/** What `mapUcdpRow`'s gates read of a row. */
+const GATED_ON = ['date_start', 'where_prec', 'best', 'latitude', 'longitude', 'side_a']
+
+/**
+ * What to say of a release that gave no event, or null when it gave some.
+ *
+ * A candidate month is a couple of thousand rows and about half pass the
+ * gates, so none passing is not a peaceful month: it is a file with a header
+ * and no body, or a column that changed what it holds. `filterRecentWindow`
+ * answers that with an empty window and empty dates, which written out is a
+ * blank conflict layer the fetcher's six-hour gate then holds, and a payload
+ * the app's validator refuses for its `windowStart: ''`. So the fetcher keeps
+ * the last snapshot, and this is the line it leaves: what the first row held
+ * under the columns the gates read.
+ *
+ * @param {Record<string, string>[]} rows
+ * @param {unknown[]} events the rows `mapUcdpRow` kept
+ * @returns {string | null}
+ */
+export function emptyReleaseReport(rows, events) {
+  if (events.length > 0) return null
+  if (rows.length === 0) return 'the release held no rows'
+  const saw = GATED_ON.map((key) => `${key}=${JSON.stringify(rows[0]?.[key])}`)
+  return `${rows.length} rows and none past the quality gates; the first has ${saw.join(' ')}`
+}
+
 /** Filter to the last N days of the dataset's coverage. Anchors on the
  *  *dataset's* max date rather than `Date.now()` because UCDP candidate
  *  trails real-time by 1-3 months — using "today" would produce empty
