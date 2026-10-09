@@ -11,6 +11,7 @@ import { parseFrontmatter } from '../lib/frontmatter.js'
 import { scoreDir } from '../lib/quality-score.js'
 import { regionFromCoords } from '../lib/regions.js'
 import { ROOT } from '../lib/paths.js'
+import { SENT, listener } from './data.js'
 
 const PORT = 7777
 const HOST = '127.0.0.1'
@@ -972,7 +973,7 @@ function handleLive(req, res) {
       })
     } catch {}
     req.on('close', () => { if (dirWatcher) dirWatcher.close() })
-    return
+    return SENT
   }
 
   const newestLog = join(LOGS_DIR, logFiles[0])
@@ -1023,16 +1024,10 @@ function handleLive(req, res) {
     if (dirWatcher) dirWatcher.close()
     if (debounceTimer) clearTimeout(debounceTimer)
   })
+  return SENT
 }
 
 // ── HTTP Server ─────────────────────────────────────────────────────
-
-
-function sendJSON(res, data, status = 200) {
-  const body = JSON.stringify(data)
-  res.writeHead(status, { 'Content-Type': 'application/json', 'Content-Length': Buffer.byteLength(body) })
-  res.end(body)
-}
 
 function sendFile(res, filepath, contentType) {
   try {
@@ -1045,50 +1040,34 @@ function sendFile(res, filepath, contentType) {
     res.writeHead(404)
     res.end('Not found')
   }
+  return SENT
 }
 
-const server = createServer((req, res) => {
-  const url = new URL(req.url, `http://${HOST}`)
-  const path = url.pathname
+// A route that throws answers 500 and the server stays up: `listener`.
+const server = createServer(listener([
+  ['/', (_req, res) => sendFile(res, join(DASHBOARD_DIR, 'index.html'), 'text/html')],
+  ['/style.css', (_req, res) => sendFile(res, join(DASHBOARD_DIR, 'style.css'), 'text/css')],
+  [/^\/fonts\/([\w.-]+\.woff2)$/, (_req, res, font) => sendFile(res, join(ROOT, 'public', 'fonts', font), 'font/woff2')],
 
-  // Static files
-  if (path === '/') return sendFile(res, join(DASHBOARD_DIR, 'index.html'), 'text/html')
-  if (path === '/style.css') return sendFile(res, join(DASHBOARD_DIR, 'style.css'), 'text/css')
-  if (path.startsWith('/fonts/')) {
-    const fontFile = path.slice(7)
-    if (!/^[\w.-]+\.woff2$/.test(fontFile)) { res.writeHead(404); return res.end() }
-    return sendFile(res, join(ROOT, 'public', 'fonts', fontFile), 'font/woff2')
-  }
-
-  // API routes
-  if (path === '/api/overview') return sendJSON(res, handleOverview())
-  if (path === '/api/cycles') return sendJSON(res, handleCycles())
-  if (path === '/api/quality') return sendJSON(res, handleQuality())
-  if (path === '/api/writing-quality') return sendJSON(res, handleWritingQuality())
-  if (path === '/api/specificity') return sendJSON(res, handleSpecificity())
-  if (path === '/api/article-images') return sendJSON(res, handleArticleImages())
-  if (path === '/api/editorial') return sendJSON(res, handleEditorial())
-  if (path === '/api/feed-health') return sendJSON(res, handleFeedHealth())
-  if (path === '/api/operations') return sendJSON(res, handleOperations())
-  if (path === '/api/blocks') return sendJSON(res, handleBlocks())
-  if (path === '/api/rvs-trend') return sendJSON(res, handleRvsTrend())
-  if (path === '/api/autoresearch') return sendJSON(res, handleAutoresearch())
-  if (path === '/api/media') return sendJSON(res, handleMedia())
-  if (path === '/api/experiment') return sendJSON(res, handleExperiment())
-  if (path === '/api/reach') return sendJSON(res, handleReach())
-  if (path === '/api/live') return handleLive(req, res)
-
-  // Parameterized: /api/cycle/cycle-2026-04-11_1702.log
-  const cycleMatch = path.match(/^\/api\/cycle\/(.+)$/)
-  if (cycleMatch) {
-    const data = handleCycleDetail(decodeURIComponent(cycleMatch[1]))
-    if (!data) { res.writeHead(404); return res.end('Not found') }
-    return sendJSON(res, data)
-  }
-
-  res.writeHead(404)
-  res.end('Not found')
-})
+  ['/api/overview', handleOverview],
+  ['/api/cycles', handleCycles],
+  ['/api/quality', handleQuality],
+  ['/api/writing-quality', handleWritingQuality],
+  ['/api/specificity', handleSpecificity],
+  ['/api/article-images', handleArticleImages],
+  ['/api/editorial', handleEditorial],
+  ['/api/feed-health', handleFeedHealth],
+  ['/api/operations', handleOperations],
+  ['/api/blocks', handleBlocks],
+  ['/api/rvs-trend', handleRvsTrend],
+  ['/api/autoresearch', handleAutoresearch],
+  ['/api/media', handleMedia],
+  ['/api/experiment', handleExperiment],
+  ['/api/reach', handleReach],
+  ['/api/live', handleLive],
+  // /api/cycle/cycle-2026-04-11_1702.log
+  [/^\/api\/cycle\/(.+)$/, (_req, _res, filename) => handleCycleDetail(filename)],
+]))
 
 server.listen(PORT, HOST, () => {
   console.log(`zuhd.news dashboard → http://${HOST}:${PORT}`)
