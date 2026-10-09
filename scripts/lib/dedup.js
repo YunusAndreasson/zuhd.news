@@ -135,12 +135,41 @@ export function loadLedgerEventUris() {
   return map
 }
 
-/** Load ledger labels with first-seen timestamps for recap matching. */
-export function loadLedgerLabels(cutoffMs = 10 * 24 * 3600 * 1000) {
-  const cutoff = Date.now() - cutoffMs
-  return (readJson(LEDGER_PATH)?.stories || [])
+/**
+ * The ledger labels that stand for coverage: each story first seen since
+ * `cutoff` that has an article among `published`.
+ *
+ * `update-ledger.js` runs before the writer, so the ledger also holds picks
+ * that never became an article, and a label alone blocked the story for as
+ * long as the ledger kept it. Two in nine days (2026-09-30 → 10-09), 5 of the
+ * 6 label removals in those 41 cycles:
+ * - 10-03 14:02, a 404 Media piece on the solar system's instability: the
+ *   writer skipped it (the text the feed carried stopped before the study),
+ *   and the same item was removed from the next four feeds as a recap of
+ *   itself.
+ * - 10-07 05:00, OpenAI's "Sharing AI progress in mathematics": written, moved
+ *   aside by the validator for a missing field, removed from the 10:04 feed.
+ * The sixth, a second report of Microsoft's green-card suspension, matched a
+ * story that had been published, and still does.
+ *
+ * It is the rule `.last-cycle.json` is written by (`lib/last-cycle.js`): the
+ * next cycle skips what was published, not everything that was selected. The
+ * event layer always had it (`eventCoveredRecently`).
+ *
+ * @param {{ id: string, label?: string, firstSeen?: string, articles?: string[] }[]} stories the ledger's
+ * @param {Set<string>} published the slugs of the articles on disk
+ * @param {number} cutoff ms
+ */
+export function coveredLabels(stories, published, cutoff) {
+  return stories
+    .filter(s => (s.articles || []).some(a => published.has(a)))
     .map(s => ({ slug: s.id, label: s.label || '', firstSeen: s.firstSeen ? new Date(s.firstSeen).getTime() : 0 }))
     .filter(s => s.label && s.firstSeen >= cutoff)
+}
+
+/** Load the ledger labels that stand for coverage (`coveredLabels`), for recap matching. */
+export function loadLedgerLabels(cutoffMs, published) {
+  return coveredLabels(readJson(LEDGER_PATH)?.stories || [], published, Date.now() - cutoffMs)
 }
 
 /** Strip YYYY-MM-DD- prefix from a slug, return word set (words > 2 chars). */
@@ -345,7 +374,8 @@ export function loadDedupContext(cutoffMs = 48 * 3600 * 1000) {
   const ledgerEventUris = loadLedgerEventUris()
   const recentWordSets = buildWordSets(recentSlugs)
   const recentTitleSets = buildTitleSets(recapArticles)
-  const ledgerLabelSets = buildTitleSets(loadLedgerLabels(Math.max(cutoffMs, RECAP_LOOKBACK_MS)))
+  const published = new Set(recapArticles.map(a => a.slug))
+  const ledgerLabelSets = buildTitleSets(loadLedgerLabels(Math.max(cutoffMs, RECAP_LOOKBACK_MS), published))
   // URL → slug over the recap window, not the 48h one. A same-URL republish is
   // the same failure a recap is, so it gets the same lookback; the tighter
   // window is only right for slug-fuzzy, where a rewrite happens within a cycle.

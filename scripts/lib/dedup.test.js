@@ -16,6 +16,7 @@ import {
   buildWordSets,
   wouldDedup,
   dedupSelection,
+  coveredLabels,
   isThin,
   NICHE_SOURCES,
   THIN_BODY,
@@ -131,6 +132,64 @@ test('wouldDedup title layer covers every outlet, but only over 72h', () => {
   assert.equal(recent.reason, 'recap')
   // Five days on, the same words are a running story's next development.
   assert.equal(wouldDedup(multi, ctxAt(120)).deduped, false)
+})
+
+// --- ledger labels, changed 2026-10-09 --------------------------------------
+// The three ledger stories whose labels removed a feed story between 09-30 and
+// 10-09, as the ledger held them. Only the third had an article: the writer
+// skipped the first and the validator moved the second aside.
+const LEDGER = [
+  {
+    id: 'outer-solar-system-terminal-instability-sun-death-study',
+    label: 'Our Solar System Is Terminally Unstable and Will Be Completely Destroyed, Study Finds',
+    firstSeen: '2026-10-03T14:05:21.467Z',
+    articles: ['2026-10-03-outer-solar-system-terminal-instability-sun-death-study'],
+  },
+  {
+    id: 'sharing-ai-progress-in-mathematics',
+    label: 'Sharing AI progress in mathematics',
+    firstSeen: '2026-10-07T05:03:50.109Z',
+    articles: ['2026-10-06-sharing-ai-progress-in-mathematics'],
+  },
+  {
+    id: 'trump-bars-microsoft-from-us-green-card-scheme',
+    label: 'Trump bars Microsoft from US green card scheme',
+    firstSeen: '2026-10-08T18:08:56.751Z',
+    articles: ['2026-10-08-trump-bars-microsoft-from-us-green-card-scheme'],
+  },
+]
+// The feed stories they removed, under slugs no article has: layer 1 looks on disk.
+const SOLAR = story('Our Solar System Is Terminally Unstable and Will Be Completely Destroyed, Study Finds', ['404 Media'], '2099-01-01-fixture-solar-system')
+const MATHS = story('Sharing AI progress in mathematics', ['Hacker News'], '2099-01-01-fixture-mathematics')
+const MICROSOFT = story('Trump administration is suspending Microsoft from a green card program', ['Hacker News'], '2099-01-01-fixture-green-card')
+const ctxWithLabels = (published) => ({
+  recentSlugs: [],
+  ledgerEventUris: new Map(),
+  recentWordSets: [],
+  recentTitleSets: [],
+  ledgerLabelSets: buildTitleSets(coveredLabels(LEDGER, new Set(published), Date.parse('2026-09-25T00:00:00Z'))),
+})
+
+test('a pick that never became an article does not block its story by its ledger label', () => {
+  const ctx = ctxWithLabels(['2026-10-08-trump-bars-microsoft-from-us-green-card-scheme'])
+  assert.equal(wouldDedup(SOLAR, ctx).deduped, false, 'the writer skipped it: nothing was published')
+  assert.equal(wouldDedup(MATHS, ctx).deduped, false, 'the validator moved it aside: nothing was published')
+  assert.deepEqual(wouldDedup(MICROSOFT, ctx), { deduped: true, reason: 'recap', match: 'trump-bars-microsoft-from-us-green-card-scheme' })
+})
+
+test('a ledger label still blocks its story once the article is on disk', () => {
+  const ctx = ctxWithLabels(LEDGER.flatMap((s) => s.articles))
+  assert.deepEqual(wouldDedup(SOLAR, ctx), { deduped: true, reason: 'recap', match: 'outer-solar-system-terminal-instability-sun-death-study' })
+  assert.deepEqual(wouldDedup(MATHS, ctx), { deduped: true, reason: 'recap', match: 'sharing-ai-progress-in-mathematics' })
+})
+
+test('coveredLabels keeps the window and drops a story with no label', () => {
+  const all = new Set(LEDGER.flatMap((s) => s.articles))
+  assert.deepEqual(
+    coveredLabels(LEDGER, all, Date.parse('2026-10-05T00:00:00Z')).map((l) => l.slug),
+    ['sharing-ai-progress-in-mathematics', 'trump-bars-microsoft-from-us-green-card-scheme'],
+  )
+  assert.deepEqual(coveredLabels([{ id: 'x', firstSeen: '2026-10-08T00:00:00Z', articles: ['a'] }, { id: 'y', label: 'Y', firstSeen: '2026-10-08T00:00:00Z' }], new Set(['a']), 0), [])
 })
 
 test('NICHE_SOURCES list is non-empty and matches RSS source names', () => {
