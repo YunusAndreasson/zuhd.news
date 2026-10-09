@@ -23,6 +23,23 @@ const DAY = 86400_000
 export const CARRY_DAYS = 7
 
 /**
+ * Whether a row can be drawn, by the test the app puts to every row of the
+ * payload (`isIndicator`, mobile/lib/validate.ts): two or more finite values
+ * and a label for each. The app accepts the snapshot only if every row
+ * passes, so one bad row costs it every card. A carried row is a week's
+ * commitment, and is never made to a row that would do that.
+ *
+ * @param {any} row
+ */
+const drawable = (row) =>
+  Array.isArray(row?.values) &&
+  row.values.length >= 2 &&
+  row.values.every((v) => typeof v === 'number' && Number.isFinite(v)) &&
+  Array.isArray(row.periods) &&
+  row.periods.length === row.values.length &&
+  row.periods.every((p) => typeof p === 'string')
+
+/**
  * The previous snapshot's row for a registry series this run fetched nothing
  * for, or null when there is none that may stand.
  *
@@ -50,7 +67,7 @@ export const CARRY_DAYS = 7
 export function carriedRow(ind, prior, now = Date.now()) {
   const row = (prior?.indicators ?? []).find((r) => r?.id === ind.id)
   if (!row || row.source !== ind.source || row.seriesId !== ind.seriesId) return null
-  if (!Array.isArray(row.values) || row.values.length === 0) return null
+  if (!drawable(row)) return null
   const fetchedAt = row.fetchedAt ?? prior?.fetchedAt
   const at = Date.parse(fetchedAt ?? '')
   if (!Number.isFinite(at) || now - at > CARRY_DAYS * DAY) return null
@@ -102,7 +119,7 @@ export function carriedStocks(prior, held, now = Date.now()) {
   let lapsed = 0
   for (const row of prior?.indicators ?? []) {
     if (row?.source !== 'stocks' || typeof row.id !== 'string' || held.has(row.id)) continue
-    if (isStaleAsOf(row.asOf, now)) lapsed++
+    if (!drawable(row) || isStaleAsOf(row.asOf, now)) lapsed++
     else kept.push(row)
   }
   return { kept, lapsed }

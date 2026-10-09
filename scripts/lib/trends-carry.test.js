@@ -117,6 +117,23 @@ test('a row is carried only as the series the registry still names', () => {
   assert.equal(carriedRow(XMR, { fetchedAt: 'this morning', indicators: [xmrRow()] }, NOW), null)
 })
 
+test('a row the app could not draw is never carried', () => {
+  // `isTrendsSnapshot` (mobile/lib/validate.ts) accepts the payload only if
+  // every row has two finite values and a label for each. A NaN is `null` by
+  // the time the file is read back.
+  for (const bad of [
+    { values: [341.2] , periods: ['Oct 9'] },
+    { values: [341.2, null], periods: ['Oct 8', 'Oct 9'] },
+    { values: [341.2, '338.9'], periods: ['Oct 8', 'Oct 9'] },
+    { values: [341.2, 338.9], periods: ['Oct 9'] },
+    { values: [341.2, 338.9], periods: ['Oct 8', 9] },
+    { values: [341.2, 338.9], periods: undefined },
+  ]) {
+    assert.equal(carriedRow(XMR, prior(xmrRow(bad)), NOW), null, JSON.stringify(bad))
+    assert.deepEqual(carriedStocks(prior(stock('NVDA', '2026-10-08', bad)), new Set(), NOW), { kept: [], lapsed: 1 }, JSON.stringify(bad))
+  }
+})
+
 test('a failed calendar call keeps the previous snapshot’s releases that are still ahead', () => {
   const left = {
     releaseCalendar: [
