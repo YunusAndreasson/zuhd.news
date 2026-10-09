@@ -31,6 +31,9 @@ const MEDIA_UPLOAD_URL = 'https://upload.twitter.com/1.1/media/upload.json'
 // X counts weighted length (URLs=23, emoji/CJK=2). Our tweets are plain English
 // with no link, so code-unit length is a safe proxy; 275 leaves headroom < 280.
 const MAX_LEN = 275
+// One call to X: the upload of a card of some 150 KB, or the tweet. Neither had
+// a deadline, so one that hung ended only at the cycle's `timeout 60`.
+const CALL_TIMEOUT_MS = 20_000
 
 // --- credentials ---
 const creds = {
@@ -131,6 +134,7 @@ async function uploadMedia(buffer) {
     method: 'POST',
     headers: { Authorization: authHeader('POST', MEDIA_UPLOAD_URL) },
     body: fd,
+    signal: AbortSignal.timeout(CALL_TIMEOUT_MS),
   })
   const json = await res.json().catch(() => ({}))
   if (!res.ok || !json?.media_id_string) {
@@ -173,6 +177,7 @@ async function post({ slug, dryRun, story, log }) {
       'Content-Type': 'application/json',
     },
     body: JSON.stringify(mediaIds.length ? { media: { media_ids: mediaIds } } : { text }),
+    signal: AbortSignal.timeout(CALL_TIMEOUT_MS),
   })
   const json = await res.json().catch(() => ({}))
   if (res.ok && json?.data?.id) {

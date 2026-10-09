@@ -30,11 +30,11 @@
 import { mkdirSync, writeFileSync } from 'node:fs'
 import { join } from 'node:path'
 import { buildIgJpeg, IG_FEED, IG_STORY } from './lib/ig-image.js'
+import { graphClient, publishStory } from './lib/instagram.js'
 import { ROOT } from './lib/paths.js'
 import { runPoster, writeCopy } from './lib/social-post.js'
 
 const SITE = 'https://zuhd.news'
-const GRAPH = 'https://graph.facebook.com/v21.0'
 const MAX_CAPTION = 2000 // Instagram hard limit is 2200; leave headroom.
 
 // --- credentials ---
@@ -52,69 +52,6 @@ async function captionFor(story) {
   return (text || `${story.card.headline}.\n\nFull story in the app — link in bio.`).slice(0, MAX_CAPTION)
 }
 
-// --- Graph API helpers ---
-async function graphPost(path, params) {
-  const res = await fetch(`${GRAPH}/${path}`, {
-    method: 'POST',
-    headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
-    body: new URLSearchParams({ ...params, access_token: creds.token }).toString(),
-  })
-  const json = await res.json().catch(() => ({}))
-  if (!res.ok || json?.error) {
-    const err = json?.error?.message || `HTTP ${res.status}`
-    throw new Error(err)
-  }
-  return json
-}
-
-// Image containers finish almost instantly, but poll a few times to be safe.
-async function waitForContainer(creationId) {
-  for (let i = 0; i < 6; i++) {
-    const res = await fetch(
-      `${GRAPH}/${creationId}?fields=status_code&access_token=${encodeURIComponent(creds.token)}`,
-    )
-    const json = await res.json().catch(() => ({}))
-    if (json?.status_code === 'FINISHED') return
-    if (json?.status_code === 'ERROR') throw new Error('container processing failed')
-    await new Promise((r) => setTimeout(r, 1500))
-  }
-  // Fall through — publish will surface a clear error if it truly isn't ready.
-}
-
-// Wait until the deployed image URL is actually live at the CDN edge before
-// asking Instagram to fetch it. post-to-instagram runs seconds after `wrangler
-// pages deploy`, and IG's fetchers frequently hit the URL before Cloudflare has
-// propagated the new file — they get a 404 HTML page and reject the container
-// with "Only photo or video can be accepted as media type" (the recurring
-// intermittent IG failure). Polling HEAD until we see a real image closes that
-// race. Capped well under run-cycle.sh's 90s timeout for this step.
-async function waitForPublicImage(url, tries = 6, delayMs = 5000) {
-  for (let i = 0; i < tries; i++) {
-    try {
-      const res = await fetch(url, { method: 'HEAD' })
-      const ct = res.headers.get('content-type') || ''
-      if (res.ok && ct.startsWith('image/')) return true
-    } catch {
-      /* transient — deploy still propagating */
-    }
-    if (i < tries - 1) await new Promise((r) => setTimeout(r, delayMs))
-  }
-  return false
-}
-
-// Publish a single image (feed or story). Returns the published media id.
-/** @param {{ imageUrl: string, mediaType?: string, extra?: Record<string, any> }} opts */
-async function publishImage({ imageUrl, mediaType, extra = {} }) {
-  const container = await graphPost(`${creds.userId}/media`, {
-    image_url: imageUrl,
-    ...(mediaType ? { media_type: mediaType } : {}),
-    ...extra,
-  })
-  await waitForContainer(container.id)
-  const published = await graphPost(`${creds.userId}/media_publish`, { creation_id: container.id })
-  return published.id
-}
-
 // --- run ---
 /**
  * @param {import('./lib/social-post.js').PostContext} ctx
@@ -126,7 +63,6 @@ async function post({ slug, dryRun, story, log }) {
   // source the OG share card uses. The published image is the build artifact
   // rendered from this same value, so the dry-run preview below matches exactly.
   const { headline } = story.card
-  const caption = await captionFor(story)
 
   // --- public image URLs (built at build time, deployed before this runs) ---
   const feedUrl = `${SITE}/api/ig/${slug}.jpg`
@@ -136,6 +72,7 @@ async function post({ slug, dryRun, story, log }) {
   if (dryRun || !haveCreds) {
     // The card with the story lead as its dek, as build.js renders it. Only
     // this preview is drawn here; the published card is the build artifact.
+    const caption = await captionFor(story)
     const outDir = join(ROOT, '.cache', 'ig-preview')
     mkdirSync(outDir, { recursive: true })
     const feedPath = join(outDir, `${slug}.jpg`)
@@ -151,54 +88,8 @@ async function post({ slug, dryRun, story, log }) {
     return
   }
 
-  try {
-    // 0. Wait out CDN propagation so IG doesn't fetch the URL before it's live.
-    if (!(await waitForPublicImage(feedUrl))) {
-      console.error(`post-to-instagram: ${feedUrl} not yet a live image after wait — attempting publish anyway.`)
-    }
-
-    // 1. Feed post (the caption rides on the container, not media_publish).
-    const mediaId = await publishImage({ imageUrl: feedUrl, extra: { caption } })
-    console.log(`post-to-instagram: posted feed ${mediaId}`)
-
-    // 2. First comment: the article URL (feed captions can't carry a live link).
-    let commentId = null
-    try {
-      const c = await graphPost(`${mediaId}/comments`, { message: articleUrl })
-      commentId = c.id
-    } catch (e) {
-      console.error(`post-to-instagram: first-comment failed (non-fatal) — ${e.message}`)
-    }
-
-    // 3. Story cross-post (image-only). Independent of the feed post's success.
-    let storyMediaId = null
-    try {
-      storyMediaId = await publishImage({ imageUrl: storyUrl, mediaType: 'STORIES' })
-      console.log(`post-to-instagram: posted story ${storyMediaId}`)
-    } catch (e) {
-      console.error(`post-to-instagram: story cross-post failed (non-fatal) — ${e.message}`)
-    }
-
-    return log.add({
-      timestamp: new Date().toISOString(),
-      slug,
-      headline,
-      caption,
-      mediaId,
-      commentId,
-      storyMediaId,
-      sent: true,
-    })
-  } catch (e) {
-    // Record the failure so we can see it in the log; the runner says it and
-    // ends the step on 1.
-    try {
-      log.add({ timestamp: new Date().toISOString(), slug, headline, caption, sent: false, error: String(e.message) })
-    } catch {
-      /* ignore */
-    }
-    throw e
-  }
+  const api = graphClient({ userId: /** @type {string} */ (creds.userId), token: /** @type {string} */ (creds.token) })
+  return publishStory(api, log, { slug, headline, writeCaption: () => captionFor(story), feedUrl, storyUrl, articleUrl })
 }
 
 await runPoster(import.meta, 'post-to-instagram', {
