@@ -1,7 +1,7 @@
 // Run: node --test scripts/lib/ledger.test.js
 import assert from 'node:assert/strict'
 import { test } from 'node:test'
-import { updateLedger } from './ledger.js'
+import { LEDGER_LIFE_CYCLES, updateLedger } from './ledger.js'
 
 const NOW = '2026-10-08T18:08:56.751Z'
 const EARLIER = '2026-10-08T14:07:01.000Z'
@@ -76,6 +76,22 @@ test('what a cycle does not cover fades, and at nothing it is forgotten', () => 
   const changes = updateLedger(ledger, [pick('2026-10-08-zebrafish-quorum-sensing-paradox')], NOW)
   assert.deepEqual(ledger.stories.map((s) => [s.id, s.importance]), [['zebrafish-quorum-sensing-paradox', 6], ['kept-warm', 2]])
   assert.deepEqual(changes, ['New: zebrafish-quorum-sensing-paradox', 'Decayed importance for 2 uncovered stories', 'Removed 1 entries at importance 0'])
+})
+
+// The life the dedup's event layer inherits: eng-12070274, published
+// 2026-10-06 10:01, was known as covered for the six cycles to 10-07 14:03 and
+// bought again by the fetcher at 18:04.
+test('a story is in the ledger for six cycles after the one that picked it, and gone at the end of the sixth', () => {
+  assert.equal(LEDGER_LIFE_CYCLES, 6)
+  const ledger = { version: 1, stories: [] }
+  updateLedger(ledger, [pick('2026-10-06-congress-plans-nationwide-stir', { eventUri: 'eng-12070274' })], NOW)
+  const known = () => ledger.stories.some((s) => s.eventUri === 'eng-12070274')
+  const elsewhere = ['kestrel', 'osprey', 'heron', 'plover', 'curlew', 'dunlin']
+  for (const [i, bird] of elsewhere.entries()) {
+    assert.ok(known(), `still known when cycle ${i + 1} fetches`)
+    updateLedger(ledger, [pick(`2026-10-07-${bird}-census`)], NOW)
+  }
+  assert.ok(!known(), 'forgotten by the seventh')
 })
 
 test('the ledger is kept by importance, then by what was covered last', () => {

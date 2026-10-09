@@ -321,6 +321,12 @@ function isNicheOnly(story) {
  * events by coverage, which are mostly running stories this layer then drops
  * (6 of 8 on 2026-09-25, the same events re-bought every cycle). One function,
  * so the fetcher skips exactly what prefilter would have thrown away.
+ *
+ * How far back it sees is the ledger's memory, not the window `recentSlugs`
+ * was loaded with: the ledger is the only place an event is tied to its
+ * article, and a story leaves it after six cycles (`LEDGER_LIFE_CYCLES`,
+ * `lib/ledger.js`). Both callers pass seven days; an event is known for about
+ * 28 hours.
  * @param {string | null | undefined} eventUri
  * @param {{ ledgerEventUris: Map<string, string[]>, recentSlugs: string[] }} ctx
  */
@@ -379,6 +385,14 @@ export function wouldDedup(story, ctx) {
   }
   return { deduped: false }
 }
+
+// The window the prefilter loads its context with, and the per-event purchase
+// in `fetch-news-api.js` with it, so that the fetcher skips what the prefilter
+// would remove. Experiment 2026-04-19-prefilter-7d widened it from 48 hours,
+// because the selector kept picking stories that matched articles two and
+// three days old. It is seven days for the slug layer. The event layer has
+// the ledger's six cycles whatever is passed here (`eventCoveredRecently`).
+export const PREFILTER_WINDOW_MS = 7 * 24 * 3600 * 1000
 
 // Recap-layer lookback: niche outlets were observed reposting events up to
 // 10 days after the original break (2026-05-02 audit). Run the title-fuzzy

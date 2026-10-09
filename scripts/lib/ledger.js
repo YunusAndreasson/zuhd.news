@@ -5,6 +5,23 @@
 /** @typedef {import('./schema.js').LedgerStory} LedgerStory */
 
 /**
+ * How many cycles a story stays in the ledger without being covered: it
+ * starts at this importance and loses one in each cycle that leaves it out
+ * (in all, not in a row: being covered again does not give any back).
+ *
+ * It is also how long the dedup remembers an event, whatever window it is
+ * handed. `eventCoveredRecently` (`lib/dedup.js`) finds an event's article
+ * through the ledger, for the prefilter and for the per-event purchase in
+ * `fetch-news-api.js`, and both call that with seven days. An event is known
+ * for six cycles, about 28 hours: eng-12070274 was published on 2026-10-06 at
+ * 10:01, skipped as covered in the six cycles to 10-07 14:03, and bought
+ * again at 18:04 and at 22:04. Over the 41 cycles from 09-30 to 10-09 the
+ * fetcher made 327 per-event purchases for 169 events, 74 of them bought more
+ * than once.
+ */
+export const LEDGER_LIFE_CYCLES = 6
+
+/**
  * Fold a selection into the ledger, in place, and say what changed.
  *
  * - A pick is matched to a story the ledger already follows by `eventUri`,
@@ -12,7 +29,8 @@
  * - A matched story is covered again: its count rises, the slug is added, and
  *   its arc advances (`breaking` to `developing` at two cycles, to `ongoing`
  *   at five).
- * - An unmatched pick becomes a new story at importance 6, arc `breaking`.
+ * - An unmatched pick becomes a new story at importance 6
+ *   (`LEDGER_LIFE_CYCLES`), arc `breaking`.
  * - Every story the selection did not touch loses one importance, and a story
  *   at zero is removed. That is the whole of the ledger's forgetting: a new
  *   story lasts six cycles without coverage.
@@ -88,7 +106,7 @@ export function updateLedger(ledger, selection, now) {
         lastCovered: now,
         coverageCount: 1,
         category: entry.category || 'politics',
-        importance: 6,
+        importance: LEDGER_LIFE_CYCLES,
         arc: 'breaking',
         articles: slug ? [slug] : [],
         eventUri: entry.eventUri || null,

@@ -4,7 +4,7 @@
 // Output: /tmp/zuhd-feed-api.json
 import { mkdirSync, readdirSync, statSync, unlinkSync } from 'node:fs'
 import { countryOf, extractConcepts, hasHeadline, mapCategory, redact, resultsAt, sourceName, storyFrom, toSource } from './lib/api-feed.js'
-import { eventCoveredRecently, loadDedupContext } from './lib/dedup.js'
+import { PREFILTER_WINDOW_MS, eventCoveredRecently, loadDedupContext } from './lib/dedup.js'
 import { MAX_FEED_AGE_MS } from './lib/feed-age.js'
 import { readUnexplainedMovers } from './lib/company-gaps.js'
 import { namedSeries, pickTracked, TRACKED_KEYWORDS } from './lib/tracked-stories.js'
@@ -481,8 +481,14 @@ async function main() {
   // panel never reached the writer — 6 of 8 on 2026-09-25, with the same
   // events re-bought every cycle. The budget now walks down the list past
   // covered events, so the same tokens buy panels for stories we can still
-  // run. `eventCoveredRecently` is prefilter's own test, over prefilter's
-  // own 7-day window.
+  // run. `eventCoveredRecently` is prefilter's own test, with prefilter's own
+  // window (`PREFILTER_WINDOW_MS`).
+  //
+  // "Covered" lasts as long as the ledger remembers the story, which is six
+  // cycles and not that window's seven days (`LEDGER_LIFE_CYCLES`): an event
+  // published on 2026-10-06 at 10:01 was skipped here for six cycles and
+  // bought again at 18:04 and 22:04 the next day. 327 purchases for 169
+  // events over the 41 cycles from 09-30 to 10-09.
   const TOP_EVENTS_TO_FETCH = 8
   const PER_EVENT_CONCURRENCY = 4
   const MAX_EVENTS_SCANNED = 24
@@ -493,7 +499,7 @@ async function main() {
   /** @type {Parameters<typeof eventCoveredRecently>[1]} */
   let dedupCtx = { ledgerEventUris: new Map(), recentSlugs: [] }
   try {
-    dedupCtx = loadDedupContext(7 * 24 * 3600 * 1000)
+    dedupCtx = loadDedupContext(PREFILTER_WINDOW_MS)
   } catch (e) {
     console.error(`⚠ per-event fetch: what is already covered could not be read (${e.message}), so no event is skipped as covered`)
   }

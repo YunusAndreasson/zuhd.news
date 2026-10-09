@@ -5,7 +5,7 @@
 // is marked thin is `lib/prefilter.js`.
 import { existsSync, readFileSync } from 'node:fs'
 import { pathOf } from './lib/datasets.js'
-import { THIN_BODY, loadDedupContext } from './lib/dedup.js'
+import { PREFILTER_WINDOW_MS, THIN_BODY, loadDedupContext } from './lib/dedup.js'
 import { writeJson } from './lib/json-file.js'
 import { prefilterFeed, reasonCounts } from './lib/prefilter.js'
 import { runStage } from './lib/stage.js'
@@ -15,10 +15,11 @@ export function main() {
   const SLIM = pathOf('feedSlim')
   if (!existsSync(FEED)) return { skipped: 'no feed' }
 
-  // Experiment 2026-04-19-prefilter-7d: widen prefilter slug/fuzzy window from
-  // 48h to 7d so the selector stops picking stories that match articles
-  // published 2-3 days ago (causes post-selection dedup cascade + backfill filler).
-  const ctx = loadDedupContext(7 * 24 * 3600 * 1000)
+  // Seven days, where the selection's own dedup has 48 hours
+  // (`PREFILTER_WINDOW_MS`, with the experiment that set it). That is the reach
+  // of the slug layer. The event layer sees an event for the six cycles its
+  // ledger entry lives, about 28 hours, whatever window it is given.
+  const ctx = loadDedupContext(PREFILTER_WINDOW_MS)
 
   const { feed, slim, removed, thin } = prefilterFeed(
     JSON.parse(readFileSync(FEED, 'utf-8')),
