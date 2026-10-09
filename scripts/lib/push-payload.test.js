@@ -4,7 +4,8 @@ import { spawnSync } from 'node:child_process'
 import { join } from 'node:path'
 import { test } from 'node:test'
 import { ROOT } from './paths.js'
-import { briefingPayload, briefingTop, firstLine, pushSlug, withPushBody } from './push-payload.js'
+import { parseBriefingScript } from './briefing-script.js'
+import { briefingPayload, briefingTop, briefingTopFromScript, firstLine, pushSlug, withPushBody } from './push-payload.js'
 
 const payload = () => ({ articles: [{ slug: '2026-10-09-fed-raises-rates', title: 'Fed Raises Rates', category: 'economy', body: 'The Federal Reserve raised', eventCoverage: 12, importance: 6 }] })
 
@@ -38,7 +39,55 @@ test('the briefing\'s payload is the shape the endpoint was built for', () => {
   assert.equal(JSON.stringify(briefingPayload('A line', undefined)), '{"articles":[{"slug":"briefing-undefined","title":"Today\'s Briefing","body":"A line","channelId":"briefing","priority":"normal","data":{"kind":"briefing"}}]}')
 })
 
-test('the topic line is written from the five most important stories that are live', () => {
+// A briefing as it is saved beside its recording: the intro and the lead, then
+// a section a category, a heading and a short pause at the head of each.
+const SCRIPT = `This is your Jumu'ah briefing for the ninth of October, twenty twenty-six.
+<long pause>
+Eighty schoolchildren from Borno State, in Nigeria's northeast, are still in captivity... nearly six months after insurgents took them. Forty-four were seized at Mussa in May. The families are asking why.
+---
+In politics. <short pause>
+In Sanaa, a fourteen-year-old girl was killed on her school bus, on the way home from her last exam. Witnesses say shrapnel hit the bus.
+<long pause>
+A federal immigration agent in New York fired seven rounds into a car. The mayor called it unconscionable.
+---
+On the economy. <short pause>
+Only seven ships crossed the Strait of Hormuz on Tuesday, the fewest since late July. That's well below the eighty a day before the war.
+---
+In science. <short pause>
+At St. Olaf College, chemists found that nickel electrodes do their work as nickel dioxide. Textbooks say otherwise.
+---
+In technology. <short pause>
+Alibaba is suing the Pentagon, denying any link to the Chinese military.
+<long pause>
+That's your briefing.
+`
+
+// The line used to be written from the ledger's five newest rows. Over
+// 2026-10-05 to 10-09 the briefing's own lead was missing from it on two days
+// of five, and three of fifteen topics pushed were in no briefing.
+test('the topic line is written from the briefing: its lead, then the first story of each section', () => {
+  assert.deepEqual(briefingTopFromScript(parseBriefingScript(SCRIPT).sections), [
+    { label: "Eighty schoolchildren from Borno State, in Nigeria's northeast, are still in captivity... nearly six months after insurgents took them.", category: 'lead', arc: 'breaking' },
+    { label: 'In Sanaa, a fourteen-year-old girl was killed on her school bus, on the way home from her last exam.', category: 'politics', arc: 'breaking' },
+    { label: 'Only seven ships crossed the Strait of Hormuz on Tuesday, the fewest since late July.', category: 'economy', arc: 'breaking' },
+    { label: 'At St. Olaf College, chemists found that nickel electrodes do their work as nickel dioxide.', category: 'science', arc: 'breaking' },
+    { label: 'Alibaba is suing the Pentagon, denying any link to the Chinese military.', category: 'tech', arc: 'breaking' },
+  ], 'an ellipsis is a breath, a stop inside the first forty characters is not yet the end, and the sign-off is no story')
+})
+
+test('a script that leaves something out still gives what it has', () => {
+  const noIntro = briefingTopFromScript(['The lead story came with no intro before it. And a second sentence.', 'In politics.\nA section whose heading has no pause after it, which a model forgets now and then. More.'])
+  assert.deepEqual(noIntro, [
+    { label: 'The lead story came with no intro before it.', category: 'lead', arc: 'breaking' },
+    { label: 'A section whose heading has no pause after it, which a model forgets now and then.', category: 'politics', arc: 'breaking' },
+  ])
+  assert.deepEqual(briefingTopFromScript(['This is your briefing for the ninth of October.', 'In sport. <short pause>\nA category the site does not have.']), [{ label: 'A category the site does not have.', category: 'news', arc: 'breaking' }])
+  assert.deepEqual(briefingTopFromScript([]), [])
+  assert.equal(briefingTopFromScript(Array.from({ length: 9 }, (_, i) => `Story number ${i} is long enough to stand as a sentence of its own.`)).length, 5, 'five at most')
+})
+
+// What stands in when there is no script to read.
+test('the ledger\'s rows that are live, the first five by importance', () => {
   /** @param {string} label @param {Record<string, any>} over */
   const story = (label, over = {}) => ({ label, category: 'politics', arc: 'ongoing', importance: 3, ...over })
   const ledger = { stories: [
