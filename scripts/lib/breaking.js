@@ -165,24 +165,23 @@ export function choosePush(candidates, pick) {
 }
 
 /**
- * The push log with this cycle's decision on the end: every candidate, the
- * one chosen, and why none was. The last 100 decisions are kept.
+ * This cycle's decision, as the push log holds it: every candidate, the one
+ * chosen, and why none was. `lib/post-log.js` puts it on the end of the log
+ * and keeps the last hundred.
  *
- * @param {any[]} log
  * @param {PushCandidate[]} candidates
  * @param {{ selected: PushCandidate[], skipReason: string | null }} choice
  * @param {number} now
  */
-export function withPushDecision(log, candidates, { selected, skipReason }, now) {
-  log.push({
+export function pushDecision(candidates, { selected, skipReason }, now) {
+  return {
     timestamp: new Date(now).toISOString(),
     candidateCount: candidates.length,
     candidates: candidates.map((c) => ({ slug: c.slug, title: c.title, category: c.category, eventCoverage: c.eventCoverage, importance: c.importance })),
     selected: selected[0] || null,
     skipReason,
     sent: false,
-  })
-  return log.length > 100 ? log.slice(-100) : log
+  }
 }
 
 /**

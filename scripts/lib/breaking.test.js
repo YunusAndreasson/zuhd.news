@@ -3,7 +3,7 @@ import assert from 'node:assert/strict'
 import { spawnSync } from 'node:child_process'
 import { join } from 'node:path'
 import { test } from 'node:test'
-import { breakingCandidates, choosePush, markPushSent, pushCandidates, pushFields, withPushDecision } from './breaking.js'
+import { breakingCandidates, choosePush, markPushSent, pushCandidates, pushDecision, pushFields } from './breaking.js'
 import { ROOT } from './paths.js'
 
 /** @param {Record<string, any>} over */
@@ -124,29 +124,22 @@ test('when nothing has a second source, nothing is pushed and the log says why',
   assert.deepEqual(choosePush([], null), { selected: [], skipReason: null })
 })
 
-test('the decision goes on the end of the push log, which keeps the last hundred', () => {
+test('the decision as the push log holds it: every candidate, the one chosen, and not yet sent', () => {
   const candidates = pushCandidates(/** @type {any} */ ({ stories: [pushStory({ articles: ['wide', 'niche'] })] }), pushCycle, fieldsOf)
   const now = Date.parse('2026-10-09T05:27:00Z')
-  const log = withPushDecision([{ timestamp: 'earlier' }], candidates, choosePush(candidates, null), now)
-  assert.deepEqual(log, [
-    { timestamp: 'earlier' },
-    {
-      timestamp: '2026-10-09T05:27:00.000Z',
-      candidateCount: 2,
-      candidates: [
-        { slug: 'wide', title: 'Fed Raises Rates', category: 'economy', eventCoverage: 40, importance: 6 },
-        { slug: 'niche', title: 'One Outlet Only', category: 'tech', eventCoverage: 0, importance: 6 },
-      ],
-      selected: { slug: 'wide', title: 'Fed Raises Rates', category: 'economy', body: 'The Fed raised rates', eventCoverage: 40, importance: 6 },
-      skipReason: null,
-      sent: false,
-    },
-  ])
-  const none = withPushDecision([], [], choosePush([], null), now)
-  assert.deepEqual([none[0].selected, none[0].candidateCount], [null, 0])
-  const full = Array.from({ length: 100 }, (_, i) => ({ timestamp: `t${i}` }))
-  const capped = withPushDecision(full, candidates, choosePush(candidates, null), now)
-  assert.deepEqual([capped.length, capped[0].timestamp, capped.at(-1).timestamp], [100, 't1', '2026-10-09T05:27:00.000Z'])
+  assert.deepEqual(pushDecision(candidates, choosePush(candidates, null), now), {
+    timestamp: '2026-10-09T05:27:00.000Z',
+    candidateCount: 2,
+    candidates: [
+      { slug: 'wide', title: 'Fed Raises Rates', category: 'economy', eventCoverage: 40, importance: 6 },
+      { slug: 'niche', title: 'One Outlet Only', category: 'tech', eventCoverage: 0, importance: 6 },
+    ],
+    selected: { slug: 'wide', title: 'Fed Raises Rates', category: 'economy', body: 'The Fed raised rates', eventCoverage: 40, importance: 6 },
+    skipReason: null,
+    sent: false,
+  })
+  const none = pushDecision([], choosePush([], null), now)
+  assert.deepEqual([none.selected, none.candidateCount], [null, 0])
 })
 
 test('a push that went out is marked on the last decision, with what the endpoint said', () => {
