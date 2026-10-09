@@ -802,7 +802,7 @@ $TITLE_ECHO
       BREAKING_JSON=$(node scripts/cycle/breaking-push.js pick)
       if [ -n "$BREAKING_JSON" ] && [ -n "${PUSH_SECRET:-}" ]; then
         # Craft notification body with Claude — the article lead isn't written for push
-        PUSH_SLUG=$(echo "$BREAKING_JSON" | node -e "const d=JSON.parse(require('fs').readFileSync('/dev/stdin','utf8'));console.log(d.articles[0]?.slug||'')")
+        PUSH_SLUG=$(echo "$BREAKING_JSON" | node scripts/cycle/push-payload.js slug)
         if [ -n "$PUSH_SLUG" ] && [ -f "content/articles/${PUSH_SLUG}.md" ]; then
           ARTICLE_TEXT=$(cat "content/articles/${PUSH_SLUG}.md")
           PUSH_NOTIF=$(timeout 30 claude $CLAUDE_FLAGS --model $CLAUDE_MODEL --effort medium --tools "" -p "Write ONE push notification body for this article. Title is already 'Breaking News' — you write only the body.
@@ -834,14 +834,7 @@ $ARTICLE_TEXT" 2>/dev/null)
           if [ -n "$PUSH_NOTIF" ]; then
             # Inject title + first non-empty line of Claude's output into BREAKING_JSON
             # in a single node pass. Fails loudly if the body can't be extracted.
-            INJECTED=$(NOTIF="$PUSH_NOTIF" node -e "
-              const d = JSON.parse(require('fs').readFileSync('/dev/stdin','utf8'));
-              const body = (process.env.NOTIF||'').trim().split(/\r?\n/).map(l=>l.trim()).filter(Boolean)[0];
-              if (!body) { process.stderr.write('empty push body from claude\n'); process.exit(2); }
-              d.articles[0].title = 'Breaking News';
-              d.articles[0].body = body;
-              process.stdout.write(JSON.stringify(d));
-            " <<< "$BREAKING_JSON" 2>>"$LOG_FILE")
+            INJECTED=$(NOTIF="$PUSH_NOTIF" node scripts/cycle/push-payload.js inject <<< "$BREAKING_JSON" 2>>"$LOG_FILE")
             if [ -n "$INJECTED" ]; then
               BREAKING_JSON="$INJECTED"
             else
@@ -1007,18 +1000,7 @@ if [ "${START_HOUR:-$HOUR_UTC}" = "$DAILY_HOUR" ]; then
       # Top stories for the topic line — read straight from the ledger so
       # we don't need a second LLM pass to rank. Same filter the briefing
       # generator uses (importance >= 6 || arc breaking/developing), top 5.
-      BRIEFING_TOP=$(node -e "
-        const fs = require('fs');
-        try {
-          const ledger = JSON.parse(fs.readFileSync('content/.story-ledger.json','utf8'));
-          const top = (ledger.stories || [])
-            .filter(s => s.importance >= 6 || s.arc === 'breaking' || s.arc === 'developing')
-            .sort((a, b) => (b.importance || 0) - (a.importance || 0))
-            .slice(0, 5)
-            .map(s => ({ label: s.label, category: s.category, arc: s.arc }));
-          process.stdout.write(JSON.stringify(top));
-        } catch (e) { process.stderr.write('briefing-top failed: ' + e.message + '\n'); }
-      " 2>>"$LOG_FILE")
+      BRIEFING_TOP=$(node scripts/cycle/push-payload.js briefing-top 2>>"$LOG_FILE")
       if [ -n "$BRIEFING_TOP" ] && [ "$BRIEFING_TOP" != "[]" ]; then
         BRIEFING_BODY=$(timeout 30 claude $CLAUDE_FLAGS --model $CLAUDE_MODEL --effort medium --tools "" -p "Write ONE push notification body announcing today's daily news briefing audio is ready.
 
@@ -1043,21 +1025,7 @@ Output ONLY the line, nothing else.
 Top stories from today's briefing:
 $BRIEFING_TOP" 2>/dev/null | head -1 | tr -d '\n')
         if [ -n "$BRIEFING_BODY" ]; then
-          BRIEFING_PUSH_JSON=$(BODY="$BRIEFING_BODY" DATE="$BRIEFING_DATE" node -e "
-            const body = (process.env.BODY || '').trim();
-            const date = process.env.DATE;
-            if (!body) process.exit(2);
-            process.stdout.write(JSON.stringify({
-              articles: [{
-                slug: 'briefing-' + date,
-                title: \"Today's Briefing\",
-                body,
-                channelId: 'briefing',
-                priority: 'normal',
-                data: { kind: 'briefing', date }
-              }]
-            }));
-          " 2>>"$LOG_FILE")
+          BRIEFING_PUSH_JSON=$(BODY="$BRIEFING_BODY" DATE="$BRIEFING_DATE" node scripts/cycle/push-payload.js briefing 2>>"$LOG_FILE")
           if [ -n "$BRIEFING_PUSH_JSON" ]; then
             echo "Pushing daily briefing: $BRIEFING_PUSH_JSON" | tee -a "$LOG_FILE"
             curl -s -X POST "https://zuhd.news/api/push" \

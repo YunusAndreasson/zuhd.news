@@ -63,7 +63,7 @@ commands
   git push origin master
   npx wrangler pages deploy dist --project-name zuhd-news --branch master --commit-dirty=true
   node scripts/cycle/breaking-push.js pick
-  node -e «push-slug» sha1:94d3b284
+  node scripts/cycle/push-payload.js slug
       < {"articles":[{"slug":"2026-10-08-fed-raises-rates","title":"Fed Raises Rates","category":"economy","body":"The Federal Reserve raised","eventCoverage":12,"importance":6}]}
   claude --no-session-persistence --setting-sources project --disable-slash-commands --strict-mcp-config --model claude-sonnet-5-5 --effort medium --tools '' -p «text sha1:f1770fa3»
   curl -s -X POST https://zuhd.news/api/push -H Authorization: Bearer not-a-secret -H Content-Type: application/json -d {"articles":[{"slug":"2026-10-08-fed-raises-rates","title":"Fed Raises Rates","category":"economy","body":"The Federal Reserve raised","eventCoverage":12,"importance":6}]}

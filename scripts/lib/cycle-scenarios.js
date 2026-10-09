@@ -40,20 +40,19 @@ const says = (out, rest = {}) => ({ out, ...rest })
  * @returns {Rule[]}
  */
 const healthy = () => [
-  // The counts the script takes between stages (`scripts/cycle/tally.js`).
+  // The small programs the script once carried inline, now `scripts/cycle/`
+  // and `scripts/body-lengths.js`: what each prints is what bash acts on.
   rule('api-stats', 'node', '^scripts/cycle/tally\\.js feed-api$', says('80 stories from 50 events\n')),
   rule('rss-stats', 'node', '^scripts/cycle/tally\\.js feed-rss$', says('77\n')),
   rule('feed-stats', 'node', '^scripts/cycle/tally\\.js feed$', says('13 multi + 47 niche\n')),
   rule('selection-count', 'node', '^scripts/cycle/tally\\.js selection$', says('2\n')),
   rule('body-lengths', 'node', '^scripts/body-lengths\\.js$', says(`ok 452 chars  4 blocks  ${A}\nOVER 571 chars  5 blocks  ${B}\n`)),
   rule('breaking-pick', 'node', '^scripts/cycle/breaking-push\\.js pick$', says(`${PUSH}\n`)),
-  // The programs the script still carries inline, each told apart by a
-  // phrase only it contains.
-  rule('push-slug', 'node', '^-e .*d\\.articles\\[0\\]\\?\\.slug', says('2026-10-08-fed-raises-rates\n')),
-  rule('push-inject', 'node', '^-e .*empty push body from claude', says(PUSHED)),
+  rule('push-slug', 'node', '^scripts/cycle/push-payload\\.js slug$', says('2026-10-08-fed-raises-rates\n')),
+  rule('push-inject', 'node', '^scripts/cycle/push-payload\\.js inject$', says(PUSHED)),
   rule('push-log', 'node', '^scripts/cycle/breaking-push\\.js sent$', says('')),
-  rule('briefing-top', 'node', '^-e .*briefing-top failed', says('[{"label":"Fed Raises Rates","category":"economy","arc":"breaking"}]')),
-  rule('briefing-payload', 'node', '^-e .*channelId', says(BRIEFING_PUSH)),
+  rule('briefing-top', 'node', '^scripts/cycle/push-payload\\.js briefing-top$', says('[{"label":"Fed Raises Rates","category":"economy","arc":"breaking"}]')),
+  rule('briefing-payload', 'node', '^scripts/cycle/push-payload\\.js briefing$', says(BRIEFING_PUSH)),
   rule('alert', 'node', '/scripts/cycle/alert\\.js$', says('ALERT: no articles published (1 cycle(s) in a row since 2026-10-08T18:04:59.000Z)\n')),
 
   // The stages whose outcome the script acts on.
