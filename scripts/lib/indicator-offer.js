@@ -35,20 +35,22 @@ export const sig4 = (n) => (Number.isFinite(n) ? Number(Number(n).toPrecision(4)
  * indicator is dropped rather than dated, because a writer handed a figure will
  * use it and the caveat is the first thing a 450-character article cuts.
  */
-const MAX_AGE_DAYS = { monthly: 45, weekly: 30 }
+const MAX_AGE_DAYS = { monthly: 45 }
 const STALE_DEFAULT = 12
 
 /**
- * The two windows offered per cadence, in observations.
+ * The two windows offered per cadence: a quarter and a year of monthly
+ * prints, a week and a month of days.
  *
- * Fixed at 7 and 30 first, which on a monthly series is seven months and
- * **twenty-two** — a nearly two-year swing offered beside a daily one as though
- * they were the same kind of statement. A window is only useful if a reader
- * would recognise it as a period: a quarter and a year for a monthly print, a
- * week and a month for a daily one.
+ * Fixed at 7 and 30 observations first, which on a monthly series is seven
+ * months and **twenty-two** — a nearly two-year swing offered beside a daily
+ * one as though they were the same kind of statement. A window is only useful
+ * if a reader would recognise it as a period. The registry has the two
+ * cadences and no third: a weekly print (the mortgage rate, the pump price)
+ * is carried as `daily`, each print with its day.
  */
-const WINDOWS = { monthly: [3, 12], weekly: [4, 26] }
-const WINDOWS_DEFAULT = [7, 30]
+const MONTHLY_WINDOWS = [3, 12]
+const WIDER_DAYS = 30
 
 /** At most this many rows per story, and at most one contract among them. A
  *  story is about one or two things, and a longer list reads as a menu the
@@ -58,27 +60,26 @@ const MAX_ROWS = 4
 const DAY = 86400_000
 
 /**
- * The change across the last `n` published points, with the period named.
+ * The change across the last `n` monthly prints, with the period named.
  *
- * **The period comes from the cadence, and getting that wrong is the whole
- * hazard of this stage.** `values` is a list of observations, not of days:
- * `wheat` and `rice` are monthly, so the last seven points are seven *months*.
- * The first version labelled every one of them `change7d`, which offered a
- * writer a 12-month commodity swing as a fortnight's move — a wrong number in
- * an article, produced by a stage whose whole purpose is getting numbers into
- * articles.
+ * **Observations are not days, and getting that wrong is the whole hazard of
+ * this stage.** `wheat` and `rice` are monthly, so the last seven points are
+ * seven *months*. The first version labelled every one of them `change7d`,
+ * which offered a writer a 12-month commodity swing as a fortnight's move — a
+ * wrong number in an article, produced by a stage whose whole purpose is
+ * getting numbers into articles. So this counts prints only where a print is
+ * a month, and a daily series is measured in days by its dates (`daysMove`).
  */
-export const change = (values, cadence, n) => {
+export const monthlyChange = (values, n) => {
   const v = (values || []).filter(Number.isFinite)
   if (v.length < 2) return null
   const steps = Math.min(n, v.length - 1)
   const from = v[v.length - 1 - steps]
   const to = v[v.length - 1]
   if (!Number.isFinite(from) || from === 0) return null
-  const unit = cadence === 'monthly' ? 'month' : cadence === 'weekly' ? 'week' : 'day'
   return {
     pct: Number((((to - from) / Math.abs(from)) * 100).toFixed(1)),
-    over: `${steps} ${unit}${steps === 1 ? '' : 's'}`,
+    over: `${steps} month${steps === 1 ? '' : 's'}`,
   }
 }
 
@@ -337,6 +338,85 @@ const pointsMove = (ind, days) => {
   return { points: Math.round(last - then), over: `${days} days` }
 }
 
+/**
+ * A row's observations with the day each fell on, oldest first, or null when
+ * they cannot be dated.
+ *
+ * `dates` where the row carries them (FRED, the BIS, an exchange): the day
+ * itself. Otherwise the period labels, which have no year. The newest is
+ * placed by `asOf`, and the year steps back wherever a label would fall after
+ * the one that follows it (a series across New Year).
+ *
+ * @param {{ values?: number[], periods?: string[], dates?: string[], asOf?: string }} ind
+ * @returns {{ t: number, v: number }[] | null}
+ */
+const datedPoints = (ind) => {
+  const values = ind.values || []
+  /** @type {number[]} */
+  let days
+  if (Array.isArray(ind.dates) && ind.dates.length === values.length) {
+    days = ind.dates.map((d) => Date.parse(`${d}T00:00:00Z`))
+  } else {
+    const periods = ind.periods || []
+    const end = Date.parse(`${ind.asOf}T00:00:00Z`)
+    if (!Number.isFinite(end) || periods.length !== values.length) return null
+    days = new Array(values.length)
+    let year = new Date(end).getUTCFullYear()
+    // A newest label half a year past `asOf` is last year's: `asOf` Jan 2
+    // over a series whose last label is Dec 31.
+    let next = end + 183 * DAY
+    for (let i = periods.length - 1; i >= 0; i--) {
+      let t = Date.parse(`${periods[i]} ${year} 00:00:00 UTC`)
+      if (t > next) t = Date.parse(`${periods[i]} ${--year} 00:00:00 UTC`)
+      if (!Number.isFinite(t)) return null
+      days[i] = t
+      next = t
+    }
+  }
+  const points = []
+  for (let i = 0; i < values.length; i++) {
+    if (Number.isFinite(days[i]) && Number.isFinite(values[i])) points.push({ t: days[i], v: values[i] })
+  }
+  return points
+}
+
+/**
+ * The change over `days` calendar days, with the days it really spans named.
+ *
+ * From the latest observation on or before `days` before the newest. A series
+ * that skips weekends, or prints once a week, has none exactly there, so the
+ * span is counted and said: `32 days`, `35 days`. A series shorter than the
+ * window gives its whole length, as it always has (`29 days` for a currency).
+ *
+ * This replaced thirty *observations* under the name of thirty days. On
+ * 2026-10-09 the writer was handed Brent `+35.3% over 30 days` for the move
+ * from 24 August to 6 October, 43 days, and the two weekly prints the
+ * registry carries as daily (the mortgage rate, the pump price) had twelve
+ * weeks under the name `12 days`. `recent` had been through this already
+ * (`weekMove`).
+ *
+ * @param {{ values?: number[], periods?: string[], dates?: string[], asOf?: string }} ind
+ * @param {number} days
+ */
+const daysMove = (ind, days) => {
+  const points = datedPoints(ind)
+  if (!points || points.length < 2) return null
+  const last = points[points.length - 1]
+  let from = points[0]
+  for (let i = points.length - 2; i >= 0; i--) {
+    if (points[i].t <= last.t - days * DAY) {
+      from = points[i]
+      break
+    }
+  }
+  const span = Math.round((last.t - from.t) / DAY)
+  if (span < 1 || from.v === 0) return null
+  return {
+    pct: Number((((last.v - from.v) / Math.abs(from.v)) * 100).toFixed(1)),
+    over: `${span} day${span === 1 ? '' : 's'}`,
+  }
+}
+
 /** Event tags that name a kind of decision rather than whose: "interest rate"
  *  is every central bank's, "cpi" every statistics office's. They count only
  *  beside a country the event belongs to. */
@@ -400,7 +480,8 @@ export function offerFor(story, { trends, chokepoints = [], markets = [], dispat
       stale++
       continue
     }
-    const [near, far] = WINDOWS[cadence] ?? WINDOWS_DEFAULT
+    const monthly = cadence === 'monthly'
+    const [quarter, year] = MONTHLY_WINDOWS
     push({
       id: ind.id,
       kind: 'series',
@@ -411,10 +492,11 @@ export function offerFor(story, { trends, chokepoints = [], markets = [], dispat
       // "Aug 2026" for a monthly print: the month it measures, which is how a
       // sentence dates it ("US inflation was 2.9% in August").
       period: Array.isArray(ind.periods) ? ind.periods.at(-1) : undefined,
-      // A daily series' `recent` is the chart's own week; a monthly print has
-      // no week, and keeps its quarter.
-      recent: cadence === 'daily' ? weekMove(ind) : change(values, cadence, near),
-      wider: change(values, cadence, far),
+      // A daily series' `recent` is the chart's own week and its `wider` a
+      // month of days; a monthly print has neither, and keeps its quarter and
+      // its year.
+      recent: monthly ? monthlyChange(values, quarter) : weekMove(ind),
+      wider: monthly ? monthlyChange(values, year) : daysMove(ind, WIDER_DAYS),
       // Non-negotiable: a figure a writer cannot date is a figure they will
       // present as today's.
       asOf,
@@ -503,7 +585,7 @@ export function offerFor(story, { trends, chokepoints = [], markets = [], dispat
       level: sig4(values.at(-1)),
       unit: `index points${m.currency ? `, priced in ${m.currency}` : ''}`,
       recent: weekMove({ values: m.series.values, periods: m.series.periods, asOf: m.asOf }),
-      wider: change(values, 'daily', 30),
+      wider: daysMove({ ...m.series, asOf: m.asOf }, WIDER_DAYS),
       asOf: m.asOf,
       ageDays: age,
       chart: hasStanding(id),
