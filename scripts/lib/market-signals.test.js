@@ -67,6 +67,27 @@ test('expiry advances by observations, never repeated fetches', () => {
     state = repeat.state
   }
 })
+test('a series that goes backwards does not move the signal it already has', () => {
+  // `mkt:bist`, published payloads: asOf 2026-10-08 at 18:16 UTC, 2026-10-07 at
+  // 22:21, 2026-10-08 again at 05:13. The fetch lost the newest session for a
+  // night, the selector read the shorter series as the truth, and the card
+  // went a day back and then forward: two revisions for no session at all.
+  const m = market(Array(20).fill(0.4), 'bist')
+  const first = selectMarketSignals([m], {}, NOW)
+  const shorter = { ...m, values: m.values.slice(0, -1), dates: m.dates.slice(0, -1), completed: m.completed.slice(0, -1) }
+  assert.ok(detectPatterns(cleanMarket(shorter, NOW)).length > 0, 'the shorter series still qualifies, a session earlier')
+
+  const back = selectMarketSignals([shorter], first.state, NOW)
+  assert.equal(back.selected[0].asOf, m.dates.at(-1), 'the session already read stands')
+  assert.deepEqual(back.selected[0], first.selected[0])
+  assert.deepEqual(back.state, first.state, 'nothing is learnt from a series that lost a day')
+  assert.deepEqual(back.reports.find((r) => r.id === 'bist'), { id: 'bist', reason: 'series regressed', asOf: shorter.dates.at(-1), lastDate: m.dates.at(-1) })
+
+  // The session returns, and it is the same event at the same reading.
+  const returned = selectMarketSignals([m], back.state, NOW)
+  assert.equal(returned.selected[0].eventId, first.selected[0].eventId)
+  assert.equal(returned.selected[0].pattern.changePct, first.selected[0].pattern.changePct)
+})
 test('divergence requires identical dates and suppresses a duplicate S&P card', () => {
   const n = market(Array(5).fill(0.7))
   const s = market(Array(5).fill(-0.1), 'sp500')
