@@ -88,8 +88,9 @@ stages assume about each other.
 - **Never** call the Anthropic API: stages run the subscription's `claude` CLI.
 - `claudeArgs` (`lib/claude-envelope.js`) spells the argv for Node callers.
   `--no-session-persistence`, `--max-turns 1` and `--tools ''` keep a call a
-  cheap micro-task. `trends-sources/polymarket.js` still spells its own; do
-  not copy it.
+  cheap micro-task.
+- **Never** start `claude` without `ISOLATION_FLAGS`: `--tools ''` does not
+  cover MCP, and a bare call loads the account's settings, skills and servers.
 - Run it with `runClaudeSync`, `callClaudeJson`, or `spawnClaude` inside a
   pool: `runWithConcurrency` only limits work that yields. All drop
   `CLAUDECODE` from the child env.

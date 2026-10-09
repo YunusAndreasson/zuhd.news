@@ -15,8 +15,8 @@ export const CATEGORY_FLOORS = { politics: 3, economy: 3, science: 2, tech: 3 }
 // Floors a cycle may miss rather than fill (user decision 2026-09-26). A thin
 // science feed was filled with disasters — Bangkok flooding and an Athens gas
 // blast shipped as science at 10:01. Read by dedup-selection's warning and the
-// autoresearch scorer; nothing refills any floor since backfill was removed
-// the same day.
+// cycle's score (`lib/rvs.js`); nothing refills any floor since backfill was
+// removed the same day.
 export const FLOORS_MAY_GO_UNMET = new Set(['science'])
 
 // A story is thin when no source carries this much text — an RSS teaser, not

@@ -32,9 +32,10 @@ the web's `<p>` run, the app's `article.sentences`, the Swedish translator,
   institution has confirmed is the false equivalence `<values>` forbids: drop
   it.
 - Three numbers move together: the target (400-480 visible characters) and
-  ceiling (560) in `write-prompt.md` and `check-prompt.md`; `CEILING` in the
-  `<body-lengths>` probe in `run-cycle.sh`, the only one that reaches the
-  editor as data; and `STORY_LINES` in `mobile/lib/deck-layout.ts`.
+  ceiling (560) in `write-prompt.md` and `check-prompt.md`; `ARTICLE_CEILING`
+  (`lib/article.js`), which the `<body-lengths>` probe reads and is the only
+  one that reaches the editor as data; and `STORY_LINES` in
+  `mobile/lib/deck-layout.ts`.
 - The blank line between blocks is the separation on every surface: one `<p>`
   or one `Text` per block. Never merge blocks to save space; pay in length.
 - Link markup is free against the budget: `[Iran](country:IR)` costs its

@@ -16,7 +16,7 @@
 
 | File | Purpose |
 |------|---------|
-| `scripts/fetch-news.js` | Multi-source RSS fetcher with cross-source dedup |
+| `scripts/fetch-news.js` | RSS fetcher for the niche outlets (`scripts/lib/rss-sources.js`); the feeds are deduplicated later, by `merge-feeds.js` and `prefilter-feed.js` |
 | `scripts/build.js` | Markdown → HTML static site generator (custom) |
 | `scripts/validate-articles.js` | Validates frontmatter/structure before deploy; moves malformed articles aside |
 | `scripts/write-last-cycle.js` | Writes `content/.last-cycle.json` from validated articles (selector dedup signal) |
@@ -25,7 +25,7 @@
 | `scripts/select-prompt.md` | Selector prompt: read pre-fetched feed, pick stories, save selection JSON |
 | `scripts/write-prompt.md` | Writer prompt: read selection + prefetched content, draft markdown |
 | `scripts/check-prompt.md` | Editor prompt: check new articles for style violations only |
-| `scripts/run-cycle.sh` | Cycle orchestrator: all stages including build, commit, deploy |
+| `scripts/run-cycle.sh` | Takes the lock and starts the cycle; the stages, build, commit and deploy are the list in `scripts/cycle/stages.js` |
 | `scripts/lib/frontmatter.js` | Shared YAML frontmatter parser |
 | `templates/article.html` | Article page template |
 | `templates/index.html` | Homepage template |
@@ -42,7 +42,7 @@ Al Jazeera, BBC World, BBC Business, France 24, Deutsche Welle, AllAfrica, Al Mo
 
 - **Cloudflare Pages**, direct upload via `wrangler pages deploy dist --branch master`
 - Production branch: `master` (custom domain `zuhd.news` only serves production deployments)
-- **Cycle:** systemd timer (`zuhd-news-cycle.timer`) 5x daily (05:00, 10:00, 14:00, 18:00, 22:00 UTC — timed to when news is published; 05:00 runs the daily jobs, `DAILY_HOUR` in run-cycle.sh)
+- **Cycle:** systemd timer (`zuhd-news-cycle.timer`) 5x daily (05:00, 10:00, 14:00, 18:00, 22:00 UTC — timed to when news is published; 05:00 runs the daily jobs, `DAILY_HOUR` in `scripts/lib/cycle-run.js`)
 - **Manual run:** `env -u CLAUDECODE bash scripts/run-cycle.sh`
 - **Design:** Source Sans 3, 20px base, 80ch measure, no decoration
 - **Logs:** `logs/cycle-YYYY-MM-DD_HHMM.log` (kept 7 days)

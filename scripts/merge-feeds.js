@@ -67,8 +67,9 @@ export function merge(at) {
     writeJson(join(SNAP_DIR, `${ts}.json`), slimOutput)
     // Rotation: this directory had none and reached 700 files / 86 MB by
     // 2026-09-25, five a day. The narrators read a 14-day window
-    // (lib/coverage-window.js); 45 days leaves replay-recap-dedup a backtest
-    // month on top. Older snapshots up to 2026-08-09 remain in git history.
+    // (lib/coverage-window.js), the only reader; 45 days was a backtest month
+    // on top for a replay tool that is gone, and is three times what is read.
+    // Older snapshots up to 2026-08-09 remain in git history.
     const KEEP_DAYS = 45
     const cutoff = new Date(now - KEEP_DAYS * 86400000).toISOString().slice(0, 10)
     for (const f of readdirSync(SNAP_DIR)) {

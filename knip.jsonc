@@ -16,13 +16,15 @@
   "$schema": "https://unpkg.com/knip@6/schema.jsonc",
 
   "entry": [
-    // ── The editorial cycle. Extracted from scripts/run-cycle.sh, which
-    //    invokes each of these by name. Keep in sync with that file.
+    // ── The editorial cycle. Each of these is started by name: by the stage
+    //    list (scripts/cycle/stages.js), by the steps (scripts/lib/cycle-steps.js)
+    //    and, while it is kept, by scripts/run-cycle.legacy.sh. Keep in sync
+    //    with the list.
     //
     //    Four of them (build, fetch-news, generate-briefing, watch)
     //    knip also finds through package.json's scripts, and it will say so as
     //    a "redundant entry pattern" hint. They stay listed: this block's job is
-    //    to be a readable mirror of run-cycle.sh, and a list with holes in it
+    //    to be a readable mirror of the stage list, and a list with holes in it
     //    wherever npm happens to agree is not one. `npm run deadcode` passes
     //    --no-config-hints so the command reports findings, not config advice.
     "scripts/body-lengths.js",
