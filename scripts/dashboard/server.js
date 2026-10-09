@@ -11,6 +11,7 @@ import { join } from 'node:path'
 import { spawnSync } from 'node:child_process'
 import { tryReadArticle } from '../lib/article.js'
 import { cycleIdOf, parseCycleLog } from '../lib/cycle-log.js'
+import { pathOf } from '../lib/datasets.js'
 import { scoreDir } from '../lib/quality-score.js'
 import { regionFromCoords } from '../lib/regions.js'
 import { ROOT } from '../lib/paths.js'
@@ -19,10 +20,12 @@ import { SENT, SYSTEMD_SHOW, byFileState, cycleView, feedFailures, isCycleLog, k
 const PORT = 7777
 const HOST = '127.0.0.1'
 
-const LOGS_DIR = join(ROOT, 'logs')
-const ARTICLES_DIR = join(ROOT, 'content', 'articles')
+// Where the state is, by its name in the catalog (`lib/datasets.js`). The
+// built site is not state, and is spelled.
+const LOGS_DIR = pathOf('cycleLogs')
+const ARTICLES_DIR = pathOf('articles')
 const DIST_DIR = join(ROOT, 'dist')
-const DASHBOARD_DIR = new URL('.', import.meta.url).pathname
+const DASHBOARD_DIR = join(ROOT, 'scripts', 'dashboard')
 
 // ── Cycle logs ──────────────────────────────────────────────────────
 
@@ -273,7 +276,7 @@ function handleQuality() {
     }
 
     // From the day's metrics, when the tuning stage has left them
-    const metricsPath = '/tmp/zuhd-metrics.json'
+    const metricsPath = pathOf('metrics')
     if (existsSync(metricsPath)) {
       try {
         const m = JSON.parse(readFileSync(metricsPath, 'utf-8'))
@@ -283,7 +286,7 @@ function handleQuality() {
     }
 
     // Story arcs from ledger
-    const ledgerPath = join(ROOT, 'content', '.story-ledger.json')
+    const ledgerPath = pathOf('storyLedger')
     if (existsSync(ledgerPath)) {
       try {
         const ledger = JSON.parse(readFileSync(ledgerPath, 'utf-8'))
@@ -333,7 +336,7 @@ function handleQuality() {
 
 function handleWritingQuality() {
   return cached('writing-quality', 60_000, () => {
-    const trendPath = join(ROOT, 'content', '.quality-trend.json')
+    const trendPath = pathOf('qualityTrend')
     if (!existsSync(trendPath)) return { current: null, history: [], delta: null }
     let trend = []
     try { trend = JSON.parse(readFileSync(trendPath, 'utf-8')) } catch { return { current: null, history: [], delta: null } }
@@ -381,7 +384,7 @@ function handleSpecificity() {
     // A write that fails costs the trend a day, not the panel its answer.
     let trend = [snapshot]
     try {
-      trend = keepDay(join(ROOT, 'content', '.specificity-trend.json'), snapshot, 60).series
+      trend = keepDay(pathOf('specificityTrend'), snapshot, 60).series
     } catch (err) {
       console.error(`dashboard: the specificity trend was not written: ${err.message}`)
     }
@@ -440,7 +443,7 @@ function handleArticleImages() {
 
 function handleExperiment() {
   return cached('experiment', 60_000, () => {
-    const expPath = join(ROOT, 'content', '.experiments.json')
+    const expPath = pathOf('experiments')
     if (!existsSync(expPath)) return { active: null, history: [], tracking: null }
 
     const data = JSON.parse(readFileSync(expPath, 'utf-8'))
@@ -516,12 +519,12 @@ function handleMedia() {
     }
 
     // Audio briefing meta
-    const metaPath = join(ROOT, 'content', 'audio', 'briefing-meta.json')
+    const metaPath = pathOf('briefingMeta')
     if (existsSync(metaPath)) {
       try {
         const meta = JSON.parse(readFileSync(metaPath, 'utf-8'))
         // List available briefing files
-        const audioDir = join(ROOT, 'content', 'audio')
+        const audioDir = pathOf('audio')
         const mp3s = readdirSync(audioDir)
           .filter(f => /^briefing-\d{4}-\d{2}-\d{2}\.mp3$/.test(f))
           .sort()
@@ -550,7 +553,7 @@ function handleFeedHealth() {
     const result = { current: null, history: [] }
 
     // Current stats from latest fetch
-    const statsPath = '/tmp/zuhd-feed-source-stats.json'
+    const statsPath = pathOf('feedSourceStats')
     if (existsSync(statsPath)) {
       try {
         result.current = JSON.parse(readFileSync(statsPath, 'utf-8'))
@@ -595,7 +598,7 @@ function handleOperations() {
 
 // ── Block-type adoption from context briefs ─────────────────────────
 
-const BRIEFS_PATH = join(ROOT, 'content', '.context-briefs.json')
+const BRIEFS_PATH = pathOf('contextBriefs')
 
 /**
  * What the two brief panels need of `content/.context-briefs.json`: its keys
@@ -679,7 +682,7 @@ function blockAdoption(briefs) {
 
 function handleRvsTrend() {
   return cached('rvsTrend', 60_000, () => {
-    const path = join(ROOT, 'content', '.rvs-trend.json')
+    const path = pathOf('rvsTrend')
     if (!existsSync(path)) return { empty: true, hint: 'available after the next production cycle (script: score-production-cycle.js)' }
     let trend = []
     try { trend = JSON.parse(readFileSync(path, 'utf-8')) } catch { return { empty: true, error: 'parse error' } }
@@ -714,7 +717,7 @@ function handleRvsTrend() {
 
 function handleAutoresearch() {
   return cached('autoresearch', 60_000, () => {
-    const dir = join(ROOT, 'content', '.autoresearch-history')
+    const dir = pathOf('autoresearchHistory')
     if (!existsSync(dir)) return { empty: true, hint: 'no autoresearch sessions on record' }
     const files = readdirSync(dir).filter((f) => f.endsWith('.jsonl')).sort().reverse()
     if (files.length === 0) return { empty: true }
@@ -786,8 +789,8 @@ function handleEditorial() {
     const result = { audit: null }
 
     // Daily audit — prefer JSON, fall back to markdown
-    const auditJsonPath = join(ROOT, 'content', '.daily-audit.json')
-    const auditMdPath = join(ROOT, 'content', '.daily-audit.md')
+    const auditJsonPath = pathOf('dailyAudit')
+    const auditMdPath = pathOf('dailyAuditNotes')
     if (existsSync(auditJsonPath)) {
       try {
         const stat = statSync(auditJsonPath)
