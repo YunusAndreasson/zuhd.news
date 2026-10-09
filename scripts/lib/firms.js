@@ -411,10 +411,10 @@ export function clusterEvents(
     const lat = round(wLat, 4)
     const lng = round(wLng, 4)
     events.push({
-      // Stable enough to survive a re-fetch of the same fire: the first date it
-      // was seen, plus its centroid to ~5 km. Nothing persists per-event state
-      // across sessions, so this only has to be unique within a payload and
-      // steady across the cycles one fire lives through.
+      // The day of the hottest pixel's pass and the centroid to a tenth of a
+      // degree. Nothing persists per-event state across sessions, so it has
+      // only to be unique within a payload, and alone it is not: see
+      // `numberRepeats` below, which is what makes it so.
       id: `${peak.date}-${round(lat, 1).toFixed(1)}-${round(lng, 1).toFixed(1)}`,
       lat,
       lng,
@@ -432,7 +432,32 @@ export function clusterEvents(
   }
 
   events.sort((a, b) => b.frp - a.frp)
+  numberRepeats(events)
   return { events, skipped: { persistent: persistentDropped, belowFloor } }
+}
+
+/**
+ * Make every id in a payload its own.
+ *
+ * A tenth of a degree is eleven kilometres and two clusters need only one empty
+ * bin, about one, between them, so two fires on one day share an id whenever
+ * they are neighbours. Measured on 2026-10-09: 378 events in the snapshot under
+ * 277 ids, up to four to an id, and two of the five published events under
+ * `2026-10-08-49.1-38.1`. The map and the app both find an event by its id, so
+ * the second mark opened the first one's card.
+ *
+ * The repeats are numbered rather than the id made finer: an id that is alone
+ * stays exactly what it was, and no precision is fine enough to promise two
+ * centroids never round together. Hottest first, which is the order the events
+ * are already in, so the bare id is the larger fire's.
+ */
+function numberRepeats(events) {
+  const seen = new Map()
+  for (const event of events) {
+    const n = (seen.get(event.id) ?? 0) + 1
+    seen.set(event.id, n)
+    if (n > 1) event.id = `${event.id}~${n}`
+  }
 }
 
 const round = (v, places) => {

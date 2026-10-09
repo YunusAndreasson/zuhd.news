@@ -278,6 +278,29 @@ test('baseline days are judged on, never drawn', () => {
   assert.equal(event.escalating, true)
 })
 
+test('two fires a kilometre apart on one day do not share an id', () => {
+  // The pair published on 2026-10-09 under one id: single pixels two bins
+  // apart, so two events, whose centroids round to the same tenth of a degree.
+  // The map and the app both look an event up by its id, so the second mark
+  // opened the first one's card.
+  const rows = [
+    det(49.1004, 38.072, '2026-07-29', 2, 5.4),
+    det(49.1002, 38.0585, '2026-07-29', 2, 9.9),
+    det(10.005, 20.005, '2026-07-29', 2, 20), // nowhere near either
+  ]
+  const cells = classifyCells(rows, { now: NOW })
+  const { events } = clusterEvents(rows, cells, { now: NOW })
+  assert.deepEqual(
+    events.map((e) => e.id),
+    ['2026-07-29-10.0-20.0', '2026-07-29-49.1-38.1', '2026-07-29-49.1-38.1~2'],
+    'an id that is alone keeps its form; of two that collide the hotter does',
+  )
+  assert.deepEqual(
+    events.map((e) => e.frp),
+    [20, 9.9, 5.4],
+  )
+})
+
 // ---------------------------------------------------------------------------
 // The join
 // ---------------------------------------------------------------------------
