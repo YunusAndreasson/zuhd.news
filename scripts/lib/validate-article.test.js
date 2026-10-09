@@ -2,6 +2,7 @@
 import assert from 'node:assert/strict'
 import { readFileSync } from 'node:fs'
 import { test } from 'node:test'
+import { parseCycleLog } from './cycle-log.js'
 import { parseFrontmatter } from './frontmatter.js'
 import { createValidator, duplicateKey, normTitle } from './validate-article.js'
 
@@ -43,11 +44,34 @@ test('what cannot be read as an article is stopped, with the reason', () => {
   assert.equal(v.check('Just prose.\n', FILE).bad, 'no frontmatter')
   // A headline with a quote inside its quotes: what `socialTitle` once did to five cycles.
   assert.match(v.check(article({ title: '"Record "$50 Billion" Deal"' }), FILE).bad ?? '', /^unparseable frontmatter: /)
+  // The reason names the field. As "missing fields" it sent eight articles
+  // aside in four cycles (2026-10-06 and 07), every one for want of `location`.
   for (const key of ['title', 'date', 'category', 'location', 'sources']) {
-    assert.equal(v.check(article({ [key]: undefined }), FILE).bad, 'missing fields', key)
+    assert.equal(v.check(article({ [key]: undefined }), FILE).bad, `missing ${key}`)
   }
-  assert.equal(v.check(article({ sources: ' []' }), FILE).bad, 'missing fields', 'a source list with nothing in it')
-  assert.equal(v.counts.removed, 8)
+  assert.equal(v.check(article({ sources: ' []' }), FILE).bad, 'missing sources', 'a source list with nothing in it')
+  assert.equal(v.check(article({ location: undefined, date: undefined, sources: undefined }), FILE).bad, 'missing date, location, sources', 'all of them, in one order')
+  assert.equal(v.counts.removed, 9)
+})
+
+// The stage prints `SKIP (<reason>): <file>`. The cycle counts the lines that
+// open `SKIP (` (`validate`, `lib/cycle-steps.js`) and the run record takes the
+// reason from between the brackets (`lib/cycle-log.js`).
+test('a reason reaches the run record whole, brackets and commas in it or not', () => {
+  const v = validator()
+  const batch = [
+    [article({ location: undefined, date: undefined }), 'content/articles/2026-10-08-a.md'],
+    [article(), 'content/articles/2026-10-08-b.md'],
+    [article({ sources: source('https://www.reuters.com/y') }), 'content/articles/2026-10-08-c.md'],
+    [article({ location: '"Paris"', title: '"Another Headline"', sources: source('https://www.reuters.com/z') }), 'content/articles/2026-10-08-d.md'],
+  ]
+  const lines = batch.map(([raw, file]) => [v.check(raw, file.replace(/.*\//, '')).bad, file]).filter(([bad]) => bad).map(([bad, file]) => `SKIP (${bad}): ${file}`)
+  assert.deepEqual(parseCycleLog(lines.join('\n')).skips, [
+    { reason: 'missing date, location', file: 'content/articles/2026-10-08-a.md' },
+    { reason: 'duplicate of 2026-10-08-b.md (same title)', file: 'content/articles/2026-10-08-c.md' },
+    { reason: 'location "Paris" is not the dateline city "Lyon"', file: 'content/articles/2026-10-08-d.md' },
+  ])
+  assert.ok(lines.every((line) => line.startsWith('SKIP (')))
 })
 
 test('two to five blocks ship, and outside that the file is malformed', () => {
@@ -122,6 +146,11 @@ test('the same first source or the same title within 72 hours is a duplicate', (
   assert.equal(v.check(other, 'first.md').bad, null)
   assert.equal(v.check(article({ title: '"Trade body doubles its growth forecast!"', sources: source('https://www.reuters.com/y') }), 'second.md').bad, 'duplicate of first.md (same title)', 'an earlier file of the batch counts, and case and punctuation do not')
   assert.equal(published.length, 1, 'the caller\'s list is not written to')
+
+  // Two links that key nothing are both '' and were reported as "same source URL".
+  const fronts = validator()
+  assert.equal(fronts.check(article({ sources: source('https://www.dawn.com/') }), 'a.md').bad, null)
+  assert.equal(fronts.check(article({ sources: source('https://www.reuters.com/') }), 'b.md').bad, 'duplicate of a.md (same title)', 'the title is what the two share')
 })
 
 test('four days apart is another story, and nothing matches on an empty title or link', () => {

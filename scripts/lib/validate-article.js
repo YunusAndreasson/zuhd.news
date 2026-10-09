@@ -115,11 +115,15 @@ export function createValidator({ published, offeredBySlug, knownIds }) {
       return verdict(`unparseable frontmatter: ${err.reason || err.message}`)
     }
 
+    // The reason names what is missing. It said "missing fields", and eight
+    // articles went aside under it in four consecutive cycles (2026-10-06 10:01
+    // to 10-07 05:00): science and tech stories with no event place, each
+    // written without `location`. Nothing in the log said so.
     const has = (k) => yaml.includes(`${k}:`)
     const hasSources = yaml.includes('sources:') && yaml.includes('  - name:')
-    if (!has('title') || !has('date') || !has('category') || !has('location') || !hasSources) {
-      return verdict('missing fields')
-    }
+    const missing = ['title', 'date', 'category', 'location'].filter((k) => !has(k))
+    if (!hasSources) missing.push('sources')
+    if (missing.length) return verdict(`missing ${missing.join(', ')}`)
 
     // The writer's contract is four blocks, or five when the optional
     // counterpoint-or-quote block was earned (`scripts/write-prompt.md` §rhythm).
@@ -163,7 +167,9 @@ export function createValidator({ published, offeredBySlug, knownIds }) {
     // purpose: measured over 837 articles they fire only on real duplicates.
     const me = duplicateKey(name, meta)
     const dup = seen.find((p) => Math.abs(p.t - me.t) <= WINDOW_MS && ((me.url && p.url === me.url) || (me.title && p.title === me.title)))
-    if (dup) return verdict(`duplicate of ${dup.slug} (${dup.url === me.url ? 'same source URL' : 'same title'})`)
+    // Two links that key nothing (`normalizeUrl` gives '' for a site's front
+    // page) are equal and are not what matched: the title was.
+    if (dup) return verdict(`duplicate of ${dup.slug} (${me.url && dup.url === me.url ? 'same source URL' : 'same title'})`)
     seen.push(me)
 
     // `chart:` names the one series drawn under the story, and the writer may
