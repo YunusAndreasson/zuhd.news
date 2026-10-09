@@ -38,9 +38,10 @@
 // keeps the same outcome standing for an event, which is where the stickiness
 // has to start: an incumbent is a market, and the pick is made per event.
 
+import { randomUUID } from 'node:crypto'
 import { runWithConcurrency } from '../concurrency.js'
 import { CC_TO_TOPOJSON_NAME } from '../../../shared/countries/iso.ts'
-import { ISOLATION_FLAGS } from '../claude-envelope.js'
+import { claudeArgs, claudeFailure, parseClaudeText, spawnClaude } from '../claude-envelope.js'
 import { sha1Hex } from '../hash.js'
 import { ZUHD_UA } from '../http.js'
 import { modelFor } from '../models.js'
@@ -596,8 +597,8 @@ const TITLE_EFFORT = process.env.PM_TITLE_EFFORT ?? 'low'
  * back to the regex form for the titles it was given, so one bad chunk costs
  * four labels rather than the deck's.
  */
-async function shortenTitlesViaHaiku(titles) {
-  if (titles.length <= HAIKU_CHUNK) return shortenBatchViaHaiku(titles)
+export async function shortenTitlesViaHaiku(titles, spawn = spawnClaude) {
+  if (titles.length <= HAIKU_CHUNK) return shortenBatchViaHaiku(titles, spawn)
   const chunks = []
   for (let i = 0; i < titles.length; i += HAIKU_CHUNK) chunks.push({ at: i, titles: titles.slice(i, i + HAIKU_CHUNK) })
   // `runWithConcurrency` resolves to nothing — it is a rate limiter, not a
@@ -605,25 +606,15 @@ async function shortenTitlesViaHaiku(titles) {
   // here: the caller zips the result against `deduped` by index.
   const out = new Array(chunks.length)
   await runWithConcurrency(chunks, HAIKU_CONCURRENCY, async (chunk) => {
-    out[chunk.at / HAIKU_CHUNK] = await shortenBatchViaHaiku(chunk.titles)
+    out[chunk.at / HAIKU_CHUNK] = await shortenBatchViaHaiku(chunk.titles, spawn)
   })
   return out.flat()
 }
 
-async function shortenBatchViaHaiku(titles) {
-  if (titles.length === 0) return []
-  // Timed, because this ceiling has now been wrong twice — 40s when the deck
-  // widened, then 60s once chunking landed — and both times the evidence was a
-  // silent regex fallback rather than a number anyone could read. "Timeouts are
-  // measured, not guessed" needs the measurement to be in the log.
-  const chunkStarted = Date.now()
-  const { execFile } = await import('node:child_process')
-  const { promisify } = await import('node:util')
-  const { randomUUID } = await import('node:crypto')
-  const run = promisify(execFile)
-
+/** The one prompt: shorten each title, and say which countries it is about. */
+function titlePrompt(titles) {
   const items = titles.map((t, i) => `${i + 1}. ${t}`).join('\n')
-  const prompt = `You are shortening prediction-market question titles so they fit as chart headers on a mobile phone.
+  return `You are shortening prediction-market question titles so they fit as chart headers on a mobile phone.
 
 Constraints per title:
 - ≤42 characters
@@ -651,70 +642,80 @@ common case and guessing is worse than leaving it empty.
 Return ONLY a JSON array, same order and same length as the input, of objects:
   [{"title": "US invade Iran by 2027?", "countries": ["US","IR"]}, ...]
 No commentary, no markdown fences.`
+}
 
-  const env = { ...process.env }
-  delete env.CLAUDECODE
+/**
+ * The model's answer as one label and its country tags a title. Throws when
+ * the answer is not the array it was asked for.
+ *
+ * @param {string} text the envelope's result
+ * @param {string[]} titles what was asked, in order
+ */
+function labelsFromAnswer(text, titles) {
+  // Strip possible markdown fence + locate the JSON array
+  const cleaned = String(text).replace(/^```(?:json)?\s*|\s*```$/g, '').trim()
+  const start = cleaned.indexOf('[')
+  const end = cleaned.lastIndexOf(']')
+  if (start === -1 || end === -1) throw new Error('no JSON array in output')
+  const arr = JSON.parse(cleaned.slice(start, end + 1))
+  if (!Array.isArray(arr) || arr.length !== titles.length) {
+    throw new Error(`expected ${titles.length} titles, got ${arr?.length}`)
+  }
+  return arr.map((row, i) => {
+    // Tolerant of the older bare-string shape, because the model occasionally
+    // answers the question it was asked last week rather than this one.
+    const label = typeof row === 'string' ? row : row?.title
+    return {
+      label: typeof label === 'string' && label.length > 0 ? label : shortenTitleRegex(titles[i]),
+      countryTags: validCodes(row?.countries),
+    }
+  })
+}
+
+/**
+ * One call for one chunk of titles, through the shared argv and child
+ * (`claudeArgs`, `spawnClaude`).
+ *
+ * `spawnClaude` and not a synchronous call: this runs inside
+ * `runWithConcurrency`, which overlaps only work that yields. It was
+ * `spawnSync` once, three "concurrent" chunks ran one after another, and
+ * chunking made the stage slower than the single call it replaced (two
+ * chunks, 80.6s, one of them killed).
+ *
+ * It spelled its own argv until 2026-10-09 and had drifted from the shared
+ * one twice, in the ways that cost without failing: no isolation flags (105
+ * MCP tools on every call, see `ISOLATION_FLAGS`), and no
+ * `--exclude-dynamic-system-prompt-sections`, so the system prompt did not
+ * cache from one chunk to the next.
+ *
+ * @param {string[]} titles
+ * @param {typeof spawnClaude} spawn
+ */
+async function shortenBatchViaHaiku(titles, spawn) {
+  if (titles.length === 0) return []
+  // Timed, because this ceiling has now been wrong twice — 40s when the deck
+  // widened, then 60s once chunking landed — and both times the evidence was a
+  // silent regex fallback rather than a number anyone could read. "Timeouts are
+  // measured, not guessed" needs the measurement to be in the log.
+  const chunkStarted = Date.now()
+  const elapsed = () => Math.round((Date.now() - chunkStarted) / 1000)
   const tmpId = randomUUID().slice(0, 8)
-  /**
-   * `execFile`, not `spawnSync`.
-   *
-   * This was `spawnSync` inside a `runWithConcurrency(_, 3, …)`, which is three
-   * chunks of nothing: `spawnSync` blocks the event loop until the child exits,
-   * so the "concurrent" chunks ran strictly one after another and chunking made
-   * the stage *slower* than the single call it replaced. Measured before: two
-   * chunks, 80.6s, one of them SIGTERM-killed. The limiter can only limit work
-   * that yields.
-   */
-  let res
-  try {
-    res = await run('claude', [
-      '--model', TITLE_MODEL,
-      ...(TITLE_EFFORT ? ['--effort', TITLE_EFFORT] : []),
-      '--no-session-persistence',
-      ...ISOLATION_FLAGS,
-      '--tools', '',
-      '--max-turns', '1',
-      '--output-format', 'json',
-      '-p', prompt,
-    // 60s against a measured 25-35s for a chunk of this size. It was 40s for a
-    // whole batch, which held while the batch was 3 titles and stopped holding
-    // the moment the tag filter widened the deck: measured at 10 titles the one
-    // call took **98s**, SIGTERM at 40s every run, so every question lost its
-    // country tags to the regex fallback. Chunking is what fixed it — see
-    // `shortenTitlesViaHaiku` — and this ceiling now covers one chunk with
-    // room, inside a 120s stage that has five other sources to fetch.
-    ], { encoding: 'utf-8', timeout: HAIKU_TIMEOUT_MS, maxBuffer: 256 * 1024, env })
-  } catch (err) {
+
+  const res = await spawn(claudeArgs(titlePrompt(titles), { model: TITLE_MODEL, effort: TITLE_EFFORT || null }), {
+    timeout: HAIKU_TIMEOUT_MS,
+    maxBuffer: 256 * 1024,
+  })
+  if (res.status !== 0) {
     console.error(
-      `  ✗ polymarket-haiku ${tmpId}: ${err.code ?? err.message} after ${Math.round((Date.now() - chunkStarted) / 1000)}s ` +
-      `(ceiling ${Math.round(HAIKU_TIMEOUT_MS / 1000)}s, ${titles.length} titles) — falling back to regex`,
+      `  ✗ polymarket-haiku ${tmpId}: ${claudeFailure(res, HAIKU_TIMEOUT_MS)} after ${elapsed()}s ` +
+        `(${titles.length} titles) — falling back to regex`,
     )
     return fallbackLabels(titles)
   }
-  console.error(`  · polymarket-haiku ${tmpId}: ${titles.length} titles in ${Math.round((Date.now() - chunkStarted) / 1000)}s`)
+  console.error(`  · polymarket-haiku ${tmpId}: ${titles.length} titles in ${elapsed()}s`)
 
   try {
-    // Claude envelope: outer JSON wrapping result text
-    const envelope = JSON.parse(res.stdout)
-    const raw = envelope.result ?? envelope.text ?? res.stdout
-    // Strip possible markdown fence + locate the JSON array
-    const cleaned = String(raw).replace(/^```(?:json)?\s*|\s*```$/g, '').trim()
-    const start = cleaned.indexOf('[')
-    const end = cleaned.lastIndexOf(']')
-    if (start === -1 || end === -1) throw new Error('no JSON array in output')
-    const arr = JSON.parse(cleaned.slice(start, end + 1))
-    if (!Array.isArray(arr) || arr.length !== titles.length) {
-      throw new Error(`expected ${titles.length} titles, got ${arr?.length}`)
-    }
-    return arr.map((row, i) => {
-      // Tolerant of the older bare-string shape, because the model occasionally
-      // answers the question it was asked last week rather than this one.
-      const label = typeof row === 'string' ? row : row?.title
-      return {
-        label: typeof label === 'string' && label.length > 0 ? label : shortenTitleRegex(titles[i]),
-        countryTags: validCodes(row?.countries),
-      }
-    })
+    return labelsFromAnswer(parseClaudeText(res.stdout).text, titles)
   } catch (err) {
     console.error(`  ✗ polymarket-haiku ${tmpId}: ${err.message} — falling back to regex`)
     return fallbackLabels(titles)

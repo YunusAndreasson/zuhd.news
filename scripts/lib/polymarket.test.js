@@ -1,5 +1,7 @@
 import assert from 'node:assert/strict'
 import { test } from 'node:test'
+import { claudeArgs } from './claude-envelope.js'
+import { modelFor } from './models.js'
 import {
   deckIds,
   isUsableShortTitle,
@@ -7,6 +9,7 @@ import {
   orderCandidates,
   PIN_TITLE_RE,
   pickOutcome,
+  shortenTitlesViaHaiku,
 } from './trends-sources/polymarket.js'
 
 // Selection used to re-roll by volume every cycle, orphaning the narration
@@ -208,4 +211,98 @@ test('short titles: a rephrase is kept, a copy with "Will" cut off is not', () =
   // The two shapes the guard exists for.
   assert.equal(isUsableShortTitle('Will Alexandria Ocasio-Cortez win the 2028 US presidential election?', 'Alexandria Ocasio-Cortez win the 2028 US…'), false)
   assert.equal(isUsableShortTitle('Will there be no change in Fed interest rates?', 'there be no change in Fed rates?'), false)
+})
+
+// ── The title call ──────────────────────────────────────────────────────────
+// It spelled its own `claude` argv and child, and had drifted from the shared
+// ones. These pin that it is the shared call, and what it does with an answer.
+
+const TITLES = [
+  'Will Marine Le Pen win the 2027 French presidential election?',
+  'Will the Fed cut interest rates by 25 basis points in December 2026?',
+  'Will Bitcoin reach a new all-time high by December 31?',
+]
+const result = (text) => ({ status: 0, stderr: '', stdout: JSON.stringify({ type: 'result', result: text, usage: {}, total_cost_usd: 0.004, duration_ms: 1300 }) })
+const answer = (rows) => result(JSON.stringify(rows))
+
+/** A `claude` that answers each call in turn, and remembers what it was called with. */
+const claude = (...answers) => {
+  const calls = []
+  const spawn = async (args, opts) => {
+    const reply = answers[Math.min(calls.length, answers.length - 1)]
+    calls.push({ args, opts })
+    return typeof reply === 'function' ? reply(args) : reply
+  }
+  return { calls, spawn: /** @type {any} */ (spawn) }
+}
+
+/** Run it with what it says on stderr kept: every call reports its time there. */
+const shortened = async (titles, spawn) => {
+  const said = []
+  const error = console.error
+  console.error = (line) => {
+    said.push(String(line))
+  }
+  try {
+    return { labels: await shortenTitlesViaHaiku(titles, spawn), said }
+  } finally {
+    console.error = error
+  }
+}
+
+test('the title call is the shared argv, with the ceiling and the buffer this stage sets', async () => {
+  const { calls, spawn } = claude(answer(TITLES.map((t) => ({ title: t, countries: [] }))))
+  await shortened(TITLES, spawn)
+  assert.equal(calls.length, 1, 'three titles are one chunk')
+  const [{ args, opts }] = calls
+  const prompt = args.at(-1)
+  assert.deepEqual(args, claudeArgs(prompt, { model: modelFor('polymarketTitles'), effort: 'low' }))
+  // The flags the hand-spelled argv had lost, each one a cost and no failure.
+  for (const flag of ['--no-session-persistence', '--strict-mcp-config', '--disable-slash-commands', '--exclude-dynamic-system-prompt-sections']) {
+    assert.ok(args.includes(flag), flag)
+  }
+  assert.deepEqual([args[args.indexOf('--tools') + 1], args[args.indexOf('--max-turns') + 1]], ['', '1'])
+  assert.deepEqual(opts, { timeout: 100_000, maxBuffer: 256 * 1024 })
+  assert.match(prompt, /^You are shortening prediction-market question titles/)
+  assert.ok(prompt.includes(`Titles to shorten:\n1. ${TITLES[0]}\n2. ${TITLES[1]}\n3. ${TITLES[2]}\n`))
+})
+
+test('an answer becomes a label and the countries the map can resolve', async () => {
+  const fenced = result('```json\n[{"title":"Le Pen wins France 2027?","countries":["FR","XX","fr"]},{"title":"Fed cuts 25 bps in Dec 2026?","countries":["US"]},"BTC all-time high by Dec 31?"]\n```')
+  const { labels, said } = await shortened(TITLES, claude(fenced).spawn)
+  assert.deepEqual(labels, [
+    { label: 'Le Pen wins France 2027?', countryTags: ['FR'] },
+    { label: 'Fed cuts 25 bps in Dec 2026?', countryTags: ['US'] },
+    { label: 'BTC all-time high by Dec 31?', countryTags: [] },
+  ])
+  assert.match(said[0], /^ {2}· polymarket-haiku [0-9a-f]{8}: 3 titles in \d+s$/)
+})
+
+test('a call that fails says why, and its titles fall back to the regex form', async () => {
+  const exited = await shortened(TITLES.slice(0, 2), claude({ status: 1, stdout: '', stderr: 'Claude usage limit reached. Your limit will reset at 3pm.' }).spawn)
+  assert.deepEqual(exited.labels.map((l) => l.countryTags), [[], []])
+  assert.ok(exited.labels.every((l) => l.label.endsWith('…') || l.label.length <= 52))
+  assert.match(exited.said[0], /✗ polymarket-haiku [0-9a-f]{8}: claude exit 1: Claude usage limit reached\. Your limit will reset at 3pm\. after \d+s \(2 titles\) — falling back to regex/)
+
+  const timedOut = await shortened(TITLES.slice(0, 2), claude({ status: null, stdout: '', stderr: '', error: Object.assign(new Error('claude ETIMEDOUT'), { code: 'ETIMEDOUT' }) }).spawn)
+  assert.match(timedOut.said[0], /claude timed out after 100s after \d+s \(2 titles\) — falling back to regex/)
+  assert.deepEqual(timedOut.labels, exited.labels)
+})
+
+test('an answer that is not the array asked for costs its own chunk and no other', async () => {
+  const nine = Array.from({ length: 9 }, (_, i) => `Will candidate number ${i + 1} win the 2028 presidential election in a landslide?`)
+  const rows = (args) => {
+    const asked = [...args.at(-1).matchAll(/^\d+\. (.+)$/gm)].map((m) => m[1])
+    return answer(asked.map((t) => ({ title: `#${/number (\d+)/.exec(t)?.[1]} wins 2028?`, countries: ['US'] })))
+  }
+  // The second chunk answers with three rows for four titles; the third with prose.
+  const { calls, spawn } = claude(rows, answer([{ title: 'a' }, { title: 'b' }, { title: 'c' }]), result('I could not shorten these.'))
+  const { labels, said } = await shortened(nine, spawn)
+  assert.equal(calls.length, 3)
+  assert.deepEqual(labels.slice(0, 4), [1, 2, 3, 4].map((n) => ({ label: `#${n} wins 2028?`, countryTags: ['US'] })))
+  // In the order asked, whichever chunk came back first.
+  assert.equal(labels.length, 9)
+  assert.ok(labels.slice(4).every((l) => l.label.startsWith('Will candidate number') && l.countryTags.length === 0))
+  assert.ok(said.some((line) => /expected 4 titles, got 3 — falling back to regex/.test(line)), said.join('\n'))
+  assert.ok(said.some((line) => /no JSON array in output — falling back to regex/.test(line)), said.join('\n'))
 })
