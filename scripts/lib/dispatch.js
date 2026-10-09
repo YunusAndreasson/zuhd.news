@@ -111,7 +111,7 @@ export function storedStanding(items, key, fingerprint, { shared = false, prompt
  * wrote an entry stamps as before, and so does the daily one whatever it
  * wrote: it is the day's pass, and its prune may have changed the file.
  *
- * @param {{ generatedAt?: string, windowDays?: number }} cache
+ * @param {Record<string, any>} cache stamped in place: `generatedAt`, `windowDays`
  * @param {{ newOnly?: boolean, generated: number, windowDays: number, now?: Date }} pass
  * @returns {boolean} false when there is nothing to write
  */
