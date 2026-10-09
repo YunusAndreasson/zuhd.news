@@ -105,6 +105,9 @@ paths:
 - At rest: kicker, title and the hook (the first sentence). Peek height is
   computed from type (`lib/deck-layout.ts`), once per window and font scale,
   never per card.
+- A story's chart sits under its title, over the hook, so a resting card shows
+  that it has one (`StoryChart`). The card does not grow for it: the hook goes
+  under the dock. At rest it is part of the card's one button.
 - `article.sentences` holds four blocks or five. Slice with `hookOf`/`restOf`;
   never index it. `STORY_LINES` is keyed to the writer's character ceiling in
   `scripts/write-prompt.md`; change them together.
