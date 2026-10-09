@@ -1767,9 +1767,18 @@ test('the published chokepoint delta really is a signed fractional change', (t) 
     const delta = cp.delta7vs90?.[f]
     if (![last7, base, delta].every(Number.isFinite) || !base) continue
     checked++
+    // Both averages are published to one decimal and the delta is taken before
+    // that rounding (`trends-sources/portwatch.js`), so the two printed numbers
+    // can be off by 0.05 each. On a strait down to a ship a day that is most of
+    // the figure: Hormuz at 0.9 against 1.5 on 2026-10-09 allows 0.053 on the
+    // ratio, and a flat 0.02 failed a delta that was right (-0.431 against the
+    // -0.400 the rounded pair gives). The slack is what the rounding permits.
+    // It still catches what this test is for: a percent where a fraction
+    // belongs is off by a factor of a hundred, a lost sign by twice the delta.
+    const slack = Math.max(0.02, (0.05 / base) * (1 + last7 / base) + 0.001)
     assert.ok(
-      Math.abs(delta - (last7 / base - 1)) < 0.02,
-      `${cp.id}: delta ${delta} is not ${(last7 / base - 1).toFixed(3)} (last7 ${last7} / base ${base})`,
+      Math.abs(delta - (last7 / base - 1)) < slack,
+      `${cp.id}: delta ${delta} is not ${(last7 / base - 1).toFixed(3)} within ${slack.toFixed(3)} (last7 ${last7} / base ${base})`,
     )
   }
   assert.ok(checked > 5, `only ${checked} chokepoints carried a comparable delta`)
