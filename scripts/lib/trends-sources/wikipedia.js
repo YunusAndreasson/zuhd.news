@@ -18,10 +18,10 @@ import { readdirSync, readFileSync } from 'node:fs'
 import { join } from 'node:path'
 import { parseFrontmatter } from '../frontmatter.js'
 import { dayLabel, isoDay } from '../period.js'
+import { WIKIMEDIA_UA, wikiSummary } from '../wikipedia.js'
 import { codeFromTopojsonName } from '../../../shared/countries/iso.ts'
 
 const WIKI_BASE = 'https://wikimedia.org/api/rest_v1/metrics/pageviews/per-article/en.wikipedia/all-access/all-agents'
-const USER_AGENT = 'zuhd-news/1.0 (+https://zuhd.news; editorial@zuhd.news)'
 const ARTICLE_WINDOW_DAYS = 10 // concepts from last 10 days of published articles
 const TOP_N_CONCEPTS = 15      // max Wikipedia series per cycle
 const MIN_FREQUENCY = 2        // skip concepts that only appeared once (noise)
@@ -165,17 +165,7 @@ function rankConceptsFromArticles(rootDir, windowDays) {
  *  or undercounts while "Recep_Tayyip_Erdoğan" carries the real series.
  *  Returns null when the page doesn't exist at all. */
 async function resolveCanonicalTitle(title) {
-  try {
-    const res = await fetch(`https://en.wikipedia.org/api/rest_v1/page/summary/${encodeURIComponent(title)}`, {
-      signal: AbortSignal.timeout(10000),
-      headers: { 'User-Agent': USER_AGENT, accept: 'application/json' },
-    })
-    if (!res.ok) return null
-    const data = await res.json()
-    return data?.titles?.canonical || null
-  } catch {
-    return null
-  }
+  return (await wikiSummary(title))?.titles?.canonical || null
 }
 
 /** Fetch 30 days of daily pageviews for one Wikipedia article.
@@ -188,7 +178,7 @@ async function fetchOnePageview(title) {
   try {
     const res = await fetch(url, {
       signal: AbortSignal.timeout(10000),
-      headers: { 'User-Agent': USER_AGENT, accept: 'application/json' },
+      headers: { 'User-Agent': WIKIMEDIA_UA, accept: 'application/json' },
     })
     if (!res.ok) return null
     const data = await res.json()

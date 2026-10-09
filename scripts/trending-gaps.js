@@ -19,8 +19,8 @@ import { join } from 'node:path'
 import { parseFrontmatter } from './lib/frontmatter.js'
 import { ROOT } from './lib/paths.js'
 import { runStage } from './lib/stage.js'
+import { WIKIMEDIA_UA, wikiSummary } from './lib/wikipedia.js'
 
-const USER_AGENT = 'zuhd-news/1.0 (+https://zuhd.news; editorial@zuhd.news)'
 const COVERAGE_WINDOW_DAYS = 7
 const MAX_LINES = 10
 const TOP_CANDIDATES = 120 // how deep into the ranked list to look after junk filtering
@@ -123,17 +123,8 @@ const DESC_JUNK = /\b(footballer|football|soccer|fifa|uefa|world cup|olympics?|b
  * @param {AbortSignal} deadline the run's
  */
 async function fetchDescription(title, get, deadline) {
-  try {
-    const res = await get(`https://en.wikipedia.org/api/rest_v1/page/summary/${encodeURIComponent(title)}`, {
-      signal: AbortSignal.any([deadline, AbortSignal.timeout(8000)]),
-      headers: { 'User-Agent': USER_AGENT, accept: 'application/json' },
-    })
-    if (!res.ok) return null
-    const data = await res.json()
-    return data?.description || ''
-  } catch {
-    return null
-  }
+  const summary = await wikiSummary(title, { timeoutMs: 8000, signal: deadline, fetch: get })
+  return summary ? summary.description || '' : null
 }
 
 /** Why there is no list to print: said on stderr, and returned for the stage's result. */
@@ -161,7 +152,7 @@ export async function main({ fetch: get = fetch, coverage, write = (text) => pro
 
   const res = await get(url, {
     signal: AbortSignal.any([deadline, AbortSignal.timeout(10000)]),
-    headers: { 'User-Agent': USER_AGENT, accept: 'application/json' },
+    headers: { 'User-Agent': WIKIMEDIA_UA, accept: 'application/json' },
   })
   if (!res.ok) return skip(`HTTP ${res.status} from the pageviews top list for ${y}-${m}-${day}`)
   const data = await res.json()
