@@ -9,6 +9,7 @@
 import test from 'node:test'
 import assert from 'node:assert/strict'
 import {
+  carryNarratives,
   collectionToAlerts,
   emptyListReport,
   featureToDetail,
@@ -265,4 +266,29 @@ test('every date an alert carries is one the app will take', () => {
     ],
   )
   assert.deepEqual(tally, { undated: 3 }, 'an alert with no start it can state is dropped, and counted')
+})
+
+test("the desk's narratives go back on the alerts they were written for", () => {
+  // The fetcher writes alerts fresh and the narrator adds `narrative` four
+  // stages later. If it never runs, the build publishes what the fetcher wrote.
+  const collection = {
+    type: 'FeatureCollection',
+    features: [
+      { ...validFeature, properties: { ...validFeature.properties, eventtype: 'TC', eventid: 1001335 } },
+      validFeature,
+    ],
+  }
+  const alerts = collectionToAlerts(collection, FIXTURE_NOW)
+  const narrations = {
+    'TC:1001335': { fingerprint: 'a1', narrative: 'Simon bears on Mexico.', generatedAt: '2026-10-09T05:11:20.000Z' },
+    'EQ:1234567': { fingerprint: 'b2', narrative: '' },
+    'EQ:7654321': { fingerprint: 'c3', narrative: 'An alert that has left the feed.' },
+  }
+  assert.equal(carryNarratives(alerts, narrations), 1)
+  assert.equal(alerts[0].narrative, 'Simon bears on Mexico.')
+  assert.equal(Object.keys(alerts[0]).at(-1), 'narrative', 'where the narrator puts it, so the bytes agree')
+  assert.equal('narrative' in alerts[1], false, 'an alert nobody has written about gets no key')
+
+  // No cache yet, or one that did not parse: the alerts go out as they are.
+  assert.equal(carryNarratives(collectionToAlerts(collection, FIXTURE_NOW), null), 0)
 })

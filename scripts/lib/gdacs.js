@@ -264,6 +264,37 @@ export function emptyListReport(collection, alerts) {
   return `${features.length} features and no usable alert; the first has ${saw.join(' ')}`
 }
 
+/**
+ * Put the desk's narratives back on the alerts they were written for.
+ *
+ * The fetcher writes the alerts fresh every cycle, and a fresh alert has no
+ * `narrative`: that is added by `narrate-gdacs.js`, four stages and one Opus
+ * session later, from `content/.gdacs-narrations.json`. Between the two the
+ * snapshot on disk is bare, and it stays bare if the narrator times out or
+ * never starts, while the cache it would have read still holds every
+ * paragraph. The build publishes what is on disk. So the fetcher carries them
+ * itself, exactly as the narrator applies them: by event, whatever the
+ * fingerprint, since an account of yesterday's severity is what the narrator
+ * also leaves standing when a rewrite fails.
+ *
+ * `narrative` is set last, where the narrator sets it, so an alert it then
+ * leaves alone serialises to the bytes it always did.
+ *
+ * @param {{ eventtype: string, eventid: string, narrative?: string }[]} alerts changed in place
+ * @param {Record<string, { narrative?: unknown }> | null | undefined} narrations the cache, by `eventtype:eventid`
+ * @returns {number} how many alerts carry one
+ */
+export function carryNarratives(alerts, narrations) {
+  let carried = 0
+  for (const alert of alerts) {
+    const narrative = narrations?.[`${alert.eventtype}:${alert.eventid}`]?.narrative
+    if (typeof narrative !== 'string' || narrative.length === 0) continue
+    alert.narrative = narrative
+    carried++
+  }
+  return carried
+}
+
 // ── Per-event detail (population estimates) ────────────────────────────────
 
 const EMPTY_DETAIL = {

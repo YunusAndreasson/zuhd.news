@@ -14,15 +14,17 @@
 
 import { join } from 'node:path'
 import { runWithConcurrency } from './lib/concurrency.js'
+import { pathOf } from './lib/datasets.js'
 import {
   GDACS_GEOJSON_URL,
+  carryNarratives,
   collectionToAlerts,
   emptyListReport,
   fetchGdacsDetail,
   isGdacsFeatureCollection,
 } from './lib/gdacs.js'
 import { ROOT } from './lib/paths.js'
-import { writeJson } from './lib/json-file.js'
+import { readJson, writeJson } from './lib/json-file.js'
 import { fetchJson } from './lib/http.js'
 
 const OUTPUT_PATH = join(ROOT, 'content', '.gdacs.json')
@@ -95,6 +97,10 @@ await runWithConcurrency(detailCandidates, DETAIL_CONCURRENCY, async (alert) => 
   }
 })
 
+// The narrator runs four stages on and may not finish; what it has already
+// written goes back on now, so the file is never published bare.
+const narrated = carryNarratives(alerts, readJson(pathOf('gdacsNarrations'), {}))
+
 const payload = {
   generated: new Date().toISOString(),
   alerts,
@@ -107,5 +113,5 @@ const elapsed = ((Date.now() - started) / 1000).toFixed(1)
 console.log(
   `  ✓ wrote ${alerts.length} alerts, ${succeeded}/${detailCandidates.length} details${
     failed > 0 ? ` (${failed} failed)` : ''
-  } in ${elapsed}s`,
+  }${narrated > 0 ? `, ${narrated} narratives carried` : ''} in ${elapsed}s`,
 )
