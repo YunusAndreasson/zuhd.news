@@ -48,7 +48,9 @@ import {
   clusterEvents,
   JOIN_RADIUS_KM,
   minDistanceKm,
+  newestDetection,
   parseFirmsCsv,
+  RECENT_WINDOW_MS,
 } from './lib/firms.js'
 import { ROOT } from './lib/paths.js'
 import { writeJson } from './lib/json-file.js'
@@ -145,7 +147,11 @@ let firstError = null
 
 await runWithConcurrency(cells, CELL_CONCURRENCY, async (cell) => {
   try {
-    rows.push(...(await fetchCell(cell)))
+    // One at a time. Spread into `push`, a cell's rows are arguments, and past
+    // a hundred thousand or so of those is a RangeError, which the `catch`
+    // below would file as a failed cell: the busiest one on the map, in the
+    // season it is busiest. A whole cycle has reached 157,000 rows.
+    for (const row of await fetchCell(cell)) rows.push(row)
   } catch (err) {
     cellsFailed++
     if (!firstError) firstError = err.message
@@ -164,14 +170,28 @@ if (cellsFailed > 0) {
   console.error(`  ⚠ ${cellsFailed}/${cells.length} cells failed (${firstError})`)
 }
 
-console.log(`  ✓ ${rows.length} detections across ${cells.length - cellsFailed} cells`)
+const now = Date.now()
+const newest = newestDetection(rows)
+console.log(
+  `  ✓ ${rows.length} detections across ${cells.length - cellsFailed} cells` +
+    (newest === null ? '' : `, the newest at ${new Date(newest).toISOString().slice(0, 16).replace('T', ' ')} UTC`),
+)
+// An event is drawn only from the last day's passes, and this is one
+// instrument. When it goes quiet the rows keep coming, all of them older, and
+// what is written is `events: []` with every skip count at zero: the same file
+// as a day on which nothing burned. Said here, so the log can tell them apart.
+if (newest !== null && now - newest > RECENT_WINDOW_MS) {
+  console.error(
+    `  ⚠ the newest detection is ${((now - newest) / 3600_000).toFixed(0)}h old, outside the ` +
+      `${RECENT_WINDOW_MS / 3600_000}h an event is drawn from: the layer will be empty because ${SOURCE} is silent`,
+  )
+}
 
 // --- Filter and cluster ---------------------------------------------------
 
 // Classified and clustered over the whole set at once, not per cell: a fire on a
 // cell boundary is one fire, and clustering inside each response would publish
 // it as two events with half the radiative power each.
-const now = Date.now()
 const classified = classifyCells(rows, { now })
 const { events: clustered, skipped } = clusterEvents(rows, classified, { now })
 

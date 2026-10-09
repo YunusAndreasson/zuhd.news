@@ -20,6 +20,7 @@ import {
   isThermallyRelevant,
   minDistanceKm,
   nearestStories,
+  newestDetection,
   parseFirmsCsv,
 } from './firms.js'
 
@@ -155,6 +156,16 @@ test('a changed upstream schema throws instead of yielding empty rows', () => {
 test('an empty or header-only response is no detections, not an error', () => {
   assert.deepEqual(parseFirmsCsv(''), [])
   assert.deepEqual(parseFirmsCsv(`${CSV_HEADER}\n`), [])
+})
+
+test('the newest detection is found without spreading a cycle of rows into arguments', () => {
+  // The log prints it, because a silent instrument and a day with no fire write
+  // the same empty layer. A cycle is 70 to 160 thousand rows, and `Math.max`
+  // over that many arguments is a RangeError.
+  assert.equal(newestDetection([]), null)
+  const rows = Array.from({ length: 200_000 }, (_, i) => ({ t: NOW - (i % 5) * DAY - i }))
+  rows[123_456].t = NOW + HOUR
+  assert.equal(newestDetection(rows), NOW + HOUR)
 })
 
 // ---------------------------------------------------------------------------

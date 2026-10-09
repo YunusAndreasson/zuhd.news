@@ -410,6 +410,31 @@ export function joinAreas(rows, features, point, tally = { unjoined: 0, noGeomet
 }
 
 /**
+ * One country's geometry file, as text, joined to its rows — or a throw.
+ *
+ * The throw is the point. The fetcher asks for twenty or so of these and one
+ * failing must cost the layer that country and no more, so everything that can
+ * go wrong with a single file has to go wrong in one place the fetcher can
+ * catch: text that does not parse, text that parses to something that is not a
+ * collection (`null`, an error object), and geometry the reducer cannot take.
+ * The join used to run after the fetcher's `try`, where the last two were an
+ * exception out of the pool and an exit 1.
+ *
+ * The tally is the country's own and comes back with the areas, so a file that
+ * fails half way leaves no counts behind.
+ *
+ * @param {object[]} rows the country's gated CSV rows
+ * @param {string} text
+ * @param {(feature: object) => { lat: number, lng: number } | null} point
+ */
+export function joinCountry(rows, text, point) {
+  const collection = JSON.parse(text)
+  if (!Array.isArray(collection?.features)) throw new Error('not a feature collection')
+  const tally = { unjoined: 0, noGeometry: 0, noPhase: 0 }
+  return { joined: joinAreas(rows, collection.features, point, tally), tally }
+}
+
+/**
  * The order the snapshot's areas are written in: newest analysis first, then
  * gravest, so a truncated read of the file is still a read of the most current
  * and most serious of it — and then by country.

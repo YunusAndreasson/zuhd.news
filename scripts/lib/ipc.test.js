@@ -22,6 +22,7 @@ import {
   featureClassification,
   gateByAge,
   joinAreas,
+  joinCountry,
   normaliseAreaName,
   parseAnalysisDate,
   parseIpcAreaCsv,
@@ -240,6 +241,28 @@ test('an unjoined name is counted, not quietly dropped', () => {
   const out = joinAreas(kept, [feat('Bay', 3, pt(43, 3))], point, skipped)
   assert.equal(out.length, 1)
   assert.equal(skipped.unjoined, 1)
+})
+
+test("one country's file fails as one thing, and leaves no counts behind", () => {
+  // The fetcher asks for twenty of these and catches around each. A file that
+  // parsed but was not a collection used to get past that catch, and the
+  // exception took the other nineteen countries with it.
+  const rows = parseIpcAreaCsv(csv(row({ area: 'Bay' }), row({ area: 'Gedo' })))
+  const { kept } = gateByAge(rows, { now: NOW })
+
+  const good = JSON.stringify({ type: 'FeatureCollection', features: [feat('Bay', 3, pt(43, 3))] })
+  const { joined, tally } = joinCountry(kept, good, point)
+  assert.equal(joined.length, 1)
+  assert.deepEqual(tally, { unjoined: 1, noGeometry: 0, noPhase: 0 }, "the country's own count")
+
+  assert.throws(() => joinCountry(kept, 'null', point), /not a feature collection/)
+  assert.throws(() => joinCountry(kept, '{"message":"Not found"}', point), /not a feature collection/)
+  assert.throws(() => joinCountry(kept, '<html>', point), SyntaxError)
+  // Geometry the reducer cannot take: thrown, where the fetcher is catching.
+  const thrower = () => {
+    throw new TypeError('coordinates')
+  }
+  assert.throws(() => joinCountry(kept, good, thrower), /coordinates/)
 })
 
 test('parent aggregates and non-current periods are not joinable', () => {

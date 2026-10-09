@@ -49,7 +49,7 @@ import {
   AGE_LIMIT_MONTHS,
   byVintagePhaseCountry,
   gateByAge,
-  joinAreas,
+  joinCountry,
   parseIpcAreaCsv,
 } from './lib/ipc.js'
 import { ROOT } from './lib/paths.js'
@@ -95,6 +95,18 @@ try {
 }
 const datasets = catalogue?.result?.results ?? []
 if (datasets.length === 0) bail('HDX catalogue returned no datasets')
+
+// The search is cut at `rows`, and it returned 56 of them on 2026-10-09: five
+// more countries and the cut binds. Which datasets it drops is the search's
+// own ranking, so a country would lose its geometry, or the table itself would
+// go, with nothing here to say why. CKAN states the uncut total.
+const matching = catalogue?.result?.count
+if (Number.isFinite(matching) && matching > datasets.length) {
+  console.error(
+    `  ⚠ HDX holds ${matching} datasets for this search and returned ${datasets.length}: ` +
+      `HDX_ROWS (${HDX_ROWS}) is cutting the catalogue, raise it`,
+  )
+}
 
 const globalSet = datasets.find((d) => d.name === GLOBAL_DATASET)
 const csvResource = (globalSet?.resources ?? []).find((r) => r.name === GLOBAL_CSV)
@@ -191,9 +203,12 @@ let countriesFailed = 0
 let firstError = null
 
 await runWithConcurrency(wanted, FETCH_CONCURRENCY, async ({ iso3, url, areas: rowsFor }) => {
-  let collection
+  let joined
+  let tally
   try {
-    collection = JSON.parse(await getText(url))
+    // The join is inside the `try` with the fetch: a file can parse and still
+    // not be a collection, and that is this country's failure too.
+    ;({ joined, tally } = joinCountry(rowsFor, await getText(url), point))
   } catch (err) {
     // One country's geometry failing must not cost the layer: the rest of the
     // world is still a correct, if smaller, map. Counted, not swallowed.
@@ -201,8 +216,10 @@ await runWithConcurrency(wanted, FETCH_CONCURRENCY, async ({ iso3, url, areas: r
     if (!firstError) firstError = `${iso3}: ${err.message}`
     return
   }
-  const joined = joinAreas(rowsFor, collection.features, point, skipped)
-  areas.push(...joined)
+  skipped.unjoined += tally.unjoined
+  skipped.noGeometry += tally.noGeometry
+  skipped.noPhase += tally.noPhase
+  for (const area of joined) areas.push(area)
   countries.push({
     iso3,
     areas: joined.length,

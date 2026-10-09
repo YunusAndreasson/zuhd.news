@@ -262,6 +262,25 @@ export function parseFirmsCsv(text) {
   return out
 }
 
+/**
+ * When the instrument last saw anything in these rows, or `null` for no rows.
+ *
+ * For the log: only the last day's detections become events, so rows that all
+ * predate it are an instrument that has gone quiet, and nothing else in the
+ * output says so. A loop rather than `Math.max(...)`, which takes its numbers
+ * as arguments and cannot take a cycle's hundred thousand.
+ *
+ * @param {{ t: number }[]} rows
+ * @returns {number | null}
+ */
+export function newestDetection(rows) {
+  let newest = null
+  for (const row of rows) {
+    if (newest === null || row.t > newest) newest = row.t
+  }
+  return newest
+}
+
 // --- 3. Which of it is infrastructure -------------------------------------
 
 /** Which persistence bin a detection falls in. */
