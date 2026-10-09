@@ -1,7 +1,7 @@
 // Run: node --test scripts/lib/trends-carry.test.js
 import assert from 'node:assert/strict'
 import { test } from 'node:test'
-import { CARRY_DAYS, carriedCalendar, carriedRow, carriedStocks } from './trends-carry.js'
+import { CARRY_DAYS, calendarIsFrom, carriedCalendar, carriedRow, carriedStocks } from './trends-carry.js'
 
 // The 10:00 cycle of 2026-10-09, reading the snapshot the 05:00 cycle left.
 const NOW = Date.parse('2026-10-09T10:08:00Z')
@@ -149,4 +149,19 @@ test('a failed calendar call keeps the previous snapshot’s releases that are s
   ])
   assert.deepEqual(carriedCalendar(left, '2026-10-15'), [])
   assert.deepEqual(carriedCalendar({ releaseCalendar: 'none' }, '2026-10-09'), [])
+})
+
+test('the calendar is asked for once a day, and again after a call that failed', () => {
+  const releaseCalendar = [{ date: '2026-10-14', release: 'Consumer Price Index' }]
+  // The 05:00 call answered: the four later cycles use it.
+  assert.equal(calendarIsFrom({ asOf: '2026-10-09', releaseCalendarAsOf: '2026-10-09', releaseCalendar }, '2026-10-09'), true)
+  // Yesterday's, in yesterday's snapshot: the first cycle of the day asks.
+  assert.equal(calendarIsFrom({ asOf: '2026-10-08', releaseCalendarAsOf: '2026-10-08', releaseCalendar }, '2026-10-09'), false)
+  // Today's snapshot holding yesterday's calendar, carried over a timeout at
+  // 05:00: the snapshot's own date would have said "today" and stopped asking.
+  assert.equal(calendarIsFrom({ asOf: '2026-10-09', releaseCalendarAsOf: '2026-10-08', releaseCalendar }, '2026-10-09'), false)
+  // A snapshot from before the key, an empty calendar, and no snapshot.
+  assert.equal(calendarIsFrom({ asOf: '2026-10-09', releaseCalendar }, '2026-10-09'), false)
+  assert.equal(calendarIsFrom({ asOf: '2026-10-09', releaseCalendarAsOf: '2026-10-09', releaseCalendar: [] }, '2026-10-09'), false)
+  assert.equal(calendarIsFrom(null, '2026-10-09'), false)
 })

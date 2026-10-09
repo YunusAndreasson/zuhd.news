@@ -89,6 +89,22 @@ export function carriedCalendar(prior, today) {
 }
 
 /**
+ * Whether the previous snapshot's release calendar came from a call made on
+ * `day`, and so need not be asked for again that day.
+ *
+ * By `releaseCalendarAsOf`, the day of the call, and not by the snapshot's own
+ * date: a snapshot written today can hold a calendar carried over a call that
+ * failed, and that one is asked for again. A snapshot from before the key
+ * existed has none and is asked for, once.
+ *
+ * @param {any} prior the snapshot being replaced, as it was read
+ * @param {string} day `YYYY-MM-DD`
+ */
+export function calendarIsFrom(prior, day) {
+  return prior?.releaseCalendarAsOf === day && Array.isArray(prior.releaseCalendar) && prior.releaseCalendar.length > 0
+}
+
+/**
  * The previous snapshot's stock rows that still stand.
  *
  * The file has a second writer. `extract-entities.js` (Stage 3.6) appends a

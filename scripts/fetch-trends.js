@@ -20,7 +20,8 @@ import { fetchFredReleaseCalendar } from './lib/trends-sources/fred.js'
 import { EVENT_CATALOG, matchFredRelease } from './lib/event-catalog.js'
 import { ROOT } from './lib/paths.js'
 import { readJson, writeJson } from './lib/json-file.js'
-import { carriedCalendar, carriedRow, carriedStocks } from './lib/trends-carry.js'
+import { calendarIsFrom, carriedCalendar, carriedStocks } from './lib/trends-carry.js'
+import { collectRows } from './lib/trends-collect.js'
 import { latestTrendsPath } from './lib/trends-snapshot.js'
 
 const TRENDS_DIR = join(ROOT, 'content', 'trends')
@@ -49,68 +50,15 @@ const priorSnapshot = (() => {
 const started = Date.now()
 console.log(`Fetching trends for ${today}`)
 
-const indicators = [] // snapshot rows: fetched, and carried where a fetch returned nothing
-/** The registry rows this run could not fetch, standing as the previous snapshot left them. */
-const carried = []
-
-/** A registry row with nothing fresh for it takes the previous snapshot's, if that may stand (`carriedRow`). */
-const carry = (ind) => {
-  const row = carriedRow(ind, priorSnapshot)
-  if (!row) return
-  indicators.push(row)
-  carried.push(row)
-}
-
-// Generic dispatch: each source declares its mode in trends-registry.js.
-// Adding a new source = add one entry to SOURCES + registry rows. No
-// changes required here.
-for (const [name, def] of Object.entries(SOURCES)) {
-  const matched = INDICATORS.filter((i) => i.source === name)
-  const missingEnv = def.requiredEnv.filter((k) => !process.env[k])
-  if (missingEnv.length > 0) {
-    console.warn(`  ⚠ ${name}: missing env ${missingEnv.join(', ')} — skipping`)
-    for (const ind of matched) carry(ind)
-    continue
-  }
-
-  if (def.mode === 'dynamic') {
-    console.log(`${name}: top markets`)
-    // Yesterday's rows for this source, so a sticky fetcher can recognise
-    // them. A fetcher that ignores the argument (Wikipedia) is unaffected.
-    const incumbents = (priorSnapshot?.indicators ?? []).filter((i) => i?.source === name)
-    const results = await def.fetcher({ incumbents })
-    if (results) for (const r of results) indicators.push(r)
-    continue
-  }
-
-  if (matched.length === 0) continue
-
-  if (def.mode === 'perIndicator') {
-    console.log(`${name}: ${matched.length} series`)
-    const apiKey = def.requiredEnv[0] ? process.env[def.requiredEnv[0]] : undefined
-    for (const ind of matched) {
-      const data = apiKey != null ? await def.fetcher(ind, apiKey) : await def.fetcher(ind)
-      if (data) indicators.push(buildIndicatorEntry(ind, data))
-      else carry(ind)
-    }
-    continue
-  }
-
-  if (def.mode === 'batched') {
-    console.log(`${name}: ${matched.length} series (batched)`)
-    const seriesIds = matched.map((i) => i.seriesId)
-    const apiKey = process.env[def.requiredEnv[0]]
-    const map = await def.fetcher(seriesIds, apiKey, FX_CACHE)
-    for (const ind of matched) {
-      const data = map?.[ind.seriesId]
-      if (data) indicators.push(buildIndicatorEntry(ind, data))
-      // Only a batch that failed. One that answered and left a series out has
-      // judged it: the BIS fetcher drops a rate older than its `STALE_DAYS`,
-      // and carrying the old row would print as current what it refused.
-      else if (!map) carry(ind)
-    }
-  }
-}
+// The snapshot's rows: each source in turn, a row carried from the previous
+// snapshot where its fetch returned nothing, and a source that throws costing
+// only itself (`collectRows`, `lib/trends-collect.js`).
+const { indicators, carried } = await collectRows({
+  sources: SOURCES,
+  registry: INDICATORS,
+  prior: priorSnapshot,
+  fxCache: FX_CACHE,
+})
 
 const fetched = indicators.length - carried.length
 if (carried.length > 0) {
@@ -152,10 +100,22 @@ for (const i of indicators) {
 
 // Upcoming major US data releases (CPI, payrolls, GDP, FOMC…) — one extra
 // FRED call, fail-soft. Concrete "what's next" dates for editorial surfaces.
+//
+// Once a day, not once a cycle. The endpoint is slow (`fred.js` gives it 30 s
+// and says 15-20 s is usual) and the answer is ten days of dates that change
+// when a day passes. `releaseCalendarAsOf` is the day of the call the calendar
+// came from, so today's is used again and one carried over a failed call is
+// asked for at the next cycle.
 let releaseCalendar = []
-if (process.env.FRED_API_KEY) {
+let releaseCalendarAsOf = null
+if (calendarIsFrom(priorSnapshot, today)) {
+  releaseCalendar = carriedCalendar(priorSnapshot, today)
+  releaseCalendarAsOf = today
+  console.log(`  · fred: ${releaseCalendar.length} major releases, from today's earlier call`)
+} else if (process.env.FRED_API_KEY) {
   releaseCalendar = await fetchFredReleaseCalendar(process.env.FRED_API_KEY)
   if (releaseCalendar.length > 0) {
+    releaseCalendarAsOf = today
     console.log(`  · fred: ${releaseCalendar.length} major releases in next 10d`)
   }
 }
@@ -164,6 +124,7 @@ if (process.env.FRED_API_KEY) {
 // the CPI date off the rail for a cycle.
 if (releaseCalendar.length === 0) {
   releaseCalendar = carriedCalendar(priorSnapshot, today)
+  releaseCalendarAsOf = priorSnapshot?.releaseCalendarAsOf ?? null
   if (releaseCalendar.length > 0) {
     console.log(`  · fred: ${releaseCalendar.length} release(s) carried from the previous snapshot's calendar`)
   }
@@ -199,6 +160,7 @@ const snapshot = {
   fetchedAt: new Date().toISOString(),
   asOf: today,
   releaseCalendar,
+  ...(releaseCalendarAsOf ? { releaseCalendarAsOf } : {}),
   events,
   indicators,
 }
@@ -253,26 +215,3 @@ console.log(`Wrote ${DIGEST_PATH} — ${digest.indicators.length} entries`)
 
 const elapsed = Math.round((Date.now() - started) / 1000)
 console.log(`Trends: ${fetched} indicators fetched, ${indicators.length - fetched} carried — ${elapsed}s`)
-
-// ── Helpers ────────────────────────────────────────────────────────────────
-
-/** Merge a fetched series into its registry entry, producing a snapshot row. */
-function buildIndicatorEntry(ind, data) {
-  return {
-    id: ind.id,
-    label: ind.label,
-    unit: ind.unit,
-    source: ind.source,
-    seriesId: ind.seriesId,
-    ...(ind.field ? { field: ind.field } : {}),
-    cadence: ind.cadence,
-    topicTags: ind.topicTags,
-    countryTags: ind.countryTags || [],
-    defaultHighlight: ind.defaultHighlight || 'last',
-    sourceLabel: ind.sourceLabel,
-    values: data.values,
-    periods: data.periods,
-    ...(data.dates ? { dates: data.dates, completed: data.completed } : {}),
-    asOf: data.asOf,
-  }
-}
