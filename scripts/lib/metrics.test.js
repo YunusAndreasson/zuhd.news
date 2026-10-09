@@ -33,7 +33,6 @@ test('an article is read through the parser: the fields, every source name, the 
     slug: '2026-10-08-wto',
     title: 'Trade Body Doubles Its Growth Forecast',
     date: '2026-10-08T17:00:00Z',
-    source: 'Dawn',
     sources: ['Dawn', 'Reuters'],
     sourceUrl: 'https://www.dawn.com/news/2035725',
     category: 'economy',
@@ -67,6 +66,7 @@ Lyon — Body.
 `)
   assert.equal(odd.title, 'He Said "No" Twice')
   assert.deepEqual(odd.sources, ["L'Orient-Le Jour", 'Bare Name'])
+  // As its text, to the character: the parser has no timestamp type to turn it into a Date.
   assert.equal(odd.date, '2026-10-01T06:00:00Z', 'a date without quotes is read all the same')
   assert.equal(odd.category, 'tech')
   assert.deepEqual([odd.lat, odd.lng], [0, 0], 'the equator and the meridian are places')
@@ -75,7 +75,7 @@ Lyon — Body.
 
 test('a file with no frontmatter has no fields, and one that does not parse is refused', () => {
   assert.deepEqual(metricsRow('2026-10-08-prose.md', 'Just prose.\ncategory: tech\n'), {
-    slug: '2026-10-08-prose', title: '', date: '', source: '', sources: [], sourceUrl: '', category: '', location: '', lat: null, lng: null, publishedAt: null,
+    slug: '2026-10-08-prose', title: '', date: '', sources: [], sourceUrl: '', category: '', location: '', lat: null, lng: null, publishedAt: null,
   })
   assert.throws(() => metricsRow('x.md', ARTICLE.replace('"Trade Body', '"Trade "Body')))
 })
@@ -106,8 +106,8 @@ test('freshness is the time from the source\'s publication to ours, over the art
 test('diversity tallies categories, source names and regions, with a name for what is missing', () => {
   const out = computeDiversity([
     row(),
-    row({ category: 'science', sources: ['Phys.org'], source: 'Phys.org', lat: 40.71, lng: -74.0 }),
-    row({ category: '', sources: [], source: '', lat: null, lng: null }),
+    row({ category: 'science', sources: ['Phys.org'], lat: 40.71, lng: -74.0 }),
+    row({ category: '', sources: [], lat: null, lng: null }),
     row({ category: 'science', sources: ['Phys.org', 'Dawn', 'Nature'], lat: 30.04, lng: 31.24 }),
   ])
   assert.deepEqual(out, {

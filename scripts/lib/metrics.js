@@ -20,9 +20,8 @@ import { regionFromCoords } from './regions.js'
  * @property {string} slug
  * @property {string} title
  * @property {string} date
- * @property {string} source the first source's name
  * @property {string[]} sources every source's name
- * @property {string} sourceUrl the first `url:` in the file
+ * @property {string} sourceUrl the first source's link
  * @property {string} category
  * @property {string} location
  * @property {number | null} lat
@@ -51,15 +50,16 @@ export function metricsRow(name, content, publishedAt = null) {
   const { meta } = parseFrontmatter(content)
   const listed = Array.isArray(meta.sources) ? meta.sources : []
   const sources = listed.map((s) => String(s?.name ?? '')).filter(Boolean)
+  // A string, whatever the file wrote: js-yaml 5 loads with its core schema,
+  // which has no timestamp type, so a `date:` without quotes is its text.
   /** @param {unknown} v */
-  const text = (v) => (v instanceof Date ? v.toISOString() : String(v ?? ''))
+  const text = (v) => String(v ?? '')
   /** @param {unknown} v */
   const coordinate = (v) => (typeof v === 'number' && Number.isFinite(v) ? v : null)
   return {
     slug: name.replace(/\.md$/, ''),
     title: text(meta.title),
     date: text(meta.date),
-    source: sources[0] || '',
     sources,
     sourceUrl: text(listed[0]?.url),
     category: text(meta.category),
@@ -126,19 +126,18 @@ export function computeFreshness(articles) {
 
 // ── Diversity ────────────────────────────────────────────────────────
 
+/** Every outlet behind these articles, once each, in the order first met. @param {MetricsRow[]} articles */
+const outletsOf = (articles) => [...new Set(articles.flatMap((a) => a.sources))]
+
 /** @param {MetricsRow[]} articles */
 export function computeDiversity(articles) {
   const categories = tally(articles, (a) => a.category)
-  const allSourceNames = articles.flatMap((a) => (a.sources.length > 0 ? a.sources : [a.source || 'unknown']))
-  /** @type {Record<string, number>} */
-  const sources = {}
-  for (const s of allSourceNames) {
-    sources[s || 'unknown'] = (sources[s || 'unknown'] || 0) + 1
-  }
+  // An article with no source counts once, under "unknown".
+  const sources = tally(articles.flatMap((a) => (a.sources.length > 0 ? a.sources : ['unknown'])), (name) => name)
   const regions = tally(articles, (a) => regionFromCoords(a.lat, a.lng) ?? 'unknown')
   const uniqueSources = Object.keys(sources).length
   const uniqueRegions = Object.keys(regions).filter((r) => r !== 'unknown').length
-  const scienceSources = [...new Set(articles.filter((a) => a.category === 'science').flatMap((a) => a.sources))]
+  const scienceSources = outletsOf(articles.filter((a) => a.category === 'science'))
 
   const multiSource = articles.filter((a) => a.sources.length > 1).length
 
@@ -155,8 +154,8 @@ export function computeEducational(articles) {
     scienceCount: science.length,
     techCount: tech.length,
     sciTechRatio: articles.length > 0 ? Math.round(((science.length + tech.length) / articles.length) * 100) : 0,
-    scienceSources: [...new Set(science.flatMap((a) => a.sources))],
-    techSources: [...new Set(tech.flatMap((a) => a.sources))],
+    scienceSources: outletsOf(science),
+    techSources: outletsOf(tech),
   }
 }
 

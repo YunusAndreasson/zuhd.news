@@ -60,7 +60,9 @@ export const SCHEMA = 4
  */
 export function qualityRow(file, raw, cutoff) {
   const { meta, body } = parseFrontmatter(raw)
-  const ts = meta.date instanceof Date ? meta.date.getTime() : Date.parse(String(meta.date ?? ''))
+  // Never a Date: js-yaml 5 loads with its core schema, which has no timestamp
+  // type, so a `date:` without quotes is its text all the same.
+  const ts = Date.parse(String(meta.date ?? ''))
   if (Number.isNaN(ts) || ts < cutoff) return null
 
   const sources = (Array.isArray(meta.sources) ? meta.sources : []).filter((s) => s && typeof s === 'object')
