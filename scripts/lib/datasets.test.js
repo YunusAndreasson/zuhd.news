@@ -58,8 +58,6 @@ const STILL_SPELLING = [
   'scripts/fetch-news-api.js',
   'scripts/fetch-trends.js',
   'scripts/generate-briefing.js',
-  'scripts/generate-edu-context.js',
-  'scripts/lib/company-gaps.js',
   'scripts/lib/coverage-window.js',
   'scripts/lib/published-at.js',
   'scripts/lib/trends-snapshot.js',
