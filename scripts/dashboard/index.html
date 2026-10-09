@@ -1086,7 +1086,9 @@ async function loadComplianceChart() {
     { key: 'titleEchoRatePct',   label: 'title echo %',  target: 10, color: '#e8a64a' },
     { key: 'passiveHookRatePct', label: 'passive hook %', target: 15, color: '#6db4d6' },
     { key: 'hedgeRatePct',       label: 'hedges %',       target: 5,  color: '#c87c98' },
-    { key: 'charOver350Pct',     label: 'over char cap %', target: 5,  color: '#88b985' },
+    // The hard ceiling. `charOver350Pct` is the soft target, which has none:
+    // more than half of all articles are over it by design.
+    { key: 'charOver400Pct',     label: 'over char cap %', target: 5,  color: '#88b985' },
   ]
   const history = wq.history
   const n = history.length
@@ -1228,7 +1230,8 @@ async function loadWritingQuality() {
     const v = d[k]
     if (v === undefined) return ''
     const sign = v > 0 ? '+' : ''
-    const color = v === 0 ? 'var(--text-secondary)' : (['titleEchoRatePct','passiveHookRatePct','passiveBodyRatePct','semicolonRatePct','causalClaimHits','pressEraHits','hedgeRatePct','acronymViolations','countryNullCount','charOver350Pct','topOutletSharePct'].includes(k)
+    // The soft length target is a figure, not a goal: its change has no colour.
+    const color = v === 0 || k === 'charOver350Pct' ? 'var(--text-secondary)' : (['titleEchoRatePct','passiveHookRatePct','passiveBodyRatePct','semicolonRatePct','causalClaimHits','pressEraHits','hedgeRatePct','acronymViolations','countryNullCount','charOver400Pct','topOutletSharePct'].includes(k)
       ? (v > 0 ? 'var(--amber)' : 'var(--green, #4a9)')
       : (v > 0 ? 'var(--green, #4a9)' : 'var(--amber)'))
     return `<span style="color:${color};font-size:var(--size-xs);margin-left:0.35em">(${sign}${v}${suffix})</span>`
@@ -1246,14 +1249,19 @@ async function loadWritingQuality() {
     { k: 'countryNullCount',   l: 'country:null',     v: m.countryNullCount,   u: '',   target: '0' },
     { k: 'multiSourceRatePct', l: 'multi-source',     v: m.multiSourceRatePct, u: '%',  target: '>40%' },
     { k: 'topOutletSharePct',  l: 'top-3 outlet',     v: m.topOutletSharePct,  u: '%',  target: '<35%' },
-    { k: 'charOver350Pct',     l: 'over char cap',    v: m.charOver350Pct,     u: '%',  target: '<5%' },
+    // The keys are named for the thresholds they were born with (350 and 400;
+    // 480 and 560 since the trend's schema 3). The cap is `charOver400Pct`,
+    // the hard ceiling. `charOver350Pct` is the soft target: information,
+    // never a gate, so it is shown with no target of its own.
+    { k: 'charOver400Pct',     l: 'over char cap',    v: m.charOver400Pct,     u: '%',  target: '<5%' },
+    { k: 'charOver350Pct',     l: 'over soft target', v: m.charOver350Pct,     u: '%' },
     { k: 'wordCountAvg',       l: 'avg word count',   v: m.wordCountAvg,       u: '',   target: '52-75' },
     { k: 'wordInRangePct',     l: 'words in range',   v: m.wordInRangePct,     u: '%',  target: '>75%' },
     { k: 'charLengthAvg',      l: 'avg char length',  v: m.charLengthAvg,      u: '',   target: '400-480' },
     { k: 'fiveBlockRatePct',   l: 'counterpoint/quote', v: m.fiveBlockRatePct, u: '%',  target: 'earned' },
   ]
   statsEl.innerHTML = rows.map(r =>
-    `<div class="stat"><span class="stat-value">${r.v}${r.u}${fmtDelta(r.k, r.u)}</span><span class="stat-label">${r.l} (target ${r.target})</span></div>`
+    `<div class="stat"><span class="stat-value">${r.v ?? '\u2014'}${r.v == null ? '' : r.u}${fmtDelta(r.k, r.u)}</span><span class="stat-label">${r.l}${r.target ? ` (target ${r.target})` : ''}</span></div>`
   ).join('')
 
   // Top outlets and acronym violators — exposed but previously unrendered
@@ -1285,7 +1293,8 @@ async function loadWritingQuality() {
       { key: 'pressEraHits', label: 'press-era hits' },
       { key: 'multiSourceRatePct', label: 'multi-source %' },
       { key: 'topOutletSharePct', label: 'top-3 outlet %' },
-      { key: 'charOver350Pct', label: 'over char cap %' },
+      { key: 'charOver400Pct', label: 'over char cap %' },
+      { key: 'charOver350Pct', label: 'over soft target %' },
       { key: 'countryNullCount', label: 'country:null' },
       { key: 'acronymViolations', label: 'acronym viol.' },
       { key: 'wordCountAvg', label: 'avg word count' },
@@ -1947,7 +1956,7 @@ async function updateStatusBar(overview) {
       if (m.passiveBodyRatePct > 15) breaches.push('passive (body)')
       if (m.semicolonRatePct > 0) breaches.push('semicolons')
       if (m.hedgeRatePct > 5) breaches.push('hedges')
-      if (m.charOver350Pct > 5) breaches.push('over char cap')
+      if (m.charOver400Pct > 5) breaches.push('over char cap')
       if (m.multiSourceRatePct < 40) breaches.push('multi-source')
       if (m.acronymViolations > 0) breaches.push('acronyms')
       if (m.causalClaimHits > 0) breaches.push('causal claims')
