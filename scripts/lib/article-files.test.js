@@ -3,7 +3,8 @@ import { mkdtempSync, writeFileSync } from 'node:fs'
 import { tmpdir } from 'node:os'
 import { join } from 'node:path'
 import { test } from 'node:test'
-import { articleFilesSince, FILENAME_DATE_MARGIN_MS } from './article-files.js'
+import { articleFilesSince, batchFiles, FILENAME_DATE_MARGIN_MS } from './article-files.js'
+import { ROOT } from './paths.js'
 
 test('keeps the window plus the margin, every undated name, and only .md', () => {
   const dir = mkdtempSync(join(tmpdir(), 'article-files-'))
@@ -18,4 +19,17 @@ test('keeps the window plus the margin, every undated name, and only .md', () =>
   ]
   for (const n of names) writeFileSync(join(dir, n), '')
   assert.deepEqual(articleFilesSince(dir, since).sort(), [names[1], names[0], 'example.md'].sort())
+})
+
+test('the batch is the list\'s lines, from the root, and an empty list is an empty batch', () => {
+  const dir = mkdtempSync(join(tmpdir(), 'batch-'))
+  const list = join(dir, 'new-articles.txt')
+  writeFileSync(list, 'content/articles/2026-10-09-b.md\ncontent/articles/2026-10-09-a.md\n')
+  assert.deepEqual(batchFiles(list), [
+    { rel: 'content/articles/2026-10-09-b.md', path: join(ROOT, 'content/articles/2026-10-09-b.md'), name: '2026-10-09-b.md' },
+    { rel: 'content/articles/2026-10-09-a.md', path: join(ROOT, 'content/articles/2026-10-09-a.md'), name: '2026-10-09-a.md' },
+  ])
+  writeFileSync(list, '\n')
+  assert.deepEqual(batchFiles(list), [], 'the empty last line is not an article')
+  assert.throws(() => batchFiles(join(dir, 'absent.txt')), /ENOENT/)
 })
