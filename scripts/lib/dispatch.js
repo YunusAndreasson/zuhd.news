@@ -16,7 +16,7 @@ import { CC_TO_TOPOJSON_NAME } from '../../shared/countries/iso.ts'
 import { callClaudeJson, cleanProse } from './claude-envelope.js'
 import { runWithConcurrency } from './concurrency.js'
 import { matchesAnyTag } from './entity-registry.js'
-import { promptEcho, promptExamples, seriesEchoes, validateNumbers, validateProperNouns } from './grounding.js'
+import { promptEcho, promptExamples, seriesEchoes, validateGrounding } from './grounding.js'
 import { readJson, writeJson } from './json-file.js'
 import { modelFor } from './models.js'
 
@@ -271,8 +271,7 @@ export function judgeAnswer(out, bundle, { examples, standing }) {
   const recentRaw = cleanProse(out.recent)
   const recentEcho = recentRaw ? promptEcho(recentRaw, examples) : null
   const recentBad = recentRaw
-    ? (validateNumbers(recentRaw, bundle) ??
-       validateProperNouns(recentRaw, bundle) ??
+    ? (validateGrounding(recentRaw, bundle, { properNouns: true }) ??
        (recentEcho && recentEcho.frac >= PROMPT_ECHO_REJECT
          ? `reproduces a prompt example (${(recentEcho.frac * 100).toFixed(0)}%)`
          : null))

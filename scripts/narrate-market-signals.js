@@ -5,7 +5,7 @@ import { normalizeMarkets, selectMarketSignals, factualSummary } from './lib/mar
 import { loadArticles } from './lib/coverage-window.js'
 import { matchesAnyTag } from './lib/entity-registry.js'
 import { MAX_COVERAGE, RECENT_CAP, askModel } from './lib/dispatch.js'
-import { validateNumbers, validateProperNouns } from './lib/grounding.js'
+import { validateGrounding } from './lib/grounding.js'
 import { ROOT } from './lib/paths.js'
 import { readJson, writeJson } from './lib/json-file.js'
 import { latestTrendsPath } from './lib/trends-snapshot.js'
@@ -43,7 +43,7 @@ const LOOKS_AHEAD =
 export function validateMarketComment(out, bundle, reasons = []) {
   const no = (why) => { reasons.push(why); return null }
   if (typeof out?.recent !== 'string' || !out.recent.trim() || out.recent.length > RECENT_CAP) return no(`recent missing, empty or over ${RECENT_CAP} chars`)
-  const bad = validateNumbers(out.recent, bundle) ?? validateProperNouns(out.recent, bundle)
+  const bad = validateGrounding(out.recent, bundle, { properNouns: true })
   if (bad) return no(bad)
   if (!Array.isArray(out.evidence) || !out.evidence.length || out.evidence.length > 3) return no('evidence missing, empty or over 3')
   const evidence = []

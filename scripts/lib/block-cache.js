@@ -23,8 +23,9 @@ const REPROBE_PROBABILITY = 0.05
 let cache = null
 function load() {
   if (cache) return cache
-  try { cache = readJson(cachePath, {}) }
-  catch { cache = {} }
+  // No `try`: `readJson` does not throw. A missing file is the fallback, and
+  // an unreadable one is the fallback and a line on stderr.
+  cache = readJson(cachePath, {})
   return cache
 }
 
