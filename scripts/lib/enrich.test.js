@@ -1,8 +1,9 @@
 // Run: node --test scripts/lib/enrich.test.js
 import assert from 'node:assert/strict'
+import { readFileSync } from 'node:fs'
 import { test } from 'node:test'
 import { THIN_BODY } from './dedup.js'
-import { attachSources, dropUnwritable, fillThinSources, thinSourcesOf, unionSources } from './enrich.js'
+import { attachSources, dropUnwritable, fillThinSources, readablePicks, thinSourcesOf, unionSources } from './enrich.js'
 
 const long = (about) => `${about} `.repeat(Math.ceil((THIN_BODY + 50) / (about.length + 1)))
 const src = (name, url, body) => ({ name, url, country: null, ...(body === undefined ? {} : { body }) })
@@ -184,4 +185,71 @@ test('two title words in the text are not enough when they are under a third of 
   const { dropped: under } = dropUnwritable([entry('regional lenders met')])
   assert.equal(under[0].why, 'its source text matches 2/10 title words — not about this story')
   assert.deepEqual(dropUnwritable([entry('regional lenders agree on something')]).dropped, [])
+})
+
+// --- before step 1: the selector's file, held to its shape -------------------
+
+// The selection of the 2026-10-09 10:00 cycle as the selector wrote it: twelve
+// picks, nothing wrong with any.
+const WRITTEN = readFileSync(new URL('./fixtures/selection/2026-10-09_1000.1-selected.json', import.meta.url), 'utf8')
+
+test('a selection with nothing wrong comes out as it went in, to the byte', () => {
+  const selection = JSON.parse(WRITTEN)
+  const { picks, problems, dropped, flagged } = readablePicks(selection)
+  assert.deepEqual({ problems, dropped, flagged }, { problems: [], dropped: [], flagged: [] })
+  assert.equal(picks.length, 12)
+  for (const [i, pick] of picks.entries()) assert.equal(pick, selection[i], 'the same entry, not a copy')
+  // Against a second reading of the file, so a change made in place would show.
+  assert.equal(JSON.stringify(picks, null, 2), JSON.stringify(JSON.parse(WRITTEN), null, 2))
+})
+
+const pick = (over = {}) => ({ title: 'Geneva trade body doubles its growth forecast', suggestedSlug: '2026-10-08-wto-forecast', category: 'economy', sources: [src('Dawn', 'https://dawn.example/wto')], ...over })
+
+test('an entry no later stage could read is dropped, and named as the problems name it', () => {
+  const { picks, problems, dropped, flagged } = readablePicks([
+    pick(),
+    null,
+    'a headline',
+    pick({ suggestedSlug: undefined, title: 'No slug to join on' }),
+    pick({ suggestedSlug: '2026-10-08-no-title', title: '' }),
+    pick({ suggestedSlug: 42, title: undefined }),
+  ])
+  assert.deepEqual(picks.map((p) => p.suggestedSlug), ['2026-10-08-wto-forecast'])
+  assert.deepEqual(dropped, [
+    { slug: '#2', reason: 'not an object' },
+    { slug: '#3', reason: 'not an object' },
+    { slug: '#4', reason: 'no suggestedSlug' },
+    { slug: '2026-10-08-no-title', reason: 'no title' },
+    { slug: '42', reason: 'no suggestedSlug, no title' },
+  ])
+  assert.ok(problems.includes('#2: not an object') && problems.includes('#4: missing suggestedSlug') && problems.includes('2026-10-08-no-title: missing title'))
+  assert.deepEqual(flagged, [], 'what was wrong with a dropped entry is not said twice')
+})
+
+test('sources becomes a list, and what is wrong with a pick that stays is flagged', () => {
+  const one = src('Dawn', 'https://dawn.example/wto')
+  const { picks, dropped, flagged } = readablePicks([
+    pick({ suggestedSlug: '2026-10-08-one-source', sources: one }),
+    pick({ suggestedSlug: '2026-10-08-a-string', sources: 'https://dawn.example/wto' }),
+    pick({ suggestedSlug: '2026-10-08-none', sources: undefined }),
+    pick({ suggestedSlug: '2026-10-08-a-hole', sources: [one, null, 'x'] }),
+    pick({ suggestedSlug: '2026-10-08-a-hole', category: 'sport' }),
+  ])
+  assert.deepEqual(dropped, [])
+  assert.deepEqual(picks.map((p) => p.sources), [[one], [], [], [one], [one]])
+  assert.deepEqual(flagged, [
+    { slug: '2026-10-08-one-source', reason: 'sources is not a list' },
+    { slug: '2026-10-08-a-string', reason: 'sources is not a list' },
+    { slug: '2026-10-08-none', reason: 'missing sources' },
+    { slug: '2026-10-08-a-hole', reason: 'invalid category sport' },
+    { slug: '2026-10-08-a-hole', reason: 'slug picked twice' },
+  ])
+  // The shape that threw in `unionSources`: an object where a list was meant.
+  const selection = readablePicks([{ title: 'Trade body doubles forecast', suggestedSlug: '2026-10-08-wto-forecast', link: 'https://feed.example/wto', sources: one }]).picks
+  assert.equal(attachSources(selection, feed()).enriched, 1)
+})
+
+test('a file that is not a list holds no picks', () => {
+  assert.deepEqual(readablePicks({ stories: [pick()] }), { picks: [], problems: ['not an array'], dropped: [], flagged: [{ slug: 'selection', reason: 'not an array' }] })
+  assert.deepEqual(readablePicks([]), { picks: [], problems: [], dropped: [], flagged: [] })
 })

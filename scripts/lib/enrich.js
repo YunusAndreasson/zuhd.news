@@ -12,10 +12,73 @@
 
 import { runWithConcurrency } from './concurrency.js'
 import { THIN_BODY, isThin, titleWords } from './dedup.js'
+import { selectionProblems } from './schema.js'
 import { createMatcher } from './selection-match.js'
 
 /** @typedef {import('./schema.js').FeedItem} FeedItem */
 /** @typedef {import('./schema.js').FeedSource} FeedSource */
+
+/** @param {unknown} v */
+const isObject = (v) => Boolean(v) && typeof v === 'object'
+
+/**
+ * Before step 1. What the selector's file holds, as picks the steps can read.
+ *
+ * The selector is a model writing JSON, and every stage after it took the
+ * shape on trust. A `sources` that was an object and not a list threw in
+ * `unionSources`; an entry that was `null` threw in the matcher; a pick with
+ * no `suggestedSlug` threw in `dedup-selection.js` (`slugWords`), and then
+ * nothing in the selection was deduped. The cycle prints a stage's exit
+ * status and goes on, so each of those handed the writer picks with no source
+ * text. `selectionProblems` (`lib/schema.js`) already said what was wrong with
+ * a selection, and nothing called it.
+ *
+ * Everything it reports is returned, for the stage to print. Three of those
+ * problems are acted on, and nothing else about an entry is changed:
+ * - an entry that is not an object is dropped;
+ * - so is one with no `suggestedSlug` or no `title`: every later stage joins
+ *   on the first, and the second is what the writer is given to go on;
+ * - `sources` becomes a list: of the one source, where the selector wrote a
+ *   source and not a list of them, and otherwise of what in it is a source.
+ *
+ * A selection with nothing wrong comes back as the same entries, untouched.
+ *
+ * @param {unknown} selection what the file held
+ * @returns {{ picks: any[], problems: string[], dropped: { slug: string, reason: string }[], flagged: { slug: string, reason: string }[] }}
+ *   `problems` is every phrase, as `selectionProblems` gives them; `dropped`
+ *   the entries taken out and `flagged` what is wrong with the ones that stay,
+ *   each named as `selectionProblems` names it: by its slug, or `#3` for the
+ *   third when it has none
+ */
+export function readablePicks(selection) {
+  const problems = selectionProblems(selection)
+  /** @type {any[]} */
+  const picks = []
+  /** @type {{ slug: string, reason: string }[]} */
+  const dropped = []
+  for (const [i, entry] of (Array.isArray(selection) ? selection : []).entries()) {
+    if (!isObject(entry)) {
+      dropped.push({ slug: `#${i + 1}`, reason: 'not an object' })
+      continue
+    }
+    const missing = ['suggestedSlug', 'title'].filter((k) => typeof entry[k] !== 'string' || entry[k] === '')
+    if (missing.length > 0) {
+      dropped.push({ slug: String(entry.suggestedSlug || `#${i + 1}`), reason: `no ${missing.join(', no ')}` })
+      continue
+    }
+    if (!Array.isArray(entry.sources)) entry.sources = isObject(entry.sources) ? [entry.sources] : []
+    else if (!entry.sources.every(isObject)) entry.sources = entry.sources.filter(isObject)
+    picks.push(entry)
+  }
+  const gone = new Set(dropped.map((d) => d.slug))
+  const flagged = problems
+    .map((p) => {
+      const cut = p.indexOf(': ')
+      return cut < 0 ? { slug: 'selection', reason: p } : { slug: p.slice(0, cut), reason: p.slice(cut + 2) }
+    })
+    .filter((f) => !gone.has(f.slug))
+  return { picks, problems, dropped, flagged }
+}
 
 /**
  * The matched story's sources, **plus** any the selector added.

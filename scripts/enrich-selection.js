@@ -8,14 +8,18 @@
 // `lib/selection-match.js`.
 import { readFileSync } from 'node:fs'
 import { pathOf } from './lib/datasets.js'
-import { attachSources, dropUnwritable, fillThinSources, thinSourcesOf } from './lib/enrich.js'
+import { attachSources, dropUnwritable, fillThinSources, readablePicks, thinSourcesOf } from './lib/enrich.js'
 import { fetchSourceText } from './lib/fetch-source-text.js'
 import { writeJson } from './lib/json-file.js'
 import { runStage } from './lib/stage.js'
 
 export async function main() {
   const feed = JSON.parse(readFileSync(pathOf('feed'), 'utf-8'))
-  const selection = JSON.parse(readFileSync(pathOf('selection'), 'utf-8'))
+  // The selector's file is held to its shape here, by the first stage to read
+  // it: a pick no later stage could read is taken out, and said.
+  const { picks: selection, problems, dropped: unreadable, flagged } = readablePicks(JSON.parse(readFileSync(pathOf('selection'), 'utf-8')))
+  for (const problem of problems) console.error(`  ⚠ selection: ${problem}`)
+  for (const { slug, reason } of unreadable) console.log(`Dropped selection entry ${slug}: ${reason}`)
 
   const { enriched, layers, missing, notes } = attachSources(selection, feed)
   for (const note of notes) console.error(note)
@@ -45,11 +49,13 @@ export async function main() {
   const nameOf = (entry) => entry.suggestedSlug || entry.title
   const unmatched = new Set(missing)
   return {
-    counts: { selected: selection.length, enriched, kept: kept.length, thinSources: thinSources.length, thinFilled: filled },
+    counts: { selected: selection.length + unreadable.length, enriched, kept: kept.length, thinSources: thinSources.length, thinFilled: filled },
     dropped: [
+      ...unreadable,
       ...sourceless.map((entry) => ({ slug: nameOf(entry), reason: unmatched.has(nameOf(entry)) ? 'no story in the feed matched it' : 'the story it matched has no sources' })),
       ...dropped.map(({ entry, why }) => ({ slug: nameOf(entry), reason: why })),
     ],
+    ...(flagged.length > 0 ? { flagged } : {}),
   }
 }
 
