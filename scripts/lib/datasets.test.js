@@ -88,7 +88,6 @@ const STILL_SPELLING = [
   'scripts/lib/trends-snapshot.js',
   'scripts/lib/trends-sources/stocks.js',
   'scripts/lib/trends-sources/wikipedia.js',
-  'scripts/measure-quality.js',
   'scripts/narrate-events.js',
   'scripts/narrate-gdacs.js',
   'scripts/narrate-indicators.js',

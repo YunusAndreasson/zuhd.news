@@ -18,6 +18,7 @@ import assert from 'node:assert'
 import { readFileSync } from 'node:fs'
 import { fileURLToPath } from 'node:url'
 import { dirname, join } from 'node:path'
+import { SCHEMA, qualitySnapshot } from './quality-metrics.js'
 
 const ROOT = join(dirname(fileURLToPath(import.meta.url)), '..', '..')
 const read = (p) => readFileSync(join(ROOT, p), 'utf8')
@@ -73,10 +74,15 @@ test('the quality metrics measure the current budget', () => {
   // The metric KEYS are historical names on an append-only series; the
   // thresholds inside them are what must track the budget. A bump to either
   // without a SCHEMA bump makes a redefinition read as a quality win.
-  const s = read('scripts/measure-quality.js')
-  assert.match(s, new RegExp(`charOver350Pct: pct\\(charLengths\\.filter\\(c => c > ${TARGET_HI}\\)`))
-  assert.match(s, new RegExp(`charOver400Pct: pct\\(visibleLengths\\.filter\\(c => c > ${CEILING}\\)`))
-  assert.match(s, /const SCHEMA = 3/, 'the budget changed definition at schema 3 — bump SCHEMA if it changes again')
+  // Asked of the scan itself, now that it can be: a body one character either
+  // side of each threshold.
+  const over = (chars) =>
+    qualitySnapshot([{ file: 'a.md', title: '', body: 'x'.repeat(chars), category: '', sourceNames: [], sourceCountries: [] }], 0).metrics
+  assert.equal(over(TARGET_HI).charOver350Pct, 0)
+  assert.equal(over(TARGET_HI + 1).charOver350Pct, 100, `charOver350Pct no longer turns at ${TARGET_HI}`)
+  assert.equal(over(CEILING).charOver400Pct, 0)
+  assert.equal(over(CEILING + 1).charOver400Pct, 100, `charOver400Pct no longer turns at ${CEILING}`)
+  assert.equal(SCHEMA, 3, 'the budget changed definition at schema 3 — bump SCHEMA if it changes again')
 })
 
 test('the RVS writing scorer measures against the same ceiling', () => {
