@@ -50,7 +50,7 @@ import { promptEcho, promptExamples, seriesEchoes, validateNumbers, validateProp
 import { matchesAnyTag } from './lib/entity-registry.js'
 import { companyMatcher, isAboutCompany, storyFacts } from './lib/companies.js'
 import { loadArticles, loadFeedWindow } from './lib/coverage-window.js'
-import { staleKeys, storedStanding } from './lib/dispatch.js'
+import { offeredArticles, offeredStories, staleKeys, storedStanding } from './lib/dispatch.js'
 import { argAt, hasFlag } from './lib/argv.js'
 import { ROOT } from './lib/paths.js'
 import { readJson, writeJson } from './lib/json-file.js'
@@ -297,7 +297,10 @@ for (const ex of exchanges) {
       asOf: ex.asOf || '',
     },
     wikiTitle: null,
-    topicTags: [...(ex.topicTags || []), ...(ex.countryTags || [])],
+    topicTags: ex.topicTags || [],
+    // Its own field, never more `topicTags`: a tag is matched as a lowercased
+    // word, and `IN`, `IT` and `US` are words (`offeredArticles`).
+    countryTags: ex.countryTags || [],
     catalogBlurb: ex.blurb || null,
   })
 }
@@ -365,51 +368,36 @@ console.log(
 // ── Bundles ───────────────────────────────────────────────────────────────
 
 /**
- * Articles offered to the model for one item.
- *
- * Two tiers, and the order is the point. A frontmatter `entities[]` hit is a
- * resolved claim that this story is *about* this instrument; a `topicTags` hit
- * is a word appearing near it. Ranking the first above the second is what keeps
- * the citation list from filling with stories that merely say "sanctions".
+ * Articles offered to the model for one item: the stories about it, then the
+ * stories that carry one of its tags, then (an exchange) its own country's.
+ * The tiers and why they are in that order are `offeredArticles`'.
  */
-const coverageFor = (item) => {
-  const direct = articles.filter((a) =>
-    item.about ? item.about(a) : a.entityIds.includes(item.key),
-  )
-  const tagged = articles.filter(
-    (a) => !direct.includes(a) && matchesAnyTag(item.topicTags, a.hay),
-  )
-  return [...direct, ...tagged].slice(0, MAX_COVERAGE).map((a) => ({
-    slug: a.slug,
-    title: a.title,
-    date: String(a.date).slice(0, 10),
-    dateline: a.location,
-    lead: a.lead,
-  }))
-}
+const coverageFor = (item) =>
+  offeredArticles(articles, {
+    direct: (a) => (item.about ? item.about(a) : a.entityIds.includes(item.key)),
+    topicTags: item.topicTags,
+    countryTags: item.countryTags,
+  })
+    .slice(0, MAX_COVERAGE)
+    .map((a) => ({
+      slug: a.slug,
+      title: a.title,
+      date: String(a.date).slice(0, 10),
+      dateline: a.location,
+      lead: a.lead,
+    }))
 
-/**
- * Feed stories offered to the model for one item.
- *
- * For an attention series the join is the **Wikipedia article title**, which is
- * exact: `wiki-iran` is built from the pageviews of `Iran`, and a feed story
- * tagged with `en.wikipedia.org/wiki/Iran` is by construction a story about the
- * thing being read about. That exactness is what lets the attention block
- * explain an event instead of restating the metric.
- *
- * Everything else falls back to whole-tag matching.
- */
-const feedFor = (item) => {
-  const hits = item.wikiTitle
-    ? feedWindow.filter((s) => s.conceptTitles.includes(item.wikiTitle))
-    : feedWindow.filter((s) => matchesAnyTag(item.topicTags, s.hay))
-  return hits.slice(0, MAX_FEED).map((s) => ({
-    headline: s.title,
-    date: s.date,
-    source: s.source,
-    outlets: s.outlets,
-  }))
-}
+/** Feed stories offered to the model for one item (`offeredStories`): by
+ *  Wikipedia title for an attention series, by tag for everything else. */
+const feedFor = (item) =>
+  offeredStories(feedWindow, item)
+    .slice(0, MAX_FEED)
+    .map((s) => ({
+      headline: s.title,
+      date: s.date,
+      source: s.source,
+      outlets: s.outlets,
+    }))
 
 const threadsFor = (item) =>
   ledger

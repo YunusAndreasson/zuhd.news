@@ -1,7 +1,59 @@
 // Run: node --test scripts/lib/dispatch.test.js
 import assert from 'node:assert/strict'
 import { test } from 'node:test'
-import { staleKeys, storedStanding } from './dispatch.js'
+import { offeredArticles, offeredStories, staleKeys, storedStanding } from './dispatch.js'
+import { matchesAnyTag } from './entity-registry.js'
+
+// ── offeredArticles, offeredStories ───────────────────────────────────────
+
+/** A `loadArticles` row, as far as the join reads one. */
+const article = (slug, title, { entityIds = [], countries = [] } = {}) => ({ slug, title, hay: title.toLowerCase(), entityIds, countries })
+/** A `loadFeedWindow` row. */
+const story = (title, conceptTitles = []) => ({ title, hay: title.toLowerCase(), conceptTitles })
+
+/** The Bombay exchange as `content/.markets.json` carries it. */
+const BSE = { topicTags: ['sensex', 'bombay stock exchange', 'india', 'mumbai', 'rupee'], countryTags: ['IN'] }
+
+test('a country code is never matched as a word: IN is not "in"', () => {
+  const riyadh = article('riyadh', 'Three People Killed in Attacks on Riyadh Airport', { countries: ['SA'] })
+  const sensex = article('sensex', 'Sensex Slides', { entityIds: ['mkt:bse'] })
+  const rbi = article('rbi', "India's Central Bank Hikes Rates", { countries: ['IN'] })
+  const tata = article('tata', 'Green Card Freeze Hits Tata', { countries: ['US', 'IN'] })
+  const articles = [riyadh, tata, rbi, sensex]
+
+  // What the exchange's tags were while its codes were folded into them.
+  assert.ok(matchesAnyTag([...BSE.topicTags, ...BSE.countryTags], riyadh.hay), 'the bug: a tag is lowercased and "in" is a word')
+
+  const offered = offeredArticles(articles, { direct: (a) => a.entityIds.includes('mkt:bse'), ...BSE })
+  // About it, then tagged, then its country's — and the airport nowhere.
+  assert.deepEqual(offered.map((a) => a.slug), ['sensex', 'rbi', 'tata'])
+})
+
+test('an item with no countries is offered what it always was', () => {
+  const articles = [article('a', 'Oil Slides on OPEC Talk'), article('b', 'Brent Tops $90', { entityIds: ['brent'] }), article('c', 'Rain in Spain')]
+  const offered = offeredArticles(articles, { direct: (a) => a.entityIds.includes('brent'), topicTags: ['oil', 'opec'] })
+  assert.deepEqual(offered.map((a) => a.slug), ['b', 'a'])
+  assert.deepEqual(offeredArticles(articles, { topicTags: ['spain'] }).map((a) => a.slug), ['c'], 'no direct tier at all, as for an event')
+})
+
+test('feed stories: tags first, then the country by name, never by code', () => {
+  const feed = [
+    story('Three People Killed in Attacks on Riyadh Airport'),
+    story('Israel Cabinet Meets on Budget'),
+    story('TASE Halts Trading After Glitch'),
+    story("India's Central Bank Raises Repo Rate"),
+  ]
+  assert.deepEqual(offeredStories(feed, BSE).map((s) => s.title), ["India's Central Bank Raises Repo Rate"])
+  // Tel Aviv's tags name neither the country nor the city; its country does.
+  const tase = { topicTags: ['tel aviv stock exchange', 'ta-125', 'tase'], countryTags: ['IL'] }
+  assert.deepEqual(offeredStories(feed, tase).map((s) => s.title), ['TASE Halts Trading After Glitch', 'Israel Cabinet Meets on Budget'])
+})
+
+test('an attention series joins on the Wikipedia title alone', () => {
+  const feed = [story('Tehran Reopens Talks', ['iran', 'tehran']), story('Iran in the Headlines'), story('Oil Falls', ['brent crude'])]
+  const offered = offeredStories(feed, { wikiTitle: 'iran', topicTags: ['iran', 'oil'] })
+  assert.deepEqual(offered.map((s) => s.title), ['Tehran Reopens Talks'])
+})
 
 // ── storedStanding ────────────────────────────────────────────────────────
 
