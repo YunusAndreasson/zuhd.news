@@ -116,6 +116,19 @@ async function fetchFromHost(host, symbol, range) {
   const data = await res.json()
   const result = data?.chart?.result?.[0]
   if (!result) throw new Error('no chart result')
+  return chartSeries(result, symbol)
+}
+
+/**
+ * One chart result (`chart.result[0]`) as the series this module returns.
+ * Pure, so it has a test. Throws for a result too short to chart, with the
+ * live quote on the error where the response carried one.
+ *
+ * @param {any} result
+ * @param {string} symbol
+ * @param {number} [now]
+ */
+export function chartSeries(result, symbol, now = Date.now()) {
   const timestamps = Array.isArray(result.timestamp) ? result.timestamp : []
   const closes = result.indicators?.quote?.[0]?.close ?? []
   if (timestamps.length < 5 || closes.length < 5) {
@@ -144,16 +157,20 @@ async function fetchFromHost(host, symbol, range) {
   const completed = []
   const zone = result.meta?.exchangeTimezoneName || 'UTC'
   const localDate = (ms) => new Intl.DateTimeFormat('en-CA', { timeZone: zone, year: 'numeric', month: '2-digit', day: '2-digit' }).format(new Date(ms))
-  const today = localDate(Date.now())
+  const today = localDate(now)
   const sessionEnd = result.meta?.currentTradingPeriod?.regular?.end
   for (let i = 0; i < timestamps.length; i++) {
     const c = closes[i]
     if (typeof c !== 'number' || !Number.isFinite(c)) continue
-    values.push(Number(c.toFixed(2)))
-    periods.push(formatPeriod(timestamps[i] * 1000))
     const date = localDate(timestamps[i] * 1000)
+    values.push(Number(c.toFixed(2)))
+    // The session's own day, as `dates` has it, and not the UTC day of the
+    // bar's timestamp. A bar is stamped at the open, and Sydney opens at 23:00
+    // UTC the day before once its clocks go forward: from 4 October 2026 its
+    // Monday session was labelled `Oct 4`, a Sunday, beside `dates` of the 5th.
+    periods.push(formatPeriod(Date.parse(`${date}T00:00:00Z`)))
     dates.push(date)
-    completed.push(date < today || (date === today && Number.isFinite(sessionEnd) && Date.now() > sessionEnd * 1000 + 15 * 60000))
+    completed.push(date < today || (date === today && Number.isFinite(sessionEnd) && now > sessionEnd * 1000 + 15 * 60000))
   }
   if (values.length < 5) throw new Error('fewer than 5 usable closes')
   const asOf = seriesAsOf(dates, completed)
