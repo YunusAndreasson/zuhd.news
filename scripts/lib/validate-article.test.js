@@ -1,10 +1,13 @@
 // Run: node --test scripts/lib/validate-article.test.js
 import assert from 'node:assert/strict'
-import { readFileSync } from 'node:fs'
+import { mkdtempSync, readFileSync, writeFileSync } from 'node:fs'
+import { tmpdir } from 'node:os'
+import { join } from 'node:path'
 import { test } from 'node:test'
+import { FILENAME_DATE_MARGIN_MS } from './article-files.js'
 import { parseCycleLog } from './cycle-log.js'
 import { parseFrontmatter } from './frontmatter.js'
-import { createValidator, duplicateKey, normTitle } from './validate-article.js'
+import { WINDOW_MS, createValidator, duplicateKey, normTitle, publishedKeys } from './validate-article.js'
 
 const BLOCKS = ['The first block of a story.', 'The second block says why it matters.', 'The third block gives the mechanism.', 'The fourth block says what comes next.']
 
@@ -163,6 +166,37 @@ test('four days apart is another story, and nothing matches on an empty title or
   const v = validator()
   assert.equal(v.check(article({ sources: source('https://www.dawn.com/') }), 'a.md').bad, null)
   assert.equal(v.check(article({ title: '"Another Headline Altogether"', sources: source('https://www.dawn.com/') }), 'b.md').bad, null)
+})
+
+// The stage read "the last four days by filename": a second number that had to
+// cover the gate's 72 hours, and a cut by filename where the gate compares
+// `date`. The same link written up again later than that carries the first
+// article's `date`, and the first article was not among what the gate was shown.
+test('the gate is shown every article that could be dated inside its window, and not the batch', () => {
+  const dir = mkdtempSync(join(tmpdir(), 'published-'))
+  const now = Date.parse('2026-10-08T18:00:00Z')
+  const day = (/** @type {number} */ ms) => new Date(ms).toISOString().slice(0, 10)
+  const floor = now - WINDOW_MS - FILENAME_DATE_MARGIN_MS
+  /** @param {string} name @param {number} n */
+  const put = (name, n, date = '2026-10-07T09:00:00Z') => writeFileSync(join(dir, name), article({ title: `"Headline Number ${n}"`, date: `"${date}"`, sources: source(`https://www.dawn.com/news/${n}`) }))
+  put('2026-10-08-in-the-batch.md', 1)
+  put('2026-10-07-yesterday.md', 2)
+  put('2026-09-21-filed-long-ago.md', 3, '2026-09-21T09:00:00Z')
+  put(`${day(floor)}-on-the-edge.md`, 4)
+  put(`${day(floor - 86400000)}-past-it.md`, 5)
+  writeFileSync(join(dir, '2026-10-07-does-not-parse.md'), article({ title: '"A "Quote" Inside"' }))
+  writeFileSync(join(dir, '2026-10-07-moved-aside.md.bad'), article())
+
+  const keys = publishedKeys(dir, now, new Set(['2026-10-08-in-the-batch.md']))
+  assert.deepEqual(keys.map((k) => k.slug).sort(), ['2026-09-21-filed-long-ago.md', '2026-10-07-yesterday.md', `${day(floor)}-on-the-edge.md`].sort())
+  assert.deepEqual(keys.find((k) => k.slug === '2026-10-07-yesterday.md'), duplicateKey('2026-10-07-yesterday.md', { date: '2026-10-07T09:00:00Z', title: 'Headline Number 2', sources: [{ url: 'https://www.dawn.com/news/2' }] }))
+
+  // What it is for: a link first published seventeen days ago, written up again with the source's own date.
+  const v = validator({ published: keys })
+  const again = article({ title: '"Told A Second Time"', date: '"2026-09-21T09:00:00Z"', sources: source('https://www.dawn.com/news/3') })
+  assert.equal(v.check(again, '2026-10-08-told-a-second-time.md').bad, 'duplicate of 2026-09-21-filed-long-ago.md (same source URL)')
+  // The dates still decide: the same headline over this week's event is another story.
+  assert.equal(v.check(article({ title: '"Headline Number 3"', sources: source('https://www.dawn.com/news/9') }), '2026-10-08-same-words.md').bad, null)
 })
 
 test('normTitle keeps letters, digits and single spaces', () => {

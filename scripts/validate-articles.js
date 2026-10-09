@@ -2,32 +2,22 @@
 // Validates the cycle's new articles before the build. One that may not ship
 // is moved to `.bad`, so it is not deployed; one that can be mended is mended
 // in place. What is judged, and how leniently, is `lib/validate-article.js`.
-import { existsSync, readFileSync, readdirSync, renameSync } from 'node:fs'
-import { basename, join } from 'node:path'
-import { tryReadArticle } from './lib/article.js'
+import { existsSync, readFileSync, renameSync } from 'node:fs'
+import { basename } from 'node:path'
 import { batchFiles } from './lib/article-files.js'
 import { pathOf } from './lib/datasets.js'
 import { readJson, writeText } from './lib/json-file.js'
 import { runStage } from './lib/stage.js'
 import { latestTrendsPath } from './lib/trends-snapshot.js'
-import { createValidator, duplicateKey } from './lib/validate-article.js'
+import { createValidator, publishedKeys } from './lib/validate-article.js'
 
 export function main() {
   const now = Date.now()
   const ARTICLES_DIR = pathOf('articles')
   const files = batchFiles()
 
-  // What is already published, for the duplicate gates: the last four days by
-  // filename, without the batch itself.
-  const batch = new Set(files.map((f) => f.name))
-  const recentDay = new Date(now - 4 * 86400000).toISOString().slice(0, 10)
-  const published = []
-  for (const name of readdirSync(ARTICLES_DIR)) {
-    if (!name.endsWith('.md') || name.slice(0, 10) < recentDay || batch.has(name)) continue
-    // An unparseable neighbour is its own problem, not this batch's.
-    const { article } = tryReadArticle(join(ARTICLES_DIR, name))
-    if (article) published.push(duplicateKey(name, article.meta))
-  }
+  // What is already published, for the duplicate gates, without the batch itself.
+  const published = publishedKeys(ARTICLES_DIR, now, new Set(files.map((f) => f.name)))
 
   // What each story was offered to chart, by the slug its article is saved under.
   const offeredBySlug = new Map()

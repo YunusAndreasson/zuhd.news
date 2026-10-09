@@ -11,8 +11,9 @@
 // far. The contract itself is `articleProblems` (`lib/article.js`), which is
 // run beside the gates and decides nothing.
 
-import { basename } from 'node:path'
-import { articleProblems, datelineOf } from './article.js'
+import { basename, join } from 'node:path'
+import { articleProblems, datelineOf, tryReadArticle } from './article.js'
+import { articleFilesSince } from './article-files.js'
 import { BLOCKS_MAX, BLOCKS_MIN, countedBlocks } from './blocks.js'
 import { normalizeUrl } from './dedup.js'
 import { canonicalIndicatorId } from './entity-registry.js'
@@ -20,7 +21,11 @@ import { parseFrontmatter, removeFrontmatterKey, splitFrontmatter } from './fron
 import { chartProblem, citesFigure } from './indicator-offer.js'
 import { bodyNamesOutlet, soleClassifiedSource } from './outlet-class.js'
 
-const WINDOW_MS = 72 * 3600 * 1000
+/**
+ * How far apart two articles' dates may be and still be one story told twice:
+ * the duplicate gates' window, and what `publishedKeys` reads the corpus by.
+ */
+export const WINDOW_MS = 72 * 3600 * 1000
 
 /** A title as the duplicate gate compares it: lower case, letters, digits and single spaces. */
 export const normTitle = (t) => String(t || '').toLowerCase().replace(/[^a-z0-9 ]/g, '').replace(/\s+/g, ' ').trim()
@@ -40,6 +45,37 @@ export const duplicateKey = (name, meta) => ({
   title: normTitle(meta.title),
   url: normalizeUrl(meta.sources?.[0]?.url || ''),
 })
+
+/**
+ * What is already published, for the duplicate gates: the key of every article
+ * in `dir` that is not in the batch and could be dated inside the gates'
+ * window. Which files those are is `articleFilesSince`: by filename, with the
+ * margin a frontmatter `date` may run ahead of it, and the gates then compare
+ * the dates themselves.
+ *
+ * The stage read "the last four days by filename", a second number that had
+ * to cover `WINDOW_MS` and was written down somewhere else. Four days by
+ * filename is also not 72 hours by `date`: the same link written up again more
+ * than four days later carries the same `date` as the first time, and the
+ * first article was outside what the gate was shown. Replayed over the
+ * corpus, three articles of 2026-08-10 repeat a link published ten to
+ * seventeen days before them, and none has since 2026-09-01.
+ *
+ * @param {string} dir the articles
+ * @param {number} now
+ * @param {Set<string>} batch the batch's filenames
+ * @returns {DuplicateKey[]}
+ */
+export function publishedKeys(dir, now, batch) {
+  const keys = []
+  for (const name of articleFilesSince(dir, now - WINDOW_MS)) {
+    if (batch.has(name)) continue
+    // An unparseable neighbour is its own problem, not this batch's.
+    const { article } = tryReadArticle(join(dir, name))
+    if (article) keys.push(duplicateKey(name, article.meta))
+  }
+  return keys
+}
 
 /**
  * @typedef {object} Verdict
