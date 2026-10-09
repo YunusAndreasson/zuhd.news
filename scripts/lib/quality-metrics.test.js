@@ -9,12 +9,12 @@ const FOUR = ['Lyon — The council voted on Tuesday to close the bridge.', 'It 
 
 /** @param {Record<string, string | undefined>} over @param {string[]} blocks */
 function article(over = {}, blocks = FOUR) {
-  const f = { title: '"Council Closes The Bridge"', date: '"2026-10-08T17:00:00Z"', category: '"politics"', sources: '\n  - name: "Dawn"\n    url: "https://www.dawn.com/news/1"\n    country: "PK"', ...over }
+  const f = { title: '"Council Closes The Bridge"', date: '"2026-10-08T17:00:00Z"', category: '"politics"', location: '"Lyon"', sources: '\n  - name: "Dawn"\n    url: "https://www.dawn.com/news/1"\n    country: "PK"', ...over }
   const yaml = Object.entries(f).filter(([, v]) => v !== undefined).map(([k, v]) => `${k}:${String(v).startsWith('\n') ? '' : ' '}${v}`).join('\n')
   return `---\n${yaml}\n---\n\n${blocks.join('\n\n')}\n`
 }
 /** @param {Record<string, any>} over */
-const row = (over = {}) => ({ file: 'a.md', title: 'An Unrelated Headline Entirely', body: FOUR.join('\n\n'), category: 'politics', sourceNames: ['Dawn'], sourceCountries: ['PK'], ...over })
+const row = (over = {}) => ({ file: 'a.md', title: 'An Unrelated Headline Entirely', body: FOUR.join('\n\n'), location: 'Lyon', category: 'politics', sourceNames: ['Dawn'], sourceCountries: ['PK'], ...over })
 /** @param {Record<string, any>[]} rows */
 const metrics = (rows) => qualitySnapshot(/** @type {any} */ (rows), NOW).metrics
 
@@ -24,6 +24,7 @@ test('an article in the window is read through the parser', () => {
     file: 'a.md',
     title: 'Council Closes The Bridge',
     body: FOUR.join('\n\n'),
+    location: 'Lyon',
     category: 'politics',
     sourceNames: ['Dawn', 'Reuters', 'AFP'],
     sourceCountries: ['PK', 'null', 'null'],
@@ -65,13 +66,29 @@ test('the word band is 52 to 75, and a fifth block is counted when it is there',
   assert.equal(m.blockCountAvg, 1.8)
 })
 
-test('a hook that repeats half the headline is an echo', () => {
-  const m = metrics([
+// The editor's flag (`lib/title-echo.js`), so the week's rate is the rate of
+// what the editor was shown. Until schema 4 the scan had a test of its own:
+// half the title's words of three letters or more, "the" among them, whatever
+// the hook added. It called the third and fourth of these echoes too.
+test('a hook is an echo when it repeats two thirds of the headline and brings no figure of its own', () => {
+  const withHook = (/** @type {string} */ hook) => [`Lyon — ${hook}`, ...FOUR.slice(1)].join('\n\n')
+  const rows = [
     row({ title: 'Council Votes To Close The Bridge' }),
     row({ title: 'Mayor Promises A Second Tunnel' }),
+    // Half its words, and under two thirds of the ones that say which story it is.
+    row({ title: 'Council Closes The Bridge After Storm Damage' }),
+    // Every word of it, and the count the headline does not carry.
+    row({ title: 'Council Votes To Close The Bridge', body: withHook('The council voted 31 to 12 to close the bridge.') }),
     row({ title: '' }),
-  ])
-  assert.equal(m.titleEchoRatePct, 33.3)
+  ]
+  assert.equal(metrics(rows.slice(0, 1)).titleEchoRatePct, 100)
+  assert.equal(metrics(rows).titleEchoRatePct, 20)
+  // The dateline is not part of the hook, found by the location or without one:
+  // with "Lyon" counted, this hook would hold two of the headline's three words.
+  const datelined = { title: 'Lyon Bridge Vote', body: withHook('The bridge reopens on Tuesday.') }
+  assert.equal(metrics([row(datelined)]).titleEchoRatePct, 0)
+  assert.equal(metrics([row({ ...datelined, location: '' })]).titleEchoRatePct, 0)
+  assert.equal(metrics([row({ ...datelined, body: datelined.body.replace('Lyon — ', '') })]).titleEchoRatePct, 0)
 })
 
 test('passive voice is counted in the hook and anywhere in the body', () => {

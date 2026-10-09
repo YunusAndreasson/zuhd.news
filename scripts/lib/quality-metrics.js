@@ -10,6 +10,7 @@
 
 import { splitBlocks } from './blocks.js'
 import { parseFrontmatter } from './frontmatter.js'
+import { hookOf, titleEcho } from './title-echo.js'
 
 export const WINDOW_DAYS = 7
 
@@ -22,13 +23,20 @@ export const WINDOW_DAYS = 7
 // an optional 5th block, so charOver350Pct, charOver400Pct and wordInRangePct all
 // changed definition in the same cycle. A step across that boundary is a
 // redefinition, not a quality move.
-export const SCHEMA = 3
+// Schema 4 (2026-10-09): titleEchoRatePct is the editor's own flag
+// (`lib/title-echo.js`): a hook that repeats two thirds of its title's words,
+// stemmed and without the filler, and brings no figure the title lacks. It was
+// half the title's words of three letters or more, "the" among them, whatever
+// the hook added. On the week to 2026-10-04 the two read 48.2% and 18.2% of
+// the same 390 articles: the step down is the definition.
+export const SCHEMA = 4
 
 /**
  * @typedef {object} QualityRow
  * @property {string} file
  * @property {string} title
  * @property {string} body
+ * @property {string} location the dateline city, which the body opens with
  * @property {string} category
  * @property {string[]} sourceNames
  * @property {string[]} sourceCountries `'null'` for a source with no country
@@ -58,6 +66,7 @@ export function qualityRow(file, raw, cutoff) {
     file,
     title: String(meta.title ?? ''),
     body,
+    location: String(meta.location ?? ''),
     category: String(meta.category ?? ''),
     sourceNames: sources.map((s) => String(s.name ?? '')).filter(Boolean),
     // A source with `country: null` is the hygiene count's whole subject.
@@ -66,12 +75,10 @@ export function qualityRow(file, raw, cutoff) {
 }
 
 // ── Helpers ─────────────────────────────────────────────────
-/** @param {string} s */
-const meaningfulWords = (s) => s.toLowerCase().replace(/[^a-z0-9\s]/g, ' ').split(/\s+/).filter((w) => w.length > 2)
 /** @param {string} body */
 const afterDateline = (body) => body.replace(/^[^—]+—\s*/, '')
-/** @param {string} body */
-const hookOf = (body) => afterDateline(body).split(/\.\s+/)[0]
+/** The first sentence, which is what the passive-voice test reads as the hook. @param {string} body */
+const firstSentence = (body) => afterDateline(body).split(/\.\s+/)[0]
 /** @param {string} body */
 const sentencesOf = (body) => afterDateline(body).split(/\.\s+/).filter(Boolean)
 const PASSIVE_RE = /^[A-Z][\w\s',.-]{0,40}\s+(was|were)\s+\w+(ed|en)\b/
@@ -129,18 +136,16 @@ export function qualitySnapshot(articles, now) {
   const blockCounts = articles.map((a) => splitBlocks(a.body).filter((b) => b.length > 5).length)
 
   // ── Metric 2: title-echo rate ──────────────────────────────
-  // Hook shares ≥50% of the title's meaningful words.
-  const echoHits = articles.filter((a) => {
-    const tw = new Set(meaningfulWords(a.title))
-    const hw = meaningfulWords(hookOf(a.body))
-    if (tw.size === 0 || hw.length === 0) return false
-    return hw.filter((w) => tw.has(w)).length / tw.size >= 0.5
-  }).length
+  // The hook says the title again: the measure the editor is shown each cycle
+  // (`titleEcho`, `lib/title-echo.js`, and why it is that measure). One
+  // instrument, so the week's rate is the rate of what the editor was asked to
+  // look at. Until schema 4 this was a test of its own, at half the words.
+  const echoHits = articles.filter((a) => titleEcho(a.title, hookOf(a.body, a.location)).echo).length
 
   // ── Metric 3: passive-voice hook ───────────────────────────
   // First sentence starts with noun-ish + was/were + past-participle.
   // Noisy; calibrate against first weeks of data.
-  const passiveHookHits = articles.filter((a) => PASSIVE_RE.test(hookOf(a.body))).length
+  const passiveHookHits = articles.filter((a) => PASSIVE_RE.test(firstSentence(a.body))).length
 
   // ── Metric 3b: passive voice, full body ────────────────────
   // Same pattern, scanned across every sentence — the "active voice everywhere"
