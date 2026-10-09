@@ -8,6 +8,7 @@ import { XMLParser } from 'fast-xml-parser'
 import { feedPubDate } from './lib/feed-age.js'
 import { rssItemImage } from './lib/feed-image.js'
 import { fetchSourcePage, stripTags } from './lib/fetch-source-text.js'
+import { bodiesFirst } from './lib/rss-feed.js'
 import { slugify, fingerprint, zuhdCategory } from './lib/utils.js'
 import { ROOT } from './lib/paths.js'
 import { writeJson } from './lib/json-file.js'
@@ -275,7 +276,8 @@ async function fetchHackerNews() {
     const fetched = bodies.filter(b => b?.text).length
     console.error(`  HN body fetch: ${fetched}/${toFetch.length} articles had extractable content`)
 
-    return filtered.map(s => ({
+    // The ones that gave a body first: that is what the two spare fetches are for.
+    return bodiesFirst(filtered, toFetch.length).map(s => ({
       title: s.title,
       description: `${s.score} points, ${s.comments} comments on Hacker News`,
       link: s.url,
