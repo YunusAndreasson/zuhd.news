@@ -5,16 +5,13 @@
 import { readFileSync, readdirSync, existsSync } from 'node:fs'
 import { join } from 'node:path'
 import { XMLParser } from 'fast-xml-parser'
-import { Readability } from '@mozilla/readability'
 import { feedPubDate } from './lib/feed-age.js'
-import { htmlLeadImage, rssItemImage } from './lib/feed-image.js'
-import { htmlForReadability } from './lib/fetch-source-text.js'
-import { JSDOM } from 'jsdom'
+import { rssItemImage } from './lib/feed-image.js'
+import { fetchSourcePage, stripTags } from './lib/fetch-source-text.js'
 import { slugify, fingerprint, zuhdCategory } from './lib/utils.js'
-import { shouldSkip, recordResult } from './lib/block-cache.js'
 import { ROOT } from './lib/paths.js'
 import { writeJson } from './lib/json-file.js'
-import { BROWSER_UA, ZUHD_UA } from './lib/http.js'
+import { ZUHD_UA } from './lib/http.js'
 
 const CONTENT_DIR = join(ROOT, 'content', 'articles')
 
@@ -113,48 +110,6 @@ function decodeEntities(str) {
   })
 }
 
-function stripHtml(str) { return str.replace(/<[^>]*>/g, '') }
-
-// Chrome UA unblocks ~half of the outlets that 401/403 our honest bot UA
-// (Reuters and similar). We keep the honest UA for RSS feeds below, since
-// feed publishers generally whitelist named crawlers and don't bot-wall.
-
-async function fetchArticleBody(url) {
-  if (shouldSkip(url)) return null
-  try {
-    const res = await fetch(url, {
-      signal: AbortSignal.timeout(8000),
-      redirect: 'follow',
-      headers: {
-        'User-Agent': BROWSER_UA,
-        accept: 'text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8',
-        'accept-language': 'en-US,en;q=0.9',
-      },
-    })
-    if (!res.ok) { recordResult(url, false); return null }
-    const ct = res.headers.get('content-type') || ''
-    if (!ct.includes('text/html')) return null
-    const html = await res.text()
-    const image = htmlLeadImage(html)
-    // Readability handles sites without <article>/<main> semantics — 2026-04-19
-    // bakeoff showed 76% → 96% extraction rate vs the prior regex approach.
-    try {
-      const dom = new JSDOM(htmlForReadability(html), { url })
-      const article = new Readability(dom.window.document).parse()
-      if (article?.textContent) {
-        const text = article.textContent.replace(/\s+/g, ' ').trim()
-        if (text.length >= 200) { recordResult(url, true); return { text: text.slice(0, 5000), image } }
-      }
-    } catch { /* fall through to regex extractor */ }
-    const block = (html.match(/<article[^>]*>([\s\S]*?)<\/article>/i) ||
-                   html.match(/<main[^>]*>([\s\S]*?)<\/main>/i) || [])[1]
-    if (!block) return image ? { text: null, image } : null
-    const text = decodeEntities(stripHtml(block)).replace(/\s+/g, ' ').trim()
-    if (text.length >= 200) { recordResult(url, true); return { text: text.slice(0, 5000), image } }
-    return image ? { text: null, image } : null
-  } catch { recordResult(url, false); return null }
-}
-
 function extractText(val) {
   if (typeof val === 'string') return val
   if (typeof val === 'object' && val !== null) return val['#text'] || val?.a?.['#text'] || ''
@@ -193,12 +148,12 @@ function normalizeItem(raw, source) {
   if (Array.isArray(link)) link = (link.find(l => l['@_rel'] === 'alternate') || link[0])?.['@_href'] || ''
   else if (typeof link === 'object') link = link['@_href'] || link['#text'] || ''
 
-  const description = decodeEntities(stripHtml(extractText(raw.description || raw.summary || raw['dc:description'] || '').trim()))
+  const description = decodeEntities(stripTags(extractText(raw.description || raw.summary || raw['dc:description'] || ''))).trim()
   const pubDate = raw.pubDate || raw.published || raw.updated || raw['dc:date'] || raw.date || ''
   const category = source.defaultCategory || ''
 
   const rawContent = extractText(raw['content:encoded'] || raw.content || '')
-  const contentText = rawContent ? decodeEntities(stripHtml(rawContent)).trim() : ''
+  const contentText = rawContent ? decodeEntities(stripTags(rawContent)).trim() : ''
 
   return { title, description, link, pubDate, category, contentText: contentText || undefined, image: rssItemImage(raw), source: source.name }
 }
@@ -306,9 +261,13 @@ async function fetchHackerNews() {
 
     console.error(`  HN Algolia: ${filtered.length} stories (${algolia.hits?.length || 0} algolia + ${bestItems.filter(Boolean).length} best, after dedup/filter)`)
 
-    // Fetch article bodies for top HN stories (fetch 5; only 3 used, buffer for failures)
+    // Fetch article bodies for top HN stories (fetch 5; only 3 used, buffer for failures).
+    // The same fetch and the same bar enrich-selection uses: a page counts as
+    // a body from 500 characters, above THIN_BODY, so a story fetched here is
+    // never one the prefilter then marks thin. It was 200, with a second
+    // extractor.
     const toFetch = filtered.slice(0, 5)
-    const bodies = await Promise.all(toFetch.map(s => fetchArticleBody(s.url)))
+    const bodies = await Promise.all(toFetch.map(s => fetchSourcePage(s.url)))
     for (let i = 0; i < toFetch.length; i++) {
       toFetch[i].bodyText = bodies[i]?.text || null
       toFetch[i].image = bodies[i]?.image || null
