@@ -1,7 +1,7 @@
 // Run: node --test scripts/lib/quality-metrics.test.js
 import assert from 'node:assert/strict'
 import { test } from 'node:test'
-import { SCHEMA, qualityRow, qualitySnapshot, qualitySummary, withSnapshot } from './quality-metrics.js'
+import { SCHEMA, articleFlags, qualityRow, qualitySnapshot, qualitySummary, withSnapshot } from './quality-metrics.js'
 
 const NOW = Date.parse('2026-10-08T22:30:00Z')
 const CUTOFF = NOW - 7 * 86400_000
@@ -47,6 +47,39 @@ test('how a value is quoted does not decide whether the article counts', () => {
   assert.deepEqual([bare?.title, bare?.category], ['In Single Quotes', 'tech'])
   const empty = '\n  - name: "Dawn"\n    url: "https://www.dawn.com/news/1"\n    country: ""\n  - name: "AFP"\n    url: "https://www.afp.com/x"'
   assert.deepEqual(qualityRow('a.md', article({ sources: empty }), CUTOFF)?.sourceCountries, [''], 'an empty country is not a missing one')
+})
+
+// The per-article half of the scan, for the week's sums here and for a
+// per-cycle scorer's: the RVS scorer carried its own copy of six of these.
+test('the detectors answer for one article, whoever asks and whatever else its record holds', () => {
+  const body = [FOUR[0], 'The report was delayed twice; nobody was told amid the strike.', ...FOUR.slice(2)].join('\n\n')
+  assert.deepEqual(articleFlags({ title: 'Council Votes To Close The Bridge', body, location: 'Lyon', sourceNames: ['Dawn', 'Reuters'] }), {
+    charLength: body.length,
+    visibleLength: body.length,
+    wordCount: 38,
+    overTarget: false,
+    overCeiling: false,
+    wordInRange: false,
+    blockCount: 4,
+    titleEcho: true,
+    passiveHook: false,
+    passiveBody: true,
+    semicolon: true,
+    causalClaim: false,
+    pressEra: false,
+    hedge: true,
+    multiSource: true,
+  })
+  // The scorer's own record: no `location` of the frontmatter's, and keys this does not read.
+  const scored = { file: 'content/articles/2026-10-08-a.md', slug: '2026-10-08-a', title: 'Mayor Promises A Second Tunnel', category: 'politics', lat: 45.76, lng: 4.84, sourceNames: ['Dawn'], sourceCountries: ['PK'], body: `[Lyon](country:FR) — ${'[Iran](country:IR) signed. '.repeat(30)}` }
+  const flags = articleFlags(scored, { wordBandMax: 78 })
+  assert.deepEqual([flags.overTarget, flags.overCeiling, flags.visibleLength < flags.charLength, flags.titleEcho, flags.multiSource], [true, false, true, false, false])
+})
+
+test('the word band ends at 75 for the week, and where a caller that counts the dateline in sets it', () => {
+  const words = (/** @type {number} */ n) => ({ title: '', body: `Lyon — ${'word '.repeat(n - 2).trim()}`, location: 'Lyon', sourceNames: [] })
+  assert.deepEqual([51, 52, 75, 76, 78].map((n) => articleFlags(words(n)).wordInRange), [false, true, true, false, false])
+  assert.deepEqual([51, 52, 75, 76, 78, 79].map((n) => articleFlags(words(n), { wordBandMax: 78 }).wordInRange), [false, true, true, true, true, false])
 })
 
 test('lengths are averaged raw, and the ceiling is measured on what the reader sees', () => {

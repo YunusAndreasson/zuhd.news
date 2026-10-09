@@ -8,7 +8,7 @@
 // The snapshot goes onto an append-only series the dashboard plots and the
 // tuner reads, so every metric's pattern is moved exactly as it stood.
 
-import { stripDateline } from './article.js'
+import { ARTICLE_CEILING, stripDateline, visibleText } from './article.js'
 import { splitBlocks } from './blocks.js'
 import { parseFrontmatter } from './frontmatter.js'
 import { hookOf, titleEcho } from './title-echo.js'
@@ -75,32 +75,27 @@ export function qualityRow(file, raw, cutoff) {
   }
 }
 
-// ── Helpers ─────────────────────────────────────────────────
-// The body without its dateline, by the location (`stripDateline`). This cut
-// at the first em dash wherever it stood, so a body with no dateline and a
-// dash further down lost everything before the dash, its hook included.
-/** @param {{ body: string, location: string }} a */
-const afterDateline = (a) => stripDateline(a.body, a.location)
-/** The first sentence, which is what the passive-voice test reads as the hook. @param {{ body: string, location: string }} a */
-const firstSentence = (a) => afterDateline(a).split(/\.\s+/)[0]
-/** @param {{ body: string, location: string }} a */
-const sentencesOf = (a) => afterDateline(a).split(/\.\s+/).filter(Boolean)
+// ── The detectors ───────────────────────────────────────────
 const PASSIVE_RE = /^[A-Z][\w\s',.-]{0,40}\s+(was|were)\s+\w+(ed|en)\b/
 
 // Visible length matches the editor rule: link markup ([Iran](country:IR)) doesn't
 // count against the budget. 480 is the soft target (informational, kept on the raw
-// basis for trend continuity); 560 is the hard ceiling (actionable). The metric
-// KEYS still say 350/400: they are an append-only series the dashboard plots by
-// key, so they are named for the thresholds they were born with, not the ones
-// they carry. Read `schema` for what a number means.
+// basis for trend continuity); 560 is the hard ceiling (actionable), and is
+// `ARTICLE_CEILING`. The metric KEYS still say 350/400: they are an append-only
+// series the dashboard plots by key, so they are named for the thresholds they
+// were born with, not the ones they carry. Read `schema` for what a number means.
 //   schema 1: 350 / 400, three blocks, 40-55 words
 //   schema 2: 360 / 440, four blocks, 48-60 words
 //   schema 3: 480 / 560, four blocks plus an optional counterpoint-or-quote,
 //             52-75 words — see write-prompt.md <rhythm>.
-/** @param {string} s */
-const visibleText = (s) => s.replace(/\[([^\]]+)\]\([^)]+\)/g, '$1')
-/** @param {string} s */
-const visibleLen = (s) => visibleText(s).length
+const TARGET_MAX = 480
+// One window across both shapes: four blocks run 52-66 words and five run
+// 62-75, and which shape an article takes is the writer's call on the
+// sources, not a quality signal. A single 52-75 band measures what it is
+// for — a body that overshot or came up empty — without reading a legitimate
+// four-block article as out of range.
+const WORD_BAND_MIN = 52
+const WORD_BAND_MAX = 75
 
 const CAUSAL_PATTERNS = [
   /\bgave\s+\S+\s+cover\b/i,
@@ -122,6 +117,83 @@ const HEDGE_PATTERNS = [
 const WHITELIST = new Set(['US', 'UK', 'EU', 'UN', 'WHO', 'NATO', 'ISIS', 'IDF', 'IMF', 'ICC', 'ICJ', 'AI'])
 
 /**
+ * What the detectors say of one article: the per-article half of every
+ * rule-based measure, in one place. `qualitySnapshot` sums them over a week;
+ * a per-cycle scorer can sum them over a batch, and that is what the argument
+ * is shaped for. It takes only what it reads, so a caller with an article
+ * record of its own can pass it as it is: a title, the body (the prose under
+ * the frontmatter, trimmed, dateline and link markup included), the
+ * frontmatter `location`, and the sources' names.
+ *
+ * The RVS scorer (`autoresearch/score.js`) carried a copy of six of these,
+ * regex for regex. For its writing cluster: brevity is `!overCeiling` and
+ * `wordInRange`, voice is `passiveHook`, `hedge`, `pressEra` and `titleEcho`;
+ * for its sourcing cluster, `multiSource`.
+ *
+ * `wordBandMax` is the one threshold a caller sets. The word count is the
+ * body's as written, so it includes the dateline and its dash, and the budget
+ * in write-prompt.md is for the prose. The weekly series has always counted
+ * to 75 and stays there; the scorer has counted to 78 since 2026-09-20, for
+ * "the 1-3 word dateline this count includes", and calls with
+ * `{ wordBandMax: 78 }`. On the 403 articles filed from 2026-10-02 to 10-09,
+ * 54% fall in 52-75 and another 15% in 76-78.
+ *
+ * @param {{ title: string, body: string, location?: string, sourceNames: string[] }} a
+ * @param {{ wordBandMax?: number }} [opts]
+ */
+export function articleFlags(a, { wordBandMax = WORD_BAND_MAX } = {}) {
+  const charLength = a.body.length
+  const visibleLength = visibleText(a.body).length
+  const wordCount = a.body.split(/\s+/).filter(Boolean).length
+  // The body without its dateline, by the location (`stripDateline`). This cut
+  // at the first em dash wherever it stood, so a body with no dateline and a
+  // dash further down lost everything before the dash, its hook included.
+  const sentences = stripDateline(a.body, a.location).split(/\.\s+/)
+  return {
+    // ── Character and word length ──
+    /** As written, link markup included: what `charLengthAvg` and the soft target are measured on. */
+    charLength,
+    /** As the reader sees it: what the ceiling is measured on. */
+    visibleLength,
+    wordCount,
+    overTarget: charLength > TARGET_MAX,
+    overCeiling: visibleLength > ARTICLE_CEILING,
+    wordInRange: wordCount >= WORD_BAND_MIN && wordCount <= wordBandMax,
+    // Block count: how often the optional counterpoint-or-quote block is earned. Not
+    // a target — a four-block article is a complete article — but a rate near 0 means
+    // the writer stopped reaching for it, and a rate near 100 means it is being
+    // filled rather than earned.
+    blockCount: splitBlocks(a.body).filter((b) => b.length > 5).length,
+    // ── Title echo ──
+    // The hook says the title again: the measure the editor is shown each cycle
+    // (`titleEcho`, `lib/title-echo.js`, and why it is that measure). One
+    // instrument, so the week's rate is the rate of what the editor was asked to
+    // look at. Until schema 4 this was a test of its own, at half the words.
+    titleEcho: titleEcho(a.title, hookOf(a.body, a.location)).echo,
+    // ── Passive voice, in the hook ──
+    // First sentence starts with noun-ish + was/were + past-participle.
+    // Noisy; calibrate against first weeks of data.
+    passiveHook: PASSIVE_RE.test(sentences[0]),
+    // ── Passive voice, anywhere ──
+    // Same pattern, scanned across every sentence — the "active voice everywhere"
+    // rule in write-prompt.md/check-prompt.md covers the whole body, not just the hook.
+    passiveBody: sentences.some((sentence) => PASSIVE_RE.test(sentence)),
+    // ── Semicolons ──
+    // write-prompt.md/check-prompt.md ban semicolons — a semicolon joining two
+    // clauses is two ideas that should be two sentences.
+    semicolon: a.body.includes(';'),
+    // ── Causal claims, press-era phrases, hedge and filler vocabulary ──
+    causalClaim: CAUSAL_PATTERNS.some((p) => p.test(a.body)),
+    pressEra: PRESS_PATTERNS.some((p) => p.test(a.body)),
+    hedge: HEDGE_PATTERNS.some((p) => p.test(a.body)),
+    // ── More than one source ──
+    multiSource: a.sourceNames.length >= 2,
+  }
+}
+
+/** @typedef {ReturnType<typeof articleFlags>} ArticleFlags */
+
+/**
  * The week's snapshot. Every metric maps to a rule in write-prompt.md or
  * check-prompt.md.
  *
@@ -129,62 +201,10 @@ const WHITELIST = new Set(['US', 'UK', 'EU', 'UN', 'WHO', 'NATO', 'ISIS', 'IDF',
  * @param {number} now the snapshot is filed under this moment's date
  */
 export function qualitySnapshot(articles, now) {
-  // ── Metric 1: character & word length ───────────────────────
-  const charLengths = articles.map((a) => a.body.length)
-  const visibleLengths = articles.map((a) => visibleLen(a.body))
-  const wordCounts = articles.map((a) => a.body.split(/\s+/).filter(Boolean).length)
-  // Block count: how often the optional counterpoint-or-quote block is earned. Not
-  // a target — a four-block article is a complete article — but a rate near 0 means
-  // the writer stopped reaching for it, and a rate near 100 means it is being
-  // filled rather than earned.
-  const blockCounts = articles.map((a) => splitBlocks(a.body).filter((b) => b.length > 5).length)
-
-  // ── Metric 2: title-echo rate ──────────────────────────────
-  // The hook says the title again: the measure the editor is shown each cycle
-  // (`titleEcho`, `lib/title-echo.js`, and why it is that measure). One
-  // instrument, so the week's rate is the rate of what the editor was asked to
-  // look at. Until schema 4 this was a test of its own, at half the words.
-  const echoHits = articles.filter((a) => titleEcho(a.title, hookOf(a.body, a.location)).echo).length
-
-  // ── Metric 3: passive-voice hook ───────────────────────────
-  // First sentence starts with noun-ish + was/were + past-participle.
-  // Noisy; calibrate against first weeks of data.
-  const passiveHookHits = articles.filter((a) => PASSIVE_RE.test(firstSentence(a))).length
-
-  // ── Metric 3b: passive voice, full body ────────────────────
-  // Same pattern, scanned across every sentence — the "active voice everywhere"
-  // rule in write-prompt.md/check-prompt.md covers the whole body, not just the hook.
-  const passiveBodyHits = articles.filter((a) => sentencesOf(a).some((s) => PASSIVE_RE.test(s))).length
-
-  // ── Metric 3c: semicolons ──────────────────────────────────
-  // write-prompt.md/check-prompt.md ban semicolons — a semicolon joining two
-  // clauses is two ideas that should be two sentences.
-  const semicolonHits = articles.filter((a) => a.body.includes(';')).length
-
-  // ── Metric 4: causal-claim patterns ────────────────────────
-  let causalClaimHits = 0
-  for (const a of articles) {
-    for (const p of CAUSAL_PATTERNS) {
-      if (p.test(a.body)) {
-        causalClaimHits++
-        break
-      }
-    }
-  }
-
-  // ── Metric 5: press-era phrases ────────────────────────────
-  let pressEraHits = 0
-  for (const a of articles) {
-    for (const p of PRESS_PATTERNS) {
-      if (p.test(a.body)) {
-        pressEraHits++
-        break
-      }
-    }
-  }
-
-  // ── Metric 6: hedge / filler vocabulary ────────────────────
-  const hedgeArticles = articles.filter((a) => HEDGE_PATTERNS.some((p) => p.test(a.body))).length
+  // ── Metrics 1 to 6 and 10: what the detectors say of each article ──
+  const flags = articles.map((a) => articleFlags(a))
+  /** How many articles a detector fired on. @param {keyof ArticleFlags} key */
+  const hits = (key) => flags.filter((f) => f[key]).length
 
   // ── Metric 7: acronym violations ───────────────────────────
   // Measured on the *visible* prose, not the source. Country markup is written
@@ -192,7 +212,7 @@ export function qualitySnapshot(articles, now) {
   // unexpanded acronym: the top five violators were CN, PK, RU, IN, IR — ISO codes
   // no reader ever sees — and 1,186 such links across the August corpus were
   // inflating a metric the tuning stage reads as a writing fault. `visibleText` is
-  // the same `$1` substitution `visibleLen` already measures length with.
+  // the same `$1` substitution the visible length is measured with.
   /** @type {Map<string, number>} */
   const acronymTally = new Map()
   for (const a of articles) {
@@ -214,9 +234,6 @@ export function qualitySnapshot(articles, now) {
   const sortedOutlets = [...outletCounts.entries()].sort((a, b) => b[1] - a[1])
   const top3 = sortedOutlets.slice(0, 3).reduce((sum, [, v]) => sum + v, 0)
 
-  // ── Metric 10: multi-source rate ──────────────────────────
-  const multiSourceCount = articles.filter((a) => a.sourceNames.length >= 2).length
-
   // ── Metric 11: category balance ───────────────────────────
   /** @type {Record<string, number>} */
   const catCounts = {}
@@ -227,6 +244,7 @@ export function qualitySnapshot(articles, now) {
   const pct = (n, d) => +((d ? n / d : 0) * 100).toFixed(1)
   /** @param {number[]} arr */
   const avg = (arr) => (arr.length ? Math.round(arr.reduce((a, b) => a + b, 0) / arr.length) : 0)
+  const blockCounts = flags.map((f) => f.blockCount)
 
   return {
     week: new Date(now).toISOString().slice(0, 10),
@@ -234,31 +252,26 @@ export function qualitySnapshot(articles, now) {
     windowDays: WINDOW_DAYS,
     articleCount: articles.length,
     metrics: {
-      charLengthAvg: avg(charLengths),
-      charOver350Pct: pct(charLengths.filter((c) => c > 480).length, articles.length),
-      charOver400Pct: pct(visibleLengths.filter((c) => c > 560).length, articles.length),
-      wordCountAvg: avg(wordCounts),
-      // One window across both shapes: four blocks run 52-66 words and five run
-      // 62-75, and which shape an article takes is the writer's call on the
-      // sources, not a quality signal. A single 52-75 band measures what it is
-      // for — a body that overshot or came up empty — without reading a legitimate
-      // four-block article as out of range.
-      wordInRangePct: pct(wordCounts.filter((w) => w >= 52 && w <= 75).length, articles.length),
+      charLengthAvg: avg(flags.map((f) => f.charLength)),
+      charOver350Pct: pct(hits('overTarget'), articles.length),
+      charOver400Pct: pct(hits('overCeiling'), articles.length),
+      wordCountAvg: avg(flags.map((f) => f.wordCount)),
+      wordInRangePct: pct(hits('wordInRange'), articles.length),
       blockCountAvg: +(blockCounts.reduce((a, b) => a + b, 0) / (blockCounts.length || 1)).toFixed(2),
       fiveBlockRatePct: pct(blockCounts.filter((b) => b >= 5).length, articles.length),
-      titleEchoRatePct: pct(echoHits, articles.length),
-      passiveHookRatePct: pct(passiveHookHits, articles.length),
-      passiveBodyRatePct: pct(passiveBodyHits, articles.length),
-      semicolonRatePct: pct(semicolonHits, articles.length),
-      causalClaimHits,
-      pressEraHits,
-      hedgeRatePct: pct(hedgeArticles, articles.length),
+      titleEchoRatePct: pct(hits('titleEcho'), articles.length),
+      passiveHookRatePct: pct(hits('passiveHook'), articles.length),
+      passiveBodyRatePct: pct(hits('passiveBody'), articles.length),
+      semicolonRatePct: pct(hits('semicolon'), articles.length),
+      causalClaimHits: hits('causalClaim'),
+      pressEraHits: hits('pressEra'),
+      hedgeRatePct: pct(hits('hedge'), articles.length),
       acronymViolations,
       topAcronymViolators,
       countryNullCount,
       topOutletSharePct: pct(top3, totalSources),
       top3Outlets: sortedOutlets.slice(0, 3).map(([name, count]) => ({ name, count })),
-      multiSourceRatePct: pct(multiSourceCount, articles.length),
+      multiSourceRatePct: pct(hits('multiSource'), articles.length),
       categoryBalance: catCounts,
     },
   }
