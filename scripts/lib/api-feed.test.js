@@ -1,7 +1,7 @@
 // Run: node --test scripts/lib/api-feed.test.js
 import assert from 'node:assert/strict'
 import { test } from 'node:test'
-import { answerHolds, hasHeadline, redact, resultsAt } from './api-feed.js'
+import { answerHolds, countryOf, hasHeadline, redact, resultsAt } from './api-feed.js'
 
 // --- an answer with no list is not an answer with an empty one --------------
 test('a list that is there is returned, empty or not, with nothing to say', () => {
@@ -40,6 +40,49 @@ test('the key never reaches a line of the log', () => {
   assert.equal(redact(`Supplied API key '${key}' is not recognised (${key})`, key), "Supplied API key '[key]' is not recognised ([key])")
   assert.equal(redact('nothing to hide', key), 'nothing to hide')
   assert.equal(redact('no key set', undefined), 'no key set')
+})
+
+// --- a location's country ---------------------------------------------------
+test('a country is itself, a place is in one, and what the table lacks is no country', () => {
+  const country = (eng) => ({ type: 'country', label: { eng } })
+  const place = (eng, inCountry) => ({ type: 'place', label: { eng }, country: inCountry === undefined ? undefined : country(inCountry) })
+  assert.equal(countryOf(country('Iran')), 'IR')
+  assert.equal(countryOf(place('Karachi', 'Pakistan')), 'PK')
+  assert.equal(countryOf(country('United States')), 'US')
+  // A place's own name is never looked up, even when it is a country's.
+  assert.equal(countryOf(place('Georgia', 'United States')), 'US')
+  assert.equal(countryOf(place('Georgia')), null)
+  // Not in the table: Meduza's Latvia, and the two gap countries the fetcher asks for by name.
+  for (const name of ['Latvia', 'Yemen', 'Somalia', 'constructor', '']) assert.equal(countryOf(country(name)), null, name)
+  for (const none of [null, undefined, {}, { type: 'country' }, { type: 'country', label: {} }, { country: {} }]) assert.equal(countryOf(none), null)
+})
+
+// The two functions the fetcher had, as they were, against the one it has.
+test('it answers as both of the functions it replaces did', () => {
+  const LOOKUP = { Iran: 'IR', Pakistan: 'PK' }
+  const getCountryCode = (source) => {
+    const loc = source?.location
+    if (!loc) return null
+    const countryName = loc.type === 'country' ? loc.label?.eng : loc.country?.label?.eng
+    return countryName ? (LOOKUP[countryName] || null) : null
+  }
+  const getCountryFromLoc = (loc) => {
+    if (!loc) return null
+    if (loc.type === 'country') return LOOKUP[loc.label?.eng] || null
+    if (loc.country) return LOOKUP[loc.country?.label?.eng] || null
+    return null
+  }
+  const locations = [
+    null, undefined, {}, { type: 'country' }, { type: 'country', label: {} }, { type: 'country', label: { eng: 'Iran' } }, { type: 'country', label: { eng: 'Atlantis' } },
+    { type: 'place', label: { eng: 'Karachi' }, country: { label: { eng: 'Pakistan' } } }, { type: 'place', label: { eng: 'Karachi' } }, { type: 'place', country: {} },
+    { type: 'place', country: { label: { eng: 'Atlantis' } } }, { country: { label: { eng: 'Iran' } } }, { type: 'country', label: { eng: 'Iran' }, country: { label: { eng: 'Pakistan' } } },
+  ]
+  for (const location of locations) {
+    assert.equal(countryOf(location), getCountryFromLoc(location), JSON.stringify(location))
+    assert.equal(countryOf(location), getCountryCode({ location }), JSON.stringify(location))
+  }
+  assert.equal(getCountryCode(null), null)
+  assert.equal(getCountryCode({}), null)
 })
 
 test('an article with no headline is not a story of its own', () => {

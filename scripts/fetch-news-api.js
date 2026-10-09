@@ -3,7 +3,7 @@
 // Strategy: events endpoint for story discovery + article queries for source diversity.
 // Output: /tmp/zuhd-feed-api.json
 import { mkdirSync, readdirSync, statSync, unlinkSync } from 'node:fs'
-import { hasHeadline, redact, resultsAt } from './lib/api-feed.js'
+import { countryOf, hasHeadline, redact, resultsAt } from './lib/api-feed.js'
 import { eventCoveredRecently, loadDedupContext } from './lib/dedup.js'
 import { MAX_FEED_AGE_MS } from './lib/feed-age.js'
 import { readUnexplainedMovers } from './lib/company-gaps.js'
@@ -51,30 +51,6 @@ function sameRegion(a, b) {
   return Object.values(REGIONS).some(r => r.includes(a) && r.includes(b))
 }
 
-const COUNTRY_LOOKUP = {
-  'Iran': 'IR', 'China': 'CN', 'Russia': 'RU', 'United States': 'US',
-  'United Kingdom': 'GB', 'India': 'IN', 'Pakistan': 'PK', 'Turkey': 'TR',
-  'France': 'FR', 'Germany': 'DE', 'Japan': 'JP', 'South Korea': 'KR',
-  'Brazil': 'BR', 'Nigeria': 'NG', 'Kenya': 'KE', 'Sudan': 'SD',
-  'Egypt': 'EG', 'South Africa': 'ZA', 'Australia': 'AU', 'Canada': 'CA',
-  'Indonesia': 'ID', 'Malaysia': 'MY', 'Kazakhstan': 'KZ', 'Israel': 'IL',
-  'Qatar': 'QA', 'Saudi Arabia': 'SA', 'United Arab Emirates': 'AE',
-  'Mexico': 'MX', 'Argentina': 'AR', 'Colombia': 'CO', 'Italy': 'IT',
-  'Spain': 'ES', 'Netherlands': 'NL', 'Sweden': 'SE', 'Norway': 'NO',
-  'Denmark': 'DK', 'Finland': 'FI', 'Poland': 'PL', 'Ukraine': 'UA',
-  'Romania': 'RO', 'Greece': 'GR', 'Ireland': 'IE', 'Bangladesh': 'BD',
-  'Sri Lanka': 'LK', 'Vietnam': 'VN', 'Thailand': 'TH', 'Philippines': 'PH',
-  'Singapore': 'SG', 'Myanmar': 'MM', 'Afghanistan': 'AF', 'Iraq': 'IQ',
-  'Syria': 'SY', 'Lebanon': 'LB', 'Jordan': 'JO', 'Palestine': 'PS',
-  'New Zealand': 'NZ', 'Belgium': 'BE', 'Switzerland': 'CH', 'Austria': 'AT',
-  'Portugal': 'PT', 'Czech Republic': 'CZ', 'Hungary': 'HU', 'Bulgaria': 'BG',
-  'Serbia': 'RS', 'Croatia': 'HR', 'Hong Kong': 'HK', 'Taiwan': 'TW',
-  'Ethiopia': 'ET', 'Ghana': 'GH', 'Tanzania': 'TZ', 'Uganda': 'UG',
-  'Algeria': 'DZ', 'Morocco': 'MA', 'Tunisia': 'TN', 'Senegal': 'SN',
-  'Georgia': 'GE', 'Armenia': 'AM', 'Azerbaijan': 'AZ', 'Uzbekistan': 'UZ',
-  'Belarus': 'BY', 'Cuba': 'CU', 'Peru': 'PE', 'Chile': 'CL', 'Venezuela': 'VE',
-}
-
 // NewsAPI titles every nature.com article "Nature", so ten *Scientific Reports*
 // manuscripts ran in one week under the flagship's name. The article-number
 // prefix in the URL names the journal.
@@ -96,22 +72,6 @@ function sourceName(a) {
   return (m && NATURE_JOURNALS[m[1]]) || a?.source?.title || ''
 }
 
-function getCountryCode(source) {
-  const loc = source?.location
-  if (!loc) return null
-  const countryName = loc.type === 'country'
-    ? loc.label?.eng
-    : loc.country?.label?.eng
-  return countryName ? (COUNTRY_LOOKUP[countryName] || null) : null
-}
-
-function getCountryFromLoc(loc) {
-  if (!loc) return null
-  if (loc.type === 'country') return COUNTRY_LOOKUP[loc.label?.eng] || null
-  if (loc.country) return COUNTRY_LOOKUP[loc.country?.label?.eng] || null
-  return null
-}
-
 // ── Source Diversity Algorithm ───────────────────────────────────────
 
 function assembleSourcePanel(articles, eventLocation) {
@@ -128,7 +88,7 @@ function assembleSourcePanel(articles, eventLocation) {
 
   if (unique.length <= 3) return unique
 
-  const affectedCountry = eventLocation ? getCountryFromLoc(eventLocation) : null
+  const affectedCountry = countryOf(eventLocation)
 
   const affected = [], regional = [], wire = [], alternative = []
   for (const a of unique) {
@@ -204,16 +164,19 @@ function assembleSourcePanel(articles, eventLocation) {
 // Token accounting — NewsAPI.ai charges ~5 tokens per event search, ~1 per article search.
 // Tracks every apiPost so cycles can log actual cost vs budgeted cost.
 const API_TIMEOUT_MS = 90_000
+// `otherCalls` is always 0: every call says which of the three kinds it is
+// (it counted a call that named none, and none ever did: `other=0` in each of
+// 41 cycle logs). The key stays because the feed file and the snapshot under
+// `content/` have always carried it, and the token line prints it.
 const tokenStats = { eventCalls: 0, articleCalls: 0, perEventCalls: 0, otherCalls: 0, estTokens: 0 }
+const CALLS_OF = /** @type {const} */ ({ events: 'eventCalls', articles: 'articleCalls', perEvent: 'perEventCalls' })
 
-async function apiPost(endpoint, params, tag = 'other') {
+/** @param {keyof typeof CALLS_OF} tag which kind of call, for the count */
+async function apiPost(endpoint, params, tag) {
   // Cost model: event/getEvents = 5 tokens, article queries = 1, event/getEvent = 1
   const cost = endpoint === 'event/getEvents' ? 5 : 1
   tokenStats.estTokens += cost
-  if (tag === 'events') tokenStats.eventCalls++
-  else if (tag === 'articles') tokenStats.articleCalls++
-  else if (tag === 'perEvent') tokenStats.perEventCalls++
-  else tokenStats.otherCalls++
+  tokenStats[CALLS_OF[tag]]++
 
   const res = await fetch(`${API_BASE}/${endpoint}`, {
     method: 'POST',
@@ -555,7 +518,7 @@ async function main() {
   for (const a of allArticles) {
     if (seen.has(a.uri)) continue
     seen.add(a.uri)
-    a._sourceCountry = getCountryCode(a.source) || null
+    a._sourceCountry = countryOf(a.source?.location)
     dedupedArticles.push(a)
   }
 
@@ -668,7 +631,7 @@ async function main() {
       for (const a of fetchedArts) {
         if (seen.has(a.uri)) continue
         seen.add(a.uri)
-        a._sourceCountry = getCountryCode(a.source) || null
+        a._sourceCountry = countryOf(a.source?.location)
         if (!articlesByEvent.has(uri)) articlesByEvent.set(uri, [])
         articlesByEvent.get(uri).push(a)
       }
@@ -712,7 +675,7 @@ async function main() {
       const medoidSources = medoid && medoidBody.length >= 500 ? [{
         name: medoid.source?.title || '',
         url: medoid.url || '',
-        country: getCountryCode(medoid.source) || null,
+        country: countryOf(medoid.source?.location),
         body: medoidBody,
         importanceRank: medoid.source?.ranking?.importanceRank || null,
         sentiment: medoid.sentiment != null ? +medoid.sentiment.toFixed(2) : null,
@@ -732,7 +695,7 @@ async function main() {
         socialScore: event.socialScore ?? null,
         sources: medoidSources,
         concepts: eventConcepts,
-        location: eventLoc?.type === 'place' ? eventLoc.label?.eng : (eventLoc?.label?.eng || null),
+        location: eventLoc?.label?.eng || null,
         sentiment: null,
         origin: 'api',
       })
@@ -743,9 +706,7 @@ async function main() {
     const panel = assembleSourcePanel(matchedArticles, eventLoc)
     const primary = panel[0]
     const concepts = eventConcepts.length > 0 ? eventConcepts : extractConcepts(panel)
-    const location = eventLoc?.type === 'place'
-      ? eventLoc.label?.eng
-      : (eventLoc?.label?.eng || primary.location?.label?.eng || null)
+    const location = eventLoc?.label?.eng || primary.location?.label?.eng || null
 
     const storyTitle = panel.length > 1 ? bestTitle(panel, primary.title || title) : (primary.title || title)
     stories.push({
