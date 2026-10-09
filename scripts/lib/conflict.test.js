@@ -11,9 +11,11 @@ import test from 'node:test'
 import assert from 'node:assert/strict'
 import {
   candidateCsvUrl,
+  droppedRowsReport,
   emptyReleaseReport,
   filterRecentWindow,
   mapUcdpRow,
+  newGateTally,
   nextReleases,
   parseSourceArticle,
   REQUIRED_COLUMNS,
@@ -276,4 +278,41 @@ test('a row dated after today is not an event, and cannot move the window', () =
   // A row dated today is kept, and with no `today` nothing is asked.
   assert.ok(mapUcdpRow(rows[1], tally, { today: '2026-03-31' }))
   assert.ok(mapUcdpRow(rows[2]))
+})
+
+// --- what the gates drop ---
+
+test('every row the gates drop is counted under its reason', () => {
+  // About half of a release does not pass (894 of 1,806 rows in August 2026),
+  // and the snapshot said nothing of it. The counts are written into it now.
+  const tally = newGateTally()
+  const rows = [
+    baseRow,
+    { ...baseRow, where_prec: '5' },
+    { ...baseRow, best: '0' },
+    { ...baseRow, latitude: '' },
+    { ...baseRow, latitude: '0.1', longitude: '0.1' },
+    { ...baseRow, date_start: '' },
+    { ...baseRow, date_start: '2027-03-31 00:00:00.000' },
+    { ...baseRow, side_a: 'XXX130' },
+  ]
+  const events = rows.map((r) => mapUcdpRow(r, tally, { today: '2026-05-02' })).filter(Boolean)
+  assert.equal(events.length, 1)
+  assert.deepEqual(tally, {
+    lowPrecision: 1,
+    noFatalities: 1,
+    noCoordinates: 1,
+    nullIsland: 1,
+    undated: 1,
+    postdated: 1,
+    unnamedActor: 1,
+    undatedSources: 0,
+    unreadableEnd: 0,
+  })
+  assert.equal(
+    droppedRowsReport(tally),
+    '1 placed no closer than a region, 1 with nobody killed, 1 with no coordinates, 1 at null island, ' +
+      '1 with no readable start date, 1 dated after today, 1 by an unnamed actor',
+  )
+  assert.equal(droppedRowsReport(newGateTally()), '')
 })

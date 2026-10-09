@@ -19,6 +19,7 @@ import {
   carryNarratives,
   collectionToAlerts,
   detailsInAlertOrder,
+  droppedAlertsReport,
   emptyListReport,
   fetchGdacsDetail,
   isGdacsFeatureCollection,
@@ -88,8 +89,16 @@ async function produce() {
   // this snapshot is published as it is written.
   const empty = emptyListReport(collection, alerts)
   if (empty) throw new Degrade(empty)
-  if (dropped.undated) console.error(`  ⚠ ${dropped.undated} alerts dropped: no readable start date`)
-  console.log(`  ✓ list: ${alerts.length} current alerts (within 30d age cliff)`)
+  // Both numbers, and what stands between them. The list has come back at
+  // exactly a hundred features on 36 of the last 41 runs, every one of them
+  // modified inside two days: it is the hundred most recently touched events,
+  // not the world's open alerts, and one left alone for a couple of days is off
+  // it whatever its level. Printed so that the log can at least show the edge.
+  const left = droppedAlertsReport(dropped)
+  console.log(
+    `  ✓ list: ${alerts.length} current alerts of ${collection.features.length} features (within 30d age cliff)` +
+      (left ? `; dropped ${left}` : ''),
+  )
 
   // Pre-fetch detail for EQ + TC alerts. Other event types (FL/VO/DR/WF)
   // surface their relevant scale through severityText already; the detail

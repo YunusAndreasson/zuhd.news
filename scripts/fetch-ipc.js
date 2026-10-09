@@ -207,6 +207,11 @@ async function produce() {
     noPhase: 0,
     countriesNoCandidate: noCandidate.length,
     countriesNoGeometry: noGeometry.length,
+    // Filled in below, once the countries have been asked for. Here as well as
+    // at the top of the snapshot: `skipped` is the block the build carries into
+    // /api/ipc.json, and without it a fetch that lost five countries was
+    // published as a full one.
+    countriesFailed: 0,
   }
 
   let geoModule
@@ -246,6 +251,7 @@ async function produce() {
   })
 
   if (areas.length === 0) bail(`no area survived the join (${firstError ?? 'no reason recorded'})`)
+  skipped.countriesFailed = countriesFailed
   if (countriesFailed > 0) {
     console.error(`  ⚠ ${countriesFailed}/${wanted.length} country geometries failed (${firstError})`)
   }

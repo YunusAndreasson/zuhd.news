@@ -29,6 +29,11 @@ const ALERT_LEVELS = new Set(['Green', 'Orange', 'Red'])
 const MAX_ALERT_AGE_DAYS = 30
 
 const isObject = (v) => typeof v === 'object' && v !== null && !Array.isArray(v)
+
+/** Count one drop under `reason`, where the caller is keeping count. */
+const count = (tally, reason) => {
+  if (tally) tally[reason] = (tally[reason] ?? 0) + 1
+}
 const isFiniteNumber = (v) => typeof v === 'number' && Number.isFinite(v)
 
 const isGdacsFeature = (v) => {
@@ -159,13 +164,18 @@ function featureToAlert(feature, tally) {
   const eventtype = p.eventtype
   const alertlevel = p.alertlevel
   const eventid = p.eventid
-  if (typeof eventtype !== 'string' || !EVENT_TYPES.has(eventtype)) return null
-  if (typeof alertlevel !== 'string' || !ALERT_LEVELS.has(alertlevel)) return null
   const id =
     typeof eventid === 'number' ? String(eventid) : typeof eventid === 'string' ? eventid : null
-  if (!id) return null
+  if (
+    typeof eventtype !== 'string' || !EVENT_TYPES.has(eventtype) ||
+    typeof alertlevel !== 'string' || !ALERT_LEVELS.has(alertlevel) ||
+    !id
+  ) {
+    count(tally, 'unknownKind')
+    return null
+  }
   if (!isIsoDate(p.fromdate)) {
-    if (tally) tally.undated = (tally.undated ?? 0) + 1
+    count(tally, 'undated')
     return null
   }
 
@@ -219,6 +229,13 @@ export function alertAgeDays(alert, now = Date.now()) {
 }
 
 /**
+ * The list's features as alerts, with what was dropped on the way counted in
+ * `tally` by reason: `malformed` (not a point feature), `notCurrent`,
+ * `unknownKind` (a type, level or id this layer does not know), `undated`, and
+ * `tooOld`. Five filters with nothing counted is how eleven features went
+ * missing from the list for five cycles on 2 and 3 October 2026, and the log
+ * cannot say to which.
+ *
  * @param {{ type?: string, features: any[] }} collection
  * @param {number} [now]
  * @param {Record<string, number>} [tally] counts what is dropped, by reason
@@ -226,15 +243,45 @@ export function alertAgeDays(alert, now = Date.now()) {
 export function collectionToAlerts(collection, now = Date.now(), tally) {
   const out = []
   for (const feature of collection.features) {
-    if (!isGdacsFeature(feature)) continue
-    if (feature.properties.iscurrent !== true && feature.properties.iscurrent !== 'true') continue
+    if (!isGdacsFeature(feature)) {
+      count(tally, 'malformed')
+      continue
+    }
+    if (feature.properties.iscurrent !== true && feature.properties.iscurrent !== 'true') {
+      count(tally, 'notCurrent')
+      continue
+    }
     const alert = featureToAlert(feature, tally)
     if (!alert) continue
-    if (alertAgeDays(alert, now) > MAX_ALERT_AGE_DAYS) continue
+    if (alertAgeDays(alert, now) > MAX_ALERT_AGE_DAYS) {
+      count(tally, 'tooOld')
+      continue
+    }
     out.push(alert)
   }
   return out
 }
+
+/** What each of `collectionToAlerts`' reasons is called in the log. */
+const DROPPED_AS = {
+  malformed: 'not a point feature',
+  notCurrent: 'not current',
+  unknownKind: 'of an unknown type, level or id',
+  undated: 'with no readable start date',
+  tooOld: `older than ${MAX_ALERT_AGE_DAYS} days`,
+}
+
+/**
+ * A tally from `collectionToAlerts` as words: `11 not current, 2 older than 30
+ * days`. Empty when nothing was dropped.
+ *
+ * @param {Record<string, number>} tally
+ */
+export const droppedAlertsReport = (tally) =>
+  Object.entries(DROPPED_AS)
+    .filter(([reason]) => tally[reason] > 0)
+    .map(([reason, words]) => `${tally[reason]} ${words}`)
+    .join(', ')
 
 /** What `collectionToAlerts` reads of a feature before it keeps or drops it. */
 const FILTERED_ON = ['iscurrent', 'eventtype', 'alertlevel', 'eventid', 'datemodified']

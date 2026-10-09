@@ -5,7 +5,8 @@
 // hand at Uppsala, redistributable under CC-BY 4.0.
 //
 // Output: content/.conflict.json, which the build mirrors to /api/conflict.json
-// Shape:  { generated, ucdpVersion, windowStart, windowEnd, events: ConflictEvent[] }
+// Shape:  { generated, ucdpVersion, windowStart, windowEnd, events: ConflictEvent[],
+//           skipped: { lowPrecision, noFatalities, …, outsideWindow } }
 //
 // A candidate release is one month, published about a month in arrears, as one
 // CSV: 1.4 MB and 1,806 rows for August 2026. About half the rows pass the
@@ -32,7 +33,9 @@ import {
   candidateCsvUrl,
   emptyReleaseReport,
   filterRecentWindow,
+  droppedRowsReport,
   mapUcdpRow,
+  newGateTally,
   nextReleases,
   REQUIRED_COLUMNS,
 } from './lib/conflict.js'
@@ -146,17 +149,18 @@ async function produce() {
   console.log(`Parsed ${rows.length.toLocaleString('en-US')} rows`)
 
   const events = []
-  const dropped = {}
+  const dropped = newGateTally()
   const today = new Date().toISOString().slice(0, 10)
   for (const r of rows) {
     const event = mapUcdpRow(r, dropped, { today })
     if (event) events.push(event)
   }
-  console.log(`Filtered to ${events.length.toLocaleString('en-US')} events after quality gates`)
+  const left = droppedRowsReport(dropped)
+  console.log(`Filtered to ${events.length.toLocaleString('en-US')} events after quality gates${left ? ` (dropped ${left})` : ''}`)
   if (dropped.undated || dropped.undatedSources || dropped.unreadableEnd) {
     console.error(
-      `  ⚠ unreadable dates: ${dropped.undated ?? 0} events dropped, ` +
-        `${dropped.undatedSources ?? 0} reported sources dropped, ${dropped.unreadableEnd ?? 0} end dates left off`,
+      `  ⚠ unreadable dates: ${dropped.undated} events dropped, ` +
+        `${dropped.undatedSources} reported sources dropped, ${dropped.unreadableEnd} end dates left off`,
     )
   }
   if (dropped.postdated) {
@@ -195,5 +199,9 @@ async function produce() {
     windowStart,
     windowEnd,
     events: kept,
+    // What the release held that these events are not: the rows each gate
+    // dropped, and the events that passed and fall before the week kept. A
+    // bounded dataset that does not say what it left out reads as the whole.
+    skipped: { ...dropped, outsideWindow: events.length - kept.length },
   }
 }

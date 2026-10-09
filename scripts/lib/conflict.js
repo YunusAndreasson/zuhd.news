@@ -9,6 +9,7 @@
 //
 //   REQUIRED_COLUMNS                                    what `csvObjects` (`lib/csv.js`) is asked to find
 //   mapUcdpRow(row, tally?, { today }?) → ConflictEvent | null
+//   newGateTally(), droppedRowsReport(tally)            what the gates dropped, counted and in words
 //   filterRecentWindow(events, days) → { kept, windowStart, windowEnd }
 //   emptyReleaseReport(rows, events) → string | null    a release with no event in it
 //   candidateCsvUrl(version), nextReleases(version)     the release's file, and what follows it
@@ -249,9 +250,54 @@ function intOrUndef(s) {
   return Number.isFinite(n) && n >= 0 ? n : undefined
 }
 
+/**
+ * A tally for `mapUcdpRow`, every reason at zero.
+ *
+ * The gates drop about half of a release (894 of 1,806 rows in August 2026),
+ * and until this was counted the snapshot said nothing of it: the conflict
+ * layer read as UCDP's month, and the app's toll for a week as UCDP's sum,
+ * when both are what is left after these. `outsideWindow` is the fetcher's to
+ * fill: the events that passed and fall before the week the snapshot keeps.
+ */
+export const newGateTally = () => ({
+  lowPrecision: 0,
+  noFatalities: 0,
+  noCoordinates: 0,
+  nullIsland: 0,
+  undated: 0,
+  postdated: 0,
+  unnamedActor: 0,
+  undatedSources: 0,
+  unreadableEnd: 0,
+})
+
+/** What each of `mapUcdpRow`'s reasons is called in the log. */
+const DROPPED_AS = {
+  lowPrecision: 'placed no closer than a region',
+  noFatalities: 'with nobody killed',
+  noCoordinates: 'with no coordinates',
+  nullIsland: 'at null island',
+  undated: 'with no readable start date',
+  postdated: 'dated after today',
+  unnamedActor: 'by an unnamed actor',
+}
+
+/**
+ * A tally's dropped rows as words: `512 with nobody killed, 330 placed no
+ * closer than a region`. Empty when no row was dropped.
+ *
+ * @param {Record<string, number>} tally
+ */
+export const droppedRowsReport = (tally) =>
+  Object.entries(DROPPED_AS)
+    .filter(([reason]) => tally[reason] > 0)
+    .map(([reason, words]) => `${tally[reason]} ${words}`)
+    .join(', ')
+
 /** Map one UCDP row to a ConflictEvent, applying all quality gates.
  *  Returns null when the row should be dropped (low precision, no
- *  fatalities, bad coords, placeholder actors, etc.).
+ *  fatalities, bad coords, placeholder actors, etc.), and counts it in
+ *  `tally` under its reason: see `newGateTally`.
  *
  *  Every date an event carries is one the app will accept (`isIsoDate`): a
  *  row with no readable start is dropped (`tally.undated`), an end that is
@@ -271,31 +317,30 @@ function intOrUndef(s) {
  *  @param {{ today?: string }} [opts] `today` as `YYYY-MM-DD`; the fetcher's, so this stays off the clock
  */
 export function mapUcdpRow(r, tally, { today } = {}) {
+  const drop = (/** @type {string} */ reason) => {
+    count(tally, reason)
+    return null
+  }
+
   const wherePrec = parseInt(r.where_prec, 10)
-  if (!Number.isFinite(wherePrec) || wherePrec > MAX_WHERE_PREC) return null
+  if (!Number.isFinite(wherePrec) || wherePrec > MAX_WHERE_PREC) return drop('lowPrecision')
 
   const fatalities = parseInt(r.best, 10)
-  if (!Number.isFinite(fatalities) || fatalities < MIN_FATALITIES) return null
+  if (!Number.isFinite(fatalities) || fatalities < MIN_FATALITIES) return drop('noFatalities')
 
   const lat = parseFloat(r.latitude)
   const lng = parseFloat(r.longitude)
-  if (!Number.isFinite(lat) || !Number.isFinite(lng)) return null
+  if (!Number.isFinite(lat) || !Number.isFinite(lng)) return drop('noCoordinates')
 
   // Defensive: drop near-(0,0) records. UCDP shouldn't emit these (every
   // event is geocoded), but Null Island is the universal geocoder failure
   // mode, and one slip would visually anchor a stray marker in the
   // Atlantic off Africa.
-  if (Math.abs(lat) < 0.5 && Math.abs(lng) < 0.5) return null
+  if (Math.abs(lat) < 0.5 && Math.abs(lng) < 0.5) return drop('nullIsland')
 
   const dateStart = (r.date_start ?? '').slice(0, 10)
-  if (!isIsoDate(dateStart)) {
-    count(tally, 'undated')
-    return null
-  }
-  if (today && dateStart > today) {
-    count(tally, 'postdated')
-    return null
-  }
+  if (!isIsoDate(dateStart)) return drop('undated')
+  if (today && dateStart > today) return drop('postdated')
 
   const country = COUNTRY_REWRITES[r.country] ?? r.country
   const iso3 = NAME_TO_ISO3[country] ?? ''
@@ -305,7 +350,7 @@ export function mapUcdpRow(r, tally, { today } = {}) {
   // UCDP's "XXX###" codes are placeholder identifiers for unidentified
   // sub-state actors — meaningless to a reader. Drop the event entirely
   // rather than display "XXX130 vs Civilians" on the sheet.
-  if (!sideA || XXX_ACTOR.test(sideA)) return null
+  if (!sideA || XXX_ACTOR.test(sideA)) return drop('unnamedActor')
 
   const event = {
     id: `UCDP-${r.relid || r.id}`,

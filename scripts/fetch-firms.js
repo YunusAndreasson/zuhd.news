@@ -237,6 +237,9 @@ async function produce() {
     cellsFailed,
     aoiDropped: dropped,
     events,
-    skipped: { ...skipped, unattached },
+    // `cellsFailed` and `aoiDropped` again, beside the rest of what was left
+    // out. `skipped` is the block the build carries into /api/firms.json; the
+    // two keys above it are not, so a partial fetch was published as a full one.
+    skipped: { ...skipped, unattached, cellsFailed, aoiDropped: dropped },
   }
 }

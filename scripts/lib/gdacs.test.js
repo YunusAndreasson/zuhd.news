@@ -13,6 +13,7 @@ import {
   collectionToAlerts,
   detailKey,
   detailsInAlertOrder,
+  droppedAlertsReport,
   emptyListReport,
   featureToDetail,
   isGdacsFeatureCollection,
@@ -310,4 +311,30 @@ test("the details are filed under each alert's key, in the alerts' order", () =>
   const details = detailsInAlertOrder(alerts, [{ for: 'a' }, { for: 'b' }, undefined, { for: 'd' }])
   assert.deepEqual(Object.keys(details), ['EQ:1570274', 'TC:1001335', 'EQ:1570260'], 'and one that failed has no entry')
   assert.deepEqual(details[detailKey(alerts[3])], { for: 'd' })
+})
+
+test('every feature the list loses is counted under its reason', () => {
+  // Five filters and nothing counted: on 2 and 3 October 2026 the list was
+  // eleven short for five cycles, and the log cannot say which filter took them.
+  const but = (over) => ({ ...validFeature, properties: { ...validFeature.properties, ...over } })
+  const collection = {
+    type: 'FeatureCollection',
+    features: [
+      validFeature,
+      but({ iscurrent: false }),
+      { ...validFeature, geometry: { type: 'Polygon', coordinates: [] } },
+      but({ eventtype: 'XX' }),
+      but({ alertlevel: 'Yellow' }),
+      but({ datemodified: '2026-03-15T08:00:00' }),
+      but({ fromdate: '' }),
+    ],
+  }
+  const tally = {}
+  assert.equal(collectionToAlerts(collection, FIXTURE_NOW, tally).length, 1)
+  assert.deepEqual(tally, { notCurrent: 1, malformed: 1, unknownKind: 2, tooOld: 1, undated: 1 })
+  assert.equal(
+    droppedAlertsReport(tally),
+    '1 not a point feature, 1 not current, 2 of an unknown type, level or id, 1 with no readable start date, 1 older than 30 days',
+  )
+  assert.equal(droppedAlertsReport({}), '', 'a list that lost nothing says nothing')
 })
