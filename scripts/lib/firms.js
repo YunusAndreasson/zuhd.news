@@ -106,6 +106,9 @@ export const JOIN_RADIUS_KM = 75
 export const JOIN_BEFORE_MS = 24 * 3600_000
 export const JOIN_AFTER_MS = 72 * 3600_000
 
+/** How many stories one anomaly may be joined to, nearest first. */
+const JOIN_STORIES = 8
+
 const CONFIDENCE_RANK = { low: 0, nominal: 1, high: 2 }
 
 /**
@@ -145,7 +148,8 @@ const cellFloor = (v, size) => Math.floor(v / size) * size
  * Busiest cells survive the cap, so what gets dropped is always the sparsest
  * corner of the map rather than whichever cell happened to sort last.
  */
-export function aoiCells(points, { size = AOI_CELL_DEG, cap = AOI_CELL_CAP } = {}) {
+export function aoiCells(points) {
+  const size = AOI_CELL_DEG
   const counts = new Map()
   for (const p of points ?? []) {
     const lat = num(p?.lat)
@@ -165,7 +169,7 @@ export function aoiCells(points, { size = AOI_CELL_DEG, cap = AOI_CELL_CAP } = {
     // the same request list, which is what makes a slow run reproducible.
     (a, b) => b.weight - a.weight || a.key.localeCompare(b.key),
   )
-  const kept = all.slice(0, cap)
+  const kept = all.slice(0, AOI_CELL_CAP)
   return {
     cells: kept.map((c) => ({
       key: c.key,
@@ -284,8 +288,8 @@ export function newestDetection(rows) {
 // --- 3. Which of it is infrastructure -------------------------------------
 
 /** Which persistence bin a detection falls in. */
-export const binKey = (lat, lng, size = PERSIST_BIN_DEG) =>
-  `${Math.floor(lat / size)},${Math.floor(lng / size)}`
+export const binKey = (lat, lng) =>
+  `${Math.floor(lat / PERSIST_BIN_DEG)},${Math.floor(lng / PERSIST_BIN_DEG)}`
 
 /**
  * Per-bin persistence, and the verdict that follows from it.
@@ -299,20 +303,11 @@ export const binKey = (lat, lng, size = PERSIST_BIN_DEG) =>
  * otherwise have to burn four times as hard as one with a single baseline day
  * to clear the same bar.
  */
-export function classifyCells(
-  rows,
-  {
-    now = Date.now(),
-    recentWindowMs = RECENT_WINDOW_MS,
-    dropDays = PERSIST_DROP_DAYS,
-    escalation = ESCALATION_FACTOR,
-    binSize = PERSIST_BIN_DEG,
-  } = {},
-) {
-  const recentFrom = now - recentWindowMs
+export function classifyCells(rows, { now = Date.now() } = {}) {
+  const recentFrom = now - RECENT_WINDOW_MS
   const bins = new Map()
   for (const row of rows) {
-    const key = binKey(row.lat, row.lng, binSize)
+    const key = binKey(row.lat, row.lng)
     let bin = bins.get(key)
     if (!bin) {
       bin = { key, days: new Set(), recentFrp: 0, baseFrp: 0, baseDays: new Set() }
@@ -332,13 +327,13 @@ export function classifyCells(
     const persistDays = bin.days.size
     const baseDayCount = bin.baseDays.size
     const basePerDay = baseDayCount > 0 ? bin.baseFrp / baseDayCount : 0
-    const escalating = basePerDay > 0 && bin.recentFrp > basePerDay * escalation
+    const escalating = basePerDay > 0 && bin.recentFrp > basePerDay * ESCALATION_FACTOR
     out.set(bin.key, {
       persistDays,
       recentFrp: bin.recentFrp,
       baselineFrpPerDay: basePerDay,
       escalating,
-      persistent: persistDays >= dropDays && !escalating,
+      persistent: persistDays >= PERSIST_DROP_DAYS && !escalating,
     })
   }
   return out
@@ -357,17 +352,13 @@ export function classifyCells(
  * Only bins the classifier cleared, and only the recent pass: the baseline days
  * exist to judge the bin, not to be drawn.
  */
-export function clusterEvents(
-  rows,
-  cells,
-  { now = Date.now(), recentWindowMs = RECENT_WINDOW_MS, minFrp = MIN_EVENT_FRP, binSize = PERSIST_BIN_DEG } = {},
-) {
-  const recentFrom = now - recentWindowMs
+export function clusterEvents(rows, cells, { now = Date.now() } = {}) {
+  const recentFrom = now - RECENT_WINDOW_MS
   const byBin = new Map()
   let persistentDropped = 0
   for (const row of rows) {
     if (row.t < recentFrom) continue
-    const key = binKey(row.lat, row.lng, binSize)
+    const key = binKey(row.lat, row.lng)
     if (cells.get(key)?.persistent) {
       persistentDropped++
       continue
@@ -404,7 +395,7 @@ export function clusterEvents(
     }
 
     const frp = members.reduce((sum, m) => sum + m.frp, 0)
-    if (frp < minFrp) {
+    if (frp < MIN_EVENT_FRP) {
       belowFloor++
       continue
     }
@@ -421,11 +412,11 @@ export function clusterEvents(
     )
     const times = members.map((m) => m.t)
     const persistDays = members.reduce(
-      (max, m) => Math.max(max, cells.get(binKey(m.lat, m.lng, binSize))?.persistDays ?? 1),
+      (max, m) => Math.max(max, cells.get(binKey(m.lat, m.lng))?.persistDays ?? 1),
       1,
     )
     const escalating = members.some(
-      (m) => cells.get(binKey(m.lat, m.lng, binSize))?.escalating === true,
+      (m) => cells.get(binKey(m.lat, m.lng))?.escalating === true,
     )
     const lat = round(wLat, 4)
     const lng = round(wLng, 4)
@@ -634,27 +625,18 @@ export function minDistanceKm(event, points) {
  * *before* the story is either the same event reported late or a coincidence,
  * and past that it is just a different fire in the same province.
  */
-export function nearestStories(
-  event,
-  stories,
-  {
-    radiusKm = JOIN_RADIUS_KM,
-    beforeMs = JOIN_BEFORE_MS,
-    afterMs = JOIN_AFTER_MS,
-    limit = 8,
-  } = {},
-) {
+export function nearestStories(event, stories) {
   const hits = []
   for (const s of stories ?? []) {
     if (!Number.isFinite(s?.lat) || !Number.isFinite(s?.lng)) continue
     if (Number.isFinite(s.t)) {
-      if (event.t < s.t - beforeMs) continue
-      if (event.t > s.t + afterMs) continue
+      if (event.t < s.t - JOIN_BEFORE_MS) continue
+      if (event.t > s.t + JOIN_AFTER_MS) continue
     }
     const km = haversineKm(event.lat, event.lng, s.lat, s.lng)
-    if (km > radiusKm) continue
+    if (km > JOIN_RADIUS_KM) continue
     hits.push({ ...s, km: round(km, 1) })
   }
   hits.sort((a, b) => a.km - b.km)
-  return hits.slice(0, limit)
+  return hits.slice(0, JOIN_STORIES)
 }

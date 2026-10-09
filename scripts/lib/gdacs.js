@@ -1,16 +1,20 @@
-// GDACS parser + per-event detail fetcher. JS port of mobile/lib/gdacs.ts —
-// the same shape contract, just running server-side now so every install
-// reads from /api/gdacs.json instead of hammering gdacs.org N times/day.
+// GDACS, the UN and EU's disaster alert feed, as the snapshot the app and the
+// map read: the list's features as alerts, and for an earthquake or a cyclone
+// the people it reached. `scripts/fetch-gdacs.js` does the fetching and the
+// file; the build mirrors that file to /api/gdacs.json as it is written, and
+// the app takes it whole or not at all (`isGdacsSnapshot`,
+// `mobile/lib/validate.ts`).
 //
-// Public surface used by fetch-gdacs.js:
-//   collectionToAlerts(collection, now?) → GdacsAlert[]
-//   fetchGdacsDetail(alert, fetchImpl?, signal?) → GdacsDetail
+// So an alert here is the `GdacsAlert` of `shared/types.ts` exactly, and a
+// detail its `GdacsDetail`. The parser began as the app's own, when every
+// install fetched the feed itself; it has run only here since.
 //
-// The output shape mirrors the GdacsAlert / GdacsDetail TS types declared in
-// shared/types.ts so mobile can consume the snapshot with structural validation
-// and zero parsing.
+//   collectionToAlerts(collection, now?, tally?) → GdacsAlert[]
+//   emptyListReport, droppedAlertsReport               a list with no alert in it; what a list dropped
+//   fetchGdacsDetail(alert, signal?) → GdacsDetail     one to three requests, under the caller's signal
+//   detailKey, detailsInAlertOrder, carryNarratives    how the snapshot is put together
 
-import { fetchOk } from './http.js'
+import { fetchJson } from './http.js'
 import { isIsoDate } from './iso-date.js'
 
 export const GDACS_GEOJSON_URL =
@@ -449,35 +453,36 @@ function findBufferImpactUrl(props, kind) {
   return null
 }
 
+/** One detail request's deadline. Several are made at once, and each is one line of a sheet. */
+const DETAIL_TIMEOUT_MS = 8000
+
 /**
+ * A detail endpoint's JSON, or a throw when it is not the shape asked for.
+ *
  * @param {string} url
  * @param {(v: any) => boolean} validate
- * @param {{ signal?: AbortSignal, timeoutMs?: number }} [opts]
- *        Annotated because a destructured bag with an `= {}` default infers
- *        only the keys that carry their own default — `signal` was silently
- *        not part of this function's type.
+ * @param {AbortSignal} [signal] the fetcher's budget for the whole stage
  */
-async function fetchJson(url, validate, { signal, timeoutMs = 8000 } = {}) {
-  const json = await fetchOk(url, { signal, timeoutMs }).then((res) => res.json())
+async function fetchValid(url, validate, signal) {
+  const json = await fetchJson(url, { signal, timeoutMs: DETAIL_TIMEOUT_MS })
   if (!validate(json)) throw new Error('schema mismatch')
   return json
 }
 
+/**
+ * The people an alert reached: one request for an earthquake, up to three for
+ * a cyclone, none for anything else.
+ *
+ * @param {{ eventtype: string, eventid: string }} alert
+ * @param {AbortSignal} [signal]
+ */
 export async function fetchGdacsDetail(alert, signal) {
   if (alert.eventtype === 'EQ') {
-    const feature = await fetchJson(
-      gdacsEventDetailUrl(alert.eventtype, alert.eventid),
-      isGdacsDetailFeature,
-      { signal, timeoutMs: 8000 },
-    )
+    const feature = await fetchValid(gdacsEventDetailUrl(alert.eventtype, alert.eventid), isGdacsDetailFeature, signal)
     return featureToDetail(feature)
   }
   if (alert.eventtype === 'TC') {
-    const feature = await fetchJson(
-      gdacsEventDetailUrl(alert.eventtype, alert.eventid),
-      isGdacsDetailFeature,
-      { signal, timeoutMs: 8000 },
-    )
+    const feature = await fetchValid(gdacsEventDetailUrl(alert.eventtype, alert.eventid), isGdacsDetailFeature, signal)
     const props = feature.properties
     const hurricaneUrl = findBufferImpactUrl(props, 'buffer74')
     const tsUrl = findBufferImpactUrl(props, 'buffer39')
@@ -498,9 +503,6 @@ export async function fetchGdacsDetail(alert, signal) {
 }
 
 async function fetchImpactPopulation(url, signal) {
-  const res = await fetchJson(url, (v) => v !== null && typeof v === 'object', {
-    signal,
-    timeoutMs: 8000,
-  })
+  const res = await fetchValid(url, (v) => v !== null && typeof v === 'object', signal)
   return readImpactScalar(res, 'POP_AFFECTED')
 }

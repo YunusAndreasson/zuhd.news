@@ -1,13 +1,15 @@
 #!/usr/bin/env node
 // Chokepoints snapshot fetcher for the mobile globe's ambient transit layer.
 // Distinct from fetch-trends.js — this writes a single, small JSON consumed
-// directly by the mobile client, not the editor Claude. Runs on the same
-// systemd cadence as fetch-trends (stage 3.4 of run-cycle.sh).
+// directly by the mobile client, not the editor Claude. Runs every cycle,
+// straight after fetch-trends (stage 3.4b in scripts/cycle/stages.js).
 //
 // Output: content/.chokepoints.json
-// Shape:  { generated, chokepoints: [{id, name, blurb, lat, lng, last7Avg,
-//          baseline90Avg, delta7vs90, series, asOf, topicTags, primaryField,
-//          weather?: { asOf, maxWave24hM, alert? }}] }
+// Shape:  { generated, chokepoints: [{id, name, blurb, lat, lng, topicTags,
+//          primaryField, last7Avg, baseline90Avg, delta7vs90, series, asOf,
+//          weather?: { asOf, maxWave24hM, alert }}] }
+//          `alert` is 'rough', 'very_rough' or null; `weather` is absent where
+//          the sea has no wave figure (the canals).
 //
 // Best-effort: if PortWatch is unreachable the script logs and exits 0,
 // leaving any previous .chokepoints.json intact (build.js skips the mirror
@@ -87,10 +89,6 @@ async function produce() {
   return { generated: new Date().toISOString(), chokepoints }
 }
 
-// One batched request for every chokepoint: open-meteo accepts comma-separated
-// latitude/longitude lists and returns one result object per location, in
-// order. Collapses ~10 sequential calls into 1. Returns an array aligned with
-// `points`; entries are null where wave data is unavailable (inland canals).
 /**
  * One open-meteo marine call, batched or not.
  *
@@ -111,6 +109,10 @@ async function marineRequest(lat, lng) {
   return fetch(url, { signal: AbortSignal.timeout(MARINE_TIMEOUT_MS) })
 }
 
+// One batched request for every chokepoint: open-meteo accepts comma-separated
+// latitude/longitude lists and returns one result object per location, in
+// order. Collapses ~10 sequential calls into 1. Returns an array aligned with
+// `points`; entries are null where wave data is unavailable (inland canals).
 async function fetchMarineWeatherBatch(points) {
   const res = await marineRequest(
     points.map((p) => p.lat).join(','),

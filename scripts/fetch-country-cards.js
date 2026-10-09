@@ -16,9 +16,6 @@ import { readJson, writeJson } from './lib/json-file.js'
 
 const OUT = join(ROOT, 'shared', 'data', 'country-cards.json')
 
-/** Checkpoint write — atomic, so a killed run leaves the last checkpoint. */
-const writeCheckpoint = (data) => writeJson(OUT, data, { pretty: false })
-
 const args = new Set(process.argv.slice(2))
 const onlyArg = [...args].find(a => a.startsWith('--only='))?.slice('--only='.length)
 const only = onlyArg ? new Set(onlyArg.split(',')) : null
@@ -323,7 +320,8 @@ console.log(
 )
 
 // ---- 6. Write ----
-writeCheckpoint(out)
+// The one write, at the end and atomic: a run killed before it leaves the file as it was.
+writeJson(OUT, out, { pretty: false })
 const sizeKB = Math.round(JSON.stringify(out).length / 1024)
 console.log(`Wrote ${OUT}`)
 console.log(`  ${sizeKB}KB · ${Object.keys(out.byIso2).length} countries`)

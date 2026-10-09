@@ -9,8 +9,10 @@
 // `lib/ipc.js`.
 //
 // Output: content/.ipc.json
-// Shape:  { generated, source, license, csv, ageLimitMonths, countries,
-//           areas: IpcArea[], skipped: {...} }
+// Shape:  { generated, source, license, csv, ageLimitMonths, countriesFailed,
+//           countries: [{ iso3, areas, published, vintage }], areas: IpcArea[],
+//           skipped: { staleAnalysis, unreadableVintage, unjoined, noGeometry,
+//           noPhase, countriesNoCandidate, countriesNoGeometry, countriesFailed } }
 //
 // Best-effort, same contract as fetch-firms.js and fetch-gdacs.js: any failure
 // leaves the prior snapshot in place and exits 0, so a bad pass never stops a
@@ -30,8 +32,8 @@
 // population in Phase 4 or 5. That pre-filter is sound rather than convenient:
 // IPC's thresholds cannot classify an area at Phase 4 with nobody in Phase 4, so
 // a country with no such area anywhere cannot contribute a mark. Countries
-// dropped this way are counted and named in the payload, because a bounded fetch
-// that does not say what it skipped reads as coverage.
+// dropped this way are counted in the payload (`skipped.countriesNoCandidate`),
+// because a bounded fetch that does not say what it skipped reads as coverage.
 //
 // ── No key ─────────────────────────────────────────────────────────────────
 //
@@ -41,10 +43,8 @@
 // be missing. The licence is recorded in the payload so the surface drawing it
 // can say where it came from.
 
-import { existsSync } from 'node:fs'
 import { representativePoint } from './lib/geo-point.js'
 import { runSettled } from './lib/concurrency.js'
-import { pathOf } from './lib/datasets.js'
 import {
   AGE_LIMIT_MONTHS,
   byVintagePhaseCountry,
@@ -98,8 +98,6 @@ if (written) {
       `${skipped.unjoined} names unjoined, ${skipped.noPhase} without a phase, ` +
       `${skipped.noGeometry} without usable geometry) in ${elapsed}s`,
   )
-
-  if (!existsSync(pathOf('ipc'))) console.error('  ✗ output vanished after write — leaving previous snapshot in place')
 }
 
 /** The snapshot: every gated area of every country with a grave caseload, classified and placed. */

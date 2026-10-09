@@ -306,12 +306,12 @@ export function parseIpcAreaCsv(text) {
  */
 /**
  * @param {{ analysisDate?: Date|null }[]} rows
- * @param {{ now?: number, ageLimitMonths?: number }} [opts]
+ * @param {{ now?: number }} [opts]
  *        `now` is epoch ms and exists so the tests can pin a vintage; without
  *        the annotation TypeScript infers this bag from the `= {}` default,
  *        which drops every key that has no default of its own.
  */
-export function gateByAge(rows, { now, ageLimitMonths = AGE_LIMIT_MONTHS } = {}) {
+export function gateByAge(rows, { now } = {}) {
   const kept = []
   const skipped = { staleAnalysis: 0, unreadableVintage: 0 }
   for (const row of rows) {
@@ -320,7 +320,7 @@ export function gateByAge(rows, { now, ageLimitMonths = AGE_LIMIT_MONTHS } = {})
       skipped.unreadableVintage++
       continue
     }
-    if (age > ageLimitMonths) {
+    if (age > AGE_LIMIT_MONTHS) {
       skipped.staleAnalysis++
       continue
     }
@@ -481,9 +481,9 @@ export const byVintagePhaseCountry = (a, b) =>
  * with a Catastrophe caseload are already Phase 4 — taking the layer to **105
  * areas across seven countries**.
  */
-export const publishable = (area, minPhase = PUBLISH_MIN_PHASE) => {
+export const publishable = (area) => {
   if (!Number.isFinite(area?.phase)) return false
-  if (area.phase >= minPhase) return true
+  if (area.phase >= PUBLISH_MIN_PHASE) return true
   return (area.population?.p5 ?? 0) > 0
 }
 

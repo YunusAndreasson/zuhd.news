@@ -7,8 +7,9 @@
 // hands the rows to `lib/firms.js` to be filtered, clustered and published.
 //
 // Output: content/.firms.json
-// Shape:  { generated, source, dayRange, cells, cellsFailed, aoiDropped,
-//           events: ThermalEvent[], skipped: { persistent, belowFloor } }
+// Shape:  { generated, source, dayRange, joinRadiusKm, cells, cellsFailed,
+//           aoiDropped, events: ThermalEvent[], skipped: { persistent,
+//           belowFloor, unattached, cellsFailed, aoiDropped } }
 //
 // Best-effort, same contract as fetch-gdacs.js: any failure leaves the prior
 // snapshot in place and exits 0, so a bad pass never stops a cycle. Build.js
