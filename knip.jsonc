@@ -19,7 +19,7 @@
     // ── The editorial cycle. Extracted from scripts/run-cycle.sh, which
     //    invokes each of these by name. Keep in sync with that file.
     //
-    //    Five of them (build, fetch-news, generate-briefing, watch, test-voice)
+    //    Four of them (build, fetch-news, generate-briefing, watch)
     //    knip also finds through package.json's scripts, and it will say so as
     //    a "redundant entry pattern" hint. They stay listed: this block's job is
     //    to be a readable mirror of run-cycle.sh, and a list with holes in it
@@ -83,7 +83,6 @@
 
     // ── npm scripts and the dashboard.
     "scripts/watch.js",
-    "scripts/test-voice.js",
     // ── Operator tools run by hand (see mobile/MARKET-SIGNALS.md).
     "scripts/replay-market-signals.js",
     "scripts/dashboard/server.js",

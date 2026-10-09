@@ -25,8 +25,7 @@
     "fetch": "node scripts/fetch-news.js",
     "deploy": "npx wrangler pages deploy dist --project-name zuhd-news --branch master --commit-dirty=true",
     "publish": "node scripts/build.js && npm run deploy",
-    "briefing": "node scripts/generate-briefing.js",
-    "briefing:voice": "node scripts/test-voice.js"
+    "briefing": "node scripts/generate-briefing.js"
   },
   "dependencies": {
     "@google-cloud/text-to-speech": "^7.0.0",

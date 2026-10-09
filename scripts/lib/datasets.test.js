@@ -80,7 +80,6 @@ const STILL_SPELLING = [
   'scripts/narrate-indicators.js',
   'scripts/narrate-market-signals.js',
   'scripts/run-cycle.legacy.sh',
-  'scripts/test-voice.js',
   'scripts/translate-swedish.js',
   'scripts/trending-gaps.js',
   'scripts/watch.js',
