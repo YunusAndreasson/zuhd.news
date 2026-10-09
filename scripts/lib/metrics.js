@@ -26,6 +26,9 @@ import { regionFromCoords } from './regions.js'
  * @property {string} location
  * @property {number | null} lat
  * @property {number | null} lng
+ * @property {number | null} publishedAt when zuhd published it, in ms: the
+ *   author time of the commit that added the file (`lib/published-at.js`).
+ *   Null for a file no commit holds, which is one that has not been published.
  */
 
 /**
@@ -40,9 +43,10 @@ import { regionFromCoords } from './regions.js'
  *
  * @param {string} name the filename
  * @param {string} content
+ * @param {number | null} [publishedAt] the article's publish time, which is not in the file
  * @returns {MetricsRow}
  */
-export function metricsRow(name, content) {
+export function metricsRow(name, content, publishedAt = null) {
   const { meta } = parseFrontmatter(content)
   const listed = Array.isArray(meta.sources) ? meta.sources : []
   const sources = listed.map((s) => String(s?.name ?? '')).filter(Boolean)
@@ -61,6 +65,7 @@ export function metricsRow(name, content) {
     location: text(meta.location),
     lat: coordinate(meta.lat),
     lng: coordinate(meta.lng),
+    publishedAt,
   }
 }
 
@@ -82,19 +87,27 @@ function tally(items, keyFn) {
 // ── Freshness ────────────────────────────────────────────────────────
 
 /**
- * Days between a source's publication and ours, over the articles where that
- * is not negative. Ours is the filename's date, which is midnight.
+ * Days between a source's publication and ours, over the articles that have
+ * both times and where ours is not the earlier. Ours is `publishedAt`, the
+ * commit that added the article; theirs is the frontmatter `date`.
+ *
+ * Until 2026-10-09 ours was the filename's date at midnight, taken to be when
+ * we published. The filename's date is the source's own
+ * (`slugify(title, pubDate)`), so for a story dated at any hour of that day
+ * the age was negative and the story was left out: what remained was the
+ * handful dated at 00:00:00 or filed under a later day. The tuner's goal of a
+ * median lag under a day was read off 1 article of 50 on 2026-10-08 and off
+ * none of 59 on 10-06. Measured to the commit, every article of those days
+ * counts, and the median is 0.1 day with a 90th percentile of 0.3 to 0.4.
  *
  * @param {MetricsRow[]} articles
  */
 export function computeFreshness(articles) {
   const ages = articles
     .map((a) => {
-      const pubDate = new Date(a.date).getTime()
-      // Article filename date = when we published it
-      const publishDate = new Date(a.slug.slice(0, 10)).getTime()
-      if (Number.isNaN(pubDate) || Number.isNaN(publishDate)) return null
-      return (publishDate - pubDate) / 86400000 // days between source pub and our pub
+      const theirs = new Date(a.date).getTime()
+      if (a.publishedAt == null || Number.isNaN(theirs)) return null
+      return (a.publishedAt - theirs) / 86400000
     })
     .filter((a) => a !== null && a >= 0)
     .sort((a, b) => /** @type {number} */ (a) - /** @type {number} */ (b))

@@ -7,6 +7,8 @@ import { existsSync, readFileSync, readdirSync } from 'node:fs'
 import { join } from 'node:path'
 import { pathOf } from './lib/datasets.js'
 import { computeSourcing, cycleRow, dailyMetrics, metricsRow, sourcingRow } from './lib/metrics.js'
+import { ROOT } from './lib/paths.js'
+import { publishedTimes } from './lib/published-at.js'
 import { runStage } from './lib/stage.js'
 
 export function main() {
@@ -16,13 +18,20 @@ export function main() {
   const today = new Date(now).toISOString().slice(0, 10)
   const yesterday = new Date(now - 86400000).toISOString().slice(0, 10)
 
+  // When each article was published: the author time of the commit that added
+  // it, which freshness is measured to. An article's file does not carry it.
+  // Both days' articles are committed by now: this runs at the end of the
+  // 22:00 cycle, after its publish. Three days of log, because a story filed
+  // under yesterday's date may have been published the day before that.
+  const publishedAt = publishedTimes(ROOT, 3)
+
   /** @param {string} datePrefix */
   const readArticles = (datePrefix) => {
     if (!existsSync(ARTICLES_DIR)) return []
     const rows = []
     for (const f of readdirSync(ARTICLES_DIR).filter((n) => n.startsWith(datePrefix) && n.endsWith('.md'))) {
       try {
-        rows.push(metricsRow(f, readFileSync(join(ARTICLES_DIR, f), 'utf-8')))
+        rows.push(metricsRow(f, readFileSync(join(ARTICLES_DIR, f), 'utf-8'), publishedAt.get(f.replace(/\.md$/, '')) ?? null))
       } catch { /* an unparseable file is the validator's business */ }
     }
     return rows
@@ -51,6 +60,12 @@ export function main() {
   }
 
   const articles = { today: readArticles(today), yesterday: readArticles(yesterday) }
+  // Outside a checkout, or with a log that does not reach back, there is no
+  // publish time and freshness has nothing to stand on. Said on stderr, which
+  // goes to the cycle's log: stdout is the tuner's file.
+  if (articles.today.length + articles.yesterday.length > 0 && ![...articles.today, ...articles.yesterday].some((a) => a.publishedAt != null)) {
+    console.error('compute-metrics: git names no commit for any of these articles — freshness is left empty')
+  }
   const logs = { today: readLogs(today), yesterday: readLogs(yesterday) }
   const sourcing = { today: readSourcing(today), yesterday: readSourcing(yesterday) }
 

@@ -40,7 +40,10 @@ test('an article is read through the parser: the fields, every source name, the 
     location: 'Geneva',
     lat: 46.2,
     lng: 6.14,
+    publishedAt: null,
   })
+  // When it was published is not in the file: the caller hands it in.
+  assert.equal(metricsRow('2026-10-08-wto.md', ARTICLE, 1791483540000).publishedAt, 1791483540000)
 })
 
 // Where the reader of its own that this replaced on 2026-10-09 answered
@@ -72,22 +75,32 @@ Lyon — Body.
 
 test('a file with no frontmatter has no fields, and one that does not parse is refused', () => {
   assert.deepEqual(metricsRow('2026-10-08-prose.md', 'Just prose.\ncategory: tech\n'), {
-    slug: '2026-10-08-prose', title: '', date: '', source: '', sources: [], sourceUrl: '', category: '', location: '', lat: null, lng: null,
+    slug: '2026-10-08-prose', title: '', date: '', source: '', sources: [], sourceUrl: '', category: '', location: '', lat: null, lng: null, publishedAt: null,
   })
   assert.throws(() => metricsRow('x.md', ARTICLE.replace('"Trade Body', '"Trade "Body')))
 })
 
-test('freshness counts only an article dated at or before its filename\'s midnight', () => {
-  const day = (/** @type {string} */ date, slug = '2026-10-08-x') => row({ date, slug })
+// Until 2026-10-09 an age was taken from the filename's date at midnight, and
+// the filename's date is the source's own: a story dated at any hour of that
+// day came out negative and was left out. 1 article of 50 counted on 2026-10-08.
+test('freshness is the time from the source\'s publication to ours, over the articles that have both', () => {
+  const at = (/** @type {string} */ date, /** @type {string | null} */ published) => row({ date, publishedAt: published ? Date.parse(published) : null })
   assert.deepEqual(computeFreshness([]), { median: null, p90: null, max: null, count: 0 })
-  // As found: a story dated later on the day it was published has a negative age and is left out.
-  assert.deepEqual(computeFreshness([day('2026-10-08T17:00:00Z')]), { median: null, p90: null, max: null, count: 0 })
-  assert.deepEqual(computeFreshness([day('2026-10-08T00:00:00Z'), day('2026-10-07T12:00:00Z'), day('2026-10-01T00:00:00Z'), day('not a date'), day('2026-10-08T09:00:00Z')]), {
-    median: 0.5,
-    p90: 7,
-    max: 7,
-    count: 3,
-  })
+  // Dated 17:00 and published by the 18:00 cycle: 79 minutes, where it had no age at all.
+  assert.deepEqual(computeFreshness([at('2026-10-08T17:00:00Z', '2026-10-08T18:19:00Z')]), { median: 0.1, p90: 0.1, max: 0.1, count: 1 })
+  assert.deepEqual(
+    computeFreshness([
+      at('2026-10-08T17:00:00Z', '2026-10-08T18:19:00Z'),
+      at('2026-10-07T12:00:00Z', '2026-10-08T05:15:00Z'),
+      at('2026-10-01T00:00:00Z', '2026-10-08T10:12:00Z'),
+      at('not a date', '2026-10-08T10:12:00Z'),
+      // No commit holds it: it has not been published.
+      at('2026-10-08T09:00:00Z', null),
+      // Dated after we published it, which is a wrong date and not an age.
+      at('2026-10-08T23:00:00Z', '2026-10-08T22:20:00Z'),
+    ]),
+    { median: 0.7, p90: 7.4, max: 7.4, count: 3 },
+  )
 })
 
 test('diversity tallies categories, source names and regions, with a name for what is missing', () => {
