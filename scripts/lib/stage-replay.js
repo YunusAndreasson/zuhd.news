@@ -47,6 +47,7 @@ function filesUnder(dir) {
  * @property {Record<string, string | null>} [content] changes to `content/` before the run, by path from it: the new content, `@path` to copy, or null to remove
  * @property {Record<string, string>} [env]
  * @property {string} [bin] a directory of commands to put ahead of the real ones: a `claude` that answers from a file, where the real one would need the network
+ * @property {string} [logs] a directory to stand in for the tree's `logs/`, for a stage that reads the cycle logs
  */
 
 /**
@@ -55,7 +56,7 @@ function filesUnder(dir) {
  *   `written` is every file the stage created or changed, by the path it used
  *   (`/tmp/…` or `content/…`), with its content; null for one it removed
  */
-export async function replayStage({ script, now, args = [], tree = ROOT, tmp = {}, content = {}, env = {}, bin }) {
+export async function replayStage({ script, now, args = [], tree = ROOT, tmp = {}, content = {}, env = {}, bin, logs }) {
   const base = join(ROOT, '.cache', 'stage-replay')
   mkdirSync(base, { recursive: true })
   const box = mkdtempSync(join(base, 'run-'))
@@ -89,8 +90,12 @@ export async function replayStage({ script, now, args = [], tree = ROOT, tmp = {
     // What the changes themselves put in the upper layer is not the stage's
     // doing: note it after they are applied, and report only what differs.
     const marker = join(box, 'prepared')
+    // A mount needs somewhere to land, and a checkout made for the comparison
+    // has no `logs/` (it is not tracked).
+    if (logs) mkdirSync(join(tree, 'logs'), { recursive: true })
     const steps = [
       `mount --bind '${boxTmp}' /tmp`,
+      ...(logs ? [`mount --bind '${logs}' '${join(tree, 'logs')}'`] : []),
       `mount -t overlay overlay -o 'lowerdir=${real},upperdir=${upper},workdir=${join(box, 'work')}' '${real}'`,
       ...prepare,
       `touch '${marker}'`,

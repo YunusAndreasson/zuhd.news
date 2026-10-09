@@ -9,6 +9,7 @@
 //   <inputs>/remove.txt      paths under content/ to remove first, one a line
 //   <inputs>/bin/*           commands to put ahead of the real ones (a `claude`
 //                            that answers from a file in /tmp, say)
+//   <inputs>/logs/*          what the stage finds in logs/
 //
 // Run it for the tree as it was (`--tree`, a checkout of the commit before)
 // and again for the tree as it is, then `diff -r` the two directories. That
@@ -55,6 +56,7 @@ const run = await replayStage({
   tmp: Object.fromEntries(under(join(inputs, 'tmp')).map((f) => [f, `@${join(inputs, 'tmp', f)}`])),
   content,
   bin: existsSync(join(inputs, 'bin')) ? resolve(inputs, 'bin') : undefined,
+  logs: existsSync(join(inputs, 'logs')) ? resolve(inputs, 'logs') : undefined,
 })
 
 rmSync(out, { recursive: true, force: true })

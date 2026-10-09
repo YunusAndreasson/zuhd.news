@@ -61,7 +61,6 @@ const STILL_SPELLING = [
   'scripts/autoresearch/score.js',
   'scripts/autoresearch/summarize-session.js',
   'scripts/build.js',
-  'scripts/compute-metrics.js',
   'scripts/dashboard/server.js',
   'scripts/dry-run-augment.js',
   'scripts/extract-entities.js',
