@@ -309,18 +309,24 @@ const round2 = (x) => Math.round(x * 100) / 100
  * small to mean much (the 2026-04-30 22:00 cycle shipped one article and
  * moved the series' deviation by a quarter), for a reader to leave out.
  *
+ * `runId` is the cycle's own id (`2026-10-09_0501`), the key of its record
+ * in `logs/cycles.jsonl` and the name of its log. `cycleId` never was: it is
+ * the minute the cycle was scored, a quarter of an hour or more after the
+ * start, so the two series could not be joined.
+ *
  * @param {RvsRow[]} articles
- * @param {{ now?: Date, runStarted?: number }} [known] `now` is when the cycle was scored; `runStarted` when it
- *   began, in ms, which is what a story's age is taken against (`now` when it is not known)
+ * @param {{ now?: Date, runStarted?: number, runId?: string | null }} [known] `now` is when the cycle was scored;
+ *   `runStarted` when it began, in ms, which is what a story's age is taken against (`now` when it is not known)
  */
-export function rvsRecord(articles, { now = new Date(), runStarted = now.getTime() } = {}) {
+export function rvsRecord(articles, { now = new Date(), runStarted = now.getTime(), runId = null } = {}) {
   const clusters = { writing: scoreWriting(articles).score, sourcing: scoreSourcing(articles).score, coverage: scoreCoverage(articles, runStarted).score }
   const rvs = clusters.writing * WEIGHTS.writing + clusters.sourcing * WEIGHTS.sourcing + clusters.coverage * WEIGHTS.coverage
   const ts = now.toISOString()
   return {
     ts,
-    // The minute it was scored, `2026-10-09T05-15`: not the cycle's own id.
+    // The minute it was scored, `2026-10-09T05-15`.
     cycleId: `${ts.slice(0, 13)}-${ts.slice(14, 16)}`,
+    runId,
     cycleHour: ts.slice(11, 13),
     schema: SCHEMA,
     rvs: round2(rvs),

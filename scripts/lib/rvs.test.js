@@ -235,12 +235,13 @@ test('guardrails: a thin batch, an article with a field missing, a source with n
 
 test('the record carries every key the series has carried, and rounds to two places', () => {
   const batch = [row({ sourceNames: ['Dawn', 'Reuters'] }), row({ sourceNames: ['Dawn'] }), row({ sourceNames: ['Dawn', 'AFP', 'BBC'] }), row({ sourceNames: ['Al Jazeera'] })]
-  const record = rvsRecord(batch, { now: new Date('2026-10-09T05:15:32.349Z'), runStarted: RUN })
-  assert.deepEqual(Object.keys(record), ['ts', 'cycleId', 'cycleHour', 'schema', 'rvs', 'clusters', 'articleCount', 'briefCount', 'guardrailFailures', 'degenerate'])
+  const record = rvsRecord(batch, { now: new Date('2026-10-09T05:15:32.349Z'), runStarted: RUN, runId: '2026-10-09_0501' })
+  assert.deepEqual(Object.keys(record), ['ts', 'cycleId', 'runId', 'cycleHour', 'schema', 'rvs', 'clusters', 'articleCount', 'briefCount', 'guardrailFailures', 'degenerate'])
   assert.deepEqual(Object.keys(record.clusters), ['picking', 'writing', 'briefing', 'sourcing', 'coverage'])
   assert.deepEqual(record, {
     ts: '2026-10-09T05:15:32.349Z',
     cycleId: '2026-10-09T05-15',
+    runId: '2026-10-09_0501',
     cycleHour: '05',
     schema: SCHEMA,
     rvs: 65.78,
@@ -261,6 +262,13 @@ test('the record is schema 3, and a story is aged against the start of the cycle
   const batch = [row({ date: RUN - DAY }), row({ date: RUN - DAY })]
   assert.equal(rvsRecord(batch, { now: scored, runStarted: RUN }).clusters.coverage, 24.5, 'a day old: 20 + 4.5')
   assert.equal(rvsRecord(batch, { now: scored }).clusters.coverage, 20.5, 'with no start known, the clock: a day and a half')
+})
+
+// `cycleId` is the minute of scoring (`2026-10-09T05-15` for the cycle that
+// began 05:01), which names no log and no run record.
+test('the record names its run, and says so when it was scored outside one', () => {
+  assert.equal(rvsRecord([row()], { runId: '2026-10-09_0501' }).runId, '2026-10-09_0501')
+  assert.equal(rvsRecord([row()]).runId, null)
 })
 
 test('a batch under four articles is marked degenerate, and an empty one scores nothing', () => {
