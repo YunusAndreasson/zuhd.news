@@ -15,13 +15,14 @@
 export const apiStats = (feed) => `${feed.stories.length} stories from ${feed.events} events`
 
 /**
- * How many stories the RSS fetch left; an older shape of the file carried the
- * figure as `freshItems`.
+ * How many stories the RSS fetch left. The RSS feed as `fetch-news.js` writes
+ * it: `{ stories }`. (It also read `freshItems`, a figure that file last
+ * carried on 2026-03-23.)
  *
  * @param {any} feed
  * @returns {number}
  */
-export const rssStats = (feed) => feed.stories?.length || feed.freshItems || 0
+export const rssStats = (feed) => feed.stories?.length || 0
 
 /**
  * `13 multi + 47 niche`, the first row of the funnel.

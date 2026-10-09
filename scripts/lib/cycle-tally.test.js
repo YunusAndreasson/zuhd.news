@@ -15,7 +15,7 @@ const files = (/** @type {Record<string, string>} */ set) => (/** @type {string}
 test('each count reads the shape its stage writes', () => {
   assert.equal(apiStats({ stories: [1, 2, 3], events: 50 }), '3 stories from 50 events')
   assert.equal(rssStats({ stories: [1, 2] }), 2)
-  assert.equal(rssStats({ freshItems: 7 }), 7, 'the older shape of the RSS file')
+  assert.equal(rssStats({ freshItems: 7 }), 0, 'a file with no list of stories holds none')
   assert.equal(rssStats({ stories: [] }), 0)
   assert.equal(feedStats({ multiSourceStories: [1], nicheStories: [1, 2] }), '1 multi + 2 niche')
   assert.equal(feedStats({}), '0 multi + 0 niche')
