@@ -20,6 +20,7 @@ import { fetchFredReleaseCalendar } from './lib/trends-sources/fred.js'
 import { EVENT_CATALOG, matchFredRelease } from './lib/event-catalog.js'
 import { ROOT } from './lib/paths.js'
 import { readJson, writeJson } from './lib/json-file.js'
+import { carriedStocks } from './lib/trends-carry.js'
 import { latestTrendsPath } from './lib/trends-snapshot.js'
 
 const TRENDS_DIR = join(ROOT, 'content', 'trends')
@@ -95,6 +96,21 @@ for (const [name, def] of Object.entries(SOURCES)) {
       }
     }
   }
+}
+
+const fetched = indicators.length
+
+// The stock rows the entity stage appended to the snapshot this one replaces
+// (`carriedStocks`), or the chip under a story resolves for one cycle. Last,
+// where that stage appends them, so the registry's rows and the contracts
+// keep their order.
+const stocks = carriedStocks(priorSnapshot, new Set(indicators.map((i) => i.id)))
+for (const row of stocks.kept) indicators.push(row)
+if (stocks.kept.length + stocks.lapsed > 0) {
+  console.log(
+    `  · stocks: ${stocks.kept.length} row(s) carried from the previous snapshot, ` +
+      `${stocks.lapsed} left behind (last close over a week old)`,
+  )
 }
 
 // Catch silent ID collisions early — trends-expand.js's find() returns the
@@ -198,7 +214,7 @@ writeJson(DIGEST_PATH, digest)
 console.log(`Wrote ${DIGEST_PATH} — ${digest.indicators.length} entries`)
 
 const elapsed = Math.round((Date.now() - started) / 1000)
-console.log(`Trends: ${indicators.length} indicators fetched — ${elapsed}s`)
+console.log(`Trends: ${fetched} indicators fetched, ${indicators.length - fetched} carried — ${elapsed}s`)
 
 // ── Helpers ────────────────────────────────────────────────────────────────
 
