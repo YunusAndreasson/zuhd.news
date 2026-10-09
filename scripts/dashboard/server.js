@@ -1,9 +1,12 @@
 #!/usr/bin/env node
 // zuhd.news pipeline dashboard — localhost:7777, zero dependencies
-// Read-only: parses cycle logs, reads metrics/meta JSON, queries systemd
+//
+// It reads: the cycle logs, the metrics and trend files, the built feed, and
+// what systemd says of the cycle's units. It starts nothing else. It writes
+// one file, the specificity trend, a day's mean at a time (`handleSpecificity`).
 
 import { createServer } from 'node:http'
-import { readFileSync, readdirSync, existsSync, statSync, watch, writeFileSync } from 'node:fs'
+import { readFileSync, readdirSync, existsSync, statSync, watch } from 'node:fs'
 import { join } from 'node:path'
 import { spawnSync } from 'node:child_process'
 import { parseCycleLog } from '../lib/cycle-log.js'
@@ -11,7 +14,7 @@ import { parseFrontmatter } from '../lib/frontmatter.js'
 import { scoreDir } from '../lib/quality-score.js'
 import { regionFromCoords } from '../lib/regions.js'
 import { ROOT } from '../lib/paths.js'
-import { SENT, SYSTEMD_SHOW, listener, systemdView } from './data.js'
+import { SENT, SYSTEMD_SHOW, keepDay, listener, systemdView } from './data.js'
 
 const PORT = 7777
 const HOST = '127.0.0.1'
@@ -389,28 +392,20 @@ function handleWritingQuality() {
 }
 
 // Per-article objective quality scoring (specificity, hedges, title-echo).
-// Computes from the most recent N articles, persists daily snapshots so we
-// build a trend without changing the cycle. Read on every dashboard hit.
+// Computed from the most recent N articles on a request, and the day's mean
+// kept, so there is a trend without a stage in the cycle. It is therefore a
+// trend of the days someone opened the Quality tab: its one record until
+// 2026-10-09 was the day the panel was written, 2026-05-02.
 function handleSpecificity() {
   return cached('specificity', 5 * 60_000, () => {
-    const articlesDir = join(ROOT, 'content', 'articles')
-    if (!existsSync(articlesDir)) return { current: null, history: [], perArticle: [] }
+    if (!existsSync(ARTICLES_DIR)) return { current: null, history: [], perArticle: [] }
 
     const N = 60
-    const { rows, mean } = scoreDir(articlesDir, N)
+    const { rows, mean } = scoreDir(ARTICLES_DIR, N)
     if (!mean) return { current: null, history: [], perArticle: [] }
 
-    const today = new Date().toISOString().slice(0, 10)
-    const trendPath = join(ROOT, 'content', '.specificity-trend.json')
-    let trend = []
-    if (existsSync(trendPath)) {
-      try { trend = JSON.parse(readFileSync(trendPath, 'utf-8')) } catch { trend = [] }
-    }
-
-    // One snapshot per day — overwrite today's entry, append on day rollover
-    const todayIdx = trend.findIndex(t => t.date === today)
     const snapshot = {
-      date: today,
+      date: new Date().toISOString().slice(0, 10),
       articleCount: mean.articleCount,
       specificity: +mean.specificity.toFixed(2),
       digits: +mean.digits.toFixed(2),
@@ -419,10 +414,14 @@ function handleSpecificity() {
       titleEcho: +mean.titleEcho.toFixed(3),
       sentences: +mean.sentences.toFixed(2),
     }
-    if (todayIdx >= 0) trend[todayIdx] = snapshot
-    else trend.push(snapshot)
-    if (trend.length > 60) trend = trend.slice(-60)
-    try { writeFileSync(trendPath, JSON.stringify(trend, null, 2)) } catch {}
+    // One snapshot per day: today's replaces today's, a new day is appended.
+    // A write that fails costs the trend a day, not the panel its answer.
+    let trend = [snapshot]
+    try {
+      trend = keepDay(join(ROOT, 'content', '.specificity-trend.json'), snapshot, 60).series
+    } catch (err) {
+      console.error(`dashboard: the specificity trend was not written: ${err.message}`)
+    }
 
     const prior = trend.length >= 2 ? trend[trend.length - 2] : null
     const delta = {}

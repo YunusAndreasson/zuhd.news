@@ -1,7 +1,10 @@
 // Run: node --test scripts/lib/dashboard.test.js
 import assert from 'node:assert/strict'
 import { test } from 'node:test'
-import { CYCLE_UNITS, SENT, SYSTEMD_SHOW, isoFromSystemd, listener, systemdView } from '../dashboard/data.js'
+import { mkdtempSync, readFileSync, readdirSync, writeFileSync } from 'node:fs'
+import { tmpdir } from 'node:os'
+import { join } from 'node:path'
+import { CYCLE_UNITS, SENT, SYSTEMD_SHOW, isoFromSystemd, keepDay, listener, readSeries, systemdView, withDay } from '../dashboard/data.js'
 
 // ── The listener ─────────────────────────────────────────────────────
 
@@ -127,4 +130,43 @@ test('systemd is asked once, for both units, in UTC', () => {
   assert.deepEqual(SYSTEMD_SHOW.slice(0, 3), ['show', ...CYCLE_UNITS])
   assert.ok(SYSTEMD_SHOW.includes('--timestamp=utc'))
   for (const property of ['Id', 'ActiveState', 'NextElapseUSecRealtime', 'LastTriggerUSec']) assert.ok(SYSTEMD_SHOW.at(-1)?.split(',').includes(property), property)
+})
+
+// ── The series it keeps ──────────────────────────────────────────────
+
+const day = (date, specificity = 8) => ({ date, specificity })
+
+test('a day already in the series is replaced where it stands, a new one goes last, and the oldest fall off', () => {
+  const series = [day('2026-10-07'), day('2026-10-08'), day('2026-10-09')]
+  assert.deepEqual(withDay(series, day('2026-10-08', 9), 60), [day('2026-10-07'), day('2026-10-08', 9), day('2026-10-09')])
+  assert.deepEqual(withDay(series, day('2026-10-10'), 60), [...series, day('2026-10-10')])
+  assert.deepEqual(withDay(series, day('2026-10-10'), 3), [day('2026-10-08'), day('2026-10-09'), day('2026-10-10')])
+  assert.deepEqual(series.length, 3, 'the series it was given is not changed')
+})
+
+test('the day is kept with a write that leaves no half file, and not written again when nothing changed', () => {
+  const dir = mkdtempSync(join(tmpdir(), 'dashboard-'))
+  const path = join(dir, 'trend.json')
+  assert.deepEqual(keepDay(path, day('2026-10-08'), 60), { series: [day('2026-10-08')], written: true })
+  assert.deepEqual(keepDay(path, day('2026-10-08'), 60), { series: [day('2026-10-08')], written: false })
+  assert.deepEqual(keepDay(path, day('2026-10-09'), 60).series, [day('2026-10-08'), day('2026-10-09')])
+  assert.deepEqual(keepDay(path, day('2026-10-09', 9), 60), { series: [day('2026-10-08'), day('2026-10-09', 9)], written: true })
+  assert.deepEqual(readSeries(path), [day('2026-10-08'), day('2026-10-09', 9)])
+  assert.ok(readFileSync(path, 'utf8').endsWith(']\n'))
+  assert.deepEqual(readdirSync(dir), ['trend.json'], 'no sibling left behind')
+})
+
+// Read with `catch { trend = [] }` and written back, a file that did not
+// parse became a trend of one day.
+test('a trend file that is there and does not hold a series is left as it is', (t) => {
+  const said = t.mock.method(console, 'error', () => {})
+  const path = join(mkdtempSync(join(tmpdir(), 'dashboard-')), 'trend.json')
+  for (const text of ['[{"date":"2026-05-02","specificity":8.58},\n<<<<<<< Updated upstream\n', '{"date":"2026-05-02"}', '']) {
+    writeFileSync(path, text)
+    assert.equal(readSeries(path), null)
+    assert.deepEqual(keepDay(path, day('2026-10-09'), 60), { series: [day('2026-10-09')], written: false }, 'today is still shown')
+    assert.equal(readFileSync(path, 'utf8'), text)
+  }
+  assert.ok(said.mock.calls.length >= 3)
+  assert.deepEqual(readSeries(join(tmpdir(), 'dashboard-no-such-file.json')), [], 'no file yet is a place to start')
 })

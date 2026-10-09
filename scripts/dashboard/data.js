@@ -4,6 +4,9 @@
 // tested, and nothing was. The parts with a behaviour of their own live here
 // and the server is what wires them to a port.
 
+import { existsSync } from 'node:fs'
+import { readJson, writeJson } from '../lib/json-file.js'
+
 /** What a route returns when it has written the response itself: a file, an event stream. */
 export const SENT = Symbol('sent')
 
@@ -131,4 +134,65 @@ export function systemdView(shown) {
     nextFire: isoFromSystemd(timer?.NextElapseUSecRealtime),
     lastTrigger: isoFromSystemd(timer?.LastTriggerUSec),
   }
+}
+
+// ── A series the dashboard keeps ─────────────────────────────────────
+
+/**
+ * A series as it is on disk: `[]` when there is no file yet, null when there
+ * is one and it does not hold a series. The difference is the point: the
+ * first is a place to start, the second a history not to write over.
+ *
+ * @param {string} path
+ * @returns {any[] | null}
+ */
+export function readSeries(path) {
+  if (!existsSync(path)) return []
+  const kept = readJson(path, null)
+  return Array.isArray(kept) ? kept : null
+}
+
+/**
+ * `series` with `entry` standing where the entry of its `date` stood, or at
+ * the end when the date is new; its last `keep`.
+ *
+ * @template {{ date: string }} T
+ * @param {T[]} series
+ * @param {T} entry
+ * @param {number} keep
+ * @returns {T[]}
+ */
+export function withDay(series, entry, keep) {
+  const at = series.findIndex((e) => e.date === entry.date)
+  const next = at === -1 ? [...series, entry] : series.map((e, i) => (i === at ? entry : e))
+  return next.slice(-keep)
+}
+
+/**
+ * Put the day's entry into the series kept at `path`, and return the series
+ * to show.
+ *
+ * This is the one file the dashboard writes, and it writes it while answering
+ * a GET, so it is careful in three ways. The write is `writeJson`'s, a
+ * sibling renamed over, because the file is tracked and a cycle may be
+ * committing `content/` at that moment. Nothing is written when the entry
+ * changes nothing. And a file that is there and does not hold a series is
+ * left as it is: read as empty, it was written back as today's entry alone.
+ *
+ * @template {{ date: string }} T
+ * @param {string} path
+ * @param {T} entry
+ * @param {number} keep
+ * @returns {{ series: T[], written: boolean }}
+ */
+export function keepDay(path, entry, keep) {
+  const kept = readSeries(path)
+  const series = withDay(kept ?? [], entry, keep)
+  if (kept === null) {
+    console.error(`dashboard: ${path} is there and is not a series — left as it is, today's entry is not kept`)
+    return { series, written: false }
+  }
+  if (JSON.stringify(kept) === JSON.stringify(series)) return { series, written: false }
+  writeJson(path, series)
+  return { series, written: true }
 }
