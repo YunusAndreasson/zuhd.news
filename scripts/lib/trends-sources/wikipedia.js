@@ -17,6 +17,7 @@
 import { readdirSync, readFileSync } from 'node:fs'
 import { join } from 'node:path'
 import { parseFrontmatter } from '../frontmatter.js'
+import { dayLabel, isoDay } from '../period.js'
 import { codeFromTopojsonName } from '../../../shared/countries/iso.ts'
 
 const WIKI_BASE = 'https://wikimedia.org/api/rest_v1/metrics/pageviews/per-article/en.wikipedia/all-access/all-agents'
@@ -85,17 +86,14 @@ function countryTagsFor(label) {
   return code ? [code] : []
 }
 
-function ymd(d) {
-  return d.toISOString().slice(0, 10).replace(/-/g, '')
+/** A day as the pageviews API takes one in its path: `20261009`, no dashes. */
+function pageviewDay(d) {
+  return isoDay(d).replace(/-/g, '')
 }
 
+/** The label of one of the API's own stamps, `2026100900`. */
 function formatPeriod(stamp) {
-  const y = stamp.slice(0, 4)
-  const m = stamp.slice(4, 6)
-  const d = stamp.slice(6, 8)
-  const date = new Date(`${y}-${m}-${d}T00:00:00Z`)
-  const month = date.toLocaleDateString('en-US', { month: 'short', timeZone: 'UTC' })
-  return `${month} ${date.getUTCDate()}`
+  return dayLabel(Date.parse(`${stamp.slice(0, 4)}-${stamp.slice(4, 6)}-${stamp.slice(6, 8)}T00:00:00Z`))
 }
 
 /** Map a concept label to a Wikipedia slug. Mostly a space-to-underscore
@@ -186,7 +184,7 @@ async function fetchOnePageview(title) {
   const end = new Date()
   const start = new Date(end)
   start.setUTCDate(start.getUTCDate() - 30)
-  const url = `${WIKI_BASE}/${encodeURIComponent(title)}/daily/${ymd(start)}/${ymd(end)}`
+  const url = `${WIKI_BASE}/${encodeURIComponent(title)}/daily/${pageviewDay(start)}/${pageviewDay(end)}`
   try {
     const res = await fetch(url, {
       signal: AbortSignal.timeout(10000),

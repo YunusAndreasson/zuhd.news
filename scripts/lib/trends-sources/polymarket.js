@@ -45,6 +45,7 @@ import { claudeArgs, claudeFailure, parseClaudeText, spawnClaude } from '../clau
 import { sha1Hex } from '../hash.js'
 import { ZUHD_UA } from '../http.js'
 import { modelFor } from '../models.js'
+import { dayLabel, isoDay } from '../period.js'
 
 const GAMMA_BASE = 'https://gamma-api.polymarket.com'
 const CLOB_BASE = 'https://clob.polymarket.com'
@@ -150,16 +151,6 @@ const DROP_TAGS = new Set([
 /** A second net under the tags, for a market whose event was tagged loosely.
  *  Kept from the pre-`/events` filter, where it was the only thing working. */
 const DROP_TITLE_RE = /\b(nfl|nba|mlb|nhl|ncaa|super bowl|world cup|uefa|oscars|grammy|emmy|dogecoin|shiba|pepe|bitcoin price|ethereum price|eth price)\b/i
-
-function formatPeriod(tsSeconds) {
-  const d = new Date(tsSeconds * 1000)
-  const month = d.toLocaleDateString('en-US', { month: 'short', timeZone: 'UTC' })
-  return `${month} ${d.getUTCDate()}`
-}
-
-function ymd(d) {
-  return d.toISOString().slice(0, 10)
-}
 
 /**
  * The one outcome that stands for an event, or null when none is live. Pure,
@@ -834,8 +825,8 @@ export async function fetchPolymarketTop({ incumbents = [] } = {}) {
     const values = history.map((h) => Math.round((h.p || 0) * 100))
     if (isDecidedSeries(values)) continue
 
-    const periods = history.map((h) => formatPeriod(h.t))
-    const asOf = ymd(new Date((history[history.length - 1].t || 0) * 1000))
+    const periods = history.map((h) => dayLabel(h.t * 1000))
+    const asOf = isoDay((history[history.length - 1].t || 0) * 1000)
     const rawTitle = m.question || m.title || 'Untitled market'
     const eventSlug = m.events?.[0]?.slug || null
     const eventUrl = eventSlug ? `https://polymarket.com/event/${eventSlug}` : ''

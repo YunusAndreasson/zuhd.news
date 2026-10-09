@@ -11,19 +11,10 @@
 
 import { ZUHD_UA } from '../http.js'
 import { readJson, writeJson } from '../json-file.js'
+import { dayLabel, isoDay } from '../period.js'
 
 const OER_BASE = 'https://openexchangerates.org/api'
 const HISTORY_DAYS = 30
-
-function ymd(d) {
-  return d.toISOString().slice(0, 10)
-}
-
-function formatPeriod(dateStr) {
-  const d = new Date(`${dateStr}T00:00:00Z`)
-  const month = d.toLocaleDateString('en-US', { month: 'short', timeZone: 'UTC' })
-  return `${month} ${d.getUTCDate()}`
-}
 
 async function fetchOneDay(date, appId, get) {
   const url = `${OER_BASE}/historical/${date}.json?app_id=${appId}`
@@ -58,7 +49,7 @@ export async function fetchOerRates(currencies, appId, cachePath, { fetch: get =
   for (let i = HISTORY_DAYS - 1; i >= 0; i--) {
     const d = new Date(today)
     d.setUTCDate(d.getUTCDate() - i)
-    wantedDates.push(ymd(d))
+    wantedDates.push(isoDay(d))
   }
 
   // Missing dates get fetched; already-cached dates reused.
@@ -114,7 +105,7 @@ export async function fetchOerRates(currencies, appId, cachePath, { fetch: get =
       const v = trimmed.days[date]?.[cc]
       if (v != null) {
         values.push(v)
-        periods.push(formatPeriod(date))
+        periods.push(dayLabel(Date.parse(`${date}T00:00:00Z`)))
       }
     }
     if (values.length > 0) {

@@ -3,6 +3,7 @@
 // Free, public-domain data. Key registration: https://fred.stlouisfed.org/docs/api/api_key.html
 
 import { ZUHD_UA } from '../http.js'
+import { dayLabel, isoDay, monthLabel } from '../period.js'
 
 const FRED_BASE = 'https://api.stlouisfed.org/fred/series/observations'
 const FRED_RELEASES_DATES = 'https://api.stlouisfed.org/fred/releases/dates'
@@ -20,18 +21,11 @@ const MAJOR_RELEASES = [
   /h\.4\.1/i, // Fed balance sheet
 ]
 
-/** Format a date as "YYYY-MM-DD" (FRED's expected format). */
-function ymd(d) {
-  return d.toISOString().slice(0, 10)
-}
-
-/** Format a period label from a FRED observation date. Daily series render
- *  "Mar 18"; monthly series render "Mar 2026". */
+/** A period label from a FRED observation date: "Mar 18" for a daily series,
+ *  "Mar 2026" for a monthly one. */
 function formatPeriod(dateStr, cadence) {
-  const d = new Date(`${dateStr}T00:00:00Z`)
-  const month = d.toLocaleDateString('en-US', { month: 'short', timeZone: 'UTC' })
-  if (cadence === 'monthly') return `${month} ${d.getUTCFullYear()}`
-  return `${month} ${d.getUTCDate()}`
+  const t = Date.parse(`${dateStr}T00:00:00Z`)
+  return cadence === 'monthly' ? monthLabel(t) : dayLabel(t)
 }
 
 /**
@@ -54,8 +48,8 @@ export async function fetchFredSeries(indicator, apiKey) {
   url.searchParams.set('series_id', indicator.seriesId)
   url.searchParams.set('api_key', apiKey)
   url.searchParams.set('file_type', 'json')
-  url.searchParams.set('observation_start', ymd(start))
-  url.searchParams.set('observation_end', ymd(end))
+  url.searchParams.set('observation_start', isoDay(start))
+  url.searchParams.set('observation_end', isoDay(end))
   url.searchParams.set('sort_order', 'asc')
 
   /**
@@ -127,8 +121,8 @@ export async function fetchFredReleaseCalendar(apiKey, days = 10) {
   const url = new URL(FRED_RELEASES_DATES)
   url.searchParams.set('api_key', apiKey)
   url.searchParams.set('file_type', 'json')
-  url.searchParams.set('realtime_start', ymd(start))
-  url.searchParams.set('realtime_end', ymd(end))
+  url.searchParams.set('realtime_start', isoDay(start))
+  url.searchParams.set('realtime_end', isoDay(end))
   url.searchParams.set('include_release_dates_with_no_data', 'true')
   url.searchParams.set('sort_order', 'asc')
 
@@ -142,7 +136,7 @@ export async function fetchFredReleaseCalendar(apiKey, days = 10) {
     if (!res.ok) throw new Error(`HTTP ${res.status}`)
     const data = await res.json()
     const upcoming = (data.release_dates || [])
-      .filter((r) => r.date >= ymd(start) && r.date <= ymd(end))
+      .filter((r) => r.date >= isoDay(start) && r.date <= isoDay(end))
       .filter((r) => MAJOR_RELEASES.some((p) => p.test(r.release_name || '')))
       .map((r) => ({ date: r.date, release: r.release_name }))
     // Dedupe same release+date pairs (FRED emits one row per realtime window)

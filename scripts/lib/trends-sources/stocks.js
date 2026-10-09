@@ -16,6 +16,7 @@
 
 import { pathOf } from '../datasets.js'
 import { readJson, writeJson } from '../json-file.js'
+import { dayLabel, isoDay } from '../period.js'
 
 const YAHOO_HOSTS = ['https://query1.finance.yahoo.com', 'https://query2.finance.yahoo.com']
 const USER_AGENT =
@@ -52,12 +53,6 @@ export function seriesAsOf(dates, completed) {
 export function isStaleAsOf(asOf, now = Date.now()) {
   const t = Date.parse(`${asOf}T00:00:00Z`)
   return !Number.isFinite(t) || now - t > STALE_AFTER_DAYS * 86400_000
-}
-
-function formatPeriod(ms) {
-  const d = new Date(ms)
-  const month = d.toLocaleDateString('en-US', { month: 'short', timeZone: 'UTC' })
-  return `${month} ${d.getUTCDate()}`
 }
 
 /**
@@ -196,7 +191,7 @@ export function chartSeries(result, symbol, now = Date.now()) {
     // bar's timestamp. A bar is stamped at the open, and Sydney opens at 23:00
     // UTC the day before once its clocks go forward: from 4 October 2026 its
     // Monday session was labelled `Oct 4`, a Sunday, beside `dates` of the 5th.
-    periods.push(formatPeriod(Date.parse(`${date}T00:00:00Z`)))
+    periods.push(dayLabel(Date.parse(`${date}T00:00:00Z`)))
     dates.push(date)
     completed.push(date < today || (date === today && Number.isFinite(sessionEnd) && now > sessionEnd * 1000 + 15 * 60000))
   }
@@ -296,7 +291,7 @@ export async function fetchYahooStock(symbol, opts = {}) {
       // prominent number on the card days out of date while claiming a fix.
       // `changePct` then reads from the last real close to today, which is the
       // move the data actually supports, on a card the UI already marks "cached".
-      const today = new Date(now).toISOString().slice(0, 10)
+      const today = isoDay(now)
       const live = Number(q.marketPrice.toFixed(2))
       const appended = cached.asOf !== today
       console.error(
@@ -310,7 +305,7 @@ export async function fetchYahooStock(symbol, opts = {}) {
       return {
         ...cached,
         values: [...(cached.values || []), live],
-        periods: [...(cached.periods || []), formatPeriod(now)],
+        periods: [...(cached.periods || []), dayLabel(now)],
         dates: [...(cached.dates || []), today],
         completed: [...(cached.completed || []), false],
         marketPrice: q.marketPrice,

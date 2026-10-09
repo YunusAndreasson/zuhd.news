@@ -23,6 +23,7 @@
 import { CC_TO_TOPOJSON_NAME } from '../../shared/countries/iso.ts'
 import { completedCloses } from './companies.js'
 import { extractEntities, tagMatcher } from './entity-registry.js'
+import { labelDay } from './period.js'
 
 /** Four significant figures — what a sentence can carry and what the rail
  *  prints. A writer given 71.2047 will print 71.2047. */
@@ -324,8 +325,8 @@ const datedPoints = (ind) => {
     // over a series whose last label is Dec 31.
     let next = end + 183 * DAY
     for (let i = periods.length - 1; i >= 0; i--) {
-      let t = Date.parse(`${periods[i]} ${year} 00:00:00 UTC`)
-      if (t > next) t = Date.parse(`${periods[i]} ${--year} 00:00:00 UTC`)
+      let t = labelDay(periods[i], year)
+      if (t > next) t = labelDay(periods[i], --year)
       if (!Number.isFinite(t)) return null
       days[i] = t
       next = t
