@@ -123,7 +123,8 @@ export function parseStockMentions(obj) {
  * it was noted, and the article went down as `subjects: []`, "read, and
  * about none", which also turns off the weaker signs the build falls back on
  * for an article nobody read. Seven tickers were refused in the 41 cycles to
- * 2026-10-09, all symbols the model had out of date (SNE, ANTM, TTM).
+ * 2026-10-09: symbols the model had out of date (SNE, ANTM, TTM) or gave
+ * without their exchange (HSBA, HCLTECH, CAP), and one it had wrong (RMST).
  *
  * @param {StockMention[]} companies what the scan named in one article
  * @param {Set<string>} charted the indicator ids a chart was fetched for
