@@ -109,6 +109,45 @@ test('grounding rejects missing evidence, invented citations and numbers', () =>
   const valid = validateMarketComment({recent:bundle.coverage[0].lead,evidence:[{slug:'news',quote:bundle.coverage[0].lead}]},bundle)
   assert.equal(valid.citations[0].url,'https://zuhd.news/a/news')
 })
+test('a reported forecast is not a forecast: the rule is for the commentary looking ahead itself', () => {
+  // The article offered for Istanbul's slide, and its lead. The old rule was
+  // `/will |could |may |buy |sell |forecast|price target/i`, so repeating the
+  // fact this article reports was itself the offence.
+  const ankara = {
+    slug: '2026-09-13-ankara-writes-the-war-into-the-forecast',
+    title: 'Ankara Cuts Growth Forecast',
+    date: '2026-09-13',
+    lead: 'Ankara — Turkey revised its medium-term growth forecast downward.',
+  }
+  const bundle = {
+    instrument: { index: 'BIST 100', exchange: 'Borsa İstanbul', country: 'TR' },
+    facts: 'BIST 100 fell 14.1% over 20 sessions (2026-09-08 to 2026-10-06), and 16.4% to 2026-10-07.',
+    coverage: [ankara],
+  }
+  const evidence = [{ slug: ankara.slug, quote: 'Turkey revised its medium-term growth forecast downward' }]
+  const verdict = (recent) => {
+    const reasons = []
+    return validateMarketComment({ recent, evidence }, bundle, reasons) ? 'kept' : reasons[0]
+  }
+
+  // Two of the sentences this rule refused, from cycle-2026-10-07_2204.log and
+  // cycle-2026-10-08_0501.log, as far as the log kept them and closed there.
+  assert.equal(verdict('Turkish stocks on Borsa İstanbul lost 14.1% over 20 sessions to 6 October. Early in that stretch Ankara revised its medium-term growth forecast downward.'), 'kept')
+  assert.equal(verdict('Turkish stocks on Borsa İstanbul fell 16.4% over 20 sessions to 2026-10-07. Early in that stretch, Ankara revised its medium-term growth forecast downward.'), 'kept')
+  // What the substrings also caught: a month, two ordinary words, a reported sale.
+  assert.equal(verdict('The slide ran from 8 May to 6 October.'), 'kept')
+  assert.equal(verdict('The central bank moved to sell dollars, a goodwill gesture met with dismay.'), 'kept')
+
+  // The commentary's own look ahead and its advice are refused as before, and
+  // the reason says which words.
+  assert.equal(verdict('Turkish stocks could fall further after the cut.'), 'forecasts or advises ("could")')
+  assert.equal(verdict('The index will recover.'), 'forecasts or advises ("will")')
+  assert.equal(verdict('The lira may weaken.'), 'forecasts or advises ("may")')
+  assert.equal(verdict('Shares might slide again.'), 'forecasts or advises ("might")')
+  assert.equal(verdict('The index is expected to fall.'), 'forecasts or advises ("is expected to")')
+  assert.equal(verdict('Brokers raised their price target.'), 'forecasts or advises ("price target")')
+  assert.equal(verdict('Investors should buy the dip.'), 'forecasts or advises ("should buy")')
+})
 test('fallback contains computed dates and not invented news', () => {
   const s = selectMarketSignals([market([2])],{},NOW).selected[0]
   assert.match(factualSummary(s), /2.0%/)

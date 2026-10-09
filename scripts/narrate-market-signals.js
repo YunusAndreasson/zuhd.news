@@ -13,6 +13,25 @@ import { latestTrendsPath } from './lib/trends-snapshot.js'
 const hash = (v) => createHash('sha256').update(JSON.stringify(v)).digest('hex').slice(0, 16)
 
 /**
+ * The commentary looking ahead in its own voice, or advising.
+ *
+ * It was `/will |could |may |buy |sell |forecast|price target/i`: substrings,
+ * in any case. So it refused what a source had *reported*. The article offered
+ * for Istanbul's slide opens "Turkey revised its medium-term growth forecast
+ * downward", and a sentence that repeats that fact carries the noun; `May ` is
+ * a month, `goodwill ` and `dismay ` are words, and a central bank that "moved
+ * to sell dollars" has not been advised to. Of 26 calls in nine days of logs
+ * 11 were refused under this rule, ten of them for `mkt:bist`.
+ *
+ * Whole words, in the case a modal is written in, and only the forms that are
+ * the writer's own: a modal verb, an agentless expectation, a price target,
+ * advice to buy or sell. A sentence that reports someone's forecast, or what
+ * somebody sold, passes this and still has to pass everything above it.
+ */
+const LOOKS_AHEAD =
+  /\b(?:will|could|may|might)\b|\b(?:is|are) (?:expected|forecast|likely) to\b|\bprice targets?\b|\b(?:should|ought to|time to) (?:buy|sell)\b|\b(?:buying|selling) opportunity\b/
+
+/**
  * @param {any} out       The model's parsed object.
  * @param {any} bundle    What it was given.
  * @param {string[]} [reasons]  Push-only channel for *why* a comment was
@@ -39,8 +58,12 @@ export function validateMarketComment(out, bundle, reasons = []) {
   // A causal statement requires explicit causal language in its cited evidence,
   // not just the same country or company being named.
   const cause = /because|driven by|in response to|reacted to|triggered|caused|fuelled|fueled|following|amid|on hopes|on fears/i
-  if (cause.test(out.recent) && !out.evidence.some((e) => cause.test(e.quote))) return no('asserts a cause its evidence does not')
-  if (/will |could |may |buy |sell |forecast|price target/i.test(out.recent)) return no('forecasts or advises')
+  // Each reason names the words it turned on: the log keeps a rejected
+  // sentence's opening, and the words were usually past it.
+  const causal = out.recent.match(cause)
+  if (causal && !out.evidence.some((e) => cause.test(e.quote))) return no(`asserts a cause its evidence does not ("${causal[0]}")`)
+  const ahead = out.recent.match(LOOKS_AHEAD)
+  if (ahead) return no(`forecasts or advises ("${ahead[0]}")`)
   return { text: out.recent.trim(), citations: evidence }
 }
 
