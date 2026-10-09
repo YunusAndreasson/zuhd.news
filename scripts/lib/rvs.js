@@ -14,9 +14,10 @@
 // from, and nothing else.
 
 import { existsSync } from 'node:fs'
-import { ARTICLE_CEILING, tryReadArticle, visibleText } from './article.js'
+import { tryReadArticle } from './article.js'
 import { CATEGORY_FLOORS, FLOORS_MAY_GO_UNMET } from './dedup.js'
 import { readJson, writeJson } from './json-file.js'
+import { articleFlags } from './quality-metrics.js'
 import { REGION_CODES, regionFromCoords } from './regions.js'
 
 /**
@@ -25,7 +26,11 @@ import { REGION_CODES, regionFromCoords } from './regions.js'
  *   2: 2026-07-03, writing, sourcing and coverage only (the context briefs
  *      had stopped on 06-19, and the cluster dragged every score to ~50)
  *   3: 2026-10-09, freshness is measured. It was 1.0 in every record before,
- *      so coverage reads up to 40 points lower from here, and the score 12
+ *      so coverage reads up to 40 points lower from here, and the score 12.
+ *      The same day the writing cluster moved onto the weekly scan's
+ *      detectors (`flagsOf`), so a title echo is what the editor's flag calls
+ *      one: over the 43 batches on record that moves the score by -1.4 to
+ *      +6.0, median +2.7
  */
 export const SCHEMA = 3
 
@@ -61,6 +66,7 @@ const KEEP = 365
  * @property {string} title
  * @property {string} category
  * @property {string} body
+ * @property {string} location the dateline city, which the body opens with
  * @property {number | null} lat
  * @property {number | null} lng
  * @property {number} date when the story was published at its source, in ms; `NaN` for a `date` that is not one
@@ -91,6 +97,7 @@ export function rvsRow({ slug, meta, body }) {
     title: String(meta.title ?? ''),
     category: String(meta.category ?? ''),
     body,
+    location: String(meta.location ?? ''),
     lat: coordinate(meta.lat),
     lng: coordinate(meta.lng),
     date: date instanceof Date ? date.getTime() : Date.parse(String(date ?? '')),
@@ -122,36 +129,40 @@ export function readBatch(files) {
 /** @param {number} x */
 const clamp01 = (x) => Math.max(0, Math.min(1, x))
 
-/** @param {string} s */
-const meaningfulWords = (s) => s.toLowerCase().replace(/[^a-z0-9\s]/g, ' ').split(/\s+/).filter((w) => w.length > 2)
+/**
+ * The longest a body may run in words and still be in range for the score.
+ * Three past the 75 the prompt gives the prose, because the count takes in the
+ * one to three words of the dateline; the weekly series counts to 75.
+ */
+export const WORD_BAND_MAX = 78
 
 /**
- * What one article does and does not do, by the rules in `write-prompt.md`.
+ * What one article does and does not do, by the rules in `write-prompt.md`:
+ * the weekly scan's detectors (`articleFlags`, `lib/quality-metrics.js`), under
+ * the names the score's arithmetic uses.
  *
- * These are the weekly scan's detectors (`lib/quality-metrics.js`), written
- * out a second time, and the two are to become one. Until they are: the word
- * band here ends at 78, three past the prompt's 75, because the count takes
- * in the one to three words of the dateline.
+ * They were written out a second time here, regex for regex, and had parted
+ * in two places by 2026-10-09. The word band is the one that stays apart, as
+ * a parameter. The other was the title echo: this copy still asked whether
+ * the hook held half the title's words, the test the editor's own flag
+ * (`lib/title-echo.js`) replaced because it called 48% of a week's hooks
+ * echoes where the flag says 17%. From schema 3 the score counts what the
+ * editor is shown.
  *
- * @param {Pick<RvsRow, 'title' | 'body' | 'sourceNames'>} article
+ * @param {Pick<RvsRow, 'title' | 'body' | 'sourceNames'> & { location?: string }} article
  */
-export function flagsOf({ title, body, sourceNames }) {
-  const charLen = visibleText(body).length
-  const wordCount = body.split(/\s+/).filter(Boolean).length
-  const hook = body.replace(/^[^—]+—\s*/, '').split(/\.\s+/)[0] || ''
-  const titleWords = new Set(meaningfulWords(title))
-  const hookWords = meaningfulWords(hook)
+export function flagsOf(article) {
+  const f = articleFlags(article, { wordBandMax: WORD_BAND_MAX })
   return {
-    charLen,
-    wordCount,
-    charInRange: charLen <= ARTICLE_CEILING,
-    wordInRange: wordCount >= 52 && wordCount <= 78,
-    passive: /^[A-Z][\w\s',.-]{0,40}\s+(was|were)\s+\w+(ed|en)\b/.test(hook),
-    hedge: /\b(could\s+reshape|may\s+signal|is\s+poised\s+to|raising\s+questions|significant(ly)?|amid)\b/i.test(body),
-    pressEra: /\b(at\s+press\s+time|this\s+(morning|afternoon|evening|week))\b/i.test(body),
-    // The hook holds half or more of the title's words.
-    titleEcho: titleWords.size > 0 && hookWords.length > 0 && hookWords.filter((w) => titleWords.has(w)).length / titleWords.size >= 0.5,
-    multiSource: sourceNames.length >= 2,
+    charLen: f.visibleLength,
+    wordCount: f.wordCount,
+    charInRange: !f.overCeiling,
+    wordInRange: f.wordInRange,
+    passive: f.passiveHook,
+    hedge: f.hedge,
+    pressEra: f.pressEra,
+    titleEcho: f.titleEcho,
+    multiSource: f.multiSource,
   }
 }
 

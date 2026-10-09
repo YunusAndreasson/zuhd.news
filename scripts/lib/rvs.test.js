@@ -23,6 +23,7 @@ const row = (over = {}) => ({
   title: 'An Unrelated Headline Entirely',
   category: 'politics',
   body: bodyOf(60),
+  location: 'Lyon',
   lat: 45.76,
   lng: 4.84,
   date: RUN,
@@ -46,7 +47,7 @@ test('the batch is read through the parser, however a value is quoted', () => {
     writeFileSync(join(dir, name), `---\n${yaml}\n---\n\nLyon — The council voted.\n\nIt matters.\n`)
     return { path: join(dir, name) }
   }
-  const quoted = file('2026-10-09-quoted.md', 'title: "Council Closes The Bridge"\ndate: "2026-10-09T04:54:25Z"\ncategory: "politics"\nlat: 45.76\nlng: 4.84\nsources:\n  - name: "Dawn"\n    url: "https://www.dawn.com/1"\n    country: "PK"\n  - name: "Reuters"\n    url: "https://www.reuters.com/x"\n    country: null')
+  const quoted = file('2026-10-09-quoted.md', 'title: "Council Closes The Bridge"\ndate: "2026-10-09T04:54:25Z"\ncategory: "politics"\nlocation: "Lyon"\nlat: 45.76\nlng: 4.84\nsources:\n  - name: "Dawn"\n    url: "https://www.dawn.com/1"\n    country: "PK"\n  - name: "Reuters"\n    url: "https://www.reuters.com/x"\n    country: null')
   // As two articles of 2026-09-09 were written: the reader this replaced took
   // only double-quoted values and read these as having no category.
   const bare = file('2026-10-09-bare.md', "title: 'In Single Quotes'\ndate: 2026-10-09T04:54:25Z\ncategory: economy\nlat: 0\nsources:\n  - name: Dawn\n    url: https://www.dawn.com/2")
@@ -57,6 +58,7 @@ test('the batch is read through the parser, however a value is quoted', () => {
     title: 'Council Closes The Bridge',
     category: 'politics',
     body: 'Lyon — The council voted.\n\nIt matters.',
+    location: 'Lyon',
     lat: 45.76,
     lng: 4.84,
     date: Date.parse('2026-10-09T04:54:25Z'),
@@ -118,7 +120,10 @@ test('writing: half for brevity, half for voice, and two faults an article cost 
     row(),
     row({ body: bodyOf(40) }),
     row({ body: `Lyon — ${words(55)} amid it this week.` }),
-    row({ title: 'Council Closes Bridge', body: `Lyon — The council bridge was closed. ${words(53)}.` }),
+    // The hook is the first block, and an echo is a hook that says the title
+    // again and brings no figure of its own (`lib/title-echo.js`), so the
+    // filler, which is all figures, stands in a block of its own.
+    row({ title: 'Council Closes Bridge', body: `Lyon — The council bridge was closed.\n\n${words(53)}.` }),
   ]
   const { score, detail } = scoreWriting(batch)
   assert.deepEqual(
