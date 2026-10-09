@@ -16,7 +16,7 @@ import { articleProblems } from './article.js'
 import { splitBlocks } from './blocks.js'
 import { normalizeUrl } from './dedup.js'
 import { canonicalIndicatorId } from './entity-registry.js'
-import { parseFrontmatter, removeFrontmatterKey } from './frontmatter.js'
+import { parseFrontmatter, removeFrontmatterKey, splitFrontmatter } from './frontmatter.js'
 import { chartProblem, citesFigure } from './indicator-offer.js'
 import { bodyNamesOutlet, soleClassifiedSource } from './outlet-class.js'
 
@@ -91,21 +91,30 @@ export function createValidator({ published, offeredBySlug, knownIds }) {
       return { bad, text, events, problems }
     }
 
-    const fm = raw.match(/^---\n([\s\S]*?)\n---/)
-    if (!fm) return verdict('no frontmatter')
+    // The block and the prose, cut where every other reader cuts them
+    // (`splitFrontmatter`). This gate cut the file itself and took the prose to
+    // start after the first `---` anywhere, so a source URL holding one
+    // (`…flydubai-FZ1073---HT-Immersive…`) left the rest of the frontmatter
+    // counted as the first block. Two sound five-block articles were moved
+    // aside as "6 blocks" (2026-09-27, 2026-10-01), and a four-block one would
+    // have passed as five and had its dateline "restored" into the URL.
+    const split = splitFrontmatter(raw)
+    if (!split) return verdict('no frontmatter')
+    const { yaml, body } = split
 
     // Parse with the same function build.js uses, not just string-match it.
     // The string checks below pass on frontmatter that js-yaml rejects, so an
     // unparseable article reached Stage 3b and took the whole build down with
     // it — a no-publish cascade off one file. Quarantining it here is what the
     // .bad mechanism is for: 12 good articles ship, the broken one does not.
+    /** @type {Record<string, any>} */
+    let meta
     try {
-      parseFrontmatter(raw)
+      meta = parseFrontmatter(raw).meta
     } catch (err) {
       return verdict(`unparseable frontmatter: ${err.reason || err.message}`)
     }
 
-    const yaml = fm[1]
     const has = (k) => yaml.includes(`${k}:`)
     const hasSources = yaml.includes('sources:') && yaml.includes('  - name:')
     if (!has('title') || !has('date') || !has('category') || !has('location') || !hasSources) {
@@ -121,12 +130,10 @@ export function createValidator({ published, offeredBySlug, knownIds }) {
     // the editor stage is better placed to fix. The ceiling is the real guard: a
     // body that split into six or more blocks is a malformed file, not a long
     // article.
-    const body = raw.replace(/^---[\s\S]*?---\s*/, '').trim()
     const blocks = splitBlocks(body).filter((s) => s.length > 5)
     if (blocks.length < 2 || blocks.length > 5) return verdict(`${blocks.length} blocks`)
 
-    const { meta, body: prose } = parseFrontmatter(raw)
-    problems = articleProblems(meta, prose)
+    problems = articleProblems(meta, body)
     const location = String(meta.location || '').trim()
 
     // Dateline. Nine bodies shipped without one on 2026-09-22 22:00 — the editor
@@ -135,7 +142,11 @@ export function createValidator({ published, offeredBySlug, knownIds }) {
     const dl = body.match(DATELINE)
     if (!dl) {
       if (!location) return verdict('no dateline and no location')
-      text = raw.replace(body, () => `${location} — ${body}`)
+      // Written in at the prose's own offset. The prose is the file's tail but
+      // for white space, so the last place it occurs is where it stands; the
+      // first place a string occurs is anywhere, the frontmatter included.
+      const at = raw.lastIndexOf(body)
+      text = `${raw.slice(0, at)}${location} — ${raw.slice(at)}`
       counts.repaired++
       events.push(`REPAIRED (dateline "${location} — " restored)`)
     } else if (dl[1].trim() !== location) {

@@ -139,6 +139,11 @@ test('the sourcing figures read the parsed article, and refuse one that does not
   assert.deepEqual([r.lat, r.lng], [46.2, 6.14])
   assert.throws(() => sourcingRow('x.md', ARTICLE.replace('"Trade Body', '"Trade "Body')))
   assert.deepEqual(sourcingRow('x.md', 'Just prose.').sources, [])
+  assert.equal(sourcingRow('x.md', '\n Just prose. \n').body, 'Just prose.')
+  // A `---` inside a link is not where the body starts: the dateline is still there to find.
+  const dashed = sourcingRow('2026-10-08-wto.md', ARTICLE.replace('news/2035725', 'news/a---b-2035725'))
+  assert.equal(dashed.body, r.body)
+  assert.equal(computeSourcing([dashed], 0).missingDateline, 0)
 })
 
 test('a day\'s sourcing: how many stand on one source, where they are datelined, what is missing', () => {

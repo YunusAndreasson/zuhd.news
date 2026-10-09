@@ -1,5 +1,6 @@
 // Run: node --test scripts/lib/validate-article.test.js
 import assert from 'node:assert/strict'
+import { readFileSync } from 'node:fs'
 import { test } from 'node:test'
 import { parseFrontmatter } from './frontmatter.js'
 import { createValidator, duplicateKey, normTitle } from './validate-article.js'
@@ -56,6 +57,40 @@ test('two to five blocks ship, and outside that the file is malformed', () => {
   assert.equal(verdictFor(1), '1 blocks')
   for (const n of [2, 3, 4, 5]) assert.equal(verdictFor(n), null, `${n} blocks`)
   assert.equal(verdictFor(6), '6 blocks')
+})
+
+// The two articles the validator's own cut of the file cost, byte for byte as
+// it moved them aside (2026-09-27 14:19 and 2026-10-01 14:14 UTC). Each is
+// five blocks under the right dateline, and each has a `---` inside a link:
+// a source's `url:` in one, an `image:` the scaffold stage had added in the
+// other. The cut took the prose to start there, counted the rest of the
+// frontmatter as a block, and said "6 blocks".
+const QUARANTINED = [
+  '2026-09-27-oleshky-drone-food-deliveries-occupied-kherson.md',
+  '2026-10-01-uae-prosecutor-probes-flydubai-cockpit-attack-pilot-vetting.md',
+]
+const quarantined = (/** @type {string} */ name) => readFileSync(new URL(`./fixtures/quarantined/${name}`, import.meta.url), 'utf8')
+
+test('a `---` inside a link does not end the frontmatter: the two articles it cost are five blocks and ship', () => {
+  for (const name of QUARANTINED) {
+    assert.match(quarantined(name), /^ {4}(url|image): ".*---.*"$/m, 'the fixture still holds its dashes')
+    assert.deepEqual(validator().check(quarantined(name), name), { bad: null, text: null, events: [], problems: [] }, name)
+  }
+})
+
+test('under such a link four blocks are four, six are six, and a dateline goes back on the prose', () => {
+  const dashed = (/** @type {number} */ n) => source(`https://www.hindustantimes.com/specials/flydubai-FZ1073---HT-Immersive-${n}/index.html`)
+  const v = validator()
+  // It read as five blocks with no dateline, and "restored" one inside the link.
+  assert.deepEqual(v.check(article({ sources: dashed(1) }), 'a.md'), { bad: null, text: null, events: [], problems: [] })
+  const six = [...BLOCKS, 'A fifth block, earned by a counterpoint.', 'A sixth block, which is one too many.']
+  assert.equal(v.check(article({ blocks: six, title: '"A Second Headline"', sources: dashed(2) }), 'b.md').bad, '6 blocks')
+
+  const bare = article({ dateline: null, title: '"A Third Headline"', sources: dashed(3) })
+  const mended = v.check(bare, 'c.md')
+  assert.deepEqual(mended.events, ['REPAIRED (dateline "Lyon — " restored)'])
+  assert.equal(mended.text, bare.replace('\n\nThe first block', '\n\nLyon — The first block'))
+  assert.equal(parseFrontmatter(mended.text ?? '').meta.sources[0].url, 'https://www.hindustantimes.com/specials/flydubai-FZ1073---HT-Immersive-3/index.html')
 })
 
 test('a missing dateline is restored from the location, and a wrong one stops the article', () => {

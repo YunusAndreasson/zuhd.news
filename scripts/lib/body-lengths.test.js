@@ -1,6 +1,7 @@
 // Run: node --test scripts/lib/body-lengths.test.js
 import assert from 'node:assert/strict'
 import { spawnSync } from 'node:child_process'
+import { readFileSync } from 'node:fs'
 import { join } from 'node:path'
 import { test } from 'node:test'
 import { ARTICLE_CEILING } from './article.js'
@@ -34,13 +35,24 @@ test('a block is text between blank lines, and five characters or fewer is not o
   assert.match(bodyLengthLine('a.md', `${FM}One block here.\n\n---\n\nAnother after a rule.\n`), / 2 blocks /, 'a rule in the body stays in it and is too short to count')
 })
 
-// As it stands. The body is taken as what follows the second `---` anywhere in
-// the file, which the article reader does differently only for shapes the
-// corpus does not hold (0 of 11,207 on 2026-10-09).
-test('where the probe\'s own way of finding the body shows', () => {
+// The body is what lies under the frontmatter block, and the block ends at a
+// line that is `---` alone. Until 2026-10-09 the body was taken to start after
+// the second `---` anywhere in the file, and this test pinned it, on the count
+// that the corpus held no file where the two differ (0 of 11,207). It held none
+// because the validator cut the same way and had moved each one aside: two of
+// the 126 `.md.bad`, and they are the fixtures below.
+test('the body starts under the frontmatter, wherever a `---` stands inside it', () => {
   assert.equal(bodyLengthLine('a.md', 'Just prose, no frontmatter at all.\n'), 'ok 0 chars  0 blocks  a.md')
   assert.equal(bodyLengthLine('a.md', ''), 'ok 0 chars  0 blocks  a.md')
-  assert.match(bodyLengthLine('a.md', `${FM.replace('Trade Body', 'Trade --- Body')}${FOUR}\n`), /^ok \d+ chars {2}5 blocks /, 'dashes in a title move the start of the body')
+  assert.equal(bodyLengthLine('a.md', `${FM.replace('Trade Body', 'Trade --- Body')}${FOUR}\n`), `ok ${FOUR.length} chars  4 blocks  a.md`, 'dashes in a title are in the title')
+  // No YAML is read, so a block that does not parse still gets its line.
+  assert.equal(bodyLengthLine('a.md', `${FM.replace('"Trade Body', '"Trade "Body')}${FOUR}\n`), `ok ${FOUR.length} chars  4 blocks  a.md`)
+
+  // 2026-10-01 14:02 UTC: the editor was told the first of these was OVER at
+  // 1,099 characters, and wrote "the file on disk is about 450".
+  const quarantined = (/** @type {string} */ name) => readFileSync(new URL(`./fixtures/quarantined/${name}`, import.meta.url), 'utf8')
+  assert.equal(bodyLengthLine('x.md', quarantined('2026-10-01-uae-prosecutor-probes-flydubai-cockpit-attack-pilot-vetting.md')), 'ok 481 chars  5 blocks  x.md')
+  assert.equal(bodyLengthLine('x.md', quarantined('2026-09-27-oleshky-drone-food-deliveries-occupied-kherson.md')), 'ok 474 chars  5 blocks  x.md')
 })
 
 // The harness's `node` is a stand-in, so nothing there starts this file, and

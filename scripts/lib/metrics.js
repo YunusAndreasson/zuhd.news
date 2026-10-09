@@ -193,10 +193,13 @@ const inUs = (lat, lng) => lat != null && lng != null && lat > 24 && lat < 50 &&
  * @returns {SourcingRow}
  */
 export function sourcingRow(name, raw) {
-  const { meta } = parseFrontmatter(raw)
-  const body = raw.replace(/^---[\s\S]*?---\s*/, '').trim()
+  // The parser's own body. This took the prose to start after the first `---`
+  // anywhere in the file, so a source URL holding one would have been counted
+  // as a missing dateline (what that cut cost the validator is in
+  // `lib/validate-article.js`).
+  const { meta, body } = parseFrontmatter(raw)
   const sources = Array.isArray(meta.sources) ? meta.sources : []
-  return { slug: name.replace(/\.md$/, ''), title: String(meta.title || ''), sources, body, lat: Number(meta.lat), lng: Number(meta.lng) }
+  return { slug: name.replace(/\.md$/, ''), title: String(meta.title || ''), sources, body: body.trim(), lat: Number(meta.lat), lng: Number(meta.lng) }
 }
 
 /**
