@@ -1212,20 +1212,17 @@ export default function HomeScreen() {
   /**
    * Open the menu. It opens where the reader left it when they come back
    * within `MENU_RESUME_MS` (2026-09-26: closing it from a card to glance at
-   * the map used to cost the way back), and at its root after longer, or
-   * from `all →`, which means "every instrument".
+   * the map used to cost the way back), and at its root after longer.
    */
   const menuClosedAtRef = useRef(0);
   const [menuRootKey, setMenuRootKey] = useState(0);
-  const openMenu = useCallback((atRoot: boolean) => {
-    if (atRoot || Date.now() - menuClosedAtRef.current > MENU_RESUME_MS) {
+  const handleMenuPress = useCallback(() => {
+    if (Date.now() - menuClosedAtRef.current > MENU_RESUME_MS) {
       setMenuRootKey((k) => k + 1);
     }
     setMenuOpen(true);
     menuSheetRef.current?.present();
   }, []);
-  const handleMenuPress = useCallback(() => openMenu(false), [openMenu]);
-  const handleAllPress = useCallback(() => openMenu(true), [openMenu]);
 
   const handleBriefingPress = useCallback(() => {
     markHintDone('masthead');
@@ -2180,7 +2177,6 @@ export default function HomeScreen() {
           locked={activeCard !== null || selectedGauge !== null}
           pinned={strip.find((item) => item.id === selectedGauge?.id)}
           onSelect={handleStripPress}
-          onAll={handleAllPress}
           selectedId={selectedGauge?.id ?? null}
           linkedIds={linkedGauges}
           // While the player bar is up it is the control. A second play button

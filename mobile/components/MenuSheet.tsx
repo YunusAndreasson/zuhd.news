@@ -205,7 +205,7 @@ interface MenuSheetProps extends BaseSheetProps {
    * Bumped to open the menu at its root. It keeps its pages when it closes
    * (2026-09-26): a reader who closed it from Bitcoin to look at the map came
    * back to the main page and had to find their way again. The screen bumps
-   * this when the menu has been closed a while, or when `all →` opens it.
+   * this when the menu has been closed a while.
    */
   rootKey: number;
   onToast?: (message: string) => void;
