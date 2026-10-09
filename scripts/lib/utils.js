@@ -50,9 +50,22 @@ export function slugify(title, date) {
   return `${prefix}-${cut > 0 ? words.slice(0, cut) : words.slice(0, SLUG_MAX)}`
 }
 
-/** @param {string} title */
-export function fingerprint(title) {
-  return title.toLowerCase().replace(/[^a-z0-9]/g, '').slice(0, 40)
+/**
+ * A headline as the thing two copies of it share: its letters and digits,
+ * lower case, the first `length` of them. No headline is the empty string.
+ *
+ * It was written three times at three lengths, and each caller keeps its own:
+ * 40 where `merge-feeds` makes one story of a headline both feeds carry (the
+ * default), 30 where the API fetcher keeps a second story of one headline out
+ * of its own feed, 50 where a pick is matched back to its feed story
+ * (`selection-match.js`). Nothing depends on the three differing: after the
+ * merge no two feed stories share forty characters, so none share fifty.
+ *
+ * @param {string | null | undefined} title
+ * @param {number} [length]
+ */
+export function fingerprint(title, length = 40) {
+  return (title || '').toLowerCase().replace(/[^a-z0-9]/g, '').slice(0, length)
 }
 
 /**

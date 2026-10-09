@@ -8,7 +8,7 @@ import { PREFILTER_WINDOW_MS, eventCoveredRecently, loadDedupContext } from './l
 import { MAX_FEED_AGE_MS } from './lib/feed-age.js'
 import { readUnexplainedMovers } from './lib/company-gaps.js'
 import { namedSeries, pickTracked, TRACKED_KEYWORDS } from './lib/tracked-stories.js'
-import { slugify } from './lib/utils.js'
+import { fingerprint, slugify } from './lib/utils.js'
 import { writeJson } from './lib/json-file.js'
 import { runWithConcurrency } from './lib/concurrency.js'
 
@@ -682,7 +682,9 @@ async function main() {
 
   // Stories about a charted series take their slots first: the standalone
   // pass below ranks by outlet, and would spend its 22 before reaching them.
-  const storyFingerprints = new Set(stories.map(s => s.title.toLowerCase().replace(/[^a-z0-9]/g, '').slice(0, 30)))
+  // One story a headline within this feed, on its first thirty characters.
+  const sameHeadline = (title) => fingerprint(title, 30)
+  const storyFingerprints = new Set(stories.map(s => sameHeadline(s.title)))
   const trackedGroups = pickTracked(dedupedArticles.filter(a => trackedUris.has(a.uri)), {
     usedEventUris,
     usedUrls: panelUris,
@@ -694,7 +696,7 @@ async function main() {
     const panel = group.length > 1 ? assembleSourcePanel(group, null) : group
     const primary = panel[0]
     const storyTitle = panel.length > 1 ? bestTitle(panel, primary.title) : primary.title
-    const fp = storyTitle.toLowerCase().replace(/[^a-z0-9]/g, '').slice(0, 30)
+    const fp = sameHeadline(storyTitle)
     if (storyFingerprints.has(fp)) continue
     storyFingerprints.add(fp)
     for (const a of group) panelUris.add(a.url)
@@ -728,7 +730,7 @@ async function main() {
     // A story of its own needs a headline. An article with none threw here,
     // after every token was spent and before the feed below was written.
     if (!hasHeadline(a)) { untitled++; continue }
-    const fp = a.title.toLowerCase().replace(/[^a-z0-9]/g, '').slice(0, 30)
+    const fp = sameHeadline(a.title)
     if (storyFingerprints.has(fp)) continue
     const srcName = a.source?.title || '?'
     sourceCount[srcName] = (sourceCount[srcName] || 0) + 1

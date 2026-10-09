@@ -1,7 +1,40 @@
 // Run: node --test scripts/lib/utils.test.js
 import assert from 'node:assert/strict'
 import { test } from 'node:test'
-import { slugify } from './utils.js'
+import { fingerprint, slugify } from './utils.js'
+
+// --- fingerprint: one function, where there were three ----------------------
+const HEADLINES = [
+  'Iraq devalues currency as war and Hormuz closure squeeze cash',
+  'Russia-Ukraine war: List of key events, day 1,323',
+  'Fed Raises Rates',
+  '“Math 2.0” will need to value mathematical progress more holistically',
+  'Medellín went green to stay cool – heat rose faster',
+  '',
+  '…',
+]
+
+test('each of the three it replaces, at the length that one had', () => {
+  // As they were: `lib/utils.js` (the merge), `lib/selection-match.js`, and inline in `fetch-news-api.js`.
+  const merge = (title) => title.toLowerCase().replace(/[^a-z0-9]/g, '').slice(0, 40)
+  const match = (title) => (title || '').toLowerCase().replace(/[^a-z0-9]/g, '').slice(0, 50)
+  const api = (title) => title.toLowerCase().replace(/[^a-z0-9]/g, '').slice(0, 30)
+  for (const title of HEADLINES) {
+    assert.equal(fingerprint(title), merge(title), title)
+    assert.equal(fingerprint(title, 50), match(title), title)
+    assert.equal(fingerprint(title, 30), api(title), title)
+  }
+  assert.equal(fingerprint(null, 50), match(null))
+  assert.equal(fingerprint(undefined, 50), match(undefined))
+})
+
+test('a fingerprint is letters and digits only, and no headline is the empty one', () => {
+  assert.equal(fingerprint('Fed Raises Rates!'), 'fedraisesrates')
+  assert.equal(fingerprint('FED raises rates'), fingerprint('Fed Raises Rates'))
+  assert.equal(fingerprint('Russia-Ukraine war: List of key events, day 1,323', 30), 'russiaukrainewarlistofkeyevent')
+  assert.equal(fingerprint(undefined), '', 'where the merge used to throw')
+  assert.equal(fingerprint('…'), '')
+})
 
 // The four are on the site, under the slug in the comment beside each.
 test('a headline is cut at a word, not at the sixtieth character', () => {

@@ -21,6 +21,8 @@
 // Erring strict is deliberate. A miss is honest — the writer skips the slot. A
 // false match burns writer turns and invites a fabricated article.
 
+import { fingerprint as titleFingerprint } from './utils.js'
+
 // Generic newswire vocabulary carries no evidence: "military", "leader" and
 // "regional" co-occurring is exactly what a Sudan dispatch and a Nigerian
 // marathon report have in common.
@@ -55,9 +57,8 @@ function sameEvent(a, b) {
   return shared / Math.min(as.size, bs.size) >= SAME_EVENT_OVERLAP
 }
 
-function fingerprint(title) {
-  return (title || '').toLowerCase().replace(/[^a-z0-9]/g, '').slice(0, 50)
-}
+// Layer 4 compares a pick's title with a feed story's on fifty characters.
+const fingerprint = (title) => titleFingerprint(title, 50)
 
 function words(text) {
   return (text || '')
