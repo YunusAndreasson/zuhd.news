@@ -67,6 +67,10 @@ stages assume about each other.
   typecheck warning at zero.
 - Degrade to the previous snapshot, never to nothing: a failed `fetch-*.js`
   leaves `content/.<name>.json` in place, and a missing key logs a skip.
+- A snapshot fetcher does its work inside `snapshotStage`
+  (`lib/snapshot-stage.js`) and throws `Degrade` to keep the last snapshot,
+  `Skip` for a missing key. `isEmpty` is required: an empty result is never
+  written over a snapshot by default.
 - A bounded dataset reports what it left out (`skipped`), or it reads as
   complete coverage.
 - An empty result after a non-empty response is a schema change: that branch

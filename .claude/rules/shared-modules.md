@@ -30,6 +30,7 @@ prefer a parameter (class names, a link renderer) over a copy, as
 | `scripts/lib/json-file.js` | `readJson`, atomic `writeJson` |
 | `scripts/lib/http.js` | fetch with a deadline and a user agent |
 | `scripts/lib/iso-date.js` | `isIsoDate`, the app's own test of a published date |
+| `scripts/lib/snapshot-stage.js` | `snapshotStage`: a fetcher's read, freshness gate, empty guard, kept-snapshot line and write |
 | `scripts/lib/article-files.js` | the corpus window by filename |
 | `scripts/lib/trends-snapshot.js` | the newest `content/trends/*.json` |
 | `scripts/lib/hash.js` | sha1 cache keys |

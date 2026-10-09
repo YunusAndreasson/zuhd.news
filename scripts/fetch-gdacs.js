@@ -12,7 +12,6 @@
 // skips the API mirror when the file is absent, and mobile renders an empty
 // alert list when /api/gdacs.json 404s — same fail-soft path as chokepoints.
 
-import { join } from 'node:path'
 import { runWithConcurrency } from './lib/concurrency.js'
 import { pathOf } from './lib/datasets.js'
 import {
@@ -25,11 +24,9 @@ import {
   fetchGdacsDetail,
   isGdacsFeatureCollection,
 } from './lib/gdacs.js'
-import { ROOT } from './lib/paths.js'
-import { readJson, writeJson } from './lib/json-file.js'
+import { readJson } from './lib/json-file.js'
 import { fetchJson } from './lib/http.js'
-
-const OUTPUT_PATH = join(ROOT, 'content', '.gdacs.json')
+import { Degrade, snapshotStage } from './lib/snapshot-stage.js'
 
 // Concurrency cap for per-event detail fetches. GDACS publishes detail
 // endpoints synchronously and they're fast (~200–500ms typical), but firing
@@ -45,77 +42,78 @@ function fetchList() {
   return fetchJson(GDACS_GEOJSON_URL, { timeoutMs: LIST_TIMEOUT_MS })
 }
 
-let collection
-try {
-  collection = await fetchList()
-} catch (firstErr) {
-  // GDACS intermittently aborts the list fetch (~10% of cycles) — one retry
-  // after a short backoff recovers most, keeping the snapshot from going stale.
-  console.error(`  ⚠ list fetch failed (${firstErr.message}) — retrying once`)
-  await new Promise((r) => setTimeout(r, 3000))
+/** What the detail pass and the carried narratives came to, for the last line. */
+let summary
+
+const { written, snapshot } = await snapshotStage('fetch-gdacs', 'gdacs', produce, {
+  // The list has held a hundred alerts on all but five of the last 41 runs.
+  isEmpty: (s) => s.alerts.length === 0,
+  pretty: false,
+})
+
+if (written) {
+  const elapsed = ((Date.now() - started) / 1000).toFixed(1)
+  console.log(
+    `  ✓ wrote ${snapshot.alerts.length} alerts, ${summary.details}/${summary.asked} details${
+      summary.failed > 0 ? ` (${summary.failed} failed)` : ''
+    }${summary.narrated > 0 ? `, ${summary.narrated} narratives carried` : ''} in ${elapsed}s`,
+  )
+}
+
+/** The snapshot: the current alerts, the population detail for those that have one, the desk's narratives. */
+async function produce() {
+  let collection
   try {
     collection = await fetchList()
-  } catch (err) {
-    console.error(`  ✗ list fetch failed (${err.message}) — leaving previous snapshot in place`)
-    process.exit(0)
+  } catch (firstErr) {
+    // GDACS intermittently aborts the list fetch (~10% of cycles) — one retry
+    // after a short backoff recovers most, keeping the snapshot from going stale.
+    console.error(`  ⚠ list fetch failed (${firstErr.message}) — retrying once`)
+    await new Promise((r) => setTimeout(r, 3000))
+    try {
+      collection = await fetchList()
+    } catch (err) {
+      throw new Degrade(`list fetch failed (${err.message})`)
+    }
   }
+
+  if (!isGdacsFeatureCollection(collection)) throw new Degrade('list payload schema mismatch')
+
+  const dropped = {}
+  const alerts = collectionToAlerts(collection, undefined, dropped)
+
+  // A list with no alert in it is a changed response, never a quiet world, and
+  // this snapshot is published as it is written.
+  const empty = emptyListReport(collection, alerts)
+  if (empty) throw new Degrade(empty)
+  if (dropped.undated) console.error(`  ⚠ ${dropped.undated} alerts dropped: no readable start date`)
+  console.log(`  ✓ list: ${alerts.length} current alerts (within 30d age cliff)`)
+
+  // Pre-fetch detail for EQ + TC alerts. Other event types (FL/VO/DR/WF)
+  // surface their relevant scale through severityText already; the detail
+  // endpoint has no equivalent population block for them.
+  const detailCandidates = alerts.filter((a) => a.eventtype === 'EQ' || a.eventtype === 'TC')
+  const fetched = new Map()
+  let failed = 0
+
+  await runWithConcurrency(detailCandidates, DETAIL_CONCURRENCY, async (alert) => {
+    try {
+      const detail = await fetchGdacsDetail(alert)
+      fetched.set(detailKey(alert), detail)
+    } catch {
+      // Per-event failure is non-fatal — sheet just renders without the
+      // population line, same as if mobile had failed the lazy fetch before.
+      failed++
+    }
+  })
+  // Filed in the alerts' order, not the order the answers came back in.
+  const details = detailsInAlertOrder(detailCandidates, fetched)
+
+  // The narrator runs four stages on and may not finish; what it has already
+  // written goes back on now, so the file is never published bare.
+  const narrated = carryNarratives(alerts, readJson(pathOf('gdacsNarrations'), {}))
+
+  summary = { details: fetched.size, asked: detailCandidates.length, failed, narrated }
+
+  return { generated: new Date().toISOString(), alerts, details }
 }
-
-if (!isGdacsFeatureCollection(collection)) {
-  console.error('  ✗ list payload schema mismatch — leaving previous snapshot in place')
-  process.exit(0)
-}
-
-const dropped = {}
-const alerts = collectionToAlerts(collection, undefined, dropped)
-
-// A list with no alert in it is a changed response, never a quiet world, and
-// this snapshot is published as it is written.
-const empty = emptyListReport(collection, alerts)
-if (empty) {
-  console.error(`  ✗ ${empty} — leaving previous snapshot in place`)
-  process.exit(0)
-}
-if (dropped.undated) console.error(`  ⚠ ${dropped.undated} alerts dropped: no readable start date`)
-console.log(`  ✓ list: ${alerts.length} current alerts (within 30d age cliff)`)
-
-// Pre-fetch detail for EQ + TC alerts. Other event types (FL/VO/DR/WF)
-// surface their relevant scale through severityText already; the detail
-// endpoint has no equivalent population block for them.
-const detailCandidates = alerts.filter((a) => a.eventtype === 'EQ' || a.eventtype === 'TC')
-const fetched = new Map()
-let succeeded = 0
-let failed = 0
-
-await runWithConcurrency(detailCandidates, DETAIL_CONCURRENCY, async (alert) => {
-  try {
-    const detail = await fetchGdacsDetail(alert)
-    fetched.set(detailKey(alert), detail)
-    succeeded++
-  } catch {
-    // Per-event failure is non-fatal — sheet just renders without the
-    // population line, same as if mobile had failed the lazy fetch before.
-    failed++
-  }
-})
-// Filed in the alerts' order, not the order the answers came back in.
-const details = detailsInAlertOrder(detailCandidates, fetched)
-
-// The narrator runs four stages on and may not finish; what it has already
-// written goes back on now, so the file is never published bare.
-const narrated = carryNarratives(alerts, readJson(pathOf('gdacsNarrations'), {}))
-
-const payload = {
-  generated: new Date().toISOString(),
-  alerts,
-  details,
-}
-
-writeJson(OUTPUT_PATH, payload, { pretty: false })
-
-const elapsed = ((Date.now() - started) / 1000).toFixed(1)
-console.log(
-  `  ✓ wrote ${alerts.length} alerts, ${succeeded}/${detailCandidates.length} details${
-    failed > 0 ? ` (${failed} failed)` : ''
-  }${narrated > 0 ? `, ${narrated} narratives carried` : ''} in ${elapsed}s`,
-)
