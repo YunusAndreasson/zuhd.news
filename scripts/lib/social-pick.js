@@ -5,7 +5,8 @@
 // could only be tried by running it against a live model. The call itself
 // stays in the script.
 
-import { setFrontmatterLine } from './frontmatter.js'
+import { isDeepStrictEqual } from 'node:util'
+import { parseFrontmatter, setFrontmatterLine } from './frontmatter.js'
 
 /** @typedef {import('./breaking.js').BreakingCandidate} BreakingCandidate */
 
@@ -79,6 +80,14 @@ export const socialTitleOf = (pick) => String(pick.socialTitle || '').trim().rep
  * The article with `socialTitle` set, under its `title`: a minimal text edit,
  * every other line as it was. Throws when the file has no frontmatter.
  *
+ * And throws when the edit is not exactly that. This runs after the validator
+ * and before the build, so a frontmatter it breaks is a build that fails and a
+ * cycle that publishes nothing: five did, from 2026-08-14 to 2026-09-28, each
+ * on a headline with a dollar figure the edit then read as a pattern. So the
+ * result is parsed before it is handed back: it has to carry the headline as
+ * given and every other key as it was. The caller leaves the file alone on a
+ * throw, and the card uses the article's own title.
+ *
  * @param {string} raw
  * @param {string} socialTitle
  */
@@ -87,5 +96,11 @@ export function withSocialTitle(raw, socialTitle) {
   if (!fm) throw new Error('no frontmatter block')
   const value = JSON.stringify(socialTitle) // valid YAML double-quoted scalar
   const block = setFrontmatterLine(fm[1], 'socialTitle', value, { after: 'title' })
-  return `---\n${block}\n---\n${raw.slice(fm[0].length)}`
+  const next = `---\n${block}\n---\n${raw.slice(fm[0].length)}`
+
+  const { socialTitle: _was, ...before } = parseFrontmatter(raw).meta
+  const { socialTitle: now, ...after } = parseFrontmatter(next).meta
+  if (now !== socialTitle) throw new Error('the headline did not survive the edit')
+  if (!isDeepStrictEqual(after, before)) throw new Error('the edit changed more than the headline')
+  return next
 }

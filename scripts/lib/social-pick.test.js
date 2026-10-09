@@ -79,7 +79,7 @@ test('the headline goes under the title, and every other line stays as it was', 
 })
 
 test('a headline with quotes, a backslash or a pattern in it still parses, and comes back as written', () => {
-  for (const title of ['He Said "No" — $& And $1 And $`', 'C:\\Users Are Not News', 'Colon: Then # Hash']) {
+  for (const title of ['He Said "No" — $& And $1 And $`', 'C:\\Users Are Not News', 'Colon: Then # Hash', 'A Line\u2028Separator', 'Tab\tAnd é And 日本']) {
     assert.equal(parseFrontmatter(withSocialTitle(ARTICLE, title)).meta.socialTitle, title)
   }
 })
@@ -89,6 +89,17 @@ test('an article that has one already gets the new one in its place', () => {
   const second = withSocialTitle(first, 'The Second Try')
   assert.equal(second, first.replace('The First Try', 'The Second Try'))
   assert.equal(second.match(/^socialTitle:/gm)?.length, 1)
+})
+
+// The edit is one line; what stands under an older `socialTitle:` is not its
+// business, and here it would be left hanging under the new one.
+test('an edit that would change anything but the headline is refused', () => {
+  const folded = ARTICLE.replace('date:', 'socialTitle: >\n  An older headline,\n  folded over two lines\ndate:')
+  assert.equal(parseFrontmatter(folded).meta.socialTitle, 'An older headline, folded over two lines\n')
+  assert.throws(() => withSocialTitle(folded, 'A New One'), /the edit|bad indentation|did not survive/)
+
+  const broken = ARTICLE.replace('"Nvidia Authorizes Record Buyback"', '"Nvidia "Authorizes" Record Buyback"')
+  assert.throws(() => withSocialTitle(broken, 'A New One'), 'an article that does not parse to begin with')
 })
 
 test('a file with no frontmatter is refused', () => {
