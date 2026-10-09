@@ -22,6 +22,7 @@ import { fileURLToPath } from 'node:url'
 import { ROOT } from './paths.js'
 
 const STUB = fileURLToPath(new URL('./cycle-stub.js', import.meta.url))
+const CLOCK = fileURLToPath(new URL('./frozen-clock.js', import.meta.url))
 const STUBBED = ['node', 'claude', 'git', 'npm', 'npx', 'curl', 'date', 'sleep']
 // The real tools the script uses. None reaches outside the sandbox it is given.
 const TOOLS = ['bash', 'cat', 'cp', 'dirname', 'find', 'flock', 'grep', 'head', 'mkdir', 'mount', 'rm', 'sort', 'tee', 'timeout', 'tr', 'wc']
@@ -35,8 +36,20 @@ const PROMPTS = ['select-prompt.md', 'write-prompt.md', 'check-prompt.md', 'tune
 // bytes. A recording therefore describes these files as well as the script.
 export const SENT_WHOLE = ['push-prompt.md', 'briefing-push-prompt.md']
 
-/** The files a recording describes, by path from the root: the script, and the prompts it sends whole. */
-export const RECORDED = ['scripts/run-cycle.sh', ...SENT_WHOLE.map((p) => `scripts/${p}`)]
+/**
+ * The files a recording describes, by path from the root: the script and the
+ * prompts it sends whole, and the runner that is held to the same recordings.
+ * An edit to any of them has to be followed by a run of the scenarios.
+ */
+export const RECORDED = [
+  'scripts/run-cycle.sh',
+  ...SENT_WHOLE.map((p) => `scripts/${p}`),
+  'scripts/run-cycle.next.sh',
+  'scripts/cycle/run.js',
+  'scripts/cycle/stages.js',
+  'scripts/lib/cycle-run.js',
+  'scripts/lib/cycle-steps.js',
+]
 
 /** Whether this machine lets us make the sandbox: root, with `unshare`. */
 export function canSandbox() {
@@ -86,12 +99,26 @@ export async function runCycle(scenario, { script = join(ROOT, 'scripts', 'run-c
     chmodSync(join(repo, 'scripts', 'run-cycle.sh'), 0o755)
     for (const p of PROMPTS) writeFileSync(join(repo, 'scripts', p), `«${p}»\n`)
     for (const p of SENT_WHOLE) cpSync(join(dirname(script), p), join(repo, 'scripts', p))
+    // The runner and what it imports, for an orchestrator that hands over to
+    // it. Copied, so that the repository it works on is this scratch one: its
+    // paths come from where its own files are.
+    for (const dir of ['cycle', 'lib']) {
+      const from = join(dirname(script), dir)
+      mkdirSync(join(repo, 'scripts', dir), { recursive: true })
+      for (const f of readdirSync(from)) if (f.endsWith('.js') && !f.endsWith('.test.js')) cpSync(join(from, f), join(repo, 'scripts', dir, f))
+    }
     for (const [path, content] of Object.entries(scenario.files ?? {})) {
       mkdirSync(dirname(join(repo, path)), { recursive: true })
       writeFileSync(join(repo, path), content)
     }
     for (const name of STUBBED) {
-      writeFileSync(join(stubs, name), `#!/bin/bash\nexec '${process.execPath}' '${STUB}' ${name} "$@"\n`)
+      // The one thing `node` runs for real is the runner, which is the
+      // orchestrator itself and not something it calls. It gets the clock held
+      // at the scenario's moment, as the shell script gets it from `date`, and
+      // takes the launcher's place, so that a signal sent to the orchestrator
+      // reaches it.
+      const runner = name === 'node' ? `case "$1" in */scripts/cycle/run.js) ZUHD_FROZEN_NOW='${scenario.now}' exec '${process.execPath}' --import '${CLOCK}' "$@" ;; esac\n` : ''
+      writeFileSync(join(stubs, name), `#!/bin/bash\n${runner}exec '${process.execPath}' '${STUB}' ${name} "$@"\n`)
       chmodSync(join(stubs, name), 0o755)
     }
     for (const tool of TOOLS) symlinkSync(realPath(tool), join(tools, tool))

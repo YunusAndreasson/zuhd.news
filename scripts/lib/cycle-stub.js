@@ -15,7 +15,7 @@ const scenario = JSON.parse(readFileSync(/** @type {string} */ (process.env.ZUHD
 const tracePath = /** @type {string} */ (process.env.ZUHD_HARNESS_TRACE)
 
 // Not the orchestrator's doing: what the sandbox itself put in the environment.
-const OWN_ENV = /^(PATH|HOME|PWD|OLDPWD|SHLVL|_|MISE_BIN|ZUHD_HARNESS_.*)$/
+const OWN_ENV = /^(PATH|HOME|PWD|OLDPWD|SHLVL|_|MISE_BIN|ZUHD_HARNESS_.*|ZUHD_FROZEN_NOW)$/
 const SILENT = cmd === 'date' || cmd === 'sleep'
 
 const DAYS = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat']

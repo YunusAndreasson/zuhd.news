@@ -113,7 +113,9 @@ test('no new file spells a state path, and a converted one leaves the list', () 
   // Not stages. The catalog is where the paths are; the harness builds the
   // sandbox `run-cycle.sh` runs in, and the paths it spells are the script's
   // own, inside that sandbox.
-  const exempt = /\.test\.js$|lib\/datasets\.js$|lib\/cycle-(harness|scenarios)\.js$/
+  // The wrapper that is to become `run-cycle.sh` names the lock file it takes:
+  // bash cannot ask the catalog.
+  const exempt = /\.test\.js$|lib\/datasets\.js$|lib\/cycle-(harness|scenarios)\.js$|run-cycle\.next\.sh$/
   const walk = (dir) => readdirSync(dir).flatMap((n) => (statSync(join(dir, n)).isDirectory() ? walk(join(dir, n)) : [join(dir, n)]))
   const code = (file) => readFileSync(file, 'utf8').split('\n').filter((l) => !/^\s*(\/\/|\*|\/\*|#)/.test(l)).join('\n')
   const spelling = walk(join(ROOT, 'scripts'))
