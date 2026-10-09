@@ -100,7 +100,7 @@ Before deleting anything a tool has not proved dead:
 1. Grep the whole repo, including `mobile/` and `.claude/`. `shared/**` is a
    knip `entry`, so knip reports nothing about it.
 2. Ask what reaches it without an import: `run-cycle.sh` by name, `spawnSync`
-   in `run-replay.js`, `island-loader.js` by string path, `island-bundle.js`
+   in `lib/cycle-run.js`, `island-loader.js` by string path, `island-bundle.js`
    in tests, `data-island` attributes, class names built from data.
 3. Ask whether the value is the point: a `satisfies` const, a type-only
    export, a rule that exists to be overridden.

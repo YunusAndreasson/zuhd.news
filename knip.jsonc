@@ -88,9 +88,6 @@
     "scripts/replay-market-signals.js",
     "scripts/dashboard/server.js",
 
-    // ── The autoresearch session driver, run by the /autoresearch skill.
-    "scripts/autoresearch/*.js",
-
     // ── Tests.
     "scripts/lib/*.test.js",
 

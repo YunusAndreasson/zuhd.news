@@ -784,11 +784,14 @@ function handleRvsTrend() {
 }
 
 // ── Autoresearch session history ────────────────────────────────────
+//
+// The sessions of 2026-04-26, as the harness left them. The harness itself
+// is gone (it had not been able to run since May); what it recorded is kept.
 
 function handleAutoresearch() {
   return cached('autoresearch', 60_000, () => {
     const dir = join(ROOT, 'content', '.autoresearch-history')
-    if (!existsSync(dir)) return { empty: true, hint: 'no autoresearch sessions persisted yet — runs on session end via summarize-session.js' }
+    if (!existsSync(dir)) return { empty: true, hint: 'no autoresearch sessions on record' }
     const files = readdirSync(dir).filter((f) => f.endsWith('.jsonl')).sort().reverse()
     if (files.length === 0) return { empty: true }
 

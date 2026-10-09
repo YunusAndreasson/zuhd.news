@@ -54,12 +54,6 @@ test('every path a prompt names is in the catalog', () => {
 //
 // Comment lines do not count: a path in prose is not a path that is opened.
 const STILL_SPELLING = [
-  'scripts/autoresearch/driver.js',
-  'scripts/autoresearch/replay-recap-dedup.js',
-  'scripts/autoresearch/replay-utils.js',
-  'scripts/autoresearch/run-replay.js',
-  'scripts/autoresearch/score.js',
-  'scripts/autoresearch/summarize-session.js',
   'scripts/build.js',
   'scripts/dashboard/server.js',
   'scripts/extract-entities.js',
