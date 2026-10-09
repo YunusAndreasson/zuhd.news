@@ -14,7 +14,7 @@ import { readdirSync, readFileSync } from 'node:fs'
 import { fileURLToPath } from 'node:url'
 import { parseFrontmatter } from './frontmatter.js'
 import { fitText, loadFont, measureText, wrapToWidth } from './font-metrics.js'
-import { buildIgSvg, IG_FEED, IG_STORY, IG_X } from './ig-image.js'
+import { buildIgSvg, IG_FEED, IG_STORY } from './ig-image.js'
 
 const fontPath = (f) => fileURLToPath(new URL(`../assets/fonts/${f}`, import.meta.url))
 const BOLD = loadFont(fontPath('SourceSans3-Bold.ttf'))
@@ -123,7 +123,7 @@ test('no share card ever renders an ellipsis in its type', () => {
   // something was cut — either by the wrap or by the lead extractor upstream.
   const offenders = []
   for (const article of hardCases()) {
-    for (const [name, size] of [['feed', IG_FEED], ['story', IG_STORY], ['x', IG_X]]) {
+    for (const [name, size] of [['feed', IG_FEED], ['story', IG_STORY]]) {
       // lat/lng omitted: the globe is geometry, not type, and building it for
       // every case would make this suite take minutes.
       const svg = buildIgSvg({ ...article, lat: null, lng: null }, size)

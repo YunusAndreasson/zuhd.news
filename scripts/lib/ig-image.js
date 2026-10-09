@@ -1,6 +1,7 @@
 // Instagram share card: the breaking-alert headline over a delicate,
 // full-bleed orthographic globe — the OG card's visual language recomposed
 // for a vertical feed post (1080×1350, 4:5) and a Story (1080×1920, 9:16).
+// X is posted the feed card too. The card is dark, and only dark.
 //
 // Stack mirrors og-image.js: hand-built SVG string → @resvg/resvg-js (WOFF2
 // font buffer). Instagram's publish API rejects PNG, so we take resvg's RGBA
@@ -117,12 +118,13 @@ const REGULAR = () => loadFont(fontPath('SourceSans3-Regular.ttf'))
 // composer with a taller canvas so it fills a 9:16 screen natively.
 export const IG_FEED = { width: 1080, height: 1350 }
 export const IG_STORY = { width: 1080, height: 1920 }
-export const IG_X = { width: 1600, height: 900 } // 16:9 landscape for X — fills the timeline
 
 // Was 72. The column is a touch wider now, which buys back a word or two per
 // line and lets the fitter settle on a larger size — the two changes work
 // together and neither is worth much alone.
 const PAD = 60
+
+const JPEG_QUALITY = 92
 
 /**
  * The type ramps the fitter chooses from.
@@ -158,9 +160,9 @@ const DEK_COMFORT = 40
  * giving it room actually helps. Neither block is ever truncated at any point
  * in this loop; the only thing being traded is size.
  */
-const fitPair = (headline, summary, { maxWidth, box, headMax = HEAD_RAMP.max }) => {
+const fitPair = (headline, summary, { maxWidth, box }) => {
   let best = null
-  for (let headMaxTry = headMax; headMaxTry >= HEAD_RAMP.min; headMaxTry -= HEAD_RAMP.step) {
+  for (let headMaxTry = HEAD_RAMP.max; headMaxTry >= HEAD_RAMP.min; headMaxTry -= HEAD_RAMP.step) {
     const head = fitText(BOLD(), headline, {
       ...HEAD_RAMP,
       max: headMaxTry,
@@ -195,69 +197,10 @@ const fitPair = (headline, summary, { maxWidth, box, headMax = HEAD_RAMP.max }) 
  * @param {Object} article - { headline, summary, category, date, location, lat, lng }
  *   headline is the article title; summary is the lead/first sentences of the story.
  * @param {Object} [size=IG_FEED] - { width, height }
- * @param {'light'|'dark'} [variant='light']
  */
-export const buildIgSvg = (article, size = IG_FEED, variant = 'dark') => {
+export const buildIgSvg = (article, size = IG_FEED) => {
   const { width: W, height: H } = size
-  const theme = themeFor(variant)
-
-  // Landscape card (X): text column on the left, the globe large on the right.
-  // X's native single-image aspect, so it fills the timeline with no crop.
-  if (W > H) {
-    const PADL = 90
-    // Was `W * 0.6 - PADL`. A touch wider, matching the portrait card's change.
-    const colW = W * 0.63 - PADL
-    const shadow = variant === 'dark' ? '#000000' : '#ffffff'
-    const dek = variant === 'dark' ? '#cfcfcf' : theme.dim
-    const kickerL = `${(article.category || 'news').toUpperCase()}  ·  ${formatLongDate(article.date)}`
-    const locL = article.location ? String(article.location).toUpperCase() : null
-    const headL = article.headline || article.title || 'Breaking News'
-    const sumL = String(article.summary || '').trim()
-    const gl = buildGlobe(article.lat, article.lng, theme, {
-      cx: W * 0.8,
-      cy: H * 0.52,
-      r: H * 0.62,
-      scaleMul: 2.0,
-      clipId: 'ig-globe-clip',
-      ocean: variant === 'dark' ? IG_DARK_OCEAN : theme.soft,
-      land: variant === 'dark' ? '#383838' : theme.land,
-      // Country borders — delicate lines between nations (see feed branch).
-      landStroke: variant === 'dark' ? '#6b6b6b' : '#c4c4c4',
-      landStrokeWidth: 0.8,
-      rim: null,
-      showCross: true,
-    })
-    // Same fitting as the portrait card: measured, never clipped. The box runs
-    // from the kicker down to the location line at the foot.
-    const boxTop = Math.round(H * 0.2)
-    const box = H - 150 - boxTop
-    const { head: headFit, dek: dekFit, gap: gapL } = fitPair(headL, sumL, {
-      maxWidth: colW,
-      box,
-      headMax: 84,
-    })
-    const tf = headFit.fontSize
-    const tlh = headFit.lineHeight
-    const tl = headFit.lines
-    const ty = boxTop + tf
-    const df = dekFit.fontSize
-    const dlh = dekFit.lineHeight
-    const dl = dekFit.lines
-    const dy = ty + (tl.length - 1) * tlh + gapL + df
-    return `<?xml version="1.0" encoding="UTF-8"?>
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 ${W} ${H}" width="${W}" height="${H}">
-  <defs><filter id="ig-text-shadow" x="-20%" y="-20%" width="140%" height="140%" color-interpolation-filters="sRGB"><feDropShadow dx="0" dy="2" stdDeviation="8" flood-color="${shadow}" flood-opacity="0.55"/></filter></defs>
-  <rect width="${W}" height="${H}" fill="${theme.bg}"/>
-  ${gl ? `<g opacity="0.95">${gl}</g>` : ''}
-  <g filter="url(#ig-text-shadow)">
-  <text x="${PADL}" y="${PADL + 40}" font-family="Source Sans 3" font-size="26" font-weight="600" fill="${theme.dim}" letter-spacing="3">${escXml(kickerL)}</text>
-  ${tl.map((l, i) => `<text x="${PADL}" y="${ty + i * tlh}" font-family="Source Sans 3" font-size="${tf}" font-weight="700" fill="${theme.fg}" letter-spacing="-0.01em">${escXml(l)}</text>`).join('\n  ')}
-  ${dl.map((l, i) => `<text x="${PADL}" y="${dy + i * dlh}" font-family="Source Sans 3" font-size="${df}" font-weight="400" fill="${dek}">${escXml(l)}</text>`).join('\n  ')}
-  ${locL ? `<text x="${PADL}" y="${H - 120}" font-family="Source Sans 3" font-size="26" font-weight="600" fill="${theme.dim}" letter-spacing="3">${escXml(locL)}</text>` : ''}
-  <text x="${PADL}" y="${H - 64}" font-family="Source Sans 3" font-size="34" font-weight="700" fill="${theme.fg}" letter-spacing="-0.01em">zuhd<tspan fill="${theme.dim}">.</tspan>news</text>
-  </g>
-</svg>`
-  }
+  const theme = themeFor('dark')
 
   const inner = W - PAD * 2
 
@@ -274,12 +217,12 @@ export const buildIgSvg = (article, size = IG_FEED, variant = 'dark') => {
     r: globeR,
     scaleMul: 1.9,
     clipId: 'ig-globe-clip',
-    ocean: variant === 'dark' ? IG_DARK_OCEAN : theme.soft,
-    land: variant === 'dark' ? '#3d3d3d' : theme.land,
+    ocean: IG_DARK_OCEAN,
+    land: '#3d3d3d',
     // Country borders: each country is its own stroked path, so this draws the
     // dividing lines between nations. Kept delicate but with enough contrast
     // over the land fill to read clearly on the card.
-    landStroke: variant === 'dark' ? '#6b6b6b' : '#c4c4c4',
+    landStroke: '#6b6b6b',
     landStrokeWidth: 0.8,
     rim: null, // full-width bleed in the lower half — grounded, no bounding disc
     showCross: true,
@@ -303,7 +246,7 @@ export const buildIgSvg = (article, size = IG_FEED, variant = 'dark') => {
   const summary = String(article.summary || '').trim()
   // Brighter than the dim label grey so the dek stays legible over the globe on
   // the dark card; weight (400 vs the 700 headline) still carries the hierarchy.
-  const dekColor = variant === 'dark' ? '#cfcfcf' : theme.dim
+  const dekColor = '#cfcfcf'
   const { head, dek, gap } = fitPair(headline, summary, { maxWidth: inner, box: textBox })
 
   const titleFontSize = head.fontSize
@@ -316,7 +259,7 @@ export const buildIgSvg = (article, size = IG_FEED, variant = 'dark') => {
   const dekStartY = titleStartY + (titleLines.length - 1) * titleLineHeight + gap + dekFontSize
 
   // Soft shadow behind the type so it stays crisp where it crosses the globe.
-  const shadowColor = variant === 'dark' ? '#000000' : '#ffffff'
+  const shadowColor = '#000000'
 
   return `<?xml version="1.0" encoding="UTF-8"?>
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 ${W} ${H}" width="${W}" height="${H}">
@@ -365,18 +308,17 @@ export const buildIgSvg = (article, size = IG_FEED, variant = 'dark') => {
  * Rasterize an Instagram card SVG to a JPEG Buffer (Instagram rejects PNG).
  * resvg gives us the RGBA pixel buffer; jpeg-js encodes it to JPEG.
  */
-export const rasterizeIgJpeg = (svgString, size = IG_FEED, variant = 'dark', quality = 92) => {
+const rasterizeIgJpeg = (svgString, size = IG_FEED) => {
   const resvg = new Resvg(svgString, {
     font: { fontFiles: FONT_FILES, loadSystemFonts: false, defaultFontFamily: 'Source Sans 3' },
     fitTo: { mode: 'width', value: size.width },
-    background: themeFor(variant).bg, // opaque — JPEG has no alpha channel
+    background: themeFor('dark').bg, // opaque — JPEG has no alpha channel
   })
   const rendered = resvg.render()
-  const { data } = jpeg.encode({ data: rendered.pixels, width: rendered.width, height: rendered.height }, quality)
+  const { data } = jpeg.encode({ data: rendered.pixels, width: rendered.width, height: rendered.height }, JPEG_QUALITY)
   return data
 }
 
 /** Convenience: build + rasterize in one call. Returns a JPEG Buffer. */
-/** @param {any} article @param {{width:number,height:number}} [size] @param {'light'|'dark'} [variant] */
-export const buildIgJpeg = (article, size = IG_FEED, variant = 'dark') =>
-  rasterizeIgJpeg(buildIgSvg(article, size, variant), size, variant)
+/** @param {any} article @param {{width:number,height:number}} [size] */
+export const buildIgJpeg = (article, size = IG_FEED) => rasterizeIgJpeg(buildIgSvg(article, size), size)
