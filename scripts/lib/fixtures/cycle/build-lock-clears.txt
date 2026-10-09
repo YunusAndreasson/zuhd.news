@@ -63,7 +63,7 @@ commands
   npm install --no-audit --no-fund
   git push origin master
   npx wrangler pages deploy dist --project-name zuhd-news --branch master --commit-dirty=true
-  node -e «breaking-pick» sha1:c04ed8d8
+  node scripts/cycle/breaking-push.js pick
   node -e «push-slug» sha1:94d3b284
       < {"articles":[{"slug":"2026-10-08-fed-raises-rates","title":"Fed Raises Rates","category":"economy","body":"The Federal Reserve raised","eventCoverage":12,"importance":6}]}
   claude --no-session-persistence --setting-sources project --disable-slash-commands --strict-mcp-config --model claude-sonnet-5-5 --effort medium --tools '' -p «text sha1:f1770fa3»
@@ -72,7 +72,7 @@ commands
       < {"articles":[{"slug":"2026-10-08-fed-raises-rates","title":"Fed Raises Rates","category":"economy","body":"The Federal Reserve raised","eventCoverage":12,"importance":6}]}
   curl -s -X POST https://zuhd.news/api/push -H Authorization: Bearer not-a-secret -H Content-Type: application/json -d {"articles":[{"slug":"2026-10-08-fed-raises-rates","title":"Breaking News","category":"economy","body":"Fed raises interest rates by 25 basis points","eventCoverage":12,"importance":6}]}
       - NOTIF
-  node -e «push-log» sha1:abd76093
+  node scripts/cycle/breaking-push.js sent
       + BJSON={"articles":[{"slug":"2026-10-08-fed-raises-rates","title":"Breaking News","category":"economy","body":"Fed raises interest rates by 25 basis points","eventCoverage":12,"importance":6}]}
       + PRESP={"pushed":1,"skipped":0,"tokens":5}
   node scripts/post-to-twitter.js --slug 2026-10-08-fed-raises-rates

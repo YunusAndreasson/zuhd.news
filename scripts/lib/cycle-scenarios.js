@@ -46,12 +46,12 @@ const healthy = () => [
   rule('feed-stats', 'node', '^scripts/cycle/tally\\.js feed$', says('13 multi + 47 niche\n')),
   rule('selection-count', 'node', '^scripts/cycle/tally\\.js selection$', says('2\n')),
   rule('body-lengths', 'node', '^scripts/body-lengths\\.js$', says(`ok 452 chars  4 blocks  ${A}\nOVER 571 chars  5 blocks  ${B}\n`)),
+  rule('breaking-pick', 'node', '^scripts/cycle/breaking-push\\.js pick$', says(`${PUSH}\n`)),
   // The programs the script still carries inline, each told apart by a
   // phrase only it contains.
-  rule('breaking-pick', 'node', '^-e .*MIN_PUSH_COVERAGE', says(`${PUSH}\n`)),
   rule('push-slug', 'node', '^-e .*d\\.articles\\[0\\]\\?\\.slug', says('2026-10-08-fed-raises-rates\n')),
   rule('push-inject', 'node', '^-e .*empty push body from claude', says(PUSHED)),
-  rule('push-log', 'node', '^-e .*push-log update failed', says('')),
+  rule('push-log', 'node', '^scripts/cycle/breaking-push\\.js sent$', says('')),
   rule('briefing-top', 'node', '^-e .*briefing-top failed', says('[{"label":"Fed Raises Rates","category":"economy","arc":"breaking"}]')),
   rule('briefing-payload', 'node', '^-e .*channelId', says(BRIEFING_PUSH)),
   rule('alert', 'node', '/scripts/cycle/alert\\.js$', says('ALERT: no articles published (1 cycle(s) in a row since 2026-10-08T18:04:59.000Z)\n')),

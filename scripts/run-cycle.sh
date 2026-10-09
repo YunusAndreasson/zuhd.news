@@ -799,85 +799,7 @@ $TITLE_ECHO
       FUNNEL_PUBLISHED=$FUNNEL_VALIDATED
 
       # Push notifications for breaking stories
-      BREAKING_JSON=$(node -e "
-        const fs = require('fs');
-        const ledger = JSON.parse(fs.readFileSync('content/.story-ledger.json','utf8'));
-        const cycle = JSON.parse(fs.readFileSync('content/.last-cycle.json','utf8'));
-        const slugs = new Set(cycle.articles.map(a => a.slug));
-        // Read frontmatter + lead paragraph from article markdown
-        function readArticle(slug) {
-          try {
-            const md = fs.readFileSync('content/articles/' + slug + '.md', 'utf8');
-            const m = md.match(/^---\n([\s\S]*?)\n---/);
-            if (!m) return {};
-            const fm = {};
-            for (const line of m[1].split('\n')) {
-              const kv = line.match(/^(\w+):\s*\"?([^\"]+)\"?/);
-              if (kv) fm[kv[1]] = kv[2].trim();
-            }
-            // First non-empty paragraph after frontmatter
-            const body = md.slice(m[0].length).trim().split(/\n\n/)[0] || '';
-            // Strip location prefix (e.g. 'Washington — ') and end at a clean sentence boundary
-            const raw = body.replace(/^[A-Za-z\s,]+\s—\s/, '');
-            const cut = raw.slice(0, 80);
-            const lastSpace = cut.lastIndexOf(' ');
-            fm.lead = lastSpace > 30 ? cut.slice(0, lastSpace) : cut;
-            return fm;
-          } catch { return {}; }
-        }
-        const candidates = ledger.stories
-          .filter(s => s.arc === 'breaking' && s.coverageCount === 1)
-          .flatMap(s => (s.articles || []).filter(sl => slugs.has(sl)).map(sl => {
-            const fm = readArticle(sl);
-            return {
-              slug: sl,
-              title: fm.title || s.label,
-              category: fm.category || s.category || 'news',
-              body: fm.lead || '',
-              eventCoverage: parseInt(fm.eventCoverage) || 0,
-              importance: s.importance || 0
-            };
-          }))
-          .sort((a, b) => b.eventCoverage - a.eventCoverage);
-        // Experiment 2026-04-16-push-min-coverage: require eventCoverage >= 1
-        // (multi-source validation). Skips pushes when top candidate is niche-only.
-        const MIN_PUSH_COVERAGE = 1;
-        const eligible = candidates.filter(c => c.eventCoverage >= MIN_PUSH_COVERAGE);
-        // Honor the pre-build social pick (pick-breaking-social.js) when it
-        // named an eligible slug; otherwise keep the eventCoverage ordering.
-        let ordered = eligible;
-        try {
-          const pick = JSON.parse(fs.readFileSync('content/.breaking-pick.json','utf8'));
-          const idx = pick && pick.slug ? eligible.findIndex(c => c.slug === pick.slug) : -1;
-          if (idx > 0) ordered = [eligible[idx], ...eligible.slice(0, idx), ...eligible.slice(idx + 1)];
-        } catch {}
-        const selected = ordered.slice(0, 1)
-          .map(({ slug, title, category, body, eventCoverage, importance }) => ({ slug, title, category, body, eventCoverage, importance }));
-        const skipReason = (candidates.length > 0 && eligible.length === 0)
-          ? \`all \${candidates.length} candidates below coverage threshold \${MIN_PUSH_COVERAGE}\`
-          : null;
-
-        // Log all candidates and the decision to push-log.json
-        const logPath = 'content/.push-log.json';
-        let pushLog = [];
-        try { pushLog = JSON.parse(fs.readFileSync(logPath, 'utf8')); } catch {}
-        pushLog.push({
-          timestamp: new Date().toISOString(),
-          candidateCount: candidates.length,
-          candidates: candidates.map(c => ({
-            slug: c.slug, title: c.title, category: c.category,
-            eventCoverage: c.eventCoverage, importance: c.importance
-          })),
-          selected: selected[0] || null,
-          skipReason,
-          sent: false
-        });
-        // Keep last 100 entries
-        if (pushLog.length > 100) pushLog = pushLog.slice(-100);
-        fs.writeFileSync(logPath, JSON.stringify(pushLog, null, 2));
-
-        if (selected.length) console.log(JSON.stringify({ articles: selected }));
-      ")
+      BREAKING_JSON=$(node scripts/cycle/breaking-push.js pick)
       if [ -n "$BREAKING_JSON" ] && [ -n "${PUSH_SECRET:-}" ]; then
         # Craft notification body with Claude — the article lead isn't written for push
         PUSH_SLUG=$(echo "$BREAKING_JSON" | node -e "const d=JSON.parse(require('fs').readFileSync('/dev/stdin','utf8'));console.log(d.articles[0]?.slug||'')")
@@ -936,23 +858,7 @@ $ARTICLE_TEXT" 2>/dev/null)
             -d "$BREAKING_JSON")
           echo "$PUSH_RESPONSE" | tee -a "$LOG_FILE"
           # Update push log: derive title/body from the sent JSON itself (no shell-var coupling)
-          BJSON="$BREAKING_JSON" PRESP="${PUSH_RESPONSE:-}" node -e "
-            const fs = require('fs');
-            const logPath = 'content/.push-log.json';
-            try {
-              const sent = JSON.parse(process.env.BJSON);
-              const art = sent.articles?.[0] || {};
-              const log = JSON.parse(fs.readFileSync(logPath, 'utf8'));
-              const last = log[log.length - 1];
-              if (last) {
-                last.sent = true;
-                last.pushTitle = art.title;
-                last.pushBody = art.body;
-                try { last.response = JSON.parse(process.env.PRESP); } catch { last.response = process.env.PRESP; }
-              }
-              fs.writeFileSync(logPath, JSON.stringify(log, null, 2));
-            } catch (e) { process.stderr.write('push-log update failed: ' + e.message + '\n'); }
-          " 2>>"$LOG_FILE"
+          BJSON="$BREAKING_JSON" PRESP="${PUSH_RESPONSE:-}" node scripts/cycle/breaking-push.js sent 2>>"$LOG_FILE"
           # Mirror the same breaking story to X/Twitter as one plain-text tweet.
           # Non-fatal: the tweet step condenses via Claude, signs OAuth 1.0a, and
           # dedups via content/.tweet-log.json; any failure must not abort the cycle.
