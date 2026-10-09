@@ -22,7 +22,7 @@
  * editor applies its own test to each, and nothing is quarantined on this.
  */
 
-import { stripDateline } from './article.js'
+import { figuresOf, stripDateline } from './article.js'
 
 /** Words that say nothing about which story this is. */
 const STOP = new Set(
@@ -56,11 +56,6 @@ export function contentWords(s) {
   return out
 }
 
-/** The figures in a sentence, as written: `4.5`, `39bn`, `2,000`. */
-function figures(s) {
-  return (String(s || '').match(/\d[\d,.]*/g) || []).map((f) => f.replace(/[.,]$/, ''))
-}
-
 /**
  * The hook as the reader sees it: the body's first block without its
  * dateline (`Kano — `), which every surface strips. By the location, as the
@@ -90,7 +85,7 @@ export function titleEcho(title, hook) {
   if (titleWords.length === 0) return { covered: 0, figure: false, echo: false }
   const hookWords = new Set(contentWords(hook))
   const covered = titleWords.filter((w) => hookWords.has(w)).length / titleWords.length
-  const titleFigures = new Set(figures(title))
-  const figure = figures(hook).some((f) => !titleFigures.has(f))
+  const titleFigures = new Set(figuresOf(title))
+  const figure = figuresOf(hook).some((f) => !titleFigures.has(f))
   return { covered, figure, echo: covered >= 2 / 3 && !figure }
 }

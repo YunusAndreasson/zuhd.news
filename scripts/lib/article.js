@@ -61,6 +61,16 @@ export function tryReadArticle(path) {
 export const visibleText = (text) => text.replace(/\[([^\]]+)\]\([^)]+\)/g, '$1')
 
 /**
+ * The figures in a sentence, as written: `4.5`, `2,000`, the `39` of `39bn`.
+ * A full stop or a comma that ends the clause is not part of the figure, so
+ * "since day 14." and "14 days on" carry the same one.
+ *
+ * @param {string} text
+ * @returns {string[]}
+ */
+export const figuresOf = (text) => (String(text || '').match(/\d[\d,.]*/g) || []).map((figure) => figure.replace(/[.,]$/, ''))
+
+/**
  * The hard ceiling on a body, in visible characters. 400-480 is the target
  * window; past this the editor must trim. The number lives in write-prompt.md
  * and check-prompt.md too, and `article-budget.test.js` holds them together:

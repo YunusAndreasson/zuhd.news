@@ -4,7 +4,7 @@ import { mkdtempSync, readFileSync, rmSync, writeFileSync } from 'node:fs'
 import { tmpdir } from 'node:os'
 import { join } from 'node:path'
 import { test } from 'node:test'
-import { articleProblems, datelineOf, readArticle, stripDateline, tryReadArticle, visibleText } from './article.js'
+import { articleProblems, datelineOf, figuresOf, readArticle, stripDateline, tryReadArticle, visibleText } from './article.js'
 import { CATEGORY_FLOORS } from './dedup.js'
 import { ROOT } from './paths.js'
 import { CATEGORIES } from './schema.js'
@@ -102,6 +102,13 @@ test('the dateline comes off by the location, whatever alphabet the city is in',
   assert.equal(stripDateline('', 'Geneva'), '')
   // Only the opening: a later paragraph's dash is prose.
   assert.equal(stripDateline('Geneva — One.\n\nKyiv — Two.', 'Geneva'), 'One.\n\nKyiv — Two.')
+})
+
+test('a figure is read as written, without the stop or comma that ends its clause', () => {
+  assert.deepEqual(figuresOf('Brent stood at $71.20, down 8.5% since day 14.'), ['71.20', '8.5', '14'])
+  assert.deepEqual(figuresOf('2,000 troops, 39bn dollars and 3 of 11.'), ['2,000', '39', '3', '11'])
+  assert.deepEqual(figuresOf('No figures here.'), [])
+  assert.deepEqual(figuresOf(''), [])
 })
 
 test('a sound article has no problems', () => {

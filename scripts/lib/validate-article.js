@@ -12,7 +12,7 @@
 // run beside the gates and decides nothing.
 
 import { basename, join } from 'node:path'
-import { articleProblems, datelineOf, tryReadArticle } from './article.js'
+import { articleProblems, datelineOf, figuresOf, tryReadArticle } from './article.js'
 import { articleFilesSince } from './article-files.js'
 import { BLOCKS_MAX, BLOCKS_MIN, countedBlocks } from './blocks.js'
 import { normalizeUrl } from './dedup.js'
@@ -241,8 +241,10 @@ export function createValidator({ published, offeredBySlug, knownIds }) {
       const block = b.replace(/\[([^\]]+)\]\([^)]+\)/g, '$1').trim()
       // The same injected level is reworded, never repeated verbatim ("Brent crude
       // stood at…" / "Brent crude was…"), so the key is the run of figures when a
-      // block carries three or more, and the text otherwise.
-      const figures = block.match(/\d[\d,.]*/g) || []
+      // block carries three or more, and the text otherwise. A figure is read
+      // without the full stop or comma after it (`figuresOf`): kept, it made
+      // "since day 14." and "14 days on" two different runs.
+      const figures = figuresOf(block)
       const key = figures.length >= 3 ? `#${figures.join('|')}` : block
       if (key.length >= 12) sentenceSeen.set(key, [...(sentenceSeen.get(key) || []), { file: name, text: block }])
     }

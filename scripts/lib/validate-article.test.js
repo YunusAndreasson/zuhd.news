@@ -278,10 +278,16 @@ test('a block two articles share is reported, by its text or by its run of figur
   n(2, [BLOCKS[0], BLOCKS[1], reworded, 'It ends otherwise.'])
   n(3, [BLOCKS[0], 'A [linked](country:FR) block of its own here.', BLOCKS[2], 'Short one.'])
   n(4, [BLOCKS[0], 'A linked block of its own here.', 'Something else entirely.', 'Short one.'])
+  // The same three figures, one of them ending its sentence in the first and
+  // not in the second. With the full stop kept on it, these were two runs.
+  const closed = 'Gold closed at 2,650 dollars, up 3.1 percent since day 12.'
+  n(5, [BLOCKS[0], closed, 'A third block that only the fifth has.', 'And its fourth.'])
+  n(6, [BLOCKS[0], 'Gold was 2,650 dollars after a 3.1 percent rise, 12 days on.', 'A third block that only the sixth has.', 'And its own end.'])
   assert.deepEqual(v.repeats(), [
     { files: ['n1.md', 'n2.md'], text: level },
     { files: ['n1.md', 'n3.md'], text: BLOCKS[2] },
     { files: ['n3.md', 'n4.md'], text: 'A linked block of its own here.' },
+    { files: ['n5.md', 'n6.md'], text: closed },
   ])
   // Not reported: the opening block all four share, and a key under 12 characters.
 })
