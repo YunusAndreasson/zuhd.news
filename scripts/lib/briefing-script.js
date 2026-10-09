@@ -9,6 +9,48 @@
 
 const PAUSE_TAG = /<(short|long) pause>/g
 
+/** The sentence of `briefing-prompt.md` the article data is put in place of. */
+const DATA_SLOT = /The article data and editorial context are provided inline below by the system\. The JSON object contains:/
+
+/**
+ * The prompt with the day's articles in it.
+ *
+ * The data goes in where one sentence of the prompt stands, and two things
+ * could go wrong there without a word. If that sentence is ever reworded the
+ * replace matches nothing, and the model is sent a prompt with no articles
+ * and asked for a ten-minute bulletin: so no match is an error. And the
+ * replacement was a string, in which `$'`, `$&` and `` $` `` are patterns: an
+ * article with one in it would have pasted half the prompt into the data. A
+ * headline with `$1` in it did exactly that to `socialTitle` five times
+ * (`setFrontmatterLine`). A function is taken as it is.
+ *
+ * @param {string} template `briefing-prompt.md`
+ * @param {unknown} payload the articles and what comes with them
+ */
+export function briefingPrompt(template, payload) {
+  let placed = false
+  const prompt = template.replace(DATA_SLOT, () => {
+    placed = true
+    return `Here is the article data as JSON:\n\n\`\`\`json\n${JSON.stringify(payload, null, 2)}\n\`\`\`\n\nThe JSON object contains:`
+  })
+  if (!placed) throw new Error('briefing-prompt.md no longer has the sentence the article data replaces ("The article data and editorial context are provided inline below by the system. The JSON object contains:")')
+  return prompt
+}
+
+/**
+ * Why ffmpeg did not exit 0, from what `spawnSync` returned: the end of what
+ * it said. The start is its banner, 1.9 KB of version and build flags before
+ * the first word about the job, and the first 500 characters of that were
+ * all the log ever got.
+ *
+ * @param {{ status: number | null, stderr?: string | null, error?: Error & { code?: string } }} res
+ */
+export function ffmpegFailure(res) {
+  if (res.error) return res.error.code === 'ETIMEDOUT' ? 'timed out' : res.error.message
+  const said = String(res.stderr || '').trim()
+  return said ? said.slice(-500) : `exit ${res.status} with nothing on stderr`
+}
+
 /**
  * Split Claude's output into synthesis sections.
  *
