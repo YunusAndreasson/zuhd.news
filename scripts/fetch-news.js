@@ -2,23 +2,20 @@
 // RSS fetcher — niche sources not in the NewsAPI.ai index.
 // These provide editorial taste: specialist tech, investigative, Muslim world.
 // Output: /tmp/zuhd-feed-rss.json (merged with API feed by merge-feeds.js)
-import { readFileSync, readdirSync, existsSync, rmSync } from 'node:fs'
-import { join } from 'node:path'
+import { rmSync } from 'node:fs'
 import { XMLParser } from 'fast-xml-parser'
 import { pathOf } from './lib/datasets.js'
 import { feedPubDate } from './lib/feed-age.js'
 import { rssItemImage } from './lib/feed-image.js'
 import { fetchSourcePage, stripTags } from './lib/fetch-source-text.js'
 import { bestStoryIds, bodiesFirst, documentHolds, hackerNewsStories, worthRetrying } from './lib/rss-feed.js'
-import { slugify, fingerprint, zuhdCategory } from './lib/utils.js'
-import { ROOT } from './lib/paths.js'
+import { slugify, zuhdCategory } from './lib/utils.js'
 import { writeJson } from './lib/json-file.js'
 import { fetchJson, fetchText } from './lib/http.js'
 
-const CONTENT_DIR = join(ROOT, 'content', 'articles')
 const OUT = pathOf('feedRss')
 
-// Shared parser — reused across all sources (same options for RSS/Atom/RDF)
+// Shared parser — reused across all sources (same options for RSS and Atom)
 const rssParser = new XMLParser({
   ignoreAttributes: false,
   attributeNamePrefix: '@_',
@@ -121,24 +118,7 @@ function extractText(val) {
 
 function toArray(items) { return Array.isArray(items) ? items : [items] }
 function parseRss2Items(feed) { return toArray(feed?.rss?.channel?.item || []) }
-function parseRdfItems(feed) { return toArray((feed?.['rdf:RDF'] || feed?.RDF || feed)?.item || []) }
 function parseAtomItems(feed) { return toArray((feed?.feed || feed)?.entry || []) }
-
-
-// ── Dedup against existing articles ─────────────────────────────────
-
-function getExistingTitles(maxDaysOld = 10) {
-  if (!existsSync(CONTENT_DIR)) return []
-  const cutoff = new Date(Date.now() - maxDaysOld * 86400000).toISOString().slice(0, 10)
-  return readdirSync(CONTENT_DIR)
-    .filter(f => f.endsWith('.md') && f.slice(0, 10) >= cutoff)
-    .map(f => {
-      const content = readFileSync(join(CONTENT_DIR, f), 'utf-8')
-      const m = content.match(/^title:\s*["']?(.+?)["']?\s*$/m)
-      return m ? m[1].toLowerCase() : ''
-    })
-    .filter(Boolean)
-}
 
 
 // ── Fetch + Parse ───────────────────────────────────────────────────
@@ -225,9 +205,7 @@ async function fetchSource(source, retries = FEED_RETRIES) {
   try {
     const feed = rssParser.parse(xml)
 
-    const rawItems = source.format === 'rdf' ? parseRdfItems(feed)
-      : source.format === 'atom' ? parseAtomItems(feed)
-      : parseRss2Items(feed)
+    const rawItems = source.format === 'atom' ? parseAtomItems(feed) : parseRss2Items(feed)
     if (rawItems.length === 0) return failedFeed(source, `no items as ${source.format}: the document holds ${documentHolds(feed)}`)
 
     const items = rawItems.map(raw => normalizeItem(raw, source)).filter(Boolean)
@@ -351,18 +329,12 @@ async function main() {
   const hnUsed = Math.min(hnItems.length, capFor('Hacker News'))
   console.error(`Raw items: ${allItems.length} (${allItems.length - hnUsed} RSS + ${hnUsed} HN)`)
 
-  // Dedup against existing articles
-  const existingTitles = getExistingTitles()
-  const existingFps = new Set(existingTitles.map(fingerprint))
-  const seenFps = new Set()
-
+  // No dedup here. What is already published is the prefilter's to remove (by
+  // link, slug, event and title), and a headline two feeds share is one story
+  // in merge-feeds.js.
   const now = Date.now()
   const stories = []
   for (const item of allItems) {
-    const fp = fingerprint(item.title)
-    if (existingFps.has(fp) || seenFps.has(fp)) continue
-    seenFps.add(fp)
-
     const category = item.category || zuhdCategory([], item.title, item.description)
     // The date as the feed prints it is the publisher's: RFC 822, any offset,
     // and on 2026-10-09 a day ahead. `feedPubDate` says what the story carries.
