@@ -138,12 +138,23 @@ export async function runMarketSignals({ dryRun = false, noLlm = false, now = Da
       country: signal.country, what: signal.standing }, facts, pattern, coverage }
     const newsHash = hash(coverage)
     const previous = commentary[signal.id]
+    // A comment is shown only on the window it was written for (below), and a
+    // window moves with every session. Where one is showing, the move is
+    // itself a reason to ask: otherwise the comment vanished with nothing in
+    // its place and nothing asked for, until the coverage or the move changed
+    // by chance. Six published payloads lost their comment that way from
+    // 2026-09-10 to 09-24, each under an unchanged revision. Only where one is
+    // showing, so a signal with nothing to say is not asked again every session.
+    const slid = Boolean(previous?.validated) &&
+      (previous.startDate !== pattern.startDate || previous.endDate !== pattern.endDate)
     const changed = !previous || previous.eventId !== signal.eventId ||
       previous.kind !== pattern.kind || Math.abs(previous.changePct - pattern.changePct) >= 2 ||
-      previous.newsHash !== newsHash
+      previous.newsHash !== newsHash || slid
     let entry = previous
     if (changed) {
       let validated = null
+      /** The call failed: the model was not heard from, which is not an answer. */
+      let unheard = false
       if (!noLlm && !coverage.length) skipped.push(`${signal.id}: no coverage in window`)
       if (!noLlm && coverage.length && calls < 3) {
         calls++
@@ -165,6 +176,7 @@ INPUT:\n${JSON.stringify(bundle)}`)
         // "the caller logs rejected text so the gap stays visible", which the
         // indicator stage has done all along and this one did not.
         if (result.error) {
+          unheard = true
           rejections.push(`${signal.id}: model error — ${result.error}`)
         } else if (result.out) {
           const reasons = []
@@ -174,10 +186,19 @@ INPUT:\n${JSON.stringify(bundle)}`)
           rejections.push(`${signal.id}: no object in model result`)
         }
       }
-      entry = { eventId: signal.eventId, kind: pattern.kind, changePct: pattern.changePct, newsHash,
-        startDate: pattern.startDate, endDate: pattern.endDate,
-        revision: (previous?.revision || 0) + 1, validated }
-      commentary[signal.id] = entry
+      // A failed call records nothing. It used to store this window's
+      // `newsHash` with no comment, exactly as a refusal does, so a CLI that
+      // was down for one cycle was never asked again until the coverage
+      // changed. With an entry already there it stands as it is, revision and
+      // all, and `changed` is true again next cycle. With none, the card still
+      // needs a revision to publish: the entry is written without the hash,
+      // which is what asks again.
+      if (!(unheard && previous)) {
+        entry = { eventId: signal.eventId, kind: pattern.kind, changePct: pattern.changePct, ...(unheard ? {} : { newsHash }),
+          startDate: pattern.startDate, endDate: pattern.endDate,
+          revision: (previous?.revision || 0) + 1, validated }
+        commentary[signal.id] = entry
+      }
     }
     // Do not paste yesterday's window-specific explanation onto today's chart.
     const comment = entry?.startDate === pattern.startDate && entry?.endDate === pattern.endDate ? entry.validated : null

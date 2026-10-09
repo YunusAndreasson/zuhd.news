@@ -152,7 +152,13 @@ export function selectMarketSignals(raw, previous = {}, now = Date.now(), articl
     }
     if (!pattern) {
       const misses = (prev?.misses || 0) + (prev?.lastDate !== asOf ? 1 : 0)
-      if (prev) state[m.id] = { ...prev, misses, lastDate: asOf }
+      // An expired event is dropped, not kept at three misses and counting.
+      // Nothing reads one again (every use of `prev` asks for fewer than
+      // three), yet each kept its whole `signal.series`, and `lastDate` moved with
+      // every session, so the caller's thirty-day cut never reached it: ten
+      // of the 24 entries on 2026-10-09 were these, one at 60 misses.
+      if (prev && misses >= 3) delete state[m.id]
+      else if (prev) state[m.id] = { ...prev, misses, lastDate: asOf }
       if (prev?.signal && misses < 3 && now - Date.parse(prev.signal.asOf) <= 7 * DAY) active.push(prev.signal)
       reports.push({ id: m.id, reason: 'below thresholds', misses })
       continue

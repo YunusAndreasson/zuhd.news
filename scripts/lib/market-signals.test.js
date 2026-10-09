@@ -63,7 +63,10 @@ test('expiry advances by observations, never repeated fetches', () => {
     const r = selectMarketSignals([m], state, NOW+i*DAY)
     assert.equal(r.selected.length, i < 3 ? 1 : 0)
     const repeat = selectMarketSignals([m], r.state, NOW+i*DAY)
-    assert.equal(repeat.state.nasdaq100.misses, i)
+    // The third miss ends the event, and an ended event is not kept: nothing
+    // reads it again, and it held a whole series for as long as the market traded.
+    if (i < 3) assert.equal(repeat.state.nasdaq100.misses, i)
+    else assert.equal(repeat.state.nasdaq100, undefined)
     state = repeat.state
   }
 })
@@ -154,7 +157,7 @@ test('fallback contains computed dates and not invented news', () => {
   assert.ok(factualSummary(s).includes(s.pattern.startDate))
 })
 
-test('pipeline writes factual fallback on model failure and reuses unchanged revision', async () => {
+test('pipeline writes factual fallback when the model has nothing to say, and reuses an unchanged revision', async () => {
   const root = mkdtempSync(join(tmpdir(), 'zuhd-market-test-'))
   try {
     mkdirSync(join(root,'content/trends'), {recursive:true})
@@ -164,7 +167,8 @@ test('pipeline writes factual fallback on model failure and reuses unchanged rev
     writeFileSync(file,JSON.stringify({indicators:[{...m,label:m.title}]}))
     let calls = 0
     const article = {slug:'report',title:'NASDAQ-100',date:'2026-09-04',lead:'The central bank held its policy rate unchanged.',entityIds:['nasdaq100'],hay:'nasdaq'}
-    const options = {root,now:NOW,suppliedArticles:[article],callModel:()=>{ calls++; return {error:'unavailable',elapsedMs:0} }}
+    // An answer, and the one the prompt asks for when the news supports nothing.
+    const options = {root,now:NOW,suppliedArticles:[article],callModel:()=>{ calls++; return {elapsedMs:0,out:{recent:'',evidence:[]}} }}
     const first = await runMarketSignals(options)
     assert.equal(calls,1)
     assert.equal(first.published[0].commentary,'')
@@ -182,6 +186,83 @@ test('pipeline writes factual fallback on model failure and reuses unchanged rev
     assert.notEqual(update.published[0].revision,first.published[0].revision)
     assert.equal(update.published[0].eventId,first.published[0].eventId)
   } finally { rmSync(root,{recursive:true,force:true}) }
+})
+
+/** A root holding one index's series, the story about it, and a model that explains it. */
+function oneSignal() {
+  const root = mkdtempSync(join(tmpdir(), 'zuhd-market-asked-'))
+  mkdirSync(join(root, 'content/trends'), { recursive: true })
+  writeFileSync(join(root, 'content/.markets.json'), JSON.stringify({ exchanges: [] }))
+  const article = { slug: 'report', title: 'NASDAQ-100', date: '2026-09-04', lead: 'The central bank held its policy rate unchanged.', entityIds: ['nasdaq100'], hay: 'nasdaq' }
+  const answer = { elapsedMs: 0, out: { recent: article.lead, evidence: [{ slug: 'report', quote: article.lead }] } }
+  /** Write the series, `days` sessions on from the fixture's. */
+  const publish = (days = 0) => {
+    const m = market([2])
+    const dates = m.dates.map((d) => new Date(Date.parse(d) + days * DAY).toISOString().slice(0, 10))
+    writeFileSync(join(root, 'content/trends/2026-09-04.json'), JSON.stringify({ indicators: [{ ...m, dates, label: m.title }] }))
+  }
+  publish()
+  return { root, article, answer, publish }
+}
+
+test('a model that could not be reached is asked again, and its silence is not kept as an answer', async () => {
+  // A failed call used to be stored like a refusal: this window's coverage
+  // hash and no comment. One cycle with the CLI down, and the card had no
+  // explanation until a new article happened to change the hash.
+  const { root, article, answer } = oneSignal()
+  try {
+    let calls = 0
+    let up = false
+    const options = { root, now: NOW, suppliedArticles: [article], callModel: () => { calls++; return up ? answer : { error: 'claude exit 1: unavailable', elapsedMs: 0 } } }
+    const down = await runMarketSignals(options)
+    assert.equal(down.published[0].commentary, '')
+    const stillDown = await runMarketSignals(options)
+    assert.equal(calls, 2, 'asked again')
+    assert.equal(stillDown.published[0].revision, down.published[0].revision, 'and a failure is no revision')
+    up = true
+    const back = await runMarketSignals(options)
+    assert.equal(calls, 3)
+    assert.equal(back.published[0].commentary, article.lead)
+    assert.notEqual(back.published[0].revision, down.published[0].revision)
+    const settled = await runMarketSignals(options)
+    assert.equal(calls, 3, 'an answer is kept')
+    assert.equal(settled.published[0].commentary, article.lead)
+  } finally { rmSync(root, { recursive: true, force: true }) }
+})
+
+test('a comment whose window has moved on is asked for again, not dropped', async () => {
+  // A comment is shown only on the window it was written for, and the window
+  // moves with every session. Six published payloads lost theirs that way
+  // (`mkt:b3` on 2026-09-10, 14, 17 and 18, `mkt:idx`, `mkt:twse`): same
+  // event, same kind, same coverage, so nothing asked, and nothing shown.
+  const { root, article, answer, publish } = oneSignal()
+  try {
+    let calls = 0
+    const callModel = () => { calls++; return answer }
+    const first = await runMarketSignals({ root, now: NOW, suppliedArticles: [article], callModel })
+    assert.equal(first.published[0].commentary, article.lead)
+    publish(1)
+    const next = await runMarketSignals({ root, now: NOW + DAY, suppliedArticles: [article], callModel })
+    assert.notEqual(next.published[0].pattern.endDate, first.published[0].pattern.endDate, 'the window moved a session')
+    assert.equal(next.published[0].eventId, first.published[0].eventId, 'and nothing else did')
+    assert.equal(calls, 2)
+    assert.equal(next.published[0].commentary, article.lead)
+  } finally { rmSync(root, { recursive: true, force: true }) }
+})
+
+test('a signal with nothing to say is not asked again each session', async () => {
+  // The other half of the rule above: only a comment that is showing makes
+  // its window's move a reason to ask.
+  const { root, article, publish } = oneSignal()
+  try {
+    let calls = 0
+    const callModel = () => { calls++; return { elapsedMs: 0, out: { recent: '', evidence: [] } } }
+    await runMarketSignals({ root, now: NOW, suppliedArticles: [article], callModel })
+    publish(1)
+    const next = await runMarketSignals({ root, now: NOW + DAY, suppliedArticles: [article], callModel })
+    assert.equal(calls, 1)
+    assert.equal(next.published[0].commentary, '')
+  } finally { rmSync(root, { recursive: true, force: true }) }
 })
 test('an exchange signal carries who the index belongs to, with or without a comment', async () => {
   const root = mkdtempSync(join(tmpdir(), 'zuhd-market-identity-'))
