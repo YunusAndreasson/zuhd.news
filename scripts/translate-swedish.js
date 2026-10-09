@@ -187,12 +187,12 @@ let totalCostUsd = 0
 
 // Checkpoint after every batch, not once at the end.
 //
-// `run-cycle.sh` runs this stage under `timeout 600`, and a single write at the
-// end means a run that overshoots loses every translation it paid for — and
-// then overshoots identically on the next cycle, because nothing was cached to
-// shorten it. That is a permanent failure loop, and it is reachable whenever
-// the recipe changes and the whole window goes pending at once (102 articles
-// the day `ZUHD_SV_EFFORT` moved to `high`).
+// The cycle runs this stage under `timeout 600` (`cycle/stages.js`), and a
+// single write at the end means a run that overshoots loses every translation
+// it paid for — and then overshoots identically on the next cycle, because
+// nothing was cached to shorten it. That is a permanent failure loop, and it is
+// reachable whenever the recipe changes and the whole window goes pending at
+// once (102 articles the day `ZUHD_SV_EFFORT` moved to `high`).
 //
 // Writing as we go makes the stage resumable instead: a kill costs the batches
 // still in flight, and the next cycle starts from what survived. Concurrency is

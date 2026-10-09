@@ -6,9 +6,14 @@
 // the article's frontmatter. Mobile renders these as tappable runs that
 // open an EntitySheet with the matching indicator chart + back-references.
 //
-// v1: deterministic static-rule matching only. Zero LLM calls. Fast, cheap,
-// predictable. Ambiguous mentions (rupee, peso, pound) are skipped; a Haiku
-// disambiguation pass lands in a later revision.
+// Three things find them, in turn:
+//   - the registry's rules (`lib/entity-registry.js`): no model, and written to
+//     the article before anything else is asked;
+//   - one Haiku call that settles the mentions the rules call ambiguous
+//     (rupee, peso, pound);
+//   - one Haiku call that names the listed companies in each article and says
+//     which of them it is about (`lib/stock-mentions.js`), with a month of
+//     closes from Yahoo for each, appended to the trends snapshot.
 
 import { readFileSync, existsSync } from 'node:fs'
 import { basename } from 'node:path'
@@ -116,10 +121,10 @@ Return ONLY the JSON object. No commentary, no markdown fences.`
  * "meta-analysis"; picking BABA vs 9988.HK based on context; skipping
  * private firms (OpenAI, Aramco's subsidiaries).
  *
- * Fail-safe: any error returns null. No ticker gets extracted this cycle,
- * which is fine — next cycle retries. Null rather than an empty map so the
- * caller can tell "the scan did not run" from "the scan found nothing": only
- * the second is recorded on the article.
+ * Fail-safe: any error returns null. No ticker is extracted for this batch,
+ * and none will be later: an article is in the batch once. Null rather than
+ * an empty map so the caller can tell "the scan did not run" from "the scan
+ * found nothing": only the second is recorded on the article.
  */
 async function extractStocksViaHaiku(articles) {
   if (articles.length === 0) return new Map()

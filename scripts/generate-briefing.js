@@ -113,7 +113,7 @@ try {
 }
 
 // Compute hours until next briefing — one a day, on the 05:00 UTC cycle
-// (`DAILY_HOUR` in run-cycle.sh). Was [4, 16], from when there were two.
+// (`DAILY_HOUR` in lib/cycle-run.js). Was [4, 16], from when there were two.
 const BRIEFING_HOURS = [5]
 const now = new Date()
 const currentMinutes = now.getUTCHours() * 60 + now.getUTCMinutes()

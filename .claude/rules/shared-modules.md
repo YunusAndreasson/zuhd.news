@@ -15,14 +15,16 @@ prefer a parameter (class names, a link renderer) over a copy, as
 | Module | Holds |
 |---|---|
 | `scripts/lib/site-chrome.js` | the footer and the archetype header |
-| `scripts/lib/html.js` | `escHtml`, `escXml` |
+| `scripts/lib/html.js` | `escHtml`, `escXml`, `smartQuotes` |
 | `scripts/lib/contrast.js` | WCAG and HSL arithmetic |
 | `scripts/lib/regions.js` | lat/lng to region |
 | `scripts/lib/concurrency.js` | `runWithConcurrency` |
 | `scripts/lib/argv.js` | `--flag value` parsing |
 | `scripts/lib/island-bundle.js` | the esbuild + jsdom test harness |
-| `scripts/lib/claude-envelope.js` | envelope parsing, `callClaudeJson`, and `claudeArgs` (the `claude` argv) |
-| `scripts/lib/ig-image.js` | `igLead`, the card's lead; it never cuts on an ellipsis |
+| `scripts/lib/claude-envelope.js` | envelope parsing, `callClaudeJson`, `claudeArgs` (the `claude` argv), and `unquote` and `firstLine` for a model's line |
+| `scripts/lib/ig-image.js` | `igCardInputs`, what a story's card is drawn from, and `igLead`, its lead; it never cuts on an ellipsis |
+| `scripts/lib/post-log.js` | `postLog`: a log of posts read strictly, written atomically, capped |
+| `scripts/lib/social-post.js` | what the posters share: `loadStory`, `writeCopy`, `runPoster` |
 | `scripts/lib/serve-dist.js` | the local `dist/` server and its MIME table |
 | `scripts/lib/paths.js` | `ROOT` |
 | `scripts/lib/json-file.js` | `readJson`, atomic `writeJson` |

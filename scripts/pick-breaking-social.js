@@ -1,19 +1,20 @@
 #!/usr/bin/env node
-// Stage 3a.5 — social pick: choose which breaking story gets mirrored to
-// Instagram/X and give it a scroll-stopping card headline.
+// The social pick, before the build: choose which breaking story gets mirrored
+// to Instagram/X and give it a scroll-stopping card headline.
 //
-// The cycle mirrors exactly ONE breaking story to social each run (see
-// run-cycle.sh). Historically that story was the top breaking candidate by
-// eventCoverage — a newsworthiness signal, not an attention signal. This step
-// re-ranks the eligible (coverage-validated) breaking candidates for social
-// pull with one Claude call and writes an optimized `socialTitle` into the
-// winner's frontmatter BEFORE build.js runs, so the baked /api/ig/{slug}.jpg
-// card and the X card both render the punchier headline.
+// The cycle mirrors exactly ONE breaking story to social each run
+// (`breakingPush`, lib/cycle-steps.js). Historically that story was the top
+// breaking candidate by eventCoverage — a newsworthiness signal, not an
+// attention signal. This step re-ranks the eligible (coverage-validated)
+// breaking candidates for social pull with one Claude call and writes an
+// optimized `socialTitle` into the winner's frontmatter BEFORE build.js runs,
+// so the baked /api/ig/{slug}.jpg card and the X card both render the punchier
+// headline.
 //
-// Output: content/.breaking-pick.json = { slug, socialTitle, score, reason }.
-// run-cycle.sh's push/X/IG block honors this slug; if this step is skipped or
-// fails, that block falls back to its own eventCoverage ordering — so this is
-// strictly additive and never blocks a push.
+// Output: content/.breaking-pick.json, the pick's record. Its `slug` is all
+// that is read back: `cycle/breaking-push.js pick` honors it, and if this step
+// is skipped or fails falls back to its own eventCoverage ordering — so this
+// is strictly additive and never blocks a push.
 //
 // Fail-soft by design: any error (no candidates, bad Claude output, write
 // failure) logs a note and exits 0 without a pick. The cycle continues.

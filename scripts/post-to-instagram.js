@@ -2,13 +2,14 @@
 // Auto-post the breaking story to Instagram.
 //
 // The cycle already sends a breaking-news push once per cycle (the single top
-// validated breaking story, see run-cycle.sh) and mirrors it to X. This mirrors
-// the same story to the zuhd.news Instagram account as a single 4:5 image card —
-// the breaking-alert text over a delicate orthographic globe (see lib/ig-image.js)
-// — plus a Story cross-post and a first-comment link to the article.
+// validated breaking story: `breakingPush`, lib/cycle-steps.js) and mirrors it
+// to X. This mirrors the same story to the zuhd.news Instagram account as a
+// single 4:5 image card — the breaking-alert text over a delicate orthographic
+// globe (see lib/ig-image.js) — plus a Story cross-post and a first-comment
+// link to the article.
 //
 // Design decisions (mirror post-to-twitter.js):
-//   - Breaking pushes only. run-cycle.sh calls this with the pushed slug.
+//   - Breaking pushes only. The cycle calls this with the pushed slug.
 //   - The published image is the PUBLIC build artifact at
 //     https://zuhd.news/api/ig/{slug}.jpg (Instagram's Graph API needs a public
 //     JPEG URL). The card is rendered at build time from the article headline —
@@ -60,9 +61,9 @@ async function captionFor(story) {
  */
 async function post({ slug, dryRun, story, log }) {
   // The card headline is the social-optimized socialTitle when present (written
-  // pre-build by pick-breaking-social.js), else the article title — the same
-  // source the OG share card uses. The published image is the build artifact
-  // rendered from this same value, so the dry-run preview below matches exactly.
+  // pre-build by pick-breaking-social.js), else the article title. The
+  // published image is the build artifact, drawn from the same `igCardInputs`
+  // as `story.card`, so the dry-run preview below is the card that is posted.
   const { headline } = story.card
 
   // --- public image URLs (built at build time, deployed before this runs) ---

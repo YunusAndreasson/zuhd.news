@@ -2,12 +2,13 @@
 // Auto-post the breaking story to X (Twitter).
 //
 // The cycle already sends a breaking-news push once per cycle (the single top
-// validated breaking story, see run-cycle.sh). This mirrors that same story to
-// the zuhd.news X account as a single image tweet — the breaking card rendered
-// as a 4:5 portrait card (lib/ig-image.js), uploaded and posted image-only.
+// validated breaking story: `breakingPush`, lib/cycle-steps.js). This mirrors
+// that same story to the zuhd.news X account as a single image tweet — the
+// breaking card rendered as a 4:5 portrait card (lib/ig-image.js), uploaded
+// and posted image-only.
 //
 // Design decisions:
-//   - Breaking pushes only. run-cycle.sh calls this with the pushed slug.
+//   - Breaking pushes only. The cycle calls this with the pushed slug.
 //   - Image-only: the card carries the headline + story lead, so the tweet has
 //     no text. The app link lives in the X bio (no per-tweet URL).
 //   - The card is rendered here and its bytes uploaded via v1.1 media/upload; a
