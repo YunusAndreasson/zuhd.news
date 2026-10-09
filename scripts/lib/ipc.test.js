@@ -17,6 +17,7 @@ import {
   PHASE_NAMES,
   PUBLISH_MIN_PHASE,
   analysisAgeMonths,
+  byVintagePhaseCountry,
   countryTotals,
   featureClassification,
   gateByAge,
@@ -379,4 +380,31 @@ test('a total is one analysis, never two added together', () => {
   assert.equal(row.vintage, 'May 2026')
   assert.equal(row.areas, 1)
   assert.equal(row.p3plus, 60000)
+})
+
+// ---------------------------------------------------------------------------
+// The order the areas are written in
+// ---------------------------------------------------------------------------
+
+test('areas are in one order, whichever country came back first', () => {
+  // Seven countries share the Cadre Harmonisé's November vintage. Their files
+  // are fetched four at a time, and two keys left every tie between them to
+  // the order the network answered in.
+  const area = (country, name, phase, ageMonths) => ({ country, area: name, phase, ageMonths })
+  const tcd = [area('TCD', 'Lac', 2, 11.2), area('TCD', 'Abdi', 2, 11.2), area('TCD', 'Kanem', 3, 11.2)]
+  const ben = [area('BEN', 'Zou', 2, 11.2), area('BEN', 'Alibori', 2, 11.2)]
+  const som = [area('SOM', 'Bay', 4, 2.3)]
+
+  const order = (arrived) => arrived.flat().sort(byVintagePhaseCountry).map((a) => `${a.country} ${a.area}`)
+  const expected = [
+    'SOM Bay', // the newest analysis leads
+    'TCD Kanem', // then the gravest of a vintage
+    'BEN Zou', // then by country, and inside one the table's own row order
+    'BEN Alibori',
+    'TCD Lac',
+    'TCD Abdi',
+  ]
+  assert.deepEqual(order([tcd, ben, som]), expected)
+  assert.deepEqual(order([som, ben, tcd]), expected)
+  assert.deepEqual(order([ben, som, tcd]), expected)
 })

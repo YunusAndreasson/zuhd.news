@@ -19,6 +19,8 @@ import {
   GDACS_GEOJSON_URL,
   carryNarratives,
   collectionToAlerts,
+  detailKey,
+  detailsInAlertOrder,
   emptyListReport,
   fetchGdacsDetail,
   isGdacsFeatureCollection,
@@ -81,14 +83,14 @@ console.log(`  ✓ list: ${alerts.length} current alerts (within 30d age cliff)`
 // surface their relevant scale through severityText already; the detail
 // endpoint has no equivalent population block for them.
 const detailCandidates = alerts.filter((a) => a.eventtype === 'EQ' || a.eventtype === 'TC')
-const details = {}
+const fetched = new Map()
 let succeeded = 0
 let failed = 0
 
 await runWithConcurrency(detailCandidates, DETAIL_CONCURRENCY, async (alert) => {
   try {
     const detail = await fetchGdacsDetail(alert)
-    details[`${alert.eventtype}:${alert.eventid}`] = detail
+    fetched.set(detailKey(alert), detail)
     succeeded++
   } catch {
     // Per-event failure is non-fatal — sheet just renders without the
@@ -96,6 +98,8 @@ await runWithConcurrency(detailCandidates, DETAIL_CONCURRENCY, async (alert) => 
     failed++
   }
 })
+// Filed in the alerts' order, not the order the answers came back in.
+const details = detailsInAlertOrder(detailCandidates, fetched)
 
 // The narrator runs four stages on and may not finish; what it has already
 // written goes back on now, so the file is never published bare.

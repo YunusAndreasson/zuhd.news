@@ -410,6 +410,29 @@ export function joinAreas(rows, features, point, tally = { unjoined: 0, noGeomet
 }
 
 /**
+ * The order the snapshot's areas are written in: newest analysis first, then
+ * gravest, so a truncated read of the file is still a read of the most current
+ * and most serious of it — and then by country.
+ *
+ * The third key is what makes it an order. Countries are fetched four at a
+ * time and their areas arrive as each answer lands, and seven of them share
+ * one vintage (the Cadre Harmonisé's November 2025), so with two keys the
+ * places of 317 areas were decided by which country's file came back first.
+ * The build sorts the published areas on the same two keys and inherits the
+ * rest, under a stamp that holds only while the bytes do (`stable-stamp.js`).
+ *
+ * A sort is stable and a country's areas arrive together, in the table's row
+ * order, so within a country that order is kept. Country codes compare as
+ * plain strings: a collation is one more thing that could differ between
+ * builds.
+ *
+ * @param {{ ageMonths: number, phase: number, country: string }} a
+ * @param {{ ageMonths: number, phase: number, country: string }} b
+ */
+export const byVintagePhaseCountry = (a, b) =>
+  a.ageMonths - b.ageMonths || b.phase - a.phase || (a.country < b.country ? -1 : a.country > b.country ? 1 : 0)
+
+/**
  * Whether an area is grave enough to draw.
  *
  * Two criteria, because one of them measured wrong. `overall_phase >= 4` is the

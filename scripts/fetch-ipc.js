@@ -47,6 +47,7 @@ import { representativePoint } from './lib/geo-point.js'
 import { runWithConcurrency } from './lib/concurrency.js'
 import {
   AGE_LIMIT_MONTHS,
+  byVintagePhaseCountry,
   gateByAge,
   joinAreas,
   parseIpcAreaCsv,
@@ -216,8 +217,9 @@ if (countriesFailed > 0) {
 }
 
 // Newest analysis first, then gravest — so a truncated read of the file is still
-// a read of the most current and most serious of it.
-areas.sort((a, b) => a.ageMonths - b.ageMonths || b.phase - a.phase)
+// a read of the most current and most serious of it. Then by country, so the
+// order is the data's and not the order the countries' files came back in.
+areas.sort(byVintagePhaseCountry)
 
 const payload = {
   generated: new Date(now).toISOString(),

@@ -287,7 +287,7 @@ export function emptyListReport(collection, alerts) {
 export function carryNarratives(alerts, narrations) {
   let carried = 0
   for (const alert of alerts) {
-    const narrative = narrations?.[`${alert.eventtype}:${alert.eventid}`]?.narrative
+    const narrative = narrations?.[detailKey(alert)]?.narrative
     if (typeof narrative !== 'string' || narrative.length === 0) continue
     alert.narrative = narrative
     carried++
@@ -296,6 +296,42 @@ export function carryNarratives(alerts, narrations) {
 }
 
 // ── Per-event detail (population estimates) ────────────────────────────────
+
+/**
+ * What an alert's detail and its narration are filed under. `shared/gdacs.ts`
+ * has the same key for the readers and says what forgetting the prefix cost.
+ *
+ * @param {{ eventtype: string, eventid: string }} alert
+ */
+export const detailKey = (alert) => `${alert.eventtype}:${alert.eventid}`
+
+/**
+ * The snapshot's `details`: one entry for each alert that has one, in the
+ * alerts' own order.
+ *
+ * The details are fetched six at a time and filed as each answer lands, so the
+ * object's keys came out in the order the network answered: on 2026-10-09 the
+ * list began `EQ:1570274, TC:1001335, TC:1001334` and the keys
+ * `EQ:1570261, EQ:1570260, EQ:1570274`, with not one of 23 in its place. The
+ * build publishes this file under a stamp that holds only while the bytes do
+ * (`stable-stamp.js`), and an order that follows the network is bytes that
+ * move when nothing in the world has.
+ *
+ * @template D
+ * @param {{ eventtype: string, eventid: string }[]} alerts
+ * @param {Map<string, D>} fetched by `detailKey`, in whatever order they arrived
+ * @returns {Record<string, D>}
+ */
+export function detailsInAlertOrder(alerts, fetched) {
+  /** @type {Record<string, D>} */
+  const details = {}
+  for (const alert of alerts) {
+    const key = detailKey(alert)
+    const detail = fetched.get(key)
+    if (detail !== undefined) details[key] = detail
+  }
+  return details
+}
 
 const EMPTY_DETAIL = {
   criticalPopulation: null,
