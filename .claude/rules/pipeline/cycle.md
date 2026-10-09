@@ -55,13 +55,13 @@ paths:
 
 Five runs a day on a remote server, committing only `content/` (Stage 6, the
 tuning session, also merges experiment edits to the tunables in `scripts/`).
-The stage list is in the root CLAUDE.md; this is what the stages assume about
-each other.
+The stage list is `scripts/cycle/stages.js` (`stages.md`); this is what the
+stages assume about each other.
 
 ## The shape of a stage
 
 - **Never** let an advisory stage stop the publish. From the writer on,
-  `run-cycle.sh` builds, commits and deploys whatever a timeout left; only a
+  the cycle builds, commits and deploys whatever a timeout left; only a
   selector failure or a writer with no article ends a cycle unpublished.
   Advisory work runs behind `timeout`, and `logs.test.js` ratchets the
   typecheck warning at zero.

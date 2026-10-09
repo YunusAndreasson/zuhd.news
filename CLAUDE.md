@@ -20,8 +20,8 @@ Three surfaces, and almost nothing that matters in one matters in the others:
 
 - **Web**: `public/`, `templates/`, `functions/`, built by `scripts/build.js`.
 - **Pipeline**: `scripts/` and `content/`. Selector, writer and editor stages
-  run through the `claude` CLI with node scripts between them, orchestrated by
-  `scripts/run-cycle.sh`.
+  run through the `claude` CLI with node scripts between them: a stage list
+  (`scripts/cycle/stages.js`) that `scripts/run-cycle.sh` starts.
 - **App**: `mobile/`, which has its own `CLAUDE.md`, commands and tests. Start
   Claude in `mobile/` for app work.
 
