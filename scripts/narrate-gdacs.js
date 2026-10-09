@@ -22,7 +22,7 @@ import { loadShared } from './build/shared-ts.js'
 import { callClaudeJson, cleanProse } from './lib/claude-envelope.js'
 import { runWithConcurrency } from './lib/concurrency.js'
 import { countryNameFromIso3 } from './lib/country-codes.js'
-import { staleKeys } from './lib/dispatch.js'
+import { promptWithInput, staleKeys } from './lib/dispatch.js'
 import { narrativeFor } from './lib/gdacs-narrations.js'
 import { validateGrounding } from './lib/grounding.js'
 import { ROOT } from './lib/paths.js'
@@ -362,15 +362,10 @@ function hashFingerprint(bundle) {
 }
 
 async function callClaude(bundle) {
-  const fullPrompt = `${basePrompt}
-
-## INPUT (this is the only material you may draw from)
-
-\`\`\`json
-${JSON.stringify(bundle, null, 2)}
-\`\`\`
-
-Output ONLY the JSON object \`{ "narrative": "..." }\`. No markdown, no fences.`
+  const fullPrompt = promptWithInput(basePrompt, bundle, {
+    note: 'this is the only material you may draw from',
+    shape: '{ "narrative": "..." }',
+  })
 
   const res = await callClaudeJson(fullPrompt, { model: MODEL, effort: EFFORT })
   if (res.error) return { elapsedMs: res.elapsedMs, error: res.error }

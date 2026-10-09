@@ -42,20 +42,18 @@
 //   --only <id>                  one namespaced id (e.g. `wiki-iran`, `cp:hormuz`)
 //   --new-only                   only instruments with no cache entry at all
 
-import { readFileSync, existsSync } from 'node:fs'
+import { readFileSync } from 'node:fs'
 import { basename, join } from 'node:path'
-import { callIndicatorModel } from './lib/indicator-model.js'
-import { runWithConcurrency } from './lib/concurrency.js'
-import { promptEcho, promptExamples, seriesEchoes, validateNumbers, validateProperNouns } from './lib/grounding.js'
-import { matchesAnyTag } from './lib/entity-registry.js'
 import { companyMatcher, isAboutCompany, storyFacts } from './lib/companies.js'
 import { loadArticles, loadFeedWindow } from './lib/coverage-window.js'
-import { offeredArticles, offeredStories, staleKeys, stampRun, storedStanding } from './lib/dispatch.js'
+import {
+  MAX_COVERAGE, MAX_FEED, WINDOW_DAYS, askModel, coverageRow, dryRun, feedRow, loadPrompt, offeredArticles,
+  offeredStories, openCache, promptWithInput, runDispatch, storedStanding, threadsFor,
+} from './lib/dispatch.js'
 import { argAt, hasFlag } from './lib/argv.js'
 import { ROOT } from './lib/paths.js'
-import { readJson, writeJson } from './lib/json-file.js'
+import { readJson } from './lib/json-file.js'
 import { sha1Hex } from './lib/hash.js'
-import { cleanProse } from './lib/claude-envelope.js'
 import { latestTrendsPath } from './lib/trends-snapshot.js'
 
 if (hasFlag('market-signals')) {
@@ -70,17 +68,6 @@ const MARKETS_PATH = join(ROOT, 'content', '.markets.json')
 const COMPANIES_PATH = join(ROOT, 'content', '.companies.json')
 const LEDGER_PATH = join(ROOT, 'content', '.story-ledger.json')
 const PROMPT_PATH = join(ROOT, 'scripts', 'narrate-indicators-prompt.md')
-
-const CONCURRENCY = 3
-/** The window everything recent is measured over. Two weeks is long enough that
- *  a weekly-published series has moved at least once, and short enough that
- *  "recently" is still an honest word for it. */
-const WINDOW_DAYS = 14
-/** Offered to the model, not shown to the reader — `citations` is what the
- *  reader sees, and it is capped at 6 by the prompt. */
-const MAX_COVERAGE = 12
-const MAX_FEED = 12
-const STANDING_CAP = 240
 
 /**
  * The classes whose hand-written `blurb` *is* the definition, so this stage
@@ -114,7 +101,6 @@ const STANDING_CAP = 240
  * holds and not a paraphrase that drifts from it.
  */
 const BLURB_IS_DEFINITION = new Set(['chokepoint', 'company'])
-const RECENT_CAP = 360
 
 const FORCE = process.env.NARRATE_INDICATORS_FORCE === '1'
 const MAX_ITEMS = Number(process.env.NARRATE_INDICATORS_MAX) || Infinity
@@ -146,30 +132,15 @@ const ONLY = argAt('only')
  */
 const NEW_ONLY = hasFlag('new-only')
 
-if (!existsSync(PROMPT_PATH)) {
-  console.error('Missing narrate-indicators-prompt.md.')
-  process.exit(1)
-}
-const basePrompt = readFileSync(PROMPT_PATH, 'utf8')
+// A missing prompt file throws here, with its path.
+const prompt = loadPrompt(PROMPT_PATH)
+const basePrompt = prompt.text
 /** Part of `recentFingerprint`, so a prompt edit reaches every item once at
  *  the next full pass rather than only the ones whose story happens to move
  *  that day. The output is a function of the prompt and the input; a cache
  *  key that ignored half of that let a rewritten prompt sit unapplied. */
 const promptHash = sha1Hex(basePrompt, 8)
-/** The prompt's own worked examples, so `promptEcho` measures against the file
- *  this run is sending rather than a list that has to be kept in step. */
-const PROMPT_EXAMPLES = promptExamples(basePrompt)
-/**
- * Above this share of an example's 5-grams, the output *is* the example.
- *
- * Calibrated on the 2026-09-05 dispatch, where the live Brent definition scored
- * 1.0 against this file's own sample sentence and the three FOMC events scored
- * 0.49–0.63 against a shared one. Nothing genuine came near it: the exchange
- * standings written the same day against Warsaw and Doha examples peaked at 0.2.
- */
-const PROMPT_ECHO_REJECT = 0.5
-const cache = readJson(CACHE_PATH, { items: {} })
-if (!cache.items) cache.items = {}
+const cache = openCache(CACHE_PATH)
 
 const stageT0 = Date.now()
 const windowStart = Date.now() - WINDOW_DAYS * 86400_000
@@ -380,31 +351,11 @@ const coverageFor = (item) =>
     countryTags: item.countryTags,
   })
     .slice(0, MAX_COVERAGE)
-    .map((a) => ({
-      slug: a.slug,
-      title: a.title,
-      date: String(a.date).slice(0, 10),
-      dateline: a.location,
-      lead: a.lead,
-    }))
+    .map(coverageRow)
 
 /** Feed stories offered to the model for one item (`offeredStories`): by
  *  Wikipedia title for an attention series, by tag for everything else. */
-const feedFor = (item) =>
-  offeredStories(feedWindow, item)
-    .slice(0, MAX_FEED)
-    .map((s) => ({
-      headline: s.title,
-      date: s.date,
-      source: s.source,
-      outlets: s.outlets,
-    }))
-
-const threadsFor = (item) =>
-  ledger
-    .filter((t) => matchesAnyTag(item.topicTags, String(t.label || '').toLowerCase()))
-    .slice(0, 3)
-    .map((t) => ({ label: t.label, arc: t.arc, summary: t.summary }))
+const feedFor = (item) => offeredStories(feedWindow, item).slice(0, MAX_FEED).map(feedRow)
 
 const buildBundle = (item) => ({
   // `catalogBlurb` rides the identity block rather than sitting beside it,
@@ -416,7 +367,7 @@ const buildBundle = (item) => ({
   series: item.series,
   coverage: coverageFor(item),
   feedWindow: feedFor(item),
-  threads: threadsFor(item),
+  threads: threadsFor(ledger, item.topicTags),
 })
 
 /**
@@ -469,171 +420,18 @@ const recentFingerprint = (bundle) => {
 
 // ── The call ──────────────────────────────────────────────────────────────
 
-const callClaude = (bundle) => {
-  const fullPrompt = `${basePrompt}
+const askOpus = askModel('dispatch', 'ZUHD_DISPATCH_EFFORT')
+const ask = (bundle) => askOpus(promptWithInput(basePrompt, bundle))
 
-## INPUT (this is the only material \`recent\` may draw from)
-
-\`\`\`json
-${JSON.stringify(bundle, null, 2)}
-\`\`\`
-
-Output ONLY the JSON object \`{ "standing": "...", "recent": "...", "citations": [...] }\`. No markdown, no fences.`
-
-  return callIndicatorModel(fullPrompt)
-}
+/** The two keys an item is cached under. */
+const fingerprintsOf = (item, bundle) => ({ standing: standingFingerprint(item), recent: recentFingerprint(bundle) })
 
 // ── Main ──────────────────────────────────────────────────────────────────
 
-let generated = 0
-let cacheHits = 0
-let rejected = 0
-let failed = 0
-let recentDropped = 0
-let chartEchoes = 0
-let promptEchoes = 0
-let totalCostUsd = 0
-
 if (DRY_RUN) {
-  for (const item of selected) {
-    const bundle = buildBundle(item)
-    console.log(
-      `  ${item.key.padEnd(30)} ${String(JSON.stringify(bundle).length).padStart(6)}B  ` +
-        `coverage=${bundle.coverage.length} feed=${bundle.feedWindow.length} threads=${bundle.threads.length}`,
-    )
-  }
-  const withNothing = selected.filter((i) => {
-    const b = buildBundle(i)
-    return b.coverage.length === 0 && b.feedWindow.length === 0
-  })
-  console.log(`\n${withNothing.length}/${selected.length} items have no coverage and no feed match:`)
-  console.log(`  ${withNothing.map((i) => i.key).join(', ') || '(none)'}`)
+  dryRun({ cache, selected, bundleOf: buildBundle, fingerprintsOf, force: FORCE })
   process.exit(0)
 }
-
-/**
- * **Checkpointed, because a run that is killed must not cost what it spent.**
- * The cache used to be written once, after the loop, and the 04:00 pass —
- * serial behind a synchronous spawn until 2026-09-25 — hit `timeout 1500` on
- * six of eight days and threw away ~100 finished Opus calls each time. Every
- * `CHECKPOINT_EVERY` new items and on SIGTERM the finished entries go to disk;
- * the prune and `generatedAt` still belong to the end of a complete run.
- */
-const CHECKPOINT_EVERY = 10
-const writeCache = () => writeJson(CACHE_PATH, cache)
-process.once('SIGTERM', () => {
-  writeCache()
-  console.log(`  ⚠ SIGTERM — checkpointed ${generated} new items before exit`)
-  process.exit(143)
-})
-
-await runWithConcurrency(selected, CONCURRENCY, async (item) => {
-  const bundle = buildBundle(item)
-  const sFp = standingFingerprint(item)
-  const rFp = recentFingerprint(bundle)
-  const prev = cache.items[item.key]
-
-  if (!FORCE && prev && prev.standingFingerprint === sFp && prev.recentFingerprint === rFp) {
-    cacheHits++
-    return
-  }
-
-  const result = await callClaude(bundle)
-  if (result.error) {
-    failed++
-    console.log(`  ✗ ${item.key}: ${result.error}`)
-    return
-  }
-  if (typeof result.costUsd === 'number') totalCostUsd += result.costUsd
-
-  // The definition already written for this identity stands while the identity
-  // does (`storedStanding`): the call was made for `recent`, and the `standing`
-  // that came back with it is a second paraphrase of a sentence the card
-  // already carries. A stored catalog blurb is the exception for a class
-  // whose blurb is not the definition: it was the fallback on a day the model
-  // wrote none, and keeping it would make that day permanent.
-  const held = FORCE ? '' : storedStanding(cache.items, item.key, sFp)
-  const written = cleanProse(result.out.standing)
-  const standing = BLURB_IS_DEFINITION.has(item.klass)
-    ? item.catalogBlurb || held || written
-    : (held !== item.catalogBlurb && held) || written || item.catalogBlurb
-  const recentRaw = cleanProse(result.out.recent)
-
-  // **`standing` is not grounding-checked, and that is the field's definition
-  // rather than an oversight.** It is the one place general knowledge is the
-  // source — what Brent is, what the VIX measures — so a bundle it was never
-  // meant to draw from cannot be the authority on it. Checked anyway at first,
-  // and it rejected "The CBOE's index of expected S&P 500 swings" because the
-  // 500 in an index's own name was not in the input. Length is the only gate.
-  //
-  // `recent` claims what happened last week, so it gets both checks.
-  const recentEcho = recentRaw ? promptEcho(recentRaw, PROMPT_EXAMPLES) : null
-  const recentBad = recentRaw
-    ? (validateNumbers(recentRaw, bundle) ??
-       validateProperNouns(recentRaw, bundle) ??
-       // Handing back the illustration is not an answer about this instrument,
-       // and unlike a chart echo there is no reading on which it is partly
-       // right — so this one gates rather than only counting. It rides the
-       // `recent` path precisely because that path already drops safely.
-       (recentEcho && recentEcho.frac >= PROMPT_ECHO_REJECT
-         ? `reproduces a prompt example (${(recentEcho.frac * 100).toFixed(0)}%)`
-         : null))
-    : null
-
-  const overCap = (s, cap) => s.length > cap * 1.4
-  const recent = recentBad || overCap(recentRaw, RECENT_CAP) ? '' : recentRaw
-
-  if (!standing || overCap(standing, STANDING_CAP)) {
-    rejected++
-    console.log(`  ✗ ${item.key}: standing missing or over cap — "${standing}"`)
-    return
-  }
-  // **Counted, never dropped**, which is the opposite call to `recent` above and
-  // rests on what dropping costs. A rejected `recent` ships an empty paragraph;
-  // a rejected `standing` drops the whole item, and the app's graph decks gate
-  // deck membership on having prose — so gating here would delete the card to
-  // avoid a sentence that is at least true. The prompt is the fix; this is how
-  // the log says whether the prompt worked.
-  const standingEcho = promptEcho(standing, PROMPT_EXAMPLES)
-  if (standingEcho && standingEcho.frac >= PROMPT_ECHO_REJECT) {
-    promptEchoes++
-    console.log(`  ~ ${item.key}: standing is ${(standingEcho.frac * 100).toFixed(0)}% a prompt example — "${standing}"`)
-  }
-  if (recentRaw && !recent) {
-    // A rejected `recent` is not a rejected item: the standing sentence is
-    // still true and still an improvement on no prose at all.
-    recentDropped++
-    console.log(`  ~ ${item.key}: recent dropped (${recentBad || 'over cap'}) — "${recentRaw}"`)
-  }
-  // Logged and counted, never dropped — see `seriesEchoes`. The prompt forbids
-  // repeating the chart; this line is how the log says whether it listened.
-  if (recent) {
-    const echoed = seriesEchoes(recent, bundle.series)
-    if (echoed.length > 0) {
-      chartEchoes++
-      console.log(`  ~ ${item.key}: reads the chart (${echoed.join(', ')})`)
-    }
-  }
-
-  const offered = new Set(bundle.coverage.map((c) => c.slug))
-  const citations = (Array.isArray(result.out.citations) ? result.out.citations : [])
-    .filter((s) => typeof s === 'string' && offered.has(s))
-    .slice(0, 6)
-
-  cache.items[item.key] = {
-    standingFingerprint: sFp,
-    recentFingerprint: rFp,
-    standing,
-    recent,
-    // A citation list without the sentence it supports is a related-articles
-    // list with no argument behind it, which is what this stage replaced.
-    citations: recent ? citations : [],
-    generatedAt: new Date().toISOString(),
-  }
-  generated++
-  if (generated % CHECKPOINT_EVERY === 0) writeCache()
-  console.log(`  ✓ ${item.key}: ${recent || standing}`)
-})
 
 /**
  * The payload a key is minted from, by its prefix. `items` is assembled from
@@ -645,27 +443,40 @@ await runWithConcurrency(selected, CONCURRENCY, async (item) => {
 const sourceOf = (key) =>
   key.startsWith('cp:') ? 'chokepoints' : key.startsWith('mkt:') ? 'markets' : key.startsWith('co:') ? 'companies' : 'trends'
 
-// Prune ids that have left every source payload. Polymarket questions close and
-// Wikipedia series are re-picked from our own concepts every cycle, so without
-// this the file grows a tail of instruments the site no longer shows.
-//
-// The daily pass only: a `--new-only` pass, which happens four more times a
-// day, has nothing to gain from bookkeeping the daily run does anyway.
-if (!NEW_ONLY) {
-  const { drop, held } = staleKeys(Object.keys(cache.items), items.map((i) => i.key), sourceOf)
-  for (const k of drop) delete cache.items[k]
-  if (drop.length > 0) console.log(`  pruned ${drop.length} stale entries`)
-  for (const [source, n] of Object.entries(held)) {
-    console.log(`  ⚠ prune held ${n} stale entries: ${source} gave no items, so its payload did not load`)
-  }
-}
-
-// A `--new-only` pass that found nothing new has nothing to stamp or write.
-if (stampRun(cache, { newOnly: NEW_ONLY, generated, windowDays: WINDOW_DAYS })) writeCache()
+// The loop, the checks on each answer, the checkpoint, the prune and the stamp
+// are `runDispatch`'s (`lib/dispatch.js`), shared with the events stage. The
+// prune is the daily pass's only: Polymarket questions close and Wikipedia
+// series are re-picked from our own concepts every cycle, so without it the
+// file grows a tail of instruments the site no longer shows.
+const counts = await runDispatch({
+  cachePath: CACHE_PATH,
+  cache,
+  items,
+  selected,
+  bundleOf: buildBundle,
+  fingerprintsOf,
+  ask,
+  examples: prompt.examples,
+  // The definition already written for this identity stands while the identity
+  // does (`storedStanding`): the call was made for `recent`, and the `standing`
+  // that came back with it is a second paraphrase of a sentence the card
+  // already carries. A stored catalog blurb is the exception for a class
+  // whose blurb is not the definition: it was the fallback on a day the model
+  // wrote none, and keeping it would make that day permanent.
+  standingOf: (item, written, sFp) => {
+    const held = FORCE ? '' : storedStanding(cache.items, item.key, sFp)
+    return BLURB_IS_DEFINITION.has(item.klass)
+      ? item.catalogBlurb || held || written
+      : (held !== item.catalogBlurb && held) || written || item.catalogBlurb
+  },
+  force: FORCE,
+  newOnly: NEW_ONLY,
+  sourceOf,
+})
 
 const elapsed = ((Date.now() - stageT0) / 1000).toFixed(1)
 console.log(
-  `  Dispatch: ${generated} new, ${cacheHits} cached, ${recentDropped} recent-dropped, ` +
-    `${chartEchoes} chart-echo, ${promptEchoes} prompt-echo, ${rejected} rejected, ${failed} failed; ` +
-    `$${totalCostUsd.toFixed(3)} in ${elapsed}s`,
+  `  Dispatch: ${counts.generated} new, ${counts.cacheHits} cached, ${counts.recentDropped} recent-dropped, ` +
+    `${counts.chartEchoes} chart-echo, ${counts.promptEchoes} prompt-echo, ${counts.rejected} rejected, ${counts.failed} failed; ` +
+    `$${counts.costUsd.toFixed(3)} in ${elapsed}s`,
 )

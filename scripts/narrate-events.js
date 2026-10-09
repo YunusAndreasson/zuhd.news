@@ -34,59 +34,40 @@
 //   --dry-run                build bundles, print sizes, call nothing
 //   --only <id>               one event id (e.g. `fomc-2026-09`)
 
-import { readFileSync, existsSync } from 'node:fs'
+import { readFileSync } from 'node:fs'
 import { basename, join } from 'node:path'
-import { callClaudeJson, cleanProse } from './lib/claude-envelope.js'
-import { runWithConcurrency } from './lib/concurrency.js'
-import { promptEcho, promptExamples, validateNumbers, validateProperNouns } from './lib/grounding.js'
-import { matchesAnyTag } from './lib/entity-registry.js'
 import { loadArticles, loadFeedWindow } from './lib/coverage-window.js'
-import { staleKeys, storedStanding } from './lib/dispatch.js'
+import {
+  MAX_COVERAGE, MAX_FEED, WINDOW_DAYS, askModel, coverageRow, dryRun, feedRow, loadPrompt, offeredArticles,
+  offeredStories, openCache, promptWithInput, runDispatch, storedStanding, threadsFor,
+} from './lib/dispatch.js'
 import { argAt, hasFlag } from './lib/argv.js'
 import { ROOT } from './lib/paths.js'
-import { readJson, writeJson } from './lib/json-file.js'
+import { readJson } from './lib/json-file.js'
 import { sha1Hex } from './lib/hash.js'
 import { latestTrendsPath } from './lib/trends-snapshot.js'
-import { modelFor } from './lib/models.js'
 
 const CACHE_PATH = join(ROOT, 'content', '.events-dispatch.json')
 const LEDGER_PATH = join(ROOT, 'content', '.story-ledger.json')
 const PROMPT_PATH = join(ROOT, 'scripts', 'narrate-events-prompt.md')
-
-const MODEL = modelFor('events')
-const EFFORT = process.env.ZUHD_EVENTS_EFFORT || 'medium'
-const CONCURRENCY = 3
-/** Grounding window — same fortnight `narrate-indicators.js` uses. An event
- *  further out than this simply has less coverage to draw `recent` from,
- *  which is honest: nothing has been reported about it yet. */
-const WINDOW_DAYS = 14
-const MAX_COVERAGE = 12
-const MAX_FEED = 12
-const STANDING_CAP = 240
-const RECENT_CAP = 360
 
 const FORCE = process.env.NARRATE_EVENTS_FORCE === '1'
 const MAX_ITEMS = Number(process.env.NARRATE_EVENTS_MAX) || Infinity
 const DRY_RUN = hasFlag('dry-run')
 const ONLY = argAt('only')
 
-if (!existsSync(PROMPT_PATH)) {
-  console.error('Missing narrate-events-prompt.md.')
-  process.exit(1)
-}
-const basePrompt = readFileSync(PROMPT_PATH, 'utf8')
+// A missing prompt file throws here, with its path.
+const prompt = loadPrompt(PROMPT_PATH)
+const basePrompt = prompt.text
 /** Part of `recentFingerprint` — the same reason as `narrate-indicators.js`:
  *  a prompt edit reaches every event once, at the next full pass. */
 const promptHash = sha1Hex(basePrompt, 8)
-/** See `narrate-indicators.js` for the calibration and the run that produced
- *  it — the three FOMC cards this stage shipped on 2026-09-05 were the same
- *  example between them, added the night before to stop a different repetition. */
-const PROMPT_EXAMPLES = promptExamples(basePrompt)
-const PROMPT_ECHO_REJECT = 0.5
-const cache = readJson(CACHE_PATH, { items: {} })
-if (!cache.items) cache.items = {}
+const cache = openCache(CACHE_PATH)
 
 const stageT0 = Date.now()
+// The grounding window is the fortnight `narrate-indicators.js` uses
+// (`WINDOW_DAYS`). An event further out than this simply has less coverage to
+// draw `recent` from, which is honest: nothing has been reported about it yet.
 const windowStart = Date.now() - WINDOW_DAYS * 86400_000
 const iso = (t) => new Date(t).toISOString().slice(0, 10)
 const todayIso = iso(Date.now())
@@ -133,34 +114,16 @@ console.log(`Items: ${items.length} total, ${selected.length} selected`)
 /** No entity-id tier here — events carry no frontmatter id to match against,
  *  only topic tags. */
 const coverageFor = (item) =>
-  articles
-    .filter((a) => matchesAnyTag(item.topicTags, a.hay))
-    .slice(0, MAX_COVERAGE)
-    .map((a) => ({
-      slug: a.slug,
-      title: a.title,
-      date: String(a.date).slice(0, 10),
-      dateline: a.location,
-      lead: a.lead,
-    }))
+  offeredArticles(articles, { topicTags: item.topicTags }).slice(0, MAX_COVERAGE).map(coverageRow)
 
 const feedFor = (item) =>
-  feedWindow
-    .filter((s) => matchesAnyTag(item.topicTags, s.hay))
-    .slice(0, MAX_FEED)
-    .map((s) => ({ headline: s.title, date: s.date, source: s.source, outlets: s.outlets }))
-
-const threadsFor = (item) =>
-  ledger
-    .filter((t) => matchesAnyTag(item.topicTags, String(t.label || '').toLowerCase()))
-    .slice(0, 3)
-    .map((t) => ({ label: t.label, arc: t.arc, summary: t.summary }))
+  offeredStories(feedWindow, { topicTags: item.topicTags }).slice(0, MAX_FEED).map(feedRow)
 
 const buildBundle = (item) => ({
   event: { ...item.identity, date: item.date, daysUntil: item.daysUntil },
   coverage: coverageFor(item),
   feedWindow: feedFor(item),
-  threads: threadsFor(item),
+  threads: threadsFor(ledger, item.topicTags),
 })
 
 /** Identity only — what `standing` is about. Deliberately date-independent,
@@ -199,147 +162,56 @@ const recentFingerprint = (bundle) =>
 
 // ── The call ──────────────────────────────────────────────────────────────
 
-const callClaude = async (bundle) => {
-  const fullPrompt = `${basePrompt}
+const askOpus = askModel('events', 'ZUHD_EVENTS_EFFORT')
+const ask = (bundle) => askOpus(promptWithInput(basePrompt, bundle))
 
-## INPUT (this is the only material \`recent\` may draw from)
-
-\`\`\`json
-${JSON.stringify(bundle, null, 2)}
-\`\`\`
-
-Output ONLY the JSON object \`{ "standing": "...", "recent": "...", "citations": [...] }\`. No markdown, no fences.`
-
-  return callClaudeJson(fullPrompt, { model: MODEL, effort: EFFORT })
-}
+/** The two keys an event is cached under. */
+const fingerprintsOf = (item, bundle) => ({ standing: standingFingerprint(item), recent: recentFingerprint(bundle) })
 
 // ── Main ──────────────────────────────────────────────────────────────────
 
-let generated = 0
-let cacheHits = 0
-let rejected = 0
-let failed = 0
-let recentDropped = 0
-let promptEchoes = 0
-let totalCostUsd = 0
-
 if (DRY_RUN) {
-  for (const item of selected) {
-    const bundle = buildBundle(item)
-    console.log(
-      `  ${item.key.padEnd(24)} in ${String(item.daysUntil).padStart(3)}d  ` +
-        `${String(JSON.stringify(bundle).length).padStart(6)}B  ` +
-        `coverage=${bundle.coverage.length} feed=${bundle.feedWindow.length} threads=${bundle.threads.length}`,
-    )
-  }
-  const withNothing = selected.filter((i) => {
-    const b = buildBundle(i)
-    return b.coverage.length === 0 && b.feedWindow.length === 0
+  dryRun({
+    cache,
+    selected,
+    bundleOf: buildBundle,
+    fingerprintsOf,
+    force: FORCE,
+    label: (item) => `${item.key.padEnd(24)} in ${String(item.daysUntil).padStart(3)}d `,
   })
-  console.log(`\n${withNothing.length}/${selected.length} items have no coverage and no feed match:`)
-  console.log(`  ${withNothing.map((i) => i.key).join(', ') || '(none)'}`)
   process.exit(0)
 }
 
-await runWithConcurrency(selected, CONCURRENCY, async (item) => {
-  const bundle = buildBundle(item)
-  const sFp = standingFingerprint(item)
-  const rFp = recentFingerprint(bundle)
-  const prev = cache.items[item.key]
-
-  if (!FORCE && prev && prev.standingFingerprint === sFp && prev.recentFingerprint === rFp) {
-    cacheHits++
-    return
-  }
-
-  const result = await callClaude(bundle)
-  if (result.error) {
-    failed++
-    console.log(`  ✗ ${item.key}: ${result.error}`)
-    return
-  }
-  if (typeof result.costUsd === 'number') totalCostUsd += result.costUsd
-
+// The loop, the checks on each answer, the checkpoint, the prune and the stamp
+// are `runDispatch`'s (`lib/dispatch.js`), shared with the indicator stage.
+//
+// The prune drops ids that have left the events window — an event more than
+// EVENTS_WINDOW_DAYS out drops from `trends.events` at fetch time, and a past
+// one drops here, so without it the file grows a tail of events the site no
+// longer shows. One source, the snapshot's `events`: when it gives none (no
+// snapshot, or one with no calendar) every entry is held rather than the file
+// emptied to match.
+const counts = await runDispatch({
+  cachePath: CACHE_PATH,
+  cache,
+  items,
+  selected,
+  bundleOf: buildBundle,
+  fingerprintsOf,
+  ask,
+  examples: prompt.examples,
   // One sentence for one identity, written once (`storedStanding`): the
   // definition the file already holds for this institution stands, whichever
   // meeting it was written for. This fingerprint does not carry the prompt,
   // so the entry's own `prompt` is what lets a rewritten rubric through.
-  const standing =
-    (FORCE ? '' : storedStanding(cache.items, item.key, sFp, { shared: true, prompt: promptHash })) ||
-    cleanProse(result.out.standing)
-  const recentRaw = cleanProse(result.out.recent)
-
-  const recentEcho = recentRaw ? promptEcho(recentRaw, PROMPT_EXAMPLES) : null
-  const recentBad = recentRaw
-    ? (validateNumbers(recentRaw, bundle) ??
-       validateProperNouns(recentRaw, bundle) ??
-       (recentEcho && recentEcho.frac >= PROMPT_ECHO_REJECT
-         ? `reproduces a prompt example (${(recentEcho.frac * 100).toFixed(0)}%)`
-         : null))
-    : null
-
-  const overCap = (s, cap) => s.length > cap * 1.4
-  const recent = recentBad || overCap(recentRaw, RECENT_CAP) ? '' : recentRaw
-
-  if (!standing || overCap(standing, STANDING_CAP)) {
-    rejected++
-    console.log(`  ✗ ${item.key}: standing missing or over cap — "${standing}"`)
-    return
-  }
-  if (recentRaw && !recent) {
-    recentDropped++
-    console.log(`  ~ ${item.key}: recent dropped (${recentBad || 'over cap'}) — "${recentRaw}"`)
-  }
-  // Counted, never dropped — dropping a standing drops the whole event. Same
-  // call and same reasoning as the indicator stage.
-  const standingEcho = promptEcho(standing, PROMPT_EXAMPLES)
-  if (standingEcho && standingEcho.frac >= PROMPT_ECHO_REJECT) {
-    promptEchoes++
-    console.log(`  ~ ${item.key}: standing is ${(standingEcho.frac * 100).toFixed(0)}% a prompt example — "${standing}"`)
-  }
-
-  const offered = new Set(bundle.coverage.map((c) => c.slug))
-  const citations = (Array.isArray(result.out.citations) ? result.out.citations : [])
-    .filter((s) => typeof s === 'string' && offered.has(s))
-    .slice(0, 6)
-
-  cache.items[item.key] = {
-    standingFingerprint: sFp,
-    recentFingerprint: rFp,
-    // The prompt `standing` was written under, for `storedStanding`.
-    prompt: promptHash,
-    standing,
-    recent,
-    citations: recent ? citations : [],
-    generatedAt: new Date().toISOString(),
-  }
-  generated++
-  console.log(`  ✓ ${item.key}: ${recent || standing}`)
+  standingOf: (item, written, sFp) =>
+    (FORCE ? '' : storedStanding(cache.items, item.key, sFp, { shared: true, prompt: promptHash })) || written,
+  entryExtra: { prompt: promptHash },
+  force: FORCE,
 })
-
-// Prune ids that have left the events window — an event more than
-// EVENTS_WINDOW_DAYS out drops from `trends.events` at fetch time, and a
-// past one drops here, so without this the file grows a tail of events the
-// site no longer shows.
-//
-// One source, the snapshot's `events`: when it gives none (no snapshot, or one
-// with no calendar) `staleKeys` holds every entry rather than emptying the
-// file to match.
-{
-  const { drop, held } = staleKeys(Object.keys(cache.items), items.map((i) => i.key))
-  for (const k of drop) delete cache.items[k]
-  if (drop.length > 0) console.log(`  pruned ${drop.length} stale entries`)
-  for (const n of Object.values(held)) {
-    console.log(`  ⚠ prune held ${n} stale entries: the snapshot gave no events, so it did not load`)
-  }
-}
-
-cache.generatedAt = new Date().toISOString()
-cache.windowDays = WINDOW_DAYS
-writeJson(CACHE_PATH, cache)
 
 const elapsed = ((Date.now() - stageT0) / 1000).toFixed(1)
 console.log(
-  `  Dispatch: ${generated} new, ${cacheHits} cached, ${recentDropped} recent-dropped, ` +
-    `${promptEchoes} prompt-echo, ${rejected} rejected, ${failed} failed; $${totalCostUsd.toFixed(3)} in ${elapsed}s`,
+  `  Dispatch: ${counts.generated} new, ${counts.cacheHits} cached, ${counts.recentDropped} recent-dropped, ` +
+    `${counts.promptEchoes} prompt-echo, ${counts.rejected} rejected, ${counts.failed} failed; $${counts.costUsd.toFixed(3)} in ${elapsed}s`,
 )
