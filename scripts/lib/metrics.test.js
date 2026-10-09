@@ -28,7 +28,7 @@ The second block.
 /** @param {Record<string, any>} over */
 const row = (over = {}) => ({ ...metricsRow('2026-10-08-wto.md', ARTICLE), ...over })
 
-test('an article is read by its lines: the fields, every source name, the first link', () => {
+test('an article is read through the parser: the fields, every source name, the first link', () => {
   assert.deepEqual(metricsRow('2026-10-08-wto.md', ARTICLE), {
     slug: '2026-10-08-wto',
     title: 'Trade Body Doubles Its Growth Forecast',
@@ -43,12 +43,12 @@ test('an article is read by its lines: the fields, every source name, the first 
   })
 })
 
-// What the line patterns make of the edges. Kept because the output is one of
-// the tuner's inputs; the frontmatter parser would answer differently on each.
-test('the line reader at its edges, as it stands', () => {
+// Where the reader of its own that this replaced on 2026-10-09 answered
+// otherwise: it kept a quoted value's escapes, read 0 as no coordinate, took a
+// line of prose for a field, and counted a file the build could not have read.
+test('quoting, a bare date and a coordinate of 0 are read as YAML reads them', () => {
   const odd = metricsRow('2026-10-08-odd.md', `---
 title: "He Said \\"No\\" Twice"
-socialTitle: "Record title: "B"50 Billion"
 date: 2026-10-01T06:00:00Z
 category: 'tech'
 lat: 0
@@ -62,16 +62,19 @@ sources:
 
 Lyon — Body.
 `)
-  assert.equal(odd.title, 'He Said \\"No\\" Twice', 'the escapes are kept')
-  assert.deepEqual(odd.sources, ["L''Orient-Le Jour", 'Bare Name'], 'and so is a doubled apostrophe')
-  assert.equal(odd.date, '2026-10-01T06:00:00Z')
+  assert.equal(odd.title, 'He Said "No" Twice')
+  assert.deepEqual(odd.sources, ["L'Orient-Le Jour", 'Bare Name'])
+  assert.equal(odd.date, '2026-10-01T06:00:00Z', 'a date without quotes is read all the same')
   assert.equal(odd.category, 'tech')
-  assert.equal(odd.lat, null, 'a coordinate of 0 reads as none')
-  assert.equal(odd.lng, null)
-  // A file with no frontmatter is still a row, and a line in its prose can fill a field.
+  assert.deepEqual([odd.lat, odd.lng], [0, 0], 'the equator and the meridian are places')
+  assert.equal(odd.sourceUrl, 'https://www.lorientlejour.com/article/1')
+})
+
+test('a file with no frontmatter has no fields, and one that does not parse is refused', () => {
   assert.deepEqual(metricsRow('2026-10-08-prose.md', 'Just prose.\ncategory: tech\n'), {
-    slug: '2026-10-08-prose', title: '', date: '', source: '', sources: [], sourceUrl: '', category: 'tech', location: '', lat: null, lng: null,
+    slug: '2026-10-08-prose', title: '', date: '', source: '', sources: [], sourceUrl: '', category: '', location: '', lat: null, lng: null,
   })
+  assert.throws(() => metricsRow('x.md', ARTICLE.replace('"Trade Body', '"Trade "Body')))
 })
 
 test('freshness counts only an article dated at or before its filename\'s midnight', () => {

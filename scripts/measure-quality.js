@@ -23,8 +23,10 @@ export function main() {
   // ── Load articles in window ─────────────────────────────────
   const articles = []
   for (const f of readdirSync(ARTICLES_DIR).filter((n) => n.endsWith('.md'))) {
-    const row = qualityRow(f, readFileSync(join(ARTICLES_DIR, f), 'utf-8'), cutoff)
-    if (row) articles.push(row)
+    try {
+      const row = qualityRow(f, readFileSync(join(ARTICLES_DIR, f), 'utf-8'), cutoff)
+      if (row) articles.push(row)
+    } catch { /* an unparseable file is the validator's business */ }
   }
   if (articles.length === 0) {
     console.error('measure-quality: no articles in window — writing empty snapshot')

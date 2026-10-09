@@ -18,7 +18,7 @@ const row = (over = {}) => ({ file: 'a.md', title: 'An Unrelated Headline Entire
 /** @param {Record<string, any>[]} rows */
 const metrics = (rows) => qualitySnapshot(/** @type {any} */ (rows), NOW).metrics
 
-test('an article in the window is read by its double-quoted lines', () => {
+test('an article in the window is read through the parser', () => {
   const two = '\n  - name: "Dawn"\n    url: "https://www.dawn.com/news/1"\n    country: "PK"\n  - name: "Reuters"\n    url: "https://www.reuters.com/x"\n    country: null\n  - name: "AFP"\n    url: "https://www.afp.com/x"\n    country: "null"'
   assert.deepEqual(qualityRow('a.md', article({ sources: two }), CUTOFF), {
     file: 'a.md',
@@ -30,16 +30,22 @@ test('an article in the window is read by its double-quoted lines', () => {
   })
 })
 
-// As it stands. The scan expects the writer's quoting, and what does not have
-// it is not an error here: it is not counted.
-test('what the reader leaves out, and what it reads as empty', () => {
+test('what is not in the window is left out: no frontmatter, no date, a date before it', () => {
   assert.equal(qualityRow('a.md', 'Just prose.\n', CUTOFF), null, 'no frontmatter')
-  assert.equal(qualityRow('a.md', article({ date: '2026-10-08T17:00:00Z' }), CUTOFF), null, 'a date without quotes')
+  assert.equal(qualityRow('a.md', article({ date: undefined }), CUTOFF), null, 'no date')
   assert.equal(qualityRow('a.md', article({ date: '"soon"' }), CUTOFF), null, 'a date that is not one')
   assert.equal(qualityRow('a.md', article({ date: '"2026-09-30T00:00:00Z"' }), CUTOFF), null, 'before the window')
   assert.ok(qualityRow('a.md', article({ date: '"2026-10-01T22:30:00Z"' }), CUTOFF), 'on the edge of it')
-  const single = qualityRow('a.md', article({ title: "'In Single Quotes'", category: "'tech'" }), CUTOFF)
-  assert.deepEqual([single?.title, single?.category], ['', ''])
+  assert.throws(() => qualityRow('a.md', article({ title: '"A "Quote" Inside"' }), CUTOFF), 'a file that does not parse')
+})
+
+// Until 2026-10-09 the scan read only double-quoted values, and an article
+// whose date had no quotes was left out of the week without a word.
+test('how a value is quoted does not decide whether the article counts', () => {
+  const bare = qualityRow('a.md', article({ date: '2026-10-08T17:00:00Z', title: "'In Single Quotes'", category: 'tech' }), CUTOFF)
+  assert.deepEqual([bare?.title, bare?.category], ['In Single Quotes', 'tech'])
+  const empty = '\n  - name: "Dawn"\n    url: "https://www.dawn.com/news/1"\n    country: ""\n  - name: "AFP"\n    url: "https://www.afp.com/x"'
+  assert.deepEqual(qualityRow('a.md', article({ sources: empty }), CUTOFF)?.sourceCountries, [''], 'an empty country is not a missing one')
 })
 
 test('lengths are averaged raw, and the ceiling is measured on what the reader sees', () => {

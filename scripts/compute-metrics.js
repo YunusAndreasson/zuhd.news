@@ -17,12 +17,16 @@ export function main() {
   const yesterday = new Date(now - 86400000).toISOString().slice(0, 10)
 
   /** @param {string} datePrefix */
-  const readArticles = (datePrefix) =>
-    existsSync(ARTICLES_DIR)
-      ? readdirSync(ARTICLES_DIR)
-          .filter((f) => f.startsWith(datePrefix) && f.endsWith('.md'))
-          .map((f) => metricsRow(f, readFileSync(join(ARTICLES_DIR, f), 'utf-8')))
-      : []
+  const readArticles = (datePrefix) => {
+    if (!existsSync(ARTICLES_DIR)) return []
+    const rows = []
+    for (const f of readdirSync(ARTICLES_DIR).filter((n) => n.startsWith(datePrefix) && n.endsWith('.md'))) {
+      try {
+        rows.push(metricsRow(f, readFileSync(join(ARTICLES_DIR, f), 'utf-8')))
+      } catch { /* an unparseable file is the validator's business */ }
+    }
+    return rows
+  }
 
   /** @param {string} datePrefix */
   const readLogs = (datePrefix) =>

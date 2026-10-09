@@ -6,10 +6,10 @@
 // moment, a metric can be tested for what it counts.
 //
 // The snapshot goes onto an append-only series the dashboard plots and the
-// tuner reads, so every pattern is moved exactly as it stood, the article
-// reader's included (`qualityRow`).
+// tuner reads, so every metric's pattern is moved exactly as it stood.
 
 import { splitBlocks } from './blocks.js'
+import { parseFrontmatter } from './frontmatter.js'
 
 export const WINDOW_DAYS = 7
 
@@ -35,11 +35,13 @@ export const SCHEMA = 3
  */
 
 /**
- * An article as the scan reads it, or null when it is not in the window.
+ * An article as the scan reads it, or null when it is not in the window: no
+ * date, a date that is not one, or one before the cutoff. It throws on a file
+ * whose frontmatter does not parse, and the caller leaves that one out.
  *
- * The frontmatter is read with line patterns that expect the writer's shape:
- * `date`, `title`, `category` and each source `name` in double quotes. A file
- * with no frontmatter, or whose date is not a double-quoted one, is left out.
+ * Until 2026-10-09 this read the frontmatter with patterns that expected
+ * every value in double quotes, and an article whose `date:` was written
+ * without them was left out without a word: two of the corpus's 11,207.
  *
  * @param {string} file
  * @param {string} raw
@@ -47,21 +49,20 @@ export const SCHEMA = 3
  * @returns {QualityRow | null}
  */
 export function qualityRow(file, raw, cutoff) {
-  const fm = raw.match(/^---\n([\s\S]*?)\n---\n([\s\S]*)$/)
-  if (!fm) return null
-  const yaml = fm[1]
-  const body = fm[2].trim()
-  const dateStr = (yaml.match(/^date:\s*"([^"]+)"/m) || [])[1]
-  if (!dateStr) return null
-  const ts = Date.parse(dateStr)
+  const { meta, body } = parseFrontmatter(raw)
+  const ts = meta.date instanceof Date ? meta.date.getTime() : Date.parse(String(meta.date ?? ''))
   if (Number.isNaN(ts) || ts < cutoff) return null
 
-  const title = (yaml.match(/^title:\s*"([^"]+)"/m) || [])[1] || ''
-  const category = (yaml.match(/^category:\s*"([^"]+)"/m) || [])[1] || ''
-  const sourceNames = [...yaml.matchAll(/^\s+- name:\s*"([^"]+)"/gm)].map((m) => m[1])
-  const sourceCountries = [...yaml.matchAll(/^\s+country:\s*"?(null|[A-Z]{2})"?/gm)].map((m) => m[1])
-
-  return { file, title, body, category, sourceNames, sourceCountries }
+  const sources = (Array.isArray(meta.sources) ? meta.sources : []).filter((s) => s && typeof s === 'object')
+  return {
+    file,
+    title: String(meta.title ?? ''),
+    body,
+    category: String(meta.category ?? ''),
+    sourceNames: sources.map((s) => String(s.name ?? '')).filter(Boolean),
+    // A source with `country: null` is the hygiene count's whole subject.
+    sourceCountries: sources.filter((s) => 'country' in s).map((s) => (s.country === null ? 'null' : String(s.country))),
+  }
 }
 
 // ── Helpers ─────────────────────────────────────────────────
