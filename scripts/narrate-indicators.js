@@ -43,7 +43,7 @@
 //   --new-only                   only instruments with no cache entry at all
 
 import { readFileSync, existsSync } from 'node:fs'
-import { join } from 'node:path'
+import { basename, join } from 'node:path'
 import { callIndicatorModel } from './lib/indicator-model.js'
 import { runWithConcurrency } from './lib/concurrency.js'
 import { promptEcho, promptExamples, seriesEchoes, validateNumbers, validateProperNouns } from './lib/grounding.js'
@@ -173,7 +173,6 @@ if (!cache.items) cache.items = {}
 
 const stageT0 = Date.now()
 const windowStart = Date.now() - WINDOW_DAYS * 86400_000
-const iso = (t) => new Date(t).toISOString().slice(0, 10)
 
 // ── Sources ───────────────────────────────────────────────────────────────
 
@@ -188,9 +187,11 @@ const ledger = readJson(LEDGER_PATH)?.stories || []
 // join `narrate-events.js` needs, extracted so the two stages cannot drift.
 const articles = loadArticles(windowStart)
 const feedWindow = loadFeedWindow(windowStart)
+// The snapshot's own day, from its name. This line printed today's date
+// whenever a snapshot was found, so one three days old read as fresh.
 console.log(
   `Dispatch window ${WINDOW_DAYS}d: ${articles.length} published articles, ` +
-    `${feedWindow.length} distinct feed stories, trends ${trendsPath ? iso(Date.now()) : 'MISSING'}`,
+    `${feedWindow.length} distinct feed stories, trends ${trendsPath ? basename(trendsPath, '.json') : 'MISSING'}`,
 )
 
 // ── Item list ─────────────────────────────────────────────────────────────

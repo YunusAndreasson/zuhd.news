@@ -35,7 +35,7 @@
 //   --only <id>               one event id (e.g. `fomc-2026-09`)
 
 import { readFileSync, existsSync } from 'node:fs'
-import { join } from 'node:path'
+import { basename, join } from 'node:path'
 import { callClaudeJson, cleanProse } from './lib/claude-envelope.js'
 import { runWithConcurrency } from './lib/concurrency.js'
 import { promptEcho, promptExamples, validateNumbers, validateProperNouns } from './lib/grounding.js'
@@ -99,9 +99,11 @@ const ledger = readJson(LEDGER_PATH)?.stories || []
 
 const articles = loadArticles(windowStart)
 const feedWindow = loadFeedWindow(windowStart)
+// The snapshot's own day, from its name: not today's, which this printed
+// whatever snapshot it had found.
 console.log(
   `Dispatch window ${WINDOW_DAYS}d: ${articles.length} published articles, ` +
-    `${feedWindow.length} distinct feed stories, trends ${trendsPath ? todayIso : 'MISSING'}`,
+    `${feedWindow.length} distinct feed stories, trends ${trendsPath ? basename(trendsPath, '.json') : 'MISSING'}`,
 )
 
 // ── Item list ─────────────────────────────────────────────────────────────
