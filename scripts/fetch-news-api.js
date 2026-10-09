@@ -3,12 +3,12 @@
 // Strategy: events endpoint for story discovery + article queries for source diversity.
 // Output: /tmp/zuhd-feed-api.json
 import { mkdirSync, readdirSync, statSync, unlinkSync } from 'node:fs'
-import { countryOf, hasHeadline, redact, resultsAt } from './lib/api-feed.js'
+import { countryOf, extractConcepts, hasHeadline, mapCategory, redact, resultsAt, sourceName, storyFrom, toSource } from './lib/api-feed.js'
 import { eventCoveredRecently, loadDedupContext } from './lib/dedup.js'
 import { MAX_FEED_AGE_MS } from './lib/feed-age.js'
 import { readUnexplainedMovers } from './lib/company-gaps.js'
 import { namedSeries, pickTracked, TRACKED_KEYWORDS } from './lib/tracked-stories.js'
-import { slugify, zuhdCategory } from './lib/utils.js'
+import { slugify } from './lib/utils.js'
 import { writeJson } from './lib/json-file.js'
 import { runWithConcurrency } from './lib/concurrency.js'
 
@@ -22,7 +22,6 @@ if (!API_KEY) {
 }
 
 const API_BASE = 'https://eventregistry.org/api/v1'
-const MAX_BODY = 10000  // 1M context window allows full article text
 
 // ── Category filter ─────────────────────────────────────────────────
 
@@ -49,27 +48,6 @@ const REGIONS = {
 function sameRegion(a, b) {
   if (!a || !b) return false
   return Object.values(REGIONS).some(r => r.includes(a) && r.includes(b))
-}
-
-// NewsAPI titles every nature.com article "Nature", so ten *Scientific Reports*
-// manuscripts ran in one week under the flagship's name. The article-number
-// prefix in the URL names the journal.
-const NATURE_JOURNALS = {
-  s41586: 'Nature',
-  s41467: 'Nature Communications',
-  s41598: 'Scientific Reports',
-  s41591: 'Nature Medicine',
-  s41558: 'Nature Climate Change',
-  s41561: 'Nature Geoscience',
-  s41559: 'Nature Ecology & Evolution',
-  s41562: 'Nature Human Behaviour',
-  s41560: 'Nature Energy',
-  s41893: 'Nature Sustainability',
-  s41587: 'Nature Biotechnology',
-}
-function sourceName(a) {
-  const m = /nature\.com\/articles\/(s\d{5})-/.exec(a?.url || '')
-  return (m && NATURE_JOURNALS[m[1]]) || a?.source?.title || ''
 }
 
 // ── Source Diversity Algorithm ───────────────────────────────────────
@@ -419,9 +397,6 @@ async function fetchTrackedArticles() {
   }
 }
 
-// mapCategory alias — uses shared zuhdCategory with API category arrays
-const mapCategory = (categories) => zuhdCategory(categories || [])
-
 // Pick the most specific/arresting headline from a panel.
 // Wire headlines are flat ("EU says deal will apply May 1").
 // Non-wire headlines are specific ("Lebanon expels Iran's ambassador").
@@ -446,46 +421,6 @@ function bestTitle(articles, fallback) {
   })
   scored.sort((a, b) => b.score - a.score)
   return scored[0].title || fallback
-}
-
-function extractConcepts(articles) {
-  const map = new Map()
-  for (const a of articles) {
-    for (const c of (a.concepts || [])) {
-      const label = c.label?.eng
-      if (!label) continue
-      if (!map.has(label) || (c.score || 0) > (map.get(label).score || 0)) {
-        map.set(label, c)
-      }
-    }
-  }
-  return [...map.values()]
-    .sort((a, b) => (b.score || 0) - (a.score || 0))
-    .slice(0, 8)
-    .map(c => c.uri ? { label: c.label?.eng, uri: c.uri } : c.label?.eng)
-    .filter(Boolean)
-}
-
-function avg(nums) {
-  return nums.length ? +(nums.reduce((a, b) => a + b, 0) / nums.length).toFixed(2) : null
-}
-
-// Article social signal: ER returns either a numeric socialScore or a per-network
-// `shares` map depending on API vintage — normalize to one number, null if absent.
-function articleSocialScore(a) {
-  if (a.socialScore != null) return a.socialScore
-  if (a.shares && typeof a.shares === 'object') {
-    const total = Object.values(a.shares).filter(n => typeof n === 'number').reduce((x, y) => x + y, 0)
-    return total || null
-  }
-  return null
-}
-
-// Sentiment spread: max - min across sources. >0.5 = divergent framing.
-function sentimentSpread(articles) {
-  const sentiments = articles.map(a => a.sentiment).filter(s => s != null)
-  if (sentiments.length < 2) return null
-  return +(Math.max(...sentiments) - Math.min(...sentiments)).toFixed(2)
 }
 
 // ── Main ────────────────────────────────────────────────────────────
@@ -671,23 +606,17 @@ async function main() {
       // a writable single-source panel instead of a headline-only stub the writer
       // must skip.
       const medoid = event.infoArticle || null
-      const medoidBody = (medoid?.body || '').slice(0, MAX_BODY)
-      const medoidSources = medoid && medoidBody.length >= 500 ? [{
-        name: medoid.source?.title || '',
-        url: medoid.url || '',
-        country: countryOf(medoid.source?.location),
-        body: medoidBody,
-        importanceRank: medoid.source?.ranking?.importanceRank || null,
-        sentiment: medoid.sentiment != null ? +medoid.sentiment.toFixed(2) : null,
-        image: medoid.image || null,
-      }] : []
+      const medoidSource = medoid ? toSource(medoid) : null
+      const medoidSources = medoidSource && medoidSource.body.length >= 500 ? [medoidSource] : []
       stories.push({
         title,
         description: event.summary?.eng || (medoid?.body || '').slice(0, 300),
         link: medoid?.url || '',
         pubDate: medoid?.dateTimePub || medoid?.dateTime || `${eventDate}T00:00:00Z`,
         category: mapCategory(eventCategories),
-        source: medoid?.source?.title || '',
+        // By `sourceName`, like every other story: this one named the outlet
+        // itself, so a nature.com paper here was "Nature" whatever its journal.
+        source: sourceName(medoid),
         suggestedSlug: slugify(title, eventDate),
         eventUri: uri,
         eventDate: eventDate,
@@ -709,33 +638,20 @@ async function main() {
     const location = eventLoc?.label?.eng || primary.location?.label?.eng || null
 
     const storyTitle = panel.length > 1 ? bestTitle(panel, primary.title || title) : (primary.title || title)
-    stories.push({
+    // Where an event's story departs from an article's own (`storyFrom`): the
+    // event dates and files it when the article does not, and counts it.
+    stories.push(storyFrom(primary, panel, {
       title: storyTitle,
-      description: (primary.body || '').slice(0, 300),
-      link: primary.url || '',
       pubDate: primary.dateTimePub || primary.dateTime || `${eventDate}T00:00:00Z`,
-      eventDate: eventDate,
-      socialScore: event.socialScore ?? null,
+      eventDate,
       category: mapCategory(primary.categories || eventCategories),
-      source: sourceName(primary),
       suggestedSlug: slugify(storyTitle, primary.dateTimePub || eventDate),
       eventUri: uri,
       eventCoverage: totalArticles,
-      sources: panel.map(a => ({
-        name: sourceName(a),
-        url: a.url || '',
-        country: a._sourceCountry,
-        body: (a.body || '').slice(0, MAX_BODY),
-        importanceRank: a.source?.ranking?.importanceRank || null,
-        sentiment: a.sentiment != null ? +a.sentiment.toFixed(2) : null,
-        image: a.image || null,
-      })),
+      socialScore: event.socialScore ?? null,
       concepts,
       location,
-      sentiment: avg(panel.map(a => a.sentiment).filter(s => s != null)),
-      sentimentDivergence: sentimentSpread(panel),
-      origin: 'api',
-    })
+    }))
   }
 
   // Sort: events with matched articles first (by coverage), then headline-only events
@@ -776,32 +692,7 @@ async function main() {
     if (storyFingerprints.has(fp)) continue
     storyFingerprints.add(fp)
     for (const a of group) panelUris.add(a.url)
-    stories.push({
-      title: storyTitle,
-      description: (primary.body || '').slice(0, 300),
-      link: primary.url || '',
-      pubDate: primary.dateTimePub || primary.dateTime,
-      category: mapCategory(primary.categories || []),
-      source: sourceName(primary),
-      suggestedSlug: slugify(storyTitle, primary.dateTimePub || primary.dateTime),
-      eventUri: primary.eventUri || null,
-      eventCoverage: null,
-      socialScore: articleSocialScore(primary),
-      sources: panel.map(a => ({
-        name: sourceName(a),
-        url: a.url || '',
-        country: a._sourceCountry,
-        body: (a.body || '').slice(0, MAX_BODY),
-        importanceRank: a.source?.ranking?.importanceRank || null,
-        sentiment: a.sentiment != null ? +a.sentiment.toFixed(2) : null,
-        image: a.image || null,
-      })),
-      concepts: extractConcepts(panel),
-      location: primary.location?.label?.eng || null,
-      sentiment: avg(panel.map(a => a.sentiment).filter(s => s != null)),
-      sentimentDivergence: sentimentSpread(panel),
-      origin: 'api',
-    })
+    stories.push(storyFrom(primary, panel, { title: storyTitle }))
     tracked++
   }
   console.error(`Tracked-series stories: ${tracked} (${trackedGroups.filter(g => g.length > 1).length} multi-source)`)
@@ -838,30 +729,15 @@ async function main() {
     if (sourceCount[srcName] > 3) continue  // max 3 standalone per source
     storyFingerprints.add(fp)
 
-    stories.push({
-      title: a.title,
-      description: (a.body || '').slice(0, 300),
-      link: a.url || '',
-      pubDate: a.dateTimePub || a.dateTime,
-      category: mapCategory(a.categories || []),
-      source: sourceName(a),
-      suggestedSlug: slugify(a.title, a.dateTimePub || a.dateTime),
-      eventUri: a.eventUri || null,
-      eventCoverage: null,
-      socialScore: articleSocialScore(a),
-      sources: [{
-        name: sourceName(a),
-        url: a.url || '',
-        country: a._sourceCountry,
-        body: (a.body || '').slice(0, MAX_BODY),
-        importanceRank: a.source?.ranking?.importanceRank || null,
-        image: a.image || null,
-      }],
+    // A panel of one. Three keys are as this story has always written them and
+    // not as `storyFrom` would: its first five concepts by name and in the
+    // API's order, its tone unrounded, and no divergence, which a lone article
+    // cannot have. Its source now carries that tone, as a panel's sources do.
+    stories.push(storyFrom(a, [a], {
       concepts: (a.concepts || []).slice(0, 5).map(c => c.label?.eng || '').filter(Boolean),
-      location: a.location?.label?.eng || null,
       sentiment: a.sentiment,
-      origin: 'api',
-    })
+      sentimentDivergence: undefined,
+    }))
     added++
   }
   if (untitled > 0) console.error(`Standalone: ${untitled} article(s) with no title left out`)

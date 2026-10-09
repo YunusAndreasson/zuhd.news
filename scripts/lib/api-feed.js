@@ -4,6 +4,8 @@
 // so nothing in it could be tried without a cycle. What is here is a function
 // of an answer the API gave.
 
+import { slugify, zuhdCategory } from './utils.js'
+
 /** @param {unknown} v */
 const isObject = (v) => Boolean(v) && typeof v === 'object'
 
@@ -105,3 +107,141 @@ export const redact = (text, secret) => (secret ? text.replaceAll(secret, '[key]
  * @param {{ title?: unknown } | null | undefined} article
  */
 export const hasHeadline = (article) => typeof article?.title === 'string' && article.title.trim() !== ''
+
+// ── A story, from the articles the API returned ──────────────────────
+
+const MAX_BODY = 10000  // 1M context window allows full article text
+
+/** An article's or an event's categories, as one of the four desks. */
+export const mapCategory = (categories) => zuhdCategory(categories || [])
+
+// NewsAPI titles every nature.com article "Nature", so ten *Scientific Reports*
+// manuscripts ran in one week under the flagship's name. The article-number
+// prefix in the URL names the journal.
+/** @type {Record<string, string>} */
+const NATURE_JOURNALS = {
+  s41586: 'Nature',
+  s41467: 'Nature Communications',
+  s41598: 'Scientific Reports',
+  s41591: 'Nature Medicine',
+  s41558: 'Nature Climate Change',
+  s41561: 'Nature Geoscience',
+  s41559: 'Nature Ecology & Evolution',
+  s41562: 'Nature Human Behaviour',
+  s41560: 'Nature Energy',
+  s41893: 'Nature Sustainability',
+  s41587: 'Nature Biotechnology',
+}
+export function sourceName(a) {
+  const m = /nature\.com\/articles\/(s\d{5})-/.exec(a?.url || '')
+  return (m && NATURE_JOURNALS[m[1]]) || a?.source?.title || ''
+}
+
+export function extractConcepts(articles) {
+  const map = new Map()
+  for (const a of articles) {
+    for (const c of (a.concepts || [])) {
+      const label = c.label?.eng
+      if (!label) continue
+      if (!map.has(label) || (c.score || 0) > (map.get(label).score || 0)) {
+        map.set(label, c)
+      }
+    }
+  }
+  return [...map.values()]
+    .sort((a, b) => (b.score || 0) - (a.score || 0))
+    .slice(0, 8)
+    .map(c => c.uri ? { label: c.label?.eng, uri: c.uri } : c.label?.eng)
+    .filter(Boolean)
+}
+
+function avg(nums) {
+  return nums.length ? +(nums.reduce((a, b) => a + b, 0) / nums.length).toFixed(2) : null
+}
+
+// Article social signal: ER returns either a numeric socialScore or a per-network
+// `shares` map depending on API vintage — normalize to one number, null if absent.
+export function articleSocialScore(a) {
+  if (a.socialScore != null) return a.socialScore
+  if (a.shares && typeof a.shares === 'object') {
+    const total = Object.values(a.shares).filter(n => typeof n === 'number').reduce((x, y) => x + y, 0)
+    return total || null
+  }
+  return null
+}
+
+// Sentiment spread: max - min across sources. >0.5 = divergent framing.
+function sentimentSpread(articles) {
+  const sentiments = articles.map(a => a.sentiment).filter(s => s != null)
+  if (sentiments.length < 2) return null
+  return +(Math.max(...sentiments) - Math.min(...sentiments)).toFixed(2)
+}
+
+/**
+ * One source of a feed story, from the article the API returned.
+ *
+ * The fetcher spelled this object four times, and the copies had parted. The
+ * one for a story of a single article left `sentiment` out, so the commonest
+ * kind of pick reached the article with no tone on its source. The one for an
+ * event's own article named the outlet by `source.title`, past `sourceName`:
+ * the rule that keeps a *Scientific Reports* paper from being called Nature
+ * did not reach it.
+ *
+ * @param {any} a an article
+ * @returns {import('./schema.js').FeedSource}
+ */
+export function toSource(a) {
+  return {
+    name: sourceName(a),
+    url: a.url || '',
+    country: countryOf(a.source?.location),
+    body: (a.body || '').slice(0, MAX_BODY),
+    importanceRank: a.source?.ranking?.importanceRank || null,
+    sentiment: typeof a.sentiment === 'number' ? +a.sentiment.toFixed(2) : null,
+    image: a.image || null,
+  }
+}
+
+/**
+ * A feed story led by an article: `primary` gives it its link, its time and
+ * its outlet, and `panel` (which holds `primary`) its sources.
+ *
+ * Three stories are built this way and the fetcher wrote each out in full: an
+ * event with the articles matched to it, a story about a charted series, and
+ * an article standing alone. `extra` is where one departs from the others,
+ * key by key; a key it gives takes the place the story already has for it.
+ *
+ * An event's story is the one with an `eventDate`, and carries that and its
+ * score straight after `pubDate`, where the feed file has always had them.
+ *
+ * @param {any} primary
+ * @param {any[]} panel
+ * @param {Record<string, unknown>} [extra]
+ */
+export function storyFrom(primary, panel, extra = {}) {
+  const { eventDate, ...over } = extra
+  const title = typeof over.title === 'string' ? over.title : primary.title
+  const when = primary.dateTimePub || primary.dateTime
+  const story = {
+    title,
+    description: (primary.body || '').slice(0, 300),
+    link: primary.url || '',
+    pubDate: when,
+    category: mapCategory(primary.categories || []),
+    source: sourceName(primary),
+    suggestedSlug: slugify(title, when),
+    eventUri: primary.eventUri || null,
+    eventCoverage: null,
+    socialScore: articleSocialScore(primary),
+    sources: panel.map(toSource),
+    concepts: extractConcepts(panel),
+    location: primary.location?.label?.eng || null,
+    sentiment: avg(panel.map(a => a.sentiment).filter(s => s != null)),
+    sentimentDivergence: sentimentSpread(panel),
+    origin: 'api',
+    ...over,
+  }
+  if (eventDate === undefined) return story
+  const { title: headline, description, link, pubDate, ...rest } = story
+  return { title: headline, description, link, pubDate, eventDate, socialScore: story.socialScore, ...rest }
+}
