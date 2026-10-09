@@ -22,6 +22,8 @@ import { loadShared } from './build/shared-ts.js'
 import { callClaudeJson, cleanProse } from './lib/claude-envelope.js'
 import { runWithConcurrency } from './lib/concurrency.js'
 import { countryNameFromIso3 } from './lib/country-codes.js'
+import { staleKeys } from './lib/dispatch.js'
+import { narrativeFor } from './lib/gdacs-narrations.js'
 import { validateGrounding } from './lib/grounding.js'
 import { ROOT } from './lib/paths.js'
 import { readJson, writeJson } from './lib/json-file.js'
@@ -46,13 +48,24 @@ if (!existsSync(SNAPSHOT_PATH)) {
   console.error('No GDACS snapshot found — run fetch-gdacs.js first.')
   process.exit(0)
 }
+
+const snapshot = JSON.parse(readFileSync(SNAPSHOT_PATH, 'utf8'))
+const cache = readJson(CACHE_PATH, {})
+
+// The narratives already written go back onto the snapshot first, before the
+// prompt is looked for or a model is called. `fetch-gdacs.js` writes the
+// snapshot fresh each cycle, with no `narrative` on any alert, and the build
+// publishes the file as it stands. So until this stage reached its last line
+// every paragraph in the cache was missing from the site: a run killed at its
+// timeout, or one that stopped on the way, published every disaster bare.
+// Degrade to the previous narratives, never to none.
+applyCacheToSnapshot()
+writeJson(SNAPSHOT_PATH, snapshot, { pretty: false })
+
 if (!existsSync(PROMPT_PATH)) {
   console.error('Missing narrate-gdacs-prompt.md.')
   process.exit(1)
 }
-
-const snapshot = JSON.parse(readFileSync(SNAPSHOT_PATH, 'utf8'))
-const cache = readJson(CACHE_PATH, {})
 const basePrompt = readFileSync(PROMPT_PATH, 'utf8')
 
 const candidates = snapshot.alerts
@@ -93,6 +106,9 @@ await runWithConcurrency(candidates, CONCURRENCY, async (alert) => {
   const fingerprint = hashFingerprint(bundle)
 
   if (!FORCE && cache[id] && cache[id].fingerprint === fingerprint) {
+    // The fingerprint carries the level, so a hit says which level an entry
+    // from before `alertlevel` was recorded had been written for.
+    cache[id].alertlevel ??= alert.alertlevel
     cacheHits++
     return
   }
@@ -114,6 +130,9 @@ await runWithConcurrency(candidates, CONCURRENCY, async (alert) => {
 
   cache[id] = {
     fingerprint,
+    // The level the paragraph was written for: it is applied at no other
+    // (`narrativeFor`).
+    alertlevel: alert.alertlevel,
     narrative,
     generatedAt: new Date().toISOString(),
   }
@@ -133,22 +152,21 @@ console.log(
 
 // ── helpers ──────────────────────────────────────────────────────────────
 
+// An event that has left the feed takes its narrative with it. One source,
+// the snapshot's alerts, and `staleKeys` holds everything when it carries
+// none: GDACS always lists the month's green earthquakes, so an empty list is
+// a feed that did not load, and it used to empty the cache to match.
 function pruneStaleCache() {
-  const live = new Set(snapshot.alerts.map((a) => `${a.eventtype}:${a.eventid}`))
-  let dropped = 0
-  for (const k of Object.keys(cache)) {
-    if (!live.has(k)) {
-      delete cache[k]
-      dropped++
-    }
-  }
-  if (dropped > 0) console.log(`  pruned ${dropped} stale cache entries`)
+  const { drop, held } = staleKeys(Object.keys(cache), snapshot.alerts.map((a) => `${a.eventtype}:${a.eventid}`))
+  for (const k of drop) delete cache[k]
+  if (drop.length > 0) console.log(`  pruned ${drop.length} stale cache entries`)
+  for (const n of Object.values(held)) console.log(`  ⚠ prune held ${n} narratives: the snapshot carries no alerts`)
 }
 
 function applyCacheToSnapshot() {
   for (const alert of snapshot.alerts) {
-    const id = `${alert.eventtype}:${alert.eventid}`
-    if (cache[id]?.narrative) alert.narrative = cache[id].narrative
+    const narrative = narrativeFor(cache[`${alert.eventtype}:${alert.eventid}`], alert)
+    if (narrative) alert.narrative = narrative
   }
 }
 
@@ -277,6 +295,14 @@ function haversineKm(lat1, lng1, lat2, lng2) {
 async function fetchWeather(lat, lng) {
   // Open-Meteo: free, no key. Past 7 days of daily totals at the alert
   // location. Cached effectively by fingerprint rounding (10mm / 1°C).
+  //
+  // A failure is logged, because it is not free: `weather: null` is a
+  // different fingerprint from the one a good fetch gives, so the alert is
+  // narrated again on a thinner bundle, and again when the weather returns.
+  const without = (why) => {
+    console.error(`  ⚠ weather at ${lat},${lng}: ${why} — narrating without it`)
+    return null
+  }
   try {
     const url = new URL('https://archive-api.open-meteo.com/v1/archive')
     const today = new Date()
@@ -289,10 +315,10 @@ async function fetchWeather(lat, lng) {
     url.searchParams.set('daily', 'precipitation_sum,temperature_2m_max,temperature_2m_min')
     url.searchParams.set('timezone', 'UTC')
     const res = await fetch(url, { signal: AbortSignal.timeout(8000) })
-    if (!res.ok) return null
+    if (!res.ok) return without(`HTTP ${res.status}`)
     const json = await res.json()
     const daily = json?.daily
-    if (!daily?.precipitation_sum) return null
+    if (!daily?.precipitation_sum) return without('no daily block in the answer')
     const precipMm = daily.precipitation_sum.reduce((s, n) => s + (Number.isFinite(n) ? n : 0), 0)
     const maxT = Math.max(...daily.temperature_2m_max.filter(Number.isFinite))
     const minT = Math.min(...daily.temperature_2m_min.filter(Number.isFinite))
@@ -302,8 +328,8 @@ async function fetchWeather(lat, lng) {
       maxTempC: Math.round(maxT),
       minTempC: Math.round(minT),
     }
-  } catch {
-    return null
+  } catch (err) {
+    return without(/** @type {Error} */ (err).message)
   }
 }
 
