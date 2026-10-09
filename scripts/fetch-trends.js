@@ -1,11 +1,9 @@
 #!/usr/bin/env node
 // Trends fetcher for zuhd.news.
 // Reads scripts/lib/trends-registry.js, calls the configured sources, and
-// writes two files:
-//   - content/trends/YYYY-MM-DD.json   (full snapshot; kept 30 days, not committed
-//                                        by the cycle since 2026-08-09 — older ones
-//                                        survive only in git history)
-//   - /tmp/zuhd-trends-digest.json     (compact; read by dry-run-augment and replay)
+// writes content/trends/YYYY-MM-DD.json: the full snapshot, kept 30 days, not
+// committed by the cycle since 2026-08-09 (older ones survive only in git
+// history).
 //
 // Design principles copied from fetch-news.js:
 //  - Native fetch with 10s timeout + one retry (retry lives in the per-source module).
@@ -26,7 +24,6 @@ import { latestTrendsPath } from './lib/trends-snapshot.js'
 
 const TRENDS_DIR = join(ROOT, 'content', 'trends')
 const FX_CACHE = join(TRENDS_DIR, '.fx-history.json')
-const DIGEST_PATH = '/tmp/zuhd-trends-digest.json'
 
 const today = new Date().toISOString().slice(0, 10)
 const SNAPSHOT_PATH = join(TRENDS_DIR, `${today}.json`)
@@ -181,37 +178,6 @@ for (const f of readdirSync(TRENDS_DIR)) {
   }
 }
 if (rotated) console.log(`Rotated ${rotated} trends snapshots older than ${KEEP_DAYS} days`)
-
-// ── Write digest (editor-facing compact view) ──────────────────────────────
-//
-// The digest is what the edu-context Claude stage sees. It must be small
-// enough to fit comfortably in the prompt alongside the article list. We drop
-// the full values/periods arrays here — Claude only needs to know WHAT is
-// available and its latest value so it can decide relevance. The full series
-// lives in the snapshot and gets re-hydrated by the dry-run / generator when
-// Claude emits a pick.
-
-const digest = {
-  asOf: today,
-  releaseCalendar,
-  indicators: indicators.map((i) => ({
-    id: i.id,
-    label: i.label,
-    unit: i.unit,
-    sourceLabel: i.sourceLabel,
-    asOf: i.asOf,
-    latest: i.values[i.values.length - 1],
-    previous: i.values.length > 1 ? i.values[i.values.length - 2] : null,
-    topicTags: i.topicTags,
-    countryTags: i.countryTags || [],
-    points: i.values.length,
-    outcomeLabel: i.outcomeLabel, // polymarket only
-    marketUrl: i.marketUrl,       // polymarket only
-  })),
-}
-
-writeJson(DIGEST_PATH, digest)
-console.log(`Wrote ${DIGEST_PATH} — ${digest.indicators.length} entries`)
 
 const elapsed = Math.round((Date.now() - started) / 1000)
 console.log(`Trends: ${fetched} indicators fetched, ${indicators.length - fetched} carried — ${elapsed}s`)

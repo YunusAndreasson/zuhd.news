@@ -95,7 +95,6 @@ const catalog = {
   feedSourceStats: { path: '/tmp/zuhd-feed-source-stats.json', class: 'scratch' },
   selection: { path: '/tmp/zuhd-selection.json', class: 'scratch' },
   newArticles: { path: '/tmp/zuhd-new-articles.txt', class: 'scratch' },
-  trendsDigest: { path: '/tmp/zuhd-trends-digest.json', class: 'scratch' },
   metrics: { path: '/tmp/zuhd-metrics.json', class: 'scratch' },
   breakingPick: { path: 'content/.breaking-pick.json', class: 'scratch' },
   analyticsError: { path: 'content/.analytics-error.json', class: 'scratch' },
