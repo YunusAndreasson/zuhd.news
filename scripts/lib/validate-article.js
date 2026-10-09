@@ -12,7 +12,7 @@
 // run beside the gates and decides nothing.
 
 import { basename } from 'node:path'
-import { articleProblems } from './article.js'
+import { articleProblems, datelineOf } from './article.js'
 import { splitBlocks } from './blocks.js'
 import { normalizeUrl } from './dedup.js'
 import { canonicalIndicatorId } from './entity-registry.js'
@@ -21,7 +21,6 @@ import { chartProblem, citesFigure } from './indicator-offer.js'
 import { bodyNamesOutlet, soleClassifiedSource } from './outlet-class.js'
 
 const WINDOW_MS = 72 * 3600 * 1000
-const DATELINE = /^([^\n—]{2,60}?) — /
 
 /** A title as the duplicate gate compares it: lower case, letters, digits and single spaces. */
 export const normTitle = (t) => String(t || '').toLowerCase().replace(/[^a-z0-9 ]/g, '').replace(/\s+/g, ' ').trim()
@@ -144,8 +143,8 @@ export function createValidator({ published, offeredBySlug, knownIds }) {
     // Dateline. Nine bodies shipped without one on 2026-09-22 22:00 — the editor
     // rewrote their hooks and dropped it. `location` is the dateline city by
     // invariant, so a missing one is repaired rather than costing the story.
-    const dl = body.match(DATELINE)
-    if (!dl) {
+    const dateline = datelineOf(body)
+    if (dateline === null) {
       if (!location) return verdict('no dateline and no location')
       // Written in at the prose's own offset. The prose is the file's tail but
       // for white space, so the last place it occurs is where it stands; the
@@ -154,8 +153,8 @@ export function createValidator({ published, offeredBySlug, knownIds }) {
       text = `${raw.slice(0, at)}${location} — ${raw.slice(at)}`
       counts.repaired++
       events.push(`REPAIRED (dateline "${location} — " restored)`)
-    } else if (dl[1].trim() !== location) {
-      return verdict(`location "${location}" is not the dateline city "${dl[1].trim()}"`)
+    } else if (dateline !== location) {
+      return verdict(`location "${location}" is not the dateline city "${dateline}"`)
     }
 
     // Same primary source URL, or the same title, as an article published in the

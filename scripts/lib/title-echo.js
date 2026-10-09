@@ -22,6 +22,8 @@
  * editor applies its own test to each, and nothing is quarantined on this.
  */
 
+import { stripDateline } from './article.js'
+
 /** Words that say nothing about which story this is. */
 const STOP = new Set(
   `a an the and or but of to in on at for from by with as is are was were be been being
@@ -61,15 +63,16 @@ function figures(s) {
 
 /**
  * The hook as the reader sees it: the body's first block without its
- * dateline (`Kano — `), which every surface strips.
+ * dateline (`Kano — `), which every surface strips. By the location, as the
+ * app strips it, and without one by the pattern the validator reads a
+ * dateline with (`stripDateline`, `lib/article.js`).
  *
  * @param {string} body
  * @param {string} [location]
  */
 export function hookOf(body, location) {
   const first = String(body || '').trim().split(/\n\s*\n/)[0] || ''
-  if (location && first.startsWith(`${location} — `)) return first.slice(location.length + 3)
-  return first.replace(/^[^—\n]{1,40} — /, '')
+  return stripDateline(first, location)
 }
 
 /**

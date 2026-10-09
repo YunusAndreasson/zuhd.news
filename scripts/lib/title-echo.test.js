@@ -49,6 +49,19 @@ test('the hook is the first block without its dateline', () => {
   assert.equal(hookOf(body), 'Nigeria’s Kano State banned processions.')
 })
 
+// One reading of what a dateline is (`stripDateline`, `lib/article.js`): the
+// location when there is one, and otherwise what the validator takes for a
+// dateline, up to 60 characters before the dash. This had its own, up to 40.
+test('the dateline comes off by the location, and without one by the validator\'s pattern', () => {
+  assert.equal(hookOf('Brasília — Lula leads the first round.\n\nSecond.', 'Brasília'), 'Lula leads the first round.')
+  const long = 'Dadra and Nagar Haveli and Daman and Diu, India — A court ruled.'
+  assert.equal(long.indexOf(' — '), 47)
+  assert.equal(hookOf(long), 'A court ruled.')
+  // A location the body does not open with strips nothing by itself, and no dash is no dateline.
+  assert.equal(hookOf('A court ruled on Tuesday.', 'Geneva'), 'A court ruled on Tuesday.')
+  assert.equal(hookOf('', 'Geneva'), '')
+})
+
 test('a title with no words of substance flags nothing', () => {
   assert.equal(titleEcho('', 'Anything at all.').echo, false)
 })

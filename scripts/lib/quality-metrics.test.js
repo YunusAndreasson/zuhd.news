@@ -97,6 +97,13 @@ test('passive voice is counted in the hook and anywhere in the body', () => {
   const m = metrics([row(), row({ body: passiveHook }), row({ body: passiveBody }), row()])
   assert.equal(m.passiveHookRatePct, 25)
   assert.equal(m.passiveBodyRatePct, 50, 'the hook is part of the body')
+
+  // The dateline is taken off by the location. It was cut at the first em dash
+  // wherever that stood, so a body with no dateline and a dash further down
+  // was read from the dash on, and its hook was never tested.
+  const bare = ['The minister was dismissed on Monday after the vote.', 'The vote — the third this year — failed by 4.', ...FOUR.slice(2)].join('\n\n')
+  assert.equal(metrics([row({ body: bare, location: 'Paris' })]).passiveHookRatePct, 100)
+  assert.equal(metrics([row({ body: bare, location: '' })]).passiveHookRatePct, 100)
 })
 
 test('semicolons, causal claims, press-era phrases and filler are counted once an article', () => {

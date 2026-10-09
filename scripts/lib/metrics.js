@@ -8,6 +8,7 @@
 // The figures are moved as they stood. Their output is one of the tuner's
 // inputs.
 
+import { datelineOf } from './article.js'
 import { parseCycleLog } from './cycle-log.js'
 import { recapMatch, titleWords } from './dedup.js'
 import { parseFrontmatter } from './frontmatter.js'
@@ -227,7 +228,7 @@ export function computeSourcing(rows, quarantined) {
   const classified = rows.map((r) => ({ r, cls: soleClassifiedSource(r.sources) })).filter((x) => x.cls)
   const us = rows.filter((r) => inUs(r.lat, r.lng)).length
   const latAm = rows.filter((r) => regionFromCoords(r.lat, r.lng) === 'AM' && !inUs(r.lat, r.lng) && r.lat < 33).length
-  const noDateline = rows.filter((r) => !/^[^\n—]{2,60}? — /.test(r.body)).map((r) => r.slug)
+  const noDateline = rows.filter((r) => datelineOf(r.body) === null).map((r) => r.slug)
   const withImage = rows.filter((r) => r.sources.some((s) => typeof s?.image === 'string' && s.image)).length
   // Same event twice in a day: the title-overlap test prefilter uses, run
   // pairwise over what actually shipped.

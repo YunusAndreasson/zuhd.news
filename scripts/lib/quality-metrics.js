@@ -8,6 +8,7 @@
 // The snapshot goes onto an append-only series the dashboard plots and the
 // tuner reads, so every metric's pattern is moved exactly as it stood.
 
+import { stripDateline } from './article.js'
 import { splitBlocks } from './blocks.js'
 import { parseFrontmatter } from './frontmatter.js'
 import { hookOf, titleEcho } from './title-echo.js'
@@ -75,12 +76,15 @@ export function qualityRow(file, raw, cutoff) {
 }
 
 // ── Helpers ─────────────────────────────────────────────────
-/** @param {string} body */
-const afterDateline = (body) => body.replace(/^[^—]+—\s*/, '')
-/** The first sentence, which is what the passive-voice test reads as the hook. @param {string} body */
-const firstSentence = (body) => afterDateline(body).split(/\.\s+/)[0]
-/** @param {string} body */
-const sentencesOf = (body) => afterDateline(body).split(/\.\s+/).filter(Boolean)
+// The body without its dateline, by the location (`stripDateline`). This cut
+// at the first em dash wherever it stood, so a body with no dateline and a
+// dash further down lost everything before the dash, its hook included.
+/** @param {{ body: string, location: string }} a */
+const afterDateline = (a) => stripDateline(a.body, a.location)
+/** The first sentence, which is what the passive-voice test reads as the hook. @param {{ body: string, location: string }} a */
+const firstSentence = (a) => afterDateline(a).split(/\.\s+/)[0]
+/** @param {{ body: string, location: string }} a */
+const sentencesOf = (a) => afterDateline(a).split(/\.\s+/).filter(Boolean)
 const PASSIVE_RE = /^[A-Z][\w\s',.-]{0,40}\s+(was|were)\s+\w+(ed|en)\b/
 
 // Visible length matches the editor rule: link markup ([Iran](country:IR)) doesn't
@@ -145,12 +149,12 @@ export function qualitySnapshot(articles, now) {
   // ── Metric 3: passive-voice hook ───────────────────────────
   // First sentence starts with noun-ish + was/were + past-participle.
   // Noisy; calibrate against first weeks of data.
-  const passiveHookHits = articles.filter((a) => PASSIVE_RE.test(firstSentence(a.body))).length
+  const passiveHookHits = articles.filter((a) => PASSIVE_RE.test(firstSentence(a))).length
 
   // ── Metric 3b: passive voice, full body ────────────────────
   // Same pattern, scanned across every sentence — the "active voice everywhere"
   // rule in write-prompt.md/check-prompt.md covers the whole body, not just the hook.
-  const passiveBodyHits = articles.filter((a) => sentencesOf(a.body).some((s) => PASSIVE_RE.test(s))).length
+  const passiveBodyHits = articles.filter((a) => sentencesOf(a).some((s) => PASSIVE_RE.test(s))).length
 
   // ── Metric 3c: semicolons ──────────────────────────────────
   // write-prompt.md/check-prompt.md ban semicolons — a semicolon joining two
