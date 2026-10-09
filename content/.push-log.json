@@ -1,119 +1,5 @@
 [
   {
-    "timestamp": "2026-09-18T17:24:08.423Z",
-    "candidateCount": 13,
-    "candidates": [
-      {
-        "slug": "2026-09-18-canada-eu-associate-membership-walked-back",
-        "title": "Canada Cools EU Membership Talk",
-        "category": "politics",
-        "eventCoverage": 1274,
-        "importance": 6
-      },
-      {
-        "slug": "2026-09-18-eci-freezes-tmc-symbol-supreme-court-challenge",
-        "title": "India Freezes Trinamool Symbol",
-        "category": "politics",
-        "eventCoverage": 334,
-        "importance": 6
-      },
-      {
-        "slug": "2026-09-18-hacktron-claude-openai-internal-breach",
-        "title": "Researchers Hack OpenAI With Claude",
-        "category": "tech",
-        "eventCoverage": 125,
-        "importance": 6
-      },
-      {
-        "slug": "2026-09-18-north-sinai-parents-detained-school-reconstruction",
-        "title": "Egypt Detains Sinai Parents",
-        "category": "politics",
-        "eventCoverage": 0,
-        "importance": 6
-      },
-      {
-        "slug": "2026-09-18-nigeria-repatriates-chinese-rosewood-smuggling-suspect",
-        "title": "Nigeria Extradites Rosewood Smuggler",
-        "category": "politics",
-        "eventCoverage": 0,
-        "importance": 6
-      },
-      {
-        "slug": "2026-09-18-haruko-breach-crypto-middleware-api-keys",
-        "title": "Crypto Middleware Breach Exposes Funds",
-        "category": "economy",
-        "eventCoverage": 0,
-        "importance": 6
-      },
-      {
-        "slug": "2026-09-18-cftc-crypto-rulemaking-clarity-act-stalled",
-        "title": "Agency Writes Crypto Rules Alone",
-        "category": "economy",
-        "eventCoverage": 0,
-        "importance": 6
-      },
-      {
-        "slug": "2026-09-18-hca-sues-blue-cross-prior-authorization-denials",
-        "title": "Hospital Chain Sues Insurer",
-        "category": "economy",
-        "eventCoverage": 0,
-        "importance": 6
-      },
-      {
-        "slug": "2026-09-18-microsoft-filings-ai-scraping-theft-of-labor",
-        "title": "Filings Call AI Scraping Theft",
-        "category": "tech",
-        "eventCoverage": 0,
-        "importance": 6
-      },
-      {
-        "slug": "2026-09-18-north-korean-it-worker-networks-host-state-action",
-        "title": "States Curb North Korean Workers",
-        "category": "tech",
-        "eventCoverage": 0,
-        "importance": 6
-      },
-      {
-        "slug": "2026-09-18-haiti-fruit-trees-charcoal-deforestation",
-        "title": "Haitians Burn Fruit Trees",
-        "category": "science",
-        "eventCoverage": 0,
-        "importance": 6
-      },
-      {
-        "slug": "2026-09-18-hemp-hurd-cellulose-biodegradable-plastics",
-        "title": "Hemp Waste Strengthens Plastic",
-        "category": "science",
-        "eventCoverage": 0,
-        "importance": 6
-      },
-      {
-        "slug": "2026-09-18-graph-sandwich-conjecture-proved",
-        "title": "Mathematicians Prove Graph Sandwich",
-        "category": "science",
-        "eventCoverage": 0,
-        "importance": 6
-      }
-    ],
-    "selected": {
-      "slug": "2026-09-18-hacktron-claude-openai-internal-breach",
-      "title": "Researchers Hack OpenAI With Claude",
-      "category": "tech",
-      "body": "Claude Opus 5 cracked OpenAI's forum in",
-      "eventCoverage": 125,
-      "importance": 6
-    },
-    "skipReason": null,
-    "sent": true,
-    "pushTitle": "Breaking News",
-    "pushBody": "Researchers use Claude AI to breach OpenAI's internal forum, security firm says",
-    "response": {
-      "pushed": 1,
-      "skipped": 0,
-      "tokens": 8
-    }
-  },
-  {
     "timestamp": "2026-09-18T22:21:16.734Z",
     "candidateCount": 14,
     "candidates": [
@@ -10140,6 +10026,120 @@
     "sent": true,
     "pushTitle": "Breaking News",
     "pushBody": "Hurricane Isaias nears Florida Panhandle with 120 mph winds, 3 million at risk",
+    "response": {
+      "pushed": 1,
+      "skipped": 0,
+      "tokens": 5
+    }
+  },
+  {
+    "timestamp": "2026-10-09T22:17:26.034Z",
+    "candidateCount": 13,
+    "candidates": [
+      {
+        "slug": "2026-10-09-fort-hood-shooter-s-execution-could-face-challenge-in",
+        "title": "Pentagon Plans Public Execution",
+        "category": "politics",
+        "eventCoverage": 1578,
+        "importance": 6
+      },
+      {
+        "slug": "2026-10-09-russia-ready-to-supply-300-000-tons-of-diesel-to-world",
+        "title": "US Licenses Russian Diesel",
+        "category": "economy",
+        "eventCoverage": 540,
+        "importance": 6
+      },
+      {
+        "slug": "2026-10-09-eu-trade-chief-seeks-tangible-outcomes-in-china-talks",
+        "title": "EU China Agree Hybrid Limits",
+        "category": "economy",
+        "eventCoverage": 340,
+        "importance": 6
+      },
+      {
+        "slug": "2026-10-09-7-7-magnitude-earthquake-hits-panama-the-national",
+        "title": "Panama Earthquake Topples Buildings",
+        "category": "politics",
+        "eventCoverage": 311,
+        "importance": 6
+      },
+      {
+        "slug": "2026-10-09-flydubai-co-pilot-scoped-out-tel-aviv-twice-before-midair",
+        "title": "UAE Alleges Flydubai Suicide Plot",
+        "category": "politics",
+        "eventCoverage": 244,
+        "importance": 6
+      },
+      {
+        "slug": "2026-10-09-ukraine-takes-aim-at-russia-s-ai-data-infrastructure",
+        "title": "Ukraine Hits Second Yandex Site",
+        "category": "tech",
+        "eventCoverage": 145,
+        "importance": 6
+      },
+      {
+        "slug": "2026-10-09-drones-and-death-families-reel-from-the-uae-s-catastrophic",
+        "title": "UAE Drone Kills Somali Family",
+        "category": "politics",
+        "eventCoverage": 0,
+        "importance": 6
+      },
+      {
+        "slug": "2026-10-09-trump-launches-probe-into-federal-reserve-governor-lisa-cook",
+        "title": "Trump Convenes Cook Removal Panel",
+        "category": "economy",
+        "eventCoverage": 0,
+        "importance": 6
+      },
+      {
+        "slug": "2026-10-09-k-electric-may-have-to-carry-out-load-management-as-extreme",
+        "title": "Karachi Power Cuts Loom",
+        "category": "economy",
+        "eventCoverage": 0,
+        "importance": 6
+      },
+      {
+        "slug": "2026-10-09-rfk-jr-still-eager-to-fund-vaccine-trial-that-would-expose",
+        "title": "CDC Revives Newborn Vaccine Trial",
+        "category": "science",
+        "eventCoverage": 0,
+        "importance": 6
+      },
+      {
+        "slug": "2026-10-09-what-s-been-driving-hawaii-s-lava-fountains",
+        "title": "Steam Likely Drives Kilauea Fountains",
+        "category": "science",
+        "eventCoverage": 0,
+        "importance": 6
+      },
+      {
+        "slug": "2026-10-09-research-fear-as-a-form-of-governance-digital-rights-under",
+        "title": "Three States Police Online Speech",
+        "category": "tech",
+        "eventCoverage": 0,
+        "importance": 6
+      },
+      {
+        "slug": "2026-10-09-batteries-are-now-cheaper-than-natural-gas-turbines-used-at",
+        "title": "Batteries Undercut Gas Turbines",
+        "category": "tech",
+        "eventCoverage": 0,
+        "importance": 6
+      }
+    ],
+    "selected": {
+      "slug": "2026-10-09-fort-hood-shooter-s-execution-could-face-challenge-in",
+      "title": "Pentagon Plans Public Execution",
+      "category": "politics",
+      "body": "Hegseth announces 3 December firing-squad execution for Nidal",
+      "eventCoverage": 1578,
+      "importance": 6
+    },
+    "skipReason": null,
+    "sent": true,
+    "pushTitle": "Breaking News",
+    "pushBody": "Pentagon sets 3 December firing-squad execution for Fort Hood shooter Nidal Hasan",
     "response": {
       "pushed": 1,
       "skipped": 0,
