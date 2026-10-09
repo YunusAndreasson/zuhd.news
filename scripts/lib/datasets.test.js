@@ -56,7 +56,6 @@ test('every path a prompt names is in the catalog', () => {
 const STILL_SPELLING = [
   'scripts/build.js',
   'scripts/fetch-news-api.js',
-  'scripts/fetch-news.js',
   'scripts/fetch-trends.js',
   'scripts/generate-briefing.js',
   'scripts/lib/company-gaps.js',

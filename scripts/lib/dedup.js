@@ -6,6 +6,7 @@ import { parseFrontmatter } from './frontmatter.js'
 import { articleFilesSince } from './article-files.js'
 import { pathOf } from './datasets.js'
 import { readJson } from './json-file.js'
+import { RSS_SOURCE_NAMES } from './rss-sources.js'
 
 // Must mirror the category-floor lines in select-prompt.md (tech raised 2→3 by
 // experiment 2026-04-12-tech-floor-3; this constant lagged until 2026-07-03).
@@ -31,17 +32,10 @@ export function isThin(story) {
 const ARTICLES_DIR = pathOf('articles')
 const LEDGER_PATH = pathOf('storyLedger')
 
-// Niche RSS sources — must mirror SOURCES in scripts/fetch-news.js.
+// Niche RSS sources: the outlets `fetch-news.js` reads (`lib/rss-sources.js`).
 // A story whose every source is in this set is treated as niche-only and
 // gets the extra recap check (see wouldDedup → reason: 'recap').
-export const NICHE_SOURCES = new Set([
-  '404 Media', 'Bellingcat', 'Mada Masr', 'Salaam Gateway', 'InSight Crime',
-  'Declassified UK', 'Responsible Statecraft', 'Drop Site News', 'SMEX',
-  'SciDev.Net', 'The Record', 'Phys.org', 'Quanta Magazine', 'Carbon Brief',
-  'New Lines Magazine', 'The War Zone', 'CODA Story', 'European Spaceflight',
-  'Undark', 'Inkstick', 'Noema', 'Rest of World', 'The Diplomat',
-  'Lowy Interpreter', 'Dialogue Earth', 'Global Voices', 'Hacker News',
-])
+export const NICHE_SOURCES = new Set(RSS_SOURCE_NAMES)
 
 /**
  * Canonical form of a source URL, for identity comparison only.

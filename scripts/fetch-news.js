@@ -9,6 +9,8 @@ import { feedPubDate } from './lib/feed-age.js'
 import { rssItemImage } from './lib/feed-image.js'
 import { fetchSourcePage, stripTags } from './lib/fetch-source-text.js'
 import { bestStoryIds, bodiesFirst, documentHolds, hackerNewsStories, worthRetrying } from './lib/rss-feed.js'
+import { HACKER_NEWS, RSS_SOURCES, capFor, sourceCountry } from './lib/rss-sources.js'
+import { runStage } from './lib/stage.js'
 import { slugify, zuhdCategory } from './lib/utils.js'
 import { writeJson } from './lib/json-file.js'
 import { fetchJson, fetchText } from './lib/http.js'
@@ -22,74 +24,6 @@ const rssParser = new XMLParser({
   processEntities: true,
   htmlEntities: true,
 })
-
-// ── Source → country code (where the outlet is legally based / editorial HQ) ─
-// Fills the country field so RSS-sourced articles don't land with country:null.
-const SOURCE_COUNTRY = {
-  '404 Media': 'US',
-  'Bellingcat': 'NL',
-  'Mada Masr': 'EG',
-  'Salaam Gateway': 'AE',
-  'InSight Crime': 'US',
-  'Declassified UK': 'GB',
-  'Responsible Statecraft': 'US',
-  'Drop Site News': 'US',
-  'SMEX': 'LB',
-  'SciDev.Net': 'GB',
-  'The Record': 'US',
-  'Phys.org': 'GB',
-  'Quanta Magazine': 'US',
-  'Carbon Brief': 'GB',
-  'New Lines Magazine': 'US',
-  'The War Zone': 'US',
-  'CODA Story': 'US',
-  'European Spaceflight': 'FR',
-  'Undark': 'US',
-  'Inkstick': 'US',
-  'Noema': 'US',
-  'Rest of World': 'US',
-  'The Diplomat': 'US',
-  'Lowy Interpreter': 'AU',
-  'Dialogue Earth': 'GB',
-  'Global Voices': 'NL',
-  'Hacker News': 'US',
-}
-
-// ── Sources — only those NOT reliably indexed by NewsAPI.ai ─────────
-
-// Only sources NOT reliably indexed by NewsAPI.ai.
-// Nature, OCCRP, Wamda moved to API curated list (they return articles there).
-const SOURCES = [
-  // Hacker News fetched via Algolia API — see fetchHackerNews() below
-  { name: '404 Media',      url: 'https://404media.co/rss/',                   format: 'rss2', defaultCategory: 'tech' },
-  { name: 'Bellingcat',     url: 'https://www.bellingcat.com/feed/',            format: 'rss2' },
-  { name: 'Mada Masr',      url: 'https://www.madamasr.com/en/feed/',          format: 'rss2' },
-  { name: 'Salaam Gateway', url: 'https://salaamgateway.com/feed',             format: 'atom', defaultCategory: 'economy' },
-  { name: 'InSight Crime',  url: 'https://insightcrime.org/feed/',              format: 'rss2' },
-  { name: 'Declassified UK', url: 'https://declassifieduk.org/feed/',          format: 'rss2' },
-  { name: 'Responsible Statecraft', url: 'https://responsiblestatecraft.org/feed/', format: 'rss2' },
-  { name: 'Drop Site News', url: 'https://www.dropsitenews.com/feed',          format: 'rss2' },
-  { name: 'SMEX',           url: 'https://smex.org/feed/',                     format: 'rss2', defaultCategory: 'tech' },
-  { name: 'SciDev.Net',     url: 'https://www.scidev.net/global/global_rss.xml', format: 'rss2', defaultCategory: 'science' },
-  { name: 'The Record',     url: 'https://therecord.media/feed',                format: 'rss2', defaultCategory: 'tech' },
-  { name: 'Phys.org',       url: 'https://phys.org/rss-feed/',                  format: 'rss2', defaultCategory: 'science' },
-  { name: 'Quanta Magazine', url: 'https://www.quantamagazine.org/feed/',       format: 'rss2', defaultCategory: 'science' },
-  { name: 'Carbon Brief',   url: 'https://www.carbonbrief.org/feed/',           format: 'rss2', defaultCategory: 'science' },
-  { name: 'New Lines Magazine', url: 'https://newlinesmag.com/feed/',            format: 'rss2' },
-  { name: 'The War Zone',  url: 'https://www.twz.com/feed',                     format: 'rss2' },
-  { name: 'CODA Story',    url: 'https://www.codastory.com/feed/',              format: 'rss2' },
-  { name: 'European Spaceflight', url: 'https://europeanspaceflight.com/feed/',  format: 'rss2', defaultCategory: 'science' },
-  { name: 'Undark',        url: 'https://undark.org/feed/',                      format: 'rss2', defaultCategory: 'science' },
-  { name: 'Inkstick',      url: 'https://inkstickmedia.com/feed/',              format: 'rss2' },
-  { name: 'Noema',        url: 'https://www.noemamag.com/feed/',               format: 'rss2' },
-  { name: 'Rest of World', url: 'https://restofworld.org/feed/latest/',        format: 'rss2', defaultCategory: 'tech' },
-  { name: 'The Diplomat', url: 'https://thediplomat.com/feed/',                format: 'rss2' },
-  { name: 'Lowy Interpreter', url: 'https://www.lowyinstitute.org/the-interpreter/rss.xml', format: 'rss2' },
-  // thethirdpole.net 403s since the Dialogue Earth rebrand — it had failed every
-  // cycle in the log window (41/41) with the whole science feed silently lost.
-  { name: 'Dialogue Earth', url: 'https://dialogue.earth/en/feed/',            format: 'rss2', defaultCategory: 'science' },
-  { name: 'Global Voices', url: 'https://globalvoices.org/feed/',              format: 'rss2' },
-]
 
 const EXCLUDE_RE = /\b(opinion|features|gallery|photos|video|sport|entertainment|culture|food|travel|lifestyle|podcast)\b/i
 
@@ -279,54 +213,47 @@ async function fetchHackerNews() {
       category: 'tech',
       contentText: s.bodyText || undefined,
       image: s.image || null,
-      source: 'Hacker News',
+      source: HACKER_NEWS.name,
     }))
   } catch (err) {
-    return failedFeed({ name: 'Hacker News' }, err.message)
+    return failedFeed(HACKER_NEWS, err.message)
   }
 }
 
 // ── Main ────────────────────────────────────────────────────────────
 
-async function main() {
+export async function main() {
   // The last cycle's file goes first. Nothing else clears it, so a run that
   // died before it wrote left the feed of the cycle before for merge-feeds.js
   // to merge as this one's, and for the log to count (`RSS fetch: 77 stories`).
   rmSync(OUT, { force: true })
-  console.error(`Fetching ${SOURCES.length} RSS niche sources + Hacker News...`)
+  console.error(`Fetching ${RSS_SOURCES.length} RSS niche sources + Hacker News...`)
 
   const [rssResults, hnItems] = await Promise.all([
-    // An arrow, not `SOURCES.map(fetchSource)`: `map` passes the index as the
+    // An arrow, not `RSS_SOURCES.map(fetchSource)`: `map` passes the index as the
     // second argument, which is `retries`. The first feed got no retry and the
     // twenty-sixth got 25, each after a 10 s sleep, in a stage with no timeout.
     // That accident was also what carried the stage through a slow resolver,
     // which is why the count is now chosen (`FEED_RETRIES`).
-    Promise.all(SOURCES.map((source) => fetchSource(source))),
+    Promise.all(RSS_SOURCES.map((source) => fetchSource(source))),
     fetchHackerNews(),
   ])
-  const MAX_PER_SOURCE = 3
-  // Per-source override — aggregator-style feeds that flood a single category.
-  // Phys.org republishes journal press releases and was landing 29% of science
-  // primaries; The Record (cyber) was landing 19% of tech primaries. Lowering
-  // their cap rebalances toward Nature/Carbon Brief/SciDev and 404/Ars/CODA.
-  const PER_SOURCE_CAP = { 'Phys.org': 1, 'The Record': 1 }
-  const capFor = name => PER_SOURCE_CAP[name] ?? MAX_PER_SOURCE
-
-  // Per-source stats for dashboard monitoring
-  const sourceStats = SOURCES.map((src, i) => ({
+  // Per-source stats for dashboard monitoring. How many of an outlet's items a
+  // cycle takes is on its row (`capFor`, `lib/rss-sources.js`).
+  const sourceStats = RSS_SOURCES.map((src, i) => ({
     name: src.name,
     fetched: rssResults[i].length,
     used: Math.min(rssResults[i].length, capFor(src.name)),
     error: rssResults[i].length === 0 && rssResults[i]._error ? rssResults[i]._error : null,
   }))
-  sourceStats.push({ name: 'Hacker News', fetched: hnItems.length, used: Math.min(hnItems.length, capFor('Hacker News')), error: hnItems._error || null })
-  try { writeJson('/tmp/zuhd-feed-source-stats.json', { fetchedAt: new Date().toISOString(), sources: sourceStats }, { pretty: false }) } catch {}
+  sourceStats.push({ name: HACKER_NEWS.name, fetched: hnItems.length, used: Math.min(hnItems.length, capFor(HACKER_NEWS.name)), error: hnItems._error || null })
+  try { writeJson(pathOf('feedSourceStats'), { fetchedAt: new Date().toISOString(), sources: sourceStats }, { pretty: false }) } catch {}
 
   const allItems = [
-    ...rssResults.flatMap((items, i) => items.slice(0, capFor(SOURCES[i].name))),
-    ...hnItems.slice(0, capFor('Hacker News')),
+    ...rssResults.flatMap((items, i) => items.slice(0, capFor(RSS_SOURCES[i].name))),
+    ...hnItems.slice(0, capFor(HACKER_NEWS.name)),
   ]
-  const hnUsed = Math.min(hnItems.length, capFor('Hacker News'))
+  const hnUsed = Math.min(hnItems.length, capFor(HACKER_NEWS.name))
   console.error(`Raw items: ${allItems.length} (${allItems.length - hnUsed} RSS + ${hnUsed} HN)`)
 
   // No dedup here. What is already published is the prefilter's to remove (by
@@ -353,7 +280,7 @@ async function main() {
       suggestedSlug: slugify(item.title, pubDate),
       eventUri: null,
       eventCoverage: null,
-      sources: [{ name: item.source, url: item.link, country: SOURCE_COUNTRY[item.source] || null, body: (item.contentText || item.description || '').slice(0, 3000), image: item.image || null }],
+      sources: [{ name: item.source, url: item.link, country: sourceCountry(item.source), body: (item.contentText || item.description || '').slice(0, 3000), image: item.image || null }],
       concepts: [],
       location: null,
       sentiment: null,
@@ -364,7 +291,8 @@ async function main() {
   const output = { fetchedAt: new Date().toISOString(), stories }
   writeJson(OUT, output)
   console.error(`Wrote ${stories.length} stories to ${OUT}`)
-  console.log(`${stories.length} stories from ${SOURCES.length} sources`)
+  console.log(`${stories.length} stories from ${RSS_SOURCES.length} sources`)
+  return { counts: { sources: sourceStats.length, failed: sourceStats.filter((s) => s.error).length, items: allItems.length, stories: stories.length } }
 }
 
-main().catch(e => { console.error(e); process.exit(1) })
+await runStage(import.meta, 'fetch-news', main)

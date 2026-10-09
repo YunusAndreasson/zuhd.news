@@ -6,9 +6,10 @@
 // niche outlets reword headlines and slug truncation drops endings.
 import { test } from 'node:test'
 import { strict as assert } from 'node:assert'
-import { mkdirSync, mkdtempSync, readFileSync, rmSync, writeFileSync } from 'node:fs'
+import { mkdirSync, mkdtempSync, rmSync, writeFileSync } from 'node:fs'
 import { tmpdir } from 'node:os'
 import { join } from 'node:path'
+import { RSS_SOURCES } from './rss-sources.js'
 import {
   loadRecentArticles,
   normalizeUrl,
@@ -233,16 +234,14 @@ test('NICHE_SOURCES list is non-empty and matches RSS source names', () => {
   assert.ok(!NICHE_SOURCES.has('Al Jazeera'))
 })
 
-// `NICHE_SOURCES` says it "must mirror SOURCES in scripts/fetch-news.js", and
-// the comment was the only thing holding it there. A feed added to one and not
-// the other is a source whose recaps are never checked, or a wire treated as
-// niche. Hacker News is fetched through Algolia, not from the list.
+// `NICHE_SOURCES` said it "must mirror SOURCES in scripts/fetch-news.js", and
+// this test held it there by reading that script as text, which ran when
+// imported. It is made from the table the fetcher polls now. A feed in one and
+// not the other was a source whose recaps are never checked, or a wire treated
+// as niche. Hacker News is fetched through Algolia, not from the list.
 test('NICHE_SOURCES is exactly the RSS feeds fetch-news.js polls, plus Hacker News', () => {
-  const src = readFileSync(new URL('../fetch-news.js', import.meta.url), 'utf8')
-  const start = src.indexOf('const SOURCES = [')
-  const block = src.slice(start, src.indexOf('\n]', start))
-  const polled = [...block.matchAll(/name: '([^']+)'/g)].map((m) => m[1])
-  assert.ok(polled.length >= 20, 'fetch-news.js no longer declares SOURCES the way this reads it')
+  const polled = RSS_SOURCES.map((s) => s.name)
+  assert.ok(polled.length >= 20)
   assert.deepEqual([...NICHE_SOURCES].sort(), [...polled, 'Hacker News'].sort())
 })
 
