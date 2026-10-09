@@ -27,6 +27,7 @@ paths:
   - "scripts/lib/argv.js"
   - "scripts/lib/regions.js"
   - "scripts/lib/dedup.js"
+  - "scripts/lib/dispatch.js"
   - "scripts/lib/grounding.js"
   - "scripts/lib/indicator-offer.js"
   - "scripts/lib/indicator-model.js"
@@ -155,8 +156,9 @@ stages assume about each other.
   `relatedArticles`) for the app. **Never** join an indicator's onto
   `api/trends.json`, which every homepage visit loads. That file's `events`
   do carry theirs inline: an event has no `/e/{id}`.
-- The prune is the daily pass's only (`!NEW_ONLY`), and `PRUNE_FLOOR` declines
-  it when the live set collapses: a half-written payload reads as `[]`.
+- The prune is the daily pass's only (`!NEW_ONLY`) and per source (`staleKeys`,
+  `lib/dispatch.js`): a payload that gave no items loses no paragraph. Never a
+  floor on live against cached: a cache grows while its prune is declined.
 
 ## Prompts and validators
 

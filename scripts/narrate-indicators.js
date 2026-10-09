@@ -50,6 +50,7 @@ import { promptEcho, promptExamples, seriesEchoes, validateNumbers, validateProp
 import { matchesAnyTag } from './lib/entity-registry.js'
 import { companyMatcher, isAboutCompany, storyFacts } from './lib/companies.js'
 import { loadArticles, loadFeedWindow } from './lib/coverage-window.js'
+import { staleKeys } from './lib/dispatch.js'
 import { argAt, hasFlag } from './lib/argv.js'
 import { ROOT } from './lib/paths.js'
 import { readJson, writeJson } from './lib/json-file.js'
@@ -638,50 +639,27 @@ await runWithConcurrency(selected, CONCURRENCY, async (item) => {
 })
 
 /**
- * A prune is only as safe as the weakest source that ran, and nothing was
- * checking that any of them had.
- *
- * `items` is assembled from payload files that each degrade to `[]` when
- * unreadable, so a mid-write `.chokepoints.json` on the 04:00 pass produces a
- * short list and this loop deletes every chokepoint's prose to match it — the
- * exact trade the comment above says is not worth making, with nothing to stop
- * it. Reproduced by accident twice while testing a prompt change against a
- * checkout whose payloads were a month old: 37 indicator entries and 7 event
- * entries deleted by a run that asked for one item.
- *
- * So the prune declines when the live set has collapsed against the cache it is
- * about to trim. Rotation is real — Polymarket questions close and `wiki-*` is
- * re-picked from our own concepts every cycle — but it moves a handful of ids a
- * day, not a third of the file. Below this the honest read is "a source did not
- * load", and a stale entry costs a card nobody will notice while a wrong prune
- * costs every card that source feeds.
+ * The payload a key is minted from, by its prefix. `items` is assembled from
+ * four payloads that each degrade to `[]` when their file is unreadable, so a
+ * prune is only as safe as the weakest source that ran: `staleKeys` drops a
+ * key only when its own payload gave something. Everything unprefixed is the
+ * trends snapshot's, `stocks:` rows included.
  */
-const PRUNE_FLOOR = 0.6
+const sourceOf = (key) =>
+  key.startsWith('cp:') ? 'chokepoints' : key.startsWith('mkt:') ? 'markets' : key.startsWith('co:') ? 'companies' : 'trends'
 
 // Prune ids that have left every source payload. Polymarket questions close and
 // Wikipedia series are re-picked from our own concepts every cycle, so without
 // this the file grows a tail of instruments the site no longer shows.
 //
-// The daily pass only. `items` is assembled from four payloads that each
-// degrade to `[]` when their file is unreadable, so a prune is only as safe as
-// the weakest source that ran — and a `--new-only` pass, which happens four
-// more times a day, has nothing to gain from bookkeeping the 04:00 run does
-// anyway. Deleting eleven chokepoint entries because one file was mid-write is
-// not a trade worth making four extra times for a tidier cache.
+// The daily pass only: a `--new-only` pass, which happens four more times a
+// day, has nothing to gain from bookkeeping the daily run does anyway.
 if (!NEW_ONLY) {
-  const live = new Set(items.map((i) => i.key))
-  const cached = Object.keys(cache.items).length
-  if (cached && live.size < cached * PRUNE_FLOOR) {
-    console.log(`  ⚠ prune skipped: ${live.size} live items against ${cached} cached — a source payload looks missing`)
-  } else {
-  let dropped = 0
-  for (const k of Object.keys(cache.items)) {
-    if (!live.has(k)) {
-      delete cache.items[k]
-      dropped++
-    }
-  }
-  if (dropped > 0) console.log(`  pruned ${dropped} stale entries`)
+  const { drop, held } = staleKeys(Object.keys(cache.items), items.map((i) => i.key), sourceOf)
+  for (const k of drop) delete cache.items[k]
+  if (drop.length > 0) console.log(`  pruned ${drop.length} stale entries`)
+  for (const [source, n] of Object.entries(held)) {
+    console.log(`  ⚠ prune held ${n} stale entries: ${source} gave no items, so its payload did not load`)
   }
 }
 

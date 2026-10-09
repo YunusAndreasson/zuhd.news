@@ -41,6 +41,7 @@ import { runWithConcurrency } from './lib/concurrency.js'
 import { promptEcho, promptExamples, validateNumbers, validateProperNouns } from './lib/grounding.js'
 import { matchesAnyTag } from './lib/entity-registry.js'
 import { loadArticles, loadFeedWindow } from './lib/coverage-window.js'
+import { staleKeys } from './lib/dispatch.js'
 import { argAt, hasFlag } from './lib/argv.js'
 import { ROOT } from './lib/paths.js'
 import { readJson, writeJson } from './lib/json-file.js'
@@ -306,45 +307,20 @@ await runWithConcurrency(selected, CONCURRENCY, async (item) => {
   console.log(`  ✓ ${item.key}: ${recent || standing}`)
 })
 
-/**
- * A prune is only as safe as the weakest source that ran, and nothing was
- * checking that any of them had.
- *
- * `items` is assembled from payload files that each degrade to `[]` when
- * unreadable, so a mid-write `.chokepoints.json` on the 04:00 pass produces a
- * short list and this loop deletes every chokepoint's prose to match it — the
- * exact trade the comment above says is not worth making, with nothing to stop
- * it. Reproduced by accident twice while testing a prompt change against a
- * checkout whose payloads were a month old: 37 indicator entries and 7 event
- * entries deleted by a run that asked for one item.
- *
- * So the prune declines when the live set has collapsed against the cache it is
- * about to trim. Rotation is real — Polymarket questions close and `wiki-*` is
- * re-picked from our own concepts every cycle — but it moves a handful of ids a
- * day, not a third of the file. Below this the honest read is "a source did not
- * load", and a stale entry costs a card nobody will notice while a wrong prune
- * costs every card that source feeds.
- */
-const PRUNE_FLOOR = 0.6
-
 // Prune ids that have left the events window — an event more than
 // EVENTS_WINDOW_DAYS out drops from `trends.events` at fetch time, and a
 // past one drops here, so without this the file grows a tail of events the
 // site no longer shows.
+//
+// One source, the snapshot's `events`: when it gives none (no snapshot, or one
+// with no calendar) `staleKeys` holds every entry rather than emptying the
+// file to match.
 {
-  const live = new Set(items.map((i) => i.key))
-  const cached = Object.keys(cache.items).length
-  if (cached && live.size < cached * PRUNE_FLOOR) {
-    console.log(`  ⚠ prune skipped: ${live.size} live items against ${cached} cached — a source payload looks missing`)
-  } else {
-  let dropped = 0
-  for (const k of Object.keys(cache.items)) {
-    if (!live.has(k)) {
-      delete cache.items[k]
-      dropped++
-    }
-  }
-  if (dropped > 0) console.log(`  pruned ${dropped} stale entries`)
+  const { drop, held } = staleKeys(Object.keys(cache.items), items.map((i) => i.key))
+  for (const k of drop) delete cache.items[k]
+  if (drop.length > 0) console.log(`  pruned ${drop.length} stale entries`)
+  for (const n of Object.values(held)) {
+    console.log(`  ⚠ prune held ${n} stale entries: the snapshot gave no events, so it did not load`)
   }
 }
 
