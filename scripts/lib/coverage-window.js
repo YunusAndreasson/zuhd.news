@@ -96,31 +96,51 @@ export const loadArticles = (windowStart) => {
  *
  * Deduped on `link` because consecutive snapshots re-carry the same story —
  * five times a day for as long as it stays in the feed.
+ *
+ * Ordered by how widely a story was carried, then newest first. **The second
+ * key is most of the order**: two stories in three have no coverage count (the
+ * RSS ones; 2,170 of 3,218 in the window of 2026-10-09), and while the sort
+ * had only the first key they tied in the order they were first read, oldest
+ * snapshot first. A caller that takes the top twelve was then handed the
+ * thirteen-day-old headlines and never yesterday's, and the six a fingerprint
+ * hashes changed whenever the oldest snapshot left the window.
+ *
+ * @param {number} windowStart
+ * @param {string} [dir] the snapshots' directory; a parameter for the tests
  */
-export const loadFeedWindow = (windowStart) => {
-  if (!existsSync(FEED_SNAP_DIR)) return []
+export const loadFeedWindow = (windowStart, dir = FEED_SNAP_DIR) => {
+  if (!existsSync(dir)) return []
   const cutoff = iso(windowStart)
-  const files = readdirSync(FEED_SNAP_DIR)
+  const files = readdirSync(dir)
     .filter((f) => f.endsWith('.json') && f.slice(0, 10) >= cutoff)
     .sort()
   const byLink = new Map()
   for (const f of files) {
     let snap
     try {
-      snap = JSON.parse(readFileSync(join(FEED_SNAP_DIR, f), 'utf8'))
+      snap = JSON.parse(readFileSync(join(dir, f), 'utf8'))
     } catch {
       continue
     }
     for (const key of ['multiSourceStories', 'nicheStories']) {
       for (const s of Array.isArray(snap[key]) ? snap[key] : []) {
         const link = s?.link || s?.title
-        if (!link || byLink.has(link)) continue
+        if (!link) continue
+        const outlets = Number(s.eventCoverage) || 0
+        const seen = byLink.get(link)
+        if (seen) {
+          // The count grows while a story is carried (one went from 1,647 to
+          // 4,531 across snapshots), so the first sighting is where it is
+          // smallest. A story is ranked by how far it went.
+          if (outlets > seen.outlets) seen.outlets = outlets
+          continue
+        }
         const concepts = Array.isArray(s.concepts) ? s.concepts : []
         byLink.set(link, {
           title: s.title || '',
           date: String(s.pubDate || '').slice(0, 10),
           source: s.source || '',
-          outlets: Number(s.eventCoverage) || 0,
+          outlets,
           // Wikipedia article titles, which is what `wiki-*` ids are minted
           // from — the join that makes the attention block explicable.
           conceptTitles: concepts
@@ -132,5 +152,5 @@ export const loadFeedWindow = (windowStart) => {
       }
     }
   }
-  return [...byLink.values()].sort((a, b) => b.outlets - a.outlets)
+  return [...byLink.values()].sort((a, b) => b.outlets - a.outlets || b.date.localeCompare(a.date))
 }
