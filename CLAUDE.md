@@ -103,7 +103,7 @@ ranked metrics) · `chart/*` (the one chart and rank bar, as arithmetic) ·
 - **Site:** `npm run publish`. Production branch `master`; the pipeline deploys each cycle.
 - **MCP worker:** `npm run deploy` inside `workers/mcp`.
 - **`workers/share-preview`:** retired — do not deploy.
-- Dashboard: `localhost:7777` via SSH tunnel, `zuhd-dashboard.service`, `scripts/dashboard/`.
+- Dashboard: port 7777 on the server's public address, read-only and without a login (`DASHBOARD_HOST` in `zuhd-dashboard.service`), `scripts/dashboard/`.
 - Experiments: one at a time in `content/.experiments.json`; create with `/experiment`.
 
 ## Rules that load with the files they cover

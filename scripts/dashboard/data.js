@@ -4,9 +4,9 @@
 // tested, and nothing was. The parts with a behaviour of their own live here
 // and the server is what wires them to a port.
 
-import { closeSync, existsSync, openSync, readSync, statSync } from 'node:fs'
+import { closeSync, openSync, readSync, statSync } from 'node:fs'
 import { cycleIdOf, cycleLogName, isoFromDateOutput } from '../lib/cycle-log.js'
-import { readJson, writeJson } from '../lib/json-file.js'
+import { DAILY_HOUR } from '../lib/cycle-run.js'
 
 /** What a route returns when it has written the response itself: a file, an event stream. */
 export const SENT = Symbol('sent')
@@ -115,7 +115,7 @@ export function isoFromSystemd(text) {
  * allowed) reads as nothing known.
  *
  * @param {string | null | undefined} shown
- * @returns {{ serviceActive: boolean, nextFire: string | null, lastTrigger: string | null }}
+ * @returns {{ serviceActive: boolean, serviceState: string | null, timerActive: boolean | null, nextFire: string | null, lastTrigger: string | null }}
  */
 export function systemdView(shown) {
   /** @type {Record<string, Record<string, string>>} */
@@ -132,70 +132,12 @@ export function systemdView(shown) {
   const [service, timer] = CYCLE_UNITS.map((id) => units[id])
   return {
     serviceActive: service?.ActiveState === 'activating' || service?.ActiveState === 'active',
+    // `failed` after a cycle that exited non-zero, until the next one starts.
+    serviceState: service?.ActiveState ?? null,
+    timerActive: timer ? timer.ActiveState === 'active' : null,
     nextFire: isoFromSystemd(timer?.NextElapseUSecRealtime),
     lastTrigger: isoFromSystemd(timer?.LastTriggerUSec),
   }
-}
-
-// ── A series the dashboard keeps ─────────────────────────────────────
-
-/**
- * A series as it is on disk: `[]` when there is no file yet, null when there
- * is one and it does not hold a series. The difference is the point: the
- * first is a place to start, the second a history not to write over.
- *
- * @param {string} path
- * @returns {any[] | null}
- */
-export function readSeries(path) {
-  if (!existsSync(path)) return []
-  const kept = readJson(path, null)
-  return Array.isArray(kept) ? kept : null
-}
-
-/**
- * `series` with `entry` standing where the entry of its `date` stood, or at
- * the end when the date is new; its last `keep`.
- *
- * @template {{ date: string }} T
- * @param {T[]} series
- * @param {T} entry
- * @param {number} keep
- * @returns {T[]}
- */
-export function withDay(series, entry, keep) {
-  const at = series.findIndex((e) => e.date === entry.date)
-  const next = at === -1 ? [...series, entry] : series.map((e, i) => (i === at ? entry : e))
-  return next.slice(-keep)
-}
-
-/**
- * Put the day's entry into the series kept at `path`, and return the series
- * to show.
- *
- * This is the one file the dashboard writes, and it writes it while answering
- * a GET, so it is careful in three ways. The write is `writeJson`'s, a
- * sibling renamed over, because the file is tracked and a cycle may be
- * committing `content/` at that moment. Nothing is written when the entry
- * changes nothing. And a file that is there and does not hold a series is
- * left as it is: read as empty, it was written back as today's entry alone.
- *
- * @template {{ date: string }} T
- * @param {string} path
- * @param {T} entry
- * @param {number} keep
- * @returns {{ series: T[], written: boolean }}
- */
-export function keepDay(path, entry, keep) {
-  const kept = readSeries(path)
-  const series = withDay(kept ?? [], entry, keep)
-  if (kept === null) {
-    console.error(`dashboard: ${path} is there and is not a series — left as it is, today's entry is not kept`)
-    return { series, written: false }
-  }
-  if (JSON.stringify(kept) === JSON.stringify(series)) return { series, written: false }
-  writeJson(path, series)
-  return { series, written: true }
 }
 
 // ── What a file says, kept until the file changes ────────────────────
@@ -261,7 +203,7 @@ export function isCycleLog(name) {
  * reader knows (`ABORTS`). The server matched it against a list of its own
  * that had fallen one behind: a cycle whose build failed was not one.
  *
- * @param {CycleLog} log
+ * @param {CycleLog & { cause?: string | null }} log with why it ended short, when the caller has read that (`abortCause`)
  * @param {string} filename `cycle-2026-10-09_0501.log`
  */
 export function cycleView(log, filename) {
@@ -279,6 +221,16 @@ export function cycleView(log, filename) {
     totalSeconds: log.totalSeconds,
     completed: log.finishedText !== null,
     aborted: log.abort,
+    benign: isBenignEnd(log.abort),
+    cause: log.cause ?? null,
+    daily: id ? id.slice(11, 13) === DAILY_HOUR : false,
+    target: log.selection.target,
+    warnings: log.warnings.length,
+    // Every stage that printed a status or a time, as it last ran.
+    allStages: [
+      ...(log.feed.seconds != null ? [{ id: 'feed', exit: null, seconds: log.feed.seconds, retried: false }] : []),
+      ...log.stages.map((s) => ({ id: s.id, exit: s.attempts.at(-1)?.exit ?? null, seconds: s.attempts.at(-1)?.seconds ?? null, retried: s.attempts.length > 1 })),
+    ],
     stages: {
       feed: { seconds: log.feed.seconds },
       selector: { exit: first('selector').exit, seconds: first('selector').seconds },
@@ -308,25 +260,184 @@ export function cycleView(log, filename) {
 }
 
 /**
- * In how many of these cycles each feed source failed: the `✗ name: reason`
- * lines of Stage 0, the feed fetch, a source counted once a cycle.
+ * Whether a line that ended a cycle short is the cycle working: every story
+ * it chose was already out. The other endings are failures.
  *
- * Every `✗` in the log was counted, a line at a time. Stage 3.4 prints four
- * a cycle for exchanges with one day of data (`✗ yahoo:^TASI.SR: only 1/1
- * points`), so `yahoo` stood in the feed's table at four failures a cycle,
- * and the page showed the sum as "n/35 cycles".
- *
- * @param {CycleLog[]} logs
- * @returns {Record<string, number>}
+ * @param {string | null | undefined} abort
  */
-export function feedFailures(logs) {
-  /** @type {Record<string, number>} */
-  const cycles = {}
-  for (const log of logs) {
-    const failed = new Set(log.marks.filter((mark) => mark.stage === '0').map((mark) => mark.name))
-    for (const name of failed) cycles[name] = (cycles[name] || 0) + 1
+export const isBenignEnd = (abort) => /^All selections already published/.test(abort ?? '')
+
+/**
+ * Why a cycle ended short, in the log's own words: the last thing printed
+ * before the failed stage's status line. The abort line names the stage
+ * (`Selector failed (exit 1) — aborting cycle`); the line above its status is
+ * what the stage said (`You've hit your weekly limit · resets 9pm (UTC)`),
+ * and the page showed a red dot and neither.
+ *
+ * @param {string} text the log
+ * @param {string | null | undefined} abort its abort line
+ * @returns {string | null}
+ */
+export function abortCause(text, abort) {
+  if (!abort || isBenignEnd(abort)) return null
+  const lines = String(text).split('\n')
+  let at = lines.indexOf(abort) - 1
+  while (at >= 0 && (!lines[at].trim() || / exit: \d+/.test(lines[at]))) at--
+  const said = at >= 0 ? lines[at].trim() : ''
+  return said && !said.startsWith('---') ? said.slice(0, 200) : null
+}
+
+/**
+ * What the sources view asks of a cycle (`sources.js`): which stages it
+ * reached, what they marked as failed, and how the ones with a status ended.
+ *
+ * @param {CycleLog & { cause?: string | null }} log
+ * @param {string} filename
+ * @returns {import('./sources.js').CycleFacts}
+ */
+export function cycleFacts(log, filename) {
+  return {
+    id: cycleIdOf(filename) ?? filename,
+    startedAt: isoFromDateOutput(log.startedText),
+    finished: log.finishedText !== null,
+    ran: log.headers.filter((h) => !h.skipped).map((h) => h.n),
+    marks: log.marks,
+    exits: Object.fromEntries(log.stages.map((s) => [s.id, s.attempts.at(-1)?.exit ?? null])),
+    abort: log.abort,
+    cause: log.cause ?? null,
   }
-  return cycles
+}
+
+// ── Health ───────────────────────────────────────────────────────────
+
+/** A cycle is slow past the first of these seconds and too slow past the second. The daily one also writes the dispatches and the briefing. */
+export const SLOW_SECONDS = { cycle: [1500, 2400], daily: [2100, 3000] }
+
+/**
+ * The page's health lights, each with the sentence that explains it.
+ *
+ * What they were got wrong in ways that made the page red or amber with
+ * nothing the matter, and green with something: the site was "stale" at six
+ * hours, and seven pass between the 22:00 cycle and the 05:00 one every
+ * night; one bar for duration, which every daily cycle is over; a cycle that
+ * aborted in 22 seconds scored green for speed; five stories was a good cycle
+ * when the cycle is asked for eleven to fifteen; and a failed unit read as
+ * "idle".
+ *
+ * @param {{ cycles: ReturnType<typeof cycleView>[], metaGenerated: string | null,
+ *   systemd: ReturnType<typeof systemdView>, alert: { reason?: string, consecutive?: number } | null,
+ *   sources?: { status: string, red: number, amber: number, total: number } | null, now?: number }} from
+ *   `cycles` newest first
+ */
+export function cycleStatus({ cycles, metaGenerated, systemd, alert, sources = null, now = Date.now() }) {
+  /** @type {Record<string, string>} */
+  const s = {}
+  /** @type {Record<string, string>} */
+  const why = {}
+  /** @param {string} key @param {string} status @param {string} text */
+  const set = (key, status, text) => {
+    s[key] = status
+    why[key] = text
+  }
+  const finished = cycles.filter((c) => c.completed)
+  const last = finished[0] ?? null
+  /** @param {ReturnType<typeof cycleView>} c */
+  const deployed = (c) => c.stages.deploy.exit === 0
+
+  // The site: owed a deploy by every cycle that should have made one.
+  const owedAt = finished.findIndex((c) => deployed(c))
+  const owed = finished.slice(0, owedAt === -1 ? finished.length : owedAt).filter((c) => !c.benign).length
+  const ageHours = metaGenerated ? (now - Date.parse(metaGenerated)) / 3600_000 : null
+  if (ageHours === null || Number.isNaN(ageHours)) set('siteFreshness', 'unknown', 'no built site to read')
+  else if (ageHours > 24) set('siteFreshness', 'red', `built ${Math.round(ageHours)}h ago`)
+  else if (owed >= 2) set('siteFreshness', 'red', `the last ${owed} cycles did not deploy`)
+  else if (owed === 1) set('siteFreshness', 'amber', 'the last cycle did not deploy')
+  else set('siteFreshness', 'green', 'built by the last cycle')
+
+  if (!last) {
+    for (const key of ['lastCycle', 'cycleTiming', 'pubRate', 'validation']) set(key, 'unknown', 'no finished cycle on record')
+  } else {
+    const failedStages = last.allStages.filter((st) => st.exit != null && st.exit !== 0).map((st) => st.id)
+    if (last.aborted && !last.benign) set('lastCycle', 'red', last.cause ? `${last.aborted} (${last.cause})` : last.aborted)
+    else if (last.benign) set('lastCycle', 'green', 'nothing new: every story chosen was already published')
+    else if (!deployed(last)) set('lastCycle', 'red', 'ended without a deploy')
+    else if (failedStages.length) set('lastCycle', 'amber', `deployed; failed on the way: ${failedStages.join(', ')}`)
+    else set('lastCycle', 'green', 'deployed')
+
+    const [slow, tooSlow] = last.daily ? SLOW_SECONDS.daily : SLOW_SECONDS.cycle
+    const t = last.totalSeconds
+    if (t === null || last.aborted) set('cycleTiming', 'unknown', 'not timed: the cycle ended short')
+    else set('cycleTiming', t < slow ? 'green' : t < tooSlow ? 'amber' : 'red', `${Math.round(t / 60)} min, against ${slow / 60} for ${last.daily ? 'the daily cycle' : 'a cycle'}`)
+
+    const pub = last.funnel.published
+    if (last.benign) set('pubRate', 'unknown', 'nothing new to publish')
+    else if (last.aborted) set('pubRate', 'unknown', 'nothing published: the cycle ended short')
+    else if (!last.target) set('pubRate', pub > 0 ? 'green' : 'red', `${pub} published`)
+    else set('pubRate', pub * 2 >= last.target ? 'green' : pub > 0 ? 'amber' : 'red', `${pub} published of ${last.target} asked for`)
+
+    const removed = last.funnel.written - last.funnel.validated
+    set('validation', removed <= 0 ? 'green' : removed <= 2 ? 'amber' : 'red', removed > 0 ? `${removed} of ${last.funnel.written} written did not pass` : 'every article written passed')
+  }
+
+  if (systemd.timerActive === false) set('timer', 'red', 'the timer is not active: no cycle will start')
+  else if (!systemd.nextFire) set('timer', 'unknown', 'systemd did not say when the next cycle fires')
+  else set('timer', 'green', 'armed')
+
+  if (alert?.reason) set('alert', 'red', `${alert.reason}${(alert.consecutive ?? 0) > 1 ? `, ${alert.consecutive} cycles running` : ''}`)
+
+  if (sources) {
+    const text = sources.red || sources.amber ? `${sources.red} failing · ${sources.amber} degraded` : `all ${sources.total} working`
+    set('sources', sources.status, text)
+  }
+
+  const vals = Object.values(s)
+  s.overall = vals.includes('red') ? 'red' : vals.includes('amber') ? 'amber' : vals.includes('green') ? 'green' : 'unknown'
+  return { status: s, why }
+}
+
+// ── Writing targets ──────────────────────────────────────────────────
+
+/**
+ * The targets the weekly writing metrics (`measure-quality.js`) are held to
+ * on the page: a metric, the side of the number that is good, and the number.
+ *
+ * They stood in `index.html` three times and had drifted: multi-source was
+ * 40 there and 30 in the daily audit, which is the one the tuner answers to.
+ * Three metrics have no line here on purpose, and are shown as figures with
+ * no verdict. Title echo is redefined by the trend's schema 4 and its old bar
+ * of 10 has never been met under any definition. Acronym violations counts
+ * outlet names (TASS, RT) and runs in the hundreds. The soft length target is
+ * information, never a gate. With those three always in breach the quality
+ * light was red whatever the writing did.
+ *
+ * @type {Record<string, { below?: number, above?: number, is?: number, label: string }>}
+ */
+export const WRITING_TARGETS = {
+  passiveHookRatePct: { below: 15, label: 'passive hook' },
+  passiveBodyRatePct: { below: 15, label: 'passive (any sentence)' },
+  semicolonRatePct: { is: 0, label: 'semicolons' },
+  hedgeRatePct: { below: 5, label: 'hedges' },
+  causalClaimHits: { is: 0, label: 'causal claims' },
+  pressEraHits: { is: 0, label: 'press-era phrases' },
+  countryNullCount: { is: 0, label: 'country:null' },
+  multiSourceRatePct: { above: 30, label: 'multi-source' },
+  topOutletSharePct: { below: 35, label: 'top outlet share' },
+  charOver400Pct: { below: 5, label: 'over the character cap' },
+}
+
+/**
+ * The targets a week's metrics miss, by their labels.
+ *
+ * @param {Record<string, unknown> | null | undefined} metrics
+ * @returns {string[]}
+ */
+export function writingBreaches(metrics) {
+  return Object.entries(WRITING_TARGETS).flatMap(([key, t]) => {
+    const v = metrics?.[key]
+    if (typeof v !== 'number') return []
+    const met = t.is != null ? v === t.is : t.below != null ? v < t.below : v >= /** @type {number} */ (t.above)
+    return met ? [] : [t.label]
+  })
 }
 
 // ── The live tail ────────────────────────────────────────────────────

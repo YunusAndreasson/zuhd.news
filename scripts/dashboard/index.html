@@ -20,8 +20,12 @@
     <span class="chip-head"><span class="dot dot-unknown"></span><span class="chip-label">last cycle</span></span>
     <span class="chip-value">—</span>
   </button>
-  <button type="button" class="status-chip" id="chip-next" data-target-tab="status" data-target-scroll="systemd" title="jump to systemd status">
+  <button type="button" class="status-chip" id="chip-next" data-target-tab="pipeline" data-target-scroll="health-indicators" title="jump to health">
     <span class="chip-head"><span class="dot dot-unknown"></span><span class="chip-label">next cycle</span></span>
+    <span class="chip-value">—</span>
+  </button>
+  <button type="button" class="status-chip" id="chip-sources" data-target-tab="sources" title="jump to sources">
+    <span class="chip-head"><span class="dot dot-unknown"></span><span class="chip-label">sources</span></span>
     <span class="chip-value">—</span>
   </button>
   <button type="button" class="status-chip" id="chip-exp" data-target-tab="experiment" title="jump to experiments">
@@ -32,7 +36,7 @@
     <span class="chip-head"><span class="dot dot-unknown"></span><span class="chip-label">quality</span></span>
     <span class="chip-value">—</span>
   </button>
-  <button type="button" class="status-chip" id="chip-fresh" data-target-tab="status" data-target-scroll="health-indicators" title="jump to health indicators">
+  <button type="button" class="status-chip" id="chip-fresh" data-target-tab="pipeline" data-target-scroll="health-indicators" title="jump to health">
     <span class="chip-head"><span class="dot dot-unknown"></span><span class="chip-label">site fresh</span></span>
     <span class="chip-value">—</span>
   </button>
@@ -40,12 +44,11 @@
 
 <div class="tab-strip" role="tablist">
   <button type="button" class="tab-btn" role="tab" aria-selected="true" data-tab="pipeline">pipeline</button>
+  <button type="button" class="tab-btn" role="tab" aria-selected="false" data-tab="sources">sources</button>
   <button type="button" class="tab-btn" role="tab" aria-selected="false" data-tab="quality">quality</button>
   <button type="button" class="tab-btn" role="tab" aria-selected="false" data-tab="logs">logs</button>
   <button type="button" class="tab-btn" role="tab" aria-selected="false" data-tab="experiment">experiment<span class="exp-tab-dot" id="exp-tab-dot" hidden></span></button>
-  <button type="button" class="tab-btn" role="tab" aria-selected="false" data-tab="autoresearch">autoresearch</button>
   <button type="button" class="tab-btn" role="tab" aria-selected="false" data-tab="editorial">editorial</button>
-  <button type="button" class="tab-btn" role="tab" aria-selected="false" data-tab="status">status</button>
 </div>
 
 <!-- ── Pipeline ──────────────────────────────────────────────── -->
@@ -70,10 +73,21 @@
     </section>
   </div>
 
-  <section id="cycle-history">
-    <h3>7-day cycle history</h3>
-    <div class="cycle-grid" id="cycle-grid"></div>
+  <section id="health-indicators">
+    <h3>health</h3>
+    <ul class="health-list" id="health-list"></ul>
   </section>
+
+  <div class="section-grid-2">
+    <section id="cycle-history">
+      <h3>7-day cycle history</h3>
+      <div class="cycle-grid" id="cycle-grid"></div>
+    </section>
+    <section>
+      <h3>by day</h3>
+      <table class="trend-table" id="trend-table"></table>
+    </section>
+  </div>
 
   <h2 class="group-divider">last cycle — what just ran</h2>
 
@@ -83,7 +97,12 @@
   </section>
 
   <section>
-    <h3>stage time breakdown</h3>
+    <h3>every stage of the last cycle</h3>
+    <div class="log-stages" id="last-stages"></div>
+  </section>
+
+  <section>
+    <h3>where the time goes</h3>
     <div id="chart-stages"></div>
   </section>
 
@@ -104,21 +123,6 @@
     <div id="chart-funnel-trend"></div>
   </section>
 
-  <h2 class="group-divider">sources &amp; ops</h2>
-
-  <section>
-    <h3>feed source health</h3>
-    <div id="feed-health"></div>
-  </section>
-
-  <details class="detail-section">
-    <summary>NewsAPI tokens per cycle</summary>
-    <div class="detail-body">
-      <div id="ops-tokens-summary" class="stat-row"></div>
-      <div id="chart-newsapi-tokens"></div>
-    </div>
-  </details>
-
   <h2 class="group-divider">channels — downstream output</h2>
 
   <div class="section-grid-2">
@@ -131,6 +135,44 @@
       <div id="push-history"></div>
     </section>
   </div>
+
+  <div class="section-grid-2">
+    <section>
+      <h3>X</h3>
+      <div id="channel-x"></div>
+    </section>
+    <section>
+      <h3>Instagram</h3>
+      <div id="channel-instagram"></div>
+    </section>
+  </div>
+
+</div>
+
+<!-- ── Sources ───────────────────────────────────────────────── -->
+<div class="tab-panel" id="panel-sources">
+
+  <section>
+    <h3>every source, and whether it is working</h3>
+    <div class="sources-summary" id="sources-summary"></div>
+    <p class="note">
+      Each row is read from what the source last left on disk. <strong>Green</strong>: refreshed by the last cycle that
+      reached it, with everything expected. <strong>Amber</strong>: something is missing, stale or kept from an earlier
+      fetch. <strong>Red</strong>: nothing came, or it has failed more than once running. A cycle that ended before a
+      stage does not count against it. A series is called behind when its newest point is older than 7 days (daily),
+      21 (weekly) or 92 (monthly).
+    </p>
+  </section>
+
+  <div id="sources-groups"></div>
+
+  <details class="detail-section">
+    <summary>NewsAPI tokens per cycle</summary>
+    <div class="detail-body">
+      <div id="ops-tokens-summary" class="stat-row"></div>
+      <div id="chart-newsapi-tokens"></div>
+    </div>
+  </details>
 
 </div>
 
@@ -153,17 +195,16 @@
   </section>
 
   <section>
-    <h3>specificity (last 60 articles, daily snapshot)</h3>
+    <h3>specificity (last 60 articles)</h3>
     <div id="specificity-summary"></div>
     <div class="stat-row" id="specificity-stats" style="margin-top:0.5rem"></div>
-    <div id="specificity-trend" style="margin-top:0.75rem"></div>
     <div id="specificity-worst" style="margin-top:0.75rem"></div>
   </section>
 
   <h2 class="group-divider">output — what got produced?</h2>
 
   <section id="image-preview">
-    <h3>image preview (NewsAPI publisher images, captured from next cycle)</h3>
+    <h3>publisher images on recent articles</h3>
     <div id="image-preview-summary" style="font-size:var(--size-xs);color:var(--text-secondary);margin-bottom:0.5rem"></div>
     <div id="image-preview-grid" class="image-preview-grid"></div>
   </section>
@@ -180,22 +221,16 @@
     <div id="chart-articles-day"></div>
   </section>
 
-  <div class="section-grid-2">
-    <section>
-      <h3>freshness</h3>
-      <div class="stat-row" id="freshness-stats"></div>
-    </section>
-    <section>
-      <h3>story arcs</h3>
-      <div class="stat-row" id="arc-stats"></div>
-    </section>
-  </div>
+  <section>
+    <h3>freshness</h3>
+    <div class="stat-row" id="freshness-stats"></div>
+  </section>
 
   <h2 class="group-divider">mix — how is the coverage shaped?</h2>
 
   <div class="section-grid-2">
     <section>
-      <h3>categories (today)</h3>
+      <h3>categories (the feed now on the site)</h3>
       <div id="cat-bars"></div>
     </section>
     <section>
@@ -215,24 +250,6 @@
   </section>
 
   <h2 class="group-divider">detail — secondary signals</h2>
-
-  <details class="detail-section">
-    <summary>brief block adoption (last 14 days)</summary>
-    <div class="detail-body">
-      <div id="block-adoption-summary" class="stat-row"></div>
-      <div id="block-adoption-bars"></div>
-      <div style="margin-top: 0.75rem; font-size: var(--size-xs); color: var(--text-secondary);">
-        Shape-specific = timeline / rank / sankey / treemap. Cheap = prose / quiz / locations / compare / actors / quote. Charts = trend / chart / multi-chart.
-      </div>
-    </div>
-  </details>
-
-  <details class="detail-section">
-    <summary>edu context coverage</summary>
-    <div class="detail-body">
-      <div id="edu-coverage"></div>
-    </div>
-  </details>
 
   <details class="detail-section">
     <summary>duplicates &amp; validation</summary>
@@ -264,6 +281,7 @@
 
   <section>
     <h3>active experiment</h3>
+    <div id="exp-hold"></div>
     <div id="exp-active"></div>
   </section>
 
@@ -284,22 +302,6 @@
 
 </div>
 
-<!-- ── Autoresearch ───────────────────────────────────────────── -->
-<div class="tab-panel" id="panel-autoresearch">
-
-  <section>
-    <h3>session totals</h3>
-    <div id="ar-totals" class="stat-row"></div>
-  </section>
-
-  <section>
-    <h3>session history</h3>
-    <div id="ar-sessions"></div>
-    <div id="ar-empty" class="empty" hidden>no autoresearch sessions on record</div>
-  </section>
-
-</div>
-
 <!-- ── Editorial ─────────────────────────────────────────────── -->
 <div class="tab-panel" id="panel-editorial">
 
@@ -314,31 +316,11 @@
 
 </div>
 
-<!-- ── Status ────────────────────────────────────────────────── -->
-<div class="tab-panel" id="panel-status">
-
-  <section id="health-indicators">
-    <h3>health indicators</h3>
-    <ul class="health-list" id="health-list"></ul>
-  </section>
-
-  <section id="systemd">
-    <h3>systemd</h3>
-    <dl class="state-grid" id="systemd-info"></dl>
-  </section>
-
-  <section>
-    <h3>7-day trend</h3>
-    <table class="trend-table" id="trend-table"></table>
-  </section>
-
-</div>
-
 <script>
 // ── Tabs ──────────────────────────────────────────────────────
 const tabs = document.querySelectorAll('.tab-btn')
 const panels = document.querySelectorAll('.tab-panel')
-const tabLoaders = { pipeline: loadPipeline, quality: loadQuality, logs: loadLogs, experiment: loadExperiment, autoresearch: loadAutoresearch, editorial: loadEditorial, status: loadStatus }
+const tabLoaders = { pipeline: loadPipeline, sources: loadSources, quality: loadQuality, logs: loadLogs, experiment: loadExperiment, editorial: loadEditorial }
 let activeTab = 'pipeline'
 
 function switchTab(tabName, scrollTargetId) {
@@ -531,22 +513,15 @@ function renderStackedBars(container, data, keys, colors, opts = {}) {
       if (v === 0) return
       const barY = yFn(cumY + v)
       const barH = yFn(cumY) - barY
-      html += `<rect x="${s.barX(i)}" y="${barY}" width="${s.barW}" height="${barH}" fill="${colors[ki]}" rx="1"><title>${k}: ${v}s</title></rect>`
+      html += `<rect x="${s.barX(i)}" y="${barY}" width="${s.barW}" height="${barH}" fill="${colors[ki]}" rx="1"><title>${k}: ${v}${opts.unit ?? ''}</title></rect>`
       cumY += v
     })
   })
   html += xLabels(data, labelFn, s)
-  // Legend
-  const legendY = 8
-  let legendX = CHART.w - s.p.r
-  keys.slice().reverse().forEach((k, ki) => {
-    const c = colors[keys.length - 1 - ki]
-    const tw = k.length * 6 + 16
-    legendX -= tw
-    html += `<rect x="${legendX}" y="${legendY - 4}" width="8" height="8" fill="${c}" rx="1"/>`
-    html += `<text x="${legendX + 11}" y="${legendY + 4}" class="chart-label">${k}</text>`
-  })
   html += '</svg>'
+  // The key under the chart, in type that can be read: drawn inside it, nine
+  // names ran into each other.
+  html += `<div class="chart-key">${keys.map((k, i) => `<span><span class="key-swatch" style="background:${colors[i]}"></span>${k}</span>`).join('')}</div>`
   container.innerHTML = html
 }
 
@@ -573,31 +548,78 @@ function dotHTML(status) {
 }
 
 // ── Pipeline Tab ──────────────────────────────────────────────
-let overviewData = null
-let cyclesData = null
-
 async function loadPipeline() {
-  const [overview, cycles, feedHealth, media, ops] = await Promise.all([api('/api/overview'), api('/api/cycles'), api('/api/feed-health'), api('/api/media'), api('/api/operations')])
-  overviewData = overview
-  cyclesData = cycles
-  if (overview) renderOverview(overview)
+  const [overview, cycles, media] = await Promise.all([api('/api/overview'), api('/api/cycles'), api('/api/media')])
+  if (overview) {
+    renderOverview(overview)
+    renderHealth(overview)
+  }
   if (overview && cycles) renderGlance(overview, cycles)
-  if (feedHealth) renderFeedHealth(feedHealth)
   if (media) {
     renderBriefing(media.briefing)
     renderPushHistory(media.pushHistory)
+    renderChannel('channel-x', media.channels?.x)
+    renderChannel('channel-instagram', media.channels?.instagram)
   }
   if (cycles) {
     renderCycleGrid(cycles)
+    renderDayTable(cycles)
     const completed = cycles.filter(c => c.completed).slice().reverse()
-    renderDurationChart(completed)
+    // An aborted cycle has no duration worth a point on the line.
+    const ran = completed.filter(c => !c.aborted)
+    renderDurationChart(ran)
     renderPublishedChart(completed)
-    renderStageBreakdown(completed)
-    renderFunnelTrend(completed)
+    renderStageBreakdown(ran)
+    renderFunnelTrend(ran)
     const lastCompleted = cycles.find(c => c.completed)
-    if (lastCompleted) renderFunnel(document.getElementById('funnel'), lastCompleted.funnel)
+    if (lastCompleted) {
+      renderFunnel(document.getElementById('funnel'), lastCompleted.funnel)
+      document.getElementById('last-stages').innerHTML = stageList(lastCompleted.allStages)
+    }
   }
+}
+
+// ── Sources Tab ───────────────────────────────────────────────
+async function loadSources() {
+  const [data, ops] = await Promise.all([api('/api/sources'), api('/api/operations')])
   if (ops) renderOperations(ops)
+  if (!data) return
+  const s = data.summary
+  const last = data.lastCycle
+  document.getElementById('sources-summary').innerHTML = `
+    <span class="feed-stat">${dotHTML('green')}${s.green} working</span>
+    ${s.amber ? `<span class="feed-stat">${dotHTML('amber')}${s.amber} degraded</span>` : ''}
+    ${s.red ? `<span class="feed-stat">${dotHTML('red')}${s.red} failing</span>` : ''}
+    ${s.unknown ? `<span class="feed-stat">${dotHTML('unknown')}${s.unknown} unknown</span>` : ''}
+    ${last ? `<span class="feed-stat feed-stat-dim">last cycle ${esc(last.id.replace('_', ' '))}${last.abort ? ` \u2014 ended short: ${esc(last.cause || last.abort)}` : ''}</span>` : ''}`
+
+  const when = (iso) => iso ? `<span title="${esc(iso)}">${fmtAge(Date.now() - new Date(iso).getTime())} ago</span>` : '\u2014'
+  const volume = (r) => r.got == null ? '\u2014' : `${r.got}${r.expected != null ? ` / ${r.expected}` : ''} <span class="unit">${esc(r.unit)}</span>`
+  const failed = (r) => !r.failed || !r.failed.of ? '\u2014' : r.failed.n ? `<span class="${r.failed.n * 2 > r.failed.of ? 'bad' : 'warn'}">${r.failed.n} of ${r.failed.of}</span>` : `0 of ${r.failed.of}`
+  // What is wrong first, in each group.
+  const order = { red: 0, amber: 1, unknown: 2, green: 3 }
+
+  document.getElementById('sources-groups').innerHTML = data.groups.map(g => `
+    <section>
+      <h3>${esc(g.title)}</h3>
+      <div class="table-scroll"><table class="source-table">
+        <thead><tr><th></th><th>source</th><th>last fetched</th><th>data as of</th><th>came in</th><th>cycles with a failure</th><th>note</th></tr></thead>
+        <tbody>${g.rows.slice().sort((a, b) => order[a.status] - order[b.status]).map(r => `
+          <tr class="row-${r.status}">
+            <td>${dotHTML(r.status)}</td>
+            <td class="source-name">${esc(r.name)}</td>
+            <td>${when(r.fetchedAt)}</td>
+            <td>${r.dataAsOf ? esc(r.dataAsOf) : '\u2014'}</td>
+            <td>${volume(r)}</td>
+            <td>${failed(r)}</td>
+            <td class="source-note">${esc(r.note)}${r.detail?.length ? `
+              <details><summary>${r.detail.length} outlets</summary>${r.detail.slice().sort((a, b) => order[a.status] - order[b.status]).map(d =>
+                `<div class="feed-row">${dotHTML(d.status)}<span class="feed-name">${esc(d.name)}</span><span class="feed-detail">${esc(d.text)}</span></div>`).join('')}
+              </details>` : ''}</td>
+          </tr>`).join('')}
+        </tbody>
+      </table></div>
+    </section>`).join('')
 }
 
 function renderRvsTrend(rvs) {
@@ -605,7 +627,7 @@ function renderRvsTrend(rvs) {
   const chartEl = document.getElementById('chart-rvs')
   const clusterEl = document.getElementById('rvs-cluster-means')
   if (!rvs || rvs.empty) {
-    summaryEl.innerHTML = `<span class="empty">${rvs?.hint || 'available after the next production cycle'}</span>`
+    summaryEl.innerHTML = '<span class="empty">no scores on record</span>'
     chartEl.innerHTML = ''
     clusterEl.innerHTML = ''
     return
@@ -624,25 +646,9 @@ function renderRvsTrend(rvs) {
   if (s.clusterMeansLast20) {
     const c = s.clusterMeansLast20
     const fmt = (v) => v == null ? '—' : v.toFixed(0)
-    clusterEl.innerHTML = `cluster means (last 20): picking ${fmt(c.picking)} · writing ${fmt(c.writing)} · briefing ${fmt(c.briefing)} · sourcing ${fmt(c.sourcing)} · coverage ${fmt(c.coverage)}`
+    // Picking and briefing are not scored since the score's schema 2.
+    clusterEl.innerHTML = `cluster means (last 20): writing ${fmt(c.writing)} · sourcing ${fmt(c.sourcing)} · coverage ${fmt(c.coverage)}`
   }
-}
-
-function renderBlockAdoption(blocks) {
-  const summaryEl = document.getElementById('block-adoption-summary')
-  const t = blocks.recentTiers
-  const total = t.shape + t.cheap + t.charts + t.other || 1
-  const shapePct = (t.shape / total * 100).toFixed(0)
-  summaryEl.innerHTML = `
-    <div class="stat"><span class="stat-value">${t.shape}</span><span class="stat-label">shape-specific blocks</span></div>
-    <div class="stat"><span class="stat-value">${t.cheap}</span><span class="stat-label">cheap blocks</span></div>
-    <div class="stat"><span class="stat-value">${t.charts}</span><span class="stat-label">chart blocks</span></div>
-    <div class="stat"><span class="stat-value">${shapePct}%</span><span class="stat-label">share-specific share</span></div>
-  `
-  // Per-type bar list — recent 14 days only
-  const types = Object.entries(blocks.recentTypes).sort((a, b) => b[1] - a[1])
-  const items = types.map(([type, count]) => ({ label: type, value: count, display: String(count) }))
-  renderBars(document.getElementById('block-adoption-bars'), items)
 }
 
 function renderOperations(ops) {
@@ -656,67 +662,6 @@ function renderOperations(ops) {
   renderLineChart(document.getElementById('chart-newsapi-tokens'), tokenData, 'value', { labelFn: (d) => d.label, unit: '' })
 }
 
-function renderFeedHealth(data) {
-  const el = document.getElementById('feed-health')
-  if (!data.current?.sources?.length) {
-    // No source stats file yet — show historical failures from logs
-    if (data.failCounts && Object.keys(data.failCounts).length) {
-      el.innerHTML = '<div class="feed-note">per-source stats available after next cycle</div>' +
-        renderFailCounts(data.failCounts, data.totalCycles)
-    } else {
-      el.innerHTML = '<span class="empty">no feed data yet \u2014 available after next cycle runs</span>'
-    }
-    return
-  }
-
-  const sources = data.current.sources
-  const ok = sources.filter(s => s.fetched > 0)
-  const dead = sources.filter(s => s.fetched === 0 && s.error)
-  const empty = sources.filter(s => s.fetched === 0 && !s.error)
-
-  let html = `<div class="feed-summary">`
-  html += `<span class="feed-stat">${dotHTML('green')}${ok.length} producing</span>`
-  if (dead.length) html += `<span class="feed-stat">${dotHTML('red')}${dead.length} errored</span>`
-  if (empty.length) html += `<span class="feed-stat">${dotHTML('amber')}${empty.length} empty</span>`
-  html += `</div>`
-
-  // Source table
-  html += '<div class="feed-table">'
-  // Show errors first, then empty, then OK sorted by fetched desc
-  const sorted = [...dead, ...empty, ...ok]
-  for (const s of sorted) {
-    const status = s.error ? 'red' : s.fetched === 0 ? 'amber' : 'green'
-    const detail = s.error ? esc(s.error) : `${s.fetched} fetched, ${s.used} used`
-    // Historical fail count
-    const fails = data.failCounts?.[s.name] || 0
-    const failBadge = fails > 0 ? `<span class="feed-fail-count" title="${fails} failures in ${data.totalCycles} cycles">${fails}/${data.totalCycles} fails</span>` : ''
-    html += `<div class="feed-row">
-      <span class="dot dot-${status}"></span>
-      <span class="feed-name">${esc(s.name)}</span>
-      <span class="feed-detail">${detail}</span>
-      ${failBadge}
-    </div>`
-  }
-  html += '</div>'
-
-  el.innerHTML = html
-}
-
-function renderFailCounts(failCounts, totalCycles) {
-  const entries = Object.entries(failCounts).sort((a, b) => b[1] - a[1])
-  if (!entries.length) return ''
-  return '<div class="feed-table" style="margin-top:0.5rem">' +
-    entries.map(([name, count]) => {
-      const pct = Math.round(count / totalCycles * 100)
-      const status = pct > 50 ? 'red' : pct > 20 ? 'amber' : 'green'
-      return `<div class="feed-row">
-        <span class="dot dot-${status}"></span>
-        <span class="feed-name">${esc(name)}</span>
-        <span class="feed-detail">${count}/${totalCycles} cycles failed (${pct}%)</span>
-      </div>`
-    }).join('') + '</div>'
-}
-
 function renderGlance(overview, cycles) {
   const el = document.getElementById('glance-row')
   const alertsEl = document.getElementById('glance-alerts')
@@ -727,19 +672,19 @@ function renderGlance(overview, cycles) {
   const completed = todayCycles.filter(c => c.completed)
   const published = completed.reduce((s, c) => s + c.funnel.published, 0)
   const avgDuration = completed.length ? Math.round(completed.reduce((s, c) => s + (c.totalSeconds || 0), 0) / completed.length) : null
-  const failures = todayCycles.filter(c => c.aborted || (c.stages.selector?.exit && c.stages.selector.exit !== 0))
+  const failures = todayCycles.filter(c => (c.aborted && !c.benign) || (c.stages.selector?.exit && c.stages.selector.exit !== 0))
 
   let html = ''
   html += auditStat(published, 'published today')
-  html += auditStat(`${completed.length}/${todayCycles.length}`, 'cycles')
-  html += auditStat(avgDuration ? `${avgDuration}s` : '\u2014', 'avg duration')
+  html += auditStat(`${completed.length - failures.length}/${todayCycles.length}`, 'cycles that ran through')
+  html += auditStat(avgDuration ? `${Math.round(avgDuration / 60)} min` : '\u2014', 'avg duration')
   html += auditStat(overview.metaAge !== null ? `${overview.metaAge.toFixed(1)}h` : '\u2014', 'site age')
   el.innerHTML = html
 
   // Alerts from audit data + cycle failures
   let alerts = ''
   if (failures.length > 0) {
-    alerts += `<div class="glance-alert alert-red">${dotHTML('red')}${failures.length} failed cycle${failures.length > 1 ? 's' : ''} today</div>`
+    alerts += `<div class="glance-alert alert-red">${dotHTML('red')}${failures.length} failed cycle${failures.length > 1 ? 's' : ''} today: ${failures.map(c => `${c.scheduledHour}:00 ${esc(c.cause || c.aborted || 'selector failed')}`).join('; ')}</div>`
   }
 
   // Fetch audit for coverage gaps and watching items
@@ -778,17 +723,22 @@ function renderOverview(o) {
   // Cycle state
   const stCycle = document.getElementById('st-cycle')
   if (o.runningCycle) {
-    const elapsed = Math.round((Date.now() - new Date(o.runningCycle.startedAt).getTime()) / 1000)
-    const currentStage = detectCurrentStage(o.runningCycle.stages)
-    stCycle.innerHTML = `${dotHTML('amber')}running \u2014 ${currentStage}, ${elapsed}s elapsed`
+    const elapsed = Math.round((Date.now() - new Date(o.runningCycle.startedAt).getTime()) / 60000)
+    const done = o.runningCycle.allStages?.at(-1)?.id
+    stCycle.innerHTML = `${dotHTML('amber')}running, ${elapsed} min in${done ? ` \u2014 past ${esc(done)}` : ''}`
+  } else if (o.serviceState === 'failed') {
+    stCycle.innerHTML = `${dotHTML('red')}idle \u2014 the last run exited with a failure`
   } else {
-    stCycle.innerHTML = `${dotHTML(o.serviceActive ? 'amber' : 'green')}${o.serviceActive ? 'active' : 'idle'}`
+    stCycle.innerHTML = `${dotHTML('green')}idle`
   }
 
   // Last completed
   const stLast = document.getElementById('st-last')
   if (o.lastCycle) {
-    stLast.textContent = `${o.lastCycle.scheduledHour}:00 \u2014 ${o.lastCycle.totalSeconds}s \u2014 ${o.lastCycle.published} published`
+    const lc = o.lastCycle
+    stLast.innerHTML = lc.aborted && !lc.benign
+      ? `${lc.scheduledHour}:00 \u2014 ended short: ${esc(lc.cause || lc.aborted)}`
+      : `${lc.scheduledHour}:00 \u2014 ${Math.round(lc.totalSeconds / 60)} min \u2014 ${lc.published} published${lc.target ? ` of ${lc.target} asked for` : ''}`
   } else {
     stLast.textContent = 'none'
   }
@@ -800,19 +750,67 @@ function renderOverview(o) {
   // Site freshness
   const stFresh = document.getElementById('st-fresh')
   if (o.metaAge !== null) {
-    stFresh.innerHTML = `${dotHTML(o.status.siteFreshness)}${o.metaAge.toFixed(1)}h ago`
+    stFresh.innerHTML = `${dotHTML(o.status.siteFreshness)}built ${o.metaAge.toFixed(1)}h ago \u2014 ${esc(o.why?.siteFreshness || '')}`
   } else {
     stFresh.textContent = 'unknown'
   }
 }
 
-function detectCurrentStage(stages) {
-  if (stages.selector?.exit !== null && stages.writer?.exit === null) return 'writer'
-  if (stages.writer?.exit !== null && stages.editor?.exit === null) return 'editor'
-  if (stages.editor?.exit !== null && stages.build?.exit === null) return 'build'
-  if (stages.feed?.seconds === null) return 'feed fetch'
-  if (stages.selector?.exit === null) return 'selector'
-  return 'processing'
+// The lights, each with the sentence the server gives for it.
+function renderHealth(o) {
+  const lights = [
+    ['lastCycle', 'last cycle'], ['alert', 'alert'], ['siteFreshness', 'site'], ['sources', 'sources'], ['pubRate', 'published'],
+    ['cycleTiming', 'duration'], ['validation', 'validation'], ['timer', 'timer'],
+  ]
+  document.getElementById('health-list').innerHTML = lights.filter(([key]) => o.status[key]).map(([key, label]) =>
+    `<li>${dotHTML(o.status[key])}<span class="health-label">${label}</span><span class="health-value">${esc(o.why?.[key] || '')}</span></li>`
+  ).join('')
+}
+
+// Every stage a cycle printed a status or a time for, in the order it ran.
+function stageList(stages) {
+  if (!stages?.length) return '<span class="empty">no stage reported</span>'
+  return stages.map(s => {
+    const ok = s.exit === 0 || s.exit == null
+    const icon = ok ? '<span class="stage-ok">\u2713</span>' : '<span class="stage-fail">\u2717</span>'
+    const time = s.seconds != null ? ` <span class="stage-time">${s.seconds}s</span>` : ''
+    const exit = s.exit != null && s.exit !== 0 ? ` (exit ${s.exit})` : ''
+    return `<div>${icon} ${esc(s.id.replace(/-/g, ' '))}${time}${exit}${s.retried ? ' <span class="stage-skip">retried</span>' : ''}</div>`
+  }).join('')
+}
+
+function renderDayTable(cycles) {
+  const byDay = {}
+  for (const c of cycles) {
+    if (!c.date) continue
+    byDay[c.date] ??= { total: 0, ok: 0, published: 0, seconds: [] }
+    const day = byDay[c.date]
+    day.total++
+    if (c.completed && (!c.aborted || c.benign)) {
+      day.ok++
+      day.published += c.funnel.published
+      if (c.totalSeconds) day.seconds.push(c.totalSeconds)
+    }
+  }
+  const days = Object.keys(byDay).sort().reverse().slice(0, 7)
+  document.getElementById('trend-table').innerHTML = `
+    <thead><tr><th>date</th><th>cycles</th><th>articles</th><th>avg time</th></tr></thead>
+    <tbody>${days.map(d => {
+      const day = byDay[d]
+      const avg = day.seconds.length ? `${Math.round(day.seconds.reduce((a, b) => a + b, 0) / day.seconds.length / 60)} min` : '\u2014'
+      return `<tr><td>${d.slice(5)}</td><td>${day.ok}/${day.total}</td><td>${day.published}</td><td>${avg}</td></tr>`
+    }).join('')}</tbody>`
+}
+
+// The last posts to a channel: sent, or what it answered.
+function renderChannel(id, posts) {
+  const el = document.getElementById(id)
+  if (!posts?.length) { el.innerHTML = '<span class="empty">nothing posted on record</span>'; return }
+  el.innerHTML = posts.map(p => `<div class="push-item">
+      ${dotHTML(p.sent ? 'green' : 'red')}
+      <span class="push-date">${esc((p.timestamp || '').slice(5, 16).replace('T', ' '))}</span>
+      <span class="push-title">${esc(p.sent ? (p.slug || '').slice(11) : (p.error || 'not sent'))}</span>
+    </div>`).join('')
 }
 
 function formatSystemdTime(raw) {
@@ -850,8 +848,9 @@ function renderCycleGrid(cycles) {
     const dayCycles = days[d]
     const dots = dayCycles.map(c => {
       if (!c.completed && !c.aborted) return '<span class="cycle-dot cycle-dot-running" title="running"></span>'
-      if (c.aborted || (c.stages.selector?.exit && c.stages.selector.exit !== 0)) return `<span class="cycle-dot cycle-dot-red" title="${c.aborted || 'failed'}"></span>`
-      if (c.completed && c.stages.deploy?.exit === 0) return `<span class="cycle-dot cycle-dot-green" title="${c.funnel.published} published, ${c.totalSeconds}s"></span>`
+      if (c.benign) return `<span class="cycle-dot cycle-dot-gray" title="${c.scheduledHour}:00 nothing new to publish"></span>`
+      if (c.aborted || (c.stages.selector?.exit && c.stages.selector.exit !== 0)) return `<span class="cycle-dot cycle-dot-red" title="${c.scheduledHour}:00 ${esc(c.cause || c.aborted || 'failed')}"></span>`
+      if (c.completed && c.stages.deploy?.exit === 0) return `<span class="cycle-dot cycle-dot-green" title="${c.scheduledHour}:00 ${c.funnel.published} published, ${Math.round(c.totalSeconds / 60)} min"></span>`
       return '<span class="cycle-dot cycle-dot-gray" title="incomplete"></span>'
     }).join('')
     return `<div class="cycle-grid-row"><span class="cycle-grid-date">${d.slice(5)}</span>${dots}</div>`
@@ -869,6 +868,7 @@ function renderBriefing(briefing) {
   html += auditStat(briefing.articles, 'articles')
   html += auditStat(briefing.ageHours ? timeAgo(briefing.ageHours) : null, 'generated')
   html += '</div>'
+  if (briefing.voice) html += `<div class="note">voice: ${esc(briefing.voice)}${briefing.engines?.some(e => e !== 'gemini') ? ' \u2014 read in part by the fallback voice' : ''}</div>`
 
   if (briefing.files?.length) {
     html += '<div class="briefing-files">'
@@ -890,9 +890,9 @@ function renderPushHistory(pushHistory) {
     const status = p.pushed > 0 ? 'green' : 'amber'
     return `<div class="push-item">
       ${dotHTML(status)}
-      <span class="push-date">${p.date} ${p.hour}</span>
-      <span class="push-title">${esc(article?.body || article?.title || 'unknown')}</span>
-      <span class="push-stat">${p.tokens ?? '?'} devices</span>
+      <span class="push-date">${p.date.slice(5)} ${p.hour}</span>
+      <span class="push-title">${p.kind === 'briefing' ? '<span class="stage-skip">briefing \u00b7</span> ' : ''}${esc(article?.body || article?.title || p.title || 'unknown')}</span>
+      <span class="push-stat">${p.devices ?? '?'} devices</span>
     </div>`
   }).join('')
 }
@@ -908,23 +908,39 @@ function renderDurationChart(cycles) {
 function renderPublishedChart(cycles) {
   renderBarChart(document.getElementById('chart-published'), cycles, c => c.funnel.published, {
     labelFn: cycleLabel,
-    colorFn: (d, v) => v === 0 ? 'var(--red)' : v < 3 ? 'var(--amber)' : 'var(--text-secondary)'
+    colorFn: (d, v) => v === 0 && !d.benign ? 'var(--red)' : d.target && v * 2 < d.target ? 'var(--amber)' : 'var(--text-secondary)'
   })
 }
 
+// Where a cycle's minutes go: the stages that print a time, in the groups a
+// reader thinks in, and the rest of the cycle's length as `other`. The chart
+// drew feed, selector, writer and editor, which are 500 seconds of the daily
+// cycle's 1750.
+const STAGE_GROUPS = [
+  ['feed', '#777', (id) => id === 'feed'],
+  ['selector', '#4a9a4a', (id) => id === 'selector'],
+  ['writer', '#5b8dd9', (id) => id === 'writer'],
+  ['editor', '#c4a000', (id) => id === 'editor'],
+  ['sources', '#b07cc6', (id) => ['trends', 'chokepoints', 'markets', 'companies', 'ai-models', 'gdacs', 'conflict', 'ioda', 'firms', 'ipc', 'narration', 'analytics-fetch'].includes(id)],
+  ['entities + translation', '#5fb3a8', (id) => ['entities', 'source-angles', 'swedish', 'swedish-desk'].includes(id)],
+  ['dispatches', '#d98a5b', (id) => id.includes('dispatch')],
+  ['briefing + tuning', '#c87c98', (id) => ['briefing', 'tuning', 'audio-rebuild', 'audio-deploy'].includes(id)],
+]
+
 function renderStageBreakdown(cycles) {
-  const data = cycles.map(c => ({
-    label: cycleLabel(c),
-    feed: c.stages.feed?.seconds || 0,
-    selector: c.stages.selector?.seconds || 0,
-    writer: c.stages.writer?.seconds || 0,
-    editor: c.stages.editor?.seconds || 0,
-  }))
-  renderStackedBars(document.getElementById('chart-stages'), data,
-    ['feed', 'selector', 'writer', 'editor'],
-    ['#666', '#4a9a4a', '#5b8dd9', '#c4a000'],
-    { labelFn: d => d.label }
-  )
+  const keys = [...STAGE_GROUPS.map(g => g[0]), 'other']
+  const colors = [...STAGE_GROUPS.map(g => g[1]), '#3a3a3a']
+  const data = cycles.map(c => {
+    const row = { label: cycleLabel(c) }
+    let counted = 0
+    for (const [name, , test] of STAGE_GROUPS) {
+      row[name] = (c.allStages || []).filter(s => test(s.id)).reduce((sum, s) => sum + (s.seconds || 0), 0)
+      counted += row[name]
+    }
+    row.other = Math.max(0, (c.totalSeconds || 0) - counted)
+    return row
+  })
+  renderStackedBars(document.getElementById('chart-stages'), data, keys, colors, { labelFn: d => d.label, unit: 's' })
 }
 
 function renderFunnelTrend(cycles) {
@@ -941,9 +957,8 @@ function renderFunnelTrend(cycles) {
 
 // ── Quality Tab ───────────────────────────────────────────────
 async function loadQuality() {
-  const [q, blocks, rvs] = await Promise.all([api('/api/quality'), api('/api/blocks'), api('/api/rvs-trend')])
+  const [q, rvs] = await Promise.all([api('/api/quality'), api('/api/rvs-trend')])
   if (!q) return
-  if (blocks && !blocks.empty) renderBlockAdoption(blocks)
   renderRvsTrend(rvs)
 
   // Categories
@@ -956,7 +971,7 @@ async function loadQuality() {
   const srcEl = document.getElementById('source-info')
   if (q.sources) {
     const top = q.sources.top.map(([name, count]) => `${esc(name)} (${count})`).join(', ')
-    srcEl.innerHTML = `<div class="stat-row"><div class="stat"><span class="stat-value">${q.sources.unique}</span><span class="stat-label">unique sources today</span></div></div>
+    srcEl.innerHTML = `<div class="stat-row"><div class="stat"><span class="stat-value">${q.sources.unique}</span><span class="stat-label">unique sources in the feed</span></div></div>
       <div style="margin-top:0.5rem;font-size:var(--size-xs);color:var(--text-secondary)">${top}</div>`
   }
 
@@ -982,21 +997,13 @@ async function loadQuality() {
     freshEl.innerHTML = '<span class="empty">computed at 22:00 utc</span>'
   }
 
-  // Arcs
-  const arcEl = document.getElementById('arc-stats')
-  if (q.arcs) {
-    arcEl.innerHTML = Object.entries(q.arcs)
-      .map(([k, v]) => `<div class="stat"><span class="stat-value">${v}</span><span class="stat-label">${k}</span></div>`)
-      .join('')
-  }
-
   // Articles per day
   if (q.articlesPerDay) {
     const days = Object.entries(q.articlesPerDay).sort((a, b) => a[0].localeCompare(b[0]))
     const data = days.map(([date, count]) => ({ label: date.slice(5), value: count }))
     renderBarChart(document.getElementById('chart-articles-day'), data, 'value', {
       labelFn: d => d.label,
-      colorFn: (d, v) => v < 20 ? 'var(--amber)' : 'var(--text-secondary)'
+      colorFn: () => 'var(--text-secondary)'
     })
   }
 
@@ -1008,18 +1015,6 @@ async function loadQuality() {
       ['#c44a4a', '#c4a000', '#4a9a4a', '#5b8dd9'],
       { labelFn: d => d.label }
     )
-  }
-
-  // Edu context
-  const eduEl = document.getElementById('edu-coverage')
-  if (q.eduContext) {
-    const e = q.eduContext
-    eduEl.innerHTML = `<div class="audit-row">
-      ${auditStat(`${e.totalBriefs}/${e.totalArticles}`, 'all time', `${e.coveragePct}% coverage`)}
-      ${auditStat(`${e.recentBriefs}/${e.recentArticles}`, 'last 7 days', `${e.recentPct}% coverage`)}
-    </div>`
-  } else {
-    eduEl.innerHTML = '<span class="empty">no edu context data</span>'
   }
 
   // Duplicates + validation
@@ -1051,7 +1046,7 @@ async function loadImagePreview() {
   }
   const withImage = data.articles.filter(a => a.images.length > 0)
   if (withImage.length === 0) {
-    summaryEl.innerHTML = `<strong>0 / ${data.total}</strong> articles have publisher images. Captured starting the next cycle (NewsAPI flag flipped 2026-05-02).`
+    summaryEl.innerHTML = `<strong>0 / ${data.total}</strong> articles have publisher images.`
     gridEl.innerHTML = data.articles.slice(0, 8).map(a => `
       <div class="image-preview-card">
         <div class="thumb-placeholder">no image yet</div>
@@ -1083,19 +1078,20 @@ async function loadComplianceChart() {
 
   // 4 lower-is-better compliance metrics, with their target thresholds
   const series = [
-    { key: 'titleEchoRatePct',   label: 'title echo %',  target: 10, color: '#e8a64a' },
-    { key: 'passiveHookRatePct', label: 'passive hook %', target: 15, color: '#6db4d6' },
-    { key: 'hedgeRatePct',       label: 'hedges %',       target: 5,  color: '#c87c98' },
+    // No bar for title echo: `WRITING_TARGETS` in `data.js` says why.
+    { key: 'titleEchoRatePct',   label: 'title echo %',  target: null, color: '#e8a64a' },
+    { key: 'passiveHookRatePct', label: 'passive hook %', target: wq.targets.passiveHookRatePct.below, color: '#6db4d6' },
+    { key: 'hedgeRatePct',       label: 'hedges %',       target: wq.targets.hedgeRatePct.below,  color: '#c87c98' },
     // The hard ceiling. `charOver350Pct` is the soft target, which has none:
     // more than half of all articles are over it by design.
-    { key: 'charOver400Pct',     label: 'over char cap %', target: 5,  color: '#88b985' },
+    { key: 'charOver400Pct',     label: 'over char cap %', target: wq.targets.charOver400Pct.below,  color: '#88b985' },
   ]
   const history = wq.history
   const n = history.length
 
   // Y range: max of all values + headroom, but at least show the highest target line
   const allVals = series.flatMap(s => history.map(h => h.metrics[s.key] || 0))
-  const maxTarget = Math.max(...series.map(s => s.target))
+  const maxTarget = Math.max(...series.map(s => s.target ?? 0))
   const yMax = Math.max(Math.max(...allVals), maxTarget) * 1.15
 
   const p = CHART.pad, w = CHART.w, h = CHART.h
@@ -1115,9 +1111,19 @@ async function loadComplianceChart() {
 
   // Target lines (dashed, color-matched per series)
   for (const s of series) {
+    if (s.target == null) continue
     const y = yFn(s.target)
     html += `<line x1="${p.l}" x2="${w - p.r}" y1="${y}" y2="${y}" stroke="${s.color}" stroke-width="0.8" stroke-dasharray="2,4" opacity="0.5"/>`
   }
+
+  // Where the metrics were redefined (the snapshot's `schema` moved): a jump
+  // across one of these lines is the definition changing, not the writing.
+  history.forEach((hh, i) => {
+    if (i === 0 || (hh.schema ?? 1) === (history[i - 1].schema ?? 1)) return
+    const x = (xFn(i - 1) + xFn(i)) / 2
+    html += `<line x1="${x}" x2="${x}" y1="${p.t}" y2="${p.t + ph}" class="chart-grid" stroke-dasharray="4,3"/>`
+    html += `<text x="${x + 4}" y="${p.t + 9}" class="chart-label">redefined</text>`
+  })
 
   // Data lines
   for (const s of series) {
@@ -1126,8 +1132,8 @@ async function loadComplianceChart() {
     // Dots at each data point, with tooltip
     history.forEach((hh, i) => {
       const v = hh.metrics[s.key] || 0
-      const overTarget = v > s.target
-      html += `<circle cx="${xFn(i)}" cy="${yFn(v)}" r="${overTarget ? 3.5 : 2.5}" fill="${s.color}" stroke="${overTarget ? 'var(--red)' : 'none'}" stroke-width="1.5"><title>${hh.week} — ${s.label}: ${v}% (target ${s.target}%)</title></circle>`
+      const overTarget = s.target != null && v > s.target
+      html += `<circle cx="${xFn(i)}" cy="${yFn(v)}" r="${overTarget ? 3.5 : 2.5}" fill="${s.color}" stroke="${overTarget ? 'var(--red)' : 'none'}" stroke-width="1.5"><title>${hh.week} — ${s.label}: ${v}%${s.target != null ? ` (target ${s.target}%)` : ''}</title></circle>`
     })
   }
 
@@ -1142,8 +1148,8 @@ async function loadComplianceChart() {
   html += '<div class="compliance-legend" style="display:flex;flex-wrap:wrap;gap:1rem;font-size:var(--size-xs);color:var(--text-secondary);margin-top:0.5rem">' +
     series.map(s => {
       const last = history[n - 1].metrics[s.key] || 0
-      const breach = last > s.target
-      return `<span style="display:inline-flex;align-items:center;gap:0.35rem"><span style="display:inline-block;width:10px;height:2px;background:${s.color}"></span>${s.label} <strong style="color:${breach ? 'var(--amber)' : 'var(--text-primary, inherit)'}">${last}%</strong> <span style="opacity:0.6">(target &lt;${s.target}%)</span></span>`
+      const breach = s.target != null && last > s.target
+      return `<span style="display:inline-flex;align-items:center;gap:0.35rem"><span style="display:inline-block;width:10px;height:2px;background:${s.color}"></span>${s.label} <strong style="color:${breach ? 'var(--amber)' : 'var(--text-primary, inherit)'}">${last}%</strong> ${s.target != null ? `<span style="opacity:0.6">(target &lt;${s.target}%)</span>` : ''}</span>`
     }).join('') +
     '</div>'
 
@@ -1154,61 +1160,31 @@ async function loadSpecificity() {
   const data = await api('/api/specificity')
   const sumEl = document.getElementById('specificity-summary')
   const statsEl = document.getElementById('specificity-stats')
-  const trendEl = document.getElementById('specificity-trend')
   const worstEl = document.getElementById('specificity-worst')
   if (!data?.current) {
-    sumEl.innerHTML = '<span class="empty">no scoring data yet</span>'
-    statsEl.innerHTML = ''; trendEl.innerHTML = ''; worstEl.innerHTML = ''
+    sumEl.innerHTML = '<span class="empty">no articles to score</span>'
+    statsEl.innerHTML = ''; worstEl.innerHTML = ''
     return
   }
-  const c = data.current, d = data.delta || {}
-  const fmtDelta = (k, opts = {}) => {
-    const v = d[k]; if (v === undefined || v === 0) return ''
-    // higher is better for specificity/digits/properNouns; lower for hedges/titleEcho
-    const lowerIsBetter = ['hedges', 'titleEcho'].includes(k)
-    const good = lowerIsBetter ? v < 0 : v > 0
-    const sign = v > 0 ? '+' : ''
-    return `<span style="color:${good ? 'var(--green, #4a9)' : 'var(--amber)'};font-size:var(--size-xs);margin-left:0.35em">(${sign}${v})</span>`
-  }
-  sumEl.innerHTML = `<span class="stat-label">${c.articleCount} articles · ${c.date}</span>`
+  const c = data.current
+  sumEl.innerHTML = `<span class="stat-label">the ${c.articleCount} most recent articles, scored now</span>`
   const rows = [
-    { k: 'specificity', l: 'specificity score',  v: c.specificity, target: '↑' },
-    { k: 'digits',      l: 'digits/article',     v: c.digits,      target: '↑' },
-    { k: 'properNouns', l: 'proper nouns',       v: c.properNouns, target: '↑' },
-    { k: 'hedges',      l: 'hedges/article',     v: c.hedges,      target: '< 0.30' },
-    { k: 'titleEcho',   l: 'title-echo Jaccard', v: c.titleEcho,   target: '< 0.20' },
-    { k: 'sentences',   l: 'avg sentences',      v: c.sentences,   target: '= 3.0' },
+    { l: 'specificity score',  v: c.specificity, note: 'higher is better' },
+    { l: 'digits per article', v: c.digits,      note: 'higher is better' },
+    { l: 'proper nouns',       v: c.properNouns, note: 'higher is better' },
+    { l: 'hedges per article', v: c.hedges,      note: 'lower is better' },
+    { l: 'title-echo Jaccard', v: c.titleEcho,   note: 'lower is better' },
+    { l: 'sentences per article', v: c.sentences },
   ]
   statsEl.innerHTML = rows.map(r =>
-    `<div class="stat"><span class="stat-value">${r.v}${fmtDelta(r.k)}</span><span class="stat-label">${r.l} (target ${r.target})</span></div>`
+    `<div class="stat"><span class="stat-value">${r.v}</span><span class="stat-label">${r.l}${r.note ? ` (${r.note})` : ''}</span></div>`
   ).join('')
-
-  // Trend sparklines for specificity + hedges + titleEcho
-  if (data.history && data.history.length >= 2) {
-    const series = [
-      { key: 'specificity', label: 'specificity' },
-      { key: 'hedges', label: 'hedges/article' },
-      { key: 'titleEcho', label: 'title-echo' },
-    ]
-    trendEl.innerHTML = '<div style="font-size:var(--size-xs);color:var(--text-secondary);margin-bottom:0.3rem">trend (last ' + data.history.length + ' days)</div>' +
-      series.map(s => {
-        const vals = data.history.map(h => h[s.key] || 0)
-        const max = Math.max(0.01, ...vals)
-        const spark = vals.map(v => {
-          const h = Math.max(2, Math.round((v / max) * 24))
-          return `<span style="display:inline-block;width:6px;height:${h}px;background:var(--text-secondary);vertical-align:bottom;margin-right:1px"></span>`
-        }).join('')
-        return `<div style="margin-bottom:0.4rem"><span style="font-size:var(--size-xs);color:var(--text-secondary);display:inline-block;min-width:9rem">${s.label}</span>${spark} <span style="font-size:var(--size-xs);color:var(--text-secondary);margin-left:0.4rem">${vals[vals.length-1]}</span></div>`
-      }).join('')
-  } else {
-    trendEl.innerHTML = '<span class="empty" style="font-size:var(--size-xs)">trend builds over future days (one snapshot/day)</span>'
-  }
 
   // Bottom 5 — useful for spotting outliers pulling the average down
   if (data.worst?.length) {
-    worstEl.innerHTML = '<div style="font-size:var(--size-xs);color:var(--text-secondary);margin-bottom:0.3rem">lowest specificity (drag on average)</div>' +
+    worstEl.innerHTML = '<div class="note">lowest specificity</div>' +
       data.worst.map(w =>
-        `<div style="font-size:var(--size-xs);color:var(--text-secondary);margin-bottom:0.2rem"><span style="display:inline-block;min-width:3rem"><strong>${w.specificity}</strong></span><span>${esc(w.file)}</span></div>`
+        `<div class="note"><span style="display:inline-block;min-width:3rem"><strong>${w.specificity}</strong></span><span>${esc(w.file)}</span></div>`
       ).join('')
   }
 }
@@ -1237,31 +1213,38 @@ async function loadWritingQuality() {
     return `<span style="color:${color};font-size:var(--size-xs);margin-left:0.35em">(${sign}${v}${suffix})</span>`
   }
   sumEl.innerHTML = `<span class="stat-label">${wq.current.articleCount} articles over last ${wq.current.windowDays} days — snapshot ${wq.current.week}</span>`
+  // The bar each metric is held to, from the one table of them (`WRITING_TARGETS`
+  // in `data.js`); a metric with no line there is a figure and no verdict.
+  const bar = (k) => {
+    const t = wq.targets?.[k]
+    if (!t) return null
+    return t.is != null ? { text: String(t.is), met: m[k] === t.is } : t.below != null ? { text: `<${t.below}`, met: m[k] < t.below } : { text: `>${t.above}`, met: m[k] >= t.above }
+  }
   const rows = [
-    { k: 'titleEchoRatePct',   l: 'title echo',       v: m.titleEchoRatePct,   u: '%',  target: '<10%' },
-    { k: 'passiveHookRatePct', l: 'passive hook',     v: m.passiveHookRatePct, u: '%',  target: '<15%' },
-    { k: 'passiveBodyRatePct', l: 'passive (any sentence)', v: m.passiveBodyRatePct, u: '%', target: '<15%' },
-    { k: 'semicolonRatePct',   l: 'semicolons',       v: m.semicolonRatePct,   u: '%',  target: '0%' },
-    { k: 'hedgeRatePct',       l: 'hedges',           v: m.hedgeRatePct,       u: '%',  target: '<5%' },
-    { k: 'causalClaimHits',    l: 'causal claims',    v: m.causalClaimHits,    u: '',   target: '0' },
-    { k: 'pressEraHits',       l: 'press-era phrase', v: m.pressEraHits,       u: '',   target: '0' },
-    { k: 'acronymViolations',  l: 'acronym unexpanded', v: m.acronymViolations, u: '', target: '0' },
-    { k: 'countryNullCount',   l: 'country:null',     v: m.countryNullCount,   u: '',   target: '0' },
-    { k: 'multiSourceRatePct', l: 'multi-source',     v: m.multiSourceRatePct, u: '%',  target: '>40%' },
-    { k: 'topOutletSharePct',  l: 'top-3 outlet',     v: m.topOutletSharePct,  u: '%',  target: '<35%' },
+    { k: 'titleEchoRatePct',   l: 'title echo',       u: '%' },
+    { k: 'passiveHookRatePct', l: 'passive hook',     u: '%' },
+    { k: 'passiveBodyRatePct', l: 'passive (any sentence)', u: '%' },
+    { k: 'semicolonRatePct',   l: 'semicolons',       u: '%' },
+    { k: 'hedgeRatePct',       l: 'hedges',           u: '%' },
+    { k: 'causalClaimHits',    l: 'causal claims',    u: '' },
+    { k: 'pressEraHits',       l: 'press-era phrase', u: '' },
+    { k: 'acronymViolations',  l: 'acronym unexpanded', u: '' },
+    { k: 'countryNullCount',   l: 'country:null',     u: '' },
+    { k: 'multiSourceRatePct', l: 'multi-source',     u: '%' },
+    { k: 'topOutletSharePct',  l: 'top-3 outlet',     u: '%' },
     // The keys are named for the thresholds they were born with (350 and 400;
     // 480 and 560 since the trend's schema 3). The cap is `charOver400Pct`,
     // the hard ceiling. `charOver350Pct` is the soft target: information,
-    // never a gate, so it is shown with no target of its own.
-    { k: 'charOver400Pct',     l: 'over char cap',    v: m.charOver400Pct,     u: '%',  target: '<5%' },
-    { k: 'charOver350Pct',     l: 'over soft target', v: m.charOver350Pct,     u: '%' },
-    { k: 'wordCountAvg',       l: 'avg word count',   v: m.wordCountAvg,       u: '',   target: '52-75' },
-    { k: 'wordInRangePct',     l: 'words in range',   v: m.wordInRangePct,     u: '%',  target: '>75%' },
-    { k: 'charLengthAvg',      l: 'avg char length',  v: m.charLengthAvg,      u: '',   target: '400-480' },
-    { k: 'fiveBlockRatePct',   l: 'counterpoint/quote', v: m.fiveBlockRatePct, u: '%',  target: 'earned' },
-  ]
+    // never a gate.
+    { k: 'charOver400Pct',     l: 'over char cap',    u: '%' },
+    { k: 'charOver350Pct',     l: 'over soft target', u: '%' },
+    { k: 'wordCountAvg',       l: 'avg word count',   u: '' },
+    { k: 'wordInRangePct',     l: 'words in range',   u: '%' },
+    { k: 'charLengthAvg',      l: 'avg char length',  u: '' },
+    { k: 'fiveBlockRatePct',   l: 'counterpoint/quote', u: '%' },
+  ].map(r => ({ ...r, v: m[r.k], bar: bar(r.k) }))
   statsEl.innerHTML = rows.map(r =>
-    `<div class="stat"><span class="stat-value">${r.v ?? '\u2014'}${r.v == null ? '' : r.u}${fmtDelta(r.k, r.u)}</span><span class="stat-label">${r.l}${r.target ? ` (target ${r.target})` : ''}</span></div>`
+    `<div class="stat${r.bar && !r.bar.met ? ' stat-missed' : ''}"><span class="stat-value">${r.v ?? '\u2014'}${r.v == null ? '' : r.u}${fmtDelta(r.k, r.u)}</span><span class="stat-label">${r.l}${r.bar ? ` (target ${esc(r.bar.text)}${r.u})` : ''}</span></div>`
   ).join('')
 
   // Top outlets and acronym violators — exposed but previously unrendered
@@ -1344,25 +1327,7 @@ async function loadCycleDetail(filename) {
 
   // Structured stages
   const stagesEl = document.getElementById('log-stages')
-  const stageOrder = [
-    ['feed', 'feed fetch'],
-    ['selector', 'selector'],
-    ['writer', 'writer'],
-    ['editor', 'editor'],
-    ['build', 'build'],
-    ['deploy', 'deploy'],
-    ['briefing', 'briefing'],
-    ['tuning', 'tuning'],
-  ]
-  stagesEl.innerHTML = stageOrder.map(([key, label]) => {
-    const s = detail.stages[key]
-    if (!s || (s.exit === null && s.seconds === null)) return `<div><span class="stage-skip">\u2500</span> ${label} <span class="stage-skip">skipped</span></div>`
-    const ok = s.exit === 0 || s.exit == null
-    const icon = ok ? '<span class="stage-ok">\u2713</span>' : '<span class="stage-fail">\u2717</span>'
-    const time = s.seconds != null ? ` ${s.seconds}s` : ''
-    const exit = s.exit != null && s.exit !== 0 ? ` (exit ${s.exit})` : ''
-    return `<div>${icon} ${label}${time}${exit}</div>`
-  }).join('')
+  stagesEl.innerHTML = (detail.aborted ? `<div class="stage-fail">${esc(detail.cause || detail.aborted)}</div>` : '') + stageList(detail.allStages)
 
   // Raw tail
   document.getElementById('log-pre').textContent = detail.tail || '(empty)'
@@ -1575,64 +1540,6 @@ function regionBreakdown(breakdown) {
   return Object.entries(breakdown).sort((a, b) => b[1] - a[1]).map(([k, v]) => `${k}\u00a0${v}`).join(' ')
 }
 
-// ── Autoresearch Tab ──────────────────────────────────────────
-async function loadAutoresearch() {
-  const data = await api('/api/autoresearch')
-  const totalsEl = document.getElementById('ar-totals')
-  const sessionsEl = document.getElementById('ar-sessions')
-  const emptyEl = document.getElementById('ar-empty')
-  if (!data || data.empty) {
-    totalsEl.innerHTML = ''
-    sessionsEl.innerHTML = ''
-    emptyEl.hidden = false
-    if (data?.hint) emptyEl.textContent = data.hint
-    return
-  }
-  emptyEl.hidden = true
-
-  const s = data.summary
-  totalsEl.innerHTML = `
-    <div class="stat"><span class="stat-value">${s.sessionCount}</span><span class="stat-label">sessions</span></div>
-    <div class="stat"><span class="stat-value">${s.totalIters}</span><span class="stat-label">total iterations</span></div>
-    <div class="stat"><span class="stat-value">${s.totalAccepted}</span><span class="stat-label">accepted diffs</span></div>
-  `
-
-  const rows = data.sessions.map((sess) => {
-    if (sess.error) {
-      return `<tr><td>${escapeHTML(sess.sessionId)}</td><td colspan="6" style="color:var(--red)">parse error: ${escapeHTML(sess.error)}</td></tr>`
-    }
-    const baseline = sess.baselineRvs?.toFixed(1) ?? '—'
-    const best = sess.bestRvs?.toFixed(1) ?? '—'
-    const delta = sess.delta != null
-      ? `<span style="color:${sess.delta > 0 ? 'var(--green, #4a9a4a)' : sess.delta < 0 ? 'var(--red)' : 'inherit'}">${sess.delta > 0 ? '+' : ''}${sess.delta.toFixed(1)}</span>`
-      : '—'
-    const started = sess.startedAt ? new Date(sess.startedAt).toISOString().slice(0, 16).replace('T', ' ') : '—'
-    const acceptedDetail = sess.accepted.length > 0
-      ? sess.accepted.map((a) => `<div style="font-size:var(--size-xs);margin-top:0.25rem"><strong>iter ${a.iter}</strong> Δ${a.delta > 0 ? '+' : ''}${a.delta?.toFixed(2)} → <code>${escapeHTML(a.file)}</code> (${escapeHTML(a.targetCluster)})<br><span style="color:var(--text-secondary)">${escapeHTML(a.rationale?.slice(0, 200) || '')}</span></div>`).join('')
-      : '<span class="empty" style="font-size:var(--size-xs)">no accepted diffs</span>'
-    return `
-      <tr>
-        <td><code>${escapeHTML(sess.sessionId)}</code><br><span style="font-size:var(--size-xs);color:var(--text-secondary)">${started}</span></td>
-        <td>${baseline}</td>
-        <td>${best}</td>
-        <td>${delta}</td>
-        <td>${sess.iterCount}</td>
-        <td><span style="color:${sess.acceptedCount > 0 ? 'inherit' : 'var(--text-secondary)'}">${sess.acceptedCount}</span> / ${sess.rejectedCount}</td>
-        <td>${acceptedDetail}</td>
-      </tr>
-    `
-  }).join('')
-
-  sessionsEl.innerHTML = `
-    <table class="trend-table">
-      <thead>
-        <tr><th>session</th><th>baseline</th><th>best</th><th>Δ</th><th>iters</th><th>acc / rej</th><th>accepted diffs</th></tr>
-      </thead>
-      <tbody>${rows}</tbody>
-    </table>
-  `
-}
-
 function escapeHTML(s) {
   if (s == null) return ''
   return String(s).replace(/[&<>"']/g, (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]))
@@ -1649,6 +1556,9 @@ async function loadExperiment() {
   const tabDot = document.getElementById('exp-tab-dot')
 
   const activeList = data.activeAll?.length ? data.activeAll : (data.active ? [data.active] : [])
+  document.getElementById('exp-hold').innerHTML = data.holdUntil
+    ? `<div class="glance-alert alert-amber">${dotHTML('amber')}no new experiments until ${esc(data.holdUntil)}</div><p class="note">${esc(data.holdReason || '')}</p>`
+    : ''
   if (activeList.length) {
     tabDot.hidden = false
     const t = data.tracking
@@ -1710,16 +1620,20 @@ async function loadExperiment() {
   // History
   if (data.history?.length) {
     expHistory.innerHTML = data.history.map(e => {
-      const resultClass = e.result === 'kept' ? 'exp-kept' : (e.result || '').includes('revert') ? 'exp-reverted' : 'exp-neutral'
+      // `kept`, `kept_early`, `kept-confounded`: all kept.
+      const resultClass = (e.result || '').startsWith('kept') ? 'exp-kept' : (e.result || '').includes('revert') ? 'exp-reverted' : 'exp-neutral'
       return `<div class="exp-card ${resultClass}">
         <div class="exp-header">
           <strong>${esc(e.parameter || e.id)}</strong>
-          <span class="exp-change">${e.oldValue} \u2192 ${e.newValue}</span>
-          <span class="exp-result">${e.result || 'pending'}</span>
+          <span class="exp-result">${esc(e.result || 'pending')}</span>
         </div>
         <div class="exp-meta">${e.startDate || ''} \u2014 ${e.evaluatedOn || e.evaluateAfter || ''} \u00b7 ${esc(e.targetMetric || '')} ${e.targetDirection || ''}</div>
-        ${e.baseline ? `<div class="exp-baseline-section">${Object.entries(e.baseline).map(([k, v]) => `<span class="exp-baseline-item">${k}: <strong>${v}</strong></span>`).join('')}</div>` : ''}
-        <div class="exp-detail">${esc(e.notes || e.hypothesis || '')}</div>
+        <div class="exp-detail">${esc(e.resultSummary || e.hypothesis || '')}</div>
+        <details><summary>what changed</summary>
+          <div class="exp-detail"><strong>from</strong> ${esc(String(e.oldValue ?? ''))}</div>
+          <div class="exp-detail"><strong>to</strong> ${esc(String(e.newValue ?? ''))}</div>
+          ${e.notes ? `<div class="exp-detail">${esc(e.notes)}</div>` : ''}
+        </details>
       </div>`
     }).join('')
   } else {
@@ -1819,70 +1733,10 @@ function updateExpTabDot() {
 updateExpTabDot()
 
 
-// ── Status Tab ────────────────────────────────────────────────
-async function loadStatus() {
-  const [overview, cycles] = await Promise.all([
-    overviewData || api('/api/overview'),
-    cyclesData || api('/api/cycles'),
-  ])
-
-  if (overview) {
-    // Health indicators
-    const healthEl = document.getElementById('health-list')
-    const indicators = [
-      { key: 'siteFreshness', label: 'site freshness', desc: overview.metaAge !== null ? `${overview.metaAge.toFixed(1)}h ago` : 'unknown' },
-      { key: 'lastCycle', label: 'last cycle', desc: overview.lastCycle ? `${overview.lastCycle.published} published` : 'none' },
-      { key: 'cycleTiming', label: 'cycle timing', desc: overview.lastCycle ? `${overview.lastCycle.totalSeconds}s` : 'n/a' },
-      { key: 'pubRate', label: 'publication rate', desc: overview.lastCycle ? `${overview.lastCycle.published} articles` : 'n/a' },
-      { key: 'validation', label: 'validation', desc: '' },
-    ]
-    healthEl.innerHTML = indicators.map(i => {
-      const status = overview.status[i.key] || 'unknown'
-      return `<li>${dotHTML(status)}<span class="health-label">${i.label}</span><span class="health-value">${i.desc}</span></li>`
-    }).join('')
-
-    // Systemd
-    const sdEl = document.getElementById('systemd-info')
-    sdEl.innerHTML = `
-      <dt>timer</dt><dd>${overview.nextFire ? 'active' : 'unknown'}, next ${formatSystemdTime(overview.nextFire)}</dd>
-      <dt>service</dt><dd>${overview.serviceActive ? 'running' : 'inactive'}</dd>
-    `
-  }
-
-  // 7-day trend
-  if (cycles) {
-    const trendEl = document.getElementById('trend-table')
-    const byDay = {}
-    for (const c of cycles) {
-      if (!c.date) continue
-      if (!byDay[c.date]) byDay[c.date] = { total: 0, completed: 0, published: 0, avgDuration: [] }
-      byDay[c.date].total++
-      if (c.completed) {
-        byDay[c.date].completed++
-        byDay[c.date].published += c.funnel.published
-        if (c.totalSeconds) byDay[c.date].avgDuration.push(c.totalSeconds)
-      }
-    }
-
-    const days = Object.keys(byDay).sort().reverse().slice(0, 7)
-    trendEl.innerHTML = `
-      <thead><tr><th>date</th><th>cycles</th><th>articles</th><th>avg time</th></tr></thead>
-      <tbody>
-        ${days.map(d => {
-          const day = byDay[d]
-          const avg = day.avgDuration.length ? Math.round(day.avgDuration.reduce((a, b) => a + b, 0) / day.avgDuration.length) : '\u2014'
-          return `<tr><td>${d.slice(5)}</td><td>${day.completed}/${day.total}</td><td>${day.published}</td><td>${avg}${avg !== '\u2014' ? 's' : ''}</td></tr>`
-        }).join('')}
-      </tbody>
-    `
-  }
-}
-
 // ── Header Health Dot + Status Bar ────────────────────────────
 async function updateHeaderDot() {
   const data = await api('/api/overview')
   if (!data) return
-  overviewData = data
   const dot = document.getElementById('header-dot')
   const status = data.status?.overall || 'unknown'
   dot.className = `header-dot dot dot-${status}`
@@ -1912,8 +1766,9 @@ async function updateStatusBar(overview) {
   if (overview?.lastCycle) {
     const lc = overview.lastCycle
     const ageMs = Date.now() - new Date(lc.finishedAt).getTime()
-    const txt = `${lc.published || 0} articles · ${fmtAge(ageMs)} ago`
+    const txt = lc.aborted && !lc.benign ? `failed · ${fmtAge(ageMs)} ago` : `${lc.published || 0} articles · ${fmtAge(ageMs)} ago`
     setChip('chip-cycle', overview.status?.lastCycle || 'unknown', txt)
+    document.getElementById('chip-cycle').title = overview.why?.lastCycle || ''
   } else {
     setChip('chip-cycle', 'unknown', 'no cycle yet')
   }
@@ -1921,15 +1776,20 @@ async function updateStatusBar(overview) {
   // Next cycle
   if (overview?.nextFire) {
     const ms = new Date(overview.nextFire).getTime() - Date.now()
-    setChip('chip-next', overview.status?.cycleTiming || 'unknown',
+    setChip('chip-next', overview.status?.timer || 'unknown',
       ms > 0 ? `in ${fmtAge(ms)}` : 'overdue',
       ms < 0 ? 'amber' : null)
   } else {
     setChip('chip-next', 'unknown', '—')
   }
 
+  // Sources
+  if (overview?.status?.sources) {
+    setChip('chip-sources', overview.status.sources, overview.why?.sources || '')
+  }
+
   // Site freshness
-  if (overview?.metaAge !== undefined) {
+  if (overview?.metaAge != null) {
     const hrs = overview.metaAge
     setChip('chip-fresh', overview.status?.siteFreshness || 'unknown',
       hrs < 1 ? `${Math.round(hrs * 60)}m` : `${hrs.toFixed(1)}h`)
@@ -1950,20 +1810,8 @@ async function updateStatusBar(overview) {
   // Quality alerts — count metrics breaching their target
   try {
     const wq = await api('/api/writing-quality')
-    if (wq?.current?.metrics) {
-      const m = wq.current.metrics
-      const breaches = []
-      if (m.titleEchoRatePct > 10) breaches.push('title echo')
-      if (m.passiveHookRatePct > 15) breaches.push('passive hook')
-      if (m.passiveBodyRatePct > 15) breaches.push('passive (body)')
-      if (m.semicolonRatePct > 0) breaches.push('semicolons')
-      if (m.hedgeRatePct > 5) breaches.push('hedges')
-      if (m.charOver400Pct > 5) breaches.push('over char cap')
-      if (m.multiSourceRatePct < 40) breaches.push('multi-source')
-      if (m.acronymViolations > 0) breaches.push('acronyms')
-      if (m.causalClaimHits > 0) breaches.push('causal claims')
-      if (m.pressEraHits > 0) breaches.push('press-era')
-      if (m.countryNullCount > 0) breaches.push('country:null')
+    if (wq?.breaches) {
+      const breaches = wq.breaches
       const n = breaches.length
       setChip('chip-quality',
         n === 0 ? 'green' : n <= 2 ? 'amber' : 'red',
@@ -1983,7 +1831,7 @@ updateHeaderDot()
 setInterval(() => {
   updateHeaderDot()
   if (activeTab === 'pipeline') loadPipeline()
-  if (activeTab === 'status') loadStatus()
+  if (activeTab === 'sources') loadSources()
 }, 30000)
 </script>
 

@@ -22,7 +22,7 @@ import { csvObjects } from './csv.js'
 
 /** Fewer scored models than this and the file is not the file. It held 270 on
  *  the day this was written. */
-const MIN_MODELS = 100
+export const MIN_MODELS = 100
 
 /** A lab with no model scored in this long is left out: its "best" is a
  *  number from another era printed as though it were current. */

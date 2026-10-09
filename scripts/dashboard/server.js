@@ -1,9 +1,10 @@
 #!/usr/bin/env node
-// zuhd.news pipeline dashboard — localhost:7777, zero dependencies
+// zuhd.news pipeline dashboard — port 7777, zero dependencies
 //
-// It reads: the cycle logs, the metrics and trend files, the built feed, and
-// what systemd says of the cycle's units. It starts nothing else. It writes
-// one file, the specificity trend, a day's mean at a time (`handleSpecificity`).
+// It reads: the cycle logs, the snapshots and logs each source leaves, the
+// metrics and trend files, the built feed, and what systemd says of the
+// cycle's units. It starts nothing else and writes nothing: the page is
+// public, and every route is a GET.
 
 import { createServer } from 'node:http'
 import { readFileSync, readdirSync, existsSync, statSync, watch } from 'node:fs'
@@ -15,10 +16,15 @@ import { pathOf } from '../lib/datasets.js'
 import { scoreDir } from '../lib/quality-score.js'
 import { regionFromCoords } from '../lib/regions.js'
 import { ROOT } from '../lib/paths.js'
-import { SENT, SYSTEMD_SHOW, byFileState, cycleView, feedFailures, isCycleLog, keepDay, listener, nextLog, systemdView, tailOf } from './data.js'
+import { latestTrendsPath } from '../lib/trends-snapshot.js'
+import { SENT, SYSTEMD_SHOW, WRITING_TARGETS, abortCause, byFileState, cycleFacts, cycleStatus, cycleView, isCycleLog, listener, nextLog, systemdView, tailOf, writingBreaches } from './data.js'
+import { sourcesView } from './sources.js'
 
-const PORT = 7777
-const HOST = '127.0.0.1'
+// Loopback unless the unit says otherwise: `DASHBOARD_HOST=0.0.0.0` in
+// `zuhd-dashboard.service` is what puts the page on the public address. A
+// second copy for looking at a change takes another `DASHBOARD_PORT`.
+const PORT = Number(process.env.DASHBOARD_PORT) || 7777
+const HOST = process.env.DASHBOARD_HOST || '127.0.0.1'
 
 // Where the state is, by its name in the catalog (`lib/datasets.js`). The
 // built site is not state, and is spelled.
@@ -36,7 +42,11 @@ const DASHBOARD_DIR = join(ROOT, 'scripts', 'dashboard')
  * refresh of the page and again every fifteen seconds for the overview. A
  * finished log never changes; only the running cycle's is read again.
  */
-const logOf = byFileState((path) => parseCycleLog(readFileSync(path, 'utf-8')))
+const logOf = byFileState((path) => {
+  const text = readFileSync(path, 'utf-8')
+  const log = parseCycleLog(text)
+  return { ...log, cause: abortCause(text, log.abort) }
+})
 
 /** The cycle logs on disk, newest first. */
 function getLogFiles() {
@@ -83,46 +93,28 @@ function systemdStatus() {
   return systemdView(res.stdout)
 }
 
-// ── Health Indicators ───────────────────────────────────────────────
+// ── What a dataset says ─────────────────────────────────────────────
 
-function computeStatus(lastCycle, metaAge) {
-  const s = {}
-
-  // Site freshness
-  if (metaAge === null) s.siteFreshness = 'unknown'
-  else if (metaAge < 6) s.siteFreshness = 'green'
-  else if (metaAge < 12) s.siteFreshness = 'amber'
-  else s.siteFreshness = 'red'
-
-  if (!lastCycle?.completed) {
-    s.lastCycle = lastCycle ? 'red' : 'unknown'
-    s.cycleTiming = 'unknown'
-    s.pubRate = 'unknown'
-    s.validation = 'unknown'
-  } else {
-    // Last cycle outcome
-    const deployOk = lastCycle.stages.deploy?.exit === 0
-    const selectorFail = lastCycle.stages.selector?.exit !== 0 && lastCycle.stages.selector?.exit !== null
-    s.lastCycle = selectorFail ? 'red' : deployOk ? 'green' : 'amber'
-
-    // Timing
-    const t = lastCycle.totalSeconds
-    s.cycleTiming = t === null ? 'unknown' : t < 1500 ? 'green' : t < 2400 ? 'amber' : 'red'
-
-    // Publication rate
-    const pub = lastCycle.funnel.published
-    s.pubRate = pub >= 5 ? 'green' : pub >= 3 ? 'amber' : 'red'
-
-    // Validation
-    const removed = lastCycle.funnel.written - lastCycle.funnel.validated
-    s.validation = removed <= 0 ? 'green' : removed <= 2 ? 'amber' : 'red'
+/** A JSON file parsed, once for as long as it stays as it is; null when it is missing or not JSON. */
+const jsonAt = byFileState((path) => {
+  try {
+    return JSON.parse(readFileSync(path, 'utf-8'))
+  } catch {
+    return null
   }
+})
 
-  const vals = Object.values(s)
-  s.overall = vals.includes('red') ? 'red' : vals.includes('amber') ? 'amber' : vals.includes('unknown') ? 'unknown' : 'green'
-
-  return s
+/** @param {string} path */
+function readPath(path) {
+  try {
+    return jsonAt(path)
+  } catch {
+    return null
+  }
 }
+
+/** A dataset by its name in the catalog, parsed, or null. */
+const readDataset = (name) => readPath(name === 'trendsLatest' ? (latestTrendsPath() ?? '') : pathOf(name))
 
 // ── Articles Per Day ────────────────────────────────────────────────
 
@@ -190,46 +182,59 @@ function clearCaches() {
 
 // ── Route Handlers ──────────────────────────────────────────────────
 
+/** Every source and whether it is working: `sources.js`. */
+function handleSources() {
+  return cached('sources', 60_000, () => {
+    const cycles = getLogFiles().flatMap((f) => {
+      const log = logAt(f)
+      return log ? [cycleFacts(log, f)] : []
+    })
+    return { now: new Date().toISOString(), ...sourcesView({ read: readDataset, cycles }) }
+  })
+}
+
 function handleOverview() {
   return cached('overview', 15_000, () => {
     const cycles = getAllCycles()
-    const completed = cycles.filter(c => c.completed)
-    const last = completed[0] || null
-
-    // Meta freshness
-    let metaAge = null
-    const metaPath = join(DIST_DIR, 'api', 'meta.json')
-    if (existsSync(metaPath)) {
-      try {
-        const meta = JSON.parse(readFileSync(metaPath, 'utf-8'))
-        metaAge = (Date.now() - new Date(meta.generated).getTime()) / 3600000
-      } catch {}
-    }
-
+    const last = cycles.find((c) => c.completed) || null
+    const meta = readPath(join(DIST_DIR, 'api', 'meta.json'))
+    const metaAge = meta?.generated ? (Date.now() - new Date(meta.generated).getTime()) / 3600000 : null
     const sd = systemdStatus()
-    const status = computeStatus(last, metaAge)
+    const alert = readDataset('cycleAlert')
+    const { status, why } = cycleStatus({ cycles, metaGenerated: meta?.generated ?? null, systemd: sd, alert, sources: handleSources().summary })
+    // A log with no last line is a cycle running only while systemd says one
+    // is: a cycle that was killed leaves the same log.
+    const running = cycles[0] && !cycles[0].completed && sd.serviceActive ? cycles[0] : null
 
     return {
       now: new Date().toISOString(),
       metaAge: metaAge !== null ? Math.round(metaAge * 10) / 10 : null,
       serviceActive: sd.serviceActive,
+      serviceState: sd.serviceState,
+      timerActive: sd.timerActive,
       nextFire: sd.nextFire,
       lastTrigger: sd.lastTrigger,
+      alert,
       lastCycle: last ? {
         filename: last.filename,
         date: last.date,
         scheduledHour: last.scheduledHour,
         totalSeconds: last.totalSeconds,
         published: last.funnel.published,
+        target: last.target,
         finishedAt: last.finishedAt,
+        aborted: last.aborted,
+        benign: last.benign,
+        cause: last.cause,
       } : null,
-      // If there's a running (incomplete) cycle, include it
-      runningCycle: cycles[0] && !cycles[0].completed ? {
-        filename: cycles[0].filename,
-        startedAt: cycles[0].startedAt,
-        stages: cycles[0].stages,
+      runningCycle: running ? {
+        filename: running.filename,
+        startedAt: running.startedAt,
+        stages: running.stages,
+        allStages: running.allStages,
       } : null,
       status,
+      why,
     }
   })
 }
@@ -247,7 +252,7 @@ function handleCycleDetail(filename) {
 
 function handleQuality() {
   return cached('quality', 300_000, () => {
-    const result = { categories: null, sources: null, regions: null, freshness: null, arcs: null, articlesPerDay: articlesPerDay(7) }
+    const result = { categories: null, sources: null, regions: null, freshness: null, articlesPerDay: articlesPerDay(7) }
 
     // From feed.json
     const feedPath = join(DIST_DIR, 'api', 'feed.json')
@@ -285,19 +290,6 @@ function handleQuality() {
       } catch {}
     }
 
-    // Story arcs from ledger
-    const ledgerPath = pathOf('storyLedger')
-    if (existsSync(ledgerPath)) {
-      try {
-        const ledger = JSON.parse(readFileSync(ledgerPath, 'utf-8'))
-        const arcs = { breaking: 0, developing: 0, ongoing: 0, fading: 0 }
-        for (const s of (ledger.stories || [])) {
-          if (Object.hasOwn(arcs, s.arc)) arcs[s.arc]++
-        }
-        result.arcs = arcs
-      } catch {}
-    }
-
     // Validation failures from logs (7 days)
     const cycles = getAllCycles()
     let totalRemoved = 0
@@ -307,26 +299,6 @@ function handleQuality() {
     }
     result.validationFailures = totalRemoved
     result.categoriesPerDay = categoriesPerDay(7)
-
-    // Edu context coverage
-    if (existsSync(BRIEFS_PATH)) {
-      try {
-        const briefKeys = briefsDigest(BRIEFS_PATH).keys
-        const totalBriefs = briefKeys.length
-        const articleFiles = existsSync(ARTICLES_DIR) ? readdirSync(ARTICLES_DIR).filter(f => f.endsWith('.md')) : []
-        const totalArticles = articleFiles.length
-        // Recent coverage (7 days)
-        const recentDate = new Date(Date.now() - 7 * 86400000).toISOString().slice(0, 10)
-        const recentArticles = articleFiles.filter(f => f >= recentDate).length
-        const recentBriefs = briefKeys.filter(k => k >= recentDate).length
-        result.eduContext = {
-          totalBriefs, totalArticles,
-          coveragePct: totalArticles > 0 ? Math.round(totalBriefs / totalArticles * 100) : 0,
-          recentBriefs, recentArticles,
-          recentPct: recentArticles > 0 ? Math.round(recentBriefs / recentArticles * 100) : 0,
-        }
-      } catch {}
-    }
 
     return result
   })
@@ -353,25 +325,24 @@ function handleWritingQuality() {
         }
       }
     }
-    return { current, delta, history: trend.slice(-12) }
+    return { current, delta, history: trend.slice(-12), targets: WRITING_TARGETS, breaches: writingBreaches(current.metrics) }
   })
 }
 
-// Per-article objective quality scoring (specificity, hedges, title-echo).
-// Computed from the most recent N articles on a request, and the day's mean
-// kept, so there is a trend without a stage in the cycle. It is therefore a
-// trend of the days someone opened the Quality tab: its one record until
-// 2026-10-09 was the day the panel was written, 2026-05-02.
+// Per-article objective quality scoring (specificity, hedges, title-echo),
+// over the most recent N articles, computed on a request. There is no trend:
+// the one there was kept a day's mean whenever someone opened the tab, which
+// in five months was twice, and a GET on a public page wrote a tracked file
+// to keep it.
 function handleSpecificity() {
   return cached('specificity', 5 * 60_000, () => {
-    if (!existsSync(ARTICLES_DIR)) return { current: null, history: [], perArticle: [] }
+    if (!existsSync(ARTICLES_DIR)) return { current: null, worst: [] }
 
     const N = 60
     const { rows, mean } = scoreDir(ARTICLES_DIR, N)
-    if (!mean) return { current: null, history: [], perArticle: [] }
+    if (!mean) return { current: null, worst: [] }
 
-    const snapshot = {
-      date: new Date().toISOString().slice(0, 10),
+    const current = {
       articleCount: mean.articleCount,
       specificity: +mean.specificity.toFixed(2),
       digits: +mean.digits.toFixed(2),
@@ -380,36 +351,16 @@ function handleSpecificity() {
       titleEcho: +mean.titleEcho.toFixed(3),
       sentences: +mean.sentences.toFixed(2),
     }
-    // One snapshot per day: today's replaces today's, a new day is appended.
-    // A write that fails costs the trend a day, not the panel its answer.
-    let trend = [snapshot]
-    try {
-      trend = keepDay(pathOf('specificityTrend'), snapshot, 60).series
-    } catch (err) {
-      console.error(`dashboard: the specificity trend was not written: ${err.message}`)
-    }
-
-    const prior = trend.length >= 2 ? trend[trend.length - 2] : null
-    const delta = {}
-    if (prior) {
-      for (const k of ['specificity', 'digits', 'properNouns', 'hedges', 'titleEcho']) {
-        if (typeof snapshot[k] === 'number' && typeof prior[k] === 'number') {
-          delta[k] = +(snapshot[k] - prior[k]).toFixed(2)
-        }
-      }
-    }
-
     // Bottom 5 by specificity for drill-down
     const worst = rows.slice().sort((a, b) => a.specificity - b.specificity).slice(0, 5).map(r => ({
       file: r.file, specificity: r.specificity, digits: r.digits, hedges: r.hedges, titleEcho: +r.titleEcho.toFixed(2),
     }))
 
-    return { current: snapshot, delta, history: trend, worst, windowArticles: N }
+    return { current, worst, windowArticles: N }
   })
 }
 
-// Article-image preview: scan latest articles for source-level image URLs.
-// Captured starting 2026-05-02 by flipping NewsAPI's includeArticleImage flag.
+// Article-image preview: the latest articles' source-level image URLs.
 function handleArticleImages() {
   return cached('article-images', 5 * 60_000, () => {
     if (!existsSync(ARTICLES_DIR)) return { articles: [], total: 0, withImage: 0 }
@@ -457,6 +408,9 @@ function handleExperiment() {
       queued,
       history: (data.history || []).slice().reverse(),
       tracking: null,
+      // A freeze on new experiments, and why: the tab is otherwise empty with no word of it.
+      holdUntil: data.noNewExperimentsUntil ?? null,
+      holdReason: data.noNewExperimentsUntilReason ?? null,
     }
 
     // If there's an active experiment, compute daily tracking data
@@ -500,22 +454,36 @@ function handleExperiment() {
 
 function handleMedia() {
   return cached('media', 120_000, () => {
-    const result = { pushHistory: [], briefing: null }
+    const result = { pushHistory: [], briefing: null, channels: {} }
 
-    // The breaking push of each cycle that sent one
+    // Every push a cycle sent: the breaking story's, and the daily briefing's
     for (const f of getLogFiles()) {
-      const push = logAt(f)?.pushes.find((p) => p.kind === 'breaking')
-      if (!push?.payload) continue
       // `2026-10-09_0501`
       const id = cycleIdOf(f)
-      result.pushHistory.push({
-        date: id.slice(0, 10),
-        hour: `${id.slice(11, 13)}:${id.slice(13, 15)}`,
-        articles: push.payload.articles || [],
-        pushed: push.response?.pushed ?? null,
-        skipped: push.response?.skipped ?? null,
-        tokens: push.response?.tokens ?? null,
-      })
+      for (const push of logAt(f)?.pushes ?? []) {
+        if (!push.payload) continue
+        result.pushHistory.push({
+          kind: push.kind,
+          date: id.slice(0, 10),
+          hour: `${id.slice(11, 13)}:${id.slice(13, 15)}`,
+          articles: push.payload.articles || [],
+          title: push.payload.title ?? null,
+          pushed: push.response?.pushed ?? null,
+          skipped: push.response?.skipped ?? null,
+          devices: push.response?.tokens ?? null,
+        })
+      }
+    }
+
+    // The last posts to X and Instagram, newest first: sent, or why not
+    for (const [channel, dataset] of [['x', 'tweetLog'], ['instagram', 'instagramLog']]) {
+      const log = readDataset(dataset)
+      result.channels[channel] = (Array.isArray(log) ? log : []).slice(-8).reverse().map((e) => ({
+        timestamp: e.timestamp ?? null,
+        slug: e.slug ?? null,
+        sent: e.sent === true,
+        error: e.error ? String(e.error).slice(0, 160) : null,
+      }))
     }
 
     // Audio briefing meta
@@ -541,29 +509,6 @@ function handleMedia() {
         }
       } catch {}
     }
-
-    return result
-  })
-}
-
-// ── Feed Source Health ───────────────────────────────────────────────
-
-function handleFeedHealth() {
-  return cached('feedHealth', 120_000, () => {
-    const result = { current: null, history: [] }
-
-    // Current stats from latest fetch
-    const statsPath = pathOf('feedSourceStats')
-    if (existsSync(statsPath)) {
-      try {
-        result.current = JSON.parse(readFileSync(statsPath, 'utf-8'))
-      } catch {}
-    }
-
-    // In how many of the last week's cycles each source failed its fetch
-    const logFiles = getLogFiles().slice(0, 35) // Last 7 days
-    result.failCounts = feedFailures(logFiles.map(logAt).filter(Boolean))
-    result.totalCycles = logFiles.length
 
     return result
   })
@@ -596,94 +541,12 @@ function handleOperations() {
   })
 }
 
-// ── Block-type adoption from context briefs ─────────────────────────
-
-const BRIEFS_PATH = pathOf('contextBriefs')
-
-/**
- * What the two brief panels need of `content/.context-briefs.json`: its keys
- * (the coverage figures on `/api/quality`) and the block counts
- * (`/api/blocks`).
- *
- * The file is 15.9 MB and has not changed since 2026-06-14; the stage that
- * wrote it was removed five days later. Each panel parsed it for itself and
- * the Quality tab asks for both at once, in a unit capped at 128 MB. It is
- * parsed when it changes, and only these two answers are kept: the parsed
- * file would not fit beside everything else.
- */
-const briefsDigest = byFileState((path) => {
-  const briefs = JSON.parse(readFileSync(path, 'utf-8'))
-  return { keys: Object.keys(briefs), blocks: blockAdoption(briefs) }
-})
-
-function handleBlocks() {
-  if (!existsSync(BRIEFS_PATH)) return { empty: true }
-  return briefsDigest(BRIEFS_PATH).blocks
-}
-
-function blockAdoption(briefs) {
-  const SHAPE_SPECIFIC = new Set(['timeline', 'rank', 'sankey', 'treemap'])
-  const ALWAYS_CHEAP = new Set(['prose', 'quiz', 'locations', 'compare', 'actors', 'quote'])
-  // Per-day adoption: derive date from slug prefix (slugs start with YYYY-MM-DD-)
-  const byDay = {}
-  for (const [slug, brief] of Object.entries(briefs)) {
-    const m = slug.match(/^(\d{4}-\d{2}-\d{2})/)
-    if (!m) continue
-    const day = m[1]
-    if (!byDay[day]) byDay[day] = { day, briefs: 0, entries: 0, blocks: 0, types: {} }
-    const d = byDay[day]
-    d.briefs++
-    for (const e of brief.timeline || []) {
-      d.entries++
-      for (const b of e.blocks || []) {
-        d.blocks++
-        d.types[b.type] = (d.types[b.type] || 0) + 1
-      }
-    }
-  }
-  const days = Object.values(byDay).sort((a, b) => a.day.localeCompare(b.day))
-  // Last 14 days
-  const recent = days.slice(-14)
-
-  // Aggregate type counts across all-time + last-14-day
-  const allTypes = {}
-  for (const [, b] of Object.entries(briefs)) {
-    for (const e of b.timeline || []) for (const blk of e.blocks || []) {
-      allTypes[blk.type] = (allTypes[blk.type] || 0) + 1
-    }
-  }
-  const recentTypes = {}
-  for (const d of recent) {
-    for (const [t, n] of Object.entries(d.types)) recentTypes[t] = (recentTypes[t] || 0) + n
-  }
-
-  const tierTotals = (counts) => {
-    let shape = 0, cheap = 0, charts = 0, other = 0
-    for (const [t, n] of Object.entries(counts)) {
-      if (SHAPE_SPECIFIC.has(t)) shape += n
-      else if (ALWAYS_CHEAP.has(t)) cheap += n
-      else if (['trend', 'chart', 'multi-chart'].includes(t)) charts += n
-      else other += n
-    }
-    return { shape, cheap, charts, other }
-  }
-
-  return {
-    totalBriefs: Object.keys(briefs).length,
-    allTypes,
-    recentTypes,
-    allTiers: tierTotals(allTypes),
-    recentTiers: tierTotals(recentTypes),
-    recent: recent.map((d) => ({ ...d, tiers: tierTotals(d.types) })),
-  }
-}
-
 // ── Production-cycle RVS trend ──────────────────────────────────────
 
 function handleRvsTrend() {
   return cached('rvsTrend', 60_000, () => {
     const path = pathOf('rvsTrend')
-    if (!existsSync(path)) return { empty: true, hint: 'available after the next production cycle (script: score-production-cycle.js)' }
+    if (!existsSync(path)) return { empty: true }
     let trend = []
     try { trend = JSON.parse(readFileSync(path, 'utf-8')) } catch { return { empty: true, error: 'parse error' } }
     if (trend.length === 0) return { empty: true }
@@ -710,87 +573,13 @@ function handleRvsTrend() {
   })
 }
 
-// ── Autoresearch session history ────────────────────────────────────
-//
-// The sessions of 2026-04-26, as the harness left them. The harness itself
-// is gone (it had not been able to run since May); what it recorded is kept.
-
-function handleAutoresearch() {
-  return cached('autoresearch', 60_000, () => {
-    const dir = pathOf('autoresearchHistory')
-    if (!existsSync(dir)) return { empty: true, hint: 'no autoresearch sessions on record' }
-    const files = readdirSync(dir).filter((f) => f.endsWith('.jsonl')).sort().reverse()
-    if (files.length === 0) return { empty: true }
-
-    const sessions = []
-    for (const f of files.slice(0, 30)) {
-      const sessionId = f.replace(/\.jsonl$/, '')
-      try {
-        const lines = readFileSync(join(dir, f), 'utf-8').trim().split('\n').filter(Boolean)
-        const records = lines.map((l) => JSON.parse(l))
-        const baseline = records.find((r) => r.kind === 'baseline')
-        const replays = records.filter((r) => r.kind === 'replay')
-        const accepted = replays.filter((r) => r.decision === 'accept')
-        const rejected = replays.filter((r) => r.decision !== 'accept')
-        const startedAt = baseline?.ts ?? records[0]?.ts ?? null
-        const finishedAt = records[records.length - 1]?.ts ?? null
-        const bestRvs = replays.length > 0
-          ? Math.max(...replays.map((r) => r.rvs ?? -Infinity))
-          : (baseline?.rvs ?? null)
-        sessions.push({
-          sessionId,
-          startedAt,
-          finishedAt,
-          baselineRvs: baseline?.rvs ?? null,
-          baselineClusters: baseline?.clusters ?? null,
-          bestRvs,
-          delta: bestRvs != null && baseline?.rvs != null ? +(bestRvs - baseline.rvs).toFixed(2) : null,
-          iterCount: replays.length,
-          acceptedCount: accepted.length,
-          rejectedCount: rejected.length,
-          accepted: accepted.map((r) => ({
-            iter: r.iter,
-            rvs: r.rvs,
-            delta: r.delta,
-            file: r.diff?.file,
-            targetCluster: r.diff?.targetCluster,
-            rationale: r.diff?.rationale,
-          })),
-          rejected: rejected.map((r) => ({
-            iter: r.iter,
-            rvs: r.rvs,
-            delta: r.delta,
-            decision: r.decision,
-            file: r.diff?.file,
-            targetCluster: r.diff?.targetCluster,
-            rationale: r.diff?.rationale?.slice(0, 200),
-          })),
-        })
-      } catch (err) {
-        sessions.push({ sessionId, error: err.message })
-      }
-    }
-
-    return {
-      sessions,
-      summary: {
-        sessionCount: sessions.length,
-        totalIters: sessions.reduce((s, x) => s + (x.iterCount || 0), 0),
-        totalAccepted: sessions.reduce((s, x) => s + (x.acceptedCount || 0), 0),
-      },
-    }
-  })
-}
-
 // ── Editorial Data ──────────────────────────────────────────────────
 
 function handleEditorial() {
   return cached('editorial', 300_000, () => {
     const result = { audit: null }
 
-    // Daily audit — prefer JSON, fall back to markdown
     const auditJsonPath = pathOf('dailyAudit')
-    const auditMdPath = pathOf('dailyAuditNotes')
     if (existsSync(auditJsonPath)) {
       try {
         const stat = statSync(auditJsonPath)
@@ -798,16 +587,6 @@ function handleEditorial() {
         result.audit = {
           format: 'json',
           data,
-          updatedAt: stat.mtime.toISOString(),
-          ageHours: Math.round((Date.now() - stat.mtime.getTime()) / 3600000 * 10) / 10,
-        }
-      } catch {}
-    } else if (existsSync(auditMdPath)) {
-      try {
-        const stat = statSync(auditMdPath)
-        result.audit = {
-          format: 'markdown',
-          content: readFileSync(auditMdPath, 'utf-8'),
           updatedAt: stat.mtime.toISOString(),
           ageHours: Math.round((Date.now() - stat.mtime.getTime()) / 3600000 * 10) / 10,
         }
@@ -917,11 +696,9 @@ const server = createServer(listener([
   ['/api/specificity', handleSpecificity],
   ['/api/article-images', handleArticleImages],
   ['/api/editorial', handleEditorial],
-  ['/api/feed-health', handleFeedHealth],
+  ['/api/sources', handleSources],
   ['/api/operations', handleOperations],
-  ['/api/blocks', handleBlocks],
   ['/api/rvs-trend', handleRvsTrend],
-  ['/api/autoresearch', handleAutoresearch],
   ['/api/media', handleMedia],
   ['/api/experiment', handleExperiment],
   ['/api/live', handleLive],
