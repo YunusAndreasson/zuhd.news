@@ -146,6 +146,11 @@ export function splitForSynthesis(section, maxChars = 1200) {
   return pieces
 }
 
+// Its own, and not `escXml` from `lib/html.js`, on purpose. That one escapes
+// quotes and apostrophes too, which a text node does not need, and a script
+// written in contractions ("it's", "they've") would grow by five bytes at
+// each: the pieces below are cut to Chirp's byte limit, so they would be cut
+// in other places.
 const escXml = (s) => s.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;')
 
 /**

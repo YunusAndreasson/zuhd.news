@@ -5,7 +5,7 @@ import { join } from 'node:path'
 import { test } from 'node:test'
 import { ROOT } from './paths.js'
 import { parseBriefingScript } from './briefing-script.js'
-import { briefingPayload, briefingTop, briefingTopFromScript, firstLine, pushSlug, withPushBody } from './push-payload.js'
+import { briefingPayload, briefingTop, briefingTopFromScript, pushSlug, withPushBody } from './push-payload.js'
 
 const payload = () => ({ articles: [{ slug: '2026-10-09-fed-raises-rates', title: 'Fed Raises Rates', category: 'economy', body: 'The Federal Reserve raised', eventCoverage: 12, importance: 6 }] })
 
@@ -14,14 +14,6 @@ test('the slug is the first article\'s, or nothing', () => {
   assert.equal(pushSlug({ articles: [{}] }), '')
   assert.equal(pushSlug({ articles: [] }), '')
   assert.throws(() => pushSlug(/** @type {any} */ ({})), TypeError, 'a payload with no articles is not read as an empty one')
-})
-
-test('the model\'s line is the first that says anything', () => {
-  assert.equal(firstLine('Fed raises interest rates by 25 basis points'), 'Fed raises interest rates by 25 basis points')
-  assert.equal(firstLine('\n   \n  Fed raises rates  \r\nA second line it was not asked for\n'), 'Fed raises rates')
-  assert.equal(firstLine(' \n\t\n'), undefined)
-  assert.equal(firstLine(''), undefined)
-  assert.equal(firstLine(undefined), undefined)
 })
 
 test('a breaking push goes out as Breaking News with the model\'s line, and keeps the rest', () => {

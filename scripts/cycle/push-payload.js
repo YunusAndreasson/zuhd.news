@@ -22,8 +22,9 @@
 import { readFileSync } from 'node:fs'
 import { join } from 'node:path'
 import { parseBriefingScript } from '../lib/briefing-script.js'
+import { firstLine } from '../lib/claude-envelope.js'
 import { pathOf } from '../lib/datasets.js'
-import { briefingPayload, briefingTop, briefingTopFromScript, firstLine, pushSlug, withPushBody } from '../lib/push-payload.js'
+import { briefingPayload, briefingTop, briefingTopFromScript, pushSlug, withPushBody } from '../lib/push-payload.js'
 
 const stdinJson = () => JSON.parse(readFileSync(0, 'utf8'))
 

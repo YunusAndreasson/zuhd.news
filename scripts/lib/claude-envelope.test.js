@@ -1,7 +1,7 @@
 import assert from 'node:assert/strict'
 import { test } from 'node:test'
 import { runWithConcurrency } from './concurrency.js'
-import { ISOLATION_FLAGS, claudeArgs, claudeFailure, parseClaudeEnvelope, parseClaudeText, spawnClaude } from './claude-envelope.js'
+import { ISOLATION_FLAGS, claudeArgs, claudeFailure, cleanProse, firstLine, parseClaudeEnvelope, parseClaudeText, spawnClaude, unquote } from './claude-envelope.js'
 
 // `command: 'node'` stands in for the CLI: the helper's job is the spawn, not
 // the flags, and a real `claude` call would cost money on every test run.
@@ -127,4 +127,28 @@ test('an answer that parses is never rewritten, and one past mending fails as it
 test('an envelope with no text in it is an error, not an empty answer', () => {
   assert.throws(() => parseClaudeEnvelope(envelope(null)), /no text result/)
   assert.throws(() => parseClaudeEnvelope(''), /empty claude stdout/)
+})
+
+test('the model\'s line is the first that says anything', () => {
+  assert.equal(firstLine('Fed raises interest rates by 25 basis points'), 'Fed raises interest rates by 25 basis points')
+  assert.equal(firstLine('\n   \n  Fed raises rates  \r\nA second line it was not asked for\n'), 'Fed raises rates')
+  assert.equal(firstLine(' \n\t\n'), undefined)
+  assert.equal(firstLine(''), undefined)
+  assert.equal(firstLine(undefined), undefined)
+})
+
+test('an answer loses the quotes it came wrapped in, and nothing inside it', () => {
+  assert.equal(unquote(' "Fed raises rates by a quarter point." '), 'Fed raises rates by a quarter point.')
+  assert.equal(unquote('“$100,000 To Study In America”'), '$100,000 To Study In America')
+  assert.equal(unquote('""It\'s "Over", Says Fed""'), 'It\'s "Over", Says Fed', 'however many, and only the outer ones')
+  assert.equal(unquote('First line.\n\nFull story in the app — link in bio.'), 'First line.\n\nFull story in the app — link in bio.')
+  assert.deepEqual([unquote(''), unquote(null), unquote(undefined)], ['', '', ''])
+})
+
+// Stored prose keeps its narrower rule: the wider one would open a sentence
+// that begins with a quoted name.
+test('a stored sentence loses one straight mark an end, and keeps a curled one', () => {
+  assert.equal(cleanProse(' "The strait  carries\na fifth of the oil." '), 'The strait carries a fifth of the oil.')
+  assert.equal(cleanProse('“Liberation Day” tariffs took effect.'), '“Liberation Day” tariffs took effect.')
+  assert.equal(cleanProse(undefined), '')
 })

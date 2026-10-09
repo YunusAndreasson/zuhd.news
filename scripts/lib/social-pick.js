@@ -7,6 +7,7 @@
 
 import { isDeepStrictEqual } from 'node:util'
 import { stripDateline } from './article.js'
+import { unquote } from './claude-envelope.js'
 import { parseFrontmatter, setFrontmatterLine, yamlString } from './frontmatter.js'
 
 /** @typedef {import('./breaking.js').BreakingCandidate} BreakingCandidate */
@@ -73,7 +74,7 @@ export function parsePick(stdout) {
  *
  * @param {Record<string, any>} pick
  */
-export const socialTitleOf = (pick) => String(pick.socialTitle || '').trim().replace(/^["'“”]+|["'“”]+$/g, '').slice(0, 80).trim()
+export const socialTitleOf = (pick) => unquote(String(pick.socialTitle || '')).slice(0, 80).trim()
 
 /**
  * The article with `socialTitle` set, under its `title`: a minimal text edit,

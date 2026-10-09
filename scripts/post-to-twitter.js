@@ -23,6 +23,7 @@
 
 import { createHmac, randomBytes } from 'node:crypto'
 import { argAt } from './lib/argv.js'
+import { firstLine, unquote } from './lib/claude-envelope.js'
 import { buildIgJpeg, IG_FEED } from './lib/ig-image.js'
 import { runPoster, writeCopy } from './lib/social-post.js'
 
@@ -61,13 +62,8 @@ function truncate(text, max) {
 
 /** @param {import('./lib/social-post.js').Story} story */
 async function condenseViaClaude(story) {
-  const answer = await writeCopy('tweet-prompt.md', story, { who: 'post-to-twitter' })
   // Plain-text output (no --output-format json): take the first non-empty line.
-  const line = (answer || '')
-    .split(/\r?\n/)
-    .map((l) => l.trim())
-    .filter(Boolean)[0]
-  return line || null
+  return firstLine(await writeCopy('tweet-prompt.md', story, { who: 'post-to-twitter' })) || null
 }
 
 // Lazy: only spend a Claude call on tweet text if we need the fallback. The
@@ -75,10 +71,9 @@ async function condenseViaClaude(story) {
 // can't be posted.
 /** @param {import('./lib/social-post.js').Story} story */
 async function tweetText(story) {
-  let t = argAt('text') || (await condenseViaClaude(story))
+  const t = argAt('text') || (await condenseViaClaude(story))
   if (!t) return null
-  t = t.replace(/^\s*["'“”]+|["'“”]+\s*$/g, '').trim()
-  return truncate(t, MAX_LEN)
+  return truncate(unquote(t), MAX_LEN)
 }
 
 // --- OAuth 1.0a signing ---

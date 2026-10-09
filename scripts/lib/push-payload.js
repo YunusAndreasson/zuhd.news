@@ -15,15 +15,6 @@
 export const pushSlug = (payload) => payload.articles[0]?.slug || ''
 
 /**
- * The first line of the model's answer that says anything, trimmed. The
- * model is asked for one line and sometimes gives a blank one first.
- *
- * @param {string | undefined} text
- * @returns {string | undefined}
- */
-export const firstLine = (text) => (text || '').trim().split(/\r?\n/).map((l) => l.trim()).filter(Boolean)[0]
-
-/**
  * The breaking payload as it is sent: titled `Breaking News`, with the
  * model's line as its body in place of the article's lead.
  *

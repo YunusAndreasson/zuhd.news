@@ -231,10 +231,35 @@ export async function callClaudeJson(prompt, { model, effort = 'medium', timeout
 }
 
 /**
+ * The first line of a model's answer that says anything, trimmed. A model
+ * asked for one line sometimes gives a blank one first, or a second it was
+ * not asked for. The push line and the tweet each took it their own way.
+ *
+ * @param {string | null | undefined} text
+ * @returns {string | undefined}
+ */
+export const firstLine = (text) => (text || '').trim().split(/\r?\n/).map((l) => l.trim()).filter(Boolean)[0]
+
+/**
+ * A model's answer without the quotation marks it came wrapped in, straight
+ * or curled, however many. What a model is asked to write for a reader (a
+ * tweet, a caption, a card headline) it often hands over in quotes, and the
+ * quotes are not part of it. Three copies: both posters and the social pick.
+ *
+ * @param {string | null | undefined} text
+ */
+export const unquote = (text) => String(text ?? '').replace(/^\s*["'“”]+|["'“”]+\s*$/g, '').trim()
+
+/**
  * A model's sentence as it should be stored: one line, trimmed, and without
  * the quotation marks a model sometimes wraps prose in. Anything that is not
  * a string is `''`, so a missing field reads as empty rather than throwing.
  * Three narrators carried this regex.
+ *
+ * Its own, narrower strip, and not `unquote`'s: one straight mark at each
+ * end. What this returns is stored and shown in the app (`standing`,
+ * `recent`, a disaster's narrative), and the wider one would take the curled
+ * quote off a sentence that opens with a quoted name.
  *
  * @param {unknown} s
  */

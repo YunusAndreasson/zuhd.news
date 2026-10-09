@@ -29,6 +29,7 @@
 
 import { mkdirSync, writeFileSync } from 'node:fs'
 import { join } from 'node:path'
+import { unquote } from './lib/claude-envelope.js'
 import { buildIgJpeg, IG_FEED, IG_STORY } from './lib/ig-image.js'
 import { graphClient, publishStory } from './lib/instagram.js'
 import { ROOT } from './lib/paths.js'
@@ -48,7 +49,7 @@ const haveCreds = Boolean(creds.userId && creds.token)
 /** @param {import('./lib/social-post.js').Story} story */
 async function captionFor(story) {
   // Multi-line caption (unlike the tweet): keep the whole thing, just tidy it.
-  const text = (await writeCopy('instagram-prompt.md', story, { who: 'post-to-instagram' }))?.replace(/^\s*["'“”]+|["'“”]+\s*$/g, '').trim()
+  const text = unquote(await writeCopy('instagram-prompt.md', story, { who: 'post-to-instagram' }))
   return (text || `${story.card.headline}.\n\nFull story in the app — link in bio.`).slice(0, MAX_CAPTION)
 }
 
