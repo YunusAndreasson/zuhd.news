@@ -42,14 +42,15 @@
 // and the thing it was running *for* was being discarded — which is a quieter
 // failure than a layer drawing the wrong thing, and lasted longer.
 
-import { readFileSync, existsSync } from 'node:fs'
+import { existsSync } from 'node:fs'
 import { pathOf } from './lib/datasets.js'
-import { writeJson } from './lib/json-file.js'
+import { readJson, writeJson } from './lib/json-file.js'
 import { fetchJson } from './lib/http.js'
 import { Degrade, snapshotStage } from './lib/snapshot-stage.js'
 
 const API = 'https://api.ioda.inetintel.cc.gatech.edu/v2/outages/summary'
-const DAY = 86_400
+/** A day in seconds, which is what IODA's `from` and `until` count in. Not the milliseconds a `DAY` is elsewhere. */
+const DAY_SECONDS = 86_400
 // The 90-day query is the slow one — ~12s observed against a warm API. The
 // cycle allows this stage 90s, so a ceiling well above the observed cost still
 // fails long before it can hold up a build.
@@ -117,10 +118,13 @@ const HISTORY_DAYS = 90
 if (written) {
   const { countries } = snapshot
   try {
-    const prior = existsSync(HISTORY_PATH)
-      ? JSON.parse(readFileSync(HISTORY_PATH, 'utf-8'))
-      : { records: [] }
-    const records = Array.isArray(prior.records) ? prior.records : []
+    const prior = readJson(HISTORY_PATH)
+    // A history that is there and does not parse is left exactly as it is,
+    // which is what the hand-rolled read did by throwing. `readJson` has said
+    // why. Starting again over it would be the one write that cannot be undone:
+    // these readings exist nowhere else.
+    if (prior === null && existsSync(HISTORY_PATH)) throw new Error('the history on disk does not parse, and is left as it is')
+    const records = Array.isArray(prior?.records) ? prior.records : []
     const now = new Date().toISOString()
     records.push({
       t: now,
@@ -148,7 +152,7 @@ if (written) {
 /** The snapshot: each country with an outage in the recent window, against its own baseline. */
 async function produce() {
   const now = Math.floor(Date.now() / 1000)
-  const recentFrom = now - RECENT_DAYS * DAY
+  const recentFrom = now - RECENT_DAYS * DAY_SECONDS
 
   let recentRows
   let recent
@@ -160,7 +164,7 @@ async function produce() {
     // artifact of the arithmetic.
     const [recentData, baselineData] = await Promise.all([
       pull(recentFrom, now),
-      pull(recentFrom - BASELINE_DAYS * DAY, recentFrom),
+      pull(recentFrom - BASELINE_DAYS * DAY_SECONDS, recentFrom),
     ])
     recentRows = recentData
     recent = byCountry(recentData)

@@ -8,12 +8,11 @@
 //
 // Run: node scripts/fetch-country-cards.js [--only=economy,demography,complexity]
 
-import { readFileSync, existsSync } from 'node:fs'
 import { join } from 'node:path'
 import { COUNTRY_DATA } from '../shared/countries/country-data.ts'
 import { CC_TO_TOPOJSON_NAME } from '../shared/countries/iso.ts'
 import { ROOT } from './lib/paths.js'
-import { writeJson } from './lib/json-file.js'
+import { readJson, writeJson } from './lib/json-file.js'
 
 const OUT = join(ROOT, 'shared', 'data', 'country-cards.json')
 
@@ -130,14 +129,12 @@ async function fetchWorldBank(indicator, dateRange = '1990:2024') {
 // When --only is set we MERGE with the existing file so partial re-runs
 // don't wipe other slices.
 const out = (() => {
-  if (only && existsSync(OUT)) {
-    try {
-      const prev = JSON.parse(readFileSync(OUT, 'utf8'))
-      console.log(`Merging --only=${[...only].join(',')} into existing ${Object.keys(prev.byIso2).length}-country file`)
-      return { ...prev, generated: new Date().toISOString(), byIso2: { ...prev.byIso2 } }
-    } catch (err) {
-      console.warn(`  ! could not parse existing ${OUT}: ${err.message}`)
-    }
+  // `readJson` says so itself when the file is there and does not parse; a
+  // file with no `byIso2` in it is no more to merge into than one that is not.
+  const prev = only ? readJson(OUT) : null
+  if (prev?.byIso2) {
+    console.log(`Merging --only=${[...only].join(',')} into existing ${Object.keys(prev.byIso2).length}-country file`)
+    return { ...prev, generated: new Date().toISOString(), byIso2: { ...prev.byIso2 } }
   }
   return { generated: new Date().toISOString(), countries: countries.length, byIso2: {} }
 })()
