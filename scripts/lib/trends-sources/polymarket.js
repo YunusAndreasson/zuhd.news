@@ -43,7 +43,7 @@ import { runWithConcurrency } from '../concurrency.js'
 import { CC_TO_TOPOJSON_NAME } from '../../../shared/countries/iso.ts'
 import { claudeArgs, claudeFailure, parseClaudeText, spawnClaude } from '../claude-envelope.js'
 import { sha1Hex } from '../hash.js'
-import { ZUHD_UA } from '../http.js'
+import { fetchJson } from '../http.js'
 import { modelFor } from '../models.js'
 import { dayLabel, isoDay } from '../period.js'
 
@@ -288,12 +288,7 @@ async function fetchTopMarkets(limit, incumbentSlugs) {
   url.searchParams.set('active', 'true')
   url.searchParams.set('closed', 'false')
 
-  const res = await fetch(url, {
-    signal: AbortSignal.timeout(10000),
-    headers: { 'User-Agent': ZUHD_UA },
-  })
-  if (!res.ok) throw new Error(`HTTP ${res.status}`)
-  const data = await res.json()
+  const data = await fetchJson(url, { timeoutMs: 10_000 })
   const events = Array.isArray(data) ? data : data.data || data.events || []
 
   const { markets, seen, droppedByTag, droppedNoneLive } = marketsFromEvents(events, incumbentSlugs)
@@ -314,12 +309,7 @@ async function fetchPriceHistory(clobTokenId) {
   url.searchParams.set('interval', '1m')
   url.searchParams.set('fidelity', '1440')
 
-  const res = await fetch(url, {
-    signal: AbortSignal.timeout(10000),
-    headers: { 'User-Agent': ZUHD_UA },
-  })
-  if (!res.ok) throw new Error(`HTTP ${res.status}`)
-  const data = await res.json()
+  const data = await fetchJson(url, { timeoutMs: 10_000 })
   return Array.isArray(data?.history) ? data.history : []
 }
 

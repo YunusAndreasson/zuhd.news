@@ -2,7 +2,7 @@
 // Docs: https://fred.stlouisfed.org/docs/api/fred/series_observations.html
 // Free, public-domain data. Key registration: https://fred.stlouisfed.org/docs/api/api_key.html
 
-import { ZUHD_UA } from '../http.js'
+import { fetchJson } from '../http.js'
 import { dayLabel, isoDay, monthLabel } from '../period.js'
 
 const FRED_BASE = 'https://api.stlouisfed.org/fred/series/observations'
@@ -78,12 +78,7 @@ export async function fetchFredSeries(indicator, apiKey) {
   if (indicator.units) url.searchParams.set('units', indicator.units)
 
   try {
-    const res = await fetch(url, {
-      signal: AbortSignal.timeout(10000),
-      headers: { 'User-Agent': ZUHD_UA },
-    })
-    if (!res.ok) throw new Error(`HTTP ${res.status}`)
-    const data = await res.json()
+    const data = await fetchJson(url, { timeoutMs: 10_000 })
     const observations = data.observations || []
 
     // FRED uses "." for missing values — drop those.
@@ -129,12 +124,7 @@ export async function fetchFredReleaseCalendar(apiKey, days = 10) {
   try {
     // releases/dates is a slow endpoint (~15-20s server-side) — needs a wider
     // timeout than the observation calls. Trends-stage budget is 120s.
-    const res = await fetch(url, {
-      signal: AbortSignal.timeout(30000),
-      headers: { 'User-Agent': ZUHD_UA },
-    })
-    if (!res.ok) throw new Error(`HTTP ${res.status}`)
-    const data = await res.json()
+    const data = await fetchJson(url, { timeoutMs: 30_000 })
     const upcoming = (data.release_dates || [])
       .filter((r) => r.date >= isoDay(start) && r.date <= isoDay(end))
       .filter((r) => MAJOR_RELEASES.some((p) => p.test(r.release_name || '')))

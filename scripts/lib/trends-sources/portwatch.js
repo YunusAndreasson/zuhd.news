@@ -8,7 +8,7 @@
 // The orchestrator treats a null return as "skip this indicator this run".
 
 import { CHOKEPOINT_BY_ID, CHOKEPOINT_CATALOG } from '../chokepoint-metadata.js'
-import { ZUHD_UA } from '../http.js'
+import { fetchJson } from '../http.js'
 import { dayLabel, isoDay } from '../period.js'
 
 // IMF PortWatch "Daily Chokepoints Data" feature service (ArcGIS).
@@ -98,12 +98,7 @@ export async function fetchPortWatchChokepoint(indicator) {
   url.searchParams.set('resultRecordCount', String(HISTORY_DAYS + 5))
 
   try {
-    const res = await fetch(url, {
-      signal: AbortSignal.timeout(15000),
-      headers: { 'User-Agent': ZUHD_UA },
-    })
-    if (!res.ok) throw new Error(`HTTP ${res.status}`)
-    const data = await res.json()
+    const data = await fetchJson(url, { timeoutMs: 15_000 })
     const features = data.features || []
     if (features.length === 0) {
       console.error(`  ✗ portwatch:${indicator.id}: no features returned`)
@@ -184,12 +179,7 @@ export async function fetchAllChokepointsSnapshot() {
   url.searchParams.set('resultRecordCount', '2000')
 
   try {
-    const res = await fetch(url, {
-      signal: AbortSignal.timeout(20000),
-      headers: { 'User-Agent': ZUHD_UA },
-    })
-    if (!res.ok) throw new Error(`HTTP ${res.status}`)
-    const data = await res.json()
+    const data = await fetchJson(url, { timeoutMs: 20_000 })
     const features = data.features || []
     if (features.length === 0) {
       console.error('  ✗ portwatch-snapshot: no features returned')
