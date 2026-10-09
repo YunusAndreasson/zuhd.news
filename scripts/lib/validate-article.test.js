@@ -282,3 +282,14 @@ test('where a shipped article departs from the contract is reported and costs it
   assert.equal(out.bad, null)
   assert.deepEqual(out.problems, ['invalid category sport', 'source bad url dawn.com/news/2035725'])
 })
+
+// No test starts the stage script: its lists are the cycle's own, in /tmp. So
+// this much is asked of its text. An article is a record and nothing writes it
+// again, so what the stage writes back goes through `writeText`, whole or not
+// at all, where `writeFileSync` truncates first and a kill in between leaves
+// an empty file.
+test('the stage writes a mended article back whole', () => {
+  const stage = readFileSync(new URL('../validate-articles.js', import.meta.url), 'utf8')
+  assert.match(stage, /\bwriteText\(/)
+  assert.doesNotMatch(stage, /\bwriteFileSync\b/)
+})

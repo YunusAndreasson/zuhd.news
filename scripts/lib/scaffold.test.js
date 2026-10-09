@@ -1,5 +1,6 @@
 // Run: node --test scripts/lib/scaffold.test.js
 import assert from 'node:assert/strict'
+import { readFileSync } from 'node:fs'
 import { test } from 'node:test'
 import { parseFrontmatter } from './frontmatter.js'
 import { scaffoldArticle } from './scaffold.js'
@@ -74,4 +75,13 @@ test('a second pass adds nothing', () => {
 test('with nothing to add, or no frontmatter to add it to, the file is left alone', () => {
   assert.equal(scaffoldArticle(WRITTEN, { suggestedSlug: '2026-10-08-wto' }), null)
   assert.equal(scaffoldArticle('Just prose.\n', story()), null)
+})
+
+// No test starts the stage script: its lists are the cycle's own, in /tmp. So
+// this much is asked of its text: the article it fills is written back through
+// `writeText`, whole or not at all.
+test('the stage writes a filled article back whole', () => {
+  const stage = readFileSync(new URL('../scaffold-articles.js', import.meta.url), 'utf8')
+  assert.match(stage, /\bwriteText\(/)
+  assert.doesNotMatch(stage, /\bwriteFileSync\b/)
 })

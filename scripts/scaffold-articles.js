@@ -3,9 +3,10 @@
 // Concepts, eventCoverage, and empty sources are copied mechanically —
 // no reason to spend LLM tokens on data the pipeline already has. What is
 // filled, and how it is escaped, is `scaffoldArticle` in `lib/scaffold.js`.
-import { existsSync, readFileSync, writeFileSync } from 'node:fs'
+import { existsSync, readFileSync } from 'node:fs'
 import { resolve } from 'node:path'
 import { pathOf } from './lib/datasets.js'
+import { writeText } from './lib/json-file.js'
 import { scaffoldArticle } from './lib/scaffold.js'
 import { runStage } from './lib/stage.js'
 
@@ -35,7 +36,8 @@ export function main() {
     if (!story) continue
     const next = scaffoldArticle(readFileSync(full, 'utf-8'), story)
     if (next !== null) {
-      writeFileSync(full, next)
+      // Whole or not at all: an article is a record, and nothing writes it again.
+      writeText(full, next)
       filled++
     }
   }

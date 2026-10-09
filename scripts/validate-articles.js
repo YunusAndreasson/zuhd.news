@@ -2,11 +2,11 @@
 // Validates the cycle's new articles before the build. One that may not ship
 // is moved to `.bad`, so it is not deployed; one that can be mended is mended
 // in place. What is judged, and how leniently, is `lib/validate-article.js`.
-import { existsSync, readFileSync, readdirSync, renameSync, writeFileSync } from 'node:fs'
+import { existsSync, readFileSync, readdirSync, renameSync } from 'node:fs'
 import { basename, join, resolve } from 'node:path'
 import { tryReadArticle } from './lib/article.js'
 import { pathOf } from './lib/datasets.js'
-import { readJson } from './lib/json-file.js'
+import { readJson, writeText } from './lib/json-file.js'
 import { ROOT } from './lib/paths.js'
 import { runStage } from './lib/stage.js'
 import { latestTrendsPath } from './lib/trends-snapshot.js'
@@ -52,7 +52,8 @@ export function main() {
     const full = resolve(ROOT, f)
     if (!existsSync(full)) continue
     const { bad, text, events, problems } = validator.check(readFileSync(full, 'utf8'), basename(f))
-    if (text !== null) writeFileSync(full, text)
+    // Whole or not at all: an article is a record, and nothing writes it again.
+    if (text !== null) writeText(full, text)
     for (const event of events) console.log(`${event}: ${f}`)
     if (bad) {
       console.log(`SKIP (${bad}): ${f}`)
