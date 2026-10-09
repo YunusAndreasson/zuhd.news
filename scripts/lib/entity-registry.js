@@ -264,7 +264,7 @@ function exchangeRules() {
  * with its own git history — so a rename is a lookup, not a migration. Drop an
  * entry only once no article on disk carries the old id.
  */
-export const ENTITY_ID_ALIASES = {
+const ENTITY_ID_ALIASES = {
   'portwatch-hormuz-tanker': 'cp:hormuz',
   'portwatch-bab-container': 'cp:bab-el-mandeb',
   'portwatch-suez-total': 'cp:suez',
@@ -278,16 +278,22 @@ export const ENTITY_ID_ALIASES = {
 /** Resolve a possibly-renamed indicator id to its current form. */
 export const canonicalIndicatorId = (id) => ENTITY_ID_ALIASES[id] ?? id
 
-/** Sort rules longest-first so "Strait of Hormuz" beats "Hormuz" when both
- *  appear overlapping; the extractor takes the earliest non-overlapping match
- *  by position. */
-export const ENTITY_RULES_SORTED = [...ENTITY_RULES].sort(
+/** The rules, longest mention first, which is the order `extractEntities` tries
+ *  them in. An indicator keeps the first rule of its own that matched, so the
+ *  mention recorded for `cp:hormuz` is "Strait of Hormuz" and not the "Hormuz"
+ *  inside it.
+ *
+ *  That is all the order does. Nothing reads where in the text a match stands,
+ *  so a longer rule does not hide a shorter one that names another series:
+ *  "2-year Treasury yield" resolves to `us-2y` and, through "Treasury yield",
+ *  to `us-10y` as well. */
+const ENTITY_RULES_SORTED = [...ENTITY_RULES].sort(
   (a, b) => b.mention.length - a.mention.length,
 )
 
 /** Regex-safe pattern for one mention — whole-word where possible. "Bitcoin"
  *  shouldn't match "Bitcoins" (plural). Handle punctuation and ampersands. */
-export function mentionToRegex(mention, { caseSensitive = false } = {}) {
+function mentionToRegex(mention, { caseSensitive = false } = {}) {
   const escaped = mention.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')
   // Word-boundary both sides; allow optional 's' for plural nouns at the end
   // so "rupees" / "tankers" still match — but block "Hormuzian" (letters).
@@ -304,9 +310,10 @@ export function mentionToRegex(mention, { caseSensitive = false } = {}) {
  * whole tag rather than on each word, so multi-word tags like `red sea` still
  * match as a phrase.
  *
- * Lives here rather than inline in `build.js` because three call sites now want
- * it — the chokepoint join, the exchange join, and entity extraction — and the
- * bug above is what a second copy costs.
+ * Lives here for the callers that ask this question of a story: `matchesAnyTag`
+ * below, which is how the narrators join an instrument to the stories that
+ * name it, and the indicator offer (`lib/indicator-offer.js`). The bug above is
+ * what a second copy costs.
  */
 export const tagMatcher = (tag) => {
   const escaped = String(tag).replace(/[.*+?^${}()|[\]\\]/g, '\\$&')
