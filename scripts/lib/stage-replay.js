@@ -149,6 +149,36 @@ shift 3
 if [ -n "$stdin" ]; then exec "$@" < "$stdin"; else exec "$@"; fi
 `
 
+/** What a replay leaves in its output directory (`cycle/replay-stage.js`), and nothing else. */
+export const OUTPUT = ['status', 'stdout', 'stderr', 'written']
+
+/**
+ * Why `dir` may not be taken as a replay's output directory, or null when it
+ * may: it is not there, it is empty, or it holds an earlier replay and only
+ * that.
+ *
+ * The directory is removed before the run's output is written into it, so
+ * that two runs compare clean. It was removed whatever it was: `--out .` or
+ * `--out content` was the end of that directory, from a tool whose point is
+ * that nothing real is touched.
+ *
+ * @param {string} dir
+ * @returns {string | null}
+ */
+export function outputProblem(dir) {
+  let names
+  try {
+    names = readdirSync(dir)
+  } catch (err) {
+    const { code } = /** @type {NodeJS.ErrnoException} */ (err)
+    return code === 'ENOENT' ? null : code === 'ENOTDIR' ? 'it is a file' : `it cannot be read (${code})`
+  }
+  if (names.length === 0) return null
+  const other = names.filter((name) => !OUTPUT.includes(name))
+  if (other.length) return `it holds ${other.length === 1 ? `"${other[0]}"` : `${other.length} things`} no replay wrote`
+  return names.includes('status') ? null : 'it holds no earlier replay (no `status`)'
+}
+
 /**
  * @typedef {object} Replay
  * @property {string} script the stage, by path from the tree's root

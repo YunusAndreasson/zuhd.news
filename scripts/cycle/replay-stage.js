@@ -11,6 +11,9 @@
 //                            that answers from a file in /tmp, say)
 //   <inputs>/logs/*          what the stage finds in logs/
 //
+//   <out>                    status, stdout, stderr and written/**. Removed
+//                            first, so it must be new, empty, or a replay's.
+//
 // Run it for the tree as it was (`--tree`, a checkout of the commit before)
 // and again for the tree as it is, then `diff -r` the two directories. That
 // is how a stage is shown to do the same thing after it has been moved onto
@@ -23,7 +26,7 @@ import { existsSync, mkdirSync, readFileSync, readdirSync, rmSync, statSync, wri
 import { dirname, join, resolve } from 'node:path'
 import { argAt } from '../lib/argv.js'
 import { ROOT } from '../lib/paths.js'
-import { replayStage } from '../lib/stage-replay.js'
+import { outputProblem, replayStage } from '../lib/stage-replay.js'
 
 const script = argAt('script')
 const inputs = argAt('inputs')
@@ -32,6 +35,12 @@ const out = argAt('out')
 const tree = argAt('tree', ROOT)
 if (!script || !inputs || !now || !out) {
   console.error('usage: replay-stage.js --script <path> --inputs <dir> --now <iso> --out <dir> [--tree <checkout>] [-- <stage args>]')
+  process.exit(2)
+}
+// `--out` is removed before it is written, so it has to be a place that may be.
+const problem = outputProblem(out)
+if (problem) {
+  console.error(`replay-stage.js: --out ${out}: ${problem}. Name a directory that is not there, is empty, or holds an earlier replay.`)
   process.exit(2)
 }
 

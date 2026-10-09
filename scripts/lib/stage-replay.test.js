@@ -6,7 +6,7 @@ import { existsSync, mkdirSync, mkdtempSync, readFileSync, readdirSync, rmSync, 
 import { join } from 'node:path'
 import { test } from 'node:test'
 import { ROOT } from './paths.js'
-import { canReplay, outsideTheSeal, replayStage } from './stage-replay.js'
+import { OUTPUT, canReplay, outputProblem, outsideTheSeal, replayStage } from './stage-replay.js'
 
 const skip = !canReplay() && 'needs root, unshare and an overlay mount'
 
@@ -183,4 +183,33 @@ test('a path is an argument to the sandbox, not part of its text', { skip }, asy
   )
   assert.equal(r.status, 0, r.stderr)
   assert.equal(r.stdout, "as given false o'dd name.txt\n", 'the file by its own name, the removal made, and nothing run from a name')
+})
+
+// ── Where a replay's output goes ─────────────────────────────────────
+
+// `replay-stage.js` removes `--out` before it writes there, and removed it
+// whatever it was.
+test('an output directory is one that is not there, is empty, or holds an earlier replay and nothing else', () => {
+  mkdirSync(join(ROOT, '.cache'), { recursive: true })
+  const dir = mkdtempSync(join(ROOT, '.cache', 'stage-replay-test-'))
+  try {
+    assert.equal(outputProblem(join(dir, 'new')), null)
+    assert.equal(outputProblem(dir), null, 'empty')
+
+    for (const name of ['status', 'stdout', 'stderr']) writeFileSync(join(dir, name), '')
+    mkdirSync(join(dir, 'written', 'content'), { recursive: true })
+    assert.deepEqual(readdirSync(dir).sort(), [...OUTPUT].sort())
+    assert.equal(outputProblem(dir), null, 'an earlier replay')
+
+    writeFileSync(join(dir, 'notes.md'), 'mine')
+    assert.match(String(outputProblem(dir)), /"notes\.md" no replay wrote/)
+    assert.match(String(outputProblem(join(dir, 'status'))), /a file/)
+    assert.match(String(outputProblem(join(dir, 'written'))), /"content" no replay wrote/, 'a part of one is not one')
+  } finally {
+    rmSync(dir, { recursive: true, force: true })
+  }
+})
+
+test('the repository and its content are not output directories', () => {
+  for (const real of [ROOT, join(ROOT, 'content'), join(ROOT, 'scripts'), '/tmp']) assert.match(String(outputProblem(real)), /no replay wrote/, real)
 })
