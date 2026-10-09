@@ -29,6 +29,14 @@ const TOOLS = ['bash', 'cat', 'cp', 'dirname', 'find', 'flock', 'grep', 'head', 
 // harness pins what the orchestrator wraps around a prompt, not its text,
 // which changes weekly.
 const PROMPTS = ['select-prompt.md', 'write-prompt.md', 'check-prompt.md', 'tune-prompt.md']
+// The two short prompts the script sends whole, with one thing appended. These
+// are the real files: they were text inside the script until they were moved
+// out, and the recordings are what shows the model is still sent the same
+// bytes. A recording therefore describes these files as well as the script.
+export const SENT_WHOLE = ['push-prompt.md', 'briefing-push-prompt.md']
+
+/** The files a recording describes, by path from the root: the script, and the prompts it sends whole. */
+export const RECORDED = ['scripts/run-cycle.sh', ...SENT_WHOLE.map((p) => `scripts/${p}`)]
 
 /** Whether this machine lets us make the sandbox: root, with `unshare`. */
 export function canSandbox() {
@@ -77,6 +85,7 @@ export async function runCycle(scenario, { script = join(ROOT, 'scripts', 'run-c
     cpSync(script, join(repo, 'scripts', 'run-cycle.sh'))
     chmodSync(join(repo, 'scripts', 'run-cycle.sh'), 0o755)
     for (const p of PROMPTS) writeFileSync(join(repo, 'scripts', p), `«${p}»\n`)
+    for (const p of SENT_WHOLE) cpSync(join(dirname(script), p), join(repo, 'scripts', p))
     for (const [path, content] of Object.entries(scenario.files ?? {})) {
       mkdirSync(dirname(join(repo, path)), { recursive: true })
       writeFileSync(join(repo, path), content)

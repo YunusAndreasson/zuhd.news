@@ -9,19 +9,42 @@ import { createHash } from 'node:crypto'
 import { readFileSync, readdirSync } from 'node:fs'
 import { join } from 'node:path'
 import { test } from 'node:test'
-import { renderCycle } from './cycle-harness.js'
+import { RECORDED, renderCycle } from './cycle-harness.js'
 import { FULL, SCENARIOS } from './cycle-scenarios.js'
 import { ROOT } from './paths.js'
 
 const DIR = join(ROOT, 'scripts', 'lib', 'fixtures', 'cycle')
 
-// A recording describes one exact script. Any edit to `run-cycle.sh` fails
-// here until the scenarios have been run against it again, so an orchestrator
-// change cannot land with its record still describing the one before.
-test('the recordings were made from the script as it now stands', () => {
-  const recorded = readFileSync(join(DIR, 'RECORDED_FROM'), 'utf-8').split(' ')[0]
-  const now = createHash('sha1').update(readFileSync(join(ROOT, 'scripts', 'run-cycle.sh'))).digest('hex')
-  assert.equal(now, recorded, 'run-cycle.sh has changed: run `npm run test:cycle`, and `UPDATE_GOLDENS=1 npm run test:cycle` once the difference is the one you meant')
+// A recording describes one exact script, and the two prompts it sends whole.
+// Any edit to one of them fails here until the scenarios have been run again,
+// so an orchestrator change cannot land with its record still describing the
+// one before.
+test('the recordings were made from the script and the prompts as they now stand', () => {
+  const recorded = readFileSync(join(DIR, 'RECORDED_FROM'), 'utf-8')
+  const now = RECORDED.map((f) => `${createHash('sha1').update(readFileSync(join(ROOT, f))).digest('hex')}  ${f}\n`).join('')
+  assert.equal(now, recorded, 'one of these has changed: run `npm run test:cycle`, and `UPDATE_GOLDENS=1 npm run test:cycle` once the difference is the one you meant')
+})
+
+// A prompt the script cannot read is sent as an empty one: `$(cat …)` of a
+// file that is not there is nothing, and the model is handed what follows.
+test('every prompt the script reads is a file that is there', () => {
+  const script = readFileSync(join(ROOT, 'scripts', 'run-cycle.sh'), 'utf-8')
+  const read = [...script.matchAll(/=\$\(cat (scripts\/[a-z-]+\.md)\)/g)].map((m) => m[1])
+  assert.deepEqual(read.toSorted(), [
+    'scripts/briefing-push-prompt.md',
+    'scripts/check-prompt.md',
+    'scripts/push-prompt.md',
+    'scripts/select-prompt.md',
+    'scripts/tune-prompt.md',
+    'scripts/write-prompt.md',
+  ])
+  for (const f of read) assert.ok(readFileSync(join(ROOT, f), 'utf-8').trim().length > 200, `${f} is all but empty`)
+})
+
+// Each ends on the line that names what the script puts after it.
+test('the two prompts sent whole end where what follows them begins', () => {
+  assert.ok(readFileSync(join(ROOT, 'scripts', 'push-prompt.md'), 'utf-8').endsWith('\nOutput ONLY the line, nothing else.\n\nArticle:\n'))
+  assert.ok(readFileSync(join(ROOT, 'scripts', 'briefing-push-prompt.md'), 'utf-8').endsWith("\nOutput ONLY the line, nothing else.\n\nTop stories from today's briefing:\n"))
 })
 
 test('every scenario has a recording, and every recording a scenario', () => {

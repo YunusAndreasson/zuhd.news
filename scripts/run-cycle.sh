@@ -805,31 +805,9 @@ $TITLE_ECHO
         PUSH_SLUG=$(echo "$BREAKING_JSON" | node scripts/cycle/push-payload.js slug)
         if [ -n "$PUSH_SLUG" ] && [ -f "content/articles/${PUSH_SLUG}.md" ]; then
           ARTICLE_TEXT=$(cat "content/articles/${PUSH_SLUG}.md")
-          PUSH_NOTIF=$(timeout 30 claude $CLAUDE_FLAGS --model $CLAUDE_MODEL --effort medium --tools "" -p "Write ONE push notification body for this article. Title is already 'Breaking News' — you write only the body.
-
-Write like a Reuters/AP wire alert. Match these in length and tone:
-- Fed raises interest rates by 25 basis points
-- Turkey earthquake kills more than 40,000, officials say
-- Oil prices surge past \$100 a barrel
-- Ukraine's Zelenskiy says missile struck Odesa port
-- Supreme Court overturns Chevron doctrine in landmark ruling
-- Syria's Assad flees to Russia as rebels seize Damascus
-- North Korea fires ballistic missile over Japan
-- EU agrees to ban Russian oil imports by end of year
-
-Rules:
-- Present tense ('raises' not 'raised', 'kills' not 'killed')
-- Subject first, then active verb, then consequence
-- Drop articles (the, a, an) and auxiliary verbs (is, are, was)
-- Attribution at end if needed: 'officials say' or 'sources say'
-- Digits for all numbers
-- One fact only — no context, no hedging, no adjectives
-- No period at the end
-- 8-12 words
-
-Output ONLY the line, nothing else.
-
-Article:
+          # The prompt is scripts/push-prompt.md, and the article follows it.
+          PUSH_PROMPT=$(cat scripts/push-prompt.md)
+          PUSH_NOTIF=$(timeout 30 claude $CLAUDE_FLAGS --model $CLAUDE_MODEL --effort medium --tools "" -p "$PUSH_PROMPT
 $ARTICLE_TEXT" 2>/dev/null)
           if [ -n "$PUSH_NOTIF" ]; then
             # Inject title + first non-empty line of Claude's output into BREAKING_JSON
@@ -1002,27 +980,9 @@ if [ "${START_HOUR:-$HOUR_UTC}" = "$DAILY_HOUR" ]; then
       # generator uses (importance >= 6 || arc breaking/developing), top 5.
       BRIEFING_TOP=$(node scripts/cycle/push-payload.js briefing-top 2>>"$LOG_FILE")
       if [ -n "$BRIEFING_TOP" ] && [ "$BRIEFING_TOP" != "[]" ]; then
-        BRIEFING_BODY=$(timeout 30 claude $CLAUDE_FLAGS --model $CLAUDE_MODEL --effort medium --tools "" -p "Write ONE push notification body announcing today's daily news briefing audio is ready.
-
-Format: 2 or 3 short topic phrases separated by ' · ' (middle-dot, U+00B7). The reader should be able to scan it in two seconds.
-
-Examples:
-- Hormuz \$106 · BJP defects in Punjab · El Niño by May
-- Russia hits Dnipro · NATO arms shipment · DeepSeek V4 ships
-- Sudan IMF stalls · Lebanon beekeeping · DOJ death penalty
-
-Rules:
-- 2 or 3 phrases, each 2-5 words
-- Middle-dot separator with single spaces around it
-- Prefer concrete subjects + active outcome over abstract topics
-- Drop articles (the, a, an) and auxiliary verbs (is, are, was)
-- Digits for all numbers
-- 30-65 chars total
-- No period at the end
-
-Output ONLY the line, nothing else.
-
-Top stories from today's briefing:
+        # The prompt is scripts/briefing-push-prompt.md, and the top stories follow it.
+        BRIEFING_PROMPT=$(cat scripts/briefing-push-prompt.md)
+        BRIEFING_BODY=$(timeout 30 claude $CLAUDE_FLAGS --model $CLAUDE_MODEL --effort medium --tools "" -p "$BRIEFING_PROMPT
 $BRIEFING_TOP" 2>/dev/null | head -1 | tr -d '\n')
         if [ -n "$BRIEFING_BODY" ]; then
           BRIEFING_PUSH_JSON=$(BODY="$BRIEFING_BODY" DATE="$BRIEFING_DATE" node scripts/cycle/push-payload.js briefing 2>>"$LOG_FILE")
