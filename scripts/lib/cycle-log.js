@@ -270,6 +270,14 @@ export function cycleIdOf(filename) {
   return String(filename).match(/cycle-(\d{4}-\d{2}-\d{2}_\d{4})\.log$/)?.[1] ?? null
 }
 
+/**
+ * `2026-10-08_1804` → `cycle-2026-10-08_1804.log`: the way back. A name is a
+ * cycle's log, and nothing else, when it is the name of its own id.
+ *
+ * @param {string} id
+ */
+export const cycleLogName = (id) => `cycle-${id}.log`
+
 const MONTHS = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec']
 
 /**

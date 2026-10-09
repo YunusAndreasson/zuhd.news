@@ -5,6 +5,7 @@
 // and the server is what wires them to a port.
 
 import { existsSync, statSync } from 'node:fs'
+import { cycleIdOf, cycleLogName, isoFromDateOutput } from '../lib/cycle-log.js'
 import { readJson, writeJson } from '../lib/json-file.js'
 
 /** What a route returns when it has written the response itself: a file, an event stream. */
@@ -229,4 +230,101 @@ export function byFileState(read) {
     for (const path of kept.keys()) if (!still.has(path)) kept.delete(path)
   }
   return ask
+}
+
+// ── Cycles, from their logs ──────────────────────────────────────────
+
+/** @typedef {ReturnType<typeof import('../lib/cycle-log.js').parseCycleLog>} CycleLog */
+
+/**
+ * Whether `name` is a cycle's log and nothing else: no directory in it, no
+ * other file's name around it. What is listed and what a request may name
+ * are both held to it.
+ *
+ * @param {string} name
+ */
+export function isCycleLog(name) {
+  const id = cycleIdOf(name)
+  return id !== null && name === cycleLogName(id)
+}
+
+/**
+ * One cycle as the page reads it, from its log as `lib/cycle-log.js` read it.
+ * This is the shape `index.html` was built against, which is why a retried
+ * stage still shows its first attempt here, as it always did.
+ *
+ * The two moments are ISO. The log carries them as `date` printed them
+ * (`Fri Oct  9 05:01:27 AM UTC 2026`), and the page handed that to
+ * `new Date()` for each browser to make of it what it could.
+ *
+ * `aborted` is the line that ended the cycle short, whichever one the log's
+ * reader knows (`ABORTS`). The server matched it against a list of its own
+ * that had fallen one behind: a cycle whose build failed was not one.
+ *
+ * @param {CycleLog} log
+ * @param {string} filename `cycle-2026-10-09_0501.log`
+ */
+export function cycleView(log, filename) {
+  const id = cycleIdOf(filename)
+  /** @param {string} stage */
+  const first = (stage) => log.stages.find((s) => s.id === stage)?.attempts[0] ?? { exit: null, seconds: null }
+  const funnel = log.funnel
+
+  return {
+    filename,
+    date: id ? id.slice(0, 10) : null,
+    scheduledHour: id ? id.slice(11, 13) : null,
+    startedAt: isoFromDateOutput(log.startedText),
+    finishedAt: isoFromDateOutput(log.finishedText),
+    totalSeconds: log.totalSeconds,
+    completed: log.finishedText !== null,
+    aborted: log.abort,
+    stages: {
+      feed: { seconds: log.feed.seconds },
+      selector: { exit: first('selector').exit, seconds: first('selector').seconds },
+      writer: { exit: first('writer').exit, seconds: first('writer').seconds },
+      editor: { exit: first('editor').exit, seconds: first('editor').seconds },
+      build: { exit: first('build').exit },
+      deploy: { exit: first('deploy').exit },
+      briefing: { exit: first('briefing').exit },
+      tuning: { exit: first('tuning').exit },
+    },
+    selectionCount: log.selection.count,
+    dedupBefore: log.selection.dedupBefore,
+    dedupAfter: log.selection.dedupAfter,
+    articlesWritten: log.selection.newArticles,
+    newsApiTokens: log.newsApiTokens,
+    funnel: {
+      feed: funnel?.feed ?? null,
+      selected: funnel?.selected ?? 0,
+      deduped: funnel?.deduped ?? 0,
+      dedupNote: funnel?.dedupNote ?? null,
+      written: funnel?.written ?? 0,
+      validated: funnel?.validated ?? 0,
+      validNote: funnel?.validNote ?? null,
+      published: funnel?.published ?? 0,
+    },
+  }
+}
+
+/**
+ * In how many of these cycles each feed source failed: the `✗ name: reason`
+ * lines of Stage 0, the feed fetch, a source counted once a cycle.
+ *
+ * Every `✗` in the log was counted, a line at a time. Stage 3.4 prints four
+ * a cycle for exchanges with one day of data (`✗ yahoo:^TASI.SR: only 1/1
+ * points`), so `yahoo` stood in the feed's table at four failures a cycle,
+ * and the page showed the sum as "n/35 cycles".
+ *
+ * @param {CycleLog[]} logs
+ * @returns {Record<string, number>}
+ */
+export function feedFailures(logs) {
+  /** @type {Record<string, number>} */
+  const cycles = {}
+  for (const log of logs) {
+    const failed = new Set(log.marks.filter((mark) => mark.stage === '0').map((mark) => mark.name))
+    for (const name of failed) cycles[name] = (cycles[name] || 0) + 1
+  }
+  return cycles
 }

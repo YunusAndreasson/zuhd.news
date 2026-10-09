@@ -4,7 +4,8 @@ import { test } from 'node:test'
 import { mkdtempSync, readFileSync, readdirSync, rmSync, utimesSync, writeFileSync } from 'node:fs'
 import { tmpdir } from 'node:os'
 import { join } from 'node:path'
-import { CYCLE_UNITS, SENT, SYSTEMD_SHOW, byFileState, isoFromSystemd, keepDay, listener, readSeries, systemdView, withDay } from '../dashboard/data.js'
+import { CYCLE_UNITS, SENT, SYSTEMD_SHOW, byFileState, cycleView, feedFailures, isCycleLog, isoFromSystemd, keepDay, listener, readSeries, systemdView, withDay } from '../dashboard/data.js'
+import { parseCycleLog } from './cycle-log.js'
 
 // ── The listener ─────────────────────────────────────────────────────
 
@@ -214,4 +215,115 @@ test('each file has its own answer, a forgotten one is read again, and a missing
   assert.equal(reads, 3, 'only the one that was dropped')
   rmSync(one)
   assert.throws(() => text(one), /ENOENT/)
+})
+
+// ── Cycles, from their logs ──────────────────────────────────────────
+
+/** A cycle's log, as much of one as the page reads. @param {{ stage0?: string, writer?: string, end?: string }} [parts] */
+const logText = ({ stage0 = '', writer = 'Writer exit: 0 — 178s', end = 'Build exit: 0\nDeploy exit: 0' } = {}) => `=== zuhd.news editorial cycle ===
+Started: Fri Oct  9 05:01:27 AM UTC 2026
+
+--- Stage 0: API + RSS feed fetch ---
+${stage0}NewsAPI tokens this cycle: ~18 (events=1×5 articles=5×1 perEvent=8×1 other=0)
+API fetch: 80 stories from 50 events
+RSS fetch: 77 stories
+Merged feed: 12 multi + 48 niche — 30s
+
+--- Stage 1: Selector ---
+Selector exit: 0 — 188s
+Selection contains 11 stories
+Deduped selection: 11 → 10 (1 duplicates removed)
+
+--- Stage 2: Writer ---
+${writer}
+Found 10 new/modified articles
+
+--- Stage 3: Editor ---
+Editor exit: 0 — 58s
+
+--- Stage 3.4: Trends fetch ---
+  ✗ yahoo:^TASI.SR: only 1/1 points
+  ✗ yahoo:DFMGI.AE: only 1/1 points
+Trends exit: 0 — 46s
+
+--- Stage 3b: Build & Deploy ---
+${end}
+
+=== Funnel ===
+Feed:      12 multi + 48 niche
+Selected:  11
+Deduped:   10 (1 already published)
+Written:   10
+Validated: 9 (1 removed)
+Published: 9
+
+Finished: Fri Oct  9 05:30:40 AM UTC 2026 — total 1753s
+`
+const view = (parts, name = 'cycle-2026-10-09_0501.log') => cycleView(parseCycleLog(logText(parts)), name)
+
+test('a cycle is what its log says, with its two moments as ISO', () => {
+  assert.deepEqual(view(), {
+    filename: 'cycle-2026-10-09_0501.log',
+    date: '2026-10-09',
+    scheduledHour: '05',
+    // The log has them as `date` printed them, which a browser other than the
+    // one it was written in reads as no date at all.
+    startedAt: '2026-10-09T05:01:27Z',
+    finishedAt: '2026-10-09T05:30:40Z',
+    totalSeconds: 1753,
+    completed: true,
+    aborted: null,
+    stages: {
+      feed: { seconds: 30 },
+      selector: { exit: 0, seconds: 188 },
+      writer: { exit: 0, seconds: 178 },
+      editor: { exit: 0, seconds: 58 },
+      build: { exit: 0 },
+      deploy: { exit: 0 },
+      briefing: { exit: null },
+      tuning: { exit: null },
+    },
+    selectionCount: 11,
+    dedupBefore: 11,
+    dedupAfter: 10,
+    articlesWritten: 10,
+    newsApiTokens: 18,
+    funnel: { feed: '12 multi + 48 niche', selected: 11, deduped: 10, dedupNote: '1 already published', written: 10, validated: 9, validNote: '1 removed', published: 9 },
+  })
+})
+
+test('a retried stage shows its first attempt, as the page always has', () => {
+  assert.deepEqual(view({ writer: 'Writer exit: 1 — 9s\nWriter retry exit: 0 — 170s' }).stages.writer, { exit: 1, seconds: 9 })
+})
+
+// The server kept a list of its own of the lines that end a cycle early, one
+// short of the log reader's: a failed build was not on it.
+test('a cycle that ended short says which line ended it, whichever the log reader knows', () => {
+  assert.equal(view({ end: 'Build exit: 1\nBuild failed — skipping deploy' }).aborted, 'Build failed — skipping deploy')
+  assert.equal(view({ writer: 'Writer exit: 1 — 9s\nNo new articles — skipping editor and deploy' }).aborted, 'No new articles — skipping editor and deploy')
+})
+
+test('a cycle still running has no end, and a log that never reached its funnel reads as zeros', () => {
+  const running = cycleView(parseCycleLog(logText().split('--- Stage 2')[0]), 'cycle-2026-10-09_0501.log')
+  assert.deepEqual([running.completed, running.finishedAt, running.totalSeconds], [false, null, null])
+  assert.deepEqual(running.stages.writer, { exit: null, seconds: null })
+  assert.deepEqual(running.funnel, { feed: null, selected: 0, deduped: 0, dedupNote: null, written: 0, validated: 0, validNote: null, published: 0 })
+})
+
+test('only a cycle log by its own name is one', () => {
+  assert.equal(isCycleLog('cycle-2026-10-09_0501.log'), true)
+  for (const name of ['../logs/cycle-2026-10-09_0501.log', '/etc/cycle-2026-10-09_0501.log', 'x-cycle-2026-10-09_0501.log', 'cycle-2026-10-09_0501.log.bak', 'cycle-1.log', 'cycles.jsonl', '']) {
+    assert.equal(isCycleLog(name), false, name)
+  }
+})
+
+// `✗ yahoo:^TASI.SR: only 1/1 points` is Stage 3.4's, four a cycle, and stood
+// in the feed's table as a source failing four times a cycle.
+test('a feed source failed in a cycle when Stage 0 said so, and once however often it said it', () => {
+  const twice = parseCycleLog(logText({ stage0: '  ✗ Bellingcat: HTTP 503\n  ✗ Bellingcat: HTTP 503 (retry)\n  ✗ Mada Masr: timeout\n' }))
+  const once = parseCycleLog(logText({ stage0: '  ✗ Bellingcat: HTTP 503\n' }))
+  const clean = parseCycleLog(logText())
+  assert.deepEqual(feedFailures([twice, once, clean]), { Bellingcat: 2, 'Mada Masr': 1 })
+  assert.deepEqual(feedFailures([clean]), {}, 'the trend fetch is not a feed')
+  assert.deepEqual(feedFailures([]), {})
 })
