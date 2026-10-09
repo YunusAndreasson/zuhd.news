@@ -91,13 +91,6 @@
     // ── The autoresearch session driver, run by the /autoresearch skill.
     "scripts/autoresearch/*.js",
 
-    // ── Stage 3.5 was removed from run-cycle.sh on 2026-06-19 (it outgrew its
-    //    1200s budget as .context-briefs.json inflated each prompt), but this
-    //    is not dead: scripts/autoresearch/run-replay.js:207 still runs it via
-    //    spawnSync, which is a string, not an import edge. knip called it
-    //    unused; it is the reason this file leads with the warning it does.
-    "scripts/generate-edu-context.js",
-
     // ── Tests.
     "scripts/lib/*.test.js",
 
@@ -109,11 +102,9 @@
 
     // ── Manual tools. Unreferenced by design, and each one is the only way to
     //    do the thing it does: fetch-country-cards.js regenerates the committed
-    //    shared/data/country-cards.json, dry-run-augment.js exercises one
-    //    article through the augment prompt, shoot.mjs is the visual-regression
+    //    shared/data/country-cards.json, shoot.mjs is the visual-regression
     //    shooter map-island.test.js points at.
     "scripts/fetch-country-cards.js",
-    "scripts/dry-run-augment.js",
     "scripts/shoot.mjs",
     // merge-palestine.mjs is a one-shot data edit, already applied, that
     // rewrote the bundled Natural Earth TopoJSON to carry one Palestine
@@ -188,7 +179,7 @@
   //     map-geo.test.js, but the test reaches it through the esbuild bundle
   //     `scripts/lib/island-bundle.js` builds at run time. That is not a static
   //     import edge and no tool can follow it — the same class of blindness
-  //     that made knip call `generate-edu-context.js` dead.
+  //     that makes knip call a script started by name dead.
   //   · `MARKET_CHIP_GLYPHS` (_map/markets.ts) is a `satisfies` assertion whose
   //     *value* is never meant to be read. Deleting it because nothing imports
   //     it would delete a compile-time check that the chip glyph names are keys
