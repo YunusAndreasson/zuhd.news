@@ -48,6 +48,8 @@ if (existsSync(join(inputs, 'remove.txt'))) {
 }
 const dashes = process.argv.indexOf('--')
 
+// A refusal is a sentence, not a stack: a stage that writes outside the seal
+// in the repository itself, a path in the inputs that leaves content/.
 const run = await replayStage({
   script,
   now,
@@ -57,6 +59,9 @@ const run = await replayStage({
   content,
   bin: existsSync(join(inputs, 'bin')) ? resolve(inputs, 'bin') : undefined,
   logs: existsSync(join(inputs, 'logs')) ? resolve(inputs, 'logs') : undefined,
+}).catch((err) => {
+  console.error(/** @type {Error} */ (err).message)
+  process.exit(2)
 })
 
 rmSync(out, { recursive: true, force: true })
