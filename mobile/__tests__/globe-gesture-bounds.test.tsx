@@ -53,11 +53,11 @@ jest.mock('../lib/globe-camera', () => ({
   ...jest.requireActual('../lib/globe-camera'),
   anchorZoom: jest.fn(() => null),
 }));
-Object.assign(Reanimated, { cancelAnimation: jest.fn() });
+Object.assign(Reanimated, { cancelAnimation: jest.fn(), withTiming: (value: number) => value });
 const shared = (value: number) => ({ value }) as SharedValue<number>;
 const event = (data: object) => data as never;
 
-function setup(progress = 0, collapseMode = false) {
+function setup(progress = 0, collapseMode = false, reduceMotion = false) {
   const globe = { hitTest: jest.fn(() => ({ countryName: 'Sweden' })), showPulse: jest.fn() };
   const props = {
     globeRef: { current: globe as unknown as MiniGlobeRef },
@@ -75,12 +75,18 @@ function setup(progress = 0, collapseMode = false) {
     zoomAngle: shared(90),
     cancelFlight: jest.fn(),
     requestEpoch: shared(0),
+    tapFrame: { value: { revision: 1, x: 0, y: 0, scale: 1 } } as SharedValue<{
+      revision: number;
+      x: number;
+      y: number;
+      scale: number;
+    }>,
     clip: shared(90),
     storyClip: shared(90),
     radius: 150,
     centerX: 200,
     centerY: 300,
-    reduceMotion: false,
+    reduceMotion,
     onTap: jest.fn(),
     onZoomSettle: jest.fn(),
     onImpact: jest.fn(),
@@ -93,6 +99,49 @@ function setup(progress = 0, collapseMode = false) {
 }
 
 beforeEach(() => jest.clearAllMocks());
+
+it('captures the displayed frame at touch-up even if a new picture arrives before JS handles it', () => {
+  const { globe, props } = setup();
+  const queue: (() => void)[] = [];
+  mockRNQueue = queue;
+  const tapped = { revision: 7, x: -20, y: 10, scale: 1.5 };
+  props.tapFrame.value = tapped;
+  try {
+    act(() => mockTap.onDeactivate?.(event({ absoluteX: 40, absoluteY: 150, canceled: false })));
+    props.tapFrame.value = { revision: 8, x: 0, y: 0, scale: 1 };
+    act(() => {
+      for (const callback of queue) callback();
+    });
+    expect(globe.hitTest).toHaveBeenCalledWith(40, 130, tapped);
+    expect(globe.showPulse).toHaveBeenCalledWith(40, 130);
+  } finally {
+    mockRNQueue = null;
+  }
+});
+
+it('captures the pinch generation before delivering its settle request to JS', () => {
+  const { props } = setup();
+  const queue: (() => void)[] = [];
+  mockRNQueue = queue;
+  props.requestEpoch.value = 3;
+  try {
+    act(() => mockPinch.onDeactivate?.(event({ canceled: false })));
+    props.requestEpoch.value = 4;
+    act(() => {
+      for (const callback of queue) callback();
+    });
+    expect(props.onZoomSettle).toHaveBeenCalledWith(expect.any(Number), 3);
+  } finally {
+    mockRNQueue = null;
+  }
+});
+
+it('checks the final frame promptly when Reduce Motion skips the zoom animation', () => {
+  const { props } = setup(0, false, true);
+  props.requestEpoch.value = 2;
+  act(() => mockPinch.onDeactivate?.(event({ canceled: false })));
+  expect(props.onZoomSettle).toHaveBeenCalledWith(50, 2);
+});
 
 // The edge is at one of the sheet's two stops, never in between: following
 // the sheet, it re-ran layout on every frame of every open and close.
@@ -114,7 +163,7 @@ it('maps absolute tap coordinates to the canvas regardless of detector-local coo
       event({ x: 400, y: 500, absoluteX: 40, absoluteY: 150, canceled: false }),
     ),
   );
-  expect(globe.hitTest).toHaveBeenCalledWith(40, 130);
+  expect(globe.hitTest).toHaveBeenCalledWith(40, 130, props.tapFrame.value);
   expect(globe.showPulse).toHaveBeenCalledWith(40, 130);
   expect(props.onTap).toHaveBeenCalledTimes(1);
   act(() =>
@@ -179,6 +228,15 @@ it('keeps the exposed globe available to collapse an open story without hit test
   expect(globe.hitTest).not.toHaveBeenCalled();
 });
 
+it('collapses during the sheet rise before the parent commits the expanded detent', () => {
+  const { globe, props } = setup(0.5, false);
+  expect(typeof mockPan.enabled === 'object' && mockPan.enabled.value).toBe(false);
+  expect(typeof mockPinch.enabled === 'object' && mockPinch.enabled.value).toBe(false);
+  act(() => mockTap.onDeactivate?.(event({ absoluteX: 40, absoluteY: 150, canceled: false })));
+  expect(props.onCollapse).toHaveBeenCalledTimes(1);
+  expect(globe.hitTest).not.toHaveBeenCalled();
+});
+
 it('a pinch stops a flight through cancelFlight, then holds the zoom on screen', () => {
   const { props } = setup();
   // A flight's own release would ease the zoom down; the pinch takes it back.
@@ -236,7 +294,7 @@ it('accepts a delayed normal tap when no newer input has claimed the camera', ()
     act(() => {
       for (const fn of queued) fn();
     });
-    expect(globe.hitTest).toHaveBeenCalledWith(40, 130);
+    expect(globe.hitTest).toHaveBeenCalledWith(40, 130, props.tapFrame.value);
     expect(props.onTap).toHaveBeenCalledWith({ countryName: 'Sweden' }, 1);
   } finally {
     mockRNQueue = null;

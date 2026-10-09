@@ -57,7 +57,7 @@ import Animated, {
   withDelay,
   withTiming,
 } from 'react-native-reanimated';
-import { scheduleOnRN } from 'react-native-worklets';
+import { scheduleOnRN, scheduleOnUI } from 'react-native-worklets';
 import {
   ANIMATION,
   BLACK,
@@ -67,6 +67,7 @@ import {
   straitMarkColor,
   WHITE,
 } from '../../constants/theme';
+import { useGlobeRedraw } from '../../hooks/useGlobeRedraw';
 import { useTheme } from '../../hooks/useTheme';
 import { articleTime } from '../../lib/article-utils';
 import type { CardDelta } from '../../lib/cards/types';
@@ -86,14 +87,22 @@ import {
   slerpLatLng,
   viewAngleFor,
 } from '../../lib/globe-camera';
-import { isStorySettled } from '../../lib/globe-settle';
+import {
+  GlobeFrameHistory,
+  type GlobeTapFrame,
+  globeTransform,
+  inverseGlobePoint,
+  type LiveCamera,
+  type RecordedCamera,
+} from '../../lib/globe-display';
+import { type GlobeHitGeometry, hitGlobeMarks } from '../../lib/globe-hit-test';
+import { isStorySettled, requestGlobeSettle } from '../../lib/globe-settle';
 import {
   followMarketLayout,
   layoutMarketClusters,
   type MarketCluster,
   type MarketLayoutOptions,
   type MarketPoint,
-  marketHitDistanceSquared,
   marketTargetBox,
 } from '../../lib/market-map-layout';
 import { coverageRanks } from '../../lib/now';
@@ -111,6 +120,12 @@ import {
 } from '../../lib/overlays';
 import { displayCountryName, displayLocation, wrapCountryLabel } from '../../lib/place-names';
 import {
+  capitalsInView,
+  markGlobeMoving,
+  marksInView,
+  publishRestingView,
+} from '../../lib/resting-view';
+import {
   type FoundProgress,
   type StoryPlace,
   topUnfound,
@@ -124,7 +139,7 @@ import {
   straitSignDx,
   straitStateFor,
 } from '../../lib/strait-map';
-import { markTap, type TapResult } from '../../lib/tap-result';
+import type { TapResult } from '../../lib/tap-result';
 import { HOUR_MS } from '../../lib/time';
 import {
   CITY_LIGHT_COUNT,
@@ -166,7 +181,6 @@ import {
   formatLocalTime,
   getSunPosition,
   invalidateSunCaches,
-  isNear,
   MAKKAH,
   PLACES_APPEAR_CLIP,
   PLACES_FULL_CLIP,
@@ -484,8 +498,6 @@ function warmDetailGeo(then: () => void) {
 const READ_ALPHA = 0.7;
 /** The web's `sentimentDivergence` bar for the contested ring. */
 const CONTESTED_DIVERGENCE = 0.35;
-/** A story tap's catch radius, squared (32 px). */
-const STORY_HIT_PX2 = 1024;
 /** A strait's coastlines, in points. */
 const STRAIT_STROKE = 1;
 
@@ -514,8 +526,6 @@ const THERMAL_SRC = overlayCell(THERMAL_CELL);
  *  point, on both axes overlap, and the lesser one is not drawn. */
 const FAMINE_COLLIDE_X = Math.ceil((FAMINE_BOX_MAX * 10) / 16) + 1;
 const FAMINE_COLLIDE_Y = Math.ceil((FAMINE_BOX_MAX * 14) / 16) + 1;
-/** The catch radius every reference mark shares, squared (36 px). */
-const MARK_HIT_PX2 = 1296;
 
 /**
  * How a story mark says how big the story is, and how fresh.
@@ -851,19 +861,21 @@ const TWILIGHT_RADIUS = 96;
 const MOTION_RESAMPLE_SCALE = 400;
 
 export interface MiniGlobeRef {
-  hitTest: (x: number, y: number) => TapResult | null;
+  hitTest: (x: number, y: number, displayed?: GlobeTapFrame) => TapResult | null;
   showPulse: (x: number, y: number) => void;
   /** The found burst: a story mark's own hue swelling and fading at `x, y`. */
   collect: (x: number, y: number, color: string) => void;
-  /** Redraw the last camera at full detail — after a pinch, whose frames drew
-   *  the in-motion tier and which no later camera movement will replace. */
-  settle: () => void;
+  /** Wake the camera's normal final-frame check after a pinch, provided no
+   * newer camera interaction has replaced that pinch's epoch. */
+  settle: (epoch: number) => void;
   /** The clip a story rests at, in degrees — what the deck frames it with, so
    *  a flight to it can land exactly there. */
   framingFor: (index: number) => number;
 }
 
 interface MiniGlobeProps {
+  tapFrame: SharedValue<GlobeTapFrame>;
+  requestEpoch: SharedValue<number>;
   articles: Article[];
   heatmapPoints?: HeatmapPoint[];
   chokepoints?: Chokepoint[];
@@ -1157,7 +1169,7 @@ interface GlobeState {
   }[];
   /** Country capitals (`places.ts`) that survived the label packer: a dot and
    *  a name, at every zoom, below the neighbour countries in priority. */
-  capitalLabels: { name: string; x: number; y: number }[];
+  capitalLabels: { name: string; iso2: string; x: number; y: number }[];
   /** Water-feature labels — named lakes, major rivers, seas/bays/gulfs.
    *  Same zoom gate as neighbour labels. Drawn at a lighter visual weight
    *  (secondary tone, lower opacity) so they read as tertiary context
@@ -1681,6 +1693,7 @@ interface FramePictures {
  *  drawn to, so the sky behind the planet and the ring around it follow the
  *  zoom in the same replay. */
 interface FrameOut extends FramePictures {
+  revision: number;
   /** The ground a settling frame replaces, and the camera it was drawn from:
    *  drawn under the new ground while that fades in (`groundFade`). */
   prevGround: SkPicture;
@@ -1693,19 +1706,6 @@ interface FrameOut extends FramePictures {
   cam: RecordedCamera | null;
 }
 
-interface RecordedCamera {
-  lat: number;
-  lng: number;
-  k: number;
-}
-
-/** The camera this frame, written on the UI thread every frame it moves. */
-interface LiveCamera {
-  lat: number;
-  lng: number;
-  clip: number;
-}
-
 /**
  * How far past the canvas a moving frame is projected, as a multiple of the
  * canvas's reach. The warp carries the last picture toward the live camera
@@ -1715,12 +1715,6 @@ interface LiveCamera {
  */
 const MOTION_REACH = 1.2;
 
-/** The warp's strength by the limb's radius over the canvas's reach (see
- *  `warp`): full from `WARP_FULL_LIMB`, off at `WARP_NO_LIMB`. Every story
- *  framing, rise included (18°–30° of clip), sits at 0.64–1.04 on a phone,
- *  where the limb shows at most across the top corners under the header's
- *  shade; the whole planet on screen sits near 0.3. */
-const WARP_FULL_LIMB = 0.6;
 /** How long a landing's detailed ground takes to fade in over the moving
  *  one: long enough to read as the map sharpening, short enough to be done
  *  before the eye has moved to the card. */
@@ -1731,7 +1725,6 @@ const LANDING_NEAR_DEG = 0.5;
 /** How close a swipe's spring is to a story, as a share of the crossing,
  *  before its landing is drawn. */
 const LANDING_NEAR_FRAC = 0.03;
-const WARP_NO_LIMB = 0.4;
 
 const NO_WARP: Transforms3d = [];
 
@@ -2449,6 +2442,8 @@ function sourceUnit(name: string): readonly [number, number, number] | null {
 }
 
 export const MiniGlobe = memo(function MiniGlobe({
+  tapFrame,
+  requestEpoch,
   articles,
   heatmapPoints,
   chokepoints,
@@ -2734,6 +2729,20 @@ export const MiniGlobe = memo(function MiniGlobe({
   // The last projected frame: what `hitTest` reads, and what a redraw replays
   // when only the style changed (theme, a font, a texture).
   const frameRef = useRef<GlobeState>(EMPTY_GLOBE);
+
+  const hitFrames = useRef(
+    new GlobeFrameHistory<{
+      frame: GlobeHitGeometry;
+      camera: RecordedCamera | null;
+      cx: number;
+      cy: number;
+      dotGeo: (typeof articleGeo)[number];
+    }>(),
+  );
+  const acknowledgeFrame = useCallback(
+    (revision: number) => hitFrames.current.acknowledge(revision),
+    [],
+  );
   // The moving layers, recorded once per projection and published as ONE
   // shared value — see "Frame recording" above. Skia's canvas re-records its
   // whole command list on the UI thread whenever any shared value it reads
@@ -2742,6 +2751,7 @@ export const MiniGlobe = memo(function MiniGlobe({
   // projection: 60 of 64 drag frames flagged a slow UI thread. The derived
   // values below are flushed before that mapper, which then runs once.
   const framePictures = useSharedValue<FrameOut>({
+    revision: 0,
     ground: EMPTY_PICTURE,
     prevGround: EMPTY_PICTURE,
     prevCam: null,
@@ -2752,9 +2762,16 @@ export const MiniGlobe = memo(function MiniGlobe({
     activeColor: colors.textEmphasis,
     cam: null,
   });
+  useAnimatedReaction(
+    () => framePictures.value.revision,
+    (revision) => {
+      scheduleOnRN(acknowledgeFrame, revision);
+    },
+  );
   // The camera the last projection was made from (`callReproject`), and the
   // one the reaction says the globe is at now.
   const recordedCamRef = useRef<RecordedCamera | null>(null);
+  const recordedDotGeoRef = useRef<(typeof articleGeo)[number]>(null);
   const liveCamera = useSharedValue<LiveCamera | null>(null);
   // **The warp: the earth moves with the finger, not with the JS thread.**
   // A frame is projected and recorded on JS, at most every 32 ms and later
@@ -2770,40 +2787,41 @@ export const MiniGlobe = memo(function MiniGlobe({
   // slide; with the whole planet on screen a slide would move the planet
   // rather than turn it, so the warp fades out there and the globe steps as it
   // did.
-  const warpFor = (cam: RecordedCamera | null, live: LiveCamera | null): Transforms3d => {
+  const toTransforms = (t: { x: number; y: number; scale: number }): Transforms3d => {
     'worklet';
-    if (!cam || !live || !(cam.k > 0)) return NO_WARP;
-    const reach = reachFor(cx, cy, width, height);
-    const strength = Math.min(
-      1,
-      Math.max(0, (cam.k / reach - WARP_NO_LIMB) / (WARP_FULL_LIMB - WARP_NO_LIMB)),
-    );
-    if (strength === 0) return NO_WARP;
-    const rad = Math.PI / 180;
-    const phi0 = cam.lat * rad;
-    const phi = live.lat * rad;
-    const dl = (live.lng - cam.lng) * rad;
-    const cosPhi = Math.cos(phi);
-    // The live centre on the far side of the recorded one: no slide fits.
-    if (Math.sin(phi0) * Math.sin(phi) + Math.cos(phi0) * cosPhi * Math.cos(dl) <= 0.2) {
-      return NO_WARP;
-    }
-    const dx = strength * cam.k * cosPhi * Math.sin(dl);
-    const dy =
-      -strength * cam.k * (Math.cos(phi0) * Math.sin(phi) - Math.sin(phi0) * cosPhi * Math.cos(dl));
-    const kNow = globeRadius / Math.sin(Math.max(1, live.clip) * rad);
-    const s = 1 + (kNow / cam.k - 1) * strength;
-    if (Math.abs(dx) < 0.05 && Math.abs(dy) < 0.05 && Math.abs(s - 1) < 1e-4) return NO_WARP;
-    // A point P of the picture lands at s·P + t, with t = c − s·(c + d).
-    return [{ translateX: cx - s * (cx + dx) }, { translateY: cy - s * (cy + dy) }, { scale: s }];
+    if (t.x === 0 && t.y === 0 && t.scale === 1) return NO_WARP;
+    return [{ translateX: t.x }, { translateY: t.y }, { scale: t.scale }];
   };
-  const warp = useDerivedValue<Transforms3d>(() =>
-    warpFor(framePictures.value.cam, liveCamera.value),
+  useAnimatedReaction(
+    () => ({
+      ...globeTransform(
+        framePictures.value.cam,
+        liveCamera.value,
+        cx,
+        cy,
+        width,
+        height,
+        globeRadius,
+      ),
+      revision: framePictures.value.revision,
+    }),
+    (displayed) => {
+      tapFrame.value = displayed;
+    },
   );
-  // The ground a settling frame replaced, carried by its own camera so its
-  // coastline sits under the new one while that fades in over it.
+  const warp = useDerivedValue<Transforms3d>(() => toTransforms(tapFrame.value));
   const prevWarp = useDerivedValue<Transforms3d>(() =>
-    warpFor(framePictures.value.prevCam, liveCamera.value),
+    toTransforms(
+      globeTransform(
+        framePictures.value.prevCam,
+        liveCamera.value,
+        cx,
+        cy,
+        width,
+        height,
+        globeRadius,
+      ),
+    ),
   );
 
   // **A landing sharpens; it does not snap.** Moving frames are drawn from
@@ -2926,7 +2944,44 @@ export const MiniGlobe = memo(function MiniGlobe({
       ground: pictures.ground,
       cam: recordedCamRef.current,
     };
+    const {
+      storyMarks,
+      readMarks,
+      chokepoints,
+      marketMarks,
+      gdacsMarks,
+      conflictMarks,
+      famineMarks,
+      thermalMarks,
+      genocideMarks,
+      hotspotGlows,
+      dot,
+      makkah,
+      discRadius,
+    } = frame;
+    const revision = hitFrames.current.publish({
+      frame: {
+        storyMarks,
+        readMarks,
+        chokepoints,
+        marketMarks,
+        gdacsMarks,
+        conflictMarks,
+        famineMarks,
+        thermalMarks,
+        genocideMarks,
+        hotspotGlows,
+        dot,
+        makkah,
+        discRadius,
+      },
+      camera: recordedCamRef.current,
+      cx,
+      cy,
+      dotGeo: recordedDotGeoRef.current,
+    });
     framePictures.value = {
+      revision,
       ...pictures,
       prevGround: sharpen ? last.ground : EMPTY_PICTURE,
       prevCam: sharpen ? last.cam : null,
@@ -3314,12 +3369,15 @@ export const MiniGlobe = memo(function MiniGlobe({
     lng: number;
     lat: number;
     idx: number;
+    lo: number;
+    hi: number;
+    frac: number;
     oA: number;
     oG: number;
     moving: boolean;
   } | null>(null);
   // The settled redraw the rivers and lakes ask for once decoded
-  // (`warmDetailGeo`): `finalizeReproject`, read at the time it fires.
+  // (`warmDetailGeo`): `replayProjection`, read at the time it fires.
   const detailRedrawRef = useRef<() => void>(() => {});
 
   const callReproject = useCallback(
@@ -3439,6 +3497,9 @@ export const MiniGlobe = memo(function MiniGlobe({
         lng: geoLng,
         lat: geoLat,
         idx: settledIndex,
+        lo: loIndex,
+        hi: hiIndex,
+        frac,
         oA: overrideActiveVal,
         oG: overrideAngleVal,
         moving: !nearSettled,
@@ -4044,7 +4105,12 @@ export const MiniGlobe = memo(function MiniGlobe({
       const capitalLabels: GlobeState['capitalLabels'] = [];
       for (const capital of CAPITALS) {
         if (!seen(capital.unit)) continue;
-        capitalLabels.push({ name: capital.name, x: SCREEN_POINT[0], y: SCREEN_POINT[1] });
+        capitalLabels.push({
+          name: capital.name,
+          iso2: capital.iso2,
+          x: SCREEN_POINT[0],
+          y: SCREEN_POINT[1],
+        });
       }
 
       if (placesActive) {
@@ -4345,6 +4411,21 @@ export const MiniGlobe = memo(function MiniGlobe({
               place(cp.labelX, cp.y, straitLabelText(cp, markFonts), false, cp)?.baseline ?? null;
         }
       }
+      // The strip leaves what is named here to the globe, and shows what found
+      // no name and what belongs to the countries in view. At rest only: a
+      // moving frame carries the last layout, and its names come and go with
+      // the camera.
+      if (nearSettled) {
+        const band = {
+          width: canvasW,
+          top: layoutRef.current.marketViewport?.top ?? 0,
+          bottom: layoutRef.current.marketViewport?.bottom ?? canvasH,
+        };
+        publishRestingView({
+          ...marksInView(marketProjected, marketPoints, chokepointMarks, band),
+          countries: capitalsInView(capitalLabels, band),
+        });
+      } else markGlobeMoving();
 
       // Label packing — drop neighbour / water labels that overlap a
       // higher-priority label or an already-placed peer. Greedy AABB
@@ -4525,6 +4606,7 @@ export const MiniGlobe = memo(function MiniGlobe({
         cityTwilightOpacity: labelOpacity,
       };
       frameRef.current = frame;
+      recordedDotGeoRef.current = geo ?? null;
       drawRef.current(frame);
     },
     [],
@@ -5096,87 +5178,62 @@ export const MiniGlobe = memo(function MiniGlobe({
     },
   );
 
-  // On app resume, invalidate sun/night caches and reproject the globe
-  // biome-ignore lint/correctness/useExhaustiveDependencies: callReproject is intentionally stale — perf-critical, uses ref for latest state
-  useEffect(() => {
-    if (!_tick) return; // skip initial render
-    invalidateSunCaches();
-    const last = lastReprojRef.current;
-    // Settled: a return is a moment nothing is moving.
-    if (last) callReproject(last.lng, last.lat, last.idx, last.idx, last.idx, 0, last.oA, last.oG);
-  }, [_tick]);
-
-  // Once an animation settles the SharedValues stop changing, so the animated
-  // reaction stops firing and the last in-flight frame left zoomInFlight=true
-  // (angle delta vs prior frame crossed the 0.01° gate). Without this
-  // finalizer, cosmetic layers — borders, dot label, night, graticule —
-  // stayed invisible until the user scrolled. Running one more reproject
-  // with the now-stable overrides re-evaluates zoomInFlight as false.
-  const finalizeReproject = useCallback(() => {
+  // Late geometry decoding is not a camera action: replay the complete last
+  // camera, including a crossing's interpolation and its motion tier.
+  const replayProjection = useCallback(() => {
     const last = lastReprojRef.current;
     if (!last) return;
-    // Prime the angle ref so callReproject's frame-delta check sees a zero
-    // delta. Without this, the last in-flight frame left lastAngleRef at a
-    // pre-target value, and finalize itself would still treat the zoom as
-    // in-flight — suppressing the very cosmetic redraw it was meant to
-    // trigger (most noticeable at 0.5× where the angle swing is largest).
-    lastOverrideAngleRef.current = overrideAngle.value;
     callReproject(
       last.lng,
       last.lat,
       last.idx,
-      last.idx,
-      last.idx,
-      0,
-      overrideActive.value,
-      overrideAngle.value,
+      last.lo,
+      last.hi,
+      last.frac,
+      last.oA,
+      last.oG,
+      last.moving,
     );
-  }, [callReproject, overrideActive, overrideAngle]);
-  detailRedrawRef.current = finalizeReproject;
+  }, [callReproject]);
+  detailRedrawRef.current = replayProjection;
 
-  // All projection inputs are mirrored into refs during render. A commit can
-  // update several at once (fonts, layout and cached layers on startup), so
-  // reproject the complete snapshot once instead of once per changed input.
-  // Keep this after the resume effect, which invalidates the sun caches.
-  // The frame on screen, redrawn with the new inputs at its own tier: a camera
-  // still moving is drawn moving, and the reaction brings the detail back when
-  // it stops, as it does for every moving frame.
-  // biome-ignore lint/correctness/useExhaustiveDependencies: callReproject is stable and reads the latest input refs
-  useEffect(() => {
-    const last = lastReprojRef.current;
-    if (last)
-      callReproject(
-        last.lng,
-        last.lat,
-        last.idx,
-        last.idx,
-        last.idx,
-        0,
-        last.oA,
-        last.oG,
-        last.moving,
-      );
-  }, [
-    selectedCoords,
-    labelFont,
-    subFont,
-    countryFont,
-    neighborFont,
-    waterFont,
-    valueFont,
-    hotspots,
-    globeRadius,
-    cx,
-    cy,
-    width,
-    height,
-    enrichedMarketMarks,
-    enrichedChokepoints,
-    placeMarks,
-    enrichedFamine,
-    enrichedThermal,
-    enrichedGenocide,
-  ]);
+  // One commit can replace several layers. Invalidate lighting and redraw the
+  // complete snapshot once; updates must also reach a stationary globe.
+  const sunTickRef = useRef(_tick);
+  useGlobeRedraw(
+    {
+      _tick,
+      selectedCoords,
+      labelFont,
+      subFont,
+      countryFont,
+      neighborFont,
+      waterFont,
+      valueFont,
+      hotspots,
+      globeRadius,
+      cx,
+      cy,
+      width,
+      height,
+      enrichedMarketMarks,
+      enrichedChokepoints,
+      placeMarks,
+      enrichedGdacs,
+      enrichedConflict,
+      enrichedFamine,
+      enrichedThermal,
+      enrichedGenocide,
+      marketViewport,
+    },
+    () => {
+      if (sunTickRef.current !== _tick) {
+        sunTickRef.current = _tick;
+        invalidateSunCaches();
+      }
+      replayProjection();
+    },
+  );
 
   // Tap pulse — radial ring that expands and fades on globe tap
   const pulseX = useSharedValue(0);
@@ -5201,10 +5258,10 @@ export const MiniGlobe = memo(function MiniGlobe({
     framingFor(index: number) {
       return clipAngleForCountry(articleGeoRef.current[index]?.countryName ?? null);
     },
-    settle() {
+    settle(epoch: number) {
       // Called from a JS timer after a pinch — never from an animation
       // completion worklet, where `scheduleOnRN` aborts the app (worklets 0.10).
-      finalizeReproject();
+      scheduleOnUI(requestGlobeSettle, epoch, requestEpoch, retick);
     },
     showPulse(x: number, y: number) {
       pulseX.value = x;
@@ -5252,8 +5309,17 @@ export const MiniGlobe = memo(function MiniGlobe({
       collectRingR.value = withTiming(32, { duration: COLLECT_MS, easing: PULSE_EASING });
       collectOpacity.value = withTiming(0, { duration: COLLECT_MS, easing: PULSE_EASING });
     },
-    hitTest(x: number, y: number): TapResult | null {
-      const frame = frameRef.current;
+    hitTest(screenX: number, screenY: number, displayed?: GlobeTapFrame): TapResult | null {
+      // The gesture captures this on the UI thread at touch-up. Never read
+      // animated values from JS, or test a newer frame against an older tap.
+      const captured = displayed ? hitFrames.current.get(displayed.revision) : null;
+      if (displayed && !captured) return null;
+      const frame = captured?.frame ?? frameRef.current;
+      const point = displayed
+        ? inverseGlobePoint(screenX, screenY, displayed)
+        : { x: screenX, y: screenY };
+      const { x, y } = point;
+      const scale = displayed?.scale ?? 1;
       // Collect unique story labels (or titles) for a country from the current article set
       const storiesFor = (name: string) => {
         const seen = new Set<string>();
@@ -5276,171 +5342,64 @@ export const MiniGlobe = memo(function MiniGlobe({
         return seen.size > 0 ? [...seen] : undefined;
       };
 
-      // Collect every marker tier hit within its calibrated tap zone, then
-      // decide: 0 hits → fall through to country-mass fallback; 1 hit →
-      // return it directly (current behaviour); 2+ hits → return a
-      // candidates list so the parent can show a disambiguation chooser.
-      // Tier order here is the priority used when only a single hit
-      // resolves and (more importantly) the order in which candidates
-      // appear in the chooser.
-      // Story marks first. The nearest story within its catch radius wins
-      // outright — no chooser — unless a reference mark sits nearer the finger:
-      // finding the news is what the globe is for, and a chooser between a
-      // story and a Green flood alert is a speed bump on every other tap.
-      // Hotspots, the settled dot and Makkah never outrank a story: each of
-      // those stands for coverage, and the story is the coverage.
-      let story: { slug: string; color: string; d2: number } | null = null;
-      for (const m of frame.storyMarks) {
-        const d2 = (m.x - x) * (m.x - x) + (m.y - y) * (m.y - y);
-        if (d2 <= STORY_HIT_PX2 && (!story || d2 < story.d2)) {
-          story = { slug: m.slug, color: m.color, d2 };
-        }
-      }
-      // A read place reopens its newest story, but only with no unread light in
-      // reach: the lights still to find are what a tap on the globe is for.
-      if (!story) {
-        for (const m of frame.readMarks) {
-          const d2 = (m.x - x) * (m.x - x) + (m.y - y) * (m.y - y);
-          if (d2 <= STORY_HIT_PX2 && (!story || d2 < story.d2)) {
-            story = { slug: m.slug, color: m.color, d2 };
-          }
-        }
-      }
-      if (story) {
-        let overlay = Number.POSITIVE_INFINITY;
-        const marks = [
-          frame.chokepoints,
-          frame.gdacsMarks,
-          frame.conflictMarks,
-          frame.famineMarks,
-          frame.thermalMarks,
-          frame.genocideMarks,
-        ];
-        for (const layer of marks) {
-          for (const m of layer) {
-            const d2 = (m.x - x) * (m.x - x) + (m.y - y) * (m.y - y);
-            if (d2 <= MARK_HIT_PX2 && d2 < overlay) overlay = d2;
-          }
-        }
-        for (const m of frame.marketMarks)
-          overlay = Math.min(overlay, marketHitDistanceSquared(m, x, y));
-        if (story.d2 <= overlay) return markTap({ storySlug: story.slug, storyColor: story.color });
-      }
-
-      const candidates: TapResult[] = [];
-
-      // Hotspot glows — tight hit area (r²=900) signals precise intent.
-      for (const z of frame.hotspotGlows) {
-        if (isNear(x, y, z.x, z.y, 900)) {
+      const mark = hitGlobeMarks(frame, x, y, scale, {
+        hotspot: (z) => {
           const name = z.countryName ?? '';
           const tz = name ? zoneFor(name, z.lat, z.lng) : undefined;
-          candidates.push({
+          return {
             countryName: name,
             location: null,
             localTime: tz ? formatLocalTime(tz) : null,
             data: name ? (COUNTRY_DATA[name] ?? null) : null,
             hotspotLabels: z.labels.length > 0 ? z.labels : undefined,
             isHotspot: true,
-          });
-        }
-      }
-
-      // Chokepoint rings — ambient markers. 36px tap zone, generous so small
-      // rings are still reliably tappable, but smaller than the article-dot
-      // window so chokepoints near the settled pin don't eat its taps.
-      for (const c of frame.chokepoints) {
-        if (isNear(x, y, c.x, c.y, MARK_HIT_PX2)) {
-          candidates.push(markTap({ chokepointId: c.id }));
-        }
-      }
-
-      // Every member of a numbered market target opens in the chooser.
-      for (const m of frame.marketMarks) {
-        if (Number.isFinite(marketHitDistanceSquared(m, x, y))) {
-          for (const id of m.ids) candidates.push(markTap({ marketSignalId: id }));
-        }
-      }
-
-      // GDACS disaster markers — 36px tap zone across all three tiers,
-      // matching the chokepoint pattern. The glyph is sized by level
-      // (`gdacsGlyphScale`) and the target is not: a finger is the same
-      // size whatever the alert.
-      for (const m of frame.gdacsMarks) {
-        if (isNear(x, y, m.x, m.y, MARK_HIT_PX2)) {
-          candidates.push(markTap({ gdacsEventId: m.eventid }));
-        }
-      }
-
-      // Conflict-event markers — same 36px tap zone. Conflict density in a
-      // theatre like Sudan or Gaza will produce overlapping hits regularly;
-      // those resolve to the disambiguation chooser via the candidates path.
-      for (const m of frame.conflictMarks) {
-        if (isNear(x, y, m.x, m.y, MARK_HIT_PX2)) {
-          candidates.push(markTap({ conflictEventId: m.id }));
-        }
-      }
-
-      // Hazard layers — the reference marks' 36 px zone. A famine column in
-      // Sudan and a conflict event beside it resolve through the chooser.
-      for (const g of frame.genocideMarks) {
-        if (isNear(x, y, g.x, g.y, MARK_HIT_PX2)) {
-          candidates.push(markTap({ genocideId: g.id }));
-        }
-      }
-      for (const a of frame.famineMarks) {
-        if (isNear(x, y, a.x, a.y, MARK_HIT_PX2)) {
-          candidates.push(markTap({ famineAreaId: a.id }));
-        }
-      }
-      for (const e of frame.thermalMarks) {
-        if (isNear(x, y, e.x, e.y, MARK_HIT_PX2)) {
-          candidates.push(markTap({ thermalEventId: e.id }));
-        }
-      }
-
-      // Article dot — wider catch zone.
-      const dot = frame.dot;
-      if (dot && isNear(x, y, dot.x, dot.y, 3600)) {
-        const geoData = articleGeoRef.current[lastSettled.current];
-        if (geoData?.countryName) {
-          const tz = zoneFor(geoData.countryName, geoData.lat, geoData.lng, geoData.location);
-          candidates.push({
-            countryName: geoData.countryName,
-            location: displayLocation(geoData.location) ?? geoData.location,
-            localTime: tz ? formatLocalTime(tz) : null,
-            data: COUNTRY_DATA[geoData.countryName] ?? null,
-            hotspotLabels: storiesFor(geoData.countryName),
-          });
-        }
-      }
-
-      // Makkah pin.
-      if (frame.makkah && isNear(x, y, frame.makkah.x, frame.makkah.y, 3600)) {
-        candidates.push({
-          countryName: 'Saudi Arabia',
-          location: MAKKAH.name,
-          localTime: formatLocalTime('Asia/Riyadh'),
-          data: COUNTRY_DATA['Saudi Arabia'] ?? null,
-          hotspotLabels: storiesFor('Saudi Arabia'),
-        });
-      }
-
-      if (candidates.length === 1) return candidates[0] ?? null;
-      if (candidates.length > 1) return markTap({ candidates });
+            hotspotCoords: [z.lat, z.lng],
+          };
+        },
+        dot: () => {
+          const geoData = captured ? captured.dotGeo : articleGeoRef.current[lastSettled.current];
+          if (geoData?.countryName) {
+            const tz = zoneFor(geoData.countryName, geoData.lat, geoData.lng, geoData.location);
+            return {
+              countryName: geoData.countryName,
+              location: displayLocation(geoData.location) ?? geoData.location,
+              localTime: tz ? formatLocalTime(tz) : null,
+              data: COUNTRY_DATA[geoData.countryName] ?? null,
+              hotspotLabels: storiesFor(geoData.countryName),
+            };
+          }
+          return null;
+        },
+        makkah: () => {
+          return {
+            countryName: 'Saudi Arabia',
+            location: MAKKAH.name,
+            localTime: formatLocalTime('Asia/Riyadh'),
+            data: COUNTRY_DATA['Saudi Arabia'] ?? null,
+            hotspotLabels: storiesFor('Saudi Arabia'),
+          };
+        },
+      });
+      if (mark) return mark;
 
       // Full-globe fallback — tap any visible land mass to identify the country
-      const { cx: hitCx, cy: hitCy, globeRadius: hitR } = layoutRef.current;
+      const hitCx = captured?.cx ?? layoutRef.current.cx;
+      const hitCy = captured?.cy ?? layoutRef.current.cy;
+      const hitR = captured?.camera?.k ?? layoutRef.current.globeRadius;
       const gdx = x - hitCx;
       const gdy = y - hitCy;
-      const limbR = frameRef.current.discRadius > 0 ? frameRef.current.discRadius : hitR;
+      const limbR = frame.discRadius > 0 ? frame.discRadius : hitR;
       if (gdx * gdx + gdy * gdy <= limbR * limbR) {
-        const coords = projRef.current.invert?.([x, y]);
+        const projection = captured?.camera
+          ? geoOrthographic()
+              .rotate([-captured.camera.lng, -captured.camera.lat, 0])
+              .scale(captured.camera.k)
+              .translate([hitCx, hitCy])
+          : projRef.current;
+        const coords = projection.invert?.([x, y]);
         if (coords) {
           const [lng, lat] = coords;
-          const feature = getGlobeGeography(geographyTier(projRef.current.scale())).countryAt(
-            lng,
-            lat,
-          );
+          const feature = getGlobeGeography(geographyTier(projection.scale())).countryAt(lng, lat);
           if (feature) {
             const name = feature.properties?.name ?? '';
             const tz = name ? zoneFor(name, lat, lng) : undefined;

@@ -53,8 +53,8 @@ import { GAUGE_EXTRA, IndicatorStrip } from './IndicatorStrip';
  * taking touches while a story was open, to quiet the screen for reading. But
  * the open story's globe band starts under this row, so they never covered
  * the story; hiding them only took the markets away at the moment a story
- * about them was on screen. Instead, the ones the story is tied to are marked
- * in its hue (`linkedIds`).
+ * about them was on screen. Instead, the ones the story is tied to lead the
+ * row (`linkedIds`).
  */
 
 /** Keep the full touch target while letting it meet the safe right edge. */
@@ -194,12 +194,13 @@ function HeaderControl({
 
 export const MapHeader = memo(function MapHeader({
   items,
+  locked,
+  pinned,
   onSelect,
   onAll,
   onMenuPress,
   selectedId = null,
   linkedIds,
-  linkedColor,
   listenAvailable = false,
   listenResumable = false,
   listenDuration,
@@ -207,6 +208,8 @@ export const MapHeader = memo(function MapHeader({
   onListenPress,
 }: {
   items: StripItem[];
+  locked?: boolean;
+  pinned?: StripItem;
   onSelect: (item: StripItem) => void;
   onAll: () => void;
   onMenuPress: () => void;
@@ -221,7 +224,6 @@ export const MapHeader = memo(function MapHeader({
   selectedId?: string | null;
   /** Gauges tied to the open story, marked in its hue. */
   linkedIds?: ReadonlySet<string>;
-  linkedColor?: string;
 }) {
   const { colors, textVariants } = useTheme();
   const { fontScale, width } = useWindowDimensions();
@@ -275,11 +277,12 @@ export const MapHeader = memo(function MapHeader({
             ~165ms production. */}
         <IndicatorStrip
           items={items}
+          locked={locked}
+          pinned={pinned}
           onSelect={onSelect}
           onAll={onAll}
           selectedId={selectedId}
           linkedIds={linkedIds}
-          linkedColor={linkedColor}
           initialViewport={stripViewport}
         />
       </View>

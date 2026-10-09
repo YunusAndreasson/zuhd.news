@@ -23,6 +23,7 @@ import { staggerEnter } from '../lib/stagger';
 import { straitChange, straitStateFor } from '../lib/strait-map';
 import type { TapResult } from '../lib/tap-result';
 import { MarkRow } from './MarkRow';
+import { Text } from './primitives';
 import { SheetScrollView } from './SheetContent';
 import { type BaseSheetProps, SheetLayout } from './SheetLayout';
 
@@ -231,6 +232,9 @@ export const DisambiguationSheet = memo(function DisambiguationSheet({
       handleTitle={chooserTitle(rows.map((row) => row.kind))}
     >
       <SheetScrollView bottomInset={bottomInset}>
+        {rows.length === 0 ? (
+          <Text variant="body">These map items are no longer available.</Text>
+        ) : null}
         {rows.map((row, i) => (
           <CandidateRow key={row.key} row={row} index={i} onPress={onSelect} />
         ))}

@@ -1,6 +1,8 @@
 import type { MarketSignal } from '@shared/market-signals';
-import type { Article, Chokepoint, GdacsAlert } from '@shared/types';
+import type { Article, Chokepoint, GdacsAlert, Indicator, TrendsSnapshot } from '@shared/types';
+import { type AnalysisById, countryCurrencies, currencyCard } from './cards/markets';
 import type { SwipeCard } from './cards/rank';
+import { admitted } from './cards/sections';
 import type { CardDelta } from './cards/types';
 import { type GaugeMove, gaugeMove } from './cards/week-move';
 import { EVENT_TYPE_EYEBROW } from './gdacs';
@@ -52,11 +54,10 @@ import { DAY_MS } from './time';
  *  `MiniGlobe` projects `[lng, lat]`, so a mark layer flips it — once, there. */
 export type LatLng = readonly [number, number];
 
-/** The strip shows the ten largest moves (2026-09-23, the user's request).
- *  Twenty-odd slots made the row a ticker to be scrolled through rather than
- *  a glance; the rest are one tap away behind `all →`. `strip` keeps every
- *  mover, because a gauge opened from the menu's lists or a strait on the
- *  globe still flies and rings its place. */
+/** At most ten weekly movers. Context selects from the full pool before this
+ * cap: explicit story links first, then the currencies of the countries in
+ * view, then the gauges in view the globe could not name.
+ * Global movers are the fallback; the menu always retains the full catalog. */
 export const STRIP_SLOTS = 10;
 
 /** A fourth and fifth row turn the block into a second river. Four is the most
@@ -281,6 +282,46 @@ function toStripItem(
   };
 }
 
+/** The country currencies (`countryCurrencies`) and how to make a slot of one. */
+export interface CountryCurrencies {
+  indicators: readonly Indicator[];
+  /** Null without a seven-day move. */
+  slot: (indicator: Indicator) => StripItem | null;
+}
+
+/**
+ * A country's currency as a slot, outside the ranked pool on purpose: the pool
+ * takes two currencies by the size of their move, and these are shown for
+ * where the reader is looking (`contextualStrip`). A currency has no place on
+ * the globe, so no coordinates.
+ *
+ * Each slot is built the first time it is asked for and kept: a card costs a
+ * pass over the day's stories, and most capitals are never in view.
+ */
+export function countryCurrencySlots(
+  snapshot: TrendsSnapshot | null,
+  analysis: AnalysisById,
+  articles: Article[],
+  now = Date.now(),
+): CountryCurrencies {
+  const built = new Map<string, StripItem | null>();
+  return {
+    indicators: countryCurrencies(snapshot),
+    slot(indicator) {
+      let slot = built.get(indicator.id);
+      if (slot === undefined) {
+        const made = snapshot ? currencyCard(snapshot, analysis, articles, indicator) : null;
+        // The deck's own gate: a card with no account of itself opens on nothing.
+        const card = made && admitted(made) ? made : null;
+        const move = card ? gaugeMove(card, now) : null;
+        slot = card && move ? toStripItem(card, move, [], []) : null;
+        built.set(indicator.id, slot);
+      }
+      return slot;
+    },
+  };
+}
+
 /** Red only. Orange is the common case in a GDACS feed and a block that lists
  *  every Orange alert is a block nobody reads — the same reasoning that keeps
  *  severity single-tier in `lib/severity.ts`. */
@@ -428,7 +469,9 @@ export function coverageRanks(
  * The gauges an open story is tied to: those whose desk analysis cites it
  * (`card.cited`, from `/api/analysis.json` or the strait's own list), and
  * those it names as an entity. An FX mover's card id carries a `-mover`
- * suffix on the indicator it names.
+ * suffix on the indicator it names. A story names a strait `cp:<id>` and an
+ * exchange `mkt:<id>`; their slots are `strait-<id>` and, where the desk
+ * flagged the index, its signal's.
  */
 export function linkedGaugeIds(
   items: readonly StripItem[],
@@ -438,8 +481,11 @@ export function linkedGaugeIds(
   if (!article) return linked;
   const named = new Set<string>();
   for (const entity of article.entities ?? []) {
-    named.add(entity.indicatorId);
-    named.add(`${entity.indicatorId}-mover`);
+    const id = entity.indicatorId;
+    named.add(id);
+    named.add(`${id}-mover`);
+    if (id.startsWith('cp:')) named.add(`strait-${id.slice('cp:'.length)}`);
+    if (id.startsWith('mkt:')) named.add(`market-signal:${id}`);
   }
   for (const item of items) {
     if (named.has(item.id) || item.card.cited?.some((ref) => ref.slug === article.slug)) {

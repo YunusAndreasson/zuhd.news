@@ -6,3 +6,14 @@ export function isStorySettled(fraction: number): boolean {
   'worklet';
   return fraction === 0 || fraction === 1;
 }
+
+/** A delayed pinch release may wake the normal camera reaction, never force
+ * a detailed frame. A newer gesture or flight invalidates that release. */
+export function requestGlobeSettle(
+  expectedEpoch: number,
+  epoch: { value: number },
+  retick: { value: number },
+): void {
+  'worklet';
+  if (expectedEpoch === epoch.value) retick.value += 1;
+}

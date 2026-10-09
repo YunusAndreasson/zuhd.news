@@ -80,6 +80,7 @@ import {
 } from '../hooks/useOverlays';
 import { usePendingNotification } from '../hooks/usePendingNotification';
 import { useReadTracking } from '../hooks/useReadTracking';
+import { useSettledMapContext } from '../hooks/useSettledMapContext';
 import { useStoryOpener } from '../hooks/useStoryOpener';
 import { useHardwareBack } from '../hooks/useSwipeBack';
 import { usePreferences, useTheme } from '../hooks/useTheme';
@@ -99,12 +100,14 @@ import type { CardDelta } from '../lib/cards/types';
 import { exchangeMove } from '../lib/cards/week-move';
 import { companyGauges } from '../lib/companies';
 import { conflictWeekOf } from '../lib/conflict-week';
+import { contextualStrip } from '../lib/contextual-strip';
 import { alertsInCountry, countryFacts, marksInCountry } from '../lib/country-hazards';
 import { computeDeckLayout, openHeightNeedsMeasuring, openStoryHeight } from '../lib/deck-layout';
 import { getSnapshot as getFound, markFound, pruneFound, useFoundSlugs } from '../lib/found-store';
 import { markLanded, spendNew, useFreshSlugs } from '../lib/fresh-store';
 import { globeGdacsAlerts } from '../lib/gdacs';
 import { arcDegrees, crossingFlies } from '../lib/globe-camera';
+import { type GlobeTapFrame, IDENTITY_GLOBE_TRANSFORM } from '../lib/globe-display';
 import { hapticError, hapticImpact, hapticNotification, hapticSwipe } from '../lib/haptics';
 import {
   buildInstrumentCatalog,
@@ -112,15 +115,16 @@ import {
   type CatalogRow,
 } from '../lib/instrument-catalog';
 import { buildStoryRows, cameraTrackOf, type StoryRow } from '../lib/map-feed';
+import { coverageStory, mapCandidates } from '../lib/map-selection';
 import { exchangeCard, exchangeIsStale } from '../lib/markets';
 import type { MenuHazards } from '../lib/menu-hazards';
 import { orderNewsRiver, type RiverArticle, recentRiver, riverAnchor } from '../lib/news-order';
 import {
   buildNowSurfaces,
+  countryCurrencySlots,
   type LatLng,
   linkedGaugeIds,
   type NowItem,
-  STRIP_SLOTS,
   type StripItem,
 } from '../lib/now';
 import {
@@ -335,8 +339,10 @@ export default function HomeScreen() {
   /** The pinch's zoom override, and the clips the globe published with it. */
   const zoomActive = useSharedValue(0);
   const zoomAngle = useSharedValue(90);
+  const globeTapFrame = useSharedValue<GlobeTapFrame>({ ...IDENTITY_GLOBE_TRANSFORM, revision: 0 });
   const globeClip = useSharedValue(90);
   const storyClip = useSharedValue(90);
+  const stripExploring = useSharedValue(false);
   const zoomSettleTimerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
   const primerTimerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
   const sheetProgress = useSharedValue(0);
@@ -348,6 +354,7 @@ export default function HomeScreen() {
   /** Flights: a jump travels the way a swipe does, and lands handing the
    *  camera back to the deck (`hooks/useCameraFlight.ts`). */
   const {
+    flightT,
     setFront: setCameraFront,
     claimForDeck,
     releaseForDeck,
@@ -371,6 +378,14 @@ export default function HomeScreen() {
     storyProgress,
     ridesFinger,
   });
+  const stripContext = useSettledMapContext(
+    stripExploring,
+    viewLat,
+    viewLng,
+    globeClip,
+    storyProgress,
+    flightT,
+  );
 
   const toastRef = useRef<ToastRef>(null);
 
@@ -609,7 +624,7 @@ export default function HomeScreen() {
   );
 
   // What the row shows; `strip` stays whole for the lookups below.
-  const stripSlots = useMemo(() => strip.slice(0, STRIP_SLOTS), [strip]);
+
   // Each strait's seven-day move, for its label on the globe (`straitMoves`):
   // from the whole strip, not the ten slots, so a strait past the tenth still
   // reads the number its row in the menu's lists does.
@@ -739,7 +754,7 @@ export default function HomeScreen() {
   const alertTitle = now[0]?.title ?? null;
   const alertTop = topChromeHeight + (briefingVisible ? playerHeight : 0);
   const topToastOffset = alertTop + (alertTitle ? ALERT_ROW : 0);
-  const marketTop = topChromeHeight + (alertTitle ? ALERT_ROW : 0);
+  const marketTop = alertTop + (alertTitle ? ALERT_ROW : 0);
   const marketViewport = useMemo(
     () => ({ top: marketTop, bottom: marketBottom }),
     [marketTop, marketBottom],
@@ -780,11 +795,11 @@ export default function HomeScreen() {
   }, [deckIndex, setCameraFront, storyRows]);
 
   /** A pinch has ended: redraw at full detail once any hand-back has eased. */
-  const handleZoomSettle = useCallback((delayMs: number) => {
+  const handleZoomSettle = useCallback((delayMs: number, epoch: number) => {
     if (zoomSettleTimerRef.current) clearTimeout(zoomSettleTimerRef.current);
     zoomSettleTimerRef.current = setTimeout(() => {
       zoomSettleTimerRef.current = null;
-      globeRef.current?.settle();
+      globeRef.current?.settle(epoch);
     }, delayMs);
   }, []);
 
@@ -838,6 +853,7 @@ export default function HomeScreen() {
         }
         return;
       }
+      stripExploring.value = false;
       pendingFocusRef.current = null;
       const row = storyRowsRef.current[index];
       if (options.afterBurst || options.grow) findStory(slug);
@@ -879,6 +895,7 @@ export default function HomeScreen() {
       pinStory,
       reduceMotion,
       requestEpoch,
+      stripExploring,
       storyCommitted,
       storyProgress,
     ],
@@ -1099,13 +1116,28 @@ export default function HomeScreen() {
       // the reader found the map layer; the globe hint retires on all of them.
       markHintDone('globe');
       cameraClaimedRef.current = true;
-      if (result.storySlug) {
-        focusStory(result.storySlug, { afterBurst: true, cameraEpoch });
+      const candidates = mapCandidates(result.candidates ?? [result], {
+        stories: storyRowsRef.current,
+        markets: rankedRef.current,
+        chokepoints: chokepointsRef.current,
+        alerts: gdacsAlertsRef.current,
+        conflicts: conflictEventsRef.current,
+        famine: famineAreasRef.current,
+        thermal: thermalEventsRef.current,
+        genocide: genocideRef.current,
+      });
+      if (candidates.length === 0) {
+        toastRef.current?.show('This map item is no longer available');
         return;
       }
-      if (result.candidates && result.candidates.length > 1) {
-        setChooserCandidates(result.candidates);
+      if (candidates.length > 1) {
+        setChooserCandidates(candidates);
         disambiguationSheetRef.current?.present();
+        return;
+      }
+      result = candidates[0] as TapResult;
+      if (result.storySlug) {
+        focusStory(result.storySlug, { afterBurst: true, cameraEpoch });
         return;
       }
       if (openMark(result)) return;
@@ -1137,35 +1169,25 @@ export default function HomeScreen() {
         }
         return;
       }
-      // A hotspot is a cluster of coverage, not a thing — it stands for the
-      // stories under it, so it opens the top one rather than a sheet about
-      // a glow.
+      // A coverage glow opens its newest unfound story just like a beacon.
+      // Heatmap history can outlive the river: in that case the country is
+      // still useful, but a toast must never promise a story it cannot open.
       if (result.isHotspot) {
-        const label = result.hotspotLabels?.[0] ?? result.countryName;
-        if (!label) return;
-        toastRef.current?.show(label, () => {
-          for (const cat of CATEGORIES) {
-            const match = groupedRef.current[cat].find((a) => {
-              if (a.threadLabel) {
-                const prefix = a.threadLabel.includes(':')
-                  ? a.threadLabel.slice(0, a.threadLabel.indexOf(':'))
-                  : a.threadLabel;
-                if (prefix === label) return true;
-              }
-              return a.title === label;
-            });
-            if (match) {
-              handleSelectArticle(match.slug, cat);
-              return;
-            }
-          }
-        });
-        return;
+        const slug = coverageStory(result, storyRowsRef.current, getFound());
+        if (slug) {
+          focusStory(slug, { cameraEpoch });
+          return;
+        }
+        if (!result.countryName) {
+          toastRef.current?.show('No current story for this coverage');
+          return;
+        }
+        result = countryTap(result.countryName);
       }
       setCountrySheet(result);
       countrySheetRef.current?.present();
     },
-    [focusStory, handleSelectArticle, openCard, openMark],
+    [focusStory, openCard, openMark],
   );
 
   // ---------------------------------------------------------------------
@@ -1359,6 +1381,7 @@ export default function HomeScreen() {
    */
   const handleDeckRelease = useCallback(
     (index: number) => {
+      stripExploring.value = false;
       const leavingIndex = deckIndexRef.current;
       deckIndexRef.current = index;
       const row = storyRowsRef.current[index];
@@ -1400,7 +1423,7 @@ export default function HomeScreen() {
         }
       }
     },
-    [flyToStory, flyToStoryIfHeld, framingFor, handleCaughtUp, setCameraFront],
+    [flyToStory, flyToStoryIfHeld, framingFor, handleCaughtUp, setCameraFront, stripExploring],
   );
 
   /**
@@ -1454,11 +1477,12 @@ export default function HomeScreen() {
       sheetDetentRef.current = detent;
       setSheetDetent(detent);
       if (detent !== 'full') return;
+      stripExploring.value = false;
       dismissActiveHint();
       const row = storyRowsRef.current[deckIndexRef.current];
       if (row) findStory(row.slug);
     },
-    [dismissActiveHint, findStory],
+    [dismissActiveHint, findStory, stripExploring],
   );
 
   const handleMastheadAlertPress = useCallback(() => {
@@ -1728,13 +1752,23 @@ export default function HomeScreen() {
   // re-render this screen.
   const storySlugs = useMemo(() => storyRows.map((row) => row.slug), [storyRows]);
   const storyOpen = sheetDetent === 'full';
-  // The gauges an open story is tied to, marked in its hue on the bar.
-  const openArticle = storyOpen ? storyRows[frontIndex]?.article : undefined;
+  // The gauges the settled story is tied to: they lead the bar.
+  const openArticle =
+    stripContext && !stripContext.exploring
+      ? storyRows[Math.round(stripContext.story)]?.article
+      : undefined;
+  const currencies = useMemo(
+    () => countryCurrencySlots(trends, analysis, river),
+    [trends, analysis, river],
+  );
+  const stripSlots = useMemo(
+    () => contextualStrip(strip, openArticle, stripContext, currencies),
+    [strip, openArticle, stripContext, currencies],
+  );
   const linkedGauges = useMemo(
     () => linkedGaugeIds(stripSlots, openArticle),
     [stripSlots, openArticle],
   );
-  const linkedHue = openArticle ? categoryMarkColor(openArticle.category, colors) : undefined;
   // Read at rest as well as open: the resting card is the title and the
   // hook, and most of the day is read that way. Only a platform sheet over
   // the map hides the card.
@@ -2070,6 +2104,8 @@ export default function HomeScreen() {
       <Animated.View style={[styles.globeLayer, globeLiftStyle]} pointerEvents="none">
         <MiniGlobe
           ref={globeRef}
+          tapFrame={globeTapFrame}
+          requestEpoch={requestEpoch}
           articles={river}
           heatmapPoints={heatmapPoints}
           chokepoints={chokepoints}
@@ -2107,6 +2143,8 @@ export default function HomeScreen() {
 
       <GlobeGestureLayer
         globeRef={globeRef}
+        stripExploring={stripExploring}
+        tapFrame={globeTapFrame}
         canvasTop={0}
         topChromeHeight={topChromeHeight}
         sheetPeekHeight={layout.peek}
@@ -2139,11 +2177,12 @@ export default function HomeScreen() {
         <MapHeader
           onMenuPress={handleMenuPress}
           items={stripSlots}
+          locked={activeCard !== null || selectedGauge !== null}
+          pinned={strip.find((item) => item.id === selectedGauge?.id)}
           onSelect={handleStripPress}
           onAll={handleAllPress}
           selectedId={selectedGauge?.id ?? null}
           linkedIds={linkedGauges}
-          linkedColor={linkedHue}
           // While the player bar is up it is the control. A second play button
           // over audio that was already playing said the opposite of what was
           // happening; it returns when the bar hides.

@@ -14,6 +14,7 @@ import Animated, {
   cancelAnimation,
   type SharedValue,
   useAnimatedStyle,
+  useDerivedValue,
   useSharedValue,
   withDecay,
   withTiming,
@@ -30,6 +31,7 @@ import {
   projScaleFor,
   takeCamera,
 } from '../../lib/globe-camera';
+import type { GlobeTapFrame } from '../../lib/globe-display';
 import type { TapResult } from '../../lib/tap-result';
 import type { MiniGlobeRef } from '../globe/MiniGlobe';
 
@@ -109,6 +111,8 @@ interface GlobeGestureLayerProps {
    *  flight through this, never by stopping its tween alone. */
   cancelFlight: () => void;
   requestEpoch: SharedValue<number>;
+  stripExploring?: SharedValue<boolean>;
+  tapFrame: SharedValue<GlobeTapFrame>;
   /** The clip in effect at the last projection, in degrees. */
   clip: SharedValue<number>;
   /** The clip the story in front would take on its own. */
@@ -120,7 +124,7 @@ interface GlobeGestureLayerProps {
   reduceMotion: boolean;
   onTap: (result: TapResult, epoch?: number) => void;
   /** A pinch has ended; redraw at full detail once `delayMs` has passed. */
-  onZoomSettle: (delayMs: number) => void;
+  onZoomSettle: (delayMs: number, epoch: number) => void;
   onImpact: () => void;
   enabled?: boolean;
   /**
@@ -150,6 +154,8 @@ export const GlobeGestureLayer = memo(function GlobeGestureLayer({
   zoomAngle,
   cancelFlight,
   requestEpoch,
+  tapFrame,
+  stripExploring,
   clip,
   storyClip,
   radius,
@@ -172,6 +178,12 @@ export const GlobeGestureLayer = memo(function GlobeGestureLayer({
   // RNGH 3 takes `enabled` as a `SharedValue` and updates it on the UI thread
   // with no push; the tap reads collapse mode from a ref, on JS, where it runs.
   const turnableSV = useSharedValue(turnable);
+  // The parent commits the detent only after landing. During the rise the
+  // canvas is already translated, so the exposed band means collapse then
+  // too; it must not accept a second finger's map drag in that interval.
+  const restingTurnable = useDerivedValue(
+    () => turnableSV.value && sheetProgress.value <= SHEET_AT_REST,
+  );
   const tapEnabledSV = useSharedValue(enabled || collapseMode);
   const collapseRef = useRef(collapseMode);
   useEffect(() => {
@@ -197,16 +209,16 @@ export const GlobeGestureLayer = memo(function GlobeGestureLayer({
   }));
 
   const handleTap = useCallback(
-    (x: number, y: number, epoch: number) => {
+    (x: number, y: number, epoch: number, frame: GlobeTapFrame, sheetRaised: boolean) => {
       if (epoch !== requestEpoch.value) return;
-      if (collapseRef.current) {
+      if (sheetRaised || collapseRef.current) {
         onCollapse?.();
         return;
       }
       // Tap coordinates are window-relative, independent of which native
       // view RNGH attaches to through its display:contents detector.
       const localY = y - canvasTop;
-      const result = globeRef.current?.hitTest(x, localY);
+      const result = globeRef.current?.hitTest(x, localY, frame);
       // Nothing under the finger: no pulse. The ring is a confirmation that
       // something was found, and drawing it over empty ocean would claim
       // there had been.
@@ -232,15 +244,22 @@ export const GlobeGestureLayer = memo(function GlobeGestureLayer({
       onDeactivate: ({ absoluteX, absoluteY, canceled }) => {
         'worklet';
         if (canceled) return;
-        scheduleOnRN(handleTap, absoluteX, absoluteY, requestEpoch.value);
+        scheduleOnRN(
+          handleTap,
+          absoluteX,
+          absoluteY,
+          requestEpoch.value,
+          tapFrame.value,
+          sheetProgress.value > SHEET_AT_REST,
+        );
       },
     }),
-    [tapEnabledSV, handleTap, requestEpoch],
+    [tapEnabledSV, handleTap, requestEpoch, tapFrame, sheetProgress],
   );
 
   const panConfig = useMemo(
     (): PanGestureConfig => ({
-      enabled: turnableSV,
+      enabled: restingTurnable,
       // Enough travel that a slightly imprecise tap is still a tap.
       minDistance: 6,
       // One finger. Competing gestures go to whichever activates first, and a
@@ -262,6 +281,7 @@ export const GlobeGestureLayer = memo(function GlobeGestureLayer({
       },
       onActivate: () => {
         'worklet';
+        if (stripExploring) stripExploring.value = true;
         takeCamera(cameraOwner, cameraLat, cameraLng, viewLat, viewLng);
       },
       onUpdate: ({ changeX, changeY }) => {
@@ -297,7 +317,8 @@ export const GlobeGestureLayer = memo(function GlobeGestureLayer({
       clip,
       radius,
       reduceMotion,
-      turnableSV,
+      restingTurnable,
+      stripExploring,
       viewLat,
       viewLng,
     ],
@@ -314,7 +335,7 @@ export const GlobeGestureLayer = memo(function GlobeGestureLayer({
   const touchOffsetY = useSharedValue(0);
   const pinchConfig = useMemo(
     (): PinchGestureConfig => ({
-      enabled: turnableSV,
+      enabled: restingTurnable,
       onTouchesDown: ({ allTouches }) => {
         'worklet';
         const touch = allTouches[0];
@@ -324,6 +345,7 @@ export const GlobeGestureLayer = memo(function GlobeGestureLayer({
       },
       onActivate: ({ focalX, focalY }) => {
         'worklet';
+        if (stripExploring) stripExploring.value = true;
         // Through `cancelFlight`, as the pan does: stopping the tween alone
         // left the flight's plan standing, so the deck read a flight still
         // under way. Any zoom release it starts is cancelled just below — the
@@ -389,7 +411,7 @@ export const GlobeGestureLayer = memo(function GlobeGestureLayer({
         }
         // A JS timer, never an animation callback: `scheduleOnRN` from a
         // completion worklet aborts the app (worklets 0.10).
-        scheduleOnRN(onZoomSettle, release ? duration + 50 : 0);
+        scheduleOnRN(onZoomSettle, release ? duration + 50 : 0, requestEpoch.value);
       },
     }),
     [
@@ -406,10 +428,12 @@ export const GlobeGestureLayer = memo(function GlobeGestureLayer({
       focusX,
       focusY,
       onZoomSettle,
+      requestEpoch,
       radius,
       reduceMotion,
       storyClip,
-      turnableSV,
+      restingTurnable,
+      stripExploring,
       viewLat,
       viewLng,
       zoomActive,

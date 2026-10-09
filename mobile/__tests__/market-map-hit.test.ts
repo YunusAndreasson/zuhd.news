@@ -37,4 +37,17 @@ describe('market labels and circles share a selection target', () => {
       [nikkei, second].filter((m) => Number.isFinite(marketHitDistanceSquared(m, 320, 280))),
     ).toHaveLength(2);
   });
+
+  it.each([0.5, 2])(
+    'keeps the circle radius fixed on screen and the visible label hittable at scale %s',
+    (scale) => {
+      expect(
+        Number.isFinite(marketHitDistanceSquared(nikkei, nikkei.x + 24 / scale, nikkei.y, scale)),
+      ).toBe(true);
+      expect(marketHitDistanceSquared(nikkei, nikkei.x + 25 / scale, nikkei.y, scale)).toBe(
+        Infinity,
+      );
+      expect(Number.isFinite(marketHitDistanceSquared(nikkei, 304, 291, scale))).toBe(true);
+    },
+  );
 });

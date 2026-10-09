@@ -37,6 +37,17 @@ type KeyEntry = { label: string; meaning: string } & (
 
 const STORIES: readonly KeyEntry[] = [
   {
+    label: 'coverage',
+    meaning:
+      'A glow where reporting is concentrated. Tap it to find the newest story there you have not found, or reopen the newest. Older coverage opens the country when no current story matches.',
+    draw: (colors) => (
+      <>
+        <Circle cx={C} cy={C} r={11} color={colors.textEmphasis} opacity={0.08} />
+        <Circle cx={C} cy={C} r={7} color={colors.textEmphasis} opacity={0.16} />
+      </>
+    ),
+  },
+  {
     label: 'story',
     meaning:
       'A place in the news, in its category’s colour: politics, economy, science, tech. Larger the more it was reported, fainter as it ages. A white number beside it is how many stories there you have not found yet.',
