@@ -33,6 +33,7 @@ prefer a parameter (class names, a link renderer) over a copy, as
 | `scripts/lib/iso-date.js` | `isIsoDate`, the app's own test of a published date |
 | `scripts/lib/snapshot-stage.js` | `snapshotStage`: a fetcher's read, freshness gate, empty guard, kept-snapshot line and write |
 | `scripts/lib/quote-snapshot.js` | `fetchQuotes`: one Yahoo quote per catalog entry, in turn, with what was left out |
+| `scripts/lib/stage-budget.js` | `stageBudget`: one signal a fetcher passes with every request, cut from its stage's `timeout` |
 | `scripts/lib/article-files.js` | the corpus window by filename |
 | `scripts/lib/trends-snapshot.js` | the newest `content/trends/*.json` |
 | `scripts/lib/hash.js` | sha1 cache keys |

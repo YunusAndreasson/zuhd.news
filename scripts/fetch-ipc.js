@@ -54,6 +54,7 @@ import {
 } from './lib/ipc.js'
 import { fetchJson, fetchText } from './lib/http.js'
 import { Degrade, snapshotStage } from './lib/snapshot-stage.js'
+import { stageBudget } from './lib/stage-budget.js'
 
 const HDX = 'https://data.humdata.org/api/3/action/package_search'
 /** The exact dataset family, so the search cannot drift onto something else. */
@@ -76,8 +77,10 @@ const bail = (message) => {
   throw new Degrade(message)
 }
 
-const getJson = (url) => fetchJson(url, { timeoutMs: REQUEST_TIMEOUT_MS })
-const getText = (url) => fetchText(url, { timeoutMs: REQUEST_TIMEOUT_MS })
+/** One signal for every request this run makes: `lib/stage-budget.js`. */
+const budget = stageBudget('fetch-ipc')
+const getJson = (url) => fetchJson(url, { timeoutMs: REQUEST_TIMEOUT_MS, signal: budget })
+const getText = (url) => fetchText(url, { timeoutMs: REQUEST_TIMEOUT_MS, signal: budget })
 
 const { written, snapshot } = await snapshotStage('fetch-ipc', 'ipc', produce, {
   isEmpty: (s) => s.areas.length === 0,
@@ -245,6 +248,9 @@ async function produce() {
   if (areas.length === 0) bail(`no area survived the join (${firstError ?? 'no reason recorded'})`)
   if (countriesFailed > 0) {
     console.error(`  ⚠ ${countriesFailed}/${wanted.length} country geometries failed (${firstError})`)
+  }
+  if (budget.aborted) {
+    console.error(`  ⚠ out of time: the stage's budget ran out with ${countries.length}/${wanted.length} countries in`)
   }
 
   // Newest analysis first, then gravest — so a truncated read of the file is still

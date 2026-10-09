@@ -30,6 +30,7 @@ export const QUOTE_RANGE = '3mo'
  * @property {number} missing how many of those returned no series at all, live or cached
  * @property {number} rejected how many returned one the record builder refused
  * @property {number} fromCache how many records are a cached series, Yahoo having failed this run
+ * @property {number} carried how many records are the last snapshot's own, the stage having run out of time
  */
 
 /**
@@ -47,21 +48,46 @@ export const QUOTE_RANGE = '3mo'
  * with the session it stopped at. The symbol that returned nothing is printed
  * by `fetchYahooStock` itself.
  *
+ * **Out of time** (`signal`, the stage's budget), Yahoo is not asked again. An
+ * entry not reached keeps the record the last snapshot had for it, marked
+ * `stale`, which is what it is; one the last snapshot did not hold is listed
+ * in `skipped`. That is the row-by-row form of "degrade to the previous
+ * snapshot": before, the stage was killed and the whole of the last snapshot
+ * stood, with nothing to say it was not this run's. The signal is tested
+ * between symbols, because `fetchYahooStock` takes none: the request in flight
+ * when it fires runs to its own end, twenty seconds at the worst, and the
+ * budget has to keep that back.
+ *
  * @template {{ id: string, symbol: string | null }} E
  * @param {E[]} entries
  * @param {(entry: E, data: any, opts: { stale: boolean }) => { record: any, rejected: string | null }} toRecord
- * @param {{ range?: string, fetchQuote?: (symbol: string, opts: { range: string }) => Promise<any>, now?: number }} [opts]
- *   `fetchQuote` and `now` are for the tests
+ * @param {{ range?: string, signal?: AbortSignal, previous?: { id: string }[], fetchQuote?: (symbol: string, opts: { range: string }) => Promise<any>, now?: number }} [opts]
+ *   `previous`: the last snapshot's records; `fetchQuote` and `now` are for the tests
  * @returns {Promise<QuoteRun>}
  */
-export async function fetchQuotes(entries, toRecord, { range = QUOTE_RANGE, fetchQuote = fetchYahooStock, now = Date.now() } = {}) {
+export async function fetchQuotes(entries, toRecord, { range = QUOTE_RANGE, signal, previous = [], fetchQuote = fetchYahooStock, now = Date.now() } = {}) {
   const records = []
   const skipped = []
+  const last = new Map((Array.isArray(previous) ? previous : []).map((record) => [record.id, record]))
   let missing = 0
   let rejected = 0
   let fromCache = 0
+  let carried = 0
+  let unasked = 0
 
   for (const entry of entries) {
+    if (signal?.aborted) {
+      unasked++
+      const kept = last.get(entry.id)
+      if (kept) {
+        records.push({ ...kept, stale: true })
+        carried++
+      } else {
+        skipped.push({ id: entry.id, reason: 'not asked: the stage ran out of time' })
+      }
+      continue
+    }
+
     const data = await fetchQuote(/** @type {string} */ (entry.symbol), { range })
     if (!data) {
       missing++
@@ -82,7 +108,12 @@ export async function fetchQuotes(entries, toRecord, { range = QUOTE_RANGE, fetc
     records.push(built.record)
   }
 
-  return { records, skipped, missing, rejected, fromCache }
+  if (unasked > 0) {
+    console.error(
+      `  ⚠ out of time: ${unasked} of ${entries.length} not asked, ${carried} of them carried from the last snapshot and marked stale`,
+    )
+  }
+  return { records, skipped, missing, rejected, fromCache, carried }
 }
 
 /**
@@ -96,6 +127,7 @@ export function quoteSummary(records, run) {
   return (
     (stale ? ` (${stale} stale${run.fromCache ? `, ${run.fromCache} from cache` : ''})` : '') +
     (run.rejected ? `, ${run.rejected} rejected` : '') +
-    (run.missing ? `, ${run.missing} with no series` : '')
+    (run.missing ? `, ${run.missing} with no series` : '') +
+    (run.carried ? `, ${run.carried} carried from the last snapshot` : '')
   )
 }

@@ -56,6 +56,7 @@ import {
 import { fetchText } from './lib/http.js'
 import { articleFilesSince } from './lib/article-files.js'
 import { Degrade, Skip, snapshotStage } from './lib/snapshot-stage.js'
+import { stageBudget } from './lib/stage-budget.js'
 
 const ARTICLES_DIR = pathOf('articles')
 
@@ -85,6 +86,8 @@ const CELL_CONCURRENCY = 4
 const key = process.env.FIRMS_MAP_KEY
 
 const started = Date.now()
+/** One signal for every request this run makes: `lib/stage-budget.js`. */
+const budget = stageBudget('fetch-firms')
 
 /** How many clusters there were before the join radius cut them, for the last line. */
 let clusteredCount
@@ -149,7 +152,7 @@ async function produce() {
     `https://firms.modaps.eosdis.nasa.gov/api/area/csv/${key}/${SOURCE}/${bbox.join(',')}/${DAY_RANGE}`
 
   async function fetchCell(cell) {
-    const text = await fetchText(cellUrl(cell.bbox), { timeoutMs: REQUEST_TIMEOUT_MS })
+    const text = await fetchText(cellUrl(cell.bbox), { timeoutMs: REQUEST_TIMEOUT_MS, signal: budget })
     // FIRMS answers a bad key or an over-quota caller with 200 and a sentence,
     // not a status code. Without this the CSV parser throws "missing expected
     // columns" once per cell and the real reason never reaches the log.
@@ -171,6 +174,11 @@ async function produce() {
   }
 
   if (cellsFailed === cells.length) throw new Degrade(`every cell failed (${firstError})`)
+  if (budget.aborted) {
+    // The cells are asked busiest first (`aoiCells`), so what the clock cut is
+    // the sparse end of the map. It is counted with the cells that failed.
+    console.error(`  ⚠ out of time: the stage's budget ran out with ${cells.length - cellsFailed}/${cells.length} cells in`)
+  }
   if (cellsFailed > 0) {
     // Recorded rather than swallowed: a partial fetch publishes a partial map, and
     // that has to be visible in the payload rather than looking like a quiet day.

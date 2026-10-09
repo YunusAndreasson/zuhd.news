@@ -71,6 +71,10 @@ stages assume about each other.
   (`lib/snapshot-stage.js`) and throws `Degrade` to keep the last snapshot,
   `Skip` for a missing key. `isEmpty` is required: an empty result is never
   written over a snapshot by default.
+- A fetcher passes `stageBudget(<its stage>)` (`lib/stage-budget.js`) as
+  `signal` with every request: a slow source then ends in a partial result or
+  a kept snapshot, never `exit 124`. Re-time a stage there too; a test holds
+  the table to `stages.js`.
 - A bounded dataset reports what it left out (`skipped`), or it reads as
   complete coverage.
 - An empty result after a non-empty response is a schema change: that branch

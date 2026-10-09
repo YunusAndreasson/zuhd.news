@@ -26,6 +26,7 @@ import {
 import { readJson } from './lib/json-file.js'
 import { fetchJson } from './lib/http.js'
 import { Degrade, snapshotStage } from './lib/snapshot-stage.js'
+import { stageBudget } from './lib/stage-budget.js'
 
 // Concurrency cap for per-event detail fetches. GDACS publishes detail
 // endpoints synchronously and they're fast (~200–500ms typical), but firing
@@ -35,10 +36,12 @@ const DETAIL_CONCURRENCY = 6
 const LIST_TIMEOUT_MS = 10_000
 
 const started = Date.now()
+/** One signal for every request this run makes: `lib/stage-budget.js`. */
+const budget = stageBudget('fetch-gdacs')
 console.log('Fetching GDACS snapshot (EVENTS4APP)')
 
 function fetchList() {
-  return fetchJson(GDACS_GEOJSON_URL, { timeoutMs: LIST_TIMEOUT_MS })
+  return fetchJson(GDACS_GEOJSON_URL, { timeoutMs: LIST_TIMEOUT_MS, signal: budget })
 }
 
 /** What the detail pass and the carried narratives came to, for the last line. */
@@ -94,7 +97,10 @@ async function produce() {
   const detailCandidates = alerts.filter((a) => a.eventtype === 'EQ' || a.eventtype === 'TC')
   // Per-event failure is non-fatal — sheet just renders without the
   // population line, same as if mobile had failed the lazy fetch before.
-  const { values, failed } = await runSettled(detailCandidates, DETAIL_CONCURRENCY, (alert) => fetchGdacsDetail(alert))
+  // Out of time, the details still to come fail at once and the list is
+  // written without them: the alerts are the layer, the details one line each.
+  const { values, failed } = await runSettled(detailCandidates, DETAIL_CONCURRENCY, (alert) => fetchGdacsDetail(alert, budget))
+  if (budget.aborted) console.error(`  ⚠ out of time: the stage's budget ran out with ${detailCandidates.length - failed}/${detailCandidates.length} details in`)
   // Filed in the alerts' order, not the order the answers came back in.
   const details = detailsInAlertOrder(detailCandidates, values)
 

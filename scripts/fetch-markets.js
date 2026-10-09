@@ -24,8 +24,12 @@
 import { MARKET_CATALOG, MARKET_TRACKED, exchangeRecord } from './lib/market-metadata.js'
 import { fetchQuotes, quoteSummary } from './lib/quote-snapshot.js'
 import { Degrade, snapshotStage } from './lib/snapshot-stage.js'
+import { stageBudget } from './lib/stage-budget.js'
 
 const started = Date.now()
+// Twenty-five seconds kept back, not ten: a symbol in flight when the budget
+// runs out cannot be cut and may take twenty (two hosts, ten seconds each).
+const budget = stageBudget('fetch-markets', { keptBack: 25_000 })
 console.log(`Fetching market snapshot (Yahoo Finance, ${MARKET_TRACKED.length} exchanges)`)
 
 /** What the loop came to, for the last line. */
@@ -45,8 +49,8 @@ if (written) {
   )
 }
 
-async function produce() {
-  run = await fetchQuotes(MARKET_TRACKED, exchangeRecord)
+async function produce({ previous }) {
+  run = await fetchQuotes(MARKET_TRACKED, exchangeRecord, { signal: budget, previous: previous?.exchanges })
   if (run.records.length === 0) throw new Degrade('no usable exchange data returned')
   return { generated: new Date().toISOString(), exchanges: run.records, skipped: run.skipped }
 }

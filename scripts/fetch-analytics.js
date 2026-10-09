@@ -6,6 +6,7 @@
 // and exits 0 so it never breaks the cycle.
 
 import { readJson, writeJson } from './lib/json-file.js'
+import { stageBudget } from './lib/stage-budget.js'
 
 const ZONE_ID = '2e290179ae62b061719437bb31373426'  // zuhd.news
 const TOKEN = process.env.CLOUDFLARE_API_TOKEN
@@ -51,6 +52,9 @@ const QUERY = `
 async function main() {
   const res = await fetch('https://api.cloudflare.com/client/v4/graphql', {
     method: 'POST',
+    // It had no deadline of its own: a hung request ran until the stage's
+    // `timeout 60` killed it, with nothing in the log but the exit status.
+    signal: stageBudget('fetch-analytics'),
     headers: {
       'Authorization': `Bearer ${TOKEN}`,
       'Content-Type': 'application/json',

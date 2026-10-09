@@ -31,8 +31,12 @@ import { COMPANY_TRACKED } from './lib/company-metadata.js'
 import { companyRecord } from './lib/companies.js'
 import { fetchQuotes, quoteSummary } from './lib/quote-snapshot.js'
 import { Degrade, snapshotStage } from './lib/snapshot-stage.js'
+import { stageBudget } from './lib/stage-budget.js'
 
 const started = Date.now()
+// Twenty-five seconds kept back, not ten: a symbol in flight when the budget
+// runs out cannot be cut and may take twenty (two hosts, ten seconds each).
+const budget = stageBudget('fetch-companies', { keptBack: 25_000 })
 console.log(`Fetching company quotes (Yahoo Finance, ${COMPANY_TRACKED.length} companies)`)
 
 /** What the loop came to, for the last line. */
@@ -50,8 +54,8 @@ if (written) {
   )
 }
 
-async function produce() {
-  run = await fetchQuotes(COMPANY_TRACKED, companyRecord)
+async function produce({ previous }) {
+  run = await fetchQuotes(COMPANY_TRACKED, companyRecord, { signal: budget, previous: previous?.companies })
   if (run.records.length === 0) throw new Degrade('no usable company data returned')
   return { generated: new Date().toISOString(), companies: run.records, skipped: run.skipped }
 }

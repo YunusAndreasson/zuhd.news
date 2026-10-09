@@ -40,6 +40,7 @@ import { csvObjects } from './lib/csv.js'
 import { pathOf } from './lib/datasets.js'
 import { fetchOk } from './lib/http.js'
 import { Degrade, snapshotStage } from './lib/snapshot-stage.js'
+import { stageBudget } from './lib/stage-budget.js'
 
 // The candidate release this reads. Its last number is the month: 26.0.8 is
 // August 2026, and the release after 26.0.12 is 27.0.1.
@@ -67,6 +68,8 @@ const CACHE_MAX_AGE_MS = 6 * 60 * 60 * 1000
 const CSV_TIMEOUT_MS = 105_000
 
 const started = Date.now()
+/** One signal for the download and for the probe after it: `lib/stage-budget.js`. */
+const budget = stageBudget('fetch-conflict')
 
 const { written, snapshot } = await snapshotStage('fetch-conflict', 'conflict', produce, {
   isEmpty: (s) => s.events.length === 0,
@@ -94,14 +97,19 @@ if (written) {
   //
   // After the write, because it is advice. Ahead of it, its fifteen seconds were
   // added to the download's 105 inside a 120-second stage, so a slow answer to a
-  // question nobody needed answered could cost a snapshot already in hand.
+  // question nobody needed answered could cost a snapshot already in hand. It is
+  // under the stage's budget as well, so after a slow download it is cut short
+  // rather than left to run the stage into its `timeout`.
   //
   // One line either way: "not yet" from a probe that works and silence from one
   // that has stopped working must not look the same in the log.
   const asked = await Promise.all(
     nextReleases(UCDP_VERSION).map(async (version) => {
       try {
-        const head = await fetch(candidateCsvUrl(version), { method: 'HEAD', signal: AbortSignal.timeout(15_000) })
+        const head = await fetch(candidateCsvUrl(version), {
+          method: 'HEAD',
+          signal: AbortSignal.any([budget, AbortSignal.timeout(15_000)]),
+        })
         return { version, ok: head.ok, said: `HTTP ${head.status}` }
       } catch (err) {
         return { version, ok: false, said: err.message }
@@ -128,7 +136,7 @@ async function produce() {
   let rows
   try {
     console.log(`Fetching UCDP candidate GED v${UCDP_VERSION}: ${UCDP_URL}`)
-    const res = await fetchOk(UCDP_URL, { timeoutMs: CSV_TIMEOUT_MS })
+    const res = await fetchOk(UCDP_URL, { timeoutMs: CSV_TIMEOUT_MS, signal: budget })
     const csv = await res.text()
     console.log(`Downloaded ${csv.length.toLocaleString('en-US')} bytes`)
     rows = csvObjects(csv, REQUIRED_COLUMNS)

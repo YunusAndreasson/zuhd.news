@@ -136,6 +136,43 @@ test('when every entry is rejected the reasons are still printed, and nothing is
   assert.equal(quoteSummary(run.records, run), ', 2 rejected')
 })
 
+test('out of time, Yahoo is not asked again and the last snapshot stands for what was not reached', async () => {
+  // Thirty symbols at two hosts and ten seconds each is 600 seconds in a stage
+  // of 90. The stage used to be killed, and the whole of the last snapshot
+  // stood with nothing to say it was not this run's.
+  const entries = MARKET_TRACKED.slice(0, 4)
+  const budget = new AbortController()
+  const asked = []
+  const fetchQuote = async (symbol) => {
+    const entry = entries[asked.push(symbol) - 1]
+    if (asked.length === 2) budget.abort() // the clock runs out during the second request
+    return quote({ currencyReported: entry.currency, timezone: entry.tz })
+  }
+  const previous = [
+    { id: entries[1].id, level: 1 },
+    { id: entries[2].id, level: 4321, changePct: 0.5, asOf: '2026-10-08' },
+  ]
+
+  const { result: run, err } = await logged(() =>
+    fetchQuotes(entries, exchangeRecord, { fetchQuote, now: NOW, signal: budget.signal, previous }),
+  )
+
+  assert.deepEqual(asked, [entries[0].symbol, entries[1].symbol], 'the request in flight ran to its end, and no other was made')
+  assert.deepEqual(run.records.map((r) => [r.id, r.level, r.stale === true]), [
+    [entries[0].id, 6630, false],
+    [entries[1].id, 6630, false], // asked, so it is this run's, not the last one's
+    [entries[2].id, 4321, true], // not reached: what the last snapshot had, and marked as that
+  ])
+  assert.deepEqual(run.skipped, [{ id: entries[3].id, reason: 'not asked: the stage ran out of time' }])
+  assert.equal(run.carried, 1)
+  assert.deepEqual(err, ['  ⚠ out of time: 2 of 4 not asked, 1 of them carried from the last snapshot and marked stale'])
+  assert.equal(quoteSummary(run.records, run), ' (1 stale), 1 carried from the last snapshot')
+
+  // A snapshot that is not there, or not a list, is nothing to carry from.
+  const none = await logged(() => fetchQuotes(entries.slice(0, 1), exchangeRecord, { fetchQuote: async () => null, signal: AbortSignal.abort(), previous: undefined }))
+  assert.deepEqual(none.result.records, [])
+})
+
 test('the company list runs on the same loop, with its own record', async () => {
   const nvidia = COMPANY_TRACKED.find((c) => c.id === 'nvidia')
   const { result: run } = await logged(() =>
