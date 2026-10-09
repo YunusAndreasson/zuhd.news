@@ -1,7 +1,7 @@
 import assert from 'node:assert/strict'
 import { test } from 'node:test'
 import { extractEntities } from './entity-registry.js'
-import { ageDays, chartProblem, citesFigure, offerFor } from './indicator-offer.js'
+import { ageDays, chartProblem, citesFigure, offerFor, weekMove } from './indicator-offer.js'
 
 const NOW = Date.parse('2026-09-30T12:00:00Z')
 
@@ -269,6 +269,44 @@ test('an exchange’s wider move is a month of days by its dates', () => {
   // Thirty days before the 25th is Wednesday 26 August.
   const at = (date) => 50000 + dates.indexOf(date) * 100
   assert.deepEqual(row.wider, { pct: Number((((at('2026-09-25') - at('2026-08-26')) / at('2026-08-26')) * 100).toFixed(1)), over: '30 days' })
+})
+
+test('an exchange open at the fetch is read at its last close, and still has its week', () => {
+  // Monday 28 September, Tokyo open: the series ends in that minute's price,
+  // marked uncompleted, and `asOf` is Friday's close. 12 of 26 exchanges were
+  // in this state in the snapshot of 2026-10-09 10:09.
+  const dates = calendar('2026-07-27', '2026-09-28', { weekdays: true })
+  const closes = dates.map((_, i) => 50000 + i * 100)
+  closes[closes.length - 1] = 51234.5 // not a close
+  const tse = {
+    id: 'tse',
+    name: 'Tokyo Stock Exchange',
+    indexName: 'Nikkei 225',
+    currency: 'JPY',
+    asOf: '2026-09-25',
+    series: { values: closes, periods: dates.map(label), dates, completed: dates.map((d) => d !== '2026-09-28') },
+  }
+  const [row] = offerFor({ title: 'The Nikkei 225 fell 3%' }, { ...sources, now: Date.parse('2026-09-28T03:00:00Z'), markets: [tse] }).indicators
+  const at = (date) => 50000 + dates.indexOf(date) * 100
+  assert.equal(row.asOf, '2026-09-25')
+  assert.equal(row.level, at('2026-09-25'), 'the close `asOf` dates, not the open session’s price')
+  const pct = (from, to) => Number((((at(to) - at(from)) / at(from)) * 100).toFixed(1))
+  assert.deepEqual(row.recent, { pct: pct('2026-09-18', '2026-09-25'), over: '7 days' })
+  assert.deepEqual(row.wider, { pct: pct('2026-08-26', '2026-09-25'), over: '30 days' })
+  // One completed close is not a series to read a level off.
+  const young = { ...tse, series: { values: [50000, 50100], periods: ['Sep 25', 'Sep 28'], dates: ['2026-09-25', '2026-09-28'], completed: [true, false] } }
+  assert.deepEqual(offerFor({ title: 'The Nikkei 225 fell 3%' }, { ...sources, markets: [young] }).indicators, [])
+})
+
+test('a week is counted from the newest observation, wherever `asOf` stands', () => {
+  const values = Array.from({ length: 10 }, (_, i) => 100 + i)
+  // A label a day past `asOf` is this year's, not last year's: the week was
+  // null for every series that ended in an open session's bar.
+  assert.deepEqual(weekMove({ values, periods: days(10, '2026-09-29'), asOf: '2026-09-28' }), { pct: Number(((7 / 102) * 100).toFixed(1)), over: '7 days' })
+  // `asOf` past the newest label, across a New Year: the label is December's.
+  assert.deepEqual(weekMove({ values, periods: days(10, '2026-12-31'), asOf: '2027-01-02' }), { pct: Number(((7 / 102) * 100).toFixed(1)), over: '7 days' })
+  // And the plain case is as it was.
+  assert.deepEqual(weekMove({ values, periods: days(10, '2026-09-28'), asOf: '2026-09-28' }), { pct: Number(((7 / 102) * 100).toFixed(1)), over: '7 days' })
 })
 
 test('only a series the desk has written up is chartable', () => {

@@ -21,6 +21,7 @@
 // decision by the writer.
 
 import { CC_TO_TOPOJSON_NAME } from '../../shared/countries/iso.ts'
+import { completedCloses } from './companies.js'
 import { extractEntities, tagMatcher } from './entity-registry.js'
 
 /** Four significant figures — what a sentence can carry and what the rail
@@ -290,55 +291,6 @@ export const oddsScore = (ind, text, lower) => {
 }
 
 /**
- * The value at the latest observation on or before `days` before the last.
- *
- * Contracts are sampled more than once a day (`Sep 30, Sep 30`), so counting
- * observations is not counting days. The period labels carry no year; it comes
- * from `asOf`, stepping back a year when the label's month is later.
- */
-const valueDaysBack = (ind, days, slackDays = Infinity) => {
-  const values = ind.values || []
-  const periods = ind.periods || []
-  const end = Date.parse(`${ind.asOf}T00:00:00Z`)
-  if (!Number.isFinite(end) || values.length !== periods.length) return null
-  const year = new Date(end).getUTCFullYear()
-  const target = end - days * DAY
-  for (let i = periods.length - 1; i >= 0; i--) {
-    let t = Date.parse(`${periods[i]} ${year} 00:00:00 UTC`)
-    if (!Number.isFinite(t)) return null
-    if (t > end) t = Date.parse(`${periods[i]} ${year - 1} 00:00:00 UTC`)
-    if (t <= target && Number.isFinite(values[i])) return t >= target - slackDays * DAY ? values[i] : null
-  }
-  return null
-}
-
-/**
- * The move the app's chart prints beside a daily series: seven calendar days,
- * anchored on the last observation on or before a week before the newest, and
- * none when that anchor is more than three days late (`gaugeMove`,
- * mobile/lib/cards/week-move.ts — the same rule, so the same number).
- *
- * This replaced seven *observations*, which on a series that skips weekends is
- * nine days. And it is the move the prompt says to cite for a charted series:
- * the first real run wrote "Brent crude's 23% monthly jump" over a chart whose
- * chip said ▼12% over 7 days — both true, and a contradiction to anyone
- * reading one under the other.
- */
-export const weekMove = (ind) => {
-  const last = (ind.values || []).filter(Number.isFinite).at(-1)
-  const then = valueDaysBack(ind, 7, 3)
-  if (!Number.isFinite(last) || then == null || then === 0) return null
-  return { pct: Number((((last - then) / Math.abs(then)) * 100).toFixed(1)), over: '7 days' }
-}
-
-const pointsMove = (ind, days) => {
-  const last = (ind.values || []).at(-1)
-  const then = valueDaysBack(ind, days)
-  if (!Number.isFinite(last) || then == null) return null
-  return { points: Math.round(last - then), over: `${days} days` }
-}
-
-/**
  * A row's observations with the day each fell on, oldest first, or null when
  * they cannot be dated.
  *
@@ -346,6 +298,12 @@ const pointsMove = (ind, days) => {
  * itself. Otherwise the period labels, which have no year. The newest is
  * placed by `asOf`, and the year steps back wherever a label would fall after
  * the one that follows it (a series across New Year).
+ *
+ * **The newest label may be later than `asOf`, and is not last year's for
+ * it.** `asOf` is the last *completed* close, and a series fetched while its
+ * exchange is open ends in today's bar. Read as "a label after `asOf` is the
+ * year before", that bar became a year-old anchor and the week had no move:
+ * 12 of the 26 exchanges in the `.markets.json` of 2026-10-09 10:09.
  *
  * @param {{ values?: number[], periods?: string[], dates?: string[], asOf?: string }} ind
  * @returns {{ t: number, v: number }[] | null}
@@ -378,6 +336,51 @@ const datedPoints = (ind) => {
     if (Number.isFinite(days[i]) && Number.isFinite(values[i])) points.push({ t: days[i], v: values[i] })
   }
   return points
+}
+
+/**
+ * The value at the latest observation on or before `days` before the newest,
+ * or null when there is none, or none within `slackDays` of it.
+ *
+ * Contracts are sampled more than once a day (`Sep 30, Sep 30`), so counting
+ * observations is not counting days. Counted from the newest observation, as
+ * the app counts (`weekMove`, mobile/lib/cards/week-move.ts), and not from
+ * `asOf`, which an open session's bar runs past.
+ */
+const valueDaysBack = (ind, days, slackDays = Infinity) => {
+  const points = datedPoints(ind)
+  if (!points?.length) return null
+  const target = points[points.length - 1].t - days * DAY
+  for (let i = points.length - 1; i >= 0; i--) {
+    if (points[i].t <= target) return points[i].t >= target - slackDays * DAY ? points[i].v : null
+  }
+  return null
+}
+
+/**
+ * The move the app's chart prints beside a daily series: seven calendar days,
+ * anchored on the last observation on or before a week before the newest, and
+ * none when that anchor is more than three days late (`gaugeMove`,
+ * mobile/lib/cards/week-move.ts — the same rule, so the same number).
+ *
+ * This replaced seven *observations*, which on a series that skips weekends is
+ * nine days. And it is the move the prompt says to cite for a charted series:
+ * the first real run wrote "Brent crude's 23% monthly jump" over a chart whose
+ * chip said ▼12% over 7 days — both true, and a contradiction to anyone
+ * reading one under the other.
+ */
+export const weekMove = (ind) => {
+  const last = (ind.values || []).filter(Number.isFinite).at(-1)
+  const then = valueDaysBack(ind, 7, 3)
+  if (!Number.isFinite(last) || then == null || then === 0) return null
+  return { pct: Number((((last - then) / Math.abs(then)) * 100).toFixed(1)), over: '7 days' }
+}
+
+const pointsMove = (ind, days) => {
+  const last = (ind.values || []).at(-1)
+  const then = valueDaysBack(ind, days)
+  if (!Number.isFinite(last) || then == null) return null
+  return { points: Math.round(last - then), over: `${days} days` }
 }
 
 /**
@@ -569,10 +572,16 @@ export function offerFor(story, { trends, chokepoints = [], markets = [], dispat
     }
   }
 
+  // An exchange is read at its completed sessions (`completedCloses`), which
+  // is what its `asOf` dates. A snapshot taken while the exchange is open ends
+  // in that minute's price, and the level was read off the end: London on
+  // 2026-10-09 would have been offered 10,540 "as of 8 October", a day whose
+  // close was 10,441.6. A level that cannot be dated is dropped, not dated.
   for (const id of exchanges) {
     const m = markets.find((x) => `mkt:${x.id}` === id)
-    const values = (m?.series?.values || []).filter(Number.isFinite)
-    if (!m || values.length < 2) continue
+    if (!m || !Array.isArray(m.series?.values) || !Array.isArray(m.series?.periods)) continue
+    const closes = { ...completedCloses(m.series), asOf: m.asOf }
+    if (closes.values.length < 2) continue
     const age = ageDays(m.asOf, 'daily', now)
     if (isStale(age, 'daily')) {
       stale++
@@ -582,10 +591,10 @@ export function offerFor(story, { trends, chokepoints = [], markets = [], dispat
       id,
       kind: 'exchange',
       label: `${m.indexName} (${m.name})`,
-      level: sig4(values.at(-1)),
+      level: sig4(closes.values.at(-1)),
       unit: `index points${m.currency ? `, priced in ${m.currency}` : ''}`,
-      recent: weekMove({ values: m.series.values, periods: m.series.periods, asOf: m.asOf }),
-      wider: daysMove({ ...m.series, asOf: m.asOf }, WIDER_DAYS),
+      recent: weekMove(closes),
+      wider: daysMove(closes, WIDER_DAYS),
       asOf: m.asOf,
       ageDays: age,
       chart: hasStanding(id),
