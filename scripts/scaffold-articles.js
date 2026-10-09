@@ -4,7 +4,7 @@
 // no reason to spend LLM tokens on data the pipeline already has. What is
 // filled, and how it is escaped, is `scaffoldArticle` in `lib/scaffold.js`.
 import { existsSync, readFileSync } from 'node:fs'
-import { resolve } from 'node:path'
+import { batchFiles } from './lib/article-files.js'
 import { pathOf } from './lib/datasets.js'
 import { writeText } from './lib/json-file.js'
 import { scaffoldArticle } from './lib/scaffold.js'
@@ -20,7 +20,7 @@ export function main() {
   }
 
   const selection = JSON.parse(readFileSync(SELECTION_PATH, 'utf-8'))
-  const files = readFileSync(NEW_ARTICLES_PATH, 'utf-8').trim().split('\n').filter(Boolean)
+  const files = batchFiles(NEW_ARTICLES_PATH)
 
   const selectionBySlug = new Map()
   for (const story of selection) {
@@ -29,10 +29,9 @@ export function main() {
 
   let filled = 0
 
-  for (const f of files) {
-    const full = resolve(f)
+  for (const { path: full, name } of files) {
     if (!existsSync(full)) continue
-    const story = selectionBySlug.get(full.replace(/.*\//, '').replace(/\.md$/, ''))
+    const story = selectionBySlug.get(name.replace(/\.md$/, ''))
     if (!story) continue
     const next = scaffoldArticle(readFileSync(full, 'utf-8'), story)
     if (next !== null) {

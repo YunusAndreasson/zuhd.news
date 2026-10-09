@@ -1,5 +1,10 @@
 import assert from 'node:assert/strict'
+import { spawnSync } from 'node:child_process'
+import { mkdtempSync, writeFileSync } from 'node:fs'
+import { tmpdir } from 'node:os'
+import { join } from 'node:path'
 import { test } from 'node:test'
+import { ROOT } from './paths.js'
 import { contentWords, hookOf, titleEcho } from './title-echo.js'
 
 // Every pair is a published one (2026-09-20 to 10-03).
@@ -64,4 +69,27 @@ test('the dateline comes off by the location, and without one by the validator\'
 
 test('a title with no words of substance flags nothing', () => {
   assert.equal(titleEcho('', 'Anything at all.').echo, false)
+})
+
+// The entry script, started on a list of its own as the cycle starts it on the
+// batch. Its stdout is the editor's `<title-echo>` block, so an empty one has
+// to mean that no hook echoes its title. It took the list's paths from the
+// working directory: started anywhere but the root it could read none of
+// them, skipped each in silence, and printed the same nothing.
+test('the script prints the flagged articles of a list, named as the list names them, from any directory', () => {
+  const dir = mkdtempSync(join(tmpdir(), 'title-echo-'))
+  const list = join(dir, 'new-articles.txt')
+  const echo = 'scripts/lib/fixtures/batch/2026-10-08-council-closes-the-bridge.md'
+  const sound = 'scripts/lib/fixtures/quarantined/2026-10-01-uae-prosecutor-probes-flydubai-cockpit-attack-pilot-vetting.md'
+  writeFileSync(list, `${sound}\n${echo}\nscripts/lib/fixtures/batch/not-there.md\n`)
+  const run = (/** @type {string} */ cwd, file = list) =>
+    spawnSync(process.execPath, [join(ROOT, 'scripts/flag-title-echo.js'), file], { cwd, encoding: 'utf8', env: { PATH: process.env.PATH ?? '' } })
+  const flagged = `ECHO ${echo}\n  title: Council Votes To Close The Bridge\n  hook:  The council voted on Tuesday to close the bridge.\n`
+
+  const fromRoot = run(ROOT)
+  assert.deepEqual([fromRoot.status, fromRoot.stdout, fromRoot.stderr], [0, flagged, ''])
+  assert.equal(run(dir).stdout, flagged, 'the list is read from the root, wherever the script is started')
+  // No list is no batch: nothing printed and nothing failed.
+  const none = run(ROOT, join(dir, 'no-such-list.txt'))
+  assert.deepEqual([none.status, none.stdout], [0, ''])
 })

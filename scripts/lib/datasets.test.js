@@ -70,7 +70,6 @@ const STILL_SPELLING = [
   'scripts/fetch-news-api.js',
   'scripts/fetch-news.js',
   'scripts/fetch-trends.js',
-  'scripts/flag-title-echo.js',
   'scripts/generate-briefing.js',
   'scripts/lib/company-gaps.js',
   'scripts/lib/coverage-window.js',

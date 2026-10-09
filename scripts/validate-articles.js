@@ -3,11 +3,11 @@
 // is moved to `.bad`, so it is not deployed; one that can be mended is mended
 // in place. What is judged, and how leniently, is `lib/validate-article.js`.
 import { existsSync, readFileSync, readdirSync, renameSync } from 'node:fs'
-import { basename, join, resolve } from 'node:path'
+import { basename, join } from 'node:path'
 import { tryReadArticle } from './lib/article.js'
+import { batchFiles } from './lib/article-files.js'
 import { pathOf } from './lib/datasets.js'
 import { readJson, writeText } from './lib/json-file.js'
-import { ROOT } from './lib/paths.js'
 import { runStage } from './lib/stage.js'
 import { latestTrendsPath } from './lib/trends-snapshot.js'
 import { createValidator, duplicateKey } from './lib/validate-article.js'
@@ -15,11 +15,11 @@ import { createValidator, duplicateKey } from './lib/validate-article.js'
 export function main() {
   const now = Date.now()
   const ARTICLES_DIR = pathOf('articles')
-  const files = readFileSync(pathOf('newArticles'), 'utf8').trim().split('\n').filter(Boolean)
+  const files = batchFiles()
 
   // What is already published, for the duplicate gates: the last four days by
   // filename, without the batch itself.
-  const batch = new Set(files.map((f) => basename(f)))
+  const batch = new Set(files.map((f) => f.name))
   const recentDay = new Date(now - 4 * 86400000).toISOString().slice(0, 10)
   const published = []
   for (const name of readdirSync(ARTICLES_DIR)) {
@@ -48,19 +48,18 @@ export function main() {
   /** @type {{ slug: string, reason: string }[]} */
   const flagged = []
 
-  for (const f of files) {
-    const full = resolve(ROOT, f)
+  for (const { rel: f, path: full, name } of files) {
     if (!existsSync(full)) continue
-    const { bad, text, events, problems } = validator.check(readFileSync(full, 'utf8'), basename(f))
+    const { bad, text, events, problems } = validator.check(readFileSync(full, 'utf8'), name)
     // Whole or not at all: an article is a record, and nothing writes it again.
     if (text !== null) writeText(full, text)
     for (const event of events) console.log(`${event}: ${f}`)
     if (bad) {
       console.log(`SKIP (${bad}): ${f}`)
       renameSync(full, `${full}.bad`)
-      dropped.push({ slug: basename(f, '.md'), reason: bad })
+      dropped.push({ slug: basename(name, '.md'), reason: bad })
     } else if (problems.length) {
-      flagged.push({ slug: basename(f, '.md'), reason: problems.join('; ') })
+      flagged.push({ slug: basename(name, '.md'), reason: problems.join('; ') })
     }
   }
 
