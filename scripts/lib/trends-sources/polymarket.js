@@ -115,6 +115,35 @@ export function orderCandidates(
   return [...head, ...overflow].map((x) => x.m)
 }
 
+/**
+ * The deck: the ordered candidates taken in turn until `limit` of them have a
+ * row. `rowFor` is the only thing here that reaches the network, so this has
+ * a test.
+ *
+ * The cut to `TOP_N` was made first and the rows asked for after it. A market
+ * with too short a history, or a line already decided, left its slot empty
+ * while eligible candidates stood behind the cut: 22 eligible, 20 cut and 19
+ * rows on 2026-10-09. The cut is on rows now, and a candidate past it is
+ * asked for a history only when one before it had none to give.
+ *
+ * @template M, R
+ * @param {M[]} ordered
+ * @param {number} limit
+ * @param {(m: M) => Promise<R | null>} rowFor
+ * @returns {Promise<{ rows: R[], tried: number }>}
+ */
+export async function takeRows(ordered, limit, rowFor) {
+  const rows = []
+  let tried = 0
+  for (const m of ordered) {
+    if (rows.length >= limit) break
+    tried++
+    const row = await rowFor(m)
+    if (row) rows.push(row)
+  }
+  return { rows, tried }
+}
+
 // Minimum daily points to chart usefully — a 2-point line is just a slope.
 const MIN_HISTORY_POINTS = 5
 
@@ -225,8 +254,8 @@ export function pickOutcome(ev, incumbentSlugs = new Set(), now = Date.now()) {
  * outcome each (`pickOutcome`). Pure, so it has a test.
  *
  * Each market is handed back with its parent event stitched into `events[0]`,
- * because that is where the rest of this file already looks for the event slug
- * it dedupes and builds the card URL from.
+ * because that is where the rest of this file looks for the event slug it
+ * builds the card URL from.
  *
  * `seen` is every market slug the response held, chosen or not. An incumbent
  * missing from it has left the top of the volume table; one that is in it and
@@ -772,48 +801,27 @@ export async function fetchPolymarketTop({ incumbents = [] } = {}) {
   const eligible = markets.filter((m) => !DROP_TITLE_RE.test(m.question || m.title || ''))
 
   // Incumbents first, then pinned subjects, then volume — see `orderCandidates`.
-  const filtered = orderCandidates(eligible, incumbentSlugs).slice(0, TOP_N)
+  const ordered = orderCandidates(eligible, incumbentSlugs)
 
-  {
-    const isIncumbent = (m) => incumbentSlugs.has(m.slug)
-    const keptIncumbents = filtered.filter(isIncumbent).length
-    const pinned = filtered.filter(
-      (m) => !isIncumbent(m) && PIN_TITLE_RE.test(m.question || m.title || ''),
-    ).length
-    // Against every outcome the response held, not the ones chosen: an
-    // incumbent that lost its event's pick was counted as gone from the top.
-    const goneAbsent = [...incumbentSlugs].filter((s) => !seen.has(s)).length
-    const goneFiltered = incumbentSlugs.size - keptIncumbents - goneAbsent
-    console.log(
-      `  · polymarket: ${markets.length} considered, ${eligible.length} eligible, ${filtered.length} kept — ` +
-        `${keptIncumbents}/${incumbentSlugs.size} incumbents kept, ${pinned} pinned, ` +
-        `${filtered.length - keptIncumbents - pinned} new; ` +
-        `${goneAbsent} incumbent(s) gone from the top ${TOP_N * 3}, ${goneFiltered} filtered out`,
-    )
-  }
-
-  const results = []
-  for (const m of filtered) {
-    // Decided markets pre-filter: lastTradePrice pinned to an extreme means the
-    // chart is a flat line — skip BEFORE paying for the CLOB history call.
-    // isDecidedSeries() below still catches tail-decided markets this misses.
-    const ltp = Number(m.lastTradePrice)
-    if (Number.isFinite(ltp) && (ltp >= 0.97 || ltp <= 0.03)) continue
-
+  /** One market's row, or null when it has no line worth drawing. */
+  const rowFor = async (m) => {
+    // A market decided by its last price never gets here: `pickOutcome` passes
+    // over it before any history is paid for. `isDecidedSeries` below is for
+    // the one whose line has sat at an extreme while its last trade has not.
     const tokens = parseOutcomeTokens(m)
-    if (!tokens) continue
+    if (!tokens) return null
 
     let history = []
     try {
       history = await fetchPriceHistory(tokens.tokenId)
     } catch (err) {
       console.error(`  ✗ polymarket history ${m.slug}: ${err.message}`)
-      continue
+      return null
     }
-    if (history.length < MIN_HISTORY_POINTS) continue
+    if (history.length < MIN_HISTORY_POINTS) return null
 
     const values = history.map((h) => Math.round((h.p || 0) * 100))
-    if (isDecidedSeries(values)) continue
+    if (isDecidedSeries(values)) return null
 
     const periods = history.map((h) => dayLabel(h.t * 1000))
     const asOf = isoDay((history[history.length - 1].t || 0) * 1000)
@@ -823,7 +831,7 @@ export async function fetchPolymarketTop({ incumbents = [] } = {}) {
 
     // Shortened label is filled in by a batched Haiku call after the loop so
     // we spend one Claude call on all kept markets rather than one each.
-    results.push({
+    return {
       // Given once the deck is settled (`deckIds`): an id depends on the rows
       // beside it.
       id: '',
@@ -852,46 +860,38 @@ export async function fetchPolymarketTop({ incumbents = [] } = {}) {
       // rather than after the model call, so a killed call costs a long header
       // and never a country tag.
       countryTags: countriesFromEventTags(m._eventTags),
-      // Internal — used for event-level dedupe below, not persisted.
-      _eventSlug: eventSlug,
-      _volume24hr: Number(m.volume24hr) || 0,
       // Internal — the previous snapshot's row for this market, so its label
       // and country tags can be reused below instead of re-bought from Haiku,
       // and its id kept.
       _incumbent: incumbentBySlug.get(m.slug) ?? null,
       // Internal — what the id is cut from.
       _slug: m.slug || rawTitle,
-    })
-  }
-
-  // Dedupe by event: many "neg-risk" markets (e.g. Fed +25/no change/-25/-50)
-  // share one event. Keep the highest-volume outcome per event so the editor
-  // sees one chart per real-world question rather than four near-duplicates.
-  const dedupedByEvent = new Map()
-  const standalone = []
-  for (const r of results) {
-    if (!r._eventSlug) {
-      standalone.push(r)
-      continue
-    }
-    const existing = dedupedByEvent.get(r._eventSlug)
-    if (!existing || r._volume24hr > existing._volume24hr) {
-      dedupedByEvent.set(r._eventSlug, r)
     }
   }
-  const deduped = [...standalone, ...dedupedByEvent.values()]
-  for (const r of deduped) {
-    delete r._eventSlug
-    delete r._volume24hr
+
+  // In order, until `TOP_N` of them have a row (`takeRows`). One row an event
+  // already: `pickOutcome` chose the outcome before any history was fetched,
+  // so there is no dedupe by event here any more.
+  const { rows: results, tried } = await takeRows(ordered, TOP_N, rowFor)
+
+  {
+    const keptIncumbents = results.filter((r) => r._incumbent).length
+    const pinned = results.filter((r) => !r._incumbent && PIN_TITLE_RE.test(r.rawTitle)).length
+    // Against every outcome the response held, not the ones chosen: an
+    // incumbent that lost its event's pick was counted as gone from the top.
+    const goneAbsent = [...incumbentSlugs].filter((s) => !seen.has(s)).length
+    const goneFiltered = incumbentSlugs.size - keptIncumbents - goneAbsent
+    console.log(
+      `  · polymarket: ${markets.length} considered, ${eligible.length} eligible, ${results.length} kept of ${tried} tried — ` +
+        `${keptIncumbents}/${incumbentSlugs.size} incumbents kept, ${pinned} pinned, ` +
+        `${results.length - keptIncumbents - pinned} new; ` +
+        `${goneAbsent} incumbent(s) gone from the top ${TOP_N * 3}, ${goneFiltered} filtered out`,
+    )
   }
 
-  if (deduped.length < results.length) {
-    console.log(`  · polymarket: deduped ${results.length} → ${deduped.length} (one per event)`)
-  }
-
-  const ids = deckIds(deduped.map((r) => ({ slug: r._slug, incumbentId: r._incumbent?.id })))
-  for (let i = 0; i < deduped.length; i++) deduped[i].id = ids[i]
-  const parted = ids.filter((id, i) => id !== `poly-${sanitizeSlug(deduped[i]._slug)}`)
+  const ids = deckIds(results.map((r) => ({ slug: r._slug, incumbentId: r._incumbent?.id })))
+  for (let i = 0; i < results.length; i++) results[i].id = ids[i]
+  const parted = ids.filter((id, i) => id !== `poly-${sanitizeSlug(results[i]._slug)}`)
   if (parted.length > 0) {
     console.log(`  · polymarket: ${parted.length} id(s) parted from a twin alike for 48 characters: ${parted.join(', ')}`)
   }
@@ -914,8 +914,8 @@ export async function fetchPolymarketTop({ incumbents = [] } = {}) {
   // than kept: the sticky label made one failed shortening permanent for as
   // long as the market stayed in the deck.
   const truncated = (r) => typeof r._incumbent?.label === 'string' && r._incumbent.label.endsWith('…')
-  const held = deduped.filter((r) => r._incumbent && !truncated(r))
-  const fresh = deduped.filter((r) => !r._incumbent || truncated(r))
+  const held = results.filter((r) => r._incumbent && !truncated(r))
+  const fresh = results.filter((r) => !r._incumbent || truncated(r))
   for (const r of held) {
     if (typeof r._incumbent.label === 'string' && r._incumbent.label) r.label = r._incumbent.label
     r.countryTags = [
@@ -956,14 +956,13 @@ export async function fetchPolymarketTop({ incumbents = [] } = {}) {
       console.log(`  · polymarket: ${rejected} shortened title(s) rejected, kept the regex form`)
     }
   }
-  for (const r of deduped) {
+  for (const r of results) {
     delete r.rawTitle
-    delete r._eventTags
     delete r._incumbent
     delete r._slug
   }
 
-  return deduped
+  return results
 }
 
 /** A series is "decided" if its tail (last DECIDED_TAIL_FRACTION of points)

@@ -10,6 +10,7 @@ import {
   PIN_TITLE_RE,
   pickOutcome,
   shortenTitlesViaHaiku,
+  takeRows,
 } from './trends-sources/polymarket.js'
 
 // Selection used to re-roll by volume every cycle, orphaning the narration
@@ -57,6 +58,27 @@ test('incumbents beyond the cap fall to the end, so a newcomer always has a slot
     3,
   )
   assert.deepEqual(ids(rows), ['i1', 'i2', 'i3', 'fresh', 'i4'])
+})
+
+test('the deck is filled past a candidate with no line to draw, and no further than it needs', async () => {
+  // 22 eligible on 2026-10-09, cut to 20 before the histories were asked for,
+  // and 19 rows: the 20th's history was too short and the 21st was never tried.
+  const ordered = Array.from({ length: 22 }, (_, i) => m(`market-${i + 1}`, 100 - i))
+  const asked = []
+  const rowFor = async (market) => {
+    asked.push(market.slug)
+    return market.slug === 'market-20' ? null : { id: market.slug }
+  }
+  const { rows, tried } = await takeRows(ordered, 20, rowFor)
+  assert.equal(rows.length, 20)
+  assert.deepEqual([rows[18].id, rows[19].id], ['market-19', 'market-21'])
+  assert.deepEqual([tried, asked.length, asked.at(-1)], [21, 21, 'market-21'], 'market-22 is not asked for a history')
+  // With nothing to pass over it stops at the limit, as the cut did.
+  const full = await takeRows(ordered, 20, async (market) => ({ id: market.slug }))
+  assert.deepEqual([full.rows.length, full.tried], [20, 20])
+  // And a short list is all tried.
+  const few = await takeRows(ordered.slice(0, 3), 20, async () => null)
+  assert.deepEqual(few, { rows: [], tried: 3 })
 })
 
 test('PIN_TITLE_RE names waterways and oil, not the Fed', () => {
