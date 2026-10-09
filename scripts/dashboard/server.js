@@ -5,13 +5,13 @@
 import { createServer } from 'node:http'
 import { readFileSync, readdirSync, existsSync, statSync, watch, writeFileSync } from 'node:fs'
 import { join } from 'node:path'
-import { execSync } from 'node:child_process'
+import { spawnSync } from 'node:child_process'
 import { parseCycleLog } from '../lib/cycle-log.js'
 import { parseFrontmatter } from '../lib/frontmatter.js'
 import { scoreDir } from '../lib/quality-score.js'
 import { regionFromCoords } from '../lib/regions.js'
 import { ROOT } from '../lib/paths.js'
-import { SENT, listener } from './data.js'
+import { SENT, SYSTEMD_SHOW, listener, systemdView } from './data.js'
 
 const PORT = 7777
 const HOST = '127.0.0.1'
@@ -104,23 +104,15 @@ function getLogTail(filename, lines = 50) {
 
 // ── Systemd Queries ─────────────────────────────────────────────────
 
+/**
+ * One question to systemd, with a deadline. `spawnSync` and not `execSync`:
+ * whatever status `systemctl` exits with, what it printed is what is read
+ * (`systemdView`), and a call that fails or runs out of time reads as nothing
+ * known rather than taking the request down.
+ */
 function systemdStatus() {
-  try {
-    const isActive = execSync('systemctl is-active zuhd-news-cycle.service 2>/dev/null', { encoding: 'utf-8' }).trim()
-    const timerShow = execSync(
-      'systemctl show zuhd-news-cycle.timer --property=NextElapseUSecRealtime,LastTriggerUSec 2>/dev/null',
-      { encoding: 'utf-8' }
-    )
-    const nextMatch = timerShow.match(/NextElapseUSecRealtime=(.+)/)
-    const lastMatch = timerShow.match(/LastTriggerUSec=(.+)/)
-    return {
-      serviceActive: isActive === 'active' || isActive === 'activating',
-      nextFire: nextMatch ? nextMatch[1] : null,
-      lastTrigger: lastMatch ? lastMatch[1] : null,
-    }
-  } catch {
-    return { serviceActive: false, nextFire: null, lastTrigger: null }
-  }
+  const res = spawnSync('systemctl', SYSTEMD_SHOW, { encoding: 'utf-8', timeout: 2000 })
+  return systemdView(res.stdout)
 }
 
 // ── Health Indicators ───────────────────────────────────────────────

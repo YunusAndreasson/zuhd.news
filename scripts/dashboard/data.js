@@ -72,3 +72,63 @@ export function listener(routes) {
     }
   }
 }
+
+// ── systemd ──────────────────────────────────────────────────────────
+
+/** The units the cycle is: the service that runs one, and the timer that starts it. */
+export const CYCLE_UNITS = ['zuhd-news-cycle.service', 'zuhd-news-cycle.timer']
+
+/** What `systemdView` reads, as `systemctl show` is asked for it. */
+export const SYSTEMD_SHOW = ['show', ...CYCLE_UNITS, '--timestamp=utc', '-p', 'Id,ActiveState,NextElapseUSecRealtime,LastTriggerUSec']
+
+/**
+ * `Fri 2026-10-09 14:00:00 UTC`, a moment as `systemctl --timestamp=utc`
+ * prints it, to ISO. Anything else is null and not a guess: `n/a` for a timer
+ * that never fired, nothing for one with no next run.
+ *
+ * @param {string | null | undefined} text
+ * @returns {string | null}
+ */
+export function isoFromSystemd(text) {
+  const m = String(text ?? '').trim().match(/^\w{3} (\d{4}-\d{2}-\d{2}) (\d{2}:\d{2}:\d{2}) UTC$/)
+  return m ? `${m[1]}T${m[2]}Z` : null
+}
+
+/**
+ * Whether a cycle is running and when the timer fires next, from what
+ * `systemctl show` (`SYSTEMD_SHOW`) printed: a block of `Key=value` lines a
+ * unit, a blank line between them.
+ *
+ * The service is `Type=oneshot`: while a cycle runs it is `activating`, and
+ * between cycles `inactive`. It is never `active`. The server used to ask
+ * `systemctl is-active`, which exits 3 for both of those; `execSync` threw on
+ * the status, the catch answered "inactive, no next run", and the query of
+ * the timer on the line after never ran. The page has shown "timer unknown"
+ * and a next run worked out from a schedule of its own for as long as that
+ * was so.
+ *
+ * Output that is empty or cut short (`systemctl` missing, timed out, not
+ * allowed) reads as nothing known.
+ *
+ * @param {string | null | undefined} shown
+ * @returns {{ serviceActive: boolean, nextFire: string | null, lastTrigger: string | null }}
+ */
+export function systemdView(shown) {
+  /** @type {Record<string, Record<string, string>>} */
+  const units = {}
+  for (const block of String(shown ?? '').split(/\n\s*\n/)) {
+    /** @type {Record<string, string>} */
+    const unit = {}
+    for (const line of block.split('\n')) {
+      const m = line.match(/^(\w+)=(.*)$/)
+      if (m) unit[m[1]] = m[2]
+    }
+    if (unit.Id) units[unit.Id] = unit
+  }
+  const [service, timer] = CYCLE_UNITS.map((id) => units[id])
+  return {
+    serviceActive: service?.ActiveState === 'activating' || service?.ActiveState === 'active',
+    nextFire: isoFromSystemd(timer?.NextElapseUSecRealtime),
+    lastTrigger: isoFromSystemd(timer?.LastTriggerUSec),
+  }
+}

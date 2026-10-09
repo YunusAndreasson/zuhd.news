@@ -1,7 +1,7 @@
 // Run: node --test scripts/lib/dashboard.test.js
 import assert from 'node:assert/strict'
 import { test } from 'node:test'
-import { SENT, listener } from '../dashboard/data.js'
+import { CYCLE_UNITS, SENT, SYSTEMD_SHOW, isoFromSystemd, listener, systemdView } from '../dashboard/data.js'
 
 // ── The listener ─────────────────────────────────────────────────────
 
@@ -88,4 +88,43 @@ test('a route that wrote its own response is left alone, also when it fails half
   const stream = response()
   listen(/** @type {any} */ ({ url: '/api/live' }), /** @type {any} */ (stream))
   assert.deepEqual([stream.status, stream.ended, stream.body], [200, true, null], 'ended, with no second head')
+})
+
+// ── systemd ──────────────────────────────────────────────────────────
+
+/** `systemctl show` for the two units, as SYSTEMD_SHOW asks: the service in `state`, the timer with these moments. */
+const shown = (state, next = 'Fri 2026-10-09 14:00:00 UTC', last = 'Fri 2026-10-09 10:00:07 UTC') =>
+  `Id=zuhd-news-cycle.service\nActiveState=${state}\n\nId=zuhd-news-cycle.timer\nActiveState=active\nNextElapseUSecRealtime=${next}\nLastTriggerUSec=${last}\n`
+
+// The service is a oneshot: `activating` for as long as a cycle runs, never
+// `active`. Asked through `systemctl is-active`, which exits 3 for anything
+// but `active`, the answer was "inactive, timer unknown" at every hour.
+test('between cycles the service is idle and the timer says when the next one starts', () => {
+  assert.deepEqual(systemdView(shown('inactive')), { serviceActive: false, nextFire: '2026-10-09T14:00:00Z', lastTrigger: '2026-10-09T10:00:07Z' })
+})
+
+test('a cycle that is running is seen as running', () => {
+  assert.equal(systemdView(shown('activating')).serviceActive, true)
+  assert.equal(systemdView(shown('active')).serviceActive, true)
+  for (const state of ['failed', 'deactivating', '']) assert.equal(systemdView(shown(state)).serviceActive, false, state)
+})
+
+test('the units are read by name, whichever order they are printed in', () => {
+  const [service, timer] = shown('activating').split('\n\n')
+  assert.deepEqual(systemdView(`${timer}\n${service}`), systemdView(shown('activating')))
+})
+
+test('what systemd did not say is not guessed', () => {
+  const nothing = { serviceActive: false, nextFire: null, lastTrigger: null }
+  assert.deepEqual(systemdView(''), nothing, 'systemctl failed, or ran out of time')
+  assert.deepEqual(systemdView(undefined), nothing)
+  assert.deepEqual(systemdView(shown('inactive', '', 'n/a')), nothing, 'a timer with no next run that never fired')
+  assert.equal(isoFromSystemd('Fri 2026-10-09 16:00:00 CEST'), null, 'another zone')
+  assert.equal(isoFromSystemd('Fri 2026-10-09 14:00:00 UTC'), '2026-10-09T14:00:00Z')
+})
+
+test('systemd is asked once, for both units, in UTC', () => {
+  assert.deepEqual(SYSTEMD_SHOW.slice(0, 3), ['show', ...CYCLE_UNITS])
+  assert.ok(SYSTEMD_SHOW.includes('--timestamp=utc'))
+  for (const property of ['Id', 'ActiveState', 'NextElapseUSecRealtime', 'LastTriggerUSec']) assert.ok(SYSTEMD_SHOW.at(-1)?.split(',').includes(property), property)
 })

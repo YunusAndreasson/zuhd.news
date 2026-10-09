@@ -858,14 +858,17 @@ function formatSystemdTime(raw) {
   } catch { return raw }
 }
 
+// Only for when systemd could not be asked: the timer unit is the schedule,
+// and the server sends its next run. 05, 10, 14, 18 and 22 UTC since
+// 2026-09-25; this said 04, 08, 12, 17, 22 for two weeks after that.
 function computeNextCycle() {
   const now = new Date()
-  const hours = [4, 8, 12, 17, 22]
+  const hours = [5, 10, 14, 18, 22]
   const nowH = now.getUTCHours() * 60 + now.getUTCMinutes()
   for (const h of hours) {
     if (h * 60 > nowH) return `${String(h).padStart(2, '0')}:00 utc`
   }
-  return '04:00 utc (tomorrow)'
+  return `${String(hours[0]).padStart(2, '0')}:00 utc (tomorrow)`
 }
 
 function renderCycleGrid(cycles) {
