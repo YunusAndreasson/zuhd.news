@@ -137,11 +137,23 @@ test('a log that cannot be read stops the post, and is not written over', async 
   assert.equal(readFileSync(join(dir, 'cut.json'), 'utf8'), '[{"slug": "2026-10-08-a", "sent": tr')
 })
 
-test('a platform that throws does not stop the cycle', async () => {
-  const p = poster({
+// X answered "credits depleted" to every tweet from 2026-09-18 and each run
+// ended on 0, which is what the cycle reads: 97 refusals, no warning line.
+test('a post the platform refuses is in the log first, and then fails the step', async () => {
+  const path = join(dir, 'refused.json')
+  const p = poster({ post: async ({ slug, log }) => log.add({ slug, sent: false, error: 'credits depleted' }) })
+  assert.deepEqual(await postStory('post-to-twitter', p, { slug: '2026-10-08-a', dryRun: false, ...io('refused') }), { exitCode: 1, degraded: 'credits depleted' })
+  assert.deepEqual(JSON.parse(readFileSync(path, 'utf8')), [{ slug: '2026-10-08-a', sent: false, error: 'credits depleted' }])
+  assert.equal(postLog('tweetLog', { path }).has('2026-10-08-a'), false, 'so the next cycle may try the story again')
+})
+
+test('an attempt that throws fails the step too, and one that went out does not', async () => {
+  const thrown = poster({
     post: async () => {
       throw new Error('fetch failed')
     },
   })
-  assert.deepEqual(await postStory('post-to-twitter', p, { slug: '2026-10-08-a', dryRun: false, ...io('throws') }), { exitCode: 0 })
+  assert.deepEqual(await postStory('post-to-twitter', thrown, { slug: '2026-10-08-a', dryRun: false, ...io('throws') }), { exitCode: 1, degraded: 'fetch failed' })
+  const sent = poster({ post: async ({ slug, log }) => log.add({ slug, tweetId: '1', sent: true }) })
+  assert.deepEqual(await postStory('post-to-twitter', sent, { slug: '2026-10-08-a', dryRun: false, ...io('went-out') }), { exitCode: 0 })
 })

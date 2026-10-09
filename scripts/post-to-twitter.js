@@ -15,8 +15,9 @@
 //     can't be posted.
 //   - Posting uses OAuth 1.0a User Context (4 static keys) — signed by hand
 //     with node:crypto, no dependency.
-//   - Non-fatal: any operational failure logs a warning and exits 0 so the
-//     cycle is never aborted. Deduped via content/.tweet-log.json.
+//   - Non-fatal: the cycle goes on whatever this exits with. A post that did
+//     not go out is logged and ends on 1, so the cycle says the step failed.
+//     Deduped via content/.tweet-log.json.
 //
 // Usage: node scripts/post-to-twitter.js --slug <slug> [--text "..."] [--dry-run]
 
@@ -139,7 +140,10 @@ async function uploadMedia(buffer) {
 }
 
 // --- post ---
-/** @param {import('./lib/social-post.js').PostContext} ctx */
+/**
+ * @param {import('./lib/social-post.js').PostContext} ctx
+ * @returns {Promise<Record<string, any> | void>} the entry it logged, when it got as far as posting
+ */
 async function post({ slug, dryRun, story, log }) {
   // The card image IS the tweet — no text above it.
   const img = makeCard(story.card)
@@ -161,10 +165,7 @@ async function post({ slug, dryRun, story, log }) {
     else console.log(`[dry-run] would POST ${API_URL} — auth header OK (${authHeader('POST', API_URL).length} chars).`)
     return
   }
-  if (!mediaIds.length && !text) {
-    console.error('post-to-twitter: no image and no fallback text — skipping.')
-    return
-  }
+  if (!mediaIds.length && !text) throw new Error('no image and no fallback text')
   const res = await fetch(API_URL, {
     method: 'POST',
     headers: {
@@ -176,7 +177,7 @@ async function post({ slug, dryRun, story, log }) {
   const json = await res.json().catch(() => ({}))
   if (res.ok && json?.data?.id) {
     console.log(`post-to-twitter: posted ${json.data.id} (${mediaIds.length ? 'card image' : 'text'})`)
-    log.add({
+    return log.add({
       timestamp: new Date().toISOString(),
       slug,
       tweetId: json.data.id,
@@ -184,11 +185,11 @@ async function post({ slug, dryRun, story, log }) {
       ...(text ? { text } : {}),
       sent: true,
     })
-  } else {
-    const err = json?.detail || json?.title || `HTTP ${res.status}`
-    console.error(`post-to-twitter: X API error — ${err}`)
-    log.add({ timestamp: new Date().toISOString(), slug, sent: false, error: String(err) })
   }
+  // Refused. The entry is what tells the runner so, and it ends the step on 1.
+  const err = json?.detail || json?.title || `HTTP ${res.status}`
+  console.error(`post-to-twitter: X API error — ${err}`)
+  return log.add({ timestamp: new Date().toISOString(), slug, sent: false, error: String(err) })
 }
 
 await runPoster(import.meta, 'post-to-twitter', {

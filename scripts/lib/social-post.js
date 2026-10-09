@@ -87,14 +87,21 @@ export async function writeCopy(promptFile, story, { who, timeoutMs = 30_000, ca
  * @property {boolean} haveCreds whether every credential it needs is set
  * @property {string} noCreds what it says when they are not: `X_* credentials not set — skipping tweet.`
  * @property {string} done what it says of a story that has gone out: `already tweeted`
- * @property {(ctx: PostContext) => Promise<void>} post the platform's part
+ * @property {(ctx: PostContext) => Promise<Record<string, any> | void>} post the platform's part. It returns the
+ *   entry it put in the log, if it put one: `sent: false` there is a post the platform refused
  */
 
 /**
  * Everything around the post, in the order both scripts did it: the slug, the
  * credentials, the log, the article, and then the platform's part. Nothing
- * here stops the cycle. A post that fails is a line in the log and the next
- * stage runs.
+ * here stops the cycle: whatever a poster exits with, the next stage runs.
+ *
+ * A post that did not go out ends the script on 1, whether the platform
+ * refused it (the entry it logged says `sent: false`) or the attempt threw.
+ * Both used to end on 0, which the cycle reads as a post: X answered
+ * "credits depleted" to every tweet from 2026-09-18, 97 in a row by 10-09, and
+ * no cycle printed its `⚠ tweet step failed` line. The entry is in the log
+ * before the status is decided.
  *
  * Returns what `runStage` reports, with the exit status the script ends on.
  *
@@ -129,11 +136,15 @@ export async function postStory(name, poster, { slug = argAt('slug'), dryRun = h
     console.error(`${name}: article not found (${join(pathOf('articles'), `${slug}.md`)}) — skipping.`)
     return { exitCode: 0, skipped: 'no article' }
   }
+  let entry
   try {
-    await poster.post({ slug, dryRun, story, log })
+    entry = await poster.post({ slug, dryRun, story, log })
   } catch (e) {
-    console.error(`${name}: ${/** @type {Error} */ (e).message} — non-fatal, cycle continues.`)
+    const { message } = /** @type {Error} */ (e)
+    console.error(`${name}: ${message} — non-fatal, cycle continues.`)
+    return { exitCode: 1, degraded: message }
   }
+  if (entry?.sent === false) return { exitCode: 1, degraded: String(entry.error ?? 'not sent') }
   return { exitCode: 0 }
 }
 

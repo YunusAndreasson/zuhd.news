@@ -21,8 +21,9 @@
 //     long-lived / system-user access token — plain fetch, no SDK.
 //   - Reach: keyword-rich caption, the article URL as the first comment, and a
 //     Story cross-post. The app link lives in the IG bio (zuhd.news/get).
-//   - Non-fatal: any operational failure logs a warning and exits 0 so the cycle
-//     is never aborted. Deduped via content/.instagram-log.json.
+//   - Non-fatal: the cycle goes on whatever this exits with. A post that did
+//     not go out is logged and ends on 1, so the cycle says the step failed.
+//     Deduped via content/.instagram-log.json.
 //
 // Usage: node scripts/post-to-instagram.js --slug <slug> [--dry-run]
 
@@ -115,7 +116,10 @@ async function publishImage({ imageUrl, mediaType, extra = {} }) {
 }
 
 // --- run ---
-/** @param {import('./lib/social-post.js').PostContext} ctx */
+/**
+ * @param {import('./lib/social-post.js').PostContext} ctx
+ * @returns {Promise<Record<string, any> | void>} the entry it logged, when it got as far as posting
+ */
 async function post({ slug, dryRun, story, log }) {
   // The card headline is the social-optimized socialTitle when present (written
   // pre-build by pick-breaking-social.js), else the article title — the same
@@ -175,7 +179,7 @@ async function post({ slug, dryRun, story, log }) {
       console.error(`post-to-instagram: story cross-post failed (non-fatal) — ${e.message}`)
     }
 
-    log.add({
+    return log.add({
       timestamp: new Date().toISOString(),
       slug,
       headline,
@@ -186,7 +190,8 @@ async function post({ slug, dryRun, story, log }) {
       sent: true,
     })
   } catch (e) {
-    // Record the failure so we can see it in the log, but never abort the cycle.
+    // Record the failure so we can see it in the log; the runner says it and
+    // ends the step on 1.
     try {
       log.add({ timestamp: new Date().toISOString(), slug, headline, caption, sent: false, error: String(e.message) })
     } catch {
