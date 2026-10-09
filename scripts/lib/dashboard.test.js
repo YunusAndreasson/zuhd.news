@@ -1,10 +1,10 @@
 // Run: node --test scripts/lib/dashboard.test.js
 import assert from 'node:assert/strict'
 import { test } from 'node:test'
-import { mkdtempSync, readFileSync, readdirSync, rmSync, utimesSync, writeFileSync } from 'node:fs'
+import { appendFileSync, mkdtempSync, readFileSync, readdirSync, rmSync, utimesSync, writeFileSync } from 'node:fs'
 import { tmpdir } from 'node:os'
 import { join } from 'node:path'
-import { CYCLE_UNITS, SENT, SYSTEMD_SHOW, byFileState, cycleView, feedFailures, isCycleLog, isoFromSystemd, keepDay, listener, readSeries, systemdView, withDay } from '../dashboard/data.js'
+import { CYCLE_UNITS, SENT, SYSTEMD_SHOW, byFileState, cycleView, feedFailures, isCycleLog, isoFromSystemd, keepDay, listener, nextLog, readSeries, systemdView, tailOf, withDay } from '../dashboard/data.js'
 import { parseCycleLog } from './cycle-log.js'
 
 // ── The listener ─────────────────────────────────────────────────────
@@ -326,4 +326,60 @@ test('a feed source failed in a cycle when Stage 0 said so, and once however oft
   assert.deepEqual(feedFailures([twice, once, clean]), { Bellingcat: 2, 'Mada Masr': 1 })
   assert.deepEqual(feedFailures([clean]), {}, 'the trend fetch is not a feed')
   assert.deepEqual(feedFailures([]), {})
+})
+
+// ── The live tail ────────────────────────────────────────────────────
+
+const logFile = () => join(mkdtempSync(join(tmpdir(), 'dashboard-')), 'cycle-2026-10-09_0501.log')
+
+// The place was taken from the file's size in bytes and used to cut its text
+// in characters. With 30 three-byte signs in the log before it, a line
+// written after the page connected arrived without its first 60 characters.
+test('lines written after the tail began arrive whole, whatever is in the log before them', () => {
+  const path = logFile()
+  writeFileSync(path, `${'  ✓ Bellingcat → 3 stories — ok\n'.repeat(10)}`)
+  const tail = tailOf(path)
+  assert.deepEqual(tail.read(), [], 'nothing new yet')
+  appendFileSync(path, 'Merged feed: 12 multi + 48 niche — 30s\n\n--- Stage 1: Selector ---\n')
+  assert.deepEqual(tail.read(), ['Merged feed: 12 multi + 48 niche — 30s', '--- Stage 1: Selector ---'])
+  assert.deepEqual(tail.read(), [])
+})
+
+test('a line half written waits for its end, and so does a sign split between two writes', () => {
+  const path = logFile()
+  writeFileSync(path, 'Started\nSelector ex')
+  const tail = tailOf(path)
+  appendFileSync(path, 'it: 0 ')
+  assert.deepEqual(tail.read(), [], 'no newline yet')
+  appendFileSync(path, Buffer.from([0xe2, 0x80]))
+  assert.deepEqual(tail.read(), [])
+  appendFileSync(path, Buffer.concat([Buffer.from([0x94]), Buffer.from(' 188s\nSelection con')]))
+  assert.deepEqual(tail.read(), ['Selector exit: 0 — 188s'], 'the line it joined mid-way comes whole, the next one not yet')
+  appendFileSync(path, 'tains 11 stories\n')
+  assert.deepEqual(tail.read(), ['Selection contains 11 stories'])
+})
+
+test('a new log is read from its first line, one begun again from the top, and one that is gone has no lines', () => {
+  const path = logFile()
+  const fresh = tailOf(path, 'start')
+  assert.deepEqual(fresh.read(), [], 'not there yet')
+  writeFileSync(path, '=== zuhd.news editorial cycle ===\nStarted: Fri Oct  9 05:01:27 AM UTC 2026\n')
+  assert.deepEqual(fresh.read(), ['=== zuhd.news editorial cycle ===', 'Started: Fri Oct  9 05:01:27 AM UTC 2026'])
+
+  // A second cycle in the same minute starts the log over.
+  writeFileSync(path, '=== again ===\n')
+  assert.deepEqual(fresh.read(), ['=== again ==='])
+  rmSync(path)
+  assert.deepEqual(fresh.read(), [])
+})
+
+// It held on to the log that was newest when the page connected, and said
+// "new cycle" again for every line the new one wrote.
+test('the tail moves to a newer cycle log, once, and to nothing else', () => {
+  const [old, next] = ['cycle-2026-10-09_0501.log', 'cycle-2026-10-09_1000.log']
+  assert.equal(nextLog(old, next), next)
+  assert.equal(nextLog(next, next), null, 'a write to the log being followed is not a new cycle')
+  assert.equal(nextLog(next, old), null, 'nor is one to an older log')
+  assert.equal(nextLog(null, old), old, 'the first log there is')
+  for (const name of ['cycles.jsonl', 'runs', `${next}.123.tmp`, null, undefined]) assert.equal(nextLog(old, name), null, String(name))
 })

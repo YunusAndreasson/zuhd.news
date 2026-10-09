@@ -1322,7 +1322,8 @@ async function loadLogs() {
     select.innerHTML = logCycles.map(c =>
       `<option value="${c.filename}">${c.filename}${c.completed ? '' : ' (running)'}</option>`
     ).join('')
-    select.addEventListener('change', () => loadCycleDetail(select.value))
+    // Assigned, not added: the list is rebuilt when a cycle starts.
+    select.onchange = () => loadCycleDetail(select.value)
   }
   loadCycleDetail(logCycles[0].filename)
   connectSSE()
@@ -1383,8 +1384,15 @@ function connectSSE() {
         if (activeTab === 'logs') loadLogs()
         if (activeTab === 'pipeline') loadPipeline()
       } else if (msg.type === 'new_cycle') {
+        // The server follows the new log from its first line: list it, and
+        // show it from there.
+        badge.hidden = false
         logCycles = null
-        if (activeTab === 'logs') loadLogs()
+        document.getElementById('log-select').innerHTML = ''
+        if (activeTab === 'logs') {
+          pre.textContent = ''
+          loadLogs()
+        }
       }
     } catch {}
   }

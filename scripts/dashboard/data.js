@@ -4,7 +4,7 @@
 // tested, and nothing was. The parts with a behaviour of their own live here
 // and the server is what wires them to a port.
 
-import { existsSync, statSync } from 'node:fs'
+import { closeSync, existsSync, openSync, readSync, statSync } from 'node:fs'
 import { cycleIdOf, cycleLogName, isoFromDateOutput } from '../lib/cycle-log.js'
 import { readJson, writeJson } from '../lib/json-file.js'
 
@@ -328,3 +328,83 @@ export function feedFailures(logs) {
   }
   return cycles
 }
+
+// ── The live tail ────────────────────────────────────────────────────
+
+/**
+ * Read `length` bytes of a file from `from`.
+ *
+ * @param {string} path
+ * @param {number} from
+ * @param {number} length
+ */
+function bytesAt(path, from, length) {
+  const bytes = Buffer.alloc(length)
+  const fd = openSync(path, 'r')
+  try {
+    return bytes.subarray(0, readSync(fd, bytes, 0, length, from))
+  } finally {
+    closeSync(fd)
+  }
+}
+
+/**
+ * Follow a file as it grows: each `read()` answers the whole lines written
+ * since the one before, and keeps its place in bytes.
+ *
+ * The tail took its starting place from the file's size, which is bytes, and
+ * then cut the file's text at that number, which counts characters. A cycle
+ * log is full of `✓`, `→` and `—`, three bytes each, so the first lines after
+ * a page connected were cut short or lost, by as many characters as the log
+ * had such signs. Here the place is bytes throughout, and it only ever rests
+ * after a newline: a line half written, or a sign split between two writes,
+ * waits for its end.
+ *
+ * `from: 'end'` starts after the last whole line there is, `'start'` at the
+ * top. A file that got shorter was begun again (a cycle's first line starts
+ * its log over) and is read from the top. One that is not there has no lines.
+ *
+ * @param {string} path
+ * @param {'start' | 'end'} [from]
+ */
+export function tailOf(path, from = 'end') {
+  let at = 0
+  if (from === 'end') {
+    try {
+      const { size } = statSync(path)
+      // The last line may be half written: go back to where it begins.
+      const last = bytesAt(path, Math.max(0, size - 65_536), Math.min(size, 65_536))
+      at = size - last.length + last.lastIndexOf(0x0a) + 1
+    } catch {
+      /* nothing there yet: from the top, when there is */
+    }
+  }
+  return {
+    /** @returns {string[]} */
+    read() {
+      try {
+        const { size } = statSync(path)
+        if (size < at) at = 0
+        if (size === at) return []
+        const fresh = bytesAt(path, at, size - at)
+        const end = fresh.lastIndexOf(0x0a)
+        if (end === -1) return []
+        at += end + 1
+        return fresh.subarray(0, end).toString('utf8').split('\n').filter(Boolean)
+      } catch {
+        return []
+      }
+    },
+  }
+}
+
+/**
+ * The log to follow next, when the logs directory reports a name: a cycle's
+ * log newer than the one being followed. Null for anything else, the log
+ * already followed among them: a directory reports every write to it.
+ *
+ * @param {string | null} following
+ * @param {string | null | undefined} name
+ * @returns {string | null}
+ */
+export const nextLog = (following, name) => (name && isCycleLog(name) && (!following || name > following) ? name : null)

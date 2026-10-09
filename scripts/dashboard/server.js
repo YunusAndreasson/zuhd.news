@@ -14,7 +14,7 @@ import { cycleIdOf, parseCycleLog } from '../lib/cycle-log.js'
 import { scoreDir } from '../lib/quality-score.js'
 import { regionFromCoords } from '../lib/regions.js'
 import { ROOT } from '../lib/paths.js'
-import { SENT, SYSTEMD_SHOW, byFileState, cycleView, feedFailures, isCycleLog, keepDay, listener, systemdView } from './data.js'
+import { SENT, SYSTEMD_SHOW, byFileState, cycleView, feedFailures, isCycleLog, keepDay, listener, nextLog, systemdView, tailOf } from './data.js'
 
 const PORT = 7777
 const HOST = '127.0.0.1'
@@ -817,74 +817,68 @@ function handleEditorial() {
 
 // ── SSE Live Tailing ────────────────────────────────────────────────
 
+/**
+ * The newest log, a line at a time as it is written, and the next cycle's
+ * when one starts.
+ *
+ * It used to hold on to the log that was newest when the page connected. A
+ * tab opened before a cycle saw that cycle's start announced and none of its
+ * lines, and the announcement came again with every line written.
+ */
 function handleLive(req, res) {
   res.writeHead(200, {
     'Content-Type': 'text/event-stream',
     'Cache-Control': 'no-cache',
     'Connection': 'keep-alive',
   })
+  const send = (event) => res.write(`data: ${JSON.stringify(event)}\n\n`)
 
-  const logFiles = getLogFiles()
-  if (!logFiles.length) {
-    res.write(`data: ${JSON.stringify({ type: 'idle' })}\n\n`)
-    // Watch logs dir for new files
-    let dirWatcher
-    try {
-      dirWatcher = watch(LOGS_DIR, (_event, fn) => {
-        if (fn && /^cycle-.*\.log$/.test(fn)) {
-          res.write(`data: ${JSON.stringify({ type: 'new_cycle', filename: fn })}\n\n`)
-        }
-      })
-    } catch {}
-    req.on('close', () => { if (dirWatcher) dirWatcher.close() })
-    return SENT
+  /** @type {string | null} */
+  let following = null
+  let tail = null
+  let debounceTimer = null
+
+  const sendNew = () => {
+    const lines = tail ? tail.read() : []
+    for (const line of lines) send({ type: 'line', text: line })
+    if (lines.some((line) => line.startsWith('Finished:'))) {
+      send({ type: 'complete' })
+      clearCaches()
+    }
+  }
+  /** @param {string} filename @param {'start' | 'end'} from */
+  const follow = (filename, from) => {
+    following = filename
+    tail = tailOf(join(LOGS_DIR, filename), from)
   }
 
-  const newestLog = join(LOGS_DIR, logFiles[0])
-  let offset = 0
-  try { offset = statSync(newestLog).size } catch {}
+  const newest = getLogFiles()[0]
+  if (newest) follow(newest, 'end')
+  send(newest ? { type: systemdStatus().serviceActive ? 'running' : 'idle', filename: newest } : { type: 'idle' })
 
-  // Send initial status
-  const sd = systemdStatus()
-  res.write(`data: ${JSON.stringify({ type: sd.serviceActive ? 'running' : 'idle', filename: logFiles[0] })}\n\n`)
-
-  let debounceTimer = null
-  let watcher
+  // One watch on the directory tells of both: a line written to the log being
+  // followed, and a new log, which is a new cycle. That is said once, and the
+  // new log followed from its first line.
+  let dirWatcher
   try {
-    watcher = watch(newestLog, () => {
+    dirWatcher = watch(LOGS_DIR, (_event, name) => {
+      const next = nextLog(following, name)
+      if (next) {
+        clearCaches()
+        send({ type: 'new_cycle', filename: next })
+        follow(next, 'start')
+      } else if (name !== following) {
+        return
+      }
       if (debounceTimer) return
       debounceTimer = setTimeout(() => {
         debounceTimer = null
-        try {
-          const content = readFileSync(newestLog, 'utf-8')
-          const newContent = content.slice(offset)
-          offset = content.length
-          if (!newContent) return
-          const lines = newContent.split('\n').filter(Boolean)
-          for (const line of lines) {
-            res.write(`data: ${JSON.stringify({ type: 'line', text: line })}\n\n`)
-          }
-          if (newContent.includes('Finished:')) {
-            res.write(`data: ${JSON.stringify({ type: 'complete' })}\n\n`)
-            clearCaches()
-          }
-        } catch {}
+        sendNew()
       }, 100)
     })
   } catch {}
 
-  // Also watch for new log files appearing
-  let dirWatcher
-  try {
-    dirWatcher = watch(LOGS_DIR, (_event, fn) => {
-      if (fn && /^cycle-.*\.log$/.test(fn) && fn !== logFiles[0]) {
-        res.write(`data: ${JSON.stringify({ type: 'new_cycle', filename: fn })}\n\n`)
-      }
-    })
-  } catch {}
-
   req.on('close', () => {
-    if (watcher) watcher.close()
     if (dirWatcher) dirWatcher.close()
     if (debounceTimer) clearTimeout(debounceTimer)
   })
