@@ -160,11 +160,18 @@ if (!rows) {
 console.log(`Parsed ${rows.length.toLocaleString('en-US')} rows`)
 
 const events = []
+const dropped = {}
 for (const r of rows) {
-  const event = mapUcdpRow(r)
+  const event = mapUcdpRow(r, dropped)
   if (event) events.push(event)
 }
 console.log(`Filtered to ${events.length.toLocaleString('en-US')} events after quality gates`)
+if (dropped.undated || dropped.undatedSources || dropped.unreadableEnd) {
+  console.error(
+    `  ⚠ unreadable dates: ${dropped.undated ?? 0} events dropped, ` +
+      `${dropped.undatedSources ?? 0} reported sources dropped, ${dropped.unreadableEnd ?? 0} end dates left off`,
+  )
+}
 
 // A release with no event in it is a changed file, never a month of peace, and
 // this snapshot is published as it is written.

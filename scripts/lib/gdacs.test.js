@@ -212,3 +212,34 @@ test('readImpactScalar walks deeply nested model output to find a named scalar',
   assert.equal(readImpactScalar({ name: 'POP_AFFECTED', value: 0 }, 'POP_AFFECTED'), null)
   assert.equal(readImpactScalar(null, 'POP_AFFECTED'), null)
 })
+
+test('every date an alert carries is one the app will take', () => {
+  // The app tests `fromDate` and `modifiedDate` in every alert and takes the
+  // list whole or not at all, so one alert published with `fromDate: ''` costs
+  // every installed app the disaster layer. Any string used to pass.
+  const withDates = (dates) => ({ ...validFeature, properties: { ...validFeature.properties, ...dates } })
+  const tally = {}
+  const out = collectionToAlerts(
+    {
+      type: 'FeatureCollection',
+      features: [
+        withDates({ eventid: 1, fromdate: undefined }),
+        withDates({ eventid: 2, fromdate: '' }),
+        withDates({ eventid: 3, fromdate: '30 Apr 2026' }),
+        withDates({ eventid: 4, todate: 'ongoing', datemodified: 'yesterday' }),
+        withDates({ eventid: 5, todate: '2026-05-01T12:00:00' }),
+      ],
+    },
+    FIXTURE_NOW,
+    tally,
+  )
+  assert.deepEqual(
+    out.map((a) => [a.eventid, a.fromDate, a.toDate, a.modifiedDate]),
+    [
+      // No end that can be read is no end; no modification time is the start.
+      ['4', '2026-04-30T03:00:00', null, '2026-04-30T03:00:00'],
+      ['5', '2026-04-30T03:00:00', '2026-05-01T12:00:00', '2026-05-01T08:00:00'],
+    ],
+  )
+  assert.deepEqual(tally, { undated: 3 }, 'an alert with no start it can state is dropped, and counted')
+})

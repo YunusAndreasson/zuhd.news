@@ -11,6 +11,7 @@
 // and zero parsing.
 
 import { fetchOk } from './http.js'
+import { isIsoDate } from './iso-date.js'
 
 export const GDACS_GEOJSON_URL =
   'https://www.gdacs.org/gdacsapi/api/events/geteventlist/EVENTS4APP'
@@ -124,7 +125,21 @@ function readReportUrl(props) {
   return null
 }
 
-function featureToAlert(feature) {
+/**
+ * One feature as an alert, or null when it is not one this layer draws.
+ *
+ * The three dates are held to the app's own test (`isIsoDate`), because the app
+ * takes the list whole or not at all: `fromDate` and `modifiedDate` must be
+ * dates in every alert, and `toDate` a date or null. An alert with no readable
+ * start has nothing true to put there and is dropped (`tally.undated`). An end
+ * that is not a date becomes null, which is what an event still running has;
+ * an unreadable modification time falls back to the start, as a missing one
+ * always did. Before, any string passed, an empty one included.
+ *
+ * @param {any} feature one that `isGdacsFeature` has passed
+ * @param {Record<string, number>} [tally] counts what is dropped, by reason
+ */
+function featureToAlert(feature, tally) {
   const p = feature.properties
   const eventtype = p.eventtype
   const alertlevel = p.alertlevel
@@ -134,6 +149,10 @@ function featureToAlert(feature) {
   const id =
     typeof eventid === 'number' ? String(eventid) : typeof eventid === 'string' ? eventid : null
   if (!id) return null
+  if (!isIsoDate(p.fromdate)) {
+    if (tally) tally.undated = (tally.undated ?? 0) + 1
+    return null
+  }
 
   const [lng, lat] = feature.geometry.coordinates
   const name =
@@ -144,9 +163,9 @@ function featureToAlert(feature) {
         : ''
   const country = typeof p.country === 'string' ? p.country : ''
   const iso3 = typeof p.iso3 === 'string' ? p.iso3 : ''
-  const fromDate = typeof p.fromdate === 'string' ? p.fromdate : ''
-  const toDate = typeof p.todate === 'string' && p.todate.length > 0 ? p.todate : null
-  const modifiedDate = typeof p.datemodified === 'string' ? p.datemodified : fromDate
+  const fromDate = p.fromdate
+  const toDate = isIsoDate(p.todate) ? p.todate : null
+  const modifiedDate = isIsoDate(p.datemodified) ? p.datemodified : fromDate
   const rawDescription =
     typeof p.htmldescription === 'string'
       ? truncate(htmlToPlain(p.htmldescription), 280)
@@ -184,12 +203,17 @@ export function alertAgeDays(alert, now = Date.now()) {
   return Math.max(0, (now - t) / 86_400_000)
 }
 
-export function collectionToAlerts(collection, now = Date.now()) {
+/**
+ * @param {{ features: any[] }} collection
+ * @param {number} [now]
+ * @param {Record<string, number>} [tally] counts what is dropped, by reason
+ */
+export function collectionToAlerts(collection, now = Date.now(), tally) {
   const out = []
   for (const feature of collection.features) {
     if (!isGdacsFeature(feature)) continue
     if (feature.properties.iscurrent !== true && feature.properties.iscurrent !== 'true') continue
-    const alert = featureToAlert(feature)
+    const alert = featureToAlert(feature, tally)
     if (!alert) continue
     if (alertAgeDays(alert, now) > MAX_ALERT_AGE_DAYS) continue
     out.push(alert)

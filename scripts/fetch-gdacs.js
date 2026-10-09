@@ -62,7 +62,8 @@ if (!isGdacsFeatureCollection(collection)) {
   process.exit(0)
 }
 
-const alerts = collectionToAlerts(collection)
+const dropped = {}
+const alerts = collectionToAlerts(collection, undefined, dropped)
 
 // A list with no alert in it is a changed response, never a quiet world, and
 // this snapshot is published as it is written.
@@ -71,6 +72,7 @@ if (empty) {
   console.error(`  ✗ ${empty} — leaving previous snapshot in place`)
   process.exit(0)
 }
+if (dropped.undated) console.error(`  ⚠ ${dropped.undated} alerts dropped: no readable start date`)
 console.log(`  ✓ list: ${alerts.length} current alerts (within 30d age cliff)`)
 
 // Pre-fetch detail for EQ + TC alerts. Other event types (FL/VO/DR/WF)

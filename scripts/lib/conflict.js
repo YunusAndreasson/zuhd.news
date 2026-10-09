@@ -23,6 +23,8 @@
 // shared/types.ts, so mobile (or any future consumer) can validate with
 // isConflictSnapshot and ship without re-parsing.
 
+import { isIsoDate } from './iso-date.js'
+
 // CSV columns we depend on. If any of these are missing from the upstream
 // header, UCDP has changed its schema and rowsToObjects throws loudly
 // rather than emit silent garbage. Codebook:
@@ -225,6 +227,11 @@ function pickNotes(row) {
 
 const XXX_ACTOR = /^XXX\d+$/
 
+/** Count one drop under `key`, where the caller is keeping count. */
+const count = (tally, key) => {
+  if (tally) tally[key] = (tally[key] ?? 0) + 1
+}
+
 /** Parse UCDP `source_article` into a structured list. The field packs N
  *  records as `;`-joined `"outlet,date,headline"` triplets where outlet
  *  may itself contain commas in rare cases (e.g. "Reuters, India"). We
@@ -232,10 +239,20 @@ const XXX_ACTOR = /^XXX\d+$/
  *  is the headline. Embedded newlines (UCDP appends `\nCR \tSource: ...`
  *  metadata to some headlines) get truncated at the first newline.
  *
+ *  A record whose date slot is not a date is dropped, and counted in
+ *  `tally.undatedSources`. That is what the comma case above produces
+ *  ("India" where the date goes), and the app tests every source's date and
+ *  takes the conflict layer whole or not at all: published, one such record
+ *  costs every installed app the layer.
+ *
  *  Returns [] for empty/malformed input rather than throwing — UCDP's
  *  format is consistent enough that bad rows are individual data
- *  problems, not pipeline failures. */
-export function parseSourceArticle(raw) {
+ *  problems, not pipeline failures.
+ *
+ *  @param {string | null | undefined} raw
+ *  @param {Record<string, number>} [tally] counts what is dropped, by reason
+ */
+export function parseSourceArticle(raw, tally) {
   const text = (raw ?? '').trim()
   if (text.length === 0) return []
   const out = []
@@ -262,6 +279,10 @@ export function parseSourceArticle(raw) {
     // Strip the trailing "\nCR \tSource: ..." metadata UCDP appends.
     headline = headline.split(/[\r\n]+/)[0].trim()
     if (!outlet || !headline) continue
+    if (!isIsoDate(date)) {
+      count(tally, 'undatedSources')
+      continue
+    }
     out.push({ outlet, date, headline })
   }
   return out
@@ -274,8 +295,18 @@ function intOrUndef(s) {
 
 /** Map one UCDP row to a ConflictEvent, applying all quality gates.
  *  Returns null when the row should be dropped (low precision, no
- *  fatalities, bad coords, placeholder actors, etc.). */
-export function mapUcdpRow(r) {
+ *  fatalities, bad coords, placeholder actors, etc.).
+ *
+ *  Every date an event carries is one the app will accept (`isIsoDate`): a
+ *  row with no readable start is dropped (`tally.undated`), an end that is
+ *  not a date is left off (`tally.unreadableEnd`), and a source without one
+ *  is dropped from the event's list. Ten characters was the test before, and
+ *  `31/03/2026` is ten characters.
+ *
+ *  @param {Record<string, string>} r
+ *  @param {Record<string, number>} [tally] counts what is dropped, by reason
+ */
+export function mapUcdpRow(r, tally) {
   const wherePrec = parseInt(r.where_prec, 10)
   if (!Number.isFinite(wherePrec) || wherePrec > MAX_WHERE_PREC) return null
 
@@ -293,7 +324,10 @@ export function mapUcdpRow(r) {
   if (Math.abs(lat) < 0.5 && Math.abs(lng) < 0.5) return null
 
   const dateStart = (r.date_start ?? '').slice(0, 10)
-  if (dateStart.length !== 10) return null
+  if (!isIsoDate(dateStart)) {
+    count(tally, 'undated')
+    return null
+  }
 
   const country = COUNTRY_REWRITES[r.country] ?? r.country
   const iso3 = NAME_TO_ISO3[country] ?? ''
@@ -327,7 +361,11 @@ export function mapUcdpRow(r) {
   // backwards-compatible; a consumer that only knows the original 15
   // fields keeps working unchanged.
   const dateEnd = (r.date_end ?? '').slice(0, 10)
-  if (dateEnd.length === 10 && dateEnd !== dateStart) event.dateEnd = dateEnd
+  if (isIsoDate(dateEnd)) {
+    if (dateEnd !== dateStart) event.dateEnd = dateEnd
+  } else if (dateEnd) {
+    count(tally, 'unreadableEnd')
+  }
 
   if (r.conflict_name && r.conflict_name.trim().length > 0) {
     event.conflictName = r.conflict_name.trim()
@@ -361,7 +399,7 @@ export function mapUcdpRow(r) {
   const numSources = intOrUndef(r.number_of_sources)
   if (numSources !== undefined && numSources > 0) event.numSources = numSources
 
-  const sources = parseSourceArticle(r.source_article)
+  const sources = parseSourceArticle(r.source_article, tally)
   if (sources.length > 0) event.sources = sources
 
   return event

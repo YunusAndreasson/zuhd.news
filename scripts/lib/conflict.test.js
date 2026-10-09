@@ -222,3 +222,37 @@ test('mapUcdpRow attaches structured sources from source_article', () => {
   assert.equal(out.sources.length, 2)
   assert.equal(out.sources[0].outlet, 'Reuters')
 })
+
+// --- dates the app will take ---
+//
+// The app's validator takes the conflict layer whole or not at all, and tests
+// every date in it (`isIsoDate`): one that is not a date, anywhere, and every
+// installed app refuses the layer.
+
+test('a reported source whose date slot is not a date is dropped, and counted', () => {
+  // The case the parser's own comment names: an outlet with a comma in it
+  // splits one field late, and the rest of its name lands where the date goes.
+  const tally = {}
+  const out = parseSourceArticle(
+    '"Reuters, India,2026-03-15,Khartoum clashes";"AFP,2026-03-15,Sudan death toll rises"',
+    tally,
+  )
+  assert.deepEqual(out, [{ outlet: 'AFP', date: '2026-03-15', headline: 'Sudan death toll rises' }])
+  assert.deepEqual(tally, { undatedSources: 1 })
+})
+
+test('a row is an event only with a start the app can read; an unreadable end is left off', () => {
+  const tally = {}
+  // Ten characters was the whole test, and this is ten characters.
+  assert.equal(mapUcdpRow({ ...baseRow, date_start: '31/03/2026 00:00' }, tally), null)
+  assert.equal(mapUcdpRow({ ...baseRow, date_start: '2026-02-30 00:00:00.000' }, tally), null, 'a day not in the calendar')
+  assert.equal(mapUcdpRow({ ...baseRow, date_start: '' }, tally), null)
+
+  const kept = mapUcdpRow({ ...baseRow, date_end: '04/04/2026 00:00' }, tally)
+  assert.equal(kept.eventDate, '2026-03-31')
+  assert.equal('dateEnd' in kept, false, 'the event stays; the field the app would refuse it for does not')
+
+  const run = mapUcdpRow({ ...baseRow, date_end: '2026-04-02 00:00:00.000' }, tally)
+  assert.equal(run.dateEnd, '2026-04-02')
+  assert.deepEqual(tally, { undated: 3, unreadableEnd: 1 })
+})
