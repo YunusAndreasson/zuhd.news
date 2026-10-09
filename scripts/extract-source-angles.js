@@ -15,7 +15,6 @@
 // also gain a distinctive-angle sentence.
 
 import { readFileSync, existsSync } from 'node:fs'
-import { randomUUID } from 'node:crypto'
 import { tryReadArticle } from './lib/article.js'
 import { batchFiles } from './lib/article-files.js'
 import { callClaudeJson } from './lib/claude-envelope.js'
@@ -68,7 +67,6 @@ function collectSourceTasks(files) {
  *  every angle was broken the same way. */
 async function extractAnglesViaHaiku(items) {
   if (items.length === 0) return new Map()
-  const invocationId = randomUUID().slice(0, 8)
 
   const blocks = items
     .map(
@@ -113,13 +111,13 @@ Return ONLY the JSON object. No commentary, no markdown fences.`
 
   const res = await callClaudeJson(prompt, { model: modelFor('haiku'), timeout: 120_000, maxBuffer: 1024 * 1024 })
   if (res.error) {
-    console.error(`  ✗ angles-haiku ${invocationId}: ${res.error}`)
+    console.error(`  ✗ angles-haiku: ${res.error}`)
     return new Map()
   }
   const obj = res.out
   const out = new Map()
   for (const it of items) {
-    const entry = obj[String(it.key)] ?? obj[it.key]
+    const entry = obj[it.key]
     if (!entry || typeof entry !== 'object') continue
     const angle =
       typeof entry.angle === 'string' && entry.angle.length > 0 ? entry.angle : null

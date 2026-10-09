@@ -19,10 +19,9 @@
 //     not go out is logged and ends on 1, so the cycle says the step failed.
 //     Deduped via content/.tweet-log.json.
 //
-// Usage: node scripts/post-to-twitter.js --slug <slug> [--text "..."] [--dry-run]
+// Usage: node scripts/post-to-twitter.js --slug <slug> [--dry-run]
 
 import { createHmac, randomBytes } from 'node:crypto'
-import { argAt } from './lib/argv.js'
 import { firstLine, unquote } from './lib/claude-envelope.js'
 import { buildIgJpeg, IG_FEED } from './lib/ig-image.js'
 import { runPoster, writeCopy } from './lib/social-post.js'
@@ -71,7 +70,7 @@ async function condenseViaClaude(story) {
 // can't be posted.
 /** @param {import('./lib/social-post.js').Story} story */
 async function tweetText(story) {
-  const t = argAt('text') || (await condenseViaClaude(story))
+  const t = await condenseViaClaude(story)
   if (!t) return null
   return truncate(unquote(t), MAX_LEN)
 }

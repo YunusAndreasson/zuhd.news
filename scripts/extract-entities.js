@@ -12,7 +12,6 @@
 
 import { readFileSync, existsSync } from 'node:fs'
 import { basename } from 'node:path'
-import { randomUUID } from 'node:crypto'
 import { tryReadArticle } from './lib/article.js'
 import { batchFiles } from './lib/article-files.js'
 import { callClaudeJson } from './lib/claude-envelope.js'
@@ -58,7 +57,6 @@ if (newFiles.length === 0) {
  */
 async function disambiguateViaHaiku(items) {
   if (items.length === 0) return new Map()
-  const invocationId = randomUUID().slice(0, 8)
 
   const blocks = items
     .map((it, i) => {
@@ -92,13 +90,13 @@ Return ONLY the JSON object. No commentary, no markdown fences.`
 
   const res = await callClaudeJson(prompt, { model: modelFor('haiku'), timeout: 20_000, maxBuffer: 256 * 1024 })
   if (res.error) {
-    console.error(`  ✗ entity-haiku ${invocationId}: ${res.error}`)
+    console.error(`  ✗ entity-haiku: ${res.error}`)
     return new Map()
   }
   const obj = res.out
   const out = new Map()
   for (const it of items) {
-    const chosen = obj[String(it.key)] ?? obj[it.key]
+    const chosen = obj[it.key]
     const valid = it.candidates.some((c) => c.id === chosen)
     if (valid) out.set(it.key, chosen)
   }
@@ -125,7 +123,6 @@ Return ONLY the JSON object. No commentary, no markdown fences.`
  */
 async function extractStocksViaHaiku(articles) {
   if (articles.length === 0) return new Map()
-  const invocationId = randomUUID().slice(0, 8)
   const prompt = stockMentionsPrompt(articles)
 
   // 60s, not 30s: the batched 10-13 article scan routinely needed 30-35s and
@@ -136,7 +133,7 @@ async function extractStocksViaHaiku(articles) {
   // the entity-haiku call that follows is capped at 20s, so this still fits.
   const res = await callClaudeJson(prompt, { model: modelFor('haiku'), timeout: 90_000, maxBuffer: 512 * 1024 })
   if (res.error) {
-    console.error(`  ✗ stocks-haiku ${invocationId}: ${res.error}`)
+    console.error(`  ✗ stocks-haiku: ${res.error}`)
     return null
   }
   return parseStockMentions(res.out)

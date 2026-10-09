@@ -448,11 +448,11 @@ writeJson(metaPath, {
 })
 console.log(`Metadata saved: ${metaPath}`)
 
-// Clean up MP3s and scripts older than 7 days (.ssml: the pre-Gemini scripts)
+// Clean up MP3s and scripts older than 7 days
 const sevenDaysAgo = Date.now() - 7 * 24 * 60 * 60 * 1000
 for (const f of readdirSync(AUDIO_DIR)) {
-  if (!/^briefing-\d{4}-\d{2}-\d{2}\.(mp3|ssml|txt)$/.test(f)) continue
-  const dateStr = f.replace('briefing-', '').replace(/\.(mp3|ssml|txt)$/, '')
+  if (!/^briefing-\d{4}-\d{2}-\d{2}\.(mp3|txt)$/.test(f)) continue
+  const dateStr = f.replace('briefing-', '').replace(/\.(mp3|txt)$/, '')
   if (new Date(dateStr).getTime() < sevenDaysAgo) {
     unlinkSync(join(AUDIO_DIR, f))
     console.log(`Cleaned up old briefing: ${f}`)

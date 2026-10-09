@@ -8,7 +8,7 @@
 import { stripDateline } from './article.js'
 
 /** A story with no second source behind it is not pushed (experiment 2026-04-16-push-min-coverage). */
-export const MIN_PUSH_COVERAGE = 1
+const MIN_PUSH_COVERAGE = 1
 
 /**
  * @typedef {object} BreakingCandidate

@@ -19,7 +19,7 @@ const ENDPOINT = 'https://generativelanguage.googleapis.com/v1beta'
 
 export const GEMINI_TTS_MODEL = 'gemini-3.8-flash-tts'
 export const GEMINI_TTS_VOICE = 'Charon'
-export const GEMINI_TTS_STYLE = 'calm, measured newsreader'
+const GEMINI_TTS_STYLE = 'calm, measured newsreader'
 const TRANSCRIBE_MODEL = 'gemini-3.8-flash'
 
 /** The key, under either name: `.env` carries it as `GEMINI`. */
