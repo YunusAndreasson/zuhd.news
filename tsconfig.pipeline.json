@@ -20,32 +20,51 @@
   //
   // The cycle runs `npm run typecheck` and logs.test.js ratchets its warning at
   // zero, so nothing lands here that is not green.
+  //
+  // The orchestrator (the stage list, the runner, its steps and the small
+  // programs it starts) was written to these flags and passed them from its
+  // first commit, but was not listed, so nothing held it to them: the next
+  // edit could have lost a type and no gate would have said so. Listed on
+  // 2026-10-09, with the leaves it and the stages lean on (`models`, `hash`,
+  // `concurrency`, `http`).
   "extends": "./tsconfig.node.json",
   "compilerOptions": {
     "strict": true,
     "noImplicitAny": true
   },
   "include": [
+    "scripts/cycle/alert.js",
     "scripts/cycle/record.js",
     "scripts/coverage-map.js",
     "scripts/cycle/replay-stage.js",
+    "scripts/cycle/run.js",
+    "scripts/cycle/stages.js",
+    "scripts/cycle/tally.js",
     "scripts/lib/argv.js",
     "scripts/lib/article.js",
     "scripts/lib/article-files.js",
     "scripts/lib/blocks.js",
+    "scripts/lib/concurrency.js",
     "scripts/lib/coverage-map.js",
+    "scripts/lib/cycle-alert.js",
     "scripts/lib/cycle-harness.js",
     "scripts/lib/cycle-log.js",
+    "scripts/lib/cycle-run.js",
     "scripts/lib/cycle-scenarios.js",
+    "scripts/lib/cycle-steps.js",
     "scripts/lib/cycle-stub.js",
+    "scripts/lib/cycle-tally.js",
     "scripts/lib/datasets.js",
     "scripts/lib/feed-age.js",
     "scripts/lib/frozen-clock.js",
     "scripts/lib/frontmatter.js",
+    "scripts/lib/hash.js",
+    "scripts/lib/http.js",
     "scripts/lib/json-file.js",
     "scripts/lib/last-cycle.js",
     "scripts/lib/ledger.js",
     "scripts/lib/merge-feeds.js",
+    "scripts/lib/models.js",
     "scripts/lib/paths.js",
     "scripts/lib/schema.js",
     "scripts/lib/stage-replay.js",
