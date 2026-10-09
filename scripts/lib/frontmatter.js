@@ -75,6 +75,39 @@ export function replaceFrontmatterKey(raw, key, block, { before } = {}) {
 }
 
 /**
+ * Remove the top-level `key:` of an article's frontmatter: the key's line and
+ * every indented line under it. Every other byte stays as written. A file
+ * with no frontmatter, or without the key, is returned as it is.
+ *
+ * By lines, because a pattern over the whole block has to say what comes
+ * after the key, and a key written last has nothing after it: the validator's
+ * removal of a refused `chart:` was such a pattern, and left a chart on the
+ * last line in the file while logging it as dropped.
+ *
+ * @param {string} raw
+ * @param {string} key
+ */
+export function removeFrontmatterKey(raw, key) {
+  const m = raw.match(/^---\n([\s\S]*?)\n---/)
+  if (!m) return raw
+  const head = new RegExp(`^${key}:`)
+  const kept = []
+  let skipping = false
+  for (const line of m[1].split('\n')) {
+    if (skipping) {
+      if (/^\s/.test(line)) continue // still under the key
+      skipping = false
+    }
+    if (head.test(line)) {
+      skipping = true
+      continue
+    }
+    kept.push(line)
+  }
+  return `---\n${kept.join('\n')}\n---${raw.slice(m[0].length)}`
+}
+
+/**
  * Set the one-line top-level `key:` of a frontmatter block (the text between
  * the `---` lines) to `value`, a scalar the caller has already serialised.
  * The line is replaced where it stands; an absent key goes after the `after`

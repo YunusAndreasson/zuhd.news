@@ -16,7 +16,7 @@ import { articleProblems } from './article.js'
 import { splitBlocks } from './blocks.js'
 import { normalizeUrl } from './dedup.js'
 import { canonicalIndicatorId } from './entity-registry.js'
-import { parseFrontmatter } from './frontmatter.js'
+import { parseFrontmatter, removeFrontmatterKey } from './frontmatter.js'
 import { chartProblem, citesFigure } from './indicator-offer.js'
 import { bodyNamesOutlet, soleClassifiedSource } from './outlet-class.js'
 
@@ -168,8 +168,7 @@ export function createValidator({ published, offeredBySlug, knownIds }) {
       const offered = offeredBySlug.size ? (offeredBySlug.get(basename(name, '.md')) ?? []) : null
       const problem = chartProblem(id, { offered, known: knownIds })
       if (problem) {
-        // The file is written back whether or not the pattern found the line.
-        text = (text ?? raw).replace(/^(---\n[\s\S]*?)^chart:.*\n([\s\S]*?\n---)/m, '$1$2')
+        text = removeFrontmatterKey(text ?? raw, 'chart')
         counts.chartsDropped++
         events.push(`CHART DROPPED (${problem})`)
       } else {

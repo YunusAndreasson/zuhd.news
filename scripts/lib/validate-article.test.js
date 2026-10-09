@@ -140,15 +140,17 @@ test('with no selection, a chart stands on any series the build can resolve', ()
   assert.deepEqual(v.check(article({ chart: '""', title: '"A Third Headline"', sources: source('https://www.dawn.com/news/3') }), 'c.md').events, ['CHART DROPPED (empty)'])
 })
 
-// As found on 2026-10-08, and kept until it is changed on purpose: the pattern
-// that removes the line needs a line after it inside the block, so a `chart:`
-// written last is reported dropped and stays. The writer puts it above
-// `sources:`, where the pattern finds it.
-test('a refused chart on the last line of the frontmatter is reported dropped and is still there', () => {
+// Until 2026-10-09 the line was removed by a pattern that needed another line
+// after it inside the block, so a `chart:` written last was logged as dropped
+// and stayed in the file.
+test('a refused chart is taken out wherever in the frontmatter it stands', () => {
   const last = article().replace('\n---\n\n', '\nchart: "invented"\n---\n\n')
   const out = validator().check(last, FILE)
   assert.deepEqual(out.events, ['CHART DROPPED ("invented" is not a known series)'])
-  assert.equal(out.text, last, 'written back as it was')
+  assert.equal(out.text, article(), 'the last line of the block')
+
+  const first = article().replace('---\ntitle:', '---\nchart: "invented"\ntitle:')
+  assert.equal(validator().check(first, FILE).text, article(), 'and the first')
 })
 
 test('a block two articles share is reported, by its text or by its run of figures', () => {
