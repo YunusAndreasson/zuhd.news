@@ -61,6 +61,24 @@ export function parseClaudeEnvelope(stdout) {
 const HAIKU_MODEL = modelFor('haiku')
 
 /**
+ * What keeps a headless call to what it was handed: the project's settings and
+ * not `~/.claude/settings.json`, no skills, and no MCP server.
+ *
+ * A call without them inherits whatever the account on this machine has. On
+ * 2026-10-09 that was 105 MCP tools (Gmail, Notion, Docs among them, from the
+ * claude.ai connectors), 33 skills and `permissionMode: auto`: 135,093 input
+ * tokens for a one-word prompt against 12,269 with these, on every call since
+ * the connectors began loading in headless runs on 2026-10-02. `--tools ''`
+ * does not cover it. It removes the built-in tools only, and a requested MCP
+ * call ran to completion before `--max-turns 1` ended the turn. Several of
+ * these calls read fetched pages and feed text.
+ *
+ * The cycle's sessions have passed these since they were written
+ * (`CLAUDE_FLAGS`, `lib/cycle-steps.js`); the micro-tasks had not.
+ */
+export const ISOLATION_FLAGS = Object.freeze(['--setting-sources', 'project', '--disable-slash-commands', '--strict-mcp-config'])
+
+/**
  * The argv for one non-interactive `claude -p` call.
  *
  * Fifteen call sites spelled this out by hand — the narrators, the posters,
@@ -79,6 +97,8 @@ const HAIKU_MODEL = modelFor('haiku')
  * - `effort: null` omits the flag, for a model that does not take one (Haiku
  *   4.5 and older).
  * - `json: false` returns the model's text on stdout instead of the envelope.
+ * - `ISOLATION_FLAGS` are always on. Without them a call is not the call that
+ *   was written.
  *
  * @param {string} prompt
  * @param {{ model: string, effort?: string | null, maxTurns?: number, tools?: string | null,
@@ -91,7 +111,7 @@ export function claudeArgs(
 ) {
   const args = ['--model', model]
   if (effort) args.push('--effort', effort)
-  args.push('--no-session-persistence')
+  args.push('--no-session-persistence', ...ISOLATION_FLAGS)
   if (allowedTools) args.push('--allowedTools', allowedTools)
   else if (tools != null) args.push('--tools', tools)
   args.push('--max-turns', String(maxTurns))

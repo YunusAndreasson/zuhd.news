@@ -38,6 +38,7 @@
 
 import { runWithConcurrency } from '../concurrency.js'
 import { CC_TO_TOPOJSON_NAME } from '../../../shared/countries/iso.ts'
+import { ISOLATION_FLAGS } from '../claude-envelope.js'
 import { ZUHD_UA } from '../http.js'
 import { modelFor } from '../models.js'
 
@@ -552,6 +553,7 @@ No commentary, no markdown fences.`
       '--model', TITLE_MODEL,
       ...(TITLE_EFFORT ? ['--effort', TITLE_EFFORT] : []),
       '--no-session-persistence',
+      ...ISOLATION_FLAGS,
       '--tools', '',
       '--max-turns', '1',
       '--output-format', 'json',

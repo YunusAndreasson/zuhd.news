@@ -1,7 +1,7 @@
 import assert from 'node:assert/strict'
 import { test } from 'node:test'
 import { runWithConcurrency } from './concurrency.js'
-import { claudeArgs, claudeFailure, parseClaudeText, spawnClaude } from './claude-envelope.js'
+import { ISOLATION_FLAGS, claudeArgs, claudeFailure, parseClaudeText, spawnClaude } from './claude-envelope.js'
 
 // `command: 'node'` stands in for the CLI: the helper's job is the spawn, not
 // the flags, and a real `claude` call would cost money on every test run.
@@ -49,6 +49,20 @@ test('claudeArgs defaults to the micro-task shape', () => {
   assert.ok(a.includes('--no-session-persistence'))
   assert.ok(a.includes('--exclude-dynamic-system-prompt-sections'))
   assert.deepEqual(a.slice(-2), ['-p', 'hi'])
+})
+
+// Without these a call loads the account's settings, skills and MCP servers:
+// measured on this box, 105 tools and 135,093 input tokens for a one-word
+// prompt, against none and 12,269. No option switches them off.
+test('claudeArgs always isolates the call, whatever the caller asks for', () => {
+  assert.deepEqual([...ISOLATION_FLAGS], ['--setting-sources', 'project', '--disable-slash-commands', '--strict-mcp-config'])
+  for (const opts of [{ model: 'm' }, { model: 'm', effort: null, tools: null, json: false, maxTurns: 3 }, { model: 'm', allowedTools: 'Read,Write' }]) {
+    const a = claudeArgs('hi', opts)
+    assert.equal(a[a.indexOf('--setting-sources') + 1], 'project')
+    assert.ok(a.includes('--disable-slash-commands'))
+    assert.ok(a.includes('--strict-mcp-config'))
+    assert.ok(a.indexOf('--strict-mcp-config') < a.indexOf('-p'), 'before the prompt')
+  }
 })
 
 test('claudeArgs omits what the caller switches off', () => {
