@@ -289,8 +289,16 @@ export function cycleRow(file, text) {
  */
 export function dailyMetrics(date, today, yesterday) {
   const todayLogs = today.logs
+  // Over the cycles that have the value. This runs inside the day's last
+  // cycle, whose log has no total and no funnel yet (`cycleRow`), and that
+  // cycle was averaged in as 0 seconds and 0 published: on 2026-10-08 the
+  // tuner was told 869 s and 9 articles a cycle for four cycles that took
+  // 1,729, 812, 934 and 871 s and published 11, 10, 12 and 10.
   /** @param {'totalSeconds' | 'selectorSeconds' | 'writerSeconds' | 'editorSeconds' | 'published'} key */
-  const avg = (key) => (todayLogs.length > 0 ? Math.round(todayLogs.reduce((s, l) => s + (l[key] || 0), 0) / todayLogs.length) : null)
+  const avg = (key) => {
+    const values = todayLogs.map((l) => l[key]).filter((v) => v != null)
+    return values.length > 0 ? Math.round(values.reduce((s, v) => s + v, 0) / values.length) : null
+  }
   return {
     date,
     articlesPublished: { today: today.articles.length, yesterday: yesterday.articles.length },

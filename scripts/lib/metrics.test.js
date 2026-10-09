@@ -222,18 +222,26 @@ test('a cycle is read from its log: the first attempt of a stage, and no counts 
   assert.equal(cycleRow('x.log', DONE.replace('Deploy exit: 0', 'Deploy exit: 1')).deploySuccess, false)
 })
 
-test('the record sets a day beside the day before, and averages over every log of the day', () => {
+test('the record sets a day beside the day before, and averages over the cycles that have the value', () => {
   const done = cycleRow('a.log', DONE)
   const running = cycleRow('b.log', LOG.slice(0, 9).join('\n'))
   const day = (/** @type {any[]} */ logs) => ({ articles: [row()], sourcing: computeSourcing([], 0), logs })
   const m = dailyMetrics('2026-10-08', day([done, running]), day([done]))
   assert.equal(m.date, '2026-10-08')
   assert.deepEqual(m.articlesPublished, { today: 1, yesterday: 1 })
-  // As found: the cycle this runs inside is one of today's logs, and counts as 0 s and 0 published.
+  // The cycle this runs inside is one of today's logs and is counted, but it
+  // has no total and no funnel yet. Until 2026-10-09 it was averaged in as 0 s
+  // and 0 published: 631 s, 900 s, 64 s and 6 articles here.
   assert.deepEqual(m.cycles, {
-    today: { count: 2, completed: 1, avgDuration: 631, avgSelectorSeconds: 168, avgWriterSeconds: 900, avgEditorSeconds: 64, avgPublished: 6 },
+    today: { count: 2, completed: 1, avgDuration: 1261, avgSelectorSeconds: 168, avgWriterSeconds: 1800, avgEditorSeconds: 128, avgPublished: 11 },
     yesterday: { count: 1, completed: 1 },
   })
+  // 2026-10-08 as the logs have it: four cycles done and the fifth running. It read 869 s and 9.
+  const of = (/** @type {number} */ totalSeconds, /** @type {number} */ published) => ({ ...done, totalSeconds, published })
+  const oct8 = dailyMetrics('2026-10-08', day([of(1729, 11), of(812, 10), of(934, 12), of(871, 10), running]), day([])).cycles.today
+  assert.deepEqual([oct8.count, oct8.avgDuration, oct8.avgPublished], [5, 1087, 11])
+  // A day whose only cycle is still running has no average, not an average of 0.
+  assert.deepEqual(dailyMetrics('2026-10-08', day([running]), day([])).cycles.today, { count: 1, completed: 0, avgDuration: null, avgSelectorSeconds: 168, avgWriterSeconds: null, avgEditorSeconds: null, avgPublished: null })
   const none = dailyMetrics('2026-10-08', { articles: [], sourcing: null, logs: [] }, { articles: [], sourcing: null, logs: [] })
   assert.deepEqual(none.cycles.today, { count: 0, completed: 0, avgDuration: null, avgSelectorSeconds: null, avgWriterSeconds: null, avgEditorSeconds: null, avgPublished: null })
   assert.deepEqual(none.sourcing, { today: null, yesterday: null })
