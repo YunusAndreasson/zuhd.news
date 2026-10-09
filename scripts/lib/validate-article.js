@@ -96,10 +96,9 @@ export function publishedKeys(dir, now, batch) {
  * @param {DuplicateKey[]} known.published recent articles outside the batch
  * @param {Map<string, any[]>} known.offeredBySlug the indicator rows each story
  *   was offered, by the slug its article is saved under; empty when there is
- *   no selection (a rerun). An article whose slug it does not hold was written
- *   from an earlier selection.
+ *   no selection (a rerun)
  * @param {Set<string>} known.knownIds every series id the build can resolve:
- *   the fallback for a rerun, and for an article this selection does not name
+ *   the fallback for a rerun
  */
 export function createValidator({ published, offeredBySlug, knownIds }) {
   const seen = [...published]
@@ -217,17 +216,10 @@ export function createValidator({ published, offeredBySlug, knownIds }) {
     // without it: a missing chart costs one figure, a quarantine costs the story.
     // With no selection on disk (a rerun) the fallback is any id the build can
     // resolve.
-    //
-    // The same fallback for a batch file this selection does not name. The
-    // batch is every article the last commit does not hold, so one a failed
-    // build or deploy left on disk is in the next cycle's batch, and its offer
-    // was on the selection of the cycle that wrote it. Read against this
-    // cycle's selection it had been "offered" nothing, and lost its chart.
     if (meta.chart != null) {
       counts.chartsSet++
       const id = canonicalIndicatorId(String(meta.chart).trim())
-      const slug = basename(name, '.md')
-      const offered = offeredBySlug.has(slug) ? offeredBySlug.get(slug) : null
+      const offered = offeredBySlug.size ? (offeredBySlug.get(basename(name, '.md')) ?? []) : null
       const problem = chartProblem(id, { offered, known: knownIds })
       if (problem) {
         text = removeFrontmatterKey(text ?? raw, 'chart')
