@@ -31,9 +31,10 @@ export const SCHEMA = 3
 
 /**
  * What good coverage is, as a judgement: the share of a batch each region
- * should hold, and the floor for the regions the readership lives in. The
- * coverage cluster is scored by how far a batch sits from it. Change the
- * numbers to change what the score rewards; the scorer does not move.
+ * should hold, and a floor for the share that falls in the ummah-weighted
+ * regions (the Middle East, Asia, Africa). The coverage cluster is scored by
+ * how far a batch sits from it. Change the numbers to change what the score
+ * rewards; the scorer does not move.
  *
  * Regions are `lib/regions.js`'s: ME, AS, AF, EU, AM, OC, and GL for a
  * dateline in none of them.
