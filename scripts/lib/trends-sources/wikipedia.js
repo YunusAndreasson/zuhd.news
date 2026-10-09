@@ -17,6 +17,7 @@
 import { readdirSync, readFileSync } from 'node:fs'
 import { join } from 'node:path'
 import { parseFrontmatter } from '../frontmatter.js'
+import { ROOT } from '../paths.js'
 import { dayLabel, isoDay } from '../period.js'
 import { WIKIMEDIA_UA, wikiSummary } from '../wikipedia.js'
 import { codeFromTopojsonName } from '../../../shared/countries/iso.ts'
@@ -202,8 +203,7 @@ async function fetchOnePageview(title) {
  * @returns {Promise<Array<object>>}
  */
 export async function fetchWikipediaTrendingConcepts() {
-  const rootDir = new URL('../../..', import.meta.url).pathname
-  const concepts = rankConceptsFromArticles(rootDir, ARTICLE_WINDOW_DAYS)
+  const concepts = rankConceptsFromArticles(ROOT, ARTICLE_WINDOW_DAYS)
   if (concepts.length === 0) {
     console.log('  · wikipedia: no concepts found in recent articles')
     return []
