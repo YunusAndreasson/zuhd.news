@@ -23,8 +23,10 @@ import { REGION_CODES, regionFromCoords } from './regions.js'
  *   1: five clusters, briefing among them
  *   2: 2026-07-03, writing, sourcing and coverage only (the context briefs
  *      had stopped on 06-19, and the cluster dragged every score to ~50)
+ *   3: 2026-10-09, freshness is measured. It was 1.0 in every record before,
+ *      so coverage reads up to 40 points lower from here, and the score 12
  */
-export const SCHEMA = 2
+export const SCHEMA = 3
 
 /**
  * What good coverage is, as a judgement: the share of a batch each region
@@ -59,6 +61,7 @@ const KEEP = 365
  * @property {string} body
  * @property {number | null} lat
  * @property {number | null} lng
+ * @property {number} date when the story was published at its source, in ms; `NaN` for a `date` that is not one
  * @property {string[]} sourceNames
  * @property {string[]} sourceCountries `'null'` for a source with no country
  */
@@ -79,6 +82,8 @@ export function rvsRow({ slug, meta, body }) {
   const sources = (Array.isArray(meta.sources) ? meta.sources : []).filter((s) => s && typeof s === 'object')
   /** @param {unknown} v */
   const coordinate = (v) => (typeof v === 'number' && Number.isFinite(v) ? v : null)
+  // YAML reads a `date:` written without quotes as a date, not a string.
+  const date = /** @type {unknown} */ (meta.date)
   return {
     slug,
     title: String(meta.title ?? ''),
@@ -86,6 +91,7 @@ export function rvsRow({ slug, meta, body }) {
     body,
     lat: coordinate(meta.lat),
     lng: coordinate(meta.lng),
+    date: date instanceof Date ? date.getTime() : Date.parse(String(date ?? '')),
     sourceNames: sources.map((s) => String(s.name ?? '')).filter(Boolean),
     // As `lib/quality-metrics.js` reads them: a source with `country: null` is
     // what the guardrail below is for.
@@ -236,18 +242,40 @@ function regionOf(article) {
 }
 
 /**
+ * How old the batch's stories were when the cycle began, as the median of
+ * their ages in days: an article's `date` is its source's publication time.
+ * A story dated after the start is new, not from the future.
+ *
+ * @param {RvsRow[]} articles
+ * @param {number} runStarted ms
+ * @returns {number | null} null when no article carries a date
+ */
+function medianAgeDays(articles, runStarted) {
+  const ages = articles
+    .filter((a) => !Number.isNaN(a.date))
+    .map((a) => Math.max(0, (runStarted - a.date) / 86_400_000))
+    .sort((a, b) => a - b)
+  return ages.length ? ages[Math.floor(ages.length / 2)] : null
+}
+
+/**
  * Forty for freshness, thirty for how closely the batch's regions follow
  * `TARGET_BALANCE` (e to the minus KL divergence: 1 on a match, falling
  * away), thirty for the share that falls in the floor's regions.
  *
- * Freshness is 1, as it has been in every record: it was read from two
- * frontmatter keys no article carries, and nothing here changes a number.
+ * Freshness is 1 for a batch published the hour it broke, a half at a day
+ * old, a quarter at three. Until schema 3 it was 1 in every record: it took
+ * the age from two frontmatter keys (`sourcePubDate`, `pubDate`) that no
+ * article has ever carried, and a batch with no measurable age was scored as
+ * one with none. A batch that carries no date now earns nothing for it.
  *
  * @param {RvsRow[]} articles
+ * @param {number} [runStarted] when the cycle began, in ms; now when absent
  */
-export function scoreCoverage(articles) {
+export function scoreCoverage(articles, runStarted = Date.now()) {
   if (articles.length === 0) return { score: 0, detail: { reason: 'no articles' } }
-  const freshness = 1
+  const medianAge = medianAgeDays(articles, runStarted)
+  const freshness = medianAge === null ? 0 : 1 / (1 + medianAge)
 
   /** @type {Record<string, number>} */
   const observedRegions = {}
@@ -264,7 +292,7 @@ export function scoreCoverage(articles) {
   const ummahShare = TARGET_BALANCE.ummahWeightedRegions.reduce((sum, region) => sum + (observedRegions[region] || 0), 0)
   const ummahMet = ummahShare >= TARGET_BALANCE.ummahFloor ? 1 : ummahShare / TARGET_BALANCE.ummahFloor
 
-  return { score: freshness * 40 + regionFit * 30 + ummahMet * 30, detail: { freshness, klRegion, regionFit, ummahShare, ummahMet, observedRegions } }
+  return { score: freshness * 40 + regionFit * 30 + ummahMet * 30, detail: { medianAgeDays: medianAge, freshness, klRegion, regionFit, ummahShare, ummahMet, observedRegions } }
 }
 
 // ── The record ───────────────────────────────────────────────────────
@@ -282,10 +310,11 @@ const round2 = (x) => Math.round(x * 100) / 100
  * moved the series' deviation by a quarter), for a reader to leave out.
  *
  * @param {RvsRow[]} articles
- * @param {{ now?: Date }} [known] `now` is when the cycle was scored
+ * @param {{ now?: Date, runStarted?: number }} [known] `now` is when the cycle was scored; `runStarted` when it
+ *   began, in ms, which is what a story's age is taken against (`now` when it is not known)
  */
-export function rvsRecord(articles, { now = new Date() } = {}) {
-  const clusters = { writing: scoreWriting(articles).score, sourcing: scoreSourcing(articles).score, coverage: scoreCoverage(articles).score }
+export function rvsRecord(articles, { now = new Date(), runStarted = now.getTime() } = {}) {
+  const clusters = { writing: scoreWriting(articles).score, sourcing: scoreSourcing(articles).score, coverage: scoreCoverage(articles, runStarted).score }
   const rvs = clusters.writing * WEIGHTS.writing + clusters.sourcing * WEIGHTS.sourcing + clusters.coverage * WEIGHTS.coverage
   const ts = now.toISOString()
   return {

@@ -13,7 +13,11 @@ const words = (n) => Array.from({ length: n }, (_, i) => `word${i}`).join(' ')
 /** A body of `n` words, the dateline's two among them. */
 const bodyOf = (n) => `Lyon — ${words(n - 2)}.`
 
-/** An article nothing is wrong with: 60 words, one source, in Lyon. @param {Record<string, any>} over */
+/** When the cycle these batches belong to began. */
+const RUN = Date.parse('2026-10-09T05:01:27Z')
+const DAY = 86_400_000
+
+/** An article nothing is wrong with: 60 words, one source, in Lyon, published as the cycle began. @param {Record<string, any>} over */
 const row = (over = {}) => ({
   slug: '2026-10-09-a',
   title: 'An Unrelated Headline Entirely',
@@ -21,6 +25,7 @@ const row = (over = {}) => ({
   body: bodyOf(60),
   lat: 45.76,
   lng: 4.84,
+  date: RUN,
   sourceNames: ['Dawn'],
   sourceCountries: ['PK'],
   ...over,
@@ -41,10 +46,10 @@ test('the batch is read through the parser, however a value is quoted', () => {
     writeFileSync(join(dir, name), `---\n${yaml}\n---\n\nLyon — The council voted.\n\nIt matters.\n`)
     return { path: join(dir, name) }
   }
-  const quoted = file('2026-10-09-quoted.md', 'title: "Council Closes The Bridge"\ncategory: "politics"\nlat: 45.76\nlng: 4.84\nsources:\n  - name: "Dawn"\n    url: "https://www.dawn.com/1"\n    country: "PK"\n  - name: "Reuters"\n    url: "https://www.reuters.com/x"\n    country: null')
+  const quoted = file('2026-10-09-quoted.md', 'title: "Council Closes The Bridge"\ndate: "2026-10-09T04:54:25Z"\ncategory: "politics"\nlat: 45.76\nlng: 4.84\nsources:\n  - name: "Dawn"\n    url: "https://www.dawn.com/1"\n    country: "PK"\n  - name: "Reuters"\n    url: "https://www.reuters.com/x"\n    country: null')
   // As two articles of 2026-09-09 were written: the reader this replaced took
   // only double-quoted values and read these as having no category.
-  const bare = file('2026-10-09-bare.md', "title: 'In Single Quotes'\ncategory: economy\nlat: 0\nsources:\n  - name: Dawn\n    url: https://www.dawn.com/2")
+  const bare = file('2026-10-09-bare.md', "title: 'In Single Quotes'\ndate: 2026-10-09T04:54:25Z\ncategory: economy\nlat: 0\nsources:\n  - name: Dawn\n    url: https://www.dawn.com/2")
   const rows = readBatch([quoted, bare, { path: join(dir, '2026-10-09-quarantined.md') }, { path: join(dir, 'notes.txt') }])
 
   assert.deepEqual(rows[0], {
@@ -54,10 +59,12 @@ test('the batch is read through the parser, however a value is quoted', () => {
     body: 'Lyon — The council voted.\n\nIt matters.',
     lat: 45.76,
     lng: 4.84,
+    date: Date.parse('2026-10-09T04:54:25Z'),
     sourceNames: ['Dawn', 'Reuters'],
     sourceCountries: ['PK', 'null'],
   })
   assert.deepEqual([rows[1].title, rows[1].category, rows[1].lat, rows[1].lng], ['In Single Quotes', 'economy', 0, null])
+  assert.equal(rows[1].date, rows[0].date, 'a date YAML read as a date is the same moment')
   assert.deepEqual([rows[1].sourceNames, rows[1].sourceCountries], [['Dawn'], []], 'no country key is not a null country')
   assert.equal(rows.length, 2, 'a file the validator moved aside, and one that is no article, are left out')
 })
@@ -138,7 +145,7 @@ test('sourcing: sixty for articles with a second source, forty for outlets beyon
 test('coverage: a batch spread as the target asks earns the region and floor points in full', () => {
   const batch = Object.entries(TARGET_BALANCE.regions).flatMap(([region, share]) => inRegion(/** @type {keyof typeof AT} */ (region), Math.round(share * 100)))
   assert.equal(batch.length, 100)
-  const { score, detail } = scoreCoverage(batch)
+  const { score, detail } = scoreCoverage(batch, RUN)
   near(detail.regionFit, 1)
   near(detail.ummahShare, 0.6)
   assert.equal(detail.ummahMet, 1)
@@ -146,23 +153,45 @@ test('coverage: a batch spread as the target asks earns the region and floor poi
 })
 
 test('coverage: a batch in one region is marked down for it, and under the floor in proportion', () => {
-  const middleEast = scoreCoverage(inRegion('ME', 6)).detail
+  const middleEast = scoreCoverage(inRegion('ME', 6), RUN).detail
   near(middleEast.regionFit, TARGET_BALANCE.regions.ME, 'e to the minus KL of one region is its target share')
   assert.equal(middleEast.ummahMet, 1)
 
-  const europe = scoreCoverage(inRegion('EU', 6))
+  const europe = scoreCoverage(inRegion('EU', 6), RUN)
   near(europe.detail.regionFit, TARGET_BALANCE.regions.EU)
   assert.equal(europe.detail.ummahMet, 0)
   near(europe.score, 40 + TARGET_BALANCE.regions.EU * 30)
 
-  const split = scoreCoverage([...inRegion('EU', 3), ...inRegion('AS', 1)]).detail
+  const split = scoreCoverage([...inRegion('EU', 3), ...inRegion('AS', 1)], RUN).detail
   near(split.ummahShare, 0.25)
   near(split.ummahMet, 0.5, 'a quarter in the floor regions is half the floor')
   assert.deepEqual(scoreCoverage([]), { score: 0, detail: { reason: 'no articles' } })
 })
 
+// It was 1.0 in all 365 records of schema 2: the age came from two frontmatter
+// keys no article carries, and no age at all was scored as none.
+test('coverage: freshness is the median age of the stories when the cycle began', () => {
+  /** @param {number[]} days */
+  const aged = (...days) => scoreCoverage(days.map((d) => row({ date: RUN - d * DAY })), RUN)
+  const base = aged(0).score
+  near(base, 40 + TARGET_BALANCE.regions.EU * 30, 'published as the cycle began: all forty')
+
+  assert.deepEqual([aged(1).detail.medianAgeDays, aged(1).detail.freshness], [1, 0.5])
+  near(aged(1).score, base - 20, 'a day old is half')
+  near(aged(3).score, base - 30, 'three days old is a quarter')
+  assert.equal(aged(0, 0.5, 3).detail.medianAgeDays, 0.5, 'the middle one')
+  assert.equal(aged(0, 1, 2, 9).detail.medianAgeDays, 2, 'of an even number, the later of the middle two')
+
+  assert.equal(aged(-0.25).detail.freshness, 1, 'a story dated after the start is new, not from the future')
+  const undated = scoreCoverage([row({ date: Number.NaN }), row({ date: RUN - DAY })], RUN).detail
+  assert.equal(undated.medianAgeDays, 1, 'an article with no date is left out of the median')
+  const none = scoreCoverage([row({ date: Number.NaN })], RUN)
+  assert.deepEqual([none.detail.medianAgeDays, none.detail.freshness], [null, 0], 'and a batch with none earns nothing for it')
+  near(none.score, base - 40)
+})
+
 test('coverage: where a story is comes from its coordinates, then its first placed source', () => {
-  const regions = (over) => Object.keys(scoreCoverage([row(over)]).detail.observedRegions)
+  const regions = (over) => Object.keys(scoreCoverage([row(over)], RUN).detail.observedRegions)
   assert.deepEqual(regions({}), ['EU'], 'Lyon')
   assert.deepEqual(regions({ sourceCountries: ['PK'] }), ['EU'], 'the dateline, not the outlet')
   assert.deepEqual(regions({ lat: null, lng: null, sourceCountries: ['null', 'QA', 'US'] }), ['ME'])
@@ -206,7 +235,7 @@ test('guardrails: a thin batch, an article with a field missing, a source with n
 
 test('the record carries every key the series has carried, and rounds to two places', () => {
   const batch = [row({ sourceNames: ['Dawn', 'Reuters'] }), row({ sourceNames: ['Dawn'] }), row({ sourceNames: ['Dawn', 'AFP', 'BBC'] }), row({ sourceNames: ['Al Jazeera'] })]
-  const record = rvsRecord(batch, { now: new Date('2026-10-09T05:15:32.349Z') })
+  const record = rvsRecord(batch, { now: new Date('2026-10-09T05:15:32.349Z'), runStarted: RUN })
   assert.deepEqual(Object.keys(record), ['ts', 'cycleId', 'cycleHour', 'schema', 'rvs', 'clusters', 'articleCount', 'briefCount', 'guardrailFailures', 'degenerate'])
   assert.deepEqual(Object.keys(record.clusters), ['picking', 'writing', 'briefing', 'sourcing', 'coverage'])
   assert.deepEqual(record, {
@@ -224,6 +253,14 @@ test('the record carries every key the series has carried, and rounds to two pla
   })
   assert.ok(record.guardrailFailures.includes('publish count 4 below floor 8'))
   near(record.rvs, 100 * 0.4 + (30 + (2 / 7) * 40) * 0.3 + 44.5 * 0.3, 'two fifths writing, three tenths each sourcing and coverage', 0.01)
+})
+
+test('the record is schema 3, and a story is aged against the start of the cycle, not the minute it was scored', () => {
+  assert.equal(SCHEMA, 3, 'freshness changed what coverage and the score mean at 3: bump it if either changes again')
+  const scored = new Date(RUN + 0.5 * DAY)
+  const batch = [row({ date: RUN - DAY }), row({ date: RUN - DAY })]
+  assert.equal(rvsRecord(batch, { now: scored, runStarted: RUN }).clusters.coverage, 24.5, 'a day old: 20 + 4.5')
+  assert.equal(rvsRecord(batch, { now: scored }).clusters.coverage, 20.5, 'with no start known, the clock: a day and a half')
 })
 
 test('a batch under four articles is marked degenerate, and an empty one scores nothing', () => {

@@ -24,7 +24,10 @@ export function main() {
       return { skipped: 'the new-articles list is empty' }
     }
 
-    const record = rvsRecord(readBatch(files))
+    // A story's age is taken against the moment the cycle began, which the
+    // runner leaves in the environment; a run by hand has only the clock.
+    const runStarted = Date.parse(process.env.ZUHD_RUN_STARTED ?? '')
+    const record = rvsRecord(readBatch(files), Number.isNaN(runStarted) ? {} : { runStarted })
     appendRecord(pathOf('rvsTrend'), record)
     const { writing, sourcing, coverage } = record.clusters
     console.log(`Production RVS: ${record.rvs.toFixed(2)}  (writing=${writing.toFixed(0)}  sourcing=${sourcing.toFixed(0)}  coverage=${coverage.toFixed(0)})`)
