@@ -18,6 +18,12 @@
  *   story lasts six cycles without coverage.
  * - Sorted by importance, then by most recently covered.
  *
+ * A story no longer keeps its picks' concept URIs. `conceptUris` was written
+ * here and read by nothing, in this repository or in any payload built from
+ * the ledger: 16,849 of the file's 127,655 bytes on 2026-10-09, which the
+ * selector is told to read every cycle. A story that has them from before
+ * keeps them until it fades.
+ *
  * @param {{ version?: number, stories: LedgerStory[] }} ledger
  * @param {any[]} selection
  * @param {string} now ISO; the moment every touched story is stamped with
@@ -69,30 +75,11 @@ export function updateLedger(ledger, selection, now) {
       } else if (match.coverageCount >= 2 && match.arc === 'breaking') {
         match.arc = 'developing'
       }
-      // Collect conceptUris
-      /** @type {any[]} */
-      const concepts = entry.concepts || []
-      const uris = concepts
-        .filter(c => typeof c === 'object' && c.uri)
-        .map(c => c.uri)
-      if (uris.length > 0) {
-        if (!match.conceptUris) match.conceptUris = []
-        for (const uri of uris) {
-          if (!match.conceptUris.includes(uri)) match.conceptUris.push(uri)
-        }
-        match.conceptUris = match.conceptUris.slice(0, 10)
-      }
       coveredIds.add(match.id)
       changes.push(`Updated: ${match.id} → coverage ${match.coverageCount}, arc ${match.arc}`)
     } else {
       // New entry
       const id = slug.replace(/^\d{4}-\d{2}-\d{2}-/, '')
-      /** @type {any[]} */
-      const concepts = entry.concepts || []
-      const uris = concepts
-        .filter(c => typeof c === 'object' && c.uri)
-        .map(c => c.uri)
-        .slice(0, 10)
       /** @type {LedgerStory} */
       const newStory = {
         id,
@@ -106,7 +93,6 @@ export function updateLedger(ledger, selection, now) {
         articles: slug ? [slug] : [],
         eventUri: entry.eventUri || null,
         summary: entry.angle || '',
-        conceptUris: uris,
       }
       ledger.stories.push(newStory)
       coveredIds.add(id)

@@ -137,7 +137,7 @@ export const CATEGORIES = Object.freeze(['politics', 'economy', 'science', 'tech
  * @property {string[]} articles slugs
  * @property {string | null} eventUri
  * @property {string} summary
- * @property {string[]} conceptUris
+ * @property {string[]} [conceptUris] not written since 2026-10-09 (nothing read it); on a story from before, until it fades
  */
 
 /**

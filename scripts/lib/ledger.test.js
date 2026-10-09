@@ -39,7 +39,6 @@ test('a pick the ledger does not follow becomes a story, breaking, at importance
       articles: ['2026-10-08-fed-raises-rates'],
       eventUri: 'eng-1',
       summary: 'Why it matters.',
-      conceptUris: ['http://w/Fed'],
     },
   ])
   assert.deepEqual(changes, ['New: fed-raises-rates'])
@@ -89,9 +88,18 @@ test('the ledger is kept by importance, then by what was covered last', () => {
   assert.deepEqual(ledger.stories.map((s) => s.id), ['zebrafish-quorum-sensing-paradox', 'top', 'newer', 'older'])
 })
 
-test('a story remembers at most ten concepts', () => {
+// `conceptUris` was written and read by nothing. The keys the site, the app's
+// payloads and the narrators do read are the ones this pins.
+test('a story is the eleven keys something reads, and no concept URIs', () => {
   const concepts = Array.from({ length: 14 }, (_, i) => ({ label: `c${i}`, uri: `http://w/${i}` }))
   const ledger = { version: 1, stories: [] }
   updateLedger(ledger, [pick('2026-10-08-zebrafish-quorum-sensing-paradox', { concepts })], NOW)
-  assert.equal(ledger.stories[0].conceptUris.length, 10)
+  assert.deepEqual(Object.keys(ledger.stories[0]), ['id', 'label', 'firstSeen', 'lastCovered', 'coverageCount', 'category', 'importance', 'arc', 'articles', 'eventUri', 'summary'])
+})
+
+test('a story that has concept URIs from before keeps them, and gains none', () => {
+  const ledger = { version: 1, stories: [followed('fed-raises-rates', { eventUri: 'eng-1', conceptUris: ['http://w/Fed'] })] }
+  updateLedger(ledger, [pick('2026-10-08-markets-fall-after-the-fed-decision', { eventUri: 'eng-1', concepts: [{ label: 'Markets', uri: 'http://w/Markets' }] })], NOW)
+  assert.deepEqual(ledger.stories[0].conceptUris, ['http://w/Fed'])
+  assert.equal(ledger.stories[0].coverageCount, 2)
 })
