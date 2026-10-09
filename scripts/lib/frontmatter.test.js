@@ -1,6 +1,6 @@
 import assert from 'node:assert/strict'
 import { test } from 'node:test'
-import { parseFrontmatter, removeFrontmatterKey, replaceFrontmatterKey, setFrontmatterLine } from './frontmatter.js'
+import { parseFrontmatter, removeFrontmatterKey, replaceFrontmatterKey, setFrontmatterLine, splitFrontmatter } from './frontmatter.js'
 
 const doc = `---
 title: "A"
@@ -88,4 +88,32 @@ test('removeFrontmatterKey finds the key first or last in the block', () => {
 test('removeFrontmatterKey takes what is indented under the key with it', () => {
   assert.equal(removeFrontmatterKey(WITH_CHART, 'sources'), WITH_CHART.replace('sources:\n  - name: "Dawn"\n    url: "https://www.dawn.com/news/1"\n', ''))
   assert.equal(parseFrontmatter(removeFrontmatterKey(WITH_CHART, 'sources')).meta.chart, 'brent')
+})
+
+// The two articles this cost were sound: five blocks each, and a `---` inside
+// a source URL and an image URL.
+test('the frontmatter ends at a line that is `---`, not at a `---` inside a value', () => {
+  const raw = [
+    '---',
+    'title: "A"',
+    'sources:',
+    '  - name: "HT"',
+    '    url: "https://example.org/Minute-by-minute---HT-Immersive-1/"',
+    '    image: "https://example.org/2026/09/--------------2026-09-27---15_24.png"',
+    '---',
+    'Dubai — One.',
+    '',
+    'Two.',
+    '',
+  ].join('\n')
+  const split = splitFrontmatter(raw)
+  assert.equal(split?.body, 'Dubai — One.\n\nTwo.')
+  assert.ok(split?.yaml.endsWith('15_24.png"'))
+  assert.deepEqual(parseFrontmatter(raw).body, split?.body)
+  assert.equal(parseFrontmatter(raw).meta.sources[0].url, 'https://example.org/Minute-by-minute---HT-Immersive-1/')
+})
+
+test('a file with no frontmatter has no split', () => {
+  assert.equal(splitFrontmatter('Just prose.\n'), null)
+  assert.deepEqual(parseFrontmatter('Just prose.\n'), { meta: {}, body: 'Just prose.\n' })
 })

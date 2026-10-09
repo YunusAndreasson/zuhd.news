@@ -2,6 +2,25 @@
 import { load } from 'js-yaml'
 
 /**
+ * The frontmatter block and the prose under it, as text: the split every
+ * reader of an article has to agree on. The block ends at the first line that
+ * is `---` and nothing else. A `---` inside a value is not that line.
+ *
+ * Three stages each cut the file their own way (`raw.replace(/^---[\s\S]*?---/`
+ * twice, `split('---')` once) and stopped at the first `---` anywhere. A source
+ * URL holding one (`…flydubai-FZ1073---HT-Immersive…`) left the rest of the
+ * frontmatter counted as prose, and two sound five-block articles were
+ * quarantined as "6 blocks" (2026-09-27, 2026-10-01).
+ *
+ * @param {string} content
+ * @returns {{ yaml: string, body: string } | null} null when the file has no frontmatter; `body` is trimmed
+ */
+export function splitFrontmatter(content) {
+  const match = content.match(/^---\n([\s\S]*?)\n---\n([\s\S]*)$/)
+  return match ? { yaml: match[1], body: match[2].trim() } : null
+}
+
+/**
  * Split an article file into its frontmatter and its prose.
  *
  * `meta` is annotated rather than inferred because js-yaml 5 types `load` as
@@ -15,10 +34,10 @@ import { load } from 'js-yaml'
  * @returns {{ meta: Record<string, any>, body: string }}
  */
 export function parseFrontmatter(content) {
-  const match = content.match(/^---\n([\s\S]*?)\n---\n([\s\S]*)$/)
-  if (!match) return { meta: {}, body: content }
+  const split = splitFrontmatter(content)
+  if (!split) return { meta: {}, body: content }
   // Strip trailing commas after quoted values — Claude occasionally generates them
-  const cleaned = match[1].replace(/",\s*$/gm, '"')
+  const cleaned = split.yaml.replace(/",\s*$/gm, '"')
   // js-yaml 5 throws on an empty document where 4 returned undefined, so the
   // `?? {}` that used to cover an article with an empty `---\n---` block no
   // longer runs. Answering it here rather than with a try/catch keeps a real
@@ -27,8 +46,8 @@ export function parseFrontmatter(content) {
   // must not swallow. (The one file in 7,320 that js-yaml 5 rejected was a URL
   // wrapped across two lines, which 4 had been folding into a trailing space
   // inside the published href — a live defect, now fixed in the article.)
-  if (!cleaned.trim()) return { meta: {}, body: match[2].trim() }
-  return { meta: load(cleaned) ?? {}, body: match[2].trim() }
+  if (!cleaned.trim()) return { meta: {}, body: split.body }
+  return { meta: load(cleaned) ?? {}, body: split.body }
 }
 
 /**

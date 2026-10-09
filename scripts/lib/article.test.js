@@ -4,7 +4,7 @@ import { mkdtempSync, readFileSync, rmSync, writeFileSync } from 'node:fs'
 import { tmpdir } from 'node:os'
 import { join } from 'node:path'
 import { test } from 'node:test'
-import { articleProblems, datelineOf, readArticle, tryReadArticle, visibleText } from './article.js'
+import { articleProblems, datelineOf, readArticle, stripDateline, tryReadArticle, visibleText } from './article.js'
 import { CATEGORY_FLOORS } from './dedup.js'
 import { ROOT } from './paths.js'
 import { CATEGORIES } from './schema.js'
@@ -88,6 +88,20 @@ test('the dateline is the city before the dash, or nothing', () => {
   // decides whether it was one.
   assert.equal(datelineOf('A sentence with a dash — in its first clause.'), 'A sentence with a dash')
   assert.equal(datelineOf('This opening sentence runs on for well over sixty characters before its dash — so no.'), null)
+})
+
+test('the dateline comes off by the location, whatever alphabet the city is in', () => {
+  assert.equal(stripDateline('Brasília — Lula leads the first round.', 'Brasília'), 'Lula leads the first round.')
+  assert.equal(stripDateline("Sana'a — A court ruled.", "Sana'a"), 'A court ruled.')
+  assert.equal(stripDateline('St. Louis — The county voted.', 'St. Louis'), 'The county voted.')
+  // No location to go by: the same pattern `datelineOf` reads.
+  assert.equal(stripDateline('São Paulo — Markets fell.'), 'Markets fell.')
+  assert.equal(stripDateline('Port-au-Prince — Gangs withdrew.'), 'Gangs withdrew.')
+  // A location that is not what the body opens with strips nothing by itself.
+  assert.equal(stripDateline('Markets fell on Tuesday.', 'Geneva'), 'Markets fell on Tuesday.')
+  assert.equal(stripDateline('', 'Geneva'), '')
+  // Only the opening: a later paragraph's dash is prose.
+  assert.equal(stripDateline('Geneva — One.\n\nKyiv — Two.', 'Geneva'), 'One.\n\nKyiv — Two.')
 })
 
 test('a sound article has no problems', () => {

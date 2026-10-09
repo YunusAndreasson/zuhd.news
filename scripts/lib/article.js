@@ -81,6 +81,26 @@ export function datelineOf(body) {
   return m ? m[1].trim() : null
 }
 
+/**
+ * A body without the dateline it opens with. `location` decides when it is
+ * given: by invariant the dateline is the frontmatter `location` and a dash,
+ * which is how the app strips it. Without one, the pattern `datelineOf` reads.
+ *
+ * Never by a pattern over letters. Three surfaces stripped with ASCII classes
+ * (`[A-Z][\w .,'-]`, `[A-Za-z\s,]`) and left `Brasília — `, `São Paulo — ` and
+ * `Bogotá — ` at the head of a share card's dek and a push body: 51 and 69 of
+ * the 2,202 datelines from 2026-09-01 to 10-09.
+ *
+ * @param {string} body
+ * @param {string} [location]
+ * @returns {string}
+ */
+export function stripDateline(body, location) {
+  const text = String(body || '')
+  if (location && text.startsWith(`${location} — `)) return text.slice(location.length + 3)
+  return text.replace(/^[^\n—]{2,60}? — /, '')
+}
+
 const REQUIRED = ['title', 'date', 'category', 'location', 'sources']
 
 /**
