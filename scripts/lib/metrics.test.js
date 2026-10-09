@@ -143,6 +143,21 @@ test('two articles on one first link are a duplicate', () => {
   })
 })
 
+// The validator's duplicate gate compares links through `normalizeUrl`. This
+// compared their text, so the two did not mean the same thing by "the same link".
+test('a link is the same link as the validator reads it', () => {
+  const sameStory = findDuplicates([
+    row({ slug: 'a', sourceUrl: 'https://www.dawn.com/news/2035725' }),
+    row({ slug: 'b', sourceUrl: 'https://dawn.com/news/2035725/?utm_source=newsletter' }),
+  ])
+  assert.deepEqual(sameStory, { count: 1, details: [{ url: 'https://www.dawn.com/news/2035725', slugs: ['a', 'b'] }] }, 'shown as the first article wrote it')
+  // A front page names a site, not a story: two articles sourced to it are not one story told twice.
+  assert.deepEqual(findDuplicates([row({ slug: 'a', sourceUrl: 'https://www.dawn.com/' }), row({ slug: 'b', sourceUrl: 'https://www.dawn.com/' })]), { count: 0, details: [] })
+  // What identifies the story stays: another `id` is another item.
+  assert.equal(findDuplicates([row({ slug: 'a', sourceUrl: 'https://news.ycombinator.com/item?id=1' }), row({ slug: 'b', sourceUrl: 'https://news.ycombinator.com/item?id=2' })]).count, 0)
+  assert.equal(findDuplicates([row({ slug: 'a', sourceUrl: 'not a link' }), row({ slug: 'b', sourceUrl: 'not a link' })]).count, 0)
+})
+
 test('the sourcing figures read the parsed article, and refuse one that does not parse', () => {
   const r = sourcingRow('2026-10-08-wto.md', ARTICLE)
   assert.equal(r.slug, '2026-10-08-wto')

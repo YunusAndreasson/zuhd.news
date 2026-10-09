@@ -10,7 +10,7 @@
 
 import { datelineOf } from './article.js'
 import { parseCycleLog } from './cycle-log.js'
-import { recapMatch, titleWords } from './dedup.js'
+import { normalizeUrl, recapMatch, titleWords } from './dedup.js'
 import { parseFrontmatter } from './frontmatter.js'
 import { soleClassifiedSource } from './outlet-class.js'
 import { regionFromCoords } from './regions.js'
@@ -161,16 +161,32 @@ export function computeEducational(articles) {
 
 // ── Duplicates ───────────────────────────────────────────────────────
 
-/** @param {MetricsRow[]} articles */
+/**
+ * The day's articles that stand on one first link. A link is compared as the
+ * validator's duplicate gate compares it (`normalizeUrl`, `lib/dedup.js`), so
+ * this counts what that gate calls the same link: tracking parameters,
+ * `www.`, a trailing slash and the path's case do not make it another one, and
+ * a link that names a site and not a story keys nothing. The link shown is the
+ * first article's, as written.
+ *
+ * It compared the links as text, so it missed the pair the gate would stop
+ * and counted the pair the gate lets through: two stories whose first source
+ * is the same front page.
+ *
+ * @param {MetricsRow[]} articles
+ */
 export function findDuplicates(articles) {
-  /** @type {Record<string, string[]>} */
-  const urlMap = {}
+  /** @type {Map<string, { url: string, slugs: string[] }>} */
+  const byLink = new Map()
   for (const a of articles) {
-    // biome-ignore lint/suspicious/noAssignInExpressions: the (x ??= []) group-by idiom, in statement position. The rule is here for `if (a = b)`.
-    if (a.sourceUrl) (urlMap[a.sourceUrl] ??= []).push(a.slug)
+    const key = normalizeUrl(a.sourceUrl)
+    if (!key) continue
+    const group = byLink.get(key) ?? { url: a.sourceUrl, slugs: [] }
+    group.slugs.push(a.slug)
+    byLink.set(key, group)
   }
-  const dupes = Object.entries(urlMap).filter(([, slugs]) => slugs.length > 1)
-  return { count: dupes.length, details: dupes.map(([url, slugs]) => ({ url: url.slice(0, 80), slugs })) }
+  const dupes = [...byLink.values()].filter((group) => group.slugs.length > 1)
+  return { count: dupes.length, details: dupes.map(({ url, slugs }) => ({ url: url.slice(0, 80), slugs })) }
 }
 
 // ── Sourcing and datelines ───────────────────────────────────────────
