@@ -10,7 +10,6 @@ import { readFileSync, readdirSync, existsSync, statSync, watch } from 'node:fs'
 import { join } from 'node:path'
 import { spawnSync } from 'node:child_process'
 import { parseCycleLog } from '../lib/cycle-log.js'
-import { parseFrontmatter } from '../lib/frontmatter.js'
 import { scoreDir } from '../lib/quality-score.js'
 import { regionFromCoords } from '../lib/regions.js'
 import { ROOT } from '../lib/paths.js'
@@ -848,48 +847,9 @@ function handleAutoresearch() {
 
 // ── Editorial Data ──────────────────────────────────────────────────
 
-function handleReach() {
-  return cached('reach', 300_000, () => {
-    const path1 = join(ROOT, 'content', '.analytics.json')
-    const errPath = join(ROOT, 'content', '.analytics-error.json')
-    if (existsSync(path1)) {
-      try {
-        const data = JSON.parse(readFileSync(path1, 'utf-8'))
-        const stat = statSync(path1)
-        // Join with article metadata for recency/category/origin context.
-        // Small per-article additions only; don't read every body.
-        const articlesDir = join(ROOT, 'content', 'articles')
-        const withMeta = (data.articles || []).slice(0, 100).map(a => {
-          const md = join(articlesDir, `${a.slug}.md`)
-          let meta = {}
-          if (existsSync(md)) {
-            const { meta: fm } = parseFrontmatter(readFileSync(md, 'utf-8'))
-            meta = { category: fm.category, date: fm.date, origin: fm.origin, eventCoverage: +(fm.eventCoverage || 0) }
-          }
-          return { ...a, ...meta }
-        })
-        return {
-          fetchedAt: data.fetchedAt,
-          ageHours: Math.round((Date.now() - stat.mtime.getTime()) / 3600000 * 10) / 10,
-          windowDays: data.windowDays,
-          totalRequests: data.totalRequests,
-          perDay: data.perDay,
-          articles: withMeta,
-        }
-      } catch (e) {
-        return { error: `parse error: ${e.message}` }
-      }
-    }
-    if (existsSync(errPath)) {
-      try { return { error: JSON.parse(readFileSync(errPath, 'utf-8')) } } catch {}
-    }
-    return { empty: true, hint: 'Run scripts/fetch-analytics.js (requires Zone > Analytics > Read)' }
-  })
-}
-
 function handleEditorial() {
   return cached('editorial', 300_000, () => {
-    const result = { audit: null, experiments: null }
+    const result = { audit: null }
 
     // Daily audit — prefer JSON, fall back to markdown
     const auditJsonPath = join(ROOT, 'content', '.daily-audit.json')
@@ -913,26 +873,6 @@ function handleEditorial() {
           content: readFileSync(auditMdPath, 'utf-8'),
           updatedAt: stat.mtime.toISOString(),
           ageHours: Math.round((Date.now() - stat.mtime.getTime()) / 3600000 * 10) / 10,
-        }
-      } catch {}
-    }
-
-    // Experiments
-    const expPath = join(ROOT, 'content', '.experiments.json')
-    if (existsSync(expPath)) {
-      try {
-        const stat = statSync(expPath)
-        const data = JSON.parse(readFileSync(expPath, 'utf-8'))
-        const activeAll = Array.isArray(data.activeExperiments)
-          ? data.activeExperiments
-          : (data.activeExperiment ? [data.activeExperiment] : [])
-        const queued = Array.isArray(data.queuedExperiments) ? data.queuedExperiments : []
-        result.experiments = {
-          active: activeAll[0] || null,
-          activeAll,
-          queued,
-          history: (data.history || []).slice().reverse(),
-          updatedAt: stat.mtime.toISOString(),
         }
       } catch {}
     }
@@ -1053,7 +993,6 @@ const server = createServer(listener([
   ['/api/autoresearch', handleAutoresearch],
   ['/api/media', handleMedia],
   ['/api/experiment', handleExperiment],
-  ['/api/reach', handleReach],
   ['/api/live', handleLive],
   // /api/cycle/cycle-2026-04-11_1702.log
   [/^\/api\/cycle\/(.+)$/, (_req, _res, filename) => handleCycleDetail(filename)],
