@@ -683,7 +683,17 @@ if (existsSync(ledgerPath)) {
         threadId: story.id,
         threadLabel: story.label,
         threadArc: story.arc,
-        threadSummary: story.summary || null,
+        // Not `story.summary`. The ledger stores the selector's `angle` there
+        // (`lib/ledger.js`), which is its brief to the writer: "Lead with the
+        // sentence and the forfeiture…", "The feed title is RT's; write your
+        // own. Dateline Kyiv.", and claims it formed from a feed with no
+        // bodies. From 2026-03-28 that text was published as the thread's
+        // summary in `/api/feed.json` and `/api/articles*.json` (45 of 45
+        // values on 2026-10-09) and handed on by the MCP worker. Nothing was
+        // written to be read here, so nothing is: the key stays, as null, which
+        // it has always been allowed to be. The narrators and the briefing
+        // still read the ledger's own field, where a brief is what they want.
+        threadSummary: null,
         threadDay: Math.max(1, Math.ceil((Date.now() - firstDate.getTime()) / 86400000)),
         threadArticleCount: story.articles.length,
         threadContext: brief?.timeline || null,
