@@ -6,6 +6,7 @@ import { readFileSync, readdirSync, existsSync } from 'node:fs'
 import { join } from 'node:path'
 import { XMLParser } from 'fast-xml-parser'
 import { Readability } from '@mozilla/readability'
+import { feedPubDate } from './lib/feed-age.js'
 import { htmlLeadImage, rssItemImage } from './lib/feed-image.js'
 import { htmlForReadability } from './lib/fetch-source-text.js'
 import { JSDOM } from 'jsdom'
@@ -94,6 +95,11 @@ const SOURCES = [
 ]
 
 const EXCLUDE_RE = /\b(opinion|features|gallery|photos|video|sport|entertainment|culture|food|travel|lifestyle|podcast)\b/i
+
+// A publisher's clock a few seconds fast is not worth a line. A date hours
+// ahead is a feed wrong about when its story ran, and an operator's to see:
+// the line starts with the mark the run record keeps as a warning.
+const AHEAD_WORTH_SAYING_MS = 60_000
 
 // ── Helpers ─────────────────────────────────────────────────────────
 
@@ -373,6 +379,7 @@ async function main() {
   const existingFps = new Set(existingTitles.map(fingerprint))
   const seenFps = new Set()
 
+  const now = Date.now()
   const stories = []
   for (const item of allItems) {
     const fp = fingerprint(item.title)
@@ -380,7 +387,12 @@ async function main() {
     seenFps.add(fp)
 
     const category = item.category || zuhdCategory([], item.title, item.description)
-    const pubDate = item.pubDate || new Date().toISOString()
+    // The date as the feed prints it is the publisher's: RFC 822, any offset,
+    // and on 2026-10-09 a day ahead. `feedPubDate` says what the story carries.
+    const { pubDate, ahead } = feedPubDate(item.pubDate, now)
+    if (ahead >= AHEAD_WORTH_SAYING_MS) {
+      console.error(`⚠ RSS date ahead of the clock: ${item.source} dates "${item.title}" ${item.pubDate}, ${(ahead / 3_600_000).toFixed(1)} h from now. Taken as now.`)
+    }
 
     stories.push({
       title: item.title,

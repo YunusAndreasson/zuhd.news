@@ -48,8 +48,52 @@ export function feedItemAgeMs(pubDate, now = Date.now()) {
   return now - (dateOnly ? Math.min(t + DAY_MS, now) : t)
 }
 
+// A time of day and the offset after it: `00:00:00 +1100`, `10:00:00 GMT+0200`,
+// `T00:00:00+11:00`. Only a numeric offset: a named zone is left to the parser.
+const TIME_AND_OFFSET = /\d{2}:\d{2}(?::\d{2}(?:\.\d+)?)?\s*(?:GMT|UTC?)?\s*([+-])(\d{2}):?(\d{2})\s*$/i
+
+/** @param {number} ms */
+const isoSecond = (ms) => new Date(ms).toISOString().replace(/\.\d{3}Z$/, 'Z')
+
 /**
- * Young enough for the selector's pool. An undated item never is.
+ * An RSS item's date as the feed carries it: ISO, in UTC, never later than
+ * `now`. `ahead` is how far past `now` the publisher's own date was, in ms.
+ *
+ * The date went into the story as the publisher printed it: RFC 822 with the
+ * publisher's offset on 74 of the 77 items of 2026-10-09 10:00, left to the
+ * selector to convert, and bounded by nothing.
+ *
+ * - **A date that has not happened yet** is taken as now. The Record stamped
+ *   an item `Sat, 10 Oct 2026 00:55:00 GMT` on the 9th; the article went out at
+ *   10:12 dated nearly fifteen hours ahead, first on every surface until then.
+ * - **Local midnight is a date with no time**, as midnight UTC is
+ *   (`feedItemAgeMs`), and becomes that date at `T00:00:00Z`. Lowy Interpreter
+ *   stamps `00:00:00 +1100`: read as 13:00 the day before, none of its three
+ *   items survived that cycle's 15.6 h cut on the day they are dated. East of
+ *   Greenwich the date begins before UTC's does, and for those hours the
+ *   instant stands, since the date alone would be ahead of now.
+ * - **No date at all** is the fetch time, as it always was.
+ * - **A date that does not parse** is left as it came: nothing downstream
+ *   takes it for fresh.
+ *
+ * @param {unknown} raw
+ * @param {number} [now]
+ * @returns {{ pubDate: string, ahead: number }}
+ */
+export function feedPubDate(raw, now = Date.now()) {
+  if (raw === undefined || raw === null || raw === '') return { pubDate: isoSecond(now), ahead: 0 }
+  const t = typeof raw === 'string' || typeof raw === 'number' ? new Date(raw).getTime() : NaN
+  if (Number.isNaN(t)) return { pubDate: String(raw), ahead: 0 }
+  if (t > now) return { pubDate: isoSecond(now), ahead: t - now }
+  const offset = typeof raw === 'string' ? TIME_AND_OFFSET.exec(raw) : null
+  const local = offset ? t + (offset[1] === '-' ? -1 : 1) * (Number(offset[2]) * 60 + Number(offset[3])) * 60_000 : t
+  return { pubDate: isoSecond(local % DAY_MS === 0 && local <= now ? local : t), ahead: 0 }
+}
+
+/**
+ * Young enough for the selector's pool. A pubDate that does not parse never
+ * is. An RSS item with no date at all does not arrive here undated: it has the
+ * fetch time (`feedPubDate`), so it is as young as an item can be.
  *
  * @param {string | number | Date} pubDate
  * @param {number} [now]
