@@ -9,9 +9,8 @@
 // covers every currency for 30 days). Subsequent runs: 1 call/day, merged
 // into the cache.
 
-import { existsSync, readFileSync, writeFileSync, mkdirSync } from 'node:fs'
-import { dirname } from 'node:path'
 import { ZUHD_UA } from '../http.js'
+import { readJson, writeJson } from '../json-file.js'
 
 const OER_BASE = 'https://openexchangerates.org/api'
 const HISTORY_DAYS = 30
@@ -26,9 +25,9 @@ function formatPeriod(dateStr) {
   return `${month} ${d.getUTCDate()}`
 }
 
-async function fetchOneDay(date, appId) {
+async function fetchOneDay(date, appId, get) {
   const url = `${OER_BASE}/historical/${date}.json?app_id=${appId}`
-  const res = await fetch(url, {
+  const res = await get(url, {
     signal: AbortSignal.timeout(10000),
     headers: { 'User-Agent': ZUHD_UA },
   })
@@ -44,20 +43,17 @@ async function fetchOneDay(date, appId) {
  * @param {string[]} currencies  ISO codes to retain in the cache (others dropped).
  * @param {string} appId
  * @param {string} cachePath
+ * @param {{ fetch?: typeof fetch, now?: number }} [opts]  what a test holds it by
  * @returns {Promise<Record<string, { values: number[], periods: string[], asOf: string }> | null>}
  */
-export async function fetchOerRates(currencies, appId, cachePath) {
-  let cache = { days: {} }
-  if (existsSync(cachePath)) {
-    try {
-      cache = JSON.parse(readFileSync(cachePath, 'utf8'))
-      if (!cache.days) cache = { days: {} }
-    } catch {
-      cache = { days: {} }
-    }
-  }
+export async function fetchOerRates(currencies, appId, cachePath, { fetch: get = fetch, now = Date.now() } = {}) {
+  // Through `readJson`, which says so when the file will not parse. Read as
+  // an empty history in silence, a cut file cost thirty calls of the month's
+  // thousand to rebuild and nobody knew why.
+  const read = readJson(cachePath)
+  const cache = read?.days && typeof read.days === 'object' ? read : { days: {} }
 
-  const today = new Date()
+  const today = new Date(now)
   const wantedDates = []
   for (let i = HISTORY_DAYS - 1; i >= 0; i--) {
     const d = new Date(today)
@@ -71,15 +67,17 @@ export async function fetchOerRates(currencies, appId, cachePath) {
     console.log(`  · oer: fetching ${missing.length} missing days`)
   }
 
+  let fetched = 0
   for (const date of missing) {
     try {
-      const { rates } = await fetchOneDay(date, appId)
+      const { rates } = await fetchOneDay(date, appId, get)
       // Store only the currencies we care about to keep cache small.
       const filtered = {}
       for (const cc of currencies) {
         if (rates[cc] != null) filtered[cc] = rates[cc]
       }
       cache.days[date] = filtered
+      fetched++
     } catch (err) {
       console.error(`  ✗ oer ${date}: ${err.message}`)
       // Don't abort — continue with the days we got.
@@ -92,12 +90,16 @@ export async function fetchOerRates(currencies, appId, cachePath) {
     if (cache.days[d]) trimmed.days[d] = cache.days[d]
   }
 
-  // Persist cache.
-  try {
-    mkdirSync(dirname(cachePath), { recursive: true })
-    writeFileSync(cachePath, JSON.stringify(trimmed))
-  } catch (err) {
-    console.error(`  ✗ oer cache write: ${err.message}`)
+  // Persist the cache when a day was added to it, by rename. It was a bare
+  // `writeFileSync` on every run, and four of a day's five runs fetch nothing:
+  // four rewrites of a history under the stage's `timeout`, each a chance to
+  // leave it cut short, for no new byte.
+  if (fetched > 0) {
+    try {
+      writeJson(cachePath, trimmed, { pretty: false })
+    } catch (err) {
+      console.error(`  ✗ oer cache write: ${err.message}`)
+    }
   }
 
   const datesWithData = wantedDates.filter((d) => trimmed.days[d])
