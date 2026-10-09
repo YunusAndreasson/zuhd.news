@@ -41,7 +41,7 @@ const validFeature = {
 // Anchor `now` to a fixed point relative to the fixture so the 30-day-age
 // cliff inside collectionToAlerts is deterministic regardless of when the
 // suite runs.
-const FIXTURE_NOW = Date.parse('2026-05-02T00:00:00') + 86_400_000
+const FIXTURE_NOW = Date.parse('2026-05-02T00:00:00Z') + 86_400_000
 
 test('isGdacsFeatureCollection accepts well-formed, rejects malformed', () => {
   assert.equal(isGdacsFeatureCollection({ type: 'FeatureCollection', features: [] }), true)
@@ -135,7 +135,30 @@ test('collectionToAlerts drops alerts older than 30 days', () => {
   }
   const out = collectionToAlerts({ type: 'FeatureCollection', features: [old, validFeature] }, FIXTURE_NOW)
   assert.equal(out.length, 1)
-  assert.equal(out[0].modifiedDate, '2026-05-01T08:00:00')
+  assert.equal(out[0].modifiedDate, '2026-05-01T08:00:00Z')
+})
+
+test('a GDACS time says it is UTC', () => {
+  // GDACS writes UTC with no offset, and a date-time with no offset is local
+  // time to every `Date.parse` that reads the snapshot: the app's "updated 3h
+  // ago" and the map's scrubber were out by the viewer's distance from UTC.
+  const at = (dates) => {
+    const feature = { ...validFeature, properties: { ...validFeature.properties, ...dates } }
+    return collectionToAlerts({ type: 'FeatureCollection', features: [feature] }, FIXTURE_NOW)[0]
+  }
+  const bare = at({ todate: '2026-05-01T12:00:00' })
+  assert.deepEqual(
+    [bare.fromDate, bare.toDate, bare.modifiedDate],
+    ['2026-04-30T03:00:00Z', '2026-05-01T12:00:00Z', '2026-05-01T08:00:00Z'],
+  )
+  // The instant it names no longer depends on where it is read.
+  assert.equal(Date.parse(bare.fromDate), Date.UTC(2026, 3, 30, 3))
+
+  // A time that states its zone keeps it, and a day has none to state.
+  assert.equal(at({ fromdate: '2026-04-30T03:00:00Z' }).fromDate, '2026-04-30T03:00:00Z')
+  assert.equal(at({ fromdate: '2026-04-30T05:00:00+02:00' }).fromDate, '2026-04-30T05:00:00+02:00')
+  assert.equal(at({ fromdate: '2026-04-30T03:00:00.250' }).fromDate, '2026-04-30T03:00:00.250Z')
+  assert.equal(at({ fromdate: '2026-04-30' }).fromDate, '2026-04-30')
 })
 
 test('a list that gives no alert is reported, with what its first feature held', () => {
@@ -237,8 +260,8 @@ test('every date an alert carries is one the app will take', () => {
     out.map((a) => [a.eventid, a.fromDate, a.toDate, a.modifiedDate]),
     [
       // No end that can be read is no end; no modification time is the start.
-      ['4', '2026-04-30T03:00:00', null, '2026-04-30T03:00:00'],
-      ['5', '2026-04-30T03:00:00', '2026-05-01T12:00:00', '2026-05-01T08:00:00'],
+      ['4', '2026-04-30T03:00:00Z', null, '2026-04-30T03:00:00Z'],
+      ['5', '2026-04-30T03:00:00Z', '2026-05-01T12:00:00Z', '2026-05-01T08:00:00Z'],
     ],
   )
   assert.deepEqual(tally, { undated: 3 }, 'an alert with no start it can state is dropped, and counted')

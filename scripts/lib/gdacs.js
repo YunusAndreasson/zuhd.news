@@ -126,6 +126,21 @@ function readReportUrl(props) {
 }
 
 /**
+ * A GDACS time with its zone said.
+ *
+ * GDACS keeps UTC and writes it bare: `2026-10-09T09:59:42`. A date-time with
+ * no offset is local time to `Date.parse`, by the language's own rule, so each
+ * reader of the snapshot placed an alert by its own clock: the app's "updated
+ * 3h ago" and the map's scrubber were out by the viewer's offset from UTC,
+ * three hours in Makkah. This box reads it right only because it runs on UTC.
+ * A day with no time is UTC already and is left alone; so is a time that
+ * states an offset.
+ *
+ * @param {string} iso one that `isIsoDate` has passed
+ */
+const inUtc = (iso) => (iso.includes('T') && !/(?:Z|[+-]\d{2}:?\d{2})$/i.test(iso) ? `${iso}Z` : iso)
+
+/**
  * One feature as an alert, or null when it is not one this layer draws.
  *
  * The three dates are held to the app's own test (`isIsoDate`), because the app
@@ -163,9 +178,9 @@ function featureToAlert(feature, tally) {
         : ''
   const country = typeof p.country === 'string' ? p.country : ''
   const iso3 = typeof p.iso3 === 'string' ? p.iso3 : ''
-  const fromDate = p.fromdate
-  const toDate = isIsoDate(p.todate) ? p.todate : null
-  const modifiedDate = isIsoDate(p.datemodified) ? p.datemodified : fromDate
+  const fromDate = inUtc(p.fromdate)
+  const toDate = isIsoDate(p.todate) ? inUtc(p.todate) : null
+  const modifiedDate = isIsoDate(p.datemodified) ? inUtc(p.datemodified) : fromDate
   const rawDescription =
     typeof p.htmldescription === 'string'
       ? truncate(htmlToPlain(p.htmldescription), 280)
