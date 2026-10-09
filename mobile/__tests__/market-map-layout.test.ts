@@ -63,6 +63,39 @@ test('viewport excludes markers behind chrome and beyond the visible map', () =>
     }).flatMap((m) => m.ids),
   ).toEqual(['shown']);
 });
+
+test.each([320, 430])(
+  'repositions names below a tall header, player and alert at width %s',
+  (width) => {
+    const points = [
+      point('covered', 80, 150),
+      point('first', width / 2, 270),
+      point('second', width / 2, 410),
+    ];
+    const before = layoutMarketClusters(points, [], {
+      width,
+      height: 800,
+      top: 70,
+      bottom: 550,
+      label: names,
+    });
+    expect(before.flatMap((mark) => mark.ids)).toContain('covered');
+    const after = layoutMarketClusters(points, [], {
+      width,
+      height: 800,
+      top: 220,
+      bottom: 550,
+      label: names,
+    });
+    expect(after.flatMap((mark) => mark.ids).sort()).toEqual(['first', 'second']);
+    for (const mark of after) {
+      const box = keptName(mark);
+      expect(box).toBeDefined();
+      expect(box?.y0).toBeGreaterThanOrEqual(220);
+      expect(box?.y1).toBeLessThanOrEqual(550);
+    }
+  },
+);
 test('a lone market keeps its move for the second line; a cluster carries none', () => {
   const withMove = (id: string, x: number, move: string): MarketPoint => ({
     ...point(id, x, 100),

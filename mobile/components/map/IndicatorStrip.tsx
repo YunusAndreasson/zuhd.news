@@ -8,8 +8,8 @@ import {
   View,
 } from 'react-native';
 import { ScrollView } from 'react-native-gesture-handler';
-import { useReducedMotion } from 'react-native-reanimated';
 import { MAX_FONT_SCALE, SPACING } from '../../constants/theme';
+import { useStableStrip } from '../../hooks/useStableStrip';
 import { useTheme } from '../../hooks/useTheme';
 import { nearestIndex, sameItems } from '../../lib/arrays';
 import { spokenDelta } from '../../lib/cards/format';
@@ -20,78 +20,13 @@ import { stripSnapOffsets } from '../../lib/strip-snap';
 import { DeltaChip } from '../DeltaChip';
 import { Icon, Pressable, Text } from '../primitives';
 
-/**
- * The gauges above the earth, swiped sideways across `MapHeader`.
- *
- * The brief was "keep the indicators of whether things are going up and down
- * on the markets and straits, but put them at the top" — and then, having
- * lived with three fixed slots, "the rail should be swipeable, with markets,
- * straits and currencies all there, the most dramatic change at the left".
- *
- * **Every reading that moved this week, largest move first.** Every slot is
- * one quantity, the move over the past seven days (`gaugeMove`), so the sort is
- * a comparison. It used to sort each card's own delta, which put a strait's gap
- * from its 90-day normal beside an index's four sessions beside a currency's
- * whole series. A glance at the carets and their colour is
- * the whole read; the number is there for whoever stops.
- *
- * Slots grow to fit the full label and percentage without wrapping. A partial
- * slot at the edge signals that the row continues.
- *
- * **A swipe lands on a slot, never between two.** The row is sized for 3.4
- * slots across, so a clean boundary at both edges is impossible — four tenths
- * of a slot always falls somewhere. It falls at the right, where the partial
- * slot is the sign the row continues; the left edge is the one that is
- * guaranteed, and every rest position is a slot's own left edge, exactly where
- * the first slot sits at rest. The row used to stop wherever the finger left
- * it, so a fling routinely settled with the leftmost label cut mid-word
- * against the inset, which reads as broken rather than as a row with more in
- * it. The landings are measured rather than a pitch, because a longer name
- * widens its slot (`lib/strip-snap.ts`); the end of the row is the one landing
- * that is not a slot start, since the last slots begin past the furthest the
- * row can scroll and `all →` still has to be reachable.
- *
- * **Still no marquee.** The row moves when a finger moves it. A ticker moves
- * when nothing has happened, which is the engagement mechanic `foundation.md`
- * names in the list of things this is not.
- *
- * Each slot carries its subject and the week's percentage move on one line,
- * green up and red down (`moveTone`). Subjects are words, not codes
- * (`stripLabel`: `Turkey stocks`, `Hormuz`, `Oil`). The test is that a
- * reader gets it by looking (2026-09-25, the user's request). The window is
- * not printed in the row: a `past week` label at its start cost the first
- * view most of a slot, and the user asked for it gone the same day. Every
- * number here is the same week, so the menu's lists and the map key say it
- * once, and each slot speaks it. Absolute readings and graphs live in the
- * detail sheet.
- *
- * **`all →` ends the row, and opens the menu.** The instruments without a
- * move — the nisab, the contracts, the dates — and every published series
- * live in the menu's groups (`lib/instrument-catalog.ts`); it opened a
- * markets browser of its own until 2026-09-26, when the browser became the
- * menu's pages. The end of a row sorted from loudest to quietest is where a
- * reader who wants more has already arrived. It used to sit under the NOW
- * block in the news sheet, which is for news.
- *
- * **The row is Gesture Handler's `ScrollView`, not React Native's.** The
- * globe's pan sits under the whole header, and Gesture Handler finds the
- * handlers for a touch by walking the views under the finger: a plain
- * `ScrollView` has none, so a drag that began between two slots, or on the
- * blank end of one, was never the row's — the row stayed put and the earth
- * turned. The wrapper puts a native handler on the row itself, which ends
- * that walk at the row (2026-09-19).
- *
- * Tapping a slot turns the planet to that mark and opens its card. That is
- * also how a reader learns the globe is addressable at all — the mapping is
- * created by the action, since nothing about a dot on a sphere announces it.
- * The slot stays marked, and the globe rings the place, for as long as its card
- * is open, so the reader can see which gauge the ring belongs to.
- *
- * **An open story marks the gauges it is tied to** — those whose desk
- * analysis cites it, or that it names (`linkedGaugeIds`) — with the same bar
- * in the story's category hue, and the row scrolls the first of them into
- * view. The order does not change: a row sorted by the size of the move is a
- * comparison, and pulling a slot forward for a story would break it.
+/** Weekly moves linked to the settled story, then the currencies of the
+ * countries in view, then the gauges in view the globe could not name; a mark
+ * the globe names is left to the globe. Global
+ * movers fill the row when there is no meaningful match. Touch, momentum and
+ * open instrument cards hold the snapshot.
+ * The full catalog remains available through `all` and the hamburger menu.
+ * Gesture Handler's ScrollView keeps strip swipes from turning the globe.
  */
 
 /** The mark under the slot whose card is open. Reserved on every slot, so
@@ -108,15 +43,16 @@ const Slot = memo(function Slot({
   item,
   width,
   selected,
-  linkedColor,
+  linked,
   onPress,
   onPlaced,
 }: {
   item: StripItem;
   width: number;
   selected: boolean;
-  /** The open story's hue, when this gauge is tied to it. */
-  linkedColor?: string;
+  /** Tied to the settled story. Spoken, and not drawn: it leads the row, and
+   *  a bar under it only asked why it was there. */
+  linked: boolean;
   onPress: (item: StripItem) => void;
   onPlaced: (id: string, x: number) => void;
 }) {
@@ -138,7 +74,7 @@ const Slot = memo(function Slot({
     item.readingNote,
     spokenDelta(item.delta, { window: false }),
     item.delta.window,
-    linkedColor ? 'in the open story' : null,
+    linked ? 'in the open story' : null,
   ]
     .filter(Boolean)
     .join(', ');
@@ -151,7 +87,9 @@ const Slot = memo(function Slot({
       accessibilityRole="button"
       accessibilityLabel={spoken}
       accessibilityState={{ selected }}
-      accessibilityHint="Turns the globe to this and opens its card"
+      accessibilityHint={
+        item.coords ? 'Turns the globe to this and opens its card' : 'Opens its card'
+      }
     >
       <View style={styles.value}>
         <Text
@@ -167,7 +105,7 @@ const Slot = memo(function Slot({
         style={[
           styles.selected,
           {
-            backgroundColor: selected ? colors.textEmphasis : (linkedColor ?? 'transparent'),
+            backgroundColor: selected ? colors.textEmphasis : 'transparent',
           },
         ]}
       />
@@ -176,28 +114,30 @@ const Slot = memo(function Slot({
 });
 
 export const IndicatorStrip = memo(function IndicatorStrip({
-  items,
+  items: incoming,
+  locked = false,
+  pinned,
   onSelect,
   onAll,
   selectedId = null,
   linkedIds,
-  linkedColor,
   initialViewport,
 }: {
   items: StripItem[];
+  locked?: boolean;
+  pinned?: StripItem;
   onSelect: (item: StripItem) => void;
   /** Opens every instrument as one ranked list. */
   onAll: () => void;
   /** The gauge whose card is open. */
   selectedId?: string | null;
-  /** Gauges tied to the open story: marked in `linkedColor`, the first
-   *  scrolled into view. */
+  /** Gauges tied to the settled story: they lead the row. */
   linkedIds?: ReadonlySet<string>;
-  linkedColor?: string;
   /** The room the bar will leave, computed by the bar before layout, so the
    *  slots are not laid out at a guess and then resized once measured. */
   initialViewport?: number;
 }) {
+  const { items, hold, release } = useStableStrip(incoming, locked, pinned, linkedIds);
   // Sized from the room the bar actually leaves; `initialViewport` is the
   // bar's own arithmetic, and the layout pass only corrects it.
   const { width: screenWidth } = useWindowDimensions();
@@ -208,7 +148,6 @@ export const IndicatorStrip = memo(function IndicatorStrip({
   }, []);
   const slotWidth = Math.round((viewport - SPACING.md * Math.floor(VISIBLE_SLOTS)) / VISIBLE_SLOTS);
 
-  const reduceMotion = useReducedMotion();
   const scrollRef = useRef<ScrollView>(null);
   const slotX = useRef(new Map<string, number>());
   // A slot placing itself is not news, so the offsets live in a ref — but the
@@ -269,6 +208,7 @@ export const IndicatorStrip = memo(function IndicatorStrip({
   // records where it landed and stays quiet: no finger swiped it.
   const handleSettle = useCallback(
     (e: NativeSyntheticEvent<NativeScrollEvent>) => {
+      release();
       // Cleared first: a row short enough to need no landings still ends the
       // scroll it was sent on, and a flag left set would silence a real one.
       const quiet = programmatic.current;
@@ -279,27 +219,17 @@ export const IndicatorStrip = memo(function IndicatorStrip({
       settled.current = index;
       if (!quiet) hapticSwipe();
     },
-    [offsets],
+    [offsets, release],
   );
 
-  // The first linked gauge, in the row's own order. A story tied to nothing
-  // on the row leaves the row where the reader left it.
-  const firstLinked = linkedIds?.size ? items.find((item) => linkedIds.has(item.id))?.id : null;
+  const membership = items.map((item) => item.id).join('|');
   useEffect(() => {
-    if (!firstLinked) return;
-    const x = slotX.current.get(firstLinked);
-    if (x === undefined) return;
-    // The slot's own left edge, which is a landing — it used to stop one gap
-    // short of it, so a gauge brought into view sat 16pt in while the first
-    // slot at rest sat flush. One vocabulary of rest positions now.
-    const { offsets: known, max } = geometry.current;
-    const target = Math.max(0, max > 0 ? Math.min(Math.round(x), max) : Math.round(x));
-    settled.current = nearestIndex(known, target);
-    // Only an animated scroll ends in a momentum event there is a tick to keep
-    // quiet.
-    programmatic.current = !reduceMotion;
-    scrollRef.current?.scrollTo({ x: target, animated: !reduceMotion });
-  }, [firstLinked, reduceMotion]);
+    // A new context starts at a complete slot. This runs only after interaction
+    // has ended; membership changes never scroll a row under the finger.
+    if (!membership) return;
+    settled.current = 0;
+    scrollRef.current?.scrollTo({ x: 0, animated: false });
+  }, [membership]);
 
   // Nothing to show is not a reason to draw an empty band over the globe. On
   // a cold launch, before trends and chokepoints resolve, the earth simply
@@ -322,10 +252,16 @@ export const IndicatorStrip = memo(function IndicatorStrip({
       // same reason: it pages by the viewport, which is 3.4 slots wide.
       snapToOffsets={offsets.length > 0 ? offsets : undefined}
       onContentSizeChange={handleContentSize}
+      onTouchStart={hold}
+      onTouchEnd={release}
+      onTouchCancel={release}
+      onScrollBeginDrag={hold}
+      onScrollEndDrag={release}
+      onMomentumScrollBegin={hold}
       onMomentumScrollEnd={handleSettle}
       onLayout={handleLayout}
       contentContainerStyle={styles.row}
-      accessibilityLabel="Markets, straits and currencies, largest move over seven days first"
+      accessibilityLabel="Relevant markets and data, changes over the past seven days"
     >
       {items.map((item) => (
         <Slot
@@ -333,7 +269,7 @@ export const IndicatorStrip = memo(function IndicatorStrip({
           item={item}
           width={slotWidth}
           selected={item.id === selectedId}
-          linkedColor={linkedIds?.has(item.id) ? linkedColor : undefined}
+          linked={linkedIds?.has(item.id) ?? false}
           onPress={onSelect}
           onPlaced={handlePlaced}
         />

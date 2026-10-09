@@ -12,6 +12,8 @@ export interface TapResult {
   localTime: string | null;
   data: CountryData | null;
   hotspotLabels?: string[];
+  /** The coverage cell's latitude and longitude; never a guessed country centroid. */
+  hotspotCoords?: readonly [number, number];
   isHotspot?: boolean;
   /** Set when the tap landed on an ambient chokepoint ring. The parent
    *  resolves the ID to the full Chokepoint payload and opens the strait's card. */

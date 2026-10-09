@@ -1,5 +1,5 @@
 import type { MarketSignal } from '@shared/market-signals';
-import type { Chokepoint, GdacsAlert } from '@shared/types';
+import type { Chokepoint, GdacsAlert, Indicator } from '@shared/types';
 import type { SwipeCard } from '../lib/cards/rank';
 import type { CardDelta, GraphCard, ReadingCard } from '../lib/cards/types';
 import { type Company, companyGauges } from '../lib/companies';
@@ -7,6 +7,7 @@ import type { Exchange } from '../lib/markets';
 import type { RiverArticle } from '../lib/news-order';
 import {
   buildNowSurfaces,
+  countryCurrencySlots,
   coverageRanks,
   HAZARD_MAX_AGE_DAYS,
   linkedGaugeIds,
@@ -526,8 +527,72 @@ describe('linkedGaugeIds', () => {
     expect([...linked].sort()).toEqual(['brent', 'fx-try-mover', 'strait-hormuz']);
   });
 
+  it("finds a strait and a flagged exchange under the story's own names for them", () => {
+    const pool = [gauge('strait-hormuz'), gauge('market-signal:mkt:bist'), gauge('mkt:lse')];
+    const linked = linkedGaugeIds(pool, {
+      slug: 'tanker-strike',
+      entities: [
+        { mention: 'Hormuz', indicatorId: 'cp:hormuz', kind: 'chokepoint' },
+        { mention: 'BIST 100', indicatorId: 'mkt:bist', kind: 'index' },
+        { mention: 'FTSE 100', indicatorId: 'mkt:lse', kind: 'index' },
+      ],
+    } as never);
+    expect([...linked].sort()).toEqual(['market-signal:mkt:bist', 'mkt:lse', 'strait-hormuz']);
+  });
+
   it('marks nothing without an open story, or for a story tied to nothing', () => {
     expect(linkedGaugeIds(items, null).size).toBe(0);
     expect(linkedGaugeIds(items, { slug: 'quiet', entities: [] } as never).size).toBe(0);
+  });
+});
+
+describe('countryCurrencySlots', () => {
+  /** A rate that rose `pct` percent over the week: the currency fell. */
+  const fx = (id: string, label: string, countryTags: string[] | undefined, pct = 5) =>
+    ({
+      ...week(pct),
+      id,
+      label,
+      source: 'oer',
+      sourceLabel: 'Open Exchange Rates',
+      unit: `${id.slice(3).toUpperCase()} / USD`,
+      standing: `What a dollar buys in ${label}.`,
+      countryTags,
+    }) as Indicator;
+  const lira = fx('fx-try', 'Turkish lira', ['TR']);
+  const monthly = {
+    ...fx('fx-egp', 'Egyptian pound', ['EG']),
+    values: [100, 110],
+    periods: ['Jul 2026', 'Aug 2026'],
+  };
+  const trends = {
+    fetchedAt: '2026-09-11',
+    asOf: '2026-09-11',
+    indicators: [
+      lira,
+      monthly,
+      fx('fx-xdr', 'No country', []),
+      fx('fx-xau', 'No tags', undefined),
+      { ...fx('brent', 'Brent crude', ['SA']), source: 'fred' },
+    ],
+  };
+  const slots = countryCurrencySlots(trends, new Map(), [], NOW);
+
+  it('lists only the currencies the feed ties to a country', () => {
+    expect(slots.indicators.map((indicator) => indicator.id)).toEqual(['fx-try', 'fx-egp']);
+    expect(countryCurrencySlots(null, new Map(), [], NOW).indicators).toEqual([]);
+  });
+
+  it('quotes the currency over seven days, with no place on the globe', () => {
+    const slot = slots.slot(lira);
+    expect(slot).toMatchObject({ id: 'fx-try', short: 'Turkish lira', coords: null });
+    // The rate rose, so the lira fell: by the reciprocal, not by the rate's 5%.
+    expect(slot?.delta.direction).toBe('down');
+    expect(slot?.delta.size).toBeCloseTo(100 - 100 / 1.05, 1);
+  });
+
+  it('builds a slot once, and none without a seven-day move', () => {
+    expect(slots.slot(lira)).toBe(slots.slot(lira));
+    expect(slots.slot(monthly)).toBeNull();
   });
 });

@@ -111,6 +111,10 @@ paths:
 - A mark prints the week, as the strip does, wherever the series has one
   (`exchangeMove` for an exchange, `straitMoves` for a strait). Marks keep the
   index name; the strip uses words.
+- A resting frame says which marks it named and which capitals are in view
+  (`publishRestingView`); a moving frame says only that it moved
+  (`markGlobeMoving`). The strip reads both, and no listener sets React state:
+  they run inside the frame.
 - Conflict marks are the last day only and are sized by the dead
   (`conflictScale`). The list holds the whole week.
 - Famine and thermal are one tinted Atlas each, from the sprite sheet baked in

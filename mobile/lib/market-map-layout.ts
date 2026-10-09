@@ -35,10 +35,11 @@ export function marketHitDistanceSquared(
   mark: { x: number; y: number; labelBounds?: MarketLabelBounds | null },
   x: number,
   y: number,
+  scale = 1,
 ): number {
   const b = mark.labelBounds;
   const d2 = (mark.x - x) ** 2 + (mark.y - y) ** 2;
-  const circle = d2 <= (MARKET_TARGET / 2) ** 2 ? d2 : Number.POSITIVE_INFINITY;
+  const circle = d2 * scale * scale <= (MARKET_TARGET / 2) ** 2 ? d2 : Number.POSITIVE_INFINITY;
   if (b && x >= b.x0 && x <= b.x1 && y >= b.y0 && y <= b.y1) {
     // Rank by the visible label's centre so a nearby story dot remains
     // selectable where its catch area overlaps the text's bounding box.

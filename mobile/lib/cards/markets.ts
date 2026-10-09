@@ -587,6 +587,17 @@ function fxMoverCards(
 }
 
 /**
+ * The currencies the feed ties to a country (`countryTags`). The strip gives
+ * one a slot where its country's capital is in view or a story names it
+ * (`contextualStrip`), whatever it did: the mover slots above are a ranking,
+ * and this is where the reader is looking.
+ */
+export function countryCurrencies(snapshot: TrendsSnapshot | null): Indicator[] {
+  if (!snapshot) return [];
+  return snapshot.indicators.filter((i) => i.source === 'oer' && (i.countryTags?.length ?? 0) > 0);
+}
+
+/**
  * One currency, quoted the way its holder reads it — the mover slots' card,
  * and every other currency's in the menu's list. `id` is the mover slot's own
  * (`fx-try-mover`) or the indicator's (`fx-try`); `gaugeMove` inverts on the

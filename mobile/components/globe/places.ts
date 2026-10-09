@@ -23,22 +23,25 @@ import capitals from '@shared/data/capitals-50m.json';
 
 export interface CapitalLabel {
   name: string;
+  /** The country it is the capital of. */
+  iso2: string;
   coords: [number, number];
   unit: [number, number, number];
 }
 
 const DEG2RAD = Math.PI / 180;
 
-export const CAPITALS: readonly CapitalLabel[] = Object.values(
+export const CAPITALS: readonly CapitalLabel[] = Object.entries(
   capitals as Record<string, { name: string; lat: number; lng: number }>,
 )
-  .filter((c) => c.name && Number.isFinite(c.lat) && Number.isFinite(c.lng))
-  .map((c) => {
+  .filter(([, c]) => c.name && Number.isFinite(c.lat) && Number.isFinite(c.lng))
+  .map(([iso2, c]) => {
     const latR = c.lat * DEG2RAD;
     const lngR = c.lng * DEG2RAD;
     const cosLat = Math.cos(latR);
     return {
       name: c.name,
+      iso2,
       coords: [c.lng, c.lat] as [number, number],
       unit: [cosLat * Math.cos(lngR), cosLat * Math.sin(lngR), Math.sin(latR)] as [
         number,

@@ -32,9 +32,17 @@ paths:
 - The strip is for instruments; the sheet is for news. `buildNowSurfaces`
   (`lib/now.ts`) builds both. NOW holds only live Red GDACS alerts, shown as
   `AlertPill`. No conflict events there: the source runs weeks behind.
-- The row is the ten largest moves of the past week (`STRIP_SLOTS`), largest
-  first, then `all →`, which ends the row whenever there is a row and opens
-  the menu. Only the row is cut; `strip` keeps every mover for lookups.
+- The row is what the map is not already saying (`contextualStrip`): the
+  settled story's gauges, then what is in view and not printed on the globe,
+  largest move first; with neither, the week's largest moves. At most
+  `STRIP_SLOTS`, then `all →`, which ends the row whenever there is a row and
+  opens the menu. Only the row is cut; `strip` keeps every mover for lookups.
+- A mark the globe names takes no slot, so no number is printed twice. A
+  story's own gauges are the exception: the story is why they are there.
+- In view means a mark the globe could not name, or the currency of a country
+  whose capital is on screen (`countryCurrencySlots`), and only for a move of
+  at least `NOTABLE_WEEK`. The globe says what it named
+  (`lib/resting-view.ts`); the strip never projects for itself.
 - Every number is the same seven calendar days (`gaugeMove`,
   `lib/cards/week-move.ts`). The globe's marks, the chooser and the menu's
   lists print that same week. A card prints it first, then its own window
