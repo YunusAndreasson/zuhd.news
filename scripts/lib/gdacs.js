@@ -219,7 +219,7 @@ export function alertAgeDays(alert, now = Date.now()) {
 }
 
 /**
- * @param {{ features: any[] }} collection
+ * @param {{ type?: string, features: any[] }} collection
  * @param {number} [now]
  * @param {Record<string, number>} [tally] counts what is dropped, by reason
  */
@@ -250,7 +250,7 @@ const FILTERED_ON = ['iscurrent', 'eventtype', 'alertlevel', 'eventid', 'datemod
  * fetcher keeps the last snapshot, and this is the line it leaves: what the
  * first feature held under the fields the filters read.
  *
- * @param {{ features: any[] }} collection
+ * @param {{ type?: string, features: any[] }} collection
  * @param {unknown[]} alerts what `collectionToAlerts` made of it
  * @returns {string | null}
  */

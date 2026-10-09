@@ -140,7 +140,7 @@ test('a release that gives no event is reported, with what its first row held', 
     { ...baseRow, best: 'five' },
     { ...baseRow, best: 'two' },
   ]
-  const events = rows.map(mapUcdpRow).filter(Boolean)
+  const events = rows.map((r) => mapUcdpRow(r)).filter(Boolean)
   assert.deepEqual(events, [])
   assert.equal(
     emptyReleaseReport(rows, events),
