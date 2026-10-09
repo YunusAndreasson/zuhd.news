@@ -21,15 +21,18 @@ const iso = (t) => new Date(t).toISOString().slice(0, 10)
  *
  * Filename-prefixed by date, so the window is a string comparison over
  * `readdirSync` rather than a parse of thousands of files.
+ *
+ * @param {number} windowStart
+ * @param {string} [dir] the articles' directory; a parameter for the tests
  */
-export const loadArticles = (windowStart) => {
-  if (!existsSync(ARTICLES_DIR)) return []
+export const loadArticles = (windowStart, dir = ARTICLES_DIR) => {
+  if (!existsSync(dir)) return []
   const cutoff = iso(windowStart)
   const out = []
-  for (const f of readdirSync(ARTICLES_DIR)) {
+  for (const f of readdirSync(dir)) {
     if (!f.endsWith('.md') || f.slice(0, 10) < cutoff) continue
     try {
-      const { meta, body } = parseFrontmatter(readFileSync(join(ARTICLES_DIR, f), 'utf8'))
+      const { meta, body } = parseFrontmatter(readFileSync(join(dir, f), 'utf8'))
       if (!meta?.title) continue
       const concepts = (Array.isArray(meta.concepts) ? meta.concepts : [])
         .map((c) => (c && typeof c === 'object' ? c.label : c))
@@ -84,6 +87,40 @@ export const loadArticles = (windowStart) => {
     }
   }
   return out.sort((a, b) => String(b.date).localeCompare(String(a.date)))
+}
+
+/**
+ * A feed concept's label, in either shape the feed carries.
+ *
+ * The API's stories tag a concept as `{ label, uri }`; the RSS stories carry
+ * the bare label. Only the first was read, so a bare one vanished: 7,053 of
+ * the 16,955 concept entries in the window of 2026-10-09, all of them on RSS
+ * stories, which then matched a tag on their title alone and could never
+ * join a `wiki-*` row. `loadArticles` has always read both.
+ */
+const labelOf = (concept) => (typeof concept === 'string' ? concept : concept?.label || '')
+
+/**
+ * The Wikipedia title a feed concept names, lowercased and spaced as a
+ * `wiki-*` row's is. From the URI where there is one; a bare label is the
+ * title already.
+ *
+ * The decode is guarded. The URIs arrive unencoded (none of the 37,618 in the
+ * snapshots kept on 2026-10-09 holds a `%`), so it changes nothing today, and
+ * a title with a literal percent sign ("100% renewable energy") is a
+ * `URIError` that would end both dispatch stages on every run until the
+ * snapshot left the window, fourteen days on.
+ */
+const wikiTitleOf = (concept) => {
+  if (typeof concept === 'string') return concept.trim().toLowerCase()
+  const segment = String(concept?.uri || '').split('/wiki/')[1] || ''
+  let title = segment
+  try {
+    title = decodeURIComponent(segment)
+  } catch {
+    /* a literal `%`: the segment is the title as it stands */
+  }
+  return title.replace(/_/g, ' ').toLowerCase()
 }
 
 /**
@@ -143,11 +180,8 @@ export const loadFeedWindow = (windowStart, dir = FEED_SNAP_DIR) => {
           outlets,
           // Wikipedia article titles, which is what `wiki-*` ids are minted
           // from — the join that makes the attention block explicable.
-          conceptTitles: concepts
-            .map((c) => String(c?.uri || '').split('/wiki/')[1] || '')
-            .filter(Boolean)
-            .map((t) => decodeURIComponent(t).replace(/_/g, ' ').toLowerCase()),
-          hay: [s.title, ...concepts.map((c) => c?.label || '')].join(' ').toLowerCase(),
+          conceptTitles: concepts.map(wikiTitleOf).filter(Boolean),
+          hay: [s.title, ...concepts.map(labelOf)].join(' ').toLowerCase(),
         })
       }
     }
