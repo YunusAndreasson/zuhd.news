@@ -9,6 +9,7 @@
 import { existsSync, readFileSync } from 'node:fs'
 import { join, dirname } from 'node:path'
 import { claudeArgs, runClaudeSync } from '../lib/claude-envelope.js'
+import { modelFor } from '../lib/models.js'
 import { fileURLToPath } from 'node:url'
 
 const argv = process.argv.slice(2)
@@ -85,7 +86,7 @@ ${Object.entries(surfaceContents)
 
 Return ONE diff as JSON. No prose, no fences.`
 
-const res = runClaudeSync(claudeArgs(fullPrompt, { model: 'claude-opus-5-5', json: false }), {
+const res = runClaudeSync(claudeArgs(fullPrompt, { model: modelFor('offline'), json: false }), {
   timeout: 300_000,
   maxBuffer: 8 * 1024 * 1024,
 })

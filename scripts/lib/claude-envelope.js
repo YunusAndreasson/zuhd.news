@@ -1,4 +1,5 @@
 import { spawn, spawnSync } from 'node:child_process'
+import { modelFor } from './models.js'
 
 // Parse the `claude --output-format json` envelope.
 //
@@ -57,7 +58,7 @@ export function parseClaudeEnvelope(stdout) {
   return parseClaudeEnvelopeWithUsage(stdout).result
 }
 
-const HAIKU_MODEL = 'claude-haiku-5-5'
+const HAIKU_MODEL = modelFor('haiku')
 
 /**
  * The argv for one non-interactive `claude -p` call.

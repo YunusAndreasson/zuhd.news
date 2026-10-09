@@ -20,6 +20,7 @@ import { GEMINI_TTS_MODEL, GEMINI_TTS_VOICE, geminiKey, synthesizeGemini, transc
 import { ROOT } from './lib/paths.js'
 import { writeJson } from './lib/json-file.js'
 import { articleFilesSince } from './lib/article-files.js'
+import { modelFor } from './lib/models.js'
 
 const ARTICLES_DIR = join(ROOT, 'content', 'articles')
 const AUDIO_DIR = argAt('out') || join(ROOT, 'content', 'audio')
@@ -132,7 +133,7 @@ const prompt = promptTemplate.replace(
 let claudeOutput
 try {
   const result = runClaudeSync(
-    claudeArgs(prompt, { model: process.env.ZUHD_BRIEFING_MODEL || 'claude-opus-5-5' }),
+    claudeArgs(prompt, { model: modelFor('briefing') }),
     { timeout: 720_000, maxBuffer: 4 * 1024 * 1024 },
   )
   if (result.status !== 0) throw new Error(claudeFailure(result, 720_000))

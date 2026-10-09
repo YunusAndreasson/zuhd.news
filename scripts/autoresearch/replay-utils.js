@@ -7,6 +7,7 @@
 
 import { spawnSync } from 'node:child_process'
 import { claudeArgs, runClaudeSync } from '../lib/claude-envelope.js'
+import { OPUS, SONNET } from '../lib/models.js'
 import {
   copyFileSync,
   existsSync,
@@ -24,11 +25,11 @@ export const SANDBOX_ROOT = '/tmp/zuhd-autoresearch'
 
 // --- Pinned model IDs (do not use aliases — see CLAUDE.md memory) ---
 export const MODELS = {
-  selector: 'claude-opus-5-5',
-  writer: 'claude-sonnet-5-5',
-  editor: 'claude-sonnet-5-5',
-  judgeOpus: 'claude-opus-5-5',
-  judgeSonnet: 'claude-sonnet-5-5',
+  selector: OPUS,
+  writer: SONNET,
+  editor: SONNET,
+  judgeOpus: OPUS,
+  judgeSonnet: SONNET,
 }
 
 // --- Worktree lifecycle ---

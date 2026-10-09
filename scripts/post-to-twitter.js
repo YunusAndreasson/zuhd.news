@@ -29,6 +29,7 @@ import { buildIgJpeg, IG_FEED, igLead } from './lib/ig-image.js'
 import { argAt, hasFlag } from './lib/argv.js'
 import { ROOT } from './lib/paths.js'
 import { readJson, writeJson } from './lib/json-file.js'
+import { modelFor } from './lib/models.js'
 
 const TWEET_LOG = join(ROOT, 'content/.tweet-log.json')
 const PROMPT_PATH = join(ROOT, 'scripts/tweet-prompt.md')
@@ -90,7 +91,7 @@ function truncate(text, max) {
 
 function condenseViaClaude(articleText) {
   const prompt = `${readFileSync(PROMPT_PATH, 'utf8')}\n${articleText}`
-  const res = runClaudeSync(claudeArgs(prompt, { model: process.env.ZUHD_MODEL || 'claude-sonnet-5-5', json: false }), {
+  const res = runClaudeSync(claudeArgs(prompt, { model: modelFor('session'), json: false }), {
     timeout: 30_000,
     maxBuffer: 512 * 1024,
   })

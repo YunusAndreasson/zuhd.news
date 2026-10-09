@@ -1,4 +1,5 @@
 import { callClaudeJson } from './claude-envelope.js'
+import { modelFor } from './models.js'
 
 /**
  * One Opus call. Async on purpose: the dispatch runs these through a pool of
@@ -6,7 +7,7 @@ import { callClaudeJson } from './claude-envelope.js'
  */
 export function callIndicatorModel(fullPrompt) {
   return callClaudeJson(fullPrompt, {
-    model: process.env.ZUHD_DISPATCH_MODEL || 'claude-opus-5-5',
+    model: modelFor('dispatch'),
     effort: process.env.ZUHD_DISPATCH_EFFORT || 'medium',
   })
 }

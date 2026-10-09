@@ -33,6 +33,7 @@ import { writeJson } from './lib/json-file.js'
 import { ROOT } from './lib/paths.js'
 import { parsePick, pickPrompt, socialTitleOf, withSocialTitle } from './lib/social-pick.js'
 import { runStage } from './lib/stage.js'
+import { modelFor } from './lib/models.js'
 
 const PROMPT_PATH = join(ROOT, 'scripts/social-pick-prompt.md')
 const TIMEOUT_MS = 45_000
@@ -57,7 +58,7 @@ export function main() {
     // one-item list needs no re-ranking to reason about.
     const res = runClaudeSync(
       claudeArgs(pickPrompt(readFileSync(PROMPT_PATH, 'utf8'), cands), {
-        model: process.env.ZUHD_SOCIAL_PICK_MODEL || process.env.ZUHD_MODEL || 'claude-sonnet-5-5',
+        model: modelFor('socialPick'),
         json: false,
       }),
       { timeout: TIMEOUT_MS, maxBuffer: 512 * 1024 },

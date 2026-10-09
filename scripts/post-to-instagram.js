@@ -34,6 +34,7 @@ import { buildIgJpeg, IG_FEED, IG_STORY, igLead } from './lib/ig-image.js'
 import { argAt, hasFlag } from './lib/argv.js'
 import { ROOT } from './lib/paths.js'
 import { readJson, writeJson } from './lib/json-file.js'
+import { modelFor } from './lib/models.js'
 
 const IG_LOG = join(ROOT, 'content/.instagram-log.json')
 const PROMPT_PATH = join(ROOT, 'scripts/instagram-prompt.md')
@@ -104,7 +105,7 @@ const article = {
 function captionViaClaude() {
   const articleText = `${meta.title || ''}\n\n${body}`.trim()
   const prompt = `${readFileSync(PROMPT_PATH, 'utf8')}\n${articleText}`
-  const res = runClaudeSync(claudeArgs(prompt, { model: process.env.ZUHD_MODEL || 'claude-sonnet-5-5', json: false }), {
+  const res = runClaudeSync(claudeArgs(prompt, { model: modelFor('session'), json: false }), {
     timeout: 30_000,
     maxBuffer: 512 * 1024,
   })

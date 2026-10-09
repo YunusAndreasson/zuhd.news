@@ -25,6 +25,7 @@ import { validateGrounding } from './lib/grounding.js'
 import { ROOT } from './lib/paths.js'
 import { readJson, writeJson } from './lib/json-file.js'
 import { sha1Hex } from './lib/hash.js'
+import { modelFor } from './lib/models.js'
 
 const SNAPSHOT_PATH = join(ROOT, 'content', '.gdacs.json')
 const CACHE_PATH = join(ROOT, 'content', '.gdacs-narrations.json')
@@ -35,7 +36,7 @@ const INCLUDE_GREEN = process.env.NARRATE_GDACS_INCLUDE_GREEN === '1'
 const MAX_NARRATIONS = Number(process.env.NARRATE_GDACS_MAX) || Infinity
 const FORCE = process.env.NARRATE_GDACS_FORCE === '1'
 const CONCURRENCY = 3
-const MODEL = 'claude-opus-5-5'
+const MODEL = modelFor('gdacs')
 const EFFORT = 'medium'
 const CHOKEPOINT_RANGE_KM = 500
 const WEATHER_TYPES = new Set(['FL', 'WF', 'DR'])

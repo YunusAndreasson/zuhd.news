@@ -10,6 +10,7 @@ import { buildTimelineWithCharts, loadTrendsSnapshot, buildTrendsPromptSection, 
 import { claudeArgs, claudeFailure, parseClaudeEnvelopeWithUsage, runClaudeSync } from './lib/claude-envelope.js'
 import { ROOT } from './lib/paths.js'
 import { readJson, writeJson } from './lib/json-file.js'
+import { modelFor } from './lib/models.js'
 
 const BRIEFS_PATH = join(ROOT, 'content', '.context-briefs.json')
 const PROMPT_PATH = join(ROOT, 'scripts', 'edu-context-prompt.md')
@@ -188,7 +189,7 @@ Generate the educational context brief for this article. Output ONLY the JSON ob
 
   const t0 = Date.now()
   const result = runClaudeSync(
-    claudeArgs(fullPrompt, { model: 'claude-sonnet-5-5', maxTurns: 3, tools: null }),
+    claudeArgs(fullPrompt, { model: modelFor('eduContext'), maxTurns: 3, tools: null }),
     { timeout: 300_000, maxBuffer: 2 * 1024 * 1024 },
   )
   const elapsedMs = Date.now() - t0

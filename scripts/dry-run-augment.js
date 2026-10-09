@@ -17,6 +17,7 @@ import { buildTimelineWithCharts, loadTrendsSnapshot, loadTrendsDigest, buildTre
 import { claudeArgs, claudeFailure, parseClaudeEnvelope, runClaudeSync } from './lib/claude-envelope.js'
 import { ROOT } from './lib/paths.js'
 import { writeJson } from './lib/json-file.js'
+import { modelFor } from './lib/models.js'
 
 const ARTICLES_DIR = join(ROOT, 'content', 'articles')
 const PROMPT_PATH = join(ROOT, 'scripts', 'edu-context-prompt.md')
@@ -34,7 +35,7 @@ function flag(name) {
 
 const slug = flag('article')
 const skipFetch = !!flag('skip-fetch')
-const model = /** @type {string} */ (flag('model') || 'claude-opus-5-5')
+const model = /** @type {string} */ (flag('model') || modelFor('offline'))
 
 if (typeof slug !== 'string') {
   console.error('Usage: node scripts/dry-run-augment.js --article <slug> [--skip-fetch] [--model <id>]')
