@@ -9,7 +9,7 @@
 // tuner reads, so every metric's pattern is moved exactly as it stood.
 
 import { ARTICLE_CEILING, stripDateline, visibleText } from './article.js'
-import { splitBlocks } from './blocks.js'
+import { countBlocks } from './blocks.js'
 import { parseFrontmatter } from './frontmatter.js'
 import { hookOf, titleEcho } from './title-echo.js'
 
@@ -163,7 +163,7 @@ export function articleFlags(a, { wordBandMax = WORD_BAND_MAX } = {}) {
     // a target — a four-block article is a complete article — but a rate near 0 means
     // the writer stopped reaching for it, and a rate near 100 means it is being
     // filled rather than earned.
-    blockCount: splitBlocks(a.body).filter((b) => b.length > 5).length,
+    blockCount: countBlocks(a.body),
     // ── Title echo ──
     // The hook says the title again: the measure the editor is shown each cycle
     // (`titleEcho`, `lib/title-echo.js`, and why it is that measure). One

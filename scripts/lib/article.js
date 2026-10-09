@@ -8,7 +8,7 @@
 
 import { readFileSync } from 'node:fs'
 import { basename } from 'node:path'
-import { splitBlocks } from './blocks.js'
+import { BLOCKS_MAX, BLOCKS_MIN, countBlocks } from './blocks.js'
 import { parseFrontmatter } from './frontmatter.js'
 import { CATEGORIES } from './schema.js'
 
@@ -134,7 +134,7 @@ export function articleProblems(meta, body) {
   }
   // Four blocks, or five with an earned counterpoint; two and three are
   // readable news and six is a malformed file. The validator's own range.
-  const blocks = splitBlocks(body).filter((b) => b.length > 5).length
-  if (blocks < 2 || blocks > 5) problems.push(`${blocks} blocks`)
+  const blocks = countBlocks(body)
+  if (blocks < BLOCKS_MIN || blocks > BLOCKS_MAX) problems.push(`${blocks} blocks`)
   return problems
 }

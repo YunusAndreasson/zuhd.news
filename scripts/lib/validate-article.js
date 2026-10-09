@@ -13,7 +13,7 @@
 
 import { basename } from 'node:path'
 import { articleProblems, datelineOf } from './article.js'
-import { splitBlocks } from './blocks.js'
+import { BLOCKS_MAX, BLOCKS_MIN, countedBlocks } from './blocks.js'
 import { normalizeUrl } from './dedup.js'
 import { canonicalIndicatorId } from './entity-registry.js'
 import { parseFrontmatter, removeFrontmatterKey, splitFrontmatter } from './frontmatter.js'
@@ -134,8 +134,8 @@ export function createValidator({ published, offeredBySlug, knownIds }) {
     // the editor stage is better placed to fix. The ceiling is the real guard: a
     // body that split into six or more blocks is a malformed file, not a long
     // article.
-    const blocks = splitBlocks(body).filter((s) => s.length > 5)
-    if (blocks.length < 2 || blocks.length > 5) return verdict(`${blocks.length} blocks`)
+    const blocks = countedBlocks(body)
+    if (blocks.length < BLOCKS_MIN || blocks.length > BLOCKS_MAX) return verdict(`${blocks.length} blocks`)
 
     problems = articleProblems(meta, body)
     const location = String(meta.location || '').trim()
