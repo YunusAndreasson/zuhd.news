@@ -48,7 +48,7 @@
 // Nothing here touches the network, so all of it is testable against fixtures —
 // see `ipc.test.js`.
 
-import { parseCsv } from './conflict.js'
+import { parseCsv } from './csv.js'
 
 /**
  * How old an analysis may be and still describe a place.
@@ -230,9 +230,11 @@ export const windowCoveringDay = (windows, isoDay) =>
 /**
  * The published CSV → rows this module understands.
  *
- * `parseCsv` is the one in `conflict.js`, reused for the reason `firms.js` reuses
- * it: three fetchers parsing CSV three ways is three places for a quoted field
- * containing a comma to be handled differently.
+ * `parseCsv` is the one every fetcher uses (`lib/csv.js`): three fetchers
+ * parsing CSV three ways is three places for a quoted field containing a comma
+ * to be handled differently. The header is read here rather than through
+ * `csvObjects` because this file's column names are trimmed, and most of the
+ * thirty it reads are looked up by a name built from a phase and a period.
  */
 export function parseIpcAreaCsv(text) {
   const rows = parseCsv(String(text ?? ''))

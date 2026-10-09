@@ -25,7 +25,7 @@
 // event, from a different kind of witness. Nothing here touches the network, so
 // all of it is testable against fixtures — see `firms.test.js`.
 
-import { parseCsv } from './conflict.js'
+import { parseCsv } from './csv.js'
 
 /**
  * Columns we read. VIIRS and MODIS differ in exactly one of them — VIIRS

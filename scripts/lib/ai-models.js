@@ -18,7 +18,7 @@
 //
 // Pure: the fetcher does the network, this does the arithmetic.
 
-import { parseCsv } from './conflict.js'
+import { csvObjects } from './csv.js'
 
 /** Fewer scored models than this and the file is not the file. It held 270 on
  *  the day this was written. */
@@ -33,24 +33,6 @@ const DAY_MS = 86400_000
 const ECI_COLUMNS = ['Model', 'Display name', 'eci', 'eci_ci_low', 'eci_ci_high', 'date', 'Organization']
 const REVENUE_COLUMNS = ['Company', 'Date', 'Annualized revenue (USD)', 'Scope', 'Confidence']
 const FUNDING_COLUMNS = ['Company', 'Close date', 'Status', 'Valuation (post-money)', 'Confidence']
-
-/**
- * A CSV as objects keyed by its header. Throws when a column the caller needs
- * is missing, so a changed schema is a rejected fetch and not a quiet file of
- * empty fields.
- *
- * @param {string} text
- * @param {string[]} required
- * @returns {Record<string, string>[]}
- */
-export function csvObjects(text, required) {
-  // A byte-order mark would otherwise be the first column's first character.
-  const [header, ...rows] = parseCsv(text.replace(/^﻿/, ''))
-  if (!header) throw new Error('empty CSV')
-  const missing = required.filter((c) => !header.includes(c))
-  if (missing.length > 0) throw new Error(`missing columns: ${missing.join(', ')}`)
-  return rows.map((row) => Object.fromEntries(header.map((key, i) => [key, row[i] ?? ''])))
-}
 
 const isoDay = (v) => (/^\d{4}-\d{2}-\d{2}/.test(v || '') ? v.slice(0, 10) : null)
 const round1 = (n) => Math.round(n * 10) / 10

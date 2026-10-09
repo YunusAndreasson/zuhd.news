@@ -7,8 +7,7 @@
 // every gate is a row that must not be drawn: a location known only to the
 // country, nobody killed, an actor with no name, a date the app cannot read.
 //
-//   parseCsv(text) → string[][]
-//   rowsToObjects(rows) → Record<string, string>[]      throws on a missing column
+//   REQUIRED_COLUMNS                                    what `csvObjects` (`lib/csv.js`) is asked to find
 //   mapUcdpRow(row, tally?, { today }?) → ConflictEvent | null
 //   filterRecentWindow(events, days) → { kept, windowStart, windowEnd }
 //   emptyReleaseReport(rows, events) → string | null    a release with no event in it
@@ -45,7 +44,7 @@ export function nextReleases(version) {
 }
 
 // CSV columns we depend on. If any of these are missing from the upstream
-// header, UCDP has changed its schema and rowsToObjects throws loudly
+// header, UCDP has changed its schema and `csvObjects` throws loudly
 // rather than emit silent garbage. Codebook:
 //   https://ucdp.uu.se/downloads/candidateged/ucdp-candidate-codebook1.4.pdf
 export const REQUIRED_COLUMNS = [
@@ -147,68 +146,6 @@ export const NAME_TO_ISO3 = {
   Venezuela: 'VEN',
   Yemen: 'YEM',
   Zimbabwe: 'ZWE',
-}
-
-/** Minimal RFC 4180-ish CSV parser. Handles quoted fields with embedded
- *  commas, newlines, and doubled quotes ("" → "). UCDP's payload is well-
- *  formed so we don't bother with edge cases beyond the standard. */
-export function parseCsv(text) {
-  const rows = []
-  let row = []
-  let field = ''
-  let inQuotes = false
-  for (let i = 0; i < text.length; i++) {
-    const c = text[i]
-    if (inQuotes) {
-      if (c === '"') {
-        if (text[i + 1] === '"') {
-          field += '"'
-          i++
-        } else {
-          inQuotes = false
-        }
-      } else {
-        field += c
-      }
-    } else if (c === '"') {
-      inQuotes = true
-    } else if (c === ',') {
-      row.push(field)
-      field = ''
-    } else if (c === '\n' || c === '\r') {
-      if (c === '\r' && text[i + 1] === '\n') i++
-      row.push(field)
-      field = ''
-      if (row.length > 1 || row[0] !== '') rows.push(row)
-      row = []
-    } else {
-      field += c
-    }
-  }
-  if (field.length > 0 || row.length > 0) {
-    row.push(field)
-    rows.push(row)
-  }
-  return rows
-}
-
-/** rows → records keyed by header name. Throws if any REQUIRED_COLUMNS are
- *  missing from the header — protects against silent UCDP schema drift. */
-export function rowsToObjects(rows) {
-  const [header, ...data] = rows
-  if (!header) throw new Error('UCDP CSV is empty')
-  const missing = REQUIRED_COLUMNS.filter((c) => !header.includes(c))
-  if (missing.length > 0) {
-    throw new Error(
-      `UCDP CSV is missing expected columns: ${missing.join(', ')}. ` +
-        'Upstream may have changed its schema.',
-    )
-  }
-  return data.map((r) => {
-    const obj = {}
-    for (let i = 0; i < header.length; i++) obj[header[i]] = r[i] ?? ''
-    return obj
-  })
 }
 
 /** type_of_violence → our subEvent.

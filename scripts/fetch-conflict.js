@@ -34,9 +34,9 @@ import {
   filterRecentWindow,
   mapUcdpRow,
   nextReleases,
-  parseCsv,
-  rowsToObjects,
+  REQUIRED_COLUMNS,
 } from './lib/conflict.js'
+import { csvObjects } from './lib/csv.js'
 import { pathOf } from './lib/datasets.js'
 import { fetchOk } from './lib/http.js'
 import { Degrade, snapshotStage } from './lib/snapshot-stage.js'
@@ -131,7 +131,7 @@ async function produce() {
     const res = await fetchOk(UCDP_URL, { timeoutMs: CSV_TIMEOUT_MS })
     const csv = await res.text()
     console.log(`Downloaded ${csv.length.toLocaleString('en-US')} bytes`)
-    rows = rowsToObjects(parseCsv(csv))
+    rows = csvObjects(csv, REQUIRED_COLUMNS)
   } catch (err) {
     throw new Degrade(`UCDP fetch failed (${err.message})`)
   }

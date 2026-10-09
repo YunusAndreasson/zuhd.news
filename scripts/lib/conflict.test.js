@@ -15,10 +15,10 @@ import {
   filterRecentWindow,
   mapUcdpRow,
   nextReleases,
-  parseCsv,
   parseSourceArticle,
-  rowsToObjects,
+  REQUIRED_COLUMNS,
 } from './conflict.js'
+import { csvObjects } from './csv.js'
 
 const baseRow = {
   id: '1',
@@ -39,26 +39,14 @@ const baseRow = {
   source_headline: 'Clashes reported in central Khartoum',
 }
 
-test('parseCsv handles quoted fields with embedded commas', () => {
-  const csv = 'a,b,c\n1,"two, with comma",3\n'
-  assert.deepEqual(parseCsv(csv), [
-    ['a', 'b', 'c'],
-    ['1', 'two, with comma', '3'],
-  ])
-})
-
-test('parseCsv handles doubled-quote escapes', () => {
-  const csv = 'a,b\n1,"he said ""hi"""\n'
-  assert.deepEqual(parseCsv(csv), [
-    ['a', 'b'],
-    ['1', 'he said "hi"'],
-  ])
-})
-
-test('rowsToObjects throws when REQUIRED_COLUMNS are missing', () => {
+test('a release missing a column the gates read is refused, by name', () => {
   // Schema-drift guard: if UCDP renames a column, surface it loudly
   // rather than write garbage events with empty fields.
-  assert.throws(() => rowsToObjects([['a', 'b', 'c'], ['1', '2', '3']]), /missing expected columns/i)
+  const header = REQUIRED_COLUMNS.filter((c) => c !== 'best' && c !== 'where_prec').join(',')
+  assert.throws(() => csvObjects(`${header}\n`, REQUIRED_COLUMNS), /missing columns: where_prec, best/)
+  // And a release with every column is rows keyed by them, ready for the gates.
+  const full = `${REQUIRED_COLUMNS.join(',')}\n${REQUIRED_COLUMNS.map((c) => baseRow[c]).join(',')}\n`
+  assert.equal(mapUcdpRow(csvObjects(full, REQUIRED_COLUMNS)[0]).id, 'UCDP-TEST-1')
 })
 
 test('mapUcdpRow drops country-centroid records (where_prec > 3)', () => {

@@ -29,6 +29,7 @@ prefer a parameter (class names, a link renderer) over a copy, as
 | `scripts/lib/paths.js` | `ROOT` |
 | `scripts/lib/json-file.js` | `readJson`, atomic `writeJson` |
 | `scripts/lib/http.js` | fetch with a deadline and a user agent |
+| `scripts/lib/csv.js` | `parseCsv`, and `csvObjects` with its required columns |
 | `scripts/lib/iso-date.js` | `isIsoDate`, the app's own test of a published date |
 | `scripts/lib/snapshot-stage.js` | `snapshotStage`: a fetcher's read, freshness gate, empty guard, kept-snapshot line and write |
 | `scripts/lib/quote-snapshot.js` | `fetchQuotes`: one Yahoo quote per catalog entry, in turn, with what was left out |
