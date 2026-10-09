@@ -54,7 +54,7 @@ commands
   curl -s -X POST https://zuhd.news/api/push -H Authorization: Bearer not-a-secret -H Content-Type: application/json -d «text sha1:919c14ae»
       - BODY
       - DATE
-  node -e «alert» sha1:ae079d9d
+  node <repo>/scripts/cycle/alert.js
       + ALERT_LOG=<repo>/logs/cycle-2026-10-08_0501.log
       + ALERT_REASON=no articles published
       + CYCLE_ALERT=<repo>/content/.cycle-alert.json

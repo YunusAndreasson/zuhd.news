@@ -54,7 +54,7 @@ const healthy = () => [
   rule('push-log', 'node', '^-e .*push-log update failed', says('')),
   rule('briefing-top', 'node', '^-e .*briefing-top failed', says('[{"label":"Fed Raises Rates","category":"economy","arc":"breaking"}]')),
   rule('briefing-payload', 'node', '^-e .*channelId', says(BRIEFING_PUSH)),
-  rule('alert', 'node', '^-e .*process\\.env\\.CYCLE_ALERT', says('ALERT: no articles published (1 cycle(s) in a row since 2026-10-08T18:04:59.000Z)\n')),
+  rule('alert', 'node', '/scripts/cycle/alert\\.js$', says('ALERT: no articles published (1 cycle(s) in a row since 2026-10-08T18:04:59.000Z)\n')),
 
   // The stages whose outcome the script acts on.
   rule('fetch-api', 'node', '^scripts/fetch-news-api\\.js$'),

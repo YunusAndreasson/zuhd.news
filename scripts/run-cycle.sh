@@ -99,14 +99,7 @@ on_cycle_exit() {
   elif [ "$status" -ne 0 ]; then
     reason="cycle exited $status before publishing"
   fi
-  CYCLE_ALERT="$CYCLE_ALERT" ALERT_REASON="$reason" ALERT_LOG="$LOG_FILE" node -e '
-    const fs = require("fs"), p = process.env.CYCLE_ALERT
-    let prev = {}; try { prev = JSON.parse(fs.readFileSync(p, "utf8")) } catch {}
-    const out = { at: new Date().toISOString(), reason: process.env.ALERT_REASON, log: process.env.ALERT_LOG,
-      consecutive: (prev.consecutive || 0) + 1, since: prev.since || new Date().toISOString() }
-    fs.writeFileSync(p, JSON.stringify(out, null, 2) + "\n")
-    console.log(`ALERT: ${out.reason} (${out.consecutive} cycle(s) in a row since ${out.since})`)
-  ' 2>&1 | tee -a "$LOG_FILE"
+  CYCLE_ALERT="$CYCLE_ALERT" ALERT_REASON="$reason" ALERT_LOG="$LOG_FILE" node "$SCRIPT_DIR/cycle/alert.js" 2>&1 | tee -a "$LOG_FILE"
 }
 
 # Build with a retry on the build lock (see Stage 3b for why). Sets BUILD_EXIT.

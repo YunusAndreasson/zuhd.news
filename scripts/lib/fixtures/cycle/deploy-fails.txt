@@ -65,7 +65,7 @@ commands
   node scripts/narrate-indicators.js --new-only
   git add content/.indicator-dispatch.json
   git commit --only content/.indicator-dispatch.json -m Indicator dispatch 2026-10-08T18:04
-  node -e «alert» sha1:ae079d9d
+  node <repo>/scripts/cycle/alert.js
       + ALERT_LOG=<repo>/logs/cycle-2026-10-08_1804.log
       + ALERT_REASON=no articles published
       + CYCLE_ALERT=<repo>/content/.cycle-alert.json

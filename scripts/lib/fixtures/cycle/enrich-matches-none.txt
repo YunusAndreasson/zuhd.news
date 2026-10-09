@@ -21,7 +21,7 @@ commands
   node scripts/cycle/tally.js selection
   node scripts/enrich-selection.js
   node scripts/cycle/tally.js selection
-  node -e «alert» sha1:ae079d9d
+  node <repo>/scripts/cycle/alert.js
       + ALERT_LOG=<repo>/logs/cycle-2026-10-08_1804.log
       + ALERT_REASON=no articles published
       + CYCLE_ALERT=<repo>/content/.cycle-alert.json

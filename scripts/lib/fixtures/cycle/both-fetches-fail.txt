@@ -11,7 +11,7 @@ commands
   node scripts/cycle/tally.js feed-api
   node scripts/fetch-news.js
   node scripts/cycle/tally.js feed-rss
-  node -e «alert» sha1:ae079d9d
+  node <repo>/scripts/cycle/alert.js
       + ALERT_LOG=<repo>/logs/cycle-2026-10-08_1804.log
       + ALERT_REASON=cycle exited 1 before publishing
       + CYCLE_ALERT=<repo>/content/.cycle-alert.json

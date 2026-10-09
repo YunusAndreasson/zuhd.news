@@ -19,7 +19,7 @@ commands
   node scripts/company-gaps.js
   claude --no-session-persistence --setting-sources project --disable-slash-commands --strict-mcp-config --effort medium --model claude-opus-5-5 --fallback-model claude-sonnet-5-5 --allowedTools Read,Write,Glob,Grep --max-turns 35 --exclude-dynamic-system-prompt-sections -p «text sha1:3896c734»
   node scripts/cycle/tally.js selection
-  node -e «alert» sha1:ae079d9d
+  node <repo>/scripts/cycle/alert.js
       + ALERT_LOG=<repo>/logs/cycle-2026-10-08_1804.log
       + ALERT_REASON=no articles published
       + CYCLE_ALERT=<repo>/content/.cycle-alert.json
