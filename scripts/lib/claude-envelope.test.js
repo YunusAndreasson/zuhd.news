@@ -1,7 +1,7 @@
 import assert from 'node:assert/strict'
 import { test } from 'node:test'
 import { runWithConcurrency } from './concurrency.js'
-import { ISOLATION_FLAGS, claudeArgs, claudeFailure, cleanProse, firstLine, parseClaudeEnvelope, parseClaudeText, spawnClaude, unquote } from './claude-envelope.js'
+import { ISOLATION_FLAGS, claudeArgs, claudeFailure, cleanProse, firstLine, parseClaudeEnvelope, parseClaudeEnvelopeWithUsage, parseClaudeText, spawnClaude, unquote } from './claude-envelope.js'
 
 // `command: 'node'` stands in for the CLI: the helper's job is the spawn, not
 // the flags, and a real `claude` call would cost money on every test run.
@@ -26,6 +26,50 @@ test('timeout kills the child and reports ETIMEDOUT with a null status', async (
   const r = await spawnClaude(sleeper(5000, 'late'), { command: 'node', timeout: 200 })
   assert.equal(r.status, null)
   assert.equal(r.error?.code, 'ETIMEDOUT')
+})
+
+test('a child that ignores SIGTERM is killed after the grace, and the call ends', async () => {
+  // The deadline was a SIGTERM and a wait for `close`: a child that handled
+  // the signal and carried on kept its pool worker for as long as it liked.
+  // The child says when its handler is in place, so the kill that ends it is
+  // the second one.
+  const stubborn = ['-e', "process.on('SIGTERM', () => {}); process.stdout.write('ready'); setInterval(() => {}, 1000)"]
+  const t0 = Date.now()
+  const r = await spawnClaude(stubborn, { command: 'node', timeout: 1500, killGrace: 300 })
+  const elapsed = Date.now() - t0
+  assert.equal(r.status, null)
+  assert.equal(r.error?.code, 'ETIMEDOUT')
+  assert.equal(r.stdout, 'ready')
+  assert.ok(elapsed >= 1750, `ended at the first signal after ${elapsed}ms: the child did not ignore it`)
+  assert.ok(elapsed < 5000, `took ${elapsed}ms`)
+})
+
+test('a killed child is not waited on for a pipe something else holds', async () => {
+  // The child dies at SIGTERM; what it started keeps the stdout it inherited
+  // for five seconds more. `close` waits for that. `exit` does not.
+  const holder = ['-e', "require('node:child_process').spawn('sleep', ['5'], { stdio: 'inherit' }); setInterval(() => {}, 1000)"]
+  const t0 = Date.now()
+  const r = await spawnClaude(holder, { command: 'node', timeout: 600 })
+  const elapsed = Date.now() - t0
+  assert.equal(r.error?.code, 'ETIMEDOUT')
+  assert.ok(elapsed < 3000, `waited ${elapsed}ms on a pipe the child no longer owned`)
+})
+
+test('an error envelope is an error, not the answer', () => {
+  // The CLI marks a failed call `is_error` and puts the error where the answer
+  // goes. This one quotes its own JSON, which the fallback for prose around an
+  // object would have handed back as the model's object.
+  const overloaded = JSON.stringify({
+    type: 'result',
+    subtype: 'success',
+    is_error: true,
+    result: 'API Error: 529 {"type":"error","error":{"type":"overloaded_error","message":"Overloaded"}}',
+  })
+  assert.throws(() => parseClaudeEnvelopeWithUsage(overloaded), /claude reported an error \(success\): API Error: 529/)
+  assert.throws(() => parseClaudeText(overloaded), /claude reported an error/)
+  // An answer is still an answer, with or without the flag.
+  assert.deepEqual(parseClaudeEnvelopeWithUsage(JSON.stringify({ type: 'result', is_error: false, result: '{"recent":"x"}' })).result, { recent: 'x' })
+  assert.deepEqual(parseClaudeEnvelopeWithUsage(JSON.stringify({ type: 'result', result: 'Here it is: {"recent":"x"}' })).result, { recent: 'x' })
 })
 
 test('drops CLAUDECODE from the child env', async () => {

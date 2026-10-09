@@ -30,6 +30,7 @@ export function parseClaudeEnvelopeWithUsage(stdout) {
   if (outer?.type !== 'result') {
     return { result: outer }
   }
+  refuseErrorEnvelope(outer)
 
   if (outer.result == null) {
     throw new Error('claude returned no text result (tool use may have exhausted max-turns)')
@@ -185,6 +186,7 @@ export function claudeFailure(res, timeoutMs) {
  */
 export function parseClaudeText(stdout) {
   const outer = JSON.parse(String(stdout || '').trim())
+  if (outer?.type === 'result') refuseErrorEnvelope(outer)
   if (outer?.type !== 'result' || outer.result == null) {
     throw new Error(`unexpected claude envelope: ${String(stdout).slice(0, 200)}`)
   }
@@ -279,6 +281,28 @@ export function formatUsage(envelope) {
 }
 
 /**
+ * Throw on an envelope the CLI marked as an error.
+ *
+ * `is_error` was read nowhere. An envelope that carries one has the error's
+ * text where the answer would be, and both parsers went on to parse it: for
+ * the JSON one, an API error that quotes its own JSON body
+ * (`API Error: 529 {"type":"error",…}`) falls through to the first-brace-to-
+ * last-brace fallback and comes back as the model's object. A stage that then
+ * reads `out.recent` off it finds nothing, and stores nothing as the answer.
+ * No log kept shows it having happened. Callers stop at a non-zero exit
+ * before they parse; this is for an error beside an exit status of 0.
+ *
+ * @param {{ is_error?: boolean, subtype?: string, result?: unknown }} outer
+ */
+function refuseErrorEnvelope(outer) {
+  if (outer.is_error !== true) return
+  throw new Error(`claude reported an error (${outer.subtype ?? 'no subtype'}): ${String(outer.result ?? '').slice(0, 300)}`)
+}
+
+/** How long a child told to stop is given before it is made to. */
+const KILL_GRACE_MS = 5_000
+
+/**
  * `spawnSync`'s result shape — `{ status, stdout, stderr, error }` — from an
  * asynchronous `claude` child.
  *
@@ -294,11 +318,20 @@ export function formatUsage(envelope) {
  * `maxBuffer` kills the child too (`ENOBUFS`). `CLAUDECODE` is always dropped
  * — the child must not inherit the parent session marker.
  *
+ * **The deadline does not depend on the child.** A killed call resolves when
+ * the child exits, or `killGrace` after it was told to, whichever is first:
+ * SIGTERM, then SIGKILL. It resolved on `close`, which waits for the pipes as
+ * well as the process, after a SIGTERM and nothing more. So a child that
+ * ignored the signal, or one that had exited while something it started still
+ * held its stdout, kept a pool worker until the stage's own `timeout` ended
+ * the stage — and only the indicator dispatch saves what it has when that
+ * happens.
+ *
  * @param {string[]} args
- * @param {{ timeout?: number, maxBuffer?: number, env?: NodeJS.ProcessEnv, command?: string }} [opts]
+ * @param {{ timeout?: number, maxBuffer?: number, env?: NodeJS.ProcessEnv, command?: string, killGrace?: number }} [opts]
  * @returns {Promise<{ status: number | null, stdout: string, stderr: string, error?: Error & { code?: string } }>}
  */
-export function spawnClaude(args, { timeout = 120_000, maxBuffer = 1024 * 1024, env = process.env, command = 'claude' } = {}) {
+export function spawnClaude(args, { timeout = 120_000, maxBuffer = 1024 * 1024, env = process.env, command = 'claude', killGrace = KILL_GRACE_MS } = {}) {
   return new Promise((resolve) => {
     const child = spawn(command, args, { env: childEnv(env), stdio: ['ignore', 'pipe', 'pipe'] })
     let stdout = ''
@@ -306,16 +339,29 @@ export function spawnClaude(args, { timeout = 120_000, maxBuffer = 1024 * 1024, 
     /** @type {(Error & { code?: string }) | undefined} */
     let error
     let settled = false
+    /** @type {NodeJS.Timeout | undefined} */
+    let killer
     const finish = (status) => {
       if (settled) return
       settled = true
       clearTimeout(timer)
+      clearTimeout(killer)
+      // Settled ahead of `close` (a killed child): let go of the pipes, or
+      // whoever still holds their other end keeps this process alive.
+      child.stdout?.destroy()
+      child.stderr?.destroy()
       resolve({ status, stdout, stderr, ...(error ? { error } : {}) })
     }
     const kill = (code) => {
       if (error) return
       error = Object.assign(new Error(`claude ${code}`), { code })
+      // Gone already, with only its pipes held open: nothing left to signal.
+      if (child.exitCode !== null || child.signalCode !== null) return finish(null)
       child.kill('SIGTERM')
+      killer = setTimeout(() => {
+        child.kill('SIGKILL')
+        finish(null)
+      }, killGrace)
     }
     const timer = setTimeout(() => kill('ETIMEDOUT'), timeout)
     child.stdout.setEncoding('utf-8')
@@ -330,6 +376,12 @@ export function spawnClaude(args, { timeout = 120_000, maxBuffer = 1024 * 1024, 
     child.on('error', (err) => {
       error = err
       finish(null)
+    })
+    // A child that ran to its end is read to the end of its pipes (`close`):
+    // `exit` can come while output is still in them. A killed one has nothing
+    // more worth waiting for.
+    child.on('exit', () => {
+      if (error) finish(null)
     })
     child.on('close', (code) => finish(error ? null : code))
   })
