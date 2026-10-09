@@ -4,7 +4,7 @@ import { createHash } from 'node:crypto'
 import { normalizeMarkets, selectMarketSignals, factualSummary } from './lib/market-signals.js'
 import { loadArticles } from './lib/coverage-window.js'
 import { matchesAnyTag } from './lib/entity-registry.js'
-import { callIndicatorModel } from './lib/indicator-model.js'
+import { askModel } from './lib/dispatch.js'
 import { validateNumbers, validateProperNouns } from './lib/grounding.js'
 import { ROOT } from './lib/paths.js'
 import { readJson, writeJson } from './lib/json-file.js'
@@ -67,12 +67,16 @@ export function validateMarketComment(out, bundle, reasons = []) {
   return { text: out.recent.trim(), citations: evidence }
 }
 
+/** The model and effort the indicator dispatch writes with (`ZUHD_DISPATCH_MODEL`,
+ *  `ZUHD_DISPATCH_EFFORT`): a comment sits on a card under that stage's definition. */
+const askDispatchModel = askModel('dispatch', 'ZUHD_DISPATCH_EFFORT')
+
 /**
  * @param {{ dryRun?: boolean, noLlm?: boolean, now?: number, root?: string, suppliedArticles?: any,
  *   callModel?: (prompt: string) => any }} [opts] `callModel` may return the result or a promise
  *   of it — the real one is async (see `spawnClaude`), test doubles need not be.
  */
-export async function runMarketSignals({ dryRun = false, noLlm = false, now = Date.now(), root = ROOT, suppliedArticles = null, callModel = callIndicatorModel } = {}) {
+export async function runMarketSignals({ dryRun = false, noLlm = false, now = Date.now(), root = ROOT, suppliedArticles = null, callModel = askDispatchModel } = {}) {
   const markets = readJson(join(root, 'content/.markets.json'), {})
   const latest = latestTrendsPath(root)
   const trends = latest ? readJson(latest, {}) : {}

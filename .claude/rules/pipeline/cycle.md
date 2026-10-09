@@ -30,7 +30,6 @@ paths:
   - "scripts/lib/dispatch.js"
   - "scripts/lib/grounding.js"
   - "scripts/lib/indicator-offer.js"
-  - "scripts/lib/indicator-model.js"
   - "scripts/lib/market-signals.js"
   - "scripts/lib/title-echo.js"
   - "scripts/lib/coverage-window.js"
