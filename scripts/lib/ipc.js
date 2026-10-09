@@ -488,6 +488,22 @@ export const publishable = (area) => {
 }
 
 /**
+ * The people in Crisis or worse across a set of CSV rows: `Phase 3+` added up.
+ * A row with no figure adds nothing, as in `countryTotals`.
+ *
+ * For one line of the fetcher's log. A country's total (`countryTotals`) is
+ * summed over the areas in the snapshot, and the snapshot holds only countries
+ * whose geometry was fetched, which is only those with somebody in Phase 4 or
+ * 5: the filter was written for the marks, before there were totals. A country
+ * in Crisis with nobody in Emergency is therefore in no total, and in the
+ * app's "in hunger" not at all. This is what the log sizes that with.
+ *
+ * @param {{ population?: { p3plus?: number | null } }[] | undefined} rows
+ */
+export const crisisCaseload = (rows) =>
+  (rows ?? []).reduce((sum, row) => sum + (Number.isFinite(row.population?.p3plus) ? row.population.p3plus : 0), 0)
+
+/**
  * Each country's caseload: its areas' populations, added up.
  *
  * The map draws the grave end — 94 areas in four countries on the payload this

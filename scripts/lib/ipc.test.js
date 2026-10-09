@@ -19,6 +19,7 @@ import {
   analysisAgeMonths,
   byVintagePhaseCountry,
   countryTotals,
+  crisisCaseload,
   featureClassification,
   gateByAge,
   joinAreas,
@@ -430,4 +431,20 @@ test('areas are in one order, whichever country came back first', () => {
   assert.deepEqual(order([tcd, ben, som]), expected)
   assert.deepEqual(order([som, ben, tcd]), expected)
   assert.deepEqual(order([ben, som, tcd]), expected)
+})
+
+test("a country nobody fetched still has a caseload, and the log can size it", () => {
+  // Geometry is fetched only for countries with somebody in Phase 4 or 5, and
+  // a country's total is summed from the areas fetched. So a country in Crisis
+  // with nobody in Emergency is in no total; this is the number the fetcher
+  // prints for what that leaves out.
+  const rows = [
+    { population: { p3plus: 412_000, p4: 0, p5: 0 } },
+    { population: { p3plus: 88_500, p4: null } },
+    { population: { p3plus: null } }, // no figure adds nothing, and is not zero people
+    { population: {} },
+  ]
+  assert.equal(crisisCaseload(rows), 500_500)
+  assert.equal(crisisCaseload([]), 0)
+  assert.equal(crisisCaseload(undefined), 0)
 })

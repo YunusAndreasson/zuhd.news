@@ -35,6 +35,11 @@
 // dropped this way are counted in the payload (`skipped.countriesNoCandidate`),
 // because a bounded fetch that does not say what it skipped reads as coverage.
 //
+// Sound for the marks, and not for the country totals the build later sums from
+// this snapshot (`countryTotals`): a country with people in Crisis and nobody
+// in Emergency is not fetched and so is in no total. The log says each run how
+// many people that is. Open, not settled.
+//
 // ── No key ─────────────────────────────────────────────────────────────────
 //
 // The IPC's own API requires one, granted through a request form. HDX publishes
@@ -48,6 +53,7 @@ import { runSettled } from './lib/concurrency.js'
 import {
   AGE_LIMIT_MONTHS,
   byVintagePhaseCountry,
+  crisisCaseload,
   gateByAge,
   joinCountry,
   parseIpcAreaCsv,
@@ -195,6 +201,21 @@ async function produce() {
       `(${noCandidate.length} do not, ${noGeometry.length} have no published geometry)`,
   )
   if (wanted.length === 0) bail('no country holds a Phase 4 or 5 caseload')
+
+  // What that filter costs the totals. It was written for the marks, and a
+  // country's total is summed from the areas fetched: one in Crisis with nobody
+  // in Emergency is in no total. Sized here every run, until it is decided.
+  const uncounted = noCandidate
+    .map((iso3) => ({ iso3, people: crisisCaseload(byCountry.get(iso3)) }))
+    .filter((c) => c.people > 0)
+    .sort((a, b) => b.people - a.people)
+  if (uncounted.length > 0) {
+    const people = uncounted.reduce((sum, c) => sum + c.people, 0)
+    console.log(
+      `  not in any country total: ${people.toLocaleString('en-US')} people in Crisis or worse, in ${uncounted.length} of the ` +
+        `${noCandidate.length} countries not fetched (${uncounted.map((c) => `${c.iso3} ${c.people.toLocaleString('en-US')}`).join(', ')})`,
+    )
+  }
 
   // --- Geometry, and the join -------------------------------------------------
 
