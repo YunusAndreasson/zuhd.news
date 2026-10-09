@@ -432,9 +432,10 @@ export function dryRun({ cache, selected, bundleOf, fingerprintsOf, force = fals
  * One pass of a dispatch stage: for each selected item, the cache or a call,
  * the answer judged and stored; then the prune, the stamp and the write.
  *
- * The cache is checkpointed (`CHECKPOINT_EVERY`) and flushed on SIGTERM, so a
- * pass killed at its timeout keeps what it had finished. The events stage had
- * neither while this loop was written out twice.
+ * The cache is checkpointed (`CHECKPOINT_EVERY`), and flushed on SIGTERM and on
+ * a throw, so a pass killed at its timeout or ended by one bad item keeps what
+ * it had finished. The events stage had none of it while this loop was written
+ * out twice.
  *
  * @param {Dispatch} run
  * @returns {Promise<{ generated: number, cacheHits: number, rejected: number, failed: number,
@@ -508,6 +509,13 @@ export async function runDispatch({
       if (counts.generated % CHECKPOINT_EVERY === 0) save()
       console.log(`  ✓ ${item.key}: ${kept.recent || kept.standing}`)
     })
+  } catch (err) {
+    // A throw from one item (a bundle that cannot be built) ends the pass, and
+    // it must not cost what the others had finished any more than a timeout
+    // may. The calls still in flight are not waited for: the pool rejects on
+    // the first throw (`runWithConcurrency`).
+    if (counts.generated > 0) save()
+    throw err
   } finally {
     process.removeListener('SIGTERM', onTerm)
   }

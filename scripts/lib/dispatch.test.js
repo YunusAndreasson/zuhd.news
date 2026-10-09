@@ -396,6 +396,38 @@ test('the cache is on disk every ten new items, so a killed pass keeps what it f
   assert.equal(process.listenerCount('SIGTERM'), before, 'the flush on SIGTERM is taken down with the pass')
 })
 
+test('a pass that throws on one item keeps the items it had finished', async () => {
+  // Nothing in a worker is caught: one bundle that cannot be built ended the
+  // run and took every answer since the last checkpoint with it.
+  const dir = mkdtempSync(join(tmpdir(), 'dispatch-'))
+  const cachePath = join(dir, 'cache.json')
+  const cache = { items: {} }
+  try {
+    await quietly(() =>
+      assert.rejects(
+        runDispatch({
+          cachePath,
+          cache,
+          items: [],
+          selected: [{ key: 'a' }, { key: 'b' }, { key: 'c' }, { key: 'broken' }],
+          bundleOf: (item) => {
+            if (item.key === 'broken') throw new Error('no series for broken')
+            return { coverage: [], feedWindow: [], threads: [] }
+          },
+          fingerprintsOf: (item) => ({ standing: `s-${item.key}`, recent: `r-${item.key}` }),
+          ask: async () => ({ out: { standing: 'What it is.', recent: '' } }),
+          examples: [],
+          standingOf: (_item, written) => written,
+        }),
+        /no series for broken/,
+      ),
+    )
+    assert.deepEqual(Object.keys(JSON.parse(readFileSync(cachePath, 'utf8')).items), ['a', 'b', 'c'])
+  } finally {
+    rmSync(dir, { recursive: true, force: true })
+  }
+})
+
 test('the full pass prunes by source and stamps; a new-only pass does neither when it writes nothing', async () => {
   const sourceOf = (key) => (key.startsWith('cp:') ? 'chokepoints' : 'trends')
   const stale = () => ({ items: { brent: entry('brent'), 'poly-closed': entry('poly-closed'), 'cp:suez': entry('cp:suez') } })
