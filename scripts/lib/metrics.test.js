@@ -1,7 +1,7 @@
 // Run: node --test scripts/lib/metrics.test.js
 import assert from 'node:assert/strict'
 import { test } from 'node:test'
-import { computeDiversity, computeEducational, computeFreshness, computeSourcing, cycleRow, dailyMetrics, findDuplicates, metricsRow, sourcingRow } from './metrics.js'
+import { computeDiversity, computeEducational, computeFreshness, computeSourcing, cycleRow, dailyMetrics, findDuplicates, metricsRow, readDay, sourcingRow } from './metrics.js'
 
 const ARTICLE = `---
 title: "Trade Body Doubles Its Growth Forecast"
@@ -187,6 +187,36 @@ test('a day\'s sourcing: how many stand on one source, where they are datelined,
     quarantined: 2,
   })
   assert.deepEqual(computeSourcing([], 0), { ...out, articles: 0, singleSourcePct: 0, multiSourcePct: 0, stateOrAdvocacyOnly: 0, stateOrAdvocacyOnlySlugs: [], usDatelinePct: 0, latAmDatelinePct: 0, missingDateline: 0, missingDatelineSlugs: [], imageUrlPct: 0, sameEventDuplicates: 0, sameEventPairs: [], quarantined: 0 })
+})
+
+// The stage listed the directory four times and read every article twice, once
+// for each row. What a day's read gives is the same rows, in the listing's order.
+test('a day is the files under its date, each read once for both rows', () => {
+  const files = new Map([
+    ['2026-10-08-b.md', ARTICLE.replace('Trade Body Doubles Its Growth Forecast', 'Port Strike Enters Second Week')],
+    ['2026-10-08-a.md', ARTICLE],
+    ['2026-10-08-does-not-parse.md', ARTICLE.replace('"Trade Body', '"Trade "Body')],
+    ['2026-10-08-moved-aside.md.bad', ARTICLE],
+    ['2026-10-07-yesterday.md', ARTICLE],
+    ['2026-10-08-notes.txt', 'not an article'],
+  ])
+  /** @type {string[]} */
+  const reads = []
+  const read = (/** @type {string} */ name) => {
+    reads.push(name)
+    if (name === '2026-10-08-gone.md') throw new Error('ENOENT')
+    return files.get(name) ?? ''
+  }
+  const published = new Map([['2026-10-08-a', Date.parse('2026-10-08T18:19:00Z')]])
+  const day = readDay([...files.keys(), '2026-10-08-gone.md'], '2026-10-08', read, published)
+
+  assert.deepEqual(day.articles, [metricsRow('2026-10-08-b.md', files.get('2026-10-08-b.md') ?? ''), metricsRow('2026-10-08-a.md', ARTICLE, Date.parse('2026-10-08T18:19:00Z'))])
+  assert.deepEqual(day.sourcing, computeSourcing([sourcingRow('2026-10-08-b.md', files.get('2026-10-08-b.md') ?? ''), sourcingRow('2026-10-08-a.md', ARTICLE)], 1))
+  assert.deepEqual(reads, ['2026-10-08-b.md', '2026-10-08-a.md', '2026-10-08-does-not-parse.md', '2026-10-08-gone.md'], 'once each, and nothing that is not an article of the day')
+  assert.equal(day.sourcing?.quarantined, 1)
+
+  assert.deepEqual(readDay([...files.keys()], '2026-10-06', read, published), { articles: [], sourcing: computeSourcing([], 0) })
+  assert.deepEqual(readDay(null, '2026-10-08', read, published), { articles: [], sourcing: null }, 'no directory is not an empty day')
 })
 
 const LOG = [

@@ -255,6 +255,43 @@ export function computeSourcing(rows, quarantined) {
   }
 }
 
+// ── A day's articles ─────────────────────────────────────────────────
+
+/**
+ * A day's articles as the two readers above take them, and the day's sourcing
+ * figures. The day is the date a file is filed under, so this goes by the
+ * name's prefix and not by a window (`articleFilesSince` answers for a
+ * frontmatter `date`, with a month's margin), and it counts the day's
+ * `.md.bad` names, which no window of articles holds.
+ *
+ * Each file is read once, for both rows. An article is in both or in neither:
+ * one whose frontmatter does not parse is the validator's business, and one
+ * that cannot be read is left out the same way.
+ *
+ * @param {string[] | null} names the articles directory's listing; null when there is no directory
+ * @param {string} datePrefix the day, `YYYY-MM-DD`
+ * @param {(name: string) => string} read a file's text
+ * @param {Map<string, number>} publishedAt slug to publish time (`lib/published-at.js`)
+ * @returns {{ articles: MetricsRow[], sourcing: ReturnType<typeof computeSourcing> | null }}
+ */
+export function readDay(names, datePrefix, read, publishedAt) {
+  if (!names) return { articles: [], sourcing: null }
+  const day = names.filter((n) => n.startsWith(datePrefix))
+  /** @type {MetricsRow[]} */
+  const articles = []
+  /** @type {SourcingRow[]} */
+  const sourcing = []
+  for (const name of day.filter((n) => n.endsWith('.md'))) {
+    try {
+      const raw = read(name)
+      const row = metricsRow(name, raw, publishedAt.get(name.replace(/\.md$/, '')) ?? null)
+      sourcing.push(sourcingRow(name, raw))
+      articles.push(row)
+    } catch { /* left out of both */ }
+  }
+  return { articles, sourcing: computeSourcing(sourcing, day.filter((n) => n.endsWith('.md.bad')).length) }
+}
+
 // ── Cycle logs ───────────────────────────────────────────────────────
 
 /**

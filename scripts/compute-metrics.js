@@ -6,7 +6,7 @@
 import { existsSync, readFileSync, readdirSync } from 'node:fs'
 import { join } from 'node:path'
 import { pathOf } from './lib/datasets.js'
-import { computeSourcing, cycleRow, dailyMetrics, metricsRow, sourcingRow } from './lib/metrics.js'
+import { cycleRow, dailyMetrics, readDay } from './lib/metrics.js'
 import { ROOT } from './lib/paths.js'
 import { publishedTimes } from './lib/published-at.js'
 import { runStage } from './lib/stage.js'
@@ -25,17 +25,11 @@ export function main() {
   // under yesterday's date may have been published the day before that.
   const publishedAt = publishedTimes(ROOT, 3)
 
-  /** @param {string} datePrefix */
-  const readArticles = (datePrefix) => {
-    if (!existsSync(ARTICLES_DIR)) return []
-    const rows = []
-    for (const f of readdirSync(ARTICLES_DIR).filter((n) => n.startsWith(datePrefix) && n.endsWith('.md'))) {
-      try {
-        rows.push(metricsRow(f, readFileSync(join(ARTICLES_DIR, f), 'utf-8'), publishedAt.get(f.replace(/\.md$/, '')) ?? null))
-      } catch { /* an unparseable file is the validator's business */ }
-    }
-    return rows
-  }
+  // One listing of the directory and one read of each article (`readDay`).
+  // There were four listings, and two reads of every article.
+  const names = existsSync(ARTICLES_DIR) ? readdirSync(ARTICLES_DIR) : null
+  /** @param {string} name */
+  const read = (name) => readFileSync(join(ARTICLES_DIR, name), 'utf-8')
 
   /** @param {string} datePrefix */
   const readLogs = (datePrefix) =>
@@ -46,20 +40,8 @@ export function main() {
           .map((f) => cycleRow(f, readFileSync(join(LOGS_DIR, f), 'utf-8')))
       : []
 
-  /** @param {string} datePrefix */
-  const readSourcing = (datePrefix) => {
-    if (!existsSync(ARTICLES_DIR)) return null
-    const names = readdirSync(ARTICLES_DIR).filter((f) => f.startsWith(datePrefix))
-    const rows = []
-    for (const f of names.filter((n) => n.endsWith('.md'))) {
-      try {
-        rows.push(sourcingRow(f, readFileSync(join(ARTICLES_DIR, f), 'utf-8')))
-      } catch { /* an unparseable file is the validator's business */ }
-    }
-    return computeSourcing(rows, names.filter((f) => f.endsWith('.md.bad')).length)
-  }
-
-  const articles = { today: readArticles(today), yesterday: readArticles(yesterday) }
+  const days = { today: readDay(names, today, read, publishedAt), yesterday: readDay(names, yesterday, read, publishedAt) }
+  const articles = { today: days.today.articles, yesterday: days.yesterday.articles }
   // Outside a checkout, or with a log that does not reach back, there is no
   // publish time and freshness has nothing to stand on. Said on stderr, which
   // goes to the cycle's log: stdout is the tuner's file.
@@ -67,7 +49,7 @@ export function main() {
     console.error('compute-metrics: git names no commit for any of these articles — freshness is left empty')
   }
   const logs = { today: readLogs(today), yesterday: readLogs(yesterday) }
-  const sourcing = { today: readSourcing(today), yesterday: readSourcing(yesterday) }
+  const sourcing = { today: days.today.sourcing, yesterday: days.yesterday.sourcing }
 
   const metrics = dailyMetrics(
     today,
