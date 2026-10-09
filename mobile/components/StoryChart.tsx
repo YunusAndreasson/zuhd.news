@@ -13,7 +13,8 @@ import { DeltaChip } from './DeltaChip';
 import { Pressable, Text } from './primitives';
 
 /**
- * The series a story cites, drawn under it (`Article.chart`).
+ * The series a story cites, drawn under its title (`Article.chart`), over the
+ * hook: a resting card shows that the story has one.
  *
  * The number in the prose is a claim; this is where the reader sees it
  * against its own history — oil at $114 is a different sentence after a month
@@ -33,13 +34,9 @@ import { Pressable, Text } from './primitives';
  */
 export const StoryChart = memo(function StoryChart({
   card,
-  last,
   onPress,
 }: {
   card: GraphCard;
-  /** Nothing follows it in the story but `save · share · sources`: no bottom
-   *  rule (`styles.last`). */
-  last?: boolean;
   onPress?: (card: GraphCard) => void;
 }) {
   const { colors } = useTheme();
@@ -73,7 +70,7 @@ export const StoryChart = memo(function StoryChart({
   return (
     <Pressable
       onPress={handlePress}
-      style={[styles.frame, { borderColor: colors.rule }, last && styles.last]}
+      style={[styles.frame, { borderColor: colors.rule }]}
       accessibilityRole="button"
       accessibilityLabel={spoken}
       accessibilityHint="Opens the chart"
@@ -136,11 +133,6 @@ const styles = StyleSheet.create({
     borderTopWidth: StyleSheet.hairlineWidth,
     borderBottomWidth: StyleSheet.hairlineWidth,
   },
-  // The last thing in a story is followed by `save · share · sources`
-  // (`StoryFooter`), which takes no rule over it: this frame's bottom rule
-  // there was that rule by another name. The top one still parts the line
-  // from the prose.
-  last: { borderBottomWidth: 0, marginBottom: 0 },
   reading: {
     flexDirection: 'row',
     alignItems: 'baseline',

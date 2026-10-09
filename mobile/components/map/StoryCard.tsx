@@ -245,6 +245,7 @@ export const StoryCard = memo(function StoryCard({
   }, [article]);
 
   const threadContext = articleThreadContext(article);
+  const shownOdds = chart ? null : odds;
 
   const mdStyles = useMemo(
     () => makeMarkdownStyles(colors, font, typography),
@@ -398,6 +399,21 @@ export const StoryCard = memo(function StoryCard({
         </Text>
       </RNPressable>
 
+      {/* The story's chart, over the hook: at the end of the prose a reader
+          at rest could not tell a story had one. At rest it is part of the
+          card's one button; open, a press on it opens the chart. */}
+      {chart ? (
+        <RNPressable {...openTap} accessible={false}>
+          <View
+            pointerEvents={open ? 'auto' : 'none'}
+            accessibilityElementsHidden={!open}
+            importantForAccessibility={open ? 'auto' : 'no-hide-descendants'}
+          >
+            <StoryChart card={chart} onPress={onChartPress} />
+          </View>
+        </RNPressable>
+      ) : null}
+
       {/* The hook is a large, obvious target for "tell me more" — but not an
           accessibility element of its own: the sentence is read as text. */}
       <RNPressable {...openTap} accessible={false}>
@@ -413,16 +429,15 @@ export const StoryCard = memo(function StoryCard({
           {rest}
 
           {/* What follows the prose is set apart by space, not a rule beyond
-              the exhibit's own: a section gap, so the chart reads as an
+              the exhibit's own: a section gap, so the odds line reads as an
               exhibit and not as one more paragraph under "what's next" (its
               top rule sat a paragraph gap from the last sentence), and the
-              thread line under it closes the story. */}
-          {chart || odds || threadContext ? (
+              thread line under it closes the story. A story with a chart
+              shows the chart, over its hook, instead of the odds line. */}
+          {shownOdds || threadContext ? (
             <View style={styles.afterProse}>
-              {chart ? (
-                <StoryChart card={chart} last={!threadContext} onPress={onChartPress} />
-              ) : odds ? (
-                <OddsLine odds={odds} last={!threadContext} onPress={onOddsPress} />
+              {shownOdds ? (
+                <OddsLine odds={shownOdds} last={!threadContext} onPress={onOddsPress} />
               ) : null}
 
               {threadContext ? (
