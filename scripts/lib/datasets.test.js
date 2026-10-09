@@ -61,8 +61,6 @@ const STILL_SPELLING = [
   'scripts/extract-source-angles.js',
   'scripts/fetch-ai-models.js',
   'scripts/fetch-analytics.js',
-  'scripts/fetch-companies.js',
-  'scripts/fetch-markets.js',
   'scripts/fetch-news-api.js',
   'scripts/fetch-news.js',
   'scripts/fetch-trends.js',

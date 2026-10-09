@@ -239,7 +239,11 @@ export function isAboutCompany(facts, { wanted, tags, common }) {
  * exchange payloads follow (`citedOr` in `build.js`): a list under an account
  * is the account's evidence.
  *
- * @param {{ generated: string, companies: any[] }} raw
+ * **`skipped`** is the fetcher's own list of the companies it has no quote
+ * for, `[{ id, reason }]`, passed through when it is not empty: a list of
+ * eighteen that does not say two are missing reads as the whole list.
+ *
+ * @param {{ generated: string, companies: any[], skipped?: { id: string, reason: string }[] }} raw
  * @param {any[]} articles  the build's articles, newest first
  * @param {{ now?: number, dispatch?: Record<string, any> }} [opts]
  *   `dispatch`: `content/.indicator-dispatch.json`'s `items`.
@@ -292,5 +296,9 @@ export function companiesPayload(raw, articles, { now = Date.now(), dispatch = {
         }
       },
     ),
+    // The companies the fetcher could not quote this run, each with its reason.
+    // Only when there are some: on a day all twenty are here the file is byte
+    // for byte what it was, and its held stamp does not move.
+    ...(Array.isArray(raw.skipped) && raw.skipped.length > 0 ? { skipped: raw.skipped } : {}),
   }
 }

@@ -831,3 +831,80 @@ export function instrumentMismatch(entry, data) {
   }
   return null
 }
+
+/**
+ * One exchange as `content/.markets.json` holds it: the catalog's entry with
+ * its quote, or the reason it has none. Exactly one of the two is set, as
+ * `companyRecord` returns for a share (`lib/companies.js`).
+ *
+ * It was forty lines in the middle of `fetch-markets.js`, a script that runs
+ * when it is imported, so the rule this layer most needs kept had no test:
+ *
+ * **The day's change is the last two closes, never Yahoo's
+ * `chartPreviousClose`.** That is the close before the *window*, so against a
+ * three-month range it reports the quarter's move as the day's.
+ *
+ * The level has to be above zero as well as finite. The app's validator takes
+ * the markets payload whole or not at all and refuses any exchange at or under
+ * zero (`isMarketsSnapshot`, `mobile/lib/markets.ts`), so one such row
+ * published is the whole layer refused. No index has printed one; the check is
+ * for a response that is wrong, and it costs that exchange only.
+ *
+ * The keys, and their order, are the published file's. `/api/markets.json` is
+ * this record with the build's stories joined on.
+ *
+ * @param {MarketEntry} m
+ * @param {any} data  `fetchYahooStock`'s result
+ * @param {{ stale?: boolean }} [opts]
+ * @returns {{ record: Record<string, unknown> | null, rejected: string | null }}
+ */
+export function exchangeRecord(m, data, { stale = false } = {}) {
+  const refuse = (/** @type {string} */ rejected) => ({ record: null, rejected })
+
+  // The wrong-instrument guard. Yahoo answers an unknown symbol with a
+  // *different* instrument rather than a 404 — probing this catalog turned up
+  // three (`^PSI` → a PIMCO fund, `^NGX` → Nasdaq Next Generation 100, `^MSI` →
+  // a USD figure that is not Muscat). Those three happen to be caught upstream
+  // by the ≥5-closes rule in stocks.js, because each carries almost no history.
+  // This guard is for the case that rule cannot see: an impostor with a full,
+  // healthy series, which would otherwise publish an invented index level with
+  // nothing thrown and nothing logged. Verified to reject ^N225 and ^FTSE when
+  // asked for under the NYSE entry.
+  const mismatch = instrumentMismatch(m, data)
+  if (mismatch) return refuse(mismatch)
+
+  const values = data.values
+  if (values.length < 2) return refuse(`${values.length} usable close(s), cannot derive a change`)
+  const level = values[values.length - 1]
+  const previous = values[values.length - 2]
+  if (!Number.isFinite(level) || !Number.isFinite(previous) || previous === 0 || !(level > 0)) {
+    return refuse(`unusable closes ${previous} → ${level}`)
+  }
+
+  return {
+    rejected: null,
+    record: {
+      id: m.id,
+      name: m.name,
+      indexName: m.indexName,
+      city: m.city,
+      iso2: m.iso2,
+      lat: m.lat,
+      lng: m.lng,
+      level,
+      changePct: Number((((level - previous) / previous) * 100).toFixed(3)),
+      currency: m.currency,
+      tz: m.tz,
+      sessionStart: m.sessionStart,
+      sessionEnd: m.sessionEnd,
+      days: m.days,
+      series: { periods: data.periods, values, dates: data.dates, completed: data.completed },
+      asOf: data.asOf,
+      sourceLabel: `Yahoo Finance · ${data.exchange || m.indexName}`,
+      blurb: m.blurb,
+      topicTags: m.topicTags,
+      countryTags: m.countryTags,
+      ...(stale ? { stale: true } : {}),
+    },
+  }
+}

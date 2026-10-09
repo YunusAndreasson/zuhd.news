@@ -369,3 +369,13 @@ test('companiesPayload is the same bytes for the same inputs', () => {
     JSON.stringify(companiesPayload(raw(), articles, { now: NOW + 3600_000 })),
   )
 })
+
+test('companiesPayload says which companies the fetcher has no quote for, and only then', () => {
+  const full = { generated: '2026-10-03T05:00:00.000Z', companies: [companyRecord(NVIDIA, quote()).record], skipped: [] }
+  assert.deepEqual(Object.keys(companiesPayload(full, [], { now: NOW })), ['generated', 'companies'])
+  // A snapshot written before the fetcher kept the list has no key at all.
+  assert.deepEqual(Object.keys(companiesPayload({ ...full, skipped: undefined }, [], { now: NOW })), ['generated', 'companies'])
+
+  const skipped = [{ id: 'tsmc', reason: 'no series from Yahoo, live or cached' }]
+  assert.deepEqual(companiesPayload({ ...full, skipped }, [], { now: NOW }).skipped, skipped)
+})
