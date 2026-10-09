@@ -16,7 +16,7 @@ import { argAt, hasFlag } from './argv.js'
 import { readArticle } from './article.js'
 import { claudeArgs, claudeFailure, spawnClaude } from './claude-envelope.js'
 import { pathOf } from './datasets.js'
-import { igLead } from './ig-image.js'
+import { igCardInputs } from './ig-image.js'
 import { modelFor } from './models.js'
 import { ROOT } from './paths.js'
 import { postLog } from './post-log.js'
@@ -24,8 +24,9 @@ import { runStage } from './stage.js'
 
 /**
  * The story a poster was handed: the article saved under the slug, parsed,
- * and the card every surface draws for it. Null when there is no such
- * article. One that does not parse throws, as `readArticle` does.
+ * and what its card is drawn from, which is what the build drew the published
+ * one from (`igCardInputs`). Null when there is no such article. One that
+ * does not parse throws, as `readArticle` does.
  *
  * @param {string} slug
  * @param {{ dir?: string }} [opts] `dir` is for a test
@@ -34,18 +35,7 @@ export function loadStory(slug, { dir = pathOf('articles') } = {}) {
   const path = join(dir, `${slug}.md`)
   if (!existsSync(path)) return null
   const { meta, body } = readArticle(path)
-  // socialTitle (the card headline `pick-breaking-social.js` wrote before the
-  // build) wins over the article's title. The lead is the card's dek.
-  const card = {
-    headline: meta.socialTitle || meta.title || 'Breaking News',
-    summary: igLead(body),
-    category: meta.category || null,
-    date: meta.date,
-    location: meta.location || null,
-    lat: meta.lat != null ? Number(meta.lat) : null,
-    lng: meta.lng != null ? Number(meta.lng) : null,
-  }
-  return { slug, path, meta, body, card }
+  return { slug, path, meta, body, card: igCardInputs(meta, body) }
 }
 
 /** @typedef {NonNullable<ReturnType<typeof loadStory>>} Story */

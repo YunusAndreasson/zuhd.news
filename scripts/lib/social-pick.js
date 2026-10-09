@@ -6,6 +6,7 @@
 // stays in the script.
 
 import { isDeepStrictEqual } from 'node:util'
+import { stripDateline } from './article.js'
 import { parseFrontmatter, setFrontmatterLine } from './frontmatter.js'
 
 /** @typedef {import('./breaking.js').BreakingCandidate} BreakingCandidate */
@@ -16,12 +17,10 @@ import { parseFrontmatter, setFrontmatterLine } from './frontmatter.js'
  * lead).
  *
  * @param {string} body
+ * @param {string} [location] the article's `location`, which is its dateline
  */
-export function leadOf(body) {
-  let t = String(body || '')
-    .trim()
-    .split(/\n\n+/)[0]
-    .replace(/^[A-Z][\w .,'-]{0,28}\s—\s/, '')
+export function leadOf(body, location) {
+  let t = stripDateline(String(body || '').trim().split(/\n\n+/)[0], location)
     .replace(/\[([^\]]+)\]\([^)]*\)/g, '$1')
     .replace(/[*_`]/g, '')
     .replace(/\s+/g, ' ')
@@ -45,7 +44,7 @@ export function pickPrompt(instructions, cands) {
   const block = cands
     .map(
       (c, i) =>
-        `${i + 1}. slug: ${c.slug}\n   category: ${c.category}  importance: ${c.importance}  eventCoverage: ${c.eventCoverage}\n   title: ${c.title}\n   lead: ${leadOf(c.body)}`,
+        `${i + 1}. slug: ${c.slug}\n   category: ${c.category}  importance: ${c.importance}  eventCoverage: ${c.eventCoverage}\n   title: ${c.title}\n   lead: ${leadOf(c.body, c.location)}`,
     )
     .join('\n\n')
   return `${instructions}\n${block}\n`

@@ -8,7 +8,7 @@ import { countryTotals, ISO3_TO_ISO2, PHASE_NAMES, publishable, windowCoveringDa
 import { splitBlocks } from './lib/blocks.js'
 import { SV_WINDOW_MS, eventTime as svEventTime, svFeedItem } from './lib/sv-payload.js'
 import { buildCategoryOgPng, buildOgPng, buildSiteOgPng } from './lib/og-image.js'
-import { buildIgJpeg, IG_FEED, IG_STORY, igLead } from './lib/ig-image.js'
+import { buildIgJpeg, IG_FEED, IG_STORY, igCardInputs } from './lib/ig-image.js'
 import { buildIslands } from './build/islands.js'
 import { buildMapSources } from './build/basemap.js'
 import { buildCountryPages } from './build/country-pages.js'
@@ -23,7 +23,7 @@ import {
   renderCorrections,
   renderIsnad,
 } from './lib/article-chain.js'
-import { escHtml, escXml } from './lib/html.js'
+import { escHtml, escXml, smartQuotes } from './lib/html.js'
 import { ARCHETYPE_HEADER, siteFooter, WORDMARK, footerStatusLine } from './lib/site-chrome.js'
 import { listRow } from './lib/list-row.js'
 import { publishedTimes } from './lib/published-at.js'
@@ -57,12 +57,6 @@ const contextToHtml = (timeline) => {
 const WINDOW_MS = 24 * 60 * 60 * 1000
 const MIN_PER_CATEGORY = 10
 const MAX_PER_CATEGORY = 13
-
-const smartQuotes = (text) => text
-  .replace(/(^|[\s([{])"(\S)/gm, '$1\u201C$2')
-  .replace(/"/g, '\u201D')
-  .replace(/(^|[\s([{])'(\S)/gm, '$1\u2018$2')
-  .replace(/'/g, '\u2019')
 
 // Pipeline-emitted country tags use the `country:XX` href scheme
 // (e.g. `[Iran](country:IR)`). On the web these rewrite to the new
@@ -2267,9 +2261,10 @@ if (process.env.SKIP_OG === '1') {
   const IG_VERSION = 'v7' // bump when ig-image.js rendering changes
   const IG_RECENT = 20 // dev/manual fallback window
   const IG_CACHE_DAYS = 3 // how long a rendered card is kept; see the prune below
-  // The dek is `igLead`, in lib/ig-image.js beside the card it feeds — it used
-  // to be declared here and again in each of the two posters, and the three had
-  // parted over whether to cut on an ellipsis.
+  // What the card is drawn from is `igCardInputs`, in lib/ig-image.js beside
+  // the card it feeds. It used to be spelled here and again in each of the two
+  // posters, and the three had parted twice: over whether the dek is cut on an
+  // ellipsis, and over whether the headline's quotes are curled.
   mkdirSync(IG_CACHE_DIR, { recursive: true })
   let cycleSlugs = null
   try {
@@ -2284,18 +2279,9 @@ if (process.env.SKIP_OG === '1') {
   let igCached = 0
   let igRendered = 0
   for (const article of igArticles) {
-    const inputs = {
-      v: IG_VERSION,
-      // Prefer the social-optimized card headline (written pre-build by
-      // pick-breaking-social.js) over the article title; falls back cleanly.
-      headline: article.meta.socialTitle ? smartQuotes(article.meta.socialTitle) : article.title,
-      summary: igLead(article.body),
-      category: article.meta.category || null,
-      date: article.meta.date,
-      location: article.meta.location || null,
-      lat: article.meta.lat != null ? Number(article.meta.lat) : null,
-      lng: article.meta.lng != null ? Number(article.meta.lng) : null,
-    }
+    // `v` first and the inputs in their own order: the cache key is a hash of
+    // this object as it is written out.
+    const inputs = { v: IG_VERSION, ...igCardInputs(article.meta, article.body) }
     /** @type {[string, { width: number, height: number }][]} */
     const igSizes = [
       ['jpg', IG_FEED],

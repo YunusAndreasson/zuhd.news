@@ -11,7 +11,8 @@
 import { fileURLToPath } from 'node:url'
 import { Resvg } from '@resvg/resvg-js'
 import jpeg from 'jpeg-js'
-import { escXml } from './html.js'
+import { stripDateline } from './article.js'
+import { escXml, smartQuotes } from './html.js'
 import { themeFor, buildGlobe, formatLongDate } from './og-image.js'
 
 // The dark card's globe ocean — a touch more presence than the flat theme
@@ -41,14 +42,17 @@ import { fitText, loadFont } from './font-metrics.js'
  * If no sentence boundary falls inside the budget, the first sentence is
  * carried whole however long it is. That is the one case where the old code
  * reached for the ellipsis, and the fitter absorbs the length instead.
+ *
+ * The dateline comes off by the article's `location` (`stripDateline`). It
+ * came off by a pattern of ASCII letters, which left `Brasília — ` at the head
+ * of the dek on three of the last 99 cards posted to Instagram (2026-10-02,
+ * 10-04 and 10-05, the Brazilian election), over BRASÍLIA at the card's foot.
+ *
+ * @param {string} body
+ * @param {string} [location] the article's `location`
  */
-export const igLead = (body) => {
-  let t = String(body || '')
-    .trim()
-    .split(/\n\n+/)
-    .slice(0, 2)
-    .join(' ')
-    .replace(/^[A-Z][\w .,'-]{0,28}\s—\s/, '') // strip 'Washington — ' dateline
+export const igLead = (body, location) => {
+  let t = stripDateline(String(body || '').trim().split(/\n\n+/).slice(0, 2).join(' '), location)
     .replace(/\[([^\]]+)\]\([^)]*\)/g, '$1') // markdown links -> text
     .replace(/[*_`]/g, '')
     .replace(/\s+/g, ' ')
@@ -65,6 +69,32 @@ export const igLead = (body) => {
   }
   return t
 }
+
+/**
+ * What a story's card is drawn from: the build's cards under `/api/ig/`, the
+ * card the X poster renders and uploads, and the Instagram poster's preview.
+ *
+ * One function because the three had parted. The build curled the quotes in
+ * the headline and the posters did not, so the X card and the Instagram card
+ * of one story differed wherever the headline had an apostrophe.
+ *
+ * The keys are in the order the build wrote them, and the build hashes this
+ * object for its cache key: reorder them and every card renders again.
+ *
+ * @param {Record<string, any>} meta the article's frontmatter
+ * @param {string} body its prose
+ */
+export const igCardInputs = (meta, body) => ({
+  // The card headline `pick-breaking-social.js` wrote before the build, when
+  // there is one, over the article's own title.
+  headline: smartQuotes(String(meta.socialTitle || meta.title || 'Untitled')),
+  summary: igLead(body, meta.location),
+  category: meta.category || null,
+  date: meta.date,
+  location: meta.location || null,
+  lat: meta.lat != null ? Number(meta.lat) : null,
+  lng: meta.lng != null ? Number(meta.lng) : null,
+})
 
 // Static Source Sans 3 weights loaded by PATH. resvg-js 2.6.2 renders fonts
 // passed as `fontBuffers` with uniform (monospace-like) advances — a known

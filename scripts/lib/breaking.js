@@ -5,6 +5,8 @@
 // (`scripts/cycle/breaking-push.js`). Both selections are here, and they are
 // not the same: the second half of this file says where they part.
 
+import { stripDateline } from './article.js'
+
 /** A story with no second source behind it is not pushed (experiment 2026-04-16-push-min-coverage). */
 export const MIN_PUSH_COVERAGE = 1
 
@@ -14,6 +16,7 @@ export const MIN_PUSH_COVERAGE = 1
  * @property {string} title the article's, or else the ledger's label for the story
  * @property {string} category
  * @property {string} body the article's prose
+ * @property {string} [location] the article's `location`, which is its dateline
  * @property {number} importance the ledger's, 0 when it has none
  * @property {number} eventCoverage how many outlets carried the event
  */
@@ -45,6 +48,7 @@ export function breakingCandidates(ledger, cycle, articleOf) {
         title: meta.title || s.label || '',
         category: meta.category || s.category || 'news',
         body,
+        ...(meta.location ? { location: String(meta.location) } : {}),
         importance: s.importance || 0,
         eventCoverage: Number.parseInt(meta.eventCoverage, 10) || 0,
       })
@@ -69,7 +73,10 @@ export function breakingCandidates(ledger, cycle, articleOf) {
 // - its lead is the push's own, 80 characters, where the social pick's is 320.
 //
 // Both are kept as they were. What the push shows a reader comes out of this
-// one, so it is moved exactly.
+// one, so it was moved exactly, with one thing since put right: the dateline
+// comes off the lead by the article's `location` (`stripDateline`), where its
+// own pattern of letters, spaces and commas left `Port-au-Prince — `,
+// `St. Louis — ` and `São Paulo — ` on.
 
 /**
  * An article as the push reads it: every top-level `key: value` line of the
@@ -91,7 +98,7 @@ export function pushFields(md) {
   // First non-empty paragraph after frontmatter
   const body = md.slice(m[0].length).trim().split(/\n\n/)[0] || ''
   // Strip location prefix (e.g. 'Washington — ') and end at a clean sentence boundary
-  const raw = body.replace(/^[A-Za-z\s,]+\s—\s/, '')
+  const raw = stripDateline(body, fm.location)
   const cut = raw.slice(0, 80)
   const lastSpace = cut.lastIndexOf(' ')
   fm.lead = lastSpace > 30 ? cut.slice(0, lastSpace) : cut

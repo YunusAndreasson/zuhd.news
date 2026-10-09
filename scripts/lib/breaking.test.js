@@ -29,6 +29,12 @@ test('the cycle\'s new stories with a second source behind them, the most covere
   ], 'a tie keeps the ledger\'s order; no coverage figure, or one that is not a number, counts as none')
 })
 
+test('a candidate carries its article\'s location, when it has one, for its dateline to come off by', () => {
+  const placed = (/** @type {string} */ slug) => (slug === 'wide' ? { meta: { ...ARTICLES.wide.meta, location: 'Brasília' }, body: 'Brasília — One.' } : articleOf(slug))
+  const ledger = { stories: [story({ articles: ['wide', 'some'] })] }
+  assert.deepEqual(breakingCandidates(/** @type {any} */ (ledger), cycle, placed).map((c) => c.location), ['Brasília', undefined])
+})
+
 test('a story the ledger has seen before, or does not call breaking, is not a candidate', () => {
   const ledger = { stories: [story({ articles: ['wide'], coverageCount: 2 }), story({ articles: ['some'], arc: 'developing' })] }
   assert.deepEqual(breakingCandidates(/** @type {any} */ (ledger), cycle, articleOf), [])
@@ -75,7 +81,11 @@ test('the line reader at its edges', () => {
   assert.equal(pushFields(md('title: "He Said "No" Twice"')).title, 'He Said', 'a value stops at its first inner quote')
   assert.equal(pushFields(md("category: 'tech'")).category, "'tech'", 'single quotes are part of the value')
   assert.equal(pushFields(md('title: "T"', 'Lima, Peru — A magnitude 7.1 earthquake struck.')).lead, 'A magnitude 7.1 earthquake struck.')
-  assert.equal(pushFields(md('title: "T"', 'São Paulo — The dateline stays.')).lead, 'São Paulo — The dateline stays.', 'a city with an accent is not taken for a dateline')
+  // Where it was wrong: its own pattern took a dateline for letters, spaces and
+  // commas, and 69 of the 2,202 from 2026-09-01 to 10-09 stayed on the lead.
+  assert.equal(pushFields(md('title: "T"\nlocation: "São Paulo"', 'São Paulo — The court ruled.')).lead, 'The court ruled.', 'a dateline comes off by the location')
+  assert.equal(pushFields(md('title: "T"', 'Port-au-Prince — Gangs took the port.')).lead, 'Gangs took the port.', 'and with no location line, by its shape')
+  assert.equal(pushFields(md('location: "St. Louis"', 'St. Louis — The plant closed — for good.')).lead, 'The plant closed — for good.')
   assert.equal(pushFields(md('title: "T"', `Paris — ${'x'.repeat(120)}`)).lead, 'x'.repeat(80), 'with no space to cut at, it is cut at 80')
   assert.equal(pushFields(md('lead: "written by hand"')).lead.startsWith('The Federal Reserve'), true, 'a key named lead is overwritten')
 })

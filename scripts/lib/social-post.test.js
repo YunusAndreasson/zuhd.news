@@ -12,7 +12,7 @@ const dir = mkdtempSync(join(tmpdir(), 'social-post-'))
 
 const ARTICLE = `---
 title: "US Bars Microsoft From Green Card Scheme"
-socialTitle: "Microsoft shares fall 7.5% after US bars its green card sponsorships"
+socialTitle: "Microsoft's shares fall 7.5% after US bars its green card sponsorships"
 date: "2026-10-08T17:27:44Z"
 category: "tech"
 location: "Washington"
@@ -28,13 +28,15 @@ Washington — [Microsoft](company:MSFT)'s shares fell 7.5% after the order.
 Why it matters.
 `
 
+// The card is drawn from what the build drew the published one from: the
+// headline with its quotes curled, the dek without the dateline.
 test('a story is the article under the slug and the card drawn for it; no article, no story', () => {
   writeFileSync(join(dir, '2026-10-08-a.md'), ARTICLE)
   const story = loadStory('2026-10-08-a', { dir })
   assert.equal(story?.meta.title, 'US Bars Microsoft From Green Card Scheme')
   assert.equal(story?.body, "Washington — [Microsoft](company:MSFT)'s shares fell 7.5% after the order.\n\nWhy it matters.")
   assert.deepEqual(story?.card, {
-    headline: 'Microsoft shares fall 7.5% after US bars its green card sponsorships',
+    headline: 'Microsoft’s shares fall 7.5% after US bars its green card sponsorships',
     summary: "Microsoft's shares fell 7.5% after the order. Why it matters.",
     category: 'tech',
     date: '2026-10-08T17:27:44Z',

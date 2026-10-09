@@ -11,6 +11,14 @@ test('a lead is the first paragraph as a reader sees it, without the dateline', 
   assert.equal(leadOf(undefined), '')
 })
 
+// The pattern this used took a dateline for ASCII letters: 51 of the 2,202
+// from 2026-09-01 to 10-09 stayed on, Brasília twelve times.
+test('a dateline comes off by the article\'s location, whatever alphabet it is in', () => {
+  assert.equal(leadOf('Brasília — Brazil\'s final debate was cancelled.', 'Brasília'), 'Brazil\'s final debate was cancelled.')
+  assert.equal(leadOf('São Paulo — The court ruled.'), 'The court ruled.', 'and without one, by the shape of a dateline')
+  assert.equal(leadOf('Washington — The Fed — under pressure — held.', 'Washington'), 'The Fed — under pressure — held.', 'only the dateline, not the next dash')
+})
+
 test('a long lead ends at a sentence when one ends late enough, and at a word otherwise', () => {
   const sentence = 'The committee voted to extend the measure for another year. '
   const cut = leadOf(`Geneva — ${sentence.repeat(8)}`)
@@ -21,7 +29,7 @@ test('a long lead ends at a sentence when one ends late enough, and at a word ot
 
 const CANDS = [
   { slug: '2026-10-08-a', title: 'US Bars Microsoft Sponsorships', category: 'tech', body: 'Washington — Shares fell 7.5%.\n\nMore.', importance: 6, eventCoverage: 224 },
-  { slug: '2026-10-08-b', title: 'US Proposes Student Work Charge', category: 'politics', body: 'Washington — Universities would pay $100,000.', importance: 5, eventCoverage: 163 },
+  { slug: '2026-10-08-b', title: 'US Proposes Student Work Charge', category: 'politics', body: 'Bogotá — Universities would pay $100,000.', location: 'Bogotá', importance: 5, eventCoverage: 163 },
 ]
 
 test('the prompt is the instructions and then the candidates, numbered', () => {
