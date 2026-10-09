@@ -223,7 +223,7 @@ API_EXIT=$?
 if [ "$API_EXIT" -ne 0 ]; then
   echo "⚠ API fetch failed (exit $API_EXIT) — see log for error. RSS-only cycle." | tee -a "$LOG_FILE"
 fi
-API_STATS=$(node -e "try{const d=JSON.parse(require('fs').readFileSync('/tmp/zuhd-feed-api.json'));console.log(d.stories.length+' stories from '+d.events+' events')}catch{console.log('failed')}" 2>/dev/null)
+API_STATS=$(node scripts/cycle/tally.js feed-api 2>/dev/null)
 echo "API fetch: $API_STATS" | tee -a "$LOG_FILE"
 
 # Step 2: RSS niche sources (HN, 404 Media, Bellingcat, Mada Masr, etc.)
@@ -232,7 +232,7 @@ RSS_EXIT=$?
 if [ "$RSS_EXIT" -ne 0 ]; then
   echo "⚠ RSS fetch failed (exit $RSS_EXIT)" | tee -a "$LOG_FILE"
 fi
-RSS_STATS=$(node -e "try{const d=JSON.parse(require('fs').readFileSync('/tmp/zuhd-feed-rss.json'));console.log(d.stories?.length||d.freshItems||0)}catch{console.log('0')}" 2>/dev/null)
+RSS_STATS=$(node scripts/cycle/tally.js feed-rss 2>/dev/null)
 echo "RSS fetch: ${RSS_STATS} stories" | tee -a "$LOG_FILE"
 
 # Abort if both fetches failed — no feed = no cycle
@@ -244,7 +244,7 @@ fi
 # Step 3: Merge into unified feed
 node scripts/merge-feeds.js 2>>"$LOG_FILE"
 echo "Merge exit: $?" | tee -a "$LOG_FILE"
-FEED_STATS=$(node -e "try{const d=JSON.parse(require('fs').readFileSync('/tmp/zuhd-feed.json'));console.log((d.multiSourceStories?.length||0)+' multi + '+(d.nicheStories?.length||0)+' niche')}catch{console.log('failed')}" 2>/dev/null)
+FEED_STATS=$(node scripts/cycle/tally.js feed 2>/dev/null)
 FUNNEL_FEED="$FEED_STATS"
 echo "Merged feed: $FEED_STATS — $((SECONDS - T0))s" | tee -a "$LOG_FILE"
 
@@ -347,7 +347,7 @@ if [ ! -s /tmp/zuhd-selection.json ]; then
   exit 0
 fi
 # Guard against empty JSON array (selector wrote [] with 0 stories)
-SELECTION_COUNT=$(node -e "const s=JSON.parse(require('fs').readFileSync('/tmp/zuhd-selection.json','utf8'));console.log(Array.isArray(s)?s.length:0)" 2>/dev/null || echo 0)
+SELECTION_COUNT=$(node scripts/cycle/tally.js selection 2>/dev/null || echo 0)
 if [ "$SELECTION_COUNT" -eq 0 ]; then
   echo "Selection is empty (0 stories) — skipping writer and editor" | tee -a "$LOG_FILE"
   exit 0
@@ -363,7 +363,7 @@ echo "Enrich exit: $?" | tee -a "$LOG_FILE"
 keep_selection 2-enriched
 # Recount: enrich drops entries it could not match to source text, so without
 # this the drops are charged to dedup and reported as "already published".
-SELECTION_COUNT=$(node -e "const s=JSON.parse(require('fs').readFileSync('/tmp/zuhd-selection.json','utf8'));console.log(Array.isArray(s)?s.length:0)" 2>/dev/null || echo 0)
+SELECTION_COUNT=$(node scripts/cycle/tally.js selection 2>/dev/null || echo 0)
 if [ "$SELECTION_COUNT" -eq 0 ]; then
   echo "No selection entry could be matched to source text — skipping writer and editor" | tee -a "$LOG_FILE"
   exit 0
@@ -375,7 +375,7 @@ FUNNEL_SELECTED=$SELECTION_COUNT
 node scripts/dedup-selection.js 2>&1 | tee -a "$LOG_FILE"
 echo "Dedup exit: $?" | tee -a "$LOG_FILE"
 keep_selection 3-deduped
-SELECTION_COUNT=$(node -e "const s=JSON.parse(require('fs').readFileSync('/tmp/zuhd-selection.json','utf8'));console.log(Array.isArray(s)?s.length:0)" 2>/dev/null || echo 0)
+SELECTION_COUNT=$(node scripts/cycle/tally.js selection 2>/dev/null || echo 0)
 FUNNEL_DEDUPED=$SELECTION_COUNT
 DEDUP_DROPPED=$((FUNNEL_SELECTED - FUNNEL_DEDUPED))
 [ "$DEDUP_DROPPED" -gt 0 ] && FUNNEL_DEDUP_NOTE="${DEDUP_DROPPED} already published"

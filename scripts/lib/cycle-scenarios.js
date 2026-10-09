@@ -40,12 +40,13 @@ const says = (out, rest = {}) => ({ out, ...rest })
  * @returns {Rule[]}
  */
 const healthy = () => [
-  // The fourteen programs the script carries inline, each told apart by a
+  // The counts the script takes between stages (`scripts/cycle/tally.js`).
+  rule('api-stats', 'node', '^scripts/cycle/tally\\.js feed-api$', says('80 stories from 50 events\n')),
+  rule('rss-stats', 'node', '^scripts/cycle/tally\\.js feed-rss$', says('77\n')),
+  rule('feed-stats', 'node', '^scripts/cycle/tally\\.js feed$', says('13 multi + 47 niche\n')),
+  rule('selection-count', 'node', '^scripts/cycle/tally\\.js selection$', says('2\n')),
+  // The programs the script still carries inline, each told apart by a
   // phrase only it contains.
-  rule('api-stats', 'node', '^-e .*zuhd-feed-api\\.json', says('80 stories from 50 events\n')),
-  rule('rss-stats', 'node', '^-e .*zuhd-feed-rss\\.json', says('77\n')),
-  rule('feed-stats', 'node', '^-e .*multiSourceStories', says('13 multi + 47 niche\n')),
-  rule('selection-count', 'node', '^-e .*Array\\.isArray\\(s\\)\\?s\\.length', says('2\n')),
   rule('body-lengths', 'node', '^-e .*const CEILING', says(`ok 452 chars  4 blocks  ${A}\nOVER 571 chars  5 blocks  ${B}\n`)),
   rule('breaking-pick', 'node', '^-e .*MIN_PUSH_COVERAGE', says(`${PUSH}\n`)),
   rule('push-slug', 'node', '^-e .*d\\.articles\\[0\\]\\?\\.slug', says('2026-10-08-fed-raises-rates\n')),

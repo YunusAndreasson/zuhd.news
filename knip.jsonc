@@ -37,6 +37,7 @@
     // Run by hand, to show a converted stage does what it did; and the clock
     // it starts each stage under, loaded by path.
     "scripts/cycle/replay-stage.js",
+    "scripts/cycle/tally.js",
     "scripts/lib/frozen-clock.js",
     "scripts/dedup-selection.js",
     "scripts/enrich-selection.js",

@@ -48,6 +48,7 @@ function filesUnder(dir) {
  * @property {Record<string, string>} [env]
  * @property {string} [bin] a directory of commands to put ahead of the real ones: a `claude` that answers from a file, where the real one would need the network
  * @property {string} [logs] a directory to stand in for the tree's `logs/`, for a stage that reads the cycle logs
+ * @property {string} [stdin] what the stage is given on its standard input; nothing by default
  */
 
 /**
@@ -56,7 +57,7 @@ function filesUnder(dir) {
  *   `written` is every file the stage created or changed, by the path it used
  *   (`/tmp/…` or `content/…`), with its content; null for one it removed
  */
-export async function replayStage({ script, now, args = [], tree = ROOT, tmp = {}, content = {}, env = {}, bin, logs }) {
+export async function replayStage({ script, now, args = [], tree = ROOT, tmp = {}, content = {}, env = {}, bin, logs, stdin }) {
   const base = join(ROOT, '.cache', 'stage-replay')
   mkdirSync(base, { recursive: true })
   const box = mkdtempSync(join(base, 'run-'))
@@ -100,8 +101,11 @@ export async function replayStage({ script, now, args = [], tree = ROOT, tmp = {
       ...prepare,
       `touch '${marker}'`,
       `cd '${tree}'`,
-      `exec '${process.execPath}' --import '${CLOCK}' '${script}' "$@"`,
+      // From a file, not a pipe of node's making: that is a socket, which a
+      // program that opens /dev/stdin by name cannot open.
+      `exec '${process.execPath}' --import '${CLOCK}' '${script}' "$@"${stdin === undefined ? '' : ` < '${join(box, 'stdin')}'`}`,
     ]
+    if (stdin !== undefined) writeFileSync(join(box, 'stdin'), stdin)
 
     const preparedTmp = new Map(filesUnder(boxTmp).map((f) => [f, readFileSync(join(boxTmp, f), 'utf-8')]))
     const res = await new Promise((resolve, reject) => {
