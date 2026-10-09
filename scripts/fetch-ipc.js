@@ -43,7 +43,7 @@
 
 import { existsSync } from 'node:fs'
 import { representativePoint } from './lib/geo-point.js'
-import { runWithConcurrency } from './lib/concurrency.js'
+import { runSettled } from './lib/concurrency.js'
 import { pathOf } from './lib/datasets.js'
 import {
   AGE_LIMIT_MONTHS,
@@ -215,32 +215,28 @@ async function produce() {
   const { geoArea, geoCentroid } = geoModule
   const point = (f) => representativePoint(f, geoCentroid, geoArea)
 
+  // One country's geometry failing must not cost the layer: the rest of the
+  // world is still a correct, if smaller, map. Counted, not swallowed. The join
+  // is inside the worker with the fetch: a file can parse and still not be a
+  // collection, and that is this country's failure too.
+  const { values, errors, failed: countriesFailed } = await runSettled(wanted, FETCH_CONCURRENCY, async ({ url, areas: rowsFor }) =>
+    joinCountry(rowsFor, await getText(url), point),
+  )
+  const firstFailed = errors.findIndex((err) => err !== undefined)
+  const firstError = firstFailed < 0 ? null : `${wanted[firstFailed].iso3}: ${/** @type {Error} */ (errors[firstFailed]).message}`
+
   const areas = []
   const countries = []
-  let countriesFailed = 0
-  let firstError = null
-
-  await runWithConcurrency(wanted, FETCH_CONCURRENCY, async ({ iso3, url, areas: rowsFor }) => {
-    let joined
-    let tally
-    try {
-      // The join is inside the `try` with the fetch: a file can parse and still
-      // not be a collection, and that is this country's failure too.
-      ;({ joined, tally } = joinCountry(rowsFor, await getText(url), point))
-    } catch (err) {
-      // One country's geometry failing must not cost the layer: the rest of the
-      // world is still a correct, if smaller, map. Counted, not swallowed.
-      countriesFailed++
-      if (!firstError) firstError = `${iso3}: ${err.message}`
-      return
-    }
-    skipped.unjoined += tally.unjoined
-    skipped.noGeometry += tally.noGeometry
-    skipped.noPhase += tally.noPhase
-    for (const area of joined) areas.push(area)
+  wanted.forEach(({ iso3, areas: rowsFor }, i) => {
+    const country = values[i]
+    if (!country) return
+    skipped.unjoined += country.tally.unjoined
+    skipped.noGeometry += country.tally.noGeometry
+    skipped.noPhase += country.tally.noPhase
+    for (const area of country.joined) areas.push(area)
     countries.push({
       iso3,
-      areas: joined.length,
+      areas: country.joined.length,
       published: rowsFor.length,
       vintage: rowsFor[0]?.analysisLabel ?? null,
     })

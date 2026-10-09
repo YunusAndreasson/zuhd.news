@@ -41,7 +41,7 @@
 import { existsSync, readFileSync } from 'node:fs'
 import { join } from 'node:path'
 import { parseFrontmatter } from './lib/frontmatter.js'
-import { runWithConcurrency } from './lib/concurrency.js'
+import { runSettled } from './lib/concurrency.js'
 import { pathOf } from './lib/datasets.js'
 import {
   aoiCells,
@@ -159,22 +159,16 @@ async function produce() {
     return parseFirmsCsv(text)
   }
 
-  const rows = []
-  let cellsFailed = 0
-  let firstError = null
+  const { values, failed: cellsFailed, firstError } = await runSettled(cells, CELL_CONCURRENCY, fetchCell)
 
-  await runWithConcurrency(cells, CELL_CONCURRENCY, async (cell) => {
-    try {
-      // One at a time. Spread into `push`, a cell's rows are arguments, and past
-      // a hundred thousand or so of those is a RangeError, which the `catch`
-      // below would file as a failed cell: the busiest one on the map, in the
-      // season it is busiest. A whole cycle has reached 157,000 rows.
-      for (const row of await fetchCell(cell)) rows.push(row)
-    } catch (err) {
-      cellsFailed++
-      if (!firstError) firstError = err.message
-    }
-  })
+  // In the cells' order, so the clustering below starts from the same rows in
+  // the same order whichever cell answered first. And one row at a time:
+  // spread into `push`, a cell's rows are arguments, and past a hundred
+  // thousand or so of those is a RangeError. A whole cycle has reached 157,000.
+  const rows = []
+  for (const cellRows of values) {
+    for (const row of cellRows ?? []) rows.push(row)
+  }
 
   if (cellsFailed === cells.length) throw new Degrade(`every cell failed (${firstError})`)
   if (cellsFailed > 0) {

@@ -12,13 +12,12 @@
 // skips the API mirror when the file is absent, and mobile renders an empty
 // alert list when /api/gdacs.json 404s — same fail-soft path as chokepoints.
 
-import { runWithConcurrency } from './lib/concurrency.js'
+import { runSettled } from './lib/concurrency.js'
 import { pathOf } from './lib/datasets.js'
 import {
   GDACS_GEOJSON_URL,
   carryNarratives,
   collectionToAlerts,
-  detailKey,
   detailsInAlertOrder,
   emptyListReport,
   fetchGdacsDetail,
@@ -93,27 +92,17 @@ async function produce() {
   // surface their relevant scale through severityText already; the detail
   // endpoint has no equivalent population block for them.
   const detailCandidates = alerts.filter((a) => a.eventtype === 'EQ' || a.eventtype === 'TC')
-  const fetched = new Map()
-  let failed = 0
-
-  await runWithConcurrency(detailCandidates, DETAIL_CONCURRENCY, async (alert) => {
-    try {
-      const detail = await fetchGdacsDetail(alert)
-      fetched.set(detailKey(alert), detail)
-    } catch {
-      // Per-event failure is non-fatal — sheet just renders without the
-      // population line, same as if mobile had failed the lazy fetch before.
-      failed++
-    }
-  })
+  // Per-event failure is non-fatal — sheet just renders without the
+  // population line, same as if mobile had failed the lazy fetch before.
+  const { values, failed } = await runSettled(detailCandidates, DETAIL_CONCURRENCY, (alert) => fetchGdacsDetail(alert))
   // Filed in the alerts' order, not the order the answers came back in.
-  const details = detailsInAlertOrder(detailCandidates, fetched)
+  const details = detailsInAlertOrder(detailCandidates, values)
 
   // The narrator runs four stages on and may not finish; what it has already
   // written goes back on now, so the file is never published bare.
   const narrated = carryNarratives(alerts, readJson(pathOf('gdacsNarrations'), {}))
 
-  summary = { details: fetched.size, asked: detailCandidates.length, failed, narrated }
+  summary = { details: detailCandidates.length - failed, asked: detailCandidates.length, failed, narrated }
 
   return { generated: new Date().toISOString(), alerts, details }
 }

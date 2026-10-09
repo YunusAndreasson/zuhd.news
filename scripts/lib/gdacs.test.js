@@ -295,20 +295,19 @@ test("the desk's narratives go back on the alerts they were written for", () => 
   assert.equal(carryNarratives(collectionToAlerts(collection, FIXTURE_NOW), null), 0)
 })
 
-test("the details are filed in the alerts' order, whatever order they arrived in", () => {
+test("the details are filed under each alert's key, in the alerts' order", () => {
   // Six are fetched at a time and a cyclone takes three requests to an
   // earthquake's one, so the answers never come back in the list's order. The
   // object's keys did, and the file is published under a stamp that holds only
-  // while its bytes do.
+  // while its bytes do. The pool now hands each detail back at its alert's
+  // position; this is what turns those positions into the published keys.
   const alerts = [
     { eventtype: 'EQ', eventid: '1570274' },
     { eventtype: 'TC', eventid: '1001335' },
     { eventtype: 'EQ', eventid: '1570261' },
     { eventtype: 'EQ', eventid: '1570260' },
   ]
-  const fetched = new Map()
-  for (const alert of [alerts[2], alerts[0], alerts[1]]) fetched.set(detailKey(alert), { for: alert.eventid })
-  const details = detailsInAlertOrder(alerts, fetched)
-  assert.deepEqual(Object.keys(details), ['EQ:1570274', 'TC:1001335', 'EQ:1570261'], 'and one that failed has no entry')
-  assert.equal(JSON.stringify(details), JSON.stringify(detailsInAlertOrder(alerts, new Map([...fetched].reverse()))))
+  const details = detailsInAlertOrder(alerts, [{ for: 'a' }, { for: 'b' }, undefined, { for: 'd' }])
+  assert.deepEqual(Object.keys(details), ['EQ:1570274', 'TC:1001335', 'EQ:1570260'], 'and one that failed has no entry')
+  assert.deepEqual(details[detailKey(alerts[3])], { for: 'd' })
 })

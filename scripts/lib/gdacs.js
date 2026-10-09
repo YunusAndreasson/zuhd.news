@@ -306,30 +306,29 @@ export function carryNarratives(alerts, narrations) {
 export const detailKey = (alert) => `${alert.eventtype}:${alert.eventid}`
 
 /**
- * The snapshot's `details`: one entry for each alert that has one, in the
- * alerts' own order.
+ * The snapshot's `details`: one entry for each alert whose detail arrived, in
+ * the alerts' own order.
  *
- * The details are fetched six at a time and filed as each answer lands, so the
- * object's keys came out in the order the network answered: on 2026-10-09 the
- * list began `EQ:1570274, TC:1001335, TC:1001334` and the keys
- * `EQ:1570261, EQ:1570260, EQ:1570274`, with not one of 23 in its place. The
- * build publishes this file under a stamp that holds only while the bytes do
- * (`stable-stamp.js`), and an order that follows the network is bytes that
- * move when nothing in the world has.
+ * The details are fetched six at a time, and they used to be filed as each
+ * answer landed, so the object's keys came out in the order the network
+ * answered: on 2026-10-09 the list began `EQ:1570274, TC:1001335, TC:1001334`
+ * and the keys `EQ:1570261, EQ:1570260, EQ:1570274`, with not one of 23 in its
+ * place. The build publishes this file under a stamp that holds only while the
+ * bytes do (`stable-stamp.js`), and an order that follows the network is bytes
+ * that move when nothing in the world has.
  *
  * @template D
  * @param {{ eventtype: string, eventid: string }[]} alerts
- * @param {Map<string, D>} fetched by `detailKey`, in whatever order they arrived
+ * @param {(D | undefined)[]} fetched each alert's detail by position (`runSettled`), `undefined` where its fetch failed
  * @returns {Record<string, D>}
  */
 export function detailsInAlertOrder(alerts, fetched) {
   /** @type {Record<string, D>} */
   const details = {}
-  for (const alert of alerts) {
-    const key = detailKey(alert)
-    const detail = fetched.get(key)
-    if (detail !== undefined) details[key] = detail
-  }
+  alerts.forEach((alert, i) => {
+    const detail = fetched[i]
+    if (detail !== undefined) details[detailKey(alert)] = detail
+  })
   return details
 }
 
