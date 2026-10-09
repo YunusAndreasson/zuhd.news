@@ -14,9 +14,15 @@
 
 import { escHtml } from './html.js'
 
-/** `2026-07-26T05:00:00Z` → `26 July 2026`. */
+/**
+ * `2026-07-26T05:00:00Z` → `26 July 2026`: the UTC day, wherever the site is
+ * built. Without `timeZone` the day is the building machine's own. The box
+ * runs in UTC and printed the right one; `npm run publish` from a laptop two
+ * hours east prints the 27th on a story dated 23:30 on the 26th, and on its
+ * correction. The seven formatters in `lib/trends-sources/` already say UTC.
+ */
 export const formatDate = (dateStr) =>
-  new Date(dateStr).toLocaleDateString('en-GB', { day: 'numeric', month: 'long', year: 'numeric' })
+  new Date(dateStr).toLocaleDateString('en-GB', { day: 'numeric', month: 'long', year: 'numeric', timeZone: 'UTC' })
 
 // --- Corrections -----------------------------------------------------------
 
