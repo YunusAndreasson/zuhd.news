@@ -128,18 +128,18 @@ const WHITELIST = new Set(['US', 'UK', 'EU', 'UN', 'WHO', 'NATO', 'ISIS', 'IDF',
  * the frontmatter, trimmed, dateline and link markup included), the
  * frontmatter `location`, and the sources' names.
  *
- * The RVS scorer (`autoresearch/score.js`) carried a copy of six of these,
- * regex for regex. For its writing cluster: brevity is `!overCeiling` and
- * `wordInRange`, voice is `passiveHook`, `hedge`, `pressEra` and `titleEcho`;
- * for its sourcing cluster, `multiSource`.
+ * The RVS scorer needs six of them and held its own copies, regex for regex.
+ * For its writing cluster, brevity is `!overCeiling` and `wordInRange`, and
+ * voice is `passiveHook`, `hedge`, `pressEra` and `titleEcho`; for its
+ * sourcing cluster, `multiSource`.
  *
  * `wordBandMax` is the one threshold a caller sets. The word count is the
  * body's as written, so it includes the dateline and its dash, and the budget
- * in write-prompt.md is for the prose. The weekly series has always counted
- * to 75 and stays there; the scorer has counted to 78 since 2026-09-20, for
- * "the 1-3 word dateline this count includes", and calls with
- * `{ wordBandMax: 78 }`. On the 403 articles filed from 2026-10-02 to 10-09,
- * 54% fall in 52-75 and another 15% in 76-78.
+ * in write-prompt.md is for the prose. The weekly series counts to 75 and
+ * stays there. The scorer's copy counted to 78, for "the 1-3 word dateline
+ * this count includes", and a scorer that keeps that passes
+ * `{ wordBandMax: 78 }`. The difference is not small: of the 403 articles
+ * filed from 2026-10-02 to 10-09, 54% fall in 52-75 and another 15% in 76-78.
  *
  * @param {{ title: string, body: string, location?: string, sourceNames: string[] }} a
  * @param {{ wordBandMax?: number }} [opts]

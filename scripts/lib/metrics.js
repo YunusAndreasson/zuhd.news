@@ -5,8 +5,9 @@
 // the logs at its top level and printed. As functions of what was read, each
 // figure can be tested for what it says of a given day.
 //
-// The figures are moved as they stood. Their output is one of the tuner's
-// inputs.
+// The figures were moved as they stood, and their output is one of the tuner's
+// inputs. Three have been corrected since, each where it is computed and with
+// what it read before: freshness, the cycle averages, and the duplicate count.
 
 import { datelineOf } from './article.js'
 import { parseCycleLog } from './cycle-log.js'

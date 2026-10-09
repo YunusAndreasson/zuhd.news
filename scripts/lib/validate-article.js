@@ -193,8 +193,10 @@ export function createValidator({ published, offeredBySlug, knownIds }) {
       return verdict(`location "${location}" is not the dateline city "${dateline}"`)
     }
 
-    // Same primary source URL, or the same title, as an article published in the
-    // last 72 hours — or as an earlier file in this batch.
+    // Same primary source URL, or the same title, as a published article dated
+    // within 72 hours of this one — or as an earlier file in this batch. Dated,
+    // not published: a link written up a second time carries the first time's
+    // `date`, however long ago that was (`publishedKeys` is what is compared with).
     //
     // No duplicate check ran after the writer. On 2026-09-07 the editor spotted a
     // same-URL double publish and had no way to stop it, and in the fortnight to
