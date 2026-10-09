@@ -10,6 +10,7 @@ import { join } from 'node:path'
 import { test } from 'node:test'
 import { STAGES } from '../cycle/stages.js'
 import { captured, kindOf, lineCount, pathspec, plan, runStage, when } from './cycle-run.js'
+import { ISOLATION_FLAGS, claudeArgs } from './claude-envelope.js'
 import { lineArgv, sessionArgv } from './cycle-steps.js'
 import { DATASETS } from './datasets.js'
 import { ROOT } from './paths.js'
@@ -186,6 +187,23 @@ test('a session is started with the flags the script gave it, in its order', () 
 })
 
 // ── The entry script ─────────────────────────────────────────────────
+
+// The flags that keep a headless call from loading the account's settings,
+// skills and MCP servers are spelled twice: here in the steps, for the four
+// sessions and the two one-line calls, and in `lib/claude-envelope.js` for
+// every micro-task. The steps cannot import the other spelling without a
+// recording being made again, and the micro-tasks went without theirs from the
+// day they were written to 2026-10-09 (105 MCP tools and 135,093 input tokens a
+// call against none and 12,269). This holds the two together.
+test('a session, a one-line call and a micro-task carry the same isolation flags, in one order', () => {
+  /** @param {string[]} argv */
+  const isolation = (argv) => argv.slice(argv.indexOf('--setting-sources'), argv.indexOf('--setting-sources') + ISOLATION_FLAGS.length)
+  const session = sessionArgv({ timeout: 1800, effort: 'medium', model: 'sonnet', tools: 'Read,Write,Edit', tmp: true, turns: 60, prompt: 'P' })
+  for (const argv of [session, lineArgv('sonnet', 'P'), claudeArgs('P', { model: 'sonnet' })]) {
+    assert.deepEqual(isolation(argv), [...ISOLATION_FLAGS])
+    assert.ok(argv.includes('--no-session-persistence'))
+  }
+})
 
 test('run.js prints a plan and runs nothing', () => {
   const res = spawnSync(process.execPath, [join(ROOT, 'scripts/cycle/run.js'), '--plan', '--at', '5', '--dow', '1'], { encoding: 'utf8' })
