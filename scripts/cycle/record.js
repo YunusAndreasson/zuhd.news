@@ -17,7 +17,7 @@ import { execFileSync } from 'node:child_process'
 import { appendFileSync, existsSync, mkdirSync, readFileSync, readdirSync, renameSync, statSync, writeFileSync } from 'node:fs'
 import { join } from 'node:path'
 import { hasFlag } from '../lib/argv.js'
-import { cycleIdOf, parseCycleLog, runRecord } from '../lib/cycle-log.js'
+import { cycleIdOf, parseCycleLog, runRecord, slugOf } from '../lib/cycle-log.js'
 import { pathOf } from '../lib/datasets.js'
 import { writeJson } from '../lib/json-file.js'
 import { ROOT } from '../lib/paths.js'
@@ -55,10 +55,7 @@ function scriptsDirty() {
 function writtenSince(startedAt) {
   try {
     if (!startedAt || statSync(NEW_ARTICLES).mtimeMs < Date.parse(startedAt)) return []
-    return readFileSync(NEW_ARTICLES, 'utf-8')
-      .split('\n')
-      .filter(Boolean)
-      .map((f) => f.replace(/^.*\//, '').replace(/\.md$/, ''))
+    return readFileSync(NEW_ARTICLES, 'utf-8').split('\n').filter(Boolean).map(slugOf)
   } catch {
     return []
   }

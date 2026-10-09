@@ -11,6 +11,7 @@
 // only from its own block. The log also carries four model transcripts, and a
 // model is free to write "Published: 12" in the middle of one.
 
+import { TUNING_HOUR } from './cycle-run.js'
 import { RUN_RECORD_SCHEMA } from './schema.js'
 
 /**
@@ -305,7 +306,7 @@ export function isoFromDateOutput(text) {
  *
  * @param {string} file
  */
-const slugOf = (file) => String(file).replace(/^.*\//, '').replace(/\.md$/, '')
+export const slugOf = (file) => String(file).replace(/^.*\//, '').replace(/\.md$/, '')
 
 /**
  * Which scheduled jobs the cycle carried. The trap's own hours when it passed
@@ -320,7 +321,7 @@ const slugOf = (file) => String(file).replace(/^.*\//, '').replace(/\.md$/, '')
  */
 function jobsOf(headers, known, startedAt) {
   if (known.startHour && known.dailyHour) {
-    const tuning = known.startHour === '22'
+    const tuning = known.startHour === TUNING_HOUR
     const sunday = startedAt ? new Date(startedAt).getUTCDay() === 0 : false
     return { daily: known.startHour === known.dailyHour, tuning, weekly: tuning && sunday }
   }

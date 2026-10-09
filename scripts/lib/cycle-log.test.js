@@ -6,7 +6,8 @@
 // something a careless pattern would take for a marker.
 import assert from 'node:assert/strict'
 import { test } from 'node:test'
-import { cycleIdOf, isoFromDateOutput, parseCycleLog, runRecord } from './cycle-log.js'
+import { cycleIdOf, cycleLogName, isoFromDateOutput, parseCycleLog, runRecord, slugOf } from './cycle-log.js'
+import { DAILY_HOUR, TUNING_HOUR, kindOf } from './cycle-run.js'
 
 const HEAD = [
   '=== zuhd.news editorial cycle ===',
@@ -192,6 +193,27 @@ test('the trap\'s own hours name the jobs, reached or not', () => {
   assert.deepEqual(at('22', '2026-10-08T22:03:05Z'), { daily: false, tuning: true, weekly: false }, 'a Thursday')
   assert.deepEqual(at('22', '2026-10-11T22:03:05Z'), { daily: false, tuning: true, weekly: true }, 'a Sunday')
   assert.deepEqual(at('07', '2026-10-08T07:40:00Z'), { daily: false, tuning: false, weekly: false }, 'a catch-up run off the schedule')
+})
+
+// The daily hour reaches the record from the runner; the tuning hour was a
+// '22' of the reader's own beside the runner's `TUNING_HOUR`.
+test('the record names the jobs the runner ran at that hour, whatever the hours are', () => {
+  const log = parseCycleLog([...HEAD, 'Selector exit: 1 — 4s', 'Selector failed (exit 1) — aborting cycle'].join('\n'))
+  // 2026-10-08 is a Thursday, 2026-10-11 a Sunday: weekday 4 and 7 as the runner counts them.
+  for (const [day, weekday] of [['2026-10-08', '4'], ['2026-10-11', '7']]) {
+    for (const hour of [DAILY_HOUR, TUNING_HOUR, '14']) {
+      const { daily, tuning, weekly } = kindOf(hour, weekday)
+      const jobs = runRecord(log, { id: 'x', startHour: hour, dailyHour: DAILY_HOUR, startedAt: `${day}T${hour}:03:05Z` }).jobs
+      assert.deepEqual(jobs, { daily, tuning, weekly }, `${day} ${hour}:00`)
+    }
+  }
+})
+
+test('a log has the name of its id, and an article file the slug of its name', () => {
+  assert.equal(cycleLogName('2026-10-08_1804'), 'cycle-2026-10-08_1804.log')
+  assert.equal(cycleIdOf(cycleLogName('2026-10-08_1804')), '2026-10-08_1804')
+  assert.equal(slugOf('content/articles/2026-10-08-x.md'), '2026-10-08-x')
+  assert.equal(slugOf('2026-10-08-x.md'), '2026-10-08-x')
 })
 
 test('a killed cycle has no funnel and no finish, and is still a record', () => {
