@@ -6,8 +6,11 @@
 // niche outlets reword headlines and slug truncation drops endings.
 import { test } from 'node:test'
 import { strict as assert } from 'node:assert'
-import { readFileSync } from 'node:fs'
+import { mkdirSync, mkdtempSync, readFileSync, rmSync, writeFileSync } from 'node:fs'
+import { tmpdir } from 'node:os'
+import { join } from 'node:path'
 import {
+  loadRecentArticles,
   normalizeUrl,
   titleWords,
   buildTitleSets,
@@ -190,6 +193,30 @@ test('coveredLabels keeps the window and drops a story with no label', () => {
     ['sharing-ai-progress-in-mathematics', 'trump-bars-microsoft-from-us-green-card-scheme'],
   )
   assert.deepEqual(coveredLabels([{ id: 'x', firstSeen: '2026-10-08T00:00:00Z', articles: ['a'] }, { id: 'y', label: 'Y', firstSeen: '2026-10-08T00:00:00Z' }], new Set(['a']), 0), [])
+})
+
+// --- the corpus the layers match against, changed 2026-10-09 ----------------
+test('a corpus that cannot be read is an error, not an empty one', (t) => {
+  // It returned [], and with nothing published to match against the prefilter
+  // called every story new.
+  t.mock.method(console, 'error', () => {})
+  assert.throws(() => loadRecentArticles(48 * 3600 * 1000, join(tmpdir(), 'no-articles-directory-here')), /ENOENT/)
+})
+
+test('one article that cannot be read is left out, and the rest still match', (t) => {
+  const said = t.mock.method(console, 'error', () => {})
+  const dir = mkdtempSync(join(tmpdir(), 'dedup-corpus-'))
+  try {
+    const today = new Date().toISOString()
+    writeFileSync(join(dir, `${today.slice(0, 10)}-kramatorsk-bus-attack.md`), `---\ntitle: "Kramatorsk Bus Attack"\ndate: "${today}"\nsources:\n  - name: "Example"\n    url: "https://example.org/kramatorsk/"\n---\n\nBody.\n`)
+    mkdirSync(join(dir, `${today.slice(0, 10)}-a-directory-not-an-article.md`))
+    const articles = loadRecentArticles(48 * 3600 * 1000, dir)
+    assert.deepEqual(articles.map((a) => [a.slug, a.title, a.urls]), [[`${today.slice(0, 10)}-kramatorsk-bus-attack`, 'Kramatorsk Bus Attack', ['example.org/kramatorsk']]])
+    assert.equal(said.mock.callCount(), 1)
+    assert.match(said.mock.calls[0].arguments[0], /a-directory-not-an-article\.md cannot be read/)
+  } finally {
+    rmSync(dir, { recursive: true, force: true })
+  }
 })
 
 test('NICHE_SOURCES list is non-empty and matches RSS source names', () => {

@@ -7,7 +7,7 @@ import { existsSync, readFileSync } from 'node:fs'
 import { pathOf } from './lib/datasets.js'
 import { THIN_BODY, loadDedupContext } from './lib/dedup.js'
 import { writeJson } from './lib/json-file.js'
-import { prefilterFeed } from './lib/prefilter.js'
+import { prefilterFeed, reasonCounts } from './lib/prefilter.js'
 import { runStage } from './lib/stage.js'
 
 export function main() {
@@ -32,13 +32,11 @@ export function main() {
     writeJson(SLIM, slim)
   }
 
-  // Keys must mirror every `reason` wouldDedup can return, or the tally silently
-  // becomes NaN and the summary undercounts — `url` was added 2026-08-30.
-  const counts = { exact: 0, url: 0, eventUri: 0, fuzzy: 0, recap: 0 }
-  for (const r of removed) counts[r.reason]++
+  const counts = reasonCounts(removed)
   if (removed.length > 0) {
-    // Rendered from the tally itself, so a new reason can never be filtered but
-    // left out of the breakdown — which is how `url` would have gone unreported.
+    // Rendered from the tally itself, and the tally counts a reason it was not
+    // told of (`reasonCounts`): a layer added to `wouldDedup` is in the
+    // breakdown without this file being edited.
     const breakdown = Object.entries(counts).filter(([, v]) => v > 0).map(([k, v]) => `${k}: ${v}`).join(', ')
     console.log(`Pre-filtered: removed ${removed.length} stories (${breakdown})`)
   } else {

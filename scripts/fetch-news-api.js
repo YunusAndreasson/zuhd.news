@@ -575,7 +575,17 @@ async function main() {
   const TOP_EVENTS_TO_FETCH = 8
   const PER_EVENT_CONCURRENCY = 4
   const MAX_EVENTS_SCANNED = 24
-  const dedupCtx = loadDedupContext(7 * 24 * 3600 * 1000)
+  // What is already covered decides which panels are worth a token, and only
+  // that. If it cannot be read (`loadRecentArticles` now throws where it gave
+  // an empty list) no event is skipped as covered, the same eight calls at
+  // most are made, and the feed is not lost over an enrichment's bookkeeping.
+  /** @type {Parameters<typeof eventCoveredRecently>[1]} */
+  let dedupCtx = { ledgerEventUris: new Map(), recentSlugs: [] }
+  try {
+    dedupCtx = loadDedupContext(7 * 24 * 3600 * 1000)
+  } catch (e) {
+    console.error(`⚠ per-event fetch: what is already covered could not be read (${e.message}), so no event is skipped as covered`)
+  }
   let perEventFetched = 0
   let perEventCalls = 0
   const perEventLog = []

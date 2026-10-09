@@ -103,25 +103,46 @@ const TRACKING_PARAMS = new Set([
   'at_campaign', 'smid', 'partner', '__twitter_impression', 'guccounter',
 ])
 
-/** Load slug+title+date+source URLs for articles published within `cutoffMs` (default 48h). */
-export function loadRecentArticles(cutoffMs = 48 * 3600 * 1000) {
+/**
+ * Load slug+title+date+source URLs for articles published within `cutoffMs` (default 48h).
+ *
+ * A directory that cannot be read throws. It used to give an empty list, and
+ * with no recent articles every layer but the first has nothing to match
+ * against: the prefilter printed "all feed stories are new" and each duplicate
+ * went through to the selector. That is how the layers behaved whenever a
+ * stage was started outside the repository root, until the path came from the
+ * catalog, and nothing said so. One article that cannot be read is said and
+ * left out; the rest still count.
+ *
+ * @param {number} [cutoffMs]
+ * @param {string} [dir]
+ */
+export function loadRecentArticles(cutoffMs = 48 * 3600 * 1000, dir = ARTICLES_DIR) {
   const cutoff = Date.now() - cutoffMs
+  let files
   try {
-    return articleFilesSince(ARTICLES_DIR, cutoff)
-      .map(f => {
-        try {
-          const content = readFileSync(join(ARTICLES_DIR, f), 'utf-8')
-          const { meta } = parseFrontmatter(content)
-          const date = meta.date ? new Date(meta.date).getTime() : 0
-          if (date < cutoff) return null
-          const urls = (Array.isArray(meta.sources) ? meta.sources : [])
-            .map(s => normalizeUrl(s?.url))
-            .filter(Boolean)
-          return { slug: f.replace('.md', ''), title: meta.title || '', date, urls }
-        } catch { return null }
-      })
-      .filter(Boolean)
-  } catch { return [] }
+    files = articleFilesSince(dir, cutoff)
+  } catch (err) {
+    console.error(`dedup: ${dir} cannot be read (${err.message}), so nothing published can be matched`)
+    throw err
+  }
+  return files
+    .map(f => {
+      try {
+        const content = readFileSync(join(dir, f), 'utf-8')
+        const { meta } = parseFrontmatter(content)
+        const date = meta.date ? new Date(meta.date).getTime() : 0
+        if (date < cutoff) return null
+        const urls = (Array.isArray(meta.sources) ? meta.sources : [])
+          .map(s => normalizeUrl(s?.url))
+          .filter(Boolean)
+        return { slug: f.replace('.md', ''), title: meta.title || '', date, urls }
+      } catch (err) {
+        console.error(`dedup: ${f} cannot be read (${err.message}) and is left out of the match`)
+        return null
+      }
+    })
+    .filter(Boolean)
 }
 
 /** Load eventUri → article slug arrays from the story ledger. */

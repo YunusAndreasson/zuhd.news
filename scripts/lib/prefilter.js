@@ -56,3 +56,24 @@ export function prefilterFeed(feed, slim, ctx) {
   }
   return { feed, slim, removed, thin }
 }
+
+/**
+ * How many stories each layer removed. The reasons `wouldDedup` has today come
+ * first and in its order, at zero when unused; any other reason is counted
+ * as it comes.
+ *
+ * The stage counted with `counts[reason]++` over those five keys, so a reason
+ * it did not list became NaN, and the summary, which prints the counts above
+ * zero, then left it out: the stories were removed and the breakdown did not
+ * add up. `url` would have gone unreported that way when it was added on
+ * 2026-08-30, had the list not been edited with it.
+ *
+ * @param {{ reason: string }[]} removed
+ * @returns {Record<string, number>}
+ */
+export function reasonCounts(removed) {
+  /** @type {Record<string, number>} */
+  const counts = { exact: 0, url: 0, eventUri: 0, fuzzy: 0, recap: 0 }
+  for (const r of removed) counts[r.reason] = (counts[r.reason] ?? 0) + 1
+  return counts
+}

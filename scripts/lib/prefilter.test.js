@@ -2,7 +2,7 @@
 import assert from 'node:assert/strict'
 import { test } from 'node:test'
 import { buildTitleSets, buildWordSets, normalizeUrl } from './dedup.js'
-import { prefilterFeed } from './prefilter.js'
+import { prefilterFeed, reasonCounts } from './prefilter.js'
 
 const LONG = 'x'.repeat(900)
 /** A feed story; `body` is what its one or two sources carry. */
@@ -71,4 +71,13 @@ test('a feed with a section missing is a feed with that section empty', () => {
   const out = prefilterFeed({}, {}, ctx)
   assert.deepEqual(out.feed, { multiSourceStories: [], nicheStories: [] })
   assert.deepEqual(out.removed, [])
+})
+
+test('the tally counts a reason it was not told of, and never to NaN', () => {
+  const removed = ['url', 'url', 'recap', 'a-layer-added-later', 'a-layer-added-later'].map((reason) => ({ reason }))
+  assert.deepEqual(reasonCounts(removed), { exact: 0, url: 2, eventUri: 0, fuzzy: 0, recap: 1, 'a-layer-added-later': 2 })
+  // What the stage prints: every count above zero, which a NaN never was.
+  const total = Object.values(reasonCounts(removed)).filter((n) => n > 0).reduce((a, b) => a + b, 0)
+  assert.equal(total, removed.length)
+  assert.deepEqual(reasonCounts([]), { exact: 0, url: 0, eventUri: 0, fuzzy: 0, recap: 0 })
 })
