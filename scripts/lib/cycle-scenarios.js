@@ -96,22 +96,39 @@ const STATE = Object.fromEntries(
 )
 
 /**
+ * A rule for a call that has none, from the name the stub gives it unasked
+ * (`node:translate-swedish`, `git:pull`, `npm:typecheck`). Under that name its
+ * healthy answer is what the stub says anyway, so naming a call here to make
+ * it fail in one scenario changes no other recording.
+ *
+ * @param {string} id
+ * @param {Answer[]} answers
+ * @returns {Rule}
+ */
+function named(id, answers) {
+  const m = id.match(/^(node|git|npm):([\w-]+)$/)
+  if (!m) throw new Error(`cycle-scenarios: no rule named ${id}`)
+  const match = { node: `^scripts/${m[2]}\\.js( |$)`, git: `^${m[2]}( |$)`, npm: `^(run )?${m[2]}( |$)` }[m[1]]
+  return { id, cmd: m[1], match, answers }
+}
+
+/**
  * @param {string} now
- * @param {{ answers?: Record<string, Answer[]>, env?: Record<string, string>, lockHeld?: boolean }} [change]
+ * @param {{ answers?: Record<string, Answer[]>, env?: Record<string, string>, lockHeld?: boolean, without?: string[] }} [change]
+ *   `without` names files the repository does not hold in this scenario
  * @returns {Scenario}
  */
-function cycle(now, { answers = {}, env = { PUSH_SECRET: 'not-a-secret' }, lockHeld = false } = {}) {
+function cycle(now, { answers = {}, env = { PUSH_SECRET: 'not-a-secret' }, lockHeld = false, without = [] } = {}) {
   const rules = healthy().map((r) => (answers[r.id] ? { ...r, answers: answers[r.id] } : r))
-  const unknown = Object.keys(answers).filter((id) => !rules.some((r) => r.id === id))
-  if (unknown.length) throw new Error(`cycle-scenarios: no rule named ${unknown.join(', ')}`)
-  return {
-    now,
-    rules,
-    files: { ...STATE, [A]: article('Fed Raises Rates', 'Washington'), [B]: article('Hormuz Traffic Dips', 'Dubai') },
-    env,
-    lockHeld,
-  }
+  for (const id of Object.keys(answers)) if (!rules.some((r) => r.id === id)) rules.push(named(id, answers[id]))
+  /** @type {Record<string, string>} */
+  const files = { ...STATE, [A]: article('Fed Raises Rates', 'Washington'), [B]: article('Hormuz Traffic Dips', 'Dubai') }
+  for (const path of without) delete files[path]
+  return { now, rules, files, env, lockHeld }
 }
+
+/** Every answer of a call the same failure. @param {number} [exit] @returns {Answer[]} */
+const fails = (exit = 1) => [{ exit }]
 
 // 2026-10-08 is a Thursday.
 const REGULAR = '2026-10-08T18:04:59Z'
@@ -166,4 +183,58 @@ export const SCENARIOS = {
   'briefing-fails': cycle(DAILY, { answers: { briefing: [says('TTS: 3 INVALID_ARGUMENT\n', { exit: 1 })] } }),
   'metrics-fail': cycle(TUNING, { answers: { metrics: [{ exit: 1 }] } }),
   'tuner-times-out': cycle(TUNING, { answers: { tuner: [{ exit: 124 }] } }),
+
+  // ── What a stage's failure costs: a line in the log, and no more ──────
+  // Every stage the cycle only reports on fails at once, and the cycle still
+  // builds and deploys. Each warning and each exit line is in this recording.
+  'advisory-stages-fail': cycle(REGULAR, {
+    answers: {
+      'node:merge-feeds': fails(), 'node:prefilter-feed': fails(), 'node:update-ledger': fails(2), 'node:attach-indicators': fails(), 'node:scaffold-articles': fails(),
+      'node:fetch-trends': fails(124), 'node:fetch-chokepoints': fails(), 'node:fetch-markets': fails(), 'node:fetch-companies': fails(), 'node:fetch-ai-models': fails(),
+      'node:fetch-gdacs': fails(), 'node:fetch-conflict': fails(), 'node:fetch-ioda': fails(), 'node:fetch-firms': fails(137), 'node:fetch-ipc': fails(), 'node:narrate-gdacs': fails(124),
+      'node:extract-entities': fails(), 'node:extract-source-angles': fails(124), 'node:translate-swedish': fails(), 'node:narrate-indicators': fails(),
+      validate: [says('TypeError: Cannot read properties of undefined\n', { exit: 1 })], 'node:write-last-cycle': fails(), 'node:pick-breaking-social': fails(124),
+      'npm:typecheck': [says('scripts/x.js(1,1): error TS2304: Cannot find name\n', { exit: 2 })], 'git:add': fails(128), commit: [says('nothing to commit, working tree clean\n', { exit: 1 })],
+      'git:pull': [says('error: cannot pull with rebase: You have unstaged changes.\n', { exit: 128 })], 'npm:install': fails(), 'git:push': [says(' ! [rejected] master -> master (fetch first)\n', { exit: 1 })],
+      'node:post-to-twitter': fails(), 'node:post-to-instagram': fails(124), 'node:score-production-cycle': fails(),
+    },
+  }),
+  'advisory-stages-fail-daily': cycle(DAILY, {
+    answers: {
+      'node:narrate-indicators': fails(124), 'node:narrate-events': fails(), 'node:fetch-analytics': fails(),
+      'git:pull': fails(128), 'npm:install': fails(), 'git:push': fails(),
+      // The cycle's own build works; the rebuild with the audio does not.
+      build: [says('Built 812 pages.\n'), says('ENOSPC: no space left on device\n', { exit: 1 })],
+    },
+  }),
+  'api-fetch-fails': cycle(REGULAR, { answers: { 'fetch-api': fails() } }),
+  'selector-fails-on-retry': cycle(REGULAR, { answers: { selector: [says('What would you like me to do?\n'), says('API Error: 529 overloaded\n', { exit: 1 })] } }),
+  // Articles on disk and a non-zero exit: no retry, and the cycle goes on with what there is.
+  'writer-fails-with-output': cycle(REGULAR, { answers: { writer: [says('Wrote 2 of 13, then the tool call could not be parsed.\n', { exit: 1 })] } }),
+  'editor-times-out-twice': cycle(REGULAR, { answers: { editor: fails(124) } }),
+  'build-lock-never-clears': cycle(REGULAR, { answers: { build: [says('Another build is already running (lock: .build.lock) — exiting.\n', { exit: 1 })] } }),
+  // A cycle with nothing of its own to commit: the files a commit names are neither on disk nor known to git.
+  'nothing-to-commit': cycle(REGULAR, { without: ['content/.rvs-trend.json', 'content/.market-signals.json', 'content/.market-signal-state.json', 'content/.indicator-dispatch.json'] }),
+  'audit-unchanged': cycle(TUNING, { answers: { 'audit-changed': [says('')] } }),
+
+  // ── The pushes, where they stop short ────────────────────────────────
+  'push-injection-fails': cycle(REGULAR, { answers: { 'push-inject': [says('', { exit: 2 })] } }),
+  'push-slug-missing': cycle(REGULAR, { answers: { 'push-slug': [says('\n')] } }),
+  'push-article-missing': cycle(REGULAR, { answers: { 'push-slug': [says('2026-10-08-not-on-disk\n')] } }),
+  'briefing-no-top-stories': cycle(DAILY, { answers: { 'briefing-top': [says('[]')] } }),
+  'briefing-top-fails': cycle(DAILY, { answers: { 'briefing-top': [says('')] } }),
+  'briefing-body-empty': cycle(DAILY, { answers: { 'briefing-body': [says('\n\n')] } }),
+  'briefing-body-two-lines': cycle(DAILY, { answers: { 'briefing-body': [says('Fed raises rates · Hormuz traffic dips\nAnd a second line it was not asked for\n')] } }),
+  'briefing-payload-fails': cycle(DAILY, { answers: { 'briefing-payload': [says('', { exit: 2 })] } }),
+  'briefing-no-push-secret': cycle(DAILY, { env: {} }),
+
+  // ── Stopped from outside ─────────────────────────────────────────────
+  // systemd ends a cycle that outlives its hour by signalling it. The stage
+  // that was running is cut short, and the way out still happens: the funnel,
+  // the alert, the record. One for each way a stage is waited for.
+  'stopped-in-the-writer': cycle(REGULAR, { answers: { writer: [says('Wrote 1 of 13 so far.\n', { kill: 'SIGTERM', exit: 143 })] } }),
+  'stopped-in-a-snapshot': cycle(REGULAR, { answers: { 'node:fetch-markets': [{ kill: 'SIGTERM', exit: 143 }] } }),
+  'stopped-in-a-count': cycle(REGULAR, { answers: { 'node:coverage-map': [says('', { kill: 'SIGTERM', exit: 143 })] } }),
+  'stopped-in-the-build': cycle(REGULAR, { answers: { build: [says('Building 400 of 812 pages...\n', { kill: 'SIGTERM', exit: 143 })] } }),
+  'stopped-after-publishing': cycle(TUNING, { answers: { tuner: [says('Reading the audit...\n', { kill: 'SIGTERM', exit: 143 })] } }),
 }

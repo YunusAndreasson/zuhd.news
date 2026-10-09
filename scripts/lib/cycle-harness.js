@@ -52,7 +52,7 @@ function realPath(tool) {
 /**
  * @typedef {object} Scenario
  * @property {string} now ISO; the moment `date` reports, which decides the cycle's kind
- * @property {{ id: string, cmd: string, match?: string, answers: { out?: string, exit?: number, writes?: Record<string, string> }[] }[]} rules
+ * @property {{ id: string, cmd: string, match?: string, answers: { out?: string, exit?: number, writes?: Record<string, string>, kill?: NodeJS.Signals }[] }[]} rules
  * @property {Record<string, string>} [files] files in the scratch tree, by path from its root
  * @property {Record<string, string>} [env] added to the script's environment (`PUSH_SECRET`)
  * @property {boolean} [lockHeld] start with the cycle lock taken
@@ -111,7 +111,10 @@ export async function runCycle(scenario, { script = join(ROOT, 'scripts', 'run-c
       // what the script meets when another cycle is running.
       ...(scenario.lockHeld ? ['exec 9>/tmp/zuhd-cycle.lock', 'flock -n 9'] : []),
       `cd '${repo}'`,
-      'bash scripts/run-cycle.sh 2>&1',
+      // In this shell's place, and its number written down first: a scenario
+      // can have a stage signal the orchestrator, as systemd would.
+      `echo $$ > '${join(sbx, 'pid')}'`,
+      'exec bash scripts/run-cycle.sh 2>&1',
     ]
     const res = await run(realPath('unshare'), ['-m', '-n', '--', realPath('bash'), '-c', steps.join(' && ')], {
       env: {

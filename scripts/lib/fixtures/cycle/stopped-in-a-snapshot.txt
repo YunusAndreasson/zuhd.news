@@ -1,0 +1,134 @@
+exit: null
+
+commands
+  git -C <repo> rev-parse HEAD
+      + PUSH_SECRET=not-a-secret
+      + ZUHD_MODEL=claude-sonnet-5-5
+  node scripts/fetch-news-api.js
+      + ZUHD_GIT_HEAD=0123456789abcdef0123456789abcdef01234567
+      + ZUHD_RUN_ID=2026-10-08_1804
+      + ZUHD_RUN_STARTED=2026-10-08T18:04:59Z
+  node scripts/cycle/tally.js feed-api
+  node scripts/fetch-news.js
+  node scripts/cycle/tally.js feed-rss
+  node scripts/merge-feeds.js
+  node scripts/cycle/tally.js feed
+  node scripts/prefilter-feed.js
+  node scripts/coverage-map.js
+  node scripts/trending-gaps.js
+  node scripts/company-gaps.js
+  claude --no-session-persistence --setting-sources project --disable-slash-commands --strict-mcp-config --effort medium --model claude-opus-5-5 --fallback-model claude-sonnet-5-5 --allowedTools Read,Write,Glob,Grep --max-turns 35 --exclude-dynamic-system-prompt-sections -p «text sha1:3896c734»
+  node scripts/cycle/tally.js selection
+  node scripts/enrich-selection.js
+  node scripts/cycle/tally.js selection
+  node scripts/dedup-selection.js
+  node scripts/cycle/tally.js selection
+  node scripts/update-ledger.js
+  node scripts/attach-indicators.js
+  claude --no-session-persistence --setting-sources project --disable-slash-commands --strict-mcp-config --effort medium --model claude-sonnet-5-5 --allowedTools Read,Write,Edit --add-dir /tmp --max-turns 60 --exclude-dynamic-system-prompt-sections -p «write-prompt.md»
+  git diff --name-only content/articles/
+  git ls-files --others --exclude-standard content/articles/
+  git diff --name-only content/articles/
+  git ls-files --others --exclude-standard content/articles/
+  node scripts/scaffold-articles.js
+  node scripts/body-lengths.js
+  node scripts/flag-title-echo.js /tmp/zuhd-new-articles.txt
+  claude --no-session-persistence --setting-sources project --disable-slash-commands --strict-mcp-config --effort low --model claude-sonnet-5-5 --allowedTools Read,Edit,Glob,Grep --add-dir /tmp --max-turns 50 --exclude-dynamic-system-prompt-sections -p «text sha1:ec3bd00f»
+  node scripts/fetch-trends.js
+  node scripts/fetch-chokepoints.js
+  node scripts/fetch-markets.js
+  node <repo>/scripts/cycle/alert.js
+      + ALERT_LOG=<repo>/logs/cycle-2026-10-08_1804.log
+      + ALERT_REASON=no articles published
+      + CYCLE_ALERT=<repo>/content/.cycle-alert.json
+  node <repo>/scripts/cycle/record.js <repo>/logs/cycle-2026-10-08_1804.log
+      + ZUHD_DAILY_HOUR=05
+      + ZUHD_EXIT_STATUS=0
+      + ZUHD_START_HOUR=18
+      - ALERT_LOG
+      - ALERT_REASON
+      - CYCLE_ALERT
+
+kept
+  logs/runs/2026-10-08_1804/selection.1-selected.json
+  logs/runs/2026-10-08_1804/selection.2-enriched.json
+  logs/runs/2026-10-08_1804/selection.3-deduped.json
+  logs/runs/2026-10-08_1804/selection.4-offered.json
+
+log
+  | === zuhd.news editorial cycle ===
+  | Started: Thu Oct  8 06:04:59 PM UTC 2026
+  |
+  | --- Stage 0: API + RSS feed fetch ---
+  | «fetch-api»
+  | API fetch: 80 stories from 50 events
+  | «fetch-rss»
+  | RSS fetch: 77 stories
+  | «node:merge-feeds»
+  | Merge exit: 0
+  | Merged feed: 13 multi + 47 niche — Ns
+  | node:prefilter-feed: stdout
+  | «node:prefilter-feed»
+  | Prefilter exit: 0
+  |
+  | --- Stage 1: Selector ---
+  | Injecting coverage map (1 topic groups) into selector prompt
+  | Injecting trending-gaps signal (1 titles) into selector prompt
+  | Injecting unexplained-movers signal (1 companies) into selector prompt
+  | Selection target: 15 stories (18:00 UTC)
+  | Selected 2 stories.
+  | «selector»
+  | Selector exit: 0 — Ns
+  | Selection contains 2 stories
+  | enrich: stdout
+  | «enrich»
+  | Enrich exit: 0
+  | node:dedup-selection: stdout
+  | «node:dedup-selection»
+  | Dedup exit: 0
+  | node:update-ledger: stdout
+  | «node:update-ledger»
+  | Ledger exit: 0
+  | node:attach-indicators: stdout
+  | «node:attach-indicators»
+  | Indicators exit: 0
+  |
+  | --- Stage 2: Writer ---
+  | Wrote 2 articles.
+  | «writer»
+  | Writer exit: 0 — Ns
+  | Found 2 new/modified articles
+  | node:scaffold-articles: stdout
+  | «node:scaffold-articles»
+  | Scaffold exit: 0
+  |
+  | --- Stage 3: Editor ---
+  | Trimmed one, left one.
+  | «editor»
+  | Editor exit: 0 — Ns
+  |
+  | --- Stage 3.4: Trends fetch ---
+  | node:fetch-trends: stdout
+  | «node:fetch-trends»
+  | Trends exit: 0 — Ns
+  |
+  | --- Stage 3.4b: Chokepoints snapshot ---
+  | node:fetch-chokepoints: stdout
+  | «node:fetch-chokepoints»
+  | Chokepoints exit: 0 — Ns
+  |
+  | --- Stage 3.4b2: Market snapshot ---
+  | node:fetch-markets: stdout
+  | «node:fetch-markets»
+  |
+  | === Funnel ===
+  | Feed:      13 multi + 47 niche
+  | Selected:  2
+  | Deduped:   2
+  | Written:   2
+  | Validated: 0
+  | Published: 0
+  |
+  | Finished: Thu Oct  8 06:04:59 PM UTC 2026 — total Ns
+  | ALERT: no articles published (1 cycle(s) in a row since 2026-10-08T18:04:59.000Z)
+  | «alert»

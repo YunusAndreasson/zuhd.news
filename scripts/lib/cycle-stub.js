@@ -8,7 +8,7 @@
 // environment. That is its behaviour, and it had never been written down.
 
 import { appendFileSync, mkdirSync, readFileSync, writeFileSync } from 'node:fs'
-import { dirname } from 'node:path'
+import { dirname, join } from 'node:path'
 
 const [, , cmd, ...argv] = process.argv
 const scenario = JSON.parse(readFileSync(/** @type {string} */ (process.env.ZUHD_HARNESS_SCENARIO), 'utf8'))
@@ -78,7 +78,7 @@ function stdinText() {
 // The first rule whose pattern matches the whole call takes it. A rule with
 // several answers gives them in turn and repeats the last, so a scenario can
 // say "fails once, then works".
-/** @type {{ id: string, cmd: string, match?: string, answers: { out?: string, exit?: number, writes?: Record<string, string> }[] }[]} */
+/** @type {{ id: string, cmd: string, match?: string, answers: { out?: string, exit?: number, writes?: Record<string, string>, kill?: NodeJS.Signals }[] }[]} */
 const rules = scenario.rules
 const line = argv.join(' ')
 const rule = rules.find((r) => r.cmd === cmd && (!r.match || new RegExp(r.match, 's').test(line)))
@@ -116,4 +116,15 @@ else process.stdout.write(out)
 // Always on stderr, which the script never parses: where this lands (the log,
 // the journal, both or neither) is how that call's output is routed.
 if (!SILENT) process.stderr.write(`«${id}»\n`)
+
+// A call can be the moment the cycle is stopped: it signals the orchestrator
+// while it is itself still running, which is how systemd finds a stage when
+// the unit's hour is up. The pauses let what it printed reach the log first,
+// and let the orchestrator act before this stage is seen to end.
+if (answer.kill) {
+  const pause = () => Atomics.wait(new Int32Array(new SharedArrayBuffer(4)), 0, 0, 400)
+  pause()
+  process.kill(Number(readFileSync(join(dirname(tracePath), 'pid'), 'utf8')), answer.kill)
+  pause()
+}
 process.exit(answer.exit ?? 0)
