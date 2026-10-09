@@ -25,7 +25,6 @@ test('each use has the family it was given', () => {
     gdacs: OPUS,
     swedish: SONNET,
     polymarketTitles: SONNET,
-    offline: OPUS,
     haiku: HAIKU,
   })
 })
@@ -40,7 +39,7 @@ test('a use is overridden by its own variable, and an empty one is not an overri
   assert.equal(modelFor('swedish', { ZUHD_SV_MODEL: 'x' }), 'x')
   assert.equal(modelFor('polymarketTitles', { PM_TITLE_MODEL: 'x' }), 'x')
   assert.equal(modelFor('session', { ZUHD_MODEL: '' }), SONNET)
-  for (const use of /** @type {const} */ (['tuner', 'gdacs', 'offline', 'haiku'])) {
+  for (const use of /** @type {const} */ (['tuner', 'gdacs', 'haiku'])) {
     assert.equal(modelFor(use, { ZUHD_MODEL: 'x', ZUHD_SELECTOR_MODEL: 'y' }), modelFor(use, {}), `${use} takes no override`)
   }
 })

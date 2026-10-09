@@ -39,8 +39,6 @@ const USES = {
   swedish: { model: SONNET, env: ['ZUHD_SV_MODEL'] },
   /** Short titles for Polymarket questions. */
   polymarketTitles: { model: SONNET, env: ['PM_TITLE_MODEL'] },
-  /** The autoresearch proposer. */
-  offline: { model: OPUS, env: [] },
   /** Entity disambiguation and source angles, batched. */
   haiku: { model: HAIKU, env: [] },
 }
