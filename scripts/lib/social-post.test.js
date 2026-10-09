@@ -159,3 +159,15 @@ test('an attempt that throws fails the step too, and one that went out does not'
   const sent = poster({ post: async ({ slug, log }) => log.add({ slug, tweetId: '1', sent: true }) })
   assert.deepEqual(await postStory('post-to-twitter', sent, { slug: '2026-10-08-a', dryRun: false, ...io('went-out') }), { exitCode: 0 })
 })
+
+// Each poster ends in `runPoster(import.meta, …)`, so importing one runs
+// nothing: no slug is read, no log, no network. What this holds is that the
+// two files load at all, which nothing else here starts them to find out.
+test('the two posters can be imported, and importing one posts nothing', async () => {
+  const before = process.exitCode
+  for (const name of ['post-to-twitter', 'post-to-instagram']) {
+    const module = await import(join(ROOT, 'scripts', `${name}.js`))
+    assert.deepEqual(Object.keys(module), [], `${name} exports nothing and has run nothing`)
+  }
+  assert.equal(process.exitCode, before, 'a poster that had run with no slug would have set 2')
+})
