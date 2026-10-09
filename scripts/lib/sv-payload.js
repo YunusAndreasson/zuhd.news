@@ -166,6 +166,40 @@ const REGISTER_TRAPS = [
 ]
 
 /**
+ * A batch's translations after its one retry: for each article, the better
+ * of its two draws. Sound and idiomatic beats sound with a register trap,
+ * which beats one the renderer would break on, which beats none; a tie keeps
+ * the first.
+ *
+ * The retry used to replace the whole batch when it had fewer register
+ * faults than the first draw. Six articles come back from one call, and the
+ * count says nothing of which: a retry that returns four of the six wins on
+ * having fewer faults, and the two sound translations it did not return are
+ * thrown away with the faulty one, to be translated again a cycle later. A
+ * retry that mends one article and merges two blocks of another was a trade,
+ * too. One retry in the 41 cycles to 2026-10-09, so this is the rule being
+ * right rather than a loss counted.
+ *
+ * @template {{ slug: string, blocks: string[] }} A
+ * @param {A[]} batch
+ * @param {Map<string, any>} first what the first call returned, by slug
+ * @param {Map<string, any>} again what the retry returned
+ * @returns {Map<string, any>}
+ */
+export function mergeRetry(batch, first, again) {
+  /** @param {A} article @param {any} sv */
+  const rank = (article, sv) => (!sv ? 3 : translationFault(article, sv) ? 2 : registerFault(article, sv) ? 1 : 0)
+  const out = new Map()
+  for (const article of batch) {
+    const one = first.get(article.slug)
+    const two = again.get(article.slug)
+    const best = rank(article, two) < rank(article, one) ? two : one
+    if (best) out.set(article.slug, best)
+  }
+  return out
+}
+
+/**
  * One item of `/api/sv/feed.json`.
  *
  * Swedish keys throughout, because the only consumer is a Swedish site and a

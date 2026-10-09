@@ -54,6 +54,7 @@ import {
   SV_WINDOW_MS,
   articleFingerprint,
   eventTime,
+  mergeRetry,
   registerFault,
   translationFault,
 } from './lib/sv-payload.js'
@@ -245,12 +246,11 @@ await runWithConcurrency(batches, CONCURRENCY, async (batch) => {
     console.log(`  · swedish ${label}: ${why} — retrying once`)
     const again = await translateBatch(batch, `${label} retry`)
     totalCostUsd += again.costUsd
-    // Keep the retry only when it is actually better. A re-roll that comes back
-    // with more traps than the first draw is a worse payload, and blindly
-    // replacing would ship it.
-    if (again.out.size > 0 && (out.size === 0 || registerFaults(batch, again.out).length < faults.length)) {
-      out = again.out
-    }
+    // Keep the retry only where it is actually better, article by article
+    // (`mergeRetry`). A re-roll that comes back with a trap the first draw did
+    // not have, or without an article the first draw translated, is worse for
+    // that article, and replacing the batch would ship it.
+    out = mergeRetry(batch, out, again.out)
   }
 
   for (const article of batch) {
