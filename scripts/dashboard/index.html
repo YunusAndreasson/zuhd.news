@@ -686,7 +686,7 @@ function renderFeedHealth(data) {
   const sorted = [...dead, ...empty, ...ok]
   for (const s of sorted) {
     const status = s.error ? 'red' : s.fetched === 0 ? 'amber' : 'green'
-    const detail = s.error ? s.error : `${s.fetched} fetched, ${s.used} used`
+    const detail = s.error ? esc(s.error) : `${s.fetched} fetched, ${s.used} used`
     // Historical fail count
     const fails = data.failCounts?.[s.name] || 0
     const failBadge = fails > 0 ? `<span class="feed-fail-count" title="${fails} failures in ${data.totalCycles} cycles">${fails}/${data.totalCycles} fails</span>` : ''
@@ -955,7 +955,7 @@ async function loadQuality() {
   // Sources
   const srcEl = document.getElementById('source-info')
   if (q.sources) {
-    const top = q.sources.top.map(([name, count]) => `${name} (${count})`).join(', ')
+    const top = q.sources.top.map(([name, count]) => `${esc(name)} (${count})`).join(', ')
     srcEl.innerHTML = `<div class="stat-row"><div class="stat"><span class="stat-value">${q.sources.unique}</span><span class="stat-label">unique sources today</span></div></div>
       <div style="margin-top:0.5rem;font-size:var(--size-xs);color:var(--text-secondary)">${top}</div>`
   }
@@ -1550,7 +1550,9 @@ function renderAuditJSON(d, metricsEl, expEl, proseEl) {
   proseEl.innerHTML = prose
 }
 
-function esc(s) { return (s || '').replace(/&/g, '&amp;').replace(/</g, '&lt;') }
+// For text and for an attribute's value alike: it left quotes as they were,
+// and one of its uses is an image's `src`.
+function esc(s) { return escapeHTML(s) }
 
 function auditStat(value, label, detail, ok) {
   const dot = ok === true ? dotHTML('green') : ok === false ? dotHTML('red') : ''
