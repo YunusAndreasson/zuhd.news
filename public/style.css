@@ -2987,7 +2987,7 @@ body.map-page.map-rail-off .map-seam[data-side='left'] .map-seam-toggle {
   background: var(--map-ground);
 }
 
-/* The sky — the sun and the outward half of the atmosphere.
+/* The sky — the outward half of the atmosphere.
    `_map/sky-paint.ts` paints it; this rule only has to keep it in the one place
    where all of that is free.
 
@@ -2997,15 +2997,12 @@ body.map-page.map-rail-off .map-seam[data-side='left'] .map-seam-toggle {
    the island appends this element to the host *before* constructing the map,
    so MapLibre's canvas lands after it and paints on top. That ordering is the
    whole design: MapLibre's canvas is transparent outside the limb and opaque
-   on the planet, so the globe occludes the sky in hardware, at the true edge
-   and at the true moment, including the partial clip while a body is halfway
-   over. Giving either one a `z-index` here would express the same order in a
-   second place that nothing checks against the first.
+   on the planet, so the globe occludes the sky in hardware, at the true edge.
+   Giving either one a `z-index` here would express the same order in a second
+   place that nothing checks against the first.
 
-   `pointer-events: none` because the sky is queried through the map's own
-   `click`/`mousemove` handlers (there is exactly one of each, and the reason is
-   in `situation-map.ts`), not by being a target itself. A canvas that took the
-   pointer would take it from MapLibre entirely. */
+   `pointer-events: none` because nothing on it is a target, and a canvas that
+   took the pointer would take it from MapLibre entirely. */
 .map-sky {
   position: absolute;
   inset: 0;

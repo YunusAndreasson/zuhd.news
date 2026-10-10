@@ -33,10 +33,14 @@
 //   rising over the edge of the earth moves at the right rate and is the right
 //   size against it. Only further out does it compress.
 //
-// What is given up, and the sun's card says so (`SKY_NOTE`): **distance out
-// from the limb.** This is the same bargain a solar-system diagram makes — true
-// bodies, compressed distances — and the same bargain this map already makes
-// with `GLOBE_FIT`, stated rather than hidden.
+// What is given up: **distance out from the limb.** This is the same bargain a
+// solar-system diagram makes — true bodies, compressed distances — and the
+// same bargain this map already makes with `GLOBE_FIT`, stated rather than
+// hidden.
+//
+// No body is drawn in this sky since the sun's disc was removed on 2026-10-10:
+// the painter places the sun only to read its bearing, which is what turns the
+// crescent to the day limb.
 //
 // Nothing beyond `SKY_SPAN` from the view axis is drawn. Past 90° a body is
 // level with or behind the camera, and putting it in a corner of the frame
@@ -64,20 +68,6 @@ export const SKY_SPAN = 90
 
 /** The last few degrees of `SKY_SPAN` fade rather than ending on an edge. */
 export const SKY_EDGE_FADE = 12
-
-/**
- * What the sky is doing, said in one sentence on every card it opens.
- *
- * The same job `PRAYER_NOTE` and `HIJRI_NOTE` do for the two other things on
- * this map that are computed rather than fetched: name the method, because a
- * drawing that is exact in some channels and compressed in one is a drawing a
- * reader is entitled to be told about. Without this the sky is a claim about
- * distances that it does not keep.
- */
-export const SKY_NOTE =
-  'Positions, sizes and the moment a body goes behind the earth are true. ' +
-  'Distance out from the limb is compressed — exact for the first few degrees, ' +
-  'then logarithmic, so the whole near sky fits the margin around the globe.'
 
 /**
  * The camera, solved from what MapLibre actually drew.
@@ -240,22 +230,6 @@ export function skyRadius(alpha: number, cam: SkyCamera): number {
   const knee = SKY_KNEE * DEG
   return cam.r + slope * knee * Math.log(1 + past / knee)
 }
-
-/**
- * Px per degree of *angular size* at the limb — the scale a body's own disc is
- * drawn at, everywhere.
- *
- * This is the azimuthal scale (`f·sec α`), not the radial one (`f·sec² α`):
- * gnomonic projection is not conformal and the two differ by 5% at this limb,
- * and a disc is the azimuthal case. Expressed off the *measured* disc radius so
- * it cannot disagree with the earth drawn beside it.
- *
- * A body keeps this size wherever it is drawn, and does not shrink into the
- * compressed sky. Stated as a decision: the compression is of distances, and
- * shrinking the sun with it would make it a second, silent encoding of how far
- * out it is.
- */
-export const skyPxPerDegree = (cam: SkyCamera) => (cam.r / Math.sin(cam.limb)) * DEG
 
 /** A celestial direction, placed. */
 export interface Placed {

@@ -1,8 +1,8 @@
-// The sky, painted: the sun and the atmosphere outside the limb.
+// The sky, painted: the atmosphere outside the limb.
 //
 // There were stars and a moon here too, from 2026-08-01 until they were
-// removed on 2026-09-26 at the owner's request; `sky.md` records what went and
-// what the removal left in place.
+// removed on 2026-09-26 at the owner's request, and the sun's disc followed on
+// 2026-10-10; `sky.md` records what went and what the removal left in place.
 //
 // A 2D canvas **behind** MapLibre's, and that placement is the whole design
 // rather than a detail of it. Below `GLOBE_ZOOM.plane` MapLibre draws the
@@ -11,9 +11,8 @@
 // MapLibre colour at all and `.map-canvas-host` shows through. Put a canvas
 // there and three things come free that would each be work:
 //
-//   **Occlusion.** The globe mesh covers the sky in hardware. The sun goes
-//   behind the limb exactly, at the true instant, clipped to the true edge —
-//   including the partial clip while it is halfway over.
+//   **Occlusion.** The globe mesh covers the sky in hardware, so the glow
+//   starts on the true edge of the planet with nothing here clipping it.
 //   **The atmosphere composites correctly**, because MapLibre's own crescent is
 //   drawn over ours by the browser rather than by us.
 //   **Nothing touches MapLibre.** No source, no layer, no `addImage`, no
@@ -33,16 +32,9 @@ import {
   type Project,
   type SkyCamera,
   skyFrame,
-  skyPxPerDegree,
   calibrate,
 } from './sky'
 import { GLOBE_ZOOM, MAP_COLOURS } from './style'
-
-const DEG = Math.PI / 180
-const AU_KM = 149597870.7
-
-/** Angular size of the sun, degrees. */
-const SUN_DIAMETER_DEG = 0.5334
 
 /**
  * The atmosphere outside the limb.
@@ -155,14 +147,6 @@ const AIRGLOW_ALPHA = 1
 /** How far out the falloff runs before it is gone, px. See above. */
 const AIRGLOW_REACH = AIRGLOW_WIDTH * 2.5
 
-export interface SunHit {
-  kind: 'sun'
-  /** Where it is directly overhead. */
-  sub: { lat: number; lng: number }
-  /** Kilometres from the earth's centre. */
-  km: number
-}
-
 /** What the sky needs from the map, and nothing more. */
 export interface SkyView {
   project: Project
@@ -178,8 +162,6 @@ export interface Sky {
   draw(now?: Date): void
   /** Re-read the element's box. Call on resize before `draw`. */
   resize(): void
-  /** The sun, if it is under this canvas point. */
-  hit(x: number, y: number): SunHit | null
   destroy(): void
 }
 
@@ -198,9 +180,7 @@ const HALO_RGB = rgbOf(MAP_COLOURS.horizon)
 export function createSky(view: SkyView): Sky {
   const canvas = document.createElement('canvas')
   canvas.className = 'map-sky'
-  // Decorative in the accessibility tree: the one thing it draws that a reader
-  // can act on is the sun, and the card its click opens says it in words, like
-  // every other mark on this map.
+  // Decorative in the accessibility tree: it draws nothing a reader can act on.
   canvas.setAttribute('aria-hidden', 'true')
 
   const ctx = canvas.getContext('2d')
@@ -208,7 +188,6 @@ export function createSky(view: SkyView): Sky {
   let height = 0
   let dpr = 1
   let now = new Date()
-  let sunHit: { x: number; y: number; r: number; body: SunHit } | null = null
 
   const resize = () => {
     const rect = canvas.getBoundingClientRect()
@@ -235,7 +214,6 @@ export function createSky(view: SkyView): Sky {
     if (!ctx) return
     ctx.setTransform(1, 0, 0, 1, 0, 0)
     ctx.clearRect(0, 0, canvas.width, canvas.height)
-    sunHit = null
   }
 
   /**
@@ -301,7 +279,7 @@ export function createSky(view: SkyView): Sky {
       const a1 = a0 + step
       let lit = 1
       if (toSun !== null) {
-        // The sun's *drawn* bearing is exact — bearing is the one thing the
+        // The sun's bearing is exact — bearing is the one thing the
         // compression leaves alone — so the lit fraction is honest even though
         // the sun's distance from the limb is not.
         const d = Math.cos(a0 + step / 2 - toSun)
@@ -318,26 +296,6 @@ export function createSky(view: SkyView): Sky {
       ctx.fill()
     }
     ctx.restore()
-  }
-
-  const drawSun = (p: Placed, cam: SkyCamera, fade: number) => {
-    if (!ctx) return 0
-    const r = Math.max(2, (skyPxPerDegree(cam) * SUN_DIAMETER_DEG) / 2)
-    const glow = ctx.createRadialGradient(p.x, p.y, r * 0.6, p.x, p.y, r * 3.2)
-    glow.addColorStop(0, `rgb(255 236 204 / ${(0.30 * fade * p.edge).toFixed(3)})`)
-    glow.addColorStop(1, 'rgb(255 236 204 / 0)')
-    ctx.fillStyle = glow
-    ctx.beginPath()
-    ctx.arc(p.x, p.y, r * 3.2, 0, Math.PI * 2)
-    ctx.fill()
-
-    ctx.fillStyle = MAP_COLOURS.sun
-    ctx.globalAlpha = fade * p.edge
-    ctx.beginPath()
-    ctx.arc(p.x, p.y, r, 0, Math.PI * 2)
-    ctx.fill()
-    ctx.globalAlpha = 1
-    return r
   }
 
   const draw = (at?: Date) => {
@@ -365,47 +323,17 @@ export function createSky(view: SkyView): Sky {
     const sunEq = sunEquatorial(now)
     const sunPlaced = place(directionOf(sunEq.ra, sunEq.dec), cam, frame)
 
-    // The halo needs the sun's bearing, and is drawn under it.
+    // The sun itself is not drawn: the halo takes its bearing, which is what
+    // puts the crescent on the day limb.
     drawHalo(cam, sunPlaced, fade)
-
-    if (sunPlaced && !fullyBehind(sunPlaced, cam, SUN_DIAMETER_DEG)) {
-      const r = drawSun(sunPlaced, cam, fade)
-      sunHit = {
-        x: sunPlaced.x,
-        y: sunPlaced.y,
-        r,
-        body: {
-          kind: 'sun',
-          // The sub-solar point — the pole of the terminator already drawn on
-          // the globe below, which is what makes the two one statement.
-          sub: subOfSun(sunEq, n),
-          km: sunEq.au * AU_KM,
-        },
-      }
-    }
   }
-
-  const hit = (x: number, y: number): SunHit | null =>
-    sunHit && Math.hypot(x - sunHit.x, y - sunHit.y) <= Math.max(sunHit.r, 8) ? sunHit.body : null
 
   return {
     element: canvas,
     draw,
     resize,
-    hit,
     destroy() {
       canvas.remove()
-      sunHit = null
     },
   }
-}
-
-/** Whether the whole disc of a body is behind the earth. */
-const fullyBehind = (p: Placed, cam: SkyCamera, diameterDeg: number) =>
-  p.alpha < cam.limb - (diameterDeg / 2) * DEG
-
-const subOfSun = (sun: { ra: number; dec: number }, n: number) => {
-  let lng = sun.ra - gmstHours(n) * 15
-  lng = ((((lng + 180) % 360) + 360) % 360) - 180
-  return { lat: sun.dec, lng }
 }

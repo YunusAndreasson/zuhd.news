@@ -55,7 +55,7 @@ import {
 } from './_map/places'
 import { createFeed, type Feed } from './_map/feed'
 import { graticuleLines } from './_map/graticule'
-import { createSky, type SunHit } from './_map/sky-paint'
+import { createSky } from './_map/sky-paint'
 import { createReadState } from './_map/read-state'
 import { glyphImages, glyphSvg, type GlyphId } from './_map/glyphs'
 import {
@@ -3643,22 +3643,6 @@ export function mount(
   }
 
   /**
-   * Whether the sun is under the pointer.
-   *
-   * Asks the canvas where it last *drew* the sun, not where the sun is — which
-   * is the same discipline `queryRenderedFeatures` enforces one layer up, and
-   * for the same reason: a sun behind the earth, past the sky's outer edge or
-   * faded out by the zoom is not on screen, and a hit test that could find it
-   * would open a card pointing at nothing.
-   *
-   * `e.point` is relative to MapLibre's canvas and the sky canvas is `inset: 0`
-   * inside the same host, so the two coordinate systems are the same one. If
-   * that ever stops being true this is where it goes wrong silently.
-   */
-  const skyAt = (point: { x: number; y: number }): SunHit | null =>
-    sky.hit(point.x, point.y)
-
-  /**
    * A short hop toward the story rather than a jump to a fixed zoom: from the
    * world view it settles at a regional scale, and if you are already zoomed in
    * it only steps a little closer. The vertical offset leaves room for the
@@ -4058,21 +4042,6 @@ export function mount(
         return
       }
 
-      // The sky is not a MapLibre layer and must not join `MARKER_LAYERS` —
-      // `map-island.test.js` asserts that set equals `HIT_ORDER`, and the sky
-      // has no layer to rank. It is queried here instead, inside the one
-      // pointer path, and only outside the globe's limb, where `topHit` and
-      // `countryAt` are both guaranteed to find nothing. So the precedence is
-      // geometric rather than declared: there is nothing for it to contend with.
-      const sun = skyAt(e.point)
-      if (sun) {
-        openSlug = null
-        clearPeekClose()
-        peekId = 'sky:sun'
-        sheet.showSun(sun, true)
-        return
-      }
-
       if (popup?.isOpen() || sheet.isOpen()) {
         openSlug = null
         popup?.close()
@@ -4158,16 +4127,6 @@ export function mount(
         }
       } else {
         setHoverSlug(null)
-        const sun = skyAt(e.point)
-        if (sun) {
-          map.getCanvas().style.cursor = 'pointer'
-          if (peekId !== 'sky:sun') {
-            peekId = 'sky:sun'
-            clearPeekClose()
-            sheet.showSun(sun, false)
-          }
-          return
-        }
         releasePeek()
       }
 
@@ -4281,8 +4240,8 @@ export function mount(
      * already drawing, so this adds a repaint to work in flight rather than
      * scheduling work of its own, and nothing here touches a source, a layer or
      * a feature state, so the map's idle stays exactly as quiet as it was. It
-     * repaints the atmosphere and the sun, which is cheap; the star field that
-     * once made a drag expensive was removed on 2026-09-26.
+     * repaints the atmosphere, which is cheap; the star field that once made a
+     * drag expensive was removed on 2026-09-26.
      *
      * `interacting` still matters to the pointer path, which skips its hit
      * tests while the camera is being dragged.

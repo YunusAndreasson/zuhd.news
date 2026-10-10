@@ -270,13 +270,6 @@ export const MAP_COLOURS = {
    * softer than the token. These figures bound it; the screen decides it.
    */
   horizon: '#222e40',
-  /**
-   * The sun's disc, drawn at true angular size — 0.53°, about 13px against a
-   * 913px earth — so the brightest thing on the map is also one of the
-   * smallest, and the ink it spends is 130 square pixels. Warm-white rather
-   * than white: the disc is a photograph of a G2 star, not a highlight.
-   */
-  sun: '#ffeccc',
 } as const
 
 /** Category hues, low-saturation so four of them can coexist without shouting. */

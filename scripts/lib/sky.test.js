@@ -10,8 +10,8 @@
 // the same arrangement `prayer.ts` has with adhan-js. Comparing against it here
 // is a stronger guarantee than importing it and costs the reader nothing.
 //
-// The stars and the moon were removed on 2026-09-26, and their tests with
-// them; `sky.md` records what went.
+// The stars and the moon were removed on 2026-09-26 and the sun's disc on
+// 2026-10-10, and their tests with them; `sky.md` records what went.
 
 import test from 'node:test'
 import assert from 'node:assert/strict'
@@ -184,9 +184,7 @@ test('the sky is drawn at true scale where it meets the earth', () => {
   assert.ok(Math.abs(M.skyRadius(cam.limb, cam) - cam.r) < 1e-9)
 
   // Exact in *slope* at the limb, which is what makes the band next to the
-  // earth read as a photograph — the sun rising over the edge moves at the right
-  // rate and is the right size against it. This is the claim `SKY_NOTE` makes
-  // to the reader, so it is the one that has to hold.
+  // earth read as a photograph rather than a diagram.
   const h = 1e-7
   const slope = (M.skyRadius(cam.limb + h, cam) - M.skyRadius(cam.limb, cam)) / h
   const truth = cam.f / Math.cos(cam.limb) ** 2
@@ -265,29 +263,7 @@ test('the sun is where the oracle says, and its distance varies as it should', (
   // The NOAA low-precision equations, which `solar.ts` has always used for the
   // terminator. Half a pixel at the scale the sky is drawn beside the limb.
   assert.ok(worst < 0.03, `sun is ${worst.toFixed(4)}deg out`)
-  // Perihelion to aphelion is a real 3.4%, and it is what makes the sun's
-  // drawn disc change size over the year.
+  // Perihelion to aphelion is a real 3.4%.
   assert.ok(minAu > 0.98 && minAu < 0.985, `perihelion ${minAu.toFixed(4)} AU`)
   assert.ok(maxAu > 1.015 && maxAu < 1.02, `aphelion ${maxAu.toFixed(4)} AU`)
-})
-
-test('the sun is actually on screen often enough to be worth drawing', () => {
-  // The measurement the whole compressed-sky design exists to satisfy. At true
-  // scale the visible sky is 1.3% of the celestial sphere and the sun reaches
-  // it for about twenty minutes a night, a few weeks a year — correct, and
-  // invisible. If a change to `SKY_SPAN` or `SKY_KNEE` takes this back under
-  // six hours a day, the feature has quietly stopped existing.
-  const cam = M.calibrate(makeProject(1369, 3.17, HOME, 500, 400), HOME, 0, 0)
-  let sun = 0
-  const N = 24 * 60
-  for (let i = 0; i < N; i++) {
-    const t = new Date(Date.UTC(2026, 7, 1) + i * 60_000)
-    const n = M.daysSinceJ2000(t)
-    const frame = M.skyFrame(HOME[1], HOME[0], M.gmstHours(n))
-    const s = M.sunEquatorial(t)
-    const sp = M.place(dirOf(s.ra, s.dec), cam, frame)
-    if (sp && !sp.hidden) sun++
-  }
-  const hours = (n) => (n / N) * 24
-  assert.ok(hours(sun) > 6, `the sun is drawn ${hours(sun).toFixed(1)}h a day`)
 })

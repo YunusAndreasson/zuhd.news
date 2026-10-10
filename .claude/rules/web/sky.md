@@ -8,27 +8,25 @@ paths:
 
 # The sky
 
-The sun, the scattering crescent and the airglow, on a 2D canvas behind the
-globe. `sky.ts` is the geometry and `sky-paint.ts` the painter; `sky.test.js`
-bundles only the first, so anything testable stays out of the painter. The
-camera locks, the light and space's tone are `map.md`; the night wash is
+The scattering crescent and the airglow, on a 2D canvas behind the globe.
+`sky.ts` is the geometry and `sky-paint.ts` the painter; `sky.test.js` bundles
+only the first, so anything testable stays out of the painter. The camera
+locks, the light and space's tone are `map.md`; the night wash is
 `map-layers.md`; the terminator is `prayer.md`.
 
 ## What is drawn
 
-- No stars, no moon, no precession, no camera parallax and no `spacefield`
-  island. Do not add them unasked.
+- No sun disc, no stars, no moon, no precession, no camera parallax and no
+  `spacefield` island. Do not add them unasked.
+- The sun is placed only for its bearing, which turns the crescent to the day
+  limb; off the drawn sky (`place` returns null) the crescent is a full ring.
 - The true sky on screen is a thin margin round the disc, so `skyRadius`
-  compresses distance out from the limb, and `SKY_NOTE` says so on the sun's
-  card. `sky.test.js` fails if `SKY_SPAN` or `SKY_KNEE` leaves the sun drawn
-  under six hours a day.
+  compresses distance out from the limb.
 - **Never draw past `SKY_SPAN`** (90°): a body behind the camera has no true
   place on screen.
 - The view axis is `-c`, so `alpha` is measured from the antipode of the map
   centre. Over the centre a body is behind the reader (null); over the antipode
   it is behind the earth (`hidden`).
-- The sun keeps its true angular size everywhere (`skyPxPerDegree`): shrinking
-  it with the compression would encode distance twice.
 
 ## The camera
 

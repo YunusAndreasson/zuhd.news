@@ -21,7 +21,7 @@ Preact (`_framework.ts`).
 
 Beside this file: `map-rail.md` (the instrument rail, the story rail, the
 scrubber, layout) and `map-layers.md` (basemap, labels, the land ramp, hazard
-layers, market marks). The sun is `sky.md`, prayer lines `prayer.md`, the
+layers, market marks). The sky is `sky.md`, prayer lines `prayer.md`, the
 calendar `hijri.md`.
 
 ## Camera and projection

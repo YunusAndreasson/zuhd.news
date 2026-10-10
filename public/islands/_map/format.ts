@@ -167,18 +167,6 @@ export const vessels = (n: number | undefined): string =>
 export const rank = (r: number, total: number): string => `${r} / ${total}`
 
 /**
- * A coordinate, as a place rather than as two numbers.
- *
- * `21.4°N 39.8°E`, not `21.423, 39.826`. One decimal is about 11 km, which is
- * the honest precision for a sub-point that moves 15° an hour and is stated on
- * a card a reader glances at — and a signed pair with no hemisphere letters is
- * the form that gets read backwards.
- */
-export const coordinate = (lat: number, lng: number): string =>
-  `${Math.abs(lat).toFixed(1)}°${lat >= 0 ? 'N' : 'S'} ` +
-  `${Math.abs(lng).toFixed(1)}°${lng >= 0 ? 'E' : 'W'}`
-
-/**
  * A source's sentiment, as a signed two-decimal number.
  *
  * Only ever shown on stories the map has already marked contested, where the

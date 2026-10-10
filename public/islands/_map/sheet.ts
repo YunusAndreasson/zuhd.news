@@ -47,11 +47,6 @@ import type {
   ThermalEvent,
   VesselField,
 } from './types'
-// Types only, so the painter is erased at build; `SKY_NOTE` comes from the
-// DOM-free half deliberately, since that is the file the compression it
-// describes actually lives in.
-import type { SunHit } from './sky-paint'
-import { SKY_NOTE } from './sky'
 
 export interface Sheet {
   element: HTMLDialogElement
@@ -97,7 +92,6 @@ export interface Sheet {
      docked card, and worse here, because a layer switch is watched *on the map*.
      They are a disclosure inside `.map-mapctl` now. Every `show*` left answers
      "what is this thing on the map", which is what this interface is for. */
-  showSun(sun: SunHit, pinned: boolean): void
   close(): void
   isOpen(): boolean
   isPinned(): boolean
@@ -1202,47 +1196,6 @@ export function createSheet(): Sheet {
         links.append(ipcLink)
         if (area.iso2) links.append(readMore(`/country/${area.iso2}`, 'Country in profile'))
         nodes.push(links)
-      }
-      render(nodes, pin)
-    },
-
-    /**
-     * The sun.
-     *
-     * The hero is the **sub-solar point** — where the sun is directly overhead —
-     * because that is the fact that ties the thing in the sky to the map under
-     * it: it is the pole of the terminator already drawn, and saying so is what
-     * makes the two one statement rather than two decorations.
-     */
-    showSun(sun, pin) {
-      const nodes: Node[] = []
-      nodes.push(kicker(['the sun']))
-      nodes.push(el('h2', 'island-sheet-title', 'The sun'))
-      nodes.push(
-        hero(
-          fmt.coordinate(sun.sub.lat, sun.sub.lng),
-          'directly overhead there now — the sun is at its zenith',
-        ),
-      )
-      if (pin) {
-        nodes.push(
-          el(
-            'p',
-            'map-sheet-lead',
-            'The terminator across the globe is this point’s own edge: the line ' +
-              'where the sun is exactly on the horizon. The sun is only in frame ' +
-              'when the centre of the map is in night — in daylight it is behind ' +
-              'you, which is why the earth in front of you is lit.',
-          ),
-        )
-        nodes.push(
-          el(
-            'p',
-            'map-sheet-meta',
-            `${fmt.grouped(Math.round(sun.km))} km from the earth’s centre`,
-          ),
-        )
-        nodes.push(el('p', 'map-sheet-note', SKY_NOTE))
       }
       render(nodes, pin)
     },
