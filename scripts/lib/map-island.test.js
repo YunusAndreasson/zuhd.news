@@ -91,7 +91,11 @@ writeFileSync(
       const i = list.indexOf(fn)
       if (i >= 0) list.splice(i, 1)
     }
-    addSource(id, cfg) { this.sources[id] = { cfg, setData(d) { this.data = d } } }
+    // Writes are counted: a range press may rebuild two sources once each, and
+    // nothing else may rebuild them at all.
+    addSource(id, cfg) {
+      this.sources[id] = { cfg, writes: 0, setData(d) { this.data = d; this.writes++ } }
+    }
     // beforeId is recorded, because for two layers it is the whole design and
     // not a detail: the density wash has to go under the borders so a coastline
     // draws through it, and the prayer lines have to go under them for the same
@@ -1109,6 +1113,75 @@ test('the atmosphere is aimed, and aimed in the map frame', async () => {
   } finally {
     delete globalThis.__zuhdMaps
     env.restore()
+  }
+})
+
+test('a market’s and a strait’s name are layers of their own, and only a range press rebuilds them', async () => {
+  // Three things about the names beside the ticks, each of which fails with
+  // nothing thrown.
+  //
+  // **Text only, in a layer apart from the mark.** The tick must never lose a
+  // collision and a name must be allowed to, and a layer has one policy. If the
+  // text went back onto `market-marks` the numeral would drop the tick with it,
+  // or the tick would drag a label through the stories.
+  //
+  // **Last for the pointer.** A name is 90px of type over a city, which on this
+  // map is a dozen stories. Ranked with its mark it would take their hover.
+  //
+  // **Rebuilt by a range press and nothing else.** The figure is a move over
+  // the timeline's range, so a press has to write. A scrub frame, a tick or an
+  // idle that also wrote would be forty-one features re-laid out for nothing.
+  globalThis.__zuhdMaps = []
+  const env = setupDom()
+  try {
+    const { mount, MARKER_LAYERS, HIT_ORDER } = await import(bundlePath)
+    const teardown = mount(env.host)
+    env.pump()
+    await settle()
+    env.pump()
+
+    const map = globalThis.__zuhdMaps.at(-1)
+    const byId = Object.fromEntries(map.layers.map((l) => [l.id, l]))
+    for (const [label, mark, source] of [
+      ['market-labels', 'market-marks', 'markets'],
+      ['chokepoint-labels', 'chokepoint-marks', 'chokepoints'],
+    ]) {
+      const layer = byId[label]
+      assert.ok(layer, `${label} is in the style`)
+      assert.equal(layer.source, source, `${label} reads its mark’s own source`)
+      assert.equal(layer.layout['icon-image'], undefined, `${label} is text only`)
+      // `['zoom']` is legal only as the direct input of a top-level `step` or
+      // `interpolate`; nested, MapLibre drops the layer and every one after it.
+      assert.equal(layer.layout['text-field'][0], 'step')
+      assert.deepEqual(layer.layout['text-field'][1], ['zoom'])
+      assert.equal(layer.layout['text-allow-overlap'], false, 'a name may lose a collision')
+      assert.equal(byId[mark].layout['text-field'], undefined, `${mark} carries no text of its own`)
+      assert.equal(byId[mark].layout['icon-allow-overlap'], true, 'and its mark never does')
+      assert.ok(MARKER_LAYERS.includes(label), `${label} opens its mark’s card`)
+    }
+    assert.deepEqual(HIT_ORDER.slice(-2), ['market-labels', 'chokepoint-labels'], 'names rank last for the pointer')
+
+    // Names under the stories, ticks over them.
+    const order = map.layers.map((l) => l.id)
+    assert.ok(order.indexOf('market-labels') < order.indexOf('story-points'))
+    assert.ok(order.indexOf('market-marks') > order.indexOf('story-points'))
+
+    const writes = () => [map.sources.markets.writes, map.sources.chokepoints.writes]
+    const ranges = [...env.host.querySelectorAll('.map-range')]
+    const off = ranges.find((b) => !b.classList.contains('is-on'))
+    const [m0, c0] = writes()
+    off.click()
+    assert.deepEqual(writes(), [m0 + 1, c0 + 1], 'a range press rebuilds each source once')
+    off.click()
+    assert.deepEqual(writes(), [m0 + 1, c0 + 1], 'and a press on the range already showing writes nothing')
+    for (let i = 0; i < 25; i++) for (const f of map.handlers.idle || []) f({ type: 'idle' })
+    for (const f of map.handlers.move || []) f({ type: 'move' })
+    assert.deepEqual(writes(), [m0 + 1, c0 + 1], 'nor does idle, or a move')
+
+    teardown()
+  } finally {
+    env.restore()
+    delete globalThis.__zuhdMaps
   }
 })
 

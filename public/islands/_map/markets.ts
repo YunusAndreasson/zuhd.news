@@ -14,6 +14,7 @@
 // below is a third reader of the same predicates, and inline that third drift
 // was only a matter of time.
 
+import { CHOKEPOINT_DISRUPTED } from '@shared/chokepoint-thresholds'
 import { trailingMean } from '@shared/chart/smooth'
 import { el } from '../_dom'
 import { sparkPct, sparkline } from '../_spark'
@@ -34,18 +35,16 @@ import type { ExpressionSpecification, SymbolLayerSpecification } from 'maplibre
 export const FLAT_PCT = 0.15
 
 /**
- * Above this the mark prints its number.
+ * The move, as a day's worth, above which a mark is named where space is
+ * scarcest: under `LABEL_ZOOM`, a phone's view of the whole globe.
  *
- * Stepped by zoom rather than fixed, the same way the country labels arrive as
- * the camera earns them: the world view is where space is scarce, and it is the
- * only view most readers ever see. 1% put thirteen numerals on the world map and
+ * It was the bar for printing a bare numeral beside a tick, when that was all
+ * a mark could say for itself. 1% put thirteen numerals on the world map and
  * eight of them landed on Europe, where they fought the story clusters and each
- * other; 1.5% names the day's actual movers and lets the rest be ticks. Closer
- * in the bar halves, because the space is there.
+ * other; 1.5% names the range's actual movers and lets the rest be ticks. From
+ * `LABEL_ZOOM` every mark asks for its name and the collision decides.
  */
 export const NAME_PCT = 1.5
-export const NAME_PCT_CLOSE = 0.75
-export const NAME_ZOOM = 3.5
 
 /** How many movers the strip names from each end. */
 export const MOVERS_PER_SIDE = 2
@@ -112,6 +111,9 @@ export const marketCollection = (markets: MapExchange[], days: number, now = Dat
       properties: {
         id: m.id,
         name: m.name,
+        // What the label calls it. As the payload spells it, which is already
+        // through `displayLocation` (Yafa).
+        city: m.city,
         change,
         abs,
         // The same move as a day's worth, which is what `NAME_PCT` is stated
@@ -142,6 +144,24 @@ const TONE: ExpressionSpecification = [
   ['<', ['get', 'dir'], 0],
   OVERLAY_COLOUR.marketDown,
   OVERLAY_COLOUR.marketUp,
+]
+
+/**
+ * Where every mark asks for its name. Under it (a phone's opening view of the
+ * whole globe) only the range's movers do.
+ */
+export const LABEL_ZOOM = 1.1
+
+/**
+ * `Istanbul 0.9%`: the city in the map's label ink, the move in bold in the
+ * tick's tone. A mark with no reading for the range prints its city alone.
+ */
+const LABEL: ExpressionSpecification = [
+  'format',
+  ['get', 'city'],
+  { 'text-color': MAP_COLOURS.label },
+  ['case', ['==', ['get', 'label'], ''], '', ['concat', ' ', ['get', 'label']]],
+  { 'text-font': ['literal', ['Noto Sans Bold']], 'text-color': TONE },
 ]
 
 /**
@@ -184,41 +204,66 @@ export const marketLayout = (): NonNullable<SymbolLayerSpecification['layout']> 
   // suppressing the basemap's own country and place labels.
   'icon-allow-overlap': true,
   'icon-ignore-placement': true,
-  // The threshold is a `case` inside `text-field`, never a layer filter. A
-  // filter would take the tick with it; an empty string suppresses only the
-  // number and leaves the icon placed.
-  //
+  // No text. The tick never drops; what names it and may lose a collision is
+  // `market-labels`, a layer of its own (`marketLabelLayout`).
+})
+
+/**
+ * A mark's name and its move, as type beside the tick.
+ *
+ * `Istanbul 0.9%`: the city, then the range's move, unsigned. The tick beside
+ * it is the sign and the figure takes the tick's tone, so direction is said
+ * twice without a character for it — which is as well, because the map's font
+ * ships no minus sign and no arrow (ranges 0–767 and 8192–8447 only).
+ *
+ * The city, not the index and not the country. `BIST 100` is a code a reader
+ * has to already know, and the basemap prints the country's name beside the
+ * mark already. The city is plain, is in the payload, and takes the very slot
+ * the basemap would print it in (`place-labels`, anchored below its dot), so
+ * the basemap's copy loses the collision instead of printing twice.
+ *
+ * A layer of its own rather than text on `market-marks`, for three reasons.
+ * The tick must never drop and a label must be allowed to, and one layer has
+ * one collision policy. A label 90px wide over London would take the hover
+ * from every story under it, so labels rank last for the pointer while ticks
+ * keep their place above the stories. And it draws under the stories, so a
+ * place's count claims its space first.
+ *
+ * Eight European exchanges sit within a few degrees. At the opening zoom three
+ * or four of their names fit and every tick still draws; all are named by a
+ * little zoom. No clusters and no leader lines: the largest move claims its
+ * space first, and the rest are a hover away.
+ */
+export const marketLabelLayout = (): NonNullable<SymbolLayerSpecification['layout']> => ({
   // `step` on the outside and the `case` within, not the other way round:
   // MapLibre allows `['zoom']` only as the direct input of a top-level `step`
-  // or `interpolate`, so putting the zoom-varying threshold inside the `case`
-  // fails validation and the whole layer is dropped — no marks, no numerals,
-  // and every later call against the layer id erroring in turn.
-  'text-field': [
-    'step',
-    ['zoom'],
-    ['case', ['>=', ['get', 'rel'], NAME_PCT], ['get', 'label'], ''],
-    NAME_ZOOM,
-    ['case', ['>=', ['get', 'rel'], NAME_PCT_CLOSE], ['get', 'label'], ''],
-  ],
-  'text-font': ['Noto Sans Bold'],
+  // or `interpolate`, so a zoom-varying threshold inside the `case` fails
+  // validation and the whole layer is dropped.
+  //
+  // On a phone's world the globe is 390px and thirty names are thirty
+  // collisions, so there only the movers that used to earn a numeral are
+  // named. From `LABEL_ZOOM` every mark asks.
+  'text-field': ['step', ['zoom'], ['case', ['>=', ['get', 'rel'], NAME_PCT], LABEL, ''], LABEL_ZOOM, LABEL],
+  'text-font': ['Noto Sans Regular'],
   'text-size': ['interpolate', ['linear'], ['zoom'], 1, 10, 5, 12.5],
-  // Left and right first, so the number reads as one token beside its tick
-  // rather than stacked under it. Eight European exchanges sit within a few
-  // degrees; letting the label hop is what turns dropped labels into placed
-  // ones.
-  'text-variable-anchor': ['left', 'right', 'top', 'bottom'],
+  // Below first: that is where the basemap prints a city's name, and a label
+  // that takes the slot is a label the basemap's copy yields to. Then the
+  // sides, which is what lets neighbours in Europe both place.
+  'text-variable-anchor': ['top', 'left', 'right', 'bottom'],
   'text-radial-offset': 0.85,
   'text-justify': 'auto',
-  // Generous, because the things this has to clear are dense: a cluster count,
-  // a country name, another exchange three degrees away.
-  'text-padding': 6,
-  // The inverse of the cluster count's policy, and deliberately so: a cluster
-  // with no numeral is an empty disc that says nothing, whereas a market tick
-  // with no numeral is still a complete mark. So the tick never drops and the
-  // number does, biggest mover first.
+  'text-padding': 4,
   'text-allow-overlap': false,
-  'text-optional': true,
+  'text-ignore-placement': false,
+  // Lower places first: the largest move over the range gets its name.
   'symbol-sort-key': ['-', 0, ['get', 'abs']],
+})
+
+export const marketLabelPaint = (): NonNullable<SymbolLayerSpecification['paint']> => ({
+  // The sections carry their own colour; this is the halo they share.
+  'text-color': MAP_COLOURS.label,
+  'text-halo-color': MAP_COLOURS.labelHalo,
+  'text-halo-width': 1.3,
 })
 
 export const marketPaint = (): NonNullable<SymbolLayerSpecification['paint']> => ({
@@ -229,9 +274,6 @@ export const marketPaint = (): NonNullable<SymbolLayerSpecification['paint']> =>
   'icon-opacity': ['case', ['==', ['get', 'trading'], 1], 0.95, 0.6],
   'icon-halo-color': MAP_COLOURS.labelHalo,
   'icon-halo-width': 1.2,
-  'text-color': TONE,
-  'text-halo-color': MAP_COLOURS.labelHalo,
-  'text-halo-width': 1.1,
 })
 
 // --- The tally -------------------------------------------------------------
@@ -1767,6 +1809,124 @@ export const readingOf = (input: SparkInput, unit?: string): SparkReading | null
   return { pct, figure: unit === '%' && ends ? ribbonPoints(ends[1] - ends[0]) : ribbonPct(pct) }
 }
 
+/** A strait's week-mean series as a row member. */
+const straitMember = (c: MapChokepoint): SparkMember | null => {
+  const week = straitSeries(c)
+  return week
+    ? { values: week.values, periods: week.periods, asOf: week.asOf, pct: seriesChangePct(week.values) ?? 0 }
+    : null
+}
+
+/**
+ * What a strait is called on the map: the name, cut to what tells it apart.
+ *
+ * `Strait of Hormuz` is `Hormuz` beside a mark that is already a strait. Two
+ * keep their noun because the bare word is somewhere else: Taiwan is an island
+ * and Panama a country.
+ */
+const STRAIT_SHORT: Record<string, string> = {
+  hormuz: 'Hormuz',
+  'bab-el-mandeb': 'Bab el-Mandeb',
+  suez: 'Suez',
+  malacca: 'Malacca',
+  taiwan: 'Taiwan Strait',
+  panama: 'Panama Canal',
+  bosporus: 'Bosporus',
+  gibraltar: 'Gibraltar',
+  dover: 'Dover',
+  'cape-of-good-hope': 'Cape of Good Hope',
+  kerch: 'Kerch',
+}
+
+/**
+ * The strait marks, and the label each carries.
+ *
+ * Two readings, kept apart on purpose. The **glyph** is the week against the
+ * 90-day average (`delta7vs90`): a condition, whatever range the timeline is
+ * set to. A blockaded Hormuz that ticked up over three days is still a pinched
+ * strait, and a glyph that followed the range would draw it at rest. The
+ * **label** is the range's move of the week's mean, the figure the strait's
+ * rail row prints, signed in characters because no glyph here says which way
+ * the range went. A pinch beside a `+` is a strait below normal and recovering.
+ *
+ * `+` and an en dash, not `ribbonPct`'s minus sign: the map's font ships
+ * ranges 0–767 and 8192–8447, and U+2212 is in neither.
+ */
+export const straitCollection = (points: MapChokepoint[], days: number, now = Date.now()) => {
+  const edge = lastTradedDay(points.map((c) => ({ periods: c.series?.periods, asOf: c.asOf })))
+  return {
+    type: 'FeatureCollection' as const,
+    features: points.map((c) => {
+      const delta = c.delta7vs90?.[c.primaryField] ?? 0
+      const member = straitMember(c)
+      const input = member ? sparkInput([member], days, now, edge) : null
+      const reading = input ? readingOf(input) : null
+      return {
+        type: 'Feature' as const,
+        properties: {
+          id: c.id,
+          name: c.name,
+          short: STRAIT_SHORT[c.id] ?? c.name,
+          move: reading ? reading.figure.replace('−', '–') : '',
+          delta,
+          mag: Math.min(1, Math.abs(delta) / 0.6),
+          disrupted: Math.abs(delta) >= CHOKEPOINT_DISRUPTED ? 1 : 0,
+          direction: delta < 0 ? -1 : 1,
+        },
+        geometry: { type: 'Point' as const, coordinates: [c.lng, c.lat] },
+      }
+    }),
+  }
+}
+
+/** Where a quiet strait is named. A pinched or surging one is named from the start. */
+export const STRAIT_LABEL_ZOOM = 2.6
+
+const STRAIT_LABEL: ExpressionSpecification = [
+  'format',
+  ['get', 'short'],
+  {},
+  ['case', ['==', ['get', 'move'], ''], '', ['concat', ' ', ['get', 'move']]],
+  { 'text-font': ['literal', ['Noto Sans Bold']] },
+]
+
+/**
+ * A strait's name and its move over the range. Text only, like
+ * `marketLabelLayout`, and for the same reasons.
+ *
+ * Eleven straits, most of them doing nothing on a given day, and a name on
+ * each at the opening view would be eleven labels saying so. A strait whose
+ * traffic is off its normal (`disrupted`) is named from the start; the rest
+ * arrive with a little zoom.
+ */
+export const straitLabelLayout = (): NonNullable<SymbolLayerSpecification['layout']> => ({
+  'text-field': [
+    'step',
+    ['zoom'],
+    ['case', ['==', ['get', 'disrupted'], 1], STRAIT_LABEL, ''],
+    STRAIT_LABEL_ZOOM,
+    STRAIT_LABEL,
+  ],
+  'text-font': ['Noto Sans Regular'],
+  'text-size': ['interpolate', ['linear'], ['zoom'], 1, 10, 5, 12.5],
+  'text-variable-anchor': ['top', 'left', 'right', 'bottom'],
+  'text-radial-offset': 0.9,
+  'text-justify': 'auto',
+  'text-padding': 4,
+  'text-allow-overlap': false,
+  'text-ignore-placement': false,
+  // The strait furthest off its normal is named first.
+  'symbol-sort-key': ['-', 0, ['get', 'mag']],
+})
+
+export const straitLabelPaint = (): NonNullable<SymbolLayerSpecification['paint']> => ({
+  // Label ink for both sections: the move is a figure about a place, and the
+  // gold and teal on this map already mean pinch and surge.
+  'text-color': MAP_COLOURS.label,
+  'text-halo-color': MAP_COLOURS.labelHalo,
+  'text-halo-width': 1.3,
+})
+
 /** One exchange as a row member, or `null` when it publishes no series. */
 export const exchangeMember = (m: MapExchange): SparkMember | null =>
   Array.isArray(m.series?.values)
@@ -2797,9 +2957,8 @@ export function createMarketStrip(opts: MarketStripOptions): MarketStrip {
       )
       .slice(0, STRAITS_ROWS)
       .flatMap((c) => {
-        const week = straitSeries(c)
+        const week = straitMember(c)
         if (!week) return []
-        const vals = week.values
         return [{
           group: 'straits',
           id: c.id,
@@ -2807,10 +2966,10 @@ export function createMarketStrip(opts: MarketStripOptions): MarketStrip {
           name: c.name,
           flag: '',
           note: c.blurb,
-          pct: seriesChangePct(vals) ?? 0,
-          level: vals[vals.length - 1] ?? 0,
-          values: vals,
-          periods: week.periods,
+          pct: week.pct,
+          level: week.values[week.values.length - 1] ?? 0,
+          values: week.values,
+          periods: week.periods ?? [],
           asOf: c.asOf,
           ...(edge == null ? {} : { edge }),
         }]

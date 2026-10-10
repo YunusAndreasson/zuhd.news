@@ -132,7 +132,15 @@ Camera, MapLibre and cards are `map.md`; the rails are `map-rail.md`.
 - A market mark's direction, size and numeral are `exchangeReading` over the
   timeline's range, never `changePct` read direct. Size saturates at
   `moveCap(days)`; no reading is a flat neutral tick with no numeral.
-- Only large moves print a numeral, with its `%`, by a `case` in `text-field`.
+- A market and a strait are named by a text-only layer of their own
+  (`market-labels`: city and move; `chokepoint-labels`: short name and move).
+  A name may lose a collision; its mark never does. The names draw under the
+  stories and rank last in `HIT_ORDER`, or one takes a dozen stories' hover.
+- A label's characters stay inside the shipped font ranges (0–767 and
+  8192–8447): no U+2212, no arrows. A market's figure is unsigned (the tick
+  is the sign); a strait's is signed with `+` and an en dash.
+- A strait's glyph is `delta7vs90` whatever the range (a condition); its
+  label is the range's move of the week's mean, as its rail row prints.
 - Markets and thermal draw above stories: a single mark, covered, is absent.
 - Which exchanges is editorial (`market-metadata.js`). One with no free
   series stays, `available: false` with a reason. `days` are per exchange.

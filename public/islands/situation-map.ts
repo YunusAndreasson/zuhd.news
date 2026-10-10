@@ -61,9 +61,14 @@ import { glyphImages, glyphSvg, type GlyphId } from './_map/glyphs'
 import {
   createMarketStrip,
   marketCollection,
+  marketLabelLayout,
+  marketLabelPaint,
   marketLayout,
   marketPaint,
   ribbonPct,
+  straitCollection,
+  straitLabelLayout,
+  straitLabelPaint,
   type MarketStrip,
   type TrendIndicator,
   type TrendEvent,
@@ -99,7 +104,6 @@ import {
 } from './_map/types'
 import { detailKey } from '@shared/gdacs'
 // Shared with the app, which used to call a strait disrupted at 10%.
-import { CHOKEPOINT_DISRUPTED } from '@shared/chokepoint-thresholds'
 
 /** Where the 1:10m coastline replaces 1:50m — see the zoomend handler. */
 const ULTRA_ZOOM = 5.5
@@ -147,7 +151,9 @@ const OVERLAY_LAYERS = [
   'gdacs-marks',
   'thermal-marks',
   'chokepoint-marks',
+  'chokepoint-labels',
   'market-marks',
+  'market-labels',
   'conflict-marks',
   'famine-marks',
   'genocide-marks',
@@ -204,6 +210,12 @@ export const HIT_ORDER = [
   'gdacs-marks',
   'chokepoint-marks',
   'conflict-marks',
+  // The names beside a tick and a strait, last. A label is 90px of type where
+  // its mark is 16, and over London it lies across a dozen stories: it opens
+  // its mark's card where nothing else is under the pointer, and never takes
+  // the pointer from anything that is.
+  'market-labels',
+  'chokepoint-labels',
 ]
 
 /**
@@ -2281,25 +2293,6 @@ export function mount(
   // flattening to a single "disrupted" bit at 15%. Keeping the magnitude lets
   // a strait that is 60% down read as more disrupted than one that is 20% down,
   // and the sign distinguishes a blockage from a surge.
-  const chokeCollection = () => ({
-    type: 'FeatureCollection' as const,
-    features: chokepoints.map((c) => {
-      const delta = c.delta7vs90?.[c.primaryField] ?? 0
-      return {
-        type: 'Feature' as const,
-        properties: {
-          id: c.id,
-          name: c.name,
-          delta,
-          mag: Math.min(1, Math.abs(delta) / 0.6),
-          disrupted: Math.abs(delta) >= CHOKEPOINT_DISRUPTED ? 1 : 0,
-          direction: delta < 0 ? -1 : 1,
-        },
-        geometry: { type: 'Point' as const, coordinates: [c.lng, c.lat] },
-      }
-    }),
-  })
-
   // Exchanges carry no event time either — a close is a statement about the
   // last session, not something the scrubber can wind back — so like the
   // straits they sit out the time filter.
@@ -2320,8 +2313,11 @@ export function mount(
       map.setLayoutProperty(id, 'visibility', on ? 'visible' : 'none')
     set('gdacs-marks', layersOn.gdacs)
     set('thermal-marks', layersOn.thermal)
+    // A mark and its name together, or a name is left floating on the sea.
     set('chokepoint-marks', layersOn.straits)
+    set('chokepoint-labels', layersOn.straits)
     set('market-marks', layersOn.markets)
+    set('market-labels', layersOn.markets)
     set('conflict-marks', layersOn.conflict)
     set('famine-marks', layersOn.famine)
     // All three parts together. The name is drawn unconditionally beside the
@@ -2415,22 +2411,25 @@ export function mount(
   })
 
   /**
-   * The range the market marks were last built for.
+   * The range the market and strait marks were last built for.
    *
-   * A mark's direction, size and numeral are its exchange's move over the range
-   * the timeline is set to, so a range press has to rebuild them. Remembered so
-   * a press on the range already showing writes nothing.
+   * A market's tick and the figure on its label, and the figure on a strait's
+   * label, are moves over the range the timeline is set to, so a range press
+   * has to rebuild them. Remembered so a press on the range already showing
+   * writes nothing.
    */
   let marksDays = -1
 
   /**
-   * Rebuild the market marks for the range, on a range press and on nothing
-   * else: not on a scrub, not on a tick, not on idle. Thirty features.
+   * Rebuild the market and strait marks for the range, on a range press and on
+   * nothing else: not on a scrub, not on a tick, not on idle. Forty-one
+   * features.
    */
   const applyMarketRange = () => {
     const days = rangeHours / 24
     if (!layersReady || days === marksDays) return
     marksDays = days
+    src('chokepoints')?.setData(straitCollection(chokepoints, days))
     src('markets')?.setData(marketCollection(markets, days))
   }
 
@@ -2439,8 +2438,8 @@ export function mount(
     if (!layersReady) return
     src('gdacs')?.setData(gdacsCollection())
     src('thermal')?.setData(thermalCollection())
-    src('chokepoints')?.setData(chokeCollection())
     marksDays = rangeHours / 24
+    src('chokepoints')?.setData(straitCollection(chokepoints, marksDays))
     src('markets')?.setData(marketCollection(markets, marksDays))
     src('conflict')?.setData(conflictCollection())
     src('famine')?.setData(famineCollection())
@@ -3189,6 +3188,32 @@ export function mount(
         'icon-halo-color': MAP_COLOURS.labelHalo,
         'icon-halo-width': 1,
       },
+    })
+
+    /**
+     * The names: a strait's, and the city of each exchange with its move.
+     *
+     * Text only, on the sources the marks are drawn from, and here in the stack
+     * for a reason: under the stories. A place's count is the more urgent fact
+     * and claims its space first, and a name that has to sit among beacons sits
+     * under them. The ticks themselves stay above the stories, where they were.
+     * Each layer is switched with its mark (`applyLayerVisibility`) and ranks
+     * last for the pointer (`HIT_ORDER`). The reasoning for a second layer at
+     * all is on `marketLabelLayout`.
+     */
+    map.addLayer({
+      id: 'chokepoint-labels',
+      type: 'symbol',
+      source: 'chokepoints',
+      layout: straitLabelLayout(),
+      paint: straitLabelPaint(),
+    })
+    map.addLayer({
+      id: 'market-labels',
+      type: 'symbol',
+      source: 'markets',
+      layout: marketLabelLayout(),
+      paint: marketLabelPaint(),
     })
 
     /**

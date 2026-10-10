@@ -31,7 +31,7 @@ const { sparkline, sparkPct } = spark
 const {
   sparkInput, oddsEntries, attentionEntries, eventEntries, eventCountdown, ribbonPoints,
   createMarketStrip, BLOCK_ROWS, dockedPanelTop, lastTradedDay, straitSeries, readingOf,
-  exchangeReading, marketCollection, marketTally, marketDirection, moveCap,
+  exchangeReading, marketCollection, marketTally, marketDirection, moveCap, straitCollection,
 } = markets
 
 /** `["Jul 1", "Jul 2", …]` for `n` consecutive days ending on `asOf`. */
@@ -968,6 +968,63 @@ test('the marks, the counts and the reading agree at every range', () => {
   // A 3% day is as large as a mark gets; so is 16% over a month, not 3%.
   assert.equal(moveCap(1), 3)
   assert.ok(Math.abs(moveCap(30) - 3 * Math.sqrt(30)) < 1e-12)
+})
+
+/**
+ * The map's own font is four files a face: code points 0–767 and 8192–8447.
+ * A character outside them is not a missing glyph, it is a request for a range
+ * file that does not exist, and the label it is in never draws. `ribbonPct`
+ * prints a minus sign (U+2212), which is outside both, so a strait's move is
+ * signed with a plus and an en dash and a market's is not signed at all.
+ */
+test('every character a map label prints is in a font range the site ships', () => {
+  const shipped = (text) => [...text].every((ch) => {
+    const cp = ch.codePointAt(0)
+    return cp <= 767 || (cp >= 8192 && cp <= 8447)
+  })
+  const now = Date.parse('2026-10-10T12:00:00Z')
+  const asOf = '2026-10-09'
+  const fall = Array.from({ length: 40 }, (_, i) => 200 - i * 2)
+  const rise = Array.from({ length: 40 }, (_, i) => 100 + i)
+  const markets = [
+    exchangeOf('fall', fall, asOf, { city: 'São Paulo' }),
+    exchangeOf('rise', rise, asOf, { city: 'Yafa' }),
+  ]
+  const strait = (id, name, total) => ({
+    id,
+    name,
+    lat: 0,
+    lng: 0,
+    primaryField: 'n_total',
+    delta7vs90: { n_total: -0.4 },
+    series: { periods: dailyPeriods(asOf, total.length), total },
+    asOf,
+  })
+  const straits = [
+    strait('hormuz', 'Strait of Hormuz', fall),
+    strait('suez', 'Suez Canal', rise),
+    strait('elsewhere', 'Some Other Strait', rise),
+  ]
+  for (const days of [1, 3, 7, 30]) {
+    for (const f of marketCollection(markets, days, now).features) {
+      assert.ok(shipped(`${f.properties.city} ${f.properties.label}`), `market label: ${f.properties.city} ${f.properties.label}`)
+      assert.doesNotMatch(f.properties.label, /^[+−–-]/, 'a market’s figure is unsigned: its tick is the sign')
+    }
+    const props = straitCollection(straits, days, now).features.map((f) => f.properties)
+    for (const p of props) {
+      assert.ok(shipped(`${p.short} ${p.move}`), `strait label: ${p.short} ${p.move}`)
+    }
+    // No glyph on a strait says which way the range went, so the label does.
+    assert.match(props[0].move, /^–\d/, `a falling strait is signed with an en dash: ${props[0].move}`)
+    assert.match(props[1].move, /^\+\d/, `a rising one with a plus: ${props[1].move}`)
+  }
+  const [hormuz, suez, other] = straitCollection(straits, 7, now).features.map((f) => f.properties)
+  assert.equal(hormuz.short, 'Hormuz', 'the name, cut to what tells it apart')
+  assert.equal(suez.short, 'Suez')
+  assert.equal(other.short, 'Some Other Strait', 'a strait the table does not know keeps its name')
+  // The glyph is still the week against the 90-day average, whatever the range.
+  assert.equal(hormuz.disrupted, 1)
+  assert.equal(hormuz.direction, -1)
 })
 
 /**
