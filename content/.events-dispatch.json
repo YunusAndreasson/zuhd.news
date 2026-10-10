@@ -2,23 +2,26 @@
   "items": {
     "uk-cpi-2026-10": {
       "standingFingerprint": "d2de00bd6534466c",
-      "recentFingerprint": "021ca0fed5334291",
-      "standing": "The Office for National Statistics' monthly measure of how fast UK consumer prices are rising. The Bank of England targets 2% on it, and the September figure is the one used to uprate many benefits the following April.",
-      "recent": "Economists have warned of 5% UK inflation if a US diesel ban goes ahead, which puts fuel at the centre of this release. The September figure shows where prices stood before any such shock, and it is the base a fuel-driven rise would build on.",
+      "recentFingerprint": "5744078595e8f0eb",
+      "prompt": "cc42a1f1",
+      "standing": "The Office for National Statistics' monthly measure of how fast UK consumer prices are rising. The Bank of England targets it at 2%, so it moves rate expectations and the pound; the September figure also sets benefit uprating.",
+      "recent": "Economists have warned that a US diesel ban would lift UK inflation to 5%, so this reading sets the baseline that energy risk is measured against. September's figure is also the one the pensions triple lock is tied to, and Burnham's pledge on the lock has already drawn criticism.",
       "citations": [],
-      "generatedAt": "2026-10-09T05:26:16.355Z"
+      "generatedAt": "2026-10-10T05:24:47.857Z"
     },
     "fomc-2026-10": {
       "standingFingerprint": "7461ec820c9cf170",
-      "recentFingerprint": "0fffcc740149110d",
-      "standing": "The Federal Open Market Committee, the Federal Reserve's rate-setting body, meets eight times a year to set the target range for overnight lending between banks. Its decision moves the cost of borrowing in dollars worldwide.",
-      "recent": "Most officials have said they expect another hike by year-end, but the committee is split, and the September jobs count came in at 29,000 against 90,000 expected. Warsh has put price stability first after 5.5 years of inflation above target; this meeting settles whether a stalled labour market changes that order.",
+      "recentFingerprint": "b9b39c1de914554f",
+      "prompt": "cc42a1f1",
+      "standing": "The Federal Reserve's rate-setting committee, which meets eight times a year to set the overnight rate US banks lend at. Its decisions price dollar borrowing worldwide, from American mortgages to emerging-market debt.",
+      "recent": "Most officials expect another hike by year-end, but the Labor Department counted 29,000 new jobs against 90,000 expected, and the committee is split over whether stalled hiring outweighs inflation that has topped its target for 5.5 years. It meets as Trump's panel hears Lisa Cook, a governor whose seat carries one of those votes.",
       "citations": [
         "2026-10-07-fed-sees-higher-rates-ahead-even-as-borrowing-costs-climb",
         "2026-10-02-us-jobs-29000-september-fed-seen-skipping-october-rate-hike",
-        "2026-10-07-fed-s-warsh-earns-imf-praise-for-focusing-on-price-stability"
+        "2026-10-07-fed-s-warsh-earns-imf-praise-for-focusing-on-price-stability",
+        "2026-10-09-trump-launches-probe-into-federal-reserve-governor-lisa-cook"
       ],
-      "generatedAt": "2026-10-09T05:26:16.960Z"
+      "generatedAt": "2026-10-10T05:24:48.752Z"
     },
     "ecb-2026-10": {
       "standingFingerprint": "644eb225dab9953a",
@@ -35,44 +38,46 @@
     },
     "boj-2026-10": {
       "standingFingerprint": "b08124a86f654bb7",
-      "recentFingerprint": "4667233668bdf8cc",
-      "standing": "The Bank of Japan's Policy Board, which meets eight times a year to set Japan's short-term interest rate. Its decisions move the yen, the yield on Japan's vast government debt and the cheap yen loans that fund investments abroad.",
-      "recent": "Three sources said the bank is weighing a declaration that underlying inflation has reached its 2% goal, the test it has long set for leaving cheap money behind. Japanese yields jumped as a global bond sell-off deepened. This meeting is where the board says whether the goal is met, and what follows from saying so.",
+      "recentFingerprint": "bf4280da22a760ab",
+      "prompt": "cc42a1f1",
+      "standing": "The Bank of Japan's policy board, which meets eight times a year to set the country's short-term interest rate. Its decisions move the yen and the yield on Japanese government debt, and reach borrowers far beyond Japan.",
+      "recent": "Three sources say the board is weighing a declaration that underlying inflation has reached its 2% goal. Japanese yields have already jumped in a global bond sell-off, and Takaichi is arguing that a growth push will support trust in the yen. The meeting settles whether the bank says so in its own name.",
       "citations": [
         "2026-10-06-boj-may-signal-underlying-inflation-has-hit-2-goal-sources-s"
       ],
-      "generatedAt": "2026-10-09T05:26:34.043Z"
+      "generatedAt": "2026-10-10T05:24:58.897Z"
     },
     "boe-2026-11": {
       "standingFingerprint": "498a0992d302cf13",
-      "recentFingerprint": "158958c8db2e71e2",
-      "standing": "The Bank of England's nine-member Monetary Policy Committee, which meets eight times a year to set Bank Rate. Its vote moves what British households pay on mortgages and what the government pays to borrow, and sterling moves with it.",
-      "recent": "The committee decides ahead of the December hikes that markets are betting on at both the Federal Reserve and the ECB, after euro-zone inflation hit a three-year high and most Fed officials said they expect another increase by year-end. Its vote settles whether the Bank of England moves before that turn or waits for it.",
-      "citations": [
-        "2026-10-07-fed-sees-higher-rates-ahead-even-as-borrowing-costs-climb",
-        "2026-10-08-gold-edges-higher-after-hitting-a-two-month-low"
-      ],
-      "generatedAt": "2026-10-09T05:26:36.718Z"
+      "recentFingerprint": "d391fa6fe33079e7",
+      "prompt": "cc42a1f1",
+      "standing": "The Bank of England's Monetary Policy Committee, nine members who vote eight times a year on Bank Rate. Their decision sets the price of UK mortgages and business loans, and sterling and gilt yields move with it.",
+      "recent": "The Bank of England's committee meets to vote on its benchmark rate, and the decision settles what borrowers pay and savers earn until it next meets.",
+      "citations": [],
+      "generatedAt": "2026-10-10T05:24:57.334Z"
     },
     "fomc-2026-12": {
       "standingFingerprint": "7461ec820c9cf170",
-      "recentFingerprint": "aac5e2827664f7dd",
-      "standing": "The Federal Open Market Committee, the Federal Reserve's rate-setting body, meets eight times a year to set the target for overnight lending between US banks. Its decisions set the price of dollar borrowing worldwide.",
-      "recent": "Most Federal Reserve officials expect another hike by year-end, and this is the last meeting before it. The committee is split: inflation has topped its target for 5.5 years, yet September produced 29,000 jobs against 90,000 expected. Warsh has put price stability first; the decision settles whether a stalled labour market outweighs that.",
+      "recentFingerprint": "42dbc0d159554b7b",
+      "prompt": "cc42a1f1",
+      "standing": "The Federal Reserve's rate-setting committee, which meets eight times a year to set the overnight rate US banks lend at. Its decisions price dollar borrowing worldwide, from American mortgages to emerging-market debt.",
+      "recent": "Most Federal Reserve officials expect another hike by year-end, and this is the last meeting where that can happen. The committee is split: inflation has topped its target for 5.5 years, yet the latest jobs count was 29,000 against 90,000 expected. Trump's panel on removing Lisa Cook puts one of its votes in question.",
       "citations": [
         "2026-10-07-fed-sees-higher-rates-ahead-even-as-borrowing-costs-climb",
         "2026-10-02-us-jobs-29000-september-fed-seen-skipping-october-rate-hike",
-        "2026-10-07-fed-s-warsh-earns-imf-praise-for-focusing-on-price-stability"
+        "2026-10-07-fed-s-warsh-earns-imf-praise-for-focusing-on-price-stability",
+        "2026-10-09-trump-launches-probe-into-federal-reserve-governor-lisa-cook"
       ],
-      "generatedAt": "2026-10-09T05:26:50.336Z"
+      "generatedAt": "2026-10-10T05:25:04.069Z"
     },
     "g20-2026-miami": {
       "standingFingerprint": "041eb1ecc79e970b",
-      "recentFingerprint": "e7656d25c577258a",
-      "standing": "The yearly meeting of leaders from the world's largest economies, together about 85% of global output. The rotating presidency sets the agenda, and its communiqués steer trade and debt talks without binding anyone.",
-      "recent": "The US holds the presidency after a Trump-Xi summit that produced an AI communication channel between China and the US but no breakthrough agreement, and Xi skipped the UN afterward. A US-India trade deal is not imminent, Greer says. Both are unfinished business among G20 members when the leaders meet.",
+      "recentFingerprint": "0d5e40c38ad80402",
+      "prompt": "cc42a1f1",
+      "standing": "The annual meeting of leaders of the world's largest economies, hosted by the member holding the rotating presidency. Its members produce about 85% of global output, and its communiqué sets shared lines on trade and debt.",
+      "recent": "The US hosts after a Trump-Xi summit that ended with China and the US agreeing to open an AI communication channel, and with a US-India trade deal that Greer says is not imminent. The leaders meeting puts both relationships in one room, with India's trade terms with the host still open.",
       "citations": [],
-      "generatedAt": "2026-10-09T05:26:50.688Z"
+      "generatedAt": "2026-10-10T05:25:09.975Z"
     },
     "ecb-2026-12": {
       "standingFingerprint": "644eb225dab9953a",
@@ -89,35 +94,35 @@
     },
     "boe-2026-12": {
       "standingFingerprint": "498a0992d302cf13",
-      "recentFingerprint": "c296888b8e043f0d",
-      "standing": "The Bank of England's nine-member Monetary Policy Committee, which meets eight times a year to set Bank Rate. Its vote feeds through to UK mortgage and savings rates and business loans, and sterling and gilt yields move with it.",
-      "recent": "The committee decides in a month when most Federal Reserve officials expect another rate hike by year-end and major banks are betting on a December ECB rise. The meeting settles whether the Bank of England's own borrowing costs move with them or part ways.",
-      "citations": [
-        "2026-10-07-fed-sees-higher-rates-ahead-even-as-borrowing-costs-climb"
-      ],
-      "generatedAt": "2026-10-09T05:27:04.966Z"
+      "recentFingerprint": "561452ce6951c8f0",
+      "prompt": "cc42a1f1",
+      "standing": "The Bank of England's Monetary Policy Committee, nine members who vote eight times a year on Bank Rate. Their decision sets the price of UK mortgages and business loans, and sterling and gilt yields move with it.",
+      "recent": "The Bank of England's committee meets to set its policy rate, and the decision settles what households and firms on floating-rate loans pay, and what savers earn, going into the new year.",
+      "citations": [],
+      "generatedAt": "2026-10-10T05:25:09.591Z"
     },
     "boj-2026-12": {
       "standingFingerprint": "b08124a86f654bb7",
-      "recentFingerprint": "1fd39b4fee3c9837",
-      "standing": "Japan's central bank, whose policy board meets eight times a year to set the short-term interest rate. Its decisions move the yen, the cost of the rich world's heaviest public debt, and the yen borrowing that funds trades worldwide.",
-      "recent": "Three sources say the Bank of Japan is weighing a declaration that underlying inflation has reached its 2% goal, the test it has set for further rate rises. Japanese yields jumped as a global bond sell-off deepened. What this meeting settles is whether reaching the goal changes the rate itself.",
+      "recentFingerprint": "cde3c4e727eb0cbb",
+      "prompt": "cc42a1f1",
+      "standing": "The Bank of Japan's policy board, which meets eight times a year to set the country's short-term interest rate. Its decisions move the yen and the yield on Japanese government debt, and reach borrowers far beyond Japan.",
+      "recent": "Three sources say the Bank is weighing a declaration that underlying inflation has reached its 2% goal. Japanese yields jumped in a global bond sell-off, and Takaichi has vowed to watch the yen and inflation carefully while pinning trust in the currency on her growth push. This meeting settles whether the declaration becomes a decision.",
       "citations": [
         "2026-10-06-boj-may-signal-underlying-inflation-has-hit-2-goal-sources-s"
       ],
-      "generatedAt": "2026-10-09T05:27:06.697Z"
+      "generatedAt": "2026-10-10T05:25:17.753Z"
     },
     "fred-us-cpi-2026-10-14": {
       "standingFingerprint": "64727509ea55676d",
-      "recentFingerprint": "ec94d4af7d36a73e",
-      "standing": "The Bureau of Labor Statistics' monthly measure of what US households pay for a fixed basket of goods and services. It is the inflation reading that Fed rate expectations, Treasury yields and Social Security adjustments move on.",
-      "recent": "Federal Reserve officials are split: most expect another rate hike by year-end, yet hiring stalled at 29,000 jobs in September. This release is the price half of that argument, and it lands with crude back above $100, so it shows whether energy costs have spread into what US households pay for everything else.",
+      "recentFingerprint": "355f326e5070cc41",
+      "prompt": "cc42a1f1",
+      "standing": "The Bureau of Labor Statistics' monthly measure of what US households pay for a basket of goods and services. It is the inflation reading that moves Treasury yields, the dollar and expectations for Fed rates.",
+      "recent": "Most Federal Reserve officials expect another rate hike by year-end, yet the committee is split and September hiring came in at 29,000 jobs against 90,000 expected. This release shows which fact carries more weight: whether prices are still rising fast enough to justify tightening into a stalling labour market.",
       "citations": [
         "2026-10-07-fed-sees-higher-rates-ahead-even-as-borrowing-costs-climb",
-        "2026-10-02-us-jobs-29000-september-fed-seen-skipping-october-rate-hike",
-        "2026-10-07-us-30-year-yields-return-to-2002-high-with-crude-back-above"
+        "2026-10-02-us-jobs-29000-september-fed-seen-skipping-october-rate-hike"
       ],
-      "generatedAt": "2026-10-09T05:26:18.301Z"
+      "generatedAt": "2026-10-10T05:24:44.788Z"
     },
     "fred-us-ppi-2026-10-15": {
       "standingFingerprint": "2edeeef889391405",
@@ -136,6 +141,6 @@
       "generatedAt": "2026-10-08T05:26:35.613Z"
     }
   },
-  "generatedAt": "2026-10-09T05:27:06.697Z",
+  "generatedAt": "2026-10-10T05:25:17.754Z",
   "windowDays": 14
 }
