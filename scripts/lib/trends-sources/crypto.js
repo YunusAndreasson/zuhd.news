@@ -7,16 +7,10 @@
 // keeps the old keyless behavior.
 
 import { ZUHD_UA } from '../http.js'
+import { dayLabel, isoDay } from '../period.js'
 
 const CG_BASE = 'https://api.coingecko.com/api/v3'
 const CG_KEY = process.env.COINGECKO_API_KEY || ''
-
-/** Format "Mar 18" from a unix-ms timestamp. */
-function formatPeriod(ms) {
-  const d = new Date(ms)
-  const month = d.toLocaleDateString('en-US', { month: 'short', timeZone: 'UTC' })
-  return `${month} ${d.getUTCDate()}`
-}
 
 /**
  * A dollar price at the precision its size needs.
@@ -65,8 +59,8 @@ export async function fetchCoinGeckoSeries(indicator) {
     }
 
     const values = prices.map(([, p]) => roundPrice(p))
-    const periods = prices.map(([ms]) => formatPeriod(ms))
-    const asOf = new Date(prices[prices.length - 1][0]).toISOString().slice(0, 10)
+    const periods = prices.map(([ms]) => dayLabel(ms))
+    const asOf = isoDay(prices[prices.length - 1][0])
 
     return { values, periods, asOf }
   } catch (err) {

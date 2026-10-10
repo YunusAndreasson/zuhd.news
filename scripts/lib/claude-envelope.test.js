@@ -1,7 +1,7 @@
 import assert from 'node:assert/strict'
 import { test } from 'node:test'
 import { runWithConcurrency } from './concurrency.js'
-import { claudeArgs, claudeFailure, parseClaudeText, spawnClaude } from './claude-envelope.js'
+import { ISOLATION_FLAGS, callCost, claudeArgs, claudeFailure, cleanProse, firstLine, parseClaudeEnvelope, parseClaudeEnvelopeWithUsage, parseClaudeText, spawnClaude, unquote } from './claude-envelope.js'
 
 // `command: 'node'` stands in for the CLI: the helper's job is the spawn, not
 // the flags, and a real `claude` call would cost money on every test run.
@@ -28,6 +28,50 @@ test('timeout kills the child and reports ETIMEDOUT with a null status', async (
   assert.equal(r.error?.code, 'ETIMEDOUT')
 })
 
+test('a child that ignores SIGTERM is killed after the grace, and the call ends', async () => {
+  // The deadline was a SIGTERM and a wait for `close`: a child that handled
+  // the signal and carried on kept its pool worker for as long as it liked.
+  // The child says when its handler is in place, so the kill that ends it is
+  // the second one.
+  const stubborn = ['-e', "process.on('SIGTERM', () => {}); process.stdout.write('ready'); setInterval(() => {}, 1000)"]
+  const t0 = Date.now()
+  const r = await spawnClaude(stubborn, { command: 'node', timeout: 1500, killGrace: 300 })
+  const elapsed = Date.now() - t0
+  assert.equal(r.status, null)
+  assert.equal(r.error?.code, 'ETIMEDOUT')
+  assert.equal(r.stdout, 'ready')
+  assert.ok(elapsed >= 1750, `ended at the first signal after ${elapsed}ms: the child did not ignore it`)
+  assert.ok(elapsed < 5000, `took ${elapsed}ms`)
+})
+
+test('a killed child is not waited on for a pipe something else holds', async () => {
+  // The child dies at SIGTERM; what it started keeps the stdout it inherited
+  // for five seconds more. `close` waits for that. `exit` does not.
+  const holder = ['-e', "require('node:child_process').spawn('sleep', ['5'], { stdio: 'inherit' }); setInterval(() => {}, 1000)"]
+  const t0 = Date.now()
+  const r = await spawnClaude(holder, { command: 'node', timeout: 600 })
+  const elapsed = Date.now() - t0
+  assert.equal(r.error?.code, 'ETIMEDOUT')
+  assert.ok(elapsed < 3000, `waited ${elapsed}ms on a pipe the child no longer owned`)
+})
+
+test('an error envelope is an error, not the answer', () => {
+  // The CLI marks a failed call `is_error` and puts the error where the answer
+  // goes. This one quotes its own JSON, which the fallback for prose around an
+  // object would have handed back as the model's object.
+  const overloaded = JSON.stringify({
+    type: 'result',
+    subtype: 'success',
+    is_error: true,
+    result: 'API Error: 529 {"type":"error","error":{"type":"overloaded_error","message":"Overloaded"}}',
+  })
+  assert.throws(() => parseClaudeEnvelopeWithUsage(overloaded), /claude reported an error \(success\): API Error: 529/)
+  assert.throws(() => parseClaudeText(overloaded), /claude reported an error/)
+  // An answer is still an answer, with or without the flag.
+  assert.deepEqual(parseClaudeEnvelopeWithUsage(JSON.stringify({ type: 'result', is_error: false, result: '{"recent":"x"}' })).result, { recent: 'x' })
+  assert.deepEqual(parseClaudeEnvelopeWithUsage(JSON.stringify({ type: 'result', result: 'Here it is: {"recent":"x"}' })).result, { recent: 'x' })
+})
+
 test('drops CLAUDECODE from the child env', async () => {
   const r = await spawnClaude(['-e', 'process.stdout.write(String(process.env.CLAUDECODE))'], {
     command: 'node',
@@ -49,6 +93,20 @@ test('claudeArgs defaults to the micro-task shape', () => {
   assert.ok(a.includes('--no-session-persistence'))
   assert.ok(a.includes('--exclude-dynamic-system-prompt-sections'))
   assert.deepEqual(a.slice(-2), ['-p', 'hi'])
+})
+
+// Without these a call loads the account's settings, skills and MCP servers:
+// measured on this box, 105 tools and 135,093 input tokens for a one-word
+// prompt, against none and 12,269. No option switches them off.
+test('claudeArgs always isolates the call, whatever the caller asks for', () => {
+  assert.deepEqual([...ISOLATION_FLAGS], ['--setting-sources', 'project', '--disable-slash-commands', '--strict-mcp-config'])
+  for (const opts of [{ model: 'm' }, { model: 'm', effort: null, tools: null, json: false, maxTurns: 3 }, { model: 'm', allowedTools: 'Read,Write' }]) {
+    const a = claudeArgs('hi', opts)
+    assert.equal(a[a.indexOf('--setting-sources') + 1], 'project')
+    assert.ok(a.includes('--disable-slash-commands'))
+    assert.ok(a.includes('--strict-mcp-config'))
+    assert.ok(a.indexOf('--strict-mcp-config') < a.indexOf('-p'), 'before the prompt')
+  }
 })
 
 test('claudeArgs omits what the caller switches off', () => {
@@ -77,4 +135,72 @@ test('parseClaudeText unwraps a prose result and rejects anything else', () => {
   assert.equal(env.text, 'Good morning.')
   assert.equal(env.total_cost_usd, 0.5)
   assert.throws(() => parseClaudeText(JSON.stringify({ type: 'error' })))
+})
+
+/** The CLI's envelope around an answer. @param {string | null} result */
+const envelope = (result) => JSON.stringify({ type: 'result', result, total_cost_usd: 0.01 })
+
+test('an answer is read whole, or from its outer braces when prose is around it', () => {
+  assert.deepEqual(parseClaudeEnvelope(envelope('{"1": {"angle": null, "sentiment": 0.02}}')), { 1: { angle: null, sentiment: 0.02 } })
+  assert.deepEqual(parseClaudeEnvelope(envelope('Here it is:\n```json\n{"1": "fx-pkr"}\n```\nDone.')), { 1: 'fx-pkr' })
+  assert.throws(() => parseClaudeEnvelope(envelope('I could not decide.')), /no JSON object found/)
+})
+
+// The 18:01 cycle of 2026-10-05, as its log has it: `Unexpected token '+',
+// ..."ntiment": +0.15}, "... is not valid JSON`. 27 sources, no angle kept.
+test('a number written with a plus is read, where it cost a whole batch', () => {
+  const answer = '{\n  "1": {"angle": "Chinese mining firms lag on community relations; MSCI rates 80% as ESG laggards", "sentiment": -0.15},\n  "2": {"angle": "foregrounds the port\'s reopening", "sentiment": +0.15},\n  "3": {"angle": null, "sentiment":+1}\n}'
+  assert.throws(() => JSON.parse(answer), /Unexpected token '\+'/, 'the answer as the model gave it does not parse')
+  const out = parseClaudeEnvelope(envelope(answer))
+  assert.deepEqual([out[1].sentiment, out[2].sentiment, out[3].sentiment], [-0.15, 0.15, 1])
+  assert.equal(out[1].angle, 'Chinese mining firms lag on community relations; MSCI rates 80% as ESG laggards')
+})
+
+test('an answer that parses is never rewritten, and one past mending fails as it did', () => {
+  // A plus after a colon inside a string, in an answer with nothing wrong.
+  assert.equal(parseClaudeEnvelope(envelope('{"1": {"angle": "cites growth: +15% on the year", "sentiment": 0.1}}'))[1].angle, 'cites growth: +15% on the year')
+  assert.equal(parseClaudeEnvelope(envelope('Sure. {"1": {"angle": "cites growth: +15% on the year"}}'))[1].angle, 'cites growth: +15% on the year')
+  // Broken some other way: the first error is the one reported.
+  assert.throws(() => parseClaudeEnvelope(envelope('{"1": {"sentiment": +0.15, "angle": oops}}')), /Unexpected token '\+'/)
+  assert.throws(() => parseClaudeEnvelope(envelope('{"1": {"angle": oops}}')), /Unexpected token/)
+})
+
+// An answer with no text in it: a reach for a tool with `--max-turns 1`. The
+// source-angle stage unwrapped the envelope itself and read this as the
+// envelope, in which no item is found: no angles and no line saying why.
+test('an envelope with no text in it is an error, not an empty answer', () => {
+  assert.throws(() => parseClaudeEnvelope(envelope(null)), /no text result/)
+  assert.throws(() => parseClaudeEnvelope(''), /empty claude stdout/)
+})
+
+test('the model\'s line is the first that says anything', () => {
+  assert.equal(firstLine('Fed raises interest rates by 25 basis points'), 'Fed raises interest rates by 25 basis points')
+  assert.equal(firstLine('\n   \n  Fed raises rates  \r\nA second line it was not asked for\n'), 'Fed raises rates')
+  assert.equal(firstLine(' \n\t\n'), undefined)
+  assert.equal(firstLine(''), undefined)
+  assert.equal(firstLine(undefined), undefined)
+})
+
+test('an answer loses the quotes it came wrapped in, and nothing inside it', () => {
+  assert.equal(unquote(' "Fed raises rates by a quarter point." '), 'Fed raises rates by a quarter point.')
+  assert.equal(unquote('“$100,000 To Study In America”'), '$100,000 To Study In America')
+  assert.equal(unquote('""It\'s "Over", Says Fed""'), 'It\'s "Over", Says Fed', 'however many, and only the outer ones')
+  assert.equal(unquote('First line.\n\nFull story in the app — link in bio.'), 'First line.\n\nFull story in the app — link in bio.')
+  assert.deepEqual([unquote(''), unquote(null), unquote(undefined)], ['', '', ''])
+})
+
+// Stored prose keeps its narrower rule: the wider one would open a sentence
+// that begins with a quoted name.
+test('a stored sentence loses one straight mark an end, and keeps a curled one', () => {
+  assert.equal(cleanProse(' "The strait  carries\na fifth of the oil." '), 'The strait carries a fifth of the oil.')
+  assert.equal(cleanProse('“Liberation Day” tariffs took effect.'), '“Liberation Day” tariffs took effect.')
+  assert.equal(cleanProse(undefined), '')
+})
+
+test('callCost: what a call cost, for the end of a log line', () => {
+  // The envelope of a company scan of 12 articles, 2026-10-10.
+  const usage = { input_tokens: 2, cache_creation_input_tokens: 8392, cache_read_input_tokens: 535, output_tokens: 1445 }
+  assert.equal(callCost({ costUsd: 0.00240645, usage }), ', $0.0024, 8.9k in, 1.4k out')
+  assert.equal(callCost({ costUsd: 0.5 }), ', $0.5000')
+  assert.equal(callCost({}), '')
 })

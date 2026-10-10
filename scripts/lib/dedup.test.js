@@ -6,7 +6,12 @@
 // niche outlets reword headlines and slug truncation drops endings.
 import { test } from 'node:test'
 import { strict as assert } from 'node:assert'
+import { mkdirSync, mkdtempSync, rmSync, writeFileSync } from 'node:fs'
+import { tmpdir } from 'node:os'
+import { join } from 'node:path'
+import { RSS_SOURCES } from './rss-sources.js'
 import {
+  loadRecentArticles,
   normalizeUrl,
   titleWords,
   buildTitleSets,
@@ -14,6 +19,8 @@ import {
   fuzzyMatch,
   buildWordSets,
   wouldDedup,
+  dedupSelection,
+  coveredLabels,
   isThin,
   NICHE_SOURCES,
   THIN_BODY,
@@ -131,6 +138,88 @@ test('wouldDedup title layer covers every outlet, but only over 72h', () => {
   assert.equal(wouldDedup(multi, ctxAt(120)).deduped, false)
 })
 
+// --- ledger labels, changed 2026-10-09 --------------------------------------
+// The three ledger stories whose labels removed a feed story between 09-30 and
+// 10-09, as the ledger held them. Only the third had an article: the writer
+// skipped the first and the validator moved the second aside.
+const LEDGER = [
+  {
+    id: 'outer-solar-system-terminal-instability-sun-death-study',
+    label: 'Our Solar System Is Terminally Unstable and Will Be Completely Destroyed, Study Finds',
+    firstSeen: '2026-10-03T14:05:21.467Z',
+    articles: ['2026-10-03-outer-solar-system-terminal-instability-sun-death-study'],
+  },
+  {
+    id: 'sharing-ai-progress-in-mathematics',
+    label: 'Sharing AI progress in mathematics',
+    firstSeen: '2026-10-07T05:03:50.109Z',
+    articles: ['2026-10-06-sharing-ai-progress-in-mathematics'],
+  },
+  {
+    id: 'trump-bars-microsoft-from-us-green-card-scheme',
+    label: 'Trump bars Microsoft from US green card scheme',
+    firstSeen: '2026-10-08T18:08:56.751Z',
+    articles: ['2026-10-08-trump-bars-microsoft-from-us-green-card-scheme'],
+  },
+]
+// The feed stories they removed, under slugs no article has: layer 1 looks on disk.
+const SOLAR = story('Our Solar System Is Terminally Unstable and Will Be Completely Destroyed, Study Finds', ['404 Media'], '2099-01-01-fixture-solar-system')
+const MATHS = story('Sharing AI progress in mathematics', ['Hacker News'], '2099-01-01-fixture-mathematics')
+const MICROSOFT = story('Trump administration is suspending Microsoft from a green card program', ['Hacker News'], '2099-01-01-fixture-green-card')
+const ctxWithLabels = (published) => ({
+  recentSlugs: [],
+  ledgerEventUris: new Map(),
+  recentWordSets: [],
+  recentTitleSets: [],
+  ledgerLabelSets: buildTitleSets(coveredLabels(LEDGER, new Set(published), Date.parse('2026-09-25T00:00:00Z'))),
+})
+
+test('a pick that never became an article does not block its story by its ledger label', () => {
+  const ctx = ctxWithLabels(['2026-10-08-trump-bars-microsoft-from-us-green-card-scheme'])
+  assert.equal(wouldDedup(SOLAR, ctx).deduped, false, 'the writer skipped it: nothing was published')
+  assert.equal(wouldDedup(MATHS, ctx).deduped, false, 'the validator moved it aside: nothing was published')
+  assert.deepEqual(wouldDedup(MICROSOFT, ctx), { deduped: true, reason: 'recap', match: 'trump-bars-microsoft-from-us-green-card-scheme' })
+})
+
+test('a ledger label still blocks its story once the article is on disk', () => {
+  const ctx = ctxWithLabels(LEDGER.flatMap((s) => s.articles))
+  assert.deepEqual(wouldDedup(SOLAR, ctx), { deduped: true, reason: 'recap', match: 'outer-solar-system-terminal-instability-sun-death-study' })
+  assert.deepEqual(wouldDedup(MATHS, ctx), { deduped: true, reason: 'recap', match: 'sharing-ai-progress-in-mathematics' })
+})
+
+test('coveredLabels keeps the window and drops a story with no label', () => {
+  const all = new Set(LEDGER.flatMap((s) => s.articles))
+  assert.deepEqual(
+    coveredLabels(LEDGER, all, Date.parse('2026-10-05T00:00:00Z')).map((l) => l.slug),
+    ['sharing-ai-progress-in-mathematics', 'trump-bars-microsoft-from-us-green-card-scheme'],
+  )
+  assert.deepEqual(coveredLabels([{ id: 'x', firstSeen: '2026-10-08T00:00:00Z', articles: ['a'] }, { id: 'y', label: 'Y', firstSeen: '2026-10-08T00:00:00Z' }], new Set(['a']), 0), [])
+})
+
+// --- the corpus the layers match against, changed 2026-10-09 ----------------
+test('a corpus that cannot be read is an error, not an empty one', (t) => {
+  // It returned [], and with nothing published to match against the prefilter
+  // called every story new.
+  t.mock.method(console, 'error', () => {})
+  assert.throws(() => loadRecentArticles(48 * 3600 * 1000, join(tmpdir(), 'no-articles-directory-here')), /ENOENT/)
+})
+
+test('one article that cannot be read is left out, and the rest still match', (t) => {
+  const said = t.mock.method(console, 'error', () => {})
+  const dir = mkdtempSync(join(tmpdir(), 'dedup-corpus-'))
+  try {
+    const today = new Date().toISOString()
+    writeFileSync(join(dir, `${today.slice(0, 10)}-kramatorsk-bus-attack.md`), `---\ntitle: "Kramatorsk Bus Attack"\ndate: "${today}"\nsources:\n  - name: "Example"\n    url: "https://example.org/kramatorsk/"\n---\n\nBody.\n`)
+    mkdirSync(join(dir, `${today.slice(0, 10)}-a-directory-not-an-article.md`))
+    const articles = loadRecentArticles(48 * 3600 * 1000, dir)
+    assert.deepEqual(articles.map((a) => [a.slug, a.title, a.urls]), [[`${today.slice(0, 10)}-kramatorsk-bus-attack`, 'Kramatorsk Bus Attack', ['example.org/kramatorsk']]])
+    assert.equal(said.mock.callCount(), 1)
+    assert.match(said.mock.calls[0].arguments[0], /a-directory-not-an-article\.md cannot be read/)
+  } finally {
+    rmSync(dir, { recursive: true, force: true })
+  }
+})
+
 test('NICHE_SOURCES list is non-empty and matches RSS source names', () => {
   // Sanity: the list is the gating mechanism; if it's empty, recap is
   // effectively disabled.
@@ -143,6 +232,17 @@ test('NICHE_SOURCES list is non-empty and matches RSS source names', () => {
   assert.ok(!NICHE_SOURCES.has('Reuters'))
   assert.ok(!NICHE_SOURCES.has('BBC'))
   assert.ok(!NICHE_SOURCES.has('Al Jazeera'))
+})
+
+// `NICHE_SOURCES` said it "must mirror SOURCES in scripts/fetch-news.js", and
+// this test held it there by reading that script as text, which ran when
+// imported. It is made from the table the fetcher polls now. A feed in one and
+// not the other was a source whose recaps are never checked, or a wire treated
+// as niche. Hacker News is fetched through Algolia, not from the list.
+test('NICHE_SOURCES is exactly the RSS feeds fetch-news.js polls, plus Hacker News', () => {
+  const polled = RSS_SOURCES.map((s) => s.name)
+  assert.ok(polled.length >= 20)
+  assert.deepEqual([...NICHE_SOURCES].sort(), [...polled, 'Hacker News'].sort())
 })
 
 // --- regression guard: existing slug-fuzzy behavior unchanged ---
@@ -270,4 +370,50 @@ test('tracking noise and param order are not identity', () => {
   )
   assert.equal(normalizeUrl('https://ex.com/a?b=2&a=1'), normalizeUrl('https://ex.com/a?a=1&b=2'))
   assert.equal(normalizeUrl('https://ex.com/a?fbclid=zz'), normalizeUrl('https://ex.com/a'))
+})
+
+// --- the selection as a whole ---
+
+const emptyCtx = () => ({
+  recentSlugs: [],
+  ledgerEventUris: new Map(),
+  recentWordSets: [],
+  recentTitleSets: [],
+  ledgerLabelSets: [],
+  recentUrls: new Map(),
+})
+const pick = (slug, category = 'politics') => ({ suggestedSlug: slug, category, title: slug, sources: [{ name: 'Reuters' }, { name: 'BBC' }] })
+
+// The shape of corpus.test.js's same-day pair (two Skyroot launch stories on
+// 2026-07-18), under names no article has: layer 1 looks on disk.
+test('two picks of one event are one story, and the first is the one kept', () => {
+  const out = dedupSelection(
+    [
+      pick('2026-07-18-zorbia-vikram-9-first-private-orbital-launch', 'science'),
+      pick('2026-07-18-zorbia-vikram-9-private-orbital-rocket', 'science'),
+      pick('2026-07-18-quasicrystal-nephology-wombat-theorem', 'economy'),
+    ],
+    emptyCtx(),
+  )
+  assert.deepEqual(out.kept.map((s) => s.suggestedSlug), ['2026-07-18-zorbia-vikram-9-first-private-orbital-launch', '2026-07-18-quasicrystal-nephology-wombat-theorem'])
+  assert.deepEqual(out.removed, [
+    { slug: '2026-07-18-zorbia-vikram-9-private-orbital-rocket', reason: 'intra-batch', match: '2026-07-18-zorbia-vikram-9-first-private-orbital-launch' },
+  ])
+})
+
+test('a pick already published is removed for the layer that caught it', () => {
+  const ctx = { ...emptyCtx(), recentUrls: new Map([[normalizeUrl('https://example.org/kramatorsk'), '2026-10-07-kramatorsk-bus-attack']]) }
+  const out = dedupSelection([{ ...pick('2026-10-08-a-new-headline-on-the-same-wire-copy'), link: 'https://example.org/kramatorsk' }], ctx)
+  assert.deepEqual(out.kept, [])
+  assert.deepEqual(out.removed, [{ slug: '2026-10-08-a-new-headline-on-the-same-wire-copy', reason: 'url', match: '2026-10-07-kramatorsk-bus-attack' }])
+})
+
+test('every category the result leaves short is named, and whether that is allowed', () => {
+  const { floors } = dedupSelection([pick('2026-10-08-zebrafish-quorum-paradox', 'science'), pick('2026-10-08-quasicrystal-nephology-wombat', 'economy')], emptyCtx())
+  assert.deepEqual(floors, [
+    { category: 'politics', count: 0, min: 3, allowed: false },
+    { category: 'economy', count: 1, min: 3, allowed: false },
+    { category: 'science', count: 1, min: 2, allowed: true },
+    { category: 'tech', count: 0, min: 3, allowed: false },
+  ])
 })

@@ -1,7 +1,10 @@
 // Run: node --test scripts/lib/briefing-script.test.js
+import { readFileSync } from 'node:fs'
+import { join } from 'node:path'
 import { test } from 'node:test'
 import { strict as assert } from 'node:assert'
-import { parseBriefingScript, scriptToSsml, splitForSynthesis, spokenWords, unheardSentences } from './briefing-script.js'
+import { briefingPrompt, ffmpegFailure, parseBriefingScript, scriptToSsml, splitForSynthesis, spokenWords, unheardSentences } from './briefing-script.js'
+import { ROOT } from './paths.js'
 
 const SCRIPT = `This is your briefing for the twenty-sixth of September, twenty twenty-six.
 <long pause>
@@ -93,4 +96,51 @@ test('Chirp fallback: pauses become breaks, text is escaped, pieces fit the byte
     assert.ok(Buffer.byteLength(p, 'utf-8') <= 1000)
     assert.match(p, /^<speak>.*\.<\/speak>$/)
   }
+})
+
+// ── The prompt ───────────────────────────────────────────────────────
+
+const PROMPT = readFileSync(join(ROOT, 'scripts', 'briefing-prompt.md'), 'utf-8')
+
+// The data is put in place of one sentence of `briefing-prompt.md`. Reword that
+// sentence and this fails here, where it used to fail at 05:25 by sending the
+// model a prompt with no articles in it and reading out what came back.
+test('the day\'s articles go into the prompt, where the prompt says they will be', () => {
+  const payload = { articles: [{ title: 'Fed Raises Rates', body: 'Washington — The Fed raised rates.' }], hoursUntilNext: 24, isFriday: false }
+  const prompt = briefingPrompt(PROMPT, payload)
+  assert.ok(prompt.includes(`Here is the article data as JSON:\n\n\`\`\`json\n${JSON.stringify(payload, null, 2)}\n\`\`\`\n\nThe JSON object contains:\n- \`articles\`: today's articles`))
+  assert.ok(!prompt.includes('are provided inline below by the system'))
+  assert.equal(prompt.length, PROMPT.length - 'The article data and editorial context are provided inline below by the system. The JSON object contains:'.length + `Here is the article data as JSON:\n\n\`\`\`json\n${JSON.stringify(payload, null, 2)}\n\`\`\`\n\nThe JSON object contains:`.length, 'nothing else moved')
+})
+
+test('a prompt with no place for the articles is an error, not a prompt without them', () => {
+  assert.throws(() => briefingPrompt(PROMPT.replace('provided inline below', 'given below'), { articles: [] }), /no longer has the sentence the article data replaces/)
+  assert.throws(() => briefingPrompt('', {}), /no longer has the sentence/)
+})
+
+// In a replacement *string* these are patterns: `$'` is everything after the
+// match, so one such article pasted the rest of the prompt into the data.
+test('an article with a dollar pattern in it goes in as it was written', () => {
+  for (const body of ["priced in US$'s", 'paid in $& kind', 'big $$ deal', 'a `$` sign and $`', 'worth $150 billion, or $1']) {
+    const prompt = briefingPrompt(PROMPT, { articles: [{ body }] })
+    assert.ok(prompt.includes(JSON.stringify(body)), body)
+    assert.equal(prompt.split('The JSON object contains:').length, 2, `the prompt was not pasted into itself by ${body}`)
+  }
+})
+
+// ── The mux ──────────────────────────────────────────────────────────
+
+test('an ffmpeg failure is the end of what it said, not its banner', () => {
+  const banner = `ffmpeg version 6.1.1-3ubuntu5 Copyright (c) 2000-2023 the FFmpeg developers\n  built with gcc 13\n  configuration: ${'--enable-something '.repeat(100)}\n`
+  const said = `${banner}[in#3 @ 0x55d] Error opening input: No such file or directory\nError opening input file /root/zuhd.news/content/audio/.tmp/chunk-3.wav.\n`
+  const line = ffmpegFailure({ status: 254, stderr: said })
+  assert.ok(line.endsWith('Error opening input file /root/zuhd.news/content/audio/.tmp/chunk-3.wav.'))
+  assert.ok(line.length <= 500 && !line.includes('ffmpeg version'))
+  assert.equal(said.slice(0, 500).includes('Error'), false, 'the first 500 characters, which is what was logged, say nothing of it')
+})
+
+test('an ffmpeg that was not found, ran out of time or said nothing is named as that', () => {
+  assert.equal(ffmpegFailure({ status: null, stderr: '', error: Object.assign(new Error('spawnSync ffmpeg ETIMEDOUT'), { code: 'ETIMEDOUT' }) }), 'timed out')
+  assert.equal(ffmpegFailure({ status: null, error: Object.assign(new Error('spawnSync ffmpeg ENOENT'), { code: 'ENOENT' }) }), 'spawnSync ffmpeg ENOENT')
+  assert.equal(ffmpegFailure({ status: 1, stderr: ' \n' }), 'exit 1 with nothing on stderr')
 })

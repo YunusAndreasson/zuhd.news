@@ -17,10 +17,13 @@ import {
   PHASE_NAMES,
   PUBLISH_MIN_PHASE,
   analysisAgeMonths,
+  byVintagePhaseCountry,
   countryTotals,
+  crisisCaseload,
   featureClassification,
   gateByAge,
   joinAreas,
+  joinCountry,
   normaliseAreaName,
   parseAnalysisDate,
   parseIpcAreaCsv,
@@ -241,6 +244,28 @@ test('an unjoined name is counted, not quietly dropped', () => {
   assert.equal(skipped.unjoined, 1)
 })
 
+test("one country's file fails as one thing, and leaves no counts behind", () => {
+  // The fetcher asks for twenty of these and catches around each. A file that
+  // parsed but was not a collection used to get past that catch, and the
+  // exception took the other nineteen countries with it.
+  const rows = parseIpcAreaCsv(csv(row({ area: 'Bay' }), row({ area: 'Gedo' })))
+  const { kept } = gateByAge(rows, { now: NOW })
+
+  const good = JSON.stringify({ type: 'FeatureCollection', features: [feat('Bay', 3, pt(43, 3))] })
+  const { joined, tally } = joinCountry(kept, good, point)
+  assert.equal(joined.length, 1)
+  assert.deepEqual(tally, { unjoined: 1, noGeometry: 0, noPhase: 0 }, "the country's own count")
+
+  assert.throws(() => joinCountry(kept, 'null', point), /not a feature collection/)
+  assert.throws(() => joinCountry(kept, '{"message":"Not found"}', point), /not a feature collection/)
+  assert.throws(() => joinCountry(kept, '<html>', point), SyntaxError)
+  // Geometry the reducer cannot take: thrown, where the fetcher is catching.
+  const thrower = () => {
+    throw new TypeError('coordinates')
+  }
+  assert.throws(() => joinCountry(kept, good, thrower), /coordinates/)
+})
+
 test('parent aggregates and non-current periods are not joinable', () => {
   // Sudan ships two parent-level features with no CSV row. An aggregate drawn
   // beside its own children is one place counted twice.
@@ -379,4 +404,47 @@ test('a total is one analysis, never two added together', () => {
   assert.equal(row.vintage, 'May 2026')
   assert.equal(row.areas, 1)
   assert.equal(row.p3plus, 60000)
+})
+
+// ---------------------------------------------------------------------------
+// The order the areas are written in
+// ---------------------------------------------------------------------------
+
+test('areas are in one order, whichever country came back first', () => {
+  // Seven countries share the Cadre Harmonisé's November vintage. Their files
+  // are fetched four at a time, and two keys left every tie between them to
+  // the order the network answered in.
+  const area = (country, name, phase, ageMonths) => ({ country, area: name, phase, ageMonths })
+  const tcd = [area('TCD', 'Lac', 2, 11.2), area('TCD', 'Abdi', 2, 11.2), area('TCD', 'Kanem', 3, 11.2)]
+  const ben = [area('BEN', 'Zou', 2, 11.2), area('BEN', 'Alibori', 2, 11.2)]
+  const som = [area('SOM', 'Bay', 4, 2.3)]
+
+  const order = (arrived) => arrived.flat().sort(byVintagePhaseCountry).map((a) => `${a.country} ${a.area}`)
+  const expected = [
+    'SOM Bay', // the newest analysis leads
+    'TCD Kanem', // then the gravest of a vintage
+    'BEN Zou', // then by country, and inside one the table's own row order
+    'BEN Alibori',
+    'TCD Lac',
+    'TCD Abdi',
+  ]
+  assert.deepEqual(order([tcd, ben, som]), expected)
+  assert.deepEqual(order([som, ben, tcd]), expected)
+  assert.deepEqual(order([ben, som, tcd]), expected)
+})
+
+test("a country nobody fetched still has a caseload, and the log can size it", () => {
+  // Geometry is fetched only for countries with somebody in Phase 4 or 5, and
+  // a country's total is summed from the areas fetched. So a country in Crisis
+  // with nobody in Emergency is in no total; this is the number the fetcher
+  // prints for what that leaves out.
+  const rows = [
+    { population: { p3plus: 412_000, p4: 0, p5: 0 } },
+    { population: { p3plus: 88_500, p4: null } },
+    { population: { p3plus: null } }, // no figure adds nothing, and is not zero people
+    { population: {} },
+  ]
+  assert.equal(crisisCaseload(rows), 500_500)
+  assert.equal(crisisCaseload([]), 0)
+  assert.equal(crisisCaseload(undefined), 0)
 })

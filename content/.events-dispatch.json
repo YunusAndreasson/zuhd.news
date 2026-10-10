@@ -2,130 +2,145 @@
   "items": {
     "uk-cpi-2026-10": {
       "standingFingerprint": "d2de00bd6534466c",
-      "recentFingerprint": "3cd9915c3eecd0ef",
-      "standing": "The Office for National Statistics' monthly measure of how fast prices paid by UK households are rising. It is the figure the Bank of England's 2% target is set against, and it feeds into benefit, pension and rail-fare upratings.",
-      "recent": "The September reading arrives as economists warn that UK inflation would reach 5% if a US diesel ban goes ahead, a reminder of how directly fuel costs pass into British prices. The release sets the baseline that warning is measured from: where prices stood before any such shock.",
+      "recentFingerprint": "5744078595e8f0eb",
+      "prompt": "cc42a1f1",
+      "standing": "The Office for National Statistics' monthly measure of how fast UK consumer prices are rising. The Bank of England targets it at 2%, so it moves rate expectations and the pound; the September figure also sets benefit uprating.",
+      "recent": "Economists have warned that a US diesel ban would lift UK inflation to 5%, so this reading sets the baseline that energy risk is measured against. September's figure is also the one the pensions triple lock is tied to, and Burnham's pledge on the lock has already drawn criticism.",
       "citations": [],
-      "generatedAt": "2026-10-07T05:22:25.486Z"
+      "generatedAt": "2026-10-10T05:24:47.857Z"
     },
     "fomc-2026-10": {
       "standingFingerprint": "7461ec820c9cf170",
-      "recentFingerprint": "47f0d5829d83ab26",
-      "standing": "The Federal Reserve's rate-setting committee, which meets eight times a year to set the target for overnight lending between US banks. Its decisions move borrowing costs wherever debt is priced in dollars, at home and abroad.",
-      "recent": "The Labor Department counted 29,000 new jobs in September against 90,000 expected, a stall that lands on a committee traders had priced for a run of rate hikes. The meeting settles whether weak hiring interrupts that path. It convenes with Trump demanding Powell's resignation after a watchdog cleared him over building renovations.",
+      "recentFingerprint": "b9b39c1de914554f",
+      "prompt": "cc42a1f1",
+      "standing": "The Federal Reserve's rate-setting committee, which meets eight times a year to set the overnight rate US banks lend at. Its decisions price dollar borrowing worldwide, from American mortgages to emerging-market debt.",
+      "recent": "Most officials expect another hike by year-end, but the Labor Department counted 29,000 new jobs against 90,000 expected, and the committee is split over whether stalled hiring outweighs inflation that has topped its target for 5.5 years. It meets as Trump's panel hears Lisa Cook, a governor whose seat carries one of those votes.",
       "citations": [
+        "2026-10-07-fed-sees-higher-rates-ahead-even-as-borrowing-costs-climb",
         "2026-10-02-us-jobs-29000-september-fed-seen-skipping-october-rate-hike",
-        "2026-09-30-fed-watchdog-clears-powell-renovation-trump-demands-resignation"
+        "2026-10-07-fed-s-warsh-earns-imf-praise-for-focusing-on-price-stability",
+        "2026-10-09-trump-launches-probe-into-federal-reserve-governor-lisa-cook"
       ],
-      "generatedAt": "2026-10-07T05:22:34.362Z"
+      "generatedAt": "2026-10-10T05:24:48.752Z"
     },
     "ecb-2026-10": {
       "standingFingerprint": "644eb225dab9953a",
-      "recentFingerprint": "dd23bdfa68a53196",
-      "standing": "The European Central Bank's Governing Council, which meets eight times a year to set interest rates for the countries that share the euro. Its decisions reach mortgages, business loans and the euro's exchange rate.",
-      "recent": "Euro zone inflation jumped to 3.8% in September from 3.2%, days after Lagarde painted a darkening picture of prices in Europe. With business activity at a 3½-year high, rate-setters cannot cite a weak economy as a reason to wait. This meeting settles whether that pressure becomes a hike.",
+      "recentFingerprint": "67135ea1feba2b20",
+      "standing": "The euro area's central bank, whose Governing Council meets eight times a year to set interest rates for every country sharing the euro. Its decisions move the currency and the cost of government debt from Germany to Italy.",
+      "recent": "Inflation jumped to 3.8% in September, after a hike officials judged proportionate and not yet restrictive. The meeting weighs how much further to go against the heaviest debts, France first, where Moulin says no rescue is needed yet. Nominations to replace Isabel Schnabel, its leading voice for tighter policy, close the day before.",
       "citations": [
+        "2026-10-08-ecb-officials-took-proporionate-step-with-last-month-s-hike",
         "2026-10-02-euro-zone-inflation-surges-keeping-pressure-on-ecb-to-hike",
-        "2026-10-05-euro-zone-business-growth-hits-over-3-1-2-year-high-despite"
+        "2026-10-07-ecb-s-moulin-says-conditions-for-france-intervention-aren-t",
+        "2026-10-08-euro-zone-finance-ministers-start-steps-to-replace-ecb-s-sch"
       ],
-      "generatedAt": "2026-10-07T05:22:39.227Z"
+      "generatedAt": "2026-10-09T05:26:33.281Z"
     },
     "boj-2026-10": {
       "standingFingerprint": "b08124a86f654bb7",
-      "recentFingerprint": "bbb994599e486d38",
-      "standing": "Japan's central bank, whose policy board meets eight times a year to set the short-term interest rate. Its rate has long been the lowest of any major economy, so its moves reach the yen and everyone worldwide who borrows in it.",
-      "recent": "Three sources told Reuters the bank may say this month that underlying inflation has roughly reached its 2% target. For a decade it justified near-zero rates by arguing that inflation was still short of that mark, so dropping the line removes its own stated reason to hold. At stake is the yen, which cheap Japanese rates have held down.",
+      "recentFingerprint": "bf4280da22a760ab",
+      "prompt": "cc42a1f1",
+      "standing": "The Bank of Japan's policy board, which meets eight times a year to set the country's short-term interest rate. Its decisions move the yen and the yield on Japanese government debt, and reach borrowers far beyond Japan.",
+      "recent": "Three sources say the board is weighing a declaration that underlying inflation has reached its 2% goal. Japanese yields have already jumped in a global bond sell-off, and Takaichi is arguing that a growth push will support trust in the yen. The meeting settles whether the bank says so in its own name.",
       "citations": [
         "2026-10-06-boj-may-signal-underlying-inflation-has-hit-2-goal-sources-s"
       ],
-      "generatedAt": "2026-10-06T05:28:43.799Z"
+      "generatedAt": "2026-10-10T05:24:58.897Z"
     },
     "boe-2026-11": {
       "standingFingerprint": "498a0992d302cf13",
-      "recentFingerprint": "e73083b8af7cda10",
-      "standing": "The Bank of England's nine-member Monetary Policy Committee, which meets eight times a year to set Bank Rate. Its vote feeds through to UK mortgage and savings rates, and sterling and gilt yields move with it.",
-      "recent": "The committee votes on whether to move the rate that the country's mortgages, savings accounts and business loans are priced from. Nothing reported so far sets this meeting apart from a routine one.",
+      "recentFingerprint": "d391fa6fe33079e7",
+      "prompt": "cc42a1f1",
+      "standing": "The Bank of England's Monetary Policy Committee, nine members who vote eight times a year on Bank Rate. Their decision sets the price of UK mortgages and business loans, and sterling and gilt yields move with it.",
+      "recent": "The Bank of England's committee meets to vote on its benchmark rate, and the decision settles what borrowers pay and savers earn until it next meets.",
       "citations": [],
-      "generatedAt": "2026-10-06T05:28:42.366Z"
+      "generatedAt": "2026-10-10T05:24:57.334Z"
     },
     "fomc-2026-12": {
       "standingFingerprint": "7461ec820c9cf170",
-      "recentFingerprint": "5b0980dbe9fa5007",
-      "standing": "The Federal Reserve's rate-setting committee, which meets eight times a year to set the range for overnight lending between US banks. Its decisions move the dollar and borrowing costs worldwide.",
-      "recent": "Hiring has stalled: the Labor Department counted 29,000 new jobs in September against 90,000 expected. Yet traders had priced in 4 rate hikes by June 2027, so the committee is weighing a weak labour market against pressure to raise. It decides with Trump demanding Powell resign, after a watchdog cleared him.",
+      "recentFingerprint": "42dbc0d159554b7b",
+      "prompt": "cc42a1f1",
+      "standing": "The Federal Reserve's rate-setting committee, which meets eight times a year to set the overnight rate US banks lend at. Its decisions price dollar borrowing worldwide, from American mortgages to emerging-market debt.",
+      "recent": "Most Federal Reserve officials expect another hike by year-end, and this is the last meeting where that can happen. The committee is split: inflation has topped its target for 5.5 years, yet the latest jobs count was 29,000 against 90,000 expected. Trump's panel on removing Lisa Cook puts one of its votes in question.",
       "citations": [
+        "2026-10-07-fed-sees-higher-rates-ahead-even-as-borrowing-costs-climb",
         "2026-10-02-us-jobs-29000-september-fed-seen-skipping-october-rate-hike",
-        "2026-09-30-fed-watchdog-clears-powell-renovation-trump-demands-resignation"
+        "2026-10-07-fed-s-warsh-earns-imf-praise-for-focusing-on-price-stability",
+        "2026-10-09-trump-launches-probe-into-federal-reserve-governor-lisa-cook"
       ],
-      "generatedAt": "2026-10-07T05:22:49.132Z"
+      "generatedAt": "2026-10-10T05:25:04.069Z"
     },
     "g20-2026-miami": {
       "standingFingerprint": "041eb1ecc79e970b",
-      "recentFingerprint": "13e0e7356cbb7619",
-      "standing": "The yearly meeting of leaders from 19 major economies plus the European Union and African Union, hosted by a rotating presidency that sets the agenda. Its members produce about 85% of world output, and it decides by consensus.",
-      "recent": "Rubio has invited Putin, who is wanted by the ICC, to Miami, and the Kremlin is weighing the invitation. Its answer sets what the summit is about before any agenda item: whether the other leaders sit at a table with him, and whether a host's invitation counts for more than the court's.",
-      "citations": [
-        "2026-09-23-putin-g20-miami-invitation-kremlin-considering"
-      ],
-      "generatedAt": "2026-10-03T05:25:25.554Z"
+      "recentFingerprint": "0d5e40c38ad80402",
+      "prompt": "cc42a1f1",
+      "standing": "The annual meeting of leaders of the world's largest economies, hosted by the member holding the rotating presidency. Its members produce about 85% of global output, and its communiqué sets shared lines on trade and debt.",
+      "recent": "The US hosts after a Trump-Xi summit that ended with China and the US agreeing to open an AI communication channel, and with a US-India trade deal that Greer says is not imminent. The leaders meeting puts both relationships in one room, with India's trade terms with the host still open.",
+      "citations": [],
+      "generatedAt": "2026-10-10T05:25:09.975Z"
     },
     "ecb-2026-12": {
       "standingFingerprint": "644eb225dab9953a",
-      "recentFingerprint": "5eca20cf3f71a873",
-      "standing": "The European Central Bank's Governing Council sets interest rates for the countries that share the euro, meeting roughly every six weeks. Its deposit rate drives borrowing costs from German mortgages to Italian government debt.",
-      "recent": "Euro zone inflation jumped to 3.8% in September, the highest level in three years, and Lagarde has painted a darkening picture of prices in Europe. Business activity is at a 3½-year high, so the council has no slowdown to set against the pressure to hike. This meeting settles whether it treats the jump as lasting.",
+      "recentFingerprint": "10cc244fe96f44c8",
+      "standing": "The European Central Bank's Governing Council, which meets about every six weeks to set interest rates for the countries that share the euro. Its decisions reach mortgages, government borrowing costs and the euro's exchange rate.",
+      "recent": "Officials judged September's hike proportionate and said policy still does not restrict growth, with inflation at 3.8%, nearly double the target. The council meets weeks before Isabel Schnabel, its leading voice for tighter policy, leaves on 3 January, and Moulin has said France needs no help from the bank yet.",
       "citations": [
-        "2026-10-02-euro-zone-inflation-surges-keeping-pressure-on-ecb-to-hike",
-        "2026-10-05-euro-zone-business-growth-hits-over-3-1-2-year-high-despite"
+        "2026-10-08-ecb-officials-took-proporionate-step-with-last-month-s-hike",
+        "2026-10-08-euro-zone-finance-ministers-start-steps-to-replace-ecb-s-sch",
+        "2026-10-07-ecb-s-moulin-says-conditions-for-france-intervention-aren-t",
+        "2026-10-02-euro-zone-inflation-surges-keeping-pressure-on-ecb-to-hike"
       ],
-      "generatedAt": "2026-10-07T05:22:46.105Z"
+      "generatedAt": "2026-10-09T05:26:54.046Z"
     },
     "boe-2026-12": {
       "standingFingerprint": "498a0992d302cf13",
-      "recentFingerprint": "fe992aef3399036b",
-      "standing": "The Bank of England's nine-member Monetary Policy Committee, which votes eight times a year on Bank Rate. The rate feeds through to British mortgages and business loans, and sterling and gilt yields move with it.",
-      "recent": "The committee votes on the interest rate that British lenders price mortgages and business loans from. The decision settles what borrowing costs households and firms carry into the new year.",
+      "recentFingerprint": "561452ce6951c8f0",
+      "prompt": "cc42a1f1",
+      "standing": "The Bank of England's Monetary Policy Committee, nine members who vote eight times a year on Bank Rate. Their decision sets the price of UK mortgages and business loans, and sterling and gilt yields move with it.",
+      "recent": "The Bank of England's committee meets to set its policy rate, and the decision settles what households and firms on floating-rate loans pay, and what savers earn, going into the new year.",
       "citations": [],
-      "generatedAt": "2026-10-06T05:28:55.511Z"
+      "generatedAt": "2026-10-10T05:25:09.591Z"
     },
     "boj-2026-12": {
       "standingFingerprint": "b08124a86f654bb7",
-      "recentFingerprint": "862cd53fe115f2db",
-      "standing": "Japan's central bank, whose policy board meets eight times a year to set the short-term interest rate. Its rate anchors the yen and the cost of the cheap borrowing that funds investments far beyond Japan.",
-      "recent": "Three sources told Reuters the bank is weighing a statement that underlying inflation has roughly reached its 2% target, the shortfall it cited for a decade to keep rates near zero. With that argument gone, the board has to justify holding on other grounds, and the answer reaches the yen and the borrowers worldwide who fund themselves in it.",
+      "recentFingerprint": "cde3c4e727eb0cbb",
+      "prompt": "cc42a1f1",
+      "standing": "The Bank of Japan's policy board, which meets eight times a year to set the country's short-term interest rate. Its decisions move the yen and the yield on Japanese government debt, and reach borrowers far beyond Japan.",
+      "recent": "Three sources say the Bank is weighing a declaration that underlying inflation has reached its 2% goal. Japanese yields jumped in a global bond sell-off, and Takaichi has vowed to watch the yen and inflation carefully while pinning trust in the currency on her growth push. This meeting settles whether the declaration becomes a decision.",
       "citations": [
         "2026-10-06-boj-may-signal-underlying-inflation-has-hit-2-goal-sources-s"
       ],
-      "generatedAt": "2026-10-06T05:28:58.904Z"
+      "generatedAt": "2026-10-10T05:25:17.753Z"
     },
     "fred-us-cpi-2026-10-14": {
       "standingFingerprint": "64727509ea55676d",
-      "recentFingerprint": "4a28ec90692add7d",
-      "standing": "The Bureau of Labor Statistics' monthly measure of what US households pay for a fixed basket of goods and services. It is the inflation reading that moves Treasury yields, the dollar and expectations for Federal Reserve policy.",
-      "recent": "This release shows how much of the Middle East energy shock has reached US prices. It lands on a Fed whose case for raising rates now rests on inflation alone: the Labor Department counted 29,000 new jobs in September against 90,000 expected. Higher rates also fall on a Treasury paying about $1 trillion a year in interest.",
+      "recentFingerprint": "355f326e5070cc41",
+      "prompt": "cc42a1f1",
+      "standing": "The Bureau of Labor Statistics' monthly measure of what US households pay for a basket of goods and services. It is the inflation reading that moves Treasury yields, the dollar and expectations for Fed rates.",
+      "recent": "Most Federal Reserve officials expect another rate hike by year-end, yet the committee is split and September hiring came in at 29,000 jobs against 90,000 expected. This release shows which fact carries more weight: whether prices are still rising fast enough to justify tightening into a stalling labour market.",
       "citations": [
-        "2026-10-02-us-jobs-29000-september-fed-seen-skipping-october-rate-hike",
-        "2026-10-05-what-will-washington-do-next-if-us-bond-yields-keep-rising"
+        "2026-10-07-fed-sees-higher-rates-ahead-even-as-borrowing-costs-climb",
+        "2026-10-02-us-jobs-29000-september-fed-seen-skipping-october-rate-hike"
       ],
-      "generatedAt": "2026-10-07T05:22:33.980Z"
+      "generatedAt": "2026-10-10T05:24:44.788Z"
     },
     "fred-us-ppi-2026-10-15": {
       "standingFingerprint": "2edeeef889391405",
-      "recentFingerprint": "f7a382d442b2336a",
-      "standing": "The Producer Price Index, published monthly by the Bureau of Labor Statistics, measures what US producers receive for goods and services. It shows cost pressure before it reaches shop prices, and bond yields and the dollar move with it.",
-      "recent": "",
+      "recentFingerprint": "a973988cc7fa897f",
+      "standing": "The Bureau of Labor Statistics' monthly measure of the prices US producers receive for goods and services. It shows cost pressure before it reaches shop shelves, and feeds the inflation gauge the Federal Reserve targets.",
+      "recent": "The Bureau of Labor Statistics reports the prices producers received last month. The release settles whether cost pressure at the factory gate and in wholesale services is building or easing before it reaches consumers.",
       "citations": [],
-      "generatedAt": "2026-10-05T05:24:43.337Z"
+      "generatedAt": "2026-10-08T05:26:35.663Z"
     },
     "fred-us-retail-sales-2026-10-15": {
       "standingFingerprint": "88dc24dc4edbc81f",
-      "recentFingerprint": "f7a382d442b2336a",
-      "standing": "The Census Bureau's monthly estimate of what American shops, restaurants and online sellers took in. Consumer spending is about two-thirds of the US economy, so the figure moves growth forecasts, Treasury yields and the dollar.",
-      "recent": "",
+      "recentFingerprint": "a973988cc7fa897f",
+      "standing": "The Census Bureau's monthly estimate of what American shops, restaurants and online sellers took in. Consumer spending is about two-thirds of the US economy, so it moves growth forecasts, Treasury yields and the dollar.",
+      "recent": "The Census Bureau reports its first estimate of last month's US retail sales, with revisions to the months before it. The release settles whether household spending held up or slowed, the largest single input to the quarter's growth figure.",
       "citations": [],
-      "generatedAt": "2026-10-05T05:24:43.746Z"
+      "generatedAt": "2026-10-08T05:26:35.613Z"
     }
   },
-  "generatedAt": "2026-10-07T05:22:49.133Z",
+  "generatedAt": "2026-10-10T05:25:17.754Z",
   "windowDays": 14
 }

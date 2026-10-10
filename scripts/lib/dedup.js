@@ -4,7 +4,9 @@ import { readFileSync, existsSync } from 'node:fs'
 import { join } from 'node:path'
 import { parseFrontmatter } from './frontmatter.js'
 import { articleFilesSince } from './article-files.js'
+import { pathOf } from './datasets.js'
 import { readJson } from './json-file.js'
+import { RSS_SOURCE_NAMES } from './rss-sources.js'
 
 // Must mirror the category-floor lines in select-prompt.md (tech raised 2→3 by
 // experiment 2026-04-12-tech-floor-3; this constant lagged until 2026-07-03).
@@ -13,8 +15,8 @@ export const CATEGORY_FLOORS = { politics: 3, economy: 3, science: 2, tech: 3 }
 // Floors a cycle may miss rather than fill (user decision 2026-09-26). A thin
 // science feed was filled with disasters — Bangkok flooding and an Athens gas
 // blast shipped as science at 10:01. Read by dedup-selection's warning and the
-// autoresearch scorer; nothing refills any floor since backfill was removed
-// the same day.
+// cycle's score (`lib/rvs.js`); nothing refills any floor since backfill was
+// removed the same day.
 export const FLOORS_MAY_GO_UNMET = new Set(['science'])
 
 // A story is thin when no source carries this much text — an RSS teaser, not
@@ -27,20 +29,13 @@ export function isThin(story) {
   return !(story.sources || []).some(src => (src?.body || '').length >= THIN_BODY)
 }
 
-const ARTICLES_DIR = 'content/articles'
-const LEDGER_PATH = 'content/.story-ledger.json'
+const ARTICLES_DIR = pathOf('articles')
+const LEDGER_PATH = pathOf('storyLedger')
 
-// Niche RSS sources — must mirror SOURCES in scripts/fetch-news.js.
+// Niche RSS sources: the outlets `fetch-news.js` reads (`lib/rss-sources.js`).
 // A story whose every source is in this set is treated as niche-only and
 // gets the extra recap check (see wouldDedup → reason: 'recap').
-export const NICHE_SOURCES = new Set([
-  '404 Media', 'Bellingcat', 'Mada Masr', 'Salaam Gateway', 'InSight Crime',
-  'Declassified UK', 'Responsible Statecraft', 'Drop Site News', 'SMEX',
-  'SciDev.Net', 'The Record', 'Phys.org', 'Quanta Magazine', 'Carbon Brief',
-  'New Lines Magazine', 'The War Zone', 'CODA Story', 'European Spaceflight',
-  'Undark', 'Inkstick', 'Noema', 'Rest of World', 'The Diplomat',
-  'Lowy Interpreter', 'Dialogue Earth', 'Global Voices', 'Hacker News',
-])
+export const NICHE_SOURCES = new Set(RSS_SOURCE_NAMES)
 
 /**
  * Canonical form of a source URL, for identity comparison only.
@@ -102,25 +97,46 @@ const TRACKING_PARAMS = new Set([
   'at_campaign', 'smid', 'partner', '__twitter_impression', 'guccounter',
 ])
 
-/** Load slug+title+date+source URLs for articles published within `cutoffMs` (default 48h). */
-export function loadRecentArticles(cutoffMs = 48 * 3600 * 1000) {
+/**
+ * Load slug+title+date+source URLs for articles published within `cutoffMs` (default 48h).
+ *
+ * A directory that cannot be read throws. It used to give an empty list, and
+ * with no recent articles every layer but the first has nothing to match
+ * against: the prefilter printed "all feed stories are new" and each duplicate
+ * went through to the selector. That is how the layers behaved whenever a
+ * stage was started outside the repository root, until the path came from the
+ * catalog, and nothing said so. One article that cannot be read is said and
+ * left out; the rest still count.
+ *
+ * @param {number} [cutoffMs]
+ * @param {string} [dir]
+ */
+export function loadRecentArticles(cutoffMs = 48 * 3600 * 1000, dir = ARTICLES_DIR) {
   const cutoff = Date.now() - cutoffMs
+  let files
   try {
-    return articleFilesSince(ARTICLES_DIR, cutoff)
-      .map(f => {
-        try {
-          const content = readFileSync(join(ARTICLES_DIR, f), 'utf-8')
-          const { meta } = parseFrontmatter(content)
-          const date = meta.date ? new Date(meta.date).getTime() : 0
-          if (date < cutoff) return null
-          const urls = (Array.isArray(meta.sources) ? meta.sources : [])
-            .map(s => normalizeUrl(s?.url))
-            .filter(Boolean)
-          return { slug: f.replace('.md', ''), title: meta.title || '', date, urls }
-        } catch { return null }
-      })
-      .filter(Boolean)
-  } catch { return [] }
+    files = articleFilesSince(dir, cutoff)
+  } catch (err) {
+    console.error(`dedup: ${dir} cannot be read (${err.message}), so nothing published can be matched`)
+    throw err
+  }
+  return files
+    .map(f => {
+      try {
+        const content = readFileSync(join(dir, f), 'utf-8')
+        const { meta } = parseFrontmatter(content)
+        const date = meta.date ? new Date(meta.date).getTime() : 0
+        if (date < cutoff) return null
+        const urls = (Array.isArray(meta.sources) ? meta.sources : [])
+          .map(s => normalizeUrl(s?.url))
+          .filter(Boolean)
+        return { slug: f.replace('.md', ''), title: meta.title || '', date, urls }
+      } catch (err) {
+        console.error(`dedup: ${f} cannot be read (${err.message}) and is left out of the match`)
+        return null
+      }
+    })
+    .filter(Boolean)
 }
 
 /** Load eventUri → article slug arrays from the story ledger. */
@@ -134,12 +150,41 @@ export function loadLedgerEventUris() {
   return map
 }
 
-/** Load ledger labels with first-seen timestamps for recap matching. */
-export function loadLedgerLabels(cutoffMs = 10 * 24 * 3600 * 1000) {
-  const cutoff = Date.now() - cutoffMs
-  return (readJson(LEDGER_PATH)?.stories || [])
+/**
+ * The ledger labels that stand for coverage: each story first seen since
+ * `cutoff` that has an article among `published`.
+ *
+ * `update-ledger.js` runs before the writer, so the ledger also holds picks
+ * that never became an article, and a label alone blocked the story for as
+ * long as the ledger kept it. Two in nine days (2026-09-30 → 10-09), 5 of the
+ * 6 label removals in those 41 cycles:
+ * - 10-03 14:02, a 404 Media piece on the solar system's instability: the
+ *   writer skipped it (the text the feed carried stopped before the study),
+ *   and the same item was removed from the next four feeds as a recap of
+ *   itself.
+ * - 10-07 05:00, OpenAI's "Sharing AI progress in mathematics": written, moved
+ *   aside by the validator for a missing field, removed from the 10:04 feed.
+ * The sixth, a second report of Microsoft's green-card suspension, matched a
+ * story that had been published, and still does.
+ *
+ * It is the rule `.last-cycle.json` is written by (`lib/last-cycle.js`): the
+ * next cycle skips what was published, not everything that was selected. The
+ * event layer always had it (`eventCoveredRecently`).
+ *
+ * @param {{ id: string, label?: string, firstSeen?: string, articles?: string[] }[]} stories the ledger's
+ * @param {Set<string>} published the slugs of the articles on disk
+ * @param {number} cutoff ms
+ */
+export function coveredLabels(stories, published, cutoff) {
+  return stories
+    .filter(s => (s.articles || []).some(a => published.has(a)))
     .map(s => ({ slug: s.id, label: s.label || '', firstSeen: s.firstSeen ? new Date(s.firstSeen).getTime() : 0 }))
     .filter(s => s.label && s.firstSeen >= cutoff)
+}
+
+/** Load the ledger labels that stand for coverage (`coveredLabels`), for recap matching. */
+export function loadLedgerLabels(cutoffMs, published) {
+  return coveredLabels(readJson(LEDGER_PATH)?.stories || [], published, Date.now() - cutoffMs)
 }
 
 /** Strip YYYY-MM-DD- prefix from a slug, return word set (words > 2 chars). */
@@ -270,6 +315,12 @@ function isNicheOnly(story) {
  * events by coverage, which are mostly running stories this layer then drops
  * (6 of 8 on 2026-09-25, the same events re-bought every cycle). One function,
  * so the fetcher skips exactly what prefilter would have thrown away.
+ *
+ * How far back it sees is the ledger's memory, not the window `recentSlugs`
+ * was loaded with: the ledger is the only place an event is tied to its
+ * article, and a story leaves it after six cycles (`LEDGER_LIFE_CYCLES`,
+ * `lib/ledger.js`). Both callers pass seven days; an event is known for about
+ * 28 hours.
  * @param {string | null | undefined} eventUri
  * @param {{ ledgerEventUris: Map<string, string[]>, recentSlugs: string[] }} ctx
  */
@@ -329,6 +380,14 @@ export function wouldDedup(story, ctx) {
   return { deduped: false }
 }
 
+// The window the prefilter loads its context with, and the per-event purchase
+// in `fetch-news-api.js` with it, so that the fetcher skips what the prefilter
+// would remove. Experiment 2026-04-19-prefilter-7d widened it from 48 hours,
+// because the selector kept picking stories that matched articles two and
+// three days old. It is seven days for the slug layer. The event layer has
+// the ledger's six cycles whatever is passed here (`eventCoveredRecently`).
+export const PREFILTER_WINDOW_MS = 7 * 24 * 3600 * 1000
+
 // Recap-layer lookback: niche outlets were observed reposting events up to
 // 10 days after the original break (2026-05-02 audit). Run the title-fuzzy
 // recap match against a wider window than slug-fuzzy uses, since recaps
@@ -344,7 +403,8 @@ export function loadDedupContext(cutoffMs = 48 * 3600 * 1000) {
   const ledgerEventUris = loadLedgerEventUris()
   const recentWordSets = buildWordSets(recentSlugs)
   const recentTitleSets = buildTitleSets(recapArticles)
-  const ledgerLabelSets = buildTitleSets(loadLedgerLabels(Math.max(cutoffMs, RECAP_LOOKBACK_MS)))
+  const published = new Set(recapArticles.map(a => a.slug))
+  const ledgerLabelSets = buildTitleSets(loadLedgerLabels(Math.max(cutoffMs, RECAP_LOOKBACK_MS), published))
   // URL → slug over the recap window, not the 48h one. A same-URL republish is
   // the same failure a recap is, so it gets the same lookback; the tighter
   // window is only right for slug-fuzzy, where a rewrite happens within a cycle.
@@ -353,4 +413,50 @@ export function loadDedupContext(cutoffMs = 48 * 3600 * 1000) {
     for (const u of a.urls || []) if (!recentUrls.has(u)) recentUrls.set(u, a.slug)
   }
   return { recentSlugs, ledgerEventUris, recentWordSets, recentTitleSets, ledgerLabelSets, recentUrls }
+}
+
+/**
+ * Take out of a selection what is already published, and what it holds twice.
+ *
+ * The layers of `wouldDedup` only ever compare a pick against
+ * `content/articles/`, which holds nothing for a story still in this
+ * selection, so two picks describing the same event sailed through as two new
+ * stories and both got written (`skyroot-vikram-1-india-first-private-orbital-launch`
+ * and `…-india-private-orbital-rocket`, both 2026-07-18, 83% overlap). Each
+ * pick that survives is therefore also matched, by slug words, against the
+ * picks kept before it.
+ *
+ * `floors` names each category the result leaves under its minimum. Nothing
+ * refills one; `allowed` is whether that floor may go unmet.
+ *
+ * @param {any[]} selection
+ * @param {ReturnType<typeof loadDedupContext>} ctx
+ */
+export function dedupSelection(selection, ctx) {
+  /** @type {{ slug: string, reason: string, match: string }[]} */
+  const removed = []
+  /** @type {ReturnType<typeof buildWordSets>} */
+  const batch = []
+  const kept = selection.filter((s) => {
+    const result = wouldDedup(s, ctx)
+    if (result.deduped) {
+      removed.push({ slug: s.suggestedSlug, reason: result.reason, match: result.match })
+      return false
+    }
+    const twin = fuzzyMatch(s.suggestedSlug, batch)
+    if (twin) {
+      removed.push({ slug: s.suggestedSlug, reason: 'intra-batch', match: twin })
+      return false
+    }
+    batch.push(...buildWordSets([s.suggestedSlug]))
+    return true
+  })
+
+  /** @type {Record<string, number>} */
+  const perCategory = {}
+  for (const s of kept) perCategory[s.category] = (perCategory[s.category] || 0) + 1
+  const floors = Object.entries(CATEGORY_FLOORS)
+    .filter(([category, min]) => (perCategory[category] || 0) < min)
+    .map(([category, min]) => ({ category, count: perCategory[category] || 0, min, allowed: FLOORS_MAY_GO_UNMET.has(category) }))
+  return { kept, removed, floors }
 }

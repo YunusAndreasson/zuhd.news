@@ -16,19 +16,36 @@
   "$schema": "https://unpkg.com/knip@6/schema.jsonc",
 
   "entry": [
-    // ── The editorial cycle. Extracted from scripts/run-cycle.sh, which
-    //    invokes each of these by name. Keep in sync with that file.
+    // ── The editorial cycle. Each of these is started by name: by the stage
+    //    list (scripts/cycle/stages.js), by the steps (scripts/lib/cycle-steps.js)
+    //    and, while it is kept, by scripts/run-cycle.legacy.sh. Keep in sync
+    //    with the list.
     //
-    //    Five of them (build, fetch-news, generate-briefing, watch, test-voice)
+    //    Four of them (build, fetch-news, generate-briefing, watch)
     //    knip also finds through package.json's scripts, and it will say so as
     //    a "redundant entry pattern" hint. They stay listed: this block's job is
-    //    to be a readable mirror of run-cycle.sh, and a list with holes in it
+    //    to be a readable mirror of the stage list, and a list with holes in it
     //    wherever npm happens to agree is not one. `npm run deadcode` passes
     //    --no-config-hints so the command reports findings, not config advice.
+    "scripts/body-lengths.js",
     "scripts/build.js",
     "scripts/compute-metrics.js",
     "scripts/company-gaps.js",
     "scripts/coverage-map.js",
+    "scripts/cycle/record.js",
+    // Not run by run-cycle.sh but on it: the harness starts the stub by path,
+    // and `npm run test:cycle` names the golden test.
+    "scripts/cycle/golden.test.js",
+    "scripts/lib/cycle-stub.js",
+    // Run by hand, to show a converted stage does what it did; and the clock
+    // it starts each stage under, loaded by path.
+    "scripts/cycle/replay-stage.js",
+    "scripts/cycle/run.js",
+    "scripts/cycle/tally.js",
+    "scripts/cycle/alert.js",
+    "scripts/cycle/breaking-push.js",
+    "scripts/cycle/push-payload.js",
+    "scripts/lib/frozen-clock.js",
     "scripts/dedup-selection.js",
     "scripts/enrich-selection.js",
     "scripts/attach-indicators.js",
@@ -48,6 +65,7 @@
     "scripts/fetch-news-api.js",
     "scripts/fetch-news.js",
     "scripts/fetch-trends.js",
+    "scripts/flag-acronyms.js",
     "scripts/flag-title-echo.js",
     "scripts/generate-briefing.js",
     "scripts/measure-quality.js",
@@ -68,20 +86,9 @@
 
     // ── npm scripts and the dashboard.
     "scripts/watch.js",
-    "scripts/test-voice.js",
     // ── Operator tools run by hand (see mobile/MARKET-SIGNALS.md).
     "scripts/replay-market-signals.js",
     "scripts/dashboard/server.js",
-
-    // ── The autoresearch session driver, run by the /autoresearch skill.
-    "scripts/autoresearch/*.js",
-
-    // ── Stage 3.5 was removed from run-cycle.sh on 2026-06-19 (it outgrew its
-    //    1200s budget as .context-briefs.json inflated each prompt), but this
-    //    is not dead: scripts/autoresearch/run-replay.js:207 still runs it via
-    //    spawnSync, which is a string, not an import edge. knip called it
-    //    unused; it is the reason this file leads with the warning it does.
-    "scripts/generate-edu-context.js",
 
     // ── Tests.
     "scripts/lib/*.test.js",
@@ -94,11 +101,9 @@
 
     // ── Manual tools. Unreferenced by design, and each one is the only way to
     //    do the thing it does: fetch-country-cards.js regenerates the committed
-    //    shared/data/country-cards.json, dry-run-augment.js exercises one
-    //    article through the augment prompt, shoot.mjs is the visual-regression
+    //    shared/data/country-cards.json, shoot.mjs is the visual-regression
     //    shooter map-island.test.js points at.
     "scripts/fetch-country-cards.js",
-    "scripts/dry-run-augment.js",
     "scripts/shoot.mjs",
     // merge-palestine.mjs is a one-shot data edit, already applied, that
     // rewrote the bundled Natural Earth TopoJSON to carry one Palestine
@@ -173,7 +178,7 @@
   //     map-geo.test.js, but the test reaches it through the esbuild bundle
   //     `scripts/lib/island-bundle.js` builds at run time. That is not a static
   //     import edge and no tool can follow it — the same class of blindness
-  //     that made knip call `generate-edu-context.js` dead.
+  //     that makes knip call a script started by name dead.
   //   · `MARKET_CHIP_GLYPHS` (_map/markets.ts) is a `satisfies` assertion whose
   //     *value* is never meant to be read. Deleting it because nothing imports
   //     it would delete a compile-time check that the chip glyph names are keys

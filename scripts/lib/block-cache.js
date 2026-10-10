@@ -5,9 +5,17 @@
 // Design: skip after 5 consecutive blocks within 7 days, but ALWAYS try
 // with 5% probability so we notice if the outlet un-blocks us. Writing
 // off a domain forever would mean citations slowly rot without signal.
+//
+// "Within 7 days" is kept by `fresh`: a failure older than that counts for
+// nothing and its entry is dropped. It used to be kept by nothing. The window
+// only aged the skip, the count never decayed and an entry left only on a
+// success, so on 2026-10-09 the file held 156 domains, 148 of them last
+// failed more than a week before (the oldest 172 days), and a domain at four
+// failures since April was one more from a week of being skipped.
+import { pathOf } from './datasets.js'
 import { readJson, writeJson } from './json-file.js'
 
-const CACHE_PATH = 'content/.block-cache.json'
+let cachePath = pathOf('blockCache')
 const BLOCK_THRESHOLD = 5
 const BLOCK_TTL_MS = 7 * 24 * 3600 * 1000
 const REPROBE_PROBABILITY = 0.05
@@ -15,14 +23,20 @@ const REPROBE_PROBABILITY = 0.05
 let cache = null
 function load() {
   if (cache) return cache
-  try { cache = readJson(CACHE_PATH, {}) }
-  catch { cache = {} }
+  // No `try`: `readJson` does not throw. A missing file is the fallback, and
+  // an unreadable one is the fallback and a line on stderr.
+  cache = readJson(cachePath, {})
   return cache
 }
 
+/** Whether an entry's last failure is inside the window. One with no readable
+ *  date is not: it would otherwise never age out. */
+const fresh = (entry) => Date.now() - new Date(entry?.lastBlockedAt).getTime() <= BLOCK_TTL_MS
+
 function save() {
   if (!cache) return
-  try { writeJson(CACHE_PATH, cache) } catch { /* best effort */ }
+  for (const [domain, entry] of Object.entries(cache)) if (!fresh(entry)) delete cache[domain]
+  try { writeJson(cachePath, cache) } catch { /* best effort */ }
 }
 
 function domainOf(url) {
@@ -39,8 +53,7 @@ export function shouldSkip(url, rand = Math.random) {
   if (!domain) return false
   const c = load()[domain]
   if (!c || c.consecutiveBlocks < BLOCK_THRESHOLD) return false
-  const age = Date.now() - new Date(c.lastBlockedAt).getTime()
-  if (age > BLOCK_TTL_MS) return false // cache expired, try again
+  if (!fresh(c)) return false // cache expired, try again
   if (rand() < REPROBE_PROBABILITY) return false // spontaneous re-probe
   return true
 }
@@ -51,9 +64,13 @@ export function recordResult(url, ok) {
   if (!domain) return
   const c = load()
   if (ok) {
-    if (c[domain]) delete c[domain]
+    // Most fetches succeed for a domain with no history. There is nothing to
+    // forget and nothing to write: this was a file rewritten for every page.
+    if (!c[domain]) return
+    delete c[domain]
   } else {
-    const prev = c[domain] || { consecutiveBlocks: 0 }
+    // A count from outside the window starts again at one.
+    const prev = c[domain] && fresh(c[domain]) ? c[domain] : { consecutiveBlocks: 0 }
     c[domain] = {
       consecutiveBlocks: prev.consecutiveBlocks + 1,
       lastBlockedAt: new Date().toISOString(),
@@ -62,7 +79,8 @@ export function recordResult(url, ok) {
   save()
 }
 
-/** Reset in-memory cache — tests only. */
-export function _resetForTest(initial = {}) {
+/** Reset in-memory cache, and where it is saved — tests only. */
+export function _resetForTest(initial = {}, path = cachePath) {
   cache = { ...initial }
+  cachePath = path
 }

@@ -17,10 +17,12 @@
 import { readdirSync, readFileSync } from 'node:fs'
 import { join } from 'node:path'
 import { parseFrontmatter } from '../frontmatter.js'
+import { ROOT } from '../paths.js'
+import { dayLabel, isoDay } from '../period.js'
+import { WIKIMEDIA_UA, wikiSummary } from '../wikipedia.js'
 import { codeFromTopojsonName } from '../../../shared/countries/iso.ts'
 
 const WIKI_BASE = 'https://wikimedia.org/api/rest_v1/metrics/pageviews/per-article/en.wikipedia/all-access/all-agents'
-const USER_AGENT = 'zuhd-news/1.0 (+https://zuhd.news; editorial@zuhd.news)'
 const ARTICLE_WINDOW_DAYS = 10 // concepts from last 10 days of published articles
 const TOP_N_CONCEPTS = 15      // max Wikipedia series per cycle
 const MIN_FREQUENCY = 2        // skip concepts that only appeared once (noise)
@@ -85,17 +87,14 @@ function countryTagsFor(label) {
   return code ? [code] : []
 }
 
-function ymd(d) {
-  return d.toISOString().slice(0, 10).replace(/-/g, '')
+/** A day as the pageviews API takes one in its path: `20261009`, no dashes. */
+function pageviewDay(d) {
+  return isoDay(d).replace(/-/g, '')
 }
 
+/** The label of one of the API's own stamps, `2026100900`. */
 function formatPeriod(stamp) {
-  const y = stamp.slice(0, 4)
-  const m = stamp.slice(4, 6)
-  const d = stamp.slice(6, 8)
-  const date = new Date(`${y}-${m}-${d}T00:00:00Z`)
-  const month = date.toLocaleDateString('en-US', { month: 'short', timeZone: 'UTC' })
-  return `${month} ${date.getUTCDate()}`
+  return dayLabel(Date.parse(`${stamp.slice(0, 4)}-${stamp.slice(4, 6)}-${stamp.slice(6, 8)}T00:00:00Z`))
 }
 
 /** Map a concept label to a Wikipedia slug. Mostly a space-to-underscore
@@ -167,17 +166,7 @@ function rankConceptsFromArticles(rootDir, windowDays) {
  *  or undercounts while "Recep_Tayyip_Erdoğan" carries the real series.
  *  Returns null when the page doesn't exist at all. */
 async function resolveCanonicalTitle(title) {
-  try {
-    const res = await fetch(`https://en.wikipedia.org/api/rest_v1/page/summary/${encodeURIComponent(title)}`, {
-      signal: AbortSignal.timeout(10000),
-      headers: { 'User-Agent': USER_AGENT, accept: 'application/json' },
-    })
-    if (!res.ok) return null
-    const data = await res.json()
-    return data?.titles?.canonical || null
-  } catch {
-    return null
-  }
+  return (await wikiSummary(title))?.titles?.canonical || null
 }
 
 /** Fetch 30 days of daily pageviews for one Wikipedia article.
@@ -186,11 +175,11 @@ async function fetchOnePageview(title) {
   const end = new Date()
   const start = new Date(end)
   start.setUTCDate(start.getUTCDate() - 30)
-  const url = `${WIKI_BASE}/${encodeURIComponent(title)}/daily/${ymd(start)}/${ymd(end)}`
+  const url = `${WIKI_BASE}/${encodeURIComponent(title)}/daily/${pageviewDay(start)}/${pageviewDay(end)}`
   try {
     const res = await fetch(url, {
       signal: AbortSignal.timeout(10000),
-      headers: { 'User-Agent': USER_AGENT, accept: 'application/json' },
+      headers: { 'User-Agent': WIKIMEDIA_UA, accept: 'application/json' },
     })
     if (!res.ok) return null
     const data = await res.json()
@@ -214,8 +203,7 @@ async function fetchOnePageview(title) {
  * @returns {Promise<Array<object>>}
  */
 export async function fetchWikipediaTrendingConcepts() {
-  const rootDir = new URL('../../..', import.meta.url).pathname
-  const concepts = rankConceptsFromArticles(rootDir, ARTICLE_WINDOW_DAYS)
+  const concepts = rankConceptsFromArticles(ROOT, ARTICLE_WINDOW_DAYS)
   if (concepts.length === 0) {
     console.log('  · wikipedia: no concepts found in recent articles')
     return []

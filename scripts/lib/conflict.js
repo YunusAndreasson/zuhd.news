@@ -1,30 +1,51 @@
-// Conflict-event transform. JS port of the schema in shared/types.ts ConflictEvent —
-// the same shape contract, just running server-side. Currently consumed only by
-// scripts/fetch-conflict-prototype.js (writes to mobile/lib/conflict-fixture.json
-// for the on-device prototype). When the backend picks this up:
+// Conflict events, as arithmetic: a UCDP candidate release in, the snapshot's
+// events out. `scripts/fetch-conflict.js` does the network and the file; the
+// build mirrors what it writes to `/api/conflict.json`, and the app takes that
+// payload whole or not at all (`isConflictSnapshot`, `mobile/lib/validate.ts`).
 //
-//   • Add scripts/fetch-conflict.js — same orchestrator pattern as fetch-gdacs.js,
-//     writes to content/.conflict.json, gets mirrored to /api/conflict.json by
-//     scripts/build.js exactly the way the GDACS snapshot is mirrored today.
-//   • Wire it into run-cycle.sh as a stage between Stage 3.4c (gdacs) and
-//     Stage 4 (briefing) — the cadence (every 4h) is appropriate for UCDP's
-//     monthly upstream and will also fit ACLED's daily updates later.
-//   • Mobile hook (useConflictEvents) swaps the bundled-fixture import for
-//     `useFetchJson(`${API_BASE}/api/conflict.json`, isConflictSnapshot)` —
-//     the validator is already in place at mobile/lib/validate.ts.
+// So an event here is the `ConflictEvent` of `shared/types.ts` exactly, and
+// every gate is a row that must not be drawn: a location known only to the
+// country, nobody killed, an actor with no name, a date the app cannot read.
 //
-// Public surface:
-//   parseCsv(text) → string[][]
-//   rowsToObjects(rows) → Record<string, string>[]   (validates required columns)
-//   mapUcdpRow(row) → ConflictEvent | null            (filters + transforms one row)
-//   filterRecentWindow(events, days) → ConflictEvent[]  (cap to last N days of dataset)
+//   REQUIRED_COLUMNS                                    what `csvObjects` (`lib/csv.js`) is asked to find
+//   mapUcdpRow(row, tally?, { today }?) → ConflictEvent | null
+//   newGateTally(), droppedRowsReport(tally)            what the gates dropped, counted and in words
+//   filterRecentWindow(events, days) → { kept, windowStart, windowEnd }
+//   emptyReleaseReport(rows, events) → string | null    a release with no event in it
+//   candidateCsvUrl(version), nextReleases(version)     the release's file, and what follows it
 //
-// Output objects exactly match the ConflictEvent shape declared in
-// shared/types.ts, so mobile (or any future consumer) can validate with
-// isConflictSnapshot and ship without re-parsing.
+// Nothing here touches the network or the clock, so all of it is tested
+// against fixtures: `conflict.test.js`.
+
+import { isIsoDate } from './iso-date.js'
+
+/**
+ * Where UCDP publishes a candidate release: `26.0.8` is `GEDEvent_v26_0_8.csv`.
+ *
+ * @param {string} version
+ */
+export const candidateCsvUrl = (version) =>
+  `https://ucdp.uu.se/downloads/candidateged/GEDEvent_v${version.replace(/\./g, '_')}.csv`
+
+/**
+ * The releases that can follow `version`, for the fetcher to ask after.
+ *
+ * A candidate's last number is its month: 26.0.8 is August 2026. So what
+ * follows is next month's, and after a December the first of the next year's,
+ * 27.0.1, which no amount of adding one to 26.0.12 arrives at. Both are
+ * returned every month rather than the second only in December: the question
+ * costs one HEAD, and a release that skips a number is found too.
+ *
+ * @param {string} version `year.0.month`
+ * @returns {string[]}
+ */
+export function nextReleases(version) {
+  const [year, minor, month] = version.split('.').map(Number)
+  return [`${year}.${minor}.${month + 1}`, `${year + 1}.${minor}.1`]
+}
 
 // CSV columns we depend on. If any of these are missing from the upstream
-// header, UCDP has changed its schema and rowsToObjects throws loudly
+// header, UCDP has changed its schema and `csvObjects` throws loudly
 // rather than emit silent garbage. Codebook:
 //   https://ucdp.uu.se/downloads/candidateged/ucdp-candidate-codebook1.4.pdf
 export const REQUIRED_COLUMNS = [
@@ -128,68 +149,6 @@ export const NAME_TO_ISO3 = {
   Zimbabwe: 'ZWE',
 }
 
-/** Minimal RFC 4180-ish CSV parser. Handles quoted fields with embedded
- *  commas, newlines, and doubled quotes ("" → "). UCDP's payload is well-
- *  formed so we don't bother with edge cases beyond the standard. */
-export function parseCsv(text) {
-  const rows = []
-  let row = []
-  let field = ''
-  let inQuotes = false
-  for (let i = 0; i < text.length; i++) {
-    const c = text[i]
-    if (inQuotes) {
-      if (c === '"') {
-        if (text[i + 1] === '"') {
-          field += '"'
-          i++
-        } else {
-          inQuotes = false
-        }
-      } else {
-        field += c
-      }
-    } else if (c === '"') {
-      inQuotes = true
-    } else if (c === ',') {
-      row.push(field)
-      field = ''
-    } else if (c === '\n' || c === '\r') {
-      if (c === '\r' && text[i + 1] === '\n') i++
-      row.push(field)
-      field = ''
-      if (row.length > 1 || row[0] !== '') rows.push(row)
-      row = []
-    } else {
-      field += c
-    }
-  }
-  if (field.length > 0 || row.length > 0) {
-    row.push(field)
-    rows.push(row)
-  }
-  return rows
-}
-
-/** rows → records keyed by header name. Throws if any REQUIRED_COLUMNS are
- *  missing from the header — protects against silent UCDP schema drift. */
-export function rowsToObjects(rows) {
-  const [header, ...data] = rows
-  if (!header) throw new Error('UCDP CSV is empty')
-  const missing = REQUIRED_COLUMNS.filter((c) => !header.includes(c))
-  if (missing.length > 0) {
-    throw new Error(
-      `UCDP CSV is missing expected columns: ${missing.join(', ')}. ` +
-        'Upstream may have changed its schema.',
-    )
-  }
-  return data.map((r) => {
-    const obj = {}
-    for (let i = 0; i < header.length; i++) obj[header[i]] = r[i] ?? ''
-    return obj
-  })
-}
-
 /** type_of_violence → our subEvent.
  *    1 (state-based, gov vs gov / gov vs rebel) → armed_clash
  *    2 (non-state, rebel vs rebel / communal)   → armed_clash
@@ -225,6 +184,11 @@ function pickNotes(row) {
 
 const XXX_ACTOR = /^XXX\d+$/
 
+/** Count one drop under `key`, where the caller is keeping count. */
+const count = (tally, key) => {
+  if (tally) tally[key] = (tally[key] ?? 0) + 1
+}
+
 /** Parse UCDP `source_article` into a structured list. The field packs N
  *  records as `;`-joined `"outlet,date,headline"` triplets where outlet
  *  may itself contain commas in rare cases (e.g. "Reuters, India"). We
@@ -232,10 +196,20 @@ const XXX_ACTOR = /^XXX\d+$/
  *  is the headline. Embedded newlines (UCDP appends `\nCR \tSource: ...`
  *  metadata to some headlines) get truncated at the first newline.
  *
+ *  A record whose date slot is not a date is dropped, and counted in
+ *  `tally.undatedSources`. That is what the comma case above produces
+ *  ("India" where the date goes), and the app tests every source's date and
+ *  takes the conflict layer whole or not at all: published, one such record
+ *  costs every installed app the layer.
+ *
  *  Returns [] for empty/malformed input rather than throwing — UCDP's
  *  format is consistent enough that bad rows are individual data
- *  problems, not pipeline failures. */
-export function parseSourceArticle(raw) {
+ *  problems, not pipeline failures.
+ *
+ *  @param {string | null | undefined} raw
+ *  @param {Record<string, number>} [tally] counts what is dropped, by reason
+ */
+export function parseSourceArticle(raw, tally) {
   const text = (raw ?? '').trim()
   if (text.length === 0) return []
   const out = []
@@ -262,6 +236,10 @@ export function parseSourceArticle(raw) {
     // Strip the trailing "\nCR \tSource: ..." metadata UCDP appends.
     headline = headline.split(/[\r\n]+/)[0].trim()
     if (!outlet || !headline) continue
+    if (!isIsoDate(date)) {
+      count(tally, 'undatedSources')
+      continue
+    }
     out.push({ outlet, date, headline })
   }
   return out
@@ -272,28 +250,97 @@ function intOrUndef(s) {
   return Number.isFinite(n) && n >= 0 ? n : undefined
 }
 
+/**
+ * A tally for `mapUcdpRow`, every reason at zero.
+ *
+ * The gates drop about half of a release (894 of 1,806 rows in August 2026),
+ * and until this was counted the snapshot said nothing of it: the conflict
+ * layer read as UCDP's month, and the app's toll for a week as UCDP's sum,
+ * when both are what is left after these. `outsideWindow` is the fetcher's to
+ * fill: the events that passed and fall before the week the snapshot keeps.
+ */
+export const newGateTally = () => ({
+  lowPrecision: 0,
+  noFatalities: 0,
+  noCoordinates: 0,
+  nullIsland: 0,
+  undated: 0,
+  postdated: 0,
+  unnamedActor: 0,
+  undatedSources: 0,
+  unreadableEnd: 0,
+})
+
+/** What each of `mapUcdpRow`'s reasons is called in the log. */
+const DROPPED_AS = {
+  lowPrecision: 'placed no closer than a region',
+  noFatalities: 'with nobody killed',
+  noCoordinates: 'with no coordinates',
+  nullIsland: 'at null island',
+  undated: 'with no readable start date',
+  postdated: 'dated after today',
+  unnamedActor: 'by an unnamed actor',
+}
+
+/**
+ * A tally's dropped rows as words: `512 with nobody killed, 330 placed no
+ * closer than a region`. Empty when no row was dropped.
+ *
+ * @param {Record<string, number>} tally
+ */
+export const droppedRowsReport = (tally) =>
+  Object.entries(DROPPED_AS)
+    .filter(([reason]) => tally[reason] > 0)
+    .map(([reason, words]) => `${tally[reason]} ${words}`)
+    .join(', ')
+
 /** Map one UCDP row to a ConflictEvent, applying all quality gates.
  *  Returns null when the row should be dropped (low precision, no
- *  fatalities, bad coords, placeholder actors, etc.). */
-export function mapUcdpRow(r) {
+ *  fatalities, bad coords, placeholder actors, etc.), and counts it in
+ *  `tally` under its reason: see `newGateTally`.
+ *
+ *  Every date an event carries is one the app will accept (`isIsoDate`): a
+ *  row with no readable start is dropped (`tally.undated`), an end that is
+ *  not a date is left off (`tally.unreadableEnd`), and a source without one
+ *  is dropped from the event's list. Ten characters was the test before, and
+ *  `31/03/2026` is ten characters.
+ *
+ *  With `today`, a row dated after it is dropped (`tally.postdated`). The
+ *  dataset is a month in arrears, so such a date is a slip of the coder's
+ *  hand, and it is not harmless: `filterRecentWindow` anchors the window on
+ *  the newest date it is given, so one row in next year is a layer of one
+ *  event, with a lag alarm that sees a window ending in the future and says
+ *  nothing.
+ *
+ *  @param {Record<string, string>} r
+ *  @param {Record<string, number>} [tally] counts what is dropped, by reason
+ *  @param {{ today?: string }} [opts] `today` as `YYYY-MM-DD`; the fetcher's, so this stays off the clock
+ */
+export function mapUcdpRow(r, tally, { today } = {}) {
+  const drop = (/** @type {string} */ reason) => {
+    count(tally, reason)
+    return null
+  }
+
   const wherePrec = parseInt(r.where_prec, 10)
-  if (!Number.isFinite(wherePrec) || wherePrec > MAX_WHERE_PREC) return null
+  if (!Number.isFinite(wherePrec) || wherePrec > MAX_WHERE_PREC) return drop('lowPrecision')
 
   const fatalities = parseInt(r.best, 10)
-  if (!Number.isFinite(fatalities) || fatalities < MIN_FATALITIES) return null
+  if (!Number.isFinite(fatalities) || fatalities < MIN_FATALITIES) return drop('noFatalities')
 
   const lat = parseFloat(r.latitude)
   const lng = parseFloat(r.longitude)
-  if (!Number.isFinite(lat) || !Number.isFinite(lng)) return null
+  if (!Number.isFinite(lat) || !Number.isFinite(lng)) return drop('noCoordinates')
 
   // Defensive: drop near-(0,0) records. UCDP shouldn't emit these (every
   // event is geocoded), but Null Island is the universal geocoder failure
   // mode, and one slip would visually anchor a stray marker in the
   // Atlantic off Africa.
-  if (Math.abs(lat) < 0.5 && Math.abs(lng) < 0.5) return null
+  if (Math.abs(lat) < 0.5 && Math.abs(lng) < 0.5) return drop('nullIsland')
 
   const dateStart = (r.date_start ?? '').slice(0, 10)
-  if (dateStart.length !== 10) return null
+  if (!isIsoDate(dateStart)) return drop('undated')
+  if (today && dateStart > today) return drop('postdated')
 
   const country = COUNTRY_REWRITES[r.country] ?? r.country
   const iso3 = NAME_TO_ISO3[country] ?? ''
@@ -303,7 +350,7 @@ export function mapUcdpRow(r) {
   // UCDP's "XXX###" codes are placeholder identifiers for unidentified
   // sub-state actors — meaningless to a reader. Drop the event entirely
   // rather than display "XXX130 vs Civilians" on the sheet.
-  if (!sideA || XXX_ACTOR.test(sideA)) return null
+  if (!sideA || XXX_ACTOR.test(sideA)) return drop('unnamedActor')
 
   const event = {
     id: `UCDP-${r.relid || r.id}`,
@@ -327,7 +374,11 @@ export function mapUcdpRow(r) {
   // backwards-compatible; a consumer that only knows the original 15
   // fields keeps working unchanged.
   const dateEnd = (r.date_end ?? '').slice(0, 10)
-  if (dateEnd.length === 10 && dateEnd !== dateStart) event.dateEnd = dateEnd
+  if (isIsoDate(dateEnd)) {
+    if (dateEnd !== dateStart) event.dateEnd = dateEnd
+  } else if (dateEnd) {
+    count(tally, 'unreadableEnd')
+  }
 
   if (r.conflict_name && r.conflict_name.trim().length > 0) {
     event.conflictName = r.conflict_name.trim()
@@ -361,10 +412,36 @@ export function mapUcdpRow(r) {
   const numSources = intOrUndef(r.number_of_sources)
   if (numSources !== undefined && numSources > 0) event.numSources = numSources
 
-  const sources = parseSourceArticle(r.source_article)
+  const sources = parseSourceArticle(r.source_article, tally)
   if (sources.length > 0) event.sources = sources
 
   return event
+}
+
+/** What `mapUcdpRow`'s gates read of a row. */
+const GATED_ON = ['date_start', 'where_prec', 'best', 'latitude', 'longitude', 'side_a']
+
+/**
+ * What to say of a release that gave no event, or null when it gave some.
+ *
+ * A candidate month is a couple of thousand rows and about half pass the
+ * gates, so none passing is not a peaceful month: it is a file with a header
+ * and no body, or a column that changed what it holds. `filterRecentWindow`
+ * answers that with an empty window and empty dates, which written out is a
+ * blank conflict layer the fetcher's six-hour gate then holds, and a payload
+ * the app's validator refuses for its `windowStart: ''`. So the fetcher keeps
+ * the last snapshot, and this is the line it leaves: what the first row held
+ * under the columns the gates read.
+ *
+ * @param {Record<string, string>[]} rows
+ * @param {unknown[]} events the rows `mapUcdpRow` kept
+ * @returns {string | null}
+ */
+export function emptyReleaseReport(rows, events) {
+  if (events.length > 0) return null
+  if (rows.length === 0) return 'the release held no rows'
+  const saw = GATED_ON.map((key) => `${key}=${JSON.stringify(rows[0]?.[key])}`)
+  return `${rows.length} rows and none past the quality gates; the first has ${saw.join(' ')}`
 }
 
 /** Filter to the last N days of the dataset's coverage. Anchors on the

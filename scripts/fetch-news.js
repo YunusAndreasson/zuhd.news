@@ -2,22 +2,22 @@
 // RSS fetcher — niche sources not in the NewsAPI.ai index.
 // These provide editorial taste: specialist tech, investigative, Muslim world.
 // Output: /tmp/zuhd-feed-rss.json (merged with API feed by merge-feeds.js)
-import { readFileSync, readdirSync, existsSync } from 'node:fs'
-import { join } from 'node:path'
+import { rmSync } from 'node:fs'
 import { XMLParser } from 'fast-xml-parser'
-import { Readability } from '@mozilla/readability'
-import { htmlLeadImage, rssItemImage } from './lib/feed-image.js'
-import { htmlForReadability } from './lib/fetch-source-text.js'
-import { JSDOM } from 'jsdom'
-import { slugify, fingerprint, zuhdCategory } from './lib/utils.js'
-import { shouldSkip, recordResult } from './lib/block-cache.js'
-import { ROOT } from './lib/paths.js'
+import { pathOf } from './lib/datasets.js'
+import { feedPubDate } from './lib/feed-age.js'
+import { rssItemImage } from './lib/feed-image.js'
+import { fetchSourcePage, stripTags } from './lib/fetch-source-text.js'
+import { bestStoryIds, bodiesFirst, documentHolds, hackerNewsStories, worthRetrying } from './lib/rss-feed.js'
+import { HACKER_NEWS, RSS_SOURCES, capFor, sourceCountry } from './lib/rss-sources.js'
+import { runStage } from './lib/stage.js'
+import { slugify, zuhdCategory } from './lib/utils.js'
 import { writeJson } from './lib/json-file.js'
-import { BROWSER_UA, ZUHD_UA } from './lib/http.js'
+import { fetchJson, fetchText } from './lib/http.js'
 
-const CONTENT_DIR = join(ROOT, 'content', 'articles')
+const OUT = pathOf('feedRss')
 
-// Shared parser — reused across all sources (same options for RSS/Atom/RDF)
+// Shared parser — reused across all sources (same options for RSS and Atom)
 const rssParser = new XMLParser({
   ignoreAttributes: false,
   attributeNamePrefix: '@_',
@@ -25,75 +25,12 @@ const rssParser = new XMLParser({
   htmlEntities: true,
 })
 
-// ── Source → country code (where the outlet is legally based / editorial HQ) ─
-// Fills the country field so RSS-sourced articles don't land with country:null.
-const SOURCE_COUNTRY = {
-  '404 Media': 'US',
-  'Bellingcat': 'NL',
-  'Mada Masr': 'EG',
-  'Salaam Gateway': 'AE',
-  'InSight Crime': 'US',
-  'Declassified UK': 'GB',
-  'Responsible Statecraft': 'US',
-  'Drop Site News': 'US',
-  'SMEX': 'LB',
-  'SciDev.Net': 'GB',
-  'The Record': 'US',
-  'Phys.org': 'GB',
-  'Quanta Magazine': 'US',
-  'Carbon Brief': 'GB',
-  'New Lines Magazine': 'US',
-  'The War Zone': 'US',
-  'CODA Story': 'US',
-  'European Spaceflight': 'FR',
-  'Undark': 'US',
-  'Inkstick': 'US',
-  'Noema': 'US',
-  'Rest of World': 'US',
-  'The Diplomat': 'US',
-  'Lowy Interpreter': 'AU',
-  'Dialogue Earth': 'GB',
-  'Global Voices': 'NL',
-  'Hacker News': 'US',
-}
-
-// ── Sources — only those NOT reliably indexed by NewsAPI.ai ─────────
-
-// Only sources NOT reliably indexed by NewsAPI.ai.
-// Nature, OCCRP, Wamda moved to API curated list (they return articles there).
-const SOURCES = [
-  // Hacker News fetched via Algolia API — see fetchHackerNews() below
-  { name: '404 Media',      url: 'https://404media.co/rss/',                   format: 'rss2', defaultCategory: 'tech' },
-  { name: 'Bellingcat',     url: 'https://www.bellingcat.com/feed/',            format: 'rss2' },
-  { name: 'Mada Masr',      url: 'https://www.madamasr.com/en/feed/',          format: 'rss2' },
-  { name: 'Salaam Gateway', url: 'https://salaamgateway.com/feed',             format: 'atom', defaultCategory: 'economy' },
-  { name: 'InSight Crime',  url: 'https://insightcrime.org/feed/',              format: 'rss2' },
-  { name: 'Declassified UK', url: 'https://declassifieduk.org/feed/',          format: 'rss2' },
-  { name: 'Responsible Statecraft', url: 'https://responsiblestatecraft.org/feed/', format: 'rss2' },
-  { name: 'Drop Site News', url: 'https://www.dropsitenews.com/feed',          format: 'rss2' },
-  { name: 'SMEX',           url: 'https://smex.org/feed/',                     format: 'rss2', defaultCategory: 'tech' },
-  { name: 'SciDev.Net',     url: 'https://www.scidev.net/global/global_rss.xml', format: 'rss2', defaultCategory: 'science' },
-  { name: 'The Record',     url: 'https://therecord.media/feed',                format: 'rss2', defaultCategory: 'tech' },
-  { name: 'Phys.org',       url: 'https://phys.org/rss-feed/',                  format: 'rss2', defaultCategory: 'science' },
-  { name: 'Quanta Magazine', url: 'https://www.quantamagazine.org/feed/',       format: 'rss2', defaultCategory: 'science' },
-  { name: 'Carbon Brief',   url: 'https://www.carbonbrief.org/feed/',           format: 'rss2', defaultCategory: 'science' },
-  { name: 'New Lines Magazine', url: 'https://newlinesmag.com/feed/',            format: 'rss2' },
-  { name: 'The War Zone',  url: 'https://www.twz.com/feed',                     format: 'rss2' },
-  { name: 'CODA Story',    url: 'https://www.codastory.com/feed/',              format: 'rss2' },
-  { name: 'European Spaceflight', url: 'https://europeanspaceflight.com/feed/',  format: 'rss2', defaultCategory: 'science' },
-  { name: 'Undark',        url: 'https://undark.org/feed/',                      format: 'rss2', defaultCategory: 'science' },
-  { name: 'Inkstick',      url: 'https://inkstickmedia.com/feed/',              format: 'rss2' },
-  { name: 'Noema',        url: 'https://www.noemamag.com/feed/',               format: 'rss2' },
-  { name: 'Rest of World', url: 'https://restofworld.org/feed/latest/',        format: 'rss2', defaultCategory: 'tech' },
-  { name: 'The Diplomat', url: 'https://thediplomat.com/feed/',                format: 'rss2' },
-  { name: 'Lowy Interpreter', url: 'https://www.lowyinstitute.org/the-interpreter/rss.xml', format: 'rss2' },
-  // thethirdpole.net 403s since the Dialogue Earth rebrand — it had failed every
-  // cycle in the log window (41/41) with the whole science feed silently lost.
-  { name: 'Dialogue Earth', url: 'https://dialogue.earth/en/feed/',            format: 'rss2', defaultCategory: 'science' },
-  { name: 'Global Voices', url: 'https://globalvoices.org/feed/',              format: 'rss2' },
-]
-
 const EXCLUDE_RE = /\b(opinion|features|gallery|photos|video|sport|entertainment|culture|food|travel|lifestyle|podcast)\b/i
+
+// A publisher's clock a few seconds fast is not worth a line. A date hours
+// ahead is a feed wrong about when its story ran, and an operator's to see:
+// the line starts with the mark the run record keeps as a warning.
+const AHEAD_WORTH_SAYING_MS = 60_000
 
 // ── Helpers ─────────────────────────────────────────────────────────
 
@@ -107,48 +44,6 @@ function decodeEntities(str) {
   })
 }
 
-function stripHtml(str) { return str.replace(/<[^>]*>/g, '') }
-
-// Chrome UA unblocks ~half of the outlets that 401/403 our honest bot UA
-// (Reuters and similar). We keep the honest UA for RSS feeds below, since
-// feed publishers generally whitelist named crawlers and don't bot-wall.
-
-async function fetchArticleBody(url) {
-  if (shouldSkip(url)) return null
-  try {
-    const res = await fetch(url, {
-      signal: AbortSignal.timeout(8000),
-      redirect: 'follow',
-      headers: {
-        'User-Agent': BROWSER_UA,
-        accept: 'text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8',
-        'accept-language': 'en-US,en;q=0.9',
-      },
-    })
-    if (!res.ok) { recordResult(url, false); return null }
-    const ct = res.headers.get('content-type') || ''
-    if (!ct.includes('text/html')) return null
-    const html = await res.text()
-    const image = htmlLeadImage(html)
-    // Readability handles sites without <article>/<main> semantics — 2026-04-19
-    // bakeoff showed 76% → 96% extraction rate vs the prior regex approach.
-    try {
-      const dom = new JSDOM(htmlForReadability(html), { url })
-      const article = new Readability(dom.window.document).parse()
-      if (article?.textContent) {
-        const text = article.textContent.replace(/\s+/g, ' ').trim()
-        if (text.length >= 200) { recordResult(url, true); return { text: text.slice(0, 5000), image } }
-      }
-    } catch { /* fall through to regex extractor */ }
-    const block = (html.match(/<article[^>]*>([\s\S]*?)<\/article>/i) ||
-                   html.match(/<main[^>]*>([\s\S]*?)<\/main>/i) || [])[1]
-    if (!block) return image ? { text: null, image } : null
-    const text = decodeEntities(stripHtml(block)).replace(/\s+/g, ' ').trim()
-    if (text.length >= 200) { recordResult(url, true); return { text: text.slice(0, 5000), image } }
-    return image ? { text: null, image } : null
-  } catch { recordResult(url, false); return null }
-}
-
 function extractText(val) {
   if (typeof val === 'string') return val
   if (typeof val === 'object' && val !== null) return val['#text'] || val?.a?.['#text'] || ''
@@ -157,24 +52,7 @@ function extractText(val) {
 
 function toArray(items) { return Array.isArray(items) ? items : [items] }
 function parseRss2Items(feed) { return toArray(feed?.rss?.channel?.item || []) }
-function parseRdfItems(feed) { return toArray((feed?.['rdf:RDF'] || feed?.RDF || feed)?.item || []) }
 function parseAtomItems(feed) { return toArray((feed?.feed || feed)?.entry || []) }
-
-
-// ── Dedup against existing articles ─────────────────────────────────
-
-function getExistingTitles(maxDaysOld = 10) {
-  if (!existsSync(CONTENT_DIR)) return []
-  const cutoff = new Date(Date.now() - maxDaysOld * 86400000).toISOString().slice(0, 10)
-  return readdirSync(CONTENT_DIR)
-    .filter(f => f.endsWith('.md') && f.slice(0, 10) >= cutoff)
-    .map(f => {
-      const content = readFileSync(join(CONTENT_DIR, f), 'utf-8')
-      const m = content.match(/^title:\s*["']?(.+?)["']?\s*$/m)
-      return m ? m[1].toLowerCase() : ''
-    })
-    .filter(Boolean)
-}
 
 
 // ── Fetch + Parse ───────────────────────────────────────────────────
@@ -187,12 +65,12 @@ function normalizeItem(raw, source) {
   if (Array.isArray(link)) link = (link.find(l => l['@_rel'] === 'alternate') || link[0])?.['@_href'] || ''
   else if (typeof link === 'object') link = link['@_href'] || link['#text'] || ''
 
-  const description = decodeEntities(stripHtml(extractText(raw.description || raw.summary || raw['dc:description'] || '').trim()))
+  const description = decodeEntities(stripTags(extractText(raw.description || raw.summary || raw['dc:description'] || ''))).trim()
   const pubDate = raw.pubDate || raw.published || raw.updated || raw['dc:date'] || raw.date || ''
   const category = source.defaultCategory || ''
 
   const rawContent = extractText(raw['content:encoded'] || raw.content || '')
-  const contentText = rawContent ? decodeEntities(stripHtml(rawContent)).trim() : ''
+  const contentText = rawContent ? decodeEntities(stripTags(rawContent)).trim() : ''
 
   return { title, description, link, pubDate, category, contentText: contentText || undefined, image: rssItemImage(raw), source: source.name }
 }
@@ -215,29 +93,60 @@ function isRelevant(item) {
  * @typedef {any[] & { _error?: string }} FeedResult
  */
 
+// Three retries, 10 s apart: a feed gets about 70 s before it is given up.
+// One was not enough when the resolver was slow (2026-10-08 22:03: 27 lookups
+// queue on node's four lookup threads, and the retry's lookup waits behind the
+// first round's). Measured that night, by the try on which each of the 26
+// feeds answered: 8 on the first, 10 by the second, 13 by the third, all 26 by
+// the fourth.
+const FEED_RETRIES = 3
+
+/**
+ * A feed that gave nothing, and why: on the log, and on the result for
+ * `sourceStats`.
+ *
+ * @param {{ name: string }} source
+ * @param {string} why
+ * @returns {FeedResult}
+ */
+function failedFeed(source, why) {
+  console.error(`  ✗ ${source.name}: ${why}`)
+  /** @type {FeedResult} */
+  const empty = []
+  empty._error = why
+  return empty
+}
+
 /** @returns {Promise<FeedResult>} */
-async function fetchSource(source, retries = 1) {
+async function fetchSource(source, retries = FEED_RETRIES) {
+  let xml
   try {
-    const res = await fetch(source.url, { signal: AbortSignal.timeout(10000), headers: { 'User-Agent': ZUHD_UA } })
-    if (!res.ok) throw new Error(`HTTP ${res.status}`)
-    const xml = await res.text()
-    const feed = rssParser.parse(xml)
-
-    const rawItems = source.format === 'rdf' ? parseRdfItems(feed)
-      : source.format === 'atom' ? parseAtomItems(feed)
-      : parseRss2Items(feed)
-
-    return rawItems.map(raw => normalizeItem(raw, source)).filter(Boolean).filter(isRelevant)
+    xml = await fetchText(source.url, { timeoutMs: 10_000 })
   } catch (err) {
-    if (retries > 0) {
+    // Only what a wait can change is asked again (`worthRetrying`): a 403 or a
+    // 404 was retried like a timeout, three more times, ten seconds apart.
+    if (retries > 0 && worthRetrying(err)) {
       await new Promise(r => setTimeout(r, 10000))
       return fetchSource(source, retries - 1)
     }
-    console.error(`  ✗ ${source.name}: ${err.message}`)
-    /** @type {any[] & { _error?: string }} */
-    const empty = []
-    empty._error = err.message
-    return empty
+    return failedFeed(source, err.message)
+  }
+  // From here nothing is asked again: a document that does not parse now will
+  // not parse in ten seconds. And an answer that holds no items says what it
+  // does hold. It was an empty list with no error, which is what a feed with
+  // nothing new looks like: a feed that changed format, or an address that now
+  // serves a page, read as a quiet day.
+  try {
+    const feed = rssParser.parse(xml)
+
+    const rawItems = source.format === 'atom' ? parseAtomItems(feed) : parseRss2Items(feed)
+    if (rawItems.length === 0) return failedFeed(source, `no items as ${source.format}: the document holds ${documentHolds(feed)}`)
+
+    const items = rawItems.map(raw => normalizeItem(raw, source)).filter(Boolean)
+    if (items.length === 0) return failedFeed(source, `${rawItems.length} items and no title in any: the first holds ${documentHolds({ item: rawItems[0] })}`)
+    return items.filter(isRelevant)
+  } catch (err) {
+    return failedFeed(source, `not a feed this can read (${err.message})`)
   }
 }
 
@@ -253,33 +162,23 @@ async function fetchHackerNews() {
     const algoliaUrl = `https://hn.algolia.com/api/v1/search?tags=story&numericFilters=points%3E100,num_comments%3E20,created_at_i%3E${cutoff}&hitsPerPage=30`
     const bestUrl = 'https://hacker-news.firebaseio.com/v0/beststories.json'
 
-    const [algolia, bestIds] = await Promise.all([
-      fetch(algoliaUrl, { signal: AbortSignal.timeout(8000) }).then(r => r.json()),
-      fetch(bestUrl, { signal: AbortSignal.timeout(8000) }).then(r => r.json()).catch(() => []),
+    // Through `fetchJson`, which reads the status: a 429 with a JSON body was
+    // parsed, found to have no hits, and counted as a quiet day on Hacker News.
+    const [algolia, bestAnswer] = await Promise.all([
+      fetchJson(algoliaUrl, { timeoutMs: 8000 }),
+      fetchJson(bestUrl, { timeoutMs: 8000 }).catch(() => null),
     ])
+    if (!Array.isArray(algolia?.hits)) console.error(`  ✗ Hacker News: Algolia answered without a list of hits: it holds ${documentHolds(algolia)}`)
 
     // Fetch metadata for top 15 best stories (catches peaked-and-fallen stories)
     const bestItems = await Promise.all(
-      bestIds.slice(0, 15).map(id =>
-        fetch(`https://hacker-news.firebaseio.com/v0/item/${id}.json`, { signal: AbortSignal.timeout(5000) })
-          .then(r => r.json()).catch(() => null)
+      bestStoryIds(bestAnswer).map(id =>
+        fetchJson(`https://hacker-news.firebaseio.com/v0/item/${id}.json`, { timeoutMs: 5000 }).catch(() => null)
       )
     )
 
     // Merge and deduplicate by HN story ID
-    const seen = new Set()
-    const all = []
-    for (const h of algolia.hits || []) {
-      if (!h.url || !h.objectID) continue
-      seen.add(h.objectID)
-      all.push({ title: h.title, url: h.url, score: h.points, comments: h.num_comments || 0, time: h.created_at_i })
-    }
-    for (const b of bestItems) {
-      if (!b?.url || seen.has(String(b.id))) continue
-      if ((b.score || 0) < 100) continue
-      seen.add(String(b.id))
-      all.push({ title: b.title, url: b.url, score: b.score, comments: b.descendants || 0, time: b.time })
-    }
+    const all = hackerNewsStories(algolia, bestItems)
 
     // Filter and sort by comment count (discussion = newsworthy)
     const filtered = all
@@ -290,84 +189,86 @@ async function fetchHackerNews() {
       .filter(s => isRelevant({ title: s.title, category: '' }))
       .sort((a, b) => b.comments - a.comments)
 
-    console.error(`  HN Algolia: ${filtered.length} stories (${algolia.hits?.length || 0} algolia + ${bestItems.filter(Boolean).length} best, after dedup/filter)`)
+    console.error(`  HN Algolia: ${filtered.length} stories (${algolia?.hits?.length || 0} algolia + ${bestItems.filter(Boolean).length} best, after dedup/filter)`)
 
-    // Fetch article bodies for top HN stories (fetch 5; only 3 used, buffer for failures)
+    // Fetch article bodies for top HN stories (fetch 5; only 3 used, buffer for failures).
+    // The same fetch and the same bar enrich-selection uses: a page counts as
+    // a body from 500 characters, above THIN_BODY, so a story fetched here is
+    // never one the prefilter then marks thin. It was 200, with a second
+    // extractor.
     const toFetch = filtered.slice(0, 5)
-    const bodies = await Promise.all(toFetch.map(s => fetchArticleBody(s.url)))
-    for (let i = 0; i < toFetch.length; i++) {
-      toFetch[i].bodyText = bodies[i]?.text || null
-      toFetch[i].image = bodies[i]?.image || null
-    }
+    const bodies = await Promise.all(toFetch.map(s => fetchSourcePage(s.url)))
+    const withPages = filtered.map((s, i) => ({ ...s, bodyText: bodies[i]?.text || null, image: bodies[i]?.image || null }))
     const fetched = bodies.filter(b => b?.text).length
     console.error(`  HN body fetch: ${fetched}/${toFetch.length} articles had extractable content`)
 
-    return filtered.map(s => ({
+    // The ones that gave a body first: that is what the two spare fetches are for.
+    return bodiesFirst(withPages, toFetch.length).map(s => ({
       title: s.title,
       description: `${s.score} points, ${s.comments} comments on Hacker News`,
       link: s.url,
-      pubDate: new Date(s.time * 1000).toISOString(),
+      // An item with no time is undated, like a feed item with none; an
+      // invalid Date here threw and took every Hacker News story with it.
+      pubDate: Number.isFinite(s.time) ? new Date(s.time * 1000).toISOString() : '',
       category: 'tech',
       contentText: s.bodyText || undefined,
       image: s.image || null,
-      source: 'Hacker News',
+      source: HACKER_NEWS.name,
     }))
   } catch (err) {
-    console.error(`  ✗ Hacker News: ${err.message}`)
-    /** @type {FeedResult} */
-    const empty = []
-    empty._error = err.message
-    return empty
+    return failedFeed(HACKER_NEWS, err.message)
   }
 }
 
 // ── Main ────────────────────────────────────────────────────────────
 
-async function main() {
-  console.error(`Fetching ${SOURCES.length} RSS niche sources + Hacker News...`)
+export async function main() {
+  // The last cycle's file goes first. Nothing else clears it, so a run that
+  // died before it wrote left the feed of the cycle before for merge-feeds.js
+  // to merge as this one's, and for the log to count (`RSS fetch: 77 stories`).
+  rmSync(OUT, { force: true })
+  console.error(`Fetching ${RSS_SOURCES.length} RSS niche sources + Hacker News...`)
 
   const [rssResults, hnItems] = await Promise.all([
-    Promise.all(SOURCES.map(fetchSource)),
+    // An arrow, not `RSS_SOURCES.map(fetchSource)`: `map` passes the index as the
+    // second argument, which is `retries`. The first feed got no retry and the
+    // twenty-sixth got 25, each after a 10 s sleep, in a stage with no timeout.
+    // That accident was also what carried the stage through a slow resolver,
+    // which is why the count is now chosen (`FEED_RETRIES`).
+    Promise.all(RSS_SOURCES.map((source) => fetchSource(source))),
     fetchHackerNews(),
   ])
-  const MAX_PER_SOURCE = 3
-  // Per-source override — aggregator-style feeds that flood a single category.
-  // Phys.org republishes journal press releases and was landing 29% of science
-  // primaries; The Record (cyber) was landing 19% of tech primaries. Lowering
-  // their cap rebalances toward Nature/Carbon Brief/SciDev and 404/Ars/CODA.
-  const PER_SOURCE_CAP = { 'Phys.org': 1, 'The Record': 1 }
-  const capFor = name => PER_SOURCE_CAP[name] ?? MAX_PER_SOURCE
-
-  // Per-source stats for dashboard monitoring
-  const sourceStats = SOURCES.map((src, i) => ({
+  // Per-source stats for dashboard monitoring. How many of an outlet's items a
+  // cycle takes is on its row (`capFor`, `lib/rss-sources.js`).
+  const sourceStats = RSS_SOURCES.map((src, i) => ({
     name: src.name,
     fetched: rssResults[i].length,
     used: Math.min(rssResults[i].length, capFor(src.name)),
     error: rssResults[i].length === 0 && rssResults[i]._error ? rssResults[i]._error : null,
   }))
-  sourceStats.push({ name: 'Hacker News', fetched: hnItems.length, used: Math.min(hnItems.length, capFor('Hacker News')), error: hnItems._error || null })
-  try { writeJson('/tmp/zuhd-feed-source-stats.json', { fetchedAt: new Date().toISOString(), sources: sourceStats }, { pretty: false }) } catch {}
+  sourceStats.push({ name: HACKER_NEWS.name, fetched: hnItems.length, used: Math.min(hnItems.length, capFor(HACKER_NEWS.name)), error: hnItems._error || null })
+  try { writeJson(pathOf('feedSourceStats'), { fetchedAt: new Date().toISOString(), sources: sourceStats }, { pretty: false }) } catch {}
 
   const allItems = [
-    ...rssResults.flatMap((items, i) => items.slice(0, capFor(SOURCES[i].name))),
-    ...hnItems.slice(0, capFor('Hacker News')),
+    ...rssResults.flatMap((items, i) => items.slice(0, capFor(RSS_SOURCES[i].name))),
+    ...hnItems.slice(0, capFor(HACKER_NEWS.name)),
   ]
-  const hnUsed = Math.min(hnItems.length, capFor('Hacker News'))
+  const hnUsed = Math.min(hnItems.length, capFor(HACKER_NEWS.name))
   console.error(`Raw items: ${allItems.length} (${allItems.length - hnUsed} RSS + ${hnUsed} HN)`)
 
-  // Dedup against existing articles
-  const existingTitles = getExistingTitles()
-  const existingFps = new Set(existingTitles.map(fingerprint))
-  const seenFps = new Set()
-
+  // No dedup here. What is already published is the prefilter's to remove (by
+  // link, slug, event and title), and a headline two feeds share is one story
+  // in merge-feeds.js.
+  const now = Date.now()
   const stories = []
   for (const item of allItems) {
-    const fp = fingerprint(item.title)
-    if (existingFps.has(fp) || seenFps.has(fp)) continue
-    seenFps.add(fp)
-
     const category = item.category || zuhdCategory([], item.title, item.description)
-    const pubDate = item.pubDate || new Date().toISOString()
+    // The date as the feed prints it is the publisher's: RFC 822, any offset,
+    // and on 2026-10-09 a day ahead. `feedPubDate` says what the story carries.
+    const { pubDate, ahead } = feedPubDate(item.pubDate, now)
+    if (ahead >= AHEAD_WORTH_SAYING_MS) {
+      console.error(`⚠ RSS date ahead of the clock: ${item.source} dates "${item.title}" ${item.pubDate}, ${(ahead / 3_600_000).toFixed(1)} h from now. Taken as now.`)
+    }
 
     stories.push({
       title: item.title,
@@ -379,7 +280,7 @@ async function main() {
       suggestedSlug: slugify(item.title, pubDate),
       eventUri: null,
       eventCoverage: null,
-      sources: [{ name: item.source, url: item.link, country: SOURCE_COUNTRY[item.source] || null, body: (item.contentText || item.description || '').slice(0, 3000), image: item.image || null }],
+      sources: [{ name: item.source, url: item.link, country: sourceCountry(item.source), body: (item.contentText || item.description || '').slice(0, 3000), image: item.image || null }],
       concepts: [],
       location: null,
       sentiment: null,
@@ -388,10 +289,10 @@ async function main() {
   }
 
   const output = { fetchedAt: new Date().toISOString(), stories }
-  const outPath = '/tmp/zuhd-feed-rss.json'
-  writeJson(outPath, output)
-  console.error(`Wrote ${stories.length} stories to ${outPath}`)
-  console.log(`${stories.length} stories from ${SOURCES.length} sources`)
+  writeJson(OUT, output)
+  console.error(`Wrote ${stories.length} stories to ${OUT}`)
+  console.log(`${stories.length} stories from ${RSS_SOURCES.length} sources`)
+  return { counts: { sources: sourceStats.length, failed: sourceStats.filter((s) => s.error).length, items: allItems.length, stories: stories.length } }
 }
 
-main().catch(e => { console.error(e); process.exit(1) })
+await runStage(import.meta, 'fetch-news', main)

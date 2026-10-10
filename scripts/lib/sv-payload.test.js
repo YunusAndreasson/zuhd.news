@@ -10,6 +10,7 @@ import {
   articleFingerprint,
   countryTargets,
   eventTime,
+  mergeRetry,
   registerFault,
   svFeedItem,
   translationFault,
@@ -224,4 +225,37 @@ test('a malformed translation is the other gate\'s problem, not this one', () =>
   assert.equal(registerFault(EN, null), null)
   assert.equal(registerFault(EN, { titel: 'x' }), null)
   assert.equal(registerFault(undefined, SV), null)
+})
+
+// ── The retry ────────────────────────────────────────────────────────
+
+/** Three articles of a batch, each the fixture above under its own slug. */
+const BATCH = ['a', 'b', 'c'].map((slug) => ({ slug, blocks: [...EN.blocks, 'The watchdog credited the central bank.'] }))
+const SOUND = { ...SV, stycken: [...SV.stycken, 'Tillsynsorganet tillskrev centralbanken förtjänsten.'] }
+const TRAPPED = { ...SV, stycken: [...SV.stycken, 'Vakthunden krediterade centralbanken.'] }
+const MERGED = { ...SV, stycken: SV.stycken }
+
+test('the fixtures are what they are called', () => {
+  assert.deepEqual([translationFault(BATCH[0], SOUND), registerFault(BATCH[0], SOUND)], [null, null])
+  assert.equal(translationFault(BATCH[0], TRAPPED), null)
+  assert.match(registerFault(BATCH[0], TRAPPED) ?? '', /krediterade|vakthund/)
+  assert.match(translationFault(BATCH[0], MERGED) ?? '', /^block count 3 != 4$/)
+})
+
+// One call returns the whole batch, and the retry replaced the whole batch
+// when it came back with fewer register faults.
+test('after a retry each article keeps the better of its two translations', () => {
+  const first = new Map([['a', SOUND], ['b', TRAPPED], ['c', SOUND]])
+  const again = new Map([['a', TRAPPED], ['b', SOUND]])
+  const merged = mergeRetry(BATCH, first, again)
+  assert.deepEqual([merged.get('a'), merged.get('b'), merged.get('c')], [SOUND, SOUND, SOUND], 'the mended one is taken; a sound one is not traded for a trap, nor lost because the retry left it out')
+})
+
+test('a translation the renderer would break on loses to one it would not, and to nothing only when there is nothing', () => {
+  assert.equal(mergeRetry(BATCH, new Map([['a', MERGED]]), new Map([['a', TRAPPED]])).get('a'), TRAPPED)
+  assert.equal(mergeRetry(BATCH, new Map([['a', TRAPPED]]), new Map([['a', MERGED]])).get('a'), TRAPPED)
+  assert.equal(mergeRetry(BATCH, new Map(), new Map([['b', MERGED]])).get('b'), MERGED, 'kept for the stage to name as dropped')
+  assert.equal(mergeRetry(BATCH, new Map([['a', TRAPPED]]), new Map([['a', { ...TRAPPED }]])).get('a'), TRAPPED, 'a tie keeps the first')
+  assert.deepEqual([...mergeRetry(BATCH, new Map(), new Map()).keys()], [])
+  assert.deepEqual([...mergeRetry(BATCH, new Map(), new Map([['a', SOUND], ['c', SOUND]])).keys()], ['a', 'c'], 'nothing returned the first time: the retry is all there is')
 })

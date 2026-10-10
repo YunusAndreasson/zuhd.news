@@ -8,7 +8,7 @@ import { countryTotals, ISO3_TO_ISO2, PHASE_NAMES, publishable, windowCoveringDa
 import { splitBlocks } from './lib/blocks.js'
 import { SV_WINDOW_MS, eventTime as svEventTime, svFeedItem } from './lib/sv-payload.js'
 import { buildCategoryOgPng, buildOgPng, buildSiteOgPng } from './lib/og-image.js'
-import { buildIgJpeg, IG_FEED, IG_STORY, igLead } from './lib/ig-image.js'
+import { buildIgJpeg, IG_FEED, IG_STORY, igCardInputs } from './lib/ig-image.js'
 import { buildIslands } from './build/islands.js'
 import { buildMapSources } from './build/basemap.js'
 import { buildCountryPages } from './build/country-pages.js'
@@ -23,12 +23,14 @@ import {
   renderCorrections,
   renderIsnad,
 } from './lib/article-chain.js'
-import { escHtml, escXml } from './lib/html.js'
+import { escHtml, escXml, smartQuotes } from './lib/html.js'
 import { ARCHETYPE_HEADER, siteFooter, WORDMARK, footerStatusLine } from './lib/site-chrome.js'
 import { listRow } from './lib/list-row.js'
 import { publishedTimes } from './lib/published-at.js'
+import { pruneOlderThan } from './lib/prune-cache.js'
 import { openStampLedger } from './lib/stable-stamp.js'
 import { companiesPayload } from './lib/companies.js'
+import { onVenueList } from './lib/stock-mentions.js'
 import { aiModelsPayload } from './lib/ai-models.js'
 import { ROOT } from './lib/paths.js'
 
@@ -56,12 +58,6 @@ const contextToHtml = (timeline) => {
 const WINDOW_MS = 24 * 60 * 60 * 1000
 const MIN_PER_CATEGORY = 10
 const MAX_PER_CATEGORY = 13
-
-const smartQuotes = (text) => text
-  .replace(/(^|[\s([{])"(\S)/gm, '$1\u201C$2')
-  .replace(/"/g, '\u201D')
-  .replace(/(^|[\s([{])'(\S)/gm, '$1\u2018$2')
-  .replace(/'/g, '\u2019')
 
 // Pipeline-emitted country tags use the `country:XX` href scheme
 // (e.g. `[Iran](country:IR)`). On the web these rewrite to the new
@@ -683,7 +679,17 @@ if (existsSync(ledgerPath)) {
         threadId: story.id,
         threadLabel: story.label,
         threadArc: story.arc,
-        threadSummary: story.summary || null,
+        // Not `story.summary`. The ledger stores the selector's `angle` there
+        // (`lib/ledger.js`), which is its brief to the writer: "Lead with the
+        // sentence and the forfeiture…", "The feed title is RT's; write your
+        // own. Dateline Kyiv.", and claims it formed from a feed with no
+        // bodies. From 2026-03-28 that text was published as the thread's
+        // summary in `/api/feed.json` and `/api/articles*.json` (45 of 45
+        // values on 2026-10-09) and handed on by the MCP worker. Nothing was
+        // written to be read here, so nothing is: the key stays, as null, which
+        // it has always been allowed to be. The narrators and the briefing
+        // still read the ledger's own field, where a brief is what they want.
+        threadSummary: null,
         threadDay: Math.max(1, Math.ceil((Date.now() - firstDate.getTime()) / 86400000)),
         threadArticleCount: story.articles.length,
         threadContext: brief?.timeline || null,
@@ -1094,23 +1100,19 @@ const citedOr = (d, fallback) => {
 const chokepointsSrc = join(ROOT, 'content', '.chokepoints.json')
 if (existsSync(chokepointsSrc)) {
   const raw = JSON.parse(readFileSync(chokepointsSrc, 'utf8'))
-  // Match articles against each chokepoint by topicTag. Tag hits against
-  // title + concepts + location; lowercased whole-ish word match. Cheap
-  // enough at 14-day window × 11 chokepoints (~200 × 11 = 2.2k lookups).
-  const normalize = (s) => String(s || '').toLowerCase()
+  // A strait's stories are the ones the entity stage read as about it
+  // (`onVenueList`, `lib/stock-mentions.js`), and no others. They were the
+  // first eight articles carrying one of its tags in the title, the dateline
+  // or a concept: on the 2026-10-10 build Gibraltar's eight were a Catalan
+  // arrest warrant, a Neanderthal find and six more matched on `spain` and
+  // `sanctions`, and before the tag was matched whole, Taiwan's `pla` took
+  // "plan", "plague" and "displaced".
   const enriched = {
     ...raw,
     chokepoints: (raw.chokepoints || []).map((c) => {
-      const tags = (c.topicTags || []).map(normalize)
-      if (!tags.length) return { ...c, relatedArticles: [] }
       const hits = []
       for (const a of sorted) {
-        const hay = [
-          a.title,
-          a.meta.location,
-          ...(a.concepts || []).map((x) => (typeof x === 'object' ? x.label : x)),
-        ].map(normalize).join(' ')
-        if (tags.some((t) => hay.includes(t))) {
+        if (onVenueList(a.meta, `cp:${c.id}`)) {
           hits.push({
             slug: a.slug,
             title: a.title,
@@ -1167,44 +1169,18 @@ if (existsSync(chokepointsSrc)) {
 const marketsSrc = join(ROOT, 'content', '.markets.json')
 if (existsSync(marketsSrc)) {
   const raw = JSON.parse(readFileSync(marketsSrc, 'utf8'))
-  const normalize = (s) => String(s || '').toLowerCase()
-  // Precomputed once rather than per-exchange: 30 exchanges × ~200 articles
-  // would otherwise re-scan every body 30 times.
-  const articleIndex = sorted.map((a) => ({
-    slug: a.slug,
-    title: a.title,
-    date: a.meta.date,
-    dateFormatted: a.dateFormatted,
-    hay: [
-      a.title,
-      a.meta.location,
-      ...(a.concepts || []).map((x) => (typeof x === 'object' ? x.label : x)),
-    ]
-      .map(normalize)
-      .join(' '),
-    countries: new Set(
-      Array.from(String(a.body || '').matchAll(/\(country:([A-Za-z]{2})\)/g), (m) =>
-        m[1].toUpperCase(),
-      ),
-    ),
-  }))
-  // Word-boundary matching, not substring. A bare `includes` let `smi` (the
-  // Swiss index) match "transmission" and hung eight unrelated tech stories off
-  // Zurich; short tickers are exactly the tags a market catalog is full of.
-  // Phrases work too — the boundary is on the whole tag, not on each word.
-  const escapeRe = (s) => s.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')
-  const tagMatcher = (tag) => new RegExp(`(^|[^a-z0-9])${escapeRe(tag)}([^a-z0-9]|$)`)
+  // An exchange's stories are the ones the entity stage read as market news
+  // for it (`onVenueList`), and no others. They were any article carrying one
+  // of its tags or linking its country: London listed a by-election and a
+  // wildlife census, Stockholm three Nobel prizes, and on the 2026-10-10 build
+  // 40 of the 42 stories on seven such lists were none of the market's news.
   const enriched = {
     ...raw,
     exchanges: (raw.exchanges || []).map((e) => {
-      const tags = (e.topicTags || []).map(normalize).map(tagMatcher)
-      const countries = e.countryTags || []
       const hits = []
-      for (const a of articleIndex) {
-        const match =
-          tags.some((re) => re.test(a.hay)) || countries.some((c) => a.countries.has(c))
-        if (!match) continue
-        hits.push({ slug: a.slug, title: a.title, date: a.date, dateFormatted: a.dateFormatted })
+      for (const a of sorted) {
+        if (!onVenueList(a.meta, `mkt:${e.id}`)) continue
+        hits.push({ slug: a.slug, title: a.title, date: a.meta.date, dateFormatted: a.dateFormatted })
         if (hits.length >= 8) break
       }
       const d = dispatch[`mkt:${e.id}`]
@@ -2231,6 +2207,10 @@ if (process.env.SKIP_OG === '1') {
   console.log(
     `  Built: api/og/ (${sorted.length} OG images · ${cached} cached + ${rendered} rendered in ${((Date.now() - ogStart) / 1000).toFixed(1)}s)`,
   )
+  // A card is read again only for an article still in the window, so twice the
+  // window is a file nothing will ask for (`lib/prune-cache.js`).
+  const ogPruned = pruneOlderThan(OG_CACHE_DIR, 2 * BUILD_WINDOW_DAYS * 86_400_000)
+  if (ogPruned.removed > 0) console.log(`  Pruned: .cache/og (${ogPruned.removed} cards past ${2 * BUILD_WINDOW_DAYS}d, ${ogPruned.kept} kept)`)
 }
 
 // Instagram share cards at /api/ig/{slug}.jpg (+ .story.jpg) — the "headline
@@ -2251,9 +2231,11 @@ if (process.env.SKIP_OG === '1') {
   // cached card was composed against the old (truncating) layout.
   const IG_VERSION = 'v7' // bump when ig-image.js rendering changes
   const IG_RECENT = 20 // dev/manual fallback window
-  // The dek is `igLead`, in lib/ig-image.js beside the card it feeds — it used
-  // to be declared here and again in each of the two posters, and the three had
-  // parted over whether to cut on an ellipsis.
+  const IG_CACHE_DAYS = 3 // how long a rendered card is kept; see the prune below
+  // What the card is drawn from is `igCardInputs`, in lib/ig-image.js beside
+  // the card it feeds. It used to be spelled here and again in each of the two
+  // posters, and the three had parted twice: over whether the dek is cut on an
+  // ellipsis, and over whether the headline's quotes are curled.
   mkdirSync(IG_CACHE_DIR, { recursive: true })
   let cycleSlugs = null
   try {
@@ -2268,18 +2250,9 @@ if (process.env.SKIP_OG === '1') {
   let igCached = 0
   let igRendered = 0
   for (const article of igArticles) {
-    const inputs = {
-      v: IG_VERSION,
-      // Prefer the social-optimized card headline (written pre-build by
-      // pick-breaking-social.js) over the article title; falls back cleanly.
-      headline: article.meta.socialTitle ? smartQuotes(article.meta.socialTitle) : article.title,
-      summary: igLead(article.body),
-      category: article.meta.category || null,
-      date: article.meta.date,
-      location: article.meta.location || null,
-      lat: article.meta.lat != null ? Number(article.meta.lat) : null,
-      lng: article.meta.lng != null ? Number(article.meta.lng) : null,
-    }
+    // `v` first and the inputs in their own order: the cache key is a hash of
+    // this object as it is written out.
+    const inputs = { v: IG_VERSION, ...igCardInputs(article.meta, article.body) }
     /** @type {[string, { width: number, height: number }][]} */
     const igSizes = [
       ['jpg', IG_FEED],
@@ -2304,6 +2277,10 @@ if (process.env.SKIP_OG === '1') {
   console.log(
     `  Built: api/ig/ (${igArticles.length} IG cards × 2 · ${igCached} cached + ${igRendered} rendered in ${((Date.now() - igStart) / 1000).toFixed(1)}s)`,
   )
+  // Only this cycle's articles get a card, so one from an earlier cycle is
+  // never read again. Three days covers a rebuild of the day's cycles.
+  const igPruned = pruneOlderThan(IG_CACHE_DIR, IG_CACHE_DAYS * 86_400_000)
+  if (igPruned.removed > 0) console.log(`  Pruned: .cache/ig (${igPruned.removed} cards past ${IG_CACHE_DAYS}d, ${igPruned.kept} kept)`)
 }
 
 // Per-category pages at /c/{category}.html — chronological list of

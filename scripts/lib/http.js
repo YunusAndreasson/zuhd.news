@@ -39,8 +39,20 @@ export async function fetchOk(url, { timeoutMs = 15_000, headers = {}, signal } 
   return res
 }
 
-/** `fetchOk(url, opts).json()`. */
+/**
+ * `fetchOk(url, opts).json()`.
+ *
+ * @param {string | URL} url
+ * @param {Parameters<typeof fetchOk>[1]} [opts]
+ * @returns {Promise<any>}
+ */
 export const fetchJson = async (url, opts) => (await fetchOk(url, opts)).json()
 
-/** `fetchOk(url, opts).text()`. */
+/**
+ * `fetchOk(url, opts).text()`.
+ *
+ * @param {string | URL} url
+ * @param {Parameters<typeof fetchOk>[1]} [opts]
+ * @returns {Promise<string>}
+ */
 export const fetchText = async (url, opts) => (await fetchOk(url, opts)).text()

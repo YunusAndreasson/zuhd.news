@@ -1,17 +1,19 @@
 #!/usr/bin/env node
 // Trends fetcher for zuhd.news.
 // Reads scripts/lib/trends-registry.js, calls the configured sources, and
-// writes two files:
-//   - content/trends/YYYY-MM-DD.json   (full snapshot; kept 30 days, not committed
-//                                        by the cycle since 2026-08-09 — older ones
-//                                        survive only in git history)
-//   - /tmp/zuhd-trends-digest.json     (compact; read by dry-run-augment and replay)
+// writes content/trends/YYYY-MM-DD.json: the full snapshot, kept 30 days, not
+// committed by the cycle since 2026-08-09 (older ones survive only in git
+// history).
 //
-// Design principles copied from fetch-news.js:
-//  - Native fetch with 10s timeout + one retry (retry lives in the per-source module).
-//  - Partial-failure tolerant: one source failing doesn't block the others.
-//  - Missing API keys → skip that source with a warning (graceful), do not abort.
-//  - Idempotent: writing the same day twice overwrites the snapshot.
+// How it holds up:
+//  - Every request has a deadline, its source's own (10 to 30 s). None is
+//    retried but CoinGecko's, once, on a 429.
+//  - One source failing does not cost the others, and a registry row that got
+//    no answer stands on the previous snapshot's for up to a week
+//    (`lib/trends-collect.js`, `lib/trends-carry.js`).
+//  - A missing API key skips that source with a warning; it does not abort.
+//  - Writing the same day twice overwrites the snapshot. When no source
+//    answers, nothing is written and the previous snapshot stays the newest.
 
 import { mkdirSync, readdirSync, unlinkSync } from 'node:fs'
 import { join } from 'node:path'
@@ -20,11 +22,12 @@ import { fetchFredReleaseCalendar } from './lib/trends-sources/fred.js'
 import { EVENT_CATALOG, matchFredRelease } from './lib/event-catalog.js'
 import { ROOT } from './lib/paths.js'
 import { readJson, writeJson } from './lib/json-file.js'
+import { calendarIsFrom, carriedCalendar, carriedStocks } from './lib/trends-carry.js'
+import { collectRows } from './lib/trends-collect.js'
 import { latestTrendsPath } from './lib/trends-snapshot.js'
 
 const TRENDS_DIR = join(ROOT, 'content', 'trends')
 const FX_CACHE = join(TRENDS_DIR, '.fx-history.json')
-const DIGEST_PATH = '/tmp/zuhd-trends-digest.json'
 
 const today = new Date().toISOString().slice(0, 10)
 const SNAPSHOT_PATH = join(TRENDS_DIR, `${today}.json`)
@@ -48,57 +51,49 @@ const priorSnapshot = (() => {
 const started = Date.now()
 console.log(`Fetching trends for ${today}`)
 
-const indicators = [] // populated snapshot entries
+// The snapshot's rows: each source in turn, a row carried from the previous
+// snapshot where its fetch returned nothing, and a source that throws costing
+// only itself (`collectRows`, `lib/trends-collect.js`).
+const { indicators, carried } = await collectRows({
+  sources: SOURCES,
+  registry: INDICATORS,
+  prior: priorSnapshot,
+  fxCache: FX_CACHE,
+})
 
-// Generic dispatch: each source declares its mode in trends-registry.js.
-// Adding a new source = add one entry to SOURCES + registry rows. No
-// changes required here.
-for (const [name, def] of Object.entries(SOURCES)) {
-  const missingEnv = def.requiredEnv.filter((k) => !process.env[k])
-  if (missingEnv.length > 0) {
-    console.warn(`  ⚠ ${name}: missing env ${missingEnv.join(', ')} — skipping`)
-    continue
-  }
-
-  if (def.mode === 'dynamic') {
-    console.log(`${name}: top markets`)
-    // Yesterday's rows for this source, so a sticky fetcher can recognise
-    // them. A fetcher that ignores the argument (Wikipedia) is unaffected.
-    const incumbents = (priorSnapshot?.indicators ?? []).filter((i) => i?.source === name)
-    const results = await def.fetcher({ incumbents })
-    if (results) for (const r of results) indicators.push(r)
-    continue
-  }
-
-  const matched = INDICATORS.filter((i) => i.source === name)
-  if (matched.length === 0) continue
-
-  if (def.mode === 'perIndicator') {
-    console.log(`${name}: ${matched.length} series`)
-    const apiKey = def.requiredEnv[0] ? process.env[def.requiredEnv[0]] : undefined
-    for (const ind of matched) {
-      const data = apiKey != null ? await def.fetcher(ind, apiKey) : await def.fetcher(ind)
-      if (data) indicators.push(buildIndicatorEntry(ind, data))
-    }
-    continue
-  }
-
-  if (def.mode === 'batched') {
-    console.log(`${name}: ${matched.length} series (batched)`)
-    const seriesIds = matched.map((i) => i.seriesId)
-    const apiKey = process.env[def.requiredEnv[0]]
-    const map = await def.fetcher(seriesIds, apiKey, FX_CACHE)
-    if (map) {
-      for (const ind of matched) {
-        const data = map[ind.seriesId]
-        if (data) indicators.push(buildIndicatorEntry(ind, data))
-      }
-    }
-  }
+const fetched = indicators.length - carried.length
+if (carried.length > 0) {
+  console.log(
+    `  · ${carried.length} row(s) carried from the previous snapshot, no fresh answer: ` +
+      carried.map((r) => `${r.id} (as of ${r.asOf})`).join(', '),
+  )
 }
 
-// Catch silent ID collisions early — trends-expand.js's find() returns the
-// first match, so a dupe means a chart pick can resolve to the wrong series.
+// Every source came back empty: the network, most likely. The previous
+// snapshot stays the newest file, as every sibling fetcher leaves its own.
+// Before the rotation below, which would otherwise go on deleting the old
+// files of a directory that had stopped getting new ones.
+if (fetched === 0) {
+  console.error('  ✗ no source returned a row — leaving the previous snapshot in place')
+  process.exit(0)
+}
+
+// The stock rows the entity stage appended to the snapshot this one replaces
+// (`carriedStocks`), or the chip under a story resolves for one cycle. Last,
+// where that stage appends them, so the registry's rows and the contracts
+// keep their order.
+const stocks = carriedStocks(priorSnapshot, new Set(indicators.map((i) => i.id)))
+for (const row of stocks.kept) indicators.push(row)
+if (stocks.kept.length + stocks.lapsed > 0) {
+  console.log(
+    `  · stocks: ${stocks.kept.length} row(s) carried from the previous snapshot, ` +
+      `${stocks.lapsed} left behind (last close over a week old)`,
+  )
+}
+
+// Catch silent ID collisions early: every reader joins on the id, and one that
+// finds by it takes the first match, so a dupe is a chart drawn from the wrong
+// series. `deckIds` keeps two contracts apart; this is the net under it.
 const seenIds = new Set()
 for (const i of indicators) {
   if (seenIds.has(i.id)) console.warn(`  ⚠ duplicate indicator id: ${i.id}`)
@@ -107,11 +102,33 @@ for (const i of indicators) {
 
 // Upcoming major US data releases (CPI, payrolls, GDP, FOMC…) — one extra
 // FRED call, fail-soft. Concrete "what's next" dates for editorial surfaces.
+//
+// Once a day, not once a cycle. The endpoint is slow (`fred.js` gives it 30 s
+// and says 15-20 s is usual) and the answer is ten days of dates that change
+// when a day passes. `releaseCalendarAsOf` is the day of the call the calendar
+// came from, so today's is used again and one carried over a failed call is
+// asked for at the next cycle.
 let releaseCalendar = []
-if (process.env.FRED_API_KEY) {
+let releaseCalendarAsOf = null
+if (calendarIsFrom(priorSnapshot, today)) {
+  releaseCalendar = carriedCalendar(priorSnapshot, today)
+  releaseCalendarAsOf = today
+  console.log(`  · fred: ${releaseCalendar.length} major releases, from today's earlier call`)
+} else if (process.env.FRED_API_KEY) {
   releaseCalendar = await fetchFredReleaseCalendar(process.env.FRED_API_KEY)
   if (releaseCalendar.length > 0) {
+    releaseCalendarAsOf = today
     console.log(`  · fred: ${releaseCalendar.length} major releases in next 10d`)
+  }
+}
+// The call failed (it answers `[]` for that) or was not made: the previous
+// snapshot's entries that are still ahead, so a slow endpoint does not take
+// the CPI date off the rail for a cycle.
+if (releaseCalendar.length === 0) {
+  releaseCalendar = carriedCalendar(priorSnapshot, today)
+  releaseCalendarAsOf = priorSnapshot?.releaseCalendarAsOf ?? null
+  if (releaseCalendar.length > 0) {
+    console.log(`  · fred: ${releaseCalendar.length} release(s) carried from the previous snapshot's calendar`)
   }
 }
 
@@ -145,6 +162,7 @@ const snapshot = {
   fetchedAt: new Date().toISOString(),
   asOf: today,
   releaseCalendar,
+  ...(releaseCalendarAsOf ? { releaseCalendarAsOf } : {}),
   events,
   indicators,
 }
@@ -166,59 +184,5 @@ for (const f of readdirSync(TRENDS_DIR)) {
 }
 if (rotated) console.log(`Rotated ${rotated} trends snapshots older than ${KEEP_DAYS} days`)
 
-// ── Write digest (editor-facing compact view) ──────────────────────────────
-//
-// The digest is what the edu-context Claude stage sees. It must be small
-// enough to fit comfortably in the prompt alongside the article list. We drop
-// the full values/periods arrays here — Claude only needs to know WHAT is
-// available and its latest value so it can decide relevance. The full series
-// lives in the snapshot and gets re-hydrated by the dry-run / generator when
-// Claude emits a pick.
-
-const digest = {
-  asOf: today,
-  releaseCalendar,
-  indicators: indicators.map((i) => ({
-    id: i.id,
-    label: i.label,
-    unit: i.unit,
-    sourceLabel: i.sourceLabel,
-    asOf: i.asOf,
-    latest: i.values[i.values.length - 1],
-    previous: i.values.length > 1 ? i.values[i.values.length - 2] : null,
-    topicTags: i.topicTags,
-    countryTags: i.countryTags || [],
-    points: i.values.length,
-    outcomeLabel: i.outcomeLabel, // polymarket only
-    marketUrl: i.marketUrl,       // polymarket only
-  })),
-}
-
-writeJson(DIGEST_PATH, digest)
-console.log(`Wrote ${DIGEST_PATH} — ${digest.indicators.length} entries`)
-
 const elapsed = Math.round((Date.now() - started) / 1000)
-console.log(`Trends: ${indicators.length} indicators fetched — ${elapsed}s`)
-
-// ── Helpers ────────────────────────────────────────────────────────────────
-
-/** Merge a fetched series into its registry entry, producing a snapshot row. */
-function buildIndicatorEntry(ind, data) {
-  return {
-    id: ind.id,
-    label: ind.label,
-    unit: ind.unit,
-    source: ind.source,
-    seriesId: ind.seriesId,
-    ...(ind.field ? { field: ind.field } : {}),
-    cadence: ind.cadence,
-    topicTags: ind.topicTags,
-    countryTags: ind.countryTags || [],
-    defaultHighlight: ind.defaultHighlight || 'last',
-    sourceLabel: ind.sourceLabel,
-    values: data.values,
-    periods: data.periods,
-    ...(data.dates ? { dates: data.dates, completed: data.completed } : {}),
-    asOf: data.asOf,
-  }
-}
+console.log(`Trends: ${fetched} indicators fetched, ${indicators.length - fetched} carried — ${elapsed}s`)

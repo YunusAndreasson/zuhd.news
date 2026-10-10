@@ -1,60 +1,45 @@
 #!/usr/bin/env node
-// Removes entries from /tmp/zuhd-selection.json whose article already exists.
-// Runs between selector and writer to avoid wasting LLM turns on duplicates.
+// Removes entries from the selection whose article already exists, and entries
+// it holds twice. Runs between selector and writer to avoid wasting LLM turns
+// on duplicates. The layers are `wouldDedup` and `dedupSelection` in
+// `lib/dedup.js`:
 //
-// Four dedup layers (via shared lib/dedup.js):
 // 1. Exact slug match — article file already exists
-// 2. eventUri match — same event already covered by a published article
-// 3. Fuzzy slug match — word overlap ≥ 55% against a recently *published* article
-// 4. Intra-batch fuzzy match — the same, against other stories in *this* selection
-//
-// Layer 4 exists because layers 1-3 only ever check against
-// content/articles/*.md, which is empty for anything still in this selection —
-// so two picks describing the same event (corpus.test.js's same-day ratchet:
-// skyroot-vikram-1-india-first-private-orbital-launch /
-// skyroot-vikram-1-india-private-orbital-rocket, both 2026-07-18, 83% overlap)
-// sailed through as two "new" stories and both got written.
-import { readFileSync, existsSync } from 'node:fs'
-import { CATEGORY_FLOORS, FLOORS_MAY_GO_UNMET, buildWordSets, fuzzyMatch, loadDedupContext, wouldDedup } from './lib/dedup.js'
+// 2. Same source URL as a published article
+// 3. eventUri match — same event already covered by a published article
+// 4. Fuzzy slug match — word overlap ≥ 55% against a recently *published* article
+// 5. Recap — title-word overlap against recent titles and ledger labels
+// 6. Intra-batch fuzzy match — the same, against other stories in *this* selection
+import { existsSync, readFileSync } from 'node:fs'
+import { pathOf } from './lib/datasets.js'
+import { dedupSelection, loadDedupContext } from './lib/dedup.js'
 import { writeJson } from './lib/json-file.js'
+import { runStage } from './lib/stage.js'
 
-const SELECTION = '/tmp/zuhd-selection.json'
-if (!existsSync(SELECTION)) process.exit(0)
+export function main() {
+  const SELECTION = pathOf('selection')
+  if (!existsSync(SELECTION)) return { skipped: 'no selection' }
 
-const selection = JSON.parse(readFileSync(SELECTION, 'utf-8'))
-const before = selection.length
+  const selection = JSON.parse(readFileSync(SELECTION, 'utf-8'))
+  const { kept, removed, floors } = dedupSelection(selection, loadDedupContext())
 
-const ctx = loadDedupContext()
-const batchWordSets = []
-
-const filtered = selection.filter(s => {
-  const result = wouldDedup(s, ctx)
-  if (result.deduped) {
-    console.log(`Removed (${result.reason}): ${s.suggestedSlug} — matches ${result.match}`)
-    return false
+  for (const r of removed) console.log(`Removed (${r.reason}): ${r.slug} — matches ${r.match}`)
+  if (removed.length > 0) {
+    writeJson(SELECTION, kept)
+    console.log(`Deduped selection: ${selection.length} → ${kept.length} (${removed.length} duplicates removed)`)
+  } else {
+    console.log(`Dedup check: all ${selection.length} stories are new`)
   }
-  const batchMatch = fuzzyMatch(s.suggestedSlug, batchWordSets)
-  if (batchMatch) {
-    console.log(`Removed (intra-batch): ${s.suggestedSlug} — matches ${batchMatch}`)
-    return false
+
+  // Post-dedup category floor check — warn if dedup broke a minimum
+  for (const f of floors) {
+    const level = f.allowed ? 'Note: under floor (allowed)' : 'WARNING: post-dedup floor violation'
+    console.log(`${level} — ${f.category}: ${f.count} < ${f.min}`)
   }
-  batchWordSets.push(...buildWordSets([s.suggestedSlug]))
-  return true
-})
-
-if (filtered.length < before) {
-  writeJson(SELECTION, filtered)
-  console.log(`Deduped selection: ${before} → ${filtered.length} (${before - filtered.length} duplicates removed)`)
-} else {
-  console.log(`Dedup check: all ${before} stories are new`)
-}
-
-// Post-dedup category floor check — warn if dedup broke a minimum
-const catCounts = {}
-for (const s of filtered) catCounts[s.category] = (catCounts[s.category] || 0) + 1
-for (const [cat, min] of Object.entries(CATEGORY_FLOORS)) {
-  if ((catCounts[cat] || 0) < min) {
-    const level = FLOORS_MAY_GO_UNMET.has(cat) ? 'Note: under floor (allowed)' : 'WARNING: post-dedup floor violation'
-    console.log(`${level} — ${cat}: ${catCounts[cat] || 0} < ${min}`)
+  return {
+    counts: { selected: selection.length, kept: kept.length, removed: removed.length, underFloor: floors.filter((f) => !f.allowed).length },
+    dropped: removed.map((r) => ({ slug: r.slug, reason: `${r.reason}: ${r.match}` })),
   }
 }
+
+await runStage(import.meta, 'dedup-selection', main)

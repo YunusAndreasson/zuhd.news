@@ -86,3 +86,6 @@ scripts/tmp-*.sh
 # build.js's own concurrency guard (see scripts/build.js) — removed on exit,
 # but a killed build can leave it behind.
 .build.lock
+
+# Tells scripts/run-cycle.sh to run the shell script the runner replaced (scripts/run-cycle.legacy.sh).
+.cycle-legacy

@@ -20,8 +20,8 @@ Three surfaces, and almost nothing that matters in one matters in the others:
 
 - **Web**: `public/`, `templates/`, `functions/`, built by `scripts/build.js`.
 - **Pipeline**: `scripts/` and `content/`. Selector, writer and editor stages
-  run through the `claude` CLI with node scripts between them, orchestrated by
-  `scripts/run-cycle.sh`.
+  run through the `claude` CLI with node scripts between them: a stage list
+  (`scripts/cycle/stages.js`) that `scripts/run-cycle.sh` starts.
 - **App**: `mobile/`, which has its own `CLAUDE.md`, commands and tests. Start
   Claude in `mobile/` for app work.
 
@@ -51,16 +51,19 @@ Run at the repo root. `mobile/` has its own.
 | `npm run build` | `scripts/build.js` → `dist/` |
 | `npm run verify` | `lint && typecheck && test` — run before committing |
 | `npm run lint` | Biome, **linter only** (`biome.jsonc`); formatter is off on purpose |
-| `npm run typecheck` | two projects: `tsconfig.islands.json` (islands + `shared/`, strict) and `tsconfig.node.json` (`allowJs`+`checkJs`, `strict` OFF) |
+| `npm run typecheck` | three projects: `tsconfig.islands.json` (islands + `shared/`, strict), `tsconfig.node.json` (`allowJs`+`checkJs`, `strict` OFF) and `tsconfig.pipeline.json` (the pipeline's typed core, strict; a file joins once everything it imports is clean) |
 | `npm test` | `node --test scripts/lib/*.test.js`; one file: `node --test scripts/lib/<name>.test.js` |
+| `npm run test:unit` | the tests that need only the source; what CI runs |
+| `npm run test:live` | the ratchets over the live corpus, `logs/` and `/tmp` |
+| `npm run test:cycle` | the orchestrator against its recordings (`scripts/lib/fixtures/cycle/`); needs root, takes minutes |
 | `npm run deadcode` | knip (`knip.jsonc`) — unused files, exports and dependencies |
 | `npm run deadcode:css` | dead CSS, measured in a browser — report only, never a gate |
 | `npm run publish` | build + `wrangler pages deploy dist` (branch `master`) |
 | `npm run perf` / `perf:idle` / `perf:profile` | browser instruments in `scripts/perf/` |
 
-CI (`.github/workflows/checks.yml`): lint, typecheck, deadcode, build. `npm test`
-is deliberately not in CI — `logs.test.js` reads gitignored `logs/` and
-`corpus.test.js` ratchets against the live corpus.
+CI (`.github/workflows/checks.yml`): lint, typecheck, deadcode, `test:unit`,
+build. `test:live` is deliberately not in CI — `logs.test.js` reads gitignored
+`logs/` and `corpus.test.js` ratchets against the live corpus.
 
 ## Gotchas
 
@@ -100,7 +103,7 @@ ranked metrics) · `chart/*` (the one chart and rank bar, as arithmetic) ·
 - **Site:** `npm run publish`. Production branch `master`; the pipeline deploys each cycle.
 - **MCP worker:** `npm run deploy` inside `workers/mcp`.
 - **`workers/share-preview`:** retired — do not deploy.
-- Dashboard: `localhost:7777` via SSH tunnel, `zuhd-dashboard.service`, `scripts/dashboard/`.
+- Dashboard: port 7777 on the server's public address, read-only and without a login (`DASHBOARD_HOST` in `zuhd-dashboard.service`), `scripts/dashboard/`.
 - Experiments: one at a time in `content/.experiments.json`; create with `/experiment`.
 
 ## Rules that load with the files they cover

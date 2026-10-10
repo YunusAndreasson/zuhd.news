@@ -5,11 +5,11 @@ import {
   AI_LAB_STALE_DAYS,
   aiModelsPayload,
   aiModelsSnapshot,
-  csvObjects,
   labFrontier,
   latestReport,
   scoredModels,
 } from './ai-models.js'
+import { csvObjects } from './csv.js'
 
 const NOW = Date.UTC(2026, 9, 4)
 
@@ -67,13 +67,6 @@ test('every lab has what its card needs, and no string is claimed twice', () => 
 })
 
 // ── reading the files ──────────────────────────────────────────────────────
-
-test('a CSV is read by its header, and a missing column is an error', () => {
-  const rows = csvObjects('﻿a,b\n1,"x, y"\n', ['a', 'b'])
-  assert.deepEqual(rows, [{ a: '1', b: 'x, y' }])
-  assert.throws(() => csvObjects('a,b\n1,2\n', ['a', 'c']), /missing columns: c/)
-  assert.throws(() => csvObjects('', ['a']), /empty/)
-})
 
 test('a row without a score, a day or a name is not a scored model', () => {
   const rows = csvObjects(

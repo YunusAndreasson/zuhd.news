@@ -22,30 +22,18 @@
 // place. The company files are a side dish — one failing keeps the figures the
 // last snapshot had.
 
-import { join } from 'node:path'
 import { AI_LABS } from './lib/ai-lab-metadata.js'
 import { aiModelsSnapshot } from './lib/ai-models.js'
 import { hasFlag } from './lib/argv.js'
 import { fetchText } from './lib/http.js'
-import { readJson, writeJson } from './lib/json-file.js'
-import { ROOT } from './lib/paths.js'
+import { Degrade, snapshotStage } from './lib/snapshot-stage.js'
 
-const OUTPUT_PATH = join(ROOT, 'content', '.ai-models.json')
 const BASE = 'https://epoch.ai/data'
 const REFETCH_AFTER_MS = 20 * 3600_000
 // The scores file is 33KB; the deadline is for a slow day, not a large body.
 const TIMEOUT_MS = 30_000
 
 const started = Date.now()
-const previous = readJson(OUTPUT_PATH)
-
-const age = previous?.fetched ? started - Date.parse(previous.fetched) : Number.POSITIVE_INFINITY
-if (!hasFlag('force') && age >= 0 && age < REFETCH_AFTER_MS) {
-  console.log(`AI models: fetched ${(age / 3600_000).toFixed(1)}h ago — keeping the snapshot`)
-  process.exit(0)
-}
-
-console.log(`Fetching AI model scores (Epoch AI, ${AI_LABS.length} labs)`)
 
 /** A file's text, or null with the reason logged. */
 const get = async (name) => {
@@ -57,35 +45,43 @@ const get = async (name) => {
   }
 }
 
-const [eci, revenue, funding] = await Promise.all([
-  get('eci_scores.csv'),
-  get('ai_companies_revenue_reports.csv'),
-  get('ai_companies_funding_rounds.csv'),
-])
+const { written, snapshot } = await snapshotStage('fetch-ai-models', 'aiModels', produce, {
+  // `aiModelsSnapshot` refuses a scores file with no lab in it itself, and says why.
+  isEmpty: (s) => s.labs.length === 0,
+  freshFor: REFETCH_AFTER_MS,
+  // The fetcher's own clock. `generated` is the stamp the build holds still.
+  freshBy: 'fetched',
+  force: hasFlag('force'),
+  now: started,
+})
 
-if (eci === null) {
-  console.error('  ✗ no scores returned — leaving previous snapshot in place')
-  process.exit(0)
+if (written) {
+  const withMoney = snapshot.labs.filter((l) => l.revenue || l.valuation).length
+  console.log(
+    `  ✓ wrote ${snapshot.labs.length}/${AI_LABS.length} labs from ${snapshot.models} scored models` +
+      ` (${withMoney} with revenue or valuation; best: ${snapshot.frontier.model}, ${snapshot.frontier.score})` +
+      ` in ${((Date.now() - started) / 1000).toFixed(1)}s`,
+  )
 }
 
-const { snapshot, rejected, notes } = aiModelsSnapshot(
-  { eci, revenue, funding },
-  { labs: AI_LABS, now: started, previous },
-)
-for (const note of notes) console.error(`  ⚠ ${note}`)
+/** The snapshot from Epoch's three files, with the last one's money where a side file did not come. */
+async function produce({ previous }) {
+  console.log(`Fetching AI model scores (Epoch AI, ${AI_LABS.length} labs)`)
 
-if (!snapshot) {
-  console.error(`  ✗ rejected: ${rejected} — leaving previous snapshot in place`)
-  process.exit(0)
+  const [eci, revenue, funding] = await Promise.all([
+    get('eci_scores.csv'),
+    get('ai_companies_revenue_reports.csv'),
+    get('ai_companies_funding_rounds.csv'),
+  ])
+  if (eci === null) throw new Degrade('no scores returned')
+
+  const { snapshot, rejected, notes } = aiModelsSnapshot(
+    { eci, revenue, funding },
+    { labs: AI_LABS, now: started, previous },
+  )
+  for (const note of notes) console.error(`  ⚠ ${note}`)
+  if (!snapshot) throw new Degrade(`rejected: ${rejected}`)
+
+  for (const s of snapshot.skipped) console.error(`  ⚠ left out ${s.id}: ${s.reason}`)
+  return snapshot
 }
-
-for (const s of snapshot.skipped) console.error(`  ⚠ left out ${s.id}: ${s.reason}`)
-
-writeJson(OUTPUT_PATH, snapshot)
-
-const withMoney = snapshot.labs.filter((l) => l.revenue || l.valuation).length
-console.log(
-  `  ✓ wrote ${snapshot.labs.length}/${AI_LABS.length} labs from ${snapshot.models} scored models` +
-    ` (${withMoney} with revenue or valuation; best: ${snapshot.frontier.model}, ${snapshot.frontier.score})` +
-    ` in ${((Date.now() - started) / 1000).toFixed(1)}s`,
-)

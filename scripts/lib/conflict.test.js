@@ -9,7 +9,18 @@
 
 import test from 'node:test'
 import assert from 'node:assert/strict'
-import { filterRecentWindow, mapUcdpRow, parseCsv, parseSourceArticle, rowsToObjects } from './conflict.js'
+import {
+  candidateCsvUrl,
+  droppedRowsReport,
+  emptyReleaseReport,
+  filterRecentWindow,
+  mapUcdpRow,
+  newGateTally,
+  nextReleases,
+  parseSourceArticle,
+  REQUIRED_COLUMNS,
+} from './conflict.js'
+import { csvObjects } from './csv.js'
 
 const baseRow = {
   id: '1',
@@ -30,26 +41,14 @@ const baseRow = {
   source_headline: 'Clashes reported in central Khartoum',
 }
 
-test('parseCsv handles quoted fields with embedded commas', () => {
-  const csv = 'a,b,c\n1,"two, with comma",3\n'
-  assert.deepEqual(parseCsv(csv), [
-    ['a', 'b', 'c'],
-    ['1', 'two, with comma', '3'],
-  ])
-})
-
-test('parseCsv handles doubled-quote escapes', () => {
-  const csv = 'a,b\n1,"he said ""hi"""\n'
-  assert.deepEqual(parseCsv(csv), [
-    ['a', 'b'],
-    ['1', 'he said "hi"'],
-  ])
-})
-
-test('rowsToObjects throws when REQUIRED_COLUMNS are missing', () => {
+test('a release missing a column the gates read is refused, by name', () => {
   // Schema-drift guard: if UCDP renames a column, surface it loudly
   // rather than write garbage events with empty fields.
-  assert.throws(() => rowsToObjects([['a', 'b', 'c'], ['1', '2', '3']]), /missing expected columns/i)
+  const header = REQUIRED_COLUMNS.filter((c) => c !== 'best' && c !== 'where_prec').join(',')
+  assert.throws(() => csvObjects(`${header}\n`, REQUIRED_COLUMNS), /missing columns: where_prec, best/)
+  // And a release with every column is rows keyed by them, ready for the gates.
+  const full = `${REQUIRED_COLUMNS.join(',')}\n${REQUIRED_COLUMNS.map((c) => baseRow[c]).join(',')}\n`
+  assert.equal(mapUcdpRow(csvObjects(full, REQUIRED_COLUMNS)[0]).id, 'UCDP-TEST-1')
 })
 
 test('mapUcdpRow drops country-centroid records (where_prec > 3)', () => {
@@ -121,6 +120,25 @@ test('filterRecentWindow anchors on the dataset max date, not Date.now()', () =>
 test('filterRecentWindow handles empty input without throwing', () => {
   const out = filterRecentWindow([], 1)
   assert.deepEqual(out, { kept: [], windowStart: '', windowEnd: '' })
+})
+
+test('a release that gives no event is reported, with what its first row held', () => {
+  // That empty window, written out, is a blank conflict layer and a payload the
+  // app refuses for its `windowStart: ''`. A column that changes what it holds
+  // gets there with every row parsed: here `best` arrives as a word.
+  const rows = [
+    { ...baseRow, best: 'five' },
+    { ...baseRow, best: 'two' },
+  ]
+  const events = rows.map((r) => mapUcdpRow(r)).filter(Boolean)
+  assert.deepEqual(events, [])
+  assert.equal(
+    emptyReleaseReport(rows, events),
+    '2 rows and none past the quality gates; the first has date_start="2026-03-31 00:00:00.000" ' +
+      'where_prec="1" best="five" latitude="15.5" longitude="32.5" side_a="Group A"',
+  )
+  assert.equal(emptyReleaseReport([], []), 'the release held no rows', 'a header and no body')
+  assert.equal(emptyReleaseReport([baseRow], [mapUcdpRow(baseRow)]), null, 'a release with an event in it is written')
 })
 
 // --- enrichment fields (2026-05-02 expansion) ---
@@ -195,4 +213,106 @@ test('mapUcdpRow attaches structured sources from source_article', () => {
   })
   assert.equal(out.sources.length, 2)
   assert.equal(out.sources[0].outlet, 'Reuters')
+})
+
+// --- dates the app will take ---
+//
+// The app's validator takes the conflict layer whole or not at all, and tests
+// every date in it (`isIsoDate`): one that is not a date, anywhere, and every
+// installed app refuses the layer.
+
+test('a reported source whose date slot is not a date is dropped, and counted', () => {
+  // The case the parser's own comment names: an outlet with a comma in it
+  // splits one field late, and the rest of its name lands where the date goes.
+  const tally = {}
+  const out = parseSourceArticle(
+    '"Reuters, India,2026-03-15,Khartoum clashes";"AFP,2026-03-15,Sudan death toll rises"',
+    tally,
+  )
+  assert.deepEqual(out, [{ outlet: 'AFP', date: '2026-03-15', headline: 'Sudan death toll rises' }])
+  assert.deepEqual(tally, { undatedSources: 1 })
+})
+
+test('a row is an event only with a start the app can read; an unreadable end is left off', () => {
+  const tally = {}
+  // Ten characters was the whole test, and this is ten characters.
+  assert.equal(mapUcdpRow({ ...baseRow, date_start: '31/03/2026 00:00' }, tally), null)
+  assert.equal(mapUcdpRow({ ...baseRow, date_start: '2026-02-30 00:00:00.000' }, tally), null, 'a day not in the calendar')
+  assert.equal(mapUcdpRow({ ...baseRow, date_start: '' }, tally), null)
+
+  const kept = mapUcdpRow({ ...baseRow, date_end: '04/04/2026 00:00' }, tally)
+  assert.equal(kept.eventDate, '2026-03-31')
+  assert.equal('dateEnd' in kept, false, 'the event stays; the field the app would refuse it for does not')
+
+  const run = mapUcdpRow({ ...baseRow, date_end: '2026-04-02 00:00:00.000' }, tally)
+  assert.equal(run.dateEnd, '2026-04-02')
+  assert.deepEqual(tally, { undated: 3, unreadableEnd: 1 })
+})
+
+// --- the release, and what follows it ---
+
+test('what follows a release is next month, or the first of next year', () => {
+  // The last number is the month. The fetcher asked only for `patch + 1`, and
+  // after 26.0.12 that is a file that will never exist: the alarm that was added
+  // because the pin rotted unnoticed would have gone blind every January.
+  assert.deepEqual(nextReleases('26.0.8'), ['26.0.9', '27.0.1'])
+  assert.deepEqual(nextReleases('26.0.12'), ['26.0.13', '27.0.1'])
+  assert.equal(candidateCsvUrl('26.0.8'), 'https://ucdp.uu.se/downloads/candidateged/GEDEvent_v26_0_8.csv')
+  assert.equal(candidateCsvUrl('27.0.1'), 'https://ucdp.uu.se/downloads/candidateged/GEDEvent_v27_0_1.csv')
+})
+
+test('a row dated after today is not an event, and cannot move the window', () => {
+  // The window is anchored on the newest date in the release, so one mistyped
+  // year was the whole layer: a week ending in 2027 with one event in it.
+  const tally = {}
+  const rows = [
+    { ...baseRow, relid: 'A', date_start: '2026-03-30 00:00:00.000' },
+    { ...baseRow, relid: 'B', date_start: '2026-03-31 00:00:00.000' },
+    { ...baseRow, relid: 'C', date_start: '2027-03-31 00:00:00.000' },
+  ]
+  const events = rows.map((r) => mapUcdpRow(r, tally, { today: '2026-05-02' })).filter(Boolean)
+  assert.deepEqual(events.map((e) => e.id), ['UCDP-A', 'UCDP-B'])
+  assert.deepEqual(tally, { postdated: 1 })
+  assert.equal(filterRecentWindow(events, 7).windowEnd, '2026-03-31')
+
+  // A row dated today is kept, and with no `today` nothing is asked.
+  assert.ok(mapUcdpRow(rows[1], tally, { today: '2026-03-31' }))
+  assert.ok(mapUcdpRow(rows[2]))
+})
+
+// --- what the gates drop ---
+
+test('every row the gates drop is counted under its reason', () => {
+  // About half of a release does not pass (894 of 1,806 rows in August 2026),
+  // and the snapshot said nothing of it. The counts are written into it now.
+  const tally = newGateTally()
+  const rows = [
+    baseRow,
+    { ...baseRow, where_prec: '5' },
+    { ...baseRow, best: '0' },
+    { ...baseRow, latitude: '' },
+    { ...baseRow, latitude: '0.1', longitude: '0.1' },
+    { ...baseRow, date_start: '' },
+    { ...baseRow, date_start: '2027-03-31 00:00:00.000' },
+    { ...baseRow, side_a: 'XXX130' },
+  ]
+  const events = rows.map((r) => mapUcdpRow(r, tally, { today: '2026-05-02' })).filter(Boolean)
+  assert.equal(events.length, 1)
+  assert.deepEqual(tally, {
+    lowPrecision: 1,
+    noFatalities: 1,
+    noCoordinates: 1,
+    nullIsland: 1,
+    undated: 1,
+    postdated: 1,
+    unnamedActor: 1,
+    undatedSources: 0,
+    unreadableEnd: 0,
+  })
+  assert.equal(
+    droppedRowsReport(tally),
+    '1 placed no closer than a region, 1 with nobody killed, 1 with no coordinates, 1 at null island, ' +
+      '1 with no readable start date, 1 dated after today, 1 by an unnamed actor',
+  )
+  assert.equal(droppedRowsReport(newGateTally()), '')
 })

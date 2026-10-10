@@ -668,5 +668,7 @@
       "resultSummary": "Closed two days early on the operator's instruction, on the most likely outcome, so that a held edit to the same two prompts could ship. 4 odds rows were offered in 7 cycles and 1 was cited (25%), against 0 of 23 in the baseline. The citing article (2026-10-03-two-tankers-struck-hormuz-fire-near-aramco-riyadh) attributes the price to traders, gives the move in points, uses a contract that is the story's own next step, and keeps it in the future block: \"Polymarket traders give Hormuz traffic a 21% chance of normalising by 31 December, down 7 points in a week.\" In the 10:00 cycle on 10-04 the writer passed over a Putin contract as not its story's next step, so the gate held. Not a full evaluation: 4 rows is under the 15 the criteria ask for before a verdict, which called for extending to 2026-10-09, and the guardrails on body length and editor wall-time were not measured. The rule stays; if odds start leading a story or citing a contract about something else, roll back with `git revert 1d5a5e8e`."
     }
   ],
-  "queuedExperiments": []
+  "queuedExperiments": [],
+  "noNewExperimentsUntil": "2026-11-05",
+  "noNewExperimentsUntilReason": "The pipeline's orchestration and stage scripts are being restructured from 2026-10-08: a record per cycle, stages converted one at a time, then run-cycle.sh replaced by a stage list and a Node runner. A new experiment's effect could not be told from the refactor's while that lands, and the tuner's edits would meet the same files. Wait until the runner has cut over. Drop this field on 2026-11-05; do not auto-extend."
 }

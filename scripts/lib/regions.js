@@ -1,7 +1,7 @@
 // Which part of the world a dateline is in.
 //
 // Three copies of this bbox ladder — `compute-metrics.js`, the dashboard
-// server, and the autoresearch scorer, whose copy carried the comment "Bbox
+// server, and the cycle's scorer (now `lib/rvs.js`), whose copy carried the comment "Bbox
 // match used by production compute-metrics.js" and was a hand-transcription of
 // it. The scorer's job is to reproduce what the production metric measures, so
 // a transcription is the one thing it must not be: the two could part without

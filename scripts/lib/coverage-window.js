@@ -1,8 +1,9 @@
 // Grounding sources shared by the LLM narration stages: our own published
 // articles and the wider (mostly-unpublished) wire feed, both windowed back
 // from a caller-supplied instant. Extracted out of `narrate-indicators.js`
-// when `narrate-events.js` needed the identical join — see CLAUDE.md's
-// shared-modules table for why a second copy of this is the failure mode.
+// when `narrate-events.js` needed the identical join — see
+// `.claude/rules/shared-modules.md` for why a second copy of this is the
+// failure mode.
 
 import { readFileSync, existsSync, readdirSync } from 'node:fs'
 import { join } from 'node:path'
@@ -21,15 +22,18 @@ const iso = (t) => new Date(t).toISOString().slice(0, 10)
  *
  * Filename-prefixed by date, so the window is a string comparison over
  * `readdirSync` rather than a parse of thousands of files.
+ *
+ * @param {number} windowStart
+ * @param {string} [dir] the articles' directory; a parameter for the tests
  */
-export const loadArticles = (windowStart) => {
-  if (!existsSync(ARTICLES_DIR)) return []
+export const loadArticles = (windowStart, dir = ARTICLES_DIR) => {
+  if (!existsSync(dir)) return []
   const cutoff = iso(windowStart)
   const out = []
-  for (const f of readdirSync(ARTICLES_DIR)) {
+  for (const f of readdirSync(dir)) {
     if (!f.endsWith('.md') || f.slice(0, 10) < cutoff) continue
     try {
-      const { meta, body } = parseFrontmatter(readFileSync(join(ARTICLES_DIR, f), 'utf8'))
+      const { meta, body } = parseFrontmatter(readFileSync(join(dir, f), 'utf8'))
       if (!meta?.title) continue
       const concepts = (Array.isArray(meta.concepts) ? meta.concepts : [])
         .map((c) => (c && typeof c === 'object' ? c.label : c))
@@ -61,6 +65,10 @@ export const loadArticles = (windowStart) => {
         concepts,
         entities: Array.isArray(meta.entities) ? meta.entities : [],
         ...(Array.isArray(meta.subjects) ? { subjects: meta.subjects } : {}),
+        // The exchanges and straits the same reading judged it to be about
+        // (`mkt:lse`, `cp:hormuz`); absent, like `subjects`, on a story it
+        // never read.
+        ...(Array.isArray(meta.venues) ? { venues: meta.venues } : {}),
         hay: [meta.title, meta.location, ...concepts].join(' ').toLowerCase(),
         // The ISO-2 codes the body links, which is the one place an article
         // states which countries it is *about* — `hay` carries a dateline and a
@@ -87,6 +95,40 @@ export const loadArticles = (windowStart) => {
 }
 
 /**
+ * A feed concept's label, in either shape the feed carries.
+ *
+ * The API's stories tag a concept as `{ label, uri }`; the RSS stories carry
+ * the bare label. Only the first was read, so a bare one vanished: 7,053 of
+ * the 16,955 concept entries in the window of 2026-10-09, all of them on RSS
+ * stories, which then matched a tag on their title alone and could never
+ * join a `wiki-*` row. `loadArticles` has always read both.
+ */
+const labelOf = (concept) => (typeof concept === 'string' ? concept : concept?.label || '')
+
+/**
+ * The Wikipedia title a feed concept names, lowercased and spaced as a
+ * `wiki-*` row's is. From the URI where there is one; a bare label is the
+ * title already.
+ *
+ * The decode is guarded. The URIs arrive unencoded (none of the 37,618 in the
+ * snapshots kept on 2026-10-09 holds a `%`), so it changes nothing today, and
+ * a title with a literal percent sign ("100% renewable energy") is a
+ * `URIError` that would end both dispatch stages on every run until the
+ * snapshot left the window, fourteen days on.
+ */
+const wikiTitleOf = (concept) => {
+  if (typeof concept === 'string') return concept.trim().toLowerCase()
+  const segment = String(concept?.uri || '').split('/wiki/')[1] || ''
+  let title = segment
+  try {
+    title = decodeURIComponent(segment)
+  } catch {
+    /* a literal `%`: the segment is the title as it stands */
+  }
+  return title.replace(/_/g, ' ').toLowerCase()
+}
+
+/**
  * Every distinct story the feed carried since `windowStart`, published or
  * not.
  *
@@ -96,41 +138,58 @@ export const loadArticles = (windowStart) => {
  *
  * Deduped on `link` because consecutive snapshots re-carry the same story —
  * five times a day for as long as it stays in the feed.
+ *
+ * Ordered by how widely a story was carried, then newest first. **The second
+ * key is most of the order**: two stories in three have no coverage count (the
+ * RSS ones; 2,170 of 3,218 in the window of 2026-10-09), and while the sort
+ * had only the first key they tied in the order they were first read, oldest
+ * snapshot first. A caller that takes the top twelve was then handed the
+ * thirteen-day-old headlines and never yesterday's, and the six a fingerprint
+ * hashes changed whenever the oldest snapshot left the window.
+ *
+ * @param {number} windowStart
+ * @param {string} [dir] the snapshots' directory; a parameter for the tests
  */
-export const loadFeedWindow = (windowStart) => {
-  if (!existsSync(FEED_SNAP_DIR)) return []
+export const loadFeedWindow = (windowStart, dir = FEED_SNAP_DIR) => {
+  if (!existsSync(dir)) return []
   const cutoff = iso(windowStart)
-  const files = readdirSync(FEED_SNAP_DIR)
+  const files = readdirSync(dir)
     .filter((f) => f.endsWith('.json') && f.slice(0, 10) >= cutoff)
     .sort()
   const byLink = new Map()
   for (const f of files) {
     let snap
     try {
-      snap = JSON.parse(readFileSync(join(FEED_SNAP_DIR, f), 'utf8'))
+      snap = JSON.parse(readFileSync(join(dir, f), 'utf8'))
     } catch {
       continue
     }
     for (const key of ['multiSourceStories', 'nicheStories']) {
       for (const s of Array.isArray(snap[key]) ? snap[key] : []) {
         const link = s?.link || s?.title
-        if (!link || byLink.has(link)) continue
+        if (!link) continue
+        const outlets = Number(s.eventCoverage) || 0
+        const seen = byLink.get(link)
+        if (seen) {
+          // The count grows while a story is carried (one went from 1,647 to
+          // 4,531 across snapshots), so the first sighting is where it is
+          // smallest. A story is ranked by how far it went.
+          if (outlets > seen.outlets) seen.outlets = outlets
+          continue
+        }
         const concepts = Array.isArray(s.concepts) ? s.concepts : []
         byLink.set(link, {
           title: s.title || '',
           date: String(s.pubDate || '').slice(0, 10),
           source: s.source || '',
-          outlets: Number(s.eventCoverage) || 0,
+          outlets,
           // Wikipedia article titles, which is what `wiki-*` ids are minted
           // from — the join that makes the attention block explicable.
-          conceptTitles: concepts
-            .map((c) => String(c?.uri || '').split('/wiki/')[1] || '')
-            .filter(Boolean)
-            .map((t) => decodeURIComponent(t).replace(/_/g, ' ').toLowerCase()),
-          hay: [s.title, ...concepts.map((c) => c?.label || '')].join(' ').toLowerCase(),
+          conceptTitles: concepts.map(wikiTitleOf).filter(Boolean),
+          hay: [s.title, ...concepts.map(labelOf)].join(' ').toLowerCase(),
         })
       }
     }
   }
-  return [...byLink.values()].sort((a, b) => b.outlets - a.outlets)
+  return [...byLink.values()].sort((a, b) => b.outlets - a.outlets || b.date.localeCompare(a.date))
 }

@@ -20,6 +20,7 @@ import {
   isThermallyRelevant,
   minDistanceKm,
   nearestStories,
+  newestDetection,
   parseFirmsCsv,
 } from './firms.js'
 
@@ -157,6 +158,16 @@ test('an empty or header-only response is no detections, not an error', () => {
   assert.deepEqual(parseFirmsCsv(`${CSV_HEADER}\n`), [])
 })
 
+test('the newest detection is found without spreading a cycle of rows into arguments', () => {
+  // The log prints it, because a silent instrument and a day with no fire write
+  // the same empty layer. A cycle is 70 to 160 thousand rows, and `Math.max`
+  // over that many arguments is a RangeError.
+  assert.equal(newestDetection([]), null)
+  const rows = Array.from({ length: 200_000 }, (_, i) => ({ t: NOW - (i % 5) * DAY - i }))
+  rows[123_456].t = NOW + HOUR
+  assert.equal(newestDetection(rows), NOW + HOUR)
+})
+
 // ---------------------------------------------------------------------------
 // 3. Which of it is infrastructure — the flare filter, both ways
 // ---------------------------------------------------------------------------
@@ -276,6 +287,29 @@ test('baseline days are judged on, never drawn', () => {
   assert.equal(event.t, Date.parse('2026-07-29T02:00:00Z'))
   assert.equal(event.persistDays, 5, 'the bin has still been alight five days, and says so')
   assert.equal(event.escalating, true)
+})
+
+test('two fires a kilometre apart on one day do not share an id', () => {
+  // The pair published on 2026-10-09 under one id: single pixels two bins
+  // apart, so two events, whose centroids round to the same tenth of a degree.
+  // The map and the app both look an event up by its id, so the second mark
+  // opened the first one's card.
+  const rows = [
+    det(49.1004, 38.072, '2026-07-29', 2, 5.4),
+    det(49.1002, 38.0585, '2026-07-29', 2, 9.9),
+    det(10.005, 20.005, '2026-07-29', 2, 20), // nowhere near either
+  ]
+  const cells = classifyCells(rows, { now: NOW })
+  const { events } = clusterEvents(rows, cells, { now: NOW })
+  assert.deepEqual(
+    events.map((e) => e.id),
+    ['2026-07-29-10.0-20.0', '2026-07-29-49.1-38.1', '2026-07-29-49.1-38.1~2'],
+    'an id that is alone keeps its form; of two that collide the hotter does',
+  )
+  assert.deepEqual(
+    events.map((e) => e.frp),
+    [20, 9.9, 5.4],
+  )
 })
 
 // ---------------------------------------------------------------------------

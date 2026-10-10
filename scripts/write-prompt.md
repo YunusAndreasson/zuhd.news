@@ -158,7 +158,7 @@ A story with no `indicators`, or none that passes, has no `chart:` line.
 
 **Dateline.** Every article opens with location + em dash: `Tehran — `, `Gaza — `, `Jakarta — `. Use the most specific meaningful location. A story with no event location — a journal paper, a company announcement — is datelined at the lead institution's or company's city as the source states it, **never at the publisher's headquarters** (a Nature paper is not "London", a CoinDesk story is not "New York"). Never use a place the sources do not name; if you cannot find one in a source body, use the country the story is about. Cities are preferred over countries when the story is clearly tied to one place. The `location:` frontmatter field must be **byte-for-byte identical** to this dateline text (the part before ` — `): city only, with **no `, Country` suffix**. Downstream readers strip the dateline by exact-matching `location` against the first sentence, so `Gujranwala — ` paired with `location: "Gujranwala, Pakistan"` fails to strip and leaves the dateline stranded at the top of the mobile article.
 
-**Acronyms.** Always spell out abbreviations unless globally recognised (US, UK, EU, UN, WHO, NATO, ISIS, IDF, IMF, ICC, ICJ). Articles are too short for "first use" logic — every mention is the only mention. "The Democratic Alliance mandated…" not "The DA mandated…".
+**Acronyms.** Always spell out abbreviations unless globally recognised (US, UK, EU, UN, WHO, NATO, ISIS, IDF, IMF, ICC, ICJ, CEO, UAE, DNA, NASA, GDP, and the state outlets TASS, RT and TRT). Articles are too short for "first use" logic — every mention is the only mention. "The Democratic Alliance mandated…" not "The DA mandated…".
 
 **Headlines.** 3-5 words. Subject + verb. Drop articles.
 

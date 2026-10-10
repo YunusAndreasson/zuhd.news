@@ -2,7 +2,8 @@
 // Docs: https://fred.stlouisfed.org/docs/api/fred/series_observations.html
 // Free, public-domain data. Key registration: https://fred.stlouisfed.org/docs/api/api_key.html
 
-import { ZUHD_UA } from '../http.js'
+import { fetchJson } from '../http.js'
+import { dayLabel, isoDay, monthLabel } from '../period.js'
 
 const FRED_BASE = 'https://api.stlouisfed.org/fred/series/observations'
 const FRED_RELEASES_DATES = 'https://api.stlouisfed.org/fred/releases/dates'
@@ -20,24 +21,17 @@ const MAJOR_RELEASES = [
   /h\.4\.1/i, // Fed balance sheet
 ]
 
-/** Format a date as "YYYY-MM-DD" (FRED's expected format). */
-function ymd(d) {
-  return d.toISOString().slice(0, 10)
-}
-
-/** Format a period label from a FRED observation date. Daily series render
- *  "Mar 18"; monthly series render "Mar 2026". */
+/** A period label from a FRED observation date: "Mar 18" for a daily series,
+ *  "Mar 2026" for a monthly one. */
 function formatPeriod(dateStr, cadence) {
-  const d = new Date(`${dateStr}T00:00:00Z`)
-  const month = d.toLocaleDateString('en-US', { month: 'short', timeZone: 'UTC' })
-  if (cadence === 'monthly') return `${month} ${d.getUTCFullYear()}`
-  return `${month} ${d.getUTCDate()}`
+  const t = Date.parse(`${dateStr}T00:00:00Z`)
+  return cadence === 'monthly' ? monthLabel(t) : dayLabel(t)
 }
 
 /**
  * Fetch observations for one FRED series.
  *
- * @param {{ id: string, seriesId: string, cadence: 'daily'|'monthly', frequency?: string, aggregation?: string, units?: string }} indicator
+ * @param {{ id: string, seriesId: string, cadence: 'daily'|'monthly', frequency?: string, units?: string }} indicator
  * @param {string} apiKey
  * @returns {Promise<{ values: number[], periods: string[], asOf: string, dates: string[], completed: boolean[] } | null>}
  */
@@ -54,8 +48,8 @@ export async function fetchFredSeries(indicator, apiKey) {
   url.searchParams.set('series_id', indicator.seriesId)
   url.searchParams.set('api_key', apiKey)
   url.searchParams.set('file_type', 'json')
-  url.searchParams.set('observation_start', ymd(start))
-  url.searchParams.set('observation_end', ymd(end))
+  url.searchParams.set('observation_start', isoDay(start))
+  url.searchParams.set('observation_end', isoDay(end))
   url.searchParams.set('sort_order', 'asc')
 
   /**
@@ -75,7 +69,7 @@ export async function fetchFredSeries(indicator, apiKey) {
    */
   if (indicator.frequency) {
     url.searchParams.set('frequency', indicator.frequency)
-    url.searchParams.set('aggregation_method', indicator.aggregation ?? 'eop')
+    url.searchParams.set('aggregation_method', 'eop')
   }
   // A transformation FRED applies itself — `pc1` is per cent change from a
   // year ago, computed over the full series, so the first observation in the
@@ -84,12 +78,7 @@ export async function fetchFredSeries(indicator, apiKey) {
   if (indicator.units) url.searchParams.set('units', indicator.units)
 
   try {
-    const res = await fetch(url, {
-      signal: AbortSignal.timeout(10000),
-      headers: { 'User-Agent': ZUHD_UA },
-    })
-    if (!res.ok) throw new Error(`HTTP ${res.status}`)
-    const data = await res.json()
+    const data = await fetchJson(url, { timeoutMs: 10_000 })
     const observations = data.observations || []
 
     // FRED uses "." for missing values — drop those.
@@ -110,39 +99,37 @@ export async function fetchFredSeries(indicator, apiKey) {
   }
 }
 
+/** How far ahead the release calendar looks, in days. */
+const CALENDAR_DAYS = 10
+
 /**
- * Upcoming major US data releases in the next `days` days — one extra call
- * per trends run. Concrete "what's next" substrate (e.g. "CPI lands Thursday")
- * for editorial surfaces. Fail-soft: returns [] on any error.
+ * Upcoming major US data releases in the next `CALENDAR_DAYS` days: one call
+ * a day (`fetch-trends.js` keeps the day's answer). Concrete "what's next"
+ * substrate (e.g. "CPI lands Thursday") for editorial surfaces. Fail-soft:
+ * returns [] on any error.
  *
  * @param {string} apiKey
- * @param {number} [days=10]
  * @returns {Promise<Array<{ date: string, release: string }>>}
  */
-export async function fetchFredReleaseCalendar(apiKey, days = 10) {
+export async function fetchFredReleaseCalendar(apiKey) {
   const start = new Date()
   const end = new Date()
-  end.setUTCDate(end.getUTCDate() + days)
+  end.setUTCDate(end.getUTCDate() + CALENDAR_DAYS)
 
   const url = new URL(FRED_RELEASES_DATES)
   url.searchParams.set('api_key', apiKey)
   url.searchParams.set('file_type', 'json')
-  url.searchParams.set('realtime_start', ymd(start))
-  url.searchParams.set('realtime_end', ymd(end))
+  url.searchParams.set('realtime_start', isoDay(start))
+  url.searchParams.set('realtime_end', isoDay(end))
   url.searchParams.set('include_release_dates_with_no_data', 'true')
   url.searchParams.set('sort_order', 'asc')
 
   try {
     // releases/dates is a slow endpoint (~15-20s server-side) — needs a wider
-    // timeout than the observation calls. Trends-stage budget is 120s.
-    const res = await fetch(url, {
-      signal: AbortSignal.timeout(30000),
-      headers: { 'User-Agent': ZUHD_UA },
-    })
-    if (!res.ok) throw new Error(`HTTP ${res.status}`)
-    const data = await res.json()
+    // timeout than the observation calls, inside the stage's 180s.
+    const data = await fetchJson(url, { timeoutMs: 30_000 })
     const upcoming = (data.release_dates || [])
-      .filter((r) => r.date >= ymd(start) && r.date <= ymd(end))
+      .filter((r) => r.date >= isoDay(start) && r.date <= isoDay(end))
       .filter((r) => MAJOR_RELEASES.some((p) => p.test(r.release_name || '')))
       .map((r) => ({ date: r.date, release: r.release_name }))
     // Dedupe same release+date pairs (FRED emits one row per realtime window)

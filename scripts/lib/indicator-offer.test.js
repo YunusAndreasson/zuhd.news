@@ -1,7 +1,7 @@
 import assert from 'node:assert/strict'
 import { test } from 'node:test'
 import { extractEntities } from './entity-registry.js'
-import { ageDays, chartProblem, citesFigure, offerFor } from './indicator-offer.js'
+import { ageDays, chartProblem, citesFigure, offerFor, weekMove } from './indicator-offer.js'
 
 const NOW = Date.parse('2026-09-30T12:00:00Z')
 
@@ -181,6 +181,132 @@ test('a daily series’ recent move is the week the chart prints, in calendar da
   const gappy = series({ id: 'brent', label: 'Brent crude', values: [100, 110], periods: ['Sep 10', 'Sep 28'] })
   const o = offerFor({ title: 'Brent crude falls' }, { ...sources, trends: { ...trends, indicators: [gappy] } })
   assert.equal(o.indicators[0].recent, null)
+})
+
+const iso = (t) => new Date(t).toISOString().slice(0, 10)
+const label = (date) => new Date(`${date}T00:00:00Z`).toLocaleString('en-US', { month: 'short', day: 'numeric', timeZone: 'UTC' })
+/** Every `step`th day from `from` to `to`, weekends left out when `weekdays`. */
+const calendar = (from, to, { step = 1, weekdays = false } = {}) => {
+  const out = []
+  for (let t = Date.parse(`${from}T00:00:00Z`); t <= Date.parse(`${to}T00:00:00Z`); t += step * 86400_000) {
+    const dow = new Date(t).getUTCDay()
+    if (!weekdays || (dow !== 0 && dow !== 6)) out.push(iso(t))
+  }
+  return out
+}
+/** A row as FRED's arrive: one value a date, each with its label. */
+const dated = (id, dates, over = {}) =>
+  series({ id, values: dates.map((_, i) => 100 + i), dates, periods: dates.map(label), asOf: dates.at(-1), ...over })
+const offerOf = (title, ...indicators) => offerFor({ title }, { ...sources, trends: { ...trends, indicators } }).indicators
+
+test('a daily series’ wider move is a month of days, not thirty observations', () => {
+  // A price that skips weekends, as Brent does: 56 closes from 13 July to 28
+  // September. Thirty closes back is 17 August, six weeks; thirty days back is
+  // a Saturday, so the anchor is the Friday before it.
+  const dates = calendar('2026-07-13', '2026-09-28', { weekdays: true })
+  const [brent] = offerOf('Brent crude falls', dated('brent', dates, { label: 'Brent crude' }))
+  const at = (date) => 100 + dates.indexOf(date)
+  assert.equal(dates.length, 56)
+  assert.deepEqual(brent.wider, {
+    pct: Number((((at('2026-09-28') - at('2026-08-28')) / at('2026-08-28')) * 100).toFixed(1)),
+    over: '31 days',
+  })
+  assert.notEqual(brent.wider.pct, Number((((at('2026-09-28') - at('2026-08-17')) / at('2026-08-17')) * 100).toFixed(1)))
+  // The week beside it is unchanged.
+  assert.equal(brent.recent.over, '7 days')
+})
+
+test('a weekly print carried as daily has its weeks counted as weeks', () => {
+  // Freddie Mac's Thursday survey: thirteen prints. Twelve of them were
+  // offered as "12 days".
+  const thursdays = calendar('2026-07-02', '2026-09-24', { step: 7 })
+  const [mortgage] = offerOf('US mortgage rates climb again', dated('us-mortgage', thursdays, { label: 'US 30-year mortgage rate', unit: '%' }))
+  assert.equal(thursdays.length, 13)
+  assert.deepEqual(mortgage.wider, { pct: Number(((5 / 107) * 100).toFixed(1)), over: '35 days' })
+  assert.deepEqual(mortgage.recent, { pct: Number(((1 / 111) * 100).toFixed(1)), over: '7 days' })
+})
+
+test('with no dates on the row, the labels and `asOf` date it, across a New Year too', () => {
+  // The fixture's Brent: 31 labels, 29 August to 28 September, 80 to 110.
+  const brent = offer('Brent crude falls').indicators.find((r) => r.id === 'brent')
+  assert.deepEqual(brent.wider, { pct: 37.5, over: '30 days' })
+  // A currency's 30 days of history is a 29-day span, and says so.
+  const [lira] = offerOf('Turkey’s lira slides', series({ id: 'fx-try', label: 'Lira', values: Array.from({ length: 30 }, (_, i) => 40 + i), periods: days(30, '2026-09-28') }))
+  assert.deepEqual(lira.wider, { pct: 72.5, over: '29 days' })
+  // 6 December to 5 January: the December labels are the year before `asOf`.
+  const acrossNewYear = series({ id: 'brent', label: 'Brent crude', asOf: '2027-01-05', periods: days(31, '2027-01-05') })
+  const [row] = offerFor(
+    { title: 'Brent crude falls' },
+    { ...sources, now: Date.parse('2027-01-06T12:00:00Z'), trends: { ...trends, indicators: [acrossNewYear] } },
+  ).indicators
+  assert.deepEqual(row.wider, { pct: 37.5, over: '30 days' })
+  assert.deepEqual(row.recent, { pct: 6.8, over: '7 days' })
+})
+
+test('a monthly print still counts prints, and names them months', () => {
+  const cpi = offer('US inflation rises again').indicators.find((r) => r.id === 'us-cpi')
+  assert.deepEqual(cpi.recent, { pct: 7.4, over: '1 month' })
+  assert.deepEqual(cpi.wider, { pct: 7.4, over: '1 month' })
+  const months = Array.from({ length: 24 }, (_, i) => `${['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'][(i + 8) % 12]} ${i < 4 ? 2024 : i < 16 ? 2025 : 2026}`)
+  const [long] = offerOf('US inflation rises again', series({ id: 'us-cpi', label: 'US inflation', cadence: 'monthly', unit: '%', asOf: '2026-08-01', values: months.map((_, i) => 100 + i), periods: months }))
+  assert.equal(long.period, 'Aug 2026')
+  assert.deepEqual([long.recent.over, long.wider.over], ['3 months', '12 months'])
+})
+
+test('an exchange’s wider move is a month of days by its dates', () => {
+  // 45 sessions to Friday 25 September; thirty of them back is seven weeks.
+  const dates = calendar('2026-07-27', '2026-09-25', { weekdays: true })
+  const tse = {
+    id: 'tse',
+    name: 'Tokyo Stock Exchange',
+    indexName: 'Nikkei 225',
+    currency: 'JPY',
+    asOf: '2026-09-25',
+    series: { values: dates.map((_, i) => 50000 + i * 100), periods: dates.map(label), dates, completed: dates.map(() => true) },
+  }
+  const [row] = offerFor({ title: 'The Nikkei 225 fell 3%' }, { ...sources, markets: [tse] }).indicators
+  assert.equal(row.id, 'mkt:tse')
+  // Thirty days before the 25th is Wednesday 26 August.
+  const at = (date) => 50000 + dates.indexOf(date) * 100
+  assert.deepEqual(row.wider, { pct: Number((((at('2026-09-25') - at('2026-08-26')) / at('2026-08-26')) * 100).toFixed(1)), over: '30 days' })
+})
+
+test('an exchange open at the fetch is read at its last close, and still has its week', () => {
+  // Monday 28 September, Tokyo open: the series ends in that minute's price,
+  // marked uncompleted, and `asOf` is Friday's close. 12 of 26 exchanges were
+  // in this state in the snapshot of 2026-10-09 10:09.
+  const dates = calendar('2026-07-27', '2026-09-28', { weekdays: true })
+  const closes = dates.map((_, i) => 50000 + i * 100)
+  closes[closes.length - 1] = 51234.5 // not a close
+  const tse = {
+    id: 'tse',
+    name: 'Tokyo Stock Exchange',
+    indexName: 'Nikkei 225',
+    currency: 'JPY',
+    asOf: '2026-09-25',
+    series: { values: closes, periods: dates.map(label), dates, completed: dates.map((d) => d !== '2026-09-28') },
+  }
+  const [row] = offerFor({ title: 'The Nikkei 225 fell 3%' }, { ...sources, now: Date.parse('2026-09-28T03:00:00Z'), markets: [tse] }).indicators
+  const at = (date) => 50000 + dates.indexOf(date) * 100
+  assert.equal(row.asOf, '2026-09-25')
+  assert.equal(row.level, at('2026-09-25'), 'the close `asOf` dates, not the open session’s price')
+  const pct = (from, to) => Number((((at(to) - at(from)) / at(from)) * 100).toFixed(1))
+  assert.deepEqual(row.recent, { pct: pct('2026-09-18', '2026-09-25'), over: '7 days' })
+  assert.deepEqual(row.wider, { pct: pct('2026-08-26', '2026-09-25'), over: '30 days' })
+  // One completed close is not a series to read a level off.
+  const young = { ...tse, series: { values: [50000, 50100], periods: ['Sep 25', 'Sep 28'], dates: ['2026-09-25', '2026-09-28'], completed: [true, false] } }
+  assert.deepEqual(offerFor({ title: 'The Nikkei 225 fell 3%' }, { ...sources, markets: [young] }).indicators, [])
+})
+
+test('a week is counted from the newest observation, wherever `asOf` stands', () => {
+  const values = Array.from({ length: 10 }, (_, i) => 100 + i)
+  // A label a day past `asOf` is this year's, not last year's: the week was
+  // null for every series that ended in an open session's bar.
+  assert.deepEqual(weekMove({ values, periods: days(10, '2026-09-29'), asOf: '2026-09-28' }), { pct: Number(((7 / 102) * 100).toFixed(1)), over: '7 days' })
+  // `asOf` past the newest label, across a New Year: the label is December's.
+  assert.deepEqual(weekMove({ values, periods: days(10, '2026-12-31'), asOf: '2027-01-02' }), { pct: Number(((7 / 102) * 100).toFixed(1)), over: '7 days' })
+  // And the plain case is as it was.
+  assert.deepEqual(weekMove({ values, periods: days(10, '2026-09-28'), asOf: '2026-09-28' }), { pct: Number(((7 / 102) * 100).toFixed(1)), over: '7 days' })
 })
 
 test('only a series the desk has written up is chartable', () => {

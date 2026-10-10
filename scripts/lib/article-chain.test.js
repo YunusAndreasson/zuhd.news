@@ -10,6 +10,7 @@ import test from 'node:test'
 import assert from 'node:assert/strict'
 import { loadShared } from '../build/shared-ts.js'
 import {
+  formatDate,
   parseCorrections,
   renderCorrections,
   renderIsnad,
@@ -97,6 +98,27 @@ test('the state-outlet list stays narrow, and applies the same rule to allies', 
   for (const n of ['BBC', 'Al Jazeera', 'Deutsche Welle', 'NPR', 'France 24', 'TRT World']) {
     assert.ok(!has(n), `${n} must not be treated as a state organ`)
   }
+})
+
+// --- dates -----------------------------------------------------------------
+
+// An article's date, and a correction's, is the UTC day, wherever the site is
+// built. The formatter took the day from the machine's own time zone: right
+// on the box, which runs in UTC, and a day late for a story dated in the
+// evening when `npm run publish` runs from a laptop east of Greenwich.
+test('a date prints as its UTC day, wherever the build runs', () => {
+  const zone = process.env.TZ
+  try {
+    for (const tz of ['UTC', 'Europe/Stockholm', 'Pacific/Kiritimati', 'Pacific/Pago_Pago']) {
+      process.env.TZ = tz
+      assert.equal(formatDate('2026-07-26T23:30:00Z'), '26 July 2026', `late in the day, built in ${tz}`)
+      assert.equal(formatDate('2026-07-26T00:30:00Z'), '26 July 2026', `early in the day, built in ${tz}`)
+    }
+  } finally {
+    if (zone === undefined) delete process.env.TZ
+    else process.env.TZ = zone
+  }
+  assert.match(renderCorrections([{ date: '2026-07-26T23:30:00Z', note: 'The toll was 14.' }]), /<time datetime="2026-07-26T23:30:00Z">26 July 2026<\/time>/)
 })
 
 // --- corrections -----------------------------------------------------------

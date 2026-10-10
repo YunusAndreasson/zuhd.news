@@ -1,25 +1,23 @@
 #!/usr/bin/env node
 // Chokepoints snapshot fetcher for the mobile globe's ambient transit layer.
 // Distinct from fetch-trends.js — this writes a single, small JSON consumed
-// directly by the mobile client, not the editor Claude. Runs on the same
-// systemd cadence as fetch-trends (stage 3.4 of run-cycle.sh).
+// directly by the mobile client, not the editor Claude. Runs every cycle,
+// straight after fetch-trends (stage 3.4b in scripts/cycle/stages.js).
 //
 // Output: content/.chokepoints.json
-// Shape:  { generated, chokepoints: [{id, name, blurb, lat, lng, last7Avg,
-//          baseline90Avg, delta7vs90, series, asOf, topicTags, primaryField,
-//          weather?: { asOf, maxWave24hM, alert? }}] }
+// Shape:  { generated, chokepoints: [{id, name, blurb, lat, lng, topicTags,
+//          primaryField, last7Avg, baseline90Avg, delta7vs90, series, asOf,
+//          weather?: { asOf, maxWave24hM, alert }}] }
+//          `alert` is 'rough', 'very_rough' or null; `weather` is absent where
+//          the sea has no wave figure (the canals).
 //
 // Best-effort: if PortWatch is unreachable the script logs and exits 0,
 // leaving any previous .chokepoints.json intact (build.js skips the mirror
 // when the file is absent, so a missing snapshot degrades gracefully).
 
-import { join } from 'node:path'
 import { CHOKEPOINT_BY_ID, CHOKEPOINT_CATALOG } from './lib/chokepoint-metadata.js'
 import { fetchAllChokepointsSnapshot } from './lib/trends-sources/portwatch.js'
-import { ROOT } from './lib/paths.js'
-import { writeJson } from './lib/json-file.js'
-
-const OUTPUT_PATH = join(ROOT, 'content', '.chokepoints.json')
+import { Degrade, snapshotStage } from './lib/snapshot-stage.js'
 
 // Wave-height thresholds (combined sea + swell, peak over past 24h):
 //   < 2.5 m  → calm/moderate, no alert
@@ -32,67 +30,65 @@ const MARINE_TIMEOUT_MS = 8000
 const started = Date.now()
 console.log('Fetching chokepoints snapshot (PortWatch)')
 
-const rows = await fetchAllChokepointsSnapshot()
-if (!rows || rows.length === 0) {
-  console.error('  ✗ no chokepoint rows returned — leaving previous snapshot in place')
-  process.exit(0)
-}
-
-/** @type {import('../shared/types.ts').Chokepoint[]} */
-const chokepoints = rows.map((r) => {
-  const meta = CHOKEPOINT_BY_ID[r.id]
-  return {
-    id: r.id,
-    name: meta.name,
-    blurb: meta.blurb,
-    lat: meta.lat,
-    lng: meta.lng,
-    topicTags: meta.topicTags,
-    // The catalog stores this as a plain string; the published type
-    // constrains it to the VesselField union. This is where the two meet.
-    primaryField: /** @type {import('../shared/types.ts').VesselField} */ (meta.primaryField),
-    last7Avg: r.last7Avg,
-    baseline90Avg: r.baseline90Avg,
-    delta7vs90: r.delta7vs90,
-    series: r.series,
-    asOf: r.asOf,
-  }
+const { written, snapshot } = await snapshotStage('fetch-chokepoints', 'chokepoints', produce, {
+  isEmpty: (s) => s.chokepoints.length === 0,
 })
 
-// Marine weather attachment — open-meteo Marine API gives 24h wave-height at
-// sea-level coords. Used to disambiguate transit-volume drops on the
-// chokepoint sheet: storm hovering + transits down = weather; calm seas +
-// transits down = actual disruption. Inland canals (Suez, Panama) and
-// shallow narrow straits return null/missing wave data and silently skip.
-console.log('  Fetching marine weather (open-meteo Marine API, one batched call)…')
-try {
-  const weathers = await fetchMarineWeatherBatch(chokepoints)
-  for (let i = 0; i < chokepoints.length; i++) {
-    if (weathers[i]) chokepoints[i].weather = weathers[i]
+if (written) {
+  const { chokepoints } = snapshot
+  const weatherCount = chokepoints.filter((c) => c.weather).length
+  const alertCount = chokepoints.filter((c) => c.weather?.alert).length
+  const missing = CHOKEPOINT_CATALOG.length - chokepoints.length
+  const note = missing > 0 ? ` (${missing} missing)` : ''
+  console.log(
+    `  ✓ wrote ${chokepoints.length}/${CHOKEPOINT_CATALOG.length} chokepoints${note}, ${weatherCount} with weather${alertCount > 0 ? ` (${alertCount} alerts)` : ''} in ${((Date.now() - started) / 1000).toFixed(1)}s`,
+  )
+}
+
+/** The snapshot: PortWatch's transits for each strait in the catalog, with the sea state beside them. */
+async function produce() {
+  const rows = await fetchAllChokepointsSnapshot()
+  if (!rows || rows.length === 0) throw new Degrade('no chokepoint rows returned')
+
+  /** @type {import('../shared/types.ts').Chokepoint[]} */
+  const chokepoints = rows.map((r) => {
+    const meta = CHOKEPOINT_BY_ID[r.id]
+    return {
+      id: r.id,
+      name: meta.name,
+      blurb: meta.blurb,
+      lat: meta.lat,
+      lng: meta.lng,
+      topicTags: meta.topicTags,
+      // The catalog stores this as a plain string; the published type
+      // constrains it to the VesselField union. This is where the two meet.
+      primaryField: /** @type {import('../shared/types.ts').VesselField} */ (meta.primaryField),
+      last7Avg: r.last7Avg,
+      baseline90Avg: r.baseline90Avg,
+      delta7vs90: r.delta7vs90,
+      series: r.series,
+      asOf: r.asOf,
+    }
+  })
+
+  // Marine weather attachment — open-meteo Marine API gives 24h wave-height at
+  // sea-level coords. Used to disambiguate transit-volume drops on the
+  // chokepoint sheet: storm hovering + transits down = weather; calm seas +
+  // transits down = actual disruption. Inland canals (Suez, Panama) and
+  // shallow narrow straits return null/missing wave data and silently skip.
+  console.log('  Fetching marine weather (open-meteo Marine API, one batched call)…')
+  try {
+    const weathers = await fetchMarineWeatherBatch(chokepoints)
+    for (let i = 0; i < chokepoints.length; i++) {
+      if (weathers[i]) chokepoints[i].weather = weathers[i]
+    }
+  } catch {
+    /* fail-soft — snapshot ships without weather */
   }
-} catch {
-  /* fail-soft — snapshot ships without weather */
-}
-const weatherCount = chokepoints.filter((c) => c.weather).length
-const alertCount = chokepoints.filter((c) => c.weather?.alert).length
 
-const payload = {
-  generated: new Date().toISOString(),
-  chokepoints,
+  return { generated: new Date().toISOString(), chokepoints }
 }
 
-writeJson(OUTPUT_PATH, payload)
-
-const missing = CHOKEPOINT_CATALOG.length - chokepoints.length
-const note = missing > 0 ? ` (${missing} missing)` : ''
-console.log(
-  `  ✓ wrote ${chokepoints.length}/${CHOKEPOINT_CATALOG.length} chokepoints${note}, ${weatherCount} with weather${alertCount > 0 ? ` (${alertCount} alerts)` : ''} in ${((Date.now() - started) / 1000).toFixed(1)}s`,
-)
-
-// One batched request for every chokepoint: open-meteo accepts comma-separated
-// latitude/longitude lists and returns one result object per location, in
-// order. Collapses ~10 sequential calls into 1. Returns an array aligned with
-// `points`; entries are null where wave data is unavailable (inland canals).
 /**
  * One open-meteo marine call, batched or not.
  *
@@ -113,6 +109,10 @@ async function marineRequest(lat, lng) {
   return fetch(url, { signal: AbortSignal.timeout(MARINE_TIMEOUT_MS) })
 }
 
+// One batched request for every chokepoint: open-meteo accepts comma-separated
+// latitude/longitude lists and returns one result object per location, in
+// order. Collapses ~10 sequential calls into 1. Returns an array aligned with
+// `points`; entries are null where wave data is unavailable (inland canals).
 async function fetchMarineWeatherBatch(points) {
   const res = await marineRequest(
     points.map((p) => p.lat).join(','),

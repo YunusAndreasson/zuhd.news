@@ -1,21 +1,24 @@
 #!/usr/bin/env node
 // Writes content/.last-cycle.json from validated articles in the current selection.
 // Only includes stories whose article file was actually written (i.e. passed validation).
-import { readFileSync, existsSync } from 'node:fs'
-import { join } from 'node:path'
+import { existsSync, readFileSync } from 'node:fs'
+import { basename, join } from 'node:path'
+import { pathOf } from './lib/datasets.js'
 import { writeJson } from './lib/json-file.js'
+import { lastCycle } from './lib/last-cycle.js'
+import { runStage } from './lib/stage.js'
 
-const sel = JSON.parse(readFileSync('/tmp/zuhd-selection.json', 'utf8'))
-const articleDir = 'content/articles'
+export function main() {
+  /** @type {import('./lib/schema.js').SelectionEntry[]} */
+  const sel = JSON.parse(readFileSync(pathOf('selection'), 'utf8'))
+  const articleDir = pathOf('articles')
 
-const published = sel.filter(s => existsSync(join(articleDir, `${s.suggestedSlug}.md`)))
+  const cycle = lastCycle(sel, (slug) => existsSync(join(articleDir, `${slug}.md`)), new Date().toISOString())
 
-const cycle = {
-  timestamp: new Date().toISOString(),
-  articles: published.map(s => ({ slug: s.suggestedSlug, title: s.title, category: s.category, source: s.source })),
-  categories: [...new Set(published.map(s => s.category))],
-  sources: [...new Set(published.map(s => s.source))],
+  const path = pathOf('lastCycle')
+  writeJson(path, cycle)
+  console.log(`Wrote ${basename(path)} with ${cycle.articles.length}/${sel.length} articles (validated)`)
+  return { counts: { selected: sel.length, published: cycle.articles.length } }
 }
 
-writeJson('content/.last-cycle.json', cycle)
-console.log(`Wrote .last-cycle.json with ${published.length}/${sel.length} articles (validated)`)
+await runStage(import.meta, 'write-last-cycle', main)

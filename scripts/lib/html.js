@@ -32,3 +32,23 @@ export const escHtml = (s) =>
  * these are two functions rather than one with the superset applied everywhere.
  */
 export const escXml = (s) => escHtml(s).replace(/'/g, '&apos;')
+
+/**
+ * Typographic quotes, for text a reader sees set in type: a title, an
+ * article's prose, a share card's headline. Not an escape: it goes on before
+ * one, on text that is still text.
+ *
+ * It was `build.js`'s own, so only the build could curl a quote. The
+ * Instagram card the build bakes took its headline through it; the card the X
+ * poster renders for the same story, and the Instagram poster's preview of
+ * it, did not, and showed `Microsoft's` where the published card shows
+ * `Microsoft’s`: 24 of the 184 card headlines written from 2026-09-01 to
+ * 10-09 carry a quote or an apostrophe.
+ *
+ * @param {string} text
+ */
+export const smartQuotes = (text) => text
+  .replace(/(^|[\s([{])"(\S)/gm, '$1\u201C$2')
+  .replace(/"/g, '\u201D')
+  .replace(/(^|[\s([{])'(\S)/gm, '$1\u2018$2')
+  .replace(/'/g, '\u2019')

@@ -3,11 +3,12 @@
 // Strategy: events endpoint for story discovery + article queries for source diversity.
 // Output: /tmp/zuhd-feed-api.json
 import { mkdirSync, readdirSync, statSync, unlinkSync } from 'node:fs'
-import { eventCoveredRecently, loadDedupContext } from './lib/dedup.js'
+import { countryOf, extractConcepts, hasHeadline, mapCategory, redact, resultsAt, sourceName, storyFrom, toSource } from './lib/api-feed.js'
+import { PREFILTER_WINDOW_MS, eventCoveredRecently, loadDedupContext } from './lib/dedup.js'
 import { MAX_FEED_AGE_MS } from './lib/feed-age.js'
 import { readUnexplainedMovers } from './lib/company-gaps.js'
 import { namedSeries, pickTracked, TRACKED_KEYWORDS } from './lib/tracked-stories.js'
-import { slugify, zuhdCategory } from './lib/utils.js'
+import { fingerprint, slugify } from './lib/utils.js'
 import { writeJson } from './lib/json-file.js'
 import { runWithConcurrency } from './lib/concurrency.js'
 
@@ -21,7 +22,6 @@ if (!API_KEY) {
 }
 
 const API_BASE = 'https://eventregistry.org/api/v1'
-const MAX_BODY = 10000  // 1M context window allows full article text
 
 // ── Category filter ─────────────────────────────────────────────────
 
@@ -50,67 +50,6 @@ function sameRegion(a, b) {
   return Object.values(REGIONS).some(r => r.includes(a) && r.includes(b))
 }
 
-const COUNTRY_LOOKUP = {
-  'Iran': 'IR', 'China': 'CN', 'Russia': 'RU', 'United States': 'US',
-  'United Kingdom': 'GB', 'India': 'IN', 'Pakistan': 'PK', 'Turkey': 'TR',
-  'France': 'FR', 'Germany': 'DE', 'Japan': 'JP', 'South Korea': 'KR',
-  'Brazil': 'BR', 'Nigeria': 'NG', 'Kenya': 'KE', 'Sudan': 'SD',
-  'Egypt': 'EG', 'South Africa': 'ZA', 'Australia': 'AU', 'Canada': 'CA',
-  'Indonesia': 'ID', 'Malaysia': 'MY', 'Kazakhstan': 'KZ', 'Israel': 'IL',
-  'Qatar': 'QA', 'Saudi Arabia': 'SA', 'United Arab Emirates': 'AE',
-  'Mexico': 'MX', 'Argentina': 'AR', 'Colombia': 'CO', 'Italy': 'IT',
-  'Spain': 'ES', 'Netherlands': 'NL', 'Sweden': 'SE', 'Norway': 'NO',
-  'Denmark': 'DK', 'Finland': 'FI', 'Poland': 'PL', 'Ukraine': 'UA',
-  'Romania': 'RO', 'Greece': 'GR', 'Ireland': 'IE', 'Bangladesh': 'BD',
-  'Sri Lanka': 'LK', 'Vietnam': 'VN', 'Thailand': 'TH', 'Philippines': 'PH',
-  'Singapore': 'SG', 'Myanmar': 'MM', 'Afghanistan': 'AF', 'Iraq': 'IQ',
-  'Syria': 'SY', 'Lebanon': 'LB', 'Jordan': 'JO', 'Palestine': 'PS',
-  'New Zealand': 'NZ', 'Belgium': 'BE', 'Switzerland': 'CH', 'Austria': 'AT',
-  'Portugal': 'PT', 'Czech Republic': 'CZ', 'Hungary': 'HU', 'Bulgaria': 'BG',
-  'Serbia': 'RS', 'Croatia': 'HR', 'Hong Kong': 'HK', 'Taiwan': 'TW',
-  'Ethiopia': 'ET', 'Ghana': 'GH', 'Tanzania': 'TZ', 'Uganda': 'UG',
-  'Algeria': 'DZ', 'Morocco': 'MA', 'Tunisia': 'TN', 'Senegal': 'SN',
-  'Georgia': 'GE', 'Armenia': 'AM', 'Azerbaijan': 'AZ', 'Uzbekistan': 'UZ',
-  'Belarus': 'BY', 'Cuba': 'CU', 'Peru': 'PE', 'Chile': 'CL', 'Venezuela': 'VE',
-}
-
-// NewsAPI titles every nature.com article "Nature", so ten *Scientific Reports*
-// manuscripts ran in one week under the flagship's name. The article-number
-// prefix in the URL names the journal.
-const NATURE_JOURNALS = {
-  s41586: 'Nature',
-  s41467: 'Nature Communications',
-  s41598: 'Scientific Reports',
-  s41591: 'Nature Medicine',
-  s41558: 'Nature Climate Change',
-  s41561: 'Nature Geoscience',
-  s41559: 'Nature Ecology & Evolution',
-  s41562: 'Nature Human Behaviour',
-  s41560: 'Nature Energy',
-  s41893: 'Nature Sustainability',
-  s41587: 'Nature Biotechnology',
-}
-function sourceName(a) {
-  const m = /nature\.com\/articles\/(s\d{5})-/.exec(a?.url || '')
-  return (m && NATURE_JOURNALS[m[1]]) || a?.source?.title || ''
-}
-
-function getCountryCode(source) {
-  const loc = source?.location
-  if (!loc) return null
-  const countryName = loc.type === 'country'
-    ? loc.label?.eng
-    : loc.country?.label?.eng
-  return countryName ? (COUNTRY_LOOKUP[countryName] || null) : null
-}
-
-function getCountryFromLoc(loc) {
-  if (!loc) return null
-  if (loc.type === 'country') return COUNTRY_LOOKUP[loc.label?.eng] || null
-  if (loc.country) return COUNTRY_LOOKUP[loc.country?.label?.eng] || null
-  return null
-}
-
 // ── Source Diversity Algorithm ───────────────────────────────────────
 
 function assembleSourcePanel(articles, eventLocation) {
@@ -127,7 +66,7 @@ function assembleSourcePanel(articles, eventLocation) {
 
   if (unique.length <= 3) return unique
 
-  const affectedCountry = eventLocation ? getCountryFromLoc(eventLocation) : null
+  const affectedCountry = countryOf(eventLocation)
 
   const affected = [], regional = [], wire = [], alternative = []
   for (const a of unique) {
@@ -203,16 +142,19 @@ function assembleSourcePanel(articles, eventLocation) {
 // Token accounting — NewsAPI.ai charges ~5 tokens per event search, ~1 per article search.
 // Tracks every apiPost so cycles can log actual cost vs budgeted cost.
 const API_TIMEOUT_MS = 90_000
+// `otherCalls` is always 0: every call says which of the three kinds it is
+// (it counted a call that named none, and none ever did: `other=0` in each of
+// 41 cycle logs). The key stays because the feed file and the snapshot under
+// `content/` have always carried it, and the token line prints it.
 const tokenStats = { eventCalls: 0, articleCalls: 0, perEventCalls: 0, otherCalls: 0, estTokens: 0 }
+const CALLS_OF = /** @type {const} */ ({ events: 'eventCalls', articles: 'articleCalls', perEvent: 'perEventCalls' })
 
-async function apiPost(endpoint, params, tag = 'other') {
+/** @param {keyof typeof CALLS_OF} tag which kind of call, for the count */
+async function apiPost(endpoint, params, tag) {
   // Cost model: event/getEvents = 5 tokens, article queries = 1, event/getEvent = 1
   const cost = endpoint === 'event/getEvents' ? 5 : 1
   tokenStats.estTokens += cost
-  if (tag === 'events') tokenStats.eventCalls++
-  else if (tag === 'articles') tokenStats.articleCalls++
-  else if (tag === 'perEvent') tokenStats.perEventCalls++
-  else tokenStats.otherCalls++
+  tokenStats[CALLS_OF[tag]]++
 
   const res = await fetch(`${API_BASE}/${endpoint}`, {
     method: 'POST',
@@ -225,11 +167,23 @@ async function apiPost(endpoint, params, tag = 'other') {
   })
   if (!res.ok) {
     // Surface a sliver of the body so 401/429/5xx are diagnosable from logs.
+    // Without the key, should the body quote the request back.
     let detail = ''
-    try { detail = (await res.text()).slice(0, 200) } catch {}
+    try { detail = redact((await res.text()).slice(0, 200), API_KEY) } catch {}
     throw new Error(`NewsAPI.ai ${endpoint} ${res.status} ${res.statusText}${detail ? ` — ${detail}` : ''}`)
   }
   return res.json()
+}
+
+/**
+ * The list an answer carries at `path`. One that carries none is said, on a
+ * line the run record keeps as a warning: it read as "0 events" or "0
+ * articles", which is also what a quiet query gives.
+ */
+function listOf(data, path, endpoint) {
+  const { results, saw } = resultsAt(data, path)
+  if (saw) console.error(`⚠ NewsAPI ${endpoint} answered with ${redact(saw, API_KEY)}`)
+  return results
 }
 
 // ── Shared article query defaults ────────────────────────────────────
@@ -346,7 +300,7 @@ async function fetchEvents() {
     includeEventInfoArticle: true,
     includeEventSocialScore: true,
   }, 'events')
-  return (data.events?.results || []).filter(Boolean)
+  return listOf(data, ['events', 'results'], 'event/getEvents')
 }
 
 // Q2: Reader-aligned sources — guaranteed slot for niche sources the reader chose us for (1 token)
@@ -366,7 +320,7 @@ const READER_ALIGNED = [
 /** One `article/getArticles` query over `ARTICLE_DEFAULTS` (1 token). */
 async function queryArticles(params) {
   const data = await apiPost('article/getArticles', { ...ARTICLE_DEFAULTS, ...params }, 'articles')
-  return data.articles?.results || []
+  return listOf(data, ['articles', 'results'], 'article/getArticles')
 }
 
 function fetchReaderAlignedArticles() {
@@ -443,9 +397,6 @@ async function fetchTrackedArticles() {
   }
 }
 
-// mapCategory alias — uses shared zuhdCategory with API category arrays
-const mapCategory = (categories) => zuhdCategory(categories || [])
-
 // Pick the most specific/arresting headline from a panel.
 // Wire headlines are flat ("EU says deal will apply May 1").
 // Non-wire headlines are specific ("Lebanon expels Iran's ambassador").
@@ -470,46 +421,6 @@ function bestTitle(articles, fallback) {
   })
   scored.sort((a, b) => b.score - a.score)
   return scored[0].title || fallback
-}
-
-function extractConcepts(articles) {
-  const map = new Map()
-  for (const a of articles) {
-    for (const c of (a.concepts || [])) {
-      const label = c.label?.eng
-      if (!label) continue
-      if (!map.has(label) || (c.score || 0) > (map.get(label).score || 0)) {
-        map.set(label, c)
-      }
-    }
-  }
-  return [...map.values()]
-    .sort((a, b) => (b.score || 0) - (a.score || 0))
-    .slice(0, 8)
-    .map(c => c.uri ? { label: c.label?.eng, uri: c.uri } : c.label?.eng)
-    .filter(Boolean)
-}
-
-function avg(nums) {
-  return nums.length ? +(nums.reduce((a, b) => a + b, 0) / nums.length).toFixed(2) : null
-}
-
-// Article social signal: ER returns either a numeric socialScore or a per-network
-// `shares` map depending on API vintage — normalize to one number, null if absent.
-function articleSocialScore(a) {
-  if (a.socialScore != null) return a.socialScore
-  if (a.shares && typeof a.shares === 'object') {
-    const total = Object.values(a.shares).filter(n => typeof n === 'number').reduce((x, y) => x + y, 0)
-    return total || null
-  }
-  return null
-}
-
-// Sentiment spread: max - min across sources. >0.5 = divergent framing.
-function sentimentSpread(articles) {
-  const sentiments = articles.map(a => a.sentiment).filter(s => s != null)
-  if (sentiments.length < 2) return null
-  return +(Math.max(...sentiments) - Math.min(...sentiments)).toFixed(2)
 }
 
 // ── Main ────────────────────────────────────────────────────────────
@@ -542,7 +453,7 @@ async function main() {
   for (const a of allArticles) {
     if (seen.has(a.uri)) continue
     seen.add(a.uri)
-    a._sourceCountry = getCountryCode(a.source) || null
+    a._sourceCountry = countryOf(a.source?.location)
     dedupedArticles.push(a)
   }
 
@@ -570,12 +481,28 @@ async function main() {
   // panel never reached the writer — 6 of 8 on 2026-09-25, with the same
   // events re-bought every cycle. The budget now walks down the list past
   // covered events, so the same tokens buy panels for stories we can still
-  // run. `eventCoveredRecently` is prefilter's own test, over prefilter's
-  // own 7-day window.
+  // run. `eventCoveredRecently` is prefilter's own test, with prefilter's own
+  // window (`PREFILTER_WINDOW_MS`).
+  //
+  // "Covered" lasts as long as the ledger remembers the story, which is six
+  // cycles and not that window's seven days (`LEDGER_LIFE_CYCLES`): an event
+  // published on 2026-10-06 at 10:01 was skipped here for six cycles and
+  // bought again at 18:04 and 22:04 the next day. 327 purchases for 169
+  // events over the 41 cycles from 09-30 to 10-09.
   const TOP_EVENTS_TO_FETCH = 8
   const PER_EVENT_CONCURRENCY = 4
   const MAX_EVENTS_SCANNED = 24
-  const dedupCtx = loadDedupContext(7 * 24 * 3600 * 1000)
+  // What is already covered decides which panels are worth a token, and only
+  // that. If it cannot be read (`loadRecentArticles` now throws where it gave
+  // an empty list) no event is skipped as covered, the same eight calls at
+  // most are made, and the feed is not lost over an enrichment's bookkeeping.
+  /** @type {Parameters<typeof eventCoveredRecently>[1]} */
+  let dedupCtx = { ledgerEventUris: new Map(), recentSlugs: [] }
+  try {
+    dedupCtx = loadDedupContext(PREFILTER_WINDOW_MS)
+  } catch (e) {
+    console.error(`⚠ per-event fetch: what is already covered could not be read (${e.message}), so no event is skipped as covered`)
+  }
   let perEventFetched = 0
   let perEventCalls = 0
   const perEventLog = []
@@ -634,14 +561,18 @@ async function main() {
   perEventCalls = targets.length
 
   for (const { uri, log, data } of targets) {
-    const fetchedArts = data?.[uri]?.articles?.results || []
+    // A call that failed has its error on the line already. One that answered
+    // with no list of articles says what it held: a redirected event "returns
+    // empty and we move on", and nothing recorded what empty looked like.
+    const { results: fetchedArts, saw } = data ? resultsAt(data, [uri, 'articles', 'results']) : { results: [], saw: undefined }
+    if (saw) log.saw = redact(saw, API_KEY)
     log.returned = fetchedArts.length
     if (fetchedArts.length > 0) {
       // Annotate and add to the event's article pool
       for (const a of fetchedArts) {
         if (seen.has(a.uri)) continue
         seen.add(a.uri)
-        a._sourceCountry = getCountryCode(a.source) || null
+        a._sourceCountry = countryOf(a.source?.location)
         if (!articlesByEvent.has(uri)) articlesByEvent.set(uri, [])
         articlesByEvent.get(uri).push(a)
       }
@@ -651,7 +582,7 @@ async function main() {
   console.error(`Per-event fetch: enriched ${perEventFetched}/${perEventCalls} uncovered events (${perEventLog.filter(e => e.skipped?.startsWith('covered')).length} already-covered skipped)`)
   // Per-event detail log — one line per event so experiments can audit waste/yield
   for (const e of perEventLog) {
-    const tail = e.skipped ? `skipped=${e.skipped}` : e.error ? `error=${e.error}` : `returned=${e.returned}`
+    const tail = e.skipped ? `skipped=${e.skipped}` : e.error ? `error=${e.error}` : `returned=${e.returned}${e.saw ? ` saw="${e.saw}"` : ''}`
     console.error(`  per-event ${e.uri} cov=${e.cov||0} preCount=${e.preCount} tokens=${e.tokens} ${tail}`)
   }
 
@@ -681,23 +612,17 @@ async function main() {
       // a writable single-source panel instead of a headline-only stub the writer
       // must skip.
       const medoid = event.infoArticle || null
-      const medoidBody = (medoid?.body || '').slice(0, MAX_BODY)
-      const medoidSources = medoid && medoidBody.length >= 500 ? [{
-        name: medoid.source?.title || '',
-        url: medoid.url || '',
-        country: getCountryCode(medoid.source) || null,
-        body: medoidBody,
-        importanceRank: medoid.source?.ranking?.importanceRank || null,
-        sentiment: medoid.sentiment != null ? +medoid.sentiment.toFixed(2) : null,
-        image: medoid.image || null,
-      }] : []
+      const medoidSource = medoid ? toSource(medoid) : null
+      const medoidSources = medoidSource && medoidSource.body.length >= 500 ? [medoidSource] : []
       stories.push({
         title,
         description: event.summary?.eng || (medoid?.body || '').slice(0, 300),
         link: medoid?.url || '',
         pubDate: medoid?.dateTimePub || medoid?.dateTime || `${eventDate}T00:00:00Z`,
         category: mapCategory(eventCategories),
-        source: medoid?.source?.title || '',
+        // By `sourceName`, like every other story: this one named the outlet
+        // itself, so a nature.com paper here was "Nature" whatever its journal.
+        source: sourceName(medoid),
         suggestedSlug: slugify(title, eventDate),
         eventUri: uri,
         eventDate: eventDate,
@@ -705,7 +630,7 @@ async function main() {
         socialScore: event.socialScore ?? null,
         sources: medoidSources,
         concepts: eventConcepts,
-        location: eventLoc?.type === 'place' ? eventLoc.label?.eng : (eventLoc?.label?.eng || null),
+        location: eventLoc?.label?.eng || null,
         sentiment: null,
         origin: 'api',
       })
@@ -716,38 +641,23 @@ async function main() {
     const panel = assembleSourcePanel(matchedArticles, eventLoc)
     const primary = panel[0]
     const concepts = eventConcepts.length > 0 ? eventConcepts : extractConcepts(panel)
-    const location = eventLoc?.type === 'place'
-      ? eventLoc.label?.eng
-      : (eventLoc?.label?.eng || primary.location?.label?.eng || null)
+    const location = eventLoc?.label?.eng || primary.location?.label?.eng || null
 
     const storyTitle = panel.length > 1 ? bestTitle(panel, primary.title || title) : (primary.title || title)
-    stories.push({
+    // Where an event's story departs from an article's own (`storyFrom`): the
+    // event dates and files it when the article does not, and counts it.
+    stories.push(storyFrom(primary, panel, {
       title: storyTitle,
-      description: (primary.body || '').slice(0, 300),
-      link: primary.url || '',
       pubDate: primary.dateTimePub || primary.dateTime || `${eventDate}T00:00:00Z`,
-      eventDate: eventDate,
-      socialScore: event.socialScore ?? null,
+      eventDate,
       category: mapCategory(primary.categories || eventCategories),
-      source: sourceName(primary),
       suggestedSlug: slugify(storyTitle, primary.dateTimePub || eventDate),
       eventUri: uri,
       eventCoverage: totalArticles,
-      sources: panel.map(a => ({
-        name: sourceName(a),
-        url: a.url || '',
-        country: a._sourceCountry,
-        body: (a.body || '').slice(0, MAX_BODY),
-        importanceRank: a.source?.ranking?.importanceRank || null,
-        sentiment: a.sentiment != null ? +a.sentiment.toFixed(2) : null,
-        image: a.image || null,
-      })),
+      socialScore: event.socialScore ?? null,
       concepts,
       location,
-      sentiment: avg(panel.map(a => a.sentiment).filter(s => s != null)),
-      sentimentDivergence: sentimentSpread(panel),
-      origin: 'api',
-    })
+    }))
   }
 
   // Sort: events with matched articles first (by coverage), then headline-only events
@@ -772,7 +682,9 @@ async function main() {
 
   // Stories about a charted series take their slots first: the standalone
   // pass below ranks by outlet, and would spend its 22 before reaching them.
-  const storyFingerprints = new Set(stories.map(s => s.title.toLowerCase().replace(/[^a-z0-9]/g, '').slice(0, 30)))
+  // One story a headline within this feed, on its first thirty characters.
+  const sameHeadline = (title) => fingerprint(title, 30)
+  const storyFingerprints = new Set(stories.map(s => sameHeadline(s.title)))
   const trackedGroups = pickTracked(dedupedArticles.filter(a => trackedUris.has(a.uri)), {
     usedEventUris,
     usedUrls: panelUris,
@@ -784,36 +696,11 @@ async function main() {
     const panel = group.length > 1 ? assembleSourcePanel(group, null) : group
     const primary = panel[0]
     const storyTitle = panel.length > 1 ? bestTitle(panel, primary.title) : primary.title
-    const fp = storyTitle.toLowerCase().replace(/[^a-z0-9]/g, '').slice(0, 30)
+    const fp = sameHeadline(storyTitle)
     if (storyFingerprints.has(fp)) continue
     storyFingerprints.add(fp)
     for (const a of group) panelUris.add(a.url)
-    stories.push({
-      title: storyTitle,
-      description: (primary.body || '').slice(0, 300),
-      link: primary.url || '',
-      pubDate: primary.dateTimePub || primary.dateTime,
-      category: mapCategory(primary.categories || []),
-      source: sourceName(primary),
-      suggestedSlug: slugify(storyTitle, primary.dateTimePub || primary.dateTime),
-      eventUri: primary.eventUri || null,
-      eventCoverage: null,
-      socialScore: articleSocialScore(primary),
-      sources: panel.map(a => ({
-        name: sourceName(a),
-        url: a.url || '',
-        country: a._sourceCountry,
-        body: (a.body || '').slice(0, MAX_BODY),
-        importanceRank: a.source?.ranking?.importanceRank || null,
-        sentiment: a.sentiment != null ? +a.sentiment.toFixed(2) : null,
-        image: a.image || null,
-      })),
-      concepts: extractConcepts(panel),
-      location: primary.location?.label?.eng || null,
-      sentiment: avg(panel.map(a => a.sentiment).filter(s => s != null)),
-      sentimentDivergence: sentimentSpread(panel),
-      origin: 'api',
-    })
+    stories.push(storyFrom(primary, panel, { title: storyTitle }))
     tracked++
   }
   console.error(`Tracked-series stories: ${tracked} (${trackedGroups.filter(g => g.length > 1).length} multi-source)`)
@@ -837,41 +724,31 @@ async function main() {
   const sourceCount = {}
 
   let added = 0
+  let untitled = 0
   for (const a of allCandidates) {
     if (added >= 22) break
-    const fp = a.title.toLowerCase().replace(/[^a-z0-9]/g, '').slice(0, 30)
+    // A story of its own needs a headline. An article with none threw here,
+    // after every token was spent and before the feed below was written.
+    if (!hasHeadline(a)) { untitled++; continue }
+    const fp = sameHeadline(a.title)
     if (storyFingerprints.has(fp)) continue
     const srcName = a.source?.title || '?'
     sourceCount[srcName] = (sourceCount[srcName] || 0) + 1
     if (sourceCount[srcName] > 3) continue  // max 3 standalone per source
     storyFingerprints.add(fp)
 
-    stories.push({
-      title: a.title,
-      description: (a.body || '').slice(0, 300),
-      link: a.url || '',
-      pubDate: a.dateTimePub || a.dateTime,
-      category: mapCategory(a.categories || []),
-      source: sourceName(a),
-      suggestedSlug: slugify(a.title, a.dateTimePub || a.dateTime),
-      eventUri: a.eventUri || null,
-      eventCoverage: null,
-      socialScore: articleSocialScore(a),
-      sources: [{
-        name: sourceName(a),
-        url: a.url || '',
-        country: a._sourceCountry,
-        body: (a.body || '').slice(0, MAX_BODY),
-        importanceRank: a.source?.ranking?.importanceRank || null,
-        image: a.image || null,
-      }],
+    // A panel of one. Three keys are as this story has always written them and
+    // not as `storyFrom` would: its first five concepts by name and in the
+    // API's order, its tone unrounded, and no divergence, which a lone article
+    // cannot have. Its source now carries that tone, as a panel's sources do.
+    stories.push(storyFrom(a, [a], {
       concepts: (a.concepts || []).slice(0, 5).map(c => c.label?.eng || '').filter(Boolean),
-      location: a.location?.label?.eng || null,
       sentiment: a.sentiment,
-      origin: 'api',
-    })
+      sentimentDivergence: undefined,
+    }))
     added++
   }
+  if (untitled > 0) console.error(`Standalone: ${untitled} article(s) with no title left out`)
 
   const withSources = stories.filter(s => s.sources.length > 0).length
   const multiSource = stories.filter(s => s.sources.length > 1).length

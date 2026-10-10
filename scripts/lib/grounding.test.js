@@ -129,6 +129,13 @@ test('the combined check runs numbers first and proper nouns only on request', (
   // `standing` is definitional and draws on general knowledge by design, so it
   // opts out of the name scan — "North Sea" must not sink a definition.
   assert.equal(validateGrounding('Brent is priced in the North Sea basin.', b), null)
+  // `recent` claims what happened, so both dispatch stages and the market
+  // comment ask for the name scan too. Numbers are still checked first.
+  const both = { properNouns: true }
+  assert.equal(validateGrounding('Brent eased in the North Sea.', b, both), null)
+  assert.match(String(validateGrounding('The rise followed a bid from Aban Tether.', b, both)), /name "Aban" not in input/)
+  assert.match(String(validateGrounding('Aban Tether bid $42.10 a barrel.', b, both)), /number "42.10" not in input/)
+  assert.equal(validateGrounding('The rise followed a bid from Aban Tether.', b), null, 'not asked for, not run')
 })
 
 test('a recent that reads the chart aloud is measured, value by value', () => {

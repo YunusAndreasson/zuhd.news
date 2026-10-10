@@ -3,23 +3,29 @@
 // Three stages: collect articles → Claude script → Gemini TTS (Chirp 3 HD as
 // the fallback voice) → MP3
 //
-// Usage: node scripts/generate-briefing.js [--out <dir>]
+// Usage: node scripts/generate-briefing.js [--out <dir>] [--new-script]
 //   --out writes the script, MP3 and meta to <dir> instead of content/audio/,
 //   for a test run that must not replace the day's published briefing.
+//   --new-script has the script written again, where a run otherwise reads
+//   aloud the one already saved under today's date.
+//
+// Exits 3 when there is nothing to brief on. Not 0: the cycle takes 0 for "a
+// briefing was made" and goes on to rebuild, redeploy and push it.
 
 import { readFileSync, writeFileSync, readdirSync, mkdirSync, unlinkSync, existsSync, statSync, rmdirSync } from 'node:fs'
 import { join, basename } from 'node:path'
 import { spawnSync } from 'node:child_process'
 import textToSpeech from '@google-cloud/text-to-speech'
-import { argAt } from './lib/argv.js'
-import { parseBriefingScript, scriptToSsml, splitForSynthesis, unheardSentences } from './lib/briefing-script.js'
+import { argAt, hasFlag } from './lib/argv.js'
+import { briefingPrompt, ffmpegFailure, parseBriefingScript, scriptToSsml, splitForSynthesis, unheardSentences } from './lib/briefing-script.js'
 import { claudeArgs, claudeFailure, formatUsage, parseClaudeText, runClaudeSync } from './lib/claude-envelope.js'
 import { runWithConcurrency } from './lib/concurrency.js'
 import { parseFrontmatter } from './lib/frontmatter.js'
 import { GEMINI_TTS_MODEL, GEMINI_TTS_VOICE, geminiKey, synthesizeGemini, transcribeGemini } from './lib/gemini-tts.js'
 import { ROOT } from './lib/paths.js'
-import { writeJson } from './lib/json-file.js'
+import { writeJson, writeText } from './lib/json-file.js'
 import { articleFilesSince } from './lib/article-files.js'
+import { modelFor } from './lib/models.js'
 
 const ARTICLES_DIR = join(ROOT, 'content', 'articles')
 const AUDIO_DIR = argAt('out') || join(ROOT, 'content', 'audio')
@@ -75,8 +81,11 @@ if (articles.length > 30) {
 for (const a of articles) delete a.addedTime // strip internal field before sending to Claude
 
 if (articles.length === 0) {
-  console.log('No articles in last 24h — skipping briefing.')
-  process.exit(0)
+  // This ended on 0, which `lib/cycle-steps.js` reads as a briefing made: it
+  // would go on to rebuild and redeploy the site and push "Today's Briefing"
+  // to every phone, for yesterday's recording.
+  console.log('No articles in last 24h — no briefing.')
+  process.exit(3)
 }
 
 console.log(`Found ${articles.length} articles from last 24h`)
@@ -104,7 +113,7 @@ try {
 }
 
 // Compute hours until next briefing — one a day, on the 05:00 UTC cycle
-// (`DAILY_HOUR` in run-cycle.sh). Was [4, 16], from when there were two.
+// (`DAILY_HOUR` in lib/cycle-run.js). Was [4, 16], from when there were two.
 const BRIEFING_HOURS = [5]
 const now = new Date()
 const currentMinutes = now.getUTCHours() * 60 + now.getUTCMinutes()
@@ -123,26 +132,40 @@ if (editorialContext) payload.editorialContext = editorialContext
 // --- Stage 2: Write the spoken script via Claude CLI ---
 console.log('\n=== Stage 2: Writing the bulletin script ===')
 
-const promptTemplate = readFileSync(PROMPT_PATH, 'utf-8')
-// Inline article data directly into the prompt to avoid tool-call round-trip
-const prompt = promptTemplate.replace(
-  /The article data and editorial context are provided inline below by the system\. The JSON object contains:/,
-  `Here is the article data as JSON:\n\n\`\`\`json\n${JSON.stringify(payload, null, 2)}\n\`\`\`\n\nThe JSON object contains:`
-)
-let claudeOutput
-try {
-  const result = runClaudeSync(
-    claudeArgs(prompt, { model: process.env.ZUHD_BRIEFING_MODEL || 'claude-opus-5-5' }),
-    { timeout: 720_000, maxBuffer: 4 * 1024 * 1024 },
-  )
-  if (result.status !== 0) throw new Error(claudeFailure(result, 720_000))
-  // Briefing returns a plain-text script (not JSON) inside the envelope.
-  const envelope = parseClaudeText(result.stdout)
-  claudeOutput = envelope.text
-  if (envelope.total_cost_usd != null) console.log(`Claude usage: ${formatUsage(envelope)}`)
-} catch (err) {
-  console.error('Claude CLI failed:', err.message)
-  process.exit(1)
+mkdirSync(AUDIO_DIR, { recursive: true })
+const scriptPath = join(AUDIO_DIR, `briefing-${today}.txt`)
+
+// Today's script, if a run has already written one. The script is the part
+// that is paid for (Opus, 50 to 85 s) and it is saved before a word is
+// synthesised, so a run that died in synthesis or in ffmpeg left it behind.
+// The next run wrote another. Now it reads this one aloud.
+let claudeOutput = null
+if (!hasFlag('new-script')) {
+  try {
+    const saved = readFileSync(scriptPath, 'utf-8')
+    if (parseBriefingScript(saved).sections.length > 0) claudeOutput = saved
+  } catch { /* none saved today: write one */ }
+}
+
+if (claudeOutput) {
+  console.log(`Reading the script already saved for today: ${scriptPath} (--new-script writes another)`)
+} else {
+  try {
+    // Inline article data directly into the prompt to avoid tool-call round-trip
+    const prompt = briefingPrompt(readFileSync(PROMPT_PATH, 'utf-8'), payload)
+    const result = runClaudeSync(
+      claudeArgs(prompt, { model: modelFor('briefing') }),
+      { timeout: 720_000, maxBuffer: 4 * 1024 * 1024 },
+    )
+    if (result.status !== 0) throw new Error(claudeFailure(result, 720_000))
+    // Briefing returns a plain-text script (not JSON) inside the envelope.
+    const envelope = parseClaudeText(result.stdout)
+    claudeOutput = envelope.text
+    if (envelope.total_cost_usd != null) console.log(`Claude usage: ${formatUsage(envelope)}`)
+  } catch (err) {
+    console.error('Claude CLI failed:', err.message)
+    process.exit(1)
+  }
 }
 
 const { script, sections: scriptSections } = parseBriefingScript(claudeOutput)
@@ -152,15 +175,15 @@ if (scriptSections.length === 0) {
 }
 console.log(`Script: ${script.length} characters, ${scriptSections.length} sections`)
 
-// Saved beside the MP3 for review.
-const scriptPath = join(AUDIO_DIR, `briefing-${today}.txt`)
-writeFileSync(scriptPath, `${script}\n`)
+// Saved beside the MP3 for review, and for the push that announces it, which
+// is written from it (`cycle/push-payload.js briefing-top`). The directory is
+// made first: `--out` to one that did not exist threw here, after the script
+// had been paid for.
+writeText(scriptPath, `${script}\n`)
 console.log(`Script saved: ${scriptPath}`)
 
 // --- Stage 3: Synthesize audio ---
 console.log('\n=== Stage 3: Synthesizing audio ===')
-
-mkdirSync(AUDIO_DIR, { recursive: true })
 
 // Pre-recorded audio: transition between sections, outro after last section.
 // Files must be 24kHz mono MP3 to match TTS output (see public/audio/).
@@ -350,7 +373,7 @@ if (willCrossfadeOutro) audioParts.push(OUTRO_MP3)
 // once. All inputs are 24 kHz mono so the concat filter joins them without
 // implicit resampling.
 const mp3Path = join(AUDIO_DIR, `briefing-${today}.mp3`)
-const ffArgs = ['-y']
+const ffArgs = ['-hide_banner', '-y']
 for (const p of audioParts) ffArgs.push('-i', p)
 
 const N = audioParts.length
@@ -390,7 +413,7 @@ if (ff.status !== 0) {
   // Fail fast — the previous fallback (raw Buffer.concat of MP3 bytes) shipped a
   // worse-corrupted file than the failure it caught. Better to log loudly and
   // skip publishing audio for the day than to deploy a broken MP3.
-  console.error('ffmpeg merge failed:', ff.stderr?.slice(0, 500))
+  console.error('ffmpeg merge failed:', ffmpegFailure(ff))
   process.exit(1)
 }
 
@@ -425,11 +448,11 @@ writeJson(metaPath, {
 })
 console.log(`Metadata saved: ${metaPath}`)
 
-// Clean up MP3s and scripts older than 7 days (.ssml: the pre-Gemini scripts)
+// Clean up MP3s and scripts older than 7 days
 const sevenDaysAgo = Date.now() - 7 * 24 * 60 * 60 * 1000
 for (const f of readdirSync(AUDIO_DIR)) {
-  if (!/^briefing-\d{4}-\d{2}-\d{2}\.(mp3|ssml|txt)$/.test(f)) continue
-  const dateStr = f.replace('briefing-', '').replace(/\.(mp3|ssml|txt)$/, '')
+  if (!/^briefing-\d{4}-\d{2}-\d{2}\.(mp3|txt)$/.test(f)) continue
+  const dateStr = f.replace('briefing-', '').replace(/\.(mp3|txt)$/, '')
   if (new Date(dateStr).getTime() < sevenDaysAgo) {
     unlinkSync(join(AUDIO_DIR, f))
     console.log(`Cleaned up old briefing: ${f}`)

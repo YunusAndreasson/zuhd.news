@@ -1,1545 +1,5 @@
 [
   {
-    "timestamp": "2026-09-16T17:27:10.467Z",
-    "candidateCount": 10,
-    "candidates": [
-      {
-        "slug": "2026-09-16-a-child-protection-rule-is-an-age-verification-mandate",
-        "title": "EU Drafts Under-15 Social Ban",
-        "category": "tech",
-        "eventCoverage": 1111,
-        "importance": 6
-      },
-      {
-        "slug": "2026-09-16-beijing-brokers-with-oil-not-guarantees-islamabad-mou",
-        "title": "Beijing Urges Iran War Truce",
-        "category": "politics",
-        "eventCoverage": 170,
-        "importance": 6
-      },
-      {
-        "slug": "2026-09-16-a-vault-you-control-hong-kong-gold-clearing-and-reserve-risk",
-        "title": "Hong Kong Builds Gold Vault",
-        "category": "economy",
-        "eventCoverage": 161,
-        "importance": 6
-      },
-      {
-        "slug": "2026-09-16-third-war-powers-vote-seven-republicans-no-veto-proof-margin",
-        "title": "House Passes War Powers Vote",
-        "category": "politics",
-        "eventCoverage": 149,
-        "importance": 6
-      },
-      {
-        "slug": "2026-09-16-guilt-by-location-mali-drone-strikes-osint-verification",
-        "title": "Mali Drone Strikes Hit Civilians",
-        "category": "politics",
-        "eventCoverage": 0,
-        "importance": 6
-      },
-      {
-        "slug": "2026-09-16-forty-percent-on-diesel-and-a-new-kind-of-protest-in-idlib",
-        "title": "Syria Diesel Hike Sparks Protests",
-        "category": "politics",
-        "eventCoverage": 0,
-        "importance": 6
-      },
-      {
-        "slug": "2026-09-16-attacked-then-arrested-masafer-yatta-firing-zone-journalist",
-        "title": "Israel Detains US Journalist",
-        "category": "politics",
-        "eventCoverage": 0,
-        "importance": 6
-      },
-      {
-        "slug": "2026-09-16-which-exchange-they-avoid-is-the-compliance-ranking",
-        "title": "Hamas Donors Steered Off Binance",
-        "category": "economy",
-        "eventCoverage": 0,
-        "importance": 6
-      },
-      {
-        "slug": "2026-09-16-eleven-nines-does-not-model-a-missile-aws-permanent-loss",
-        "title": "AWS Admits Permanent Data Loss",
-        "category": "tech",
-        "eventCoverage": 0,
-        "importance": 6
-      },
-      {
-        "slug": "2026-09-16-emissions-fell-because-fuel-got-unaffordable-not-cleaner",
-        "title": "Emissions Fall on Fuel Shortage",
-        "category": "science",
-        "eventCoverage": 0,
-        "importance": 6
-      }
-    ],
-    "selected": {
-      "slug": "2026-09-16-third-war-powers-vote-seven-republicans-no-veto-proof-margin",
-      "title": "House Passes War Powers Vote",
-      "category": "politics",
-      "body": "220-204, for a third time this summer.",
-      "eventCoverage": 149,
-      "importance": 6
-    },
-    "skipReason": null,
-    "sent": true,
-    "pushTitle": "Breaking News",
-    "pushBody": "House rejects Iran war powers resolution 220-204, seven Republicans defect",
-    "response": {
-      "pushed": 1,
-      "skipped": 0,
-      "tokens": 8
-    }
-  },
-  {
-    "timestamp": "2026-09-16T22:20:25.522Z",
-    "candidateCount": 12,
-    "candidates": [
-      {
-        "slug": "2026-09-16-a-parking-spot-that-sees-every-orbit-cislunar-weapons",
-        "title": "US Preps Moon Combat",
-        "category": "politics",
-        "eventCoverage": 1061,
-        "importance": 6
-      },
-      {
-        "slug": "2026-09-16-what-practically-means-pakistan-saudi-yemen-commitment",
-        "title": "Pakistan Vows Saudi Backing",
-        "category": "politics",
-        "eventCoverage": 916,
-        "importance": 6
-      },
-      {
-        "slug": "2026-09-16-tightening-into-a-supply-shock-and-who-pays-twice",
-        "title": "Fed Raises Rates Amid War",
-        "category": "economy",
-        "eventCoverage": 916,
-        "importance": 6
-      },
-      {
-        "slug": "2026-09-16-twenty-five-thousand-dollars-and-a-stranger-outsourced-assassination",
-        "title": "Russia Outsourced Assassination Plot",
-        "category": "politics",
-        "eventCoverage": 221,
-        "importance": 6
-      },
-      {
-        "slug": "2026-09-16-the-ledger-ranked-the-victims-revolut-breach",
-        "title": "Hackers Rank Revolut Victims",
-        "category": "tech",
-        "eventCoverage": 221,
-        "importance": 6
-      },
-      {
-        "slug": "2026-09-16-a-logic-fab-cannot-make-memory-sk-hynix-intel-ohio",
-        "title": "SK Hynix Eyes Ohio Fab",
-        "category": "tech",
-        "eventCoverage": 159,
-        "importance": 6
-      },
-      {
-        "slug": "2026-09-16-they-are-asking-for-it-in-writing-warraq-island-tenure",
-        "title": "Warraq Residents Demand Guarantees",
-        "category": "politics",
-        "eventCoverage": 0,
-        "importance": 6
-      },
-      {
-        "slug": "2026-09-16-a-subsidy-financed-by-the-dealer-pakistan-fuel-relief",
-        "title": "Pakistan Fuel Prices Rise Again",
-        "category": "economy",
-        "eventCoverage": 0,
-        "importance": 6
-      },
-      {
-        "slug": "2026-09-16-zero-tariffs-on-a-market-you-cannot-reach-china-africa",
-        "title": "China Tariff Offer Falls Short",
-        "category": "economy",
-        "eventCoverage": 0,
-        "importance": 6
-      },
-      {
-        "slug": "2026-09-16-a-bill-that-misses-the-term-dies-frontier-act-2027",
-        "title": "US AI Bill Waits Until 2027",
-        "category": "tech",
-        "eventCoverage": 0,
-        "importance": 6
-      },
-      {
-        "slug": "2026-09-16-intensity-is-the-forecast-that-kills-ai-cyclone-model",
-        "title": "AI Model Predicts Cyclones",
-        "category": "science",
-        "eventCoverage": 0,
-        "importance": 6
-      },
-      {
-        "slug": "2026-09-16-a-market-that-only-works-if-the-stack-reports-itself",
-        "title": "Gujarat Pollution Market Eyes Rio",
-        "category": "science",
-        "eventCoverage": 0,
-        "importance": 6
-      }
-    ],
-    "selected": {
-      "slug": "2026-09-16-tightening-into-a-supply-shock-and-who-pays-twice",
-      "title": "Fed Raises Rates Amid War",
-      "category": "economy",
-      "body": "The vote was 12-0, and the cause is a closed",
-      "eventCoverage": 916,
-      "importance": 6
-    },
-    "skipReason": null,
-    "sent": true,
-    "pushTitle": "Breaking News",
-    "pushBody": "Fed raises rates 12-0 as war shuts key oil strait",
-    "response": {
-      "pushed": 1,
-      "skipped": 0,
-      "tokens": 8
-    }
-  },
-  {
-    "timestamp": "2026-09-17T04:19:09.133Z",
-    "candidateCount": 9,
-    "candidates": [
-      {
-        "slug": "2026-09-17-a-canal-changes-which-provinces-can-export-pinglu",
-        "title": "China Opens Pinglu Canal",
-        "category": "economy",
-        "eventCoverage": 85,
-        "importance": 6
-      },
-      {
-        "slug": "2026-09-17-a-register-the-vendor-defines-openai-misalignment-reports",
-        "title": "OpenAI Discloses Six Model Incidents",
-        "category": "tech",
-        "eventCoverage": 74,
-        "importance": 6
-      },
-      {
-        "slug": "2026-09-17-an-embassy-is-harder-to-close-israel-morocco-upgrade",
-        "title": "Israel, Morocco Agree Embassies",
-        "category": "politics",
-        "eventCoverage": 67,
-        "importance": 6
-      },
-      {
-        "slug": "2026-09-17-the-host-state-is-also-a-party-pa-visa-bans",
-        "title": "US Bars Palestinian Officials Again",
-        "category": "politics",
-        "eventCoverage": 0,
-        "importance": 6
-      },
-      {
-        "slug": "2026-09-17-a-defence-that-needs-the-evidence-admitted-ulm-five-elbit",
-        "title": "Activists Face Elbit Trial",
-        "category": "politics",
-        "eventCoverage": 0,
-        "importance": 6
-      },
-      {
-        "slug": "2026-09-17-a-creditor-walked-out-a-debtor-petrosa-settlement",
-        "title": "PetroSA Faces R1.4bn Loss",
-        "category": "economy",
-        "eventCoverage": 0,
-        "importance": 6
-      },
-      {
-        "slug": "2026-09-17-a-cancelled-layout-strands-the-title-bahria-town-cda",
-        "title": "Regulator Cancels Bahria Town Plan",
-        "category": "economy",
-        "eventCoverage": 0,
-        "importance": 6
-      },
-      {
-        "slug": "2026-09-17-likely-is-the-strongest-honest-claim-nepal-glacier",
-        "title": "Warming Likely Triggered Glacier Collapse",
-        "category": "science",
-        "eventCoverage": 0,
-        "importance": 6
-      },
-      {
-        "slug": "2026-09-17-deleting-the-cockpit-from-a-certified-airframe-skycourier-ux",
-        "title": "Cessna Deletes SkyCourier Cockpit",
-        "category": "tech",
-        "eventCoverage": 0,
-        "importance": 6
-      }
-    ],
-    "selected": {
-      "slug": "2026-09-17-a-canal-changes-which-provinces-can-export-pinglu",
-      "title": "China Opens Pinglu Canal",
-      "category": "economy",
-      "body": "The Pinglu Canal cuts a 560km detour.",
-      "eventCoverage": 85,
-      "importance": 6
-    },
-    "skipReason": null,
-    "sent": true,
-    "pushTitle": "Breaking News",
-    "pushBody": "China opens Pinglu Canal, cuts Southeast Asia shipping route by 560km",
-    "response": {
-      "pushed": 1,
-      "skipped": 0,
-      "tokens": 8
-    }
-  },
-  {
-    "timestamp": "2026-09-17T08:21:47.561Z",
-    "candidateCount": 12,
-    "candidates": [
-      {
-        "slug": "2026-09-17-a-category-that-does-not-exist-canada-eu-association",
-        "title": "EU Invents Canada Category",
-        "category": "politics",
-        "eventCoverage": 1424,
-        "importance": 6
-      },
-      {
-        "slug": "2026-09-17-a-model-that-industrialises-a-refusal-west-bank-demolitions",
-        "title": "Israel Automates Demolition Orders",
-        "category": "politics",
-        "eventCoverage": 239,
-        "importance": 6
-      },
-      {
-        "slug": "2026-09-17-the-shaft-that-funds-the-war-west-kordofan-gold-collapse",
-        "title": "Sudan Gold Mine Collapses",
-        "category": "economy",
-        "eventCoverage": 118,
-        "importance": 6
-      },
-      {
-        "slug": "2026-09-17-a-dependants-ban-filters-by-life-stage-australia-visas",
-        "title": "Australia Curbs Student Visas",
-        "category": "politics",
-        "eventCoverage": 79,
-        "importance": 6
-      },
-      {
-        "slug": "2026-09-17-the-doctrine-pakistan-once-rejected-unsc-self-defence",
-        "title": "Pakistan Reserves Self-Defense Right",
-        "category": "politics",
-        "eventCoverage": 0,
-        "importance": 6
-      },
-      {
-        "slug": "2026-09-17-membership-is-the-crime-kazakhstan-activist-sentences",
-        "title": "Kazakhstan Again Convicts Activists",
-        "category": "politics",
-        "eventCoverage": 0,
-        "importance": 6
-      },
-      {
-        "slug": "2026-09-17-a-transponder-the-master-can-switch-off-hormuz-transits",
-        "title": "Hormuz Ship Traffic Collapses",
-        "category": "economy",
-        "eventCoverage": 0,
-        "importance": 6
-      },
-      {
-        "slug": "2026-09-17-a-right-without-a-document-ecowas-biometric-card",
-        "title": "ECOWAS Launches Biometric ID",
-        "category": "economy",
-        "eventCoverage": 0,
-        "importance": 6
-      },
-      {
-        "slug": "2026-09-17-a-trade-deal-moved-a-clinical-threshold-enhertu-nice",
-        "title": "England Now Covers Enhertu",
-        "category": "science",
-        "eventCoverage": 0,
-        "importance": 6
-      },
-      {
-        "slug": "2026-09-17-the-expensive-part-got-cheap-agent-spam",
-        "title": "AI Agents Reinvent Spam",
-        "category": "tech",
-        "eventCoverage": 0,
-        "importance": 6
-      },
-      {
-        "slug": "2026-09-17-authority-without-the-key-agent-payment-standard",
-        "title": "Standard Curbs Agent Spending",
-        "category": "tech",
-        "eventCoverage": 0,
-        "importance": 6
-      },
-      {
-        "slug": "2026-09-17-the-supplier-became-the-competitor-spacex-captive-capacity",
-        "title": "SpaceX Turns Away Customers",
-        "category": "tech",
-        "eventCoverage": 0,
-        "importance": 6
-      }
-    ],
-    "selected": {
-      "slug": "2026-09-17-a-model-that-industrialises-a-refusal-west-bank-demolitions",
-      "title": "Israel Automates Demolition Orders",
-      "category": "politics",
-      "body": "1,288 Palestinian structures razed since",
-      "eventCoverage": 239,
-      "importance": 6
-    },
-    "skipReason": null,
-    "sent": true,
-    "pushTitle": "Breaking News",
-    "pushBody": "Israel demolishes 1,288 Palestinian homes since January, AI tool flags targets",
-    "response": {
-      "pushed": 1,
-      "skipped": 0,
-      "tokens": 8
-    }
-  },
-  {
-    "timestamp": "2026-09-17T12:20:51.918Z",
-    "candidateCount": 13,
-    "candidates": [
-      {
-        "slug": "2026-09-17-a-sanction-that-taxes-the-buyer-russia-secondary-tariffs",
-        "title": "Congress Taxes Russia's Buyers",
-        "category": "politics",
-        "eventCoverage": 920,
-        "importance": 6
-      },
-      {
-        "slug": "2026-09-17-spare-our-ships-not-theirs-us-houthi-oman-channel",
-        "title": "Houthis Spare US Ships",
-        "category": "politics",
-        "eventCoverage": 444,
-        "importance": 6
-      },
-      {
-        "slug": "2026-09-17-the-cold-start-was-the-strategy-circle-arc-launch",
-        "title": "Memecoins Overrun Circle's Blockchain",
-        "category": "economy",
-        "eventCoverage": 88,
-        "importance": 6
-      },
-      {
-        "slug": "2026-09-17-one-invitation-cancels-a-bloc-position-anwar-min-aung-hlaing",
-        "title": "Malaysia Invites Myanmar Leader",
-        "category": "politics",
-        "eventCoverage": 0,
-        "importance": 6
-      },
-      {
-        "slug": "2026-09-17-the-charge-does-the-punishing-mazari-hazir-bail",
-        "title": "Court Bails Rights Lawyer",
-        "category": "politics",
-        "eventCoverage": 0,
-        "importance": 6
-      },
-      {
-        "slug": "2026-09-17-the-delay-was-doing-the-checking-central-africa-instant-payments",
-        "title": "Instant Payments Outpace Controls",
-        "category": "economy",
-        "eventCoverage": 0,
-        "importance": 6
-      },
-      {
-        "slug": "2026-09-17-a-zero-tariff-you-cannot-settle-eaeu-indonesia",
-        "title": "Eurasian Bloc Courts Indonesia",
-        "category": "economy",
-        "eventCoverage": 0,
-        "importance": 6
-      },
-      {
-        "slug": "2026-09-17-the-canopy-stayed-the-carbon-left-congo-basin-biomass",
-        "title": "Congo Basin Sheds Carbon",
-        "category": "science",
-        "eventCoverage": 0,
-        "importance": 6
-      },
-      {
-        "slug": "2026-09-17-the-other-kind-of-emissions-decline-india-power-sector",
-        "title": "India's Power Emissions Flatline",
-        "category": "science",
-        "eventCoverage": 0,
-        "importance": 6
-      },
-      {
-        "slug": "2026-09-17-a-score-that-predicts-a-committee-frailty-transplant-waitlist",
-        "title": "Frailty Score Predicts Delisting",
-        "category": "science",
-        "eventCoverage": 0,
-        "importance": 6
-      },
-      {
-        "slug": "2026-09-17-jumping-a-queue-that-is-literal-south-africa-data-centres",
-        "title": "South Africa Fights Data Centers",
-        "category": "tech",
-        "eventCoverage": 0,
-        "importance": 6
-      },
-      {
-        "slug": "2026-09-17-the-friendliest-case-for-the-hardest-argument-combat-ai",
-        "title": "General Touts Combat AI",
-        "category": "tech",
-        "eventCoverage": 0,
-        "importance": 6
-      },
-      {
-        "slug": "2026-09-17-a-repair-that-reveals-the-constraint-kc-135-battle-damage",
-        "title": "Airmen Patch Wounded Tanker",
-        "category": "tech",
-        "eventCoverage": 0,
-        "importance": 6
-      }
-    ],
-    "selected": {
-      "slug": "2026-09-17-a-sanction-that-taxes-the-buyer-russia-secondary-tariffs",
-      "title": "Congress Taxes Russia's Buyers",
-      "category": "politics",
-      "body": "The tariff lands on buyers, not",
-      "eventCoverage": 920,
-      "importance": 6
-    },
-    "skipReason": null,
-    "sent": true,
-    "pushTitle": "Breaking News",
-    "pushBody": "Congress passes 100% tariff on Russian oil buyers",
-    "response": {
-      "pushed": 1,
-      "skipped": 0,
-      "tokens": 8
-    }
-  },
-  {
-    "timestamp": "2026-09-17T17:24:09.037Z",
-    "candidateCount": 14,
-    "candidates": [
-      {
-        "slug": "2026-09-16-age-limits-for-social-media-outlined-by-european-union",
-        "title": "EU Restricts Child Social Media",
-        "category": "politics",
-        "eventCoverage": 796,
-        "importance": 6
-      },
-      {
-        "slug": "2026-09-17-un-mission-says-us-committed-war-crimes-in-iran",
-        "title": "UN Cites US War Crimes",
-        "category": "politics",
-        "eventCoverage": 223,
-        "importance": 6
-      },
-      {
-        "slug": "2026-09-17-climate-change-glacier-loss-and-dry-rivers-threaten-water-se",
-        "title": "Rivers Post Driest Year",
-        "category": "science",
-        "eventCoverage": 166,
-        "importance": 6
-      },
-      {
-        "slug": "2026-09-17-pakistan-abstains-in-un-vote-on-iran-sanctions-panel",
-        "title": "Pakistan Abstains On Iran Panel",
-        "category": "politics",
-        "eventCoverage": 0,
-        "importance": 6
-      },
-      {
-        "slug": "2026-09-17-un-chief-calls-for-accountability-for-states-fuelling-sudan",
-        "title": "Guterres Urges Sudan Accountability",
-        "category": "politics",
-        "eventCoverage": 0,
-        "importance": 6
-      },
-      {
-        "slug": "2026-09-17-bab-al-mandab-chokepoint-what-complete-closure-would-mean-fo",
-        "title": "Chokepoint Risk Threatens Pakistan Fuel",
-        "category": "economy",
-        "eventCoverage": 0,
-        "importance": 6
-      },
-      {
-        "slug": "2026-09-17-sudan-s-finance-minister-pins-pound-s-fall-on-growing-demand",
-        "title": "Sudan Pound Hits Record Low",
-        "category": "economy",
-        "eventCoverage": 0,
-        "importance": 6
-      },
-      {
-        "slug": "2026-09-17-fca-steps-up-crypto-enforcement-with-raids-on-illegal-london",
-        "title": "FCA Raids Crypto Trading Sites",
-        "category": "economy",
-        "eventCoverage": 0,
-        "importance": 6
-      },
-      {
-        "slug": "2026-09-17-u-s-sec-begins-prepping-for-around-the-clock-trading-that-cr",
-        "title": "SEC Weighs 24-Hour Trading",
-        "category": "economy",
-        "eventCoverage": 0,
-        "importance": 6
-      },
-      {
-        "slug": "2026-09-17-ambient-real-time-digitization-and-datafication-of-glass-sli",
-        "title": "Microscope Camera Enables AI Pathology",
-        "category": "science",
-        "eventCoverage": 0,
-        "importance": 6
-      },
-      {
-        "slug": "2026-09-17-pressure-as-a-design-tool-for-thermoelectricity-in-bi2te3-na",
-        "title": "Pressure Locks In Thermoelectric Gains",
-        "category": "science",
-        "eventCoverage": 0,
-        "importance": 6
-      },
-      {
-        "slug": "2026-09-17-i-hijacked-a-real-artist-s-spotify-with-ai-music-it-was-dist",
-        "title": "AI Music Hijacks Spotify Page",
-        "category": "tech",
-        "eventCoverage": 0,
-        "importance": 6
-      },
-      {
-        "slug": "2026-09-17-china-s-famoussparrow-hackers-target-latin-america-with-new",
-        "title": "Chinese Hackers Breach Governments",
-        "category": "tech",
-        "eventCoverage": 0,
-        "importance": 6
-      },
-      {
-        "slug": "2026-09-17-university-rescinds-job-offer-to-activist-who-allegedly-wipe",
-        "title": "University Rescinds Activist's Job Offer",
-        "category": "tech",
-        "eventCoverage": 0,
-        "importance": 6
-      }
-    ],
-    "selected": {
-      "slug": "2026-09-17-un-mission-says-us-committed-war-crimes-in-iran",
-      "title": "UN Cites US War Crimes",
-      "category": "politics",
-      "body": "A [US](country:US) strike killed 157 at a",
-      "eventCoverage": 223,
-      "importance": 6
-    },
-    "skipReason": null,
-    "sent": true,
-    "pushTitle": "Breaking News",
-    "pushBody": "UN says US strike on school killed 157 in Iran, finds war crimes",
-    "response": {
-      "pushed": 1,
-      "skipped": 0,
-      "tokens": 8
-    }
-  },
-  {
-    "timestamp": "2026-09-17T22:19:04.199Z",
-    "candidateCount": 13,
-    "candidates": [
-      {
-        "slug": "2026-09-16-upi-the-small-fee-raising-big-questions-for-india-s-payments",
-        "title": "India Ends Free UPI",
-        "category": "economy",
-        "eventCoverage": 831,
-        "importance": 6
-      },
-      {
-        "slug": "2026-09-17-trump-touts-major-progress-on-plans-for-new-us-base-in-polan",
-        "title": "Trump Announces Poland Base",
-        "category": "politics",
-        "eventCoverage": 162,
-        "importance": 6
-      },
-      {
-        "slug": "2026-09-17-us-to-allow-iran-delegation-to-attend-un-meetings-in-new-yor",
-        "title": "US Admits Iran Delegation",
-        "category": "politics",
-        "eventCoverage": 149,
-        "importance": 6
-      },
-      {
-        "slug": "2026-09-17-eu-disburses-3-7-billion-for-ukraine-missiles-and-drones",
-        "title": "EU Funds Ukraine Weapons",
-        "category": "economy",
-        "eventCoverage": 129,
-        "importance": 6
-      },
-      {
-        "slug": "2026-09-17-farming-permit-gridlock-at-lake-nasser-nubian-right-of-return",
-        "title": "Nubians Renew Return Demand",
-        "category": "politics",
-        "eventCoverage": 0,
-        "importance": 6
-      },
-      {
-        "slug": "2026-09-17-syria-hands-down-sentences-in-2025-coastal-massacres-trial",
-        "title": "Syria Sentences Massacre Defendant",
-        "category": "politics",
-        "eventCoverage": 0,
-        "importance": 6
-      },
-      {
-        "slug": "2026-09-17-hajj-2027-saudi-arabia-rejects-nigeria-bid-for-more-slots",
-        "title": "Saudi Rejects Nigeria Hajj Bid",
-        "category": "politics",
-        "eventCoverage": 0,
-        "importance": 6
-      },
-      {
-        "slug": "2026-09-17-pm-s-fuel-subsidy-scheme-faces-first-day-hurdles-at-petrol-p",
-        "title": "Pakistan Fuel Subsidy Stalls",
-        "category": "economy",
-        "eventCoverage": 0,
-        "importance": 6
-      },
-      {
-        "slug": "2026-09-17-fda-approves-a-new-gene-therapy-for-sanfilippo-syndrome",
-        "title": "FDA Approves Sanfilippo Therapy",
-        "category": "science",
-        "eventCoverage": 0,
-        "importance": 6
-      },
-      {
-        "slug": "2026-09-17-why-global-wind-energy-may-stay-steady-as-storm-tracks-shift",
-        "title": "Global Wind Power Holds Steady",
-        "category": "science",
-        "eventCoverage": 0,
-        "importance": 6
-      },
-      {
-        "slug": "2026-09-17-ai-text-watermarking-can-make-models-more-vulnerable-to-adve",
-        "title": "Watermarking Weakens AI Safety",
-        "category": "tech",
-        "eventCoverage": 0,
-        "importance": 6
-      },
-      {
-        "slug": "2026-09-17-republican-bill-would-order-isps-dns-providers-and-vpns-to-b",
-        "title": "Bill Targets DNS Resolvers",
-        "category": "tech",
-        "eventCoverage": 0,
-        "importance": 6
-      },
-      {
-        "slug": "2026-09-17-flock-city-pd-fake-police-department-searched-real-cameras",
-        "title": "Flock's Fake Police Searches",
-        "category": "tech",
-        "eventCoverage": 0,
-        "importance": 6
-      }
-    ],
-    "selected": {
-      "slug": "2026-09-16-upi-the-small-fee-raising-big-questions-for-india-s-payments",
-      "title": "India Ends Free UPI",
-      "category": "economy",
-      "body": "UPI's zero-fee decade ends Oct. 15 in",
-      "eventCoverage": 831,
-      "importance": 6
-    },
-    "skipReason": null,
-    "sent": true,
-    "pushTitle": "Breaking News",
-    "pushBody": "India ends decade of free UPI payments, imposes merchant fee Oct. 15",
-    "response": {
-      "pushed": 1,
-      "skipped": 0,
-      "tokens": 8
-    }
-  },
-  {
-    "timestamp": "2026-09-18T04:28:15.449Z",
-    "candidateCount": 13,
-    "candidates": [
-      {
-        "slug": "2026-09-17-f-35-sale-to-saudi-arabia-approved-by-state-department",
-        "title": "US Clears Saudi F-35 Sale",
-        "category": "economy",
-        "eventCoverage": 178,
-        "importance": 6
-      },
-      {
-        "slug": "2026-09-17-first-new-cat-species-described-in-a-century-bolivia",
-        "title": "Scientists Confirm New Cat Species",
-        "category": "science",
-        "eventCoverage": 157,
-        "importance": 6
-      },
-      {
-        "slug": "2026-09-17-polish-pm-warns-of-russian-strikes-on-ukraine-s-allies",
-        "title": "Tusk Warns Of Russian Strikes",
-        "category": "politics",
-        "eventCoverage": 149,
-        "importance": 6
-      },
-      {
-        "slug": "2026-09-17-modi-pitches-india-as-trusted-global-chip-hub",
-        "title": "Modi Pitches India Chip Hub",
-        "category": "economy",
-        "eventCoverage": 112,
-        "importance": 6
-      },
-      {
-        "slug": "2026-09-18-ice-has-no-confirmed-director-as-nomination-is-withdrawn",
-        "title": "White House Pulls Immigration Nominee",
-        "category": "politics",
-        "eventCoverage": 94,
-        "importance": 6
-      },
-      {
-        "slug": "2026-09-17-lula-raises-welfare-benefits-15-percent-before-election",
-        "title": "Lula Boosts Welfare Before Vote",
-        "category": "economy",
-        "eventCoverage": 51,
-        "importance": 6
-      },
-      {
-        "slug": "2026-09-18-ecuador-detains-jose-serrano-after-us-deportation",
-        "title": "Ecuador Jails Deported Ex-Minister",
-        "category": "politics",
-        "eventCoverage": 0,
-        "importance": 6
-      },
-      {
-        "slug": "2026-09-18-bank-of-japan-raises-rates-to-31-year-high",
-        "title": "Bank Of Japan Hikes Rates",
-        "category": "economy",
-        "eventCoverage": 0,
-        "importance": 6
-      },
-      {
-        "slug": "2026-09-18-the-eye-as-a-canary-oculomics-for-psychiatry",
-        "title": "Retinal Scans Meet Psychiatry",
-        "category": "science",
-        "eventCoverage": 0,
-        "importance": 6
-      },
-      {
-        "slug": "2026-09-18-indonesia-ends-search-for-journalists-lost-at-anak-krakatau",
-        "title": "Indonesia Ends Volcano Search",
-        "category": "science",
-        "eventCoverage": 0,
-        "importance": 6
-      },
-      {
-        "slug": "2026-09-17-doom-loop-openai-microsoft-on-llms-and-the-web",
-        "title": "Microsoft Calls AI 'Theft'",
-        "category": "tech",
-        "eventCoverage": 0,
-        "importance": 6
-      },
-      {
-        "slug": "2026-09-16-nvidia-brings-native-gpu-kernel-programming-to-rust",
-        "title": "Nvidia Brings Rust To CUDA",
-        "category": "tech",
-        "eventCoverage": 0,
-        "importance": 6
-      },
-      {
-        "slug": "2026-09-17-china-ai-grid-forecasting-what-southeast-asia-can-learn",
-        "title": "China Tests AI Grid Forecasting",
-        "category": "tech",
-        "eventCoverage": 0,
-        "importance": 6
-      }
-    ],
-    "selected": {
-      "slug": "2026-09-17-f-35-sale-to-saudi-arabia-approved-by-state-department",
-      "title": "US Clears Saudi F-35 Sale",
-      "category": "economy",
-      "body": "A $24bn Saudi jet deal risks [Israel](country:IL)'s",
-      "eventCoverage": 178,
-      "importance": 6
-    },
-    "skipReason": null,
-    "sent": true,
-    "pushTitle": "Breaking News",
-    "pushBody": "State Department approves $24 billion F-35 sale to Saudi Arabia",
-    "response": {
-      "pushed": 1,
-      "skipped": 0,
-      "tokens": 8
-    }
-  },
-  {
-    "timestamp": "2026-09-18T08:29:00.699Z",
-    "candidateCount": 14,
-    "candidates": [
-      {
-        "slug": "2026-09-18-trump-weighs-renewed-major-attacks-on-iran",
-        "title": "Trump Weighs New Iran Strikes",
-        "category": "politics",
-        "eventCoverage": 196,
-        "importance": 6
-      },
-      {
-        "slug": "2026-09-18-kremlin-seizes-nestle-russia-business",
-        "title": "Kremlin Seizes Nestlé Business",
-        "category": "economy",
-        "eventCoverage": 120,
-        "importance": 6
-      },
-      {
-        "slug": "2026-09-18-stagflation-brent-100-bond-yields-squeeze",
-        "title": "Oil, Yields Squeeze Economies",
-        "category": "economy",
-        "eventCoverage": 103,
-        "importance": 6
-      },
-      {
-        "slug": "2026-09-18-italy-warships-bab-al-mandeb-without-eu",
-        "title": "Italy Breaks From EU Escorts",
-        "category": "economy",
-        "eventCoverage": 102,
-        "importance": 6
-      },
-      {
-        "slug": "2026-09-18-37-die-in-nscdc-custody-after-nigeria-mining-sweep",
-        "title": "37 Die in Nigeria Custody",
-        "category": "politics",
-        "eventCoverage": 77,
-        "importance": 6
-      },
-      {
-        "slug": "2026-09-18-najib-house-arrest-1mdb-12-million-fine",
-        "title": "Najib Wins House Arrest",
-        "category": "economy",
-        "eventCoverage": 64,
-        "importance": 6
-      },
-      {
-        "slug": "2026-09-18-us-drops-venezuela-from-drug-blacklist-colombia-next",
-        "title": "US Drops Venezuela Drug Label",
-        "category": "politics",
-        "eventCoverage": 0,
-        "importance": 6
-      },
-      {
-        "slug": "2026-09-18-corporate-bitcoin-treasuries-underwater-demand-stalls",
-        "title": "Corporate Bitcoin Buying Stalls",
-        "category": "economy",
-        "eventCoverage": 0,
-        "importance": 6
-      },
-      {
-        "slug": "2026-09-18-early-heat-waves-wheat-yields-priming-effect",
-        "title": "Early Heat Toughens Wheat",
-        "category": "science",
-        "eventCoverage": 0,
-        "importance": 6
-      },
-      {
-        "slug": "2026-09-18-ctenophores-and-the-second-origin-of-nervous-systems",
-        "title": "Comb Jellies Rewrite Animal Tree",
-        "category": "science",
-        "eventCoverage": 0,
-        "importance": 6
-      },
-      {
-        "slug": "2026-09-18-eu-kids-act-minimum-age-15-social-media",
-        "title": "EU Sets Minors Age Floor",
-        "category": "tech",
-        "eventCoverage": 0,
-        "importance": 6
-      },
-      {
-        "slug": "2026-09-18-openai-astra-for-law-liability-shift",
-        "title": "OpenAI Launches Legal Tool",
-        "category": "tech",
-        "eventCoverage": 0,
-        "importance": 6
-      },
-      {
-        "slug": "2026-09-18-solana-faster-blocks-same-capacity-shorter-epochs",
-        "title": "Solana Speeds Blocks, Not Capacity",
-        "category": "tech",
-        "eventCoverage": 0,
-        "importance": 6
-      },
-      {
-        "slug": "2026-09-18-endurosat-european-newspace-passes-one-billion-month",
-        "title": "European Space Startups Pass €1B",
-        "category": "science",
-        "eventCoverage": 0,
-        "importance": 6
-      }
-    ],
-    "selected": {
-      "slug": "2026-09-18-37-die-in-nscdc-custody-after-nigeria-mining-sweep",
-      "title": "37 Die in Nigeria Custody",
-      "category": "politics",
-      "body": "37 mining suspects died in one cell.",
-      "eventCoverage": 77,
-      "importance": 6
-    },
-    "skipReason": null,
-    "sent": true,
-    "pushTitle": "Breaking News",
-    "pushBody": "37 mining suspects die in one overcrowded Nigeria jail cell",
-    "response": {
-      "pushed": 1,
-      "skipped": 0,
-      "tokens": 8
-    }
-  },
-  {
-    "timestamp": "2026-09-18T12:23:57.547Z",
-    "candidateCount": 13,
-    "candidates": [
-      {
-        "slug": "2026-09-18-us-extends-visa-ban-on-palestinian-un-delegation",
-        "title": "US Bars Abbas Again",
-        "category": "politics",
-        "eventCoverage": 378,
-        "importance": 6
-      },
-      {
-        "slug": "2026-09-18-buffett-chairman-emeritus-berkshire-succession-structure",
-        "title": "Buffett Splits Berkshire's Crown",
-        "category": "economy",
-        "eventCoverage": 213,
-        "importance": 6
-      },
-      {
-        "slug": "2026-09-18-us-china-ai-compute-controls-before-summit",
-        "title": "Chips, Not Models, Drive Summit",
-        "category": "tech",
-        "eventCoverage": 190,
-        "importance": 6
-      },
-      {
-        "slug": "2026-09-18-saudi-east-west-pipeline-shutdown-oil-routing",
-        "title": "Saudi Pipeline Shutdown Rattles Oil",
-        "category": "economy",
-        "eventCoverage": 131,
-        "importance": 6
-      },
-      {
-        "slug": "2026-09-18-russia-first-wartime-duma-elections-drone-barrage",
-        "title": "Duma Vote Opens Under Drones",
-        "category": "politics",
-        "eventCoverage": 81,
-        "importance": 6
-      },
-      {
-        "slug": "2026-09-18-kohat-mosque-suicide-bombing-friday-prayer",
-        "title": "Bomber Hits Kohat Mosque",
-        "category": "politics",
-        "eventCoverage": 75,
-        "importance": 6
-      },
-      {
-        "slug": "2026-09-18-lahore-court-afghan-medical-students-pmdc-directive",
-        "title": "Court Shields Afghan Students",
-        "category": "politics",
-        "eventCoverage": 0,
-        "importance": 6
-      },
-      {
-        "slug": "2026-09-18-tata-sons-chairman-reappointment-trusts-control",
-        "title": "Tata Trusts Split Over Chairman",
-        "category": "economy",
-        "eventCoverage": 0,
-        "importance": 6
-      },
-      {
-        "slug": "2026-09-18-indonesia-fiscal-deficit-ceiling-debate",
-        "title": "Indonesia Weighs Deficit Cap",
-        "category": "economy",
-        "eventCoverage": 0,
-        "importance": 6
-      },
-      {
-        "slug": "2026-09-18-bespoke-rna-therapy-motor-neuron-disease-first",
-        "title": "Bespoke RNA Drug Reverses ALS",
-        "category": "science",
-        "eventCoverage": 0,
-        "importance": 6
-      },
-      {
-        "slug": "2026-09-18-canadian-courts-police-misconduct-sentencing-study",
-        "title": "Study Maps Police Accountability Gap",
-        "category": "science",
-        "eventCoverage": 0,
-        "importance": 6
-      },
-      {
-        "slug": "2026-09-18-sard-synthetic-arabic-ocr-dataset",
-        "title": "Dataset Opens Arabic Text",
-        "category": "tech",
-        "eventCoverage": 0,
-        "importance": 6
-      },
-      {
-        "slug": "2026-09-18-usmc-expeditionary-basing-first-combat-use",
-        "title": "Marines Test Dispersed Basing",
-        "category": "tech",
-        "eventCoverage": 0,
-        "importance": 6
-      }
-    ],
-    "selected": {
-      "slug": "2026-09-18-kohat-mosque-suicide-bombing-friday-prayer",
-      "title": "Bomber Hits Kohat Mosque",
-      "category": "politics",
-      "body": "15 killed, 56 hurt, at Friday prayer.",
-      "eventCoverage": 75,
-      "importance": 6
-    },
-    "skipReason": null,
-    "sent": true,
-    "pushTitle": "Breaking News",
-    "pushBody": "Suicide bomber kills 15 at Kohat mosque during Friday prayers",
-    "response": {
-      "pushed": 1,
-      "skipped": 0,
-      "tokens": 8
-    }
-  },
-  {
-    "timestamp": "2026-09-18T17:24:08.423Z",
-    "candidateCount": 13,
-    "candidates": [
-      {
-        "slug": "2026-09-18-canada-eu-associate-membership-walked-back",
-        "title": "Canada Cools EU Membership Talk",
-        "category": "politics",
-        "eventCoverage": 1274,
-        "importance": 6
-      },
-      {
-        "slug": "2026-09-18-eci-freezes-tmc-symbol-supreme-court-challenge",
-        "title": "India Freezes Trinamool Symbol",
-        "category": "politics",
-        "eventCoverage": 334,
-        "importance": 6
-      },
-      {
-        "slug": "2026-09-18-hacktron-claude-openai-internal-breach",
-        "title": "Researchers Hack OpenAI With Claude",
-        "category": "tech",
-        "eventCoverage": 125,
-        "importance": 6
-      },
-      {
-        "slug": "2026-09-18-north-sinai-parents-detained-school-reconstruction",
-        "title": "Egypt Detains Sinai Parents",
-        "category": "politics",
-        "eventCoverage": 0,
-        "importance": 6
-      },
-      {
-        "slug": "2026-09-18-nigeria-repatriates-chinese-rosewood-smuggling-suspect",
-        "title": "Nigeria Extradites Rosewood Smuggler",
-        "category": "politics",
-        "eventCoverage": 0,
-        "importance": 6
-      },
-      {
-        "slug": "2026-09-18-haruko-breach-crypto-middleware-api-keys",
-        "title": "Crypto Middleware Breach Exposes Funds",
-        "category": "economy",
-        "eventCoverage": 0,
-        "importance": 6
-      },
-      {
-        "slug": "2026-09-18-cftc-crypto-rulemaking-clarity-act-stalled",
-        "title": "Agency Writes Crypto Rules Alone",
-        "category": "economy",
-        "eventCoverage": 0,
-        "importance": 6
-      },
-      {
-        "slug": "2026-09-18-hca-sues-blue-cross-prior-authorization-denials",
-        "title": "Hospital Chain Sues Insurer",
-        "category": "economy",
-        "eventCoverage": 0,
-        "importance": 6
-      },
-      {
-        "slug": "2026-09-18-microsoft-filings-ai-scraping-theft-of-labor",
-        "title": "Filings Call AI Scraping Theft",
-        "category": "tech",
-        "eventCoverage": 0,
-        "importance": 6
-      },
-      {
-        "slug": "2026-09-18-north-korean-it-worker-networks-host-state-action",
-        "title": "States Curb North Korean Workers",
-        "category": "tech",
-        "eventCoverage": 0,
-        "importance": 6
-      },
-      {
-        "slug": "2026-09-18-haiti-fruit-trees-charcoal-deforestation",
-        "title": "Haitians Burn Fruit Trees",
-        "category": "science",
-        "eventCoverage": 0,
-        "importance": 6
-      },
-      {
-        "slug": "2026-09-18-hemp-hurd-cellulose-biodegradable-plastics",
-        "title": "Hemp Waste Strengthens Plastic",
-        "category": "science",
-        "eventCoverage": 0,
-        "importance": 6
-      },
-      {
-        "slug": "2026-09-18-graph-sandwich-conjecture-proved",
-        "title": "Mathematicians Prove Graph Sandwich",
-        "category": "science",
-        "eventCoverage": 0,
-        "importance": 6
-      }
-    ],
-    "selected": {
-      "slug": "2026-09-18-hacktron-claude-openai-internal-breach",
-      "title": "Researchers Hack OpenAI With Claude",
-      "category": "tech",
-      "body": "Claude Opus 5 cracked OpenAI's forum in",
-      "eventCoverage": 125,
-      "importance": 6
-    },
-    "skipReason": null,
-    "sent": true,
-    "pushTitle": "Breaking News",
-    "pushBody": "Researchers use Claude AI to breach OpenAI's internal forum, security firm says",
-    "response": {
-      "pushed": 1,
-      "skipped": 0,
-      "tokens": 8
-    }
-  },
-  {
-    "timestamp": "2026-09-18T22:21:16.734Z",
-    "candidateCount": 14,
-    "candidates": [
-      {
-        "slug": "2026-09-18-trump-bans-cnn-msnow-politico-white-house",
-        "title": "Trump Bars Three Outlets",
-        "category": "politics",
-        "eventCoverage": 535,
-        "importance": 6
-      },
-      {
-        "slug": "2026-09-18-greenland-denmark-us-permanent-security-control",
-        "title": "US Claims Greenland Security Deal",
-        "category": "politics",
-        "eventCoverage": 294,
-        "importance": 6
-      },
-      {
-        "slug": "2026-09-18-ceuta-police-clear-migrants-beaches",
-        "title": "Ceuta Clears Migrant Beaches",
-        "category": "politics",
-        "eventCoverage": 189,
-        "importance": 6
-      },
-      {
-        "slug": "2026-09-18-newsom-ai-kill-switch-third-party-oversight",
-        "title": "California Orders AI Kill Switch",
-        "category": "economy",
-        "eventCoverage": 108,
-        "importance": 6
-      },
-      {
-        "slug": "2026-09-18-sudan-igad-return-juba-signatories-appointment-freeze",
-        "title": "Sudan Freeze Alarms Peace Partners",
-        "category": "politics",
-        "eventCoverage": 0,
-        "importance": 6
-      },
-      {
-        "slug": "2026-09-18-tiguerones-us-terrorist-designation-ecuador",
-        "title": "US Labels Fractured Gang Terrorist",
-        "category": "politics",
-        "eventCoverage": 0,
-        "importance": 6
-      },
-      {
-        "slug": "2026-09-18-togo-online-protest-civil-society-crackdown",
-        "title": "Togo Protest Moves Online",
-        "category": "politics",
-        "eventCoverage": 0,
-        "importance": 6
-      },
-      {
-        "slug": "2026-09-18-iran-war-cost-43-billion-pentagon-undercount",
-        "title": "Iran War Cost Tops $43B",
-        "category": "economy",
-        "eventCoverage": 0,
-        "importance": 6
-      },
-      {
-        "slug": "2026-09-18-trump-pharma-medicaid-drug-discount-terms-missing",
-        "title": "Medicaid Drug Deal Lacks Terms",
-        "category": "economy",
-        "eventCoverage": 0,
-        "importance": 6
-      },
-      {
-        "slug": "2026-09-18-hallucinated-ai-intelligence-report-chinese-ship",
-        "title": "AI Error Nearly Sparked Boarding",
-        "category": "tech",
-        "eventCoverage": 0,
-        "importance": 6
-      },
-      {
-        "slug": "2026-09-18-faa-ai-air-traffic-advisory-rollout",
-        "title": "Aviation Agency Deploys AI Advisor",
-        "category": "tech",
-        "eventCoverage": 0,
-        "importance": 6
-      },
-      {
-        "slug": "2026-09-18-south-korea-developmental-state-ai-model",
-        "title": "Seoul Revives State-Led AI Push",
-        "category": "tech",
-        "eventCoverage": 0,
-        "importance": 6
-      },
-      {
-        "slug": "2026-09-18-north-korea-nuclear-tests-persistent-earthquakes",
-        "title": "North Korea Tests Still Shake Ground",
-        "category": "science",
-        "eventCoverage": 0,
-        "importance": 6
-      },
-      {
-        "slug": "2026-09-18-cortical-cells-initiate-sleep",
-        "title": "Brain's Cortex Triggers Its Own Sleep",
-        "category": "science",
-        "eventCoverage": 0,
-        "importance": 6
-      }
-    ],
-    "selected": {
-      "slug": "2026-09-18-trump-bans-cnn-msnow-politico-white-house",
-      "title": "Trump Bars Three Outlets",
-      "category": "politics",
-      "body": "No court order was needed to bar the three",
-      "eventCoverage": 535,
-      "importance": 6
-    },
-    "skipReason": null,
-    "sent": true,
-    "pushTitle": "Breaking News",
-    "pushBody": "Trump bars CNN, MSNBC, Politico from White House press access",
-    "response": {
-      "pushed": 1,
-      "skipped": 0,
-      "tokens": 8
-    }
-  },
-  {
-    "timestamp": "2026-09-19T04:22:10.054Z",
-    "candidateCount": 13,
-    "candidates": [
-      {
-        "slug": "2026-09-19-philippines-school-shooting-mindanao-loose-firearms",
-        "title": "Mindanao School Shooting Kills Two",
-        "category": "politics",
-        "eventCoverage": 309,
-        "importance": 6
-      },
-      {
-        "slug": "2026-09-19-anthropic-wet-lab-owning-the-biology-training-corpus",
-        "title": "Anthropic Builds Physical Biology Lab",
-        "category": "tech",
-        "eventCoverage": 99,
-        "importance": 6
-      },
-      {
-        "slug": "2026-09-19-ohchr-report-russian-forces-sexual-violence-ukraine",
-        "title": "UN Ties Russia To Assaults",
-        "category": "politics",
-        "eventCoverage": 87,
-        "importance": 6
-      },
-      {
-        "slug": "2026-09-19-gemini-autonomously-compromised-three-companies-safety-test",
-        "title": "Gemini Hacked Real Companies",
-        "category": "tech",
-        "eventCoverage": 64,
-        "importance": 6
-      },
-      {
-        "slug": "2026-09-19-trump-xi-state-visit-ai-busan-trade-agenda",
-        "title": "Trump Greets Xi At Andrews",
-        "category": "politics",
-        "eventCoverage": 59,
-        "importance": 6
-      },
-      {
-        "slug": "2026-09-19-rba-rate-warning-unmodelled-fiscal-path-imported-inflation",
-        "title": "Reserve Bank Never Modelled Cuts",
-        "category": "economy",
-        "eventCoverage": 52,
-        "importance": 6
-      },
-      {
-        "slug": "2026-09-19-rss-affiliates-attacks-christians-west-bengal",
-        "title": "Attacks Escalate On Bengal Christians",
-        "category": "politics",
-        "eventCoverage": 0,
-        "importance": 6
-      },
-      {
-        "slug": "2026-09-19-h1b-fee-renewed-applications-down-92-percent",
-        "title": "Trump Renews H-1B Fee",
-        "category": "economy",
-        "eventCoverage": 0,
-        "importance": 6
-      },
-      {
-        "slug": "2026-09-19-graham-act-secondary-tariffs-india-russian-crude",
-        "title": "New Law Threatens India Tariffs",
-        "category": "economy",
-        "eventCoverage": 0,
-        "importance": 6
-      },
-      {
-        "slug": "2026-09-19-ai-targeting-hearing-maven-lavender-civilian-harm",
-        "title": "Experts Doubt AI Targeting Claims",
-        "category": "tech",
-        "eventCoverage": 0,
-        "importance": 6
-      },
-      {
-        "slug": "2026-09-19-maldives-meets-un-ncd-target-digital-health-archipelago",
-        "title": "Maldives Cuts Chronic Disease Deaths",
-        "category": "science",
-        "eventCoverage": 0,
-        "importance": 6
-      },
-      {
-        "slug": "2026-09-19-korea-linear-rainband-detection-urban-flood-warning",
-        "title": "Korea Deploys Rainband Detection Tech",
-        "category": "science",
-        "eventCoverage": 0,
-        "importance": 6
-      },
-      {
-        "slug": "2026-09-19-elias-2-24-b-youngest-known-planet-still-forming",
-        "title": "Astronomers Confirm Youngest Planet",
-        "category": "science",
-        "eventCoverage": 0,
-        "importance": 6
-      }
-    ],
-    "selected": {
-      "slug": "2026-09-19-ohchr-report-russian-forces-sexual-violence-ukraine",
-      "title": "UN Ties Russia To Assaults",
-      "category": "politics",
-      "body": "UN investigators tie 89% of war rapes to",
-      "eventCoverage": 87,
-      "importance": 6
-    },
-    "skipReason": null,
-    "sent": true,
-    "pushTitle": "Breaking News",
-    "pushBody": "UN says Russian forces committed 89% of verified wartime rapes in Ukraine",
-    "response": {
-      "pushed": 1,
-      "skipped": 0,
-      "tokens": 8
-    }
-  },
-  {
-    "timestamp": "2026-09-20T04:14:39.800Z",
-    "candidateCount": 11,
-    "candidates": [
-      {
-        "slug": "2026-09-20-trump-ai-force-czar-superintelligence-hoax",
-        "title": "Trump Announces AI Force",
-        "category": "tech",
-        "eventCoverage": 268,
-        "importance": 6
-      },
-      {
-        "slug": "2026-09-20-iran-seven-conditions-qatar-channel-end-war",
-        "title": "Iran Sends Conditions Via Qatar",
-        "category": "politics",
-        "eventCoverage": 145,
-        "importance": 6
-      },
-      {
-        "slug": "2026-09-20-ai-labs-antitrust-suit-slowdown-agreement",
-        "title": "AI Labs Sued Over Slowdown",
-        "category": "tech",
-        "eventCoverage": 140,
-        "importance": 6
-      },
-      {
-        "slug": "2026-09-20-hormuz-billion-barrels-escorted-permission-regime",
-        "title": "US Claims Hormuz Oil Rebound",
-        "category": "economy",
-        "eventCoverage": 107,
-        "importance": 6
-      },
-      {
-        "slug": "2026-09-20-houthi-missile-riyadh-first-since-2022-truce",
-        "title": "Houthi Missile Targets Riyadh",
-        "category": "politics",
-        "eventCoverage": 70,
-        "importance": 6
-      },
-      {
-        "slug": "2026-09-20-india-lpg-subsidy-biometric-aadhaar-deadline",
-        "title": "India Mandates Aadhaar LPG Authentication",
-        "category": "economy",
-        "eventCoverage": 53,
-        "importance": 6
-      },
-      {
-        "slug": "2026-09-20-caribbean-boat-strike-four-killed-narco-terrorist-label",
-        "title": "US Strikes Caribbean Boat",
-        "category": "politics",
-        "eventCoverage": 35,
-        "importance": 6
-      },
-      {
-        "slug": "2026-09-20-jamaat-islami-march-pakistan-petroleum-levy",
-        "title": "Jamaat-i-Islami Marches Over Fuel Levy",
-        "category": "economy",
-        "eventCoverage": 26,
-        "importance": 6
-      },
-      {
-        "slug": "2026-09-20-herzog-expunges-azaria-record-hebron-killing",
-        "title": "Herzog Erases Azaria Record",
-        "category": "politics",
-        "eventCoverage": 18,
-        "importance": 6
-      },
-      {
-        "slug": "2026-09-20-akwa-ibom-medical-city-compensation-displacement",
-        "title": "Akwa Ibom Families Reject Compensation",
-        "category": "politics",
-        "eventCoverage": 0,
-        "importance": 6
-      },
-      {
-        "slug": "2026-09-20-fiji-hiv-national-emergency-injecting-drug-surge",
-        "title": "Fiji Declares HIV Emergency",
-        "category": "science",
-        "eventCoverage": 0,
-        "importance": 6
-      }
-    ],
-    "selected": {
-      "slug": "2026-09-20-ai-labs-antitrust-suit-slowdown-agreement",
-      "title": "AI Labs Sued Over Slowdown",
-      "category": "tech",
-      "body": "4 paying subscribers sued 4 AI labs.",
-      "eventCoverage": 140,
-      "importance": 6
-    },
-    "skipReason": null,
-    "sent": true,
-    "pushTitle": "Breaking News",
-    "pushBody": "4 subscribers sue OpenAI, Anthropic, Google, SpaceXAI over alleged AI slowdown pact",
-    "response": {
-      "pushed": 1,
-      "skipped": 0,
-      "tokens": 8
-    }
-  },
-  {
     "timestamp": "2026-09-20T08:16:56.561Z",
     "candidateCount": 13,
     "candidates": [
@@ -10189,6 +8649,1413 @@
     "sent": true,
     "pushTitle": "Breaking News",
     "pushBody": "US approves $33.16bn in arms for Israel since 2023, State Department notices show",
+    "response": {
+      "pushed": 1,
+      "skipped": 0,
+      "tokens": 5
+    }
+  },
+  {
+    "timestamp": "2026-10-07T18:18:41.900Z",
+    "candidateCount": 15,
+    "candidates": [
+      {
+        "slug": "2026-10-07-india-miffed-over-ukrainian-drone-strike-on-oil-tanker",
+        "title": "India Protests Tanker Strike",
+        "category": "economy",
+        "eventCoverage": 218,
+        "importance": 6
+      },
+      {
+        "slug": "2026-10-07-kosovo-swears-in-shiroka-pula-as-president-averting-snap-ele",
+        "title": "Kosovo Elects New President",
+        "category": "politics",
+        "eventCoverage": 143,
+        "importance": 6
+      },
+      {
+        "slug": "2026-10-07-fed-s-warsh-earns-imf-praise-for-focusing-on-price-stability",
+        "title": "IMF Praises Fed Chair",
+        "category": "economy",
+        "eventCoverage": 142,
+        "importance": 6
+      },
+      {
+        "slug": "2026-10-07-dg-ispr-says-pakistani-troops-present-in-saudi-arabia-for-de",
+        "title": "Pakistan Confirms Troops in Saudi",
+        "category": "politics",
+        "eventCoverage": 0,
+        "importance": 6
+      },
+      {
+        "slug": "2026-10-07-how-the-dagalos-ever-tightening-hold-on-power-destabilized-t",
+        "title": "Darfur Elders Defy Dagalo",
+        "category": "politics",
+        "eventCoverage": 0,
+        "importance": 6
+      },
+      {
+        "slug": "2026-10-07-britain-helped-to-kill-zionism-is-racism-resolution-at-the-u",
+        "title": "Britain Lobbied to Repeal Resolution",
+        "category": "politics",
+        "eventCoverage": 0,
+        "importance": 6
+      },
+      {
+        "slug": "2026-10-07-iran-has-lost-complete-control-of-strait-of-hormuz-us-claims",
+        "title": "Rubio Claims Hormuz Open",
+        "category": "economy",
+        "eventCoverage": 0,
+        "importance": 6
+      },
+      {
+        "slug": "2026-10-07-uae-eaeu-trade-pact-takes-effect-cutting-tariffs-on-95-of-bi",
+        "title": "Emirates-Eurasian Union Pact Starts",
+        "category": "economy",
+        "eventCoverage": 0,
+        "importance": 6
+      },
+      {
+        "slug": "2026-10-07-neanderthal-europe-was-as-much-a-wooden-age-as-a-stone-age-n",
+        "title": "Neanderthals Worked Wood",
+        "category": "science",
+        "eventCoverage": 0,
+        "importance": 6
+      },
+      {
+        "slug": "2026-10-07-194-year-old-tortoise-has-exceptional-dna-repair-systems-tha",
+        "title": "Tortoise Genome Reveals Longevity",
+        "category": "science",
+        "eventCoverage": 0,
+        "importance": 6
+      },
+      {
+        "slug": "2026-10-07-as-ai-closed-in-on-unique-games-proof-researchers-raced-to-b",
+        "title": "Mathematicians Race OpenAI",
+        "category": "science",
+        "eventCoverage": 0,
+        "importance": 6
+      },
+      {
+        "slug": "2026-10-07-first-observation-of-quantum-spins-shifting-a-centimeter-sca",
+        "title": "Quantum Spin Moves Diamond",
+        "category": "science",
+        "eventCoverage": 0,
+        "importance": 6
+      },
+      {
+        "slug": "2026-10-07-trade-group-crunches-numbers-on-trump-s-impossible-push-for",
+        "title": "US-Made Tech Costs Soar",
+        "category": "tech",
+        "eventCoverage": 0,
+        "importance": 6
+      },
+      {
+        "slug": "2026-10-07-outstreaming-taylor-swift-is-easy-with-10k-bots-and-ai-songs",
+        "title": "AI Streaming Fraudster Jailed",
+        "category": "tech",
+        "eventCoverage": 0,
+        "importance": 6
+      },
+      {
+        "slug": "2026-10-07-oklahoma-judge-s-flock-ruling-shows-the-power-of-supreme-cou",
+        "title": "Judge Rejects Flock Evidence",
+        "category": "tech",
+        "eventCoverage": 0,
+        "importance": 6
+      }
+    ],
+    "selected": {
+      "slug": "2026-10-07-india-miffed-over-ukrainian-drone-strike-on-oil-tanker",
+      "title": "India Protests Tanker Strike",
+      "category": "economy",
+      "body": "23 Indian crew escaped a burning tanker off",
+      "eventCoverage": 218,
+      "importance": 6
+    },
+    "skipReason": null,
+    "sent": true,
+    "pushTitle": "Breaking News",
+    "pushBody": "Drone strike sets Indian-crewed tanker ablaze off Sochi, 23 crew flee",
+    "response": {
+      "pushed": 1,
+      "skipped": 0,
+      "tokens": 5
+    }
+  },
+  {
+    "timestamp": "2026-10-07T22:23:20.741Z",
+    "candidateCount": 12,
+    "candidates": [
+      {
+        "slug": "2026-10-07-houthis-report-missile-strikes-on-coalition-forces-near-bab",
+        "title": "Houthis Claim Coalition Strikes",
+        "category": "politics",
+        "eventCoverage": 0,
+        "importance": 6
+      },
+      {
+        "slug": "2026-10-07-mediation-efforts-in-iran-us-talks-reach-deadlock-tv",
+        "title": "Iran-US Mediation Deadlocks",
+        "category": "politics",
+        "eventCoverage": 0,
+        "importance": 6
+      },
+      {
+        "slug": "2026-10-07-prosecution-says-journalists-testimony-indicates-matsda2sh-w",
+        "title": "Egypt Alleges Journalists' Confession",
+        "category": "politics",
+        "eventCoverage": 0,
+        "importance": 6
+      },
+      {
+        "slug": "2026-10-07-from-police-to-private-security-how-legal-guns-end-up-in-cri",
+        "title": "Police Admit Gun Leaks",
+        "category": "politics",
+        "eventCoverage": 0,
+        "importance": 6
+      },
+      {
+        "slug": "2026-10-07-plane-crash-aiyedatiwa-visits-site-says-aircraft-s-main-body",
+        "title": "Nigeria Air Force Crash Search",
+        "category": "politics",
+        "eventCoverage": 0,
+        "importance": 6
+      },
+      {
+        "slug": "2026-10-07-emergency-governor-s-rule-would-definitely-be-imposed-if-dee",
+        "title": "Governor Floats Emergency Rule",
+        "category": "politics",
+        "eventCoverage": 0,
+        "importance": 6
+      },
+      {
+        "slug": "2026-10-07-cop17-can-countries-break-deadlock-on-sharing-benefits-from",
+        "title": "Cali Fund Stays Empty",
+        "category": "politics",
+        "eventCoverage": 0,
+        "importance": 6
+      },
+      {
+        "slug": "2026-10-07-fed-sees-higher-rates-ahead-even-as-borrowing-costs-climb",
+        "title": "Fed Split Over Hikes",
+        "category": "economy",
+        "eventCoverage": 0,
+        "importance": 6
+      },
+      {
+        "slug": "2026-10-07-workers-at-chile-s-centinela-copper-mine-strike-after-talks",
+        "title": "Centinela Copper Workers Strike",
+        "category": "economy",
+        "eventCoverage": 0,
+        "importance": 6
+      },
+      {
+        "slug": "2026-10-07-pa-measles-outbreak-tops-1-000-cases-largest-since-disease-w",
+        "title": "Pennsylvania Measles Outbreak Record",
+        "category": "science",
+        "eventCoverage": 0,
+        "importance": 6
+      },
+      {
+        "slug": "2026-10-07-software-is-over-bold-ai-developer-takes-aim-at-adobe-with-o",
+        "title": "AI Clones Adobe Apps",
+        "category": "tech",
+        "eventCoverage": 0,
+        "importance": 6
+      },
+      {
+        "slug": "2026-10-07-florida-sues-tp-link-claiming-it-hides-router-security-risks",
+        "title": "Florida Sues TP-Link",
+        "category": "tech",
+        "eventCoverage": 0,
+        "importance": 6
+      }
+    ],
+    "selected": null,
+    "skipReason": "all 12 candidates below coverage threshold 1",
+    "sent": false
+  },
+  {
+    "timestamp": "2026-10-08T05:16:14.498Z",
+    "candidateCount": 11,
+    "candidates": [
+      {
+        "slug": "2026-10-08-maricarmen-whose-eviction-enraged-spaniards-dies-at-87",
+        "title": "Maricarmen Dies After Eviction",
+        "category": "politics",
+        "eventCoverage": 413,
+        "importance": 6
+      },
+      {
+        "slug": "2026-10-08-mamdani-slams-oct-7-attack-calls-gaza-war-ongoing-genocide",
+        "title": "Mamdani Statement Draws Fire",
+        "category": "politics",
+        "eventCoverage": 188,
+        "importance": 6
+      },
+      {
+        "slug": "2026-10-08-can-you-trust-chatgpt-for-teens-report-finds-unacceptable-ri",
+        "title": "Teen ChatGPT Fails Safety Tests",
+        "category": "tech",
+        "eventCoverage": 95,
+        "importance": 6
+      },
+      {
+        "slug": "2026-10-08-trump-planning-military-action-against-iran-before-us-midter",
+        "title": "Pentagon Drafts Iran Strike Options",
+        "category": "politics",
+        "eventCoverage": 58,
+        "importance": 6
+      },
+      {
+        "slug": "2026-10-08-come-all-the-way-back-to-eu-french-finance-minister-tells-br",
+        "title": "France Invites Britain Back",
+        "category": "politics",
+        "eventCoverage": 0,
+        "importance": 6
+      },
+      {
+        "slug": "2026-10-08-hormuz-traffic-hits-lowest-level-in-two-months-as-tanker-att",
+        "title": "Hormuz Traffic Hits Two-Month Low",
+        "category": "economy",
+        "eventCoverage": 0,
+        "importance": 6
+      },
+      {
+        "slug": "2026-10-08-gold-edges-higher-after-hitting-a-two-month-low",
+        "title": "Gold Slides Despite War",
+        "category": "economy",
+        "eventCoverage": 0,
+        "importance": 6
+      },
+      {
+        "slug": "2026-10-08-how-nigeria-s-population-commission-mismanaged-n245-billion",
+        "title": "Nigeria Audit Flags Census Spending",
+        "category": "economy",
+        "eventCoverage": 0,
+        "importance": 6
+      },
+      {
+        "slug": "2026-10-08-wheat-output-targets-delayed-till-finalisation-of-price",
+        "title": "Pakistan Delays Wheat Targets",
+        "category": "economy",
+        "eventCoverage": 0,
+        "importance": 6
+      },
+      {
+        "slug": "2026-10-07-us-posts-10-million-reward-for-accused-chinese-hafnium-hacke",
+        "title": "US Posts Hafnium Hacker Bounty",
+        "category": "tech",
+        "eventCoverage": 0,
+        "importance": 6
+      },
+      {
+        "slug": "2026-10-07-glaring-lack-of-investment-in-aircraft-shelters-highlighted",
+        "title": "B-1 Bombers Leave British Base",
+        "category": "tech",
+        "eventCoverage": 0,
+        "importance": 6
+      }
+    ],
+    "selected": {
+      "slug": "2026-10-08-trump-planning-military-action-against-iran-before-us-midter",
+      "title": "Pentagon Drafts Iran Strike Options",
+      "category": "politics",
+      "body": "Pentagon drafts [Iran](country:IR) strike options before 3 November, reports",
+      "eventCoverage": 58,
+      "importance": 6
+    },
+    "skipReason": null,
+    "sent": true,
+    "pushTitle": "Breaking News",
+    "pushBody": "Pentagon drafts Iran strike options before 3 November midterms, US media report",
+    "response": {
+      "pushed": 1,
+      "skipped": 0,
+      "tokens": 5
+    }
+  },
+  {
+    "timestamp": "2026-10-08T10:17:43.232Z",
+    "candidateCount": 10,
+    "candidates": [
+      {
+        "slug": "2026-10-07-new-type-01-electric-car-make-or-break-for-jaguar",
+        "title": "Jaguar Bets Brand on Type 01",
+        "category": "economy",
+        "eventCoverage": 315,
+        "importance": 6
+      },
+      {
+        "slug": "2026-10-07-former-venezuelan-president-nicol-s-maduro-expected-to-face",
+        "title": "Maduro Charges Expected",
+        "category": "politics",
+        "eventCoverage": 199,
+        "importance": 6
+      },
+      {
+        "slug": "2026-10-08-google-finds-240-000-years-worth-of-ai-music-with-new-detect",
+        "title": "Google Opens AI Detector",
+        "category": "tech",
+        "eventCoverage": 161,
+        "importance": 6
+      },
+      {
+        "slug": "2026-10-08-nature-can-recover-inside-the-race-to-rescue-world-s-crisis",
+        "title": "Wildlife Populations Down 73%",
+        "category": "science",
+        "eventCoverage": 98,
+        "importance": 6
+      },
+      {
+        "slug": "2026-10-08-russian-ukrainian-strikes-leave-at-least-38-dead-over-100-in",
+        "title": "Strikes Kill 38, Hit Yandex",
+        "category": "politics",
+        "eventCoverage": 94,
+        "importance": 6
+      },
+      {
+        "slug": "2026-10-08-new-maritime-incident-reported-north-of-qatar",
+        "title": "Projectiles Hit Tanker off Qatar",
+        "category": "economy",
+        "eventCoverage": 90,
+        "importance": 6
+      },
+      {
+        "slug": "2026-10-08-bosnia-s-trump-aligned-kingmaker-wins-big-despite-electoral",
+        "title": "Dodik's Party Wins Despite Ban",
+        "category": "politics",
+        "eventCoverage": 0,
+        "importance": 6
+      },
+      {
+        "slug": "2026-10-08-govt-wheat-to-hit-market-next-week-at-rs12-500-per-100kg",
+        "title": "Sindh Releases Subsidised Wheat",
+        "category": "economy",
+        "eventCoverage": 0,
+        "importance": 6
+      },
+      {
+        "slug": "2026-10-07-africa-s-governments-already-treat-the-internet-as-protest-i",
+        "title": "African States Cut Networks",
+        "category": "tech",
+        "eventCoverage": 0,
+        "importance": 6
+      },
+      {
+        "slug": "2026-10-07-how-the-groundwork-for-f-47-flight-testing-is-being-laid",
+        "title": "F-47 Testing Plan Takes Shape",
+        "category": "tech",
+        "eventCoverage": 0,
+        "importance": 6
+      }
+    ],
+    "selected": {
+      "slug": "2026-10-07-former-venezuelan-president-nicol-s-maduro-expected-to-face",
+      "title": "Maduro Charges Expected",
+      "category": "politics",
+      "body": "Torture charges against Maduro and his wife could come Thursday, a US official",
+      "eventCoverage": 199,
+      "importance": 6
+    },
+    "skipReason": null,
+    "sent": true,
+    "pushTitle": "Breaking News",
+    "pushBody": "US to charge Maduro, wife with torture of Americans, official says",
+    "response": {
+      "pushed": 1,
+      "skipped": 0,
+      "tokens": 5
+    }
+  },
+  {
+    "timestamp": "2026-10-08T14:19:27.615Z",
+    "candidateCount": 12,
+    "candidates": [
+      {
+        "slug": "2026-10-08-india-set-for-back-to-back-rate-hikes-as-inflation-risks-mou",
+        "title": "India Raises Repo Rate",
+        "category": "economy",
+        "eventCoverage": 499,
+        "importance": 6
+      },
+      {
+        "slug": "2026-10-08-ed-miliband-insists-uk-will-build-back-up-presence-in-jerusa",
+        "title": "Israel Shuts British Consulate",
+        "category": "politics",
+        "eventCoverage": 339,
+        "importance": 6
+      },
+      {
+        "slug": "2026-10-08-33-killed-in-russian-bomb-attack-on-bus-stop-in-ukraine-s-st",
+        "title": "Guided Bomb Hits Kramatorsk Bus",
+        "category": "politics",
+        "eventCoverage": 285,
+        "importance": 6
+      },
+      {
+        "slug": "2026-10-08-india-defends-satellite-internet-approval-process-after-elon",
+        "title": "Starlink Waits for India Clearance",
+        "category": "tech",
+        "eventCoverage": 277,
+        "importance": 6
+      },
+      {
+        "slug": "2026-10-08-gst-council-proposes-5-tax-option-for-passenger-transport-ve",
+        "title": "India Scraps Tax Arrest Power",
+        "category": "economy",
+        "eventCoverage": 163,
+        "importance": 6
+      },
+      {
+        "slug": "2026-10-08-democrats-sue-us-president-trump-over-taxpayer-funded-ad-cam",
+        "title": "Democrats Sue Over Trump Ads",
+        "category": "politics",
+        "eventCoverage": 110,
+        "importance": 6
+      },
+      {
+        "slug": "2026-10-08-asaba-massacre-obasanjo-urges-forgiveness-reconciliation",
+        "title": "Asaba Answers Obasanjo With Odi",
+        "category": "politics",
+        "eventCoverage": 0,
+        "importance": 6
+      },
+      {
+        "slug": "2026-10-08-ecb-officials-took-proporionate-step-with-last-month-s-hike",
+        "title": "ECB Calls September Hike Proportionate",
+        "category": "economy",
+        "eventCoverage": 0,
+        "importance": 6
+      },
+      {
+        "slug": "2026-10-08-argenx-sees-unusual-setback-with-failure-of-late-stage-study",
+        "title": "Argenx Drug Fails Sjögren's Trial",
+        "category": "science",
+        "eventCoverage": 0,
+        "importance": 6
+      },
+      {
+        "slug": "2026-10-08-medell-n-went-green-to-stay-cool-heat-rose-faster",
+        "title": "Medellín Trees Miss Robledo",
+        "category": "science",
+        "eventCoverage": 0,
+        "importance": 6
+      },
+      {
+        "slug": "2026-10-08-over-6-million-bitcoin-sit-behind-exposed-public-keys-as-ai",
+        "title": "Bitcoin Public Keys Exposed",
+        "category": "tech",
+        "eventCoverage": 0,
+        "importance": 6
+      },
+      {
+        "slug": "2026-10-08-hackers-target-two-south-korean-megachurches-potentially-exp",
+        "title": "Hackers Breach Korean Megachurches",
+        "category": "tech",
+        "eventCoverage": 0,
+        "importance": 6
+      }
+    ],
+    "selected": {
+      "slug": "2026-10-08-33-killed-in-russian-bomb-attack-on-bus-stop-in-ukraine-s-st",
+      "title": "Guided Bomb Hits Kramatorsk Bus",
+      "category": "politics",
+      "body": "A guided bomb killed at least 30 bus passengers",
+      "eventCoverage": 285,
+      "importance": 6
+    },
+    "skipReason": null,
+    "sent": true,
+    "pushTitle": "Breaking News",
+    "pushBody": "Russian guided bomb kills 33 at Ukraine bus stop in Kramatorsk, officials say",
+    "response": {
+      "pushed": 1,
+      "skipped": 0,
+      "tokens": 5
+    }
+  },
+  {
+    "timestamp": "2026-10-08T18:17:50.937Z",
+    "candidateCount": 10,
+    "candidates": [
+      {
+        "slug": "2026-10-08-trump-bars-microsoft-from-us-green-card-scheme",
+        "title": "US Bars Microsoft Sponsorships",
+        "category": "tech",
+        "eventCoverage": 224,
+        "importance": 6
+      },
+      {
+        "slug": "2026-10-08-us-proposes-100-000-charge-for-international-students-to-do",
+        "title": "US Proposes Student Work Charge",
+        "category": "politics",
+        "eventCoverage": 163,
+        "importance": 6
+      },
+      {
+        "slug": "2026-10-08-brazil-s-flavio-bolsonaro-vows-to-keep-pension-increases-abo",
+        "title": "Bolsonaro Pledges Pension Rises",
+        "category": "politics",
+        "eventCoverage": 0,
+        "importance": 6
+      },
+      {
+        "slug": "2026-10-08-rising-food-prices-and-poor-rains-fuel-fears-of-hunger-crisi",
+        "title": "Darfur Hunger Fears Grow",
+        "category": "politics",
+        "eventCoverage": 0,
+        "importance": 6
+      },
+      {
+        "slug": "2026-10-08-life-in-iran-s-war-torn-south-on-the-strait-of-hormuz",
+        "title": "Hormuz Blockade Hits Fishers",
+        "category": "politics",
+        "eventCoverage": 0,
+        "importance": 6
+      },
+      {
+        "slug": "2026-10-08-wto-hikes-global-trade-growth-forecast-says-pakistan-among-n",
+        "title": "Trade Body Doubles Growth Forecast",
+        "category": "economy",
+        "eventCoverage": 0,
+        "importance": 6
+      },
+      {
+        "slug": "2026-10-08-china-defends-yuan-policy-as-eu-ups-pressure-over-ballooning",
+        "title": "China Rejects Yuan Charges",
+        "category": "economy",
+        "eventCoverage": 0,
+        "importance": 6
+      },
+      {
+        "slug": "2026-10-08-fading-control-over-jumping-genes-may-explain-why-big-dogs-a",
+        "title": "Big Dogs Age Faster",
+        "category": "science",
+        "eventCoverage": 0,
+        "importance": 6
+      },
+      {
+        "slug": "2026-10-08-amazon-builds-1-000th-satellite-is-weeks-away-from-space-int",
+        "title": "Amazon Leo Nears Launch",
+        "category": "tech",
+        "eventCoverage": 0,
+        "importance": 6
+      },
+      {
+        "slug": "2026-10-08-the-exploration-company-to-test-lunar-hopper-demonstrator-in",
+        "title": "Exploration Company Tests Hopper",
+        "category": "tech",
+        "eventCoverage": 0,
+        "importance": 6
+      }
+    ],
+    "selected": {
+      "slug": "2026-10-08-trump-bars-microsoft-from-us-green-card-scheme",
+      "title": "US Bars Microsoft Sponsorships",
+      "category": "tech",
+      "body": "Microsoft's shares fell 7.5% after the",
+      "eventCoverage": 224,
+      "importance": 6
+    },
+    "skipReason": null,
+    "sent": true,
+    "pushTitle": "Breaking News",
+    "pushBody": "US bars Microsoft from green card sponsorships, shares fall 7.5%",
+    "response": {
+      "pushed": 1,
+      "skipped": 0,
+      "tokens": 5
+    }
+  },
+  {
+    "timestamp": "2026-10-08T22:23:25.478Z",
+    "candidateCount": 13,
+    "candidates": [
+      {
+        "slug": "2026-10-08-samsung-expects-780-quarterly-operating-profit-jump-on-ai-bo",
+        "title": "Samsung Forecasts Record Profit",
+        "category": "economy",
+        "eventCoverage": 290,
+        "importance": 6
+      },
+      {
+        "slug": "2026-10-08-r-i-p-margaret-hamilton-whose-code-saved-the-apollo-11-moon",
+        "title": "Apollo Software Pioneer Dies",
+        "category": "tech",
+        "eventCoverage": 216,
+        "importance": 6
+      },
+      {
+        "slug": "2026-10-08-armenia-azerbaijan-discuss-stepping-up-search-for-war-missin",
+        "title": "Baku Counts 4,010 Missing",
+        "category": "politics",
+        "eventCoverage": 154,
+        "importance": 6
+      },
+      {
+        "slug": "2026-10-08-14-year-old-girl-riding-home-on-a-school-bus-killed-by-saudi",
+        "title": "Coalition Strike Kills Schoolgirl",
+        "category": "politics",
+        "eventCoverage": 0,
+        "importance": 6
+      },
+      {
+        "slug": "2026-10-08-ekurhuleni-police-force-employed-convicted-killers-parliamen",
+        "title": "Ekurhuleni Police Carry Convictions",
+        "category": "politics",
+        "eventCoverage": 0,
+        "importance": 6
+      },
+      {
+        "slug": "2026-10-08-two-years-on-the-sinaloa-cartel-war-changes-shape-the-insigh",
+        "title": "Sinaloa War Turns Quiet",
+        "category": "politics",
+        "eventCoverage": 0,
+        "importance": 6
+      },
+      {
+        "slug": "2026-10-08-oil-prices-surge-after-second-day-of-houthi-strikes-on-riyad",
+        "title": "Oil Surges After Riyadh Strikes",
+        "category": "economy",
+        "eventCoverage": 0,
+        "importance": 6
+      },
+      {
+        "slug": "2026-10-08-euro-zone-finance-ministers-start-steps-to-replace-ecb-s-sch",
+        "title": "Eurogroup Seeks Schnabel Successor",
+        "category": "economy",
+        "eventCoverage": 0,
+        "importance": 6
+      },
+      {
+        "slug": "2026-10-08-top-democrat-among-senate-investigators-probes-ties-between",
+        "title": "Senator Probes Cantor-Tether Ties",
+        "category": "economy",
+        "eventCoverage": 0,
+        "importance": 6
+      },
+      {
+        "slug": "2026-10-08-breathtaking-devastating-mathematics-reels-after-new-openai",
+        "title": "Mathematicians Reel at OpenAI Release",
+        "category": "science",
+        "eventCoverage": 0,
+        "importance": 6
+      },
+      {
+        "slug": "2026-10-08-chemists-uncover-the-true-active-surface-of-nickel-catalysts",
+        "title": "Nickel Catalyst Surface Overturned",
+        "category": "science",
+        "eventCoverage": 0,
+        "importance": 6
+      },
+      {
+        "slug": "2026-10-08-judge-weighs-if-trump-can-charge-100k-for-early-access-to-tr",
+        "title": "Judge Weighs Truth Social Fees",
+        "category": "tech",
+        "eventCoverage": 0,
+        "importance": 6
+      },
+      {
+        "slug": "2026-10-08-let-s-encrypt-cuts-certificate-lifetimes-to-64-days-starting",
+        "title": "Let's Encrypt Shortens Certificates",
+        "category": "tech",
+        "eventCoverage": 0,
+        "importance": 6
+      }
+    ],
+    "selected": {
+      "slug": "2026-10-08-samsung-expects-780-quarterly-operating-profit-jump-on-ai-bo",
+      "title": "Samsung Forecasts Record Profit",
+      "category": "economy",
+      "body": "Samsung forecasts 107.4 trillion won profit, a tech world",
+      "eventCoverage": 290,
+      "importance": 6
+    },
+    "skipReason": null,
+    "sent": true,
+    "pushTitle": "Breaking News",
+    "pushBody": "Samsung forecasts record 107.4 trillion won quarterly profit",
+    "response": {
+      "pushed": 1,
+      "skipped": 0,
+      "tokens": 5
+    }
+  },
+  {
+    "timestamp": "2026-10-09T05:14:32.221Z",
+    "candidateCount": 11,
+    "candidates": [
+      {
+        "slug": "2026-10-09-ice-agent-shoots-man-in-new-york-city",
+        "title": "Federal Agent Shoots Driver",
+        "category": "politics",
+        "eventCoverage": 283,
+        "importance": 6
+      },
+      {
+        "slug": "2026-10-09-two-latvian-men-arrested-inside-uk-military-base-after-breac",
+        "title": "Latvians Arrested at Molesworth",
+        "category": "politics",
+        "eventCoverage": 122,
+        "importance": 6
+      },
+      {
+        "slug": "2026-10-09-india-s-tcs-rises-on-ai-revenue-international-business-growt",
+        "title": "Tata Consultancy Posts AI Growth",
+        "category": "economy",
+        "eventCoverage": 111,
+        "importance": 6
+      },
+      {
+        "slug": "2026-10-09-two-tech-outsiders-tried-to-sell-a-44bn-tech-company-it-didn",
+        "title": "Firmus Scraps Australian Listing",
+        "category": "economy",
+        "eventCoverage": 75,
+        "importance": 6
+      },
+      {
+        "slug": "2026-10-09-chinese-developer-makes-artex-ai-agent-closed-source-after-k",
+        "title": "ARTEX Developer Closes Source",
+        "category": "tech",
+        "eventCoverage": 65,
+        "importance": 6
+      },
+      {
+        "slug": "2026-10-09-mexico-prison-clash-in-strife-torn-sinaloa-state-leaves-10-d",
+        "title": "Mazatlán Prison Fight Kills 10",
+        "category": "politics",
+        "eventCoverage": 43,
+        "importance": 6
+      },
+      {
+        "slug": "2026-10-09-forgotten-schoolchildren-of-borno",
+        "title": "Borno Students Still Captive",
+        "category": "politics",
+        "eventCoverage": 0,
+        "importance": 6
+      },
+      {
+        "slug": "2026-10-09-us-pressured-eu-to-withdraw-sponsorship-of-disinformation-co",
+        "title": "EU Quits Disinformation Conference",
+        "category": "politics",
+        "eventCoverage": 0,
+        "importance": 6
+      },
+      {
+        "slug": "2026-10-09-fg-to-negotiate-1-350-petrol-price-ceiling-as-global-oil-sho",
+        "title": "Nigeria Negotiates Petrol Ceiling",
+        "category": "economy",
+        "eventCoverage": 0,
+        "importance": 6
+      },
+      {
+        "slug": "2026-10-08-alibaba-sues-pentagon-to-denounce-being-classified-as-a-chin",
+        "title": "Alibaba Sues Pentagon",
+        "category": "tech",
+        "eventCoverage": 0,
+        "importance": 6
+      },
+      {
+        "slug": "2026-10-09-sol-news-solana-is-about-to-halve-its-block-times-as-final-2",
+        "title": "Solana Halves Block Times",
+        "category": "tech",
+        "eventCoverage": 0,
+        "importance": 6
+      }
+    ],
+    "selected": {
+      "slug": "2026-10-09-ice-agent-shoots-man-in-new-york-city",
+      "title": "Federal Agent Shoots Driver",
+      "category": "politics",
+      "body": "An agent fired 7 rounds, hitting the driver's neck, police",
+      "eventCoverage": 283,
+      "importance": 6
+    },
+    "skipReason": null,
+    "sent": true,
+    "pushTitle": "Breaking News",
+    "pushBody": "Federal agent shoots driver 7 times in New York City, police say",
+    "response": {
+      "pushed": 1,
+      "skipped": 0,
+      "tokens": 5
+    }
+  },
+  {
+    "timestamp": "2026-10-09T10:12:51.562Z",
+    "candidateCount": 12,
+    "candidates": [
+      {
+        "slug": "2026-10-09-3-killed-in-saudi-arabia-after-houthi-attack-on-riyadh-airpo",
+        "title": "Airlines Halt Riyadh Flights",
+        "category": "politics",
+        "eventCoverage": 516,
+        "importance": 6
+      },
+      {
+        "slug": "2026-10-09-south-africa-s-navanethem-navi-pillay-wins-2026-nobel-peace",
+        "title": "Pillay Wins Nobel Peace Prize",
+        "category": "politics",
+        "eventCoverage": 409,
+        "importance": 6
+      },
+      {
+        "slug": "2026-10-09-brazil-s-bolsonaro-promises-a-sharp-pivot-on-climate-and-the",
+        "title": "Bolsonaro Runoff Unsettles Climate Finance",
+        "category": "economy",
+        "eventCoverage": 239,
+        "importance": 6
+      },
+      {
+        "slug": "2026-10-08-trump-envoys-pitching-new-ideas-to-settle-ukraine-conflict-m",
+        "title": "Kyiv Rebukes US Before Talks",
+        "category": "politics",
+        "eventCoverage": 208,
+        "importance": 6
+      },
+      {
+        "slug": "2026-10-09-zack-polanski-faces-greatest-crisis-of-his-leadership-so-far",
+        "title": "Labour Holds Holborn Seat",
+        "category": "politics",
+        "eventCoverage": 185,
+        "importance": 6
+      },
+      {
+        "slug": "2026-10-09-russia-ready-to-help-iran-resolve-conflict-with-us-israel-pu",
+        "title": "Iran Stays at Table",
+        "category": "politics",
+        "eventCoverage": 151,
+        "importance": 6
+      },
+      {
+        "slug": "2026-10-08-south-africa-pulls-asylum-directive-after-violent-protests",
+        "title": "Asylum Directive Withdrawn After Riots",
+        "category": "politics",
+        "eventCoverage": 67,
+        "importance": 6
+      },
+      {
+        "slug": "2026-10-09-india-scraps-key-tax-relief-for-gold-imports-raising-costs",
+        "title": "India Ends Gold Import Relief",
+        "category": "economy",
+        "eventCoverage": 0,
+        "importance": 6
+      },
+      {
+        "slug": "2026-10-09-factcheck-uk-conservatives-double-the-cost-of-net-zero-after",
+        "title": "Tory Net-Zero Cost Doubled",
+        "category": "economy",
+        "eventCoverage": 0,
+        "importance": 6
+      },
+      {
+        "slug": "2026-10-09-we-re-still-figuring-out-the-side-effects-of-glp-1-weight-lo",
+        "title": "GLP-1 Users Test Younger",
+        "category": "science",
+        "eventCoverage": 0,
+        "importance": 6
+      },
+      {
+        "slug": "2026-10-09-mara-transfers-81-1-million-in-bitcoin-btc-to-galaxy-digital",
+        "title": "MARA Sells Bitcoin for AI",
+        "category": "tech",
+        "eventCoverage": 0,
+        "importance": 6
+      },
+      {
+        "slug": "2026-10-10-co-creator-of-empire-market-dark-web-marketplace-given-40-ye",
+        "title": "Empire Market Creator Sentenced",
+        "category": "tech",
+        "eventCoverage": 0,
+        "importance": 6
+      }
+    ],
+    "selected": {
+      "slug": "2026-10-09-3-killed-in-saudi-arabia-after-houthi-attack-on-riyadh-airpo",
+      "title": "Airlines Halt Riyadh Flights",
+      "category": "politics",
+      "body": "Lufthansa and Air India stopped flying to",
+      "eventCoverage": 516,
+      "importance": 6
+    },
+    "skipReason": null,
+    "sent": true,
+    "pushTitle": "Breaking News",
+    "pushBody": "Lufthansa, Air India halt Riyadh flights after Houthi airport attack",
+    "response": {
+      "pushed": 1,
+      "skipped": 0,
+      "tokens": 5
+    }
+  },
+  {
+    "timestamp": "2026-10-09T14:16:04.587Z",
+    "candidateCount": 12,
+    "candidates": [
+      {
+        "slug": "2026-10-09-hurricane-isaias-nears-florida-as-second-storm-threatens",
+        "title": "Isaias Nears Gulf Coast",
+        "category": "economy",
+        "eventCoverage": 768,
+        "importance": 6
+      },
+      {
+        "slug": "2026-10-09-christa-pike-s-botched-execution-is-a-reminder-of-the-horror",
+        "title": "Tennessee Fails to Execute Pike",
+        "category": "politics",
+        "eventCoverage": 265,
+        "importance": 6
+      },
+      {
+        "slug": "2026-10-09-leaders-of-russian-rybar-hybrid-network-mikhail-and-valeriia",
+        "title": "Montenegro Arrests Rybar Founder",
+        "category": "politics",
+        "eventCoverage": 231,
+        "importance": 6
+      },
+      {
+        "slug": "2026-10-09-india-rejects-monopoly-claim-after-musk-accuses-ambani-of",
+        "title": "India Rejects Musk Monopoly Claim",
+        "category": "tech",
+        "eventCoverage": 143,
+        "importance": 6
+      },
+      {
+        "slug": "2026-10-09-iran-proposes-plan-on-shrinking-water-level-in-caspian-sea",
+        "title": "Iran Proposes Caspian Rescue",
+        "category": "politics",
+        "eventCoverage": 0,
+        "importance": 6
+      },
+      {
+        "slug": "2026-10-09-how-houthi-military-aggression-in-red-sea-threatens-africa",
+        "title": "Houthis Arm Somalia's al-Shabaab",
+        "category": "politics",
+        "eventCoverage": 0,
+        "importance": 6
+      },
+      {
+        "slug": "2026-10-09-iran-and-oman-agree-on-safe-route-in-hormuz",
+        "title": "Iran Oman Agree Hormuz Routes",
+        "category": "economy",
+        "eventCoverage": 0,
+        "importance": 6
+      },
+      {
+        "slug": "2026-10-09-irgc-reports-strike-on-gas-tanker-in-strait-of-hormuz",
+        "title": "Iran Guards Claim Tanker Strike",
+        "category": "economy",
+        "eventCoverage": 0,
+        "importance": 6
+      },
+      {
+        "slug": "2026-10-09-trump-s-fed-ex-nominee-shelton-to-advise-bessent-treasury",
+        "title": "Bessent Hires Judy Shelton",
+        "category": "economy",
+        "eventCoverage": 0,
+        "importance": 6
+      },
+      {
+        "slug": "2026-10-09-nearly-1-in-10-young-adults-could-have-fatty-narrow-arteries",
+        "title": "Young Adults Show Artery Plaque",
+        "category": "science",
+        "eventCoverage": 0,
+        "importance": 6
+      },
+      {
+        "slug": "2026-10-09-italy-explores-building-an-artificial-gravity-research",
+        "title": "Italy Studies Artificial Gravity Platform",
+        "category": "tech",
+        "eventCoverage": 0,
+        "importance": 6
+      },
+      {
+        "slug": "2026-10-09-as-u-s-blocks-dji-insta360-races-to-win-american-creators",
+        "title": "Insta360 Targets US Creators",
+        "category": "tech",
+        "eventCoverage": 0,
+        "importance": 6
+      }
+    ],
+    "selected": {
+      "slug": "2026-10-09-hurricane-isaias-nears-florida-as-second-storm-threatens",
+      "title": "Isaias Nears Gulf Coast",
+      "category": "economy",
+      "body": "More than 3 million people face 120 mph",
+      "eventCoverage": 768,
+      "importance": 6
+    },
+    "skipReason": null,
+    "sent": true,
+    "pushTitle": "Breaking News",
+    "pushBody": "Hurricane Isaias nears Florida Panhandle with 120 mph winds, 3 million at risk",
+    "response": {
+      "pushed": 1,
+      "skipped": 0,
+      "tokens": 5
+    }
+  },
+  {
+    "timestamp": "2026-10-09T22:17:26.034Z",
+    "candidateCount": 13,
+    "candidates": [
+      {
+        "slug": "2026-10-09-fort-hood-shooter-s-execution-could-face-challenge-in",
+        "title": "Pentagon Plans Public Execution",
+        "category": "politics",
+        "eventCoverage": 1578,
+        "importance": 6
+      },
+      {
+        "slug": "2026-10-09-russia-ready-to-supply-300-000-tons-of-diesel-to-world",
+        "title": "US Licenses Russian Diesel",
+        "category": "economy",
+        "eventCoverage": 540,
+        "importance": 6
+      },
+      {
+        "slug": "2026-10-09-eu-trade-chief-seeks-tangible-outcomes-in-china-talks",
+        "title": "EU China Agree Hybrid Limits",
+        "category": "economy",
+        "eventCoverage": 340,
+        "importance": 6
+      },
+      {
+        "slug": "2026-10-09-7-7-magnitude-earthquake-hits-panama-the-national",
+        "title": "Panama Earthquake Topples Buildings",
+        "category": "politics",
+        "eventCoverage": 311,
+        "importance": 6
+      },
+      {
+        "slug": "2026-10-09-flydubai-co-pilot-scoped-out-tel-aviv-twice-before-midair",
+        "title": "UAE Alleges Flydubai Suicide Plot",
+        "category": "politics",
+        "eventCoverage": 244,
+        "importance": 6
+      },
+      {
+        "slug": "2026-10-09-ukraine-takes-aim-at-russia-s-ai-data-infrastructure",
+        "title": "Ukraine Hits Second Yandex Site",
+        "category": "tech",
+        "eventCoverage": 145,
+        "importance": 6
+      },
+      {
+        "slug": "2026-10-09-drones-and-death-families-reel-from-the-uae-s-catastrophic",
+        "title": "UAE Drone Kills Somali Family",
+        "category": "politics",
+        "eventCoverage": 0,
+        "importance": 6
+      },
+      {
+        "slug": "2026-10-09-trump-launches-probe-into-federal-reserve-governor-lisa-cook",
+        "title": "Trump Convenes Cook Removal Panel",
+        "category": "economy",
+        "eventCoverage": 0,
+        "importance": 6
+      },
+      {
+        "slug": "2026-10-09-k-electric-may-have-to-carry-out-load-management-as-extreme",
+        "title": "Karachi Power Cuts Loom",
+        "category": "economy",
+        "eventCoverage": 0,
+        "importance": 6
+      },
+      {
+        "slug": "2026-10-09-rfk-jr-still-eager-to-fund-vaccine-trial-that-would-expose",
+        "title": "CDC Revives Newborn Vaccine Trial",
+        "category": "science",
+        "eventCoverage": 0,
+        "importance": 6
+      },
+      {
+        "slug": "2026-10-09-what-s-been-driving-hawaii-s-lava-fountains",
+        "title": "Steam Likely Drives Kilauea Fountains",
+        "category": "science",
+        "eventCoverage": 0,
+        "importance": 6
+      },
+      {
+        "slug": "2026-10-09-research-fear-as-a-form-of-governance-digital-rights-under",
+        "title": "Three States Police Online Speech",
+        "category": "tech",
+        "eventCoverage": 0,
+        "importance": 6
+      },
+      {
+        "slug": "2026-10-09-batteries-are-now-cheaper-than-natural-gas-turbines-used-at",
+        "title": "Batteries Undercut Gas Turbines",
+        "category": "tech",
+        "eventCoverage": 0,
+        "importance": 6
+      }
+    ],
+    "selected": {
+      "slug": "2026-10-09-fort-hood-shooter-s-execution-could-face-challenge-in",
+      "title": "Pentagon Plans Public Execution",
+      "category": "politics",
+      "body": "Hegseth announces 3 December firing-squad execution for Nidal",
+      "eventCoverage": 1578,
+      "importance": 6
+    },
+    "skipReason": null,
+    "sent": true,
+    "pushTitle": "Breaking News",
+    "pushBody": "Pentagon sets 3 December firing-squad execution for Fort Hood shooter Nidal Hasan",
+    "response": {
+      "pushed": 1,
+      "skipped": 0,
+      "tokens": 5
+    }
+  },
+  {
+    "timestamp": "2026-10-10T05:14:20.265Z",
+    "candidateCount": 11,
+    "candidates": [
+      {
+        "slug": "2026-10-10-video-delhi-on-high-alert-as-400-500-detained-ahead-of-cjp",
+        "title": "Delhi Locks Down Protest",
+        "category": "politics",
+        "eventCoverage": 553,
+        "importance": 6
+      },
+      {
+        "slug": "2026-10-10-anthropic-s-ai-submitted-a-fake-tip-to-a-police-website",
+        "title": "AI Files False Murder Tip",
+        "category": "tech",
+        "eventCoverage": 63,
+        "importance": 6
+      },
+      {
+        "slug": "2026-10-09-rising-fuel-costs-slashed-delta-s-profit-outlook-despite",
+        "title": "Fuel Slashes Delta Outlook",
+        "category": "economy",
+        "eventCoverage": 58,
+        "importance": 6
+      },
+      {
+        "slug": "2026-10-09-first-look-at-hypersonic-boost-glide-vehicle-just-tested-by",
+        "title": "Seoul Tests Hypersonic Glider",
+        "category": "politics",
+        "eventCoverage": 0,
+        "importance": 6
+      },
+      {
+        "slug": "2026-10-10-south-korean-ambassador-leaves-ukraine-news-agency",
+        "title": "Seoul Recalls Kyiv Ambassador",
+        "category": "politics",
+        "eventCoverage": 0,
+        "importance": 6
+      },
+      {
+        "slug": "2026-10-09-beijing-lets-local-governments-tap-550-billion-yuan-in",
+        "title": "Beijing Frees Local Debt Room",
+        "category": "economy",
+        "eventCoverage": 0,
+        "importance": 6
+      },
+      {
+        "slug": "2026-10-09-targeted-support-not-subsidies-can-best-protect-people-when",
+        "title": "IMF Favours Cash Over Subsidies",
+        "category": "economy",
+        "eventCoverage": 0,
+        "importance": 6
+      },
+      {
+        "slug": "2026-10-09-trump-s-agreements-on-reciprocal-trade-arts-threaten",
+        "title": "Trade Deals Restrict Telecom Suppliers",
+        "category": "economy",
+        "eventCoverage": 0,
+        "importance": 6
+      },
+      {
+        "slug": "2026-10-09-demand-for-pet-ants-fuels-kenya-s-illegal-trade",
+        "title": "Kenya Prosecutes Ant Smugglers",
+        "category": "science",
+        "eventCoverage": 0,
+        "importance": 6
+      },
+      {
+        "slug": "2026-10-09-following-404-media-investigation-senator-demands-info-about",
+        "title": "Wyden Presses Plate Reader Review",
+        "category": "tech",
+        "eventCoverage": 0,
+        "importance": 6
+      },
+      {
+        "slug": "2026-10-09-japan-confirms-arrest-of-russian-qilin-operative-extradition",
+        "title": "Japan Extradites Qilin Suspect",
+        "category": "tech",
+        "eventCoverage": 0,
+        "importance": 6
+      }
+    ],
+    "selected": {
+      "slug": "2026-10-10-video-delhi-on-high-alert-as-400-500-detained-ahead-of-cjp",
+      "title": "Delhi Locks Down Protest",
+      "category": "politics",
+      "body": "Police reportedly detained 400-500 people before Saturday's",
+      "eventCoverage": 553,
+      "importance": 6
+    },
+    "skipReason": null,
+    "sent": true,
+    "pushTitle": "Breaking News",
+    "pushBody": "Delhi police detain up to 500 ahead of Saturday protest, reports say",
+    "response": {
+      "pushed": 1,
+      "skipped": 0,
+      "tokens": 5
+    }
+  },
+  {
+    "timestamp": "2026-10-10T10:11:17.036Z",
+    "candidateCount": 8,
+    "candidates": [
+      {
+        "slug": "2026-10-10-mamata-banerjee-arvind-kejriwal-p-vijayan-detained-during",
+        "title": "Opposition Leaders Detained Delhi",
+        "category": "politics",
+        "eventCoverage": 209,
+        "importance": 6
+      },
+      {
+        "slug": "2026-10-10-us-hosts-productive-trilateral-talks-to-end-russia-ukraine",
+        "title": "Miami Talks Exclude Russia",
+        "category": "politics",
+        "eventCoverage": 181,
+        "importance": 6
+      },
+      {
+        "slug": "2026-10-10-people-s-lives-constitute-top-priority-of-dpr-resettlement",
+        "title": "Donetsk Urges Residents Relocate",
+        "category": "politics",
+        "eventCoverage": 0,
+        "importance": 6
+      },
+      {
+        "slug": "2026-10-10-increased-vessel-attacks-drive-hormuz-oil-exports-sharply",
+        "title": "Hormuz Oil Exports Plunge",
+        "category": "economy",
+        "eventCoverage": 0,
+        "importance": 6
+      },
+      {
+        "slug": "2026-10-10-bitcoin-s-falling-volatility-hides-a-risk-that-wall-street",
+        "title": "Bitcoin's Extreme Days Rise",
+        "category": "economy",
+        "eventCoverage": 0,
+        "importance": 6
+      },
+      {
+        "slug": "2026-10-09-youtuber-says-cops-visited-him-after-he-built-a-flock-style",
+        "title": "Police Visit Plate Camera Builder",
+        "category": "tech",
+        "eventCoverage": 0,
+        "importance": 6
+      },
+      {
+        "slug": "2026-10-10-china-unveils-smart-robot-designed-to-help-farmers-breed",
+        "title": "China Unveils Wheat-Breeding Robot",
+        "category": "tech",
+        "eventCoverage": 0,
+        "importance": 6
+      },
+      {
+        "slug": "2026-10-09-b-52-to-get-stealthy-agm-158c-long-range-anti-ship-missiles",
+        "title": "B-52 Gets Anti-Ship Missile",
+        "category": "tech",
+        "eventCoverage": 0,
+        "importance": 6
+      }
+    ],
+    "selected": {
+      "slug": "2026-10-10-mamata-banerjee-arvind-kejriwal-p-vijayan-detained-during",
+      "title": "Opposition Leaders Detained Delhi",
+      "category": "politics",
+      "body": "Police detained 3 former chief ministers on",
+      "eventCoverage": 209,
+      "importance": 6
+    },
+    "skipReason": null,
+    "sent": true,
+    "pushTitle": "Breaking News",
+    "pushBody": "Police detain 3 former chief ministers during Delhi opposition protest",
+    "response": {
+      "pushed": 1,
+      "skipped": 0,
+      "tokens": 5
+    }
+  },
+  {
+    "timestamp": "2026-10-10T14:08:30.602Z",
+    "candidateCount": 7,
+    "candidates": [
+      {
+        "slug": "2026-10-10-flydubai-co-pilot-began-radicalisation-in-australia-uae",
+        "title": "UAE Details Co-Pilot's Radicalisation",
+        "category": "politics",
+        "eventCoverage": 204,
+        "importance": 6
+      },
+      {
+        "slug": "2026-10-10-abhijeet-dipke-s-family-unsure-if-he-can-attend-grandmother",
+        "title": "Police Detain Protest Founder",
+        "category": "politics",
+        "eventCoverage": 86,
+        "importance": 6
+      },
+      {
+        "slug": "2026-10-10-yemen-govt-say-advancing-against-houthis-around-bab-al",
+        "title": "Bab al-Mandab Claims Collide",
+        "category": "politics",
+        "eventCoverage": 0,
+        "importance": 6
+      },
+      {
+        "slug": "2026-10-10-10-terrorists-killed-during-ctd-operation-in-barkhan-says",
+        "title": "Balochistan Reports 10 Killed",
+        "category": "politics",
+        "eventCoverage": 0,
+        "importance": 6
+      },
+      {
+        "slug": "2026-10-10-bitcoin-ether-liquidity-rebounds-a-year-after-19-billion",
+        "title": "Bitcoin Depth Recovers, Altcoins Lag",
+        "category": "economy",
+        "eventCoverage": 0,
+        "importance": 6
+      },
+      {
+        "slug": "2026-10-10-the-psychedelic-brain-looks-like-chaos-underneath-there-s",
+        "title": "Psychedelic Brain Shows Order",
+        "category": "science",
+        "eventCoverage": 0,
+        "importance": 6
+      },
+      {
+        "slug": "2026-10-10-scientists-detect-record-breaking-radio-signal-from-the",
+        "title": "Radio Burst Breaks Distance Record",
+        "category": "science",
+        "eventCoverage": 0,
+        "importance": 6
+      }
+    ],
+    "selected": {
+      "slug": "2026-10-10-flydubai-co-pilot-began-radicalisation-in-australia-uae",
+      "title": "UAE Details Co-Pilot's Radicalisation",
+      "category": "politics",
+      "body": "Emirati prosecutors say a flydubai co-pilot was radicalised in",
+      "eventCoverage": 204,
+      "importance": 6
+    },
+    "skipReason": null,
+    "sent": true,
+    "pushTitle": "Breaking News",
+    "pushBody": "UAE says flydubai co-pilot was radicalised in Melbourne, prosecutors say",
     "response": {
       "pushed": 1,
       "skipped": 0,

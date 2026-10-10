@@ -27,8 +27,9 @@
 //
 //   --dry-run              list what would be translated, call nothing
 //   --window <hours>       override the 48h window
-//   ZUHD_SV_MODEL          default claude-sonnet-5-5 — register is the whole
-//                          point, and Haiku writes translated English
+//   ZUHD_SV_MODEL          default Sonnet (`swedish` in lib/models.js) —
+//                          register is the whole point, and Haiku writes
+//                          translated English
 //   ZUHD_SV_EFFORT         default high. This was `low` until a measured
 //                          A/B said otherwise: nine runs of the same six
 //                          articles, same model, same prompt, scored 1,60
@@ -53,18 +54,20 @@ import {
   SV_WINDOW_MS,
   articleFingerprint,
   eventTime,
+  mergeRetry,
   registerFault,
   translationFault,
 } from './lib/sv-payload.js'
 import { ROOT } from './lib/paths.js'
 import { readJson, writeJson } from './lib/json-file.js'
 import { sha1Hex } from './lib/hash.js'
+import { modelFor } from './lib/models.js'
 
 const CONTENT_DIR = join(ROOT, 'content', 'articles')
 const CACHE_PATH = join(ROOT, 'content', '.sv.json')
 const PROMPT_PATH = join(ROOT, 'scripts', 'sv-prompt.md')
 
-const MODEL = process.env.ZUHD_SV_MODEL || 'claude-sonnet-5-5'
+const MODEL = modelFor('swedish')
 const EFFORT = process.env.ZUHD_SV_EFFORT || 'high'
 const FORCE = process.env.ZUHD_SV_FORCE === '1'
 const DRY_RUN = hasFlag('dry-run')
@@ -184,12 +187,12 @@ let totalCostUsd = 0
 
 // Checkpoint after every batch, not once at the end.
 //
-// `run-cycle.sh` runs this stage under `timeout 600`, and a single write at the
-// end means a run that overshoots loses every translation it paid for — and
-// then overshoots identically on the next cycle, because nothing was cached to
-// shorten it. That is a permanent failure loop, and it is reachable whenever
-// the recipe changes and the whole window goes pending at once (102 articles
-// the day `ZUHD_SV_EFFORT` moved to `high`).
+// The cycle runs this stage under `timeout 600` (`cycle/stages.js`), and a
+// single write at the end means a run that overshoots loses every translation
+// it paid for — and then overshoots identically on the next cycle, because
+// nothing was cached to shorten it. That is a permanent failure loop, and it is
+// reachable whenever the recipe changes and the whole window goes pending at
+// once (102 articles the day `ZUHD_SV_EFFORT` moved to `high`).
 //
 // Writing as we go makes the stage resumable instead: a kill costs the batches
 // still in flight, and the next cycle starts from what survived. Concurrency is
@@ -243,12 +246,11 @@ await runWithConcurrency(batches, CONCURRENCY, async (batch) => {
     console.log(`  · swedish ${label}: ${why} — retrying once`)
     const again = await translateBatch(batch, `${label} retry`)
     totalCostUsd += again.costUsd
-    // Keep the retry only when it is actually better. A re-roll that comes back
-    // with more traps than the first draw is a worse payload, and blindly
-    // replacing would ship it.
-    if (again.out.size > 0 && (out.size === 0 || registerFaults(batch, again.out).length < faults.length)) {
-      out = again.out
-    }
+    // Keep the retry only where it is actually better, article by article
+    // (`mergeRetry`). A re-roll that comes back with a trap the first draw did
+    // not have, or without an article the first draw translated, is worse for
+    // that article, and replacing the batch would ship it.
+    out = mergeRetry(batch, out, again.out)
   }
 
   for (const article of batch) {

@@ -42,16 +42,15 @@
 // and the thing it was running *for* was being discarded — which is a quieter
 // failure than a layer drawing the wrong thing, and lasted longer.
 
-import { readFileSync, existsSync } from 'node:fs'
-import { join } from 'node:path'
-import { ROOT } from './lib/paths.js'
-import { writeJson } from './lib/json-file.js'
+import { existsSync } from 'node:fs'
+import { pathOf } from './lib/datasets.js'
+import { readJson, writeJson } from './lib/json-file.js'
 import { fetchJson } from './lib/http.js'
-
-const OUTPUT_PATH = join(ROOT, 'content', '.ioda.json')
+import { Degrade, snapshotStage } from './lib/snapshot-stage.js'
 
 const API = 'https://api.ioda.inetintel.cc.gatech.edu/v2/outages/summary'
-const DAY = 86_400
+/** A day in seconds, which is what IODA's `from` and `until` count in. Not the milliseconds a `DAY` is elsewhere. */
+const DAY_SECONDS = 86_400
 // The 90-day query is the slow one — ~12s observed against a warm API. The
 // cycle allows this stage 90s, so a ceiling well above the observed cost still
 // fails long before it can hold up a build.
@@ -73,8 +72,13 @@ const pull = async (from, until) => {
   // empty snapshot and quietly overwrite a good one.
   if (json.error) throw new Error(json.error)
   if (!Array.isArray(json.data)) throw new Error('no data array')
-  return new Map(
-    json.data.map((d) => [
+  return json.data
+}
+
+/** A response's rows, by country code. */
+const byCountry = (rows) =>
+  new Map(
+    rows.map((d) => [
       d.entity?.code,
       {
         name: d.entity?.name ?? d.entity?.code,
@@ -83,62 +87,11 @@ const pull = async (from, until) => {
       },
     ]),
   )
-}
 
-const now = Math.floor(Date.now() / 1000)
-const recentFrom = now - RECENT_DAYS * DAY
-
-let recent
-let baseline
-try {
-  // The baseline window *ends* where the recent one begins. Overlapping them
-  // pins every country whose only outage in three months is the current one at
-  // exactly BASELINE_DAYS/RECENT_DAYS, which looks like a ranking and is an
-  // artifact of the arithmetic.
-  ;[recent, baseline] = await Promise.all([
-    pull(recentFrom, now),
-    pull(recentFrom - BASELINE_DAYS * DAY, recentFrom),
-  ])
-} catch (err) {
-  console.error(`  ✗ fetch failed (${err.message}) — leaving previous snapshot in place`)
-  process.exit(0)
-}
-
-const countries = []
-for (const [iso2, r] of recent) {
-  if (!iso2) continue
-  const b = baseline.get(iso2)
-  const recentPerDay = r.score / RECENT_DAYS
-  const baselinePerDay = (b?.score ?? 0) / BASELINE_DAYS
-  countries.push({
-    iso2,
-    name: r.name,
-    eventCount: r.events,
-    recentPerDay: Math.round(recentPerDay),
-    baselinePerDay: Math.round(baselinePerDay),
-    // null rather than Infinity: a country with no baseline had no outage in
-    // three months, which is a different statement from "a very large ratio",
-    // and JSON has no Infinity to say it with anyway.
-    ratio: baselinePerDay > 0 ? Number((recentPerDay / baselinePerDay).toFixed(1)) : null,
-  })
-}
-// Highest ratio first, no-baseline countries last. A country with no outage in
-// three months and one now is a real novelty, but it arrives with a single
-// event and no magnitude to speak of, so it is weaker evidence than a measured
-// jump — sorting it above everything else would overstate it.
-countries.sort((a, b) => {
-  if (a.ratio === null && b.ratio === null) return b.recentPerDay - a.recentPerDay
-  if (a.ratio === null) return 1
-  if (b.ratio === null) return -1
-  return b.ratio - a.ratio
+const { written, snapshot } = await snapshotStage('fetch-ioda', 'ioda', produce, {
+  isEmpty: (s) => s.countries.length === 0,
+  pretty: false,
 })
-
-writeJson(OUTPUT_PATH, {
-    generated: new Date().toISOString(),
-    recentDays: RECENT_DAYS,
-    baselineDays: BASELINE_DAYS,
-    countries,
-  }, { pretty: false })
 
 /**
  * The baseline this fetch exists for.
@@ -160,32 +113,109 @@ writeJson(OUTPUT_PATH, {
  * `fetch-news-api.js` prunes on mtime and `git pull --rebase --autostash`
  * rewrites files, which is exactly how `fetch-conflict.js` froze for a week.
  */
-const HISTORY_PATH = join(ROOT, 'content', '.ioda-history.json')
+const HISTORY_PATH = pathOf('iodaHistory')
 const HISTORY_DAYS = 90
-try {
-  const prior = existsSync(HISTORY_PATH)
-    ? JSON.parse(readFileSync(HISTORY_PATH, 'utf-8'))
-    : { records: [] }
-  const records = Array.isArray(prior.records) ? prior.records : []
-  const now = new Date().toISOString()
-  records.push({
-    t: now,
-    c: Object.fromEntries(countries.map((c) => [c.iso2, [c.ratio, c.eventCount]])),
-  })
-  const cutoff = Date.now() - HISTORY_DAYS * 86400000
-  const kept = records.filter((r) => {
-    const ts = Date.parse(r?.t)
-    return Number.isFinite(ts) && ts >= cutoff
-  })
-  writeJson(HISTORY_PATH, { historyDays: HISTORY_DAYS, records: kept }, { pretty: false })
-  console.log(`  ✓ baseline: ${kept.length} readings held over ${HISTORY_DAYS}d`)
-} catch (err) {
-  // Best-effort, like the snapshot: a history write must never fail the stage.
-  console.error(`  ioda history write failed: ${err.message}`)
+if (written) {
+  const { countries } = snapshot
+  try {
+    const prior = readJson(HISTORY_PATH)
+    // A history that is there and does not parse is left exactly as it is,
+    // which is what the hand-rolled read did by throwing. `readJson` has said
+    // why. Starting again over it would be the one write that cannot be undone:
+    // these readings exist nowhere else.
+    if (prior === null && existsSync(HISTORY_PATH)) throw new Error('the history on disk does not parse, and is left as it is')
+    const records = Array.isArray(prior?.records) ? prior.records : []
+    const now = new Date().toISOString()
+    records.push({
+      t: now,
+      c: Object.fromEntries(countries.map((c) => [c.iso2, [c.ratio, c.eventCount]])),
+    })
+    const cutoff = Date.now() - HISTORY_DAYS * 86400000
+    const kept = records.filter((r) => {
+      const ts = Date.parse(r?.t)
+      return Number.isFinite(ts) && ts >= cutoff
+    })
+    writeJson(HISTORY_PATH, { historyDays: HISTORY_DAYS, records: kept }, { pretty: false })
+    console.log(`  ✓ baseline: ${kept.length} readings held over ${HISTORY_DAYS}d`)
+  } catch (err) {
+    // Best-effort, like the snapshot: a history write must never fail the stage.
+    console.error(`  ioda history write failed: ${err.message}`)
+  }
+
+  const novel = countries.filter((c) => c.ratio === null).length
+  console.log(
+    `  ✓ ${countries.length} countries with outage events in ${RECENT_DAYS}d ` +
+      `(${novel} with no ${BASELINE_DAYS}d baseline) — ${Date.now() - started}ms`,
+  )
 }
 
-const novel = countries.filter((c) => c.ratio === null).length
-console.log(
-  `  ✓ ${countries.length} countries with outage events in ${RECENT_DAYS}d ` +
-    `(${novel} with no ${BASELINE_DAYS}d baseline) — ${Date.now() - started}ms`,
-)
+/** The snapshot: each country with an outage in the recent window, against its own baseline. */
+async function produce() {
+  const now = Math.floor(Date.now() / 1000)
+  const recentFrom = now - RECENT_DAYS * DAY_SECONDS
+
+  let recentRows
+  let recent
+  let baseline
+  try {
+    // The baseline window *ends* where the recent one begins. Overlapping them
+    // pins every country whose only outage in three months is the current one at
+    // exactly BASELINE_DAYS/RECENT_DAYS, which looks like a ranking and is an
+    // artifact of the arithmetic.
+    const [recentData, baselineData] = await Promise.all([
+      pull(recentFrom, now),
+      pull(recentFrom - BASELINE_DAYS * DAY_SECONDS, recentFrom),
+    ])
+    recentRows = recentData
+    recent = byCountry(recentData)
+    baseline = byCountry(baselineData)
+  } catch (err) {
+    throw new Degrade(`fetch failed (${err.message})`)
+  }
+
+  const countries = []
+  for (const [iso2, r] of recent) {
+    if (!iso2) continue
+    const b = baseline.get(iso2)
+    const recentPerDay = r.score / RECENT_DAYS
+    const baselinePerDay = (b?.score ?? 0) / BASELINE_DAYS
+    countries.push({
+      iso2,
+      name: r.name,
+      eventCount: r.events,
+      recentPerDay: Math.round(recentPerDay),
+      baselinePerDay: Math.round(baselinePerDay),
+      // null rather than Infinity: a country with no baseline had no outage in
+      // three months, which is a different statement from "a very large ratio",
+      // and JSON has no Infinity to say it with anyway.
+      ratio: baselinePerDay > 0 ? Number((recentPerDay / baselinePerDay).toFixed(1)) : null,
+    })
+  }
+  // Highest ratio first, no-baseline countries last. A country with no outage in
+  // three months and one now is a real novelty, but it arrives with a single
+  // event and no magnitude to speak of, so it is weaker evidence than a measured
+  // jump — sorting it above everything else would overstate it.
+  countries.sort((a, b) => {
+    if (a.ratio === null && b.ratio === null) return b.recentPerDay - a.recentPerDay
+    if (a.ratio === null) return 1
+    if (b.ratio === null) return -1
+    return b.ratio - a.ratio
+  })
+
+  // No country at all is a changed response, never two days without an outage
+  // anywhere: the summary has named about thirty on every run. Written out it
+  // would also be a reading in the baseline, an empty one among real ones, and
+  // the baseline is what this fetch is for. So nothing is written, and the line
+  // says what the first row held.
+  if (countries.length === 0) {
+    const first = recentRows.length > 0 ? `; the first is ${JSON.stringify(recentRows[0]).slice(0, 200)}` : ''
+    throw new Degrade(`${recentRows.length} rows for the last ${RECENT_DAYS}d and no country among them${first}`)
+  }
+
+  return {
+    generated: new Date().toISOString(),
+    recentDays: RECENT_DAYS,
+    baselineDays: BASELINE_DAYS,
+    countries,
+  }
+}

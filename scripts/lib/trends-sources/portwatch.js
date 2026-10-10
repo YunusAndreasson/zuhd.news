@@ -8,8 +8,8 @@
 // The orchestrator treats a null return as "skip this indicator this run".
 
 import { CHOKEPOINT_BY_ID, CHOKEPOINT_CATALOG } from '../chokepoint-metadata.js'
-import { ZUHD_UA } from '../http.js'
-
+import { fetchJson } from '../http.js'
+import { dayLabel, isoDay } from '../period.js'
 
 // IMF PortWatch "Daily Chokepoints Data" feature service (ArcGIS).
 // Schema: date, portname, n_total + per-type counts. `date` was an epoch-ms
@@ -23,16 +23,6 @@ const VESSEL_FIELDS = ['n_total', 'n_tanker', 'n_container', 'n_dry_bulk', 'n_ca
 const VESSEL_FIELD_SET = new Set(VESSEL_FIELDS)
 
 const HISTORY_DAYS = 60
-
-function formatPeriod(dateStr) {
-  const d = new Date(dateStr)
-  const month = d.toLocaleDateString('en-US', { month: 'short', timeZone: 'UTC' })
-  return `${month} ${d.getUTCDate()}`
-}
-
-function ymd(d) {
-  return d.toISOString().slice(0, 10)
-}
 
 /**
  * An ArcGIS date attribute as epoch milliseconds, whichever way the service
@@ -108,12 +98,7 @@ export async function fetchPortWatchChokepoint(indicator) {
   url.searchParams.set('resultRecordCount', String(HISTORY_DAYS + 5))
 
   try {
-    const res = await fetch(url, {
-      signal: AbortSignal.timeout(15000),
-      headers: { 'User-Agent': ZUHD_UA },
-    })
-    if (!res.ok) throw new Error(`HTTP ${res.status}`)
-    const data = await res.json()
+    const data = await fetchJson(url, { timeoutMs: 15_000 })
     const features = data.features || []
     if (features.length === 0) {
       console.error(`  ✗ portwatch:${indicator.id}: no features returned`)
@@ -135,8 +120,8 @@ export async function fetchPortWatchChokepoint(indicator) {
     }
 
     const values = rows.map((r) => Number(r.calls))
-    const periods = rows.map((r) => formatPeriod(new Date(r.ts).toISOString()))
-    const asOf = ymd(new Date(rows[rows.length - 1].ts))
+    const periods = rows.map((r) => dayLabel(r.ts))
+    const asOf = isoDay(rows[rows.length - 1].ts)
 
     return { values, periods, asOf }
   } catch (err) {
@@ -194,12 +179,7 @@ export async function fetchAllChokepointsSnapshot() {
   url.searchParams.set('resultRecordCount', '2000')
 
   try {
-    const res = await fetch(url, {
-      signal: AbortSignal.timeout(20000),
-      headers: { 'User-Agent': ZUHD_UA },
-    })
-    if (!res.ok) throw new Error(`HTTP ${res.status}`)
-    const data = await res.json()
+    const data = await fetchJson(url, { timeoutMs: 20_000 })
     const features = data.features || []
     if (features.length === 0) {
       console.error('  ✗ portwatch-snapshot: no features returned')
@@ -253,10 +233,10 @@ export async function fetchAllChokepointsSnapshot() {
         baseline90Avg: baselineAvg,
         delta7vs90: delta,
         series: {
-          periods: rows.map((r) => formatPeriod(new Date(r._ts).toISOString())),
+          periods: rows.map((r) => dayLabel(r._ts)),
           total: rows.map((r) => Number(r.n_total ?? 0)),
         },
-        asOf: ymd(new Date(rows[rows.length - 1]._ts)),
+        asOf: isoDay(rows[rows.length - 1]._ts),
       })
     }
 

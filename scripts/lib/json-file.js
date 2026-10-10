@@ -1,4 +1,4 @@
-// JSON snapshots on disk: the one read and the one write.
+// JSON snapshots on disk: the one read and the one write. And the write, for text.
 //
 // Every stage reads the previous snapshot and writes the next one, and there
 // were ~70 hand-rolled copies of each half. They disagreed on the two things
@@ -23,10 +23,9 @@ import { dirname } from 'node:path'
  * stdout a caller is parsing); a missing file is not — that is a normal state
  * for every snapshot on its first run.
  *
- * @template T
  * @param {string} path
- * @param {T} [fallback]
- * @returns {any | T}
+ * @param {unknown} [fallback]
+ * @returns {any}
  */
 export function readJson(path, fallback = null) {
   let text
@@ -38,7 +37,8 @@ export function readJson(path, fallback = null) {
   try {
     return JSON.parse(text)
   } catch (err) {
-    console.error(`readJson: ${path} is not valid JSON (${err.message}) — using the fallback`)
+    const { message } = /** @type {Error} */ (err)
+    console.error(`readJson: ${path} is not valid JSON (${message}) — using the fallback`)
     return fallback
   }
 }
@@ -57,8 +57,21 @@ export function readJson(path, fallback = null) {
  * @param {{ pretty?: boolean }} [opts]
  */
 export function writeJson(path, data, { pretty = true } = {}) {
+  writeText(path, `${pretty ? JSON.stringify(data, null, 2) : JSON.stringify(data)}\n`)
+}
+
+/**
+ * Write `text` to `path` atomically, as `writeJson` does and for its reason.
+ * For an article above all: five stages rewrite one in place, three of them
+ * under `timeout`, and an article is a record. Nothing regenerates it, so a
+ * write cut short between the truncate and the bytes is a lost story.
+ *
+ * @param {string} path
+ * @param {string} text written as it stands
+ */
+export function writeText(path, text) {
   mkdirSync(dirname(path), { recursive: true })
   const tmp = `${path}.${process.pid}.tmp`
-  writeFileSync(tmp, `${pretty ? JSON.stringify(data, null, 2) : JSON.stringify(data)}\n`)
+  writeFileSync(tmp, text)
   renameSync(tmp, path)
 }

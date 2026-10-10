@@ -7,8 +7,9 @@
 // hands the rows to `lib/firms.js` to be filtered, clustered and published.
 //
 // Output: content/.firms.json
-// Shape:  { generated, source, dayRange, cells, cellsFailed, aoiDropped,
-//           events: ThermalEvent[], skipped: { persistent, belowFloor } }
+// Shape:  { generated, source, dayRange, joinRadiusKm, cells, cellsFailed,
+//           aoiDropped, events: ThermalEvent[], skipped: { persistent,
+//           belowFloor, unattached, cellsFailed, aoiDropped } }
 //
 // Best-effort, same contract as fetch-gdacs.js: any failure leaves the prior
 // snapshot in place and exits 0, so a bad pass never stops a cycle. Build.js
@@ -41,22 +42,24 @@
 import { existsSync, readFileSync } from 'node:fs'
 import { join } from 'node:path'
 import { parseFrontmatter } from './lib/frontmatter.js'
-import { runWithConcurrency } from './lib/concurrency.js'
+import { runSettled } from './lib/concurrency.js'
+import { pathOf } from './lib/datasets.js'
 import {
   aoiCells,
   classifyCells,
   clusterEvents,
   JOIN_RADIUS_KM,
   minDistanceKm,
+  newestDetection,
   parseFirmsCsv,
+  RECENT_WINDOW_MS,
 } from './lib/firms.js'
-import { ROOT } from './lib/paths.js'
-import { writeJson } from './lib/json-file.js'
 import { fetchText } from './lib/http.js'
 import { articleFilesSince } from './lib/article-files.js'
+import { Degrade, Skip, snapshotStage } from './lib/snapshot-stage.js'
+import { stageBudget } from './lib/stage-budget.js'
 
-const OUTPUT_PATH = join(ROOT, 'content', '.firms.json')
-const ARTICLES_DIR = join(ROOT, 'content', 'articles')
+const ARTICLES_DIR = pathOf('articles')
 
 /**
  * VIIRS aboard Suomi-NPP. One instrument rather than the four available: each
@@ -82,134 +85,162 @@ const REQUEST_TIMEOUT_MS = 30_000
 const CELL_CONCURRENCY = 4
 
 const key = process.env.FIRMS_MAP_KEY
-if (!key) {
-  // Same shape as the optional keys in fetch-trends.js: a missing credential is
-  // a skipped source, never a failed cycle.
-  console.log('Thermal snapshot: FIRMS_MAP_KEY not set — skipping, previous snapshot kept')
-  process.exit(0)
-}
 
 const started = Date.now()
-console.log(`Fetching thermal anomalies (${SOURCE}, ${DAY_RANGE}d)`)
+/** One signal for every request this run makes: `lib/stage-budget.js`. */
+const budget = stageBudget('fetch-firms')
 
-// --- Seeds ----------------------------------------------------------------
+/** How many clusters there were before the join radius cut them, for the last line. */
+let clusteredCount
 
-const windowStart = Date.now() - WINDOW_DAYS * 86_400_000
-const seeds = []
-
-if (existsSync(ARTICLES_DIR)) {
-  for (const file of articleFilesSince(ARTICLES_DIR, windowStart)) {
-    try {
-      const { meta } = parseFrontmatter(readFileSync(join(ARTICLES_DIR, file), 'utf8'))
-      if (meta?.lat == null || meta?.lng == null) continue
-      const t = meta.date ? Date.parse(meta.date) : NaN
-      // No date is not a reason to drop a seed — the AOI is coarse and the join
-      // happens in build.js against the real point set.
-      if (Number.isFinite(t) && t < windowStart) continue
-      seeds.push({ lat: meta.lat, lng: meta.lng })
-    } catch {
-      // A single unparseable article must not cost the whole layer.
-    }
-  }
-}
-const { cells, dropped } = aoiCells(seeds)
-console.log(
-  `  ${cells.length} AOI cells from ${seeds.length} geo-located stories` +
-    (dropped > 0 ? ` (${dropped} cells over the cap, dropped)` : ''),
-)
-
-if (cells.length === 0) {
-  console.error('  ✗ no AOI cells — leaving previous snapshot in place')
-  process.exit(0)
-}
-
-// --- Fetch ----------------------------------------------------------------
-
-const cellUrl = (bbox) =>
-  `https://firms.modaps.eosdis.nasa.gov/api/area/csv/${key}/${SOURCE}/${bbox.join(',')}/${DAY_RANGE}`
-
-async function fetchCell(cell) {
-  const text = await fetchText(cellUrl(cell.bbox), { timeoutMs: REQUEST_TIMEOUT_MS })
-  // FIRMS answers a bad key or an over-quota caller with 200 and a sentence,
-  // not a status code. Without this the CSV parser throws "missing expected
-  // columns" once per cell and the real reason never reaches the log.
-  if (/invalid|error|exceed/i.test(text.slice(0, 200)) && !text.startsWith('latitude')) {
-    throw new Error(`upstream said: ${text.slice(0, 120).replace(/\s+/g, ' ').trim()}`)
-  }
-  return parseFirmsCsv(text)
-}
-
-const rows = []
-let cellsFailed = 0
-let firstError = null
-
-await runWithConcurrency(cells, CELL_CONCURRENCY, async (cell) => {
-  try {
-    rows.push(...(await fetchCell(cell)))
-  } catch (err) {
-    cellsFailed++
-    if (!firstError) firstError = err.message
-  }
+const { written, snapshot } = await snapshotStage('fetch-firms', 'firms', produce, {
+  // A day with no fire beside a story is a true empty layer, and is written as
+  // one. What is not a quiet day, every cell failing, is thrown in `produce`.
+  isEmpty: () => false,
+  pretty: false,
 })
 
-if (cellsFailed === cells.length) {
-  console.error(
-    `  ✗ every cell failed (${firstError}) — leaving previous snapshot in place`,
+if (written) {
+  const { events, skipped } = snapshot
+  const elapsed = ((Date.now() - started) / 1000).toFixed(1)
+  console.log(
+    `  ✓ wrote ${events.length} events of ${clusteredCount} clustered ` +
+      `(${skipped.unattached} beyond ${JOIN_RADIUS_KM}km of any story, ` +
+      `${skipped.persistent} detections in steady sources, ` +
+      `${skipped.belowFloor} clusters under the floor) in ${elapsed}s`,
   )
-  process.exit(0)
-}
-if (cellsFailed > 0) {
-  // Recorded rather than swallowed: a partial fetch publishes a partial map, and
-  // that has to be visible in the payload rather than looking like a quiet day.
-  console.error(`  ⚠ ${cellsFailed}/${cells.length} cells failed (${firstError})`)
 }
 
-console.log(`  ✓ ${rows.length} detections across ${cells.length - cellsFailed} cells`)
+/** The snapshot: the anomalies the instrument saw in the last day, within reach of a story. */
+async function produce() {
+  // Same shape as the optional keys in fetch-trends.js: a missing credential is
+  // a skipped source, never a failed cycle.
+  if (!key) throw new Skip('FIRMS_MAP_KEY not set')
 
-// --- Filter and cluster ---------------------------------------------------
+  console.log(`Fetching thermal anomalies (${SOURCE}, ${DAY_RANGE}d)`)
 
-// Classified and clustered over the whole set at once, not per cell: a fire on a
-// cell boundary is one fire, and clustering inside each response would publish
-// it as two events with half the radiative power each.
-const now = Date.now()
-const classified = classifyCells(rows, { now })
-const { events: clustered, skipped } = clusterEvents(rows, classified, { now })
+  // --- Seeds ----------------------------------------------------------------
 
-// The scope, enforced. An AOI cell is 1,100 km across, so querying around the
-// corpus bounds the download and not the map: the first run of this fetcher
-// produced 7,771 events, most of them crop fires hundreds of kilometres from
-// anything we published. Only anomalies within the join radius of a seed survive
-// — which is the same radius build.js does the article join on, so an event that
-// reaches the payload can always be explained by something on the map.
-const events = []
-let unattached = 0
-for (const event of clustered) {
-  const km = minDistanceKm(event, seeds)
-  if (km > JOIN_RADIUS_KM) {
-    unattached++
-    continue
+  const windowStart = Date.now() - WINDOW_DAYS * 86_400_000
+  const seeds = []
+
+  if (existsSync(ARTICLES_DIR)) {
+    for (const file of articleFilesSince(ARTICLES_DIR, windowStart)) {
+      try {
+        const { meta } = parseFrontmatter(readFileSync(join(ARTICLES_DIR, file), 'utf8'))
+        if (meta?.lat == null || meta?.lng == null) continue
+        const t = meta.date ? Date.parse(meta.date) : NaN
+        // No date is not a reason to drop a seed — the AOI is coarse and the join
+        // happens in build.js against the real point set.
+        if (Number.isFinite(t) && t < windowStart) continue
+        seeds.push({ lat: meta.lat, lng: meta.lng })
+      } catch {
+        // A single unparseable article must not cost the whole layer.
+      }
+    }
   }
-  events.push({ ...event, seedKm: Math.round(km * 10) / 10 })
+  const { cells, dropped } = aoiCells(seeds)
+  console.log(
+    `  ${cells.length} AOI cells from ${seeds.length} geo-located stories` +
+      (dropped > 0 ? ` (${dropped} cells over the cap, dropped)` : ''),
+  )
+
+  if (cells.length === 0) throw new Degrade('no AOI cells')
+
+  // --- Fetch ----------------------------------------------------------------
+
+  const cellUrl = (bbox) =>
+    `https://firms.modaps.eosdis.nasa.gov/api/area/csv/${key}/${SOURCE}/${bbox.join(',')}/${DAY_RANGE}`
+
+  async function fetchCell(cell) {
+    const text = await fetchText(cellUrl(cell.bbox), { timeoutMs: REQUEST_TIMEOUT_MS, signal: budget })
+    // FIRMS answers a bad key or an over-quota caller with 200 and a sentence,
+    // not a status code. Without this the CSV parser throws "missing expected
+    // columns" once per cell and the real reason never reaches the log.
+    if (/invalid|error|exceed/i.test(text.slice(0, 200)) && !text.startsWith('latitude')) {
+      throw new Error(`upstream said: ${text.slice(0, 120).replace(/\s+/g, ' ').trim()}`)
+    }
+    return parseFirmsCsv(text)
+  }
+
+  const { values, failed: cellsFailed, firstError } = await runSettled(cells, CELL_CONCURRENCY, fetchCell)
+
+  // In the cells' order, so the clustering below starts from the same rows in
+  // the same order whichever cell answered first. And one row at a time:
+  // spread into `push`, a cell's rows are arguments, and past a hundred
+  // thousand or so of those is a RangeError. A whole cycle has reached 157,000.
+  const rows = []
+  for (const cellRows of values) {
+    for (const row of cellRows ?? []) rows.push(row)
+  }
+
+  if (cellsFailed === cells.length) throw new Degrade(`every cell failed (${firstError})`)
+  if (budget.aborted) {
+    // The cells are asked busiest first (`aoiCells`), so what the clock cut is
+    // the sparse end of the map. It is counted with the cells that failed.
+    console.error(`  ⚠ out of time: the stage's budget ran out with ${cells.length - cellsFailed}/${cells.length} cells in`)
+  }
+  if (cellsFailed > 0) {
+    // Recorded rather than swallowed: a partial fetch publishes a partial map, and
+    // that has to be visible in the payload rather than looking like a quiet day.
+    console.error(`  ⚠ ${cellsFailed}/${cells.length} cells failed (${firstError})`)
+  }
+
+  const now = Date.now()
+  const newest = newestDetection(rows)
+  console.log(
+    `  ✓ ${rows.length} detections across ${cells.length - cellsFailed} cells` +
+      (newest === null ? '' : `, the newest at ${new Date(newest).toISOString().slice(0, 16).replace('T', ' ')} UTC`),
+  )
+  // An event is drawn only from the last day's passes, and this is one
+  // instrument. When it goes quiet the rows keep coming, all of them older, and
+  // what is written is `events: []` with every skip count at zero: the same file
+  // as a day on which nothing burned. Said here, so the log can tell them apart.
+  if (newest !== null && now - newest > RECENT_WINDOW_MS) {
+    console.error(
+      `  ⚠ the newest detection is ${((now - newest) / 3600_000).toFixed(0)}h old, outside the ` +
+        `${RECENT_WINDOW_MS / 3600_000}h an event is drawn from: the layer will be empty because ${SOURCE} is silent`,
+    )
+  }
+
+  // --- Filter and cluster ---------------------------------------------------
+
+  // Classified and clustered over the whole set at once, not per cell: a fire on a
+  // cell boundary is one fire, and clustering inside each response would publish
+  // it as two events with half the radiative power each.
+  const classified = classifyCells(rows, { now })
+  const { events: clustered, skipped } = clusterEvents(rows, classified, { now })
+
+  // The scope, enforced. An AOI cell is 1,100 km across, so querying around the
+  // corpus bounds the download and not the map: the first run of this fetcher
+  // produced 7,771 events, most of them crop fires hundreds of kilometres from
+  // anything we published. Only anomalies within the join radius of a seed survive
+  // — which is the same radius build.js does the article join on, so an event that
+  // reaches the payload can always be explained by something on the map.
+  const events = []
+  let unattached = 0
+  for (const event of clustered) {
+    const km = minDistanceKm(event, seeds)
+    if (km > JOIN_RADIUS_KM) {
+      unattached++
+      continue
+    }
+    events.push({ ...event, seedKm: Math.round(km * 10) / 10 })
+  }
+  clusteredCount = clustered.length
+
+  return {
+    generated: new Date(now).toISOString(),
+    source: SOURCE,
+    dayRange: DAY_RANGE,
+    joinRadiusKm: JOIN_RADIUS_KM,
+    cells: cells.length,
+    cellsFailed,
+    aoiDropped: dropped,
+    events,
+    // `cellsFailed` and `aoiDropped` again, beside the rest of what was left
+    // out. `skipped` is the block the build carries into /api/firms.json; the
+    // two keys above it are not, so a partial fetch was published as a full one.
+    skipped: { ...skipped, unattached, cellsFailed, aoiDropped: dropped },
+  }
 }
-
-const payload = {
-  generated: new Date(now).toISOString(),
-  source: SOURCE,
-  dayRange: DAY_RANGE,
-  joinRadiusKm: JOIN_RADIUS_KM,
-  cells: cells.length,
-  cellsFailed,
-  aoiDropped: dropped,
-  events,
-  skipped: { ...skipped, unattached },
-}
-
-writeJson(OUTPUT_PATH, payload, { pretty: false })
-
-const elapsed = ((Date.now() - started) / 1000).toFixed(1)
-console.log(
-  `  ✓ wrote ${events.length} events of ${clustered.length} clustered ` +
-    `(${unattached} beyond ${JOIN_RADIUS_KM}km of any story, ` +
-    `${skipped.persistent} detections in steady sources, ` +
-    `${skipped.belowFloor} clusters under the floor) in ${elapsed}s`,
-)

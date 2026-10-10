@@ -22,6 +22,8 @@
  * editor applies its own test to each, and nothing is quarantined on this.
  */
 
+import { figuresOf, stripDateline } from './article.js'
+
 /** Words that say nothing about which story this is. */
 const STOP = new Set(
   `a an the and or but of to in on at for from by with as is are was were be been being
@@ -54,22 +56,18 @@ export function contentWords(s) {
   return out
 }
 
-/** The figures in a sentence, as written: `4.5`, `39bn`, `2,000`. */
-function figures(s) {
-  return (String(s || '').match(/\d[\d,.]*/g) || []).map((f) => f.replace(/[.,]$/, ''))
-}
-
 /**
  * The hook as the reader sees it: the body's first block without its
- * dateline (`Kano — `), which every surface strips.
+ * dateline (`Kano — `), which every surface strips. By the location, as the
+ * app strips it, and without one by the pattern the validator reads a
+ * dateline with (`stripDateline`, `lib/article.js`).
  *
  * @param {string} body
  * @param {string} [location]
  */
 export function hookOf(body, location) {
   const first = String(body || '').trim().split(/\n\s*\n/)[0] || ''
-  if (location && first.startsWith(`${location} — `)) return first.slice(location.length + 3)
-  return first.replace(/^[^—\n]{1,40} — /, '')
+  return stripDateline(first, location)
 }
 
 /**
@@ -87,7 +85,7 @@ export function titleEcho(title, hook) {
   if (titleWords.length === 0) return { covered: 0, figure: false, echo: false }
   const hookWords = new Set(contentWords(hook))
   const covered = titleWords.filter((w) => hookWords.has(w)).length / titleWords.length
-  const titleFigures = new Set(figures(title))
-  const figure = figures(hook).some((f) => !titleFigures.has(f))
+  const titleFigures = new Set(figuresOf(title))
+  const figure = figuresOf(hook).some((f) => !titleFigures.has(f))
   return { covered, figure, echo: covered >= 2 / 3 && !figure }
 }

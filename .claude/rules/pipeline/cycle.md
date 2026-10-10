@@ -21,22 +21,23 @@ paths:
   - "scripts/write-last-cycle.js"
   - "scripts/trending-gaps.js"
   - "scripts/coverage-map.js"
-  - "scripts/autoresearch/**"
   - "scripts/dashboard/**"
   - "scripts/lib/claude-envelope.js"
   - "scripts/lib/concurrency.js"
   - "scripts/lib/argv.js"
   - "scripts/lib/regions.js"
   - "scripts/lib/dedup.js"
+  - "scripts/lib/dispatch.js"
+  - "scripts/lib/gdacs-narrations.js"
   - "scripts/lib/grounding.js"
   - "scripts/lib/indicator-offer.js"
-  - "scripts/lib/indicator-model.js"
   - "scripts/lib/market-signals.js"
   - "scripts/lib/title-echo.js"
   - "scripts/lib/coverage-window.js"
   - "scripts/lib/tracked-stories.js"
   - "scripts/lib/feed-age.js"
   - "scripts/lib/quality-score.js"
+  - "scripts/lib/rvs.js"
   - "scripts/lib/entity-registry.js"
   - "scripts/lib/trends-*.js"
   - "scripts/lib/trends-sources/**"
@@ -55,18 +56,26 @@ paths:
 
 Five runs a day on a remote server, committing only `content/` (Stage 6, the
 tuning session, also merges experiment edits to the tunables in `scripts/`).
-The stage list is in the root CLAUDE.md; this is what the stages assume about
-each other.
+The stage list is `scripts/cycle/stages.js` (`stages.md`); this is what the
+stages assume about each other.
 
 ## The shape of a stage
 
 - **Never** let an advisory stage stop the publish. From the writer on,
-  `run-cycle.sh` builds, commits and deploys whatever a timeout left; only a
+  the cycle builds, commits and deploys whatever a timeout left; only a
   selector failure or a writer with no article ends a cycle unpublished.
   Advisory work runs behind `timeout`, and `logs.test.js` ratchets the
   typecheck warning at zero.
 - Degrade to the previous snapshot, never to nothing: a failed `fetch-*.js`
   leaves `content/.<name>.json` in place, and a missing key logs a skip.
+- A snapshot fetcher does its work inside `snapshotStage`
+  (`lib/snapshot-stage.js`) and throws `Degrade` to keep the last snapshot,
+  `Skip` for a missing key. `isEmpty` is required: an empty result is never
+  written over a snapshot by default.
+- A fetcher passes `stageBudget(<its stage>)` (`lib/stage-budget.js`) as
+  `signal` with every request: a slow source then ends in a partial result or
+  a kept snapshot, never `exit 124`. Re-time a stage there too; a test holds
+  the table to `stages.js`.
 - A bounded dataset reports what it left out (`skipped`), or it reads as
   complete coverage.
 - An empty result after a non-empty response is a schema change: that branch
@@ -79,10 +88,11 @@ each other.
 - **Never** call the Anthropic API: stages run the subscription's `claude` CLI.
 - `claudeArgs` (`lib/claude-envelope.js`) spells the argv for Node callers.
   `--no-session-persistence`, `--max-turns 1` and `--tools ''` keep a call a
-  cheap micro-task. `trends-sources/polymarket.js` still spells its own; do
-  not copy it.
-- Run it with `runClaudeSync`, `callClaudeJson`, `runHaiku`, or `spawnClaude`
-  inside a pool: `runWithConcurrency` only limits work that yields. All drop
+  cheap micro-task.
+- **Never** start `claude` without `ISOLATION_FLAGS`: `--tools ''` does not
+  cover MCP, and a bare call loads the account's settings, skills and servers.
+- Run it with `runClaudeSync`, `callClaudeJson`, or `spawnClaude` inside a
+  pool: `runWithConcurrency` only limits work that yields. All drop
   `CLAUDECODE` from the child env.
 - Parse with `parseClaudeEnvelope`; render a failure with `claudeFailure`.
 - `lib/grounding.js` is the one grounding validator. `validateProperNouns` is
@@ -118,6 +128,11 @@ each other.
   (`trends-sources/bis.js`); FRED's BoE and BoJ series stopped.
   `detail=dataonly` is required, a series older than
   `STALE_DAYS` is dropped, and tags name the bank, never the bare country.
+- Wheat, rice, copper and European gas come from the IMF's own service
+  (`trends-sources/imf.js`): FRED's copy of them stopped at July 2026.
+- Yahoo serves four indices no daily history (`sessionsFromHourly`,
+  `trends-sources/stocks.js`). Their closes are the last hourly bar's, near
+  the official close and not it: never quote one to the cent.
 - `fetch-news-api.js` runs with no outer `timeout`: `apiPost` must keep its own
   deadline. A failed per-event call costs its panel, not the feed.
 
@@ -129,6 +144,9 @@ each other.
 - `recentFingerprint` hashes the top stories, the move in bands and the
   extremes' dates, never a raw series value, which changes daily. `promptHash`
   is in both fingerprints so a prompt edit reaches all.
+- `standing` is kept while its fingerprint stands (`storedStanding`,
+  `lib/dispatch.js`): the call is for `recent`, and a definition reworded daily
+  is churn on every surface. An event's entry records its `prompt` for this.
 - An attention row explains the event, never "the topic was in the news".
 - **Never** let the chart be a source for `recent`: a number in `series`
   stays out, and the extremes' dates are for finding the story. With no cause
@@ -147,8 +165,9 @@ each other.
   `relatedArticles`) for the app. **Never** join an indicator's onto
   `api/trends.json`, which every homepage visit loads. That file's `events`
   do carry theirs inline: an event has no `/e/{id}`.
-- The prune is the daily pass's only (`!NEW_ONLY`), and `PRUNE_FLOOR` declines
-  it when the live set collapses: a half-written payload reads as `[]`.
+- The prune is the daily pass's only (`!NEW_ONLY`) and per source (`staleKeys`,
+  `lib/dispatch.js`): a payload that gave no items loses no paragraph. Never a
+  floor on live against cached: a cache grows while its prune is declined.
 
 ## Prompts and validators
 
@@ -162,6 +181,9 @@ each other.
   a bare `null` reads as a quiet day.
 - `<title-echo>` (`flag-title-echo.js`) is a flag for the editor, never a
   gate: an overlap measure cannot see a stake in words.
+- `<acronyms>` (`flag-acronyms.js`) is the same: a list of places to look.
+  The recognised list is `RECOGNISED` (`lib/acronyms.js`), the owner's; both
+  prompts print it and a test holds the three together.
 - In a hook, attribution follows the claim.
 - An offered figure is permission, not obligation. The editor treats one
   matching its `indicators` row as sourced.
@@ -183,7 +205,15 @@ each other.
   the five queries, never beside them, on hand-picked keywords.
 - The market-signal join takes a name tag or `countryTags` against
   `countries`, its own field in `loadArticles`: two-letter codes in the
-  haystack match prose. A tag is never an ordinary word.
+  haystack match prose. A tag is never an ordinary word. The indicator
+  dispatch keeps the same split (`offeredArticles`, `offeredStories`).
+- A signal never goes back a session (`selectMarketSignals`): a fetch can
+  lose an exchange's newest bar for a night.
+- The list under an exchange or a strait is the stories the entity stage read
+  as about it (`venues:`, `onVenueList`, `lib/stock-mentions.js`). **Never**
+  give it a word-match fallback: tags put 40 wrong stories on 42 places.
+- `thermal:` is recorded by the same reading and read by nothing: the thermal
+  layer's gate is still `THERMAL_VOCABULARY`, an editorial list.
 
 ## Companies and AI labs
 

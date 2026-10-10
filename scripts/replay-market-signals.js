@@ -1,14 +1,14 @@
 // Read-only evaluation. Production never reconstructs dates from display labels.
 import { readFileSync } from 'node:fs'
+import { argAt, hasFlag } from './lib/argv.js'
 import { normalizeMarkets, selectMarketSignals } from './lib/market-signals.js'
-const arg = (name) => { const i = process.argv.indexOf(name); return i < 0 ? null : process.argv[i + 1] }
-if (!arg('--markets') && !process.argv.includes('--stdin')) {
+if (!argAt('markets') && !hasFlag('stdin')) {
   console.log('Usage: node scripts/replay-market-signals.js --markets snapshot.json [--trends trends.json] [--legacy-research]\nOr --stdin accepts { markets, trends }. No files or LLM calls are written.')
   process.exit(0)
 }
-const input = process.argv.includes('--stdin') ? JSON.parse(readFileSync(0,'utf8')) :
-  { markets:JSON.parse(readFileSync(arg('--markets'),'utf8')), trends:arg('--trends') ? JSON.parse(readFileSync(arg('--trends'),'utf8')) : {} }
-const legacy = process.argv.includes('--legacy-research')
+const input = hasFlag('stdin') ? JSON.parse(readFileSync(0,'utf8')) :
+  { markets:JSON.parse(readFileSync(argAt('markets'),'utf8')), trends:argAt('trends') ? JSON.parse(readFileSync(argAt('trends'),'utf8')) : {} }
+const legacy = hasFlag('legacy-research')
 function researchDates(source) {
   const year = Number(source.asOf?.slice(0,4))
   const periods = source.series?.periods || source.periods || []

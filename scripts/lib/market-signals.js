@@ -113,7 +113,7 @@ export function factualSummary(signal) {
 /** @param {any[]} raw @param {Record<string, any>} previous */
 export function selectMarketSignals(raw, previous = {}, now = Date.now(), articles = []) {
   const markets = raw.map((m) => cleanMarket(m, now)).filter(Boolean)
-  /** @type {{ id: string, reason: string, misses?: number, patterns?: any[] }[]} */
+  /** @type {{ id: string, reason: string, misses?: number, patterns?: any[], asOf?: string, lastDate?: string }[]} */
   const reports = raw.filter((m) => !markets.some((x) => x.id === m.id)).map((m) => ({ id: m.id, reason: 'invalid, stale, provisional or insufficient history' }))
   const candidates = markets.map((m) => ({ m, patterns: detectPatterns(m) }))
   const nasdaq = candidates.find((c) => c.m.id === 'nasdaq100')
@@ -136,9 +136,29 @@ export function selectMarketSignals(raw, previous = {}, now = Date.now(), articl
     const pattern = patterns[0]
     const prev = previous[m.id]
     const asOf = m.dates.at(-1)
+    // A series that ends before the session already observed has gone
+    // backwards, and what was read from the later session stands. A fetch can
+    // return one: Istanbul's 2026-10-08 close was there at 18:16 UTC, missing
+    // at 22:21 and back at 05:13, each time at the cycle after the exchange's
+    // own midnight. Taken at its word, the loss moved the card a day back (the
+    // chart lost its last point, −15.2% read −16.4%) and the return moved it
+    // forward, and both counted as a revision and a reason to ask the model:
+    // 17 times in the 141 payloads published from 2026-09-10, 14 of them
+    // `mkt:bist` at the 22:00 cycle.
+    if (prev?.lastDate && asOf < prev.lastDate) {
+      if (prev.signal && prev.misses < 3 && now - Date.parse(prev.signal.asOf) <= 7 * DAY) active.push(prev.signal)
+      reports.push({ id: m.id, reason: 'series regressed', asOf, lastDate: prev.lastDate })
+      continue
+    }
     if (!pattern) {
       const misses = (prev?.misses || 0) + (prev?.lastDate !== asOf ? 1 : 0)
-      if (prev) state[m.id] = { ...prev, misses, lastDate: asOf }
+      // An expired event is dropped, not kept at three misses and counting.
+      // Nothing reads one again (every use of `prev` asks for fewer than
+      // three), yet each kept its whole `signal.series`, and `lastDate` moved with
+      // every session, so the caller's thirty-day cut never reached it: ten
+      // of the 24 entries on 2026-10-09 were these, one at 60 misses.
+      if (prev && misses >= 3) delete state[m.id]
+      else if (prev) state[m.id] = { ...prev, misses, lastDate: asOf }
       if (prev?.signal && misses < 3 && now - Date.parse(prev.signal.asOf) <= 7 * DAY) active.push(prev.signal)
       reports.push({ id: m.id, reason: 'below thresholds', misses })
       continue

@@ -1,0 +1,78 @@
+{
+  // The pipeline's typed core, checked under `strict`.
+  //
+  // tsconfig.node.json keeps `strict` off for the untyped scripts and says why:
+  // its value is in what TypeScript infers, and thousands of implicit-any
+  // reports would bury that. It also says a file that wants real types gets
+  // JSDoc. This is where such a file is held to them: the modules the stages
+  // are being moved onto (the record of a cycle, the datasets, the article and
+  // the corpus), where a shape is the point.
+  //
+  // Leaf-first. tsc checks every file a listed one imports, under these flags,
+  // so a file can join only when everything it imports is clean too. That is
+  // why the list is spelled out and why it is short: `lib/dedup.js` alone
+  // reports 30 strict errors, and whatever imports it would report them too.
+  //
+  // Every file here is also in tsconfig.node.json's globs, which is harmless:
+  // what passes strict passes loose. The one thing to avoid is
+  // `@ts-expect-error` for a strict-only complaint, which the loose project
+  // would then report as an unused directive.
+  //
+  // The cycle runs `npm run typecheck` and logs.test.js ratchets its warning at
+  // zero, so nothing lands here that is not green.
+  //
+  // The orchestrator (the stage list, the runner, its steps and the small
+  // programs it starts) was written to these flags and passed them from its
+  // first commit, but was not listed, so nothing held it to them: the next
+  // edit could have lost a type and no gate would have said so. Listed on
+  // 2026-10-09, with the leaves it and the stages lean on (`models`, `hash`,
+  // `concurrency`, `http`).
+  "extends": "./tsconfig.node.json",
+  "compilerOptions": {
+    "strict": true,
+    "noImplicitAny": true
+  },
+  "include": [
+    "scripts/cycle/alert.js",
+    "scripts/cycle/record.js",
+    "scripts/coverage-map.js",
+    "scripts/cycle/replay-stage.js",
+    "scripts/cycle/run.js",
+    "scripts/cycle/stages.js",
+    "scripts/cycle/tally.js",
+    "scripts/lib/argv.js",
+    "scripts/lib/article.js",
+    "scripts/lib/article-files.js",
+    "scripts/lib/blocks.js",
+    "scripts/lib/concurrency.js",
+    "scripts/lib/coverage-map.js",
+    "scripts/lib/cycle-alert.js",
+    "scripts/lib/cycle-harness.js",
+    "scripts/lib/cycle-log.js",
+    "scripts/lib/cycle-run.js",
+    "scripts/lib/cycle-scenarios.js",
+    "scripts/lib/cycle-steps.js",
+    "scripts/lib/cycle-stub.js",
+    "scripts/lib/cycle-tally.js",
+    "scripts/lib/datasets.js",
+    "scripts/lib/feed-age.js",
+    "scripts/lib/frozen-clock.js",
+    "scripts/lib/frontmatter.js",
+    "scripts/lib/hash.js",
+    "scripts/lib/http.js",
+    "scripts/lib/json-file.js",
+    "scripts/lib/last-cycle.js",
+    "scripts/lib/ledger.js",
+    "scripts/lib/merge-feeds.js",
+    "scripts/lib/models.js",
+    "scripts/lib/paths.js",
+    "scripts/lib/schema.js",
+    "scripts/lib/stage-replay.js",
+    "scripts/lib/stage.js",
+    "scripts/lib/utils.js",
+    "scripts/merge-feeds.js",
+    "scripts/write-last-cycle.js",
+    "types/**/*.d.ts"
+  ],
+  "exclude": ["node_modules"]
+}

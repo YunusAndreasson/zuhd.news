@@ -2,9 +2,10 @@
 import { test } from 'node:test'
 import { strict as assert } from 'node:assert'
 import { readFileSync, readdirSync } from 'node:fs'
-import { splitBlocks } from './blocks.js'
+import { BLOCKS_MAX, BLOCKS_MIN, countBlocks, countedBlocks, splitBlocks } from './blocks.js'
+import { splitFrontmatter } from './frontmatter.js'
 
-const count = s => splitBlocks(s).filter(x => x.length > 5).length
+const count = countBlocks
 
 test('three paragraphs split into three blocks', () => {
   const body = `Tehran — Iran linked Lebanon to its nuclear terms.
@@ -39,6 +40,18 @@ Block three.`
   assert.equal(count(body), 3)
 })
 
+// What counts as a block, and the range: one spelling for the validator, the
+// article contract, the weekly scan and the editor's probe.
+test('a block is longer than five characters, and an article ships with two to five', () => {
+  const body = 'One block here.\n\n---\n\nab\n\nAnother after a rule.\n'
+  assert.deepEqual(splitBlocks(body), ['One block here.', '---', 'ab', 'Another after a rule.'])
+  assert.deepEqual(countedBlocks(body), ['One block here.', 'Another after a rule.'])
+  assert.equal(countBlocks(body), 2)
+  assert.equal(countBlocks('12345\n\n123456'), 1, 'five is not longer than five')
+  assert.equal(countBlocks(''), 0)
+  assert.deepEqual([BLOCKS_MIN, BLOCKS_MAX], [2, 5])
+})
+
 // Pipeline invariant: the editor only accepts 2..5 blocks per article.
 // 3,281 articles already shipped through the 2026-05-17 backfill into
 // paragraph format. If a splitter change silently shifts counts, at least
@@ -53,10 +66,13 @@ test('corpus invariant: all published articles produce 2-5 blocks', () => {
   const outOfRange = []
   for (const f of files) {
     const raw = readFileSync(dir + f, 'utf8')
-    if (!/^---\n/.test(raw)) continue
-    const body = raw.replace(/^---[\s\S]*?---\s*/, '').trim()
-    const n = count(body)
-    if (n < 2 || n > 5) outOfRange.push(`${n} blocks: ${f}`)
+    // The cut every reader makes. This one stopped at the first `---` anywhere,
+    // as the validator's did, and so agreed with it about two articles that
+    // were five blocks and counted as six.
+    const split = splitFrontmatter(raw)
+    if (!split) continue
+    const n = count(split.body)
+    if (n < BLOCKS_MIN || n > BLOCKS_MAX) outOfRange.push(`${n} blocks: ${f}`)
   }
   assert.deepEqual(outOfRange, [], `out-of-range articles:\n  ${outOfRange.join('\n  ')}`)
 })

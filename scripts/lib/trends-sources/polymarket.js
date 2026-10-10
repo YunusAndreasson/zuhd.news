@@ -34,11 +34,18 @@
 // Hormuz market narrated but absent — so the app's strait-odds join matched
 // nothing — and a market that entered with no `standing` dropped by the app.
 // `orderCandidates` keeps yesterday's markets while they remain eligible and
-// fills vacancies by volume; see it for the tiers and the cap.
+// fills vacancies by volume; see it for the tiers and the cap. `pickOutcome`
+// keeps the same outcome standing for an event, which is where the stickiness
+// has to start: an incumbent is a market, and the pick is made per event.
 
+import { randomUUID } from 'node:crypto'
 import { runWithConcurrency } from '../concurrency.js'
 import { CC_TO_TOPOJSON_NAME } from '../../../shared/countries/iso.ts'
-import { ZUHD_UA } from '../http.js'
+import { claudeArgs, claudeFailure, parseClaudeText, spawnClaude } from '../claude-envelope.js'
+import { sha1Hex } from '../hash.js'
+import { fetchJson } from '../http.js'
+import { modelFor } from '../models.js'
+import { dayLabel, isoDay } from '../period.js'
 
 const GAMMA_BASE = 'https://gamma-api.polymarket.com'
 const CLOB_BASE = 'https://clob.polymarket.com'
@@ -108,6 +115,35 @@ export function orderCandidates(
   return [...head, ...overflow].map((x) => x.m)
 }
 
+/**
+ * The deck: the ordered candidates taken in turn until `limit` of them have a
+ * row. `rowFor` is the only thing here that reaches the network, so this has
+ * a test.
+ *
+ * The cut to `TOP_N` was made first and the rows asked for after it. A market
+ * with too short a history, or a line already decided, left its slot empty
+ * while eligible candidates stood behind the cut: 22 eligible, 20 cut and 19
+ * rows on 2026-10-09. The cut is on rows now, and a candidate past it is
+ * asked for a history only when one before it had none to give.
+ *
+ * @template M, R
+ * @param {M[]} ordered
+ * @param {number} limit
+ * @param {(m: M) => Promise<R | null>} rowFor
+ * @returns {Promise<{ rows: R[], tried: number }>}
+ */
+export async function takeRows(ordered, limit, rowFor) {
+  const rows = []
+  let tried = 0
+  for (const m of ordered) {
+    if (rows.length >= limit) break
+    tried++
+    const row = await rowFor(m)
+    if (row) rows.push(row)
+  }
+  return { rows, tried }
+}
+
 // Minimum daily points to chart usefully — a 2-point line is just a slope.
 const MIN_HISTORY_POINTS = 5
 
@@ -116,6 +152,10 @@ const MIN_HISTORY_POINTS = 5
 // last DECIDED_TAIL_FRACTION of points.
 const DECIDED_BAND = 3   // percentage points
 const DECIDED_TAIL_FRACTION = 1 / 3
+/** The same band on a last-trade price, which runs 0 to 1: one number, where
+ *  `0.03` and `0.97` were spelled beside it. */
+const UNDECIDED_FROM = DECIDED_BAND / 100
+const UNDECIDED_TO = (100 - DECIDED_BAND) / 100
 
 /**
  * The tags that disqualify an event, each for its own reason. Editorial, and
@@ -145,29 +185,135 @@ const DROP_TAGS = new Set([
  *  Kept from the pre-`/events` filter, where it was the only thing working. */
 const DROP_TITLE_RE = /\b(nfl|nba|mlb|nhl|ncaa|super bowl|world cup|uefa|oscars|grammy|emmy|dogecoin|shiba|pepe|bitcoin price|ethereum price|eth price)\b/i
 
-function formatPeriod(tsSeconds) {
-  const d = new Date(tsSeconds * 1000)
-  const month = d.toLocaleDateString('en-US', { month: 'short', timeZone: 'UTC' })
-  return `${month} ${d.getUTCDate()}`
-}
-
-function ymd(d) {
-  return d.toISOString().slice(0, 10)
+/**
+ * The one outcome that stands for an event, or null when none is live. Pure,
+ * so it has a test.
+ *
+ * An event is a question and its markets are that question's outcomes:
+ * "Presidential Election Winner 2028" carries several hundred of them, one
+ * per candidate. Flattening them all produced 627 markets from 12 events, and
+ * the `slice(TOP_N)` in `fetchPolymarketTop` then cut *inside* the first two
+ * events, so widening the filter made the output smaller rather than larger.
+ * One per event, chosen before the history calls, costs no call per outcome.
+ *
+ * **The outcome the deck already carries, while it is live.** The pick was
+ * the highest 24h volume alone, made before `orderCandidates` could see who
+ * the incumbents were, so the selection was sticky by event and re-rolled
+ * inside each one. Of the 292 times an event was in the day's last snapshot
+ * on two consecutive days (2026-09-09 to 10-09), 116 changed outcome, and 114
+ * of the outcomes replaced were still undecided and inside their date:
+ * Brazil's election alternated between Lula and Flávio Bolsonaro almost
+ * daily. Each change is a new id, label and line, and the paragraph written
+ * for the old one orphaned, which is what the sticky selection exists to
+ * stop. 124 ids for 82 events in that month, and 121 of the dispatch's 140
+ * contract paragraphs keyed to markets the payload no longer shipped.
+ *
+ * Otherwise the highest 24h volume. `lastTradePrice` comes free on this
+ * payload, so skipping a 2% long-shot to reach the outcome people are
+ * actually trading costs nothing, and volume alone would hand a 500-candidate
+ * election its noisiest row.
+ *
+ * **Live is three tests, and `active` and `closed` are not the one for
+ * expiry: the API says so.** A market whose deadline has passed keeps
+ * `active: true, closed: false` until UMA resolves it, which can take months.
+ * Probed live: *"Will Adanech Abiebie be the next Prime Minister of
+ * Ethiopia?"* carried `endDate: 2026-06-01`, two months gone, alongside both
+ * flags saying it was live, and on the rail *"US x Iran Effective Ceasefire by
+ * July 31"* sat at 62% four days after July 31. A probability on a question
+ * whose date has passed is not a forecast; it is the last price before
+ * everyone stopped caring. The source's own `endDate` is the test, the
+ * event's where the market omits one (a nested market does not always carry
+ * it), and a market with neither is kept: an open-ended market is a real
+ * thing, and dropping one for a missing field would be reading absence as
+ * expiry.
+ *
+ * All three are asked of every outcome here, where they were asked of the
+ * pick alone: an event whose most-traded outcome had closed or run past its
+ * date was dropped whole, and now falls to its next live one. It is also what
+ * lets an incumbent be preferred: one that has expired is not held over a
+ * live sibling.
+ *
+ * @param {{ markets?: any[], endDate?: string | null }} ev
+ * @param {Set<string>} [incumbentSlugs] the previous snapshot's market slugs
+ * @param {number} [now]
+ * @returns {any | null}
+ */
+export function pickOutcome(ev, incumbentSlugs = new Set(), now = Date.now()) {
+  const live = (ev.markets || [])
+    .filter((m) => {
+      const ltp = Number(m.lastTradePrice)
+      return !Number.isFinite(ltp) || (ltp > UNDECIDED_FROM && ltp < UNDECIDED_TO)
+    })
+    .filter((m) => m.active && !m.closed)
+    .filter((m) => {
+      const end = Date.parse((m.endDate || ev.endDate) ?? m.endDateIso ?? '')
+      return !Number.isFinite(end) || end >= now
+    })
+    .sort((a, b) => (Number(b.volume24hr) || 0) - (Number(a.volume24hr) || 0))
+  return live.find((m) => incumbentSlugs.has(m.slug)) ?? live[0] ?? null
 }
 
 /**
- * Top events by 24h volume, tag-filtered, flattened back to markets.
+ * The response's events as the markets that stand for them: tag-filtered, one
+ * outcome each (`pickOutcome`). Pure, so it has a test.
+ *
+ * Each market is handed back with its parent event stitched into `events[0]`,
+ * because that is where the rest of this file looks for the event slug it
+ * builds the card URL from.
+ *
+ * `seen` is every market slug the response held, chosen or not. An incumbent
+ * missing from it has left the top of the volume table; one that is in it and
+ * not in `markets` was decided, closed, dated out or tagged away, and the log
+ * line in `fetchPolymarketTop` tells the two apart.
+ *
+ * @param {any[]} events
+ * @param {Set<string>} [incumbentSlugs]
+ * @param {number} [now]
+ * @returns {{ markets: any[], seen: Set<string>, droppedByTag: number, droppedNoneLive: number }}
+ */
+export function marketsFromEvents(events, incumbentSlugs = new Set(), now = Date.now()) {
+  let droppedByTag = 0
+  let droppedNoneLive = 0
+  const markets = []
+  /** @type {Set<string>} */
+  const seen = new Set()
+  for (const ev of events) {
+    for (const m of ev.markets || []) if (m?.slug) seen.add(m.slug)
+
+    const tags = (ev.tags || []).map((t) => String(t.slug || t.label || '').toLowerCase())
+    if (tags.some((t) => DROP_TAGS.has(t))) {
+      droppedByTag++
+      continue
+    }
+
+    const pick = pickOutcome(ev, incumbentSlugs, now)
+    if (!pick) {
+      droppedNoneLive++
+      continue
+    }
+    markets.push({
+      ...pick,
+      // The event's own date where the market omits one, as `pickOutcome` read it.
+      endDate: pick.endDate || ev.endDate,
+      events: [{ slug: ev.slug, title: ev.title }],
+      _eventTags: ev.tags || [],
+    })
+  }
+  return { markets, seen, droppedByTag, droppedNoneLive }
+}
+
+/**
+ * Top events by 24h volume, as `marketsFromEvents` reads them.
  *
  * Gamma sorts on `order=volume24hr` (camelCase). The public docs spell it
  * `volume_24hr` and that form returns essentially-random results — confirmed
  * against the live API 2026-04. We over-fetch to leave headroom after the tag
- * and decided pruning below.
+ * and decided pruning.
  *
- * Each market is handed back with its parent event stitched into `events[0]`,
- * because that is where the rest of this file already looks for the event slug
- * it dedupes and builds the card URL from. Nothing downstream had to change.
+ * @param {number} limit
+ * @param {Set<string>} incumbentSlugs
  */
-async function fetchTopMarkets(limit) {
+async function fetchTopMarkets(limit, incumbentSlugs) {
   const url = new URL(`${GAMMA_BASE}/events`)
   url.searchParams.set('order', 'volume24hr')
   url.searchParams.set('ascending', 'false')
@@ -175,65 +321,15 @@ async function fetchTopMarkets(limit) {
   url.searchParams.set('active', 'true')
   url.searchParams.set('closed', 'false')
 
-  const res = await fetch(url, {
-    signal: AbortSignal.timeout(10000),
-    headers: { 'User-Agent': ZUHD_UA },
-  })
-  if (!res.ok) throw new Error(`HTTP ${res.status}`)
-  const data = await res.json()
+  const data = await fetchJson(url, { timeoutMs: 10_000 })
   const events = Array.isArray(data) ? data : data.data || data.events || []
 
-  let droppedByTag = 0
-  let droppedAllDecided = 0
-  const markets = []
-  for (const ev of events) {
-    const tags = (ev.tags || []).map((t) => String(t.slug || t.label || '').toLowerCase())
-    if (tags.some((t) => DROP_TAGS.has(t))) {
-      droppedByTag++
-      continue
-    }
-
-    /**
-     * One market per event, chosen here rather than after the history calls.
-     *
-     * An event is a question and its markets are that question's outcomes —
-     * "Presidential Election Winner 2028" carries several hundred of them, one
-     * per candidate. Flattening them all produced 627 markets from 12 events,
-     * and the `slice(TOP_N)` below then cut *inside* the first two events, so
-     * widening the filter made the output smaller rather than larger. The
-     * dedupe further down already wanted exactly one per event; doing it here
-     * means it costs no price-history calls instead of one per outcome.
-     *
-     * Highest 24h volume that is not already decided. `lastTradePrice` comes
-     * free on this payload, so skipping a 2% long-shot to reach the outcome
-     * people are actually trading costs nothing — and picking purely by volume
-     * would hand a 500-candidate election its noisiest row.
-     */
-    const live = (ev.markets || [])
-      .filter((m) => {
-        const ltp = Number(m.lastTradePrice)
-        return !Number.isFinite(ltp) || (ltp > 0.03 && ltp < 0.97)
-      })
-      .sort((a, b) => (Number(b.volume24hr) || 0) - (Number(a.volume24hr) || 0))
-    if (!live.length) {
-      droppedAllDecided++
-      continue
-    }
-    markets.push({
-      ...live[0],
-      // The event's own dates where the market omits them. An event that has
-      // ended is the expiry case the `endDate` filter downstream exists for,
-      // and a nested market does not always carry one.
-      endDate: live[0].endDate || ev.endDate,
-      events: [{ slug: ev.slug, title: ev.title }],
-      _eventTags: ev.tags || [],
-    })
-  }
+  const { markets, seen, droppedByTag, droppedNoneLive } = marketsFromEvents(events, incumbentSlugs)
   console.log(
     `  · polymarket: ${events.length} events — ${droppedByTag} dropped by tag, ` +
-      `${droppedAllDecided} with every outcome decided, ${markets.length} questions kept`,
+      `${droppedNoneLive} with no live outcome, ${markets.length} questions kept`,
   )
-  return markets
+  return { markets, seen }
 }
 
 async function fetchPriceHistory(clobTokenId) {
@@ -246,18 +342,64 @@ async function fetchPriceHistory(clobTokenId) {
   url.searchParams.set('interval', '1m')
   url.searchParams.set('fidelity', '1440')
 
-  const res = await fetch(url, {
-    signal: AbortSignal.timeout(10000),
-    headers: { 'User-Agent': ZUHD_UA },
-  })
-  if (!res.ok) throw new Error(`HTTP ${res.status}`)
-  const data = await res.json()
+  const data = await fetchJson(url, { timeoutMs: 10_000 })
   return Array.isArray(data?.history) ? data.history : []
 }
 
 function sanitizeSlug(s) {
   return (s || '').toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '').slice(0, 48)
 }
+
+/**
+ * The id each row of the deck ships under. Pure, so it has a test.
+ *
+ * `poly-` and the market's slug cut to 48 characters, which is every id on
+ * disk. The cut is also where two markets become one. The Fed's "no change"
+ * question has a slug per meeting and the month falls after the cut, so the
+ * October and December meetings both shipped as
+ * `poly-will-there-be-no-change-in-fed-interest-rates-af` in 9 of 41 cycles
+ * (2026-10-01 to 10-09), at 83% and 21% on 10-02. Everything downstream keys
+ * on the id: one dispatch paragraph for both, one `/api/entity/{id}.json`
+ * written twice, and an article's `chart:` free to draw the other meeting.
+ *
+ * An incumbent keeps the id its row had in the previous snapshot, so no id
+ * that is live changes and no paragraph is orphaned. A newcomer takes the cut
+ * slug unless a row of this deck holds it, and then a 41-character head and
+ * six hex characters of its whole slug's sha1: the same length, and its own
+ * from the next cycle on, when it is an incumbent. The incumbents' ids are
+ * set aside first, so a newcomer ranked above one cannot take its id. Two
+ * incumbents on one id (a snapshot written before this) part the same way,
+ * the first in deck order keeping it.
+ *
+ * @param {{ slug: string, incumbentId?: string | null }[]} deck in deck order
+ * @returns {string[]} one id a row, in that order
+ */
+export function deckIds(deck) {
+  const held = (d) => (typeof d.incumbentId === 'string' && d.incumbentId.startsWith('poly-') ? d.incumbentId : null)
+  /** @type {Map<string, number>} id → the first row that held it */
+  const holder = new Map()
+  deck.forEach((d, i) => {
+    const id = held(d)
+    if (id && !holder.has(id)) holder.set(id, i)
+  })
+  const taken = new Set(holder.keys())
+  return deck.map((d, i) => {
+    const kept = held(d)
+    if (kept && holder.get(kept) === i) return kept
+    const slug = sanitizeSlug(d.slug)
+    let id = `poly-${slug}`
+    if (taken.has(id)) id = `poly-${slug.slice(0, 41).replace(/-$/, '')}-${sha1Hex(d.slug, 6)}`
+    taken.add(id)
+    return id
+  })
+}
+
+/**
+ * The header a title is asked to fit, in characters. The model is told this
+ * number, and a title already inside it keeps its own words. The regex
+ * fallback below cuts at its own, longer `TARGET`, and says why.
+ */
+const HEADER_CHARS = 42
 
 /** Regex fallback — used only if Haiku fails. Strip "Will" prefix,
  *  collapse "U.S." → "US", ellipsis-truncate. Loses nuance on edge cases,
@@ -337,14 +479,6 @@ export function isUsableShortTitle(raw, short) {
   return true
 }
 
-/** Batch-shorten Polymarket titles via Haiku. One call, all titles, ~2s.
- *  Returns an array aligned to the input. On any failure (CLI error,
- *  parse error, wrong length) falls back to the regex shortener per-item
- *  so the pipeline never blocks on this.
- *
- *  @param {string[]} titles  Raw market questions.
- *  @returns {Promise<string[]>}
- */
 /**
  * The shape every path out of the shortener returns, so a caller never has to
  * ask which one it got. The regex fallback cannot infer a country, and an empty
@@ -354,15 +488,6 @@ function fallbackLabels(titles) {
   return titles.map((t) => ({ label: shortenTitleRegex(t), countryTags: [] }))
 }
 
-/**
- * Keep only codes the map can actually resolve.
- *
- * A model asked for ISO-2 will occasionally answer `UK`, `EU`, `PS-GZ` or a
- * country's name in full, and an unresolvable tag is worse than no tag: it
- * looks like coverage and silently matches nothing. `CC_TO_TOPOJSON_NAME` is
- * the same table the map draws its countries from, so a code that survives this
- * is a code something on the page can key on.
- */
 /**
  * ISO-2 codes from an event's own tag slugs.
  *
@@ -406,6 +531,15 @@ function countriesFromEventTags(tags) {
   return out
 }
 
+/**
+ * Keep only codes the map can actually resolve.
+ *
+ * A model asked for ISO-2 will occasionally answer `UK`, `EU`, `PS-GZ` or a
+ * country's name in full, and an unresolvable tag is worse than no tag: it
+ * looks like coverage and silently matches nothing. `CC_TO_TOPOJSON_NAME` is
+ * the same table the map draws its countries from, so a code that survives this
+ * is a code something on the page can key on.
+ */
 function validCodes(list) {
   if (!Array.isArray(list)) return []
   const out = []
@@ -417,14 +551,15 @@ function validCodes(list) {
   return out
 }
 
-/** How many titles one Haiku call is asked for. Measured: a chunk of 4 lands in
- *  25-35s, the whole 10-title batch took 98s — the call scales worse than
- *  linearly in batch size, and the trends stage has 120s for six sources. */
+/** How many titles one call is asked for. Measured on Haiku: a chunk of 4
+ *  landed in 25-35s and the whole 10-title batch took 98s, so the call scales
+ *  worse than linearly in batch size. On Sonnet a chunk is 10-15s (62 chunks
+ *  over the 41 cycles of 2026-10-01 to 10-09). */
 const HAIKU_CHUNK = 4
 
-/** How many of those run at once. Three chunks in flight covers a full deck in
- *  roughly one chunk's wall-clock; more would put four `claude` processes on a
- *  box that is also running the rest of the cycle. */
+/** How many of those run at once: four, so that a deck's newcomers (rarely
+ *  more than sixteen now that selection is sticky) are one wave and cost one
+ *  chunk's wall-clock. See the ceiling below for why a second wave matters. */
 const HAIKU_CONCURRENCY = 4
 
 // One chunk's ceiling. Measured, and it has been wrong twice: 40s held while a
@@ -440,15 +575,15 @@ const HAIKU_CONCURRENCY = 4
 //
 // 100s is sized against the stage, not picked round. `runWithConcurrency` runs
 // HAIKU_CONCURRENCY chunks at a time, so wall time is (waves x ceiling), and
-// the concurrency above is 4 so that an observed deck (10-14 questions, i.e.
-// 3-4 chunks of HAIKU_CHUNK) is a SINGLE wave. Worst case is then one ceiling,
-// not two: ~40s for the other five sources + 100s here = 140s inside the
-// `timeout 180` that run-cycle.sh gives the stage. Two waves at this ceiling
-// would exceed that budget, which is the thing to re-check if HAIKU_CHUNK,
-// HAIKU_CONCURRENCY or the deck size moves.
+// the concurrency above is 4 so that sixteen new questions are a SINGLE wave.
+// Worst case is then one ceiling, not two: the rest of the stage runs 40 to
+// 75s (measured over 41 cycles) and 100s on top of it is inside the stage's
+// `timeout 180`. Two waves at this ceiling would not be, which is the thing
+// to re-check if HAIKU_CHUNK, HAIKU_CONCURRENCY or `TOP_N` moves: a deck with
+// no incumbents at all is twenty new questions, five chunks, two waves.
 //
-// Overrun is not a publish risk: TRENDS_EXIT is logged and never acted on, so
-// a blown stage costs that cycle's trends data and nothing else.
+// Overrun is not a publish risk: the stage's exit is logged and never acted
+// on, so a blown stage costs that cycle's trends data and nothing else.
 // Override with PM_HAIKU_TIMEOUT_MS.
 const HAIKU_TIMEOUT_MS = Number(process.env.PM_HAIKU_TIMEOUT_MS) || 100_000
 
@@ -458,8 +593,8 @@ const HAIKU_TIMEOUT_MS = Number(process.env.PM_HAIKU_TIMEOUT_MS) || 100_000
 // resized for, and its labels read more naturally ("Flávio Bolsonaro wins
 // Brazil 2026?" against "…wins 2026 Brazil?"). The 27% rejection rate that
 // prompted the switch was mostly `isUsableShortTitle`, not the model; see there.
-// An empty PM_TITLE_EFFORT drops the flag, which running this on Haiku needs.
-const TITLE_MODEL = process.env.PM_TITLE_MODEL || 'claude-sonnet-5-5'
+// An empty PM_TITLE_EFFORT drops the flag, which running this on Haiku 4.5 needs.
+const TITLE_MODEL = modelFor('polymarketTitles')
 const TITLE_EFFORT = process.env.PM_TITLE_EFFORT ?? 'low'
 
 /**
@@ -476,8 +611,8 @@ const TITLE_EFFORT = process.env.PM_TITLE_EFFORT ?? 'low'
  * back to the regex form for the titles it was given, so one bad chunk costs
  * four labels rather than the deck's.
  */
-async function shortenTitlesViaHaiku(titles) {
-  if (titles.length <= HAIKU_CHUNK) return shortenBatchViaHaiku(titles)
+export async function shortenTitlesViaHaiku(titles, spawn = spawnClaude) {
+  if (titles.length <= HAIKU_CHUNK) return shortenBatchViaHaiku(titles, spawn)
   const chunks = []
   for (let i = 0; i < titles.length; i += HAIKU_CHUNK) chunks.push({ at: i, titles: titles.slice(i, i + HAIKU_CHUNK) })
   // `runWithConcurrency` resolves to nothing — it is a rate limiter, not a
@@ -485,28 +620,18 @@ async function shortenTitlesViaHaiku(titles) {
   // here: the caller zips the result against `deduped` by index.
   const out = new Array(chunks.length)
   await runWithConcurrency(chunks, HAIKU_CONCURRENCY, async (chunk) => {
-    out[chunk.at / HAIKU_CHUNK] = await shortenBatchViaHaiku(chunk.titles)
+    out[chunk.at / HAIKU_CHUNK] = await shortenBatchViaHaiku(chunk.titles, spawn)
   })
   return out.flat()
 }
 
-async function shortenBatchViaHaiku(titles) {
-  if (titles.length === 0) return []
-  // Timed, because this ceiling has now been wrong twice — 40s when the deck
-  // widened, then 60s once chunking landed — and both times the evidence was a
-  // silent regex fallback rather than a number anyone could read. "Timeouts are
-  // measured, not guessed" needs the measurement to be in the log.
-  const chunkStarted = Date.now()
-  const { execFile } = await import('node:child_process')
-  const { promisify } = await import('node:util')
-  const { randomUUID } = await import('node:crypto')
-  const run = promisify(execFile)
-
+/** The one prompt: shorten each title, and say which countries it is about. */
+function titlePrompt(titles) {
   const items = titles.map((t, i) => `${i + 1}. ${t}`).join('\n')
-  const prompt = `You are shortening prediction-market question titles so they fit as chart headers on a mobile phone.
+  return `You are shortening prediction-market question titles so they fit as chart headers on a mobile phone.
 
 Constraints per title:
-- ≤42 characters
+- ≤${HEADER_CHARS} characters
 - Preserve the question mark if the original is a yes/no
 - Preserve the date horizon ("by 2027", "in 2026") if present — it is the market's whole point
 - Drop only filler ("Will the ...", "U.S." → "US", passive voice)
@@ -531,69 +656,80 @@ common case and guessing is worse than leaving it empty.
 Return ONLY a JSON array, same order and same length as the input, of objects:
   [{"title": "US invade Iran by 2027?", "countries": ["US","IR"]}, ...]
 No commentary, no markdown fences.`
+}
 
-  const env = { ...process.env }
-  delete env.CLAUDECODE
+/**
+ * The model's answer as one label and its country tags a title. Throws when
+ * the answer is not the array it was asked for.
+ *
+ * @param {string} text the envelope's result
+ * @param {string[]} titles what was asked, in order
+ */
+function labelsFromAnswer(text, titles) {
+  // Strip possible markdown fence + locate the JSON array
+  const cleaned = String(text).replace(/^```(?:json)?\s*|\s*```$/g, '').trim()
+  const start = cleaned.indexOf('[')
+  const end = cleaned.lastIndexOf(']')
+  if (start === -1 || end === -1) throw new Error('no JSON array in output')
+  const arr = JSON.parse(cleaned.slice(start, end + 1))
+  if (!Array.isArray(arr) || arr.length !== titles.length) {
+    throw new Error(`expected ${titles.length} titles, got ${arr?.length}`)
+  }
+  return arr.map((row, i) => {
+    // Tolerant of the older bare-string shape, because the model occasionally
+    // answers the question it was asked last week rather than this one.
+    const label = typeof row === 'string' ? row : row?.title
+    return {
+      label: typeof label === 'string' && label.length > 0 ? label : shortenTitleRegex(titles[i]),
+      countryTags: validCodes(row?.countries),
+    }
+  })
+}
+
+/**
+ * One call for one chunk of titles, through the shared argv and child
+ * (`claudeArgs`, `spawnClaude`).
+ *
+ * `spawnClaude` and not a synchronous call: this runs inside
+ * `runWithConcurrency`, which overlaps only work that yields. It was
+ * `spawnSync` once, three "concurrent" chunks ran one after another, and
+ * chunking made the stage slower than the single call it replaced (two
+ * chunks, 80.6s, one of them killed).
+ *
+ * It spelled its own argv until 2026-10-09 and had drifted from the shared
+ * one twice, in the ways that cost without failing: no isolation flags (105
+ * MCP tools on every call, see `ISOLATION_FLAGS`), and no
+ * `--exclude-dynamic-system-prompt-sections`, so the system prompt did not
+ * cache from one chunk to the next.
+ *
+ * @param {string[]} titles
+ * @param {typeof spawnClaude} spawn
+ */
+async function shortenBatchViaHaiku(titles, spawn) {
+  if (titles.length === 0) return []
+  // Timed, because this ceiling has now been wrong twice — 40s when the deck
+  // widened, then 60s once chunking landed — and both times the evidence was a
+  // silent regex fallback rather than a number anyone could read. "Timeouts are
+  // measured, not guessed" needs the measurement to be in the log.
+  const chunkStarted = Date.now()
+  const elapsed = () => Math.round((Date.now() - chunkStarted) / 1000)
   const tmpId = randomUUID().slice(0, 8)
-  /**
-   * `execFile`, not `spawnSync`.
-   *
-   * This was `spawnSync` inside a `runWithConcurrency(_, 3, …)`, which is three
-   * chunks of nothing: `spawnSync` blocks the event loop until the child exits,
-   * so the "concurrent" chunks ran strictly one after another and chunking made
-   * the stage *slower* than the single call it replaced. Measured before: two
-   * chunks, 80.6s, one of them SIGTERM-killed. The limiter can only limit work
-   * that yields.
-   */
-  let res
-  try {
-    res = await run('claude', [
-      '--model', TITLE_MODEL,
-      ...(TITLE_EFFORT ? ['--effort', TITLE_EFFORT] : []),
-      '--no-session-persistence',
-      '--tools', '',
-      '--max-turns', '1',
-      '--output-format', 'json',
-      '-p', prompt,
-    // 60s against a measured 25-35s for a chunk of this size. It was 40s for a
-    // whole batch, which held while the batch was 3 titles and stopped holding
-    // the moment the tag filter widened the deck: measured at 10 titles the one
-    // call took **98s**, SIGTERM at 40s every run, so every question lost its
-    // country tags to the regex fallback. Chunking is what fixed it — see
-    // `shortenTitlesViaHaiku` — and this ceiling now covers one chunk with
-    // room, inside a 120s stage that has five other sources to fetch.
-    ], { encoding: 'utf-8', timeout: HAIKU_TIMEOUT_MS, maxBuffer: 256 * 1024, env })
-  } catch (err) {
+
+  const res = await spawn(claudeArgs(titlePrompt(titles), { model: TITLE_MODEL, effort: TITLE_EFFORT || null }), {
+    timeout: HAIKU_TIMEOUT_MS,
+    maxBuffer: 256 * 1024,
+  })
+  if (res.status !== 0) {
     console.error(
-      `  ✗ polymarket-haiku ${tmpId}: ${err.code ?? err.message} after ${Math.round((Date.now() - chunkStarted) / 1000)}s ` +
-      `(ceiling ${Math.round(HAIKU_TIMEOUT_MS / 1000)}s, ${titles.length} titles) — falling back to regex`,
+      `  ✗ polymarket-haiku ${tmpId}: ${claudeFailure(res, HAIKU_TIMEOUT_MS)} after ${elapsed()}s ` +
+        `(${titles.length} titles) — falling back to regex`,
     )
     return fallbackLabels(titles)
   }
-  console.error(`  · polymarket-haiku ${tmpId}: ${titles.length} titles in ${Math.round((Date.now() - chunkStarted) / 1000)}s`)
+  console.error(`  · polymarket-haiku ${tmpId}: ${titles.length} titles in ${elapsed()}s`)
 
   try {
-    // Claude envelope: outer JSON wrapping result text
-    const envelope = JSON.parse(res.stdout)
-    const raw = envelope.result ?? envelope.text ?? res.stdout
-    // Strip possible markdown fence + locate the JSON array
-    const cleaned = String(raw).replace(/^```(?:json)?\s*|\s*```$/g, '').trim()
-    const start = cleaned.indexOf('[')
-    const end = cleaned.lastIndexOf(']')
-    if (start === -1 || end === -1) throw new Error('no JSON array in output')
-    const arr = JSON.parse(cleaned.slice(start, end + 1))
-    if (!Array.isArray(arr) || arr.length !== titles.length) {
-      throw new Error(`expected ${titles.length} titles, got ${arr?.length}`)
-    }
-    return arr.map((row, i) => {
-      // Tolerant of the older bare-string shape, because the model occasionally
-      // answers the question it was asked last week rather than this one.
-      const label = typeof row === 'string' ? row : row?.title
-      return {
-        label: typeof label === 'string' && label.length > 0 ? label : shortenTitleRegex(titles[i]),
-        countryTags: validCodes(row?.countries),
-      }
-    })
+    return labelsFromAnswer(parseClaudeText(res.stdout).text, titles)
   } catch (err) {
     console.error(`  ✗ polymarket-haiku ${tmpId}: ${err.message} — falling back to regex`)
     return fallbackLabels(titles)
@@ -615,132 +751,82 @@ function parseOutcomeTokens(market) {
 }
 
 /**
- * Fetch top-N filtered Polymarket markets with daily price history.
+ * The deck: up to `TOP_N` markets, one an event, each a snapshot row with its
+ * daily price history, or null when the events could not be fetched.
  *
- * @returns {Promise<Array<{
- *   id: string,
- *   label: string,
- *   unit: '%',
- *   source: 'polymarket',
- *   seriesId: string,
- *   cadence: 'daily',
- *   topicTags: string[],
- *   defaultHighlight: 'last',
- *   sourceLabel: string,
- *   values: number[],
- *   periods: string[],
- *   asOf: string,
- *   marketUrl: string,
- *   outcomeLabel: string,
- * }> | null>}
- */
-/**
- * @param {{ incumbents?: Array<{ seriesId?: string, label?: string, countryTags?: string[] }> }} [options]
+ * A row is what a registry row is (`id`, `label`, `unit`, `source`,
+ * `seriesId`, `cadence`, `topicTags`, `countryTags`, `defaultHighlight`,
+ * `sourceLabel`, `values`, `periods`, `asOf`) and four keys of its own:
+ * `marketUrl`, `outcomeLabel`, `endDate` and `change24h`.
+ *
+ * @param {{ incumbents?: Array<{ id?: string, seriesId?: string, label?: string, countryTags?: string[] }> }} [options]
  *        `incumbents`: the previous snapshot's Polymarket rows. `seriesId` is
  *        the market slug, which is how a row is recognised in this cycle's
  *        response; `label` and `countryTags` are reused so an incumbent never
- *        pays the Haiku call twice.
+ *        pays the Haiku call twice, and `id` so that what was narrated under it
+ *        stays joined (`deckIds`).
  */
 export async function fetchPolymarketTop({ incumbents = [] } = {}) {
-  let markets
-  try {
-    markets = await fetchTopMarkets(TOP_N)
-  } catch (err) {
-    console.error(`  ✗ polymarket markets: ${err.message}`)
-    return null
-  }
-
+  // Before the fetch: which outcome stands for an event depends on who the
+  // incumbents are (`pickOutcome`).
   const incumbentBySlug = new Map(
     incumbents.filter((i) => typeof i?.seriesId === 'string' && i.seriesId).map((i) => [i.seriesId, i]),
   )
   const incumbentSlugs = new Set(incumbentBySlug.keys())
 
-  const eligible = markets
-    .filter((m) => m.active && !m.closed)
-    /**
-     * **`active` and `closed` do not track expiry, and the API says so.**
-     *
-     * A market whose deadline has passed keeps `active: true, closed: false`
-     * until UMA resolves it, which can take months. Probed live: *"Will Adanech
-     * Abiebie be the next Prime Minister of Ethiopia?"* carried
-     * `endDate: 2026-06-01` — two months gone — alongside both flags saying it
-     * was live, and on the rail *"US x Iran Effective Ceasefire by July 31"* sat
-     * at 62% four days after July 31. A probability on a question whose date has
-     * passed is not a forecast; it is the last price before everyone stopped
-     * caring, and printing it beside live markets makes the block untrustworthy
-     * in a way a reader cannot check.
-     *
-     * The source's own `endDate` is the test, so nothing has to be inferred from
-     * the question text. Markets with no end date are kept: an open-ended market
-     * is a real thing, and dropping one for a missing field would be reading
-     * absence as expiry.
-     */
-    .filter((m) => {
-      const end = Date.parse(m.endDate ?? m.endDateIso ?? '')
-      return !Number.isFinite(end) || end >= Date.now()
-    })
-    // The subject filter is the event tags, applied in `fetchTopMarkets`. What
-    // is left here is the second net: a market whose event was tagged loosely.
-    // The keyword allow-list this replaced is gone rather than kept as a
-    // fallback — it was dropping the Strait of Hormuz for not being on it, and
-    // a list that silently decides what the app may cover is worse than no
-    // list once something better exists.
-    .filter((m) => !DROP_TITLE_RE.test(m.question || m.title || ''))
-
-  // Incumbents first, then pinned subjects, then volume — see `orderCandidates`.
-  const filtered = orderCandidates(eligible, incumbentSlugs).slice(0, TOP_N)
-
-  {
-    const isIncumbent = (m) => incumbentSlugs.has(m.slug)
-    const keptIncumbents = filtered.filter(isIncumbent).length
-    const pinned = filtered.filter(
-      (m) => !isIncumbent(m) && PIN_TITLE_RE.test(m.question || m.title || ''),
-    ).length
-    const fetched = new Set(markets.map((m) => m.slug))
-    const goneAbsent = [...incumbentSlugs].filter((s) => !fetched.has(s)).length
-    const goneFiltered = incumbentSlugs.size - keptIncumbents - goneAbsent
-    console.log(
-      `  · polymarket: ${markets.length} considered, ${eligible.length} eligible, ${filtered.length} kept — ` +
-        `${keptIncumbents}/${incumbentSlugs.size} incumbents kept, ${pinned} pinned, ` +
-        `${filtered.length - keptIncumbents - pinned} new; ` +
-        `${goneAbsent} incumbent(s) gone from the top ${TOP_N * 3}, ${goneFiltered} filtered out`,
-    )
+  let markets
+  let seen
+  try {
+    ;({ markets, seen } = await fetchTopMarkets(TOP_N, incumbentSlugs))
+  } catch (err) {
+    console.error(`  ✗ polymarket markets: ${err.message}`)
+    return null
   }
 
-  const results = []
-  for (const m of filtered) {
-    // Decided markets pre-filter: lastTradePrice pinned to an extreme means the
-    // chart is a flat line — skip BEFORE paying for the CLOB history call.
-    // isDecidedSeries() below still catches tail-decided markets this misses.
-    const ltp = Number(m.lastTradePrice)
-    if (Number.isFinite(ltp) && (ltp >= 0.97 || ltp <= 0.03)) continue
+  // Whether an outcome is live (undecided, open, inside its date) and the
+  // subject filter on the event's tags are both settled in `marketsFromEvents`.
+  // What is left here is the second net: a market whose event was tagged
+  // loosely. The keyword allow-list this replaced is gone rather than kept as a
+  // fallback — it was dropping the Strait of Hormuz for not being on it, and
+  // a list that silently decides what the app may cover is worse than no
+  // list once something better exists.
+  const eligible = markets.filter((m) => !DROP_TITLE_RE.test(m.question || m.title || ''))
 
+  // Incumbents first, then pinned subjects, then volume — see `orderCandidates`.
+  const ordered = orderCandidates(eligible, incumbentSlugs)
+
+  /** One market's row, or null when it has no line worth drawing. */
+  const rowFor = async (m) => {
+    // A market decided by its last price never gets here: `pickOutcome` passes
+    // over it before any history is paid for. `isDecidedSeries` below is for
+    // the one whose line has sat at an extreme while its last trade has not.
     const tokens = parseOutcomeTokens(m)
-    if (!tokens) continue
+    if (!tokens) return null
 
     let history = []
     try {
       history = await fetchPriceHistory(tokens.tokenId)
     } catch (err) {
       console.error(`  ✗ polymarket history ${m.slug}: ${err.message}`)
-      continue
+      return null
     }
-    if (history.length < MIN_HISTORY_POINTS) continue
+    if (history.length < MIN_HISTORY_POINTS) return null
 
     const values = history.map((h) => Math.round((h.p || 0) * 100))
-    if (isDecidedSeries(values)) continue
+    if (isDecidedSeries(values)) return null
 
-    const periods = history.map((h) => formatPeriod(h.t))
-    const asOf = ymd(new Date((history[history.length - 1].t || 0) * 1000))
+    const periods = history.map((h) => dayLabel(h.t * 1000))
+    const asOf = isoDay((history[history.length - 1].t || 0) * 1000)
     const rawTitle = m.question || m.title || 'Untitled market'
-    const slug = sanitizeSlug(m.slug || rawTitle)
     const eventSlug = m.events?.[0]?.slug || null
     const eventUrl = eventSlug ? `https://polymarket.com/event/${eventSlug}` : ''
 
     // Shortened label is filled in by a batched Haiku call after the loop so
     // we spend one Claude call on all kept markets rather than one each.
-    results.push({
-      id: `poly-${slug}`,
+    return {
+      // Given once the deck is settled (`deckIds`): an id depends on the rows
+      // beside it.
+      id: '',
       label: rawTitle,
       rawTitle,
       unit: '%',
@@ -766,50 +852,49 @@ export async function fetchPolymarketTop({ incumbents = [] } = {}) {
       // rather than after the model call, so a killed call costs a long header
       // and never a country tag.
       countryTags: countriesFromEventTags(m._eventTags),
-      // Internal — used for event-level dedupe below, not persisted.
-      _eventSlug: eventSlug,
-      _volume24hr: Number(m.volume24hr) || 0,
       // Internal — the previous snapshot's row for this market, so its label
-      // and country tags can be reused below instead of re-bought from Haiku.
+      // and country tags can be reused below instead of re-bought from Haiku,
+      // and its id kept.
       _incumbent: incumbentBySlug.get(m.slug) ?? null,
-    })
-  }
-
-  // Dedupe by event: many "neg-risk" markets (e.g. Fed +25/no change/-25/-50)
-  // share one event. Keep the highest-volume outcome per event so the editor
-  // sees one chart per real-world question rather than four near-duplicates.
-  const dedupedByEvent = new Map()
-  const standalone = []
-  for (const r of results) {
-    if (!r._eventSlug) {
-      standalone.push(r)
-      continue
-    }
-    const existing = dedupedByEvent.get(r._eventSlug)
-    if (!existing || r._volume24hr > existing._volume24hr) {
-      dedupedByEvent.set(r._eventSlug, r)
+      // Internal — what the id is cut from.
+      _slug: m.slug || rawTitle,
     }
   }
-  const deduped = [...standalone, ...dedupedByEvent.values()]
-  for (const r of deduped) {
-    delete r._eventSlug
-    delete r._volume24hr
+
+  // In order, until `TOP_N` of them have a row (`takeRows`). One row an event
+  // already: `pickOutcome` chose the outcome before any history was fetched,
+  // so there is no dedupe by event here any more.
+  const { rows: results, tried } = await takeRows(ordered, TOP_N, rowFor)
+
+  {
+    const keptIncumbents = results.filter((r) => r._incumbent).length
+    const pinned = results.filter((r) => !r._incumbent && PIN_TITLE_RE.test(r.rawTitle)).length
+    // Against every outcome the response held, not the ones chosen: an
+    // incumbent that lost its event's pick was counted as gone from the top.
+    const goneAbsent = [...incumbentSlugs].filter((s) => !seen.has(s)).length
+    const goneFiltered = incumbentSlugs.size - keptIncumbents - goneAbsent
+    console.log(
+      `  · polymarket: ${markets.length} considered, ${eligible.length} eligible, ${results.length} kept of ${tried} tried — ` +
+        `${keptIncumbents}/${incumbentSlugs.size} incumbents kept, ${pinned} pinned, ` +
+        `${results.length - keptIncumbents - pinned} new; ` +
+        `${goneAbsent} incumbent(s) gone from the top ${TOP_N * 3}, ${goneFiltered} filtered out`,
+    )
   }
 
-  if (deduped.length < results.length) {
-    console.log(`  · polymarket: deduped ${results.length} → ${deduped.length} (one per event)`)
+  const ids = deckIds(results.map((r) => ({ slug: r._slug, incumbentId: r._incumbent?.id })))
+  for (let i = 0; i < results.length; i++) results[i].id = ids[i]
+  const parted = ids.filter((id, i) => id !== `poly-${sanitizeSlug(results[i]._slug)}`)
+  if (parted.length > 0) {
+    console.log(`  · polymarket: ${parted.length} id(s) parted from a twin alike for 48 characters: ${parted.join(', ')}`)
   }
 
-  // Batch-shorten titles via Haiku in one call. Kept after dedup to avoid
-  // spending tokens on labels we'd drop anyway. Titles already within the
-  // 42-char header budget skip the call — smaller batches finish inside the
-  // 40s spawn timeout that used to SIGTERM full batches (exit 143), and a
-  // cycle where every title fits skips the Haiku call entirely.
-  // **Every deduped row now, not only the long ones.** The call also returns the
-  // countries each question is about, and that is worth having for a title that
-  // already fits — skipping those left the shortest, most quotable markets as
-  // the only untagged ones. It is the same single call and the same batch size
-  // order of magnitude, so the token cost is unchanged in kind.
+  // Titles go to the model once the deck is settled, so none is paid for that
+  // the deck will not carry.
+  // **Every new row, not only the long ones.** The call also returns the
+  // countries each question is about, and that is worth having for a title
+  // that already fits `HEADER_CHARS` — skipping those left the shortest, most
+  // quotable markets as the only untagged ones. Such a title keeps its own
+  // words (below); only its countries are taken.
   // **Only newcomers go to the model.** The call has no cache, so before
   // selection was sticky every row paid for it on every cycle — ~4 chunks of
   // 22-33s each. An incumbent keeps the label and country tags it was given
@@ -818,8 +903,8 @@ export async function fetchPolymarketTop({ incumbents = [] } = {}) {
   // than kept: the sticky label made one failed shortening permanent for as
   // long as the market stayed in the deck.
   const truncated = (r) => typeof r._incumbent?.label === 'string' && r._incumbent.label.endsWith('…')
-  const held = deduped.filter((r) => r._incumbent && !truncated(r))
-  const fresh = deduped.filter((r) => !r._incumbent || truncated(r))
+  const held = results.filter((r) => r._incumbent && !truncated(r))
+  const fresh = results.filter((r) => !r._incumbent || truncated(r))
   for (const r of held) {
     if (typeof r._incumbent.label === 'string' && r._incumbent.label) r.label = r._incumbent.label
     r.countryTags = [
@@ -837,7 +922,7 @@ export async function fetchPolymarketTop({ incumbents = [] } = {}) {
       // A title already inside the header budget keeps its own words: the model
       // is here for the countries, and re-writing a label that did not need it
       // is a change nobody asked for and nobody can review.
-      if (fresh[i].rawTitle.length > 42) {
+      if (fresh[i].rawTitle.length > HEADER_CHARS) {
         const proposed = enriched[i].label
         if (isUsableShortTitle(fresh[i].rawTitle, proposed)) {
           fresh[i].label = proposed
@@ -860,13 +945,13 @@ export async function fetchPolymarketTop({ incumbents = [] } = {}) {
       console.log(`  · polymarket: ${rejected} shortened title(s) rejected, kept the regex form`)
     }
   }
-  for (const r of deduped) {
+  for (const r of results) {
     delete r.rawTitle
-    delete r._eventTags
     delete r._incumbent
+    delete r._slug
   }
 
-  return deduped
+  return results
 }
 
 /** A series is "decided" if its tail (last DECIDED_TAIL_FRACTION of points)

@@ -14,48 +14,29 @@
 // one from Haiku, but now at least the fetched-successfully sources
 // also gain a distinctive-angle sentence.
 
-import { readFileSync, writeFileSync, existsSync } from 'node:fs'
-import { join, basename } from 'node:path'
-import { randomUUID } from 'node:crypto'
-import { runHaiku } from './lib/claude-envelope.js'
-import { parseFrontmatter, replaceFrontmatterKey } from './lib/frontmatter.js'
+import { readFileSync, existsSync } from 'node:fs'
+import { tryReadArticle } from './lib/article.js'
+import { batchFiles } from './lib/article-files.js'
+import { callClaudeJson, callCost } from './lib/claude-envelope.js'
+import { runWithConcurrency } from './lib/concurrency.js'
+import { pathOf } from './lib/datasets.js'
+import { replaceFrontmatterKey, yamlString } from './lib/frontmatter.js'
 import { fetchSourceText } from './lib/fetch-source-text.js'
-import { ROOT } from './lib/paths.js'
+import { writeText } from './lib/json-file.js'
+import { modelFor } from './lib/models.js'
 
-const NEW_ARTICLES_PATH = '/tmp/zuhd-new-articles.txt'
 const FETCH_CONCURRENCY = 5
 const SOURCE_TEXT_FOR_HAIKU = 1400 // chars per source passed to Haiku
 
-if (!existsSync(NEW_ARTICLES_PATH)) {
+if (!existsSync(pathOf('newArticles'))) {
   console.log('No new articles list found — skipping source-angle extraction.')
   process.exit(0)
 }
 
-const newFiles = readFileSync(NEW_ARTICLES_PATH, 'utf8').trim().split('\n').filter(Boolean)
+const newFiles = batchFiles()
 if (newFiles.length === 0) {
   console.log('No new articles — skipping source-angle extraction.')
   process.exit(0)
-}
-
-/** Run fn over items with at most `limit` in flight. Returns results aligned
- *  to input order. Rejections resolve to undefined so one bad fetch doesn't
- *  cascade. */
-async function pool(items, limit, fn) {
-  const results = new Array(items.length)
-  let i = 0
-  async function worker() {
-    while (true) {
-      const idx = i++
-      if (idx >= items.length) return
-      try {
-        results[idx] = await fn(items[idx])
-      } catch {
-        results[idx] = undefined
-      }
-    }
-  }
-  await Promise.all(Array.from({ length: Math.min(limit, items.length) }, worker))
-  return results
 }
 
 /** Collect all sources across all cycle articles into one flat list keyed
@@ -75,10 +56,17 @@ function collectSourceTasks(files) {
 
 /** Single Haiku call — batched across every successfully-fetched source in
  *  the cycle. Returns a Map keyed by numeric item key → {angle, sentiment}.
- *  On any error returns an empty map; callers fall back gracefully. */
-function extractAnglesViaHaiku(items) {
+ *  On any error returns an empty map; callers fall back gracefully.
+ *
+ *  Through `callClaudeJson`, like every other JSON call. This stage unwrapped
+ *  the envelope itself, and its copy had parted from the shared one twice. An
+ *  answer with no text in it (`result: null`) was parsed as the envelope, in
+ *  which no item key is found: no angles, and no line saying why. And its
+ *  repair for an unescaped quote rewrote every *sound* entry of the batch
+ *  (`"angle": "…“, ”sentiment": …`), so it could only mend an answer in which
+ *  every angle was broken the same way. */
+async function extractAnglesViaHaiku(items) {
   if (items.length === 0) return new Map()
-  const invocationId = randomUUID().slice(0, 8)
 
   const blocks = items
     .map(
@@ -121,52 +109,16 @@ ${blocks}
 
 Return ONLY the JSON object. No commentary, no markdown fences.`
 
-  const res = runHaiku(prompt, { timeout: 120_000, maxBuffer: 1024 * 1024 })
-
-  if (res.status !== 0) {
-    console.error(`  ✗ angles-haiku ${invocationId}: exit ${res.status}`)
+  const res = await callClaudeJson(prompt, { model: modelFor('haiku'), timeout: 120_000, maxBuffer: 1024 * 1024 })
+  if (res.error) {
+    console.error(`  ✗ angles-haiku: ${res.error}`)
     return new Map()
   }
-  const envelope = (() => {
-    try {
-      return JSON.parse(res.stdout)
-    } catch {
-      return null
-    }
-  })()
-  const raw = envelope?.result ?? envelope?.text ?? res.stdout
-  const cleaned = String(raw).replace(/^```(?:json)?\s*|\s*```$/g, '').trim()
-  const start = cleaned.indexOf('{')
-  const end = cleaned.lastIndexOf('}')
-  if (start === -1 || end === -1) {
-    console.error(`  ✗ angles-haiku ${invocationId}: no JSON object in output`)
-    return new Map()
-  }
-  const jsonSlice = cleaned.slice(start, end + 1)
-  let obj
-  try {
-    obj = JSON.parse(jsonSlice)
-  } catch (err) {
-    // Fallback: Haiku occasionally emits a straight ASCII quote inside an
-    // angle string without escaping it. Try once more after smart-quoting
-    // any unescaped inner quotes — crude but catches the common case of a
-    // quoted phrase like "red line".
-    try {
-      const fixed = jsonSlice.replace(
-        /"angle":\s*"([^"]*?)"([^"]*?)"([^"]*?)"/g,
-        '"angle": "$1\u201c$2\u201d$3"',
-      )
-      obj = JSON.parse(fixed)
-    } catch {
-      console.error(
-        `  ✗ angles-haiku ${invocationId}: parse — ${err.message} (first 200 chars of JSON slice: ${jsonSlice.slice(0, 200)})`,
-      )
-      return new Map()
-    }
-  }
+  console.log(`  · angles-haiku: answered in ${(res.elapsedMs / 1000).toFixed(1)}s${callCost(res)}`)
+  const obj = res.out
   const out = new Map()
   for (const it of items) {
-    const entry = obj[String(it.key)] ?? obj[it.key]
+    const entry = obj[it.key]
     if (!entry || typeof entry !== 'object') continue
     const angle =
       typeof entry.angle === 'string' && entry.angle.length > 0 ? entry.angle : null
@@ -192,10 +144,10 @@ function writeSourcesToFrontmatter(raw, sources) {
   // `image:` from every article it touched — 355 of 413 in the week to
   // 2026-09-25 lost the publisher image URL scaffold-articles had just added.
   for (const s of sources) {
-    sourceLines.push(`  - name: ${JSON.stringify(s.name || '')}`)
+    sourceLines.push(`  - name: ${yamlString(s.name || '')}`)
     for (const [key, value] of Object.entries(s)) {
       if (key === 'name' || !/^[A-Za-z][\w-]*$/.test(key)) continue
-      if (typeof value === 'string' && value.length > 0) sourceLines.push(`    ${key}: ${JSON.stringify(value)}`)
+      if (typeof value === 'string' && value.length > 0) sourceLines.push(`    ${key}: ${yamlString(value)}`)
       else if (typeof value === 'number' && Number.isFinite(value)) sourceLines.push(`    ${key}: ${value}`)
     }
   }
@@ -210,13 +162,17 @@ function writeSourcesToFrontmatter(raw, sources) {
 const t0 = Date.now()
 const files = []
 
-for (const rel of newFiles) {
-  const filename = basename(rel)
+for (const { path: fullPath, name: filename } of newFiles) {
   if (!filename.endsWith('.md')) continue
-  const fullPath = join(ROOT, rel)
   if (!existsSync(fullPath)) continue
-  const raw = readFileSync(fullPath, 'utf8')
-  const { meta } = parseFrontmatter(raw)
+  // One that does not parse is the validator's to move aside, after this
+  // stage. It is not a reason for the rest of the batch to go without angles.
+  const { article, error } = tryReadArticle(fullPath)
+  if (!article) {
+    console.error(`  ✗ ${filename}: not read (${error.message.split('\n')[0]}) — no angles for it`)
+    continue
+  }
+  const { raw, meta } = article
   const title = typeof meta.title === 'string' ? meta.title : ''
   const sources = Array.isArray(meta.sources) ? meta.sources : []
   files.push({ fullPath, raw, title, sources })
@@ -241,7 +197,7 @@ if (tasks.length === 0) {
 // the selection does not hold, e.g. one the editor added.
 const heldBodies = new Map()
 try {
-  for (const entry of JSON.parse(readFileSync('/tmp/zuhd-selection.json', 'utf8'))) {
+  for (const entry of JSON.parse(readFileSync(pathOf('selection'), 'utf8'))) {
     for (const src of entry.sources || []) {
       if (src?.url && typeof src.body === 'string' && src.body.length >= 500) heldBodies.set(src.url, src.body.slice(0, 3500))
     }
@@ -249,8 +205,12 @@ try {
 } catch { /* no selection on disk (manual run) — every source is fetched */ }
 const toFetch = tasks.filter((t) => !heldBodies.has(t.url))
 console.log(`  · source-angles: ${tasks.length - toFetch.length}/${tasks.length} from held source text, fetching ${toFetch.length} (concurrency ${FETCH_CONCURRENCY})`)
-const fetchedTexts = await pool(toFetch, FETCH_CONCURRENCY, (t) => fetchSourceText(t.url))
-const fetchedByTask = new Map(toFetch.map((t, i) => [t, fetchedTexts[i]]))
+// One bad fetch costs its own source and nothing else: it is caught here,
+// because a pool passes a rejection on.
+const fetchedByTask = new Map()
+await runWithConcurrency(toFetch, FETCH_CONCURRENCY, async (t) => {
+  fetchedByTask.set(t, await fetchSourceText(t.url).catch(() => undefined))
+})
 const texts = tasks.map((t) => heldBodies.get(t.url) ?? fetchedByTask.get(t) ?? null)
 
 // Pass 2: build Haiku batch from successful fetches only.
@@ -288,7 +248,7 @@ if (failedList.length > 0) {
   console.log(`  · source-angles: failed domains: ${failedList.map(([d, n]) => `${d}×${n}`).join(' ')}`)
 }
 
-const angles = haikuItems.length > 0 ? extractAnglesViaHaiku(haikuItems) : new Map()
+const angles = haikuItems.length > 0 ? await extractAnglesViaHaiku(haikuItems) : new Map()
 
 // Pass 3: merge Haiku output back into each file's sources + write frontmatter.
 let processed = 0
@@ -319,7 +279,7 @@ for (const file of files) {
     continue
   }
   const updated = writeSourcesToFrontmatter(file.raw, updatedSources)
-  if (updated !== file.raw) writeFileSync(file.fullPath, updated)
+  if (updated !== file.raw) writeText(file.fullPath, updated)
   processed++
 }
 

@@ -8,7 +8,17 @@
 
 import test from 'node:test'
 import assert from 'node:assert/strict'
-import { collectionToAlerts, featureToDetail, isGdacsFeatureCollection, readImpactScalar } from './gdacs.js'
+import {
+  carryNarratives,
+  collectionToAlerts,
+  detailKey,
+  detailsInAlertOrder,
+  droppedAlertsReport,
+  emptyListReport,
+  featureToDetail,
+  isGdacsFeatureCollection,
+  readImpactScalar,
+} from './gdacs.js'
 
 const validFeature = {
   type: 'Feature',
@@ -35,7 +45,7 @@ const validFeature = {
 // Anchor `now` to a fixed point relative to the fixture so the 30-day-age
 // cliff inside collectionToAlerts is deterministic regardless of when the
 // suite runs.
-const FIXTURE_NOW = Date.parse('2026-05-02T00:00:00') + 86_400_000
+const FIXTURE_NOW = Date.parse('2026-05-02T00:00:00Z') + 86_400_000
 
 test('isGdacsFeatureCollection accepts well-formed, rejects malformed', () => {
   assert.equal(isGdacsFeatureCollection({ type: 'FeatureCollection', features: [] }), true)
@@ -129,7 +139,49 @@ test('collectionToAlerts drops alerts older than 30 days', () => {
   }
   const out = collectionToAlerts({ type: 'FeatureCollection', features: [old, validFeature] }, FIXTURE_NOW)
   assert.equal(out.length, 1)
-  assert.equal(out[0].modifiedDate, '2026-05-01T08:00:00')
+  assert.equal(out[0].modifiedDate, '2026-05-01T08:00:00Z')
+})
+
+test('a GDACS time says it is UTC', () => {
+  // GDACS writes UTC with no offset, and a date-time with no offset is local
+  // time to every `Date.parse` that reads the snapshot: the app's "updated 3h
+  // ago" and the map's scrubber were out by the viewer's distance from UTC.
+  const at = (dates) => {
+    const feature = { ...validFeature, properties: { ...validFeature.properties, ...dates } }
+    return collectionToAlerts({ type: 'FeatureCollection', features: [feature] }, FIXTURE_NOW)[0]
+  }
+  const bare = at({ todate: '2026-05-01T12:00:00' })
+  assert.deepEqual(
+    [bare.fromDate, bare.toDate, bare.modifiedDate],
+    ['2026-04-30T03:00:00Z', '2026-05-01T12:00:00Z', '2026-05-01T08:00:00Z'],
+  )
+  // The instant it names no longer depends on where it is read.
+  assert.equal(Date.parse(bare.fromDate), Date.UTC(2026, 3, 30, 3))
+
+  // A time that states its zone keeps it, and a day has none to state.
+  assert.equal(at({ fromdate: '2026-04-30T03:00:00Z' }).fromDate, '2026-04-30T03:00:00Z')
+  assert.equal(at({ fromdate: '2026-04-30T05:00:00+02:00' }).fromDate, '2026-04-30T05:00:00+02:00')
+  assert.equal(at({ fromdate: '2026-04-30T03:00:00.250' }).fromDate, '2026-04-30T03:00:00.250Z')
+  assert.equal(at({ fromdate: '2026-04-30' }).fromDate, '2026-04-30')
+})
+
+test('a list that gives no alert is reported, with what its first feature held', () => {
+  // `iscurrent` has arrived as `true` and as `'true'`. A third spelling drops
+  // every feature at the first filter, and the snapshot is published as written:
+  // an empty one is an empty disaster layer and every narration pruned.
+  const respelled = { ...validFeature, properties: { ...validFeature.properties, iscurrent: 'True' } }
+  const collection = { type: 'FeatureCollection', features: [respelled, respelled] }
+  const alerts = collectionToAlerts(collection, FIXTURE_NOW)
+  assert.deepEqual(alerts, [])
+  assert.equal(
+    emptyListReport(collection, alerts),
+    '2 features and no usable alert; the first has iscurrent="True" eventtype="EQ" alertlevel="Red" ' +
+      'eventid=1234567 datemodified="2026-05-01T08:00:00" geometry="Point"',
+  )
+  assert.equal(emptyListReport({ type: 'FeatureCollection', features: [] }, []), 'the list held no features')
+
+  const good = { type: 'FeatureCollection', features: [validFeature] }
+  assert.equal(emptyListReport(good, collectionToAlerts(good, FIXTURE_NOW)), null, 'a list with an alert in it is written')
 })
 
 test('featureToDetail parses non-zero string-typed population fields', () => {
@@ -186,4 +238,103 @@ test('readImpactScalar walks deeply nested model output to find a named scalar',
   assert.equal(readImpactScalar(impact, 'NOT_THERE'), null)
   assert.equal(readImpactScalar({ name: 'POP_AFFECTED', value: 0 }, 'POP_AFFECTED'), null)
   assert.equal(readImpactScalar(null, 'POP_AFFECTED'), null)
+})
+
+test('every date an alert carries is one the app will take', () => {
+  // The app tests `fromDate` and `modifiedDate` in every alert and takes the
+  // list whole or not at all, so one alert published with `fromDate: ''` costs
+  // every installed app the disaster layer. Any string used to pass.
+  const withDates = (dates) => ({ ...validFeature, properties: { ...validFeature.properties, ...dates } })
+  const tally = {}
+  const out = collectionToAlerts(
+    {
+      type: 'FeatureCollection',
+      features: [
+        withDates({ eventid: 1, fromdate: undefined }),
+        withDates({ eventid: 2, fromdate: '' }),
+        withDates({ eventid: 3, fromdate: '30 Apr 2026' }),
+        withDates({ eventid: 4, todate: 'ongoing', datemodified: 'yesterday' }),
+        withDates({ eventid: 5, todate: '2026-05-01T12:00:00' }),
+      ],
+    },
+    FIXTURE_NOW,
+    tally,
+  )
+  assert.deepEqual(
+    out.map((a) => [a.eventid, a.fromDate, a.toDate, a.modifiedDate]),
+    [
+      // No end that can be read is no end; no modification time is the start.
+      ['4', '2026-04-30T03:00:00Z', null, '2026-04-30T03:00:00Z'],
+      ['5', '2026-04-30T03:00:00Z', '2026-05-01T12:00:00Z', '2026-05-01T08:00:00Z'],
+    ],
+  )
+  assert.deepEqual(tally, { undated: 3 }, 'an alert with no start it can state is dropped, and counted')
+})
+
+test("the desk's narratives go back on the alerts they were written for", () => {
+  // The fetcher writes alerts fresh and the narrator adds `narrative` four
+  // stages later. If it never runs, the build publishes what the fetcher wrote.
+  const collection = {
+    type: 'FeatureCollection',
+    features: [
+      { ...validFeature, properties: { ...validFeature.properties, eventtype: 'TC', eventid: 1001335 } },
+      validFeature,
+    ],
+  }
+  const alerts = collectionToAlerts(collection, FIXTURE_NOW)
+  const narrations = {
+    'TC:1001335': { fingerprint: 'a1', narrative: 'Simon bears on Mexico.', generatedAt: '2026-10-09T05:11:20.000Z' },
+    'EQ:1234567': { fingerprint: 'b2', narrative: '' },
+    'EQ:7654321': { fingerprint: 'c3', narrative: 'An alert that has left the feed.' },
+  }
+  assert.equal(carryNarratives(alerts, narrations), 1)
+  assert.equal(alerts[0].narrative, 'Simon bears on Mexico.')
+  assert.equal(Object.keys(alerts[0]).at(-1), 'narrative', 'where the narrator puts it, so the bytes agree')
+  assert.equal('narrative' in alerts[1], false, 'an alert nobody has written about gets no key')
+
+  // No cache yet, or one that did not parse: the alerts go out as they are.
+  assert.equal(carryNarratives(collectionToAlerts(collection, FIXTURE_NOW), null), 0)
+})
+
+test("the details are filed under each alert's key, in the alerts' order", () => {
+  // Six are fetched at a time and a cyclone takes three requests to an
+  // earthquake's one, so the answers never come back in the list's order. The
+  // object's keys did, and the file is published under a stamp that holds only
+  // while its bytes do. The pool now hands each detail back at its alert's
+  // position; this is what turns those positions into the published keys.
+  const alerts = [
+    { eventtype: 'EQ', eventid: '1570274' },
+    { eventtype: 'TC', eventid: '1001335' },
+    { eventtype: 'EQ', eventid: '1570261' },
+    { eventtype: 'EQ', eventid: '1570260' },
+  ]
+  const details = detailsInAlertOrder(alerts, [{ for: 'a' }, { for: 'b' }, undefined, { for: 'd' }])
+  assert.deepEqual(Object.keys(details), ['EQ:1570274', 'TC:1001335', 'EQ:1570260'], 'and one that failed has no entry')
+  assert.deepEqual(details[detailKey(alerts[3])], { for: 'd' })
+})
+
+test('every feature the list loses is counted under its reason', () => {
+  // Five filters and nothing counted: on 2 and 3 October 2026 the list was
+  // eleven short for five cycles, and the log cannot say which filter took them.
+  const but = (over) => ({ ...validFeature, properties: { ...validFeature.properties, ...over } })
+  const collection = {
+    type: 'FeatureCollection',
+    features: [
+      validFeature,
+      but({ iscurrent: false }),
+      { ...validFeature, geometry: { type: 'Polygon', coordinates: [] } },
+      but({ eventtype: 'XX' }),
+      but({ alertlevel: 'Yellow' }),
+      but({ datemodified: '2026-03-15T08:00:00' }),
+      but({ fromdate: '' }),
+    ],
+  }
+  const tally = {}
+  assert.equal(collectionToAlerts(collection, FIXTURE_NOW, tally).length, 1)
+  assert.deepEqual(tally, { notCurrent: 1, malformed: 1, unknownKind: 2, tooOld: 1, undated: 1 })
+  assert.equal(
+    droppedAlertsReport(tally),
+    '1 not a point feature, 1 not current, 2 of an unknown type, level or id, 1 with no readable start date, 1 older than 30 days',
+  )
+  assert.equal(droppedAlertsReport({}), '', 'a list that lost nothing says nothing')
 })

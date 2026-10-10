@@ -1,0 +1,187 @@
+exit: 0
+
+commands
+  git -C <repo> rev-parse HEAD
+      + PUSH_SECRET=not-a-secret
+      + ZUHD_MODEL=claude-sonnet-5-5
+  node scripts/fetch-news-api.js
+      + ZUHD_GIT_HEAD=0123456789abcdef0123456789abcdef01234567
+      + ZUHD_RUN_ID=2026-10-08_0501
+      + ZUHD_RUN_STARTED=2026-10-08T05:01:52Z
+  node scripts/cycle/tally.js feed-api
+  node scripts/fetch-news.js
+  node scripts/cycle/tally.js feed-rss
+  node scripts/merge-feeds.js
+  node scripts/cycle/tally.js feed
+  node scripts/prefilter-feed.js
+  node scripts/coverage-map.js
+  node scripts/trending-gaps.js
+  node scripts/company-gaps.js
+  claude --no-session-persistence --setting-sources project --disable-slash-commands --strict-mcp-config --effort medium --model claude-opus-5-5 --fallback-model claude-sonnet-5-5 --allowedTools Read,Write,Glob,Grep --max-turns 35 --exclude-dynamic-system-prompt-sections -p «text sha1:b070a2ad»
+  node scripts/cycle/tally.js selection
+  node scripts/enrich-selection.js
+  node scripts/cycle/tally.js selection
+  node scripts/dedup-selection.js
+  node scripts/cycle/tally.js selection
+  node scripts/update-ledger.js
+  node scripts/attach-indicators.js
+  claude --no-session-persistence --setting-sources project --disable-slash-commands --strict-mcp-config --effort medium --model claude-sonnet-5-5 --allowedTools Read,Write,Edit --add-dir /tmp --max-turns 60 --exclude-dynamic-system-prompt-sections -p «write-prompt.md»
+  git diff --name-only content/articles/
+  git ls-files --others --exclude-standard content/articles/
+  claude --no-session-persistence --setting-sources project --disable-slash-commands --strict-mcp-config --effort medium --model claude-sonnet-5-5 --allowedTools Read,Write,Edit --add-dir /tmp --max-turns 60 --exclude-dynamic-system-prompt-sections -p «write-prompt.md»
+  git diff --name-only content/articles/
+  git ls-files --others --exclude-standard content/articles/
+  node scripts/narrate-indicators.js
+  git add content/.indicator-dispatch.json
+  git commit --only content/.indicator-dispatch.json -m Indicator dispatch 2026-10-08T05:01
+  node scripts/narrate-events.js
+  git add content/.events-dispatch.json
+  git commit --only content/.events-dispatch.json -m Event dispatch 2026-10-08T05:01
+  node scripts/fetch-analytics.js
+  node scripts/generate-briefing.js
+  node scripts/build.js
+  git add content/audio/
+  git commit --only content/audio/ -m Audio briefing 2026-10-08
+  git pull --rebase --autostash origin master
+  npm install --no-audit --no-fund
+  git push origin master
+  npx wrangler pages deploy dist --project-name zuhd-news --branch master --commit-dirty=true
+  node scripts/cycle/push-payload.js briefing-top
+  claude --no-session-persistence --setting-sources project --disable-slash-commands --strict-mcp-config --model claude-sonnet-5-5 --effort medium --tools '' -p «text sha1:086b4241»
+  node scripts/cycle/push-payload.js briefing
+      + BODY=Fed raises rates · Hormuz traffic dips
+      + DATE=2026-10-08
+  curl -s -X POST https://zuhd.news/api/push -H Authorization: Bearer not-a-secret -H Content-Type: application/json -d «text sha1:919c14ae»
+      - BODY
+      - DATE
+  node <repo>/scripts/cycle/alert.js
+      + ALERT_LOG=<repo>/logs/cycle-2026-10-08_0501.log
+      + ALERT_REASON=no articles published
+      + CYCLE_ALERT=<repo>/content/.cycle-alert.json
+  node <repo>/scripts/cycle/record.js <repo>/logs/cycle-2026-10-08_0501.log
+      + ZUHD_DAILY_HOUR=05
+      + ZUHD_EXIT_STATUS=0
+      + ZUHD_START_HOUR=05
+      - ALERT_LOG
+      - ALERT_REASON
+      - CYCLE_ALERT
+
+kept
+  logs/runs/2026-10-08_0501/selection.1-selected.json
+  logs/runs/2026-10-08_0501/selection.2-enriched.json
+  logs/runs/2026-10-08_0501/selection.3-deduped.json
+  logs/runs/2026-10-08_0501/selection.4-offered.json
+
+log
+  | === zuhd.news editorial cycle ===
+  | Started: Thu Oct  8 05:01:52 AM UTC 2026
+  |
+  | --- Stage 0: API + RSS feed fetch ---
+  | «fetch-api»
+  | API fetch: 80 stories from 50 events
+  | «fetch-rss»
+  | RSS fetch: 77 stories
+  | «node:merge-feeds»
+  | Merge exit: 0
+  | Merged feed: 13 multi + 47 niche — Ns
+  | node:prefilter-feed: stdout
+  | «node:prefilter-feed»
+  | Prefilter exit: 0
+  |
+  | --- Stage 1: Selector ---
+  | Injecting coverage map (1 topic groups) into selector prompt
+  | Injecting trending-gaps signal (1 titles) into selector prompt
+  | Injecting unexplained-movers signal (1 companies) into selector prompt
+  | Selection target: 11 stories (05:00 UTC)
+  | Selected 2 stories.
+  | «selector»
+  | Selector exit: 0 — Ns
+  | Selection contains 2 stories
+  | enrich: stdout
+  | «enrich»
+  | Enrich exit: 0
+  | node:dedup-selection: stdout
+  | «node:dedup-selection»
+  | Dedup exit: 0
+  | node:update-ledger: stdout
+  | «node:update-ledger»
+  | Ledger exit: 0
+  | node:attach-indicators: stdout
+  | «node:attach-indicators»
+  | Indicators exit: 0
+  |
+  | --- Stage 2: Writer ---
+  | Wrote 2 articles.
+  | «writer»
+  | Writer exit: 0 — Ns
+  | Writer wrote no articles (exit 0) — retrying once
+  | Wrote 2 articles.
+  | «writer»
+  | Writer retry exit: 0 — Ns
+  | No new articles — skipping editor and deploy
+  |
+  | --- Stage 3.8: Indicator dispatch ---
+  | node:narrate-indicators: stdout
+  | «node:narrate-indicators»
+  | Dispatch — Ns
+  | git:add: stdout
+  | «git:add»
+  | [master 1234567] committed
+  | «commit»
+  |
+  | --- Stage 3.8b: Event dispatch ---
+  | node:narrate-events: stdout
+  | «node:narrate-events»
+  | Event dispatch — Ns
+  | git:add: stdout
+  | «git:add»
+  | [master 1234567] committed
+  | «commit»
+  |
+  | --- Stage 3.9: Analytics fetch ---
+  | node:fetch-analytics: stdout
+  | «node:fetch-analytics»
+  | Analytics fetch — Ns
+  |
+  | --- Stage 4: Audio briefing ---
+  | Briefing written.
+  | «briefing»
+  | Briefing exit: 0
+  | Rebuilding and redeploying with audio...
+  | Built 812 pages.
+  | «build»
+  | Audio rebuild exit: 0
+  | git:add: stdout
+  | «git:add»
+  | [master 1234567] committed
+  | «commit»
+  | git:pull: stdout
+  | «git:pull»
+  | npm:install: stdout
+  | «npm:install»
+  | git:push: stdout
+  | «git:push»
+  | Deployment complete.
+  | «deploy»
+  | Audio deploy exit: 0
+  | «briefing-top»
+  | «briefing-payload»
+  | Pushing daily briefing: {"articles":[{"slug":"briefing-2026-10-08","title":"Today's Briefing","body":"Fed raises rates · Hormuz traffic dips","channelId":"briefing","priority":"normal","data":{"kind":"briefing","date":"2026-10-08"}}]}
+  | {"pushed":1,"skipped":0,"tokens":5}«push»
+  |
+  |
+  | --- Stage 5: Weekly quality snapshot (skipped — day 4 05:00 UTC, runs Sunday 22:00 only) ---
+  |
+  | --- Stage 6: Daily tuning (skipped — 05:xx UTC, runs at 22:00 only) ---
+  |
+  | === Funnel ===
+  | Feed:      13 multi + 47 niche
+  | Selected:  2
+  | Deduped:   2
+  | Written:   0
+  | Validated: 0
+  | Published: 0
+  |
+  | Finished: Thu Oct  8 05:01:52 AM UTC 2026 — total Ns
+  | ALERT: no articles published (1 cycle(s) in a row since 2026-10-08T18:04:59.000Z)
+  | «alert»

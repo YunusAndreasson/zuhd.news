@@ -1,7 +1,7 @@
 // Run: node --test scripts/lib/feed-age.test.js
 import { test } from 'node:test'
 import { strict as assert } from 'node:assert'
-import { MAX_FEED_AGE_MS, MAX_WIDENED_AGE_MS, feedItemAgeMs, isFreshFeedItem, poolAgeCapMs } from './feed-age.js'
+import { MAX_FEED_AGE_MS, MAX_WIDENED_AGE_MS, feedItemAgeMs, feedPubDate, isFreshFeedItem, poolAgeCapMs } from './feed-age.js'
 
 const HOUR = 60 * 60 * 1000
 // The 10:01 cycle of 2026-09-26, which published two stories 21 h after
@@ -46,6 +46,57 @@ test('an undated item is never fresh', () => {
   assert.equal(isFreshFeedItem('', NOW), false)
   assert.equal(isFreshFeedItem(undefined, NOW), false)
   assert.equal(isFreshFeedItem('not a date', NOW), false)
+})
+
+// --- feedPubDate: the RSS fetch of 2026-10-09 10:00:25 UTC -------------------
+const FETCHED = Date.parse('2026-10-09T10:00:25.565Z')
+
+test('an RSS date becomes ISO in UTC, whatever offset the publisher printed', () => {
+  const iso = (raw) => feedPubDate(raw, FETCHED)
+  assert.deepEqual(iso('Fri, 09 Oct 2026 06:00:00 +0000'), { pubDate: '2026-10-09T06:00:00Z', ahead: 0 }) // Carbon Brief
+  assert.deepEqual(iso('Thu, 08 Oct 2026 19:58:54 -0400'), { pubDate: '2026-10-08T23:58:54Z', ahead: 0 }) // The War Zone
+  assert.deepEqual(iso('Fri, 09 Oct 2026 14:12:00 +0900'), { pubDate: '2026-10-09T05:12:00Z', ahead: 0 }) // The Diplomat
+  assert.deepEqual(iso('Fri, 09 Oct 2026 05:40:01 EDT'), { pubDate: '2026-10-09T09:40:01Z', ahead: 0 }) // Phys.org
+  assert.deepEqual(iso('2026-10-06T22:17:21.000Z'), { pubDate: '2026-10-06T22:17:21Z', ahead: 0 }) // Hacker News
+})
+
+test('a date that has not happened yet is taken as now, and says by how much', () => {
+  // The Record, that fetch. The article was published at 10:12 dated the 10th.
+  const { pubDate, ahead } = feedPubDate('Sat, 10 Oct 2026 00:55:00 GMT', FETCHED)
+  assert.equal(pubDate, '2026-10-09T10:00:25Z')
+  assert.equal(ahead, Date.parse('2026-10-10T00:55:00Z') - FETCHED)
+  assert.ok(Date.parse(pubDate) <= FETCHED, 'never later than now, to the millisecond')
+  assert.equal(feedItemAgeMs(pubDate, FETCHED), 565)
+})
+
+test('local midnight is a date with no time, as midnight UTC is', () => {
+  // Lowy Interpreter, that fetch: three items dated the 9th, none of which
+  // survived the 15.6 h cut, because the 9th in Sydney began at 13:00 on the 8th.
+  const lowy = 'Fri, 09 Oct 2026 00:00:00 +1100'
+  assert.equal(isFreshFeedItem(lowy, FETCHED, 15.6 * HOUR), false, 'as it was read')
+  assert.deepEqual(feedPubDate(lowy, FETCHED), { pubDate: '2026-10-09T00:00:00Z', ahead: 0 })
+  assert.equal(feedItemAgeMs('2026-10-09T00:00:00Z', FETCHED), 0)
+  // West of Greenwich the date is behind the instant, and is the date all the same.
+  assert.equal(feedPubDate('Thu, 08 Oct 2026 00:00:00 -0400', FETCHED).pubDate, '2026-10-08T00:00:00Z')
+  assert.equal(feedPubDate('2026-10-09T00:00:00+11:00', FETCHED).pubDate, '2026-10-09T00:00:00Z')
+  // Already midnight UTC, or a bare date: unchanged.
+  assert.equal(feedPubDate('Fri, 09 Oct 2026 00:00:00 +0000', FETCHED).pubDate, '2026-10-09T00:00:00Z')
+  assert.equal(feedPubDate('2026-10-09', FETCHED).pubDate, '2026-10-09T00:00:00Z')
+})
+
+test('a local date that UTC has not reached keeps its instant, not a time ahead of now', () => {
+  // The same Lowy stamp an hour after Sydney's midnight: the 9th at 00:00Z is
+  // ten hours off, and a story must never be dated ahead.
+  const anHourIn = Date.parse('2026-10-08T14:00:00Z')
+  assert.deepEqual(feedPubDate('Fri, 09 Oct 2026 00:00:00 +1100', anHourIn), { pubDate: '2026-10-08T13:00:00Z', ahead: 0 })
+})
+
+test('an item with no date has the fetch time; one that does not parse is left for the cut to drop', () => {
+  assert.deepEqual(feedPubDate('', FETCHED), { pubDate: '2026-10-09T10:00:25Z', ahead: 0 })
+  assert.deepEqual(feedPubDate(undefined, FETCHED), { pubDate: '2026-10-09T10:00:25Z', ahead: 0 })
+  assert.deepEqual(feedPubDate('last Tuesday', FETCHED), { pubDate: 'last Tuesday', ahead: 0 })
+  assert.equal(isFreshFeedItem(feedPubDate('last Tuesday', FETCHED).pubDate, FETCHED), false)
+  assert.equal(isFreshFeedItem(feedPubDate({ '#text': 'x' }, FETCHED).pubDate, FETCHED), false)
 })
 
 test('a full pool keeps the 12 h cut', () => {

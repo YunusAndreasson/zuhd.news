@@ -1,6 +1,7 @@
-// Registry of live-data indicators the editor can embed as trend blocks in a
-// context brief. Each entry declares its fetch source, display metadata, and
-// tags the edu-context stage uses to decide when it's relevant to an article.
+// Registry of the live-data series the site and the app chart. Each entry
+// declares its fetch source, its display metadata, and the tags that join it
+// to stories: the writer's offer (`lib/indicator-offer.js`) and the desk's
+// narration both match on them.
 //
 // Keep this file flat and declarative. Per-source fetch logic lives in
 // ./trends-sources/*.js and reads the `source` + `seriesId` fields here.
@@ -16,6 +17,7 @@
 
 import { fetchBisPolicyRates } from './trends-sources/bis.js'
 import { fetchFredSeries } from './trends-sources/fred.js'
+import { fetchImfCommodityPrices } from './trends-sources/imf.js'
 import { fetchOerRates } from './trends-sources/oer.js'
 import { fetchPolymarketTop } from './trends-sources/polymarket.js'
 import { fetchPortWatchChokepoint } from './trends-sources/portwatch.js'
@@ -37,6 +39,12 @@ export const SOURCES = {
     fetcher: fetchFredSeries,
     requiredEnv: ['FRED_API_KEY'],
     mode: 'perIndicator',
+  },
+  // After FRED, whose rows these were: the snapshot's order is the sources'.
+  imf: {
+    fetcher: fetchImfCommodityPrices,
+    requiredEnv: [],
+    mode: 'batched',
   },
   oer: {
     fetcher: fetchOerRates,
@@ -70,14 +78,12 @@ export const SOURCES = {
   },
 }
 
-/** @typedef {'oil' | 'macro' | 'food' | 'fx' | 'shipping' | 'prediction' | 'energy'} Tier */
-
 /** @typedef {Object} IndicatorDef
  *  @property {string} id            Stable ID used by editor + logs.
  *  @property {string} label         Display title (TrendBlock.label).
  *  @property {string} [unit]        Axis unit (TrendBlock.unit).
- *  @property {'fred'|'oer'|'polymarket'|'portwatch'|'crypto'|'wikipedia'|'bis'} source
- *  @property {string} [seriesId]    Source-specific identifier (FRED series, OER currency, BIS country code, etc.)
+ *  @property {'fred'|'imf'|'oer'|'polymarket'|'portwatch'|'crypto'|'wikipedia'|'bis'} source
+ *  @property {string} [seriesId]    Source-specific identifier (FRED series, IMF commodity code, OER currency, BIS country code, etc.)
  *  @property {string} [field]       PortWatch only: which vessel column to read
  *        (`n_container`, `n_tanker`, …). Read by trends-sources/portwatch.js,
  *        which falls back to `n_total` when it is absent or unrecognised — and
@@ -87,9 +93,8 @@ export const SOURCES = {
  *  @property {'d'|'w'|'m'|'q'|'a'} [frequency] FRED only: ask the API to
  *    aggregate a higher-frequency series down to this. For a step function like
  *    a policy rate, 731 daily points carry six distinct values — see the
- *    downsample note in `trends-sources/fred.js`.
- *  @property {'eop'|'avg'|'sum'} [aggregation] FRED only, default `eop`. Never
- *    average a step function: it invents levels nobody set.
+ *    downsample note in `trends-sources/fred.js`. Always the period's last
+ *    value: an average of a step function invents levels nobody set.
  *  @property {'lin'|'chg'|'ch1'|'pch'|'pc1'|'pca'|'cch'|'cca'|'log'} [units]
  *    FRED only: a transformation the API applies (`pc1` = per cent change from
  *    a year ago). For a series whose level means nothing to a reader and whose
@@ -140,28 +145,28 @@ export const INDICATORS = [
     sourceLabel: 'FRED · EIA',
   },
 
-  // ── Tier 2: food staples (FRED, monthly) ───────────────────────────────────
+  // ── Tier 2: food staples (IMF, monthly) ────────────────────────────────────
   {
     id: 'wheat',
     label: 'Wheat',
     unit: '$/mt',
-    source: 'fred',
-    seriesId: 'PWHEAMTUSDM',
+    source: 'imf',
+    seriesId: 'PWHEAMT',
     cadence: 'monthly',
     topicTags: ['wheat', 'grain', 'bread', 'food', 'food security', 'famine', 'el nino', 'drought', 'harvest'],
     defaultHighlight: 'last',
-    sourceLabel: 'FRED · IMF',
+    sourceLabel: 'IMF',
   },
   {
     id: 'rice',
     label: 'Rice',
     unit: '$/mt',
-    source: 'fred',
-    seriesId: 'PRICENPQUSDM',
+    source: 'imf',
+    seriesId: 'PRICENPQ',
     cadence: 'monthly',
     topicTags: ['rice', 'food', 'food security', 'asia food', 'monsoon', 'harvest'],
     defaultHighlight: 'last',
-    sourceLabel: 'FRED · IMF',
+    sourceLabel: 'IMF',
   },
 
   // ── Policy rates, for the calendar cards that graph them ───────────────────
@@ -504,17 +509,17 @@ export const INDICATORS = [
   // IndicatorDef-compatible object per top-20 market (id prefixed
   // `poly-<slug>`) directly in the snapshot, without a registry entry.
 
-  // ── Tier 2: industrial metals + macro bellwethers (FRED) ───────────────────
+  // ── Tier 2: industrial metals (IMF) + macro bellwethers (FRED) ─────────────
   {
     id: 'copper',
     label: 'Copper',
     unit: '$/mt',
-    source: 'fred',
-    seriesId: 'PCOPPUSDM',
+    source: 'imf',
+    seriesId: 'PCOPP',
     cadence: 'monthly',
     topicTags: ['copper', 'metals', 'electrification', 'ev', 'grid', 'wiring', 'chile', 'zambia', 'peru', 'china demand', 'industrial'],
     defaultHighlight: 'last',
-    sourceLabel: 'FRED · IMF',
+    sourceLabel: 'IMF',
   },
   {
     id: 'us-10y',
@@ -805,17 +810,17 @@ export const INDICATORS = [
     sourceLabel: 'IMF PortWatch',
   },
 
-  // ── Tier 2: European natural gas (FRED) — complements Henry Hub ────────────
+  // ── Tier 2: European natural gas (IMF) — complements Henry Hub ─────────────
   {
     id: 'natgas-ttf',
     label: 'Natural gas (TTF, Europe)',
     unit: '$/MMBtu',
-    source: 'fred',
-    seriesId: 'PNGASEUUSDM',
+    source: 'imf',
+    seriesId: 'PNGASEU',
     cadence: 'monthly',
     topicTags: ['ttf', 'european gas', 'europe gas', 'natural gas', 'lng', 'nord stream', 'russia gas', 'qatar lng', 'heating', 'energy europe'],
     defaultHighlight: 'last',
-    sourceLabel: 'FRED · IMF',
+    sourceLabel: 'IMF',
   },
 
   // ── Tier 3: geographic FX fill (OER) — catalog hardening vs news-pivot ─────

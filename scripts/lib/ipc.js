@@ -48,7 +48,7 @@
 // Nothing here touches the network, so all of it is testable against fixtures —
 // see `ipc.test.js`.
 
-import { parseCsv } from './conflict.js'
+import { parseCsv } from './csv.js'
 
 /**
  * How old an analysis may be and still describe a place.
@@ -230,9 +230,11 @@ export const windowCoveringDay = (windows, isoDay) =>
 /**
  * The published CSV → rows this module understands.
  *
- * `parseCsv` is the one in `conflict.js`, reused for the reason `firms.js` reuses
- * it: three fetchers parsing CSV three ways is three places for a quoted field
- * containing a comma to be handled differently.
+ * `parseCsv` is the one every fetcher uses (`lib/csv.js`): three fetchers
+ * parsing CSV three ways is three places for a quoted field containing a comma
+ * to be handled differently. The header is read here rather than through
+ * `csvObjects` because this file's column names are trimmed, and most of the
+ * thirty it reads are looked up by a name built from a phase and a period.
  */
 export function parseIpcAreaCsv(text) {
   const rows = parseCsv(String(text ?? ''))
@@ -304,12 +306,12 @@ export function parseIpcAreaCsv(text) {
  */
 /**
  * @param {{ analysisDate?: Date|null }[]} rows
- * @param {{ now?: number, ageLimitMonths?: number }} [opts]
+ * @param {{ now?: number }} [opts]
  *        `now` is epoch ms and exists so the tests can pin a vintage; without
  *        the annotation TypeScript infers this bag from the `= {}` default,
  *        which drops every key that has no default of its own.
  */
-export function gateByAge(rows, { now, ageLimitMonths = AGE_LIMIT_MONTHS } = {}) {
+export function gateByAge(rows, { now } = {}) {
   const kept = []
   const skipped = { staleAnalysis: 0, unreadableVintage: 0 }
   for (const row of rows) {
@@ -318,7 +320,7 @@ export function gateByAge(rows, { now, ageLimitMonths = AGE_LIMIT_MONTHS } = {})
       skipped.unreadableVintage++
       continue
     }
-    if (age > ageLimitMonths) {
+    if (age > AGE_LIMIT_MONTHS) {
       skipped.staleAnalysis++
       continue
     }
@@ -410,6 +412,54 @@ export function joinAreas(rows, features, point, tally = { unjoined: 0, noGeomet
 }
 
 /**
+ * One country's geometry file, as text, joined to its rows — or a throw.
+ *
+ * The throw is the point. The fetcher asks for twenty or so of these and one
+ * failing must cost the layer that country and no more, so everything that can
+ * go wrong with a single file has to go wrong in one place the fetcher can
+ * catch: text that does not parse, text that parses to something that is not a
+ * collection (`null`, an error object), and geometry the reducer cannot take.
+ * The join used to run after the fetcher's `try`, where the last two were an
+ * exception out of the pool and an exit 1.
+ *
+ * The tally is the country's own and comes back with the areas, so a file that
+ * fails half way leaves no counts behind.
+ *
+ * @param {object[]} rows the country's gated CSV rows
+ * @param {string} text
+ * @param {(feature: object) => { lat: number, lng: number } | null} point
+ */
+export function joinCountry(rows, text, point) {
+  const collection = JSON.parse(text)
+  if (!Array.isArray(collection?.features)) throw new Error('not a feature collection')
+  const tally = { unjoined: 0, noGeometry: 0, noPhase: 0 }
+  return { joined: joinAreas(rows, collection.features, point, tally), tally }
+}
+
+/**
+ * The order the snapshot's areas are written in: newest analysis first, then
+ * gravest, so a truncated read of the file is still a read of the most current
+ * and most serious of it — and then by country.
+ *
+ * The third key is what makes it an order. Countries are fetched four at a
+ * time and their areas arrive as each answer lands, and seven of them share
+ * one vintage (the Cadre Harmonisé's November 2025), so with two keys the
+ * places of 317 areas were decided by which country's file came back first.
+ * The build sorts the published areas on the same two keys and inherits the
+ * rest, under a stamp that holds only while the bytes do (`stable-stamp.js`).
+ *
+ * A sort is stable and a country's areas arrive together, in the table's row
+ * order, so within a country that order is kept. Country codes compare as
+ * plain strings: a collation is one more thing that could differ between
+ * builds.
+ *
+ * @param {{ ageMonths: number, phase: number, country: string }} a
+ * @param {{ ageMonths: number, phase: number, country: string }} b
+ */
+export const byVintagePhaseCountry = (a, b) =>
+  a.ageMonths - b.ageMonths || b.phase - a.phase || (a.country < b.country ? -1 : a.country > b.country ? 1 : 0)
+
+/**
  * Whether an area is grave enough to draw.
  *
  * Two criteria, because one of them measured wrong. `overall_phase >= 4` is the
@@ -431,11 +481,27 @@ export function joinAreas(rows, features, point, tally = { unjoined: 0, noGeomet
  * with a Catastrophe caseload are already Phase 4 — taking the layer to **105
  * areas across seven countries**.
  */
-export const publishable = (area, minPhase = PUBLISH_MIN_PHASE) => {
+export const publishable = (area) => {
   if (!Number.isFinite(area?.phase)) return false
-  if (area.phase >= minPhase) return true
+  if (area.phase >= PUBLISH_MIN_PHASE) return true
   return (area.population?.p5 ?? 0) > 0
 }
+
+/**
+ * The people in Crisis or worse across a set of CSV rows: `Phase 3+` added up.
+ * A row with no figure adds nothing, as in `countryTotals`.
+ *
+ * For one line of the fetcher's log. A country's total (`countryTotals`) is
+ * summed over the areas in the snapshot, and the snapshot holds only countries
+ * whose geometry was fetched, which is only those with somebody in Phase 4 or
+ * 5: the filter was written for the marks, before there were totals. A country
+ * in Crisis with nobody in Emergency is therefore in no total, and in the
+ * app's "in hunger" not at all. This is what the log sizes that with.
+ *
+ * @param {{ population?: { p3plus?: number | null } }[] | undefined} rows
+ */
+export const crisisCaseload = (rows) =>
+  (rows ?? []).reduce((sum, row) => sum + (Number.isFinite(row.population?.p3plus) ? row.population.p3plus : 0), 0)
 
 /**
  * Each country's caseload: its areas' populations, added up.

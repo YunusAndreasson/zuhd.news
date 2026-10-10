@@ -1,76 +1,52 @@
 #!/usr/bin/env node
 // Pre-filter: removes feed stories that match already-published articles.
 // Runs after merge-feeds.js, before the selector, so the LLM never wastes
-// picks on stories that would be deduped downstream.
-import { readFileSync, existsSync } from 'node:fs'
-import { THIN_BODY, isThin, loadDedupContext, wouldDedup } from './lib/dedup.js'
+// picks on stories that would be deduped downstream. What is removed and what
+// is marked thin is `lib/prefilter.js`.
+import { existsSync, readFileSync } from 'node:fs'
+import { pathOf } from './lib/datasets.js'
+import { PREFILTER_WINDOW_MS, THIN_BODY, loadDedupContext } from './lib/dedup.js'
 import { writeJson } from './lib/json-file.js'
+import { prefilterFeed, reasonCounts } from './lib/prefilter.js'
+import { runStage } from './lib/stage.js'
 
-const FEED = '/tmp/zuhd-feed.json'
-const SLIM = '/tmp/zuhd-feed-slim.json'
+export function main() {
+  const FEED = pathOf('feed')
+  const SLIM = pathOf('feedSlim')
+  if (!existsSync(FEED)) return { skipped: 'no feed' }
 
-if (!existsSync(FEED)) process.exit(0)
+  // Seven days, where the selection's own dedup has 48 hours
+  // (`PREFILTER_WINDOW_MS`, with the experiment that set it). That is the reach
+  // of the slug layer. The event layer sees an event for the six cycles its
+  // ledger entry lives, about 28 hours, whatever window it is given.
+  const ctx = loadDedupContext(PREFILTER_WINDOW_MS)
 
-// Experiment 2026-04-19-prefilter-7d: widen prefilter slug/fuzzy window from
-// 48h to 7d so the selector stops picking stories that match articles
-// published 2-3 days ago (causes post-selection dedup cascade + backfill filler).
-const ctx = loadDedupContext(7 * 24 * 3600 * 1000)
-// Keys must mirror every `reason` wouldDedup can return, or the tally silently
-// becomes NaN and the summary undercounts — `url` was added 2026-08-30.
-const counts = { exact: 0, url: 0, eventUri: 0, fuzzy: 0, recap: 0 }
-
-function filterSection(stories) {
-  return stories.filter(s => {
-    const result = wouldDedup(s, ctx)
-    if (result.deduped) {
-      counts[result.reason]++
-      console.log(`Pre-filtered (${result.reason}): ${s.suggestedSlug || s.title} — matches ${result.match}`)
-      return false
-    }
-    return true
-  })
-}
-
-const feed = JSON.parse(readFileSync(FEED, 'utf-8'))
-feed.multiSourceStories = filterSection(feed.multiSourceStories || [])
-feed.nicheStories = filterSection(feed.nicheStories || [])
-
-const total = Object.values(counts).reduce((a, b) => a + b, 0)
-writeJson(FEED, feed)
-
-// Also update the slim feed so selector sees the same filtered set
-if (existsSync(SLIM)) {
-  const slim = JSON.parse(readFileSync(SLIM, 'utf-8'))
-  // Keep only stories whose suggestedSlug survived the filter
-  const feedSlugs = new Set([...(feed.multiSourceStories || []), ...(feed.nicheStories || [])].map(s => s.suggestedSlug))
-
-  slim.multiSourceStories = (slim.multiSourceStories || []).filter(s => feedSlugs.has(s.suggestedSlug))
-  slim.nicheStories = (slim.nicheStories || []).filter(s => feedSlugs.has(s.suggestedSlug))
-
-  // `thin`: no source carries THIN_BODY characters of text — usually an RSS
-  // item whose feed gave a teaser and no content. The selector reads a
-  // body-less feed, so it could not see this, and picked them: 12 of 60 items
-  // on 2026-09-25, and the writer then skipped 1-4 picks a cycle for "no
-  // summary provided". enrich-selection.js tries one page fetch for a thin
-  // pick; the flag lets the selector weigh the risk before spending a slot.
-  const thinSlugs = new Set(
-    [...(feed.multiSourceStories || []), ...(feed.nicheStories || [])]
-      .filter(isThin)
-      .map(s => s.suggestedSlug),
+  const { feed, slim, removed, thin } = prefilterFeed(
+    JSON.parse(readFileSync(FEED, 'utf-8')),
+    existsSync(SLIM) ? JSON.parse(readFileSync(SLIM, 'utf-8')) : null,
+    ctx,
   )
-  let thin = 0
-  for (const s of [...slim.multiSourceStories, ...slim.nicheStories]) {
-    if (thinSlugs.has(s.suggestedSlug)) { s.thin = true; thin++ }
+  for (const r of removed) console.log(`Pre-filtered (${r.reason}): ${r.slug} — matches ${r.match}`)
+  writeJson(FEED, feed)
+  if (slim) {
+    if (thin > 0) console.log(`Marked ${thin} thin-body stories (<${THIN_BODY} chars of source text)`)
+    writeJson(SLIM, slim)
   }
-  if (thin > 0) console.log(`Marked ${thin} thin-body stories (<${THIN_BODY} chars of source text)`)
-  writeJson(SLIM, slim)
+
+  const counts = reasonCounts(removed)
+  if (removed.length > 0) {
+    // Rendered from the tally itself, and the tally counts a reason it was not
+    // told of (`reasonCounts`): a layer added to `wouldDedup` is in the
+    // breakdown without this file being edited.
+    const breakdown = Object.entries(counts).filter(([, v]) => v > 0).map(([k, v]) => `${k}: ${v}`).join(', ')
+    console.log(`Pre-filtered: removed ${removed.length} stories (${breakdown})`)
+  } else {
+    console.log('Pre-filter: all feed stories are new')
+  }
+  return {
+    counts: { ...counts, removed: removed.length, thin, kept: feed.multiSourceStories.length + feed.nicheStories.length },
+    dropped: removed.map((r) => ({ slug: r.slug, reason: `${r.reason}: ${r.match}` })),
+  }
 }
 
-if (total > 0) {
-  // Rendered from the tally itself, so a new reason can never be filtered but
-  // left out of the breakdown — which is how `url` would have gone unreported.
-  const breakdown = Object.entries(counts).filter(([, v]) => v > 0).map(([k, v]) => `${k}: ${v}`).join(', ')
-  console.log(`Pre-filtered: removed ${total} stories (${breakdown})`)
-} else {
-  console.log('Pre-filter: all feed stories are new')
-}
+await runStage(import.meta, 'prefilter-feed', main)

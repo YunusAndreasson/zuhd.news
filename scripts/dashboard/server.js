@@ -1,192 +1,120 @@
 #!/usr/bin/env node
-// zuhd.news pipeline dashboard — localhost:7777, zero dependencies
-// Read-only: parses cycle logs, reads metrics/meta JSON, queries systemd
+// zuhd.news pipeline dashboard — port 7777, zero dependencies
+//
+// It reads: the cycle logs, the snapshots and logs each source leaves, the
+// metrics and trend files, the built feed, and what systemd says of the
+// cycle's units. It starts nothing else and writes nothing: the page is
+// public, and every route is a GET.
 
 import { createServer } from 'node:http'
-import { readFileSync, readdirSync, existsSync, statSync, watch, writeFileSync } from 'node:fs'
+import { readFileSync, readdirSync, existsSync, statSync, watch } from 'node:fs'
 import { join } from 'node:path'
-import { execSync } from 'node:child_process'
-import { parseFrontmatter } from '../lib/frontmatter.js'
+import { spawnSync } from 'node:child_process'
+import { tryReadArticle } from '../lib/article.js'
+import { cycleIdOf, parseCycleLog } from '../lib/cycle-log.js'
+import { pathOf } from '../lib/datasets.js'
 import { scoreDir } from '../lib/quality-score.js'
 import { regionFromCoords } from '../lib/regions.js'
 import { ROOT } from '../lib/paths.js'
+import { latestTrendsPath } from '../lib/trends-snapshot.js'
+import { SENT, SYSTEMD_SHOW, WRITING_TARGETS, abortCause, byFileState, cycleFacts, cycleStatus, cycleView, isCycleLog, listener, nextLog, systemdView, tailOf, writingBreaches } from './data.js'
+import { sourcesView } from './sources.js'
 
-const PORT = 7777
-const HOST = '127.0.0.1'
+// Loopback unless the unit says otherwise: `DASHBOARD_HOST=0.0.0.0` in
+// `zuhd-dashboard.service` is what puts the page on the public address. A
+// second copy for looking at a change takes another `DASHBOARD_PORT`.
+const PORT = Number(process.env.DASHBOARD_PORT) || 7777
+const HOST = process.env.DASHBOARD_HOST || '127.0.0.1'
 
-const LOGS_DIR = join(ROOT, 'logs')
-const ARTICLES_DIR = join(ROOT, 'content', 'articles')
+// Where the state is, by its name in the catalog (`lib/datasets.js`). The
+// built site is not state, and is spelled.
+const LOGS_DIR = pathOf('cycleLogs')
+const ARTICLES_DIR = pathOf('articles')
 const DIST_DIR = join(ROOT, 'dist')
-const DASHBOARD_DIR = new URL('.', import.meta.url).pathname
+const DASHBOARD_DIR = join(ROOT, 'scripts', 'dashboard')
 
-// ── Log Parsing ─────────────────────────────────────────────────────
+// ── Cycle logs ──────────────────────────────────────────────────────
 
-function parseCycleLog(filepath) {
-  const content = readFileSync(filepath, 'utf-8')
-  const filename = filepath.split('/').pop()
+/**
+ * A log, read by `lib/cycle-log.js`, once for as long as the file stays as it
+ * is. Six answers are made from the logs and each parsed every file for
+ * itself: a week of them, 42 files and 3.5 MB, up to five times on one
+ * refresh of the page and again every fifteen seconds for the overview. A
+ * finished log never changes; only the running cycle's is read again.
+ */
+const logOf = byFileState((path) => {
+  const text = readFileSync(path, 'utf-8')
+  const log = parseCycleLog(text)
+  return { ...log, cause: abortCause(text, log.abort) }
+})
 
-  // Date + scheduled hour from filename: cycle-2026-04-11_1702.log
-  const fnMatch = filename.match(/cycle-(\d{4}-\d{2}-\d{2})_(\d{2})(\d{2})/)
-  const date = fnMatch ? fnMatch[1] : null
-  const scheduledHour = fnMatch ? fnMatch[2] : null
+/** The cycle logs on disk, newest first. */
+function getLogFiles() {
+  if (!existsSync(LOGS_DIR)) return []
+  const files = readdirSync(LOGS_DIR).filter(isCycleLog).sort().reverse()
+  logOf.only(files.map((f) => join(LOGS_DIR, f)))
+  return files
+}
 
-  const started = content.match(/^Started: (.+)$/m)
-  const finished = content.match(/^Finished: (.+?) — total (\d+)s$/m)
-
-  // Stage timing + exit codes
-  const feed = content.match(/Merged feed:.*— (\d+)s/)
-  const selector = content.match(/Selector exit: (\d+) — (\d+)s/)
-  const writer = content.match(/Writer exit: (\d+) — (\d+)s/)
-  const editor = content.match(/Editor exit: (\d+) — (\d+)s/)
-  const edu = content.match(/Edu context exit: (\d+) — (\d+)s/)
-  const trends = content.match(/Trends: offered (\d+) indicators to editor, picked (\d+) across (\d+) articles/)
-  const build = content.match(/Build exit: (\d+)/)
-  const deploy = content.match(/Deploy exit: (\d+)/)
-  const briefing = content.match(/Briefing exit: (\d+)/)
-  const tuning = content.match(/Tuning exit: (\d+)/)
-
-  // Selection detail
-  const selCount = content.match(/Selection contains (\d+) stories/)
-  const dedupSel = content.match(/Deduped selection: (\d+) → (\d+)/)
-  const newArticles = content.match(/Found (\d+) new\/modified articles/)
-
-  // NewsAPI token usage + backfill operational signals
-  const newsApiTokens = content.match(/NewsAPI tokens this cycle:\s*~?(\d+)/)
-  const backfillFires = [...content.matchAll(/Backfill: added (\d+) stories/g)]
-  const backfillFailed = /Backfill: no viable candidates found/.test(content)
-
-  // Funnel block
-  const funnelFeed = content.match(/^Feed:\s+(.+)$/m)
-  const funnelSel = content.match(/^Selected:\s+(\d+)/m)
-  const funnelDed = content.match(/^Deduped:\s+(\d+)(?:\s+\((.+)\))?/m)
-  const funnelWrit = content.match(/^Written:\s+(\d+)/m)
-  const funnelVal = content.match(/^Validated:\s+(\d+)(?:\s+\((.+)\))?/m)
-  const funnelPub = content.match(/^Published:\s+(\d+)/m)
-
-  // Abort messages
-  const aborted = content.match(/Selector failed|No selection file|Selection is empty|All selections already published|No new articles/)
-
-  return {
-    filename,
-    date,
-    scheduledHour,
-    startedAt: started ? started[1] : null,
-    finishedAt: finished ? finished[1] : null,
-    totalSeconds: finished ? parseInt(finished[2], 10) : null,
-    completed: !!finished,
-    aborted: aborted ? aborted[0] : null,
-    stages: {
-      feed:      { seconds: feed ? parseInt(feed[1], 10) : null },
-      selector:  { exit: selector ? parseInt(selector[1], 10) : null, seconds: selector ? parseInt(selector[2], 10) : null },
-      writer:    { exit: writer ? parseInt(writer[1], 10) : null, seconds: writer ? parseInt(writer[2], 10) : null },
-      editor:    { exit: editor ? parseInt(editor[1], 10) : null, seconds: editor ? parseInt(editor[2], 10) : null },
-      edu:       { exit: edu ? parseInt(edu[1], 10) : null, seconds: edu ? parseInt(edu[2], 10) : null },
-      trends:    { offered: trends ? parseInt(trends[1], 10) : null, picked: trends ? parseInt(trends[2], 10) : null, articles: trends ? parseInt(trends[3], 10) : null },
-      build:     { exit: build ? parseInt(build[1], 10) : null },
-      deploy:    { exit: deploy ? parseInt(deploy[1], 10) : null },
-      briefing:  { exit: briefing ? parseInt(briefing[1], 10) : null },
-      tuning:    { exit: tuning ? parseInt(tuning[1], 10) : null },
-    },
-    selectionCount: selCount ? parseInt(selCount[1], 10) : null,
-    dedupBefore: dedupSel ? parseInt(dedupSel[1], 10) : null,
-    dedupAfter: dedupSel ? parseInt(dedupSel[2], 10) : null,
-    articlesWritten: newArticles ? parseInt(newArticles[1], 10) : null,
-    newsApiTokens: newsApiTokens ? parseInt(newsApiTokens[1], 10) : null,
-    backfillAdded: backfillFires.reduce((sum, m) => sum + parseInt(m[1], 10), 0),
-    backfillFailed,
-    funnel: {
-      feed: funnelFeed ? funnelFeed[1] : null,
-      selected: funnelSel ? parseInt(funnelSel[1], 10) : 0,
-      deduped: funnelDed ? parseInt(funnelDed[1], 10) : 0,
-      dedupNote: funnelDed ? funnelDed[2] || null : null,
-      written: funnelWrit ? parseInt(funnelWrit[1], 10) : 0,
-      validated: funnelVal ? parseInt(funnelVal[1], 10) : 0,
-      validNote: funnelVal ? funnelVal[2] || null : null,
-      published: funnelPub ? parseInt(funnelPub[1], 10) : 0,
-    },
+/** A log by its name, or null: a cycle prunes week-old logs as it ends, between a listing and a read. */
+function logAt(filename) {
+  try {
+    return logOf(join(LOGS_DIR, filename))
+  } catch {
+    return null
   }
 }
 
-function getLogFiles() {
-  if (!existsSync(LOGS_DIR)) return []
-  return readdirSync(LOGS_DIR)
-    .filter(f => /^cycle-\d{4}-\d{2}-\d{2}_\d{4}\.log$/.test(f))
-    .sort()
-    .reverse()
-}
-
 function getAllCycles() {
-  return getLogFiles().map(f => parseCycleLog(join(LOGS_DIR, f)))
+  return getLogFiles().flatMap((f) => {
+    const log = logAt(f)
+    return log ? [cycleView(log, f)] : []
+  })
 }
 
 function getLogTail(filename, lines = 50) {
-  const filepath = join(LOGS_DIR, filename)
-  if (!existsSync(filepath) || !/^cycle-[\d_-]+\.log$/.test(filename)) return ''
-  const content = readFileSync(filepath, 'utf-8')
-  return content.split('\n').slice(-lines).join('\n')
+  try {
+    return readFileSync(join(LOGS_DIR, filename), 'utf-8').split('\n').slice(-lines).join('\n')
+  } catch {
+    return ''
+  }
 }
 
 // ── Systemd Queries ─────────────────────────────────────────────────
 
+/**
+ * One question to systemd, with a deadline. `spawnSync` and not `execSync`:
+ * whatever status `systemctl` exits with, what it printed is what is read
+ * (`systemdView`), and a call that fails or runs out of time reads as nothing
+ * known rather than taking the request down.
+ */
 function systemdStatus() {
+  const res = spawnSync('systemctl', SYSTEMD_SHOW, { encoding: 'utf-8', timeout: 2000 })
+  return systemdView(res.stdout)
+}
+
+// ── What a dataset says ─────────────────────────────────────────────
+
+/** A JSON file parsed, once for as long as it stays as it is; null when it is missing or not JSON. */
+const jsonAt = byFileState((path) => {
   try {
-    const isActive = execSync('systemctl is-active zuhd-news-cycle.service 2>/dev/null', { encoding: 'utf-8' }).trim()
-    const timerShow = execSync(
-      'systemctl show zuhd-news-cycle.timer --property=NextElapseUSecRealtime,LastTriggerUSec 2>/dev/null',
-      { encoding: 'utf-8' }
-    )
-    const nextMatch = timerShow.match(/NextElapseUSecRealtime=(.+)/)
-    const lastMatch = timerShow.match(/LastTriggerUSec=(.+)/)
-    return {
-      serviceActive: isActive === 'active' || isActive === 'activating',
-      nextFire: nextMatch ? nextMatch[1] : null,
-      lastTrigger: lastMatch ? lastMatch[1] : null,
-    }
+    return JSON.parse(readFileSync(path, 'utf-8'))
   } catch {
-    return { serviceActive: false, nextFire: null, lastTrigger: null }
+    return null
+  }
+})
+
+/** @param {string} path */
+function readPath(path) {
+  try {
+    return jsonAt(path)
+  } catch {
+    return null
   }
 }
 
-// ── Health Indicators ───────────────────────────────────────────────
-
-function computeStatus(lastCycle, metaAge) {
-  const s = {}
-
-  // Site freshness
-  if (metaAge === null) s.siteFreshness = 'unknown'
-  else if (metaAge < 6) s.siteFreshness = 'green'
-  else if (metaAge < 12) s.siteFreshness = 'amber'
-  else s.siteFreshness = 'red'
-
-  if (!lastCycle?.completed) {
-    s.lastCycle = lastCycle ? 'red' : 'unknown'
-    s.cycleTiming = 'unknown'
-    s.pubRate = 'unknown'
-    s.validation = 'unknown'
-  } else {
-    // Last cycle outcome
-    const deployOk = lastCycle.stages.deploy?.exit === 0
-    const selectorFail = lastCycle.stages.selector?.exit !== 0 && lastCycle.stages.selector?.exit !== null
-    s.lastCycle = selectorFail ? 'red' : deployOk ? 'green' : 'amber'
-
-    // Timing
-    const t = lastCycle.totalSeconds
-    s.cycleTiming = t === null ? 'unknown' : t < 1500 ? 'green' : t < 2400 ? 'amber' : 'red'
-
-    // Publication rate
-    const pub = lastCycle.funnel.published
-    s.pubRate = pub >= 5 ? 'green' : pub >= 3 ? 'amber' : 'red'
-
-    // Validation
-    const removed = lastCycle.funnel.written - lastCycle.funnel.validated
-    s.validation = removed <= 0 ? 'green' : removed <= 2 ? 'amber' : 'red'
-  }
-
-  const vals = Object.values(s)
-  s.overall = vals.includes('red') ? 'red' : vals.includes('amber') ? 'amber' : vals.includes('unknown') ? 'unknown' : 'green'
-
-  return s
-}
+/** A dataset by its name in the catalog, parsed, or null. */
+const readDataset = (name) => readPath(name === 'trendsLatest' ? (latestTrendsPath() ?? '') : pathOf(name))
 
 // ── Articles Per Day ────────────────────────────────────────────────
 
@@ -201,22 +129,37 @@ function articlesPerDay(days = 7) {
   return counts
 }
 
+/**
+ * An article's category, read through the parser once for as long as the file
+ * stays as it is: the two charts below ask for every article of a week, or of
+ * an experiment's whole run, on each refresh.
+ */
+const categoryAt = byFileState((path) => {
+  const { article } = tryReadArticle(path)
+  return article ? String(article.meta.category ?? '') : ''
+})
+
+/** How many of these article files are in each category, and how many there are. */
+function categoryCounts(files) {
+  const counts = { politics: 0, economy: 0, science: 0, tech: 0, total: 0 }
+  for (const f of files) {
+    try {
+      const category = categoryAt(join(ARTICLES_DIR, f))
+      if (category !== 'total' && Object.hasOwn(counts, category)) counts[category]++
+      counts.total++
+    } catch {}
+  }
+  return counts
+}
+
 function categoriesPerDay(days = 7) {
   if (!existsSync(ARTICLES_DIR)) return []
   const files = readdirSync(ARTICLES_DIR).filter(f => f.endsWith('.md'))
   const result = []
   for (let i = days - 1; i >= 0; i--) {
     const d = new Date(Date.now() - i * 86400000).toISOString().slice(0, 10)
-    const dayFiles = files.filter(f => f.startsWith(d))
-    const cats = { date: d, politics: 0, economy: 0, science: 0, tech: 0 }
-    for (const f of dayFiles) {
-      try {
-        const content = readFileSync(join(ARTICLES_DIR, f), 'utf-8')
-        const catMatch = content.match(/^category:\s*["']?(\w+)["']?/m)
-        if (catMatch && Object.hasOwn(cats, catMatch[1])) cats[catMatch[1]]++
-      } catch {}
-    }
-    result.push(cats)
+    const { total: _total, ...cats } = categoryCounts(files.filter(f => f.startsWith(d)))
+    result.push({ date: d, ...cats })
   }
   return result
 }
@@ -239,46 +182,59 @@ function clearCaches() {
 
 // ── Route Handlers ──────────────────────────────────────────────────
 
+/** Every source and whether it is working: `sources.js`. */
+function handleSources() {
+  return cached('sources', 60_000, () => {
+    const cycles = getLogFiles().flatMap((f) => {
+      const log = logAt(f)
+      return log ? [cycleFacts(log, f)] : []
+    })
+    return { now: new Date().toISOString(), ...sourcesView({ read: readDataset, cycles }) }
+  })
+}
+
 function handleOverview() {
   return cached('overview', 15_000, () => {
     const cycles = getAllCycles()
-    const completed = cycles.filter(c => c.completed)
-    const last = completed[0] || null
-
-    // Meta freshness
-    let metaAge = null
-    const metaPath = join(DIST_DIR, 'api', 'meta.json')
-    if (existsSync(metaPath)) {
-      try {
-        const meta = JSON.parse(readFileSync(metaPath, 'utf-8'))
-        metaAge = (Date.now() - new Date(meta.generated).getTime()) / 3600000
-      } catch {}
-    }
-
+    const last = cycles.find((c) => c.completed) || null
+    const meta = readPath(join(DIST_DIR, 'api', 'meta.json'))
+    const metaAge = meta?.generated ? (Date.now() - new Date(meta.generated).getTime()) / 3600000 : null
     const sd = systemdStatus()
-    const status = computeStatus(last, metaAge)
+    const alert = readDataset('cycleAlert')
+    const { status, why } = cycleStatus({ cycles, metaGenerated: meta?.generated ?? null, systemd: sd, alert, sources: handleSources().summary })
+    // A log with no last line is a cycle running only while systemd says one
+    // is: a cycle that was killed leaves the same log.
+    const running = cycles[0] && !cycles[0].completed && sd.serviceActive ? cycles[0] : null
 
     return {
       now: new Date().toISOString(),
       metaAge: metaAge !== null ? Math.round(metaAge * 10) / 10 : null,
       serviceActive: sd.serviceActive,
+      serviceState: sd.serviceState,
+      timerActive: sd.timerActive,
       nextFire: sd.nextFire,
       lastTrigger: sd.lastTrigger,
+      alert,
       lastCycle: last ? {
         filename: last.filename,
         date: last.date,
         scheduledHour: last.scheduledHour,
         totalSeconds: last.totalSeconds,
         published: last.funnel.published,
+        target: last.target,
         finishedAt: last.finishedAt,
+        aborted: last.aborted,
+        benign: last.benign,
+        cause: last.cause,
       } : null,
-      // If there's a running (incomplete) cycle, include it
-      runningCycle: cycles[0] && !cycles[0].completed ? {
-        filename: cycles[0].filename,
-        startedAt: cycles[0].startedAt,
-        stages: cycles[0].stages,
+      runningCycle: running ? {
+        filename: running.filename,
+        startedAt: running.startedAt,
+        stages: running.stages,
+        allStages: running.allStages,
       } : null,
       status,
+      why,
     }
   })
 }
@@ -288,20 +244,15 @@ function handleCycles() {
 }
 
 function handleCycleDetail(filename) {
-  if (!/^cycle-[\d_-]+\.log$/.test(filename)) return null
-  const key = `cycle:${filename}`
-  return cached(key, 60_000, () => {
-    const filepath = join(LOGS_DIR, filename)
-    if (!existsSync(filepath)) return null
-    const parsed = parseCycleLog(filepath)
-    parsed.tail = getLogTail(filename, 50)
-    return parsed
-  })
+  // Only a cycle log's own name reaches the disk.
+  if (!isCycleLog(filename)) return null
+  const log = logAt(filename)
+  return log ? { ...cycleView(log, filename), tail: getLogTail(filename, 50) } : null
 }
 
 function handleQuality() {
   return cached('quality', 300_000, () => {
-    const result = { categories: null, sources: null, regions: null, freshness: null, arcs: null, articlesPerDay: articlesPerDay(7) }
+    const result = { categories: null, sources: null, regions: null, freshness: null, articlesPerDay: articlesPerDay(7) }
 
     // From feed.json
     const feedPath = join(DIST_DIR, 'api', 'feed.json')
@@ -329,25 +280,13 @@ function handleQuality() {
       } catch {}
     }
 
-    // From metrics.json (if available)
-    const metricsPath = '/tmp/zuhd-metrics.json'
+    // From the day's metrics, when the tuning stage has left them
+    const metricsPath = pathOf('metrics')
     if (existsSync(metricsPath)) {
       try {
         const m = JSON.parse(readFileSync(metricsPath, 'utf-8'))
         if (m.freshness?.today) result.freshness = m.freshness.today
-      } catch {}
-    }
-
-    // Story arcs from ledger
-    const ledgerPath = join(ROOT, 'content', '.story-ledger.json')
-    if (existsSync(ledgerPath)) {
-      try {
-        const ledger = JSON.parse(readFileSync(ledgerPath, 'utf-8'))
-        const arcs = { breaking: 0, developing: 0, ongoing: 0, fading: 0 }
-        for (const s of (ledger.stories || [])) {
-          if (Object.hasOwn(arcs, s.arc)) arcs[s.arc]++
-        }
-        result.arcs = arcs
+        result.duplicates = m.duplicates?.today || null
       } catch {}
     }
 
@@ -361,36 +300,6 @@ function handleQuality() {
     result.validationFailures = totalRemoved
     result.categoriesPerDay = categoriesPerDay(7)
 
-    // Edu context coverage
-    const briefsPath = join(ROOT, 'content', '.context-briefs.json')
-    if (existsSync(briefsPath)) {
-      try {
-        const allBriefs = JSON.parse(readFileSync(briefsPath, 'utf-8'))
-        const totalBriefs = Object.keys(allBriefs).length
-        const articleFiles = existsSync(ARTICLES_DIR) ? readdirSync(ARTICLES_DIR).filter(f => f.endsWith('.md')) : []
-        const totalArticles = articleFiles.length
-        // Recent coverage (7 days)
-        const recentDate = new Date(Date.now() - 7 * 86400000).toISOString().slice(0, 10)
-        const recentArticles = articleFiles.filter(f => f >= recentDate).length
-        const recentBriefs = Object.keys(allBriefs).filter(k => k >= recentDate).length
-        result.eduContext = {
-          totalBriefs, totalArticles,
-          coveragePct: totalArticles > 0 ? Math.round(totalBriefs / totalArticles * 100) : 0,
-          recentBriefs, recentArticles,
-          recentPct: recentArticles > 0 ? Math.round(recentBriefs / recentArticles * 100) : 0,
-        }
-      } catch {}
-    }
-
-    // Duplicates from metrics
-    const metricsPath2 = '/tmp/zuhd-metrics.json'
-    if (existsSync(metricsPath2)) {
-      try {
-        const m = JSON.parse(readFileSync(metricsPath2, 'utf-8'))
-        result.duplicates = m.duplicates?.today || null
-      } catch {}
-    }
-
     return result
   })
 }
@@ -399,7 +308,7 @@ function handleQuality() {
 
 function handleWritingQuality() {
   return cached('writing-quality', 60_000, () => {
-    const trendPath = join(ROOT, 'content', '.quality-trend.json')
+    const trendPath = pathOf('qualityTrend')
     if (!existsSync(trendPath)) return { current: null, history: [], delta: null }
     let trend = []
     try { trend = JSON.parse(readFileSync(trendPath, 'utf-8')) } catch { return { current: null, history: [], delta: null } }
@@ -416,33 +325,24 @@ function handleWritingQuality() {
         }
       }
     }
-    return { current, delta, history: trend.slice(-12) }
+    return { current, delta, history: trend.slice(-12), targets: WRITING_TARGETS, breaches: writingBreaches(current.metrics) }
   })
 }
 
-// Per-article objective quality scoring (specificity, hedges, title-echo).
-// Computes from the most recent N articles, persists daily snapshots so we
-// build a trend without changing the cycle. Read on every dashboard hit.
+// Per-article objective quality scoring (specificity, hedges, title-echo),
+// over the most recent N articles, computed on a request. There is no trend:
+// the one there was kept a day's mean whenever someone opened the tab, which
+// in five months was twice, and a GET on a public page wrote a tracked file
+// to keep it.
 function handleSpecificity() {
   return cached('specificity', 5 * 60_000, () => {
-    const articlesDir = join(ROOT, 'content', 'articles')
-    if (!existsSync(articlesDir)) return { current: null, history: [], perArticle: [] }
+    if (!existsSync(ARTICLES_DIR)) return { current: null, worst: [] }
 
     const N = 60
-    const { rows, mean } = scoreDir(articlesDir, N)
-    if (!mean) return { current: null, history: [], perArticle: [] }
+    const { rows, mean } = scoreDir(ARTICLES_DIR, N)
+    if (!mean) return { current: null, worst: [] }
 
-    const today = new Date().toISOString().slice(0, 10)
-    const trendPath = join(ROOT, 'content', '.specificity-trend.json')
-    let trend = []
-    if (existsSync(trendPath)) {
-      try { trend = JSON.parse(readFileSync(trendPath, 'utf-8')) } catch { trend = [] }
-    }
-
-    // One snapshot per day — overwrite today's entry, append on day rollover
-    const todayIdx = trend.findIndex(t => t.date === today)
-    const snapshot = {
-      date: today,
+    const current = {
       articleCount: mean.articleCount,
       specificity: +mean.specificity.toFixed(2),
       digits: +mean.digits.toFixed(2),
@@ -451,75 +351,40 @@ function handleSpecificity() {
       titleEcho: +mean.titleEcho.toFixed(3),
       sentences: +mean.sentences.toFixed(2),
     }
-    if (todayIdx >= 0) trend[todayIdx] = snapshot
-    else trend.push(snapshot)
-    if (trend.length > 60) trend = trend.slice(-60)
-    try { writeFileSync(trendPath, JSON.stringify(trend, null, 2)) } catch {}
-
-    const prior = trend.length >= 2 ? trend[trend.length - 2] : null
-    const delta = {}
-    if (prior) {
-      for (const k of ['specificity', 'digits', 'properNouns', 'hedges', 'titleEcho']) {
-        if (typeof snapshot[k] === 'number' && typeof prior[k] === 'number') {
-          delta[k] = +(snapshot[k] - prior[k]).toFixed(2)
-        }
-      }
-    }
-
     // Bottom 5 by specificity for drill-down
     const worst = rows.slice().sort((a, b) => a.specificity - b.specificity).slice(0, 5).map(r => ({
       file: r.file, specificity: r.specificity, digits: r.digits, hedges: r.hedges, titleEcho: +r.titleEcho.toFixed(2),
     }))
 
-    return { current: snapshot, delta, history: trend, worst, windowArticles: N }
+    return { current, worst, windowArticles: N }
   })
 }
 
-// Article-image preview: scan latest articles for source-level image URLs.
-// Captured starting 2026-05-02 by flipping NewsAPI's includeArticleImage flag.
+// Article-image preview: the latest articles' source-level image URLs.
 function handleArticleImages() {
   return cached('article-images', 5 * 60_000, () => {
-    const articlesDir = join(ROOT, 'content', 'articles')
-    if (!existsSync(articlesDir)) return { articles: [], total: 0, withImage: 0 }
+    if (!existsSync(ARTICLES_DIR)) return { articles: [], total: 0, withImage: 0 }
 
-    const files = readdirSync(articlesDir).filter(f => f.endsWith('.md')).sort().reverse().slice(0, 30)
+    const files = readdirSync(ARTICLES_DIR).filter(f => f.endsWith('.md')).sort().reverse().slice(0, 30)
     const out = []
     let withImage = 0
     for (const f of files) {
-      try {
-        const raw = readFileSync(join(articlesDir, f), 'utf-8')
-        const m = raw.match(/^---\n([\s\S]*?)\n---/)
-        if (!m) continue
-        const fm = m[1]
-        const titleM = fm.match(/^title:\s*"([^"]+)"/m)
-        const dateM = fm.match(/^date:\s*"([^"]+)"/m)
-        const catM = fm.match(/^category:\s*"?([a-z]+)"?/m)
-        // Find sources with image: field. Slice from "sources:\n" to the next
-        // top-level key (start-of-line letter+colon), then iterate source entries.
-        const sourcesIdx = fm.indexOf('sources:\n')
-        let sourcesBlock = ''
-        if (sourcesIdx !== -1) {
-          sourcesBlock = fm.slice(sourcesIdx + 'sources:\n'.length)
-          const nextTopKey = sourcesBlock.search(/\n[a-zA-Z][\w]*:/)
-          if (nextTopKey >= 0) sourcesBlock = sourcesBlock.slice(0, nextTopKey)
-        }
-        const sourceImages = []
-        const sourceMatches = sourcesBlock.matchAll(/ {2}- name:\s*"([^"]+)"([\s\S]*?)(?=\n {2}- name:|$)/g)
-        for (const sm of sourceMatches) {
-          const name = sm[1]
-          const block = sm[2]
-          const im = block.match(/\n\s+image:\s*"([^"]+)"/)?.[1]
-          if (im) sourceImages.push({ source: name, url: im })
-        }
-        if (sourceImages.length) withImage++
-        out.push({
-          slug: f.replace(/\.md$/, ''),
-          title: titleM?.[1] || f,
-          date: dateM?.[1] || '',
-          category: catM?.[1] || '',
-          images: sourceImages,
-        })
-      } catch {}
+      const { article } = tryReadArticle(join(ARTICLES_DIR, f))
+      if (!article) continue
+      const { meta } = article
+      // A `date:` written without quotes is a date to YAML, not a string.
+      const date = /** @type {unknown} */ (meta.date)
+      const images = (Array.isArray(meta.sources) ? meta.sources : [])
+        .filter((src) => src?.name && src?.image)
+        .map((src) => ({ source: String(src.name), url: String(src.image) }))
+      if (images.length) withImage++
+      out.push({
+        slug: article.slug,
+        title: String(meta.title || f),
+        date: date instanceof Date ? date.toISOString() : String(date ?? ''),
+        category: String(meta.category ?? ''),
+        images,
+      })
     }
     return { articles: out, total: out.length, withImage }
   })
@@ -529,7 +394,7 @@ function handleArticleImages() {
 
 function handleExperiment() {
   return cached('experiment', 60_000, () => {
-    const expPath = join(ROOT, 'content', '.experiments.json')
+    const expPath = pathOf('experiments')
     if (!existsSync(expPath)) return { active: null, history: [], tracking: null }
 
     const data = JSON.parse(readFileSync(expPath, 'utf-8'))
@@ -543,6 +408,9 @@ function handleExperiment() {
       queued,
       history: (data.history || []).slice().reverse(),
       tracking: null,
+      // A freeze on new experiments, and why: the tab is otherwise empty with no word of it.
+      holdUntil: data.noNewExperimentsUntil ?? null,
+      holdReason: data.noNewExperimentsUntilReason ?? null,
     }
 
     // If there's an active experiment, compute daily tracking data
@@ -562,20 +430,10 @@ function handleExperiment() {
       for (let i = -3; i <= Math.max(daysElapsed, 0); i++) {
         const d = new Date(new Date(startDate).getTime() + i * 86400000).toISOString().slice(0, 10)
         if (d > today) break
-        const dayFiles = articleFiles.filter(f => f.startsWith(d))
-        const cats = { politics: 0, economy: 0, science: 0, tech: 0, total: 0 }
-        for (const f of dayFiles) {
-          try {
-            const content = readFileSync(join(ARTICLES_DIR, f), 'utf-8')
-            const catMatch = content.match(/^category:\s*["']?(\w+)["']?/m)
-            if (catMatch && Object.hasOwn(cats, catMatch[1])) cats[catMatch[1]]++
-            cats.total++
-          } catch {}
-        }
         dailyMetrics.push({
           date: d,
           isBaseline: i < 0,
-          ...cats,
+          ...categoryCounts(articleFiles.filter(f => f.startsWith(d))),
         })
       }
 
@@ -596,40 +454,45 @@ function handleExperiment() {
 
 function handleMedia() {
   return cached('media', 120_000, () => {
-    const result = { pushHistory: [], briefing: null }
+    const result = { pushHistory: [], briefing: null, channels: {} }
 
-    // Parse push notifications from logs
-    const logFiles = getLogFiles()
-    for (const f of logFiles) {
-      try {
-        const content = readFileSync(join(LOGS_DIR, f), 'utf-8')
-        const pushMatch = content.match(/Pushing breaking news: (.+)/m)
-        if (pushMatch) {
-          try {
-            const payload = JSON.parse(pushMatch[1])
-            const responseMatch = content.match(/\{"pushed":\d+.*\}/m)
-            const response = responseMatch ? JSON.parse(responseMatch[0]) : null
-            const dateMatch = f.match(/cycle-(\d{4}-\d{2}-\d{2})_(\d{2})(\d{2})/)
-            result.pushHistory.push({
-              date: dateMatch ? dateMatch[1] : null,
-              hour: dateMatch ? `${dateMatch[2]}:${dateMatch[3]}` : null,
-              articles: payload.articles || [],
-              pushed: response?.pushed ?? null,
-              skipped: response?.skipped ?? null,
-              tokens: response?.tokens ?? null,
-            })
-          } catch {}
-        }
-      } catch {}
+    // Every push a cycle sent: the breaking story's, and the daily briefing's
+    for (const f of getLogFiles()) {
+      // `2026-10-09_0501`
+      const id = cycleIdOf(f)
+      for (const push of logAt(f)?.pushes ?? []) {
+        if (!push.payload) continue
+        result.pushHistory.push({
+          kind: push.kind,
+          date: id.slice(0, 10),
+          hour: `${id.slice(11, 13)}:${id.slice(13, 15)}`,
+          articles: push.payload.articles || [],
+          title: push.payload.title ?? null,
+          pushed: push.response?.pushed ?? null,
+          skipped: push.response?.skipped ?? null,
+          devices: push.response?.tokens ?? null,
+        })
+      }
+    }
+
+    // The last posts to X and Instagram, newest first: sent, or why not
+    for (const [channel, dataset] of [['x', 'tweetLog'], ['instagram', 'instagramLog']]) {
+      const log = readDataset(dataset)
+      result.channels[channel] = (Array.isArray(log) ? log : []).slice(-8).reverse().map((e) => ({
+        timestamp: e.timestamp ?? null,
+        slug: e.slug ?? null,
+        sent: e.sent === true,
+        error: e.error ? String(e.error).slice(0, 160) : null,
+      }))
     }
 
     // Audio briefing meta
-    const metaPath = join(ROOT, 'content', 'audio', 'briefing-meta.json')
+    const metaPath = pathOf('briefingMeta')
     if (existsSync(metaPath)) {
       try {
         const meta = JSON.parse(readFileSync(metaPath, 'utf-8'))
         // List available briefing files
-        const audioDir = join(ROOT, 'content', 'audio')
+        const audioDir = pathOf('audio')
         const mp3s = readdirSync(audioDir)
           .filter(f => /^briefing-\d{4}-\d{2}-\d{2}\.mp3$/.test(f))
           .sort()
@@ -651,51 +514,7 @@ function handleMedia() {
   })
 }
 
-// ── Feed Source Health ───────────────────────────────────────────────
-
-function handleFeedHealth() {
-  return cached('feedHealth', 120_000, () => {
-    const result = { current: null, history: [] }
-
-    // Current stats from latest fetch
-    const statsPath = '/tmp/zuhd-feed-source-stats.json'
-    if (existsSync(statsPath)) {
-      try {
-        result.current = JSON.parse(readFileSync(statsPath, 'utf-8'))
-      } catch {}
-    }
-
-    // Parse historical per-source data from logs (look for ✗ errors)
-    const logFiles = getLogFiles().slice(0, 35) // Last 7 days
-    const sourceFails = {} // source name → count of cycles where it failed
-    for (const f of logFiles) {
-      try {
-        const content = readFileSync(join(LOGS_DIR, f), 'utf-8')
-        // Find error lines: "  ✗ SourceName: error message"
-        const errors = content.matchAll(/✗ (.+?): (.+)/g)
-        const failedThisCycle = new Set()
-        for (const m of errors) {
-          const name = m[1]
-          failedThisCycle.add(name)
-          sourceFails[name] = (sourceFails[name] || 0) + 1
-        }
-        // Count OK from "Fetching N RSS" + "Raw items: N" lines
-        // Any source NOT in failedThisCycle was OK
-        const rssMatch = content.match(/Fetching (\d+) RSS/)
-        if (rssMatch) {
-          // We know the source list from the stats file or can infer
-          // For now just track failures
-        }
-      } catch {}
-    }
-    result.failCounts = sourceFails
-    result.totalCycles = logFiles.length
-
-    return result
-  })
-}
-
-// ── Operations (NewsAPI tokens, trends pick rate, backfill) ─────────
+// ── Operations (NewsAPI tokens) ─────────────────────────────────────
 
 function handleOperations() {
   return cached('operations', 120_000, () => {
@@ -706,93 +525,18 @@ function handleOperations() {
       date: c.date,
       hour: c.scheduledHour,
       tokens: c.newsApiTokens,
-      trendsOffered: c.stages.trends?.offered ?? null,
-      trendsPicked: c.stages.trends?.picked ?? null,
-      trendsArticles: c.stages.trends?.articles ?? null,
-      backfillAdded: c.backfillAdded || 0,
-      backfillFailed: c.backfillFailed || false,
       published: c.funnel?.published ?? 0,
     }))
-    const tokenSum = series.reduce((s, c) => s + (c.tokens || 0), 0)
-    const tokenAvg = series.length ? Math.round(tokenSum / series.filter((c) => c.tokens != null).length) : 0
-    const pickedSum = series.reduce((s, c) => s + (c.trendsPicked || 0), 0)
-    const offeredSum = series.reduce((s, c) => s + (c.trendsOffered || 0), 0)
-    const trendsPickRate = offeredSum > 0 ? pickedSum / offeredSum : 0
+    const counted = series.filter((c) => c.tokens != null)
+    const tokenSum = counted.reduce((s, c) => s + c.tokens, 0)
     return {
       series,
       summary: {
         cycles: series.length,
         tokenSum,
-        tokenAvg,
-        trendsPickRate,
-        backfillFireCount: series.filter((c) => c.backfillAdded > 0).length,
-        backfillFailCount: series.filter((c) => c.backfillFailed).length,
+        // Over the cycles whose log has the figure; 0, not NaN, when none does.
+        tokenAvg: counted.length ? Math.round(tokenSum / counted.length) : 0,
       },
-    }
-  })
-}
-
-// ── Block-type adoption from context briefs ─────────────────────────
-
-function handleBlocks() {
-  return cached('blocks', 300_000, () => {
-    const briefsPath = join(ROOT, 'content', '.context-briefs.json')
-    if (!existsSync(briefsPath)) return { empty: true }
-    const briefs = JSON.parse(readFileSync(briefsPath, 'utf-8'))
-    const SHAPE_SPECIFIC = new Set(['timeline', 'rank', 'sankey', 'treemap'])
-    const ALWAYS_CHEAP = new Set(['prose', 'quiz', 'locations', 'compare', 'actors', 'quote'])
-
-    // Per-day adoption: derive date from slug prefix (slugs start with YYYY-MM-DD-)
-    const byDay = {}
-    for (const [slug, brief] of Object.entries(briefs)) {
-      const m = slug.match(/^(\d{4}-\d{2}-\d{2})/)
-      if (!m) continue
-      const day = m[1]
-      if (!byDay[day]) byDay[day] = { day, briefs: 0, entries: 0, blocks: 0, types: {} }
-      const d = byDay[day]
-      d.briefs++
-      for (const e of brief.timeline || []) {
-        d.entries++
-        for (const b of e.blocks || []) {
-          d.blocks++
-          d.types[b.type] = (d.types[b.type] || 0) + 1
-        }
-      }
-    }
-    const days = Object.values(byDay).sort((a, b) => a.day.localeCompare(b.day))
-    // Last 14 days
-    const recent = days.slice(-14)
-
-    // Aggregate type counts across all-time + last-14-day
-    const allTypes = {}
-    for (const [, b] of Object.entries(briefs)) {
-      for (const e of b.timeline || []) for (const blk of e.blocks || []) {
-        allTypes[blk.type] = (allTypes[blk.type] || 0) + 1
-      }
-    }
-    const recentTypes = {}
-    for (const d of recent) {
-      for (const [t, n] of Object.entries(d.types)) recentTypes[t] = (recentTypes[t] || 0) + n
-    }
-
-    const tierTotals = (counts) => {
-      let shape = 0, cheap = 0, charts = 0, other = 0
-      for (const [t, n] of Object.entries(counts)) {
-        if (SHAPE_SPECIFIC.has(t)) shape += n
-        else if (ALWAYS_CHEAP.has(t)) cheap += n
-        else if (['trend', 'chart', 'multi-chart'].includes(t)) charts += n
-        else other += n
-      }
-      return { shape, cheap, charts, other }
-    }
-
-    return {
-      totalBriefs: Object.keys(briefs).length,
-      allTypes,
-      recentTypes,
-      allTiers: tierTotals(allTypes),
-      recentTiers: tierTotals(recentTypes),
-      recent: recent.map((d) => ({ ...d, tiers: tierTotals(d.types) })),
     }
   })
 }
@@ -801,8 +545,8 @@ function handleBlocks() {
 
 function handleRvsTrend() {
   return cached('rvsTrend', 60_000, () => {
-    const path = join(ROOT, 'content', '.rvs-trend.json')
-    if (!existsSync(path)) return { empty: true, hint: 'available after the next production cycle (script: score-production-cycle.js)' }
+    const path = pathOf('rvsTrend')
+    if (!existsSync(path)) return { empty: true }
     let trend = []
     try { trend = JSON.parse(readFileSync(path, 'utf-8')) } catch { return { empty: true, error: 'parse error' } }
     if (trend.length === 0) return { empty: true }
@@ -829,123 +573,13 @@ function handleRvsTrend() {
   })
 }
 
-// ── Autoresearch session history ────────────────────────────────────
-
-function handleAutoresearch() {
-  return cached('autoresearch', 60_000, () => {
-    const dir = join(ROOT, 'content', '.autoresearch-history')
-    if (!existsSync(dir)) return { empty: true, hint: 'no autoresearch sessions persisted yet — runs on session end via summarize-session.js' }
-    const files = readdirSync(dir).filter((f) => f.endsWith('.jsonl')).sort().reverse()
-    if (files.length === 0) return { empty: true }
-
-    const sessions = []
-    for (const f of files.slice(0, 30)) {
-      const sessionId = f.replace(/\.jsonl$/, '')
-      try {
-        const lines = readFileSync(join(dir, f), 'utf-8').trim().split('\n').filter(Boolean)
-        const records = lines.map((l) => JSON.parse(l))
-        const baseline = records.find((r) => r.kind === 'baseline')
-        const replays = records.filter((r) => r.kind === 'replay')
-        const accepted = replays.filter((r) => r.decision === 'accept')
-        const rejected = replays.filter((r) => r.decision !== 'accept')
-        const startedAt = baseline?.ts ?? records[0]?.ts ?? null
-        const finishedAt = records[records.length - 1]?.ts ?? null
-        const bestRvs = replays.length > 0
-          ? Math.max(...replays.map((r) => r.rvs ?? -Infinity))
-          : (baseline?.rvs ?? null)
-        sessions.push({
-          sessionId,
-          startedAt,
-          finishedAt,
-          baselineRvs: baseline?.rvs ?? null,
-          baselineClusters: baseline?.clusters ?? null,
-          bestRvs,
-          delta: bestRvs != null && baseline?.rvs != null ? +(bestRvs - baseline.rvs).toFixed(2) : null,
-          iterCount: replays.length,
-          acceptedCount: accepted.length,
-          rejectedCount: rejected.length,
-          accepted: accepted.map((r) => ({
-            iter: r.iter,
-            rvs: r.rvs,
-            delta: r.delta,
-            file: r.diff?.file,
-            targetCluster: r.diff?.targetCluster,
-            rationale: r.diff?.rationale,
-          })),
-          rejected: rejected.map((r) => ({
-            iter: r.iter,
-            rvs: r.rvs,
-            delta: r.delta,
-            decision: r.decision,
-            file: r.diff?.file,
-            targetCluster: r.diff?.targetCluster,
-            rationale: r.diff?.rationale?.slice(0, 200),
-          })),
-        })
-      } catch (err) {
-        sessions.push({ sessionId, error: err.message })
-      }
-    }
-
-    return {
-      sessions,
-      summary: {
-        sessionCount: sessions.length,
-        totalIters: sessions.reduce((s, x) => s + (x.iterCount || 0), 0),
-        totalAccepted: sessions.reduce((s, x) => s + (x.acceptedCount || 0), 0),
-      },
-    }
-  })
-}
-
 // ── Editorial Data ──────────────────────────────────────────────────
-
-function handleReach() {
-  return cached('reach', 300_000, () => {
-    const path1 = join(ROOT, 'content', '.analytics.json')
-    const errPath = join(ROOT, 'content', '.analytics-error.json')
-    if (existsSync(path1)) {
-      try {
-        const data = JSON.parse(readFileSync(path1, 'utf-8'))
-        const stat = statSync(path1)
-        // Join with article metadata for recency/category/origin context.
-        // Small per-article additions only; don't read every body.
-        const articlesDir = join(ROOT, 'content', 'articles')
-        const withMeta = (data.articles || []).slice(0, 100).map(a => {
-          const md = join(articlesDir, `${a.slug}.md`)
-          let meta = {}
-          if (existsSync(md)) {
-            const { meta: fm } = parseFrontmatter(readFileSync(md, 'utf-8'))
-            meta = { category: fm.category, date: fm.date, origin: fm.origin, eventCoverage: +(fm.eventCoverage || 0) }
-          }
-          return { ...a, ...meta }
-        })
-        return {
-          fetchedAt: data.fetchedAt,
-          ageHours: Math.round((Date.now() - stat.mtime.getTime()) / 3600000 * 10) / 10,
-          windowDays: data.windowDays,
-          totalRequests: data.totalRequests,
-          perDay: data.perDay,
-          articles: withMeta,
-        }
-      } catch (e) {
-        return { error: `parse error: ${e.message}` }
-      }
-    }
-    if (existsSync(errPath)) {
-      try { return { error: JSON.parse(readFileSync(errPath, 'utf-8')) } } catch {}
-    }
-    return { empty: true, hint: 'Run scripts/fetch-analytics.js (requires Zone > Analytics > Read)' }
-  })
-}
 
 function handleEditorial() {
   return cached('editorial', 300_000, () => {
-    const result = { audit: null, experiments: null }
+    const result = { audit: null }
 
-    // Daily audit — prefer JSON, fall back to markdown
-    const auditJsonPath = join(ROOT, 'content', '.daily-audit.json')
-    const auditMdPath = join(ROOT, 'content', '.daily-audit.md')
+    const auditJsonPath = pathOf('dailyAudit')
     if (existsSync(auditJsonPath)) {
       try {
         const stat = statSync(auditJsonPath)
@@ -957,36 +591,6 @@ function handleEditorial() {
           ageHours: Math.round((Date.now() - stat.mtime.getTime()) / 3600000 * 10) / 10,
         }
       } catch {}
-    } else if (existsSync(auditMdPath)) {
-      try {
-        const stat = statSync(auditMdPath)
-        result.audit = {
-          format: 'markdown',
-          content: readFileSync(auditMdPath, 'utf-8'),
-          updatedAt: stat.mtime.toISOString(),
-          ageHours: Math.round((Date.now() - stat.mtime.getTime()) / 3600000 * 10) / 10,
-        }
-      } catch {}
-    }
-
-    // Experiments
-    const expPath = join(ROOT, 'content', '.experiments.json')
-    if (existsSync(expPath)) {
-      try {
-        const stat = statSync(expPath)
-        const data = JSON.parse(readFileSync(expPath, 'utf-8'))
-        const activeAll = Array.isArray(data.activeExperiments)
-          ? data.activeExperiments
-          : (data.activeExperiment ? [data.activeExperiment] : [])
-        const queued = Array.isArray(data.queuedExperiments) ? data.queuedExperiments : []
-        result.experiments = {
-          active: activeAll[0] || null,
-          activeAll,
-          queued,
-          history: (data.history || []).slice().reverse(),
-          updatedAt: stat.mtime.toISOString(),
-        }
-      } catch {}
     }
 
     return result
@@ -995,87 +599,75 @@ function handleEditorial() {
 
 // ── SSE Live Tailing ────────────────────────────────────────────────
 
+/**
+ * The newest log, a line at a time as it is written, and the next cycle's
+ * when one starts.
+ *
+ * It used to hold on to the log that was newest when the page connected. A
+ * tab opened before a cycle saw that cycle's start announced and none of its
+ * lines, and the announcement came again with every line written.
+ */
 function handleLive(req, res) {
   res.writeHead(200, {
     'Content-Type': 'text/event-stream',
     'Cache-Control': 'no-cache',
     'Connection': 'keep-alive',
   })
+  const send = (event) => res.write(`data: ${JSON.stringify(event)}\n\n`)
 
-  const logFiles = getLogFiles()
-  if (!logFiles.length) {
-    res.write(`data: ${JSON.stringify({ type: 'idle' })}\n\n`)
-    // Watch logs dir for new files
-    let dirWatcher
-    try {
-      dirWatcher = watch(LOGS_DIR, (_event, fn) => {
-        if (fn && /^cycle-.*\.log$/.test(fn)) {
-          res.write(`data: ${JSON.stringify({ type: 'new_cycle', filename: fn })}\n\n`)
-        }
-      })
-    } catch {}
-    req.on('close', () => { if (dirWatcher) dirWatcher.close() })
-    return
+  /** @type {string | null} */
+  let following = null
+  let tail = null
+  let debounceTimer = null
+
+  const sendNew = () => {
+    const lines = tail ? tail.read() : []
+    for (const line of lines) send({ type: 'line', text: line })
+    if (lines.some((line) => line.startsWith('Finished:'))) {
+      send({ type: 'complete' })
+      clearCaches()
+    }
+  }
+  /** @param {string} filename @param {'start' | 'end'} from */
+  const follow = (filename, from) => {
+    following = filename
+    tail = tailOf(join(LOGS_DIR, filename), from)
   }
 
-  const newestLog = join(LOGS_DIR, logFiles[0])
-  let offset = 0
-  try { offset = statSync(newestLog).size } catch {}
+  const newest = getLogFiles()[0]
+  if (newest) follow(newest, 'end')
+  send(newest ? { type: systemdStatus().serviceActive ? 'running' : 'idle', filename: newest } : { type: 'idle' })
 
-  // Send initial status
-  const sd = systemdStatus()
-  res.write(`data: ${JSON.stringify({ type: sd.serviceActive ? 'running' : 'idle', filename: logFiles[0] })}\n\n`)
-
-  let debounceTimer = null
-  let watcher
+  // One watch on the directory tells of both: a line written to the log being
+  // followed, and a new log, which is a new cycle. That is said once, and the
+  // new log followed from its first line.
+  let dirWatcher
   try {
-    watcher = watch(newestLog, () => {
+    dirWatcher = watch(LOGS_DIR, (_event, name) => {
+      const next = nextLog(following, name)
+      if (next) {
+        clearCaches()
+        send({ type: 'new_cycle', filename: next })
+        follow(next, 'start')
+      } else if (name !== following) {
+        return
+      }
       if (debounceTimer) return
       debounceTimer = setTimeout(() => {
         debounceTimer = null
-        try {
-          const content = readFileSync(newestLog, 'utf-8')
-          const newContent = content.slice(offset)
-          offset = content.length
-          if (!newContent) return
-          const lines = newContent.split('\n').filter(Boolean)
-          for (const line of lines) {
-            res.write(`data: ${JSON.stringify({ type: 'line', text: line })}\n\n`)
-          }
-          if (newContent.includes('Finished:')) {
-            res.write(`data: ${JSON.stringify({ type: 'complete' })}\n\n`)
-            clearCaches()
-          }
-        } catch {}
+        sendNew()
       }, 100)
     })
   } catch {}
 
-  // Also watch for new log files appearing
-  let dirWatcher
-  try {
-    dirWatcher = watch(LOGS_DIR, (_event, fn) => {
-      if (fn && /^cycle-.*\.log$/.test(fn) && fn !== logFiles[0]) {
-        res.write(`data: ${JSON.stringify({ type: 'new_cycle', filename: fn })}\n\n`)
-      }
-    })
-  } catch {}
-
   req.on('close', () => {
-    if (watcher) watcher.close()
     if (dirWatcher) dirWatcher.close()
     if (debounceTimer) clearTimeout(debounceTimer)
   })
+  return SENT
 }
 
 // ── HTTP Server ─────────────────────────────────────────────────────
-
-
-function sendJSON(res, data, status = 200) {
-  const body = JSON.stringify(data)
-  res.writeHead(status, { 'Content-Type': 'application/json', 'Content-Length': Buffer.byteLength(body) })
-  res.end(body)
-}
 
 function sendFile(res, filepath, contentType) {
   try {
@@ -1088,50 +680,31 @@ function sendFile(res, filepath, contentType) {
     res.writeHead(404)
     res.end('Not found')
   }
+  return SENT
 }
 
-const server = createServer((req, res) => {
-  const url = new URL(req.url, `http://${HOST}`)
-  const path = url.pathname
+// A route that throws answers 500 and the server stays up: `listener`.
+const server = createServer(listener([
+  ['/', (_req, res) => sendFile(res, join(DASHBOARD_DIR, 'index.html'), 'text/html')],
+  ['/style.css', (_req, res) => sendFile(res, join(DASHBOARD_DIR, 'style.css'), 'text/css')],
+  [/^\/fonts\/([\w.-]+\.woff2)$/, (_req, res, font) => sendFile(res, join(ROOT, 'public', 'fonts', font), 'font/woff2')],
 
-  // Static files
-  if (path === '/') return sendFile(res, join(DASHBOARD_DIR, 'index.html'), 'text/html')
-  if (path === '/style.css') return sendFile(res, join(DASHBOARD_DIR, 'style.css'), 'text/css')
-  if (path.startsWith('/fonts/')) {
-    const fontFile = path.slice(7)
-    if (!/^[\w.-]+\.woff2$/.test(fontFile)) { res.writeHead(404); return res.end() }
-    return sendFile(res, join(ROOT, 'public', 'fonts', fontFile), 'font/woff2')
-  }
-
-  // API routes
-  if (path === '/api/overview') return sendJSON(res, handleOverview())
-  if (path === '/api/cycles') return sendJSON(res, handleCycles())
-  if (path === '/api/quality') return sendJSON(res, handleQuality())
-  if (path === '/api/writing-quality') return sendJSON(res, handleWritingQuality())
-  if (path === '/api/specificity') return sendJSON(res, handleSpecificity())
-  if (path === '/api/article-images') return sendJSON(res, handleArticleImages())
-  if (path === '/api/editorial') return sendJSON(res, handleEditorial())
-  if (path === '/api/feed-health') return sendJSON(res, handleFeedHealth())
-  if (path === '/api/operations') return sendJSON(res, handleOperations())
-  if (path === '/api/blocks') return sendJSON(res, handleBlocks())
-  if (path === '/api/rvs-trend') return sendJSON(res, handleRvsTrend())
-  if (path === '/api/autoresearch') return sendJSON(res, handleAutoresearch())
-  if (path === '/api/media') return sendJSON(res, handleMedia())
-  if (path === '/api/experiment') return sendJSON(res, handleExperiment())
-  if (path === '/api/reach') return sendJSON(res, handleReach())
-  if (path === '/api/live') return handleLive(req, res)
-
-  // Parameterized: /api/cycle/cycle-2026-04-11_1702.log
-  const cycleMatch = path.match(/^\/api\/cycle\/(.+)$/)
-  if (cycleMatch) {
-    const data = handleCycleDetail(decodeURIComponent(cycleMatch[1]))
-    if (!data) { res.writeHead(404); return res.end('Not found') }
-    return sendJSON(res, data)
-  }
-
-  res.writeHead(404)
-  res.end('Not found')
-})
+  ['/api/overview', handleOverview],
+  ['/api/cycles', handleCycles],
+  ['/api/quality', handleQuality],
+  ['/api/writing-quality', handleWritingQuality],
+  ['/api/specificity', handleSpecificity],
+  ['/api/article-images', handleArticleImages],
+  ['/api/editorial', handleEditorial],
+  ['/api/sources', handleSources],
+  ['/api/operations', handleOperations],
+  ['/api/rvs-trend', handleRvsTrend],
+  ['/api/media', handleMedia],
+  ['/api/experiment', handleExperiment],
+  ['/api/live', handleLive],
+  // /api/cycle/cycle-2026-04-11_1702.log
+  [/^\/api\/cycle\/(.+)$/, (_req, _res, filename) => handleCycleDetail(filename)],
+]))
 
 server.listen(PORT, HOST, () => {
   console.log(`zuhd.news dashboard → http://${HOST}:${PORT}`)

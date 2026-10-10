@@ -14,7 +14,8 @@ import { spawn, spawnSync } from 'node:child_process'
 //                                  observability without re-parsing.
 //
 // Occasionally the inner `result` is raw text with JSON embedded somewhere;
-// we substring between the outer braces as a fallback. When the CLI runs
+// we substring between the outer braces as a fallback, and as a last resort
+// read a number written with a leading plus. When the CLI runs
 // without `--output-format json` (older versions, or direct JSON output) the
 // stdout is the payload itself — usage will be undefined in that case.
 //
@@ -29,6 +30,7 @@ export function parseClaudeEnvelopeWithUsage(stdout) {
   if (outer?.type !== 'result') {
     return { result: outer }
   }
+  refuseErrorEnvelope(outer)
 
   if (outer.result == null) {
     throw new Error('claude returned no text result (tool use may have exhausted max-turns)')
@@ -42,7 +44,25 @@ export function parseClaudeEnvelopeWithUsage(stdout) {
     const s = text.indexOf('{')
     const e = text.lastIndexOf('}')
     if (s === -1 || e === -1) throw new Error('no JSON object found in claude result text')
-    result = JSON.parse(text.slice(s, e + 1))
+    const object = text.slice(s, e + 1)
+    try {
+      result = JSON.parse(object)
+    } catch (err) {
+      // A number written with its sign, `"sentiment": +0.15`, which JSON does
+      // not allow. A prompt that says "+1 = sharply favorable" is answered
+      // that way now and then, and one such token cost the 18:01 cycle of
+      // 2026-10-05 all 27 of its source angles, across 15 articles. Only an
+      // answer that has already failed to parse gets here, so a sound one is
+      // never rewritten; in one that has, a `: +1` inside a string loses its
+      // plus too, which is the price.
+      const unsigned = object.replace(/(:\s*)\+(?=\d)/g, '$1')
+      if (unsigned === object) throw err
+      try {
+        result = JSON.parse(unsigned)
+      } catch {
+        throw err
+      }
+    }
   }
 
   return {
@@ -57,7 +77,23 @@ export function parseClaudeEnvelope(stdout) {
   return parseClaudeEnvelopeWithUsage(stdout).result
 }
 
-const HAIKU_MODEL = 'claude-haiku-4-5-20251001'
+/**
+ * What keeps a headless call to what it was handed: the project's settings and
+ * not `~/.claude/settings.json`, no skills, and no MCP server.
+ *
+ * A call without them inherits whatever the account on this machine has. On
+ * 2026-10-09 that was 105 MCP tools (Gmail, Notion, Docs among them, from the
+ * claude.ai connectors), 33 skills and `permissionMode: auto`: 135,093 input
+ * tokens for a one-word prompt against 12,269 with these, on every call since
+ * the connectors began loading in headless runs on 2026-10-02. `--tools ''`
+ * does not cover it. It removes the built-in tools only, and a requested MCP
+ * call ran to completion before `--max-turns 1` ended the turn. Several of
+ * these calls read fetched pages and feed text.
+ *
+ * The cycle's sessions have passed these since they were written
+ * (`CLAUDE_FLAGS`, `lib/cycle-steps.js`); the micro-tasks had not.
+ */
+export const ISOLATION_FLAGS = Object.freeze(['--setting-sources', 'project', '--disable-slash-commands', '--strict-mcp-config'])
 
 /**
  * The argv for one non-interactive `claude -p` call.
@@ -75,8 +111,11 @@ const HAIKU_MODEL = 'claude-haiku-4-5-20251001'
  * - `tools: ''` keeps tool definitions out of the request. Pass `null` to let
  *   the CLI load its defaults (a multi-turn call that may use them), or
  *   `allowedTools` to name the ones it may use.
- * - `effort: null` omits the flag, for a model that does not take one (Haiku).
+ * - `effort: null` omits the flag, for a model that does not take one (Haiku
+ *   4.5 and older).
  * - `json: false` returns the model's text on stdout instead of the envelope.
+ * - `ISOLATION_FLAGS` are always on. Without them a call is not the call that
+ *   was written.
  *
  * @param {string} prompt
  * @param {{ model: string, effort?: string | null, maxTurns?: number, tools?: string | null,
@@ -89,7 +128,7 @@ export function claudeArgs(
 ) {
   const args = ['--model', model]
   if (effort) args.push('--effort', effort)
-  args.push('--no-session-persistence')
+  args.push('--no-session-persistence', ...ISOLATION_FLAGS)
   if (allowedTools) args.push('--allowedTools', allowedTools)
   else if (tools != null) args.push('--tools', tools)
   args.push('--max-turns', String(maxTurns))
@@ -121,15 +160,6 @@ export function runClaudeSync(args, { timeout = 120_000, maxBuffer = 1024 * 1024
 }
 
 /**
- * One batched Haiku call with JSON output. Returns the raw `spawnSync` result
- * — the callers each log their own stage name on a non-zero exit, and
- * swallowing that here would cost the one line that says which one failed.
- */
-export function runHaiku(prompt, { timeout, maxBuffer }) {
-  return runClaudeSync(claudeArgs(prompt, { model: HAIKU_MODEL, effort: null }), { timeout, maxBuffer })
-}
-
-/**
  * The one-line reason a `claude` child did not exit 0.
  *
  * Both streams: a non-zero exit often reports on stdout and leaves stderr
@@ -156,6 +186,7 @@ export function claudeFailure(res, timeoutMs) {
  */
 export function parseClaudeText(stdout) {
   const outer = JSON.parse(String(stdout || '').trim())
+  if (outer?.type === 'result') refuseErrorEnvelope(outer)
   if (outer?.type !== 'result' || outer.result == null) {
     throw new Error(`unexpected claude envelope: ${String(stdout).slice(0, 200)}`)
   }
@@ -176,6 +207,10 @@ export function parseClaudeText(stdout) {
  * slightly different idea of what a failure said. Never throws: the result
  * carries `error` instead, because every caller logs and moves to the next
  * item.
+ *
+ * The entity and source-angle stages make their one batched Haiku call each
+ * through it as well. They had a synchronous helper of their own (`runHaiku`)
+ * and unwrapped its answer by hand, three more ideas of what a failure said.
  *
  * @param {string} prompt
  * @param {{ model: string, effort?: string, timeout?: number, maxBuffer?: number }} opts
@@ -198,10 +233,52 @@ export async function callClaudeJson(prompt, { model, effort = 'medium', timeout
 }
 
 /**
+ * What a call cost, for the end of its log line: `, $0.0024, 8.9k in, 1.4k out`,
+ * or nothing where the envelope did not say. The entity and source-angle
+ * stages took `costUsd` and `usage` from `callClaudeJson` and dropped them, so
+ * when it was asked what more those calls could carry there was no figure.
+ *
+ * @param {{ costUsd?: number, usage?: Record<string, any> }} res
+ */
+export function callCost({ costUsd, usage }) {
+  const k = (/** @type {number} */ n) => `${(n / 1000).toFixed(1)}k`
+  const read = (usage?.input_tokens ?? 0) + (usage?.cache_creation_input_tokens ?? 0) + (usage?.cache_read_input_tokens ?? 0)
+  return (
+    (typeof costUsd === 'number' ? `, $${costUsd.toFixed(4)}` : '') +
+    (usage ? `, ${k(read)} in, ${k(usage.output_tokens ?? 0)} out` : '')
+  )
+}
+
+/**
+ * The first line of a model's answer that says anything, trimmed. A model
+ * asked for one line sometimes gives a blank one first, or a second it was
+ * not asked for. The push line and the tweet each took it their own way.
+ *
+ * @param {string | null | undefined} text
+ * @returns {string | undefined}
+ */
+export const firstLine = (text) => (text || '').trim().split(/\r?\n/).map((l) => l.trim()).filter(Boolean)[0]
+
+/**
+ * A model's answer without the quotation marks it came wrapped in, straight
+ * or curled, however many. What a model is asked to write for a reader (a
+ * tweet, a caption, a card headline) it often hands over in quotes, and the
+ * quotes are not part of it. Three copies: both posters and the social pick.
+ *
+ * @param {string | null | undefined} text
+ */
+export const unquote = (text) => String(text ?? '').replace(/^\s*["'“”]+|["'“”]+\s*$/g, '').trim()
+
+/**
  * A model's sentence as it should be stored: one line, trimmed, and without
  * the quotation marks a model sometimes wraps prose in. Anything that is not
  * a string is `''`, so a missing field reads as empty rather than throwing.
  * Three narrators carried this regex.
+ *
+ * Its own, narrower strip, and not `unquote`'s: one straight mark at each
+ * end. What this returns is stored and shown in the app (`standing`,
+ * `recent`, a disaster's narrative), and the wider one would take the curled
+ * quote off a sentence that opens with a quoted name.
  *
  * @param {unknown} s
  */
@@ -221,13 +298,35 @@ export function formatUsage(envelope) {
 }
 
 /**
+ * Throw on an envelope the CLI marked as an error.
+ *
+ * `is_error` was read nowhere. An envelope that carries one has the error's
+ * text where the answer would be, and both parsers went on to parse it: for
+ * the JSON one, an API error that quotes its own JSON body
+ * (`API Error: 529 {"type":"error",…}`) falls through to the first-brace-to-
+ * last-brace fallback and comes back as the model's object. A stage that then
+ * reads `out.recent` off it finds nothing, and stores nothing as the answer.
+ * No log kept shows it having happened. Callers stop at a non-zero exit
+ * before they parse; this is for an error beside an exit status of 0.
+ *
+ * @param {{ is_error?: boolean, subtype?: string, result?: unknown }} outer
+ */
+function refuseErrorEnvelope(outer) {
+  if (outer.is_error !== true) return
+  throw new Error(`claude reported an error (${outer.subtype ?? 'no subtype'}): ${String(outer.result ?? '').slice(0, 300)}`)
+}
+
+/** How long a child told to stop is given before it is made to. */
+const KILL_GRACE_MS = 5_000
+
+/**
  * `spawnSync`'s result shape — `{ status, stdout, stderr, error }` — from an
  * asynchronous `claude` child.
  *
  * Every narrator ran its calls through `runWithConcurrency(items, 3, …)` and
  * made them with `spawnSync`, which blocks the event loop for the whole call.
  * The pool therefore ran one call at a time while its comment said three, and
- * the 04:00 indicator dispatch — ~120 serial Opus calls at ~12s — hit its
+ * the daily indicator dispatch — ~120 serial Opus calls at ~12s — hit its
  * 1500s timeout every day and lost everything. A pool only overlaps what
  * yields, so a caller inside one must use this.
  *
@@ -236,11 +335,20 @@ export function formatUsage(envelope) {
  * `maxBuffer` kills the child too (`ENOBUFS`). `CLAUDECODE` is always dropped
  * — the child must not inherit the parent session marker.
  *
+ * **The deadline does not depend on the child.** A killed call resolves when
+ * the child exits, or `killGrace` after it was told to, whichever is first:
+ * SIGTERM, then SIGKILL. It resolved on `close`, which waits for the pipes as
+ * well as the process, after a SIGTERM and nothing more. So a child that
+ * ignored the signal, or one that had exited while something it started still
+ * held its stdout, kept a pool worker until the stage's own `timeout` ended
+ * the stage — and only the indicator dispatch saves what it has when that
+ * happens.
+ *
  * @param {string[]} args
- * @param {{ timeout?: number, maxBuffer?: number, env?: NodeJS.ProcessEnv, command?: string }} [opts]
+ * @param {{ timeout?: number, maxBuffer?: number, env?: NodeJS.ProcessEnv, command?: string, killGrace?: number }} [opts]
  * @returns {Promise<{ status: number | null, stdout: string, stderr: string, error?: Error & { code?: string } }>}
  */
-export function spawnClaude(args, { timeout = 120_000, maxBuffer = 1024 * 1024, env = process.env, command = 'claude' } = {}) {
+export function spawnClaude(args, { timeout = 120_000, maxBuffer = 1024 * 1024, env = process.env, command = 'claude', killGrace = KILL_GRACE_MS } = {}) {
   return new Promise((resolve) => {
     const child = spawn(command, args, { env: childEnv(env), stdio: ['ignore', 'pipe', 'pipe'] })
     let stdout = ''
@@ -248,16 +356,29 @@ export function spawnClaude(args, { timeout = 120_000, maxBuffer = 1024 * 1024, 
     /** @type {(Error & { code?: string }) | undefined} */
     let error
     let settled = false
+    /** @type {NodeJS.Timeout | undefined} */
+    let killer
     const finish = (status) => {
       if (settled) return
       settled = true
       clearTimeout(timer)
+      clearTimeout(killer)
+      // Settled ahead of `close` (a killed child): let go of the pipes, or
+      // whoever still holds their other end keeps this process alive.
+      child.stdout?.destroy()
+      child.stderr?.destroy()
       resolve({ status, stdout, stderr, ...(error ? { error } : {}) })
     }
     const kill = (code) => {
       if (error) return
       error = Object.assign(new Error(`claude ${code}`), { code })
+      // Gone already, with only its pipes held open: nothing left to signal.
+      if (child.exitCode !== null || child.signalCode !== null) return finish(null)
       child.kill('SIGTERM')
+      killer = setTimeout(() => {
+        child.kill('SIGKILL')
+        finish(null)
+      }, killGrace)
     }
     const timer = setTimeout(() => kill('ETIMEDOUT'), timeout)
     child.stdout.setEncoding('utf-8')
@@ -272,6 +393,12 @@ export function spawnClaude(args, { timeout = 120_000, maxBuffer = 1024 * 1024, 
     child.on('error', (err) => {
       error = err
       finish(null)
+    })
+    // A child that ran to its end is read to the end of its pipes (`close`):
+    // `exit` can come while output is still in them. A killed one has nothing
+    // more worth waiting for.
+    child.on('exit', () => {
+      if (error) finish(null)
     })
     child.on('close', (code) => finish(error ? null : code))
   })

@@ -18,6 +18,10 @@ import assert from 'node:assert'
 import { readFileSync } from 'node:fs'
 import { fileURLToPath } from 'node:url'
 import { dirname, join } from 'node:path'
+import { ARTICLE_CEILING } from './article.js'
+import { bodyLengthLine } from './body-lengths.js'
+import { SCHEMA, qualitySnapshot } from './quality-metrics.js'
+import { flagsOf } from './rvs.js'
 
 const ROOT = join(dirname(fileURLToPath(import.meta.url)), '..', '..')
 const read = (p) => readFileSync(join(ROOT, p), 'utf8')
@@ -47,9 +51,13 @@ test('check-prompt enforces the same two numbers', () => {
 test('the run-cycle probe flags at the ceiling, not below it', () => {
   // This is the number that actually reaches the editor, so it is the one that
   // matters most and the one that drifted.
-  const m = read('scripts/run-cycle.sh').match(/const CEILING = (\d+);/)
-  assert.ok(m, 'run-cycle.sh <body-lengths> probe no longer declares a CEILING')
-  assert.equal(Number(m[1]), CEILING, 'run-cycle.sh probe ceiling disagrees with the prompts')
+  // The probe left run-cycle.sh for `scripts/body-lengths.js`; its ceiling is
+  // the article module's, and the probe is asked directly where it turns.
+  assert.equal(ARTICLE_CEILING, CEILING, 'the probe\'s ceiling disagrees with the prompts')
+  const line = (chars) => bodyLengthLine('a.md', `---\ntitle: "T"\n---\n\n${'x'.repeat(chars)}\n`)
+  assert.equal(line(CEILING), `ok ${CEILING} chars  1 blocks  a.md`)
+  assert.equal(line(CEILING + 1), `OVER ${CEILING + 1} chars  1 blocks  a.md`)
+  assert.match(read('scripts/lib/cycle-steps.js'), /\['node', 'scripts\/body-lengths\.js'\]/, 'the editor step no longer takes <body-lengths> from the probe')
 })
 
 test('the app sizes its open sheet from the same ceiling', () => {
@@ -73,15 +81,23 @@ test('the quality metrics measure the current budget', () => {
   // The metric KEYS are historical names on an append-only series; the
   // thresholds inside them are what must track the budget. A bump to either
   // without a SCHEMA bump makes a redefinition read as a quality win.
-  const s = read('scripts/measure-quality.js')
-  assert.match(s, new RegExp(`charOver350Pct: pct\\(charLengths\\.filter\\(c => c > ${TARGET_HI}\\)`))
-  assert.match(s, new RegExp(`charOver400Pct: pct\\(visibleLengths\\.filter\\(c => c > ${CEILING}\\)`))
-  assert.match(s, /const SCHEMA = 3/, 'the budget changed definition at schema 3 — bump SCHEMA if it changes again')
+  // Asked of the scan itself, now that it can be: a body one character either
+  // side of each threshold.
+  const over = (chars) =>
+    qualitySnapshot([{ file: 'a.md', title: '', body: 'x'.repeat(chars), location: '', category: '', sourceNames: [], sourceCountries: [] }], 0).metrics
+  assert.equal(over(TARGET_HI).charOver350Pct, 0)
+  assert.equal(over(TARGET_HI + 1).charOver350Pct, 100, `charOver350Pct no longer turns at ${TARGET_HI}`)
+  assert.equal(over(CEILING).charOver400Pct, 0)
+  assert.equal(over(CEILING + 1).charOver400Pct, 100, `charOver400Pct no longer turns at ${CEILING}`)
+  // Schema 3 is where the budget last changed definition; 4 is the title echo's and 5 the acronyms' (`lib/quality-metrics.js`).
+  assert.equal(SCHEMA, 5, 'the budget changed definition at schema 3 — bump SCHEMA if it changes again')
 })
 
 test('the RVS writing scorer measures against the same ceiling', () => {
   // It said 350 for eleven days after the budget rose, and the dashboard showed
-  // the writing score halving overnight.
-  const s = read('scripts/autoresearch/score.js')
-  assert.match(s, new RegExp(`charInRange: len <= ${CEILING},`))
+  // the writing score halving overnight. The scorer takes the article module's
+  // ceiling now, and is asked where it turns rather than read as text.
+  const inRange = (chars) => flagsOf({ title: '', body: 'x'.repeat(chars), sourceNames: [] }).charInRange
+  assert.equal(inRange(CEILING), true)
+  assert.equal(inRange(CEILING + 1), false, `charInRange no longer turns at ${CEILING}`)
 })
