@@ -1625,6 +1625,36 @@ const coverageRanks = (() => {
   }
 })()
 
+/**
+ * A story's opening blocks as the map prints them: plain text.
+ *
+ * Body copy is markdown, and the pipeline writes country tags as
+ * `[Iran](country:IR)`. The rail and the popup render plain text, so links are
+ * unwrapped to their label and the same typographic quotes the rest of the
+ * site uses are applied. The dateline is stripped outright rather than
+ * re-styled the way `buildArticle` does it — the row's meta line and the
+ * popup's kicker already print the place, so the body's own "City — " would be
+ * a second copy pushing the sentence itself out from the left edge.
+ *
+ * One block is the hook the rail prints under a headline (`h` on a map
+ * point); two are the lead the preview card shows (`map-leads.json`). One
+ * function for both, so the first is always the start of the second.
+ *
+ * @param {{ body: string }} a
+ * @param {number} blocks
+ */
+const openingText = (a, blocks) => {
+  const datelineMatch = a.body.match(DATELINE_RE)
+  const body = datelineMatch ? a.body.slice(datelineMatch[0].length) : a.body
+  return smartQuotes(
+    splitBlocks(body)
+      .slice(0, blocks)
+      .join(' ')
+      .replace(/\[([^\]]+)\]\([^)]*\)/g, '$1')
+      .replace(/\*\*?([^*]+)\*\*?/g, '$1'),
+  ).trim()
+}
+
 const mapPoints = sorted
   .filter(a => a.meta.lat != null && a.meta.lng != null)
   .map(a => {
@@ -1634,6 +1664,7 @@ const mapPoints = sorted
     // covering a story sit in sentiment; a contested story is a different kind
     // of event from a uniformly reported one, and the map had no way to say so.
     const div = Number(a.meta.sentimentDivergence)
+    const hook = openingText(a, 1)
     return {
       lat: Number(a.meta.lat),
       lng: Number(a.meta.lng),
@@ -1650,6 +1681,11 @@ const mapPoints = sorted
       n: a.sources.length,
       ...(hasCov && coverageRanks ? { w: coverageRanks(cov) } : {}),
       ...(Number.isFinite(div) && div > 0 ? { d: Math.round(div * 100) / 100 } : {}),
+      // The hook: block one, which the rail prints under the headline. It
+      // rides the point rather than `map-leads.json` because that file is
+      // fetched at idle, and a row built bare would double in height when it
+      // landed. The archive's points carry none.
+      ...(hook ? { h: hook } : {}),
     }
   })
   .sort((a, b) => a.t - b.t)
@@ -1669,11 +1705,12 @@ console.log(`  Built: api/map.json (${mapPoints.length} points, ${BUILD_WINDOW_D
 // positions showed the same beacons as the third would be a control lying about
 // half of what it governs.
 //
-// **A separate endpoint, not a wider `map.json`.** The 14-day payload is 147 KB
-// (47 KB gzipped) and is `<link rel=preload>`ed — it is what the homepage
-// blocks on. Ninety days is 4,700 stories, which measured at roughly six and a
-// half times that, so folding them in would put ~250 KB of gzipped JSON in
-// front of first paint for stories most readers will never ask for. This is the
+// **A separate endpoint, not a wider `map.json`.** The 14-day payload is 217 KB
+// (73 KB gzipped, a third of it the hooks) and is `<link rel=preload>`ed — it
+// is what the homepage blocks on. Ninety days is 4,700 stories, which measured
+// at roughly six and a half times the payload without hooks, so folding them in
+// would put ~250 KB of gzipped JSON in front of first paint for stories most
+// readers will never ask for. This is the
 // bargain `map-leads.json`, the conflict feed and the water layers all already
 // strike: ship what the opening view needs, fetch the rest when something asks.
 // Nobody who stays inside a week ever downloads it.
@@ -2043,22 +2080,7 @@ console.log(`  Built: api/story/ (${storyCount} story cards)`)
 const mapLeads = {}
 for (const a of sorted) {
   if (a.meta.lat == null || a.meta.lng == null) continue
-  // Body copy is markdown, and the pipeline writes country tags as
-  // `[Iran](country:IR)`. The popup renders plain text, so unwrap links to
-  // their label and apply the same typographic quotes the rest of the site uses.
-  // The dateline is stripped outright rather than re-styled the way
-  // `buildArticle` does it — the popup's kicker already prints the place, so
-  // the body's own "City — " would be a second copy pushing the sentence
-  // itself out from the paragraph's left edge.
-  const datelineMatch = a.body.match(DATELINE_RE)
-  const bodyForLead = datelineMatch ? a.body.slice(datelineMatch[0].length) : a.body
-  const lead = smartQuotes(
-    splitBlocks(bodyForLead)
-      .slice(0, 2)
-      .join(' ')
-      .replace(/\[([^\]]+)\]\([^)]*\)/g, '$1')
-      .replace(/\*\*?([^*]+)\*\*?/g, '$1'),
-  ).trim()
+  const lead = openingText(a, 2)
   if (lead) mapLeads[a.slug] = lead
 }
 writeFileSync(join(DIST_DIR, 'api', 'map-leads.json'),
