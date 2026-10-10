@@ -43,8 +43,8 @@ shared helpers are indexed in `.claude/rules/shared-modules.md`.
 - JSON APIs under `/api/`: for the app (`feed`, `feed-lite`, `heatmap`,
   `trends`, `analysis`, `market-signals`, `companies`, `ai-models`, `meta`),
   for the map (`map`, `map-leads`, `map-archive`, `story/{slug}`,
-  `entity/{id}`, `gdacs`, `conflict`, `genocide`, `markets`, `firms`, `ipc`,
-  `chokepoints`) and for the MCP worker (`articles`, `context`). This list is
+  `entity/{id}`, `gdacs`, `conflict`, `genocide`, `markets`,
+  `market-signals`, `firms`, `ipc`, `chokepoints`) and for the MCP worker (`articles`, `context`). This list is
   not complete; `build.js` is.
 
 ## Templates and bundles

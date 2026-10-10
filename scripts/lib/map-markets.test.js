@@ -27,11 +27,15 @@ const markets = await import(await bundleIsland(dir, 'public/islands/_map/market
 
 const { seriesDates, windowByDate, windowPoints, coverage, bucketCounts, halfOverHalf, DAY_MS } = win
 const { trailingMean } = await import(await bundleIsland(dir, 'shared/chart/smooth.ts', 'smooth.mjs'))
+const { liveSignals, signalFor, patternLabel, patternLine } = await import(
+  await bundleIsland(dir, 'public/islands/_map/signals.ts', 'signals.mjs')
+)
 const { sparkline, sparkPct } = spark
 const {
   sparkInput, oddsEntries, attentionEntries, eventEntries, eventCountdown, ribbonPoints,
   createMarketStrip, BLOCK_ROWS, dockedPanelTop, lastTradedDay, straitSeries, readingOf,
   exchangeReading, marketCollection, marketTally, marketDirection, moveCap, straitCollection,
+  marketLayout, marketLabelLayout,
 } = markets
 
 /** `["Jul 1", "Jul 2", …]` for `n` consecutive days ending on `asOf`. */
@@ -968,6 +972,113 @@ test('the marks, the counts and the reading agree at every range', () => {
   // A 3% day is as large as a mark gets; so is 16% over a month, not 3%.
   assert.equal(moveCap(1), 3)
   assert.ok(Math.abs(moveCap(30) - 3 * Math.sqrt(30)) < 1e-12)
+})
+
+// --- Flagged markets ---------------------------------------------------------
+
+/** One signal as `/api/market-signals.json` publishes it, valid to the shared guard. */
+const signalOf = (id, pattern, over = {}) => ({
+  id,
+  eventId: `${id}:2026-10-09`,
+  revision: 'r1',
+  title: 'BIST 100',
+  exchange: 'Borsa Istanbul',
+  city: 'Istanbul',
+  sourceLabel: 'Yahoo Finance',
+  asOf: '2026-10-09',
+  pattern: { sessions: 20, changePct: -15.2, direction: -1, score: 3, startDate: '2026-09-11', endDate: '2026-10-09', ...pattern },
+  series: { values: [100, 84.8], dates: ['2026-09-11', '2026-10-09'] },
+  facts: 'BIST 100 fell 15.2% over 20 sessions.',
+  commentary: '',
+  citations: [],
+  ...over,
+})
+const snapshotOf = (signals, generatedAt = '2026-10-10T08:00:00Z') => ({ version: 1, generatedAt, signals })
+
+test('a flag is live for a week, belongs to one exchange, and says what it is in words', () => {
+  const now = Date.parse('2026-10-10T12:00:00Z')
+  const bist = signalOf('mkt:bist', { kind: 'monthly' })
+  const sp = signalOf('sp500', { kind: 'sharp', sessions: 1, changePct: 2.4, direction: 1 })
+  const live = liveSignals(snapshotOf([bist, sp]), now)
+  assert.equal(live.length, 2)
+
+  // Joined on `mkt:<exchange id>` and nothing looser: an index from the trends
+  // feed has no mark on this map.
+  assert.equal(signalFor('bist', live), live[0])
+  assert.equal(signalFor('nyse', live), undefined)
+  assert.equal(signalFor('sp500', live), undefined)
+
+  // The app's gate, on both dates. A pipeline that stopped must not leave last
+  // month's streak marked for good.
+  assert.deepEqual(liveSignals(snapshotOf([bist], '2026-10-01T08:00:00Z'), now), [], 'an old snapshot')
+  const stale = signalOf('mkt:bist', { kind: 'monthly', startDate: '2026-09-01', endDate: '2026-09-30' }, {
+    asOf: '2026-09-30',
+    series: { values: [100, 84.8], dates: ['2026-09-01', '2026-09-30'] },
+  })
+  assert.deepEqual(liveSignals(snapshotOf([stale]), now), [], 'an old run in a fresh snapshot')
+  // Anything the shared guard refuses is no flags, never a throw.
+  for (const bad of [null, undefined, {}, { version: 2, generatedAt: 'x', signals: [] }, snapshotOf([{ id: 'mkt:x' }])]) {
+    assert.deepEqual(liveSignals(bad, now), [])
+  }
+
+  // The words carry the direction: there is no coloured chip beside a caption.
+  assert.equal(patternLine(bist.pattern), 'Month-long fall, 15.2% over 20 sessions')
+  assert.equal(patternLine(sp.pattern), 'Sharp rise, 2.4% over 1 session')
+  assert.equal(patternLabel({ ...bist.pattern, kind: 'streak', direction: 1 }), 'Rising streak')
+  assert.equal(patternLabel({ ...bist.pattern, kind: 'weekly' }), 'Week-long fall')
+  assert.equal(patternLabel({ ...bist.pattern, kind: 'reversal' }), 'Reversal')
+  assert.equal(patternLabel({ ...bist.pattern, kind: 'divergence' }), 'Apart from its peers')
+})
+
+test('a flagged market is a doubled tick with its name first, on the map and in the panel', () => {
+  const now = Date.parse('2026-10-10T12:00:00Z')
+  const fall = Array.from({ length: 40 }, (_, i) => 200 - i * 2)
+  const rise = Array.from({ length: 40 }, (_, i) => 100 + i)
+  const markets = [exchangeOf('bist', fall, '2026-10-09'), exchangeOf('nyse', rise, '2026-10-09')]
+  const flagged = liveSignals(snapshotOf([signalOf('mkt:bist', { kind: 'monthly' })]), now)
+
+  const props = Object.fromEntries(
+    marketCollection(markets, 7, now, flagged).features.map((f) => [f.properties.id, f.properties]),
+  )
+  assert.equal(props.bist.flag, 1)
+  assert.equal(props.nyse.flag, 0)
+  assert.equal(marketCollection(markets, 7, now).features[0].properties.flag, 0, 'no signals, no flags')
+
+  // Both doubled glyphs are reachable from the mark's `icon-image`, or the
+  // image is registered and never drawn.
+  const icon = JSON.stringify(marketLayout()['icon-image'])
+  assert.ok(icon.includes('tick-up-flag') && icon.includes('tick-down-flag'))
+  // And the name asks before a larger, unflagged move does: lower sorts first.
+  const key = JSON.stringify(marketLabelLayout()['symbol-sort-key'])
+  assert.ok(key.includes('"flag"') && key.includes('"abs"'))
+
+  withDom(() => {
+    // jsdom has the element and not its methods; the panel is a `<dialog>`.
+    const dialog = globalThis.window.HTMLDialogElement.prototype
+    dialog.show = function show() { this.setAttribute('open', '') }
+    dialog.close = function close() { this.removeAttribute('open') }
+    const strip = createMarketStrip({ rangeDays: 7, onSelect() {}, onQuote() {}, onStrait() {} })
+    const realNow = Date.now
+    Date.now = () => now
+    try {
+      strip.update(markets, now)
+      strip.setFlags(flagged)
+      // The panel is built on a press.
+      strip.element.querySelector('.map-markets-group, .map-markets-summary').dispatchEvent(
+        new globalThis.window.MouseEvent('click', { bubbles: true }),
+      )
+    } finally {
+      Date.now = realNow
+    }
+    const rows = [...globalThis.document.querySelectorAll('.map-markets-row-item')]
+    const bist = rows.find((r) => r.textContent.includes('BIST'))
+    const nyse = rows.find((r) => r.textContent.includes('NYSE'))
+    assert.ok(bist && nyse, 'the panel lists both exchanges')
+    assert.equal(bist.querySelector('.map-markets-row-note').textContent, 'Month-long fall, 15.2% over 20 sessions')
+    assert.equal(nyse.querySelector('.map-markets-row-note'), null)
+    assert.match(globalThis.document.querySelector('.map-markets-panel').textContent, /1 flagged/)
+    strip.destroy()
+  })
 })
 
 /**

@@ -37,6 +37,7 @@ import {
   type TickerEntry,
   type TrendEvent,
 } from './markets'
+import { patternLabel, patternLine, type MarketSignal } from './signals'
 import { windowPoints } from './series-window'
 import type {
   ConflictEvent,
@@ -81,13 +82,16 @@ export interface Sheet {
    * windows the chart. `heroDays` is the range the hero's move is over, when
    * that is not `rangeDays`: a card opened from a mark keeps the whole quarter
    * on its chart and still leads with the move the mark was drawn from.
+   *
+   * `signal` is the run this exchange was flagged for, when it was
+   * (`_map/signals.ts`): the card names the run and leads with its account.
    */
   showMarket(
     exchange: MapExchange,
     pinned: boolean,
     rangeDays?: number,
     docked?: boolean,
-    opts?: { heroDays?: number },
+    opts?: { heroDays?: number; signal?: MarketSignal | undefined },
   ): void
   showIndicator(entry: TickerEntry, pinned: boolean, rangeDays?: number, docked?: boolean): void
   /**
@@ -600,7 +604,18 @@ export function createSheet(): Sheet {
       // ambiguity: at any given moment most exchanges are shut, and "+0.8%"
       // means something different twenty minutes into a session than it does
       // fourteen hours after one.
-      nodes.push(kicker(['markets', fmt.sessionLabel(ex), ex.stale ? 'cached' : null]))
+      // And, on a flagged exchange, what it was flagged for: the doubled tick
+      // the reader pointed at is the question, and this is the answer a peek
+      // has room for.
+      const signal = opts?.signal
+      nodes.push(
+        kicker([
+          'markets',
+          fmt.sessionLabel(ex),
+          ex.stale ? 'cached' : null,
+          signal ? patternLabel(signal.pattern) : null,
+        ]),
+      )
       nodes.push(el('h2', 'island-sheet-title', ex.name))
       // The move is the focal, not the level.
       //
@@ -638,6 +653,21 @@ export function createSheet(): Sheet {
       )
 
       if (pin) {
+        // The run itself, in its own figures and dates. The hero above is the
+        // move over the timeline's range; a run is over its own sessions, and
+        // a month-long slide read at the 3d step is a small number above a
+        // large one unless the second is said to be a different thing.
+        if (signal) {
+          const p = signal.pattern
+          nodes.push(
+            el(
+              'p',
+              'map-sheet-flag',
+              `${patternLine(p)} · ${fmt.shortDate(p.startDate)} to ${fmt.shortDate(p.endDate)}`,
+            ),
+          )
+        }
+
         // A definition, at the definition's weight — same reasoning as the
         // chokepoint card above. The dispatch's `standing` first, the catalog
         // blurb behind it: those were the same string until the exchange
@@ -698,8 +728,19 @@ export function createSheet(): Sheet {
         )
         // The domestic event behind the move, carried on `/api/markets.json`
         // and, until now, read by nothing.
-        if (ex.recent) nodes.push(el('p', 'map-sheet-lead', ex.recent))
-        nodes.push(...relatedList(ex.relatedArticles ?? [], 'Related coverage'))
+        //
+        // One account per card. A flagged run's `commentary` is written about
+        // that run from the stories it cites, so where there is one it is the
+        // account and its citations are the list; the two are a pair. It is
+        // often empty (the desk writes a cause only where the coverage carries
+        // one), and then the card is the exchange's own, as before.
+        if (signal?.commentary) {
+          nodes.push(el('p', 'map-sheet-lead', signal.commentary))
+          nodes.push(...relatedList(signal.citations, 'Read from'))
+        } else {
+          if (ex.recent) nodes.push(el('p', 'map-sheet-lead', ex.recent))
+          nodes.push(...relatedList(ex.relatedArticles ?? [], 'Related coverage'))
+        }
       }
       render(nodes, pin, docked)
     },

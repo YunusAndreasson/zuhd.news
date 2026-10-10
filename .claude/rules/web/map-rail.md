@@ -83,6 +83,10 @@ Camera, MapLibre and cards are `map.md`; layers and marks are `map-layers.md`.
   chart only.
 - The exchange card leads with the index's definition (`ex.standing`),
   falling back to the exchange's `blurb`.
+- A flagged exchange states its run in the run's own figures (`patternLine`):
+  a caption on its panel row and a line under its card's hero. The card has
+  one account: the signal's `commentary` with its citations, else the
+  exchange's own `recent`.
 - The indicator card's `/api/entity/{id}.json` fetch is guarded by
   `indicatorSeq`: a reader presses several rows inside one round trip.
 

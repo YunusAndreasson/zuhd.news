@@ -261,6 +261,61 @@ test('an exchange card leads with the move the mark was drawn from', async () =>
   }
 })
 
+test('a flagged exchange’s card names the run and leads with its account', async () => {
+  const env = setupDom()
+  try {
+    const { createSheet } = await import(bundlePath)
+    const sheet = createSheet()
+    const pattern = { kind: 'monthly', sessions: 20, changePct: -15.2, direction: -1, score: 3, startDate: '2026-09-11', endDate: '2026-10-09' }
+    const signal = {
+      id: 'mkt:tadawul',
+      title: 'TASI',
+      asOf: '2026-10-09',
+      pattern,
+      facts: 'TASI fell 15.2% over 20 sessions.',
+      commentary: 'Aramco’s results missed and the index followed.',
+      citations: [{ slug: 'aramco-misses', title: 'Aramco Misses', date: '2026-10-08', url: 'https://zuhd.news/a/aramco-misses' }],
+    }
+    const exchange = { ...EXCHANGE, recent: 'The exchange’s own account.' }
+
+    // A peek has room for what the doubled tick means and nothing more.
+    sheet.showMarket(exchange, false, undefined, undefined, { signal })
+    assert.match(sheet.element.querySelector('.map-sheet-kicker').textContent, /Month-long fall/)
+    assert.equal(sheet.element.querySelector('.map-sheet-flag'), null)
+
+    sheet.showMarket(exchange, true, undefined, undefined, { signal })
+    assert.equal(
+      sheet.element.querySelector('.map-sheet-flag').textContent,
+      'Month-long fall, 15.2% over 20 sessions · 11 Sep to 9 Oct',
+    )
+    // One account, with the stories it was written from: the run's, not the
+    // exchange's own and not both.
+    const text = sheet.element.textContent
+    assert.match(text, /Aramco’s results missed/)
+    assert.doesNotMatch(text, /The exchange’s own account/)
+    assert.match(text, /Read from/)
+    assert.equal(sheet.element.querySelector('.map-sheet-more-link').getAttribute('href'), '/a/aramco-misses')
+    assert.doesNotMatch(text, /Related coverage/)
+    sheet.close()
+
+    // No cause written: the run is still named, and the card is the exchange's own.
+    sheet.showMarket(exchange, true, undefined, undefined, { signal: { ...signal, commentary: '', citations: [] } })
+    assert.ok(sheet.element.querySelector('.map-sheet-flag'))
+    assert.match(sheet.element.textContent, /The exchange’s own account/)
+    assert.match(sheet.element.textContent, /Related coverage/)
+    sheet.close()
+
+    // No signal, no flag: the card of 2026-10-10.
+    sheet.showMarket(exchange, true)
+    assert.equal(sheet.element.querySelector('.map-sheet-flag'), null)
+    assert.doesNotMatch(sheet.element.querySelector('.map-sheet-kicker').textContent, /fall|rise|streak/i)
+
+    sheet.destroy()
+  } finally {
+    env.restore()
+  }
+})
+
 test('a pinned market card carries the series, its provenance and its coverage', async () => {
   const env = setupDom()
   try {

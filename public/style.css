@@ -6250,6 +6250,17 @@ body.map-wide .map-key {
 }
 
 .map-markets-row-name { min-width: 0; overflow: hidden; text-overflow: ellipsis; }
+
+/* A flagged exchange's run, under its name: `Month-long fall, 15.2% over 20
+   sessions`. A caption, a rung under the row and in the muted ink, so it reads
+   as a note on the figure beside it and not as a second figure. */
+.map-markets-row-note {
+  grid-column: 3 / -1;
+  margin-top: -0.25rem;
+  font-size: var(--size-2xs);
+  color: var(--map-ink-muted);
+  white-space: normal;
+}
 .map-markets-row-pct { white-space: nowrap; }
 
 .map-markets-tally {
@@ -7370,6 +7381,17 @@ a.map-popup-source-name {
    genocide finding, "why this occurrence matters"); a definition is
    background for reading the figure and the chart, not competing with them,
    so it steps down the same rung `.map-sheet-meta` already does. */
+/* What a flagged exchange was flagged for: `Month-long fall, 15.2% over 20
+   sessions · Sep 11 to Oct 9`. Under the hero and a step quieter than it, so
+   the two figures read as a move and the run it belongs to. */
+.map-sheet-flag {
+  margin: 0 0 var(--space-xs);
+  font-size: var(--size-xs);
+  line-height: 1.4;
+  color: var(--text);
+  font-variant-numeric: lining-nums tabular-nums;
+}
+
 .map-sheet-standing {
   margin: 0 0 var(--space-xs);
   font-size: var(--size-xs);

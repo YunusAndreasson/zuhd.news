@@ -23,6 +23,7 @@ import { coverage, DAY_MS, seriesDates, windowByDate } from './series-window'
 import { glyphSvg } from './glyphs'
 import type { GLYPHS } from './glyphs'
 import { MAP_COLOURS, OVERLAY_COLOUR } from './style'
+import { patternLine, signalFor, type MarketSignal } from './signals'
 import type { MapChokepoint, MapExchange } from './types'
 import type { ExpressionSpecification, SymbolLayerSpecification } from 'maplibre-gl'
 
@@ -100,7 +101,13 @@ export const moveCap = (days: number): number => 3 * Math.sqrt(Math.max(1, days)
  * reading for the range (its last close is too old to be this period's) is a
  * flat neutral tick with no numeral: present, and claiming nothing.
  */
-export const marketCollection = (markets: MapExchange[], days: number, now = Date.now()) => ({
+export const marketCollection = (
+  markets: MapExchange[],
+  days: number,
+  now = Date.now(),
+  /** The exchanges the pipeline has flagged (`_map/signals.ts`). */
+  flagged: readonly MarketSignal[] = [],
+) => ({
   type: 'FeatureCollection' as const,
   features: markets.map((m) => {
     const reading = exchangeReading(m, days, now)
@@ -123,6 +130,8 @@ export const marketCollection = (markets: MapExchange[], days: number, now = Dat
         dir: reading ? marketDirection(change) : 0,
         label: reading ? marketLabel(change) : '',
         trading: isTrading(m, now) ? 1 : 0,
+        // On a run the pipeline singled out. A doubled tick, and its name first.
+        flag: signalFor(m.id, flagged) ? 1 : 0,
       },
       geometry: { type: 'Point' as const, coordinates: [m.lng, m.lat] },
     }
@@ -156,12 +165,19 @@ export const LABEL_ZOOM = 1.1
  * `Istanbul 0.9%`: the city in the map's label ink, the move in bold in the
  * tick's tone. A mark with no reading for the range prints its city alone.
  */
-const LABEL: ExpressionSpecification = [
+const labelOf = (nameFont: string): ExpressionSpecification => [
   'format',
   ['get', 'city'],
-  { 'text-color': MAP_COLOURS.label },
+  { 'text-font': ['literal', [nameFont]], 'text-color': MAP_COLOURS.label },
   ['case', ['==', ['get', 'label'], ''], '', ['concat', ' ', ['get', 'label']]],
   { 'text-font': ['literal', ['Noto Sans Bold']], 'text-color': TONE },
+]
+/** A flagged market's city is set in bold: it is the one to press. */
+const LABEL: ExpressionSpecification = [
+  'case',
+  ['==', ['get', 'flag'], 1],
+  labelOf('Noto Sans Bold'),
+  labelOf('Noto Sans Regular'),
 ]
 
 /**
@@ -190,12 +206,20 @@ export const marketLayout = (): NonNullable<SymbolLayerSpecification['layout']> 
     'case',
     ['==', ['get', 'dir'], 0],
     'tick-flat',
+    ['==', ['get', 'flag'], 1],
+    ['case', ['<', ['get', 'dir'], 0], 'tick-down-flag', 'tick-up-flag'],
     ['<', ['get', 'dir'], 0],
     'tick-down',
     'tick-up',
   ],
   // `wantedCssPx / GLYPH_BOX`: 7px at rest, 16px at the range's `moveCap`.
-  'icon-size': ['interpolate', ['linear'], ['get', 'mag'], 0, 0.44, 1, 1.0],
+  // A flagged mark is never under 11px: its two strokes close up into one
+  // below that, and a run flagged over a month can be a small move today.
+  'icon-size': [
+    'max',
+    ['interpolate', ['linear'], ['get', 'mag'], 0, 0.44, 1, 1.0],
+    ['case', ['==', ['get', 'flag'], 1], 0.7, 0],
+  ],
   // Both flags. `allow-overlap` because a suppressed mark reads as an absence —
   // and, less obviously, because `queryRenderedFeatures` only returns *placed*
   // symbols, so a collided mark would be silently unhoverable and its card
@@ -243,7 +267,13 @@ export const marketLabelLayout = (): NonNullable<SymbolLayerSpecification['layou
   // On a phone's world the globe is 390px and thirty names are thirty
   // collisions, so there only the movers that used to earn a numeral are
   // named. From `LABEL_ZOOM` every mark asks.
-  'text-field': ['step', ['zoom'], ['case', ['>=', ['get', 'rel'], NAME_PCT], LABEL, ''], LABEL_ZOOM, LABEL],
+  'text-field': [
+    'step',
+    ['zoom'],
+    ['case', ['any', ['>=', ['get', 'rel'], NAME_PCT], ['==', ['get', 'flag'], 1]], LABEL, ''],
+    LABEL_ZOOM,
+    LABEL,
+  ],
   'text-font': ['Noto Sans Regular'],
   'text-size': ['interpolate', ['linear'], ['zoom'], 1, 10, 5, 12.5],
   // Below first: that is where the basemap prints a city's name, and a label
@@ -255,8 +285,8 @@ export const marketLabelLayout = (): NonNullable<SymbolLayerSpecification['layou
   'text-padding': 4,
   'text-allow-overlap': false,
   'text-ignore-placement': false,
-  // Lower places first: the largest move over the range gets its name.
-  'symbol-sort-key': ['-', 0, ['get', 'abs']],
+  // Lower places first: a flagged market, then the largest move over the range.
+  'symbol-sort-key': ['-', ['-', 0, ['get', 'abs']], ['*', 1000, ['get', 'flag']]],
 })
 
 export const marketLabelPaint = (): NonNullable<SymbolLayerSpecification['paint']> => ({
@@ -1674,6 +1704,11 @@ export interface MarketStrip {
   signals: HTMLElement
   update(markets: MapExchange[], now?: number): void
   /**
+   * The exchanges on a flagged run (`_map/signals.ts`). Their panel rows take
+   * the doubled tick the map draws and one line saying what the run is.
+   */
+  setFlags(signals: readonly MarketSignal[]): void
+  /**
    * The trends payload: every series, and the events calendar beside them.
    *
    * The calendar is optional because a build before `narrate-events.js` first
@@ -2389,8 +2424,13 @@ export function createMarketStrip(opts: MarketStripOptions): MarketStrip {
     panel.style.bottom = `${Math.max(gap, window.innerHeight - r.top + gap)}px`
   }
 
-  const tick = (dir: -1 | 0 | 1) => {
-    const id = dir > 0 ? 'tick-up' : dir < 0 ? 'tick-down' : 'tick-flat'
+  const tick = (dir: -1 | 0 | 1, flagged = false) => {
+    const id =
+      dir > 0
+        ? flagged ? 'tick-up-flag' : 'tick-up'
+        : dir < 0
+          ? flagged ? 'tick-down-flag' : 'tick-down'
+          : 'tick-flat'
     const span = el('span', 'map-markets-tick')
     span.innerHTML = glyphSvg(id)
     return span
@@ -2775,13 +2815,19 @@ export function createMarketStrip(opts: MarketStripOptions): MarketStrip {
     // The range's move, as the mark on the map draws it. No reading is no tick
     // and no figure: the name stays, in the ink a stale row takes.
     const reading = exchangeReading(m, rangeDays)
+    const signal = signalFor(m.id, flags)
     const btn = el('button', `map-markets-row-item${toneClass(reading?.pct ?? 0, !reading)}`)
     btn.setAttribute('type', 'button')
     btn.append(
-      ...(reading ? [tick(marketDirection(reading.pct))] : [el('span', 'map-markets-nil')]),
+      ...(reading
+        ? [tick(marketDirection(reading.pct), !!signal)]
+        : [el('span', 'map-markets-nil')]),
       el('span', 'map-markets-row-name', m.indexName),
       el('span', 'map-markets-row-pct', reading?.figure ?? ''),
     )
+    // The run it was flagged for, in its own figures: the row's figure is the
+    // range's move and the run's is over its own sessions, and they differ.
+    if (signal) btn.append(el('span', 'map-markets-row-note', patternLine(signal.pattern)))
     btn.addEventListener('click', () => {
       const from = openOn ?? btn
       closePanel()
@@ -2892,7 +2938,11 @@ export function createMarketStrip(opts: MarketStripOptions): MarketStrip {
     // sentence, so it travels with the counts into the panel — it is not a
     // re-encoding of either, it says how much of them is yesterday's.
     note.textContent = t.closed ? `${t.closed} closed` : ''
-    exchangeMeta = countsText(s) + (t.closed ? ` · ${t.closed} closed` : '')
+    const flaggedCount = markets.filter((m) => signalFor(m.id, flags)).length
+    exchangeMeta =
+      countsText(s) +
+      (t.closed ? ` · ${t.closed} closed` : '') +
+      (flaggedCount ? ` · ${flaggedCount} flagged` : '')
   }
 
   trigger(
@@ -2930,6 +2980,9 @@ export function createMarketStrip(opts: MarketStripOptions): MarketStrip {
    * the rail already uses — see `chokepointEntries` and `instrumentRow`.
    */
   let lastStraits: MapChokepoint[] = []
+
+  /** The flagged exchanges, as the island last handed them over. */
+  let flags: readonly MarketSignal[] = []
 
   /**
    * How many chokepoints get a row of their own — three, the same short-list
@@ -3293,6 +3346,10 @@ export function createMarketStrip(opts: MarketStripOptions): MarketStrip {
     element: root,
     signals,
     update,
+    setFlags(signals) {
+      flags = signals
+      if (lastMarkets) update(lastMarkets)
+    },
     setTrends,
     setStraits,
     rangeDays: () => rangeDays,

@@ -73,6 +73,7 @@ import {
   type TrendIndicator,
   type TrendEvent,
 } from './_map/markets'
+import { liveSignals, signalFor, type MarketSignal } from './_map/signals'
 import { bucketCounts, coverage, halfOverHalf } from './_map/series-window'
 import { sparkline } from './_spark'
 import { createPaneSeam, type PaneSeam } from './_map/panes'
@@ -1394,6 +1395,8 @@ export function mount(
   let gdacsDetails: Record<string, GdacsDetail> = {}
   let chokepoints: MapChokepoint[] = []
   let markets: MapExchange[] = []
+  /** The exchanges on a flagged run, from `/api/market-signals.json`. */
+  let signals: MarketSignal[] = []
   let conflicts: ConflictEvent[] = []
   /** Newest event in the conflict feed — see `conflictWindowLabel`. */
   let conflictNewest = 0
@@ -1560,7 +1563,9 @@ export function mount(
       // Docked: reached from a rail row, not from a mark. The camera has just
       // flown to this exchange, and dimming the map the reader was flown to is
       // the card hiding its own answer. Desktop only — see `docked()`.
-      sheet.showMarket(ex, true, marketStrip.rangeDays(), docked())
+      sheet.showMarket(ex, true, marketStrip.rangeDays(), docked(), {
+        signal: signalFor(ex.id, signals),
+      })
     },
     onQuote: (entry, anchor) => {
       sheet.dockTo(anchor)
@@ -2430,7 +2435,7 @@ export function mount(
     if (!layersReady || days === marksDays) return
     marksDays = days
     src('chokepoints')?.setData(straitCollection(chokepoints, days))
-    src('markets')?.setData(marketCollection(markets, days))
+    src('markets')?.setData(marketCollection(markets, days, Date.now(), signals))
   }
 
   /** Rebuilds the overlay sources. Called when their data arrives, not per frame. */
@@ -2440,7 +2445,7 @@ export function mount(
     src('thermal')?.setData(thermalCollection())
     marksDays = rangeHours / 24
     src('chokepoints')?.setData(straitCollection(chokepoints, marksDays))
-    src('markets')?.setData(marketCollection(markets, marksDays))
+    src('markets')?.setData(marketCollection(markets, marksDays, Date.now(), signals))
     src('conflict')?.setData(conflictCollection())
     src('famine')?.setData(famineCollection())
     src('genocide')?.setData(genocideCollection())
@@ -3982,7 +3987,10 @@ export function mount(
       const ex = markets.find((m) => m.id === key)
       // The card's hero is the move the mark was drawn from: the range's.
       if (ex) {
-        return sheet.showMarket(ex, pin, undefined, undefined, { heroDays: marketStrip.rangeDays() })
+        return sheet.showMarket(ex, pin, undefined, undefined, {
+          heroDays: marketStrip.rangeDays(),
+          signal: signalFor(ex.id, signals),
+        })
       }
       const ev = conflicts.find((c) => c.id === key)
       if (ev) return sheet.showConflict(ev, conflictWindowLabel(), pin)
@@ -5066,7 +5074,7 @@ export function mount(
   }
 
   const loadLayers = async () => {
-    const [g, c, gen, mk, th, ipc] = await Promise.all([
+    const [g, c, gen, mk, th, ipc, flagged] = await Promise.all([
       json<{ alerts: GdacsAlert[]; details?: Record<string, GdacsDetail> }>(
         '/api/gdacs.json',
         abort.signal,
@@ -5086,8 +5094,14 @@ export function mount(
       // over Gaza appear a second before the other is watching the map disagree
       // with itself about what it knows.
       json<{ areas: IpcArea[] }>('/api/ipc.json', abort.signal),
+      // With the marks, not at idle: a flag decides which names print first,
+      // and one arriving after the labels are placed would re-sort them in
+      // front of the reader. Seven kilobytes, validated whole by `liveSignals`.
+      json<unknown>('/api/market-signals.json', abort.signal),
     ])
     if (!mounted) return
+    signals = liveSignals(flagged)
+    marketStrip.setFlags(signals)
     if (g?.alerts) gdacs = g.alerts
     // Shipped in the same blob the alerts arrive in — no extra request, and it
     // was already on the wire before anything read it.

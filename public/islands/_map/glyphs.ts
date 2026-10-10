@@ -251,6 +251,28 @@ const TICK_FLAT: Glyph = {
 }
 
 /**
+ * A flagged market: the caret, twice.
+ *
+ * An index the pipeline has singled out (`/api/market-signals.json`) is the
+ * same kind of mark saying the same thing harder, so it is the same silhouette
+ * doubled, the way a chart marks a strong move. Not a ring: the genocide mark
+ * owns the ring on this map. Slightly lighter strokes than the single caret,
+ * or two of them close up into a wedge at 7px.
+ */
+const TICK_UP_FLAG: Glyph = {
+  parts: [
+    { kind: 'stroke', path: [[1, 8.2], [8, 3.4], [15, 8.2]], width: 1.9 },
+    { kind: 'stroke', path: [[1, 13], [8, 8.2], [15, 13]], width: 1.9 },
+  ],
+}
+const TICK_DOWN_FLAG: Glyph = {
+  parts: [
+    { kind: 'stroke', path: [[1, 3], [8, 7.8], [15, 3]], width: 1.9 },
+    { kind: 'stroke', path: [[1, 7.8], [8, 12.6], [15, 7.8]], width: 1.9 },
+  ],
+}
+
+/**
  * A thermal anomaly: a core with heat coming off it.
  *
  * The only radial silhouette in the alphabet, which is what makes it safe to
@@ -371,6 +393,8 @@ export const GLYPHS = {
   'tick-up': TICK_UP,
   'tick-down': TICK_DOWN,
   'tick-flat': TICK_FLAT,
+  'tick-up-flag': TICK_UP_FLAG,
+  'tick-down-flag': TICK_DOWN_FLAG,
 } as const satisfies Record<string, Glyph>
 
 export type GlyphId = keyof typeof GLYPHS
