@@ -216,6 +216,51 @@ test('a market peek states the level and the move, and nothing else', async () =
   }
 })
 
+test('an exchange card leads with the move the mark was drawn from', async () => {
+  // The mark, the panel row and this hero are one reading over the range the
+  // timeline is set to. A card that led with the day's move under a tick drawn
+  // from the week's would be two answers to one press.
+  const env = setupDom()
+  const realNow = Date.now
+  // The day after the fixture's last close.
+  Date.now = () => Date.parse('2026-07-24T12:00:00Z')
+  try {
+    const { createSheet } = await import(bundlePath)
+    const sheet = createSheet()
+    const hero = () => sheet.element.querySelector('.map-sheet-hero')
+
+    // Three days: 10,715.61 to 10,720.28.
+    sheet.showMarket(EXCHANGE, false, undefined, undefined, { heroDays: 3 })
+    assert.equal(hero().querySelector('.map-sheet-hero-focal').textContent, '+0.04%')
+    assert.match(hero().textContent, /TASI · 10,720\.28 SAR · 3 days/, 'and it says which period')
+    // Under the flat band the tick is neutral, so the figure is not tinted: a
+    // level day used to tint green.
+    assert.equal(hero().querySelector('.map-sheet-hero-focal').className, 'map-sheet-hero-focal')
+
+    // The day step is the day's move, and names no period.
+    sheet.showMarket(EXCHANGE, false, undefined, undefined, { heroDays: 1 })
+    assert.equal(hero().querySelector('.map-sheet-hero-focal').textContent, '+0.15%')
+    assert.doesNotMatch(hero().textContent, /days/)
+
+    // A close too old for the range has no reading: the day's move, as before.
+    Date.now = () => Date.parse('2026-10-10T12:00:00Z')
+    sheet.showMarket({ ...EXCHANGE, changePct: -0.4 }, false, undefined, undefined, { heroDays: 7 })
+    assert.equal(hero().querySelector('.map-sheet-hero-focal').textContent, '−0.40%')
+
+    // Opened from the rail, the rail's range is the hero's range. (Last, because
+    // a pinned card is not replaced by a peek.)
+    Date.now = () => Date.parse('2026-07-24T12:00:00Z')
+    sheet.showMarket({ ...EXCHANGE, series: { periods: ['Jul 21', 'Jul 22', 'Jul 23'], values: [11000, 10900, 10720.28] } }, true, 3)
+    assert.equal(hero().querySelector('.map-sheet-hero-focal').textContent, '−2.54%')
+    assert.ok(hero().querySelector('.map-sheet-hero-focal').classList.contains('is-neg'))
+
+    sheet.destroy()
+  } finally {
+    Date.now = realNow
+    env.restore()
+  }
+})
+
 test('a pinned market card carries the series, its provenance and its coverage', async () => {
   const env = setupDom()
   try {

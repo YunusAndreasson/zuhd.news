@@ -2414,13 +2414,34 @@ export function mount(
     })),
   })
 
+  /**
+   * The range the market marks were last built for.
+   *
+   * A mark's direction, size and numeral are its exchange's move over the range
+   * the timeline is set to, so a range press has to rebuild them. Remembered so
+   * a press on the range already showing writes nothing.
+   */
+  let marksDays = -1
+
+  /**
+   * Rebuild the market marks for the range, on a range press and on nothing
+   * else: not on a scrub, not on a tick, not on idle. Thirty features.
+   */
+  const applyMarketRange = () => {
+    const days = rangeHours / 24
+    if (!layersReady || days === marksDays) return
+    marksDays = days
+    src('markets')?.setData(marketCollection(markets, days))
+  }
+
   /** Rebuilds the overlay sources. Called when their data arrives, not per frame. */
   const setOverlayData = () => {
     if (!layersReady) return
     src('gdacs')?.setData(gdacsCollection())
     src('thermal')?.setData(thermalCollection())
     src('chokepoints')?.setData(chokeCollection())
-    src('markets')?.setData(marketCollection(markets))
+    marksDays = rangeHours / 24
+    src('markets')?.setData(marketCollection(markets, marksDays))
     src('conflict')?.setData(conflictCollection())
     src('famine')?.setData(famineCollection())
     src('genocide')?.setData(genocideCollection())
@@ -3934,7 +3955,10 @@ export function mount(
       const cp = chokepoints.find((c) => c.id === key)
       if (cp) return sheet.showChokepoint(cp, pin)
       const ex = markets.find((m) => m.id === key)
-      if (ex) return sheet.showMarket(ex, pin)
+      // The card's hero is the move the mark was drawn from: the range's.
+      if (ex) {
+        return sheet.showMarket(ex, pin, undefined, undefined, { heroDays: marketStrip.rangeDays() })
+      }
       const ev = conflicts.find((c) => c.id === key)
       if (ev) return sheet.showConflict(ev, conflictWindowLabel(), pin)
       const gen = genocide.find((x) => x.id === key)
@@ -4440,6 +4464,7 @@ export function mount(
     // The strip holds its own payloads and redraws from them; it does not
     // refetch, so this is arithmetic on data already in hand.
     marketStrip.setRangeDays(hours / 24)
+    applyMarketRange()
     // A range past the build window has stories the payload does not carry.
     // Fired and not awaited: the beacons the map *does* have should move on the
     // press rather than after a 250 KB round trip, and `loadArchive` refreshes

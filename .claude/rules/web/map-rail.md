@@ -21,8 +21,10 @@ Camera, MapLibre and cards are `map.md`; layers and marks are `map-layers.md`.
 - A rail row's figure, the panel's composite and the indicator card's hero
   come from `sparkInput` and `readingOf` (`_map/markets.ts`), over the rail's
   one range. **Never add a second calculation**; `sparkPct` is `sparkline`'s
-  own first lines. Panel rows, the up and down counts, the net tick and the exchange
-  card's hero are the day's move, whatever the range.
+  own first lines.
+- One exchange is `exchangeReading`: its mark, its panel row, the up and down
+  counts and its card's hero all take it, over the range. A quote panel's rows
+  and a group's net tick are still the day's move.
 - The window is calendar days, not observations. Dates are rebuilt by
   `seriesDates` (`_map/series-window.ts`) from `asOf`. If one member's labels
   fail to parse, the whole row falls back to the full published series; never
@@ -32,6 +34,9 @@ Camera, MapLibre and cards are `map.md`; layers and marks are `map-layers.md`.
   and Monday otherwise. The edge is per block, never per row, or a stale
   series redraws as fresh. The exchange row, `world` and the straits pass
   one; an indicator card windows on its row's `entry.edge`.
+- The exception is one exchange read alone (`exchangeReading`): it windows on
+  its own last session, or a market shut since Thursday is blank on Friday.
+  `staleLabel` is what keeps a dead series from reading as fresh there.
 - A stale row prints its age (`staleLabel`). Do not add a carry-in on the
   `covered` gate: it draws a stub.
 - A row with nothing in the window prints `.map-markets-nil` and its age, no
@@ -72,8 +77,10 @@ Camera, MapLibre and cards are `map.md`; layers and marks are `map-layers.md`.
 - Straits are picked by `delta7vs90` (`chokepointEntries`) and each prints its
   own window change, of the week's mean (`straitSeries`): a day's ship count
   is noise. Never print `delta7vs90` on a row.
-- The indicator card's hero uses the rail's window; the exchange and strait
-  cards do not. `CARD_MIN_DAYS` floors the chart only.
+- The indicator card's hero uses the rail's window, and so does the exchange
+  card's (`heroDays` when it was opened from a mark, whose chart keeps the
+  whole quarter). The strait card's does not. `CARD_MIN_DAYS` floors the
+  chart only.
 - The exchange card leads with the index's definition (`ex.standing`),
   falling back to the exchange's `blurb`.
 - The indicator card's `/api/entity/{id}.json` fetch is guarded by

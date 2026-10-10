@@ -129,6 +129,9 @@ Camera, MapLibre and cards are `map.md`; the rails are `map-rail.md`.
 - A market's sign picks `--map-pos`/`--map-neg`, pinned to `OVERLAY_COLOUR`.
   A closed exchange sits back in opacity; under `FLAT_PCT` the mark is
   `tick-flat` in `neutral`.
+- A market mark's direction, size and numeral are `exchangeReading` over the
+  timeline's range, never `changePct` read direct. Size saturates at
+  `moveCap(days)`; no reading is a flat neutral tick with no numeral.
 - Only large moves print a numeral, with its `%`, by a `case` in `text-field`.
 - Markets and thermal draw above stories: a single mark, covered, is absent.
 - Which exchanges is editorial (`market-metadata.js`). One with no free

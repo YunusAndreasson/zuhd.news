@@ -29,6 +29,8 @@ import { fetchEntity } from '../_entity-panel'
 import {
   daysUntilEvent,
   eventCountdown,
+  exchangeReading,
+  marketDirection,
   nisab,
   ribbonPoints,
   sparkInput,
@@ -74,7 +76,19 @@ export interface Sheet {
    * mark rather than from the rail — means the whole published series, which is
    * what these cards have always drawn.
    */
-  showMarket(exchange: MapExchange, pinned: boolean, rangeDays?: number, docked?: boolean): void
+  /**
+   * `rangeDays` is the rail's range when the card was opened from the rail: it
+   * windows the chart. `heroDays` is the range the hero's move is over, when
+   * that is not `rangeDays`: a card opened from a mark keeps the whole quarter
+   * on its chart and still leads with the move the mark was drawn from.
+   */
+  showMarket(
+    exchange: MapExchange,
+    pinned: boolean,
+    rangeDays?: number,
+    docked?: boolean,
+    opts?: { heroDays?: number },
+  ): void
   showIndicator(entry: TickerEntry, pinned: boolean, rangeDays?: number, docked?: boolean): void
   /**
    * An upcoming calendar event — a central-bank decision, an OPEC+ meeting, a
@@ -580,7 +594,7 @@ export function createSheet(): Sheet {
       render(nodes, pin, docked)
     },
 
-    showMarket(ex, pin, rangeDays, docked) {
+    showMarket(ex, pin, rangeDays, docked, opts) {
       const nodes: Node[] = []
       // The kicker carries freshness, because on a world map that is the first
       // ambiguity: at any given moment most exchanges are shut, and "+0.8%"
@@ -588,22 +602,38 @@ export function createSheet(): Sheet {
       // fourteen hours after one.
       nodes.push(kicker(['markets', fmt.sessionLabel(ex), ex.stale ? 'cached' : null]))
       nodes.push(el('h2', 'island-sheet-title', ex.name))
-      // The day's move is the focal, not the level.
+      // The move is the focal, not the level.
       //
       // It was the other way round, and the card was contradicting its own map:
-      // the mark is drawn from `changePct` and nothing else, so the reader
-      // clicked a percentage and was answered with an index level. `level`
-      // spans 1,086 to 3,319,522 across twenty-one currencies and is comparable
-      // with nothing — including its own past, unless you already know the
-      // index. `changePct` is the only cross-comparable figure on the card. So
-      // Seoul's +4.40%, the largest single-day move on earth that day, was set
-      // in small grey type beside the index name while `7,096.89 KRW` took the
-      // headline. Tinted with the same pair as the tick that opened it.
+      // the mark is drawn from the move and nothing else, so the reader clicked
+      // a percentage and was answered with an index level. `level` spans 1,086
+      // to 3,319,522 across twenty-one currencies and is comparable with nothing
+      // — including its own past, unless you already know the index. The move
+      // is the only cross-comparable figure on the card. So Seoul's +4.40%, the
+      // largest single-day move on earth that day, was set in small grey type
+      // beside the index name while `7,096.89 KRW` took the headline.
+      //
+      // And it is the move the mark and the panel row state: over the range the
+      // timeline is set to, through `exchangeReading`. With no range, or no
+      // reading for it, it is the day's move off the payload. Tinted as the
+      // tick is, flat included: a level day used to tint green.
+      const heroDays = opts?.heroDays ?? rangeDays
+      const move =
+        (heroDays == null ? null : exchangeReading(ex, heroDays)?.pct) ?? ex.changePct
+      const dir = marketDirection(move)
       nodes.push(
         hero(
-          fmt.pctChange(ex.changePct),
-          `${ex.indexName} · ${fmt.indexLevel(ex.level, ex.currency)}`,
-          ex.changePct < 0 ? 'neg' : 'pos',
+          fmt.pctChange(move),
+          [
+            ex.indexName,
+            fmt.indexLevel(ex.level, ex.currency),
+            // The period, where it is not the day: nothing else on a card
+            // opened from a mark says which one the figure is over.
+            heroDays != null && heroDays > 1 ? `${heroDays} days` : null,
+          ]
+            .filter(Boolean)
+            .join(' · '),
+          dir < 0 ? 'neg' : dir > 0 ? 'pos' : undefined,
         ),
       )
 

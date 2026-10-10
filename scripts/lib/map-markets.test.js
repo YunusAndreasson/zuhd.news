@@ -31,6 +31,7 @@ const { sparkline, sparkPct } = spark
 const {
   sparkInput, oddsEntries, attentionEntries, eventEntries, eventCountdown, ribbonPoints,
   createMarketStrip, BLOCK_ROWS, dockedPanelTop, lastTradedDay, straitSeries, readingOf,
+  exchangeReading, marketCollection, marketTally, marketDirection, moveCap,
 } = markets
 
 /** `["Jul 1", "Jul 2", …]` for `n` consecutive days ending on `asOf`. */
@@ -848,6 +849,125 @@ test('the countdown hands off from a phrase to a bare date', () => {
   // Past the point a countdown is a useful picture, the date itself —
   // `shortDate` drops the year, since this map's events are all near-term.
   assert.equal(eventCountdown(14, '2026-08-22'), '22 Aug')
+})
+
+// --- One exchange, over the range --------------------------------------------
+
+/** An exchange with a daily series ending on `asOf`, last close `last`. */
+const exchangeOf = (id, values, asOf, over = {}) => {
+  const prev = values[values.length - 2]
+  const last = values[values.length - 1]
+  return {
+    id,
+    name: `${id} exchange`,
+    indexName: id.toUpperCase(),
+    city: id,
+    iso2: 'XX',
+    lat: 0,
+    lng: 0,
+    level: last,
+    changePct: ((last - prev) / prev) * 100,
+    currency: 'USD',
+    tz: 'UTC',
+    sessionStart: '09:00',
+    sessionEnd: '17:00',
+    days: [1, 2, 3, 4, 5],
+    series: { periods: dailyPeriods(asOf, values.length), values },
+    asOf,
+    sourceLabel: 'test',
+    blurb: '',
+    ...over,
+  }
+}
+
+/**
+ * A mark, a panel row and a card's hero are one exchange's move over the range
+ * the timeline is set to. Two things have to hold for that to be safe: at the
+ * day step it is still the day's move the mark always drew, and one exchange is
+ * windowed on its own calendar, not on the block's.
+ */
+test('one exchange reads the range on its own last session', () => {
+  // Saturday. Riyadh's week ended on Thursday; New York's on Friday.
+  const now = Date.parse('2026-10-10T12:00:00Z')
+  const riyadh = exchangeOf('tadawul', [100, 101, 102, 103, 104, 105, 106, 104.94], '2026-10-08')
+  const newYork = exchangeOf('nyse', [200, 200, 200, 200, 200, 200, 200, 202], '2026-10-09')
+
+  // The day step is `changePct`, to the digit.
+  assert.equal(exchangeReading(riyadh, 1, now).pct, riyadh.changePct)
+  assert.equal(exchangeReading(newYork, 1, now).pct, newYork.changePct)
+
+  // Under one edge for both (Friday, the block's) Riyadh has no day at all:
+  // this is the four blank exchanges of 2026-10-10.
+  const blockEdge = lastTradedDay([riyadh, newYork].map((m) => ({ periods: m.series.periods, asOf: m.asOf })))
+  const underBlock = sparkInput(
+    [{ values: riyadh.series.values, periods: riyadh.series.periods, asOf: riyadh.asOf, pct: riyadh.changePct }],
+    1,
+    now,
+    blockEdge,
+  )
+  assert.equal(underBlock ? readingOf(underBlock) : null, null)
+
+  // Over three days it is last against first of its own three days.
+  const three = exchangeReading(riyadh, 3, now)
+  assert.ok(Math.abs(three.pct - ((104.94 - 104) / 104) * 100) < 1e-9, `three days read ${three.figure}`)
+  assert.equal(three.figure, '+0.9%')
+
+  // A close too old to be this range's move is no reading, not an old one.
+  const dead = exchangeOf('gone', [50, 60], '2026-09-20')
+  assert.equal(exchangeReading(dead, 1, now), null)
+  assert.equal(exchangeReading(dead, 7, now), null)
+  // At ninety days a three-week-old close is... still too old: the limit is a tenth of the range.
+  assert.equal(exchangeReading(dead, 90, now), null)
+
+  // No series at all: the day's move rides the payload, and nothing longer does.
+  const bare = { ...exchangeOf('bare', [10, 11], '2026-10-09'), series: undefined }
+  assert.equal(exchangeReading(bare, 1, now).pct, bare.changePct)
+  assert.equal(exchangeReading(bare, 7, now), null)
+})
+
+test('the marks, the counts and the reading agree at every range', () => {
+  const now = Date.parse('2026-10-10T12:00:00Z')
+  const up = Array.from({ length: 40 }, (_, i) => 100 + i)
+  const down = Array.from({ length: 40 }, (_, i) => 200 - i * 2)
+  // Up over every range and down on the day: the case a tick and a label
+  // could disagree on if they were two calculations.
+  const mixed = [...up.slice(0, 39), up[38] - 1]
+  const markets = [
+    exchangeOf('rise', up, '2026-10-09'),
+    exchangeOf('fall', down, '2026-10-09'),
+    exchangeOf('mixed', mixed, '2026-10-09'),
+    exchangeOf('level', Array.from({ length: 40 }, () => 100), '2026-10-09'),
+    exchangeOf('gone', [50, 60], '2026-09-01'),
+  ]
+  for (const days of [1, 3, 7, 30, 90]) {
+    const { features } = marketCollection(markets, days, now)
+    const tally = marketTally(markets, days, now)
+    const dirs = features.map((f) => f.properties.dir)
+    assert.equal(tally.up, dirs.filter((d) => d > 0).length, `${days}d: the count of risers is the count of up ticks`)
+    assert.equal(tally.down, dirs.filter((d) => d < 0).length, `${days}d: fallers`)
+    assert.equal(tally.up + tally.down + tally.flat, markets.length)
+    for (const f of features) {
+      const p = f.properties
+      const reading = exchangeReading(markets.find((m) => m.id === p.id), days, now)
+      assert.equal(p.dir, reading ? marketDirection(reading.pct) : 0, `${days}d ${p.id}: the tick is the reading’s direction`)
+      // Unsigned, and the same digits the reading prints.
+      assert.equal(p.label, reading ? reading.figure.replace(/^[+−]/, '') : '', `${days}d ${p.id}: the numeral is the reading`)
+      assert.ok(p.mag >= 0 && p.mag <= 1)
+      assert.ok(Math.abs(p.mag - Math.min(1, p.abs / moveCap(days))) < 1e-12)
+    }
+    // No reading is a flat tick with no numeral, and is counted flat.
+    const gone = features.find((f) => f.properties.id === 'gone').properties
+    assert.equal(gone.dir, 0)
+    assert.equal(gone.label, '')
+  }
+  // The mixed case, said outright: down on the day, up over the week.
+  const day = marketCollection(markets, 1, now).features.find((f) => f.properties.id === 'mixed').properties
+  const week = marketCollection(markets, 7, now).features.find((f) => f.properties.id === 'mixed').properties
+  assert.equal(day.dir, -1)
+  assert.equal(week.dir, 1)
+  // A 3% day is as large as a mark gets; so is 16% over a month, not 3%.
+  assert.equal(moveCap(1), 3)
+  assert.ok(Math.abs(moveCap(30) - 3 * Math.sqrt(30)) < 1e-12)
 })
 
 /**

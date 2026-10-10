@@ -116,6 +116,8 @@ calendar `hijri.md`.
   transparent. Without them the field vanishes or paints the whole world.
 - Only stories are rebuilt as the scrubber moves. Dated overlays move by
   `setFilter` (`applyTimeFilters`); toggles are visibility.
+- A range press rebuilds `markets` once (`applyMarketRange`), and nothing
+  else does: not a scrub, a tick or `idle`.
 - Beacon radius is a percentile rank from `build.js`. A story with no figure
   gets a neutral size, not the smallest.
 - `story-place-count` may lose a collision. Its threshold is a `case` inside

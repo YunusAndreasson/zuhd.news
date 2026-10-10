@@ -80,22 +80,46 @@ export const marketLabel = (change: number): string => `${Math.abs(change).toFix
 
 // --- The source ------------------------------------------------------------
 
-export const marketCollection = (markets: MapExchange[], now = Date.now()) => ({
+/**
+ * The move at which a mark stops growing, for a range of `days`.
+ *
+ * A 3% day is a big day on an index; past that the mark stops growing rather
+ * than letting one panic drown out the rest of the world. Over a longer range
+ * the same cap would saturate every mark on the map, since a month's move is
+ * routinely a day's several times over. A random walk spreads with the square
+ * root of time, so the cap does: 3% a day, 5.2% over three, 7.9% a week, 16%
+ * a month. It scales what counts as large, not what is drawn as up.
+ */
+export const moveCap = (days: number): number => 3 * Math.sqrt(Math.max(1, days))
+
+/**
+ * The marks, over the range the timeline is set to.
+ *
+ * A mark's direction, size and numeral are one exchange's `exchangeReading`,
+ * the calculation its row in the markets panel and its card's hero also take,
+ * so a tick cannot point up beside a row that says down. An exchange with no
+ * reading for the range (its last close is too old to be this period's) is a
+ * flat neutral tick with no numeral: present, and claiming nothing.
+ */
+export const marketCollection = (markets: MapExchange[], days: number, now = Date.now()) => ({
   type: 'FeatureCollection' as const,
   features: markets.map((m) => {
-    const change = Number.isFinite(m.changePct) ? m.changePct : 0
+    const reading = exchangeReading(m, days, now)
+    const change = reading?.pct ?? 0
+    const abs = Math.abs(change)
     return {
       type: 'Feature' as const,
       properties: {
         id: m.id,
         name: m.name,
         change,
-        abs: Math.abs(change),
-        // A 3% day is a big day on an index; past that the mark stops growing
-        // rather than letting one panic drown out the rest of the world.
-        mag: Math.min(1, Math.abs(change) / 3),
-        dir: marketDirection(change),
-        label: marketLabel(change),
+        abs,
+        // The same move as a day's worth, which is what `NAME_PCT` is stated
+        // in: the bar for a numeral rises with the range as the cap does.
+        rel: (abs / moveCap(days)) * 3,
+        mag: Math.min(1, abs / moveCap(days)),
+        dir: reading ? marketDirection(change) : 0,
+        label: reading ? marketLabel(change) : '',
         trading: isTrading(m, now) ? 1 : 0,
       },
       geometry: { type: 'Point' as const, coordinates: [m.lng, m.lat] },
@@ -150,7 +174,7 @@ export const marketLayout = (): NonNullable<SymbolLayerSpecification['layout']> 
     'tick-down',
     'tick-up',
   ],
-  // `wantedCssPx / GLYPH_BOX`: 7px at rest, 16px at a 3% day.
+  // `wantedCssPx / GLYPH_BOX`: 7px at rest, 16px at the range's `moveCap`.
   'icon-size': ['interpolate', ['linear'], ['get', 'mag'], 0, 0.44, 1, 1.0],
   // Both flags. `allow-overlap` because a suppressed mark reads as an absence —
   // and, less obviously, because `queryRenderedFeatures` only returns *placed*
@@ -172,9 +196,9 @@ export const marketLayout = (): NonNullable<SymbolLayerSpecification['layout']> 
   'text-field': [
     'step',
     ['zoom'],
-    ['case', ['>=', ['get', 'abs'], NAME_PCT], ['get', 'label'], ''],
+    ['case', ['>=', ['get', 'rel'], NAME_PCT], ['get', 'label'], ''],
     NAME_ZOOM,
-    ['case', ['>=', ['get', 'abs'], NAME_PCT_CLOSE], ['get', 'label'], ''],
+    ['case', ['>=', ['get', 'rel'], NAME_PCT_CLOSE], ['get', 'label'], ''],
   ],
   'text-font': ['Noto Sans Bold'],
   'text-size': ['interpolate', ['linear'], ['zoom'], 1, 10, 5, 12.5],
@@ -222,35 +246,45 @@ export interface MarketTally {
 }
 
 /**
- * The shape of the day.
+ * The shape of the range.
  *
- * Counted through `marketDirection`, the same predicate that colours the marks —
- * so the strip cannot say ▲11 while ten marks are green. `up + down + flat`
- * always equals the number of exchanges, which is what a test can hold on to.
+ * Counted through `exchangeReading` and `marketDirection`, the same reading and
+ * the same predicate that colour the marks — so the strip cannot say ▲11 while
+ * ten marks are green. An exchange with no reading for the range is flat, as
+ * its mark is. `up + down + flat` always equals the number of exchanges, which
+ * is what a test can hold on to.
  */
-export const marketTally = (markets: MapExchange[], now = Date.now()): MarketTally => {
+export const marketTally = (
+  markets: MapExchange[],
+  days: number,
+  now = Date.now(),
+): MarketTally => {
   let up = 0
   let down = 0
   let flat = 0
   let closed = 0
+  const move = new Map<MapExchange, number>()
   for (const m of markets) {
-    const d = marketDirection(m.changePct)
+    const pct = exchangeReading(m, days, now)?.pct ?? 0
+    move.set(m, pct)
+    const d = marketDirection(pct)
     if (d > 0) up++
     else if (d < 0) down++
     else flat++
     if (!isTrading(m, now)) closed++
   }
-  const moved = markets.filter((m) => marketDirection(m.changePct) !== 0)
+  const of = (m: MapExchange) => move.get(m) ?? 0
+  const moved = markets.filter((m) => marketDirection(of(m)) !== 0)
   // Two from each end rather than a top four by magnitude: on a rout day a top
   // four names four fallers and hides that anything rose at all. The strip's
   // job is the shape of the day, and a shape has two ends.
   const risers = moved
-    .filter((m) => m.changePct > 0)
-    .sort((a, b) => b.changePct - a.changePct)
+    .filter((m) => of(m) > 0)
+    .sort((a, b) => of(b) - of(a))
     .slice(0, MOVERS_PER_SIDE)
   const fallers = moved
-    .filter((m) => m.changePct < 0)
-    .sort((a, b) => a.changePct - b.changePct)
+    .filter((m) => of(m) < 0)
+    .sort((a, b) => of(a) - of(b))
     .slice(0, MOVERS_PER_SIDE)
   return { up, down, flat, closed, risers, fallers }
 }
@@ -1733,6 +1767,46 @@ export const readingOf = (input: SparkInput, unit?: string): SparkReading | null
   return { pct, figure: unit === '%' && ends ? ribbonPoints(ends[1] - ends[0]) : ribbonPct(pct) }
 }
 
+/** One exchange as a row member, or `null` when it publishes no series. */
+export const exchangeMember = (m: MapExchange): SparkMember | null =>
+  Array.isArray(m.series?.values)
+    ? { values: m.series.values, periods: m.series.periods, asOf: m.asOf, pct: m.changePct ?? 0 }
+    : null
+
+/**
+ * One exchange over the rail's range: what its mark, its panel row and its
+ * card's hero all state.
+ *
+ * Windowed on **its own** last session, not the block's. `sparkInput`'s
+ * `blockEdge` is per block for a reason that holds for a composite and fails
+ * here: the thirty exchanges share one edge so their periods are comparable in
+ * one figure, but a mark is one exchange, and under the block's edge every
+ * market that closes for the week on Thursday (Tadawul, DFM) has no reading on
+ * a Friday: four of thirty were blank at the 24h step on 2026-10-10.
+ *
+ * What stops a dead series reading as fresh is the gate the block edge was
+ * for, stated directly: `staleLabel`, the rule that prints an age on a rail
+ * row. A last close too old for the range is no reading at all.
+ *
+ * At the day step this is `changePct`, the day's move, as the mark always
+ * drew.
+ */
+export const exchangeReading = (
+  m: MapExchange,
+  days: number,
+  now = Date.now(),
+): SparkReading | null => {
+  if (staleLabel(m.asOf, days, now)) return null
+  const member = exchangeMember(m)
+  if (!member) {
+    // No series, so only the day's move, which rides the payload on its own.
+    const day = m.changePct
+    return days <= 1 && Number.isFinite(day) ? { pct: day, figure: ribbonPct(day) } : null
+  }
+  const input = sparkInput([member], days, now, lastTradedDay([member]))
+  return input ? readingOf(input) : null
+}
+
 /**
  * A strait's series as the rail and the map read it: the week's mean.
  *
@@ -2538,12 +2612,15 @@ export function createMarketStrip(opts: MarketStripOptions): MarketStrip {
    * modal in front of the flight would hide the answer.
    */
   const exchangeRow = (m: MapExchange) => {
-    const btn = el('button', `map-markets-row-item${toneClass(m.changePct)}`)
+    // The range's move, as the mark on the map draws it. No reading is no tick
+    // and no figure: the name stays, in the ink a stale row takes.
+    const reading = exchangeReading(m, rangeDays)
+    const btn = el('button', `map-markets-row-item${toneClass(reading?.pct ?? 0, !reading)}`)
     btn.setAttribute('type', 'button')
     btn.append(
-      tick(marketDirection(m.changePct)),
+      ...(reading ? [tick(marketDirection(reading.pct))] : [el('span', 'map-markets-nil')]),
       el('span', 'map-markets-row-name', m.indexName),
-      el('span', 'map-markets-row-pct', ribbonPct(m.changePct)),
+      el('span', 'map-markets-row-pct', reading?.figure ?? ''),
     )
     btn.addEventListener('click', () => {
       const from = openOn ?? btn
@@ -2606,16 +2683,13 @@ export function createMarketStrip(opts: MarketStripOptions): MarketStrip {
    * disagree, which is what this file's own header keeps a rule about.
    */
   const exchangeMembers = (): SparkMember[] =>
-    (lastMarkets ?? []).flatMap((m) =>
-      Array.isArray(m.series?.values)
-        ? [{ values: m.series.values, periods: m.series.periods, asOf: m.asOf, pct: m.changePct ?? 0 }]
-        : [],
-    )
+    (lastMarkets ?? []).flatMap((m) => exchangeMember(m) ?? [])
 
   const update = (markets: MapExchange[], now = Date.now()) => {
     lastMarkets = markets
-    const t = marketTally(markets, now)
-    allExchanges = [...markets].sort((a, b) => (b.changePct ?? 0) - (a.changePct ?? 0))
+    const t = marketTally(markets, rangeDays, now)
+    const move = (m: MapExchange) => exchangeReading(m, rangeDays, now)?.pct ?? 0
+    allExchanges = [...markets].sort((a, b) => move(b) - move(a))
 
     const s = { up: t.up, down: t.down, flat: t.flat, net: 0 as const }
     tally.replaceChildren()
