@@ -9,7 +9,8 @@
 // imported. They are the columns of one row now, and `rss-sources.test.js`
 // holds the rows to the four lists as they stood.
 //
-// The list is editorial. Nothing here adds, drops or reorders an outlet.
+// The list is editorial: an outlet joins or leaves it by the owner's decision,
+// and `rss-sources.test.js` holds the list as last decided.
 
 /**
  * @typedef {object} RssSource
@@ -28,7 +29,8 @@
 // `cap`: aggregator-style feeds that flood a single category. Phys.org
 // republishes journal press releases and was landing 29% of science primaries;
 // The Record (cyber) was landing 19% of tech primaries. Lowering their cap
-// rebalances toward Nature/Carbon Brief/SciDev and 404/Ars/CODA.
+// rebalances toward Nature/Carbon Brief/SciDev and 404/Ars.
+// TechNode publishes three or four items a day, product notes among them.
 /** @type {RssSource[]} */
 export const RSS_SOURCES = [
   // Hacker News fetched via Algolia API — see fetchHackerNews() in fetch-news.js
@@ -48,11 +50,8 @@ export const RSS_SOURCES = [
   { name: 'Carbon Brief',   url: 'https://www.carbonbrief.org/feed/',           format: 'rss2', country: 'GB', defaultCategory: 'science' },
   { name: 'New Lines Magazine', url: 'https://newlinesmag.com/feed/',            format: 'rss2', country: 'US' },
   { name: 'The War Zone',  url: 'https://www.twz.com/feed',                     format: 'rss2', country: 'US' },
-  { name: 'CODA Story',    url: 'https://www.codastory.com/feed/',              format: 'rss2', country: 'US' },
   { name: 'European Spaceflight', url: 'https://europeanspaceflight.com/feed/',  format: 'rss2', country: 'FR', defaultCategory: 'science' },
-  { name: 'Undark',        url: 'https://undark.org/feed/',                      format: 'rss2', country: 'US', defaultCategory: 'science' },
   { name: 'Inkstick',      url: 'https://inkstickmedia.com/feed/',              format: 'rss2', country: 'US' },
-  { name: 'Noema',        url: 'https://www.noemamag.com/feed/',               format: 'rss2', country: 'US' },
   { name: 'Rest of World', url: 'https://restofworld.org/feed/latest/',        format: 'rss2', country: 'US', defaultCategory: 'tech' },
   { name: 'The Diplomat', url: 'https://thediplomat.com/feed/',                format: 'rss2', country: 'US' },
   { name: 'Lowy Interpreter', url: 'https://www.lowyinstitute.org/the-interpreter/rss.xml', format: 'rss2', country: 'AU' },
@@ -60,6 +59,12 @@ export const RSS_SOURCES = [
   // cycle in the log window (41/41) with the whole science feed silently lost.
   { name: 'Dialogue Earth', url: 'https://dialogue.earth/en/feed/',            format: 'rss2', country: 'GB', defaultCategory: 'science' },
   { name: 'Global Voices', url: 'https://globalvoices.org/feed/',              format: 'rss2', country: 'NL' },
+  { name: 'Payload',      url: 'https://payloadspace.com/feed/',               format: 'rss2', country: 'US', defaultCategory: 'science' },
+  { name: 'C4ISRNET',     url: 'https://www.c4isrnet.com/arc/outboundfeeds/rss/?outputType=xml', format: 'rss2', country: 'US' },
+  { name: 'TechNode',     url: 'https://technode.com/feed/',                   format: 'rss2', country: 'CN', defaultCategory: 'tech', cap: 2 },
+  { name: 'Latin America Reports', url: 'https://latinamericareports.com/feed/', format: 'rss2', country: 'CO' },
+  // The news desk's feed: the site's own carries its opinion and culture pages.
+  { name: 'Mondoweiss',   url: 'https://mondoweiss.net/news/feed/',            format: 'rss2', country: 'US' },
 ]
 
 /** Hacker News is read through Algolia, not from a feed, and is a source like the rest once it has been. */
