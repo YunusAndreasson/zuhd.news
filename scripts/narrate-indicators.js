@@ -358,7 +358,10 @@ console.log(
  */
 const coverageFor = (item) =>
   offeredArticles(articles, {
-    direct: (a) => (item.about ? item.about(a) : a.entityIds.includes(item.key)),
+    // An exchange's or a strait's own stories are the ones the entity stage
+    // read as about it (`venues`, `lib/stock-mentions.js`): first, ahead of
+    // the stories that only carry one of its tags.
+    direct: (a) => (item.about ? item.about(a) : a.entityIds.includes(item.key) || Boolean(a.venues?.includes(item.key))),
     topicTags: item.topicTags,
     countryTags: item.countryTags,
   })

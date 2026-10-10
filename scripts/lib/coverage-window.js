@@ -65,6 +65,10 @@ export const loadArticles = (windowStart, dir = ARTICLES_DIR) => {
         concepts,
         entities: Array.isArray(meta.entities) ? meta.entities : [],
         ...(Array.isArray(meta.subjects) ? { subjects: meta.subjects } : {}),
+        // The exchanges and straits the same reading judged it to be about
+        // (`mkt:lse`, `cp:hormuz`); absent, like `subjects`, on a story it
+        // never read.
+        ...(Array.isArray(meta.venues) ? { venues: meta.venues } : {}),
         hay: [meta.title, meta.location, ...concepts].join(' ').toLowerCase(),
         // The ISO-2 codes the body links, which is the one place an article
         // states which countries it is *about* — `hay` carries a dateline and a

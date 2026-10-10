@@ -19,12 +19,12 @@ import { readFileSync, existsSync } from 'node:fs'
 import { basename } from 'node:path'
 import { tryReadArticle } from './lib/article.js'
 import { batchFiles } from './lib/article-files.js'
-import { callClaudeJson } from './lib/claude-envelope.js'
+import { callClaudeJson, callCost } from './lib/claude-envelope.js'
 import { pathOf } from './lib/datasets.js'
 import { replaceFrontmatterKey, yamlString } from './lib/frontmatter.js'
 import { extractEntities } from './lib/entity-registry.js'
 import { fetchYahooStock } from './lib/trends-sources/stocks.js'
-import { chartsUntil, companyEntries, parseStockMentions, stockMentionsPrompt, subjectsBlock } from './lib/stock-mentions.js'
+import { chartsUntil, companyEntries, parseStockMentions, parseStoryReadings, readingBlocks, stockMentionsPrompt, subjectsBlock } from './lib/stock-mentions.js'
 import { writeJson, writeText } from './lib/json-file.js'
 import { modelFor } from './lib/models.js'
 import { latestTrendsPath } from './lib/trends-snapshot.js'
@@ -98,6 +98,7 @@ Return ONLY the JSON object. No commentary, no markdown fences.`
     console.error(`  ✗ entity-haiku: ${res.error}`)
     return new Map()
   }
+  console.log(`  · entity-haiku: answered in ${(res.elapsedMs / 1000).toFixed(1)}s${callCost(res)}`)
   const obj = res.out
   const out = new Map()
   for (const it of items) {
@@ -127,7 +128,7 @@ Return ONLY the JSON object. No commentary, no markdown fences.`
  * found nothing": only the second is recorded on the article.
  */
 async function extractStocksViaHaiku(articles) {
-  if (articles.length === 0) return new Map()
+  if (articles.length === 0) return { companies: new Map(), readings: new Map() }
   const prompt = stockMentionsPrompt(articles)
 
   // 60s, not 30s: the batched 10-13 article scan routinely needed 30-35s and
@@ -141,7 +142,8 @@ async function extractStocksViaHaiku(articles) {
     console.error(`  ✗ stocks-haiku: ${res.error}`)
     return null
   }
-  return parseStockMentions(res.out)
+  console.log(`  · stocks-haiku: answered in ${(res.elapsedMs / 1000).toFixed(1)}s${callCost(res)}`)
+  return { companies: parseStockMentions(res.out), readings: parseStoryReadings(res.out) }
 }
 
 /**
@@ -243,17 +245,23 @@ for (const { path: fullPath, name: filename } of newFiles) {
 }
 
 /**
- * Put a file's entities, as they stand, on the article, and its subjects
- * once the company scan has read it. Writes only what changed.
+ * Put a file's entities, as they stand, on the article, and its subjects,
+ * venues and thermal reading once the scan has read it. Writes only what
+ * changed.
  *
  * @param {(typeof files)[number]} file
  * @param {string[]} [subjects]
+ * @param {import('./lib/stock-mentions.js').StoryReading} [reading]
  */
-function writeFile(file, subjects) {
+function writeFile(file, subjects, reading) {
   const withEntities = writeEntitiesToFrontmatter(file.raw, file.resolved)
-  const updated = subjects
+  let updated = subjects
     ? replaceFrontmatterKey(withEntities, 'subjects', subjectsBlock(subjects))
     : withEntities
+  if (reading) {
+    const blocks = readingBlocks(reading)
+    updated = replaceFrontmatterKey(replaceFrontmatterKey(updated, 'venues', blocks.venues), 'thermal', blocks.thermal)
+  }
   if (updated === file.raw) return
   writeText(file.fullPath, updated)
   file.raw = updated
@@ -298,13 +306,25 @@ let stocksHits = new Map()
 /** Slug → the companies the scan judged the article to be about, for every
  *  article it answered for. Empty when the scan did not run. */
 const subjectsBySlug = new Map()
+/** Slug → the exchanges and straits the scan judged the article to be about,
+ *  and whether it reports something burning; only for an article whose answer
+ *  carried both (`parseStoryReadings`). */
+let readingsBySlug = new Map()
 const newStockIndicators = []
 if (files.length > 0) {
   console.log(`  · stocks-haiku: scanning ${files.length} article(s) for tickers`)
   const scanned = await extractStocksViaHaiku(
     files.map((f) => ({ slug: f.slug, title: f.title, body: f.body })),
   )
-  stocksHits = scanned ?? new Map()
+  stocksHits = scanned?.companies ?? new Map()
+  readingsBySlug = scanned?.readings ?? new Map()
+  if (scanned) {
+    const about = [...readingsBySlug.values()]
+    console.log(
+      `  · stocks-haiku: ${about.length}/${files.length} read for venues — ` +
+        `${about.filter((r) => r.venues.length > 0).length} about an exchange or strait, ${about.filter((r) => r.thermal).length} thermal`,
+    )
+  }
 
   // Collect unique tickers across all articles; skip duplicates.
   const uniqueTickers = new Map() // ticker → { name, mentionExample }
@@ -379,7 +399,7 @@ for (const file of files) {
   const { fullPath, resolved } = file
   // `subjects` only for an article the company scan read: one it did not
   // reach keeps no key, and the build falls back to the headline for it.
-  writeFile(file, subjectsBySlug.get(file.slug))
+  writeFile(file, subjectsBySlug.get(file.slug), readingsBySlug.get(file.slug))
   processed++
   totalEntities += resolved.length
   for (const e of resolved) {

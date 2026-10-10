@@ -116,6 +116,8 @@ export const CATEGORIES = Object.freeze(['politics', 'economy', 'science', 'tech
  * @property {number} [sentimentDivergence] `scaffold-articles.js`
  * @property {{ mention: string, indicatorId: string, kind: string }[]} [entities] `extract-entities.js`; published
  * @property {string[]} [subjects] `extract-entities.js`: `[]` is read and about none, no key is never read
+ * @property {string[]} [venues] the same reading: the exchanges and straits the story is about (`mkt:lse`, `cp:hormuz`)
+ * @property {boolean} [thermal] the same reading: it reports a fire, a blast or a strike that hit; recorded, not yet read
  * @property {string} [chart] the writer; `validate-articles.js` removes one that was not offered
  * @property {string} [socialTitle] `pick-breaking-social.js`
  * @property {{ date: string, note: string }[]} [corrections] a person

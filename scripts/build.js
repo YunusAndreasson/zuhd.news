@@ -15,7 +15,7 @@ import { buildCountryPages } from './build/country-pages.js'
 import { buildCountryMetrics } from './build/country-metrics.js'
 import { buildEntityPages } from './build/entity-pages.js'
 import { latestTrendsPath } from './lib/trends-snapshot.js'
-import { canonicalIndicatorId, matchesAnyTag, tagMatcher } from './lib/entity-registry.js'
+import { canonicalIndicatorId } from './lib/entity-registry.js'
 import { loadShared } from './build/shared-ts.js'
 import {
   formatDate,
@@ -30,6 +30,7 @@ import { publishedTimes } from './lib/published-at.js'
 import { pruneOlderThan } from './lib/prune-cache.js'
 import { openStampLedger } from './lib/stable-stamp.js'
 import { companiesPayload } from './lib/companies.js'
+import { onVenueList } from './lib/stock-mentions.js'
 import { aiModelsPayload } from './lib/ai-models.js'
 import { ROOT } from './lib/paths.js'
 
@@ -1099,26 +1100,19 @@ const citedOr = (d, fallback) => {
 const chokepointsSrc = join(ROOT, 'content', '.chokepoints.json')
 if (existsSync(chokepointsSrc)) {
   const raw = JSON.parse(readFileSync(chokepointsSrc, 'utf8'))
-  // Match articles against each chokepoint by topicTag. Tag hits against
-  // title + concepts + location, lowercased, and a tag is matched whole
-  // (`matchesAnyTag`), as the exchange join below and the narration stage
-  // match it. This one was the bare `includes` that comment warns of: Taiwan
-  // carries the tag `pla`, and on the 2026-10-09 corpus 32 of the 54 stories
-  // it matched were "plan", "plague" and "displaced".
-  const normalize = (s) => String(s || '').toLowerCase()
+  // A strait's stories are the ones the entity stage read as about it
+  // (`onVenueList`, `lib/stock-mentions.js`), and no others. They were the
+  // first eight articles carrying one of its tags in the title, the dateline
+  // or a concept: on the 2026-10-10 build Gibraltar's eight were a Catalan
+  // arrest warrant, a Neanderthal find and six more matched on `spain` and
+  // `sanctions`, and before the tag was matched whole, Taiwan's `pla` took
+  // "plan", "plague" and "displaced".
   const enriched = {
     ...raw,
     chokepoints: (raw.chokepoints || []).map((c) => {
-      const tags = (c.topicTags || []).map(normalize)
-      if (!tags.length) return { ...c, relatedArticles: [] }
       const hits = []
       for (const a of sorted) {
-        const hay = [
-          a.title,
-          a.meta.location,
-          ...(a.concepts || []).map((x) => (typeof x === 'object' ? x.label : x)),
-        ].map(normalize).join(' ')
-        if (matchesAnyTag(tags, hay)) {
+        if (onVenueList(a.meta, `cp:${c.id}`)) {
           hits.push({
             slug: a.slug,
             title: a.title,
@@ -1175,43 +1169,18 @@ if (existsSync(chokepointsSrc)) {
 const marketsSrc = join(ROOT, 'content', '.markets.json')
 if (existsSync(marketsSrc)) {
   const raw = JSON.parse(readFileSync(marketsSrc, 'utf8'))
-  const normalize = (s) => String(s || '').toLowerCase()
-  // Precomputed once rather than per-exchange: 30 exchanges × ~200 articles
-  // would otherwise re-scan every body 30 times.
-  const articleIndex = sorted.map((a) => ({
-    slug: a.slug,
-    title: a.title,
-    date: a.meta.date,
-    dateFormatted: a.dateFormatted,
-    hay: [
-      a.title,
-      a.meta.location,
-      ...(a.concepts || []).map((x) => (typeof x === 'object' ? x.label : x)),
-    ]
-      .map(normalize)
-      .join(' '),
-    countries: new Set(
-      Array.from(String(a.body || '').matchAll(/\(country:([A-Za-z]{2})\)/g), (m) =>
-        m[1].toUpperCase(),
-      ),
-    ),
-  }))
-  // Word-boundary matching, not substring. A bare `includes` let `smi` (the
-  // Swiss index) match "transmission" and hung eight unrelated tech stories off
-  // Zurich; short tickers are exactly the tags a market catalog is full of.
-  // Phrases work too — the boundary is on the whole tag, not on each word.
-  // The matcher is `tagMatcher` in `lib/entity-registry.js`.
+  // An exchange's stories are the ones the entity stage read as market news
+  // for it (`onVenueList`), and no others. They were any article carrying one
+  // of its tags or linking its country: London listed a by-election and a
+  // wildlife census, Stockholm three Nobel prizes, and on the 2026-10-10 build
+  // 40 of the 42 stories on seven such lists were none of the market's news.
   const enriched = {
     ...raw,
     exchanges: (raw.exchanges || []).map((e) => {
-      const tags = (e.topicTags || []).map(normalize).map(tagMatcher)
-      const countries = e.countryTags || []
       const hits = []
-      for (const a of articleIndex) {
-        const match =
-          tags.some((re) => re.test(a.hay)) || countries.some((c) => a.countries.has(c))
-        if (!match) continue
-        hits.push({ slug: a.slug, title: a.title, date: a.date, dateFormatted: a.dateFormatted })
+      for (const a of sorted) {
+        if (!onVenueList(a.meta, `mkt:${e.id}`)) continue
+        hits.push({ slug: a.slug, title: a.title, date: a.meta.date, dateFormatted: a.dateFormatted })
         if (hits.length >= 8) break
       }
       const d = dispatch[`mkt:${e.id}`]

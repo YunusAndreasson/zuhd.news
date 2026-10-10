@@ -1,6 +1,6 @@
 import assert from 'node:assert/strict'
 import { test } from 'node:test'
-import { chartsUntil, companyEntries, parseStockMentions, stockMentionsPrompt, subjectsBlock } from './stock-mentions.js'
+import { VENUES, chartsUntil, companyEntries, onVenueList, parseStockMentions, parseStoryReadings, readingBlocks, stockMentionsPrompt, subjectsBlock } from './stock-mentions.js'
 
 test('the prompt carries each article and asks for the subject', () => {
   const prompt = stockMentionsPrompt([
@@ -59,6 +59,68 @@ test('an answer that is not an object is no answer', () => {
   assert.equal(parseStockMentions(null).size, 0)
   assert.equal(parseStockMentions([]).size, 0)
   assert.equal(parseStockMentions('{}').size, 0)
+})
+
+// ── The same reading: venues and thermal ────────────────────────────────────
+
+test('the prompt lists every exchange and strait the site draws, by its id', () => {
+  const prompt = stockMentionsPrompt([{ slug: 's', title: 't', body: 'b' }])
+  assert.ok(VENUES.length >= 40)
+  for (const v of VENUES) assert.ok(prompt.includes(`  ${v.id} — ${v.label}`), v.id)
+  assert.match(prompt, /mkt:lse — London Stock Exchange/)
+  assert.match(prompt, /cp:hormuz — Strait of Hormuz/)
+  assert.match(prompt, /"venues" \(an array of ids from the list/)
+})
+
+test('companies are read from under their key, beside the new answers', () => {
+  const out = parseStockMentions({
+    story: { companies: [{ mention: 'Meta', ticker: 'META', name: 'Meta Platforms', subject: true }], venues: ['mkt:nyse'], thermal: false },
+    quiet: { companies: [], venues: [], thermal: false },
+    odd: { venues: [], thermal: false },
+  })
+  assert.deepEqual(out.get('story').map((c) => c.ticker), ['META'])
+  assert.deepEqual(out.get('quiet'), [])
+  assert.deepEqual(out.get('odd'), [])
+})
+
+test('a reading keeps the venues that are venues, once each', () => {
+  const out = parseStoryReadings({
+    tanker: { companies: [], venues: ['cp:hormuz', 'mkt:tadawul', 'cp:hormuz', 'mkt:nikkei', 'hormuz', 7], thermal: true },
+    quiet: { companies: [], venues: [], thermal: false },
+  })
+  assert.deepEqual(out.get('tanker'), { venues: ['cp:hormuz', 'mkt:tadawul'], thermal: true })
+  assert.deepEqual(out.get('quiet'), { venues: [], thermal: false })
+})
+
+test('an article not answered for both is not read, and is not recorded as about none', () => {
+  const out = parseStoryReadings({
+    old: [{ mention: 'Meta', ticker: 'META', name: 'Meta Platforms' }],
+    half: { companies: [], venues: ['cp:suez'] },
+    guess: { companies: [], venues: [], thermal: 'false' },
+    listless: { companies: [], venues: 'cp:suez', thermal: true },
+    nothing: null,
+  })
+  assert.equal(out.size, 0)
+  assert.equal(parseStoryReadings(null).size, 0)
+  assert.equal(parseStoryReadings([]).size, 0)
+})
+
+test('the reading is written under its own two keys', () => {
+  assert.deepEqual(readingBlocks({ venues: ['cp:hormuz', 'mkt:tadawul'], thermal: true }), {
+    venues: ['venues:', '  - "cp:hormuz"', '  - "mkt:tadawul"'],
+    thermal: ['thermal: true'],
+  })
+  assert.deepEqual(readingBlocks({ venues: [], thermal: false }), { venues: ['venues: []'], thermal: ['thermal: false'] })
+})
+
+test('a story is on a list only when it was read and named it', () => {
+  assert.equal(onVenueList({ venues: ['mkt:lse'] }, 'mkt:lse'), true)
+  assert.equal(onVenueList({ venues: ['mkt:lse'] }, 'cp:dover'), false)
+  assert.equal(onVenueList({ venues: [] }, 'mkt:lse'), false)
+  // Never read: on no list, whatever its title says.
+  assert.equal(onVenueList(/** @type {any} */ ({ title: 'London Stock Exchange Halts Trading' }), 'mkt:lse'), false)
+  assert.equal(onVenueList({ venues: 'mkt:lse' }, 'mkt:lse'), false)
+  assert.equal(onVenueList(undefined, 'mkt:lse'), false)
 })
 
 test('subjectsBlock writes one id a line, once each, and says so when there are none', () => {

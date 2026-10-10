@@ -206,6 +206,11 @@ stages assume about each other.
   dispatch keeps the same split (`offeredArticles`, `offeredStories`).
 - A signal never goes back a session (`selectMarketSignals`): a fetch can
   lose an exchange's newest bar for a night.
+- The list under an exchange or a strait is the stories the entity stage read
+  as about it (`venues:`, `onVenueList`, `lib/stock-mentions.js`). **Never**
+  give it a word-match fallback: tags put 40 wrong stories on 42 places.
+- `thermal:` is recorded by the same reading and read by nothing: the thermal
+  layer's gate is still `THERMAL_VOCABULARY`, an editorial list.
 
 ## Companies and AI labs
 
