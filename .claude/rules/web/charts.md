@@ -39,6 +39,9 @@ The rail's readings are `map-rail.md`.
 - `comparison` is a second line on the model's own scale (the world's median),
   never a second model laid over it. It widens the domain unless `domain` is
   given, before `reference` is weighed, and reaches no dot, axis or table.
+- A series that is a rate, or that crosses zero, sets `change: 'points'`: the
+  table's third column is then a difference (`rowChange`), not a percentage of
+  last year's inflation. Both tables read `rowChange`; never `stepChange` direct.
 - `referenceChange: false` where the rule is a threshold (replacement, 2.1)
   and not a base: the readout then takes no percentage against it.
 - `series-chart` draws an indicator's chart unless `chart-source` carries

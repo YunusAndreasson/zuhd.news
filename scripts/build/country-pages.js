@@ -145,6 +145,7 @@ const trajectoriesHtml = (cards, TRAJECTORIES, CHART) => {
             }
           : {}),
         format: card.format,
+        change: card.change,
         step: 'years',
       }
       const model = seriesModel({

@@ -26,10 +26,9 @@ import {
   chartDescription,
   pointReadout,
   rangeOptions,
+  rowChange,
   rowMark,
   seriesModel,
-  signedPct,
-  stepChange,
   type SceneNode,
   type SeriesModel,
   type SeriesOptions,
@@ -342,11 +341,11 @@ export function createChart(opts: ChartOptions): Chart | null {
       const value = Number.isFinite(v) ? model.formatExact(v) : '—'
       tr.append(el('td', 'is-value', model.unit && Number.isFinite(v) ? `${value} ${model.unit}` : value))
 
-      const ch = stepChange(model.windowValues, i)
+      const ch = rowChange(model, i)
       const td = el(
         'td',
-        `is-change${ch == null ? '' : ch > 0 ? ' is-pos' : ch < 0 ? ' is-neg' : ''}`,
-        ch == null ? '' : signedPct(ch),
+        `is-change${ch == null ? '' : ch.value > 0 ? ' is-pos' : ch.value < 0 ? ' is-neg' : ''}`,
+        ch == null ? '' : ch.text,
       )
       tr.append(td)
       tbody.append(tr)
@@ -363,13 +362,13 @@ export function createChart(opts: ChartOptions): Chart | null {
     const copy = el('button', 'chart-copy', 'copy as TSV')
     copy.type = 'button'
     copy.addEventListener('click', async () => {
-      const head = ['when', 'value', 'change %'].join('\t')
+      const head = ['when', 'value', model.change === 'points' ? 'change' : 'change %'].join('\t')
       const rows = model.windowValues.map((v, i) => {
-        const ch = stepChange(model.windowValues, i)
+        const ch = rowChange(model, i)
         return [
           model.windowPeriods[i] ?? String(i + 1),
           Number.isFinite(v) ? String(v) : '',
-          ch == null ? '' : ch.toFixed(2),
+          ch == null ? '' : ch.value.toFixed(2),
         ].join('\t')
       })
       try {

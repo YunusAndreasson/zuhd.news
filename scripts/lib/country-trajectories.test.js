@@ -95,6 +95,9 @@ test('every bundled country yields cards the chart can draw, inside their scales
       assert.equal(c.world.length, c.values.length, `${iso2} ${c.key}: the world's line is parallel`)
       assert.ok(c.values.filter(Number.isFinite).length >= 2, `${iso2} ${c.key}: enough to be a line`)
       assert.ok(c.headline && c.subtitle && c.source, `${iso2} ${c.key}: a card says what it is`)
+      // A rate and an index either side of zero change in points: a percentage
+      // of last year's inflation was `+129080802.8%` on Finland's page.
+      assert.equal(c.change, c.key === 'prices' || c.key === 'complexity' ? 'points' : 'percent', `${iso2} ${c.key}`)
       // Never a year the series does not hold.
       for (const named of c.subtitle.match(/(?:since|in) (\d{4})/g) ?? []) {
         assert.ok(c.periods.includes(named.slice(-4)), `${iso2} ${c.key} names ${named}, outside ${c.periods[0]}–${c.periods.at(-1)}`)

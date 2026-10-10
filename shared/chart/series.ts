@@ -64,6 +64,9 @@ export interface SeriesMark {
   label: string
 }
 
+/** How a row's change from the one above is stated. See `SeriesOptions.change`. */
+export type ChangeKind = 'percent' | 'points'
+
 export interface SeriesOptions {
   values: number[]
   /** Labels parallel to `values`. Every one is used by the readout and the
@@ -121,6 +124,16 @@ export interface SeriesOptions {
    * being drawn. The rule, its label and the axis are unaffected.
    */
   referenceChange?: boolean | undefined
+  /**
+   * How the table states a row's change from the row above it.
+   *
+   * `'percent'` is right for a level: a price, an index of prices, a count.
+   * It is wrong for a series that is itself a rate or that crosses zero, and
+   * the table printed it anyway: Finland's inflation going 0.0001% to 1.2% was
+   * `+129080802.8%`, and Turkey's falling 72.3% to 53.9% was `−25.5%`. Those
+   * are differences, and `'points'` states them as one: `−18.4 pts`.
+   */
+  change?: ChangeKind | undefined
   /**
    * What the series *is*, and nothing about its size — "Brent crude", "TASI
    * daily closes", "Daily vessel transits at the Suez Canal".
@@ -354,6 +367,8 @@ export interface SeriesModel {
   referenceLabel: string | null
   /** Whether the readout states a point's change against the rule. */
   referenceChange: boolean
+  /** How the table states a row's change from the row above. */
+  change: ChangeKind
   /** Last against first, over what is drawn. What `direction: 'window'` uses,
    *  exposed so a caption can state it without recomputing it from a series
    *  the range control may have narrowed. */
@@ -433,6 +448,7 @@ export function seriesModel(opts: SeriesOptions): SeriesModel {
     referenceY: null,
     referenceLabel: null,
     referenceChange: true,
+    change: opts.change ?? 'percent',
     windowPct: 0,
     tone: '',
     label: label ?? null,
@@ -726,6 +742,7 @@ export function seriesModel(opts: SeriesOptions): SeriesModel {
     referenceY,
     referenceLabel: referenceLabel ?? null,
     referenceChange: opts.referenceChange !== false,
+    change: opts.change ?? 'percent',
     windowPct,
     tone,
     label: label ?? null,
@@ -789,6 +806,9 @@ export const chartDescription = (model: SeriesModel, interactive: boolean): stri
     `ranging ${model.formatExact(model.trough?.value ?? model.lo)} to ${model.formatExact(model.peak?.value ?? model.hi)}${unit}`,
   ]
   if (model.latest) parts.push(`latest ${pointReadout(model, model.latest)}`)
+  // The second line has no row in the table and no place in the readout, so
+  // this sentence is the only thing that names it to a reader who cannot see it.
+  if (model.comparisonLabel) parts.push(`a thinner line shows the ${model.comparisonLabel}`)
   parts.push(
     interactive
       ? 'use arrow keys to read individual values, or open the table below'
@@ -806,6 +826,32 @@ export const stepChange = (values: number[], i: number): number | null => {
   if (now === undefined || prev === undefined) return null
   if (!Number.isFinite(now) || !Number.isFinite(prev) || prev === 0) return null
   return ((now - prev) / Math.abs(prev)) * 100
+}
+
+/**
+ * A row's change from the row above, as the model's series states one: a
+ * percentage for a level, a difference in points for a rate. `value` is the
+ * signed number the tint and a spreadsheet read; `text` is what is printed.
+ * Null at the first row and across a gap.
+ *
+ * One function, so the static table and the browser's cannot state the same
+ * change two ways.
+ */
+export const rowChange = (model: SeriesModel, i: number): { value: number; text: string } | null => {
+  if (model.change === 'percent') {
+    const pct = stepChange(model.windowValues, i)
+    return pct == null ? null : { value: pct, text: signedPct(pct) }
+  }
+  const now = model.windowValues[i]
+  const prev = i > 0 ? model.windowValues[i - 1] : undefined
+  if (now === undefined || prev === undefined) return null
+  if (!Number.isFinite(now) || !Number.isFinite(prev)) return null
+  const diff = now - prev
+  const size = Math.abs(diff)
+  const shown = size >= 100 ? size.toFixed(0) : size >= 10 ? size.toFixed(1) : size.toFixed(2)
+  // The sign is the rounded figure's: a difference that prints as zero is zero.
+  const zero = Number(shown) === 0
+  return { value: zero ? 0 : diff, text: zero ? '0 pts' : `${diff > 0 ? '+' : '−'}${shown} pts` }
 }
 
 // --- The chart with no JavaScript ------------------------------------------
@@ -902,7 +948,7 @@ const tableRows = (model: SeriesModel): MarkupNode[] =>
     ]
       .filter(Boolean)
       .join(' ')
-    const change = stepChange(model.windowValues, i)
+    const change = rowChange(model, i)
     const shown = Number.isFinite(v) ? model.formatExact(v) : '—'
     const mark = rowMark(model, i)
     return {
@@ -925,9 +971,9 @@ const tableRows = (model: SeriesModel): MarkupNode[] =>
         {
           tag: 'td',
           attrs: {
-            class: `is-change${change == null ? '' : change > 0 ? ' is-pos' : change < 0 ? ' is-neg' : ''}`,
+            class: `is-change${change == null ? '' : change.value > 0 ? ' is-pos' : change.value < 0 ? ' is-neg' : ''}`,
           },
-          text: change == null ? '' : signedPct(change),
+          text: change == null ? '' : change.text,
         },
       ],
     }

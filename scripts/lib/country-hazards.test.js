@@ -10,7 +10,7 @@ import assert from 'node:assert/strict'
 import { existsSync, readFileSync, readdirSync } from 'node:fs'
 import { join } from 'node:path'
 import { bundleIsland, scratchDir } from './island-bundle.js'
-import { countryHazards } from './country-hazards.js'
+import { countryHazards, iso2OfCountryName } from './country-hazards.js'
 import { ROOT } from './paths.js'
 
 const dir = scratchDir('country-hazards')
@@ -48,6 +48,30 @@ test('an alert is found by its country code, and touches every country it names'
   assert.deepEqual(byCountry.get('ID').alerts, [{ level: 'Red', name: 'Flood in Indonesia' }])
   assert.equal(byCountry.get('ID').lowerAlerts, 1)
   assert.equal(byCountry.size, 3)
+})
+
+test('a country an alert reaches is found in whichever spelling the alert uses', () => {
+  // `affectedCountries` is names and nothing else, and the profiles' own table
+  // is Natural Earth's spellings. Off the snapshot of 2026-10-10 it resolved
+  // neither "United States" nor "Russian Federation", and two entries were two
+  // names in one string.
+  const profile = (name) => ({ 'United States of America': 'US', Russia: 'RU', Mongolia: 'MN', China: 'CN' })[name]
+  assert.deepEqual(iso2OfCountryName('United States', profile), ['US'], 'the standard name')
+  assert.deepEqual(iso2OfCountryName('Russian Federation', profile), ['RU'], 'the UN’s formal one')
+  assert.deepEqual(iso2OfCountryName('Mongolia, China', profile), ['MN', 'CN'], 'a border, written as one string')
+  assert.deepEqual(iso2OfCountryName('Northern Mariana Is.', profile), ['MP'])
+  assert.deepEqual(iso2OfCountryName('Tonga', profile), ['TO'])
+  // A stretch of sea is no country.
+  assert.deepEqual(iso2OfCountryName('Northern Molucca Sea', profile), [])
+  assert.deepEqual(iso2OfCountryName('South Of Fiji Islands', profile), [])
+
+  // And so a cyclone filed under Mexico that also reaches the United States is
+  // on both pages, which it was not when only the alert's own code was read.
+  const byCountry = countryHazards(
+    { alerts: [{ alertlevel: 'Red', name: 'Tropical Cyclone', iso3: 'MEX', affectedCountries: ['Mexico', 'United States'] }] },
+    { iso2At: () => null, iso2OfName: profile },
+  )
+  assert.deepEqual([...byCountry.keys()].sort(), ['MX', 'US'])
 })
 
 test('a conflict event counts where it happened, not where the source files it', () => {

@@ -51,6 +51,12 @@ export interface TrajectoryCard {
   reference?: { value: number; label: string }
   /** What the chart draws, for the table's caption and a screen reader. */
   label: string
+  /**
+   * How a year's change from the year before is stated in the table. A rate of
+   * inflation and an index either side of zero move in points; a percentage of
+   * either is a number about nothing.
+   */
+  change: 'percent' | 'points'
 }
 
 const latest = (series: YearValue[] | undefined): YearValue | null =>
@@ -143,6 +149,7 @@ function complexity(data: CountryCardData, world: GlobalBenchmarks): TrajectoryC
     // runs from Chad's -3.53 to Japan's 2.3.
     domain: [-4, 3],
     label: 'Economic complexity index',
+    change: 'points',
   }
 }
 
@@ -176,6 +183,7 @@ function momentum(data: CountryCardData, world: GlobalBenchmarks): TrajectoryCar
     ...line,
     format: 'usd',
     label: 'GDP per head, current US dollars',
+    change: 'percent',
   }
 }
 
@@ -199,6 +207,7 @@ function prices(data: CountryCardData, world: GlobalBenchmarks): TrajectoryCard 
     ...line,
     format: 'percent',
     label: 'Consumer price inflation, percent a year',
+    change: 'points',
   }
 }
 
@@ -229,6 +238,7 @@ function demography(data: CountryCardData, world: GlobalBenchmarks): TrajectoryC
     format: 'births',
     reference: { value: 2.1, label: 'replacement' },
     label: 'Children born per woman',
+    change: 'percent',
   }
 }
 

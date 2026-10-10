@@ -468,6 +468,46 @@ test('a comparison is a second line on the same scale, and nothing else', async 
   assert.match(readFileSync(join(ROOT, 'public/style.css'), 'utf8'), /^\.chart-compare \{/m)
 })
 
+test('a rate moves in points in the table, and a level in percent', async () => {
+  // The table's third column divided every series by its previous value. For a
+  // rate of inflation that is a percentage of a percentage: Finland's going
+  // 0.0001% to 1.2% printed `+129080802.8%`, and an index crossing zero printed
+  // five-figure swings. A series says which kind it is.
+  const rate = seriesModel({ values: [72.3, 53.9, 0.0001, 1.2, 1.2], periods: ['a', 'b', 'c', 'd', 'e'], change: 'points' })
+  assert.equal(series.rowChange(rate, 0), null, 'nothing to change from')
+  assert.deepEqual(series.rowChange(rate, 1), { value: 53.9 - 72.3, text: '−18.4 pts' })
+  assert.equal(series.rowChange(rate, 3).text, '+1.20 pts')
+  // A difference that prints as zero is zero: no `−0 pts`, and no tint.
+  assert.deepEqual(series.rowChange(rate, 4), { value: 0, text: '0 pts' })
+  assert.deepEqual(series.rowChange(seriesModel({ values: [1, 1.004], change: 'points' }), 1), { value: 0, text: '0 pts' })
+  // Across a gap there is no change to state.
+  assert.equal(series.rowChange(seriesModel({ values: [1, Number.NaN, 3], change: 'points' }), 2), null)
+
+  // A level is unchanged: every existing chart.
+  const level = seriesModel({ values: [100, 110], periods: ['a', 'b'] })
+  assert.equal(level.change, 'percent')
+  assert.equal(series.rowChange(level, 1).text, '+10.0%')
+
+  // Both tables, and the copied one's header.
+  const html = renderMarkup(staticFigure(rate, {}))
+  assert.match(html, /−18\.4 pts/)
+  assert.doesNotMatch(html, /129080802|−25\.5%/)
+  const { createChart } = await import(chartPath)
+  withDom(() => {
+    const chart = createChart({ values: [72.3, 53.9], periods: ['a', 'b'], change: 'points' })
+    const details = chart.element.querySelector('.chart-data')
+    details.open = true
+    details.dispatchEvent(new globalThis.window.Event('toggle'))
+    assert.equal(chart.element.querySelector('.chart-table td.is-change.is-neg').textContent, '−18.4 pts')
+  })
+})
+
+test('a second line is named to a reader who cannot see it', () => {
+  const model = seriesModel({ values: [1, 2, 3], comparison: { values: [2, 2, 2], label: 'world median' } })
+  assert.match(series.chartDescription(model, false), /a thinner line shows the world median/)
+  assert.doesNotMatch(series.chartDescription(seriesModel({ values: [1, 2, 3] }), false), /thinner line/)
+})
+
 test('the island redraws a figure from the options the figure was built with', async () => {
   // `/e/{id}` sends a series and gets the indicator's chart. A country page
   // sends what its static figure was drawn with, and must get that chart back

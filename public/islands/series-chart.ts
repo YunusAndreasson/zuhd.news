@@ -38,6 +38,7 @@ interface Source {
     referenceLabel?: string
     referenceChange?: boolean
     format?: TrajectoryFormat
+    change?: 'percent' | 'points'
     step?: string
   }
 }
@@ -68,6 +69,7 @@ export const mount = (container: HTMLElement) => {
         reference: drawn.reference,
         ...(drawn.referenceLabel ? { referenceLabel: drawn.referenceLabel } : {}),
         referenceChange: drawn.referenceChange,
+        change: drawn.change,
         ...(format ? { formatValue: (v: number) => formatTrajectory(format, v) } : {}),
         palette: 'neutral',
         step: drawn.step ?? 'points',
