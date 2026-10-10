@@ -70,6 +70,7 @@ function buildIndicatorEntry(ind, data) {
  * @param {Record<string, SourceDef>} o.sources
  * @param {RegistryRow[]} o.registry
  * @param {any} o.prior the snapshot being replaced, or none
+ * @param {Set<string>} [o.charted] the indicator ids published articles draw as their chart
  * @param {Record<string, string | undefined>} [o.env]
  * @param {string} [o.fxCache] where the batched currency source keeps its history
  * @param {number} [o.now]
@@ -77,7 +78,7 @@ function buildIndicatorEntry(ind, data) {
  * @returns {Promise<{ indicators: any[], carried: any[] }>} the rows in
  *   snapshot order, and those among them that were carried
  */
-export async function collectRows({ sources, registry, prior, env = process.env, fxCache, now = Date.now(), say = console }) {
+export async function collectRows({ sources, registry, prior, charted = new Set(), env = process.env, fxCache, now = Date.now(), say = console }) {
   const indicators = []
   const carried = []
 
@@ -112,7 +113,7 @@ export async function collectRows({ sources, registry, prior, env = process.env,
         // can recognise them. A fetcher that ignores the argument (Wikipedia)
         // is unaffected.
         const incumbents = (prior?.indicators ?? []).filter((i) => i?.source === name)
-        const results = await def.fetcher({ incumbents })
+        const results = await def.fetcher({ incumbents, charted })
         if (results) for (const r of results) indicators.push(r)
         continue
       }

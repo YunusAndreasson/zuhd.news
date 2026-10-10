@@ -49,6 +49,19 @@ test('within a tier, volume decides and ties keep input order', () => {
   assert.deepEqual(ids(rows), ['y', 'z', 'x'])
 })
 
+test('a contract drawn under a story comes first, and the cap never demotes it', () => {
+  const incumbents = ['i1', 'i2', 'i3', 'charted']
+  const rows = orderCandidates(
+    [m('i1', 40), m('i2', 30), m('i3', 20), m('charted', 1), m('fresh', 5)],
+    new Set(incumbents),
+    PIN_TITLE_RE,
+    3,
+    new Set(['charted']),
+  )
+  // It holds one of the three incumbent slots, so the smallest other incumbent is the one demoted.
+  assert.deepEqual(ids(rows), ['charted', 'i1', 'i2', 'fresh', 'i3'])
+})
+
 test('incumbents beyond the cap fall to the end, so a newcomer always has a slot', () => {
   const incumbents = ['i1', 'i2', 'i3', 'i4']
   const rows = orderCandidates(
