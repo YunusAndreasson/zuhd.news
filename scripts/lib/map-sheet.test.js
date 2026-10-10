@@ -242,10 +242,12 @@ test('an exchange card leads with the move the mark was drawn from', async () =>
     assert.equal(hero().querySelector('.map-sheet-hero-focal').textContent, '+0.15%')
     assert.doesNotMatch(hero().textContent, /days/)
 
-    // A close too old for the range has no reading: the day's move, as before.
+    // A series that has stopped has no reading: the last session's move, as
+    // before, and it is not captioned as the week's.
     Date.now = () => Date.parse('2026-10-10T12:00:00Z')
     sheet.showMarket({ ...EXCHANGE, changePct: -0.4 }, false, undefined, undefined, { heroDays: 7 })
     assert.equal(hero().querySelector('.map-sheet-hero-focal').textContent, '−0.40%')
+    assert.doesNotMatch(hero().textContent, /days/, 'a day’s move does not wear a week’s label')
 
     // Opened from the rail, the rail's range is the hero's range. (Last, because
     // a pinned card is not replaced by a peek.)
@@ -394,6 +396,8 @@ test('the stories an account was written from are numbered on the chart and in t
     const exchange = {
       ...EXCHANGE,
       recent: 'The index rose on Aramco’s results.',
+      // The build's word that this list is the account's own citations.
+      relatedCited: true,
       relatedArticles: [
         { slug: 'on-the-22nd', title: 'On the 22nd', date: '2026-07-22T09:00:00Z' },
         { slug: 'a-weekend', title: 'A Weekend Story', date: '2026-07-25T09:00:00Z' },
@@ -421,6 +425,44 @@ test('the stories an account was written from are numbered on the chart and in t
     sheet.showMarket({ ...exchange, recent: undefined }, true)
     assert.equal(sheet.element.querySelector('.chart-cite'), null)
     assert.equal(sheet.element.querySelector('.map-sheet-more-n'), null)
+    sheet.close()
+    // An account whose citations no longer resolve keeps its prose and gets tag
+    // matches for a list. Those are not its sources either.
+    sheet.showMarket({ ...exchange, relatedCited: undefined }, true)
+    assert.match(sheet.element.textContent, /Aramco’s results/)
+    assert.equal(sheet.element.querySelector('.chart-cite'), null)
+    assert.equal(sheet.element.querySelector('.map-sheet-more-n'), null)
+    sheet.close()
+
+    // Opened from the rail the chart is windowed, and a story before the window
+    // has no dot. It takes no number, and the rest count from one: the list
+    // read 1, 2, 3 under a chart showing 2 and 3.
+    const periods = Array.from({ length: 40 }, (_, i) => {
+      const d = new Date(Date.UTC(2026, 5, 15) + i * 86_400_000)
+      return `${d.toLocaleDateString('en-US', { month: 'short', timeZone: 'UTC' })} ${d.getUTCDate()}`
+    })
+    const long = {
+      ...exchange,
+      asOf: '2026-07-24',
+      series: { periods, values: periods.map((_, i) => 100 + i) },
+      relatedArticles: [
+        { slug: 'long-ago', title: 'Long Ago', date: '2026-06-20T09:00:00Z' },
+        { slug: 'this-week', title: 'This Week', date: '2026-07-22T09:00:00Z' },
+        { slug: 'yesterday', title: 'Yesterday', date: '2026-07-24T09:00:00Z' },
+      ],
+    }
+    const realNow = Date.now
+    Date.now = () => Date.parse('2026-07-25T12:00:00Z')
+    try {
+      sheet.showMarket(long, true, 3)
+    } finally {
+      Date.now = realNow
+    }
+    assert.deepEqual([...sheet.element.querySelectorAll('.chart-cite-label')].map((n) => n.textContent), ['1', '2'])
+    assert.deepEqual(
+      [...sheet.element.querySelectorAll('.map-sheet-more li')].map((li) => li.querySelector('.map-sheet-more-n')?.textContent ?? null),
+      [null, '1', '2'],
+    )
     sheet.destroy()
   } finally {
     env.restore()
@@ -514,6 +556,13 @@ test('a pinned strait charts the week’s mean and says what is moving, by class
     assert.deepEqual(rows[0], ['', 'this week', 'vs 90 days'])
     assert.deepEqual(rows.slice(1).map((r) => r[0]), ['tankers', 'container ships'])
     assert.deepEqual(rows[1], ['tankers', '4/day', '−71%'])
+    // A class a fraction of a percent off its normal is at its normal.
+    sheet.close()
+    sheet.showChokepoint({ ...strait, delta7vs90: { ...strait.delta7vs90, n_tanker: -0.004, n_container: 0.003 } }, true)
+    assert.deepEqual(
+      [...sheet.element.querySelectorAll('.map-sheet-class-delta')].slice(1).map((n) => n.textContent),
+      ['0%', '0%'],
+    )
 
     // One class is the total again, not a table.
     sheet.close()

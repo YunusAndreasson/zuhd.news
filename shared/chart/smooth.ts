@@ -18,6 +18,32 @@
  * where the first full span ends rather than on a mean of one day. A gap inside
  * the span is left out of that mean, not counted as zero.
  */
+/**
+ * A daily count as its trailing week's mean, ready to draw: from the first day
+ * with a whole week behind it, rounded to one decimal (a mean of seven counts
+ * has no more, and unrounded it reached a readout as `2.714286 vessels`), with
+ * `periods` cut to match so its last label is still the last day counted.
+ *
+ * Null where that leaves fewer than two points, which is no line.
+ *
+ * The build publishes this as a strait's indicator series and the map reads it
+ * for the strait's row, label and card. It was written out in both places, and
+ * a change to the rounding in one would have been two straits.
+ */
+export const weekMeanSeries = (
+  values: readonly number[] | undefined,
+  periods: readonly string[] | undefined,
+): { values: number[]; periods: string[] } | null => {
+  if (!Array.isArray(values)) return null
+  const week = trailingMean(values, 7)
+  const from = week.findIndex(Number.isFinite)
+  if (from < 0 || week.length - from < 2) return null
+  return {
+    values: week.slice(from).map((v) => Math.round(v * 10) / 10),
+    periods: (periods ?? []).slice(from),
+  }
+}
+
 export const trailingMean = (values: readonly number[], span: number): number[] =>
   values.map((_, i) => {
     if (i < span - 1) return Number.NaN

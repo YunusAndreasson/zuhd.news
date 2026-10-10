@@ -15,7 +15,7 @@
 // was only a matter of time.
 
 import { CHOKEPOINT_DISRUPTED } from '@shared/chokepoint-thresholds'
-import { trailingMean } from '@shared/chart/smooth'
+import { weekMeanSeries } from '@shared/chart/smooth'
 import { el } from '../_dom'
 import { sparkPct, sparkline } from '../_spark'
 import { FRESH_DAYS, isTrading, quoteLevel, shortDate, staleLabel } from './format'
@@ -204,10 +204,17 @@ export const marketLayout = (): NonNullable<SymbolLayerSpecification['layout']> 
   // which olive against terracotta, at 5px, does not.
   'icon-image': [
     'case',
+    ['==', ['get', 'flag'], 1],
+    [
+      'case',
+      ['==', ['get', 'dir'], 0],
+      'tick-flat-flag',
+      ['<', ['get', 'dir'], 0],
+      'tick-down-flag',
+      'tick-up-flag',
+    ],
     ['==', ['get', 'dir'], 0],
     'tick-flat',
-    ['==', ['get', 'flag'], 1],
-    ['case', ['<', ['get', 'dir'], 0], 'tick-down-flag', 'tick-up-flag'],
     ['<', ['get', 'dir'], 0],
     'tick-down',
     'tick-up',
@@ -315,6 +322,9 @@ export interface MarketTally {
   closed: number
   risers: MapExchange[]
   fallers: MapExchange[]
+  /** Each exchange's move over the range, 0 where it has no reading: what the
+   *  counts were made from, for a caller that would otherwise compute it again. */
+  moves: Map<MapExchange, number>
 }
 
 /**
@@ -358,7 +368,7 @@ export const marketTally = (
     .filter((m) => of(m) < 0)
     .sort((a, b) => of(a) - of(b))
     .slice(0, MOVERS_PER_SIDE)
-  return { up, down, flat, closed, risers, fallers }
+  return { up, down, flat, closed, risers, fallers, moves: move }
 }
 
 // --- The ribbon: currencies, metals, crypto --------------------------------
@@ -1861,6 +1871,7 @@ export const straitReading = (
   days: number,
   now = Date.now(),
 ): SparkReading | null => {
+  if (daysSince(c.asOf, now) > STRAIT_DEAD_DAYS) return null
   const member = straitMember(c)
   if (!member) return null
   const input = sparkInput([member], days, now, lastTradedDay([member]))
@@ -1908,7 +1919,8 @@ export const straitCollection = (points: MapChokepoint[], days: number, now = Da
     type: 'FeatureCollection' as const,
     features: points.map((c) => {
       const delta = c.delta7vs90?.[c.primaryField] ?? 0
-      const member = straitMember(c)
+      // A strait PortWatch has stopped counting is named and given no move.
+      const member = daysSince(c.asOf, now) > STRAIT_DEAD_DAYS ? null : straitMember(c)
       const input = member ? sparkInput([member], days, now, edge) : null
       const reading = input ? readingOf(input) : null
       return {
@@ -1977,6 +1989,38 @@ export const straitLabelPaint = (): NonNullable<SymbolLayerSpecification['paint'
   'text-halo-width': 1.3,
 })
 
+/** Whole days from an ISO date to `now`; infinite when there is no date to count from. */
+const daysSince = (iso: string | undefined, now: number): number => {
+  const t = iso ? Date.parse(`${iso}T00:00:00Z`) : Number.NaN
+  return Number.isFinite(t) ? Math.floor((now - t) / DAY_MS) : Number.POSITIVE_INFINITY
+}
+
+/**
+ * How old an exchange's last close may be and still be its reading.
+ *
+ * Not `staleLabel`, which is where this gate first went and is a different
+ * question: that threshold decides when a rail row prints an age beside its
+ * figure, and it is three days at every range up to a month. As a gate it
+ * blanked a market on the morning after any long weekend: Tokyo shut on a
+ * Monday reads four days old on Tuesday until Tuesday's close is published,
+ * and its mark, its row and its card's three moves all went to nothing, at 7d
+ * and 30d where the move to its last close is entirely valid.
+ *
+ * The longest regular closures are a week of public holiday (Golden Week, the
+ * Lunar New Year, the Eids), which with a weekend either side is nine days.
+ * Past ten, the series has stopped. A closed market is already drawn sitting
+ * back (`trading`), which is the mark for "this is not live".
+ */
+export const EXCHANGE_DEAD_DAYS = 10
+
+/**
+ * The same question for a strait. PortWatch publishes about six days behind as
+ * a matter of course, and a strait's card and label print its moves with no age
+ * beside them: three weeks without a count is a feed that has stopped, not a
+ * lag.
+ */
+export const STRAIT_DEAD_DAYS = 21
+
 /** One exchange as a row member, or `null` when it publishes no series. */
 export const exchangeMember = (m: MapExchange): SparkMember | null =>
   Array.isArray(m.series?.values)
@@ -1994,19 +2038,18 @@ export const exchangeMember = (m: MapExchange): SparkMember | null =>
  * market that closes for the week on Thursday (Tadawul, DFM) has no reading on
  * a Friday: four of thirty were blank at the 24h step on 2026-10-10.
  *
- * What stops a dead series reading as fresh is the gate the block edge was
- * for, stated directly: `staleLabel`, the rule that prints an age on a rail
- * row. A last close too old for the range is no reading at all.
+ * What stops a dead series reading as fresh is a gate of its own: a last close
+ * older than `EXCHANGE_DEAD_DAYS` is no reading at all, at any range.
  *
- * At the day step this is `changePct`, the day's move, as the mark always
- * drew.
+ * At the day step this is `changePct`, the last session's move, as the mark
+ * always drew.
  */
 export const exchangeReading = (
   m: MapExchange,
   days: number,
   now = Date.now(),
 ): SparkReading | null => {
-  if (staleLabel(m.asOf, days, now)) return null
+  if (daysSince(m.asOf, now) > EXCHANGE_DEAD_DAYS) return null
   const member = exchangeMember(m)
   if (!member) {
     // No series, so only the day's move, which rides the payload on its own.
@@ -2025,24 +2068,13 @@ export const exchangeReading = (
  * printed +100% at the 7d step and Bosporus +188%. The mean of the trailing
  * week is the quantity PortWatch reports (`last7Avg`), and it is the series
  * `build.js` publishes on `/api/entity/cp:*.json`, so a row, a label and the
- * indicator page read one line. From the first day with a whole week behind
- * it; `periods` is cut to match, which keeps its last label on `asOf`. To one
- * decimal, as the build publishes it: a mean of seven counts has no more, and
- * unrounded it reached a chart's readout as `2.714286 vessels`.
+ * indicator page read one line: `weekMeanSeries`, which the build calls too.
  */
 export const straitSeries = (
   c: Pick<MapChokepoint, 'series' | 'asOf'>,
 ): { values: number[]; periods: string[]; asOf: string | undefined } | null => {
-  const total = c.series?.total
-  if (!Array.isArray(total)) return null
-  const week = trailingMean(total, 7)
-  const from = week.findIndex(Number.isFinite)
-  if (from < 0 || week.length - from < 2) return null
-  return {
-    values: week.slice(from).map((v) => Math.round(v * 10) / 10),
-    periods: (c.series?.periods ?? []).slice(from),
-    asOf: c.asOf,
-  }
+  const week = weekMeanSeries(c.series?.total, c.series?.periods)
+  return week ? { ...week, asOf: c.asOf } : null
 }
 
 /**
@@ -2451,7 +2483,7 @@ export function createMarketStrip(opts: MarketStripOptions): MarketStrip {
         ? flagged ? 'tick-up-flag' : 'tick-up'
         : dir < 0
           ? flagged ? 'tick-down-flag' : 'tick-down'
-          : 'tick-flat'
+          : flagged ? 'tick-flat-flag' : 'tick-flat'
     const span = el('span', 'map-markets-tick')
     span.innerHTML = glyphSvg(id)
     return span
@@ -2842,7 +2874,9 @@ export function createMarketStrip(opts: MarketStripOptions): MarketStrip {
     btn.append(
       ...(reading
         ? [tick(marketDirection(reading.pct), !!signal)]
-        : [el('span', 'map-markets-nil')]),
+        : signal
+          ? [tick(0, true)]
+          : [el('span', 'map-markets-nil')]),
       el('span', 'map-markets-row-name', m.indexName),
       el('span', 'map-markets-row-pct', reading?.figure ?? ''),
     )
@@ -2915,7 +2949,9 @@ export function createMarketStrip(opts: MarketStripOptions): MarketStrip {
   const update = (markets: MapExchange[], now = Date.now()) => {
     lastMarkets = markets
     const t = marketTally(markets, rangeDays, now)
-    const move = (m: MapExchange) => exchangeReading(m, rangeDays, now)?.pct ?? 0
+    // The tally's own figures: asked for again inside the comparator, this was
+    // some two hundred readings a press to order thirty rows.
+    const move = (m: MapExchange) => t.moves.get(m) ?? 0
     allExchanges = [...markets].sort((a, b) => move(b) - move(a))
 
     const s = { up: t.up, down: t.down, flat: t.flat, net: 0 as const }

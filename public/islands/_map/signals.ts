@@ -74,9 +74,18 @@ export const patternLabel = (p: MarketSignal['pattern']): string => {
   }
 }
 
-/** `15.2% over 20 sessions`: the run's own size and length, unsigned. */
-export const patternFigure = (p: MarketSignal['pattern']): string =>
-  `${Math.abs(p.changePct).toFixed(1)}% over ${p.sessions} ${p.sessions === 1 ? 'session' : 'sessions'}`
+/**
+ * `15.2% over 20 sessions`: the run's own size and length.
+ *
+ * Unsigned where the words beside it say which way (`Month-long fall`), and
+ * signed where they do not: `Reversal` and `Apart from its peers` name a shape
+ * and not a direction, and an unsigned figure after them said neither.
+ */
+export const patternFigure = (p: MarketSignal['pattern']): string => {
+  const worded = p.kind !== 'reversal' && p.kind !== 'divergence'
+  const sign = worded ? '' : p.changePct > 0 ? '+' : p.changePct < 0 ? '−' : ''
+  return `${sign}${Math.abs(p.changePct).toFixed(1)}% over ${p.sessions} ${p.sessions === 1 ? 'session' : 'sessions'}`
+}
 
 /** `Month-long fall, 15.2% over 20 sessions`. */
 export const patternLine = (p: MarketSignal['pattern']): string =>

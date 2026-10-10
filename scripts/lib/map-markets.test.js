@@ -26,7 +26,7 @@ const spark = await import(await bundleIsland(dir, 'public/islands/_spark.ts', '
 const markets = await import(await bundleIsland(dir, 'public/islands/_map/markets.ts', 'mk.mjs'))
 
 const { seriesDates, windowByDate, windowPoints, coverage, bucketCounts, halfOverHalf, citedMarks, DAY_MS } = win
-const { trailingMean } = await import(await bundleIsland(dir, 'shared/chart/smooth.ts', 'smooth.mjs'))
+const { trailingMean, weekMeanSeries } = await import(await bundleIsland(dir, 'shared/chart/smooth.ts', 'smooth.mjs'))
 const { seriesRecord, recordLine, TRAFFIC_RECORD } = await import(
   await bundleIsland(dir, 'shared/chart/record.ts', 'record.mjs')
 )
@@ -38,7 +38,7 @@ const {
   sparkInput, oddsEntries, attentionEntries, eventEntries, eventCountdown, ribbonPoints,
   createMarketStrip, BLOCK_ROWS, dockedPanelTop, lastTradedDay, straitSeries, readingOf,
   exchangeReading, marketCollection, marketTally, marketDirection, moveCap, straitCollection,
-  marketLayout, marketLabelLayout,
+  marketLayout, marketLabelLayout, straitReading, EXCHANGE_DEAD_DAYS, STRAIT_DEAD_DAYS,
 } = markets
 
 /** `["Jul 1", "Jul 2", …]` for `n` consecutive days ending on `asOf`. */
@@ -919,12 +919,25 @@ test('one exchange reads the range on its own last session', () => {
   assert.ok(Math.abs(three.pct - ((104.94 - 104) / 104) * 100) < 1e-9, `three days read ${three.figure}`)
   assert.equal(three.figure, '+0.9%')
 
-  // A close too old to be this range's move is no reading, not an old one.
+  // A series that has stopped is no reading, at any range.
   const dead = exchangeOf('gone', [50, 60], '2026-09-20')
-  assert.equal(exchangeReading(dead, 1, now), null)
-  assert.equal(exchangeReading(dead, 7, now), null)
-  // At ninety days a three-week-old close is... still too old: the limit is a tenth of the range.
-  assert.equal(exchangeReading(dead, 90, now), null)
+  for (const days of [1, 7, 30, 90]) assert.equal(exchangeReading(dead, days, now), null)
+
+  // A long weekend is not a stopped series. Tokyo closes on Friday the 9th, is
+  // shut on Monday the 12th, and on Tuesday morning its last close is four
+  // days old: under the rail's three-day age rule its mark, its row and its
+  // card all went blank until Tuesday's close was published.
+  const tuesday = Date.parse('2026-10-13T02:00:00Z')
+  const tokyo = exchangeOf('tse', Array.from({ length: 40 }, (_, i) => 100 + i), '2026-10-09')
+  for (const days of [1, 7, 30]) {
+    assert.ok(exchangeReading(tokyo, days, tuesday), `a reading at ${days}d, four days after the last close`)
+  }
+  assert.equal(exchangeReading(tokyo, 1, tuesday).pct, tokyo.changePct, 'the last session’s move')
+  // Through a week's public holiday too, and not much past it.
+  const day = 86_400_000
+  const close = Date.parse('2026-10-09T00:00:00Z')
+  assert.ok(exchangeReading(tokyo, 7, close + EXCHANGE_DEAD_DAYS * day))
+  assert.equal(exchangeReading(tokyo, 7, close + (EXCHANGE_DEAD_DAYS + 1) * day), null)
 
   // No series at all: the day's move rides the payload, and nothing longer does.
   const bare = { ...exchangeOf('bare', [10, 11], '2026-10-09'), series: undefined }
@@ -961,6 +974,9 @@ test('the marks, the counts and the reading agree at every range', () => {
       assert.equal(p.label, reading ? reading.figure.replace(/^[+−]/, '') : '', `${days}d ${p.id}: the numeral is the reading`)
       assert.ok(p.mag >= 0 && p.mag <= 1)
       assert.ok(Math.abs(p.mag - Math.min(1, p.abs / moveCap(days))) < 1e-12)
+      // The counts were made from these, and hand them back: a caller that
+      // orders the rows does not compute thirty readings again per comparison.
+      assert.equal(tally.moves.get(markets.find((m) => m.id === p.id)), p.change)
     }
     // No reading is a flat tick with no numeral, and is counted flat.
     const gone = features.find((f) => f.properties.id === 'gone').properties
@@ -1078,6 +1094,9 @@ test('a flag is live for a week, belongs to one exchange, and says what it is in
   assert.equal(patternLabel({ ...bist.pattern, kind: 'weekly' }), 'Week-long fall')
   assert.equal(patternLabel({ ...bist.pattern, kind: 'reversal' }), 'Reversal')
   assert.equal(patternLabel({ ...bist.pattern, kind: 'divergence' }), 'Apart from its peers')
+  // Those two name a shape and not a direction, so their figure carries the sign.
+  assert.equal(patternLine({ ...bist.pattern, kind: 'reversal' }), 'Reversal, −15.2% over 20 sessions')
+  assert.equal(patternLine({ ...sp.pattern, kind: 'divergence' }), 'Apart from its peers, +2.4% over 1 session')
 })
 
 test('a flagged market is a doubled tick with its name first, on the map and in the panel', () => {
@@ -1094,10 +1113,15 @@ test('a flagged market is a doubled tick with its name first, on the map and in 
   assert.equal(props.nyse.flag, 0)
   assert.equal(marketCollection(markets, 7, now).features[0].properties.flag, 0, 'no signals, no flags')
 
-  // Both doubled glyphs are reachable from the mark's `icon-image`, or the
-  // image is registered and never drawn.
-  const icon = JSON.stringify(marketLayout()['icon-image'])
-  assert.ok(icon.includes('tick-up-flag') && icon.includes('tick-down-flag'))
+  // Every doubled glyph is reachable from the mark's `icon-image`, or the image
+  // is registered and never drawn. The level one too: a run flagged over a
+  // month is often flat on the day, and it fell back to the plain bar and
+  // stopped being marked at all.
+  const icon = marketLayout()['icon-image']
+  const text = JSON.stringify(icon)
+  assert.ok(['tick-up-flag', 'tick-down-flag', 'tick-flat-flag'].every((id) => text.includes(id)))
+  // The flag is asked before the flat band, or a level flagged market is `tick-flat`.
+  assert.ok(text.indexOf('"flag"') < text.indexOf('tick-flat"'))
   // And the name asks before a larger, unflagged move does: lower sorts first.
   const key = JSON.stringify(marketLabelLayout()['symbol-sort-key'])
   assert.ok(key.includes('"flag"') && key.includes('"abs"'))
@@ -1219,6 +1243,23 @@ test('a strait row reads the week’s mean, and has a reading at the default ran
   // To one decimal, as the build publishes the same series.
   assert.equal(week.values.at(-1), Math.round(((8 + 5 + 4 + 0 + 4 + 2 + 4) / 7) * 10) / 10)
   assert.equal(straitSeries({ series: { periods: [], total: [1, 2, 3] }, asOf }), null, 'under a week and a day is no line')
+  // The cut is the shared one the build publishes the strait's indicator series
+  // with: the row, the label, the card and `/e/cp:hormuz` read one series.
+  assert.deepEqual(
+    { values: week.values, periods: week.periods },
+    weekMeanSeries(hormuz.series.total, hormuz.series.periods),
+  )
+
+  // A lag is not a stop. Six days behind, the card states its moves; three
+  // weeks without a count, PortWatch has stopped and there is no move to state.
+  const day = 86_400_000
+  const last = Date.parse(`${asOf}T00:00:00Z`)
+  assert.ok(straitReading(hormuz, 7, last + 6 * day))
+  assert.ok(straitReading(hormuz, 7, last + STRAIT_DEAD_DAYS * day))
+  assert.equal(straitReading(hormuz, 7, last + (STRAIT_DEAD_DAYS + 1) * day), null)
+  const stopped = straitCollection([hormuz], 7, last + (STRAIT_DEAD_DAYS + 1) * day).features[0].properties
+  assert.equal(stopped.move, '', 'the label names a stopped strait and gives it no move')
+  assert.equal(stopped.short, 'Hormuz')
 
   // Six days after the last count, which is where PortWatch usually is.
   const now = Date.parse('2026-10-10T12:00:00Z')

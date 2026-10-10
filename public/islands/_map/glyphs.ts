@@ -271,6 +271,17 @@ const TICK_DOWN_FLAG: Glyph = {
     { kind: 'stroke', path: [[1, 7.8], [8, 12.6], [15, 7.8]], width: 1.9 },
   ],
 }
+/**
+ * And the bar, twice: a flagged market that is level over the range, or has no
+ * reading for it. A run flagged over a month is often flat on the day, and
+ * without this it fell back to the plain bar and stopped being marked at all.
+ */
+const TICK_FLAT_FLAG: Glyph = {
+  parts: [
+    { kind: 'stroke', path: [[1, 5.6], [15, 5.6]], width: 1.9 },
+    { kind: 'stroke', path: [[1, 10.4], [15, 10.4]], width: 1.9 },
+  ],
+}
 
 /**
  * A thermal anomaly: a core with heat coming off it.
@@ -395,6 +406,7 @@ export const GLYPHS = {
   'tick-flat': TICK_FLAT,
   'tick-up-flag': TICK_UP_FLAG,
   'tick-down-flag': TICK_DOWN_FLAG,
+  'tick-flat-flag': TICK_FLAT_FLAG,
 } as const satisfies Record<string, Glyph>
 
 export type GlyphId = keyof typeof GLYPHS

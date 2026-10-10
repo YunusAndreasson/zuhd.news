@@ -491,6 +491,15 @@ export function createSheet(): Sheet {
    */
   let indicatorSeq = 0
 
+  /**
+   * A class's week against its ninety days, to the percent. The sign is the
+   * printed figure's: a class 0.4% under its normal is `0%`, not `−0%`.
+   */
+  const classDelta = (d: number): string => {
+    const pct = Math.round(Math.abs(d) * 100)
+    return `${pct === 0 ? '' : d > 0 ? '+' : '−'}${pct}%`
+  }
+
   /** How many of a card's stories its list shows. */
   const RELATED_ROWS = 5
 
@@ -527,13 +536,22 @@ export function createSheet(): Sheet {
     periods: string[] | undefined,
     asOf: string | undefined,
     cited: Array<{ slug: string; date?: string | undefined }>,
+    /**
+     * How many trailing observations the chart opens on, 0 for all of them:
+     * what the card hands the chart as `window`. A story before it has no dot
+     * when the card opens, so it takes no number either. Numbered from the
+     * whole series, a card opened at three days listed 1, 2, 3 under a chart
+     * showing 2 and 3.
+     */
+    window = 0,
   ): { marks: SeriesMark[]; numbers: Map<string, string> } => {
     const shown = cited.slice(0, RELATED_ROWS)
     const marks: SeriesMark[] = []
     const numbers = new Map<string, string>()
+    const first = window > 0 ? (periods?.length ?? 0) - window : 0
     citedMarks(seriesDates(periods, asOf), shown).forEach((index, i) => {
       const story = shown[i]
-      if (index == null || !story) return
+      if (index == null || index < first || !story) return
       const label = String(marks.length + 1)
       marks.push({ index, label })
       numbers.set(story.slug, label)
@@ -639,12 +657,15 @@ export function createSheet(): Sheet {
         // The week's mean, which is the series the label on the map, the rail's
         // row and the indicator page all read: a day's count is noise.
         const week = straitSeries(cp)
-        // Only where there is an account for the stories to be the sources of.
-        // Without one the list is tag matches, and a dot for a story that
-        // merely mentions the strait would claim a cause nobody wrote.
-        const cited = cp.recent
-          ? citedOn(week?.periods, cp.asOf, cp.relatedArticles ?? [])
-          : undefined
+        // Only where there is an account and the list is the stories it was
+        // written from (`relatedCited`). Without an account the list is tag
+        // matches, and it is tag matches again where an account's citations no
+        // longer resolve: a dot for a story that merely mentions the strait
+        // would claim a cause nobody wrote.
+        const cited =
+          cp.recent && cp.relatedCited
+            ? citedOn(week?.periods, cp.asOf, cp.relatedArticles ?? [])
+            : undefined
         nodes.push(movesRow((days) => straitReading(cp, days)))
         if (week) nodes.push(...recordNote(week.values, week.periods, cp.asOf, TRAFFIC_RECORD))
 
@@ -702,9 +723,7 @@ export function createSheet(): Sheet {
               el(
                 'dd',
                 'map-sheet-class-delta',
-                typeof d === 'number'
-                  ? `${d > 0 ? '+' : d < 0 ? '−' : ''}${Math.round(Math.abs(d) * 100)}%`
-                  : '',
+                typeof d === 'number' ? classDelta(d) : '',
               ),
             )
             table.append(row)
@@ -777,8 +796,8 @@ export function createSheet(): Sheet {
       // reading for it, it is the day's move off the payload. Tinted as the
       // tick is, flat included: a level day used to tint green.
       const heroDays = opts?.heroDays ?? rangeDays
-      const move =
-        (heroDays == null ? null : exchangeReading(ex, heroDays)?.pct) ?? ex.changePct
+      const reading = heroDays == null ? null : exchangeReading(ex, heroDays)
+      const move = reading?.pct ?? ex.changePct
       const dir = marketDirection(move)
       nodes.push(
         hero(
@@ -787,8 +806,11 @@ export function createSheet(): Sheet {
             ex.indexName,
             fmt.indexLevel(ex.level, ex.currency),
             // The period, where it is not the day: nothing else on a card
-            // opened from a mark says which one the figure is over.
-            heroDays != null && heroDays > 1 ? `${heroDays} days` : null,
+            // opened from a mark says which one the figure is over. Only of a
+            // reading over that period. With none the figure above is the last
+            // session's move, and captioned `7 days` it was a day's fall
+            // wearing a week's label over a row of dashes.
+            reading && heroDays != null && heroDays > 1 ? `${heroDays} days` : null,
           ]
             .filter(Boolean)
             .join(' · '),
@@ -848,17 +870,18 @@ export function createSheet(): Sheet {
         // The run's citations where the run's commentary is the account, the
         // exchange's own where its `recent` is, and none where there is no
         // account: see the strait card.
+        const window = cardWindow(ex.series?.periods, ex.asOf, rangeDays)
         const cited = signal?.commentary
-          ? citedOn(ex.series?.periods, ex.asOf, signal.citations)
-          : ex.recent
-            ? citedOn(ex.series?.periods, ex.asOf, ex.relatedArticles ?? [])
+          ? citedOn(ex.series?.periods, ex.asOf, signal.citations, window)
+          : ex.recent && ex.relatedCited
+            ? citedOn(ex.series?.periods, ex.asOf, ex.relatedArticles ?? [], window)
             : undefined
         nodes.push(
           ...chartFigure({
             values,
             periods: ex.series?.periods ?? [],
             marks: cited?.marks,
-            window: cardWindow(ex.series?.periods, ex.asOf, rangeDays),
+            window,
             reference: 'open',
             referenceLabel: 'the window’s open',
             direction: 'window',

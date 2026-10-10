@@ -36,7 +36,10 @@ Camera, MapLibre and cards are `map.md`; layers and marks are `map-layers.md`.
   one; an indicator card windows on its row's `entry.edge`.
 - The exception is one exchange read alone (`exchangeReading`): it windows on
   its own last session, or a market shut since Thursday is blank on Friday.
-  `staleLabel` is what keeps a dead series from reading as fresh there.
+  What keeps a dead series from reading as fresh there is
+  `EXCHANGE_DEAD_DAYS` (`STRAIT_DEAD_DAYS` for a strait). **Never gate a
+  reading on `staleLabel`**: that is when to print an age, three days at every
+  range up to a month, and it blanks a market after any long weekend.
 - A stale row prints its age (`staleLabel`). Do not add a carry-in on the
   `covered` gate: it draws a stub.
 - A row with nothing in the window prints `.map-markets-nil` and its age, no
@@ -79,8 +82,8 @@ Camera, MapLibre and cards are `map.md`; layers and marks are `map-layers.md`.
   is noise. Never print `delta7vs90` on a row.
 - The indicator card's hero uses the rail's window, and so does the exchange
   card's (`heroDays` when it was opened from a mark, whose chart keeps the
-  whole quarter). The strait card's does not. `CARD_MIN_DAYS` floors the
-  chart only.
+  whole quarter). With no reading it is the last session's move and names no
+  period. The strait card's does not. `CARD_MIN_DAYS` floors the chart only.
 - The exchange card leads with the index's definition (`ex.standing`),
   falling back to the exchange's `blurb`.
 - A pinned exchange or strait card sets its move against 1, 7 and 30 days
@@ -89,9 +92,10 @@ Camera, MapLibre and cards are `map.md`; layers and marks are `map-layers.md`.
   month (`recordLine`, `shared/chart/record.ts`). A range with no reading
   keeps its column, with a dash.
 - A card numbers the stories its account was written from, on its chart and
-  in its list (`citedOn`), and only where there is an account: a dot for a
-  tag match claims a cause nobody wrote. A story sits on the observation of
-  its own UTC day (`citedMarks`) or takes no number.
+  in its list (`citedOn`), and only where the build says the list is that
+  account's citations (`relatedCited`): a dot for a tag match claims a cause
+  nobody wrote. A story sits on the observation of its own UTC day
+  (`citedMarks`), inside the window the chart opens on, or takes no number.
 - The strait card charts `straitSeries`, the series its row and label read,
   and lists the vessel classes that sail there from PortWatch's averages.
 - A flagged exchange states its run in the run's own figures (`patternLine`):

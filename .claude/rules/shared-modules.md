@@ -51,7 +51,7 @@ prefer a parameter (class names, a link renderer) over a copy, as
 | `scripts/lib/country-hazards.js` | `countryHazards`: the IPC totals, UCDP's week and the GDACS alerts, per ISO2 |
 | `scripts/lib/country-codes.js` | ISO alpha-3 to the name a country profile is keyed on |
 | `shared/chart/record.ts` | `seriesRecord`, `recordLine`: whether a series' newest reading is a record, and the sentence for it |
-| `shared/chart/smooth.ts` | `trailingMean`, for a count that is noise a day at a time (a strait's ships) |
+| `shared/chart/smooth.ts` | `weekMeanSeries` and `trailingMean`: a daily count that is noise a day at a time (a strait's ships), as the series the build publishes and the map reads |
 | `shared/countries/country-trajectories.ts` | `trajectoryCards`: a country's four trajectories as a headline, a sentence and a series against the world's median |
 | `shared/countries/country-facts.ts` | the sentences for a country's hunger and conflict counts (`hungerLine`, `conflictLine`, `weekWindow`, `formatPeople`) |
 | `shared/source-framing.ts` | a source's lean and a story's divergence: the thresholds and their words, for the app, the article page and the map's card |

@@ -76,6 +76,8 @@ export interface MapChokepoint extends Chokepoint {
     date?: string
     dateFormatted?: string
   }>
+  /** The list is the stories `recent` was written from, not tag matches. */
+  relatedCited?: boolean
 }
 
 /**
@@ -149,6 +151,8 @@ export interface MapExchange {
     date?: string
     dateFormatted?: string
   }>
+  /** The list is the stories `recent` was written from, not tag matches. */
+  relatedCited?: boolean
 }
 
 /**

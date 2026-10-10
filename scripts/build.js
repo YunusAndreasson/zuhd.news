@@ -439,7 +439,7 @@ if (existsSync(audioSrc)) {
 // `_share.ts` renders on top of it cannot become two different shares of the
 // same story.
 const SHARE = await loadShared('share.ts')
-const { trailingMean } = await loadShared('chart/smooth.ts')
+const { weekMeanSeries } = await loadShared('chart/smooth.ts')
 
 // Sentiment thresholds and the words for them, shared with the app so a source
 // described as "leans critical" in one place is not "neutral" in the other.
@@ -1116,6 +1116,20 @@ const citedOr = (d, fallback) => {
   return cited.length ? cited.map(relatedRow) : fallback
 }
 
+/**
+ * The same list as `{ relatedArticles }`, with `relatedCited: true` when it is
+ * the stories the account was written from and not the fallback.
+ *
+ * The map numbers a card's stories on its chart as the sources of its account,
+ * which is a claim only citations support: where a dispatch's citations no
+ * longer resolve, `recent` is kept and the list quietly becomes tag matches.
+ * An optional key beside the list, absent on every older payload.
+ */
+const relatedOf = (d, fallback) => {
+  const cited = (d?.citations || []).some((s) => articleBySlug.has(s))
+  return { relatedArticles: citedOr(d, fallback), ...(cited ? { relatedCited: true } : {}) }
+}
+
 // Chokepoints snapshot — ambient globe layer on mobile, and the data
 // source the web chokepoint-sheet island reads when a reader taps a
 // chokepoint marker. Web enriches the blob with `relatedArticles[]` so
@@ -1156,7 +1170,7 @@ if (existsSync(chokepointsSrc)) {
         // articles containing one of eleven words. Where we have the first, the
         // second is strictly worse and showing both would be the same shelf
         // twice.
-        relatedArticles: citedOr(d, hits),
+        ...relatedOf(d, hits),
         ...(d?.standing ? { standing: d.standing } : {}),
         ...(d?.recent ? { recent: d.recent } : {}),
       }
@@ -1177,9 +1191,8 @@ if (existsSync(chokepointsSrc)) {
     // day` in green over a strait a story beside it called emptied. The mean is
     // the quantity PortWatch reports (`last7Avg`); `/api/chokepoints.json`
     // keeps the daily counts.
-    const week = trailingMean(c.series.total, 7)
-    const from = week.findIndex(Number.isFinite)
-    if (from < 0 || week.length - from < 2) continue
+    const week = weekMeanSeries(c.series.total, c.series.periods)
+    if (!week) continue
     extraIndicators.push({
       id: `cp:${c.id}`,
       label: c.name,
@@ -1187,8 +1200,8 @@ if (existsSync(chokepointsSrc)) {
       source: 'portwatch',
       sourceLabel: 'IMF PortWatch, 7-day mean',
       cadence: 'daily',
-      values: week.slice(from).map((v) => Math.round(v * 10) / 10),
-      periods: (c.series.periods || []).slice(from),
+      values: week.values,
+      periods: week.periods,
       asOf: c.asOf || '',
     })
   }
@@ -1225,7 +1238,7 @@ if (existsSync(marketsSrc)) {
       return {
         ...e,
         city: displayLocation(e.city) || e.city,
-        relatedArticles: citedOr(d, hits),
+        ...relatedOf(d, hits),
         ...(d?.standing ? { standing: d.standing } : {}),
         ...(d?.recent ? { recent: d.recent } : {}),
       }

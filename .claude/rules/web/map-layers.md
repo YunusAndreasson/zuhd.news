@@ -137,8 +137,10 @@ Camera, MapLibre and cards are `map.md`; the rails are `map-rail.md`.
   A name may lose a collision; its mark never does. The names draw under the
   stories and rank last in `HIT_ORDER`, or one takes a dozen stories' hover.
 - A flagged market (`_map/signals.ts`, from `/api/market-signals.json`) is the
-  doubled tick (`tick-up-flag`, `tick-down-flag`), never under 11px, with its
-  city in bold and first in line for label space. The signals load with the
+  doubled tick (`tick-up-flag`, `tick-down-flag`, `tick-flat-flag` when it is
+  level or has no reading), never under 11px, with its city in bold and first
+  in line for label space. The tick's direction is the range's, not the
+  run's. The signals load with the
   marks, not at idle: a late flag re-sorts the names in front of the reader.
 - A label's characters stay inside the shipped font ranges (0–767 and
   8192–8447): no U+2212, no arrows. A market's figure is unsigned (the tick
