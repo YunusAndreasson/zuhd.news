@@ -7730,6 +7730,16 @@ body.doc-page .chart {
   vector-effect: non-scaling-stroke;
 }
 
+/* A second line for context: the world's median beside a country's own.
+   Thin, solid and in the chart's muted ink, with no fill under it. It is there
+   to be read against, so it must never be the line the eye lands on first. */
+.chart-compare {
+  fill: none;
+  stroke: var(--chart-ink-muted);
+  stroke-width: 1;
+  vector-effect: non-scaling-stroke;
+}
+
 /* A story the card cites, where it fell on the line. Filled in the ink of the
    chart's type rather than the line's tone: it is an event, not a move, and a
    red dot on a falling line would be read as part of the fall. The number is

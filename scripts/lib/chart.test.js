@@ -410,6 +410,56 @@ test('a cited story is a mark on the model’s own scale, in both figures and in
   assert.match(css, /^\.chart-cite-label \{/m)
 })
 
+test('a comparison is a second line on the same scale, and nothing else', async () => {
+  // The world's median beside a country's own series. It must share the model's
+  // scale (two models laid over each other disagree about where a year falls),
+  // follow the window, and add nothing to what describes the country: the end
+  // dot, the rings, the axis and the table.
+  const values = [10, 11, 12, 13, 14, 15]
+  const world = [40, 41, null, 43, 44, 45]
+  const plain = seriesModel({ values })
+  const model = seriesModel({ values, comparison: { values: world, label: 'world median' } })
+  const lines = (m) => m.scene().filter((n) => n.attrs?.class === 'chart-compare')
+
+  assert.equal(lines(plain).length, 0, 'no comparison, no line: every existing chart is unchanged')
+  assert.equal(lines(model).length, 1)
+  assert.equal(model.comparisonLabel, 'world median')
+  // Five points: the year the world has no figure for is skipped, not zero.
+  assert.equal(lines(model)[0].attrs.points.split(' ').length, 5)
+  // The domain holds both lines, and the country's own extremes are still its own.
+  assert.equal(model.hi, 45)
+  assert.equal(model.lo, 10)
+  assert.equal(model.peak.value, 15)
+  // Same x for the same year on both lines.
+  const xOfYear4 = lines(model)[0].attrs.points.split(' ')[3].split(',')[0]
+  assert.equal(Number(xOfYear4), Number(model.points[4].x.toFixed(1)))
+
+  // It follows the window.
+  const recent = seriesModel({ values, comparison: { values: world, label: 'world median' }, window: 3 })
+  assert.equal(lines(recent)[0].attrs.points.split(' ').length, 3)
+
+  // A fixed domain is the caller's, and the comparison does not move it.
+  const fixed = seriesModel({ values, comparison: { values: world, label: 'w' }, domain: [0, 20] })
+  assert.deepEqual([fixed.lo, fixed.hi], [0, 20])
+
+  // The widening happens before the rule is considered: 2.1 sits under every
+  // value of a high-fertility country, and the world's line brings it in range.
+  const fertility = seriesModel({ values: [6.8, 6.5, 6.1], comparison: { values: [2.4, 2.3, 2.106], label: 'w' }, reference: 2.2 })
+  assert.ok(fertility.referenceY != null, 'the rule is inside the domain the comparison opened')
+  assert.equal(seriesModel({ values: [6.8, 6.5, 6.1], reference: 2.2 }).referenceY, null, 'and outside it without one')
+
+  // One line in each figure, and styled.
+  const html = renderMarkup(staticFigure(model, {}))
+  assert.equal((html.match(/class="chart-compare"/g) ?? []).length, 1)
+  assert.doesNotMatch(html, />4[0-5]</, 'the world’s figures are in neither the axis nor the table')
+  const { createChart } = await import(chartPath)
+  withDom(() => {
+    const chart = createChart({ values, comparison: { values: world, label: 'world median' } })
+    assert.equal(chart.element.querySelectorAll('.chart-compare').length, 1)
+  })
+  assert.match(readFileSync(join(ROOT, 'public/style.css'), 'utf8'), /^\.chart-compare \{/m)
+})
+
 test('the two figures share one class vocabulary', async () => {
   // The island replaces the static figure wholesale, so nothing forces the two
   // to agree — except that both are styled by one block in style.css. A class

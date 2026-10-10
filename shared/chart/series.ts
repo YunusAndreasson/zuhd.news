@@ -77,6 +77,22 @@ export interface SeriesOptions {
    */
   marks?: readonly SeriesMark[] | undefined
   /**
+   * A second series for context, on the first one's scale: the world's median
+   * beside a country's own line.
+   *
+   * Parallel to `values`, index for index, and cut by the same window. It is a
+   * line and nothing else: no end dot, no rings, no place in the readout, the
+   * axis or the table, all of which describe the series the chart is about.
+   * Like `marks` it is an annotation on this model's scale, never a second
+   * model laid over it, which is how two lines come to disagree about where a
+   * year falls.
+   *
+   * It widens the vertical domain so both lines fit, unless the caller fixed
+   * one (`domain`), and it does so before `reference` is considered: a rule
+   * the comparison brings into range is then drawn.
+   */
+  comparison?: { values: ReadonlyArray<number | null>; label: string } | undefined
+  /**
    * An optional horizontal rule, in the same units as `values`.
    *
    * A number is an *external* quantity that does not move when the reader
@@ -324,6 +340,8 @@ export interface SeriesModel {
   latest: SeriesPoint | null
   /** The marks that landed on a drawn point, merged where two share one. */
   cites: Array<{ point: SeriesPoint; label: string }>
+  /** What the second line is, when there is one: `world median`. */
+  comparisonLabel: string | null
   reference: number | null
   referenceY: number | null
   referenceLabel: string | null
@@ -384,6 +402,9 @@ export function seriesModel(opts: SeriesOptions): SeriesModel {
   const values = take >= total ? allValues : allValues.slice(total - take)
   const periods = take >= total ? allPeriods : allPeriods.slice(Math.max(0, allPeriods.length - take))
 
+  const allComparison = opts.comparison?.values ?? []
+  const comparison = take >= total ? allComparison : allComparison.slice(total - take)
+
   const finite = values.filter((v) => Number.isFinite(v))
 
   const empty: SeriesModel = {
@@ -398,6 +419,7 @@ export function seriesModel(opts: SeriesOptions): SeriesModel {
     trough: null,
     latest: null,
     cites: [],
+    comparisonLabel: null,
     reference: null,
     referenceY: null,
     referenceLabel: null,
@@ -439,6 +461,15 @@ export function seriesModel(opts: SeriesOptions): SeriesModel {
   if (fixed && Number.isFinite(fixed[0]) && Number.isFinite(fixed[1]) && fixed[0] < fixed[1]) {
     lo = fixed[0]
     hi = fixed[1]
+  } else {
+    // Room for the comparison too, or the world's line leaves the plot for any
+    // country far from it. `obsLo`/`obsHi` stay the series' own: the axis and
+    // the rings are about the country.
+    for (const v of comparison) {
+      if (typeof v !== 'number' || !Number.isFinite(v)) continue
+      if (v < lo) lo = v
+      if (v > hi) hi = v
+    }
   }
 
   // Resolved against the *drawn* window, not the source series, so both follow
@@ -546,6 +577,17 @@ export function seriesModel(opts: SeriesOptions): SeriesModel {
           y2: round(referenceY),
         },
       })
+    }
+
+    // The comparison, under everything the series itself draws. Through the
+    // observations it has, like the main line; a year it lacks is skipped.
+    const compare = comparison
+      .map((v, i) =>
+        typeof v === 'number' && Number.isFinite(v) ? `${round(xAt(i))},${round(yAt(v))}` : '',
+      )
+      .filter(Boolean)
+    if (compare.length > 1) {
+      nodes.push({ tag: 'polyline', attrs: { class: 'chart-compare', points: compare.join(' ') } })
     }
 
     const pts = points.map((p) => `${round(p.x)},${round(p.y)}`).join(' ')
@@ -669,6 +711,7 @@ export function seriesModel(opts: SeriesOptions): SeriesModel {
     trough,
     latest,
     cites,
+    comparisonLabel: opts.comparison && comparison.length ? opts.comparison.label : null,
     reference: hasRef ? (reference as number) : null,
     referenceY,
     referenceLabel: referenceLabel ?? null,
