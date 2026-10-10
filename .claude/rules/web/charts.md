@@ -85,6 +85,14 @@ The rail's readings are `map-rail.md`.
   `data-island` trigger, and the loader would open its sheet.
 - `scrollIntoView` is for the map's card only, which is capped at 50vh: on
   an article it lurches the page.
+- The map's card holds three folds (the story's chart, the country tags, the
+  strip) and opening one shuts the others (`fold`, `onExpand`).
+- A story's chart (`storyChart`, `Story.chart`) is a `sparkline` under the
+  title whose press unfolds `buildEntityPanel`. Its move is the line's own
+  (`windowPct`, or `ends` in points for a `%` series), never the record's
+  `deltaLabel`. The strip drops the chip for the same id.
+- A strait's `/api/entity/cp:*.json` is its week's mean (`trailingMean`,
+  `shared/chart/smooth.ts`), cut in `build.js`: a day's count is noise.
 - `buildEntityPanel` is the contents on both surfaces: the chart and `recent`
   first, provenance and eight mentions behind `moreLink`, no `standing`. Only
   `classes` and `mentionLink` differ.

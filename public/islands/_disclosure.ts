@@ -108,6 +108,8 @@ export interface Disclosure {
     build: () => Promise<Built>,
     ready?: () => Built | null,
   ): void
+  /** Fold it, as a press on the open trigger would. Nothing when it is shut. */
+  close(): void
   destroy(): void
 }
 
@@ -132,7 +134,18 @@ export const disclosure = (
     scrollIntoView = false,
     loadingClass = 'map-popup-loading',
     loadingText = 'Loading…',
-  }: { scrollIntoView?: boolean; loadingClass?: string; loadingText?: string } = {},
+    onExpand,
+  }: {
+    scrollIntoView?: boolean
+    loadingClass?: string
+    loadingText?: string
+    /**
+     * Called as a trigger starts to open. A surface with two of these in one
+     * capped box uses it to shut the other: one panel per group was already
+     * the rule, and two groups in one card is the same crowding one level up.
+     */
+    onExpand?: () => void
+  } = {},
 ): Disclosure => {
   const panel = el('div', className)
   panel.hidden = true
@@ -183,6 +196,7 @@ export const disclosure = (
    * line entirely rather than flashing one for a frame.
    */
   const expand = async (id: string, build: () => Promise<Built>, ready?: Built | null) => {
+    onExpand?.()
     const mine = ++seq
     const from = panel.hidden ? 0 : panel.getBoundingClientRect().height
     mark(id)
@@ -246,6 +260,7 @@ export const disclosure = (
         else void expand(id, build, ready?.() ?? null)
       })
     },
+    close: collapse,
     destroy: clear,
   }
 }

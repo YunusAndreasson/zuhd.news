@@ -13,9 +13,10 @@
 // zoom.
 
 import { rankStrip } from '@shared/chart/rank-strip'
+import { signedPct } from '@shared/chart/series'
 import { Popup, type Map as MapLibreMap } from 'maplibre-gl'
 import { appPrompt } from '../_app-prompt'
-import { disclosure, growTo, moreLink, type Built } from '../_disclosure'
+import { disclosure, growTo, moreLink, type Built, type Disclosure } from '../_disclosure'
 import { el } from '../_dom'
 import {
   buildEntityPanel,
@@ -27,10 +28,12 @@ import {
 import { shareUrl } from '@shared/share'
 import { TONE_LABELS, divergenceNote, toneOf } from '@shared/source-framing'
 import { renderShare } from '../_share'
+import { sparkline } from '../_spark'
 import { CONTESTED_D, type MapPoint } from './types'
 import type { StoryPlace } from './places'
 import { CATEGORY_COLOUR, FALLBACK_CATEGORY_COLOUR, rampColour } from './style'
 import * as fmt from './format'
+import { ribbonPoints } from './markets'
 
 /** How the map paints the indicator panel. The article page's copy of this
  *  table is in `entity-strip.ts`; the panel itself is `_entity-panel.ts`. */
@@ -74,6 +77,8 @@ interface Story {
   /** Indicators this story is about, already filtered to ones we publish a
    *  series for. Absent on the ~90% of stories with no entities. */
   entities?: Array<{ id: string; label: string }>
+  /** The one series the prose cites (`chart:` in frontmatter), by indicator id. */
+  chart?: string
   threadLabel?: string
 }
 
@@ -864,8 +869,8 @@ export function createStoryPopup(map: MapLibreMap, opts: StoryPopupOptions = {})
    * stories are already beacons — the same judgement that keeps "Cited in" out
    * of the series panel's first density.
    */
-  const countryTags = (prose: HTMLElement): HTMLElement => {
-    const tags = disclosure('map-popup-entity-panel', { scrollIntoView: true })
+  const countryTags = (prose: HTMLElement, folds: Disclosure[]): HTMLElement => {
+    const tags = fold(folds)
     const seen = new Set<string>()
     for (const node of prose.querySelectorAll<HTMLAnchorElement>('a.country-link[data-iso]')) {
       const iso = node.dataset.iso
@@ -942,6 +947,129 @@ export function createStoryPopup(map: MapLibreMap, opts: StoryPopupOptions = {})
     return body
   }
 
+
+  /**
+   * One of the card's folds: a panel that opens in place.
+   *
+   * A card can hold three: the chart under the title, the country tags in the
+   * prose and the strip under it. Opening one shuts the others: the card is
+   * capped at half the screen, and two panels open in it is the crowding "one
+   * panel per strip" exists to prevent, one level up.
+   */
+  const fold = (folds: Disclosure[]): Disclosure => {
+    const mine: Disclosure = disclosure('map-popup-entity-panel', {
+      scrollIntoView: true,
+      onExpand: () => {
+        for (const other of folds) if (other !== mine) other.close()
+      },
+    })
+    folds.push(mine)
+    return mine
+  }
+
+  /** The series panel, built into one fold. */
+  const entityPanelIn =
+    (into: Disclosure) =>
+    (record: EntityRecord | null, id: string): Built =>
+      buildEntityPanel({
+        record,
+        id,
+        classes: ENTITY_CLASSES,
+        box: into.panel,
+        // A mention row flies the map rather than leaving it, which is the one
+        // way this panel differs from the article page's copy of it.
+        mentionLink: (m) => storyLink(m.slug, m.title),
+      })
+
+  /**
+   * The chart a story names, under its title.
+   *
+   * 63 of the fortnight's 794 stories say which one series they are about
+   * (`chart:` in frontmatter): a strait, an oil price, a policy rate. The app
+   * draws it between the title and the hook. Here it is one line of type (what
+   * it is, where it stands, how far it has moved) over a line with its first
+   * and last dates under it. The move is the drawn line's own, last against
+   * first, so the figure and the picture cannot describe different periods.
+   *
+   * A sparkline, not `createChart` with its controls switched off: see the
+   * head of `_spark.ts` for what that shrink cannot remove. The full figure is
+   * one press away: the block is the trigger of a fold holding the same series
+   * panel a `follows` chip opens, and a link to `/e/{id}` for everything that
+   * is not a plain click.
+   *
+   * The series is drawn as published. A strait's is already its week's mean
+   * (`build.js`): a day's ship count is noise.
+   *
+   * The block is in the card from the first frame at its final height and is
+   * filled when the record lands, so nothing below it moves. It goes only when
+   * there turns out to be nothing to draw.
+   */
+  const storyChart = (story: Story, folds: Disclosure[], stillOpen: () => boolean): Node[] => {
+    const id = story.chart
+    if (!id) return []
+
+    const block = el('a', 'map-popup-chart')
+    block.href = `/e/${encodeURIComponent(id)}`
+    const chartFold = fold(folds)
+    const build = entityPanelIn(chartFold)
+
+    const fill = (record: EntityRecord | null): boolean => {
+      if (!record) return false
+      const values = record.values
+      const spark = sparkline({ values, window: values.length })
+      if (!spark) return false
+
+      // A series quoted in percent moves in points: a yield going 4.62 to 5.22
+      // rose 0.60, not 13%.
+      const points = record.unit === '%'
+      const delta = points ? spark.ends[1] - spark.ends[0] : spark.windowPct
+      block.classList.toggle('is-pos', delta > 0)
+      block.classList.toggle('is-neg', delta < 0)
+
+      const head = el('span', 'map-popup-chart-head')
+      head.append(
+        el('span', 'map-popup-chart-label', record.label),
+        el('span', 'map-popup-chart-reading', record.currentFormatted),
+        el('span', 'map-popup-chart-move', points ? ribbonPoints(delta) : signedPct(delta)),
+      )
+
+      // The dates the line runs between, which is the period the move is over.
+      const dated = record.periods.filter((_, i) => Number.isFinite(values[i]))
+      const span = el('span', 'map-popup-chart-span')
+      span.append(el('span', '', dated[0] ?? ''), el('span', '', dated[dated.length - 1] ?? ''))
+
+      block.replaceChildren(head, spark.element, span)
+      return true
+    }
+
+    chartFold.bind(
+      id,
+      block,
+      async () => build(await fetchEntity(id), id),
+      () => {
+        const hit = cachedEntity(id)
+        return hit ? build(hit, id) : null
+      },
+    )
+
+    const nodes: Node[] = [block, chartFold.panel]
+    const drop = () => {
+      block.remove()
+      chartFold.panel.remove()
+    }
+    // Warm from `preview`'s prefetch on the ordinary path.
+    const hit = cachedEntity(id)
+    if (hit) {
+      if (!fill(hit)) return []
+    } else {
+      void fetchEntity(id).then((record) => {
+        if (!stillOpen()) return
+        if (!fill(record)) drop()
+      })
+    }
+    return nodes
+  }
+
   /**
    * The numbers a story is about, as a row of chips that open over the map.
    *
@@ -976,8 +1104,10 @@ export function createStoryPopup(map: MapLibreMap, opts: StoryPopupOptions = {})
    * it and scroll. That is the right trade: the reader chose to spend the
    * card's height on this.
    */
-  const entityStrip = (story: Story): Node[] => {
-    const entities = story.entities ?? []
+  const entityStrip = (story: Story, folds: Disclosure[]): Node[] => {
+    // The chart the story names is already drawn under its title, and a chip
+    // for the same series would be a second way into the same panel.
+    const entities = (story.entities ?? []).filter((e) => e.id !== story.chart)
     if (!entities.length) return []
 
     const aside = el('aside', 'map-popup-entities')
@@ -987,18 +1117,8 @@ export function createStoryPopup(map: MapLibreMap, opts: StoryPopupOptions = {})
     // One panel for the strip rather than one per chip: two indicators open at
     // once would be two charts stacked in a card that has room for neither,
     // and the second would push the first out of view as it arrived.
-    const strip = disclosure('map-popup-entity-panel', { scrollIntoView: true })
-
-    const build = (record: EntityRecord | null, id: string): Built =>
-      buildEntityPanel({
-        record,
-        id,
-        classes: ENTITY_CLASSES,
-        box: strip.panel,
-        // A mention row flies the map rather than leaving it, which is the one
-        // way this panel differs from the article page's copy of it.
-        mentionLink: (m) => storyLink(m.slug, m.title),
-      })
+    const strip = fold(folds)
+    const build = entityPanelIn(strip)
 
     for (const e of entities) {
       const chip = el('a', 'map-entity-chip', e.label)
@@ -1043,7 +1163,12 @@ export function createStoryPopup(map: MapLibreMap, opts: StoryPopupOptions = {})
       // line in it is *shorter* than the preview it replaced. The card grew
       // wide, collapsed to half its height, then doubled. This is the same
       // request either way; only its timing changed.
-      void fetchStory(p.slug)
+      // And the series a story charts, behind it: the card draws that under
+      // the title, and a block filled a moment after the card opens is a block
+      // the reader watched arrive.
+      void fetchStory(p.slug).then((story) => {
+        if (story?.chart) void fetchEntity(story.chart)
+      })
     },
 
     async open(p, now) {
@@ -1065,6 +1190,10 @@ export function createStoryPopup(map: MapLibreMap, opts: StoryPopupOptions = {})
 
       const root = shell(p, now, 'article')
       if (story) {
+        const folds: Disclosure[] = []
+        // Between the title and the prose, where the app has it: the series is
+        // what the story is about, and the prose reads against it.
+        root.append(...storyChart(story, folds, () => pending === p.slug))
         const body = el('div', 'map-popup-prose')
         // Trusted content: this HTML is produced by our own build from the
         // article markdown, the same string the /a/{slug} page renders.
@@ -1089,11 +1218,11 @@ export function createStoryPopup(map: MapLibreMap, opts: StoryPopupOptions = {})
         root.append(body)
         // Directly under the prose, because that is where the tags are. A
         // disclosure that opens somewhere else is a navigation.
-        root.append(countryTags(body))
+        root.append(countryTags(body, folds))
         // Above the isnad, because the chain has to stay last — `about.md`
         // says every article ends with its sources, and this card is the
         // article on this surface.
-        root.append(...entityStrip(story))
+        root.append(...entityStrip(story, folds))
         root.append(...sourceBlock(story, p))
         // Only on a card that rendered. A story that failed to load is not one
         // the reader has read, so it must not count towards the app line and

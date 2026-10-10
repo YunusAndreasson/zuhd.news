@@ -1116,6 +1116,34 @@ test('story cards forward the per-source country the card renders', (t) => {
   )
 })
 
+// A strait's indicator page, its series panel and the chart on a story's card
+// all read `/api/entity/cp:*.json`. A day's ship count is noise, so that series
+// is the week's mean; the daily counts stay on `/api/chokepoints.json`, which
+// the map's marks and the app read.
+test('a strait’s indicator series is the week’s mean of its daily counts', (t) => {
+  const cpPath = join(ROOT, 'dist/api/chokepoints.json')
+  if (!existsSync(cpPath)) {
+    t.skip('dist/api/chokepoints.json not built')
+    return
+  }
+  const { chokepoints } = JSON.parse(readFileSync(cpPath, 'utf8'))
+  let checked = 0
+  for (const c of chokepoints) {
+    const path = join(ROOT, 'dist/api/entity', `cp:${c.id}.json`)
+    if (!existsSync(path)) continue
+    const record = JSON.parse(readFileSync(path, 'utf8'))
+    const daily = c.series.total
+    assert.equal(record.values.length, daily.length - 6, `${c.id}: one point per day that has a week behind it`)
+    assert.equal(record.periods.length, record.values.length, `${c.id}: a label for every point`)
+    assert.equal(record.periods.at(-1), c.series.periods.at(-1), `${c.id}: the series ends on the last day counted`)
+    const lastWeek = daily.slice(-7).filter(Number.isFinite)
+    const mean = lastWeek.reduce((a, b) => a + b, 0) / lastWeek.length
+    assert.ok(Math.abs(record.values.at(-1) - mean) <= 0.051, `${c.id}: ends at ${record.values.at(-1)}, the last week’s mean is ${mean}`)
+    checked++
+  }
+  assert.ok(checked > 0, 'no strait has an indicator record')
+})
+
 // The card says how each outlet framed a story, in the writer's words. The
 // feed has carried that line since the app's sources sheet needed it; the card's
 // payload is written by a second mapper, which is how it came to lack it.

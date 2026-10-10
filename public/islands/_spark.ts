@@ -73,6 +73,14 @@ export interface Spark {
    * a figure describing a period the line beside it does not cover.
    */
   windowPct: number
+  /**
+   * The first and last values drawn.
+   *
+   * For a series quoted in percent the change is their difference, in points
+   * (`windowPct` of a yield is a percentage of a percentage), and it has to be
+   * these two for the reason `windowPct` is returned at all.
+   */
+  ends: [number, number]
 }
 
 export interface SparkOptions {
@@ -335,5 +343,8 @@ export const sparkline = (opts: SparkOptions): Spark | null => {
     )
   }
 
-  return { element: svg, windowPct: model.windowPct }
+  const open = model.points[0]
+  const close = model.points[model.points.length - 1]
+  if (!open || !close) return null
+  return { element: svg, windowPct: model.windowPct, ends: [open.value, close.value] }
 }

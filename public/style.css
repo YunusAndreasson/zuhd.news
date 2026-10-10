@@ -6609,6 +6609,79 @@ body.map-wide .map-key {
   font-variant-numeric: lining-nums tabular-nums;
 }
 
+/* --- A story's chart ---
+   The one series a story names, under its title: a line of type over a line.
+
+   The tone sits on the box and the line and the move inherit it, the same
+   one-fact-one-channel arrangement `.map-markets-panel-figure` keeps; the label
+   and the reading are ink, because what a thing is and where it stands are not
+   signed quantities.
+
+   `min-height` is the block's own filled height. It is in the card before its
+   record has arrived, and a block that grew when the figures landed would push
+   the prose down under a reader who had started on it.
+
+   Open, the block keeps its label as the fold's heading and gives up the rest:
+   the panel under it states the reading and draws the full figure, and the same
+   number twice an inch apart reads as two numbers. */
+.map-popup-chart {
+  display: block;
+  min-height: 6.125rem;
+  margin: 0.1rem 0 0.7rem;
+  padding: 0.5rem 0 0.4rem;
+  border-block: 1px solid var(--map-line);
+  color: var(--map-ink-dim);
+  text-decoration: none;
+
+  &.is-pos { color: var(--map-pos); }
+  &.is-neg { color: var(--map-neg); }
+
+  /* `.spark` is `flex: 1 1 0` for the row it was written for; this is block
+     flow, so the width has to be asked for. */
+  & .spark { width: 100%; height: 2.6rem; margin: 0.3rem 0 0.15rem; }
+
+  &[aria-expanded='true'] {
+    min-height: 0;
+    padding-bottom: 0.5rem;
+    border-bottom: 0;
+
+    & .spark,
+    & .map-popup-chart-span,
+    & .map-popup-chart-reading,
+    & .map-popup-chart-move { display: none; }
+  }
+}
+
+.map-popup-chart-head {
+  display: flex;
+  align-items: baseline;
+  gap: 0.6rem;
+  font-size: var(--size-xs);
+  line-height: 1.3;
+  font-variant-numeric: lining-nums tabular-nums;
+}
+
+.map-popup-chart-label {
+  flex: 1 1 auto;
+  min-width: 0;
+  color: var(--map-ink-body);
+}
+
+.map-popup-chart:hover .map-popup-chart-label {
+  text-decoration: underline;
+  text-underline-offset: 0.2em;
+}
+
+.map-popup-chart-reading { color: var(--map-ink-strong); }
+
+.map-popup-chart-span {
+  display: flex;
+  justify-content: space-between;
+  font-size: var(--size-3xs);
+  line-height: 1.3;
+  color: var(--map-ink-dim);
+}
+
 /* --- Story card attribution ---
    The outlets we actually read, linked. This used to arrive as a flat unlinked
    sentence inside the rendered body; the story endpoint now withholds that line

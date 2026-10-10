@@ -50,22 +50,61 @@ const storyOf = (over) => ({
   ...over,
 })
 
-/** Open `story` in a fresh card and hand back its DOM. */
-const openCard = async (story, p = point) => {
+/**
+ * Open `story` in a fresh card and hand back its DOM.
+ *
+ * `entities` answers `/api/entity/{id}.json` by id; an id it does not hold is a
+ * 404, which is what a series the build no longer publishes looks like.
+ */
+const openCard = async (story, p = point, entities = {}) => {
   const dom = new JSDOM('<!doctype html><html><body></body></html>', { url: 'https://zuhd.news/' })
+  // Reduced motion, so `growTo` returns before `Element.animate`, which jsdom
+  // does not implement. Every assertion here is about what the card holds.
   dom.window.matchMedia = () => ({ matches: true, addEventListener() {}, removeEventListener() {} })
-  for (const k of ['window', 'document', 'HTMLElement', 'Node', 'matchMedia', 'location']) {
+  dom.window.Element.prototype.scrollIntoView = () => {}
+  for (const k of ['window', 'document', 'HTMLElement', 'Element', 'Node', 'MouseEvent', 'matchMedia', 'location']) {
     Object.defineProperty(globalThis, k, { configurable: true, writable: true, value: dom.window[k] })
   }
   Object.defineProperty(globalThis, 'navigator', { configurable: true, writable: true, value: dom.window.navigator })
   globalThis.fetch = /** @type {typeof fetch} */ (
-    /** @type {unknown} */ (async () => ({ ok: true, json: async () => story }))
+    /** @type {unknown} */ (
+      async (url) => {
+        const entity = /\/api\/entity\/(.+)\.json$/.exec(String(url))
+        if (!entity) return { ok: true, json: async () => story }
+        const record = entities[decodeURIComponent(entity[1])]
+        return record ? { ok: true, json: async () => record } : { ok: false, json: async () => ({}) }
+      }
+    )
   )
   const { createStoryPopup } = await import(`${bundlePath}?${Math.random()}`)
   const popup = createStoryPopup({ on() {}, off() {} })
   await popup.open(p, Date.now())
+  await settle()
   return globalThis.__card
 }
+
+/** Let a fetch and the growth behind it settle. */
+const settle = () => new Promise((r) => setTimeout(r, 0))
+
+/** A click as a browser delivers one, so `defaultPrevented` means something. */
+const click = (node, init = {}) => {
+  const ev = new globalThis.MouseEvent('click', { bubbles: true, cancelable: true, button: 0, ...init })
+  node.dispatchEvent(ev)
+  return ev
+}
+
+/** `/api/entity/{id}.json`, trimmed to what the card reads. */
+const series = (over) => ({
+  id: 'brent',
+  label: 'Brent crude',
+  kind: 'DAILY',
+  unit: '$/bbl',
+  currentFormatted: '125 $/bbl',
+  caption: 'FRED · EIA · daily',
+  values: [80, 90, 100, 125],
+  periods: ['Jul 13', 'Aug 1', 'Sep 1', 'Oct 6'],
+  ...over,
+})
 
 const outlet = (name, over = {}) => ({ name, url: `https://${name}.example/a`, country: 'GB', sentiment: 0, ...over })
 
@@ -145,4 +184,105 @@ test('a contested story opens its rows, ordered by lean, under the shared senten
   const fromPoint = await openCard(storyOf({ sources }), { ...point, d: 0.4 })
   assert.equal(fromPoint.querySelector('details.map-popup-framing').open, true)
   assert.equal(fromPoint.querySelector('.map-popup-framing-note').textContent, divergenceNote(0.4, 3))
+})
+
+// --- the chart a story names ------------------------------------------------
+
+test('a story that names a chart draws it between its title and its prose', async () => {
+  const card = await openCard(storyOf({ chart: 'brent' }), point, { brent: series() })
+  const block = card.querySelector('a.map-popup-chart')
+  assert.ok(block, 'the block is there')
+  // Title, chart, prose: the series is what the story is about, and the prose
+  // is read against it.
+  const kids = [...card.children]
+  const at = kids.indexOf(block)
+  assert.ok(at > kids.findIndex((n) => n.tagName === 'H2'), 'under the title')
+  assert.ok(at < kids.indexOf(card.querySelector('.map-popup-prose')), 'above the prose')
+
+  assert.equal(block.getAttribute('href'), '/e/brent', 'a real address, for every click that is not a plain one')
+  assert.equal(block.querySelector('.map-popup-chart-label').textContent, 'Brent crude')
+  assert.equal(block.querySelector('.map-popup-chart-reading').textContent, '125 $/bbl')
+  // Last against first over the line that is drawn: 80 to 125.
+  assert.equal(block.querySelector('.map-popup-chart-move').textContent, '+56.3%')
+  assert.ok(block.classList.contains('is-pos'))
+  assert.ok(block.querySelector('svg.spark'), 'a line, not the full figure')
+  // And the dates that line runs between, which is the period the move is over.
+  assert.deepEqual([...block.querySelector('.map-popup-chart-span').children].map((n) => n.textContent), ['Jul 13', 'Oct 6'])
+})
+
+test('a rate moves in points', async () => {
+  const rate = await openCard(storyOf({ chart: 'us-10y' }), point, {
+    'us-10y': series({ id: 'us-10y', label: 'US 10y Treasury', unit: '%', currentFormatted: '5.22 %', values: [4.62, 4.9, 5.22], periods: ['Jul 13', 'Aug 20', 'Oct 8'] }),
+  })
+  // 4.62 to 5.22 is sixty basis points, not 13% of anything.
+  assert.equal(rate.querySelector('.map-popup-chart-move').textContent, '+0.60 pts')
+
+  // A strait's id needs encoding, and its series is drawn as it is published:
+  // the build has already made it the week's mean.
+  const strait = await openCard(storyOf({ chart: 'cp:hormuz' }), point, {
+    'cp:hormuz': series({ id: 'cp:hormuz', label: 'Strait of Hormuz', unit: 'vessels/day', currentFormatted: '5 vessels/day', values: [10, 8, 5], periods: ['Sep 7', 'Sep 10', 'Sep 14'] }),
+  })
+  const block = strait.querySelector('.map-popup-chart')
+  assert.equal(block.getAttribute('href'), '/e/cp%3Ahormuz')
+  assert.equal(block.querySelector('.map-popup-chart-reading').textContent, '5 vessels/day')
+  assert.equal(block.querySelector('.map-popup-chart-move').textContent, '−50.0%')
+  assert.ok(block.classList.contains('is-neg'))
+})
+
+test('the chart’s own series leaves the follows strip, and the two folds take turns', async () => {
+  const story = storyOf({
+    chart: 'brent',
+    entities: [
+      { id: 'brent', label: 'Brent' },
+      { id: 'us-10y', label: 'US 10Y' },
+    ],
+  })
+  const card = await openCard(story, point, {
+    brent: series(),
+    'us-10y': series({ id: 'us-10y', label: 'US 10y Treasury', unit: '%', values: [4.6, 5.2], periods: ['Jul 13', 'Oct 8'] }),
+  })
+  const chips = [...card.querySelectorAll('.map-entity-chip')]
+  assert.deepEqual(chips.map((c) => c.textContent), ['US 10Y'], 'one way into a series, not two')
+
+  const block = card.querySelector('.map-popup-chart')
+  const chartPanel = block.nextElementSibling
+  assert.equal(chartPanel.hidden, true)
+
+  // A modified click belongs to the browser: the block is a link to `/e/brent`.
+  assert.equal(click(block, { metaKey: true }).defaultPrevented, false)
+  assert.equal(chartPanel.hidden, true)
+
+  assert.equal(click(block).defaultPrevented, true)
+  await settle()
+  assert.equal(block.getAttribute('aria-expanded'), 'true')
+  assert.equal(chartPanel.hidden, false, 'the full figure opens under the block, in the card')
+  assert.ok(chartPanel.querySelector('svg'), 'and it is the series panel a chip opens')
+
+  click(chips[0])
+  await settle()
+  assert.equal(block.getAttribute('aria-expanded'), 'false', 'opening the strip’s panel shuts the chart’s')
+  assert.equal(chartPanel.hidden, true)
+
+  // The only chip was the chart's: no strip at all, not a label over nothing.
+  const alone = await openCard(storyOf({ chart: 'brent', entities: [{ id: 'brent', label: 'Brent' }] }), point, { brent: series() })
+  assert.equal(alone.querySelector('.map-popup-entities'), null)
+})
+
+test('no chart, no block; and a series that cannot be drawn takes its block away', async () => {
+  const plain = await openCard(storyOf({ sources: [outlet('one')] }))
+  assert.equal(plain.querySelector('.map-popup-chart'), null)
+
+  // The build no longer publishes it.
+  const gone = await openCard(storyOf({ chart: 'retired' }))
+  assert.equal(gone.querySelector('.map-popup-chart'), null)
+  // And its empty fold goes with it: the prose follows the title directly. (The
+  // prose keeps a fold of its own after it, for the country tags.)
+  assert.ok(
+    !gone.querySelector('.map-popup-prose').previousElementSibling.classList.contains('map-popup-entity-panel'),
+    'the chart’s fold was left behind',
+  )
+
+  // One observation is a dot, not a line.
+  const dot = await openCard(storyOf({ chart: 'brent' }), point, { brent: series({ values: [80], periods: ['Oct 6'] }) })
+  assert.equal(dot.querySelector('.map-popup-chart'), null)
 })

@@ -26,6 +26,7 @@ const spark = await import(await bundleIsland(dir, 'public/islands/_spark.ts', '
 const markets = await import(await bundleIsland(dir, 'public/islands/_map/markets.ts', 'mk.mjs'))
 
 const { seriesDates, windowByDate, windowPoints, coverage, bucketCounts, halfOverHalf, DAY_MS } = win
+const { trailingMean } = await import(await bundleIsland(dir, 'shared/chart/smooth.ts', 'smooth.mjs'))
 const { sparkline, sparkPct } = spark
 const {
   sparkInput, oddsEntries, attentionEntries, eventEntries, eventCountdown, ribbonPoints,
@@ -236,6 +237,37 @@ test('the change without the shape is the change with it', () => {
     assert.equal(sparkPct({ values: [7], window: 1 }), null)
     assert.equal(sparkline({ values: [7], window: 1 }), null)
   })
+})
+
+/**
+ * A series quoted in percent states its change in points, last minus first,
+ * and those have to be the two values the line was drawn between: a gap at
+ * either end of the series, or a window narrower than it, moves both.
+ */
+test('the line reports the two values it was drawn between', () => {
+  withDom(() => {
+    assert.deepEqual(sparkline({ values: [4.62, 4.9, 5.22], window: 3 }).ends, [4.62, 5.22])
+    // The window, not the series.
+    assert.deepEqual(sparkline({ values: [1, 2, 3, 4, 5], window: 2 }).ends, [4, 5])
+    // The first and last that are numbers, not the first and last slots.
+    const gapped = sparkline({ values: [Number.NaN, 10, 12, Number.NaN], window: 4 })
+    assert.deepEqual(gapped.ends, [10, 12])
+    assert.equal(gapped.windowPct, 20, 'and the percentage is of the same pair')
+  })
+})
+
+test('a trailing mean starts where its first whole span ends', () => {
+  // A day's ship count is noise: 4, 0, 4, 2, 4 is first against last 0% and
+  // neighbour against neighbour ±100%, on a strait 42% under its normal.
+  const week = trailingMean([10, 12, 8, 10, 11, 9, 10, 5, 1, 9, 5, 6, 4, 5], 7)
+  assert.equal(week.length, 14, 'one output per input, so period labels still line up')
+  assert.ok(week.slice(0, 6).every(Number.isNaN), 'no mean of fewer days than the span')
+  assert.equal(week[6], 10)
+  assert.equal(week[13], 5)
+  // A missing day is left out of its week, not counted as a day with no ships.
+  const gapped = trailingMean([6, Number.NaN, 6], 3)
+  assert.equal(gapped[2], 6)
+  assert.ok(Number.isNaN(trailingMean([Number.NaN, Number.NaN], 2)[1]))
 })
 
 test('each fill gradient gets its own id, or every row wears one hue', () => {

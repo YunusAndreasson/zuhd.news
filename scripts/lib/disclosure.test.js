@@ -156,6 +156,51 @@ test('a chip opens the panel in place, and a second chip replaces it', async () 
   }
 })
 
+test('two folds in one card: opening one shuts the other', async () => {
+  // The story card holds a chart under its title and a strip under its prose,
+  // each with a panel of its own, in a box capped at half the screen. One open
+  // panel per group was the rule; this is the same rule across two groups.
+  const env = setupDom()
+  try {
+    const { disclosure } = await import(disclosurePath)
+    const { el } = await import(domPath)
+    const folds = []
+    const make = () => {
+      const d = disclosure('panel', {
+        onExpand: () => {
+          for (const other of folds) if (other !== d) other.close()
+        },
+      })
+      folds.push(d)
+      return d
+    }
+    const top = make()
+    const bottom = make()
+    const a = el('a', 'chip', 'A')
+    const b = el('a', 'chip', 'B')
+    document.body.append(a, top.panel, b, bottom.panel)
+    top.bind('a', a, async () => ({ node: el('p', null, 'A body') }))
+    bottom.bind('b', b, async () => ({ node: el('p', null, 'B body') }))
+
+    click(a)
+    await settle()
+    assert.equal(top.panel.hidden, false)
+
+    click(b)
+    await settle()
+    assert.equal(bottom.panel.hidden, false)
+    assert.equal(top.panel.hidden, true, 'the first fold shut when the second opened')
+    assert.equal(a.getAttribute('aria-expanded'), 'false')
+    assert.equal(top.panel.childNodes.length, 0, 'and gave back what it had built')
+
+    // Shutting a fold that is already shut is nothing, not an error.
+    top.close()
+    assert.equal(bottom.panel.hidden, false)
+  } finally {
+    env.restore()
+  }
+})
+
 test('a modified click is left to the browser, on the chip and on "full record"', async () => {
   const env = setupDom()
   try {

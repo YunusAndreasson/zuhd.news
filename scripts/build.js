@@ -439,6 +439,7 @@ if (existsSync(audioSrc)) {
 // `_share.ts` renders on top of it cannot become two different shares of the
 // same story.
 const SHARE = await loadShared('share.ts')
+const { trailingMean } = await loadShared('chart/smooth.ts')
 
 // Sentiment thresholds and the words for them, shared with the app so a source
 // described as "leans critical" in one place is not "neutral" in the other.
@@ -1170,15 +1171,24 @@ if (existsSync(chokepointsSrc)) {
     // `series.total`, not `series.values` — the one field name this payload
     // spells differently from every other series on the site.
     if (!Array.isArray(c.series?.total) || c.series.total.length < 2) continue
+    // As the week's mean, from the first day that has a whole week behind it.
+    // A day's count is noise: Hormuz read 4, 0, 4, 2, 4 over five days while it
+    // sat 42% under its 90-day average, so the indicator page printed `+100%
+    // day` in green over a strait a story beside it called emptied. The mean is
+    // the quantity PortWatch reports (`last7Avg`); `/api/chokepoints.json`
+    // keeps the daily counts.
+    const week = trailingMean(c.series.total, 7)
+    const from = week.findIndex(Number.isFinite)
+    if (from < 0 || week.length - from < 2) continue
     extraIndicators.push({
       id: `cp:${c.id}`,
       label: c.name,
       unit: 'vessels/day',
       source: 'portwatch',
-      sourceLabel: 'IMF PortWatch',
+      sourceLabel: 'IMF PortWatch, 7-day mean',
       cadence: 'daily',
-      values: c.series.total,
-      periods: c.series.periods || [],
+      values: week.slice(from).map((v) => Math.round(v * 10) / 10),
+      periods: (c.series.periods || []).slice(from),
       asOf: c.asOf || '',
     })
   }
