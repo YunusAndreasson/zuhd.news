@@ -91,6 +91,26 @@ export const seriesDates = (
   return out
 }
 
+/**
+ * Which observation of a series each story falls on, or `null` where none.
+ *
+ * `dates` is what `seriesDates` returned for the series, and a story's date is
+ * matched to it by the UTC day and no more loosely. A story published on a
+ * Saturday did not happen on Friday's close, and a mark moved to the nearest
+ * session would put it on a move it came after. Unmarked is the honest answer;
+ * the story is still in the list under the chart.
+ */
+export const citedMarks = (
+  dates: readonly number[] | null,
+  cited: ReadonlyArray<{ date?: string | undefined }>,
+): Array<number | null> =>
+  cited.map((story) => {
+    const t = story.date ? Date.parse(story.date) : Number.NaN
+    if (!dates || !Number.isFinite(t)) return null
+    const at = dates.indexOf(Math.floor(t / DAY_MS) * DAY_MS)
+    return at < 0 ? null : at
+  })
+
 export interface Windowed {
   values: number[]
   /** Epoch ms, parallel to `values`. */

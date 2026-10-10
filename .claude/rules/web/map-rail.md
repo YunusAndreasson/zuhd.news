@@ -88,6 +88,10 @@ Camera, MapLibre and cards are `map.md`; layers and marks are `map-layers.md`.
   (`exchangeReading`, `straitReading`), and says a record that has stood a
   month (`recordLine`, `shared/chart/record.ts`). A range with no reading
   keeps its column, with a dash.
+- A card numbers the stories its account was written from, on its chart and
+  in its list (`citedOn`), and only where there is an account: a dot for a
+  tag match claims a cause nobody wrote. A story sits on the observation of
+  its own UTC day (`citedMarks`) or takes no number.
 - The strait card charts `straitSeries`, the series its row and label read,
   and lists the vessel classes that sail there from PortWatch's averages.
 - A flagged exchange states its run in the run's own figures (`patternLine`):

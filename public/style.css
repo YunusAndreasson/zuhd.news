@@ -7696,6 +7696,18 @@ body.doc-page .chart {
   vector-effect: non-scaling-stroke;
 }
 
+/* A story the card cites, where it fell on the line. Filled in the ink of the
+   chart's type rather than the line's tone: it is an event, not a move, and a
+   red dot on a falling line would be read as part of the fall. The number is
+   the one the list under the chart gives the same story. */
+.chart-cite { fill: var(--chart-ink); }
+
+.chart-cite-label {
+  fill: var(--chart-ink);
+  font-size: var(--size-3xs);
+  font-variant-numeric: lining-nums tabular-nums;
+}
+
 .chart-cursor-rule {
   stroke: var(--chart-ink-muted);
   stroke-width: 1;
@@ -7974,6 +7986,16 @@ body.doc-page .chart {
 .map-sheet-more-link {
   font-size: var(--size-xs);
   color: var(--text-dim);
+}
+
+/* The number a story carries on the chart above its list. */
+.map-sheet-more-n {
+  display: inline-block;
+  min-width: 1.1em;
+  margin-right: 0.35em;
+  font-size: var(--size-2xs);
+  font-variant-numeric: lining-nums tabular-nums;
+  color: var(--text);
 }
 
 .map-sheet-more-time {

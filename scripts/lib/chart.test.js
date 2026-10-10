@@ -359,6 +359,57 @@ test('a series too short to have a shape draws nothing at all', async () => {
   })
 })
 
+test('a cited story is a mark on the model’s own scale, in both figures and in the table', async () => {
+  // An annotation, not a second shape: it sits on an observation the line
+  // already draws, follows the range control because it is resolved against
+  // the window, and is dropped rather than pinned to an edge when the window
+  // no longer holds its day.
+  const values = Array.from({ length: 30 }, (_, i) => 100 + i)
+  const periods = values.map((_, i) => `d${i}`)
+  const marks = [
+    { index: 5, label: '1' },
+    { index: 25, label: '2' },
+    { index: 25, label: '3' },
+  ]
+  const all = seriesModel({ values, periods, marks })
+  assert.deepEqual(all.cites.map((c) => [c.point.period, c.label]), [['d5', '1'], ['d25', '2 · 3']], 'two on one day share a mark')
+  const dots = (model) => model.scene().filter((n) => n.attrs?.class === 'chart-cite')
+  const labels = (model) => model.scene().filter((n) => n.attrs?.class === 'chart-cite-label').map((n) => n.text)
+  assert.equal(dots(all).length, 2)
+  assert.deepEqual(labels(all), ['1', '2 · 3'])
+  // On the line: the mark's centre is its observation's own point.
+  const p25 = all.points.find((p) => p.period === 'd25')
+  assert.equal(dots(all)[1].attrs.cx, Number(p25.x.toFixed(1)))
+  assert.equal(dots(all)[1].attrs.cy, Number(p25.y.toFixed(1)))
+
+  // The last ten observations: story 1 fell before them and is not drawn at the
+  // window's left edge as though it had happened there.
+  const recent = seriesModel({ values, periods, marks, window: 10 })
+  assert.deepEqual(recent.cites.map((c) => [c.point.period, c.label]), [['d25', '2 · 3']])
+  // A mark on a gap, or past either end, is nothing.
+  const gapped = seriesModel({ values: [1, Number.NaN, 3], marks: [{ index: 1, label: '1' }, { index: 9, label: '2' }, { index: -1, label: '3' }] })
+  assert.deepEqual(gapped.cites, [])
+  // And no marks is no marks: the figures of every existing chart are unchanged.
+  assert.equal(dots(seriesModel({ values, periods })).length, 0)
+
+  // The table is the chart for a reader who cannot see it.
+  const html = renderMarkup(staticFigure(all, {}))
+  assert.match(html, /story 1/)
+  assert.match(html, /story 2 · 3/)
+  assert.equal((html.match(/class="chart-cite"/g) ?? []).length, 2, 'the static figure draws them')
+  const { createChart } = await import(chartPath)
+  withDom(() => {
+    const chart = createChart({ values, periods, marks })
+    assert.equal(chart.element.querySelectorAll('.chart-cite').length, 2, 'and so does the browser’s')
+    assert.deepEqual([...chart.element.querySelectorAll('.chart-cite-label')].map((n) => n.textContent), ['1', '2 · 3'])
+  })
+
+  // Styled, or a class that exists only in the markup.
+  const css = readFileSync(join(ROOT, 'public/style.css'), 'utf8')
+  assert.match(css, /^\.chart-cite \{/m)
+  assert.match(css, /^\.chart-cite-label \{/m)
+})
+
 test('the two figures share one class vocabulary', async () => {
   // The island replaces the static figure wholesale, so nothing forces the two
   // to agree — except that both are styled by one block in style.css. A class

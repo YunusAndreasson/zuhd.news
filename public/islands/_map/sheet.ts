@@ -42,7 +42,8 @@ import {
 } from './markets'
 import { patternLabel, patternLine, type MarketSignal } from './signals'
 import { PRICE_RECORD, TRAFFIC_RECORD, recordLine, type RecordWords } from '@shared/chart/record'
-import { DAY_MS, seriesDates, windowPoints } from './series-window'
+import type { SeriesMark } from '@shared/chart/series'
+import { DAY_MS, citedMarks, seriesDates, windowPoints } from './series-window'
 import type {
   ConflictEvent,
   GdacsAlert,
@@ -490,17 +491,54 @@ export function createSheet(): Sheet {
    */
   let indicatorSeq = 0
 
-  const relatedList = (items: Array<{ slug: string; title: string }>, label: string): Node[] => {
+  /** How many of a card's stories its list shows. */
+  const RELATED_ROWS = 5
+
+  const relatedList = (
+    items: Array<{ slug: string; title: string }>,
+    label: string,
+    /** The number a story carries on the chart above, by slug. See `citedOn`. */
+    numbers?: Map<string, string>,
+  ): Node[] => {
     if (!items.length) return []
     const list = el('ul', 'map-sheet-more')
-    for (const a of items.slice(0, 5)) {
+    for (const a of items.slice(0, RELATED_ROWS)) {
       const li = el('li')
+      const n = numbers?.get(a.slug)
+      if (n) li.append(el('span', 'map-sheet-more-n', n))
       const link = el('a', 'map-sheet-more-link', a.title)
       link.href = `/a/${a.slug}`
       li.append(link)
       list.append(li)
     }
     return [el('p', 'map-sheet-more-label', label), list]
+  }
+
+  /**
+   * The stories a card's account was written from, placed on its chart.
+   *
+   * An account says the index fell after a result or a strike; the chart shows
+   * a fall; and nothing joined the two. Each story the list shows that falls
+   * on an observation gets a number, in list order: a mark on the line for the
+   * chart, and the same number beside its row for the list. A story with no
+   * observation that day keeps its row and takes no number.
+   */
+  const citedOn = (
+    periods: string[] | undefined,
+    asOf: string | undefined,
+    cited: Array<{ slug: string; date?: string | undefined }>,
+  ): { marks: SeriesMark[]; numbers: Map<string, string> } => {
+    const shown = cited.slice(0, RELATED_ROWS)
+    const marks: SeriesMark[] = []
+    const numbers = new Map<string, string>()
+    citedMarks(seriesDates(periods, asOf), shown).forEach((index, i) => {
+      const story = shown[i]
+      if (index == null || !story) return
+      const label = String(marks.length + 1)
+      marks.push({ index, label })
+      numbers.set(story.slug, label)
+    })
+    return { marks, numbers }
   }
 
   return {
@@ -601,6 +639,12 @@ export function createSheet(): Sheet {
         // The week's mean, which is the series the label on the map, the rail's
         // row and the indicator page all read: a day's count is noise.
         const week = straitSeries(cp)
+        // Only where there is an account for the stories to be the sources of.
+        // Without one the list is tag matches, and a dot for a story that
+        // merely mentions the strait would claim a cause nobody wrote.
+        const cited = cp.recent
+          ? citedOn(week?.periods, cp.asOf, cp.relatedArticles ?? [])
+          : undefined
         nodes.push(movesRow((days) => straitReading(cp, days)))
         if (week) nodes.push(...recordNote(week.values, week.periods, cp.asOf, TRAFFIC_RECORD))
 
@@ -617,6 +661,7 @@ export function createSheet(): Sheet {
           ...chartFigure({
             values: week?.values ?? [],
             periods: week?.periods ?? [],
+            marks: cited?.marks,
             reference: cp.baseline90Avg?.n_total,
             referenceLabel: 'the 90-day average',
             direction: delta,
@@ -692,7 +737,7 @@ export function createSheet(): Sheet {
         // days of transits and never said a word about what happened in them.
         // No fetch, unlike `showIndicator`: this one already has it.
         if (cp.recent) nodes.push(el('p', 'map-sheet-lead', cp.recent))
-        nodes.push(...relatedList(cp.relatedArticles ?? [], 'Related coverage'))
+        nodes.push(...relatedList(cp.relatedArticles ?? [], 'Related coverage', cited?.numbers))
       }
       render(nodes, pin, docked)
     },
@@ -799,10 +844,20 @@ export function createSheet(): Sheet {
         // a price outside its own domain, under a caption still claiming it was
         // the open.
         const values = ex.series?.values ?? []
+        // The stories the card's one account was written from, on the line.
+        // The run's citations where the run's commentary is the account, the
+        // exchange's own where its `recent` is, and none where there is no
+        // account: see the strait card.
+        const cited = signal?.commentary
+          ? citedOn(ex.series?.periods, ex.asOf, signal.citations)
+          : ex.recent
+            ? citedOn(ex.series?.periods, ex.asOf, ex.relatedArticles ?? [])
+            : undefined
         nodes.push(
           ...chartFigure({
             values,
             periods: ex.series?.periods ?? [],
+            marks: cited?.marks,
             window: cardWindow(ex.series?.periods, ex.asOf, rangeDays),
             reference: 'open',
             referenceLabel: 'the window’s open',
@@ -840,10 +895,10 @@ export function createSheet(): Sheet {
         // one), and then the card is the exchange's own, as before.
         if (signal?.commentary) {
           nodes.push(el('p', 'map-sheet-lead', signal.commentary))
-          nodes.push(...relatedList(signal.citations, 'Read from'))
+          nodes.push(...relatedList(signal.citations, 'Read from', cited?.numbers))
         } else {
           if (ex.recent) nodes.push(el('p', 'map-sheet-lead', ex.recent))
-          nodes.push(...relatedList(ex.relatedArticles ?? [], 'Related coverage'))
+          nodes.push(...relatedList(ex.relatedArticles ?? [], 'Related coverage', cited?.numbers))
         }
       }
       render(nodes, pin, docked)

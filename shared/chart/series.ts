@@ -51,11 +51,31 @@ export interface SceneNode {
 /** Which two-colour vocabulary `direction` selects between. */
 export type ChartPalette = 'straits' | 'signed' | 'neutral'
 
+/**
+ * An event to mark on the line: a story the card beside the chart cites.
+ *
+ * `index` is into `values`, the series as handed over, not into the window the
+ * chart ends up drawing, so the caller resolves a date to an observation once
+ * and the mark follows the range control on its own. `label` is the number the
+ * list beside the chart gives the same story.
+ */
+export interface SeriesMark {
+  index: number
+  label: string
+}
+
 export interface SeriesOptions {
   values: number[]
   /** Labels parallel to `values`. Every one is used by the readout and the
    *  table; only three reach the drawn axis. */
   periods?: string[]
+  /**
+   * Stories to mark on the line. An annotation on the model's own scale, never
+   * a second shape: one that falls outside the drawn window, or on an
+   * observation that is not a number, is not drawn, and two on one observation
+   * share a mark.
+   */
+  marks?: readonly SeriesMark[] | undefined
   /**
    * An optional horizontal rule, in the same units as `values`.
    *
@@ -302,6 +322,8 @@ export interface SeriesModel {
   peak: SeriesPoint | null
   trough: SeriesPoint | null
   latest: SeriesPoint | null
+  /** The marks that landed on a drawn point, merged where two share one. */
+  cites: Array<{ point: SeriesPoint; label: string }>
   reference: number | null
   referenceY: number | null
   referenceLabel: string | null
@@ -375,6 +397,7 @@ export function seriesModel(opts: SeriesOptions): SeriesModel {
     peak: null,
     trough: null,
     latest: null,
+    cites: [],
     reference: null,
     referenceY: null,
     referenceLabel: null,
@@ -460,6 +483,19 @@ export function seriesModel(opts: SeriesOptions): SeriesModel {
   for (const p of points) {
     if (p.value > peak.value) peak = p
     if (p.value < trough.value) trough = p
+  }
+
+  // The marks, moved from the source series onto the window. One outside it is
+  // dropped rather than pinned to an edge: a dot at the left margin would date
+  // a story to a day it did not happen on.
+  const offset = total - values.length
+  const cites: Array<{ point: SeriesPoint; label: string }> = []
+  for (const mark of opts.marks ?? []) {
+    const at = points.find((p) => p.i === mark.index - offset)
+    if (!at) continue
+    const shared = cites.find((c) => c.point === at)
+    if (shared) shared.label = `${shared.label} · ${mark.label}`
+    else cites.push({ point: at, label: mark.label })
   }
 
   const [down, up] =
@@ -551,6 +587,31 @@ export function seriesModel(opts: SeriesOptions): SeriesModel {
       attrs: { class: 'chart-dot', cx: round(latest.x), cy: round(latest.y), r: 2.6 },
     })
 
+    // --- The cited stories ------------------------------------------------
+    // A filled mark on the line where a story the card cites was published,
+    // and its number: the one the list under the chart gives it. Filled where
+    // the extremes are hollow, because this is something that happened and
+    // those are only where the line turned. The number sits above its mark and
+    // drops below it where the mark is at the top of the plot.
+    for (const cite of cites) {
+      const { x, y } = cite.point
+      const above = y - 7 >= CHART_PAD.t - 6
+      nodes.push({
+        tag: 'circle',
+        attrs: { class: 'chart-cite', cx: round(x), cy: round(y), r: 3 },
+      })
+      nodes.push({
+        tag: 'text',
+        attrs: {
+          class: 'chart-cite-label',
+          x: round(Math.min(CHART_W - CHART_PAD.r - 4, Math.max(CHART_PAD.l + 4, x))),
+          y: round(above ? y - 6 : y + 13),
+          'text-anchor': 'middle',
+        },
+        text: cite.label,
+      })
+    }
+
     // --- The y-axis -------------------------------------------------------
     // High, low, and the rule if there is one. Three numbers is the most this
     // size can carry, and they are the three that answer "from what, to what,
@@ -607,6 +668,7 @@ export function seriesModel(opts: SeriesOptions): SeriesModel {
     peak,
     trough,
     latest,
+    cites,
     reference: hasRef ? (reference as number) : null,
     referenceY,
     referenceLabel: referenceLabel ?? null,
@@ -760,10 +822,18 @@ export interface StaticFigureOptions {
  * principle is that the typography is the design.
  */
 export const rowMark = (model: SeriesModel, i: number): string => {
-  if (model.latest && i === model.latest.i) return 'latest'
-  if (model.peak && i === model.peak.i) return 'high'
-  if (model.trough && i === model.trough.i) return 'low'
-  return ''
+  const place =
+    model.latest && i === model.latest.i
+      ? 'latest'
+      : model.peak && i === model.peak.i
+        ? 'high'
+        : model.trough && i === model.trough.i
+          ? 'low'
+          : ''
+  // A cited story is a row too: the table is the chart for a reader who cannot
+  // see it, and a numbered dot with no row would be the one mark it left out.
+  const cite = model.cites.find((c) => c.point.i === i)
+  return [place, cite ? `story ${cite.label}` : ''].filter(Boolean).join(' · ')
 }
 
 /** Every observation as a table row, oldest first — the direction the line

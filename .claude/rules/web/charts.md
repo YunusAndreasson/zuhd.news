@@ -36,6 +36,9 @@ The rail's readings are `map-rail.md`.
   a series uses `createChart`. A summary over a list uses `sparkline`.
 - A second shape gets a second module rather than a `type` field on
   `seriesModel`. `shape: 'bars'` in `_spark.ts` is the argued exception.
+- `marks` (`SeriesMark`) is an annotation on the model's own scale, never a
+  second shape: indexed into the source series, dropped outside the drawn
+  window, merged where two share an observation, and named in the table.
 
 ## What the numbers mean
 

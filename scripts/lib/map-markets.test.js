@@ -25,7 +25,7 @@ const win = await import(
 const spark = await import(await bundleIsland(dir, 'public/islands/_spark.ts', 'spark.mjs'))
 const markets = await import(await bundleIsland(dir, 'public/islands/_map/markets.ts', 'mk.mjs'))
 
-const { seriesDates, windowByDate, windowPoints, coverage, bucketCounts, halfOverHalf, DAY_MS } = win
+const { seriesDates, windowByDate, windowPoints, coverage, bucketCounts, halfOverHalf, citedMarks, DAY_MS } = win
 const { trailingMean } = await import(await bundleIsland(dir, 'shared/chart/smooth.ts', 'smooth.mjs'))
 const { seriesRecord, recordLine, TRAFFIC_RECORD } = await import(
   await bundleIsland(dir, 'shared/chart/record.ts', 'record.mjs')
@@ -975,6 +975,26 @@ test('the marks, the counts and the reading agree at every range', () => {
   // A 3% day is as large as a mark gets; so is 16% over a month, not 3%.
   assert.equal(moveCap(1), 3)
   assert.ok(Math.abs(moveCap(30) - 3 * Math.sqrt(30)) < 1e-12)
+})
+
+// --- A story on a chart --------------------------------------------------------
+
+test('a story is placed on the observation of its own day, or nowhere', () => {
+  // Weekday closes, Monday 5 October to Friday 9 October.
+  const dates = seriesDates(['Oct 5', 'Oct 6', 'Oct 7', 'Oct 8', 'Oct 9'], '2026-10-09')
+  assert.deepEqual(
+    citedMarks(dates, [
+      { date: '2026-10-07T16:20:00Z' },
+      { date: '2026-10-09' },
+      // A Saturday: Friday's close came before it. Unmarked, not moved back.
+      { date: '2026-10-10T08:00:00Z' },
+      { date: 'not a date' },
+      {},
+    ]),
+    [2, 4, null, null, null],
+  )
+  // A series whose dates could not be rebuilt places nothing.
+  assert.deepEqual(citedMarks(null, [{ date: '2026-10-07' }]), [null])
 })
 
 // --- A record -----------------------------------------------------------------

@@ -386,6 +386,47 @@ const CHOKEPOINT = {
   relatedArticles: [{ slug: 'a-story', title: 'A Story' }],
 }
 
+test('the stories an account was written from are numbered on the chart and in the list', async () => {
+  const env = setupDom()
+  try {
+    const { createSheet } = await import(bundlePath)
+    const sheet = createSheet()
+    const exchange = {
+      ...EXCHANGE,
+      recent: 'The index rose on Aramco’s results.',
+      relatedArticles: [
+        { slug: 'on-the-22nd', title: 'On the 22nd', date: '2026-07-22T09:00:00Z' },
+        { slug: 'a-weekend', title: 'A Weekend Story', date: '2026-07-25T09:00:00Z' },
+        { slug: 'on-the-23rd', title: 'On the 23rd', date: '2026-07-23T09:00:00Z' },
+      ],
+    }
+    sheet.showMarket(exchange, true)
+    const chart = sheet.element.querySelector('.chart')
+    assert.deepEqual([...chart.querySelectorAll('.chart-cite-label')].map((n) => n.textContent), ['1', '2'])
+    // The same numbers beside the same stories; the one with no session that
+    // day keeps its row and takes none.
+    const rows = [...sheet.element.querySelectorAll('.map-sheet-more li')].map((li) => [
+      li.querySelector('.map-sheet-more-n')?.textContent ?? null,
+      li.querySelector('a').textContent,
+    ])
+    assert.deepEqual(rows, [
+      ['1', 'On the 22nd'],
+      [null, 'A Weekend Story'],
+      ['2', 'On the 23rd'],
+    ])
+    sheet.close()
+
+    // No account, no marks: without one the list is tag matches, and a dot for
+    // a story that merely mentions the exchange would claim a cause.
+    sheet.showMarket({ ...exchange, recent: undefined }, true)
+    assert.equal(sheet.element.querySelector('.chart-cite'), null)
+    assert.equal(sheet.element.querySelector('.map-sheet-more-n'), null)
+    sheet.destroy()
+  } finally {
+    env.restore()
+  }
+})
+
 test('a pinned card sets a move against a day, a week and a month', async () => {
   const env = setupDom()
   const realNow = Date.now
