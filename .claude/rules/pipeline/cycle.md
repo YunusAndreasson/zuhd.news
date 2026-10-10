@@ -108,6 +108,10 @@ stages assume about each other.
   (`poolAgeCapMs`): a late pick publishes as an old story.
 - Do not bring backfill back: it filled floors by a noisy feed tag, and a
   short slot beats one the writer must refuse.
+- An outlet read in another language is a row like any other (`lib/rss-sources.js`): no
+  translation step. A title in another script keeps its letters in `fingerprint` and gets a
+  hashed slug (`slugify`), or the merge reads every such title as one story.
+- The fetcher takes a feed's first items in feed order: probe that a new feed is newest-first.
 - `logs.test.js` reads feed health from `RSS fetch:`: after the cut the merged
   count measures freshness.
 

@@ -38,7 +38,7 @@
 
 Two halves, merged by `merge-feeds.js`:
 
-- **By RSS** (28 outlets and Hacker News, `scripts/lib/rss-sources.js`): 404 Media, Bellingcat, Mada Masr, Salaam Gateway, InSight Crime, Declassified UK, Responsible Statecraft, Drop Site News, SMEX, SciDev.Net, The Record, Phys.org, Quanta Magazine, Carbon Brief, New Lines Magazine, The War Zone, European Spaceflight, Inkstick, Rest of World, The Diplomat, Lowy Interpreter, Dialogue Earth, Global Voices, Payload, C4ISRNET, TechNode, Latin America Reports, Mondoweiss
+- **By RSS** (36 outlets and Hacker News, `scripts/lib/rss-sources.js`): 404 Media, Bellingcat, Mada Masr, Salaam Gateway, InSight Crime, Declassified UK, Responsible Statecraft, Drop Site News, SMEX, SciDev.Net, The Record, Phys.org, Quanta Magazine, Carbon Brief, New Lines Magazine, The War Zone, European Spaceflight, Inkstick, Rest of World, The Diplomat, Lowy Interpreter, Dialogue Earth, Global Voices, Payload, C4ISRNET, TechNode, Latin America Reports, Mondoweiss, Pekingnology, and seven read in their own language: netzpolitik.org (German), Agência Pública (Portuguese), Contracorriente and Focos (Spanish), Kloop (Russian), TMTPost and Zhidx (Chinese)
 - **By NewsAPI.ai**: the wires and the large outlets, from `CURATED_SOURCES` and the queries in `scripts/fetch-news-api.js`
 
 ## Hosting & Deploy

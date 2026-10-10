@@ -7,7 +7,9 @@
 //
 // The owner changed it on 2026-10-10: Noema, Undark and CODA Story left, and
 // Payload, C4ISRNET, TechNode, Latin America Reports and Mondoweiss joined.
-// The tables below are the list as decided then.
+// Later that day eight more joined, seven of them read in their own language:
+// netzpolitik.org, Agência Pública, Contracorriente, Focos, Kloop, TMTPost,
+// Zhidx, and Pekingnology. The tables below are the list as decided then.
 import assert from 'node:assert/strict'
 import { test } from 'node:test'
 import { NICHE_SOURCES } from './dedup.js'
@@ -42,6 +44,14 @@ const SOURCES_WAS = [
   { name: 'TechNode',     url: 'https://technode.com/feed/',                   format: 'rss2', defaultCategory: 'tech' },
   { name: 'Latin America Reports', url: 'https://latinamericareports.com/feed/', format: 'rss2' },
   { name: 'Mondoweiss',   url: 'https://mondoweiss.net/news/feed/',            format: 'rss2' },
+  { name: 'netzpolitik.org', url: 'https://netzpolitik.org/feed/',             format: 'rss2', defaultCategory: 'tech' },
+  { name: 'Agência Pública', url: 'https://apublica.org/feed/',                format: 'rss2' },
+  { name: 'Contracorriente', url: 'https://contracorriente.red/feed/',         format: 'rss2' },
+  { name: 'Focos',        url: 'https://focostv.com/feed/',                    format: 'rss2' },
+  { name: 'Kloop',        url: 'https://kloop.kg/feed/',                       format: 'rss2' },
+  { name: 'TMTPost',      url: 'https://www.tmtpost.com/rss.xml',              format: 'rss2', defaultCategory: 'tech' },
+  { name: 'Zhidx',        url: 'https://zhidx.com/rss',                        format: 'rss2', defaultCategory: 'tech' },
+  { name: 'Pekingnology', url: 'https://www.pekingnology.com/feed',            format: 'rss2' },
 ]
 
 const SOURCE_COUNTRY_WAS = {
@@ -73,11 +83,19 @@ const SOURCE_COUNTRY_WAS = {
   'TechNode': 'CN',
   'Latin America Reports': 'CO',
   'Mondoweiss': 'US',
+  'netzpolitik.org': 'DE',
+  'Agência Pública': 'BR',
+  'Contracorriente': 'HN',
+  'Focos': 'SV',
+  'Kloop': 'KG',
+  'TMTPost': 'CN',
+  'Zhidx': 'CN',
+  'Pekingnology': 'CN',
   'Hacker News': 'US',
 }
 
 const MAX_PER_SOURCE_WAS = 3
-const PER_SOURCE_CAP_WAS = { 'Phys.org': 1, 'The Record': 1, 'TechNode': 2 }
+const PER_SOURCE_CAP_WAS = { 'Phys.org': 1, 'The Record': 1, 'TechNode': 2, 'Agência Pública': 2, 'TMTPost': 2, 'Zhidx': 2 }
 const capForWas = (name) => PER_SOURCE_CAP_WAS[name] ?? MAX_PER_SOURCE_WAS
 
 const NICHE_SOURCES_WAS = new Set([
@@ -87,13 +105,14 @@ const NICHE_SOURCES_WAS = new Set([
   'New Lines Magazine', 'The War Zone', 'European Spaceflight', 'Inkstick',
   'Rest of World', 'The Diplomat', 'Lowy Interpreter', 'Dialogue Earth',
   'Global Voices', 'Payload', 'C4ISRNET', 'TechNode', 'Latin America Reports',
-  'Mondoweiss', 'Hacker News',
+  'Mondoweiss', 'netzpolitik.org', 'Agência Pública', 'Contracorriente',
+  'Focos', 'Kloop', 'TMTPost', 'Zhidx', 'Pekingnology', 'Hacker News',
 ])
 
-test('the feeds are the twenty-eight they were, in their order, at their addresses, read the same way, for the same desks', () => {
+test('the feeds are the thirty-six they were, in their order, at their addresses, read the same way, for the same desks', () => {
   const asDeclared = RSS_SOURCES.map(({ name, url, format, defaultCategory }) => (defaultCategory ? { name, url, format, defaultCategory } : { name, url, format }))
   assert.deepEqual(asDeclared, SOURCES_WAS)
-  assert.equal(RSS_SOURCES.length, 28)
+  assert.equal(RSS_SOURCES.length, 36)
   for (const row of RSS_SOURCES) assert.deepEqual(Object.keys(row).filter((k) => !['name', 'url', 'format', 'country', 'defaultCategory', 'cap'].includes(k)), [], row.name)
 })
 
@@ -110,8 +129,8 @@ test('a cycle takes as many of each outlet\'s items as it did', () => {
   assert.equal(MAX_PER_SOURCE, MAX_PER_SOURCE_WAS)
   for (const name of [...RSS_SOURCE_NAMES, 'Reuters']) assert.equal(capFor(name), capForWas(name), name)
   assert.deepEqual(RSS_SOURCES.filter((s) => s.cap !== undefined).map((s) => [s.name, s.cap]).sort(), Object.entries(PER_SOURCE_CAP_WAS).sort())
-  // 25 feeds at three, one at two and two at one, plus three from Hacker News: the 82 of every `Raw items:` line.
-  assert.equal(RSS_SOURCES.reduce((n, s) => n + capFor(s.name), 0) + capFor(HACKER_NEWS.name), 82)
+  // 30 feeds at three, four at two and two at one, plus three from Hacker News: the 103 of every `Raw items:` line.
+  assert.equal(RSS_SOURCES.reduce((n, s) => n + capFor(s.name), 0) + capFor(HACKER_NEWS.name), 103)
 })
 
 test('the niche outlets are these, and the set the dedup tests against is made from them', () => {

@@ -17,6 +17,7 @@ Accountability (amānah): power is a trust. Those who wield it — states, corpo
 1. Read `/tmp/zuhd-selection.json` — today's selected stories.
 2. For each story, read ALL sources in the `sources` array (each has a `body` field with full text). Do not fetch any URLs. Every source in the selection's `sources` array must end up in your frontmatter `sources:` list — that is what makes the article multi-sourced. Drop a source only if its body covers a clearly different event from the one you're writing; never drop a source just because its phrasing didn't make it into your prose. Cross-checking IS using a source.
 3. Synthesize a single article from multiple perspectives:
+   - A source `body` may be in German, Portuguese, Spanish, Russian or Chinese. Write from it as from any other, in English, with names of people, places and institutions in the form an English reader knows.
    - Facts all sources agree on → state as fact.
    - Where sources disagree on figures: use the most conservative figure and note the range if space permits ("between 30 and 47 killed").
    - Where sources disagree on characterization: report what happened, not what it was called. "Forces entered the compound" rather than choosing between "raided" (one source) and "secured" (another).
@@ -97,6 +98,7 @@ Each block is one markdown paragraph and **exactly one sentence**. The word ceil
 
    - **The values outrank it.** A counterpoint that launders a denial into balance is not a counterpoint. If a state denies a killing its own ministry has confirmed, the denial is a lie and reporting it as the other side is the false equivalence `<values>` forbids. Drop the block.
    - **Never invent one.** The quotation must appear verbatim in a source `body`, inside quotation marks there, said by the person you attribute it to. A plausible quote is a fabricated quote. If you are reconstructing wording from a paraphrase, you do not have a quote — write the counterpoint instead, or ship four blocks.
+   - **Never quote from a body that is not in English.** A sentence you translated is not verbatim. Write the counterpoint instead, or ship four blocks.
    - **Skip it when the sources carry neither.** This is permission, not an instruction. Four blocks is the normal article. A fifth block written to fill the slot is filler, and filler is the most expensive thing in a 450-character article.
 
 5. **Future block** (≤18 words) — something specific and unresolved. A deadline, a pending decision, a named consequence. End on what's at stake next, not a summary. Never end with "X must now Y" — that is prescription, not tension. Name the decision-maker, the deadline, or the thing that breaks.

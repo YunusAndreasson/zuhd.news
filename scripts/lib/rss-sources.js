@@ -30,7 +30,9 @@
 // republishes journal press releases and was landing 29% of science primaries;
 // The Record (cyber) was landing 19% of tech primaries. Lowering their cap
 // rebalances toward Nature/Carbon Brief/SciDev and 404/Ars.
-// TechNode publishes three or four items a day, product notes among them.
+// TechNode publishes three or four items a day, product notes among them;
+// TMTPost and Zhidx are trade press at five to thirty a day, and Agência
+// Pública runs analysis beside its reporting.
 /** @type {RssSource[]} */
 export const RSS_SOURCES = [
   // Hacker News fetched via Algolia API — see fetchHackerNews() in fetch-news.js
@@ -65,6 +67,18 @@ export const RSS_SOURCES = [
   { name: 'Latin America Reports', url: 'https://latinamericareports.com/feed/', format: 'rss2', country: 'CO' },
   // The news desk's feed: the site's own carries its opinion and culture pages.
   { name: 'Mondoweiss',   url: 'https://mondoweiss.net/news/feed/',            format: 'rss2', country: 'US' },
+  // Read in the outlet's own language: the selector and the writer read it as
+  // they read English, and the article is written in English.
+  { name: 'netzpolitik.org', url: 'https://netzpolitik.org/feed/',             format: 'rss2', country: 'DE', defaultCategory: 'tech' },
+  { name: 'Agência Pública', url: 'https://apublica.org/feed/',                format: 'rss2', country: 'BR', cap: 2 },
+  { name: 'Contracorriente', url: 'https://contracorriente.red/feed/',         format: 'rss2', country: 'HN' },
+  { name: 'Focos',        url: 'https://focostv.com/feed/',                    format: 'rss2', country: 'SV' },
+  { name: 'Kloop',        url: 'https://kloop.kg/feed/',                       format: 'rss2', country: 'KG' },
+  { name: 'TMTPost',      url: 'https://www.tmtpost.com/rss.xml',              format: 'rss2', country: 'CN', defaultCategory: 'tech', cap: 2 },
+  { name: 'Zhidx',        url: 'https://zhidx.com/rss',                        format: 'rss2', country: 'CN', defaultCategory: 'tech', cap: 2 },
+  // Chinese officials, executives and scholars in English translation, from a
+  // Beijing think tank close to the government.
+  { name: 'Pekingnology', url: 'https://www.pekingnology.com/feed',            format: 'rss2', country: 'CN' },
 ]
 
 /** Hacker News is read through Algolia, not from a feed, and is a source like the rest once it has been. */
