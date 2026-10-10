@@ -186,7 +186,11 @@ INPUT:\n${JSON.stringify(bundle)}`)
         } else if (result.out) {
           const reasons = []
           validated = validateMarketComment(result.out, bundle, reasons)
-          if (!validated) rejections.push(`${signal.id}: ${reasons[0] || 'unknown'} — "${String(result.out.recent || '').slice(0, 160)}"`)
+          // The whole of it, to a little past the cap. It was the first 160
+          // characters, and the word a gate turned on was usually past them:
+          // of 13 comments refused in the 30 cycles to 2026-10-10, none could
+          // be judged right or wrong from its log line.
+          if (!validated) rejections.push(`${signal.id}: ${reasons[0] || 'unknown'} — "${String(result.out.recent || '').slice(0, RECENT_CAP + 40)}"`)
         } else {
           rejections.push(`${signal.id}: no object in model result`)
         }
