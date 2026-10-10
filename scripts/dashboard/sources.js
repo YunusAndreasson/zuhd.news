@@ -1,7 +1,7 @@
 // Every source the pipeline pulls from or posts to, and whether it is working.
 //
 // The page had one table of this kind, the RSS outlets. The ten snapshot
-// fetchers, the seven sources behind the trends file, the analytics pull, the
+// fetchers, the nine sources behind the trends file, the analytics pull, the
 // briefing's voice and the three places a story is posted had none, and their
 // stages exit 0 when they fail: a fetcher that cannot reach its source keeps
 // the last snapshot and says so in the log. X answered "credits depleted" to
@@ -150,13 +150,13 @@ export function sourcesView({ read, cycles, now = Date.now() }) {
     },
   ]
 
-  // ── The trends file: one fetch, eight sources ──────────────────────
+  // ── The trends file: one fetch, nine sources ───────────────────────
   const trends = read('trendsLatest')
   const indicators = Array.isArray(trends?.indicators) ? trends.indicators : []
   const trendsFresh = fresh(trends?.fetchedAt, '3.4')
   /** @type {[id: string, name: string][]} */
   const TREND_SOURCES = [
-    ['fred', 'FRED'], ['oer', 'Open Exchange Rates'], ['portwatch', 'IMF PortWatch'], ['polymarket', 'Polymarket'],
+    ['fred', 'FRED'], ['imf', 'IMF commodity prices'], ['oer', 'Open Exchange Rates'], ['portwatch', 'IMF PortWatch'], ['polymarket', 'Polymarket'],
     ['crypto', 'CoinGecko'], ['bis', 'BIS policy rates'], ['wikipedia', 'Wikipedia pageviews'], ['stocks', 'Yahoo (story tickers)'],
   ]
   /** @type {Row[]} */
