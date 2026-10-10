@@ -307,8 +307,19 @@ const sourceBlock = (story: Story, p: MapPoint): Node[] => {
       details.append(rows(contested ? [...sources].sort((a, b) => lean(b) - lean(a)) : sources))
       // The card is capped and this block sits at its foot, so the rows open
       // below a fold the reader has no reason to think is there.
+      //
+      // Only when the reader opened it. Setting `open` above queues a `toggle`
+      // of its own, which arrives after the card is on the page: a contested
+      // story's card then scrolled itself past its title and its prose to show
+      // its sources, on opening.
+      const summary = details.querySelector('summary')
+      let pressed = false
+      summary?.addEventListener('click', () => {
+        pressed = true
+      })
       details.addEventListener('toggle', () => {
-        if (details.open) details.scrollIntoView?.({ block: 'nearest' })
+        if (pressed && details.open) details.scrollIntoView?.({ block: 'nearest' })
+        pressed = false
       })
       nodes.push(details)
     }
@@ -1004,9 +1015,18 @@ export function createStoryPopup(map: MapLibreMap, opts: StoryPopupOptions = {})
    * filled when the record lands, so nothing below it moves. It goes only when
    * there turns out to be nothing to draw.
    */
-  const storyChart = (story: Story, folds: Disclosure[], stillOpen: () => boolean): Node[] => {
+  const storyChart = (
+    story: Story,
+    folds: Disclosure[],
+    stillOpen: () => boolean,
+    /** Called once the block has its line, at once or when the record lands. */
+    onDrawn: () => void,
+  ): Node[] => {
     const id = story.chart
-    if (!id) return []
+    // A company and an AI lab have a card in the app and no series page here:
+    // `/api/entity/co:*.json` does not exist. Asked for anyway, the block held
+    // its height, the fetch failed on every open, and the prose jumped up.
+    if (!id || /^(?:co|ai):/.test(id)) return []
 
     const block = el('a', 'map-popup-chart')
     block.href = `/e/${encodeURIComponent(id)}`
@@ -1057,16 +1077,21 @@ export function createStoryPopup(map: MapLibreMap, opts: StoryPopupOptions = {})
       block.remove()
       chartFold.panel.remove()
     }
-    // Warm from `preview`'s prefetch on the ordinary path.
+    // Warm from `preview`'s prefetch on the ordinary path. `onDrawn` is what
+    // lets the strip give up this series' chip, and it is called only when the
+    // line is there: a chip dropped for a chart that then failed to arrive is a
+    // series the card can no longer reach at all.
     const hit = cachedEntity(id)
     if (hit) {
       if (!fill(hit)) return []
-    } else {
-      void fetchEntity(id).then((record) => {
-        if (!stillOpen()) return
-        if (!fill(record)) drop()
-      })
+      onDrawn()
+      return nodes
     }
+    void fetchEntity(id).then((record) => {
+      if (!stillOpen()) return
+      if (fill(record)) onDrawn()
+      else drop()
+    })
     return nodes
   }
 
@@ -1104,11 +1129,12 @@ export function createStoryPopup(map: MapLibreMap, opts: StoryPopupOptions = {})
    * it and scroll. That is the right trade: the reader chose to spend the
    * card's height on this.
    */
-  const entityStrip = (story: Story, folds: Disclosure[]): Node[] => {
-    // The chart the story names is already drawn under its title, and a chip
-    // for the same series would be a second way into the same panel.
-    const entities = (story.entities ?? []).filter((e) => e.id !== story.chart)
-    if (!entities.length) return []
+  const entityStrip = (
+    story: Story,
+    folds: Disclosure[],
+  ): { nodes: Node[]; without(id: string): void } => {
+    const entities = story.entities ?? []
+    if (!entities.length) return { nodes: [], without() {} }
 
     const aside = el('aside', 'map-popup-entities')
     aside.setAttribute('aria-label', 'Indicators this story follows')
@@ -1120,9 +1146,11 @@ export function createStoryPopup(map: MapLibreMap, opts: StoryPopupOptions = {})
     const strip = fold(folds)
     const build = entityPanelIn(strip)
 
+    const chips = new Map<string, HTMLElement>()
     for (const e of entities) {
       const chip = el('a', 'map-entity-chip', e.label)
       chip.href = `/e/${encodeURIComponent(e.id)}`
+      chips.set(e.id, chip)
       strip.bind(
         e.id,
         chip,
@@ -1137,7 +1165,29 @@ export function createStoryPopup(map: MapLibreMap, opts: StoryPopupOptions = {})
       aside.append(chip)
     }
 
-    return [aside, strip.panel]
+    const nodes: Node[] = [aside, strip.panel]
+    return {
+      nodes,
+      /**
+       * Give up one series' chip, and the strip with it when it was the last:
+       * a label over no chips is a heading for nothing. For the series the
+       * story's chart draws under its title, once it is drawn.
+       */
+      without(id) {
+        const chip = chips.get(id)
+        if (!chip) return
+        chips.delete(id)
+        if (chip.getAttribute('aria-expanded') === 'true') strip.close()
+        chip.remove()
+        if (!chips.size) {
+          aside.remove()
+          strip.panel.remove()
+          // And out of what is still to be placed, when the chart was drawn
+          // before the strip was.
+          nodes.length = 0
+        }
+      },
+    }
   }
 
   return {
@@ -1193,7 +1243,18 @@ export function createStoryPopup(map: MapLibreMap, opts: StoryPopupOptions = {})
         const folds: Disclosure[] = []
         // Between the title and the prose, where the app has it: the series is
         // what the story is about, and the prose reads against it.
-        root.append(...storyChart(story, folds, () => pending === p.slug))
+        // The strip is built further down, after the prose it sits under, and
+        // the chart may be drawn before or after it is: whichever comes second
+        // gives up the chip.
+        let charted = false
+        let strip: ReturnType<typeof entityStrip> | null = null
+        const chartId = story.chart
+        root.append(
+          ...storyChart(story, folds, () => pending === p.slug, () => {
+            charted = true
+            if (chartId) strip?.without(chartId)
+          }),
+        )
         const body = el('div', 'map-popup-prose')
         // Trusted content: this HTML is produced by our own build from the
         // article markdown, the same string the /a/{slug} page renders.
@@ -1222,7 +1283,9 @@ export function createStoryPopup(map: MapLibreMap, opts: StoryPopupOptions = {})
         // Above the isnad, because the chain has to stay last — `about.md`
         // says every article ends with its sources, and this card is the
         // article on this surface.
-        root.append(...entityStrip(story, folds))
+        strip = entityStrip(story, folds)
+        if (charted && chartId) strip.without(chartId)
+        root.append(...strip.nodes)
         root.append(...sourceBlock(story, p))
         // Only on a card that rendered. A story that failed to load is not one
         // the reader has read, so it must not count towards the app line and

@@ -168,7 +168,7 @@ export const disclosure = (
 
   const collapse = () => {
     if (!openId) return
-    seq++
+    const mine = ++seq
     mark(null)
     const from = panel.getBoundingClientRect().height
     const finish = () => {
@@ -186,7 +186,12 @@ export const disclosure = (
       })
       .finished.finally(() => {
         panel.style.overflow = overflow
-        finish()
+        // A trigger pressed while this was folding has reopened the panel, and
+        // emptying it now would leave that trigger marked open over nothing.
+        // The same guard `expand` keeps against a fetch that lands late. It
+        // matters more since `close()` exists: one fold now shuts another, so
+        // a collapse can be started by a press somewhere else in the card.
+        if (seq === mine) finish()
       })
   }
 

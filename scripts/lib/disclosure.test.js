@@ -201,6 +201,56 @@ test('two folds in one card: opening one shuts the other', async () => {
   }
 })
 
+test('a fold reopened while it was folding stays open', async () => {
+  // `close()` lets one fold shut another, so a collapse can now be started by a
+  // press elsewhere in the card and overtaken by a press on its own trigger
+  // inside the 220ms it takes. Finishing regardless hid and emptied a panel
+  // whose trigger said it was open.
+  const env = setupDom()
+  try {
+    // Motion on, with the animation's end in the test's hands.
+    globalThis.matchMedia = /** @type {typeof matchMedia} */ (
+      /** @type {unknown} */ (() => ({ matches: false, addEventListener() {}, removeEventListener() {} }))
+    )
+    const ends = []
+    env.window.Element.prototype.animate = () => ({
+      finished: new Promise((resolve) => ends.push(resolve)),
+    })
+    env.window.Element.prototype.getBoundingClientRect = () => ({ x: 0, y: 0, width: 100, height: 100, top: 0, left: 0, right: 100, bottom: 100 })
+    const finishAll = async () => {
+      while (ends.length) ends.shift()()
+      await settle()
+    }
+
+    const { disclosure } = await import(disclosurePath)
+    const { el } = await import(domPath)
+    const d = disclosure('panel')
+    const a = el('a', 'chip', 'A')
+    document.body.append(a, d.panel)
+    d.bind('a', a, async () => ({ node: el('p', null, 'A body') }))
+
+    click(a)
+    await settle()
+    await finishAll()
+    await settle()
+    assert.match(d.panel.textContent, /A body/)
+
+    d.close()
+    assert.equal(a.getAttribute('aria-expanded'), 'false')
+    assert.equal(ends.length, 1, 'the fold is animating shut')
+    // Pressed again before it has finished.
+    click(a)
+    await settle()
+    await finishAll()
+    await settle()
+    assert.equal(a.getAttribute('aria-expanded'), 'true')
+    assert.equal(d.panel.hidden, false, 'the overtaken collapse did not hide it')
+    assert.match(d.panel.textContent, /A body/, 'or empty it')
+  } finally {
+    env.restore()
+  }
+})
+
 test('a modified click is left to the browser, on the chip and on "full record"', async () => {
   const env = setupDom()
   try {

@@ -61,7 +61,10 @@ const openCard = async (story, p = point, entities = {}) => {
   // Reduced motion, so `growTo` returns before `Element.animate`, which jsdom
   // does not implement. Every assertion here is about what the card holds.
   dom.window.matchMedia = () => ({ matches: true, addEventListener() {}, removeEventListener() {} })
-  dom.window.Element.prototype.scrollIntoView = () => {}
+  globalThis.__scrolls = 0
+  dom.window.Element.prototype.scrollIntoView = () => {
+    globalThis.__scrolls++
+  }
   for (const k of ['window', 'document', 'HTMLElement', 'Element', 'Node', 'MouseEvent', 'matchMedia', 'location']) {
     Object.defineProperty(globalThis, k, { configurable: true, writable: true, value: dom.window[k] })
   }
@@ -80,6 +83,8 @@ const openCard = async (story, p = point, entities = {}) => {
   const popup = createStoryPopup({ on() {}, off() {} })
   await popup.open(p, Date.now())
   await settle()
+  // Kept for a test that opens the same story again, with its records in hand.
+  globalThis.__popup = popup
   return globalThis.__card
 }
 
@@ -159,6 +164,32 @@ test('several outlets are folded under the article page’s words, and a neutral
   assert.equal(details.nextElementSibling.className, 'map-popup-sources-flat')
   // No number: the lean is a machine estimate and is given as a word or not at all.
   assert.doesNotMatch(details.textContent, /[+−-]?\d\.\d\d/)
+})
+
+test('a card does not scroll itself to its sources; a reader opening them does', async () => {
+  // The rows of a contested story are open from the start, and setting `open`
+  // queues a `toggle` that arrives once the card is on the page. Answered like
+  // a reader's, it scrolled the card past its own title and prose on opening.
+  const sources = [
+    outlet('critic', { sentiment: -0.6, angle: 'calls the claim unverified' }),
+    outlet('ally', { sentiment: 0.7, angle: 'reports the advance as fact' }),
+  ]
+  const card = await openCard(storyOf({ sentimentDivergence: 0.52, sources }))
+  const details = card.querySelector('details.map-popup-framing')
+  assert.equal(details.open, true)
+  // jsdom queues the same event a browser does; let it land.
+  details.dispatchEvent(new globalThis.window.Event('toggle'))
+  await settle()
+  assert.equal(globalThis.__scrolls, 0, 'opening the card moved nothing')
+
+  // Shut and opened by the reader: now the rows are below a fold, and follow.
+  const summary = details.querySelector('summary')
+  for (const open of [false, true]) {
+    click(summary)
+    details.open = open
+    details.dispatchEvent(new globalThis.window.Event('toggle'))
+  }
+  assert.equal(globalThis.__scrolls, 1, 'once, for the opening and not for the shutting')
 })
 
 test('a contested story opens its rows, ordered by lean, under the shared sentence', async () => {
@@ -266,6 +297,43 @@ test('the chart’s own series leaves the follows strip, and the two folds take 
   // The only chip was the chart's: no strip at all, not a label over nothing.
   const alone = await openCard(storyOf({ chart: 'brent', entities: [{ id: 'brent', label: 'Brent' }] }), point, { brent: series() })
   assert.equal(alone.querySelector('.map-popup-entities'), null)
+})
+
+test('a chart that does not arrive leaves its chip, and a company’s is never asked for', async () => {
+  // The strip gives up the charted series' chip because the chart is the way
+  // in. When the chart fails, the chip is the only way in.
+  const entities = [{ id: 'brent', label: 'Brent' }, { id: 'us-10y', label: 'US 10Y' }]
+  const failed = await openCard(storyOf({ chart: 'brent', entities }))
+  assert.equal(failed.querySelector('.map-popup-chart'), null)
+  assert.deepEqual([...failed.querySelectorAll('.map-entity-chip')].map((c) => c.textContent), ['Brent', 'US 10Y'])
+
+  // Drawn at once, from a record already in hand (the ordinary path, after the
+  // preview's prefetch): the chip is gone before the strip is placed, and a
+  // strip of one is no strip.
+  const first = await openCard(storyOf({ chart: 'brent', entities: [entities[0]] }), point, { brent: series() })
+  assert.equal(first.querySelector('.map-popup-entities'), null)
+  await globalThis.__popup.open(point, Date.now())
+  await settle()
+  const again = globalThis.__card
+  assert.ok(again.querySelector('.map-popup-chart svg.spark'), 'the second opening draws from the cache')
+  assert.equal(again.querySelector('.map-popup-entities'), null, 'and places no empty strip')
+
+  // A company has a card in the app and no series page here. The block held
+  // its height, the fetch 404ed on every open, and the prose jumped.
+  let asked = 0
+  const company = await openCard(storyOf({ chart: 'co:aramco' }))
+  const realFetch = globalThis.fetch
+  globalThis.fetch = /** @type {typeof fetch} */ (
+    (input, init) => {
+      asked++
+      return realFetch(input, init)
+    }
+  )
+  await globalThis.__popup.open(point, Date.now())
+  await settle()
+  assert.equal(company.querySelector('.map-popup-chart'), null)
+  assert.equal(globalThis.__card.querySelector('.map-popup-chart'), null)
+  assert.equal(asked, 0, 'no request for a record that cannot exist')
 })
 
 test('no chart, no block; and a series that cannot be drawn takes its block away', async () => {
