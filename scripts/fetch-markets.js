@@ -5,7 +5,8 @@
 // Shape:  { generated, exchanges: [{ id, name, indexName, city, iso2, lat, lng,
 //          level, changePct, currency, tz, sessionStart, sessionEnd, days,
 //          series: { periods, values, dates, completed }, asOf, sourceLabel,
-//          blurb, topicTags, countryTags, stale? }], skipped: [{ id, reason }] }
+//          blurb, topicTags, countryTags, gdp?, stale? }], skipped: [{ id, reason }],
+//          fx?: { dates, perUsd: { TRY: [41.2, null, …] } } }
 //
 // Reads MARKET_TRACKED from lib/market-metadata.js and fetches each symbol from
 // Yahoo Finance through lib/trends-sources/stocks.js, which already carries the
@@ -17,10 +18,17 @@
 // its reason: a bounded dataset that does not say what it left out reads as
 // complete coverage.
 //
+// `fx` is each exchange's currency against the dollar over the last forty days, a
+// day's rates for a day's date, from the history the trends fetch keeps
+// (`lib/fx-history.js`). An index is priced in its own currency, and with this
+// a reader can say what it did in dollars. Absent until that history holds a
+// rate for one of them.
+//
 // Best-effort: if nothing usable comes back the script logs and exits 0,
 // leaving any previous .markets.json intact (build.js skips the endpoint when
 // the file is absent, so a missing snapshot degrades to "no layer this run").
 
+import { fxWindow, readFxHistory } from './lib/fx-history.js'
 import { MARKET_CATALOG, MARKET_TRACKED, exchangeRecord } from './lib/market-metadata.js'
 import { fetchQuotes, quoteSummary } from './lib/quote-snapshot.js'
 import { Degrade, snapshotStage } from './lib/snapshot-stage.js'
@@ -52,5 +60,6 @@ if (written) {
 async function produce({ previous }) {
   run = await fetchQuotes(MARKET_TRACKED, exchangeRecord, { signal: budget, previous: previous?.exchanges })
   if (run.records.length === 0) throw new Degrade('no usable exchange data returned')
-  return { generated: new Date().toISOString(), exchanges: run.records, skipped: run.skipped }
+  const fx = fxWindow(readFxHistory(), run.records.map((record) => record.currency))
+  return { generated: new Date().toISOString(), exchanges: run.records, skipped: run.skipped, ...(fx ? { fx } : {}) }
 }

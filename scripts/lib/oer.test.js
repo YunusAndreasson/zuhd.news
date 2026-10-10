@@ -50,10 +50,13 @@ test('the first run asks for every day of the window and keeps what it was asked
   const cachePath = join(dir, 'fx.json')
   const { asked, get } = oer()
   const { rates } = await run(cachePath, { fetch: get, now: NOON })
-  assert.equal(asked.length, 30)
-  assert.deepEqual([asked[0], asked.at(-1)], ['2026-09-10', '2026-10-09'])
+  // Forty days kept, so an index's thirty-day move has the rate of the day it
+  // starts on; a currency's own row is the last thirty-four, a month and its
+  // slack.
+  assert.equal(asked.length, 40)
+  assert.deepEqual([asked[0], asked.at(-1)], ['2026-08-31', '2026-10-09'])
   assert.deepEqual(Object.keys(rates), ['TRY', 'PKR'])
-  assert.deepEqual([rates.TRY.values.length, rates.TRY.periods[0], rates.TRY.periods.at(-1), rates.TRY.asOf], [30, 'Sep 10', 'Oct 9', '2026-10-09'])
+  assert.deepEqual([rates.TRY.values.length, rates.TRY.periods[0], rates.TRY.periods.at(-1), rates.TRY.asOf], [34, 'Sep 6', 'Oct 9', '2026-10-09'])
   assert.equal(rates.TRY.values.at(-1), 40.9)
   // One line of JSON, by rename, holding only the two currencies.
   const text = readFileSync(cachePath, 'utf8')
@@ -70,7 +73,7 @@ test('a run that fetches nothing leaves the file as it is', async () => {
   const { asked, get } = oer()
   const { rates } = await run(cachePath, { fetch: get, now: NOON + 5 * 3600_000 })
   assert.deepEqual(asked, [])
-  assert.equal(rates.TRY.values.length, 30)
+  assert.equal(rates.TRY.values.length, 34)
   assert.equal(readFileSync(cachePath, 'utf8'), marked)
 })
 
@@ -79,9 +82,9 @@ test('the next day asks for that day alone, and the window moves on in the file'
   const { asked, get } = oer()
   const { rates } = await run(cachePath, { fetch: get, now: NOON + DAY })
   assert.deepEqual(asked, ['2026-10-10'])
-  assert.deepEqual([rates.TRY.periods[0], rates.TRY.periods.at(-1), rates.TRY.asOf], ['Sep 11', 'Oct 10', '2026-10-10'])
+  assert.deepEqual([rates.TRY.periods[0], rates.TRY.periods.at(-1), rates.TRY.asOf], ['Sep 7', 'Oct 10', '2026-10-10'])
   const days = Object.keys(JSON.parse(readFileSync(cachePath, 'utf8')).days)
-  assert.deepEqual([days.length, days[0], days.at(-1)], [30, '2026-09-11', '2026-10-10'])
+  assert.deepEqual([days.length, days[0], days.at(-1)], [40, '2026-09-01', '2026-10-10'])
 })
 
 test('a day that cannot be fetched is said, the others stand, and nothing is written for it', async () => {
@@ -92,7 +95,7 @@ test('a day that cannot be fetched is said, the others stand, and nothing is wri
   assert.deepEqual(asked, ['2026-10-11'])
   assert.ok(said.includes('  ✗ oer 2026-10-11: HTTP 429'), said.join('\n'))
   // The series ends at the last day there is, and says so.
-  assert.deepEqual([rates.TRY.values.length, rates.TRY.asOf], [29, '2026-10-10'])
+  assert.deepEqual([rates.TRY.values.length, rates.TRY.asOf], [33, '2026-10-10'])
   assert.equal(readFileSync(cachePath, 'utf8'), before)
 })
 
@@ -102,13 +105,55 @@ test('a history file cut short is said, and rebuilt', async () => {
   const { asked, get } = oer()
   const { rates, said } = await run(cachePath, { fetch: get, now: NOON })
   assert.ok(said.some((line) => /readJson: .*cut\.json is not valid JSON/.test(line)), said.join('\n'))
-  assert.equal(asked.length, 30)
-  assert.equal(rates.PKR.values.length, 30)
-  assert.equal(Object.keys(JSON.parse(readFileSync(cachePath, 'utf8')).days).length, 30)
+  assert.equal(asked.length, 40)
+  assert.equal(rates.PKR.values.length, 34)
+  assert.equal(Object.keys(JSON.parse(readFileSync(cachePath, 'utf8')).days).length, 40)
 })
 
 test('with no history and no answer there are no rates', async () => {
   const { rates } = await run(join(dir, 'never.json'), { fetch: oer(() => true).get, now: NOON })
   assert.equal(rates, null)
   assert.equal(readdirSync(dir).includes('never.json'), false)
+})
+
+test('a kept currency is stored beside the listed ones and answered with no series', async () => {
+  const cachePath = join(dir, 'kept.json')
+  const { get } = oer()
+  const { rates } = await run(cachePath, { fetch: get, now: NOON, keep: ['XAU', 'TRY'] })
+  assert.deepEqual(Object.keys(rates), ['TRY', 'PKR'])
+  assert.deepEqual(JSON.parse(readFileSync(cachePath, 'utf8')).days['2026-10-09'], { TRY: 40.9, PKR: 278, XAU: 0.0003 })
+})
+
+test('days cached before a currency was kept are asked for again, newest first and ten a run', async () => {
+  const cachePath = join(dir, 'thin.json')
+  // A month cached with the listed currencies alone.
+  await run(cachePath, { fetch: oer().get, now: NOON })
+  const first = oer()
+  await run(cachePath, { fetch: first.get, now: NOON, keep: ['XAU'] })
+  assert.equal(first.asked.length, 10)
+  assert.deepEqual([first.asked[0], first.asked.at(-1)], ['2026-10-09', '2026-09-30'])
+  const days = () => JSON.parse(readFileSync(cachePath, 'utf8')).days
+  assert.deepEqual(days()['2026-10-09'], { TRY: 40.9, PKR: 278, XAU: 0.0003 })
+  assert.deepEqual(days()['2026-09-29'], { TRY: 42.9, PKR: 278 })
+  // The next run takes the ten before those, and the fourth the last.
+  const second = oer()
+  await run(cachePath, { fetch: second.get, now: NOON, keep: ['XAU'] })
+  assert.deepEqual([second.asked.length, second.asked[0], second.asked.at(-1)], [10, '2026-09-29', '2026-09-20'])
+  for (const last of ['2026-09-10', '2026-08-31']) {
+    const next = oer()
+    await run(cachePath, { fetch: next.get, now: NOON, keep: ['XAU'] })
+    assert.deepEqual([next.asked.length, next.asked.at(-1)], [10, last])
+  }
+  const settled = oer()
+  await run(cachePath, { fetch: settled.get, now: NOON, keep: ['XAU'] })
+  assert.deepEqual(settled.asked, [])
+  assert.ok(Object.values(days()).every((day) => day.XAU === 0.0003))
+})
+
+test('a day that fails on the way back keeps the rates it had', async () => {
+  const cachePath = join(dir, 'thin-failed.json')
+  await run(cachePath, { fetch: oer().get, now: NOON })
+  const { rates } = await run(cachePath, { fetch: oer(() => true).get, now: NOON, keep: ['XAU'] })
+  assert.equal(rates.TRY.values.length, 34)
+  assert.deepEqual(JSON.parse(readFileSync(cachePath, 'utf8')).days['2026-10-09'], { TRY: 40.9, PKR: 278 })
 })

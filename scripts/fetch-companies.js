@@ -3,7 +3,7 @@
 //
 // Output: content/.companies.json
 // Shape:  { generated, companies: [{ id, name, about, symbol, iso2, currency,
-//          currencyName, level, asOf, series: { periods, values }, sourceLabel,
+//          currencyName, level, marketValue?, asOf, series: { periods, values }, sourceLabel,
 //          blurb, tickers, topicTags, commonName?, stale? }],
 //          skipped: [{ id, reason }] }
 //
@@ -20,6 +20,11 @@
 // rather than a price of that minute, and the published file changes when a
 // market closes instead of on every cycle.
 //
+// `marketValue` is the company's worth in US dollars at that close: the
+// catalog's share count by the close, at the newest rate the trends fetch has
+// kept for the share's currency (`lib/fx-history.js`). The list is the largest
+// companies, and a share price does not say which is larger.
+//
 // `skipped` names the companies this snapshot does not hold, each with its
 // reason.
 //
@@ -29,6 +34,7 @@
 
 import { COMPANY_TRACKED } from './lib/company-metadata.js'
 import { companyRecord } from './lib/companies.js'
+import { latestPerUsd, readFxHistory } from './lib/fx-history.js'
 import { fetchQuotes, quoteSummary } from './lib/quote-snapshot.js'
 import { Degrade, snapshotStage } from './lib/snapshot-stage.js'
 import { stageBudget } from './lib/stage-budget.js'
@@ -55,7 +61,9 @@ if (written) {
 }
 
 async function produce({ previous }) {
-  run = await fetchQuotes(COMPANY_TRACKED, companyRecord, { signal: budget, previous: previous?.companies })
+  const perUsd = latestPerUsd(readFxHistory())
+  const toRecord = (entry, data, opts) => companyRecord(entry, data, { ...opts, perUsd })
+  run = await fetchQuotes(COMPANY_TRACKED, toRecord, { signal: budget, previous: previous?.companies })
   if (run.records.length === 0) throw new Degrade('no usable company data returned')
   return { generated: new Date().toISOString(), companies: run.records, skipped: run.skipped }
 }

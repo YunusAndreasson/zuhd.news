@@ -175,3 +175,62 @@ test('with no previous snapshot a failed row is simply absent, as it was', async
   assert.deepEqual(ids(indicators), ['brent', 'gas', 'pkr', 'ngn', 'poly-new', 'boe', 'boj'])
   assert.deepEqual(carried, [])
 })
+
+test('a series that names where it is from is published as that, not as the registry’s', async () => {
+  // A futures row answered by its fallback (`trends-sources/futures.js`).
+  const fallback = { ...data(125), source: 'spot', seriesId: 'SPOT-BRENT', sourceLabel: 'the spot series' }
+  const { indicators } = await run({
+    prices: { mode: 'perIndicator', requiredEnv: [], fetcher: async (ind) => (ind.id === 'brent' ? fallback : data(90)) },
+  })
+  const brent = indicators.find((r) => r.id === 'brent')
+  assert.deepEqual([brent.source, brent.seriesId, brent.sourceLabel], ['spot', 'SPOT-BRENT', 'the spot series'])
+  assert.equal(brent.label, 'brent')
+  // Its neighbour is the registry's own.
+  const wti = indicators.find((r) => r.id === 'wti')
+  assert.deepEqual([wti.source, wti.seriesId, wti.sourceLabel], ['prices', 'WTI', 'prices'])
+})
+
+test('a source’s `after` is handed its own rows, carried ones too, and a throw from it is its own', async () => {
+  /** @type {string[][]} */
+  const seen = []
+  const { indicators } = await run({
+    // `wti` has no fresh answer: it is carried, and `after` still sees it.
+    prices: {
+      mode: 'perIndicator',
+      requiredEnv: [],
+      fetcher: async (ind) => (ind.id === 'wti' ? null : data(90)),
+      after: (rows) => {
+        seen.push(ids(rows))
+        rows[0].asOf = 'settled'
+      },
+    },
+    fx: {
+      mode: 'batched',
+      requiredEnv: [],
+      fetcher: async () => ({ PKR: data(278), NGN: data(1500) }),
+      after: () => {
+        throw new Error('after failed')
+      },
+    },
+  })
+  assert.deepEqual(seen, [['brent', 'wti', 'gas']])
+  assert.equal(indicators.find((r) => r.id === 'brent').asOf, 'settled')
+  // The source whose `after` threw keeps its rows, and so does everyone after it.
+  assert.deepEqual(ids(indicators), ALL)
+})
+
+test('a row that says how many places it is published to is rounded to them, and says so', async () => {
+  const rates = [{ ...reg('cpi', 'prices'), decimals: 1 }, reg('wti', 'prices')]
+  const { indicators } = await collectRows({
+    sources: { prices: { mode: 'perIndicator', requiredEnv: [], fetcher: async () => ({ values: [3.30386, 3.35302], periods: ['Jul 2026', 'Aug 2026'], asOf: '2026-08-01' }) } },
+    registry: rates,
+    prior: null,
+    now: NOW,
+    say: quiet,
+  })
+  const [cpi, wti] = indicators
+  assert.deepEqual([cpi.values, cpi.decimals], [[3.3, 3.4], 1])
+  // A row that declares none is as its source gave it, and gains no key.
+  assert.deepEqual(wti.values, [3.30386, 3.35302])
+  assert.equal('decimals' in wti, false)
+})

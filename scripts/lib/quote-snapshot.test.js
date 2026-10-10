@@ -37,6 +37,17 @@ async function logged(fn) {
 
 // ── an exchange's record ───────────────────────────────────────────────────
 
+test('every tracked exchange carries its country’s weight, and its record publishes it', () => {
+  // Nothing under a hundred billion dollars is tracked: a figure entered in
+  // millions, or left off, would weigh its market at nothing and say nothing.
+  for (const m of MARKET_TRACKED) assert.ok(Number.isFinite(m.gdp) && m.gdp > 1e11, `${m.id}: ${m.gdp}`)
+  assert.equal(exchangeRecord(NYSE, quote()).record.gdp, NYSE.gdp)
+  // A catalog row without one publishes no key, never a zero or a null.
+  const { gdp, ...unweighted } = NYSE
+  assert.ok(gdp > 0)
+  assert.equal('gdp' in exchangeRecord(unweighted, quote()).record, false)
+})
+
 test("an exchange's change is its last two closes, whatever the window began at", () => {
   // map-layers.md: "The day's change is the last two closes, never
   // `chartPreviousClose`", which is the close before the *window* and against
@@ -55,6 +66,7 @@ test("an exchange's record is the published one, key for key", () => {
   assert.deepEqual(Object.keys(record), [
     'id', 'name', 'indexName', 'city', 'iso2', 'lat', 'lng', 'level', 'changePct', 'currency', 'tz',
     'sessionStart', 'sessionEnd', 'days', 'series', 'asOf', 'sourceLabel', 'blurb', 'topicTags', 'countryTags',
+    'gdp',
   ])
   assert.deepEqual(Object.keys(record.series), ['periods', 'values', 'dates', 'completed'])
   assert.equal(record.sourceLabel, 'Yahoo Finance · SNP')

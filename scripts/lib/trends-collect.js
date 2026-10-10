@@ -19,23 +19,34 @@ import { carriedRow } from './trends-carry.js'
 /**
  * Merge a fetched series into its registry entry, producing a snapshot row.
  *
+ * The series says where it is from when that is not where the registry
+ * pointed: a futures row answered by its fallback (`trends-sources/futures.js`)
+ * is that other series, and is published under its `source`, `seriesId` and
+ * source line, not the contract's.
+ *
+ * A row that declares `decimals` is rounded to them here: FRED's year on year
+ * of the CPI comes back as `3.35302`, and the Bureau publishes `3.4`.
+ *
  * @param {RegistryRow} ind
  * @param {any} data
  */
 function buildIndicatorEntry(ind, data) {
+  const places = ind.decimals
+  const values = typeof places === 'number' ? data.values.map((/** @type {number} */ v) => Number(v.toFixed(places))) : data.values
   return {
     id: ind.id,
     label: ind.label,
     unit: ind.unit,
-    source: ind.source,
-    seriesId: ind.seriesId,
+    source: data.source ?? ind.source,
+    seriesId: data.seriesId ?? ind.seriesId,
     ...(ind.field ? { field: ind.field } : {}),
     cadence: ind.cadence,
+    ...(typeof places === 'number' ? { decimals: places } : {}),
     topicTags: ind.topicTags,
     countryTags: ind.countryTags || [],
     defaultHighlight: ind.defaultHighlight || 'last',
-    sourceLabel: ind.sourceLabel,
-    values: data.values,
+    sourceLabel: data.sourceLabel ?? ind.sourceLabel,
+    values,
     periods: data.periods,
     ...(data.dates ? { dates: data.dates, completed: data.completed } : {}),
     asOf: data.asOf,
@@ -66,6 +77,9 @@ function buildIndicatorEntry(ind, data) {
  * would print as current what it refused. A source skipped for a missing key
  * is carried like a failed one.
  *
+ * A source that declares `after` is handed its own rows once they are all in,
+ * to settle what one row owes another (`alignSessions`).
+ *
  * @param {object} o
  * @param {Record<string, SourceDef>} o.sources
  * @param {RegistryRow[]} o.registry
@@ -85,16 +99,15 @@ export async function collectRows({ sources, registry, prior, env = process.env,
     const matched = registry.filter((i) => i.source === name)
     /** The source's registry rows already answered for: by a fetch, a carry or a refusal. */
     const settled = new Set()
+    /** The registry rows this source has put in the snapshot, fetched or carried. */
+    const own = []
     const settle = (ind, data) => {
       settled.add(ind.id)
-      if (data) {
-        indicators.push(buildIndicatorEntry(ind, data))
-        return
-      }
-      const row = carriedRow(ind, prior, now)
+      const row = data ? buildIndicatorEntry(ind, data) : carriedRow(ind, prior, now)
       if (!row) return
       indicators.push(row)
-      carried.push(row)
+      own.push(row)
+      if (!data) carried.push(row)
     }
 
     try {
@@ -142,6 +155,16 @@ export async function collectRows({ sources, registry, prior, env = process.env,
     } catch (err) {
       say.error(`  ✗ ${name}: ${/** @type {Error} */ (err)?.stack ?? err} — its unanswered rows fall to the previous snapshot`)
       for (const ind of matched) if (!settled.has(ind.id)) settle(ind, null)
+    } finally {
+      // Last, and over the carried rows too: a row carried beside a fresh one
+      // is a session short of it. In `finally`, because the modes above leave
+      // by `continue`; and caught, because a throw from here would take every
+      // source's rows with it.
+      try {
+        def.after?.(own)
+      } catch (err) {
+        say.error(`  ✗ ${name}: ${/** @type {Error} */ (err)?.stack ?? err} — its rows stand as fetched`)
+      }
     }
   }
 

@@ -29,7 +29,15 @@ export function roundPrice(price) {
 }
 
 /**
- * Fetch 30 daily closes for a CoinGecko coin id.
+ * The days asked for. Four past thirty: the answer is a close for each day's
+ * midnight and the price now, so thirty days is twenty-nine and a price to
+ * measure a thirty-day move from is not in it (the app's ladder, `gaugeSpan`,
+ * `mobile/lib/cards/week-move.ts`).
+ */
+const SERIES_DAYS = 34
+
+/**
+ * Fetch a CoinGecko coin's daily closes (`SERIES_DAYS`) and its price now.
  *
  * @param {{ id: string, seriesId: string }} indicator  seriesId = CG coin id ("bitcoin")
  * @returns {Promise<{ values: number[], periods: string[], asOf: string } | null>}
@@ -37,7 +45,7 @@ export function roundPrice(price) {
 export async function fetchCoinGeckoSeries(indicator) {
   const url = new URL(`${CG_BASE}/coins/${indicator.seriesId}/market_chart`)
   url.searchParams.set('vs_currency', 'usd')
-  url.searchParams.set('days', '30')
+  url.searchParams.set('days', String(SERIES_DAYS))
   url.searchParams.set('interval', 'daily')
 
   const headers = { 'User-Agent': ZUHD_UA, accept: 'application/json' }

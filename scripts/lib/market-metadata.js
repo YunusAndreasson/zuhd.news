@@ -1,8 +1,13 @@
 // Curated catalog of stock exchanges surfaced on the situational map.
 //
-// Shape: { id, name, indexName, city, iso2, lat, lng, symbol, currency, tz,
+// Shape: { id, name, indexName, city, iso2, gdp?, lat, lng, symbol, currency, tz,
 //          sessionStart, sessionEnd, days, blurb, topicTags, countryTags,
 //          available, reason? }
+//   - gdp        — the country's output in current US dollars, on the tracked
+//                  rows only: what its market's week weighs in the app's
+//                  `world stocks` (`worldStocks`, `mobile/lib/markets.ts`),
+//                  so Dubai does not count as much as New York. See "The
+//                  weights" below.
 //   - symbol     — Yahoo Finance ticker, passed verbatim to fetchYahooStock.
 //   - currency   — the currency Yahoo reports for this symbol. This is an
 //                  ASSERTION, not a label: the fetcher rejects a response that
@@ -56,6 +61,21 @@
 // one. Removing `turkey` from BIST's tags was tried and measurably cost a
 // Black Sea shipping story that the country arm could not see.
 //
+// The weights
+// -----------
+// `gdp` is the World Bank's GDP in current US dollars (`NY.GDP.MKTP.CD`) for
+// 2025, read on 2026-10-10. Two are not that: the United Arab Emirates' is
+// 2024, the newest it had, and Taiwan's is the shared country table's
+// (`shared/countries/country-data.ts`), because the World Bank publishes none
+// for Taiwan. It is a weight and is never printed, so three figures are
+// plenty: a year's revision moves a market's share by a fraction of a point.
+// Read them again once a year.
+//
+// Weighted by the economy and not by the market's value, on purpose. By value
+// the United States is well over half of the world's shares and the number is
+// Wall Street's week under another name; by output it is under a third, and
+// China a fifth. No payload carries a market's value either.
+//
 // Why the expectations are pinned
 // -------------------------------
 // Yahoo answers a symbol it does not have by returning a DIFFERENT instrument
@@ -94,6 +114,8 @@
  * @property {string} indexName
  * @property {string} city
  * @property {string} iso2
+ * @property {number} [gdp]         The country's GDP in current US dollars. On
+ *       every tracked row (`quote-snapshot.test.js`).
  * @property {number} lat
  * @property {number} lng
  * @property {string|null} symbol   Null on a row with no usable Yahoo symbol.
@@ -121,6 +143,7 @@ export const MARKET_CATALOG = [
     indexName: 'TASI',
     city: 'Riyadh',
     iso2: 'SA',
+    gdp: 1_277e9,
     lat: 24.7136,
     lng: 46.6753,
     symbol: '^TASI.SR',
@@ -142,6 +165,7 @@ export const MARKET_CATALOG = [
     indexName: 'BIST 100',
     city: 'Istanbul',
     iso2: 'TR',
+    gdp: 1_597e9,
     lat: 41.0082,
     lng: 28.9784,
     symbol: 'XU100.IS',
@@ -163,6 +187,7 @@ export const MARKET_CATALOG = [
     indexName: 'DFM General',
     city: 'Dubai',
     iso2: 'AE',
+    gdp: 552e9,
     lat: 25.2048,
     lng: 55.2708,
     symbol: 'DFMGI.AE',
@@ -184,6 +209,7 @@ export const MARKET_CATALOG = [
     indexName: 'FTSE Bursa Malaysia KLCI',
     city: 'Kuala Lumpur',
     iso2: 'MY',
+    gdp: 472e9,
     lat: 3.139,
     lng: 101.6869,
     symbol: '^KLSE',
@@ -205,6 +231,7 @@ export const MARKET_CATALOG = [
     indexName: 'IDX Composite',
     city: 'Jakarta',
     iso2: 'ID',
+    gdp: 1_446e9,
     lat: -6.2088,
     lng: 106.8456,
     symbol: '^JKSE',
@@ -228,6 +255,7 @@ export const MARKET_CATALOG = [
     indexName: 'Nikkei 225',
     city: 'Tokyo',
     iso2: 'JP',
+    gdp: 4_435e9,
     lat: 35.6762,
     lng: 139.6503,
     symbol: '^N225',
@@ -247,6 +275,7 @@ export const MARKET_CATALOG = [
     indexName: 'Hang Seng',
     city: 'Hong Kong',
     iso2: 'HK',
+    gdp: 427e9,
     lat: 22.3193,
     lng: 114.1694,
     symbol: '^HSI',
@@ -267,6 +296,7 @@ export const MARKET_CATALOG = [
     indexName: 'SSE Composite',
     city: 'Shanghai',
     iso2: 'CN',
+    gdp: 19_498e9,
     lat: 31.2304,
     lng: 121.4737,
     symbol: '000001.SS',
@@ -287,6 +317,7 @@ export const MARKET_CATALOG = [
     indexName: 'KOSPI',
     city: 'Seoul',
     iso2: 'KR',
+    gdp: 1_872e9,
     lat: 37.5665,
     lng: 126.978,
     symbol: '^KS11',
@@ -306,6 +337,7 @@ export const MARKET_CATALOG = [
     indexName: 'SENSEX',
     city: 'Mumbai',
     iso2: 'IN',
+    gdp: 3_956e9,
     lat: 19.076,
     lng: 72.8777,
     symbol: '^BSESN',
@@ -325,6 +357,7 @@ export const MARKET_CATALOG = [
     indexName: 'Straits Times Index',
     city: 'Singapore',
     iso2: 'SG',
+    gdp: 604e9,
     lat: 1.3521,
     lng: 103.8198,
     symbol: '^STI',
@@ -344,6 +377,7 @@ export const MARKET_CATALOG = [
     indexName: 'TAIEX',
     city: 'Taipei',
     iso2: 'TW',
+    gdp: 790e9,
     lat: 25.033,
     lng: 121.5654,
     symbol: '^TWII',
@@ -364,6 +398,7 @@ export const MARKET_CATALOG = [
     indexName: 'SET Index',
     city: 'Bangkok',
     iso2: 'TH',
+    gdp: 577e9,
     lat: 13.7563,
     lng: 100.5018,
     symbol: '^SET.BK',
@@ -383,6 +418,7 @@ export const MARKET_CATALOG = [
     indexName: 'PSEi',
     city: 'Manila',
     iso2: 'PH',
+    gdp: 487e9,
     lat: 14.5995,
     lng: 120.9842,
     symbol: 'PSEI.PS',
@@ -402,6 +438,7 @@ export const MARKET_CATALOG = [
     indexName: 'S&P/ASX 200',
     city: 'Sydney',
     iso2: 'AU',
+    gdp: 1_799e9,
     lat: -33.8688,
     lng: 151.2093,
     symbol: '^AXJO',
@@ -423,6 +460,7 @@ export const MARKET_CATALOG = [
     indexName: 'FTSE/JSE All Share',
     city: 'Johannesburg',
     iso2: 'ZA',
+    gdp: 427e9,
     lat: -26.2041,
     lng: 28.0473,
     symbol: '^J203.JO',
@@ -443,6 +481,7 @@ export const MARKET_CATALOG = [
     indexName: 'Ibovespa',
     city: 'São Paulo',
     iso2: 'BR',
+    gdp: 2_280e9,
     lat: -23.5505,
     lng: -46.6333,
     symbol: '^BVSP',
@@ -462,6 +501,7 @@ export const MARKET_CATALOG = [
     indexName: 'IPC',
     city: 'Mexico City',
     iso2: 'MX',
+    gdp: 1_833e9,
     lat: 19.4326,
     lng: -99.1332,
     symbol: '^MXX',
@@ -481,6 +521,7 @@ export const MARKET_CATALOG = [
     indexName: 'MERVAL',
     city: 'Buenos Aires',
     iso2: 'AR',
+    gdp: 683e9,
     lat: -34.6037,
     lng: -58.3816,
     symbol: '^MERV',
@@ -503,6 +544,7 @@ export const MARKET_CATALOG = [
     indexName: 'S&P/TSX Composite',
     city: 'Toronto',
     iso2: 'CA',
+    gdp: 2_320e9,
     lat: 43.6532,
     lng: -79.3832,
     symbol: '^GSPTSE',
@@ -518,10 +560,13 @@ export const MARKET_CATALOG = [
   },
   {
     id: 'nyse',
-    name: 'New York Stock Exchange',
+    // Both New York exchanges: the index is not the NYSE's, and its largest
+    // members (Nvidia, Apple, Microsoft) list on Nasdaq.
+    name: 'NYSE and Nasdaq',
     indexName: 'S&P 500',
     city: 'New York',
     iso2: 'US',
+    gdp: 30_770e9,
     lat: 40.7069,
     lng: -74.0113,
     symbol: '^GSPC',
@@ -544,6 +589,7 @@ export const MARKET_CATALOG = [
     indexName: 'FTSE 100',
     city: 'London',
     iso2: 'GB',
+    gdp: 4_003e9,
     lat: 51.5155,
     lng: -0.0922,
     symbol: '^FTSE',
@@ -564,6 +610,7 @@ export const MARKET_CATALOG = [
     indexName: 'DAX',
     city: 'Frankfurt',
     iso2: 'DE',
+    gdp: 5_051e9,
     lat: 50.1109,
     lng: 8.6821,
     symbol: '^GDAXI',
@@ -583,6 +630,7 @@ export const MARKET_CATALOG = [
     indexName: 'CAC 40',
     city: 'Paris',
     iso2: 'FR',
+    gdp: 3_366e9,
     lat: 48.8566,
     lng: 2.3522,
     symbol: '^FCHI',
@@ -602,6 +650,7 @@ export const MARKET_CATALOG = [
     indexName: 'AEX',
     city: 'Amsterdam',
     iso2: 'NL',
+    gdp: 1_333e9,
     lat: 52.3676,
     lng: 4.9041,
     symbol: '^AEX',
@@ -621,6 +670,7 @@ export const MARKET_CATALOG = [
     indexName: 'IBEX 35',
     city: 'Madrid',
     iso2: 'ES',
+    gdp: 1_906e9,
     lat: 40.4168,
     lng: -3.7038,
     symbol: '^IBEX',
@@ -640,6 +690,7 @@ export const MARKET_CATALOG = [
     indexName: 'FTSE MIB',
     city: 'Milan',
     iso2: 'IT',
+    gdp: 2_552e9,
     lat: 45.4642,
     lng: 9.19,
     symbol: 'FTSEMIB.MI',
@@ -659,6 +710,7 @@ export const MARKET_CATALOG = [
     indexName: 'SMI',
     city: 'Zurich',
     iso2: 'CH',
+    gdp: 1_044e9,
     lat: 47.3769,
     lng: 8.5417,
     symbol: '^SSMI',
@@ -679,6 +731,7 @@ export const MARKET_CATALOG = [
     indexName: 'OMXS30',
     city: 'Stockholm',
     iso2: 'SE',
+    gdp: 669e9,
     lat: 59.3293,
     lng: 18.0686,
     symbol: '^OMX',
@@ -704,6 +757,7 @@ export const MARKET_CATALOG = [
     indexName: 'TA-125',
     city: 'Tel Aviv',
     iso2: 'IL',
+    gdp: 611e9,
     lat: 32.0853,
     lng: 34.7818,
     symbol: '^TA125.TA',
@@ -904,6 +958,8 @@ export function exchangeRecord(m, data, { stale = false } = {}) {
       blurb: m.blurb,
       topicTags: m.topicTags,
       countryTags: m.countryTags,
+      // After every key an installed app reads, and optional as `stale` is.
+      ...(m.gdp ? { gdp: m.gdp } : {}),
       ...(stale ? { stale: true } : {}),
     },
   }

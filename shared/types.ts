@@ -576,6 +576,9 @@ export interface Indicator {
   source: string;
   seriesId?: string;
   cadence?: 'daily' | 'monthly';
+  /** The decimal places the series is published to, where that is not two:
+   *  1 for inflation and unemployment. The values arrive rounded to it. */
+  decimals?: number;
   topicTags?: string[];
   countryTags?: string[];
   defaultHighlight?: 'last' | 'first' | 'max' | 'min';

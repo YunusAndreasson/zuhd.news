@@ -47,6 +47,7 @@ paths:
   - "scripts/lib/ai-models.js"
   - "scripts/lib/ai-lab-metadata.js"
   - "scripts/lib/company-metadata.js"
+  - "scripts/lib/fx-history.js"
   - "scripts/lib/stock-mentions.js"
   - "scripts/lib/logs.test.js"
   - "scripts/*-prompt.md"
@@ -130,6 +131,28 @@ stages assume about each other.
   `STALE_DAYS` is dropped, and tags name the bank, never the bare country.
 - Wheat, rice, copper and European gas come from the IMF's own service
   (`trends-sources/imf.js`): FRED's copy of them stopped at July 2026.
+- Oil, US gas, gold and silver are the front-month contract
+  (`trends-sources/futures.js`). Each row names a `fallback` series, published
+  under its own `source`, `seriesId` and source line. Never a spot series
+  under the contract's name: the stories quote the contract.
+- Gold and silver are cut to the sessions both have (`alignSessions`): the
+  app shows no ratio when their lengths differ.
+- A row published to fewer places than its source's arithmetic returns
+  declares `decimals`, and the snapshot's values are rounded to it.
+- The rate history keeps every currency an exchange or a company is priced in
+  (`QUOTE_CURRENCIES`, `lib/fx-history.js`) without a snapshot row.
+  `/api/markets.json`'s `fx` and a company's `marketValue` read it; both keys
+  are optional.
+- The rate history keeps forty days and a currency's row answers with
+  thirty-four (`HISTORY_DAYS`, `SERIES_DAYS`, `trends-sources/oer.js`): the
+  app reads thirty-day moves, an index's in dollars and a currency's own, and
+  each needs the day it starts on.
+- `shares` in `company-metadata.js` is entered by hand and dated. Refresh it
+  at once after a split: the close changes that day and the count is wrong by
+  the ratio.
+- Every tracked exchange carries its country's `gdp` (`market-metadata.js`),
+  published as an optional key: the weight of its week in the app's `world
+  stocks`. Entered by hand; read the figures again once a year.
 - Yahoo serves four indices no daily history (`sessionsFromHourly`,
   `trends-sources/stocks.js`). Their closes are the last hourly bar's, near
   the official close and not it: never quote one to the cent.

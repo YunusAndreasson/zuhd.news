@@ -78,6 +78,8 @@ export function completedCloses(data) {
  * @property {string} currency
  * @property {string} currencyName
  * @property {number} level  the last completed session's close
+ * @property {number} [marketValue]  what the whole company is worth at that close, in US dollars
+ *   (`marketValue`); absent where it cannot be said
  * @property {string} asOf
  * @property {{ values: number[], periods: string[] }} series
  * @property {string} sourceLabel
@@ -89,15 +91,37 @@ export function completedCloses(data) {
  */
 
 /**
+ * What a company is worth in US dollars at a close, or null where it cannot
+ * be said: the catalog has no share count for it, or the rate history
+ * (`lib/fx-history.js`) has no rate for the currency its share is priced in.
+ *
+ * The count is the catalog's (`shares`), a number kept by hand and dated, so
+ * the product is good to the count: a buyback moves it a per cent or two a
+ * year. To the nearest million, which is finer than that and than anything a
+ * reader is shown.
+ *
+ * @param {{ shares?: number, currency: string }} entry  the catalog's entry, or the two fields of it this reads
+ * @param {number} level  the close, in the share's own currency
+ * @param {Record<string, number>} [perUsd]  units of each currency to one US dollar (`latestPerUsd`)
+ * @returns {number | null}
+ */
+export function marketValue(entry, level, perUsd = {}) {
+  const rate = entry.currency === 'USD' ? 1 : perUsd[entry.currency]
+  if (!(Number(entry.shares) > 0) || !(rate > 0) || !(level > 0)) return null
+  return Math.round((Number(entry.shares) * level) / rate / 1e6) * 1e6
+}
+
+/**
  * One company's record for `content/.companies.json`, or the reason it has
  * none: exactly one of the two is set.
  *
  * @param {import('./company-metadata.js').CompanyEntry} entry
  * @param {any} data  `fetchYahooStock`'s result
- * @param {{ stale?: boolean }} [opts]
+ * @param {{ stale?: boolean, perUsd?: Record<string, number> }} [opts]  `perUsd`: the rates
+ *   `marketValue` converts by
  * @returns {{ record: CompanyRecord | null, rejected: string | null }}
  */
-export function companyRecord(entry, data, { stale = false } = {}) {
+export function companyRecord(entry, data, { stale = false, perUsd } = {}) {
   const refuse = (/** @type {string} */ rejected) => ({ record: null, rejected })
   const mismatch = companyMismatch(entry, data)
   if (mismatch) return refuse(mismatch)
@@ -107,6 +131,7 @@ export function companyRecord(entry, data, { stale = false } = {}) {
   }
   const level = series.values[series.values.length - 1]
   if (!(level > 0)) return refuse(`unusable close ${level}`)
+  const worth = marketValue(entry, level, perUsd)
   return {
     rejected: null,
     record: {
@@ -118,6 +143,7 @@ export function companyRecord(entry, data, { stale = false } = {}) {
       currency: entry.currency,
       currencyName: entry.currencyName,
       level,
+      ...(worth != null ? { marketValue: worth } : {}),
       asOf: data.asOf,
       series,
       sourceLabel: `Yahoo Finance · ${entry.exchange}`,

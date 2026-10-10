@@ -6,6 +6,7 @@ import {
   companyMismatch,
   companyRecord,
   completedCloses,
+  marketValue,
 } from './companies.js'
 import { COMPANY_TRACKED } from './company-metadata.js'
 
@@ -50,6 +51,10 @@ test('every company has what its card and its join need', () => {
     // an account of its share, and re-ask the model for one every day.
     assert.ok(c.blurb.length <= 240, `${c.id}: blurb is ${c.blurb.length} characters, cap 240`)
     for (const tag of c.topicTags) assert.equal(tag, tag.toLowerCase(), `${c.id}: tag ${tag}`)
+    // A dated share count: without one the list prints a share price for this
+    // company beside nineteen market values.
+    assert.ok(Number.isInteger(c.shares) && c.shares > 1e8 && c.shares < 1e12, `${c.id}: shares`)
+    assert.match(String(c.sharesAsOf), /^\d{4}-\d{2}-\d{2}$/, `${c.id}: sharesAsOf`)
   }
 })
 
@@ -118,6 +123,36 @@ test('companyRecord publishes the last completed close as the level', () => {
   assert.equal(built.record.sourceLabel, 'Yahoo Finance · Nasdaq')
   assert.equal(built.record.stale, undefined)
   assert.equal(companyRecord(NVIDIA, live, { stale: true }).record.stale, true)
+})
+
+test('a market value is the share count by the close, in dollars, to the million', () => {
+  // A dollar share needs no rate.
+  assert.equal(marketValue({ shares: 24_400_000_000, currency: 'USD' }, 229.28), 5_594_432_000_000)
+  // A share in another currency is divided by how many of it buy a dollar.
+  assert.equal(marketValue({ shares: 25_930_000_000, currency: 'TWD' }, 2550, { TWD: 30 }), 2_204_050_000_000)
+  assert.equal(marketValue({ shares: 1_000_000, currency: 'USD' }, 12.3456789), 12_000_000)
+})
+
+test('a market value is not guessed: no count, no rate or no close is no value', () => {
+  assert.equal(marketValue({ currency: 'USD' }, 229.28), null)
+  assert.equal(marketValue({ shares: 0, currency: 'USD' }, 229.28), null)
+  assert.equal(marketValue({ shares: 25_930_000_000, currency: 'TWD' }, 2550), null)
+  assert.equal(marketValue({ shares: 25_930_000_000, currency: 'TWD' }, 2550, { TWD: 0 }), null)
+  assert.equal(marketValue({ shares: 24_400_000_000, currency: 'USD' }, 0), null)
+})
+
+test('companyRecord publishes the market value where it can be said, and no key where it cannot', () => {
+  const counted = { ...NVIDIA, shares: 24_400_000_000 }
+  assert.equal(companyRecord(counted, quote()).record.marketValue, Math.round((24_400_000_000 * 233.95) / 1e6) * 1e6)
+  // The count itself is the catalog's and is not published.
+  assert.equal('shares' in companyRecord(counted, quote()).record, false)
+  const uncounted = { ...NVIDIA, shares: undefined }
+  assert.equal('marketValue' in companyRecord(uncounted, quote()).record, false)
+  // A share priced in a currency the rate history has not rated.
+  const abroad = { ...counted, currency: 'TWD', tz: 'Asia/Taipei' }
+  const taipei = quote({ currencyReported: 'TWD', timezone: 'Asia/Taipei' })
+  assert.equal('marketValue' in companyRecord(abroad, taipei).record, false)
+  assert.equal(companyRecord(abroad, taipei, { perUsd: { TWD: 30 } }).record.marketValue, Math.round((24_400_000_000 * 233.95) / 30 / 1e6) * 1e6)
 })
 
 test('companyRecord refuses an impostor and a series with nothing to chart', () => {

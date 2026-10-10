@@ -51,6 +51,20 @@
 // underneath drifts. Revisit it when a company falls well out of the top
 // thirty — and when adding one, probe its symbol first and pin what it reports.
 //
+// Share counts
+// ------------
+// `shares` is the number that, times the close of the listing above, is what
+// the whole company is worth (`marketValue`, `lib/companies.js`): the shares
+// outstanding, less the company's own where it reports them, and where there
+// are several classes, all of them counted in shares of the quoted one. The
+// quote source carries no count, so each is entered by hand from the
+// company's latest report or its exchange, and dated (`sharesAsOf`). Read on
+// 2026-10-10 and checked against two published rankings: each came within a
+// fifth of a per cent of one of them. A buyback moves a count a per cent or two
+// a year, which is why the app prints the value to two figures. Refresh them
+// when the list is revisited, and after a share split at once: a split
+// changes the close the same day and leaves the count wrong by its ratio.
+//
 // Not the daily narration. An exchange gets a paragraph a day from the
 // indicator dispatch; these do not, on purpose — twenty more instruments for
 // the model to read coverage against, for a list that is looked up rather than
@@ -73,6 +87,8 @@
  * @property {string} blurb
  * @property {string[]} topicTags
  * @property {string} [commonName]
+ * @property {number} [shares]  see "Share counts"
+ * @property {string} [sharesAsOf]  the day the count is of, `YYYY-MM-DD`
  */
 
 /** @type {CompanyEntry[]} */
@@ -91,6 +107,8 @@ export const COMPANY_TRACKED = [
     match: 'nvidia',
     blurb:
       'Designs the processors that most artificial-intelligence models are trained and run on, and sells them to the companies building data centres. It designs chips and does not make them: TSMC does.',
+    shares: 24_147_000_000,
+    sharesAsOf: '2026-07-26',
     topicTags: ['nvidia'],
   },
   {
@@ -107,6 +125,8 @@ export const COMPANY_TRACKED = [
     match: 'apple',
     blurb:
       'Makes the iPhone, which brings in about half its sales, along with Mac computers, iPads and watches, and takes a cut of what is sold through its App Store.',
+    shares: 14_594_180_000,
+    sharesAsOf: '2026-07-17',
     topicTags: ['apple inc', 'iphone', 'app store'],
     commonName: 'apple',
   },
@@ -124,6 +144,9 @@ export const COMPANY_TRACKED = [
     match: 'alphabet',
     blurb:
       'Owns Google and YouTube. Most of its money comes from advertising beside search results and videos; it also sells cloud computing and builds its own AI models.',
+    // Classes A, B and C together: they trade within a per cent of each other.
+    shares: 12_230_000_000,
+    sharesAsOf: '2026-07-15',
     topicTags: ['alphabet inc', 'google', 'youtube'],
     commonName: 'alphabet',
   },
@@ -141,6 +164,8 @@ export const COMPANY_TRACKED = [
     match: 'microsoft',
     blurb:
       'Sells Windows and Office, and rents out computing power through Azure, one of the largest clouds. It holds a large stake in OpenAI.',
+    shares: 7_425_545_491,
+    sharesAsOf: '2026-07-23',
     topicTags: ['microsoft', 'copilot'],
   },
   {
@@ -157,6 +182,8 @@ export const COMPANY_TRACKED = [
     match: 'amazon',
     blurb:
       'An online retailer, and through Amazon Web Services the largest seller of cloud computing, which earns most of its profit.',
+    shares: 10_786_313_572,
+    sharesAsOf: '2026-07-22',
     topicTags: ['amazon.com', 'amazon (company)', 'amazon web services', 'aws'],
     commonName: 'amazon',
   },
@@ -174,6 +201,8 @@ export const COMPANY_TRACKED = [
     match: 'taiwan semiconductor',
     blurb:
       'Manufactures the chips other companies design, among them Apple’s, Nvidia’s and AMD’s, and makes most of the world’s most advanced ones, in Taiwan.',
+    shares: 25_932_370_067,
+    sharesAsOf: '2026-10-09',
     topicTags: ['tsmc', 'taiwan semiconductor'],
   },
   {
@@ -190,6 +219,10 @@ export const COMPANY_TRACKED = [
     match: 'space exploration',
     blurb:
       'Builds reusable rockets, launches satellites and astronauts for governments and companies, and runs Starlink, a satellite internet network.',
+    // Classes A and B at the July report, with the shares issued for a merger
+    // on 2026-08-14: a sum, until the next report states the count.
+    shares: 13_572_821_625,
+    sharesAsOf: '2026-08-14',
     topicTags: ['spacex', 'starlink', 'starship'],
   },
   {
@@ -206,6 +239,9 @@ export const COMPANY_TRACKED = [
     match: 'meta platforms',
     blurb:
       'Owns Facebook, Instagram and WhatsApp, used by more than three billion people, and earns nearly all its money from advertising on them.',
+    // Classes A and B together.
+    shares: 2_547_506_225,
+    sharesAsOf: '2026-07-24',
     topicTags: ['meta platforms', 'facebook', 'instagram', 'whatsapp'],
     commonName: 'meta',
   },
@@ -223,6 +259,8 @@ export const COMPANY_TRACKED = [
     match: 'broadcom',
     blurb:
       'Makes the networking chips that connect data centres and designs custom AI chips for companies such as Google. It also owns the software firm VMware.',
+    shares: 4_773_629_865,
+    sharesAsOf: '2026-08-28',
     topicTags: ['broadcom'],
   },
   {
@@ -239,6 +277,9 @@ export const COMPANY_TRACKED = [
     match: 'saudi arabian oil',
     blurb:
       'Saudi Arabia’s state oil company, which pumps more oil than any other company. The government owns nearly all of it, and its dividends pay for much of the kingdom’s budget.',
+    // The shares its second-quarter dividend was paid on, of 242 billion issued.
+    shares: 241_860_000_000,
+    sharesAsOf: '2026-08-04',
     topicTags: ['aramco'],
   },
   {
@@ -255,6 +296,10 @@ export const COMPANY_TRACKED = [
     match: 'tesla',
     blurb:
       'Makes electric cars, and the batteries that store power for homes and electricity grids. Led by Elon Musk, who also leads SpaceX.',
+    // As reported, which counts 424 million restricted shares of the 2025
+    // chief-executive award that are issued and not yet earned.
+    shares: 3_949_547_394,
+    sharesAsOf: '2026-07-16',
     topicTags: ['tesla'],
   },
   {
@@ -271,6 +316,11 @@ export const COMPANY_TRACKED = [
     match: 'samsung electronics',
     blurb:
       'One of the three companies that make most of the world’s memory chips, and one of the largest makers of smartphones and televisions.',
+    // Its 5,764 million common shares, and its 802 million preferred counted at
+    // what they fetch beside a common one: 194,000 won to 262,000 on 2026-10-08.
+    // The ratio ran 0.73 to 0.77 over the month before.
+    shares: 6_358_000_000,
+    sharesAsOf: '2026-10-08',
     topicTags: ['samsung'],
   },
   {
@@ -287,6 +337,8 @@ export const COMPANY_TRACKED = [
     match: 'micron',
     blurb:
       'The one large American maker of memory chips, the kind that hold data in phones, computers and AI data centres. Its two main rivals are Samsung and SK Hynix.',
+    shares: 1_131_423_212,
+    sharesAsOf: '2026-10-02',
     topicTags: ['micron technology', 'micron'],
   },
   {
@@ -303,6 +355,9 @@ export const COMPANY_TRACKED = [
     match: 'berkshire',
     blurb:
       'A holding company built by Warren Buffett. It owns insurers, a railway and energy utilities outright, and holds large stakes in companies such as Apple and Coca-Cola.',
+    // In Class B shares, the one quoted: an A share is 1,500 of them.
+    shares: 2_140_710_161,
+    sharesAsOf: '2026-07-29',
     topicTags: ['berkshire hathaway', 'berkshire', 'buffett'],
   },
   {
@@ -319,6 +374,8 @@ export const COMPANY_TRACKED = [
     match: 'advanced micro devices',
     blurb:
       'Designs processors for computers and data centres, where it competes with Intel, and AI chips, where it competes with Nvidia. Like Nvidia, it has TSMC make them.',
+    shares: 1_632_475_042,
+    sharesAsOf: '2026-07-29',
     topicTags: ['advanced micro devices', 'amd'],
   },
   {
@@ -335,6 +392,10 @@ export const COMPANY_TRACKED = [
     match: 'eli lilly',
     blurb:
       'An American drugmaker. Its diabetes and weight-loss medicines, sold as Mounjaro and Zepbound, account for much of its growth.',
+    // Less the 50 million held by its employee benefit trust, which it leaves
+    // out of its own per-share figures.
+    shares: 891_357_065,
+    sharesAsOf: '2026-08-03',
     topicTags: ['eli lilly', 'mounjaro', 'zepbound'],
   },
   {
@@ -351,6 +412,11 @@ export const COMPANY_TRACKED = [
     match: 'hynix',
     blurb:
       'A South Korean maker of memory chips, and the main supplier of the high-speed memory that Nvidia’s AI chips need.',
+    // What will stand when the buyback approved on 2026-08-19 is done: it runs
+    // to 2026-11-19 and cancels what it buys. Until then the true count is up
+    // to half a per cent higher.
+    shares: 704_795_500,
+    sharesAsOf: '2026-08-19',
     topicTags: ['sk hynix', 'hynix'],
   },
   {
@@ -367,6 +433,8 @@ export const COMPANY_TRACKED = [
     match: 'jpmorgan',
     blurb:
       'The largest bank in the United States by assets, serving households, companies and governments.',
+    shares: 2_658_186_195,
+    sharesAsOf: '2026-06-30',
     topicTags: ['jpmorgan', 'jp morgan'],
   },
   {
@@ -383,6 +451,8 @@ export const COMPANY_TRACKED = [
     match: 'walmart',
     blurb:
       'The world’s largest retailer by sales, with thousands of stores in the United States and abroad.',
+    shares: 7_933_746_241,
+    sharesAsOf: '2026-08-26',
     topicTags: ['walmart'],
   },
   {
@@ -399,6 +469,10 @@ export const COMPANY_TRACKED = [
     match: 'asml',
     blurb:
       'A Dutch company, and the only maker of the machines needed to print the most advanced chips. Every leading chipmaker buys from it, and its sales to China are restricted.',
+    // To the nearest 0.1 million, and about a per cent high by October: it
+    // buys its own shares every week.
+    shares: 384_100_000,
+    sharesAsOf: '2026-06-28',
     topicTags: ['asml'],
   },
 ]

@@ -15,8 +15,10 @@
 //   3. Add registry entries here (skip step 3 for dynamic sources).
 // The fetch-trends.js orchestrator iterates SOURCES — no new code needed.
 
+import { QUOTE_CURRENCIES } from './fx-history.js'
 import { fetchBisPolicyRates } from './trends-sources/bis.js'
 import { fetchFredSeries } from './trends-sources/fred.js'
+import { alignSessions, fetchFuturesSeries } from './trends-sources/futures.js'
 import { fetchImfCommodityPrices } from './trends-sources/imf.js'
 import { fetchOerRates } from './trends-sources/oer.js'
 import { fetchPolymarketTop } from './trends-sources/polymarket.js'
@@ -31,10 +33,19 @@ import { fetchWikipediaTrendingConcepts } from './trends-sources/wikipedia.js'
  *      - perIndicator: orchestrator calls fetcher(indicator) once per matching registry row.
  *      - batched:      one call covers all matching rows (orchestrator passes seriesIds + cache path).
  *      - dynamic:      no registry rows; fetcher returns full snapshot entries directly.
+ *  @property {(rows: any[]) => void} [after]  Handed the source's own snapshot rows once
+ *      they are all in, to settle in place what one row owes another.
  */
 
 /** @type {Record<string, SourceDef>} */
 export const SOURCES = {
+  // First, where its oil rows were while they were FRED's.
+  futures: {
+    fetcher: fetchFuturesSeries,
+    requiredEnv: [],
+    mode: 'perIndicator',
+    after: alignSessions,
+  },
   fred: {
     fetcher: fetchFredSeries,
     requiredEnv: ['FRED_API_KEY'],
@@ -47,7 +58,10 @@ export const SOURCES = {
     mode: 'batched',
   },
   oer: {
-    fetcher: fetchOerRates,
+    // The history file keeps the currencies the exchanges and the companies
+    // are priced in beside the ones listed here (`lib/fx-history.js`).
+    fetcher: (/** @type {string[]} */ codes, /** @type {string} */ appId, /** @type {string} */ cachePath) =>
+      fetchOerRates(codes, appId, cachePath, { keep: QUOTE_CURRENCIES }),
     requiredEnv: ['OER_APP_ID'],
     mode: 'batched',
   },
@@ -82,8 +96,13 @@ export const SOURCES = {
  *  @property {string} id            Stable ID used by editor + logs.
  *  @property {string} label         Display title (TrendBlock.label).
  *  @property {string} [unit]        Axis unit (TrendBlock.unit).
- *  @property {'fred'|'imf'|'oer'|'polymarket'|'portwatch'|'crypto'|'wikipedia'|'bis'} source
- *  @property {string} [seriesId]    Source-specific identifier (FRED series, IMF commodity code, OER currency, BIS country code, etc.)
+ *  @property {'futures'|'fred'|'imf'|'oer'|'polymarket'|'portwatch'|'crypto'|'wikipedia'|'bis'} source
+ *  @property {string} [seriesId]    Source-specific identifier (futures symbol, FRED series, IMF commodity code, OER currency, BIS country code, etc.)
+ *  @property {string} [match]       Futures only: what the quoted contract's name must open with, lowercase
+ *        (`futuresMismatch`). The quote source answers an unknown symbol with another instrument.
+ *  @property {{ source: 'fred'|'crypto', seriesId: string, sourceLabel: string }} [fallback]
+ *        Futures only: the series the row is published from, under its own source line, when the
+ *        contract's quote fails. The row's other fields are the fallback fetcher's too (`cadence`).
  *  @property {string} [field]       PortWatch only: which vessel column to read
  *        (`n_container`, `n_tanker`, …). Read by trends-sources/portwatch.js,
  *        which falls back to `n_total` when it is absent or unrecognised — and
@@ -99,6 +118,10 @@ export const SOURCES = {
  *    FRED only: a transformation the API applies (`pc1` = per cent change from
  *    a year ago). For a series whose level means nothing to a reader and whose
  *    rate is the whole story — the CPI.
+ *  @property {number} [decimals]   The places the series is published to, where that is not what the
+ *        source's arithmetic returns: 1 for inflation and unemployment. The snapshot's values are
+ *        rounded to it (`buildIndicatorEntry`) and it rides on the row, so a reader prints `3.4%`
+ *        and a move that is the difference of two printed readings.
  *  @property {string[]} topicTags   Lowercased tags matched against article concepts/title/body.
  *  @property {string[]} [countryTags] ISO-2 codes matched against article.location/sources.
  *  @property {'last'|'first'|'max'|'min'} [defaultHighlight]
@@ -107,42 +130,48 @@ export const SOURCES = {
 
 /** @type {IndicatorDef[]} */
 export const INDICATORS = [
-  // ── Tier 1: oil + macro commodities (FRED, public domain) ──────────────────
+  // ── Tier 1: oil + macro commodities ────────────────────────────────────────
+  //
+  // Oil and gas are the front-month contract (`trends-sources/futures.js`,
+  // which says why), with FRED's spot series behind each as its fallback.
   {
     id: 'brent',
     label: 'Brent crude',
     unit: '$/bbl',
-    source: 'fred',
-    seriesId: 'DCOILBRENTEU',
+    source: 'futures',
+    seriesId: 'BZ=F',
+    match: 'brent crude oil',
+    fallback: { source: 'fred', seriesId: 'DCOILBRENTEU', sourceLabel: 'FRED · EIA' },
     cadence: 'daily',
     topicTags: ['oil', 'crude', 'opec', 'iran', 'russia', 'hormuz', 'gulf', 'energy', 'fuel', 'refinery', 'sanctions', 'pemex', 'aramco', 'shipping', 'fertilizer'],
     defaultHighlight: 'last',
-    sourceLabel: 'FRED · EIA',
+    sourceLabel: 'Yahoo Finance · NYMEX',
   },
   {
     id: 'wti',
     label: 'WTI crude',
     unit: '$/bbl',
-    source: 'fred',
-    seriesId: 'DCOILWTICO',
+    source: 'futures',
+    seriesId: 'CL=F',
+    match: 'crude oil',
+    fallback: { source: 'fred', seriesId: 'DCOILWTICO', sourceLabel: 'FRED · EIA' },
     cadence: 'daily',
     topicTags: ['oil', 'crude', 'us oil', 'pemex', 'shale', 'wti'],
     defaultHighlight: 'last',
-    sourceLabel: 'FRED · EIA',
+    sourceLabel: 'Yahoo Finance · NYMEX',
   },
-  // Gold/silver deliberately omitted: FRED's LBMA fixing series were retired
-  // (2017) and no free daily replacement is currently wired. Revisit with
-  // metals-api, Stooq, or GoldAPI.io when a gold-focused story warrants it.
   {
     id: 'natgas-hh',
-    label: 'Natural gas (Henry Hub)',
+    label: 'US natural gas',
     unit: '$/MMBtu',
-    source: 'fred',
-    seriesId: 'DHHNGSP',
+    source: 'futures',
+    seriesId: 'NG=F',
+    match: 'natural gas',
+    fallback: { source: 'fred', seriesId: 'DHHNGSP', sourceLabel: 'FRED · EIA' },
     cadence: 'daily',
     topicTags: ['natural gas', 'gas', 'lng', 'pipeline', 'energy', 'heating', 'europe gas', 'asia lng'],
     defaultHighlight: 'last',
-    sourceLabel: 'FRED · EIA',
+    sourceLabel: 'Yahoo Finance · NYMEX',
   },
 
   // ── Tier 2: food staples (IMF, monthly) ────────────────────────────────────
@@ -216,6 +245,7 @@ export const INDICATORS = [
     source: 'fred',
     seriesId: 'UNRATE',
     cadence: 'monthly',
+    decimals: 1,
     topicTags: ['jobs report', 'unemployment', 'payrolls', 'labor market', 'nonfarm', 'bls'],
     countryTags: ['US'],
     defaultHighlight: 'last',
@@ -227,13 +257,18 @@ export const INDICATORS = [
     // tags are US-anchored on purpose: `attach-indicators.js` matches tags
     // alone, and a bare `inflation` would hand a US 2.9% to a story about
     // Turkish or British prices.
+    //
+    // The index before seasonal adjustment: the Bureau's 12-month rate, the
+    // one a story quotes, is computed from it. The adjusted index gives a year
+    // on year a tenth of a point off in some months.
     id: 'us-cpi',
-    label: 'US inflation (CPI, y/y)',
+    label: 'US inflation',
     unit: '%',
     source: 'fred',
-    seriesId: 'CPIAUCSL',
+    seriesId: 'CPIAUCNS',
     units: 'pc1',
     cadence: 'monthly',
+    decimals: 1,
     topicTags: ['us inflation', 'us cpi', 'cpi report', 'us consumer prices', 'bls'],
     countryTags: ['US'],
     defaultHighlight: 'last',
@@ -244,12 +279,13 @@ export const INDICATORS = [
     // The harmonised index, as a year-on-year rate (`pc1`), for the reason
     // `us-cpi` is one. Tags name the euro area, as that one's name the US.
     id: 'ez-cpi',
-    label: 'Eurozone inflation (y/y)',
+    label: 'Eurozone inflation',
     unit: '%',
     source: 'fred',
     seriesId: 'CP0000EZ19M086NEST',
     units: 'pc1',
     cadence: 'monthly',
+    decimals: 1,
     topicTags: ['eurozone inflation', 'euro zone inflation', 'euro area inflation', 'euro-area inflation', 'hicp'],
     countryTags: ['EU'],
     defaultHighlight: 'last',
@@ -262,7 +298,7 @@ export const INDICATORS = [
   // list of their own (they shared one with crypto, and it held five rows).
   {
     id: 'us-2y',
-    label: 'US 2y Treasury',
+    label: 'US 2-year Treasury yield',
     unit: '%',
     source: 'fred',
     seriesId: 'DGS2',
@@ -523,7 +559,7 @@ export const INDICATORS = [
   },
   {
     id: 'us-10y',
-    label: 'US 10y Treasury',
+    label: 'US 10-year Treasury yield',
     unit: '%',
     source: 'fred',
     seriesId: 'DGS10',
@@ -556,7 +592,7 @@ export const INDICATORS = [
   },
   {
     id: 'nasdaq100',
-    label: 'NASDAQ-100',
+    label: 'Nasdaq-100',
     unit: 'index',
     source: 'fred',
     seriesId: 'NASDAQ100',
@@ -600,33 +636,38 @@ export const INDICATORS = [
     defaultHighlight: 'last',
     sourceLabel: 'CoinGecko',
   },
+  // The two metals keep the ids they had while they were read off tokens
+  // (`paxg`, `xag`): the app's lists, its nisab card and the web's rail join on
+  // them. They are the COMEX contracts now, and the tokens are their fallbacks.
   {
     id: 'paxg',
-    label: 'Gold (PAX Gold)',
+    label: 'Gold',
     unit: '$/oz',
-    source: 'crypto',
-    seriesId: 'pax-gold',
+    source: 'futures',
+    seriesId: 'GC=F',
+    match: 'gold',
+    fallback: { source: 'crypto', seriesId: 'pax-gold', sourceLabel: 'CoinGecko · PAXG (gold-backed)' },
     cadence: 'daily',
     topicTags: ['gold', 'bullion', 'reserves', 'lbma', 'safe haven', 'central bank reserves', 'islamic finance', 'waqf', 'dinar', 'inflation hedge'],
     defaultHighlight: 'last',
-    sourceLabel: 'CoinGecko · PAXG (gold-backed)',
+    sourceLabel: 'Yahoo Finance · COMEX',
   },
   {
     id: 'xag',
-    label: 'Silver (Kinesis)',
+    label: 'Silver',
     unit: '$/oz',
-    source: 'crypto',
-    // Same trick as PAXG above: the metal itself has no free daily series we
-    // can reach, but a fully-backed token tracking it does. KAG is one troy
-    // ounce of allocated silver — checked against PAXG on the same day, the
-    // gold/silver ratio comes out at 71.5, which is where it should be. If that
-    // ratio ever goes somewhere absurd, this symbol has stopped tracking the
-    // metal and should be dropped rather than quietly reported.
-    seriesId: 'kinesis-silver',
+    source: 'futures',
+    // The fallback is KAG, a token of one troy ounce of allocated silver, as
+    // gold's is PAXG. Checked against PAXG on one day the ratio came out at
+    // 71.5, where it should be; if it ever goes somewhere absurd the token has
+    // stopped tracking the metal and the fallback should go.
+    seriesId: 'SI=F',
+    match: 'silver',
+    fallback: { source: 'crypto', seriesId: 'kinesis-silver', sourceLabel: 'CoinGecko · KAG (silver-backed)' },
     cadence: 'daily',
     topicTags: ['silver', 'bullion', 'precious metals', 'safe haven', 'industrial metals', 'solar', 'reserves', 'inflation hedge'],
     defaultHighlight: 'last',
-    sourceLabel: 'CoinGecko · KAG (silver-backed)',
+    sourceLabel: 'Yahoo Finance · COMEX',
   },
   {
     id: 'xmr',
@@ -813,7 +854,7 @@ export const INDICATORS = [
   // ── Tier 2: European natural gas (IMF) — complements Henry Hub ─────────────
   {
     id: 'natgas-ttf',
-    label: 'Natural gas (TTF, Europe)',
+    label: 'European natural gas',
     unit: '$/MMBtu',
     source: 'imf',
     seriesId: 'PNGASEU',
