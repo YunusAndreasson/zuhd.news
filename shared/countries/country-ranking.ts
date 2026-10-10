@@ -155,7 +155,7 @@ export const METRICS: Record<MetricKey, MetricMeta> = {
     sourceUrl: WB('EN.GHG.CO2.PC.CE.AR5'),
   },
   urbanPct: {
-    label: 'urbanization',
+    label: 'urbanisation',
     scale: 'linear',
     description: 'Share of population living in urban areas.',
     source: 'World Bank · UN DESA',
@@ -245,7 +245,7 @@ export const METRICS: Record<MetricKey, MetricMeta> = {
     sourceUrl: OWID('liberal-democracy-index'),
   },
   corruptionCpi: {
-    label: 'cpi (clean gov)',
+    label: 'clean government',
     scale: 'linear',
     description:
       'Transparency International Corruption Perceptions Index. 0 = highly corrupt, 100 = very clean.',
