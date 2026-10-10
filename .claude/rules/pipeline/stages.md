@@ -23,6 +23,7 @@ Stage 1.5  node dedup-selection.js → drops stories already published
 Stage 1.7  node attach-indicators.js → live levels onto the selection
 Stage 2    Claude CLI writer (write-prompt.md) → content/articles/*.md
 Stage 3    Claude CLI editor (check-prompt.md) → style fixes
+Stage 3.65 node pick-charts.js → `chart:` on each new article, or none
 Stage 3b   validate-articles.js → build.js → git commit → wrangler deploy
            → push (api/push) + X (post-to-twitter.js) + IG (post-to-instagram.js)
 Stage 3.8  node narrate-indicators.js (05:00 UTC) → content/.indicator-dispatch.json

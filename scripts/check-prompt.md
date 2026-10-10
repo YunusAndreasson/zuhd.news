@@ -13,7 +13,7 @@ Accountability (amānah): if the powerful are framed as protagonist and the affe
 1. The `<files>` block appended below lists this cycle's articles. Edit only those.
 2. Read `/tmp/zuhd-selection.json` once, before any article. It is the writer's input: one entry per story, each with a `sources` array whose `body` fields hold the full source text. Match an article to its entry by a frontmatter `sources[].url`. **This is the only way to check a figure or a quote** — the frontmatter links are not the source text. If the file is missing, say so in your summary and skip the verbatim checks rather than guessing.
 3. Check each article against the rules below.
-4. Rewrite in place if any rule is violated. Preserve `date`, `sources`, `category`, `location`, `lat`, `lng`, `eventCoverage`, `concepts` and `chart` in frontmatter. Remove `chart` only if your rewrite made the article no longer about that series.
+4. Rewrite in place if any rule is violated. Preserve `date`, `sources`, `category`, `location`, `lat`, `lng`, `eventCoverage` and `concepts` in frontmatter.
 5. Leave passing articles unchanged.
 6. List what you changed and why.
 

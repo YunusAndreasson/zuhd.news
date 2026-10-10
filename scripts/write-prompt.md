@@ -50,7 +50,6 @@ sources:
 eventCoverage: 268
 concepts:
   - "Key Entity"
-chart: "cp:hormuz"
 ---
 
 Hook block — one tight sentence.
@@ -72,7 +71,7 @@ The body is **markdown paragraphs separated by a blank line**. The blank line is
 
 Spend that budget on reporting, not on length. An article that says everything it has in 380 characters is finished at 380; padding it to 450 is the excess zuhd exists to refuse. The ceiling rose because the reader's screen has room for a fifth fact, not because articles should be longer.
 
-List every source from the selection's `sources` array (see task step 2). `eventCoverage` and `concepts` are filled automatically by a post-writer script if missing. `chart` is optional — `<principles>` "Data" says when to set it, and when it applies, set it.
+List every source from the selection's `sources` array (see task step 2). `eventCoverage` and `concepts` are filled automatically by a post-writer script if missing. Write no `chart:` line: the series drawn under a story is chosen after it is written.
 
 </format>
 
@@ -137,22 +136,9 @@ Use a figure **when it sharpens the story**, and prefer it to a vague phrase: "B
 - **The calendar is for the future block**, and only when that decision is this story's next step: "The Federal Reserve decides on 28 October." A scheduled date is the kind of named deadline block 5 asks for.
 - **Skip it when it is not the story.** This is permission, not an instruction — a contract that prices this story's next step, above, is the one exception. A number that does not bear on what happened is filler. Most stories will carry no figure at all, and most that do should use at most one.
 
-**The chart.** A row marked `chart: true` can be drawn directly under the article — its line, its level, its move and its date. Set `chart:` in the frontmatter to that row's `id` when the series is **part of what happened**, which is one of three things:
+**The chart is not yours to set.** One series may be drawn under the article, and a desk chooses it after you have written, from what the story turned out to be about. Write no `chart:` line. The prose does not have to recite a number to earn a chart; spend the characters on reporting. When you do cite a series, use the row's `level` and date exactly, give `vsNormalPct` as the row has it rather than working out your own, and for a move use **`recent`** — the chart prints that move beside the line, so a sentence citing `wider` ("a 23% monthly jump") sits over a chip saying "▼12% over 7 days" and reads as a contradiction.
 
-- **It is the subject.** The story reports on the thing the series measures: tankers hit or turned back at Hormuz carry Hormuz traffic; Treasury yields at a twenty-year high carry the 10-year yield; the lira at a record low carries the lira.
-- **It is the cause.** What happened, happened because of where that line stands, and the sources say so: a fuel strike or a subsidy cut while crude is at $114 carries Brent; a shortage the sources put down to the closed strait carries that strait's traffic.
-- **It is what is being decided.** The event is a negotiation, a vote or a fight over the thing itself: talks on reopening the strait carry its traffic; a central banker signalling the next move carries the rate; a ceasefire fraying carries the ceasefire contract.
-
-The test is the reader's next question. Someone who has just read that talks on reopening Hormuz collapsed wants to know how many ships are getting through, and the chart is the answer. When one of the three holds, set the chart: an article about a strait with no traffic line under it is the weaker article, and a chart costs no characters. The prose does not have to recite the number to earn it; spend the characters on reporting. If the prose does cite that series, use the row's `level` and date exactly, and for a move use **`recent`** — the chart prints that move beside the line, so a sentence citing `wider` ("a 23% monthly jump") sits over a chip saying "▼12% over 7 days" and reads as a contradiction.
-
-What is not a chart:
-
-- **A series that only shares a country, a company or a sector with the story.** The naira under a Nigerian infrastructure bond, Brent under an oil major's new licence or an Iranian election, the lira under a Turkish earthquake, the Fed rate under a story about the Fed's building costs. The story would read the same wherever that line stood.
-- **A contract whose question is not this story's own next step.** "Which lab has the best AI model?" is not the chart for a story about AI cameras; "Netanyahu the next prime minister?" is not the chart for a flight diverted from Tel Aviv.
-- **A second chart.** One per article. If two rows pass, take the series the story reports on directly: an oil-price story carries Brent even when the strait is why the price moved.
-- **An id you were not offered.** Only an `id` from this story's own `indicators`, and only a row with `chart: true`; any other is removed before publishing.
-
-A story with no `indicators`, or none that passes, has no `chart:` line.
+**A level other stories already carry.** A row with `carried: 3` is a level three stories of the last three days have already printed. Slow series do this: a count published once a week reaches every story in its region as the same number, and the reader meets it as the same sentence under four headlines. Cite a carried level only when this story reports that reading itself — the price that moved, the traffic that stopped. As the backdrop to a story about something else, leave it out.
 
 **Report, don't theorize.** The body reports what happened and how the mechanism works. It does not claim what something "gives cover to," what "credibility" someone "gains," or how a "gap widens" — those are opinion columns, not wire copy. If a source makes a causal claim, attribute it to them by name. If no source made the claim, cut it.
 
@@ -266,7 +252,7 @@ State-backed Viettel and Vietnam Posts face a February 2027 deadline to match th
 </example>
 
 <example>
-Block 4 is a **counterpoint** that shrinks the headline figure. The hook carries a dated figure rather than "freight costs rose." The story is about traffic avoiding the Red Sea, so `chart:` attaches the strait's traffic — which the prose never recites, because the chart under it shows the reader. (The id is the shape; your story's own `indicators` decide yours, and most stories have none. Copy the shape, never the words.)
+Block 4 is a **counterpoint** that shrinks the headline figure. The hook carries a dated figure rather than "freight costs rose." (Copy the shape, never the words.)
 
 ---
 title: "Red Sea Reroute Raises Freight"
@@ -282,7 +268,6 @@ sources:
   - name: "Lloyd's List"
     url: "https://lloydslist.com/example"
     country: "GB"
-chart: "cp:bab-el-mandeb"
 ---
 
 Colombo — Asia-Europe container rates hit $4,820 a box on 27 February.

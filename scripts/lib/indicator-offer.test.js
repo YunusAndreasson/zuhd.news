@@ -1,7 +1,7 @@
 import assert from 'node:assert/strict'
 import { test } from 'node:test'
 import { extractEntities } from './entity-registry.js'
-import { ageDays, chartProblem, citesFigure, offerFor, weekMove } from './indicator-offer.js'
+import { ageDays, carriedLevels, chartProblem, citesFigure, offerFor, weekMove } from './indicator-offer.js'
 
 const NOW = Date.parse('2026-09-30T12:00:00Z')
 
@@ -89,7 +89,8 @@ test('a strait story gets the strait, with the numbers its card prints', () => {
   assert.equal(row.level, 3.1)
   assert.equal(row.normal, 6.3)
   assert.equal(row.vsNormalPct, -51)
-  assert.equal(row.chart, true)
+  // Which series is drawn is the chart desk's to say, not the offer's.
+  assert.equal('chart' in row, false)
 })
 
 test('the eclipse in the wheat fields still gets nothing', () => {
@@ -309,12 +310,6 @@ test('a week is counted from the newest observation, wherever `asOf` stands', ()
   assert.deepEqual(weekMove({ values, periods: days(10, '2026-09-28'), asOf: '2026-09-28' }), { pct: Number(((7 / 102) * 100).toFixed(1)), over: '7 days' })
 })
 
-test('only a series the desk has written up is chartable', () => {
-  const o = offer('Brent crude falls as the Fed hikes')
-  assert.equal(o.indicators.find((r) => r.id === 'brent').chart, true)
-  assert.equal(o.indicators.find((r) => r.id === 'fed-funds').chart, false)
-})
-
 test('the calendar offers the next decision on the story’s subject', () => {
   assert.deepEqual(
     offer('The Fed signals a pause').calendar.map((e) => e.title),
@@ -337,17 +332,26 @@ test('rules: Fed is the bank only when capitalised, and IPC is not an exchange',
   assert.ok(found('Hormuz traffic').includes('cp:hormuz'))
 })
 
-test('a chart stands only if this story was offered it as chartable', () => {
-  const offered = [
-    { id: 'brent', chart: true },
-    { id: 'fed-funds', chart: false },
-  ]
-  assert.equal(chartProblem('brent', { offered }), null)
-  assert.match(chartProblem('wti', { offered }), /not offered/)
-  assert.match(chartProblem('fed-funds', { offered }), /no chart/)
-  // No selection to check against: anything the build resolves stands.
+test('a chart stands only on a series the cycle publishes', () => {
   assert.equal(chartProblem('cp:hormuz', { known: new Set(['cp:hormuz']) }), null)
   assert.match(chartProblem('made-up', { known: new Set(['brent']) }), /not a known series/)
+  assert.equal(chartProblem('  ', { known: new Set(['brent']) }), 'empty')
+})
+
+test('a level counts as carried by the stories that name the series and print it', () => {
+  const rows = [{ id: 'cp:hormuz', level: 3.1 }, { id: 'brent', level: 125.4 }]
+  const names = (id) => ({ entities: [{ mention: 'x', indicatorId: id, kind: 'k' }] })
+  const articles = [
+    { meta: names('cp:hormuz'), body: 'Traffic averaged 3.1 ships a day as of 27 September.' },
+    { meta: { chart: 'cp:hormuz' }, body: 'Hormuz traffic ran 44% below normal, at 3.1 ships a day.' },
+    // Names the strait and prints another number: not the level.
+    { meta: names('cp:hormuz'), body: 'Three tankers were hit near the strait, 31 crew rescued.' },
+    // Prints 3.1 and never names the strait.
+    { meta: {}, body: 'Growth slowed to 3.1%.' },
+    // Half a per cent, not five: 120 is not Brent at 125.4.
+    { meta: names('brent'), body: 'Some 120 ships waited as Brent rose.' },
+  ]
+  assert.deepEqual(carriedLevels(articles, rows), { 'cp:hormuz': 2 })
 })
 
 test('cite check: the body quotes one of the row’s figures, within rounding', () => {

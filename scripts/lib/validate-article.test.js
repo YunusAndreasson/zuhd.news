@@ -204,38 +204,30 @@ test('normTitle keeps letters, digits and single spaces', () => {
   assert.equal(normTitle(undefined), '')
 })
 
-test('a chart the story was not offered is taken out, and the article ships', () => {
-  const offeredBySlug = new Map([['2026-10-08-trade-body', [{ id: 'brent', chart: true, level: 71.2 }, { id: 'gold', chart: false, level: 2650 }]]])
-  const v = validator({ offeredBySlug })
+test('a chart on no series the cycle publishes is taken out, and the article ships', () => {
+  const v = validator({ knownIds: new Set(['brent', 'co:nvidia']) })
   const out = v.check(article({ chart: '"wti"' }), FILE)
   assert.equal(out.bad, null)
-  assert.deepEqual(out.events, ['CHART DROPPED ("wti" was not offered for this story)'])
+  assert.deepEqual(out.events, ['CHART DROPPED ("wti" is not a known series)'])
   assert.equal(out.text, article(), 'only the chart line is gone')
 
-  assert.deepEqual(v.check(article({ chart: '"gold"', title: '"A Second Headline"', sources: source('https://www.dawn.com/news/2') }), FILE).events, ['CHART DROPPED ("gold" has no chart the app can draw)'])
-  // Another story's offer is not this one's.
-  assert.deepEqual(v.check(article({ chart: '"brent"', title: '"A Third Headline"', sources: source('https://www.dawn.com/news/3') }), '2026-10-08-other.md').events, ['CHART DROPPED ("brent" was not offered for this story)'])
-  assert.deepEqual(v.counts, { removed: 0, repaired: 0, chartsSet: 3, chartsDropped: 3, chartsCited: 0 })
+  // The chart desk's pick stands whatever the story was offered to cite.
+  assert.deepEqual(v.check(article({ chart: '"co:nvidia"', title: '"A Second Headline"', sources: source('https://www.dawn.com/news/2') }), FILE).events, [])
+  assert.deepEqual(v.check(article({ chart: '""', title: '"A Third Headline"', sources: source('https://www.dawn.com/news/3') }), 'c.md').events, ['CHART DROPPED (empty)'])
+  assert.deepEqual(v.counts, { removed: 0, repaired: 0, chartsSet: 3, chartsDropped: 2, chartsCited: 0 })
 })
 
-test('an offered chart stands, and is counted as cited when the prose quotes its figure', () => {
+test('a chart is counted as cited when the prose quotes the figure the story was offered', () => {
   const offeredBySlug = new Map([
-    ['2026-10-08-cites', [{ id: 'brent', chart: true, level: 71.2 }]],
-    ['2026-10-08-silent', [{ id: 'cp:hormuz', chart: true, level: 12 }]],
+    ['2026-10-08-cites', [{ id: 'brent', level: 71.2 }]],
+    ['2026-10-08-silent', [{ id: 'cp:hormuz', level: 12 }]],
   ])
-  const v = validator({ offeredBySlug })
+  const v = validator({ offeredBySlug, knownIds: new Set(['brent', 'cp:hormuz']) })
   const cites = [BLOCKS[0], 'Brent crude stood at $71.20 a barrel.', ...BLOCKS.slice(2)]
   assert.deepEqual(v.check(article({ chart: '"brent"', blocks: cites }), '2026-10-08-cites.md'), { bad: null, text: null, events: [], problems: [] })
   // An old id for the series is read as the one it became.
   assert.equal(v.check(article({ chart: '"portwatch-hormuz-tanker"', title: '"A Second Headline"', sources: source('https://www.dawn.com/news/2') }), '2026-10-08-silent.md').text, null)
   assert.deepEqual(v.counts, { removed: 0, repaired: 0, chartsSet: 2, chartsDropped: 0, chartsCited: 1 })
-})
-
-test('with no selection, a chart stands on any series the build can resolve', () => {
-  const v = validator({ knownIds: new Set(['brent']) })
-  assert.deepEqual(v.check(article({ chart: '"brent"' }), 'a.md').events, [])
-  assert.deepEqual(v.check(article({ chart: '"invented"', title: '"A Second Headline"', sources: source('https://www.dawn.com/news/2') }), 'b.md').events, ['CHART DROPPED ("invented" is not a known series)'])
-  assert.deepEqual(v.check(article({ chart: '""', title: '"A Third Headline"', sources: source('https://www.dawn.com/news/3') }), 'c.md').events, ['CHART DROPPED (empty)'])
 })
 
 // Until 2026-10-09 the line was removed by a pattern that needed another line
