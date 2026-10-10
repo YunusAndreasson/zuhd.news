@@ -106,6 +106,29 @@ export function isMonthlyRate(indicator: Pick<Indicator, 'cadence' | 'unit'>): b
 }
 
 /**
+ * The rates a central bank sets. Each stands from one decision to the next,
+ * so its chart is drawn as steps (`CardSeries.shape`): joined straight, a cut
+ * made on one day drew as a month's slide. A test holds this to the menu's
+ * `rates` list, so a bank added there is not missed here.
+ */
+const POLICY_RATES: ReadonlySet<string> = new Set([
+  'fed-funds',
+  'ecb-rate',
+  'pboc-rate',
+  'boj-rate',
+  'boe-rate',
+  'bcb-rate',
+  'cbr-rate',
+  'bi-rate',
+  'tcmb-rate',
+]);
+
+/** Whether a series is a rate set by decision, which holds until the next. */
+export function isPolicyRate(id: string): boolean {
+  return POLICY_RATES.has(id);
+}
+
+/**
  * Whether a series is already in per cent, at any cadence: a policy rate,
  * inflation, a bond yield. Its move is the difference in percentage points.
  * A yield going 4% to 4.1% rose 0.10 points, not 2.5%, and the ten-year
@@ -140,21 +163,68 @@ export function formatNumber(n: number, maxDecimals = 3, minDecimals = 0): strin
   return format.format(n);
 }
 
+/** The places a rate is printed to when its series does not say: a policy
+ *  rate and a yield are set and quoted to two. */
+const RATE_DECIMALS = 2;
+
+/**
+ * The places a series in per cent is printed to: the ones it is published to
+ * (`Indicator.decimals`, 1 for inflation and unemployment), else two. One
+ * answer for the reading, the level sentence and the move, so `3.4%` is never
+ * beside `up 0.05 points`.
+ */
+export function rateDecimals(indicator: Pick<Indicator, 'decimals'>): number {
+  const places = indicator.decimals;
+  return typeof places === 'number' && places >= 0 && places <= 4 ? places : RATE_DECIMALS;
+}
+
 /**
  * The reading itself — one number at arm's length.
  *
  * Percentages and sub-10 values keep two decimals (4.69% is a different rate
  * from 4.7%); everything larger rounds and groups, because the fourth
  * significant digit of a wheat price is noise the reader will never repeat.
+ * A percentage published to fewer places prints those (`rateDecimals`): the
+ * statistics office says inflation is 3.4%, and `3.35%` is a precision it
+ * never claimed.
  *
  * A price under a dollar keeps four: at two, a coin at $0.0931 reads `$0.09`,
  * and a tenth of its value can come and go without the reading changing.
  */
-export function formatReading(value: number, unit?: string): string {
+export function formatReading(value: number, unit?: string, decimals = RATE_DECIMALS): string {
   if (!Number.isFinite(value)) return '—';
   if (unit?.startsWith('$') && Math.abs(value) < 1) return value.toFixed(4);
-  if (unit === '%' || Math.abs(value) < 10) return value.toFixed(2);
+  if (unit === '%') return value.toFixed(decimals);
+  if (Math.abs(value) < 10) return value.toFixed(2);
   return formatCount(value);
+}
+
+/**
+ * An exchange rate at the precision a market quotes one: four places under
+ * ten, two under a thousand, none above. `49.22` lira and `158.29` yen to the
+ * dollar, `$1.1203` to the euro, `17,891` rupiah.
+ *
+ * `formatReading` rounds from ten up, which is right for a wheat price and
+ * hid a currency's whole week: the lira read `49` on every day of a month in
+ * which it lost half a per cent.
+ */
+export function formatRate(value: number): string {
+  if (!Number.isFinite(value)) return '—';
+  const size = Math.abs(value);
+  const places = size < 10 ? 4 : size < 1000 ? 2 : 0;
+  return formatNumber(value, places, places);
+}
+
+/**
+ * A sum of dollars at a glance: `$965B`, `$1.6B`, `$428M`, `$1.3T`. One
+ * decimal under ten of a unit, none above. A company's market value and an AI
+ * lab's revenue are read to two figures and no further.
+ */
+export function compactUsd(usd: number): string {
+  const [divisor, mark] =
+    usd >= 1e12 ? [1e12, 'T'] : usd >= 1e9 ? [1e9, 'B'] : usd >= 1e6 ? [1e6, 'M'] : [1, ''];
+  const scaled = usd / divisor;
+  return `$${formatNumber(scaled, scaled < 10 ? 1 : 0)}${mark}`;
 }
 
 /** A percentage at the precision the app prints one: whole from ten up,
@@ -197,8 +267,10 @@ export function deltaFrom(
 export interface DeltaOptions {
   window?: string;
   unit?: 'percent' | 'points' | 'rate' | 'score';
+  /** A rate's move: the places its series is printed to (`rateDecimals`). */
+  decimals?: number;
   /** What a move that rounds to nothing prints: `unchanged`, or a strait's
-   *  `at its normal`. */
+   *  `at its 90-day average`. */
   flat?: string;
 }
 
@@ -209,14 +281,14 @@ export interface DeltaOptions {
  */
 export function deltaOf(
   pct: number,
-  { window, unit = 'percent', flat = 'unchanged' }: DeltaOptions = {},
+  { window, unit = 'percent', flat = 'unchanged', decimals }: DeltaOptions = {},
 ): CardDelta | undefined {
   if (!Number.isFinite(pct)) return undefined;
   const magnitude =
     unit === 'points'
       ? formatMagnitudePoints(pct)
       : unit === 'rate'
-        ? formatMagnitudeRatePoints(pct)
+        ? formatMagnitudeRatePoints(pct, decimals)
         : unit === 'score'
           ? formatMagnitudeScorePoints(pct)
           : formatMagnitudePct(pct);
@@ -224,7 +296,7 @@ export function deltaOf(
   // flat chip carries no arrow — there is no direction to point — and reads
   // slate, the quietest of the three.
   const size = unit === 'percent' ? Math.abs(pct) : undefined;
-  const points = unit === 'points' ? ({ unit: 'points' } as const) : {};
+  const points = unit === 'points' || unit === 'rate' ? ({ unit } as const) : {};
   if (magnitude === null) return { direction: 'flat', magnitude: flat, window, size, ...points };
   return { direction: pct > 0 ? 'up' : 'down', magnitude, window, size, ...points };
 }
@@ -279,10 +351,16 @@ export function moveRuns(text: string): MoveRun[] {
  * days` — the direction as a word, because the arrow is not one, and a flat
  * move's magnitude already says it. `window: false` where the window is
  * spoken on its own.
+ *
+ * A rate's or a contract's points are said in full, `up 0.09 percentage
+ * points`: the chip has a list's first line to say what its points are, and a
+ * listener has only this. An index's points (`score`) are its own.
  */
 export function spokenDelta(delta: CardDelta, { window = true } = {}): string {
-  const move =
-    delta.direction === 'flat' ? delta.magnitude : `${delta.direction} ${delta.magnitude}`;
+  const magnitude = delta.unit
+    ? delta.magnitude.replace(/ (points?)$/, ' percentage $1')
+    : delta.magnitude;
+  const move = delta.direction === 'flat' ? magnitude : `${delta.direction} ${magnitude}`;
   return window && delta.window ? `${move} ${delta.window}` : move;
 }
 
@@ -312,11 +390,12 @@ export function formatMagnitudePoints(points: number): string | null {
  * Whole points suit a contract, whose sixty-point swings are the story; a
  * central bank moves in quarters, so rounded to a whole point a 25-basis-point
  * cut read "unchanged". Two decimals, as the rate itself is printed
- * (`formatReading`), so the move and the level agree about precision.
+ * (`formatReading`), so the move and the level agree about precision: one for
+ * a rate published to one (`rateDecimals`).
  */
-function formatMagnitudeRatePoints(points: number): string | null {
+function formatMagnitudeRatePoints(points: number, decimals = RATE_DECIMALS): string | null {
   if (!Number.isFinite(points)) return null;
-  const magnitude = Math.abs(points).toFixed(2);
+  const magnitude = Math.abs(points).toFixed(decimals);
   if (Number(magnitude) === 0) return null;
   return `${magnitude} points`;
 }
@@ -335,8 +414,8 @@ function formatMagnitudeScorePoints(points: number): string | null {
 }
 
 /** The same move, signed, for a sentence: "+0.25 points", or "unchanged". */
-export function formatSignedRatePoints(points: number): string {
-  const magnitude = formatMagnitudeRatePoints(points);
+export function formatSignedRatePoints(points: number, decimals = RATE_DECIMALS): string {
+  const magnitude = formatMagnitudeRatePoints(points, decimals);
   if (magnitude === null) return 'unchanged';
   return `${points > 0 ? '+' : '−'}${magnitude}`;
 }

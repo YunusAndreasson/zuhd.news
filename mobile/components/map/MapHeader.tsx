@@ -53,8 +53,7 @@ import { GAUGE_EXTRA, IndicatorStrip } from './IndicatorStrip';
  * taking touches while a story was open, to quiet the screen for reading. But
  * the open story's globe band starts under this row, so they never covered
  * the story; hiding them only took the markets away at the moment a story
- * about them was on screen. Instead, the ones the story is tied to lead the
- * row (`linkedIds`).
+ * about them was on screen.
  */
 
 /** Keep the full touch target while letting it meet the safe right edge. */
@@ -71,6 +70,14 @@ const PLAY_SLOP = { top: 0, bottom: 0, left: SPACING.xs, right: SPACING.xs };
 /** The square each control's glyph is centred in — one size for both, so
  *  their centres share a line whatever size each glyph is. */
 const GLYPH_BOX = 30;
+/**
+ * How far both glyphs are lifted to sit on the middle of a gauge's two lines
+ * as the eye finds it. A gauge is its name over its move, and the move's line
+ * carries more leading under its figures than the name's does over its
+ * letters: the visible middle of the pair is a point above the middle of
+ * their boxes. Beside one line of text the two middles were the same.
+ */
+const TEXT_LIFT = 1;
 /** The heard ring round `▶`, sized to the small triangle it circles. */
 const HEARD_BOX = 24;
 const HEARD_STROKE = 1.5;
@@ -194,8 +201,6 @@ function HeaderControl({
 
 export const MapHeader = memo(function MapHeader({
   items,
-  locked,
-  pinned,
   onSelect,
   onMenuPress,
   selectedId = null,
@@ -207,8 +212,6 @@ export const MapHeader = memo(function MapHeader({
   onListenPress,
 }: {
   items: StripItem[];
-  locked?: boolean;
-  pinned?: StripItem;
   onSelect: (item: StripItem) => void;
   onMenuPress: () => void;
   /** Today's briefing exists and its player is not already up. */
@@ -220,7 +223,7 @@ export const MapHeader = memo(function MapHeader({
   onListenPress?: () => void;
   /** The gauge whose card is open. */
   selectedId?: string | null;
-  /** Gauges tied to the open story, marked in its hue. */
+  /** Gauges tied to the open story: a screen reader hears it on the slot. */
   linkedIds?: ReadonlySet<string>;
 }) {
   const { colors, textVariants } = useTheme();
@@ -234,14 +237,14 @@ export const MapHeader = memo(function MapHeader({
 
   // The row is as tall as a gauge whether or not the gauges have arrived, so
   // their arrival does not move the globe, whose centre is measured from here.
+  // A gauge is two lines, its name over its move (`IndicatorStrip`).
   const gaugeHeight = Math.max(
     CONTROL_ROW,
     Math.ceil(
-      Math.max(
-        (textVariants.labelXsTight.lineHeight ?? 0) * Math.min(fontScale, MAX_FONT_SCALE.chrome),
+      (textVariants.labelXsTight.lineHeight ?? 0) * Math.min(fontScale, MAX_FONT_SCALE.chrome) +
         (textVariants.tabularEmphasis.lineHeight ?? 0) *
-          Math.min(fontScale, MAX_FONT_SCALE.tabular),
-      ) + GAUGE_EXTRA,
+          Math.min(fontScale, MAX_FONT_SCALE.tabular) +
+        GAUGE_EXTRA,
     ),
   );
   const leftInset = Math.max(SPACING.articlePadding, insets.left);
@@ -275,8 +278,6 @@ export const MapHeader = memo(function MapHeader({
             ~165ms production. */}
         <IndicatorStrip
           items={items}
-          locked={locked}
-          pinned={pinned}
           onSelect={onSelect}
           selectedId={selectedId}
           linkedIds={linkedIds}
@@ -323,8 +324,9 @@ const styles = StyleSheet.create({
     width: CONTROL_WIDTH,
     height: CONTROL_ROW,
     // Optical alignment with the gauges' text, which sits above their
-    // selection bar; the icon font's own ascent is accounted for too.
-    paddingBottom: GAUGE_EXTRA,
+    // selection bar, at the visible middle of its two lines (`TEXT_LIFT`).
+    // Padding under a centred glyph lifts it by half as much.
+    paddingBottom: GAUGE_EXTRA + 2 * TEXT_LIFT,
     flexShrink: 0,
     alignItems: 'center',
     justifyContent: 'center',

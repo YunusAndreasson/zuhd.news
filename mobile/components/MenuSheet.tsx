@@ -22,6 +22,7 @@ import {
   FONT_SYSTEM,
   type FontFamily,
   type FontSize,
+  ICON,
   SPACING,
 } from '../constants/theme';
 import { useSheetBackNavigation } from '../hooks/useSheetBackNavigation';
@@ -32,6 +33,8 @@ import {
   subscribe as subscribeBookmarks,
 } from '../lib/bookmark-store';
 import { spokenDelta } from '../lib/cards/format';
+import { rangeScale } from '../lib/cards/range';
+import { WEEK_WINDOW, WINDOW_NAMES } from '../lib/cards/week';
 import {
   formatBytes,
   getSnapshot as getDataUsage,
@@ -63,11 +66,19 @@ import { resetOnboarding } from '../lib/onboarding-store';
 import { MARKET_CAVEAT } from '../lib/predictions';
 import { LEADERS_SEPARATOR } from '../lib/row-leaders';
 import type { TapResult } from '../lib/tap-result';
-import { groupFigure, hazardParts } from '../lib/world-summary';
+import {
+  groupFigure,
+  groupLadder,
+  groupPath,
+  hazardParts,
+  stocksLine,
+  stocksSummary,
+  WORLD_STOCKS,
+} from '../lib/world-summary';
 import { DeltaChip } from './DeltaChip';
 import { EmptyState } from './EmptyState';
-import { InstrumentRow } from './InstrumentRow';
-import { ListIntro, listStyles } from './ListRow';
+import { InstrumentHeads, InstrumentRow, type RowSlot } from './InstrumentRow';
+import { ListIntro, ListRow, listStyles } from './ListRow';
 import { MarkRow } from './MarkRow';
 import {
   type MenuDetail,
@@ -76,7 +87,9 @@ import {
   menuDetailLabel,
 } from './MenuDetail';
 import { MenuControlRow, MenuRow, SectionLabel } from './MenuRow';
-import { Text } from './primitives';
+import { MoveCaption } from './MoveCaption';
+import { MoveWindows, WindowHeads } from './MoveWindows';
+import { Icon, Text } from './primitives';
 import { SegmentedControl, type SegmentOption } from './SegmentedControl';
 import { SheetAboutPage } from './SheetAboutPage';
 import { SheetBookmarksPage } from './SheetBookmarksPage';
@@ -151,11 +164,15 @@ function pageTitle(key: PageKey): string {
  */
 const GROUP_NOTES: Readonly<Record<GroupKey, string>> = {
   stocks: 'Index points',
-  companies: 'Share prices',
-  straits: 'Ships a day',
+  // Where a build carries no market values the rows are share prices
+  // (`groupNote`).
+  companies: 'Market value in US dollars',
+  // Counted from the positions ships broadcast (IMF PortWatch), so one with
+  // its transponder off is missing: the caveat a count near zero needs.
+  straits: 'Ships a day, counted from their position signals',
   // The reading is the rate and the move is the currency's own, so the two
   // can point opposite ways.
-  currencies: 'Units per US dollar · up means stronger',
+  currencies: 'Per US dollar; the euro in dollars · up means stronger',
   energy: 'Prices',
   food: 'Prices',
   metals: 'Prices',
@@ -171,6 +188,13 @@ const GROUP_NOTES: Readonly<Record<GroupKey, string>> = {
   predictions: `Prices from ${MARKET_CAVEAT}`,
   calendar: '',
 };
+
+/** A list's first line. The companies' says what their rows print: market
+ *  values, or the share prices a build without them falls back to. */
+const groupNote = (group: CatalogGroup): string =>
+  group.key === 'companies' && !group.rows.every((row) => row.reading !== undefined)
+    ? 'Share prices'
+    : GROUP_NOTES[group.key];
 
 const METRIC_KEYS = Object.keys(METRICS) as MetricKey[];
 
@@ -191,14 +215,10 @@ interface MenuSheetProps extends BaseSheetProps {
   gdacsDetails: Record<string, GdacsDetail>;
   /** The river, for the stories a thermal anomaly was joined to. */
   articles: RiverArticle[];
-  /** A row whose card is opening as a page: fly the globe to it and ring its
-   *  place, behind the menu, so closing the menu leaves the reader there. */
-  onFocusRow: (row: CatalogRow) => void;
   /** A strait with nothing to chart has no page: close the menu and find it
-   *  on the globe. */
+   *  on the globe. Nothing that opens as a page moves the globe: the menu
+   *  covers it. */
   onSelectRow: (row: CatalogRow) => void;
-  /** A hazard mark opening as a page: fly the globe to it, behind the menu. */
-  onFocusMark: (result: TapResult) => void;
   /** A story a card cites: close the menu and open it. */
   onStoryPress: (slug: string) => void;
   /**
@@ -221,9 +241,7 @@ export const MenuSheet = memo(function MenuSheet({
   hazards,
   gdacsDetails,
   articles,
-  onFocusRow,
   onSelectRow,
-  onFocusMark,
   onStoryPress,
   rootKey,
   onToast,
@@ -302,23 +320,21 @@ export const MenuSheet = memo(function MenuSheet({
         onSelectRow(row);
         return;
       }
-      onFocusRow(row);
       openDetail({ kind: 'card', card });
     },
-    [onFocusRow, onSelectRow, openDetail],
+    [onSelectRow, openDetail],
   );
   const handleMark = useCallback(
     (result: TapResult) => {
       const detail = markDetail(result, hazards);
       if (!detail) return;
-      onFocusMark(result);
       openDetail(
         detail.kind === 'country' && nav.current === 'famine'
           ? { ...detail, leadingFact: 'hunger' }
           : detail,
       );
     },
-    [hazards, onFocusMark, openDetail, nav.current],
+    [hazards, openDetail, nav.current],
   );
   const handleGroup = useCallback(
     (group: CatalogGroup) => {
@@ -676,7 +692,9 @@ const MENU_SECTION: Record<GroupKey, (typeof MENU_SECTIONS)[number]> = {
   currencies: 'markets & trade',
   crypto: 'markets & trade',
   energy: 'markets & trade',
-  food: 'markets & trade',
+  // Monthly, as everything under `economy` is: it has none of the table's
+  // three windows ("what about food since it does not blend well?").
+  food: 'economy',
   metals: 'markets & trade',
   straits: 'markets & trade',
   rates: 'economy',
@@ -711,18 +729,28 @@ function MenuRootPage({
         if (groups.length === 0 && section !== 'explore') return null;
         return (
           <Fragment key={section}>
-            <SectionLabel label={section} first={sectionIndex === 0} />
+            {/* The first section is a table: its label's line names the three
+                windows over their columns, once, and every row has all three. */}
             {sectionIndex === 0 ? (
-              <Text variant="caption" tone="secondary">
-                7-day changes unless noted
-              </Text>
-            ) : section === 'economy' ? (
+              <View style={styles.tableHead}>
+                <View style={styles.tableLabel}>
+                  <SectionLabel label={section} first />
+                </View>
+                <View style={styles.tableHeads}>
+                  <WindowHeads labels={WINDOW_NAMES} room={HEADLINE_SCALE} />
+                </View>
+                <View style={styles.chevronRoom} />
+              </View>
+            ) : (
+              <SectionLabel label={section} />
+            )}
+            {section === 'economy' ? (
               <Text variant="caption" tone="secondary">
                 Monthly changes unless noted
               </Text>
             ) : null}
             {groups.map((group, i) => (
-              <GroupRow
+              <GroupEntry
                 key={group.key}
                 group={group}
                 first={i === 0}
@@ -808,6 +836,75 @@ const DataUsedRow = memo(function DataUsedRow() {
       title="data used"
       description="Fetched since you opened the app"
       value={formatBytes(used)}
+    />
+  );
+});
+
+/** The first row's moves, at a card's chip: a step over the rows under it,
+ *  which print theirs at a caption's size. Every cell is measured at it. */
+const HEADLINE_SCALE = 1.15;
+
+/**
+ * A list's row on the root: its move over a day and over seven, and its
+ * thirty days as a small line (`groupLadder`, `groupPath`,
+ * `lib/world-summary.ts`), where the list is quoted daily; its one number
+ * where it is not (`GroupRow`).
+ *
+ * The first is `world stocks`, the stock list's row under the name of what
+ * its numbers are: every exchange's move in US dollars, weighed by its
+ * economy. It is the headline, a step larger and first, and not a block of
+ * its own over the lists.
+ *
+ * The user's requests, in order (2026-10-10): "one clear indicator at the
+ * top… a value for today or at least this week's trend"; "how can we in the
+ * clearest way indicate how markets moved today, 7d and 30d"; "can we do it
+ * for all in markets and trade?"; and, of the windows' names, "can we do that
+ * in a smarter way? or is it better to repeat?", then "small graph for 30d?".
+ * The windows were a stack of bars in each row for a day, named on the
+ * headline alone, and three numbers for an hour.
+ *
+ * - **Not a score across the lists**, and nothing here is "the economy": the
+ *   first row is shares, and it says so.
+ * - **The windows are named once**, at the head of their columns.
+ */
+const GroupEntry = memo(function GroupEntry({
+  group,
+  first,
+  onPress,
+}: {
+  group: CatalogGroup;
+  first: boolean;
+  onPress: () => void;
+}) {
+  const rungs = groupLadder(group);
+  if (!rungs) return <GroupRow group={group} first={first} onPress={onPress} />;
+  const headline = group.key === 'stocks';
+  const title = headline ? WORLD_STOCKS : group.title;
+  const { detail, coverage } = groupFigure(group);
+  const said: string[] = [title];
+  for (const rung of rungs) if (rung.delta) said.push(spokenDelta(rung.delta));
+  if (detail) said.push(detail);
+  if (coverage) said.push(coverage);
+  return (
+    <ListRow
+      first={first}
+      title={title}
+      onPress={onPress}
+      accessibilityLabel={said.join(', ')}
+      accessibilityHint={headline ? 'Opens every stock market' : undefined}
+      trailing={
+        <>
+          <MoveWindows
+            rungs={rungs}
+            path={groupPath(group)}
+            scale={headline ? HEADLINE_SCALE : 1}
+            room={HEADLINE_SCALE}
+          />
+          <View accessibilityElementsHidden importantForAccessibility="no-hide-descendants">
+            <Icon name="chevron-forward" size="sm" tone="secondary" />
+          </View>
+        </>
+      }
     />
   );
 });
@@ -1015,20 +1112,46 @@ function GroupPage({
   const pointChanges = ['rates', 'borrowing', 'inflation', 'jobs', 'predictions'].includes(
     group.key,
   );
+  // What every row holds between its name and its reading, where the list has
+  // one: each row's thirty days, or an AI lab's likely range on one scale.
+  const slot = useMemo((): RowSlot | undefined => {
+    if (group.rows.some((row) => row.path)) return { kind: 'line' };
+    const scale = rangeScale(group.rows.flatMap((row) => (row.range ? [row.range] : [])));
+    return scale ? { kind: 'range', scale } : undefined;
+  }, [group]);
+  // The columns' own names, over the first row. They say the window the rows'
+  // moves share, so the note does not say it again.
+  const heads = !slot
+    ? null
+    : slot.kind === 'line'
+      ? { drawn: WINDOW_NAMES[2], figures: context.window === WEEK_WINDOW ? WINDOW_NAMES[1] : '' }
+      : { drawn: 'likely range', figures: context.window ?? '' };
   const note = [
-    GROUP_NOTES[group.key],
+    groupNote(group),
     group.key === 'ai' ? groupFigure(group).coverage : undefined,
     context.dateLabel,
-    time && `${time}${pointChanges ? ' in percentage points' : ''}`,
+    !heads?.figures && time && `${time}${pointChanges ? ' in percentage points' : ''}`,
   ]
     .filter(Boolean)
     .join(' · ');
   const renderItem = useCallback(
     ({ item, index }: { item: CatalogRow; index: number }) => (
-      <InstrumentRow row={item} first={index === 0} onPress={onSelect} context={context} />
+      <InstrumentRow
+        row={item}
+        first={index === 0}
+        onPress={onSelect}
+        context={context}
+        slot={slot}
+      />
     ),
-    [onSelect, context],
+    [onSelect, context, slot],
   );
+  // The headline's figure, where its markets are: the number again, and what
+  // it is of. Its rows are each market's week in its own currency.
+  const world = useMemo(() => {
+    const stocks = group.key === 'stocks' ? stocksSummary([group]) : null;
+    return stocks ? stocksLine(stocks) : undefined;
+  }, [group]);
   return (
     <SheetFlatList
       data={group.rows}
@@ -1036,7 +1159,14 @@ function GroupPage({
       renderItem={renderItem}
       bottomInset={bottomInset}
       contentContainerStyle={listStyles.content}
-      ListHeaderComponent={<ListIntro note={note} />}
+      ListHeaderComponent={
+        <ListIntro note={note}>
+          {world ? <MoveCaption>{world}</MoveCaption> : null}
+          {slot && heads ? (
+            <InstrumentHeads slot={slot} drawn={heads.drawn} figures={heads.figures} />
+          ) : null}
+        </ListIntro>
+      }
       ListEmptyComponent={<EmptyState message="No readings available" />}
     />
   );
@@ -1095,4 +1225,11 @@ const styles = StyleSheet.create({
   listPage: { flex: 1 },
   // The list's figure and its name, as one unit.
   groupFigure: { alignItems: 'flex-end', gap: SPACING.xs },
+  // The table's head: the section's label, the windows over their columns,
+  // and the room a row's chevron takes, with a row's own gaps between them.
+  tableHead: { flexDirection: 'row', alignItems: 'flex-end', gap: SPACING.md },
+  tableLabel: { flex: 1 },
+  // On the label's line: a section label keeps this much under it.
+  tableHeads: { paddingBottom: SPACING.xs },
+  chevronRoom: { width: ICON.sm },
 });

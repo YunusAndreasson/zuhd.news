@@ -35,13 +35,13 @@ export type Direction = 'up' | 'down' | 'flat';
  */
 export function moveTone(delta: {
   direction: Direction;
-  unit?: 'points';
+  unit?: 'points' | 'rate';
 }): Extract<TextTone, 'rise' | 'fall' | 'neutral'> {
   if (delta.unit === 'points' || delta.direction === 'flat') return 'neutral';
   return delta.direction === 'up' ? 'rise' : 'fall';
 }
 
-/** A chokepoint this far below its own 90-day normal is disrupted rather than
+/** A chokepoint this far below its own 90-day average is disrupted rather than
  *  quiet. Shared with the web map, which drew a 12% fall as quiet while the app
  *  drew it as a pinch. */
 export { CHOKEPOINT_DISRUPTED } from '@shared/chokepoint-thresholds';

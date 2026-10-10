@@ -67,10 +67,10 @@ export function listContext(group: CatalogGroup) {
 }
 
 /**
- * The number a reader follows into a card leads it. A row's week is the
- * card's own first chip (`cardMoves`, from the same `gaugeMove`), so the card
- * opens as it is; a row with no week prints one move, and the card prints
- * that one.
+ * The number a reader follows into a card is on it. A row's week is one of
+ * the card's three windows (`cardWindows`, from the same `gaugeMove`), so the
+ * card opens as it is; a row with no week prints one move, and the card
+ * prints that one.
  */
 export function menuCard(row: CatalogRow): SwipeCard | null {
   if (!row.card || !row.move || row.weekly) return row.card;

@@ -36,7 +36,7 @@ export function straitWeekChange(delta: CardDelta) {
 
 /**
  * The number a strait prints: the strip's seven-day move where the strip has
- * one (`week`, from `straitMoves`), else the gap from its 90-day normal.
+ * one (`week`, from `straitMoves`), else the gap from its 90-day average.
  * The globe's label and the chooser's row both ask here, so the row under a
  * finger reads what the mark under it does.
  */
@@ -44,11 +44,11 @@ export function straitChange(week: CardDelta | undefined, normal: number | undef
   return week ? straitWeekChange(week) : straitMapChange(normal);
 }
 
-/** What a strait's glyph says about its traffic against the 90-day normal. */
+/** What a strait's glyph says about its traffic against the 90-day average. */
 export type StraitState = 'rest' | 'pinch' | 'surge';
 
 /**
- * A strait's state from its seven-day traffic against its 90-day normal, as
+ * A strait's state from its seven-day traffic against its 90-day average, as
  * the globe draws it: pinched when the fall is the disruption
  * (`straitSqueezed`), bowed open past the same bar the other way. One rule
  * for the globe's mark, the map key and the chooser's row, so the row under a

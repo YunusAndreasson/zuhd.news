@@ -2,8 +2,10 @@ import { memo, useCallback } from 'react';
 import { StyleSheet, View } from 'react-native';
 import { SPACING } from '../constants/theme';
 import { useTheme } from '../hooks/useTheme';
+import { spokenDelta } from '../lib/cards/format';
 import { MARKET_CAVEAT, type StoryOdds } from '../lib/predictions';
-import { Pressable, Text } from './primitives';
+import { DeltaChip } from './DeltaChip';
+import { Icon, Pressable, Text } from './primitives';
 
 /**
  * What the market thinks about this story, under its headline.
@@ -17,7 +19,7 @@ import { Pressable, Text } from './primitives';
  *   - **Level, then movement in points.** A contract going 26 → 86 moved 60
  *     points; "+231%" is arithmetic pretending to be journalism.
  *   - **Never a favorable/unfavorable tint.** On the odds of a war that would
- *     be a verdict. Every piece of this line is in the secondary ink tiers.
+ *     be a verdict. The move's chip is slate whichever way it went (`moveTone`).
  *   - **The caveat is always printed.** A price is set by people with money on
  *     the outcome, and it is not a forecast. `MARKET_CAVEAT` is a constant so
  *     no generated description can ever quietly replace it.
@@ -35,7 +37,11 @@ export const OddsLine = memo(function OddsLine({
 }) {
   const { colors } = useTheme();
   const handlePress = useCallback(() => onPress?.(odds), [odds, onPress]);
-  const spoken = [`Traders price this at ${odds.level}`, odds.move, MARKET_CAVEAT]
+  const spoken = [
+    `Traders price this at ${odds.level}`,
+    odds.move ? spokenDelta(odds.move) : null,
+    MARKET_CAVEAT,
+  ]
     .filter(Boolean)
     .join(', ');
   const body = (
@@ -47,10 +53,17 @@ export const OddsLine = memo(function OddsLine({
         <Text variant="tabularEmphasis" scale={1.25}>
           {odds.level}
         </Text>
-        {odds.move ? (
-          <Text variant="caption" tone="secondary">
-            {odds.move}
-          </Text>
+        {/* The chip `StoryChart` prints a contract's move in, with its window. */}
+        {odds.move ? <DeltaChip delta={odds.move} /> : null}
+        {/* As on `StoryChart`: what says the line opens its chart. */}
+        {onPress ? (
+          <View
+            style={styles.chevron}
+            accessibilityElementsHidden
+            importantForAccessibility="no-hide-descendants"
+          >
+            <Icon name="chevron-forward" size="sm" tone="secondary" />
+          </View>
         ) : null}
       </View>
       <Text variant="labelXs" tone="secondary">
@@ -100,4 +113,6 @@ const styles = StyleSheet.create({
     gap: SPACING.sm,
     marginVertical: SPACING.xxs,
   },
+  // At the row's end, centred on a row otherwise set on the text's baseline.
+  chevron: { alignSelf: 'center', marginLeft: 'auto' },
 });

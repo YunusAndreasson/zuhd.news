@@ -44,7 +44,7 @@ function snapshot(indicators: Indicator[], extra: Partial<TrendsSnapshot> = {}):
 }
 
 /** A strait, measured on `n_total`. `delta` is the fraction it sits away from
- *  its own 90-day normal — the quantity `CHOKEPOINT_DISRUPTED` gates on. */
+ *  its own 90-day average — the quantity `CHOKEPOINT_DISRUPTED` gates on. */
 function strait(id: string, name: string, last7: number, base: number, delta: number): Chokepoint {
   return {
     id,
@@ -491,6 +491,10 @@ describe('buildInstrumentCards', () => {
 
     const unitOf = (id: string) => cards.find((c) => c.id === id)?.delta?.unit;
     expect(unitOf('poly-x')).toBe('points');
+    // And it is drawn on a chance's whole scale, never stretched to the few
+    // points it moved between.
+    expect(cards.find((c) => c.id === 'poly-x')?.series?.domain).toEqual([0, 100]);
+    expect(cards.find((c) => c.id === 'brent')?.series?.domain).toBeUndefined();
     for (const id of ['brent', 'btc', 'eth', 'staples', 'metals', 'fx-rub-mover']) {
       expect(unitOf(id)).toBeUndefined();
     }
@@ -520,11 +524,11 @@ describe('buildInstrumentCards', () => {
     expect(moved?.delta).toMatchObject({
       direction: 'down',
       magnitude: '90%',
-      window: 'vs its 90-day normal',
+      window: 'vs its 90-day average',
     });
     expect(moved?.kind === 'reading' ? moved.series?.reference : undefined).toEqual({
       value: 8.8,
-      label: 'normal',
+      label: '90-day average',
     });
     expect(moved?.changed).toBeUndefined();
     // It is on screen because it moved, and it says so.
@@ -583,7 +587,7 @@ describe('buildInstrumentCards', () => {
         value: '2.4 a day',
         // A move, so the row prints it in its colour: it was the note `−43%`.
         delta: expect.objectContaining({ direction: 'down', magnitude: '43%' }),
-        group: 'ships by type · vs 90-day normal',
+        group: 'ships by type · vs 90-day average',
       },
     ]);
   });
@@ -747,7 +751,7 @@ describe('buildInstrumentCards', () => {
         label: 'container ships',
         value: '6.2 a day',
         delta: expect.objectContaining({ direction: 'down', magnitude: '44%' }),
-        group: 'ships by type · vs 90-day normal',
+        group: 'ships by type · vs 90-day average',
       },
       { label: 'Bab el-Mandeb Strait effectively closed by Dec 31?', value: '18%' },
     ]);

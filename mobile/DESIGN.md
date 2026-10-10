@@ -140,10 +140,20 @@ a primitive at the third caller.
   `figure`, then what a press does: `push`, `leave`, a `Toggle`, or nothing.
   A row whose name says enough prints no line: what it opens is its `hint`.
   `SectionLabel` names a group.
+- `MoveWindows` under `WindowHeads`: a row of moves under a line that names
+  their windows once. A cell is a `DeltaChip` with no window beside it, and
+  every cell is as wide as the widest move, so the columns hold at any text
+  size. The longest window is a `Spark`. A window with nothing to say keeps
+  its cell with a dash.
+- The menu's first row, `world stocks`, prints its moves at a card's chip
+  (`HEADLINE_SCALE`); no other row's figure is larger than a caption.
 - A list of links is `MenuRow`s with `leave`. A choice among a few is a
   `SegmentedControl`.
 - `InstrumentRow`: title over one `caption` line, the kind and the date; at
-  the right the reading (`RowReading`), its unit and a `DeltaChip`.
+  the right the reading (`RowReading`), its unit and a `DeltaChip`. In a list
+  quoted daily a `Spark` of the row's thirty days stands between the name and
+  the reading, and in the AI list a `RangeMark`. Every row keeps that slot and
+  one width for its reading, and `InstrumentHeads` names the two columns once.
 - `MarkRow`: the globe's own glyph, a name and one line. A mark is drawn off
   the globe only by `MarkGlyph`: the lists, the chooser, the map key and a
   country's alerts cannot show one mark two ways.
@@ -161,9 +171,11 @@ a primitive at the third caller.
 `CardFrame` is the shell. One `labelXs` line of metadata (the kicker and the
 date) sits above four tiers, in this order:
 
-- The answer: the reading in `display` over its unit and its moves, each a
-  `DeltaChip` beside its window: the past seven days, then the card's own
-  (`cardMoves`). One move shares the unit's line; two stack under it.
+- The answer: the reading in `display` over its unit and its moves. A card
+  with a week prints the three windows as columns, each name over its move
+  (`WindowColumns`, `cardWindows`); a move against something else stands
+  under them beside its window. A card with one move keeps it on the unit's
+  line.
 - The subject: `title`. On a `belief` or `scheduled` card it comes before the
   reading: a percentage means nothing without its question.
 - The picture: the chart, its labels `labelXs` or `tabular`.
@@ -175,8 +187,9 @@ groups them:
 `SPACING.md` before the chart, `SPACING.lg` before the account.
 
 - The card's moves are the chips. The caption sentence carries only what a
-  chip cannot: a monthly series' year, a ratio's two parts. A level it is
-  measured against (a strait's normal) is a dashed line on the chart
+  chip cannot: a monthly series' year, a ratio's two parts, an index's week
+  in dollars, a reading's record on its chart. A level it is measured against
+  (a strait's 90-day average) is a dashed line on the chart
   (`CardSeries.reference`).
 - A fact appears once: no figure rows for series the chart names.
 - A title scales and a long reading shrinks; neither is cut.
@@ -186,8 +199,22 @@ groups them:
 - `TrendBlock` is the chart for cards, sheets and stories: `variant="context"`
   on a card or sheet, `variant="inline"` under a story (the line alone, no
   scrub). `TrajectoryChart` is the country cards'.
+- A chart is drawn as what its series is, and the builder says which
+  (`CardSeries`): `shape` for steps, `domain` for a scale of the quantity's
+  own, `inverted` for a rate per dollar. Its range is `chartScale`'s, never
+  the series' own extent, so a quiet series looks quiet.
+- The two numbers on a chart's scale are the highest and lowest value drawn,
+  each beside its own rule; close together they part (`partLabels`). A scale
+  of its own is named by its ends and its middle.
+- The scrub's readout is the value, the day and the move since
+  (`moveSince`), on the sheet's ground.
 - `StoryChart` sits in `OddsLine`'s frame, ruled and never filled, and
   replaces the odds line.
+- `Spark` is a list row's thirty days: the line alone, in its move's colour,
+  with a dot on its end. No axis, label or scrub, and nothing animated.
+- `RangeMark` is a reading in its likely range: a quiet bar and a tick on a
+  scale its whole list shares. Secondary and emphasis ink, never a move's
+  colour. Plain views.
 
 ### The map screen
 
@@ -195,8 +222,10 @@ groups them:
 - The top bar's ground is a gradient of `bg` (`Shade` in `MapHeader`), never
   a plate. Keep `SHADE_ROW` at 0.82 or above: under it, secondary ink over
   city lights fails AA.
-- A gauge is a `labelXsTight` label in default ink beside its move. The open
-  card's slot takes a 2pt `textEmphasis` bar. No ticker.
+- A gauge is a `labelXsTight` label in default ink over its move, both from
+  the slot's left edge. A slot is as wide as the wider of the two and no
+  wider, and one gap (`SLOT_GAP`) stands between slots. The open card's slot
+  takes a 2pt `textEmphasis` bar. No ticker.
 - Card inks: kicker `labelXs`, its category word in `categoryText*`; `title`
   and the lede in emphasis ink; blocks in `text`; footer words
   `captionEmphasis` in `accent`, `saved` in emphasis.

@@ -68,7 +68,7 @@ const inputs = (over: Partial<CatalogInputs> = {}): CatalogInputs => ({
 const story = (slug: string, chart?: string) => ({ slug, chart }) as Article;
 
 describe('instrumentCardFor', () => {
-  it('reads a strait’s article id as its card, with the 90-day normal to draw', () => {
+  it('reads a strait’s article id as its card, with the 90-day average to draw', () => {
     const card = instrumentCardFor('cp:hormuz', inputs());
     expect(card?.id).toBe('strait-hormuz');
     expect(card?.kind === 'reading' && card.series?.reference).toBeTruthy();

@@ -157,7 +157,7 @@ describe('buildNowSurfaces — the strip', () => {
   });
 
   it("sorts on the week, not on each card's own window", () => {
-    // The strait is 57% off its 90-day normal but flat on the week; the index
+    // The strait is 57% off its 90-day average but flat on the week; the index
     // moved 3% this week over a four-session streak. They used to sort on the
     // card's own chip, which put a quarter's condition against a week's move.
     const ranked: SwipeCard[] = [
@@ -330,8 +330,13 @@ describe('stripLabel', () => {
 
   it('gives a code its plain name and leaves words alone', () => {
     expect(stripLabel({ id: 'brent', title: 'Brent crude' })).toBe('Oil');
-    expect(stripLabel({ id: 'us-10y', title: 'US 10y Treasury' })).toBe('US 10-year rate');
-    expect(stripLabel({ id: 'vix', title: 'VIX' })).toBe('Fear index');
+    // A bond's reading is its yield: `rate` is what a central bank sets.
+    expect(stripLabel({ id: 'us-10y', title: 'US 10-year Treasury yield' })).toBe(
+      'US 10-year yield',
+    );
+    expect(stripLabel({ id: 'us-2y', title: 'US 2-year Treasury yield' })).toBe('US 2-year yield');
+    expect(stripLabel({ id: 'vix', title: 'VIX' })).toBe('Fear gauge');
+    expect(stripLabel({ id: 'wti', title: 'WTI crude' })).toBe('US oil');
     expect(stripLabel({ id: 'nisab', title: 'Nisab threshold' })).toBe('Nisab');
     // A ratio is a slash, the way round the card divides.
     expect(stripLabel({ id: 'metals', title: 'Gold against silver' })).toBe('Gold/silver');

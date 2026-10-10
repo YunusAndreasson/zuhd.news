@@ -257,11 +257,12 @@ describe('deltaOf', () => {
   });
 
   it('prints the word its caller gives a move that rounds to nothing', () => {
-    // A strait at its own normal is not "unchanged": it is where it usually is.
-    expect(deltaOf(0.04, { window: 'vs its 90-day normal', flat: 'at its normal' })).toEqual({
+    // A strait at its own average is not "unchanged": it is where it has been.
+    const flat = 'at its 90-day average';
+    expect(deltaOf(0.04, { window: 'vs its 90-day average', flat })).toEqual({
       direction: 'flat',
-      magnitude: 'at its normal',
-      window: 'vs its 90-day normal',
+      magnitude: 'at its 90-day average',
+      window: 'vs its 90-day average',
       size: 0.04,
     });
   });
@@ -311,7 +312,7 @@ describe('a move in words and in marks', () => {
       'The threshold fell with silver — more wealth is zakatable since Jul 7.',
       'Now 4.25%, down from 4.50% in Aug 2026.',
       'M 4.9 · 64 km deep',
-      'Sep 21–27 · 90-day normal',
+      'Sep 21–27 · 90-day average',
       'Down 12 points in a day.',
     ]) {
       expect(moveRuns(line)).toEqual([{ text: line }]);

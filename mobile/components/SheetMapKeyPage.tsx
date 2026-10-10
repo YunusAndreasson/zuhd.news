@@ -102,17 +102,17 @@ const SHIPPING: readonly KeyEntry[] = [
     // "red when squeezed, slate otherwise", beside a squeezed mark drawn gold
     // and a busier one drawn teal.
     meaning:
-      'A shipping strait. The arrow and the figure are its ships over the past week, as in the strip: green ↑ more, red ↓ fewer. Its shape and colour are its traffic against the 90-day normal.',
+      'A shipping strait. The arrow and the figure are its ships over the past week, as in the strip: green ↑ more, red ↓ fewer. Its shape and colour are its traffic against its 90-day average. Ships are counted from the positions they broadcast: one with its transponder off is not counted.',
     mark: { kind: 'strait', state: 'rest' },
   },
   {
     label: 'strait, squeezed',
-    meaning: `Traffic ${Math.round(CHOKEPOINT_DISRUPTED * 100)}% or more below its normal: the shores close in.`,
+    meaning: `Traffic ${Math.round(CHOKEPOINT_DISRUPTED * 100)}% or more below that average: the shores close in.`,
     mark: { kind: 'strait', state: 'pinch' },
   },
   {
     label: 'strait, busier',
-    meaning: `Traffic more than ${Math.round(CHOKEPOINT_DISRUPTED * 100)}% above its normal, usually ships rerouted from a strait that is not: the shores open.`,
+    meaning: `Traffic more than ${Math.round(CHOKEPOINT_DISRUPTED * 100)}% above that average, usually ships rerouted from a strait that is not: the shores open.`,
     mark: { kind: 'strait', state: 'surge' },
   },
   {

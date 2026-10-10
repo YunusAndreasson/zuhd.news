@@ -116,5 +116,8 @@ describe('found helpers', () => {
     // A story found already completes nothing a second time.
     expect(completesFound(rows, new Set(['a', 'b']), 'b')).toBe(false);
     expect(completesFound([row('c', null)], new Set(), 'c')).toBe(false);
+    // A story with no place is not a light: finding it completes nothing,
+    // even with every placed story already found.
+    expect(completesFound([...rows, row('c', null)], new Set(['a', 'b']), 'c')).toBe(false);
   });
 });

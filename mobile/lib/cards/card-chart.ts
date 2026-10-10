@@ -1,6 +1,8 @@
 import type { RelatedArticleRef, TrendAnnotation } from '@shared/types';
 import { MONTH_ABBR } from '../date-format';
-import type { CardDelta, CardSeries } from './types';
+import { deltaOf, movesInPoints } from './format';
+import { currencyMove } from './markets';
+import type { Card, CardDelta, CardSeries } from './types';
 
 /**
  * What a card's chart draws besides its line: where the chip's move started,
@@ -36,6 +38,25 @@ export function windowReference(
   const value = series.values[i];
   if (typeof value !== 'number' || !Number.isFinite(value)) return undefined;
   return { value, label: `since ${label}` };
+}
+
+/**
+ * Where a card's longest window began, as a dashed rule: the value on the
+ * day its thirty days opened, under the words the window's head uses. The
+ * card's third number is the move from that rule to the line's end. Nothing
+ * where the card already draws a level, or the day is not on the chart.
+ */
+export function spanReference(
+  series: CardSeries,
+  from: string | undefined,
+  label: string,
+): CardSeries['reference'] {
+  if (series.reference || series.multi || !from) return undefined;
+  const i = series.periods.lastIndexOf(from);
+  if (i < 0 || i >= series.values.length - 1) return undefined;
+  const value = series.values[i];
+  if (typeof value !== 'number' || !Number.isFinite(value)) return undefined;
+  return { value, label };
 }
 
 /** A story's publication day in the two label forms the series use:
@@ -108,4 +129,50 @@ export function citedLabels(
     }
   }
   return crowds.map((crowd) => ({ x: (crowd.x0 + crowd.x1) / 2, label: crowd.label }));
+}
+
+/** What a move on a card's chart is counted in: a share of the reading, the
+ *  percentage points of a rate, a contract's points, an index's score. */
+type MoveUnit = 'percent' | 'rate' | 'points' | 'score';
+
+/** A card's unit of move, as its chips are counted (`deltaOf`): a contract
+ *  and a lab's score never move as a percentage, and neither does a series
+ *  already in per cent (`movesInPoints`). */
+export function moveUnitOf(card: Pick<Card, 'id' | 'kind'>, series: CardSeries): MoveUnit {
+  if (card.kind === 'belief') return 'points';
+  if (card.id.startsWith('ai:')) return 'score';
+  return movesInPoints(series.unit) ? 'rate' : 'percent';
+}
+
+/** The window a scrub's move is said over: from the day under the finger. */
+export const SINCE_WINDOW = 'since';
+
+/**
+ * The move from one observation to the newest, as the chip every surface
+ * prints: what a scrub says under the day the finger is on. The readout gave
+ * a value and a day, and the question a reader holding a day has is how far
+ * it has come since.
+ *
+ * Counted as the card's own moves are (`moveUnitOf`), and a rate drawn turned
+ * over is read as the currency (`currencyMove`), so the chip points the way
+ * the line went. Nothing for the newest observation, or on a chart of several
+ * lines.
+ */
+export function moveSince(
+  series: CardSeries,
+  index: number,
+  unit: MoveUnit = 'percent',
+): CardDelta | undefined {
+  const last = series.values.length - 1;
+  if (series.multi || index < 0 || index >= last) return undefined;
+  const from = series.values[index];
+  const to = series.values[last];
+  if (typeof from !== 'number' || typeof to !== 'number') return undefined;
+  if (!Number.isFinite(from) || !Number.isFinite(to)) return undefined;
+  if (unit !== 'percent') {
+    return deltaOf(to - from, { unit, window: SINCE_WINDOW, decimals: series.decimals });
+  }
+  if (from === 0) return undefined;
+  const pct = ((to - from) / Math.abs(from)) * 100;
+  return deltaOf(series.inverted ? currencyMove(pct) : pct, { window: SINCE_WINDOW });
 }

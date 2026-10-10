@@ -9,7 +9,6 @@ import {
 } from 'react-native';
 import { ScrollView } from 'react-native-gesture-handler';
 import { MAX_FONT_SCALE, SPACING } from '../../constants/theme';
-import { useStableStrip } from '../../hooks/useStableStrip';
 import { useTheme } from '../../hooks/useTheme';
 import { nearestIndex, sameItems } from '../../lib/arrays';
 import { spokenDelta } from '../../lib/cards/format';
@@ -20,12 +19,11 @@ import { stripSnapOffsets } from '../../lib/strip-snap';
 import { DeltaChip } from '../DeltaChip';
 import { Pressable, Text } from '../primitives';
 
-/** Weekly moves linked to the settled story, then the currencies of the
- * countries in view, then the gauges in view the globe could not name; a mark
- * the globe names is left to the globe. Global
- * movers fill the row when there is no meaningful match. Touch, momentum and
- * open instrument cards hold the snapshot.
- * The full catalog is in the menu; the row does not end on a way into it.
+/** The week's ten largest moves, largest first, in one order wherever the
+ * globe is and whatever story is in front. For a day the row followed the
+ * globe and the story, and a row that changed under the reader on every
+ * swipe was not one they could come back to (the user, 2026-10-10). The full
+ * catalog is in the menu; the row does not end on a way into it.
  * Gesture Handler's ScrollView keeps strip swipes from turning the globe.
  */
 
@@ -36,22 +34,34 @@ const SELECTED_BAR = 2;
  *  holds the row at a gauge's height before the gauges arrive. */
 export const GAUGE_EXTRA = SPACING.xxs + SELECTED_BAR;
 
-/** Minimum slot width rhythm; labels and moves may widen individual slots. */
-const VISIBLE_SLOTS = 3.4;
+/**
+ * The room between two gauges. A gauge is its name over its move, so the two
+ * that belong together are one above the other and a gap is only ever between
+ * two different things: it has one job, and one size.
+ *
+ * The name and the move stood side by side, each slot padded out to a rhythm
+ * of 3.4 to the row. A slot was then as wide as both together, a short name
+ * carried up to 25pt of padding after it where a long one carried none, and
+ * fewer than three were in view (the user, 2026-10-10: "a fairly large gap
+ * between the different entities… room for more if we tighten in a smart
+ * way"). Stacked, a slot is as wide as the wider of its two lines.
+ */
+const SLOT_GAP = SPACING.md;
+/** Each slot's press reaches half the gap either side, so the targets meet
+ *  and a short name (`Oil`) is not a target as narrow as its three letters. */
+const SLOT_SLOP = { left: SLOT_GAP / 2, right: SLOT_GAP / 2 };
 
 const Slot = memo(function Slot({
   item,
-  width,
   selected,
   linked,
   onPress,
   onPlaced,
 }: {
   item: StripItem;
-  width: number;
   selected: boolean;
-  /** Tied to the settled story. Spoken, and not drawn: it leads the row, and
-   *  a bar under it only asked why it was there. */
+  /** Tied to the open story. Spoken, and not drawn: a bar under it only
+   *  asked why it was there. */
   linked: boolean;
   onPress: (item: StripItem) => void;
   onPlaced: (id: string, x: number) => void;
@@ -82,7 +92,8 @@ const Slot = memo(function Slot({
   return (
     <Pressable
       onPress={handlePress}
-      style={[styles.slot, { minWidth: width }]}
+      style={styles.slot}
+      hitSlop={SLOT_SLOP}
       onLayout={handleLayout}
       accessibilityRole="button"
       accessibilityLabel={spoken}
@@ -114,36 +125,32 @@ const Slot = memo(function Slot({
 });
 
 export const IndicatorStrip = memo(function IndicatorStrip({
-  items: incoming,
-  locked = false,
-  pinned,
+  items,
   onSelect,
   selectedId = null,
   linkedIds,
   initialViewport,
 }: {
   items: StripItem[];
-  locked?: boolean;
-  pinned?: StripItem;
   onSelect: (item: StripItem) => void;
   /** The gauge whose card is open. */
   selectedId?: string | null;
-  /** Gauges tied to the settled story: they lead the row. */
+  /** Gauges tied to the open story. A screen reader hears it; the row does not
+   *  move or mark them. */
   linkedIds?: ReadonlySet<string>;
   /** The room the bar will leave, computed by the bar before layout, so the
-   *  slots are not laid out at a guess and then resized once measured. */
+   *  row's landings are not worked out against a guess and then again. */
   initialViewport?: number;
 }) {
-  const { items, hold, release } = useStableStrip(incoming, locked, pinned, linkedIds);
-  // Sized from the room the bar actually leaves; `initialViewport` is the
-  // bar's own arithmetic, and the layout pass only corrects it.
+  // The room the bar actually leaves, for where the row may come to rest;
+  // `initialViewport` is the bar's own arithmetic, and the layout pass only
+  // corrects it.
   const { width: screenWidth } = useWindowDimensions();
   const [viewport, setViewport] = useState(initialViewport ?? screenWidth / 2);
   const handleLayout = useCallback((e: LayoutChangeEvent) => {
     const next = Math.round(e.nativeEvent.layout.width);
     setViewport((prev) => (prev === next ? prev : next));
   }, []);
-  const slotWidth = Math.round((viewport - SPACING.md * Math.floor(VISIBLE_SLOTS)) / VISIBLE_SLOTS);
 
   const scrollRef = useRef<ScrollView>(null);
   const slotX = useRef(new Map<string, number>());
@@ -205,7 +212,6 @@ export const IndicatorStrip = memo(function IndicatorStrip({
   // records where it landed and stays quiet: no finger swiped it.
   const handleSettle = useCallback(
     (e: NativeSyntheticEvent<NativeScrollEvent>) => {
-      release();
       // Cleared first: a row short enough to need no landings still ends the
       // scroll it was sent on, and a flag left set would silence a real one.
       const quiet = programmatic.current;
@@ -216,17 +222,8 @@ export const IndicatorStrip = memo(function IndicatorStrip({
       settled.current = index;
       if (!quiet) hapticSwipe();
     },
-    [offsets, release],
+    [offsets],
   );
-
-  const membership = items.map((item) => item.id).join('|');
-  useEffect(() => {
-    // A new context starts at a complete slot. This runs only after interaction
-    // has ended; membership changes never scroll a row under the finger.
-    if (!membership) return;
-    settled.current = 0;
-    scrollRef.current?.scrollTo({ x: 0, animated: false });
-  }, [membership]);
 
   // Nothing to show is not a reason to draw an empty band over the globe. On
   // a cold launch, before trends and chokepoints resolve, the earth simply
@@ -246,25 +243,18 @@ export const IndicatorStrip = memo(function IndicatorStrip({
       // deceleration rate is left at the platform's own — a flick should carry
       // as far through a row of twenty-odd gauges as it does today, and only
       // the landing is decided here. `pagingEnabled` would be wrong for the
-      // same reason: it pages by the viewport, which is 3.4 slots wide.
+      // same reason: it pages by the viewport, which is several slots wide.
       snapToOffsets={offsets.length > 0 ? offsets : undefined}
       onContentSizeChange={handleContentSize}
-      onTouchStart={hold}
-      onTouchEnd={release}
-      onTouchCancel={release}
-      onScrollBeginDrag={hold}
-      onScrollEndDrag={release}
-      onMomentumScrollBegin={hold}
       onMomentumScrollEnd={handleSettle}
       onLayout={handleLayout}
       contentContainerStyle={styles.row}
-      accessibilityLabel="Relevant markets and data, changes over the past seven days"
+      accessibilityLabel="Markets, straits and currencies, largest move over seven days first"
     >
       {items.map((item) => (
         <Slot
           key={item.id}
           item={item}
-          width={slotWidth}
           selected={item.id === selectedId}
           linked={linkedIds?.has(item.id) ?? false}
           onPress={onSelect}
@@ -279,10 +269,11 @@ const styles = StyleSheet.create({
   row: {
     // The row runs to the screen's right edge; its content stops on the column.
     paddingRight: SPACING.articlePadding,
-    gap: SPACING.md,
+    gap: SLOT_GAP,
   },
   slot: { minHeight: CONTROL_ROW, justifyContent: 'center' },
-  value: { flexDirection: 'row', alignItems: 'center', gap: SPACING.xs },
+  // The name over its move, both from the slot's left edge: the two lines'
+  // own leading is the air between them.
+  value: { alignItems: 'flex-start' },
   selected: { height: SELECTED_BAR, marginTop: SPACING.xxs, borderRadius: SELECTED_BAR / 2 },
-  // Match the single-line gauges, reserving their selection-bar space.
 });

@@ -172,6 +172,7 @@ const DeckSlot = memo(function DeckSlot({
   restOffset,
   storyKey,
   progress,
+  committed,
   peekFade,
   pitch,
   width,
@@ -191,6 +192,9 @@ const DeckSlot = memo(function DeckSlot({
   /** Where this slot rests relative to the committed story, for its first style. */
   restOffset: number;
   progress: SharedValue<number>;
+  /** The story the deck is on or heading for, on the UI thread: what a touch
+   *  goes by. `current` is React's, which hears of a swipe only as it lands. */
+  committed: SharedValue<number>;
   peekFade?: SharedValue<number>;
   pitch: number;
   width: number;
@@ -262,7 +266,7 @@ const DeckSlot = memo(function DeckSlot({
     onScroll: (event) => {
       'worklet';
       scrollPosition.value = event.contentOffset.y;
-      if (current) onScrollOffset.value = event.contentOffset.y;
+      if (committed.value === position) onScrollOffset.value = event.contentOffset.y;
     },
   });
 
@@ -318,10 +322,17 @@ const DeckSlot = memo(function DeckSlot({
   // had left: the next one could not be pulled down, and one too short to
   // scroll could never correct it. A slot is always at its top when it
   // arrives — it was put back there when it left the front (above) — so this
-  // is a write, never a read of the scroll position.
+  // is a write, never a JS read of the scroll position. Its own offset, on
+  // the UI thread, not an assumed zero: a finger can scroll the arriving card
+  // before React has heard of the landing, and a zero written then told the
+  // sheet a scrolled story was at its top.
   useEffect(() => {
-    if (current) onScrollOffset.value = 0;
-  }, [current, onScrollOffset]);
+    if (!current) return;
+    scheduleOnUI(() => {
+      'worklet';
+      onScrollOffset.value = scrollPosition.value;
+    });
+  }, [current, onScrollOffset, scrollPosition]);
   // A new story in this slot starts at its top, even open: a jump from a
   // story read halfway down would otherwise open the next one there.
   const shownKey = useRef(storyKey);
@@ -334,9 +345,13 @@ const DeckSlot = memo(function DeckSlot({
   }, [current, onScrollOffset, scrollPosition, scrollRef, storyKey]);
 
   return (
+    // **A slot takes touches wherever it is on screen**, current or not. A
+    // neighbour is off screen at rest, so only an arriving card is ever
+    // touched early: React learns of a swipe as it lands, and gated on
+    // `current` the card being landed on ignored a tap or a scroll for the
+    // whole spring. A screen reader still meets only the current one.
     <Animated.View
       style={[styles.slot, { width }, slideStyle]}
-      pointerEvents={current ? 'auto' : 'none'}
       accessibilityElementsHidden={!current}
       importantForAccessibility={current ? 'auto' : 'no-hide-descendants'}
     >
@@ -351,7 +366,7 @@ const DeckSlot = memo(function DeckSlot({
         <Animated.ScrollView
           ref={scrollRef}
           style={footer ? styles.fit : styles.fill}
-          scrollEnabled={readable}
+          scrollEnabled={scrollEnabled}
           onScroll={scrollHandler}
           scrollEventThrottle={16}
           bounces={false}
@@ -361,11 +376,11 @@ const DeckSlot = memo(function DeckSlot({
           {children}
         </Animated.ScrollView>
       </GestureDetector>
-      {/* Pressed only on the story being read: at rest it lies under the
-          dock, off screen, where a screen reader would still find it. */}
+      {/* Pressed only while a story is read: at rest it lies under the dock,
+          off screen, where a screen reader would still find it. */}
       {footer ? (
         <View
-          pointerEvents={readable ? 'auto' : 'none'}
+          pointerEvents={scrollEnabled ? 'auto' : 'none'}
           accessibilityElementsHidden={!readable}
           importantForAccessibility={readable ? 'auto' : 'no-hide-descendants'}
         >
@@ -533,6 +548,10 @@ export const StoryDeck = memo(function StoryDeck({
         });
         if (target !== committed.value) {
           committed.value = target;
+          // The card being landed on is at its top (a slot is put back there
+          // when it leaves the front); the offset still held is the one being
+          // left, and the sheet reads it to decide what a downward drag does.
+          onScrollOffset.value = 0;
           scheduleOnRN(release, target);
         } else if (onRollback) {
           onRollback();
@@ -546,6 +565,7 @@ export const StoryDeck = memo(function StoryDeck({
       onClaim,
       onDragStart,
       onRollback,
+      onScrollOffset,
       onSettle,
       pitch,
       progress,
@@ -586,6 +606,7 @@ export const StoryDeck = memo(function StoryDeck({
             position={i}
             restOffset={i - index}
             progress={progress}
+            committed={committed}
             peekFade={peekFade}
             pitch={pitch}
             width={slotWidth}

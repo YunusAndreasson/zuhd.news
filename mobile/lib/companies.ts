@@ -1,6 +1,7 @@
 import type { RelatedArticleRef } from '@shared/types';
-import { deltaFrom, formatNumber, windowChange } from './cards/format';
+import { compactUsd, deltaFrom, formatNumber, windowChange } from './cards/format';
 import type { SwipeCard } from './cards/rank';
+import { recordLine } from './cards/record';
 import { exchangeIsStale, stockMarketPlace } from './markets';
 
 /**
@@ -38,6 +39,10 @@ export interface Company {
   currencyName: string;
   /** The last completed session's close. */
   level: number;
+  /** What the whole company is worth at that close, in US dollars: the
+   *  pipeline's share count by the close, at the day's rate. Absent from a
+   *  build that has no count or no rate for it. */
+  marketValue?: number;
   asOf: string;
   sourceLabel: string;
   /** What the company is: the catalog's sentence, and the card's fallback. */
@@ -149,6 +154,26 @@ export function sharePrice(
   return { reading: figure, note: `${words} a share`, unit: words };
 }
 
+/** What the figure is called, on the card and to a listener. */
+export const MARKET_VALUE = 'market value';
+
+/**
+ * A company's market value as its row and its card print it: `$5.5T`, `$890B`.
+ * Undefined where the payload carries none.
+ *
+ * To two figures and no further. The share count behind it is kept by hand
+ * and dated, and a buyback moves it a per cent or two a year: `$885B` would
+ * claim the third figure, which the count cannot give.
+ *
+ * It is what the list is of. `largest companies` printed share prices, and
+ * `262,000` won beside `$229` says nothing about which is larger.
+ */
+export function companyValue(c: Pick<Company, 'marketValue'>): string | undefined {
+  const value = c.marketValue;
+  if (typeof value !== 'number' || !Number.isFinite(value) || value <= 0) return undefined;
+  return compactUsd(Number(value.toPrecision(2)));
+}
+
 /**
  * A daily price card measures thirty observations (`DAILY_WINDOW` in
  * `cards/markets.ts`, about six weeks of sessions), and a company's does too:
@@ -165,6 +190,7 @@ export function companyKicker(c: Pick<Company, 'about' | 'iso2'>): string {
 
 export function companyCard(c: Company): SwipeCard {
   const { reading, note } = sharePrice(c.level, c.currency, c.currencyName);
+  const value = companyValue(c);
   return {
     id: companyCardId(c.id),
     kind: 'reading',
@@ -174,10 +200,15 @@ export function companyCard(c: Company): SwipeCard {
     reading,
     readingNote: note,
     delta: deltaFrom(windowChange(c.series, CARD_WINDOW)),
-    changed: exchangeIsStale(c) ? 'Older quote · last available observation' : undefined,
+    // The share's record, where it has set one (`recordLine`).
+    changed: exchangeIsStale(c)
+      ? 'Older quote · last available observation'
+      : recordLine(c.series.values, c.series.periods),
     // The account of the move where the desk wrote one, as every other
     // card's `why` is (`whyFor`); what the company is, where it did not.
     why: c.recent?.trim() || c.blurb,
+    // The number its row in the list prints, from the same function.
+    figures: value ? [{ label: MARKET_VALUE, value }] : undefined,
     sourceLabel: c.sourceLabel,
     series: {
       values: c.series.values,

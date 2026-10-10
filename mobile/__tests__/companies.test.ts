@@ -6,6 +6,7 @@ import {
   companyCard,
   companyGauges,
   companyKicker,
+  companyValue,
   isCompaniesSnapshot,
   sharePrice,
 } from '../lib/companies';
@@ -88,6 +89,43 @@ describe('sharePrice', () => {
   });
 });
 
+describe('companyValue', () => {
+  it('prints a market value to two figures', () => {
+    expect(companyValue({ marketValue: 5_536_400_000_000 })).toBe('$5.5T');
+    expect(companyValue({ marketValue: 1_164_200_000_000 })).toBe('$1.2T');
+    expect(companyValue({ marketValue: 992_700_000_000 })).toBe('$990B');
+    expect(companyValue({ marketValue: 885_100_000_000 })).toBe('$890B');
+    expect(companyValue({ marketValue: 689_400_000_000 })).toBe('$690B');
+    // Rounded up into the next unit.
+    expect(companyValue({ marketValue: 996_000_000_000 })).toBe('$1T');
+    expect(companyValue({ marketValue: 12_340_000_000_000 })).toBe('$12T');
+  });
+
+  it('prints nothing for a value the payload does not carry, or one that is not a sum', () => {
+    expect(companyValue({})).toBeUndefined();
+    expect(companyValue({ marketValue: 0 })).toBeUndefined();
+    expect(companyValue({ marketValue: Number.NaN })).toBeUndefined();
+    expect(companyValue({ marketValue: '5e12' as unknown as number })).toBeUndefined();
+  });
+
+  it('is a figure on the card, under a reading that stays the share price', () => {
+    const card = companyCard(company({ marketValue: 5_536_400_000_000 }));
+    expect(card).toMatchObject({ reading: '$233.95', readingNote: 'a share' });
+    expect(card.kind === 'reading' && card.figures).toEqual([
+      { label: 'market value', value: '$5.5T' },
+    ]);
+    const bare = companyCard(company());
+    expect(bare.kind === 'reading' && bare.figures).toBeUndefined();
+    // A snapshot with the key is still the published shape.
+    expect(
+      isCompaniesSnapshot({
+        generated: '2026-10-03T05:00:00.000Z',
+        companies: [company({ marketValue: 5_536_400_000_000 })],
+      }),
+    ).toBe(true);
+  });
+});
+
 describe('companyCard', () => {
   it('says what the company is and where, never a ticker', () => {
     const card = companyCard(company());
@@ -160,8 +198,21 @@ describe('companyCard', () => {
     // four days after it, and this failed from 2026-10-06.
     const clock = jest.spyOn(Date, 'now').mockReturnValue(NOW);
     try {
-      expect(companyCard(company()).changed).toBeUndefined();
       expect(companyCard(company({ stale: true })).changed).toMatch(/Older quote/);
+    } finally {
+      clock.mockRestore();
+    }
+  });
+
+  it('says a fresh quote’s record where it has set one, and nothing on an ordinary day', () => {
+    const clock = jest.spyOn(Date, 'now').mockReturnValue(NOW);
+    try {
+      // The fixture climbs a dollar a session for forty: its newest is its highest.
+      expect(companyCard(company()).changed).toBe('Highest in a month.');
+      // One that slipped back from a peak two sessions ago has none.
+      const series = sessions(233.95);
+      series.values[series.values.length - 3] = 240;
+      expect(companyCard(company({ series })).changed).toBeUndefined();
     } finally {
       clock.mockRestore();
     }

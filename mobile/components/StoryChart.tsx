@@ -10,7 +10,7 @@ import { stripLabel } from '../lib/now';
 import { MARKET_CAVEAT } from '../lib/predictions';
 import { TrendBlock } from './blocks/TrendBlock';
 import { DeltaChip } from './DeltaChip';
-import { Pressable, Text } from './primitives';
+import { Icon, Pressable, Text } from './primitives';
 
 /**
  * The series a story cites, drawn under its title (`Article.chart`), over the
@@ -28,15 +28,21 @@ import { Pressable, Text } from './primitives';
  * Small by rule: the open story is one height for every story, and a chart
  * the size of the card's own would make every story that carries one scroll.
  * So it is the subject, the reading, the move and its date on one line, and
- * the line alone under it — no axis, no scrub (a drag across it is the
- * deck's swipe), and a strait's 90-day normal as the dashed rule the card
- * draws.
+ * the line under it over its time axis — no value axis, no scrub (a drag
+ * across it is the deck's swipe), and a strait's 90-day average as the dashed
+ * rule the card draws. The months under the line are what say how long it
+ * runs: the move beside the reading is a week's, and the line is a quarter.
  */
 export const StoryChart = memo(function StoryChart({
   card,
+  pressable = true,
   onPress,
 }: {
   card: GraphCard;
+  /** A press on it opens its card: true while its story is open. At rest the
+   *  whole story card is one button, and the chevron would promise a chart
+   *  where the press opens the story. */
+  pressable?: boolean;
   onPress?: (card: GraphCard) => void;
 }) {
   const { colors } = useTheme();
@@ -98,6 +104,19 @@ export const StoryChart = memo(function StoryChart({
             {observed}
           </Text>
         ) : null}
+        {/* What says the line can be pressed. A chart in an article reads as
+            a figure, and nothing about this one said otherwise; the menu's
+            rows mark "this opens a page" with the same chevron. Its room is
+            kept at rest, so nothing moves when the story opens. */}
+        {onPress ? (
+          <View
+            style={[styles.chevron, !pressable && styles.hidden]}
+            accessibilityElementsHidden
+            importantForAccessibility="no-hide-descendants"
+          >
+            <Icon name="chevron-forward" size="sm" tone="secondary" />
+          </View>
+        ) : null}
       </View>
       {/* The button's label already speaks the reading; the chart's own
           image label would announce the same series a second time. */}
@@ -110,6 +129,9 @@ export const StoryChart = memo(function StoryChart({
           unit={card.series.unit}
           highlight={card.series.highlight}
           reference={card.series.reference}
+          shape={card.series.shape}
+          domain={card.series.domain}
+          inverted={card.series.inverted}
           variant="inline"
           scrubbable={false}
         />
@@ -145,4 +167,7 @@ const styles = StyleSheet.create({
   spacer: {
     flex: 1,
   },
+  // Centred on the row, which is otherwise set on the text's baseline.
+  chevron: { alignSelf: 'center', marginLeft: -SPACING.xxs },
+  hidden: { opacity: 0 },
 });

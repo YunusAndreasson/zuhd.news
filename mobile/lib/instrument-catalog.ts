@@ -1,6 +1,7 @@
 import type { Article, Chokepoint, Indicator, TrendsSnapshot } from '@shared/types';
 import { AI_CHANGE_WINDOW, type AiModelsSnapshot, aiLabCard, aiLabCardId } from './ai-models';
 import { ccToFlag } from './article-utils';
+import { movesInPoints } from './cards/format';
 import {
   type AnalysisById,
   calendarCards,
@@ -9,11 +10,20 @@ import {
   indicatorCard,
   straitCardFor,
 } from './cards/markets';
+import { type MovePath, movePath } from './cards/path';
+import type { Range } from './cards/range';
 import type { SwipeCard } from './cards/rank';
 import { admitted } from './cards/sections';
 import type { Card, CardDelta } from './cards/types';
-import { gaugeMove } from './cards/week-move';
-import { type Company, companyCard, companyCardId, sharePrice } from './companies';
+import { gaugeLevels, gaugeMove } from './cards/week-move';
+import {
+  type Company,
+  companyCard,
+  companyCardId,
+  companyValue,
+  MARKET_VALUE,
+  sharePrice,
+} from './companies';
 import { type Exchange, exchangeCard, exchangeDelta, stockMarketPlace } from './markets';
 import { stripLabel } from './now';
 
@@ -67,7 +77,9 @@ export const GROUP_TITLES: Readonly<Record<GroupKey, string>> = {
   other: 'other indicators',
   crypto: 'crypto',
   ai: 'ai models',
-  predictions: 'predictions',
+  // What the list holds, as its first line says: a market's prices, not
+  // forecasts. `predictions` called them the second.
+  predictions: 'prediction markets',
   calendar: 'coming up',
 };
 
@@ -77,15 +89,18 @@ const GROUP_ORDER: readonly GroupKey[] = [
   'companies',
   'currencies',
   'crypto',
-  // Physical goods and the routes that carry them.
+  // Physical goods quoted daily, and the routes that carry them.
   'energy',
-  'food',
   'metals',
   'straits',
-  // Policy and borrowing together, followed by prices and employment.
+  // Policy and borrowing together, followed by prices and employment. Food is
+  // here and not among the goods: its prices are a month's average, published
+  // weeks on, as inflation's are, and it has no day or week to stand in the
+  // menu's table of them.
   'rates',
   'borrowing',
   'inflation',
+  'food',
   'jobs',
   // Capability scores are levels, separate from financial/economic changes.
   'ai',
@@ -96,10 +111,10 @@ const GROUP_ORDER: readonly GroupKey[] = [
   'calendar',
 ];
 
-/** The groups whose rows are sorted by the week's move, largest first. A
- *  contract moves in points and a date does not move, so those two keep
- *  their own order. */
-const SORTED_BY_WEEK: ReadonlySet<GroupKey> = new Set([
+/** The groups whose rows run from the largest rise to the largest fall
+ *  (`byMove`). A date does not move, a score has its own order and the short
+ *  monthly lists keep theirs. */
+const SORTED_BY_MOVE: ReadonlySet<GroupKey> = new Set([
   'stocks',
   'companies',
   'straits',
@@ -109,6 +124,7 @@ const SORTED_BY_WEEK: ReadonlySet<GroupKey> = new Set([
   'metals',
   'rates',
   'crypto',
+  'predictions',
 ]);
 
 export interface CatalogRow {
@@ -132,6 +148,12 @@ export interface CatalogRow {
    *  already said part of the card's (`sharePrice`): empty for none. Absent,
    *  the row prints the card's `readingNote`. */
   note?: string;
+  /** The row's reading where it is not the card's: a company's market value
+   *  (`companyValue`), which is what its list is of and a figure on its card,
+   *  where the card's own reading is a share price. With what a listener is
+   *  told it is. */
+  reading?: string;
+  readingSaid?: string;
   /** The flag at the row's start, in the two lists where a row is a
    *  country's market or money. Empty holds the slot for a row with no
    *  country to show (a series no exchange quotes), so the names in a list
@@ -144,6 +166,14 @@ export interface CatalogRow {
   /** An exchange's row carries it for its city and its "older quote". */
   exchange?: Exchange;
   chokepoint?: Chokepoint;
+  /** The row's own thirty days as a line (`movePath`), where its week is a
+   *  percentage: what the first page draws for the whole list, for one row.
+   *  Absent for a row with no week, and for a series in per cent, whose move
+   *  is a difference and not a share of itself. */
+  path?: MovePath;
+  /** An AI lab's score and the range it probably lies in, for the mark its
+   *  row draws on the list's one scale (`rangeScale`). */
+  range?: Range;
 }
 
 export interface CatalogGroup {
@@ -227,6 +257,11 @@ const SERIES: ReadonlyArray<{ id: string; group: SeriesGroup; kicker: string }> 
 ];
 
 const SERIES_BY_ID = new Map(SERIES.map((s) => [s.id, s]));
+
+/** The series a list names, for what must agree with it elsewhere: the rates
+ *  drawn as steps are the `rates` list's (`isPolicyRate`). */
+export const listedSeries = (group: SeriesGroup): string[] =>
+  SERIES.filter((s) => s.group === group).map((s) => s.id);
 const SERIES_ORDER = new Map(SERIES.map((s, i) => [s.id, i]));
 
 /**
@@ -297,7 +332,7 @@ function seriesCard(
 /**
  * The card one id names, the same object the menu row for it opens — so a
  * story's chart and the card a press on it opens cannot disagree about the
- * series, the move or the 90-day normal.
+ * series, the move or the 90-day average.
  *
  * Ids are the article namespace (`Entity.indicatorId`, `Article.chart`):
  * `cp:<id>` is a strait, whose card is `strait-<id>`; `mkt:<id>` an
@@ -363,6 +398,10 @@ function rowFor(
   // does for its mark: the strip leaves it out, so no week can disagree.
   const move = week?.delta ?? (extra.exchange ? exchangeDelta(extra.exchange) : card.delta);
   const place = extra.exchange ? stockMarketPlace(extra.exchange.iso2) : null;
+  // The quantity the row's moves are read in (`gaugeLevels`), so the line and
+  // the number beside it go the same way.
+  const levels = week && !movesInPoints(card.series?.unit) ? gaugeLevels(card, now) : null;
+  const path = levels ? movePath([levels]) : null;
   return {
     id: card.id,
     card,
@@ -370,6 +409,7 @@ function rowFor(
     weekly: week !== null,
     weeklyPct: week?.pct,
     short: stripLabel(card, place),
+    ...(path ? { path } : {}),
     ...extra,
   };
 }
@@ -399,14 +439,40 @@ export function rowFlag(row: Pick<CatalogRow, 'id' | 'exchange'>): string {
   return flagOf(INDEX_COUNTRY[series]);
 }
 
-/** Week movers first, largest first; then the rest in the list's own order.
- *  A month's move is never sorted against a week's (`week-move.ts`), and
- *  `sort` is stable, so equal moves keep the list's order. */
-function byWeek(rows: CatalogRow[]): CatalogRow[] {
-  const weekly = rows
-    .filter((r) => r.weekly)
-    .sort((a, b) => (b.move?.size ?? 0) - (a.move?.size ?? 0));
-  return [...weekly, ...rows.filter((r) => !r.weekly)];
+/**
+ * The move a row prints, signed, where a list is ordered by it: the week of
+ * a row that has one, and a contract's points since its line began. Null for
+ * a row with neither, which keeps the list's own order.
+ */
+function signedMove(row: CatalogRow): number | null {
+  if (row.weekly) return row.weeklyPct ?? null;
+  if (row.card?.kind !== 'belief') return null;
+  const { values } = row.card.series;
+  const first = values[0];
+  const last = values.at(-1);
+  return typeof first === 'number' && typeof last === 'number' ? last - first : null;
+}
+
+/**
+ * A list from its largest rise to its largest fall, then the rows with no
+ * such move in the list's own order.
+ *
+ * The order has to show without being said. By size alone, either way up, a
+ * green row followed a red one down the whole list, and the contracts stood
+ * in the pool's ranking, which nothing on the screen follows. Risen to
+ * fallen, the carets and the colours are the order. A month's move is never
+ * sorted against a week's (`week-move.ts`), and `sort` is stable, so equal
+ * moves keep the list's order.
+ */
+function byMove(rows: CatalogRow[]): CatalogRow[] {
+  const moved: { row: CatalogRow; by: number }[] = [];
+  const rest: CatalogRow[] = [];
+  for (const row of rows) {
+    const by = signedMove(row);
+    if (by === null) rest.push(row);
+    else moved.push({ row, by });
+  }
+  return [...moved.sort((a, b) => b.by - a.by).map(({ row }) => row), ...rest];
 }
 
 export function buildInstrumentCatalog({
@@ -463,11 +529,20 @@ export function buildInstrumentCatalog({
   // Every company in the list, held to the deck's gate like any other card:
   // the pool's own card where it has one, so a row and its strip slot open
   // one object.
+  //
+  // A row's reading is the company's market value, where every company has
+  // one. All or none: a list of nineteen values and one share price is two
+  // lists, and its first line can only say what one of them is.
+  const valued = (companies ?? []).every((company) => companyValue(company) !== undefined);
   for (const company of companies ?? []) {
     const card = take(companyCardId(company.id)) ?? companyCard(company);
     if (!admitted(card)) continue;
     const { unit } = sharePrice(company.level, company.currency, company.currencyName);
-    rows.companies.push({ ...rowFor(card, at), note: unit });
+    const value = valued ? companyValue(company) : undefined;
+    rows.companies.push({
+      ...rowFor(card, at),
+      ...(value ? { reading: value, readingSaid: MARKET_VALUE, note: '' } : { note: unit }),
+    });
   }
 
   // Every AI lab, in the payload's order: highest score first. Built without
@@ -486,6 +561,9 @@ export function buildInstrumentCatalog({
       // The list's note says what the number is, once.
       note: '',
       saidWindow: AI_CHANGE_WINDOW,
+      ...(lab.low !== undefined && lab.high !== undefined
+        ? { range: { low: lab.low, high: lab.high, at: lab.score } }
+        : {}),
     });
   }
 
@@ -525,8 +603,8 @@ export function buildInstrumentCatalog({
     }
   }
 
-  // The contracts, in the pool's order: every one is already there, and
-  // their points have no size to sort on.
+  // The contracts: every one is already in the pool, and the list is put in
+  // order with the others (`byMove`).
   for (const card of ranked) {
     if (card.kind !== 'belief') continue;
     listed.add(card.id);
@@ -554,7 +632,7 @@ export function buildInstrumentCatalog({
   }
 
   return GROUP_ORDER.map((key) => {
-    const sorted = SORTED_BY_WEEK.has(key) ? byWeek(rows[key]) : rows[key];
+    const sorted = SORTED_BY_MOVE.has(key) ? byMove(rows[key]) : rows[key];
     return {
       key,
       title: GROUP_TITLES[key],

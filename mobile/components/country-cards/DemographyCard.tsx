@@ -19,14 +19,14 @@ export function DemographyCard({ data }: DemographyCardProps) {
   }
 
   const headline = fertLatest[1].toFixed(1);
-  // Replacement = 2.1 children per woman. Above ⇒ growing; below ⇒ aging.
+  // Replacement = 2.1 children per woman. Above ⇒ growing; below ⇒ ageing.
   let subtitle: string;
   const r = fertLatest[1];
   if (r >= 4.5) subtitle = `High fertility — population still expanding fast.`;
   else if (r >= 2.5) subtitle = `Above replacement — still growing.`;
   else if (r >= 1.9) subtitle = `Near replacement (2.1) — population stabilising.`;
   else if (r >= 1.5) subtitle = `Below replacement — long-term shrinking unless migration offsets.`;
-  else subtitle = `Far below replacement — rapid aging ahead.`;
+  else subtitle = `Far below replacement — rapid ageing ahead.`;
 
   if (fert1980 && Math.abs(fert1980[1] - r) > 1) {
     const dir = r < fert1980[1] ? 'Fell' : 'Rose';
