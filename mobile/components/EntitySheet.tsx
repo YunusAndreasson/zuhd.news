@@ -3,7 +3,7 @@ import { memo, useMemo } from 'react';
 import { StyleSheet, View } from 'react-native';
 import Animated from 'react-native-reanimated';
 import { SPACING } from '../constants/theme';
-import { formatReading } from '../lib/cards/format';
+import { indicatorReading } from '../lib/cards/markets';
 import { indicatorMove } from '../lib/cards/week-move';
 import { observationLabel } from '../lib/data-freshness';
 import { makeStaggerEnter } from '../lib/stagger';
@@ -56,6 +56,11 @@ export const EntitySheet = memo(function EntitySheet({
   const enter = makeStaggerEnter();
 
   const latest = indicator?.latest ?? indicator?.values[indicator.values.length - 1];
+  // The reading as the indicator's card prints it (`indicatorReading`).
+  const quote = useMemo(
+    () => (indicator && latest != null ? indicatorReading(indicator, latest) : undefined),
+    [indicator, latest],
+  );
   // The gauges' grammar and the card's colour rule (`indicatorMove`): it was a
   // one-step "vs prev" here while the card said thirty observations, so one
   // indicator could read up on the card and down in its sheet.
@@ -67,11 +72,11 @@ export const EntitySheet = memo(function EntitySheet({
       <SheetScrollView bottomInset={bottomInset}>
         {indicator && (
           <>
-            {latest != null && (
+            {quote && (
               <Animated.View entering={enter()}>
                 <Text selectable variant="title" tone="emphasis">
-                  {formatReading(latest, indicator.unit)}
-                  {indicator.unit ? ` ${indicator.unit}` : ''}
+                  {quote.reading}
+                  {quote.note ? ` ${quote.note}` : ''}
                 </Text>
                 {delta ? (
                   <View style={styles.delta}>
@@ -83,11 +88,14 @@ export const EntitySheet = memo(function EntitySheet({
 
             <Animated.View entering={enter()} style={styles.section}>
               <TrendBlock
-                values={indicator.values}
+                values={quote?.series.values ?? indicator.values}
                 periods={indicator.periods}
                 label={indicator.label}
-                unit={indicator.unit}
+                unit={quote ? quote.series.unit : indicator.unit}
                 highlight={indicator.defaultHighlight ?? 'last'}
+                shape={quote?.series.shape}
+                domain={quote?.series.domain}
+                inverted={quote?.series.inverted}
                 variant="context"
               />
             </Animated.View>

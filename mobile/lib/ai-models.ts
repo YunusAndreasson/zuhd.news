@@ -1,4 +1,4 @@
-import { deltaOf, formatNumber } from './cards/format';
+import { compactUsd, deltaOf, formatNumber } from './cards/format';
 import type { SwipeCard } from './cards/rank';
 import type { CardDelta, CardFigure } from './cards/types';
 import { isIsoDate, observationDate } from './data-freshness';
@@ -151,14 +151,6 @@ function dayOrMonth(iso: string, now: number): string {
     : monthYear(iso);
 }
 
-/** Dollars at the size a valuation is quoted in: `$965B`, `$1.6B`, `$428M`. */
-export function compactUsd(usd: number): string {
-  const [divisor, mark] =
-    usd >= 1e12 ? [1e12, 'T'] : usd >= 1e9 ? [1e9, 'B'] : usd >= 1e6 ? [1e6, 'M'] : [1, ''];
-  const scaled = usd / divisor;
-  return `$${formatNumber(scaled, scaled < 10 ? 1 : 0)}${mark}`;
-}
-
 /**
  * How far the lab's best has risen: over 90 days where its line reaches
  * back that far, and otherwise since its first scored model, which the window
@@ -257,6 +249,8 @@ export function aiLabCard(
       values,
       periods,
       label: 'Best score at each release',
+      // A best score stands until the release that beats it.
+      shape: 'steps',
       // The best any lab has, as a rule to measure the line against. The lab
       // that holds it gets none: its own line ends there.
       ...(frontier.score > lab.score

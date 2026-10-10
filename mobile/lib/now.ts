@@ -54,10 +54,9 @@ import { DAY_MS } from './time';
  *  `MiniGlobe` projects `[lng, lat]`, so a mark layer flips it — once, there. */
 export type LatLng = readonly [number, number];
 
-/** At most ten weekly movers. Context selects from the full pool before this
- * cap: explicit story links first, then the currencies of the countries in
- * view, then the gauges in view the globe could not name.
- * Global movers are the fallback; the menu always retains the full catalog. */
+/** The strip shows the ten largest moves of the week. `strip` keeps every
+ *  mover, because a gauge opened from the menu's lists or a strait on the
+ *  globe still flies and rings its place; the menu holds the full catalog. */
 export const STRIP_SLOTS = 10;
 
 /** A fourth and fifth row turn the block into a second river. Four is the most
@@ -172,8 +171,14 @@ function locateCard(
  *  published name. */
 const PLAIN_NAMES: Readonly<Record<string, string>> = {
   brent: 'Oil',
-  'us-10y': 'US 10-year rate',
-  vix: 'Fear index',
+  // The second benchmark, by where it is pumped: `WTI crude` is a code.
+  wti: 'US oil',
+  // A bond's reading is its yield. `rate` is what a central bank sets, and
+  // the list of those is a tap away.
+  'us-10y': 'US 10-year yield',
+  'us-2y': 'US 2-year yield',
+  // The name its own card gives it, and the papers': Wall Street's fear gauge.
+  vix: 'Fear gauge',
   nisab: 'Nisab',
   // A ratio is a slash, the way round its card divides: gold by silver, and
   // rice by wheat (`Wheat and rice` on its card, which reads rice in wheats).
@@ -382,7 +387,7 @@ export function buildNowSurfaces({
   // reading with no seven-day move — a monthly series, a stalled feed.
   //
   // Largest seven-day move first. It sorted each card's own delta once, and
-  // those were a strait's gap from its 90-day normal beside an index's four
+  // those were a strait's gap from its 90-day average beside an index's four
   // sessions beside a currency's whole series: one sort over three quantities.
   // `Array.prototype.sort` is stable, so equal moves keep the ranked order.
   const strip: StripItem[] = [];

@@ -1,4 +1,12 @@
-import { citedAnnotations, citedLabels, MAX_CITED, windowReference } from '../lib/cards/card-chart';
+import {
+  citedAnnotations,
+  citedLabels,
+  MAX_CITED,
+  moveSince,
+  moveUnitOf,
+  spanReference,
+  windowReference,
+} from '../lib/cards/card-chart';
 import type { CardDelta, CardSeries } from '../lib/cards/types';
 
 const series = (extra: Partial<CardSeries> = {}): CardSeries => ({
@@ -35,6 +43,24 @@ describe('windowReference', () => {
     expect(windowReference(series(), delta('since Jun 1'))).toBeUndefined();
     // The last observation is the reading itself, not a place a move starts.
     expect(windowReference(series(), delta('since Jul 26'))).toBeUndefined();
+  });
+});
+
+describe('spanReference', () => {
+  it('draws the value on the day the longest window began, under the window’s words', () => {
+    expect(spanReference(series(), 'Jul 24', '30 days ago')).toEqual({
+      value: 20,
+      label: '30 days ago',
+    });
+  });
+
+  it('draws nothing over a level the card already has, or for a day not on the chart', () => {
+    const normal = { value: 5, label: '90-day average' };
+    expect(spanReference(series({ reference: normal }), 'Jul 24', '30 days ago')).toBeUndefined();
+    expect(spanReference(series(), undefined, '30 days ago')).toBeUndefined();
+    expect(spanReference(series(), 'Jun 1', '30 days ago')).toBeUndefined();
+    // The newest reading is where the move ends, not where it starts.
+    expect(spanReference(series(), 'Jul 26', '30 days ago')).toBeUndefined();
   });
 });
 
@@ -119,5 +145,57 @@ describe('citedLabels', () => {
       { x: 40, label: '2' },
       { x: 300, label: '1' },
     ]);
+  });
+});
+
+describe('the move since the day under the finger', () => {
+  it('reads from that day to the newest reading, as a chip', () => {
+    expect(moveSince(series(), 0)).toMatchObject({
+      direction: 'up',
+      magnitude: '300%',
+      window: 'since',
+    });
+    expect(moveSince(series(), 2)).toMatchObject({ direction: 'up', magnitude: '33%' });
+    expect(moveSince(series({ values: [50, 45, 44, 40] }), 0)).toMatchObject({
+      direction: 'down',
+      magnitude: '20%',
+    });
+  });
+
+  it('says nothing on the newest reading, off the series, or over several lines', () => {
+    expect(moveSince(series(), 3)).toBeUndefined();
+    expect(moveSince(series(), -1)).toBeUndefined();
+    expect(moveSince(series(), 9)).toBeUndefined();
+    expect(moveSince(series({ multi: [{ values: [1, 2], label: 'a' }] }), 0)).toBeUndefined();
+    expect(moveSince(series({ values: [0, 1, 2, 3] }), 0)).toBeUndefined();
+  });
+
+  it('counts a rate in points, a contract in slate points and a score in its own', () => {
+    const rate = series({ values: [4.5, 4.25, 4.25, 4.0], unit: '%' });
+    expect(moveSince(rate, 0, 'rate')).toMatchObject({
+      direction: 'down',
+      magnitude: '0.50 points',
+      unit: 'rate',
+    });
+    // A contract from 26% to 86% moved sixty points, never 231%.
+    const odds = series({ values: [26, 40, 70, 86], unit: '%' });
+    expect(moveSince(odds, 0, 'points')).toMatchObject({ magnitude: '60 points', unit: 'points' });
+    // And from nothing, where a share has no meaning.
+    expect(moveSince(series({ values: [0, 2, 3, 5] }), 0, 'points')?.magnitude).toBe('5 points');
+  });
+
+  it('reads a rate drawn turned over as the currency, so the chip goes the line’s way', () => {
+    // 40 lira to the dollar, then 50: the rate rose a quarter and the lira
+    // lost a fifth.
+    const lira = series({ values: [40, 45, 48, 50], inverted: true });
+    expect(moveSince(lira, 0)).toMatchObject({ direction: 'down', magnitude: '20%' });
+  });
+
+  it('takes a card’s unit of move from what the card is', () => {
+    const reading = { id: 'brent', kind: 'reading' as const };
+    expect(moveUnitOf(reading, series())).toBe('percent');
+    expect(moveUnitOf(reading, series({ unit: '%' }))).toBe('rate');
+    expect(moveUnitOf({ id: 'poly-x', kind: 'belief' }, series({ unit: '%' }))).toBe('points');
+    expect(moveUnitOf({ id: 'ai:anthropic', kind: 'reading' }, series())).toBe('score');
   });
 });

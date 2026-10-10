@@ -1,17 +1,36 @@
 import type { Indicator } from '@shared/types';
-import { MONTH_ABBR } from '../date-format';
+import { periodDays } from '../date-format';
 import { type Exchange, exchangeCard, exchangeDelta } from '../markets';
-import { DAY_MS } from '../time';
-import { deltaFrom, deltaOf, movesInPoints, windowChange, windowPointChange } from './format';
-import { currencyMove } from './markets';
+import {
+  deltaFrom,
+  deltaOf,
+  movesInPoints,
+  rateDecimals,
+  windowChange,
+  windowPointChange,
+} from './format';
+import { currencyMove, quotedInDollars } from './markets';
 import type { SwipeCard } from './rank';
-import type { CardDelta } from './types';
+import type { CardDelta, WindowMove } from './types';
+import {
+  DAY_WINDOW,
+  dayStep,
+  MONTH_DAYS,
+  MONTH_WINDOW,
+  spanMove,
+  WEEK_DAYS,
+  WEEK_WINDOW,
+  type WeekMove,
+  WINDOW_NAMES,
+  weekMove,
+  yearOf,
+} from './week';
 
 /**
  * The gauges' one window: how far a reading moved over the past seven days.
  *
  * Each card measures its own move over the window that suits it: a strait
- * against its 90-day normal, a daily price over thirty observations, a
+ * against its 90-day average, a daily price over thirty observations, a
  * currency since the start of its series, an exchange over a streak of
  * sessions. That is right on the card, which prints the window beside the
  * chip. It was wrong in the strip, which printed no window and sorted those
@@ -32,93 +51,10 @@ import type { CardDelta } from './types';
  * move. It returns null, and the reading stays in the menu's lists.
  */
 
-export const WEEK_DAYS = 7;
-/** A seven-day move's window, as a chip carries it. A row that prints a move
- *  without its window checks for this one: every other window is printed. */
-export const WEEK_WINDOW = `over ${WEEK_DAYS} days`;
-/**
- * How late the anchor may be. A market closed on the weekend or a holiday has
- * no close exactly seven days back, and the one before it is still that week's
- * open. Past three days the "week" would really be ten, so the reading gets no
- * seven-day move rather than an elastic one.
- */
-const ANCHOR_SLACK_DAYS = 3;
+export { WEEK_DAYS, WEEK_WINDOW, type WeekMove, weekMove, yearOf } from './week';
 
-const ISO_DAY = /^(\d{4})-(\d{2})-(\d{2})$/;
-const DAY_LABEL = /^([A-Z][a-z]{2}) (\d{1,2})$/;
-
-/**
- * Each period as a day number (days since the epoch), or null where the label
- * is not a day. The last label is placed in `year`, and the year steps back
- * whenever the month increases going backwards (a series running Dec → Jan).
- */
-export function periodDays(periods: readonly string[], year: number): (number | null)[] {
-  const out: (number | null)[] = new Array(periods.length).fill(null);
-  let y = year;
-  let laterMonth: number | null = null;
-  for (let i = periods.length - 1; i >= 0; i--) {
-    const label = periods[i] ?? '';
-    const iso = ISO_DAY.exec(label);
-    if (iso) {
-      out[i] = Date.UTC(Number(iso[1]), Number(iso[2]) - 1, Number(iso[3])) / DAY_MS;
-      y = Number(iso[1]);
-      laterMonth = Number(iso[2]) - 1;
-      continue;
-    }
-    const day = DAY_LABEL.exec(label);
-    if (!day) return out;
-    const month = MONTH_ABBR.indexOf(day[1] as string);
-    if (month < 0) return out;
-    if (laterMonth !== null && month > laterMonth) y -= 1;
-    laterMonth = month;
-    out[i] = Date.UTC(y, month, Number(day[2])) / DAY_MS;
-  }
-  return out;
-}
-
-export interface WeekMove {
-  /** Signed percentage change from the anchor to the newest observation. */
-  pct: number;
-  /** The observations from the anchor to the newest. */
-  points: number[];
-  /** The anchor's own label. */
-  from: string;
-}
-
-/** The seven-day move of a series, or null when it has none. */
-export function weekMove(
-  values: readonly number[],
-  periods: readonly string[],
-  year: number,
-): WeekMove | null {
-  const n = values.length;
-  if (n < 2 || periods.length !== n) return null;
-  const days = periodDays(periods, year);
-  const lastDay = days[n - 1];
-  const last = values[n - 1];
-  if (lastDay == null || typeof last !== 'number' || !Number.isFinite(last)) return null;
-  const target = lastDay - WEEK_DAYS;
-  for (let i = n - 2; i >= 0; i--) {
-    const d = days[i];
-    if (d == null) return null;
-    if (d > target) continue;
-    if (lastDay - d > WEEK_DAYS + ANCHOR_SLACK_DAYS) return null;
-    const from = values[i];
-    if (typeof from !== 'number' || !Number.isFinite(from) || from === 0) return null;
-    return {
-      pct: ((last - from) / Math.abs(from)) * 100,
-      points: values.slice(i),
-      from: periods[i] ?? '',
-    };
-  }
-  return null;
-}
-
-/** The year a series' last label falls in: its card's `asOf`, or `fallback`. */
-export function yearOf(asOf: string | undefined, fallback: number): number {
-  const m = asOf ? /^(\d{4})/.exec(asOf) : null;
-  return m ? Number(m[1]) : fallback;
-}
+// Where it was written and where its callers still find it.
+export { periodDays };
 
 export interface GaugeMove {
   delta: CardDelta;
@@ -131,39 +67,91 @@ export interface GaugeMove {
 /**
  * A week as a chip: a percentage, or percentage points for a series already
  * in per cent (`movesInPoints`). One function, so a yield's week is one number
- * on the strip, in the menu, on its card and in a story's sheet.
+ * on the strip, in the menu, on its card and in a story's sheet. And a day or
+ * thirty the same way, under their own window (`cardWindows`).
  */
 function weekDelta(
   week: WeekMove,
   unit: string | undefined,
   pct = week.pct,
+  window: string = WEEK_WINDOW,
 ): CardDelta | undefined {
-  if (!movesInPoints(unit)) return deltaOf(pct, { window: WEEK_WINDOW });
+  if (!movesInPoints(unit)) return deltaOf(pct, { window });
   const first = week.points[0];
   const last = week.points.at(-1);
   if (first === undefined || last === undefined) return undefined;
-  return deltaOf(last - first, { unit: 'rate', window: WEEK_WINDOW });
+  return deltaOf(last - first, { unit: 'rate', window });
 }
 
 /**
  * A card's seven-day move as the strip prints it, or null when it has none.
  *
  * The quantity is the card's own. A currency card quotes the currency, not the
- * published rate, so the rate's move is inverted with `currencyMove`. A strait
+ * published rate, so the rate's move is inverted with `currencyMove`; a card
+ * quoted in dollars (`quotedInDollars`, the euro) already charts the currency
+ * and is read as it is. A strait
  * card charts a trailing seven-day average, so its week is that average against
  * the one a week earlier. The chip is coloured by its direction (`moveTone`).
  */
 export function gaugeMove(card: SwipeCard, now = Date.now()): GaugeMove | null {
+  const span = cardSpan(card, WEEK_DAYS, now);
+  if (!span) return null;
+  const delta = weekDelta(span.move, card.series?.unit, span.pct);
+  return delta ? { delta, pct: span.pct } : null;
+}
+
+/** Whether a card quotes a rate that rises as its currency falls, so that a
+ *  move read from its series is turned over (`currencyMove`). */
+const quotesRate = (card: Pick<SwipeCard, 'id'>): boolean =>
+  card.id.startsWith('fx-') && !quotedInDollars(card.id);
+
+/** A card's own quantity over the past `span` days: the series' move, and the
+ *  signed percentage of what the card quotes (`gaugeMove`, its inversions).
+ *  One day is the series' last step (`dayStep`), so a series published weekly
+ *  has none. */
+function cardSpan(
+  card: SwipeCard,
+  span: number,
+  now: number,
+): { move: WeekMove; pct: number } | null {
   if (card.kind !== 'reading' || !card.series || card.series.multi) return null;
   // An AI lab's line is its releases, in index points: two of them a week
   // apart are not a week's move, and never a percentage (`aiLabCard`).
   if (card.id.startsWith('ai:')) return null;
   const year = yearOf(card.asOf, new Date(now).getUTCFullYear());
-  const move = weekMove(card.series.values, card.series.periods, year);
+  const { values, periods } = card.series;
+  const move = span > 1 ? spanMove(values, periods, year, span) : dayStep(values, periods, year);
   if (!move) return null;
-  const pct = card.id.startsWith('fx-') ? currencyMove(move.pct) : move.pct;
-  const delta = weekDelta(move, card.series.unit, pct);
-  return delta ? { delta, pct } : null;
+  return { move, pct: quotesRate(card) ? currencyMove(move.pct) : move.pct };
+}
+
+/**
+ * A card's move over the past `span` days as a signed percentage, or null
+ * when its series does not reach: the week's rule over another window, for a
+ * ladder's day and thirty days (`groupLadder`, `lib/world-summary.ts`). One
+ * day is the series' last step (`dayMove`), so a series published weekly has
+ * none.
+ */
+export function gaugeSpan(card: SwipeCard, span: number, now = Date.now()): number | null {
+  return cardSpan(card, span, now)?.pct ?? null;
+}
+
+/**
+ * A card's own quantity on each of its days, for a line of several cards
+ * (`movePath`): the series as the card charts it, and a currency's the other
+ * way up where the card quotes the rate, as its moves are read (`gaugeMove`).
+ */
+export function gaugeLevels(
+  card: SwipeCard,
+  now = Date.now(),
+): { days: (number | null)[]; values: number[] } | null {
+  if (card.kind !== 'reading' || !card.series || card.series.multi) return null;
+  if (card.id.startsWith('ai:')) return null;
+  const year = yearOf(card.asOf, new Date(now).getUTCFullYear());
+  return {
+    days: periodDays(card.series.periods, year),
+    values: quotesRate(card) ? card.series.values.map((rate) => 1 / rate) : card.series.values,
+  };
 }
 
 /**
@@ -183,42 +171,59 @@ export function namingCurrency(card: Pick<SwipeCard, 'id'>, delta: CardDelta): C
   return { ...delta, window: `${word} ${delta.window ?? ''}`.trim() };
 }
 
+/** A card's moves over the three windows the menu's table prints. */
+export interface CardWindows {
+  /** `1 day`, `7 days`, `30 days`, each with its move where the series
+   *  reaches: a window it does not reach keeps its place. */
+  rungs: WindowMove[];
+  /** What the moves are of, where the reading does not say: `the lira`,
+   *  under a rate quoted per dollar. */
+  subject?: string;
+  /** The card's own move, kept where it measures against something else: a
+   *  strait against its 90-day average (`CardDelta.versus`). */
+  own?: CardDelta;
+  /** The day the thirty days began on, as the series labels it, for the
+   *  chart's rule (`spanReference`). */
+  from?: string;
+}
+
 /**
- * The moves a card prints under its reading: the past seven days first, then
- * its own window.
+ * The moves a card prints under its reading: the menu's three windows, where
+ * its series has a week. Null where it has none (a monthly series, a
+ * contract, a lab, a date): that card prints its own move alone.
  *
  * The week is the number the reader followed here. The strip, a globe mark, a
- * menu row and a story's chart all print it, with no window beside it, and the
- * card printed only its own: `Hormuz ▼10%` opened a card that said `▼43% vs
- * its 90-day normal`, and `Oil ▼0.8%`, in red, one that said `▲23% since Aug
- * 17`, in green. Against the live data every one of the strip's 61 gauges
- * opened a card with another number, and 24 with the other colour
- * (2026-10-06). Both now, each beside its window, so the first number on the
- * card is the one that was pressed and the second says what else is true.
+ * menu row and a story's chart all print it, and the card once printed only
+ * its own: `Oil ▼0.8%`, in red, opened one that said `▲23% since Aug 17`, in
+ * green (2026-10-06). The card then led with the week and kept its own beside
+ * it, which for most cards was thirty observations: a second window like the
+ * week, counted another way. The menu's table reads a day, seven and thirty
+ * (`groupLadder`), so the card reads the same three, by the same functions,
+ * and the exact thirty-day figure the table draws as a line is printed here.
  *
- * A card with no week (a monthly series, a contract, a date) prints its own
- * move alone. One whose own move is the week prints it once: under the week's
- * name, or as the same move to the decimal a chip prints, which is what a
- * market signal measured over five sessions is.
+ * A card's own move is dropped where it was another stretch of the same
+ * series, and kept where it is something else (`versus`). A rate quoted per
+ * dollar names what moved: a caret beside it does not say which of the two
+ * fell.
  */
-export function cardMoves(card: SwipeCard, now = Date.now()): CardDelta[] {
-  const followed = gaugeMove(card, now)?.delta;
-  const own = card.delta;
-  if (!followed) return own ? [own] : [];
-  const week = namingCurrency(card, followed);
-  return own && !isSameMove(own, week) ? [week, own] : [week];
+export function cardWindows(card: SwipeCard, now = Date.now()): CardWindows | null {
+  if (!cardSpan(card, WEEK_DAYS, now)) return null;
+  const unit = card.series?.unit;
+  const over = (span: number, window: string) => {
+    const found = cardSpan(card, span, now);
+    return found ? { ...found, delta: weekDelta(found.move, unit, found.pct, window) } : null;
+  };
+  const spans = [over(1, DAY_WINDOW), over(WEEK_DAYS, WEEK_WINDOW), over(MONTH_DAYS, MONTH_WINDOW)];
+  return {
+    rungs: WINDOW_NAMES.map((label, i) => ({ label, delta: spans[i]?.delta })),
+    ...(quotesRate(card) ? { subject: `the ${lastWord(card.title)}` } : {}),
+    ...(card.delta?.versus ? { own: card.delta } : {}),
+    ...(spans[2] ? { from: spans[2].move.from } : {}),
+  };
 }
 
-/** Half the decimal a chip prints a percentage to: nearer than this, two
- *  moves are one number. */
-const SAME_MOVE_PCT = 0.05;
-
-function isSameMove(own: CardDelta, week: CardDelta): boolean {
-  if (own.window?.endsWith(WEEK_WINDOW)) return true;
-  if (own.direction === 'flat' || own.direction !== week.direction) return false;
-  if (own.size === undefined || week.size === undefined) return false;
-  return Math.abs(own.size - week.size) < SAME_MOVE_PCT;
-}
+/** `lira`, of `Turkish lira`: a currency is known by its last word. */
+const lastWord = (name: string): string => (name.trim().split(/\s+/).at(-1) ?? name).toLowerCase();
 
 /**
  * An exchange's move as the strip prints it: the past seven days.
@@ -246,8 +251,9 @@ export function exchangeMove(
  *
  * `EntitySheet` printed "+0.3% vs prev" for one step while the card for the same
  * indicator printed a thirty-observation chip, so Brent could read up on the card
- * and down in the sheet. The quantity is the published series as it is: this
- * sheet prints the rate, not the currency, so there is no inversion here.
+ * and down in the sheet. The quantity is the one the sheet prints
+ * (`indicatorReading`): the rate, so so many lira to the dollar are not
+ * inverted, and the euro, which is printed in dollars, is.
  * A prediction contract moves in points, never as a percentage of a percentage,
  * and so does a series already in per cent, as its card prints it
  * (`movesInPoints`): a monthly rate by its last step, a yield by its week.
@@ -258,8 +264,14 @@ export function indicatorMove(indicator: Indicator, now = Date.now()): CardDelta
   }
   const year = yearOf(indicator.asOf, new Date(now).getUTCFullYear());
   const week = weekMove(indicator.values, indicator.periods, year);
-  if (week) return weekDelta(week, indicator.unit);
+  if (week) {
+    const pct = quotedInDollars(indicator.id) ? currencyMove(week.pct) : week.pct;
+    return weekDelta(week, indicator.unit, pct);
+  }
   return movesInPoints(indicator.unit)
-    ? deltaFrom(windowPointChange(indicator, 1), { unit: 'rate' })
+    ? deltaFrom(windowPointChange(indicator, 1), {
+        unit: 'rate',
+        decimals: rateDecimals(indicator),
+      })
     : deltaFrom(windowChange(indicator, 1));
 }

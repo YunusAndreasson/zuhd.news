@@ -6,16 +6,16 @@
  * label cut mid-word against the reader column's inset, which reads as broken
  * rather than as a row with more in it.
  *
- * The row is sized for 3.4 slots across (`VISIBLE_SLOTS`, `IndicatorStrip`), so
- * a clean boundary at *both* edges is arithmetically impossible: four tenths of
- * a slot always falls somewhere. The left edge is the one that is guaranteed —
- * every rest position is a slot's own left edge, exactly where the first slot
- * sits at rest — and the four tenths stay at the right, where a partial slot is
- * the only sign the row continues.
+ * Each slot is as wide as its own name or move (`IndicatorStrip`), so a clean
+ * boundary at *both* edges is not to be had: part of a slot always falls
+ * somewhere. The left edge is the one that is guaranteed — every rest position
+ * is a slot's own left edge, exactly where the first slot sits at rest — and
+ * the part stays at the right, where a cut slot is the only sign the row
+ * continues.
  *
- * Slots are not a fixed pitch: a longer name widens its slot past the rhythm
- * rather than ellipsizing, so there is no interval to snap to. These are the
- * measured offsets, which the row already collects from each slot's layout.
+ * Slots are not a fixed pitch, so there is no interval to snap to. These are
+ * the measured offsets, which the row already collects from each slot's
+ * layout.
  *
  * **The end of the row is the one rest position that is not a slot start.** It
  * has to be, or the last slot could never be read whole: the last slots begin

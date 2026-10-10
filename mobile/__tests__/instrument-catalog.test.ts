@@ -168,7 +168,7 @@ describe('buildInstrumentCatalog', () => {
     ]);
     expect(ids(groups, 'food')).toEqual(['wheat', 'rice']);
     expect(ids(groups, 'metals')).toEqual(['paxg', 'xag', 'copper']);
-    expect(groups.map((g) => g.title)).toEqual(['energy', 'food', 'metals']);
+    expect(groups.map((g) => g.title)).toEqual(['energy', 'metals', 'food']);
   });
 
   it('lists a series the table has never heard of by its source, so it cannot vanish', () => {
@@ -335,15 +335,72 @@ describe('buildInstrumentCatalog', () => {
     expect(ids(groups, 'energy')).toEqual(['wti']);
   });
 
-  it('sorts by the week’s move, largest first, and puts a month after every week', () => {
+  it('runs from the largest rise to the largest fall, and puts a month after every week', () => {
+    // By size alone, either way up, a red row followed a green one down the
+    // list and the order could not be seen.
     const groups = build({
       trends: snapshot([
         monthly({ id: 'natgas-ttf' }),
+        indicator({ id: 'natgas-hh', values: [100, 96] }),
         indicator({ id: 'brent', values: [100, 101] }),
         indicator({ id: 'wti', values: [100, 90] }),
+        indicator({ id: 'us-gas-retail', values: [100, 107] }),
       ]),
     });
-    expect(ids(groups, 'energy')).toEqual(['wti', 'brent', 'natgas-ttf']);
+    expect(ids(groups, 'energy')).toEqual([
+      'us-gas-retail',
+      'brent',
+      'natgas-hh',
+      'wti',
+      'natgas-ttf',
+    ]);
+    expect(group(groups, 'energy')?.rows.map((r) => r.move?.direction)).toEqual([
+      'up',
+      'up',
+      'down',
+      'down',
+      'up',
+    ]);
+  });
+
+  it('orders a currency list by the currencies, not by their rates', () => {
+    // More rubles to the dollar is a weaker ruble: it goes under one that rose.
+    const fx = (id: string, label: string, values: number[]) =>
+      indicator({ id, label, source: 'oer', unit: 'X / USD', values });
+    const groups = build({
+      trends: snapshot([
+        fx('fx-rub', 'Russian rouble', [80, 88]),
+        fx('fx-try', 'Turkish lira', [50, 45]),
+      ]),
+    });
+    expect(ids(groups, 'currencies')).toEqual(['fx-try', 'fx-rub']);
+  });
+
+  it('puts the contracts in the same order, by the points each has moved', () => {
+    // They stood in the pool's ranking, which nothing on the screen follows.
+    const contract = (id: string, values: number[]) =>
+      ({
+        id,
+        kind: 'belief',
+        title: `${id}?`,
+        reading: `${values.at(-1)}%`,
+        why: 'priced',
+        series: { values, periods: ['Sep 1', 'Sep 4', 'Sep 8'].slice(-values.length) },
+      }) as SwipeCard;
+    const groups = build({
+      ranked: [
+        contract('poly-fell', [19, 6]),
+        contract('poly-level', [30, 30]),
+        contract('poly-rose', [54, 60, 79]),
+        contract('poly-edged', [9, 14]),
+      ],
+    });
+    expect(ids(groups, 'predictions')).toEqual([
+      'poly-rose',
+      'poly-edged',
+      'poly-level',
+      'poly-fell',
+    ]);
   });
 
   it('moves a published rate in points, not in a percentage of itself', () => {
@@ -353,7 +410,7 @@ describe('buildInstrumentCatalog', () => {
     const card = group(groups, 'rates')?.rows[0]?.card as ReadingCard | undefined;
     expect(card?.delta).toMatchObject({ direction: 'down', magnitude: '0.25 points' });
     // Coloured like any move: `unit: 'points'` is a contract's, which stays slate.
-    expect(card?.delta?.unit).toBeUndefined();
+    expect(card?.delta?.unit).toBe('rate');
   });
 
   it('lists every date ahead, not only the deck’s nearest four', () => {
@@ -400,6 +457,63 @@ describe('buildInstrumentCatalog', () => {
   });
 });
 
+describe('a row’s thirty days', () => {
+  /** Aug 9 to Sep 8: thirty days behind the newest reading. */
+  const days = [
+    ...Array.from({ length: 23 }, (_, i) => `Aug ${i + 9}`),
+    ...Array.from({ length: 8 }, (_, i) => `Sep ${i + 1}`),
+  ];
+  const rising = days.map((_, i) => 100 + i);
+  const row = (groups: CatalogGroup[], key: GroupKey, id: string) =>
+    group(groups, key)?.rows.find((r) => r.id === id);
+
+  it('gives a row quoted daily its own line, in per cent from where it began', () => {
+    const groups = build({
+      trends: snapshot([indicator({ id: 'brent', unit: '$/bbl', values: rising, periods: days })]),
+    });
+    const path = row(groups, 'energy', 'brent')?.path;
+    expect(path?.values[0]).toBe(0);
+    expect(path?.values.at(-1)).toBeCloseTo(30);
+    expect(path?.days).toHaveLength(31);
+  });
+
+  it('draws a currency the way its move is read, not the way its rate runs', () => {
+    // More lira to the dollar each day: the lira's line falls.
+    const groups = build({
+      trends: snapshot([
+        indicator({
+          id: 'fx-try',
+          label: 'Turkish lira',
+          source: 'oer',
+          unit: 'TRY / USD',
+          values: rising,
+          periods: days,
+        }),
+      ]),
+    });
+    const lira = row(groups, 'currencies', 'fx-try');
+    expect(lira?.move?.direction).toBe('down');
+    expect(lira?.path?.values.at(-1)).toBeLessThan(0);
+  });
+
+  it('draws none for a row with no week, too little history, or a move in points', () => {
+    const groups = build({
+      trends: snapshot([
+        // Two readings a week apart: a week, and no month to draw.
+        indicator({ id: 'wti', unit: '$/bbl' }),
+        monthly({ id: 'wheat', unit: '$/mt' }),
+        // A yield's move is a difference, never a share of itself.
+        indicator({ id: 'us-10y', unit: '%', values: rising.map((v) => v / 25), periods: days }),
+      ]),
+    });
+    expect(row(groups, 'energy', 'wti')?.weekly).toBe(true);
+    expect(row(groups, 'energy', 'wti')?.path).toBeUndefined();
+    expect(row(groups, 'food', 'wheat')?.path).toBeUndefined();
+    expect(row(groups, 'borrowing', 'us-10y')?.weekly).toBe(true);
+    expect(row(groups, 'borrowing', 'us-10y')?.path).toBeUndefined();
+  });
+});
+
 describe('AI models', () => {
   const lab = (id: string, score: number, values: number[]) => ({
     id,
@@ -420,6 +534,20 @@ describe('AI models', () => {
     generated: '2026-09-08T00:00:00.000Z',
     frontier: { score: 160, model: 'alpha 5', lab: 'alpha' },
     labs,
+  });
+
+  it('carries a lab’s likely range for the mark its row draws, where the index gives one', () => {
+    const groups = build({
+      aiModels: aiSnapshot([
+        { ...lab('alpha', 160, [120, 150, 160]), low: 157, high: 164 },
+        lab('beta', 150, [100, 140, 150]),
+      ]),
+    });
+    const [alpha, beta] = group(groups, 'ai')?.rows ?? [];
+    expect(alpha?.range).toEqual({ low: 157, high: 164, at: 160 });
+    expect(beta?.range).toBeUndefined();
+    // A lab's line is its releases: no thirty days to draw.
+    expect(alpha?.path).toBeUndefined();
   });
 
   it('lists the labs after the coins, in the payload’s order, with no week', () => {
@@ -528,14 +656,20 @@ describe('largest companies', () => {
     ...over,
   });
 
-  it('is a group of its own beside the markets, largest week first', () => {
+  it('is a group of its own beside the markets, from its largest rise to its largest fall', () => {
     const groups = buildInstrumentCatalog(
-      inputs({ companies: [company('quiet', [100, 101]), company('loud', [100, 120])] }),
+      inputs({
+        companies: [
+          company('sank', [100, 70]),
+          company('quiet', [100, 101]),
+          company('loud', [100, 120]),
+        ],
+      }),
     );
     expect(groups.map((g) => g.key)).toEqual(['stocks', 'companies']);
     const list = groups[1];
     expect(list?.title).toBe('largest companies');
-    expect(list?.rows.map((r) => r.short)).toEqual(['loud', 'quiet']);
+    expect(list?.rows.map((r) => r.short)).toEqual(['loud', 'quiet', 'sank']);
     expect(list?.rows.every((r) => r.weekly)).toBe(true);
     expect(list?.rows[0]?.id).toBe('co:loud');
   });
@@ -586,6 +720,51 @@ describe('largest companies', () => {
     // An exchange's unit is every exchange's: its list says it once too.
     expect(groups[0]?.rows.every((r) => r.note === '')).toBe(true);
     expect(groups[0]?.rows[0]?.card?.readingNote).toBe('index points');
+  });
+
+  it('prints each company’s market value where every company has one, and says what it is', () => {
+    const groups = buildInstrumentCatalog(
+      inputs({
+        companies: [
+          company('nvidia', [100, 120], { marketValue: 5_536_400_000_000 }),
+          company('jpmorgan', [100, 110], { marketValue: 885_100_000_000 }),
+          company('samsung', [100, 105], {
+            currency: 'KRW',
+            currencyName: 'Korean won',
+            marketValue: 1_241_700_000_000,
+          }),
+        ],
+      }),
+    );
+    const rows = groups[1]?.rows ?? [];
+    // To two figures: the share count behind it is kept by hand.
+    expect(rows.map((r) => [r.id, r.reading])).toEqual([
+      ['co:nvidia', '$5.5T'],
+      ['co:jpmorgan', '$890B'],
+      ['co:samsung', '$1.2T'],
+    ]);
+    // In dollars whatever the share is priced in, so no currency under it.
+    expect(rows.every((r) => r.note === '' && r.readingSaid === 'market value')).toBe(true);
+    // The card keeps the share price, and carries the same figure.
+    const samsung = rows[2]?.card as ReadingCard | undefined;
+    expect(samsung?.readingNote).toBe('Korean won a share');
+    expect(samsung?.figures).toEqual([{ label: 'market value', value: '$1.2T' }]);
+  });
+
+  it('prints share prices for every company where one has no market value', () => {
+    const groups = buildInstrumentCatalog(
+      inputs({
+        companies: [
+          company('nvidia', [100, 120], { marketValue: 5_536_400_000_000 }),
+          company('samsung', [100, 105], { currency: 'KRW', currencyName: 'Korean won' }),
+        ],
+      }),
+    );
+    const [nvidia, samsung] = groups[1]?.rows ?? [];
+    expect([nvidia?.reading, samsung?.reading]).toEqual([undefined, undefined]);
+    expect([nvidia?.note, samsung?.note]).toEqual(['', 'Korean won']);
+    // Its own card still carries the figure it has.
+    expect((nvidia?.card as ReadingCard | undefined)?.figures?.[0]?.value).toBe('$5.5T');
   });
 
   it('never enters the stock markets list or its tally of exchanges', () => {

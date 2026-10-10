@@ -97,6 +97,7 @@ import {
 } from '../../lib/globe-display';
 import { type GlobeHitGeometry, hitGlobeMarks } from '../../lib/globe-hit-test';
 import { isStorySettled, requestGlobeSettle } from '../../lib/globe-settle';
+import { coverageCell } from '../../lib/map-selection';
 import {
   followMarketLayout,
   layoutMarketClusters,
@@ -119,12 +120,6 @@ import {
   thermalBox,
 } from '../../lib/overlays';
 import { displayCountryName, displayLocation, wrapCountryLabel } from '../../lib/place-names';
-import {
-  capitalsInView,
-  markGlobeMoving,
-  marksInView,
-  publishRestingView,
-} from '../../lib/resting-view';
 import {
   type FoundProgress,
   type StoryPlace,
@@ -3025,7 +3020,7 @@ export const MiniGlobe = memo(function MiniGlobe({
     const now = Date.now();
     if (!heatmapPoints || heatmapPoints.length === 0) {
       const clusters = new Map<
-        string,
+        number,
         { lat: number; lng: number; total: number; newestT: number; countryName: string | null }
       >();
       for (let i = 0; i < articles.length; i++) {
@@ -3034,7 +3029,7 @@ export const MiniGlobe = memo(function MiniGlobe({
         const article = articles[i];
         if (!article) continue;
         const coverage = article.eventCoverage ?? 1;
-        const key = `${Math.round(geo.lat * 2) / 2},${Math.round(geo.lng * 2) / 2}`;
+        const key = coverageCell(geo.lat, geo.lng);
         const existing = clusters.get(key);
         if (existing) {
           existing.total += coverage;
@@ -3065,7 +3060,7 @@ export const MiniGlobe = memo(function MiniGlobe({
     }
 
     const clusters = new Map<
-      string,
+      number,
       { lat: number; lng: number; total: number; newestT: number; labels: Set<string> }
     >();
 
@@ -3075,8 +3070,9 @@ export const MiniGlobe = memo(function MiniGlobe({
       const weight = Math.max(pt.c, 1) * decay;
       if (weight < 0.03) continue;
 
-      // 0.5° grid (~55km) merges nearby datelines
-      const key = `${Math.round(pt.lat * 2) / 2},${Math.round(pt.lng * 2) / 2}`;
+      // 0.5° grid (~55km) merges nearby datelines; a tap on the glow looks
+      // for its stories on the same grid (`coverageStory`).
+      const key = coverageCell(pt.lat, pt.lng);
       const existing = clusters.get(key);
       if (existing) {
         existing.total += weight;
@@ -3235,7 +3231,7 @@ export const MiniGlobe = memo(function MiniGlobe({
     () =>
       (chokepoints ?? []).map((cp) => {
         // The strip's seven-day move where the strip has one: the label
-        // printed the gap from the 90-day normal while the strip, a few
+        // printed the gap from the 90-day average while the strip, a few
         // centimetres up, printed the week, and one strait read ↓62% on the
         // globe and ▼38% in the strip. The glyph's brightness and outranking
         // stay on the normal (`delta`, below): that is the strait's state.
@@ -4422,21 +4418,6 @@ export const MiniGlobe = memo(function MiniGlobe({
               place(cp.labelX, cp.y, straitLabelText(cp, markFonts), false, cp)?.baseline ?? null;
         }
       }
-      // The strip leaves what is named here to the globe, and shows what found
-      // no name and what belongs to the countries in view. At rest only: a
-      // moving frame carries the last layout, and its names come and go with
-      // the camera.
-      if (nearSettled) {
-        const band = {
-          width: canvasW,
-          top: layoutRef.current.marketViewport?.top ?? 0,
-          bottom: layoutRef.current.marketViewport?.bottom ?? canvasH,
-        };
-        publishRestingView({
-          ...marksInView(marketProjected, marketPoints, chokepointMarks, band),
-          countries: capitalsInView(capitalLabels, band),
-        });
-      } else markGlobeMoving();
 
       // Label packing — drop neighbour / water labels that overlap a
       // higher-priority label or an already-placed peer. Greedy AABB

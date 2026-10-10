@@ -11,10 +11,15 @@ import {
   companiesSummary,
   currenciesSummary,
   groupFigure,
+  groupLadder,
+  groupPath,
   exchangeTally,
   hazardParts,
   shippingCaption,
   shippingSummary,
+  stocksCoverage,
+  stocksLadder,
+  stocksLine,
   stocksSummary,
   tallyCaption,
 } from '../lib/world-summary';
@@ -32,7 +37,28 @@ const weekRow = (id: string, pct: number, over: Partial<CatalogRow> = {}): Catal
   ...over,
 });
 
-const exchange = { id: 'x' } as Exchange;
+/** An exchange as the payload carries one: two sessions a week apart. */
+const listing = (over: Partial<Exchange>): Exchange => ({
+  id: 'x',
+  name: 'X',
+  indexName: 'X',
+  city: 'X',
+  iso2: 'XX',
+  lat: 0,
+  lng: 0,
+  level: 100,
+  changePct: 0,
+  asOf: '2026-09-08',
+  sourceLabel: '',
+  blurb: '',
+  series: {
+    periods: ['Sep 1', 'Sep 8'],
+    values: [100, 100],
+    dates: ['2026-09-01', '2026-09-08'],
+  },
+  ...over,
+});
+const exchange = listing({});
 const market = (id: string, pct: number, over: Partial<CatalogRow> = {}) =>
   weekRow(id, pct, { exchange, ...over });
 
@@ -68,6 +94,171 @@ describe('world stocks', () => {
   it('is absent with no exchange in the list, so the row leaves with its list', () => {
     expect(stocksSummary([])).toBeNull();
     expect(stocksSummary([group('stocks', [weekRow('sp500', 4)])])).toBeNull();
+  });
+});
+
+const WEEK_OF_RATES = ['2026-09-01', '2026-09-08'];
+/** New York: priced in dollars, up 1% on the week and in its last session. */
+const newYork = (gdp?: number) =>
+  market('mkt:nyse', 1, { exchange: listing({ iso2: 'US', currency: 'USD', gdp, changePct: 1 }) });
+/** Istanbul: up 3% in lira in a week the lira went from 40 to 42 a dollar,
+ *  which is down 1.9% in dollars. */
+const istanbul = (gdp?: number, rated = true) =>
+  market('mkt:bist', 3, {
+    exchange: listing({
+      iso2: 'TR',
+      currency: 'TRY',
+      gdp,
+      changePct: 3,
+      series: {
+        periods: ['Sep 1', 'Sep 8'],
+        values: [100, 103],
+        dates: WEEK_OF_RATES,
+      },
+      fx: rated ? { dates: WEEK_OF_RATES, perUsd: [40, 42] } : undefined,
+    }),
+  });
+
+describe('world stocks, weighed and in dollars', () => {
+  it('weighs each market by its economy, so a small one does not count as a large one', () => {
+    // No rates: each in its own currency. (1 × 3 + 3 × 1) / 4, not their mean of 2.
+    const summary = stocksSummary([group('stocks', [newYork(3), istanbul(1, false)])]);
+    expect(summary).toMatchObject({ weighted: true, dollars: false, members: 2 });
+    expect(summary?.move).toMatchObject({ direction: 'up', magnitude: '1.5%' });
+  });
+
+  it('reads each market’s week in US dollars where the payload carries the rates', () => {
+    // (1 × 3 − 1.905 × 1) / 4: Istanbul’s 3% is a loss to anyone holding dollars.
+    const summary = stocksSummary([group('stocks', [newYork(3), istanbul(1)])]);
+    expect(summary).toMatchObject({ weighted: true, dollars: true, members: 2 });
+    expect(summary?.move).toMatchObject({ direction: 'up', magnitude: '0.3%' });
+    // Its last session the same way: these two have one session in the week.
+    expect(summary?.day).toMatchObject({
+      direction: 'up',
+      magnitude: '0.3%',
+      window: 'over 1 day',
+    });
+  });
+
+  it('stays in each market’s own currency when most of the weight has no rate', () => {
+    // New York alone is 30% of this list: its week is not the world’s.
+    const summary = stocksSummary([group('stocks', [newYork(3), istanbul(7, false)])]);
+    expect(summary).toMatchObject({ dollars: false, members: 2 });
+    expect(summary?.move?.magnitude).toBe('2.4%');
+  });
+
+  it('leaves out a market with no rate when the rest are most of the weight, and says so', () => {
+    const unrated = market('mkt:byma', 40, {
+      exchange: listing({ id: 'byma', iso2: 'AR', currency: 'ARS', gdp: 0.5, changePct: 2 }),
+    });
+    const summary = stocksSummary([group('stocks', [newYork(9), istanbul(0.5), unrated])]);
+    expect(summary).toMatchObject({ dollars: true, members: 2 });
+    expect(summary && stocksCoverage(summary)).toBe(
+      '2 of 3 markets in US dollars, weighted by each economy’s size',
+    );
+  });
+
+  it('counts a country once: two exchanges in one share its weight', () => {
+    const german = (id: string, pct: number) =>
+      market(id, pct, { exchange: listing({ id, iso2: 'DE', gdp: 4 }) });
+    const us = market('mkt:nyse', 1, { exchange: listing({ iso2: 'US', gdp: 4 }) });
+    // (4 × 2 + 0 × 2 + 1 × 4) / 8, not (4 × 4 + 0 × 4 + 1 × 4) / 12.
+    const summary = stocksSummary([group('stocks', [german('a', 4), german('b', 0), us])]);
+    expect(summary?.move?.magnitude).toBe('1.5%');
+  });
+
+  it('counts each market once where any has no weight, and says that', () => {
+    const summary = stocksSummary([group('stocks', [newYork(3), istanbul(undefined, false)])]);
+    expect(summary).toMatchObject({ weighted: false, dollars: false });
+    expect(summary?.move?.magnitude).toBe('2%');
+    expect(summary && stocksCoverage(summary)).toBe(
+      '2 markets in their own currencies, each counted once',
+    );
+  });
+
+  /** A market with a session thirty days back, one a week back and today's. */
+  const month = (
+    id: string,
+    over: Partial<Exchange>,
+    values: [number, number, number],
+    perUsd?: (number | null)[],
+  ) => {
+    const dates = ['2026-08-09', '2026-09-01', '2026-09-08'];
+    return market(id, (values[2] / values[1] - 1) * 100, {
+      exchange: listing({
+        id,
+        ...over,
+        changePct: (values[2] / values[1] - 1) * 100,
+        series: { periods: ['Aug 9', 'Sep 1', 'Sep 8'], values, dates },
+        fx: perUsd ? { dates, perUsd } : undefined,
+      }),
+    });
+  };
+
+  it('reads thirty days by the week’s rule, over the same markets and weights', () => {
+    const us = month('nyse', { iso2: 'US', currency: 'USD', gdp: 3 }, [100, 100, 101]);
+    // Up 14% in lira over a month the lira went from 36 to 42 a dollar.
+    const tr = month('bist', { iso2: 'TR', currency: 'TRY', gdp: 1 }, [90, 100, 103], [36, 40, 42]);
+    const summary = stocksSummary([group('stocks', [us, tr])]);
+    expect(summary?.dollars).toBe(true);
+    // (1 × 3 − 1.905 × 1) / 4: in dollars Istanbul is where it was a month ago, less its week.
+    expect(summary?.month).toMatchObject({
+      direction: 'up',
+      magnitude: '0.3%',
+      window: 'over 30 days',
+    });
+    // In its own currency it is (1 × 3 + 14.4 × 1) / 4.
+    const local = stocksSummary([
+      group('stocks', [us, month('bist', { iso2: 'TR', currency: 'TRY', gdp: 1 }, [90, 100, 103])]),
+    ]);
+    expect(local?.dollars).toBe(false);
+    expect(local?.month?.magnitude).toBe('4.4%');
+  });
+
+  it('prints no thirty days where most of the weight has none, and keeps the week', () => {
+    const us = month('nyse', { iso2: 'US', currency: 'USD', gdp: 1 }, [100, 100, 101]);
+    // Rates for the week alone: its month cannot be said in dollars.
+    const tr = month(
+      'bist',
+      { iso2: 'TR', currency: 'TRY', gdp: 3 },
+      [90, 100, 103],
+      [null, 40, 42],
+    );
+    const summary = stocksSummary([group('stocks', [us, tr])]);
+    expect(summary).toMatchObject({ dollars: true, members: 2 });
+    expect(summary?.move).toBeDefined();
+    expect(summary?.month).toBeUndefined();
+    // The rung keeps its place, with no move and no bar.
+    expect(
+      summary && stocksLadder(summary).map((rung) => [rung.label, Boolean(rung.delta)]),
+    ).toEqual([
+      ['1 day', true],
+      ['7 days', true],
+      ['30 days', false],
+    ]);
+  });
+
+  it('is a ladder of a day, seven days and thirty, with the list’s own figure in the middle', () => {
+    const summary = stocksSummary([group('stocks', [newYork(3), istanbul(1)])]);
+    const rungs = summary ? stocksLadder(summary) : [];
+    expect(rungs.map((rung) => rung.label)).toEqual(['1 day', '7 days', '30 days']);
+    expect(rungs[1]?.delta).toBe(summary?.move);
+    // The stock list's row on the menu is the same three.
+    expect(groupLadder(group('stocks', [newYork(3), istanbul(1)]), NOW)).toEqual(rungs);
+    expect(summary && stocksLine(summary)).toBe(
+      'World stocks +0.3% over 7 days: 2 markets in US dollars, weighted by each economy’s size',
+    );
+    // One market is no figure, no ladder and no line.
+    const one = stocksSummary([group('stocks', [newYork(3)])]);
+    expect(one && stocksLine(one)).toBeUndefined();
+    expect(groupLadder(group('stocks', [newYork(3)]), NOW)).toBeNull();
+    expect(one && stocksLadder(one).some((rung) => rung.delta)).toBe(false);
+  });
+
+  it('is the figure its list’s row prints, with what it is of for a listener', () => {
+    const figure = groupFigure(group('stocks', [newYork(3), istanbul(1)]), NOW);
+    expect(figure.move?.magnitude).toBe('0.3%');
+    expect(figure.coverage).toBe('2 markets in US dollars, weighted by each economy’s size');
   });
 });
 
@@ -321,7 +512,7 @@ describe('a list’s figure on the menu’s first page', () => {
     );
     expect(figure.level).toBe('3.00%');
     expect(figure.move).toMatchObject({ direction: 'up', magnitude: '1.00 points' });
-    expect(figure.move?.unit).toBeUndefined(); // Economic moves retain up/down colour.
+    expect(figure.move?.unit).toBe('rate'); // Economic moves retain up/down colour.
   });
 
   it('shows US unemployment’s monthly change without pretending it is an average', () => {
@@ -334,6 +525,29 @@ describe('a list’s figure on the menu’s first page', () => {
       move: { direction: 'up', magnitude: '0.10 points' },
     });
     expect(figure.coverage).toContain('US unemployment');
+  });
+
+  it('prints a list of rates published to one decimal to one decimal, the level and its move', () => {
+    const published = (id: string, values: number[]): CatalogRow =>
+      weekRow(id, 0, {
+        weekly: false,
+        card: {
+          kind: 'reading',
+          series: { periods: ['Jul 2026', 'Aug 2026'], values, unit: '%', decimals: 1 },
+        } as SwipeCard,
+      });
+    const inflation = groupFigure(
+      group('inflation', [published('us-cpi', [3.2, 3.4]), published('ez-cpi', [3.2, 3.2])]),
+    );
+    expect(inflation).toMatchObject({
+      level: '3.3%',
+      move: { direction: 'up', magnitude: '0.1 points', window: 'on the month' },
+    });
+    const jobs = groupFigure(group('jobs', [published('us-unemployment', [4.2, 4.2])]));
+    expect(jobs).toMatchObject({
+      level: '4.2%',
+      move: { direction: 'flat', magnitude: '0.0 points' },
+    });
   });
 
   it('uses shared dates and percentage-point changes for the borrowing basket', () => {
@@ -566,5 +780,256 @@ describe('world hazards', () => {
 
   it('is empty on a day of minor alerts with nothing else loaded', () => {
     expect(hazardParts({ disasters: [alert('Green')], conflictWeek: null })).toEqual([]);
+  });
+});
+
+/** Day labels for `n` consecutive days ending on 8 September 2026. */
+const MONTHS = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
+const lastDays = (n: number): string[] =>
+  Array.from({ length: n }, (_, i) => {
+    const day = new Date(Date.UTC(2026, 8, 8) - (n - 1 - i) * 86_400_000);
+    return `${MONTHS[day.getUTCMonth()]} ${day.getUTCDate()}`;
+  });
+
+/**
+ * A row quoted every day for a month: its price thirty days ago, seven days
+ * ago, yesterday and today, held level in between. Its week is its series'.
+ */
+function daily(
+  id: string,
+  [month, week, yesterday, today]: [number, number, number, number],
+  over: Partial<CatalogRow> = {},
+): CatalogRow {
+  const values = Array.from({ length: 31 }, (_, i) =>
+    i === 30 ? today : i === 29 ? yesterday : i >= 23 ? week : month,
+  );
+  const card = {
+    id,
+    kind: 'reading',
+    title: id,
+    reading: String(today),
+    asOf: '2026-09-08',
+    series: { values, periods: lastDays(31), unit: '$' },
+  } as SwipeCard;
+  return weekRow(id, (today / week - 1) * 100, { card, ...over });
+}
+
+const rung = (rungs: ReturnType<typeof groupLadder>, i: number) =>
+  rungs?.[i]?.delta && [rungs[i]?.delta?.direction, rungs[i]?.delta?.magnitude];
+
+describe('a list’s ladder on the menu’s first page', () => {
+  it('is the list over a day, seven days and thirty, with its own figure in the middle', () => {
+    const companies = group('companies', [
+      daily('co:a', [100, 110, 120, 121]),
+      daily('co:b', [100, 100, 100, 99]),
+    ]);
+    const rungs = groupLadder(companies, NOW);
+    expect(rungs?.map((r) => r.label)).toEqual(['1 day', '7 days', '30 days']);
+    // (0.83 − 1) / 2, (10 − 1) / 2 and (21 − 1) / 2: each company counted once.
+    expect(rung(rungs, 0)).toEqual(['down', '0.08%']);
+    expect(rung(rungs, 1)).toEqual(['up', '4.5%']);
+    expect(rung(rungs, 2)).toEqual(['up', '10%']);
+    expect(rungs?.[1]?.delta).toEqual(groupFigure(companies, NOW).move);
+    expect(rungs?.map((r) => r.delta?.window)).toEqual([
+      'over 1 day',
+      'over 7 days',
+      'over 30 days',
+    ]);
+  });
+
+  it('reads a currency’s own move, and takes the middle one', () => {
+    // Lira to the dollar: up is the lira down. The euro is quoted in dollars.
+    const currencies = group('currencies', [
+      daily('fx-try', [40, 41, 42, 42]),
+      daily('fx-egp', [50, 50, 50, 50]),
+      daily('fx-eur', [1.1, 1.1, 1.1, 1.133]),
+    ]).rows.map((row) => {
+      const pct = (row.weeklyPct as number) * (row.id === 'fx-eur' ? 1 : -1);
+      return { ...row, weeklyPct: pct, move: deltaOf(pct, { window: WEEK_WINDOW }) };
+    });
+    const rungs = groupLadder(group('currencies', currencies), NOW);
+    // The pound unmoved is the middle of the three over every window.
+    expect(rung(rungs, 0)).toEqual(['flat', '0.0%']);
+    expect(rungs?.[2]?.delta).toMatchObject({ direction: 'flat' });
+    // With the pound gone the middle is between the lira and the euro: 40 → 42
+    // is the lira down 4.8%, and the euro is up 3%.
+    const two = groupLadder(
+      group(
+        'currencies',
+        currencies.filter((row) => row.id !== 'fx-egp'),
+      ),
+      NOW,
+    );
+    expect(rung(two, 2)).toEqual(['down', '0.9%']);
+  });
+
+  it('is the basket of prices quoted daily, over matching dates', () => {
+    // A pump price published weekly does not cut two daily ones to its dates.
+    const weekly = weekRow('us-gas-retail', 0, {
+      card: {
+        id: 'us-gas-retail',
+        kind: 'reading',
+        asOf: '2026-09-08',
+        series: { periods: ['Aug 25', 'Sep 1', 'Sep 8'], values: [3, 3, 9], unit: '$' },
+      } as SwipeCard,
+    });
+    const energy = group('energy', [
+      daily('brent', [100, 100, 104, 105]),
+      daily('wti', [100, 100, 100, 101]),
+      weekly,
+    ]);
+    const rungs = groupLadder(energy, NOW);
+    expect(rung(rungs, 0)).toEqual(['up', '1%']);
+    expect(rung(rungs, 1)).toEqual(['up', '3%']);
+    expect(rung(rungs, 2)).toEqual(['up', '3%']);
+    // The list's own figure is the same basket.
+    expect(groupFigure(energy, NOW).move?.magnitude).toBe('3%');
+    expect(groupFigure(energy, NOW).coverage).toContain('2 of 3 prices · other readings excluded');
+  });
+
+  it('adds the straits’ ships over each window', () => {
+    const rows = [0, 1].map((n) => {
+      const row = daily(`strait-${n}`, [100, 80, 99, 100]);
+      return { ...row, chokepoint: { delta7vs90: { n_total: 0 } } as Chokepoint };
+    });
+    const rungs = groupLadder(group('straits', rows), NOW);
+    // 160 → 200 on the week, 198 → 200 on the day, and level on the month.
+    expect(rung(rungs, 0)).toEqual(['up', '1%']);
+    expect(rung(rungs, 1)).toEqual(['up', '25%']);
+    expect(rung(rungs, 2)).toEqual(['flat', '0.0%']);
+  });
+
+  it('keeps a rung’s place where the rows do not reach back', () => {
+    // A week of history: no thirty days. The rung stays, with no move.
+    const short = (id: string, week: number, today: number) =>
+      weekRow(id, (today / week - 1) * 100, {
+        card: {
+          id,
+          kind: 'reading',
+          asOf: '2026-09-08',
+          series: {
+            periods: lastDays(8),
+            values: [week, week, week, week, week, week, week, today],
+          },
+        } as SwipeCard,
+      });
+    const rungs = groupLadder(
+      group('crypto', [short('btc', 100, 110), short('eth', 100, 90)]),
+      NOW,
+    );
+    expect(rungs?.map((r) => Boolean(r.delta))).toEqual([true, true, false]);
+    expect(rungs?.[2]?.label).toBe('30 days');
+  });
+
+  it('is absent for a list with no week: it keeps its one number', () => {
+    const monthly = (id: string) =>
+      weekRow(id, 0, {
+        weekly: false,
+        card: {
+          kind: 'reading',
+          series: { periods: ['Aug 2026', 'Sep 2026'], values: [100, 105], unit: '$' },
+        } as SwipeCard,
+      });
+    expect(groupLadder(group('food', [monthly('wheat'), monthly('rice')]), NOW)).toBeNull();
+    expect(groupLadder(group('rates', [weekRow('fed-funds', 1)]), NOW)).toBeNull();
+    // One company is no average, so no ladder either.
+    expect(groupLadder(group('companies', [daily('co:a', [100, 110, 120, 121])]), NOW)).toBeNull();
+  });
+});
+
+describe('a list’s thirty days as a line on the menu’s first page', () => {
+  it('is made of the rows its numbers are made of, and ends where its month does', () => {
+    const companies = group('companies', [
+      daily('co:a', [100, 110, 120, 121]),
+      daily('co:b', [100, 100, 100, 99]),
+    ]);
+    const path = groupPath(companies, NOW);
+    expect(path?.days).toHaveLength(31);
+    expect(path?.values[0]).toBe(0);
+    // (21 − 1) / 2, the list's thirty-day number.
+    expect(path?.values.at(-1)).toBeCloseTo(10);
+    expect(groupLadder(companies, NOW)?.[2]?.delta?.magnitude).toBe('10%');
+  });
+
+  it('draws a currency the way its moves are read, and the middle one of them', () => {
+    const currencies = group('currencies', [
+      daily('fx-try', [40, 41, 42, 42]),
+      daily('fx-eur', [1.1, 1.1, 1.1, 1.133]),
+    ]);
+    // 40 → 42 lira to the dollar is the lira down 4.8%; the euro is up 3%.
+    expect(groupPath(currencies, NOW)?.values.at(-1)).toBeCloseTo((-4.76 + 3) / 2, 1);
+  });
+
+  it('draws the stock markets in dollars and by weight, as their numbers are', () => {
+    const us = market('nyse', 1, {
+      exchange: listing({
+        id: 'nyse',
+        iso2: 'US',
+        currency: 'USD',
+        gdp: 3,
+        changePct: 1,
+        series: {
+          periods: ['Aug 9', 'Sep 1', 'Sep 8'],
+          values: [100, 100, 101],
+          dates: ['2026-08-09', '2026-09-01', '2026-09-08'],
+        },
+      }),
+    });
+    const dates = ['2026-08-09', '2026-09-01', '2026-09-08'];
+    const tr = market('bist', 3, {
+      exchange: listing({
+        id: 'bist',
+        iso2: 'TR',
+        currency: 'TRY',
+        gdp: 1,
+        changePct: 3,
+        series: { periods: ['Aug 9', 'Sep 1', 'Sep 8'], values: [90, 100, 103], dates },
+        fx: { dates, perUsd: [36, 40, 42] },
+      }),
+    });
+    const stocks = group('stocks', [us, tr]);
+    const path = groupPath(stocks, NOW);
+    expect(path?.days).toHaveLength(3);
+    // (1 × 3 − 1.905 × 1) / 4, the row's thirty-day number.
+    expect(path?.values.at(-1)).toBeCloseTo((3 - 1.905) / 4, 2);
+  });
+
+  it('adds the straits’ ships, and draws the basket of prices quoted daily', () => {
+    const straits = [0, 1].map((n) => ({
+      ...daily(`strait-${n}`, [100, 80, 99, 100]),
+      chokepoint: { delta7vs90: { n_total: 0 } } as Chokepoint,
+    }));
+    const ships = groupPath(group('straits', straits), NOW);
+    expect(Math.min(...(ships?.values ?? []))).toBeCloseTo(-20);
+    expect(ships?.values.at(-1)).toBeCloseTo(0);
+    const energy = group('energy', [
+      daily('brent', [100, 100, 104, 105]),
+      daily('wti', [100, 100, 100, 101]),
+    ]);
+    expect(groupPath(energy, NOW)?.values.at(-1)).toBeCloseTo(3);
+  });
+
+  it('is nothing for a list that prints no windows, or with too little to draw', () => {
+    const monthly = (id: string) =>
+      weekRow(id, 0, {
+        weekly: false,
+        card: {
+          kind: 'reading',
+          series: { periods: ['Aug 2026', 'Sep 2026'], values: [100, 105], unit: '$' },
+        } as SwipeCard,
+      });
+    expect(groupPath(group('food', [monthly('wheat'), monthly('rice')]), NOW)).toBeNull();
+    expect(groupPath(group('rates', [weekRow('fed-funds', 1)]), NOW)).toBeNull();
+    // A week of history is not a month's line.
+    const short = (id: string) =>
+      weekRow(id, 1, {
+        card: {
+          id,
+          kind: 'reading',
+          asOf: '2026-09-08',
+          series: { periods: lastDays(8), values: [1, 1, 1, 1, 1, 1, 1, 2] },
+        } as SwipeCard,
+      });
+    expect(groupPath(group('crypto', [short('btc'), short('eth')]), NOW)).toBeNull();
   });
 });

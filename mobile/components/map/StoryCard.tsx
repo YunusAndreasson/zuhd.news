@@ -409,7 +409,7 @@ export const StoryCard = memo(function StoryCard({
             accessibilityElementsHidden={!open}
             importantForAccessibility={open ? 'auto' : 'no-hide-descendants'}
           >
-            <StoryChart card={chart} onPress={onChartPress} />
+            <StoryChart card={chart} pressable={open} onPress={onChartPress} />
           </View>
         </RNPressable>
       ) : null}

@@ -10,7 +10,6 @@ import {
   type SkPath,
   vec,
 } from '@shopify/react-native-skia';
-import { extent } from 'd3-array';
 import { scaleLinear } from 'd3-scale';
 import { memo, useCallback, useMemo, useState } from 'react';
 import { StyleSheet, useWindowDimensions, View } from 'react-native';
@@ -31,8 +30,11 @@ import { type ColorPalette, SPACING } from '../../constants/theme';
 import { useTheme } from '../../hooks/useTheme';
 import { nearestIndex } from '../../lib/arrays';
 import { citedLabels } from '../../lib/cards/card-chart';
+import { chartScale, partLabels } from '../../lib/cards/chart-scale';
+import type { CardDelta } from '../../lib/cards/types';
 import { clearLabelSpot } from '../../lib/chart-label';
 import { hapticTick } from '../../lib/haptics';
+import { DeltaChip } from '../DeltaChip';
 import { Pressable, Text } from '../primitives';
 import {
   type BlockVariant,
@@ -41,7 +43,13 @@ import {
   formatBlockNumber,
   useChartDrawProgress,
 } from './shared';
-import { buildTrendLinePath, buildTrendXLayout, type TrendTimeTick } from './trend-geometry';
+import {
+  buildTrendLinePath,
+  buildTrendXLayout,
+  type TrendShape,
+  type TrendTimeTick,
+  trendLineVertices,
+} from './trend-geometry';
 
 type Pt = { x: number; y: number };
 
@@ -52,6 +60,9 @@ const EVENT_DOT_R = 4;
 const ENDPOINT_DOT_R = 4;
 const ENDPOINT_RING_R = 8;
 const LABEL_ROW_HEIGHT = 14;
+/** A time tick's mark under the plot, so its label below reads as a place on
+ *  the line and not as a caption. */
+const TICK_MARK = 4;
 /** Width of one `labelXs` caps character with its tracking, for sizing the
  *  reference label before it has been laid out. */
 const REFERENCE_LABEL_CHAR_WIDTH = 7.5;
@@ -71,8 +82,8 @@ const CHART_LEFT_PAD = 2;
  * The plot's insets. An axis chart keeps a gutter on the right for its
  * extremes and a row above for cited-story labels. The inline chart prints
  * neither, and a blank 72pt gutter under a story is exactly the failure the
- * web's sparkline record describes — so it keeps room for the end ring and
- * nothing else.
+ * web's sparkline record describes — so it keeps room for the end ring, the
+ * tick marks under the plot and nothing else. Both print the time axis.
  */
 interface PlotInsets {
   top: number;
@@ -90,6 +101,8 @@ const SCRUB_LABEL_W_SINGLE = 96;
 const SCRUB_LABEL_W_MULTI = 132;
 const SCRUB_VALUE_LINE_H = 16;
 const SCRUB_PERIOD_LINE_H = 14;
+/** The line under the day: how far the reading has moved since. */
+const SCRUB_MOVE_LINE_H = 18;
 
 function resolveHighlightIndex(values: number[], mode: TrendHighlight | undefined): number {
   if (values.length === 0) return -1;
@@ -118,21 +131,21 @@ function seriesColor(index: number, colors: ColorPalette): string {
 }
 
 /**
- * The one y-axis a trend is drawn on, from its extent (the series and the
- * reference together) between the plot's top and bottom. A flat series is
- * given one step of height.
+ * The one y-axis a trend is drawn on, over the range its height stands for
+ * (`chartScale`) between the plot's top and bottom. `inverted` turns it over:
+ * a rate quoted per dollar, drawn so its line rises as the currency does.
  *
  * The chart drew its lines on one copy of this and the block placed the scrub
  * stops, the cited marks and the reference label on another: two copies that
  * had to agree for a dot to sit on its line.
  */
-function trendYScale(min: number, max: number, top: number, bottom: number) {
+function trendYScale(lo: number, hi: number, top: number, bottom: number, inverted: boolean) {
   return scaleLinear()
-    .domain([min, max === min ? min + 1 : max])
-    .range([bottom, top]);
+    .domain([lo, hi])
+    .range(inverted ? [top, bottom] : [bottom, top]);
 }
 
-/** A level the series is measured against — a strait's 90-day normal —
+/** A level the series is measured against — a strait's 90-day average —
  *  drawn as a dashed hairline with its label at the left end. It joins the
  *  y-extent, so the line is always on the canvas. */
 interface TrendReference {
@@ -142,10 +155,11 @@ interface TrendReference {
 
 interface ChartProps {
   series: TrendSeries[];
-  /** `trendYScale`, and the extent it was built from, for the two rules. */
+  shape?: TrendShape;
   yScale: (value: number) => number;
-  min: number;
-  max: number;
+  /** Where the scale's rules fall: the highest and lowest value drawn, or the
+   *  ends and the middle of a scale of the quantity's own. */
+  ruleYs: readonly number[];
   /** The primary series on the canvas — the scrub stops — and where the
    *  reference rule lands; the block places its labels from the same. */
   points: Pt[];
@@ -159,6 +173,8 @@ interface ChartProps {
   annotations?: TrendAnnotation[];
   showDataDots: boolean;
   xPositions: number[];
+  /** Where the time axis's ticks fall, for their marks under the plot. */
+  tickXs: readonly number[];
   insets: PlotInsets;
 }
 
@@ -169,9 +185,9 @@ interface ChartProps {
 // scrub no longer renders the block at all: `ScrubReadout` holds the index.)
 const Chart = memo(function Chart({
   series,
+  shape,
   yScale,
-  min,
-  max,
+  ruleYs,
   points,
   referenceY,
   width,
@@ -183,22 +199,24 @@ const Chart = memo(function Chart({
   annotations,
   showDataDots,
   xPositions,
+  tickXs,
   insets,
 }: ChartProps) {
   const seriesPaths = useMemo(
     (): { path: SkPath; color: string }[] =>
       series.map((s, sIdx) => {
         const pts = s.values.map((v, i) => ({ x: xPositions[i] ?? CHART_LEFT_PAD, y: yScale(v) }));
-        const d = buildTrendLinePath(pts);
+        const d = buildTrendLinePath(pts, shape);
         const path = Skia.Path.MakeFromSVGString(d) ?? Skia.PathBuilder.Make().detach();
         return { path, color: seriesColor(sIdx, colors) };
       }),
-    [series, yScale, colors, xPositions],
+    [series, shape, yScale, colors, xPositions],
   );
-  const minY = yScale(min);
-  const maxY = yScale(max);
 
   const chartRightX = width - insets.right;
+  // The time ticks hang from the plot's foot. They hung from the lowest
+  // value's rule, which a quiet series leaves in the middle of the plot.
+  const plotBottom = height - insets.bottom;
 
   const activeCx = useDerivedValue(() => {
     const idx = scrubIdx.value >= 0 ? scrubIdx.value : defaultHighlightIdx;
@@ -236,20 +254,26 @@ const Chart = memo(function Chart({
 
   return (
     <Canvas style={canvasStyle}>
-      <Line
-        p1={vec(CHART_LEFT_PAD, maxY)}
-        p2={vec(chartRightX, maxY)}
-        color={colors.textSecondary}
-        opacity={0.35}
-        strokeWidth={StyleSheet.hairlineWidth}
-      />
-      <Line
-        p1={vec(CHART_LEFT_PAD, minY)}
-        p2={vec(chartRightX, minY)}
-        color={colors.textSecondary}
-        opacity={0.35}
-        strokeWidth={StyleSheet.hairlineWidth}
-      />
+      {ruleYs.map((y) => (
+        <Line
+          key={`rule-${y}`}
+          p1={vec(CHART_LEFT_PAD, y)}
+          p2={vec(chartRightX, y)}
+          color={colors.textSecondary}
+          opacity={0.35}
+          strokeWidth={StyleSheet.hairlineWidth}
+        />
+      ))}
+      {tickXs.map((x) => (
+        <Line
+          key={`tick-${x}`}
+          p1={vec(x, plotBottom)}
+          p2={vec(x, plotBottom + TICK_MARK)}
+          color={colors.textSecondary}
+          opacity={0.6}
+          strokeWidth={StyleSheet.hairlineWidth}
+        />
+      ))}
       {referenceY != null ? (
         <Line
           p1={vec(CHART_LEFT_PAD, referenceY)}
@@ -326,6 +350,8 @@ const ScrubReadout = memo(function ScrubReadout({
   periods,
   unit,
   cited,
+  moveSince,
+  ground,
 }: {
   scrubIdx: SharedValue<number>;
   points: Pt[];
@@ -336,6 +362,10 @@ const ScrubReadout = memo(function ScrubReadout({
   unit?: string;
   /** The points a cited story sits on — the only steps that tick. */
   cited: ReadonlySet<number>;
+  moveSince?: (index: number) => CardDelta | undefined;
+  /** The sheet's ground, behind the readout: it stands over the plot's top,
+   *  where the line is at its highest. */
+  ground: string;
 }) {
   const [scrubIdxJs, setScrubIdxJs] = useState<number>(-1);
 
@@ -387,6 +417,8 @@ const ScrubReadout = memo(function ScrubReadout({
       idx: scrubIdxJs,
       value: lines,
       period: periods?.[scrubIdxJs] ?? '',
+      // What a reader holding a day wants next: how far it has come since.
+      move: moveSince?.(scrubIdxJs),
     };
   })();
 
@@ -394,8 +426,14 @@ const ScrubReadout = memo(function ScrubReadout({
   // 96×30 popover, but multi-series stacks one value line per series and
   // would clip without a taller box. Width also widens slightly so each
   // "Series: value" line stays on one line.
-  const scrubW = normalizedSeries.length > 1 ? SCRUB_LABEL_W_MULTI : SCRUB_LABEL_W_SINGLE;
-  const scrubH = SCRUB_PERIOD_LINE_H + SCRUB_VALUE_LINE_H * Math.max(1, normalizedSeries.length);
+  // The move's line is the widest a single series prints (`0.50 points
+  // since`), so a chart that reads one takes the wider box at every stop.
+  const scrubW =
+    normalizedSeries.length > 1 || moveSince ? SCRUB_LABEL_W_MULTI : SCRUB_LABEL_W_SINGLE;
+  const scrubH =
+    SCRUB_PERIOD_LINE_H +
+    SCRUB_VALUE_LINE_H * Math.max(1, normalizedSeries.length) +
+    (scrubInfo?.move ? SCRUB_MOVE_LINE_H : 0);
   const scrubPt = scrubInfo ? points[scrubInfo.idx] : null;
   const scrubLeft = scrubPt ? Math.max(0, Math.min(width - scrubW, scrubPt.x - scrubW / 2)) : 0;
 
@@ -403,7 +441,10 @@ const ScrubReadout = memo(function ScrubReadout({
   return (
     <View
       pointerEvents="none"
-      style={[styles.scrubLabel, { left: scrubLeft, width: scrubW, height: scrubH }]}
+      style={[
+        styles.scrubLabel,
+        { left: scrubLeft, width: scrubW, height: scrubH, backgroundColor: ground },
+      ]}
     >
       {/* Scrub readout: regular + sizeSm + oldstyle+tabular nums
                       + emphasis color. No exact variant — caption (regular +
@@ -419,6 +460,7 @@ const ScrubReadout = memo(function ScrubReadout({
       <Text variant="labelXs" numberOfLines={1} style={styles.scrubPeriod}>
         {scrubInfo.period.toUpperCase()}
       </Text>
+      {scrubInfo.move ? <DeltaChip delta={scrubInfo.move} scale={1} /> : null}
     </View>
   );
 });
@@ -434,6 +476,17 @@ interface TrendBlockProps {
   highlight?: TrendHighlight;
   annotations?: TrendAnnotation[];
   reference?: TrendReference;
+  /** `steps` for a value that holds until it is changed (`trendLineVertices`). */
+  shape?: TrendShape;
+  /** The quantity's own scale, where it has one: a chance's 0 to 100. Its
+   *  ends and its middle are then the rules, in place of the series' own
+   *  highest and lowest. */
+  domain?: readonly [number, number];
+  /** Turn the scale over: a rate per dollar, drawn so up is a stronger
+   *  currency. The numbers stay the rate's. */
+  inverted?: boolean;
+  /** The move from an observation to the newest, for the scrub's readout. */
+  moveSince?: (index: number) => CardDelta | undefined;
   /** A card's or a sheet's chart (`context`), or the line alone under a
    *  story's prose (`inline`). */
   variant: BlockVariant;
@@ -467,6 +520,10 @@ export const TrendBlock = memo(function TrendBlock({
   highlight,
   annotations,
   reference,
+  shape,
+  domain,
+  inverted = false,
+  moveSince,
   variant,
   onPress,
   scrubbable = true,
@@ -497,14 +554,15 @@ export const TrendBlock = memo(function TrendBlock({
     () => resolveHighlightIndex(primaryValues, primaryHighlight),
     [primaryValues, primaryHighlight],
   );
-  const flatExtent = useMemo(() => {
+  // The range the height stands for, over everything drawn: each line, and
+  // the level a rule marks.
+  const scale = useMemo(() => {
     const flat: number[] = [];
     for (const s of normalizedSeries) flat.push(...s.values);
     if (reference) flat.push(reference.value);
-    return extent(flat) as [number, number];
-  }, [normalizedSeries, reference]);
-  const min = flatExtent[0] ?? 0;
-  const max = flatExtent[1] ?? 0;
+    return chartScale({ values: flat, unit, domain });
+  }, [normalizedSeries, reference, unit, domain]);
+  const { min, max } = scale;
 
   const progress = useChartDrawProgress();
 
@@ -525,9 +583,44 @@ export const TrendBlock = memo(function TrendBlock({
   );
 
   const yScale = useMemo(
-    () => trendYScale(min, max, insets.top, height - insets.bottom),
-    [min, max, insets, height],
+    () => trendYScale(scale.lo, scale.hi, insets.top, height - insets.bottom, inverted),
+    [scale, insets, height, inverted],
   );
+
+  // The scale's rules and the numbers beside them. A quantity with a scale of
+  // its own is named by its ends and its middle; any other by the highest and
+  // lowest value drawn, each at its own height. Two that fall within a label
+  // of each other part around their middle (`partLabels`).
+  const rules = useMemo(() => {
+    // A level series has one extreme, and one rule.
+    const levels = domain
+      ? [scale.hi, (scale.lo + scale.hi) / 2, scale.lo]
+      : max === min
+        ? [max]
+        : [max, min];
+    const marks = levels.map((level) => ({
+      y: yScale(level),
+      text: formatBlockNumber(level, unit).replace(' ', '\n'),
+    }));
+    const [first, second] = marks;
+    if (marks.length !== 2 || !first || !second) {
+      return marks.map((mark) => ({ ...mark, centre: mark.y }));
+    }
+    const rows = first.text.includes('\n') || second.text.includes('\n') ? 2 : 1;
+    const flipped = first.y > second.y;
+    const [upper, lower] = partLabels(
+      Math.min(first.y, second.y),
+      Math.max(first.y, second.y),
+      rows * LABEL_ROW_HEIGHT,
+      0,
+      height,
+    );
+    return [
+      { ...first, centre: flipped ? lower : upper },
+      { ...second, centre: flipped ? upper : lower },
+    ];
+  }, [domain, scale, max, min, yScale, unit, height]);
+  const ruleYs = useMemo(() => rules.map((rule) => rule.y), [rules]);
 
   // The primary series on the canvas: the scrub stops, the cited marks and
   // the crosshair's anchor — a multi-series scrub reads every series out, but
@@ -571,7 +664,7 @@ export const TrendBlock = memo(function TrendBlock({
     const text = `${reference.label} ${formatBlockNumber(reference.value)}`;
     const aboveTop = Math.max(0, referenceY - LABEL_ROW_HEIGHT);
     const spot = clearLabelSpot({
-      lines: [points],
+      lines: [trendLineVertices(points, shape)],
       ruleY: referenceY,
       labelWidth: text.length * REFERENCE_LABEL_CHAR_WIDTH,
       labelHeight: LABEL_ROW_HEIGHT,
@@ -584,10 +677,11 @@ export const TrendBlock = memo(function TrendBlock({
       left: spot.left,
       top: spot.above ? aboveTop : Math.min(referenceY + 2, height - LABEL_ROW_HEIGHT),
     };
-  }, [points, reference, referenceY, width, height, insets]);
+  }, [points, shape, reference, referenceY, width, height, insets]);
 
   const scrubIdx = useSharedValue(-1);
   const timeTicks: TrendTimeTick[] | null = xLayout.ticks;
+  const tickXs = useMemo(() => (timeTicks ?? []).map((tick) => tick.x), [timeTicks]);
 
   const panConfig = useMemo((): PanGestureConfig => {
     const pointsX = points.map((p) => p.x);
@@ -674,9 +768,9 @@ export const TrendBlock = memo(function TrendBlock({
             <>
               <Chart
                 series={normalizedSeries}
+                shape={shape}
                 yScale={yScale}
-                min={min}
-                max={max}
+                ruleYs={ruleYs}
                 points={points}
                 referenceY={referenceY}
                 width={width}
@@ -692,6 +786,7 @@ export const TrendBlock = memo(function TrendBlock({
                 // Skia circles there adds cost and visual noise without
                 // exposing any interaction or information the line lacks.
                 showDataDots={scrubbable}
+                tickXs={tickXs}
                 insets={insets}
               />
               {annotationLabels.map((a) => {
@@ -726,6 +821,8 @@ export const TrendBlock = memo(function TrendBlock({
                 periods={periods}
                 unit={unit}
                 cited={citedPoints}
+                moveSince={moveSince}
+                ground={colors.sheetBg}
               />
               {/* Both boxes are two `LABEL_ROW_HEIGHT` rows tall, which is
                   what the label needs when its unit wraps ("4,599.4" over
@@ -737,30 +834,24 @@ export const TrendBlock = memo(function TrendBlock({
                   looser than `leadingTight`, which is the right register for
                   two stacked axis labels. `numberOfLines` caps it so no unit
                   can ever reach a third line and clip again. */}
-              {isInline || !showLabel ? null : (
-                <>
-                  <View pointerEvents="none" style={[styles.yAxis, styles.yAxisMax]}>
-                    <Text
-                      variant="tabular"
-                      tone="secondary"
-                      numberOfLines={2}
-                      style={styles.yAxisText}
+              {isInline || !showLabel
+                ? null
+                : rules.map((rule) => (
+                    <View
+                      key={`rule-label-${rule.y}`}
+                      pointerEvents="none"
+                      style={[styles.yAxis, { top: rule.centre - LABEL_ROW_HEIGHT }]}
                     >
-                      {formatBlockNumber(max, unit).replace(' ', '\n')}
-                    </Text>
-                  </View>
-                  <View pointerEvents="none" style={[styles.yAxis, styles.yAxisMin]}>
-                    <Text
-                      variant="tabular"
-                      tone="secondary"
-                      numberOfLines={2}
-                      style={styles.yAxisText}
-                    >
-                      {formatBlockNumber(min, unit).replace(' ', '\n')}
-                    </Text>
-                  </View>
-                </>
-              )}
+                      <Text
+                        variant="tabular"
+                        tone="secondary"
+                        numberOfLines={2}
+                        style={styles.yAxisText}
+                      >
+                        {rule.text}
+                      </Text>
+                    </View>
+                  ))}
               {/* On the line, at its left end, rather than in the right gutter:
                   a disrupted strait's normal sits near the top of its own
                   range, exactly where the max label already is, and a label
@@ -794,7 +885,10 @@ export const TrendBlock = memo(function TrendBlock({
         </View>
       </GestureDetector>
 
-      {isInline ? null : timeTicks ? (
+      {/* The time axis, under a story's line as under a card's. The inline
+          chart had none, and its header reads `▲9.6% over 7 days`: a reader
+          took the line for that week when it ran eleven. */}
+      {timeTicks ? (
         <View style={styles.timeAxisRow}>
           {timeTicks.map((t, i) => (
             <Text
@@ -858,10 +952,13 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     gap: SPACING.xxs,
   },
+  // Two label rows tall and centred on its rule, which is what a number over
+  // its unit needs.
   yAxis: {
     position: 'absolute',
     right: 0,
     width: CHART_RIGHT_PAD,
+    height: LABEL_ROW_HEIGHT * 2,
     alignItems: 'flex-end',
     justifyContent: 'center',
     paddingRight: 2,
@@ -872,14 +969,6 @@ const styles = StyleSheet.create({
     width: '100%',
     lineHeight: LABEL_ROW_HEIGHT,
     textAlign: 'right',
-  },
-  yAxisMax: {
-    top: CHART_TOP_PAD - LABEL_ROW_HEIGHT,
-    height: LABEL_ROW_HEIGHT * 2,
-  },
-  yAxisMin: {
-    bottom: 0,
-    height: CHART_BOTTOM_PAD * 2,
   },
   annotationLabelWrap: {
     position: 'absolute',

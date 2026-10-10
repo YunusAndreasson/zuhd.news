@@ -4,10 +4,10 @@ import {
   aiLabCard,
   aiLabCardId,
   aiLabMove,
-  compactUsd,
   isAiModelsSnapshot,
   AI_CHANGE_WINDOW,
 } from '../lib/ai-models';
+import { compactUsd } from '../lib/cards/format';
 import { admitted } from '../lib/cards/sections';
 import type { CardSeries, ReadingCard } from '../lib/cards/types';
 import { gaugeMove } from '../lib/cards/week-move';
@@ -112,6 +112,8 @@ describe('a lab’s card', () => {
     expect(card().series?.reference).toBeUndefined();
     const behind = card({ score: 157.4 }, { score: 167.4, model: 'Alpha 5', lab: 'Alpha' });
     expect(behind.series?.reference).toEqual({ value: 167.4, label: 'best: Alpha' });
+    // A best score stands until the release that beats it: steps, not a climb.
+    expect(card().series?.shape).toBe('steps');
     expect(card().series).toMatchObject({
       periods: lab().series.periods,
       values: lab().series.values,

@@ -1,5 +1,7 @@
 import type { Indicator, TrendsSnapshot } from '@shared/types';
+import { spokenDelta } from '../lib/cards/format';
 import { MARKET_CAVEAT, oddsByStory, oddsLabels } from '../lib/predictions';
+import { moveTone } from '../lib/valence';
 
 function contract(id: string, values: number[], extra: Partial<Indicator> = {}): Indicator {
   return {
@@ -71,19 +73,27 @@ describe('oddsByStory', () => {
     // 26 → 86 is 60 points. "+231%" would be arithmetic pretending to be
     // journalism, which is the mistake `windowPointChange` exists to prevent.
     const odds = oddsByStory(snapshot([contract('poly-x', [26, 86])]));
-    expect(odds.get('story-a')?.move).toBe('▲ 60 pts this week');
+    expect(odds.get('story-a')?.move).toEqual({
+      direction: 'up',
+      magnitude: '60 points',
+      window: 'over 7 days',
+      unit: 'points',
+    });
   });
 
-  it('says nothing rather than "0 pts" when a contract has not moved', () => {
+  it('says nothing rather than "unchanged" when a contract has not moved', () => {
     expect(
       oddsByStory(snapshot([contract('poly-flat', [50, 50])])).get('story-a')?.move,
     ).toBeNull();
   });
 
-  it('marks a fall with a down arrow', () => {
-    expect(oddsByStory(snapshot([contract('poly-x', [80, 65])])).get('story-a')?.move).toBe(
-      '▼ 15 pts this week',
-    );
+  it('marks a fall as one, in the chip’s own words and never coloured', () => {
+    const move = oddsByStory(snapshot([contract('poly-x', [80, 65])])).get('story-a')?.move;
+    expect(move).toMatchObject({ direction: 'down', magnitude: '15 points', unit: 'points' });
+    expect(move && moveTone(move)).toBe('neutral');
+    expect(move && spokenDelta(move)).toBe('down 15 percentage points over 7 days');
+    // A move under half a point rounds to none.
+    expect(oddsByStory(snapshot([contract('poly-x', [50, 50.4])])).get('story-a')?.move).toBeNull();
   });
 
   it('keeps the contract that actually reacted when two cite one story', () => {

@@ -2,6 +2,16 @@ import { articleTime } from './article-utils';
 import type { StoryRow } from './map-feed';
 import type { TapResult } from './tap-result';
 
+/**
+ * The half-degree cell (~55 km) a place falls in: the grid the globe gathers
+ * coverage into a glow on (`MiniGlobe`), and so the grid a glow's tap looks
+ * for its stories on. One function for both, or a glow opens a neighbour's
+ * story. 180° and -180° are one meridian.
+ */
+export function coverageCell(lat: number, lng: number): number {
+  return Math.round(lat * 2) * 1000 + (((Math.round(lng * 2) % 720) + 720) % 720);
+}
+
 /** Match all labels, not just the first. Coordinates bind labels to the
  * coverage cell, so two places with the same headline cannot steal a tap. */
 export function coverageStory(
@@ -11,14 +21,15 @@ export function coverageStory(
 ): string | null {
   const labels = new Set(result.hotspotLabels ?? []);
   const at = result.hotspotCoords;
+  // The glow's own cell, not a box around its first point: a box half a
+  // degree each way spans the neighbouring cells, and a story there has a
+  // glow of its own.
+  const cell = at ? coverageCell(at[0], at[1]) : null;
   let newest: StoryRow | undefined;
   let unread: StoryRow | undefined;
   for (const row of rows) {
     if (!row.coords) continue;
-    const nearby = at
-      ? Math.abs(row.coords[0] - at[0]) <= 0.5 &&
-        Math.abs(((row.coords[1] - at[1] + 540) % 360) - 180) <= 0.5
-      : false;
+    const nearby = cell !== null && coverageCell(row.coords[0], row.coords[1]) === cell;
     const thread = row.article.threadLabel;
     const label = thread?.split(':')[0]?.trim();
     const matches =

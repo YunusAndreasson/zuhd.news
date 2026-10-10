@@ -136,10 +136,15 @@ export const ListRow = memo(function ListRow({
   );
 });
 
-/** The figure a row is for, digit under digit down the list. */
-export function RowReading({ children }: { children: string }) {
+/** The figure a row is for, digit under digit down the list. In a column of
+ *  one width (`fit`) it is one line, and a long one shrinks before it is cut. */
+export function RowReading({ children, fit = false }: { children: string; fit?: boolean }) {
   return (
-    <Text variant="bodyEmphasis" style={styles.reading}>
+    <Text
+      variant="bodyEmphasis"
+      style={styles.reading}
+      {...(fit ? { numberOfLines: 1, adjustsFontSizeToFit: true, minimumFontScale: 0.7 } : {})}
+    >
       {children}
     </Text>
   );

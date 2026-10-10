@@ -15,17 +15,21 @@ import {
   formatCount,
   formatMagnitudePoints,
   formatQuantity,
+  formatRate,
   formatReading,
   formatSignedPct,
   formatSignedRatePoints,
   isMonthlyRate,
+  isPolicyRate,
   latestOf,
   movesInPoints,
   nisab,
+  rateDecimals,
   relatedForTags,
   windowChange,
   windowPointChange,
 } from './format';
+import { CURRENCY_RECORD, RATE_RECORD, recordLine, TRAFFIC_RECORD } from './record';
 import type {
   BeliefCard,
   Card,
@@ -159,6 +163,19 @@ const DENOMINATOR: Record<string, string> = {
  * reader nothing. So the chart says what the axis measures instead, which is
  * the one thing the title does not.
  */
+/**
+ * The line under a reading in per cent, which `money` gives none: what the
+ * per cent is of. A yield and a policy rate are named by their titles. These
+ * are not: inflation is a change in prices over a year, and the Federal
+ * Reserve sets a range a quarter of a point wide of which the series is the
+ * top.
+ */
+const READING_NOTES: Record<string, string> = {
+  'us-cpi': 'from a year earlier',
+  'ez-cpi': 'from a year earlier',
+  'fed-funds': 'upper bound of the target range',
+};
+
 function axisCaption(unit: string | undefined, fallback: string): string {
   if (!unit) return fallback;
   if (unit === '%') return 'per cent';
@@ -169,8 +186,12 @@ function axisCaption(unit: string | undefined, fallback: string): string {
   return unit;
 }
 
-function money(value: number, unit?: string): { reading: string; note?: string } {
-  const formatted = formatReading(value, unit);
+function money(
+  value: number,
+  unit?: string,
+  decimals?: number,
+): { reading: string; note?: string } {
+  const formatted = formatReading(value, unit, decimals);
   if (!unit) return { reading: formatted };
   if (unit === '%') return { reading: `${formatted}%` };
   if (unit.startsWith('$')) {
@@ -202,7 +223,11 @@ function dailyDelta(indicator: Indicator): CardDelta | undefined {
 
 function monthlyDelta(indicator: Indicator): CardDelta | undefined {
   if (isMonthlyRate(indicator)) {
-    return deltaFrom(windowPointChange(indicator, MONTH), { window: 'on the month', unit: 'rate' });
+    return deltaFrom(windowPointChange(indicator, MONTH), {
+      window: 'on the month',
+      unit: 'rate',
+      decimals: rateDecimals(indicator),
+    });
   }
   return deltaFrom(windowChange(indicator, MONTH), { window: 'on the month' });
 }
@@ -215,7 +240,9 @@ function describeYearChange(indicator: Indicator): string | undefined {
   const rate = isMonthlyRate(indicator);
   const yoy = rate ? windowPointChange(indicator, YEAR) : windowChange(indicator, YEAR);
   if (!yoy) return undefined;
-  const signed = rate ? formatSignedRatePoints(yoy.pct) : formatSignedPct(yoy.pct);
+  const signed = rate
+    ? formatSignedRatePoints(yoy.pct, rateDecimals(indicator))
+    : formatSignedPct(yoy.pct);
   return signed === 'unchanged' ? 'Unchanged against a year ago.' : `${signed} against a year ago.`;
 }
 
@@ -309,7 +336,7 @@ export function indicatorCard(
   const value = latestOf(indicator);
   if (value == null) return null;
   const monthly = indicator.cadence === 'monthly';
-  const { reading, note } = money(value, indicator.unit);
+  const { reading, note } = money(value, indicator.unit, rateDecimals(indicator));
   return {
     id,
     kind: 'reading',
@@ -317,11 +344,14 @@ export function indicatorCard(
     asOf: indicatorObservation(indicator, snapshot.asOf),
     title: indicator.label,
     reading,
-    readingNote: note,
+    readingNote: note ?? READING_NOTES[id],
     delta: monthly ? monthlyDelta(indicator) : dailyDelta(indicator),
-    // A daily series has said everything it has to say in the chip; only a
-    // monthly one has a second window worth a sentence.
-    changed: monthly ? describeYearChange(indicator) : undefined,
+    // A monthly series has a second window worth a sentence, the year. A
+    // daily one's chips have said its moves, and the line is its record where
+    // it has set one (`recordLine`): most days, nothing.
+    changed: monthly
+      ? describeYearChange(indicator)
+      : recordLine(indicator.values, indicator.periods),
     ...deskText(analysis, indicator),
     series: seriesOf(indicator),
     related: relatedForTags(articles, indicator.topicTags),
@@ -472,6 +502,94 @@ function metalsPairCard(
 }
 
 /**
+ * The currencies a market quotes as dollars to one of them, not as so many to
+ * the dollar: `the euro rose to $1.1643`, beside `the yen rose to 158.86 per
+ * dollar`. The feed publishes every rate the second way, so the euro arrived
+ * as `0.89`, a number no reader has seen it at. Sterling and the Australian
+ * dollar belong here the day the feed carries them.
+ */
+const QUOTED_IN_DOLLARS: ReadonlySet<string> = new Set(['fx-eur']);
+
+/** Whether a currency's card or indicator (`fx-eur`, or the mover slot's
+ *  `fx-eur-mover`) is quoted in dollars: its series is then the currency's
+ *  own, and a move read from it is not inverted again (`gaugeMove`). */
+export function quotedInDollars(id: string): boolean {
+  return QUOTED_IN_DOLLARS.has(id.replace(/-mover$/, ''));
+}
+
+/** Over a chart of a rate per dollar, which is drawn turned over. */
+const PER_DOLLAR_CAPTION = 'per US dollar · up is stronger';
+
+/** A currency's reading, the line under it and the series it heads. */
+interface CurrencyQuote {
+  reading: string;
+  note: string;
+  series: Pick<CardSeries, 'values' | 'label' | 'unit' | 'inverted'>;
+}
+
+/**
+ * A currency as the market quotes it, at the precision it quotes (`formatRate`):
+ * `49.22` / `per dollar`, and the euro `$1.1203` / `per euro`. Words under the
+ * number, never the feed's `TRY / USD`, which is the pair written backwards
+ * for anyone who reads pairs and a code for anyone who does not.
+ */
+function currencyQuote(indicator: Indicator, value: number): CurrencyQuote {
+  if (quotedInDollars(indicator.id)) {
+    const name = (indicator.label.trim().split(/\s+/).at(-1) ?? 'unit').toLowerCase();
+    return {
+      reading: `$${formatRate(1 / value)}`,
+      note: `per ${name}`,
+      series: {
+        // To the rate's own six figures: a reciprocal's sixteen would print.
+        values: indicator.values.map((v) => Number((1 / v).toPrecision(6))),
+        label: `US dollars per ${name}`,
+        unit: '$',
+      },
+    };
+  }
+  // The rate rises as the currency weakens, and the card's moves are the
+  // currency's (`currencyMove`): its chart is turned over to agree with them,
+  // and says so in the list's own words.
+  return {
+    reading: formatRate(value),
+    note: 'per dollar',
+    series: { values: indicator.values, label: PER_DOLLAR_CAPTION, inverted: true },
+  };
+}
+
+/**
+ * An indicator's reading as its card prints it, for a surface that shows the
+ * indicator with no card: the sheet a story's mention opens. One function, so
+ * the two cannot print one series two ways. It was `49 TRY / USD` there,
+ * `4.69 %` and `125 $/bbl`.
+ */
+export function indicatorReading(
+  indicator: Indicator,
+  value: number,
+): {
+  reading: string;
+  note?: string;
+  series: Pick<CardSeries, 'values' | 'label' | 'unit' | 'inverted' | 'shape' | 'domain'>;
+} {
+  if (indicator.source === 'oer') return currencyQuote(indicator, value);
+  const plain = {
+    values: indicator.values,
+    label: axisCaption(indicator.unit, indicator.label),
+    ...seriesForm(indicator),
+  };
+  // A contract's price is a whole per cent, as its own card prints it.
+  if (indicator.source === 'polymarket') {
+    return { reading: `${Math.round(value)}%`, series: { ...plain, unit: indicator.unit } };
+  }
+  const { reading, note } = money(value, indicator.unit, rateDecimals(indicator));
+  return {
+    reading,
+    note: note ?? READING_NOTES[indicator.id],
+    series: { ...plain, unit: indicator.unit },
+  };
+}
+
+/**
  * The currency's move, from the rate's.
  *
  * The rate is quoted the way the market quotes it — rupees per dollar — and in
@@ -611,12 +729,12 @@ export function currencyCard(
   indicator: Indicator,
   id: string = indicator.id,
 ): ReadingCard | null {
+  // On the published rate, whichever way the card quotes it: the currency's
+  // own move is the same number from either (`currencyMove`).
   const change = windowChange(indicator, indicator.values.length - 1);
   const value = latestOf(indicator);
-  if (!change || value == null) return null;
-  // The unit arrives as a data column — "ZAR / USD" — and the card reads
-  // it aloud: how many of these one dollar buys.
-  const code = indicator.unit?.split(' / ')[0] ?? '';
+  if (!change || value == null || !(value > 0)) return null;
+  const quote = currencyQuote(indicator, value);
   const weakened = change.pct > 0;
   return {
     id,
@@ -624,8 +742,8 @@ export function currencyCard(
     kicker: 'currency',
     asOf: indicatorObservation(indicator, snapshot.asOf),
     title: indicator.label,
-    reading: formatReading(value),
-    readingNote: code ? `${code} to the dollar` : 'to the dollar',
+    reading: quote.reading,
+    readingNote: quote.note,
     // The chip reports the currency, matching the table on the card
     // before it — and it says the word. A caret pointing down beside a
     // reading of 83 rubles to the dollar is only unambiguous once
@@ -636,18 +754,21 @@ export function currencyCard(
       { ...change, pct: currencyMove(change.pct) },
       { window: `${weakened ? 'weaker' : 'stronger'} since ${change.from}` },
     ),
-    // No sentence under the analysis. One used to say which slot the
+    // The one sentence under the analysis is the currency's record, where
+    // it has set one: on the series the card charts, so in the currency's
+    // own words whichever way it is quoted. One used to say which slot the
     // card had taken — "largest monthly fall in this 15-currency set" —
     // which is a fact about the deck's selection rule, not about the
-    // currency, and the date it ended on was already on the kicker line.
-    // The chip says the move and the desk's paragraph says why; nothing
-    // is left for a third line to add.
+    // currency.
+    changed: recordLine(
+      quote.series.values,
+      indicator.periods,
+      quotedInDollars(indicator.id) ? CURRENCY_RECORD : RATE_RECORD,
+    ),
     ...deskText(analysis, indicator),
     series: {
-      values: indicator.values,
+      ...quote.series,
       periods: indicator.periods,
-      label: indicator.unit ?? 'per US dollar',
-      unit: indicator.unit,
       highlight: 'last' as const,
     },
     related: relatedForTags(articles, indicator.topicTags),
@@ -668,7 +789,7 @@ export function currencyCard(
  * really between the day's analysis and the catalog.
  *
  * The blurb is the last rung rather than no rung. It read as a duplicate of
- * part two when part two carried it; part two is gone — the 90-day normal is
+ * part two when part two carried it; part two is gone — the 90-day average is
  * a reference line on the chart now — and the blurb appears nowhere else on a
  * card. Without it a strait
  * whose `recent` came back empty — Suez, on the current dispatch — is built,
@@ -680,13 +801,18 @@ function straitWhy(c: Chokepoint): string | undefined {
   return c.recent?.trim() || (standing !== blurb ? standing : undefined) || blurb || undefined;
 }
 
-/** The distance from a strait's own 90-day normal, as a chip. */
+/** The distance from a strait's own 90-day average, as a chip. */
 function straitDelta(d: number): CardDelta | undefined {
-  return deltaOf(d * 100, { window: 'vs its 90-day normal', flat: 'at its normal' });
+  const delta = deltaOf(d * 100, {
+    window: 'vs its 90-day average',
+    flat: 'at its 90-day average',
+  });
+  // Against a level, not an earlier day: it stays beside the card's windows.
+  return delta && { ...delta, versus: true };
 }
 
 /**
- * How far a strait's total traffic sits from its own 90-day normal — when the
+ * How far a strait's total traffic sits from its own 90-day average — when the
  * strait has the reading and the history a card charts. Null otherwise, and
  * then there is no card: the deck's and a globe mark's alike.
  */
@@ -752,7 +878,7 @@ function straitFigures(c: Chokepoint): CardFigure[] {
       // A chip, not a note: a class's distance from its normal is a move,
       // and a move is printed in its colour. The heading names the basis.
       delta: straitDelta(d),
-      group: 'ships by type · vs 90-day normal',
+      group: 'ships by type · vs 90-day average',
     });
   }
   const weather = c.weather;
@@ -768,13 +894,15 @@ function straitFigures(c: Chokepoint): CardFigure[] {
 
 /** Smooth noisy daily ship counts into the same seven-day measure used by the
  * headline and delta. Short fixture/partial series remain usable. */
-function trailingSevenDayAverage(values: number[]): number[] {
+function trailingSevenDayAverage(values: number[], { exact = false } = {}): number[] {
   if (values.length < 7) return values;
   const averaged: number[] = [];
   for (let end = 6; end < values.length; end += 1) {
     let total = 0;
     for (let i = end - 6; i <= end; i += 1) total += values[i] ?? 0;
-    averaged.push(Math.round(total / 7));
+    // Whole ships on the chart. `exact` for a comparison with the published
+    // reading, which is not rounded: 2.7 is not fewer than a 2.6 drawn as 3.
+    averaged.push(exact ? total / 7 : Math.round(total / 7));
   }
   return averaged;
 }
@@ -827,7 +955,7 @@ function straitOdds(
 /**
  * One graph per strait. The section is a reference deck on ordinary days, so
  * every strait with a usable total-traffic history remains available. A fall
- * of at least 30% against its own 90-day normal earns `current`; smaller moves
+ * of at least 30% against its own 90-day average earns `current`; smaller moves
  * stay neutral reference rather than being promoted as news. Smart ranking
  * later combines that mark with live-story relevance and unusual movement.
  */
@@ -875,6 +1003,10 @@ function straitCard(
   // quantities. Preserve its precision: rounding only the chart made a
   // headline of 0.1 ships a day terminate at 0 on the graph.
   if (traffic.length > 0 && last7 != null) traffic[traffic.length - 1] = last7;
+  // The same averages unrounded, ending on the same published reading, for
+  // the one comparison the card makes between them (`recordLine`).
+  const exact = trailingSevenDayAverage(c.series.total, { exact: true });
+  if (exact.length > 0 && last7 != null) exact[exact.length - 1] = last7;
   const odds = snapshot ? straitOdds(snapshot, c) : undefined;
   // The class row first, then the forecast beside the measurement. The odds
   // are a figure rather than a second chart: the card's subject is the
@@ -893,6 +1025,7 @@ function straitCard(
     reading: last7 == null ? '—' : formatQuantity(last7),
     readingNote: 'ships a day',
     delta: straitDelta(d),
+    changed: recordLine(exact, periods, TRAFFIC_RECORD),
     why: straitWhy(c),
     figures: figures.length > 0 ? figures : undefined,
     series: {
@@ -904,7 +1037,7 @@ function straitCard(
       // The normal the chip measures against, on the chart it is measured
       // on. This was a sentence — "Its own 90-day normal is N ships a day"
       // — which put the one number the line needed a screen-line below it.
-      reference: base != null ? { value: base, label: 'normal' } : undefined,
+      reference: base != null ? { value: base, label: '90-day average' } : undefined,
     },
     related: c.relatedArticles,
     // The build ranks these by the desk's citations, falling back to tag
@@ -1050,6 +1183,7 @@ function beliefCards(
           label: 'chance priced, per cent',
           unit: '%',
           highlight: 'last',
+          domain: CHANCE_DOMAIN,
         },
         related: relatedForTags(articles, indicator.topicTags),
         sourceLabel: indicator.sourceLabel,
@@ -1181,8 +1315,25 @@ function seriesOf(ind: Indicator): CardSeries {
     periods: ind.periods,
     label: axisCaption(ind.unit, ind.label),
     unit: ind.unit,
+    ...(ind.decimals !== undefined ? { decimals: rateDecimals(ind) } : {}),
     highlight: ind.defaultHighlight ?? 'last',
+    ...seriesForm(ind),
   };
+}
+
+/** The chance a contract is priced at runs from none to certain. */
+const CHANCE_DOMAIN = [0, 100] as const;
+
+/**
+ * How an indicator's line is drawn where a straight line to its own range
+ * would misstate it: a rate a bank sets holds until the next decision, and a
+ * chance has a scale of its own. One function for a card and for the sheet a
+ * story's mention opens (`indicatorReading`), so one series is not drawn two
+ * ways.
+ */
+function seriesForm(ind: Pick<Indicator, 'id' | 'source'>): Pick<CardSeries, 'shape' | 'domain'> {
+  if (ind.source === 'polymarket') return { domain: CHANCE_DOMAIN };
+  return isPolicyRate(ind.id) ? { shape: 'steps' } : {};
 }
 
 /**
@@ -1195,13 +1346,15 @@ function seriesOf(ind: Indicator): CardSeries {
  * "down from", never "raised" or "cut": the same sentence has to be true of
  * the unemployment rate, which nobody decides.
  */
-function describeLevel(ind: Pick<Indicator, 'values' | 'periods' | 'unit'>): string | undefined {
+function describeLevel(
+  ind: Pick<Indicator, 'values' | 'periods' | 'unit' | 'decimals'>,
+): string | undefined {
   const { values, periods, unit } = ind;
   const n = values.length;
   const last = values[n - 1];
   const prev = values[n - 2];
   if (last === undefined || prev === undefined) return undefined;
-  const fmt = (v: number) => money(v, unit).reading;
+  const fmt = (v: number) => money(v, unit, rateDecimals(ind)).reading;
   const now = fmt(last);
   if (fmt(prev) !== now) {
     return `Now ${now}, ${last > prev ? 'up' : 'down'} from ${fmt(prev)} in ${periods[n - 2]}.`;
@@ -1285,6 +1438,49 @@ function eventDate(iso: string): string {
   return eventDateFormat.format(new Date(`${iso}T00:00:00Z`));
 }
 
+/** The words a contract's question names each central bank by. */
+const BANK_NAMES: Readonly<Record<string, readonly string[]>> = {
+  'Federal Reserve': ['fed', 'federal reserve', 'fomc'],
+  'European Central Bank': ['ecb', 'european central bank'],
+  'Bank of England': ['bank of england', 'boe'],
+  'Bank of Japan': ['bank of japan', 'boj'],
+};
+
+/** How long after a decision a contract on it may close: the day itself, in
+ *  another zone, and the days a market takes to settle. */
+const DECISION_SETTLES_DAYS = 7;
+
+/**
+ * The contract on a rate decision, if the desk is carrying one: what the
+ * market prices the outcome at, beside the date it is decided on.
+ *
+ * `straitOdds` for a meeting. A contract is the decision's when its question
+ * names the bank and its rates, both as whole words (`Fed` is not in
+ * `confederation`, and a question on who chairs the Fed is not about rates),
+ * and its deadline falls on the decision or in the week after: that is what
+ * keeps October's contract off December's card. Where several outcomes are
+ * priced, the one traders price highest is the one printed, with its own
+ * question, so the figure never restates it.
+ */
+function eventOdds(snapshot: TrendsSnapshot, ev: TrendEvent): Indicator | undefined {
+  const names = ev.kind === 'central-bank' ? BANK_NAMES[ev.institution] : undefined;
+  const decided = Date.parse(`${ev.date}T00:00:00Z`);
+  if (!names || !Number.isFinite(decided)) return undefined;
+  let best: { contract: Indicator; price: number } | undefined;
+  for (const ind of snapshot.indicators) {
+    if (ind.source !== 'polymarket' || !ind.endDate) continue;
+    const closes = Date.parse(ind.endDate);
+    if (!(closes >= decided) || closes - decided > DECISION_SETTLES_DAYS * DAY_MS) continue;
+    const question = ` ${(ind.label ?? '').toLowerCase().replace(/[^a-z0-9]+/g, ' ')} `;
+    if (!/ rates? /.test(question) || !names.some((name) => question.includes(` ${name} `))) {
+      continue;
+    }
+    const price = latestOf(ind);
+    if (price != null && (!best || price > best.price)) best = { contract: ind, price };
+  }
+  return best?.contract;
+}
+
 function eventCard(
   snapshot: TrendsSnapshot,
   articles: Article[],
@@ -1292,6 +1488,8 @@ function eventCard(
   days: number,
 ): ScheduledCard {
   const ind = eventIndicator(snapshot, ev);
+  const contract = eventOdds(snapshot, ev);
+  const priced = contract ? latestOf(contract) : null;
   return {
     id: `event-${ev.id}`,
     kind: 'scheduled' as const,
@@ -1306,8 +1504,14 @@ function eventCard(
     // is none.
     why: ev.recent?.trim() || ev.standing?.trim() || undefined,
     changed: ind ? describeLevel(ind) : undefined,
+    // The question is the figure's own label: a price means nothing without
+    // the outcome it is of.
+    figures:
+      contract && priced != null
+        ? [{ label: contract.label, value: `${Math.round(priced)}%` }]
+        : undefined,
     series: ind ? { ...seriesOf(ind), label: ind.label } : undefined,
-    sourceLabel: ind?.sourceLabel,
+    sourceLabel: [ind?.sourceLabel, contract?.sourceLabel].filter(Boolean).join(' · ') || undefined,
     related: ev.relatedArticles ?? relatedForTags(articles, ev.topicTags),
   };
 }

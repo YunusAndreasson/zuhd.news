@@ -1,6 +1,7 @@
 import { scaleUtc } from 'd3-scale';
 import { curveLinear, line as d3Line } from 'd3-shape';
-import { formatTickLabel, parseFlexibleDate } from '../../lib/date-format';
+import { formatTickLabel, periodDates } from '../../lib/date-format';
+import { DAY_MS } from '../../lib/time';
 
 export interface TrendPoint {
   x: number;
@@ -24,6 +25,8 @@ interface TrendXLayoutOptions {
   left: number;
   right: number;
   maxTicks?: number;
+  /** When "now" is, for a day label that carries no year. */
+  now?: number;
 }
 
 const MIN_TICK_SPACING = 64;
@@ -46,6 +49,7 @@ export function buildTrendXLayout({
   left,
   right,
   maxTicks = 4,
+  now,
 }: TrendXLayoutOptions): TrendXLayout {
   const pointCount = Math.max(0, ...seriesLengths);
   const fallback = (): TrendXLayout => ({
@@ -63,13 +67,18 @@ export function buildTrendXLayout({
     return fallback();
   }
 
-  const dates: Date[] = [];
-  for (const period of periods) {
-    const date = parseFlexibleDate(period);
-    if (!date) return fallback();
-    const previous = dates[dates.length - 1];
-    if (previous && date.getTime() <= previous.getTime()) return fallback();
-    dates.push(date);
+  const dates = periodDates(periods, now);
+  if (!dates) return fallback();
+  // A daily series can end on the day's live reading under the same label as
+  // its last close (`Oct 10`, `Oct 10`): the same day, later, so half a day
+  // on. A repeat anywhere else is a malformed series and takes the fallback.
+  const final = dates[dates.length - 1];
+  const before = dates[dates.length - 2];
+  if (final && before && final.getTime() === before.getTime()) {
+    dates[dates.length - 1] = new Date(final.getTime() + DAY_MS / 2);
+  }
+  for (let i = 1; i < dates.length; i++) {
+    if ((dates[i] as Date).getTime() <= (dates[i - 1] as Date).getTime()) return fallback();
   }
 
   const first = dates[0];
@@ -106,12 +115,35 @@ export function buildTrendXLayout({
   };
 }
 
+/** How a line joins its observations: straight from one to the next, or
+ *  `steps` for a value that holds until it is changed. */
+export type TrendShape = 'steps';
+
+/**
+ * The corners a line turns at, in drawing order.
+ *
+ * A policy rate is set on a day and stands until the next decision, and a
+ * lab's best score stands until its next release. Joined straight, a cut made
+ * on one day drew as a month's slide. As `steps` the line runs level from
+ * each observation to the next one's day and changes there.
+ */
+export function trendLineVertices(points: readonly TrendPoint[], shape?: TrendShape): TrendPoint[] {
+  if (shape !== 'steps') return [...points];
+  const out: TrendPoint[] = [];
+  points.forEach((point, i) => {
+    const before = points[i - 1];
+    if (before && before.y !== point.y) out.push({ x: point.x, y: before.y });
+    out.push(point);
+  });
+  return out;
+}
+
 /** Literal point-to-point interpolation for discrete observations. */
-export function buildTrendLinePath(points: TrendPoint[]): string {
+export function buildTrendLinePath(points: TrendPoint[], shape?: TrendShape): string {
   return (
     d3Line<TrendPoint>()
       .x((point) => point.x)
       .y((point) => point.y)
-      .curve(curveLinear)(points) ?? ''
+      .curve(curveLinear)(trendLineVertices(points, shape)) ?? ''
   );
 }

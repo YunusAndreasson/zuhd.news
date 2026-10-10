@@ -156,11 +156,14 @@ export function completesFound(
   slug: string,
 ): boolean {
   if (found.has(slug)) return false;
-  let total = 0;
+  // The find has to be one of the lights. A story with no place is none of
+  // them, and with every light already found it completed the day again on
+  // each such story opened.
+  let placed = false;
   for (const row of rows) {
     if (!row.coords) continue;
-    total += 1;
-    if (row.slug !== slug && !found.has(row.slug)) return false;
+    if (row.slug === slug) placed = true;
+    else if (!found.has(row.slug)) return false;
   }
-  return total > 0;
+  return placed;
 }

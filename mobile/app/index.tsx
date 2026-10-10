@@ -80,7 +80,6 @@ import {
 } from '../hooks/useOverlays';
 import { usePendingNotification } from '../hooks/usePendingNotification';
 import { useReadTracking } from '../hooks/useReadTracking';
-import { useSettledMapContext } from '../hooks/useSettledMapContext';
 import { useStoryOpener } from '../hooks/useStoryOpener';
 import { useHardwareBack } from '../hooks/useSwipeBack';
 import { usePreferences, useTheme } from '../hooks/useTheme';
@@ -100,7 +99,6 @@ import type { CardDelta } from '../lib/cards/types';
 import { exchangeMove } from '../lib/cards/week-move';
 import { companyGauges } from '../lib/companies';
 import { conflictWeekOf } from '../lib/conflict-week';
-import { contextualStrip } from '../lib/contextual-strip';
 import { alertsInCountry, countryFacts, marksInCountry } from '../lib/country-hazards';
 import { computeDeckLayout, openHeightNeedsMeasuring, openStoryHeight } from '../lib/deck-layout';
 import { getSnapshot as getFound, markFound, pruneFound, useFoundSlugs } from '../lib/found-store';
@@ -116,15 +114,15 @@ import {
 } from '../lib/instrument-catalog';
 import { buildStoryRows, cameraTrackOf, type StoryRow } from '../lib/map-feed';
 import { coverageStory, mapCandidates } from '../lib/map-selection';
-import { exchangeCard, exchangeIsStale } from '../lib/markets';
+import { exchangeCard, exchangeIsStale, exchangesOf } from '../lib/markets';
 import type { MenuHazards } from '../lib/menu-hazards';
 import { orderNewsRiver, type RiverArticle, recentRiver, riverAnchor } from '../lib/news-order';
 import {
   buildNowSurfaces,
-  countryCurrencySlots,
   type LatLng,
   linkedGaugeIds,
   type NowItem,
+  STRIP_SLOTS,
   type StripItem,
 } from '../lib/now';
 import {
@@ -202,6 +200,9 @@ interface FocusOptions {
   afterBurst?: boolean;
   /** Grow the card into the whole story. */
   grow?: boolean;
+  /** A coverage glow was tapped: found as a tapped light is, with no burst
+   *  to wait for. */
+  find?: boolean;
 }
 
 /**
@@ -265,7 +266,8 @@ export default function HomeScreen() {
   const { byId: analysis } = useAnalysis();
   const { cards: marketSignals, signals: rawSignals } = useMarketSignals();
   const marketsSnapshot = useMarkets();
-  const exchanges = useMemo(() => marketsSnapshot?.exchanges ?? [], [marketsSnapshot]);
+  // Each with its currency's rates beside it, from the snapshot's one table.
+  const exchanges = useMemo(() => exchangesOf(marketsSnapshot), [marketsSnapshot]);
   const companiesSnapshot = useCompanies();
   const companies = useMemo(() => companiesSnapshot?.companies ?? [], [companiesSnapshot]);
   const aiModels = useAiModels();
@@ -342,7 +344,6 @@ export default function HomeScreen() {
   const globeTapFrame = useSharedValue<GlobeTapFrame>({ ...IDENTITY_GLOBE_TRANSFORM, revision: 0 });
   const globeClip = useSharedValue(90);
   const storyClip = useSharedValue(90);
-  const stripExploring = useSharedValue(false);
   const zoomSettleTimerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
   const primerTimerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
   const sheetProgress = useSharedValue(0);
@@ -354,7 +355,6 @@ export default function HomeScreen() {
   /** Flights: a jump travels the way a swipe does, and lands handing the
    *  camera back to the deck (`hooks/useCameraFlight.ts`). */
   const {
-    flightT,
     setFront: setCameraFront,
     claimForDeck,
     releaseForDeck,
@@ -378,14 +378,6 @@ export default function HomeScreen() {
     storyProgress,
     ridesFinger,
   });
-  const stripContext = useSettledMapContext(
-    stripExploring,
-    viewLat,
-    viewLng,
-    globeClip,
-    storyProgress,
-    flightT,
-  );
 
   const toastRef = useRef<ToastRef>(null);
 
@@ -624,7 +616,7 @@ export default function HomeScreen() {
   );
 
   // What the row shows; `strip` stays whole for the lookups below.
-
+  const stripSlots = useMemo(() => strip.slice(0, STRIP_SLOTS), [strip]);
   // Each strait's seven-day move, for its label on the globe (`straitMoves`):
   // from the whole strip, not the ten slots, so a strait past the tenth still
   // reads the number its row in the menu's lists does.
@@ -736,8 +728,6 @@ export default function HomeScreen() {
   gdacsAlertsRef.current = gdacsAlerts;
   const conflictEventsRef = useRef(conflictEvents);
   conflictEventsRef.current = conflictEvents;
-  const conflictWeekRef = useRef(conflictWeek);
-  conflictWeekRef.current = conflictWeek;
   const famineAreasRef = useRef(famineAreas);
   famineAreasRef.current = famineAreas;
   const thermalEventsRef = useRef(thermalEvents);
@@ -814,9 +804,11 @@ export default function HomeScreen() {
    * (`handleDeckRelease`, by `completesFound`).
    */
   const findStory = useCallback((slug: string, haptic = true): boolean => {
-    if (!markFound(slug)) return false;
-    const { found, total } = foundProgress(storyRowsRef.current, getFound());
-    if (total === 0 || found !== total) return false;
+    // Asked before the store is written, and of the same function the lift
+    // asks (`handleDeckRelease`): a story with no place completes nothing.
+    const completes = completesFound(storyRowsRef.current, getFound(), slug);
+    if (!markFound(slug) || !completes) return false;
+    const { total } = foundProgress(storyRowsRef.current, getFound());
     if (haptic) hapticNotification();
     toastRef.current?.show(
       `All ${total} found · new stories arrive through the day`,
@@ -825,6 +817,19 @@ export default function HomeScreen() {
     );
     return true;
   }, []);
+
+  /**
+   * Forget a swipe whose landing will not be reported, because the deck is
+   * being moved again first (a jump, a scrub, a feed that shifted the
+   * indices). Its find is recorded here: the lift already gave that find's
+   * haptic, and dropped with the release the story stayed lit and the day's
+   * last find was never said.
+   */
+  const dropRelease = useCallback(() => {
+    const released = releasedRef.current;
+    releasedRef.current = null;
+    if (released?.find) findStory(released.find, false);
+  }, [findStory]);
 
   /**
    * Put a story in front of the deck — a tap on its light, a row in the list,
@@ -853,10 +858,10 @@ export default function HomeScreen() {
         }
         return;
       }
-      stripExploring.value = false;
       pendingFocusRef.current = null;
       const row = storyRowsRef.current[index];
-      if (options.afterBurst || options.grow) findStory(slug);
+      dropRelease();
+      if (options.afterBurst || options.grow || options.find) findStory(slug);
       cameraClaimedRef.current = true;
 
       const coords = row?.coords ?? null;
@@ -865,7 +870,6 @@ export default function HomeScreen() {
       if (coords) holdCamera(options.cameraEpoch);
       deckIndexRef.current = index;
       currentSlugRef.current = slug;
-      releasedRef.current = null;
       // `storyCommitted` too, not left to the deck's own sync: that runs when
       // `deckIndex` changes, and with a swipe still landing React can already
       // hold this very story — the one just left — so nothing would change.
@@ -888,6 +892,7 @@ export default function HomeScreen() {
       if (options.grow) mapSheetRef.current?.expand();
     },
     [
+      dropRelease,
       findStory,
       flyToStory,
       framingFor,
@@ -895,7 +900,6 @@ export default function HomeScreen() {
       pinStory,
       reduceMotion,
       requestEpoch,
-      stripExploring,
       storyCommitted,
       storyProgress,
     ],
@@ -920,11 +924,15 @@ export default function HomeScreen() {
     const previousIndex = deckIndexRef.current;
     deckIndexRef.current = index;
     currentSlugRef.current = storyRows[index]?.slug ?? null;
-    releasedRef.current = null;
+    dropRelease();
+    // The camera's front too. The effect that sets it ran before this one, on
+    // the ref this has just corrected, and runs again only when `deckIndex`
+    // changes, which it does not when React already held this index.
+    setCameraFront(storyRows[index]?.coords ?? null);
     remapStory(previousIndex, index, sameStory);
     storyCommitted.value = index;
     setDeckIndex(index);
-  }, [storyRows, remapStory, storyCommitted]);
+  }, [storyRows, dropRelease, remapStory, setCameraFront, storyCommitted]);
 
   const handleSelectArticle = useCallback(
     (slug: string, category: Category) => {
@@ -991,10 +999,9 @@ export default function HomeScreen() {
     [openCard],
   );
 
-  /** The gauge a menu row stands for: its slot or its mark, so the globe
-   *  flies there and rings its place. A market signal stands in for its
-   *  exchange's row under the signal's id; with no slot, the exchange's mark
-   *  is still where it is. */
+  /** The gauge a menu row stands for: its slot or its mark, where the globe
+   *  can find it. A market signal stands in for its exchange's row under the
+   *  signal's id; with no slot, the exchange's mark is still where it is. */
   const gaugeForRow = useCallback(
     (row: CatalogRow): StripItem | null =>
       mapMarkets.find((item) => item.id === row.id) ??
@@ -1006,27 +1013,20 @@ export default function HomeScreen() {
     [strip, mapMarkets],
   );
 
-  /** A row's card opening as a page of the menu (2026-09-26: it used to close
-   *  the menu for a sheet of its own, and the reader lost their place). The
-   *  globe flies and rings behind the menu, so closing it leaves them there. */
-  const handleMenuFocusRow = useCallback(
+  /** A strait with nothing to chart has no page: it closes the menu, finds
+   *  the strait on the globe, and says its name, as a tap on its mark does.
+   *  It is the one row that moves the globe. A row that opens as a page of
+   *  the menu leaves the globe alone: the menu covers it, and a reader who
+   *  closed the menu came back to an earth turned somewhere they had not
+   *  asked for (the user, 2026-10-10). */
+  const handleMenuRowSelect = useCallback(
     (row: CatalogRow) => {
       const gauge = gaugeForRow(row);
       if (gauge) flyTo(gauge.coords);
       else if (row.chokepoint) flyTo([row.chokepoint.lat, row.chokepoint.lng]);
-      setSelectedGauge(gauge);
-    },
-    [flyTo, gaugeForRow],
-  );
-
-  /** A strait with nothing to chart has no page: it closes the menu, finds
-   *  the strait on the globe, and says its name, as a tap on its mark does. */
-  const handleMenuRowSelect = useCallback(
-    (row: CatalogRow) => {
-      handleMenuFocusRow(row);
       handOffSheet(menuSheetRef, () => toastRef.current?.show(row.chokepoint?.name ?? row.short));
     },
-    [handOffSheet, handleMenuFocusRow],
+    [flyTo, gaugeForRow, handOffSheet],
   );
 
   const openOverlay = useCallback((selection: OverlaySelection) => {
@@ -1076,33 +1076,6 @@ export default function HomeScreen() {
       return false;
     },
     [openOverlay],
-  );
-
-  /** Where a hazard mark is, for the flight a menu row makes to it. */
-  const markCoords = useCallback((result: TapResult): LatLng | null => {
-    const at = (p: { lat: number; lng: number } | undefined): LatLng | null =>
-      p && Number.isFinite(p.lat) && Number.isFinite(p.lng) ? [p.lat, p.lng] : null;
-    if (result.genocideId) return at(genocideRef.current.find((g) => g.id === result.genocideId));
-    if (result.famineAreaId)
-      return at(famineAreasRef.current.find((a) => a.id === result.famineAreaId));
-    if (result.thermalEventId)
-      return at(thermalEventsRef.current.find((e) => e.id === result.thermalEventId));
-    if (result.gdacsEventId)
-      return at(gdacsAlertsRef.current.find((a) => a.eventid === result.gdacsEventId));
-    if (result.conflictEventId) {
-      // The week's: the menu lists events the globe does not draw, and a row
-      // still turns the earth to its place.
-      const events = conflictWeekRef.current?.events ?? conflictEventsRef.current;
-      return at(events.find((e) => e.id === result.conflictEventId));
-    }
-    return null;
-  }, []);
-
-  /** A hazard mark opening as a page of the menu: the globe flies to it
-   *  behind the menu. */
-  const handleMenuFocusMark = useCallback(
-    (result: TapResult) => flyTo(markCoords(result)),
-    [flyTo, markCoords],
   );
 
   // ---------------------------------------------------------------------
@@ -1175,7 +1148,9 @@ export default function HomeScreen() {
       if (result.isHotspot) {
         const slug = coverageStory(result, storyRowsRef.current, getFound());
         if (slug) {
-          focusStory(slug, { cameraEpoch });
+          // Found, or the next tap on the glow would pick this story again
+          // and never reach the one under it.
+          focusStory(slug, { cameraEpoch, find: true });
           return;
         }
         if (!result.countryName) {
@@ -1378,7 +1353,6 @@ export default function HomeScreen() {
    */
   const handleDeckRelease = useCallback(
     (index: number) => {
-      stripExploring.value = false;
       const leavingIndex = deckIndexRef.current;
       deckIndexRef.current = index;
       const row = storyRowsRef.current[index];
@@ -1420,7 +1394,7 @@ export default function HomeScreen() {
         }
       }
     },
-    [flyToStory, flyToStoryIfHeld, framingFor, handleCaughtUp, setCameraFront, stripExploring],
+    [flyToStory, flyToStoryIfHeld, framingFor, handleCaughtUp, setCameraFront],
   );
 
   /**
@@ -1474,12 +1448,11 @@ export default function HomeScreen() {
       sheetDetentRef.current = detent;
       setSheetDetent(detent);
       if (detent !== 'full') return;
-      stripExploring.value = false;
       dismissActiveHint();
       const row = storyRowsRef.current[deckIndexRef.current];
       if (row) findStory(row.slug);
     },
-    [dismissActiveHint, findStory, stripExploring],
+    [dismissActiveHint, findStory],
   );
 
   const handleMastheadAlertPress = useCallback(() => {
@@ -1494,9 +1467,6 @@ export default function HomeScreen() {
   const handleMenuDismiss = useCallback(() => {
     menuClosedAtRef.current = Date.now();
     setMenuOpen(false);
-    // A card read as a page of the menu rang its place; the ring goes with
-    // the menu, as it goes with the card sheet.
-    setSelectedGauge(null);
     runSheetHandOff();
   }, [runSheetHandOff]);
   const handleCountryDismiss = useCallback(() => {
@@ -1725,13 +1695,13 @@ export default function HomeScreen() {
       holdCamera();
       deckIndexRef.current = 0;
       currentSlugRef.current = null;
-      releasedRef.current = null;
+      dropRelease();
       storyProgress.value = 0;
       storyCommitted.value = 0;
       setDeckIndex(0);
       frontFlightRef.current = true;
     },
-    [collapseSheet, holdCamera, showNewToast, storyCommitted, storyProgress],
+    [collapseSheet, dropRelease, holdCamera, showNewToast, storyCommitted, storyProgress],
   );
   useEffect(() => {
     returnHandlerRef.current = handleReturn;
@@ -1749,19 +1719,8 @@ export default function HomeScreen() {
   // re-render this screen.
   const storySlugs = useMemo(() => storyRows.map((row) => row.slug), [storyRows]);
   const storyOpen = sheetDetent === 'full';
-  // The gauges the settled story is tied to: they lead the bar.
-  const openArticle =
-    stripContext && !stripContext.exploring
-      ? storyRows[Math.round(stripContext.story)]?.article
-      : undefined;
-  const currencies = useMemo(
-    () => countryCurrencySlots(trends, analysis, river),
-    [trends, analysis, river],
-  );
-  const stripSlots = useMemo(
-    () => contextualStrip(strip, openArticle, stripContext, currencies),
-    [strip, openArticle, stripContext, currencies],
-  );
+  // The gauges an open story is tied to: a screen reader hears it on the bar.
+  const openArticle = storyOpen ? storyRows[frontIndex]?.article : undefined;
   const linkedGauges = useMemo(
     () => linkedGaugeIds(stripSlots, openArticle),
     [stripSlots, openArticle],
@@ -2140,7 +2099,6 @@ export default function HomeScreen() {
 
       <GlobeGestureLayer
         globeRef={globeRef}
-        stripExploring={stripExploring}
         tapFrame={globeTapFrame}
         canvasTop={0}
         topChromeHeight={topChromeHeight}
@@ -2174,8 +2132,6 @@ export default function HomeScreen() {
         <MapHeader
           onMenuPress={handleMenuPress}
           items={stripSlots}
-          locked={activeCard !== null || selectedGauge !== null}
-          pinned={strip.find((item) => item.id === selectedGauge?.id)}
           onSelect={handleStripPress}
           selectedId={selectedGauge?.id ?? null}
           linkedIds={linkedGauges}
@@ -2254,9 +2210,7 @@ export default function HomeScreen() {
         hazards={menuHazards}
         gdacsDetails={gdacsDetails}
         articles={river}
-        onFocusRow={handleMenuFocusRow}
         onSelectRow={handleMenuRowSelect}
-        onFocusMark={handleMenuFocusMark}
         onStoryPress={handleCardStoryPress}
         rootKey={menuRootKey}
         onToast={handleMenuToast}

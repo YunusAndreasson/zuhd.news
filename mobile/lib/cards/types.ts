@@ -49,17 +49,31 @@ export interface CardDelta {
   /** The same move as an unsigned percentage, for ordering and nothing else —
    *  the strip puts the largest first. Absent where the move is in points: a
    *  contract's sixty points and a price's six percent are not one scale. The
-   *  windows still differ (a day, a month, a 90-day normal); the strip accepts
+   *  windows still differ (a day, a month, a 90-day average); the strip accepts
    *  that, because what it answers is "what moved most", not "what moved most
    *  unusually", and `lib/cards/rank.ts` records why the second was rejected. */
   size?: number;
   /** The window it moved over, in the card's own words: "since 22 Jul",
-   *  "on the month", "vs its 90-day normal". A change without its window is
+   *  "on the month", "vs its 90-day average". A change without its window is
    *  the mistake `windowChange` exists to prevent. */
   window?: string;
+  /** The move is measured against a level that is not the series' own
+   *  earlier reading: a strait against its 90-day average. A card that prints
+   *  the three windows keeps such a move beside them (`cardWindows`); any
+   *  other of its own would be one of the three again. */
+  versus?: boolean;
   /** `points` for a prediction contract's move, which is never coloured
-   *  (`moveTone`). Absent for every percentage. */
-  unit?: 'points';
+   *  (`moveTone`); `rate` for a move in percentage points of a rate, a yield
+   *  or inflation, coloured like any other. Both are spoken in full
+   *  (`spokenDelta`). Absent for every percentage. */
+  unit?: 'points' | 'rate';
+}
+
+/** One window of a move read over several: `7 days` and the move over it.
+ *  A window with nothing to say keeps its place and carries no move. */
+export interface WindowMove {
+  label: string;
+  delta?: CardDelta;
 }
 
 interface CardBase {
@@ -118,16 +132,29 @@ export interface CardSeries {
   periods: string[];
   label: string;
   unit?: string;
+  /** The places a series in per cent is printed to (`rateDecimals`), for a
+   *  figure summed across cards: the menu's inflation average. */
+  decimals?: number;
   highlight?: TrendHighlight;
   /** Two or three lines on one axis, when the comparison *is* the fact —
    *  wheat against rice. Takes precedence over `values`, which is what
    *  `TrendBlock` already does with the same pair of props. Only use it when
    *  the lines share a unit; two units on one axis is a chart that lies. */
   multi?: TrendSeries[];
-  /** A level the series is measured against — a strait's 90-day normal —
+  /** A level the series is measured against — a strait's 90-day average —
    *  drawn as a dashed hairline with a gutter label. The chip says how far
    *  the reading is from it; the line shows where it is. */
   reference?: { value: number; label: string };
+  /** `steps` for a value that holds until it is changed: a policy rate, a
+   *  lab's best score. Absent, the line runs straight between observations. */
+  shape?: 'steps';
+  /** The quantity's own scale, where it has one: a chance runs 0 to 100.
+   *  Absent, the chart takes its range from the series (`chartScale`). */
+  domain?: readonly [number, number];
+  /** The scale is turned over: a rate quoted per dollar, which rises as the
+   *  currency weakens, drawn so its line rises as the currency does. The
+   *  numbers on the scale stay the quoted rate. */
+  inverted?: boolean;
 }
 
 /** One number and its history. Brent, wheat, the strait that moved, nisab. */
@@ -179,6 +206,10 @@ export interface ScheduledCard extends CardBase {
   kind: 'scheduled';
   /** ISO date it lands on. The reading is how far away that is. */
   date: string;
+  /** What a market prices the decision at, where a contract is on it
+   *  (`eventOdds`): its question and its price, as a strait's card carries
+   *  the contract on its closure. */
+  figures?: CardFigure[];
   /**
    * The history of the thing being decided, where one exists.
    *

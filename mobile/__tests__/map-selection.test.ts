@@ -1,5 +1,10 @@
 import type { StoryRow } from '../lib/map-feed';
-import { coverageStory, mapCandidates, type MapSelectionSources } from '../lib/map-selection';
+import {
+  coverageCell,
+  coverageStory,
+  mapCandidates,
+  type MapSelectionSources,
+} from '../lib/map-selection';
 import { countryTap, markTap } from '../lib/tap-result';
 
 function row(
@@ -40,6 +45,25 @@ it('does not send a similarly labelled story in another place to the camera', ()
 it('uses geography for article-derived glows with no labels and handles the dateline', () => {
   const at = { ...glow, hotspotLabels: [], hotspotCoords: [0, 179.9] as const };
   expect(coverageStory(at, [row('across', 2, [0, -179.9])], new Set())).toBe('across');
+});
+
+it("opens a story from the glow's own cell, never the neighbouring cell's", () => {
+  // 10.24 and 10.26 fall either side of a cell edge: two glows on the globe.
+  const here = row('here', 1, [10.24, 20]);
+  const next = row('next-cell', 2, [10.26, 20]);
+  expect(coverageCell(10.24, 20)).not.toBe(coverageCell(10.26, 20));
+  const tap = (lat: number) => ({ ...glow, hotspotLabels: [], hotspotCoords: [lat, 20] as const });
+  expect(coverageStory(tap(10.24), [here, next], new Set())).toBe('here');
+  expect(coverageStory(tap(10.26), [here, next], new Set())).toBe('next-cell');
+  // The same holds for a labelled glow whose thread runs through both cells.
+  expect(coverageStory({ ...glow, hotspotCoords: [10.24, 20] }, [here, next], new Set())).toBe(
+    'here',
+  );
+});
+it('puts both sides of the antimeridian and of the equator in the right cells', () => {
+  expect(coverageCell(0, 179.9)).toBe(coverageCell(0, -179.9));
+  expect(coverageCell(0.2, 10)).toBe(coverageCell(-0.2, 10));
+  expect(coverageCell(-10, 5)).not.toBe(coverageCell(-9.5, 5));
 });
 
 it('matches headlines and returns no story when only historical coverage remains', () => {

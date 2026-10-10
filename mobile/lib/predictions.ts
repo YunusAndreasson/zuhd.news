@@ -1,4 +1,7 @@
 import type { Indicator, IndicatorAnalysis, TrendsSnapshot } from '@shared/types';
+import { deltaOf } from './cards/format';
+import type { CardDelta } from './cards/types';
+import { WEEK_WINDOW } from './cards/week-move';
 
 /**
  * What a prediction market says about a story.
@@ -37,12 +40,14 @@ export interface StoryOdds {
   /** "62%" — the level, which is the whole reading for a belief. */
   level: string;
   /**
-   * "▲ 14 pts this week" — movement in **points**, never a percentage.
+   * `14 points` `over 7 days` — movement in **points**, never a percentage,
+   * as the chip every other move is printed in (`DeltaChip`), and slate
+   * whichever way it went (`moveTone`).
    *
    * A contract going 26 → 86 moved 60 points; "+231%" is arithmetic
    * pretending to be journalism. Same rule as `windowPointChange`.
    */
-  move: string | null;
+  move: CardDelta | null;
   marketUrl?: string;
 }
 
@@ -59,18 +64,16 @@ const latest = (i: Indicator): number | null => {
 };
 
 /** Points moved over the trailing week, or over the whole series if it is
- *  shorter. `null` when it rounds away to nothing — an unchanged contract
- *  should say nothing rather than "0 pts". */
-function weekMove(i: Indicator): string | null {
+ *  shorter: a contract is priced every day, so seven observations are the
+ *  seven days the chip names. `null` when it rounds away to nothing — an
+ *  unchanged contract should say nothing rather than "unchanged". */
+function weekMove(i: Indicator): CardDelta | null {
   const values = i.values.filter((v) => typeof v === 'number' && Number.isFinite(v));
   const last = values.at(-1);
   const first = values.at(Math.max(0, values.length - 1 - WEEK));
   if (last == null || first == null) return null;
-  const points = Math.round(last - first);
-  if (points === 0) return null;
-  // A true minus sign, matching `formatSignedPct`.
-  const arrow = points > 0 ? '▲' : '▼';
-  return `${arrow} ${Math.abs(points)} pts this week`;
+  const delta = deltaOf(last - first, { unit: 'points', window: WEEK_WINDOW });
+  return delta && delta.direction !== 'flat' ? delta : null;
 }
 
 /**

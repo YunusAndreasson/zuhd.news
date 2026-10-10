@@ -1,11 +1,18 @@
-import type { RelatedArticleRef } from '@shared/types';
-import { memo, useMemo } from 'react';
+import { memo, useCallback, useMemo } from 'react';
 import { StyleSheet, View } from 'react-native';
 import { SPACING } from '../../constants/theme';
 import { useTheme } from '../../hooks/useTheme';
-import { citedAnnotations, windowReference } from '../../lib/cards/card-chart';
+import {
+  citedAnnotations,
+  moveSince,
+  moveUnitOf,
+  spanReference,
+  windowReference,
+} from '../../lib/cards/card-chart';
 import type { SwipeCard } from '../../lib/cards/rank';
-import type { CardDelta, CardFigure, CardSeries } from '../../lib/cards/types';
+import type { CardFigure, CardSeries } from '../../lib/cards/types';
+import { MONTH_AGO } from '../../lib/cards/week';
+import { cardWindows } from '../../lib/cards/week-move';
 import { TrendBlock } from '../blocks/TrendBlock';
 import { DeltaChip } from '../DeltaChip';
 import { Text } from '../primitives';
@@ -133,26 +140,34 @@ export const CardView = memo(function CardView({
  * is a sheet now, whose only gesture is vertical, and a chart nobody can put a
  * number on was the most-reached chart in the app.
  *
- * Two things are drawn besides the line: the value the chip's move is measured
- * from (`windowReference`), so "since Jul 24" has a place on the chart, and
- * the stories the desk cited, numbered as they are listed under the analysis.
+ * Two things are drawn besides the line. One is where the card's longest
+ * move began: thirty days ago where it prints the three windows
+ * (`spanReference`), and otherwise the day its own chip names
+ * (`windowReference`), so "since Jul 24" has a place on the chart. The other
+ * is the stories the desk cited, numbered as they are listed under the
+ * analysis. A scrub reads the move from the day under the finger
+ * (`moveSince`).
  */
 const CardTrend = memo(function CardTrend({
+  card,
   series,
-  delta,
-  cited,
   showLabel = true,
 }: {
+  card: SwipeCard;
   series: CardSeries;
-  delta?: CardDelta;
-  cited?: RelatedArticleRef[];
   showLabel?: boolean;
 }) {
-  const reference = useMemo(
-    () => series.reference ?? windowReference(series, delta),
-    [series, delta],
-  );
+  const { cited } = card;
+  const reference = useMemo(() => {
+    if (series.reference) return series.reference;
+    const windows = cardWindows(card);
+    return windows
+      ? spanReference(series, windows.from, MONTH_AGO)
+      : windowReference(series, card.delta);
+  }, [card, series]);
   const annotations = useMemo(() => citedAnnotations(series, cited), [series, cited]);
+  const unit = moveUnitOf(card, series);
+  const since = useCallback((index: number) => moveSince(series, index, unit), [series, unit]);
   return (
     <TrendBlock
       values={series.multi ? undefined : series.values}
@@ -163,6 +178,10 @@ const CardTrend = memo(function CardTrend({
       highlight={series.highlight}
       reference={reference}
       annotations={annotations}
+      shape={series.shape}
+      domain={series.domain}
+      inverted={series.inverted}
+      moveSince={since}
       variant="context"
       showLabel={showLabel}
     />
@@ -176,9 +195,8 @@ function renderBody(card: SwipeCard) {
         <>
           {card.figures ? <Figures figures={card.figures} /> : null}
           <CardTrend
+            card={card}
             series={card.series}
-            delta={card.delta}
-            cited={card.cited}
             showLabel={
               !['per cent', 'index points', 'index'].includes(card.series.label.toLowerCase()) &&
               card.series.label !== card.readingNote
@@ -190,7 +208,7 @@ function renderBody(card: SwipeCard) {
     case 'belief':
       // The explicit source link below the account opens the market. The
       // chart itself is solely for inspecting its history.
-      return <CardTrend series={card.series} delta={card.delta} cited={card.cited} />;
+      return <CardTrend card={card} series={card.series} />;
 
     // The history of the thing being decided, where the desk publishes one —
     // two years of the Fed target range under "FOMC decides in 18 days". Where
@@ -198,7 +216,12 @@ function renderBody(card: SwipeCard) {
     // empty space: a countdown and the account of what is at stake are a whole
     // card on their own.
     case 'scheduled':
-      return card.series ? <CardTrend series={card.series} cited={card.cited} /> : null;
+      return (
+        <>
+          {card.figures ? <Figures figures={card.figures} /> : null}
+          {card.series ? <CardTrend card={card} series={card.series} /> : null}
+        </>
+      );
   }
 }
 

@@ -1,8 +1,25 @@
 import type { GdacsAlert } from '@shared/types';
 import { AI_CHANGE_WINDOW, aiScoreChange } from './ai-models';
 import { deltaOf, formatCount, formatNumber } from './cards/format';
-import type { CardDelta, CardSeries } from './cards/types';
-import { periodDays, WEEK_WINDOW, weekMove, yearOf } from './cards/week-move';
+import { type MovePath, middle, movePath, type PathSeries } from './cards/path';
+import type { CardDelta, CardSeries, WindowMove } from './cards/types';
+import {
+  ANCHOR_SLACK_DAYS,
+  DAY_WINDOW,
+  dayMove,
+  MONTH_DAYS,
+  MONTH_WINDOW,
+  spanMove,
+  WINDOW_NAMES,
+} from './cards/week';
+import {
+  gaugeLevels,
+  gaugeSpan,
+  periodDays,
+  WEEK_DAYS,
+  WEEK_WINDOW,
+  yearOf,
+} from './cards/week-move';
 import { type ConflictWeek, weekToll, weekWindow } from './conflict-week';
 import { MONTH_ABBR } from './date-format';
 import { hungerTotal } from './famine-totals';
@@ -12,6 +29,7 @@ import {
   COMPOSITES,
   type GroupKey,
 } from './instrument-catalog';
+import { dollarMoves, type Exchange, ownMoves, sessionLevels } from './markets';
 import type { FamineCountryTotal } from './overlays';
 import { leadNames } from './row-leaders';
 import { DAY_MS } from './time';
@@ -25,14 +43,22 @@ import { straitSqueezed } from './valence';
  * own index" (2026-10-04). Figures use seven-day changes where available,
  * with monthly changes and current levels explicitly labelled:
  *
- * - **stock markets** — the exchanges' weeks averaged, each counted once. It
- *   is the web rail's `meanIndex` (`public/islands/_map/markets.ts`) rebased
- *   at the week's start, and it is the only index the data allows: no payload
- *   carries a market's value or volume, so there is nothing to weight by.
+ * - **stock markets** — `world stocks`: each exchange's week in US dollars,
+ *   weighed by its country's GDP (`stocksSummary`). It was the exchanges'
+ *   weeks averaged in their own currencies, each counted once, where Dubai
+ *   counted as much as New York and a lira index rose with the lira's
+ *   inflation; that is still what a build with no weights or rates prints,
+ *   and still the web rail's `meanIndex` (`public/islands/_map/markets.ts`).
+ *   By the economy and not by the market's value: no payload carries a
+ *   market's value, and by value the number is Wall Street's week. The two
+ *   can point opposite ways, and did over the thirty days to 2026-10-09: New
+ *   York rose 2.3% and the other twenty-nine fell 3.9% in dollars between
+ *   them, so this read −2% while an index weighed by value was a little up.
  * - **largest companies**, **crypto** — the members' weekly returns averaged.
  * - **energy**, **food**, **metals** — returns over matching dates, averaged.
- *   Monthly prices are excluded from weekly baskets; groups with only monthly
- *   data use matching months. Derived cards (`COMPOSITES`) are excluded to
+ *   The prices quoted daily are the basket where there are any: a weekly or
+ *   monthly one is left out of it. Groups with only monthly data use matching
+ *   months. Derived cards (`COMPOSITES`) are excluded to
  *   avoid counting their underlying prices twice.
  * - **currencies** — the middle currency's week against the dollar. The
  *   median, not the mean: the list holds the euro and the Lebanese pound, and
@@ -50,8 +76,11 @@ import { straitSqueezed } from './valence';
  * - **other indicators**, **predictions** — no aggregate of mixed measures
  *   or contracts on unrelated questions.
  *
- * Each figure is unweighted and uses eligible readings in its list; the
- * price pages name their coverage and matching observation dates.
+ * Each figure but the stocks' is unweighted and uses eligible readings in
+ * its list; the price pages name their coverage and matching observation
+ * dates. Where a list is quoted daily the menu prints it over three windows,
+ * a day, seven days and thirty, as a row of a table (`groupLadder`): the
+ * figure above is the middle one.
  * The list prints the same figure over its members (`GroupFigure.measure`).
  *
  * **How it got here, the same day.** First a block of four menu rows over the
@@ -65,6 +94,15 @@ import { straitSqueezed } from './valence';
  *
  * **One score across every list was considered and rejected.** It needs
  * weights nobody publishes, and a colour that calls the result good or bad.
+ *
+ * **The menu opens on one of these figures, as its first row** (the user's
+ * request, 2026-10-10: "one clear indicator at the top… a value for today or
+ * at least this week's trend"), over a day, seven days and thirty. It is
+ * `world stocks`, the stock list's own figure and that list's row, not a
+ * score across the lists: shares are the one thing here quoted every day in
+ * every large economy, and a rise in them is a rise, which no colour has to
+ * interpret. It is not "the economy": nothing in the feed measures output
+ * more often than monthly.
  *
  * Every figure is read off the catalog's own rows, so a row's number cannot
  * disagree with the list it opens.
@@ -120,38 +158,231 @@ function weekPct(row: CatalogRow): number | null {
   return move.direction === 'up' ? move.size : -move.size;
 }
 
-/** Every move here is the week. An exact zero prints `0.0%`; tiny nonzero
- *  moves keep their sign (`summaryDelta`). */
-const WEEK = { window: WEEK_WINDOW, flat: '0.0%' } as const;
-
-/** A small net move can hide substantial offsetting moves. Keep its sign
- *  and two decimals; reserve zero for an actual zero, not a rounding result. */
-function summaryDelta(pct: number): CardDelta | undefined {
+/**
+ * A list's move as one chip. The week unless told another window (the
+ * ladder's day and thirty days). An exact zero prints `0.0%`. A small net
+ * move can hide substantial offsetting moves: it keeps its sign and two
+ * decimals, and zero is kept for an actual zero, not a rounding result.
+ */
+function summaryDelta(pct: number, window: string = WEEK_WINDOW): CardDelta | undefined {
   if (!Number.isFinite(pct)) return undefined;
-  if (pct === 0 || Math.abs(pct) >= 0.1) return deltaOf(pct, WEEK);
+  if (pct === 0 || Math.abs(pct) >= 0.1) return deltaOf(pct, { window, flat: '0.0%' });
   return {
     direction: pct > 0 ? 'up' : 'down',
     magnitude: Math.abs(pct) < 0.005 ? '<0.01%' : `${Math.abs(pct).toFixed(2)}%`,
     size: Math.abs(pct),
-    window: WEEK_WINDOW,
+    window,
   };
+}
+
+/** A list over a ladder's three windows. */
+interface Spans {
+  day?: CardDelta;
+  week?: CardDelta;
+  month?: CardDelta;
+}
+
+/** The three windows every list is read over, shortest first. */
+function threeRungs({ day, week, month }: Spans): WindowMove[] {
+  return [day, week, month].map((delta, i) => ({ label: WINDOW_NAMES[i] as string, delta }));
+}
+
+const mean = (ns: readonly number[]): number => ns.reduce((total, n) => total + n, 0) / ns.length;
+
+function median(ns: readonly number[]): number {
+  const sorted = [...ns].sort((a, b) => a - b);
+  const mid = Math.floor(sorted.length / 2);
+  return sorted.length % 2 === 1
+    ? (sorted[mid] ?? 0)
+    : ((sorted[mid - 1] ?? 0) + (sorted[mid] ?? 0)) / 2;
 }
 
 /** Fewer members than this is one market's week under another name. */
 const MIN_MEMBERS = 2;
 
 export interface StocksSummary {
+  /** How many exchanges rose and fell, by the move each row prints. */
   tally: Tally;
-  /** The exchanges' weeks averaged, each counted once. Absent with too few. */
+  /** `world stocks`: the markets' weeks as one move. Absent with too few. */
   move?: CardDelta;
-  /** How many exchanges the average is of: those with a week. */
+  /** The same markets over their last session and over thirty days, weighed
+   *  the same way. Each market's own last session: they do not share a date.
+   *  Absent where too few of them have one (`MIN_SHARE`). */
+  day?: CardDelta;
+  month?: CardDelta;
+  /** How many markets the moves are of: those with a week, and in dollars
+   *  those with rates too. */
   members: number;
+  /** Whether each market's move is in US dollars. */
+  dollars: boolean;
+  /** Whether each weighs by its economy. Counted once each where not. */
+  weighted: boolean;
+  /** The same markets, weighed the same way, as one line over thirty days. */
+  path: MovePath | null;
 }
 
+/**
+ * How much of the list, by weight, must be behind a number before it is
+ * printed. In dollars: under it the figure would be the rated markets' week
+ * under the world's name, so every market is read in its own currency. Over
+ * a day or thirty: under it the rung prints nothing.
+ */
+const MIN_SHARE = 0.8;
+
+interface StockMember {
+  exchange: Exchange;
+  day: number | null;
+  week: number;
+  month: number | null;
+}
+
+const finite = (n: unknown): n is number => typeof n === 'number' && Number.isFinite(n);
+const sum = (ns: readonly number[]): number => ns.reduce((total, n) => total + n, 0);
+
+/**
+ * What each market weighs: its country's GDP, or one each where any member
+ * has none. A country counts once: two exchanges in one share its weight.
+ */
+function stockWeights(members: readonly StockMember[]): { weights: number[]; weighted: boolean } {
+  const weighted = members.every(({ exchange }) => finite(exchange.gdp) && exchange.gdp > 0);
+  if (!weighted) return { weights: members.map(() => 1), weighted };
+  const listed = new Map<string, number>();
+  for (const { exchange } of members)
+    listed.set(exchange.iso2, (listed.get(exchange.iso2) ?? 0) + 1);
+  return {
+    weights: members.map(
+      ({ exchange }) => (exchange.gdp as number) / (listed.get(exchange.iso2) ?? 1),
+    ),
+    weighted,
+  };
+}
+
+/** A member with its moves in US dollars, or null where its week cannot be. */
+function inDollars(member: StockMember): StockMember | null {
+  const { exchange } = member;
+  if (exchange.currency === 'USD') return member;
+  const moves = dollarMoves(exchange);
+  if (!moves || moves.week === null) return null;
+  return { exchange, day: moves.day, week: moves.week, month: moves.month };
+}
+
+/**
+ * `world stocks`: the list's exchanges as one move, over three windows.
+ *
+ * Each market's week is its row's (`weekPct`), so a market with no week is
+ * left out as it always was; its day is its published change and its thirty
+ * days are read off its sessions by the week's rule (`ownMoves`). Where the
+ * payload carries the rates, all three are the index's in US dollars instead
+ * (`dollarMoves`): a Borsa Istanbul up 3% in a week the lira lost 2% is up 1%
+ * to anyone holding anything else. Where it carries the weights, each market
+ * weighs by its country's GDP. A build with neither prints what the row
+ * printed before either existed.
+ *
+ * One set of markets and one set of weights for the three windows, so the
+ * rungs of the ladder can be read against each other.
+ */
 export function stocksSummary(catalog: readonly CatalogGroup[]): StocksSummary | null {
   const exchanges = groupOf(catalog, 'stocks')?.rows.filter((row) => row.exchange) ?? [];
   if (exchanges.length === 0) return null;
-  return { tally: tallyOf(exchanges), ...meanWeek(exchanges) };
+  const local: StockMember[] = [];
+  for (const row of exchanges) {
+    const week = weekPct(row);
+    const exchange = row.exchange;
+    if (week === null || !exchange) continue;
+    local.push({
+      exchange,
+      day: finite(exchange.changePct) ? exchange.changePct : null,
+      week,
+      month: ownMoves(exchange).month,
+    });
+  }
+  const own = stockWeights(local);
+  const rated: StockMember[] = [];
+  let ratedWeight = 0;
+  local.forEach((member, i) => {
+    const converted = inDollars(member);
+    if (!converted) return;
+    rated.push(converted);
+    ratedWeight += own.weights[i] ?? 0;
+  });
+  const dollars = rated.length >= MIN_MEMBERS && ratedWeight >= MIN_SHARE * sum(own.weights);
+  const members = dollars ? rated : local;
+  const { weights, weighted } = stockWeights(members);
+  const weight = sum(weights);
+  const enough = members.length >= MIN_MEMBERS && weight > 0;
+  /** The members' moves over one window as one, or null where too few have it. */
+  const weighed = (of: (member: StockMember) => number | null): number | null => {
+    let total = 0;
+    let behind = 0;
+    members.forEach((member, i) => {
+      const pct = of(member);
+      if (pct === null) return;
+      total += pct * (weights[i] ?? 0);
+      behind += weights[i] ?? 0;
+    });
+    return enough && behind >= MIN_SHARE * weight ? total / behind : null;
+  };
+  const delta = (pct: number | null, window: string): CardDelta | undefined =>
+    pct === null ? undefined : summaryDelta(pct, window);
+  return {
+    tally: tallyOf(exchanges),
+    move: delta(
+      weighed((member) => member.week),
+      WEEK_WINDOW,
+    ),
+    day: delta(
+      weighed((member) => member.day),
+      DAY_WINDOW,
+    ),
+    month: delta(
+      weighed((member) => member.month),
+      MONTH_WINDOW,
+    ),
+    members: members.length,
+    dollars,
+    weighted,
+    path: enough
+      ? movePath(
+          members.flatMap(({ exchange }, i): PathSeries[] => {
+            const levels = sessionLevels(exchange, dollars);
+            return levels ? [{ ...levels, weight: weights[i] }] : [];
+          }),
+        )
+      : null,
+  };
+}
+
+/** The headline's name: the stock list's figure, on the menu's first line. */
+export const WORLD_STOCKS = 'world stocks';
+
+/**
+ * What `world stocks` is of, for its list's page and a listener: `30 markets
+ * in US dollars, weighted by each economy’s size`.
+ */
+export function stocksCoverage({ members, tally, dollars, weighted }: StocksSummary): string {
+  const of = members < tally.total ? `${members} of ${tally.total} markets` : `${members} markets`;
+  const money = dollars ? 'in US dollars' : 'in their own currencies';
+  return `${of} ${money}, ${weighted ? 'weighted by each economy’s size' : 'each counted once'}`;
+}
+
+/**
+ * The headline's ladder: the markets over a day, seven days and thirty,
+ * shortest first. The middle rung is the list's own figure.
+ */
+export function stocksLadder({ day, move, month }: StocksSummary): WindowMove[] {
+  return threeRungs({ day, week: move, month });
+}
+
+/**
+ * The figure again over its list, named and said what it is of: `World stocks
+ * +0.5% over 7 days: 30 markets in US dollars, weighted by each economy’s
+ * size`. The number is the chip's own magnitude, so the two cannot differ.
+ */
+export function stocksLine(summary: StocksSummary): string | undefined {
+  const { move } = summary;
+  if (!move) return undefined;
+  const sign = move.direction === 'up' ? '+' : move.direction === 'down' ? '−' : '';
+  return `World stocks ${sign}${move.magnitude} ${WEEK_WINDOW}: ${stocksCoverage(summary)}`;
 }
 
 /** The mean of the rows' weeks, each counted once, and how many it is of. */
@@ -168,6 +399,45 @@ function meanWeek(rows: readonly CatalogRow[]): { move?: CardDelta; members: num
     move: members >= MIN_MEMBERS ? summaryDelta(sum / members) : undefined,
     members,
   };
+}
+
+/**
+ * A list's rows over a day and over thirty, as its week is made: the rows
+ * that have a week, each by its own card's move over the window
+ * (`gaugeSpan`), combined the way the week is. Absent where too few of those
+ * rows have the window (`MIN_SHARE`), so the three rungs are of one list.
+ */
+function rowSpans(
+  rows: readonly CatalogRow[],
+  now: number,
+  combine: (pcts: readonly number[]) => number,
+): Pick<Spans, 'day' | 'month'> {
+  const members = rows.filter((row) => weekPct(row) !== null);
+  const over = (span: number, window: string): CardDelta | undefined => {
+    const pcts: number[] = [];
+    for (const row of members) {
+      const pct = row.card ? gaugeSpan(row.card, span, now) : null;
+      if (pct !== null) pcts.push(pct);
+    }
+    if (pcts.length < MIN_MEMBERS || pcts.length < MIN_SHARE * members.length) return undefined;
+    return summaryDelta(combine(pcts), window);
+  };
+  return { day: over(1, DAY_WINDOW), month: over(MONTH_DAYS, MONTH_WINDOW) };
+}
+
+/** A list's rows as one line over thirty days: the rows that have a week,
+ *  each by its own card's quantity (`gaugeLevels`), combined as its week is. */
+function rowPath(
+  rows: readonly CatalogRow[],
+  now: number,
+  combine?: Parameters<typeof movePath>[1],
+): MovePath | null {
+  const series = rows.flatMap((row): PathSeries[] => {
+    if (weekPct(row) === null || !row.card) return [];
+    const levels = gaugeLevels(row.card, now);
+    return levels ? [levels] : [];
+  });
+  return series.length >= MIN_MEMBERS ? movePath(series, combine) : null;
 }
 
 export interface CompaniesSummary {
@@ -246,13 +516,18 @@ function sumByDay(all: readonly Series[]): { sum: Series; members: number } | nu
 export interface ShippingSummary {
   /** Every strait the list holds. */
   total: number;
-  /** Those running far enough under their 90-day normal to be the disruption
+  /** Those running far enough under their 90-day average to be the disruption
    *  (`straitSqueezed`): the straits the globe draws pinched. */
   disrupted: number;
   /** The week's move in ships through the straits, summed. */
   move?: CardDelta;
+  /** The same sum over a day and over thirty. */
+  day?: CardDelta;
+  month?: CardDelta;
   /** How many straits the sum is of. */
   members: number;
+  /** The sum as a line over thirty days. */
+  path: MovePath | null;
 }
 
 export function shippingSummary(
@@ -268,13 +543,28 @@ export function shippingSummary(
   }
   const charted = straits.flatMap((row) => straitSeries(row) ?? []);
   const summed = sumByDay(charted.map((c) => c.series));
-  let move: CardDelta | undefined;
-  if (summed && summed.members >= MIN_MEMBERS) {
-    const year = yearOf(charted[0]?.asOf, new Date(now).getUTCFullYear());
-    const week = weekMove(summed.sum.values, summed.sum.periods, year);
-    if (week) move = summaryDelta(week.pct);
-  }
-  return { total: straits.length, disrupted, move, members: summed?.members ?? 0 };
+  const year = yearOf(charted[0]?.asOf, new Date(now).getUTCFullYear());
+  const over = (span: number, window: string): CardDelta | undefined => {
+    if (!summed || summed.members < MIN_MEMBERS) return undefined;
+    const { values, periods } = summed.sum;
+    const pct =
+      span > 1
+        ? (spanMove(values, periods, year, span)?.pct ?? null)
+        : dayMove(values, periods, year);
+    return pct === null ? undefined : summaryDelta(pct, window);
+  };
+  return {
+    total: straits.length,
+    disrupted,
+    move: over(WEEK_DAYS, WEEK_WINDOW),
+    day: over(1, DAY_WINDOW),
+    month: over(MONTH_DAYS, MONTH_WINDOW),
+    members: summed?.members ?? 0,
+    path:
+      summed && summed.members >= MIN_MEMBERS
+        ? movePath([{ days: periodDays(summed.sum.periods, year), values: summed.sum.values }])
+        : null,
+  };
 }
 
 /** `2 of 11 straits disrupted`. Never `all near normal`: a strait far above
@@ -309,21 +599,10 @@ export function currenciesSummary(catalog: readonly CatalogGroup[]): CurrenciesS
   const rows =
     groupOf(catalog, 'currencies')?.rows.filter((row) => isCurrency(row) && row.weekly) ?? [];
   if (rows.length === 0) return null;
-  const weeks = rows
-    .map(weekPct)
-    .filter((pct): pct is number => pct !== null)
-    .sort((a, b) => a - b);
-  const n = weeks.length;
-  const mid = Math.floor(n / 2);
-  const median =
-    n === 0
-      ? null
-      : n % 2 === 1
-        ? (weeks[mid] ?? 0)
-        : ((weeks[mid - 1] ?? 0) + (weeks[mid] ?? 0)) / 2;
+  const weeks = rows.map(weekPct).filter((pct): pct is number => pct !== null);
   return {
     tally: tallyOf(rows),
-    move: median !== null && n >= MIN_MEMBERS ? summaryDelta(median) : undefined,
+    move: weeks.length >= MIN_MEMBERS ? summaryDelta(median(weeks)) : undefined,
   };
 }
 
@@ -340,12 +619,42 @@ export interface GroupFigure {
   coverage?: string;
 }
 
-/** Price returns, never an average of prices in unlike units. Every member
- *  uses the same two dates. Prefer weekly data; use monthly when that is all
- *  the group publishes, and name excluded readings in the coverage. */
-function priceFigure(group: CatalogGroup, now: number): GroupFigure {
+interface PriceHistory {
+  row: CatalogRow;
+  monthly: boolean;
+  /** The price on each day, or in each month, by its number. */
+  values: Map<number, number>;
+}
+
+interface PriceBasket {
+  /** Every price in the list: a card built from two others is not one. */
+  rows: CatalogRow[];
+  members: PriceHistory[];
+  monthly: boolean;
+  /** The days, or months, every member has a price for, oldest first. */
+  shared: number[];
+}
+
+/** Observations mostly this near each other are a daily series: a weekend's
+ *  three days, never a weekly price's seven. */
+const DAILY_GAP_DAYS = 3;
+
+function isDaily({ values }: PriceHistory): boolean {
+  const days = [...values.keys()].sort((a, b) => a - b);
+  const gaps = days.slice(1).map((day, i) => day - (days[i] ?? day));
+  return gaps.length > 0 && median(gaps) <= DAILY_GAP_DAYS;
+}
+
+/**
+ * A price list's basket. Price returns, never an average of prices in unlike
+ * units, and every member over the same two dates. The finest cadence the
+ * list publishes decides who is in: the prices quoted daily where there are
+ * any, so a weekly one does not cut theirs to its dates; every dated price
+ * where none is daily; the monthly ones when that is all there is.
+ */
+function priceBasket(group: CatalogGroup, now: number): PriceBasket {
   const rows = group.rows.filter((row) => !COMPOSITES.has(row.id));
-  const histories = rows.flatMap((row) => {
+  const histories = rows.flatMap((row): PriceHistory[] => {
     const card = row.card;
     const series = card?.kind === 'reading' ? card.series : undefined;
     if (!series || series.multi) return [];
@@ -366,33 +675,165 @@ function priceFigure(group: CatalogGroup, now: number): GroupFigure {
     return values.size >= 2 ? [{ row, monthly, values }] : [];
   });
   const monthly = !histories.some((history) => !history.monthly);
-  const members = histories.filter((history) => history.monthly === monthly);
-  const step = monthly ? 1 : 7;
-  const shared = [...(members[0]?.values.keys() ?? [])].filter((period) =>
-    members.every(({ values }) => values.has(period)),
+  const dated = histories.filter((history) => history.monthly === monthly);
+  const daily = monthly ? [] : dated.filter(isDaily);
+  const members = daily.length > 0 ? daily : dated;
+  const shared = [...(members[0]?.values.keys() ?? [])]
+    .filter((period) => members.every(({ values }) => values.has(period)))
+    .sort((a, b) => a - b);
+  return { rows, members, monthly, shared };
+}
+
+/**
+ * The basket's mean return over `step` days, or months: from the last date
+ * every member has, back to the last one at least `step` before it. A day's
+ * anchor may be late by a weekend or a holiday, as every week's may
+ * (`ANCHOR_SLACK_DAYS`); a month's may not, and a gap is never bridged.
+ */
+function basketMove(
+  { members, monthly, shared }: PriceBasket,
+  step: number,
+): { pct: number; start: number; end: number } | null {
+  const end = shared.at(-1);
+  if (end === undefined) return null;
+  let start: number | undefined;
+  for (let i = shared.length - 2; i >= 0; i -= 1) {
+    const period = shared[i] as number;
+    if (period > end - step) continue;
+    if (end - period <= step + (monthly ? 0 : ANCHOR_SLACK_DAYS)) start = period;
+    break;
+  }
+  if (start === undefined) return null;
+  const from = start;
+  if (!members.every(({ values }) => values.get(from) !== 0)) return null;
+  const pct = mean(
+    members.map(({ values }) => {
+      const previous = values.get(from) as number;
+      return (((values.get(end) as number) - previous) / Math.abs(previous)) * 100;
+    }),
   );
-  const end = Math.max(...shared);
-  const start = end - step;
-  if (
-    !Number.isFinite(end) ||
-    !members.every(({ values }) => values.has(start) && values.get(start) !== 0)
-  )
-    return { coverage: 'No comparable change available for matching dates' };
-  const mean =
-    members.reduce((sum, { values }) => {
-      const previous = values.get(start) as number;
-      return sum + (((values.get(end) as number) - previous) / Math.abs(previous)) * 100;
-    }, 0) / members.length;
+  return { pct, start: from, end };
+}
+
+function priceFigure(group: CatalogGroup, now: number): GroupFigure {
+  const basket = priceBasket(group, now);
+  const { rows, members, monthly } = basket;
+  const change = basketMove(basket, monthly ? 1 : WEEK_DAYS);
+  if (!change) return { coverage: 'No comparable change available for matching dates' };
   const label = (period: number) => {
     if (monthly) return `${MONTH_ABBR[period % 12]} ${Math.floor(period / 12)}`;
     return new Date(period * DAY_MS).toISOString().slice(0, 10);
   };
-  const move = summaryDelta(mean);
   return {
-    move: move ? { ...move, window: monthly ? 'on the month' : WEEK_WINDOW } : undefined,
+    move: summaryDelta(change.pct, monthly ? 'on the month' : WEEK_WINDOW),
     measure: members.length > 1 ? 'average' : undefined,
-    coverage: `${label(start)}–${label(end)} · ${members.length > 1 ? 'equal-weight average' : members[0]?.row.short} · ${members.length} of ${rows.length} prices${members.length < rows.length ? ' · other readings excluded' : ''}`,
+    coverage: `${label(change.start)}–${label(change.end)} · ${members.length > 1 ? 'equal-weight average' : members[0]?.row.short} · ${members.length} of ${rows.length} prices${members.length < rows.length ? ' · other readings excluded' : ''}`,
   };
+}
+
+/** A price list over the ladder's three windows, by the basket's one rule.
+ *  Null where the list is monthly: it has no day and no week. */
+function priceSpans(group: CatalogGroup, now: number): Spans | null {
+  const basket = priceBasket(group, now);
+  if (basket.monthly) return null;
+  const over = (step: number, window: string): CardDelta | undefined => {
+    const change = basketMove(basket, step);
+    return change ? summaryDelta(change.pct, window) : undefined;
+  };
+  return {
+    day: over(1, DAY_WINDOW),
+    week: over(WEEK_DAYS, WEEK_WINDOW),
+    month: over(MONTH_DAYS, MONTH_WINDOW),
+  };
+}
+
+/**
+ * A list's three windows for the menu's first page: its rows as one move
+ * over a day, seven days and thirty, shortest first. Null for a list with no
+ * week to stand in the middle, which keeps its one number: food is monthly,
+ * and the lists under `economy` move by the month or in points.
+ *
+ * The middle one is the list's own figure (`groupFigure`), and the other two
+ * are made the way it is: `world stocks` (`stocksSummary`); companies and
+ * crypto averaged, each counted once; the middle currency; the basket of
+ * prices quoted daily, over matching dates; the straits' ships added up.
+ */
+export function groupLadder(group: CatalogGroup, now = Date.now()): WindowMove[] | null {
+  const catalog = [group];
+  let spans: Spans | null;
+  switch (group.key) {
+    case 'stocks': {
+      const stocks = stocksSummary(catalog);
+      return stocks?.move ? stocksLadder(stocks) : null;
+    }
+    case 'companies':
+      spans = { week: companiesSummary(catalog)?.move, ...rowSpans(group.rows, now, mean) };
+      break;
+    case 'crypto': {
+      const rows = group.rows.filter((row) => !COMPOSITES.has(row.id));
+      spans = { week: meanWeek(rows).move, ...rowSpans(rows, now, mean) };
+      break;
+    }
+    case 'currencies': {
+      const rows = group.rows.filter((row) => isCurrency(row) && row.weekly);
+      spans = { week: currenciesSummary(catalog)?.move, ...rowSpans(rows, now, median) };
+      break;
+    }
+    case 'energy':
+    case 'metals':
+      spans = priceSpans(group, now);
+      break;
+    case 'straits': {
+      const shipping = shippingSummary(catalog, now);
+      spans = shipping ? { day: shipping.day, week: shipping.move, month: shipping.month } : null;
+      break;
+    }
+    default:
+      return null;
+  }
+  return spans?.week ? threeRungs(spans) : null;
+}
+
+/**
+ * A list's thirty days as one line for the menu's first page (`movePath`),
+ * made of the rows its three windows are made of and combined the same way.
+ * Null where the list prints no windows (`groupLadder`), or has too little
+ * history to draw.
+ */
+export function groupPath(group: CatalogGroup, now = Date.now()): MovePath | null {
+  const catalog = [group];
+  switch (group.key) {
+    case 'stocks':
+      return stocksSummary(catalog)?.path ?? null;
+    case 'companies':
+      return rowPath(group.rows, now);
+    case 'crypto':
+      return rowPath(
+        group.rows.filter((row) => !COMPOSITES.has(row.id)),
+        now,
+      );
+    case 'currencies':
+      return rowPath(
+        group.rows.filter((row) => isCurrency(row) && row.weekly),
+        now,
+        middle,
+      );
+    case 'energy':
+    case 'metals': {
+      const { members, monthly } = priceBasket(group, now);
+      if (monthly) return null;
+      return movePath(
+        members.map(({ values }) => {
+          const days = [...values.keys()].sort((a, b) => a - b);
+          return { days, values: days.map((day) => values.get(day) as number) };
+        }),
+      );
+    }
+    case 'straits':
+      return shippingSummary(catalog, now)?.path ?? null;
+    default:
+      return null;
+  }
 }
 
 /** Combine rates at a shared observation period: months for policy, prices
@@ -447,15 +888,25 @@ function rateFigure(group: CatalogGroup, now: number): GroupFigure {
   };
   const value = aggregate(month);
   if (value === undefined) return {};
+  // The places the list's own rows print to: one for inflation and
+  // unemployment (`rateDecimals`), two for a policy rate or a yield.
+  const places = Math.min(
+    ...rows.map(
+      (row) => (row.card?.kind === 'reading' ? row.card.series?.decimals : undefined) ?? 2,
+    ),
+  );
+  const rounded = (n: number) => Number(n.toFixed(places));
   // Compare the same members at the matching prior period; never bridge a gap.
+  // The difference of the two printed figures, so the level and its move agree.
   const previous = aggregate(month - (isBorrowing ? 7 : 1));
   const move =
     previous === undefined
       ? undefined
-      : deltaOf(value - previous, {
+      : deltaOf(rounded(value) - rounded(previous), {
           unit: 'rate',
+          decimals: places,
           window: isBorrowing ? 'over 7 days' : 'on the month',
-          flat: '0.00 points',
+          flat: `${(0).toFixed(places)} points`,
         });
   const date = new Date(month * DAY_MS);
   const period = isBorrowing
@@ -474,7 +925,7 @@ function rateFigure(group: CatalogGroup, now: number): GroupFigure {
         ? `${period} · US unemployment rate · monthly change in percentage points`
         : `${period} · US and eurozone · equal-weight average of annual CPI inflation`;
   return {
-    level: `${formatNumber(value, 2, 2)}%`,
+    level: `${formatNumber(value, places, places)}%`,
     measure: isPolicy ? 'median' : isJobs ? 'rate' : 'average',
     move,
     coverage,
@@ -490,9 +941,13 @@ export function groupFigure(group: CatalogGroup, now = Date.now()): GroupFigure 
   switch (group.key) {
     case 'stocks': {
       const stocks = stocksSummary(catalog);
-      return stocks
-        ? { move: stocks.move, measure: 'average', detail: tallyCaption(stocks.tally) }
-        : {};
+      if (!stocks) return {};
+      return {
+        move: stocks.move,
+        measure: 'average',
+        detail: tallyCaption(stocks.tally),
+        coverage: stocks.move ? stocksCoverage(stocks) : undefined,
+      };
     }
     case 'companies':
       return { move: companiesSummary(catalog)?.move, measure: 'average' };
