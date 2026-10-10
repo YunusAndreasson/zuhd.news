@@ -8,6 +8,7 @@
 // Since the build is Node and /shared/* is TypeScript, we transpile on
 // import via a small esbuild wrapper in scripts/build/shared-ts.js.
 
+import { countryHazards } from '../lib/country-hazards.js'
 import { createHash } from 'node:crypto'
 import { existsSync, readFileSync, writeFileSync, mkdirSync } from 'node:fs'
 import { join } from 'node:path'
@@ -46,6 +47,65 @@ const renderMetricRow = (rankStrip, meta, value, rank, total) => {
     </li>`
 }
 
+/**
+ * What the hazard sources count in this country, above its metrics: its people
+ * in crisis or worse, its last reported week of conflict, and the alerts on it.
+ *
+ * Statements, each with whose count it is and of when, because both of the
+ * first two are old when they are read. Nothing at all for a country none of
+ * the three sources names: an empty section would be a heading over the
+ * absence of a famine.
+ *
+ * @param {import('../lib/country-hazards.js').CountryHazards | undefined} h
+ * @param {any} FACTS `shared/countries/country-facts.ts`
+ */
+const hazardsHtml = (h, FACTS) => {
+  if (!h) return ''
+  const fact = (label, title, detail) =>
+    `<div class="country-fact">
+        <dt class="label">${escHtml(label)}</dt>
+        <dd>
+          <p class="country-fact-title">${escHtml(title)}</p>
+          ${detail ? `<p class="t-caption country-fact-detail">${escHtml(detail)}</p>` : ''}
+        </dd>
+      </div>`
+  const rows = []
+  if (h.hunger) {
+    const line = FACTS.hungerLine(h.hunger)
+    rows.push(fact('hunger', line.title, line.detail))
+  }
+  if (h.conflict) {
+    rows.push(
+      fact(
+        'conflict',
+        FACTS.conflictLine(h.conflict),
+        `${FACTS.weekWindow(h.conflict.windowStart, h.conflict.windowEnd)}, the latest week from UCDP`,
+      ),
+    )
+  }
+  if (h.alerts.length) {
+    // Orange and Red by name. Green is the level of an earthquake nobody felt,
+    // and Papua New Guinea holds twenty-two of them: counted beside a graver
+    // alert, and on their own not a reason for the section to exist.
+    const lower = h.lowerAlerts
+      ? `and ${FACTS.formatCount(h.lowerAlerts)} at the lowest level`
+      : ''
+    rows.push(
+      fact(
+        'alerts',
+        h.alerts.map((a) => `${a.name} (${a.level.toLowerCase()})`).join(' · '),
+        [lower, 'GDACS'].filter(Boolean).join(' · '),
+      ),
+    )
+  }
+  if (!rows.length) return ''
+  return `<section class="country-facts" aria-label="Hunger, conflict and alerts">
+        <dl class="country-fact-list">
+          ${rows.join('\n')}
+        </dl>
+      </section>`
+}
+
 /** Greedy point-in-country resolver using a naive bbox test against the
  *  topojson features. Fast enough for the few hundred datelined
  *  articles per build. Duplicates the logic in mobile's findCountry()
@@ -72,7 +132,11 @@ const resolveArticleCountry = (feat, countries, lat, lng) => {
 /**
  * @param {{ sorted: any[], distDir: string, template: string,
  *           skipOg?: boolean,
+ *           hazards?: { totals?: any[], conflict?: any, alerts?: any[] },
  *           shareRowHtml?: (target: string, title: string) => string }} opts
+ *        `hazards` is what the build's hazard snapshots hold: the IPC's country
+ *        totals, UCDP's week and the GDACS alerts. Passed in rather than read
+ *        here, because build.js has just parsed all three.
  *        `template` arrives already resolved. This module used to read
  *        `country.html` and substitute `{{headCommon}}` and `{{v}}` itself,
  *        which was a second copy of build.js's `loadTemplate` that then had to
@@ -91,6 +155,7 @@ export const buildCountryPages = async ({
   template,
   shareRowHtml = () => '',
   skipOg = false,
+  hazards = {},
 }) => {
   const [
     { COUNTRY_DATA },
@@ -98,6 +163,7 @@ export const buildCountryPages = async ({
     { codeFromTopojsonName },
     { displayCountryName },
     { rankStrip },
+    FACTS,
     { geoContains, geoCentroid, geoArea },
     { feature },
   ] = await Promise.all([
@@ -109,6 +175,7 @@ export const buildCountryPages = async ({
     loadShared('countries/iso.ts'),
     loadShared('place-names.ts'),
     loadShared('chart/rank-strip.ts'),
+    loadShared('countries/country-facts.ts'),
     import('d3-geo'),
     import('topojson-client'),
   ])
@@ -136,6 +203,19 @@ export const buildCountryPages = async ({
     const anchor = largestPolygonCentroid(f, geoCentroid, geoArea)
     if (anchor) anchors.set(name, anchor)
   }
+
+  // What the hazard sources count in each country. Events are placed at 1:50m:
+  // at 1:110m Gaza is too small to be a polygon and seventeen of its eighteen
+  // events fell in no country at all.
+  const topo50 = JSON.parse(readFileSync(join(ROOT, 'shared', 'data', 'countries-50m.json'), 'utf8'))
+  const countries50 = /** @type {import('geojson').FeatureCollection} */ (/** @type {unknown} */ (feature(topo50, topo50.objects.countries)))
+  const hazardsByCountry = countryHazards(hazards, {
+    iso2At: (lat, lng) => {
+      const name = resolveArticleCountry(geoContains, countries50, lat, lng)
+      return name ? codeFromTopojsonName(name) : null
+    },
+    iso2OfName: (name) => codeFromTopojsonName(name),
+  })
 
   mkdirSync(join(distDir, 'country'), { recursive: true })
 
@@ -204,6 +284,8 @@ export const buildCountryPages = async ({
       .map((r) => renderMetricRow(rankStrip, r.meta, r.value, r.rank, r.total))
       .join('\n')
 
+    const hazardsSection = hazardsHtml(hazardsByCountry.get(iso2), FACTS)
+
     const recent = articlesByCountry[name] || []
     const coverageSection = recent.length
       ? `<section class="country-coverage">
@@ -262,6 +344,7 @@ export const buildCountryPages = async ({
       .replace(/{{region}}/g, escHtml((data.region || '').toUpperCase()))
       .replace(/{{flag}}/g, data.flag || '')
       .replace(/{{metaLine}}/g, escHtml(metaLine))
+      .replace(/{{hazards}}/g, hazardsSection)
       .replace(/{{metricRows}}/g, metricRows)
       .replace(/{{coverageSection}}/g, coverageSection)
       .replace(/{{footerStatus}}/g, footerStatusLine({ sources: 'REST Countries · World Bank · OWID' }))

@@ -1409,6 +1409,40 @@ body.archetype-page-body .article-page-header {
    border-bottom — see `.category-day-heading`). Was two identical copies,
    `.country-section-title` and `.archive-section-title`, that differed only
    in name. */
+/* What the hazard sources count in this country: hunger, conflict, alerts.
+   A label and a statement each, with whose count it is and of when under it.
+   Statements, so they are set at reading size, above the metrics, which are a
+   table. A country none of the sources names has no such section at all. */
+.country-fact-list {
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-sm);
+}
+
+.country-fact {
+  display: grid;
+  grid-template-columns: 6rem 1fr;
+  gap: var(--space-sm);
+  align-items: baseline;
+
+  & dd { margin: 0; }
+}
+
+.country-fact-title {
+  margin: 0;
+  font-size: var(--size-sm);
+  line-height: 1.35;
+  color: var(--text-emphasis);
+  font-variant-numeric: lining-nums tabular-nums;
+}
+
+.country-fact-detail { margin: 0.15rem 0 0; }
+
+@media (max-width: 640px) {
+  .country-fact { grid-template-columns: 1fr; gap: 0.15rem; }
+}
+
 .section-title {
   display: block;
   margin-bottom: var(--space-sm);

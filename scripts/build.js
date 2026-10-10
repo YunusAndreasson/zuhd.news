@@ -1316,9 +1316,17 @@ if (existsSync(aiModelsSrc)) {
 // mirrors it under dist/api/ with its stamp held (`apiStamps`). Missing input
 // degrades gracefully (mobile renders an empty disaster layer when the
 // endpoint 404s).
+/**
+ * What the hazard sources hold, kept as each snapshot is read so the country
+ * pages can say what they count in one country (`lib/country-hazards.js`).
+ * A snapshot that is missing leaves its key unset, and a page says nothing
+ * about it.
+ */
+const hazardSources = {}
 const gdacsSrc = join(ROOT, 'content', '.gdacs.json')
 if (existsSync(gdacsSrc)) {
   const g = JSON.parse(readFileSync(gdacsSrc, 'utf8'))
+  hazardSources.alerts = g.alerts
   writeFileSync(join(DIST_DIR, 'api', 'gdacs.json'), JSON.stringify(apiStamps.hold('gdacs', g)))
   const detailCount = g.details ? Object.keys(g.details).length : 0
   console.log(`  Built: api/gdacs.json (${g.alerts?.length ?? 0} alerts, ${detailCount} details)`)
@@ -1333,6 +1341,7 @@ if (existsSync(gdacsSrc)) {
 const conflictSrc = join(ROOT, 'content', '.conflict.json')
 if (existsSync(conflictSrc)) {
   const c = JSON.parse(readFileSync(conflictSrc, 'utf8'))
+  hazardSources.conflict = c
   writeFileSync(
     join(DIST_DIR, 'api', 'conflict.json'),
     JSON.stringify(apiStamps.hold('conflict', c)),
@@ -1999,6 +2008,7 @@ if (existsSync(ipcSrc)) {
       }),
     ),
   )
+  hazardSources.totals = countryTotals(all)
   console.log(
     `  Built: api/ipc.json (${ipcAreas.length} areas at Emergency or worse across ` +
       `${new Set(ipcAreas.map((a) => a.iso3)).size} countries, ` +
@@ -2461,6 +2471,7 @@ const countryResult = await buildCountryPages({
   sorted,
   distDir: DIST_DIR,
   template: countryTemplate,
+  hazards: hazardSources,
   shareRowHtml,
   skipOg: process.env.SKIP_OG === '1',
 })
