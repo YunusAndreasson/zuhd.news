@@ -1116,6 +1116,38 @@ test('story cards forward the per-source country the card renders', (t) => {
   )
 })
 
+// The card says how each outlet framed a story, in the writer's words. The
+// feed has carried that line since the app's sources sheet needed it; the card's
+// payload is written by a second mapper, which is how it came to lack it.
+test('a story card carries each source’s angle, the same one the feed carries', (t) => {
+  const feedPath = join(ROOT, 'dist/api/feed.json')
+  if (!existsSync(feedPath)) {
+    t.skip('dist/api/feed.json not built')
+    return
+  }
+  const { categories } = JSON.parse(readFileSync(feedPath, 'utf8'))
+  let compared = 0
+  let angled = 0
+  for (const article of Object.values(categories).flat()) {
+    const path = join(ROOT, 'dist/api/story', `${article.slug}.json`)
+    // A story with no coordinates is in the feed and has no card.
+    if (!existsSync(path)) continue
+    const story = JSON.parse(readFileSync(path, 'utf8'))
+    assert.equal(story.sources.length, article.sources.length, `${article.slug}: a source is missing`)
+    for (let i = 0; i < article.sources.length; i++) {
+      compared++
+      assert.equal(
+        story.sources[i].angle,
+        article.sources[i].angle,
+        `${article.slug}: source ${i} is framed differently on the card and in the feed`,
+      )
+      if (story.sources[i].angle) angled++
+    }
+  }
+  assert.ok(compared > 0, 'no story is in both the feed and the map')
+  assert.ok(angled / compared > 0.5, `only ${angled}/${compared} card sources carry an angle`)
+})
+
 // ---------------------------------------------------------------------------
 // The land tint — per-metric country payloads and the ramp that draws them
 // ---------------------------------------------------------------------------

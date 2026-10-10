@@ -838,6 +838,29 @@ ms.setActionHandler('seekforward',d=>{a.currentTime=Math.min(a.duration||0,a.cur
 
 // (threadLookup moved above buildArticle calls)
 
+/**
+ * A source's optional keys, for the two payloads that publish a story's
+ * sources: the feed (`apiCategories`) and the map's story card
+ * (`/api/story/{slug}.json`). The mappers themselves stay apart, because the
+ * card publishes a missing `url` as `''` and the feed as `null`, and the app
+ * drops a story source whose `url` is not a string. What they must not differ
+ * on is which optional keys exist: `angle` reached the feed and not the card,
+ * so the card could ring a story as contested and not say what each outlet
+ * made of it.
+ *
+ * `angle` is the outlet's framing in the writer's words. `image` is the
+ * publisher's lead-image URL when the feed or page offered one; nothing
+ * renders it yet.
+ *
+ * @param {{ angle?: unknown, image?: unknown }} s
+ */
+function sourceExtras(s) {
+  return {
+    ...(s.angle ? { angle: s.angle } : {}),
+    ...(typeof s.image === 'string' && /^https?:\/\//.test(s.image) ? { image: s.image } : {}),
+  }
+}
+
 // API feeds — pre-grouped, pre-split blocks for native rendering.
 // Mobile reads `article.sentences: string[]` and maps each entry to a `<Text>`
 // element. Field name is `sentences` for mobile-client compatibility; each
@@ -889,10 +912,7 @@ const apiCategories = Object.fromEntries(
           url: s.url || null,
           country: s.country || null,
           sentiment: s.sentiment != null ? Number(s.sentiment) : null,
-          ...(s.angle ? { angle: s.angle } : {}),
-          // Optional and additive, like `angle`: the publisher's lead-image URL
-          // when the feed or page offered one. Nothing renders it yet.
-          ...(typeof s.image === 'string' && /^https?:\/\//.test(s.image) ? { image: s.image } : {}),
+          ...sourceExtras(s),
         })),
         concepts: concepts.map(c => typeof c === 'object' ? c.label : c).filter(Boolean),
         eventCoverage: meta.eventCoverage != null ? Number(meta.eventCoverage) : null,
@@ -2032,7 +2052,7 @@ for (const a of sorted) {
         url: x.url || '',
         country: x.country || null,
         sentiment: x.sentiment != null ? Number(x.sentiment) : null,
-        ...(typeof x.image === 'string' && /^https?:\/\//.test(x.image) ? { image: x.image } : {}),
+        ...sourceExtras(x),
       })),
       /**
        * The indicators this story is about.
