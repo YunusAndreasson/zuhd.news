@@ -167,16 +167,6 @@ export const vessels = (n: number | undefined): string =>
 export const rank = (r: number, total: number): string => `${r} / ${total}`
 
 /**
- * A source's sentiment, as a signed two-decimal number.
- *
- * Only ever shown on stories the map has already marked contested, where the
- * spread between outlets is the point. Printing it on every card would be
- * editorialising — the figure is a machine estimate of tone, not a judgement
- * we stand behind story by story.
- */
-export const sentiment = (v: number): string => signed(v, 2)
-
-/**
  * The one place the sign glyph is chosen.
  *
  * `toFixed` emits an ASCII hyphen, so a falling market printed U+002D while

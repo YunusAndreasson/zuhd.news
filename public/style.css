@@ -6648,15 +6648,42 @@ body.map-wide .map-key {
   gap: 0.18rem;
 }
 
-/* Outlet · country · tone. The tone column is fixed-width and tabular so the
-   signs line up — the spread is the point, and a ragged column hides it. */
+/* How each outlet framed it: the same rows, folded.
+
+   The summary is the section label the card already uses, with the marker the
+   browser draws for a `<details>`; the note under it is the one sentence a
+   contested story earns. The flat line of names follows the fold and steps
+   aside while the rows are open, so an outlet is never named twice and a card
+   with the fold shut still ends on who reported it. */
+.map-popup-framing > summary { cursor: pointer; }
+
+.map-popup-framing-note {
+  margin: 0 0 0.4rem;
+  font-size: var(--size-xs);
+  line-height: 1.4;
+  color: var(--map-ink-soft);
+}
+
+.map-popup-framing + .map-popup-sources-flat {
+  margin-top: 0.2rem;
+  padding-top: 0;
+  border-top: 0;
+}
+
+.map-popup-framing[open] + .map-popup-sources-flat { display: none; }
+
+/* Outlet · country · lean, then the outlet's angle on its own line. The
+   country follows the name and takes the slack, so it sits in the same place
+   on a row with a lean and a row without, and the leans share the right edge. */
 .map-popup-source {
   display: grid;
-  grid-template-columns: 1fr auto auto;
+  grid-template-columns: auto 1fr auto;
   align-items: baseline;
-  gap: 0.5rem;
+  column-gap: 0.5rem;
   font-size: var(--size-xs);
 }
+
+.map-popup-source + .map-popup-source { margin-top: 0.3rem; }
 
 .map-popup-source-name {
   color: var(--map-ink-body);
@@ -6670,22 +6697,26 @@ a.map-popup-source-name {
 }
 
 .map-popup-source-cc {
+  grid-column: 2;
   color: var(--map-ink-dim);
   font-variant-caps: all-small-caps;
   letter-spacing: var(--track-wide);
 }
 
+/* A word, in ink. A lean is a reading of framing, not a verdict, so it does
+   not take the market's green and red. */
 .map-popup-source-tone {
-  min-width: 3.2em;
+  grid-column: 3;
   text-align: right;
   color: var(--map-ink-muted);
-  font-variant-numeric: lining-nums tabular-nums;
 }
 
-/* Warm for approving coverage, cool for critical — the same two-tone logic the
-   chokepoint rim uses, and the only place on the card colour carries meaning. */
-.map-popup-source-tone.is-pos { color: var(--map-pos); }
-.map-popup-source-tone.is-neg { color: var(--map-neg); }
+.map-popup-source-angle {
+  grid-column: 1 / -1;
+  margin: 0.05rem 0 0;
+  line-height: 1.4;
+  color: var(--map-ink-muted);
+}
 
 .map-popup-link {
   font-size: var(--size-xs);

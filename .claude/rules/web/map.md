@@ -137,6 +137,9 @@ calendar `hijri.md`.
   through `attach()` (`reattaching`), or the card stays on "Loading…".
 - A story card is one width at two densities. `preview()` prefetches the
   story, and `growTo` runs after the position is final.
+- The card's sources (`sourceBlock`) take their thresholds and words from
+  `shared/source-framing.ts`, and the fold's words from the article page. A
+  lean is a word in ink, never a number and never `--map-pos`/`--map-neg`.
 - A dense place opens `openPlace`. It does not fly.
 - Peek answers one question and clips (`.map-sheet.is-peek`). Its offsets
   are `--map-scrub-h` and `--map-rail-w`; the first is set on `body`, where

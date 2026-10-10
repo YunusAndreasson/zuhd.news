@@ -598,6 +598,10 @@ const ISLAND_V = (() => {
     }
   }
   walk(join(publicDir, 'islands'))
+  // And what the islands import from `shared/`: the chart arithmetic, the
+  // framing thresholds, the share links. A change there changes the bundle
+  // while touching no file under `public/islands`, and this key did not move.
+  walk(join(ROOT, 'shared'))
   const h = createHash('sha256')
   for (const f of files.sort()) h.update(readFileSync(f))
   return h.digest('hex').slice(0, 10)

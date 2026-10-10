@@ -29,6 +29,7 @@ export type {
 // than a copy of it that can fall behind.
 export type { GenocideFinding, GenocideSituation } from '@shared/genocide'
 
+import { DIVERGENCE_NOTABLE } from '@shared/source-framing'
 import type { Chokepoint } from '@shared/types'
 
 /** A story from `/api/map.json`. */
@@ -408,8 +409,12 @@ export const decayAt = (t: number, now: number) => {
  * the ring) and the story card (which has to explain it) need the same
  * threshold, and a ring that appears without the card accounting for it is
  * the map asking a question it then refuses to answer.
+ *
+ * The number is `shared/source-framing.ts`'s, where the sentence the card
+ * prints for it is decided: one threshold for the ring, the sentence, the
+ * article page and the app.
  */
-export const CONTESTED_D = 0.35
+export const CONTESTED_D = DIVERGENCE_NOTABLE
 
 /**
  * The viewport width below which the map is laid out for a phone.

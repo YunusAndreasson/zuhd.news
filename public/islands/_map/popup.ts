@@ -25,6 +25,7 @@ import {
   fetchEntity,
 } from '../_entity-panel'
 import { shareUrl } from '@shared/share'
+import { TONE_LABELS, divergenceNote, toneOf } from '@shared/source-framing'
 import { renderShare } from '../_share'
 import { CONTESTED_D, type MapPoint } from './types'
 import type { StoryPlace } from './places'
@@ -55,6 +56,8 @@ interface StorySource {
   url: string
   country?: string | null
   sentiment?: number | null
+  /** What this outlet brought that the others did not, in the writer's words. */
+  angle?: string
 }
 
 interface Story {
@@ -225,16 +228,47 @@ const sourceName = (s: StorySource): Node => {
 }
 
 /**
- * Attribution — and, on a story the map has already ringed, the disagreement
- * itself rather than a word for it.
+ * One outlet: who, where it files from, how it leaned, and what it brought.
  *
- * The build has always shipped a `country` and a `sentiment` per source; the
- * story endpoint dropped both, so the card could show the ring but never what
- * produced it. A contested story is the one place the tone numbers are worth
- * printing: they are a machine estimate, and putting one beside every outlet on
- * every story would read as a verdict we do not stand behind story by story.
- * Where the ring is on, the spread *is* the story, and the outlet's country is
- * usually the shape of it.
+ * The lean is a word and only where there is one. Seven sources in ten read
+ * neutral, and a word on every row is a tic, not information; the number
+ * behind it is a machine estimate and is not printed. In ink, not in the
+ * market's green and red: a lean is not a verdict.
+ *
+ * The angle is the writer's own sentence about this outlet, a lower-case
+ * predicate ("emphasizes…") that reads on from the name above it.
+ */
+const sourceRow = (s: StorySource): HTMLElement => {
+  const li = el('li', 'map-popup-source')
+  li.append(sourceName(s))
+  if (s.country) li.append(el('span', 'map-popup-source-cc', s.country))
+  const tone = toneOf(s.sentiment)
+  if (tone && tone !== 'neutral') li.append(el('span', 'map-popup-source-tone', TONE_LABELS[tone]))
+  if (s.angle) li.append(el('p', 'map-popup-source-angle', s.angle))
+  return li
+}
+
+/**
+ * Attribution, and how each outlet framed the story.
+ *
+ * Four cases, by what there is to say:
+ *
+ * - nobody's angle is recorded and the story is not contested: the flat line
+ *   of names, as it always was;
+ * - one outlet with an angle: its row, open, under "Source". There is nothing
+ *   to compare and nothing worth a control;
+ * - a story the map has ringed: the rows open, ordered by lean so the spread
+ *   reads down the list, under the sentence `divergenceNote` gives it;
+ * - any other story with several outlets: the same rows, folded. Open on every
+ *   card they would add a paragraph per outlet to a card capped at half the
+ *   screen.
+ *
+ * The words and the fold are the article page's (`framingHtml`,
+ * `article-chain.js`), so the same story reads the same on both.
+ *
+ * The flat line of names stays after the fold and the stylesheet hides it
+ * while the rows are open: the names never print twice, and a card with the
+ * fold shut still ends on who reported it.
  */
 const sourceBlock = (story: Story, p: MapPoint): Node[] => {
   const sources = story.sources ?? []
@@ -242,25 +276,37 @@ const sourceBlock = (story: Story, p: MapPoint): Node[] => {
 
   const divergence = story.sentimentDivergence ?? p.d ?? 0
   const rated = sources.filter((s) => typeof s.sentiment === 'number')
+  const contested = divergence >= CONTESTED_D && rated.length >= 2
+  const framed = sources.some((s) => s.angle)
   const nodes: Node[] = []
 
-  if (divergence >= CONTESTED_D && rated.length >= 2) {
-    // Ordered by tone so the spread reads down the list rather than needing to
-    // be reconstructed from scattered numbers.
-    const ordered = [...rated].sort((a, b) => (b.sentiment as number) - (a.sentiment as number))
-    nodes.push(el('p', 'map-popup-section', 'Sources diverge'))
-    const list = el('ul', 'map-popup-sources')
-    for (const s of ordered) {
-      const li = el('li', 'map-popup-source')
-      li.append(sourceName(s))
-      if (s.country) li.append(el('span', 'map-popup-source-cc', s.country))
-      const v = s.sentiment as number
-      const tone = v > 0 ? ' is-pos' : v < 0 ? ' is-neg' : ''
-      li.append(el('span', `map-popup-source-tone${tone}`, fmt.sentiment(v)))
-      list.append(li)
-    }
-    nodes.push(list)
+  const rows = (list: StorySource[]) => {
+    const ul = el('ul', 'map-popup-sources')
+    for (const s of list) ul.append(sourceRow(s))
+    return ul
+  }
+
+  if (sources.length === 1 && framed) {
+    nodes.push(el('p', 'map-popup-section', 'Source'), rows(sources))
   } else {
+    if (framed || contested) {
+      const details = document.createElement('details')
+      details.className = 'map-popup-framing'
+      details.open = contested
+      details.append(el('summary', 'map-popup-section', 'How each outlet framed it'))
+      const note = contested ? divergenceNote(divergence, sources.length) : null
+      if (note) details.append(el('p', 'map-popup-framing-note', note))
+      // By lean, most favourable first, so the spread reads down the list
+      // rather than needing to be reconstructed. An unrated outlet goes last.
+      const lean = (s: StorySource) => (typeof s.sentiment === 'number' ? s.sentiment : -Infinity)
+      details.append(rows(contested ? [...sources].sort((a, b) => lean(b) - lean(a)) : sources))
+      // The card is capped and this block sits at its foot, so the rows open
+      // below a fold the reader has no reason to think is there.
+      details.addEventListener('toggle', () => {
+        if (details.open) details.scrollIntoView?.({ block: 'nearest' })
+      })
+      nodes.push(details)
+    }
     const line = el('p', 'map-popup-sources-flat')
     line.append(el('span', 'map-popup-sources-label', 'Sources'))
     sources.forEach((s, i) => {

@@ -38,6 +38,8 @@ shared helpers are indexed in `.claude/rules/shared-modules.md`.
 - `/about`, `/contact`, `/privacy` and `/mcp` are static, and opened over the
   current page by the `doc-sheet` island.
 - `/feed.xml`, `/sitemap.xml` and `/api/og/**` (generated share cards).
+- `ISLAND_V` hashes `public/islands` and `shared/`: an island bundles what it
+  imports from `@shared`.
 - JSON APIs under `/api/`: for the app (`feed`, `feed-lite`, `heatmap`,
   `trends`, `analysis`, `market-signals`, `companies`, `ai-models`, `meta`),
   for the map (`map`, `map-leads`, `map-archive`, `story/{slug}`,
