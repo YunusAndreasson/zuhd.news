@@ -1,6 +1,5 @@
-import type { GdacsAlert } from '@shared/types';
 import { AI_CHANGE_WINDOW, aiScoreChange } from './ai-models';
-import { deltaOf, formatCount, formatNumber } from './cards/format';
+import { deltaOf, formatNumber } from './cards/format';
 import { type MovePath, middle, movePath, type PathSeries } from './cards/path';
 import type { CardDelta, CardSeries, WindowMove } from './cards/types';
 import {
@@ -20,9 +19,7 @@ import {
   WEEK_WINDOW,
   yearOf,
 } from './cards/week-move';
-import { type ConflictWeek, weekToll, weekWindow } from './conflict-week';
 import { MONTH_ABBR } from './date-format';
-import { hungerTotal } from './famine-totals';
 import {
   type CatalogGroup,
   type CatalogRow,
@@ -30,8 +27,6 @@ import {
   type GroupKey,
 } from './instrument-catalog';
 import { dollarMoves, type Exchange, ownMoves, sessionLevels } from './markets';
-import type { FamineCountryTotal } from './overlays';
-import { leadNames } from './row-leaders';
 import { DAY_MS } from './time';
 import { straitSqueezed } from './valence';
 
@@ -836,9 +831,37 @@ export function groupPath(group: CatalogGroup, now = Date.now()): MovePath | nul
   }
 }
 
-/** Combine rates at a shared observation period: months for policy, prices
- *  and labour; days for the borrowing basket. Changes use the same members
- *  at both ends and never parse formatted display values. */
+/** A month for a basket read in days: four weeks, the month a member
+ *  published weekly has (the mortgage rate, each Thursday). */
+const FOUR_WEEKS = 28;
+
+/**
+ * The day a basket read in days is compared with for its month: the latest
+ * day every member has that is four weeks back, or up to a few days more
+ * where that day was a holiday (`ANCHOR_SLACK_DAYS`). None, and the basket
+ * has no month: a gap is never bridged.
+ */
+function fourWeeksBack(days: readonly number[], from: number): number | undefined {
+  let found: number | undefined;
+  for (const day of days) {
+    const back = from - day;
+    if (back < FOUR_WEEKS || back > FOUR_WEEKS + ANCHOR_SLACK_DAYS) continue;
+    if (found === undefined || day > found) found = day;
+  }
+  return found;
+}
+
+/**
+ * Combine rates at a shared observation period: months for policy, prices
+ * and labour; days for the borrowing basket. Changes use the same members
+ * at both ends and never parse formatted display values.
+ *
+ * Every one moves by the month, the borrowing basket too (`fourWeeksBack`).
+ * Its yields are quoted daily and it read over seven days, the one row under
+ * `economy` that did: it carried `7 days` beside its number, and the section
+ * a line saying its changes were monthly "unless noted". A yield's month is
+ * also the larger fact: a week of one is a few hundredths of a point.
+ */
 function rateFigure(group: CatalogGroup, now: number): GroupFigure {
   const isBorrowing = group.key === 'borrowing';
   const isJobs = group.key === 'jobs';
@@ -898,14 +921,15 @@ function rateFigure(group: CatalogGroup, now: number): GroupFigure {
   const rounded = (n: number) => Number(n.toFixed(places));
   // Compare the same members at the matching prior period; never bridge a gap.
   // The difference of the two printed figures, so the level and its move agree.
-  const previous = aggregate(month - (isBorrowing ? 7 : 1));
+  const before = isBorrowing ? fourWeeksBack(shared, month) : month - 1;
+  const previous = before === undefined ? undefined : aggregate(before);
   const move =
     previous === undefined
       ? undefined
       : deltaOf(rounded(value) - rounded(previous), {
           unit: 'rate',
           decimals: places,
-          window: isBorrowing ? 'over 7 days' : 'on the month',
+          window: 'on the month',
           flat: `${(0).toFixed(places)} points`,
         });
   const date = new Date(month * DAY_MS);
@@ -918,7 +942,7 @@ function rateFigure(group: CatalogGroup, now: number): GroupFigure {
     'us-mortgage': '30-year mortgage',
   };
   const coverage = isBorrowing
-    ? `${period} · equal-weight US basket: ${rows.map((row) => borrowingNames[row.id] ?? row.card?.title ?? row.id).join(', ')} · weekly change in percentage points`
+    ? `${period} · equal-weight US basket: ${rows.map((row) => borrowingNames[row.id] ?? row.card?.title ?? row.id).join(', ')} · change over four weeks in percentage points`
     : isPolicy
       ? `${period} · median of ${rows.length} central banks · policy rates`
       : isJobs
@@ -1022,57 +1046,4 @@ export function groupFigure(group: CatalogGroup, now = Date.now()): GroupFigure 
     case 'predictions':
       return {};
   }
-}
-
-/** People, short enough to share a line: `134,808`, `19.5M`, `128M`. */
-function compactPeople(n: number): string {
-  if (n < 1_000_000) return formatCount(n);
-  const millions = n / 1_000_000;
-  return `${formatNumber(millions, millions < 100 ? 1 : 0)}M`;
-}
-
-const counted = (n: number, one: string, many: string) =>
-  `${formatCount(n)} ${n === 1 ? one : many}`;
-
-export interface HazardInputs {
-  disasters: readonly GdacsAlert[];
-  conflictWeek?: ConflictWeek | null;
-  famineTotals?: readonly FamineCountryTotal[];
-}
-
-/** How many parts the hazards line holds: it shares one caption line. */
-const HAZARD_PARTS = 2;
-
-/**
- * The hazards in people, in the order of how live each is: the alerts
- * standing now, the conflict week's dead, the people in hunger. At most two,
- * and only what fits one line (`leadNames`).
- *
- * The conflict toll is never printed without its dates: the source runs about
- * five weeks behind, and a bare toll reads as this week's. Hunger is a sum of
- * analyses from different months (`hungerTotal`); the list it opens says each
- * one's month.
- */
-export function hazardParts(hazards: HazardInputs): string[] {
-  const parts: string[] = [];
-  let red = 0;
-  let orange = 0;
-  for (const alert of hazards.disasters) {
-    if (alert.alertlevel === 'Red') red += 1;
-    else if (alert.alertlevel === 'Orange') orange += 1;
-  }
-  if (red > 0) parts.push(counted(red, 'red alert', 'red alerts'));
-  else if (orange > 0) parts.push(counted(orange, 'orange alert', 'orange alerts'));
-
-  const week = hazards.conflictWeek;
-  if (week) {
-    const dates = weekWindow(week);
-    const { killed } = weekToll(week);
-    if (dates && killed > 0) parts.push(`${formatCount(killed)} killed, ${dates}`);
-  }
-
-  const hunger = hungerTotal(hazards.famineTotals ?? []);
-  if (hunger) parts.push(`${compactPeople(hunger.people)} in hunger`);
-
-  return leadNames(parts).slice(0, HAZARD_PARTS);
 }

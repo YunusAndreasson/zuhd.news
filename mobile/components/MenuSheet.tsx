@@ -23,6 +23,7 @@ import {
   type FontFamily,
   type FontSize,
   ICON,
+  MAX_FONT_SCALE,
   SPACING,
 } from '../constants/theme';
 import { useSheetBackNavigation } from '../hooks/useSheetBackNavigation';
@@ -67,10 +68,10 @@ import { MARKET_CAVEAT } from '../lib/predictions';
 import { LEADERS_SEPARATOR } from '../lib/row-leaders';
 import type { TapResult } from '../lib/tap-result';
 import {
+  type GroupFigure,
   groupFigure,
   groupLadder,
   groupPath,
-  hazardParts,
   stocksLine,
   stocksSummary,
   WORLD_STOCKS,
@@ -741,14 +742,33 @@ function MenuRootPage({
                 </View>
                 <View style={styles.chevronRoom} />
               </View>
+            ) : section === 'economy' ? (
+              // Every row under it moves by the month, so the window is a
+              // head over their numbers, as the table's are. It was a line
+              // under the label, "Monthly changes unless noted", while one
+              // row read over seven days (`rateFigure`).
+              <View style={styles.tableHead}>
+                <View style={styles.tableLabel}>
+                  <SectionLabel label={section} />
+                </View>
+                <View
+                  style={styles.tableHeads}
+                  accessibilityElementsHidden
+                  importantForAccessibility="no-hide-descendants"
+                >
+                  <Text
+                    variant="caption"
+                    tone="secondary"
+                    maxFontSizeMultiplier={MAX_FONT_SCALE.tabular}
+                  >
+                    {ECONOMY_WINDOW}
+                  </Text>
+                </View>
+                <View style={styles.chevronRoom} />
+              </View>
             ) : (
               <SectionLabel label={section} />
             )}
-            {section === 'economy' ? (
-              <Text variant="caption" tone="secondary">
-                Monthly changes unless noted
-              </Text>
-            ) : null}
             {groups.map((group, i) => (
               <GroupEntry
                 key={group.key}
@@ -840,6 +860,9 @@ const DataUsedRow = memo(function DataUsedRow() {
   );
 });
 
+/** The window every row under `economy` moves over, as its head names it. */
+const ECONOMY_WINDOW = '1 month';
+
 /** The first row's moves, at a card's chip: a step over the rows under it,
  *  which print theirs at a caption's size. Every cell is measured at it. */
 const HEADLINE_SCALE = 1.15;
@@ -925,9 +948,24 @@ const GroupEntry = memo(function GroupEntry({
  * - **No subtitle.** A row is its name and its number. Do not put the lead
  *   mover back under it.
  * - **No count.**
- * - AI uses a labelled 90-day average point gain; dates show the nearest
- *   event. A list whose members are not one quantity prints nothing.
+ * - **Under `explore` a row is its name alone** (`EXPLORE_HINTS`). The AI
+ *   labs printed an average gain with `90-day average` under it, the dates
+ *   the nearest countdown, the hazards a line of people and the contracts
+ *   nothing: five rows in four forms ("some have a subtitle, some have an
+ *   indicator", the user, 2026-10-11). They are ways in, not readings, and
+ *   what each holds is on its page.
  */
+/** A row with no figure: a way in under `explore`. */
+const NO_FIGURE: GroupFigure = {};
+
+/** What each list under `explore` opens, for a screen reader: the row prints
+ *  its name alone, as `country rankings` and the tools under it do. */
+const EXPLORE_HINTS: Partial<Record<GroupKey, string>> = {
+  ai: 'Each lab’s best score on a capability index',
+  predictions: 'What traders price each outcome at',
+  calendar: 'Rate decisions and data releases ahead',
+};
+
 const GroupRow = memo(function GroupRow({
   group,
   first,
@@ -937,23 +975,16 @@ const GroupRow = memo(function GroupRow({
   first: boolean;
   onPress: () => void;
 }) {
-  const { move, level, detail, coverage } = groupFigure(group);
+  const explore = MENU_SECTION[group.key] === 'explore';
+  const { move, level, detail, coverage } = explore ? NO_FIGURE : groupFigure(group);
   // Built with statements: a ternary holding `??` beside `||` is a shape the
   // compiler skips the whole component for (`react-compiler.test.ts`).
   const said: string[] = [];
   // A level is the row's `value`, which the row speaks itself.
   if (move) said.push(spokenDelta(move));
-  else if (group.key === 'ai' && level) said.push(level, 'current score');
   if (detail) said.push(detail);
   if (coverage) said.push(coverage);
-  let exception =
-    group.key === 'ai' && move
-      ? '90-day average'
-      : move && move.window !== 'over 7 days'
-        ? 'monthly'
-        : group.key === 'ai'
-          ? 'average score'
-          : undefined;
+  let exception = move && move.window !== 'over 7 days' ? 'monthly' : undefined;
   if (MENU_SECTION[group.key] === 'economy' && move) {
     exception =
       move.window === 'on the month'
@@ -966,6 +997,7 @@ const GroupRow = memo(function GroupRow({
     <MenuRow
       first={first}
       title={group.title}
+      hint={explore ? EXPLORE_HINTS[group.key] : undefined}
       figureLabel={said.length > 0 ? said.join(', ') : undefined}
       // The size the list's own page and its rows print a move at.
       figure={
@@ -991,10 +1023,8 @@ const GroupRow = memo(function GroupRow({
   );
 });
 
-/** `world hazards` on the root. Its line is people where the app can count
- *  them: the conflict week's dead with its dates, the people in hunger
- *  (`hazardParts`). The layers counted in marks are its hint, and its line
- *  while nothing has loaded to count. */
+/** `world hazards` on the root: its name alone, as every row under
+ *  `explore`. The layers counted in marks are a screen reader's hint. */
 const HazardsRow = memo(function HazardsRow({
   hazards,
   listed,
@@ -1023,13 +1053,13 @@ const HazardsRow = memo(function HazardsRow({
     .filter((p): p is string => p !== null)
     .slice(0, 2)
     .join(LEADERS_SEPARATOR);
-  const people = hazardParts(hazards).join(LEADERS_SEPARATOR);
+  // Its name alone, as every row under `explore`: what it leads to is said
+  // to a listener, who would otherwise learn it only by opening the page.
   return (
     <MenuRow
       first={first}
       title="world hazards"
-      description={marks}
-      teaser={people}
+      hint={marks}
       trailing="push"
       onPress={() => onPress('world hazards')}
     />

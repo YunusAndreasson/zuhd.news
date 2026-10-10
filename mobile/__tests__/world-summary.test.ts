@@ -1,11 +1,10 @@
-import type { Chokepoint, ConflictEvent, GdacsAlert } from '@shared/types';
+import type { Chokepoint } from '@shared/types';
 import { deltaOf } from '../lib/cards/format';
 import type { SwipeCard } from '../lib/cards/rank';
 import type { ReadingCard } from '../lib/cards/types';
 import { WEEK_WINDOW } from '../lib/cards/week-move';
 import type { CatalogGroup, CatalogRow, GroupKey } from '../lib/instrument-catalog';
 import type { Exchange } from '../lib/markets';
-import type { FamineCountryTotal } from '../lib/overlays';
 import {
   CURRENCY_TAIL,
   companiesSummary,
@@ -14,7 +13,6 @@ import {
   groupLadder,
   groupPath,
   exchangeTally,
-  hazardParts,
   shippingCaption,
   shippingSummary,
   stocksCoverage,
@@ -550,20 +548,39 @@ describe('a list’s figure on the menu’s first page', () => {
     });
   });
 
-  it('uses shared dates and percentage-point changes for the borrowing basket', () => {
+  it('reads the borrowing basket over a month, as every row beside it, on dates all members share', () => {
+    // The yields are quoted daily and the mortgage rate each Thursday: the
+    // basket is read on the Thursdays, against the one four weeks back. It
+    // read over seven days, the one row under `economy` that did.
     const figure = groupFigure(
       group('borrowing', [
-        rate('us-2y', ['2026-09-24', '2026-10-01', '2026-10-02'], [4, 4.3, 9]),
-        rate('us-10y', ['2026-09-24', '2026-10-01'], [5, 5.3]),
-        rate('us-mortgage', ['2026-09-24', '2026-10-01'], [6, 6.3]),
+        rate('us-2y', ['2026-09-03', '2026-09-24', '2026-10-01', '2026-10-02'], [4, 4.2, 4.3, 9]),
+        rate('us-10y', ['2026-09-03', '2026-09-24', '2026-10-01'], [5, 5.2, 5.3]),
+        rate('us-mortgage', ['2026-09-03', '2026-09-24', '2026-10-01'], [6, 6.2, 6.3]),
       ]),
     );
     expect(figure).toMatchObject({
       level: '5.30%',
       measure: 'average',
-      move: { direction: 'up', magnitude: '0.30 points', window: 'over 7 days' },
+      move: { direction: 'up', magnitude: '0.30 points', window: 'on the month' },
     });
     expect(figure.coverage).toContain('Oct 1, 2026');
+    expect(figure.coverage).toContain('four weeks');
+  });
+
+  it('takes the day a few days past four weeks where that Thursday was a holiday', () => {
+    const basket = (first: string) =>
+      groupFigure(
+        group('borrowing', [
+          rate('us-2y', [first, '2026-10-01'], [4, 4.5]),
+          rate('us-10y', [first, '2026-10-01'], [5, 5.5]),
+        ]),
+      );
+    // Thirty days back stands for the month; thirty-two is another window.
+    expect(basket('2026-09-01').move).toMatchObject({ magnitude: '0.50 points' });
+    expect(basket('2026-08-30').move).toBeUndefined();
+    // Three weeks is not a month either.
+    expect(basket('2026-09-10').move).toBeUndefined();
   });
 
   it('does not turn a missing prior period into a monthly or weekly change', () => {
@@ -735,51 +752,6 @@ describe('a list’s figure on the menu’s first page', () => {
     expect(groupFigure(group('predictions', [weekRow('poly-x', 5)]))).toEqual({});
     // Nor a number of one member, which would be that member's.
     expect(groupFigure(group('crypto', [weekRow('btc', 1)])).move).toBeUndefined();
-  });
-});
-
-const alert = (alertlevel: GdacsAlert['alertlevel']) => ({ alertlevel }) as GdacsAlert;
-const WEEK = {
-  windowStart: '2026-08-25',
-  windowEnd: '2026-08-31',
-  events: [{ fatalities: 600 }, { fatalities: 48 }] as ConflictEvent[],
-};
-const TOTALS = [{ p3plus: 19_466_533 }, { p3plus: 108_800_000 }] as FamineCountryTotal[];
-
-describe('world hazards', () => {
-  it('counts the dead with their dates, and the hungry in people', () => {
-    expect(hazardParts({ disasters: [], conflictWeek: WEEK, famineTotals: TOTALS })).toEqual([
-      '648 killed, Aug 25–31',
-      '128M in hunger',
-    ]);
-  });
-
-  it('leads with the alerts standing now, red over orange, and holds two parts', () => {
-    const disasters = [alert('Red'), alert('Orange'), alert('Orange'), alert('Green')];
-    expect(hazardParts({ disasters, conflictWeek: WEEK, famineTotals: TOTALS })).toEqual([
-      '1 red alert',
-      '648 killed, Aug 25–31',
-    ]);
-    expect(hazardParts({ disasters: [alert('Orange'), alert('Orange')] })).toEqual([
-      '2 orange alerts',
-    ]);
-  });
-
-  it('never prints a toll without its dates, or a part that runs past the line', () => {
-    const undated = { ...WEEK, windowStart: '', windowEnd: '' };
-    expect(hazardParts({ disasters: [], conflictWeek: undated })).toEqual([]);
-    const long = {
-      windowStart: '2026-08-29',
-      windowEnd: '2026-09-04',
-      events: [{ fatalities: 12_480 }] as ConflictEvent[],
-    };
-    expect(hazardParts({ disasters: [], conflictWeek: long, famineTotals: TOTALS })).toEqual([
-      '12,480 killed, Aug 29 – Sep 4',
-    ]);
-  });
-
-  it('is empty on a day of minor alerts with nothing else loaded', () => {
-    expect(hazardParts({ disasters: [alert('Green')], conflictWeek: null })).toEqual([]);
   });
 });
 
