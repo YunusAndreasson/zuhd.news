@@ -69,6 +69,10 @@ paths:
   day, which is one step, and never a bar for a move.
 - Every row of the table has all three windows. A list quoted monthly sits
   under `economy` (`MENU_SECTION`): food is there.
+- Every row under `economy` moves by the month, named once as a head on the
+  section's line (`ECONOMY_WINDOW`). No row there carries a window of its
+  own, and no line says "unless noted": `borrowing costs`, quoted daily, is
+  read against four weeks back (`fourWeeksBack`, `rateFigure`).
 - A list's line is made of the rows its numbers are made of, weighed and
   combined the same way (`movePath`, `lib/cards/path.ts`), and is never drawn
   to its own range alone (`QUIET_SPAN_PCT`): a quiet month lies flat.
@@ -100,9 +104,9 @@ paths:
   series in per cent draws none: its move is a difference. Every row of such a
   list keeps the slot, and the two columns are named once over the first row
   (`InstrumentHeads`), which then replaces the window in the list's line.
-- `world hazards` keeps a line under its name (`hazardParts`): alerts standing
-  now, then the week's dead with its dates, then people in hunger; two at
-  most.
+- Under `explore` a row is its name alone, `world hazards` included
+  (`GroupRow`, `HazardsRow`): no figure and no line under it. What it opens is
+  a screen reader's hint (`EXPLORE_HINTS`).
 - The lists hold every published series (`lib/instrument-catalog.ts`), not the
   strip's ranked pool. A row reuses the pool's card object (`take`), so a row,
   its slot and its card are one thing. A series the table does not name is
