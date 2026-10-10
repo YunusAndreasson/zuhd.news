@@ -41,6 +41,10 @@ The rail's readings are `map-rail.md`.
   given, before `reference` is weighed, and reaches no dot, axis or table.
 - `referenceChange: false` where the rule is a threshold (replacement, 2.1)
   and not a base: the readout then takes no percentage against it.
+- `series-chart` draws an indicator's chart unless `chart-source` carries
+  `options`, which must be the options the static figure beside it was built
+  with. A value's format travels as a name (`formatTrajectory`); `NaN` as
+  `null`.
 - A country's trajectory cards (`trajectoriesHtml`, `country-pages.js`) are
   `seriesModel` at build, one column at every width: chart type is in viewBox
   units and halves in a half column. The sentences are

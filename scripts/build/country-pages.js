@@ -106,6 +106,9 @@ const hazardsHtml = (h, FACTS) => {
       </section>`
 }
 
+/** JSON for an inline `<script>`: `<` escaped, so no value can close the tag. */
+const chartSource = (data) => JSON.stringify(data).replace(/</g, '\\u003c')
+
 /**
  * A country's trajectories: where it stands and how it got there, each against
  * the world's median.
@@ -115,7 +118,10 @@ const hazardsHtml = (h, FACTS) => {
  * at half size. Each card is a label, a figure, a sentence and the one chart the
  * site has (`seriesModel`): the country's line with the world's thin beside it,
  * and for births the replacement rate as its rule. The page is complete with
- * no script; the numbers under each chart are in its table.
+ * no script; the numbers under each chart are in its table. With one, the
+ * `series-chart` island replaces each figure with the same chart and a cursor:
+ * the options it is built from ride beside the figure, as the options the
+ * figure itself was built with.
  *
  * @param {any[]} cards `trajectoryCards` for this country
  * @param {any} TRAJECTORIES `shared/countries/country-trajectories.ts`
@@ -125,9 +131,9 @@ const trajectoriesHtml = (cards, TRAJECTORIES, CHART) => {
   const { seriesModel, staticFigure, renderMarkup } = CHART
   const drawn = cards
     .map((card) => {
-      const model = seriesModel({
-        values: card.values,
-        periods: card.periods,
+      // One set of options for the figure here and the chart the island draws
+      // over it. `format` is a name on both sides: a function cannot travel.
+      const options = {
         comparison: { values: card.world, label: 'world median' },
         ...(card.domain ? { domain: card.domain } : {}),
         // A threshold, not a base: the readout takes no percentage against it.
@@ -138,9 +144,15 @@ const trajectoriesHtml = (cards, TRAJECTORIES, CHART) => {
               referenceChange: false,
             }
           : {}),
+        format: card.format,
+        step: 'years',
+      }
+      const model = seriesModel({
+        values: card.values,
+        periods: card.periods,
+        ...options,
         formatValue: (v) => TRAJECTORIES.formatTrajectory(card.format, v),
         palette: 'neutral',
-        step: 'years',
         label: card.label,
       })
       if (!model.ok) return ''
@@ -155,7 +167,17 @@ const trajectoriesHtml = (cards, TRAJECTORIES, CHART) => {
           <h3 class="label">${escHtml(card.eyebrow)}</h3>
           <p class="country-trajectory-headline">${escHtml(card.headline)}</p>
           <p class="t-caption country-trajectory-subtitle">${escHtml(card.subtitle)}</p>
-          <div class="country-trajectory-chart">${renderMarkup(staticFigure(model, { caption }))}</div>
+          <div class="country-trajectory-chart" data-island-auto="series-chart">
+            ${renderMarkup(staticFigure(model, { caption }))}
+            <script type="application/json" class="chart-source">${chartSource({
+              // `NaN` is not JSON: a year with no figure travels as `null`.
+              values: card.values.map((v) => (Number.isFinite(v) ? v : null)),
+              periods: card.periods,
+              label: card.label,
+              caption,
+              options,
+            })}</script>
+          </div>
         </article>`
     })
     .filter(Boolean)

@@ -468,6 +468,51 @@ test('a comparison is a second line on the same scale, and nothing else', async 
   assert.match(readFileSync(join(ROOT, 'public/style.css'), 'utf8'), /^\.chart-compare \{/m)
 })
 
+test('the island redraws a figure from the options the figure was built with', async () => {
+  // `/e/{id}` sends a series and gets the indicator's chart. A country page
+  // sends what its static figure was drawn with, and must get that chart back
+  // with a cursor: the world's line, the threshold, the same words for a value.
+  const { mount } = await import(await bundle('public/islands/series-chart.ts', 'series-chart.mjs'))
+  const host = (source) => {
+    const div = globalThis.document.createElement('div')
+    div.innerHTML = '<figure class="chart is-static"></figure><script type="application/json" class="chart-source"></script>'
+    div.querySelector('script').textContent = JSON.stringify(source)
+    return div
+  }
+  withDom(() => {
+    // A trajectory: births, with a year the series lacks (JSON has no NaN).
+    const births = host({
+      values: [6.8, null, 6.1, 5.9],
+      periods: ['2021', '2022', '2023', '2024'],
+      label: 'Children born per woman',
+      caption: 'World Bank',
+      options: {
+        comparison: { values: [2.4, 2.3, 2.2, 2.106], label: 'world median' },
+        reference: 2.1,
+        referenceLabel: 'replacement',
+        referenceChange: false,
+        format: 'births',
+        step: 'years',
+      },
+    })
+    mount(births)
+    assert.equal(births.querySelectorAll('figure.chart').length, 1, 'the static figure is replaced, not joined')
+    assert.equal(births.querySelector('figure.chart.is-static'), null)
+    assert.equal(births.querySelectorAll('.chart-compare').length, 1, 'the world’s line survives the swap')
+    assert.ok(births.querySelector('.chart-ref'), 'and so does the rule')
+    const readout = births.querySelector('.chart-readout').textContent
+    assert.match(readout, /2024 · 5\.9$/, `the card's own format, and no percentage against a threshold: ${readout}`)
+    assert.equal(births.querySelector('.chart-data-count').textContent.trim(), '4', 'the gap is a row, not a missing one')
+
+    // An indicator, as before: no options, the indicator's defaults.
+    const brent = host({ values: [80, 90, 100], periods: ['a', 'b', 'c'], unit: '$/bbl', kind: 'DAILY', label: 'Brent' })
+    mount(brent)
+    assert.equal(brent.querySelectorAll('.chart-compare').length, 0)
+    assert.match(brent.querySelector('.chart-readout').textContent, /vs the window’s open/)
+    assert.ok(brent.querySelector('figure.chart').classList.contains('is-pos'), 'signed, as an indicator is')
+  })
+})
+
 test('the two figures share one class vocabulary', async () => {
   // The island replaces the static figure wholesale, so nothing forces the two
   // to agree — except that both are styled by one block in style.css. A class
