@@ -1,7 +1,7 @@
 import assert from 'node:assert/strict'
 import { test } from 'node:test'
 import { runWithConcurrency } from './concurrency.js'
-import { ISOLATION_FLAGS, claudeArgs, claudeFailure, cleanProse, firstLine, parseClaudeEnvelope, parseClaudeEnvelopeWithUsage, parseClaudeText, spawnClaude, unquote } from './claude-envelope.js'
+import { ISOLATION_FLAGS, callCost, claudeArgs, claudeFailure, cleanProse, firstLine, parseClaudeEnvelope, parseClaudeEnvelopeWithUsage, parseClaudeText, spawnClaude, unquote } from './claude-envelope.js'
 
 // `command: 'node'` stands in for the CLI: the helper's job is the spawn, not
 // the flags, and a real `claude` call would cost money on every test run.
@@ -195,4 +195,12 @@ test('a stored sentence loses one straight mark an end, and keeps a curled one',
   assert.equal(cleanProse(' "The strait  carries\na fifth of the oil." '), 'The strait carries a fifth of the oil.')
   assert.equal(cleanProse('“Liberation Day” tariffs took effect.'), '“Liberation Day” tariffs took effect.')
   assert.equal(cleanProse(undefined), '')
+})
+
+test('callCost: what a call cost, for the end of a log line', () => {
+  // The envelope of a company scan of 12 articles, 2026-10-10.
+  const usage = { input_tokens: 2, cache_creation_input_tokens: 8392, cache_read_input_tokens: 535, output_tokens: 1445 }
+  assert.equal(callCost({ costUsd: 0.00240645, usage }), ', $0.0024, 8.9k in, 1.4k out')
+  assert.equal(callCost({ costUsd: 0.5 }), ', $0.5000')
+  assert.equal(callCost({}), '')
 })

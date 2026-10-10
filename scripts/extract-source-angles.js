@@ -17,7 +17,7 @@
 import { readFileSync, existsSync } from 'node:fs'
 import { tryReadArticle } from './lib/article.js'
 import { batchFiles } from './lib/article-files.js'
-import { callClaudeJson } from './lib/claude-envelope.js'
+import { callClaudeJson, callCost } from './lib/claude-envelope.js'
 import { runWithConcurrency } from './lib/concurrency.js'
 import { pathOf } from './lib/datasets.js'
 import { replaceFrontmatterKey, yamlString } from './lib/frontmatter.js'
@@ -114,6 +114,7 @@ Return ONLY the JSON object. No commentary, no markdown fences.`
     console.error(`  ✗ angles-haiku: ${res.error}`)
     return new Map()
   }
+  console.log(`  · angles-haiku: answered in ${(res.elapsedMs / 1000).toFixed(1)}s${callCost(res)}`)
   const obj = res.out
   const out = new Map()
   for (const it of items) {

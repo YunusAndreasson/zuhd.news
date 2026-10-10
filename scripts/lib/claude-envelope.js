@@ -233,6 +233,23 @@ export async function callClaudeJson(prompt, { model, effort = 'medium', timeout
 }
 
 /**
+ * What a call cost, for the end of its log line: `, $0.0024, 8.9k in, 1.4k out`,
+ * or nothing where the envelope did not say. The entity and source-angle
+ * stages took `costUsd` and `usage` from `callClaudeJson` and dropped them, so
+ * when it was asked what more those calls could carry there was no figure.
+ *
+ * @param {{ costUsd?: number, usage?: Record<string, any> }} res
+ */
+export function callCost({ costUsd, usage }) {
+  const k = (/** @type {number} */ n) => `${(n / 1000).toFixed(1)}k`
+  const read = (usage?.input_tokens ?? 0) + (usage?.cache_creation_input_tokens ?? 0) + (usage?.cache_read_input_tokens ?? 0)
+  return (
+    (typeof costUsd === 'number' ? `, $${costUsd.toFixed(4)}` : '') +
+    (usage ? `, ${k(read)} in, ${k(usage.output_tokens ?? 0)} out` : '')
+  )
+}
+
+/**
  * The first line of a model's answer that says anything, trimmed. A model
  * asked for one line sometimes gives a blank one first, or a second it was
  * not asked for. The push line and the tweet each took it their own way.
