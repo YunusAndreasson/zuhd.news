@@ -49,6 +49,7 @@ prefer a parameter (class names, a link renderer) over a copy, as
 | `scripts/lib/hash.js` | sha1 cache keys |
 | `scripts/lib/dispatch.js` | the dispatch stages' loop, prune and answer checks; the INPUT prompt wrapper |
 | `scripts/lib/country-codes.js` | ISO alpha-3 to the name a country profile is keyed on |
+| `shared/chart/record.ts` | `seriesRecord`, `recordLine`: whether a series' newest reading is a record, and the sentence for it |
 | `shared/chart/smooth.ts` | `trailingMean`, for a count that is noise a day at a time (a strait's ships) |
 | `shared/source-framing.ts` | a source's lean and a story's divergence: the thresholds and their words, for the app, the article page and the map's card |
 | `public/islands/_dom.ts` | `el`, `svgEl` |

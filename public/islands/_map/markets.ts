@@ -1853,6 +1853,21 @@ const straitMember = (c: MapChokepoint): SparkMember | null => {
 }
 
 /**
+ * One strait over a range, on its own last day: what its card's moves row
+ * prints. The rail's rows share the block's edge; a card is one strait.
+ */
+export const straitReading = (
+  c: MapChokepoint,
+  days: number,
+  now = Date.now(),
+): SparkReading | null => {
+  const member = straitMember(c)
+  if (!member) return null
+  const input = sparkInput([member], days, now, lastTradedDay([member]))
+  return input ? readingOf(input) : null
+}
+
+/**
  * What a strait is called on the map: the name, cut to what tells it apart.
  *
  * `Strait of Hormuz` is `Hormuz` beside a mark that is already a strait. Two
@@ -2011,7 +2026,9 @@ export const exchangeReading = (
  * week is the quantity PortWatch reports (`last7Avg`), and it is the series
  * `build.js` publishes on `/api/entity/cp:*.json`, so a row, a label and the
  * indicator page read one line. From the first day with a whole week behind
- * it; `periods` is cut to match, which keeps its last label on `asOf`.
+ * it; `periods` is cut to match, which keeps its last label on `asOf`. To one
+ * decimal, as the build publishes it: a mean of seven counts has no more, and
+ * unrounded it reached a chart's readout as `2.714286 vessels`.
  */
 export const straitSeries = (
   c: Pick<MapChokepoint, 'series' | 'asOf'>,
@@ -2021,7 +2038,11 @@ export const straitSeries = (
   const week = trailingMean(total, 7)
   const from = week.findIndex(Number.isFinite)
   if (from < 0 || week.length - from < 2) return null
-  return { values: week.slice(from), periods: (c.series?.periods ?? []).slice(from), asOf: c.asOf }
+  return {
+    values: week.slice(from).map((v) => Math.round(v * 10) / 10),
+    periods: (c.series?.periods ?? []).slice(from),
+    asOf: c.asOf,
+  }
 }
 
 /**

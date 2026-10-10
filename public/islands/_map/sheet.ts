@@ -34,11 +34,15 @@ import {
   nisab,
   ribbonPoints,
   sparkInput,
+  straitReading,
+  straitSeries,
+  type SparkReading,
   type TickerEntry,
   type TrendEvent,
 } from './markets'
 import { patternLabel, patternLine, type MarketSignal } from './signals'
-import { windowPoints } from './series-window'
+import { PRICE_RECORD, TRAFFIC_RECORD, recordLine, type RecordWords } from '@shared/chart/record'
+import { DAY_MS, seriesDates, windowPoints } from './series-window'
 import type {
   ConflictEvent,
   GdacsAlert,
@@ -406,6 +410,56 @@ export function createSheet(): Sheet {
     return p
   }
 
+  /**
+   * The same thing over a day, a week and a month, side by side.
+   *
+   * The hero is one move over one range. A card is where a reader asks whether
+   * that is a blip or the shape of a decline, and the app answers it with these
+   * three. Each is the reading the rail would print at that range; a range the
+   * series does not reach keeps its place with a dash, so the columns do not
+   * shift between cards. `current` marks the one the hero is.
+   */
+  const MOVE_DAYS = [1, 7, 30] as const
+  const movesRow = (read: (days: number) => SparkReading | null, current?: number) => {
+    const row = el('dl', 'map-sheet-moves')
+    for (const days of MOVE_DAYS) {
+      const reading = read(days)
+      const dir = reading ? marketDirection(reading.pct) : 0
+      const cell = el('div', 'map-sheet-move')
+      if (days === current) cell.setAttribute('aria-current', 'true')
+      cell.append(
+        el('dt', '', days === 1 ? '1 day' : `${days} days`),
+        el(
+          'dd',
+          dir < 0 ? 'is-neg' : dir > 0 ? 'is-pos' : '',
+          reading ? reading.figure : '—',
+        ),
+      )
+      row.append(cell)
+    }
+    return row
+  }
+
+  /**
+   * `Highest since Aug 12.` under the moves, when the newest reading is a
+   * record that has stood about a month of observations. See
+   * `shared/chart/record.ts`.
+   */
+  const recordNote = (
+    values: number[],
+    periods: string[],
+    asOf: string | undefined,
+    words: RecordWords,
+  ): Node[] => {
+    const dates = seriesDates(periods, asOf)
+    const first = dates?.[0]
+    const last = dates?.[dates.length - 1]
+    const line = recordLine(values, periods, words, {
+      spanDays: first != null && last != null ? (last - first) / DAY_MS : undefined,
+    })
+    return line ? [el('p', 'map-sheet-flag', line)] : []
+  }
+
   const readMore = (href: string, label: string) => {
     const a = el('a', 'map-sheet-link', label)
     a.href = href
@@ -544,29 +598,74 @@ export function createSheet(): Sheet {
         // stylesheet reserves for a definition. It sat at lead weight, which
         // is the size that file reserves for a claim about the world, while the
         // claim about the world sat on the payload unrendered.
+        // The week's mean, which is the series the label on the map, the rail's
+        // row and the indicator page all read: a day's count is noise.
+        const week = straitSeries(cp)
+        nodes.push(movesRow((days) => straitReading(cp, days)))
+        if (week) nodes.push(...recordNote(week.values, week.periods, cp.asOf, TRAFFIC_RECORD))
+
         if (cp.blurb) nodes.push(el('p', 'map-sheet-standing', cp.blurb))
 
-        // 86 days of daily transits, with the baseline drawn across them. The
+        // The week's mean of transits, with the baseline drawn across them. The
         // sheet could already state the delta; the line is what shows whether
         // it is a step change or the tail of a spike — and the cursor is what
-        // lets a reader put a number on the day it turned.
+        // lets a reader put a number on the day it turned. It drew the raw
+        // daily counts, which on a strait running at four ships a day is a
+        // comb, and beside moves read off the week's mean it would be a second
+        // series under one heading.
         nodes.push(
           ...chartFigure({
-            values: cp.series?.total ?? [],
-            periods: cp.series?.periods ?? [],
+            values: week?.values ?? [],
+            periods: week?.periods ?? [],
             reference: cp.baseline90Avg?.n_total,
             referenceLabel: 'the 90-day average',
             direction: delta,
             palette: 'straits',
             unit: 'vessels',
             step: 'days',
-            label: `Daily vessel transits at ${cp.name}`,
+            label: `Vessel transits a day at ${cp.name}, seven-day mean`,
             // The series is undifferentiated traffic — PortWatch publishes the
             // per-class split only as averages, never as a time series — so the
             // caption must stop it being read as the headline vessel class.
-            caption: 'All vessel traffic, daily · rule marks the 90-day average',
+            caption: 'All vessel traffic, 7-day mean · rule marks the 90-day average',
           }),
         )
+
+        // What is moving, by class. PortWatch publishes the split as the two
+        // averages the hero is drawn from, so this is those, per class: the
+        // week, and how far it sits from that class's own 90 days. A blockade
+        // and a slow week for bulk carriers are the same total and different
+        // tables.
+        const classes = (Object.keys(VESSEL_NOUN) as VesselField[]).filter(
+          (f) => f !== 'n_total' && (cp.baseline90Avg?.[f] ?? 0) >= 1,
+        )
+        if (classes.length > 1) {
+          const table = el('dl', 'map-sheet-classes')
+          // The two columns, named once. `fmt.deltaLabel` spells the baseline
+          // out on every figure, which is right for a kicker and four lines
+          // deep in a column.
+          const head = el('div', 'map-sheet-class is-head')
+          head.append(el('dt', ''), el('dd', '', 'this week'), el('dd', 'map-sheet-class-delta', 'vs 90 days'))
+          table.append(head)
+          for (const f of classes) {
+            const now7 = cp.last7Avg?.[f]
+            const d = cp.delta7vs90?.[f]
+            const row = el('div', 'map-sheet-class')
+            row.append(
+              el('dt', '', VESSEL_NOUN[f]),
+              el('dd', '', typeof now7 === 'number' ? `${fmt.vessels(now7)}/day` : '—'),
+              el(
+                'dd',
+                'map-sheet-class-delta',
+                typeof d === 'number'
+                  ? `${d > 0 ? '+' : d < 0 ? '−' : ''}${Math.round(Math.abs(d) * 100)}%`
+                  : '',
+              ),
+            )
+            table.append(row)
+          }
+          nodes.push(table)
+        }
 
         const phrase = cp.weather?.alert ? WEATHER_PHRASE[cp.weather.alert] : null
         if (phrase && cp.weather) {
@@ -667,6 +766,11 @@ export function createSheet(): Sheet {
             ),
           )
         }
+
+        nodes.push(movesRow((days) => exchangeReading(ex, days), heroDays))
+        nodes.push(
+          ...recordNote(ex.series?.values ?? [], ex.series?.periods ?? [], ex.asOf, PRICE_RECORD),
+        )
 
         // A definition, at the definition's weight — same reasoning as the
         // chokepoint card above. The dispatch's `standing` first, the catalog

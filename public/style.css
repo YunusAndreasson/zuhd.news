@@ -7392,6 +7392,66 @@ a.map-popup-source-name {
   font-variant-numeric: lining-nums tabular-nums;
 }
 
+/* The same thing over a day, a week and a month. Three columns that keep
+   their place whether or not a range has a reading, each a label over a
+   figure; the figure takes the direction's tone, as every move on this page
+   does. The column the hero is over is marked by ink on its label, not by a
+   box: it is the same number twice, and the reader needs to see which. */
+.map-sheet-moves {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: var(--space-xs);
+  margin: 0 0 var(--space-xs);
+  font-variant-numeric: lining-nums tabular-nums;
+
+  & dt {
+    font-size: var(--size-2xs);
+    font-variant-caps: all-small-caps;
+    letter-spacing: var(--track-wide);
+    color: var(--text-dim);
+  }
+
+  & dd {
+    margin: 0;
+    font-size: var(--size-sm);
+    color: var(--text);
+
+    &.is-pos { color: var(--map-pos); }
+    &.is-neg { color: var(--map-neg); }
+  }
+
+  & [aria-current] dt { color: var(--text); }
+}
+
+/* A strait's traffic by vessel class: the class, its week, and how far that
+   sits from its own ninety days. */
+.map-sheet-classes {
+  margin: 0 0 var(--space-xs);
+  font-size: var(--size-xs);
+  font-variant-numeric: lining-nums tabular-nums;
+}
+
+.map-sheet-class {
+  display: grid;
+  grid-template-columns: 1fr auto 9ch;
+  gap: var(--space-xs);
+  padding: 0.2rem 0;
+  border-bottom: 1px solid var(--rule);
+
+  &:last-child { border-bottom: 0; }
+
+  & dt { color: var(--text-secondary); }
+  & dd { margin: 0; color: var(--text); }
+  & .map-sheet-class-delta { text-align: right; color: var(--text-dim); }
+
+  &.is-head dd {
+    font-size: var(--size-2xs);
+    font-variant-caps: all-small-caps;
+    letter-spacing: var(--track-wide);
+    color: var(--text-dim);
+  }
+}
+
 .map-sheet-standing {
   margin: 0 0 var(--space-xs);
   font-size: var(--size-xs);

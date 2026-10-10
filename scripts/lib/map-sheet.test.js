@@ -386,6 +386,105 @@ const CHOKEPOINT = {
   relatedArticles: [{ slug: 'a-story', title: 'A Story' }],
 }
 
+test('a pinned card sets a move against a day, a week and a month', async () => {
+  const env = setupDom()
+  const realNow = Date.now
+  try {
+    const { createSheet } = await import(bundlePath)
+    const sheet = createSheet()
+    const cells = () =>
+      [...sheet.element.querySelectorAll('.map-sheet-move')].map((c) => [
+        c.querySelector('dt').textContent,
+        c.querySelector('dd').textContent,
+        c.getAttribute('aria-current'),
+      ])
+
+    // Forty sessions rising a point a day, read the day after the last.
+    const periods = Array.from({ length: 40 }, (_, i) => {
+      const d = new Date(Date.UTC(2026, 5, 15) + i * 86_400_000)
+      return `${d.toLocaleDateString('en-US', { month: 'short', timeZone: 'UTC' })} ${d.getUTCDate()}`
+    })
+    const values = Array.from({ length: 40 }, (_, i) => 100 + i)
+    Date.now = () => Date.parse('2026-07-25T12:00:00Z')
+    sheet.showMarket({ ...EXCHANGE, changePct: (1 / 138) * 100, level: 139, asOf: '2026-07-24', series: { periods, values } }, true, 7)
+    assert.deepEqual(cells(), [
+      ['1 day', '+0.7%', null],
+      ['7 days', '+5.3%', 'true'],
+      ['30 days', '+27.5%', null],
+    ])
+    // Nothing on the chart is as high: it says so, and only as far back as the
+    // chart goes.
+    assert.match(sheet.element.textContent, /Highest in a month\./)
+    sheet.close()
+
+    // A close too old to be any of the three: each keeps its place with a
+    // dash, so the columns do not shift between cards.
+    Date.now = () => Date.parse('2026-10-10T12:00:00Z')
+    sheet.showMarket(EXCHANGE, true)
+    assert.deepEqual(cells(), [
+      ['1 day', '—', null],
+      ['7 days', '—', null],
+      ['30 days', '—', null],
+    ])
+    sheet.close()
+
+    // A peek has no room for it.
+    sheet.showMarket(EXCHANGE, false)
+    assert.equal(sheet.element.querySelector('.map-sheet-moves'), null)
+    sheet.destroy()
+  } finally {
+    Date.now = realNow
+    env.restore()
+  }
+})
+
+test('a pinned strait charts the week’s mean and says what is moving, by class', async () => {
+  const env = setupDom()
+  const realNow = Date.now
+  Date.now = () => Date.parse('2026-07-25T12:00:00Z')
+  try {
+    const { createSheet } = await import(bundlePath)
+    const sheet = createSheet()
+    const strait = {
+      ...CHOKEPOINT,
+      last7Avg: { n_total: 12.1, n_tanker: 4, n_container: 6.5, n_roro: 0.2 },
+      baseline90Avg: { n_total: 30, n_tanker: 14, n_container: 12, n_roro: 0.3 },
+      delta7vs90: { n_total: -0.6, n_tanker: -0.71, n_container: -0.46, n_roro: -0.3 },
+    }
+    sheet.showChokepoint(strait, true)
+
+    // The chart is the series the rail's row and the map's label read: one
+    // point per day that has a week behind it.
+    assert.equal(sheet.element.querySelector('.chart-data-count').textContent.trim(), String(40 - 6))
+    assert.match(sheet.element.textContent, /7-day mean/)
+
+    // Three columns that keep their place, as on an exchange.
+    assert.deepEqual(
+      [...sheet.element.querySelectorAll('.map-sheet-move dt')].map((n) => n.textContent),
+      ['1 day', '7 days', '30 days'],
+    )
+
+    // By class, and only the classes that sail here: a tenth of a ro-ro a day
+    // is not a row.
+    const rows = [...sheet.element.querySelectorAll('.map-sheet-class')].map((r) =>
+      [...r.children].map((n) => n.textContent),
+    )
+    // The columns are named once, then one row a class.
+    assert.deepEqual(rows[0], ['', 'this week', 'vs 90 days'])
+    assert.deepEqual(rows.slice(1).map((r) => r[0]), ['tankers', 'container ships'])
+    assert.deepEqual(rows[1], ['tankers', '4/day', '−71%'])
+
+    // One class is the total again, not a table.
+    sheet.close()
+    sheet.showChokepoint(CHOKEPOINT, true)
+    assert.equal(sheet.element.querySelector('.map-sheet-classes'), null)
+    sheet.destroy()
+  } finally {
+    Date.now = realNow
+    env.restore()
+  }
+})
+
 test('a pinned chokepoint draws its traffic against the published baseline', async () => {
   const env = setupDom()
   try {

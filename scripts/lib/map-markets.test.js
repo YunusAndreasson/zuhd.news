@@ -27,6 +27,9 @@ const markets = await import(await bundleIsland(dir, 'public/islands/_map/market
 
 const { seriesDates, windowByDate, windowPoints, coverage, bucketCounts, halfOverHalf, DAY_MS } = win
 const { trailingMean } = await import(await bundleIsland(dir, 'shared/chart/smooth.ts', 'smooth.mjs'))
+const { seriesRecord, recordLine, TRAFFIC_RECORD } = await import(
+  await bundleIsland(dir, 'shared/chart/record.ts', 'record.mjs')
+)
 const { liveSignals, signalFor, patternLabel, patternLine } = await import(
   await bundleIsland(dir, 'public/islands/_map/signals.ts', 'signals.mjs')
 )
@@ -974,6 +977,33 @@ test('the marks, the counts and the reading agree at every range', () => {
   assert.ok(Math.abs(moveCap(30) - 3 * Math.sqrt(30)) < 1e-12)
 })
 
+// --- A record -----------------------------------------------------------------
+
+test('a record is said only when it has stood, and only as far back as the chart goes', () => {
+  const labels = (n) => Array.from({ length: n }, (_, i) => `d${i}`)
+  // Thirty observations under 100, then 101: nothing on the chart is as high.
+  const high = [...Array.from({ length: 30 }, (_, i) => 90 + (i % 5)), 101]
+  assert.deepEqual(seriesRecord(high, labels(31)), { extreme: 'high', since: null, run: 30 })
+  // The chart's span is the claim's limit: `in a month`, never `ever`.
+  assert.equal(recordLine(high, labels(31), undefined, { spanDays: 31 }), 'Highest in a month.')
+  assert.equal(recordLine(high, labels(31), undefined, { spanDays: 92 }), 'Highest in three months.')
+  assert.equal(recordLine(high, labels(31)), undefined, 'no span, no sentence about it')
+
+  // A higher reading 25 observations back: the record has stood since then.
+  const since = [...high.slice(0, 5), 120, ...Array.from({ length: 25 }, () => 95), 101]
+  assert.equal(recordLine(since, labels(since.length)), 'Highest since d5.')
+  assert.equal(recordLine(since.map((v) => -v), labels(since.length), TRAFFIC_RECORD), 'Fewest ships since d5.')
+
+  // A five-day high is most weeks: not a line.
+  const brief = [...Array.from({ length: 30 }, () => 100), 99, 98, 97, 96, 99.5]
+  assert.equal(seriesRecord(brief, labels(brief.length)).run, 4)
+  assert.equal(recordLine(brief, labels(brief.length)), undefined)
+  // A tie has not passed anything, and a gap makes "since" unanswerable.
+  assert.equal(seriesRecord([100, 100], labels(2)), null)
+  assert.equal(seriesRecord([100, Number.NaN, 101], labels(3)), null)
+  assert.equal(seriesRecord([100, 101], ['only-one-label']), null)
+})
+
 // --- Flagged markets ---------------------------------------------------------
 
 /** One signal as `/api/market-signals.json` publishes it, valid to the shared guard. */
@@ -1166,7 +1196,8 @@ test('a strait row reads the week’s mean, and has a reading at the default ran
   assert.equal(week.values.length, total.length - 6, 'from the first day with a week behind it')
   assert.equal(week.periods.length, week.values.length)
   assert.equal(week.periods.at(-1), hormuz.series.periods.at(-1), 'still ending on the last day counted')
-  assert.ok(Math.abs(week.values.at(-1) - (8 + 5 + 4 + 0 + 4 + 2 + 4) / 7) < 1e-9)
+  // To one decimal, as the build publishes the same series.
+  assert.equal(week.values.at(-1), Math.round(((8 + 5 + 4 + 0 + 4 + 2 + 4) / 7) * 10) / 10)
   assert.equal(straitSeries({ series: { periods: [], total: [1, 2, 3] }, asOf }), null, 'under a week and a day is no line')
 
   // Six days after the last count, which is where PortWatch usually is.

@@ -83,6 +83,13 @@ Camera, MapLibre and cards are `map.md`; layers and marks are `map-layers.md`.
   chart only.
 - The exchange card leads with the index's definition (`ex.standing`),
   falling back to the exchange's `blurb`.
+- A pinned exchange or strait card sets its move against 1, 7 and 30 days
+  (`movesRow`), each the reading the rail would print at that range
+  (`exchangeReading`, `straitReading`), and says a record that has stood a
+  month (`recordLine`, `shared/chart/record.ts`). A range with no reading
+  keeps its column, with a dash.
+- The strait card charts `straitSeries`, the series its row and label read,
+  and lists the vessel classes that sail there from PortWatch's averages.
 - A flagged exchange states its run in the run's own figures (`patternLine`):
   a caption on its panel row and a line under its card's hero. The card has
   one account: the signal's `commentary` with its citations, else the
