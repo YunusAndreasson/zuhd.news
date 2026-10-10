@@ -1265,6 +1265,9 @@ if (existsSync(marketsSrc)) {
 // snapshot the fetcher half-wrote must cost the app one list, never the cycle
 // its build.
 const companiesSrc = join(ROOT, 'content', '.companies.json')
+/** `co:<id>` for every company published: a story's chart may name one, and
+ *  it has no `/e/` page to be in `indicatorMap` by. */
+const companyChartIds = new Set()
 if (existsSync(companiesSrc)) {
   try {
     const payload = companiesPayload(JSON.parse(readFileSync(companiesSrc, 'utf8')), sorted, {
@@ -1274,6 +1277,7 @@ if (existsSync(companiesSrc)) {
       join(DIST_DIR, 'api', 'companies.json'),
       JSON.stringify(apiStamps.hold('companies', payload)),
     )
+    for (const c of payload.companies) companyChartIds.add(`co:${c.id}`)
     const withCoverage = payload.companies.filter((c) => c.relatedArticles.length).length
     console.log(
       `  Built: api/companies.json (${payload.companies.length} companies, ${withCoverage} with coverage)`,
@@ -2097,10 +2101,11 @@ for (const a of sorted) {
         return entities.length ? { entities } : {}
       })(),
       // The story's chart, filtered like the strip: an id this build does not
-      // publish would open an empty panel.
+      // publish would open an empty panel. A company's is published on
+      // `/api/companies.json` and nowhere in `indicatorMap`.
       ...(() => {
         const id = typeof a.meta.chart === 'string' ? canonicalIndicatorId(a.meta.chart.trim()) : ''
-        return id && indicatorMap.has(id) ? { chart: id } : {}
+        return id && (indicatorMap.has(id) || companyChartIds.has(id)) ? { chart: id } : {}
       })(),
       ...(thread?.threadLabel ? { threadLabel: thread.threadLabel } : {}),
     }),

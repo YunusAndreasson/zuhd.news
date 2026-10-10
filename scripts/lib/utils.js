@@ -1,11 +1,19 @@
 // Shared utilities for the news pipeline
 
+import { sha1Hex } from './hash.js'
+
 const SLUG_MAX = 60
 
 // Letters NFKD leaves whole, because the stroke is part of the letter and not
 // a mark on it: Støre, Wałęsa, Kılıçdaroğlu, Straße.
 /** @type {Record<string, string>} */
 const STROKED = { ø: 'o', ł: 'l', ı: 'i', đ: 'd', ð: 'd', þ: 'th', ß: 'ss', æ: 'ae', œ: 'oe' }
+
+// A Latin letter outside a-z, which a fingerprint has always dropped.
+const LATIN_BEYOND_AZ = /(?![a-z])\p{Script=Latin}/gu
+
+// A letter of a script a slug cannot hold: Cyrillic, Han, Arabic.
+const OTHER_SCRIPT = /(?!\p{Script=Latin})\p{L}/u
 
 /**
  * A headline in the letters a slug can hold: lower case, each letter without
@@ -42,17 +50,29 @@ const plainLetters = (text) =>
 export function slugify(title, date) {
   const d = new Date(date)
   const prefix = Number.isNaN(d.getTime()) ? new Date().toISOString().slice(0, 10) : d.toISOString().slice(0, 10)
-  const words = plainLetters(title).replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '')
-  if (words.length <= SLUG_MAX) return `${prefix}-${words}`
+  const plain = plainLetters(title)
+  const words = plain.replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '')
+  // A headline in another script leaves no words, or only the Latin ones it
+  // happens to hold: two Russian headlines of one day were both `2026-10-09-`,
+  // and a Chinese one about AI was `…-ai`. A pick matched by slug then took
+  // the other story's sources. Its slug ends in a mark of its own.
+  const mark = OTHER_SCRIPT.test(plain) ? sha1Hex(title, 8) : ''
+  const tail = mark && words ? `-${mark}` : mark
+  if (words.length <= SLUG_MAX) return `${prefix}-${words}${tail}`
   // The last hyphen at or before the limit; a single word longer than the
   // limit has none, and is cut where the limit falls.
   const cut = words.lastIndexOf('-', SLUG_MAX)
-  return `${prefix}-${cut > 0 ? words.slice(0, cut) : words.slice(0, SLUG_MAX)}`
+  return `${prefix}-${cut > 0 ? words.slice(0, cut) : words.slice(0, SLUG_MAX)}${tail}`
 }
 
 /**
  * A headline as the thing two copies of it share: its letters and digits,
  * lower case, the first `length` of them. No headline is the empty string.
+ *
+ * Only a-z and 0-9 were kept, so every Russian or Chinese headline was the
+ * empty string too, and `merge-feeds` kept the first of them as the one story
+ * they all were. The letters of another script are kept now; a Latin headline
+ * is what it was, an accented letter still dropped.
  *
  * It was written three times at three lengths, and each caller keeps its own:
  * 40 where `merge-feeds` makes one story of a headline both feeds carry (the
@@ -65,7 +85,7 @@ export function slugify(title, date) {
  * @param {number} [length]
  */
 export function fingerprint(title, length = 40) {
-  return (title || '').toLowerCase().replace(/[^a-z0-9]/g, '').slice(0, length)
+  return (title || '').toLowerCase().replace(/[^\p{L}\p{N}]/gu, '').replace(LATIN_BEYOND_AZ, '').slice(0, length)
 }
 
 /**

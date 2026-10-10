@@ -14,10 +14,12 @@
 // rules `extract-entities.js` uses, so the ids offered to the writer are
 // exactly the ids the entity stage will resolve afterwards.
 //
-// Each story gets `indicators` (figures, some marked `chart: true`, which the
-// writer may attach as the story's chart) and `calendar` (the next scheduled
+// Each story gets `indicators` (figures it may cite, each with how many recent
+// stories already carry that level) and `calendar` (the next scheduled
 // decision on its subject, for the future block). What is offered and why is
 // `lib/indicator-offer.js`; this file is the reading and writing around it.
+// Which series is drawn under the story is decided after it is written, by the
+// chart desk (`pick-charts.js`).
 //
 // `--selection <path>` and `--dry-run` replay it against any selection without
 // touching the cycle's file.
@@ -34,12 +36,30 @@
 // prompt requires it be stated.
 
 import { existsSync, readFileSync } from 'node:fs'
+import { join } from 'node:path'
 import { argAt, hasFlag } from './lib/argv.js'
+import { tryReadArticle } from './lib/article.js'
+import { articleFilesSince } from './lib/article-files.js'
 import { pathOf } from './lib/datasets.js'
-import { offerFor } from './lib/indicator-offer.js'
+import { carriedLevels, offerFor } from './lib/indicator-offer.js'
 import { readJson, writeJson } from './lib/json-file.js'
 import { runStage } from './lib/stage.js'
 import { latestTrendsPath } from './lib/trends-snapshot.js'
+
+/** How far back a level counts as already carried: the duplicate gates' three days. */
+const CARRIED_MS = 72 * 3600 * 1000
+
+/** The last three days' articles, for `carriedLevels`. */
+function recentArticles(now) {
+  const dir = pathOf('articles')
+  if (!existsSync(dir)) return []
+  const out = []
+  for (const name of articleFilesSince(dir, now - CARRIED_MS)) {
+    const { article } = tryReadArticle(join(dir, name))
+    if (article && Date.parse(article.meta.date) >= now - CARRIED_MS) out.push(article)
+  }
+  return out
+}
 
 /** Say why nothing was attached, in the line the cycle's log has always carried, and stop. */
 const skip = (why) => {
@@ -61,7 +81,6 @@ export function main() {
     trends,
     chokepoints: readJson(pathOf('chokepoints'))?.chokepoints || [],
     markets: readJson(pathOf('markets'))?.exchanges || [],
-    dispatch: readJson(pathOf('indicatorDispatch'))?.items || {},
   }
 
   let selection
@@ -74,14 +93,21 @@ export function main() {
 
   const kinds = { series: 0, strait: 0, odds: 0, exchange: 0 }
   let attached = 0
-  let chartable = 0
+  let carriedRows = 0
   let stale = 0
   let stories = 0
   let dated = 0
 
+  const offers = new Map()
   for (const story of selection) {
-    if (!story || typeof story !== 'object') continue
-    const offer = offerFor(story, sources)
+    if (story && typeof story === 'object') offers.set(story, offerFor(story, sources))
+  }
+  const carried = carriedLevels(recentArticles(Date.now()), [...offers.values()].flatMap((o) => o.indicators))
+
+  for (const [story, offer] of offers) {
+    for (const row of offer.indicators) {
+      if (carried[row.id] > 0) row.carried = carried[row.id]
+    }
     stale += offer.stale
     // Written even when empty, so a rerun over a selection that already carries
     // an offer replaces it rather than leaving the last run's behind.
@@ -94,12 +120,12 @@ export function main() {
     for (const row of offer.indicators) {
       attached++
       kinds[row.kind]++
-      if (row.chart) chartable++
+      if (row.carried) carriedRows++
     }
     if (DRY_RUN && (offer.indicators.length || offer.calendar.length)) {
       console.log(`\n${story.title}`)
       for (const row of offer.indicators) {
-        console.log(`  ${row.chart ? '▣' : '·'} ${row.kind.padEnd(8)} ${row.id.padEnd(40)} ${row.level} ${row.unit}${row.normal != null ? ` (normal ${row.normal})` : ''}  as of ${row.asOf}`)
+        console.log(`  ${row.carried ? `×${row.carried}` : '· '} ${row.kind.padEnd(8)} ${row.id.padEnd(40)} ${row.level} ${row.unit}${row.normal != null ? ` (normal ${row.normal})` : ''}  as of ${row.asOf}`)
       }
       for (const e of offer.calendar) console.log(`  ◷ ${e.date} ${e.title}`)
     }
@@ -108,10 +134,10 @@ export function main() {
   if (!DRY_RUN) writeJson(SELECTION, selection)
   console.log(
     `Indicators: ${attached} across ${stories}/${selection.length} stories ` +
-      `(series ${kinds.series}, strait ${kinds.strait}, odds ${kinds.odds}, exchange ${kinds.exchange}; chartable ${chartable}), ` +
+      `(series ${kinds.series}, strait ${kinds.strait}, odds ${kinds.odds}, exchange ${kinds.exchange}; ${carriedRows} already carried), ` +
       `calendar ${dated}, ${stale} dropped as stale (snapshot ${trends.asOf || 'undated'})${DRY_RUN ? ' — dry run, nothing written' : ''}`,
   )
-  return { counts: { ...kinds, attached, stories, picked: selection.length, chartable, calendar: dated, stale } }
+  return { counts: { ...kinds, attached, stories, picked: selection.length, carried: carriedRows, calendar: dated, stale } }
 }
 
 await runStage(import.meta, 'attach-indicators', main)

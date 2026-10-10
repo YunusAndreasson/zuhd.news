@@ -19,18 +19,19 @@ export function main() {
   // What is already published, for the duplicate gates, without the batch itself.
   const published = publishedKeys(ARTICLES_DIR, now, new Set(files.map((f) => f.name)))
 
-  // What each story was offered to chart, by the slug its article is saved under.
+  // What each story was offered to cite, by the slug its article is saved under.
   const offeredBySlug = new Map()
   try {
     for (const story of JSON.parse(readFileSync(pathOf('selection'), 'utf8'))) {
       if (story?.suggestedSlug) offeredBySlug.set(story.suggestedSlug, story.indicators || [])
     }
-  } catch { /* no selection: the known-id fallback below */ }
+  } catch { /* no selection: nothing to count citations against */ }
   const knownIds = new Set()
   const trendsPath = latestTrendsPath()
   for (const ind of (trendsPath ? readJson(trendsPath) : null)?.indicators || []) knownIds.add(ind.id)
   for (const c of readJson(pathOf('chokepoints'))?.chokepoints || []) knownIds.add(`cp:${c.id}`)
   for (const m of readJson(pathOf('markets'))?.exchanges || []) knownIds.add(`mkt:${m.id}`)
+  for (const c of readJson(pathOf('companies'))?.companies || []) knownIds.add(`co:${c.id}`)
 
   const validator = createValidator({ published, offeredBySlug, knownIds })
   /** @type {{ slug: string, reason: string }[]} */

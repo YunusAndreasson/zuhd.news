@@ -32,9 +32,24 @@ test('parseImfPrices: only the dollar price by the month, oldest first, and no m
   assert.deepEqual(out.get('PWHEAMT'), [{ date: '2026-07-01', value: 228.73884495 }, { date: '2026-09-01', value: 246.85180245 }])
 })
 
+test('parseImfPrices: the same document however it is spelled', () => {
+  // One observation, single-quoted attributes, a prefix on the elements, and line breaks between them.
+  const out = parseImfPrices(`<?xml version='1.0'?>
+<message:StructureSpecificData xmlns:message="m" xmlns:ns1="n">
+  <message:DataSet PUBLISHER='IMF'>
+    <ns1:Series FREQUENCY='M' DATA_TRANSFORMATION='USD' INDICATOR='PCOPP' COUNTRY='G001'>
+      <ns1:Obs OBS_VALUE='14473.05' TIME_PERIOD='2026-M09'></ns1:Obs>
+    </ns1:Series>
+  </message:DataSet>
+</message:StructureSpecificData>`)
+  assert.deepEqual(out.get('PCOPP'), [{ date: '2026-09-01', value: 14473.05 }])
+})
+
 test('parseImfPrices: an answer with no series is an empty map, for the caller to report', () => {
   assert.equal(parseImfPrices(answer()).size, 0)
   assert.equal(parseImfPrices('<html>Service unavailable</html>').size, 0)
+  assert.equal(parseImfPrices('<message:StructureSpecificData><message:DataSet><Series').size, 0)
+  assert.equal(parseImfPrices('').size, 0)
 })
 
 test('registry: an IMF row is a monthly price, keyed by its commodity code', () => {

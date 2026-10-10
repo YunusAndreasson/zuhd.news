@@ -95,10 +95,11 @@ export function publishedKeys(dir, now, batch) {
  * @param {object} known
  * @param {DuplicateKey[]} known.published recent articles outside the batch
  * @param {Map<string, any[]>} known.offeredBySlug the indicator rows each story
- *   was offered, by the slug its article is saved under; empty when there is
- *   no selection (a rerun)
- * @param {Set<string>} known.knownIds every series id the build can resolve:
- *   the fallback for a rerun
+ *   was offered to cite, by the slug its article is saved under; empty when
+ *   there is no selection (a rerun). Read only to count how often a chart's
+ *   figure is also in the prose
+ * @param {Set<string>} known.knownIds every series id the cycle publishes a
+ *   chart for
  */
 export function createValidator({ published, offeredBySlug, knownIds }) {
   const seen = [...published]
@@ -209,24 +210,22 @@ export function createValidator({ published, offeredBySlug, knownIds }) {
     if (dup) return verdict(`duplicate of ${dup.slug} (${me.url && dup.url === me.url ? 'same source URL' : 'same title'})`)
     seen.push(me)
 
-    // `chart:` names the one series drawn under the story, and the writer may
-    // only name one it was offered as chartable for that story — the offer is on
-    // the selection (`attach-indicators.js`), keyed by the slug the writer saves
-    // under. A chart that fails is dropped from the file and the article ships
-    // without it: a missing chart costs one figure, a quarantine costs the story.
-    // With no selection on disk (a rerun) the fallback is any id the build can
-    // resolve.
+    // `chart:` names the one series drawn under the story. The chart desk set
+    // it (`pick-charts.js`) from the series this cycle publishes, so what is
+    // checked here is that it still names one: a hand-written article, or a
+    // writer that set a chart from habit, can name anything. A chart that
+    // fails is dropped from the file and the article ships without it: a
+    // missing chart costs one figure, a quarantine costs the story.
     if (meta.chart != null) {
       counts.chartsSet++
       const id = canonicalIndicatorId(String(meta.chart).trim())
-      const offered = offeredBySlug.size ? (offeredBySlug.get(basename(name, '.md')) ?? []) : null
-      const problem = chartProblem(id, { offered, known: knownIds })
+      const problem = chartProblem(id, { known: knownIds })
       if (problem) {
         text = removeFrontmatterKey(text ?? raw, 'chart')
         counts.chartsDropped++
         events.push(`CHART DROPPED (${problem})`)
       } else {
-        const row = offered?.find((r) => r.id === id)
+        const row = offeredBySlug.get(basename(name, '.md'))?.find((r) => r.id === id)
         if (row && citesFigure(body, row)) counts.chartsCited++
       }
     }

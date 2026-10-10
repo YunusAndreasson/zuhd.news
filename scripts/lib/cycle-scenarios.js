@@ -195,7 +195,7 @@ export const SCENARIOS = {
       'node:merge-feeds': fails(), 'node:prefilter-feed': fails(), 'node:update-ledger': fails(2), 'node:attach-indicators': fails(), 'node:scaffold-articles': fails(),
       'node:fetch-trends': fails(124), 'node:fetch-chokepoints': fails(), 'node:fetch-markets': fails(), 'node:fetch-companies': fails(), 'node:fetch-ai-models': fails(),
       'node:fetch-gdacs': fails(), 'node:fetch-conflict': fails(), 'node:fetch-ioda': fails(), 'node:fetch-firms': fails(137), 'node:fetch-ipc': fails(), 'node:narrate-gdacs': fails(124),
-      'node:extract-entities': fails(), 'node:extract-source-angles': fails(124), 'node:translate-swedish': fails(), 'node:narrate-indicators': fails(),
+      'node:extract-entities': fails(), 'node:pick-charts': fails(), 'node:extract-source-angles': fails(124), 'node:translate-swedish': fails(), 'node:narrate-indicators': fails(),
       validate: [says('TypeError: Cannot read properties of undefined\n', { exit: 1 })], 'node:write-last-cycle': fails(), 'node:pick-breaking-social': fails(124),
       'npm:typecheck': [says('scripts/x.js(1,1): error TS2304: Cannot find name\n', { exit: 2 })], 'git:add': fails(128), commit: [says('nothing to commit, working tree clean\n', { exit: 1 })],
       'git:pull': [says('error: cannot pull with rebase: You have unstaged changes.\n', { exit: 128 })], 'npm:install': fails(), 'git:push': [says(' ! [rejected] master -> master (fetch first)\n', { exit: 1 })],

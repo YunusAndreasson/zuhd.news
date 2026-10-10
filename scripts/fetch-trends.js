@@ -15,8 +15,12 @@
 //  - Writing the same day twice overwrites the snapshot. When no source
 //    answers, nothing is written and the previous snapshot stays the newest.
 
-import { mkdirSync, readdirSync, unlinkSync } from 'node:fs'
+import { existsSync, mkdirSync, readdirSync, unlinkSync } from 'node:fs'
 import { join } from 'node:path'
+import { tryReadArticle } from './lib/article.js'
+import { articleFilesSince } from './lib/article-files.js'
+import { pathOf } from './lib/datasets.js'
+import { canonicalIndicatorId } from './lib/entity-registry.js'
 import { INDICATORS, SOURCES } from './lib/trends-registry.js'
 import { fetchFredReleaseCalendar } from './lib/trends-sources/fred.js'
 import { EVENT_CATALOG, matchFredRelease } from './lib/event-catalog.js'
@@ -46,6 +50,26 @@ const priorSnapshot = (() => {
   return latest ? readJson(latest) : null
 })()
 
+/** How long an article is published for (`BUILD_WINDOW_DAYS`, `build.js`). */
+const CHARTED_DAYS = 14
+
+/**
+ * The series the published articles draw as their chart. A source that chooses
+ * its own rows (the contracts) keeps one of these while a story still shows it.
+ * "Published" is the build's window, by filename and its margin: a few extra
+ * ids keep a row a few days longer and cost nothing.
+ */
+function chartedIds() {
+  const ids = new Set()
+  const dir = pathOf('articles')
+  if (!existsSync(dir)) return ids
+  for (const name of articleFilesSince(dir, Date.now() - CHARTED_DAYS * 86_400_000)) {
+    const chart = tryReadArticle(join(dir, name)).article?.meta.chart
+    if (typeof chart === 'string' && chart.trim()) ids.add(canonicalIndicatorId(chart.trim()))
+  }
+  return ids
+}
+
 // ── Run ────────────────────────────────────────────────────────────────────
 
 const started = Date.now()
@@ -58,6 +82,7 @@ const { indicators, carried } = await collectRows({
   sources: SOURCES,
   registry: INDICATORS,
   prior: priorSnapshot,
+  charted: chartedIds(),
   fxCache: FX_CACHE,
 })
 

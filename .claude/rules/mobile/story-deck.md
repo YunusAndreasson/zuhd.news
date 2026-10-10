@@ -133,6 +133,9 @@ paths:
   (`lib/predictions.ts`). Print the level, the move in points and
   `MARKET_CAVEAT`. Never plot or tint them. A story with a chart shows the
   chart instead of the odds line.
+- A story's `chart` is chosen by the pipeline's chart desk from ids
+  `instrumentCardFor` resolves (`candidatesFor`, `scripts/lib/chart-desk.js`).
+  Change the two together: an id the app cannot draw is a story with no chart.
 
 ## The dock and the top bar
 

@@ -10,9 +10,13 @@
 // (rice, June and July 2026), so the series a chart was drawn from continues.
 //
 // One call covers every commodity the registry names (`mode: 'batched'`). The
-// service answers in SDMX-ML whatever `accept` asks for, so the reading is by
-// attribute name over the two elements that matter.
+// service answers in SDMX-ML whatever `accept` asks for, and it is read with
+// the parser the RSS fetch reads feeds with. It was first read by two regular
+// expressions, which held for the answer as it is written today and for no
+// other spelling of the same document: a series with one observation, an
+// attribute in single quotes, a prefix on `Series`.
 
+import { XMLParser } from 'fast-xml-parser'
 import { fetchText } from '../http.js'
 import { isoDay, monthLabel } from '../period.js'
 
@@ -21,12 +25,23 @@ const IMF_BASE = 'https://api.imf.org/external/sdmx/2.1/data/IMF.RES,PCPS'
 /** Months of history, as `fetchFredSeries` keeps for a monthly series. */
 const MONTHS = 24
 
-/** @param {string} attrs an element's attributes @param {string} name */
-const attr = (attrs, name) => new RegExp(`\\b${name}="([^"]*)"`).exec(attrs)?.[1]
+/**
+ * Attributes as plain strings under their own names, namespace prefixes
+ * dropped, and `Series` and `Obs` always lists: a commodity with one month is
+ * one `Obs`, which the parser would otherwise hand back as an object.
+ */
+const sdmx = new XMLParser({
+  ignoreAttributes: false,
+  attributeNamePrefix: '',
+  parseAttributeValue: false,
+  removeNSPrefix: true,
+  isArray: (name) => name === 'Series' || name === 'Obs',
+})
 
 /**
  * The service's SDMX-ML, by commodity: each monthly series priced in dollars,
- * oldest month first. A month is dated its first day, as FRED dated it.
+ * oldest month first. A month is dated its first day, as FRED dated it. A
+ * document that is not XML, or holds no data set, is an empty map.
  *
  * @param {string} xml
  * @returns {Map<string, { date: string, value: number }[]>}
@@ -34,20 +49,26 @@ const attr = (attrs, name) => new RegExp(`\\b${name}="([^"]*)"`).exec(attrs)?.[1
 export function parseImfPrices(xml) {
   /** @type {Map<string, { date: string, value: number }[]>} */
   const byIndicator = new Map()
-  for (const series of xml.matchAll(/<Series\b([^>]*)>([\s\S]*?)<\/Series>/g)) {
-    const id = attr(series[1], 'INDICATOR')
-    if (!id || attr(series[1], 'DATA_TRANSFORMATION') !== 'USD' || attr(series[1], 'FREQUENCY') !== 'M') continue
+  let doc
+  try {
+    doc = sdmx.parse(String(xml || ''))
+  } catch {
+    return byIndicator
+  }
+  for (const series of doc?.StructureSpecificData?.DataSet?.Series ?? []) {
+    const id = series?.INDICATOR
+    if (!id || series.DATA_TRANSFORMATION !== 'USD' || series.FREQUENCY !== 'M') continue
     const rows = []
-    for (const obs of series[2].matchAll(/<Obs\b([^>]*)\/>/g)) {
-      const month = /^(\d{4})-M(\d{2})$/.exec(attr(obs[1], 'TIME_PERIOD') ?? '')
+    for (const obs of series.Obs ?? []) {
+      const month = /^(\d{4})-M(\d{2})$/.exec(String(obs?.TIME_PERIOD ?? ''))
       // A month with no price is left out or published empty; `Number('')` is 0.
-      const raw = attr(obs[1], 'OBS_VALUE')
+      const raw = obs?.OBS_VALUE
       const value = raw ? Number(raw) : Number.NaN
       if (!month || !Number.isFinite(value)) continue
       rows.push({ date: `${month[1]}-${month[2]}-01`, value })
     }
     rows.sort((a, b) => (a.date < b.date ? -1 : a.date > b.date ? 1 : 0))
-    if (rows.length > 0) byIndicator.set(id, rows)
+    if (rows.length > 0) byIndicator.set(String(id), rows)
   }
   return byIndicator
 }

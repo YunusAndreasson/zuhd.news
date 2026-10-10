@@ -692,6 +692,15 @@ $ACRONYMS
   timeout 180 node scripts/extract-entities.js 2>&1 | tee -a "$LOG_FILE"
   echo "Entities exit: $? — $((SECONDS - T36))s" | tee -a "$LOG_FILE"
 
+  # Stage 3.65: Chart desk — one batched Haiku call that sets `chart:` on
+  # each new article, from the series the entity stage found for it and the
+  # day's contracts. A failure leaves the batch without charts.
+  echo "" | tee -a "$LOG_FILE"
+  echo "--- Stage 3.65: Chart desk ---" | tee -a "$LOG_FILE"
+  T365=$SECONDS
+  timeout 120 node scripts/pick-charts.js 2>&1 | tee -a "$LOG_FILE"
+  echo "Chart desk exit: $? — $((SECONDS - T365))s" | tee -a "$LOG_FILE"
+
   # Stage 3.7: Source-angle extraction — for each source URL, fetch and
   # summarize its distinctive framing via one batched Haiku call. Writes
   # `angle` + improved `sentiment` back to each article's sources[] list.

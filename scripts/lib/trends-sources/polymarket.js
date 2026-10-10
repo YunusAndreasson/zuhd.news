@@ -86,29 +86,37 @@ export const PIN_TITLE_RE =
  * An incumbent that has fallen out of the top 60 is simply gone — the log line
  * in `fetchPolymarketTop` says how many, which is the number to watch.
  *
+ * **A contract drawn under a story comes before all of them** (`chartedSlugs`)
+ * and is never demoted by the cap: when its row leaves the deck the app draws
+ * nothing under that story, and of the 62 contracts held over ten days 26
+ * were held for one.
+ *
  * @param {Array<{ slug?: string, question?: string, title?: string, volume24hr?: unknown }>} candidates
  * @param {Set<string>} incumbentSlugs
  * @param {RegExp} [pinRe]
  * @param {number} [incumbentCap]
+ * @param {Set<string>} [chartedSlugs] incumbents an article's `chart:` names
  */
 export function orderCandidates(
   candidates,
   incumbentSlugs,
   pinRe = PIN_TITLE_RE,
   incumbentCap = INCUMBENT_CAP,
+  chartedSlugs = new Set(),
 ) {
   const tier = (m) =>
-    incumbentSlugs.has(m.slug) ? 0 : pinRe.test(m.question || m.title || '') ? 1 : 2
+    chartedSlugs.has(m.slug) ? -1 : incumbentSlugs.has(m.slug) ? 0 : pinRe.test(m.question || m.title || '') ? 1 : 2
   const ranked = candidates
     .map((m, i) => ({ m, t: tier(m), v: Number(m.volume24hr) || 0, i }))
     .sort((a, b) => a.t - b.t || b.v - a.v || a.i - b.i)
   const head = []
   const overflow = []
+  // A charted contract holds one of the incumbents' slots: it is one.
   let kept = 0
   for (const x of ranked) {
     if (x.t === 0 && kept >= incumbentCap) overflow.push(x)
     else {
-      if (x.t === 0) kept++
+      if (x.t <= 0) kept++
       head.push(x)
     }
   }
@@ -330,6 +338,43 @@ async function fetchTopMarkets(limit, incumbentSlugs) {
       `${droppedNoneLive} with no live outcome, ${markets.length} questions kept`,
   )
   return { markets, seen }
+}
+
+/** How many charted contracts are looked up by name in one run. Each is a request. */
+const CHARTED_LOOKUPS = 6
+
+/**
+ * The contracts drawn under a story that the volume table no longer holds,
+ * each asked for by its own slug and kept while it is still a live question
+ * (`pickOutcome`'s test, on the one outcome).
+ *
+ * The deck is cut from the day's sixty busiest events, so a question a story
+ * was written around leaves it the day trading moves elsewhere, with the
+ * election it prices still three weeks off. `GET /markets?slug=` answers with
+ * the market and its parent event; probed 2026-10-10.
+ *
+ * A lookup that fails costs that contract its row for this run and nothing else.
+ *
+ * @param {string[]} slugs
+ * @param {number} [now]
+ * @returns {Promise<any[]>} markets in `marketsFromEvents`' shape
+ */
+async function fetchChartedMarkets(slugs, now = Date.now()) {
+  const markets = []
+  for (const slug of slugs.slice(0, CHARTED_LOOKUPS)) {
+    try {
+      const url = new URL(`${GAMMA_BASE}/markets`)
+      url.searchParams.set('slug', slug)
+      const data = await fetchJson(url, { timeoutMs: 10_000 })
+      const m = (Array.isArray(data) ? data : []).find((x) => x?.slug === slug)
+      const ev = m?.events?.[0]
+      if (!m || !pickOutcome({ markets: [m], endDate: ev?.endDate }, new Set([slug]), now)) continue
+      markets.push({ ...m, endDate: m.endDate || ev?.endDate, events: [{ slug: ev?.slug, title: ev?.title }], _eventTags: ev?.tags || [] })
+    } catch (err) {
+      console.error(`  ✗ polymarket charted ${slug}: ${err.message}`)
+    }
+  }
+  return markets
 }
 
 async function fetchPriceHistory(clobTokenId) {
@@ -759,20 +804,24 @@ function parseOutcomeTokens(market) {
  * `sourceLabel`, `values`, `periods`, `asOf`) and four keys of its own:
  * `marketUrl`, `outcomeLabel`, `endDate` and `change24h`.
  *
- * @param {{ incumbents?: Array<{ id?: string, seriesId?: string, label?: string, countryTags?: string[] }> }} [options]
+ * @param {{ incumbents?: Array<{ id?: string, seriesId?: string, label?: string, countryTags?: string[] }>, charted?: Set<string> }} [options]
  *        `incumbents`: the previous snapshot's Polymarket rows. `seriesId` is
  *        the market slug, which is how a row is recognised in this cycle's
  *        response; `label` and `countryTags` are reused so an incumbent never
  *        pays the Haiku call twice, and `id` so that what was narrated under it
  *        stays joined (`deckIds`).
+ *        `charted`: the indicator ids articles still published draw as their
+ *        chart. Those among the incumbents are kept ahead of everything, and
+ *        looked up by name once the table drops them.
  */
-export async function fetchPolymarketTop({ incumbents = [] } = {}) {
+export async function fetchPolymarketTop({ incumbents = [], charted = new Set() } = {}) {
   // Before the fetch: which outcome stands for an event depends on who the
   // incumbents are (`pickOutcome`).
   const incumbentBySlug = new Map(
     incumbents.filter((i) => typeof i?.seriesId === 'string' && i.seriesId).map((i) => [i.seriesId, i]),
   )
   const incumbentSlugs = new Set(incumbentBySlug.keys())
+  const chartedSlugs = new Set([...incumbentBySlug].filter(([, i]) => i.id && charted.has(i.id)).map(([slug]) => slug))
 
   let markets
   let seen
@@ -781,6 +830,15 @@ export async function fetchPolymarketTop({ incumbents = [] } = {}) {
   } catch (err) {
     console.error(`  ✗ polymarket markets: ${err.message}`)
     return null
+  }
+  const lost = [...chartedSlugs].filter((slug) => !seen.has(slug))
+  if (lost.length) {
+    const found = await fetchChartedMarkets(lost)
+    for (const m of found) {
+      markets.push(m)
+      seen.add(m.slug)
+    }
+    console.log(`  · polymarket: ${lost.length} charted contract(s) outside the top ${TOP_N * 3}, ${found.length} still open and kept`)
   }
 
   // Whether an outcome is live (undecided, open, inside its date) and the
@@ -793,7 +851,7 @@ export async function fetchPolymarketTop({ incumbents = [] } = {}) {
   const eligible = markets.filter((m) => !DROP_TITLE_RE.test(m.question || m.title || ''))
 
   // Incumbents first, then pinned subjects, then volume — see `orderCandidates`.
-  const ordered = orderCandidates(eligible, incumbentSlugs)
+  const ordered = orderCandidates(eligible, incumbentSlugs, PIN_TITLE_RE, INCUMBENT_CAP, chartedSlugs)
 
   /** One market's row, or null when it has no line worth drawing. */
   const rowFor = async (m) => {

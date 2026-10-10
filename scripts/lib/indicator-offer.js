@@ -1,5 +1,7 @@
 // What the writer is offered for one selected story: the live figures it may
-// cite, and the one it may attach as the story's chart.
+// cite. Which of them is drawn under the story is not the writer's to say:
+// the chart desk decides that once the article is written (`lib/chart-desk.js`),
+// from rows built here.
 //
 // Pure, so it can be tested and replayed; `attach-indicators.js` (Stage 1.7)
 // is the I/O around it and `validate-articles.js` reads its chart check.
@@ -14,11 +16,11 @@
 //   odds      `poly-*`: a contract's price, its moves in *points*
 //   exchange  `mkt:<id>` from `.markets.json`: the index level, its change
 //
-// `chart: true` marks a row the app can draw — the same gate
-// `instrumentCardFor` applies (mobile/lib/instrument-catalog.ts): a strait
-// with a series, or any id the desk has written a `standing` for. A chart id
-// the app cannot resolve draws nothing, which is harmless and also a wasted
-// decision by the writer.
+// `carried` on a row is how many stories of the last three days already cite
+// that level (`carriedLevels`, set by the stage). The slow series are the
+// hazard: a strait's count is a week behind, so every story in the theatre was
+// handed one number, and four of them printed "3.1 ships a day as of 27
+// September" inside three days.
 
 import { CC_TO_TOPOJSON_NAME } from '../../shared/countries/iso.ts'
 import { completedCloses } from './companies.js'
@@ -432,6 +434,144 @@ const CALENDAR_DAYS = 60
 const CLOSING_DAYS = 3
 const MAX_CALENDAR = 2
 
+// ── A row for each kind ────────────────────────────────────────────────────
+//
+// Each returns the row, `'stale'` for a level too old to be one, or null when
+// there is nothing to read. The offer below and the chart desk build from the
+// same four, so a figure in a sentence and the line picked to go under it are
+// read off one row.
+
+/**
+ * @param {any} ind  a trends-snapshot series
+ * @param {{ now: number, asOf?: string }} ctx `asOf`: the snapshot's own, for a row without one
+ */
+export function seriesRow(ind, { now, asOf: fallback = '' }) {
+  if (!ind || !Array.isArray(ind.values)) return null
+  const values = ind.values.filter(Number.isFinite)
+  if (values.length < 2) return null
+  const cadence = ind.cadence || 'daily'
+  const asOf = ind.asOf || fallback
+  const age = ageDays(asOf, cadence, now)
+  if (isStale(age, cadence)) return 'stale'
+  const monthly = cadence === 'monthly'
+  const [quarter, year] = MONTHLY_WINDOWS
+  return {
+    id: ind.id,
+    kind: 'series',
+    label: ind.label,
+    level: sig4(values[values.length - 1]),
+    unit: ind.unit || '',
+    cadence,
+    // "Aug 2026" for a monthly print: the month it measures, which is how a
+    // sentence dates it ("US inflation was 2.9% in August").
+    period: Array.isArray(ind.periods) ? ind.periods.at(-1) : undefined,
+    // A daily series' `recent` is the chart's own week and its `wider` a
+    // month of days; a monthly print has neither, and keeps its quarter and
+    // its year.
+    recent: monthly ? monthlyChange(values, quarter) : weekMove(ind),
+    wider: monthly ? monthlyChange(values, year) : daysMove(ind, WIDER_DAYS),
+    // Non-negotiable: a figure a writer cannot date is a figure they will
+    // present as today's.
+    asOf,
+    ageDays: age,
+  }
+}
+
+/**
+ * A strait is read from its own payload, the numbers its card prints
+ * (`straitCardFor`, mobile/lib/cards/markets.ts): seven-day traffic, all
+ * ships, against the 90-day normal. These ids were looked up in the trends
+ * snapshot until 2026-09-30, which has no `cp:*` rows — so every Hormuz,
+ * Suez and Bab-el-Mandeb story reached the writer with no figure at all.
+ *
+ * @param {any} c  a `.chokepoints.json` entry
+ * @param {{ now: number }} ctx
+ */
+export function straitRow(c, { now }) {
+  const level = c?.last7Avg?.n_total
+  const series = c?.series?.total
+  if (!c || !Number.isFinite(level) || !Array.isArray(series) || series.length < 2) return null
+  const age = ageDays(c.asOf, 'daily', now)
+  if (isStale(age, 'daily')) return 'stale'
+  const d = c.delta7vs90?.n_total
+  return {
+    id: `cp:${c.id}`,
+    kind: 'strait',
+    label: `${c.name} traffic`,
+    level: sig4(level),
+    unit: 'ships a day, 7-day average, all ships',
+    normal: sig4(c.baseline90Avg?.n_total),
+    vsNormalPct: Number.isFinite(d) ? Math.round(d * 100) : null,
+    asOf: c.asOf,
+    ageDays: age,
+  }
+}
+
+/**
+ * Whether a contract is in its last days. A question about to close is not a
+ * forecast of what's next — "Iran charges Hormuz fees by September 30?" won
+ * every Hormuz story of its final day in a replay, over the contract on
+ * whether traffic recovers.
+ *
+ * @param {any} ind
+ * @param {number} now
+ */
+export const closingSoon = (ind, now) => {
+  const end = Date.parse(ind?.endDate ?? '')
+  return Number.isFinite(end) && end - now < CLOSING_DAYS * DAY
+}
+
+/**
+ * @param {any} ind  a `polymarket` row of the trends snapshot
+ * @param {{ now: number }} ctx
+ */
+export function oddsRow(ind, { now }) {
+  if (!ind || !Array.isArray(ind.values) || !ind.values.length) return null
+  const age = ageDays(ind.asOf, 'daily', now)
+  if (isStale(age, 'daily')) return 'stale'
+  return {
+    id: ind.id,
+    kind: 'odds',
+    question: ind.label,
+    level: Math.round(ind.values.at(-1)),
+    unit: '% (price of a Yes share)',
+    recent: pointsMove(ind, 7),
+    wider: pointsMove(ind, 30),
+    source: 'Polymarket',
+    asOf: ind.asOf,
+    ageDays: age,
+  }
+}
+
+/**
+ * An exchange is read at its completed sessions (`completedCloses`), which
+ * is what its `asOf` dates. A snapshot taken while the exchange is open ends
+ * in that minute's price, and the level was read off the end: London on
+ * 2026-10-09 would have been offered 10,540 "as of 8 October", a day whose
+ * close was 10,441.6. A level that cannot be dated is dropped, not dated.
+ *
+ * @param {any} m  a `.markets.json` exchange
+ * @param {{ now: number }} ctx
+ */
+export function exchangeRow(m, { now }) {
+  if (!m || !Array.isArray(m.series?.values) || !Array.isArray(m.series?.periods)) return null
+  const closes = { ...completedCloses(m.series), asOf: m.asOf }
+  if (closes.values.length < 2) return null
+  const age = ageDays(m.asOf, 'daily', now)
+  if (isStale(age, 'daily')) return 'stale'
+  return {
+    id: `mkt:${m.id}`,
+    kind: 'exchange',
+    label: `${m.indexName} (${m.name})`,
+    level: sig4(closes.values.at(-1)),
+    unit: `index points${m.currency ? `, priced in ${m.currency}` : ''}`,
+    recent: weekMove(closes),
+    wider: daysMove(closes, WIDER_DAYS),
+    asOf: m.asOf,
+    ageDays: age,
+  }
+}
+
 // ── The offer ──────────────────────────────────────────────────────────────
 
 /**
@@ -440,20 +580,20 @@ const MAX_CALENDAR = 2
  * @param {any} [sources.trends]       The trends snapshot.
  * @param {any[]} [sources.chokepoints] `.chokepoints.json`'s `chokepoints`.
  * @param {any[]} [sources.markets]     `.markets.json`'s `exchanges`.
- * @param {any} [sources.dispatch]      `.indicator-dispatch.json`'s `items`.
  * @param {number} [sources.now]
  */
-export function offerFor(story, { trends, chokepoints = [], markets = [], dispatch = {}, now = Date.now() } = {}) {
+export function offerFor(story, { trends, chokepoints = [], markets = [], now = Date.now() } = {}) {
   const text = storyText(story)
   const lower = text.toLowerCase()
   const indicators = (trends?.indicators || []).filter((i) => i?.id)
   const byId = new Map(indicators.map((i) => [i.id, i]))
-  const hasStanding = (id) => Boolean(dispatch?.[id]?.standing)
   let stale = 0
 
   const rows = []
+  /** @param {any} row a builder's answer: a row, `'stale'` or null */
   const push = (row) => {
-    if (!rows.some((r) => r.id === row.id)) rows.push(row)
+    if (row === 'stale') stale++
+    else if (row && !rows.some((r) => r.id === row.id)) rows.push(row)
   }
 
   // Ambiguous mentions are deliberately dropped rather than defaulted. The
@@ -465,142 +605,25 @@ export function offerFor(story, { trends, chokepoints = [], markets = [], dispat
   const straits = []
   const exchanges = []
   for (const e of resolved) {
-    if (e.indicatorId.startsWith('cp:')) {
-      straits.push(e.indicatorId)
-      continue
-    }
-    if (e.indicatorId.startsWith('mkt:')) {
-      exchanges.push(e.indicatorId)
-      continue
-    }
-    const ind = byId.get(e.indicatorId)
-    if (!ind || !Array.isArray(ind.values)) continue
-    const values = ind.values.filter(Number.isFinite)
-    if (values.length < 2) continue
-    const cadence = ind.cadence || 'daily'
-    const asOf = ind.asOf || trends?.asOf || ''
-    const age = ageDays(asOf, cadence, now)
-    if (isStale(age, cadence)) {
-      stale++
-      continue
-    }
-    const monthly = cadence === 'monthly'
-    const [quarter, year] = MONTHLY_WINDOWS
-    push({
-      id: ind.id,
-      kind: 'series',
-      label: ind.label,
-      level: sig4(values[values.length - 1]),
-      unit: ind.unit || '',
-      cadence,
-      // "Aug 2026" for a monthly print: the month it measures, which is how a
-      // sentence dates it ("US inflation was 2.9% in August").
-      period: Array.isArray(ind.periods) ? ind.periods.at(-1) : undefined,
-      // A daily series' `recent` is the chart's own week and its `wider` a
-      // month of days; a monthly print has neither, and keeps its quarter and
-      // its year.
-      recent: monthly ? monthlyChange(values, quarter) : weekMove(ind),
-      wider: monthly ? monthlyChange(values, year) : daysMove(ind, WIDER_DAYS),
-      // Non-negotiable: a figure a writer cannot date is a figure they will
-      // present as today's.
-      asOf,
-      ageDays: age,
-      chart: hasStanding(ind.id),
-    })
+    if (e.indicatorId.startsWith('cp:')) straits.push(e.indicatorId)
+    else if (e.indicatorId.startsWith('mkt:')) exchanges.push(e.indicatorId)
+    else push(seriesRow(byId.get(e.indicatorId), { now, asOf: trends?.asOf }))
   }
 
-  // A strait is read from its own payload, the numbers its card prints
-  // (`straitCardFor`, mobile/lib/cards/markets.ts): seven-day traffic, all
-  // ships, against the 90-day normal. These ids were looked up in the trends
-  // snapshot until 2026-09-30, which has no `cp:*` rows — so every Hormuz,
-  // Suez and Bab-el-Mandeb story reached the writer with no figure at all.
-  for (const id of straits) {
-    const c = chokepoints.find((x) => `cp:${x.id}` === id)
-    const level = c?.last7Avg?.n_total
-    const series = c?.series?.total
-    if (!c || !Number.isFinite(level) || !Array.isArray(series) || series.length < 2) continue
-    const age = ageDays(c.asOf, 'daily', now)
-    if (isStale(age, 'daily')) {
-      stale++
-      continue
-    }
-    const d = c.delta7vs90?.n_total
-    push({
-      id,
-      kind: 'strait',
-      label: `${c.name} traffic`,
-      level: sig4(level),
-      unit: 'ships a day, 7-day average, all ships',
-      normal: sig4(c.baseline90Avg?.n_total),
-      vsNormalPct: Number.isFinite(d) ? Math.round(d * 100) : null,
-      asOf: c.asOf,
-      ageDays: age,
-      chart: true,
-    })
-  }
+  for (const id of straits) push(straitRow(chokepoints.find((x) => `cp:${x.id}` === id), { now }))
 
   // One contract at most: the best-scoring, the snapshot's own order breaking
   // ties (it ranks incumbents and waterway questions first).
   let best = null
   for (const ind of indicators) {
     if (ind.source !== 'polymarket' || !Array.isArray(ind.values) || !ind.values.length) continue
-    // A question in its last days is not a forecast of what's next — "Iran
-    // charges Hormuz fees by September 30?" won every Hormuz story of its
-    // final day in a replay, over the contract on whether traffic recovers.
-    const end = Date.parse(ind.endDate ?? '')
-    if (Number.isFinite(end) && end - now < CLOSING_DAYS * DAY) continue
+    if (closingSoon(ind, now)) continue
     const score = oddsScore(ind, text, lower)
     if (score > 0 && (!best || score > best.score)) best = { ind, score }
   }
-  if (best) {
-    const { ind } = best
-    const age = ageDays(ind.asOf, 'daily', now)
-    if (isStale(age, 'daily')) stale++
-    else {
-      push({
-        id: ind.id,
-        kind: 'odds',
-        question: ind.label,
-        level: Math.round(ind.values.at(-1)),
-        unit: '% (price of a Yes share)',
-        recent: pointsMove(ind, 7),
-        wider: pointsMove(ind, 30),
-        source: 'Polymarket',
-        asOf: ind.asOf,
-        ageDays: age,
-        chart: hasStanding(ind.id),
-      })
-    }
-  }
+  if (best) push(oddsRow(best.ind, { now }))
 
-  // An exchange is read at its completed sessions (`completedCloses`), which
-  // is what its `asOf` dates. A snapshot taken while the exchange is open ends
-  // in that minute's price, and the level was read off the end: London on
-  // 2026-10-09 would have been offered 10,540 "as of 8 October", a day whose
-  // close was 10,441.6. A level that cannot be dated is dropped, not dated.
-  for (const id of exchanges) {
-    const m = markets.find((x) => `mkt:${x.id}` === id)
-    if (!m || !Array.isArray(m.series?.values) || !Array.isArray(m.series?.periods)) continue
-    const closes = { ...completedCloses(m.series), asOf: m.asOf }
-    if (closes.values.length < 2) continue
-    const age = ageDays(m.asOf, 'daily', now)
-    if (isStale(age, 'daily')) {
-      stale++
-      continue
-    }
-    push({
-      id,
-      kind: 'exchange',
-      label: `${m.indexName} (${m.name})`,
-      level: sig4(closes.values.at(-1)),
-      unit: `index points${m.currency ? `, priced in ${m.currency}` : ''}`,
-      recent: weekMove(closes),
-      wider: daysMove(closes, WIDER_DAYS),
-      asOf: m.asOf,
-      ageDays: age,
-      chart: hasStanding(id),
-    })
-  }
+  for (const id of exchanges) push(exchangeRow(markets.find((x) => `mkt:${x.id}` === id), { now }))
 
   // Everything above is in match order, and a contract is capped at one — so
   // the cap below cuts exchanges first and contracts never crowd out a price.
@@ -630,25 +653,51 @@ export function offerFor(story, { trends, chokepoints = [], markets = [], dispat
 /**
  * Whether an article's `chart:` stands, or the reason it is dropped.
  *
- * A chart id must be one this story was offered as chartable: the writer can
- * name only what it was handed, and a series it was not handed is either an
- * invention or another story's. With no selection to check against (a rerun,
- * a hand-written article) any id the build can resolve stands.
+ * The chart desk writes it and names only an id it built a row for, so this
+ * is the check on what reaches the build by any other road: a hand-written
+ * article, a writer that set one from habit. The id must be one the cycle
+ * publishes a series for.
  *
  * Returns `null` when the chart stands.
  *
  * @param {string} id
- * @param {{ offered?: any[] | null, known?: Set<string> }} ctx
+ * @param {{ known?: Set<string> }} ctx
  */
-export function chartProblem(id, { offered = null, known = new Set() } = {}) {
+export function chartProblem(id, { known = new Set() } = {}) {
   if (typeof id !== 'string' || !id.trim()) return 'empty'
-  if (offered) {
-    const row = offered.find((r) => r.id === id)
-    if (!row) return `"${id}" was not offered for this story`
-    if (!row.chart) return `"${id}" has no chart the app can draw`
-    return null
-  }
   return known.has(id) ? null : `"${id}" is not a known series`
+}
+
+/**
+ * How many of these articles cite each id's level: `{ id: n }`, which the
+ * stage puts on the offered rows as `carried`. An article counts for an id when it names the instrument
+ * (`entities[]`, or its `chart`) and prints the level, to half a per cent:
+ * tighter than `citesFigure`, which is asked about one row's own article.
+ *
+ * @param {{ meta: any, body: string }[]} articles the last days' articles
+ * @param {{ id: string, level: number | null }[]} rows one row an id, as the builders above give them
+ * @returns {Record<string, number>}
+ */
+export function carriedLevels(articles, rows) {
+  /** @type {Record<string, number>} */
+  const out = {}
+  for (const row of rows) {
+    if (!Number.isFinite(row.level)) continue
+    const n = articles.filter(({ meta, body }) => {
+      const names =
+        meta?.chart === row.id || (Array.isArray(meta?.entities) && meta.entities.some((e) => e?.indicatorId === row.id))
+      return names && numbersIn(body).some((n) => Math.abs(n - Math.abs(row.level)) <= Math.max(Math.abs(n) * 0.005, 0.05))
+    }).length
+    if (n > 0) out[row.id] = n
+  }
+  return out
+}
+
+/** The numbers a body prints, read as a reader would: link markup costs its label. */
+function numbersIn(body) {
+  return (String(body).replace(/\[([^\]]+)\]\([^)]+\)/g, '$1').match(/\d[\d,]*(?:\.\d+)?/g) || [])
+    .map((s) => Number(s.replace(/,/g, '')))
+    .filter(Number.isFinite)
 }
 
 /** The figures a row offers, for the cite check. */
@@ -667,8 +716,5 @@ const rowFigures = (row) =>
  */
 export function citesFigure(body, row) {
   const figures = rowFigures(row)
-  const numbers = (String(body).replace(/\[([^\]]+)\]\([^)]+\)/g, '$1').match(/\d[\d,]*(?:\.\d+)?/g) || [])
-    .map((s) => Number(s.replace(/,/g, '')))
-    .filter(Number.isFinite)
-  return numbers.some((n) => figures.some((f) => Math.abs(f - n) <= Math.max(Math.abs(n) * 0.05, 0.05)))
+  return numbersIn(body).some((n) => figures.some((f) => Math.abs(f - n) <= Math.max(Math.abs(n) * 0.05, 0.05)))
 }
