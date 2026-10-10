@@ -219,6 +219,21 @@ test('the range switch is quiet by ink, not by alpha', () => {
  * tokens — plus the measurement of the tokens themselves. The rail sits on
  * `--map-sunken`; the rows also open a panel over `--map-raised`.
  */
+test('a story row’s hook is quiet by ink, not by alpha', () => {
+  // The sentence under a headline sits a step below it and steps again on a
+  // read row. Both steps are tokens, which the ink-by-surface test above
+  // measures; an `opacity` here would be a third step it cannot see.
+  // Anchored to the line: the read row's own override of this colour is nested
+  // inside `.map-feed-item.is-read` and comes first in the file.
+  const block = css.match(/^\.map-feed-sub\s*\{[^}]*\}/m)
+  assert.ok(block, '.map-feed-sub should exist — it is the hook under a headline')
+  assert.ok(
+    !/\bopacity\s*:/.test(block[0]),
+    '.map-feed-sub is dimmed with opacity, which this suite cannot measure — use an ink step',
+  )
+  assert.match(block[0], /color:\s*var\(--map-ink-soft\)/)
+})
+
 test('the money rows’ caveats are quiet by ink, not by alpha', () => {
   for (const cls of ['map-markets-age', 'map-markets-level']) {
     const block = css.match(new RegExp(`\\.${cls}\\s*\\{[^}]*\\}`))

@@ -19,7 +19,7 @@ paths:
 `scripts/check-prompt.md` enforces it and `scripts/measure-quality.js`
 measures drift. Everything downstream reads a list of blocks: `splitBlocks`,
 the web's `<p>` run, the app's `article.sentences`, the Swedish translator,
-`mapLeads`.
+and `openingText` (`build.js`), which cuts the map's hook and its lead.
 
 - Four blocks are required and a fifth is optional: hook, why it matters,
   mechanism, counterpoint or quote, what's next. Nothing may assume four:

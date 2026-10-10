@@ -143,6 +143,43 @@ test('a read story is greyed in two channels and said in words', async () => {
   assert.equal(fresh.querySelectorAll('.sr-only').length, 1)
 })
 
+test('a row prints its hook once, between the headline and the place', async () => {
+  setupDom()
+  const { createFeed } = await import(bundlePath)
+  const feed = createFeed({ onSelect() {}, onHover() {}, isRead: (slug) => slug === 'seen' })
+  const now = Date.now()
+  const hooked = { ...point('hooked', now), h: 'Police pulled the founder off a plane.' }
+  const seen = { ...point('seen', now - 1000), h: 'Fighting killed 63 people in 24 hours.' }
+  // A point from the archive carries no hook.
+  const bare = point('bare', now - 2000)
+  feed.setItems([hooked, seen, bare], now)
+
+  const row = feed.element.querySelector('[data-slug="hooked"]')
+  const sub = row.querySelector('.map-feed-sub')
+  assert.equal(sub.textContent, hooked.h)
+  // Title, sentence, place: the order the row is read in.
+  assert.deepEqual(
+    [...row.querySelector('.map-feed-body').children].map((n) => n.className),
+    ['map-feed-title', 'map-feed-sub', 'map-feed-meta'],
+  )
+
+  // No hook, no element: an empty paragraph would still take its margin, and
+  // the row would be a line taller for nothing.
+  assert.equal(feed.element.querySelector('[data-slug="bare"] .map-feed-sub'), null)
+
+  // A read row keeps its sentence and still says "read" exactly once.
+  const read = feed.element.querySelector('[data-slug="seen"]')
+  assert.equal(read.querySelector('.map-feed-sub').textContent, seen.h)
+  assert.equal(read.querySelectorAll('.sr-only').length, 1)
+
+  // The scrubber rebuilds the list on every frame it moves. The row is reused
+  // and its hook is the same node: nothing is rewritten, so nothing reflows.
+  feed.setItems([hooked, seen, bare], now + 60_000)
+  assert.equal(feed.element.querySelector('[data-slug="hooked"]'), row)
+  assert.equal(row.querySelector('.map-feed-sub'), sub)
+  assert.equal(row.querySelectorAll('.map-feed-sub').length, 1)
+})
+
 test('a read story is greyed, never hidden or reordered', async () => {
   setupDom()
   const { createFeed } = await import(bundlePath)

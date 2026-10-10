@@ -184,6 +184,10 @@ Camera, MapLibre and cards are `map.md`; layers and marks are `map-layers.md`.
 
 ## The story rail and refresh
 
+- A row is title, hook and `loc · age`. The hook is `h` on the `map.json`
+  point, written when the row is created and never again. Never read it from
+  `map-leads.json`: that arrives at idle, and a row built bare doubles in
+  height when it lands. An archive point has no hook and gets no element.
 - The list is a keyed patch by slug, never `replaceChildren`; rows move with
   `moveBefore` where it exists. A rebuild drops hover and scroll anchoring
   on every scrub frame.

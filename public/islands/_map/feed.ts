@@ -312,8 +312,9 @@ export function createFeed(opts: FeedOptions): Feed {
   const rowFor = (p: MapPoint, now: number): HTMLLIElement => {
     const existing = rows.get(p.slug)
     if (existing) {
-      // Only the parts that can change. `title` and `href` are fixed for a slug;
-      // the dateline moves because `relativeTime` is relative to the scrub head,
+      // Only the parts that can change. `title`, `href` and the hook are fixed
+      // for a slug; the dateline moves because `relativeTime` is relative to the
+      // scrub head,
       // and writing it unconditionally would dirty the row on every frame.
       const meta = existing.querySelector<HTMLElement>('.map-feed-meta')
       const text = metaOf(p, now)
@@ -346,7 +347,17 @@ export function createFeed(opts: FeedOptions): Feed {
     meta.className = 'map-feed-meta'
     meta.textContent = metaOf(p, now)
 
-    body.append(link, meta)
+    body.append(link)
+    // The hook, under the headline. No element without one (an archive point
+    // carries none), so such a row keeps its two lines rather than an empty
+    // third.
+    if (p.h) {
+      const sub = document.createElement('p')
+      sub.className = 'map-feed-sub'
+      sub.textContent = p.h
+      body.append(sub)
+    }
+    body.append(meta)
     li.append(dot, body)
 
     // Already opened. Greyed rather than hidden or reordered: the rail is a

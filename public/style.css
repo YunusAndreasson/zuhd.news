@@ -3282,6 +3282,7 @@ body.map-page.map-rail-off .map-seam[data-side='left'] .map-seam-toggle {
   }
 
   .map-feed-title { color: var(--map-ink-muted); }
+  .map-feed-sub { color: var(--map-ink-dim); }
   .map-feed-meta { color: var(--map-ink-dim); }
 }
 
@@ -3300,6 +3301,26 @@ body.map-page.map-rail-off .map-seam[data-side='left'] .map-seam-toggle {
   text-wrap: pretty;
 
   &:hover { text-decoration: underline; text-underline-offset: 0.2em; }
+}
+
+/* The hook: the story's opening sentence, under its headline.
+
+   One rung under the headline and one ink step above the meta line, so a row
+   reads title, sentence, place. At `--size-2xs` on the 21rem rail two lines
+   hold about a hundred characters and a hook's 95th percentile is 87, so the
+   clamp is a floor under the row's height rather than the usual case: nearly
+   every hook prints whole. A row is about 88px with it against 53px without. */
+.map-feed-sub {
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+  line-clamp: 2;
+  overflow: hidden;
+  margin: 0.15rem 0 0;
+  font-size: var(--size-2xs);
+  line-height: 1.35;
+  color: var(--map-ink-soft);
+  text-wrap: pretty;
 }
 
 /* Stays one rung under the headline. A rail of 120 rows is scanned, not read —
