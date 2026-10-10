@@ -106,6 +106,66 @@ const hazardsHtml = (h, FACTS) => {
       </section>`
 }
 
+/**
+ * A country's trajectories: where it stands and how it got there, each against
+ * the world's median.
+ *
+ * One column on every width, a card under a card. The chart's type is in
+ * viewBox units, so two cards side by side on a desktop would print their axes
+ * at half size. Each card is a label, a figure, a sentence and the one chart the
+ * site has (`seriesModel`): the country's line with the world's thin beside it,
+ * and for births the replacement rate as its rule. The page is complete with
+ * no script; the numbers under each chart are in its table.
+ *
+ * @param {any[]} cards `trajectoryCards` for this country
+ * @param {any} TRAJECTORIES `shared/countries/country-trajectories.ts`
+ * @param {any} CHART `shared/chart/series.ts`
+ */
+const trajectoriesHtml = (cards, TRAJECTORIES, CHART) => {
+  const { seriesModel, staticFigure, renderMarkup } = CHART
+  const drawn = cards
+    .map((card) => {
+      const model = seriesModel({
+        values: card.values,
+        periods: card.periods,
+        comparison: { values: card.world, label: 'world median' },
+        ...(card.domain ? { domain: card.domain } : {}),
+        // A threshold, not a base: the readout takes no percentage against it.
+        ...(card.reference
+          ? {
+              reference: card.reference.value,
+              referenceLabel: card.reference.label,
+              referenceChange: false,
+            }
+          : {}),
+        formatValue: (v) => TRAJECTORIES.formatTrajectory(card.format, v),
+        palette: 'neutral',
+        step: 'years',
+        label: card.label,
+      })
+      if (!model.ok) return ''
+      const caption = [
+        card.source,
+        'thin line is the world’s median',
+        card.reference ? `rule marks ${card.reference.label} (${card.reference.value})` : '',
+      ]
+        .filter(Boolean)
+        .join(' · ')
+      return `<article class="country-trajectory">
+          <h3 class="label">${escHtml(card.eyebrow)}</h3>
+          <p class="country-trajectory-headline">${escHtml(card.headline)}</p>
+          <p class="t-caption country-trajectory-subtitle">${escHtml(card.subtitle)}</p>
+          <div class="country-trajectory-chart">${renderMarkup(staticFigure(model, { caption }))}</div>
+        </article>`
+    })
+    .filter(Boolean)
+  if (!drawn.length) return ''
+  return `<section class="country-trajectories">
+        <h2 class="label section-title">Trajectories</h2>
+        ${drawn.join('\n')}
+      </section>`
+}
+
 /** Greedy point-in-country resolver using a naive bbox test against the
  *  topojson features. Fast enough for the few hundred datelined
  *  articles per build. Duplicates the logic in mobile's findCountry()
@@ -164,6 +224,8 @@ export const buildCountryPages = async ({
     { displayCountryName },
     { rankStrip },
     FACTS,
+    TRAJECTORIES,
+    CHART,
     { geoContains, geoCentroid, geoArea },
     { feature },
   ] = await Promise.all([
@@ -176,6 +238,8 @@ export const buildCountryPages = async ({
     loadShared('place-names.ts'),
     loadShared('chart/rank-strip.ts'),
     loadShared('countries/country-facts.ts'),
+    loadShared('countries/country-trajectories.ts'),
+    loadShared('chart/series.ts'),
     import('d3-geo'),
     import('topojson-client'),
   ])
@@ -216,6 +280,10 @@ export const buildCountryPages = async ({
     },
     iso2OfName: (name) => codeFromTopojsonName(name),
   })
+
+  // The annual series the trajectory cards are drawn from, by ISO2, and the
+  // world's medians they are drawn against.
+  const cardsData = JSON.parse(readFileSync(join(ROOT, 'shared', 'data', 'country-cards.json'), 'utf8'))
 
   mkdirSync(join(distDir, 'country'), { recursive: true })
 
@@ -285,6 +353,11 @@ export const buildCountryPages = async ({
       .join('\n')
 
     const hazardsSection = hazardsHtml(hazardsByCountry.get(iso2), FACTS)
+    const trajectoriesSection = trajectoriesHtml(
+      TRAJECTORIES.trajectoryCards(cardsData.byIso2?.[iso2], cardsData.global ?? {}),
+      TRAJECTORIES,
+      CHART,
+    )
 
     const recent = articlesByCountry[name] || []
     const coverageSection = recent.length
@@ -345,6 +418,7 @@ export const buildCountryPages = async ({
       .replace(/{{flag}}/g, data.flag || '')
       .replace(/{{metaLine}}/g, escHtml(metaLine))
       .replace(/{{hazards}}/g, hazardsSection)
+      .replace(/{{trajectories}}/g, trajectoriesSection)
       .replace(/{{metricRows}}/g, metricRows)
       .replace(/{{coverageSection}}/g, coverageSection)
       .replace(/{{footerStatus}}/g, footerStatusLine({ sources: 'REST Countries · World Bank · OWID' }))

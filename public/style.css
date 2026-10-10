@@ -1443,6 +1443,36 @@ body.archetype-page-body .article-page-header {
   .country-fact { grid-template-columns: 1fr; gap: 0.15rem; }
 }
 
+/* A country's trajectories: a label, a figure, a sentence and a chart, four
+   times, one under another with a hairline between. One column at every
+   width: the chart's type is in viewBox units, and two cards side by side
+   would print their axes at half the size. */
+.country-trajectory {
+  padding: var(--space-md) 0;
+  border-top: 1px solid var(--rule);
+
+  &:first-of-type { border-top: 0; padding-top: 0; }
+}
+
+.country-trajectory-headline {
+  margin: var(--space-xs) 0 0;
+  font-size: var(--size-h2);
+  line-height: 1.1;
+  color: var(--text-emphasis);
+  font-variant-numeric: lining-nums tabular-nums;
+}
+
+.country-trajectory-subtitle { margin: var(--space-xs) 0 0; max-width: 44rem; }
+
+.country-trajectory-chart {
+  margin-top: var(--space-sm);
+  color: var(--text);
+}
+
+@media (max-width: 640px) {
+  .country-trajectory-headline { font-size: var(--size-h3); }
+}
+
 .section-title {
   display: block;
   margin-bottom: var(--space-sm);

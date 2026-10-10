@@ -448,6 +448,14 @@ test('a comparison is a second line on the same scale, and nothing else', async 
   assert.ok(fertility.referenceY != null, 'the rule is inside the domain the comparison opened')
   assert.equal(seriesModel({ values: [6.8, 6.5, 6.1], reference: 2.2 }).referenceY, null, 'and outside it without one')
 
+  // And a rule can be a threshold: drawn and labelled, with no percentage taken
+  // against it. 6.1 children is not "+177% vs replacement".
+  const base = { values: [6.8, 6.5, 6.1], periods: ['a', 'b', 'c'], comparison: { values: [2.4, 2.3, 2.106], label: 'w' }, reference: 2.2, referenceLabel: 'replacement' }
+  assert.match(series.pointReadout(seriesModel(base), seriesModel(base).latest), /vs replacement/)
+  const threshold = seriesModel({ ...base, referenceChange: false })
+  assert.match(series.pointReadout(threshold, threshold.latest), /^c · 6\.10?$/, 'the period and the value, and no percentage')
+  assert.ok(threshold.referenceY != null, 'the rule is still drawn')
+
   // One line in each figure, and styled.
   const html = renderMarkup(staticFigure(model, {}))
   assert.equal((html.match(/class="chart-compare"/g) ?? []).length, 1)

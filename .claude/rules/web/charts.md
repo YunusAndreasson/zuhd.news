@@ -39,6 +39,12 @@ The rail's readings are `map-rail.md`.
 - `comparison` is a second line on the model's own scale (the world's median),
   never a second model laid over it. It widens the domain unless `domain` is
   given, before `reference` is weighed, and reaches no dot, axis or table.
+- `referenceChange: false` where the rule is a threshold (replacement, 2.1)
+  and not a base: the readout then takes no percentage against it.
+- A country's trajectory cards (`trajectoriesHtml`, `country-pages.js`) are
+  `seriesModel` at build, one column at every width: chart type is in viewBox
+  units and halves in a half column. The sentences are
+  `shared/countries/country-trajectories.ts`, which names the year it used.
 - `marks` (`SeriesMark`) is an annotation on the model's own scale, never a
   second shape: indexed into the source series, dropped outside the drawn
   window, merged where two share an observation, and named in the table.

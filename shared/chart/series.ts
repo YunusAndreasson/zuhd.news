@@ -115,6 +115,13 @@ export interface SeriesOptions {
    *  open". Read out beside the hovered point's change against it. */
   referenceLabel?: string
   /**
+   * `false` where the rule is a threshold to read the line against and not a
+   * base to take a percentage of. A fertility of 5.9 is not "+182.6% vs
+   * replacement" in anybody's words; the rule at 2.1 says what it has to by
+   * being drawn. The rule, its label and the axis are unaffected.
+   */
+  referenceChange?: boolean | undefined
+  /**
    * What the series *is*, and nothing about its size — "Brent crude", "TASI
    * daily closes", "Daily vessel transits at the Suez Canal".
    *
@@ -345,6 +352,8 @@ export interface SeriesModel {
   reference: number | null
   referenceY: number | null
   referenceLabel: string | null
+  /** Whether the readout states a point's change against the rule. */
+  referenceChange: boolean
   /** Last against first, over what is drawn. What `direction: 'window'` uses,
    *  exposed so a caption can state it without recomputing it from a series
    *  the range control may have narrowed. */
@@ -423,6 +432,7 @@ export function seriesModel(opts: SeriesOptions): SeriesModel {
     reference: null,
     referenceY: null,
     referenceLabel: null,
+    referenceChange: true,
     windowPct: 0,
     tone: '',
     label: label ?? null,
@@ -715,6 +725,7 @@ export function seriesModel(opts: SeriesOptions): SeriesModel {
     reference: hasRef ? (reference as number) : null,
     referenceY,
     referenceLabel: referenceLabel ?? null,
+    referenceChange: opts.referenceChange !== false,
     windowPct,
     tone,
     label: label ?? null,
@@ -743,7 +754,7 @@ export const pointReadout = (model: SeriesModel, p: SeriesPoint): string => {
   if (p.period) parts.push(p.period)
   const shown = model.formatExact(p.value)
   parts.push(model.unit ? `${shown} ${model.unit}` : shown)
-  if (model.reference != null && model.reference !== 0) {
+  if (model.referenceChange && model.reference != null && model.reference !== 0) {
     const pct = ((p.value - model.reference) / Math.abs(model.reference)) * 100
     const against = model.referenceLabel ? ` vs ${model.referenceLabel}` : ''
     parts.push(`${signedPct(pct)}${against}`)
