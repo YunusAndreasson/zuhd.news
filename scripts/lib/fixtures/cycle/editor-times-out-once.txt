@@ -33,8 +33,9 @@ commands
   node scripts/scaffold-articles.js
   node scripts/body-lengths.js
   node scripts/flag-title-echo.js /tmp/zuhd-new-articles.txt
-  claude --no-session-persistence --setting-sources project --disable-slash-commands --strict-mcp-config --effort low --model claude-sonnet-5-5 --allowedTools Read,Edit,Glob,Grep --add-dir /tmp --max-turns 50 --exclude-dynamic-system-prompt-sections -p «text sha1:ec3bd00f»
-  claude --no-session-persistence --setting-sources project --disable-slash-commands --strict-mcp-config --effort low --model claude-sonnet-5-5 --allowedTools Read,Edit,Glob,Grep --add-dir /tmp --max-turns 50 --exclude-dynamic-system-prompt-sections -p «text sha1:ec3bd00f»
+  node scripts/flag-acronyms.js /tmp/zuhd-new-articles.txt
+  claude --no-session-persistence --setting-sources project --disable-slash-commands --strict-mcp-config --effort low --model claude-sonnet-5-5 --allowedTools Read,Edit,Glob,Grep --add-dir /tmp --max-turns 50 --exclude-dynamic-system-prompt-sections -p «text sha1:fee59980»
+  claude --no-session-persistence --setting-sources project --disable-slash-commands --strict-mcp-config --effort low --model claude-sonnet-5-5 --allowedTools Read,Edit,Glob,Grep --add-dir /tmp --max-turns 50 --exclude-dynamic-system-prompt-sections -p «text sha1:fee59980»
   node scripts/fetch-trends.js
   node scripts/fetch-chokepoints.js
   node scripts/fetch-markets.js

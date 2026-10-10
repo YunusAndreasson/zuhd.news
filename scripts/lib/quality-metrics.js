@@ -12,6 +12,7 @@
 import { ARTICLE_CEILING, stripDateline, visibleText } from './article.js'
 import { countBlocks } from './blocks.js'
 import { parseFrontmatter } from './frontmatter.js'
+import { unexpandedAcronyms } from './acronyms.js'
 import { hookOf, titleEcho } from './title-echo.js'
 
 export const WINDOW_DAYS = 7
@@ -31,7 +32,13 @@ export const WINDOW_DAYS = 7
 // half the title's words of three letters or more, "the" among them, whatever
 // the hook added. On the week to 2026-10-04 the two read 48.2% and 18.2% of
 // the same 390 articles: the step down is the definition.
-export const SCHEMA = 4
+// Schema 5 (2026-10-10): acronymViolations counts what `unexpandedAcronyms`
+// finds (`lib/acronyms.js`): the owner's wider list (CEO, UAE, DNA, NASA, GDP,
+// TASS, RT, TRT stand), no numeral, designation or name in capitals, and each
+// token once an article. It was every all-caps token outside the prompts' first
+// list, each time it appeared. On the fortnight to 2026-10-10 that is 128
+// against roughly twice as many: the step down is the definition.
+export const SCHEMA = 5
 
 /**
  * @typedef {object} QualityRow
@@ -116,8 +123,6 @@ const HEDGE_PATTERNS = [
   /\bsignificant(ly)?\b/i,
   /\bamid\b/i,
 ]
-// Strict: only the prompt whitelist + AI (universally understood) pass.
-const WHITELIST = new Set(['US', 'UK', 'EU', 'UN', 'WHO', 'NATO', 'ISIS', 'IDF', 'IMF', 'ICC', 'ICJ', 'AI'])
 
 /**
  * What the detectors say of one article: the per-article half of every
@@ -219,8 +224,7 @@ export function qualitySnapshot(articles, now) {
   /** @type {Map<string, number>} */
   const acronymTally = new Map()
   for (const a of articles) {
-    const tokens = [...visibleText(a.body).matchAll(/\b[A-Z]{2,5}\b/g)].map((m) => m[0])
-    for (const t of tokens) if (!WHITELIST.has(t)) acronymTally.set(t, (acronymTally.get(t) || 0) + 1)
+    for (const t of unexpandedAcronyms(visibleText(a.body))) acronymTally.set(t, (acronymTally.get(t) || 0) + 1)
   }
   const acronymViolations = [...acronymTally.values()].reduce((a, b) => a + b, 0)
   const topAcronymViolators = [...acronymTally.entries()].sort((a, b) => b[1] - a[1]).slice(0, 5)

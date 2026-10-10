@@ -181,6 +181,9 @@ stages assume about each other.
   a bare `null` reads as a quiet day.
 - `<title-echo>` (`flag-title-echo.js`) is a flag for the editor, never a
   gate: an overlap measure cannot see a stake in words.
+- `<acronyms>` (`flag-acronyms.js`) is the same: a list of places to look.
+  The recognised list is `RECOGNISED` (`lib/acronyms.js`), the owner's; both
+  prompts print it and a test holds the three together.
 - In a hook, attribution follows the claim.
 - An offered figure is permission, not obligation. The editor treats one
   matching its `indicators` row as sourced.

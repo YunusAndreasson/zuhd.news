@@ -89,8 +89,8 @@ test('the quality metrics measure the current budget', () => {
   assert.equal(over(TARGET_HI + 1).charOver350Pct, 100, `charOver350Pct no longer turns at ${TARGET_HI}`)
   assert.equal(over(CEILING).charOver400Pct, 0)
   assert.equal(over(CEILING + 1).charOver400Pct, 100, `charOver400Pct no longer turns at ${CEILING}`)
-  // Schema 3 is where the budget last changed definition; 4 is the title echo's (`lib/quality-metrics.js`).
-  assert.equal(SCHEMA, 4, 'the budget changed definition at schema 3 — bump SCHEMA if it changes again')
+  // Schema 3 is where the budget last changed definition; 4 is the title echo's and 5 the acronyms' (`lib/quality-metrics.js`).
+  assert.equal(SCHEMA, 5, 'the budget changed definition at schema 3 — bump SCHEMA if it changes again')
 })
 
 test('the RVS writing scorer measures against the same ceiling', () => {

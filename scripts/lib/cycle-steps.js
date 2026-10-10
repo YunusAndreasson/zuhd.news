@@ -339,6 +339,10 @@ export async function editor(cycle) {
   // Hooks that say the title again (lib/title-echo.js) — a list for the
   // editor's title-echo test, never a gate: about 7 in 10 flags are echoes.
   const echoes = (await cycle.read(['node', 'scripts/flag-title-echo.js', pathOf('newArticles')])).out
+  // Capitals a reader may have to decode (lib/acronyms.js), each where it
+  // stands — a list for the editor's acronym rule, never a gate: a company
+  // known by its capitals is on it beside an agency nobody knows.
+  const acronyms = (await cycle.read(['node', 'scripts/flag-acronyms.js', pathOf('newArticles')])).out
   const addendum = `
 
 Check only the files listed in <files> below (this cycle's batch). Other untracked articles belong to earlier runs.
@@ -353,7 +357,11 @@ ${lengths}
 
 <title-echo>
 ${echoes}
-</title-echo>`
+</title-echo>
+
+<acronyms>
+${acronyms}
+</acronyms>`
   // --add-dir /tmp: the editor's first rule is checking figures and quotes
   // against the sources, and the source text lives only in the selection.
   // Without it the editor said, every cycle, that it "only saw them as links" —

@@ -159,8 +159,9 @@ test('semicolons, causal claims, press-era phrases and filler are counted once a
 test('an acronym counts where the reader sees it, unless it is one everybody knows', () => {
   const body = [FOUR[0], 'The [IAEA](org:IAEA) and the WTO met the UN, NATO and the [Iran](country:IR) delegation. OPEC and the WTO differ.', ...FOUR.slice(2)].join('\n\n')
   const m = metrics([row({ body }), row({ body: body.replace('OPEC', 'IAEA') })])
-  assert.equal(m.acronymViolations, 8)
-  assert.deepEqual(m.topAcronymViolators, [['WTO', 4], ['IAEA', 3], ['OPEC', 1]], 'IR is a link target, UN and NATO are known')
+  // Each once an article, however often it is written (`unexpandedAcronyms`).
+  assert.equal(m.acronymViolations, 5)
+  assert.deepEqual(m.topAcronymViolators, [['IAEA', 2], ['WTO', 2], ['OPEC', 1]], 'IR is a link target, UN and NATO are known')
 })
 
 test('sources: missing countries, the three largest outlets\' share, and how many stand on more than one', () => {
