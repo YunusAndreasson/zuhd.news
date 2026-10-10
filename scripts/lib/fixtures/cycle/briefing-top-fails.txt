@@ -47,6 +47,7 @@ commands
   node scripts/fetch-ipc.js
   node scripts/narrate-gdacs.js
   node scripts/extract-entities.js
+  node scripts/pick-charts.js
   node scripts/extract-source-angles.js
   node scripts/translate-swedish.js
   node scripts/narrate-indicators.js --market-signals
@@ -222,6 +223,11 @@ log
   | node:extract-entities: stdout
   | «node:extract-entities»
   | Entities exit: 0 — Ns
+  |
+  | --- Stage 3.65: Chart desk ---
+  | node:pick-charts: stdout
+  | «node:pick-charts»
+  | Chart desk exit: 0 — Ns
   |
   | --- Stage 3.7: Source angles ---
   | node:extract-source-angles: stdout

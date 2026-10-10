@@ -93,6 +93,8 @@ export const STAGES = [
   // Opus writes a narrative for each Orange or Red alert, cached by its inputs.
   snapshot('narrate-gdacs', '3.4d', 'GDACS narration', 600, 'Narration'),
   { id: 'extract-entities', number: '3.6', title: 'Entity extraction', needs: 'articles', command: ['node', 'scripts/extract-entities.js'], timeout: 180, exit: 'Entities', timed: true },
+  // After the entity stage, which says what each story names and is about, and the snapshot fetches it chooses from.
+  { id: 'pick-charts', number: '3.65', title: 'Chart desk', needs: 'articles', command: ['node', 'scripts/pick-charts.js'], timeout: 120, exit: 'Chart desk', timed: true },
   { id: 'extract-source-angles', number: '3.7', title: 'Source angles', needs: 'articles', command: ['node', 'scripts/extract-source-angles.js'], timeout: 300, exit: 'Source angles', timed: true },
   // The 48h window into Swedish for islam.se. A translation failure must never be able to stop the publish.
   {

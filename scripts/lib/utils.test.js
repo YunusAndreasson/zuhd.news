@@ -36,6 +36,30 @@ test('a fingerprint is letters and digits only, and no headline is the empty one
   assert.equal(fingerprint('…'), '')
 })
 
+// Kloop, TMTPost and Zhidx are read in Russian and Chinese. As it was, four of
+// twenty-six stories were lost in a merge on 2026-10-10, each the empty string.
+test('a headline in another script is itself, and not the empty string every one of them was', () => {
+  const ru = 'Еще одна компания минфина Кыргызстана попала под санкции'
+  const zh = '收废品，怎么就成了大生意？'
+  assert.equal(fingerprint(ru), 'ещеоднакомпанияминфинакыргызстанапопалап')
+  assert.equal(fingerprint(zh), '收废品怎么就成了大生意')
+  assert.notEqual(fingerprint(ru), fingerprint('Не только сроки, но и конфискация имущества'))
+  assert.equal(fingerprint('模型还在加速，世界如何跟上？｜北美AI交流手记'), '模型还在加速世界如何跟上北美ai交流手记')
+})
+
+// Both were `2026-10-09-`, and a pick matched by slug took the other's sources.
+test('a headline in another script has a slug of its own', () => {
+  const a = slugify('Еще одна компания минфина Кыргызстана попала под санкции', '2026-10-09T10:00:00Z')
+  const b = slugify('Не только сроки, но и конфискация имущества', '2026-10-09T11:00:00Z')
+  assert.match(a, /^2026-10-09-[0-9a-f]{8}$/)
+  assert.match(b, /^2026-10-09-[0-9a-f]{8}$/)
+  assert.notEqual(a, b)
+  assert.match(slugify('Jane Doe по-кыргызски', '2026-10-09'), /^2026-10-09-jane-doe-[0-9a-f]{8}$/)
+  assert.match(slugify('模型还在加速，世界如何跟上？｜北美AI交流手记', '2026-10-10'), /^2026-10-10-ai-[0-9a-f]{8}$/)
+  // A Latin headline is as it was, marks and all.
+  assert.equal(slugify('Gefährlicher Kontrollzirkus', '2026-10-08'), '2026-10-08-gefahrlicher-kontrollzirkus')
+})
+
 // The four are on the site, under the slug in the comment beside each.
 test('a headline is cut at a word, not at the sixtieth character', () => {
   assert.equal(

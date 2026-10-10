@@ -10,6 +10,8 @@ paths:
   - "scripts/run-cycle.sh"
   - "scripts/narrate-*.js"
   - "scripts/attach-indicators.js"
+  - "scripts/pick-charts.js"
+  - "scripts/lib/chart-desk.js"
   - "scripts/flag-title-echo.js"
   - "scripts/translate-swedish.js"
   - "scripts/pick-breaking-social.js"
@@ -109,6 +111,10 @@ stages assume about each other.
   (`poolAgeCapMs`): a late pick publishes as an old story.
 - Do not bring backfill back: it filled floors by a noisy feed tag, and a
   short slot beats one the writer must refuse.
+- An outlet read in another language is a row like any other (`lib/rss-sources.js`): no
+  translation step. A title in another script keeps its letters in `fingerprint` and gets a
+  hashed slug (`slugify`), or the merge reads every such title as one story.
+- The fetcher takes a feed's first items in feed order: probe that a new feed is newest-first.
 - `logs.test.js` reads feed health from `RSS fetch:`: after the cut the merged
   count measures freshness.
 
@@ -220,9 +226,23 @@ stages assume about each other.
 - A stale or ambiguous level is dropped, not dated. Odds move in points
   (`pointsMove`), and a contract is offered on its subject, not its country
   (`oddsScore`).
-- `chart: <id>` may name only a row offered with `chart: true`, which is what
-  the app can draw. `validate-articles.js` removes any other and never
-  quarantines. The subject earns a chart, not a recited figure.
+- The chart desk (`pick-charts.js`, `lib/chart-desk.js`) is the only thing
+  that sets `chart:`, after the entity stage: the writer chose from a word
+  match made before it wrote, and 24 of 55 charts in ten days were one strait.
+- `candidatesFor` lists only what the app can draw (`instrumentCardFor`): a
+  series with a `standing`, a strait with traffic, a tracked company with a
+  quote from this week. A country brings its currency and rate to an economy
+  story and to no other.
+- **Never** leave the repeat limit to the prompt: `applyCaps` holds a series
+  to one story a day unless the story's subject is that series.
+- A changed desk prompt is replayed before it lands: `pick-charts.js --since
+  <date>` writes nothing and prints what ran beside what it would set.
+- An offered row's `carried` is how many stories of three days already print
+  that level (`carriedLevels`); the writer cites one only as its own news.
+- `validate-articles.js` removes a `chart:` on no published series and never
+  quarantines.
+- A contract an article charts is kept in the deck ahead of every other
+  (`chartedSlugs`), and fetched by its slug once it leaves the volume table.
 - A day with no charts is the feed or the selector first: read `Q6: n
   tracked` and "The things we chart" in `select-prompt.md`. Q6 runs after
   the five queries, never beside them, on hand-picked keywords.
