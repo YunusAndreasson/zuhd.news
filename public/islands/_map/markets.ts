@@ -14,6 +14,7 @@
 // below is a third reader of the same predicates, and inline that third drift
 // was only a matter of time.
 
+import { trailingMean } from '@shared/chart/smooth'
 import { el } from '../_dom'
 import { sparkPct, sparkline } from '../_spark'
 import { FRESH_DAYS, isTrading, quoteLevel, shortDate, staleLabel } from './format'
@@ -1695,6 +1696,65 @@ export const ribbonPoints = (delta: number): string => {
   return Number(body) === 0 ? '0 pts' : `${delta > 0 ? '+' : '−'}${body} pts`
 }
 
+/** A reading: which way and how far, and the figure a reader is shown. */
+export interface SparkReading {
+  /** The signed change in percent. Tone and tick ride on it whatever the unit. */
+  pct: number
+  /** As printed: a percentage, or points for a series quoted in percent. */
+  figure: string
+}
+
+/**
+ * What a resolved row reads, or `null` when its window holds no change.
+ *
+ * `sparkPct` is `sparkline`'s first four lines, exported so a figure and the
+ * chart a press opens resolve one `seriesModel` over one window — the
+ * `reference: 'open'` trap in `charts.md`, which is only ever avoided by there
+ * being one calculation rather than two that agree today.
+ *
+ * `null` means what `sparkline` returning `null` means: fewer than two finite
+ * points inside the window, so there is no change to state.
+ */
+export const readingOf = (input: SparkInput, unit?: string): SparkReading | null => {
+  const windowPct = sparkPct({
+    values: input.values,
+    window: input.values.length,
+    domain: input.domain,
+  })
+  if (windowPct === null) return null
+  // The window's own change, except at the day step, where `sparkInput`
+  // measures a slope in percent space and `windowPct` would be a percentage
+  // of zero.
+  const pct = input.pct ?? windowPct
+  // A percent-quoted series states its change as a difference. The tone and
+  // the tick still ride on `pct`, because "which way" is the same question
+  // whichever unit answers "how far".
+  const ends = input.ends
+  return { pct, figure: unit === '%' && ends ? ribbonPoints(ends[1] - ends[0]) : ribbonPct(pct) }
+}
+
+/**
+ * A strait's series as the rail and the map read it: the week's mean.
+ *
+ * `series.total` is ships per day, and a day's count is noise: Hormuz read
+ * `4, 0, 4, 2, 4` over five days while 42% under its 90-day average, so its row
+ * printed +100% at the 7d step and Bosporus +188%. The mean of the trailing
+ * week is the quantity PortWatch reports (`last7Avg`), and it is the series
+ * `build.js` publishes on `/api/entity/cp:*.json`, so a row, a label and the
+ * indicator page read one line. From the first day with a whole week behind
+ * it; `periods` is cut to match, which keeps its last label on `asOf`.
+ */
+export const straitSeries = (
+  c: Pick<MapChokepoint, 'series' | 'asOf'>,
+): { values: number[]; periods: string[]; asOf: string | undefined } | null => {
+  const total = c.series?.total
+  if (!Array.isArray(total)) return null
+  const week = trailingMean(total, 7)
+  const from = week.findIndex(Number.isFinite)
+  if (from < 0 || week.length - from < 2) return null
+  return { values: week.slice(from), periods: (c.series?.periods ?? []).slice(from), asOf: c.asOf }
+}
+
 /**
  * `is-stale` / `is-pos` / `is-neg` / neither.
  *
@@ -2237,26 +2297,10 @@ export function createMarketStrip(opts: MarketStripOptions): MarketStrip {
           : `, from ${m.drawn} of ${m.total} with a full window`
         : ''
     const age = rowAge(members, now)
-    /**
-     * The window's own change, taken without building the shape it describes.
-     *
-     * `sparkPct` is `sparkline`'s first four lines, exported so this row and the
-     * chart a press opens still resolve one `seriesModel` over one window — the
-     * `reference: 'open'` trap in `charts.md`, which is only ever avoided by
-     * there being one calculation rather than two that agree today.
-     *
-     * `null` here means exactly what `sparkline` returning `null` used to mean:
-     * fewer than two finite points inside the window, so there is no change to
-     * state and the age is the only true thing left to say.
-     */
-    const windowPct = input
-      ? sparkPct({
-          values: input.values,
-          window: input.values.length,
-          domain: input.domain,
-        })
-      : null
-    if (windowPct === null || !input) {
+    // `null` is fewer than two finite points inside the window: there is no
+    // change to state and the age is the only true thing left to say.
+    const reading = input ? readingOf(input, unit) : null
+    if (!reading) {
       // `is-stale` here too: nothing measured is the strongest form of "don't
       // read a direction into this row", not an exemption from the rule.
       host.className = 'map-markets-move is-stale'
@@ -2293,16 +2337,7 @@ export function createMarketStrip(opts: MarketStripOptions): MarketStrip {
       if (age) sparkNote = `, ${age} old`
       return null
     }
-    // The window's own change, except at the day step, where `sparkInput`
-    // measures a slope in percent space and `windowPct` would be a percentage
-    // of zero.
-    const pct = input.pct ?? windowPct
-    // A percent-quoted series states its change as a difference. The tone and
-    // the tick still ride on `pct`, because "which way" is the same question
-    // whichever unit answers "how far".
-    const ends = input.ends
-    const figure =
-      unit === '%' && ends ? ribbonPoints(ends[1] - ends[0]) : ribbonPct(pct)
+    const { pct, figure } = reading
     sparkFigure = figure
     host.className = `map-markets-move${toneClass(pct, !!age)}`
     host.replaceChildren(
@@ -2677,15 +2712,20 @@ export function createMarketStrip(opts: MarketStripOptions): MarketStrip {
    * with whatever range the reader has scrubbed to. The figure a row prints is
    * still its own window-change, same as every other row here.
    */
-  const chokepointEntries = (points: MapChokepoint[]): TickerEntry[] =>
-    [...points]
+  const chokepointEntries = (points: MapChokepoint[]): TickerEntry[] => {
+    // One edge for the block, as `worldEntries` has: PortWatch runs about six
+    // days behind, so a window ending at the wall clock held no observation at
+    // the 24h and 3d steps and every strait printed a dotted rule and `6d`.
+    const edge = lastTradedDay(points.map((c) => ({ periods: c.series?.periods, asOf: c.asOf })))
+    return [...points]
       .sort(
         (a, b) => Math.abs(b.delta7vs90?.n_total ?? 0) - Math.abs(a.delta7vs90?.n_total ?? 0),
       )
       .slice(0, STRAITS_ROWS)
       .flatMap((c) => {
-        const vals = c.series?.total
-        if (!Array.isArray(vals) || vals.length < 2) return []
+        const week = straitSeries(c)
+        if (!week) return []
+        const vals = week.values
         return [{
           group: 'straits',
           id: c.id,
@@ -2694,12 +2734,14 @@ export function createMarketStrip(opts: MarketStripOptions): MarketStrip {
           flag: '',
           note: c.blurb,
           pct: seriesChangePct(vals) ?? 0,
-          level: vals[vals.length - 1],
+          level: vals[vals.length - 1] ?? 0,
           values: vals,
-          periods: c.series?.periods ?? [],
+          periods: week.periods,
           asOf: c.asOf,
+          ...(edge == null ? {} : { edge }),
         }]
       })
+  }
 
   const setStraits = (points: MapChokepoint[]) => {
     lastStraits = points

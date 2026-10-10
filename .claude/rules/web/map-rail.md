@@ -19,9 +19,9 @@ Camera, MapLibre and cards are `map.md`; layers and marks are `map-layers.md`.
 ## What a reading means
 
 - A rail row's figure, the panel's composite and the indicator card's hero
-  come from `sparkInput` (`_map/markets.ts`), over the rail's one range.
-  **Never add a second calculation**; `sparkPct` is `sparkline`'s own first
-  lines. Panel rows, the up and down counts, the net tick and the exchange
+  come from `sparkInput` and `readingOf` (`_map/markets.ts`), over the rail's
+  one range. **Never add a second calculation**; `sparkPct` is `sparkline`'s
+  own first lines. Panel rows, the up and down counts, the net tick and the exchange
   card's hero are the day's move, whatever the range.
 - The window is calendar days, not observations. Dates are rebuilt by
   `seriesDates` (`_map/series-window.ts`) from `asOf`. If one member's labels
@@ -30,8 +30,8 @@ Camera, MapLibre and cards are `map.md`; layers and marks are `map-layers.md`.
 - A block's window should end on `blockEdge` (`lastTradedDay`), the last day
   that block traded, not on the wall clock: weekday series blank every Sunday
   and Monday otherwise. The edge is per block, never per row, or a stale
-  series redraws as fresh. Today only the exchange row and `world` pass one;
-  an indicator card windows on its row's `entry.edge`.
+  series redraws as fresh. The exchange row, `world` and the straits pass
+  one; an indicator card windows on its row's `entry.edge`.
 - A stale row prints its age (`staleLabel`). Do not add a carry-in on the
   `covered` gate: it draws a stub.
 - A row with nothing in the window prints `.map-markets-nil` and its age, no
@@ -70,7 +70,8 @@ Camera, MapLibre and cards are `map.md`; layers and marks are `map-layers.md`.
   what the payload covers, not the range asked for. An empty first half prints
   no figure.
 - Straits are picked by `delta7vs90` (`chokepointEntries`) and each prints its
-  own window change. Never print `delta7vs90` on a row.
+  own window change, of the week's mean (`straitSeries`): a day's ship count
+  is noise. Never print `delta7vs90` on a row.
 - The indicator card's hero uses the rail's window; the exchange and strait
   cards do not. `CARD_MIN_DAYS` floors the chart only.
 - The exchange card leads with the index's definition (`ex.standing`),

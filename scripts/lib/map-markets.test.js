@@ -30,7 +30,7 @@ const { trailingMean } = await import(await bundleIsland(dir, 'shared/chart/smoo
 const { sparkline, sparkPct } = spark
 const {
   sparkInput, oddsEntries, attentionEntries, eventEntries, eventCountdown, ribbonPoints,
-  createMarketStrip, BLOCK_ROWS, dockedPanelTop, lastTradedDay,
+  createMarketStrip, BLOCK_ROWS, dockedPanelTop, lastTradedDay, straitSeries, readingOf,
 } = markets
 
 /** `["Jul 1", "Jul 2", …]` for `n` consecutive days ending on `asOf`. */
@@ -848,6 +848,67 @@ test('the countdown hands off from a phrase to a bare date', () => {
   // Past the point a countdown is a useful picture, the date itself —
   // `shortDate` drops the year, since this map's events are all near-term.
   assert.equal(eventCountdown(14, '2026-08-22'), '22 Aug')
+})
+
+/**
+ * A strait reads its week's mean, and the block ends where PortWatch does.
+ *
+ * Two failures, both off the live payload of 2026-10-10. A strait's row fed the
+ * raw daily count to the window, so Hormuz, 42% under its 90-day average and
+ * ending `4, 0, 4, 2, 4`, printed +100% at the 7d step. And the window ended at
+ * the wall clock while PortWatch runs six days behind, so at the default 3d
+ * step every strait printed a dotted rule and `6d`.
+ */
+test('a strait row reads the week’s mean, and has a reading at the default range', () => {
+  // Twenty days at forty ships, then a collapse that ends on the Hormuz tail.
+  const total = [...Array.from({ length: 20 }, () => 40), 30, 22, 14, 8, 5, 4, 0, 4, 2, 4]
+  const asOf = '2026-10-04'
+  const hormuz = {
+    id: 'hormuz',
+    name: 'Strait of Hormuz',
+    lat: 26.3,
+    lng: 56.9,
+    primaryField: 'n_total',
+    delta7vs90: { n_total: -0.42 },
+    series: { periods: dailyPeriods(asOf, total.length), total },
+    asOf,
+  }
+
+  const week = straitSeries(hormuz)
+  assert.equal(week.values.length, total.length - 6, 'from the first day with a week behind it')
+  assert.equal(week.periods.length, week.values.length)
+  assert.equal(week.periods.at(-1), hormuz.series.periods.at(-1), 'still ending on the last day counted')
+  assert.ok(Math.abs(week.values.at(-1) - (8 + 5 + 4 + 0 + 4 + 2 + 4) / 7) < 1e-9)
+  assert.equal(straitSeries({ series: { periods: [], total: [1, 2, 3] }, asOf }), null, 'under a week and a day is no line')
+
+  // Six days after the last count, which is where PortWatch usually is.
+  const now = Date.parse('2026-10-10T12:00:00Z')
+  const edge = lastTradedDay([{ periods: week.periods, asOf }])
+  const member = [{ values: week.values, periods: week.periods, asOf, pct: 0 }]
+  for (const days of [3, 7, 30]) {
+    const reading = readingOf(sparkInput(member, days, now, edge))
+    assert.ok(reading, `a reading at the ${days}d step`)
+    assert.ok(reading.pct < 0, `Hormuz is down over ${days} days, not ${reading.figure}`)
+  }
+  // Against the wall clock there is nothing inside three days, which is the
+  // dotted rule the block's own edge exists to end.
+  assert.equal(sparkInput(member, 3, now), null)
+
+  withDom(() => {
+    const strip = createMarketStrip({ rangeDays: 3, onSelect() {}, onQuote() {}, onStrait() {} })
+    const realNow = Date.now
+    Date.now = () => now
+    try {
+      strip.setStraits([hormuz])
+    } finally {
+      Date.now = realNow
+    }
+    const row = strip.element.querySelector('.map-markets-straits .map-markets-summary')
+    assert.equal(row.querySelector('.map-markets-nil'), null, 'a figure, not a dotted rule')
+    assert.match(row.querySelector('.map-markets-window').textContent, /^−\d/, 'and it is a fall')
+    assert.equal(row.querySelector('.map-markets-age').textContent, '6d', 'still said to be six days old')
+    strip.destroy()
+  })
 })
 
 /**
