@@ -31,6 +31,7 @@ export const QUOTE_RANGE = '3mo'
  * @property {number} rejected how many returned one the record builder refused
  * @property {number} fromCache how many records are a cached series, Yahoo having failed this run
  * @property {number} carried how many records are the last snapshot's own, the stage having run out of time
+ * @property {number} hourly how many records are sessions rebuilt from hourly bars, Yahoo serving the symbol no daily history
  */
 
 /**
@@ -73,6 +74,7 @@ export async function fetchQuotes(entries, toRecord, { range = QUOTE_RANGE, sign
   let rejected = 0
   let fromCache = 0
   let carried = 0
+  let hourly = 0
   let unasked = 0
 
   for (const entry of entries) {
@@ -103,6 +105,7 @@ export async function fetchQuotes(entries, toRecord, { range = QUOTE_RANGE, sign
       console.error(`  ✗ rejected ${entry.id} (${entry.symbol}): ${built.rejected}`)
       continue
     }
+    if (data.hourly) hourly++
     if (data.stale) fromCache++
     else if (stale) console.error(`  ⚠ ${entry.id} (${entry.symbol}): last completed session ${data.asOf} — marked stale`)
     records.push(built.record)
@@ -113,7 +116,7 @@ export async function fetchQuotes(entries, toRecord, { range = QUOTE_RANGE, sign
       `  ⚠ out of time: ${unasked} of ${entries.length} not asked, ${carried} of them carried from the last snapshot and marked stale`,
     )
   }
-  return { records, skipped, missing, rejected, fromCache, carried }
+  return { records, skipped, missing, rejected, fromCache, carried, hourly }
 }
 
 /**
@@ -128,6 +131,7 @@ export function quoteSummary(records, run) {
     (stale ? ` (${stale} stale${run.fromCache ? `, ${run.fromCache} from cache` : ''})` : '') +
     (run.rejected ? `, ${run.rejected} rejected` : '') +
     (run.missing ? `, ${run.missing} with no series` : '') +
-    (run.carried ? `, ${run.carried} carried from the last snapshot` : '')
+    (run.carried ? `, ${run.carried} carried from the last snapshot` : '') +
+    (run.hourly ? `, ${run.hourly} rebuilt from hourly bars` : '')
   )
 }

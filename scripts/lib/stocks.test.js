@@ -3,7 +3,7 @@ import { mkdtempSync, readdirSync, readFileSync, writeFileSync } from 'node:fs'
 import { tmpdir } from 'node:os'
 import { join } from 'node:path'
 import { test } from 'node:test'
-import { chartSeries, fetchYahooStock, isStaleAsOf, seriesAsOf, STALE_AFTER_DAYS } from './trends-sources/stocks.js'
+import { chartSeries, fetchYahooStock, isStaleAsOf, seriesAsOf, sessionsFromHourly, STALE_AFTER_DAYS } from './trends-sources/stocks.js'
 
 const NOW = Date.UTC(2026, 8, 4)
 
@@ -95,12 +95,14 @@ const onePoint = (meta) => ({ chart: { result: [{ timestamp: [1], indicators: { 
 /** A Yahoo that gives its answers in turn: a body, or a status for a host that fails. */
 const yahoo = (...answers) => {
   const asked = []
+  const intervals = []
   const get = async (url) => {
     const answer = answers[Math.min(asked.length, answers.length - 1)]
     asked.push(new URL(String(url)).host)
+    intervals.push(new URL(String(url)).searchParams.get('interval'))
     return typeof answer === 'number' ? { ok: false, status: answer, json: async () => ({}) } : { ok: true, status: 200, json: async () => answer }
   }
-  return { asked, get: /** @type {typeof fetch} */ (/** @type {unknown} */ (get)) }
+  return { asked, intervals, get: /** @type {typeof fetch} */ (/** @type {unknown} */ (get)) }
 }
 
 /** Run a fetch with stderr kept, since every failure path here reports on it. */
@@ -117,11 +119,68 @@ const fetched = async (symbol, opts) => {
   }
 }
 
-test('a series too short to chart is the answer, and the other host is not asked for it', async () => {
-  const { asked, get } = yahoo(onePoint({ currency: 'SAR', exchangeTimezoneName: 'Asia/Riyadh' }))
+test('a series too short by the day and by the hour is the answer, and the other host is not asked for it', async () => {
+  const { asked, intervals, get } = yahoo(onePoint({ currency: 'SAR', exchangeTimezoneName: 'Asia/Riyadh' }))
   const { series, said } = await fetched('^TASI.SR', { fetch: get, cachePath: join(dir, 'none.json'), now: SATURDAY })
   assert.equal(series, null)
-  assert.deepEqual(asked, ['query1.finance.yahoo.com'])
+  assert.deepEqual(asked, ['query1.finance.yahoo.com', 'query1.finance.yahoo.com'])
+  assert.deepEqual(intervals, ['1d', '1h'])
+  assert.deepEqual(said, ['  ✗ yahoo:^TASI.SR: only 1/1 points'])
+})
+
+// ── No daily history: the sessions, from the hourly bars ────────────────────
+
+/** Riyadh's week by the hour: five sessions of five bars, 10:00 to 14:00 local, closing 100·day + hour. */
+const riyadhHours = (meta = {}) => {
+  const stamps = [4, 5, 6, 7, 8].flatMap((d) => [7, 8, 9, 10, 11].map((h) => Date.UTC(2026, 9, d, h) / 1000))
+  return {
+    timestamp: stamps,
+    indicators: { quote: [{ close: stamps.map((t) => new Date(t * 1000).getUTCDate() * 100 + new Date(t * 1000).getUTCHours()) }] },
+    meta: { currency: 'SAR', exchangeTimezoneName: 'Asia/Riyadh', exchangeName: 'SAU', ...meta },
+  }
+}
+
+test('hourly bars become a bar a session, closing on the last of its day', () => {
+  const daily = sessionsFromHourly(riyadhHours())
+  assert.deepEqual(daily.indicators.quote[0].close, [411, 511, 611, 711, 811])
+  assert.deepEqual(daily.timestamp.map((t) => new Date(t * 1000).toISOString().slice(0, 13)), ['2026-10-04T11', '2026-10-05T11', '2026-10-06T11', '2026-10-07T11', '2026-10-08T11'])
+  assert.equal(daily.meta.currency, 'SAR')
+})
+
+test('a session is the exchange’s day, and an hour with no trade is not its close', () => {
+  // Sydney's Monday opens at 23:00 UTC on Sunday; its last hour has no close.
+  const stamps = [Date.UTC(2026, 9, 4, 23), Date.UTC(2026, 9, 5, 4), Date.UTC(2026, 9, 5, 5), Date.UTC(2026, 9, 5, 23)].map((t) => t / 1000)
+  const daily = sessionsFromHourly({ timestamp: stamps, indicators: { quote: [{ close: [8700, 8710, null, 8720] }] }, meta: { exchangeTimezoneName: 'Australia/Sydney' } })
+  assert.deepEqual(daily.indicators.quote[0].close, [8710, 8720])
+})
+
+test('the newest session closes on the quote, when the quote is of that session', () => {
+  const thursday = Date.UTC(2026, 9, 8, 12, 20) / 1000
+  assert.equal(sessionsFromHourly(riyadhHours({ regularMarketTime: thursday, regularMarketPrice: 10376.28 })).indicators.quote[0].close.at(-1), 10376.28)
+  // Dubai's quote was stamped a day after its last hourly bar on 2026-10-10.
+  assert.equal(sessionsFromHourly(riyadhHours({ regularMarketTime: thursday + 86400, regularMarketPrice: 10376.28 })).indicators.quote[0].close.at(-1), 811)
+})
+
+test('a symbol with no daily history is rebuilt from the same host’s hourly bars, and says so', async () => {
+  const cachePath = join(dir, 'hourly.json')
+  const { asked, intervals, get } = yahoo(onePoint({ currency: 'SAR', exchangeTimezoneName: 'Asia/Riyadh' }), { chart: { result: [riyadhHours()] } })
+  const { series, said } = await fetched('^TASI.SR', { range: '3mo', fetch: get, cachePath, now: SATURDAY })
+  assert.deepEqual(asked, ['query1.finance.yahoo.com', 'query1.finance.yahoo.com'])
+  assert.deepEqual(intervals, ['1d', '1h'])
+  assert.equal(series.hourly, true)
+  assert.deepEqual(series.values, [411, 511, 611, 711, 811])
+  assert.deepEqual(series.dates, ['2026-10-04', '2026-10-05', '2026-10-06', '2026-10-07', '2026-10-08'])
+  assert.deepEqual(series.periods, ['Oct 4', 'Oct 5', 'Oct 6', 'Oct 7', 'Oct 8'])
+  assert.deepEqual(series.completed, [true, true, true, true, true])
+  assert.equal(series.asOf, '2026-10-08')
+  assert.deepEqual(said, [], 'not a failure')
+  // Cached as any series is, so a night Yahoo is down keeps the exchange.
+  assert.equal(JSON.parse(readFileSync(cachePath, 'utf8'))['^TASI.SR@3mo'].hourly, true)
+})
+
+test('an hourly request that fails leaves the daily answer standing', async () => {
+  const { series, said } = await fetched('^TASI.SR', { fetch: yahoo(onePoint({ currency: 'SAR', exchangeTimezoneName: 'Asia/Riyadh' }), 429).get, cachePath: join(dir, 'none.json'), now: SATURDAY })
+  assert.equal(series, null)
   assert.deepEqual(said, ['  ✗ yahoo:^TASI.SR: only 1/1 points'])
 })
 
@@ -163,7 +222,7 @@ test('a short answer with a live quote is laid over the cached series of the sam
   const monday = Date.UTC(2026, 9, 12, 10)
   const { asked, get } = yahoo(onePoint({ ...riyadh, regularMarketPrice: 11052.3 }))
   const { series } = await fetched('^TASI.SR', { fetch: get, cachePath, now: monday })
-  assert.equal(asked.length, 1)
+  assert.equal(asked.length, 2, 'by the day, then by the hour')
   assert.deepEqual([series.values.at(-1), series.dates.at(-1), series.periods.at(-1), series.completed.at(-1)], [11052.3, '2026-10-12', 'Oct 12', false])
   assert.equal(series.asOf, '2026-10-09', 'the last real close')
   // A quote in another currency is another instrument: the cached series alone.

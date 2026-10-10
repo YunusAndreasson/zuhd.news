@@ -128,6 +128,11 @@ stages assume about each other.
   (`trends-sources/bis.js`); FRED's BoE and BoJ series stopped.
   `detail=dataonly` is required, a series older than
   `STALE_DAYS` is dropped, and tags name the bank, never the bare country.
+- Wheat, rice, copper and European gas come from the IMF's own service
+  (`trends-sources/imf.js`): FRED's copy of them stopped at July 2026.
+- Yahoo serves four indices no daily history (`sessionsFromHourly`,
+  `trends-sources/stocks.js`). Their closes are the last hourly bar's, near
+  the official close and not it: never quote one to the cent.
 - `fetch-news-api.js` runs with no outer `timeout`: `apiPost` must keep its own
   deadline. A failed per-event call costs its panel, not the feed.
 

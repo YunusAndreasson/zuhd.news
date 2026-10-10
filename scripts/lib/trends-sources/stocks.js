@@ -5,6 +5,9 @@
 //   • host alternation: query1 → query2 when a host fails (Yahoo rate-limits
 //     the hosts independently). Not when it answers with a series too short
 //     to chart: that is the data, and the other host has the same.
+//   • hourly bars for a symbol with no daily history (2026-10-10): four
+//     indices are answered with one daily bar whatever the range, and their
+//     sessions are rebuilt from the hourly bars of the same window.
 //   • last-good cache: successful series are persisted to
 //     content/.stocks-cache.json; when both hosts fail, a <7-day-old cached
 //     series is served (marked stale) so a blocked cycle degrades to
@@ -128,17 +131,85 @@ const cacheKey = (symbol, range) => (range === DEFAULT_RANGE ? symbol : `${symbo
  * } }} ShortSeriesError
  */
 
+/** The day a moment falls on in `zone`, `2026-10-09`, as a function of ms. */
+function localDay(zone) {
+  const format = new Intl.DateTimeFormat('en-CA', { timeZone: zone, year: 'numeric', month: '2-digit', day: '2-digit' })
+  return (/** @type {number} */ ms) => format.format(new Date(ms))
+}
+
+/**
+ * An hourly chart result as a daily one: a bar a session, its close the last
+ * hourly bar's of that day in the exchange's own zone.
+ *
+ * For the indices whose daily history Yahoo no longer serves. Since
+ * 2026-08-26 a daily request for TASI, DFMGI, SET or PSEI is answered with
+ * one bar, whatever the range, and the four were off the map; the hourly bars
+ * of the same symbols still reach back the quarter.
+ *
+ * **The closes are the last trade of the last hour, not the official close.**
+ * Held against the daily closes Yahoo published for the four before the stop
+ * (35 to 49 sessions each, May to July 2026): Dubai and Manila the same to
+ * the cent, Riyadh within 0.32% and Bangkok within 0.40%, off on most days,
+ * as an exchange that sets its close in an auction after the last hour is.
+ * No session was missing and none was invented. The newest session takes the
+ * quote's own price where the quote is of that day, which is the close once
+ * the session has ended.
+ *
+ * @param {any} result `chart.result[0]` of an `interval=1h` request
+ */
+export function sessionsFromHourly(result) {
+  const stamps = Array.isArray(result.timestamp) ? result.timestamp : []
+  const closes = result.indicators?.quote?.[0]?.close ?? []
+  const day = localDay(result.meta?.exchangeTimezoneName || 'UTC')
+  /** @type {Map<string, { stamp: number, close: number }>} */
+  const sessions = new Map()
+  for (let i = 0; i < stamps.length; i++) {
+    const close = closes[i]
+    if (typeof close !== 'number' || !Number.isFinite(close)) continue
+    sessions.set(day(stamps[i] * 1000), { stamp: stamps[i], close })
+  }
+  const days = [...sessions.keys()].sort()
+  const newest = sessions.get(days[days.length - 1] ?? '')
+  const { regularMarketTime: quotedAt, regularMarketPrice: quoted } = result.meta ?? {}
+  if (newest && typeof quoted === 'number' && Number.isFinite(quotedAt) && day(quotedAt * 1000) === days[days.length - 1]) {
+    newest.close = quoted
+  }
+  return {
+    ...result,
+    timestamp: days.map((d) => /** @type {{ stamp: number }} */ (sessions.get(d)).stamp),
+    indicators: { quote: [{ close: days.map((d) => /** @type {{ close: number }} */ (sessions.get(d)).close) }] },
+  }
+}
+
 async function fetchFromHost(host, symbol, range, get, now) {
-  const url = `${host}/v8/finance/chart/${encodeURIComponent(symbol)}?interval=1d&range=${range}`
-  const res = await get(url, {
-    signal: AbortSignal.timeout(10000),
-    headers: { 'User-Agent': USER_AGENT, accept: 'application/json' },
-  })
-  if (!res.ok) throw new Error(`HTTP ${res.status}`)
-  const data = await res.json()
-  const result = data?.chart?.result?.[0]
-  if (!result) throw new Error('no chart result')
-  return chartSeries(result, symbol, now)
+  const ask = async (/** @type {string} */ interval) => {
+    const url = `${host}/v8/finance/chart/${encodeURIComponent(symbol)}?interval=${interval}&range=${range}`
+    const res = await get(url, {
+      signal: AbortSignal.timeout(10000),
+      headers: { 'User-Agent': USER_AGENT, accept: 'application/json' },
+    })
+    if (!res.ok) throw new Error(`HTTP ${res.status}`)
+    const data = await res.json()
+    const result = data?.chart?.result?.[0]
+    if (!result) throw new Error('no chart result')
+    return result
+  }
+  const daily = await ask('1d')
+  try {
+    return chartSeries(daily, symbol, now)
+  } catch (err) {
+    if (!(/** @type {ShortSeriesError} */ (err).short)) throw err
+    // Too short by the day: the same window by the hour (`sessionsFromHourly`).
+    // Whatever that comes to, a failure or as short a series, the daily answer
+    // stands, with the quote it carries for the cached series.
+    try {
+      const series = chartSeries(sessionsFromHourly(await ask('1h')), symbol, now)
+      console.log(`  · yahoo:${symbol}: ${/** @type {Error} */ (err).message} by the day, ${series.values.length} sessions rebuilt from hourly bars`)
+      return { ...series, hourly: true }
+    } catch {
+      throw err
+    }
+  }
 }
 
 /**
@@ -178,8 +249,7 @@ export function chartSeries(result, symbol, now = Date.now()) {
   const periods = []
   const dates = []
   const completed = []
-  const zone = result.meta?.exchangeTimezoneName || 'UTC'
-  const localDate = (ms) => new Intl.DateTimeFormat('en-CA', { timeZone: zone, year: 'numeric', month: '2-digit', day: '2-digit' }).format(new Date(ms))
+  const localDate = localDay(result.meta?.exchangeTimezoneName || 'UTC')
   const today = localDate(now)
   const sessionEnd = result.meta?.currentTradingPeriod?.regular?.end
   for (let i = 0; i < timestamps.length; i++) {
@@ -248,8 +318,11 @@ export function chartSeries(result, symbol, now = Date.now()) {
  *   exchange: string,
  *   timezone: string,
  *   marketPrice: number | null,
- *   stale?: boolean
+ *   stale?: boolean,
+ *   hourly?: boolean
  * } | null>}
+ *   `hourly`: the sessions were rebuilt from hourly bars (`sessionsFromHourly`),
+ *   so every close but the newest is near the official one, not it.
  */
 export async function fetchYahooStock(symbol, opts = {}) {
   const range = opts.range || DEFAULT_RANGE
@@ -266,9 +339,8 @@ export async function fetchYahooStock(symbol, opts = {}) {
       return series
     } catch (err) {
       lastErr = /** @type {ShortSeriesError} */ (err)
-      // The host answered, and what it answered with is too short. The four
-      // indices whose history Yahoo stopped serving (TASI, DFMGI, SET, PSEI)
-      // were each asked of both hosts on every cycle, for the same one point.
+      // The host answered, and what it answered with is too short, by the day
+      // and by the hour. The other host has the same.
       if (lastErr.short) break
     }
   }
