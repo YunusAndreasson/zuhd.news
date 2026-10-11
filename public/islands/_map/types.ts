@@ -156,6 +156,60 @@ export interface MapExchange {
 }
 
 /**
+ * One company out of `/api/companies.json`, the app's `largest companies`
+ * list. The money block's `companies` row reads it; the app owns the contract.
+ */
+export interface MapCompany {
+  id: string
+  name: string
+  /** What it does, in two or three words: `AI chips`. */
+  about: string
+  iso2: string
+  currency: string
+  level: number
+  /** What the whole company is worth at that close, in US dollars. */
+  marketValue?: number
+  asOf: string
+  series: { periods: string[]; values: number[] }
+  sourceLabel?: string
+  /** The catalog's sentence saying what the company is. */
+  blurb?: string
+  /** The desk's account of the share, where it wrote one. */
+  recent?: string
+  relatedArticles?: Array<{ slug: string; title: string }>
+  /** True where `relatedArticles` are the stories `recent` was written from. */
+  relatedCited?: boolean
+}
+
+/**
+ * One lab out of `/api/ai-models.json`: the best score any of its models has
+ * on Epoch AI's capability index, and that best at each release that raised
+ * it. A lab, never a model: see `mobile/lib/ai-models.ts`.
+ */
+export interface AiLab {
+  id: string
+  name: string
+  iso2: string
+  blurb: string
+  /** The model that holds the lab's best score. */
+  model: string
+  score: number
+  /** The score's likely range, where the index gives one. */
+  low?: number
+  high?: number
+  /** The day that model was released, `YYYY-MM-DD`. */
+  asOf: string
+  series: { periods: string[]; values: number[]; models: string[] }
+}
+
+export interface AiModels {
+  generated: string
+  source?: string
+  license?: string
+  labs: AiLab[]
+}
+
+/**
  * A thermal anomaly as `/api/firms.json` serves it.
  *
  * Declared here rather than re-exported from `shared/`, for the reason

@@ -10,10 +10,9 @@
 // the newest reading the line names the chart's span (`in three months`), never
 // `ever` and never a date before the first one drawn.
 //
-// The app wrote this first (`mobile/lib/cards/record.ts`) and still carries its
-// own copy, which reads the span off its own date parser. This one takes the
-// span as a number, so each surface supplies it from the dates it already has;
-// the app's can become a caller of this when that file is next open.
+// The span is taken as a number, so each surface supplies it from the dates it
+// already has: the app's caller (`mobile/lib/cards/record.ts`) reads it off
+// the labels with its own date parser.
 
 /** The newest reading against the rest of its series. */
 export interface SeriesRecord {

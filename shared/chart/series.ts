@@ -758,6 +758,21 @@ export function seriesModel(opts: SeriesOptions): SeriesModel {
   }
 }
 
+/** A bare currency sign, which is written before the figure it prices. */
+const leadsItsFigure = (unit: string | undefined): boolean => !!unit && /^[$€£¥]$/.test(unit)
+
+/**
+ * A value with its unit, as it is read: `$229.28`, `125.44 $/bbl`, `4.2 %`.
+ *
+ * Every unit used to follow its figure, and a bare `$` is the one that does
+ * not: a company's close read `229.28 $` in its card's readout, its table and
+ * its description, beside a rail row that printed `$229.28`.
+ */
+export const withUnit = (shown: string, unit: string | undefined): string => {
+  if (!unit) return shown
+  return leadsItsFigure(unit) ? `${unit}${shown}` : `${shown} ${unit}`
+}
+
 /**
  * What the readout says about one point.
  *
@@ -769,8 +784,7 @@ export function seriesModel(opts: SeriesOptions): SeriesModel {
 export const pointReadout = (model: SeriesModel, p: SeriesPoint): string => {
   const parts: string[] = []
   if (p.period) parts.push(p.period)
-  const shown = model.formatExact(p.value)
-  parts.push(model.unit ? `${shown} ${model.unit}` : shown)
+  parts.push(withUnit(model.formatExact(p.value), model.unit))
   if (model.referenceChange && model.reference != null && model.reference !== 0) {
     const pct = ((p.value - model.reference) / Math.abs(model.reference)) * 100
     const against = model.referenceLabel ? ` vs ${model.referenceLabel}` : ''
@@ -799,11 +813,17 @@ export const pointReadout = (model: SeriesModel, p: SeriesPoint): string => {
  * user that there is data here and no way to reach it.
  */
 export const chartDescription = (model: SeriesModel, interactive: boolean): string => {
-  const unit = model.unit ? ` ${model.unit}` : ''
+  const low = model.formatExact(model.trough?.value ?? model.lo)
+  const high = model.formatExact(model.peak?.value ?? model.hi)
+  // A unit that follows is said once, after the pair; a sign that leads is
+  // said on each, or the range reads `81 to $135`.
+  const range = leadsItsFigure(model.unit)
+    ? `${withUnit(low, model.unit)} to ${withUnit(high, model.unit)}`
+    : `${low} to ${withUnit(high, model.unit)}`
   const parts = [
     model.label ?? 'Series chart',
     `line chart, ${model.points.length} ${model.step}`,
-    `ranging ${model.formatExact(model.trough?.value ?? model.lo)} to ${model.formatExact(model.peak?.value ?? model.hi)}${unit}`,
+    `ranging ${range}`,
   ]
   if (model.latest) parts.push(`latest ${pointReadout(model, model.latest)}`)
   // The second line has no row in the table and no place in the readout, so
@@ -966,7 +986,7 @@ const tableRows = (model: SeriesModel): MarkupNode[] =>
         {
           tag: 'td',
           attrs: { class: 'is-value' },
-          text: model.unit && Number.isFinite(v) ? `${shown} ${model.unit}` : shown,
+          text: Number.isFinite(v) ? withUnit(shown, model.unit) : shown,
         },
         {
           tag: 'td',

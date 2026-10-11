@@ -9,19 +9,33 @@
   <title>Not found — zuhd.news</title>
   <link rel="icon" href="/favicon.svg" type="image/svg+xml">
   <style>
+    /* The site's roman, from the path the stylesheet uses, so a reader who has
+       seen any other page already holds it. Without it the stack below named a
+       face nothing loaded and the page was set in the system's. */
+    @font-face {
+      font-family: 'Source Sans 3';
+      font-style: normal;
+      font-weight: 200 900;
+      font-display: swap;
+      size-adjust: 95%;
+      src: url('/fonts/source-sans-3-var.woff2') format('woff2');
+    }
     :root { color-scheme: light dark; }
     html, body { height: 100%; margin: 0; }
     body {
+      /* `border-box`, or the padding is added to the full height above and a
+         page of three lines scrolls by 64px. */
+      box-sizing: border-box;
       font-family: "Source Sans 3", system-ui, -apple-system, sans-serif;
       display: flex; flex-direction: column; align-items: center; justify-content: center;
       gap: 1rem; text-align: center; padding: 2rem;
-      background: #fff; color: #141414;
+      background: #fff; color: #1a1a1a;
     }
-    @media (prefers-color-scheme: dark) { body { background: #141414; color: #f4f4f4; } }
+    @media (prefers-color-scheme: dark) { body { background: #080808; color: #d4d4d4; } }
     /* This page carries its own styles on purpose — it has to render when the
        stylesheet is the thing that could not be found — so these values are
        copied from the site palette rather than referenced. Keep them in step
-       with `.wordmark` / `--text-secondary` in style.css: the dot used to be
+       with `.wordmark`, `--bg`, `--text` and `--text-secondary` in style.css: the dot used to be
        #c0392b, a red that appears nowhere else on the site, and the tld a
        different weight again, so the one page a lost reader sees wore a
        masthead they had never seen before. */
@@ -30,13 +44,16 @@
     .wordmark-dot { margin-inline: -0.04em; }
     @media (prefers-color-scheme: dark) { .wordmark-dot, .wordmark-tld { color: #a3a3a3; } }
     h1 { font-size: 1rem; font-weight: 600; margin: 0; }
-    p { margin: 0; opacity: 0.7; font-size: 0.95rem; }
+    /* The secondary ink, as the wordmark's tail takes it: quiet is an ink
+       step on this site, never an opacity. */
+    p { margin: 0; color: #555; font-size: 0.95rem; }
+    @media (prefers-color-scheme: dark) { p { color: #a3a3a3; } }
     a.home { color: inherit; }
   </style>
 </head>
 <body>
   <a href="/" class="wordmark">zuhd<span class="wordmark-dot">.</span><span class="wordmark-tld">news</span></a>
   <h1>404 — page not found</h1>
-  <p>That page doesn't exist. <a class="home" href="/">Back to all stories</a>.</p>
+  <p>That page doesn't exist. <a class="home" href="/">Back to the map</a>.</p>
 </body>
 </html>

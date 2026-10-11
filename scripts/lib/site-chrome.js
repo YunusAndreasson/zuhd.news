@@ -34,10 +34,12 @@ export const WORDMARK =
  * The header the four archetype pages share — article, country, category,
  * entity. The map and the document pages have their own (a map reset and a
  * `← map` link respectively), so they are deliberately not built from this.
+ * The way home is `← map` here as it is there: `/` is the map, and this link
+ * said `All stories` for the list the homepage used to be.
  */
 export const ARCHETYPE_HEADER = `<header class="article-page-header">
     ${WORDMARK}
-    <a href="/" class="article-back-link" aria-label="All stories">All stories</a>
+    <a href="/" class="article-back-link" aria-label="Back to the map">← map</a>
   </header>`
 
 /**

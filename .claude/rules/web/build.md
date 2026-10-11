@@ -49,7 +49,7 @@ shared helpers are indexed in `.claude/rules/shared-modules.md`.
   `trends`, `analysis`, `market-signals`, `companies`, `ai-models`, `meta`),
   for the map (`map`, `map-leads`, `map-archive`, `story/{slug}`,
   `entity/{id}`, `gdacs`, `conflict`, `genocide`, `markets`,
-  `market-signals`, `firms`, `ipc`, `chokepoints`) and for the MCP worker (`articles`, `context`). This list is
+  `market-signals`, `firms`, `ipc`, `chokepoints`, `companies`, `ai-models`) and for the MCP worker (`articles`, `context`). This list is
   not complete; `build.js` is.
 
 ## Templates and bundles

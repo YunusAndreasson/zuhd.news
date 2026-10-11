@@ -2,6 +2,7 @@
 paths:
   - "public/islands/situation-map.ts"
   - "public/islands/_map/markets.ts"
+  - "public/islands/_map/slow.ts"
   - "public/islands/_map/series-window.ts"
   - "public/islands/_map/format.ts"
   - "public/islands/_map/panes.ts"
@@ -9,6 +10,7 @@ paths:
   - "public/islands/_map/feed.ts"
   - "public/islands/_map/sheet.ts"
   - "scripts/lib/map-markets.test.js"
+  - "scripts/lib/map-slow.test.js"
   - "public/style.css"
 ---
 
@@ -46,7 +48,17 @@ Camera, MapLibre and cards are `map.md`; layers and marks are `map-layers.md`.
   tick, no figure. A calendar step needs two observations inside the window,
   or `windowByDate`'s two-point floor labels an older move as this period's.
 - A monthly series (`copper`, `wheat`, `rice`) stays out of daily rows
-  (`worldEntries`).
+  (`worldEntries`). Wheat and rice are rows of `economy`.
+- A weekday group (`TICKER`'s `weekday`, `companyEntries`) carries one `edge`
+  on every daily row: its rail row, its panel's figure and its cards window on it.
+- A row with a `step` is outside its group's edge, reading and counts
+  (`groupSummary`): a week's move is never counted as a day's.
+- The companies' edge is the day at least half the list closed on, never the
+  newest close: four calendars, and the newest day belongs to a handful.
+- The exchanges' panel asks `lastTradedDay` at the press (`PanelEdge`): on a
+  weekend the wall clock gives the row and its panel different moves.
+- A series that steps by the week says `on the week` on its quote row
+  (`TickerEntry.step`): a week's move in a column of days is read as today's.
 - A series quoted in `%` reports its change as a difference (`ribbonPoints`,
   `pts`), from `SparkInput.ends`. `ends` is absent on a composite, which is
   rebased to 100.
@@ -104,6 +116,40 @@ Camera, MapLibre and cards are `map.md`; layers and marks are `map-layers.md`.
   exchange's own `recent`.
 - The indicator card's `/api/entity/{id}.json` fetch is guarded by
   `indicatorSeq`: a reader presses several rows inside one round trip.
+- A card's table states a step as its hero does: `TickerEntry.change` where
+  the unit does not say (a lab's index is points, never a percentage).
+- A company's list is `Read from` only with `account.cited` (the payload's
+  `relatedCited`): an account can outlive its citations.
+- A monthly row's card is dated by its month (`monthLabel`): its series is
+  stamped the first, and `1 Sep` reads as a day.
+
+## The slow blocks
+
+- `economy` and `ai` do not follow the range. Each row reads over its own
+  period (`TickerEntry.own`, `_map/slow.ts`), which its block's heading names
+  once (`slowHead`). **Never window one on the range**: a monthly series has no
+  two observations in three days.
+- They stand under every daily block of the money box and above
+  `.map-signals`. A list is one row that opens it; a list of one opens that
+  series' card (`fillSlow`).
+- A slow move is the difference of the two printed readings, at the places the
+  series is published to (`pointsFigure`). Never `ribbonPoints`, which rounds a
+  cut of two and a half points to three.
+- A move in points sets `OwnReading.pct` to ±1 or 0: `FLAT_PCT` would draw a
+  tenth of a point as no move.
+- A month is never compared across a gap, and a list's figure is taken at the
+  newest month every row has (`groupMove`): the Fed's series ends a month
+  before the BIS's.
+- A slow row in a list prints its level, its move and the month it is of
+  (`slowRow`). No move is no tick.
+- The economy block is built once per payload (`slowFrom`), not per range
+  press, which would close an open list.
+- An AI row is a lab, in the payload's order, with no rank. A lab without the
+  whole 90 days is left out of the average and says its own window
+  (`aiSummary`, `aiScoreChange`).
+- The card of a row with `own` states that reading and its period, and draws
+  the whole series with no rule at an open. A row with `account` asks
+  `/api/entity` for nothing.
 
 ## Rows and columns
 
@@ -118,6 +164,10 @@ Camera, MapLibre and cards are `map.md`; layers and marks are `map-layers.md`.
   leaves the column.
 - `.map-markets-summary > .map-markets-tick` is hidden in the rail and still
   built: on the phone strip it is the only direction channel.
+- The companies' row has a fixed slot under `markets` (`companiesItem`); the
+  trend groups are re-sorted after it. Both kinds are made by `groupSummary`.
+- `companies` and `energy` are rail-only (`.map-markets-rail-only`,
+  `railOnly`): a fifth group takes the phone's money line to a second line.
 - A money row carries no switch and a `layers` chip carries no reading. A
   `<button>` inside a `<button>` is dropped by the browser.
 - Nothing in `layers` draws a trend. Only the story category chips do
@@ -171,12 +221,21 @@ Camera, MapLibre and cards are `map.md`; layers and marks are `map-layers.md`.
   hand, the dismiss on `pointerdown`, never `click`.
 - The panel hangs off the rail's inner edge (`setDock`); the row decides the
   top (`dockedPanelTop`). Place it after `show()`, or its height is zero.
+- A capped scroller (card, docked sheet, group panel) ends in a sticky foot
+  (`--card-foot`): it is the bottom padding, so never add padding beside it.
+- The two `.map-mapctl` boxes are capped against the canvas between the rails
+  (`100%` is the window), and `is-right` also against `layers` open.
 - A card opened from a rail row is docked (`docked()`, desktop only) with the
   same hand-wired Escape; a card from a mark stays `showModal()`. Panel rows
   anchor to `openOn`, because the pressed row is leaving the document.
+- An exchange's card pinned from its mark is docked too, with no row
+  (`dockTo(null)`, `.is-corner`): no backdrop, in its peek's corner. A press
+  on the map does not shut it (`onDocDown`); a click on open water does.
 - The `markets` switch must not hide the money block (`applyLayerVisibility`).
-- A folded instrument rail is a spine (`--map-spine-w`): the controls and
-  `.map-signals` go, the money keeps tick and figure.
+- A folded instrument rail is a spine (`--map-spine-w`): the clock, the events
+  and `.map-signals` go, the money keeps tick and figure.
+- **Never hide a control in the spine**: the range chips and `key` stand on
+  the map and outlive the fold.
 - Seams (`_map/panes.ts`) write `--map-rail-user` and `--map-aside-user`,
   never the properties the layout reads. No `preventDefault()` on
   `pointerdown`: it kills the double-click reset.
@@ -189,7 +248,7 @@ Camera, MapLibre and cards are `map.md`; layers and marks are `map-layers.md`.
 ## Time range and scrubber
 
 - One time range governs the whole page: beacons, story list, every rail
-  window. `setRange` is the only place it is written, and
+  window but the slow blocks'. `setRange` is the only place it is written, and
   `createMarketStrip` takes `rangeDays` with no default.
 - The range chips (`.map-range-group`) go in `timeline.controls`, never
   `timeline.head`, which on a hover-capable desktop is `opacity: 0` until
@@ -209,18 +268,29 @@ Camera, MapLibre and cards are `map.md`; layers and marks are `map-layers.md`.
 - The scrims on `.map-hud` and `.map-timeline` fade in an overhang outside
   the box: padding would move all that reads `--map-scrub-h`.
 
+## Payloads
+
+- `/api/companies.json` and `/api/ai-models.json` are fetched only in the wide
+  layout (`fetchRailLists`), and only when
+  `data-feeds` on the shell names them (`mapFeeds` in `build.js`): the build
+  writes each only where its snapshot exists, and a fetch that misses is a
+  404 `npm run perf` reports.
+
 ## The story rail and refresh
 
-- A row is title, hook and `loc · age`. The hook is `h` on the `map.json`
-  point, written when the row is created and never again. Never read it from
-  `map-leads.json`: that arrives at idle, and a row built bare doubles in
-  height when it lands. An archive point has no hook and gets no element.
+- A row is title and `loc · age`. **No sentence under the headline**: the
+  rail is scanned for a story to open, and the card has the prose.
 - The list is a keyed patch by slug, never `replaceChildren`; rows move with
   `moveBefore` where it exists. A rebuild drops hover and scroll anchoring
   on every scrub frame.
 - The list has delegated listeners only: a per-row closure reports the
   `MapPoint` a reused row was built with.
-- `.map-feed-count` is `aria-live`: write it only when the text differs.
+- `.map-feed-count` is `aria-live`: write it only when the text differs. On
+  the desktop it is said and not shown (`body.map-wide .map-feed-count`); on a
+  phone it is the drawer handle's label.
+- On the desktop the head keeps no row of its own: refresh is placed at the
+  end of the `stories` heading's line (`body.map-wide .map-feed-refresh`,
+  `top: 100%`), by CSS and not by moving it.
 - Category chips live in `feed.filterHost`, outside the scrolling list. Find
   a chip with `container.querySelector`: `filters` holds only layer chips.
 - Refresh refetches `map.json` with `cache: 'no-cache'`, or the browser

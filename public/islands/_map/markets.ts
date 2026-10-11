@@ -18,13 +18,14 @@ import { CHOKEPOINT_DISRUPTED } from '@shared/chokepoint-thresholds'
 import { weekMeanSeries } from '@shared/chart/smooth'
 import { el } from '../_dom'
 import { sparkPct, sparkline } from '../_spark'
-import { FRESH_DAYS, isTrading, quoteLevel, shortDate, staleLabel } from './format'
+import { FRESH_DAYS, fullDate, isTrading, quoteLevel, shortDate, staleLabel } from './format'
 import { coverage, DAY_MS, seriesDates, windowByDate } from './series-window'
 import { glyphSvg } from './glyphs'
 import type { GLYPHS } from './glyphs'
 import { MAP_COLOURS, OVERLAY_COLOUR } from './style'
 import { patternLine, signalFor, type MarketSignal } from './signals'
-import type { MapChokepoint, MapExchange } from './types'
+import { AI_CHANGE_DAYS, aiScoreChange, aiSummary, economyGroups, type SlowMove } from './slow'
+import type { AiLab, AiModels, MapChokepoint, MapCompany, MapExchange } from './types'
 import type { ExpressionSpecification, SymbolLayerSpecification } from 'maplibre-gl'
 
 /**
@@ -489,6 +490,8 @@ interface TickerItem {
    * they say "the lira is down".
    */
   invert?: boolean
+  /** How the series steps, where it is not a day: see `TickerEntry.step`. */
+  step?: string
 }
 
 /**
@@ -527,7 +530,16 @@ interface TickerItem {
  * CNY) will draw flat much of the time — which is a true statement about a peg
  * and worth seeing, not a reason to leave them out.
  */
-const TICKER: Array<{ group: string; items: TickerItem[] }> = [
+const TICKER: Array<{
+  group: string
+  /** A group of weekday series: its window ends on the last day it traded
+   *  (`lastTradedDay`), not on the wall clock. See `sparkInput`'s `blockEdge`. */
+  weekday?: boolean
+  /** A group for the rail only. The phone's money line is one wrap run in the
+   *  scrubber, measured at four groups: a fifth is half a line of map. */
+  railOnly?: boolean
+  items: TickerItem[]
+}> = [
   {
     group: 'currencies',
     items: [
@@ -574,27 +586,41 @@ const TICKER: Array<{ group: string; items: TickerItem[] }> = [
       { id: 'eth', label: 'ETH' },
     ],
   },
+  // What the world burns, as the app's `energy` list has it. Brent stood alone
+  // under `world` until 2026-10-11; a group says which way fuel went, and oil
+  // is its first row. Europe's gas (`natgas-ttf`) is monthly and stays out.
+  {
+    group: 'energy',
+    weekday: true,
+    railOnly: true,
+    items: [
+      {
+        id: 'brent',
+        label: 'BRENT',
+        note: 'The price of a barrel of North Sea crude, and the benchmark most of the world’s oil is sold against. It moves on supply — a strike, a sanction, a strait — and fuel, freight and fertiliser move after it.',
+      },
+      { id: 'wti', label: 'WTI' },
+      { id: 'natgas-hh', label: 'US GAS' },
+      // Published each Monday, so its last step is a week: the row says so.
+      { id: 'us-gas-retail', label: 'US PETROL', step: 'weeks' },
+    ],
+  },
 ]
 
 /**
- * The world the money is moving in, as three series the map never surfaced.
+ * The world the money is moving in, as series the map never surfaced.
  *
  * `/api/trends.json` carries 54 indicators and the ribbon read eleven of them.
- * These three are the ones a news map is actually read *against*: the price of
- * oil, the price of fear, and the price of money. Each is a single instrument
- * rather than a group, so a press opens its card directly — there is no set
- * behind it to summarise.
+ * These are the ones a news map is actually read *against*: the price of fear
+ * and the price of money. The price of oil was the third and is now the first
+ * row of the `energy` group. Each is a single instrument rather than a group,
+ * so a press opens its card directly — there is no set behind it to summarise.
  *
  * Short labels, because these sit in a column that folds to a spine and a
  * truncated instrument name is worse than a code. Unlike the currency codes
- * above, all three of these are how the thing is actually referred to.
+ * above, these are how the thing is actually referred to.
  */
 const WORLD: TickerItem[] = [
-  {
-    id: 'brent',
-    label: 'BRENT',
-    note: 'The price of a barrel of North Sea crude, and the benchmark most of the world’s oil is sold against. It moves on supply — a strike, a sanction, a strait — and fuel, freight and fertiliser move after it.',
-  },
   {
     id: 'vix',
     label: 'VIX',
@@ -738,6 +764,57 @@ export interface TickerEntry {
   periods: string[]
   asOf?: string | undefined
   sourceLabel?: string | undefined
+  /**
+   * How the series steps, as the chart counts it, where it is not `days`: a
+   * petrol price published each Monday, a rate each month, a lab's score at
+   * each release. A list of day moves prints it beside a row whose last step
+   * is longer than a day.
+   */
+  step?: string | undefined
+  /**
+   * The row's own reading, where it does not follow the rail's range
+   * (`_map/slow.ts`). The card states this one and not a window of its own,
+   * so the number pressed is the number on it.
+   */
+  own?: OwnReading | undefined
+  /**
+   * How a step of this series is stated in its card's table, where the unit
+   * does not say. A lab's score is in the index's own points, with no zero to
+   * take a percentage of. Absent, a `%` series is in points and the rest in
+   * per cent.
+   */
+  change?: 'points' | 'percent' | undefined
+  /** What it does, in two or three words, beside its name in a list. */
+  about?: string | undefined
+  /**
+   * The desk's account, where it rides the row's own payload: a company's.
+   * Present, the card prints it and asks `/api/entity` for nothing; an AI lab
+   * carries an empty one for that reason.
+   */
+  account?:
+    | {
+        recent?: string | undefined
+        related?: Array<{ slug: string; title: string }> | undefined
+        /** The list is what `recent` was written from, not stories on the subject. */
+        cited?: boolean | undefined
+      }
+    | undefined
+  /** Lines of fact for the card, under its chart: a market value, a range. */
+  facts?: string[] | undefined
+}
+
+/** A reading over a period of the row's own, as the row prints it. */
+export interface OwnReading {
+  /**
+   * Which way, for the tone and the tick: the percentage where the figure is
+   * one. A move in points is ±1 or 0 here, because a tenth of a point is a
+   * real change in a rate and `FLAT_PCT` would call it flat.
+   */
+  pct: number
+  /** As printed: `+0.25 pts`, `+4.8%`. */
+  figure: string
+  /** The period in words, after `over`/`from`: `Sep, against Aug`. */
+  period: string
 }
 
 /**
@@ -1192,6 +1269,7 @@ const entryFrom = (
   periods: ind.periods ?? [],
   asOf: ind.asOf,
   sourceLabel: (ind as { sourceLabel?: string }).sourceLabel,
+  ...(item.step ? { step: item.step } : {}),
 })
 
 /**
@@ -1621,6 +1699,11 @@ export const worldEntries = (indicators: TrendIndicator[]): TickerEntry[] => {
   return withEdge.sort((a, b) => Math.abs(b.pct) - Math.abs(a.pct))
 }
 
+/** The groups the phone's money line leaves out (`railOnly`). */
+const RAIL_ONLY: ReadonlySet<string> = new Set(
+  TICKER.filter((g) => g.railOnly).map((g) => g.group),
+)
+
 /**
  * The ribbon's rows, from the trends payload.
  *
@@ -1638,7 +1721,9 @@ export const tickerEntries = (indicators: TrendIndicator[]): TickerEntry[] => {
   const basket: number[][] = []
   let basketAsOf: string | undefined
   let basketSource: string | undefined
-  for (const { group, items } of TICKER) {
+  for (const { group, items, weekday } of TICKER) {
+    const start = out.length
+    const used: TrendIndicator[] = []
     for (const item of items) {
       if (seen.has(item.label)) continue
       const ind = byId.get(item.id)
@@ -1652,6 +1737,20 @@ export const tickerEntries = (indicators: TrendIndicator[]): TickerEntry[] => {
         basketSource = (ind as { sourceLabel?: string }).sourceLabel
       }
       out.push(entryFrom(group, item, ind, pct))
+      // A row that steps by the week is not on the group's calendar: US
+      // petrol is stamped days after the last crude close, and as the edge it
+      // left the three daily rows without a pair of closes to read.
+      if (!item.step) used.push(ind)
+    }
+    // One edge for the group, as `worldEntries` gives its block: these print
+    // Monday to Friday and run days behind, so a window ending at the wall
+    // clock holds no pair of closes at the map's opening range.
+    const edge = weekday ? lastTradedDay(used) : undefined
+    if (edge != null) {
+      for (let i = start; i < out.length; i++) {
+        const entry = out[i]
+        if (entry && !entry.step) out[i] = { ...entry, edge }
+      }
     }
   }
 
@@ -1698,6 +1797,259 @@ export const tickerEntries = (indicators: TrendIndicator[]): TickerEntry[] => {
   return out
 }
 
+// --- Companies -------------------------------------------------------------
+
+/** A sum in US dollars to two figures, in words: `$5.5 trillion`. */
+const usdInWords = (usd: number): string => {
+  const shown = (unit: number) => Number((usd / unit).toPrecision(2))
+  // The unit is the rounded figure's: $996bn is two figures of a trillion,
+  // and was printed `$1000 billion`.
+  return shown(1e9) >= 1000 ? `$${shown(1e12)} trillion` : `$${shown(1e9)} billion`
+}
+
+/**
+ * The app's `largest companies` list as rows of the money block's fifth group.
+ *
+ * Shares, so one edge for the set, as the exchanges have: a window ending at
+ * the wall clock holds one close and a weekend every Sunday and Monday. The
+ * edge is the newest day at least half the list has closed on, and never the
+ * newest close anywhere: these trade on four calendars, and between Taipei's
+ * close and New York's, or on a Sunday after Riyadh's, that day belongs to a
+ * handful. The day's move was then read from 4 of 20 beside a tally of all
+ * twenty.
+ *
+ * Risen first, fallen last, the order the app's list runs in: the ticks and
+ * the tones are then the order, and nothing has to say it.
+ */
+export const companyEntries = (companies: readonly MapCompany[]): TickerEntry[] => {
+  const closes = companies
+    .flatMap((c) => {
+      const dates = seriesDates(c.series?.periods, c.asOf)
+      const last = dates?.[dates.length - 1]
+      return last ? [last] : []
+    })
+    .sort((a, b) => b - a)
+  const edge = closes[Math.ceil(closes.length / 2) - 1]
+  return companies
+    .flatMap((c): TickerEntry[] => {
+      const values = c.series?.values ?? []
+      const pct = seriesChangePct(values)
+      if (pct == null) return []
+      return [{
+        group: 'companies',
+        id: `co:${c.id}`,
+        label: c.name,
+        name: c.name,
+        flag: flagOf(c.iso2),
+        about: c.about,
+        note: c.blurb,
+        pct,
+        unit: c.currency === 'USD' ? '$' : c.currency,
+        level: c.level,
+        values,
+        periods: c.series?.periods ?? [],
+        asOf: c.asOf,
+        sourceLabel: c.sourceLabel,
+        account: { recent: c.recent, related: c.relatedArticles, cited: c.relatedCited },
+        facts:
+          typeof c.marketValue === 'number' && c.marketValue > 0
+            ? [`Market value · ${usdInWords(c.marketValue)}`]
+            : [],
+        ...(edge == null ? {} : { edge }),
+      }]
+    })
+    .sort((a, b) => b.pct - a.pct)
+}
+
+// --- The slow blocks -------------------------------------------------------
+
+/**
+ * A change in points at the places its series is published to.
+ *
+ * `ribbonPoints` rounds a move of a point or more to a whole number, which is
+ * right for a contract's price and wrong here: a central bank that cut by two
+ * and a half points would print `−3 pts`.
+ */
+export const pointsFigure = (delta: number, places: number): string => {
+  const body = Math.abs(delta).toFixed(places)
+  return Number(body) === 0 ? '0 pts' : `${delta > 0 ? '+' : '−'}${body} pts`
+}
+
+/** A month's move as the row prints it, or the bare month where there is none. */
+const monthReading = (
+  move: SlowMove | null,
+  places: number,
+  month: string,
+): OwnReading & { stamp: string } => {
+  if (!move) return { pct: 0, figure: '', period: month, stamp: month }
+  const period = `${move.month} against ${move.against}`
+  if (move.kind === 'percent') {
+    return { pct: move.delta, figure: ribbonPct(move.delta), period, stamp: move.month }
+  }
+  const figure = pointsFigure(move.delta, places)
+  return { pct: figure === '0 pts' ? 0 : Math.sign(move.delta), figure, period, stamp: move.month }
+}
+
+/**
+ * One block of rows that read over a period of their own: a monthly list, the
+ * AI labs.
+ *
+ * `own` is the whole list as one figure, the number its rail row prints, or
+ * null where the list has none to give. One entry is a row that opens its own
+ * card; more are a row that opens the list.
+ */
+export interface SlowBlock {
+  key: string
+  /** The rail's row. */
+  label: string
+  /** The list's title. */
+  title: string
+  /** What `own` is of, and over which period, for the list's first line. */
+  meta: string
+  own: OwnReading | null
+  entries: Array<TickerEntry & { stamp?: string | undefined }>
+}
+
+/** Rows that moved, largest rise first, then the rest in the order given. */
+const risenFirst = <T extends { own?: OwnReading | undefined }>(
+  rows: readonly T[],
+  size: (row: T) => number,
+): T[] => {
+  const moved = rows.filter((r) => r.own?.figure)
+  const rest = rows.filter((r) => !r.own?.figure)
+  return [...moved.sort((a, b) => size(b) - size(a)), ...rest]
+}
+
+/**
+ * The monthly lists (`economyGroups`) as rows: what a central bank sets, what
+ * prices did, what bread costs, who is out of work.
+ *
+ * Every row's `own` is its last month against the month before. The series do
+ * not all end on one month (the Fed's is a month behind the BIS's), so each
+ * row carries the month it is of, and the list's figure is taken at the newest
+ * month every row has.
+ */
+export const economyBlocks = (indicators: readonly TrendIndicator[]): SlowBlock[] =>
+  economyGroups(indicators).map((g) => {
+    const deltas = new Map<string, number>()
+    const entries = g.rows.map((row) => {
+      const { ind } = row
+      const { stamp, ...own } = monthReading(row.move, g.places, row.month)
+      deltas.set(ind.id, row.move?.delta ?? 0)
+      // At the places the row prints, so the card's chart reads `3.2 %` where
+      // the feed's derived year-on-year figure is `3.22645`, and a month's
+      // average grain price is not quoted to the millionth of a dollar.
+      const places = ind.unit === '%' ? g.places : 2
+      return {
+        group: g.title,
+        id: ind.id,
+        label: ind.label,
+        name: ind.label,
+        flag: flagOf(row.iso2),
+        note: ind.standing,
+        pct: own.pct,
+        unit: ind.unit,
+        level: row.level,
+        values: ind.values.map((v) => (Number.isFinite(v) ? Number(v.toFixed(places)) : v)),
+        periods: ind.periods ?? [],
+        asOf: ind.asOf,
+        sourceLabel: (ind as { sourceLabel?: string }).sourceLabel,
+        step: 'months',
+        own,
+        stamp,
+      }
+    })
+    const own = g.move ? monthReading(g.move, g.places, g.move.month) : null
+    return {
+      key: g.key,
+      label: g.label,
+      title: g.title,
+      meta: own
+        ? `${g.rows.length > 1 ? `${g.measure} of ${g.rows.length} · ` : ''}${own.period}`
+        : '',
+      own: own && { pct: own.pct, figure: own.figure, period: own.period },
+      entries: risenFirst(entries, (e) => deltas.get(e.id) ?? 0),
+    }
+  })
+
+const AI_WINDOW = `over ${AI_CHANGE_DAYS} days`
+
+/**
+ * The AI labs as one block: each lab's best score on Epoch AI's capability
+ * index, and how far it rose.
+ *
+ * A lab and never a model, and never ranked: the top scores sit inside each
+ * other's ranges, so the list keeps the payload's order and prints no place.
+ * A score only rises, since it is the lab's best so far; the row's tone says
+ * that it moved, which is the fact, and never that a lab is ahead.
+ */
+export const aiBlock = (models: AiModels | null, now = Date.now()): SlowBlock | null => {
+  const labs: readonly AiLab[] = models?.labs ?? []
+  const summary = aiSummary(labs, now)
+  if (!summary) return null
+  const source = [`${models?.source ?? 'Epoch AI'} capability index`, models?.license]
+    .filter(Boolean)
+    .join(' · ')
+  const entries = labs.map((lab) => {
+    const change = aiScoreChange(lab.series, now)
+    const figure = change ? pointsFigure(change.points, 1) : ''
+    const own: OwnReading = {
+      pct: !change || figure === '0 pts' ? 0 : Math.sign(change.points),
+      figure,
+      // No change to state is no period either: a level captioned `over 90
+      // days` reads as a ninety-day figure.
+      period: !change ? '' : change.full ? AI_WINDOW : `since ${shortDate(change.since)}`,
+    }
+    return {
+      group: 'ai models',
+      id: `ai:${lab.id}`,
+      label: lab.model,
+      name: lab.name,
+      flag: flagOf(lab.iso2),
+      about: lab.model,
+      note: lab.blurb,
+      pct: own.pct,
+      unit: 'index points',
+      level: lab.score,
+      values: lab.series.values,
+      periods: lab.series.periods.map((iso) => fullDate(iso) || iso),
+      asOf: lab.asOf,
+      sourceLabel: source,
+      step: 'releases',
+      // The table under the chart, in what the hero is in. Left to the unit,
+      // `index points` read as not a rate: a card led `+5.2 pts` over rows of
+      // `+1.6%`, a percentage of an index whose zero means nothing.
+      change: 'points' as const,
+      own,
+      // A lab has no `/api/entity` record: its sentence is the payload's.
+      account: {},
+      facts:
+        lab.low !== undefined && lab.high !== undefined
+          ? [`Likely range · ${Math.round(lab.low)}–${Math.round(lab.high)}`]
+          : [],
+      // A line shorter than the window says where it is measured from.
+      stamp: change && !change.full ? own.period : '',
+    }
+  })
+  const gain = summary.gain === null ? null : pointsFigure(summary.gain, 1)
+  return {
+    key: 'ai',
+    label: 'models',
+    title: 'ai models',
+    meta: [
+      gain ? `average of ${summary.counted} labs, ${AI_WINDOW}` : '',
+      `best scores average ${summary.mean.toFixed(1)}`,
+    ]
+      .filter(Boolean)
+      .join(' · '),
+    own:
+      gain === null || summary.gain === null
+        ? null
+        : { pct: gain === '0 pts' ? 0 : Math.sign(summary.gain), figure: gain, period: AI_WINDOW },
+    entries,
+  }
+}
+
 // --- The strip -------------------------------------------------------------
 
 export interface MarketStrip {
@@ -1729,6 +2081,10 @@ export interface MarketStrip {
   setTrends(indicators: TrendIndicator[], events?: TrendEvent[]): void
   /** The chokepoint set, as the money block's fifth row. */
   setStraits(points: MapChokepoint[]): void
+  /** The app's company list, as the money row under `markets`. */
+  setCompanies(companies: MapCompany[]): void
+  /** The AI labs' scores, as the last of the slow blocks. */
+  setAiModels(models: AiModels | null): void
   setVisible(on: boolean): void
   /**
    * The box the detail panel should open under, or `null` to open it as a
@@ -2205,7 +2561,16 @@ export function createMarketStrip(opts: MarketStripOptions): MarketStrip {
     return box
   }
 
-  row.append(moneyItem(tallyGroup))
+  /**
+   * The companies' row, which keeps the place under `markets` whenever its
+   * payload lands: shares under shares. The groups from the trends payload are
+   * rebuilt and re-sorted after it on every redraw, so a row appended on
+   * arrival would stand wherever the two fetches happened to finish.
+   */
+  const companiesItem = el('div', 'map-markets-item map-markets-rail-only')
+  companiesItem.hidden = true
+
+  row.append(moneyItem(tallyGroup), companiesItem)
 
   /**
    * Two headings and a second block, which exist only in the rail.
@@ -2231,6 +2596,28 @@ export function createMarketStrip(opts: MarketStripOptions): MarketStrip {
   straitsHead.hidden = true
   const straits = el('div', 'map-markets-straits')
   straits.hidden = true
+
+  /**
+   * The slow blocks: the monthly economy lists and the AI labs' scores.
+   *
+   * The one part of the rail the range control does not reach (`_map/slow.ts`).
+   * Each heading says its own period once, after its name, and no row repeats
+   * it. They stand under every daily block of the money box, so a reader's eye
+   * goes from what moved today down to what moves by the month, and each list
+   * is one row: its members are a press away, as the money groups' are.
+   */
+  const slowHead = (name: string, period: string) => {
+    const head = el('span', 'map-group-label map-markets-head', name)
+    head.append(' ', el('span', 'map-markets-head-note', period))
+    head.hidden = true
+    return head
+  }
+  const economyHead = slowHead('economy', 'on the month')
+  const economy = el('div', 'map-markets-economy')
+  economy.hidden = true
+  const aiHead = slowHead('ai', `over ${AI_CHANGE_DAYS} days`)
+  const ai = el('div', 'map-markets-ai')
+  ai.hidden = true
 
   /**
    * The two instrument blocks the payload has always carried and nothing read.
@@ -2319,7 +2706,20 @@ export function createMarketStrip(opts: MarketStripOptions): MarketStrip {
   // being bet on that world, then what the world is reading about it — but
   // from its own box at the foot of the rail, for the reason given where it
   // is built.
-  root.append(moneyHead, row, eventsHead, eventsBox, worldHead, world, straitsHead, straits)
+  root.append(
+    moneyHead,
+    row,
+    eventsHead,
+    eventsBox,
+    worldHead,
+    world,
+    straitsHead,
+    straits,
+    economyHead,
+    economy,
+    aiHead,
+    ai,
+  )
 
   /**
    * The panel the summaries open, folded up from the strip.
@@ -2717,8 +3117,8 @@ export function createMarketStrip(opts: MarketStripOptions): MarketStrip {
    * below are still the answer, and the row that opened this has already printed
    * its own dotted rule and its age.
    */
-  const fillPanelFigure = (members: SparkMember[]) => {
-    const input = sparkInput(members, rangeDays, Date.now())
+  const fillPanelFigure = (members: SparkMember[], edge?: number) => {
+    const input = sparkInput(members, rangeDays, Date.now(), edge)
     const spark = input
       ? sparkline({
           values: input.values,
@@ -2765,6 +3165,8 @@ export function createMarketStrip(opts: MarketStripOptions): MarketStrip {
    * fifteen rows off data the island is already holding; there is nothing to
    * amortise.
    */
+  type PanelEdge = number | ((members: SparkMember[]) => number | undefined)
+
   const openPanel = (
     btn: HTMLElement,
     name: string,
@@ -2779,6 +3181,11 @@ export function createMarketStrip(opts: MarketStripOptions): MarketStrip {
      * anything — see the call sites.
      */
     members?: () => SparkMember[],
+    /** The last day the group traded, where its row was windowed on one, so
+     *  the figure over the list covers the period the row printed. A function
+     *  of the members where the trigger outlives the payload it was wired on
+     *  (the exchanges), for the reason `members` is a thunk. */
+    edge?: PanelEdge,
   ) => {
     // A second press on the control that opened it closes it. Pressing a
     // *different* summary swaps the contents rather than stacking a second
@@ -2793,8 +3200,10 @@ export function createMarketStrip(opts: MarketStripOptions): MarketStrip {
     // are built fresh: the counts must not be able to describe a state the
     // strip behind the panel has already replaced.
     panelMeta.textContent = meta()
-    if (members) fillPanelFigure(members())
-    else {
+    if (members) {
+      const set = members()
+      fillPanelFigure(set, typeof edge === 'function' ? edge(set) : edge)
+    } else {
       panelFig.replaceChildren()
       panelFig.hidden = true
     }
@@ -2814,12 +3223,13 @@ export function createMarketStrip(opts: MarketStripOptions): MarketStrip {
     meta: () => string,
     rows: () => HTMLElement[],
     members?: () => SparkMember[],
+    edge?: PanelEdge,
   ) => {
     btn.setAttribute('type', 'button')
     btn.setAttribute('aria-haspopup', 'dialog')
     btn.setAttribute('aria-expanded', 'false')
     btn.setAttribute('aria-label', `${name}, show detail`)
-    btn.addEventListener('click', () => openPanel(btn, name, meta, rows, members))
+    btn.addEventListener('click', () => openPanel(btn, name, meta, rows, members, edge))
   }
 
   /**
@@ -2895,14 +3305,21 @@ export function createMarketStrip(opts: MarketStripOptions): MarketStrip {
     const btn = el('button', `map-markets-row-item${toneClass(e.pct)}`)
     btn.setAttribute('type', 'button')
     if (e.flag) btn.append(el('span', 'map-markets-flag', e.flag))
+    // The full name here, where there is room for it. The strip never had it
+    // and the code alone is unreadable to most people, which is the whole
+    // reason every quote carried a flag.
+    const name = el('span', 'map-markets-row-name', e.name)
+    // What a company does, beside its name and never a ticker in its place.
+    if (e.about) name.append(' ', el('span', 'map-markets-row-about', e.about))
     btn.append(
       tick(e.pct > FLAT_PCT ? 1 : e.pct < -FLAT_PCT ? -1 : 0),
-      // The full name here, where there is room for it. The strip never had it
-      // and the code alone is unreadable to most people, which is the whole
-      // reason every quote carried a flag.
-      el('span', 'map-markets-row-name', e.name),
+      name,
       el('span', 'map-markets-row-pct', ribbonPct(e.pct)),
     )
+    // These rows are each the last step, which is a day for all but a series
+    // published weekly: a week's move unlabelled in a column of days is read
+    // as today's.
+    if (e.step === 'weeks') btn.append(el('span', 'map-markets-row-note', 'on the week'))
     btn.addEventListener('click', () => {
       // `openOn` and not `btn`: the panel is about to close, so the row pressed
       // is on its way out of the document and the card would be anchored to a
@@ -3008,6 +3425,11 @@ export function createMarketStrip(opts: MarketStripOptions): MarketStrip {
     () => exchangeMeta,
     () => allExchanges.map(exchangeRow),
     exchangeMembers,
+    // The row's own edge, asked again at the press. Without it the panel
+    // windowed on the wall clock while the row above windowed on the last
+    // session, and on a Sunday those are different three days: the row read
+    // −0.9% and the panel it opened read +0.8% over the same words.
+    lastTradedDay,
   )
 
   /**
@@ -3093,9 +3515,198 @@ export function createMarketStrip(opts: MarketStripOptions): MarketStrip {
     )
   }
 
+  /**
+   * One group of quotes as a money row: which way the set went, how far, and
+   * its members a press away. The trends payload's groups and the companies
+   * are both made here, so the two cannot read differently.
+   */
+  const groupSummary = (name: string, items: TickerEntry[]) => {
+    const summary = el('button', 'map-markets-group map-markets-summary')
+    const counts = el('span', 'map-markets-tally')
+    // The set's reading and its counts are of the rows that step by the day.
+    // A weekly row keeps its place in the list under its own note, and its
+    // week is never counted as a day's move.
+    const daily = items.filter((e) => !e.step)
+    const s = summarise(daily.map((e) => e.pct))
+    countsInto(counts, s)
+    // The group's own direction, in the shape the marks already use. This is
+    // the "average colour": one glyph saying which way the basket as a whole
+    // went, ahead of the counts saying how unanimous that was. A group can be
+    // 4 up and 3 down and still net down, and those are two different facts —
+    // which is the whole reason the tick is not derived from the counts.
+    const move = el('span', 'map-markets-move')
+    // `values` and not the raw series: FX is published `X / USD` and inverted
+    // on the way into the entry, so this is the basket the way the row reads
+    // it. `usd-index` is excluded because it is *derived from* the rest of the
+    // basket — it moves opposite to them by construction, so averaging it back
+    // in cancels a fifteenth of the signal the composite exists to carry.
+    const members = daily.filter((e) => e.id !== 'usd-index')
+    // The group's one edge, where it has one: a weekday group's rows all
+    // carry the last day the set traded (`tickerEntries`, `companyEntries`).
+    const edge = daily[0]?.edge
+    const pct = sparkInto(move, members, undefined, edge)
+    const reading =
+      pct == null ? '' : `, ${ribbonPct(pct)} over ${rangeLabel()}${sparkNote}`
+    summary.append(tick(s.net), el('span', 'map-markets-label', name), counts, move)
+    trigger(
+      summary,
+      name,
+      () => countsText(s),
+      () => items.map(quoteRow),
+      // Safe to capture, unlike the exchanges: these summaries are rebuilt
+      // from scratch on every redraw, so the closure and the row it is wired
+      // to are always the same generation of the payload.
+      () => members,
+      edge,
+    )
+    // After `trigger`, which writes a label of its own: set before it, the
+    // counts and the figure were overwritten and never reached a screen reader.
+    summary.setAttribute('aria-label', `${name} — ${countsText(s)}${reading}, show detail`)
+    return { pct, summary }
+  }
+
+  let lastCompanies: MapCompany[] = []
+
+  const setCompanies = (companies: MapCompany[]) => {
+    lastCompanies = companies
+    const entries = companyEntries(companies)
+    companiesItem.replaceChildren(
+      ...(entries.length ? [groupSummary('companies', entries).summary] : []),
+    )
+    companiesItem.hidden = entries.length === 0
+  }
+
+  /**
+   * A reading over a period of the row's own: a tick and a figure, as
+   * `sparkInto` leaves them, with no range behind either. No figure is the
+   * dotted rule and no tick, for the reason given there.
+   */
+  const ownInto = (host: HTMLElement, own: OwnReading | null | undefined) => {
+    if (!own?.figure) {
+      host.className = 'map-markets-move is-stale'
+      host.replaceChildren(el('span', 'map-markets-nil'))
+      return
+    }
+    host.className = `map-markets-move${toneClass(own.pct)}`
+    host.replaceChildren(
+      tick(marketDirection(own.pct)),
+      el('span', 'map-markets-window', own.figure),
+    )
+  }
+
+  /**
+   * One member of a slow list: what it stands at, how far that moved, and the
+   * month the reading is of.
+   *
+   * The level is here and not on a quote's row because it is what these lists
+   * are read for: a policy rate is a number a reader wants before its change,
+   * and most months its change is nothing.
+   */
+  const slowRow = (e: SlowBlock['entries'][number]) => {
+    const own = e.own
+    const moved = !!own?.figure
+    const btn = el(
+      'button',
+      `map-markets-row-item is-level${toneClass(own?.pct ?? 0, !moved)}`,
+    )
+    btn.setAttribute('type', 'button')
+    const name = el('span', 'map-markets-row-name', e.name)
+    if (e.about) name.append(' ', el('span', 'map-markets-row-about', e.about))
+    btn.append(
+      el('span', 'map-markets-flag', e.flag),
+      // No move is no tick: a flat bar would claim a month that was measured.
+      moved && own ? tick(marketDirection(own.pct)) : el('span', 'map-markets-tick'),
+      name,
+      el('span', 'map-markets-row-level', quoteLevel(e.level, e.unit)),
+      el('span', 'map-markets-row-pct', own?.figure ?? ''),
+      el('span', 'map-markets-row-stamp', e.stamp ?? ''),
+    )
+    if (own?.period) btn.title = own.period
+    btn.addEventListener('click', () => {
+      const from = openOn ?? btn
+      closePanel()
+      opts.onQuote(e, from)
+    })
+    return btn
+  }
+
+  /** A slow list as one rail row: its figure, and its members behind it. */
+  const slowGroupRow = (block: SlowBlock) => {
+    const summary = el('button', 'map-markets-group map-markets-summary')
+    const move = el('span', 'map-markets-move')
+    ownInto(move, block.own)
+    summary.append(el('span', 'map-markets-label', block.label), move)
+    trigger(
+      summary,
+      block.title,
+      () => block.meta,
+      () => block.entries.map(slowRow),
+    )
+    summary.setAttribute(
+      'aria-label',
+      `${block.title}${
+        block.own ? ` — ${block.own.figure}, ${block.own.period}` : ''
+      }, show detail`,
+    )
+    return moneyItem(summary)
+  }
+
+  /** A slow list of one, which opens that series' card and not a list. */
+  const slowSingleRow = (block: SlowBlock, entry: SlowBlock['entries'][number]) => {
+    const item = el('button', 'map-markets-group map-markets-summary')
+    item.setAttribute('type', 'button')
+    item.setAttribute('aria-haspopup', 'dialog')
+    const move = el('span', 'map-markets-move')
+    ownInto(move, entry.own)
+    const level = quoteLevel(entry.level, entry.unit)
+    item.append(
+      el('span', 'map-markets-label', block.label),
+      ...(level ? [el('span', 'map-markets-level', level)] : []),
+      move,
+    )
+    item.setAttribute(
+      'aria-label',
+      `${entry.name}${level ? `, ${level}` : ''}${
+        entry.own?.figure ? ` — ${entry.own.figure}, ${entry.own.period}` : ''
+      }, show detail`,
+    )
+    item.title = entry.note ? `${entry.name} — ${entry.note}` : entry.name
+    item.addEventListener('click', () => {
+      closePanel()
+      opts.onQuote(entry, item)
+    })
+    return moneyItem(item)
+  }
+
+  const fillSlow = (host: HTMLElement, head: HTMLElement, blocks: SlowBlock[]) => {
+    host.replaceChildren(
+      ...blocks.map((block) => {
+        const only = block.entries.length === 1 ? block.entries[0] : undefined
+        return only ? slowSingleRow(block, only) : slowGroupRow(block)
+      }),
+    )
+    host.hidden = blocks.length === 0
+    head.hidden = host.hidden
+  }
+
+  const setAiModels = (models: AiModels | null) => {
+    const block = aiBlock(models)
+    fillSlow(ai, aiHead, block ? [block] : [])
+  }
+
+  /** The payload the economy block was last built from: see `setTrends`. */
+  let slowFrom: TrendIndicator[] | null = null
+
   const setTrends = (indicators: TrendIndicator[], events: TrendEvent[] = lastEvents) => {
     lastIndicators = indicators
     lastEvents = events
+
+    // Once per payload and not per range press: nothing in it follows the
+    // range, and rebuilding it would close a list a reader has open.
+    if (indicators !== slowFrom) {
+      slowFrom = indicators
+      fillSlow(economy, economyHead, economyBlocks(indicators))
+    }
 
     fillEvents(eventsBox, eventsHead, eventEntries(events))
     // The *row box*, not the group inside it. When these summaries were direct
@@ -3122,44 +3733,11 @@ export function createMarketStrip(opts: MarketStripOptions): MarketStrip {
     // the row shows.
     const groupRows: Array<{ pct: number; node: HTMLElement }> = []
     for (const [name, items] of byGroup) {
-      const summary = el('button', 'map-markets-group map-markets-summary')
+      const { pct, summary } = groupSummary(name, items)
       summary.dataset.trend = ''
-      const counts = el('span', 'map-markets-tally')
-      const s = summarise(items.map((e) => e.pct))
-      countsInto(counts, s)
-      // The group's own direction, in the shape the marks already use. This is
-      // the "average colour": one glyph saying which way the basket as a whole
-      // went, ahead of the counts saying how unanimous that was. A group can be
-      // 4 up and 3 down and still net down, and those are two different facts —
-      // which is the whole reason the tick is not derived from the counts.
-      const move = el('span', 'map-markets-move')
-      // `values` and not the raw series: FX is published `X / USD` and inverted
-      // on the way into the entry, so this is the basket the way the row reads
-      // it. `usd-index` is excluded because it is *derived from* the rest of the
-      // basket — it moves opposite to them by construction, so averaging it back
-      // in cancels a fifteenth of the signal the composite exists to carry.
-      const pct = sparkInto(
-        move,
-        items.filter((e) => e.id !== 'usd-index'),
-      )
-      summary.append(tick(s.net), el('span', 'map-markets-label', name), counts, move)
-      summary.setAttribute(
-        'aria-label',
-        `${name} — ${countsText(s)}${
-          pct == null ? '' : `, ${ribbonPct(pct)} over ${rangeLabel()}${sparkNote}`
-        }`,
-      )
-      trigger(
-        summary,
-        name,
-        () => countsText(s),
-        () => items.map(quoteRow),
-        // Safe to capture, unlike the exchanges: these summaries are rebuilt
-        // from scratch on every `setTrends`, so the closure and the row it is
-        // wired to are always the same generation of the payload.
-        () => items.filter((e) => e.id !== 'usd-index'),
-      )
-      groupRows.push({ pct: pct ?? 0, node: moneyItem(summary) })
+      const node = moneyItem(summary)
+      if (RAIL_ONLY.has(name)) node.classList.add('map-markets-rail-only')
+      groupRows.push({ pct: pct ?? 0, node })
     }
     groupRows.sort((a, b) => Math.abs(b.pct) - Math.abs(a.pct))
     for (const { node } of groupRows) row.append(node)
@@ -3395,6 +3973,7 @@ export function createMarketStrip(opts: MarketStripOptions): MarketStrip {
    */
   function redraw() {
     if (lastMarkets) update(lastMarkets)
+    if (lastCompanies.length) setCompanies(lastCompanies)
     if (lastIndicators) setTrends(lastIndicators)
     if (lastStraits.length) setStraits(lastStraits)
   }
@@ -3409,6 +3988,8 @@ export function createMarketStrip(opts: MarketStripOptions): MarketStrip {
     },
     setTrends,
     setStraits,
+    setCompanies,
+    setAiModels,
     rangeDays: () => rangeDays,
     setRangeDays(days: number) {
       if (days === rangeDays) return

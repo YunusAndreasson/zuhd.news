@@ -33,7 +33,17 @@ import { CONTESTED_D, type MapPoint } from './types'
 import type { StoryPlace } from './places'
 import { CATEGORY_COLOUR, FALLBACK_CATEGORY_COLOUR, rampColour } from './style'
 import * as fmt from './format'
-import { ribbonPoints } from './markets'
+import { pointsFigure } from './markets'
+
+/**
+ * Whether a story's `chart` id has a record at `/api/entity/{id}.json`.
+ *
+ * A company's (`co:`) and an AI lab's (`ai:`) are published on a story and
+ * have a card in the app and no series file here. One test, for the block
+ * that draws the series and the prefetch that warms it: they had one each,
+ * and the prefetch had none.
+ */
+const hasSeriesRecord = (id: string): boolean => !/^(?:co|ai):/.test(id)
 
 /** How the map paints the indicator panel. The article page's copy of this
  *  table is in `entity-strip.ts`; the panel itself is `_entity-panel.ts`. */
@@ -256,17 +266,18 @@ const sourceRow = (s: StorySource): HTMLElement => {
 /**
  * Attribution, and how each outlet framed the story.
  *
- * Four cases, by what there is to say:
+ * Two cases, by what there is to say:
  *
  * - nobody's angle is recorded and the story is not contested: the flat line
  *   of names, as it always was;
- * - one outlet with an angle: its row, open, under "Source". There is nothing
- *   to compare and nothing worth a control;
- * - a story the map has ringed: the rows open, ordered by lean so the spread
- *   reads down the list, under the sentence `divergenceNote` gives it;
- * - any other story with several outlets: the same rows, folded. Open on every
- *   card they would add a paragraph per outlet to a card capped at half the
- *   screen.
+ * - an angle is recorded, or the map has ringed the story: the outlets' rows,
+ *   folded, and the flat line after them. A ringed story's rows are ordered
+ *   by lean, so the spread reads down the list, under the sentence
+ *   `divergenceNote` gives it.
+ *
+ * The rows are never open when the card opens, a contested story's and a
+ * single outlet's included: a card is opened for the story, and what each
+ * outlet made of it is the reader's to ask for.
  *
  * The words and the fold are the article page's (`framingHtml`,
  * `article-chain.js`), so the same story reads the same on both.
@@ -291,46 +302,40 @@ const sourceBlock = (story: Story, p: MapPoint): Node[] => {
     return ul
   }
 
-  if (sources.length === 1 && framed) {
-    nodes.push(el('p', 'map-popup-section', 'Source'), rows(sources))
-  } else {
-    if (framed || contested) {
-      const details = document.createElement('details')
-      details.className = 'map-popup-framing'
-      details.open = contested
-      details.append(el('summary', 'map-popup-section', 'How each outlet framed it'))
-      const note = contested ? divergenceNote(divergence, sources.length) : null
-      if (note) details.append(el('p', 'map-popup-framing-note', note))
-      // By lean, most favourable first, so the spread reads down the list
-      // rather than needing to be reconstructed. An unrated outlet goes last.
-      const lean = (s: StorySource) => (typeof s.sentiment === 'number' ? s.sentiment : -Infinity)
-      details.append(rows(contested ? [...sources].sort((a, b) => lean(b) - lean(a)) : sources))
-      // The card is capped and this block sits at its foot, so the rows open
-      // below a fold the reader has no reason to think is there.
-      //
-      // Only when the reader opened it. Setting `open` above queues a `toggle`
-      // of its own, which arrives after the card is on the page: a contested
-      // story's card then scrolled itself past its title and its prose to show
-      // its sources, on opening.
-      const summary = details.querySelector('summary')
-      let pressed = false
-      summary?.addEventListener('click', () => {
-        pressed = true
-      })
-      details.addEventListener('toggle', () => {
-        if (pressed && details.open) details.scrollIntoView?.({ block: 'nearest' })
-        pressed = false
-      })
-      nodes.push(details)
-    }
-    const line = el('p', 'map-popup-sources-flat')
-    line.append(el('span', 'map-popup-sources-label', 'Sources'))
-    sources.forEach((s, i) => {
-      if (i) line.append(', ')
-      line.append(sourceName(s))
+  if (framed || contested) {
+    const details = document.createElement('details')
+    details.className = 'map-popup-framing'
+    details.append(el('summary', 'map-popup-section', 'How each outlet framed it'))
+    const note = contested ? divergenceNote(divergence, sources.length) : null
+    if (note) details.append(el('p', 'map-popup-framing-note', note))
+    // By lean, most favourable first, so the spread reads down the list
+    // rather than needing to be reconstructed. An unrated outlet goes last.
+    const lean = (s: StorySource) => (typeof s.sentiment === 'number' ? s.sentiment : -Infinity)
+    details.append(rows(contested ? [...sources].sort((a, b) => lean(b) - lean(a)) : sources))
+    // The card is capped and this block sits at its foot, so the rows open
+    // below a fold the reader has no reason to think is there.
+    //
+    // Only when the reader opened it: a `toggle` that no press preceded is
+    // not theirs, and a card that scrolled itself past its title and its
+    // prose to show its sources is what this guard was written against.
+    const summary = details.querySelector('summary')
+    let pressed = false
+    summary?.addEventListener('click', () => {
+      pressed = true
     })
-    nodes.push(line)
+    details.addEventListener('toggle', () => {
+      if (pressed && details.open) details.scrollIntoView?.({ block: 'nearest' })
+      pressed = false
+    })
+    nodes.push(details)
   }
+  const line = el('p', 'map-popup-sources-flat')
+  line.append(el('span', 'map-popup-sources-label', 'Sources'))
+  sources.forEach((s, i) => {
+    if (i) line.append(', ')
+    line.append(sourceName(s))
+  })
+  nodes.push(line)
 
   // `eventCoverage` is a different number from the list above — how many
   // outlets carried the event at all, against the handful we read — and it is
@@ -1026,7 +1031,7 @@ export function createStoryPopup(map: MapLibreMap, opts: StoryPopupOptions = {})
     // A company and an AI lab have a card in the app and no series page here:
     // `/api/entity/co:*.json` does not exist. Asked for anyway, the block held
     // its height, the fetch failed on every open, and the prose jumped up.
-    if (!id || /^(?:co|ai):/.test(id)) return []
+    if (!id || !hasSeriesRecord(id)) return []
 
     const block = el('a', 'map-popup-chart')
     block.href = `/e/${encodeURIComponent(id)}`
@@ -1050,7 +1055,13 @@ export function createStoryPopup(map: MapLibreMap, opts: StoryPopupOptions = {})
       head.append(
         el('span', 'map-popup-chart-label', record.label),
         el('span', 'map-popup-chart-reading', record.currentFormatted),
-        el('span', 'map-popup-chart-move', points ? ribbonPoints(delta) : signedPct(delta)),
+        // To the hundredth, as a rate is published: rounded to a whole point
+        // a cut of 1.25 read `−1 pts` beside a line that fell further.
+        el(
+          'span',
+          'map-popup-chart-move',
+          points ? pointsFigure(delta, Math.abs(delta) >= 10 ? 1 : 2) : signedPct(delta),
+        ),
       )
 
       // The dates the line runs between, which is the period the move is over.
@@ -1216,8 +1227,11 @@ export function createStoryPopup(map: MapLibreMap, opts: StoryPopupOptions = {})
       // And the series a story charts, behind it: the card draws that under
       // the title, and a block filled a moment after the card opens is a block
       // the reader watched arrive.
+      // Only a series with a record behind it, as `storyChart` draws: a
+      // company's or a lab's id is published on a story and has no
+      // `/api/entity` file, so asking was a 404 on every preview.
       void fetchStory(p.slug).then((story) => {
-        if (story?.chart) void fetchEntity(story.chart)
+        if (story?.chart && hasSeriesRecord(story.chart)) void fetchEntity(story.chart)
       })
     },
 

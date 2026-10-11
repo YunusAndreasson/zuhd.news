@@ -47,6 +47,17 @@ test('births are placed against replacement, and against where they were', () =>
   assert.doesNotMatch(of(1980, [2.0, 2.0]).subtitle, /Fell|Rose/, 'under a child of change is not a sentence')
   assert.match(of(1980, [1.9, 1.2]).subtitle, /^Far below replacement/)
   assert.deepEqual(of(1980, [7.8, 5.9]).reference, { value: 2.1, label: 'replacement' })
+
+  // The sentence stands on the side of its line that the printed figure does.
+  // Turkey's 1.48 is `1.5`, which is not under 1.5; Mexico's 1.892 is `1.9`,
+  // which is near replacement and not below it.
+  const turkey = of(1980, [1.5, 1.48])
+  assert.equal(turkey.headline, '1.5 children per woman')
+  assert.match(turkey.subtitle, /^Below replacement/)
+  const mexico = of(1980, [2.0, 1.892])
+  assert.equal(mexico.headline, '1.9 children per woman')
+  assert.match(mexico.subtitle, /^Near replacement/)
+  assert.match(of(1980, [1.5, 1.44]).subtitle, /^Far below replacement/, 'and 1.4 is still far below')
 })
 
 test('complexity is a rank, and prices say their year', () => {

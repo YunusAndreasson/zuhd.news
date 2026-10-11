@@ -23,6 +23,10 @@ One type scale and two palettes, each declared once in `public/style.css`.
   `.map-range`, `.map-markets-age`, `.map-markets-level`, `.map-mapctl`) it
   asserts there is none. Add a control there when it must stay legible.
 - No test pins sizes. Check a size change in a browser.
+- The italic face is `font-display: swap` and nothing preloads it. Keep italics
+  for prose (`em`, a quotation): chrome set in italic fetches 78 KB for a word.
+- An article or archetype page has one column (`--page-column`,
+  `--page-gutter` on `body`). Never `ch`: it is a different length on each box.
 
 ## Colour
 
@@ -50,3 +54,9 @@ One type scale and two palettes, each declared once in `public/style.css`.
   `MAP_COLOURS.neutral` and nothing checks it.
 - Category and overlay hues are not duplicated: a chip receives its layer's
   value inline as `--cat`, so it cannot disagree with its mark.
+- Whatever floats over the map (control box, popup, group panel, sheet) takes
+  `--map-line-card` and `--map-radius`; a control inside it `--map-radius-ctl`.
+- `.map-sheet` re-points the site's tokens at the map's, so a card rule
+  written in `--text` or `--rule` is already on the map palette.
+- A new map control joins the one focus-ring list (`.map-range:focus-visible`
+  and its siblings), or the browser draws its own ring there.

@@ -142,7 +142,13 @@ calendar `hijri.md`.
 - The card's sources (`sourceBlock`) take their thresholds and words from
   `shared/source-framing.ts`, and the fold's words from the article page. A
   lean is a word in ink, never a number and never `--map-pos`/`--map-neg`.
+- The fold is shut when the card opens, on every story: never set
+  `details.open`, a contested story's and a single outlet's included.
 - A dense place opens `openPlace`. It does not fly.
+- Only a card beside a rail row keeps inline offsets (`placeDocked`): every
+  other open calls `clearOffsets`, or a peek opens where the last card stood.
+- A story's `chart` is fetched only where `hasSeriesRecord`: a company's or a
+  lab's id has no `/api/entity` file.
 - Peek answers one question and clips (`.map-sheet.is-peek`). Its offsets
   are `--map-scrub-h` and `--map-rail-w`; the first is set on `body`, where
   the sheet is appended, and teardown removes it.

@@ -216,6 +216,80 @@ test('a market peek states the level and the move, and nothing else', async () =
   }
 })
 
+test('an exchange pinned from its mark is a card over a live map, in its peek’s corner', async () => {
+  const env = setupDom()
+  try {
+    const { createSheet } = await import(bundlePath)
+    const { window } = env
+    let modal = 0
+    const showModal = window.HTMLDialogElement.prototype.showModal
+    window.HTMLDialogElement.prototype.showModal = function () {
+      modal++
+      showModal.call(this)
+    }
+    const host = window.document.createElement('div')
+    host.className = 'map-canvas-host'
+    const canvas = host.appendChild(window.document.createElement('canvas'))
+    const rail = window.document.createElement('button')
+    window.document.body.append(host, rail)
+    const press = (target) =>
+      target.dispatchEvent(new window.Event('pointerdown', { bubbles: true }))
+
+    const sheet = createSheet()
+    // The hover first, then the click on the same mark: the island's two calls.
+    sheet.showMarket(EXCHANGE, false)
+    sheet.dockTo(null)
+    sheet.showMarket(EXCHANGE, true, undefined, true)
+    assert.equal(modal, 0, 'no backdrop: the map stays in view')
+    assert.equal(sheet.element.open, true)
+    assert.equal(sheet.isPinned(), true)
+    assert.deepEqual(
+      ['is-docked', 'is-corner', 'is-peek'].map((c) => sheet.element.classList.contains(c)),
+      [true, true, false],
+    )
+    assert.ok(sheet.element.querySelector('.chart'), 'at the pinned density, not the peek’s')
+
+    // The reader turns the globe under it, as under a story's card.
+    press(canvas)
+    assert.equal(sheet.element.open, true, 'a press on the map does not shut it')
+    press(rail)
+    assert.equal(sheet.element.open, false, 'a press anywhere else does')
+
+    // From a rail row it stands beside the row, and the corner is not left on
+    // it; pinned from a mark again, the row's offsets are not left on it either.
+    sheet.dockTo(rail)
+    sheet.showMarket(EXCHANGE, true, 3, true)
+    assert.equal(sheet.element.classList.contains('is-corner'), false)
+    assert.notEqual(sheet.element.style.top, '')
+    sheet.close()
+    sheet.dockTo(null)
+    sheet.showMarket(EXCHANGE, true, undefined, true)
+    assert.equal(sheet.element.classList.contains('is-corner'), true)
+    assert.equal(sheet.element.style.top, '')
+    assert.equal(sheet.element.style.right, '')
+    assert.equal(modal, 0)
+
+    // Nor on a peek: hovering a mark after a rail card had shut opened the peek
+    // beside the rail, and pinning it then moved it to the corner.
+    sheet.close()
+    sheet.dockTo(rail)
+    sheet.showMarket(EXCHANGE, true, 3, true)
+    assert.notEqual(sheet.element.style.top, '')
+    sheet.close()
+    sheet.showMarket(EXCHANGE, false)
+    assert.equal(sheet.element.classList.contains('is-peek'), true)
+    assert.deepEqual(
+      ['top', 'right', 'left', 'bottom'].map((side) => sheet.element.style.getPropertyValue(side)),
+      ['', '', '', ''],
+      'a peek keeps no card’s offsets',
+    )
+
+    sheet.destroy()
+  } finally {
+    env.restore()
+  }
+})
+
 test('an exchange card leads with the move the mark was drawn from', async () => {
   // The mark, the panel row and this hero are one reading over the range the
   // timeline is set to. A card that led with the day's move under a tick drawn
@@ -694,6 +768,98 @@ const dailyLabels = (asOf, n) => {
  * the hero against the *rail's* arithmetic rather than against a literal, since
  * a literal here would be a third opinion about the same window.
  */
+test('a company’s list is `Read from` only where its account was written from it', async () => {
+  // An account can outlive its citations: the build then lists the stories
+  // about the company under the same paragraph, and the card titled those
+  // `Read from` too.
+  const env = setupDom()
+  try {
+    const { createSheet } = await import(bundlePath)
+    const company = (account) => ({
+      id: 'co:test', group: 'companies', label: 'Test', name: 'Test', flag: '', unit: '$',
+      level: 12, pct: 1, values: [10, 11, 12], periods: ['Oct 7', 'Oct 8', 'Oct 9'], asOf: '2026-10-09',
+      account,
+    })
+    const related = [{ slug: 'a-story', title: 'A Story' }]
+    const text = (account) => {
+      const sheet = createSheet()
+      sheet.showIndicator(company(account), true, 3, false)
+      const out = sheet.element.textContent
+      sheet.destroy()
+      return out
+    }
+    assert.match(text({ recent: 'Why it moved.', related, cited: true }), /Read from/)
+    const about = text({ recent: 'Why it moved.', related })
+    assert.match(about, /Why it moved\./, 'the account still stands')
+    assert.match(about, /Related coverage/)
+    assert.doesNotMatch(about, /Read from/)
+    assert.match(text({ related }), /Related coverage/)
+  } finally {
+    env.restore()
+  }
+})
+
+test('a card’s table states each step the way its hero does', async () => {
+  // An AI lab's card led with `+5.2 pts` and listed its releases as `+1.6%`:
+  // the table took its kind from the unit, and `index points` is not `%`.
+  const env = setupDom()
+  try {
+    const { createSheet } = await import(bundlePath)
+    const lab = {
+      id: 'ai:test', group: 'ai models', label: 'Model 3', name: 'A lab', flag: '',
+      unit: 'index points', level: 156, pct: 1, step: 'releases', change: 'points',
+      values: [140, 150, 156], periods: ['1 Jan 2026', '1 May 2026', '1 Sep 2026'], asOf: '2026-09-01',
+      own: { pct: 1, figure: '+6.0 pts', period: 'over 90 days' }, account: {},
+    }
+    // The change column of the table, which is built when it is opened.
+    const steps = (entry) => {
+      const sheet = createSheet()
+      sheet.showIndicator(entry, true, 3, false)
+      const details = sheet.element.querySelector('.chart-data')
+      details.open = true
+      details.dispatchEvent(new env.window.Event('toggle'))
+      const cells = [...sheet.element.querySelectorAll('.chart-table td.is-change')].map((td) => td.textContent)
+      sheet.destroy()
+      return cells.filter(Boolean)
+    }
+    const inPoints = steps(lab)
+    assert.ok(inPoints.length >= 2, 'a row for each release after the first')
+    assert.ok(inPoints.every((t) => /pts$/.test(t)), `a release is a step in points, got ${inPoints}`)
+    // Unsaid, the unit decides as before: a rate in points, a price in per cent.
+    const { change: _unsaid, ...bare } = lab
+    assert.ok(steps({ ...bare, unit: '%' }).every((t) => /pts$/.test(t)))
+    assert.ok(steps({ ...bare, unit: '$/mt' }).every((t) => /%$/.test(t)))
+
+    // A monthly row is dated by its month. Its series is stamped the first,
+    // and the card opened `central bank rates · 1 Sep`.
+    const kickerOf = (entry) => {
+      const sheet = createSheet()
+      sheet.showIndicator(entry, true, 3, false)
+      const text = sheet.element.querySelector('.map-sheet-kicker').textContent
+      sheet.destroy()
+      return text
+    }
+    const rate = { ...bare, group: 'central bank rates', unit: '%', step: 'months' }
+    assert.match(kickerOf(rate), /September 2026$/)
+    assert.doesNotMatch(kickerOf(rate), /1 Sep/)
+    assert.match(kickerOf(lab), /1 Sep$/, 'a dated release keeps its day')
+
+    // And a price in dollars is written the way the rail writes it.
+    const priced = (entry) => {
+      const sheet = createSheet()
+      sheet.showIndicator(entry, true, 3, false)
+      const out = sheet.element.querySelector('.chart-readout').textContent
+      sheet.destroy()
+      return out
+    }
+    assert.match(priced({ ...bare, unit: '$' }), /· \$156/, 'a bare sign leads its figure')
+    assert.doesNotMatch(priced({ ...bare, unit: '$' }), /\d \$/)
+    assert.match(priced({ ...bare, unit: '$/mt' }), /156(\.\d+)? \$\/mt/, 'a compound unit still follows it')
+  } finally {
+    env.restore()
+  }
+})
+
 test('the card’s figure is the row’s, even inside the chart’s floor', async () => {
   const env = setupDom()
   try {

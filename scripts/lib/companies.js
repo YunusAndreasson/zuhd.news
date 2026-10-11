@@ -319,6 +319,12 @@ export function companiesPayload(raw, articles, { now = Date.now(), dispatch = {
           ...company,
           ...(recent ? { recent } : {}),
           relatedArticles: cited.length ? cited : about,
+          // Said only when the list is the account's own evidence, as the
+          // exchanges and straits say it (`relatedCited`, build.js). An account
+          // whose citations no longer resolve keeps its paragraph over the
+          // stories about the company, and a card that titled those `Read from`
+          // would claim it was written from them.
+          ...(cited.length ? { relatedCited: true } : {}),
         }
       },
     ),

@@ -1155,6 +1155,44 @@ test('a flagged market is a doubled tick with its name first, on the map and in 
   })
 })
 
+test('the exchanges’ panel covers the days their row printed', () => {
+  // On a Sunday the last session anywhere was Friday. The row windows on that
+  // session (`lastTradedDay`) and the panel it opens windowed on the wall
+  // clock, so one press apart the same thirty exchanges read −0.9% and +0.8%
+  // "over the past 3 days". Here the two windows are made to disagree in sign:
+  // Tuesday to Friday is a fall, Thursday to Friday a rise.
+  const now = Date.parse('2026-10-11T12:00:00Z')
+  const shape = (base) => [...Array.from({ length: 37 }, () => base), base, base * 0.9, base * 0.95]
+  const markets = [exchangeOf('bist', shape(100), '2026-10-09'), exchangeOf('nyse', shape(200), '2026-10-09')]
+
+  withDom(() => {
+    const dialog = globalThis.window.HTMLDialogElement.prototype
+    dialog.show = function show() { this.setAttribute('open', '') }
+    dialog.close = function close() { this.removeAttribute('open') }
+    const strip = createMarketStrip({ rangeDays: 3, onSelect() {}, onQuote() {}, onStrait() {} })
+    const realNow = Date.now
+    Date.now = () => now
+    let row
+    try {
+      strip.update(markets, now)
+      row = strip.element.querySelector('.map-markets-group, .map-markets-summary')
+      row.dispatchEvent(new globalThis.window.MouseEvent('click', { bubbles: true }))
+    } finally {
+      Date.now = realNow
+    }
+    const printed = row.querySelector('.map-markets-window').textContent
+    assert.match(printed, /^−5\.0%/, 'the row is the fall since Tuesday’s close')
+    const figure = globalThis.document.querySelector('.map-markets-panel-figure')
+    assert.equal(figure.hasAttribute('hidden'), false, 'the panel draws the group')
+    assert.equal(
+      figure.querySelector('.map-markets-panel-change').textContent,
+      printed,
+      'and states the move its row states',
+    )
+    strip.destroy()
+  })
+})
+
 /**
  * The map's own font is four files a face: code points 0–767 and 8192–8447.
  * A character outside them is not a missing glyph, it is a request for a range

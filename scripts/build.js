@@ -290,7 +290,10 @@ const formatTimeAgo = (addedAt) => {
   if (diffHours < 24) return `${diffHours}h ago`
   const diffDays = Math.floor(diffHours / 24)
   if (diffDays < 7) return `${diffDays}d ago`
-  return new Date(addedAt).toLocaleDateString(undefined, { day: 'numeric', month: 'short' })
+  // en-GB and UTC, as every other date the build prints: with no locale this
+  // was the build machine's, and the kicker read `Sep 26` over a footer that
+  // read `26 September`.
+  return new Date(addedAt).toLocaleDateString('en-GB', { day: 'numeric', month: 'short', timeZone: 'UTC' })
 }
 
 const buildArticlePage = (article, prev, next, thread, template, indicatorMap) => {
@@ -1265,8 +1268,8 @@ if (existsSync(marketsSrc)) {
   )
 }
 
-// Company quotes — the app's `largest companies` list and its strip gauges.
-// No web surface reads it. The catalog's standing sentence rides along as
+// Company quotes — the app's `largest companies` list and its strip gauges,
+// and the map's `companies` row. The catalog's standing sentence rides along as
 // `blurb`; what the build adds is the desk's account of each share where it
 // wrote one (`recent`, from the indicator dispatch's `co:<id>`), and the
 // stories behind that account or, without one, the stories about the company
@@ -1274,9 +1277,12 @@ if (existsSync(marketsSrc)) {
 // closes on a Friday nothing in it moves until Sunday's Riyadh close, and an
 // unheld `generated` would send it to every reader again each cycle anyway.
 //
-// Caught, unlike the layers above: nothing on the site reads this file, and a
-// snapshot the fetcher half-wrote must cost the app one list, never the cycle
-// its build.
+// Caught, unlike the layers above: the map reads this file only where the
+// build says it wrote it (`mapFeeds`), and a snapshot the fetcher half-wrote
+// must cost one list, never the cycle its build.
+/** The payloads written only where their snapshot exists, as `data-feeds` on
+ *  the map's shell: the island fetches the ones named and no others. */
+const mapFeeds = []
 const companiesSrc = join(ROOT, 'content', '.companies.json')
 /** `co:<id>` for every company published: a story's chart may name one, and
  *  it has no `/e/` page to be in `indicatorMap` by. */
@@ -1291,6 +1297,7 @@ if (existsSync(companiesSrc)) {
       JSON.stringify(apiStamps.hold('companies', payload)),
     )
     for (const c of payload.companies) companyChartIds.add(`co:${c.id}`)
+    mapFeeds.push('companies')
     const withCoverage = payload.companies.filter((c) => c.relatedArticles.length).length
     console.log(
       `  Built: api/companies.json (${payload.companies.length} companies, ${withCoverage} with coverage)`,
@@ -1302,12 +1309,12 @@ if (existsSync(companiesSrc)) {
 
 // AI labs — the app's `AI models` list: each lab's best score on Epoch AI's
 // capabilities index at each release, and its newest reported revenue and
-// valuation (`lib/ai-models.js`). No web surface reads it. The stamp is held,
-// and the fetcher's own `fetched` clock is left behind: the scores change a
-// few times a week, the fetch happens daily, and either stamp unheld would
-// send ten unchanged labs to every reader each day.
+// valuation (`lib/ai-models.js`). The map's `ai` row reads the scores. The
+// stamp is held, and the fetcher's own `fetched` clock is left behind: the
+// scores change a few times a week, the fetch happens daily, and either stamp
+// unheld would send ten unchanged labs to every reader each day.
 //
-// Caught, for the companies' reason: nothing on the site reads this file.
+// Caught, for the companies' reason.
 const aiModelsSrc = join(ROOT, 'content', '.ai-models.json')
 if (existsSync(aiModelsSrc)) {
   try {
@@ -1317,6 +1324,7 @@ if (existsSync(aiModelsSrc)) {
       join(DIST_DIR, 'api', 'ai-models.json'),
       JSON.stringify(apiStamps.hold('ai-models', payload)),
     )
+    mapFeeds.push('ai-models')
     console.log(`  Built: api/ai-models.json (${payload.labs.length} labs)`)
   } catch (err) {
     console.error(`  WARNING: api/ai-models.json not built — ${err?.message || err}`)
@@ -2212,6 +2220,7 @@ console.log('  Built: api/meta.json')
 // Homepage and static pages
 const homepage = buildHomepage(sorted, cutoff, homepageTemplate)
   .replace(/{{audioBriefing}}/g, audioBriefingHtml)
+  .replace(/{{mapFeeds}}/g, mapFeeds.join(' '))
 writeFileSync(join(DIST_DIR, 'index.html'), homepage)
 console.log(`  Built: index.html (${articles.length} articles)`)
 
@@ -2384,13 +2393,12 @@ for (const a of sorted) {
 // date column repeating on every row. Days come in reverse-chronological
 // order (newest first).
 const formatDayHeading = (iso) => {
-  const d = new Date(iso)
-  const today = new Date()
-  const yest = new Date(Date.now() - 86400000)
-  const sameDay = (a, b) => a.toDateString() === b.toDateString()
-  if (sameDay(d, today)) return 'Today'
-  if (sameDay(d, yest)) return 'Yesterday'
-  return d.toLocaleDateString(undefined, { weekday: 'long', day: 'numeric', month: 'long' })
+  // `iso` is a UTC day, so it is compared and printed as one: the machine's
+  // zone moved `Today` by a day and its locale set the month before the date.
+  const utcDay = (t) => new Date(t).toISOString().slice(0, 10)
+  if (iso === utcDay(Date.now())) return 'Today'
+  if (iso === utcDay(Date.now() - 86400000)) return 'Yesterday'
+  return new Date(iso).toLocaleDateString('en-GB', { weekday: 'long', day: 'numeric', month: 'long', timeZone: 'UTC' })
 }
 for (const cat of CATEGORY_ORDER) {
   const items = (byCategory[cat] || [])

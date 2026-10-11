@@ -182,7 +182,9 @@ export const buildEntityPanel = ({
     direction: 'window',
     palette: 'signed',
     unit: record.unit,
-    step: record.kind === 'MONTHLY' ? 'months' : 'days',
+    // As `entity-pages.js` counts them: a weekly series is carried as daily
+    // and named for what it is at build (`stepOf`).
+    step: record.kind === 'MONTHLY' ? 'months' : record.kind === 'WEEKLY' ? 'weeks' : 'days',
     label: record.label,
     caption: record.caption,
     className: classes.figure,

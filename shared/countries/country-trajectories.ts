@@ -7,13 +7,10 @@
 // turns them into words, and it takes the data as arguments so the site's
 // build and the app can both call it.
 //
-// The app wrote these sentences first, inside its card components
-// (`mobile/components/country-cards/*`), and still carries them there. Two
-// things are deliberately different here. A sentence names the year it was
-// measured from: the app says "since 2000" of a series that starts in 2008
-// (Kosovo, South Sudan), and "in 1980" of one that starts in 1990
-// (Palestine). And the complexity chart's scale reaches -4, because three
-// countries sit below the app's -3 and were drawn under the plot.
+// A sentence names the year it was measured from, never the year it asked
+// for: a series that starts in 2008 (Kosovo, South Sudan) is not read "since
+// 2000". And the complexity chart's scale reaches -4, because three countries
+// sit below -3 and would be drawn under the plot.
 
 export type YearValue = [year: number, value: number]
 
@@ -218,11 +215,17 @@ function demography(data: CountryCardData, world: GlobalBenchmarks): TrajectoryC
   if (!now || !line) return null
 
   const rate = now[1]
+  // Judged on the figure the headline prints, at its one decimal. On the rate
+  // as published, Turkey's 1.48 read `1.5 children per woman` over `Far below
+  // replacement`, whose line is under 1.5, and Mexico's 1.892 read `1.9` over
+  // `Below replacement`: thirteen countries stood on the other side of their
+  // own sentence.
+  const shown = Number(rate.toFixed(1))
   let subtitle: string
-  if (rate >= 4.5) subtitle = 'High fertility: the population is still expanding fast.'
-  else if (rate >= 2.5) subtitle = 'Above replacement: still growing.'
-  else if (rate >= 1.9) subtitle = 'Near replacement (2.1): the population is stabilising.'
-  else if (rate >= 1.5) subtitle = 'Below replacement: shrinking in the long run unless migration offsets it.'
+  if (shown >= 4.5) subtitle = 'High fertility: the population is still expanding fast.'
+  else if (shown >= 2.5) subtitle = 'Above replacement: still growing.'
+  else if (shown >= 1.9) subtitle = 'Near replacement (2.1): the population is stabilising.'
+  else if (shown >= 1.5) subtitle = 'Below replacement: shrinking in the long run unless migration offsets it.'
   else subtitle = 'Far below replacement: rapid ageing ahead.'
   const then = near(series, 1980)
   if (then && then[0] !== now[0] && Math.abs(then[1] - rate) > 1) {

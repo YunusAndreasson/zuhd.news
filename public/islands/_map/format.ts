@@ -156,7 +156,9 @@ export const deltaLabel = (change: number): string | null => {
   if (ratio <= 0.5 && ratio > 0) return `${Math.round((1 - ratio) * 100)}% below baseline`
   const pct = Math.round(change * 100)
   if (pct === 0) return 'level with the 90-day baseline'
-  return `${pct > 0 ? '+' : ''}${pct}% vs 90-day baseline`
+  // A true minus, like `signed` below: a hyphen here opened a card whose every
+  // other fall is set with one.
+  return `${pct > 0 ? '+' : '−'}${Math.abs(pct)}% vs 90-day baseline`
 }
 
 /** A vessel-count average. One decimal, because these are daily means. */

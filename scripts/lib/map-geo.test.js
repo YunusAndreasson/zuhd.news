@@ -1832,7 +1832,7 @@ test('a chokepoint delta reads against its baseline in the right direction', () 
   // test below reads the convention off the built payload so it cannot drift.
   assert.equal(M.deltaLabel(0.141), '+14% vs 90-day baseline')
   assert.equal(M.deltaLabel(0.052), '+5% vs 90-day baseline')
-  assert.equal(M.deltaLabel(-0.174), '-17% vs 90-day baseline')
+  assert.equal(M.deltaLabel(-0.174), '−17% vs 90-day baseline', 'and a fall takes a true minus')
   // Big moves are stated as multiples: +428% is 5.3× the baseline.
   assert.equal(M.deltaLabel(4.281), '5.3× the 90-day baseline')
   // Traffic at 40% of normal is a 60% fall.

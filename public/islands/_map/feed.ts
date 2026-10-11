@@ -201,8 +201,12 @@ export function createFeed(opts: FeedOptions): Feed {
     if (!narrowQuery.matches) {
       disclosure.removeAttribute('aria-expanded')
       disclosure.removeAttribute('aria-controls')
+      // The count is said and not shown on the desktop, so this button is an
+      // empty box there: out of the tab order, or focus lands on nothing.
+      disclosure.tabIndex = -1
       return
     }
+    disclosure.removeAttribute('tabindex')
     disclosure.setAttribute('aria-controls', 'map-feed-list')
     disclosure.setAttribute('aria-expanded', String(expanded))
   }
@@ -312,10 +316,10 @@ export function createFeed(opts: FeedOptions): Feed {
   const rowFor = (p: MapPoint, now: number): HTMLLIElement => {
     const existing = rows.get(p.slug)
     if (existing) {
-      // Only the parts that can change. `title`, `href` and the hook are fixed
-      // for a slug; the dateline moves because `relativeTime` is relative to the
-      // scrub head,
-      // and writing it unconditionally would dirty the row on every frame.
+      // Only the part that can change. `title` and `href` are fixed for a
+      // slug; the dateline moves because `relativeTime` is relative to the
+      // scrub head, and writing it unconditionally would dirty the row on
+      // every frame.
       const meta = existing.querySelector<HTMLElement>('.map-feed-meta')
       const text = metaOf(p, now)
       if (meta && meta.textContent !== text) meta.textContent = text
@@ -347,17 +351,9 @@ export function createFeed(opts: FeedOptions): Feed {
     meta.className = 'map-feed-meta'
     meta.textContent = metaOf(p, now)
 
-    body.append(link)
-    // The hook, under the headline. No element without one (an archive point
-    // carries none), so such a row keeps its two lines rather than an empty
-    // third.
-    if (p.h) {
-      const sub = document.createElement('p')
-      sub.className = 'map-feed-sub'
-      sub.textContent = p.h
-      body.append(sub)
-    }
-    body.append(meta)
+    // The headline and where it happened, and no sentence between them: the
+    // rail is scanned for a story to open, and the story's card has its prose.
+    body.append(link, meta)
     li.append(dot, body)
 
     // Already opened. Greyed rather than hidden or reordered: the rail is a

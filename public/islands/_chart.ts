@@ -29,6 +29,7 @@ import {
   rowChange,
   rowMark,
   seriesModel,
+  withUnit,
   type SceneNode,
   type SeriesModel,
   type SeriesOptions,
@@ -339,7 +340,7 @@ export function createChart(opts: ChartOptions): Chart | null {
       // and Yahoo both publish holes, and a table that silently skipped them
       // would make a fortnight look like it had fewer days in it.
       const value = Number.isFinite(v) ? model.formatExact(v) : '—'
-      tr.append(el('td', 'is-value', model.unit && Number.isFinite(v) ? `${value} ${model.unit}` : value))
+      tr.append(el('td', 'is-value', Number.isFinite(v) ? withUnit(value, model.unit) : value))
 
       const ch = rowChange(model, i)
       const td = el(

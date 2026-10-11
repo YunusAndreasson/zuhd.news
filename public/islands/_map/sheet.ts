@@ -69,6 +69,10 @@ export interface Sheet {
    * from a mark on the map is a commitment and keeps its backdrop; a card
    * reached from the rail keeps the map live, because the rail row and the map
    * are the two halves of what the reader is doing.
+   *
+   * An exchange's card is the exception among the marks: pinned from its mark
+   * it is docked too, with no row (`dockTo(null)`), and stands where its peek
+   * stood. A market is read against the map it is on, as a story is.
    */
   showChokepoint(cp: MapChokepoint, pinned: boolean, docked?: boolean): void
   /**
@@ -153,6 +157,13 @@ export interface Sheet {
  * in it.
  */
 const CARD_MIN_DAYS = 7
+
+/** The chart's caption on a card whose row reads over its own period, by how
+ *  the series steps (`TickerEntry.step`). */
+const STEP_CAPTION: Record<string, string> = {
+  months: 'Monthly',
+  releases: 'Each release that raised the lab’s best score',
+}
 
 /**
  * The rail's window, as the point count `createChart` takes.
@@ -295,10 +306,18 @@ export function createSheet(): Sheet {
     const r = dockAnchor.getBoundingClientRect()
     const gap = 10
     const h = dialog.offsetHeight
+    // The rail's edge and not the row's: a row is inset by the rail's padding,
+    // so the card ended 7px inside the rail while the group panel, measured
+    // from the rail, stopped 10px short of it.
+    const edge = (dockAnchor.closest('.map-hud') ?? dockAnchor).getBoundingClientRect().left
+    // The range chips set the window this card reads, so it stops above them.
+    const floor =
+      document.querySelector('.map-timeline-controls')?.getBoundingClientRect().top ??
+      window.innerHeight
     dialog.style.left = 'auto'
     dialog.style.bottom = 'auto'
-    dialog.style.right = `${Math.round(Math.max(gap, window.innerWidth - r.left + gap))}px`
-    dialog.style.top = `${Math.round(Math.max(gap, Math.min(r.top, window.innerHeight - h - gap)))}px`
+    dialog.style.right = `${Math.round(Math.max(gap, window.innerWidth - edge + gap))}px`
+    dialog.style.top = `${Math.round(Math.max(gap, Math.min(r.top, floor - h - gap)))}px`
   }
   // The card is fixed to a measured point, so anything that moves what it is
   // pointing at moves it too.
@@ -320,6 +339,12 @@ export function createSheet(): Sheet {
   // the pointer can move straight to the next beacon. Clicking promotes the
   // same sheet to a real modal — committed reading, backdrop and all. A
   // pinned sheet ignores hover entirely, so it never vanishes mid-read.
+  /** The inline offsets `placeDocked` writes. They belong to a card beside a
+   *  rail row and to nothing else, so every other way of opening drops them. */
+  const clearOffsets = () => {
+    for (const side of ['top', 'right', 'left', 'bottom']) dialog.style.removeProperty(side)
+  }
+
   const open = (pin: boolean, docked = false) => {
     if (pin) {
       // `showModal` throws on an already-open dialog, so a peek has to be shut
@@ -329,6 +354,12 @@ export function createSheet(): Sheet {
       isDocked = docked
       dialog.classList.remove('is-peek')
       dialog.classList.toggle('is-docked', docked)
+      // Docked with no row to stand beside: a card pinned from a mark on the
+      // map. It takes the corner its peek stood in (`.is-corner`), and the
+      // offsets an earlier card measured off a rail row must not hold it there.
+      const corner = docked && !dockAnchor
+      dialog.classList.toggle('is-corner', corner)
+      if (corner) clearOffsets()
       // `show()` leaves the map live and the page interactive; the platform
       // then stops doing three things for us, and they are wired below.
       if (docked) {
@@ -339,16 +370,17 @@ export function createSheet(): Sheet {
       } else {
         // Inline offsets belong to the docked mode alone; left behind they
         // would fight the modal's own centring.
-        dialog.style.removeProperty('top')
-        dialog.style.removeProperty('right')
-        dialog.style.removeProperty('left')
-        dialog.style.removeProperty('bottom')
+        clearOffsets()
         dialog.showModal()
       }
     } else {
       isDocked = false
-      dialog.classList.remove('is-docked')
+      dialog.classList.remove('is-docked', 'is-corner')
       dialog.classList.add('is-peek')
+      // A peek stands in its corner by its class. With a rail card's offsets
+      // still on the dialog it opened beside the rail at that row's height,
+      // and the click that pinned it moved it to the corner.
+      clearOffsets()
       if (!dialog.open) dialog.show()
     }
   }
@@ -378,6 +410,12 @@ export function createSheet(): Sheet {
     if (!isDocked || !dialog.open) return
     const t = e.target
     if (t instanceof Node && dialog.contains(t)) return
+    // A card pinned from a mark is about the map, so a press on the map does
+    // not shut it: the reader turns the globe under it, as under a story's
+    // card, and a click on open water closes both (the island's `click`).
+    const at =
+      t instanceof Node ? (t.nodeType === Node.ELEMENT_NODE ? (t as Element) : t.parentElement) : null
+    if (dialog.classList.contains('is-corner') && at?.closest('.map-canvas-host')) return
     dialog.close()
   }
   document.addEventListener('keydown', onDocKey)
@@ -939,7 +977,14 @@ export function createSheet(): Sheet {
      */
     showIndicator(entry, pin, rangeDays, docked) {
       const nodes: Node[] = []
-      nodes.push(kicker([entry.group, entry.asOf ? fmt.shortDate(entry.asOf) : null]))
+      // A monthly series is stamped the first of its month, and `1 Sep` is read
+      // as the day it was taken: the month, then, as the hero under it says.
+      const when = !entry.asOf
+        ? null
+        : entry.step === 'months'
+          ? fmt.monthLabel(entry.asOf)
+          : fmt.shortDate(entry.asOf)
+      nodes.push(kicker([entry.group, when]))
       nodes.push(el('h2', 'island-sheet-title', `${entry.flag} ${entry.name}`.trim()))
 
       /**
@@ -964,15 +1009,27 @@ export function createSheet(): Sheet {
       // this hero measured a week and printed a figure the row that opened it
       // did not — see the constant. The chart below still floors, and says so.
       const days = rangeDays ?? CARD_MIN_DAYS
+      // A row that reads over a period of its own (`TickerEntry.own`: a monthly
+      // rate, a lab's score) states that reading and names its period. The
+      // rail's range holds no two observations of it, and measured against one
+      // the hero printed a percentage of a percentage.
+      const own = entry.own
       // `entry.edge` too, or the card and the row it opened from window against
       // two different right edges — the disagreement this hero was rewritten to
       // end, coming back through the other door.
-      const drawn = sparkInput([entry], days, Date.now(), entry.edge)
+      const drawn = own ? null : sparkInput([entry], days, Date.now(), entry.edge)
       const ends = drawn?.ends
-      const windowPct =
-        ends && ends[0] !== 0 ? ((ends[1] - ends[0]) / Math.abs(ends[0])) * 100 : entry.pct
-      const focal =
-        entry.unit === '%' && ends ? ribbonPoints(ends[1] - ends[0]) : fmt.pctChange(windowPct)
+      const windowPct = own
+        ? own.pct
+        : ends && ends[0] !== 0
+          ? ((ends[1] - ends[0]) / Math.abs(ends[0])) * 100
+          : entry.pct
+      const focal = own
+        ? own.figure
+        : entry.unit === '%' && ends
+          ? ribbonPoints(ends[1] - ends[0])
+          : fmt.pctChange(windowPct)
+      const level = Number.isFinite(entry.level) ? fmt.quoteLevel(entry.level, entry.unit) : null
       /**
        * The same sign the row already carries.
        *
@@ -986,19 +1043,25 @@ export function createSheet(): Sheet {
        */
       nodes.push(
         hero(
-          focal,
+          // A row with no move to state leads with what it stands at.
+          focal || level || '',
           [
             // The label is dropped where it is merely the name shortened — a
             // question repeated under its own heading is not a second fact.
             entry.name.startsWith(entry.label) ? null : entry.label,
-            Number.isFinite(entry.level) ? fmt.quoteLevel(entry.level, entry.unit) : null,
-            // `%` is already on the level; anything else says what the level is
-            // measured in and is worth the four characters.
-            entry.unit === '%' ? null : entry.unit,
+            focal ? level : null,
+            // `%` is already on the level, and so is a bare `$`; anything else
+            // says what the level is measured in and is worth the characters.
+            entry.unit === '%' || entry.unit === '$' ? null : entry.unit,
+            own?.period,
+            // A weekly series has no pair of observations inside a range under
+            // two weeks, and the figure above is then its last step: a week.
+            !own && !ends && entry.step === 'weeks' ? 'on the week' : null,
           ]
             .filter(Boolean)
             .join(' · '),
-          windowPct < 0 ? 'neg' : 'pos',
+          // No tone on a reading that did not move: there is no way it went.
+          own && windowPct === 0 ? undefined : windowPct < 0 ? 'neg' : 'pos',
         ),
       )
 
@@ -1019,18 +1082,34 @@ export function createSheet(): Sheet {
           ...chartFigure({
             values: entry.values,
             periods: entry.periods,
-            window: cardWindow(entry.periods, entry.asOf, rangeDays),
-            reference: 'open',
-            referenceLabel: 'the window’s open',
-            direction: 'window',
+            // The whole published line for a row with a period of its own, and
+            // tinted the way its hero went: there is no window to draw a rule
+            // at the open of, and `'window'` would colour two years of a rate
+            // by where it began, against a hero about its last month.
+            ...(own
+              ? {
+                  window: 0,
+                  direction: Math.sign(own.pct),
+                  change:
+                    entry.change ??
+                    (entry.unit === '%' ? ('points' as const) : ('percent' as const)),
+                }
+              : {
+                  window: cardWindow(entry.periods, entry.asOf, rangeDays),
+                  reference: 'open' as const,
+                  referenceLabel: 'the window’s open',
+                  direction: 'window' as const,
+                }),
             palette: 'signed',
             // Without this the readout said "4,057.62" and the hero two lines
             // above said "$/oz" — the card naming the unit once and then
             // quoting thirty values that could have been anything.
             unit: entry.unit,
-            step: 'days',
+            step: entry.step ?? 'days',
             label: entry.name,
-            caption: 'Daily · rule marks the window’s open',
+            caption: own
+              ? (STEP_CAPTION[entry.step ?? ''] ?? '')
+              : `${entry.step === 'weeks' ? 'Weekly' : 'Daily'} · rule marks the window’s open`,
           }),
         )
 
@@ -1055,6 +1134,10 @@ export function createSheet(): Sheet {
             ),
           )
         }
+
+        // A company's market value, a lab's likely range: what the card's one
+        // number does not say about it.
+        for (const fact of entry.facts ?? []) nodes.push(el('p', 'map-sheet-meta', fact))
 
         if (entry.sourceLabel) nodes.push(el('p', 'map-sheet-meta', entry.sourceLabel))
 
@@ -1084,7 +1167,23 @@ export function createSheet(): Sheet {
         const seq = ++indicatorSeq
         const host = el('div', 'map-sheet-dispatch')
         nodes.push(host)
-        void fetchEntity(entry.id).then((record) => {
+        // An account carried on the row's own payload (a company's) is printed
+        // as it stands. There is no entity record behind such a row, so the
+        // fetch below would be a request that can only miss.
+        const account = entry.account
+        if (account?.recent) host.append(el('p', 'map-sheet-lead', account.recent))
+        if (account?.related?.length) {
+          // `Read from` only where the build says the list is that account's
+          // citations: an account can outlive them, and then the list is the
+          // stories about the company.
+          host.append(
+            ...relatedList(
+              account.related,
+              account.recent && account.cited ? 'Read from' : 'Related coverage',
+            ),
+          )
+        }
+        if (!account) void fetchEntity(entry.id).then((record) => {
           // A second row pressed while this was in flight owns the sheet now.
           // Same guard, and for the same reason, as `_disclosure.ts`'s.
           if (!record || seq !== indicatorSeq || !host.isConnected) return

@@ -48,9 +48,11 @@ The rail's readings are `map-rail.md`.
   `options`, which must be the options the static figure beside it was built
   with. A value's format travels as a name (`formatTrajectory`); `NaN` as
   `null`.
+- Chart type is in viewBox units, floored at `--size-3xs` in a box narrower
+  than `CHART_W` (`--chart-drawn-w`). The gutters are not, so never raise it.
 - A country's trajectory cards (`trajectoriesHtml`, `country-pages.js`) are
-  `seriesModel` at build, one column at every width: chart type is in viewBox
-  units and halves in a half column. The sentences are
+  `seriesModel` at build, one column at every width: a half column drops the
+  chart's type to that floor and halves its plot. The sentences are
   `shared/countries/country-trajectories.ts`, which names the year it used.
 - `marks` (`SeriesMark`) is an annotation on the model's own scale, never a
   second shape: indexed into the source series, dropped outside the drawn
@@ -75,6 +77,12 @@ The rail's readings are `map-rail.md`.
   `series-chart` replaces it and does not hydrate it.
 - `entity-pages.js`, `series-chart.ts` and `buildEntityPanel` pass the same
   `reference`, `direction`, `palette` and `step`. Nothing checks that.
+- A record's `deltaLabel` (`stepMoveLabel`) is its last step, in points where
+  the unit is `%` and a dash from a base of zero: never a percentage of a rate.
+- The step is `stepOf`, read off the series' own dates: two weekly series are
+  carried as `daily`, because the shipped app accepts only two cadences.
+- A unit is placed by `withUnit` (`series.ts`): a bare currency sign leads its
+  figure, anything else follows it. Never append one by hand.
 
 ## Sparklines
 

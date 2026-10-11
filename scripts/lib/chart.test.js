@@ -590,6 +590,23 @@ test('the two figures share one class vocabulary', async () => {
   }
 })
 
+test('the stylesheet holds the type to its floor against the width the model draws at', () => {
+  // The type is in viewBox units, so a chart drawn narrower than it was
+  // authored shrank its labels with it: 8.3px in the map's card and 5.6px on a
+  // phone, against an 11px floor. The stylesheet divides the authored width by
+  // the drawn one to undo that, and the authored width is a number it cannot
+  // import. If the two part, every label on the site is the wrong size and
+  // nothing else fails.
+  const css = readFileSync(join(ROOT, 'public/style.css'), 'utf8')
+  const authored = css.match(/--chart-authored-w:\s*(\d+)px/)
+  assert.ok(authored, 'the stylesheet states the width the chart was authored at')
+  assert.equal(Number(authored[1]), series.CHART_W)
+  assert.equal(seriesModel({ values: [1, 2, 3] }).width, series.CHART_W, 'and the model draws at it')
+
+  // The container the drawn width is read from is the wrapper both adapters emit.
+  assert.match(css, /^\.chart-plot \{ container-type: inline-size; \}/m)
+})
+
 // --- 6. The rank strip ----------------------------------------------------
 
 test('the rank strip means the rank, at both ends and outside them', () => {

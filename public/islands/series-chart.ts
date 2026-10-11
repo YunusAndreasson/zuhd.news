@@ -84,7 +84,7 @@ export const mount = (container: HTMLElement) => {
         direction: 'window',
         palette: 'signed',
         unit: source.unit || '',
-        step: source.kind === 'MONTHLY' ? 'months' : 'days',
+        step: source.kind === 'MONTHLY' ? 'months' : source.kind === 'WEEKLY' ? 'weeks' : 'days',
         label: source.label,
         caption: source.caption,
       })

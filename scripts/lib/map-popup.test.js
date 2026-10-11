@@ -122,16 +122,20 @@ test('with no angle recorded and nothing contested, the card ends on the flat li
   assert.deepEqual([...flat.querySelectorAll('a')].map((a) => a.textContent), ['one', 'two'])
 })
 
-test('one outlet with an angle is shown open, with no control and no note', async () => {
+test('one outlet with an angle is folded like any other, with no note', async () => {
   const card = await openCard(
     storyOf({ sources: [outlet('one', { sentiment: -0.4, angle: 'emphasizes the casualty count' })] }),
   )
-  // Nothing to compare, so nothing to fold and no sentence about outlets differing.
-  assert.equal(card.querySelector('details'), null)
+  // What the outlet made of the story is the reader's to ask for, on every
+  // card: the article page folds a single outlet under the same words.
+  const details = card.querySelector('details.map-popup-framing')
+  assert.equal(details.open, false)
+  assert.equal(details.querySelector('summary').textContent, 'How each outlet framed it')
+  // Nothing to compare, so no sentence about outlets differing.
   assert.equal(card.querySelector('.map-popup-framing-note'), null)
-  assert.equal(card.querySelector('.map-popup-sources-flat'), null)
-  assert.equal(card.querySelector('.map-popup-section').textContent, 'Source')
-  const row = card.querySelector('.map-popup-source')
+  // The card still ends on who reported it.
+  assert.match(card.querySelector('.map-popup-sources-flat').textContent, /Sources\s*one/)
+  const row = details.querySelector('.map-popup-source')
   assert.equal(row.querySelector('a.map-popup-source-name').getAttribute('href'), 'https://one.example/a')
   assert.equal(row.querySelector('.map-popup-source-tone').textContent, 'leans critical')
   assert.equal(row.querySelector('.map-popup-source-angle').textContent, 'emphasizes the casualty count')
@@ -167,20 +171,20 @@ test('several outlets are folded under the article page’s words, and a neutral
 })
 
 test('a card does not scroll itself to its sources; a reader opening them does', async () => {
-  // The rows of a contested story are open from the start, and setting `open`
-  // queues a `toggle` that arrives once the card is on the page. Answered like
-  // a reader's, it scrolled the card past its own title and prose on opening.
+  // A `toggle` no press preceded is not the reader's. The rows of a contested
+  // story once opened with the card, and the event that queued, answered like
+  // a reader's, scrolled the card past its own title and prose.
   const sources = [
     outlet('critic', { sentiment: -0.6, angle: 'calls the claim unverified' }),
     outlet('ally', { sentiment: 0.7, angle: 'reports the advance as fact' }),
   ]
   const card = await openCard(storyOf({ sentimentDivergence: 0.52, sources }))
   const details = card.querySelector('details.map-popup-framing')
-  assert.equal(details.open, true)
-  // jsdom queues the same event a browser does; let it land.
+  assert.equal(details.open, false, 'folded, a contested story too')
+  details.open = true
   details.dispatchEvent(new globalThis.window.Event('toggle'))
   await settle()
-  assert.equal(globalThis.__scrolls, 0, 'opening the card moved nothing')
+  assert.equal(globalThis.__scrolls, 0, 'opened by no press, it moved nothing')
 
   // Shut and opened by the reader: now the rows are below a fold, and follow.
   const summary = details.querySelector('summary')
@@ -192,7 +196,7 @@ test('a card does not scroll itself to its sources; a reader opening them does',
   assert.equal(globalThis.__scrolls, 1, 'once, for the opening and not for the shutting')
 })
 
-test('a contested story opens its rows, ordered by lean, under the shared sentence', async () => {
+test('a contested story keeps its rows folded, ordered by lean, under the shared sentence', async () => {
   const { divergenceNote } = await import(
     await bundleIsland(dir, 'shared/source-framing.ts', 'framing.mjs')
   )
@@ -203,7 +207,7 @@ test('a contested story opens its rows, ordered by lean, under the shared senten
   ]
   const card = await openCard(storyOf({ sentimentDivergence: 0.52, sources }))
   const details = card.querySelector('details.map-popup-framing')
-  assert.equal(details.open, true, 'the ring on the map is a question; the card answers it unasked')
+  assert.equal(details.open, false, 'the card is opened for the story; the outlets are a press away')
   assert.equal(details.querySelector('.map-popup-framing-note').textContent, divergenceNote(0.52, 3))
   assert.deepEqual(
     [...details.querySelectorAll('.map-popup-source-name')].map((n) => n.textContent),
@@ -213,7 +217,7 @@ test('a contested story opens its rows, ordered by lean, under the shared senten
   // The map's own figure stands in when the story payload has none: the ring
   // was drawn from `d`, so the card must account for it from `d`.
   const fromPoint = await openCard(storyOf({ sources }), { ...point, d: 0.4 })
-  assert.equal(fromPoint.querySelector('details.map-popup-framing').open, true)
+  assert.equal(fromPoint.querySelector('details.map-popup-framing').open, false)
   assert.equal(fromPoint.querySelector('.map-popup-framing-note').textContent, divergenceNote(0.4, 3))
 })
 

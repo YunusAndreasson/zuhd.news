@@ -374,6 +374,7 @@ test('companiesPayload carries the dispatch paragraph and the stories it was bui
   // since been withdrawn is dropped, and the stories merely about the company
   // step back.
   assert.deepEqual(company.relatedArticles.map((a) => a.slug), ['the-cause'])
+  assert.equal(company.relatedCited, true, 'and the list says it is that evidence')
   assert.equal(company.standing, undefined)
 })
 
@@ -393,6 +394,8 @@ test('an account that cites nothing still lists the stories about the company', 
   const [company] = companiesPayload(raw(), articles, { now: NOW, dispatch }).companies
   assert.equal(company.recent, 'Orders rose.')
   assert.deepEqual(company.relatedArticles.map((a) => a.slug), ['about-it'])
+  // But does not call them what the account was written from.
+  assert.equal('relatedCited' in company, false)
 })
 
 test('companiesPayload is the same bytes for the same inputs', () => {

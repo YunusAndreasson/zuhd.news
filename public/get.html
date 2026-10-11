@@ -49,19 +49,32 @@
 })();
 </script>
 <style>
+  /* The site's face and its two-weight wordmark: this page was set in the
+     system's sans under a masthead no other page wears. Only a desktop paints
+     it (a phone has left by now), and the system stack still stands behind. */
+  @font-face {
+    font-family: 'Source Sans 3';
+    font-style: normal;
+    font-weight: 200 900;
+    font-display: swap;
+    size-adjust: 95%;
+    src: url('/fonts/source-sans-3-var.woff2') format('woff2');
+  }
   :root { color-scheme: dark; }
   * { box-sizing: border-box; }
   html, body { height: 100%; margin: 0; }
   body {
     background: #141414;
     color: #f2f2f2;
-    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+    font-family: "Source Sans 3", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
     -webkit-font-smoothing: antialiased;
     display: flex; align-items: center; justify-content: center;
     padding: 24px;
   }
   main { width: 100%; max-width: 420px; text-align: center; }
-  .wordmark { font-size: 34px; font-weight: 800; letter-spacing: -0.02em; margin: 0; }
+  .wordmark { font-size: 34px; font-weight: 700; letter-spacing: -0.02em; margin: 0; }
+  .wordmark-dot, .wordmark-tld { color: #a3a3a3; font-weight: 300; }
+  .wordmark-dot { margin-inline: -0.04em; }
   .tag { color: #9a9a9a; font-size: 16px; line-height: 1.5; margin: 14px 0 34px; }
   .stores { display: flex; flex-direction: column; gap: 12px; }
   .btn {
@@ -72,12 +85,14 @@
     border: 1px solid #f2f2f2;
   }
   .btn.secondary { color: #f2f2f2; background: transparent; border-color: #333; }
-  .note { color: #6a6a6a; font-size: 13px; margin-top: 26px; }
+  /* #8a8a8a is 5.3:1 on this ground. It was #6a6a6a, 3.4:1, under AA for
+     13px type on the one page an advertisement lands on. */
+  .note { color: #8a8a8a; font-size: 13px; margin-top: 26px; }
 </style>
 </head>
 <body>
   <main>
-    <h1 class="wordmark">zuhd.news</h1>
+    <h1 class="wordmark">zuhd<span class="wordmark-dot">.</span><span class="wordmark-tld">news</span></h1>
     <p class="tag">Global news that barely uses data.<br>No ads, no tracking, no accounts.</p>
     <div class="stores">
       <a id="play" class="btn" href="https://play.google.com/store/apps/details?id=news.zuhd.app" rel="noopener">Get it on Google Play</a>
