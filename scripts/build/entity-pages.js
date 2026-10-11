@@ -175,7 +175,9 @@ export const stepMoveLabel = ({ last, prev, unit, cadence }) => {
     if (!Number.isFinite(last) || !Number.isFinite(prev)) return null
     if (inPoints) return Number(last.toFixed(2)) - Number(prev.toFixed(2))
     if (prev === 0) return last === 0 ? 0 : null
-    return ((last - prev) / prev) * 100
+    // Against the base's size, as `stepChange` and the chart's table take it:
+    // divided by a negative base, a rise read as a fall.
+    return ((last - prev) / Math.abs(prev)) * 100
   })()
   if (move == null) return { label: '—', tone: '' }
   const abs = Math.abs(move).toFixed(2)

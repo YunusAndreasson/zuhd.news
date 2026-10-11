@@ -142,6 +142,22 @@ export interface EntityPanelOptions {
   mentionLink: (m: EntityMention) => Node
 }
 
+
+/**
+ * A record's day in the words `/e/{id}` closes on, `6 October 2026`, and a
+ * monthly series by its month: it is stamped the first, a day it was not read
+ * on. Anything that is not a whole ISO day is printed as it came.
+ */
+const asOfWords = (asOf: string, monthly: boolean): string => {
+  if (!/^\d{4}-\d{2}-\d{2}$/.test(asOf)) return asOf
+  return new Date(asOf).toLocaleDateString('en-GB', {
+    ...(monthly ? {} : { day: 'numeric' as const }),
+    month: 'long',
+    year: 'numeric',
+    timeZone: 'UTC',
+  })
+}
+
 /**
  * The panel's contents, as a `Built` for `disclosure().bind`.
  *
@@ -218,7 +234,7 @@ export const buildEntityPanel = ({
   // of the record opens here: when the last observation was taken, who
   // publishes it, and the stories that cite it.
   const mentions = record.mentions ?? []
-  const asOf = record.asOf ? `as of ${record.asOf}` : null
+  const asOf = record.asOf ? `as of ${asOfWords(record.asOf, record.kind === 'MONTHLY')}` : null
   if (mentions.length || asOf) {
     body.append(
       ...moreLink({

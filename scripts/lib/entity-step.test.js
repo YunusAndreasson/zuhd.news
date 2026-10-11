@@ -23,6 +23,16 @@ test('a step is named for its cadence, and a rate moves in points', () => {
   })
 })
 
+test('a rise from a negative base is a rise', () => {
+  // Divided by the base as it stood, −10 to −5 read `−50.00%` in the red of a
+  // fall, beside a chart table that said `+50.0%`.
+  assert.deepEqual(stepMoveLabel({ last: -5, prev: -10, unit: 'index', cadence: 'daily' }), {
+    label: '+50.00% day',
+    tone: 'pos',
+  })
+  assert.equal(stepMoveLabel({ last: -15, prev: -10, unit: 'index', cadence: 'daily' }).label, '−50.00% day')
+})
+
 test('a move with no figure prints none, and no move takes no tone', () => {
   // Two days with no ships through a strait divided nothing by nothing, and the
   // page said `−NaN% day` in the red of a fall.

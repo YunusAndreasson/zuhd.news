@@ -378,7 +378,9 @@ test("the article's follows chip unfolds the series under the strip", async () =
     await settle()
     const more = /** @type {HTMLElement} */ (panel.querySelector('.article-entity-more'))
     assert.equal(more.hidden, false)
-    assert.match(more.textContent, /as of 2026-07-27/, 'when the last observation was taken')
+    // In the words the rows under it are dated in, as `/e/{id}` closes: it
+    // printed the stored ISO day, `as of 2026-07-27`, over `29 July 2026`.
+    assert.match(more.textContent, /as of 27 July 2026 ·/, 'when the last observation was taken')
     assert.match(more.textContent, /Cited in · 30/, 'and what cites it')
     assert.equal(
       more.querySelectorAll('.article-entity-mention-title').length,
