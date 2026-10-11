@@ -2,12 +2,12 @@
   "items": {
     "uk-cpi-2026-10": {
       "standingFingerprint": "d2de00bd6534466c",
-      "recentFingerprint": "5744078595e8f0eb",
+      "recentFingerprint": "1dc870cb58dc6362",
       "prompt": "cc42a1f1",
       "standing": "The Office for National Statistics' monthly measure of how fast UK consumer prices are rising. The Bank of England targets it at 2%, so it moves rate expectations and the pound; the September figure also sets benefit uprating.",
-      "recent": "Economists have warned that a US diesel ban would lift UK inflation to 5%, so this reading sets the baseline that energy risk is measured against. September's figure is also the one the pensions triple lock is tied to, and Burnham's pledge on the lock has already drawn criticism.",
+      "recent": "Economists have warned of 5% UK inflation if a US diesel ban goes ahead, which makes this reading the starting point that fuel risk is measured from. It also arrives with Burnham's triple lock pledge under dispute: the September figure is one of the measures that sets what the pledge costs.",
       "citations": [],
-      "generatedAt": "2026-10-10T05:24:47.857Z"
+      "generatedAt": "2026-10-11T05:21:08.104Z"
     },
     "fomc-2026-10": {
       "standingFingerprint": "7461ec820c9cf170",
@@ -72,12 +72,12 @@
     },
     "g20-2026-miami": {
       "standingFingerprint": "041eb1ecc79e970b",
-      "recentFingerprint": "0d5e40c38ad80402",
+      "recentFingerprint": "e77a7c6d3ce4b570",
       "prompt": "cc42a1f1",
       "standing": "The annual meeting of leaders of the world's largest economies, hosted by the member holding the rotating presidency. Its members produce about 85% of global output, and its communiqué sets shared lines on trade and debt.",
-      "recent": "The US hosts after a Trump-Xi summit that ended with China and the US agreeing to open an AI communication channel, and with a US-India trade deal that Greer says is not imminent. The leaders meeting puts both relationships in one room, with India's trade terms with the host still open.",
+      "recent": "The US is using its presidency to push the G20 back to its original priorities, and Russia's sherpa has backed the effort. Leaders gather after a Trump-Xi summit and with a US-India trade deal that Greer says is not imminent, so the meeting settles how many of the other members sign up to the host's agenda.",
       "citations": [],
-      "generatedAt": "2026-10-10T05:25:09.975Z"
+      "generatedAt": "2026-10-11T05:21:06.416Z"
     },
     "ecb-2026-12": {
       "standingFingerprint": "644eb225dab9953a",
@@ -114,15 +114,16 @@
     },
     "fred-us-cpi-2026-10-14": {
       "standingFingerprint": "64727509ea55676d",
-      "recentFingerprint": "355f326e5070cc41",
+      "recentFingerprint": "6060796f9c15fa93",
       "prompt": "cc42a1f1",
       "standing": "The Bureau of Labor Statistics' monthly measure of what US households pay for a basket of goods and services. It is the inflation reading that moves Treasury yields, the dollar and expectations for Fed rates.",
-      "recent": "Most Federal Reserve officials expect another rate hike by year-end, yet the committee is split and September hiring came in at 29,000 jobs against 90,000 expected. This release shows which fact carries more weight: whether prices are still rising fast enough to justify tightening into a stalling labour market.",
+      "recent": "September hiring stalled at 29,000 jobs against 90,000 expected, yet most Federal Reserve officials still expect another rate hike by year-end, and they are split over it. This release is the inflation reading that argument turns on: it shows the Fed whether dearer crude has reached consumer prices while hiring weakens.",
       "citations": [
         "2026-10-07-fed-sees-higher-rates-ahead-even-as-borrowing-costs-climb",
-        "2026-10-02-us-jobs-29000-september-fed-seen-skipping-october-rate-hike"
+        "2026-10-02-us-jobs-29000-september-fed-seen-skipping-october-rate-hike",
+        "2026-10-07-us-30-year-yields-return-to-2002-high-with-crude-back-above"
       ],
-      "generatedAt": "2026-10-10T05:24:44.788Z"
+      "generatedAt": "2026-10-11T05:21:09.126Z"
     },
     "fred-us-ppi-2026-10-15": {
       "standingFingerprint": "2edeeef889391405",
@@ -141,6 +142,6 @@
       "generatedAt": "2026-10-08T05:26:35.613Z"
     }
   },
-  "generatedAt": "2026-10-10T05:25:17.754Z",
+  "generatedAt": "2026-10-11T05:21:09.128Z",
   "windowDays": 14
 }
