@@ -25,6 +25,7 @@ import {
 } from './lib/article-chain.js'
 import { escHtml, escXml, smartQuotes } from './lib/html.js'
 import { ARCHETYPE_HEADER, siteFooter, WORDMARK, footerStatusLine } from './lib/site-chrome.js'
+import { dayLabel } from './lib/period.js'
 import { listRow } from './lib/list-row.js'
 import { publishedTimes } from './lib/published-at.js'
 import { pruneOlderThan } from './lib/prune-cache.js'
@@ -290,10 +291,12 @@ const formatTimeAgo = (addedAt) => {
   if (diffHours < 24) return `${diffHours}h ago`
   const diffDays = Math.floor(diffHours / 24)
   if (diffDays < 7) return `${diffDays}d ago`
-  // en-GB and UTC, as every other date the build prints: with no locale this
-  // was the build machine's, and the kicker read `Sep 26` over a footer that
-  // read `26 September`.
-  return new Date(addedAt).toLocaleDateString('en-GB', { day: 'numeric', month: 'short', timeZone: 'UTC' })
+  // Day first and UTC, as every other date the build prints, and the month
+  // from `period.js`'s table: with no locale this was the build machine's
+  // (`Sep 26` over a footer that read `26 September`), and en-GB's own short
+  // September is `Sept` on this ICU and `Sep` on an older one.
+  const [month, day] = dayLabel(addedAt).split(' ')
+  return `${day} ${month}`
 }
 
 const buildArticlePage = (article, prev, next, thread, template, indicatorMap) => {
