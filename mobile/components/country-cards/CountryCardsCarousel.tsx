@@ -1,4 +1,4 @@
-import { memo, type ReactElement, useCallback, useEffect, useMemo, useRef, useState } from 'react';
+import { memo, useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import {
   type LayoutChangeEvent,
   type NativeScrollEvent,
@@ -15,48 +15,14 @@ import Animated, {
 } from 'react-native-reanimated';
 import { ANIMATION, EASING, SPACING } from '../../constants/theme';
 import { useTheme } from '../../hooks/useTheme';
-import { type CountryCardData, getCountryCardData } from '../../lib/country-cards';
+import { countryTrajectories } from '../../lib/country-cards';
 import { hapticSwipe } from '../../lib/haptics';
 import { Pressable } from '../primitives';
-import { ComplexityCard } from './ComplexityCard';
-import { DemographyCard } from './DemographyCard';
-import { EconomyCard } from './EconomyCard';
-import { PricesCard } from './PricesCard';
+import { TrajectoryCard } from './TrajectoryCard';
 
 interface CountryCardsCarouselProps {
   countryName: string | null;
 }
-
-type SlotKey = 'complexity' | 'economy' | 'prices' | 'demography';
-
-interface SlotEntry {
-  key: SlotKey;
-  render: (data: CountryCardData) => ReactElement | null;
-}
-
-// Order: structural sophistication frame first (slow-moving, decades), then
-// short-term economy, then demographic long view. Slots without data are
-// filtered out before render.
-const SLOTS: SlotEntry[] = [
-  {
-    key: 'complexity',
-    render: (d) => (d.complexity?.eci ? <ComplexityCard data={d.complexity} /> : null),
-  },
-  {
-    key: 'economy',
-    render: (d) => (d.economy?.gdpPerCapita ? <EconomyCard data={d.economy} /> : null),
-  },
-  {
-    // Beside the economy it qualifies: income in dollars, then what a year
-    // did to prices at home.
-    key: 'prices',
-    render: (d) => (d.economy?.inflation?.length ? <PricesCard data={d.economy} /> : null),
-  },
-  {
-    key: 'demography',
-    render: (d) => (d.demography?.fertility ? <DemographyCard data={d.demography} /> : null),
-  },
-];
 
 // Card content stack: eyebrow + headline (21pt title) + subtitle (≤2 lines)
 // + chart (140pt) + source. Default-scale content lands at ~283pt; the
@@ -87,7 +53,10 @@ export const CountryCardsCarousel = memo(function CountryCardsCarousel({
     setPageWidth((prev) => (prev === w ? prev : w));
   }, []);
 
-  const data = useMemo(() => getCountryCardData(countryName), [countryName]);
+  // Structural sophistication first (slow, decades), then income, what a year
+  // did to prices at home, and the demographic long view. A series the
+  // country lacks is a card left out.
+  const cards = useMemo(() => countryTrajectories(countryName), [countryName]);
   const [active, setActive] = useState(0);
   // Track the previous page so a swipe's haptic fires only on an actual
   // change, not on the initial settle from index 0.
@@ -106,13 +75,6 @@ export const CountryCardsCarousel = memo(function CountryCardsCarousel({
     },
     [pageWidth, reduceMotion],
   );
-
-  const cards = useMemo(() => {
-    if (!data) return [] as { key: SlotKey; node: ReactElement }[];
-    return SLOTS.map((slot) => ({ key: slot.key, node: slot.render(data) })).filter(
-      (entry): entry is { key: SlotKey; node: ReactElement } => entry.node != null,
-    );
-  }, [data]);
 
   const onMomentumEnd = useCallback(
     (e: NativeSyntheticEvent<NativeScrollEvent>) => {
@@ -171,9 +133,9 @@ export const CountryCardsCarousel = memo(function CountryCardsCarousel({
           // which on iOS does NOT clip child rendering by default.
           style={[styles.scroll, { height: CARD_HEIGHT }]}
         >
-          {cards.map(({ key, node }) => (
-            <View key={key} style={[styles.page, { width: pageWidth, height: CARD_HEIGHT }]}>
-              {node}
+          {cards.map((card) => (
+            <View key={card.key} style={[styles.page, { width: pageWidth, height: CARD_HEIGHT }]}>
+              <TrajectoryCard card={card} />
             </View>
           ))}
         </ScrollView>

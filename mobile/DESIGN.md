@@ -199,6 +199,10 @@ groups them:
 - `TrendBlock` is the chart for cards, sheets and stories: `variant="context"`
   on a card or sheet, `variant="inline"` under a story (the line alone, no
   scrub). `TrajectoryChart` is the country cards'.
+- A country card's figure, sentence and scale are the site's
+  (`trajectoryCards`, through `countryTrajectories`): written once, so a
+  country reads the same on its page. A figure in words or a long sentence
+  shrinks to its lines; neither is cut (`CardShell`).
 - A chart is drawn as what its series is, and the builder says which
   (`CardSeries`): `shape` for steps, `domain` for a scale of the quantity's
   own, `inverted` for a rate per dollar. Its range is `chartScale`'s, never
