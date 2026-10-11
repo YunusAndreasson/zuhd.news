@@ -1,3 +1,4 @@
+import { type TrajectoryCard, trajectoryCards } from '@shared/countries/country-trajectories';
 import { codeFromTopojsonName } from '@shared/countries/iso';
 import cardsRaw from '@shared/data/country-cards.json';
 
@@ -90,6 +91,15 @@ export function getCountryCardData(name: string | null | undefined): CountryCard
   const iso2 = iso2FromCountryName(name);
   if (!iso2) return null;
   return cards.byIso2[iso2] ?? null;
+}
+
+/**
+ * The trajectory cards a country has, in the order the sheet pages them:
+ * the site's own (`trajectoryCards`), read off the bundled series, so a
+ * sentence and a scale are written once for both.
+ */
+export function countryTrajectories(name: string | null | undefined): TrajectoryCard[] {
+  return trajectoryCards(getCountryCardData(name), getGlobalBenchmarks());
 }
 
 /** Latest year/value pair from a YearValue series — convenience for headline numbers. */

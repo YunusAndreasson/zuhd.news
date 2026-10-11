@@ -17,6 +17,11 @@ interface CardShellProps {
   children?: ReactNode;
 }
 
+/** How far a figure in words (`4.8 children per woman`) may shrink to stay on
+ *  its one line, and a sentence to stay inside its two. */
+const HEADLINE_MIN_SCALE = 0.8;
+const SUBTITLE_MIN_SCALE = 0.85;
+
 export function CardShell({ eyebrow, headline, subtitle, source, children }: CardShellProps) {
   return (
     // Card padding mirrors the metric-row horizontal inset
@@ -33,10 +38,27 @@ export function CardShell({ eyebrow, headline, subtitle, source, children }: Car
        *  focal point, but not so large it competes with the page title.
        *  Display (28pt) was a dashboard treatment; this reads as a single
        *  reading column. */}
-      <Text variant="title" tone="emphasis" numberOfLines={1} style={styles.headline}>
+      <Text
+        variant="title"
+        tone="emphasis"
+        numberOfLines={1}
+        adjustsFontSizeToFit
+        minimumFontScale={HEADLINE_MIN_SCALE}
+        style={styles.headline}
+      >
         {headline}
       </Text>
-      <Text variant="caption" numberOfLines={2} style={styles.subtitle}>
+      {/* Two lines hold every sentence at the default size on a wide phone.
+       *  On a narrow one, or at a larger text size, the longest shrinks a
+       *  little rather than end in an ellipsis: the year a figure is of is
+       *  the sentence's last word. */}
+      <Text
+        variant="caption"
+        numberOfLines={2}
+        adjustsFontSizeToFit
+        minimumFontScale={SUBTITLE_MIN_SCALE}
+        style={styles.subtitle}
+      >
         {subtitle}
       </Text>
       {/* The chart breathes between the subtitle and the source line. */}
