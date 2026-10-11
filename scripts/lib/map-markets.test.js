@@ -353,6 +353,23 @@ test('a group’s day move is the mean of its members', () => {
   assert.equal(input.pct, 1)
 })
 
+test('a member past the block’s edge is read up to the edge', () => {
+  // The companies' edge is the day half the list has closed on, so the other
+  // half can be a session past it. Taipei's Friday was averaged with New
+  // York's Thursday as one day, and the calendar steps had no right edge.
+  const edge = NOW - DAY_MS
+  const onEdge = { values: [100, 101], periods: dailyPeriods('2026-07-29', 2), asOf: '2026-07-29', pct: 1 }
+  const past = { values: [100, 101, 95.95], periods: dailyPeriods('2026-07-30', 3), asOf: '2026-07-30', pct: -5 }
+  const day = sparkInput([onEdge, past], 1, NOW, edge)
+  assert.equal(day.pct, 1, 'both members’ move into the edge, not one of each session')
+  assert.deepEqual(day.members, { drawn: 2, total: 2 })
+  // Alone, its pair of closes is the pair that ends on the edge.
+  assert.deepEqual(sparkInput([past], 1, NOW, edge).ends, [100, 101])
+  // And a calendar window ends there too.
+  const long = { values: [...ramp(9), 50], periods: dailyPeriods('2026-07-30', 10), asOf: '2026-07-30', pct: -50 }
+  assert.equal(sparkInput([long], 7, NOW, edge).ends[1], 108, 'the close on the edge, not the one after it')
+})
+
 // --- Chip trends: counts, not levels ---------------------------------------
 
 test('a pile of times becomes a count per bucket, and strays are dropped', () => {

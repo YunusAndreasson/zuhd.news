@@ -860,6 +860,39 @@ test('a card’s table states each step the way its hero does', async () => {
   }
 })
 
+test('a card’s figure takes its row’s tone, and an inverted currency’s line its own unit', async () => {
+  // A currency at `+0.02%` was green on its card and neutral on the rail: the
+  // hero asked only whether the figure was under zero. And the chart read the
+  // reciprocals it draws out under the level's unit, `0.000011 LBP / USD`.
+  const env = setupDom()
+  try {
+    const { createSheet } = await import(bundlePath)
+    const now = Date.now()
+    const asOf = new Date(now).toISOString().slice(0, 10)
+    const fx = (values) => ({
+      id: 'fx-test', group: 'currencies', label: 'LBP', name: 'Lebanese pound', flag: '',
+      unit: 'LBP / USD', seriesUnit: 'USD / LBP', level: 89561, pct: 0,
+      values, periods: dailyLabels(asOf, values.length), asOf,
+    })
+    const card = (entry) => {
+      const sheet = createSheet()
+      sheet.showIndicator(entry, true, 7, false)
+      const focal = sheet.element.querySelector('.map-sheet-hero-focal')
+      const out = { tone: focal.className, readout: sheet.element.querySelector('.chart-readout').textContent }
+      sheet.destroy()
+      return out
+    }
+    const flat = card(fx([1, 1, 1, 1, 1, 1, 1.0002]))
+    assert.equal(flat.tone, 'map-sheet-hero-focal', 'inside the flat band there is no way it went')
+    assert.match(card(fx([1, 1, 1, 1, 1, 1, 1.02])).tone, /is-pos/)
+    assert.match(card(fx([1, 1, 1, 1, 1, 1, 0.98])).tone, /is-neg/)
+    assert.match(flat.readout, /USD \/ LBP/, 'the line is dollars to the pound')
+    assert.doesNotMatch(flat.readout, /LBP \/ USD/)
+  } finally {
+    env.restore()
+  }
+})
+
 test('the card’s figure is the row’s, even inside the chart’s floor', async () => {
   const env = setupDom()
   try {

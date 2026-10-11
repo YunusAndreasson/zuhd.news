@@ -32,6 +32,7 @@ import {
   exchangeReading,
   marketDirection,
   nisab,
+  readingOf,
   ribbonPoints,
   sparkInput,
   straitReading,
@@ -1030,6 +1031,9 @@ export function createSheet(): Sheet {
           ? ribbonPoints(ends[1] - ends[0])
           : fmt.pctChange(windowPct)
       const level = Number.isFinite(entry.level) ? fmt.quoteLevel(entry.level, entry.unit) : null
+      const heroTone = marketDirection(
+        own ? own.pct : ((drawn && readingOf(drawn, entry.unit)?.pct) ?? windowPct),
+      )
       /**
        * The same sign the row already carries.
        *
@@ -1060,8 +1064,9 @@ export function createSheet(): Sheet {
           ]
             .filter(Boolean)
             .join(' · '),
-          // No tone on a reading that did not move: there is no way it went.
-          own && windowPct === 0 ? undefined : windowPct < 0 ? 'neg' : 'pos',
+          // The row's tone, by the row's reading and its flat band: a
+          // currency at `+0.02%` was green here and neutral on the rail.
+          heroTone === 0 ? undefined : heroTone < 0 ? 'neg' : 'pos',
         ),
       )
 
@@ -1086,13 +1091,14 @@ export function createSheet(): Sheet {
             // tinted the way its hero went: there is no window to draw a rule
             // at the open of, and `'window'` would colour two years of a rate
             // by where it began, against a hero about its last month.
+            // Whichever branch: a row that states its step in points draws a
+            // table and a readout in points. Left out, the chart takes it from
+            // the unit, so a `%` row is never a percentage of a percentage.
+            change: entry.change,
             ...(own
               ? {
                   window: 0,
                   direction: Math.sign(own.pct),
-                  change:
-                    entry.change ??
-                    (entry.unit === '%' ? ('points' as const) : ('percent' as const)),
                 }
               : {
                   window: cardWindow(entry.periods, entry.asOf, rangeDays),
@@ -1104,7 +1110,9 @@ export function createSheet(): Sheet {
             // Without this the readout said "4,057.62" and the hero two lines
             // above said "$/oz" — the card naming the unit once and then
             // quoting thirty values that could have been anything.
-            unit: entry.unit,
+            // The series' own unit where it has one: an inverted currency's line
+            // is the reciprocal of the level the hero states.
+            unit: entry.seriesUnit ?? entry.unit,
             step: entry.step ?? 'days',
             label: entry.name,
             caption: own

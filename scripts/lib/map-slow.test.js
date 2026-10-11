@@ -194,6 +194,26 @@ const daily = (id, label, days, values, unit = '$/bbl') => ({
   id, label, unit, cadence: 'daily', values, periods: dayLabels(days), asOf: days.at(-1),
 })
 
+test('a currency’s line says what it is in, and the derived dollar has no record to ask for', () => {
+  const week = ['2026-10-05', '2026-10-06', '2026-10-07', '2026-10-08']
+  const rows = tickerEntries([
+    daily('fx-lbp', 'Lebanese pound', week, [89500, 89520, 89540, 89561], 'LBP / USD'),
+    daily('fx-try', 'Turkish lira', week, [41, 41.1, 41.2, 41.3], 'TRY / USD'),
+  ]).filter((e) => e.group === 'currencies')
+  // The level is the published quote; the series is drawn so that up is
+  // stronger, which is its reciprocal, and was read out under the quote's unit.
+  const lbp = rows.find((e) => e.id === 'fx-lbp')
+  assert.equal(lbp.unit, 'LBP / USD')
+  assert.equal(lbp.seriesUnit, 'USD / LBP')
+  assert.ok(Math.abs(lbp.values.at(-1) - 1 / 89561) < 1e-12)
+  // Derived in the island from the rest: `/api/entity/usd-index.json` is a
+  // file nothing builds, and its card asked for it on every open.
+  const usd = rows.find((e) => e.id === 'usd-index')
+  assert.ok(usd, 'two currencies make the dollar’s row')
+  assert.deepEqual(usd.account, {})
+  assert.equal(usd.seriesUnit, undefined)
+})
+
 test('energy is a group with one edge, and oil has left the world block', () => {
   const week = ['2026-10-01', '2026-10-02', '2026-10-05', '2026-10-06']
   const indicators = [

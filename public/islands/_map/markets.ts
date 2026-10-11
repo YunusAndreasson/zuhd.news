@@ -750,6 +750,13 @@ export interface TickerEntry {
   flag: string
   pct: number
   unit?: string | undefined
+  /**
+   * The unit `values` is in, where it is not `unit`: an inverted currency's
+   * level is `LBP / USD` and its series, drawn so that up is stronger, is
+   * `USD / LBP`. The card's chart read its reciprocals out under the level's
+   * unit, `0.000011 LBP / USD` beneath a hero of `89,561 · LBP / USD`.
+   */
+  seriesUnit?: string | undefined
   level: number
   /**
    * The series as the card should *draw* it, which for FX is not the series as
@@ -980,9 +987,17 @@ export const sparkInput = (
 
   const dated = members.map((m) => {
     const dates = seriesDates(m.periods, m.asOf)
-    return dates && dates.length === m.values.length
-      ? { values: m.values, dates, pct: m.pct }
-      : null
+    if (!dates || dates.length !== m.values.length) return null
+    // A member ahead of the edge is read up to the edge. The gates below only
+    // ever asked whether a member was behind it, and the companies' edge is
+    // the day half the list has closed on, so the other half can be past it:
+    // Taipei's Friday was averaged with New York's Thursday as one day, and a
+    // window with no right edge set Oct 14 to 16 beside Oct 13 to 15.
+    let n = dates.length
+    while (n > 0 && (dates[n - 1] as number) > to) n--
+    if (n === dates.length) return { values: m.values, dates, pct: m.pct }
+    const values = m.values.slice(0, n)
+    return { values, dates: dates.slice(0, n), pct: seriesChangePct(values) ?? Number.NaN }
   })
 
   // All or none. A composite mixing date-windowed members with count-windowed
@@ -1234,6 +1249,13 @@ const flagOf = (iso2?: string): string =>
     ? String.fromCodePoint(...[...iso2.toUpperCase()].map((c) => 0x1f1e6 + c.charCodeAt(0) - 65))
     : ''
 
+/** `LBP / USD` as `USD / LBP`: what a series quoted the first way is in once
+ *  it is inverted. A unit that is not a pair is returned as it came. */
+const reciprocalUnit = (unit: string): string => {
+  const pair = unit.split(' / ')
+  return pair.length === 2 ? `${pair[1]} / ${pair[0]}` : unit
+}
+
 /**
  * One table row and its published series, as the entry both the ribbon and the
  * card read.
@@ -1262,6 +1284,7 @@ const entryFrom = (
   note: ind.standing || item.note,
   pct,
   unit: ind.unit,
+  ...(item.invert && ind.unit ? { seriesUnit: reciprocalUnit(ind.unit) } : {}),
   level: ind.values[ind.values.length - 1],
   values: item.invert
     ? ind.values.map((v) => (Number.isFinite(v) && v !== 0 ? 1 / v : Number.NaN))
@@ -1792,6 +1815,9 @@ export const tickerEntries = (indicators: TrendIndicator[]): TickerEntry[] => {
       sourceLabel: basketSource
         ? `Derived from ${basketSource} — not DXY, and not trade-weighted`
         : undefined,
+      // Derived here, so there is no record behind it: its card asked for
+      // `/api/entity/usd-index.json` and got a 404 on every open.
+      account: {},
     })
   }
   return out

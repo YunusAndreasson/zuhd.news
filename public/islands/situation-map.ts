@@ -4120,6 +4120,13 @@ export function mount(
         }
         const id = f.properties?.id
         if (id == null) return
+        // And a pinned mark's card takes the story's: the same pair, reached
+        // in the other order, with the story still lit in the list.
+        if (popup?.isOpen()) {
+          openSlug = null
+          popup.close()
+          feed.highlight(null)
+        }
         clearPeekClose()
         peekId = String(id)
         showFor(id, true)
