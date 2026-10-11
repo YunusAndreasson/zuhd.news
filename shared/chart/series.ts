@@ -51,11 +51,50 @@ export interface SceneNode {
 /** Which two-colour vocabulary `direction` selects between. */
 export type ChartPalette = 'straits' | 'signed' | 'neutral'
 
+/**
+ * An event to mark on the line: a story the card beside the chart cites.
+ *
+ * `index` is into `values`, the series as handed over, not into the window the
+ * chart ends up drawing, so the caller resolves a date to an observation once
+ * and the mark follows the range control on its own. `label` is the number the
+ * list beside the chart gives the same story.
+ */
+export interface SeriesMark {
+  index: number
+  label: string
+}
+
+/** How a row's change from the one above is stated. See `SeriesOptions.change`. */
+export type ChangeKind = 'percent' | 'points'
+
 export interface SeriesOptions {
   values: number[]
   /** Labels parallel to `values`. Every one is used by the readout and the
    *  table; only three reach the drawn axis. */
   periods?: string[]
+  /**
+   * Stories to mark on the line. An annotation on the model's own scale, never
+   * a second shape: one that falls outside the drawn window, or on an
+   * observation that is not a number, is not drawn, and two on one observation
+   * share a mark.
+   */
+  marks?: readonly SeriesMark[] | undefined
+  /**
+   * A second series for context, on the first one's scale: the world's median
+   * beside a country's own line.
+   *
+   * Parallel to `values`, index for index, and cut by the same window. It is a
+   * line and nothing else: no end dot, no rings, no place in the readout, the
+   * axis or the table, all of which describe the series the chart is about.
+   * Like `marks` it is an annotation on this model's scale, never a second
+   * model laid over it, which is how two lines come to disagree about where a
+   * year falls.
+   *
+   * It widens the vertical domain so both lines fit, unless the caller fixed
+   * one (`domain`), and it does so before `reference` is considered: a rule
+   * the comparison brings into range is then drawn.
+   */
+  comparison?: { values: ReadonlyArray<number | null>; label: string } | undefined
   /**
    * An optional horizontal rule, in the same units as `values`.
    *
@@ -78,6 +117,23 @@ export interface SeriesOptions {
   /** What the rule is, in a few words — "the 90-day average", "the window's
    *  open". Read out beside the hovered point's change against it. */
   referenceLabel?: string
+  /**
+   * `false` where the rule is a threshold to read the line against and not a
+   * base to take a percentage of. A fertility of 5.9 is not "+182.6% vs
+   * replacement" in anybody's words; the rule at 2.1 says what it has to by
+   * being drawn. The rule, its label and the axis are unaffected.
+   */
+  referenceChange?: boolean | undefined
+  /**
+   * How the table states a row's change from the row above it.
+   *
+   * `'percent'` is right for a level: a price, an index of prices, a count.
+   * It is wrong for a series that is itself a rate or that crosses zero, and
+   * the table printed it anyway: Finland's inflation going 0.0001% to 1.2% was
+   * `+129080802.8%`, and Turkey's falling 72.3% to 53.9% was `−25.5%`. Those
+   * are differences, and `'points'` states them as one: `−18.4 pts`.
+   */
+  change?: ChangeKind | undefined
   /**
    * What the series *is*, and nothing about its size — "Brent crude", "TASI
    * daily closes", "Daily vessel transits at the Suez Canal".
@@ -302,9 +358,17 @@ export interface SeriesModel {
   peak: SeriesPoint | null
   trough: SeriesPoint | null
   latest: SeriesPoint | null
+  /** The marks that landed on a drawn point, merged where two share one. */
+  cites: Array<{ point: SeriesPoint; label: string }>
+  /** What the second line is, when there is one: `world median`. */
+  comparisonLabel: string | null
   reference: number | null
   referenceY: number | null
   referenceLabel: string | null
+  /** Whether the readout states a point's change against the rule. */
+  referenceChange: boolean
+  /** How the table states a row's change from the row above. */
+  change: ChangeKind
   /** Last against first, over what is drawn. What `direction: 'window'` uses,
    *  exposed so a caption can state it without recomputing it from a series
    *  the range control may have narrowed. */
@@ -362,6 +426,9 @@ export function seriesModel(opts: SeriesOptions): SeriesModel {
   const values = take >= total ? allValues : allValues.slice(total - take)
   const periods = take >= total ? allPeriods : allPeriods.slice(Math.max(0, allPeriods.length - take))
 
+  const allComparison = opts.comparison?.values ?? []
+  const comparison = take >= total ? allComparison : allComparison.slice(total - take)
+
   const finite = values.filter((v) => Number.isFinite(v))
 
   const empty: SeriesModel = {
@@ -375,9 +442,13 @@ export function seriesModel(opts: SeriesOptions): SeriesModel {
     peak: null,
     trough: null,
     latest: null,
+    cites: [],
+    comparisonLabel: null,
     reference: null,
     referenceY: null,
     referenceLabel: null,
+    referenceChange: true,
+    change: opts.change ?? 'percent',
     windowPct: 0,
     tone: '',
     label: label ?? null,
@@ -416,6 +487,15 @@ export function seriesModel(opts: SeriesOptions): SeriesModel {
   if (fixed && Number.isFinite(fixed[0]) && Number.isFinite(fixed[1]) && fixed[0] < fixed[1]) {
     lo = fixed[0]
     hi = fixed[1]
+  } else {
+    // Room for the comparison too, or the world's line leaves the plot for any
+    // country far from it. `obsLo`/`obsHi` stay the series' own: the axis and
+    // the rings are about the country.
+    for (const v of comparison) {
+      if (typeof v !== 'number' || !Number.isFinite(v)) continue
+      if (v < lo) lo = v
+      if (v > hi) hi = v
+    }
   }
 
   // Resolved against the *drawn* window, not the source series, so both follow
@@ -460,6 +540,19 @@ export function seriesModel(opts: SeriesOptions): SeriesModel {
   for (const p of points) {
     if (p.value > peak.value) peak = p
     if (p.value < trough.value) trough = p
+  }
+
+  // The marks, moved from the source series onto the window. One outside it is
+  // dropped rather than pinned to an edge: a dot at the left margin would date
+  // a story to a day it did not happen on.
+  const offset = total - values.length
+  const cites: Array<{ point: SeriesPoint; label: string }> = []
+  for (const mark of opts.marks ?? []) {
+    const at = points.find((p) => p.i === mark.index - offset)
+    if (!at) continue
+    const shared = cites.find((c) => c.point === at)
+    if (shared) shared.label = `${shared.label} · ${mark.label}`
+    else cites.push({ point: at, label: mark.label })
   }
 
   const [down, up] =
@@ -512,6 +605,17 @@ export function seriesModel(opts: SeriesOptions): SeriesModel {
       })
     }
 
+    // The comparison, under everything the series itself draws. Through the
+    // observations it has, like the main line; a year it lacks is skipped.
+    const compare = comparison
+      .map((v, i) =>
+        typeof v === 'number' && Number.isFinite(v) ? `${round(xAt(i))},${round(yAt(v))}` : '',
+      )
+      .filter(Boolean)
+    if (compare.length > 1) {
+      nodes.push({ tag: 'polyline', attrs: { class: 'chart-compare', points: compare.join(' ') } })
+    }
+
     const pts = points.map((p) => `${round(p.x)},${round(p.y)}`).join(' ')
 
     // The area under the line, so the series carries some weight at a glance.
@@ -550,6 +654,31 @@ export function seriesModel(opts: SeriesOptions): SeriesModel {
       tag: 'circle',
       attrs: { class: 'chart-dot', cx: round(latest.x), cy: round(latest.y), r: 2.6 },
     })
+
+    // --- The cited stories ------------------------------------------------
+    // A filled mark on the line where a story the card cites was published,
+    // and its number: the one the list under the chart gives it. Filled where
+    // the extremes are hollow, because this is something that happened and
+    // those are only where the line turned. The number sits above its mark and
+    // drops below it where the mark is at the top of the plot.
+    for (const cite of cites) {
+      const { x, y } = cite.point
+      const above = y - 7 >= CHART_PAD.t - 6
+      nodes.push({
+        tag: 'circle',
+        attrs: { class: 'chart-cite', cx: round(x), cy: round(y), r: 3 },
+      })
+      nodes.push({
+        tag: 'text',
+        attrs: {
+          class: 'chart-cite-label',
+          x: round(Math.min(CHART_W - CHART_PAD.r - 4, Math.max(CHART_PAD.l + 4, x))),
+          y: round(above ? y - 6 : y + 13),
+          'text-anchor': 'middle',
+        },
+        text: cite.label,
+      })
+    }
 
     // --- The y-axis -------------------------------------------------------
     // High, low, and the rule if there is one. Three numbers is the most this
@@ -607,9 +736,13 @@ export function seriesModel(opts: SeriesOptions): SeriesModel {
     peak,
     trough,
     latest,
+    cites,
+    comparisonLabel: opts.comparison && comparison.length ? opts.comparison.label : null,
     reference: hasRef ? (reference as number) : null,
     referenceY,
     referenceLabel: referenceLabel ?? null,
+    referenceChange: opts.referenceChange !== false,
+    change: opts.change ?? 'percent',
     windowPct,
     tone,
     label: label ?? null,
@@ -625,6 +758,21 @@ export function seriesModel(opts: SeriesOptions): SeriesModel {
   }
 }
 
+/** A bare currency sign, which is written before the figure it prices. */
+const leadsItsFigure = (unit: string | undefined): boolean => !!unit && /^[$€£¥]$/.test(unit)
+
+/**
+ * A value with its unit, as it is read: `$229.28`, `125.44 $/bbl`, `4.2 %`.
+ *
+ * Every unit used to follow its figure, and a bare `$` is the one that does
+ * not: a company's close read `229.28 $` in its card's readout, its table and
+ * its description, beside a rail row that printed `$229.28`.
+ */
+export const withUnit = (shown: string, unit: string | undefined): string => {
+  if (!unit) return shown
+  return leadsItsFigure(unit) ? `${unit}${shown}` : `${shown} ${unit}`
+}
+
 /**
  * What the readout says about one point.
  *
@@ -636,9 +784,8 @@ export function seriesModel(opts: SeriesOptions): SeriesModel {
 export const pointReadout = (model: SeriesModel, p: SeriesPoint): string => {
   const parts: string[] = []
   if (p.period) parts.push(p.period)
-  const shown = model.formatExact(p.value)
-  parts.push(model.unit ? `${shown} ${model.unit}` : shown)
-  if (model.reference != null && model.reference !== 0) {
+  parts.push(withUnit(model.formatExact(p.value), model.unit))
+  if (model.referenceChange && model.reference != null && model.reference !== 0) {
     const pct = ((p.value - model.reference) / Math.abs(model.reference)) * 100
     const against = model.referenceLabel ? ` vs ${model.referenceLabel}` : ''
     parts.push(`${signedPct(pct)}${against}`)
@@ -666,13 +813,22 @@ export const pointReadout = (model: SeriesModel, p: SeriesPoint): string => {
  * user that there is data here and no way to reach it.
  */
 export const chartDescription = (model: SeriesModel, interactive: boolean): string => {
-  const unit = model.unit ? ` ${model.unit}` : ''
+  const low = model.formatExact(model.trough?.value ?? model.lo)
+  const high = model.formatExact(model.peak?.value ?? model.hi)
+  // A unit that follows is said once, after the pair; a sign that leads is
+  // said on each, or the range reads `81 to $135`.
+  const range = leadsItsFigure(model.unit)
+    ? `${withUnit(low, model.unit)} to ${withUnit(high, model.unit)}`
+    : `${low} to ${withUnit(high, model.unit)}`
   const parts = [
     model.label ?? 'Series chart',
     `line chart, ${model.points.length} ${model.step}`,
-    `ranging ${model.formatExact(model.trough?.value ?? model.lo)} to ${model.formatExact(model.peak?.value ?? model.hi)}${unit}`,
+    `ranging ${range}`,
   ]
   if (model.latest) parts.push(`latest ${pointReadout(model, model.latest)}`)
+  // The second line has no row in the table and no place in the readout, so
+  // this sentence is the only thing that names it to a reader who cannot see it.
+  if (model.comparisonLabel) parts.push(`a thinner line shows the ${model.comparisonLabel}`)
   parts.push(
     interactive
       ? 'use arrow keys to read individual values, or open the table below'
@@ -690,6 +846,32 @@ export const stepChange = (values: number[], i: number): number | null => {
   if (now === undefined || prev === undefined) return null
   if (!Number.isFinite(now) || !Number.isFinite(prev) || prev === 0) return null
   return ((now - prev) / Math.abs(prev)) * 100
+}
+
+/**
+ * A row's change from the row above, as the model's series states one: a
+ * percentage for a level, a difference in points for a rate. `value` is the
+ * signed number the tint and a spreadsheet read; `text` is what is printed.
+ * Null at the first row and across a gap.
+ *
+ * One function, so the static table and the browser's cannot state the same
+ * change two ways.
+ */
+export const rowChange = (model: SeriesModel, i: number): { value: number; text: string } | null => {
+  if (model.change === 'percent') {
+    const pct = stepChange(model.windowValues, i)
+    return pct == null ? null : { value: pct, text: signedPct(pct) }
+  }
+  const now = model.windowValues[i]
+  const prev = i > 0 ? model.windowValues[i - 1] : undefined
+  if (now === undefined || prev === undefined) return null
+  if (!Number.isFinite(now) || !Number.isFinite(prev)) return null
+  const diff = now - prev
+  const size = Math.abs(diff)
+  const shown = size >= 100 ? size.toFixed(0) : size >= 10 ? size.toFixed(1) : size.toFixed(2)
+  // The sign is the rounded figure's: a difference that prints as zero is zero.
+  const zero = Number(shown) === 0
+  return { value: zero ? 0 : diff, text: zero ? '0 pts' : `${diff > 0 ? '+' : '−'}${shown} pts` }
 }
 
 // --- The chart with no JavaScript ------------------------------------------
@@ -760,10 +942,18 @@ export interface StaticFigureOptions {
  * principle is that the typography is the design.
  */
 export const rowMark = (model: SeriesModel, i: number): string => {
-  if (model.latest && i === model.latest.i) return 'latest'
-  if (model.peak && i === model.peak.i) return 'high'
-  if (model.trough && i === model.trough.i) return 'low'
-  return ''
+  const place =
+    model.latest && i === model.latest.i
+      ? 'latest'
+      : model.peak && i === model.peak.i
+        ? 'high'
+        : model.trough && i === model.trough.i
+          ? 'low'
+          : ''
+  // A cited story is a row too: the table is the chart for a reader who cannot
+  // see it, and a numbered dot with no row would be the one mark it left out.
+  const cite = model.cites.find((c) => c.point.i === i)
+  return [place, cite ? `story ${cite.label}` : ''].filter(Boolean).join(' · ')
 }
 
 /** Every observation as a table row, oldest first — the direction the line
@@ -778,7 +968,7 @@ const tableRows = (model: SeriesModel): MarkupNode[] =>
     ]
       .filter(Boolean)
       .join(' ')
-    const change = stepChange(model.windowValues, i)
+    const change = rowChange(model, i)
     const shown = Number.isFinite(v) ? model.formatExact(v) : '—'
     const mark = rowMark(model, i)
     return {
@@ -796,14 +986,14 @@ const tableRows = (model: SeriesModel): MarkupNode[] =>
         {
           tag: 'td',
           attrs: { class: 'is-value' },
-          text: model.unit && Number.isFinite(v) ? `${shown} ${model.unit}` : shown,
+          text: Number.isFinite(v) ? withUnit(shown, model.unit) : shown,
         },
         {
           tag: 'td',
           attrs: {
-            class: `is-change${change == null ? '' : change > 0 ? ' is-pos' : change < 0 ? ' is-neg' : ''}`,
+            class: `is-change${change == null ? '' : change.value > 0 ? ' is-pos' : change.value < 0 ? ' is-neg' : ''}`,
           },
-          text: change == null ? '' : signedPct(change),
+          text: change == null ? '' : change.text,
         },
       ],
     }
