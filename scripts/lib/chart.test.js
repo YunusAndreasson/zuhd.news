@@ -468,6 +468,23 @@ test('a comparison is a second line on the same scale, and nothing else', async 
   assert.match(readFileSync(join(ROOT, 'public/style.css'), 'utf8'), /^\.chart-compare \{/m)
 })
 
+test('a series quoted in % moves in points where nobody said so', () => {
+  // `/e/fed-funds`, the `follows` panel and a daily rail card each drew a rate
+  // without `change`: the table read `+6.7%` and the readout `−20.0% vs the
+  // window’s open`, under a hero that read `+0.25 pts`.
+  const open = { reference: 'open', referenceLabel: 'the window’s open' }
+  const rate = seriesModel({ values: [5, 4.25, 4], periods: ['a', 'b', 'c'], unit: '%', ...open })
+  assert.equal(rate.change, 'points')
+  assert.equal(series.rowChange(rate, 1).text, '−0.75 pts')
+  assert.match(series.pointReadout(rate, rate.latest), /· −1\.00 pts vs the window’s open$/)
+  assert.doesNotMatch(series.pointReadout(rate, rate.latest), /%\s+vs|−20/)
+  // A caller's word stands, and a level is a percentage as it was.
+  assert.equal(seriesModel({ values: [5, 4], unit: '%', change: 'percent' }).change, 'percent')
+  const level = seriesModel({ values: [100, 110], periods: ['a', 'b'], unit: '$/bbl', ...open })
+  assert.equal(level.change, 'percent')
+  assert.match(series.pointReadout(level, level.latest), /· \+10\.0% vs the window’s open$/)
+})
+
 test('a rate moves in points in the table, and a level in percent', async () => {
   // The table's third column divided every series by its previous value. For a
   // rate of inflation that is a percentage of a percentage: Finland's going
