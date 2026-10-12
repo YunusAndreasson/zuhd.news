@@ -127,8 +127,8 @@ export function recentRiver(
 
 /**
  * The moment the river's day ends: now, or the newest story when nothing is
- * inside the day (a stalled pipeline). The story track's left end is this
- * moment, so its hour marks count back from the same place the window does.
+ * inside the day (a stalled pipeline). The story track measures each story's
+ * age back from this moment, the same place the window is measured from.
  */
 export function riverAnchor(river: readonly RiverArticle[], now: number): number {
   // Not `river[0]`: a caller may hand in a river in some other order.
