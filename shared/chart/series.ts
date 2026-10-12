@@ -132,6 +132,10 @@ export interface SeriesOptions {
    * the table printed it anyway: Finland's inflation going 0.0001% to 1.2% was
    * `+129080802.8%`, and Turkey's falling 72.3% to 53.9% was `−25.5%`. Those
    * are differences, and `'points'` states them as one: `−18.4 pts`.
+   *
+   * Left out, a series whose `unit` is `%` is in points and any other is a
+   * percentage. Three callers drew a policy rate without saying, and each
+   * printed `+6.7%` in a table under a hero that read `+0.25 pts`.
    */
   change?: ChangeKind | undefined
   /**
@@ -420,6 +424,7 @@ export function seriesModel(opts: SeriesOptions): SeriesModel {
     unit = '',
     step = 'points',
   } = opts
+  const change: ChangeKind = opts.change ?? (unit === '%' ? 'points' : 'percent')
 
   const total = allValues.length
   const take = clampWindow(total, opts.window)
@@ -448,7 +453,7 @@ export function seriesModel(opts: SeriesOptions): SeriesModel {
     referenceY: null,
     referenceLabel: null,
     referenceChange: true,
-    change: opts.change ?? 'percent',
+    change,
     windowPct: 0,
     tone: '',
     label: label ?? null,
@@ -742,7 +747,7 @@ export function seriesModel(opts: SeriesOptions): SeriesModel {
     referenceY,
     referenceLabel: referenceLabel ?? null,
     referenceChange: opts.referenceChange !== false,
-    change: opts.change ?? 'percent',
+    change,
     windowPct,
     tone,
     label: label ?? null,
@@ -774,6 +779,18 @@ export const withUnit = (shown: string, unit: string | undefined): string => {
 }
 
 /**
+ * A difference in points, as printed: `−18.4 pts`. `value` is the signed
+ * number a tint reads, and zero wherever the printed figure is.
+ */
+const pointsChange = (diff: number): { value: number; text: string } => {
+  const size = Math.abs(diff)
+  const shown = size >= 100 ? size.toFixed(0) : size >= 10 ? size.toFixed(1) : size.toFixed(2)
+  // The sign is the rounded figure's: a difference that prints as zero is zero.
+  const zero = Number(shown) === 0
+  return { value: zero ? 0 : diff, text: zero ? '0 pts' : `${diff > 0 ? '+' : '−'}${shown} pts` }
+}
+
+/**
  * What the readout says about one point.
  *
  * Kept here rather than in the browser layer so the static table rows and the
@@ -785,10 +802,16 @@ export const pointReadout = (model: SeriesModel, p: SeriesPoint): string => {
   const parts: string[] = []
   if (p.period) parts.push(p.period)
   parts.push(withUnit(model.formatExact(p.value), model.unit))
-  if (model.referenceChange && model.reference != null && model.reference !== 0) {
-    const pct = ((p.value - model.reference) / Math.abs(model.reference)) * 100
+  if (model.referenceChange && model.reference != null) {
     const against = model.referenceLabel ? ` vs ${model.referenceLabel}` : ''
-    parts.push(`${signedPct(pct)}${against}`)
+    // As the table states a row: a rate against its rule is a difference. A
+    // policy rate read `4.00 % · −20.0% vs the window’s open`.
+    if (model.change === 'points') {
+      parts.push(`${pointsChange(p.value - model.reference).text}${against}`)
+    } else if (model.reference !== 0) {
+      const pct = ((p.value - model.reference) / Math.abs(model.reference)) * 100
+      parts.push(`${signedPct(pct)}${against}`)
+    }
   }
   return parts.join(' · ')
 }
@@ -866,12 +889,7 @@ export const rowChange = (model: SeriesModel, i: number): { value: number; text:
   const prev = i > 0 ? model.windowValues[i - 1] : undefined
   if (now === undefined || prev === undefined) return null
   if (!Number.isFinite(now) || !Number.isFinite(prev)) return null
-  const diff = now - prev
-  const size = Math.abs(diff)
-  const shown = size >= 100 ? size.toFixed(0) : size >= 10 ? size.toFixed(1) : size.toFixed(2)
-  // The sign is the rounded figure's: a difference that prints as zero is zero.
-  const zero = Number(shown) === 0
-  return { value: zero ? 0 : diff, text: zero ? '0 pts' : `${diff > 0 ? '+' : '−'}${shown} pts` }
+  return pointsChange(now - prev)
 }
 
 // --- The chart with no JavaScript ------------------------------------------
