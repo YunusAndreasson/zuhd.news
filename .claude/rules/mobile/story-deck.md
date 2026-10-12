@@ -136,15 +136,16 @@ paths:
 
 ## The dock and the top bar
 
-- The track is the day: now at the left under the word `now`, each story at
-  its publish time (`lib/time-track.ts`), a tick every six hours.
+- The track is the day's cycles side by side, newest at the left
+  (`lib/time-track.ts`): an equal cell per story, a tick between two cycles and
+  each cycle's age under its first cell (`runMarks`). The hours between cycles
+  get no room: nothing is published in them.
 - Where you are is one playhead in emphasis ink riding `fraction` on the UI
   thread. Cell height means reports only (`eventCoverage` ≥ 400). No report
   count is printed; if one returns its unit is `reports`, only over that bar.
-- A read story is a 1pt hairline in a quieter step of its hue. Cells are
-  placed by time, and the gap between them closes only when a story's pitch
-  falls under 3pt; they never merge into one bar. The track has no mark for
-  new.
+- A read story is a 1pt hairline in a quieter step of its hue. The gap
+  between two cells closes only when a story's pitch falls under 3pt; they
+  never merge into one bar. The track has no mark for new.
 - The kicker has no dot. Its category word carries the colour
   (`categoryText*`).
 - `useScrub` and `ScrubBar` are shared with the briefing's scrubber.

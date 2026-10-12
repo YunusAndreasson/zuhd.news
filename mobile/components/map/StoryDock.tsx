@@ -17,7 +17,7 @@ import { nearestIndex } from '../../lib/arrays';
 import { CONTROL_ROW } from '../../lib/deck-layout';
 import { useReadSlugs } from '../../lib/read-store';
 import type { FoundProgress } from '../../lib/story-places';
-import { labelledMarks, positionAt, timeTrackLayout } from '../../lib/time-track';
+import { positionAt, runMarks, timeTrackLayout } from '../../lib/time-track';
 import { Icon, IconButton, Text } from '../primitives';
 import { MARK_LABEL_WIDTH, ScrubBar, ScrubTooltip } from '../ScrubBar';
 
@@ -26,8 +26,8 @@ import { MARK_LABEL_WIDTH, ScrubBar, ScrubTooltip } from '../ScrubBar';
  * screen, where a thumb already is.
  *
  * `[ story track ]`, with `‹ 3 new` floating over its left end — the track
- * scrubs the day, newest story at its left end (each segment is its story's
- * category hue). It is pinned to the
+ * scrubs the day's cycles, newest story at its left end (each segment is its
+ * story's category hue). It is pinned to the
  * screen, not to the sheet, so it is in the same place whether a story is at
  * rest or open: the row used to sit on top of the sheet, which put it
  * mid-screen at rest and near the top when a story was open — nowhere a thumb
@@ -118,8 +118,8 @@ export const StoryDock = memo(function StoryDock({
   categoryAt?: (index: number) => string;
   /** A story's headline, under them: which story the finger is on. */
   titleAt?: (index: number) => string;
-  /** Per story, how long before the river's day ends it ran, in ms: where it
-   *  sits on the track. Without it the track is one equal cell per story. */
+  /** Per story, how long before the river's day ends it ran, in ms: which
+   *  cycle it sits in on the track. Without it the track has no cycles. */
   ages?: readonly number[];
   /** Per story: over the most-covered bar — its cell stands taller while
    *  unread. No count is printed (2026-09-24). */
@@ -172,10 +172,10 @@ export const StoryDock = memo(function StoryDock({
   // deck writes it unless a finger is scrubbing the track itself. Nothing is
   // filled to it any more — the segments say what has been read.
   const fraction = useSharedValue(0);
-  // The track is the day (2026-09-23, the user's request): now at the left
-  // end, a day ago at the right, each story at its time and a mark every six
-  // hours — so "twelve hours back" is a place on it, not a count of cells.
-  // It is laid out in points, once the track is measured.
+  // The track is the day's cycles side by side (2026-10-12, the user's
+  // request), newest at the left: no room goes to the hours between two
+  // cycles, when nothing is published. It was the day to scale from
+  // 2026-09-23. It is laid out in points, once the track is measured.
   const [trackWidth, setTrackWidth] = useState(0);
   const day = useMemo(
     () =>
@@ -186,18 +186,22 @@ export const StoryDock = memo(function StoryDock({
     () => (day ? day.centers.map((c) => c / trackWidth) : null),
     [day, trackWidth],
   );
-  // The left end is named: without it `6h` could be six in the morning, and
-  // nothing said which end of the day was now. A mark whose word would crowd
-  // it keeps its tick and gives up its word.
+  // Each cycle says when it ran, in the kicker's own words less `ago`: the
+  // distance along the track no longer says it. A date (a story pinned in
+  // from another week) is wider than a word's room, so it goes unsaid.
   const marks = useMemo(() => {
     if (!day) return undefined;
-    const labelled = labelledMarks(day.marks, MARK_LABEL_MIN_GAP).map((mark) =>
-      mark.label && mark.at - MARK_LABEL_WIDTH / 2 < NOW_LABEL_WIDTH + SPACING.xs
-        ? { at: mark.at }
-        : mark,
+    return runMarks(
+      day.runs,
+      trackWidth,
+      (i) => {
+        const when = timeAt(i);
+        return when.endsWith(' ago') ? when.slice(0, -4) : when === 'now' ? when : '';
+      },
+      MARK_LABEL_WIDTH,
+      SPACING.xs,
     );
-    return [{ at: 0, label: 'now', bare: true }, ...labelled];
-  }, [day]);
+  }, [day, trackWidth, timeAt]);
   const stepAt = useMemo(
     () =>
       centers
@@ -438,7 +442,7 @@ export const StoryDock = memo(function StoryDock({
               now: Math.min(index + 1, count),
               text: spoken,
             }}
-            accessibilityHint="Now is at the left and a day ago at the right. Drag along it to move through the day's stories"
+            accessibilityHint="The newest stories are at the left and the oldest at the right. Drag along it to move through the day's stories"
             accessibilityActions={ADJUST_ACTIONS}
             onAccessibilityAction={handleAdjust}
           >
@@ -460,10 +464,6 @@ export const StoryDock = memo(function StoryDock({
   );
 });
 
-/** Room for `now` at the track's left end, in the marks' 11pt tabular. */
-const NOW_LABEL_WIDTH = 26;
-/** Two marks' words closer than this lose the quarter's: `12h` stays. */
-const MARK_LABEL_MIN_GAP = MARK_LABEL_WIDTH + SPACING.xs;
 /** The track's thickness: a rule you can see, not a control you can grab. */
 const TRACK = 3;
 /** The `‹ 3 new` pill's height, inside its 48pt touch target: sized to its

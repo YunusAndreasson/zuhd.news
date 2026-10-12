@@ -1,80 +1,102 @@
 import { nearestIndex } from '../lib/arrays';
-import { labelledMarks, positionAt, TRACK_PITCH, timeTrackLayout } from '../lib/time-track';
 import { HOUR_MS } from '../lib/time';
+import {
+  labelledMarks,
+  positionAt,
+  runMarks,
+  TRACK_RUN_GAP,
+  timeTrackLayout,
+} from '../lib/time-track';
 
 const W = 350;
 const h = (hours: number) => hours * HOUR_MS;
+const run = (hours: number, count: number) => Array.from({ length: count }, () => h(hours));
 
-// The live river on 2026-09-23 at 14:04 UTC: 47 stories in five cycles.
-const DAY = [
-  2.1, 2.3, 2.3, 2.5, 2.8, 2.8, 3.0, 3.1, 3.3, 4.1, 6.1, 6.2, 6.2, 6.4, 6.6, 6.9, 7.6, 7.9, 10.1,
-  10.1, 10.1, 10.1, 10.2, 11.1, 11.6, 15.8, 15.9, 16.3, 16.4, 16.6, 16.7, 16.7, 17.4, 17.8, 18.2,
-  18.6, 18.8, 20.6, 21.1, 21.3, 21.5, 21.5, 21.6, 21.7, 22.2, 23.3, 23.4,
-].map(h);
+// The live river on 2026-10-12 at 18:13 UTC: 41 stories in five cycles, the
+// night's seven hours between the last two.
+const DAY = [...run(0, 9), ...run(3.9, 11), ...run(8, 10), ...run(13, 8), ...run(20, 3)];
 
-test('a story sits at its time when there is room', () => {
-  const { centers, marks } = timeTrackLayout([h(3), h(12), h(20)], W);
-  expect(centers[0]).toBeCloseTo(W / 8);
-  expect(centers[1]).toBeCloseTo(W / 2);
-  expect(marks.find((m) => m.hours === 12)?.at).toBeCloseTo(W / 2);
-});
-
-test('every story gets a cell a finger can find, in order, on the track', () => {
+test('the stories fill the track, each an equal share of it', () => {
   const { centers, cells } = timeTrackLayout(DAY, W);
-  for (let i = 1; i < centers.length; i++) {
-    expect((centers[i] ?? 0) - (centers[i - 1] ?? 0)).toBeGreaterThanOrEqual(TRACK_PITCH - 1e-9);
-  }
-  expect(cells[0]?.left).toBeGreaterThanOrEqual(0);
-  const last = cells[cells.length - 1];
-  expect((last?.left ?? 0) + (last?.width ?? 0)).toBeLessThanOrEqual(W);
+  const pitch = (W - 4 * TRACK_RUN_GAP) / DAY.length;
+  expect(centers[0]).toBeCloseTo(pitch / 2);
+  expect(centers[DAY.length - 1]).toBeCloseTo(W - pitch / 2);
+  // A cycle's stories touch.
+  expect((centers[1] ?? 0) - (centers[0] ?? 0)).toBeCloseTo(pitch);
+  for (const cell of cells) expect(cell.width).toBeCloseTo(pitch - 1);
 });
 
-test('a burst spreads about its own time, not away from it', () => {
-  // Four stories filed in one minute at ten hours ago.
-  const { centers } = timeTrackLayout([h(10), h(10), h(10), h(10)], W);
-  const mean = centers.reduce((a, b) => a + b, 0) / centers.length;
-  expect(mean).toBeCloseTo((10 / 24) * W);
+// The reason for the layout: a day to scale left 145 of these 350 points
+// empty, in the hours when no cycle runs.
+test('the hours between two cycles get one gap, however many they were', () => {
+  const { centers } = timeTrackLayout(DAY, W);
+  const pitch = (W - 4 * TRACK_RUN_GAP) / DAY.length;
+  // Four hours apart, then the night's seven.
+  expect((centers[9] ?? 0) - (centers[8] ?? 0)).toBeCloseTo(pitch + TRACK_RUN_GAP);
+  expect((centers[38] ?? 0) - (centers[37] ?? 0)).toBeCloseTo(pitch + TRACK_RUN_GAP);
 });
 
-// The reason marks are placed through the mapping rather than evenly.
-test('an hour mark falls between the stories either side of that hour', () => {
-  const { centers, marks } = timeTrackLayout(DAY, W);
-  for (const { hours, at } of marks) {
-    DAY.forEach((age, i) => {
-      if (age < h(hours)) expect(centers[i]).toBeLessThanOrEqual(at);
-      if (age > h(hours)) expect(centers[i]).toBeGreaterThanOrEqual(at);
-    });
-  }
-  // On a day like this the marks stay close to the quarters.
-  for (const { hours, at } of marks) expect(Math.abs(at - (hours / 24) * W)).toBeLessThan(20);
+test('each cycle is a stretch of the track, dated by its first story', () => {
+  const { runs } = timeTrackLayout(DAY, W);
+  expect(runs.map((r) => r.first)).toEqual([0, 9, 20, 30, 38]);
+  expect(runs[0]?.left).toBe(0);
+  const last = runs[runs.length - 1];
+  expect((last?.left ?? 0) + (last?.width ?? 0)).toBeCloseTo(W);
 });
 
-test('a day too full for the pitch falls back to one cell per story', () => {
-  const ages = Array.from({ length: 100 }, () => h(1));
-  const { centers } = timeTrackLayout(ages, W);
-  expect(centers[0]).toBeCloseTo(W / 200);
-  expect(centers[99]).toBeCloseTo(W - W / 200);
+test('a cycle of one day is one stretch with no gap', () => {
+  const { centers, runs } = timeTrackLayout(run(2, 4), W);
+  expect(runs).toHaveLength(1);
+  expect(centers[3]).toBeCloseTo(W - W / 8);
 });
 
-test('a story alone in a quiet stretch is a short dash, not the whole stretch', () => {
-  const { cells } = timeTrackLayout([h(1), h(12), h(23)], W);
-  expect(cells[1]?.width).toBeLessThanOrEqual(10);
+test('however many cycles, the gaps leave the stories most of the track', () => {
+  const ages = Array.from({ length: 100 }, (_, i) => h(i));
+  const { centers, runs } = timeTrackLayout(ages, W);
+  expect(runs).toHaveLength(100);
+  const stories = runs.reduce((sum, r) => sum + r.width, 0);
+  expect(stories).toBeCloseTo(W * 0.75);
+  expect(centers[0]).toBeGreaterThan(0);
+  expect(centers[99]).toBeLessThan(W);
 });
 
-// The day's top stories lead the river, out of time order.
-test('a story sits at its own time whatever its place in the river', () => {
-  const { centers, cells } = timeTrackLayout([h(12), h(18), h(1), h(3)], W);
-  expect(centers[0]).toBeCloseTo(W / 2);
-  expect(centers[1]).toBeCloseTo((18 / 24) * W);
+// Inside a run the most reported leads, so the river is not strictly by time.
+test('a story sits in its own cycle whatever its place in the river', () => {
+  const { centers, runs } = timeTrackLayout([h(12), h(18), h(1), h(3)], W);
   expect(centers[2]).toBeLessThan(centers[3] ?? 0);
-  expect(cells[0]?.left).toBeLessThan(W / 2);
-  expect((cells[0]?.left ?? 0) + (cells[0]?.width ?? 0)).toBeGreaterThan(W / 2);
+  expect(centers[3]).toBeLessThan(centers[0] ?? 0);
+  expect(centers[0]).toBeLessThan(centers[1] ?? 0);
+  expect(runs.map((r) => r.first)).toEqual([2, 3, 0, 1]);
 });
 
-test('older than a day sits at the right end', () => {
-  const { centers } = timeTrackLayout([h(2), h(30), h(5)], W);
-  expect(centers[2]).toBeLessThan(centers[1] ?? 0);
-  expect(centers[1]).toBeLessThanOrEqual(W);
+test('the ruler ticks each gap and names each cycle from its first cell', () => {
+  const { runs } = timeTrackLayout(DAY, W);
+  const marks = runMarks(runs, W, (i) => `${i}`, 28, 4);
+  const ticks = marks.filter((m) => !m.label);
+  expect(ticks).toHaveLength(4);
+  expect(ticks[0]?.at).toBeCloseTo((runs[1]?.left ?? 0) - TRACK_RUN_GAP / 2);
+  const words = marks.filter((m) => m.label);
+  expect(words.map((m) => m.label)).toEqual(['0', '9', '20', '30', '38']);
+  // The night's three stories are narrower than a word: theirs ends with the track.
+  expect(words.map((m) => m.at)).toEqual([...runs.slice(0, 4).map((r) => r.left), W]);
+  expect(words[4]?.end).toBe(true);
+});
+
+test('a word that would run into the one before it is dropped, and the oldest ends with the track', () => {
+  // One story, one story, then a long cycle, then one story at the far end.
+  const { runs } = timeTrackLayout([h(0), h(4), ...run(8, 30), h(20)], W);
+  const marks = runMarks(runs, W, (i) => `${i}`, 28, 4);
+  const words = marks.filter((m) => m.label);
+  expect(words.map((m) => m.label)).toEqual(['0', '2', '32']);
+  expect(words[2]).toMatchObject({ at: W, end: true });
+  // Its tick stays.
+  expect(marks.filter((m) => !m.label)).toHaveLength(3);
+});
+
+test('a cycle with no word keeps its tick', () => {
+  const { runs } = timeTrackLayout([...run(1, 5), ...run(200, 5)], W);
+  const marks = runMarks(runs, W, (i) => (i === 0 ? '1h' : ''), 28, 4);
+  expect(marks.map((m) => m.label)).toEqual(['1h', undefined]);
 });
 
 test('the finger lands on the nearest story, and the deck position slides between them', () => {

@@ -30,7 +30,7 @@ const SEGMENT_GAP = 2;
  *  from one still to read by shape, not only by how pale its colour is. */
 const FADED_HEIGHT = 1;
 
-/** An hour mark's height: through the track and a little past it, so it reads
+/** A mark's height: through the track and a little past it, so it reads
  *  as a ruler's tick rather than a gap between two cells. */
 const MARK_HEIGHT = 9;
 /** A tall cell's height: a story among the most covered, rising from the track the
@@ -81,9 +81,11 @@ export interface PlacedCell {
 export interface TrackMark {
   at: number;
   label?: string;
-  /** A word with no tick, set from `at` rather than centred on it: an end of
-   *  the track named (`now`), where a tick would cut the first cell. */
+  /** A word with no tick, set from `at` rather than centred on it: a stretch
+   *  of the track named from its first cell, where a tick would cut the cell. */
   bare?: boolean;
+  /** A bare word that ends at `at` instead of starting there. */
+  end?: boolean;
 }
 
 /** Cells at their own places, over a hairline that is the rest of the track. */
@@ -493,7 +495,11 @@ export const ScrubBar = memo(function ScrubBar({
                   style={[
                     styles.markLabel,
                     mark.bare
-                      ? { top: height + MARK_LABEL_GAP, left: mark.at, textAlign: 'left' }
+                      ? {
+                          top: height + MARK_LABEL_GAP,
+                          left: mark.end ? mark.at - MARK_LABEL_WIDTH : mark.at,
+                          textAlign: mark.end ? 'right' : 'left',
+                        }
                       : {
                           top: height + MARK_LABEL_GAP,
                           left: Math.max(

@@ -1,163 +1,126 @@
-import { HOUR_MS } from './time';
+import { RUN_GAP_MS } from './news-order';
 
 /**
- * The story track as a day: where each story sits on a track `width` points
- * wide, when the left end is now and the right end a day ago.
+ * The story track as the day's cycles, side by side: where each story sits on
+ * a track `width` points wide, the newest cycle at the left end.
  *
- * It was one equal cell per story, which said what order the day came in and
- * nothing about when: twelve stories from one cycle and one from the quiet
- * hours took the same room, so "twelve hours ago" could be anywhere along it
- * (2026-09-23, the user's request). Now a story sits at its time, and the
- * hour marks say where the day is.
+ * It was the day to scale from 2026-09-23 — now at the left, a day ago at the
+ * right, each story at its time. But zuhd publishes in cycles, and every story
+ * of a cycle carries one time (`ranAt`), so a day to scale is five clumps with
+ * hours of empty track between them in which nothing could ever sit: on
+ * 2026-10-12, 41 stories held 205 of 350 points at the least pitch a finger
+ * can find, and the rest was the gaps (the user's request to close them).
  *
- * Time alone cannot be the rule, because a cycle files a dozen stories within
- * minutes and each still needs a cell a finger can land on. So every story
- * gets at least `pitch` points, and a burst that does not fit spreads about
- * its own time — the least movement that makes room (pool-adjacent-violators
- * on the ideal positions), never past a neighbour and never off the track.
- * The hour marks are placed through the same mapping rather than at even
- * spacing, so a mark always falls between the stories either side of that
- * hour: a burst that straddles six hours ago pushes the mark along with it
- * instead of leaving an older story on the newer side of it.
- *
- * A cell is its story's share of the gap to each neighbour, up to `maxCell`:
- * where the day was busy the cells touch, as the old track's did, and a story
- * alone in a quiet stretch is a short dash with empty track either side.
- * That empty track is the point — it is what a quiet night looks like.
+ * So the hours between cycles get no room. Every story takes an equal share
+ * of the track, a cycle's stories touch, and one fixed gap stands between two
+ * cycles however long the wait was. When each cycle ran is said in words
+ * under it (`runMarks`), not by its distance along the track.
  */
 
-/** How much time the track spans: the river's window (`RIVER_WINDOW_MS`). */
-export const TRACK_SPAN_HOURS = 24;
-/** The hour marks, every quarter of the day. */
-export const TRACK_MARK_HOURS = [6, 12, 18] as const;
-/** The least room a story gets, gap included: a cell a finger can find. */
-export const TRACK_PITCH = 5;
-/** The most room a story alone in a quiet stretch takes. */
-export const TRACK_MAX_CELL = 10;
+/** Between two cycles: room for a tick with air either side. */
+export const TRACK_RUN_GAP = 8;
 /** Between two cells, while there is room for one. */
 export const TRACK_CELL_GAP = 1;
+
+/** One cycle's stretch of the track. */
+export interface TrackRun {
+  /** The river index of the cycle's first story: the one that dates it. */
+  first: number;
+  left: number;
+  width: number;
+}
 
 export interface TimeTrack {
   /** Each story's centre, in points from the left end, in river order. */
   centers: number[];
   /** Each story's drawn cell, gap already taken off. */
   cells: { left: number; width: number }[];
-  /** Where each hour mark falls, in points. */
-  marks: { hours: number; at: number }[];
+  /** The cycles, newest first. */
+  runs: TrackRun[];
 }
 
 /**
  * @param ages How long ago each story ran, in ms, one per story in river
  *   order. Stories are laid out by time and the result is handed back in
  *   river order, so an order that is not strictly by time (the most reported
- *   first inside a run, `compareHeat`) still lands every story at its own
- *   time. Older than the span sits at the right end.
+ *   first inside a run, `compareHeat`) still lands every story in its own
+ *   cycle. Two stories further apart than `RUN_GAP_MS` are two cycles.
  */
 export function timeTrackLayout(
   ages: readonly number[],
   width: number,
-  {
-    pitch = TRACK_PITCH,
-    maxCell = TRACK_MAX_CELL,
-    spanHours = TRACK_SPAN_HOURS,
-    markHours = TRACK_MARK_HOURS,
-  }: {
-    pitch?: number;
-    maxCell?: number;
-    spanHours?: number;
-    markHours?: readonly number[];
-  } = {},
+  { runGap = TRACK_RUN_GAP }: { runGap?: number } = {},
 ): TimeTrack {
   const n = ages.length;
-  const span = spanHours * HOUR_MS;
-  if (n === 0 || width <= 0) return { centers: [], cells: [], marks: [] };
+  if (n === 0 || width <= 0) return { centers: [], cells: [], runs: [] };
 
-  // By time, ties in river order; inside the span.
-  const clamped = ages.map((a) => Math.min(span, Math.max(0, a)));
-  const order = clamped
-    .map((_, i) => i)
-    .sort((a, b) => (clamped[a] ?? 0) - (clamped[b] ?? 0) || a - b);
-  const age = order.map((i) => clamped[i] ?? 0);
-  const d = Math.min(pitch, width / n);
-  const lo = d / 2;
-  const hi = width - d / 2;
-
-  // Pool adjacent violators: each block is a run of stories `d` apart, placed
-  // where it sits nearest their times on average.
-  const blocks: { start: number; count: number; sum: number }[] = [];
-  for (let i = 0; i < n; i++) {
-    let block = { start: i, count: 1, sum: ((age[i] ?? 0) / span) * width };
-    for (;;) {
-      const prev = blocks[blocks.length - 1];
-      if (!prev) break;
-      const prevLast = prev.sum / prev.count + (prev.count - 1) * d;
-      if (block.sum / block.count >= prevLast + d) break;
-      blocks.pop();
-      // A member k places into the merged block's frame as ideal − k·d.
-      block = {
-        start: prev.start,
-        count: prev.count + block.count,
-        sum: prev.sum + block.sum - prev.count * d * block.count,
-      };
-    }
-    blocks.push(block);
+  // By time, ties in river order.
+  const order = ages.map((_, i) => i).sort((a, b) => (ages[a] ?? 0) - (ages[b] ?? 0) || a - b);
+  // Which cycle each story is in, counted from the newest.
+  const runOf: number[] = [];
+  for (let k = 0; k < n; k++) {
+    const apart = k > 0 ? (ages[order[k] ?? 0] ?? 0) - (ages[order[k - 1] ?? 0] ?? 0) : 0;
+    runOf.push(k === 0 ? 0 : (runOf[k - 1] ?? 0) + (apart > RUN_GAP_MS ? 1 : 0));
   }
-  const x: number[] = new Array(n).fill(0);
-  for (const b of blocks) {
-    const first = b.sum / b.count;
-    for (let k = 0; k < b.count; k++) x[b.start + k] = first + k * d;
-  }
-  // Onto the track: a forward pass holds the left end, a backward pass the
-  // right. `n·d ≤ width`, so the second cannot undo the first.
-  for (let i = 0; i < n; i++) {
-    const floor = i > 0 ? (x[i - 1] ?? 0) + d : lo;
-    x[i] = Math.max(x[i] ?? 0, floor);
-  }
-  for (let i = n - 1; i >= 0; i--) {
-    const ceiling = i < n - 1 ? (x[i + 1] ?? 0) - d : hi;
-    x[i] = Math.min(x[i] ?? 0, ceiling);
-  }
-
+  const runCount = (runOf[n - 1] ?? 0) + 1;
+  // However many cycles, the gaps between them take a quarter of the track
+  // at most: the rest is the stories'.
+  const between = runCount > 1 ? Math.min(runGap, width / (4 * (runCount - 1))) : 0;
+  const d = (width - (runCount - 1) * between) / n;
   const gap = d >= 3 ? TRACK_CELL_GAP : 0;
-  const cells: { left: number; width: number }[] = [];
-  for (let i = 0; i < n; i++) {
-    const c = x[i] ?? 0;
-    const before = i > 0 ? (c + (x[i - 1] ?? 0)) / 2 : 0;
-    const after = i < n - 1 ? (c + (x[i + 1] ?? 0)) / 2 : width;
-    const left = Math.max(before, c - maxCell / 2);
-    const right = Math.min(after, c + maxCell / 2);
-    cells.push({ left: left + gap / 2, width: Math.max(1, right - left - gap) });
-  }
 
-  // Each mark on the piecewise-linear line through (0, 0), every story's
-  // (age, x), and (span, width).
-  const marks: { hours: number; at: number }[] = [];
-  for (const hours of markHours) {
-    const t = hours * HOUR_MS;
-    let prevAge = 0;
-    let prevX = 0;
-    let at = width;
-    for (let i = 0; i <= n; i++) {
-      const a = i < n ? (age[i] ?? 0) : span;
-      const p = i < n ? (x[i] ?? 0) : width;
-      if (a >= t) {
-        at = a === prevAge ? prevX : prevX + ((t - prevAge) / (a - prevAge)) * (p - prevX);
-        break;
-      }
-      prevAge = a;
-      prevX = p;
-    }
-    marks.push({ hours, at });
-  }
-  // Back into river order.
   const centers: number[] = new Array(n).fill(0);
-  const byRiver: { left: number; width: number }[] = new Array(n);
+  const cells: { left: number; width: number }[] = new Array(n);
+  const runs: TrackRun[] = [];
   for (let k = 0; k < n; k++) {
     const i = order[k] ?? k;
-    centers[i] = x[k] ?? 0;
-    byRiver[i] = cells[k] ?? { left: 0, width: 0 };
+    const run = runOf[k] ?? 0;
+    const left = k * d + run * between;
+    centers[i] = left + d / 2;
+    cells[i] = { left: left + gap / 2, width: Math.max(1, d - gap) };
+    const open = runs[run];
+    if (open) {
+      open.first = Math.min(open.first, i);
+      open.width += d;
+    } else {
+      runs.push({ first: i, left, width: d });
+    }
   }
-  return { centers, cells: byRiver, marks };
+  return { centers, cells, runs };
+}
+
+/**
+ * The track's ruler: a tick in the gap between two cycles, and under each
+ * cycle's first cell the word for when it ran (`labelAt`, the card's own
+ * time). A word that would run into the one before it is dropped, the newest
+ * kept first; the oldest cycle's may end with the track instead of starting
+ * with its cell. A cycle with no word (`''`) keeps its tick.
+ */
+export function runMarks(
+  runs: readonly TrackRun[],
+  width: number,
+  labelAt: (index: number) => string,
+  labelWidth: number,
+  labelGap: number,
+): { at: number; label?: string; bare?: boolean; end?: boolean }[] {
+  const marks: { at: number; label?: string; bare?: boolean; end?: boolean }[] = [];
+  // Where the next word may start.
+  let free = 0;
+  for (let k = 0; k < runs.length; k++) {
+    const run = runs[k];
+    if (!run) continue;
+    const previous = runs[k - 1];
+    if (previous) marks.push({ at: (previous.left + previous.width + run.left) / 2 });
+    const label = labelAt(run.first);
+    if (!label) continue;
+    if (run.left >= free && run.left + labelWidth <= width) {
+      marks.push({ at: run.left, label, bare: true });
+      free = run.left + labelWidth + labelGap;
+    } else if (k === runs.length - 1 && width - labelWidth >= free) {
+      marks.push({ at: width, label, bare: true, end: true });
+    }
+  }
+  return marks;
 }
 
 /** Where a float position in the river (`2.4`) sits along the track. */
