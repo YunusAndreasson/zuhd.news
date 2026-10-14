@@ -42,6 +42,17 @@
 /basemap/country-labels.geojson
   Cache-Control: public, max-age=86400, stale-while-revalidate=604800
 
+# Water and sea names, fetched at idle. Every basemap URL carries `?v=BASEMAP_V`,
+# so a rebuilt file still reaches a reader inside the day.
+/basemap/lakes.geojson
+  Cache-Control: public, max-age=86400, stale-while-revalidate=604800
+
+/basemap/rivers.geojson
+  Cache-Control: public, max-age=86400, stale-while-revalidate=604800
+
+/basemap/seas.geojson
+  Cache-Control: public, max-age=86400, stale-while-revalidate=604800
+
 # Islands split by extension so the two rules never both match: esbuild emits
 # our bundles as .js, MapLibre ships its engine, worker and shared chunk as
 # .mjs. The engine is vendor code that only moves on a version bump, so it must
