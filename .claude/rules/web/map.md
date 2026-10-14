@@ -63,8 +63,9 @@ calendar `hijri.md`.
 - The graticule (`_map/graticule.ts`) is generated, not fetched, and stops at
   85°. It sits before `land`: no tone works on both sea and land. Keep
   `line-width` at 1.2 or more: thinner never reaches its tone.
-- `atmosphere-blend` is a constant 0.34. Never zoom-interpolate it: MapLibre
-  already fades it with the projection.
+- `atmosphere-blend` is a constant 0.2. Never zoom-interpolate it: MapLibre
+  already fades it with the projection. Its colour is MapLibre's own and it
+  paints over labels and marks, so raising it washes the day limb.
 - `drawSolar` sets the light with `anchor: 'map'` and `sunLightPosition`, the
   antisolar direction (MapLibre negates it). With no `light` the crescent is
   fixed to the screen. No other `sky` property reaches the globe.

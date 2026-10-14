@@ -265,9 +265,9 @@ export const MAP_COLOURS = {
    * clear of the corridor `map-geo.test.js` reserves above every overlay for the
    * genocide mark.
    *
-   * The rendered rim is not this value: `draw_sky.ts` blends it against
-   * `sky-color` and multiplies by the globe transition, so what a reader sees is
-   * softer than the token. These figures bound it; the screen decides it.
+   * Only our own sky canvas reads it: `drawSky` fades MapLibre's sky out
+   * wherever the globe shows, and MapLibre's atmosphere glow takes its colour
+   * from its shader, not from `horizon-color`.
    */
   horizon: '#222e40',
 } as const
@@ -920,7 +920,7 @@ export function buildStyle(v?: string): StyleSpecification {
       'sky-color': MAP_COLOURS.ocean,
       'horizon-color': MAP_COLOURS.horizon,
       /**
-       * 0.34, not the 0.8 default, and the number was measured rather than
+       * 0.2, not the 0.8 default, and the number was measured rather than
        * chosen.
        *
        * The atmosphere is lit from the sun's own direction — `draw_sky.ts`
@@ -931,8 +931,12 @@ export function buildStyle(v?: string): StyleSpecification {
        * pixels long was louder than it, drawn by the camera rather than by any
        * fact about the world.
        *
-       * At 0.34 the limb is a rim rather than a light source — the same
-       * register as the prayer hairlines, which is the right one for furniture.
+       * At 0.34 the limb was a rim rather than a light source, but the glow is
+       * drawn after every layer, labels and marks included, in a pale blue
+       * fixed in MapLibre's shader: a band ~90px deep over the day limb's land
+       * washed its names and marks. At 0.2 the rim stays and the wash recedes:
+       * one pixel over Mali at world zoom went from (84,103,121) to
+       * (72,86,102).
        *
        * The night limb stays unlit and therefore invisible, since space and
        * ocean are the same tone by construction (see `.map-canvas-host`). That
@@ -941,7 +945,7 @@ export function buildStyle(v?: string): StyleSpecification {
        * the honest picture. What it must not do is look like clipping, and the
        * only thing that made it look like clipping was the day side shouting.
        */
-      'atmosphere-blend': 0.34,
+      'atmosphere-blend': 0.2,
     },
     sources: {
       // `promoteId` lifts each feature's `iso2` into the feature id, which is
