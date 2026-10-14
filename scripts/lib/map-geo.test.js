@@ -965,36 +965,6 @@ test('map.json points carry usable geometry and a live size channel', (t) => {
   }
 })
 
-test('a map point’s hook is block one alone, as plain text', (t) => {
-  // The rail prints `h` under a headline, clamped to two lines. Two blocks run
-  // together would fill both lines with the second sentence's opening, and a
-  // dateline would repeat the place the row's meta line prints directly under
-  // it. Held against the lead, which is the same function asked for two blocks.
-  const mapPath = join(ROOT, 'dist/api/map.json')
-  const leadsPath = join(ROOT, 'dist/api/map-leads.json')
-  if (!existsSync(mapPath) || !existsSync(leadsPath)) {
-    t.skip('dist/api/map.json or map-leads.json not built')
-    return
-  }
-  const { points } = JSON.parse(readFileSync(mapPath, 'utf8'))
-  const { leads } = JSON.parse(readFileSync(leadsPath, 'utf8'))
-  const hooked = points.filter((p) => p.h !== undefined)
-  assert.ok(hooked.length > points.length * 0.9, `${hooked.length}/${points.length} points carry a hook`)
-  let longer = 0
-  for (const p of hooked) {
-    assert.ok(typeof p.h === 'string' && p.h.length > 0, `empty hook on ${p.slug}`)
-    assert.ok(!/\n/.test(p.h), `the hook of ${p.slug} runs over a line break`)
-    assert.ok(!/\]\(|\*\*/.test(p.h), `markdown left in the hook of ${p.slug}`)
-    assert.ok(!/^[^—]{2,60} — /.test(p.h), `a dateline left on the hook of ${p.slug}`)
-    const lead = leads[p.slug]
-    assert.ok(lead?.startsWith(p.h), `the hook of ${p.slug} is not the start of its lead`)
-    if (lead.length > p.h.length) longer++
-  }
-  // Nearly every body has a second block, so nearly every lead runs on past
-  // its hook. Equal everywhere would mean `h` had become the lead.
-  assert.ok(longer > hooked.length * 0.9, `only ${longer}/${hooked.length} leads run past their hook`)
-})
-
 test('every map point has a story card to open', (t) => {
   const mapPath = join(ROOT, 'dist/api/map.json')
   if (!existsSync(mapPath)) {

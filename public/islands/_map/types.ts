@@ -54,11 +54,6 @@ export interface MapPoint {
   w?: number
   /** Sentiment spread across the outlets covering the story, 0..~1. */
   d?: number
-  /**
-   * The hook: block one of the body as plain text, which the rail prints under
-   * the headline. Absent on a point from `/api/map-archive.json`.
-   */
-  h?: string
 }
 
 /**

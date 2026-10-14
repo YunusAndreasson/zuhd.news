@@ -1703,13 +1703,11 @@ const coverageRanks = (() => {
  * `[Iran](country:IR)`. The rail and the popup render plain text, so links are
  * unwrapped to their label and the same typographic quotes the rest of the
  * site uses are applied. The dateline is stripped outright rather than
- * re-styled the way `buildArticle` does it — the row's meta line and the
- * popup's kicker already print the place, so the body's own "City — " would be
- * a second copy pushing the sentence itself out from the left edge.
+ * re-styled the way `buildArticle` does it — the popup's kicker already
+ * prints the place, so the body's own "City — " would be a second copy
+ * pushing the sentence itself out from the left edge.
  *
- * One block is the hook the rail prints under a headline (`h` on a map
- * point); two are the lead the preview card shows (`map-leads.json`). One
- * function for both, so the first is always the start of the second.
+ * Two blocks are the lead the preview card shows (`map-leads.json`).
  *
  * @param {{ body: string }} a
  * @param {number} blocks
@@ -1735,7 +1733,6 @@ const mapPoints = sorted
     // covering a story sit in sentiment; a contested story is a different kind
     // of event from a uniformly reported one, and the map had no way to say so.
     const div = Number(a.meta.sentimentDivergence)
-    const hook = openingText(a, 1)
     return {
       lat: Number(a.meta.lat),
       lng: Number(a.meta.lng),
@@ -1752,11 +1749,6 @@ const mapPoints = sorted
       n: a.sources.length,
       ...(hasCov && coverageRanks ? { w: coverageRanks(cov) } : {}),
       ...(Number.isFinite(div) && div > 0 ? { d: Math.round(div * 100) / 100 } : {}),
-      // The hook: block one, which the rail prints under the headline. It
-      // rides the point rather than `map-leads.json` because that file is
-      // fetched at idle, and a row built bare would double in height when it
-      // landed. The archive's points carry none.
-      ...(hook ? { h: hook } : {}),
     }
   })
   .sort((a, b) => a.t - b.t)
