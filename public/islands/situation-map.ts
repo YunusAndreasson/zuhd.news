@@ -4286,11 +4286,12 @@ export function mount(
     /**
      * Coastline detail, swapped in as the camera earns it.
      *
-     * Three tiers, each an order of magnitude heavier than the last: 110m for
-     * first paint (70 KB), 50m once the coarse outline starts to show, 10m past
-     * regional scale. The last one is 1.4 MB and carries 255 countries against
-     * 110m's 176 — mostly islands and real inlets — so it is worth having and
-     * emphatically not worth loading for a reader who never zooms in.
+     * Two tiers: 1:50m from the style, and 1:10m (about 1.8 MB gzipped, 254
+     * countries against 240 — mostly islands and real inlets) once the camera
+     * passes `ULTRA_ZOOM`. It is not swapped back on the way out: MapLibre
+     * simplifies each tile to its zoom, so at world view the finer file draws
+     * about as many vertices as the coarse one, and a world-view drag measured
+     * no slower after the swap.
      */
     /**
      * Swaps the coastline source up a tier.
@@ -4315,7 +4316,7 @@ export function mount(
       // `scheduleMetric` finds the source unloaded — `setData` marks it so
       // synchronously — and waits for `idle`, which is what re-applies the tint
       // once this data settles. It has to happen at all because the finer tier
-      // carries countries the coarse one never had (176 features become 255),
+      // carries countries the coarse one never had (240 features become 254),
       // and none of them arrive with feature state: without it the tint would
       // thin out as the reader zoomed, worst on the small states the detail
       // exists for.
