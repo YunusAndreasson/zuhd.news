@@ -282,8 +282,18 @@ export async function buildMapSources(root) {
   }
 
   const countries = tier('countries-50m.json', 3)
+  // The polygons ship only `iso2`: the hover, the ground metric and the card
+  // all key on it, and the names come from `country-labels`, built from
+  // `countries` before its names are dropped.
+  const keyed = (fc) => ({
+    ...fc,
+    features: fc.features.map((f) => ({
+      ...f,
+      properties: f.properties?.iso2 ? { iso2: f.properties.iso2 } : {},
+    })),
+  })
   return {
-    countries,
+    countries: keyed(countries),
     // Second tier, from Natural Earth 1:10m. 255 countries against 50m's 240
     // — the difference is mostly islands and a coastline with
     // real inlets rather than a smoothed outline, which is exactly what shows
@@ -294,7 +304,7 @@ export async function buildMapSources(root) {
     // it — invisible where the tier is used, and a 28% smaller download. The
     // coarser tiers are left alone: they have little redundancy to remove and
     // everything taken out of them shows immediately.
-    countriesUltra: tier('countries-10m.json', 3, 0.003),
+    countriesUltra: keyed(tier('countries-10m.json', 3, 0.003)),
     countryLabels: await countryLabelPoints(countries),
     places: await placeLabels(root),
     lakes: await lakePolygons(root, feature),
@@ -453,9 +463,12 @@ async function placeLabels(root) {
       const ncap = isCapital(f.properties?.n, lng, lat) ? 1 : 0
       return {
         ...f,
+        // What `place-dots` and `place-labels` read. Natural Earth's country
+        // (`c`) and admin-seat flag (`cap`) are dropped here.
         properties: {
-          ...f.properties,
           n: displayLocation(f.properties?.n) ?? f.properties?.n,
+          r: f.properties?.r,
+          p: f.properties?.p,
           ncap,
         },
       }
