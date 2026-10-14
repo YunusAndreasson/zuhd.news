@@ -56,9 +56,11 @@ locks, the light and space's tone are `map.md`; the night wash is
 
 - Airglow is the night limb's only edge, not decoration: sea and space are one
   tone and the crescent stops at the terminator.
-- Both glows are `MAP_COLOURS.horizon` at full alpha; lower could not be seen,
-  and a second token would drift from MapLibre's half. Width is the free
-  variable (`AIRGLOW_WIDTH`): past 3px it is a ring round the planet.
+- The crescent is `MAP_COLOURS.horizon`; the airglow has its own
+  `MAP_COLOURS.airglow` (2.2:1 on the ocean, under the brightest land), because
+  `horizon` at 1.45:1 left the night limb dissolved. MapLibre's glow reads
+  neither. Width is fixed (`AIRGLOW_WIDTH`): past 3px it is a ring round the
+  planet.
 - Airglow is an annulus, hard at the limb and graded outward; a stroke read as
   a drawn circle. Never grow `AIRGLOW_REACH` to light the day side.
 - **Never raise `atmosphere-blend` to light the night limb**: MapLibre's glow

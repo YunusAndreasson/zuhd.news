@@ -1495,6 +1495,17 @@ test('the live scrub position is the real live edge, whatever the day anchor', (
   }
 })
 
+test('the airglow is the night limb’s edge, and dimmer than the land', () => {
+  // Sea and space are one tone, so on the night side this line is the planet's
+  // only edge. Drawn in `horizon` at 1.45:1 it could not be seen there.
+  const { airglow, ocean } = M.MAP_COLOURS
+  const top = M.LAND_RAMP[M.LAND_RAMP.length - 1]
+  assert.ok(contrast(airglow, ocean) >= 2, `airglow ${airglow} is only ${contrast(airglow, ocean).toFixed(2)}:1 on the ocean`)
+  // An atmosphere brighter than the continents makes the planet look like a hole.
+  assert.ok(luminance(airglow) < luminance(top), `airglow ${airglow} is brighter than the ramp top ${top}`)
+  assert.ok(hsl(airglow).s <= 0.31, `airglow ${airglow} is more saturated than the air it stands for`)
+})
+
 test('the ramp is the value, not the ranking', (t) => {
   const indexPath = join(ROOT, 'dist/api/metric/index.json')
   if (!existsSync(indexPath)) {

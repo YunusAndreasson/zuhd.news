@@ -42,14 +42,9 @@ import { GLOBE_ZOOM, MAP_COLOURS } from './style'
  * MapLibre's `sky.atmosphere-blend` draws the half of the glow that lies *on*
  * the planet, lit from the sun's own direction so it is a crescent along the
  * day limb and unlit everywhere else. It stops at the limb, because there is no
- * geometry past it. This is the outward half of the same glow, on the same
- * falloff and the same crescent rule, so the two meet continuously at the edge
- * and a reader sees one atmosphere.
- *
- * `MAP_COLOURS.horizon` is reused rather than a new token being minted: it is
- * already "the atmosphere at the globe's limb", already measured at 1.45:1
- * against the ocean, and two tokens for one substance is exactly how the two
- * halves would drift apart.
+ * geometry past it. This is the outward half, on the same crescent rule, in
+ * `MAP_COLOURS.horizon`, measured at 1.45:1 against the ocean. MapLibre's half
+ * takes its colour from its own shader, not from that token.
  *
  * Thickness is 5.5% of the disc radius. The real thing is nearer 1% — the
  * troposphere is 10 km on a 6371 km ball — and at 1% it renders as a hairline
@@ -58,18 +53,9 @@ import { GLOBE_ZOOM, MAP_COLOURS } from './style'
  */
 const HALO_THICKNESS = 0.055
 /**
- * The alpha at the limb itself, and it is 1 on purpose.
- *
- * `MAP_COLOURS.horizon` is not a hue that then gets a brightness chosen for it
- * — its own note states the measurement the value *is*: 1.45:1 against the
- * ocean, "present and no louder than the prayer hairlines". Drawing it at 0.62
- * composites to about 1.25:1, which is under the register the token was
- * measured at and, on the near-black ground this map keeps, is the difference
- * between an atmosphere and nothing. It was that, and it could not be seen.
- *
- * So the token decides the peak and the gradient decides the falloff. Anything
- * other than 1 here is a second brightness for the atmosphere, in a place no
- * test is reading.
+ * The alpha at the limb itself, and it is 1 on purpose: the token decides the
+ * peak and the gradient decides the falloff. Anything other than 1 here is a
+ * second brightness for the atmosphere, in a place no test is reading.
  */
 const HALO_PEAK = 1
 const HALO_WEDGES = 72
@@ -77,70 +63,23 @@ const HALO_WEDGES = 72
 /**
  * Airglow: the thin rim that goes all the way round, including the night side.
  *
- * This map's oldest unsolved problem, stated in its own design record: space
- * and sea are the *same tone by construction* (`--map-ground` is
- * `MAP_COLOURS.ocean`, which is what keeps every chrome scrim meaning what it
- * means), the night wash is black at 0.28 over a near-black ocean and moves it
- * about two values in 255, and the scattering glow above is a crescent that by
- * definition stops at the terminator. So **half the planet had no edge at all**
- * — it ended wherever the last coastline happened to be. The graticule was
- * added as a way round that, and it is a good mark for a different reason; it
- * was never the answer to this.
+ * Space and sea are the same tone by construction (`--map-ground` is
+ * `MAP_COLOURS.ocean`), the night wash barely moves the ocean, and the
+ * scattering crescent stops at the terminator. Without this, half the planet
+ * has no edge and ends wherever the last coastline happens to be. Oxygen
+ * recombining about 90 km up glows all round the real limb, which is why the
+ * dark side of the earth has an edge in every photograph from orbit.
  *
- * The answer is that the night limb is not actually dark. Oxygen recombining
- * about 90 km up emits continuously, and that band — airglow — is why the dark
- * side of the earth has a visible edge in every photograph taken from orbit. It
- * is real, it is uniform around the whole limb, and it is the one thing that
- * can draw this edge without inventing anything.
+ * Drawn as a line, not a wash, in its own token (`MAP_COLOURS.airglow`, 2.2:1
+ * against the ocean, dimmer than the brightest land). `horizon` at 1.45:1 was
+ * tried here first and the night limb still dissolved. Width is 2.2px: 1.6 read
+ * as an artefact of the circle, and past ~3 it stops being an edge and becomes
+ * a ring drawn round the planet.
  *
- * Drawn as a **line rather than a glow**, which is the whole reason it works
- * here. There is 1.09:1 of room below the ocean and nothing above it worth
- * spending on a wide wash — a soft rim faint enough to be honest is a rim that
- * cannot be seen, which is what a first pass at 0.62 alpha produced.
- *
- * So the tone is fixed at the token's own measurement — `MAP_COLOURS.horizon`
- * at full strength, **1.45:1**, the register of the graticule's 1.44:1 and the
- * prayer hairlines' ~1.5:1 — and **the only free variable is width**. That is
- * the useful half of the trade: brightness is capped by the palette and costs
- * legibility everywhere it is spent, while width costs nothing but its own
- * pixels. 2.2px was swept against the render; 1.6 was a hairline that read as
- * an artefact of the circle, and past ~3 it stops being an edge and becomes a
- * ring drawn around the planet.
- *
- * Day and night still read differently, which is the objection this has to
- * answer: the scattering crescent above is a 25px gradient over it, so the lit
- * limb is a band and the dark limb is a line. The terminator keeps saying what
- * it said.
- *
- * ── The line had two hard edges, and one of them was a lie (2026-08-03) ──────
- *
- * Drawn as a stroke, this was 2.2px of flat `horizon` between a black planet
- * and black space — **hard on both sides**. Measured off a headed render along a
- * ray through the night limb: `(6,7,9)` for the planet, then `(34,46,64)`,
- * `(34,46,64)`, then `(8,10,13)` for space, with nothing in between. Against the
- * day limb on the same frame, which ramps from `(102,113,132)` down to space
- * over 24px, it read as what it literally was — a circle stroked around the
- * globe — and it was the only hard edge anywhere in the sky.
- *
- * The inner edge is right and has to stay: the planet is opaque and its limb is
- * a real discontinuity. The outer one is not. Airglow is a *shell* seen edge-on,
- * so its brightness falls off with the atmosphere above it rather than stopping;
- * that soft outer edge is what the band looks like in every orbital photograph
- * the rest of this note appeals to.
- *
- * So the stroke becomes an annulus with a graded alpha, and **the peak is
- * unchanged and still on the limb** — the token's 1.45:1 measurement is what the
- * first stop is, so nothing measured against it moves. What changes is only what
- * happens outside: half strength half a width out, a sixth at one and a half,
- * gone by `AIRGLOW_REACH`. The area under that curve is 1.73px of full-strength
- * ink against the stroke's 1.65, so it does not read fainter — only softer. The
- * effective width a reader sees is still about two pixels, which is what the
- * sweep found; the ring is now made of light rather than drawn with a pen.
- *
- * `AIRGLOW_REACH` is **not** free to grow into the answer for the day side. Past
- * ~3px of *uniform* width this stopped being an edge and became a ring, and a
- * long enough tail reintroduces that at lower alpha. It is a falloff on a
- * hairline, not a halo.
+ * An annulus with a graded alpha, not a stroke: the inner edge is the planet's
+ * opaque limb and stays hard; outside it falls to half at half a width, a sixth
+ * at one and a half, and nothing by `AIRGLOW_REACH`, which is a falloff on a
+ * hairline and not free to grow into a halo.
  */
 const AIRGLOW_WIDTH = 2.2
 const AIRGLOW_ALPHA = 1
@@ -174,6 +113,7 @@ const rgbOf = (hex: string): [number, number, number] => [
 ]
 
 const HALO_RGB = rgbOf(MAP_COLOURS.horizon)
+const AIRGLOW_RGB = rgbOf(MAP_COLOURS.airglow)
 
 // --- the island's half -----------------------------------------------------
 
@@ -259,13 +199,13 @@ export function createSky(view: SkyView): Sky {
     // Where a radius lands on the gradient's 0..1 parameter.
     const at = (px: number) => (cam.r + px - rimInner) / span
     const rim = ctx.createRadialGradient(cam.cx, cam.cy, rimInner, cam.cx, cam.cy, rimOuter)
-    const horizon = `rgb(${HALO_RGB[0]} ${HALO_RGB[1]} ${HALO_RGB[2]}`
-    rim.addColorStop(0, `${horizon} / 1)`)
+    const glow = `rgb(${AIRGLOW_RGB[0]} ${AIRGLOW_RGB[1]} ${AIRGLOW_RGB[2]}`
+    rim.addColorStop(0, `${glow} / 1)`)
     // Full through the limb, so the peak is exactly the token's measurement.
-    rim.addColorStop(at(0), `${horizon} / 1)`)
-    rim.addColorStop(at(AIRGLOW_WIDTH * 0.5), `${horizon} / 0.5)`)
-    rim.addColorStop(at(AIRGLOW_WIDTH * 1.5), `${horizon} / 0.16)`)
-    rim.addColorStop(1, `${horizon} / 0)`)
+    rim.addColorStop(at(0), `${glow} / 1)`)
+    rim.addColorStop(at(AIRGLOW_WIDTH * 0.5), `${glow} / 0.5)`)
+    rim.addColorStop(at(AIRGLOW_WIDTH * 1.5), `${glow} / 0.16)`)
+    rim.addColorStop(1, `${glow} / 0)`)
     ctx.globalAlpha = AIRGLOW_ALPHA * fade
     ctx.fillStyle = rim
     ctx.beginPath()

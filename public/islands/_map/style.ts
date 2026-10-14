@@ -270,6 +270,16 @@ export const MAP_COLOURS = {
    * from its shader, not from `horizon-color`.
    */
   horizon: '#222e40',
+  /**
+   * The airglow line round the whole limb, the night limb's only edge
+   * (`sky-paint.ts`). `horizon` at 1.45:1 drew it, and on the night side the
+   * planet still dissolved into space.
+   *
+   * 2.2:1 against `ocean`, so the edge is seen; 1.11:1 below `LAND_RAMP[4]`, so
+   * the air stays dimmer than the brightest land; `horizon`'s hue at 28%
+   * saturation, inside the genocide corridor.
+   */
+  airglow: '#384a64',
 } as const
 
 /** Category hues, low-saturation so four of them can coexist without shouting. */
@@ -938,12 +948,9 @@ export function buildStyle(v?: string): StyleSpecification {
        * one pixel over Mali at world zoom went from (84,103,121) to
        * (72,86,102).
        *
-       * The night limb stays unlit and therefore invisible, since space and
-       * ocean are the same tone by construction (see `.map-canvas-host`). That
-       * is kept deliberately: it is what the terminator already says, said once
-       * more by the edge, and a planet whose dark side merges into the dark is
-       * the honest picture. What it must not do is look like clipping, and the
-       * only thing that made it look like clipping was the day side shouting.
+       * The night limb is unlit by this glow, since the scattering is dark
+       * wherever the sun is behind the planet. Its edge is the airglow line on
+       * the island's own sky canvas (`MAP_COLOURS.airglow`, `sky-paint.ts`).
        */
       'atmosphere-blend': 0.2,
     },
