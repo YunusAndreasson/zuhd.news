@@ -59,10 +59,19 @@ import { loadShared } from './shared-ts.js'
  * which puts them at the bottom of the ramp — where a zero belongs. Costa Rica
  * spends $0 on its military and Brunei hosts no refugees; both are the darkest
  * tone, alongside the smallest non-zero country, and that is the truth.
+ *
+ * The ends are the values at the `RAMP_CLIP` percentiles, not the extremes,
+ * and anyone past an end takes its tone. With the extremes, one outlier set
+ * the floor: Greenland's 57K people held the darkest tone alone, and 80% of
+ * countries shared a 1.38:1 band. The tone is still the value on the metric's
+ * scale; only the few countries beyond each end are tied there, and the legend
+ * says so (`≤`, `≥`).
  */
-const rampPositions = (entries, { scale, ascending }) => {
+export const RAMP_CLIP = 0.02
+
+export const rampPositions = (entries, { scale, ascending }) => {
   const out = new Map()
-  if (!entries.length) return out
+  if (!entries.length) return { positions: out, low: null, high: null }
 
   // `Math.min(...xs)` blows the stack somewhere in the tens of thousands of
   // arguments. These sets are ~170 long, but the reduce costs nothing and this
@@ -76,8 +85,12 @@ const rampPositions = (entries, { scale, ascending }) => {
     scale === 'log' ? (n) => Math.log(Math.max(n, floor)) : (n) => n
 
   const projected = entries.map((e) => project(e.numeric))
-  const lo = projected.reduce((m, x) => (x < m ? x : m), Number.POSITIVE_INFINITY)
-  const hi = projected.reduce((m, x) => (x > m ? x : m), Number.NEGATIVE_INFINITY)
+  const order = entries
+    .map((e, i) => ({ e, x: projected[i] }))
+    .sort((a, b) => a.x - b.x || a.e.numeric - b.e.numeric)
+  const last = order.length - 1
+  const lo = order[Math.round(RAMP_CLIP * last)].x
+  const hi = order[Math.round((1 - RAMP_CLIP) * last)].x
   const span = hi - lo
 
   entries.forEach((e, i) => {
@@ -85,10 +98,22 @@ const rampPositions = (entries, { scale, ascending }) => {
     // place anyone on; the floor is the honest answer rather than a divide by
     // zero. Nothing in the corpus does this, but a future single-value series
     // would, and it would do it silently.
-    const q = span > 0 ? (projected[i] - lo) / span : 0
+    const q = span > 0 ? Math.min(1, Math.max(0, (projected[i] - lo) / span)) : 0
     out.set(e.name, ascending ? 1 - q : q)
   })
-  return out
+  // Each end is named by the figure that bounds everyone sharing its tone: the
+  // largest at the dark end, the smallest at the light. A floored zero shares
+  // the floor with the smallest positive figure, so it never names the end.
+  // `beyond` is whether anyone in that group has another figure.
+  const atLow = order.filter((o) => o.x <= lo)
+  const atHigh = order.filter((o) => o.x >= hi)
+  const lowEnd = atLow[atLow.length - 1].e
+  const highEnd = atHigh[0].e
+  return {
+    positions: out,
+    low: { entry: lowEnd, beyond: atLow.some((o) => o.e.numeric !== lowEnd.numeric) },
+    high: { entry: highEnd, beyond: atHigh.some((o) => o.e.numeric !== highEnd.numeric) },
+  }
 }
 
 export const buildCountryMetrics = async ({ distDir }) => {
@@ -131,7 +156,7 @@ export const buildCountryMetrics = async ({ distDir }) => {
 
     const ascending = meta.ascending === true
     const scale = meta.scale
-    const p = rampPositions(routable, { scale, ascending })
+    const { positions: p, low, high } = rampPositions(routable, { scale, ascending })
 
     const values = {}
     for (const entry of routable) {
@@ -146,40 +171,19 @@ export const buildCountryMetrics = async ({ distDir }) => {
      * The values at the two ends of the ramp, formatted as the country pages
      * print them, in the order the legend draws the gradient.
      *
-     * A gradient with nothing written on it is a scale with no units. The
-     * legend used to be 72 pixels of bare gradient beside a sentence, so the
-     * only way to learn what a tone stood for was to already know the
-     * distribution — and with the ramp now turning around on three metrics,
-     * prose alone cannot carry the direction either. Printing both ends says
-     * which way it runs *and* how much of a thing a shade is worth, in one
-     * object the legend cannot get wrong.
+     * A gradient with nothing written on it is a scale with no units, and prose
+     * alone cannot carry the direction on the three metrics that turn the ramp
+     * around. Printing both ends says which way it runs and how much of a thing
+     * a shade is worth.
      *
-     * Taken from the countries actually on the ramp rather than from the raw
-     * ranking, for the same reason `p` is: the ends have to name someone the
-     * reader can find on the map.
-     *
-     * Read off the *numeric* extremes rather than off `p`, because the log
-     * floor makes `p` tie at the bottom: Niger reports 0% youth unemployment
-     * and floors to the smallest positive figure in the set, so it shares the
-     * end tone with a country at 1%. Both are the lightest shade, and the label
-     * has to be the value that shade can actually mean at its limit — the tie
-     * printed "1%" while the map was painting a 0% country the same colour.
+     * An end is the value where its tone begins, from `rampPositions`, the
+     * same set `p` is placed on. Where countries lie past it the label says so,
+     * `≤` at the low end and `≥` at the high, since they share that tone.
      */
-    const extremes = routable.reduce(
-      (acc, e) =>
-        !acc
-          ? { min: e, max: e }
-          : {
-              min: e.numeric < acc.min.numeric ? e : acc.min,
-              max: e.numeric > acc.max.numeric ? e : acc.max,
-            },
-      null,
-    )
-    const ends = extremes
-      ? ascending
-        ? { dark: extremes.max.value, light: extremes.min.value }
-        : { dark: extremes.min.value, light: extremes.max.value }
-      : { dark: '', light: '' }
+    const label = (end, sign) => (end ? `${end.beyond ? sign : ''}${end.entry.value}` : '')
+    const ends = ascending
+      ? { dark: label(high, '≥ '), light: label(low, '≤ ') }
+      : { dark: label(low, '≤ '), light: label(high, '≥ ') }
 
     writeFileSync(
       join(outDir, `${key}.json`),

@@ -69,6 +69,9 @@ Camera, MapLibre and cards are `map.md`; the rails are `map-rail.md`.
   default was an editorial claim.
 - The tone is the value, not the percentile. Every metric states
   `METRICS[key].scale` (`'linear'` or `'log'`); it is editorial, never derived.
+- The ramp's ends are the values at `RAMP_CLIP` (2%) from each end
+  (`rampPositions`), not the extremes: one outlier set the floor and left 80%
+  of countries in 1.38:1. The legend marks a shared end `≤`/`≥`.
 - `ascending` means lower is better and flips the ramp. Do not add it to other
   metrics: it renumbers the ranks the country pages print.
 - No figure is hatched, never shaded (`nodataHatch`, `land-nodata`): any tone
