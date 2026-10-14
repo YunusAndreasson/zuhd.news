@@ -1,23 +1,5 @@
 [
   {
-    "ts": "2026-07-24T08:18:47.113Z",
-    "cycleId": "2026-07-24T08-18",
-    "cycleHour": "08",
-    "schema": 2,
-    "rvs": 76.11,
-    "clusters": {
-      "picking": null,
-      "writing": 90.91,
-      "briefing": null,
-      "sourcing": 36.79,
-      "coverage": 95.69
-    },
-    "articleCount": 11,
-    "briefCount": 0,
-    "guardrailFailures": [],
-    "degenerate": false
-  },
-  {
     "ts": "2026-07-24T12:20:32.442Z",
     "cycleId": "2026-07-24T12-20",
     "cycleHour": "12",
@@ -6893,6 +6875,27 @@
     "articleCount": 13,
     "briefCount": 0,
     "guardrailFailures": [],
+    "degenerate": false
+  },
+  {
+    "ts": "2026-10-14T05:15:45.816Z",
+    "cycleId": "2026-10-14T05-15",
+    "runId": "2026-10-14_0504",
+    "cycleHour": "05",
+    "schema": 3,
+    "rvs": 70.01,
+    "clusters": {
+      "picking": null,
+      "writing": 88.64,
+      "briefing": null,
+      "sourcing": 42.77,
+      "coverage": 72.42
+    },
+    "articleCount": 11,
+    "briefCount": 0,
+    "guardrailFailures": [
+      "category politics below floor 3 (got 2)"
+    ],
     "degenerate": false
   }
 ]
