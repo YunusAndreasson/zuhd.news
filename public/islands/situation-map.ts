@@ -3122,11 +3122,23 @@ export function mount(
       source: 'conflict',
       layout: {
         'icon-image': 'conflict-mark',
-        // 5 → 14px, which is the range `glyphs.ts` says this mark was drawn for
-        // and the one `GLYPH_PAD` was sized against ("at 0.31, the conflict
-        // floor…"). Not a translation of the circle's 1.6px radius: a 3.2px
-        // square has no corners left, and corners are the whole mark.
-        'icon-size': ['interpolate', ['linear'], ['get', 'mag'], 0, 0.31, 1, 0.875],
+        // 5 → 14px by zoom 5, which is the range `glyphs.ts` says this mark was
+        // drawn for and the one `GLYPH_PAD` was sized against ("at 0.31, the
+        // conflict floor…"). Not a translation of the circle's 1.6px radius: a
+        // 3.2px square has no corners left, and corners are the whole mark.
+        //
+        // At world view the top comes down to 9px and the floor stays. A week
+        // of fighting in Ukraine or Pakistan was a pile of 14px squares over
+        // the country's name; nothing is merged or hidden, the marks are only
+        // smaller until the camera comes in. Zoom is the outer `interpolate`:
+        // MapLibre only accepts it at the top level.
+        'icon-size': [
+          'interpolate',
+          ['linear'],
+          ['zoom'],
+          2, ['interpolate', ['linear'], ['get', 'mag'], 0, 0.31, 1, 0.55],
+          5, ['interpolate', ['linear'], ['get', 'mag'], 0, 0.31, 1, 0.875],
+        ],
         'icon-allow-overlap': true,
         'icon-ignore-placement': true,
       },
