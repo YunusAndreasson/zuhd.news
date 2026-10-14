@@ -19,6 +19,7 @@ import {
   Map as MapLibreMap,
   prewarm,
   type ExpressionSpecification,
+  type FlyToOptions,
   type GeoJSONSource,
   type MapGeoJSONFeature,
   type PaddingOptions,
@@ -1564,8 +1565,7 @@ export function mount(
       // card without showing them where it is would answer half the question —
       // the same bargain the story rail makes.
       feed.setExpanded(false, true)
-      flying = true
-      map.flyTo({ center: [ex.lng, ex.lat], zoom: Math.max(map.getZoom(), 3.2), duration: 900 })
+      flyCamera({ center: [ex.lng, ex.lat], zoom: Math.max(map.getZoom(), 3.2), duration: 900 })
       // Both of these carry the rail's window in, so the card opens on the
       // period the row the reader pressed was drawing. An exchange card opened
       // from a mark on the map takes no argument and still draws the whole
@@ -1589,8 +1589,7 @@ export function mount(
       const cp = chokepoints.find((c) => c.id === id)
       if (!cp) return
       feed.setExpanded(false, true)
-      flying = true
-      map.flyTo({ center: [cp.lng, cp.lat], zoom: Math.max(map.getZoom(), 3.2), duration: 900 })
+      flyCamera({ center: [cp.lng, cp.lat], zoom: Math.max(map.getZoom(), 3.2), duration: 900 })
       sheet.showChokepoint(cp, true, docked())
     },
     // Nothing to fly to — a calendar entry is not a place — so this only
@@ -3713,6 +3712,32 @@ export function mount(
   }
 
   /**
+   * Every flight goes through here, so every flight hands `flying` back.
+   *
+   * `flying` pauses hover and defers padding, so a flight that set it and
+   * never cleared it left the map dead to the pointer until a story opened.
+   * `landed` runs once, on `moveend` or after the safety timeout, whichever
+   * comes first: an interrupted flight may never emit `moveend`.
+   */
+  const flyCamera = (options: FlyToOptions, landed?: () => void) => {
+    flying = true
+    let done = false
+    const land = () => {
+      if (done || !mounted) return
+      done = true
+      flying = false
+      map.off('moveend', land)
+      // Anything that moved while the camera was busy deferred its padding
+      // rather than cancelling the flight; now is when it gets applied.
+      if (paddingPending) applyPadding()
+      landed?.()
+    }
+    map.on('moveend', land)
+    window.setTimeout(land, 1600)
+    map.flyTo(options)
+  }
+
+  /**
    * A short hop toward the story rather than a jump to a fixed zoom: from the
    * world view it settles at a regional scale, and if you are already zoomed in
    * it only steps a little closer. The vertical offset leaves room for the
@@ -3745,38 +3770,26 @@ export function mount(
     const z = map.getZoom()
     const target = z < 2.5 ? 2.5 : Math.min(z + 0.4, 6)
 
-    flying = true
-    let opened = false
-    const reveal = () => {
-      if (opened || !mounted) return
-      opened = true
-      flying = false
-      map.off('moveend', reveal)
-      // Anything that moved while the camera was busy deferred its padding
-      // rather than cancelling the flight; now is when it gets applied.
-      if (paddingPending) applyPadding()
-      if (openSlug === p.slug) void popup?.open(p, scrubNow)
-    }
-    map.on('moveend', reveal)
-    // Safety net: an interrupted flight may never emit `moveend`, and the
-    // reader would be left looking at a preview that never becomes the story.
-    window.setTimeout(reveal, 1600)
-
-    map.flyTo({
-      center: [p.lng, p.lat],
-      zoom: target,
-      // Leaves room above the marker for the card, which opens upward. The
-      // horizontal correction for the rail comes from the map's padding.
-      offset: [0, 110],
-      duration: 1150,
-      curve: 1.35,
-      // No `essential: true`. In MapLibre that flag means "animate anyway,
-      // whatever the reader's motion preference" — and a 1.15s flight across
-      // the globe is the exact motion `prefers-reduced-motion` exists to
-      // suppress. Without the flag MapLibre still makes the move, it just
-      // arrives instantly, which is what someone who asked for less motion
-      // wants: the destination, not the journey.
-    })
+    flyCamera(
+      {
+        center: [p.lng, p.lat],
+        zoom: target,
+        // Leaves room above the marker for the card, which opens upward. The
+        // horizontal correction for the rail comes from the map's padding.
+        offset: [0, 110],
+        duration: 1150,
+        curve: 1.35,
+        // No `essential: true`. In MapLibre that flag means "animate anyway,
+        // whatever the reader's motion preference" — and a 1.15s flight across
+        // the globe is the exact motion `prefers-reduced-motion` exists to
+        // suppress. Without the flag MapLibre still makes the move, it just
+        // arrives instantly, which is what someone who asked for less motion
+        // wants: the destination, not the journey.
+      },
+      () => {
+        if (openSlug === p.slug) void popup?.open(p, scrubNow)
+      },
+    )
   }
 
   /**

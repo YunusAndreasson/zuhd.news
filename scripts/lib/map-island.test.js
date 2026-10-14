@@ -1329,3 +1329,84 @@ test('the camera has one pose, and the wheel zooms about the planet', async () =
     delete globalThis.__zuhdMaps
   }
 })
+
+test('a strait row’s flight hands the pointer back when it lands', async () => {
+  // A rail row flies the camera, and `flying` pauses hover for the flight. The
+  // row handlers once set it and never cleared it, so after one press the
+  // globe stopped answering the pointer until a story happened to be opened.
+  globalThis.__zuhdMaps = []
+  const env = setupDom()
+  const day = (i) => new Date(Date.now() - (20 - i) * 86_400_000)
+  const strait = {
+    id: 'hormuz',
+    name: 'Strait of Hormuz',
+    blurb: 'A strait.',
+    lat: 26.3,
+    lng: 56.9,
+    topicTags: [],
+    primaryField: 'n_tanker',
+    last7Avg: { n_total: 3, n_tanker: 1 },
+    baseline90Avg: { n_total: 4, n_tanker: 1.5 },
+    delta7vs90: { n_total: -0.3, n_tanker: -0.4 },
+    series: {
+      periods: Array.from({ length: 21 }, (_, i) =>
+        day(i).toLocaleDateString('en-US', { month: 'short', day: 'numeric', timeZone: 'UTC' }),
+      ),
+      total: Array.from({ length: 21 }, (_, i) => 4 + (i % 3)),
+    },
+    asOf: day(20).toISOString().slice(0, 10),
+  }
+  globalThis.fetch = /** @type {typeof fetch} */ (
+    /** @type {unknown} */ (
+      async (url) =>
+        String(url).includes('/api/chokepoints.json')
+          ? { ok: true, json: async () => ({ chokepoints: [strait] }) }
+          : { ok: false, json: async () => ({}) }
+    )
+  )
+  // The wide layout, where the rail holds the strait rows.
+  globalThis.matchMedia = env.window.matchMedia = /** @type {typeof matchMedia} */ (
+    /** @type {unknown} */ (
+      (q) => ({ matches: q.includes('min-width'), addEventListener() {}, removeEventListener() {} })
+    )
+  )
+  try {
+    const { mount } = await import(bundlePath)
+    const teardown = mount(env.host)
+    env.pump()
+    await settle()
+    env.pump()
+
+    const map = globalThis.__zuhdMaps.at(-1)
+    let queries = 0
+    const query = map.queryRenderedFeatures.bind(map)
+    map.queryRenderedFeatures = (...args) => {
+      queries++
+      return query(...args)
+    }
+    const hover = () => {
+      const before = queries
+      for (const f of map.handlers.mousemove || []) {
+        f({ type: 'mousemove', point: { x: 600, y: 300 }, lngLat: { lng: 12, lat: 22 } })
+      }
+      return queries > before
+    }
+    assert.ok(hover(), 'the pointer is answered before any flight')
+
+    // With no `map.json` there is no scrubber to seat the rail; a resize
+    // places it the way a layout change does.
+    env.window.dispatchEvent(new env.window.Event('resize'))
+    const row = [...env.host.querySelectorAll('button')].find((b) => b.textContent?.includes('Hormuz'))
+    assert.ok(row, 'the strait has a row in the rail')
+    row.click()
+    assert.equal(hover(), false, 'mid-flight, hover waits')
+
+    for (const f of [...(map.handlers.moveend || [])]) f({ type: 'moveend' })
+    assert.ok(hover(), 'and once the camera lands the pointer is answered again')
+
+    teardown()
+  } finally {
+    env.restore()
+    delete globalThis.__zuhdMaps
+  }
+})

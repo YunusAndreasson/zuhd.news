@@ -134,7 +134,8 @@ calendar `hijri.md`.
   `HIT_ORDER`, the same set as `MARKER_LAYERS`. Per-layer handlers both fire
   for one pointer.
 - No hover work during a gesture (`flying || interacting`). `moveend` asks
-  again once, from `lastPointer`.
+  again once, from `lastPointer`. Every flight goes through `flyCamera`, the
+  one thing that clears `flying`; a bare `map.flyTo` leaves hover dead.
 - `Popup.addTo` fires `close` synchronously on an open popup. Attach only
   through `attach()` (`reattaching`), or the card stays on "Loading…".
 - A story card is one width at two densities. `preview()` prefetches the
