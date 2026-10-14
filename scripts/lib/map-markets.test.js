@@ -16,6 +16,10 @@
 import test from 'node:test'
 import assert from 'node:assert/strict'
 import { JSDOM } from 'jsdom'
+import { readdirSync, readFileSync } from 'node:fs'
+import { join } from 'node:path'
+import { PbfReader } from 'pbf'
+import { ROOT } from './paths.js'
 import { bundleIsland, scratchDir } from './island-bundle.js'
 
 const dir = scratchDir('map-markets')
@@ -1211,17 +1215,31 @@ test('the exchanges’ panel covers the days their row printed', () => {
 })
 
 /**
- * The map's own font is four files a face: code points 0–767 and 8192–8447.
- * A character outside them is not a missing glyph, it is a request for a range
- * file that does not exist, and the label it is in never draws. `ribbonPct`
- * prints a minus sign (U+2212), which is outside both, so a strait's move is
- * signed with a plus and an en dash and a market's is not signed at all.
+ * The map's own font is four files a face, generated from Source Sans 3
+ * (`scripts/build/glyphs.mjs`). A character outside their ranges is a request
+ * for a range file that does not exist, and the label it is in never draws; one
+ * inside a range the font lacks draws as a gap. `ribbonPct` prints a minus sign
+ * (U+2212), which is outside both, so a strait's move is signed with a plus and
+ * an en dash and a market's is not signed at all.
  */
-test('every character a map label prints is in a font range the site ships', () => {
-  const shipped = (text) => [...text].every((ch) => {
-    const cp = ch.codePointAt(0)
-    return cp <= 767 || (cp >= 8192 && cp <= 8447)
-  })
+test('every character a map label prints is a glyph the site ships', () => {
+  const glyphs = new Set()
+  for (const face of ['Regular', 'Bold']) {
+    const dir = join(ROOT, 'public/basemap/fonts', `Source Sans 3 ${face}`)
+    for (const file of readdirSync(dir)) {
+      new PbfReader(readFileSync(join(dir, file))).readFields((tag, _, pbf) => {
+        if (tag !== 1) return
+        pbf.readMessage((t, __, stack) => {
+          if (t !== 3) return
+          stack.readMessage((g, ___, glyph) => {
+            if (g === 1) glyphs.add(glyph.readVarint())
+          }, null)
+        }, null)
+      }, null)
+    }
+  }
+  assert.ok(glyphs.has(0x2013) && glyphs.has(0xe3), 'the en dash and ã are in the font')
+  const shipped = (text) => [...text].every((ch) => glyphs.has(/** @type {number} */ (ch.codePointAt(0))))
   const now = Date.parse('2026-10-10T12:00:00Z')
   const asOf = '2026-10-09'
   const fall = Array.from({ length: 40 }, (_, i) => 200 - i * 2)

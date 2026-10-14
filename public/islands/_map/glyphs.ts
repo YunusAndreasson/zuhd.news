@@ -20,11 +20,11 @@
 // ── Why signed distance fields, and not a font ─────────────────────────────
 //
 // The obvious route is `text-field` with a geometric character — ▲ ■ ◆. It does
-// not work here: `public/basemap/fonts/{Noto Sans Bold,Noto Sans Regular}/` ship
-// exactly four ranges (`0-255`, `256-511`, `512-767`, `8192-8447`), Geometric
-// Shapes lives in `9472-9727`, and there is no font-generation step anywhere in
-// `scripts/` — those `.pbf` files are checked-in binaries. It would cost new
-// binary assets and a build step, and buy glyphs whose metrics we do not control.
+// not work here: the label fonts in `public/basemap/fonts/` ship four ranges
+// (`0-255`, `256-511`, `512-767`, `8192-8447`) of Source Sans 3, which has no
+// Geometric Shapes (`9472-9727`). `scripts/build/glyphs.mjs` could draw more
+// ranges, but only from a font that has the shapes, and the result would be
+// glyphs whose metrics we do not control.
 //
 // So the marks are drawn here and handed to `map.addImage(..., {sdf: true})`.
 // That is the same road `nodataHatch` already takes — raw RGBA, no 2D context,

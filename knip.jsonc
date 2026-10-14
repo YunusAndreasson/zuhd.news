@@ -99,6 +99,8 @@
     //    the same reason shoot.mjs is: what they measure needs a real browser
     //    and, for the idle check, a real GPU and a visible window.
     "scripts/perf/*.mjs",
+    // Run by hand when the map's label font changes; its output is checked in.
+    "scripts/build/glyphs.mjs",
 
     // ── Manual tools. Unreferenced by design, and each one is the only way to
     //    do the thing it does: fetch-country-cards.js regenerates the committed

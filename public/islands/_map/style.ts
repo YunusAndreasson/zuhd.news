@@ -876,8 +876,9 @@ export const globeFitZoom = (span: number, lat: number): number => {
 export function buildStyle(v?: string): StyleSpecification {
   return {
     version: 8,
-    // Glyphs are genuinely immutable — the same Noto ranges every build — so
-    // they keep their unversioned, year-long cached URL.
+    // Glyphs are immutable: checked-in files from `scripts/build/glyphs.mjs`,
+    // the same every build, so they keep their unversioned, year-long cached
+    // URL. A new font is a new fontstack name, so a new path.
     glyphs: '/basemap/fonts/{fontstack}/{range}.pbf',
     /**
      * The world is a sphere at the zoom every reader starts on, and a plane by
@@ -1203,7 +1204,7 @@ export function buildStyle(v?: string): StyleSpecification {
            * `MAP_COLOURS.label` already hit from the other side, and it is why
            * this layer gets quieter without getting dimmer.
            */
-          'text-font': ['Noto Sans Regular'],
+          'text-font': ['Source Sans 3 Regular'],
           // 8.5px was too small for the most prominent text on the map, and small
           // type is the other half of why it was hard to read — contrast and size
           // trade against each other, and this was short on both.
@@ -1287,7 +1288,7 @@ export function buildStyle(v?: string): StyleSpecification {
         filter: ['<=', ['get', 'r'], ['+', 1, ['*', 1.6, ['zoom']]]],
         layout: {
           'text-field': ['get', 'n'],
-          'text-font': ['Noto Sans Regular'],
+          'text-font': ['Source Sans 3 Regular'],
           'text-size': ['interpolate', ['linear'], ['zoom'], 3, 10, 8, 13],
           'text-offset': [0, 0.75],
           'text-anchor': 'top',
@@ -1333,8 +1334,8 @@ export function buildStyle(v?: string): StyleSpecification {
        * learn once. 4.66:1 on the ocean, so it clears AA on the surface it will
        * always be drawn against. Regular rather than the country labels' Bold,
        * and wider tracking: cartography sets water names in italic, which is
-       * not available here — the basemap ships two Noto stacks and neither is
-       * oblique — so weight and tracking carry the distinction instead.
+       * not available here — the basemap ships no italic face — so weight and
+       * tracking carry the distinction instead.
        */
       {
         id: 'sea-labels',
@@ -1352,7 +1353,7 @@ export function buildStyle(v?: string): StyleSpecification {
         filter: ['<=', ['get', 'rank'], ['step', ['zoom'], 1, 3.2, 2]],
         layout: {
           'text-field': ['get', 'name'],
-          'text-font': ['Noto Sans Regular'],
+          'text-font': ['Source Sans 3 Regular'],
           'text-size': ['interpolate', ['linear'], ['zoom'], 1.5, 8, 6, 12],
           'text-letter-spacing': 0.22,
           'text-transform': 'uppercase',

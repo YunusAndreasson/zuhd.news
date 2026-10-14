@@ -3069,7 +3069,7 @@ export function mount(
           'symbol-spacing': 250,
           'text-field': ['get', 'name'],
           'text-transform': 'uppercase',
-          'text-font': ['Noto Sans Regular'],
+          'text-font': ['Source Sans 3 Regular'],
           'text-size': 9,
           'text-letter-spacing': 0.16,
           // Dhuhr is a meridian, and line placement with the default map-aligned
@@ -3400,7 +3400,7 @@ export function mount(
           1, ['case', ['>=', ['get', 'n'], 3], ['to-string', ['get', 'n']], ''],
           3, ['case', ['>=', ['get', 'n'], 2], ['to-string', ['get', 'n']], ''],
         ],
-        'text-font': ['Noto Sans Bold'],
+        'text-font': ['Source Sans 3 Bold'],
         'text-size': ['interpolate', ['linear'], ['zoom'], 1, 10, 5, 12],
         // Beside the stack, never on it, and free to hop when crowded — eight
         // European capitals sit within a few degrees of each other.
@@ -3606,7 +3606,7 @@ export function mount(
       source: 'genocide',
       layout: {
         'text-field': ['get', 'name'],
-        'text-font': ['Noto Sans Bold'],
+        'text-font': ['Source Sans 3 Bold'],
         'text-size': ['interpolate', ['linear'], ['zoom'], 0, 11.5, 4, 14],
         'text-letter-spacing': 0.1,
         'text-transform': 'uppercase',

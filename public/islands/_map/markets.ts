@@ -171,14 +171,14 @@ const labelOf = (nameFont: string): ExpressionSpecification => [
   ['get', 'city'],
   { 'text-font': ['literal', [nameFont]], 'text-color': MAP_COLOURS.label },
   ['case', ['==', ['get', 'label'], ''], '', ['concat', ' ', ['get', 'label']]],
-  { 'text-font': ['literal', ['Noto Sans Bold']], 'text-color': TONE },
+  { 'text-font': ['literal', ['Source Sans 3 Bold']], 'text-color': TONE },
 ]
 /** A flagged market's city is set in bold: it is the one to press. */
 const LABEL: ExpressionSpecification = [
   'case',
   ['==', ['get', 'flag'], 1],
-  labelOf('Noto Sans Bold'),
-  labelOf('Noto Sans Regular'),
+  labelOf('Source Sans 3 Bold'),
+  labelOf('Source Sans 3 Regular'),
 ]
 
 /**
@@ -282,7 +282,7 @@ export const marketLabelLayout = (): NonNullable<SymbolLayerSpecification['layou
     LABEL_ZOOM,
     LABEL,
   ],
-  'text-font': ['Noto Sans Regular'],
+  'text-font': ['Source Sans 3 Regular'],
   'text-size': ['interpolate', ['linear'], ['zoom'], 1, 10, 5, 12.5],
   // Below first: that is where the basemap prints a city's name, and a label
   // that takes the slot is a label the basemap's copy yields to. Then the
@@ -2331,7 +2331,7 @@ const STRAIT_LABEL: ExpressionSpecification = [
   ['get', 'short'],
   {},
   ['case', ['==', ['get', 'move'], ''], '', ['concat', ' ', ['get', 'move']]],
-  { 'text-font': ['literal', ['Noto Sans Bold']] },
+  { 'text-font': ['literal', ['Source Sans 3 Bold']] },
 ]
 
 /**
@@ -2351,7 +2351,7 @@ export const straitLabelLayout = (): NonNullable<SymbolLayerSpecification['layou
     STRAIT_LABEL_ZOOM,
     STRAIT_LABEL,
   ],
-  'text-font': ['Noto Sans Regular'],
+  'text-font': ['Source Sans 3 Regular'],
   'text-size': ['interpolate', ['linear'], ['zoom'], 1, 10, 5, 12.5],
   'text-variable-anchor': ['top', 'left', 'right', 'bottom'],
   'text-radial-offset': 0.9,
