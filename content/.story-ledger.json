@@ -2,13 +2,178 @@
   "version": 1,
   "stories": [
     {
+      "id": "starlink-speed-limit-ukraine-military-missions",
+      "label": "Ukraine Says New Starlink Speed Limit Is Disrupting Its Attacks",
+      "firstSeen": "2026-10-14T10:03:00.937Z",
+      "lastCovered": "2026-10-14T10:03:00.937Z",
+      "coverageCount": 1,
+      "category": "tech",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-10-14-starlink-speed-limit-ukraine-military-missions"
+      ],
+      "eventUri": "rus-2141357",
+      "summary": "SpaceX throttled Starlink terminals in Ukraine overnight with no warning, and a presidential adviser says military missions were disrupted. Lead with the dependency: one private company's switch decides whether a state's drone and strike operations run. The mechanism to explain is how a speed cap degrades drone control links, and who in the US decides it."
+    },
+    {
+      "id": "imf-georgieva-saudi-attacks-spillover-fiscal-repair",
+      "label": "IMF chief calls for 'urgent repairs' to address fiscal balances",
+      "firstSeen": "2026-10-14T10:03:00.937Z",
+      "lastCovered": "2026-10-14T10:03:00.937Z",
+      "coverageCount": 1,
+      "category": "economy",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-10-14-imf-georgieva-saudi-attacks-spillover-fiscal-repair"
+      ],
+      "eventUri": "spa-4376872",
+      "summary": "New since the IMF's debt warning: in Bangkok on Oct 14 Georgieva said the attacks on Saudi Arabia could spill over into every economy, and told governments that resilience has reached its limits. Lead with the Saudi spillover and who pays it — oil importers in Asia and Africa already squeezed by debt service — then the fiscal repair she demands. Name Brent crude and the US 10-year Treasury yield as the channels."
+    },
+    {
+      "id": "punjab-anti-drug-activist-killed-bulldozer-demolition",
+      "label": "Anti-drug crusader's murder: Mob sets ablaze accused's medical store in Mansa amid bulldozer action",
+      "firstSeen": "2026-10-14T10:03:00.937Z",
+      "lastCovered": "2026-10-14T10:03:00.937Z",
+      "coverageCount": 1,
+      "category": "politics",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-10-14-punjab-anti-drug-activist-killed-bulldozer-demolition"
+      ],
+      "eventUri": "eng-12092178",
+      "summary": "Anti-drug activist Parvinder Singh was shot dead in daylight while streaming on Facebook; the next day Punjab authorities demolished part of the accused pharmacist's house and a mob burned his shop. Two failures to lead with: a state where activists who expose drug sales get killed, and a state that answers with bulldozer punishment before any trial. NDTV frames the wider pattern of activist killings in Punjab."
+    },
+    {
+      "id": "china-exports-surge-36-percent-september-ai-demand",
+      "label": "China's exports surge amid AI-driven demand",
+      "firstSeen": "2026-10-14T10:03:00.937Z",
+      "lastCovered": "2026-10-14T10:03:00.937Z",
+      "coverageCount": 1,
+      "category": "economy",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-10-14-china-exports-surge-36-percent-september-ai-demand"
+      ],
+      "eventUri": "eng-12092626",
+      "summary": "China's September exports jumped 36.3% year on year to $447.18bn, up from 25% in August. Lead with the number and what drives it — AI hardware demand — then who absorbs the surplus: the EU, Southeast Asia and Global South markets as US tariffs divert flows. Name the yuan."
+    },
+    {
+      "id": "turkish-police-raid-halk-tv-opposition-broadcaster",
+      "label": "Turkish police raid office of opposition TV channel, the broadcaster says",
+      "firstSeen": "2026-10-14T10:03:00.937Z",
+      "lastCovered": "2026-10-14T10:03:00.937Z",
+      "coverageCount": 1,
+      "category": "politics",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-10-14-turkish-police-raid-halk-tv-opposition-broadcaster"
+      ],
+      "eventUri": "eng-12095496",
+      "summary": "Hundreds of police entered Halk TV's Istanbul building and its live broadcast was cut at 06:30, replaced by pre-recorded material. Lead with the cut feed: an opposition channel taken off air by a search. Explain the trustee mechanism Ankara has used to seize opposition media and companies, and what it leaves of Turkey's independent broadcasting."
+    },
+    {
+      "id": "bahia-police-killings-2019-rule-blocks-investigations",
+      "label": "No meio do caminho tinha uma norma – o que explica mortes causadas por policiais da Bahia",
+      "firstSeen": "2026-10-14T10:03:00.937Z",
+      "lastCovered": "2026-10-14T10:03:00.937Z",
+      "coverageCount": 1,
+      "category": "politics",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-10-14-bahia-police-killings-2019-rule-blocks-investigations"
+      ],
+      "eventUri": null,
+      "summary": "Agência Pública traces Bahia's police killings — the highest of any Brazilian state — to a 2019 normative instruction that made it harder to investigate military police. Lead with the rule and its effect on accountability: who signed it, how it shields officers, and who dies, overwhelmingly young Black men in Salvador's periphery."
+    },
+    {
+      "id": "nvidia-china-ai-chip-share-34-percent-huawei-28",
+      "label": "Nvidia’s China AI-chip share falls to 34% as Huawei reaches 28%",
+      "firstSeen": "2026-10-14T10:03:00.937Z",
+      "lastCovered": "2026-10-14T10:03:00.937Z",
+      "coverageCount": 1,
+      "category": "tech",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-10-14-nvidia-china-ai-chip-share-34-percent-huawei-28"
+      ],
+      "eventUri": null,
+      "summary": "An IDC report puts Nvidia at 34% of China's data-centre AI accelerator market in the first half of 2026, with Huawei at 28%; Nvidia's China shipments fell 44% to 678,000. Lead with the gap closing: US export controls built the market for China's own chips. The mechanism is supply restriction turning into import substitution."
+    },
+    {
+      "id": "openai-talks-acquire-trail-of-bits-security",
+      "label": "OpenAI拟收购Trail of Bits，加码网络安全业务",
+      "firstSeen": "2026-10-14T10:03:00.937Z",
+      "lastCovered": "2026-10-14T10:03:00.937Z",
+      "coverageCount": 1,
+      "category": "tech",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-10-14-openai-talks-acquire-trail-of-bits-security"
+      ],
+      "eventUri": null,
+      "summary": "OpenAI is in early talks to buy Trail of Bits, the open-source security firm that took second in DARPA's AI Cyber Challenge and ran the 'Patch the Planet' programme with OpenAI's tools in June (per The Information, via Zhidx). Lead with what moves inside a model maker: one of the independent auditors open-source software relies on. The tension: AI labs both build bug-finding models and restrict them for the public."
+    },
+    {
+      "id": "coinbase-bitcoin-quantum-resistant-migration-now",
+      "label": "Coinbase, which holds 5% of all bitcoin, wants the quantum fix started now",
+      "firstSeen": "2026-10-14T10:03:00.937Z",
+      "lastCovered": "2026-10-14T10:03:00.937Z",
+      "coverageCount": 1,
+      "category": "tech",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-10-14-coinbase-bitcoin-quantum-resistant-migration-now"
+      ],
+      "eventUri": null,
+      "summary": "Coinbase, custodian of about 5% of all bitcoin, wants the network to begin its migration to quantum-resistant signatures now and to split off the fight over dormant wallets so it does not stall the fix. Lead with the exposure: which coins have public keys already visible, and the governance problem of a network with no one to order an upgrade. Name bitcoin."
+    },
+    {
+      "id": "maternal-autoantibodies-preterm-birth-nature-immunology",
+      "label": "Evidence for maternal autoantibodies in the pathogenesis of preterm birth - Nature Immunology",
+      "firstSeen": "2026-10-14T10:03:00.937Z",
+      "lastCovered": "2026-10-14T10:03:00.937Z",
+      "coverageCount": 1,
+      "category": "science",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-10-14-maternal-autoantibodies-preterm-birth-nature-immunology"
+      ],
+      "eventUri": null,
+      "summary": "A Nature Immunology study finds that mothers who deliver preterm share an autoantibody signature that term pregnancies lack, against a control group of 204. Lead with the finding: some preterm births may be the mother's immune system attacking, which points to a blood test and to treatments. Preterm birth is the leading killer of young children, most of them in South Asia and sub-Saharan Africa."
+    },
+    {
+      "id": "deforestation-slowed-2025-surged-congo-basin",
+      "label": "Global deforestation slowed in 2025 but surged in Congo basin: Study",
+      "firstSeen": "2026-10-14T10:03:00.937Z",
+      "lastCovered": "2026-10-14T10:03:00.937Z",
+      "coverageCount": 1,
+      "category": "science",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-10-14-deforestation-slowed-2025-surged-congo-basin"
+      ],
+      "eventUri": null,
+      "summary": "A new study finds global deforestation slowed in 2025 while forest loss surged in the Congo basin, and warns a strong El Niño will undo the gains. Lead with the divergence: the world's second-largest rainforest is now where the loss concentrates. Explain what drives it in DR Congo and Cameroon, and who lives off that forest."
+    },
+    {
       "id": "missile-hits-aramco-building-dhahran-coalition-strikes-sanaa",
       "label": "Aramco building targeted after Saudi-led coalition hits Houthi site | The National",
       "firstSeen": "2026-10-14T05:07:04.253Z",
       "lastCovered": "2026-10-14T05:07:04.253Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-10-14-missile-hits-aramco-building-dhahran-coalition-strikes-sanaa"
@@ -23,7 +188,7 @@
       "lastCovered": "2026-10-14T05:07:04.253Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-10-14-russia-charges-japanese-journalist-yuki-imai-espionage-sakhalin"
@@ -38,7 +203,7 @@
       "lastCovered": "2026-10-14T05:07:04.253Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-10-14-guilfoyle-asked-to-resign-greece-ambassador-gifts-greek-businessmen"
@@ -53,7 +218,7 @@
       "lastCovered": "2026-10-14T05:07:04.253Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-10-14-dr-congo-ebola-cases-pass-9000-deaths-4381-transmission-falters"
@@ -68,7 +233,7 @@
       "lastCovered": "2026-10-14T05:07:04.253Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-10-14-treasury-fines-bank-of-america-1-2bn-money-laundering-sanctions"
@@ -83,7 +248,7 @@
       "lastCovered": "2026-10-14T05:07:04.253Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-10-14-imf-warns-global-debt-squeeze-us-10-year-yield-24-year-high"
@@ -98,7 +263,7 @@
       "lastCovered": "2026-10-14T05:07:04.253Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-10-14-shell-sells-nigeria-domestic-gas-business-vaaris-energy"
@@ -113,7 +278,7 @@
       "lastCovered": "2026-10-14T05:07:04.253Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-10-14-openai-engineer-charged-recording-device-conference-room"
@@ -128,7 +293,7 @@
       "lastCovered": "2026-10-14T05:07:04.253Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-10-14-anthropic-replaces-git-scion-agents-30000-merges-a-day"
@@ -143,7 +308,7 @@
       "lastCovered": "2026-10-14T05:07:04.253Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-10-14-google-gemini-4-argon-global-launch-api-price-halved"
@@ -158,7 +323,7 @@
       "lastCovered": "2026-10-14T05:07:04.253Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-10-14-isle-of-wight-fossil-invictibellatrix-first-european-megaraptoran"
@@ -173,7 +338,7 @@
       "lastCovered": "2026-10-13T22:04:57.517Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-10-13-pakistan-pti-protest-bara-khyber-police-live-fire-buildings-burned"
@@ -188,7 +353,7 @@
       "lastCovered": "2026-10-13T22:04:57.517Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-10-13-egypt-state-security-renews-detention-six-matsda2sh-fact-checkers"
@@ -203,7 +368,7 @@
       "lastCovered": "2026-10-13T22:04:57.517Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-10-13-gaza-courts-destroyed-women-inheritance-divorce-alimony-rights"
@@ -218,7 +383,7 @@
       "lastCovered": "2026-10-13T22:04:57.517Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-10-13-trump-denies-china-russia-help-iran-contradicts-us-intelligence"
@@ -233,7 +398,7 @@
       "lastCovered": "2026-10-13T22:04:57.517Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-10-13-iran-summons-british-ambassador-raf-fairford-irgc-allegations"
@@ -248,7 +413,7 @@
       "lastCovered": "2026-10-13T22:04:57.517Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-10-13-nepal-floods-aid-accounting-no-reconstruction-plan"
@@ -263,7 +428,7 @@
       "lastCovered": "2026-10-13T22:04:57.517Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-10-13-pakistan-petrol-cut-rs2-71-state-takes-rs114-litre-levies"
@@ -278,7 +443,7 @@
       "lastCovered": "2026-10-13T22:04:57.517Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-10-13-south-africa-parks-tau-carmakers-black-ownership-local-content"
@@ -293,7 +458,7 @@
       "lastCovered": "2026-10-13T22:04:57.517Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-10-13-hong-kong-18a-biotech-zhonghui-suspended-six-months-third-director-quits"
@@ -308,7 +473,7 @@
       "lastCovered": "2026-10-13T22:04:57.517Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-10-13-walmart-free-medications-employees-glp-1-insulin-inhalers"
@@ -323,7 +488,7 @@
       "lastCovered": "2026-10-13T22:04:57.517Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-10-13-glp-1-drugs-redesigned-for-addiction-depression-schizophrenia-trials"
@@ -338,7 +503,7 @@
       "lastCovered": "2026-10-13T22:04:57.517Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-10-13-character-ai-bankruptcy-filings-inference-costs-cash-burn"
@@ -353,7 +518,7 @@
       "lastCovered": "2026-10-13T22:04:57.517Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-10-13-game-industry-asks-us-trade-office-to-target-anbernic-emulation-handhelds"
@@ -368,7 +533,7 @@
       "lastCovered": "2026-10-13T22:04:57.517Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-10-13-china-envision-ulanqab-ai-data-centre-wind-power-direct-supply-gobi"
@@ -383,7 +548,7 @@
       "lastCovered": "2026-10-13T18:09:15.146Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-10-13-six-ships-hit-hormuz-one-day-after-us-jet-disables-iran-linked-tanker"
@@ -398,7 +563,7 @@
       "lastCovered": "2026-10-13T18:09:15.146Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-10-13-india-police-detain-cockroach-movement-leaders-jantar-mantar-voter-rolls"
@@ -413,7 +578,7 @@
       "lastCovered": "2026-10-13T18:09:15.146Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-10-13-eu-opens-two-ukraine-accession-clusters-hungary-lifts-veto-minority-rights"
@@ -428,7 +593,7 @@
       "lastCovered": "2026-10-13T18:09:15.146Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-10-13-france-161500-march-support-high-school-students-run-down-schools"
@@ -443,7 +608,7 @@
       "lastCovered": "2026-10-13T18:09:15.146Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-10-13-kyrgyzstan-blogger-kenzhebaev-detained-abroad-returned-interior-ministry"
@@ -458,7 +623,7 @@
       "lastCovered": "2026-10-13T18:09:15.146Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-10-13-argentina-legal-claim-uk-falklands-sea-lion-oil-exploration"
@@ -473,7 +638,7 @@
       "lastCovered": "2026-10-13T18:09:15.146Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-10-13-france-supermarket-refrigeration-hack-fires-national-criminal-investigation"
@@ -488,7 +653,7 @@
       "lastCovered": "2026-10-13T18:09:15.146Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-10-13-europe-natural-gas-above-1000-dollars-highest-since-2022-storage-record-low"
@@ -503,7 +668,7 @@
       "lastCovered": "2026-10-13T18:09:15.146Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-10-13-mnx-crypto-exchange-leveraged-futures-private-ai-firms-openai-anthropic-deepseek"
@@ -518,7 +683,7 @@
       "lastCovered": "2026-10-13T18:09:15.146Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-10-13-vocal-tract-anatomy-variation-language-diversity-plos-biology-neuchatel"
@@ -533,7 +698,7 @@
       "lastCovered": "2026-10-13T18:09:15.146Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-10-13-bacterium-from-textile-effluent-degrades-azo-dye-wastewater-india"
@@ -548,7 +713,7 @@
       "lastCovered": "2026-10-13T18:09:15.146Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-10-13-solar-geoengineering-war-games-london-unilateral-deployment-no-governance"
@@ -563,7 +728,7 @@
       "lastCovered": "2026-10-13T18:09:15.146Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-10-13-anthropic-research-ai-self-replicating-worm-home-devices-register-disputes"
@@ -578,7 +743,7 @@
       "lastCovered": "2026-10-13T18:09:15.146Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-10-13-tesla-security-protocols-stopped-dhs-tracking-device-warrant-application"
@@ -593,7 +758,7 @@
       "lastCovered": "2026-10-13T18:09:15.146Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-10-13-china-five-ton-payload-industrial-robot-shanghai-industry-fair"
@@ -608,7 +773,7 @@
       "lastCovered": "2026-10-13T14:04:41.298Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-10-13-france-anti-terror-prosecutor-school-shooting-online-network-mass-killers"
@@ -623,7 +788,7 @@
       "lastCovered": "2026-10-13T14:04:41.298Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-10-13-poland-starlink-station-arson-two-turkish-suspects-arrested-germany"
@@ -638,7 +803,7 @@
       "lastCovered": "2026-10-13T14:04:41.298Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-10-13-egypt-draft-law-ban-jailing-journalists-publishing-syndicate-mps"
@@ -653,7 +818,7 @@
       "lastCovered": "2026-10-13T14:04:41.298Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-10-13-germany-intelligence-reform-bundestag-hearing-experts-unconstitutional"
@@ -668,7 +833,7 @@
       "lastCovered": "2026-10-13T14:04:41.298Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-10-13-india-delays-upi-merchant-fee-after-retailer-pushback"
@@ -683,7 +848,7 @@
       "lastCovered": "2026-10-13T14:04:41.298Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-10-13-seven-opec-plus-countries-raise-output-977000-barrels-september"
@@ -698,7 +863,7 @@
       "lastCovered": "2026-10-13T14:04:41.298Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-10-13-giraffe-bio-engineered-biomolecules-copper-recovery-shortage"
@@ -713,7 +878,7 @@
       "lastCovered": "2026-10-13T14:04:41.298Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-10-13-honey-bee-stinger-double-piston-venom-pump"
@@ -728,7 +893,7 @@
       "lastCovered": "2026-10-13T14:04:41.298Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-10-13-ai-conferences-cap-paper-submissions-per-researcher-iclr"
@@ -743,7 +908,7 @@
       "lastCovered": "2026-10-13T14:04:41.298Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-10-13-pimeyes-face-search-eu-ai-act-ban-unenforced-germany"
@@ -758,7 +923,7 @@
       "lastCovered": "2026-10-13T14:04:41.298Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-10-13-microsoft-next-gen-maia-ai-chips-multi-gigawatt-rollout"
@@ -773,7 +938,7 @@
       "lastCovered": "2026-10-13T14:04:41.298Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-10-13-alibaba-qwen-ai-glasses-iris-payment-always-on-sensing"
@@ -788,7 +953,7 @@
       "lastCovered": "2026-10-13T10:06:49.317Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-10-13-drone-sinks-ship-off-bulgaria-black-sea-11-sailors-missing"
@@ -803,7 +968,7 @@
       "lastCovered": "2026-10-13T10:06:49.317Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-10-13-ukraine-halts-refinery-strikes-two-days-energy-ceasefire"
@@ -818,7 +983,7 @@
       "lastCovered": "2026-10-13T10:06:49.317Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-10-13-kabila-joins-m23-new-coalition-dr-congo"
@@ -833,7 +998,7 @@
       "lastCovered": "2026-10-13T10:06:49.317Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-10-13-gaza-families-sleep-in-buildings-that-could-collapse"
@@ -848,7 +1013,7 @@
       "lastCovered": "2026-10-13T10:06:49.317Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-10-13-brazil-indigenous-caucus-shrinks-congress-marco-temporal"
@@ -863,7 +1028,7 @@
       "lastCovered": "2026-10-13T10:06:49.317Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-10-13-korea-chip-stocks-tumble-ai-spending-chinese-memory-rivals"
@@ -878,7 +1043,7 @@
       "lastCovered": "2026-10-13T10:06:49.317Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-10-13-uk-court-ruling-seized-bitcoin-fraud-victims-treasury"
@@ -893,7 +1058,7 @@
       "lastCovered": "2026-10-13T10:06:49.317Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-10-13-dubai-inflation-5-percent-september-iran-war-fuel"
@@ -908,7 +1073,7 @@
       "lastCovered": "2026-10-13T10:06:49.317Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-10-13-astronomers-possible-neutron-star-merger-relic-milky-way"
@@ -923,7 +1088,7 @@
       "lastCovered": "2026-10-13T10:06:49.317Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-10-13-ai-chatbots-send-conversation-content-to-tracking-firms-study"
@@ -938,7 +1103,7 @@
       "lastCovered": "2026-10-13T10:06:49.317Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-10-13-ai-labs-buy-dead-startups-data-for-training"
@@ -953,163 +1118,13 @@
       "lastCovered": "2026-10-13T10:06:49.317Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-10-13-tencent-closes-qclaw-desktop-agent-workbuddy"
       ],
       "eventUri": null,
       "summary": "Tencent will shut QClaw, its early desktop AI agent, before the end of the year and move users to WorkBuddy, TMTPost, a mainland Chinese tech outlet, reports. Lead with the closure and the date. The mechanism for a technical reader: say what QClaw did (an agent that operates the user's own computer) and what WorkBuddy is instead (an office product tied to Tencent's cloud, documents and enterprise systems), and why the general-purpose desktop agent lost: cost per task, reliability, security of handing an agent the whole machine, and no way to charge for it, as the piece gives them. The structural point is the view from inside China's industry: after a spring in which every large platform cloned an agent, the biggest companies are cutting to a few products attached to things enterprises already pay for; name what Alibaba, ByteDance and Baidu have kept or dropped if the page does. One clause on Monday's piece on ByteDance and Tencent answering Meta's Muse agent. Attribute to TMTPost and state its characterisations as its own. Single source. Write your own headline. Dateline Shenzhen."
-    },
-    {
-      "id": "turkey-confirms-pkk-withdrawal-four-bases-northern-iraq",
-      "label": "Anti-Ankara fighters evacuate four bases in Iraq's north",
-      "firstSeen": "2026-10-13T05:06:53.710Z",
-      "lastCovered": "2026-10-13T05:06:53.710Z",
-      "coverageCount": 1,
-      "category": "politics",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-10-13-turkey-confirms-pkk-withdrawal-four-bases-northern-iraq"
-      ],
-      "eventUri": "tur-1376759",
-      "summary": "Turkey's intelligence service confirmed on Monday that PKK fighters have withdrawn from four key bases in northern Iraq, the move the group announced last week, two months after Ankara's parliament passed a limited amnesty for its militants. Lead with the confirmation and the four bases (name them and where they are if the page does). The mechanism: a four-decade insurgency that cost some 40,000 lives is being wound down in steps, each side verifying the other: the PKK's dissolution, the amnesty law, now the bases; say what the amnesty covers and excludes, who takes over the vacated ground (Iraqi federal forces, the Kurdistan Region's peshmerga, Turkish troops already inside Iraq), and what Ankara still demands. Who it lands on: villagers in Duhok and Erbil provinces displaced by years of Turkish air strikes, and Kurds in Turkey waiting on the political half of the bargain. Give the PKK's own statement and Baghdad's if the page has them. It is agency copy carried by Dawn; no Turkish or Iraqi outlet in the feed carries it. Single source. Write your own headline, naming the PKK. Dateline Ankara."
-    },
-    {
-      "id": "pakistan-pti-workers-legislators-arrests-khyber-pakhtunkhwa-emergency",
-      "label": "Scores of PTI workers held in crackdown across KP",
-      "firstSeen": "2026-10-13T05:06:53.710Z",
-      "lastCovered": "2026-10-13T05:06:53.710Z",
-      "coverageCount": 1,
-      "category": "politics",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-10-13-pakistan-pti-workers-legislators-arrests-khyber-pakhtunkhwa-emergency"
-      ],
-      "eventUri": null,
-      "summary": "New since the 11 October pieces on the emergency and governor's rule in Khyber Pakhtunkhwa and the assembly bans in Peshawar, Lahore and Karachi (one clause): the arrests have begun. Scores of PTI workers were detained across the province on Monday, and a case was registered in Swat against two PTI members of the National Assembly, four provincial legislators and dozens of workers over a rally held on 28 September, before the emergency existed. Lead with the detentions (how many, in which districts, on what charges) and the legislators named. The mechanism: governor's rule removed the elected PTI provincial government, and the police and prosecution it controlled now answer to the centre, so old rallies become new cases; the same day the law department dismissed 57 of the province's law officers and appointed 27 (Dawn, https://www.dawn.com/news/2036701 if the writer finds it; otherwise one clause from this page only), and opposition members in the Balochistan Assembly demanded the PTI government be restored (https://www.dawn.com/news/2036756). Give the government's stated grounds and PTI's reply. Dawn is the Pakistani outlet and the only source. Write your own headline, spelling out Khyber Pakhtunkhwa. Dateline Peshawar, or Swat if the page is filed from there."
-    },
-    {
-      "id": "archbishop-tells-catholic-soldiers-refuse-firing-squad-hasan-execution",
-      "label": "Catholics in US Army must not participate in firing squad, prominent archbishop says",
-      "firstSeen": "2026-10-13T05:06:53.710Z",
-      "lastCovered": "2026-10-13T05:06:53.710Z",
-      "coverageCount": 1,
-      "category": "politics",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-10-13-archbishop-tells-catholic-soldiers-refuse-firing-squad-hasan-execution"
-      ],
-      "eventUri": "eng-12090992",
-      "summary": "Archbishop Timothy Broglio, who oversees the pastoral care of Catholics in the US armed forces, has said Catholic soldiers must not take part in the firing squad for Hasan, the former Army officer who killed 13 people at Fort Hood in 2009, and objected to what Reuters calls an unprecedented plan to broadcast the execution. Lead with the instruction and its target: a senior churchman telling serving soldiers to refuse an order. The mechanism: say what the Army plans (the method, the date, the broadcast and who ordered it, only as the page gives it), that the US military has not executed anyone since 1961, what Catholic teaching on the death penalty has said since 2018, and what military law offers a soldier who refuses on conscience. The reader's stake: the condemned man is a Muslim American whose crime was used for years against Muslims in uniform, and the state now proposes to make his death a broadcast; report that plainly and give the Pentagon's and the victims' families' statements as the page has them. It is Reuters copy carried by Daily Maverick. Single source. Write your own headline. Dateline Washington. US dateline (1 of 3)."
-    },
-    {
-      "id": "imf-raises-global-growth-cuts-gulf-forecasts-hormuz-closure",
-      "label": "UK growth upgraded but energy prices and rates to bite in 2027",
-      "firstSeen": "2026-10-13T05:06:53.710Z",
-      "lastCovered": "2026-10-13T05:06:53.710Z",
-      "coverageCount": 1,
-      "category": "economy",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-10-13-imf-raises-global-growth-cuts-gulf-forecasts-hormuz-closure"
-      ],
-      "eventUri": "eng-12091715",
-      "summary": "New since Sunday's curtain-raiser on the IMF meetings in Bangkok (one clause): the forecasts are out. The IMF's World Economic Outlook raises 2026 world growth to 3.1% while warning that the economy's resilience is waning, and it has sharply cut its 2026 projections for the Gulf economies because the Strait of Hormuz has stayed closed, pushing back the date it assumes the waterway reopens (The National). Lead with that pair, not with Britain: a higher global number beside deep cuts for the exporters whose oil cannot leave. The mechanism: growth this year was pulled forward by investment and stockpiling, and the bill arrives in 2027 as dear energy and higher interest rates bite; give the Gulf figures country by country as The National has them, the old and new assumption on Hormuz, and one sentence on Britain (upgraded for 2026, cut for 2027) from the BBC. Name the series plainly: ship traffic through the Strait of Hormuz, the price of Brent crude and the Fed's interest rate. Who it lands on: Gulf budgets and the migrant workers they pay, and fuel importers in Asia and Africa. These are forecasts: state them as the IMF's. TRT World is Turkish state media, used where the others agree. Write your own headline about the global and Gulf forecasts. Dateline Bangkok."
-    },
-    {
-      "id": "opec-ministers-oil-shipping-insurance-costs-third-of-cargo-value",
-      "label": "Oil shipping and insurance costs exceed one-third of the commodity value -- OPEC",
-      "firstSeen": "2026-10-13T05:06:53.710Z",
-      "lastCovered": "2026-10-13T05:06:53.710Z",
-      "coverageCount": 1,
-      "category": "economy",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-10-13-opec-ministers-oil-shipping-insurance-costs-third-of-cargo-value"
-      ],
-      "eventUri": "eng-12091454",
-      "summary": "Ministers of OPEC and its allies say the cost of shipping and insuring oil has reached more than one third of the value of the cargo, a level they call unprecedented and one that is 'impeding' the movement of crude and products. Lead with the fraction: on a barrel near $105, over $35 now goes to freight and war-risk cover before it reaches a refinery. The mechanism: three tankers were hit in the Strait of Hormuz in two days, the Houthis threaten the Red Sea route, and underwriters reprice every voyage, so the price a producer receives and the price an importer pays have come apart; say what normal freight-and-insurance shares are, as the page gives them, what the ministers asked for or decided, and where they met. Name the series plainly: ship traffic through the Strait of Hormuz and the price of Brent crude. Distinct from Monday's piece on OPEC's demand forecast (one clause). Who it lands on: importers in South Asia and Africa who pay the delivered price, and the seafarers the premium is priced on. The accountability point: several of the ministers' own governments are parties to the war that set the premium. Write from Reuters; TASS is Russian state media, used only for quoted remarks. Write your own headline. Dateline as Reuters places the meeting."
-    },
-    {
-      "id": "japan-wholesale-inflation-6-8-percent-boj-rate-hike-yen",
-      "label": "Japan's wholesale inflation remains elevated, keeps alive BOJ rate-hike view",
-      "firstSeen": "2026-10-13T05:06:53.710Z",
-      "lastCovered": "2026-10-13T05:06:53.710Z",
-      "coverageCount": 1,
-      "category": "economy",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-10-13-japan-wholesale-inflation-6-8-percent-boj-rate-hike-yen"
-      ],
-      "eventUri": "eng-12091685",
-      "summary": "Japan's wholesale prices rose 6.8% in the year to September, slower than in August but high enough to keep a near-term Bank of Japan rate rise in view. Lead with the figure and what it measures: the prices companies charge each other, which reach shop shelves months later. The mechanism: Japan imports almost all its energy, much of it through the Strait of Hormuz, and pays for it in a weak yen, so the oil shock and the currency compound in import prices; give the yen-based import price index, the oil and telecoms components and the previous month's figure as the page has them, then the Bank of Japan's current policy rate, its next meeting date and what a rise would do to the yen and to a government carrying the rich world's largest debt. Name the series plainly: the yen and the price of Brent crude. Who it lands on: Japanese households whose wages trail prices. Attribute expectations of a rate rise to the markets and analysts Reuters cites; state none as fact. Single source. Write your own headline. Dateline Tokyo."
-    },
-    {
-      "id": "undp-poverty-index-pakistan-above-india-bangladesh",
-      "label": "'Pakistan's poverty rate higher than India, B'desh'",
-      "firstSeen": "2026-10-13T05:06:53.710Z",
-      "lastCovered": "2026-10-13T05:06:53.710Z",
-      "coverageCount": 1,
-      "category": "economy",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-10-13-undp-poverty-index-pakistan-above-india-bangladesh"
-      ],
-      "eventUri": "eng-12088853",
-      "summary": "More than one third of Pakistan's population lives in multidimensional poverty, overlapping deprivations in health, education and living standards, a higher share than in India or Bangladesh, according to the UNDP's Multidimensional Poverty Index released on Monday. Lead with Pakistan's share and headcount beside its two neighbours' figures. The mechanism for a general reader: the index does not count income; it counts households that lack several things at once (a child out of school, a death of a child, no electricity, clean water or cooking fuel), which is why it can diverge from the dollar-a-day measure; say which indicators drive Pakistan's score, how the provinces differ, the survey years behind each country's figure (they differ, and it limits the comparison), and the global totals the report gives for South Asia and sub-Saharan Africa. The structural point: three countries that began from one starting line in 1947 and 1971 have separated on schooling and child survival; give what the report and the Pakistani officials quoted attribute it to, and no more. Attribute all figures to the UNDP. Dawn is the Pakistani outlet and the only source. Write your own headline, spelling out Bangladesh. Dateline as Dawn files it (the report was released in New York); do not count it as a US story."
-    },
-    {
-      "id": "twenty-chinese-car-brands-paris-motor-show-european-carmakers",
-      "label": "20个中国品牌挤进巴黎车展，欧洲车企坐不住了",
-      "firstSeen": "2026-10-13T05:06:53.710Z",
-      "lastCovered": "2026-10-13T05:06:53.710Z",
-      "coverageCount": 1,
-      "category": "tech",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-10-13-twenty-chinese-car-brands-paris-motor-show-european-carmakers"
-      ],
-      "eventUri": null,
-      "summary": "Twenty Chinese car brands are exhibiting at the Paris Motor Show, and TMTPost, a mainland Chinese tech outlet, reports that European carmakers are finding that home advantage is 'becoming less reliable'. Lead with the count and what it was at the last show. The mechanism for a technical reader: say which brands came and with what (battery-electric, plug-in hybrid, range-extender; prices in euros against European rivals; charging speeds, driver-assistance and software the piece cites), how they get round the EU's tariffs on Chinese-made electric cars (hybrids, which the tariff does not cover, and plants in Hungary, Spain or Turkey), and what Renault, Stellantis and Volkswagen showed in answer. One clause on Sunday's China-EU quota deal on hybrids, already covered. The value of this piece is the view from inside China's industry: say how the Chinese makers themselves describe the European market, including overcapacity and the price war at home that pushes them abroad, if the page says so. In Chinese; translate names and figures exactly, attribute to TMTPost, and state its characterisations as its own. Single source. Write your own headline. Dateline Paris."
-    },
-    {
-      "id": "lockheed-pac-3-edge-patriot-interceptor-unveiled",
-      "label": "PAC-3 Edge Will Be The Most Capable Patriot Interceptor Ever",
-      "firstSeen": "2026-10-13T05:06:53.710Z",
-      "lastCovered": "2026-10-13T05:06:53.710Z",
-      "coverageCount": 1,
-      "category": "tech",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-10-13-lockheed-pac-3-edge-patriot-interceptor-unveiled"
-      ],
-      "eventUri": null,
-      "summary": "Lockheed Martin has unveiled the PAC-3 Edge, a new interceptor to sit at the top of the Patriot family with more range, altitude and manoeuvrability than the PAC-3 MSE. Lead with what it is and what it is for, stated as the maker's claims. The mechanism for a technical reader: say what changes (motor, seeker, hit-to-kill against which classes of threat: manoeuvring ballistic missiles, hypersonic glide vehicles), whether it fits existing launchers and radars, when it is due and who is paying for development, as the page gives it. The structural point is arithmetic, not performance: Patriot batteries are what stands between Iranian and Houthi missiles and Gulf cities and airports, each interceptor costs millions of dollars against far cheaper attackers, and production of the current round already trails what the Gulf war and Ukraine consume; say what the page gives on output and stockpiles, and that a more capable round is also a costlier and scarcer one. The War Zone is a specialist defence outlet: no performance claim beyond what Lockheed states, attributed. Single source. Write your own headline. Dateline as the report places the unveiling. US dateline (2 of 3)."
-    },
-    {
-      "id": "china-order-837-rules-commercial-rocket-exports",
-      "label": "Order No. 837: Beijing’s rules for China’s rocket exporters",
-      "firstSeen": "2026-10-13T05:06:53.710Z",
-      "lastCovered": "2026-10-13T05:06:53.710Z",
-      "coverageCount": 1,
-      "category": "tech",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-10-13-china-order-837-rules-commercial-rocket-exports"
-      ],
-      "eventUri": null,
-      "summary": "Beijing has issued Order No. 837, a set of rules governing how China's commercial rocket companies may sell launches and hardware abroad. Lead with the order itself: who issued it, when it takes effect and what it requires of a private launch firm before it can export (licences, state review of customers and technology, as the page gives them). The mechanism for a technical reader: China's 'commercial' launch sector (name the firms the piece names) grew on state engines, state launch sites and provincial money, and the order writes that dependence into export law, so the companies compete for foreign customers as arms of a state system, not as a Chinese SpaceX; say what that means for a buyer in the Gulf, Africa or Southeast Asia choosing between a Chinese launch and an American one under ITAR. One clause on Monday's piece on Kyrgyzstan's satellite only if the page draws a link. The Lowy Interpreter is a think-tank publication and this is analysis: report the order's provisions as facts where the piece documents them, and attribute the reading ('folding entrepreneurial firms into a wider state system') to its author by name. The feed entry is a one-line teaser: read the page first and write only what it supports. Single source. Write your own headline. Dateline Beijing."
     }
   ]
 }
