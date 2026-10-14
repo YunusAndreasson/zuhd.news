@@ -813,6 +813,8 @@ test('the density wash is a ground, and the place numeral is a droppable mark', 
     const fadeOut = opacity[opacity.length - 2]
     assert.equal(projection[projection.length - 1], 'mercator', 'the plane is the far stop')
     assert.equal(opacity[opacity.length - 1], 0, 'the wash must end fully transparent')
+    // Past its range the worker builds no buckets for it on a scrub frame.
+    assert.equal(field.maxzoom, fadeOut, 'the layer stops where its opacity reaches 0')
     assert.ok(
       fadeOut <= plane,
       `the wash fades out at ${fadeOut}, after the plane arrives at ${plane}`,

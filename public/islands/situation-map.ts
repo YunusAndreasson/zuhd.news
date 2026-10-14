@@ -2924,6 +2924,10 @@ export function mount(
         id: 'story-density',
         type: 'heatmap',
         source: 'story-places',
+        // Its opacity is 0 from here. Out of its zoom range, the worker also
+        // stops building its buckets for every tile `story-places` re-sends on a
+        // scrub frame.
+        maxzoom: DENSITY_FADE_OUT,
         paint: {
           'heatmap-weight': densityWeight(),
           // Fixed, never rescaled to the visible set the way the cluster domain
