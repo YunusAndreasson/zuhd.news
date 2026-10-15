@@ -7,7 +7,7 @@
 // pipeline can import and invoke it without growing further.
 
 import { build } from 'esbuild'
-import { copyFileSync, existsSync } from 'node:fs'
+import { copyFileSync, existsSync, readFileSync } from 'node:fs'
 import { readdirSync, mkdirSync } from 'node:fs'
 import { join } from 'node:path'
 import { ROOT } from '../lib/paths.js'
@@ -24,12 +24,21 @@ const isEntry = (f) => /\.ts$/.test(f) && !f.startsWith('_')
  * Resolving the bare specifier to the copied vendor file keeps the island
  * bundle to its own code, so a content deploy does not invalidate a megabyte of
  * unchanged engine, which `_headers` caches for a day instead.
+ *
+ * The URL carries MapLibre's version (`MAPLIBRE_V`, also on the page's
+ * modulepreload). Without it a new island met a cached older engine for up to
+ * a day and a week stale: the 6.11 engine imported a shared chunk the 6.14
+ * build no longer ships, which is a black map with no error.
  */
+export const MAPLIBRE_V = JSON.parse(
+  readFileSync(join(ROOT, 'node_modules', 'maplibre-gl', 'package.json'), 'utf8'),
+).version
+
 const externalMapLibre = {
   name: 'external-maplibre',
   setup(build) {
     build.onResolve({ filter: /^maplibre-gl$/ }, () => ({
-      path: '/islands/maplibre-gl.mjs',
+      path: `/islands/maplibre-gl.mjs?v=${MAPLIBRE_V}`,
       external: true,
     }))
   },

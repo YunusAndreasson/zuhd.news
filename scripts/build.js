@@ -9,7 +9,7 @@ import { splitBlocks } from './lib/blocks.js'
 import { SV_WINDOW_MS, eventTime as svEventTime, svFeedItem } from './lib/sv-payload.js'
 import { buildCategoryOgPng, buildOgPng, buildSiteOgPng } from './lib/og-image.js'
 import { buildIgJpeg, IG_FEED, IG_STORY, igCardInputs } from './lib/ig-image.js'
-import { buildIslands } from './build/islands.js'
+import { MAPLIBRE_V, buildIslands } from './build/islands.js'
 import { buildMapSources } from './build/basemap.js'
 import { buildCountryPages } from './build/country-pages.js'
 import { buildCountryMetrics } from './build/country-metrics.js'
@@ -659,6 +659,7 @@ const loadTemplate = (name, head = headCommon) =>
     .replaceAll('{{wordmark}}', WORDMARK)
     .replaceAll('{{v}}', ISLAND_V)
     .replaceAll('{{basemapV}}', BASEMAP_V)
+    .replaceAll('{{maplibreV}}', MAPLIBRE_V)
 
 // The map and the document pages carry `body.map-page` / `body.doc-page`, which
 // pin `color-scheme: dark` — so they take the dark head. Everything else
