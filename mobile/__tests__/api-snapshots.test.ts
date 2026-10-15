@@ -60,6 +60,17 @@ it('keeps the ETag on a query-owned initial load too', async () => {
   expect(await fetchSnapshot(trends)).toEqual({ snapshot: { reading: 1 }, etag: 'v1' });
 });
 
+it('retries a failed query-owned layer when reconnecting on the same feed build', async () => {
+  request.mockRejectedValueOnce(new Error('connection lost'));
+  await expect(fetchSnapshot(trends)).rejects.toThrow('connection lost');
+  request.mockClear();
+  const retried = await fetchAllSnapshots(() => undefined, true);
+  expect(request).toHaveBeenCalledTimes(1);
+  expect(retried).toEqual([
+    { queryKey: trends.queryKey, data: { snapshot: { reading: 1 }, etag: 'v1' } },
+  ]);
+});
+
 it('retries only failed layers even when no new feed build exists', async () => {
   request.mockImplementation(async (url) => {
     if (url === trends.url) throw new Error('temporary');

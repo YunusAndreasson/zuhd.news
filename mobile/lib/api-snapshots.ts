@@ -99,12 +99,18 @@ export async function fetchSnapshot<T>(
   snap: ApiSnapshot<T>,
   opts: { signal?: AbortSignal; cache?: RequestCache } = {},
 ): Promise<CachedSnapshot<T>> {
-  const result = await fetchJsonIfChanged<T>(snap.url, snap.validate, {
-    ...opts,
-    ...(snap.timeoutMs ? { timeoutMs: snap.timeoutMs } : {}),
-  });
-  if (!result.changed) throw new Error(`Unexpected 304 from ${snap.url}`);
-  return { snapshot: result.data, etag: result.etag };
+  try {
+    const result = await fetchJsonIfChanged<T>(snap.url, snap.validate, {
+      ...opts,
+      ...(snap.timeoutMs ? { timeoutMs: snap.timeoutMs } : {}),
+    });
+    if (!result.changed) throw new Error(`Unexpected 304 from ${snap.url}`);
+    failedSnapshots.delete(snap.url);
+    return { snapshot: result.data, etag: result.etag };
+  } catch (error) {
+    if (!opts.signal?.aborted) failedSnapshots.add(snap.url);
+    throw error;
+  }
 }
 
 export interface FetchedSnapshot {

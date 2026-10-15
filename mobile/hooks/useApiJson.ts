@@ -14,7 +14,8 @@ import { type ApiSnapshot, fetchSnapshot, snapshotData } from '../lib/api-snapsh
  * an app whose central claim is that it barely uses data, whether or not the
  * site had been rebuilt. The feed already answers that question with a 0.2KB
  * probe on resume, and an arrival carries these with it (`lib/api-snapshots.ts`).
- * Reconnects still refetch: they are rare, and `staleTime` still gates them.
+ * Reconnects use the same coordinated arrival; failed query-owned loads are
+ * included in its retry even when the feed build has not changed.
  */
 export function useApiJson<T>(snapshot: ApiSnapshot<T>): T | null {
   const query = useQuery({
@@ -22,7 +23,7 @@ export function useApiJson<T>(snapshot: ApiSnapshot<T>): T | null {
     queryFn: ({ signal }) => fetchSnapshot(snapshot, { signal }),
     select: snapshotData<T>,
     refetchOnWindowFocus: false,
-    refetchOnReconnect: true,
+    refetchOnReconnect: false,
     // Persister roundtrip needs a structural-clone-safe payload; queryFn
     // returns plain JSON so no special serializer needed.
   });

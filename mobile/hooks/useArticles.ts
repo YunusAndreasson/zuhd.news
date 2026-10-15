@@ -13,7 +13,7 @@ import {
   retryFailedSnapshots,
 } from '../lib/arrival';
 import { flushBookmarks } from '../lib/bookmark-store';
-import { collectNewArticles } from '../lib/feed-diff';
+import { collectNewArticles, isOlderFeed } from '../lib/feed-diff';
 import { feedCache, fetchFeed } from '../lib/feed-source';
 import { flushFound } from '../lib/found-store';
 import { flushKnown, noteFeed } from '../lib/fresh-store';
@@ -154,6 +154,9 @@ export function useArticles(
             return { added: [], applied: false };
           }
           const arrival = await fetchArrival(queryClient);
+          if (isOlderFeed(arrival.feed, queryClient.getQueryData<FeedResponse>(FEED_QUERY_KEY))) {
+            return { added: [], applied: false };
+          }
           const added = applyArrival(queryClient, arrival, {
             lastSeenAt: lastSeenAtRef.current,
             alsoInFlush: (added) => {
@@ -226,11 +229,11 @@ export function useArticles(
     });
   });
   useEffect(() => {
-    let connected = true;
+    let connected: boolean | null = null;
     let receivedEvent = false;
     void Network.getNetworkStateAsync()
       .then((state) => {
-        if (!receivedEvent) connected = state.isInternetReachable ?? state.isConnected ?? true;
+        if (!receivedEvent) connected = state.isInternetReachable ?? state.isConnected ?? null;
       })
       .catch(() => {});
     const subscription = Network.addNetworkStateListener((state) => {
@@ -239,7 +242,7 @@ export function useArticles(
       if (next == null) return;
       const wasConnected = connected;
       connected = next;
-      if (next && !wasConnected) reconnect();
+      if (next && wasConnected !== true) reconnect();
     });
     return () => subscription.remove();
   }, []);

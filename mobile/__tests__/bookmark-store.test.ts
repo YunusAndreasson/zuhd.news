@@ -73,6 +73,16 @@ afterEach(() => {
 });
 
 describe('bookmark SQLite persistence', () => {
+  it('keeps the full saved article after a month away and a fresh store load', () => {
+    const store = loadStore();
+    const saved = article('outside-the-current-feed');
+    store.toggle(saved, 'science');
+    store.flushBookmarks();
+    const before = store.getSnapshot();
+    jest.setSystemTime(Date.now() + 30 * 86400000);
+    expect(loadStore().getSnapshot()).toEqual(before);
+    expect(loadStore().getSnapshot()[0]?.article).toEqual(saved);
+  });
   it('restores removed stories with their original content, category and save order', () => {
     const store = loadStore();
     jest.setSystemTime(1000);

@@ -271,3 +271,36 @@ it('publishes only completed downloads under the reusable MP3 cache name', async
   );
   expect(mockPlayer.replace).toHaveBeenCalledWith(expect.stringMatching(/\.mp3$/));
 });
+
+it('cancels an interrupted download without playing it, and starts a fresh download on retry', async () => {
+  mockPlayer.isLoaded = false;
+  const download = jest.mocked(File.downloadFileAsync);
+  download.mockImplementationOnce(
+    (_url, _file, options) =>
+      new Promise((_resolve, reject) => {
+        options?.signal?.addEventListener('abort', () =>
+          reject(new Error('connection interrupted')),
+        );
+      }),
+  );
+  const hook = renderHook(() => useBriefingPlayer('2026-09-27'));
+  let pending!: ReturnType<typeof hook.result.current.toggle>;
+  await act(async () => {
+    pending = hook.result.current.toggle();
+  });
+  expect(download).toHaveBeenCalledTimes(1);
+  act(() => hook.result.current.dismiss());
+  await act(async () => {
+    await pending;
+  });
+  expect(download.mock.calls[0]?.[2]?.signal?.aborted).toBe(true);
+  expect(mockPlayer.play).not.toHaveBeenCalled();
+  expect(mockPlayer.replace).not.toHaveBeenCalledWith(expect.stringMatching(/https:|\.mp3$/));
+  mockPlayer.isLoaded = true;
+  await act(async () => {
+    await hook.result.current.toggle();
+  });
+  expect(download).toHaveBeenCalledTimes(2);
+  expect(download.mock.calls[1]?.[1]?.uri).not.toBe(download.mock.calls[0]?.[1]?.uri);
+  expect(mockPlayer.play).toHaveBeenCalledTimes(1);
+});

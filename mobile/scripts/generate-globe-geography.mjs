@@ -1,7 +1,7 @@
 /** Generate shared-arc render tiers from Natural Earth 10m. Run with node. */
 import { readFileSync, writeFileSync } from 'node:fs';
 import { geoArea, geoBounds } from 'd3-geo';
-import { feature, mergeArcs } from 'topojson-client';
+import { feature, mergeArcs, meshArcs } from 'topojson-client';
 
 const source = JSON.parse(
   readFileSync(new URL('../../shared/data/countries-10m.json', import.meta.url)),
@@ -147,7 +147,10 @@ for (const [name, tolerance] of [
   const bounds = output.objects.countries.geometries.map((country) =>
     outward(geoBounds(feature(output, country))),
   );
-  const json = JSON.stringify({ ...output, arcs: output.arcs.map(encodeArc), bounds });
+  // Stitch while the arcs are quantized: topojson's empty-arc ordering uses
+  // quantized deltas. Runtime can then decode directly to shared coordinates.
+  const borders = meshArcs(output, output.objects.countries, (a, b) => a !== b);
+  const json = JSON.stringify({ ...output, arcs: output.arcs.map(encodeArc), bounds, borders });
   writeFileSync(new URL(`../assets/geo/countries-${name}.json`, import.meta.url), json);
   console.log(
     `${name}: ${arcs.reduce((n, arc) => n + arc.length, 0)} vertices, ${json.length} bytes`,

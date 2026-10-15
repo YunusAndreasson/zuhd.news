@@ -86,6 +86,17 @@ afterEach(() => {
 });
 
 describe.each(STORES)('$name', ({ key, load }) => {
+  it('keeps progress on the offline cached feed even after a month and a restart', () => {
+    const store = load();
+    const start = Date.now();
+    store.mark('cached-story', start);
+    store.flush();
+    jest.setSystemTime(start + 30 * DAY);
+    const restored = load();
+    restored.prune(new Set(['cached-story']));
+    restored.flush();
+    expect(load().getSnapshot().has('cached-story')).toBe(true);
+  });
   it('marks a story once and persists it across a reload', () => {
     const store = load();
     expect(store.mark('a')).toBe(true);

@@ -1,9 +1,10 @@
 import { useSyncExternalStore } from 'react';
+import { AppState } from 'react-native';
 import { act, renderHook } from '@testing-library/react';
 import type { PanGestureConfig, TapGestureConfig } from 'react-native-gesture-handler';
 import * as Reanimated from 'react-native-reanimated';
 import type { SharedValue } from 'react-native-reanimated';
-import { useScrub } from '../hooks/useScrub';
+import { useScrub, type ScrubOptions } from '../hooks/useScrub';
 import { hapticImpact } from '../lib/haptics';
 
 jest.mock('../lib/haptics', () => ({ hapticImpact: jest.fn() }));
@@ -12,6 +13,7 @@ let mockPan: PanGestureConfig;
 let mockTap: TapGestureConfig;
 const mockHops: (() => void)[] = [];
 jest.mock('react-native-worklets', () => ({
+  scheduleOnUI: (fn: (...args: unknown[]) => void, ...args: unknown[]) => fn(...args),
   scheduleOnRN: (fn: (...args: unknown[]) => void, ...args: unknown[]) => {
     mockHops.push(() => fn(...args));
   },
@@ -29,16 +31,17 @@ jest.mock('react-native-gesture-handler', () => ({
 }));
 Object.assign(Reanimated, { withSpring: (to: number) => to, withTiming: (to: number) => to });
 
-function setup() {
+function setup(options: Partial<ScrubOptions> = {}) {
   const labelFor = jest.fn((f: number) => `at ${Math.floor(f * 10)}`);
   const onCommit = jest.fn();
-  const { result } = renderHook(() =>
+  const { result, unmount } = renderHook(() =>
     useScrub({
       fraction: { value: 0 } as SharedValue<number>,
       detents: 10,
       steps: 10,
       labelFor,
       onCommit,
+      ...options,
     }),
   );
   act(() => result.current.onLayout({ nativeEvent: { layout: { width: 100 } } } as never));
@@ -46,12 +49,115 @@ function setup() {
     act(() => {
       for (const hop of mockHops.splice(0)) hop();
     });
-  return { result, labelFor, onCommit, drain };
+  return { result, labelFor, onCommit, drain, unmount };
 }
 
 beforeEach(() => {
   mockHops.length = 0;
   jest.mocked(hapticImpact).mockClear();
+});
+
+it('keeps only the latest tap when multiple releases reach a blocked JS queue', () => {
+  const { onCommit, drain } = setup();
+  act(() => mockTap.onDeactivate?.({ x: 20, canceled: false } as never));
+  act(() => mockTap.onDeactivate?.({ x: 80, canceled: false } as never));
+  drain();
+  expect(onCommit).toHaveBeenCalledTimes(1);
+  expect(onCommit).toHaveBeenCalledWith(0.8);
+});
+
+it('carries the release camera epoch even if a newer gesture claims before JS drains', () => {
+  const requestEpoch = { value: 4 } as SharedValue<number>;
+  const { onCommit, drain } = setup({ requestEpoch });
+  act(() => mockTap.onDeactivate?.({ x: 60, canceled: false } as never));
+  requestEpoch.value++;
+  drain();
+  // The owner can commit the selected card without taking the new camera.
+  expect(onCommit).toHaveBeenCalledWith(0.6, 4);
+});
+
+it.each(['inactive', 'background'] as const)(
+  'cancels a held drag on %s and ignores late native events',
+  (state) => {
+    const fraction = { value: 0.2 } as SharedValue<number>;
+    const onScrubStart = jest.fn();
+    const onScrubEnd = jest.fn();
+    const { result, onCommit, drain } = setup({ fraction, onScrubStart, onScrubEnd });
+    act(() => mockPan.onActivate?.({ x: 70 } as never));
+    const change = jest.mocked(AppState.addEventListener).mock.calls.at(-1)![1];
+    act(() => change(state));
+    act(() => (mockPan.onUpdate as (e: never) => void)({ x: 90 } as never));
+    act(() => mockPan.onFinalize?.({ canceled: false } as never));
+    drain();
+    expect(fraction.value).toBe(0.2);
+    expect(result.current.holding.value).toBe(0);
+    expect(result.current.shown.value).toBe(0);
+    expect(onCommit).not.toHaveBeenCalled();
+    expect(onScrubStart).not.toHaveBeenCalled();
+    expect(onScrubEnd).toHaveBeenCalledTimes(1);
+    expect(hapticImpact).not.toHaveBeenCalled();
+    act(() => mockTap.onDeactivate?.({ x: 90, canceled: false } as never));
+    drain();
+    expect(onCommit).not.toHaveBeenCalled();
+    act(() => change('active'));
+    act(() => mockTap.onDeactivate?.({ x: 40, canceled: false } as never));
+    drain();
+    expect(onCommit).toHaveBeenCalledWith(0.4);
+  },
+);
+
+it('delivers an already released selection when backgrounding before JS catches up', () => {
+  const { onCommit, drain } = setup();
+  act(() => mockTap.onDeactivate?.({ x: 70, canceled: false } as never));
+  act(() => jest.mocked(AppState.addEventListener).mock.calls.at(-1)![1]('background'));
+  drain();
+  expect(onCommit).toHaveBeenCalledWith(0.7);
+});
+
+it('does not deliver queued work after the scrubber unmounts', () => {
+  const { onCommit, labelFor, drain, unmount } = setup();
+  act(() => mockPan.onActivate?.({ x: 70 } as never));
+  act(() => mockPan.onFinalize?.({ canceled: false } as never));
+  unmount();
+  drain();
+  expect(onCommit).not.toHaveBeenCalled();
+  expect(labelFor).not.toHaveBeenCalled();
+  expect(hapticImpact).not.toHaveBeenCalled();
+});
+
+it('restores the previous released selection if a newer held drag is canceled before JS catches up', () => {
+  const { onCommit, drain } = setup();
+  act(() => mockTap.onDeactivate?.({ x: 20, canceled: false } as never));
+  act(() => mockPan.onActivate?.({ x: 80 } as never));
+  drain();
+  expect(onCommit).not.toHaveBeenCalled();
+  act(() => mockPan.onFinalize?.({ canceled: true } as never));
+  drain();
+  expect(onCommit.mock.calls).toEqual([[0.2]]);
+  // Canceling another drag cannot re-deliver an already applied selection.
+  act(() => mockPan.onActivate?.({ x: 60 } as never));
+  act(() => mockPan.onFinalize?.({ canceled: true } as never));
+  drain();
+  expect(onCommit.mock.calls).toEqual([[0.2]]);
+});
+
+it('a tap after a released drag clears holding even when its queued end was superseded', () => {
+  let held = false;
+  const { drain } = setup({
+    onScrubStart: () => {
+      held = true;
+    },
+    onScrubEnd: () => {
+      held = false;
+    },
+  });
+  act(() => mockPan.onActivate?.({ x: 20 } as never));
+  drain();
+  expect(held).toBe(true);
+  act(() => mockPan.onFinalize?.({ canceled: false } as never));
+  act(() => mockTap.onDeactivate?.({ x: 80, canceled: false } as never));
+  drain();
+  expect(held).toBe(false);
 });
 
 it('crosses a step in one hop to JS, carrying the notch and the label together', () => {
@@ -106,7 +212,7 @@ it('snaps on the gesture thread, before delayed commits can interrupt a newer dr
   });
   expect(fraction.value).toBe(0.7);
   expect(result.current.holding.value).toBe(1);
-  expect(onCommit).toHaveBeenLastCalledWith(0.34);
+  expect(onCommit).not.toHaveBeenCalled();
   act(() => mockPan.onFinalize?.({ canceled: false } as never));
   expect(fraction.value).toBe(0.8);
   act(() => {

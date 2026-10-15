@@ -1,5 +1,6 @@
 import type { FeedResponse } from '@shared/types';
 import { API_BASE } from '../constants/theme';
+import { isOlderFeed } from './feed-diff';
 import { type FetchJsonOptions, fetchJson } from './fetchJson';
 import { createJsonCache } from './json-cache';
 import { isFeedResponse } from './validate';
@@ -50,6 +51,8 @@ export async function fetchFeed(opts: FetchJsonOptions = {}): Promise<FeedRespon
     feed = await fetchJson(FEED_FULL_URL, isFeedResponse, options);
   }
   if (options.signal?.aborted) throw new Error('Feed fetch cancelled');
+  if (isOlderFeed(feed, feedCache.readSync()))
+    throw new Error('Feed response is older than cached feed');
   await feedCache.write(feed);
   return feed;
 }

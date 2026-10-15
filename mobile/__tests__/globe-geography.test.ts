@@ -3,6 +3,8 @@ import { feature, mesh } from 'topojson-client';
 import type { GeometryCollection, Topology } from 'topojson-specification';
 import { geographyTier, getGlobeGeography } from '../components/globe/geography';
 import { decodeGeographyArc } from '../components/globe/geography-codec';
+import { orthoView } from '../components/globe/sphere-circles';
+import { reachFor, viewAngleFor } from '../lib/globe-camera';
 
 type CountryTopology = Topology<{ countries: GeometryCollection; land: GeometryCollection }>;
 const tiers = ['motion', 'overview', 'regional', 'detail'] as const;
@@ -89,6 +91,27 @@ it('preserves small islands absent from the old map', () => {
   expect(getGlobeGeography('overview').countryAt(103.82, 1.35)?.properties?.name).toBe('Singapore');
   expect(commands(singapore!, 104, 1, 3000).length).toBeGreaterThan(10);
 });
+
+it.each(tiers)(
+  '%s preserves complete coordinates and border order after shared decoding',
+  (tier) => {
+    const topology = load(tier);
+    const geography = getGlobeGeography(tier);
+    expect(geography.land.visible(0, 0, 180)).toEqual(
+      (feature(topology, topology.objects.land) as unknown as GeoJSON.Feature).geometry,
+    );
+    expect(geography.borders.visible(0, 0, 180)).toEqual(
+      mesh(topology, topology.objects.countries, (a, b) => a !== b),
+    );
+    const countries = feature(topology, topology.objects.countries) as GeoJSON.FeatureCollection;
+    const byName = new Map(
+      countries.features.map((country) => [country.properties?.name, country]),
+    );
+    for (const [name, country] of byName) {
+      expect(geography.countryNamed(name as string)).toEqual(country);
+    }
+  },
+);
 
 it('keeps the polar and antimeridian land finite and correctly clipped', () => {
   for (const tier of ['overview', 'regional'] as const) {
@@ -308,5 +331,52 @@ describe('a tier decoded in parts', () => {
       expect(calls).toBe(4);
       expect(layersBuilt()).toBe(3);
     });
+  });
+
+  it.each(tiers)('%s draws the same first frame when idle warming is interrupted', (tier) => {
+    const draw = (geography: Geography) => {
+      const scale =
+        tier === 'motion' || tier === 'overview' ? 280 : tier === 'regional' ? 1050 : 5158;
+      const view = orthoView(10, 50, scale, 200, 300);
+      const clip = viewAngleFor(scale, reachFor(200, 300, 400, 600));
+      const output: number[] = [];
+      const sink = {
+        moveTo(x: number, y: number) {
+          output.push(0, x, y);
+        },
+        lineTo(x: number, y: number) {
+          output.push(1, x, y);
+        },
+        close() {
+          output.push(2);
+        },
+      };
+      const geo = geography.getGlobeGeography(tier);
+      for (const layer of [geo.land, geo.ice, geo.borders, geo.country('Germany')]) {
+        layer!.draw(view, clip, tier === 'motion' ? 0 : 0.25, sink);
+      }
+      expect(output.length).toBeGreaterThan(0);
+      expect(output.every(Number.isFinite)).toBe(true);
+      return output;
+    };
+    let cold: number[] = [];
+    fresh((geography) => {
+      cold = draw(geography);
+    });
+    // Before decoding, after decoding, and after building some layers: a
+    // foreground frame can preempt the idle warm-up at any of these points.
+    for (const stages of [1, 2, 4, 5]) {
+      fresh((geography, layersBuilt) => {
+        for (let i = 0; i < stages; i++) expect(geography.warmGlobeGeography(tier)).toBe(false);
+        expect(draw(geography)).toEqual(cold);
+        const built = layersBuilt();
+        while (!geography.warmGlobeGeography(tier)) {
+          /* drain pending idle stages */
+        }
+        expect(layersBuilt()).toBe(built);
+        expect(draw(geography)).toEqual(cold);
+        expect(layersBuilt()).toBe(built);
+      });
+    }
   });
 });

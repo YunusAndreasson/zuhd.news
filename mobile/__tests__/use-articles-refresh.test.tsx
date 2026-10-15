@@ -164,6 +164,21 @@ it('recovers on the first online event after launching offline', async () => {
   expect(fetchArrival).toHaveBeenCalledTimes(1);
 });
 
+it('recovers if the first online event beats a slow initial network-state read', async () => {
+  const initial = deferred<Network.NetworkState>();
+  jest.mocked(Network.getNetworkStateAsync).mockReturnValueOnce(initial.promise);
+  jest.mocked(probeGenerated).mockRejectedValueOnce(new Error('offline'));
+  mount();
+  await act(async () => {});
+  jest.mocked(probeGenerated).mockResolvedValue('new');
+  jest.mocked(fetchArrival).mockResolvedValue({ feed: mockFeed('new', ['two']), snapshots: [] });
+  await act(async () => {
+    mockReconnect({ isConnected: true });
+    initial.resolve({ isConnected: false } as Network.NetworkState);
+  });
+  expect(fetchArrival).toHaveBeenCalledTimes(1);
+});
+
 it('a reconnect after a return reports only what its own arrival adds', async () => {
   const hook = mount();
   await act(async () => {});
@@ -198,4 +213,114 @@ it('a reconnect after a return reports only what its own arrival adds', async ()
   });
   expect(hook.onReturn).toHaveBeenCalledTimes(1);
   expect(hook.onReturn.mock.calls[0][0].added.map((a: Article) => a.slug)).toEqual(['three']);
+});
+
+it('opens the durable feed without persisted queries and keeps it through a week offline', async () => {
+  const clock = jest.spyOn(Date, 'now');
+  const start = Date.now();
+  jest.mocked(probeGenerated).mockRejectedValue(new Error('offline'));
+  const hook = mount();
+  try {
+    expect(hook.result.current.loading).toBe(false);
+    expect(hook.result.current.grouped.politics.map((a) => a.slug)).toEqual(['one']);
+    await act(async () => {});
+    act(() => mockBackground());
+    clock.mockReturnValue(start + 7 * 86400000);
+    await act(async () => {
+      await mockResume(7 * 86400000);
+    });
+    expect(hook.result.current.generated).toBe('old');
+    expect(hook.result.current.grouped.politics.map((a) => a.slug)).toEqual(['one']);
+    expect(fetchFeed).not.toHaveBeenCalled();
+    expect(hook.result.current.error).toBeNull();
+  } finally {
+    hook.unmount();
+    clock.mockRestore();
+  }
+});
+
+it('coalesces flapping reconnects, resume and a manual pull into one arrival', async () => {
+  const hook = mount();
+  await act(async () => {});
+  act(() => mockBackground());
+  jest.mocked(probeGenerated).mockClear().mockResolvedValue('new');
+  const pending = deferred<Awaited<ReturnType<typeof fetchArrival>>>();
+  jest.mocked(fetchArrival).mockReturnValue(pending.promise);
+  await act(async () => {
+    mockReconnect({ isConnected: false });
+    mockReconnect({ isConnected: true });
+  });
+  let resume!: Promise<void>;
+  let pull!: Promise<Article[]>;
+  act(() => {
+    resume = mockResume(7 * 86400000);
+    pull = hook.result.current.refresh();
+    for (let i = 0; i < 6; i++) {
+      mockReconnect({ isConnected: false });
+      mockReconnect({ isConnected: true });
+    }
+  });
+  await act(async () => {
+    pending.resolve({ feed: mockFeed('new', ['two', 'one']), snapshots: [] });
+    expect((await pull).map((a) => a.slug)).toEqual(['two']);
+    await resume;
+  });
+  expect(probeGenerated).toHaveBeenCalledTimes(1);
+  expect(fetchArrival).toHaveBeenCalledTimes(1);
+  expect(hook.onReturn).toHaveBeenCalledTimes(1);
+});
+
+it('keeps an explicitly opened older story when reconnect replaces the entire feed', async () => {
+  const hook = mount();
+  await act(async () => {});
+  const selected = { slug: 'saved-outside-the-feed', addedAt: 0 } as Article;
+  act(() => hook.result.current.injectArticle(selected, 'science'));
+  jest.mocked(probeGenerated).mockResolvedValue('new');
+  const slugs = Array.from({ length: 500 }, (_, i) => `new-${i}`);
+  jest.mocked(fetchArrival).mockResolvedValue({ feed: mockFeed('new', slugs), snapshots: [] });
+  await act(async () => {
+    await hook.result.current.refresh();
+  });
+  expect(hook.result.current.grouped.politics).toHaveLength(500);
+  expect(hook.result.current.grouped.science).toEqual([selected]);
+});
+
+it('keeps cached news after an interrupted arrival and recovers on the next pull', async () => {
+  const hook = mount();
+  await act(async () => {});
+  jest.mocked(probeGenerated).mockResolvedValue('new');
+  jest.mocked(fetchArrival).mockRejectedValueOnce(new Error('connection lost'));
+  await act(async () => {
+    await expect(hook.result.current.refresh()).rejects.toThrow('connection lost');
+  });
+  expect(hook.result.current.generated).toBe('old');
+  expect(hook.result.current.grouped.politics.map((a) => a.slug)).toEqual(['one']);
+  jest.mocked(fetchArrival).mockResolvedValue({ feed: mockFeed('new', ['two']), snapshots: [] });
+  await act(async () => {
+    await hook.result.current.refresh();
+  });
+  expect(hook.result.current.grouped.politics.map((a) => a.slug)).toEqual(['two']);
+});
+
+it('still reports a long return when a slower arrival has already been superseded', async () => {
+  const hook = mount();
+  await act(async () => {});
+  act(() => mockBackground());
+  jest.mocked(probeGenerated).mockResolvedValue('2026-10-14T12:00:00Z');
+  const pending = deferred<Awaited<ReturnType<typeof fetchArrival>>>();
+  jest.mocked(fetchArrival).mockReturnValue(pending.promise);
+  let returning!: Promise<void>;
+  act(() => {
+    returning = mockResume(7 * 86400000);
+  });
+  await act(async () => {});
+  await act(async () => {
+    // A concurrent background/foreground load finishes first.
+    hook.client.setQueryData(['feed'], mockFeed('2026-10-15T12:00:00Z', ['latest']));
+    pending.resolve({ feed: mockFeed('2026-10-14T12:00:00Z', ['old-response']), snapshots: [] });
+    await returning;
+  });
+  expect(hook.result.current.generated).toBe('2026-10-15T12:00:00Z');
+  expect(hook.onReturn).toHaveBeenCalledTimes(1);
+  expect(hook.onReturn.mock.calls[0][0].added.map((a: Article) => a.slug)).toEqual(['latest']);
 });

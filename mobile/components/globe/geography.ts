@@ -1,7 +1,7 @@
 import { geoContains } from 'd3-geo';
-import { feature, mesh } from 'topojson-client';
-import type { GeometryCollection, Topology } from 'topojson-specification';
-import { decodeGeographyArc } from './geography-codec';
+import { feature } from 'topojson-client';
+import type { GeometryCollection, MultiLineString, Topology } from 'topojson-specification';
+import { decodeGeographyCoordinates } from './geography-codec';
 import { createOrthoLayer, type OrthoLayer } from './ortho-stream';
 
 export type GeographyTier = 'motion' | 'overview' | 'regional' | 'detail';
@@ -12,6 +12,8 @@ type PackedTopology = Omit<CountryTopology, 'arcs'> & {
   arcs: string[];
   /** One per country, in the order of `objects.countries.geometries`. */
   bounds: CountryBounds[];
+  /** Border arc indices, stitched before unquantizing (see the generator). */
+  borders: MultiLineString;
 };
 
 /** At rest, keep source simplification below half a logical pixel (up to scale 8000).
@@ -83,7 +85,11 @@ function createTier(tier: GeographyTier): TierEntry {
   const packed = once(() => load(tier));
   const topology = once((): CountryTopology => {
     const source = packed();
-    return { ...source, arcs: source.arcs.map(decodeGeographyArc) };
+    // Unquantize once while decoding. Without a transform, topojson-client reuses
+    // these points when assembling land, borders and countries instead of
+    // allocating another transformed coordinate pair for every feature use.
+    const arcs = source.arcs.map((arc) => decodeGeographyCoordinates(arc, source.transform));
+    return { ...source, transform: undefined, arcs };
   });
   const geometries = () => topology().objects.countries.geometries;
   const nameOf = (i: number): string | undefined =>
@@ -109,9 +115,7 @@ function createTier(tier: GeographyTier): TierEntry {
   };
 
   const land = once(() => createOrthoLayer(feature(topology(), topology().objects.land)));
-  const borders = once(() =>
-    createOrthoLayer(mesh(topology(), topology().objects.countries, (a, b) => a !== b)),
-  );
+  const borders = once(() => createOrthoLayer(feature(topology(), packed().borders)));
   const ice = once(() =>
     createOrthoLayer({
       type: 'FeatureCollection',

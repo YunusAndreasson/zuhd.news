@@ -809,7 +809,11 @@ export default function HomeScreen() {
    */
   const focusStory = useCallback(
     (slug: string, options: FocusOptions = {}) => {
-      if (options.cameraEpoch !== undefined && options.cameraEpoch !== requestEpoch.value) return;
+      const ownsCamera =
+        options.cameraEpoch === undefined || options.cameraEpoch === requestEpoch.value;
+      // A scrub already moved the cards on UI. A newer globe gesture keeps
+      // its camera, while React still needs that card's committed selection.
+      if (!ownsCamera && !options.deckMoved) return;
       const index = storyRowsRef.current.findIndex((r) => r.slug === slug);
       if (index < 0) {
         pendingFocusRef.current = { slug, ...options };
@@ -829,7 +833,7 @@ export default function HomeScreen() {
       const coords = row?.coords ?? null;
       // Held before the deck jumps, so the jump cannot drag the camera
       // through every dateline between; the flight hands it back on landing.
-      if (coords) holdCamera(options.cameraEpoch);
+      if (coords && ownsCamera) holdCamera(options.cameraEpoch);
       deckIndexRef.current = index;
       currentSlugRef.current = slug;
       // `storyCommitted` too, not left to the deck's own sync: that runs when
@@ -841,7 +845,7 @@ export default function HomeScreen() {
       }
       setDeckIndex(index);
 
-      if (coords) {
+      if (coords && ownsCamera) {
         const framing = framingFor(index);
         flyToStory(
           coords,
@@ -1388,11 +1392,22 @@ export default function HomeScreen() {
     [focusStory],
   );
   const goToScrubbedStory = useCallback(
-    (index: number) => {
-      const row = storyRowsRef.current[index];
-      if (row) focusStory(row.slug, { deckMoved: true });
+    (index: number, slug?: string, cameraEpoch?: number) => {
+      const rows = storyRowsRef.current;
+      const target = slug === undefined ? index : rows.findIndex((row) => row.slug === slug);
+      const row = rows[target];
+      if (!row) return;
+      // A newer swipe has already committed another card. A globe gesture
+      // leaves the card in place and only supersedes the scrub's camera.
+      if (
+        cameraEpoch !== undefined &&
+        cameraEpoch !== requestEpoch.value &&
+        storyCommitted.value !== index
+      )
+        return;
+      focusStory(row.slug, { deckMoved: target === index, cameraEpoch });
     },
-    [focusStory],
+    [focusStory, requestEpoch, storyCommitted],
   );
   // The card's accessibility actions slide the deck one story, exactly as a
   // swipe would; `goToStory` is a jump, for the scrubber.
@@ -1955,6 +1970,7 @@ export default function HomeScreen() {
     () => (
       <StoryDock
         onClaim={cancelFlight}
+        requestEpoch={requestEpoch}
         refreshing={refreshing}
         index={frontIndex}
         count={storyCount}
@@ -1977,6 +1993,7 @@ export default function HomeScreen() {
     ),
     [
       cancelFlight,
+      requestEpoch,
       goToStory,
       goToScrubbedStory,
       storyCommitted,

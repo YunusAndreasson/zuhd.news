@@ -28,6 +28,7 @@ export function useHeatmap(feedGenerated: string | null): HeatmapResult {
     // redrew the globe's hotspots in a second commit as the reader started
     // swiping.
     refetchOnWindowFocus: false,
+    refetchOnReconnect: false,
   });
 
   // Refetch when feed rotates — `generated` tagged on the snapshot lets us

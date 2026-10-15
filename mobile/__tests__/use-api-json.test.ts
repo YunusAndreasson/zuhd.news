@@ -11,7 +11,7 @@ import { useApiJson } from '../hooks/useApiJson';
 import { API_JSON_QUERY_KEY, API_SNAPSHOTS } from '../lib/api-snapshots';
 
 describe('useApiJson', () => {
-  it('does not refetch on focus, and keys every query under the shared prefix', () => {
+  it('leaves focus and reconnect refreshes to arrivals, and shares the query prefix', () => {
     // Every foreground return after five minutes used to re-download ~150KB of
     // snapshots whether or not the site had been rebuilt. An arrival carries
     // them now (`lib/arrival.ts`), and the prefix keys every one of them.
@@ -22,7 +22,7 @@ describe('useApiJson', () => {
       refetchOnReconnect: boolean;
     };
     expect(options.refetchOnWindowFocus).toBe(false);
-    expect(options.refetchOnReconnect).toBe(true);
+    expect(options.refetchOnReconnect).toBe(false);
     expect(options.queryKey[0]).toBe(API_JSON_QUERY_KEY[0]);
     expect(String(options.queryKey[1])).toContain('/api/trends.json');
   });

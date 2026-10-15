@@ -4,12 +4,14 @@ jest.mock('../lib/fetch', () => ({
 
 const mockCacheWrite = jest.fn<Promise<void>, [unknown]>(() => Promise.resolve());
 const mockCacheRead = jest.fn<Promise<unknown>, []>(() => Promise.resolve(null));
+const mockCacheReadSync = jest.fn<unknown, []>(() => null);
 // Delegate lazily rather than handing the spies over directly: the factory
 // runs while `feed-source` is initialising, before these consts are assigned,
 // so a direct reference captures `undefined`.
 jest.mock('../lib/json-cache', () => ({
   createJsonCache: () => ({
     read: () => mockCacheRead(),
+    readSync: () => mockCacheReadSync(),
     write: (data: unknown) => mockCacheWrite(data),
   }),
 }));
@@ -65,9 +67,35 @@ beforeEach(() => {
   mockFetch.mockReset();
   mockCacheWrite.mockClear();
   mockCacheRead.mockClear();
+  mockCacheReadSync.mockReset().mockReturnValue(null);
 });
 
 describe('fetchFeed', () => {
+  it('keeps a newer durable feed when an old CDN response arrives after reconnecting', async () => {
+    mockCacheReadSync.mockReturnValue(feed('2026-10-15T12:00:00Z'));
+    mockFetch.mockResolvedValueOnce(ok(feed('2026-10-14T12:00:00Z')));
+    await expect(fetchFeed()).rejects.toThrow(/older/i);
+    expect(mockCacheWrite).not.toHaveBeenCalled();
+  });
+
+  it('does not let an interrupted older request overwrite a newer completed download', async () => {
+    let finish!: (response: Response) => void;
+    mockFetch.mockReturnValueOnce(
+      new Promise((resolve) => {
+        finish = resolve;
+      }),
+    );
+    mockFetch.mockResolvedValueOnce(ok(feed('2026-10-15T12:00:00Z')));
+    mockCacheWrite.mockImplementationOnce(async (value) => {
+      mockCacheReadSync.mockReturnValue(value);
+    });
+    const old = fetchFeed();
+    await fetchFeed();
+    finish(ok(feed('2026-10-14T12:00:00Z')));
+    await expect(old).rejects.toThrow(/older/i);
+    expect(mockCacheWrite).toHaveBeenCalledTimes(1);
+  });
+
   it('prefers the lite endpoint', async () => {
     mockFetch.mockResolvedValueOnce(ok(feed('2026-07-24T00:00:00.000Z')));
     const result = await fetchFeed();

@@ -1,8 +1,8 @@
 import type { Article, FeedResponse } from '@shared/types';
-import { notifyManager, type QueryClient } from '@tanstack/react-query';
+import { hashKey, notifyManager, type QueryClient } from '@tanstack/react-query';
 import { API_BASE } from '../constants/theme';
 import { type FetchedSnapshot, fetchAllSnapshots } from './api-snapshots';
-import { collectNewArticles } from './feed-diff';
+import { collectNewArticles, isOlderFeed } from './feed-diff';
 import { fetchFeed } from './feed-source';
 import { fetchJson } from './fetchJson';
 import { type FeedStory, noteFeed } from './fresh-store';
@@ -98,13 +98,20 @@ export function applyArrival(
 ): Article[] {
   if (arrival.generation !== undefined && arrival.generation !== generation) return [];
   const before = queryClient.getQueryData<FeedResponse>(FEED_QUERY_KEY);
+  // The feed may have downloaded first, then waited on a slow layer while a
+  // foreground/background request applied a newer complete arrival.
+  if (isOlderFeed(arrival.feed, before)) return [];
   const added = before ? collectNewArticles(arrival.feed, feedSlugs(before)) : [];
   notifyManager.batch(() => {
     // Scheduled, not called: `noteFeed` tells its subscribers at once, and
     // called here it would re-render the kickers a commit ahead of the river.
     const appliedIn = generation;
     notifyManager.schedule(() => {
-      if (appliedIn !== generation) return;
+      if (
+        appliedIn !== generation ||
+        queryClient.getQueryData<FeedResponse>(FEED_QUERY_KEY)?.generated !== arrival.feed.generated
+      )
+        return;
       if (lastSeenAt !== null) {
         noteFeed(arrival.feed.generated, feedStories(arrival.feed), lastSeenAt);
       }
@@ -121,9 +128,19 @@ export function applyArrival(
 /** Retry only the layers an earlier arrival could not fetch, even on the same build. */
 export async function retryFailedSnapshots(queryClient: QueryClient): Promise<void> {
   const startedIn = generation;
-  const snapshots = await fetchAllSnapshots((key) => queryClient.getQueryData(key), true);
+  const before = new Map<string, unknown>();
+  const snapshots = await fetchAllSnapshots((key) => {
+    const data = queryClient.getQueryData(key);
+    before.set(hashKey(key), data);
+    return data;
+  }, true);
   if (startedIn !== generation) return;
   notifyManager.batch(() => {
-    for (const snapshot of snapshots) queryClient.setQueryData(snapshot.queryKey, snapshot.data);
+    for (const snapshot of snapshots) {
+      // Another load may have recovered this layer while the retry waited.
+      if (queryClient.getQueryData(snapshot.queryKey) !== before.get(hashKey(snapshot.queryKey)))
+        continue;
+      queryClient.setQueryData(snapshot.queryKey, snapshot.data);
+    }
   });
 }
