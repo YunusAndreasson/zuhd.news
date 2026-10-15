@@ -54,9 +54,9 @@
   Cache-Control: public, max-age=86400, stale-while-revalidate=604800
 
 # Islands split by extension so the two rules never both match: esbuild emits
-# our bundles as .js, MapLibre ships its engine, worker and shared chunk as
-# .mjs. The engine is vendor code that only moves on a version bump, so it must
-# not ride the content cycle — before this it inherited the 300s default and was
+# our bundles as .js, MapLibre ships its engine and worker as .mjs. The engine
+# is vendor code that only moves on a version bump, so it must not ride the
+# content cycle — before this it inherited the 300s default and was
 # refetched all day.
 /islands/*.mjs
   Cache-Control: public, max-age=86400, stale-while-revalidate=604800
