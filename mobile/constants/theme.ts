@@ -120,18 +120,18 @@ export const DARK_COLORS = {
   // says good or bad must not also say it more quietly. Rose was 5.5:1 beside
   // sage's 7.3:1, so a fall read as the weaker figure on every chip and in
   // the strip, and at 0.18 saturation both read as grey over the globe.
-  toneFavorableText: '#86bf95',
-  toneUnfavorableText: '#e5979b',
+  toneFavorableText: '#6cbb7e',
+  toneUnfavorableText: '#e68ba8',
   toneNeutralText: '#93adc4',
   // Globe marks — the web map's palette verbatim (`public/islands/_map/style.ts`),
   // in both themes. The web map is dark-only, and a story, a hazard or a strait
   // should be the same colour on the phone as in the browser; a second light
   // palette would be two maps that disagree. Direction signs use theme-adjusted green/red. A story's hue says its category,
   // every other layer's hue says what kind of thing it is.
-  markPolitics: '#d2604a',
-  markEconomy: '#d0a24a',
-  markScience: '#4fa0a4',
-  markTech: '#8b96d4',
+  markPolitics: '#e77b60',
+  markEconomy: '#ca9c48',
+  markScience: '#49b8b8',
+  markTech: '#8aa2e4',
   markOther: '#8a8a8a',
   /**
    * A category's name set in its colour — the card's kicker, where the word
@@ -139,13 +139,16 @@ export const DARK_COLORS = {
    * clear AA body as they are (politics, the lowest, at 4.7:1), so the word
    * and its lights and track cell are one colour exactly.
    */
-  categoryTextPolitics: '#d2604a',
-  categoryTextEconomy: '#d0a24a',
-  categoryTextScience: '#4fa0a4',
-  categoryTextTech: '#8b96d4',
+  categoryTextPolitics: '#e77b60',
+  categoryTextEconomy: '#ca9c48',
+  categoryTextScience: '#49b8b8',
+  categoryTextTech: '#8aa2e4',
   categoryTextOther: '#8a8a8a',
   /** The ring on a story its sources disagree sharply about. */
   markContested: '#e8e2d4',
+  /** The rim round a story's disc: the sheet's own dark, as the web's dot
+   *  rim is its space. */
+  markOutline: '#0F0F11',
   markGdacs: '#b8763f',
   markThermal: '#d98a4a',
   markFamine: '#a98bc9',
@@ -159,13 +162,13 @@ export const DARK_COLORS = {
   markConflictText: '#cc7474',
   /** A strait at rest; `Pinch` below its normal, `Surge` above it. */
   markStrait: '#8d97a6',
-  markStraitPinch: '#c9a84c',
-  markStraitSurge: '#5f9ea0',
+  markStraitPinch: '#e68ba8',
+  markStraitSurge: '#6cbb7e',
   /** Up and down, everywhere a move is printed: the globe's arrows, and every
    *  move chip through the `rise`/`fall` tones. The same two inks as
    *  `toneFavorableText` / `toneUnfavorableText`. */
-  markMarketUp: '#86bf95',
-  markMarketDown: '#e5979b',
+  markMarketUp: '#6cbb7e',
+  markMarketDown: '#e68ba8',
   /** The one unmuted tone on the globe, as on the web map. */
   markGenocide: '#f5372b',
   markGenocideCore: '#0b0d11',
@@ -213,10 +216,10 @@ export const LIGHT_COLORS = {
   toneUnfavorableText: '#9a3f4a',
   toneNeutralText: '#3f6680',
   // See DARK_COLORS.markPolitics — the same web palette in both themes.
-  markPolitics: '#d2604a',
-  markEconomy: '#d0a24a',
-  markScience: '#4fa0a4',
-  markTech: '#8b96d4',
+  markPolitics: '#e77b60',
+  markEconomy: '#ca9c48',
+  markScience: '#49b8b8',
+  markTech: '#8aa2e4',
   markOther: '#8a8a8a',
   /**
    * See DARK_COLORS.categoryTextPolitics. On cream the globe's hues fall to
@@ -224,10 +227,10 @@ export const LIGHT_COLORS = {
    * toward black until it sits at ~5.3:1 on `sheetBg`: the same family as
    * its track cell, a shade deeper, and one weight across the four.
    */
-  categoryTextPolitics: '#954435',
-  categoryTextEconomy: '#725929',
-  categoryTextScience: '#316366',
-  categoryTextTech: '#535a7f',
+  categoryTextPolitics: '#9f422b',
+  categoryTextEconomy: '#815c0a',
+  categoryTextScience: '#157171',
+  categoryTextTech: '#4d6197',
   categoryTextOther: '#5c5c5c',
   /**
    * The ring on a story its sources disagree sharply about. Not the web's
@@ -237,6 +240,9 @@ export const LIGHT_COLORS = {
    * ring vanished over land and sea. This is the same ink at the other pole.
    */
   markContested: '#3a352c',
+  /** See DARK_COLORS.markOutline. Dark here too: a cream rim round the web's
+   *  hues on cream land left an economy dot at 1.14:1 and the rim at 1.8. */
+  markOutline: '#1a1a1a',
   markGdacs: '#b8763f',
   markThermal: '#d98a4a',
   markFamine: '#a98bc9',
@@ -246,8 +252,8 @@ export const LIGHT_COLORS = {
   markConflictText: '#9f4747',
   /** A strait at rest; `Pinch` below its normal, `Surge` above it. */
   markStrait: '#596775',
-  markStraitPinch: '#8b681f',
-  markStraitSurge: '#386f70',
+  markStraitPinch: '#9a3f4a',
+  markStraitSurge: '#356b44',
   markMarketUp: '#356b44',
   markMarketDown: '#9a3f4a',
   /** The one unmuted tone on the globe, as on the web map. */
@@ -319,8 +325,8 @@ export function categoryTextColor(category: string | undefined, colors: ColorPal
   }
 }
 
-/** A strait's glyph colour in its state: slate at rest, gold pinched, teal
- *  surging — the web's three. The shape says the same thing (`getStraitPath`). */
+/** A strait's glyph colour in its state: slate at rest, the fall's rose pinched,
+ *  the rise's green surging — the web's three. The shape says the same thing (`getStraitPath`). */
 export function straitMarkColor(state: 'rest' | 'pinch' | 'surge', colors: ColorPalette): string {
   return state === 'pinch'
     ? colors.markStraitPinch

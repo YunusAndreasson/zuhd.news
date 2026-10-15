@@ -1103,7 +1103,7 @@ interface GlobeState {
     direction?: 'up' | 'down' | 'flat';
     labelX: number;
     disrupted: boolean;
-    /** Traffic well above its normal — the web's teal strait. */
+    /** Traffic well above its normal — the web's surging strait. */
     surge: boolean;
     /** The name's baseline, or null when there was no room for it. */
     labelY: number | null;
@@ -1898,7 +1898,7 @@ function recordGlobeFrame(f: GlobeState, s: FrameStyle): FramePictures {
   }
 
   // Chokepoints — the strait pictogram in the web's three states: slate at
-  // rest, gold when traffic is pinched below its normal, teal when it surges.
+  // rest, rose when traffic is pinched below its normal, green when it surges.
   // Labelled wherever there is room (`MARK_LABEL_DY`); the label's ink and
   // halo are WCAG-audited (2026-07-04).
   const water = fonts.water;
@@ -2187,7 +2187,7 @@ function recordGlobeFrame(f: GlobeState, s: FrameStyle): FramePictures {
   for (const m of f.storyMarks) {
     const radius = BEACON_R * m.scale;
     c.drawCircle(m.x, m.y, radius, fillPaint(m.color, m.alpha));
-    c.drawCircle(m.x, m.y, radius, strokePaint(colors.bg, 0.82, 1.25));
+    c.drawCircle(m.x, m.y, radius, strokePaint(colors.markOutline, 0.82, 1.25));
   }
   // The web's ring on a story its sources disagree sharply about.
   for (const m of f.storyMarks) {
