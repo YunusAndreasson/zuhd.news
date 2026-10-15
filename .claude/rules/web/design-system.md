@@ -22,6 +22,16 @@ One type scale and two palettes, each declared once in `public/style.css`.
   opacity, so for controls that were caught dimmed (`.map-seam-toggle`,
   `.map-range`, `.map-markets-age`, `.map-markets-level`, `.map-mapctl`) it
   asserts there is none. Add a control there when it must stay legible.
+- Four text roles. Heading: `--size-2xs`, 600, small caps, `--track-caps`.
+  Item (a row's name, a link, a control): `--size-xs`, 400, sentence case.
+  Figure: `--size-2xs`, tabular. Qualifier: `--size-2xs`, a muted ink. Small
+  caps and 600 mean heading and nothing else.
+- Tracking is a `--track-*` token; small caps take `--track-caps`.
+- A label the phone sets in small caps stays lower case in its source, and the
+  desktop draws the capital with `::first-letter`, which needs a block box (an
+  `inline-block` span). A one-word label in a shrink-to-fit box takes
+  `text-transform: capitalize` instead: Gecko sizes the box from the lowercase
+  word and the capital overflows it.
 - No test pins sizes. Check a size change in a browser.
 - The italic face is `font-display: swap` and nothing preloads it. Keep italics
   for prose (`em`, a quotation): chrome set in italic fetches 78 KB for a word.

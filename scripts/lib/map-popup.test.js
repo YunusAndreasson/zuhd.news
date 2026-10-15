@@ -113,13 +113,18 @@ const series = (over) => ({
 
 const outlet = (name, over = {}) => ({ name, url: `https://${name}.example/a`, country: 'GB', sentiment: 0, ...over })
 
-test('with no angle recorded and nothing contested, the card ends on the flat line of names', async () => {
+test('the card ends on one folded line of names, with no promise of framing when none is recorded', async () => {
   const card = await openCard(storyOf({ sources: [outlet('one'), outlet('two')] }))
-  assert.equal(card.querySelector('.map-popup-framing'), null)
-  assert.equal(card.querySelector('.map-popup-sources'), null)
-  const flat = card.querySelector('.map-popup-sources-flat')
-  assert.match(flat.textContent, /Sources/)
-  assert.deepEqual([...flat.querySelectorAll('a')].map((a) => a.textContent), ['one', 'two'])
+  const details = card.querySelector('details.map-popup-framing')
+  assert.equal(details.open, false)
+  const line = details.querySelector('summary.map-popup-sources-flat')
+  assert.equal(line.querySelector('.map-popup-sources-label').textContent, 'Sources')
+  assert.equal(line.querySelector('.map-popup-sources-names').textContent, 'one, two')
+  assert.equal(line.querySelector('.map-popup-sources-more'), null, 'no angle, no "how each framed it"')
+  assert.equal(line.querySelector('a'), null, 'no link inside the summary: a control in a control')
+  // The links are in the rows, with the date line, behind the fold.
+  assert.deepEqual([...details.querySelectorAll('a.map-popup-source-name')].map((a) => a.textContent), ['one', 'two'])
+  assert.ok(details.querySelector('.map-popup-meta'), 'the date and where it was filed from are in the fold')
 })
 
 test('one outlet with an angle is folded like any other, with no note', async () => {
@@ -130,11 +135,11 @@ test('one outlet with an angle is folded like any other, with no note', async ()
   // card: the article page folds a single outlet under the same words.
   const details = card.querySelector('details.map-popup-framing')
   assert.equal(details.open, false)
-  assert.equal(details.querySelector('summary').textContent, 'How each outlet framed it')
+  assert.equal(details.querySelector('.map-popup-sources-more').textContent, 'how each framed it')
   // Nothing to compare, so no sentence about outlets differing.
   assert.equal(card.querySelector('.map-popup-framing-note'), null)
-  // The card still ends on who reported it.
-  assert.match(card.querySelector('.map-popup-sources-flat').textContent, /Sources\s*one/)
+  // The card still ends on who reported it, in the one line.
+  assert.match(details.querySelector('summary').textContent, /Sources\s*one/)
   const row = details.querySelector('.map-popup-source')
   assert.equal(row.querySelector('a.map-popup-source-name').getAttribute('href'), 'https://one.example/a')
   assert.equal(row.querySelector('.map-popup-source-tone').textContent, 'leans critical')
@@ -154,7 +159,8 @@ test('several outlets are folded under the article page’s words, and a neutral
   )
   const details = card.querySelector('details.map-popup-framing')
   assert.equal(details.open, false, 'an ordinary story keeps its rows folded')
-  assert.equal(details.querySelector('summary').textContent, 'How each outlet framed it')
+  assert.equal(details.querySelector('.map-popup-sources-names').textContent, 'one, two, three')
+  assert.equal(details.querySelector('.map-popup-sources-more').textContent, 'how each framed it')
   assert.equal(details.querySelector('.map-popup-framing-note'), null)
   const rows = [...details.querySelectorAll('.map-popup-source')]
   // The order the story lists them in: nothing is contested, so nothing is ranked.
@@ -163,9 +169,8 @@ test('several outlets are folded under the article page’s words, and a neutral
   assert.equal(rows[1].querySelector('.map-popup-source-tone').textContent, 'leans favorable')
   assert.equal(rows[2].querySelector('.map-popup-source-tone'), null, 'unrated is not neutral, and says nothing either')
   assert.equal(rows[2].querySelector('.map-popup-source-angle'), null)
-  // The names still end the card while the fold is shut; the stylesheet hides
-  // this line when it is open.
-  assert.equal(details.nextElementSibling.className, 'map-popup-sources-flat')
+  // One line holds the names, so an outlet is never named twice outside the rows.
+  assert.equal(card.querySelectorAll('.map-popup-sources-flat').length, 1)
   // No number: the lean is a machine estimate and is given as a word or not at all.
   assert.doesNotMatch(details.textContent, /[+−-]?\d\.\d\d/)
 })
@@ -243,6 +248,21 @@ test('a story that names a chart draws it between its title and its prose', asyn
   assert.ok(block.querySelector('svg.spark'), 'a line, not the full figure')
   // And the dates that line runs between, which is the period the move is over.
   assert.deepEqual([...block.querySelector('.map-popup-chart-span').children].map((n) => n.textContent), ['Jul 13', 'Oct 6'])
+})
+
+test('a story that names no chart draws the first series it follows, and that chip leaves', async () => {
+  const story = storyOf({
+    entities: [
+      { id: 'co:aramco', label: 'Aramco' },
+      { id: 'brent', label: 'Brent' },
+      { id: 'us-10y', label: 'US 10Y' },
+    ],
+  })
+  const card = await openCard(story, point, { brent: series() })
+  const block = card.querySelector('a.map-popup-chart')
+  assert.ok(block, 'a series it follows is drawn, not left behind a chip')
+  assert.equal(block.getAttribute('href'), '/e/brent', 'the first with a record: a company has none')
+  assert.deepEqual([...card.querySelectorAll('.map-entity-chip')].map((c) => c.textContent), ['Aramco', 'US 10Y'])
 })
 
 test('a rate moves in points', async () => {

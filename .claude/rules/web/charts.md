@@ -114,8 +114,10 @@ The rail's readings are `map-rail.md`.
   an article it lurches the page.
 - The map's card holds three folds (the story's chart, the country tags, the
   strip) and opening one shuts the others (`fold`, `onExpand`).
-- A story's chart (`storyChart`, `Story.chart`) is a `sparkline` under the
-  title whose press unfolds `buildEntityPanel`. Its move is the line's own
+- A story's chart (`storyChart`, `chartOf`) is a `sparkline` under the
+  title whose press unfolds `buildEntityPanel`: the series the story names,
+  else the first it follows with a record, so a story with a series always
+  shows one. Its move is the line's own
   (`windowPct`, or `ends` in points for a `%` series), never the record's
   `deltaLabel`. The strip drops the chip for the same id.
 - A strait's `/api/entity/cp:*.json` is its week's mean (`trailingMean`,

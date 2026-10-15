@@ -46,6 +46,11 @@ export interface StoryPlace {
   contested: boolean
   /** Newest first, which is the order the place card lists them in. */
   slugs: string[]
+  /**
+   * The sum over its stories of freshness times how widely each was covered
+   * (`attentionWeight`): what the bloom's heat is read from (`placeHeat`).
+   */
+  attention: number
 }
 
 /** Resolved once per payload: which place each story belongs to, and where. */
@@ -393,9 +398,11 @@ export const countPlaces = (
     if (!where) continue
     times.set(p.slug, p.t)
     const a = decayAt(p.t, now)
+    const att = a * attentionWeight(p.w)
     const hit = acc.get(key)
     if (hit) {
       hit.count += 1
+      hit.attention += att
       if (a > hit.amax) hit.amax = a
       if ((p.d ?? 0) >= CONTESTED_D) hit.contested = true
       hit.slugs.push(p.slug)
@@ -409,6 +416,7 @@ export const countPlaces = (
         amax: a,
         contested: (p.d ?? 0) >= CONTESTED_D,
         slugs: [p.slug],
+        attention: att,
       })
     }
   }
@@ -418,4 +426,79 @@ export const countPlaces = (
     }
   }
   return [...acc.values()]
+}
+
+/**
+ * How much one story counts toward a place's heat, by how widely the world's
+ * press covered it: `w` is its coverage rank, 0 to 1, from the build.
+ *
+ * 0.4 to 1.6, so the most covered story weighs four times the least and a
+ * median one weighs 1. A story with no figure (two thirds of the corpus) is
+ * unknown, not low, and weighs the median: drawn as low, a place this site
+ * wrote much about would read as quiet for want of a number.
+ */
+export const attentionWeight = (w: number | undefined): number =>
+  w === undefined ? 1 : 0.4 + 1.2 * w
+
+/**
+ * A place's heat: the square root of its attention, so the bloom reads where
+ * the world's press is on fresh news rather than how many stories this site
+ * wrote. `sqrt` for the reason `placeWeight` takes it: counts are long-tailed.
+ * Ten fresh median stories are about 3.2; Washington's busiest fortnight
+ * near 8.
+ */
+export const placeHeat = (place: Pick<StoryPlace, 'attention'>): number =>
+  Math.sqrt(Math.max(0, place.attention))
+
+// --- The flower ------------------------------------------------------------
+//
+// The stories at one place are laid out as a sunflower around it: Vogel's
+// spiral, each story a golden angle round from the one before and `sqrt(rank)`
+// out, so the dots pack evenly at any count with no rings to fill. Rank is age:
+// the newest story sits on the place at a beacon's size and each older one is a
+// petal a step further out, so distance from the centre reads as time, and the
+// decay alpha already dims it.
+//
+// Offsets are screen pixels, so a flower is the same size at every zoom.
+// Coincident stories never separate by zooming in: this is what lets each be
+// pointed at.
+
+/** Vogel's golden angle, in radians. */
+export const GOLDEN_ANGLE = Math.PI * (3 - Math.sqrt(5))
+
+/**
+ * Pixels between neighbouring dots in a flower. The petals are small enough
+ * (`PETAL_PX`) that the bloom's heat shows between them.
+ */
+export const FLOWER_STEP_PX = 6.4
+
+/**
+ * An older story's dot in a flower, one size for all: the offset table
+ * (`flowerOffsets`) is in units of the icon's size, so a petal size per story
+ * would need a table per size.
+ */
+export const PETAL_PX = 3.3
+
+/**
+ * The most petals a flower draws. Past it the oldest stories at a place have no
+ * dot (Washington holds hundreds at 90 days, which would be a flower 250px
+ * across); the numeral still counts them and its card lists them.
+ */
+export const FLOWER_MAX = 60
+
+/** Where the story of age rank `rank` (0 = newest) sits, in screen pixels. */
+export const flowerOffset = (rank: number): [number, number] => {
+  if (rank <= 0) return [0, 0]
+  const r = FLOWER_STEP_PX * Math.sqrt(rank)
+  const a = rank * GOLDEN_ANGLE
+  return [r * Math.cos(a), r * Math.sin(a)]
+}
+
+/** The largest beacon radius: the centre dot's at most. */
+export const BEACON_MAX_PX = 7.5
+
+/** How far a place's flower reaches from its centre, in pixels, rim included. */
+export const flowerRadius = (count: number): number => {
+  const petals = Math.min(count, FLOWER_MAX) - 1
+  return Math.max(BEACON_MAX_PX, FLOWER_STEP_PX * Math.sqrt(Math.max(0, petals)) + PETAL_PX)
 }

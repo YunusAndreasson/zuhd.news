@@ -39,7 +39,10 @@ import {
   densityRamp,
   FALLBACK_CATEGORY_COLOUR,
   globeFitZoom,
+  globeSpan,
   GLOBE_ZOOM,
+  BLOOM_RAMP,
+  bloomCssRamp,
   LAND_NO_DATA,
   LAND_RAMP,
   MAP_COLOURS,
@@ -51,6 +54,11 @@ import {
   buildPlaceIndex,
   countPlaces,
   DENSITY_INTENSITY,
+  FLOWER_MAX,
+  flowerOffset as petalOffset,
+  PETAL_PX,
+  flowerRadius,
+  placeHeat,
   type PlaceIndex,
   type StoryPlace,
 } from './_map/places'
@@ -80,7 +88,7 @@ import { sparkline } from './_spark'
 import { createPaneSeam, type PaneSeam } from './_map/panes'
 import { createTimeline, type Timeline } from './_map/timeline'
 import { createSheet, type Sheet } from './_map/sheet'
-import { MAKKAH_LABEL, MAKKAH_TZ, solarClock, zoneOffset } from './_map/format'
+import { MAKKAH_LABEL, MAKKAH_TZ, relativeTime, solarClock, zoneOffset } from './_map/format'
 import { createStoryPopup, type CountryStanding, type StoryPopup } from './_map/popup'
 import { dayPolygon, nightPolygon, sunLightPosition, terminatorBand } from './_map/solar'
 import { PRAYER_NOTE, PRAYERS, type PrayerId, prayerInstantAt, prayerLines } from './_map/prayer'
@@ -293,6 +301,34 @@ const SUN_TICK_MS = 120_000
  * says for the third of stories that do carry a figure.
  */
 const UNKNOWN_COVERAGE_W = 0.28
+
+/** The `dot` glyph's disc radius at `icon-size` 1, in CSS pixels (`glyphs.ts`). */
+const DOT_R = 4.4
+/** A beacon's radius, 3.4 to 7.5px by coverage rank. */
+const beaconRadius = (w: number) => 3.4 + 4.1 * w
+/** The contested ring sits this far outside the beacon's rim. */
+const RING_GAP = 2
+/** A dot's size from its baked radius `pr`, in pixels. */
+const BEACON_SIZE = ['/', ['get', 'pr'], DOT_R] as unknown as ExpressionSpecification
+/**
+ * A petal's `icon-offset`, by its age rank `k`: a table, one literal `[x, y]`
+ * per rank, in units of an icon `radius` px across (`icon-offset` is multiplied
+ * by `icon-size`). A table because nothing else carries two numbers to the
+ * layer: MapLibre turns an array property into a string, and an `icon-rotate`
+ * turns the dot but not its hit box, so the pointer found it elsewhere.
+ */
+const flowerOffsets = (radius: number) => {
+  const scale = radius / DOT_R
+  const table: unknown[] = []
+  for (let k = 1; k < FLOWER_MAX; k++) {
+    const [x, y] = petalOffset(k)
+    table.push(k, ['literal', [Math.round((x / scale) * 100) / 100, Math.round((y / scale) * 100) / 100]])
+  }
+  return ['match', ['get', 'k'], ...table, ['literal', [0, 0]]] as unknown as ExpressionSpecification
+}
+const BEACON_RING_SIZE = [
+  '/', ['+', ['get', 'pr'], RING_GAP], DOT_R,
+] as unknown as ExpressionSpecification
 
 /**
  * Disaster mark size for an alert whose severity does not reduce to a number.
@@ -564,6 +600,15 @@ export function mount(
   prayerTip.setAttribute('aria-hidden', 'true')
   mapEl.append(prayerTip)
 
+  // What a flower says when the pointer is on it: the place, how many stories
+  // and the span of time they cover; on a dot, that story's title and age.
+  // Pointer-only for the prayer tip's reason: the rail lists every story.
+  const placeTip = document.createElement('div')
+  placeTip.className = 'map-place-tip'
+  placeTip.hidden = true
+  placeTip.setAttribute('aria-hidden', 'true')
+  mapEl.append(placeTip)
+
   const hud = document.createElement('div')
   hud.className = 'map-hud'
 
@@ -628,6 +673,14 @@ export function mount(
       svg: '<circle cx="4" cy="8" r="3" opacity="0.28"/><circle cx="12" cy="8" r="3"/>',
     },
     {
+      id: 'flower',
+      label: 'newest at centre',
+      hint: 'Several stories at one place open into a flower: the newest in the middle, each older one further out',
+      svg:
+        '<circle cx="8" cy="8" r="2.6"/><circle cx="12.6" cy="8" r="1.3"/><circle cx="5.2" cy="11.2" r="1.3"/>' +
+        '<circle cx="6.3" cy="3.6" r="1.3"/><circle cx="11.4" cy="12.6" r="1.3"/><circle cx="2.8" cy="6.6" r="1.3"/>',
+    },
+    {
       id: 'contested',
       label: 'contested',
       hint: 'A ring marks a story the sources covering it disagree sharply about',
@@ -683,6 +736,19 @@ export function mount(
     '<span>density</span>'
   keyItems.set('density', densityKey)
   key.append(densityKey)
+
+  /**
+   * The bloom, from the same table as the canvas (`bloomCssRamp`). Its hint says
+   * what the heat is about, which no swatch can: the world's press on fresh
+   * news, not how many stories this site wrote.
+   */
+  const heatKey = document.createElement('span')
+  heatKey.className = 'map-key-item'
+  heatKey.title =
+    'A glow under a place with several stories: brighter where more of the world’s press is on fresh news'
+  heatKey.innerHTML = `<span class="map-key-field" style="--ramp:${bloomCssRamp()}"></span><span>heat</span>`
+  keyItems.set('heat', heatKey)
+  key.append(heatKey)
 
   /**
    * `contested` starts hidden, like the genocide chip below.
@@ -1764,11 +1830,18 @@ export function mount(
    * measurement it needs. The shorter side, because a sphere is a disc that has
    * to fit in both axes — see the note there for why the flat version took the
    * longer one instead.
+   *
+   * The width is the gap between the rails (`globeSpan`), not the canvas: the
+   * rails float over it. On a phone the story rail is a bar across the foot and
+   * takes no width. Measured here rather than through `applyPadding`'s `inset`,
+   * which is declared further down and does not exist yet at the first call.
    */
   const fitZoom = (lat: number) => {
     const w = mapEl.clientWidth || window.innerWidth || 1280
     const h = mapEl.clientHeight || window.innerHeight || 800
-    return globeFitZoom(Math.min(w, h), lat)
+    const wide = document.body.classList.contains('map-wide')
+    const side = (el: Element) => (wide ? el.getBoundingClientRect().width : 0)
+    return globeFitZoom(globeSpan(w, h, side(feed.element), side(hud)), lat)
   }
 
   /**
@@ -1827,8 +1900,14 @@ export function mount(
      * on it — the coastline, the frontier, the graticule, the prayer curves —
      * is a thin stroke on a dark ground, which is the exact case aliasing is
      * worst for.
+     *
+     * Only below a device pixel ratio of 2. There a stair step is half a CSS
+     * pixel, and MSAA on a buffer four times the size is the drag's whole
+     * budget: measured headless with the real GPU at ratio 2, a globe drag ran
+     * at 16 fps with it and 35 fps without, and the still edge could not be told
+     * apart.
      */
-    canvasContextAttributes: { antialias: true },
+    canvasContextAttributes: { antialias: devicePixelRatio < 2 },
     /**
      * The camera has one pose, and this is what actually holds it there.
      *
@@ -2089,33 +2168,62 @@ export function mount(
     return points.filter((p) => p.t <= scrubNow && p.t >= from && enabled.has(p.cat))
   }
 
-  const storyCollection = (visible: MapPoint[]) => ({
+  /**
+   * Where each story stands in its place's flower: its age rank there and the
+   * place's coordinate, so every dot of a flower turns about one centre.
+   */
+  type FlowerSlot = { rank: number; lng: number; lat: number }
+  const flowerSlots = (at: StoryPlace[]): Map<string, FlowerSlot> => {
+    const slots = new Map<string, FlowerSlot>()
+    for (const pl of at) {
+      pl.slugs.forEach((slug, rank) => {
+        slots.set(slug, { rank, lng: pl.lng, lat: pl.lat })
+      })
+    }
+    return slots
+  }
+
+
+  const storyCollection = (visible: MapPoint[], slots: Map<string, FlowerSlot>) => ({
     type: 'FeatureCollection' as const,
-    features: visible.map((p) => ({
-      type: 'Feature' as const,
-      // Decay is baked into the feature so MapLibre can drive opacity from a
-      // plain property — style expressions have no exponential.
-      // Only what a style expression reads or a hit-test needs. `title`, `loc`,
-      // `c` and `n` used to ride along here too, but nothing ever read them
-      // back — a marker resolves through `pointBySlug` — and this is the one
-      // layer re-serialised every time the scrubber moves, across a window
-      // that runs to ~720 points.
-      properties: {
-        slug: p.slug,
-        cat: p.cat,
-        t: p.t,
-        // Floor raised from 0.35 on 2026-07-30. Recency has to be *ordered and
-        // perceptible*, not asymptotic — and the blurred halo that used to
-        // rescue the faint end is gone. A week-old beacon now measures 1.89:1
-        // against the ocean where it measured 1.57:1; today's is 5.20:1, so a
-        // 2.2x range is still an unmistakable step.
-        a: Math.round((0.45 + 0.55 * decayAt(p.t, scrubNow)) * 100) / 100,
-        // Percentile rank from the build, or the neutral "unknown" size.
-        w: p.w ?? UNKNOWN_COVERAGE_W,
-        contested: (p.d ?? 0) >= CONTESTED_D ? 1 : 0,
-      },
-      geometry: { type: 'Point' as const, coordinates: [p.lng, p.lat] },
-    })),
+    features: visible.map((p) => {
+      const slot = slots.get(p.slug)
+      const w = p.w ?? UNKNOWN_COVERAGE_W
+      const rank = slot?.rank ?? 0
+      return {
+        type: 'Feature' as const,
+        // Decay is baked into the feature so MapLibre can drive opacity from a
+        // plain property — style expressions have no exponential.
+        // Only what a style expression reads or a hit-test needs. `title`, `loc`,
+        // `c` and `n` used to ride along here too, but nothing ever read them
+        // back — a marker resolves through `pointBySlug` — and this is the one
+        // layer re-serialised every time the scrubber moves, across a window
+        // that runs to ~720 points.
+        properties: {
+          slug: p.slug,
+          cat: p.cat,
+          t: p.t,
+          // Floor raised from 0.35 on 2026-07-30. Recency has to be *ordered and
+          // perceptible*, not asymptotic — and the blurred halo that used to
+          // rescue the faint end is gone. A week-old beacon now measures 1.89:1
+          // against the ocean where it measured 1.57:1; today's is 5.20:1, so a
+          // 2.2x range is still an unmistakable step.
+          a: Math.round((0.45 + 0.55 * decayAt(p.t, scrubNow)) * 100) / 100,
+          // Percentile rank from the build, or the neutral "unknown" size.
+          w,
+          contested: (p.d ?? 0) >= CONTESTED_D ? 1 : 0,
+          // The flower: this story's age rank at its place, which picks its
+          // offset, and its dot's radius: a beacon's at the centre, a petal's
+          // round it.
+          k: rank,
+          pr: Math.round((rank === 0 ? beaconRadius(w) : PETAL_PX) * 100) / 100,
+        },
+        geometry: {
+          type: 'Point' as const,
+          coordinates: slot ? [slot.lng, slot.lat] : [p.lng, p.lat],
+        },
+      }
+    }),
   })
 
   /**
@@ -2135,6 +2243,9 @@ export function mount(
         loc: pl.loc,
         n: pl.count,
         amax: pl.amax,
+        // The flower's reach in pixels, which the bloom and the numeral clear.
+        r: Math.round(flowerRadius(pl.count) * 10) / 10,
+        heat: Math.round(placeHeat(pl) * 100) / 100,
       },
       geometry: { type: 'Point' as const, coordinates: [pl.lng, pl.lat] },
     })),
@@ -2408,7 +2519,7 @@ export function mount(
     // Stories and their places are the layers whose *features* change with the
     // scrub head: decay alpha is baked per feature, and a place's count has to
     // reflect the filtered set. Everything else moves by filter above.
-    src('stories')?.setData(storyCollection(visible))
+    src('stories')?.setData(storyCollection(visible, flowerSlots(places)))
     src('story-places')?.setData(placeCollection(places))
     applyTimeFilters()
   }
@@ -2901,9 +3012,9 @@ export function mount(
      * The reason it now covers something no count can: a count is only honest
      * standing at a place that exists, and once the aggregating discs are gone
      * **nothing on this map says how far the news reaches.** Extent is a shape.
-     * No numeral states a shape. And every one of the four things it used to be
-     * stacked beside is gone and stays gone — this is the only density encoding
-     * on the map.
+     * No numeral states a shape. The four things it used to be stacked beside
+     * are gone; `story-bloom` under each busy place is the one other heat
+     * encoding, and it says how hot a place is, not how far a region reaches.
      *
      * Where it sits is the other half of the argument. **Above `night-shade`**,
      * because night darkens the land and never the data, and comparing extents
@@ -3256,104 +3367,120 @@ export function mount(
     })
 
     /**
-     * A ring around stories whose sources disagree sharply about them.
+     * The bloom: heat under a place holding two or more stories, reaching just
+     * past its flower (`flowerRadius`).
      *
-     * Drawn under the dot rather than on it so it reads as an aura, and only for
-     * the top quartile of divergence — otherwise every story has one and it says
-     * nothing. Radii track the beacon's, which grew on 2026-07-30.
+     * Its tone is `heat` (`placeHeat`: each story's freshness times how widely
+     * the world's press covered it, summed, under a square root), read on
+     * `BLOOM_RAMP` from ember to white: at a glance, where the world's
+     * attention is on fresh news, and where it has gone quiet. Not how many
+     * stories this site wrote, and not the category's hue, which the dots
+     * already carry.
      *
-     * `story-glow` used to sit under this: a per-story blurred halo, 7–20px at
-     * `a * 0.45` in the category hue. It is **deleted**, not crossfaded against
-     * the new field. It was already a kernel-density blob — uncalibrated, in four
-     * colours, stacking at exactly the 92 coincident places `story-density` is
-     * built to describe — and two density fields on one map is the "four glow
-     * systems stacked on one coordinate" charge verbatim. Its own comment
-     * admitted it was the hand-baked glow sprite carried forward, which is
-     * decoration, and decoration does not get to stay.
+     * Under `borders` with the field, so a coastline and every name draw
+     * through it. The field says how far the news reaches across a region; the
+     * bloom says how hot each place is.
+     */
+    map.addLayer(
+      {
+        id: 'story-bloom',
+        type: 'circle',
+        source: 'story-places',
+        paint: {
+          'circle-radius': ['+', ['get', 'r'], 12],
+          'circle-color': [
+            'interpolate',
+            ['linear'],
+            ['get', 'heat'],
+            ...BLOOM_RAMP.flatMap(([h, c]) => [h, c]),
+          ] as unknown as ExpressionSpecification,
+          'circle-blur': 1,
+          'circle-opacity': [
+            'case',
+            ['>=', ['get', 'n'], 2],
+            ['interpolate', ['linear'], ['get', 'heat'], 0.6, 0.3, 3, 0.58, 7, 0.75],
+            0,
+          ],
+        },
+      },
+      'borders',
+    )
+
+    /**
+     * A ring around stories whose sources disagree sharply about them, only for
+     * the top quartile of divergence, or every story has one and it says
+     * nothing.
+     *
+     * A ring two pixels off the beacon's rim, drawn as the `dot` glyph's halo
+     * with no fill, and moved by the same flower offset as its beacon
+     * (`flowerOffsets`), so it stays on its story inside a flower.
      */
     map.addLayer({
       id: 'story-contested',
-      type: 'circle',
+      type: 'symbol',
       source: 'stories',
-      filter: ['==', ['get', 'contested'], 1],
+      filter: ['all', ['==', ['get', 'contested'], 1], ['<', ['get', 'k'], FLOWER_MAX]],
+      layout: {
+        'icon-image': 'dot',
+        'icon-size': BEACON_RING_SIZE,
+        'icon-offset': flowerOffsets(PETAL_PX + RING_GAP),
+        'icon-allow-overlap': true,
+        'icon-ignore-placement': true,
+      },
       paint: {
-        'circle-radius': ['interpolate', ['linear'], ['get', 'w'], 0, 6.8, 1, 12],
-        'circle-color': 'rgba(0,0,0,0)',
-        'circle-stroke-width': 1,
-        'circle-stroke-color': MAP_COLOURS.contested,
-        'circle-stroke-opacity': ['*', ['get', 'a'], 0.5],
+        'icon-color': 'rgba(0,0,0,0)',
+        'icon-halo-color': MAP_COLOURS.contested,
+        'icon-halo-width': 1,
+        'icon-halo-blur': 0,
+        'icon-opacity': ['*', ['get', 'a'], 0.55],
       },
     })
 
     /**
-     * The beacons — one per story, at every zoom.
+     * The beacons, one per story, at every zoom.
      *
-     * These were 2.6–6px with an alpha floor of 0.35, sized for a map where a
-     * beacon was the exception: measured at the world-fit zoom, **14 of 705
-     * stories drew as one and the other 691 were inside a disc**. So the mark
-     * carrying the subject of this map was tuned as an afterthought, and
-     * `glyphs.ts` had already worked out that 3.2px is below the floor at which a
-     * mark survives at all.
+     * A place's newest story is 3.4 to 7.5px in radius by the build's coverage
+     * rank, and one with no figure at a neutral size below the median, so it
+     * reads as unknown rather than smallest. Its older stories are petals
+     * (`PETAL_PX`). The rim is the ocean tone: fill carries the mark on dark
+     * ground, rim on the density wash, where a `politics` fill alone measures
+     * 1.07:1.
      *
-     * Now 3.4–7.5px. The ceiling is 15px across, just under the 16px `GLYPH_BOX`
-     * the overlays share, so a heavily-covered story never out-sizes a Red GDACS
-     * alert or a genocide ring — the beacon gains presence without becoming the
-     * loudest thing here. A story with no coverage figure lands at 4.55px: 1.34x
-     * the floor and still below the known median of 5.41px, so a fixed value
-     * below the median goes on saying "unknown" rather than "smallest", with more
-     * room to say it in.
-     *
-     * **The rim is what makes a beacon read on the density wash**, and it is the
-     * channel that had to be paid for. A `politics` fill measures 1.07:1 against
-     * the field's peak at the alpha floor and 1.37:1 at full strength — nearly
-     * the same luminance. Its ocean-coloured rim measures 3.74:1. That is exactly
-     * the argument this file already makes for the overlay glyphs' dark halo:
-     * contrast against the halo is the real invariant, and it is what stops the
-     * ground being a variable. So the rim goes from 0.6px at 0.6 alpha to 1px at
-     * 0.85. Fill carries the mark on dark ground; rim carries it on bright.
+     * A symbol and not a circle, because a circle cannot be moved per feature in
+     * screen pixels and a flower has to be (`flowerOffset` in `_map/places.ts`):
+     * each story at a place sits a golden angle round from the one before and
+     * further out by age, newest on the place, so every one of them can be
+     * pointed at. Hover is a halo step through feature state, which paint can
+     * read.
      */
     map.addLayer({
       id: 'story-points',
-      type: 'circle',
+      type: 'symbol',
       source: 'stories',
+      // Past `FLOWER_MAX` the oldest at a place draw no dot. A filter, not an
+      // opacity: a dot hidden by paint still takes the pointer.
+      filter: ['<', ['get', 'k'], FLOWER_MAX],
       layout: {
-        // 445 of 705 stories share a coordinate with another, so at those places
-        // 2 to 62 beacons composite. Which one ended up on top was an accident of
-        // parse order; it is now the latest story there, which is a rule — and it
-        // is what makes hovering a pile preview the same story the numeral beside
-        // it stands for. The stack going opaque is honest: coincident stories
-        // genuinely are coincident, and the exact fact it cannot state is what
-        // the numeral and the place card are for.
-        'circle-sort-key': ['get', 't'],
+        'icon-image': 'dot',
+        'icon-size': BEACON_SIZE,
+        'icon-offset': flowerOffsets(PETAL_PX),
+        'icon-allow-overlap': true,
+        'icon-ignore-placement': true,
+        // Newest on top where two dots of a flower touch.
+        'symbol-sort-key': ['get', 't'],
       },
       paint: {
-        'circle-radius': [
-          'interpolate',
-          ['linear'],
-          ['get', 'w'],
-          0, 3.4,
-          1, 7.5,
-        ],
-        'circle-color': catColour(FALLBACK_CATEGORY_COLOUR),
-        'circle-opacity': ['get', 'a'],
-        // Hover is a per-feature state flip rather than a style rewrite: the
-        // expression is compiled once and only the one feature's state changes.
-        // This is also why the beacon has to stay a `circle` — `icon-size`
-        // cannot read feature state, which `glyphs.ts` records under `DOT`.
-        'circle-stroke-width': [
+        'icon-color': catColour(FALLBACK_CATEGORY_COLOUR),
+        'icon-opacity': ['get', 'a'],
+        'icon-halo-width': [
           'case',
           ['boolean', ['feature-state', 'hover'], false], 1.8,
           1,
         ],
-        'circle-stroke-color': [
+        'icon-halo-color': [
           'case',
           ['boolean', ['feature-state', 'hover'], false], '#ffffff',
           MAP_COLOURS.ocean,
-        ],
-        'circle-stroke-opacity': [
-          'case',
-          ['boolean', ['feature-state', 'hover'], false], 1,
-          0.85,
         ],
       },
     })
@@ -3402,10 +3529,11 @@ export function mount(
         ],
         'text-font': ['Source Sans 3 Bold'],
         'text-size': ['interpolate', ['linear'], ['zoom'], 1, 10, 5, 12],
-        // Beside the stack, never on it, and free to hop when crowded — eight
-        // European capitals sit within a few degrees of each other.
+        // Beside the flower, never on it, and free to hop when crowded — eight
+        // European capitals sit within a few degrees of each other. The offset
+        // is the flower's reach (`r`, pixels) over an 11px numeral, in ems.
         'text-variable-anchor': ['left', 'right', 'top', 'bottom'],
-        'text-radial-offset': 0.9,
+        'text-radial-offset': ['/', ['+', ['get', 'r'], 2], 11],
         'text-justify': 'auto',
         'text-padding': 5,
         'text-allow-overlap': false,
@@ -3921,16 +4049,76 @@ export function mount(
       prayerTip.append(clock, frame)
     }
     prayerTip.hidden = false
+    tipAt(prayerTip, point)
+  }
 
-    // Measured after it is filled and shown, so the flip near an edge is
-    // against the width this text actually has rather than the last one's.
+  /**
+   * Place a pointer tip beside the pointer, flipped near an edge. Measured
+   * after it is filled and shown, so the flip is against the width this text
+   * actually has rather than the last one's. The edges are the rails', not the
+   * canvas's: the canvas runs on under both, and a tip flipped at its edge ran
+   * under the instrument rail.
+   */
+  const tipAt = (tip: HTMLElement, point: { x: number; y: number }) => {
     const gap = 14
     const { width, height } = mapEl.getBoundingClientRect()
-    const w = prayerTip.offsetWidth
-    const h = prayerTip.offsetHeight
-    const x = point.x + gap + w > width - 8 ? point.x - gap - w : point.x + gap
+    const pad = map.getPadding()
+    const left = (pad.left ?? 0) + 8
+    const right = width - (pad.right ?? 0) - 8
+    const w = tip.offsetWidth
+    const h = tip.offsetHeight
+    const x = point.x + gap + w > right ? point.x - gap - w : point.x + gap
     const y = point.y + gap + h > height - 8 ? point.y - gap - h : point.y + gap
-    prayerTip.style.transform = `translate(${Math.max(8, x)}px, ${Math.max(8, y)}px)`
+    tip.style.transform = `translate(${Math.max(left, x)}px, ${Math.max(8, y)}px)`
+  }
+
+  /**
+   * A flower explaining itself. On a place of several stories, the first line
+   * is the place, the count and the span: newest and oldest, so the reader
+   * learns that the flower is laid out in time. On a dot, a line with that
+   * story's title and age (and its place, when the place holds only it).
+   */
+  const showPlaceTip = (
+    place: StoryPlace | null,
+    story: MapPoint | null,
+    point: { x: number; y: number },
+  ) => {
+    const several = place !== null && place.count > 1
+    if (!several && !story) {
+      placeTip.hidden = true
+      return
+    }
+    placeTip.replaceChildren()
+    if (several) {
+      const times = place.slugs.map((slug) => pointBySlug.get(slug)?.t ?? 0)
+      const head = document.createElement('p')
+      const name = document.createElement('b')
+      name.textContent = place.loc
+      const span = document.createElement('span')
+      span.textContent =
+        `${place.count} stories · newest ${relativeTime(Math.max(...times), scrubNow)},` +
+        ` oldest ${relativeTime(Math.min(...times), scrubNow)}`
+      head.append(name, span)
+      placeTip.append(head)
+    }
+    if (story) {
+      const line = document.createElement('p')
+      line.className = 'map-place-tip-story'
+      const title = document.createElement('span')
+      title.textContent = story.title
+      const age = document.createElement('span')
+      age.className = 'map-place-tip-age'
+      const when = relativeTime(story.t, scrubNow)
+      age.textContent = several ? when : `${story.loc} · ${when}`
+      line.append(title, age)
+      placeTip.append(line)
+    }
+    placeTip.hidden = false
+    tipAt(placeTip, point)
+  }
+
+  const hidePlaceTip = () => {
+    placeTip.hidden = true
   }
 
   const hidePrayerTip = () => {
@@ -4055,6 +4243,31 @@ export function mount(
     }
 
     /**
+     * The story dot under the pointer, or null.
+     *
+     * A symbol's hit box is its image's whole padded square, and in a flower
+     * that square holds a dozen neighbours, so MapLibre's answer is every petal
+     * near the pointer. This keeps the dot whose drawn disc holds it, nearest
+     * first: its place projected, plus its petal's offset, within its radius
+     * and a pixel or two of grace.
+     */
+    const storyAt = (hits: MapGeoJSONFeature[], px: number, py: number) => {
+      let best: MapGeoJSONFeature | null = null
+      let bestD = Number.POSITIVE_INFINITY
+      for (const h of hits) {
+        if (h.layer.id !== 'story-points' || h.geometry.type !== 'Point') continue
+        const c = map.project(h.geometry.coordinates as [number, number])
+        const [ox, oy] = petalOffset(Number(h.properties?.k ?? 0))
+        const d = Math.hypot(px - (c.x + ox), py - (c.y + oy))
+        if (d <= Number(h.properties?.pr ?? 0) + 2 && d < bestD) {
+          best = h
+          bestD = d
+        }
+      }
+      return best
+    }
+
+    /**
      * The one hit test, and the one precedence.
      *
      * Every marker used to register its own layer-scoped handler, and MapLibre
@@ -4070,7 +4283,11 @@ export function mount(
      * from up to five `queryRenderedFeatures` per move to two.
      */
     const topHit = (point: PointLike): MapGeoJSONFeature | null => {
-      const hits = map.queryRenderedFeatures(point, { layers: MARKER_LAYERS })
+      const found = map.queryRenderedFeatures(point, { layers: MARKER_LAYERS })
+      if (!found.length) return null
+      const [px, py] = Array.isArray(point) ? point : [point.x, point.y]
+      const dot = storyAt(found, px, py)
+      const hits = found.filter((h) => h.layer.id !== 'story-points' || h === dot)
       if (!hits.length) return null
       for (const id of HIT_ORDER) {
         const f = hits.find((h) => h.layer.id === id)
@@ -4080,9 +4297,28 @@ export function mount(
     }
 
     /** The place a story belongs to, or null if the index has not caught up. */
-    const placeOf = (slug: string): StoryPlace | null => {
-      const key = placeIndex.of.get(slug)
-      return key ? placeByKey.get(key) ?? null : null
+    const placeOfStory = (slug: string): StoryPlace | null =>
+      placeByKey.get(placeIndex.of.get(slug) ?? '') ?? null
+
+    /**
+     * The place whose flower the pointer is inside, from the glow between its
+     * petals. The bloom's rendered disc runs past the flower by its blur, so
+     * the distance is checked against the flower's own reach.
+     */
+    const bloomAt = (point: Point): StoryPlace | null => {
+      let best: StoryPlace | null = null
+      let bestD = Number.POSITIVE_INFINITY
+      for (const h of map.queryRenderedFeatures(point, { layers: ['story-bloom'] })) {
+        const place = placeForFeature(h)
+        if (!place || place.count < 2) continue
+        const c = map.project([place.lng, place.lat])
+        const d = Math.hypot(point.x - c.x, point.y - c.y)
+        if (d <= flowerRadius(place.count) + 4 && d < bestD) {
+          best = place
+          bestD = d
+        }
+      }
+      return best
     }
 
     const placeForFeature = (f: MapGeoJSONFeature): StoryPlace | null => {
@@ -4108,13 +4344,10 @@ export function mount(
     /**
      * Clicking the map.
      *
-     * One handler, four outcomes in `HIT_ORDER`'s precedence. A story beacon at a
-     * place holding one story flies to it; a beacon at a place holding several —
-     * and 445 of 705 stories share a coordinate — opens the place instead, which
-     * is the gesture `expandCluster` was pretending to offer. It could not
-     * deliver: coincident stories never separate at any zoom, so descending into
-     * a pile moved the camera and produced nothing to read. An overlay mark pins
-     * its sheet. Nothing under the pointer dismisses whatever is open, and only
+     * One handler, four outcomes in `HIT_ORDER`'s precedence. A story dot flies
+     * to its story, alone or in a flower: the flower is what separates
+     * coincident stories, which no zoom does. A place's numeral opens the
+     * place's list (`openPlace`). An overlay mark pins its sheet. Nothing under the pointer dismisses whatever is open, and only
      * from a clean slate does a click on land open that country — escape-first is
      * what a click on empty space is expected to do.
      */
@@ -4135,16 +4368,11 @@ export function mount(
           }
           return
         }
+        // A dot is one story, in a flower or alone: it opens that story. The
+        // place's numeral opens the list.
         if (layer === 'story-points') {
           const p = pointFor(f)
-          if (!p) return
-          const place = placeOf(p.slug)
-          if (place && place.count > 1) {
-            openSlug = null
-            void popup?.openPlace(place, scrubNow)
-          } else {
-            flyToStory(p)
-          }
+          if (p) flyToStory(p)
           return
         }
         const id = f.properties?.id
@@ -4250,9 +4478,24 @@ export function mount(
         releasePeek()
       }
 
+      // A flower explains itself: over a dot, its numeral, or the glow
+      // between its petals. The glow takes no click, only this tip.
+      let tipStory: MapPoint | null = null
+      let tipPlace: StoryPlace | null = null
+      if (f?.layer.id === 'story-points') {
+        tipStory = pointFor(f)
+        tipPlace = tipStory ? placeOfStory(tipStory.slug) : null
+      } else if (f?.layer.id === 'story-place-count') {
+        tipPlace = placeForFeature(f)
+      } else if (!f) {
+        tipPlace = bloomAt(point)
+      }
+      if (tipStory || (tipPlace && tipPlace.count > 1)) showPlaceTip(tipPlace, tipStory, point)
+      else hidePlaceTip()
+
       // A hairline is not a pointing target, so the prayer probe is a small box
-      // rather than the point every other hit test uses.
-      const onPrayer = overMarker ? null : prayerAt(e.point)
+      // rather than the point every other hit test uses. A flower's tip wins.
+      const onPrayer = overMarker || !placeTip.hidden ? null : prayerAt(e.point)
       setHoverPrayer(onPrayer)
       if (onPrayer) showPrayerTip(onPrayer, e.point, e.lngLat)
       else hidePrayerTip()
@@ -4261,11 +4504,16 @@ export function mount(
       if (!overMarker) map.getCanvas().style.cursor = iso ? 'pointer' : ''
     }
 
+    // A tip stood where the pointer was; once the map moves under it, it names
+    // the wrong place. `moveend` asks again, from `lastPointer`.
+    map.on('movestart', hidePlaceTip)
+
     map.on('mouseout', () => {
       lastPointer = null
       setHoverSlug(null)
       setHoverPrayer(null)
       hidePrayerTip()
+      hidePlaceTip()
       releasePeek()
       map.getCanvas().style.cursor = ''
       writeCountryHover(null)
@@ -5849,6 +6097,7 @@ export function mount(
     applyPadding()
     // "Whole world" has to keep meaning the whole world after a resize, or the
     // reset lands on a view sized for a window that no longer exists.
+    const atFloor = Math.abs(map.getZoom() - HOME_VIEW.zoom) < 0.01
     HOME_VIEW.zoom = fitZoom(HOME_CENTER[1])
     // Widening the window leaves the camera at a zoom the new canvas no longer
     // suits — on the flat half a world narrower than its canvas comes back
@@ -5856,6 +6105,10 @@ export function mount(
     // Moving the floor re-clamps the live camera as well, so the fix applies to
     // the view the reader is already looking at and not just to the next reset.
     map.setMinZoom(HOME_VIEW.zoom)
+    // A raised floor pulls the camera up with it; a lowered one does not, so
+    // unfolding a rail would leave the whole-world disc under it. A camera that
+    // stood on the old floor follows the floor down.
+    if (atFloor && !flying) map.setZoom(HOME_VIEW.zoom)
     syncResetButton()
   }
   window.addEventListener('resize', onResize, { passive: true })

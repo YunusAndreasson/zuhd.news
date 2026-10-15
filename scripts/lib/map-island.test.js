@@ -1284,7 +1284,9 @@ test('the camera has one pose, and the wheel zooms about the planet', async () =
   // **Antialiasing.** MapLibre defaults it off. The limb is a circle made of
   // tile-mesh triangles, so without MSAA the one edge this whole design is
   // built around is a stepped polygon that jumps by whole pixels while the
-  // analytic airglow drawn against it moves continuously.
+  // analytic airglow drawn against it moves continuously. That holds below a
+  // device pixel ratio of 2; at 2 the step is half a CSS pixel and MSAA halved
+  // the drag's frame rate, so it is off there.
   globalThis.__zuhdMaps = []
   const env = setupDom()
   try {
@@ -1298,10 +1300,13 @@ test('the camera has one pose, and the wheel zooms about the planet', async () =
     assert.equal(map.opts.maxPitch, 0, 'the camera cannot be pitched')
     assert.equal(map.opts.touchPitch, false, 'two fingers cannot pitch it either')
     assert.equal(map.opts.dragRotate, false, 'and it cannot be rotated')
+    // The harness runs at a device pixel ratio of 2, where the pixels are fine
+    // enough that MSAA buys no visible edge and costs half the frame rate.
+    assert.equal(globalThis.devicePixelRatio, 2)
     assert.equal(
       map.opts.canvasContextAttributes?.antialias,
-      true,
-      'the canvas is multisampled, so the limb is a circle rather than a polygon',
+      false,
+      'at ratio 2 the canvas is not multisampled',
     )
     assert.ok(map.rotationDisabled, 'touch rotation is off')
     assert.ok(map.keyboardRotationDisabled, 'keyboard rotation is off')

@@ -653,6 +653,32 @@ export const DENSITY_STOPS: ReadonlyArray<readonly [number, number]> = [
 ] as const
 
 /**
+ * The bloom's heat, from ember to near white, against a place's `heat`
+ * (`placeHeat`: freshness times coverage, summed, under a square root). Two
+ * fresh median stories are about 1.4, ten about 3.2, Washington's busiest
+ * fortnight near 8; a week-old place falls back toward the ember whatever its
+ * count.
+ *
+ * Warm and unsaturated at the low end, so a quiet place does not read as a
+ * conflict mark. Its opacity tops out under two thirds and the layer sits under
+ * the names, which keep their halo on it.
+ */
+export const BLOOM_RAMP: ReadonlyArray<readonly [number, string]> = [
+  [0.6, '#4a3424'],
+  [1.5, '#8a5428'],
+  [3, '#c98432'],
+  [5, '#ebb45c'],
+  [8, '#fbdca0'],
+] as const
+
+/** `BLOOM_RAMP` as CSS stops, for the key's swatch: one table, so the two agree. */
+export const bloomCssRamp = (): string => {
+  const lo = BLOOM_RAMP[0][0]
+  const hi = BLOOM_RAMP[BLOOM_RAMP.length - 1][0]
+  return BLOOM_RAMP.map(([h, c]) => `${c} ${Math.round(((h - lo) / (hi - lo)) * 100)}%`).join(', ')
+}
+
+/**
  * `DENSITY_STOPS` as the tail of a `heatmap-color` interpolate expression, and
  * as CSS stops for the legend swatch.
  *
@@ -872,6 +898,19 @@ export const globeFitZoom = (span: number, lat: number): number => {
   const fit = Math.log2((span * GLOBE_FIT * Math.PI * Math.cos((lat * Math.PI) / 180)) / TILE_PX)
   return Math.min(fit, GLOBE_ZOOM.sphere)
 }
+
+/**
+ * The span `globeFitZoom` is given: the shorter side of what the rails leave
+ * in sight.
+ *
+ * The rails float over a canvas as wide as the window, so the canvas's own
+ * width is not the frame. Fitted to it, a 1280×800 window drew a 711px disc in
+ * the 656px gap between the rails, and both rails cut the limb; at 1440×900 the
+ * names on the limb ran on under the instrument rail. `left` and `right` are
+ * the rails' widths where they stand beside the map, and 0 where they do not.
+ */
+export const globeSpan = (canvasW: number, canvasH: number, left: number, right: number): number =>
+  Math.min(canvasH, Math.max(1, canvasW - left - right))
 
 export function buildStyle(v?: string): StyleSpecification {
   return {

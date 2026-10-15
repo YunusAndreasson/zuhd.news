@@ -176,14 +176,17 @@ Camera, MapLibre and cards are `map.md`; layers and marks are `map-layers.md`.
   always appended and falls back to `--map-ink-dim`, not `currentColor`.
 - **Never** a prayer-times column in the rail: the `prayer-lines` hover gives each time where it is true.
 - One column always: no two-abreast `auto-fill` money grid.
-- A code sits in the label column (`--map-row-label-w`, measured from the
-  widest code). A phrase is a `.map-markets-caption` in a grid row, so it
-  wraps, clamped at two lines. Never hold it to one line or invent a short
+- Every row in the wide rail is a grid on `--map-rail-cols` (label, level,
+  tick, figure, age, caret), and `.map-markets-move` is `display: contents`,
+  so each column keeps one x down the rail. A row with no age leaves the cell
+  empty. Size a track to the widest value it prints.
+- A phrase is a `.map-markets-caption` across the label and level tracks, so
+  it wraps, clamped at two lines. Never hold it to one line or invent a short
   label.
 - These rows are `<button>`s, which centre their text; a fixed-width label or
-  figure needs `text-align`.
-- Flex wraps on an item's base size before it shrinks. `min-width: 2.2rem` on
-  `.map-markets-window` is the widest natural figure; raising it wraps rows.
+  level needs `text-align`.
+- The spine restates `display: flex` on the row and the move: it stacks a name
+  over its reading and takes no columns.
 - `odds` and `attention` rows print the movement; the level is on the card.
 - `.map-markets-item` is `display: contents; gap: inherit` outside the rail.
   `.map-markets-group` reads its parent's gap, so the wrapper must pass it on.
@@ -244,6 +247,12 @@ Camera, MapLibre and cards are `map.md`; layers and marks are `map-layers.md`.
   quiet inks before lowering it. `applyPadding` measures both rails.
 - The phone's `--map-head-h`, `--map-bar-h` and `--map-gutter` on
   `body.map-page` are the one statement of those heights.
+- Both rails' top band is `--map-band-h` (taller on a day with a briefing), so
+  the two hairlines and the first headings sit level. Both rails' inner edge
+  is `--map-gutter-x`.
+- A heading stands `--map-block-gap` under the block above and
+  `--map-head-gap` over its rows: about five to one, or proximity stops
+  saying which rows it names.
 
 ## Time range and scrubber
 
@@ -280,6 +289,8 @@ Camera, MapLibre and cards are `map.md`; layers and marks are `map-layers.md`.
 
 - A row is title and `loc · age`. **No sentence under the headline**: the
   rail is scanned for a story to open, and the card has the prose.
+- On the desktop the rule between stories starts at the headline's edge
+  (`.map-feed-item::after`); the filters' and the head's rules span the rail.
 - The list is a keyed patch by slug, never `replaceChildren`; rows move with
   `moveBefore` where it exists. A rebuild drops hover and scroll anchoring
   on every scrub frame.

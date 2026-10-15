@@ -36,8 +36,9 @@ calendar `hijri.md`.
   use `projection: { type: 'globe' }`**: that preset flattens at zoom 11–12 and
   `maxZoom` is 9, so the flat half would never run.
 - `renderWorldCopies` stays off: one Earth.
-- The opening zoom, also `minZoom`, is `globeFitZoom` of the canvas's shorter
-  side, capped at `GLOBE_ZOOM.sphere`. `onResize` must call `map.resize()` and
+- The opening zoom, also `minZoom`, is `globeFitZoom` of the shorter side of
+  the gap between the rails (`globeSpan`), not the canvas the rails float over;
+  capped at `GLOBE_ZOOM.sphere`. `onResize` must call `map.resize()` and
   re-apply it.
 - The reachable floor is about 0.1 below `minZoom`: MapLibre adds
   `log2(cos lat)` on the sphere. Not a bug.
@@ -82,7 +83,9 @@ calendar `hijri.md`.
 - `['zoom']` is legal only as the direct input of a top-level `step` or
   `interpolate`. Nested, MapLibre rejects the layer, `addDataLayers` throws and
   every later layer is lost. Per-feature terms go in the outputs.
-- `antialias: true` stays: without it the limb crawls against the sky's circle.
+- `antialias` is on below a device pixel ratio of 2: without it the limb crawls
+  against the sky's circle. At 2 it halved the drag (16 to 35 fps) for no
+  visible edge.
 - `Popup` keeps `locationOccludedOpacity: 0`, and `syncOccludedPointer`
   mirrors it to `pointer-events`: opacity alone leaves an unseen card taking
   clicks.
@@ -110,17 +113,34 @@ calendar `hijri.md`.
 - Places (`_map/places.ts`) group a dateline within `PLACE_SPLIT_KM` and any
   name within `PLACE_SAME_KM`. Keep the second tight: Ramallah is not Al-Quds.
   A place stands on its modal coordinate, never a mean.
-- `story-density` is the only density encoding. It is raised from places,
-  sits under `borders`, and has no filter or toggle. Its weight is the
-  place's freshest decay times `sqrt(n)`, on a fixed domain, without coverage.
+- `story-density` is the regional field: raised from places, under
+  `borders`, no filter or toggle. Its weight is the place's freshest decay
+  times `sqrt(n)`, on a fixed domain, without coverage.
+- `story-bloom` is a place's heat (`placeHeat`): freshness times coverage
+  (`attentionWeight`, unknown weighs the median) summed under a square root,
+  on `BLOOM_RAMP`, under `borders`, only where two or more stories stand. It
+  reads the world's attention, not how many stories we wrote, and never the
+  category's hue: the dots carry that.
+- A flower explains itself on hover (`showPlaceTip`, pointer-only): place,
+  count, newest and oldest, then the dot's title and age. The glow takes no
+  click. Tips flip at the rails (`tipAt`, the camera's padding), not the canvas.
+- A place's stories are a flower (`flowerOffset`): newest at the centre at
+  beacon size, older ones petals a golden angle round and further out, so
+  distance is age. Offsets are a `match` table on `k`: an array property
+  arrives as a string, and `icon-rotate` leaves the hit box behind.
+- A symbol's hit box is its padded image, so `topHit` keeps only the story dot
+  whose drawn disc holds the pointer (`storyAt`). Past `FLOWER_MAX` the oldest
+  draw no dot (a filter, not opacity); the numeral and its card still count
+  them.
 - Keep `GAUSS_COEF` in the calibration, and keep stop 0 of `DENSITY_STOPS`
   transparent. Without them the field vanishes or paints the whole world.
 - Only stories are rebuilt as the scrubber moves. Dated overlays move by
   `setFilter` (`applyTimeFilters`); toggles are visibility.
 - A range press rebuilds `markets` and `chokepoints` once each
   (`applyMarketRange`), and nothing else does: not a scrub, a tick or `idle`.
-- Beacon radius is a percentile rank from `build.js`. A story with no figure
-  gets a neutral size, not the smallest.
+- A centre beacon's radius is a percentile rank from `build.js`. A story with
+  no figure gets a neutral size, not the smallest. Petals are one size
+  (`PETAL_PX`), because the offset table is in icon units.
 - `story-place-count` may lose a collision. Its threshold is a `case` inside
   `text-field`, never a `filter`, which would delete the feature the wash needs.
 - Read state (`_map/read-state.ts`) is slugs in `localStorage`, marked when a
@@ -144,9 +164,13 @@ calendar `hijri.md`.
 - The card's sources (`sourceBlock`) take their thresholds and words from
   `shared/source-framing.ts`, and the fold's words from the article page. A
   lean is a word in ink, never a number and never `--map-pos`/`--map-neg`.
+- The card's foot is one line: `Sources`, the names as plain text and `how
+  each framed it`, the summary of a fold holding the linked rows, the note
+  and the date line. No link inside the `<summary>`.
 - The fold is shut when the card opens, on every story: never set
   `details.open`, a contested story's and a single outlet's included.
-- A dense place opens `openPlace`. It does not fly.
+- A dot opens its story; a place's numeral opens `openPlace`, which does not
+  fly.
 - Only a card beside a rail row keeps inline offsets (`placeDocked`): every
   other open calls `clearOffsets`, or a peek opens where the last card stood.
 - A story's `chart` is fetched only where `hasSeriesRecord`: a company's or a

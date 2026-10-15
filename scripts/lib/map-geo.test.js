@@ -2301,14 +2301,59 @@ test('the genocide mark owns its colour outright', () => {
 // a mounted map can see that. What belongs here is the geometry of the marks
 // themselves, and the tone they are painted in.
 
-test('the two chip-only glyphs stay out of the image set', () => {
-  // `dot` is a circle layer because its hover reads feature-state, which
-  // `icon-size` cannot; `prayer-line` is a line layer MapLibre dashes natively.
-  // Both exist so their chips draw from this table rather than from CSS.
+test('the chip-only glyph stays out of the image set, and the beacon is in it', () => {
+  // `prayer-line` is a line layer MapLibre dashes natively; it exists so its
+  // chip draws from this table rather than from CSS. `dot` is drawn: the story
+  // beacons are symbols, so a flower can move each one in screen pixels.
   const registered = M.glyphImages().map(([id]) => id)
-  assert.ok(!registered.includes('dot'))
+  assert.ok(registered.includes('dot'))
   assert.ok(!registered.includes('prayer-line'))
-  assert.equal(registered.length, M.GLYPH_IDS.length - 2)
+  assert.equal(registered.length, M.GLYPH_IDS.length - 1)
+})
+
+/**
+ * The flower: the stories at one place laid out round it, newest at the
+ * centre and each older one further out, a golden angle round.
+ */
+test('a place’s heat is the world’s attention on fresh news, not how many stories we wrote', () => {
+  const now = Date.now()
+  const at = (slug, w, hoursAgo = 1, loc = 'Here') => ({
+    slug, w, t: now - hoursAgo * 3_600_000, lat: 10, lng: 10, loc, cat: 'politics', c: 0, n: 1, title: slug,
+  })
+  const heat = (pts) => {
+    const [place] = M.countPlaces(M.buildPlaceIndex(pts), pts, now)
+    return M.placeHeat(place)
+  }
+  // Three stories the world's press carried widely run hotter than three it
+  // barely noticed.
+  assert.ok(heat([at('a', 0.95), at('b', 0.9), at('c', 0.92)]) > heat([at('a', 0.05), at('b', 0.1), at('c', 0.02)]))
+  // Unknown coverage is not low coverage: it weighs a median story.
+  assert.equal(M.attentionWeight(undefined), M.attentionWeight(0.5))
+  assert.ok(M.attentionWeight(1) / M.attentionWeight(0) === 4, 'the most covered weighs four times the least')
+  // Freshness still counts: the same stories a week old are cooler.
+  assert.ok(heat([at('a', 0.5, 1), at('b', 0.5, 1)]) > heat([at('a', 0.5, 168), at('b', 0.5, 168)]))
+  // And more stories is more heat, compressed.
+  assert.ok(heat([at('a', 0.5), at('b', 0.5), at('c', 0.5), at('d', 0.5)]) > heat([at('a', 0.5), at('b', 0.5)]))
+})
+
+test('a flower puts the newest story on its place and the older ones further out', () => {
+  assert.deepEqual(M.flowerOffset(0), [0, 0], 'the newest sits on the place')
+  const dist = (k) => Math.hypot(...M.flowerOffset(k))
+  for (let k = 1; k < 30; k++) {
+    assert.ok(dist(k + 1) > dist(k), `rank ${k + 1} sits further out than rank ${k}`)
+  }
+  // Even packing: no two petals of a full flower closer than a petal across.
+  const pts = Array.from({ length: M.FLOWER_MAX }, (_, k) => M.flowerOffset(k))
+  let nearest = Number.POSITIVE_INFINITY
+  for (let i = 1; i < pts.length; i++) {
+    for (let j = i + 1; j < pts.length; j++) {
+      nearest = Math.min(nearest, Math.hypot(pts[i][0] - pts[j][0], pts[i][1] - pts[j][1]))
+    }
+  }
+  assert.ok(nearest >= 2 * M.PETAL_PX, `petals ${nearest.toFixed(1)}px apart overlap`)
+  // The reach stops growing at the cap: a 90-day Washington is not 250px wide.
+  assert.equal(M.flowerRadius(500), M.flowerRadius(M.FLOWER_MAX))
+  assert.equal(M.flowerRadius(1), M.BEACON_MAX_PX, 'a single story reaches its own rim')
 })
 
 test('the thermal glyph is a burst nothing else could be mistaken for', () => {
@@ -3031,6 +3076,22 @@ test('the globe fit solves MapLibre\'s own globe-radius formula', () => {
     M.globeFitZoom(390, 22) < M.GLOBE_ZOOM.sphere,
     'and a phone must still open on a full sphere',
   )
+})
+
+/**
+ * The frame the globe is fitted to is the gap between the rails, not the
+ * canvas: the rails float over a canvas as wide as the window. Fitted to the
+ * canvas, a 1280×800 window drew a 711px disc in a 656px gap.
+ */
+test('the globe fits the gap between the rails', () => {
+  assert.equal(M.globeSpan(1280, 800, 336, 288), 656, 'a laptop: the gap binds')
+  assert.equal(M.globeSpan(1920, 1080, 336, 384), 1080, 'a wide screen: the height binds')
+  assert.equal(M.globeSpan(390, 844, 0, 0), 390, 'a phone: no side rails, the width binds')
+  assert.ok(
+    M.globeSpan(1280, 800, 0, 288) > M.globeSpan(1280, 800, 336, 288),
+    'folding a rail gives the globe its width',
+  )
+  assert.equal(M.globeSpan(500, 800, 336, 288), 1, 'never a zero or negative span')
 })
 
 /**

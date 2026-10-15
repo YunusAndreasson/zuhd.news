@@ -455,13 +455,13 @@ export const sdfImage = (glyph: Glyph): GlyphImage => {
 /**
  * Every glyph the map registers as an image, rasterised. Called once per mount.
  *
- * Two are excluded, both because MapLibre draws their layer natively and there
- * is nothing for `addImage` to serve: `story-points` is a circle layer (its
- * hover reads feature-state, which `icon-size` cannot) and `prayer-lines` is a
- * line layer. Their entries exist so the chips that name them draw from this
- * table rather than keeping their own idea of the mark.
+ * One is excluded, because MapLibre draws its layer natively and there is
+ * nothing for `addImage` to serve: `prayer-lines` is a line layer. Its entry
+ * exists so the chip that names it draws from this table rather than keeping
+ * its own idea of the mark. `dot` is registered: the story beacons are symbols,
+ * so a flower can offset each one in screen pixels.
  */
-const CHIP_ONLY: ReadonlySet<GlyphId> = new Set<GlyphId>(['dot', 'prayer-line'])
+const CHIP_ONLY: ReadonlySet<GlyphId> = new Set<GlyphId>(['prayer-line'])
 
 export const glyphImages = (): Array<[GlyphId, GlyphImage]> =>
   GLYPH_IDS.filter((id) => !CHIP_ONLY.has(id)).map((id) => [id, sdfImage(GLYPHS[id])])
