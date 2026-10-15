@@ -162,6 +162,11 @@ export interface StoryPopupOptions {
    */
   onClose?: () => void
   /**
+   * The country the card is about, or null once it is about none. Told only
+   * on a change; the island outlines that country on the map.
+   */
+  onCountry?: (iso: string | null) => void
+  /**
    * Where a country stands on the metric currently shading the land.
    *
    * The island owns the metric, so the card has to ask. Without it an inline
@@ -547,6 +552,13 @@ export function createStoryPopup(map: MapLibreMap, opts: StoryPopupOptions = {})
     }
   }
 
+  let country: string | null = null
+  const about = (iso: string | null) => {
+    if (iso === country) return
+    country = iso
+    opts.onCountry?.(iso)
+  }
+
   // Fires for the × button and for a real `popup.remove()` alike, so the island
   // is told even when it is the one doing the closing — that is harmless, it
   // clears state that is already being cleared, and it is the only way to hear
@@ -554,6 +566,7 @@ export function createStoryPopup(map: MapLibreMap, opts: StoryPopupOptions = {})
   popup.on('close', () => {
     if (reattaching) return
     pending = null
+    about(null)
     opts.onClose?.()
   })
 
@@ -1206,6 +1219,7 @@ export function createStoryPopup(map: MapLibreMap, opts: StoryPopupOptions = {})
 
   return {
     preview(p, leads, now) {
+      about(null)
       // `n` has been on every map point since the endpoint was written and
       // nothing has ever read it. It belongs here rather than in a fifth visual
       // channel on the beacon — size, alpha and the ring are already spoken
@@ -1240,6 +1254,7 @@ export function createStoryPopup(map: MapLibreMap, opts: StoryPopupOptions = {})
     },
 
     async open(p, now) {
+      about(null)
       pending = p.slug
       popup.setLngLat([p.lng, p.lat])
 
@@ -1324,6 +1339,7 @@ export function createStoryPopup(map: MapLibreMap, opts: StoryPopupOptions = {})
     async openCountry(iso, at, standing = null) {
       const key = `country:${iso}`
       pending = key
+      about(iso)
       const loading = el('div', 'map-popup-body map-popup-country')
       loading.append(el('p', 'map-popup-loading', 'Loading…'))
       popup.setLngLat(at).setDOMContent(loading)
@@ -1343,6 +1359,7 @@ export function createStoryPopup(map: MapLibreMap, opts: StoryPopupOptions = {})
     },
 
     openPlace(place, now) {
+      about(null)
       // Nothing to await, so nothing to race — but `pending` still has to be
       // claimed, or a story fetch already in flight would land on top of this
       // card when it resolves.

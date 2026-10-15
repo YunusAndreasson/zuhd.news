@@ -25,11 +25,11 @@
     The map's critical chain, declared so it starts downloading at parse time
     instead of after island-loader.js has run and resolved a dynamic import.
 
-    countries.geojson is deliberately *not* preloaded: MapLibre loads GeoJSON
-    sources on its worker, and the preload cache belongs to the document, so the
+    The basemap is deliberately *not* preloaded: MapLibre fetches its tiles and
+    GeoJSON on its worker, and the preload cache belongs to the document, so the
     hint was never claimable — the browser logged "preloaded but not used" and
     the file was fetched twice. Warming the worker's copy is the HTTP cache's
-    job, which is what the /basemap/* rule in _headers is for.
+    job, which is what the /basemap/* rules in _headers are for.
 
     The worker is not preloaded for the same reason: it fetches its own
     self-contained file, which a document preload cannot serve.

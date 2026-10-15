@@ -24,7 +24,12 @@ writeFileSync(
     setLngLat() { return this }
     setDOMContent(node) { this.content = node; globalThis.__card = node; return this }
     addTo() { this.open = true; return this }
-    remove() { this.open = false; return this }
+    remove() {
+      const was = this.open
+      this.open = false
+      if (was) for (const f of this.handlers.close || []) f()
+      return this
+    }
     isOpen() { return this.open }
     getElement() { return null }
   }
@@ -377,4 +382,20 @@ test('no chart, no block; and a series that cannot be drawn takes its block away
   // One observation is a dot, not a line.
   const dot = await openCard(storyOf({ chart: 'brent' }), point, { brent: series({ values: [80], periods: ['Oct 6'] }) })
   assert.equal(dot.querySelector('.map-popup-chart'), null)
+})
+
+test('the card names the country it is about, and lets go of it', async () => {
+  await openCard(storyOf({}))
+  const told = []
+  const { createStoryPopup } = await import(`${bundlePath}?${Math.random()}`)
+  const popup = createStoryPopup({ on() {}, off() {} }, { onCountry: (iso) => told.push(iso) })
+  await popup.openCountry('SD', [30, 15])
+  await popup.openCountry('SD', [31, 16])
+  assert.deepEqual(told, ['SD'], 'told once, when the card became about Sudan')
+  // A story replaces the country card without closing it.
+  await popup.open(point, Date.now())
+  assert.deepEqual(told, ['SD', null])
+  await popup.openCountry('TD', [19, 15])
+  popup.close()
+  assert.deepEqual(told, ['SD', null, 'TD', null], 'closing the card lets go of Chad')
 })

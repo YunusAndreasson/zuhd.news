@@ -82,10 +82,15 @@ calendar `hijri.md`.
 - The basemap is our own origin's (`scripts/build/basemap.js`): no tile
   provider, and the CSP stays `default-src 'none'`.
 - `setData` takes a parsed object. A URL string makes no request and throws
-  nothing (`loadWater`, the 1:10m swap at `ULTRA_ZOOM`).
+  nothing (`loadWater`).
+- `countries` is vector tiles (`scripts/build/basemap-tiles.js`). Every
+  feature-state call on it spreads `COUNTRIES`: without `sourceLayer` MapLibre
+  fires an error and writes nothing. A tile URL is absolute (`tileUrl`), joined
+  as a string: `new URL` encodes `{z}`.
 - `['zoom']` is legal only as the direct input of a top-level `step` or
   `interpolate`. Nested, MapLibre rejects the layer, `addDataLayers` throws and
   every later layer is lost. Per-feature terms go in the outputs.
+  `map-island.test.js` runs every layer through `validateStyleMin`.
 - `antialias` is on below a device pixel ratio of 2: without it the limb crawls
   against the sky's circle. At 2 it halved the drag (16 to 35 fps) for no
   visible edge.
@@ -95,8 +100,12 @@ calendar `hijri.md`.
 - Hover is `promoteId` and `setFeatureState`, never a `setFilter` or
   `setPaintProperty` per pointer move, which reloads the source.
 - Only `applyMetric` calls `removeFeatureState` on `countries` without an id,
-  to clear the old metric. Hover must unset its own id (`countryHoverWritten`),
-  or it wipes the ground metric.
+  to clear the old metric, and it rewrites the open card's outline after.
+  Hover and the outline unset their own ids (`countryHoverWritten`,
+  `countrySelectedWritten`), or they wipe the ground metric.
+- The open country card's country is outlined (`country-selected`, told by
+  the popup's `onCountry`). A line, never a mask or a dimmed world: the land's
+  tone is the metric's value.
 - Do not use `global-state`: a filter or data-driven paint reading it
   reloads the source. `applyTimeFilters` stays `setFilter`, because a mark
   hidden by paint is still hoverable.

@@ -25,6 +25,7 @@ import {
   type PaddingOptions,
   type Point,
   type PointLike,
+  type SymbolLayerSpecification,
 } from 'maplibre-gl'
 // `GeoJSON.*` was being reached for as a UMD global, which @types/geojson only
 // exposes to non-module files — so the namespace never resolved in here.
@@ -35,6 +36,7 @@ import {
   buildStyle,
   CATEGORY_COLOUR,
   CATEGORY_ORDER,
+  COUNTRY_TILES,
   densityCssRamp,
   densityRamp,
   FALLBACK_CATEGORY_COLOUR,
@@ -66,6 +68,7 @@ import {
 import { createFeed, type Feed } from './_map/feed'
 import { graticuleLines } from './_map/graticule'
 import { MAKKAH_AT } from './_map/makkah'
+import { CALLOUT_GAP_PX, callouts, type LostMark, type ScreenMark } from './_map/callouts'
 import { calibrate } from './_map/sky'
 import { createSky } from './_map/sky-paint'
 import { createReadState } from './_map/read-state'
@@ -116,8 +119,12 @@ import {
 } from './_map/types'
 import { detailKey } from '@shared/gdacs'
 
-/** Where the 1:10m coastline replaces 1:50m — see the zoomend handler. */
-const ULTRA_ZOOM = 5.5
+/**
+ * The coastline's address for feature state. A vector source takes state per
+ * tile layer, and a call without `sourceLayer` fires an error and writes
+ * nothing.
+ */
+const COUNTRIES = { source: 'countries', sourceLayer: COUNTRY_TILES.layer }
 
 /**
  * The tone the lit side is lifted with, on the water and along the terminator.
@@ -165,6 +172,8 @@ const OVERLAY_LAYERS = [
   'chokepoint-labels',
   'market-marks',
   'market-labels',
+  'market-callouts',
+  'strait-callouts',
   'conflict-marks',
   'famine-marks',
   'genocide-marks',
@@ -229,6 +238,8 @@ export const HIT_ORDER = [
   // the pointer from anything that is.
   'market-labels',
   'chokepoint-labels',
+  'market-callouts',
+  'strait-callouts',
   // Makkah is always there, so it takes the pointer only where nothing else
   // stands: a story from Makkah sits on its glow.
   'makkah-label',
@@ -525,8 +536,8 @@ export function mount(
    * `new MapLibreMap(…)` is several hundred lines below this: the whole HUD, the
    * rail, the scrubber and the style are built first, and only then does the
    * engine get asked for anything. `prewarm` spends that interval creating the
-   * worker and its shared resources, so the 1.6 MB basemap parse starts against
-   * a worker that already exists rather than one spun up on demand.
+   * worker and its shared resources, so the first tiles and GeoJSON parse on a
+   * worker that already exists rather than one spun up on demand.
    *
    * It is explicitly *not* aimed at the boot cost this map actually has. Most of
    * that is `getShaderParameter`/`getProgramParameter` blocking the main thread
@@ -1529,7 +1540,6 @@ export function mount(
   let rangeHours: number = DEFAULT_RANGE_HOURS
   let scrubNow = Date.now()
   let mounted = true
-  let ultraLoaded = false
   let layersReady = false
   const abort = new AbortController()
 
@@ -1566,6 +1576,8 @@ export function mount(
    * ever avoided by comparing against what was last written.
    */
   let countryHoverWritten: string | null = null
+  /** The country whose card is open, as last written to feature state. */
+  let countrySelectedWritten: string | null = null
   /** Which prayer line the pointer is on, if any. */
   let hoverPrayer: string | null = null
   /**
@@ -2513,6 +2525,8 @@ export function mount(
     set('chokepoint-labels', layersOn.straits)
     set('market-marks', layersOn.markets)
     set('market-labels', layersOn.markets)
+    set('market-callouts', layersOn.markets)
+    set('strait-callouts', layersOn.straits)
     set('conflict-marks', layersOn.conflict)
     set('famine-marks', layersOn.famine)
     // All three parts together. The name is drawn unconditionally beside the
@@ -2683,6 +2697,8 @@ export function mount(
     map.addSource('thermal', { type: 'geojson', data: empty })
     map.addSource('chokepoints', { type: 'geojson', data: empty })
     map.addSource('markets', { type: 'geojson', data: empty })
+    map.addSource('callouts', { type: 'geojson', data: empty })
+    map.addSource('callout-leaders', { type: 'geojson', data: empty })
     map.addSource('conflict', { type: 'geojson', data: empty })
     map.addSource('famine', { type: 'geojson', data: empty })
     map.addSource('genocide', { type: 'geojson', data: empty })
@@ -2755,6 +2771,7 @@ export function mount(
           id: 'land-nodata',
           type: 'fill',
           source: 'countries',
+          'source-layer': COUNTRY_TILES.layer,
           paint: {
             'fill-pattern': 'nodata-hatch',
             'fill-opacity': [
@@ -2788,6 +2805,7 @@ export function mount(
         id: 'country-hover',
         type: 'fill',
         source: 'countries',
+        'source-layer': COUNTRY_TILES.layer,
         // Feature state, not a filter, and this layer was the last thing on the
         // map still doing it the expensive way.
         //
@@ -2820,6 +2838,25 @@ export function mount(
         },
       },
       'borders',
+    )
+
+    // The country whose card is open, drawn round in the label's ink, above
+    // the borders and under every name. A line rather than a fill or a mask:
+    // the land's tone is the metric's value, and dimming the rest of the world
+    // would change what every other country says.
+    map.addLayer(
+      {
+        id: 'country-selected',
+        type: 'line',
+        source: 'countries',
+        'source-layer': COUNTRY_TILES.layer,
+        paint: {
+          'line-color': MAP_COLOURS.label,
+          'line-width': ['interpolate', ['linear'], ['zoom'], 1, 1.2, 6, 2],
+          'line-opacity': ['case', ['boolean', ['feature-state', 'selected'], false], 0.9, 0],
+        },
+      },
+      'country-labels',
     )
 
     // Daylight on the water.
@@ -3446,6 +3483,58 @@ export function mount(
     })
 
     /**
+     * Callouts (`_map/callouts.ts`): a flagged market's or a disrupted
+     * strait's name that lost its place beside the mark, set out from its
+     * neighbours on the same text, with a hairline back (`syncCallouts`).
+     *
+     * Under the names, so a name that fits beside its mark claims its space
+     * first and a callout never pushes one out. One fixed anchor, no
+     * alternatives: a callout that cannot place is dropped, and so is its line.
+     */
+    map.addLayer(
+      {
+        id: 'callout-leaders',
+        type: 'line',
+        source: 'callout-leaders',
+        paint: { 'line-color': MAP_COLOURS.label, 'line-width': 1, 'line-opacity': 0.6 },
+      },
+      'chokepoint-labels',
+    )
+    const calloutLayout = (
+      layout: NonNullable<SymbolLayerSpecification['layout']>,
+    ): NonNullable<SymbolLayerSpecification['layout']> => {
+      const {
+        'text-variable-anchor': _anchors,
+        'text-radial-offset': _offset,
+        'text-justify': _justify,
+        ...rest
+      } = layout
+      return { ...rest, 'text-anchor': ['get', 'anchor'], 'text-justify': 'auto' }
+    }
+    map.addLayer(
+      {
+        id: 'strait-callouts',
+        type: 'symbol',
+        source: 'callouts',
+        filter: ['==', ['get', 'kind'], 'strait'],
+        layout: calloutLayout(straitLabelLayout()),
+        paint: straitLabelPaint(),
+      },
+      'chokepoint-labels',
+    )
+    map.addLayer(
+      {
+        id: 'market-callouts',
+        type: 'symbol',
+        source: 'callouts',
+        filter: ['==', ['get', 'kind'], 'market'],
+        layout: calloutLayout(marketLabelLayout()),
+        paint: marketLabelPaint(),
+      },
+      'chokepoint-labels',
+    )
+
+    /**
      * The bloom: heat under a place holding two or more stories, reaching just
      * past its flower (`flowerRadius`).
      *
@@ -4050,17 +4139,131 @@ export function mount(
    * the other direction. So the previous id is unset by key and nothing else is
    * touched.
    *
-   * Safe per-id, unlike `stories`, because `countries` is not rebuilt on a
-   * scrub — the only thing that reloads it is the one-shot coastline upgrade at
-   * `ULTRA_ZOOM`, so there is no tile-rebuild race to write across here.
+   * Safe per-id, unlike `stories`, because `countries` is static tiles that no
+   * scrub rebuilds, so there is no tile-rebuild race to write across here.
    */
   const writeCountryHover = (iso: string | null) => {
     if (countryHoverWritten === iso) return
     if (countryHoverWritten) {
-      map.removeFeatureState({ source: 'countries', id: countryHoverWritten }, 'hover')
+      map.removeFeatureState({ ...COUNTRIES, id: countryHoverWritten }, 'hover')
     }
-    if (iso) map.setFeatureState({ source: 'countries', id: iso }, { hover: true })
+    if (iso) map.setFeatureState({ ...COUNTRIES, id: iso }, { hover: true })
     countryHoverWritten = iso
+  }
+
+  /** What `syncCallouts` last wrote, so an idle that changes nothing writes nothing. */
+  let calloutsWritten = ''
+  let leadersWritten = ''
+  /** Which of its eight directions each callout is on; back to the first when the camera moves. */
+  const calloutRank = new Map<string, number>()
+
+  /**
+   * Callouts for the names that must stand (`_map/callouts.ts`), on `idle`.
+   *
+   * Two steps a frame apart, because only a placed callout gets a line and
+   * MapLibre places on the next frame: one idle finds the flagged markets and
+   * disrupted straits whose name lost its place and writes their callouts;
+   * the next draws a line to each callout that placed. Each step writes only
+   * what changed, so a settled map goes quiet after two idles. A callout
+   * another name kept from placing tries its next direction on the next idle,
+   * until it places or runs out of directions (`callouts` returns none).
+   */
+  const syncCallouts = () => {
+    if (!layersReady || !map.getLayer('market-callouts')) return
+    const marks = new Map<string, ScreenMark & { props: Record<string, unknown>; kind: string }>()
+    for (const f of map.queryRenderedFeatures({ layers: ['market-marks', 'chokepoint-marks'] })) {
+      const id = f.properties?.id
+      if (id == null || f.geometry.type !== 'Point' || marks.has(String(id))) continue
+      const p = map.project(f.geometry.coordinates as [number, number])
+      const kind = f.layer.id === 'market-marks' ? 'market' : 'strait'
+      marks.set(String(id), { id: String(id), x: p.x, y: p.y, props: f.properties, kind })
+    }
+    const named = new Set(
+      map
+        .queryRenderedFeatures({ layers: ['market-labels', 'chokepoint-labels'] })
+        .map((f) => String(f.properties?.id)),
+    )
+    const screen = [...marks.values()]
+    // A name's size, near enough to keep its box off other marks: Source Sans
+    // runs about 0.56 em a character, at the labels' own `text-size` ramp.
+    const em = Math.min(12.5, Math.max(10, 10 + ((map.getZoom() - 1) * 2.5) / 4))
+    const lost: LostMark[] = screen
+      .filter((m) => (m.kind === 'market' ? m.props.flag === 1 : m.props.disrupted === 1) && !named.has(m.id))
+      .map((m) => {
+        const text =
+          m.kind === 'market' ? `${m.props.city ?? ''} ${m.props.label ?? ''}` : `${m.props.short ?? ''} ${m.props.move ?? ''}`
+        return { ...m, w: text.trim().length * em * 0.56, h: em * 1.2 }
+      })
+    // Every drawn mark is somewhere a name must not stand, the stories' dots
+    // included: a name beside a beacon reads as that story's.
+    const obstacles: ScreenMark[] = [...screen]
+    map.queryRenderedFeatures({ layers: ['story-points'] }).forEach((f, i) => {
+      if (f.geometry.type !== 'Point') return
+      const p = map.project(f.geometry.coordinates as [number, number])
+      obstacles.push({ id: `story:${i}`, x: p.x, y: p.y })
+    })
+    /** A screen point back on the planet, or null where it falls into space. */
+    const onPlanet = (x: number, y: number): [number, number] | null => {
+      const ll = map.unproject([x, y])
+      const back = map.project(ll)
+      if (Math.hypot(back.x - x, back.y - y) > 2) return null
+      return [Math.round(ll.lng * 1e5) / 1e5, Math.round(ll.lat * 1e5) / 1e5]
+    }
+    const placed = callouts(lost, obstacles, calloutRank).flatMap((c) => {
+      const m = marks.get(c.id)
+      const at = onPlanet(c.x, c.y)
+      if (!m || !at) return []
+      const properties = { ...m.props, kind: m.kind, anchor: c.anchor }
+      return [{ c, m, feature: { type: 'Feature' as const, geometry: { type: 'Point' as const, coordinates: at }, properties } }]
+    })
+    const next = JSON.stringify(placed.map((p) => p.feature))
+    if (next !== calloutsWritten) {
+      calloutsWritten = next
+      src('callouts')?.setData({ type: 'FeatureCollection', features: placed.map((p) => p.feature) })
+      // Their placement is next frame's; the lines follow on the next idle.
+      return
+    }
+    const standing = new Set(
+      map
+        .queryRenderedFeatures({ layers: ['market-callouts', 'strait-callouts'] })
+        .map((f) => String(f.properties?.id)),
+    )
+    let retry = false
+    for (const { c } of placed) {
+      const k = calloutRank.get(c.id) ?? 0
+      if (standing.has(c.id)) continue
+      calloutRank.set(c.id, k + 1)
+      retry = true
+    }
+    if (retry) return syncCallouts()
+    const lines = placed.flatMap(({ c, m }) => {
+      if (!standing.has(c.id)) return []
+      const dx = c.x - m.x
+      const dy = c.y - m.y
+      const len = Math.hypot(dx, dy)
+      const from = onPlanet(m.x + (dx / len) * CALLOUT_GAP_PX, m.y + (dy / len) * CALLOUT_GAP_PX)
+      const to = onPlanet(c.x - (dx / len) * 3, c.y - (dy / len) * 3)
+      if (!from || !to) return []
+      return [{ type: 'Feature' as const, geometry: { type: 'LineString' as const, coordinates: [from, to] }, properties: {} }]
+    })
+    const nextLines = JSON.stringify(lines)
+    if (nextLines === leadersWritten) return
+    leadersWritten = nextLines
+    src('callout-leaders')?.setData({ type: 'FeatureCollection', features: lines })
+  }
+
+  /**
+   * The open card's country, outlined (`country-selected`). Per id, like the
+   * hover bit and for the same reason: clearing the source would wipe the
+   * metric.
+   */
+  const writeCountrySelected = (iso: string | null) => {
+    if (countrySelectedWritten === iso) return
+    if (countrySelectedWritten) {
+      map.removeFeatureState({ ...COUNTRIES, id: countrySelectedWritten }, 'selected')
+    }
+    if (iso) map.setFeatureState({ ...COUNTRIES, id: iso }, { selected: true })
+    countrySelectedWritten = iso
   }
 
   /**
@@ -4637,51 +4840,13 @@ export function mount(
     // story tiles are reloading, so the bit is put back the moment they stop.
     // Cheap — it compares one slug and, at most, writes one feature's state.
     map.on('idle', syncHoverState)
+    map.on('idle', syncCallouts)
+    map.on('movestart', () => calloutRank.clear())
     // Its own listener, not a line inside that one — see `syncPrayerHover`.
     // Wrapped rather than passed directly: MapLibre hands the listener an event
     // object, which as `rewrite` is truthy, and would force the unconditional
     // clear this pair exists to avoid.
     map.on('idle', () => syncPrayerHover())
-
-    /**
-     * Coastline detail, swapped in as the camera earns it.
-     *
-     * Two tiers: 1:50m from the style, and 1:10m (about 1.8 MB gzipped, 254
-     * countries against 240 — mostly islands and real inlets) once the camera
-     * passes `ULTRA_ZOOM`. It is not swapped back on the way out: MapLibre
-     * simplifies each tile to its zoom, so at world view the finer file draws
-     * about as many vertices as the coarse one, and a world-view drag measured
-     * no slower after the swap.
-     */
-    /**
-     * Swaps the coastline source up a tier.
-     *
-     * MapLibre 6 dropped the URL form of `GeoJSONSource.setData` — it now
-     * takes a parsed object only, and hands a string straight to the worker
-     * as data, where it silently becomes nothing. No throw, no `error` event,
-     * no request: the tier swap had been dead since the v6 upgrade and every
-     * reader was getting the 110m coastline at maximum zoom while the 50m and
-     * 10m files shipped in the build and were never once fetched. Fetching it
-     * here and passing the object is also what lets the abort signal and the
-     * mounted check apply.
-     */
-    const upgradeCoastline = async (file: string) => {
-      const data = await json<FeatureCollection>(
-        basemapUrl(file, basemapV),
-        abort.signal,
-      )
-      if (!data || !mounted) return
-      metricApplied = false
-      ;(map.getSource('countries') as GeoJSONSource | undefined)?.setData(data)
-      // `scheduleMetric` finds the source unloaded — `setData` marks it so
-      // synchronously — and waits for `idle`, which is what re-applies the tint
-      // once this data settles. It has to happen at all because the finer tier
-      // carries countries the coarse one never had (240 features become 254),
-      // and none of them arrive with feature state: without it the tint would
-      // thin out as the reader zoomed, worst on the small states the detail
-      // exists for.
-      scheduleMetric()
-    }
 
     map.on('zoomend', () => {
       // The wash fades to nothing by `DENSITY_FADE_OUT`, where places have
@@ -4700,10 +4865,6 @@ export function mount(
         zoomAnchorCentred = centred
         setZoomAnchor(centred)
       }
-      if (ultraLoaded || map.getZoom() < ULTRA_ZOOM) return
-      // Set before awaiting, or a second zoomend starts the same fetch again.
-      ultraLoaded = true
-      void upgradeCoastline('countries-ultra.geojson')
     })
 
     // The reset control only exists once the view has left home, so at rest it
@@ -5540,26 +5701,13 @@ export function mount(
   }
 
   /**
-   * Pushes the current metric onto the country features as feature state.
-   *
-   * Must be re-run after every `setData` on the `countries` source, and there
-   * are two reasons rather than one. The obvious one is that feature state does
-   * not reliably survive a source's data being replaced. The load-bearing one
-   * is that the three coastline tiers are not the same feature set — 110m
-   * carries 176 countries, 10m carries 255 — so the finer tiers bring in
-   * features that never had state set on them at all. A tint applied once at
-   * load would thin out as the reader zoomed, which is exactly the class of
-   * silent failure the tier swap itself shipped with.
-   */
-  /**
    * Whether the current metric has been painted onto the current source data.
    *
    * Without this the `sourcedata` listener is a loop: `setFeatureState` is
    * itself a source-data change, so applying the metric re-fires the event that
    * applied it, ~170 times per pass, and the map never finishes a frame — the
-   * canvas came up blank. Cleared when the data underneath changes (a coastline
-   * tier swap) or when the metric does, which are the only two moments the
-   * paint can actually go stale.
+   * canvas came up blank. Cleared when the metric changes, the one moment the
+   * paint can go stale: the coastline's tiles never change under it.
    */
   let metricApplied = false
 
@@ -5610,8 +5758,8 @@ export function mount(
   map.on('sourcedata', onLoadingProbe)
 
   const applyMetric = () => {
-    // `load` means the *style* is ready, not that a GeoJSON source has fetched
-    // and parsed its data — countries.geojson is 210 KB over the network. Feature
+    // `load` means the *style* is ready, not that a source has fetched and
+    // parsed its data — the coastline's tiles come over the network. Feature
     // state addressed at an unloaded source throws, and because the caller is a
     // `void`-ed async function the rejection went nowhere: the land stayed flat
     // and the legend below it never rendered, with nothing in the console. The
@@ -5639,11 +5787,15 @@ export function mount(
     // so the tracker has to be told, or `writeCountryHover` would compare
     // against an id it believes is still written, skip the write, and leave the
     // country under the pointer unlit until the reader moved to a different one.
-    map.removeFeatureState({ source: 'countries' })
+    map.removeFeatureState(COUNTRIES)
     countryHoverWritten = null
+    // The outline went with it; put it back on the card's country.
+    const selected = countrySelectedWritten
+    countrySelectedWritten = null
+    writeCountrySelected(selected)
     if (!metric) return true
     for (const [iso2, entry] of Object.entries(metric.values)) {
-      map.setFeatureState({ source: 'countries', id: iso2 }, { p: entry.p })
+      map.setFeatureState({ ...COUNTRIES, id: iso2 }, { p: entry.p })
     }
     return true
   }
@@ -5651,7 +5803,7 @@ export function mount(
   /**
    * Paints the metric as soon as the countries source can take it.
    *
-   * `load` only promises the style, and countries.geojson is 210 KB fetched
+   * `load` only promises the style, and the coastline's tiles are fetched
    * over the network, so the first attempt usually finds the source empty.
    * The wait is `once('idle')` and not `on('sourcedata')`: `setFeatureState` is
    * itself a source-data change, so a sourcedata listener re-enters itself
@@ -5743,6 +5895,7 @@ export function mount(
       // island never learned the story had been dismissed: `openSlug` stayed
       // set and `flyToStory`'s "already open" guard swallowed the next click
       // on that same beacon.
+      onCountry: writeCountrySelected,
       onClose: () => {
         returnFocus()
         if (!openSlug) return
@@ -5790,12 +5943,9 @@ export function mount(
     drawSolar()
     applyRefresh()
     openSharedStory()
-    // The land tint needs the countries source to have finished loading, which
-    // `load` does not promise for a GeoJSON source fetched over the network —
-    // and the tier swap replaces that data twice more as the reader zooms in,
-    // bringing 176 features up to 255. Every one of those moments needs the
-    // state re-applied, so listen for the source settling rather than trying to
-    // guess when it has.
+    // The land tint waits for the countries source to settle, which `load`
+    // does not promise for tiles fetched over the network, so listen for it
+    // rather than guess when it has.
     void loadLayers()
     void loadMetric(metricKey)
     loadConflict()

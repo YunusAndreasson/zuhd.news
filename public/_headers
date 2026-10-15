@@ -29,11 +29,11 @@
   Cache-Control: public, max-age=31536000, immutable
 
 # Coastlines, borders and place labels. Natural Earth geometry does not change
-# between deploys; only a dependency bump would move it.
-/basemap/countries.geojson
-  Cache-Control: public, max-age=86400, stale-while-revalidate=604800
-
-/basemap/countries-ultra.geojson
+# between deploys; only a dependency bump would move it. The coastline is
+# vector tiles: `application/x-protobuf` is on Cloudflare's list of types it
+# compresses, and the `.pbf` default is not.
+/basemap/tiles/*
+  Content-Type: application/x-protobuf
   Cache-Control: public, max-age=86400, stale-while-revalidate=604800
 
 /basemap/places.geojson
@@ -51,6 +51,9 @@
   Cache-Control: public, max-age=86400, stale-while-revalidate=604800
 
 /basemap/seas.geojson
+  Cache-Control: public, max-age=86400, stale-while-revalidate=604800
+
+/basemap/regions.geojson
   Cache-Control: public, max-age=86400, stale-while-revalidate=604800
 
 # Islands split by extension so the two rules never both match: esbuild emits

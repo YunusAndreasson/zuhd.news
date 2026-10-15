@@ -21,6 +21,8 @@ import { join } from 'node:path'
 import { unwrap, closePolar, thin, simplifyRing } from '../build/basemap.js'
 import { channels, composite, contrast, hsl, luminance, luminanceOf } from './contrast.js'
 import { bundleIsland, bundleIslands, scratchDir } from './island-bundle.js'
+import { VectorTile } from '@mapbox/vector-tile'
+import { PbfReader } from 'pbf'
 // The prayer-time oracle. A devDependency, and deliberately not shipped — the
 // island derives its curves in closed form and this is what proves it right.
 // See the header of `public/islands/_map/prayer.ts`.
@@ -34,6 +36,14 @@ import {
 } from './market-metadata.js'
 
 const ROOT = new URL('../..', import.meta.url).pathname
+
+/** The built world tile: every country the map draws, as one zoom-0 tile. */
+const WORLD_TILE = join(ROOT, 'dist/basemap/tiles/0/0/0.pbf')
+/** The codes on the polygons the map draws, read off the world tile. */
+const drawnCodes = () => {
+  const layer = new VectorTile(new PbfReader(readFileSync(WORLD_TILE))).layers.countries
+  return new Set(Array.from({ length: layer.length }, (_, i) => layer.feature(i).properties.iso2))
+}
 
 const dir = scratchDir('map-geo')
 const bundlePath = await bundleIslands(
@@ -1230,20 +1240,85 @@ test('the land ramp is legible, ordered, neutral, and clear of the border', () =
   }
 })
 
+/**
+ * The sea floor's tones keep every promise the ocean's colour makes.
+ *
+ * `ocean` is held to three things below: the coast's line reads against it,
+ * the overlay marks read against it, and it sits at the land's own lightness so
+ * the land ramp starts at the sea. A depth band is the ocean a step lighter or
+ * darker, so each one is held to the same, and the steps stay quiet: the
+ * shelf against the abyss is a ground, not a mark.
+ */
+test('every depth tone is a sea the coast, the marks and the land still read on', () => {
+  const tones = M.DEPTH_TONES.map(([, c]) => c)
+  assert.ok(tones.includes(M.MAP_COLOURS.ocean), 'the abyss is no longer the ocean')
+  for (let i = 1; i < M.DEPTH_TONES.length; i++) {
+    const [d, c] = M.DEPTH_TONES[i]
+    const [up, above] = M.DEPTH_TONES[i - 1]
+    assert.ok(d > up, 'depth bands must descend')
+    assert.ok(luminance(c) < luminance(above), `${d} m is not darker than ${up} m`)
+  }
+  const shelf = tones[0]
+  assert.ok(contrast(shelf, M.MAP_COLOURS.ocean) <= 1.12, `the shelf is ${contrast(shelf, M.MAP_COLOURS.ocean).toFixed(3)}:1 off the abyss`)
+  for (const c of tones) {
+    assert.ok(contrast(M.MAP_COLOURS.border, c) >= 2.5, `the coast's line is ${contrast(M.MAP_COLOURS.border, c).toFixed(2)}:1 on ${c}`)
+    assert.ok(contrast(c, M.MAP_COLOURS.land) <= 1.1, `${c} is ${contrast(c, M.MAP_COLOURS.land).toFixed(3)}:1 off the land`)
+    assert.ok(contrast(c, M.MAP_COLOURS.space) > 1.03, `${c} is lost against space`)
+    assert.ok(contrast(M.OVERLAY_COLOUR.thermal, c) >= 3, `thermal is ${contrast(M.OVERLAY_COLOUR.thermal, c).toFixed(2)}:1 on ${c}`)
+  }
+})
+
+/**
+ * The land's physical names (`scripts/build/regions.mjs`) say only the land.
+ *
+ * Every character has a glyph in the font files (0–767 and 8192–8447), every
+ * name is spelled out rather than shouted, and the editorial cuts hold: no
+ * claim names south of 60°S, no state's name again, no peninsula that is a
+ * claim. The layer speaks in `labelDim`, the one ink that clears AA on the
+ * brightest land, and quietens by case and size, never by opacity.
+ */
+test('the region names are the land’s, spelled out, in an ink the land can carry', () => {
+  const { features } = JSON.parse(readFileSync(join(ROOT, 'shared/data/regions-50m.geojson'), 'utf8'))
+  assert.ok(features.length >= 200, `only ${features.length} region names`)
+  const names = features.map((f) => f.properties.name)
+  assert.equal(new Set(names).size, names.length, 'a region is named twice')
+  for (const f of features) {
+    const { name, tier, rot } = f.properties
+    for (const ch of name) {
+      const c = ch.codePointAt(0)
+      assert.ok(c <= 767 || (c >= 8192 && c <= 8447), `${name} has ${ch}, which the label font does not cover`)
+    }
+    assert.notEqual(name, name.toUpperCase(), `${name} is in capitals`)
+    assert.ok(!/\b(Mts?|Ra|Cord|Plat|Pen)\./.test(name), `${name} is abbreviated`)
+    assert.ok(f.geometry.coordinates[1] >= -60, `${name} is south of 60°S`)
+    assert.ok([1, 2, 3].includes(tier), `${name} has tier ${tier}`)
+    assert.ok(Math.abs(rot) <= 45, `${name} stands at ${rot}°`)
+    if (!['range', 'valley'].includes(f.properties.kind)) assert.equal(rot, 0, `${name} is tilted`)
+  }
+  for (const cut of ['Alaska', 'Crimea', 'India', 'Korea', 'Punjab', 'Knud Rasmussen Land', 'Queen Maud Land']) {
+    assert.ok(!names.includes(cut), `${cut} is a region name`)
+  }
+  for (const kept of ['Sahel', 'Hindu Kush', 'Mesopotamia', 'Sahara', 'Himalayas', 'Zagros Mountains']) {
+    assert.ok(names.includes(kept), `${kept} is missing`)
+  }
+  const layer = M.buildStyle().layers.find((l) => l.id === 'region-labels')
+  assert.equal(layer.paint['text-color'], M.MAP_COLOURS.labelDim)
+  assert.equal(layer.paint['text-opacity'], undefined, 'a region name is quieted by opacity')
+  for (const ground of M.LAND_RAMP) {
+    assert.ok(contrast(M.MAP_COLOURS.labelDim, ground) >= 4.5, `labelDim fails AA on ${ground}`)
+  }
+})
+
 test('every metric payload places its countries on a 0..1 scale', (t) => {
   const indexPath = join(ROOT, 'dist/api/metric/index.json')
-  if (!existsSync(indexPath)) {
+  if (!existsSync(indexPath) || !existsSync(WORLD_TILE)) {
     t.skip('dist/api/metric/ not built')
     return
   }
   const { metrics } = JSON.parse(readFileSync(indexPath, 'utf8'))
   assert.ok(metrics.length >= 20, `only ${metrics.length} metrics emitted`)
 
-  const iso2s = new Set(
-    JSON.parse(readFileSync(join(ROOT, 'dist/basemap/countries.geojson'), 'utf8')).features.map(
-      (f) => f.properties?.iso2,
-    ),
-  )
+  const iso2s = drawnCodes()
 
   for (const m of metrics) {
     const payload = JSON.parse(
@@ -1293,8 +1368,7 @@ test('every metric payload places its countries on a 0..1 scale', (t) => {
 
 test('the polygon the map actually draws for Palestine can be tinted', (t) => {
   const indexPath = join(ROOT, 'dist/api/metric/index.json')
-  const basePath = join(ROOT, 'dist/basemap/countries.geojson')
-  if (!existsSync(indexPath) || !existsSync(basePath)) {
+  if (!existsSync(indexPath) || !existsSync(WORLD_TILE)) {
     t.skip('dist/api/metric or dist/basemap not built')
     return
   }
@@ -1304,8 +1378,7 @@ test('the polygon the map actually draws for Palestine can be tinted', (t) => {
   // the figures under `IL` alone would leave the map blank there while every
   // neighbour was shaded, which reads as "no data" about a place we do hold
   // data about.
-  const features = JSON.parse(readFileSync(basePath, 'utf8')).features
-  const codes = new Set(features.map((f) => f.properties?.iso2))
+  const codes = drawnCodes()
   assert.ok(codes.has('PS'), 'the basemap has no PS polygon')
   assert.ok(!codes.has('IL'), 'the basemap has a separate IL polygon, so the merge regressed')
 

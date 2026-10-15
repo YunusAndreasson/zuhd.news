@@ -11,6 +11,7 @@ import { buildCategoryOgPng, buildOgPng, buildSiteOgPng } from './lib/og-image.j
 import { buildIgJpeg, IG_FEED, IG_STORY, igCardInputs } from './lib/ig-image.js'
 import { MAPLIBRE_V, buildIslands } from './build/islands.js'
 import { buildMapSources } from './build/basemap.js'
+import { writeBasemapTiles } from './build/basemap-tiles.js'
 import { buildCountryPages } from './build/country-pages.js'
 import { buildCountryMetrics } from './build/country-metrics.js'
 import { buildEntityPages } from './build/entity-pages.js'
@@ -629,6 +630,7 @@ const ISLAND_V = (() => {
 const BASEMAP_V = (() => {
   const inputs = [
     join(ROOT, 'scripts', 'build', 'basemap.js'),
+    join(ROOT, 'scripts', 'build', 'basemap-tiles.js'),
     join(ROOT, 'shared', 'place-names.ts'),
     join(ROOT, 'shared', 'countries', 'iso.ts'),
     join(ROOT, 'shared', 'data', 'countries-110m.json'),
@@ -640,6 +642,8 @@ const BASEMAP_V = (() => {
     join(ROOT, 'shared', 'data', 'lakes-50m.json'),
     join(ROOT, 'shared', 'data', 'rivers-50m.json'),
     join(ROOT, 'shared', 'data', 'seas-50m.json'),
+    join(ROOT, 'shared', 'data', 'bathymetry-10m.geojson'),
+    join(ROOT, 'shared', 'data', 'regions-50m.geojson'),
   ]
   const h = createHash('sha256')
   for (const f of inputs) if (existsSync(f)) h.update(readFileSync(f))
@@ -2153,29 +2157,29 @@ writeFileSync(join(DIST_DIR, 'api', 'map-leads.json'),
   JSON.stringify({ generated, leads: mapLeads }))
 console.log(`  Built: api/map-leads.json (${Object.keys(mapLeads).length} leads)`)
 
-// Basemap sources for MapLibre — the 1:50m coastline plus a 1:10m tier for
-// close zoom, and place labels. All served from our own origin so the CSP stays
-// `default-src 'none'`. The old 1:110m placeholder tier is gone; see
-// `scripts/build/basemap.js` for why one good fetch beat two.
+// Basemap sources for MapLibre — the 1:10m coastline as tiles, and the names,
+// water and places as GeoJSON. All served from our own origin so the CSP stays
+// `default-src 'none'`.
 {
   mkdirSync(join(DIST_DIR, 'basemap'), { recursive: true })
-  const { countries, countriesUltra, countryLabels, places, lakes, rivers, seas } =
+  const { countriesUltra, depth, countryLabels, places, lakes, rivers, seas, regions } =
     await buildMapSources(ROOT)
   const emit = (name, data) => {
     writeFileSync(join(DIST_DIR, 'basemap', name), JSON.stringify(data))
     return Math.round(statSync(join(DIST_DIR, 'basemap', name)).size / 1024)
   }
-  const a = emit('countries.geojson', countries)
-  const d = emit('countries-ultra.geojson', countriesUltra)
   emit('country-labels.geojson', countryLabels)
   const c = emit('places.geojson', places)
   const l = emit('lakes.geojson', lakes)
   const r = emit('rivers.geojson', rivers)
   const s = emit('seas.geojson', seas)
+  const g = emit('regions.geojson', regions)
+  const tiles = writeBasemapTiles({ countries: countriesUltra, depth }, join(DIST_DIR, 'basemap', 'tiles'))
   console.log(
-    `  Built: basemap/ (countries ${a}KB, ultra ${d}KB, ${places.features.length} places ${c}KB, ` +
+    `  Built: basemap/ (` +
+      `${tiles.files} tiles ${Math.round(tiles.bytes / 1024)}KB, ${places.features.length} places ${c}KB, ` +
       `${lakes.features.length} lakes ${l}KB, ${rivers.features.length} rivers ${r}KB, ` +
-      `${seas.features.length} seas ${s}KB)`,
+      `${seas.features.length} seas ${s}KB, ${regions.features.length} regions ${g}KB)`,
   )
 }
 

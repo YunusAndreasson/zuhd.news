@@ -14,6 +14,7 @@
 import test from 'node:test'
 import assert from 'node:assert/strict'
 import { JSDOM } from 'jsdom'
+import { validateStyleMin } from '@maplibre/maplibre-gl-style-spec'
 import { writeFileSync } from 'node:fs'
 import { join } from 'node:path'
 import { bundleIsland, scratchDir } from './island-bundle.js'
@@ -123,7 +124,17 @@ writeFileSync(
     setLight(l) { this.light = l }
     setLayoutProperty(id, k, v) { (this.layout[id] ||= {})[k] = v }
     setFilter(id, f) { this.filters[id] = f }
+    // MapLibre's own check, thrown rather than fired: on a vector source a
+    // state call without sourceLayer fires an error and writes nothing, so the
+    // coastline would never take the metric's tone.
+    checkStateTarget(ref) {
+      const cfg = this.sources[ref.source]?.cfg ?? this.opts.style?.sources?.[ref.source]
+      if (cfg?.type === 'vector' && !ref.sourceLayer) {
+        throw new Error('The sourceLayer parameter must be provided for vector source types.')
+      }
+    }
     setFeatureState(ref, state) {
+      this.checkStateTarget(ref)
       this.stateWrites = (this.stateWrites || 0) + 1
       Object.assign((this.featureState[ref.id] ||= {}), state)
     }
@@ -141,6 +152,7 @@ writeFileSync(
     // *call*, not its effect, because the effect of the redundant call is
     // nil by definition.
     removeFeatureState(ref) {
+      this.checkStateTarget(ref)
       this.stateWrites = (this.stateWrites || 0) + 1
       if (ref && ref.id != null) delete this.featureState[ref.id]
       else this.featureState = {}
@@ -627,6 +639,50 @@ test('every registered glyph is drawn by a layer, not only by its chip', async (
     assert.ok(used.has('hazard'), 'the disaster mark should be the hazard triangle')
     assert.ok(used.has('conflict-mark'), 'the conflict mark should be the square')
     assert.ok(used.has('strait-pinch'), 'a pinched strait should narrow its channel')
+
+    teardown()
+  } finally {
+    delete globalThis.__zuhdMaps
+    env.restore()
+  }
+})
+
+/**
+ * Every layer the island asks for is one MapLibre will accept.
+ *
+ * A rejected layer is not a missing layer. `addLayer` throws, `addDataLayers`
+ * stops there, and every layer after it is never added: a `['zoom']` nested
+ * inside a `case` once took the stories, the disasters and the genocide marks
+ * off the map in one go, and nothing short of a browser could see it. So the
+ * style the island builds, and every source and layer it adds after `load`,
+ * goes through MapLibre's own validator, the one `setStyle` runs.
+ */
+test('every source and layer the island adds passes the style spec', async () => {
+  const env = setupDom()
+  globalThis.__zuhdMaps = []
+  try {
+    const { mount } = await import(bundlePath)
+    const teardown = mount(env.host)
+    env.pump()
+    await settle()
+
+    const map = globalThis.__zuhdMaps.at(-1)
+    const base = map.opts.style
+    // The stub stamps `__before` on each layer it records; it is the test's
+    // note, not part of the spec.
+    const strip = (l) => Object.fromEntries(Object.entries(l).filter(([k]) => !k.startsWith('__')))
+    const style = {
+      ...base,
+      sources: {
+        ...base.sources,
+        ...Object.fromEntries(Object.entries(map.sources).map(([id, s]) => [id, s.cfg])),
+      },
+      layers: [...base.layers, ...map.layers.map(strip)],
+    }
+    assert.ok(map.layers.length > 20, 'the data layers should have been added')
+
+    const errors = validateStyleMin(style).map((e) => e.message)
+    assert.deepEqual(errors, [], 'MapLibre would reject these')
 
     teardown()
   } finally {
@@ -1168,9 +1224,10 @@ test('a market’s and a strait’s name are layers of their own, and only a ran
       assert.equal(byId[mark].layout['icon-allow-overlap'], true, 'and its mark never does')
       assert.ok(MARKER_LAYERS.includes(label), `${label} opens its mark’s card`)
     }
+    // A callout is the same name set further out, so it ranks with them.
     assert.deepEqual(
-      HIT_ORDER.slice(-4, -2),
-      ['market-labels', 'chokepoint-labels'],
+      HIT_ORDER.slice(-6, -2),
+      ['market-labels', 'chokepoint-labels', 'market-callouts', 'strait-callouts'],
       'names rank last for the pointer among the marks',
     )
     // Below them only Makkah, which is always there and takes the pointer

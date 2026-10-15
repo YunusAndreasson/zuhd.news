@@ -7,7 +7,7 @@
 // Dark by design rather than by theme: coloured markers need a dark ground to
 // read against, and every operational map worth copying commits to it.
 
-import type { StyleSpecification } from 'maplibre-gl'
+import type { ExpressionSpecification, StyleSpecification } from 'maplibre-gl'
 import { MAKKAH_LABEL } from './format'
 
 /**
@@ -772,6 +772,48 @@ export const bloomCssRamp = (): string => {
 export const basemapUrl = (file: string, v?: string) =>
   v ? `/basemap/${file}?v=${encodeURIComponent(v)}` : `/basemap/${file}`
 
+/**
+ * The coastline's vector tiles (`scripts/build/basemap-tiles.js`): the deepest
+ * zoom written, past which MapLibre overzooms, and the one layer in each tile.
+ * `map-geo.test.js` pins both to the build's.
+ */
+export const COUNTRY_TILES = { maxzoom: 5, layer: 'countries', depthLayer: 'depth' } as const
+
+/**
+ * The sea floor's tone from each depth (`d`, metres) down, shallowest first.
+ * The abyss, 4000 m and down, is `ocean` itself, so the open sea looks as it
+ * did and the shelves, ridges and shallow straits lift a step at a time in the
+ * same hue; the trenches go one step under it. The shelf ends 1.10:1 against
+ * the abyss and stays within the land's own lightness, so a coastline is still
+ * `border`'s job (`map-geo.test.js`). The shelf is the background, not a band:
+ * every band is a pass over the sea.
+ */
+export const DEPTH_TONES: ReadonlyArray<readonly [number, string]> = [
+  [0, '#091f34'],
+  [200, '#081c2f'],
+  [2000, '#071827'],
+  [4000, MAP_COLOURS.ocean],
+  [6000, '#05121e'],
+]
+
+/** A band's tone by its floor. Spread from the table, so it is cast as the
+ *  island casts its other built expressions. */
+const depthColour = [
+  'match',
+  ['get', 'd'],
+  ...DEPTH_TONES.flat(),
+  MAP_COLOURS.ocean,
+] as unknown as ExpressionSpecification
+
+/**
+ * A tile template, made absolute. MapLibre resolves a GeoJSON source's URL
+ * against the page but hands a tile URL to its worker as written, and a
+ * worker resolves a relative one against its own script. Joined as a string:
+ * `new URL` percent-encodes the `{z}` MapLibre substitutes.
+ */
+const tileUrl = (file: string, v?: string) =>
+  typeof location === 'undefined' ? basemapUrl(file, v) : location.origin + basemapUrl(file, v)
+
 /** A source declared in the style but filled later. */
 const EMPTY_FC = { type: 'FeatureCollection' as const, features: [] }
 
@@ -1038,7 +1080,15 @@ export function buildStyle(v?: string): StyleSpecification {
       // what `setFeatureState` keys on — the same mechanism the story layer
       // uses for hover, and the reason the land tint costs no GeoJSON rewrite
       // when the reader changes metric.
-      countries: { type: 'geojson', data: basemapUrl('countries.geojson', v), promoteId: 'iso2' },
+      //
+      // Tiles cut at build time from 1:10m, so the reader fetches the tiles in
+      // view rather than a whole coastline the worker then has to cut itself.
+      countries: {
+        type: 'vector',
+        tiles: [tileUrl('tiles/{z}/{x}/{y}.pbf', v)],
+        maxzoom: COUNTRY_TILES.maxzoom,
+        promoteId: 'iso2',
+      },
       countryLabels: { type: 'geojson', data: basemapUrl('country-labels.geojson', v) },
       places: { type: 'geojson', data: basemapUrl('places.geojson', v) },
       // Lakes and rivers start empty and are filled after first paint — see
@@ -1052,17 +1102,37 @@ export function buildStyle(v?: string): StyleSpecification {
       lakes: { type: 'geojson', data: EMPTY_FC },
       rivers: { type: 'geojson', data: EMPTY_FC },
       seas: { type: 'geojson', data: basemapUrl('seas.geojson', v) },
+      // The land's physical names (`scripts/build/regions.mjs`), 37 KB of
+      // points, with the style like the seas.
+      regions: { type: 'geojson', data: basemapUrl('regions.geojson', v) },
     },
     layers: [
       {
         id: 'ocean',
         type: 'background',
-        paint: { 'background-color': MAP_COLOURS.ocean },
+        // The shelf's tone: what the depth bands below are drawn over.
+        paint: { 'background-color': DEPTH_TONES[0][1] },
+      },
+      // The sea floor (`DEPTH_TONES`), under everything the sea carries. Each
+      // band lies inside the one above it, so the sort key draws the deeper
+      // over the shallower. No antialiasing: neighbouring tones are 1.03:1
+      // apart and an edge between them is invisible either way.
+      {
+        id: 'depth',
+        type: 'fill',
+        source: 'countries',
+        'source-layer': COUNTRY_TILES.depthLayer,
+        layout: { 'fill-sort-key': ['get', 'd'] },
+        paint: {
+          'fill-color': depthColour,
+          'fill-antialias': false,
+        },
       },
       {
         id: 'land',
         type: 'fill',
         source: 'countries',
+        'source-layer': COUNTRY_TILES.layer,
         paint: {
           // The metric percentile arrives per-country as feature state. A
           // country the metric doesn't cover has no state at all, so the
@@ -1203,10 +1273,49 @@ export function buildStyle(v?: string): StyleSpecification {
         id: 'borders',
         type: 'line',
         source: 'countries',
+        'source-layer': COUNTRY_TILES.layer,
         paint: {
           'line-color': MAP_COLOURS.border,
           // Borders stay hairline at world zoom and firm up as you go in.
           'line-width': ['interpolate', ['linear'], ['zoom'], 0, 0.4, 4, 0.8, 8, 1.2],
+        },
+      },
+      /**
+       * Ranges, deserts, plateaus, basins and plains: the Sahel, the Hindu
+       * Kush, Mesopotamia. Type is the one thing this map can paint on the
+       * land, whose tone is the metric's value, so the land's shape is said in
+       * names rather than relief.
+       *
+       * Under the country names, so a country and a city claim their space
+       * first and a region yields. Quieter than them by case and size, never
+       * by ink: `labelDim` is the only ink that clears AA on the brightest land
+       * (`map-geo.test.js`). Letterspaced, which is what tells an area from a
+       * town in the same case, and a range more widely, along its own axis
+       * (`rot`) once it is big enough to read that way. The tiers arrive as the
+       * camera earns them.
+       */
+      {
+        id: 'region-labels',
+        type: 'symbol',
+        source: 'regions',
+        filter: ['<=', ['get', 'tier'], ['step', ['zoom'], 1, 2.6, 2, 3.8, 3]],
+        layout: {
+          'text-field': ['get', 'name'],
+          'text-font': ['Source Sans 3 Regular'],
+          'text-size': ['interpolate', ['linear'], ['zoom'], 1.2, 9.5, 6, 12.5],
+          'text-letter-spacing': ['match', ['get', 'kind'], 'range', 0.25, 0.15],
+          // Upright to the screen, like every name here: laid on the sphere, a
+          // name near the limb is foreshortened to a smudge. The map never
+          // turns (`dragRotate: false`), so the screen's angle is the axis's.
+          'text-rotate': ['step', ['zoom'], 0, 3, ['get', 'rot']],
+          'text-max-width': 6,
+          'text-padding': 8,
+          'symbol-sort-key': ['get', 'tier'],
+        },
+        paint: {
+          'text-color': MAP_COLOURS.labelDim,
+          'text-halo-color': MAP_COLOURS.labelHalo,
+          'text-halo-width': 1,
         },
       },
       {

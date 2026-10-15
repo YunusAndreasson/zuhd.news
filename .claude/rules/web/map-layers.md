@@ -4,6 +4,10 @@ paths:
   - "public/islands/_map/style.ts"
   - "public/islands/_map/glyphs.ts"
   - "public/islands/_map/markets.ts"
+  - "public/islands/_map/callouts.ts"
+  - "scripts/build/basemap-tiles.js"
+  - "scripts/build/regions.mjs"
+  - "scripts/build/bathymetry.mjs"
   - "scripts/build/basemap.js"
   - "scripts/lib/map-geo.test.js"
   - "shared/genocide.ts"
@@ -28,6 +32,10 @@ Camera, MapLibre and cards are `map.md`; the rails are `map-rail.md`.
   for a day, so a source left out goes stale with no way for a reader to force
   it.
 - There is no 1:110m first-paint tier: 110m deletes real geography.
+- The coastline and the depth bands are tiles cut at build, zoom 0 to
+  `COUNTRY_TILE_MAX_ZOOM` (`COUNTRY_TILES` in `_map/style.ts` must match).
+  Every tile is written, an empty one as an empty file: a 404 fails
+  `npm run perf` and Pages answers it with `404.html`.
 
 ## Labels and names
 
@@ -52,6 +60,11 @@ Camera, MapLibre and cards are `map.md`; the rails are `map-rail.md`.
 - Country names stay quiet (Regular, halo 1) in `labelDim`; `neutral` fails on
   the brightest land. A halo does not make a label readable.
 - `DENSITY_STOPS` peaks at 0.30: type on the wash must keep 3:1.
+- The land's physical names are `region-labels`, from
+  `shared/data/regions-50m.geojson` (`scripts/build/regions.mjs`, which holds
+  the editorial cuts). Under the country names, in `labelDim`, quieter by case
+  and spacing, never by opacity. Upright to the screen: laid on the sphere a
+  name near the limb is foreshortened.
 
 ## Water, day and night
 
@@ -68,6 +81,11 @@ Camera, MapLibre and cards are `map.md`; the rails are `map-rail.md`.
   `dayPolygon` closes over fails silently if reversed.
 - `twilight` is one blurred band that lightens. The three real twilight caps
   would come and go with the season.
+- The sea floor is `depth`, bands from `shared/data/bathymetry-10m.geojson`
+  (`scripts/build/bathymetry.mjs`) in the coastline's tiles, on `DEPTH_TONES`.
+  The abyss stays `ocean`; the shelf is the background. Every band is a pass
+  over the sea, so add one only after timing a drag; never shade relief on
+  land, whose tone is the metric's value.
 
 ## The land ramp
 
@@ -145,7 +163,11 @@ Camera, MapLibre and cards are `map.md`; the rails are `map-rail.md`.
   `moveCap(days)`; no reading is a flat neutral tick with no numeral.
 - A market and a strait are named by a text-only layer of their own
   (`market-labels`: city and move; `chokepoint-labels`: short name and move).
-  A name may lose a collision; its mark never does. The names draw under the
+  A name may lose a collision; its mark never does. A flagged market's or a
+  disrupted strait's lost name takes a callout (`_map/callouts.ts`,
+  `syncCallouts`): set out with a hairline, never within
+  `CALLOUT_MIN_CLEAR_PX` of another mark, and dropped when no direction is
+  clear. The names draw under the
   stories and rank last in `HIT_ORDER`, or one takes a dozen stories' hover.
 - A flagged market (`_map/signals.ts`, from `/api/market-signals.json`) is the
   doubled tick (`tick-up-flag`, `tick-down-flag`, `tick-flat-flag` when it is

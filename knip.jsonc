@@ -101,6 +101,10 @@
     "scripts/perf/*.mjs",
     // Run by hand when the map's label font changes; its output is checked in.
     "scripts/build/glyphs.mjs",
+    // Run by hand to rewrite shared/data/bathymetry-10m.geojson and
+    // regions-50m.geojson, both checked in.
+    "scripts/build/bathymetry.mjs",
+    "scripts/build/regions.mjs",
 
     // ── Manual tools. Unreferenced by design, and each one is the only way to
     //    do the thing it does: fetch-country-cards.js regenerates the committed
