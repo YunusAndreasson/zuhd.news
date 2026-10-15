@@ -1,4 +1,4 @@
-import { useCallback, useMemo, useRef, useState } from 'react';
+import { useCallback, useMemo, useState } from 'react';
 import type { LayoutChangeEvent } from 'react-native';
 import {
   type PanGestureConfig,
@@ -122,32 +122,39 @@ export function useScrub({
   const lastDetent = useSharedValue(-1);
   const lastStep = useSharedValue(-1);
 
-  const [label, setLabel] = useState('');
-  const [detail, setDetail] = useState('');
-  const [caption, setCaption] = useState('');
-  const labelRef = useRef('');
-  const detailRef = useRef('');
-  const captionRef = useRef('');
+  // Only the tooltip subscribes. Updating text in this hook's owner used to
+  // rebuild the dock and gesture detector on every story crossed by a drag.
+  const [preview] = useState(() => {
+    let snapshot = { label: '', detail: '', caption: '' };
+    const listeners = new Set<() => void>();
+    return {
+      getSnapshot: () => snapshot,
+      subscribe: (listener: () => void) => {
+        listeners.add(listener);
+        return () => {
+          listeners.delete(listener);
+        };
+      },
+      update: (next: typeof snapshot) => {
+        if (
+          next.label === snapshot.label &&
+          next.detail === snapshot.detail &&
+          next.caption === snapshot.caption
+        )
+          return;
+        snapshot = next;
+        for (const listener of listeners) listener();
+      },
+    };
+  });
   const updateLabel = useCallback(
-    (f: number) => {
-      const next = labelFor(f);
-      const nextDetail = detailFor ? detailFor(f) : '';
-      const nextCaption = captionFor ? captionFor(f) : '';
-      if (
-        next === labelRef.current &&
-        nextDetail === detailRef.current &&
-        nextCaption === captionRef.current
-      ) {
-        return;
-      }
-      labelRef.current = next;
-      detailRef.current = nextDetail;
-      captionRef.current = nextCaption;
-      setLabel(next);
-      setDetail(nextDetail);
-      setCaption(nextCaption);
-    },
-    [labelFor, detailFor, captionFor],
+    (f: number) =>
+      preview.update({
+        label: labelFor(f),
+        detail: detailFor?.(f) ?? '',
+        caption: captionFor?.(f) ?? '',
+      }),
+    [labelFor, detailFor, captionFor, preview],
   );
   // One hop per step, carrying both effects. Two `scheduleOnRN` calls are two
   // JS tasks, and the notch and the label they carried could land on
@@ -322,9 +329,7 @@ export function useScrub({
     tooltipStyle,
     stemStyle,
     tooltipWidth,
-    label,
-    detail,
-    caption,
+    preview,
   };
 }
 

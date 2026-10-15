@@ -1,7 +1,8 @@
 import { File, Paths } from 'expo-file-system';
 import Storage from 'expo-sqlite/kv-store';
-import { clearSnapshotEtags } from './api-snapshots';
+import { cancelArrivals } from './arrival';
 import { clearBookmarks } from './bookmark-store';
+import { clearBriefingProgress } from './briefing-progress';
 import { resetDataUsage } from './data-usage';
 import { feedCache } from './feed-source';
 import { clearFound } from './found-store';
@@ -30,9 +31,8 @@ import { resetReviewState } from './store-review';
  */
 const KEYS = [
   'zuhd_last_seen', // when the app was last left; only a pre-`zuhd_known_v1` install reads it
+  'zuhd_snapshot_etags_v1', // obsolete standalone snapshot tags
   'zuhd_known_v1', // which stories were already here, so new ones are marked new
-  'zuhd_briefing_pos', // audio playback position
-  'zuhd_briefing_date', // which briefing that position belongs to
   'zuhd_review_count', // article snaps since the last rating prompt
   'zuhd_review_prompted', // when the rating prompt was last shown
   'REACT_QUERY_OFFLINE_CACHE', // the persisted article cache
@@ -62,20 +62,17 @@ const LEGACY_COPIES: LegacyCopy[] = [
 export async function eraseLocalData(): Promise<void> {
   // In-memory stores first, so nothing flushes itself back over the cleared
   // keys afterwards.
-  clearBookmarks();
-  clearFound();
-  clearKnown();
-  clearRead();
-  resetOnboarding();
+  cancelArrivals();
+  const cleared = [clearBookmarks(), clearFound(), clearKnown(), clearRead(), resetOnboarding()];
   resetReviewState();
   resetDataUsage();
   queryClient.clear();
-  // The cache's version tags, with the cache they describe.
-  clearSnapshotEtags();
 
   await Promise.all([
+    clearBriefingProgress(),
     feedCache.clear(),
-    ...KEYS.map((k) => Storage.removeItem(k).catch(() => {})),
-    ...LEGACY_COPIES.map(deleteLegacy),
+    ...KEYS.map((k) => Storage.removeItem(k)),
+    ...LEGACY_COPIES.map((copy) => deleteLegacy(copy, true)),
   ]);
+  if (cleared.some((success) => !success)) throw new Error('Could not erase all local data');
 }

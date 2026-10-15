@@ -1,5 +1,5 @@
 import { useQuery } from '@tanstack/react-query';
-import { type ApiSnapshot, fetchSnapshot } from '../lib/api-snapshots';
+import { type ApiSnapshot, fetchSnapshot, snapshotData } from '../lib/api-snapshots';
 
 /**
  * Read-only API JSON hook over `useQuery`. Cache-first via TanStack Query's
@@ -17,9 +17,10 @@ import { type ApiSnapshot, fetchSnapshot } from '../lib/api-snapshots';
  * Reconnects still refetch: they are rare, and `staleTime` still gates them.
  */
 export function useApiJson<T>(snapshot: ApiSnapshot<T>): T | null {
-  const query = useQuery<T, Error>({
+  const query = useQuery({
     queryKey: snapshot.queryKey,
     queryFn: ({ signal }) => fetchSnapshot(snapshot, { signal }),
+    select: snapshotData<T>,
     refetchOnWindowFocus: false,
     refetchOnReconnect: true,
     // Persister roundtrip needs a structural-clone-safe payload; queryFn

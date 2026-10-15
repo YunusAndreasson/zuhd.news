@@ -1,15 +1,16 @@
 import type { Article, Category, FeedResponse, GroupedArticles } from '@shared/types';
 import { useQuery, useQueryClient } from '@tanstack/react-query';
-import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
+import * as Network from 'expo-network';
+import { useCallback, useEffect, useEffectEvent, useMemo, useRef, useState } from 'react';
 import { STALE_THRESHOLD } from '../constants/theme';
 import {
-  type Arrival,
   applyArrival,
   FEED_QUERY_KEY,
   feedSlugs,
   feedStories,
   fetchArrival,
   probeGenerated,
+  retryFailedSnapshots,
 } from '../lib/arrival';
 import { flushBookmarks } from '../lib/bookmark-store';
 import { collectNewArticles } from '../lib/feed-diff';
@@ -78,11 +79,15 @@ export function useArticles(
   const [lastSeenAt, setLastSeenAt] = useState<number | null>(null);
   const lastSeenAtRef = useRef<number | null>(null);
   lastSeenAtRef.current = lastSeenAt;
-  const refreshingRef = useRef(false);
+  const refreshingRef = useRef<Promise<{ added: Article[]; applied: boolean }> | null>(null);
+  const refreshCallbacksRef = useRef<((added: Article[]) => void)[]>([]);
   /** The feed's slugs when the app last went to the background: what a return
    *  counts as new against, however the new feed got here — this return's
    *  arrival, or a background task that applied one while the app was away. */
   const seenAtBackgroundRef = useRef<Set<string> | null>(null);
+  /** The load a return joined, so a reconnect sharing it leaves the report to
+   *  the return. */
+  const resumeLoadRef = useRef<Promise<unknown> | null>(null);
 
   // The launch opens on the newest feed the device has — the one on disk,
   // which every successful fetch writes, the background task's included —
@@ -100,6 +105,7 @@ export function useArticles(
     // reaches the screen as an arrival (below), with everything else it
     // changed, never as a refetch of the feed alone.
     refetchOnMount: false,
+    refetchOnReconnect: false,
     refetchOnWindowFocus: false,
   });
 
@@ -134,6 +140,37 @@ export function useArticles(
     return generated === current ? null : generated;
   }, [queryClient]);
 
+  // Every entry point joins the same operation. A manual pull waits for an
+  // automatic check and receives its real result or failure.
+  const loadLatest = useCallback(
+    (alsoInFlush?: (added: Article[]) => void) => {
+      if (alsoInFlush) refreshCallbacksRef.current.push(alsoInFlush);
+      if (refreshingRef.current) return refreshingRef.current;
+      const callbacks = refreshCallbacksRef.current;
+      refreshingRef.current = (async () => {
+        try {
+          if ((await newerBuild()) === null) {
+            await retryFailedSnapshots(queryClient);
+            return { added: [], applied: false };
+          }
+          const arrival = await fetchArrival(queryClient);
+          const added = applyArrival(queryClient, arrival, {
+            lastSeenAt: lastSeenAtRef.current,
+            alsoInFlush: (added) => {
+              for (const callback of callbacks) callback(added);
+            },
+          });
+          return { added, applied: true };
+        } finally {
+          refreshingRef.current = null;
+          refreshCallbacksRef.current = [];
+        }
+      })();
+      return refreshingRef.current;
+    },
+    [newerBuild, queryClient],
+  );
+
   // A launch that opened on a cached feed checks for a newer build once,
   // after the note above has run on the cached one — a first install fetches
   // through the query instead. The screen puts the reader on the new front.
@@ -143,24 +180,10 @@ export function useArticles(
     if (launchCheckedRef.current || !hasData || lastSeenAt === null) return;
     launchCheckedRef.current = true;
     if (query.isFetchedAfterMount) return;
-    refreshingRef.current = true;
-    void (async () => {
-      try {
-        if ((await newerBuild()) === null) return;
-        const arrival = await fetchArrival(queryClient);
-        applyArrival(queryClient, arrival, {
-          lastSeenAt,
-          alsoInFlush: (added) => {
-            onReturnRef?.current?.({ awayMs: Infinity, coldStart: true, added });
-          },
-        });
-      } catch {
-        // Offline: the cached feed is the news until the next return or pull.
-      } finally {
-        refreshingRef.current = false;
-      }
-    })();
-  }, [hasData, lastSeenAt, newerBuild, onReturnRef, queryClient, query.isFetchedAfterMount]);
+    void loadLatest((added) => {
+      onReturnRef?.current?.({ awayMs: Infinity, coldStart: true, added });
+    }).catch(() => {}); // Offline: keep the cached feed until the next check.
+  }, [hasData, lastSeenAt, loadLatest, onReturnRef, query.isFetchedAfterMount]);
 
   // A return after more than STALE_THRESHOLD: one probe, and one arrival if
   // the site was rebuilt. The clock's tick and the return's report ride in
@@ -169,34 +192,57 @@ export function useArticles(
   // latest of each through its own effect events, and an effect event is not
   // handed from one hook to another.
   const handleResume = async (awayMs: number) => {
-    if (refreshingRef.current) return;
-    refreshingRef.current = true;
     const report = (feed: FeedResponse | undefined) => {
       bumpTick();
       const seen = seenAtBackgroundRef.current;
       const added = feed && seen ? collectNewArticles(feed, seen) : [];
       onReturnRef?.current?.({ awayMs, coldStart: false, added });
     };
+    let applied = false;
     try {
-      let arrival: Arrival | null = null;
-      try {
-        if ((await newerBuild()) !== null) arrival = await fetchArrival(queryClient);
-      } catch {
-        // Quiet when offline: existing content is fine.
-      }
-      if (arrival) {
-        const feed = arrival.feed;
-        applyArrival(queryClient, arrival, {
-          lastSeenAt: lastSeenAtRef.current,
-          alsoInFlush: () => report(feed),
-        });
-      } else {
+      const load = loadLatest(() => {
         report(queryClient.getQueryData<FeedResponse>(FEED_QUERY_KEY));
-      }
-    } finally {
-      refreshingRef.current = false;
+      });
+      resumeLoadRef.current = load;
+      applied = (await load).applied;
+    } catch {
+      // Keep cached content when offline; a manual caller still sees failure.
     }
+    if (!applied) report(queryClient.getQueryData<FeedResponse>(FEED_QUERY_KEY));
   };
+
+  // A reconnect is not a return. It reports what its own arrival added (counted
+  // against the feed just before it) and nothing when nothing arrived: the
+  // resume path counts against the last background, so every reconnect after
+  // one showed the same "N new" again.
+  const reconnect = useEffectEvent(() => {
+    const load = loadLatest((added) => {
+      if (resumeLoadRef.current === load) return;
+      bumpTick();
+      if (added.length) onReturnRef?.current?.({ awayMs: 0, coldStart: false, added });
+    });
+    load.catch(() => {
+      // Offline again: the cached feed stands.
+    });
+  });
+  useEffect(() => {
+    let connected = true;
+    let receivedEvent = false;
+    void Network.getNetworkStateAsync()
+      .then((state) => {
+        if (!receivedEvent) connected = state.isInternetReachable ?? state.isConnected ?? true;
+      })
+      .catch(() => {});
+    const subscription = Network.addNetworkStateListener((state) => {
+      receivedEvent = true;
+      const next = state.isInternetReachable ?? state.isConnected;
+      if (next == null) return;
+      const wasConnected = connected;
+      connected = next;
+      if (next && !wasConnected) reconnect();
+    });
+    return () => subscription.remove();
+  }, []);
 
   const handleBackground = () => {
     seenAtBackgroundRef.current = feedSlugs(queryClient.getQueryData<FeedResponse>(FEED_QUERY_KEY));
@@ -211,24 +257,7 @@ export function useArticles(
   useAppResume(handleResume, STALE_THRESHOLD, handleBackground);
 
   /** Pull to refresh: the same arrival, reporting what it added. */
-  const refresh = useCallback(async (): Promise<Article[]> => {
-    if (refreshingRef.current) return [];
-    refreshingRef.current = true;
-    try {
-      let generated: string | null;
-      try {
-        generated = await newerBuild();
-      } catch {
-        // A manual refresh must not turn an unreadable probe into "up to date".
-        throw new Error('Could not verify feed freshness');
-      }
-      if (generated === null) return [];
-      const arrival = await fetchArrival(queryClient);
-      return applyArrival(queryClient, arrival, { lastSeenAt: lastSeenAtRef.current });
-    } finally {
-      refreshingRef.current = false;
-    }
-  }, [queryClient, newerBuild]);
+  const refresh = useCallback(async () => (await loadLatest()).added, [loadLatest]);
 
   const retry = useCallback(async () => {
     await query.refetch();

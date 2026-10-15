@@ -298,12 +298,12 @@ export function getSnapshot(): OnboardingState {
  *  restarts. The primer/notification state is deliberately untouched — the
  *  notifications toggle in settings is the durable control, and re-arming
  *  the primer would be a second ask the reader never requested. */
-export function resetOnboarding(): void {
+export function resetOnboarding(): boolean {
   shownThisSession.clear();
   commit({
     ...state,
     hints: seedHints('pending'),
     snapCount: 0,
   });
-  persist.now();
+  return persist.now();
 }

@@ -50,12 +50,14 @@ export async function readMigrated(
   return value;
 }
 
-/** Delete a legacy copy, quietly — a copy that is already gone is the goal. */
-export async function deleteLegacy({ file, secureKey }: LegacyCopy): Promise<void> {
-  if (file) deleteLegacyFile(file);
+/** Migration cleanup is best effort; explicit erasure passes strict to report failures. */
+export async function deleteLegacy({ file, secureKey }: LegacyCopy, strict = false): Promise<void> {
+  if (file) deleteLegacyFile(file, strict);
   if (secureKey) {
     try {
       await SecureStore.deleteItemAsync(secureKey);
-    } catch {}
+    } catch (error) {
+      if (strict) throw error;
+    }
   }
 }

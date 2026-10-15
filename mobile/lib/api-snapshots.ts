@@ -1,12 +1,10 @@
 import { isMarketSignalsSnapshot } from '@shared/market-signals';
 import type { QueryKey } from '@tanstack/react-query';
-import Storage from 'expo-sqlite/kv-store';
 import { API_BASE } from '../constants/theme';
 import { isAiModelsSnapshot } from './ai-models';
 import { isCompaniesSnapshot } from './companies';
 import { fetchJsonIfChanged } from './fetchJson';
 import { isMarketsSnapshot } from './markets';
-import { readStoredJson } from './stored-json';
 import {
   isAnalysisSnapshot,
   isChokepointSnapshot,
@@ -15,7 +13,6 @@ import {
   isGdacsSnapshot,
   isGenocideSnapshot,
   isHeatmapResponse,
-  isStringMap,
   isThermalSnapshot,
   isTrendsSnapshot,
 } from './validate';
@@ -80,51 +77,34 @@ export const API_SNAPSHOTS = {
   },
 } as const;
 
-/**
- * Each file's version tag (`ETag`), as of the copy the app last took. Kept on
- * disk so a headless background run can ask too. A tag is only sent when the
- * caller still holds that file's data (`has`): a 304 with nothing to keep
- * would leave the layer empty.
- */
-const ETAGS_KEY = 'zuhd_snapshot_etags_v1';
-let etags: Record<string, string> = readStoredJson(ETAGS_KEY, isStringMap) ?? {};
-
-/** Note each file's new tag, and write the map once: an arrival that changed
- *  eleven files rewrote it eleven times, synchronously, just before the
- *  commit that shows them. */
-function rememberEtags(tags: readonly (readonly [url: string, etag: string | null])[]): void {
-  let next = etags;
-  for (const [url, etag] of tags) {
-    if (etag && next[url] !== etag) next = { ...next, [url]: etag };
-  }
-  if (next === etags) return;
-  etags = next;
-  try {
-    Storage.setItemSync(ETAGS_KEY, JSON.stringify(etags));
-  } catch {}
+/** The validator's payload and its version travel through persistence together.
+ * Older caches contain the plain payload; they remain readable, without a tag. */
+export interface CachedSnapshot<T> {
+  snapshot: T;
+  etag: string | null;
 }
 
-/** Forget every tag: the privacy page's erase, and a test's reset. */
-export function clearSnapshotEtags(): void {
-  etags = {};
-  try {
-    Storage.removeItemSync(ETAGS_KEY);
-  } catch {}
+export function snapshotData<T>(value: T | CachedSnapshot<T>): T {
+  return isCachedSnapshot(value) ? (value.snapshot as T) : (value as T);
 }
 
-/** A plain fetch of one snapshot — a query's own load — noting its tag. */
+function isCachedSnapshot(value: unknown): value is CachedSnapshot<unknown> {
+  return typeof value === 'object' && value !== null && 'snapshot' in value && 'etag' in value;
+}
+
+const failedSnapshots = new Set<string>();
+
+/** A query's own load; TanStack persists its tag with the data. */
 export async function fetchSnapshot<T>(
   snap: ApiSnapshot<T>,
   opts: { signal?: AbortSignal; cache?: RequestCache } = {},
-): Promise<T> {
+): Promise<CachedSnapshot<T>> {
   const result = await fetchJsonIfChanged<T>(snap.url, snap.validate, {
     ...opts,
     ...(snap.timeoutMs ? { timeoutMs: snap.timeoutMs } : {}),
   });
-  // Without a tag sent the site cannot answer 304.
   if (!result.changed) throw new Error(`Unexpected 304 from ${snap.url}`);
-  rememberEtags([[snap.url, result.etag]]);
-  return result.data;
+  return { snapshot: result.data, etag: result.etag };
 }
 
 export interface FetchedSnapshot {
@@ -142,26 +122,40 @@ export interface FetchedSnapshot {
  * not open the app all day.
  */
 export async function fetchAllSnapshots(
-  has: (queryKey: QueryKey) => boolean,
+  cached: (queryKey: QueryKey) => unknown,
+  onlyFailed = false,
+  signal?: AbortSignal,
 ): Promise<FetchedSnapshot[]> {
-  const all: ApiSnapshot<unknown>[] = Object.values(API_SNAPSHOTS);
-  const settled = await Promise.allSettled(
-    all.map((snap) =>
-      fetchJsonIfChanged(snap.url, snap.validate, {
-        cache: 'no-store',
-        etag: has(snap.queryKey) ? etags[snap.url] : null,
-        ...(snap.timeoutMs ? { timeoutMs: snap.timeoutMs } : {}),
-      }),
-    ),
+  const all: ApiSnapshot<unknown>[] = Object.values(API_SNAPSHOTS).filter(
+    (snap) => !onlyFailed || failedSnapshots.has(snap.url),
   );
+  const settled = await Promise.allSettled(
+    all.map((snap) => {
+      const previous = cached(snap.queryKey);
+      return fetchJsonIfChanged(snap.url, snap.validate, {
+        cache: 'no-store',
+        signal,
+        etag: isCachedSnapshot(previous) ? previous.etag : null,
+        ...(snap.timeoutMs ? { timeoutMs: snap.timeoutMs } : {}),
+      });
+    }),
+  );
+  if (signal?.aborted) throw new Error('Snapshot fetch cancelled');
   const out: FetchedSnapshot[] = [];
-  const tags: [string, string | null][] = [];
   settled.forEach((result, i) => {
     const snap = all[i];
-    if (!snap || result.status !== 'fulfilled' || !result.value.changed) return;
-    tags.push([snap.url, result.value.etag]);
-    out.push({ queryKey: snap.queryKey, data: result.value.data });
+    if (!snap) return;
+    if (result.status === 'rejected') {
+      failedSnapshots.add(snap.url);
+      return;
+    }
+    failedSnapshots.delete(snap.url);
+    if (result.value.changed) {
+      out.push({
+        queryKey: snap.queryKey,
+        data: { snapshot: result.value.data, etag: result.value.etag },
+      });
+    }
   });
-  rememberEtags(tags);
   return out;
 }

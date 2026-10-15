@@ -36,26 +36,33 @@ export function createListeners() {
  *
  * `now` is for promises the reader was made — an erase should not sit in a
  * timer if the app is killed a moment later. `flush` writes only when a change
- * is pending; call it from app-background transitions. A failed write is
- * dropped: the in-memory state stays authoritative for the session.
+ * is pending; call it from app-background transitions. A failed write stays
+ * pending so the next flush or change can retry it.
  */
 export function createDebouncedWrite(write: () => void, delayMs: number) {
   let timer: ReturnType<typeof setTimeout> | null = null;
-  const now = (): void => {
+  let dirty = false;
+  const now = (): boolean => {
     if (timer) clearTimeout(timer);
     timer = null;
+    dirty = true;
     try {
       write();
-    } catch {}
+      dirty = false;
+      return true;
+    } catch {
+      return false;
+    }
   };
   return {
     now,
     later(): void {
+      dirty = true;
       if (timer) clearTimeout(timer);
       timer = setTimeout(now, delayMs);
     },
     flush(): void {
-      if (timer) now();
+      if (dirty) now();
     },
   };
 }
@@ -63,11 +70,13 @@ export function createDebouncedWrite(write: () => void, delayMs: number) {
 /**
  * Delete a file an older build kept a store in, once its contents have moved
  * into the kv store (`legacy-store.ts`) — quietly: one that is already gone is
- * the goal. Never let it throw into a loader: a store whose load fails reseeds
- * itself, and the seed would then be written over the value just moved.
+ * the goal. Migration loaders keep the default best-effort cleanup; explicit
+ * erasure passes strict so a failure cannot be reported as success.
  */
-export function deleteLegacyFile(file: File): void {
+export function deleteLegacyFile(file: File, strict = false): void {
   try {
     if (file.exists) file.delete();
-  } catch {}
+  } catch (error) {
+    if (strict) throw error;
+  }
 }

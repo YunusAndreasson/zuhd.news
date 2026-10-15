@@ -41,6 +41,7 @@ jest.mock('expo-sqlite/kv-store', () => ({
       mockKv.set(key, value);
       return Promise.resolve();
     }),
+    removeItemSync: jest.fn((key: string) => mockKv.delete(key)),
     removeItem: jest.fn((key: string) => {
       mockKv.delete(key);
       return Promise.resolve();
@@ -77,6 +78,7 @@ jest.mock('expo-store-review', () => ({
   requestReview: jest.fn(() => Promise.resolve()),
 }));
 
+import Storage from 'expo-sqlite/kv-store';
 import type { Article, Category } from '@shared/types';
 import { getSnapshot as getBookmarks, toggle as toggleBookmark } from '../lib/bookmark-store';
 import { getSnapshot as getDataUsage, recordBytes } from '../lib/data-usage';
@@ -190,4 +192,16 @@ describe('eraseLocalData', () => {
     await expect(eraseLocalData()).resolves.toBeUndefined();
     expect(getBookmarks()).toEqual([]);
   });
+});
+
+it('rejects when a required asynchronous deletion fails', async () => {
+  jest.mocked(Storage.removeItem).mockRejectedValueOnce(new Error('disk unavailable'));
+  await expect(eraseLocalData()).rejects.toThrow('disk unavailable');
+});
+
+it('rejects when clearing a synchronous store fails', async () => {
+  jest.mocked(Storage.setItemSync).mockImplementationOnce(() => {
+    throw new Error('disk full');
+  });
+  await expect(eraseLocalData()).rejects.toThrow('Could not erase all local data');
 });

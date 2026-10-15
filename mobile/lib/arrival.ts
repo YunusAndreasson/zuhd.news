@@ -27,6 +27,15 @@ export const FEED_QUERY_KEY = ['feed'] as const;
 export interface Arrival {
   feed: FeedResponse;
   snapshots: FetchedSnapshot[];
+  generation?: number;
+}
+
+let generation = 0;
+const pendingArrivals = new Set<AbortController>();
+
+export function cancelArrivals(): void {
+  generation++;
+  for (const controller of pendingArrivals) controller.abort();
 }
 
 export function feedSlugs(feed: FeedResponse | null | undefined): Set<string> {
@@ -57,11 +66,19 @@ export async function probeGenerated(): Promise<string> {
 /** The feed and every snapshot that changed, side by side. Only the feed
  *  failing fails it. */
 export async function fetchArrival(queryClient: QueryClient): Promise<Arrival> {
-  const [feed, snapshots] = await Promise.all([
-    fetchFeed({ cache: 'no-store' }),
-    fetchAllSnapshots((key) => queryClient.getQueryData(key) !== undefined),
-  ]);
-  return { feed, snapshots };
+  const startedIn = generation;
+  const controller = new AbortController();
+  pendingArrivals.add(controller);
+  try {
+    const [feed, snapshots] = await Promise.all([
+      fetchFeed({ cache: 'no-store', signal: controller.signal }),
+      fetchAllSnapshots((key) => queryClient.getQueryData(key), false, controller.signal),
+    ]);
+    return { feed, snapshots, generation: startedIn };
+  } finally {
+    controller.abort();
+    pendingArrivals.delete(controller);
+  }
 }
 
 /**
@@ -79,12 +96,15 @@ export function applyArrival(
     alsoInFlush,
   }: { lastSeenAt: number | null; alsoInFlush?: (added: Article[]) => void },
 ): Article[] {
+  if (arrival.generation !== undefined && arrival.generation !== generation) return [];
   const before = queryClient.getQueryData<FeedResponse>(FEED_QUERY_KEY);
   const added = before ? collectNewArticles(arrival.feed, feedSlugs(before)) : [];
   notifyManager.batch(() => {
     // Scheduled, not called: `noteFeed` tells its subscribers at once, and
     // called here it would re-render the kickers a commit ahead of the river.
+    const appliedIn = generation;
     notifyManager.schedule(() => {
+      if (appliedIn !== generation) return;
       if (lastSeenAt !== null) {
         noteFeed(arrival.feed.generated, feedStories(arrival.feed), lastSeenAt);
       }
@@ -96,4 +116,14 @@ export function applyArrival(
     }
   });
   return added;
+}
+
+/** Retry only the layers an earlier arrival could not fetch, even on the same build. */
+export async function retryFailedSnapshots(queryClient: QueryClient): Promise<void> {
+  const startedIn = generation;
+  const snapshots = await fetchAllSnapshots((key) => queryClient.getQueryData(key), true);
+  if (startedIn !== generation) return;
+  notifyManager.batch(() => {
+    for (const snapshot of snapshots) queryClient.setQueryData(snapshot.queryKey, snapshot.data);
+  });
 }

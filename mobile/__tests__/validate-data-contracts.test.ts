@@ -125,3 +125,28 @@ describe('live panel data contracts', () => {
     ).toBe(false);
   });
 });
+
+it.each([
+  { sources: [null] },
+  { sources: [{ name: 'Outlet', country: 4 }] },
+  { location: {} },
+  { publishedAt: 'yesterday' },
+])('rejects an article with unsafe nested display fields: %j', (change) => {
+  const article = {
+    slug: 'story',
+    title: 'Title',
+    date: '2026-09-01',
+    addedAt: 1,
+    sources: [],
+    concepts: [],
+    sentences: ['Body'],
+    ...change,
+  };
+  expect(
+    isFeedResponse({
+      generated: '2026-09-01',
+      categories: { politics: [article] },
+      briefing: null,
+    }),
+  ).toBe(false);
+});

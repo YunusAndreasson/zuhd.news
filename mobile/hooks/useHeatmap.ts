@@ -1,7 +1,7 @@
 import type { HeatmapPoint } from '@shared/types';
 import { useQuery, useQueryClient } from '@tanstack/react-query';
 import { useEffect, useRef } from 'react';
-import { API_SNAPSHOTS, fetchSnapshot } from '../lib/api-snapshots';
+import { API_SNAPSHOTS, fetchSnapshot, snapshotData } from '../lib/api-snapshots';
 
 const EMPTY_POINTS: HeatmapPoint[] = [];
 const HEATMAP = API_SNAPSHOTS.heatmap;
@@ -21,6 +21,7 @@ export function useHeatmap(feedGenerated: string | null): HeatmapResult {
   const query = useQuery({
     queryKey: HEATMAP.queryKey,
     queryFn: ({ signal }) => fetchSnapshot(HEATMAP, { signal }),
+    select: snapshotData,
     // Not on focus, for `useApiJson`'s reason: an arrival carries the heatmap
     // with the feed in one commit (`lib/arrival.ts`). Left on, every return
     // after five minutes fetched it again on its own and, when it had moved,

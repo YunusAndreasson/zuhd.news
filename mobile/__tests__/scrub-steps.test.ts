@@ -1,3 +1,4 @@
+import { useSyncExternalStore } from 'react';
 import { act, renderHook } from '@testing-library/react';
 import type { PanGestureConfig, TapGestureConfig } from 'react-native-gesture-handler';
 import * as Reanimated from 'react-native-reanimated';
@@ -67,7 +68,7 @@ it('crosses a step in one hop to JS, carrying the notch and the label together',
   expect(mockHops).toHaveLength(1);
   drain();
   expect(hapticImpact).toHaveBeenCalledTimes(1);
-  expect(result.current.label).toBe('at 2');
+  expect(result.current.preview.getSnapshot().label).toBe('at 2');
   jest.restoreAllMocks();
 });
 
@@ -177,4 +178,44 @@ it('commits the deck before the JS queue drains so an immediate swipe starts at 
   expect(deckIndex).toBe(35);
   act(() => mockTap.onDeactivate?.({ x: 0, canceled: false } as never));
   expect(deckIndex).toBe(0);
+});
+
+it('updates the tooltip without rendering the gesture owner, and unsubscribes cleanly', () => {
+  let ownerRenders = 0;
+  const { result } = renderHook(() => {
+    ownerRenders++;
+    return useScrub({
+      fraction: { value: 0 } as SharedValue<number>,
+      detents: 10,
+      steps: 10,
+      labelFor: (f) => `at ${Math.floor(f * 10)}`,
+      detailFor: () => 'politics',
+      captionFor: (f) => `Story ${Math.floor(f * 10)}`,
+      onCommit: jest.fn(),
+    });
+  });
+  const store = result.current.preview;
+  const tooltip = renderHook(() =>
+    useSyncExternalStore(store.subscribe, store.getSnapshot, store.getSnapshot),
+  );
+  const rendersBefore = ownerRenders;
+  act(() => result.current.onLayout({ nativeEvent: { layout: { width: 100 } } } as never));
+  act(() => mockPan.onActivate?.({ x: 25 } as never));
+  act(() => {
+    for (const hop of mockHops.splice(0)) hop();
+  });
+  expect(tooltip.result.current).toEqual({ label: 'at 2', detail: 'politics', caption: 'Story 2' });
+  expect(ownerRenders).toBe(rendersBefore);
+  const snapshot = store.getSnapshot();
+  act(() => (mockPan.onUpdate as (e: never) => void)({ x: 26 } as never));
+  act(() => {
+    for (const hop of mockHops.splice(0)) hop();
+  });
+  expect(store.getSnapshot()).toBe(snapshot);
+  tooltip.unmount();
+  act(() => (mockPan.onUpdate as (e: never) => void)({ x: 45 } as never));
+  act(() => {
+    for (const hop of mockHops.splice(0)) hop();
+  });
+  expect(store.getSnapshot().label).toBe('at 4');
 });

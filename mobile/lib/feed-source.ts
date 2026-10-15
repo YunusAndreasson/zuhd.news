@@ -49,6 +49,7 @@ export async function fetchFeed(opts: FetchJsonOptions = {}): Promise<FeedRespon
     if (options.signal?.aborted) throw err;
     feed = await fetchJson(FEED_FULL_URL, isFeedResponse, options);
   }
+  if (options.signal?.aborted) throw new Error('Feed fetch cancelled');
   await feedCache.write(feed);
   return feed;
 }

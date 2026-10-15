@@ -79,3 +79,31 @@ describe('applyArrival', () => {
     expect(client.getQueryData<FeedResponse>(FEED_QUERY_KEY)?.generated).toBe('c');
   });
 });
+
+it('does not apply an arrival completed before an erase, or a queued pre-erase note', async () => {
+  const { cancelArrivals, fetchArrival } = jest.requireActual(
+    '../lib/arrival',
+  ) as typeof import('../lib/arrival');
+  const { fetchFeed } = require('../lib/feed-source') as typeof import('../lib/feed-source');
+  const { fetchAllSnapshots } =
+    require('../lib/api-snapshots') as typeof import('../lib/api-snapshots');
+  jest.mocked(fetchFeed).mockResolvedValue(feed('new', ['story']));
+  jest.mocked(fetchAllSnapshots).mockResolvedValue([]);
+  const client = new QueryClient();
+  const arrival = await fetchArrival(client);
+  cancelArrivals();
+  applyArrival(client, arrival, { lastSeenAt: 0 });
+  expect(client.getQueryData(FEED_QUERY_KEY)).toBeUndefined();
+
+  const queued: (() => void)[] = [];
+  notifyManager.setScheduler((callback) => {
+    queued.push(callback);
+  });
+  jest.mocked(noteFeed).mockClear();
+  applyArrival(client, { feed: feed('other', ['story']), snapshots: [] }, { lastSeenAt: 0 });
+  cancelArrivals();
+  client.clear();
+  for (const callback of queued) callback();
+  expect(noteFeed).not.toHaveBeenCalled();
+  notifyManager.setScheduler((callback) => setTimeout(callback, 0));
+});
