@@ -7,7 +7,7 @@
 // pipeline can import and invoke it without growing further.
 
 import { build } from 'esbuild'
-import { copyFileSync, existsSync } from 'node:fs'
+import { copyFileSync, existsSync, readFileSync } from 'node:fs'
 import { readdirSync, mkdirSync } from 'node:fs'
 import { join } from 'node:path'
 import { ROOT } from '../lib/paths.js'
@@ -21,19 +21,24 @@ const isEntry = (f) => /\.ts$/.test(f) && !f.startsWith('_')
 /**
  * Keeps MapLibre out of the island bundle.
  *
- * Bundling it inlines the engine *and* its shared chunk into situation-map.js —
- * but the worker MapLibre spawns imports `maplibre-gl-shared.mjs` as a sibling
- * regardless, so that chunk shipped twice: once inside the island bundle and
- * again over the wire for the worker (131 KB brotli, duplicated). Resolving the
- * bare specifier to the copied vendor file instead means one copy, fetched once
- * and shared by both threads — and the island bundle drops to its own code, so
- * a content deploy no longer invalidates half a megabyte of unchanged engine.
+ * Resolving the bare specifier to the copied vendor file keeps the island
+ * bundle to its own code, so a content deploy does not invalidate a megabyte of
+ * unchanged engine, which `_headers` caches for a day instead.
+ *
+ * The URL carries MapLibre's version (`MAPLIBRE_V`, also on the page's
+ * modulepreload). Without it a new island met a cached older engine for up to
+ * a day and a week stale: the 6.11 engine imported a shared chunk the 6.14
+ * build no longer ships, which is a black map with no error.
  */
+export const MAPLIBRE_V = JSON.parse(
+  readFileSync(join(ROOT, 'node_modules', 'maplibre-gl', 'package.json'), 'utf8'),
+).version
+
 const externalMapLibre = {
   name: 'external-maplibre',
   setup(build) {
     build.onResolve({ filter: /^maplibre-gl$/ }, () => ({
-      path: '/islands/maplibre-gl.mjs',
+      path: `/islands/maplibre-gl.mjs?v=${MAPLIBRE_V}`,
       external: true,
     }))
   },
@@ -71,18 +76,19 @@ export const buildIslands = async ({ minify = true, dev = false } = {}) => {
   return { count: entries.length, entries }
 }
 
-// MapLibre ships as three ESM files that import each other as siblings: the
-// entry, the worker, and the shared chunk both of those pull in. All three are
-// copied verbatim next to the island bundle — the entry because the bundler now
-// treats it as external (see `externalMapLibre`), the other two because the
-// bundler never sees them at all. Miss any one and the map stays a silent black
-// rectangle: no exception, just a 404 and a canvas that never paints.
+// MapLibre ships as two ESM files: the entry and the worker it spawns as a
+// sibling (`maplibre-gl-worker.mjs?v=<version>`; since 6.13 the worker is
+// self-contained and `maplibre-gl-shared.mjs` an empty, deprecated file). Both
+// are copied verbatim next to the island bundle — the entry because the bundler
+// treats it as external (see `externalMapLibre`), the worker because the
+// bundler never sees it. Miss one and the map stays a silent black rectangle:
+// no exception, just a 404 and a canvas that never paints.
 export function copyMapLibreRuntime(root, outDir) {
   const dir = join(root, 'node_modules', 'maplibre-gl', 'dist')
   if (!existsSync(dir)) return []
   const copied = []
   for (const f of readdirSync(dir)) {
-    if (!/^maplibre-gl(-(worker|shared))?\.mjs$/.test(f)) continue
+    if (!/^maplibre-gl(-worker)?\.mjs$/.test(f)) continue
     copyFileSync(join(dir, f), join(outDir, f))
     copied.push(f)
   }

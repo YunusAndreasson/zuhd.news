@@ -42,12 +42,15 @@ calendar `hijri.md`.
   re-apply it.
 - The reachable floor is about 0.1 below `minZoom`: MapLibre adds
   `log2(cos lat)` on the sphere. Not a bug.
-- Keep `maxPitch: 0`, `touchPitch: false` and `keyboard.disableRotation()`:
-  `calibrate` (`_map/sky.ts`) draws no sky for a tilted or turned camera.
-- On the sphere every zoom is about the centre (`setZoomAnchor`): a pointer off
-  the disc makes MapLibre slide the planet sideways. The pointer anchor returns
-  past `GLOBE_ZOOM.plane`. This works around a MapLibre globe-zoom bug that
-  upstream PR #8095 fixes; re-test on the current version before removing it.
+- Keep `maxPitch: 0` and `touchPitch: false`: `calibrate` (`_map/sky.ts`)
+  draws no sky for a tilted or turned camera.
+- The globe takes no keys (`keyboard: false`) and its canvas is out of the
+  Tab order. Escape and `[`/`]` are the page's, not the globe's.
+- On the sphere the wheel zooms to the pointer over the planet and about the
+  centre over space (`pointerOnDisc`, set per wheel in the capture phase):
+  MapLibre answers a point in space with the nearest limb point and slides the
+  planet toward it. Pinch and double-click stay centred until
+  `GLOBE_ZOOM.plane` (`setZoomAnchor`).
 - `scrollZoom.enable(options)` does nothing on an enabled handler: `disable()`
   first.
 - `doubleClickZoom` takes no anchor, so it is off on the sphere and a
@@ -59,8 +62,8 @@ calendar `hijri.md`.
 - A detail layer's `minzoom` is at least `DETAIL_ZOOM`, or it shows at world
   view.
 - Space is transparent canvas. `.map-canvas-host` paints `--map-ground`, which
-  is `MAP_COLOURS.ocean`. Never give space another tone: every scrim fades into
-  that ground.
+  is `MAP_COLOURS.space`, and every scrim fades into it. The sea (`ocean`) is
+  a blue apart from space: the planet stands off the night by hue.
 - The graticule (`_map/graticule.ts`) is generated, not fetched, and stops at
   85°. It sits before `land`: no tone works on both sea and land. Keep
   `line-width` at 1.2 or more: thinner never reaches its tone.
@@ -79,10 +82,15 @@ calendar `hijri.md`.
 - The basemap is our own origin's (`scripts/build/basemap.js`): no tile
   provider, and the CSP stays `default-src 'none'`.
 - `setData` takes a parsed object. A URL string makes no request and throws
-  nothing (`loadWater`, the 1:10m swap at `ULTRA_ZOOM`).
+  nothing (`loadWater`).
+- `countries` is vector tiles (`scripts/build/basemap-tiles.js`). Every
+  feature-state call on it spreads `COUNTRIES`: without `sourceLayer` MapLibre
+  fires an error and writes nothing. A tile URL is absolute (`tileUrl`), joined
+  as a string: `new URL` encodes `{z}`.
 - `['zoom']` is legal only as the direct input of a top-level `step` or
   `interpolate`. Nested, MapLibre rejects the layer, `addDataLayers` throws and
   every later layer is lost. Per-feature terms go in the outputs.
+  `map-island.test.js` runs every layer through `validateStyleMin`.
 - `antialias` is on below a device pixel ratio of 2: without it the limb crawls
   against the sky's circle. At 2 it halved the drag (16 to 35 fps) for no
   visible edge.
@@ -92,8 +100,12 @@ calendar `hijri.md`.
 - Hover is `promoteId` and `setFeatureState`, never a `setFilter` or
   `setPaintProperty` per pointer move, which reloads the source.
 - Only `applyMetric` calls `removeFeatureState` on `countries` without an id,
-  to clear the old metric. Hover must unset its own id (`countryHoverWritten`),
-  or it wipes the ground metric.
+  to clear the old metric, and it rewrites the open card's outline after.
+  Hover and the outline unset their own ids (`countryHoverWritten`,
+  `countrySelectedWritten`), or they wipe the ground metric.
+- The open country card's country is outlined (`country-selected`, told by
+  the popup's `onCountry`). A line, never a mask or a dimmed world: the land's
+  tone is the metric's value.
 - Do not use `global-state`: a filter or data-driven paint reading it
   reloads the source. `applyTimeFilters` stays `setFilter`, because a mark
   hidden by paint is still hoverable.
@@ -118,12 +130,13 @@ calendar `hijri.md`.
   times `sqrt(n)`, on a fixed domain, without coverage.
 - `story-bloom` is a place's heat (`placeHeat`): freshness times coverage
   (`attentionWeight`, unknown weighs the median) summed under a square root,
-  on `BLOOM_RAMP`, under `borders`, only where two or more stories stand. It
-  reads the world's attention, not how many stories we wrote, and never the
-  category's hue: the dots carry that.
+  under `borders`, only where two or more stories stand. A heatmap in the
+  wash's tone on `BLOOM_STOPS`, so overlaps sum under one capped ramp; never a
+  hue (the dots carry that) and never circles, whose alpha stacks.
 - A flower explains itself on hover (`showPlaceTip`, pointer-only): place,
   count, newest and oldest, then the dot's title and age. The glow takes no
-  click. Tips flip at the rails (`tipAt`, the camera's padding), not the canvas.
+  click, and a click hides the tip. Tips flip at the rails (`tipAt`, the
+  camera's padding), not the canvas.
 - A place's stories are a flower (`flowerOffset`): newest at the centre at
   beacon size, older ones petals a golden angle round and further out, so
   distance is age. Offsets are a `match` table on `k`: an array property
@@ -159,6 +172,9 @@ calendar `hijri.md`.
   one thing that clears `flying`; a bare `map.flyTo` leaves hover dead.
 - `Popup.addTo` fires `close` synchronously on an open popup. Attach only
   through `attach()` (`reattaching`), or the card stays on "Loading…".
+- A story card speaks as the article page does: headline at `--size-h3`,
+  the hook (the prose's first paragraph, the preview's lead) at `--size-md` in
+  `--map-ink`, then the body. A country's own card shares the headline.
 - A story card is one width at two densities. `preview()` prefetches the
   story, and `growTo` runs after the position is final.
 - The card's sources (`sourceBlock`) take their thresholds and words from
@@ -171,13 +187,25 @@ calendar `hijri.md`.
   `details.open`, a contested story's and a single outlet's included.
 - A dot opens its story; a place's numeral opens `openPlace`, which does not
   fly.
+- Makkah's card (`showMakkah`) is calculated, never fetched: the coming five
+  prayers (`nextPrayers`, Umm al-Qura) and the year's markers (`comingMarks`).
+  Its countdown ticks only while it is open. It takes the pointer last.
+- A card keeps off the rails and the timeline (`writeCardPadding`, the
+  popup's `padding`), and its cap is half of `--map-card-room`: MapLibre fits
+  a popup to the canvas, which runs under both rails.
+- A story opened by Enter takes the focus into its card (`StoryPopup.focus`)
+  and gives it back to its row on close (`returnFocus`). The feed reads the
+  key from `keydown`: Gecko's keyed click has a `detail` of 1.
 - Only a card beside a rail row keeps inline offsets (`placeDocked`): every
   other open calls `clearOffsets`, or a peek opens where the last card stood.
 - A story's `chart` is fetched only where `hasSeriesRecord`: a company's or a
   lab's id has no `/api/entity` file.
 - Peek answers one question and clips (`.map-sheet.is-peek`). Its offsets
-  are `--map-scrub-h` and `--map-rail-w`; the first is set on `body`, where
-  the sheet is appended, and teardown removes it.
+  are `--map-scrub-reach` (the scrubber or the range chips above it) and
+  `--map-rail-w`; the first is set on `body`, where the sheet is appended,
+  and teardown removes it.
+- A docked card takes the canvas's free height (`--sheet-max-h`) and its width
+  inside the gap between the rails, so it scrolls as rarely as it can.
 
 ## Idle cost and measurement
 

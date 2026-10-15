@@ -1,22 +1,23 @@
 import type { Category } from '@shared/types';
 import { useCallback, useMemo, useState, useSyncExternalStore } from 'react';
-import Animated from 'react-native-reanimated';
 import { HIT_SLOP } from '../constants/theme';
 import { announce } from '../lib/announce';
 import { articleTime } from '../lib/article-utils';
 import { type Bookmark, getSnapshot, restore, subscribe, toggle } from '../lib/bookmark-store';
 import { hapticNotification } from '../lib/haptics';
-import { staggerEnter } from '../lib/stagger';
 import { ArticleRow } from './ArticleRow';
 import { EmptyState } from './EmptyState';
+import { listStyles } from './ListRow';
 import { Pressable, Stack, Text } from './primitives';
+import { SheetFlatList } from './SheetContent';
 import { SwipeableRow } from './SwipeableRow';
 
 interface SheetBookmarksPageProps {
+  bottomInset: number;
   onSelectArticle: (slug: string, category: Category) => void;
 }
 
-export function SheetBookmarksPage({ onSelectArticle }: SheetBookmarksPageProps) {
+export function SheetBookmarksPage({ bottomInset, onSelectArticle }: SheetBookmarksPageProps) {
   const bookmarks = useSyncExternalStore(subscribe, getSnapshot);
   const [removed, setRemoved] = useState<Bookmark[]>([]);
   // The store's own snapshot, read when the swipe lands: the latest list, with
@@ -45,44 +46,54 @@ export function SheetBookmarksPage({ onSelectArticle }: SheetBookmarksPageProps)
     [handleRemove],
   );
 
+  const renderItem = useCallback(
+    ({ item: b, index }: { item: Bookmark; index: number }) => (
+      <SwipeableRow id={b.article.slug} onSwipeAction={handleRemove}>
+        <ArticleRow
+          slug={b.article.slug}
+          title={b.article.title}
+          time={articleTime(b.article)}
+          category={b.category}
+          location={b.article.location}
+          first={index === 0}
+          onPress={onSelectArticle}
+          secondaryAction={removeAction}
+        />
+      </SwipeableRow>
+    ),
+    [handleRemove, onSelectArticle, removeAction],
+  );
+  const keyExtractor = useCallback((b: Bookmark) => b.article.slug, []);
+
   return (
-    <>
-      {removed.length > 0 ? (
-        <Stack direction="row" justify="space-between" align="center" gap="item" paddingY="md">
-          <Text variant="caption">
-            {removed.length === 1 ? 'Story removed' : `${removed.length} stories removed`}
-          </Text>
-          <Pressable
-            onPress={handleUndo}
-            accessibilityRole="button"
-            accessibilityLabel="Undo removal of saved stories"
-            hitSlop={HIT_SLOP}
-          >
-            <Text variant="labelSm" tone="emphasis">
-              undo
-            </Text>
-          </Pressable>
-        </Stack>
-      ) : null}
-      {bookmarks.length === 0 ? (
+    <SheetFlatList
+      data={bookmarks}
+      renderItem={renderItem}
+      keyExtractor={keyExtractor}
+      bottomInset={bottomInset}
+      contentContainerStyle={listStyles.content}
+      ListEmptyComponent={
         <EmptyState message="nothing saved" hint="Tap save at the end of a story to keep it here" />
-      ) : null}
-      {bookmarks.map((b, i) => (
-        <Animated.View key={b.article.slug} entering={staggerEnter(i)}>
-          <SwipeableRow id={b.article.slug} onSwipeAction={handleRemove}>
-            <ArticleRow
-              slug={b.article.slug}
-              title={b.article.title}
-              time={articleTime(b.article)}
-              category={b.category}
-              location={b.article.location}
-              first={i === 0}
-              onPress={onSelectArticle}
-              secondaryAction={removeAction}
-            />
-          </SwipeableRow>
-        </Animated.View>
-      ))}
-    </>
+      }
+      ListHeaderComponent={
+        removed.length > 0 ? (
+          <Stack direction="row" justify="space-between" align="center" gap="item" paddingY="md">
+            <Text variant="caption">
+              {removed.length === 1 ? 'Story removed' : `${removed.length} stories removed`}
+            </Text>
+            <Pressable
+              onPress={handleUndo}
+              accessibilityRole="button"
+              accessibilityLabel="Undo removal of saved stories"
+              hitSlop={HIT_SLOP}
+            >
+              <Text variant="labelSm" tone="emphasis">
+                undo
+              </Text>
+            </Pressable>
+          </Stack>
+        ) : null
+      }
+    />
   );
 }

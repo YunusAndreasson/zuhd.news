@@ -1,10 +1,22 @@
+import { act, renderHook } from '@testing-library/react';
+import { createSlugTimeStore } from '../lib/slug-time-store';
+
 let mockKv: Map<string, string>;
+let mockReadUnavailable = false;
+let mockWriteFailures = 0;
 
 jest.mock('expo-sqlite/kv-store', () => ({
   __esModule: true,
   default: {
-    getItemSync: jest.fn((key: string) => mockKv.get(key) ?? null),
+    getItemSync: jest.fn((key: string) => {
+      if (mockReadUnavailable) throw new Error('database temporarily unavailable');
+      return mockKv.get(key) ?? null;
+    }),
     setItemSync: jest.fn((key: string, value: string) => {
+      if (mockWriteFailures > 0) {
+        mockWriteFailures--;
+        throw new Error('database temporarily unavailable');
+      }
       mockKv.set(key, value);
     }),
   },
@@ -63,10 +75,28 @@ const STORES: { name: string; key: string; load: () => Store }[] = [
 const DAY = 24 * 60 * 60 * 1000;
 
 beforeEach(() => {
+  jest.useFakeTimers();
   mockKv = new Map();
+  mockReadUnavailable = false;
+  mockWriteFailures = 0;
+});
+afterEach(() => {
+  jest.clearAllTimers();
+  jest.useRealTimers();
 });
 
 describe.each(STORES)('$name', ({ key, load }) => {
+  it('keeps progress on the offline cached feed even after a month and a restart', () => {
+    const store = load();
+    const start = Date.now();
+    store.mark('cached-story', start);
+    store.flush();
+    jest.setSystemTime(start + 30 * DAY);
+    const restored = load();
+    restored.prune(new Set(['cached-story']));
+    restored.flush();
+    expect(load().getSnapshot().has('cached-story')).toBe(true);
+  });
   it('marks a story once and persists it across a reload', () => {
     const store = load();
     expect(store.mark('a')).toBe(true);
@@ -89,6 +119,53 @@ describe.each(STORES)('$name', ({ key, load }) => {
     expect(store.getSnapshot()).toBe(after);
   });
 
+  it('retries a failed debounced save when the app flushes on background', () => {
+    const store = load();
+    store.mark('read-before-closing', 123);
+    mockWriteFailures = 2;
+    jest.advanceTimersByTime(250);
+    expect(mockKv.has(key)).toBe(false);
+    store.flush();
+    expect(mockKv.has(key)).toBe(false);
+    store.flush();
+    expect(load().getSnapshot().has('read-before-closing')).toBe(true);
+  });
+
+  it('recovers earlier progress before a new story overwrites a failed launch read', () => {
+    mockKv.set(key, JSON.stringify({ earlier: 123 }));
+    mockReadUnavailable = true;
+    const store = load();
+    mockReadUnavailable = false;
+    store.mark('new-arrival', 456);
+    store.prune(new Set(['earlier', 'new-arrival']));
+    store.flush();
+    expect([...store.getSnapshot()].sort()).toEqual(['earlier', 'new-arrival']);
+    expect([...load().getSnapshot()].sort()).toEqual(['earlier', 'new-arrival']);
+  });
+
+  it('keeps disk progress intact until an unavailable launch read can recover', () => {
+    mockKv.set(key, JSON.stringify({ earlier: 123 }));
+    mockReadUnavailable = true;
+    const store = load();
+    store.mark('new-arrival', 456);
+    store.flush();
+    expect(JSON.parse(mockKv.get(key) ?? '{}')).toEqual({ earlier: 123 });
+    mockReadUnavailable = false;
+    store.flush();
+    expect(JSON.parse(mockKv.get(key) ?? '{}')).toEqual({ earlier: 123, 'new-arrival': 456 });
+  });
+
+  it('honors an explicit erase even if the launch read failed', () => {
+    mockKv.set(key, JSON.stringify({ earlier: 123 }));
+    mockReadUnavailable = true;
+    const store = load();
+    store.mark('new-arrival', 456);
+    store.clear();
+    mockReadUnavailable = false;
+    store.flush();
+    expect([...load().getSnapshot()]).toEqual([]);
+  });
+
   it('prunes only stories that left the feed and are older than two weeks', () => {
     const store = load();
     const now = 100 * DAY;
@@ -108,6 +185,17 @@ describe.each(STORES)('$name', ({ key, load }) => {
     expect(snap.has('s604')).toBe(true);
   });
 
+  it('never evicts an already-read story still in the feed to make room for newer progress', () => {
+    const store = load();
+    store.mark('still-in-feed', 1);
+    store.prune(new Set(['still-in-feed']), 2);
+    for (let i = 0; i < 605; i++) store.mark(`past-${i}`, i + 2);
+    store.flush();
+    expect(store.getSnapshot().size).toBe(600);
+    expect(store.getSnapshot().has('still-in-feed')).toBe(true);
+    expect(load().getSnapshot().has('still-in-feed')).toBe(true);
+  });
+
   it('erases at once, without waiting for the debounce', () => {
     const store = load();
     store.mark('a');
@@ -125,4 +213,28 @@ describe.each(STORES)('$name', ({ key, load }) => {
     mockKv.set(key, '{"a": "yesterday"}');
     expect(load().getSnapshot().size).toBe(0);
   });
+});
+it('recovers a failed launch read when the reader subscribes', () => {
+  const key = 'read-hook-mount-test';
+  mockKv.set(key, JSON.stringify({ earlier: 123 }));
+  mockReadUnavailable = true;
+  const store = createSlugTimeStore(key, 600);
+  mockReadUnavailable = false;
+  const { result } = renderHook(() => store.useSlugs());
+  expect([...result.current]).toEqual(['earlier']);
+});
+
+it('updates a mounted reader when earlier progress can be restored', () => {
+  const key = 'read-hook-test';
+  mockKv.set(key, JSON.stringify({ earlier: 123 }));
+  mockReadUnavailable = true;
+  const store = createSlugTimeStore(key, 600);
+  const { result } = renderHook(() => store.useSlugs());
+  act(() => {
+    store.mark('new-arrival', 456);
+  });
+  expect([...result.current]).toEqual(['new-arrival']);
+  mockReadUnavailable = false;
+  act(() => store.flush());
+  expect([...result.current].sort()).toEqual(['earlier', 'new-arrival']);
 });

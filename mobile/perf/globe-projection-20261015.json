@@ -1,0 +1,2166 @@
+{
+  "recorded_at": "2026-10-15T19:09:01.168848+00:00",
+  "scope": "Code-only JS geometry projection. No app, emulator, screenshots, Skia recording or native rendering was used.",
+  "environment": {
+    "node": "v26.11.1",
+    "platform": "Linux-7.2.8-5-omarchy-bore-x86_64-with-glibc2.44",
+    "cpu": "Intel(R) Core(TM) i7-7820HQ CPU @ 2.90GHz"
+  },
+  "methodology": {
+    "command": "npm run bench -- --filter globe.production --json",
+    "comparison": "Median of three independent reference runs and three candidate runs, alternating order; processes ran sequentially without concurrent tests or exports.",
+    "reference_sha256": "9d92097a05dc727ad03167c1729780572d233925aaf602b1207a4b05581489f8",
+    "candidate_sha256": "432c2003d52c02c529a441f61a62696df6e2b654fabd07fd166503fd04a3ad1d",
+    "benchmark_sha256": "15d00df65e9457d1d875ed1eaa98aa44acafe011722b06b814408dcc3612065e",
+    "geometry": "The production motion/overview/regional/detail tiers, using the same canvas-corner viewAngleFor clipping rule as MiniGlobe.",
+    "canvas": {
+      "width": 400,
+      "height": 600,
+      "centerX": 200,
+      "centerY": 300,
+      "radius": 180
+    },
+    "projection_iterations": 240,
+    "projection_warmup": 60,
+    "construction_iterations": 30,
+    "construction_warmup": 5,
+    "sink": "Counts path commands and accumulates coordinate checksums. Does not emulate native Skia costs.",
+    "correctness": "Differential path-command tests against d3-geo at 1e-6 pixel tolerance, including holes, polar/antimeridian views, long hidden runs, and detailed coastlines."
+  },
+  "decision": {
+    "kept": "Precompute spherical caps for blocks of 64 consecutive vertices in runs of at least 128 vertices. Clip only hidden-block endpoints, preserving entry/exit state and all visible path commands.",
+    "simplification": "Reuse the existing cap calculation and clipper; no new library, spatial index, geometry simplification, frame throttling or extra per-frame allocations.",
+    "whole_planet": "Bypass block tests for hemispheric views: little benefit there, so avoid their overhead.",
+    "tradeoff": "Median land-layer construction increased by approximately 0.02\u20131.73 ms on this host. Regional/detail geometry passes save approximately 1.46/3.00 ms each; construction is paid once per layer.",
+    "limits": "These are V8 microbenchmarks, not Hermes, device frame rates, startup latency or battery measurements. Existing exact-settled-frame caching also affects the end-to-end gain."
+  },
+  "regression_baselines": "Added only complete globe.production geometry passes (25% p50 drift) and layer construction (50%) to perf/baselines.json. Individual layer timings remain diagnostic: two substeps varied more than 50% across candidate runs. Historical entries/metadata remain unchanged; this report records the environment for the new entries.",
+  "preexisting_legacy_failures": [
+    "conflict.200-events-dotProduct",
+    "projection.findCountry",
+    "breakdown.D.borders-mesh",
+    "breakdown.E.ice-sheets",
+    "breakdown.F.country-highlight",
+    "breakdown.G.30-centroids",
+    "projection.callReproject-frame",
+    "topo.simplify-module-load"
+  ],
+  "profile_initial_hotspots": [
+    {
+      "function": "clipPoint",
+      "samples": 1504
+    },
+    {
+      "function": "drawPolygon",
+      "samples": 1203
+    },
+    {
+      "function": "draw",
+      "samples": 287
+    },
+    {
+      "function": "code",
+      "samples": 251
+    },
+    {
+      "function": "contains",
+      "samples": 245
+    },
+    {
+      "function": "emitPoint",
+      "samples": 206
+    },
+    {
+      "function": "emitStart",
+      "samples": 140
+    },
+    {
+      "function": "drawInside",
+      "samples": 117
+    }
+  ],
+  "order": ["candidate", "reference", "candidate", "reference", "reference", "candidate"],
+  "summary": [
+    {
+      "name": "globe.production.detail.construct-land",
+      "reference": {
+        "p50_ms": 23.89875200000006,
+        "p95_ms": 42.59945300000004,
+        "mean_ms": 24.850732999999995
+      },
+      "candidate": {
+        "p50_ms": 25.62633900000003,
+        "p95_ms": 44.91145800000004,
+        "mean_ms": 27.285037466666683
+      },
+      "p50_change_pct": 7.228774958625306,
+      "p95_change_pct": 5.427311472755281
+    },
+    {
+      "name": "globe.production.motion.construct-land",
+      "reference": {
+        "p50_ms": 0.386344999999892,
+        "p95_ms": 0.6162110000000212,
+        "mean_ms": 0.39898106666666233
+      },
+      "candidate": {
+        "p50_ms": 0.4103650000001835,
+        "p95_ms": 0.73098200000004,
+        "mean_ms": 0.5857528333333296
+      },
+      "p50_change_pct": 6.217241066999235,
+      "p95_change_pct": 18.62527608238329
+    },
+    {
+      "name": "globe.production.overview.construct-land",
+      "reference": {
+        "p50_ms": 6.768702000000076,
+        "p95_ms": 17.13388800000007,
+        "mean_ms": 10.261853433333348
+      },
+      "candidate": {
+        "p50_ms": 7.815503999999919,
+        "p95_ms": 21.112407000000076,
+        "mean_ms": 10.950845966666664
+      },
+      "p50_change_pct": 15.46532850759026,
+      "p95_change_pct": 23.220176296238137
+    },
+    {
+      "name": "globe.production.regional.construct-land",
+      "reference": {
+        "p50_ms": 11.747073,
+        "p95_ms": 24.12733100000014,
+        "mean_ms": 14.870701866666673
+      },
+      "candidate": {
+        "p50_ms": 13.218166999999994,
+        "p95_ms": 24.689302999999654,
+        "mean_ms": 15.578368533333363
+      },
+      "p50_change_pct": 12.523068512471092,
+      "p95_change_pct": 2.3291925658893264
+    },
+    {
+      "name": "globe.production.detail.all",
+      "reference": {
+        "p50_ms": 3.732260000000224,
+        "p95_ms": 7.050299999999879,
+        "mean_ms": 4.001957095833317
+      },
+      "candidate": {
+        "p50_ms": 0.7350129999999808,
+        "p95_ms": 1.5852259999996932,
+        "mean_ms": 0.8025205833333435
+      },
+      "p50_change_pct": -80.30648990156268,
+      "p95_change_pct": -77.51548161071557
+    },
+    {
+      "name": "globe.production.detail.borders",
+      "reference": {
+        "p50_ms": 0.07147000000031767,
+        "p95_ms": 0.3816680000004453,
+        "mean_ms": 0.13404723333334043
+      },
+      "candidate": {
+        "p50_ms": 0.026922000000013213,
+        "p95_ms": 0.3812150000003385,
+        "mean_ms": 0.08699634166665836
+      },
+      "p50_change_pct": -62.33104799231348,
+      "p95_change_pct": -0.1186895417237821
+    },
+    {
+      "name": "globe.production.detail.highlight",
+      "reference": {
+        "p50_ms": 0.3882560000001831,
+        "p95_ms": 0.729816000000028,
+        "mean_ms": 0.3902136958333377
+      },
+      "candidate": {
+        "p50_ms": 0.09412800000018251,
+        "p95_ms": 0.267348000000311,
+        "mean_ms": 0.12514262083333277
+      },
+      "p50_change_pct": -75.75620209342853,
+      "p95_change_pct": -63.36775296783015
+    },
+    {
+      "name": "globe.production.detail.ice",
+      "reference": {
+        "p50_ms": 0.005973999999696389,
+        "p95_ms": 0.012294999999539868,
+        "mean_ms": 0.007393912500022756
+      },
+      "candidate": {
+        "p50_ms": 0.005947999999989406,
+        "p95_ms": 0.01673800000025949,
+        "mean_ms": 0.008013775000019525
+      },
+      "p50_change_pct": -0.43521927867934407,
+      "p95_change_pct": 36.13664091814475
+    },
+    {
+      "name": "globe.production.detail.land",
+      "reference": {
+        "p50_ms": 3.1688819999999396,
+        "p95_ms": 6.115172999999231,
+        "mean_ms": 3.4407479999999833
+      },
+      "candidate": {
+        "p50_ms": 0.5307149999998728,
+        "p95_ms": 1.0490899999999783,
+        "mean_ms": 0.5613726083333404
+      },
+      "p50_change_pct": -83.25229528900468,
+      "p95_change_pct": -82.84447553650386
+    },
+    {
+      "name": "globe.production.motion.rotate.all",
+      "reference": {
+        "p50_ms": 0.30744099999992613,
+        "p95_ms": 0.48056999999971595,
+        "mean_ms": 0.3249098041666912
+      },
+      "candidate": {
+        "p50_ms": 0.291103000000021,
+        "p95_ms": 0.42851100000007136,
+        "mean_ms": 0.299241233333341
+      },
+      "p50_change_pct": -5.314190364951021,
+      "p95_change_pct": -10.832761096130705
+    },
+    {
+      "name": "globe.production.motion.rotate.borders",
+      "reference": {
+        "p50_ms": 0.0675599999995029,
+        "p95_ms": 0.12616999999954714,
+        "mean_ms": 0.06658217499998122
+      },
+      "candidate": {
+        "p50_ms": 0.057088000000021566,
+        "p95_ms": 0.11103899999989153,
+        "mean_ms": 0.05961966250001751
+      },
+      "p50_change_pct": -15.500296032502058,
+      "p95_change_pct": -11.99254973425531
+    },
+    {
+      "name": "globe.production.motion.rotate.highlight",
+      "reference": {
+        "p50_ms": 0.007029000000329688,
+        "p95_ms": 0.01446600000053877,
+        "mean_ms": 0.007418770833313223
+      },
+      "candidate": {
+        "p50_ms": 0.008166000000073836,
+        "p95_ms": 0.024303000000145403,
+        "mean_ms": 0.0094996416666883
+      },
+      "p50_change_pct": 16.17584293200767,
+      "p95_change_pct": 68.00082952606294
+    },
+    {
+      "name": "globe.production.motion.rotate.ice",
+      "reference": {
+        "p50_ms": 0.017456000000493077,
+        "p95_ms": 0.04291700000067067,
+        "mean_ms": 0.019694116666706427
+      },
+      "candidate": {
+        "p50_ms": 0.018051999999897816,
+        "p95_ms": 0.04395199999999022,
+        "mean_ms": 0.019906879166681317
+      },
+      "p50_change_pct": 3.414298804926119,
+      "p95_change_pct": 2.4116317526932773
+    },
+    {
+      "name": "globe.production.motion.rotate.land",
+      "reference": {
+        "p50_ms": 0.19599899999957415,
+        "p95_ms": 0.3185890000004292,
+        "mean_ms": 0.2076520583333301
+      },
+      "candidate": {
+        "p50_ms": 0.20658899999989444,
+        "p95_ms": 0.4124940000001516,
+        "mean_ms": 0.23022891666666775
+      },
+      "p50_change_pct": 5.403088791444488,
+      "p95_change_pct": 29.475280062901057
+    },
+    {
+      "name": "globe.production.overview.all",
+      "reference": {
+        "p50_ms": 5.805578999999852,
+        "p95_ms": 8.14821099999972,
+        "mean_ms": 5.790532704166681
+      },
+      "candidate": {
+        "p50_ms": 5.719960999999785,
+        "p95_ms": 7.801437000000078,
+        "mean_ms": 5.681067749999983
+      },
+      "p50_change_pct": -1.474753853148325,
+      "p95_change_pct": -4.255829899344199
+    },
+    {
+      "name": "globe.production.overview.borders",
+      "reference": {
+        "p50_ms": 0.6726080000007642,
+        "p95_ms": 1.0715560000007827,
+        "mean_ms": 0.6361859833333067
+      },
+      "candidate": {
+        "p50_ms": 0.6026240000001053,
+        "p95_ms": 0.9315969999997833,
+        "mean_ms": 0.5857962916666831
+      },
+      "p50_change_pct": -10.404871782758951,
+      "p95_change_pct": -13.061286577733423
+    },
+    {
+      "name": "globe.production.overview.highlight",
+      "reference": {
+        "p50_ms": 0.16642400000000634,
+        "p95_ms": 0.5390059999999721,
+        "mean_ms": 0.19439576666667716
+      },
+      "candidate": {
+        "p50_ms": 0.1743270000006305,
+        "p95_ms": 0.594162000000324,
+        "mean_ms": 0.20804255416669168
+      },
+      "p50_change_pct": 4.748714128144904,
+      "p95_change_pct": 10.232910208857549
+    },
+    {
+      "name": "globe.production.overview.ice",
+      "reference": {
+        "p50_ms": 0.3445500000007087,
+        "p95_ms": 0.7520150000000285,
+        "mean_ms": 0.4053480916666748
+      },
+      "candidate": {
+        "p50_ms": 0.36786299999948824,
+        "p95_ms": 0.8404350000000704,
+        "mean_ms": 0.42642860000001975
+      },
+      "p50_change_pct": 6.766216804159519,
+      "p95_change_pct": 11.757744193937425
+    },
+    {
+      "name": "globe.production.overview.land",
+      "reference": {
+        "p50_ms": 4.4208030000008876,
+        "p95_ms": 5.981682999999975,
+        "mean_ms": 4.348169291666666
+      },
+      "candidate": {
+        "p50_ms": 4.544381000000612,
+        "p95_ms": 5.765614000000824,
+        "mean_ms": 4.402073970833301
+      },
+      "p50_change_pct": 2.795374505484638,
+      "p95_change_pct": -3.6121773754836717
+    },
+    {
+      "name": "globe.production.regional.all",
+      "reference": {
+        "p50_ms": 3.3778459999994084,
+        "p95_ms": 5.857305000001361,
+        "mean_ms": 3.638545666666558
+      },
+      "candidate": {
+        "p50_ms": 1.9135630000000674,
+        "p95_ms": 3.6395000000002256,
+        "mean_ms": 2.0889790041666934
+      },
+      "p50_change_pct": -43.34960800461588,
+      "p95_change_pct": -37.86391523064994
+    },
+    {
+      "name": "globe.production.regional.borders",
+      "reference": {
+        "p50_ms": 0.33146400000077847,
+        "p95_ms": 0.6323800000009214,
+        "mean_ms": 0.3204022833333511
+      },
+      "candidate": {
+        "p50_ms": 0.3284670000002734,
+        "p95_ms": 0.5710959999996703,
+        "mean_ms": 0.29778110833335253
+      },
+      "p50_change_pct": -0.9041705888114593,
+      "p95_change_pct": -9.691008570979765
+    },
+    {
+      "name": "globe.production.regional.highlight",
+      "reference": {
+        "p50_ms": 0.5619189999997616,
+        "p95_ms": 1.095515000000887,
+        "mean_ms": 0.4708778124999602
+      },
+      "candidate": {
+        "p50_ms": 0.5349740000001475,
+        "p95_ms": 0.7822290000003704,
+        "mean_ms": 0.4349688833334199
+      },
+      "p50_change_pct": -4.795175105242134,
+      "p95_change_pct": -28.5971438091001
+    },
+    {
+      "name": "globe.production.regional.ice",
+      "reference": {
+        "p50_ms": 0.005762999999205931,
+        "p95_ms": 0.22394899999926565,
+        "mean_ms": 0.04222072083329446
+      },
+      "candidate": {
+        "p50_ms": 0.005923000000620959,
+        "p95_ms": 0.03057600000011007,
+        "mean_ms": 0.010554283333343998
+      },
+      "p50_change_pct": 2.7763317965829204,
+      "p95_change_pct": -86.34689147966263
+    },
+    {
+      "name": "globe.production.regional.land",
+      "reference": {
+        "p50_ms": 2.6785079999990558,
+        "p95_ms": 4.995351999999912,
+        "mean_ms": 2.8037893208333875
+      },
+      "candidate": {
+        "p50_ms": 1.1096369999995659,
+        "p95_ms": 2.8999229999999443,
+        "mean_ms": 1.3194561916666772
+      },
+      "p50_change_pct": -58.57257099848285,
+      "p95_change_pct": -41.94757446522296
+    },
+    {
+      "name": "globe.production.motion.zoom.all",
+      "reference": {
+        "p50_ms": 0.28290500000002794,
+        "p95_ms": 0.48493799999960174,
+        "mean_ms": 0.2696210791666696
+      },
+      "candidate": {
+        "p50_ms": 0.2609949999996388,
+        "p95_ms": 0.5024470000007568,
+        "mean_ms": 0.25367110416665734
+      },
+      "p50_change_pct": -7.74464926402395,
+      "p95_change_pct": 3.6105646497427424
+    }
+  ],
+  "runs": [
+    {
+      "variant": "candidate",
+      "results": [
+        {
+          "name": "globe.production.detail.construct-land",
+          "iterations": 30,
+          "warmup": 5,
+          "p50_ms": 26.424387000000024,
+          "p95_ms": 44.74487899999997,
+          "mean_ms": 27.285037466666683,
+          "min_ms": 21.63042500000006
+        },
+        {
+          "name": "globe.production.motion.construct-land",
+          "iterations": 30,
+          "warmup": 5,
+          "p50_ms": 0.4103650000001835,
+          "p95_ms": 0.5351279999999861,
+          "mean_ms": 0.5251867333333167,
+          "min_ms": 0.3465929999999844
+        },
+        {
+          "name": "globe.production.overview.construct-land",
+          "iterations": 30,
+          "warmup": 5,
+          "p50_ms": 7.815503999999919,
+          "p95_ms": 20.04077499999994,
+          "mean_ms": 10.950845966666664,
+          "min_ms": 5.72166500000003
+        },
+        {
+          "name": "globe.production.regional.construct-land",
+          "iterations": 30,
+          "warmup": 5,
+          "p50_ms": 16.305890999999974,
+          "p95_ms": 24.689302999999654,
+          "mean_ms": 17.540151033333327,
+          "min_ms": 11.010811999999987
+        },
+        {
+          "name": "globe.production.detail.all",
+          "iterations": 240,
+          "warmup": 60,
+          "p50_ms": 0.7350129999999808,
+          "p95_ms": 1.5852259999996932,
+          "mean_ms": 0.8025205833333435,
+          "min_ms": 0.2007749999997941
+        },
+        {
+          "name": "globe.production.detail.borders",
+          "iterations": 240,
+          "warmup": 60,
+          "p50_ms": 0.026922000000013213,
+          "p95_ms": 0.3884800000000723,
+          "mean_ms": 0.08699634166665836,
+          "min_ms": 0.004141999999774271
+        },
+        {
+          "name": "globe.production.detail.highlight",
+          "iterations": 240,
+          "warmup": 60,
+          "p50_ms": 0.09402399999999034,
+          "p95_ms": 0.2634330000000773,
+          "mean_ms": 0.12571782499998865,
+          "min_ms": 0.06120999999984633
+        },
+        {
+          "name": "globe.production.detail.ice",
+          "iterations": 240,
+          "warmup": 60,
+          "p50_ms": 0.005432999999811727,
+          "p95_ms": 0.005692000000180997,
+          "mean_ms": 0.005867991666658175,
+          "min_ms": 0.005328000000190514
+        },
+        {
+          "name": "globe.production.detail.land",
+          "iterations": 240,
+          "warmup": 60,
+          "p50_ms": 0.5069029999999657,
+          "p95_ms": 0.950322000000142,
+          "mean_ms": 0.5178153708333336,
+          "min_ms": 0.11900500000001557
+        },
+        {
+          "name": "globe.production.motion.rotate.all",
+          "iterations": 240,
+          "warmup": 60,
+          "p50_ms": 0.291103000000021,
+          "p95_ms": 0.42117599999983213,
+          "mean_ms": 0.299241233333341,
+          "min_ms": 0.19035299999995914
+        },
+        {
+          "name": "globe.production.motion.rotate.borders",
+          "iterations": 240,
+          "warmup": 60,
+          "p50_ms": 0.057088000000021566,
+          "p95_ms": 0.11103899999989153,
+          "mean_ms": 0.05961966250001751,
+          "min_ms": 0.021915000000262808
+        },
+        {
+          "name": "globe.production.motion.rotate.highlight",
+          "iterations": 240,
+          "warmup": 60,
+          "p50_ms": 0.008322000000134722,
+          "p95_ms": 0.037207999999736785,
+          "mean_ms": 0.013395804166676347,
+          "min_ms": 0.0022509999998874264
+        },
+        {
+          "name": "globe.production.motion.rotate.ice",
+          "iterations": 240,
+          "warmup": 60,
+          "p50_ms": 0.022655000000213477,
+          "p95_ms": 0.06747399999994741,
+          "mean_ms": 0.02581759583334436,
+          "min_ms": 0.009178000000247266
+        },
+        {
+          "name": "globe.production.motion.rotate.land",
+          "iterations": 240,
+          "warmup": 60,
+          "p50_ms": 0.21575699999993958,
+          "p95_ms": 0.42533499999990454,
+          "mean_ms": 0.2406125541666711,
+          "min_ms": 0.13740099999995437
+        },
+        {
+          "name": "globe.production.overview.all",
+          "iterations": 240,
+          "warmup": 60,
+          "p50_ms": 5.5760440000003655,
+          "p95_ms": 6.906357000000753,
+          "mean_ms": 5.459854195833363,
+          "min_ms": 3.5155869999998686
+        },
+        {
+          "name": "globe.production.overview.borders",
+          "iterations": 240,
+          "warmup": 60,
+          "p50_ms": 0.5924469999999928,
+          "p95_ms": 0.9007530000008046,
+          "mean_ms": 0.5588787375000266,
+          "min_ms": 0.19852300000002288
+        },
+        {
+          "name": "globe.production.overview.highlight",
+          "iterations": 240,
+          "warmup": 60,
+          "p50_ms": 0.16650400000071386,
+          "p95_ms": 0.5812260000002425,
+          "mean_ms": 0.20233517916665658,
+          "min_ms": 0.025091999999858672
+        },
+        {
+          "name": "globe.production.overview.ice",
+          "iterations": 240,
+          "warmup": 60,
+          "p50_ms": 0.36786299999948824,
+          "p95_ms": 0.8404350000000704,
+          "mean_ms": 0.42642860000001975,
+          "min_ms": 0.23439700000017183
+        },
+        {
+          "name": "globe.production.overview.land",
+          "iterations": 240,
+          "warmup": 60,
+          "p50_ms": 4.407987999999932,
+          "p95_ms": 5.463767999999618,
+          "mean_ms": 4.256894508333316,
+          "min_ms": 2.671016000000236
+        },
+        {
+          "name": "globe.production.regional.all",
+          "iterations": 240,
+          "warmup": 60,
+          "p50_ms": 1.8812510000007023,
+          "p95_ms": 3.505131999999321,
+          "mean_ms": 2.056990937499961,
+          "min_ms": 1.249217999999928
+        },
+        {
+          "name": "globe.production.regional.borders",
+          "iterations": 240,
+          "warmup": 60,
+          "p50_ms": 0.3284670000002734,
+          "p95_ms": 0.5753850000000966,
+          "mean_ms": 0.29778110833335253,
+          "min_ms": 0.007921999999780382
+        },
+        {
+          "name": "globe.production.regional.highlight",
+          "iterations": 240,
+          "warmup": 60,
+          "p50_ms": 0.5305450000005294,
+          "p95_ms": 0.7822290000003704,
+          "mean_ms": 0.4293614000000313,
+          "min_ms": 0.06648200000017823
+        },
+        {
+          "name": "globe.production.regional.ice",
+          "iterations": 240,
+          "warmup": 60,
+          "p50_ms": 0.006184999999277352,
+          "p95_ms": 0.04094400000030873,
+          "mean_ms": 0.012042916666640242,
+          "min_ms": 0.0058030000000144355
+        },
+        {
+          "name": "globe.production.regional.land",
+          "iterations": 240,
+          "warmup": 60,
+          "p50_ms": 1.1390199999996184,
+          "p95_ms": 2.9673910000001342,
+          "mean_ms": 1.3926592249999696,
+          "min_ms": 0.5289620000003197
+        },
+        {
+          "name": "globe.production.motion.zoom.all",
+          "iterations": 240,
+          "warmup": 60,
+          "p50_ms": 0.27484999999978754,
+          "p95_ms": 0.5779679999996006,
+          "mean_ms": 0.27285334166663233,
+          "min_ms": 0.0671040000006542
+        }
+      ]
+    },
+    {
+      "variant": "reference",
+      "results": [
+        {
+          "name": "globe.production.detail.construct-land",
+          "iterations": 30,
+          "warmup": 5,
+          "p50_ms": 23.204691000000025,
+          "p95_ms": 42.59945300000004,
+          "mean_ms": 24.528774,
+          "min_ms": 19.87488099999996
+        },
+        {
+          "name": "globe.production.motion.construct-land",
+          "iterations": 30,
+          "warmup": 5,
+          "p50_ms": 0.386344999999892,
+          "p95_ms": 0.5672649999999066,
+          "mean_ms": 0.39898106666666233,
+          "min_ms": 0.32652200000006815
+        },
+        {
+          "name": "globe.production.overview.construct-land",
+          "iterations": 30,
+          "warmup": 5,
+          "p50_ms": 6.746948000000202,
+          "p95_ms": 13.104998000000023,
+          "mean_ms": 7.663752733333354,
+          "min_ms": 5.316282000000001
+        },
+        {
+          "name": "globe.production.regional.construct-land",
+          "iterations": 30,
+          "warmup": 5,
+          "p50_ms": 11.747073,
+          "p95_ms": 24.12733100000014,
+          "mean_ms": 14.870701866666673,
+          "min_ms": 10.236191999999846
+        },
+        {
+          "name": "globe.production.detail.all",
+          "iterations": 240,
+          "warmup": 60,
+          "p50_ms": 3.6566149999998743,
+          "p95_ms": 6.733224000000064,
+          "mean_ms": 3.994499387500021,
+          "min_ms": 0.7653830000003836
+        },
+        {
+          "name": "globe.production.detail.borders",
+          "iterations": 240,
+          "warmup": 60,
+          "p50_ms": 0.07147000000031767,
+          "p95_ms": 0.3679930000002969,
+          "mean_ms": 0.13404723333334043,
+          "min_ms": 0.004360999999789783
+        },
+        {
+          "name": "globe.production.detail.highlight",
+          "iterations": 240,
+          "warmup": 60,
+          "p50_ms": 0.38004099999989194,
+          "p95_ms": 0.534118000000035,
+          "mean_ms": 0.346421529166696,
+          "min_ms": 0.11487200000010489
+        },
+        {
+          "name": "globe.production.detail.ice",
+          "iterations": 240,
+          "warmup": 60,
+          "p50_ms": 0.005973999999696389,
+          "p95_ms": 0.022167999999965105,
+          "mean_ms": 0.007393912500022756,
+          "min_ms": 0.0054189999996197
+        },
+        {
+          "name": "globe.production.detail.land",
+          "iterations": 240,
+          "warmup": 60,
+          "p50_ms": 3.1688819999999396,
+          "p95_ms": 5.947753999999804,
+          "mean_ms": 3.4407479999999833,
+          "min_ms": 0.3804840000002514
+        },
+        {
+          "name": "globe.production.motion.rotate.all",
+          "iterations": 240,
+          "warmup": 60,
+          "p50_ms": 0.2975909999995565,
+          "p95_ms": 0.4468059999999241,
+          "mean_ms": 0.3136355291666518,
+          "min_ms": 0.1853499999997439
+        },
+        {
+          "name": "globe.production.motion.rotate.borders",
+          "iterations": 240,
+          "warmup": 60,
+          "p50_ms": 0.06752099999994243,
+          "p95_ms": 0.12616999999954714,
+          "mean_ms": 0.06669065416665869,
+          "min_ms": 0.02368899999964924
+        },
+        {
+          "name": "globe.production.motion.rotate.highlight",
+          "iterations": 240,
+          "warmup": 60,
+          "p50_ms": 0.007029000000329688,
+          "p95_ms": 0.024274000000332308,
+          "mean_ms": 0.008164962499984085,
+          "min_ms": 0.0021769999993921374
+        },
+        {
+          "name": "globe.production.motion.rotate.ice",
+          "iterations": 240,
+          "warmup": 60,
+          "p50_ms": 0.017456000000493077,
+          "p95_ms": 0.04291700000067067,
+          "mean_ms": 0.019694116666706427,
+          "min_ms": 0.008781999999882828
+        },
+        {
+          "name": "globe.production.motion.rotate.land",
+          "iterations": 240,
+          "warmup": 60,
+          "p50_ms": 0.19599899999957415,
+          "p95_ms": 0.3185890000004292,
+          "mean_ms": 0.2076520583333301,
+          "min_ms": 0.13140800000019226
+        },
+        {
+          "name": "globe.production.overview.all",
+          "iterations": 240,
+          "warmup": 60,
+          "p50_ms": 5.805578999999852,
+          "p95_ms": 8.452162999999928,
+          "mean_ms": 5.790532704166681,
+          "min_ms": 3.530410000000302
+        },
+        {
+          "name": "globe.production.overview.borders",
+          "iterations": 240,
+          "warmup": 60,
+          "p50_ms": 0.6726080000007642,
+          "p95_ms": 1.2639090000002398,
+          "mean_ms": 0.6502677458333779,
+          "min_ms": 0.20495300000038696
+        },
+        {
+          "name": "globe.production.overview.highlight",
+          "iterations": 240,
+          "warmup": 60,
+          "p50_ms": 0.16642400000000634,
+          "p95_ms": 0.5390059999999721,
+          "mean_ms": 0.19439576666667716,
+          "min_ms": 0.02488900000025751
+        },
+        {
+          "name": "globe.production.overview.ice",
+          "iterations": 240,
+          "warmup": 60,
+          "p50_ms": 0.3452980000001844,
+          "p95_ms": 0.7873949999993783,
+          "mean_ms": 0.4156641541666469,
+          "min_ms": 0.23253499999918859
+        },
+        {
+          "name": "globe.production.overview.land",
+          "iterations": 240,
+          "warmup": 60,
+          "p50_ms": 4.405541000000085,
+          "p95_ms": 6.049215999999433,
+          "mean_ms": 4.348169291666666,
+          "min_ms": 2.6491329999998925
+        },
+        {
+          "name": "globe.production.regional.all",
+          "iterations": 240,
+          "warmup": 60,
+          "p50_ms": 3.448036999998294,
+          "p95_ms": 5.875221999998757,
+          "mean_ms": 3.6728011041667212,
+          "min_ms": 2.0653480000000854
+        },
+        {
+          "name": "globe.production.regional.borders",
+          "iterations": 240,
+          "warmup": 60,
+          "p50_ms": 0.30965000000105647,
+          "p95_ms": 0.6012440000013157,
+          "mean_ms": 0.30216205416668346,
+          "min_ms": 0.007469999998647836
+        },
+        {
+          "name": "globe.production.regional.highlight",
+          "iterations": 240,
+          "warmup": 60,
+          "p50_ms": 0.5450270000001183,
+          "p95_ms": 1.095515000000887,
+          "mean_ms": 0.4708778124999602,
+          "min_ms": 0.06610099999852537
+        },
+        {
+          "name": "globe.production.regional.ice",
+          "iterations": 240,
+          "warmup": 60,
+          "p50_ms": 0.005279999999402207,
+          "p95_ms": 0.20041499999933876,
+          "mean_ms": 0.03935580833328913,
+          "min_ms": 0.005104000001665554
+        },
+        {
+          "name": "globe.production.regional.land",
+          "iterations": 240,
+          "warmup": 60,
+          "p50_ms": 2.5244689999999537,
+          "p95_ms": 4.940184000000954,
+          "mean_ms": 2.7103360833332544,
+          "min_ms": 1.1631999999990512
+        },
+        {
+          "name": "globe.production.motion.zoom.all",
+          "iterations": 240,
+          "warmup": 60,
+          "p50_ms": 0.26304499999969266,
+          "p95_ms": 0.39601799999945797,
+          "mean_ms": 0.23387828333335772,
+          "min_ms": 0.06164600000010978
+        }
+      ]
+    },
+    {
+      "variant": "candidate",
+      "results": [
+        {
+          "name": "globe.production.detail.construct-land",
+          "iterations": 30,
+          "warmup": 5,
+          "p50_ms": 25.62633900000003,
+          "p95_ms": 49.62260399999991,
+          "mean_ms": 27.626854700000006,
+          "min_ms": 21.237217999999984
+        },
+        {
+          "name": "globe.production.motion.construct-land",
+          "iterations": 30,
+          "warmup": 5,
+          "p50_ms": 0.4080699999999524,
+          "p95_ms": 0.7758509999998751,
+          "mean_ms": 0.6234987999999855,
+          "min_ms": 0.3320810000000165
+        },
+        {
+          "name": "globe.production.overview.construct-land",
+          "iterations": 30,
+          "warmup": 5,
+          "p50_ms": 7.939932999999883,
+          "p95_ms": 21.581206000000066,
+          "mean_ms": 10.985152833333336,
+          "min_ms": 5.362144999999828
+        },
+        {
+          "name": "globe.production.regional.construct-land",
+          "iterations": 30,
+          "warmup": 5,
+          "p50_ms": 13.218166999999994,
+          "p95_ms": 21.94333500000039,
+          "mean_ms": 15.37304150000003,
+          "min_ms": 10.303912999999739
+        },
+        {
+          "name": "globe.production.detail.all",
+          "iterations": 240,
+          "warmup": 60,
+          "p50_ms": 0.6856279999997241,
+          "p95_ms": 1.4775580000000446,
+          "mean_ms": 0.759067608333326,
+          "min_ms": 0.20053200000029392
+        },
+        {
+          "name": "globe.production.detail.borders",
+          "iterations": 240,
+          "warmup": 60,
+          "p50_ms": 0.028483999999934895,
+          "p95_ms": 0.3812150000003385,
+          "mean_ms": 0.08743868750000275,
+          "min_ms": 0.0041610000002947345
+        },
+        {
+          "name": "globe.production.detail.highlight",
+          "iterations": 240,
+          "warmup": 60,
+          "p50_ms": 0.09618899999986752,
+          "p95_ms": 0.282654999999977,
+          "mean_ms": 0.12514262083333277,
+          "min_ms": 0.062184000000343076
+        },
+        {
+          "name": "globe.production.detail.ice",
+          "iterations": 240,
+          "warmup": 60,
+          "p50_ms": 0.005947999999989406,
+          "p95_ms": 0.021520999999665946,
+          "mean_ms": 0.008013775000019525,
+          "min_ms": 0.005340000000160217
+        },
+        {
+          "name": "globe.production.detail.land",
+          "iterations": 240,
+          "warmup": 60,
+          "p50_ms": 0.5307149999998728,
+          "p95_ms": 1.0603840000003402,
+          "mean_ms": 0.5613726083333404,
+          "min_ms": 0.1196509999999762
+        },
+        {
+          "name": "globe.production.motion.rotate.all",
+          "iterations": 240,
+          "warmup": 60,
+          "p50_ms": 0.29933900000014546,
+          "p95_ms": 0.44816800000035073,
+          "mean_ms": 0.3130461916666434,
+          "min_ms": 0.19395200000008117
+        },
+        {
+          "name": "globe.production.motion.rotate.borders",
+          "iterations": 240,
+          "warmup": 60,
+          "p50_ms": 0.057422999999744206,
+          "p95_ms": 0.12237599999980375,
+          "mean_ms": 0.06176102916666461,
+          "min_ms": 0.022216999999727705
+        },
+        {
+          "name": "globe.production.motion.rotate.highlight",
+          "iterations": 240,
+          "warmup": 60,
+          "p50_ms": 0.008166000000073836,
+          "p95_ms": 0.01942200000030425,
+          "mean_ms": 0.0094996416666883,
+          "min_ms": 0.00221800000008443
+        },
+        {
+          "name": "globe.production.motion.rotate.ice",
+          "iterations": 240,
+          "warmup": 60,
+          "p50_ms": 0.018051999999897816,
+          "p95_ms": 0.04395199999999022,
+          "mean_ms": 0.019906879166681317,
+          "min_ms": 0.009164999999939027
+        },
+        {
+          "name": "globe.production.motion.rotate.land",
+          "iterations": 240,
+          "warmup": 60,
+          "p50_ms": 0.20658899999989444,
+          "p95_ms": 0.4124940000001516,
+          "mean_ms": 0.23022891666666775,
+          "min_ms": 0.1378829999998743
+        },
+        {
+          "name": "globe.production.overview.all",
+          "iterations": 240,
+          "warmup": 60,
+          "p50_ms": 5.719960999999785,
+          "p95_ms": 7.801437000000078,
+          "mean_ms": 5.681067749999983,
+          "min_ms": 3.5442430000002787
+        },
+        {
+          "name": "globe.production.overview.borders",
+          "iterations": 240,
+          "warmup": 60,
+          "p50_ms": 0.6026240000001053,
+          "p95_ms": 0.9315969999997833,
+          "mean_ms": 0.5857962916666831,
+          "min_ms": 0.19810099999995145
+        },
+        {
+          "name": "globe.production.overview.highlight",
+          "iterations": 240,
+          "warmup": 60,
+          "p50_ms": 0.1743270000006305,
+          "p95_ms": 0.594162000000324,
+          "mean_ms": 0.20804255416669168,
+          "min_ms": 0.025675000000774162
+        },
+        {
+          "name": "globe.production.overview.ice",
+          "iterations": 240,
+          "warmup": 60,
+          "p50_ms": 0.424897000000783,
+          "p95_ms": 1.028587000000698,
+          "mean_ms": 0.5115083500000499,
+          "min_ms": 0.24112200000035955
+        },
+        {
+          "name": "globe.production.overview.land",
+          "iterations": 240,
+          "warmup": 60,
+          "p50_ms": 4.669824999999946,
+          "p95_ms": 7.043427999999949,
+          "mean_ms": 4.716583433333327,
+          "min_ms": 2.722668999999769
+        },
+        {
+          "name": "globe.production.regional.all",
+          "iterations": 240,
+          "warmup": 60,
+          "p50_ms": 1.9219539999994595,
+          "p95_ms": 3.7015199999996184,
+          "mean_ms": 2.1540573458333445,
+          "min_ms": 1.254595999999765
+        },
+        {
+          "name": "globe.production.regional.borders",
+          "iterations": 240,
+          "warmup": 60,
+          "p50_ms": 0.3360320000001593,
+          "p95_ms": 0.5710959999996703,
+          "mean_ms": 0.2994592625000223,
+          "min_ms": 0.007765000000290456
+        },
+        {
+          "name": "globe.production.regional.highlight",
+          "iterations": 240,
+          "warmup": 60,
+          "p50_ms": 0.5349740000001475,
+          "p95_ms": 0.7421400000002905,
+          "mean_ms": 0.4349688833334199,
+          "min_ms": 0.06852099999923666
+        },
+        {
+          "name": "globe.production.regional.ice",
+          "iterations": 240,
+          "warmup": 60,
+          "p50_ms": 0.005923000000620959,
+          "p95_ms": 0.03057600000011007,
+          "mean_ms": 0.010554283333343998,
+          "min_ms": 0.005377999999836902
+        },
+        {
+          "name": "globe.production.regional.land",
+          "iterations": 240,
+          "warmup": 60,
+          "p50_ms": 1.1096369999995659,
+          "p95_ms": 2.831156000000192,
+          "mean_ms": 1.3194561916666772,
+          "min_ms": 0.5123169999997117
+        },
+        {
+          "name": "globe.production.motion.zoom.all",
+          "iterations": 240,
+          "warmup": 60,
+          "p50_ms": 0.2597559999994701,
+          "p95_ms": 0.40440099999977974,
+          "mean_ms": 0.2361445458333416,
+          "min_ms": 0.06539899999916088
+        }
+      ]
+    },
+    {
+      "variant": "reference",
+      "results": [
+        {
+          "name": "globe.production.detail.construct-land",
+          "iterations": 30,
+          "warmup": 5,
+          "p50_ms": 23.89875200000006,
+          "p95_ms": 43.41534899999999,
+          "mean_ms": 25.182842099999977,
+          "min_ms": 20.389805000000024
+        },
+        {
+          "name": "globe.production.motion.construct-land",
+          "iterations": 30,
+          "warmup": 5,
+          "p50_ms": 0.36256200000002536,
+          "p95_ms": 0.6186479999998937,
+          "mean_ms": 0.3951416666666698,
+          "min_ms": 0.32623800000010306
+        },
+        {
+          "name": "globe.production.overview.construct-land",
+          "iterations": 30,
+          "warmup": 5,
+          "p50_ms": 7.212216000000126,
+          "p95_ms": 30.53218599999991,
+          "mean_ms": 11.252991233333349,
+          "min_ms": 5.132276000000047
+        },
+        {
+          "name": "globe.production.regional.construct-land",
+          "iterations": 30,
+          "warmup": 5,
+          "p50_ms": 11.501886000000013,
+          "p95_ms": 22.141013999999814,
+          "mean_ms": 14.379503133333333,
+          "min_ms": 9.73813999999993
+        },
+        {
+          "name": "globe.production.detail.all",
+          "iterations": 240,
+          "warmup": 60,
+          "p50_ms": 3.732260000000224,
+          "p95_ms": 7.050299999999879,
+          "mean_ms": 4.001957095833317,
+          "min_ms": 0.7494090000000142
+        },
+        {
+          "name": "globe.production.detail.borders",
+          "iterations": 240,
+          "warmup": 60,
+          "p50_ms": 0.07075899999972535,
+          "p95_ms": 0.3816680000004453,
+          "mean_ms": 0.13360892083332676,
+          "min_ms": 0.004382000000077824
+        },
+        {
+          "name": "globe.production.detail.highlight",
+          "iterations": 240,
+          "warmup": 60,
+          "p50_ms": 0.42279999999982465,
+          "p95_ms": 0.9703660000000127,
+          "mean_ms": 0.47361852916666863,
+          "min_ms": 0.11274999999977808
+        },
+        {
+          "name": "globe.production.detail.ice",
+          "iterations": 240,
+          "warmup": 60,
+          "p50_ms": 0.005431999999927939,
+          "p95_ms": 0.00621499999988373,
+          "mean_ms": 0.00595974166666906,
+          "min_ms": 0.005362999999761087
+        },
+        {
+          "name": "globe.production.detail.land",
+          "iterations": 240,
+          "warmup": 60,
+          "p50_ms": 3.1468469999999797,
+          "p95_ms": 6.115172999999231,
+          "mean_ms": 3.4347363750000377,
+          "min_ms": 0.38250000000061846
+        },
+        {
+          "name": "globe.production.motion.rotate.all",
+          "iterations": 240,
+          "warmup": 60,
+          "p50_ms": 0.30744099999992613,
+          "p95_ms": 0.48056999999971595,
+          "mean_ms": 0.3249098041666912,
+          "min_ms": 0.18872900000042137
+        },
+        {
+          "name": "globe.production.motion.rotate.borders",
+          "iterations": 240,
+          "warmup": 60,
+          "p50_ms": 0.0675599999995029,
+          "p95_ms": 0.13270599999941624,
+          "mean_ms": 0.06658217499998122,
+          "min_ms": 0.023869999999988067
+        },
+        {
+          "name": "globe.production.motion.rotate.highlight",
+          "iterations": 240,
+          "warmup": 60,
+          "p50_ms": 0.006963999999243242,
+          "p95_ms": 0.014104000000770611,
+          "mean_ms": 0.007342354166644327,
+          "min_ms": 0.002163000000109605
+        },
+        {
+          "name": "globe.production.motion.rotate.ice",
+          "iterations": 240,
+          "warmup": 60,
+          "p50_ms": 0.0174299999998766,
+          "p95_ms": 0.039602999999260646,
+          "mean_ms": 0.019259533333331545,
+          "min_ms": 0.00880200000028708
+        },
+        {
+          "name": "globe.production.motion.rotate.land",
+          "iterations": 240,
+          "warmup": 60,
+          "p50_ms": 0.21231400000033318,
+          "p95_ms": 0.36242200000015146,
+          "mean_ms": 0.22508075833335775,
+          "min_ms": 0.13357899999937217
+        },
+        {
+          "name": "globe.production.overview.all",
+          "iterations": 240,
+          "warmup": 60,
+          "p50_ms": 5.992388000000574,
+          "p95_ms": 8.14821099999972,
+          "mean_ms": 5.887310820833337,
+          "min_ms": 3.436894000000393
+        },
+        {
+          "name": "globe.production.overview.borders",
+          "iterations": 240,
+          "warmup": 60,
+          "p50_ms": 0.6772049999999581,
+          "p95_ms": 1.0715560000007827,
+          "mean_ms": 0.6361859833333067,
+          "min_ms": 0.20599500000025728
+        },
+        {
+          "name": "globe.production.overview.highlight",
+          "iterations": 240,
+          "warmup": 60,
+          "p50_ms": 0.21558200000072247,
+          "p95_ms": 0.9198550000000978,
+          "mean_ms": 0.2863644875000091,
+          "min_ms": 0.025392999999894528
+        },
+        {
+          "name": "globe.production.overview.ice",
+          "iterations": 240,
+          "warmup": 60,
+          "p50_ms": 0.3186940000005052,
+          "p95_ms": 0.7437520000003133,
+          "mean_ms": 0.40304309999997184,
+          "min_ms": 0.23545800000010786
+        },
+        {
+          "name": "globe.production.overview.land",
+          "iterations": 240,
+          "warmup": 60,
+          "p50_ms": 4.4208030000008876,
+          "p95_ms": 5.981682999999975,
+          "mean_ms": 4.331085458333283,
+          "min_ms": 2.6778809999996156
+        },
+        {
+          "name": "globe.production.regional.all",
+          "iterations": 240,
+          "warmup": 60,
+          "p50_ms": 3.25917599999957,
+          "p95_ms": 5.807756000000154,
+          "mean_ms": 3.5509996958333736,
+          "min_ms": 1.9821630000005825
+        },
+        {
+          "name": "globe.production.regional.borders",
+          "iterations": 240,
+          "warmup": 60,
+          "p50_ms": 0.33501999999862164,
+          "p95_ms": 0.6887449999994715,
+          "mean_ms": 0.32936965000002755,
+          "min_ms": 0.007870999999795458
+        },
+        {
+          "name": "globe.production.regional.highlight",
+          "iterations": 240,
+          "warmup": 60,
+          "p50_ms": 0.5713909999994939,
+          "p95_ms": 1.2620770000012271,
+          "mean_ms": 0.5327986666666448,
+          "min_ms": 0.07204699999965669
+        },
+        {
+          "name": "globe.production.regional.ice",
+          "iterations": 240,
+          "warmup": 60,
+          "p50_ms": 0.005928999999014195,
+          "p95_ms": 0.22394899999926565,
+          "mean_ms": 0.04222072083329446,
+          "min_ms": 0.005500999999640044
+        },
+        {
+          "name": "globe.production.regional.land",
+          "iterations": 240,
+          "warmup": 60,
+          "p50_ms": 2.6785079999990558,
+          "p95_ms": 4.995351999999912,
+          "mean_ms": 2.8037893208333875,
+          "min_ms": 1.1853900000005524
+        },
+        {
+          "name": "globe.production.motion.zoom.all",
+          "iterations": 240,
+          "warmup": 60,
+          "p50_ms": 0.28290500000002794,
+          "p95_ms": 0.48493799999960174,
+          "mean_ms": 0.2696210791666696,
+          "min_ms": 0.06595000000015716
+        }
+      ]
+    },
+    {
+      "variant": "reference",
+      "results": [
+        {
+          "name": "globe.production.detail.construct-land",
+          "iterations": 30,
+          "warmup": 5,
+          "p50_ms": 24.06275400000004,
+          "p95_ms": 41.83169200000009,
+          "mean_ms": 24.850732999999995,
+          "min_ms": 20.31280300000003
+        },
+        {
+          "name": "globe.production.motion.construct-land",
+          "iterations": 30,
+          "warmup": 5,
+          "p50_ms": 0.4102770000001783,
+          "p95_ms": 0.6162110000000212,
+          "mean_ms": 0.4178280666666448,
+          "min_ms": 0.3303280000000086
+        },
+        {
+          "name": "globe.production.overview.construct-land",
+          "iterations": 30,
+          "warmup": 5,
+          "p50_ms": 6.768702000000076,
+          "p95_ms": 17.13388800000007,
+          "mean_ms": 10.261853433333348,
+          "min_ms": 5.42579899999987
+        },
+        {
+          "name": "globe.production.regional.construct-land",
+          "iterations": 30,
+          "warmup": 5,
+          "p50_ms": 13.94981400000006,
+          "p95_ms": 34.90100500000017,
+          "mean_ms": 16.407224766666694,
+          "min_ms": 10.166870000000017
+        },
+        {
+          "name": "globe.production.detail.all",
+          "iterations": 240,
+          "warmup": 60,
+          "p50_ms": 4.345138000000134,
+          "p95_ms": 11.82137799999964,
+          "mean_ms": 5.009659374999988,
+          "min_ms": 0.7665839999999662
+        },
+        {
+          "name": "globe.production.detail.borders",
+          "iterations": 240,
+          "warmup": 60,
+          "p50_ms": 0.07711199999994278,
+          "p95_ms": 0.4333129999999983,
+          "mean_ms": 0.1483842500000018,
+          "min_ms": 0.004673999999795342
+        },
+        {
+          "name": "globe.production.detail.highlight",
+          "iterations": 240,
+          "warmup": 60,
+          "p50_ms": 0.3882560000001831,
+          "p95_ms": 0.729816000000028,
+          "mean_ms": 0.3902136958333377,
+          "min_ms": 0.1244619999997667
+        },
+        {
+          "name": "globe.production.detail.ice",
+          "iterations": 240,
+          "warmup": 60,
+          "p50_ms": 0.011340999999447376,
+          "p95_ms": 0.012294999999539868,
+          "mean_ms": 0.011447099999952571,
+          "min_ms": 0.010298000000148022
+        },
+        {
+          "name": "globe.production.detail.land",
+          "iterations": 240,
+          "warmup": 60,
+          "p50_ms": 3.4026160000003074,
+          "p95_ms": 6.399314000000231,
+          "mean_ms": 3.6824471666667025,
+          "min_ms": 0.4074210000007952
+        },
+        {
+          "name": "globe.production.motion.rotate.all",
+          "iterations": 240,
+          "warmup": 60,
+          "p50_ms": 0.3323480000008203,
+          "p95_ms": 0.746237000000292,
+          "mean_ms": 0.4077652333333466,
+          "min_ms": 0.18511799999942014
+        },
+        {
+          "name": "globe.production.motion.rotate.borders",
+          "iterations": 240,
+          "warmup": 60,
+          "p50_ms": 0.06812899999931687,
+          "p95_ms": 0.10894499999994878,
+          "mean_ms": 0.065592937499999,
+          "min_ms": 0.02370500000051834
+        },
+        {
+          "name": "globe.production.motion.rotate.highlight",
+          "iterations": 240,
+          "warmup": 60,
+          "p50_ms": 0.0070589999995718244,
+          "p95_ms": 0.01446600000053877,
+          "mean_ms": 0.007418770833313223,
+          "min_ms": 0.0022720000006302143
+        },
+        {
+          "name": "globe.production.motion.rotate.ice",
+          "iterations": 240,
+          "warmup": 60,
+          "p50_ms": 0.0183469999992667,
+          "p95_ms": 0.05663800000002084,
+          "mean_ms": 0.021750358333326857,
+          "min_ms": 0.008850999999594933
+        },
+        {
+          "name": "globe.production.motion.rotate.land",
+          "iterations": 240,
+          "warmup": 60,
+          "p50_ms": 0.19536599999992177,
+          "p95_ms": 0.31592100000034407,
+          "mean_ms": 0.20389775416667058,
+          "min_ms": 0.13196999999945547
+        },
+        {
+          "name": "globe.production.overview.all",
+          "iterations": 240,
+          "warmup": 60,
+          "p50_ms": 5.720057999999881,
+          "p95_ms": 7.7232700000004115,
+          "mean_ms": 5.655150241666634,
+          "min_ms": 3.499721999999565
+        },
+        {
+          "name": "globe.production.overview.borders",
+          "iterations": 240,
+          "warmup": 60,
+          "p50_ms": 0.6720949999998993,
+          "p95_ms": 1.040262999999868,
+          "mean_ms": 0.62750025833332,
+          "min_ms": 0.20539300000018557
+        },
+        {
+          "name": "globe.production.overview.highlight",
+          "iterations": 240,
+          "warmup": 60,
+          "p50_ms": 0.16566899999997986,
+          "p95_ms": 0.524797000000035,
+          "mean_ms": 0.188592104166662,
+          "min_ms": 0.02518199999940407
+        },
+        {
+          "name": "globe.production.overview.ice",
+          "iterations": 240,
+          "warmup": 60,
+          "p50_ms": 0.3445500000007087,
+          "p95_ms": 0.7520150000000285,
+          "mean_ms": 0.4053480916666748,
+          "min_ms": 0.23400700000001962
+        },
+        {
+          "name": "globe.production.overview.land",
+          "iterations": 240,
+          "warmup": 60,
+          "p50_ms": 4.504335000001447,
+          "p95_ms": 5.755811000000904,
+          "mean_ms": 4.351081100000029,
+          "min_ms": 2.6192749999991065
+        },
+        {
+          "name": "globe.production.regional.all",
+          "iterations": 240,
+          "warmup": 60,
+          "p50_ms": 3.3778459999994084,
+          "p95_ms": 5.857305000001361,
+          "mean_ms": 3.638545666666558,
+          "min_ms": 2.0275359999996
+        },
+        {
+          "name": "globe.production.regional.borders",
+          "iterations": 240,
+          "warmup": 60,
+          "p50_ms": 0.33146400000077847,
+          "p95_ms": 0.6323800000009214,
+          "mean_ms": 0.3204022833333511,
+          "min_ms": 0.008069999999861466
+        },
+        {
+          "name": "globe.production.regional.highlight",
+          "iterations": 240,
+          "warmup": 60,
+          "p50_ms": 0.5619189999997616,
+          "p95_ms": 0.7652319999997417,
+          "mean_ms": 0.449313941666757,
+          "min_ms": 0.07040300000153366
+        },
+        {
+          "name": "globe.production.regional.ice",
+          "iterations": 240,
+          "warmup": 60,
+          "p50_ms": 0.005762999999205931,
+          "p95_ms": 0.25208199999906356,
+          "mean_ms": 0.046364620833416366,
+          "min_ms": 0.005352999998649466
+        },
+        {
+          "name": "globe.production.regional.land",
+          "iterations": 240,
+          "warmup": 60,
+          "p50_ms": 2.761108000000604,
+          "p95_ms": 5.557934000000387,
+          "mean_ms": 3.0197886416666506,
+          "min_ms": 1.2050520000011602
+        },
+        {
+          "name": "globe.production.motion.zoom.all",
+          "iterations": 240,
+          "warmup": 60,
+          "p50_ms": 0.286815999999817,
+          "p95_ms": 0.5946099999982835,
+          "mean_ms": 0.2876979916666263,
+          "min_ms": 0.06900099999984377
+        }
+      ]
+    },
+    {
+      "variant": "candidate",
+      "results": [
+        {
+          "name": "globe.production.detail.construct-land",
+          "iterations": 30,
+          "warmup": 5,
+          "p50_ms": 25.024737999999843,
+          "p95_ms": 44.91145800000004,
+          "mean_ms": 26.880662699999977,
+          "min_ms": 20.371022999999923
+        },
+        {
+          "name": "globe.production.motion.construct-land",
+          "iterations": 30,
+          "warmup": 5,
+          "p50_ms": 0.4270939999998973,
+          "p95_ms": 0.73098200000004,
+          "mean_ms": 0.5857528333333296,
+          "min_ms": 0.33725700000013603
+        },
+        {
+          "name": "globe.production.overview.construct-land",
+          "iterations": 30,
+          "warmup": 5,
+          "p50_ms": 7.22698000000014,
+          "p95_ms": 21.112407000000076,
+          "mean_ms": 10.702968900000027,
+          "min_ms": 5.66256599999997
+        },
+        {
+          "name": "globe.production.regional.construct-land",
+          "iterations": 30,
+          "warmup": 5,
+          "p50_ms": 12.27388000000019,
+          "p95_ms": 29.139353999999912,
+          "mean_ms": 15.578368533333363,
+          "min_ms": 10.843590999999833
+        },
+        {
+          "name": "globe.production.detail.all",
+          "iterations": 240,
+          "warmup": 60,
+          "p50_ms": 0.7396979999998621,
+          "p95_ms": 1.6791450000000623,
+          "mean_ms": 0.8426058166666678,
+          "min_ms": 0.20746599999984028
+        },
+        {
+          "name": "globe.production.detail.borders",
+          "iterations": 240,
+          "warmup": 60,
+          "p50_ms": 0.021754999999757274,
+          "p95_ms": 0.35440799999969386,
+          "mean_ms": 0.07680386666667119,
+          "min_ms": 0.004259000000274682
+        },
+        {
+          "name": "globe.production.detail.highlight",
+          "iterations": 240,
+          "warmup": 60,
+          "p50_ms": 0.09412800000018251,
+          "p95_ms": 0.267348000000311,
+          "mean_ms": 0.12134428333332607,
+          "min_ms": 0.06352400000014313
+        },
+        {
+          "name": "globe.production.detail.ice",
+          "iterations": 240,
+          "warmup": 60,
+          "p50_ms": 0.00970999999981359,
+          "p95_ms": 0.01673800000025949,
+          "mean_ms": 0.011286229166650704,
+          "min_ms": 0.009461999999984982
+        },
+        {
+          "name": "globe.production.detail.land",
+          "iterations": 240,
+          "warmup": 60,
+          "p50_ms": 0.5778730000001815,
+          "p95_ms": 1.0490899999999783,
+          "mean_ms": 0.5689090624999911,
+          "min_ms": 0.12317399999983536
+        },
+        {
+          "name": "globe.production.motion.rotate.all",
+          "iterations": 240,
+          "warmup": 60,
+          "p50_ms": 0.28430500000013126,
+          "p95_ms": 0.42851100000007136,
+          "mean_ms": 0.29593924999999976,
+          "min_ms": 0.1881479999997282
+        },
+        {
+          "name": "globe.production.motion.rotate.borders",
+          "iterations": 240,
+          "warmup": 60,
+          "p50_ms": 0.05533900000000358,
+          "p95_ms": 0.10380200000008699,
+          "mean_ms": 0.05523296666664805,
+          "min_ms": 0.020908999999846856
+        },
+        {
+          "name": "globe.production.motion.rotate.highlight",
+          "iterations": 240,
+          "warmup": 60,
+          "p50_ms": 0.007809000000179367,
+          "p95_ms": 0.024303000000145403,
+          "mean_ms": 0.009282516666678476,
+          "min_ms": 0.0022939999998925487
+        },
+        {
+          "name": "globe.production.motion.rotate.ice",
+          "iterations": 240,
+          "warmup": 60,
+          "p50_ms": 0.01695499999959793,
+          "p95_ms": 0.04005300000017087,
+          "mean_ms": 0.019846466666664734,
+          "min_ms": 0.00882499999988795
+        },
+        {
+          "name": "globe.production.motion.rotate.land",
+          "iterations": 240,
+          "warmup": 60,
+          "p50_ms": 0.2031659999997828,
+          "p95_ms": 0.31001100000003134,
+          "mean_ms": 0.21330984999999789,
+          "min_ms": 0.13608799999974508
+        },
+        {
+          "name": "globe.production.overview.all",
+          "iterations": 240,
+          "warmup": 60,
+          "p50_ms": 5.868304999999964,
+          "p95_ms": 7.947909000000436,
+          "mean_ms": 5.895187629166651,
+          "min_ms": 3.6563129999999546
+        },
+        {
+          "name": "globe.production.overview.borders",
+          "iterations": 240,
+          "warmup": 60,
+          "p50_ms": 0.6468490000006568,
+          "p95_ms": 1.3520220000000336,
+          "mean_ms": 0.6653195208333272,
+          "min_ms": 0.2031330000008893
+        },
+        {
+          "name": "globe.production.overview.highlight",
+          "iterations": 240,
+          "warmup": 60,
+          "p50_ms": 0.28666599999996834,
+          "p95_ms": 1.0634070000005522,
+          "mean_ms": 0.33800351249999494,
+          "min_ms": 0.02585099999942031
+        },
+        {
+          "name": "globe.production.overview.ice",
+          "iterations": 240,
+          "warmup": 60,
+          "p50_ms": 0.3468960000000152,
+          "p95_ms": 0.7745059999997466,
+          "mean_ms": 0.41097667499996837,
+          "min_ms": 0.24354099999982282
+        },
+        {
+          "name": "globe.production.overview.land",
+          "iterations": 240,
+          "warmup": 60,
+          "p50_ms": 4.544381000000612,
+          "p95_ms": 5.765614000000824,
+          "mean_ms": 4.402073970833301,
+          "min_ms": 2.617909999999938
+        },
+        {
+          "name": "globe.production.regional.all",
+          "iterations": 240,
+          "warmup": 60,
+          "p50_ms": 1.9135630000000674,
+          "p95_ms": 3.6395000000002256,
+          "mean_ms": 2.0889790041666934,
+          "min_ms": 1.2323429999996733
+        },
+        {
+          "name": "globe.production.regional.borders",
+          "iterations": 240,
+          "warmup": 60,
+          "p50_ms": 0.3282570000001215,
+          "p95_ms": 0.5584879999996701,
+          "mean_ms": 0.2962723208333538,
+          "min_ms": 0.007924000000457454
+        },
+        {
+          "name": "globe.production.regional.highlight",
+          "iterations": 240,
+          "warmup": 60,
+          "p50_ms": 0.5644689999999173,
+          "p95_ms": 0.8391689999998562,
+          "mean_ms": 0.4747820083333257,
+          "min_ms": 0.0710269999999582
+        },
+        {
+          "name": "globe.production.regional.ice",
+          "iterations": 240,
+          "warmup": 60,
+          "p50_ms": 0.005478000000039174,
+          "p95_ms": 0.02753099999972619,
+          "mean_ms": 0.010121187500017944,
+          "min_ms": 0.005337000000508851
+        },
+        {
+          "name": "globe.production.regional.land",
+          "iterations": 240,
+          "warmup": 60,
+          "p50_ms": 1.0412459999997736,
+          "p95_ms": 2.8999229999999443,
+          "mean_ms": 1.3082354583333426,
+          "min_ms": 0.5138290000004417
+        },
+        {
+          "name": "globe.production.motion.zoom.all",
+          "iterations": 240,
+          "warmup": 60,
+          "p50_ms": 0.2609949999996388,
+          "p95_ms": 0.5024470000007568,
+          "mean_ms": 0.25367110416665734,
+          "min_ms": 0.06539100000009057
+        }
+      ]
+    }
+  ],
+  "validation": {
+    "verify": {
+      "command": "npm run verify",
+      "status": "passed",
+      "test_suites": 126,
+      "tests": 1346,
+      "includes": ["TypeScript", "Biome", "deprecated dependency API scan", "Jest"]
+    },
+    "bundle": {
+      "command": "npm run bundle:check",
+      "status": "passed",
+      "bytes": 10952393,
+      "budget_bytes": 11531203
+    },
+    "device": "Not used; code-only constraint preserved.",
+    "production_benchmark": {
+      "command": "npm run bench -- --filter globe.production --json",
+      "status": "passed",
+      "guarded_cases": 9,
+      "diagnostic_cases": 16,
+      "results": [
+        {
+          "result": {
+            "name": "globe.production.detail.construct-land",
+            "iterations": 30,
+            "warmup": 5,
+            "p50_ms": 31.322722999999996,
+            "p95_ms": 64.14760799999999,
+            "mean_ms": 37.60934306666665,
+            "min_ms": 21.772621999999956
+          },
+          "status": "ok"
+        },
+        {
+          "result": {
+            "name": "globe.production.motion.construct-land",
+            "iterations": 30,
+            "warmup": 5,
+            "p50_ms": 0.47237200000017765,
+            "p95_ms": 0.8479080000001886,
+            "mean_ms": 0.5480189999999917,
+            "min_ms": 0.3610599999999522
+          },
+          "status": "ok"
+        },
+        {
+          "result": {
+            "name": "globe.production.overview.construct-land",
+            "iterations": 30,
+            "warmup": 5,
+            "p50_ms": 7.6181540000002315,
+            "p95_ms": 22.082603999999947,
+            "mean_ms": 11.07434806666669,
+            "min_ms": 5.647001999999702
+          },
+          "status": "ok"
+        },
+        {
+          "result": {
+            "name": "globe.production.regional.construct-land",
+            "iterations": 30,
+            "warmup": 5,
+            "p50_ms": 13.567083999999795,
+            "p95_ms": 22.857214000000113,
+            "mean_ms": 15.705465666666608,
+            "min_ms": 10.913335000000188
+          },
+          "status": "ok"
+        },
+        {
+          "result": {
+            "name": "globe.production.detail.all",
+            "iterations": 240,
+            "warmup": 60,
+            "p50_ms": 0.6851270000001932,
+            "p95_ms": 1.6954510000000482,
+            "mean_ms": 0.817708683333304,
+            "min_ms": 0.20210999999972046
+          },
+          "status": "ok"
+        },
+        {
+          "result": {
+            "name": "globe.production.detail.borders",
+            "iterations": 240,
+            "warmup": 60,
+            "p50_ms": 0.036278999999922235,
+            "p95_ms": 0.6303840000000491,
+            "mean_ms": 0.10277384166666934,
+            "min_ms": 0.004226999999900727
+          },
+          "status": "new"
+        },
+        {
+          "result": {
+            "name": "globe.production.detail.highlight",
+            "iterations": 240,
+            "warmup": 60,
+            "p50_ms": 0.09065800000007584,
+            "p95_ms": 0.24161499999991065,
+            "mean_ms": 0.11928633333334346,
+            "min_ms": 0.06201200000032259
+          },
+          "status": "new"
+        },
+        {
+          "result": {
+            "name": "globe.production.detail.ice",
+            "iterations": 240,
+            "warmup": 60,
+            "p50_ms": 0.009267999999792664,
+            "p95_ms": 0.02771100000018123,
+            "mean_ms": 0.011267345833357468,
+            "min_ms": 0.005402000000231055
+          },
+          "status": "new"
+        },
+        {
+          "result": {
+            "name": "globe.production.detail.land",
+            "iterations": 240,
+            "warmup": 60,
+            "p50_ms": 0.5221919999999045,
+            "p95_ms": 0.9313409999999749,
+            "mean_ms": 0.5258774625000039,
+            "min_ms": 0.1197119999997085
+          },
+          "status": "new"
+        },
+        {
+          "result": {
+            "name": "globe.production.motion.rotate.all",
+            "iterations": 240,
+            "warmup": 60,
+            "p50_ms": 0.29033999999955995,
+            "p95_ms": 0.41614099999969767,
+            "mean_ms": 0.30179719999997967,
+            "min_ms": 0.1922589999999218
+          },
+          "status": "ok"
+        },
+        {
+          "result": {
+            "name": "globe.production.motion.rotate.borders",
+            "iterations": 240,
+            "warmup": 60,
+            "p50_ms": 0.05894200000011551,
+            "p95_ms": 0.11255600000004051,
+            "mean_ms": 0.06009838333333543,
+            "min_ms": 0.022290999999768246
+          },
+          "status": "new"
+        },
+        {
+          "result": {
+            "name": "globe.production.motion.rotate.highlight",
+            "iterations": 240,
+            "warmup": 60,
+            "p50_ms": 0.00760199999967881,
+            "p95_ms": 0.015257000000019616,
+            "mean_ms": 0.007848724999992859,
+            "min_ms": 0.0022559999997611158
+          },
+          "status": "new"
+        },
+        {
+          "result": {
+            "name": "globe.production.motion.rotate.ice",
+            "iterations": 240,
+            "warmup": 60,
+            "p50_ms": 0.018461000000115746,
+            "p95_ms": 0.037565000000086,
+            "mean_ms": 0.02120902083333552,
+            "min_ms": 0.009600000000318687
+          },
+          "status": "new"
+        },
+        {
+          "result": {
+            "name": "globe.production.motion.rotate.land",
+            "iterations": 240,
+            "warmup": 60,
+            "p50_ms": 0.23375799999985247,
+            "p95_ms": 0.4533059999998841,
+            "mean_ms": 0.2573296083333408,
+            "min_ms": 0.13960199999974066
+          },
+          "status": "new"
+        },
+        {
+          "result": {
+            "name": "globe.production.overview.all",
+            "iterations": 240,
+            "warmup": 60,
+            "p50_ms": 5.82522599999993,
+            "p95_ms": 7.256796000000577,
+            "mean_ms": 5.700414258333325,
+            "min_ms": 3.6350149999998393
+          },
+          "status": "ok"
+        },
+        {
+          "result": {
+            "name": "globe.production.overview.borders",
+            "iterations": 240,
+            "warmup": 60,
+            "p50_ms": 0.5855570000003354,
+            "p95_ms": 0.9087719999997717,
+            "mean_ms": 0.5674440624999647,
+            "min_ms": 0.19982699999945908
+          },
+          "status": "new"
+        },
+        {
+          "result": {
+            "name": "globe.production.overview.highlight",
+            "iterations": 240,
+            "warmup": 60,
+            "p50_ms": 0.17030700000032084,
+            "p95_ms": 0.5809730000000854,
+            "mean_ms": 0.20024359166674988,
+            "min_ms": 0.025583999999980733
+          },
+          "status": "new"
+        },
+        {
+          "result": {
+            "name": "globe.production.overview.ice",
+            "iterations": 240,
+            "warmup": 60,
+            "p50_ms": 0.3688210000000254,
+            "p95_ms": 0.8155630000001111,
+            "mean_ms": 0.4274025500000031,
+            "min_ms": 0.23988399999961985
+          },
+          "status": "new"
+        },
+        {
+          "result": {
+            "name": "globe.production.overview.land",
+            "iterations": 240,
+            "warmup": 60,
+            "p50_ms": 4.480862999999772,
+            "p95_ms": 6.2556469999999536,
+            "mean_ms": 4.428516504166642,
+            "min_ms": 2.6825330000001486
+          },
+          "status": "new"
+        },
+        {
+          "result": {
+            "name": "globe.production.regional.all",
+            "iterations": 240,
+            "warmup": 60,
+            "p50_ms": 1.9416400000000067,
+            "p95_ms": 3.646332000000257,
+            "mean_ms": 2.1590163250000196,
+            "min_ms": 1.31236699999954
+          },
+          "status": "ok"
+        },
+        {
+          "result": {
+            "name": "globe.production.regional.borders",
+            "iterations": 240,
+            "warmup": 60,
+            "p50_ms": 0.3713710000001811,
+            "p95_ms": 0.7757419999998092,
+            "mean_ms": 0.35033862083337985,
+            "min_ms": 0.00817300000016985
+          },
+          "status": "new"
+        },
+        {
+          "result": {
+            "name": "globe.production.regional.highlight",
+            "iterations": 240,
+            "warmup": 60,
+            "p50_ms": 0.5683619999999792,
+            "p95_ms": 0.8749079999997775,
+            "mean_ms": 0.468000699999997,
+            "min_ms": 0.07291900000018359
+          },
+          "status": "new"
+        },
+        {
+          "result": {
+            "name": "globe.production.regional.ice",
+            "iterations": 240,
+            "warmup": 60,
+            "p50_ms": 0.006075999999666237,
+            "p95_ms": 0.029285999999956402,
+            "mean_ms": 0.010357749999980116,
+            "min_ms": 0.005549999999857391
+          },
+          "status": "new"
+        },
+        {
+          "result": {
+            "name": "globe.production.regional.land",
+            "iterations": 240,
+            "warmup": 60,
+            "p50_ms": 1.2057939999995142,
+            "p95_ms": 3.381484999999884,
+            "mean_ms": 1.510704112499991,
+            "min_ms": 0.5467610000014247
+          },
+          "status": "new"
+        },
+        {
+          "result": {
+            "name": "globe.production.motion.zoom.all",
+            "iterations": 240,
+            "warmup": 60,
+            "p50_ms": 0.2640559999999823,
+            "p95_ms": 0.4323549999990064,
+            "mean_ms": 0.24375665833327578,
+            "min_ms": 0.06627300000036485
+          },
+          "status": "ok"
+        }
+      ]
+    }
+  }
+}

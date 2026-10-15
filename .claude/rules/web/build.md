@@ -60,8 +60,10 @@ shared helpers are indexed in `.claude/rules/shared-modules.md`.
 - `map-page` and `doc-page` bodies load with `headCommonDark`: they are dark
   whatever the reader prefers, so they state one `theme-color`.
 - MapLibre stays out of the island bundle (`externalMapLibre`,
-  `scripts/build/islands.js`). `copyMapLibreRuntime` copies its three `.mjs`
-  files; a missing one is a black map and no error.
+  `scripts/build/islands.js`). `copyMapLibreRuntime` copies its two `.mjs`
+  files, the engine and the worker; a missing one is a black map and no error.
+  The engine's URL carries `MAPLIBRE_V`, in the bundle and the page's
+  modulepreload: an island must never meet a cached engine of another version.
 - The `/^[a-z0-9-]+$/` test in `public/island-loader.js` stays: the name
   reaches `import()` as a URL segment.
 - `@shared` means `shared/` in `islands.js`, `island-bundle.js` and both

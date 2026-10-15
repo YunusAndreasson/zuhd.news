@@ -1,0 +1,2979 @@
+{
+  "runs": [
+    {
+      "variant": "candidate",
+      "samples": [
+        {
+          "mode": "cold",
+          "tier": "motion",
+          "stages": [
+            {
+              "name": "first-frame",
+              "ms": 30.343876999999964
+            },
+            {
+              "name": "cached-frame",
+              "ms": 4.222892999999999
+            }
+          ],
+          "commands": 2736,
+          "checksum": 1177374.460525932,
+          "before": {
+            "heapUsed": 11076824,
+            "external": 5057716,
+            "arrayBuffers": 2406659,
+            "rss": 100151296
+          },
+          "after": {
+            "heapUsed": 14584584,
+            "external": 5205402,
+            "arrayBuffers": 2488715,
+            "rss": 108515328
+          }
+        },
+        {
+          "mode": "staged",
+          "tier": "motion",
+          "stages": [
+            {
+              "name": "asset",
+              "ms": 1.5614739999999756
+            },
+            {
+              "name": "decode",
+              "ms": 8.332951999999977
+            },
+            {
+              "name": "land",
+              "ms": 5.290451999999959
+            },
+            {
+              "name": "borders",
+              "ms": 0.6005250000000046
+            },
+            {
+              "name": "ice",
+              "ms": 0.4004860000000008
+            },
+            {
+              "name": "first-frame",
+              "ms": 7.728165999999987
+            },
+            {
+              "name": "cached-frame",
+              "ms": 4.294634999999971
+            }
+          ],
+          "commands": 2736,
+          "checksum": 1177374.460525932,
+          "before": {
+            "heapUsed": 10859896,
+            "external": 4992116,
+            "arrayBuffers": 2341043,
+            "rss": 85078016
+          },
+          "after": {
+            "heapUsed": 14347104,
+            "external": 5139802,
+            "arrayBuffers": 2423099,
+            "rss": 94011392
+          }
+        },
+        {
+          "mode": "cold",
+          "tier": "overview",
+          "stages": [
+            {
+              "name": "first-frame",
+              "ms": 102.523819
+            },
+            {
+              "name": "cached-frame",
+              "ms": 10.903981999999985
+            }
+          ],
+          "commands": 35236,
+          "checksum": 13702819.15570354,
+          "before": {
+            "heapUsed": 10859800,
+            "external": 4992116,
+            "arrayBuffers": 2341043,
+            "rss": 86237184
+          },
+          "after": {
+            "heapUsed": 21399808,
+            "external": 6448834,
+            "arrayBuffers": 3732131,
+            "rss": 126763008
+          }
+        },
+        {
+          "mode": "staged",
+          "tier": "overview",
+          "stages": [
+            {
+              "name": "asset",
+              "ms": 4.124181999999962
+            },
+            {
+              "name": "decode",
+              "ms": 14.224491999999998
+            },
+            {
+              "name": "land",
+              "ms": 26.65709099999998
+            },
+            {
+              "name": "borders",
+              "ms": 1.623406999999986
+            },
+            {
+              "name": "ice",
+              "ms": 2.642088000000001
+            },
+            {
+              "name": "first-frame",
+              "ms": 43.41006999999996
+            },
+            {
+              "name": "cached-frame",
+              "ms": 11.47541000000001
+            }
+          ],
+          "commands": 35236,
+          "checksum": 13702819.15570354,
+          "before": {
+            "heapUsed": 10859776,
+            "external": 4992116,
+            "arrayBuffers": 2341043,
+            "rss": 86315008
+          },
+          "after": {
+            "heapUsed": 21450944,
+            "external": 6448834,
+            "arrayBuffers": 3732131,
+            "rss": 125902848
+          }
+        },
+        {
+          "mode": "cold",
+          "tier": "regional",
+          "stages": [
+            {
+              "name": "first-frame",
+              "ms": 142.51487300000002
+            },
+            {
+              "name": "cached-frame",
+              "ms": 11.312250000000006
+            }
+          ],
+          "commands": 15926,
+          "checksum": 7605075.744912421,
+          "before": {
+            "heapUsed": 10859944,
+            "external": 4992116,
+            "arrayBuffers": 2341043,
+            "rss": 86237184
+          },
+          "after": {
+            "heapUsed": 28193576,
+            "external": 8222050,
+            "arrayBuffers": 5505347,
+            "rss": 135880704
+          }
+        },
+        {
+          "mode": "staged",
+          "tier": "regional",
+          "stages": [
+            {
+              "name": "asset",
+              "ms": 3.8841130000000135
+            },
+            {
+              "name": "decode",
+              "ms": 36.938458000000026
+            },
+            {
+              "name": "land",
+              "ms": 44.956391999999994
+            },
+            {
+              "name": "borders",
+              "ms": 3.164798000000019
+            },
+            {
+              "name": "ice",
+              "ms": 4.21174400000001
+            },
+            {
+              "name": "first-frame",
+              "ms": 55.935201000000006
+            },
+            {
+              "name": "cached-frame",
+              "ms": 11.350995000000012
+            }
+          ],
+          "commands": 15926,
+          "checksum": 7605075.744912421,
+          "before": {
+            "heapUsed": 10859808,
+            "external": 4992116,
+            "arrayBuffers": 2341043,
+            "rss": 85667840
+          },
+          "after": {
+            "heapUsed": 28190112,
+            "external": 8222050,
+            "arrayBuffers": 5505347,
+            "rss": 135737344
+          }
+        },
+        {
+          "mode": "cold",
+          "tier": "detail",
+          "stages": [
+            {
+              "name": "first-frame",
+              "ms": 181.32360600000004
+            },
+            {
+              "name": "cached-frame",
+              "ms": 4.9210370000000125
+            }
+          ],
+          "commands": 2732,
+          "checksum": 1304080.7770388739,
+          "before": {
+            "heapUsed": 10859832,
+            "external": 4992116,
+            "arrayBuffers": 2341043,
+            "rss": 86134784
+          },
+          "after": {
+            "heapUsed": 42231280,
+            "external": 12235138,
+            "arrayBuffers": 9518435,
+            "rss": 162750464
+          }
+        },
+        {
+          "mode": "staged",
+          "tier": "detail",
+          "stages": [
+            {
+              "name": "asset",
+              "ms": 4.944644000000039
+            },
+            {
+              "name": "decode",
+              "ms": 61.66181499999999
+            },
+            {
+              "name": "land",
+              "ms": 55.678090999999995
+            },
+            {
+              "name": "borders",
+              "ms": 5.999661000000003
+            },
+            {
+              "name": "ice",
+              "ms": 4.399992999999995
+            },
+            {
+              "name": "first-frame",
+              "ms": 54.151346000000046
+            },
+            {
+              "name": "cached-frame",
+              "ms": 3.7799790000000257
+            }
+          ],
+          "commands": 2732,
+          "checksum": 1304080.7770388739,
+          "before": {
+            "heapUsed": 10860248,
+            "external": 4992116,
+            "arrayBuffers": 2341043,
+            "rss": 85315584
+          },
+          "after": {
+            "heapUsed": 42217480,
+            "external": 12235138,
+            "arrayBuffers": 9518435,
+            "rss": 156327936
+          }
+        }
+      ]
+    },
+    {
+      "variant": "reference",
+      "samples": [
+        {
+          "mode": "cold",
+          "tier": "motion",
+          "stages": [
+            {
+              "name": "first-frame",
+              "ms": 29.365724
+            },
+            {
+              "name": "cached-frame",
+              "ms": 1.2506440000000225
+            }
+          ],
+          "commands": 2736,
+          "checksum": 1177374.460525932,
+          "before": {
+            "heapUsed": 10854688,
+            "external": 4992116,
+            "arrayBuffers": 2341043,
+            "rss": 85606400
+          },
+          "after": {
+            "heapUsed": 14605144,
+            "external": 5139802,
+            "arrayBuffers": 2423099,
+            "rss": 94011392
+          }
+        },
+        {
+          "mode": "staged",
+          "tier": "motion",
+          "stages": [
+            {
+              "name": "asset",
+              "ms": 1.85223000000002
+            },
+            {
+              "name": "decode",
+              "ms": 7.486499999999978
+            },
+            {
+              "name": "land",
+              "ms": 5.831859000000009
+            },
+            {
+              "name": "borders",
+              "ms": 5.336226000000011
+            },
+            {
+              "name": "ice",
+              "ms": 0.6121079999999779
+            },
+            {
+              "name": "first-frame",
+              "ms": 10.150345000000016
+            },
+            {
+              "name": "cached-frame",
+              "ms": 2.238695000000007
+            }
+          ],
+          "commands": 2736,
+          "checksum": 1177374.460525932,
+          "before": {
+            "heapUsed": 10854632,
+            "external": 4992116,
+            "arrayBuffers": 2341043,
+            "rss": 86118400
+          },
+          "after": {
+            "heapUsed": 14608088,
+            "external": 5139802,
+            "arrayBuffers": 2423099,
+            "rss": 95801344
+          }
+        },
+        {
+          "mode": "cold",
+          "tier": "overview",
+          "stages": [
+            {
+              "name": "first-frame",
+              "ms": 109.70563599999997
+            },
+            {
+              "name": "cached-frame",
+              "ms": 12.433665000000019
+            }
+          ],
+          "commands": 35236,
+          "checksum": 13702819.15570354,
+          "before": {
+            "heapUsed": 10855160,
+            "external": 4992116,
+            "arrayBuffers": 2341043,
+            "rss": 85786624
+          },
+          "after": {
+            "heapUsed": 24629408,
+            "external": 6448834,
+            "arrayBuffers": 3732131,
+            "rss": 130449408
+          }
+        },
+        {
+          "mode": "staged",
+          "tier": "overview",
+          "stages": [
+            {
+              "name": "asset",
+              "ms": 3.0442069999999717
+            },
+            {
+              "name": "decode",
+              "ms": 11.597573000000011
+            },
+            {
+              "name": "land",
+              "ms": 36.56001599999996
+            },
+            {
+              "name": "borders",
+              "ms": 8.068845999999951
+            },
+            {
+              "name": "ice",
+              "ms": 3.143511999999987
+            },
+            {
+              "name": "first-frame",
+              "ms": 46.91696000000002
+            },
+            {
+              "name": "cached-frame",
+              "ms": 12.88742400000001
+            }
+          ],
+          "commands": 35236,
+          "checksum": 13702819.15570354,
+          "before": {
+            "heapUsed": 10854768,
+            "external": 4992116,
+            "arrayBuffers": 2341043,
+            "rss": 85647360
+          },
+          "after": {
+            "heapUsed": 24632224,
+            "external": 6448834,
+            "arrayBuffers": 3732131,
+            "rss": 130220032
+          }
+        },
+        {
+          "mode": "cold",
+          "tier": "regional",
+          "stages": [
+            {
+              "name": "first-frame",
+              "ms": 148.40666
+            },
+            {
+              "name": "cached-frame",
+              "ms": 11.941835999999967
+            }
+          ],
+          "commands": 15926,
+          "checksum": 7605075.744912421,
+          "before": {
+            "heapUsed": 10854576,
+            "external": 4992116,
+            "arrayBuffers": 2341043,
+            "rss": 85618688
+          },
+          "after": {
+            "heapUsed": 36624744,
+            "external": 8222050,
+            "arrayBuffers": 5505347,
+            "rss": 153264128
+          }
+        },
+        {
+          "mode": "staged",
+          "tier": "regional",
+          "stages": [
+            {
+              "name": "asset",
+              "ms": 3.719838999999979
+            },
+            {
+              "name": "decode",
+              "ms": 31.307739999999967
+            },
+            {
+              "name": "land",
+              "ms": 53.11989399999999
+            },
+            {
+              "name": "borders",
+              "ms": 16.40856199999996
+            },
+            {
+              "name": "ice",
+              "ms": 2.39372800000001
+            },
+            {
+              "name": "first-frame",
+              "ms": 44.83709799999997
+            },
+            {
+              "name": "cached-frame",
+              "ms": 11.064395000000047
+            }
+          ],
+          "commands": 15926,
+          "checksum": 7605075.744912421,
+          "before": {
+            "heapUsed": 10855136,
+            "external": 4992116,
+            "arrayBuffers": 2341043,
+            "rss": 85008384
+          },
+          "after": {
+            "heapUsed": 36621776,
+            "external": 8222050,
+            "arrayBuffers": 5505347,
+            "rss": 152367104
+          }
+        },
+        {
+          "mode": "cold",
+          "tier": "detail",
+          "stages": [
+            {
+              "name": "first-frame",
+              "ms": 237.614688
+            },
+            {
+              "name": "cached-frame",
+              "ms": 6.964773999999977
+            }
+          ],
+          "commands": 2732,
+          "checksum": 1304080.7770388739,
+          "before": {
+            "heapUsed": 10856344,
+            "external": 4992116,
+            "arrayBuffers": 2341043,
+            "rss": 85155840
+          },
+          "after": {
+            "heapUsed": 61654856,
+            "external": 12235138,
+            "arrayBuffers": 9518435,
+            "rss": 202743808
+          }
+        },
+        {
+          "mode": "staged",
+          "tier": "detail",
+          "stages": [
+            {
+              "name": "asset",
+              "ms": 5.265730000000019
+            },
+            {
+              "name": "decode",
+              "ms": 48.124595
+            },
+            {
+              "name": "land",
+              "ms": 76.81424300000003
+            },
+            {
+              "name": "borders",
+              "ms": 13.816087000000039
+            },
+            {
+              "name": "ice",
+              "ms": 16.623767999999984
+            },
+            {
+              "name": "first-frame",
+              "ms": 65.78643600000004
+            },
+            {
+              "name": "cached-frame",
+              "ms": 3.6149279999999635
+            }
+          ],
+          "commands": 2732,
+          "checksum": 1304080.7770388739,
+          "before": {
+            "heapUsed": 10855128,
+            "external": 4992116,
+            "arrayBuffers": 2341043,
+            "rss": 86036480
+          },
+          "after": {
+            "heapUsed": 61655072,
+            "external": 12235138,
+            "arrayBuffers": 9518435,
+            "rss": 212402176
+          }
+        }
+      ]
+    },
+    {
+      "variant": "reference",
+      "samples": [
+        {
+          "mode": "cold",
+          "tier": "motion",
+          "stages": [
+            {
+              "name": "first-frame",
+              "ms": 29.475720000000024
+            },
+            {
+              "name": "cached-frame",
+              "ms": 1.6475709999999708
+            }
+          ],
+          "commands": 2736,
+          "checksum": 1177374.460525932,
+          "before": {
+            "heapUsed": 10854848,
+            "external": 4992116,
+            "arrayBuffers": 2341043,
+            "rss": 85630976
+          },
+          "after": {
+            "heapUsed": 14603952,
+            "external": 5139802,
+            "arrayBuffers": 2423099,
+            "rss": 95055872
+          }
+        },
+        {
+          "mode": "staged",
+          "tier": "motion",
+          "stages": [
+            {
+              "name": "asset",
+              "ms": 2.1151009999999815
+            },
+            {
+              "name": "decode",
+              "ms": 8.499613999999951
+            },
+            {
+              "name": "land",
+              "ms": 8.431887000000017
+            },
+            {
+              "name": "borders",
+              "ms": 5.96722699999998
+            },
+            {
+              "name": "ice",
+              "ms": 0.7250530000000026
+            },
+            {
+              "name": "first-frame",
+              "ms": 13.857709
+            },
+            {
+              "name": "cached-frame",
+              "ms": 2.388454999999965
+            }
+          ],
+          "commands": 2736,
+          "checksum": 1177374.460525932,
+          "before": {
+            "heapUsed": 10854832,
+            "external": 4992116,
+            "arrayBuffers": 2341043,
+            "rss": 86138880
+          },
+          "after": {
+            "heapUsed": 14608464,
+            "external": 5139802,
+            "arrayBuffers": 2423099,
+            "rss": 95907840
+          }
+        },
+        {
+          "mode": "cold",
+          "tier": "overview",
+          "stages": [
+            {
+              "name": "first-frame",
+              "ms": 97.08455699999996
+            },
+            {
+              "name": "cached-frame",
+              "ms": 11.382213999999976
+            }
+          ],
+          "commands": 35236,
+          "checksum": 13702819.15570354,
+          "before": {
+            "heapUsed": 10854744,
+            "external": 4992116,
+            "arrayBuffers": 2341043,
+            "rss": 84848640
+          },
+          "after": {
+            "heapUsed": 24604120,
+            "external": 6448834,
+            "arrayBuffers": 3732131,
+            "rss": 131305472
+          }
+        },
+        {
+          "mode": "staged",
+          "tier": "overview",
+          "stages": [
+            {
+              "name": "asset",
+              "ms": 3.595821000000001
+            },
+            {
+              "name": "decode",
+              "ms": 11.290524000000005
+            },
+            {
+              "name": "land",
+              "ms": 30.659065
+            },
+            {
+              "name": "borders",
+              "ms": 7.409165999999971
+            },
+            {
+              "name": "ice",
+              "ms": 6.847982000000002
+            },
+            {
+              "name": "first-frame",
+              "ms": 33.90191299999998
+            },
+            {
+              "name": "cached-frame",
+              "ms": 9.243481999999972
+            }
+          ],
+          "commands": 35236,
+          "checksum": 13702819.15570354,
+          "before": {
+            "heapUsed": 10854872,
+            "external": 4992116,
+            "arrayBuffers": 2341043,
+            "rss": 85757952
+          },
+          "after": {
+            "heapUsed": 24680488,
+            "external": 6448834,
+            "arrayBuffers": 3732131,
+            "rss": 130883584
+          }
+        },
+        {
+          "mode": "cold",
+          "tier": "regional",
+          "stages": [
+            {
+              "name": "first-frame",
+              "ms": 146.60075900000004
+            },
+            {
+              "name": "cached-frame",
+              "ms": 10.01122700000002
+            }
+          ],
+          "commands": 15926,
+          "checksum": 7605075.744912421,
+          "before": {
+            "heapUsed": 10855088,
+            "external": 4992116,
+            "arrayBuffers": 2341043,
+            "rss": 86155264
+          },
+          "after": {
+            "heapUsed": 36614752,
+            "external": 8222050,
+            "arrayBuffers": 5505347,
+            "rss": 155590656
+          }
+        },
+        {
+          "mode": "staged",
+          "tier": "regional",
+          "stages": [
+            {
+              "name": "asset",
+              "ms": 3.618900999999994
+            },
+            {
+              "name": "decode",
+              "ms": 30.522357
+            },
+            {
+              "name": "land",
+              "ms": 57.787711
+            },
+            {
+              "name": "borders",
+              "ms": 14.011369000000002
+            },
+            {
+              "name": "ice",
+              "ms": 2.8385220000000118
+            },
+            {
+              "name": "first-frame",
+              "ms": 51.64932900000002
+            },
+            {
+              "name": "cached-frame",
+              "ms": 9.501661000000013
+            }
+          ],
+          "commands": 15926,
+          "checksum": 7605075.744912421,
+          "before": {
+            "heapUsed": 10854552,
+            "external": 4992116,
+            "arrayBuffers": 2341043,
+            "rss": 85983232
+          },
+          "after": {
+            "heapUsed": 36628632,
+            "external": 8222050,
+            "arrayBuffers": 5505347,
+            "rss": 156356608
+          }
+        },
+        {
+          "mode": "cold",
+          "tier": "detail",
+          "stages": [
+            {
+              "name": "first-frame",
+              "ms": 238.59692199999995
+            },
+            {
+              "name": "cached-frame",
+              "ms": 4.079808999999955
+            }
+          ],
+          "commands": 2732,
+          "checksum": 1304080.7770388739,
+          "before": {
+            "heapUsed": 10855280,
+            "external": 4992116,
+            "arrayBuffers": 2341043,
+            "rss": 85618688
+          },
+          "after": {
+            "heapUsed": 61646984,
+            "external": 12235138,
+            "arrayBuffers": 9518435,
+            "rss": 210530304
+          }
+        },
+        {
+          "mode": "staged",
+          "tier": "detail",
+          "stages": [
+            {
+              "name": "asset",
+              "ms": 5.801035999999954
+            },
+            {
+              "name": "decode",
+              "ms": 46.008916
+            },
+            {
+              "name": "land",
+              "ms": 93.510784
+            },
+            {
+              "name": "borders",
+              "ms": 10.749841000000004
+            },
+            {
+              "name": "ice",
+              "ms": 3.5260660000000144
+            },
+            {
+              "name": "first-frame",
+              "ms": 61.67598400000003
+            },
+            {
+              "name": "cached-frame",
+              "ms": 3.2929439999999772
+            }
+          ],
+          "commands": 2732,
+          "checksum": 1304080.7770388739,
+          "before": {
+            "heapUsed": 10854872,
+            "external": 4992116,
+            "arrayBuffers": 2341043,
+            "rss": 85999616
+          },
+          "after": {
+            "heapUsed": 61674464,
+            "external": 12235138,
+            "arrayBuffers": 9518435,
+            "rss": 205725696
+          }
+        }
+      ]
+    },
+    {
+      "variant": "candidate",
+      "samples": [
+        {
+          "mode": "cold",
+          "tier": "motion",
+          "stages": [
+            {
+              "name": "first-frame",
+              "ms": 23.732707000000005
+            },
+            {
+              "name": "cached-frame",
+              "ms": 3.212995000000035
+            }
+          ],
+          "commands": 2736,
+          "checksum": 1177374.460525932,
+          "before": {
+            "heapUsed": 10860936,
+            "external": 4992116,
+            "arrayBuffers": 2341043,
+            "rss": 85827584
+          },
+          "after": {
+            "heapUsed": 14345216,
+            "external": 5139802,
+            "arrayBuffers": 2423099,
+            "rss": 94715904
+          }
+        },
+        {
+          "mode": "staged",
+          "tier": "motion",
+          "stages": [
+            {
+              "name": "asset",
+              "ms": 1.5769859999999767
+            },
+            {
+              "name": "decode",
+              "ms": 8.345315999999968
+            },
+            {
+              "name": "land",
+              "ms": 6.662061999999992
+            },
+            {
+              "name": "borders",
+              "ms": 1.0819189999999708
+            },
+            {
+              "name": "ice",
+              "ms": 0.6952420000000075
+            },
+            {
+              "name": "first-frame",
+              "ms": 8.340642000000003
+            },
+            {
+              "name": "cached-frame",
+              "ms": 4.910391000000004
+            }
+          ],
+          "commands": 2736,
+          "checksum": 1177374.460525932,
+          "before": {
+            "heapUsed": 10859776,
+            "external": 4992116,
+            "arrayBuffers": 2341043,
+            "rss": 84901888
+          },
+          "after": {
+            "heapUsed": 14346616,
+            "external": 5139802,
+            "arrayBuffers": 2423099,
+            "rss": 94593024
+          }
+        },
+        {
+          "mode": "cold",
+          "tier": "overview",
+          "stages": [
+            {
+              "name": "first-frame",
+              "ms": 85.17149999999998
+            },
+            {
+              "name": "cached-frame",
+              "ms": 9.751835000000028
+            }
+          ],
+          "commands": 35236,
+          "checksum": 13702819.15570354,
+          "before": {
+            "heapUsed": 10859704,
+            "external": 4992116,
+            "arrayBuffers": 2341043,
+            "rss": 86048768
+          },
+          "after": {
+            "heapUsed": 21409784,
+            "external": 6448834,
+            "arrayBuffers": 3732131,
+            "rss": 126246912
+          }
+        },
+        {
+          "mode": "staged",
+          "tier": "overview",
+          "stages": [
+            {
+              "name": "asset",
+              "ms": 2.9516249999999786
+            },
+            {
+              "name": "decode",
+              "ms": 13.210473999999977
+            },
+            {
+              "name": "land",
+              "ms": 27.130090999999993
+            },
+            {
+              "name": "borders",
+              "ms": 1.5628069999999639
+            },
+            {
+              "name": "ice",
+              "ms": 2.5854640000000018
+            },
+            {
+              "name": "first-frame",
+              "ms": 51.99664799999999
+            },
+            {
+              "name": "cached-frame",
+              "ms": 11.359533999999996
+            }
+          ],
+          "commands": 35236,
+          "checksum": 13702819.15570354,
+          "before": {
+            "heapUsed": 10859640,
+            "external": 4992116,
+            "arrayBuffers": 2341043,
+            "rss": 85614592
+          },
+          "after": {
+            "heapUsed": 21412704,
+            "external": 6448834,
+            "arrayBuffers": 3732131,
+            "rss": 126988288
+          }
+        },
+        {
+          "mode": "cold",
+          "tier": "regional",
+          "stages": [
+            {
+              "name": "first-frame",
+              "ms": 129.71982000000003
+            },
+            {
+              "name": "cached-frame",
+              "ms": 6.2526320000000055
+            }
+          ],
+          "commands": 15926,
+          "checksum": 7605075.744912421,
+          "before": {
+            "heapUsed": 10860040,
+            "external": 4992116,
+            "arrayBuffers": 2341043,
+            "rss": 84779008
+          },
+          "after": {
+            "heapUsed": 28223712,
+            "external": 8222050,
+            "arrayBuffers": 5505347,
+            "rss": 134565888
+          }
+        },
+        {
+          "mode": "staged",
+          "tier": "regional",
+          "stages": [
+            {
+              "name": "asset",
+              "ms": 3.4938720000000103
+            },
+            {
+              "name": "decode",
+              "ms": 32.286044000000004
+            },
+            {
+              "name": "land",
+              "ms": 35.738504999999975
+            },
+            {
+              "name": "borders",
+              "ms": 2.703485999999998
+            },
+            {
+              "name": "ice",
+              "ms": 3.956007999999997
+            },
+            {
+              "name": "first-frame",
+              "ms": 52.402983000000006
+            },
+            {
+              "name": "cached-frame",
+              "ms": 9.679573000000005
+            }
+          ],
+          "commands": 15926,
+          "checksum": 7605075.744912421,
+          "before": {
+            "heapUsed": 10859952,
+            "external": 4992116,
+            "arrayBuffers": 2341043,
+            "rss": 86163456
+          },
+          "after": {
+            "heapUsed": 28153344,
+            "external": 8222050,
+            "arrayBuffers": 5505347,
+            "rss": 136630272
+          }
+        },
+        {
+          "mode": "cold",
+          "tier": "detail",
+          "stages": [
+            {
+              "name": "first-frame",
+              "ms": 181.258129
+            },
+            {
+              "name": "cached-frame",
+              "ms": 4.817849000000024
+            }
+          ],
+          "commands": 2732,
+          "checksum": 1304080.7770388739,
+          "before": {
+            "heapUsed": 10859832,
+            "external": 4992116,
+            "arrayBuffers": 2341043,
+            "rss": 85536768
+          },
+          "after": {
+            "heapUsed": 42244096,
+            "external": 12235138,
+            "arrayBuffers": 9518435,
+            "rss": 166494208
+          }
+        },
+        {
+          "mode": "staged",
+          "tier": "detail",
+          "stages": [
+            {
+              "name": "asset",
+              "ms": 4.8710230000000365
+            },
+            {
+              "name": "decode",
+              "ms": 42.507555000000025
+            },
+            {
+              "name": "land",
+              "ms": 58.53112799999997
+            },
+            {
+              "name": "borders",
+              "ms": 5.548506999999972
+            },
+            {
+              "name": "ice",
+              "ms": 3.54859399999998
+            },
+            {
+              "name": "first-frame",
+              "ms": 54.94271900000001
+            },
+            {
+              "name": "cached-frame",
+              "ms": 4.065110000000004
+            }
+          ],
+          "commands": 2732,
+          "checksum": 1304080.7770388739,
+          "before": {
+            "heapUsed": 10859704,
+            "external": 4992116,
+            "arrayBuffers": 2341043,
+            "rss": 86134784
+          },
+          "after": {
+            "heapUsed": 42239096,
+            "external": 12235138,
+            "arrayBuffers": 9518435,
+            "rss": 156930048
+          }
+        }
+      ]
+    },
+    {
+      "variant": "candidate",
+      "samples": [
+        {
+          "mode": "cold",
+          "tier": "motion",
+          "stages": [
+            {
+              "name": "first-frame",
+              "ms": 24.465193
+            },
+            {
+              "name": "cached-frame",
+              "ms": 4.224503000000027
+            }
+          ],
+          "commands": 2736,
+          "checksum": 1177374.460525932,
+          "before": {
+            "heapUsed": 10860176,
+            "external": 4992116,
+            "arrayBuffers": 2341043,
+            "rss": 85069824
+          },
+          "after": {
+            "heapUsed": 14344400,
+            "external": 5139802,
+            "arrayBuffers": 2423099,
+            "rss": 94420992
+          }
+        },
+        {
+          "mode": "staged",
+          "tier": "motion",
+          "stages": [
+            {
+              "name": "asset",
+              "ms": 1.7959500000000048
+            },
+            {
+              "name": "decode",
+              "ms": 7.764792
+            },
+            {
+              "name": "land",
+              "ms": 5.1078319999999735
+            },
+            {
+              "name": "borders",
+              "ms": 0.8008969999999636
+            },
+            {
+              "name": "ice",
+              "ms": 0.5164909999999736
+            },
+            {
+              "name": "first-frame",
+              "ms": 8.219808
+            },
+            {
+              "name": "cached-frame",
+              "ms": 2.616062999999997
+            }
+          ],
+          "commands": 2736,
+          "checksum": 1177374.460525932,
+          "before": {
+            "heapUsed": 10859712,
+            "external": 4992116,
+            "arrayBuffers": 2341043,
+            "rss": 86278144
+          },
+          "after": {
+            "heapUsed": 14348088,
+            "external": 5139802,
+            "arrayBuffers": 2423099,
+            "rss": 94498816
+          }
+        },
+        {
+          "mode": "cold",
+          "tier": "overview",
+          "stages": [
+            {
+              "name": "first-frame",
+              "ms": 99.03824900000001
+            },
+            {
+              "name": "cached-frame",
+              "ms": 12.399870000000021
+            }
+          ],
+          "commands": 35236,
+          "checksum": 13702819.15570354,
+          "before": {
+            "heapUsed": 10859760,
+            "external": 4992116,
+            "arrayBuffers": 2341043,
+            "rss": 85176320
+          },
+          "after": {
+            "heapUsed": 21429704,
+            "external": 6448834,
+            "arrayBuffers": 3732131,
+            "rss": 125624320
+          }
+        },
+        {
+          "mode": "staged",
+          "tier": "overview",
+          "stages": [
+            {
+              "name": "asset",
+              "ms": 3.759079999999983
+            },
+            {
+              "name": "decode",
+              "ms": 12.537057000000004
+            },
+            {
+              "name": "land",
+              "ms": 27.012966000000006
+            },
+            {
+              "name": "borders",
+              "ms": 1.616047999999978
+            },
+            {
+              "name": "ice",
+              "ms": 2.1442469999999503
+            },
+            {
+              "name": "first-frame",
+              "ms": 46.01123999999999
+            },
+            {
+              "name": "cached-frame",
+              "ms": 10.026014999999973
+            }
+          ],
+          "commands": 35236,
+          "checksum": 13702819.15570354,
+          "before": {
+            "heapUsed": 10861256,
+            "external": 4992116,
+            "arrayBuffers": 2341043,
+            "rss": 85684224
+          },
+          "after": {
+            "heapUsed": 21426120,
+            "external": 6448834,
+            "arrayBuffers": 3732131,
+            "rss": 126287872
+          }
+        },
+        {
+          "mode": "cold",
+          "tier": "regional",
+          "stages": [
+            {
+              "name": "first-frame",
+              "ms": 127.184774
+            },
+            {
+              "name": "cached-frame",
+              "ms": 8.835039999999992
+            }
+          ],
+          "commands": 15926,
+          "checksum": 7605075.744912421,
+          "before": {
+            "heapUsed": 10860072,
+            "external": 4992116,
+            "arrayBuffers": 2341043,
+            "rss": 86740992
+          },
+          "after": {
+            "heapUsed": 28200296,
+            "external": 8222050,
+            "arrayBuffers": 5505347,
+            "rss": 136433664
+          }
+        },
+        {
+          "mode": "staged",
+          "tier": "regional",
+          "stages": [
+            {
+              "name": "asset",
+              "ms": 3.8528009999999995
+            },
+            {
+              "name": "decode",
+              "ms": 32.94688500000001
+            },
+            {
+              "name": "land",
+              "ms": 35.852171
+            },
+            {
+              "name": "borders",
+              "ms": 2.2830850000000282
+            },
+            {
+              "name": "ice",
+              "ms": 3.2682649999999853
+            },
+            {
+              "name": "first-frame",
+              "ms": 58.956826000000035
+            },
+            {
+              "name": "cached-frame",
+              "ms": 20.817408
+            }
+          ],
+          "commands": 15926,
+          "checksum": 7605075.744912421,
+          "before": {
+            "heapUsed": 10859864,
+            "external": 4992116,
+            "arrayBuffers": 2341043,
+            "rss": 85770240
+          },
+          "after": {
+            "heapUsed": 28173488,
+            "external": 8222050,
+            "arrayBuffers": 5505347,
+            "rss": 137273344
+          }
+        },
+        {
+          "mode": "cold",
+          "tier": "detail",
+          "stages": [
+            {
+              "name": "first-frame",
+              "ms": 183.39074500000004
+            },
+            {
+              "name": "cached-frame",
+              "ms": 5.748406999999986
+            }
+          ],
+          "commands": 2732,
+          "checksum": 1304080.7770388739,
+          "before": {
+            "heapUsed": 10859712,
+            "external": 4992116,
+            "arrayBuffers": 2341043,
+            "rss": 85413888
+          },
+          "after": {
+            "heapUsed": 42218728,
+            "external": 12235138,
+            "arrayBuffers": 9518435,
+            "rss": 172060672
+          }
+        },
+        {
+          "mode": "staged",
+          "tier": "detail",
+          "stages": [
+            {
+              "name": "asset",
+              "ms": 4.817271000000005
+            },
+            {
+              "name": "decode",
+              "ms": 44.45933100000002
+            },
+            {
+              "name": "land",
+              "ms": 66.04319800000002
+            },
+            {
+              "name": "borders",
+              "ms": 5.107167000000004
+            },
+            {
+              "name": "ice",
+              "ms": 4.761548000000005
+            },
+            {
+              "name": "first-frame",
+              "ms": 72.78562399999998
+            },
+            {
+              "name": "cached-frame",
+              "ms": 4.84268499999996
+            }
+          ],
+          "commands": 2732,
+          "checksum": 1304080.7770388739,
+          "before": {
+            "heapUsed": 10859696,
+            "external": 4992116,
+            "arrayBuffers": 2341043,
+            "rss": 86175744
+          },
+          "after": {
+            "heapUsed": 42220944,
+            "external": 12235138,
+            "arrayBuffers": 9518435,
+            "rss": 156917760
+          }
+        },
+        {
+          "mode": "memory",
+          "stages": [
+            {
+              "name": "exploration-0",
+              "ms": 3230.049783
+            },
+            {
+              "name": "exploration-1",
+              "ms": 2710.695645
+            },
+            {
+              "name": "exploration-2",
+              "ms": 2622.368861
+            },
+            {
+              "name": "exploration-3",
+              "ms": 2622.062308999999
+            },
+            {
+              "name": "exploration-4",
+              "ms": 2625.8246949999993
+            },
+            {
+              "name": "exploration-5",
+              "ms": 2624.499674999999
+            },
+            {
+              "name": "exploration-6",
+              "ms": 2558.7106160000003
+            }
+          ],
+          "before": {
+            "heapUsed": 10859920,
+            "external": 4992116,
+            "arrayBuffers": 2341043,
+            "rss": 86183936
+          },
+          "checkpoints": [
+            {
+              "cycle": 0,
+              "memory": {
+                "heapUsed": 90211464,
+                "external": 28497466,
+                "arrayBuffers": 25780763,
+                "rss": 268075008
+              }
+            },
+            {
+              "cycle": 1,
+              "memory": {
+                "heapUsed": 90264616,
+                "external": 28497466,
+                "arrayBuffers": 25780763,
+                "rss": 269701120
+              }
+            },
+            {
+              "cycle": 2,
+              "memory": {
+                "heapUsed": 90225864,
+                "external": 28497466,
+                "arrayBuffers": 25780763,
+                "rss": 269701120
+              }
+            },
+            {
+              "cycle": 3,
+              "memory": {
+                "heapUsed": 90226344,
+                "external": 28497466,
+                "arrayBuffers": 25780763,
+                "rss": 269701120
+              }
+            },
+            {
+              "cycle": 4,
+              "memory": {
+                "heapUsed": 90204312,
+                "external": 28497466,
+                "arrayBuffers": 25780763,
+                "rss": 262307840
+              }
+            },
+            {
+              "cycle": 5,
+              "memory": {
+                "heapUsed": 90229568,
+                "external": 28497466,
+                "arrayBuffers": 25780763,
+                "rss": 262307840
+              }
+            },
+            {
+              "cycle": 6,
+              "memory": {
+                "heapUsed": 90233936,
+                "external": 28497466,
+                "arrayBuffers": 25780763,
+                "rss": 262307840
+              }
+            }
+          ],
+          "retainedSpreadBytes": 29624,
+          "allowanceBytes": 2320132.54,
+          "selections": 7140
+        }
+      ]
+    },
+    {
+      "variant": "reference",
+      "samples": [
+        {
+          "mode": "cold",
+          "tier": "motion",
+          "stages": [
+            {
+              "name": "first-frame",
+              "ms": 33.21625700000001
+            },
+            {
+              "name": "cached-frame",
+              "ms": 1.515939000000003
+            }
+          ],
+          "commands": 2736,
+          "checksum": 1177374.460525932,
+          "before": {
+            "heapUsed": 10854560,
+            "external": 4992116,
+            "arrayBuffers": 2341043,
+            "rss": 85581824
+          },
+          "after": {
+            "heapUsed": 14603792,
+            "external": 5139802,
+            "arrayBuffers": 2423099,
+            "rss": 95219712
+          }
+        },
+        {
+          "mode": "staged",
+          "tier": "motion",
+          "stages": [
+            {
+              "name": "asset",
+              "ms": 1.560243000000014
+            },
+            {
+              "name": "decode",
+              "ms": 7.050559000000021
+            },
+            {
+              "name": "land",
+              "ms": 6.878723000000036
+            },
+            {
+              "name": "borders",
+              "ms": 3.924738999999988
+            },
+            {
+              "name": "ice",
+              "ms": 0.46014100000002145
+            },
+            {
+              "name": "first-frame",
+              "ms": 13.27606899999995
+            },
+            {
+              "name": "cached-frame",
+              "ms": 1.763182000000029
+            }
+          ],
+          "commands": 2736,
+          "checksum": 1177374.460525932,
+          "before": {
+            "heapUsed": 10854504,
+            "external": 4992116,
+            "arrayBuffers": 2341043,
+            "rss": 85893120
+          },
+          "after": {
+            "heapUsed": 14610904,
+            "external": 5139802,
+            "arrayBuffers": 2423099,
+            "rss": 95539200
+          }
+        },
+        {
+          "mode": "cold",
+          "tier": "overview",
+          "stages": [
+            {
+              "name": "first-frame",
+              "ms": 120.00010300000002
+            },
+            {
+              "name": "cached-frame",
+              "ms": 13.132505000000037
+            }
+          ],
+          "commands": 35236,
+          "checksum": 13702819.15570354,
+          "before": {
+            "heapUsed": 10854920,
+            "external": 4992116,
+            "arrayBuffers": 2341043,
+            "rss": 85450752
+          },
+          "after": {
+            "heapUsed": 24686056,
+            "external": 6448834,
+            "arrayBuffers": 3732131,
+            "rss": 130961408
+          }
+        },
+        {
+          "mode": "staged",
+          "tier": "overview",
+          "stages": [
+            {
+              "name": "asset",
+              "ms": 3.602027000000021
+            },
+            {
+              "name": "decode",
+              "ms": 13.202913000000024
+            },
+            {
+              "name": "land",
+              "ms": 31.114368000000013
+            },
+            {
+              "name": "borders",
+              "ms": 7.575730999999962
+            },
+            {
+              "name": "ice",
+              "ms": 8.278737999999976
+            },
+            {
+              "name": "first-frame",
+              "ms": 44.00156900000002
+            },
+            {
+              "name": "cached-frame",
+              "ms": 8.955857000000037
+            }
+          ],
+          "commands": 35236,
+          "checksum": 13702819.15570354,
+          "before": {
+            "heapUsed": 10854936,
+            "external": 4992116,
+            "arrayBuffers": 2341043,
+            "rss": 85794816
+          },
+          "after": {
+            "heapUsed": 24644752,
+            "external": 6448834,
+            "arrayBuffers": 3732131,
+            "rss": 130707456
+          }
+        },
+        {
+          "mode": "cold",
+          "tier": "regional",
+          "stages": [
+            {
+              "name": "first-frame",
+              "ms": 147.156771
+            },
+            {
+              "name": "cached-frame",
+              "ms": 7.739571000000012
+            }
+          ],
+          "commands": 15926,
+          "checksum": 7605075.744912421,
+          "before": {
+            "heapUsed": 10855088,
+            "external": 4992116,
+            "arrayBuffers": 2341043,
+            "rss": 85327872
+          },
+          "after": {
+            "heapUsed": 36608224,
+            "external": 8222050,
+            "arrayBuffers": 5505347,
+            "rss": 156487680
+          }
+        },
+        {
+          "mode": "staged",
+          "tier": "regional",
+          "stages": [
+            {
+              "name": "asset",
+              "ms": 4.932929999999999
+            },
+            {
+              "name": "decode",
+              "ms": 33.057191000000046
+            },
+            {
+              "name": "land",
+              "ms": 54.66914800000001
+            },
+            {
+              "name": "borders",
+              "ms": 8.784653999999989
+            },
+            {
+              "name": "ice",
+              "ms": 3.571653999999967
+            },
+            {
+              "name": "first-frame",
+              "ms": 68.280553
+            },
+            {
+              "name": "cached-frame",
+              "ms": 8.557367
+            }
+          ],
+          "commands": 15926,
+          "checksum": 7605075.744912421,
+          "before": {
+            "heapUsed": 10854864,
+            "external": 4992116,
+            "arrayBuffers": 2341043,
+            "rss": 86245376
+          },
+          "after": {
+            "heapUsed": 36587032,
+            "external": 8222050,
+            "arrayBuffers": 5505347,
+            "rss": 150798336
+          }
+        },
+        {
+          "mode": "cold",
+          "tier": "detail",
+          "stages": [
+            {
+              "name": "first-frame",
+              "ms": 250.22105700000003
+            },
+            {
+              "name": "cached-frame",
+              "ms": 4.964109000000008
+            }
+          ],
+          "commands": 2732,
+          "checksum": 1304080.7770388739,
+          "before": {
+            "heapUsed": 10854688,
+            "external": 4992116,
+            "arrayBuffers": 2341043,
+            "rss": 85803008
+          },
+          "after": {
+            "heapUsed": 61646112,
+            "external": 12235138,
+            "arrayBuffers": 9518435,
+            "rss": 212422656
+          }
+        },
+        {
+          "mode": "staged",
+          "tier": "detail",
+          "stages": [
+            {
+              "name": "asset",
+              "ms": 4.38639900000004
+            },
+            {
+              "name": "decode",
+              "ms": 44.39001300000001
+            },
+            {
+              "name": "land",
+              "ms": 94.27837799999998
+            },
+            {
+              "name": "borders",
+              "ms": 14.462967000000049
+            },
+            {
+              "name": "ice",
+              "ms": 5.764513999999963
+            },
+            {
+              "name": "first-frame",
+              "ms": 69.78617700000001
+            },
+            {
+              "name": "cached-frame",
+              "ms": 4.969424000000004
+            }
+          ],
+          "commands": 2732,
+          "checksum": 1304080.7770388739,
+          "before": {
+            "heapUsed": 10854824,
+            "external": 4992116,
+            "arrayBuffers": 2341043,
+            "rss": 85135360
+          },
+          "after": {
+            "heapUsed": 61657392,
+            "external": 12235138,
+            "arrayBuffers": 9518435,
+            "rss": 201351168
+          }
+        },
+        {
+          "mode": "memory",
+          "stages": [
+            {
+              "name": "exploration-0",
+              "ms": 3118.234656
+            },
+            {
+              "name": "exploration-1",
+              "ms": 2624.9648789999997
+            },
+            {
+              "name": "exploration-2",
+              "ms": 2623.940121999999
+            },
+            {
+              "name": "exploration-3",
+              "ms": 2639.8668620000008
+            },
+            {
+              "name": "exploration-4",
+              "ms": 2623.0282340000012
+            },
+            {
+              "name": "exploration-5",
+              "ms": 2869.964882
+            },
+            {
+              "name": "exploration-6",
+              "ms": 2582.087649000001
+            }
+          ],
+          "before": {
+            "heapUsed": 10854736,
+            "external": 4992116,
+            "arrayBuffers": 2341043,
+            "rss": 85102592
+          },
+          "checkpoints": [
+            {
+              "cycle": 0,
+              "memory": {
+                "heapUsed": 150986720,
+                "external": 28497466,
+                "arrayBuffers": 25780763,
+                "rss": 339963904
+              }
+            },
+            {
+              "cycle": 1,
+              "memory": {
+                "heapUsed": 151040776,
+                "external": 28497466,
+                "arrayBuffers": 25780763,
+                "rss": 339558400
+              }
+            },
+            {
+              "cycle": 2,
+              "memory": {
+                "heapUsed": 151002024,
+                "external": 28497466,
+                "arrayBuffers": 25780763,
+                "rss": 339820544
+              }
+            },
+            {
+              "cycle": 3,
+              "memory": {
+                "heapUsed": 151002504,
+                "external": 28497466,
+                "arrayBuffers": 25780763,
+                "rss": 339820544
+              }
+            },
+            {
+              "cycle": 4,
+              "memory": {
+                "heapUsed": 150980416,
+                "external": 28497466,
+                "arrayBuffers": 25780763,
+                "rss": 322007040
+              }
+            },
+            {
+              "cycle": 5,
+              "memory": {
+                "heapUsed": 151005672,
+                "external": 28497466,
+                "arrayBuffers": 25780763,
+                "rss": 322007040
+              }
+            },
+            {
+              "cycle": 6,
+              "memory": {
+                "heapUsed": 151010944,
+                "external": 28497466,
+                "arrayBuffers": 25780763,
+                "rss": 322007040
+              }
+            }
+          ],
+          "retainedSpreadBytes": 30528,
+          "allowanceBytes": 3535655.74,
+          "selections": 7140
+        }
+      ]
+    }
+  ],
+  "hashes": {
+    "reference": {
+      "components/globe/geography.ts": "36812b67614e090378375cf060accbb559a0066022cae620c4c55e5ed2e21281",
+      "components/globe/geography-codec.ts": "29f49601805fa61305512715a8d5fadaa22bdabcfcf1da94b6becb98915b7669"
+    },
+    "candidate": {
+      "components/globe/geography.ts": "87c503ffbe046178d58d629aa3acd78c9d5ee797c52e0e2435479701fff32745",
+      "components/globe/geography-codec.ts": "d48c393fbdca9d6c12d3e352576d5094a0b71493281a4a2ce83c08eecd0b6e93"
+    }
+  },
+  "summary": [
+    {
+      "tier": "motion",
+      "cold": {
+        "first-frame": {
+          "reference": 29.475720000000024,
+          "candidate": 24.465193,
+          "changePercent": -16.99882818808165
+        },
+        "cached-frame": {
+          "reference": 1.515939000000003,
+          "candidate": 4.222892999999999,
+          "changePercent": 178.56615602606638
+        }
+      },
+      "staged": {
+        "asset": {
+          "reference": 1.85223000000002,
+          "candidate": 1.5769859999999767,
+          "changePercent": -14.860141559095808
+        },
+        "decode": {
+          "reference": 7.486499999999978,
+          "candidate": 8.332951999999977,
+          "changePercent": 11.306378147331886
+        },
+        "land": {
+          "reference": 6.878723000000036,
+          "candidate": 5.290451999999959,
+          "changePercent": -23.089619977429944
+        },
+        "borders": {
+          "reference": 5.336226000000011,
+          "candidate": 0.8008969999999636,
+          "changePercent": -84.9913215819577
+        },
+        "ice": {
+          "reference": 0.6121079999999779,
+          "candidate": 0.5164909999999736,
+          "changePercent": -15.620936174663246
+        },
+        "first-frame": {
+          "reference": 13.27606899999995,
+          "candidate": 8.219808,
+          "changePercent": -38.085528178559244
+        },
+        "cached-frame": {
+          "reference": 2.238695000000007,
+          "candidate": 4.294634999999971,
+          "changePercent": 91.83653869776623
+        }
+      },
+      "retainedDeltaMedianBytes": {
+        "reference": 3831288,
+        "candidate": 3566336
+      }
+    },
+    {
+      "tier": "overview",
+      "cold": {
+        "first-frame": {
+          "reference": 109.70563599999997,
+          "candidate": 99.03824900000001,
+          "changePercent": -9.723645374062606
+        },
+        "cached-frame": {
+          "reference": 12.433665000000019,
+          "candidate": 10.903981999999985,
+          "changePercent": -12.302752245617299
+        }
+      },
+      "staged": {
+        "asset": {
+          "reference": 3.595821000000001,
+          "candidate": 3.759079999999983,
+          "changePercent": 4.540242687274532
+        },
+        "decode": {
+          "reference": 11.597573000000011,
+          "candidate": 13.210473999999977,
+          "changePercent": 13.907228693451334
+        },
+        "land": {
+          "reference": 31.114368000000013,
+          "candidate": 27.012966000000006,
+          "changePercent": -13.181697921680446
+        },
+        "borders": {
+          "reference": 7.575730999999962,
+          "candidate": 1.616047999999978,
+          "changePercent": -78.66809156766541
+        },
+        "ice": {
+          "reference": 6.847982000000002,
+          "candidate": 2.5854640000000018,
+          "changePercent": -62.24487739599781
+        },
+        "first-frame": {
+          "reference": 44.00156900000002,
+          "candidate": 46.01123999999999,
+          "changePercent": 4.567271226169156
+        },
+        "cached-frame": {
+          "reference": 9.243481999999972,
+          "candidate": 11.359533999999996,
+          "changePercent": 22.892368914658245
+        }
+      },
+      "retainedDeltaMedianBytes": {
+        "reference": 15165336,
+        "candidate": 11941168
+      }
+    },
+    {
+      "tier": "regional",
+      "cold": {
+        "first-frame": {
+          "reference": 147.156771,
+          "candidate": 129.71982000000003,
+          "changePercent": -11.849234582620715
+        },
+        "cached-frame": {
+          "reference": 10.01122700000002,
+          "candidate": 8.835039999999992,
+          "changePercent": -11.748679757236802
+        }
+      },
+      "staged": {
+        "asset": {
+          "reference": 3.719838999999979,
+          "candidate": 3.8528009999999995,
+          "changePercent": 3.5744020104101493
+        },
+        "decode": {
+          "reference": 31.307739999999967,
+          "candidate": 32.94688500000001,
+          "changePercent": 5.23559030450631
+        },
+        "land": {
+          "reference": 54.66914800000001,
+          "candidate": 35.852171,
+          "changePercent": -34.41973706998325
+        },
+        "borders": {
+          "reference": 14.011369000000002,
+          "candidate": 2.703485999999998,
+          "changePercent": -80.70505458817053
+        },
+        "ice": {
+          "reference": 2.8385220000000118,
+          "candidate": 3.956007999999997,
+          "changePercent": 39.368586891346304
+        },
+        "first-frame": {
+          "reference": 51.64932900000002,
+          "candidate": 55.935201000000006,
+          "changePercent": 8.298020677093376
+        },
+        "cached-frame": {
+          "reference": 9.501661000000013,
+          "candidate": 11.350995000000012,
+          "changePercent": 19.463270684988608
+        }
+      },
+      "retainedDeltaMedianBytes": {
+        "reference": 28923968,
+        "candidate": 20504528
+      }
+    },
+    {
+      "tier": "detail",
+      "cold": {
+        "first-frame": {
+          "reference": 238.59692199999995,
+          "candidate": 181.32360600000004,
+          "changePercent": -24.00421410297988
+        },
+        "cached-frame": {
+          "reference": 4.964109000000008,
+          "candidate": 4.9210370000000125,
+          "changePercent": -0.8676682965663152
+        }
+      },
+      "staged": {
+        "asset": {
+          "reference": 5.265730000000019,
+          "candidate": 4.8710230000000365,
+          "changePercent": -7.495769817289933
+        },
+        "decode": {
+          "reference": 46.008916,
+          "candidate": 44.45933100000002,
+          "changePercent": -3.3680102352334873
+        },
+        "land": {
+          "reference": 93.510784,
+          "candidate": 58.53112799999997,
+          "changePercent": -37.40708237458477
+        },
+        "borders": {
+          "reference": 13.816087000000039,
+          "candidate": 5.548506999999972,
+          "changePercent": -59.84024275469635
+        },
+        "ice": {
+          "reference": 5.764513999999963,
+          "candidate": 4.399992999999995,
+          "changePercent": -23.671050152709782
+        },
+        "first-frame": {
+          "reference": 65.78643600000004,
+          "candidate": 54.94271900000001,
+          "changePercent": -16.483210916001013
+        },
+        "cached-frame": {
+          "reference": 3.6149279999999635,
+          "candidate": 4.065110000000004,
+          "changePercent": 12.453415393060263
+        }
+      },
+      "retainedDeltaMedianBytes": {
+        "reference": 57969096,
+        "candidate": 38548840
+      }
+    }
+  ],
+  "memory": {
+    "candidate": {
+      "mode": "memory",
+      "stages": [
+        {
+          "name": "exploration-0",
+          "ms": 3230.049783
+        },
+        {
+          "name": "exploration-1",
+          "ms": 2710.695645
+        },
+        {
+          "name": "exploration-2",
+          "ms": 2622.368861
+        },
+        {
+          "name": "exploration-3",
+          "ms": 2622.062308999999
+        },
+        {
+          "name": "exploration-4",
+          "ms": 2625.8246949999993
+        },
+        {
+          "name": "exploration-5",
+          "ms": 2624.499674999999
+        },
+        {
+          "name": "exploration-6",
+          "ms": 2558.7106160000003
+        }
+      ],
+      "before": {
+        "heapUsed": 10859920,
+        "external": 4992116,
+        "arrayBuffers": 2341043,
+        "rss": 86183936
+      },
+      "checkpoints": [
+        {
+          "cycle": 0,
+          "memory": {
+            "heapUsed": 90211464,
+            "external": 28497466,
+            "arrayBuffers": 25780763,
+            "rss": 268075008
+          }
+        },
+        {
+          "cycle": 1,
+          "memory": {
+            "heapUsed": 90264616,
+            "external": 28497466,
+            "arrayBuffers": 25780763,
+            "rss": 269701120
+          }
+        },
+        {
+          "cycle": 2,
+          "memory": {
+            "heapUsed": 90225864,
+            "external": 28497466,
+            "arrayBuffers": 25780763,
+            "rss": 269701120
+          }
+        },
+        {
+          "cycle": 3,
+          "memory": {
+            "heapUsed": 90226344,
+            "external": 28497466,
+            "arrayBuffers": 25780763,
+            "rss": 269701120
+          }
+        },
+        {
+          "cycle": 4,
+          "memory": {
+            "heapUsed": 90204312,
+            "external": 28497466,
+            "arrayBuffers": 25780763,
+            "rss": 262307840
+          }
+        },
+        {
+          "cycle": 5,
+          "memory": {
+            "heapUsed": 90229568,
+            "external": 28497466,
+            "arrayBuffers": 25780763,
+            "rss": 262307840
+          }
+        },
+        {
+          "cycle": 6,
+          "memory": {
+            "heapUsed": 90233936,
+            "external": 28497466,
+            "arrayBuffers": 25780763,
+            "rss": 262307840
+          }
+        }
+      ],
+      "retainedSpreadBytes": 29624,
+      "allowanceBytes": 2320132.54,
+      "selections": 7140
+    },
+    "reference": {
+      "mode": "memory",
+      "stages": [
+        {
+          "name": "exploration-0",
+          "ms": 3118.234656
+        },
+        {
+          "name": "exploration-1",
+          "ms": 2624.9648789999997
+        },
+        {
+          "name": "exploration-2",
+          "ms": 2623.940121999999
+        },
+        {
+          "name": "exploration-3",
+          "ms": 2639.8668620000008
+        },
+        {
+          "name": "exploration-4",
+          "ms": 2623.0282340000012
+        },
+        {
+          "name": "exploration-5",
+          "ms": 2869.964882
+        },
+        {
+          "name": "exploration-6",
+          "ms": 2582.087649000001
+        }
+      ],
+      "before": {
+        "heapUsed": 10854736,
+        "external": 4992116,
+        "arrayBuffers": 2341043,
+        "rss": 85102592
+      },
+      "checkpoints": [
+        {
+          "cycle": 0,
+          "memory": {
+            "heapUsed": 150986720,
+            "external": 28497466,
+            "arrayBuffers": 25780763,
+            "rss": 339963904
+          }
+        },
+        {
+          "cycle": 1,
+          "memory": {
+            "heapUsed": 151040776,
+            "external": 28497466,
+            "arrayBuffers": 25780763,
+            "rss": 339558400
+          }
+        },
+        {
+          "cycle": 2,
+          "memory": {
+            "heapUsed": 151002024,
+            "external": 28497466,
+            "arrayBuffers": 25780763,
+            "rss": 339820544
+          }
+        },
+        {
+          "cycle": 3,
+          "memory": {
+            "heapUsed": 151002504,
+            "external": 28497466,
+            "arrayBuffers": 25780763,
+            "rss": 339820544
+          }
+        },
+        {
+          "cycle": 4,
+          "memory": {
+            "heapUsed": 150980416,
+            "external": 28497466,
+            "arrayBuffers": 25780763,
+            "rss": 322007040
+          }
+        },
+        {
+          "cycle": 5,
+          "memory": {
+            "heapUsed": 151005672,
+            "external": 28497466,
+            "arrayBuffers": 25780763,
+            "rss": 322007040
+          }
+        },
+        {
+          "cycle": 6,
+          "memory": {
+            "heapUsed": 151010944,
+            "external": 28497466,
+            "arrayBuffers": 25780763,
+            "rss": 322007040
+          }
+        }
+      ],
+      "retainedSpreadBytes": 30528,
+      "allowanceBytes": 3535655.74,
+      "selections": 7140
+    }
+  },
+  "methodology": {
+    "order": ["candidate", "reference", "reference", "candidate", "candidate", "reference"],
+    "runtime": "v26.11.1",
+    "samples": "Three fresh processes per variant, tier and cold/staged mode. One 7140-selection memory exploration per variant. Baseline from previous lifecycle report additionally has three independent stable reference explorations.",
+    "assertions": "All cold and staged path counts/checksums agree across variants and repeats. Every point checked finite. Retained memory plateau asserted after two full passes.",
+    "scope": "V8 geometry only. Module import, Hermes, React, Skia/native memory and on-device frame times excluded. Validation sink adds overhead. Cached-frame redraws JS layers, not MiniGlobe SkPath cache.",
+    "assetControl": "Both variants use the same regenerated assets; only border arc indices added, existing fields verified against git HEAD as identical. Border stitching runs at runtime in reference; generation time in candidate."
+  },
+  "sourceHashes": {
+    "components/globe/geography.ts": "87c503ffbe046178d58d629aa3acd78c9d5ee797c52e0e2435479701fff32745",
+    "components/globe/geography-codec.ts": "d48c393fbdca9d6c12d3e352576d5094a0b71493281a4a2ce83c08eecd0b6e93",
+    "scripts/generate-globe-geography.mjs": "48b642d88a510ea00c876fddad5b449ca183ff45b7afac2698e6013d8b9180a1",
+    "perf/check-geography-lifecycle.ts": "d604ad685aa7fa33eeeaf96ccb90418a077b57a1eb5758417dcdad346c8753f1",
+    "assets/geo/countries-motion.json": "c3c10fbcb0002703cc739e1f0498ca93108cd8fd12869774db8e122e88ad895f",
+    "assets/geo/countries-overview.json": "47e5758eda45837ef12ebd8382c55292e369cd64f3b8d062ada46a03b0f06000",
+    "assets/geo/countries-regional.json": "fa3d9288665f5d2ad4ebee139f0afd5074f94d9084bda97cb16692a3233c2368",
+    "assets/geo/countries-detail.json": "ece48cce788e622291e91a16a27348806507d8757581d5ce54def005512436d1"
+  },
+  "decision": {
+    "kept": true,
+    "change": "Decode longitude/latitude coordinates once and share them across feature assembly. Generate quantized border stitching as arc indices in assets to preserve exact existing border order and avoid runtime stitching.",
+    "tradeoff": "Approximately 2 KiB extra indices per asset; modest extra decoding work in some tiers, outweighed by less coordinate allocation and no runtime border stitching. No simplified vertices or lost detail.",
+    "results": "Detail cold first draw median improves 24%; regional 12%, overview 10%, motion 17%. All-tier exploration retained JS heap plus ArrayBuffers decreases from about 168.6 MiB to 110.6 MiB; both plateau. V8 measurements, no device-FPS claim."
+  },
+  "validation": {
+    "verify": {
+      "suites": 126,
+      "tests": 1357,
+      "typecheck": "passed",
+      "lint": "passed",
+      "deprecatedApiCheck": "passed",
+      "result": "passed"
+    },
+    "bundle": {
+      "bytes": 10966437,
+      "headroomKiB": 551,
+      "result": "passed"
+    },
+    "steadyStateProductionBench": {
+      "outcomes": [
+        {
+          "result": {
+            "name": "globe.production.detail.construct-land",
+            "iterations": 30,
+            "warmup": 5,
+            "p50_ms": 26.100541000000135,
+            "p95_ms": 51.99067799999989,
+            "mean_ms": 28.861881900000025,
+            "min_ms": 20.550426000000016
+          },
+          "baseline": {
+            "p50_ms": 25.626339,
+            "p95_ms": 44.911458,
+            "drift_pct": 50
+          },
+          "status": "ok",
+          "driftPct": 1.8504476975822932,
+          "message": "\u0394 +1.9%"
+        },
+        {
+          "result": {
+            "name": "globe.production.motion.construct-land",
+            "iterations": 30,
+            "warmup": 5,
+            "p50_ms": 0.38198899999997593,
+            "p95_ms": 0.5432260000000042,
+            "mean_ms": 0.392334166666645,
+            "min_ms": 0.35315799999989395
+          },
+          "baseline": {
+            "p50_ms": 0.410365,
+            "p95_ms": 0.730982,
+            "drift_pct": 50
+          },
+          "status": "ok",
+          "driftPct": -6.91481973365761,
+          "message": "\u0394 -6.9%"
+        },
+        {
+          "result": {
+            "name": "globe.production.overview.construct-land",
+            "iterations": 30,
+            "warmup": 5,
+            "p50_ms": 7.137639999999919,
+            "p95_ms": 16.59849199999985,
+            "mean_ms": 9.598433199999992,
+            "min_ms": 5.6837990000001355
+          },
+          "baseline": {
+            "p50_ms": 7.815504,
+            "p95_ms": 21.112407,
+            "drift_pct": 50
+          },
+          "status": "ok",
+          "driftPct": -8.673324202765176,
+          "message": "\u0394 -8.7%"
+        },
+        {
+          "result": {
+            "name": "globe.production.regional.construct-land",
+            "iterations": 30,
+            "warmup": 5,
+            "p50_ms": 12.172692999999981,
+            "p95_ms": 22.60845500000005,
+            "mean_ms": 14.410692433333354,
+            "min_ms": 10.217109000000164
+          },
+          "baseline": {
+            "p50_ms": 13.218167,
+            "p95_ms": 24.689303,
+            "drift_pct": 50
+          },
+          "status": "ok",
+          "driftPct": -7.909372002941242,
+          "message": "\u0394 -7.9%"
+        },
+        {
+          "result": {
+            "name": "globe.production.detail.all",
+            "iterations": 240,
+            "warmup": 60,
+            "p50_ms": 0.72534399999995,
+            "p95_ms": 1.5500640000000203,
+            "mean_ms": 0.7953947791666433,
+            "min_ms": 0.19887400000015987
+          },
+          "baseline": {
+            "p50_ms": 0.735013,
+            "p95_ms": 1.585226,
+            "drift_pct": 25
+          },
+          "status": "ok",
+          "driftPct": -1.315486936972543,
+          "message": "\u0394 -1.3%"
+        },
+        {
+          "result": {
+            "name": "globe.production.detail.borders",
+            "iterations": 240,
+            "warmup": 60,
+            "p50_ms": 0.021506999999928667,
+            "p95_ms": 0.3221870000002127,
+            "mean_ms": 0.07250114583332182,
+            "min_ms": 0.004200999999738997
+          },
+          "baseline": null,
+          "status": "new",
+          "driftPct": null,
+          "message": "no baseline yet"
+        },
+        {
+          "result": {
+            "name": "globe.production.detail.highlight",
+            "iterations": 240,
+            "warmup": 60,
+            "p50_ms": 0.08996399999978166,
+            "p95_ms": 0.25221600000031685,
+            "mean_ms": 0.11611185416665155,
+            "min_ms": 0.06230599999980768
+          },
+          "baseline": null,
+          "status": "new",
+          "driftPct": null,
+          "message": "no baseline yet"
+        },
+        {
+          "result": {
+            "name": "globe.production.detail.ice",
+            "iterations": 240,
+            "warmup": 60,
+            "p50_ms": 0.0057950000000346336,
+            "p95_ms": 0.0064079999997375126,
+            "mean_ms": 0.00637475833333004,
+            "min_ms": 0.005469000000175583
+          },
+          "baseline": null,
+          "status": "new",
+          "driftPct": null,
+          "message": "no baseline yet"
+        },
+        {
+          "result": {
+            "name": "globe.production.detail.land",
+            "iterations": 240,
+            "warmup": 60,
+            "p50_ms": 0.5079580000001442,
+            "p95_ms": 0.9327979999998206,
+            "mean_ms": 0.5184599958333479,
+            "min_ms": 0.1190470000001369
+          },
+          "baseline": null,
+          "status": "new",
+          "driftPct": null,
+          "message": "no baseline yet"
+        },
+        {
+          "result": {
+            "name": "globe.production.motion.rotate.all",
+            "iterations": 240,
+            "warmup": 60,
+            "p50_ms": 0.28264900000021953,
+            "p95_ms": 0.38988700000027166,
+            "mean_ms": 0.29185487500000135,
+            "min_ms": 0.19095699999979843
+          },
+          "baseline": {
+            "p50_ms": 0.291103,
+            "p95_ms": 0.428511,
+            "drift_pct": 25
+          },
+          "status": "ok",
+          "driftPct": -2.904126717959097,
+          "message": "\u0394 -2.9%"
+        },
+        {
+          "result": {
+            "name": "globe.production.motion.rotate.borders",
+            "iterations": 240,
+            "warmup": 60,
+            "p50_ms": 0.05588900000020658,
+            "p95_ms": 0.09030999999959022,
+            "mean_ms": 0.052958937500000046,
+            "min_ms": 0.021726999999827967
+          },
+          "baseline": null,
+          "status": "new",
+          "driftPct": null,
+          "message": "no baseline yet"
+        },
+        {
+          "result": {
+            "name": "globe.production.motion.rotate.highlight",
+            "iterations": 240,
+            "warmup": 60,
+            "p50_ms": 0.007607000000007247,
+            "p95_ms": 0.017246000000341155,
+            "mean_ms": 0.008704899999994116,
+            "min_ms": 0.0022690000000693544
+          },
+          "baseline": null,
+          "status": "new",
+          "driftPct": null,
+          "message": "no baseline yet"
+        },
+        {
+          "result": {
+            "name": "globe.production.motion.rotate.ice",
+            "iterations": 240,
+            "warmup": 60,
+            "p50_ms": 0.018368000000009488,
+            "p95_ms": 0.05803700000024037,
+            "mean_ms": 0.02534177916667204,
+            "min_ms": 0.00929199999973207
+          },
+          "baseline": null,
+          "status": "new",
+          "driftPct": null,
+          "message": "no baseline yet"
+        },
+        {
+          "result": {
+            "name": "globe.production.motion.rotate.land",
+            "iterations": 240,
+            "warmup": 60,
+            "p50_ms": 0.20801099999971484,
+            "p95_ms": 0.30464100000017424,
+            "mean_ms": 0.21325358333333497,
+            "min_ms": 0.1388649999998961
+          },
+          "baseline": null,
+          "status": "new",
+          "driftPct": null,
+          "message": "no baseline yet"
+        },
+        {
+          "result": {
+            "name": "globe.production.overview.all",
+            "iterations": 240,
+            "warmup": 60,
+            "p50_ms": 5.431090999999924,
+            "p95_ms": 6.725093000000015,
+            "mean_ms": 5.3404736208333325,
+            "min_ms": 3.5339829999993526
+          },
+          "baseline": {
+            "p50_ms": 5.719961,
+            "p95_ms": 7.801437,
+            "drift_pct": 25
+          },
+          "status": "ok",
+          "driftPct": -5.050209258421092,
+          "message": "\u0394 -5.1%"
+        },
+        {
+          "result": {
+            "name": "globe.production.overview.borders",
+            "iterations": 240,
+            "warmup": 60,
+            "p50_ms": 0.5740720000003421,
+            "p95_ms": 0.8521230000005744,
+            "mean_ms": 0.5350949083332921,
+            "min_ms": 0.18992400000024645
+          },
+          "baseline": null,
+          "status": "new",
+          "driftPct": null,
+          "message": "no baseline yet"
+        },
+        {
+          "result": {
+            "name": "globe.production.overview.highlight",
+            "iterations": 240,
+            "warmup": 60,
+            "p50_ms": 0.1725750000005064,
+            "p95_ms": 0.5494120000003022,
+            "mean_ms": 0.19003259166664369,
+            "min_ms": 0.025900999999976193
+          },
+          "baseline": null,
+          "status": "new",
+          "driftPct": null,
+          "message": "no baseline yet"
+        },
+        {
+          "result": {
+            "name": "globe.production.overview.ice",
+            "iterations": 240,
+            "warmup": 60,
+            "p50_ms": 0.3314940000000206,
+            "p95_ms": 0.6972580000001471,
+            "mean_ms": 0.3884055041666784,
+            "min_ms": 0.24321599999984755
+          },
+          "baseline": null,
+          "status": "new",
+          "driftPct": null,
+          "message": "no baseline yet"
+        },
+        {
+          "result": {
+            "name": "globe.production.overview.land",
+            "iterations": 240,
+            "warmup": 60,
+            "p50_ms": 4.3741650000001755,
+            "p95_ms": 5.761239000000387,
+            "mean_ms": 4.312180945833317,
+            "min_ms": 2.746053999999276
+          },
+          "baseline": null,
+          "status": "new",
+          "driftPct": null,
+          "message": "no baseline yet"
+        },
+        {
+          "result": {
+            "name": "globe.production.regional.all",
+            "iterations": 240,
+            "warmup": 60,
+            "p50_ms": 1.8385879999996178,
+            "p95_ms": 3.5536990000000515,
+            "mean_ms": 2.0467636166667376,
+            "min_ms": 1.2468339999995806
+          },
+          "baseline": {
+            "p50_ms": 1.913563,
+            "p95_ms": 3.6395,
+            "drift_pct": 25
+          },
+          "status": "ok",
+          "driftPct": -3.918083700425967,
+          "message": "\u0394 -3.9%"
+        },
+        {
+          "result": {
+            "name": "globe.production.regional.borders",
+            "iterations": 240,
+            "warmup": 60,
+            "p50_ms": 0.3127299999996467,
+            "p95_ms": 0.6475489999993442,
+            "mean_ms": 0.30424779999999224,
+            "min_ms": 0.007697000000007392
+          },
+          "baseline": null,
+          "status": "new",
+          "driftPct": null,
+          "message": "no baseline yet"
+        },
+        {
+          "result": {
+            "name": "globe.production.regional.highlight",
+            "iterations": 240,
+            "warmup": 60,
+            "p50_ms": 0.5355870000003051,
+            "p95_ms": 0.7231670000001031,
+            "mean_ms": 0.4283289208333372,
+            "min_ms": 0.07155800000055024
+          },
+          "baseline": null,
+          "status": "new",
+          "driftPct": null,
+          "message": "no baseline yet"
+        },
+        {
+          "result": {
+            "name": "globe.production.regional.ice",
+            "iterations": 240,
+            "warmup": 60,
+            "p50_ms": 0.006010000000060245,
+            "p95_ms": 0.034231999999974505,
+            "mean_ms": 0.011405704166641802,
+            "min_ms": 0.005315999999766063
+          },
+          "baseline": null,
+          "status": "new",
+          "driftPct": null,
+          "message": "no baseline yet"
+        },
+        {
+          "result": {
+            "name": "globe.production.regional.land",
+            "iterations": 240,
+            "warmup": 60,
+            "p50_ms": 1.0813060000000405,
+            "p95_ms": 2.8310419999997976,
+            "mean_ms": 1.3056111166666444,
+            "min_ms": 0.5160590000004959
+          },
+          "baseline": null,
+          "status": "new",
+          "driftPct": null,
+          "message": "no baseline yet"
+        },
+        {
+          "result": {
+            "name": "globe.production.motion.zoom.all",
+            "iterations": 240,
+            "warmup": 60,
+            "p50_ms": 0.2633480000004056,
+            "p95_ms": 0.37910699999974895,
+            "mean_ms": 0.2313211458333323,
+            "min_ms": 0.0660040000002482
+          },
+          "baseline": {
+            "p50_ms": 0.260995,
+            "p95_ms": 0.502447,
+            "drift_pct": 25
+          },
+          "status": "ok",
+          "driftPct": 0.9015498382749149,
+          "message": "\u0394 +0.9%"
+        }
+      ]
+    },
+    "generatedAssets": "Existing fields match git HEAD exactly; only borders added. Every tier full land, every country and full ordered border coordinates match quantized-reference decoding in tests."
+  }
+}

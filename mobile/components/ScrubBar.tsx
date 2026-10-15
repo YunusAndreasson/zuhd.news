@@ -1,4 +1,4 @@
-import { memo, type ReactNode, useCallback, useState } from 'react';
+import { memo, type ReactNode, useCallback, useState, useSyncExternalStore } from 'react';
 import {
   type LayoutChangeEvent,
   type StyleProp,
@@ -542,7 +542,7 @@ export const ScrubBar = memo(function ScrubBar({
 });
 
 /**
- * The label that floats above the finger while it drags, with `scrub.detail`
+ * The label that floats above the finger while it drags, with `detail`
  * as a quieter second line when the scrub has one.
  *
  * `stemColor` raises it clear of the thumb and hangs a hairline from it to the
@@ -572,6 +572,11 @@ export const ScrubTooltip = memo(function ScrubTooltip({
    *  thing the scrub is for — the story track's time. */
   labelScale?: number;
 }) {
+  const { label, detail, caption } = useSyncExternalStore(
+    scrub.preview.subscribe,
+    scrub.preview.getSnapshot,
+    scrub.preview.getSnapshot,
+  );
   const stem = below ? undefined : stemColor;
   const lift = stem ? THUMB_CLEARANCE : SPACING.sm;
   // Guarded as `ScrubBar`'s styles are, for the same remount: the dock's stem
@@ -600,14 +605,14 @@ export const ScrubTooltip = memo(function ScrubTooltip({
         ]}
       >
         <Text variant="tabularEmphasis" scale={labelScale} style={styles.tooltipText}>
-          {scrub.label}
+          {label}
         </Text>
-        {scrub.detail ? (
+        {detail ? (
           <Text variant="tabular" tone="secondary" style={styles.tooltipText}>
-            {scrub.detail}
+            {detail}
           </Text>
         ) : null}
-        {scrub.caption ? (
+        {caption ? (
           // Two lines are held whatever the headline's length, so the box
           // does not change height from one story to the next under a moving
           // finger. The spacer is two empty lines at the reader's type size.
@@ -617,7 +622,7 @@ export const ScrubTooltip = memo(function ScrubTooltip({
             </Text>
             <View style={[StyleSheet.absoluteFill, styles.captionWords]}>
               <Text variant="captionEmphasis" numberOfLines={2} style={styles.tooltipText}>
-                {scrub.caption}
+                {caption}
               </Text>
             </View>
           </View>

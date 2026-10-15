@@ -202,18 +202,25 @@ export const renderIsnad = (sources, body, framing = null, meta = null) => {
       ? 0
       : 1
 
-  const links = sources
+  // One entry per outlet, in the order its first article sorts. Two articles
+  // from one outlet printed its name twice, which read as a mistake.
+  const byName = new Map()
+  for (const { s } of sources
     .map((s, i) => ({ s, i, near: nearness(s) }))
-    .sort((a, b) => a.near - b.near || a.i - b.i)
-    .map(({ s }) => {
-      const name = escHtml(s.name || '')
-      if (!name) return ''
-      // A source without a URL is still part of the chain and still named. It
-      // just cannot be followed, and a dead `<a>` would imply it could.
-      if (!s.url) return `<span>${name}</span>`
-      return `<a href="${escHtml(s.url)}" rel="noopener nofollow" target="_blank">${name}</a>`
-    })
-    .filter(Boolean)
+    .sort((a, b) => a.near - b.near || a.i - b.i)) {
+    const name = s.name || ''
+    if (!name) continue
+    byName.set(name, [...(byName.get(name) ?? []), s])
+  }
+  // A source without a URL is still part of the chain and still named. It just
+  // cannot be followed, and a dead `<a>` would imply it could.
+  const link = (url, text) => `<a href="${escHtml(url)}" rel="noopener nofollow" target="_blank">${text}</a>`
+  const links = [...byName].map(([raw, group]) => {
+    const name = escHtml(raw)
+    const urls = group.map((s) => s.url).filter(Boolean)
+    if (urls.length < 2) return urls.length ? link(urls[0], name) : `<span>${name}</span>`
+    return `${name} (${urls.map((u, n) => link(u, String(n + 1))).join(', ')})`
+  })
 
   if (!links.length) return ''
   const chain = `<p class="article-sources-flat">Sources: ${links.join(', ')}</p>`

@@ -86,9 +86,6 @@ Camera, MapLibre and cards are `map.md`; layers and marks are `map-layers.md`.
 - `attention` returns nothing at the 24h step: that move is the weekday.
 - An odds label keeps its deadline (`oddsShort`). Its disclosure is
   `TickerEntry.caveat`, never `note`, which the dispatch's `standing` replaces.
-- A story chip's count is judged by halves (`halfOverHalf`), bucketed across
-  what the payload covers, not the range asked for. An empty first half prints
-  no figure.
 - Straits are picked by `delta7vs90` (`chokepointEntries`) and each prints its
   own window change, of the week's mean (`straitSeries`): a day's ship count
   is noise. Never print `delta7vs90` on a row.
@@ -170,10 +167,9 @@ Camera, MapLibre and cards are `map.md`; layers and marks are `map-layers.md`.
   `railOnly`): a fifth group takes the phone's money line to a second line.
 - A money row carries no switch and a `layers` chip carries no reading. A
   `<button>` inside a `<button>` is dropped by the browser.
-- Nothing in `layers` draws a trend. Only the story category chips do
-  (`countTrend`), tinted by the chip's `--cat`, never `--map-pos` or
-  `--map-neg`: a green rise in a hazard is a verdict. `.map-filter-spark` is
-  always appended and falls back to `--map-ink-dim`, not `currentColor`.
+- No chip draws a trend. A category chip's story count measured the site's
+  own output, read as a trend in the news, and its figure swung on one or two
+  articles; the timeline's category bars show the mix.
 - **Never** a prayer-times column in the rail: the `prayer-lines` hover gives each time where it is true.
 - One column always: no two-abreast `auto-fill` money grid.
 - Every row in the wide rail is a grid on `--map-rail-cols` (label, level,
@@ -228,12 +224,14 @@ Camera, MapLibre and cards are `map.md`; layers and marks are `map-layers.md`.
   (`--card-foot`): it is the bottom padding, so never add padding beside it.
 - The two `.map-mapctl` boxes are capped against the canvas between the rails
   (`100%` is the window), and `is-right` also against `layers` open.
-- A card opened from a rail row is docked (`docked()`, desktop only) with the
-  same hand-wired Escape; a card from a mark stays `showModal()`. Panel rows
+- No card dims the desktop. A card opened from a rail row is docked
+  (`docked()`, desktop only) with the same hand-wired Escape. Panel rows
   anchor to `openOn`, because the pressed row is leaving the document.
-- An exchange's card pinned from its mark is docked too, with no row
-  (`dockTo(null)`, `.is-corner`): no backdrop, in its peek's corner. A press
-  on the map does not shut it (`onDocDown`); a click on open water does.
+- Every card pinned from its mark (exchange, strait, disaster, conflict,
+  genocide, thermal, famine) is docked with no row (`dockTo(null)`,
+  `.is-corner`): no backdrop, in its peek's corner. A press on the map does
+  not shut it (`onDocDown`); a click on open water does. On a phone it is the
+  sheet.
 - The `markets` switch must not hide the money block (`applyLayerVisibility`).
 - A folded instrument rail is a spine (`--map-spine-w`): the clock, the events
   and `.map-signals` go, the money keeps tick and figure.
@@ -272,6 +270,8 @@ Camera, MapLibre and cards are `map.md`; layers and marks are `map-layers.md`.
   build's `BUILD_WINDOW_DAYS`). A rail that is only the range has no band.
 - The band and the bars key on `windowStart` to the head, not on before or
   after it. Out-of-window bars step down to `--map-line`, never fade.
+  In-window bars stack their stories by category (`CATEGORY_ORDER`, in
+  `CATEGORY_COLOUR`): the window is the slice of the globe, in its colours.
 - `readPalette` reads `--map-*` tokens: the site's `--rule` and `--text-dim`
   are invisible on this page.
 - The scrims on `.map-hud` and `.map-timeline` fade in an overhang outside
@@ -287,8 +287,15 @@ Camera, MapLibre and cards are `map.md`; layers and marks are `map-layers.md`.
 
 ## The story rail and refresh
 
+- The rail's list is `#stories`, the target of the page's first focusable thing
+  (`.skip-link`): in the tab order it comes after the map and the other rail.
+- A busy refresh is `aria-disabled`, never `disabled`, which drops the
+  presser's focus to `<body>`. Its label is a live region.
 - A row is title and `loc · age`. **No sentence under the headline**: the
   rail is scanned for a story to open, and the card has the prose.
+- Rows sit under sticky day headings (`.map-feed-day`, keyed by Makkah date in
+  the same patch walk): `Today` and `Yesterday` against the wall clock, never
+  the scrub head.
 - On the desktop the rule between stories starts at the headline's edge
   (`.map-feed-item::after`); the filters' and the head's rules span the rail.
 - The list is a keyed patch by slug, never `replaceChildren`; rows move with
@@ -299,9 +306,11 @@ Camera, MapLibre and cards are `map.md`; layers and marks are `map-layers.md`.
 - `.map-feed-count` is `aria-live`: write it only when the text differs. On
   the desktop it is said and not shown (`body.map-wide .map-feed-count`); on a
   phone it is the drawer handle's label.
-- On the desktop the head keeps no row of its own: refresh is placed at the
-  end of the `stories` heading's line (`body.map-wide .map-feed-refresh`,
-  `top: 100%`), by CSS and not by moving it.
+- On the desktop the head keeps no row of its own: refresh stands in the
+  band, level with the wordmark (`body.map-wide .map-feed-refresh`), by CSS
+  and not by moving it. There is no `stories` heading: the four category
+  chips are one line spread to the rail's width (`nowrap`), over the list
+  they filter.
 - Category chips live in `feed.filterHost`, outside the scrolling list. Find
   a chip with `container.querySelector`: `filters` holds only layer chips.
 - Refresh refetches `map.json` with `cache: 'no-cache'`, or the browser

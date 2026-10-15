@@ -82,7 +82,7 @@ export function renderShare(root: HTMLElement, target: ShareTarget): void {
       }
     })
     // No `.share-label` here — the button already says the word, and the row's
-    // label exists only because a bare "x · whatsapp · email" does not say what
+    // label exists only because a bare "X · WhatsApp · Email" does not say what
     // it is for.
     root.replaceChildren(btn, status)
     return
@@ -98,16 +98,16 @@ function renderFallback(root: HTMLElement, target: ShareTarget, status: HTMLElem
   // and on the map it is the only way to get at a URL the address bar is
   // deliberately not showing.
   if (typeof navigator !== 'undefined' && navigator.clipboard) {
-    const btn = el('button', 'share-choice', 'copy link')
+    const btn = el('button', 'share-choice', 'Copy link')
     btn.type = 'button'
     let revert: ReturnType<typeof setTimeout> | undefined
     btn.addEventListener('click', async () => {
       const ok = await copy(target.url)
-      btn.textContent = ok ? 'copied' : 'copy failed'
+      btn.textContent = ok ? 'Copied' : 'Copy failed'
       status.textContent = ok ? 'Link copied to clipboard' : 'Could not copy the link'
       clearTimeout(revert)
       revert = setTimeout(() => {
-        btn.textContent = 'copy link'
+        btn.textContent = 'Copy link'
         status.textContent = ''
       }, 2400)
     })

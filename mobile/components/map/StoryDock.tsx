@@ -80,6 +80,7 @@ export const StoryDock = memo(function StoryDock({
   position,
   committedPosition,
   onScrubSeek,
+  requestEpoch,
   progress,
   onSeek,
   onClaim,
@@ -104,7 +105,8 @@ export const StoryDock = memo(function StoryDock({
   position: SharedValue<number>;
   /** Shared with the deck: a swipe starts at the released scrub target. */
   committedPosition?: SharedValue<number>;
-  onScrubSeek?: (index: number) => void;
+  onScrubSeek?: (index: number, slug?: string, cameraEpoch?: number) => void;
+  requestEpoch?: SharedValue<number>;
   /** Found on the globe — spoken, not printed. */
   progress?: FoundProgress;
   /** Jump to a story from the track. */
@@ -263,11 +265,12 @@ export const StoryDock = memo(function StoryDock({
     return read?.length === count ? unread.map((c, i) => (read[i] ? (faded[i] ?? c) : c)) : unread;
   }, [hues, count, read, colors.sheetBg, resolvedAppearance]);
   const handleCommit = useCallback(
-    (f: number) => {
+    (f: number, cameraEpoch?: number) => {
       const i = storyAt(f, count, centers);
-      (onScrubSeek ?? onSeek)?.(i);
+      if (onScrubSeek) onScrubSeek(i, slugs?.[i], cameraEpoch);
+      else onSeek?.(i);
     },
-    [onSeek, onScrubSeek, count, centers],
+    [onSeek, onScrubSeek, count, centers, slugs],
   );
   // Settle on UI at release, including taps on the already-selected story.
   // Doing this in the JS commit can pull a newer held drag to the old target.
@@ -298,6 +301,7 @@ export const StoryDock = memo(function StoryDock({
     detailFor,
     captionFor,
     onCommit: handleCommit,
+    requestEpoch,
     onCommitUI: commitOnUI,
     snapTo,
     onClaim,

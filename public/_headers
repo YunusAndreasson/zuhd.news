@@ -29,11 +29,11 @@
   Cache-Control: public, max-age=31536000, immutable
 
 # Coastlines, borders and place labels. Natural Earth geometry does not change
-# between deploys; only a dependency bump would move it.
-/basemap/countries.geojson
-  Cache-Control: public, max-age=86400, stale-while-revalidate=604800
-
-/basemap/countries-ultra.geojson
+# between deploys; only a dependency bump would move it. The coastline is
+# vector tiles: `application/x-protobuf` is on Cloudflare's list of types it
+# compresses, and the `.pbf` default is not.
+/basemap/tiles/*
+  Content-Type: application/x-protobuf
   Cache-Control: public, max-age=86400, stale-while-revalidate=604800
 
 /basemap/places.geojson
@@ -53,10 +53,13 @@
 /basemap/seas.geojson
   Cache-Control: public, max-age=86400, stale-while-revalidate=604800
 
+/basemap/regions.geojson
+  Cache-Control: public, max-age=86400, stale-while-revalidate=604800
+
 # Islands split by extension so the two rules never both match: esbuild emits
-# our bundles as .js, MapLibre ships its engine, worker and shared chunk as
-# .mjs. The engine is vendor code that only moves on a version bump, so it must
-# not ride the content cycle — before this it inherited the 300s default and was
+# our bundles as .js, MapLibre ships its engine and worker as .mjs. The engine
+# is vendor code that only moves on a version bump, so it must not ride the
+# content cycle — before this it inherited the 300s default and was
 # refetched all day.
 /islands/*.mjs
   Cache-Control: public, max-age=86400, stale-while-revalidate=604800

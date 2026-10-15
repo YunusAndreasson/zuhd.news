@@ -1,7 +1,7 @@
 import Storage from 'expo-sqlite/kv-store';
 import { useSyncExternalStore } from 'react';
 import { createDebouncedWrite, createListeners } from './store-plumbing';
-import { readStoredJson } from './stored-json';
+import { loadStoredJson } from './stored-json';
 import { DAY_MS } from './time';
 import { isTimestampMap } from './validate';
 
@@ -44,7 +44,7 @@ export interface SlugTimeStore {
   prune(liveSlugs: ReadonlySet<string>, now?: number): void;
   /** Erase it all, written at once: a promise to delete should not sit in a
    *  timer if the app is killed a moment later. */
-  clear(): void;
+  clear(): boolean;
   /** Write any pending change — call from app-background transitions. */
   flush(): void;
   /** The slugs, as one set whose identity changes only when they do. */
@@ -52,12 +52,48 @@ export interface SlugTimeStore {
   useSlugs(): ReadonlySet<string>;
 }
 
-/** `max` caps the set, dropping the oldest first. */
+/** `max` caps old history, dropping the oldest first. Live stories stay read
+ * even if the feed itself exceeds the cap. */
 export function createSlugTimeStore(key: string, max: number): SlugTimeStore {
-  let times: Record<string, number> = readStoredJson(key, isTimestampMap) ?? {};
+  const initial = loadStoredJson(key, isTimestampMap);
+  let loaded = initial.loaded;
+  let times: Record<string, number> = initial.value ?? {};
   let snapshot: ReadonlySet<string> = new Set(Object.keys(times));
+  let live: ReadonlySet<string> = new Set();
   const listeners = createListeners();
+
+  const bounded = (next: Record<string, number>): Record<string, number> => {
+    const slugs = Object.keys(next);
+    let excess = slugs.length - max;
+    if (excess <= 0) return next;
+    slugs.sort((a, b) => (next[a] ?? 0) - (next[b] ?? 0));
+    for (const slug of slugs) {
+      if (excess <= 0) break;
+      if (live.has(slug)) continue;
+      delete next[slug];
+      excess--;
+    }
+    return next;
+  };
+
+  const restore = (): boolean => {
+    if (loaded) return true;
+    const saved = loadStoredJson(key, isTimestampMap);
+    if (!saved.loaded) return false;
+    loaded = true;
+    times = bounded({ ...saved.value, ...times });
+    const slugs = Object.keys(times);
+    if (slugs.length !== snapshot.size || slugs.some((slug) => !snapshot.has(slug))) {
+      snapshot = new Set(slugs);
+      listeners.emit();
+    }
+    return true;
+  };
+
   const persist = createDebouncedWrite(() => {
+    // A temporary launch read failure must never let new progress replace
+    // history that is still on disk. Keep the write pending until it recovers.
+    if (!restore()) throw new Error('Progress storage is temporarily unavailable');
     Storage.setItemSync(key, JSON.stringify(times));
   }, 250);
 
@@ -69,23 +105,24 @@ export function createSlugTimeStore(key: string, max: number): SlugTimeStore {
   };
 
   const getSnapshot = (): ReadonlySet<string> => snapshot;
+  const subscribe = (listener: () => void): (() => void) => {
+    const unsubscribe = listeners.subscribe(listener);
+    // Retry an unavailable launch read when a reader mounts. Subscription
+    // runs after render; getSnapshot itself stays free of storage and writes.
+    restore();
+    return unsubscribe;
+  };
 
   return {
     mark(slug, now = Date.now()) {
+      restore();
       if (!slug || times[slug] != null) return false;
-      let next = { ...times, [slug]: now };
-      const slugs = Object.keys(next);
-      if (slugs.length > max) {
-        // Oldest out first.
-        slugs.sort((a, b) => (next[a] ?? 0) - (next[b] ?? 0));
-        const kept: Record<string, number> = {};
-        for (const s of slugs.slice(slugs.length - max)) kept[s] = next[s] ?? now;
-        next = kept;
-      }
-      commit(next, 'later');
+      commit(bounded({ ...times, [slug]: now }), 'later');
       return true;
     },
     prune(liveSlugs, now = Date.now()) {
+      live = liveSlugs;
+      if (!restore()) return;
       let changed = false;
       const next: Record<string, number> = {};
       for (const [slug, at] of Object.entries(times)) {
@@ -95,12 +132,20 @@ export function createSlugTimeStore(key: string, max: number): SlugTimeStore {
       if (changed) commit(next, 'later');
     },
     clear() {
-      commit({}, 'now');
+      // An explicit erase supersedes any history we could not read at launch.
+      loaded = true;
+      times = {};
+      snapshot = new Set();
+      listeners.emit();
+      return persist.now();
     },
-    flush: persist.flush,
+    flush() {
+      restore();
+      persist.flush();
+    },
     getSnapshot,
     useSlugs() {
-      return useSyncExternalStore(listeners.subscribe, getSnapshot, getSnapshot);
+      return useSyncExternalStore(subscribe, getSnapshot, getSnapshot);
     },
   };
 }

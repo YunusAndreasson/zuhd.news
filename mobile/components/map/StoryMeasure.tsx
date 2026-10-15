@@ -1,5 +1,8 @@
-import { memo, type ReactNode, useCallback, useRef } from 'react';
+import { memo, type ReactNode, useCallback, useEffect, useRef, useState } from 'react';
 import { type LayoutChangeEvent, StyleSheet, View } from 'react-native';
+
+/** Bound each invisible layout commit; leave time for the reader between batches. */
+const MEASURE_BATCH = 1;
 
 /**
  * Measures today's stories once, off screen, so the open sheet can be sized
@@ -12,7 +15,8 @@ import { type LayoutChangeEvent, StyleSheet, View } from 'react-native';
  * the reader's width and type size, sizes it for the stories that did arrive,
  * and nothing moves while the reader goes from one to the next.
  *
- * It renders every card once, invisible and untouchable, reports their heights,
+ * It renders one card at a time, invisible and untouchable, and yields to
+ * interactions between batches. It reports all heights together,
  * and is unmounted by its parent until the river, the width or the type size
  * changes. The parent keys it by those, so a new measurement is a fresh mount:
  * a card whose content changed but whose size did not would never fire
@@ -33,15 +37,45 @@ export const StoryMeasure = memo(function StoryMeasure({
   onMeasured: (heights: number[]) => void;
 }) {
   const heights = useRef(new Map<number, number>());
+  const [start, setStart] = useState(-1);
+  const end = start < 0 ? 0 : Math.min(count, start + MEASURE_BATCH);
+  const pending = useRef<number | null>(null);
+  const finished = useRef(false);
+  useEffect(() => {
+    // Let the visible screen respond before starting invisible layout work.
+    pending.current = requestIdleCallback(
+      () => {
+        pending.current = null;
+        setStart(0);
+      },
+      { timeout: 1000 },
+    );
+    return () => {
+      if (pending.current !== null) cancelIdleCallback(pending.current);
+    };
+  }, []);
   const record = useCallback(
     (index: number, height: number) => {
       heights.current.set(index, height);
-      if (heights.current.size < count) return;
+      if (finished.current || heights.current.size < end) return;
+      if (end < count) {
+        if (pending.current === null) {
+          pending.current = requestIdleCallback(
+            () => {
+              pending.current = null;
+              setStart(end);
+            },
+            { timeout: 1000 },
+          );
+        }
+        return;
+      }
+      finished.current = true;
       // In card order, not layout order: the caller keys each height to its
-      // card.
+      // card. The parent keeps the old sheet height until this one report.
       onMeasured(Array.from({ length: count }, (_, i) => heights.current.get(i) ?? 0));
     },
-    [count, onMeasured],
+    [count, end, onMeasured],
   );
 
   return (
@@ -51,11 +85,14 @@ export const StoryMeasure = memo(function StoryMeasure({
       accessibilityElementsHidden
       importantForAccessibility="no-hide-descendants"
     >
-      {Array.from({ length: count }, (_, i) => (
-        <Measured key={i} index={i} onHeight={record}>
-          {renderCard(i)}
-        </Measured>
-      ))}
+      {Array.from({ length: start < 0 ? 0 : end - start }, (_, offset) => {
+        const index = start + offset;
+        return (
+          <Measured key={index} index={index} onHeight={record}>
+            {renderCard(index)}
+          </Measured>
+        );
+      })}
     </View>
   );
 });

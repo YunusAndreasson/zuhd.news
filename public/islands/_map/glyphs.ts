@@ -3,7 +3,7 @@
 // Every mark on this map used to be a circle. Stories, clusters, disasters,
 // chokepoints, conflict and markets — one silhouette, seven meanings, and the
 // only thing separating them was hue. That does not survive contact with the
-// palette: `economy` (#d0a24a) and `straits` (#c9a84c) are three points apart,
+// palette: `economy` and `straits` were three points of hue apart,
 // and `politics` / `conflict` / `gdacs` are one red family. So colour could not
 // say *what a mark is*, and having spent itself on identity it had nothing left
 // to say *which way* or *how much*. `market-marks` and `chokepoint-marks` had

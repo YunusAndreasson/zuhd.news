@@ -73,6 +73,51 @@
     "topo.simplify-module-load": {
       "p50_ms": 4.865,
       "p95_ms": 8.166
+    },
+    "globe.production.detail.construct-land": {
+      "p50_ms": 25.626339,
+      "p95_ms": 44.911458,
+      "drift_pct": 50
+    },
+    "globe.production.motion.construct-land": {
+      "p50_ms": 0.410365,
+      "p95_ms": 0.730982,
+      "drift_pct": 50
+    },
+    "globe.production.overview.construct-land": {
+      "p50_ms": 7.815504,
+      "p95_ms": 21.112407,
+      "drift_pct": 50
+    },
+    "globe.production.regional.construct-land": {
+      "p50_ms": 13.218167,
+      "p95_ms": 24.689303,
+      "drift_pct": 50
+    },
+    "globe.production.detail.all": {
+      "p50_ms": 0.735013,
+      "p95_ms": 1.585226,
+      "drift_pct": 25
+    },
+    "globe.production.motion.rotate.all": {
+      "p50_ms": 0.291103,
+      "p95_ms": 0.428511,
+      "drift_pct": 25
+    },
+    "globe.production.overview.all": {
+      "p50_ms": 5.719961,
+      "p95_ms": 7.801437,
+      "drift_pct": 25
+    },
+    "globe.production.regional.all": {
+      "p50_ms": 1.913563,
+      "p95_ms": 3.6395,
+      "drift_pct": 25
+    },
+    "globe.production.motion.zoom.all": {
+      "p50_ms": 0.260995,
+      "p95_ms": 0.502447,
+      "drift_pct": 25
     }
   }
 }

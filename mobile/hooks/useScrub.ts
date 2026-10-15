@@ -1,5 +1,5 @@
-import { useCallback, useMemo, useRef, useState } from 'react';
-import type { LayoutChangeEvent } from 'react-native';
+import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
+import { AppState, type LayoutChangeEvent } from 'react-native';
 import {
   type PanGestureConfig,
   type TapGestureConfig,
@@ -14,7 +14,7 @@ import {
   withSpring,
   withTiming,
 } from 'react-native-reanimated';
-import { scheduleOnRN } from 'react-native-worklets';
+import { scheduleOnRN, scheduleOnUI } from 'react-native-worklets';
 import { ANIMATION } from '../constants/theme';
 import { hapticImpact } from '../lib/haptics';
 
@@ -49,7 +49,9 @@ export interface ScrubOptions {
    *  the reader chose a story blind. */
   captionFor?: (fraction: number) => string;
   /** The finger lifted, or tapped: go there. */
-  onCommit: (fraction: number) => void;
+  onCommit: (fraction: number, cameraEpoch?: number) => void;
+  /** A story scrub carries its camera claim through the delayed JS commit. */
+  requestEpoch?: SharedValue<number>;
   /** Worklet: settle the released playhead at a content boundary, before JS
    *  receives the commit. A delayed commit must not move a newer held drag. */
   snapTo?: (fraction: number) => number;
@@ -96,6 +98,7 @@ export function useScrub({
   detailFor,
   captionFor,
   onCommit,
+  requestEpoch,
   snapTo,
   onCommitUI,
   onClaim,
@@ -121,39 +124,57 @@ export function useScrub({
   const beforeDrag = useSharedValue(0);
   const lastDetent = useSharedValue(-1);
   const lastStep = useSharedValue(-1);
+  const generation = useSharedValue(0);
+  const released = useSharedValue<{ fraction: number; epoch?: number; id: number } | null>(null);
+  const delivered = useRef(0);
+  const available = useSharedValue(
+    AppState.currentState !== 'background' && AppState.currentState !== 'inactive',
+  );
+  const mounted = useRef(true);
+  const foreground = useRef(
+    AppState.currentState !== 'background' && AppState.currentState !== 'inactive',
+  );
 
-  const [label, setLabel] = useState('');
-  const [detail, setDetail] = useState('');
-  const [caption, setCaption] = useState('');
-  const labelRef = useRef('');
-  const detailRef = useRef('');
-  const captionRef = useRef('');
+  // Only the tooltip subscribes. Updating text in this hook's owner used to
+  // rebuild the dock and gesture detector on every story crossed by a drag.
+  const [preview] = useState(() => {
+    let snapshot = { label: '', detail: '', caption: '' };
+    const listeners = new Set<() => void>();
+    return {
+      getSnapshot: () => snapshot,
+      subscribe: (listener: () => void) => {
+        listeners.add(listener);
+        return () => {
+          listeners.delete(listener);
+        };
+      },
+      update: (next: typeof snapshot) => {
+        if (
+          next.label === snapshot.label &&
+          next.detail === snapshot.detail &&
+          next.caption === snapshot.caption
+        )
+          return;
+        snapshot = next;
+        for (const listener of listeners) listener();
+      },
+    };
+  });
   const updateLabel = useCallback(
-    (f: number) => {
-      const next = labelFor(f);
-      const nextDetail = detailFor ? detailFor(f) : '';
-      const nextCaption = captionFor ? captionFor(f) : '';
-      if (
-        next === labelRef.current &&
-        nextDetail === detailRef.current &&
-        nextCaption === captionRef.current
-      ) {
-        return;
-      }
-      labelRef.current = next;
-      detailRef.current = nextDetail;
-      captionRef.current = nextCaption;
-      setLabel(next);
-      setDetail(nextDetail);
-      setCaption(nextCaption);
-    },
-    [labelFor, detailFor, captionFor],
+    (f: number) =>
+      preview.update({
+        label: labelFor(f),
+        detail: detailFor?.(f) ?? '',
+        caption: captionFor?.(f) ?? '',
+      }),
+    [labelFor, detailFor, captionFor, preview],
   );
   // One hop per step, carrying both effects. Two `scheduleOnRN` calls are two
   // JS tasks, and the notch and the label they carried could land on
   // different frames — the same frame is the promise above.
   const onStep = useCallback(
     (f: number, notch: boolean, relabel: boolean) => {
+      if (!mounted.current || !foreground.current) return;
       // `hapticImpact`, not `hapticTick`: iOS suppresses `selectionAsync()`
       // while an AVAudioSession is in playback mode.
       if (notch) hapticImpact();
@@ -163,6 +184,73 @@ export function useScrub({
   );
   const start = onScrubStart ?? noop;
   const end = onScrubEnd ?? noop;
+  const notifyHolding = useCallback(
+    (held: boolean, version: number) => {
+      if (!mounted.current || version !== generation.value) return;
+      if (held) start();
+      else end();
+    },
+    [end, generation, start],
+  );
+  const commit = useCallback(
+    (f: number, version: number, epoch?: number, releaseId = version) => {
+      if (!mounted.current || version !== generation.value || releaseId <= delivered.current)
+        return;
+      delivered.current = releaseId;
+      if (epoch === undefined) onCommit(f);
+      else onCommit(f, epoch);
+    },
+    [generation, onCommit],
+  );
+  const publishCommit = useCallback(() => {
+    'worklet';
+    const epoch = requestEpoch?.value;
+    released.value = { fraction: pending.value, epoch, id: generation.value };
+    scheduleOnRN(commit, pending.value, generation.value, epoch);
+  }, [commit, generation, pending, released, requestEpoch]);
+  const cancel = useCallback(() => {
+    'worklet';
+    if (!holding.value) return;
+    generation.value += 1;
+    fraction.value = beforeDrag.value;
+    holding.value = 0;
+    shown.value = 0;
+    tooltipScale.value = 0.8;
+    // The newer drag was canceled: the previous released selection is still
+    // on the cards. If JS had not received it yet, deliver it once now.
+    const previous = released.value;
+    if (previous)
+      scheduleOnRN(commit, previous.fraction, generation.value, previous.epoch, previous.id);
+    scheduleOnRN(notifyHolding, false, generation.value);
+  }, [
+    beforeDrag,
+    commit,
+    fraction,
+    generation,
+    holding,
+    notifyHolding,
+    released,
+    shown,
+    tooltipScale,
+  ]);
+  useEffect(() => {
+    mounted.current = true;
+    const subscription = AppState.addEventListener('change', (state) => {
+      foreground.current = state === 'active';
+      scheduleOnUI((active: boolean) => {
+        'worklet';
+        available.value = active;
+        if (!active) cancel();
+      }, state === 'active');
+    });
+    return () => {
+      mounted.current = false;
+      subscription.remove();
+    };
+  }, [available, cancel]);
+  useEffect(() => {
+    if (!enabled) scheduleOnUI(cancel);
+  }, [cancel, enabled]);
 
   const notches = stepAt != null || detents > 0;
   const lastNotchAt = useSharedValue(0);
@@ -216,10 +304,12 @@ export function useScrub({
       failOffsetY: [-10, 10],
       onActivate: (e) => {
         'worklet';
+        if (!available.value || width.value <= 0) return;
+        generation.value += 1;
         onClaim?.();
         beforeDrag.value = fraction.value;
         holding.value = 1;
-        scheduleOnRN(start);
+        scheduleOnRN(notifyHolding, true, generation.value);
         shown.value = withSpring(1, ANIMATION.springSoft);
         tooltipScale.value = withSpring(1, ANIMATION.springPop);
         fingerX.value = e.x;
@@ -230,19 +320,21 @@ export function useScrub({
       },
       onUpdate: (e) => {
         'worklet';
+        if (!holding.value) return;
         fingerX.value = e.x;
         track(e.x, true);
       },
       onFinalize: (e) => {
         'worklet';
+        if (e.canceled) {
+          cancel();
+          return;
+        }
         if (holding.value) {
-          if (e.canceled) fraction.value = beforeDrag.value;
-          else {
-            if (snapTo) fraction.value = snapTo(pending.value);
-            onCommitUI?.(pending.value);
-            scheduleOnRN(onCommit, pending.value);
-          }
-          scheduleOnRN(end);
+          if (snapTo) fraction.value = snapTo(pending.value);
+          onCommitUI?.(pending.value);
+          publishCommit();
+          scheduleOnRN(notifyHolding, false, generation.value);
           holding.value = 0;
         }
         shown.value = withTiming(0, { duration: ANIMATION.fast });
@@ -254,7 +346,11 @@ export function useScrub({
       beforeDrag,
       fraction,
       holding,
-      start,
+      available,
+      width,
+      cancel,
+      generation,
+      notifyHolding,
       shown,
       tooltipScale,
       fingerX,
@@ -262,12 +358,11 @@ export function useScrub({
       lastStep,
       lastNotchAt,
       track,
-      onCommit,
+      publishCommit,
       snapTo,
       onCommitUI,
       onClaim,
       pending,
-      end,
     ],
   );
 
@@ -277,15 +372,31 @@ export function useScrub({
       maxDuration: 400,
       onDeactivate: (e) => {
         'worklet';
-        if (e.canceled) return;
+        if (e.canceled || !available.value || width.value <= 0) return;
+        generation.value += 1;
         onClaim?.();
         track(e.x, false);
         if (snapTo) fraction.value = snapTo(pending.value);
         onCommitUI?.(pending.value);
-        scheduleOnRN(onCommit, pending.value);
+        publishCommit();
+        if (onScrubEnd) scheduleOnRN(notifyHolding, false, generation.value);
       },
     }),
-    [enabled, track, onCommit, onClaim, pending, fraction, snapTo, onCommitUI],
+    [
+      enabled,
+      track,
+      publishCommit,
+      onClaim,
+      pending,
+      fraction,
+      snapTo,
+      onCommitUI,
+      available,
+      generation,
+      width,
+      onScrubEnd,
+      notifyHolding,
+    ],
   );
 
   const pan = usePanGesture(panConfig);
@@ -322,9 +433,7 @@ export function useScrub({
     tooltipStyle,
     stemStyle,
     tooltipWidth,
-    label,
-    detail,
-    caption,
+    preview,
   };
 }
 

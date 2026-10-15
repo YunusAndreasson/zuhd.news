@@ -1,115 +1,90 @@
-const mockKv = new Map<string, string>();
-const mockSetItemSync = jest.fn((k: string, v: string) => mockKv.set(k, v));
-jest.mock('expo-sqlite/kv-store', () => ({
-  __esModule: true,
-  default: {
-    getItemSync: (k: string) => mockKv.get(k) ?? null,
-    setItemSync: (k: string, v: string) => mockSetItemSync(k, v),
-    removeItemSync: (k: string) => mockKv.delete(k),
-  },
-}));
-jest.mock('../lib/fetch', () => ({ fetchWithTimeout: jest.fn() }));
-// The payload's shape is not what this is about.
-jest.mock('../lib/validate', () => {
-  const any = () => true;
-  return {
-    isAnalysisSnapshot: any,
-    isChokepointSnapshot: any,
-    isConflictSnapshot: any,
-    isFamineSnapshot: any,
-    isGdacsSnapshot: any,
-    isGenocideSnapshot: any,
-    isHeatmapResponse: any,
-    isStringMap: jest.requireActual('../lib/validate').isStringMap,
-    isThermalSnapshot: any,
-    isTrendsSnapshot: any,
-  };
-});
+jest.mock('../lib/fetchJson', () => ({ fetchJsonIfChanged: jest.fn(), fetchJson: jest.fn() }));
+jest.mock('../lib/feed-source', () => ({ fetchFeed: jest.fn() }));
+jest.mock('../lib/fresh-store', () => ({ noteFeed: jest.fn() }));
 
-import { API_SNAPSHOTS, clearSnapshotEtags, fetchAllSnapshots } from '../lib/api-snapshots';
-import { fetchWithTimeout } from '../lib/fetch';
+import { dehydrate, hydrate, QueryClient } from '@tanstack/react-query';
+import {
+  API_SNAPSHOTS,
+  fetchAllSnapshots,
+  fetchSnapshot,
+  snapshotData,
+} from '../lib/api-snapshots';
+import { fetchArrival } from '../lib/arrival';
+import { fetchFeed } from '../lib/feed-source';
+import { fetchJsonIfChanged } from '../lib/fetchJson';
 
-const mockFetch = jest.mocked(fetchWithTimeout);
-const TRENDS = API_SNAPSHOTS.trends.url;
-
-function respond(status: number, body?: unknown, etag?: string) {
-  return {
-    ok: status >= 200 && status < 300,
-    status,
-    headers: { get: (h: string) => (h.toLowerCase() === 'etag' ? (etag ?? null) : null) },
-    text: () => Promise.resolve(JSON.stringify(body ?? {})),
-  } as unknown as Response;
-}
-
-const sentTag = (url: string) => {
-  const call = mockFetch.mock.calls.find(([u]) => u === url);
-  const headers = call?.[2]?.headers as Record<string, string> | undefined;
-  return headers?.['If-None-Match'];
-};
+const request = jest.mocked(fetchJsonIfChanged);
+const trends = API_SNAPSHOTS.trends;
+const sentTag = () => request.mock.calls.find(([url]) => url === trends.url)?.[2]?.etag;
 
 beforeEach(() => {
-  mockFetch.mockReset();
-  clearSnapshotEtags();
+  request.mockReset();
+  request.mockResolvedValue({ changed: true, data: { reading: 1 }, etag: 'v1' });
 });
 
-it('asks before downloading a layer the app already holds, and keeps it on a 304', async () => {
-  // Every other layer fails here, which leaves it out — the screen keeps it.
-  mockFetch.mockImplementation(async (url) =>
-    url === TRENDS ? respond(200, { ok: 1 }, 'W/"v1"') : respond(500),
-  );
-  const first = await fetchAllSnapshots(() => true);
-  expect(first.map((s) => s.data)).toEqual([{ ok: 1 }]);
-  expect(sentTag(TRENDS)).toBeUndefined();
-
-  mockFetch.mockReset();
-  mockFetch.mockImplementation(async (url) => (url === TRENDS ? respond(304) : respond(500)));
-  const second = await fetchAllSnapshots(() => true);
-  // The tag it was given, and nothing to apply: unchanged costs no body.
-  expect(sentTag(TRENDS)).toBe('W/"v1"');
-  expect(second).toEqual([]);
+it('persists a tag with its payload and sends it after restoring that same payload', async () => {
+  const client = new QueryClient();
+  for (const entry of await fetchAllSnapshots(() => undefined)) {
+    client.setQueryData(entry.queryKey, entry.data);
+  }
+  const restored = new QueryClient();
+  hydrate(restored, JSON.parse(JSON.stringify(dehydrate(client))));
+  request.mockClear();
+  request.mockResolvedValue({ changed: false });
+  expect(await fetchAllSnapshots((key) => restored.getQueryData(key))).toEqual([]);
+  expect(sentTag()).toBe('v1');
+  expect(snapshotData(restored.getQueryData(trends.queryKey))).toEqual({ reading: 1 });
 });
 
-it('never sends a tag for a layer the app does not hold: a 304 would leave it empty', async () => {
-  mockFetch.mockImplementation(async (url) =>
-    url === TRENDS ? respond(200, { ok: 1 }, 'W/"v1"') : respond(500),
-  );
-  await fetchAllSnapshots(() => true);
-  mockFetch.mockClear();
-  await fetchAllSnapshots(() => false);
-  expect(sentTag(TRENDS)).toBeUndefined();
+it('does not advance tags when snapshots succeed but the feed fails', async () => {
+  const client = new QueryClient();
+  client.setQueryData(trends.queryKey, { snapshot: { reading: 0 }, etag: 'old' });
+  jest.mocked(fetchFeed).mockRejectedValue(new Error('offline'));
+  await expect(fetchArrival(client)).rejects.toThrow('offline');
+  // Allow every parallel snapshot to finish after the feed's failure.
+  await Promise.resolve();
+  request.mockClear();
+  await fetchAllSnapshots((key) => client.getQueryData(key));
+  expect(sentTag()).toBe('old');
+  expect(snapshotData(client.getQueryData(trends.queryKey))).toEqual({ reading: 0 });
 });
 
-it('writes the tags once for an arrival, however many layers it changed', async () => {
-  // Synchronous, and just before the commit that shows the arrival.
-  let n = 0;
-  mockFetch.mockImplementation(async () => respond(200, { ok: 1 }, `W/"v${++n}"`));
-  mockSetItemSync.mockClear();
-  const changed = await fetchAllSnapshots(() => true);
-  expect(changed.length).toBeGreaterThan(1);
-  expect(mockSetItemSync).toHaveBeenCalledTimes(1);
-  // Nothing new, nothing written.
-  mockSetItemSync.mockClear();
-  mockFetch.mockImplementation(async () => respond(304));
-  await fetchAllSnapshots(() => true);
-  expect(mockSetItemSync).not.toHaveBeenCalled();
+it('reads old plain-payload caches without trusting an unrelated tag', async () => {
+  const old = { reading: 0 };
+  expect(snapshotData(old)).toBe(old);
+  await fetchAllSnapshots(() => old);
+  expect(sentTag()).toBeNull();
 });
 
-describe('the company list', () => {
-  const COMPANIES = API_SNAPSHOTS.companies.url;
+it('keeps the ETag on a query-owned initial load too', async () => {
+  expect(await fetchSnapshot(trends)).toEqual({ snapshot: { reading: 1 }, etag: 'v1' });
+});
 
-  it('rides an arrival like the strip\u2019s other readings, and costs nothing unchanged', async () => {
-    // It was fetched only when the menu opened, until the companies took
-    // slots in the top strip, which is on screen from launch.
-    const payload = { generated: '2026-10-03T05:00:00.000Z', companies: [] };
-    mockFetch.mockImplementation(async (url) =>
-      url === COMPANIES ? respond(200, payload, 'W/"c1"') : respond(500),
-    );
-    const first = await fetchAllSnapshots(() => true);
-    expect(first.map((s) => s.data)).toEqual([payload]);
+it('retries a failed query-owned layer when reconnecting on the same feed build', async () => {
+  request.mockRejectedValueOnce(new Error('connection lost'));
+  await expect(fetchSnapshot(trends)).rejects.toThrow('connection lost');
+  request.mockClear();
+  const retried = await fetchAllSnapshots(() => undefined, true);
+  expect(request).toHaveBeenCalledTimes(1);
+  expect(retried).toEqual([
+    { queryKey: trends.queryKey, data: { snapshot: { reading: 1 }, etag: 'v1' } },
+  ]);
+});
 
-    mockFetch.mockReset();
-    mockFetch.mockImplementation(async (url) => (url === COMPANIES ? respond(304) : respond(500)));
-    expect(await fetchAllSnapshots(() => true)).toEqual([]);
-    expect(sentTag(COMPANIES)).toBe('W/"c1"');
+it('retries only failed layers even when no new feed build exists', async () => {
+  request.mockImplementation(async (url) => {
+    if (url === trends.url) throw new Error('temporary');
+    return { changed: true, data: {}, etag: 'v1' };
   });
+  await fetchAllSnapshots(() => undefined);
+  request.mockClear();
+  request.mockResolvedValue({ changed: true, data: { reading: 2 }, etag: 'v2' });
+  const retried = await fetchAllSnapshots(() => undefined, true);
+  expect(request).toHaveBeenCalledTimes(1);
+  expect(retried).toEqual([
+    { queryKey: trends.queryKey, data: { snapshot: { reading: 2 }, etag: 'v2' } },
+  ]);
+  request.mockClear();
+  await fetchAllSnapshots(() => undefined, true);
+  expect(request).not.toHaveBeenCalled();
 });

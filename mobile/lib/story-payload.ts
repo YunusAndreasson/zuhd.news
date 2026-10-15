@@ -1,5 +1,7 @@
 import type { Article, ArticleSource, Category } from '@shared/types';
 import { CATEGORIES } from '../constants/theme';
+import { isIsoDate } from './data-freshness';
+import { isArticleSource } from './validate';
 
 /**
  * One story from `/api/story/{slug}.json`, as the app's `Article`.
@@ -33,7 +35,14 @@ export const isStoryPayload = (v: unknown): v is StoryPayload => {
   return (
     typeof o.slug === 'string' &&
     typeof o.title === 'string' &&
-    typeof o.date === 'string' &&
+    isIsoDate(o.date) &&
+    (o.location == null || typeof o.location === 'string') &&
+    (o.sources === undefined || (Array.isArray(o.sources) && o.sources.every(isArticleSource))) &&
+    (o.eventCoverage == null ||
+      (typeof o.eventCoverage === 'number' && Number.isFinite(o.eventCoverage))) &&
+    (o.sentimentDivergence == null ||
+      (typeof o.sentimentDivergence === 'number' && Number.isFinite(o.sentimentDivergence))) &&
+    (o.chart === undefined || typeof o.chart === 'string') &&
     typeof o.category === 'string' &&
     typeof o.bodyHtml === 'string'
   );

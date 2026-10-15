@@ -339,10 +339,11 @@ test('the values shared with _map/style.ts agree', () => {
     assert.ok(m, `${path} is not declared in _map/style.ts`)
     return m[1]
   }
-  // The HUD and scrubber gradients fade into the canvas, and a cluster disc is
-  // filled with the ocean colour so its numeral reads over a coastline. A
-  // drift here is a visible seam between the map and the chrome on top of it.
-  assert.equal(token('--map-ground'), ts('ocean'), '--map-ground must equal MAP_COLOURS.ocean')
+  // The HUD and scrubber gradients fade into the canvas's space. A drift here
+  // is a visible seam between the map and the chrome on top of it.
+  assert.equal(token('--map-ground'), ts('space'), '--map-ground must equal MAP_COLOURS.space')
+  // Makkah on the map is the site's gold, as on the page and in the app.
+  assert.equal(scheme(token('--brand'))[1], ts('makkah'), 'MAP_COLOURS.makkah must equal --brand on dark')
   // The chokepoint sparkline is CSS, and is tinted with the same two colours
   // as the marker the reader clicked to open it.
   assert.equal(token('--map-straits'), ts('straits'), '--map-straits must equal OVERLAY_COLOUR.straits')
@@ -376,5 +377,43 @@ test('the brand mark is the only chromatic token on the site palette', () => {
       assert.ok(!chromatic(v), `${name} (${v}) carries a hue; only --brand may`)
     }
   }
-  assert.ok(chromatic(token('--brand')), '--brand should be the chromatic one')
+  for (const v of scheme(token('--brand'))) assert.ok(chromatic(v), `--brand (${v}) should be the chromatic one`)
+})
+
+test('the brand gold is a mark in both schemes', () => {
+  // The reading-progress bar and the blockquote rule are drawn in it, and a
+  // one-value gold measured 2.29:1 on white.
+  for (const [i, name] of ['light', 'dark'].entries()) {
+    for (const surface of SITE_SURFACE) {
+      assertContrast(
+        `${name} --brand`, scheme(token('--brand'))[i],
+        surface, scheme(token(surface))[i],
+        NON_TEXT,
+      )
+    }
+  }
+})
+
+test('a rule is seen on both surfaces and never underlines a link', () => {
+  // Dark mode's rule was 1.13:1 on --bg and darker than --bg-soft, and it was
+  // the only underline on the source links.
+  for (const [i, name] of ['light', 'dark'].entries()) {
+    const ink = luminance(scheme(token('--text'))[i])
+    for (const surface of SITE_SURFACE) {
+      const rule = scheme(token('--rule'))[i]
+      const bg = scheme(token(surface))[i]
+      assert.ok(contrast(rule, bg) >= 1.1, `${name} --rule is ${contrast(rule, bg).toFixed(2)}:1 on ${surface}`)
+      assert.ok(
+        Math.abs(luminance(rule) - ink) < Math.abs(luminance(bg) - ink),
+        `${name} --rule sits beyond ${surface}, away from the ink`,
+      )
+    }
+  }
+  assert.ok(!/text-decoration-color:\s*var\(--rule/.test(css), 'a link is underlined in --rule; use an ink')
+})
+
+test('a played briefing is quiet by ink, not by alpha', () => {
+  const block = css.match(/\n\.audio-briefing\s*\{(?:[^{}]|\{[^{}]*\})*\}/)
+  assert.ok(block, '.audio-briefing should exist')
+  assert.ok(!/\bopacity\s*:/.test(block[0]), '.audio-briefing is dimmed with opacity, which this suite cannot measure')
 })

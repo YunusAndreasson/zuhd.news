@@ -21,6 +21,8 @@ import { join } from 'node:path'
 import { unwrap, closePolar, thin, simplifyRing } from '../build/basemap.js'
 import { channels, composite, contrast, hsl, luminance, luminanceOf } from './contrast.js'
 import { bundleIsland, bundleIslands, scratchDir } from './island-bundle.js'
+import { VectorTile } from '@mapbox/vector-tile'
+import { PbfReader } from 'pbf'
 // The prayer-time oracle. A devDependency, and deliberately not shipped — the
 // island derives its curves in closed form and this is what proves it right.
 // See the header of `public/islands/_map/prayer.ts`.
@@ -34,6 +36,14 @@ import {
 } from './market-metadata.js'
 
 const ROOT = new URL('../..', import.meta.url).pathname
+
+/** The built world tile: every country the map draws, as one zoom-0 tile. */
+const WORLD_TILE = join(ROOT, 'dist/basemap/tiles/0/0/0.pbf')
+/** The codes on the polygons the map draws, read off the world tile. */
+const drawnCodes = () => {
+  const layer = new VectorTile(new PbfReader(readFileSync(WORLD_TILE))).layers.countries
+  return new Set(Array.from({ length: layer.length }, (_, i) => layer.feature(i).properties.iso2))
+}
 
 const dir = scratchDir('map-geo')
 const bundlePath = await bundleIslands(
@@ -50,6 +60,9 @@ const bundlePath = await bundleIslands(
     // only thing on the map whose correctness cannot be checked by looking at
     // it — a wrong Hijri date is still a plausible Hijri date.
     'public/islands/_map/hijri.ts',
+    // The Makkah card: the next prayers there and the days to the year's
+    // markers, from the two modules above.
+    'public/islands/_map/makkah.ts',
     // Named rather than `export *`: markets.ts re-exports payload types that
     // would collide with types.ts above, and an ambiguous star export resolves
     // to silence rather than an error.
@@ -1227,20 +1240,85 @@ test('the land ramp is legible, ordered, neutral, and clear of the border', () =
   }
 })
 
+/**
+ * The sea floor's tones keep every promise the ocean's colour makes.
+ *
+ * `ocean` is held to three things below: the coast's line reads against it,
+ * the overlay marks read against it, and it sits at the land's own lightness so
+ * the land ramp starts at the sea. A depth band is the ocean a step lighter or
+ * darker, so each one is held to the same, and the steps stay quiet: the
+ * shelf against the abyss is a ground, not a mark.
+ */
+test('every depth tone is a sea the coast, the marks and the land still read on', () => {
+  const tones = M.DEPTH_TONES.map(([, c]) => c)
+  assert.ok(tones.includes(M.MAP_COLOURS.ocean), 'the abyss is no longer the ocean')
+  for (let i = 1; i < M.DEPTH_TONES.length; i++) {
+    const [d, c] = M.DEPTH_TONES[i]
+    const [up, above] = M.DEPTH_TONES[i - 1]
+    assert.ok(d > up, 'depth bands must descend')
+    assert.ok(luminance(c) < luminance(above), `${d} m is not darker than ${up} m`)
+  }
+  const shelf = tones[0]
+  assert.ok(contrast(shelf, M.MAP_COLOURS.ocean) <= 1.12, `the shelf is ${contrast(shelf, M.MAP_COLOURS.ocean).toFixed(3)}:1 off the abyss`)
+  for (const c of tones) {
+    assert.ok(contrast(M.MAP_COLOURS.border, c) >= 2.5, `the coast's line is ${contrast(M.MAP_COLOURS.border, c).toFixed(2)}:1 on ${c}`)
+    assert.ok(contrast(c, M.MAP_COLOURS.land) <= 1.1, `${c} is ${contrast(c, M.MAP_COLOURS.land).toFixed(3)}:1 off the land`)
+    assert.ok(contrast(c, M.MAP_COLOURS.space) > 1.03, `${c} is lost against space`)
+    assert.ok(contrast(M.OVERLAY_COLOUR.thermal, c) >= 3, `thermal is ${contrast(M.OVERLAY_COLOUR.thermal, c).toFixed(2)}:1 on ${c}`)
+  }
+})
+
+/**
+ * The land's physical names (`scripts/build/regions.mjs`) say only the land.
+ *
+ * Every character has a glyph in the font files (0–767 and 8192–8447), every
+ * name is spelled out rather than shouted, and the editorial cuts hold: no
+ * claim names south of 60°S, no state's name again, no peninsula that is a
+ * claim. The layer speaks in `labelDim`, the one ink that clears AA on the
+ * brightest land, and quietens by case and size, never by opacity.
+ */
+test('the region names are the land’s, spelled out, in an ink the land can carry', () => {
+  const { features } = JSON.parse(readFileSync(join(ROOT, 'shared/data/regions-50m.geojson'), 'utf8'))
+  assert.ok(features.length >= 200, `only ${features.length} region names`)
+  const names = features.map((f) => f.properties.name)
+  assert.equal(new Set(names).size, names.length, 'a region is named twice')
+  for (const f of features) {
+    const { name, tier, rot } = f.properties
+    for (const ch of name) {
+      const c = ch.codePointAt(0)
+      assert.ok(c <= 767 || (c >= 8192 && c <= 8447), `${name} has ${ch}, which the label font does not cover`)
+    }
+    assert.notEqual(name, name.toUpperCase(), `${name} is in capitals`)
+    assert.ok(!/\b(Mts?|Ra|Cord|Plat|Pen)\./.test(name), `${name} is abbreviated`)
+    assert.ok(f.geometry.coordinates[1] >= -60, `${name} is south of 60°S`)
+    assert.ok([1, 2, 3].includes(tier), `${name} has tier ${tier}`)
+    assert.ok(Math.abs(rot) <= 45, `${name} stands at ${rot}°`)
+    if (!['range', 'valley'].includes(f.properties.kind)) assert.equal(rot, 0, `${name} is tilted`)
+  }
+  for (const cut of ['Alaska', 'Crimea', 'India', 'Korea', 'Punjab', 'Knud Rasmussen Land', 'Queen Maud Land']) {
+    assert.ok(!names.includes(cut), `${cut} is a region name`)
+  }
+  for (const kept of ['Sahel', 'Hindu Kush', 'Mesopotamia', 'Sahara', 'Himalayas', 'Zagros Mountains']) {
+    assert.ok(names.includes(kept), `${kept} is missing`)
+  }
+  const layer = M.buildStyle().layers.find((l) => l.id === 'region-labels')
+  assert.equal(layer.paint['text-color'], M.MAP_COLOURS.labelDim)
+  assert.equal(layer.paint['text-opacity'], undefined, 'a region name is quieted by opacity')
+  for (const ground of M.LAND_RAMP) {
+    assert.ok(contrast(M.MAP_COLOURS.labelDim, ground) >= 4.5, `labelDim fails AA on ${ground}`)
+  }
+})
+
 test('every metric payload places its countries on a 0..1 scale', (t) => {
   const indexPath = join(ROOT, 'dist/api/metric/index.json')
-  if (!existsSync(indexPath)) {
+  if (!existsSync(indexPath) || !existsSync(WORLD_TILE)) {
     t.skip('dist/api/metric/ not built')
     return
   }
   const { metrics } = JSON.parse(readFileSync(indexPath, 'utf8'))
   assert.ok(metrics.length >= 20, `only ${metrics.length} metrics emitted`)
 
-  const iso2s = new Set(
-    JSON.parse(readFileSync(join(ROOT, 'dist/basemap/countries.geojson'), 'utf8')).features.map(
-      (f) => f.properties?.iso2,
-    ),
-  )
+  const iso2s = drawnCodes()
 
   for (const m of metrics) {
     const payload = JSON.parse(
@@ -1290,8 +1368,7 @@ test('every metric payload places its countries on a 0..1 scale', (t) => {
 
 test('the polygon the map actually draws for Palestine can be tinted', (t) => {
   const indexPath = join(ROOT, 'dist/api/metric/index.json')
-  const basePath = join(ROOT, 'dist/basemap/countries.geojson')
-  if (!existsSync(indexPath) || !existsSync(basePath)) {
+  if (!existsSync(indexPath) || !existsSync(WORLD_TILE)) {
     t.skip('dist/api/metric or dist/basemap not built')
     return
   }
@@ -1301,8 +1378,7 @@ test('the polygon the map actually draws for Palestine can be tinted', (t) => {
   // the figures under `IL` alone would leave the map blank there while every
   // neighbour was shaded, which reads as "no data" about a place we do hold
   // data about.
-  const features = JSON.parse(readFileSync(basePath, 'utf8')).features
-  const codes = new Set(features.map((f) => f.properties?.iso2))
+  const codes = drawnCodes()
   assert.ok(codes.has('PS'), 'the basemap has no PS polygon')
   assert.ok(!codes.has('IL'), 'the basemap has a separate IL polygon, so the merge regressed')
 
@@ -1466,11 +1542,11 @@ test('the live scrub position is the real live edge, whatever the day anchor', (
 })
 
 test('the airglow is the night limb’s edge, and dimmer than the land', () => {
-  // Sea and space are one tone, so on the night side this line is the planet's
-  // only edge. Drawn in `horizon` at 1.45:1 it could not be seen there.
-  const { airglow, ocean } = M.MAP_COLOURS
+  // On the night side this line is the planet's sharp edge against space.
+  // Drawn in `horizon` at 1.45:1 it could not be seen there.
+  const { airglow, space } = M.MAP_COLOURS
   const top = M.LAND_RAMP[M.LAND_RAMP.length - 1]
-  assert.ok(contrast(airglow, ocean) >= 2, `airglow ${airglow} is only ${contrast(airglow, ocean).toFixed(2)}:1 on the ocean`)
+  assert.ok(contrast(airglow, space) >= 2, `airglow ${airglow} is only ${contrast(airglow, space).toFixed(2)}:1 on space`)
   // An atmosphere brighter than the continents makes the planet look like a hole.
   assert.ok(luminance(airglow) < luminance(top), `airglow ${airglow} is brighter than the ramp top ${top}`)
   assert.ok(hsl(airglow).s <= 0.31, `airglow ${airglow} is more saturated than the air it stands for`)
@@ -2855,7 +2931,7 @@ test('the density wash sits above the land ramp and below the ink', () => {
    *
    * Two channels because neither works alone, and measuring is what showed it.
    * On the brightest land the wash peak comes up to `#656c76`, where a `politics`
-   * fill measures **1.39:1** — nearly the same luminance — and the ocean-coloured
+   * fill measures **1.39:1** — nearly the same luminance — and the space-coloured
    * rim measures **3.73:1**. Over the water the peak is `#3b3e42` and it is the
    * other way round: the rim collapses to **1.84:1** while the fills run
    * 2.83–4.60:1. So fill carries the mark on dark ground, rim carries it on
@@ -2870,7 +2946,7 @@ test('the density wash sits above the land ramp and below the ink', () => {
    * the edge *between* rim and fill, which no ground can affect.
    */
   const peakOnOcean = composite(field, visible[visible.length - 1][1], ocean)
-  const casing = channels(M.MAP_COLOURS.ocean)
+  const casing = channels(M.MAP_COLOURS.space)
   assert.ok(
     contrast(casing, peakOnLand) >= 3,
     `the rim only reaches ${contrast(casing, peakOnLand).toFixed(2)}:1 on the wash over bright land, which is the case it exists for`,
@@ -2944,6 +3020,63 @@ test('the density wash sits above the land ramp and below the ink', () => {
 })
 
 /**
+ * The bloom under a busy place, in the wash's tone and capped.
+ *
+ * It shipped as a gold ramp drawn as blurred circles: an economy dot measured
+ * 1.01:1 on it, a city name 1.33:1, and three overlapping European capitals
+ * stacked to 0.93 opacity. As a heatmap the ramp's top caps any overlap, so
+ * the top stop is the worst case, and it is measured on every ground alone and
+ * on the wash's own peak.
+ */
+test('the bloom is the wash’s tone, and the type and dots on it still read', () => {
+  const stops = M.BLOOM_STOPS
+  assert.deepEqual([...stops[0]], [0, 0], 'stop 0 must be transparent, or the bloom paints the world')
+  for (let i = 1; i < stops.length; i++) {
+    assert.ok(stops[i][0] > stops[i - 1][0], 'heat stops must ascend')
+    assert.ok(stops[i][1] >= stops[i - 1][1], 'alpha must not fall')
+  }
+  const top = stops[stops.length - 1][1]
+  assert.ok(top <= 0.2, `the bloom peaks at ${top}`)
+  // One tone with the wash: every colour stop is the density tone at an alpha.
+  const [r, g, b] = channels(M.MAP_COLOURS.density)
+  for (const v of M.bloomRamp().filter((x) => typeof x === 'string')) {
+    assert.ok(v.startsWith(`rgb(${r} ${g} ${b} /`), `${v} is not the wash's tone`)
+  }
+
+  const tone = channels(M.MAP_COLOURS.density)
+  const washPeak = M.DENSITY_STOPS[M.DENSITY_STOPS.length - 1][1]
+  const rim = channels(M.MAP_COLOURS.space)
+  for (const ground of [M.MAP_COLOURS.ocean, M.LAND_NO_DATA, ...M.LAND_RAMP]) {
+    for (const washed of [false, true]) {
+      const under = washed ? composite(tone, washPeak, channels(ground)) : channels(ground)
+      const patch = composite(tone, top, under)
+      const where = `${ground}${washed ? ' under the wash' : ''}`
+      assert.ok(
+        contrast(channels(M.MAP_COLOURS.label), patch) >= 3,
+        `a city name is ${contrast(channels(M.MAP_COLOURS.label), patch).toFixed(2)}:1 on the bloom over ${where}`,
+      )
+      if (!washed) {
+        assert.ok(
+          contrast(channels(M.MAP_COLOURS.labelDim), patch) >= 3,
+          `a country name is ${contrast(channels(M.MAP_COLOURS.labelDim), patch).toFixed(2)}:1 on the bloom over ${where}`,
+        )
+      }
+      for (const [name, hex] of Object.entries(M.CATEGORY_COLOUR)) {
+        const best = Math.max(contrast(channels(hex), patch), contrast(rim, patch))
+        assert.ok(best >= 2.25, `a ${name} dot on the bloom over ${where} reaches only ${best.toFixed(2)}:1`)
+      }
+    }
+  }
+
+  // The key's swatch is what the canvas draws: the top over the ocean at the
+  // centre, bare ocean at the edge.
+  const css = M.bloomCssRamp()
+  const first = composite(tone, top, channels(M.MAP_COLOURS.ocean)).map(Math.round)
+  assert.ok(css.startsWith(`rgb(${first.join(' ')}) 0%`), `the key's glow starts at ${css.split(',')[0]}`)
+  assert.ok(css.endsWith(`rgb(${channels(M.MAP_COLOURS.ocean).join(' ')}) 100%`), 'the key\'s glow ends on the sea')
+})
+
+/**
  * Every word printed on the map is legible on every ground it can land on.
  *
  * The test that did not exist, which is why the map shipped hard to read. The
@@ -2979,6 +3112,7 @@ test('every label on the map is legible on every ground it can land on', () => {
     'city names and the place numeral': M.MAP_COLOURS.label,
     'marine labels': M.MAP_COLOURS.waterLabel,
     'prayer labels': M.MAP_COLOURS.prayer,
+    'Makkah': M.MAP_COLOURS.makkahLabel,
   }
 
   for (const [what, ink] of Object.entries(inks)) {
@@ -3170,4 +3304,48 @@ test('no label layer is floored above the zoom a phone opens at', () => {
   const filter = JSON.stringify(country.filter)
   assert.match(filter, /"area"/, 'country labels must be gated on area')
   assert.match(filter, /step/, 'and that gate must step with zoom')
+})
+
+test('Makkah’s card counts to the prayers by adhan’s clock, in the order they come', () => {
+  const [lng, lat] = M.MAKKAH_AT
+  // An hour past noon in Makkah, and the hour before Fajr: the next prayer is
+  // Asr at the first and Fajr at the second, and each list holds the coming five.
+  for (const [iso, first] of [
+    ['2026-10-15T10:00:00Z', 'asr'],
+    ['2026-10-15T00:30:00Z', 'fajr'],
+  ]) {
+    const now = Date.parse(iso)
+    const list = M.nextPrayers(now)
+    assert.equal(list.length, 5, `${iso}: five prayers in the coming day`)
+    assert.equal(list[0].id, first, `${iso}: ${first} is next`)
+    for (let i = 0; i < list.length; i++) {
+      const p = list[i]
+      assert.ok(p.at > now && p.at - now <= 24 * HOUR, `${p.id} is in the coming day`)
+      if (i) assert.ok(p.at > list[i - 1].at, 'in the order they come')
+      const off = adhanPrayerAt(p.id, lat, lng, p.at)
+      assert.ok(off <= (p.id === 'asr' ? 150_000 : 20_000), `${p.id} is ${Math.round(off / 1000)}s from adhan`)
+    }
+  }
+  assert.equal(M.untilLabel(8 * 60_000), 'in 8 min')
+  assert.equal(M.untilLabel(72 * 60_000), 'in 1 h 12 min')
+  assert.equal(M.untilLabel(120 * 60_000), 'in 2 h')
+})
+
+test('Makkah’s card finds each marker on its Umm al-Qura date', () => {
+  const tz = 'Asia/Riyadh'
+  const now = Date.parse('2026-10-15T09:00:00Z')
+  const marks = M.comingMarks(now, tz)
+  assert.equal(marks.length, 5, 'every marker is found within the year')
+  for (let i = 1; i < marks.length; i++) assert.ok(marks[i].days >= marks[i - 1].days, 'nearest first')
+  const ramadan = marks.find((m) => m.name === 'Ramadan begins')
+  const h = M.hijriDate(now + ramadan.days * 24 * HOUR, tz)
+  assert.deepEqual([h.month, h.day], [9, 1], 'the day found is 1 Ramadan')
+  // And on the day itself, the count is zero.
+  const onIt = now + ramadan.days * 24 * HOUR
+  assert.equal(M.comingMarks(onIt, tz).find((m) => m.name === 'Ramadan begins').days, 0)
+  assert.equal(M.ramadanDay(onIt, tz), 1)
+  assert.equal(M.ramadanDay(now, tz), null)
+  assert.equal(M.dayWord(0), 'today')
+  assert.equal(M.dayWord(1), 'tomorrow')
+  assert.equal(M.dayWord(12), 'in 12 days')
 })

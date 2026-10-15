@@ -2,6 +2,8 @@ import { act, renderHook } from '@testing-library/react';
 import { Suspense } from 'react';
 import { DEFAULT_PREFS } from '../constants/theme';
 import { ThemeProvider, usePreferences, useTheme } from '../hooks/useTheme';
+import * as Network from 'expo-network';
+import { enableNotifications, unregisterPushToken } from '../lib/notifications';
 import { savePreferences } from '../lib/storage';
 
 jest.mock('react-native', () => ({
@@ -9,7 +11,12 @@ jest.mock('react-native', () => ({
   StyleSheet: { create: (styles: unknown) => styles, hairlineWidth: 0.5 },
   Dimensions: { get: () => ({ width: 411, height: 914 }) },
   Appearance: { setColorScheme: jest.fn() },
+  AppState: { addEventListener: jest.fn(() => ({ remove: jest.fn() })) },
   useColorScheme: () => 'dark',
+}));
+jest.mock('expo-network', () => ({
+  addNetworkStateListener: jest.fn(() => ({ remove: jest.fn() })),
+  getNetworkStateAsync: jest.fn(async () => ({ isConnected: true })),
 }));
 jest.mock('expo-navigation-bar', () => ({ NavigationBar: { setStyle: jest.fn() } }));
 jest.mock('expo-system-ui', () => ({ setBackgroundColorAsync: jest.fn(async () => {}) }));
@@ -50,4 +57,54 @@ it('keeps edited preferences when Android recreates the provider in the same run
   const second = renderHook(useSettings, { wrapper: Wrapper });
   expect(second.result.current.api.preferences).toEqual(edited);
   expect(second.result.current.theme.resolvedAppearance).toBe('light');
+});
+
+it('merges a delayed notification permission result into the latest display preferences', async () => {
+  let grant!: (value: boolean) => void;
+  jest.mocked(enableNotifications).mockImplementationOnce(
+    () =>
+      new Promise((resolve) => {
+        grant = resolve;
+      }),
+  );
+  let hook!: ReturnType<typeof renderHook<ReturnType<typeof usePreferences>, unknown>>;
+  await act(async () => {
+    hook = renderHook(usePreferences, { wrapper: Wrapper });
+  });
+  let pending!: Promise<boolean>;
+  act(() => {
+    pending = hook.result.current.setNotifications(true);
+  });
+  act(() => {
+    hook.result.current.setAppearance('dark');
+    hook.result.current.setFontSize('small');
+  });
+  await act(async () => {
+    grant(true);
+    await pending;
+  });
+  expect(hook.result.current.preferences).toMatchObject({
+    appearance: 'dark',
+    fontSize: 'small',
+    notifications: true,
+  });
+});
+
+it('retries notification opt-out on reconnect without resending on every network event', async () => {
+  let hook!: ReturnType<typeof renderHook<ReturnType<typeof usePreferences>, unknown>>;
+  await act(async () => {
+    hook = renderHook(usePreferences, { wrapper: Wrapper });
+  });
+  await act(async () => {
+    await hook.result.current.setNotifications(false);
+  });
+  const calls = jest.mocked(Network.addNetworkStateListener).mock.calls;
+  const network = calls[calls.length - 1]?.[0];
+  jest.mocked(unregisterPushToken).mockClear();
+  act(() => {
+    network?.({ isConnected: false } as never);
+    network?.({ isConnected: true } as never);
+    network?.({ isConnected: true } as never);
+  });
+  expect(unregisterPushToken).toHaveBeenCalledTimes(1);
 });

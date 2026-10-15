@@ -81,6 +81,7 @@ interface Ring {
   /** `[x, y, z, x, y, z, …]`, one unit vector per vertex, closing vertex dropped. */
   u: Float64Array;
   n: number;
+  blocks: ClipBlock[] | null;
 }
 
 interface Cap {
@@ -99,9 +100,12 @@ interface PolygonPart extends Cap {
   refInside2: boolean | null;
 }
 
-interface LinePart extends Cap {
-  u: Float64Array;
-  n: number;
+interface ClipBlock extends Cap {
+  from: number;
+  to: number;
+}
+
+interface LinePart extends Cap, Ring {
   coords: GeoJSON.Position[];
 }
 
@@ -164,6 +168,20 @@ function capOf(units: Float64Array[]): Cap {
   }
   const radius = Math.acos(Math.max(-1, Math.min(1, minDot)));
   return { x: sx, y: sy, z: sz, radius: radius >= HALF_PI ? PI : radius };
+}
+
+/** A large ring can cross the view while most of its coast is far away.
+ * Caps over consecutive vertices let the clipper skip only those runs whose
+ * vertices AND short great-circle edges are wholly outside the view. */
+const CLIP_BLOCK_SIZE = 64;
+function blocksOf(u: Float64Array, n: number): ClipBlock[] | null {
+  if (n < CLIP_BLOCK_SIZE * 2) return null;
+  const blocks: ClipBlock[] = [];
+  for (let from = 0; from < n; from += CLIP_BLOCK_SIZE) {
+    const to = Math.min(n, from + CLIP_BLOCK_SIZE);
+    blocks.push({ ...capOf([u.subarray(from * 3, to * 3)]), from, to });
+  }
+  return blocks;
 }
 
 /** Below this share of a ring's gross signed area, its net is too close to
@@ -940,7 +958,7 @@ function refContains(part: PolygonPart, ref: [number, number]): boolean {
 export function containsPoint(polygon: GeoJSON.Polygon, lng: number, lat: number): boolean {
   const rings = polygon.coordinates.map((ring) => {
     const n = Math.max(0, ring.length - 1);
-    return { u: unitsOf(ring, n), n };
+    return { u: unitsOf(ring, n), n, blocks: null };
   });
   const part: PolygonPart = {
     ...capOf(rings.map((r) => r.u)),
@@ -958,6 +976,35 @@ function containsStart(part: PolygonPart): boolean {
   return contains(part, cr * ax - sr * cx, cr * ay - sr * cy, cr * az - sr * cz);
 }
 
+function clipRange(u: Float64Array, from: number, to: number) {
+  for (let i = from * 3; i < to * 3; i += 3) {
+    const x = u[i] as number;
+    const y = u[i + 1] as number;
+    const z = u[i + 2] as number;
+    clipPoint(ax * x + ay * y + az * z, bx * x + by * y + bz * z, cx * x + cy * y + cz * z);
+  }
+}
+
+function clipVertices(ring: Ring) {
+  if (!ring.blocks || !notHemisphere) {
+    clipRange(ring.u, 0, ring.n);
+    return;
+  }
+  const clip = clipRad + CULL_MARGIN;
+  for (const block of ring.blocks) {
+    const reach = block.radius + clip;
+    if (reach < PI && block.x * ax + block.y * ay + block.z * az < Math.cos(reach)) {
+      // Keep both endpoints: the edge entering the block is still clipped,
+      // and the edge leaving it starts at the same point as the full walk.
+      // The shortcut between them stays within this convex, hidden cap.
+      clipRange(ring.u, block.from, block.from + 1);
+      if (block.to > block.from + 1) clipRange(ring.u, block.to - 1, block.to);
+    } else {
+      clipRange(ring.u, block.from, block.to);
+    }
+  }
+}
+
 function drawPolygon(part: PolygonPart) {
   segLen = 0;
   segStart.length = 0;
@@ -972,12 +1019,7 @@ function drawPolygon(part: PolygonPart) {
     const firstSegment = segStart.length;
     const base = segLen;
     clipStart(true);
-    for (let i = 0; i < n; i++) {
-      const x = u[i * 3] as number;
-      const y = u[i * 3 + 1] as number;
-      const z = u[i * 3 + 2] as number;
-      clipPoint(ax * x + ay * y + az * z, bx * x + by * y + bz * z, cx * x + cy * y + cz * z);
-    }
+    clipVertices(ring);
     // d3 closes the ring by streaming its first point again.
     const x = u[0] as number;
     const y = u[1] as number;
@@ -1031,16 +1073,49 @@ function drawPolygon(part: PolygonPart) {
   }
 }
 
-function drawLine(part: LinePart) {
-  const u = part.u;
-  const n = part.n;
-  clipStart(false);
-  for (let i = 0; i < n; i++) {
-    const x = u[i * 3] as number;
-    const y = u[i * 3 + 1] as number;
-    const z = u[i * 3 + 2] as number;
-    clipPoint(ax * x + ay * y + az * z, bx * x + by * y + bz * z, cx * x + cy * y + cz * z);
+/** A part strictly inside the clip cap needs no intersections or rejoin.
+ * Keep the clipper's duplicate-point rule and, for rings, its dropped closing
+ * point. Holding the final point avoids the polygon's temporary segment buffer. */
+function drawInside(u: Float64Array, n: number, ring: boolean) {
+  if (n === 0) return;
+  emitStart(ring);
+  let hasPrev = false;
+  let pa = 0;
+  let pb = 0;
+  let pc = 0;
+  let heldA = 0;
+  let heldB = 0;
+  let heldC = 0;
+  const count = n + (ring ? 1 : 0);
+  for (let i = 0; i < count; i++) {
+    const at = (i === n ? 0 : i) * 3;
+    const x = u[at] as number;
+    const y = u[at + 1] as number;
+    const z = u[at + 2] as number;
+    const a = ax * x + ay * y + az * z;
+    const b = bx * x + by * y + bz * z;
+    const c = cx * x + cy * y + cz * z;
+    if (!hasPrev || !pointEqual(pa, pb, pc, a, b, c)) {
+      if (ring) {
+        if (hasPrev) emitPoint(heldA, heldB, heldC);
+        heldA = a;
+        heldB = b;
+        heldC = c;
+      } else {
+        emitPoint(a, b, c);
+      }
+    }
+    pa = a;
+    pb = b;
+    pc = c;
+    hasPrev = true;
   }
+  emitEnd();
+}
+
+function drawLine(part: LinePart) {
+  clipStart(false);
+  clipVertices(part);
   clipEnd();
 }
 
@@ -1057,7 +1132,8 @@ export function createOrthoLayer(input: Input): OrthoLayer {
     for (const ring of coords) {
       // GeoJSON closes a ring with its first point; d3 drops it.
       const n = Math.max(0, ring.length - 1);
-      rings.push({ u: unitsOf(ring, n), n });
+      const u = unitsOf(ring, n);
+      rings.push({ u, n, blocks: blocksOf(u, n) });
     }
     const cap = capOf(rings.map((r) => r.u));
     // The cap bounds the ring; it bounds the interior only when the interior
@@ -1078,7 +1154,7 @@ export function createOrthoLayer(input: Input): OrthoLayer {
   const lineOf = (coords: GeoJSON.Position[]) => {
     const n = coords.length;
     const u = unitsOf(coords, n);
-    lines.push({ ...capOf([u]), u, n, coords });
+    lines.push({ ...capOf([u]), u, n, blocks: blocksOf(u, n), coords });
   };
   const collect = (g: Input | null): void => {
     if (!g) return;
@@ -1150,13 +1226,22 @@ export function createOrthoLayer(input: Input): OrthoLayer {
       const clip = clipRad + CULL_MARGIN;
       for (const p of polygons) {
         const reach = p.radius + clip;
-        if (reach < PI && p.x * ax + p.y * ay + p.z * az < Math.cos(reach)) continue;
-        drawPolygon(p);
+        const dot = p.x * ax + p.y * ay + p.z * az;
+        if (reach < PI && dot < Math.cos(reach)) continue;
+        const inner = clipRad - p.radius - CULL_MARGIN;
+        if (inner > 0 && dot > Math.cos(inner)) {
+          for (const ring of p.rings) drawInside(ring.u, ring.n, true);
+        } else {
+          drawPolygon(p);
+        }
       }
       for (const l of lines) {
         const reach = l.radius + clip;
-        if (reach < PI && l.x * ax + l.y * ay + l.z * az < Math.cos(reach)) continue;
-        drawLine(l);
+        const dot = l.x * ax + l.y * ay + l.z * az;
+        if (reach < PI && dot < Math.cos(reach)) continue;
+        const inner = clipRad - l.radius - CULL_MARGIN;
+        if (inner > 0 && dot > Math.cos(inner)) drawInside(l.u, l.n, false);
+        else drawLine(l);
       }
     },
     visible(camLng, camLat, clipAngleDeg) {

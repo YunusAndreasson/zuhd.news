@@ -81,20 +81,20 @@ export const shareLinks = (
   t: ShareTarget,
 ): Array<{ label: string; href: string; aria: string }> => [
   {
-    label: 'x',
-    // The visible label is one lowercase word, in the footnote register the
-    // rest of the row uses. `aria` is the same link said properly — a screen
-    // reader announcing "link, x" has told the listener nothing.
+    label: 'X',
+    // The visible label is the name as the footer sets it. `aria` says what
+    // the link does: a screen reader announcing "link, X" has told the
+    // listener nothing.
     aria: 'Share on X',
     href: `https://x.com/intent/post?text=${encodeURIComponent(t.title)}&url=${encodeURIComponent(t.url)}&via=${X_HANDLE}`,
   },
   {
-    label: 'whatsapp',
+    label: 'WhatsApp',
     aria: 'Share on WhatsApp',
     href: `https://wa.me/?text=${encodeURIComponent(`${t.title} ${t.url}`)}`,
   },
   {
-    label: 'email',
+    label: 'Email',
     aria: 'Share by email',
     href: `mailto:?subject=${encodeURIComponent(t.title)}&body=${encodeURIComponent(`${t.title}\n\n${t.url}`)}`,
   },

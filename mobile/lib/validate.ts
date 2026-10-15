@@ -2,6 +2,7 @@ import { EVENT_TYPE_EYEBROW } from '@shared/gdacs';
 import type {
   AnalysisSnapshot,
   Article,
+  ArticleSource,
   Category,
   Chokepoint,
   ChokepointCounts,
@@ -36,6 +37,19 @@ const isNumberArray = (v: unknown): v is number[] => Array.isArray(v) && v.every
 const isCategory = (v: unknown): v is Category =>
   v === 'politics' || v === 'economy' || v === 'science' || v === 'tech';
 
+const isNullableString = (v: unknown): boolean => v == null || typeof v === 'string';
+const isNullableNumber = (v: unknown): boolean => v == null || isFiniteNumber(v);
+
+// `name` may be missing: the build forwards `s.name` as it finds it, and the
+// readers skip a nameless source. Rejecting it would cost the whole feed.
+export const isArticleSource = (v: unknown): v is ArticleSource =>
+  isObject(v) &&
+  isNullableString(v.name) &&
+  isNullableString(v.url) &&
+  isNullableString(v.country) &&
+  isNullableString(v.angle) &&
+  isNullableNumber(v.sentiment);
+
 const isArticle = (v: unknown): v is Article => {
   if (!isObject(v)) return false;
   return (
@@ -44,6 +58,27 @@ const isArticle = (v: unknown): v is Article => {
     isIsoDate(v.date) &&
     isFiniteNumber(v.addedAt) &&
     Array.isArray(v.sources) &&
+    v.sources.every(isArticleSource) &&
+    isNullableString(v.location) &&
+    isNullableString(v.source) &&
+    isNullableString(v.sourceUrl) &&
+    isNullableNumber(v.lat) &&
+    isNullableNumber(v.lng) &&
+    isNullableNumber(v.eventCoverage) &&
+    isNullableNumber(v.sentimentDivergence) &&
+    (v.publishedAt === undefined || isFiniteNumber(v.publishedAt)) &&
+    (v.eventAt === undefined || isFiniteNumber(v.eventAt)) &&
+    (v.chart === undefined || typeof v.chart === 'string') &&
+    (v.entities === undefined ||
+      (Array.isArray(v.entities) &&
+        v.entities.every(
+          (e) =>
+            isObject(e) &&
+            typeof e.mention === 'string' &&
+            typeof e.indicatorId === 'string' &&
+            // The build sends `kind` only where the article has one.
+            (e.kind === undefined || typeof e.kind === 'string'),
+        ))) &&
     isStringArray(v.concepts) &&
     isStringArray(v.sentences)
   );
@@ -329,7 +364,7 @@ export const isPreferences = (v: unknown): v is Preferences => {
   );
 };
 
-const isBookmark = (v: unknown): v is Bookmark =>
+export const isBookmark = (v: unknown): v is Bookmark =>
   isObject(v) && isArticle(v.article) && isCategory(v.category) && typeof v.savedAt === 'number';
 
 export const isBookmarkArray = (v: unknown): v is Bookmark[] =>
@@ -338,10 +373,6 @@ export const isBookmarkArray = (v: unknown): v is Bookmark[] =>
 /** A slug → when map, as the found, read and known stores persist it. */
 export const isTimestampMap = (v: unknown): v is Record<string, number> =>
   isObject(v) && Object.values(v).every((at) => typeof at === 'number');
-
-/** A key → string map, as the snapshot fetcher keeps each file's ETag. */
-export const isStringMap = (v: unknown): v is Record<string, string> =>
-  isObject(v) && Object.values(v).every((s) => typeof s === 'string');
 
 // Hazard overlays ported from the web map. Narrow on purpose: each checks only
 // the fields the app reads, so a field the web adds cannot fail the app's

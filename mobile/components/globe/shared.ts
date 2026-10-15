@@ -143,16 +143,6 @@ export interface SkiaGeoContext extends GeoContext, ConicSink {
   setPath(p: SkPathBuilder): void;
 }
 
-type PathStep = (this: SkPathBuilder, x: number, y: number) => SkPathBuilder;
-type PathConic = (
-  this: SkPathBuilder,
-  x1: number,
-  y1: number,
-  x2: number,
-  y2: number,
-  w: number,
-) => SkPathBuilder;
-
 /**
  * Reading a method off a Skia object is itself a JSI call: the host object
  * copies the property name to UTF-8 and searches two maps for it before the
@@ -160,31 +150,39 @@ type PathConic = (
  * against 0.53 µs with the function held (20k calls, Hermes, emulator) — and
  * d3 streams one `lineTo` per projected point, ~4k a moving frame and ~30k a
  * settled one. So each builder's methods are read once, when it becomes the
- * target. They are bound to their builder natively but read `this` for their
- * return value, which is why they are invoked through `.call`.
+ * target. They read `this` for their return value, so bind them to the builder
+ * once too: the sink can then call them directly, without a wrapper and
+ * `.call` for every point. Keep those bindings while the builder is reused.
  */
 export function createSkiaPathContext(): SkiaGeoContext {
   let _path: SkPathBuilder | null = null;
-  let _moveTo: PathStep | null = null;
-  let _lineTo: PathStep | null = null;
-  let _conicTo: PathConic | null = null;
-  return {
+  const bindings = new WeakMap<
+    SkPathBuilder,
+    Pick<SkiaGeoContext, 'moveTo' | 'lineTo' | 'conicTo' | 'close'>
+  >();
+  const context: SkiaGeoContext = {
     setPath(p: SkPathBuilder) {
       _path = p;
-      _moveTo = p.moveTo;
-      _lineTo = p.lineTo;
-      _conicTo = p.conicTo;
+      let bound = bindings.get(p);
+      if (!bound) {
+        bound = {
+          moveTo: p.moveTo.bind(p),
+          lineTo: p.lineTo.bind(p),
+          conicTo: p.conicTo.bind(p),
+          close: p.close.bind(p),
+        };
+        bindings.set(p, bound);
+      }
+      context.moveTo = bound.moveTo;
+      context.lineTo = bound.lineTo;
+      context.conicTo = bound.conicTo;
+      context.closePath = bound.close;
+      context.close = bound.close;
     },
     beginPath() {},
-    moveTo(x: number, y: number) {
-      if (_path) _moveTo?.call(_path, x, y);
-    },
-    lineTo(x: number, y: number) {
-      if (_path) _lineTo?.call(_path, x, y);
-    },
-    conicTo(x1: number, y1: number, x2: number, y2: number, w: number) {
-      if (_path) _conicTo?.call(_path, x1, y1, x2, y2, w);
-    },
+    moveTo() {},
+    lineTo() {},
+    conicTo() {},
     arc(x: number, y: number, r: number, startAngle: number, endAngle: number) {
       _path?.addArc(
         { x: x - r, y: y - r, width: r * 2, height: r * 2 },
@@ -192,11 +190,8 @@ export function createSkiaPathContext(): SkiaGeoContext {
         (endAngle - startAngle) * RAD2DEG,
       );
     },
-    closePath() {
-      _path?.close();
-    },
-    close() {
-      _path?.close();
-    },
+    closePath() {},
+    close() {},
   };
+  return context;
 }

@@ -40,3 +40,12 @@ describe('a cited story fetched by slug', () => {
     expect(isStoryPayload({ slug: 'x' })).toBe(false);
   });
 });
+
+it.each([
+  { sources: {} },
+  { sources: [null] },
+  { location: {} },
+  { sources: [{ name: 'Outlet', url: 'https://example.com', country: 2 }] },
+])('rejects malformed optional story fields before rendering: %j', (change) => {
+  expect(isStoryPayload({ ...story, ...change })).toBe(false);
+});

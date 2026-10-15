@@ -12,6 +12,7 @@
 
 import { MAKKAH_LABEL, MAKKAH_TZ, zoneOffset } from './format'
 import { HIJRI_NOTE, hijriLabel } from './hijri'
+import { CATEGORY_COLOUR, CATEGORY_ORDER, FALLBACK_CATEGORY_COLOUR } from './style'
 import type { MapPoint } from './types'
 
 const HOUR_MS = 3_600_000
@@ -419,9 +420,15 @@ export function createTimeline(opts: TimelineOptions): Timeline {
     // Volume histogram.
     const buckets = Math.max(1, Math.round(span / BUCKET_MS))
     const counts = new Array(buckets).fill(0)
+    // Per category as well, for the bars the map is drawing.
+    const cats = CATEGORY_ORDER.length
+    const byCat = new Array<number>(buckets * (cats + 1)).fill(0)
     for (const p of points) {
       const idx = Math.floor(((p.t - start) / span) * buckets)
-      if (idx >= 0 && idx < buckets) counts[idx]++
+      if (idx < 0 || idx >= buckets) continue
+      counts[idx]++
+      const c = CATEGORY_ORDER.indexOf(p.cat)
+      byCat[idx * (cats + 1) + (c < 0 ? cats : c)]++
     }
     const max = Math.max(1, ...counts)
     const barW = w / buckets
@@ -438,14 +445,36 @@ export function createTimeline(opts: TimelineOptions): Timeline {
       // fortnight of activity claimed for a map showing three days of it.
       const t = start + i * BUCKET_MS
       const shown = t >= windowStart && t <= headT
-      ctx.fillStyle = shown ? mid : dim
+      const x = i * barW
+      const bw = Math.max(1, barW - 0.7)
+      /**
+       * On the map, a bar is its stories' categories, stacked in the order
+       * of the chips and in their dots' colours: the window then reads as
+       * the slice of the globe it is, and its bars say what kind of news
+       * each hour held. Off the map, one tone.
+       */
+      if (shown) {
+        let y = barH
+        ctx.globalAlpha = 0.85
+        for (let c = 0; c <= cats; c++) {
+          const n = byCat[i * (cats + 1) + c]
+          if (!n) continue
+          const sh = (n / max) * barH
+          ctx.fillStyle =
+            c < cats ? (CATEGORY_COLOUR[CATEGORY_ORDER[c]] ?? mid) : FALLBACK_CATEGORY_COLOUR
+          ctx.fillRect(x, y - sh, bw, sh)
+          y -= sh
+        }
+        continue
+      }
+      ctx.fillStyle = dim
       // The out-of-window weight is high for a `--map-line` bar rather than low
       // for an ink one: those days are still the shape of the fortnight, which
       // is what makes the window legible as a slice *of* something, and the
       // separation is carried by the two tones being a step apart rather than
       // by fading one of them out.
-      ctx.globalAlpha = shown ? 0.85 : 0.9
-      ctx.fillRect(i * barW, barH - bh, Math.max(1, barW - 0.7), bh)
+      ctx.globalAlpha = 0.9
+      ctx.fillRect(x, barH - bh, bw, bh)
     }
     ctx.globalAlpha = 1
   }

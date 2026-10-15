@@ -1,7 +1,8 @@
 import { NavigationBar } from 'expo-navigation-bar';
+import * as Network from 'expo-network';
 import * as SystemUI from 'expo-system-ui';
-import { createContext, use, useCallback, useEffect, useMemo, useState } from 'react';
-import { Appearance, useColorScheme } from 'react-native';
+import { createContext, use, useCallback, useEffect, useMemo, useRef, useState } from 'react';
+import { Appearance, AppState, useColorScheme } from 'react-native';
 import { IS_ANDROID } from '../constants/platform';
 import {
   type AppearanceMode,
@@ -96,51 +97,73 @@ export function ThemeProvider({
   });
   const systemScheme = useColorScheme();
 
-  const persist = useCallback((next: Preferences) => {
-    latestPrefs = next;
-    setPrefs(next);
-    savePreferences(next);
-  }, []);
+  const persist = useCallback(
+    (change: Partial<Preferences>) => {
+      const next = { ...(latestPrefs ?? initialPrefs), ...change };
+      latestPrefs = next;
+      setPrefs(next);
+      void savePreferences(next);
+    },
+    [initialPrefs],
+  );
 
-  const setFontSize = useCallback(
-    (v: FontSize) => persist({ ...prefs, fontSize: v }),
-    [prefs, persist],
-  );
-  const setFontFamily = useCallback(
-    (v: FontFamily) => persist({ ...prefs, fontFamily: v }),
-    [prefs, persist],
-  );
-  const setAppearance = useCallback(
-    (v: AppearanceMode) => persist({ ...prefs, appearance: v }),
-    [prefs, persist],
-  );
+  const setFontSize = useCallback((v: FontSize) => persist({ fontSize: v }), [persist]);
+  const setFontFamily = useCallback((v: FontFamily) => persist({ fontFamily: v }), [persist]);
+  const setAppearance = useCallback((v: AppearanceMode) => persist({ appearance: v }), [persist]);
   const setHaptics = useCallback(
     (v: boolean) => {
       setHapticsEnabled(v);
-      persist({ ...prefs, haptics: v });
+      persist({ haptics: v });
     },
-    [prefs, persist],
+    [persist],
   );
+  const notificationRequest = useRef(0);
   const setNotifications = useCallback(
     async (v: boolean): Promise<boolean> => {
+      const request = ++notificationRequest.current;
       if (v) {
         const granted = await enableNotifications();
-        if (!granted) return false;
+        if (!granted || request !== notificationRequest.current) return false;
+        persist({ notifications: true });
       } else {
+        persist({ notifications: false });
         await disableNotifications();
-        void unregisterPushToken();
       }
-      persist({ ...prefs, notifications: v });
       return true;
     },
-    [prefs, persist],
+    [persist],
   );
 
   useEffect(() => {
-    if (!prefs.notifications) return;
-    void registerPushToken();
-    const subscription = addPushTokenListener();
-    return () => subscription.remove();
+    const sync = () => {
+      if (prefs.notifications) void registerPushToken();
+      else void unregisterPushToken();
+    };
+    sync();
+    const tokenSubscription = prefs.notifications ? addPushTokenListener() : null;
+    let connected = true;
+    let receivedEvent = false;
+    void Network.getNetworkStateAsync()
+      .then((state) => {
+        if (!receivedEvent) connected = state.isInternetReachable ?? state.isConnected ?? true;
+      })
+      .catch(() => {});
+    const network = Network.addNetworkStateListener((state) => {
+      receivedEvent = true;
+      const next = state.isInternetReachable ?? state.isConnected;
+      if (next == null) return;
+      const previous = connected;
+      connected = next;
+      if (next && !previous) sync();
+    });
+    const appState = AppState.addEventListener('change', (state) => {
+      if (state === 'active') sync();
+    });
+    return () => {
+      tokenSubscription?.remove();
+      network.remove();
+      appState.remove();
+    };
   }, [prefs.notifications]);
 
   const resolvedAppearance: 'dark' | 'light' =

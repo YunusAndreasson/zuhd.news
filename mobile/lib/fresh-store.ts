@@ -156,12 +156,12 @@ export function spendNew(slug: string): void {
 }
 
 /** Forget everything: the next feed is a first launch's. Immediate. */
-export function clearKnown(): void {
+export function clearKnown(): boolean {
   known = null;
   notedFeed = null;
   state = { fresh: new Set(), landed: new Set(), spent: new Set() };
   listeners.emit();
-  persist.now();
+  return persist.now();
 }
 
 const subscribe = listeners.subscribe;

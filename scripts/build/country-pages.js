@@ -313,7 +313,7 @@ export const buildCountryPages = async ({
   // Share cards, same content-hash disk cache the article cards use: country
   // data moves about once a year, so after the first build this is a file copy.
   const OG_CACHE_DIR = join(ROOT, '.cache', 'og-country')
-  const OG_VERSION = 'v3' // bump when buildCountryOgSvg or rasterizeSvg changes
+  const OG_VERSION = 'v4' // bump when buildCountryOgSvg or rasterizeSvg changes
   if (!skipOg) {
     mkdirSync(OG_CACHE_DIR, { recursive: true })
     mkdirSync(join(distDir, 'api', 'og', 'country'), { recursive: true })

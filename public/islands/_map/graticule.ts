@@ -3,18 +3,10 @@
 // ── Why a map that had rationed lines this hard added a line family ────────
 //
 // Because the projection was making a claim the drawing could not support. The
-// map became a globe, and on the night hemisphere there is nothing to say so:
-// space and sea are the *same colour by construction* (`--map-ground` is
-// `MAP_COLOURS.ocean`, so the scrims over the canvas keep meaning what they
-// meant on the flat map), and MapLibre lights the atmosphere from the sun's own
+// map became a globe, and MapLibre lights the atmosphere from the sun's own
 // direction, so the limb is a crescent along the day side and unlit everywhere
-// else. Half the planet therefore had no edge at all — it ended wherever the
-// last coastline happened to be.
-//
-// Darkening space to give it one is not available: the ocean is `#080a0d`, so
-// everything below it is inside 1.09:1 of black, which is the same wall the
-// terminator hit over water and the reason `day-shade` lifts the lit side
-// instead of darkening the dark one.
+// else. The sea's blue (`MAP_COLOURS.ocean`, apart from `space`) and the
+// airglow now draw the night limb; the grid is what says it is round.
 //
 // A graticule solves it from the other direction, and it is the honest solution
 // rather than a clever one: **the curvature of the lines is the encoding.**

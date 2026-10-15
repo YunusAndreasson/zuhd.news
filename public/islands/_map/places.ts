@@ -164,6 +164,9 @@ export const GAUSS_COEF = 0.3989422804014327
  */
 export const DENSITY_INTENSITY = 0.085 / GAUSS_COEF
 
+/** The bloom's `heatmap-intensity`: a place's centre density is its `heat`. */
+export const BLOOM_INTENSITY = 1 / GAUSS_COEF
+
 /**
  * What a place actually contributes at its own centre, in `heatmap-density`.
  *

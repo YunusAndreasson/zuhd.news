@@ -568,10 +568,6 @@ export const MenuSheet = memo(function MenuSheet({
       return <SheetMapKeyPage />;
     }
 
-    if (current === 'saved') {
-      return <SheetBookmarksPage onSelectArticle={onSelectArticle} />;
-    }
-
     if (current === 'about') {
       return <SheetAboutPage articles={Object.values(grouped).flat()} version={APP_VERSION} />;
     }
@@ -620,6 +616,12 @@ export const MenuSheet = memo(function MenuSheet({
             onQueryChange={setSearchQuery}
             onSelectArticle={onSelectArticle}
           />
+        ) : nav.current === 'saved' ? (
+          <GestureDetector gesture={swipeBack}>
+            <View style={styles.listPage}>
+              <SheetBookmarksPage bottomInset={bottomInset} onSelectArticle={onSelectArticle} />
+            </View>
+          </GestureDetector>
         ) : groupKey || activeHazard || currentDetail ? (
           // A list page is a sibling of the scroll view, never inside it: a
           // virtualised list nested in a scroll view renders every row. A

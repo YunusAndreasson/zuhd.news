@@ -9,28 +9,14 @@ import {
   useAudioPlayer,
   useAudioPlayerStatus,
 } from 'expo-audio';
-import Storage from 'expo-sqlite/kv-store';
+import { File, Paths } from 'expo-file-system';
 import { useCallback, useEffect, useRef, useState } from 'react';
 import { AppState, type AppStateStatus } from 'react-native';
 import { API_BASE } from '../constants/theme';
 import { resolveAudioDuration } from '../lib/audio-duration';
 import { resolveDownloadedAudioSource } from '../lib/audio-source';
-import { readMigrated } from '../lib/legacy-store';
+import { readSavedPlace, saveSavedPlace, subscribeToBriefingReset } from '../lib/briefing-progress';
 
-const POSITION_KEY = 'zuhd_briefing_pos';
-const DATE_KEY = 'zuhd_briefing_date';
-
-/**
- * The saved place: the position, and the recording it belongs to. Read before
- * playback (so idle can say resume) and again as playback starts. The earlier
- * encrypted store kept each under the same name; they move on first read.
- */
-function readSavedPlace(): Promise<[string | null, string | null]> {
-  return Promise.all([
-    readMigrated(POSITION_KEY, { secureKey: POSITION_KEY }),
-    readMigrated(DATE_KEY, { secureKey: DATE_KEY }),
-  ]);
-}
 const PLAYBACK_STATUS_UPDATE = 'playbackStatusUpdate';
 // The CDN currently answers byte-range requests with the complete MP3, which
 // lets AVPlayer play while duration remains unknown. Give a local cache write
@@ -60,10 +46,33 @@ async function getArtworkUrl(): Promise<string | undefined> {
   return cachedArtworkUrl;
 }
 
-function resolveBriefingSource(url: string): Promise<string> {
+let downloadSequence = 0;
+function resolveBriefingSource(url: string, controller: AbortController): Promise<string> {
   try {
-    const asset = Asset.fromURI(url);
-    return resolveDownloadedAudioSource(url, asset.downloadAsync(), SOURCE_DOWNLOAD_WAIT_MS);
+    const file = new File(Paths.cache, `briefing-${encodeURIComponent(url)}.mp3`);
+    if (file.exists && file.size > 0) return Promise.resolve(file.uri);
+    // Only completed files use the cache name. Cancellation or process death
+    // can leave a partial file behind; it must never be mistaken for audio.
+    const partial = new File(Paths.cache, `briefing-${Date.now()}-${++downloadSequence}.part`);
+    const download = File.downloadFileAsync(url, partial, {
+      idempotent: true,
+      signal: controller.signal,
+    })
+      .then((downloaded) => {
+        if (controller.signal.aborted) throw new Error('Audio download cancelled');
+        if (file.exists) downloaded.delete();
+        else downloaded.move(file);
+        return { localUri: file.uri };
+      })
+      .catch((error: unknown) => {
+        try {
+          if (partial.exists) partial.delete();
+        } catch {}
+        throw error;
+      });
+    return resolveDownloadedAudioSource(url, download, SOURCE_DOWNLOAD_WAIT_MS, () =>
+      controller.abort(),
+    );
   } catch {
     return Promise.resolve(url);
   }
@@ -186,19 +195,22 @@ export function useBriefingPlayer(
   const toggleTokenRef = useRef(0);
   const sourcePreparingRef = useRef(false);
   const sourceLoadToken = useRef(0);
+  const sourceAbort = useRef<AbortController | null>(null);
+  const progressGeneration = useRef(0);
   const closedRef = useRef(false);
 
   // Surface persisted progress before playback begins so the idle affordance
   // can say RESUME after a relaunch. Playback restoration remains lazy.
   useEffect(() => {
     let cancelled = false;
+    const generation = progressGeneration.current;
     if (!effectiveDate) {
       setResumable(false);
       return;
     }
     readSavedPlace()
       .then(([savedPos, savedDateStr]) => {
-        if (cancelled) return;
+        if (cancelled || generation !== progressGeneration.current) return;
         const pos = savedPos ? Number.parseInt(savedPos, 10) : 0;
         const valid =
           isSameRecording(savedDateStr, effectiveDate, recording) &&
@@ -224,7 +236,6 @@ export function useBriefingPlayer(
   useEffect(() => {
     let disposed = false;
     const sub = AppState.addEventListener('change', async (state: AppStateStatus) => {
-      if (state !== 'active') return;
       const player = playerRef.current;
       if (!player) return;
       const token = toggleTokenRef.current;
@@ -235,16 +246,13 @@ export function useBriefingPlayer(
       try {
         const pos = player.currentTime;
         if (pos > 0 && savedDate.current) {
-          await Promise.all([
-            Storage.setItem(POSITION_KEY, String(Math.floor(pos))),
-            Storage.setItem(DATE_KEY, savedDate.current),
-          ]);
+          await saveSavedPlace(pos, savedDate.current);
           if (!isCurrent()) return;
           setResumable(true);
         }
       } catch {}
 
-      if (!isCurrent()) return;
+      if (state !== 'active' || !isCurrent()) return;
       if (player.playing) {
         try {
           await setIsAudioActiveAsync(true);
@@ -279,6 +287,8 @@ export function useBriefingPlayer(
       clearTimeout(giveUpTimer.current);
       giveUpTimer.current = null;
     }
+    sourceAbort.current?.abort();
+    sourceAbort.current = null;
     wantsToPlayRef.current = false;
     playingIntentRef.current = false;
     toggleTokenRef.current += 1;
@@ -298,6 +308,22 @@ export function useBriefingPlayer(
     lockScreenActive.current = false;
     lockScreenDurationKnown.current = false;
   }, []);
+
+  useEffect(
+    () =>
+      subscribeToBriefingReset(() => {
+        progressGeneration.current++;
+        closedRef.current = true;
+        savedDate.current = null;
+        teardownPlayer();
+        setPreparing(false);
+        setPlaying(false);
+        setElapsed(0);
+        setResumeAt(0);
+        setResumable(false);
+      }),
+    [teardownPlayer],
+  );
 
   const failPlayback = useCallback(() => {
     teardownPlayer();
@@ -325,8 +351,7 @@ export function useBriefingPlayer(
     try {
       const pos = playerRef.current.currentTime;
       if (pos > 0) {
-        void Storage.setItem(POSITION_KEY, String(Math.floor(pos)));
-        void Storage.setItem(DATE_KEY, savedDate.current);
+        void saveSavedPlace(pos, savedDate.current).catch(() => {});
       }
     } catch {}
   }, []);
@@ -339,6 +364,12 @@ export function useBriefingPlayer(
       void setIsAudioActiveAsync(false).catch(() => {});
     };
   }, []);
+
+  useEffect(() => {
+    if (!playing) return;
+    const timer = setInterval(savePosition, 15_000);
+    return () => clearInterval(timer);
+  }, [playing, savePosition]);
 
   // First-time activation of the lock-screen card. Prefer duration as a hard
   // gate: artwork and remote commands work without it, but iOS then omits the
@@ -483,7 +514,7 @@ export function useBriefingPlayer(
       setElapsed(0);
       setResumable(false);
       setHasPlayer(false);
-      void Storage.setItem(POSITION_KEY, '0');
+      if (savedDate.current) void saveSavedPlace(0, savedDate.current).catch(() => {});
       // ExoPlayer retains playWhenReady at the end. Seeking an ended player
       // back to zero without pausing starts the briefing again immediately.
       try {
@@ -521,6 +552,7 @@ export function useBriefingPlayer(
       // setup from a prior play tap, otherwise a quick second tap cannot undo
       // the first one.
       if (!nextPlaying) {
+        sourceAbort.current?.abort();
         if (giveUpTimer.current) {
           clearTimeout(giveUpTimer.current);
           giveUpTimer.current = null;
@@ -582,7 +614,10 @@ export function useBriefingPlayer(
       const remoteUrl = `${API_BASE}/audio/briefing-${effectiveDate}.mp3${
         recorded ? `?v=${encodeURIComponent(recorded)}` : ''
       }`;
-      const playbackSource = await resolveBriefingSource(remoteUrl);
+      const controller = new AbortController();
+      sourceAbort.current = controller;
+      const playbackSource = await resolveBriefingSource(remoteUrl, controller);
+      if (sourceAbort.current === controller) sourceAbort.current = null;
       if (
         toggleToken !== toggleTokenRef.current ||
         loadToken !== sourceLoadToken.current ||
@@ -603,6 +638,7 @@ export function useBriefingPlayer(
       // app remains free of audio I/O.
       try {
         const [savedPos, savedDateStr] = await readSavedPlace();
+        if (toggleToken !== toggleTokenRef.current || loadToken !== sourceLoadToken.current) return;
         if (isSameRecording(savedDateStr, effectiveDate, recording) && savedPos) {
           const pos = Number.parseInt(savedPos, 10);
           if (pos > 0) {
@@ -648,8 +684,8 @@ export function useBriefingPlayer(
       // so iOS receives duration on its first metadata write.
       await activateLockScreen(player, !loadedWithDuration);
     } catch {
-      // Clean up partially-created player on failure
-      failPlayback();
+      // A cancelled preparation must not tear down a newer playback request.
+      if (toggleToken === toggleTokenRef.current) failPlayback();
     }
   }, [
     effectiveDate,
@@ -675,6 +711,7 @@ export function useBriefingPlayer(
   }, []);
 
   const dismiss = useCallback(() => {
+    sourceAbort.current?.abort();
     closedRef.current = true;
     playingIntentRef.current = false;
     toggleTokenRef.current += 1;

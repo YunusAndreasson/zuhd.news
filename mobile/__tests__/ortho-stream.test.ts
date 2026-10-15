@@ -134,7 +134,7 @@ const CAMERAS: [number, number][] = [
 }
 
 type CountryTopology = Topology<{ countries: GeometryCollection; land: GeometryCollection }>;
-function loadTier(tier: 'motion' | 'overview' | 'regional'): CountryTopology {
+function loadTier(tier: 'motion' | 'overview' | 'regional' | 'detail'): CountryTopology {
   const packed = require(`../assets/geo/countries-${tier}.json`);
   return { ...packed, arcs: packed.arcs.map(decodeGeographyArc) };
 }
@@ -156,6 +156,44 @@ describe('createOrthoLayer', () => {
             expectSame(layer, lng, lat, k, clip, precision);
           }
         }
+      }
+    }
+  });
+
+  it('preserves duplicate vertices and holes in parts wholly inside the view', () => {
+    const polygon: GeoJSON.Polygon = {
+      type: 'Polygon',
+      coordinates: [
+        [
+          [-3, -3],
+          [-3, 3],
+          [-3, 3],
+          [3, 3],
+          [3, -3],
+          [-3, -3],
+        ],
+        [
+          [-1, -1],
+          [1, -1],
+          [1, 1],
+          [-1, 1],
+          [-1, -1],
+        ],
+      ],
+    };
+    const line: GeoJSON.LineString = {
+      type: 'LineString',
+      coordinates: [
+        [-2, 0],
+        [-2, 0],
+        [-1.99999999, 0],
+        [0, 0],
+        [2, 1],
+      ],
+    };
+    for (const object of [polygon, line]) {
+      for (const precision of [0, 0.25]) {
+        expect(expectSame(object, 0.1, 0.2, 1000, 20, precision)).toBeGreaterThan(0);
       }
     }
   });
@@ -186,6 +224,23 @@ describe('createOrthoLayer', () => {
             }
           }
         }
+      }
+    }
+  });
+
+  it('matches regional land and borders with inside and clipped parts', () => {
+    const topology = loadTier('regional');
+    const layers = [
+      feature(topology, topology.objects.land),
+      mesh(topology, topology.objects.countries, (a, b) => a !== b),
+    ];
+    for (const object of layers) {
+      for (const [lng, lat] of [
+        [10.1, 50.2],
+        [140.3, 35.1],
+        [-179.9, 10.1],
+      ] as [number, number][]) {
+        for (const precision of [0, 0.25]) expectSame(object, lng, lat, 800, 70, precision);
       }
     }
   });
@@ -340,4 +395,71 @@ describe('createOrthoLayer', () => {
     expect(second.out).toEqual(first.out);
     expect(first.out.length).toBeGreaterThan(1000);
   });
+});
+
+it('preserves clipped runs, holes and closing edges when skipping hidden vertex blocks', () => {
+  const outer = geoCircle().center([175, 60]).radius(40).precision(0.25)()
+    .coordinates[0] as GeoJSON.Position[];
+  const hole = geoCircle().center([175, 60]).radius(8).precision(0.25)()
+    .coordinates[0] as GeoJSON.Position[];
+  const polygon: GeoJSON.Polygon = { type: 'Polygon', coordinates: [outer, [...hole].reverse()] };
+  const line: GeoJSON.LineString = {
+    type: 'LineString',
+    coordinates: Array.from({ length: 513 }, (_, i) => [
+      -170 + (i * 340) / 512,
+      25 * Math.sin(i / 14),
+    ]),
+  };
+  for (const object of [polygon, line]) {
+    const layer = createOrthoLayer(object);
+    for (const [lng, lat] of [
+      [179.9, 65],
+      [-179.9, 15],
+      [0.1, 0.2],
+      [80, 70],
+    ]) {
+      for (const clip of [90, 25, 5]) {
+        for (const precision of [0, 0.25]) {
+          const { sink, out } = recorder();
+          layer.draw(orthoView(lng as number, lat as number, 1000, TX, TY), clip, precision, sink);
+          expect(
+            firstDifference(
+              out,
+              d3Commands(object, lng as number, lat as number, 1000, clip, precision),
+              1e-6,
+            ),
+          ).toBeNull();
+        }
+      }
+    }
+  }
+});
+
+it('matches detailed coastlines and borders at narrow view angles', () => {
+  const topology = loadTier('detail');
+  const objects = [
+    feature(topology, topology.objects.land),
+    mesh(topology, topology.objects.countries, (a, b) => a !== b),
+  ];
+  for (const object of objects) {
+    const layer = createOrthoLayer(object);
+    for (const [lng, lat] of [
+      [10.1, 50.2],
+      [-179.9, 10.1],
+    ]) {
+      for (const clip of [4, 20]) {
+        for (const precision of [0, 0.25]) {
+          const { sink, out } = recorder();
+          layer.draw(orthoView(lng as number, lat as number, 5000, TX, TY), clip, precision, sink);
+          expect(
+            firstDifference(
+              out,
+              d3Commands(object, lng as number, lat as number, 5000, clip, precision),
+              1e-6,
+            ),
+          ).toBeNull();
+        }
+      }
+    }
+  }
 });

@@ -4,6 +4,10 @@ paths:
   - "public/islands/_map/style.ts"
   - "public/islands/_map/glyphs.ts"
   - "public/islands/_map/markets.ts"
+  - "public/islands/_map/callouts.ts"
+  - "scripts/build/basemap-tiles.js"
+  - "scripts/build/regions.mjs"
+  - "scripts/build/bathymetry.mjs"
   - "scripts/build/basemap.js"
   - "scripts/lib/map-geo.test.js"
   - "shared/genocide.ts"
@@ -28,6 +32,10 @@ Camera, MapLibre and cards are `map.md`; the rails are `map-rail.md`.
   for a day, so a source left out goes stale with no way for a reader to force
   it.
 - There is no 1:110m first-paint tier: 110m deletes real geography.
+- The coastline and the depth bands are tiles cut at build, zoom 0 to
+  `COUNTRY_TILE_MAX_ZOOM` (`COUNTRY_TILES` in `_map/style.ts` must match).
+  Every tile is written, an empty one as an empty file: a 404 fails
+  `npm run perf` and Pages answers it with `404.html`.
 
 ## Labels and names
 
@@ -45,9 +53,18 @@ Camera, MapLibre and cards are `map.md`; the rails are `map-rail.md`.
   gate, which deletes small states such as Lebanon at every zoom it covers.
 - `sea-labels` stays the last layer in the base style, so it claims its space
   before country and city names.
+- Makkah is the map's own mark: `makkah-glow` in `--brand`'s gold, never a dot
+  (`economy` is a hair away), and `makkah-label` in `makkahLabel`, the gold
+  lightened to AA. The gazetteer's Makkah is filtered out of `place-dots` and
+  `place-labels`, or it is named twice.
 - Country names stay quiet (Regular, halo 1) in `labelDim`; `neutral` fails on
   the brightest land. A halo does not make a label readable.
 - `DENSITY_STOPS` peaks at 0.30: type on the wash must keep 3:1.
+- The land's physical names are `region-labels`, from
+  `shared/data/regions-50m.geojson` (`scripts/build/regions.mjs`, which holds
+  the editorial cuts). Under the country names, in `labelDim`, quieter by case
+  and spacing, never by opacity. Upright to the screen: laid on the sphere a
+  name near the limb is foreshortened.
 
 ## Water, day and night
 
@@ -56,12 +73,19 @@ Camera, MapLibre and cards are `map.md`; the rails are `map-rail.md`.
 - `lakes` fill in `ocean`, above `land` and under `borders`: a frontier across
   a lake stays drawn.
 - River width does not vary by rank: a river is not a quantity.
-- `night-shade` is `MAP_COLOURS.ocean` at 0.28, not black: the dark half must
-  not be darker than space.
-- `day-shade` is inserted before `land` so it reaches only water. Which pole
+- `night-shade` is `MAP_COLOURS.space` at 0.28, not black: the dark half must
+  not be darker than space, and the night sea keeps its blue.
+- `day-shade`, `night-shade` and `twilight` are inserted before `land`, so
+  they light only water: the land's tone is the metric's value, and night over
+  it drew India, the top of population, darker than Algeria. Which pole
   `dayPolygon` closes over fails silently if reversed.
 - `twilight` is one blurred band that lightens. The three real twilight caps
   would come and go with the season.
+- The sea floor is `depth`, bands from `shared/data/bathymetry-10m.geojson`
+  (`scripts/build/bathymetry.mjs`) in the coastline's tiles, on `DEPTH_TONES`.
+  The abyss stays `ocean`; the shelf is the background. Every band is a pass
+  over the sea, so add one only after timing a drag; never shade relief on
+  land, whose tone is the metric's value.
 
 ## The land ramp
 
@@ -129,7 +153,9 @@ Camera, MapLibre and cards are `map.md`; the rails are `map-rail.md`.
   suppresses, so a beacon over a name is accepted). `genocide-labels` is the
   exception (`text-ignore-placement: false`): text over text is unreadable.
 - **Off is an ink step, never opacity**: `colour-system.test.js` cannot see it.
-- A market's sign picks `--map-pos`/`--map-neg`, pinned to `OVERLAY_COLOUR`.
+- A market's sign picks `--map-pos`/`--map-neg`, pinned to `OVERLAY_COLOUR`,
+  and a strait's pinch and surge are the same pair: one green and one rose
+  for a number that rose or fell, on the map, the rail, the site and the app.
   A closed exchange sits back in opacity; under `FLAT_PCT` the mark is
   `tick-flat` in `neutral`.
 - A market mark's direction, size and numeral are `exchangeReading` over the
@@ -137,7 +163,11 @@ Camera, MapLibre and cards are `map.md`; the rails are `map-rail.md`.
   `moveCap(days)`; no reading is a flat neutral tick with no numeral.
 - A market and a strait are named by a text-only layer of their own
   (`market-labels`: city and move; `chokepoint-labels`: short name and move).
-  A name may lose a collision; its mark never does. The names draw under the
+  A name may lose a collision; its mark never does. A flagged market's or a
+  disrupted strait's lost name takes a callout (`_map/callouts.ts`,
+  `syncCallouts`): set out with a hairline, never within
+  `CALLOUT_MIN_CLEAR_PX` of another mark, and dropped when no direction is
+  clear. The names draw under the
   stories and rank last in `HIT_ORDER`, or one takes a dozen stories' hover.
 - A flagged market (`_map/signals.ts`, from `/api/market-signals.json`) is the
   doubled tick (`tick-up-flag`, `tick-down-flag`, `tick-flat-flag` when it is

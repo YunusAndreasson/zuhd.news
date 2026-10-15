@@ -231,27 +231,15 @@ export async function buildMapSources(root) {
   // two can never disagree — is what makes a land polygon clickable.
   const { codeFromTopojsonName } = await loadShared('countries/iso.ts')
 
-  // ── Why the basemap is 1:50m and there is no coarse tier ──────────────────
-  //
-  // This used to ship 1:110m as a first-paint placeholder and swap up to 1:50m
-  // once the camera zoomed past 3.2. The map opens at world fit — about zoom
-  // 1.3 — so the default view, the one every reader sees and the only one most
-  // of them ever see, was 110m and stayed there.
+  // ── Two tiers, and neither is 1:110m ──────────────────────────────────────
   //
   // 110m is not a rounded 50m. Its generalisation removes real geography:
-  // whole inlets, peninsulas and islands are gone rather than approximated. For
-  // as long as the borders were invisible that went unnoticed; the moment the
-  // frontier line became readable, the coarseness was the thing it was drawing.
+  // whole inlets, peninsulas and islands are gone rather than approximated, and
+  // the moment the frontier line became readable, the coarseness was the thing
+  // it was drawing.
   //
-  // So the placeholder is gone and the real basemap is fetched once. It is
-  // ~540 KB gzipped, and it is genuinely once: `/basemap/*` is served
-  // `max-age=86400, stale-while-revalidate=604800` and every URL carries the
-  // build's content hash, so it is refetched only when the basemap itself
-  // changes — a handful of times a year. Two fetches to end up in the same
-  // place was the worse deal, and it cost a visible re-render on every load.
-  //
-  // 1:10m still waits for `ULTRA_ZOOM`. At world scale its extra vertices are
-  // comfortably sub-pixel: megabytes spent on detail nobody can see.
+  // 1:10m is what the map draws, cut into tiles by `basemap-tiles.js`, which
+  // simplifies each zoom to its pixels. 1:50m places the country names.
   const tier = (file, dp, tol = 0) => {
     const topo = JSON.parse(readFileSync(join(root, 'shared', 'data', file), 'utf8'))
     const fc = /** @type {import('geojson').FeatureCollection} */ (/** @type {unknown} */ (feature(topo, topo.objects.countries)))
@@ -283,8 +271,8 @@ export async function buildMapSources(root) {
 
   const countries = tier('countries-50m.json', 3)
   // The polygons ship only `iso2`: the hover, the ground metric and the card
-  // all key on it, and the names come from `country-labels`, built from
-  // `countries` before its names are dropped.
+  // all key on it, and the names come from `country-labels`, built from the
+  // 1:50m tier with its names.
   const keyed = (fc) => ({
     ...fc,
     features: fc.features.map((f) => ({
@@ -293,24 +281,32 @@ export async function buildMapSources(root) {
     })),
   })
   return {
-    countries: keyed(countries),
-    // Second tier, from Natural Earth 1:10m. 255 countries against 50m's 240
-    // — the difference is mostly islands and a coastline with
-    // real inlets rather than a smoothed outline, which is exactly what shows
-    // once the camera is past continental scale. Coordinates keep 3 decimals
-    // (~110 m), which is sub-pixel even at the map's maximum zoom; trimming to
-    // 2 halves the payload but starts to read as jagged up close.
-    // 0.003° ≈ 330 m, which is sub-pixel below zoom 9 and about one pixel at
-    // it — invisible where the tier is used, and a 28% smaller download. The
-    // coarser tiers are left alone: they have little redundancy to remove and
-    // everything taken out of them shows immediately.
+    // Natural Earth 1:10m. 255 countries against 50m's 240 — the difference
+    // is mostly islands and a coastline with real inlets rather than a
+    // smoothed outline. Coordinates keep 3 decimals (~110 m), and 0.003°
+    // (≈ 330 m) of simplification is about one pixel at zoom 9, `maxZoom`.
     countriesUltra: keyed(tier('countries-10m.json', 3, 0.003)),
+    depth: depthBands(root),
     countryLabels: await countryLabelPoints(countries),
     places: await placeLabels(root),
     lakes: await lakePolygons(root, feature),
     rivers: await riverLines(root, feature),
     seas: seaLabels(root),
+    regions: JSON.parse(readFileSync(join(root, 'shared', 'data', 'regions-50m.geojson'), 'utf8')),
   }
+}
+
+/**
+ * The sea floor, as nested depth bands (`bathymetry.mjs` writes the file).
+ *
+ * Each band is the area deeper than its `d`, so a deeper one lies inside a
+ * shallower one and draws over it. The shelf, coast to 200 m, is no band: it
+ * is the map's background, painted in its tone.
+ */
+function depthBands(root) {
+  return /** @type {import('geojson').FeatureCollection} */ (
+    JSON.parse(readFileSync(join(root, 'shared', 'data', 'bathymetry-10m.geojson'), 'utf8'))
+  )
 }
 
 /**

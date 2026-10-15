@@ -41,6 +41,16 @@ test('the chain is linked, because the about page says it is', () => {
   assert.equal(renderIsnad(null, 'body'), '')
 })
 
+test('an outlet with two articles is named once, its articles numbered', () => {
+  const html = renderIsnad(
+    [src('Dawn', 'PK', 'https://a.example/1'), src('Reuters', 'GB'), src('Dawn', 'PK', 'https://a.example/2')],
+    '',
+  )
+  assert.equal(html.match(/Dawn/g).length, 1, html)
+  assert.match(html, /Dawn \(<a href="https:\/\/a\.example\/1"[^>]*>1<\/a>, <a href="https:\/\/a\.example\/2"[^>]*>2<\/a>\)/)
+  assert.match(html, />Reuters<\/a>/)
+})
+
 test('the chain ranks by proximity to the event, not by publication order', () => {
   // An isnad is ranked, and what ranks it is how close the transmitter stood.
   // For a newsroom that reads as jurisdiction: an outlet inside the country

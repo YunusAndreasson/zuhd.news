@@ -10,6 +10,7 @@ let mockPan: PanGestureConfig;
 let mockTap: TapGestureConfig;
 const mockRNQueue: (() => void)[] = [];
 jest.mock('react-native-worklets', () => ({
+  scheduleOnUI: (fn: (...args: unknown[]) => void, ...args: unknown[]) => fn(...args),
   scheduleOnRN: (fn: (...args: unknown[]) => void, ...args: unknown[]) => {
     mockRNQueue.push(() => fn(...args));
   },

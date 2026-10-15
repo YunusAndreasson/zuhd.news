@@ -80,6 +80,7 @@ import {
 } from '../hooks/useOverlays';
 import { usePendingNotification } from '../hooks/usePendingNotification';
 import { useReadTracking } from '../hooks/useReadTracking';
+import { useSheetHandoff } from '../hooks/useSheetHandoff';
 import { useStoryOpener } from '../hooks/useStoryOpener';
 import { useHardwareBack } from '../hooks/useSwipeBack';
 import { usePreferences, useTheme } from '../hooks/useTheme';
@@ -179,10 +180,6 @@ const HEATMAP_SPLASH_GRACE_MS = 1200;
 
 /** The handlers a measured card is given: it is never shown or touched. */
 const noop = () => {};
-
-/** Longest a sheet hand-off waits for the first sheet's dismissal before
- *  presenting the next anyway — past a platform sheet's own close transition. */
-const SHEET_HANDOFF_FLOOR_MS = 700;
 
 /** The shortest a pull's `checking for new stories` stays up: long enough to
  *  read four words. */
@@ -384,42 +381,7 @@ export default function HomeScreen() {
   // ---------------------------------------------------------------------
   // One platform sheet at a time
   // ---------------------------------------------------------------------
-  /**
-   * Move from one platform sheet to the next — a country from a disaster, a
-   * card from the menu — only once the first has gone.
-   *
-   * These were a `dismiss()` and a `present()` in the same tick, or a second
-   * sheet presented over an open one. `@expo/ui` fires a sheet's close
-   * callback after SwiftUI has finished dismissing it precisely so another
-   * can be presented then; presented during the transition, UIKit rejects it.
-   * So the next sheet waits for the first sheet's `onDismiss`, which runs
-   * `runSheetHandOff`. The timer is a floor under that: a sheet that was not
-   * actually up sends no dismissal, and the tap must still land.
-   */
-  const pendingSheetRef = useRef<(() => void) | null>(null);
-  const handOffTimerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
-  const runSheetHandOff = useCallback(() => {
-    if (handOffTimerRef.current) clearTimeout(handOffTimerRef.current);
-    handOffTimerRef.current = null;
-    const next = pendingSheetRef.current;
-    pendingSheetRef.current = null;
-    next?.();
-  }, []);
-  const handOffSheet = useCallback(
-    (from: React.RefObject<BottomSheetMethodsRef | null>, next: () => void) => {
-      pendingSheetRef.current = next;
-      if (handOffTimerRef.current) clearTimeout(handOffTimerRef.current);
-      handOffTimerRef.current = setTimeout(runSheetHandOff, SHEET_HANDOFF_FLOOR_MS);
-      from.current?.dismiss();
-    },
-    [runSheetHandOff],
-  );
-  useEffect(
-    () => () => {
-      if (handOffTimerRef.current) clearTimeout(handOffTimerRef.current);
-    },
-    [],
-  );
+  const { handOffSheet, runSheetHandOff } = useSheetHandoff();
 
   // ---------------------------------------------------------------------
   // Layout
@@ -847,7 +809,11 @@ export default function HomeScreen() {
    */
   const focusStory = useCallback(
     (slug: string, options: FocusOptions = {}) => {
-      if (options.cameraEpoch !== undefined && options.cameraEpoch !== requestEpoch.value) return;
+      const ownsCamera =
+        options.cameraEpoch === undefined || options.cameraEpoch === requestEpoch.value;
+      // A scrub already moved the cards on UI. A newer globe gesture keeps
+      // its camera, while React still needs that card's committed selection.
+      if (!ownsCamera && !options.deckMoved) return;
       const index = storyRowsRef.current.findIndex((r) => r.slug === slug);
       if (index < 0) {
         pendingFocusRef.current = { slug, ...options };
@@ -867,7 +833,7 @@ export default function HomeScreen() {
       const coords = row?.coords ?? null;
       // Held before the deck jumps, so the jump cannot drag the camera
       // through every dateline between; the flight hands it back on landing.
-      if (coords) holdCamera(options.cameraEpoch);
+      if (coords && ownsCamera) holdCamera(options.cameraEpoch);
       deckIndexRef.current = index;
       currentSlugRef.current = slug;
       // `storyCommitted` too, not left to the deck's own sync: that runs when
@@ -879,7 +845,7 @@ export default function HomeScreen() {
       }
       setDeckIndex(index);
 
-      if (coords) {
+      if (coords && ownsCamera) {
         const framing = framingFor(index);
         flyToStory(
           coords,
@@ -1426,11 +1392,22 @@ export default function HomeScreen() {
     [focusStory],
   );
   const goToScrubbedStory = useCallback(
-    (index: number) => {
-      const row = storyRowsRef.current[index];
-      if (row) focusStory(row.slug, { deckMoved: true });
+    (index: number, slug?: string, cameraEpoch?: number) => {
+      const rows = storyRowsRef.current;
+      const target = slug === undefined ? index : rows.findIndex((row) => row.slug === slug);
+      const row = rows[target];
+      if (!row) return;
+      // A newer swipe has already committed another card. A globe gesture
+      // leaves the card in place and only supersedes the scrub's camera.
+      if (
+        cameraEpoch !== undefined &&
+        cameraEpoch !== requestEpoch.value &&
+        storyCommitted.value !== index
+      )
+        return;
+      focusStory(row.slug, { deckMoved: target === index, cameraEpoch });
     },
-    [focusStory],
+    [focusStory, requestEpoch, storyCommitted],
   );
   // The card's accessibility actions slide the deck one story, exactly as a
   // swipe would; `goToStory` is a jump, for the scrubber.
@@ -1993,6 +1970,7 @@ export default function HomeScreen() {
     () => (
       <StoryDock
         onClaim={cancelFlight}
+        requestEpoch={requestEpoch}
         refreshing={refreshing}
         index={frontIndex}
         count={storyCount}
@@ -2015,6 +1993,7 @@ export default function HomeScreen() {
     ),
     [
       cancelFlight,
+      requestEpoch,
       goToStory,
       goToScrubbedStory,
       storyCommitted,

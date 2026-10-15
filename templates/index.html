@@ -12,36 +12,35 @@
   <meta property="og:title" content="zuhd.news">
   <meta property="og:description" content="Global news, no noise. A live map of the last 14 days of world news, from 40 sources, curated by AI.">
   <meta property="og:url" content="https://zuhd.news/">
-  <meta property="og:image" content="https://zuhd.news/og-image.png?v=2">
+  <meta property="og:image" content="https://zuhd.news/og-image.png?v=3">
   <meta property="og:image:type" content="image/png">
   <meta property="og:image:width" content="1200">
   <meta property="og:image:height" content="630">
   <meta property="og:image:alt" content="zuhd.news — global news, no noise">
   <meta property="og:locale" content="en_US">
   <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:image" content="https://zuhd.news/og-image.png?v=2">
+  <meta name="twitter:image" content="https://zuhd.news/og-image.png?v=3">
   <meta name="twitter:image:alt" content="zuhd.news — global news, no noise">
   <!--
     The map's critical chain, declared so it starts downloading at parse time
     instead of after island-loader.js has run and resolved a dynamic import.
 
-    countries.geojson is deliberately *not* preloaded: MapLibre loads GeoJSON
-    sources on its worker, and the preload cache belongs to the document, so the
+    The basemap is deliberately *not* preloaded: MapLibre fetches its tiles and
+    GeoJSON on its worker, and the preload cache belongs to the document, so the
     hint was never claimable — the browser logged "preloaded but not used" and
     the file was fetched twice. Warming the worker's copy is the HTTP cache's
-    job, which is what the /basemap/* rule in _headers is for.
+    job, which is what the /basemap/* rules in _headers are for.
 
-    The three modulepreloads matter for the same reason in reverse: the worker
-    imports maplibre-gl-shared.mjs as a sibling, so pulling it into the cache
-    here is what stops the engine's shared chunk arriving twice.
+    The worker is not preloaded for the same reason: it fetches its own
+    self-contained file, which a document preload cannot serve.
   -->
   <link rel="preload" href="/api/map.json" as="fetch" type="application/json" crossorigin>
   <link rel="modulepreload" href="/islands/situation-map.js?v={{v}}">
-  <link rel="modulepreload" href="/islands/maplibre-gl.mjs">
-  <link rel="modulepreload" href="/islands/maplibre-gl-shared.mjs">
+  <link rel="modulepreload" href="/islands/maplibre-gl.mjs?v={{maplibreV}}">
   <script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"Organization","@id":"https://zuhd.news/#org","name":"zuhd.news","url":"https://zuhd.news/","logo":{"@type":"ImageObject","url":"https://zuhd.news/apple-touch-icon.png"},"sameAs":["https://x.com/zuhd_news","https://www.instagram.com/zuhdnews/","https://apps.apple.com/us/app/zuhd-news/id6760964753","https://play.google.com/store/apps/details?id=news.zuhd.app"],"creator":{"@id":"https://andreassonphoto.com/#person"}},{"@type":"WebSite","@id":"https://zuhd.news/#site","name":"zuhd.news","url":"https://zuhd.news/","description":"Global news, no noise. Concise world news from 40 sources, curated by AI.","inLanguage":"en","publisher":{"@id":"https://zuhd.news/#org"}},{"@type":"Person","@id":"https://andreassonphoto.com/#person","name":"Yunus Andreasson","alternateName":["Jonas Yūnus Andrèasson"],"url":"https://andreassonphoto.com","sameAs":["https://github.com/YunusAndreasson","https://x.com/YunusAndreasson","https://www.instagram.com/andreasson.photo/","https://www.linkedin.com/in/yunusandreasson/"]},{"@type":"MobileApplication","@id":"https://zuhd.news/#app","name":"zuhd.news","operatingSystem":"iOS, Android","applicationCategory":"NewsApplication","url":"https://zuhd.news/","author":{"@id":"https://andreassonphoto.com/#person"},"publisher":{"@id":"https://zuhd.news/#org"},"offers":{"@type":"Offer","price":"0","priceCurrency":"USD"},"installUrl":"https://apps.apple.com/us/app/zuhd-news/id6760964753","downloadUrl":"https://play.google.com/store/apps/details?id=news.zuhd.app","sameAs":["https://apps.apple.com/us/app/zuhd-news/id6760964753","https://play.google.com/store/apps/details?id=news.zuhd.app"]}]}</script>
 </head>
 <body class="map-page">
+  <a class="skip-link" href="#stories">Skip to stories</a>
   <header>
     {{wordmark}}
     {{audioBriefing}}

@@ -1,3 +1,4 @@
+import Storage from 'expo-sqlite/kv-store';
 import type { Article } from '@shared/types';
 
 let mockFiles: Map<string, string>;
@@ -72,6 +73,16 @@ afterEach(() => {
 });
 
 describe('bookmark SQLite persistence', () => {
+  it('keeps the full saved article after a month away and a fresh store load', () => {
+    const store = loadStore();
+    const saved = article('outside-the-current-feed');
+    store.toggle(saved, 'science');
+    store.flushBookmarks();
+    const before = store.getSnapshot();
+    jest.setSystemTime(Date.now() + 30 * 86400000);
+    expect(loadStore().getSnapshot()).toEqual(before);
+    expect(loadStore().getSnapshot()[0]?.article).toEqual(saved);
+  });
   it('restores removed stories with their original content, category and save order', () => {
     const store = loadStore();
     jest.setSystemTime(1000);
@@ -135,6 +146,32 @@ describe('bookmark SQLite persistence', () => {
     expect(loadStore().getSnapshot()).toEqual([]);
   });
 
+  it('drops only the malformed entry, so a save after it erases nothing', () => {
+    // An entity without `kind` and a nameless source are what the build sends;
+    // they are not malformed. A broken entry costs only itself.
+    const kept = {
+      ...article('kept'),
+      sources: [{ url: null }],
+      entities: [{ mention: 'Brent', indicatorId: 'brent' }],
+    };
+    mockKv.set(
+      'zuhd_bookmarks',
+      JSON.stringify([
+        { article: kept, category: 'economy', savedAt: 2 },
+        { article: { slug: 'broken' }, category: 'tech', savedAt: 1 },
+      ]),
+    );
+    const store = loadStore();
+    expect(store.getSnapshot().map((entry) => entry.article.slug)).toEqual(['kept']);
+    store.toggle(article('new'), 'tech');
+    store.flushBookmarks();
+    expect(
+      loadStore()
+        .getSnapshot()
+        .map((entry) => entry.article.slug),
+    ).toEqual(['new', 'kept']);
+  });
+
   it('notifies subscribers and flushes add/remove changes to SQLite', () => {
     const store = loadStore();
     const listener = jest.fn();
@@ -159,4 +196,36 @@ describe('bookmark SQLite persistence', () => {
     store.toggle(article('other'), 'tech');
     expect(listener).toHaveBeenCalledTimes(2);
   });
+});
+
+it('recovers existing bookmarks before saving edits after a temporary read failure', () => {
+  const saved = { article: article('old'), category: 'tech', savedAt: 1 };
+  mockKv.set('zuhd_bookmarks', JSON.stringify([saved]));
+  jest.mocked(Storage.getItemSync).mockImplementation(() => {
+    throw new Error('locked');
+  });
+  const store = loadStore();
+  store.toggle(article('new'), 'science');
+  jest.advanceTimersByTime(100);
+  expect(JSON.parse(mockKv.get('zuhd_bookmarks') as string)).toEqual([saved]);
+  jest.mocked(Storage.getItemSync).mockImplementation((key) => mockKv.get(key) ?? null);
+  store.flushBookmarks();
+  expect(store.getSnapshot().map((b) => b.article.slug)).toEqual(['new', 'old']);
+  expect(loadStore().getSnapshot()).toEqual(store.getSnapshot());
+});
+
+it('does not resurrect a local add that was undone while storage was unavailable', () => {
+  mockKv.set(
+    'zuhd_bookmarks',
+    JSON.stringify([{ article: article('old'), category: 'tech', savedAt: 1 }]),
+  );
+  jest.mocked(Storage.getItemSync).mockImplementation(() => {
+    throw new Error('locked');
+  });
+  const store = loadStore();
+  store.toggle(article('new'), 'science');
+  store.toggle(article('new'), 'science');
+  jest.mocked(Storage.getItemSync).mockImplementation((key) => mockKv.get(key) ?? null);
+  store.flushBookmarks();
+  expect(store.getSnapshot().map((b) => b.article.slug)).toEqual(['old']);
 });

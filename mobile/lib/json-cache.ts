@@ -51,8 +51,10 @@ export function createJsonCache<T>(
     clear: () => {
       try {
         if (file.exists) file.delete();
-      } catch {}
-      return Promise.resolve();
+        return Promise.resolve();
+      } catch (error) {
+        return Promise.reject(error);
+      }
     },
   };
 }

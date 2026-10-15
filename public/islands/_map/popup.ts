@@ -14,7 +14,7 @@
 
 import { rankStrip } from '@shared/chart/rank-strip'
 import { signedPct } from '@shared/chart/series'
-import { Popup, type Map as MapLibreMap } from 'maplibre-gl'
+import { Popup, type Map as MapLibreMap, type PaddingOptions } from 'maplibre-gl'
 import { appPrompt } from '../_app-prompt'
 import { disclosure, growTo, moreLink, type Built, type Disclosure } from '../_disclosure'
 import { el } from '../_dom'
@@ -162,6 +162,11 @@ export interface StoryPopupOptions {
    */
   onClose?: () => void
   /**
+   * The country the card is about, or null once it is about none. Told only
+   * on a change; the island outlines that country on the map.
+   */
+  onCountry?: (iso: string | null) => void
+  /**
    * Where a country stands on the metric currently shading the land.
    *
    * The island owns the metric, so the card has to ask. Without it an inline
@@ -228,6 +233,15 @@ export interface StoryPopup {
    * fly, one story at a time, through `openStory`.
    */
   openPlace(place: StoryPlace, now: number): void
+  /**
+   * The edges a card must keep off: the rails and the timeline float over the
+   * canvas, and MapLibre otherwise fits the card to the canvas alone.
+   */
+  setPadding(padding: PaddingOptions): void
+  /** Take the keyboard into the card, so its links are the next Tab. */
+  focus(): void
+  /** Whether a node is inside the card. */
+  contains(node: Node): boolean
   close(): void
   isOpen(): boolean
   destroy(): void
@@ -307,7 +321,8 @@ const sourceBlock = (story: Story, p: MapPoint): Node[] => {
   const summary = el('summary', 'map-popup-sources-flat')
   summary.append(
     el('span', 'map-popup-sources-label', 'Sources'),
-    el('span', 'map-popup-sources-names', sources.map((s) => s.name).join(', ')),
+    // One name per outlet: the rows below keep each article.
+    el('span', 'map-popup-sources-names', [...new Set(sources.map((s) => s.name))].join(', ')),
   )
   if (framed || contested) summary.append(el('span', 'map-popup-sources-more', 'how each framed it'))
   details.append(summary)
@@ -537,6 +552,13 @@ export function createStoryPopup(map: MapLibreMap, opts: StoryPopupOptions = {})
     }
   }
 
+  let country: string | null = null
+  const about = (iso: string | null) => {
+    if (iso === country) return
+    country = iso
+    opts.onCountry?.(iso)
+  }
+
   // Fires for the × button and for a real `popup.remove()` alike, so the island
   // is told even when it is the one doing the closing — that is harmless, it
   // clears state that is already being cleared, and it is the only way to hear
@@ -544,6 +566,7 @@ export function createStoryPopup(map: MapLibreMap, opts: StoryPopupOptions = {})
   popup.on('close', () => {
     if (reattaching) return
     pending = null
+    about(null)
     opts.onClose?.()
   })
 
@@ -646,7 +669,7 @@ export function createStoryPopup(map: MapLibreMap, opts: StoryPopupOptions = {})
   const metricRow = (m: CountryMetric) => {
     const li = el('li', 'map-country-metric')
     li.append(
-      el('span', 'map-country-metric-label', m.label),
+      el('span', 'map-country-metric-label', fmt.metricName(m.label)),
       el('span', 'map-country-metric-value', String(m.value)),
     )
     // The percentile strip, from the arithmetic the country page uses — the
@@ -686,7 +709,7 @@ export function createStoryPopup(map: MapLibreMap, opts: StoryPopupOptions = {})
     }
     head.append(
       swatch,
-      el('span', 'map-country-standing-label', s.label),
+      el('span', 'map-country-standing-label', fmt.metricName(s.label)),
       el('span', 'map-country-standing-value', s.value ?? 'no figure'),
     )
     box.append(head)
@@ -1196,6 +1219,7 @@ export function createStoryPopup(map: MapLibreMap, opts: StoryPopupOptions = {})
 
   return {
     preview(p, leads, now) {
+      about(null)
       // `n` has been on every map point since the endpoint was written and
       // nothing has ever read it. It belongs here rather than in a fifth visual
       // channel on the beacon — size, alpha and the ring are already spoken
@@ -1230,6 +1254,7 @@ export function createStoryPopup(map: MapLibreMap, opts: StoryPopupOptions = {})
     },
 
     async open(p, now) {
+      about(null)
       pending = p.slug
       popup.setLngLat([p.lng, p.lat])
 
@@ -1314,6 +1339,7 @@ export function createStoryPopup(map: MapLibreMap, opts: StoryPopupOptions = {})
     async openCountry(iso, at, standing = null) {
       const key = `country:${iso}`
       pending = key
+      about(iso)
       const loading = el('div', 'map-popup-body map-popup-country')
       loading.append(el('p', 'map-popup-loading', 'Loading…'))
       popup.setLngLat(at).setDOMContent(loading)
@@ -1333,6 +1359,7 @@ export function createStoryPopup(map: MapLibreMap, opts: StoryPopupOptions = {})
     },
 
     openPlace(place, now) {
+      about(null)
       // Nothing to await, so nothing to race — but `pending` still has to be
       // claimed, or a story fetch already in flight would land on top of this
       // card when it resolves.
@@ -1341,6 +1368,16 @@ export function createStoryPopup(map: MapLibreMap, opts: StoryPopupOptions = {})
       attach()
     },
 
+    setPadding(padding) {
+      popup.setPadding(padding)
+    },
+    focus() {
+      const box = contentBox()
+      if (!box) return
+      box.tabIndex = -1
+      box.focus({ preventScroll: true })
+    },
+    contains: (node) => popup.getElement()?.contains(node) ?? false,
     close() {
       pending = null
       popup.remove()

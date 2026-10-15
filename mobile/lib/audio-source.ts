@@ -7,15 +7,21 @@ export async function resolveDownloadedAudioSource(
   remoteUrl: string,
   download: Promise<DownloadedAudioAsset>,
   timeoutMs: number,
+  cancelDownload: () => void,
 ): Promise<string> {
   let timer: ReturnType<typeof setTimeout> | null = null;
   try {
     const downloaded = await Promise.race([
       download,
       new Promise<null>((resolve) => {
-        timer = setTimeout(() => resolve(null), timeoutMs);
+        timer = setTimeout(() => {
+          cancelDownload();
+          resolve(null);
+        }, timeoutMs);
       }),
     ]);
+    // Cancellation must settle before the native player starts streaming.
+    if (!downloaded) await download.catch(() => {});
     return downloaded?.localUri ?? remoteUrl;
   } catch {
     return remoteUrl;
