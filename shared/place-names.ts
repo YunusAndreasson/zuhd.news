@@ -94,6 +94,12 @@ const RECLAIMED_NAMES: Record<string, string> = {
 
   // Australia's own dual-naming policy puts the Anangu name first.
   'Ayers Rock': 'Uluru',
+
+  // Saudi Arabia's own romanisations, the ones the map's clock already prints.
+  // The corpus datelined the one city both ways. A US Medina would be renamed
+  // too; none has appeared.
+  Mecca: 'Makkah',
+  Medina: 'Madinah',
 };
 
 export function displayLocation(location: string | null): string | null {
