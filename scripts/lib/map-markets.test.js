@@ -29,7 +29,7 @@ const win = await import(
 const spark = await import(await bundleIsland(dir, 'public/islands/_spark.ts', 'spark.mjs'))
 const markets = await import(await bundleIsland(dir, 'public/islands/_map/markets.ts', 'mk.mjs'))
 
-const { seriesDates, windowByDate, windowPoints, coverage, bucketCounts, halfOverHalf, citedMarks, DAY_MS } = win
+const { seriesDates, windowByDate, windowPoints, coverage, citedMarks, DAY_MS } = win
 const { trailingMean, weekMeanSeries } = await import(await bundleIsland(dir, 'shared/chart/smooth.ts', 'smooth.mjs'))
 const { seriesRecord, recordLine, TRAFFIC_RECORD } = await import(
   await bundleIsland(dir, 'shared/chart/record.ts', 'record.mjs')
@@ -372,39 +372,6 @@ test('a member past the block’s edge is read up to the edge', () => {
   // And a calendar window ends there too.
   const long = { values: [...ramp(9), 50], periods: dailyPeriods('2026-07-30', 10), asOf: '2026-07-30', pct: -50 }
   assert.equal(sparkInput([long], 7, NOW, edge).ends[1], 108, 'the close on the edge, not the one after it')
-})
-
-// --- Chip trends: counts, not levels ---------------------------------------
-
-test('a pile of times becomes a count per bucket, and strays are dropped', () => {
-  const from = Date.UTC(2026, 6, 1)
-  const to = from + 10 * DAY_MS
-  const times = [from, from + DAY_MS, from + DAY_MS, to, from - DAY_MS, to + DAY_MS]
-  const counts = bucketCounts(times, from, to, 10)
-  assert.equal(counts.reduce((a, b) => a + b, 0), 4, 'the two outside the window are dropped')
-  // Clamping them into the end buckets instead would pile them up as a spike at
-  // whichever edge they fell past — a mark standing for data that is not there.
-  assert.equal(counts[0], 1)
-  assert.equal(counts[counts.length - 1], 1)
-})
-
-test('a count series is judged by halves, not by its last bucket', () => {
-  // A rate, not a level. Last-against-first here is "the 11pm hour had three
-  // and midnight had one, down 67%", which is noise wearing a percentage.
-  assert.equal(halfOverHalf([1, 1, 1, 1, 2, 2, 2, 2]), 100)
-  assert.equal(halfOverHalf([2, 2, 2, 2, 1, 1, 1, 1]), -50)
-  // Flat overall, wild at the ends: last-against-first would call this −80%.
-  assert.equal(halfOverHalf([5, 1, 1, 1, 1, 1, 1, 5]), 0)
-})
-
-test('a rise from nothing has no percentage', () => {
-  // The bug this pins: GDACS holds ~16 days, so bucketed across a 30-day range
-  // the fourteen it does not hold landed in the earlier half and the chip read
-  // +911.1% — a real division over an absence, which is the most convincing
-  // kind of wrong number. Blank is the honest answer; the line still has a
-  // shape, and `coverage` still says it does not reach.
-  assert.equal(halfOverHalf([0, 0, 0, 0, 3, 4, 5, 6]), null)
-  assert.equal(halfOverHalf([1, 2]), null, 'too short to have halves')
 })
 
 // --- The invariant the old constant claimed and could not keep -------------

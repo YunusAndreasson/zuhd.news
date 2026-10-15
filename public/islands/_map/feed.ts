@@ -7,7 +7,7 @@
 
 import { NARROW_PX, type MapPoint } from './types'
 import { CATEGORY_COLOUR, FALLBACK_CATEGORY_COLOUR } from './style'
-import { relativeTime } from './format'
+import { MAKKAH_TZ, relativeTime, zoneOffset } from './format'
 
 export interface Feed {
   element: HTMLElement
@@ -31,6 +31,8 @@ export interface Feed {
   highlight(slug: string | null): void
   /** Grey a row out without rebuilding the list. */
   setRead(slug: string): void
+  /** Give the focus back to a row, when a card opened from it closes. */
+  focusRow(slug: string): void
   /**
    * What the refresh control is doing. `idle` restores the button; `busy`
    * disables it; a number reports how many stories arrived, including zero.
@@ -48,7 +50,8 @@ export interface Feed {
 }
 
 export interface FeedOptions {
-  onSelect: (point: MapPoint) => void
+  /** `keyboard`: pressed with Enter, so the card should take the focus. */
+  onSelect: (point: MapPoint, keyboard: boolean) => void
   onHover: (point: MapPoint | null) => void
   /** The rail changed height, so whatever measured it needs to measure again. */
   onToggle?: (open: boolean) => void
@@ -75,7 +78,11 @@ export function createFeed(opts: FeedOptions): Feed {
 
   const list = document.createElement('ol')
   list.className = 'map-feed-list'
-  list.id = 'map-feed-list'
+  // The skip link's target (`templates/index.html`): the rail is after the
+  // map's controls and the instrument rail in the tab order. The list, not the
+  // rail, so the next Tab is a story and not the rail's refresh and filters.
+  list.id = 'stories'
+  list.tabIndex = -1
 
   /**
    * On a phone the rail is a drawer, and the head is its handle.
@@ -142,10 +149,16 @@ export function createFeed(opts: FeedOptions): Feed {
 
   const refreshLabel = document.createElement('span')
   refreshLabel.className = 'map-feed-refresh-label'
-  refreshLabel.textContent = 'refresh'
+  refreshLabel.textContent = 'Refresh'
+
+  // The result replaces the label, and a reader who cannot see it must hear it.
+  refreshLabel.setAttribute('aria-live', 'polite')
 
   refresh.append(refreshIcon, refreshLabel)
-  refresh.addEventListener('click', () => opts.onRefresh?.())
+  refresh.addEventListener('click', () => {
+    if (refresh.getAttribute('aria-disabled') === 'true') return
+    opts.onRefresh?.()
+  })
 
   head.append(disclosure, refresh)
 
@@ -168,19 +181,21 @@ export function createFeed(opts: FeedOptions): Feed {
   const setRefreshState = (state: 'idle' | 'busy' | 'error' | number) => {
     clearTimeout(resultTimer)
     refresh.classList.toggle('is-busy', state === 'busy')
-    refresh.disabled = state === 'busy'
+    // `aria-disabled`, not `disabled`: a disabled button drops the focus of
+    // the reader who pressed it to `<body>`.
+    refresh.setAttribute('aria-disabled', String(state === 'busy'))
     if (state === 'busy') {
-      refreshLabel.textContent = 'checking'
+      refreshLabel.textContent = 'Checking'
       return
     }
     if (state === 'idle') {
-      refreshLabel.textContent = 'refresh'
+      refreshLabel.textContent = 'Refresh'
       return
     }
     refreshLabel.textContent =
-      state === 'error' ? 'try again' : state === 0 ? 'nothing new' : `+${state} new`
+      state === 'error' ? 'Try again' : state === 0 ? 'Nothing new' : `+${state} new`
     resultTimer = self.setTimeout(() => {
-      refreshLabel.textContent = 'refresh'
+      refreshLabel.textContent = 'Refresh'
     }, 4000)
   }
 
@@ -207,7 +222,7 @@ export function createFeed(opts: FeedOptions): Feed {
       return
     }
     disclosure.removeAttribute('tabindex')
-    disclosure.setAttribute('aria-controls', 'map-feed-list')
+    disclosure.setAttribute('aria-controls', 'stories')
     disclosure.setAttribute('aria-expanded', String(expanded))
   }
 
@@ -297,6 +312,40 @@ export function createFeed(opts: FeedOptions): Feed {
     else parent.insertBefore(node, before)
   }
 
+  /**
+   * Days, in Makkah's frame like every date on the map. A range of three to
+   * ninety days was one undivided column, and "9h ago" under "1d ago" is the
+   * only place a reader could find where yesterday began.
+   */
+  const dayRows = new Map<string, HTMLLIElement>()
+  const DAY_MS = 86_400_000
+  const dayKey = (t: number) => new Date(t + zoneOffset(t, MAKKAH_TZ)).toISOString().slice(0, 10)
+  const dayName = new Intl.DateTimeFormat('en-GB', {
+    weekday: 'long',
+    day: 'numeric',
+    month: 'long',
+    timeZone: MAKKAH_TZ,
+  })
+  // Against the wall clock, not the scrub head: "today" is the reader's today.
+  const dayLabel = (key: string, t: number) => {
+    const wall = Date.now()
+    if (key === dayKey(wall)) return 'Today'
+    if (key === dayKey(wall - DAY_MS)) return 'Yesterday'
+    return dayName.format(t)
+  }
+  const dayRowFor = (key: string, t: number): HTMLLIElement => {
+    let li = dayRows.get(key)
+    if (!li) {
+      li = document.createElement('li')
+      li.className = 'map-feed-day'
+      li.dataset.day = key
+      dayRows.set(key, li)
+    }
+    const label = dayLabel(key, t)
+    if (li.textContent !== label) li.textContent = label
+    return li
+  }
+
   const metaOf = (p: MapPoint, now: number) =>
     [p.loc, relativeTime(p.t, now)].filter(Boolean).join(' \u00b7 ')
 
@@ -376,10 +425,18 @@ export function createFeed(opts: FeedOptions): Feed {
     // place. `cursor` is the node the next row should land before; when it is
     // already the right row, nothing is touched at all.
     let cursor = list.firstChild
-    for (const p of shown) {
-      const li = rowFor(p, now)
+    const place = (li: HTMLLIElement) => {
       if (cursor === li) cursor = li.nextSibling
       else moveInto(list, li, cursor)
+    }
+    let day = ''
+    for (const p of shown) {
+      const key = dayKey(p.t)
+      if (key !== day) {
+        day = key
+        place(dayRowFor(key, p.t))
+      }
+      place(rowFor(p, now))
     }
 
     // Whatever the walk did not claim is no longer in the slice. Collected
@@ -389,8 +446,9 @@ export function createFeed(opts: FeedOptions): Feed {
     for (let n = cursor; n; n = n.nextSibling) stale.push(n)
     for (const n of stale) {
       n.remove()
-      const slug = (n as HTMLElement).dataset?.slug
+      const { slug, day: staleDay } = (n as HTMLElement).dataset ?? {}
       if (slug) rows.delete(slug)
+      if (staleDay) dayRows.delete(staleDay)
     }
     // Nothing matched. A rail that just goes blank reads as a failure to load
     // rather than a filter that excluded everything — and leaves the reader
@@ -435,12 +493,23 @@ export function createFeed(opts: FeedOptions): Feed {
   // opens it on the map rather than navigating away. The href stays a real URL
   // so Cmd-click, middle-click and right-click still open the full page, and
   // the link works with JS disabled.
+  // Whether the click that follows was made by Enter. Gecko gives a keyed
+  // click a `detail` of 1, so that cannot say.
+  let keyed = false
+  list.addEventListener('keydown', (e) => {
+    keyed = e.key === 'Enter'
+  })
+  list.addEventListener('pointerdown', () => {
+    keyed = false
+  })
   list.addEventListener('click', (e) => {
+    const keyboard = keyed || e.detail === 0
+    keyed = false
     if (e.metaKey || e.ctrlKey || e.shiftKey || e.altKey || e.button !== 0) return
     const p = pointAt(e.target)
     if (!p) return
     e.preventDefault()
-    opts.onSelect(p)
+    opts.onSelect(p, keyboard)
   })
   // `mouseover`/`mouseout` rather than `mouseenter`/`mouseleave`: the enter pair
   // does not bubble, so it cannot be delegated. The guard is that a move
@@ -479,6 +548,9 @@ export function createFeed(opts: FeedOptions): Feed {
       // instead — which on the map page is the document, and the document is
       // the map.
       if (li && list.clientHeight > 0) li.scrollIntoView({ block: 'nearest' })
+    },
+    focusRow(slug) {
+      rows.get(slug)?.querySelector<HTMLElement>('a')?.focus()
     },
     isExpanded: () => expanded,
     setExpanded,

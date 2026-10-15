@@ -74,7 +74,6 @@ writeFileSync(
         enable: () => { this.doubleClickZoomEnabled = true },
         disable: () => { this.doubleClickZoomEnabled = false },
       }
-      this.keyboard = { disableRotation: () => { this.keyboardRotationDisabled = true } }
       queueMicrotask(() => {
         for (const f of this.handlers.load || []) f()
         for (const f of this.onceHandlers_load || []) f()
@@ -112,7 +111,8 @@ writeFileSync(
     hasImage(id) { return id in this.images }
     getLayer(id) { return this.layers.find((l) => l.id === id) }
     getSource(id) { return this.sources[id] }
-    getCanvas() { return { style: {} } }
+    getCanvas() { return (this.canvas ??= { style: {} }) }
+    getContainer() { return this.opts.container }
     setPaintProperty() {}
     // Where the atmosphere is lit from, written by drawSolar on the solar tick.
     // The stub lacked it, and the failure was the shape this class already
@@ -796,6 +796,13 @@ test('the density wash is a ground, and the place numeral is a droppable mark', 
     assert.equal(field.__before, 'borders', 'the wash goes under the frontiers and the labels')
     assert.equal(field.filter, undefined, 'the wash is filtered by its data, never by a layer')
 
+    // The land's tone is the metric's value: a lighting layer over it moved a
+    // country past the terminator down the ramp (India, the top of population,
+    // drew darker than Algeria).
+    for (const id of ['day-shade', 'night-shade', 'twilight']) {
+      assert.equal(map.getLayer(id)?.__before, 'land', `${id} lights the sea, never the land`)
+    }
+
     // The wash is the one layer whose kernels are sized in *screen* pixels, so
     // on the sphere they compress toward the limb. Every figure it is calibrated
     // against — GAUSS_COEF, `placeDensity(1) = 0.085`, the 1.20 top stop — was
@@ -1161,7 +1168,14 @@ test('a market’s and a strait’s name are layers of their own, and only a ran
       assert.equal(byId[mark].layout['icon-allow-overlap'], true, 'and its mark never does')
       assert.ok(MARKER_LAYERS.includes(label), `${label} opens its mark’s card`)
     }
-    assert.deepEqual(HIT_ORDER.slice(-2), ['market-labels', 'chokepoint-labels'], 'names rank last for the pointer')
+    assert.deepEqual(
+      HIT_ORDER.slice(-4, -2),
+      ['market-labels', 'chokepoint-labels'],
+      'names rank last for the pointer among the marks',
+    )
+    // Below them only Makkah, which is always there and takes the pointer
+    // only where nothing else stands.
+    assert.deepEqual(HIT_ORDER.slice(-2), ['makkah-label', 'makkah-glow'])
 
     // Names under the stories, ticks over them.
     const order = map.layers.map((l) => l.id)
@@ -1260,26 +1274,23 @@ test('the sky is painted behind MapLibre, and paints nothing into it', async () 
   }
 })
 
-test('the camera has one pose, and the wheel zooms about the planet', async () => {
+test('the camera has one pose, and the wheel zooms to the planet, never to space', async () => {
   // Four claims, and every one of them is a bug this map has actually had.
   //
-  // **The zoom anchor.** MapLibre knows a globe must not zoom about a point
-  // that is not on the sphere — `handler_manager.ts` says so — but its guard
-  // lands one line after `deltasForHelper` has already snapshotted `around`, so
-  // it reaches `preZoomAroundLoc` and never reaches
-  // `VerticalPerspectiveCameraHelper.handleMapControlsRollPitchBearingZoom`.
-  // What that runs instead is a documented-glitchy `setLocationAtPoint` on a
-  // cursor snapped to the nearest point of the visible limb. A disc inscribed
-  // in a 16:9 frame leaves 39–60% of this canvas empty *by design*, so it is
-  // the ordinary case here, not the corner one: measured on the built page,
-  // one wheel notch with the pointer in an empty corner moved Gaza 35px
-  // sideways. `around: 'center'` makes the whole heuristic unreachable.
+  // **The zoom anchor.** Over the planet MapLibre keeps the spot under the
+  // pointer where it is (since 6.3). Over space there is no spot: `unproject`
+  // answers with the nearest point of the visible limb and holding that under
+  // the pointer slides the planet toward it, about 200px in three notches on
+  // the built page. A disc inscribed in a 16:9 frame leaves 39–60% of this
+  // canvas empty *by design*, so that is the ordinary case, not the corner
+  // one. `around: 'center'` there makes the disc scale about itself.
   //
   // **The pose.** `dragRotate: false` and `pitchWithRotate: false` turn off the
-  // mouse paths only. `touchPitch` defaults on, the keyboard rotates on
+  // mouse paths only. `touchPitch` defaults on, the keyboard rotated on
   // Shift+Arrow, and `maxPitch` defaults to 60 — and `calibrate` refuses any
   // camera with a bearing or a pitch, so one keypress used to take the stars,
-  // the sun, the moon and the airglow off the map until `resetView`.
+  // the sun, the moon and the airglow off the map until `resetView`. The
+  // globe takes no keys at all now.
   //
   // **Antialiasing.** MapLibre defaults it off. The limb is a circle made of
   // tile-mesh triangles, so without MSAA the one edge this whole design is
@@ -1309,12 +1320,25 @@ test('the camera has one pose, and the wheel zooms about the planet', async () =
       'at ratio 2 the canvas is not multisampled',
     )
     assert.ok(map.rotationDisabled, 'touch rotation is off')
-    assert.ok(map.keyboardRotationDisabled, 'keyboard rotation is off')
+    assert.equal(map.opts.keyboard, false, 'the globe takes no keys')
+    assert.equal(map.getCanvas().tabIndex, -1, 'and is no Tab stop')
 
-    // Both wheel paths are anchored, and anchored to the same thing.
+    // The map opens with both anchored on the centre.
     const anchored = Object.fromEntries(map.zoomAnchors)
-    assert.equal(anchored.scroll, 'center', 'the wheel zooms about the planet, not the pointer')
-    assert.equal(anchored.touch, 'center', 'and so does a pinch')
+    assert.equal(anchored.scroll, 'center', 'the wheel opens anchored on the planet')
+    assert.equal(anchored.touch, 'center', 'and so does a pinch, which stays so')
+
+    // The stub's disc is centred at (600, 300) with a radius of about 455px.
+    // Each wheel sets its anchor before MapLibre reads it.
+    const wheelAt = (x, y) => {
+      map.opts.container.dispatchEvent(
+        new env.window.WheelEvent('wheel', { clientX: x, clientY: y, deltaY: -100, bubbles: true }),
+      )
+      return map.zoomAnchors.filter(([k]) => k === 'scroll').at(-1)[1]
+    }
+    assert.equal(wheelAt(700, 250), null, 'over the planet the wheel zooms to the pointer')
+    assert.equal(wheelAt(1150, 40), 'center', 'over space it zooms about the centre')
+    assert.equal(wheelAt(1040, 300), 'center', 'and so it does at the limb, where unproject turns steeply')
 
     // And so does a double-click, by being switched off and replaced. The
     // anchor it could not be given is the whole reason: measured on the built

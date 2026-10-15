@@ -22,6 +22,8 @@ One type scale and two palettes, each declared once in `public/style.css`.
   opacity, so for controls that were caught dimmed (`.map-seam-toggle`,
   `.map-range`, `.map-markets-age`, `.map-markets-level`, `.map-mapctl`) it
   asserts there is none. Add a control there when it must stay legible.
+- Metric names are lower case in `shared/` (the app and the APIs read them);
+  the web prints them through `metricName` (`_map/format.ts`).
 - Four text roles. Heading: `--size-2xs`, 600, small caps, `--track-caps`.
   Item (a row's name, a link, a control): `--size-xs`, 400, sentence case.
   Figure: `--size-2xs`, tabular. Qualifier: `--size-2xs`, a muted ink. Small
@@ -43,8 +45,9 @@ One type scale and two palettes, each declared once in `public/style.css`.
 - The site palette (`:root`) follows the reader: four inks, two surfaces, two
   rules, and the marks `--accent` (neutral), `--brand` (gold, the one
   chromatic mark), `--pos` and `--neg`, `--focus`, `--scrim`. Tokens are
-  `light-dark()` pairs (`--brand` is one value). There is no `[data-theme]`
-  and no second dark block.
+  `light-dark()` pairs, `--brand` included: one gold hue, darkened on white to
+  clear 3:1. There is no `[data-theme]` and no second dark block.
+- A rule is a divider, never a link's underline: that takes an ink.
 - `light-dark()` is a colour function. `opacity: light-dark(0, 0.85)` is an
   invalid declaration and is dropped silently.
 - The dark-surface palette (`body.map-page, body.doc-page`) is for the two
@@ -58,12 +61,13 @@ One type scale and two palettes, each declared once in `public/style.css`.
   uses yet, on purpose.
 - The seam with MapLibre: `_map/style.ts` paints the canvas and CSS the
   chrome, and neither can import the other. The test holds the shared values
-  equal: `MAP_COLOURS.ocean` and `--map-ground`; `OVERLAY_COLOUR.straits` and
+  equal: `MAP_COLOURS.space` and `--map-ground`; `OVERLAY_COLOUR.straits` and
   `.straitsSurge` and `--map-straits` and `--map-straits-surge`; `marketUp`
   and `marketDown` and `--map-pos` and `--map-neg`. `--map-stale` mirrors
   `MAP_COLOURS.neutral` and nothing checks it.
 - Category and overlay hues are not duplicated: a chip receives its layer's
-  value inline as `--cat`, so it cannot disagree with its mark.
+  value inline as `--cat`, so it cannot disagree with its mark. The four
+  categories share one OKLCH lightness; only the hue says which.
 - Whatever floats over the map (control box, popup, group panel, sheet) takes
   `--map-line-card` and `--map-radius`; a control inside it `--map-radius-ctl`.
 - `.map-sheet` re-points the site's tokens at the map's, so a card rule

@@ -427,3 +427,23 @@ export const sessionLabel = (
   const weekday = new Date(t).toLocaleDateString('en-US', { weekday: 'short', timeZone: 'UTC' })
   return `last close · ${weekday}`
 }
+
+/** Words a metric label keeps in their own case, wherever they stand. */
+const METRIC_WORDS: Record<string, string> = { gdp: 'GDP', 'co₂': 'CO₂', 'r&d': 'R&D', 'v-dem': 'V-Dem' }
+
+/**
+ * A metric's label in sentence case, as the map's chrome is set: the shared
+ * labels are lower case because the app and the published APIs read them so,
+ * and `text-transform` would print "Gdp".
+ */
+export const metricName = (label: string): string => {
+  const s = label
+    .split(' ')
+    .map((w) => {
+      // A word in brackets keeps them: "(v-dem)" is "(V-Dem)".
+      const kept = METRIC_WORDS[w.replace(/[()]/g, '')]
+      return kept ? w.replace(/[^()]+/, kept) : w
+    })
+    .join(' ')
+  return s.charAt(0).toUpperCase() + s.slice(1)
+}

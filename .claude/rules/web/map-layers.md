@@ -45,6 +45,10 @@ Camera, MapLibre and cards are `map.md`; the rails are `map-rail.md`.
   gate, which deletes small states such as Lebanon at every zoom it covers.
 - `sea-labels` stays the last layer in the base style, so it claims its space
   before country and city names.
+- Makkah is the map's own mark: `makkah-glow` in `--brand`'s gold, never a dot
+  (`economy` is a hair away), and `makkah-label` in `makkahLabel`, the gold
+  lightened to AA. The gazetteer's Makkah is filtered out of `place-dots` and
+  `place-labels`, or it is named twice.
 - Country names stay quiet (Regular, halo 1) in `labelDim`; `neutral` fails on
   the brightest land. A halo does not make a label readable.
 - `DENSITY_STOPS` peaks at 0.30: type on the wash must keep 3:1.
@@ -56,9 +60,11 @@ Camera, MapLibre and cards are `map.md`; the rails are `map-rail.md`.
 - `lakes` fill in `ocean`, above `land` and under `borders`: a frontier across
   a lake stays drawn.
 - River width does not vary by rank: a river is not a quantity.
-- `night-shade` is `MAP_COLOURS.ocean` at 0.28, not black: the dark half must
-  not be darker than space.
-- `day-shade` is inserted before `land` so it reaches only water. Which pole
+- `night-shade` is `MAP_COLOURS.space` at 0.28, not black: the dark half must
+  not be darker than space, and the night sea keeps its blue.
+- `day-shade`, `night-shade` and `twilight` are inserted before `land`, so
+  they light only water: the land's tone is the metric's value, and night over
+  it drew India, the top of population, darker than Algeria. Which pole
   `dayPolygon` closes over fails silently if reversed.
 - `twilight` is one blurred band that lightens. The three real twilight caps
   would come and go with the season.
@@ -129,7 +135,9 @@ Camera, MapLibre and cards are `map.md`; the rails are `map-rail.md`.
   suppresses, so a beacon over a name is accepted). `genocide-labels` is the
   exception (`text-ignore-placement: false`): text over text is unreadable.
 - **Off is an ink step, never opacity**: `colour-system.test.js` cannot see it.
-- A market's sign picks `--map-pos`/`--map-neg`, pinned to `OVERLAY_COLOUR`.
+- A market's sign picks `--map-pos`/`--map-neg`, pinned to `OVERLAY_COLOUR`,
+  and a strait's pinch and surge are the same pair: one green and one rose
+  for a number that rose or fell, on the map, the rail, the site and the app.
   A closed exchange sits back in opacity; under `FLAT_PCT` the mark is
   `tick-flat` in `neutral`.
 - A market mark's direction, size and numeral are `exchangeReading` over the

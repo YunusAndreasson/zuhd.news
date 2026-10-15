@@ -50,6 +50,9 @@ const bundlePath = await bundleIslands(
     // only thing on the map whose correctness cannot be checked by looking at
     // it — a wrong Hijri date is still a plausible Hijri date.
     'public/islands/_map/hijri.ts',
+    // The Makkah card: the next prayers there and the days to the year's
+    // markers, from the two modules above.
+    'public/islands/_map/makkah.ts',
     // Named rather than `export *`: markets.ts re-exports payload types that
     // would collide with types.ts above, and an ambiguous star export resolves
     // to silence rather than an error.
@@ -1466,11 +1469,11 @@ test('the live scrub position is the real live edge, whatever the day anchor', (
 })
 
 test('the airglow is the night limb’s edge, and dimmer than the land', () => {
-  // Sea and space are one tone, so on the night side this line is the planet's
-  // only edge. Drawn in `horizon` at 1.45:1 it could not be seen there.
-  const { airglow, ocean } = M.MAP_COLOURS
+  // On the night side this line is the planet's sharp edge against space.
+  // Drawn in `horizon` at 1.45:1 it could not be seen there.
+  const { airglow, space } = M.MAP_COLOURS
   const top = M.LAND_RAMP[M.LAND_RAMP.length - 1]
-  assert.ok(contrast(airglow, ocean) >= 2, `airglow ${airglow} is only ${contrast(airglow, ocean).toFixed(2)}:1 on the ocean`)
+  assert.ok(contrast(airglow, space) >= 2, `airglow ${airglow} is only ${contrast(airglow, space).toFixed(2)}:1 on space`)
   // An atmosphere brighter than the continents makes the planet look like a hole.
   assert.ok(luminance(airglow) < luminance(top), `airglow ${airglow} is brighter than the ramp top ${top}`)
   assert.ok(hsl(airglow).s <= 0.31, `airglow ${airglow} is more saturated than the air it stands for`)
@@ -2855,7 +2858,7 @@ test('the density wash sits above the land ramp and below the ink', () => {
    *
    * Two channels because neither works alone, and measuring is what showed it.
    * On the brightest land the wash peak comes up to `#656c76`, where a `politics`
-   * fill measures **1.39:1** — nearly the same luminance — and the ocean-coloured
+   * fill measures **1.39:1** — nearly the same luminance — and the space-coloured
    * rim measures **3.73:1**. Over the water the peak is `#3b3e42` and it is the
    * other way round: the rim collapses to **1.84:1** while the fills run
    * 2.83–4.60:1. So fill carries the mark on dark ground, rim carries it on
@@ -2870,7 +2873,7 @@ test('the density wash sits above the land ramp and below the ink', () => {
    * the edge *between* rim and fill, which no ground can affect.
    */
   const peakOnOcean = composite(field, visible[visible.length - 1][1], ocean)
-  const casing = channels(M.MAP_COLOURS.ocean)
+  const casing = channels(M.MAP_COLOURS.space)
   assert.ok(
     contrast(casing, peakOnLand) >= 3,
     `the rim only reaches ${contrast(casing, peakOnLand).toFixed(2)}:1 on the wash over bright land, which is the case it exists for`,
@@ -2944,6 +2947,63 @@ test('the density wash sits above the land ramp and below the ink', () => {
 })
 
 /**
+ * The bloom under a busy place, in the wash's tone and capped.
+ *
+ * It shipped as a gold ramp drawn as blurred circles: an economy dot measured
+ * 1.01:1 on it, a city name 1.33:1, and three overlapping European capitals
+ * stacked to 0.93 opacity. As a heatmap the ramp's top caps any overlap, so
+ * the top stop is the worst case, and it is measured on every ground alone and
+ * on the wash's own peak.
+ */
+test('the bloom is the wash’s tone, and the type and dots on it still read', () => {
+  const stops = M.BLOOM_STOPS
+  assert.deepEqual([...stops[0]], [0, 0], 'stop 0 must be transparent, or the bloom paints the world')
+  for (let i = 1; i < stops.length; i++) {
+    assert.ok(stops[i][0] > stops[i - 1][0], 'heat stops must ascend')
+    assert.ok(stops[i][1] >= stops[i - 1][1], 'alpha must not fall')
+  }
+  const top = stops[stops.length - 1][1]
+  assert.ok(top <= 0.2, `the bloom peaks at ${top}`)
+  // One tone with the wash: every colour stop is the density tone at an alpha.
+  const [r, g, b] = channels(M.MAP_COLOURS.density)
+  for (const v of M.bloomRamp().filter((x) => typeof x === 'string')) {
+    assert.ok(v.startsWith(`rgb(${r} ${g} ${b} /`), `${v} is not the wash's tone`)
+  }
+
+  const tone = channels(M.MAP_COLOURS.density)
+  const washPeak = M.DENSITY_STOPS[M.DENSITY_STOPS.length - 1][1]
+  const rim = channels(M.MAP_COLOURS.space)
+  for (const ground of [M.MAP_COLOURS.ocean, M.LAND_NO_DATA, ...M.LAND_RAMP]) {
+    for (const washed of [false, true]) {
+      const under = washed ? composite(tone, washPeak, channels(ground)) : channels(ground)
+      const patch = composite(tone, top, under)
+      const where = `${ground}${washed ? ' under the wash' : ''}`
+      assert.ok(
+        contrast(channels(M.MAP_COLOURS.label), patch) >= 3,
+        `a city name is ${contrast(channels(M.MAP_COLOURS.label), patch).toFixed(2)}:1 on the bloom over ${where}`,
+      )
+      if (!washed) {
+        assert.ok(
+          contrast(channels(M.MAP_COLOURS.labelDim), patch) >= 3,
+          `a country name is ${contrast(channels(M.MAP_COLOURS.labelDim), patch).toFixed(2)}:1 on the bloom over ${where}`,
+        )
+      }
+      for (const [name, hex] of Object.entries(M.CATEGORY_COLOUR)) {
+        const best = Math.max(contrast(channels(hex), patch), contrast(rim, patch))
+        assert.ok(best >= 2.25, `a ${name} dot on the bloom over ${where} reaches only ${best.toFixed(2)}:1`)
+      }
+    }
+  }
+
+  // The key's swatch is what the canvas draws: the top over the ocean at the
+  // centre, bare ocean at the edge.
+  const css = M.bloomCssRamp()
+  const first = composite(tone, top, channels(M.MAP_COLOURS.ocean)).map(Math.round)
+  assert.ok(css.startsWith(`rgb(${first.join(' ')}) 0%`), `the key's glow starts at ${css.split(',')[0]}`)
+  assert.ok(css.endsWith(`rgb(${channels(M.MAP_COLOURS.ocean).join(' ')}) 100%`), 'the key\'s glow ends on the sea')
+})
+
+/**
  * Every word printed on the map is legible on every ground it can land on.
  *
  * The test that did not exist, which is why the map shipped hard to read. The
@@ -2979,6 +3039,7 @@ test('every label on the map is legible on every ground it can land on', () => {
     'city names and the place numeral': M.MAP_COLOURS.label,
     'marine labels': M.MAP_COLOURS.waterLabel,
     'prayer labels': M.MAP_COLOURS.prayer,
+    'Makkah': M.MAP_COLOURS.makkahLabel,
   }
 
   for (const [what, ink] of Object.entries(inks)) {
@@ -3170,4 +3231,48 @@ test('no label layer is floored above the zoom a phone opens at', () => {
   const filter = JSON.stringify(country.filter)
   assert.match(filter, /"area"/, 'country labels must be gated on area')
   assert.match(filter, /step/, 'and that gate must step with zoom')
+})
+
+test('Makkah’s card counts to the prayers by adhan’s clock, in the order they come', () => {
+  const [lng, lat] = M.MAKKAH_AT
+  // An hour past noon in Makkah, and the hour before Fajr: the next prayer is
+  // Asr at the first and Fajr at the second, and each list holds the coming five.
+  for (const [iso, first] of [
+    ['2026-10-15T10:00:00Z', 'asr'],
+    ['2026-10-15T00:30:00Z', 'fajr'],
+  ]) {
+    const now = Date.parse(iso)
+    const list = M.nextPrayers(now)
+    assert.equal(list.length, 5, `${iso}: five prayers in the coming day`)
+    assert.equal(list[0].id, first, `${iso}: ${first} is next`)
+    for (let i = 0; i < list.length; i++) {
+      const p = list[i]
+      assert.ok(p.at > now && p.at - now <= 24 * HOUR, `${p.id} is in the coming day`)
+      if (i) assert.ok(p.at > list[i - 1].at, 'in the order they come')
+      const off = adhanPrayerAt(p.id, lat, lng, p.at)
+      assert.ok(off <= (p.id === 'asr' ? 150_000 : 20_000), `${p.id} is ${Math.round(off / 1000)}s from adhan`)
+    }
+  }
+  assert.equal(M.untilLabel(8 * 60_000), 'in 8 min')
+  assert.equal(M.untilLabel(72 * 60_000), 'in 1 h 12 min')
+  assert.equal(M.untilLabel(120 * 60_000), 'in 2 h')
+})
+
+test('Makkah’s card finds each marker on its Umm al-Qura date', () => {
+  const tz = 'Asia/Riyadh'
+  const now = Date.parse('2026-10-15T09:00:00Z')
+  const marks = M.comingMarks(now, tz)
+  assert.equal(marks.length, 5, 'every marker is found within the year')
+  for (let i = 1; i < marks.length; i++) assert.ok(marks[i].days >= marks[i - 1].days, 'nearest first')
+  const ramadan = marks.find((m) => m.name === 'Ramadan begins')
+  const h = M.hijriDate(now + ramadan.days * 24 * HOUR, tz)
+  assert.deepEqual([h.month, h.day], [9, 1], 'the day found is 1 Ramadan')
+  // And on the day itself, the count is zero.
+  const onIt = now + ramadan.days * 24 * HOUR
+  assert.equal(M.comingMarks(onIt, tz).find((m) => m.name === 'Ramadan begins').days, 0)
+  assert.equal(M.ramadanDay(onIt, tz), 1)
+  assert.equal(M.ramadanDay(now, tz), null)
+  assert.equal(M.dayWord(0), 'today')
+  assert.equal(M.dayWord(1), 'tomorrow')
+  assert.equal(M.dayWord(12), 'in 12 days')
 })

@@ -42,6 +42,8 @@ import {
   type TrendEvent,
 } from './markets'
 import { patternLabel, patternLine, type MarketSignal } from './signals'
+import { hijriLabel } from './hijri'
+import { comingMarks, dayWord, nextPrayers, ramadanDay, untilLabel } from './makkah'
 import { PRICE_RECORD, TRAFFIC_RECORD, recordLine, type RecordWords } from '@shared/chart/record'
 import type { SeriesMark } from '@shared/chart/series'
 import { DAY_MS, citedMarks, seriesDates, windowPoints } from './series-window'
@@ -59,21 +61,17 @@ import type {
 
 export interface Sheet {
   element: HTMLDialogElement
-  showGdacs(alert: GdacsAlert, detail: GdacsDetail | null, pinned: boolean): void
+  showGdacs(alert: GdacsAlert, detail: GdacsDetail | null, pinned: boolean, docked?: boolean): void
   /**
    * `docked` opens the card as a box beside the rail instead of a modal.
    *
    * A backdrop makes the page inert and takes focus, which is the right
    * ceremony for a document and far too much for one series read off a row the
    * reader is still standing on — the same objection the markets panel already
-   * makes about `showModal()`. It is the *origin* that decides: a card reached
-   * from a mark on the map is a commitment and keeps its backdrop; a card
-   * reached from the rail keeps the map live, because the rail row and the map
-   * are the two halves of what the reader is doing.
-   *
-   * An exchange's card is the exception among the marks: pinned from its mark
-   * it is docked too, with no row (`dockTo(null)`), and stands where its peek
-   * stood. A market is read against the map it is on, as a story is.
+   * makes about `showModal()`. On the desktop no card takes one: a card from
+   * a rail row stands beside the row, and a card pinned from a mark on the map
+   * is docked with no row (`dockTo(null)`) and stands where its peek stood,
+   * over a live map, as a story's card does. On a phone the card is the sheet.
    */
   showChokepoint(cp: MapChokepoint, pinned: boolean, docked?: boolean): void
   /**
@@ -110,10 +108,21 @@ export interface Sheet {
    * has no time series, so there is no window for a card to open on.
    */
   showEvent(entry: TrendEvent, pinned: boolean, docked?: boolean): void
-  showConflict(event: ConflictEvent, window: string | null, pinned: boolean): void
-  showGenocide(situation: GenocideSituation, pinned: boolean): void
-  showThermal(event: ThermalEvent, pinned: boolean): void
-  showFamine(area: IpcArea, pinned: boolean): void
+  showConflict(
+    event: ConflictEvent,
+    window: string | null,
+    pinned: boolean,
+    docked?: boolean,
+  ): void
+  showGenocide(situation: GenocideSituation, pinned: boolean, docked?: boolean): void
+  showThermal(event: ThermalEvent, pinned: boolean, docked?: boolean): void
+  showFamine(area: IpcArea, pinned: boolean, docked?: boolean): void
+  /**
+   * Makkah, the map's centre: the next prayers there and the days to the
+   * year's markers, all calculated (`_map/makkah.ts`). Its countdown runs
+   * while the card is open.
+   */
+  showMakkah(now: number, pinned: boolean, docked?: boolean): void
   /* There was a `showPanel` here, for the layer switches. It is gone (2026-08-07)
      along with `is-panel`: a `showModal()` over the whole page to reveal seven
      toggles is the ceremony this file already rejects for a ticker glance and a
@@ -279,6 +288,12 @@ export function createSheet(): Sheet {
   document.body.append(dialog)
 
   let pinned = false
+  /** The Makkah card's countdown, running only while that card is open. */
+  let makkahTick: ReturnType<typeof setInterval> | undefined
+  const stopMakkah = () => {
+    if (makkahTick !== undefined) clearInterval(makkahTick)
+    makkahTick = undefined
+  }
   /** Whether the open card is the non-modal, rail-anchored kind. */
   let isDocked = false
   /** The row it was opened from, which decides where it sits. */
@@ -333,7 +348,10 @@ export function createSheet(): Sheet {
   // own state is what makes this event mean "the sheet is shut" rather than
   // "a close call happened at some point".
   dialog.addEventListener('close', () => {
-    if (!dialog.open) pinned = false
+    if (!dialog.open) {
+      pinned = false
+      stopMakkah()
+    }
   })
 
   // Hover opens the sheet non-modally, so the map underneath stays live and
@@ -424,6 +442,7 @@ export function createSheet(): Sheet {
 
   const render = (nodes: Node[], pin: boolean, docked = false) => {
     if (pinned && !pin) return
+    stopMakkah()
     // The app line used to hang off the story sheet, which the map no longer
     // opens — stories now read in a popup anchored to their own coordinate. It
     // belongs on whichever sheet the reader has actually committed to, and only
@@ -598,10 +617,61 @@ export function createSheet(): Sheet {
     return { marks, numbers }
   }
 
+  const makkahTime = (t: number) =>
+    new Date(t + fmt.zoneOffset(t, fmt.MAKKAH_TZ)).toISOString().slice(11, 16)
+
+  const showMakkah = (now: number, pin: boolean, docked = false) => {
+    const tz = fmt.MAKKAH_TZ
+    const prayers = nextPrayers(now)
+    const next = prayers[0]
+    const nodes: Node[] = []
+    nodes.push(kicker(['the map’s centre', hijriLabel(now, tz)]))
+    nodes.push(el('h2', 'island-sheet-title', fmt.MAKKAH_LABEL))
+    if (next) nodes.push(hero(`${next.name} ${makkahTime(next.at)}`, untilLabel(next.at - now)))
+    // The coming five in the order they come, the next one marked, in the
+    // three-column row's grammar at five.
+    if (prayers.length) {
+      const row = el('dl', 'map-sheet-moves is-five')
+      for (const p of prayers) {
+        const cell = el('div', 'map-sheet-move')
+        if (p === next) cell.setAttribute('aria-current', 'true')
+        cell.append(el('dt', '', p.name), el('dd', '', makkahTime(p.at)))
+        row.append(cell)
+      }
+      nodes.push(row)
+    }
+    const fast = ramadanDay(now, tz)
+    const marks = comingMarks(now, tz)
+      .slice(0, 2)
+      .map((m) => `${m.name} ${dayWord(m.days)}`)
+    const lines = [fast ? `Ramadan, day ${fast}` : null, ...marks].filter(Boolean)
+    if (lines.length) nodes.push(el('p', 'map-sheet-meta', lines.join(' · ')))
+    if (pin) {
+      nodes.push(
+        el(
+          'p',
+          'map-sheet-note',
+          `${makkahTime(now)} in Makkah. Times and dates by Umm al-Qura, calculated rather than sighted.`,
+        ),
+      )
+    }
+    render(nodes, pin, docked)
+    if (!next) return
+    // The countdown moves on its own; the card is drawn again only when the
+    // prayer it counts to has entered.
+    const note = inner.querySelector('.map-sheet-hero-note')
+    makkahTick = setInterval(() => {
+      const t = Date.now()
+      if (!dialog.open) return stopMakkah()
+      if (t >= next.at) showMakkah(t, pinned, isDocked)
+      else if (note) note.textContent = untilLabel(next.at - t)
+    }, 30_000)
+  }
+
   return {
     element: dialog,
 
-    showGdacs(alert, detail, pin) {
+    showGdacs(alert, detail, pin, docked) {
       const nodes: Node[] = []
       // The event type was previously spent only on the marker glyph, leaving
       // the kicker to say "disaster" — a word that adds nothing to a reader who
@@ -663,7 +733,7 @@ export function createSheet(): Sheet {
           nodes.push(a)
         }
       }
-      render(nodes, pin)
+      render(nodes, pin, docked)
     },
 
     showChokepoint(cp, pin, docked) {
@@ -1258,7 +1328,7 @@ export function createSheet(): Sheet {
       render(nodes, pin, docked)
     },
 
-    showConflict(event, windowLabel, pin) {
+    showConflict(event, windowLabel, pin, docked) {
       const nodes: Node[] = []
       nodes.push(
         kicker(['conflict', event.subEvent?.replace(/_/g, ' ') || null, event.country || null]),
@@ -1279,7 +1349,7 @@ export function createSheet(): Sheet {
         // the difference between a dated record and a false "now".
         nodes.push(el('p', 'map-sheet-note', 'Conflict records publish on a lag and are not live.'))
       }
-      render(nodes, pin)
+      render(nodes, pin, docked)
     },
 
     /**
@@ -1295,7 +1365,7 @@ export function createSheet(): Sheet {
      * finding in the body's own terms, and the link goes to where it can be
      * read in full. The map asserts nothing it did not source.
      */
-    showGenocide(situation, pin) {
+    showGenocide(situation, pin, docked) {
       const nodes: Node[] = []
       nodes.push(kicker(['genocide', `UN finding · ${fmt.fullDate(situation.date)}`]))
       nodes.push(el('h2', 'island-sheet-title', situation.name))
@@ -1319,7 +1389,7 @@ export function createSheet(): Sheet {
         }
         nodes.push(links)
       }
-      render(nodes, pin)
+      render(nodes, pin, docked)
     },
 
     /**
@@ -1336,7 +1406,7 @@ export function createSheet(): Sheet {
      * a reader can check the claim against NASA's own map rather than taking it
      * from us.
      */
-    showThermal(event, pin) {
+    showThermal(event, pin, docked) {
       const nodes: Node[] = []
       nodes.push(
         kicker([
@@ -1415,7 +1485,7 @@ export function createSheet(): Sheet {
         // join is 75 km wide and the card has to admit it.
         nodes.push(...relatedList(event.related ?? [], 'Reported near here'))
       }
-      render(nodes, pin)
+      render(nodes, pin, docked)
     },
 
     /**
@@ -1442,7 +1512,7 @@ export function createSheet(): Sheet {
      * layer. `publishable` in `scripts/lib/ipc.js` carries the same argument for
      * why the mark exists at all.
      */
-    showFamine(area, pin) {
+    showFamine(area, pin, docked) {
       const nodes: Node[] = []
       const catastrophe = area.pop?.p5 ?? 0
       nodes.push(
@@ -1557,7 +1627,7 @@ export function createSheet(): Sheet {
         if (area.iso2) links.append(readMore(`/country/${area.iso2}`, 'Country in profile'))
         nodes.push(links)
       }
-      render(nodes, pin)
+      render(nodes, pin, docked)
     },
 
     close() {
@@ -1566,10 +1636,12 @@ export function createSheet(): Sheet {
     },
     isOpen: () => dialog.open,
     isPinned: () => pinned,
+    showMakkah,
     dockTo(anchor) {
       dockAnchor = anchor
     },
     destroy() {
+      stopMakkah()
       window.removeEventListener('resize', onReflow)
       // The two the docked mode wired by hand. `show()` gave us the card
       // without the platform's Escape or light dismiss, and a listener left on

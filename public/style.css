@@ -157,9 +157,12 @@
   --bg: light-dark(#fff, #080808);
   --bg-soft: light-dark(#fafafa, #1a1a1a);
 
-  /* Line. */
-  --rule: light-dark(#e8e8e8, #181818);
-  --rule-soft: light-dark(#f2f2f2, #111);
+  /* Line. Dark mode's were #181818 and #111: 1.13:1 on `--bg` and darker
+     than `--bg-soft`, so a divider there was a line in name only. These sit
+     about as far from the dark surfaces as the light pair does from white. A
+     rule is never a link's underline, which takes an ink (`--text-dim`). */
+  --rule: light-dark(#e8e8e8, #2a2a2a);
+  --rule-soft: light-dark(#f2f2f2, #1c1c1c);
 
   /* Marks — the only colours that mean something.
 
@@ -172,18 +175,19 @@
      rather than the job it does, so nothing that wasn't a dome could
      reasonably reach for it. */
   --accent: light-dark(#444, #999);
-  --brand: #c9a84c;         /* the one chromatic mark — matches mobile */
+  /* The one chromatic mark, one hue in both schemes as the app has it: the
+     dark gold measured 2.29:1 on white, under the 3:1 a progress bar owes. */
+  --brand: light-dark(#8f7224, #c9a84c);
 
   /* A signed change: a number that went up, a number that went down. Three
      components each had their own pair before this — `.entity-delta`,
      `.article-entity-delta` and the map's sentiment tones — which is four
      greens and four reds for one idea, and one of the greens (#2f8a4a)
      measured 4.33:1 on white and failed AA. These are the pair that already
-     passed in both schemes. The map keeps a pair of its own (`--map-pos`,
-     `--map-neg`): same axis, different surface, and forcing these onto a
-     committed-dark chrome would shout. */
-  --pos: light-dark(#2a6a2a, #7ac97a);
-  --neg: light-dark(#8a2a2a, #e07070);
+     passed in both schemes. The dark pair is the map's (`--map-pos`,
+     `--map-neg`) and the app's: one green and one rose for one idea. */
+  --pos: light-dark(#2a6a2a, #6cbb7e);
+  --neg: light-dark(#8a2a2a, #e68ba8);
 
   /* The keyboard focus ring. WCAG 2.2 asks for 3:1 against what it sits on;
      `--accent` gives 9.7:1 light and 7.0:1 dark. Named separately from
@@ -635,7 +639,8 @@ footer {
   align-items: center;
   gap: 0.5rem;
 
-  &.listened { opacity: 0.65; }
+  /* Played: a step down in ink, never `opacity` (`design-system.md`). */
+  &.listened :is(.briefing-play, .briefing-label) { color: var(--text-secondary); }
 }
 
 .briefing-play {
@@ -749,16 +754,16 @@ footer {
   color: var(--text-secondary);
   background: none;
   border: 0;
-  padding: 0;
-  margin: 0;
+  /* A 24px target round an 18px line, with the line where it was: "X" alone
+     was a 9 by 18 box. Quiet by ink, not the 0.9 opacity it had. */
+  padding: 0.3rem 0;
+  margin: -0.3rem 0;
   font: inherit;
   cursor: pointer;
   text-decoration: none;
-  opacity: 0.9;
-  transition: opacity var(--dur-fast) ease, color var(--dur-fast) ease;
+  transition: color var(--dur-fast) ease;
 
   &:hover {
-    opacity: 1;
     color: var(--text);
     text-decoration: underline;
     text-underline-offset: 0.25em;
@@ -1163,7 +1168,7 @@ body.article-page-body::before {
 .article-sources-flat a {
   color: inherit;
   text-decoration: underline;
-  text-decoration-color: var(--rule);
+  text-decoration-color: var(--text-dim);
   text-underline-offset: 0.2em;
 }
 
@@ -2014,7 +2019,7 @@ body.archetype-page-body {
 .country-preview-full-link {
   color: var(--text);
   text-decoration: underline;
-  text-decoration-color: var(--rule);
+  text-decoration-color: var(--text-dim);
   text-underline-offset: 3px;
   font-size: var(--size-sm);
   transition: text-decoration-color var(--dur-fast);
@@ -2221,7 +2226,7 @@ body.archetype-page-body {
   font-size: var(--size-sm);
   color: var(--text-secondary);
   text-decoration: underline;
-  text-decoration-color: var(--rule);
+  text-decoration-color: var(--text-dim);
   text-underline-offset: 3px;
   transition: color var(--dur-fast), text-decoration-color var(--dur-fast);
 
@@ -2287,7 +2292,7 @@ body.archetype-page-body {
 
   &:hover {
     text-decoration: underline;
-    text-decoration-color: var(--rule);
+    text-decoration-color: var(--text-dim);
     text-underline-offset: 3px;
   }
 }
@@ -2323,8 +2328,6 @@ body.archetype-page-body {
   padding: 0.3rem 0.6rem 0.3rem 0.45rem;
   font: inherit;
   font-size: var(--size-xs);
-  font-variant-caps: all-small-caps;
-  letter-spacing: var(--track-wide);
   color: var(--map-ink-body);
   background: color-mix(in srgb, var(--map-panel) 85%, transparent);
   border: 1px solid var(--map-line-card);
@@ -2589,16 +2592,15 @@ body.doc-page {
 
   /* Marks. `--map-underline` is decoration rather than ink and sits below the
      ink floor on purpose; it only ever appears under text that is `--map-ink`.
-     The sentiment pair is the map's own `--pos`/`--neg`: the same axis, held
-     back to earth tones so a source's tone never outshouts a beacon. */
+     The signed-change pair is the site's dark `--pos`/`--neg`. */
   /* Was #586274, which measured 2.97:1 on `--map-panel` — the surface the
      document sheet's links actually sit on. The underline is not the only
      thing identifying those links (their text is `--map-ink` at 15:1), so it
      was never a strict 1.4.11 failure, but three hundredths under the line is
      not a place to leave a token. */
   --map-underline: #5c6678;
-  --map-pos: #9aab86;
-  --map-neg: #c08a6a;
+  --map-pos: #6cbb7e;
+  --map-neg: #e68ba8;
   /* A row's third state — flat, or too old to trust the direction of — reusing
      `MAP_COLOURS.neutral`, the canvas's own tone for "nothing to report" on a
      mark, for the same fact in the chrome. */
@@ -2609,13 +2611,11 @@ body.doc-page {
      the marks and the HUD chips receive the same value inline as `--cat`, so
      a chip can never disagree with its layer. These two are the exception:
      the chokepoint sparkline is drawn in CSS and tinted by the direction of
-     travel, using the same pair as the marker the reader just clicked. Gold
-     for traffic falling away, cool for a surge. They mirror
-     `OVERLAY_COLOUR.straits` / `.straitsSurge`.
-     `--map-straits` shares a hex with `--brand` and means something else
-     entirely; that is why it is written here rather than reached for. */
-  --map-straits: #c9a84c;
-  --map-straits-surge: #5f9ea0;
+     travel, using the same pair as the marker the reader just clicked: the
+     signed-change pair, because traffic that fell or rose is a number that
+     fell or rose. They mirror `OVERLAY_COLOUR.straits` / `.straitsSurge`. */
+  --map-straits: #e68ba8;
+  --map-straits-surge: #6cbb7e;
 
   /* The focus ring. Was #4a5568, which measured 2.63:1 against the ground and
      2.19:1 against a lit chip — below the 3:1 WCAG 2.2 asks of a focus
@@ -2629,6 +2629,26 @@ body.doc-page {
   --map-radius: 3px;
   --map-radius-ctl: 2px;
 }
+
+/* The first thing a keyboard reaches: the story rail comes after the map's
+   controls and the instrument rail in the tab order. Off screen until it has
+   focus. */
+.skip-link {
+  position: fixed;
+  top: var(--space-xs);
+  left: var(--space-xs);
+  z-index: 100;
+  padding: 0.4rem 0.75rem;
+  font-size: var(--size-xs);
+  color: var(--map-ink);
+  background: var(--map-panel);
+  border: 1px solid var(--map-line-card);
+  border-radius: var(--map-radius);
+  transform: translateY(-200%);
+
+  &:focus-visible { transform: none; outline: 2px solid var(--map-focus); outline-offset: 2px; }
+}
+.map-feed-list:focus { outline: none; }
 
 /* --- Situational map (homepage) ---
    Full-bleed and dark by commitment, not by system preference: coloured
@@ -2698,21 +2718,6 @@ body.map-page {
      to, so a segmented control and a sparkline row come out the same height as
      each other down the rail. Change the chip padding and the two still agree. */
   --map-hud-row-h: 27px;
-  /* The label column every rail row sets to, so no sparkline's left edge
-     depends on how long its own name is.
-
-     It used to: `.map-markets-label` and the chip's name were both
-     `flex: 0 0 auto`, so a line began where its word stopped and twelve rows
-     started at twelve different x. The lines still *ended* on one column,
-     which is what hid it — a ragged left against a flush right reads as
-     centring rather than as misalignment.
-
-     4.8rem is measured, not chosen: `currencies` renders 72px at `--size-xs`
-     in all-small-caps at `--track-wide`, and it is the widest name either
-     family has (`disasters` is 61). The first value here was 6.2rem, guessed
-     from `--map-spine-w`, which is measured at 11px — a different size for a
-     different job — and it spent 27px of every line on nothing. */
-  --map-row-label-w: 4.8rem;
 
   /* The disclosure caret's own box, named because two rules have to agree
      about it and only one of them can see it.
@@ -3359,8 +3364,10 @@ body.map-wide .map-feed-count {
   margin-right: -0.3rem;
   font: inherit;
   font-size: inherit;
-  font-variant-caps: inherit;
-  letter-spacing: inherit;
+  /* A control, in sentence case (`design-system.md`), not the head's small caps
+     it sits in. */
+  font-variant-caps: normal;
+  letter-spacing: normal;
   color: var(--map-ink-muted);
   background: none;
   border: none;
@@ -3368,8 +3375,8 @@ body.map-wide .map-feed-count {
   cursor: pointer;
 }
 
-.map-feed-refresh:hover:not(:disabled) { color: var(--map-ink); }
-.map-feed-refresh:disabled { cursor: default; }
+.map-feed-refresh:hover:not([aria-disabled='true']) { color: var(--map-ink); }
+.map-feed-refresh[aria-disabled='true'] { cursor: default; }
 
 .map-feed-refresh-icon {
   display: flex;
@@ -3410,13 +3417,12 @@ body.map-wide .map-feed-head { position: relative; }
 
 body.map-wide .map-feed-refresh {
   position: absolute;
-  /* The heading's line, which stands a block's gap under the head. */
-  top: calc(100% + var(--map-block-gap) - 0.15rem);
+  /* In the band, level with the wordmark: the rail's head has no heading
+     line to stand on, and a page's action belongs at the page's head. */
+  top: calc(var(--map-band-h) / 2 + 0.3rem);
   right: var(--map-gutter-x);
-  /* The heading's size and tracking: it stands on the heading's line, and at
-     its own 14px it was the larger word of the two. */
+  transform: translateY(-50%);
   font-size: var(--size-2xs);
-  letter-spacing: var(--track-caps);
 }
 
 /* `.map-hud-more` is a pass-through on the desktop: it generates no box, so
@@ -3474,8 +3480,17 @@ body.map-wide .map-feed-refresh {
 }
 
 /* The filters' top matches the instrument rail's first heading, which stands
-   a block's gap under the band. */
-body.map-wide .map-feed-filters { padding-top: var(--map-block-gap); }
+   a block's gap under the band. The four chips share one line, spread to the
+   rail's width: a row each left two thirds of the rail's head empty. No
+   `stories` heading: the list under them says what they filter. */
+body.map-wide .map-feed-filters {
+  flex-direction: row;
+  flex-wrap: nowrap;
+  justify-content: space-between;
+  gap: 0;
+  /* The bottom's padding: one row centred between two rules. */
+  padding-top: 0.55rem;
+}
 
 /* The type grew; the row did not. Vertical padding pays for it — 0.6rem of
    dead space above and below a headline is worth less than the headline being
@@ -3483,6 +3498,22 @@ body.map-wide .map-feed-filters { padding-top: var(--map-block-gap); }
    it was (~59px a row before, ~61px after) while the title goes 14.4 → 16px
    and the meta 12 → 14px. Space management here is a transfer, not a sacrifice:
    the rail still shows the same handful of stories above the fold. */
+/* A day's heading, held at the top of the list while its stories scroll
+   under it. A heading's role (`design-system.md`). */
+.map-feed-day {
+  position: sticky;
+  top: 0;
+  z-index: 1;
+  padding: 0.7rem var(--map-gutter-x) 0.3rem;
+  font-size: var(--size-2xs);
+  font-weight: 600;
+  font-variant-caps: all-small-caps;
+  letter-spacing: var(--track-caps);
+  color: var(--map-ink-muted);
+  background: var(--map-sunken);
+  border-bottom: 1px solid var(--map-line-soft);
+}
+
 .map-feed-item {
   display: flex;
   gap: 0.55rem;
@@ -4071,9 +4102,6 @@ body.map-wide .map-range-group { display: block; }
   padding: 0.22rem 0.5rem;
   font: inherit;
   font-size: var(--size-xs);
-  font-variant-caps: all-small-caps;
-  letter-spacing: var(--track-wide);
-  font-weight: 600;
   color: var(--map-ink-dim);
   background: none;
   border: 1px solid transparent;
@@ -4125,6 +4153,15 @@ body.map-wide .map-range-group { display: block; }
   height: 8px;
   border-radius: 1px;
   background: linear-gradient(to right, var(--ramp));
+}
+
+/* The bloom: the wash's tone as a glow, hottest at the centre, so the key
+   tells the two apart by shape. Stops arrive inline (`bloomCssRamp`). */
+.map-key-glow {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background: radial-gradient(closest-side, var(--ramp));
 }
 
 /* --- Ground legend ---
@@ -4592,6 +4629,9 @@ body.map-wide .map-group-label {
   color: var(--map-ink-dim);
 }
 
+/* Not over the story rail's chips: the list under them says what they are. */
+body.map-wide .map-feed-filters > .map-group-label { display: none; }
+
 
 
 /* A segmented control across the rail, rather than four chips that happen to
@@ -4682,10 +4722,16 @@ body.map-wide .map-filters {
    right because the rail's padding and this block's happened to land the mark on
    the same pixel. */
 body.map-wide .map-feed-filters .map-filter {
-  padding: 0.1rem var(--map-gutter-x);
-  margin: 0 calc(-1 * var(--map-gutter-x));
+  padding: 0.1rem 0.4rem;
+  margin: 0;
   min-height: var(--map-hud-row-h);
-  border-radius: 0;
+  border-radius: var(--map-radius-ctl);
+  white-space: nowrap;
+
+  /* The end chips outdent by their padding: the first dot stands in the
+     stories' dot column, and the last word ends on the rail's right edge. */
+  .map-group-label + & { margin-left: -0.4rem; }
+  &:last-child { margin-right: -0.4rem; }
   /* A filter is an item, set like the stories it filters: sentence case at the
      regular weight. In small caps at 600 it was the loudest thing in the rail,
      louder than the headlines under it. */
@@ -4722,19 +4768,6 @@ body.map-wide .map-feed-filters .map-filter {
   }
 }
 
-/* The shared label column: what puts a story chip's line and a money row's
-   line on the same edge.
-
-   Only the chips that draw one need it. A `layers` switch has no sparkline —
-   nothing in that group does — so its label is left to its own width; a fixed
-   column there would be paying for an alignment it takes no part in, which is
-   how four of them once came out an identical 127px. */
-body.map-wide .map-filter[data-kind='category'] .map-filter-label {
-  flex: 0 0 var(--map-row-label-w);
-  min-width: 0;
-  text-align: left;
-}
-
 /* A row, not a word: the whole line is the target, the glyph holds a column of
    its own so the marks align down the rail, and the hover state has somewhere
    to land. On the strip a chip could only be as tall as its type. */
@@ -4745,68 +4778,15 @@ body.map-wide .map-filter {
   padding: 0.1rem 0.4rem;
   margin: 0 -0.4rem;
   border-radius: 2px;
-  /* The row has three parts now — mark, name, trend — and the trend takes the
-     slack, so every line *ends* on the same column whatever its label is doing.
-     Not the same start: the label keeps its natural width, so a line begins
-     where its own name stops, exactly as the money rows above have always
-     behaved. Worth stating because the obvious next step — a fixed label
-     column — would align twelve rows at the cost of setting `genocide` and
-     `currencies` against the same rule as `tech`, and the widest name here is
-     nearly twice the narrowest.
-
-     The height is pinned so a chip and a sparkline row come out the same
-     height down the whole rail, which is what `--map-hud-row-h` is for. */
+  /* Pinned so a chip and a money row come out the same height down the whole
+     rail, which is what `--map-hud-row-h` is for. */
   min-height: var(--map-hud-row-h);
 
   & svg { width: 14px; height: 14px; }
-  /* Never the mark's 14px rule: the sparkline is an svg too, and inheriting it
-     would draw every trend as a 14px square. */
-  & .map-filter-spark svg { width: auto; height: 1.05rem; }
 
   &:hover:not(.is-locked) { background: var(--map-row-hover); }
 }
 
-/* A chip's trend: the shape, then the change across it.
-
-   Outside the rail there is no room for either — the phone's chips sit in a
-   wrap run across the top of the map — so this exists in the DOM at every
-   width and is shown in one, the same bargain `.map-markets-move` strikes. */
-.map-filter-spark { display: none; }
-
-body.map-wide .map-filter-spark {
-  display: flex;
-  flex: 1 1 auto;
-  align-items: center;
-  gap: 0.45rem;
-  min-width: 0;
-  /* The layer's own hue, taken from the same `--cat` its glyph is drawn from,
-     so a chip cannot disagree with the mark it names. **Not** `--map-pos` and
-     `--map-neg`: those mean "a signed change" and read as good and bad, which
-     on a market is a convention and on a hazard count is a claim — a green
-     "disasters +40%" is the map telling the reader that more disasters is good
-     news. Identity is in the hue, direction is in the shape, magnitude is in
-     the figure, and none of the three is a verdict.
-
-     `--map-ink-dim` is the fallback rather than `currentColor`: an unlit chip's
-     label steps down to that ink, and a line at `currentColor` would follow the
-     *label* into the ink step while a lit chip's line would follow `--cat` —
-     two different rules for one channel depending on state. */
-  color: var(--map-ink-dim);
-}
-
-/* Lit: the line takes the layer's colour. Unlit: it keeps the ink above, which
-   is the same step the label takes — so a switched-off layer still shows what
-   it is doing, quietly. That is the reason the trend is on the chip at all: the
-   reason to turn a layer on is that something is happening in it. */
-body.map-wide .map-filter.is-on .map-filter-spark { color: var(--cat, var(--map-ink-dim)); }
-
-/* The same column the money rows set to, so a chip's line and a money row's
-   line begin on one edge down the whole rail. Both families put a
-   `.map-filter-mark` before it — the chips always had one, and the money rows
-   gained one (empty where there is nothing to switch) for exactly this. */
-/* The money block's layer switch: the chips' glyph column, made pressable.
-   Off is an ink step and a hollow mark, never opacity — the rule the filter
-   chips already keep, and the one `colour-system.test.js` cannot measure. */
 /* The market mark is a two-valued scale, so it draws both ticks in both tones —
    the one thing about that layer a reader has no other way to learn, and the
    reason it is not a flat grey ring. One rule for both consumers: the money
@@ -4832,33 +4812,6 @@ body.map-wide .map-filter.is-on .map-filter-spark { color: var(--cat, var(--map-
    it, so the only symptom was one Biome error in a file that has 31 warnings —
    which is precisely the way CSS goes dead, and precisely why `deadcode:css`
    exists and is a candidate list rather than a gate. */
-
-body.map-wide .map-filter-pct {
-  /* A count's change is unbounded — a quiet week followed by a busy one is a
-     real +350% — so this is the one figure on the rail that can outgrow its
-     column. It may shrink and the line gives way first; what it must not do is
-     push the row past the rail's edge, where the `%` is simply cut off. */
-  flex: 0 1 auto;
-  /* **Deliberately not given the money block's figure column**, which was tried
-     and measured and made things worse. A chip's bar chart is a fixed-size
-     `<svg>` rather than a flexing one, so the slack in the row sits *after* the
-     figure rather than before it: a `min-width` there pads the short figures
-     from the left and leaves the long ones where they were, which is a column
-     ragged at both edges instead of one flush left. Reaching the money block's
-     right edge would need the chips to reserve a caret column for a disclosure
-     they do not have — space held open for a control that does not exist. The
-     two groups have different anatomy and a rule between them; flush left is
-     the honest answer here. */
-  white-space: nowrap;
-  font-size: var(--size-2xs);
-  /* A figure, not a label: out of the chip's small caps. Inside them the
-     digits are small-cap figures and the `%` is not, so `−72.0%` set its sign
-     a third taller than its number, beside a rail whose every other figure is
-     full height. */
-  font-variant-caps: normal;
-  font-variant-numeric: lining-nums tabular-nums;
-  letter-spacing: 0;
-}
 
 /* One column for every mark, so eight labels share one left edge.
 
@@ -5833,6 +5786,8 @@ body.map-wide .map-key {
    edge the three words above it begin on. At 22px it began 6px to their
    right. */
 body.map-wide .map-key-field { width: 16px; }
+/* The glow is 12px round, centred in the glyphs' 16px column. */
+body.map-wide .map-key-glow { margin-inline: 2px; }
 
 /* --- Waiting for the coastline ---
    The basemap is a single ~540 KB fetch rather than a coarse placeholder that
@@ -6207,6 +6162,9 @@ body.map-wide .map-timeline-live {
 body.map-wide .map-more > [data-for='wide'],
 body.map-wide .map-key-item > span:last-child {
   display: inline-block;
+  /* Gecko sizes this box a hair under its words (71.9px for "Prayer lines")
+     and breaks the line; a key's name is a few words and never needs to. */
+  white-space: nowrap;
 
   &::first-letter { text-transform: uppercase; }
 }
@@ -6216,10 +6174,6 @@ body.map-wide .map-key-item > span:last-child {
    which set "Genocide" 2px past its row and 7px from the box's edge in Zen,
    against 16px in Chromium. */
 body.map-wide .map-mapctl .map-filter-label { text-transform: capitalize; }
-
-/* A layer draws no trend, so its spark is empty, and an empty flex item still
-   takes the row's gap: 5.6px of nothing after every name, past the row's box. */
-.map-mapctl .map-filter-spark:empty { display: none; }
 
 /* --- The markets strip ---
    Thirty marks on a map answer "where". They cannot answer "how is the world
@@ -6929,10 +6883,17 @@ body.map-wide .map-mapctl .map-filter-label { text-transform: capitalize; }
      lower half — "Full profile →" and the share row among it, with no way to
      scroll to them. Capping at 50vh − 1.5rem makes H ≤ (M − 28) / 2 hold at
      every viewport height, which closes the band by construction rather than
-     by testing a few sizes. What no longer fits scrolls. */
-  max-height: calc(50vh - 1.5rem);
+     by testing a few sizes. What no longer fits scrolls.
+     On the desktop the half is of `--map-card-room`, the canvas less the
+     timeline, which the card's padding (`writeCardPadding`) keeps it off. */
+  max-height: calc(var(--map-card-room, 100vh) / 2 - 1.5rem);
   overflow-y: auto;
   overscroll-behavior: contain;
+
+  /* A card a key opened takes the focus (`StoryPopup.focus`): the map's one
+     ring, round the card's own corners. */
+  &:focus { outline: none; }
+  &:focus-visible { outline: 1px solid var(--map-focus); outline-offset: 2px; }
 }
 
 /* --- More below ----------------------------------------------------------
@@ -7094,11 +7055,39 @@ body.map-wide .map-mapctl .map-filter-label { text-transform: capitalize; }
   text-wrap: balance;
 }
 
+/* A story's card is the article on this surface, so it takes the article
+   page's order of voice: a headline, then the hook as a lede, then the body.
+   Every line was one size and one ink, and the hook read as the first of five
+   equal paragraphs. Only the story card: a place or a country card keeps its
+   title at `--size-md`. */
+.map-popup-article .map-popup-title,
+.map-popup-preview .map-popup-title {
+  margin: 0.1rem 0 0.6rem;
+  font-size: var(--size-h3);
+  line-height: 1.15;
+  font-weight: 700;
+  letter-spacing: var(--track-tight);
+}
+
+.map-popup-article .map-popup-prose > p:first-of-type {
+  margin-bottom: 0.85rem;
+  font-size: var(--size-md);
+  line-height: 1.45;
+  color: var(--map-ink);
+}
+
 .map-popup-lead {
   margin: 0 0 0.4rem;
   font-size: var(--size-sm);
   line-height: 1.45;
   color: var(--map-ink-soft);
+}
+
+/* The preview's lead is the same hook the article opens with, so it is set
+   as the article will set it: the swap then changes nothing the reader is on. */
+.map-popup-preview .map-popup-lead {
+  font-size: var(--size-md);
+  color: var(--map-ink);
 }
 
 .map-popup-meta {
@@ -7435,6 +7424,20 @@ a.map-popup-source-name {
 
 .map-country-flag { font-size: var(--size-md); line-height: 1; flex: 0 0 auto; }
 
+/* A country's own card speaks with the story card's headline; a country panel
+   unfolded inside a story keeps the quieter title. */
+.maplibregl-popup-content > .map-popup-country > .map-country-head {
+  margin-bottom: 0.35rem;
+
+  .map-popup-title {
+    font-size: var(--size-h3);
+    line-height: 1.15;
+    font-weight: 700;
+    letter-spacing: var(--track-tight);
+  }
+  .map-country-flag { font-size: var(--size-base); }
+}
+
 /* Why this country is that colour.
    Set apart from the highlights list rather than being its first row: it
    answers the question the click asked, and the rows below it are a different
@@ -7767,14 +7770,15 @@ a.map-popup-source-name {
    88px regardless of the card's own height — landed *inside* it at every
    desktop width. Measured: 9px of overlap at 1920, 29px at 1400, 51px at 1100,
    93px at 1000, **115px at 920**, which is the money ribbon and the clock with
-   a card lying over them. `--map-scrub-h` is published by the island's
+   a card lying over them. `--map-scrub-reach` (the scrubber, or the range
+   chips standing above it, whichever is higher) is published by the island's
    `measureChrome`; the fallback only has to survive the frame before the
    scrubber exists. `left` and `width` derive from `--map-rail-w` for the same
    reason — a second hardcoded copy of the rail's width had already drifted one
    rem from the first. */
 .map-sheet.is-peek {
   position: fixed;
-  inset: auto auto calc(var(--map-scrub-h, 5.5rem) + var(--space-xs))
+  inset: auto auto calc(var(--map-scrub-reach, 5.5rem) + var(--space-xs))
     calc(var(--map-rail-w) + var(--space-md));
   margin: 0;
   width: min(25rem, calc(100vw - var(--map-rail-w) - 4rem));
@@ -7803,20 +7807,22 @@ a.map-popup-source-name {
    `_map/sheet.ts` anchors it to that row, the way the markets panel already
    anchors to its summary; the inset here only has to keep the box out of the
    flow until it does. What it does not borrow from the peek is the 55vh
-   ceiling: a peek is a glance and this is the whole card, so it takes 70vh and
-   scrolls, which is what `.map-sheet:not(.is-peek)` already provides. */
+   ceiling: a peek is a glance and this is the whole card.
+
+   **Sized to the canvas, so it scrolls as rarely as it can.** A reader scrolled
+   too many cards. At 1600×1000 a strait's card overflowed by 221px at 38rem and
+   70vh, with the canvas free above it to the window's top and 880px wide
+   between the rails. It now takes the height down to the timeline
+   (`--sheet-max-h`, which `placeDocked` clamps the top against) and 44rem, the
+   old modal's width, inside the gap between the two rails. A wider line is
+   also less wrapping, which is less height to find. */
 .map-sheet.is-docked {
+  --sheet-max-h: calc(100dvh - var(--map-scrub-reach, 5.5rem) - 1.5rem);
   position: fixed;
   inset: 0 auto auto 0;
   margin: 0;
-  /* Wider than a peek's 25rem — a reader reported this card cutting content
-     at the bottom, and this canvas usually has the width to spare (`map.md`'s
-     "surplus width is free" argument): more room on a line is less wrapping,
-     which is less height a 70vh card has to find in the first place. The
-     `calc()` term still yields on a narrower desktop, where there is none to
-     spare. */
-  width: min(38rem, calc(100vw - var(--map-rail-w) - 4rem));
-  max-height: 70vh;
+  width: min(44rem, calc(100vw - var(--map-rail-w) - var(--map-aside-w) - 2 * var(--space-md)));
+  max-height: var(--sheet-max-h);
   border-radius: var(--map-radius);
   border: 1px solid var(--map-line-card);
   box-shadow: 0 14px 44px rgb(0 0 0 / 0.5);
@@ -7827,14 +7833,16 @@ a.map-popup-source-name {
    sitting together otherwise reads as an omission. */
 .map-sheet.is-docked::backdrop { background: none; }
 
-/* Docked with no rail row to stand beside: an exchange's card pinned from its
-   mark on the map. It stays in the corner its peek stood in, so pinning grows
-   the card the pointer was already reading and moves nothing, and it keeps a
-   peek's width, since the canvas beside it is what the reader came to see. */
+/* Docked with no rail row to stand beside: a card pinned from its mark on the
+   map. It stays in the corner its peek stood in, so pinning grows the card the
+   pointer was already reading upward and moves nothing. It may rise to just
+   under the `layers` control (4.5rem from the top), and it takes 36rem rather
+   than 44: the globe beside it is what the reader came to see. */
 .map-sheet.is-docked.is-corner {
-  inset: auto auto calc(var(--map-scrub-h, 5.5rem) + var(--space-xs))
+  --sheet-max-h: calc(100dvh - var(--map-scrub-reach, 5.5rem) - var(--space-xs) - 4.5rem);
+  inset: auto auto calc(var(--map-scrub-reach, 5.5rem) + var(--space-xs))
     calc(var(--map-rail-w) + var(--space-md));
-  width: min(25rem, calc(100vw - var(--map-rail-w) - 4rem));
+  width: min(36rem, calc(100vw - var(--map-rail-w) - var(--map-aside-w) - 2 * var(--space-md)));
 }
 
 /* The card's own margin.
@@ -7845,6 +7853,8 @@ a.map-popup-source-name {
    is the full width of the screen, the headline started at pixel zero. */
 .map-sheet .island-sheet-inner {
   padding: 0.95rem 1.15rem 1.1rem;
+  /* What `.map-sheet-more`'s two columns are measured against. */
+  container-type: inline-size;
 }
 
 /* The card's rules are written in the site's inks, and `.island-sheet` paints
@@ -7900,14 +7910,13 @@ a.map-popup-source-name {
   --card-surface: var(--bg);
 }
 
-/* `.is-docked` tightens the dialog's own ceiling to 70vh (see the rule
-   above), but this inner scroll budget was still the base 90vh one — so
-   content between 70vh and ~87vh tall found the inner container's own
-   `overflow-y: auto` never engaging (it still fit *that* budget) while the
-   outer dialog's `overflow: hidden` clipped it anyway, with no scrollbar to
-   reach the rest. A reader reported the odds card doing exactly this. */
+/* The inner scroll budget follows the dialog's own ceiling. When the two
+   differed, content between them found the inner `overflow-y: auto` never
+   engaging while the dialog's `overflow: hidden` clipped it anyway, with no
+   scrollbar to reach the rest. A reader reported the odds card doing exactly
+   this. */
 .map-sheet.is-docked .island-sheet-inner {
-  max-height: calc(70vh - 3rem);
+  max-height: calc(var(--sheet-max-h) - 3rem);
 }
 
 .map-sheet-lead {
@@ -7964,6 +7973,9 @@ a.map-popup-source-name {
 
   & [aria-current] dt { color: var(--text); }
 }
+
+/* Makkah's five prayers, in the order they come. */
+.map-sheet-moves.is-five { grid-template-columns: repeat(5, minmax(0, 1fr)); }
 
 /* A strait's traffic by vessel class: the class, its week, and how far that
    sits from its own ninety days. */
@@ -8580,6 +8592,18 @@ body.doc-page .chart {
 
   a { text-decoration: none; }
   a:hover { text-decoration: underline; }
+}
+
+/* On a card wide enough for two, the headlines run in two columns: five rows
+   become three, and a docked card scrolls less. Read down, then across. The
+   container is `.map-sheet .island-sheet-inner`. */
+@container (min-width: 34rem) {
+  .map-sheet-more {
+    columns: 2;
+    column-gap: var(--space-md);
+
+    li { break-inside: avoid; }
+  }
 }
 
 /* A related-coverage row is what the card's own subject is *about*, not the

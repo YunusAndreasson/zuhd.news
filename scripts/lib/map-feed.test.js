@@ -129,7 +129,7 @@ test('a read story is greyed in two channels and said in words', async () => {
   // greys, and inaudible to anyone listening to the page. The dot carries the
   // category as `--cat` so the stylesheet can hollow it without naming a hue,
   // and the row says "read" out loud.
-  assert.equal(seen.querySelector('.map-feed-dot').style.getPropertyValue('--cat'), '#d2604a')
+  assert.equal(seen.querySelector('.map-feed-dot').style.getPropertyValue('--cat'), '#e77b60')
   assert.match(seen.querySelector('.sr-only').textContent, /read/i)
   assert.equal(fresh.querySelector('.sr-only'), null)
 
@@ -203,27 +203,31 @@ test('the refresh control is a sibling of the handle, not a child of it', async 
 test('the refresh control says what it found, including nothing', async () => {
   setupDom()
   const { createFeed } = await import(bundlePath)
-  const feed = createFeed({ onSelect() {}, onHover() {} })
+  let presses = 0
+  const feed = createFeed({ onSelect() {}, onHover() {}, onRefresh: () => presses++ })
   const refresh = feed.element.querySelector('.map-feed-refresh')
   const label = () => feed.element.querySelector('.map-feed-refresh-label').textContent
 
-  assert.equal(label(), 'refresh')
+  assert.equal(label(), 'Refresh')
 
   feed.setRefreshState('busy')
-  assert.equal(refresh.disabled, true, 'a second press cannot land mid-flight')
+  assert.equal(refresh.getAttribute('aria-disabled'), 'true', 'a second press cannot land mid-flight')
+  assert.equal(refresh.disabled, false, 'never `disabled`, which drops the focus to <body>')
+  refresh.click()
+  assert.equal(presses, 0, 'a press mid-flight does nothing')
   assert.ok(refresh.classList.contains('is-busy'))
 
   // The answer most presses deserve, and the one a spinner alone never gives:
   // without it, "found nothing" and "failed" look identical.
   feed.setRefreshState(0)
-  assert.equal(refresh.disabled, false)
-  assert.equal(label(), 'nothing new')
+  assert.equal(refresh.getAttribute('aria-disabled'), 'false')
+  assert.equal(label(), 'Nothing new')
 
   feed.setRefreshState(3)
   assert.equal(label(), '+3 new')
 
   feed.setRefreshState('error')
-  assert.equal(label(), 'try again')
+  assert.equal(label(), 'Try again')
 })
 
 // --- the scrubber's live edge ----------------------------------------------

@@ -14,7 +14,7 @@
 
 import { rankStrip } from '@shared/chart/rank-strip'
 import { signedPct } from '@shared/chart/series'
-import { Popup, type Map as MapLibreMap } from 'maplibre-gl'
+import { Popup, type Map as MapLibreMap, type PaddingOptions } from 'maplibre-gl'
 import { appPrompt } from '../_app-prompt'
 import { disclosure, growTo, moreLink, type Built, type Disclosure } from '../_disclosure'
 import { el } from '../_dom'
@@ -228,6 +228,15 @@ export interface StoryPopup {
    * fly, one story at a time, through `openStory`.
    */
   openPlace(place: StoryPlace, now: number): void
+  /**
+   * The edges a card must keep off: the rails and the timeline float over the
+   * canvas, and MapLibre otherwise fits the card to the canvas alone.
+   */
+  setPadding(padding: PaddingOptions): void
+  /** Take the keyboard into the card, so its links are the next Tab. */
+  focus(): void
+  /** Whether a node is inside the card. */
+  contains(node: Node): boolean
   close(): void
   isOpen(): boolean
   destroy(): void
@@ -307,7 +316,8 @@ const sourceBlock = (story: Story, p: MapPoint): Node[] => {
   const summary = el('summary', 'map-popup-sources-flat')
   summary.append(
     el('span', 'map-popup-sources-label', 'Sources'),
-    el('span', 'map-popup-sources-names', sources.map((s) => s.name).join(', ')),
+    // One name per outlet: the rows below keep each article.
+    el('span', 'map-popup-sources-names', [...new Set(sources.map((s) => s.name))].join(', ')),
   )
   if (framed || contested) summary.append(el('span', 'map-popup-sources-more', 'how each framed it'))
   details.append(summary)
@@ -646,7 +656,7 @@ export function createStoryPopup(map: MapLibreMap, opts: StoryPopupOptions = {})
   const metricRow = (m: CountryMetric) => {
     const li = el('li', 'map-country-metric')
     li.append(
-      el('span', 'map-country-metric-label', m.label),
+      el('span', 'map-country-metric-label', fmt.metricName(m.label)),
       el('span', 'map-country-metric-value', String(m.value)),
     )
     // The percentile strip, from the arithmetic the country page uses — the
@@ -686,7 +696,7 @@ export function createStoryPopup(map: MapLibreMap, opts: StoryPopupOptions = {})
     }
     head.append(
       swatch,
-      el('span', 'map-country-standing-label', s.label),
+      el('span', 'map-country-standing-label', fmt.metricName(s.label)),
       el('span', 'map-country-standing-value', s.value ?? 'no figure'),
     )
     box.append(head)
@@ -1341,6 +1351,16 @@ export function createStoryPopup(map: MapLibreMap, opts: StoryPopupOptions = {})
       attach()
     },
 
+    setPadding(padding) {
+      popup.setPadding(padding)
+    },
+    focus() {
+      const box = contentBox()
+      if (!box) return
+      box.tabIndex = -1
+      box.focus({ preventScroll: true })
+    },
+    contains: (node) => popup.getElement()?.contains(node) ?? false,
     close() {
       pending = null
       popup.remove()

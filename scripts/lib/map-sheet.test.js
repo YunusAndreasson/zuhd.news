@@ -290,6 +290,49 @@ test('an exchange pinned from its mark is a card over a live map, in its peek’
   }
 })
 
+test('a genocide card pinned from its mark dims nothing, as a story’s does not', async () => {
+  // Every mark's card opens this way on the desktop: the reader asked for no
+  // backdrop over the map anywhere it can be avoided.
+  const env = setupDom()
+  try {
+    const { createSheet } = await import(bundlePath)
+    const { window } = env
+    let modal = 0
+    const showModal = window.HTMLDialogElement.prototype.showModal
+    window.HTMLDialogElement.prototype.showModal = function () {
+      modal++
+      showModal.call(this)
+    }
+    const situation = {
+      id: 'gaza',
+      name: 'Gaza',
+      iso2: 'PS',
+      lat: 31.4,
+      lng: 34.4,
+      finding: 'genocide',
+      body: 'UN Independent International Commission of Inquiry',
+      document: 'A/HRC/60/CRP.3',
+      date: '2025-09-16',
+      summary: 'The Commission found that genocide is being committed.',
+      url: 'https://www.ohchr.org/',
+      since: '2023-10',
+    }
+    const sheet = createSheet()
+    sheet.showGenocide(situation, false)
+    sheet.dockTo(null)
+    sheet.showGenocide(situation, true, true)
+    assert.equal(modal, 0, 'no backdrop: the map stays in view')
+    assert.deepEqual(
+      ['is-docked', 'is-corner', 'is-peek'].map((c) => sheet.element.classList.contains(c)),
+      [true, true, false],
+    )
+    assert.match(sheet.element.textContent, /Read the finding/, 'at the pinned density')
+    sheet.destroy()
+  } finally {
+    env.restore()
+  }
+})
+
 test('an exchange card leads with the move the mark was drawn from', async () => {
   // The mark, the panel row and this hero are one reading over the range the
   // timeline is set to. A card that led with the day's move under a tick drawn

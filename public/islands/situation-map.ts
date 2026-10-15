@@ -41,8 +41,8 @@ import {
   globeFitZoom,
   globeSpan,
   GLOBE_ZOOM,
-  BLOOM_RAMP,
   bloomCssRamp,
+  bloomRamp,
   LAND_NO_DATA,
   LAND_RAMP,
   MAP_COLOURS,
@@ -53,6 +53,7 @@ import {
 import {
   buildPlaceIndex,
   countPlaces,
+  BLOOM_INTENSITY,
   DENSITY_INTENSITY,
   FLOWER_MAX,
   flowerOffset as petalOffset,
@@ -64,6 +65,8 @@ import {
 } from './_map/places'
 import { createFeed, type Feed } from './_map/feed'
 import { graticuleLines } from './_map/graticule'
+import { MAKKAH_AT } from './_map/makkah'
+import { calibrate } from './_map/sky'
 import { createSky } from './_map/sky-paint'
 import { createReadState } from './_map/read-state'
 import { glyphImages, glyphSvg, type GlyphId } from './_map/glyphs'
@@ -74,7 +77,6 @@ import {
   marketLabelPaint,
   marketLayout,
   marketPaint,
-  ribbonPct,
   straitCollection,
   straitLabelLayout,
   straitLabelPaint,
@@ -83,12 +85,10 @@ import {
   type TrendEvent,
 } from './_map/markets'
 import { liveSignals, signalFor, type MarketSignal } from './_map/signals'
-import { bucketCounts, coverage, halfOverHalf } from './_map/series-window'
-import { sparkline } from './_spark'
 import { createPaneSeam, type PaneSeam } from './_map/panes'
 import { createTimeline, type Timeline } from './_map/timeline'
 import { createSheet, type Sheet } from './_map/sheet'
-import { MAKKAH_LABEL, MAKKAH_TZ, relativeTime, solarClock, zoneOffset } from './_map/format'
+import { MAKKAH_LABEL, MAKKAH_TZ, metricName, relativeTime, solarClock, zoneOffset } from './_map/format'
 import { createStoryPopup, type CountryStanding, type StoryPopup } from './_map/popup'
 import { dayPolygon, nightPolygon, sunLightPosition, terminatorBand } from './_map/solar'
 import { PRAYER_NOTE, PRAYERS, type PrayerId, prayerInstantAt, prayerLines } from './_map/prayer'
@@ -169,6 +169,8 @@ const OVERLAY_LAYERS = [
   'famine-marks',
   'genocide-marks',
   'genocide-core',
+  'makkah-glow',
+  'makkah-label',
 ]
 
 /**
@@ -227,6 +229,10 @@ export const HIT_ORDER = [
   // the pointer from anything that is.
   'market-labels',
   'chokepoint-labels',
+  // Makkah is always there, so it takes the pointer only where nothing else
+  // stands: a story from Makkah sits on its glow.
+  'makkah-label',
+  'makkah-glow',
 ]
 
 /**
@@ -662,19 +668,19 @@ export function mount(
   const KEY_ITEMS: Array<{ id: string; label: string; hint: string; svg: string }> = [
     {
       id: 'size',
-      label: 'coverage',
+      label: 'Coverage',
       hint: 'Beacon size shows how widely a story was covered, ranked across the window',
       svg: '<circle cx="4" cy="8" r="1.7"/><circle cx="12" cy="8" r="4"/>',
     },
     {
       id: 'age',
-      label: 'recency',
+      label: 'Recency',
       hint: 'Beacons fade as the story ages — half-light every three days',
       svg: '<circle cx="4" cy="8" r="3" opacity="0.28"/><circle cx="12" cy="8" r="3"/>',
     },
     {
       id: 'flower',
-      label: 'newest at centre',
+      label: 'Newest at centre',
       hint: 'Several stories at one place open into a flower: the newest in the middle, each older one further out',
       svg:
         '<circle cx="8" cy="8" r="2.6"/><circle cx="12.6" cy="8" r="1.3"/><circle cx="5.2" cy="11.2" r="1.3"/>' +
@@ -682,7 +688,7 @@ export function mount(
     },
     {
       id: 'contested',
-      label: 'contested',
+      label: 'Contested',
       hint: 'A ring marks a story the sources covering it disagree sharply about',
       svg: '<circle cx="8" cy="8" r="2.4"/><circle cx="8" cy="8" r="5" fill="none" stroke="currentColor" stroke-width="1"/>',
     },
@@ -733,20 +739,21 @@ export function mount(
     'A wash where stories crowd together — how far the news reaches, not how much of it there is'
   densityKey.innerHTML =
     `<span class="map-key-field" style="--ramp:${densityCssRamp()}"></span>` +
-    '<span>density</span>'
+    '<span>Density</span>'
   keyItems.set('density', densityKey)
   key.append(densityKey)
 
   /**
-   * The bloom, from the same table as the canvas (`bloomCssRamp`). Its hint says
-   * what the heat is about, which no swatch can: the world's press on fresh
-   * news, not how many stories this site wrote.
+   * The bloom, from the same table as the canvas (`bloomCssRamp`), as a glow
+   * where the wash is a strip: the two share a tone, and the shape tells them
+   * apart. Its hint says what the heat is about, which no swatch can: the
+   * world's press on fresh news, not how many stories this site wrote.
    */
   const heatKey = document.createElement('span')
   heatKey.className = 'map-key-item'
   heatKey.title =
     'A glow under a place with several stories: brighter where more of the world’s press is on fresh news'
-  heatKey.innerHTML = `<span class="map-key-field" style="--ramp:${bloomCssRamp()}"></span><span>heat</span>`
+  heatKey.innerHTML = `<span class="map-key-glow" style="--ramp:${bloomCssRamp()}"></span><span>Heat</span>`
   keyItems.set('heat', heatKey)
   key.append(heatKey)
 
@@ -959,7 +966,7 @@ export function mount(
     for (const m of metricIndex) {
       const opt = document.createElement('option')
       opt.value = m.key
-      opt.textContent = m.label
+      opt.textContent = metricName(m.label)
       groundSelect.append(opt)
     }
     groundSelect.value = metricKey
@@ -981,7 +988,7 @@ export function mount(
     if (!groundSelect.options.length) {
       const opt = document.createElement('option')
       opt.value = metric.key
-      opt.textContent = metric.label
+      opt.textContent = metricName(metric.label)
       groundSelect.append(opt)
     }
     groundSelect.value = metric.key
@@ -1108,7 +1115,7 @@ export function mount(
     '<svg viewBox="0 0 16 16" aria-hidden="true" focusable="false" fill="currentColor">' +
     '<circle cx="3.4" cy="8" r="1.5"/><circle cx="8" cy="8" r="2.4" opacity="0.5"/>' +
     '<circle cx="13" cy="8" r="2.4" fill="none" stroke="currentColor" stroke-width="1"/></svg>' +
-    '<span data-for="wide">key</span><span data-for="narrow">more</span>'
+    '<span data-for="wide">Key</span><span data-for="narrow">More</span>'
 
   /**
    * The legend is in flow in both layouts, which is what removed a measurement.
@@ -1203,7 +1210,7 @@ export function mount(
   prayerNote.title = PRAYER_NOTE
   prayerNote.style.color = MAP_COLOURS.prayer
   prayerNote.innerHTML =
-    `<span class="map-filter-mark">${glyphSvg('prayer-line')}</span><span>prayer lines</span>`
+    `<span class="map-filter-mark">${glyphSvg('prayer-line')}</span><span>Prayer lines</span>`
 
   legend.append(key, prayerNote, groundNote)
   /**
@@ -1398,7 +1405,7 @@ export function mount(
     '<svg viewBox="0 0 16 16" aria-hidden="true" focusable="false">' +
     '<circle cx="8" cy="8" r="5.6" fill="none" stroke="currentColor" stroke-width="1.3"/>' +
     '<path d="M2.4 8h11.2M8 2.4c1.6 1.7 2.4 3.6 2.4 5.6S9.6 12.3 8 13.6C6.4 12.3 5.6 10 5.6 8S6.4 4.1 8 2.4Z" fill="none" stroke="currentColor" stroke-width="1.1"/>' +
-    '</svg><span>whole world</span>'
+    '</svg><span>Whole world</span>'
 
   /**
    * Says the canvas is empty on purpose.
@@ -1607,6 +1614,21 @@ export function mount(
 
   const sheet: Sheet = createSheet()
   let popup: StoryPopup | null = null
+  /**
+   * The row a keyboard opened the card from. The card is in the map, early in
+   * the document: without this its links were a page of Tabs from the row,
+   * and closing it left the focus on `<body>`.
+   */
+  let cardReturnSlug: string | null = null
+  const returnFocus = () => {
+    const slug = cardReturnSlug
+    cardReturnSlug = null
+    if (!slug) return
+    // Only when the focus went with the card: a reader who moved on keeps it.
+    const active = document.activeElement
+    if (active && active !== document.body && !popup?.contains(active)) return
+    feed.focusRow(slug)
+  }
   let timeline: Timeline | null = null
   // The span the current rail is drawn against, so a refresh can tell whether
   // the window actually moved and only rebuild the scrubber when it did.
@@ -1703,7 +1725,7 @@ export function mount(
   const feed: Feed = createFeed({
     isRead: (slug) => readState.has(slug),
     onRefresh: () => void refreshStories(),
-    onSelect: (p) => {
+    onSelect: (p, keyboard) => {
       // On a phone the list is a drawer over the map, so committing to a story
       // has to give the map back — otherwise the camera flies somewhere the
       // reader cannot see and the card opens behind the list.
@@ -1716,7 +1738,7 @@ export function mount(
       // world view. Sliding it shut and then flying is two animations racing
       // over one camera; snapping it shut and then flying is one.
       feed.setExpanded(false, true)
-      flyToStory(p)
+      flyToStory(p, keyboard)
     },
     onHover: (p) => setHoverSlug(p ? p.slug : null),
     // The drawer's height is part of what the camera has to dodge.
@@ -1860,7 +1882,7 @@ export function mount(
    * hemisphere gains east and south Asia and loses the eastern Pacific, which is
    * where this map has the least to say. The latitude moves 0.6°.
    */
-  const HOME_CENTER: [number, number] = [39.826, 21.423]
+  const HOME_CENTER = MAKKAH_AT
   const HOME_VIEW = { center: HOME_CENTER, zoom: fitZoom(HOME_CENTER[1]) }
 
   const map = new MapLibreMap({
@@ -1912,9 +1934,8 @@ export function mount(
      * The camera has one pose, and this is what actually holds it there.
      *
      * `dragRotate: false` and `pitchWithRotate: false` below turn off the
-     * *mouse* paths and nothing else: `touchPitch` defaults to true, the
-     * keyboard handler rotates on Shift+Arrow, and `maxPitch` defaults to 60.
-     * So a two-finger drag on a phone or one keypress on a desktop tilted a
+     * *mouse* paths and nothing else: `touchPitch` defaults to true and
+     * `maxPitch` defaults to 60. So a two-finger drag on a phone tilted a
      * globe whose whole sky is computed on the assumption that it never tilts —
      * `calibrate` in `_map/sky.ts` refuses any non-zero bearing or pitch, so the
      * sky — then stars, sun, moon and airglow — **disappeared and stayed
@@ -1924,6 +1945,9 @@ export function mount(
      */
     maxPitch: 0,
     touchPitch: false,
+    // The globe takes no keys: it is moved by pointer, and by the stories,
+    // the cards and "Whole world", which the keyboard reaches.
+    keyboard: false,
     // `preserveDrawingBuffer` was set here for a share-image export that was
     // never built. It is not free: the driver reports "GPU stall due to
     // ReadPixels" on every frame, because the buffer has to survive the swap
@@ -1942,60 +1966,45 @@ export function mount(
     renderWorldCopies: false,
   })
   map.touchZoomRotate.disableRotation()
-  map.keyboard.disableRotation()
+  // With no keys, the canvas would be a Tab stop that does nothing.
+  map.getCanvas().tabIndex = -1
 
   /**
-   * Zoom about the planet's centre while the planet is a planet.
+   * Where a zoom is anchored on the sphere: the pointer while it is over the
+   * planet, the centre while it is over space.
    *
-   * **The bug this fixes is upstream and this map is its worst case.** MapLibre
-   * knows a globe must not zoom about a point that is not on the sphere and
-   * says so in `handler_manager.ts` — but the correction lands one line too
-   * late. `deltasForHelper` snapshots `around` first; the guard
-   * (`if (useGlobeControls && !tr.isPointOnMapSurface(around)) around = centerPoint`)
-   * runs *after* it and therefore only ever reaches `preZoomAroundLoc`, while
-   * `VerticalPerspectiveCameraHelper.handleMapControlsRollPitchBearingZoom`
-   * reads the uncorrected `deltas.around`. What follows is
-   * `unprojectScreenPoint` snapping the cursor to the **nearest point on the
-   * visible limb**, `setLocationAtPoint` trying to pin that limb point under a
-   * cursor that is not on the globe — an unsatisfiable constraint — and then a
-   * blend with a heuristic centre, in code whose own comments say it "will
-   * eventually glitch out".
+   * Over the planet MapLibre keeps the spot under the pointer where it is, as
+   * on a flat map (upstream PR #8095, in 6.3). Measured at 1600×900: three
+   * notches over Europe left the spot under the pointer to the pixel.
    *
-   * A disc inscribed in a 16:9 frame leaves the canvas **39% empty at 1600×900
-   * and 60% at 3440** (the measurement `.map-mapctl`'s corner argument is built
-   * on), so on this map close to half of all wheel events land on space. It is
-   * measurable: tracking the genocide ring at Gaza across a wheel ladder with
-   * the pointer parked in an empty corner, one notch moved it **(+31.2, +6.2)
-   * px** — sideways, in the direction *away* from the cursor, which is not even
-   * the behaviour zoom-to-cursor promises. That is the whole of "the globe
-   * doesn't feel stable when you scroll it". Measured after: the same notch
-   * moves it (−7.1, −12.1) against (−6.7, −12.7) for a pointer resting on the
-   * disc centre — the two paths agreeing to a pixel, which is what "the disc
-   * scales about itself" looks like as a number.
+   * Over space there is no spot. `unproject` answers a point off the sphere
+   * with the **nearest point on the visible limb**, and holding that under the
+   * pointer slides the planet toward it: about 200px in three notches, with
+   * the pointer beside the disc. A disc inscribed in a 16:9 frame leaves the
+   * canvas **39% empty at 1600×900 and 60% at 3440**, so that is close to half
+   * of all wheel events. There `around: 'center'` writes `around` as the
+   * centre's own point and the disc scales about itself.
    *
-   * `around: 'center'` makes `ScrollZoomHandler` write `around` as
-   * `locationToScreenPoint(center)`, so `dLng` and `dLat` come out zero and the
-   * entire heuristic pile above is bypassed: the disc simply scales about
-   * itself. That is also the right *interaction* for a globe — a sphere is not
-   * a surface you can grab a point of and pull toward you, which is the reason
-   * `handleMapControlsPan` already refuses to pan that way.
-   *
-   * Past `GLOBE_ZOOM.plane` the map is ordinary Mercator, where zoom-to-cursor
-   * is both correct and expected, so the anchor is handed back — see the
-   * `zoomend` handler, which flips it on the crossing and nowhere else.
+   * So each wheel asks where the pointer is (`pointerOnDisc`) and the anchor
+   * moves only when the answer does. Touch and the double-click stay centred on
+   * the sphere: a pinch's midpoint and a double-click are not aimed the way a
+   * resting pointer is. Past `GLOBE_ZOOM.plane` the map is ordinary Mercator and
+   * every gesture zooms to the pointer: see the `zoomend` handler, which flips
+   * those on the crossing and nowhere else.
    */
-  const setZoomAnchor = (centred: boolean) => {
+  const setWheelAnchor = (centred: boolean) => {
     // **`ScrollZoomHandler.enable` begins `if (this.isEnabled()) return`**, and
     // the handler is enabled by the constructor — so calling it with an option
-    // on a live map sets nothing at all, silently, and the anchor stays on the
-    // pointer. It has to be turned off and on again. Nothing reports this:
-    // there is no throw, no warning, and the map goes on zooming exactly as it
-    // did, which is why it survived the first pass here and was caught only by
-    // measuring a fixed point on the planet across a wheel ladder — Gaza slid
-    // 31.8px on the first notch with the anchor "set". `touchZoomRotate.enable`
-    // has no such guard and is called plainly.
+    // on a live map sets nothing at all, silently, and the anchor stays where
+    // it was. It has to be turned off and on again. Nothing reports this: it
+    // was caught only by measuring a fixed point on the planet across a wheel
+    // ladder.
     map.scrollZoom.disable()
     map.scrollZoom.enable(centred ? { around: 'center' } : undefined)
+    wheelCentred = centred
+  }
+  const setZoomAnchor = (centred: boolean) => {
+    // `touchZoomRotate.enable` has no such guard and is called plainly.
     map.touchZoomRotate.enable(centred ? { around: 'center' } : undefined)
     // `enable` puts the rotate half back unless it has been told not to, and
     // this map never rotates.
@@ -2005,8 +2014,36 @@ export function mount(
     if (centred) map.doubleClickZoom.disable()
     else map.doubleClickZoom.enable()
   }
+  let wheelCentred = true
   let zoomAnchorCentred = true
+  setWheelAnchor(true)
   setZoomAnchor(true)
+
+  /**
+   * Whether a canvas point is on the planet, inside `DISC_ANCHOR` of its radius:
+   * at the limb `unproject` turns steeply and a notch swings the planet.
+   * `calibrate` is the sky's measure of the disc, and is null off the sphere.
+   */
+  const DISC_ANCHOR = 0.92
+  const pointerOnDisc = (x: number, y: number): boolean => {
+    const c = map.getCenter()
+    const cam = calibrate((ll) => map.project(ll), [c.lng, c.lat], map.getBearing(), map.getPitch())
+    return cam !== null && Math.hypot(x - cam.cx, y - cam.cy) < cam.r * DISC_ANCHOR
+  }
+  // Capture, so the anchor is set before MapLibre's own listener reads it.
+  mapEl.addEventListener(
+    'wheel',
+    (e) => {
+      if (map.getZoom() >= GLOBE_ZOOM.plane) {
+        if (wheelCentred) setWheelAnchor(false)
+        return
+      }
+      const box = map.getContainer().getBoundingClientRect()
+      const centred = !pointerOnDisc(e.clientX - box.left, e.clientY - box.top)
+      if (centred !== wheelCentred) setWheelAnchor(centred)
+    },
+    { capture: true, passive: true },
+  )
 
   /**
    * Double-click, the zoom gesture that could not be told where to anchor.
@@ -2087,6 +2124,25 @@ export function mount(
     map.setPadding(next)
   }
 
+  /**
+   * What a card keeps off, a little inside the chrome that floats over the
+   * canvas. MapLibre fits a popup to the canvas, and the canvas runs under
+   * both rails: a country card clicked near the limb slid 57px under the story
+   * rail, where the rail's fold toggle cut through its share row, and one
+   * clicked low ran 31px into the timeline.
+   */
+  let cardPadding: PaddingOptions = { top: 0, bottom: 0, left: 0, right: 0 }
+  const writeCardPadding = (edges: Required<PaddingOptions>) => {
+    const gap = 8
+    cardPadding = {
+      top: edges.top + gap,
+      bottom: edges.bottom + gap,
+      left: edges.left + gap,
+      right: edges.right + gap,
+    }
+    popup?.setPadding(cardPadding)
+  }
+
   const applyPadding = () => {
     // The style can finish loading after teardown.
     if (!mounted) return
@@ -2125,13 +2181,15 @@ export function mount(
     const asideBox = inset(hud)
     const aside = asideBox && asideBox.w < canvas.width - 1 ? asideBox.w : 0
 
-    if (!rail) {
-      writePadding({ top: 0, bottom: 0, right: aside, left: 0 })
-      return
-    }
-
-    if (rail.w < canvas.width - 1) {
-      writePadding({ top: 0, bottom: 0, right: aside, left: rail.w })
+    if (!rail || rail.w < canvas.width - 1) {
+      const left = rail?.w ?? 0
+      writePadding({ top: 0, bottom: 0, right: aside, left })
+      // The camera centres between the rails; a card must also clear the
+      // timeline under the globe, which the camera has never been padded for.
+      const scrub = inset(timeline?.element)
+      writeCardPadding({ top: 0, bottom: scrub?.h ?? 0, right: aside, left })
+      // The height the card's cap halves (`.maplibregl-popup-content`).
+      mapEl.style.setProperty('--map-card-room', `${Math.round(canvas.height - (scrub?.h ?? 0))}px`)
       return
     }
 
@@ -2157,7 +2215,10 @@ export function mount(
     // what matters is the header's actual intersection with the canvas.
     const header = inset(document.querySelector('body.map-page > header'))
     const headTop = header && header.w >= canvas.width - 1 ? header.h : 0
-    writePadding({ top: Math.min(headTop, canvas.height * 0.2), bottom, right: 0, left: 0 })
+    const phone = { top: Math.min(headTop, canvas.height * 0.2), bottom, right: 0, left: 0 }
+    writePadding(phone)
+    writeCardPadding(phone)
+    mapEl.style.removeProperty('--map-card-room')
   }
 
   // --- Data shaping -------------------------------------------------------
@@ -2625,6 +2686,21 @@ export function mount(
     map.addSource('conflict', { type: 'geojson', data: empty })
     map.addSource('famine', { type: 'geojson', data: empty })
     map.addSource('genocide', { type: 'geojson', data: empty })
+    // The one fixed place: the map's centre, where the clock and the calendar
+    // are read.
+    map.addSource('makkah', {
+      type: 'geojson',
+      data: {
+        type: 'FeatureCollection',
+        features: [
+          {
+            type: 'Feature',
+            properties: { id: 'makkah', name: MAKKAH_LABEL },
+            geometry: { type: 'Point', coordinates: HOME_CENTER },
+          },
+        ],
+      },
+    })
     map.addSource('night', { type: 'geojson', data: empty })
     map.addSource('day', { type: 'geojson', data: empty })
     // The same curve the two hemispheres are cut from, kept open — see
@@ -2749,11 +2825,8 @@ export function mount(
     // Daylight on the water.
     //
     // Inserted before `land`, so the land layer paints over it and this only
-    // ever reaches the ocean — which is the entire point. `night-shade` below
-    // cannot do this job: it is black at 0.28 over a `#080a0d` sea, a change of
-    // about two values in 255, so the terminator used to stop dead at the
-    // coastline and day/night read as a property of continents. There is no
-    // room to darken below near-black, so the lit side is lifted instead.
+    // ever reaches the ocean — which is the entire point. Night alone moves a
+    // sea this dark by a few values in 255, so the lit side is lifted as well.
     //
     // Faint on purpose. It has to be enough to see the boundary sweep across an
     // empty ocean and not enough to compete with a beacon sitting on it.
@@ -2767,13 +2840,15 @@ export function mount(
       'land',
     )
 
-    // Night sits on the ground and under everything else: it darkens the land,
-    // never the data. Over water it is `day-shade` above that carries the
-    // terminator.
+    // Night on the water, and only there: inserted before `land`, like
+    // `day-shade`. The land's tone is the metric's value, and a wash over it
+    // took 28% off every country in the dark. On population, India (the top of
+    // the ramp) rendered darker than Algeria three quarters up it, because one
+    // was past the terminator. The terminator reads on the sea, between this
+    // and `day-shade`.
     //
-    // It stays a flat 0.28 and that is deliberate: `twilight` below cuts the
-    // ramp *upward* out of this, so deep night is the same value it has always
-    // been and every contrast measured against it still holds.
+    // It stays a flat 0.28: `twilight` below cuts the ramp *upward* out of
+    // this, so deep night is the same value it has always been.
     //
     // **The wash is the sea's colour, not black** (2026-08-03), and the reason
     // is that black is not a thing this picture contains. Measured off a headed
@@ -2784,24 +2859,18 @@ export function mount(
     // to exist at all, and it is the one measurable thing about this hemisphere
     // that could not happen.
     //
-    // Night darkens things toward the colour of the unlit sea, which is the
-    // darkest real substance here. Tinting the wash with `ocean` makes 0.28 mean
-    // "72% of the way to the unlit sea" rather than "72% of the way to nothing",
-    // so the sea lands exactly on space instead of below it and the land keeps
-    // the two or three values of separation from it that pure black crushed —
-    // at night the ramp's darkest countries had collapsed onto the sea and the
-    // coast went with them. Nothing measured against deep night gets worse: the
-    // composite moves at most **+3.6/255 and upward**, which is more contrast
-    // for a dark mark and 9.87:1 → ~9.6:1 for the brightest label on the
-    // darkest stop.
+    // Night darkens things toward space, the darkest tone here. Tinting the
+    // wash with `space` makes 0.28 mean "28% of the way to space" rather than
+    // "28% of the way to nothing", so the night sea keeps its blue and never
+    // falls below space.
     map.addLayer(
       {
         id: 'night-shade',
         type: 'fill',
         source: 'night',
-        paint: { 'fill-color': MAP_COLOURS.ocean, 'fill-opacity': 0.28 },
+        paint: { 'fill-color': MAP_COLOURS.space, 'fill-opacity': 0.28 },
       },
-      'borders',
+      'land',
     )
 
     /**
@@ -2829,6 +2898,9 @@ export function mount(
      * Offset by half its own width so the band sits *inside* the night rather
      * than straddling the boundary; `side` comes from the feature and flips
      * with the season, which is the one number here that fails silently.
+     *
+     * Before `land`, with the night it lightens: over the land it would lift
+     * the countries near the terminator a step up the ramp.
      */
     /**
      * The two stops both expressions are built from, so the band and the offset
@@ -2876,7 +2948,7 @@ export function mount(
           'line-opacity': 0.07,
         },
       },
-      'borders',
+      'land',
     )
 
     /**
@@ -2904,22 +2976,9 @@ export function mount(
      * limb runs through. A graticule over the continents would have been a net
      * across every mark this file spends its length rationing.
      *
-     * `night-shade` sits above it, and the note that used to be here said the
-     * grid was "effectively undimmed at night" because 0.28 black over
-     * near-black water moves it about two values in 255. **That is an argument
-     * about the ground, and the grid is not the ground.** A multiply takes 28%
-     * of whatever it lands on, so it costs the ocean three values and the line
-     * eleven — the absolute step is negligible and the *ratio* is not.
-     * Measured: 1.43:1 by day and **1.24:1 at night**, on the hemisphere this
-     * layer exists for.
-     *
-     * It stays under `land` anyway, because the alternative is worse. Above
-     * `night-shade` means above `land`, and there is no tone that works there —
-     * the argument two paragraphs up, unchanged. Hiding it again would mean a
-     * second `land` fill drawn over it, which is a duplicate of the ramp
-     * expression with nothing checking that the two agree: the failure this
-     * repo has recorded eleven times. 1.24:1 is the price of one ground, and it
-     * is written down rather than absorbed.
+     * It is added after `night-shade` and `twilight`, both also before `land`,
+     * so it sits above them and night does not dim it: the line keeps its tone
+     * on the dark sea, where the wash would have taken 28% of it.
      *
      * **Solid, not dashed.** The dash is `prayer-lines`' silhouette and the one
      * mark nothing else here uses (`MAP_COLOURS.prayer`); a second dashed line
@@ -2961,7 +3020,8 @@ export function mount(
            * so at `line-width: 0.6` the solid core is 0.3px against 0.5px of
            * falloff on a 1× display: **the line never reaches full alpha
            * anywhere along its length**. Composited that is 1.20:1 by day and
-           * 1.11:1 under `night-shade` — two or three values at 8-bit, and
+           * 1.11:1 under the night wash it then sat beneath — two or three
+           * values at 8-bit, and
            * measured off the rendered canvas over open water it came back at
            * **1.00–1.06:1**. The one mark added to say the world is a sphere
            * was, on the hemisphere it was added for, not on the screen at all.
@@ -2978,8 +3038,8 @@ export function mount(
            *
            * 1.2 leaves margin on both without becoming a second line family
            * beside the frontiers. Measured after: **1.24:1 on the night ocean
-           * against 1.10:1 before**, which is the register this was always
-           * meant to sit in.
+           * against 1.10:1 before**, still under the night wash; above it the
+           * tone is about 1.35:1 by day and night alike.
            *
            * The tone is deliberately left alone. It was measured correctly and
            * the defect was never in it — raising it now would spend a second
@@ -3016,10 +3076,8 @@ export function mount(
      * are gone; `story-bloom` under each busy place is the one other heat
      * encoding, and it says how hot a place is, not how far a region reaches.
      *
-     * Where it sits is the other half of the argument. **Above `night-shade`**,
-     * because night darkens the land and never the data, and comparing extents
-     * across a globe half of which is always dark is the whole job. **Below
-     * `borders` and every label**, so a coastline draws straight through a patch:
+     * Where it sits is the other half of the argument. **Below `borders` and
+     * every label**, so a coastline draws straight through a patch:
      * that is what makes the field the only thing here with no edge, which is how
      * a reader tells a wash from a shaded country — a difference of kind, the
      * argument `nodataHatch` already makes. See `MAP_COLOURS.density` for the
@@ -3105,11 +3163,32 @@ export function mount(
       'borders',
     )
 
+    /**
+     * Makkah, the centre the map opens on, the clock reads and the prayer
+     * lines turn about. A soft gold glow in the app's manner, with no edge, so
+     * it is never read as an `economy` dot, whose gold it nearly shares. Under
+     * `borders` like the wash, and under every story: a story from Makkah
+     * stands on it.
+     */
+    map.addLayer(
+      {
+        id: 'makkah-glow',
+        type: 'circle',
+        source: 'makkah',
+        paint: {
+          'circle-radius': ['interpolate', ['linear'], ['zoom'], 0, 9, 3, 15, 6, 22],
+          'circle-color': MAP_COLOURS.makkah,
+          'circle-blur': 1,
+          'circle-opacity': 0.75,
+        },
+      },
+      'borders',
+    )
+
     // The five prayers, where each is entering right now.
     //
-    // Inserted at `borders` *after* `night-shade`, so the lines sit on the
-    // ground above the night wash and below the frontiers — furniture, not
-    // data. A border crossing a hairline is invisible; a hairline crossing a
+    // Inserted at `borders`, so the lines sit on the ground below the
+    // frontiers — furniture, not data. A border crossing a hairline is invisible; a hairline crossing a
     // beacon is not, and these cross every continent.
     //
     // Dashed because a solid hairline on a map is a coastline. It is the one
@@ -3370,37 +3449,34 @@ export function mount(
      * The bloom: heat under a place holding two or more stories, reaching just
      * past its flower (`flowerRadius`).
      *
-     * Its tone is `heat` (`placeHeat`: each story's freshness times how widely
-     * the world's press covered it, summed, under a square root), read on
-     * `BLOOM_RAMP` from ember to white: at a glance, where the world's
-     * attention is on fresh news, and where it has gone quiet. Not how many
-     * stories this site wrote, and not the category's hue, which the dots
-     * already carry.
+     * Its weight is `heat` (`placeHeat`: each story's freshness times how
+     * widely the world's press covered it, summed, under a square root), read
+     * on `BLOOM_STOPS` in the wash's own tone: where the world's attention is
+     * on fresh news. Not how many stories this site wrote, and never a hue,
+     * which the dots carry.
      *
-     * Under `borders` with the field, so a coastline and every name draw
-     * through it. The field says how far the news reaches across a region; the
-     * bloom says how hot each place is.
+     * A heatmap, so neighbouring places sum their heat and one ramp caps the
+     * total; a radius in pixels about the flower, so it stays a glow under the
+     * place at every zoom. Under `borders` with the field, so a coastline and
+     * every name draw through it.
      */
     map.addLayer(
       {
         id: 'story-bloom',
-        type: 'circle',
+        type: 'heatmap',
         source: 'story-places',
         paint: {
-          'circle-radius': ['+', ['get', 'r'], 12],
-          'circle-color': [
+          'heatmap-weight': ['case', ['>=', ['get', 'n'], 2], ['get', 'heat'], 0],
+          'heatmap-intensity': BLOOM_INTENSITY,
+          // The kernel falls to a third of its peak at half the radius, so this
+          // is about twice the reach the glow should show.
+          'heatmap-radius': ['*', ['+', ['get', 'r'], 12], 2],
+          'heatmap-color': [
             'interpolate',
             ['linear'],
-            ['get', 'heat'],
-            ...BLOOM_RAMP.flatMap(([h, c]) => [h, c]),
+            ['heatmap-density'],
+            ...bloomRamp(),
           ] as unknown as ExpressionSpecification,
-          'circle-blur': 1,
-          'circle-opacity': [
-            'case',
-            ['>=', ['get', 'n'], 2],
-            ['interpolate', ['linear'], ['get', 'heat'], 0.6, 0.3, 3, 0.58, 7, 0.75],
-            0,
-          ],
         },
       },
       'borders',
@@ -3442,7 +3518,7 @@ export function mount(
      * A place's newest story is 3.4 to 7.5px in radius by the build's coverage
      * rank, and one with no figure at a neutral size below the median, so it
      * reads as unknown rather than smallest. Its older stories are petals
-     * (`PETAL_PX`). The rim is the ocean tone: fill carries the mark on dark
+     * (`PETAL_PX`). The rim is `space`: fill carries the mark on dark
      * ground, rim on the density wash, where a `politics` fill alone measures
      * 1.07:1.
      *
@@ -3480,7 +3556,7 @@ export function mount(
         'icon-halo-color': [
           'case',
           ['boolean', ['feature-state', 'hover'], false], '#ffffff',
-          MAP_COLOURS.ocean,
+          MAP_COLOURS.space,
         ],
       },
     })
@@ -3700,6 +3776,29 @@ export function mount(
      * it: a mark suppressed for collision reads as an absence, and the absence
      * this would read as is unacceptable.
      */
+    // Makkah's name, always drawn and claiming its space, so a city or country
+    // name yields to it. Added before the genocide layers, which stay last.
+    map.addLayer({
+      id: 'makkah-label',
+      type: 'symbol',
+      source: 'makkah',
+      layout: {
+        'text-field': ['get', 'name'],
+        'text-font': ['Source Sans 3 Bold'],
+        'text-size': ['interpolate', ['linear'], ['zoom'], 0, 12, 4, 15],
+        'text-letter-spacing': 0.04,
+        'text-anchor': 'top',
+        'text-offset': [0, 0.7],
+        'text-allow-overlap': true,
+        'text-ignore-placement': false,
+      },
+      paint: {
+        'text-color': MAP_COLOURS.makkahLabel,
+        'text-halo-color': MAP_COLOURS.labelHalo,
+        'text-halo-width': 1.4,
+      },
+    })
+
     map.addLayer({
       id: 'genocide-marks',
       type: 'circle',
@@ -3895,9 +3994,10 @@ export function mount(
    * the movement is interrupted (a drag, another click) `moveend` may never
    * arrive for this flight, and the reader is left staring at nothing.
    */
-  const flyToStory = (p: MapPoint) => {
+  const flyToStory = (p: MapPoint, keyboard = false) => {
     if (openSlug === p.slug) return
     openSlug = p.slug
+    cardReturnSlug = keyboard ? p.slug : null
     feed.highlight(p.slug)
     markRead(p.slug)
 
@@ -3931,7 +4031,10 @@ export function mount(
         // wants: the destination, not the journey.
       },
       () => {
-        if (openSlug === p.slug) void popup?.open(p, scrubNow)
+        if (openSlug !== p.slug) return
+        void popup?.open(p, scrubNow).then(() => {
+          if (cardReturnSlug === p.slug && openSlug === p.slug) popup?.focus()
+        })
       },
     )
   }
@@ -4214,32 +4317,34 @@ export function mount(
      */
     const showFor = (id: unknown, pin: boolean) => {
       const key = String(id)
+      // Pinned, every mark's card opens the way a story's does: no backdrop,
+      // the map live under it, in the corner its peek stood in. On a phone the
+      // card is the screen and stays a sheet (`docked`).
+      const dock = pin && docked()
+      if (pin) sheet.dockTo(null)
+      if (key === 'makkah') return sheet.showMakkah(Date.now(), pin, dock)
       const alert = gdacs.find((a) => a.eventid === key)
       // `details` is keyed by `${eventtype}:${eventid}`, which is why the bare
       // event id never found anything — see `detailKey` in shared/gdacs.
-      if (alert) return sheet.showGdacs(alert, gdacsDetails[detailKey(alert)] ?? null, pin)
+      if (alert) return sheet.showGdacs(alert, gdacsDetails[detailKey(alert)] ?? null, pin, dock)
       const cp = chokepoints.find((c) => c.id === key)
-      if (cp) return sheet.showChokepoint(cp, pin)
+      if (cp) return sheet.showChokepoint(cp, pin, dock)
       const ex = markets.find((m) => m.id === key)
       // The card's hero is the move the mark was drawn from: the range's.
       if (ex) {
-        // Pinned, it opens the way a story does: no backdrop, the map live
-        // under it, in the corner its peek stood in. On a phone the card is
-        // the screen and stays a sheet (`docked`).
-        if (pin) sheet.dockTo(null)
-        return sheet.showMarket(ex, pin, undefined, pin && docked(), {
+        return sheet.showMarket(ex, pin, undefined, dock, {
           heroDays: marketStrip.rangeDays(),
           signal: signalFor(ex.id, signals),
         })
       }
       const ev = conflicts.find((c) => c.id === key)
-      if (ev) return sheet.showConflict(ev, conflictWindowLabel(), pin)
+      if (ev) return sheet.showConflict(ev, conflictWindowLabel(), pin, dock)
       const gen = genocide.find((x) => x.id === key)
-      if (gen) return sheet.showGenocide(gen, pin)
+      if (gen) return sheet.showGenocide(gen, pin, dock)
       const heat = thermal.find((x) => x.id === key)
-      if (heat) return sheet.showThermal(heat, pin)
+      if (heat) return sheet.showThermal(heat, pin, dock)
       const area = famine.find((x) => x.id === key)
-      if (area) return sheet.showFamine(area, pin)
+      if (area) return sheet.showFamine(area, pin, dock)
     }
 
     /**
@@ -4353,6 +4458,9 @@ export function mount(
      */
     map.on('click', (e) => {
       const f = topHit(e.point)
+      // A press commits: whatever card it opens stands where the tip did, and
+      // the tip was left over its head until the pointer moved.
+      hidePlaceTip()
 
       if (f) {
         const layer = f.layer.id
@@ -4583,9 +4691,10 @@ export function mount(
       // at 2.33:1 with nothing able to see it.
       const density = keyItems.get('density')
       if (density) density.hidden = map.getZoom() >= DENSITY_FADE_OUT
-      // The zoom anchor is the projection's, so it flips where the projection
-      // does and only on the crossing — this runs on every zoom gesture, and
-      // `enable()` rebuilds the handler's options each call.
+      // The pinch's and the double-click's anchor is the projection's, so it
+      // flips where the projection does and only on the crossing — this runs on
+      // every zoom gesture, and `enable()` rebuilds the handler's options each
+      // call. The wheel's is set per event (`pointerOnDisc`).
       const centred = map.getZoom() < GLOBE_ZOOM.plane
       if (centred !== zoomAnchorCentred) {
         zoomAnchorCentred = centred
@@ -4657,152 +4766,6 @@ export function mount(
    * initial paint — which is how the money block came to be missed by two of
    * them while the beacons were updated by all three.
    */
-  /**
-   * A chip's trend, drawn beside the control that switches it.
-   *
-   * The money block had the only lines on the rail, and the two groups under it
-   * — the categories and the layers — are the same kind of question asked about
-   * a different quantity: *is there more of this than there was*. A reader
-   * deciding whether to turn a layer on has no way to know it is spiking, and
-   * the chip is the one place that answer belongs, because it is the place the
-   * decision is made.
-   *
-   * **The tone is the layer's own hue, never the money's green and orange**, and
-   * that is a correctness rule rather than a preference. `--map-pos`/`--map-neg`
-   * mean "a signed change" and read as good and bad, which on a market is a
-   * convention old enough to be invisible and on a hazard count is a claim: a
-   * green **DISASTERS +40%** says more disasters is good news. The same trap
-   * this file records for the genocide caption, where colour on a label made the
-   * gravest mark on the map read as an alert about the interface. So identity
-   * rides on hue — the chip's own `--cat`, which its glyph already carries — and
-   * direction rides on the shape, which is the one thing a sparkline is for. The
-   * signed figure states the magnitude in words beside it, and claims nothing.
-   *
-   * A switched-off chip keeps its line, in the ink its label already stepped
-   * down to. That is the whole value of putting it here: the reason to turn a
-   * layer on is that something is happening in it, and a rail that hid the
-   * evidence behind the switch would be asking the reader to guess.
-   */
-  const chipTrend = (
-    key: string,
-    values: number[] | null,
-    span: [number, number],
-    /**
-     * The figure to print: a number, `'window'` to take the drawn line's own
-     * last-against-first, or `null` to print none.
-     *
-     * Three cases and not two, because the two kinds of series here answer
-     * "which way" differently. A published series — the straits' vessel counts —
-     * is a level, and last-against-first is exactly its change, which
-     * `seriesModel` has already computed over what it drew. A bucketed count is
-     * a rate, where that comparison is one bucket against one other bucket, so
-     * it gets `halfOverHalf` instead. And `null` is for a first half with
-     * nothing in it: a rise from nothing has no percentage, and printing one
-     * would be a division dressed up as a finding.
-     */
-    pct: number | 'window' | null,
-  ) => {
-    /**
-     * Searched from the root, not from `.map-filters`.
-     *
-     * The chips this paints live in **two panes** since the categories moved to
-     * the story rail: a `filters.querySelector` finds the seven layer chips and
-     * silently misses the four category ones, so the trend the whole function
-     * exists to draw simply does not appear and nothing anywhere reports it.
-     * That is exactly how it shipped for one build. A `data-key` is unique
-     * within the island by construction, so the mount container is the honest
-     * scope for it.
-     */
-    const host = container.querySelector(`[data-key="${key}"] .map-filter-spark`)
-    if (!(host instanceof HTMLElement)) return
-    // Counts, so bars — and a domain floored at zero, because a count's zero is
-    // zero. Autoscaled, a run of buckets whose smallest is three would draw
-    // that three as no bar at all and exaggerate every difference above it.
-    const spark = values
-      ? sparkline({
-          values,
-          window: values.length,
-          span,
-          shape: 'bars',
-          domain: [0, Math.max(1, ...values)],
-        })
-      : null
-    if (!spark) {
-      host.replaceChildren()
-      return
-    }
-    const fig = document.createElement('span')
-    fig.className = 'map-filter-pct'
-    const shown = pct === 'window' ? spark.windowPct : pct
-    fig.textContent = shown == null ? '' : ribbonPct(shown)
-    host.replaceChildren(spark.element, fig)
-  }
-
-  /**
-   * A pile of event times as a line placed inside the asked-for window.
-   *
-   * The buckets are laid across what the payload **covers**, not across what the
-   * reader asked for, and that distinction was a bug before it was a rule.
-   * GDACS publishes a rolling window of about sixteen days; bucketed across a
-   * 30-day range, the fourteen days it does not hold came out as empty buckets,
-   * they landed almost entirely in the earlier half, and the chip read
-   * **+911.1%** — a real division over an absence, which is the most convincing
-   * kind of wrong number. Bucketing over the covered period instead makes the
-   * comparison one between two halves of the same evidence, and `coverage`
-   * still places the shorter line in the right part of the box, so the reader
-   * can see it does not reach.
-   */
-  const countTrend = (key: string, times: number[], from: number, to: number) => {
-    const usable = times.filter((t) => Number.isFinite(t) && t <= to)
-    if (!usable.length) return chipTrend(key, null, [0, 1], null)
-    const drawnFrom = Math.max(from, Math.min(...usable))
-    const counts = bucketCounts(usable, drawnFrom, to)
-    chipTrend(key, counts, coverage(drawnFrom, to, from), halfOverHalf(counts))
-  }
-
-  /**
-   * Every chip trend, from whatever the island is currently holding.
-   *
-   * Anchored on `windowEnd` rather than on `scrubNow`, so a chip says "the last
-   * N days" whatever the scrubber is doing — the same anchor the money rows use,
-   * and the alternative would be seven rows following the clock and eleven
-   * following the reader's thumb.
-   *
-   * Three of the eleven chips can support a line and the other eight are left
-   * deliberately blank, each for a reason worth stating rather than discovering:
-   * **conflict** is UCDP, which publishes months in arrears — the newest event
-   * in a real payload is 125 days old, so every range this control offers is
-   * empty, and the layer already decays against its own dataset's newest event
-   * for exactly this reason; **thermal** is eleven detections from a single
-   * satellite pass; **famine** and **genocide** are determinations rather than
-   * events, which is why `map-island.test.js` fails if a time filter ever
-   * appears on them, and a trend line is a time filter with a picture; and
-   * **prayers** is a geometry, not a quantity. `markets` has its line in the
-   * money block above, where it is one of seven rather than the only one.
-   */
-  function paintTrends() {
-    const to = windowEnd || Date.now()
-    const from = to - rangeHours * 3_600_000
-
-    // Stories, per category. Before the archive lands the corpus is a fortnight,
-    // so a 30d chip draws fourteen days of shape in the right half of its box
-    // rather than fourteen days stretched across it.
-    for (const cat of CATEGORY_ORDER) {
-      countTrend(cat, points.flatMap((p) => (p.cat === cat ? [p.t] : [])), from, to)
-    }
-
-    // Nothing in `layers` draws a line. `disasters` briefly did — GDACS is the
-    // one hazard whose payload can support one — and the group reads better
-    // without it: every other member is a switch and nothing else, so one row
-    // carrying a trend made the other five look like rows with data missing.
-    // A group where one member answers a question the rest cannot is a group
-    // that has to be read twice.
-
-    // Straits are no longer here: they became the money block's fifth row, where
-    // a published vessel-transit series belongs, and `createMarketStrip` draws
-    // them through the same `sparkInput` this used to call.
-  }
-
   function setRange(hours: number) {
     rangeHours = hours
     syncRangeChips()
@@ -4823,7 +4786,6 @@ export function mount(
       windowStart = start
       rebuildTimeline(start, windowEnd)
     }
-    paintTrends()
     refresh()
   }
 
@@ -4897,32 +4859,20 @@ export function mount(
      * one mark made of two parts rather than as a mark and a half.
      */
     /**
-     * The chip's mark, its name, and room for a trend beside it.
-     *
-     * The name used to be a bare text node. It is a `<span>` now because the
-     * rail's chip is a flex row and a trend line has to be able to take the
-     * slack between the label and the right edge — an anonymous flex item made
-     * of loose text can be laid out but not sized, so the lines would have
-     * started at a different x on every chip and the interval the eye learns
-     * once would have had to be re-found per row.
-     *
-     * The spark host is always appended, never conditionally: a chip that can
-     * draw a trend and a chip that cannot must occupy the same box, or the
-     * column develops two row heights for a reason no reader can see.
+     * The chip's mark and its name. The name is a `<span>`, not a bare text
+     * node, so the stylesheet can size and capitalise it.
      */
     const chipGlyph = (btn: HTMLButtonElement, mark: GlyphId[] | string, label: string) => {
       // A string arm for the one chip whose layer MapLibre draws natively, so
-      // it gets this row grammar — mark box, label, spark host — rather than a
-      // second, nearly identical one written out beside it. See `GENOCIDE_MARK`.
+      // it gets this row grammar — mark box, label — rather than a second,
+      // nearly identical one written out beside it. See `GENOCIDE_MARK`.
       btn.innerHTML = `<span class="map-filter-mark">${
         typeof mark === 'string' ? mark : mark.map(glyphSvg).join('')
       }</span>`
       const name = document.createElement('span')
       name.className = 'map-filter-label'
       name.textContent = label
-      const spark = document.createElement('span')
-      spark.className = 'map-filter-spark'
-      btn.append(name, spark)
+      btn.append(name)
     }
 
     /**
@@ -4985,9 +4935,7 @@ export function mount(
       btn.type = 'button'
       btn.className = 'map-filter is-on'
       btn.dataset.kind = 'category'
-      // What `paintTrends` finds this chip by. A data key rather than a
-      // registry because the painter lives outside `buildFilters` and a
-      // closure-scoped Map would have to be hoisted out of it to be reached.
+      // How the island finds this chip (`container.querySelector`).
       btn.dataset.key = cat
       btn.style.setProperty('--cat', CATEGORY_COLOUR[cat])
       chipGlyph(btn, ['dot'], cat)
@@ -5257,7 +5205,6 @@ export function mount(
     placeIndex = buildPlaceIndex(points)
     corpusStart = Math.min(corpusStart, data.window.start)
     rebuildTimeline(railStart(), windowEnd)
-    paintTrends()
     refresh()
   }
 
@@ -5289,7 +5236,6 @@ export function mount(
     placeMarketStrip()
     placeRangeGroup()
     watchChrome()
-    paintTrends()
     refresh()
     coreLoaded = true
     openSharedStory()
@@ -5436,10 +5382,6 @@ export function mount(
     if (th?.events) thermal = th.events
     if (ipc?.areas) famine = ipc.areas.filter((a) => Number.isFinite(a.lat) && Number.isFinite(a.lng))
     setOverlayData()
-    // The disasters and straits chips have nothing to draw until this lands;
-    // the story chips were painted from `map.json` several hundred milliseconds
-    // ago and are repainted here for free rather than tracked separately.
-    paintTrends()
   }
 
   // The conflict feed is the largest payload the map pulls — a quarter of a
@@ -5575,7 +5517,6 @@ export function mount(
 
       windowStart = start
       if (wasLive) scrubNow = end
-      paintTrends()
 
       // Only when something arrived: the lead prose is 85 KB and re-fetching it
       // to learn nothing changed is exactly the cost this button exists to
@@ -5803,6 +5744,7 @@ export function mount(
       // set and `flyToStory`'s "already open" guard swallowed the next click
       // on that same beacon.
       onClose: () => {
+        returnFocus()
         if (!openSlug) return
         openSlug = null
         feed.highlight(hoverSlug)
@@ -5964,6 +5906,14 @@ export function mount(
     const scrub = timeline?.element
     if (scrub) {
       document.body.style.setProperty('--map-scrub-h', `${Math.round(scrub.offsetHeight)}px`)
+      // The range chips stand above the scrubber's box on the desktop, so a
+      // card in the canvas's lower-left corner measures to their top
+      // (`--map-scrub-reach`), or it lies over them.
+      const top = Math.min(
+        scrub.getBoundingClientRect().top,
+        timeline?.controls.getBoundingClientRect().top ?? Number.POSITIVE_INFINITY,
+      )
+      document.body.style.setProperty('--map-scrub-reach', `${Math.round(window.innerHeight - top)}px`)
     }
   }
 
@@ -6270,5 +6220,6 @@ export function mount(
     // outside the container — can read it. Teardown used to be free because
     // clearing the container took it with it; now it has to say so.
     document.body.style.removeProperty('--map-scrub-h')
+    document.body.style.removeProperty('--map-scrub-reach')
   }
 }

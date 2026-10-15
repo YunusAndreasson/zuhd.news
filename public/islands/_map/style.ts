@@ -8,6 +8,7 @@
 // read against, and every operational map worth copying commits to it.
 
 import type { StyleSpecification } from 'maplibre-gl'
+import { MAKKAH_LABEL } from './format'
 
 /**
  * What MapLibre paints.
@@ -19,14 +20,22 @@ import type { StyleSpecification } from 'maplibre-gl'
  * a module. Where a value appears on both sides it is called out here and
  * there — change one, change the other.
  *
- * `ocean` is `--map-ground`. It is not only the sea: the HUD and scrubber
- * gradients fade into it, and a cluster disc is filled with it so a numeral
- * reads clear of the coastline underneath. A drift here shows up as a seam
- * between the canvas and the chrome sitting on it.
+ * `space` is `--map-ground`: the HUD and scrubber gradients fade into it. A
+ * drift here shows up as a seam between the canvas and the chrome on it.
  */
 export const MAP_COLOURS = {
-  /** = `--map-ground` in style.css. */
-  ocean: '#080a0d',
+  /** = `--map-ground` in style.css: behind the planet, and what every scrim
+   *  fades into. */
+  space: '#080a0d',
+  /**
+   * The sea, a deep blue apart from `space`, so the planet stands out from the
+   * night around it by hue as well as by its rim. When the two were one tone
+   * the night limb's only edge was a 2px airglow and the disc read as grey
+   * land floating on black. Lightness is held at the land's own (1.0–1.1:1
+   * against `land`), so the land ramp still starts at the sea and a coastline
+   * is still `border`'s job; the blue is the difference.
+   */
+  ocean: '#061523',
   land: '#15181e',
   landHi: '#1b1f27',
   /**
@@ -114,6 +123,17 @@ export const MAP_COLOURS = {
    */
   labelDim: '#c5c9cf',
   labelHalo: '#05070a',
+  /**
+   * Makkah, the map's centre: a glow in the site's one gold, the dark half of
+   * `--brand` (`colour-system.test.js` holds them equal), as the app draws it.
+   * A glow and not a dot, because the gold is within a hair of `economy`'s.
+   */
+  makkah: '#c9a84c',
+  /**
+   * Makkah's name: the same gold lightened in OKLCH until it clears AA on the
+   * brightest land (4.72:1), where `makkah` itself measures 3.56:1.
+   */
+  makkahLabel: '#e3c266',
   /**
    * The prayer lines, and their labels.
    *
@@ -238,13 +258,9 @@ export const MAP_COLOURS = {
    * The atmosphere at the globe's limb.
    *
    * The one thing on this map drawn purely to say where something ends — and it
-   * is not decoration, it is the only mark that says the world is round.
-   * `ocean` is painted *behind* the canvas as well as on the sphere (see
-   * `.map-canvas-host` in style.css, and A3 in the plan this came from), which
-   * is what keeps the HUD seam intact; the cost of that choice is that space and
-   * sea are the same tone, so the limb has nothing to separate it from the void.
-   * The atmosphere is that separation, and it is the honest one — a planet's
-   * edge *is* its air.
+   * is not decoration: a planet's edge *is* its air. Space (`space`, behind the
+   * canvas) and the sea (`ocean`) differ by hue; this is the edge on the day
+   * side, the airglow below on the night side.
    *
    * 216°, the furniture family, because `border` and `prayer` are already there
    * and this is furniture in the strictest sense: it carries no value, so it
@@ -253,7 +269,7 @@ export const MAP_COLOURS = {
    * that is a fact about the *camera* rather than about the world.
    *
    * Measured, and the middle figure is the one that was chosen for:
-   * **1.45:1 against `ocean`**, so the rim is present and no louder than the
+   * **1.45:1 against `space`**, so the rim is present and no louder than the
    * prayer hairlines' ~1.5:1; **1.18:1 above `LAND_RAMP[0]`**, so it sits just
    * inside the ramp rather than under it; and **1.68:1 below `LAND_RAMP[4]`**,
    * so the brightest land the ground metric can paint still reads as more solid
@@ -275,19 +291,26 @@ export const MAP_COLOURS = {
    * (`sky-paint.ts`). `horizon` at 1.45:1 drew it, and on the night side the
    * planet still dissolved into space.
    *
-   * 2.2:1 against `ocean`, so the edge is seen; 1.11:1 below `LAND_RAMP[4]`, so
+   * 2.2:1 against `space`, so the edge is seen; 1.11:1 below `LAND_RAMP[4]`, so
    * the air stays dimmer than the brightest land; `horizon`'s hue at 28%
    * saturation, inside the genocide corridor.
    */
   airglow: '#384a64',
 } as const
 
-/** Category hues, low-saturation so four of them can coexist without shouting. */
+/**
+ * Category hues: one OKLCH lightness (0.70–0.72) and chroma 0.10–0.14, so the
+ * hue is what changes and no category outshines another. They were 0.63 to 0.74 in
+ * lightness, so an economy dot measured 8.45:1 on the sea against politics'
+ * 5.20 and won the eye on a hard-news map. Hues 35, 80, 195 and 268, each
+ * clear of the overlay that shares its side of the wheel; politics is the
+ * deepest of the four and 35° from the rose of a falling market.
+ */
 export const CATEGORY_COLOUR: Record<string, string> = {
-  politics: '#d2604a',
-  economy: '#d0a24a',
-  science: '#4fa0a4',
-  tech: '#8b96d4',
+  politics: '#e77b60',
+  economy: '#ca9c48',
+  science: '#49b8b8',
+  tech: '#8aa2e4',
 }
 
 export const CATEGORY_ORDER = ['politics', 'economy', 'science', 'tech']
@@ -344,12 +367,15 @@ export const OVERLAY_COLOUR = {
    * one unmuted tone on this map unspent.
    */
   thermal: '#d98a4a',
-  /** = `--map-straits` in style.css, which the chokepoint sparkline is drawn
-   *  in. Shares a hex with the site's `--brand` and means something else. */
-  straits: '#c9a84c',
-  /** Surge — traffic above baseline, the opposite story from the same number.
-   *  = `--map-straits-surge`. */
-  straitsSurge: '#5f9ea0',
+  /**
+   * A strait's traffic below its baseline, and above it (`straitsSurge`): a
+   * number that fell and rose, so `marketDown` and `marketUp`, the rail's own
+   * pair for the same rows. They were gold and teal, a second vocabulary
+   * beside the rail's, at 1.03:1 from economy and 1.00:1 from science.
+   * = `--map-straits` and `--map-straits-surge` in style.css.
+   */
+  straits: '#e68ba8',
+  straitsSurge: '#6cbb7e',
   conflict: '#c05252',
   /** Conflict marks are filled discs; this is the fill under the stroke. */
   conflictFill: '#8c2f2f',
@@ -408,17 +434,17 @@ export const OVERLAY_COLOUR = {
   /**
    * A market's direction on the day.
    *
-   * These are `--map-pos` and `--map-neg` from style.css, not new colours: the
-   * site already has a pair that means "a signed change", they already clear AA
-   * on every map surface, and a rising index is the same kind of fact as a
-   * rising indicator on an entity page. Introducing a second green would be
-   * asking the reader to learn a second vocabulary for one idea.
+   * `--map-pos` and `--map-neg`, and the same pair as the site's dark `--pos`
+   * and `--neg` and the app's: one green and one rose for "rose" and "fell"
+   * everywhere a move is printed. The map's were sage and clay, and its up
+   * stood 1.20:1 from a flat tick in chroma 0.055, so a rising market read as
+   * flat; its down sat at the fire and disaster marks' hue.
    *
-   * Muted on purpose, like everything else here. Thirty of these sit on the map
-   * at once, and the one unmuted tone on this display is spent on genocide.
+   * Green at 150° and rose at 0°, both at OKLCH 0.74–0.75 and chroma 0.12,
+   * under the genocide corridor's saturation cap (0.71).
    */
-  marketUp: '#9aab86',
-  marketDown: '#c08a6a',
+  marketUp: '#6cbb7e',
+  marketDown: '#e68ba8',
 } as const
 
 /**
@@ -653,32 +679,6 @@ export const DENSITY_STOPS: ReadonlyArray<readonly [number, number]> = [
 ] as const
 
 /**
- * The bloom's heat, from ember to near white, against a place's `heat`
- * (`placeHeat`: freshness times coverage, summed, under a square root). Two
- * fresh median stories are about 1.4, ten about 3.2, Washington's busiest
- * fortnight near 8; a week-old place falls back toward the ember whatever its
- * count.
- *
- * Warm and unsaturated at the low end, so a quiet place does not read as a
- * conflict mark. Its opacity tops out under two thirds and the layer sits under
- * the names, which keep their halo on it.
- */
-export const BLOOM_RAMP: ReadonlyArray<readonly [number, string]> = [
-  [0.6, '#4a3424'],
-  [1.5, '#8a5428'],
-  [3, '#c98432'],
-  [5, '#ebb45c'],
-  [8, '#fbdca0'],
-] as const
-
-/** `BLOOM_RAMP` as CSS stops, for the key's swatch: one table, so the two agree. */
-export const bloomCssRamp = (): string => {
-  const lo = BLOOM_RAMP[0][0]
-  const hi = BLOOM_RAMP[BLOOM_RAMP.length - 1][0]
-  return BLOOM_RAMP.map(([h, c]) => `${c} ${Math.round(((h - lo) / (hi - lo)) * 100)}%`).join(', ')
-}
-
-/**
  * `DENSITY_STOPS` as the tail of a `heatmap-color` interpolate expression, and
  * as CSS stops for the legend swatch.
  *
@@ -709,15 +709,54 @@ export const densityRamp = (): Array<number | string> =>
  * The toe is included as bare `ocean`, because "nothing here" is the first thing
  * the scale says and a gradient that opens mid-range hides it.
  */
-export const densityCssRamp = (): string => {
+export const densityCssRamp = (): string =>
+  [0, ...DENSITY_STOPS.filter(([, a]) => a > 0).map(([, a]) => a)]
+    .map((a, i, arr) => `${overOcean(a)} ${Math.round((i / (arr.length - 1)) * 100)}%`)
+    .join(', ')
+
+/** `MAP_COLOURS.density` at `alpha` over the ocean, as an opaque CSS colour. */
+const overOcean = (alpha: number): string => {
   const bg = [1, 3, 5].map((i) => Number.parseInt(MAP_COLOURS.ocean.slice(i, i + 2), 16))
   const fg = [1, 3, 5].map((i) => Number.parseInt(MAP_COLOURS.density.slice(i, i + 2), 16))
-  const visible = DENSITY_STOPS.filter(([, a]) => a > 0)
-  return [0, ...visible.map(([, a]) => a)]
-    .map((a, i, arr) => {
-      const rgb = fg.map((v, k) => Math.round(v * a + bg[k] * (1 - a)))
-      return `rgb(${rgb.join(' ')}) ${Math.round((i / (arr.length - 1)) * 100)}%`
-    })
+  return `rgb(${fg.map((v, k) => Math.round(v * alpha + bg[k] * (1 - alpha))).join(' ')})`
+}
+
+/**
+ * How a place's heat becomes the bloom: `[heat, alpha]` of the density wash's
+ * own tone. `story-bloom` is a heatmap whose centre density is the place's
+ * `heat` (`BLOOM_INTENSITY`), so this table reads in the same units as
+ * `placeHeat`: two fresh median stories are about 1.4, ten about 3.2,
+ * Washington's busiest fortnight near 8.
+ *
+ * One tone with the wash, never a hue: the dots carry the category, and a gold
+ * bloom made an economy dot vanish on it (1.01:1) and read as the strait and
+ * fire marks' family. A heatmap and not circles, so neighbouring places sum
+ * their heat and the ramp's top caps them; three blurred circles stacked their
+ * alpha to 0.93 over Europe. The top is 0.20 so a city name keeps 3:1 where
+ * the bloom lies on the wash's peak over the brightest land, and a dot keeps
+ * its fill or its rim (`map-geo.test.js`).
+ */
+export const BLOOM_STOPS: ReadonlyArray<readonly [number, number]> = [
+  [0, 0],
+  [0.6, 0],
+  [1, 0.06],
+  [2, 0.11],
+  [4, 0.16],
+  [7, 0.2],
+] as const
+
+export const bloomRamp = (): Array<number | string> =>
+  BLOOM_STOPS.flatMap(([h, a]) => [h, densityStop(a)])
+
+/**
+ * The bloom as a radial CSS gradient's stops for the key, hottest at the
+ * centre, composited over the ocean as `densityCssRamp` is: the alpha form
+ * would show a colour the map never draws.
+ */
+export const bloomCssRamp = (): string => {
+  const visible = BLOOM_STOPS.filter(([, a]) => a > 0).map(([, a]) => a)
+  return [...visible.reverse(), 0]
+    .map((a, i, arr) => `${overOcean(a)} ${Math.round((i / (arr.length - 1)) * 100)}%`)
     .join(', ')
 }
 
@@ -967,7 +1006,7 @@ export function buildStyle(v?: string): StyleSpecification {
      * `fog-*` is untouched: it requires 3D terrain, and there is none.
      */
     sky: {
-      'sky-color': MAP_COLOURS.ocean,
+      'sky-color': MAP_COLOURS.space,
       'horizon-color': MAP_COLOURS.horizon,
       /**
        * 0.2, not the 0.8 default, and the number was measured rather than
@@ -1304,7 +1343,9 @@ export function buildStyle(v?: string): StyleSpecification {
         // Was 2.4. See DETAIL_ZOOM: the globe opens at 2.36–3.00, so a floor of
         // 2.4 put city dots on the world view of every screen from 1920 up.
         minzoom: DETAIL_ZOOM,
-        filter: ['<=', ['get', 'r'], 4],
+        // Makkah is the map's own mark (`makkah-glow`, `makkah-label`), so the
+        // gazetteer's dot and name for it would be a second one beside it.
+        filter: ['all', ['<=', ['get', 'r'], 4], ['!=', ['get', 'n'], MAKKAH_LABEL]],
         paint: {
           // A national capital reads a touch heavier than a city that merely
           // happens to be large. Where a thing is decided is worth knowing on a
@@ -1324,7 +1365,12 @@ export function buildStyle(v?: string): StyleSpecification {
         // and Dikson all named on a view that used to carry country names alone.
         minzoom: DETAIL_ZOOM,
         // Rank gates density: only the most important places survive low zoom.
-        filter: ['<=', ['get', 'r'], ['+', 1, ['*', 1.6, ['zoom']]]],
+        // Makkah is left out for the reason `place-dots` gives.
+        filter: [
+          'all',
+          ['<=', ['get', 'r'], ['+', 1, ['*', 1.6, ['zoom']]]],
+          ['!=', ['get', 'n'], MAKKAH_LABEL],
+        ],
         layout: {
           'text-field': ['get', 'n'],
           'text-font': ['Source Sans 3 Regular'],

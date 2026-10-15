@@ -43,7 +43,7 @@ import { GLOBE_ZOOM, MAP_COLOURS } from './style'
  * the planet, lit from the sun's own direction so it is a crescent along the
  * day limb and unlit everywhere else. It stops at the limb, because there is no
  * geometry past it. This is the outward half, on the same crescent rule, in
- * `MAP_COLOURS.horizon`, measured at 1.45:1 against the ocean. MapLibre's half
+ * `MAP_COLOURS.horizon`, measured at 1.45:1 against space. MapLibre's half
  * takes its colour from its own shader, not from that token.
  *
  * Thickness is 5.5% of the disc radius. The real thing is nearer 1% — the
@@ -63,15 +63,14 @@ const HALO_WEDGES = 72
 /**
  * Airglow: the thin rim that goes all the way round, including the night side.
  *
- * Space and sea are the same tone by construction (`--map-ground` is
- * `MAP_COLOURS.ocean`), the night wash barely moves the ocean, and the
- * scattering crescent stops at the terminator. Without this, half the planet
- * has no edge and ends wherever the last coastline happens to be. Oxygen
+ * The scattering crescent stops at the terminator, and on the night side the
+ * sea is only a hue step from space. Without this, half the planet has a soft
+ * edge where it should have a line. Oxygen
  * recombining about 90 km up glows all round the real limb, which is why the
  * dark side of the earth has an edge in every photograph from orbit.
  *
  * Drawn as a line, not a wash, in its own token (`MAP_COLOURS.airglow`, 2.2:1
- * against the ocean, dimmer than the brightest land). `horizon` at 1.45:1 was
+ * against space, dimmer than the brightest land). `horizon` at 1.45:1 was
  * tried here first and the night limb still dissolved. Width is 2.2px: 1.6 read
  * as an artefact of the circle, and past ~3 it stops being an edge and becomes
  * a ring drawn round the planet.
