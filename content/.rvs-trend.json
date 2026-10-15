@@ -1,48 +1,5 @@
 [
   {
-    "ts": "2026-07-25T17:20:10.403Z",
-    "cycleId": "2026-07-25T17-20",
-    "cycleHour": "17",
-    "schema": 2,
-    "rvs": 71.56,
-    "clusters": {
-      "picking": null,
-      "writing": 83.33,
-      "briefing": null,
-      "sourcing": 34.87,
-      "coverage": 92.56
-    },
-    "articleCount": 9,
-    "briefCount": 0,
-    "guardrailFailures": [
-      "article 2026-07-25-syria-bus-crash-deir-ezzor-road-postwar-infrastructure has source with country:null",
-      "category economy below floor 3 (got 2)",
-      "category science below floor 2 (got 1)"
-    ],
-    "degenerate": false
-  },
-  {
-    "ts": "2026-07-25T22:17:53.108Z",
-    "cycleId": "2026-07-25T22-17",
-    "cycleHour": "22",
-    "schema": 2,
-    "rvs": 73.03,
-    "clusters": {
-      "picking": null,
-      "writing": 91.67,
-      "briefing": null,
-      "sourcing": 43.33,
-      "coverage": 77.87
-    },
-    "articleCount": 9,
-    "briefCount": 0,
-    "guardrailFailures": [
-      "category economy below floor 3 (got 2)",
-      "category science below floor 2 (got 1)"
-    ],
-    "degenerate": false
-  },
-  {
     "ts": "2026-07-26T08:21:20.736Z",
     "cycleId": "2026-07-26T08-21",
     "cycleHour": "08",
@@ -6903,6 +6860,44 @@
     "guardrailFailures": [
       "category tech below floor 3 (got 2)"
     ],
+    "degenerate": false
+  },
+  {
+    "ts": "2026-10-15T10:16:41.067Z",
+    "cycleId": "2026-10-15T10-16",
+    "runId": "2026-10-15_1003",
+    "cycleHour": "10",
+    "schema": 3,
+    "rvs": 76.79,
+    "clusters": {
+      "picking": null,
+      "writing": 88.64,
+      "briefing": null,
+      "sourcing": 61.82,
+      "coverage": 75.96
+    },
+    "articleCount": 11,
+    "briefCount": 0,
+    "guardrailFailures": [],
+    "degenerate": false
+  },
+  {
+    "ts": "2026-10-15T14:17:59.939Z",
+    "cycleId": "2026-10-15T14-17",
+    "runId": "2026-10-15_1403",
+    "cycleHour": "14",
+    "schema": 3,
+    "rvs": 84.11,
+    "clusters": {
+      "picking": null,
+      "writing": 94.23,
+      "briefing": null,
+      "sourcing": 57.69,
+      "coverage": 97.05
+    },
+    "articleCount": 13,
+    "briefCount": 0,
+    "guardrailFailures": [],
     "degenerate": false
   }
 ]
