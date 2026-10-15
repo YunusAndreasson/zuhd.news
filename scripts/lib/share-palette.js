@@ -13,5 +13,5 @@
 // `_map/style.ts`.
 export const SHARE_PALETTE = {
   light: { text: '#1a1a1a', textSecondary: '#555', rule: '#e8e8e8', bgSoft: '#fafafa', bg: '#fff' },
-  dark: { text: '#d4d4d4', textSecondary: '#a3a3a3', rule: '#181818', bgSoft: '#1a1a1a', bg: '#080808' },
+  dark: { text: '#d4d4d4', textSecondary: '#a3a3a3', rule: '#2a2a2a', bgSoft: '#1a1a1a', bg: '#080808' },
 }

@@ -2264,7 +2264,7 @@ if (process.env.SKIP_OG === '1') {
   // v5: rasterizeSvg switched from `fontBuffers` to `fontFiles` (every cached
   // card was a monospace-metric render), and the title measure was retuned for
   // the real advances that change exposed.
-  const OG_VERSION = 'v6' // bump when og-image.js rendering changes
+  const OG_VERSION = 'v7' // bump when og-image.js rendering changes
   mkdirSync(OG_CACHE_DIR, { recursive: true })
   const ogStart = Date.now()
   let cached = 0

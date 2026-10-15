@@ -100,7 +100,7 @@ test('the card a page names is a file the build actually wrote', (t) => {
     if (!path) continue
     const html = readFileSync(path, 'utf8')
     for (const url of [og(html, 'og:image'), tw(html, 'twitter:image')].filter(Boolean)) {
-      // The query is a cache-buster, not part of the path. `/og-image.png?v=2`
+      // The query is a cache-buster, not part of the path. `/og-image.png?v=3`
       // exists to make X and Facebook re-scrape a card whose URL is permanent
       // and whose old contents they have held since April; on disk it is still
       // `/og-image.png`, and a test that resolved the query would fail the day

@@ -58,12 +58,13 @@ export const getAssets = () => {
 // `bg` is card chrome (the dark card is deliberately `#141414`, not the
 // site's `#080808`, and untouched by the ghost-globe fix above), `soft` and
 // `land` are the globe-specific palette that fix already corrected, and
-// `dot` matches the live site's `--brand` exactly in both variants.
+// `dot` matches the live site's `--brand` exactly in both variants: the gold
+// darkened on white, as `--brand` is, to clear 3:1.
 export const themeFor = (variant = 'light') => {
   const p = SHARE_PALETTE[variant === 'dark' ? 'dark' : 'light']
   return variant === 'dark'
     ? { bg: '#141414', fg: p.text, soft: '#1a1a1a', rule: p.rule, dim: p.textSecondary, dot: '#c9a84c', land: '#2a2a2a' }
-    : { bg: p.bg, fg: p.text, soft: '#f0f0f0', rule: p.rule, dim: p.textSecondary, dot: '#c9a84c', land: '#c9c9c9' }
+    : { bg: p.bg, fg: p.text, soft: '#f0f0f0', rule: p.rule, dim: p.textSecondary, dot: '#8f7224', land: '#c9c9c9' }
 }
 
 const W = 1200
