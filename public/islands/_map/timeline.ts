@@ -166,7 +166,7 @@ export function createTimeline(opts: TimelineOptions): Timeline {
   const liveBtn = document.createElement('button')
   liveBtn.type = 'button'
   liveBtn.className = 'map-timeline-live'
-  liveBtn.textContent = 'back to live'
+  liveBtn.textContent = 'Back to live'
   liveBtn.hidden = true
 
   if (opts.lead) head.append(opts.lead)
@@ -328,7 +328,7 @@ export function createTimeline(opts: TimelineOptions): Timeline {
     palette ??= readPalette()
     const { dim, mid, bright, family } = palette
 
-    const axisH = 12
+    const axisH = 14
     const barH = h - axisH - 2
     const xOf = (t: number) => ((t - start) / span) * w
 
@@ -361,7 +361,9 @@ export function createTimeline(opts: TimelineOptions): Timeline {
     }
 
     // Day columns first — the axis the histogram sits on.
-    ctx.font = `9px ${family}`
+    // 11px, the type scale's floor (`--size-3xs`): the dates were the one text
+    // on the page set under it.
+    ctx.font = `11px ${family}`
     ctx.textBaseline = 'alphabetic'
     /**
      * How many days a drawn column stands for.
@@ -371,17 +373,17 @@ export function createTimeline(opts: TimelineOptions): Timeline {
      * loop drew a hairline and a numeral for every day unconditionally and was
      * correct by the span being a constant. Once the time range gained a 30d and
      * a 90d step the span became an input: ninety days across ~1100px is 12px a
-     * day, and a 9px "23" is about 11px wide before the 3px offset — so every
+     * day, and an 11px "23" is about 13px wide before the 3px offset — so every
      * label overlapped its neighbour and ninety hairlines drew a picket fence
      * where a calendar had been.
      *
-     * 20px is the measured floor for a two-digit label plus its offset and a
-     * gap. What comes out: 1 at a fortnight (unchanged), 2 at a month, 4 at a
+     * 24px is the floor for a two-digit label plus its offset and a gap.
+     * What comes out: 1 at a fortnight (unchanged), 2 at a month, 4 at a
      * quarter — so the axis thins to every other day and then to roughly weekly,
      * and stays a calendar at every step.
      */
     const dayPx = (DAY_MS / span) * w
-    const stride = Math.max(1, Math.ceil(20 / Math.max(dayPx, 1)))
+    const stride = Math.max(1, Math.ceil(24 / Math.max(dayPx, 1)))
     let dayIndex = -1
     for (let day = start; day <= end; day += DAY_MS) {
       dayIndex++
@@ -403,14 +405,14 @@ export function createTimeline(opts: TimelineOptions): Timeline {
       const label = d.getUTCDate() === 1 ? MONTHS[d.getUTCMonth()] : String(d.getUTCDate())
       ctx.fillStyle = isCurrent ? bright : mid
       // 0.9, not the 0.55 this was. These are the dates — the thing that makes
-      // the rail a calendar rather than a slider — set at 9px, and under the
+      // the rail a calendar rather than a slider — set at the floor, and under the
       // old stack (site `--text-dim`, 0.55 here, 0.6 on the wrapper) they
       // composited to **1.51:1** against the ground. `--map-ink-dim` at 0.9 is
       // 4.65:1, which clears AA; the day under the head stays `--map-ink` so
       // "which day am I on" is still the loudest thing on the axis.
       ctx.globalAlpha = isCurrent ? 1 : 0.9
       ctx.textAlign = 'left'
-      if (x + 18 < w) ctx.fillText(label, x + 3, h - 2)
+      if (x + 21 < w) ctx.fillText(label, x + 3, h - 2)
     }
     ctx.globalAlpha = 1
 

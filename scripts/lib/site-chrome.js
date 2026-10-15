@@ -31,15 +31,14 @@ export const WORDMARK =
   '<a href="/" class="wordmark">zuhd<span class="wordmark-dot">.</span><span class="wordmark-tld">news</span></a>'
 
 /**
- * The header the four archetype pages share — article, country, category,
- * entity. The map and the document pages have their own (a map reset and a
- * `← map` link respectively), so they are deliberately not built from this.
- * The way home is `← map` here as it is there: `/` is the map, and this link
- * said `All stories` for the list the homepage used to be.
+ * The header every page but the map wears — article, country, category,
+ * entity and the documents. The map has its own (the wordmark is its reset).
+ * The way home is `← Map`: `/` is the map, and this link said `All stories`
+ * for the list the homepage used to be.
  */
 export const ARCHETYPE_HEADER = `<header class="article-page-header">
     ${WORDMARK}
-    <a href="/" class="article-back-link" aria-label="Back to the map">← map</a>
+    <a href="/" class="article-back-link" aria-label="Back to the map">← Map</a>
   </header>`
 
 /**
@@ -47,17 +46,16 @@ export const ARCHETYPE_HEADER = `<header class="article-page-header">
  * `shared/share.ts` because the app and the islands need them too; these appear
  * only in HTML this repo generates, so they stop here.
  *
- * They are also the `sameAs` list on the Person node in the homepage's JSON-LD.
- * That copy is still written out by hand in `templates/index.html` — it is one
- * literal inside a much larger graph, and templating the graph is a separate
- * change from de-duplicating the footer.
+ * The `sameAs` list on the Person node in the homepage's JSON-LD is longer:
+ * it also claims the maker's x and instagram, which the footer leaves to the
+ * masthead's row. It is written out by hand in `templates/index.html`.
  */
 const MAKER_URL = 'https://andreassonphoto.com/about'
+// Not the maker's x or instagram: the masthead's row above already prints
+// those two words, and the same label twice reads as one link twice.
 const MAKER_LINKS = [
-  ['github', 'https://github.com/YunusAndreasson'],
-  ['x', 'https://x.com/YunusAndreasson'],
-  ['instagram', 'https://www.instagram.com/andreasson.photo/'],
-  ['linkedin', 'https://www.linkedin.com/in/yunusandreasson/'],
+  ['GitHub', 'https://github.com/YunusAndreasson'],
+  ['LinkedIn', 'https://www.linkedin.com/in/yunusandreasson/'],
 ]
 
 /**
@@ -71,10 +69,10 @@ const MAKER_LINKS = [
  * miniature.
  */
 const DOCS = [
-  ['about', 'about'],
-  ['contact', 'contact'],
-  ['mcp', 'mcp'],
-  ['privacy', 'privacy'],
+  ['About', 'about'],
+  ['Contact', 'contact'],
+  ['MCP', 'mcp'],
+  ['Privacy', 'privacy'],
 ]
 
 /**
@@ -115,10 +113,10 @@ export const siteFooter = (share) => {
     ([label, doc]) => `<a href="/${doc}" data-island="doc-sheet" data-doc="${doc}">${label}</a>`,
   ).join('\n      ')
   const social = [
-    ['x', share.SOCIAL_X],
-    ['instagram', share.SOCIAL_INSTAGRAM],
-    ['iphone', share.APP_IOS],
-    ['android', share.APP_ANDROID],
+    ['X', share.SOCIAL_X],
+    ['Instagram', share.SOCIAL_INSTAGRAM],
+    ['iPhone', share.APP_IOS],
+    ['Android', share.APP_ANDROID],
   ]
     .map(
       ([label, href], i) =>
@@ -139,7 +137,7 @@ export const siteFooter = (share) => {
       ${social}
     </nav>
     <nav class="footer-maker" aria-label="Maker">
-      <a class="footer-byline" href="${MAKER_URL}" target="_blank" rel="me noopener noreferrer">made by yunus andreasson</a>
+      <a class="footer-byline" href="${MAKER_URL}" target="_blank" rel="me noopener noreferrer">Made by Yunus Andreasson</a>
       <span class="footer-maker-links">
         ${maker}
       </span>
