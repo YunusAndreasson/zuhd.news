@@ -333,6 +333,40 @@ test('a genocide card pinned from its mark dims nothing, as a story’s does not
   }
 })
 
+test('a hover over Makkah while another card is pinned starts nothing', async () => {
+  // The countdown once started anyway, wrote its minutes into the pinned
+  // card's hero and, when the prayer entered, replaced that card with Makkah's.
+  const env = setupDom()
+  const realSet = globalThis.setInterval
+  let timers = 0
+  globalThis.setInterval = /** @type {typeof setInterval} */ (
+    /** @type {unknown} */ (
+      (/** @type {() => void} */ fn, /** @type {number} */ ms) => {
+        timers++
+        return realSet(fn, ms)
+      }
+    )
+  )
+  try {
+    const { createSheet } = await import(bundlePath)
+    const sheet = createSheet()
+    sheet.dockTo(null)
+    sheet.showMarket(EXCHANGE, true, undefined, true)
+    const before = sheet.element.textContent
+    sheet.showMakkah(Date.parse('2026-10-15T10:00:00Z'), false)
+    assert.equal(timers, 0, 'no countdown for a card that was not drawn')
+    assert.equal(sheet.element.textContent, before, 'the pinned card is untouched')
+    // Pinned, it draws and counts.
+    sheet.showMakkah(Date.parse('2026-10-15T10:00:00Z'), true, true)
+    assert.equal(timers, 1)
+    assert.match(sheet.element.textContent, /Makkah/)
+    sheet.destroy()
+  } finally {
+    globalThis.setInterval = realSet
+    env.restore()
+  }
+})
+
 test('an exchange card leads with the move the mark was drawn from', async () => {
   // The mark, the panel row and this hero are one reading over the range the
   // timeline is set to. A card that led with the day's move under a tick drawn

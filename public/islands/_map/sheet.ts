@@ -621,6 +621,10 @@ export function createSheet(): Sheet {
     new Date(t + fmt.zoneOffset(t, fmt.MAKKAH_TZ)).toISOString().slice(11, 16)
 
   const showMakkah = (now: number, pin: boolean, docked = false) => {
+    // A hover over a pinned card draws nothing (`render` returns early), and
+    // must start nothing either: the countdown would write into that card and
+    // replace it when the prayer entered.
+    if (pinned && !pin) return
     const tz = fmt.MAKKAH_TZ
     const prayers = nextPrayers(now)
     const next = prayers[0]
