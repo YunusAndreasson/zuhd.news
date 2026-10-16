@@ -26,7 +26,7 @@ import {
   withTiming,
 } from 'react-native-reanimated';
 import { scheduleOnRN } from 'react-native-worklets';
-import { type ColorPalette, SPACING } from '../../constants/theme';
+import { ANIMATION, type ColorPalette, EASING, SPACING } from '../../constants/theme';
 import { useTheme } from '../../hooks/useTheme';
 import { nearestIndex } from '../../lib/arrays';
 import { citedLabels } from '../../lib/cards/card-chart';
@@ -103,6 +103,10 @@ const SCRUB_VALUE_LINE_H = 16;
 const SCRUB_PERIOD_LINE_H = 14;
 /** The line under the day: how far the reading has moved since. */
 const SCRUB_MOVE_LINE_H = 18;
+/** The crosshair answers a finger landing on the chart, as a press does, and
+ *  leaves at the pace the scrub's tooltip does. */
+const CROSSHAIR_IN = { duration: ANIMATION.press, easing: EASING.out } as const;
+const CROSSHAIR_OUT = { duration: ANIMATION.fast, easing: EASING.out } as const;
 
 function resolveHighlightIndex(values: number[], mode: TrendHighlight | undefined): number {
   if (values.length === 0) return -1;
@@ -228,7 +232,7 @@ const Chart = memo(function Chart({
   });
 
   const crosshairOpacity = useDerivedValue(() =>
-    scrubIdx.value >= 0 ? withTiming(1, { duration: 80 }) : withTiming(0, { duration: 120 }),
+    scrubIdx.value >= 0 ? withTiming(1, CROSSHAIR_IN) : withTiming(0, CROSSHAIR_OUT),
   );
   const crosshairP1 = useDerivedValue(() => {
     const idx = scrubIdx.value;

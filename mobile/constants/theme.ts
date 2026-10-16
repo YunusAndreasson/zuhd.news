@@ -574,8 +574,8 @@ export const STALE_THRESHOLD = 5 * 60 * 1000; // 5 minutes
  * **Every spring states its mass, or is written as `duration`/`dampingRatio`.**
  * Reanimated 4 merges a config over `GentleSpringConfig`, whose mass is 4, so a
  * spring given only `damping` and `stiffness` quietly became a quarter as stiff
- * as it was tuned: `spring` below settled in ~2.6 s at ζ≈0.25 instead of ~0.65 s,
- * and `springSoft` wobbled the scrub tooltip. The masses here are the ones each
+ * as it was tuned: a swiped row's spring settled in ~2.6 s at ζ≈0.25 instead of
+ * ~0.65 s, and `springSoft` wobbled the scrub tooltip. The masses here are the ones each
  * spring was tuned against. `__tests__/motion-tokens.test.ts` holds the rule.
  *
  * **Reduce Motion is the library's job, except where it must not be.** Every
@@ -595,7 +595,6 @@ export const ANIMATION = {
   slow: 400,
   /** Playback-tracking / long continuous tweens (e.g. progress fills). */
   long: 1000,
-  spring: { damping: 12, stiffness: 150, mass: 1 },
   /** Snappier spring for gesture starts (scrub tooltips, pull handles). */
   springSoft: { damping: 20, stiffness: 300, mass: 1 },
   /** A scrub tooltip popping up under the finger: a little overshoot says "here". */

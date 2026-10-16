@@ -13,7 +13,7 @@ import Animated, {
   withSpring,
 } from 'react-native-reanimated';
 import { scheduleOnRN } from 'react-native-worklets';
-import { ANIMATION, SPACING } from '../constants/theme';
+import { ANIMATION, KEEP_MOTION, SPACING } from '../constants/theme';
 import { useTheme } from '../hooks/useTheme';
 import { hapticTick } from '../lib/haptics';
 import { Text } from './primitives';
@@ -73,7 +73,14 @@ export const SwipeableRow = memo(function SwipeableRow({
         // `withSpring` is assigned, reading `.value` yields the in-flight
         // animated value, not where the finger let go.
         const released = translateX.value;
-        translateX.value = withSpring(0, ANIMATION.spring);
+        // The hand's motion carried home, as a back swipe's is
+        // (`useSwipeBack`): the sheet's spring, so the row stops at zero
+        // instead of wobbling past it, and kept under Reduce Motion.
+        translateX.value = withSpring(0, {
+          ...ANIMATION.springSheet,
+          ...KEEP_MOTION,
+          velocity: e.canceled ? 0 : e.velocityX,
+        });
         // A cancelled swipe (a sheet dragged away, a system gesture) also
         // deactivates, and must only spring back — it deleted the row once.
         if (!e.canceled && released < SWIPE_THRESHOLD) {

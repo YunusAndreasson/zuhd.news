@@ -13,7 +13,7 @@ import Animated, {
   type SharedValue,
   useAnimatedStyle,
 } from 'react-native-reanimated';
-import { RADIUS, SPACING } from '../constants/theme';
+import { ANIMATION, EASING, RADIUS, SPACING } from '../constants/theme';
 import { type Scrub, STEM_WIDTH } from '../hooks/useScrub';
 import { segmentLayout } from '../lib/scrub-segments';
 import { Text } from './primitives';
@@ -63,7 +63,7 @@ const PLAYHEAD_DOWN = 5;
  * what made a return look glitchy. Layout-driven, so it runs only when a
  * cell's place or size changes; Reduce Motion snaps it (`ReduceMotion.System`).
  */
-const CELL_MOVE = LinearTransition.duration(250);
+const CELL_MOVE = LinearTransition.duration(ANIMATION.normal).easing(EASING.out);
 
 /** Room for a mark's label, `18h` in 11pt tabular, centred on the mark. */
 export const MARK_LABEL_WIDTH = 28;

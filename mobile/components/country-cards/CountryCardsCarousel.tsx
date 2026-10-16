@@ -9,12 +9,14 @@ import {
   View,
 } from 'react-native';
 import Animated, {
+  interpolate,
+  interpolateColor,
   useAnimatedStyle,
   useReducedMotion,
   useSharedValue,
   withTiming,
 } from 'react-native-reanimated';
-import { ANIMATION, EASING, SPACING } from '../../constants/theme';
+import { ANIMATION, EASING, OPACITY, SPACING } from '../../constants/theme';
 import { useTheme } from '../../hooks/useTheme';
 import { countryTrajectories } from '../../lib/country-cards';
 import { hapticSwipe } from '../../lib/haptics';
@@ -151,6 +153,9 @@ export const CountryCardsCarousel = memo(function CountryCardsCarousel({
 });
 
 const DOT = 4;
+/** A card not in front: a size step down, as well as an ink step. */
+const DOT_QUIET = 3;
+const DOT_MOVE = { duration: ANIMATION.fast, easing: EASING.out } as const;
 
 function DotIndicator({
   count,
@@ -184,20 +189,21 @@ function DotIndicator({
 }
 
 function Dot({ on, dim, accent }: { on: boolean; dim: string; accent: string }) {
-  const opacity = useSharedValue(on ? 1 : 0.35);
-  const scale = useSharedValue(on ? 1 : 0.75);
+  // One move from quiet to current: ink, size and the decorative fade ride it
+  // together, so the dot no longer changes colour a frame before it grows.
+  const progress = useSharedValue(on ? 1 : 0);
 
   useEffect(() => {
-    opacity.value = withTiming(on ? 1 : 0.35, { duration: ANIMATION.fast, easing: EASING.out });
-    scale.value = withTiming(on ? 1 : 0.75, { duration: ANIMATION.fast, easing: EASING.out });
-  }, [on, opacity, scale]);
+    progress.value = withTiming(on ? 1 : 0, DOT_MOVE);
+  }, [on, progress]);
 
   const animStyle = useAnimatedStyle(() => ({
-    opacity: opacity.value,
-    transform: [{ scale: scale.value }],
+    backgroundColor: interpolateColor(progress.value, [0, 1], [dim, accent]),
+    opacity: interpolate(progress.value, [0, 1], [OPACITY.muted, 1]),
+    transform: [{ scale: interpolate(progress.value, [0, 1], [DOT_QUIET / DOT, 1]) }],
   }));
 
-  return <Animated.View style={[styles.dot, { backgroundColor: on ? accent : dim }, animStyle]} />;
+  return <Animated.View style={[styles.dot, animStyle]} />;
 }
 
 const styles = StyleSheet.create({

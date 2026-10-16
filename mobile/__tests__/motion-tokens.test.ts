@@ -4,8 +4,8 @@ import { DECK_CURVE_MS, DECK_SETTLE_MS, FLIGHT_MIN_MS } from '../lib/globe-camer
 
 // Reanimated 4 merges a spring's config over `GentleSpringConfig`, whose mass is
 // 4. A token that named only damping and stiffness therefore ran at a quarter
-// of the stiffness it was tuned at — `ANIMATION.spring` took ~2.6 s to stop
-// wobbling a swiped row back into place. Every spring here states the physics
+// of the stiffness it was tuned at — a swiped row's spring took ~2.6 s to stop
+// wobbling back into place. Every spring here states the physics
 // it means: a mass, or a perceived duration and damping ratio.
 const springs: [string, object][] = Object.entries(ANIMATION).flatMap(([name, value]) =>
   typeof value === 'object' && value !== null ? [[name, value] as [string, object]] : [],

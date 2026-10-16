@@ -296,7 +296,8 @@ Android uses `performAndroidHapticsAsync` only.
 
 ## Anti-patterns
 
-- A `lineHeight`, spacing literal or opacity decimal in a component.
+- A `lineHeight`, spacing literal, opacity decimal, duration or spring in a
+  component (`__tests__/motion-literals.test.ts`).
 - An icon that only pads a label.
 - `expo-symbols` imported outside `Icon.ios.tsx`.
 - A shadow, blur or gradient outside the carve-outs.

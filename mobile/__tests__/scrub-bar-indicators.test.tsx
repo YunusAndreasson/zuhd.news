@@ -17,7 +17,7 @@ Object.assign(jest.requireMock('react-native'), { View: passthrough });
 Object.assign(Reanimated.default, { View: passthrough });
 let styles = 0;
 Object.assign(Reanimated, {
-  LinearTransition: { duration: () => ({}) },
+  LinearTransition: { duration: () => ({ easing: () => ({}) }) },
   useAnimatedStyle: () => {
     styles += 1;
     return {};
