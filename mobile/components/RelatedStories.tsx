@@ -37,9 +37,10 @@ export function RelatedStories({ articles, onArticlePress, entering }: RelatedSt
       <Text variant="labelSm" accessibilityRole="header" style={styles.heading}>
         related stories
       </Text>
-      {articles.map((a) => (
+      {articles.map((a, i) => (
         <ArticleRow
           key={a.slug}
+          first={i === 0}
           slug={a.slug}
           title={a.title}
           time={articleTime(a)}

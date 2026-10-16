@@ -194,9 +194,10 @@ export const OverlayBody = memo(function OverlayBody({
                 {related.length === 1 ? 'in the news' : `${related.length} stories`}
               </Text>
               {/* The river's own row: a story looks the same in every list. */}
-              {related.map((a) => (
+              {related.map((a, i) => (
                 <ArticleRow
                   key={a.slug}
+                  first={i === 0}
                   slug={a.slug}
                   title={a.title}
                   time={articleTime(a)}
