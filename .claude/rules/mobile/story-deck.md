@@ -125,7 +125,10 @@ paths:
   straight after the text, set to the right, no rule above or below, no count
   on `sources`, with an always-mounted 16pt fade over it. Never pin it to the
   sheet's foot with a hole under short stories.
-- Stories use the full reading width. The next card does not peek.
+- A story is its column (`readingWidth`), centred in a slot as wide as the
+  window; the sheet, the swipe's pitch and the three slots stay window-wide.
+  The next card does not peek. `StoryMeasure` and `openHeightNeedsMeasuring`
+  read the column's width, never the window's.
 - The end card says `caught up` only when no new story is unread.
 - `threadSummary` is never rendered: it is the desk's note to the writer. A
   thread kicker needs `threadArticleCount > 1`.

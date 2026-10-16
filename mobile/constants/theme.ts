@@ -644,6 +644,12 @@ export const LAYOUT = {
   /** A segmented control's height at the default type size — Apple's 44pt
    *  minimum target, and it grows with the reader's text size. */
   controlHeight: 44,
+  /** The widest a story's column is set, its `articlePadding` included: a
+   *  532pt line, about 62 characters of the 19pt body a wide window draws and
+   *  70 of 17pt, inside the 45–75 a reading line wants. Phones in portrait
+   *  (to ~440pt) never reach it; a tablet, an unfolded phone or a resized
+   *  window does, and its story is this column, centred (`readingWidth`). */
+  readingMax: 560,
 } as const;
 
 /** Editorial thresholds — not layout, but shared across components */

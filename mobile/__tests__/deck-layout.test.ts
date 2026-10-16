@@ -5,15 +5,18 @@ import {
   computeDeckLayout,
   type DeckLayoutInput,
   LEDE_GAP_RATIO,
+  lineCharsBound,
   openHeightNeedsMeasuring,
   openStoryHeight,
+  readingWidth,
 } from '../lib/deck-layout';
 import { makeMarkdownStyles } from '../lib/markdown';
 
-// Line heights as `makeTextVariants` resolves them on a 360-wide window
-// (`fs` scale 0.96): caption 12×1.55, labelXs 11×1.55, title 20×1.2, body 16×1.55.
+// Line heights for a 360-wide window (type scale 0.96: caption 12, labelXs 11,
+// title 20, body 16) and a 430-wide one (scale 1.1: 14, 12, 23, 19), at the
+// 1.55 body leading. The arithmetic under test takes the lines as given, so
+// the fixtures stand however the variants' leading moves.
 const SMALL_LINES = { caption: 18.6, labelXs: 17.05, title: 24, body: 24.8 };
-// And on a 430-wide one (scale 1.1): caption 14, labelXs 12, title 23, body 19.
 const LARGE_LINES = { caption: 21.7, labelXs: 18.6, title: 27.6, body: 29.45 };
 const CAPS = { caption: 1.5, labelXs: 1.4, title: 1.3, body: 1.5 };
 
@@ -24,6 +27,7 @@ function tall(overrides: Partial<DeckLayoutInput> = {}): DeckLayoutInput {
     chromeHeight: 171,
     bottomInset: 34,
     fontScale: 1,
+    bodySize: 19,
     lines: LARGE_LINES,
     caps: CAPS,
     ...overrides,
@@ -37,6 +41,7 @@ function small(overrides: Partial<DeckLayoutInput> = {}): DeckLayoutInput {
     chromeHeight: 128,
     bottomInset: 24,
     fontScale: 1,
+    bodySize: 16,
     lines: SMALL_LINES,
     caps: CAPS,
     ...overrides,
@@ -149,6 +154,57 @@ describe('openStoryHeight', () => {
   });
 });
 
+// A short, wide window: a tablet in landscape, an unfolded phone.
+function wide(overrides: Partial<DeckLayoutInput> = {}): DeckLayoutInput {
+  return {
+    width: 1280,
+    height: 800,
+    chromeHeight: 96,
+    bottomInset: 24,
+    fontScale: 1,
+    bodySize: 19,
+    lines: LARGE_LINES,
+    caps: CAPS,
+    ...overrides,
+  };
+}
+
+describe('a wide window', () => {
+  it('sets the story in a column no wider than a reading line wants', () => {
+    expect(readingWidth(360)).toBe(360);
+    expect(readingWidth(430)).toBe(430);
+    for (const width of [700, 900, 1280]) expect(readingWidth(width)).toBe(560);
+  });
+
+  it('sizes the sheet from the type and the height, not the width', () => {
+    const at = (width: number) => computeDeckLayout(wide({ width }));
+    for (const width of [700, 1280]) {
+      expect(at(width).peek).toBe(at(430).peek);
+      expect(at(width).full).toBe(at(430).full);
+      expect(at(width).band).toBe(at(430).band);
+    }
+  });
+
+  it('sizes the globe by its band when the window is short, by its width when narrow', () => {
+    const landscape = computeDeckLayout(wide());
+    expect(landscape.radius).toBe(Math.round(0.46 * landscape.band));
+    const portrait = computeDeckLayout(wide({ width: 800, height: 1280 }));
+    expect(portrait.radius).toBe(Math.round(0.46 * Math.min(800, portrait.band)));
+    const square = computeDeckLayout(wide({ width: 900, height: 900 }));
+    expect(square.radius).toBe(Math.round(0.46 * Math.min(900, square.band)));
+  });
+
+  it('bounds a line at no more characters than the widest column holds', () => {
+    for (let width = 320; width <= 1400; width += 20) {
+      expect(lineCharsBound(wide({ width }))).toBeLessThanOrEqual(70);
+    }
+    for (const phone of [tall(), small()]) {
+      expect(lineCharsBound(phone)).toBeGreaterThanOrEqual(48);
+      expect(lineCharsBound(phone)).toBeLessThanOrEqual(55);
+    }
+  });
+});
+
 describe('openHeightNeedsMeasuring', () => {
   // A typical story at the writer's budget: ~480 characters over five blocks.
   const typical = [
@@ -177,6 +233,12 @@ describe('openHeightNeedsMeasuring', () => {
   it('measures on a tall window, where the cap leaves room for a whole story', () => {
     const stories = Array.from({ length: 44 }, () => typical);
     expect(openHeightNeedsMeasuring(tall({ width: 1024, height: 1366 }), stories)).toBe(true);
+  });
+
+  it('measures in a wide window, whose column holds more of a story on a line', () => {
+    const stories = Array.from({ length: 44 }, () => typical);
+    expect(openHeightNeedsMeasuring(wide(), stories)).toBe(true);
+    expect(openHeightNeedsMeasuring(wide({ width: 430 }), stories)).toBe(false);
   });
 
   it('counts a link as the words it prints, not its markdown', () => {

@@ -32,6 +32,7 @@ import { citedLabels } from '../../lib/cards/card-chart';
 import { chartScale, partLabels } from '../../lib/cards/chart-scale';
 import type { CardDelta } from '../../lib/cards/types';
 import { clearLabelSpot } from '../../lib/chart-label';
+import { readingWidth } from '../../lib/deck-layout';
 import { hapticTick } from '../../lib/haptics';
 import { DeltaChip } from '../DeltaChip';
 import { Pressable, Text } from '../primitives';
@@ -623,7 +624,7 @@ export const TrendBlock = memo(function TrendBlock({
   const { width: windowWidth } = useWindowDimensions();
   // Match the article column on the first paint; onLayout supplies the exact
   // measured width after layout settles.
-  const [width, setWidth] = useState(() => windowWidth - SPACING.articlePadding * 2);
+  const [width, setWidth] = useState(() => readingWidth(windowWidth) - SPACING.articlePadding * 2);
 
   const xLayout = useMemo(
     () =>

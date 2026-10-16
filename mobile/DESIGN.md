@@ -29,6 +29,7 @@ loads with the files it covers; this document is what things look like.
 | `mark*`, `categoryText*` | Globe marks, in the web map's hues; a category's word |
 | `SPACING` | `articlePadding` insets the reading column, `screenPadding` sheets |
 | `GAP`, `RADIUS`, `FLAG`, `OPACITY` | Named tiers; never a literal |
+| `LAYOUT` | Fixed sizes: a row's and a control's least height, a sheet's ceiling, the story column's widest (`readingMax`) |
 | `ICON` | Four sizes; `xs` only for a move chip's caret |
 | `HIT_SLOP`, `INLINE_HIT_SLOP` | Tap targets; the second for links in prose |
 
@@ -231,6 +232,9 @@ groups them:
 ### The map screen
 
 - `app/index.tsx` is the only route. Anything else is a sheet.
+- A story is a column at most `LAYOUT.readingMax` wide, centred. The sheet's
+  ground, the swipe, the strip, the dock's track and the floating chrome run
+  the window's width: prose takes the column, chrome the window.
 - The top bar's ground is a gradient of `bg` (`Shade` in `MapHeader`), never
   a plate. Keep `SHADE_ROW` at 0.82 or above: under it, secondary ink over
   city lights fails AA.

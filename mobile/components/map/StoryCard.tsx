@@ -19,7 +19,13 @@ import {
   View,
 } from 'react-native';
 import Animated, { type SharedValue, useAnimatedStyle } from 'react-native-reanimated';
-import { categoryTextColor, MAX_FONT_SCALE, SPACING, withAlpha } from '../../constants/theme';
+import {
+  categoryTextColor,
+  LAYOUT,
+  MAX_FONT_SCALE,
+  SPACING,
+  withAlpha,
+} from '../../constants/theme';
 import { useTheme } from '../../hooks/useTheme';
 import { articleTime, formatTimeAgo } from '../../lib/article-utils';
 import {
@@ -691,7 +697,16 @@ const styles = StyleSheet.create({
   // space before the footer's row, so the row reads as the story's end and
   // not as a second section. It is also the room the footer's fade lies in
   // (`styles.fade`): nothing of a story may be set in its last `md`.
-  card: { paddingHorizontal: SPACING.articlePadding, paddingBottom: SPACING.sm },
+  // The story's column: the slot's width on a phone, `LAYOUT.readingMax` and
+  // centred on a wide window, where the slot, its scroll and the sheet stay
+  // the window's.
+  card: {
+    width: '100%',
+    maxWidth: LAYOUT.readingMax,
+    alignSelf: 'center',
+    paddingHorizontal: SPACING.articlePadding,
+    paddingBottom: SPACING.sm,
+  },
   kicker: { flexDirection: 'row', alignItems: 'center', marginBottom: SPACING.xs },
   kickerText: { flexShrink: 1 },
   // With the last block's own gap, about `SPACING.lg` from the prose: the
@@ -705,6 +720,9 @@ const styles = StyleSheet.create({
   // one step softer — and its place, and from the track by being words.
   footer: {
     height: ACTIONS_ROW,
+    width: '100%',
+    maxWidth: LAYOUT.readingMax,
+    alignSelf: 'center',
     paddingHorizontal: SPACING.articlePadding,
   },
   // What the rule over the row was for, without the rule. A story longer than

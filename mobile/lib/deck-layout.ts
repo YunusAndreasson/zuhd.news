@@ -31,7 +31,9 @@ import { LAYOUT, SPACING } from '../constants/theme';
  * measured, `STORY_LINES` estimates the longest story that could arrive —
  * the writer's hard ceiling is 560 visible characters (`scripts/write-prompt.md`
  * §format), and the type scale tracks the window's width, so a line holds about
- * 43 characters on every phone. The sheet used to stop at each story's own
+ * 43 characters on every phone, and up to about 70 in a wide window's column
+ * (`readingWidth`): the phone's count is the most lines a story can take. The
+ * sheet used to stop at each story's own
  * height, and reading meant watching the text, the globe and the controls jump
  * by three or four lines on every swipe. Sized for the worst case it left four or five blank lines under a
  * typical story; sized for today's tallest, a single long card with a market
@@ -141,6 +143,8 @@ export interface DeckLayoutInput {
   bottomInset: number;
   /** `useWindowDimensions().fontScale`. */
   fontScale: number;
+  /** The body's size before the system scale (`typography.sizeBase`). */
+  bodySize: number;
   lines: DeckLines;
   /** `VARIANT_CAP` for the same four variants. */
   caps: DeckLines;
@@ -238,9 +242,26 @@ function storyCapOf(input: DeckLayoutInput): number {
   return height - chromeHeight - Math.max(BAND_MIN, Math.round(STORY_BAND_FRACTION * height));
 }
 
-/** Characters a body line is assumed to hold when bounding a story from
- *  below: more than the ~43 one really holds, so lines are undercounted. */
-const CHARS_PER_LINE_BOUND = 50;
+/** The story column's width in a window: the window, up to `LAYOUT.readingMax`.
+ *  The sheet, the swipe's pitch and the deck's slots stay the window's. */
+export function readingWidth(width: number): number {
+  return Math.min(width, LAYOUT.readingMax);
+}
+
+/** Characters an em of body type is assumed to hold when bounding a story
+ *  from below: a little over Source Sans's measured 2.38 (the last 400
+ *  stories, wrapped with its real glyph widths), so lines are undercounted. */
+const CHARS_PER_EM_BOUND = 2.5;
+
+/** The characters a body line of the story's column is assumed to hold when
+ *  bounding a story from below: about 50 on a phone, where one really holds
+ *  ~43, and at most 70 in the widest column. */
+export function lineCharsBound(input: DeckLayoutInput): number {
+  const line = readingWidth(input.width) - 2 * SPACING.articlePadding;
+  return (
+    (line / (input.bodySize * Math.min(input.fontScale, input.caps.body))) * CHARS_PER_EM_BOUND
+  );
+}
 
 /**
  * Whether measuring today's cards (`StoryMeasure`) could change the open
@@ -252,7 +273,7 @@ const CHARS_PER_LINE_BOUND = 50;
  * nearly always thrown away: since 2026-09-20 a typical story is several
  * lines past `storyCap`, so `full` is the cap whatever the measurement says.
  * So bound each card's height from *below*, from its characters — one title
- * line, lines counted at `CHARS_PER_LINE_BOUND`, link syntax stripped — and
+ * line, lines counted at `lineCharsBound`, link syntax stripped — and
  * measure only when the bound for the card at `STORY_FIT_SHARE` could still
  * land under the cap: a tablet, small type, a day of short stories.
  */
@@ -262,7 +283,7 @@ export function openHeightNeedsMeasuring(
 ): boolean {
   if (stories.length === 0) return false;
   const body = lineHeight(input, 'body');
-  const perLine = CHARS_PER_LINE_BOUND / Math.min(input.fontScale, input.caps.body);
+  const perLine = lineCharsBound(input);
   const least =
     HANDLE +
     lineHeight(input, 'labelXs') +

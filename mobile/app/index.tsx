@@ -101,7 +101,12 @@ import { exchangeMove } from '../lib/cards/week-move';
 import { companyGauges } from '../lib/companies';
 import { conflictWeekOf } from '../lib/conflict-week';
 import { alertsInCountry, countryFacts, marksInCountry } from '../lib/country-hazards';
-import { computeDeckLayout, openHeightNeedsMeasuring, openStoryHeight } from '../lib/deck-layout';
+import {
+  computeDeckLayout,
+  openHeightNeedsMeasuring,
+  openStoryHeight,
+  readingWidth,
+} from '../lib/deck-layout';
 import { getSnapshot as getFound, markFound, pruneFound, useFoundSlugs } from '../lib/found-store';
 import { markLanded, spendNew, useFreshSlugs } from '../lib/fresh-store';
 import { globeGdacsAlerts } from '../lib/gdacs';
@@ -230,6 +235,10 @@ export default function HomeScreen() {
   const reduceMotion = useReducedMotion();
   const insets = useSafeAreaInsets();
   const { width: screenWidth, height: screenHeight, fontScale } = useWindowDimensions();
+  // A story is set in its column, up to `LAYOUT.readingMax` wide: what is
+  // measured is what is drawn. The deck, the globe and its centre stay on the
+  // window.
+  const readingColumn = readingWidth(screenWidth);
 
   const menuSheetRef = useRef<BottomSheetMethodsRef>(null);
   const primerSheetRef = useRef<BottomSheetMethodsRef>(null);
@@ -410,6 +419,7 @@ export default function HomeScreen() {
       chromeHeight: topChromeHeight,
       bottomInset: insets.bottom,
       fontScale,
+      bodySize: typography.sizeBase,
       lines: {
         caption: textVariants.caption.lineHeight ?? 0,
         labelXs: textVariants.labelXs.lineHeight ?? 0,
@@ -423,7 +433,15 @@ export default function HomeScreen() {
         body: VARIANT_CAP.body,
       },
     }),
-    [screenWidth, screenHeight, topChromeHeight, insets.bottom, fontScale, textVariants],
+    [
+      screenWidth,
+      screenHeight,
+      topChromeHeight,
+      insets.bottom,
+      fontScale,
+      typography.sizeBase,
+      textVariants,
+    ],
   );
   const layout = useMemo(
     () => computeDeckLayout({ ...deckInput, storyContent: measuredStory?.height }),
@@ -1834,7 +1852,7 @@ export default function HomeScreen() {
         ? []
         : storyRows.map((r) =>
             JSON.stringify([
-              screenWidth,
+              readingColumn,
               fontScale,
               font,
               typography,
@@ -1852,7 +1870,7 @@ export default function HomeScreen() {
               charts.get(r.slug)?.kind ?? null,
             ]),
           ),
-    [measureNeeded, screenWidth, fontScale, font, typography, storyRows, odds, charts],
+    [measureNeeded, readingColumn, fontScale, font, typography, storyRows, odds, charts],
   );
   // biome-ignore lint/correctness/useExhaustiveDependencies: `cardHeightsVersion` is when the ref's map gained heights
   const unmeasured = useMemo(
@@ -2159,7 +2177,7 @@ export default function HomeScreen() {
         <StoryMeasure
           key={unmeasured.map((i) => cardKeys[i]).join('\n')}
           count={unmeasured.length}
-          width={screenWidth}
+          width={readingColumn}
           renderCard={renderUnmeasuredCard}
           onMeasured={handleStoryMeasured}
         />
