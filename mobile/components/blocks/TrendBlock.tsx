@@ -1,4 +1,3 @@
-import { dataDecimals } from '@shared/chart/series';
 import type { TrendAnnotation, TrendHighlight, TrendSeries } from '@shared/types';
 import {
   Canvas,
@@ -50,6 +49,7 @@ import {
   type TrendTimeTick,
   trendLineVertices,
 } from './trend-geometry';
+import { periodPreposition, scrubReading } from './trend-readout';
 
 type Pt = { x: number; y: number };
 
@@ -399,32 +399,19 @@ const ScrubReadout = memo(function ScrubReadout({
     },
   );
 
-  const scrubInfo = (() => {
-    if (scrubIdxJs < 0) return null;
-    const v = primaryValues[scrubIdxJs];
-    if (v === undefined) return null;
-    // The source's precision, the web chart's rule (`shared/chart/series.ts`).
-    const decimals = Math.min(dataDecimals(primaryValues), 4);
-    // Multi-series readout: stack labels in the value field if more than one.
-    const lines =
-      normalizedSeries.length > 1
-        ? normalizedSeries
-            .map((s) => {
-              const sv = s.values[scrubIdxJs];
-              if (sv === undefined) return null;
-              return `${s.label}: ${formatBlockNumber(sv, unit, decimals)}`;
-            })
-            .filter((l): l is string => l !== null)
-            .join('\n')
-        : formatBlockNumber(v, unit, decimals);
-    return {
-      idx: scrubIdxJs,
-      value: lines,
-      period: periods?.[scrubIdxJs] ?? '',
-      // What a reader holding a day wants next: how far it has come since.
-      move: moveSince?.(scrubIdxJs),
-    };
-  })();
+  // Multi-series readout: one line per series in the value field.
+  const reading = scrubReading(
+    { series: normalizedSeries, primaryValues, periods, unit, moveSince },
+    scrubIdxJs,
+  );
+  const scrubInfo = reading
+    ? {
+        idx: scrubIdxJs,
+        value: reading.values.join('\n'),
+        period: reading.period,
+        move: reading.move,
+      }
+    : null;
 
   // Scrub box dimensions scale with series count — single series fits a tight
   // 96×30 popover, but multi-series stacks one value line per series and
@@ -506,12 +493,6 @@ interface TrendBlockProps {
    * scrubbing stays where it has always been.
    */
   scrubbable?: boolean;
-}
-
-/** A day is "on Sep 20"; a month, year or quarter is "in Sep", "in 2024".
- *  The spoken summary said "3.1 a day in Sep 20" on every daily series. */
-function periodPreposition(period: string): 'on' | 'in' {
-  return /^[A-Za-z]{3,9}\.? \d{1,2}$/.test(period.trim()) ? 'on' : 'in';
 }
 
 export const TrendBlock = memo(function TrendBlock({
