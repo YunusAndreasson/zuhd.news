@@ -47,6 +47,7 @@ function readSources(trendsPath, now) {
     markets: readJson(pathOf('markets'))?.exchanges || [],
     companies: readJson(pathOf('companies'))?.companies || [],
     aiModels: readJson(pathOf('aiModels')),
+    storyContracts: readJson(pathOf('storyContracts'))?.stories || {},
     dispatch: readJson(pathOf('indicatorDispatch'))?.items || {},
     now,
   }
@@ -195,6 +196,8 @@ async function replay(since, until, outPath) {
     const now = batch.articles.at(-1).at + 3_600_000
     const recent = recentCharts(published, now)
     const sources = readSources(trendsFor(batch.day), now)
+    // The finds on disk are the last cycle's, for other stories.
+    sources.storyContracts = {}
     // A contract of that day had its paragraph that day, and has lost it since
     // if it left the deck (the dispatch prunes): today's file would hide it.
     for (const ind of sources.trends?.indicators || []) {

@@ -94,7 +94,16 @@ export const STAGES = [
   snapshot('narrate-gdacs', '3.4d', 'GDACS narration', 600, 'Narration'),
   { id: 'extract-entities', number: '3.6', title: 'Entity extraction', needs: 'articles', command: ['node', 'scripts/extract-entities.js'], timeout: 180, exit: 'Entities', timed: true },
   // After the entity stage, which says what each story names and is about, and the snapshot fetches it chooses from.
+  // Each story's own contracts, searched for its open question, for the desk to offer beside its series.
+  { id: 'find-story-contracts', number: '3.62', title: 'Story contracts', needs: 'articles', command: ['node', 'scripts/find-story-contracts.js'], timeout: 120, exit: 'Story contracts', timed: true },
   { id: 'pick-charts', number: '3.65', title: 'Chart desk', needs: 'articles', command: ['node', 'scripts/pick-charts.js'], timeout: 120, exit: 'Chart desk', timed: true },
+  // The contracts the desk set that the snapshot lacks, added to it; then their prose, before the build, so the
+  // app draws them this cycle (the app shows no card without it). Steady state is no call.
+  { id: 'admit-story-contracts', number: '3.66', title: 'Story contract admission', needs: 'articles', command: ['node', 'scripts/admit-story-contracts.js'], timeout: 120, exit: 'Admission', timed: true },
+  {
+    id: 'narrate-story-contracts', number: '3.67', title: 'Indicator dispatch (before the build)', needs: 'articles',
+    command: ['node', 'scripts/narrate-indicators.js', '--new-only'], timeout: 300, warning: 'WARNING: indicator dispatch (before the build) failed', took: 'Dispatch (before the build)',
+  },
   { id: 'extract-source-angles', number: '3.7', title: 'Source angles', needs: 'articles', command: ['node', 'scripts/extract-source-angles.js'], timeout: 300, exit: 'Source angles', timed: true },
   // The 48h window into Swedish for islam.se. A translation failure must never be able to stop the publish.
   {

@@ -233,6 +233,10 @@ stages assume about each other.
   series with a `standing`, a strait with traffic, a tracked company with a
   quote from this week. A country brings its currency and rate to an economy
   story and to no other.
+- A story's own contracts (`lib/story-contracts.js`) are offered on its list;
+  only one the desk sets is added to the snapshot, flagged `storyContract`,
+  and `fetchPolymarketTop` keeps it outside the deck's twenty while a story
+  draws it. Never let one take a deck place.
 - **Never** leave the repeat limit to the prompt: `applyCaps` holds a series
   to one story a day unless the story's subject is that series.
 - A changed desk prompt is replayed before it lands: `pick-charts.js --since

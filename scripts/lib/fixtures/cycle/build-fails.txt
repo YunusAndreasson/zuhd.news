@@ -47,7 +47,10 @@ commands
   node scripts/fetch-ipc.js
   node scripts/narrate-gdacs.js
   node scripts/extract-entities.js
+  node scripts/find-story-contracts.js
   node scripts/pick-charts.js
+  node scripts/admit-story-contracts.js
+  node scripts/narrate-indicators.js --new-only
   node scripts/extract-source-angles.js
   node scripts/translate-swedish.js
   node scripts/narrate-indicators.js --market-signals
@@ -191,10 +194,25 @@ log
   | «node:extract-entities»
   | Entities exit: 0 — Ns
   |
+  | --- Stage 3.62: Story contracts ---
+  | node:find-story-contracts: stdout
+  | «node:find-story-contracts»
+  | Story contracts exit: 0 — Ns
+  |
   | --- Stage 3.65: Chart desk ---
   | node:pick-charts: stdout
   | «node:pick-charts»
   | Chart desk exit: 0 — Ns
+  |
+  | --- Stage 3.66: Story contract admission ---
+  | node:admit-story-contracts: stdout
+  | «node:admit-story-contracts»
+  | Admission exit: 0 — Ns
+  |
+  | --- Stage 3.67: Indicator dispatch (before the build) ---
+  | node:narrate-indicators: stdout
+  | «node:narrate-indicators»
+  | Dispatch (before the build) — Ns
   |
   | --- Stage 3.7: Source angles ---
   | node:extract-source-angles: stdout

@@ -105,6 +105,25 @@ test('the desk may keep an AI lab it offered', () => {
   assert.match(chartDeskPrompt([a], candidates, []), /An AI lab's model score is the subject only of a story about how capable the lab's own models are/)
 })
 
+test('a story is offered the contracts found for it, read from the snapshot where it holds them', () => {
+  const a = article({}, 'A body.', 'Erdogan Calls a Snap Vote')
+  const storyContracts = {
+    s: [
+      { id: 'poly-ankara-vote', slug: 'ankara-vote', question: 'Erdogan wins?', price: 40, endDate: '2026-11-20T00:00:00Z' },
+      { id: 'poly-new-question', slug: 'new-question', question: 'Snap vote held by December?', price: 62, endDate: '2026-12-31T00:00:00Z' },
+    ],
+    other: [{ id: 'poly-elsewhere', slug: 'elsewhere', question: 'Not this story?', price: 5, endDate: null }],
+  }
+  const rows = candidatesFor(a, { ...sources, storyContracts })
+  assert.deepEqual(ids(rows), ['poly-ankara-vote', 'poly-new-question'])
+  assert.ok(rows.every((r) => r.via === 'contract' && r.kind === 'odds'))
+  assert.match(rows[0].reading, /^109 % \(price of a Yes share\).*closes 2026-11-20$/)
+  assert.equal(rows[1].reading, '62% chance of Yes, closes 2026-12-31')
+  const candidates = new Map([[a.slug, rows]])
+  assert.deepEqual(parseChartDesk({ s: { chart: 'poly-new-question', role: 'decides' } }, candidates, []).get('s'), { chart: 'poly-new-question', role: 'decides' })
+  assert.match(chartDeskPrompt([a], candidates, []), /poly-new-question — Snap vote held by December\?: 62% chance of Yes/)
+})
+
 test('a country brings its currency and its rate to an economy story, and to no other', () => {
   const body = '[Turkey](country:TR) raised rates as the [US](country:US) watched.'
   assert.deepEqual(ids(candidatesFor(article({ category: 'economy' }, body), sources)), ['fx-try', 'tcmb-rate'])

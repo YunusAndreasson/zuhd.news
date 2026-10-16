@@ -357,11 +357,12 @@ const CHARTED_LOOKUPS = 6
  *
  * @param {string[]} slugs
  * @param {number} [now]
+ * @param {number} [cap] how many are asked for
  * @returns {Promise<any[]>} markets in `marketsFromEvents`' shape
  */
-async function fetchChartedMarkets(slugs, now = Date.now()) {
+async function fetchChartedMarkets(slugs, now = Date.now(), cap = CHARTED_LOOKUPS) {
   const markets = []
-  for (const slug of slugs.slice(0, CHARTED_LOOKUPS)) {
+  for (const slug of slugs.slice(0, cap)) {
     try {
       const url = new URL(`${GAMMA_BASE}/markets`)
       url.searchParams.set('slug', slug)
@@ -804,7 +805,7 @@ function parseOutcomeTokens(market) {
  * `sourceLabel`, `values`, `periods`, `asOf`) and four keys of its own:
  * `marketUrl`, `outcomeLabel`, `endDate` and `change24h`.
  *
- * @param {{ incumbents?: Array<{ id?: string, seriesId?: string, label?: string, countryTags?: string[] }>, charted?: Set<string> }} [options]
+ * @param {{ incumbents?: Array<{ id?: string, seriesId?: string, label?: string, countryTags?: string[], storyContract?: boolean }>, charted?: Set<string> }} [options]
  *        `incumbents`: the previous snapshot's Polymarket rows. `seriesId` is
  *        the market slug, which is how a row is recognised in this cycle's
  *        response; `label` and `countryTags` are reused so an incumbent never
@@ -814,12 +815,20 @@ function parseOutcomeTokens(market) {
  *        chart. Those among the incumbents are kept ahead of everything, and
  *        looked up by name once the table drops them.
  */
-export async function fetchPolymarketTop({ incumbents = [], charted = new Set() } = {}) {
+export async function fetchPolymarketTop({ incumbents: prior = [], charted = new Set() } = {}) {
+  // A story's contract (`storyContract`) is held apart from the deck: it takes
+  // none of its places, and is kept for as long as a story draws it.
+  const incumbents = prior.filter((i) => !i?.storyContract)
+  const storyHeld = prior.filter((i) => i?.storyContract && i.id && charted.has(i.id) && typeof i.seriesId === 'string')
   // Before the fetch: which outcome stands for an event depends on who the
   // incumbents are (`pickOutcome`).
   const incumbentBySlug = new Map(
     incumbents.filter((i) => typeof i?.seriesId === 'string' && i.seriesId).map((i) => [i.seriesId, i]),
   )
+  // A story's contract that the volume table brings into the deck keeps its id
+  // and label there, so the story's chart still names it.
+  const priorBySlug = new Map(incumbentBySlug)
+  for (const i of storyHeld) if (!priorBySlug.has(/** @type {string} */ (i.seriesId))) priorBySlug.set(/** @type {string} */ (i.seriesId), i)
   const incumbentSlugs = new Set(incumbentBySlug.keys())
   const chartedSlugs = new Set([...incumbentBySlug].filter(([, i]) => i.id && charted.has(i.id)).map(([slug]) => slug))
 
@@ -855,68 +864,12 @@ export async function fetchPolymarketTop({ incumbents = [], charted = new Set() 
 
   /** One market's row, or null when it has no line worth drawing. */
   const rowFor = async (m) => {
-    // A market decided by its last price never gets here: `pickOutcome` passes
-    // over it before any history is paid for. `isDecidedSeries` below is for
-    // the one whose line has sat at an extreme while its last trade has not.
-    const tokens = parseOutcomeTokens(m)
-    if (!tokens) return null
-
-    let history = []
-    try {
-      history = await fetchPriceHistory(tokens.tokenId)
-    } catch (err) {
-      console.error(`  ✗ polymarket history ${m.slug}: ${err.message}`)
-      return null
-    }
-    if (history.length < MIN_HISTORY_POINTS) return null
-
-    const values = history.map((h) => Math.round((h.p || 0) * 100))
-    if (isDecidedSeries(values)) return null
-
-    const periods = history.map((h) => dayLabel(h.t * 1000))
-    const asOf = isoDay((history[history.length - 1].t || 0) * 1000)
-    const rawTitle = m.question || m.title || 'Untitled market'
-    const eventSlug = m.events?.[0]?.slug || null
-    const eventUrl = eventSlug ? `https://polymarket.com/event/${eventSlug}` : ''
-
-    // Shortened label is filled in by a batched Haiku call after the loop so
-    // we spend one Claude call on all kept markets rather than one each.
-    return {
-      // Given once the deck is settled (`deckIds`): an id depends on the rows
-      // beside it.
-      id: '',
-      label: rawTitle,
-      rawTitle,
-      unit: '%',
-      source: 'polymarket',
-      seriesId: m.slug || tokens.tokenId,
-      cadence: 'daily',
-      topicTags: ['prediction', 'polymarket', 'odds', ...extractTopicTags(rawTitle)],
-      defaultHighlight: 'last',
-      sourceLabel: 'Polymarket',
-      values,
-      periods,
-      asOf,
-      marketUrl: eventUrl,
-      outcomeLabel: tokens.label,
-      // The question's own deadline, so a consumer can tell a forecast from a
-      // question about to close: the writer's offer skips a contract in its
-      // last days (lib/indicator-offer.js). Null for an open-ended market.
-      endDate: m.endDate ?? m.endDateIso ?? null,
-      // 24h movement in percentage points, straight from the list response
-      // (zero extra calls) — lets consumers rank "biggest movers".
-      change24h: Number.isFinite(Number(m.oneDayPriceChange)) ? Math.round(Number(m.oneDayPriceChange) * 100) : null,
-      // The countries the source itself says this question is about. Set here
-      // rather than after the model call, so a killed call costs a long header
-      // and never a country tag.
-      countryTags: countriesFromEventTags(m._eventTags),
-      // Internal — the previous snapshot's row for this market, so its label
-      // and country tags can be reused below instead of re-bought from Haiku,
-      // and its id kept.
-      _incumbent: incumbentBySlug.get(m.slug) ?? null,
-      // Internal — what the id is cut from.
-      _slug: m.slug || rawTitle,
-    }
+    const row = await marketRow(m)
+    // Internal — the previous snapshot's row for this market, so its label
+    // and country tags can be reused below instead of re-bought from Haiku,
+    // and its id kept.
+    if (row) row._incumbent = priorBySlug.get(m.slug) ?? null
+    return row
   }
 
   // In order, until `TOP_N` of them have a row (`takeRows`). One row an event
@@ -972,44 +925,201 @@ export async function fetchPolymarketTop({ incumbents = [], charted = new Set() 
   if (held.length > 0) {
     console.log(`  · polymarket: ${held.length} label(s) reused from the previous snapshot`)
   }
-  if (fresh.length > 0) {
-    const enriched = await shortenTitlesViaHaiku(fresh.map((r) => r.rawTitle))
-    let tagged = 0
-    let rejected = 0
-    for (let i = 0; i < fresh.length; i++) {
-      // A title already inside the header budget keeps its own words: the model
-      // is here for the countries, and re-writing a label that did not need it
-      // is a change nobody asked for and nobody can review.
-      if (fresh[i].rawTitle.length > HEADER_CHARS) {
-        const proposed = enriched[i].label
-        if (isUsableShortTitle(fresh[i].rawTitle, proposed)) {
-          fresh[i].label = proposed
-        } else {
-          rejected++
-          console.log(`  · polymarket: rejected short title ${JSON.stringify(proposed)} for ${JSON.stringify(fresh[i].rawTitle)}`)
-          fresh[i].label = shortenTitleRegex(fresh[i].rawTitle)
-        }
-      }
-      // Union, not replacement. The tags are the floor and the model is the
-      // bonus: tag slugs cannot tell that a market on the FOMC is about the US,
-      // and the model cannot be relied on to answer inside its timeout.
-      fresh[i].countryTags = [
-        ...new Set([...(fresh[i].countryTags || []), ...enriched[i].countryTags]),
-      ]
-      if (fresh[i].countryTags.length) tagged++
-    }
-    console.log(`  · polymarket: ${tagged}/${fresh.length} new questions tagged with a country`)
-    if (rejected > 0) {
-      console.log(`  · polymarket: ${rejected} shortened title(s) rejected, kept the regex form`)
-    }
-  }
-  for (const r of results) {
+  await labelNew(fresh)
+  const stories = await keepStoryRows(storyHeld, results, markets)
+  for (const r of [...results, ...stories]) {
     delete r.rawTitle
     delete r._incumbent
     delete r._slug
   }
 
-  return results
+  return [...results, ...stories]
+}
+
+/** How many story contracts are kept a run. Each one outside the day's table
+ *  is a lookup and a history request, and an item in the daily dispatch. */
+const STORY_KEEP = 30
+
+/**
+ * The story contracts a published story still draws, each refreshed by its own
+ * slug and kept under the id and label it was admitted with
+ * (`storyContractRows`). One the deck now carries is the deck's; one that has
+ * closed or been decided goes, and the story draws nothing, as with any id
+ * nothing publishes.
+ *
+ * @param {any[]} held  the previous snapshot's story rows that an article charts
+ * @param {any[]} deck  this run's deck
+ * @param {any[]} markets  this run's markets, by which one already fetched is reused
+ */
+async function keepStoryRows(held, deck, markets, now = Date.now()) {
+  const inDeck = new Set(deck.map((r) => r.seriesId))
+  const wanted = held.filter((i) => !inDeck.has(i.seriesId)).slice(0, STORY_KEEP)
+  if (wanted.length === 0) return []
+  const bySlug = new Map(markets.map((m) => [m.slug, m]))
+  const missing = wanted.map((i) => i.seriesId).filter((slug) => !bySlug.has(slug))
+  for (const m of await fetchChartedMarkets(missing, now, STORY_KEEP)) bySlug.set(m.slug, m)
+  const rows = []
+  for (const i of wanted) {
+    const m = bySlug.get(i.seriesId)
+    const row = m ? await marketRow(m) : null
+    if (!row) continue
+    rows.push({
+      ...row,
+      id: i.id,
+      label: typeof i.label === 'string' && i.label ? i.label : row.label,
+      countryTags: [...new Set([...(row.countryTags || []), ...(i.countryTags || [])])],
+      storyContract: true,
+    })
+  }
+  console.log(`  · polymarket: ${rows.length} of ${wanted.length} story contract(s) kept`)
+  return rows
+}
+
+/**
+ * The id a story's contract is published under: what `deckIds` would give it
+ * beside every contract the snapshot holds, or the one it already has there.
+ *
+ * @param {string} slug  the market's slug
+ * @param {{ id?: string, seriesId?: string }[]} existing  the snapshot's contract rows
+ */
+export function storyContractId(slug, existing) {
+  const held = existing.find((r) => r.seriesId === slug)
+  if (held?.id) return held.id
+  const deck = existing.filter((r) => r.id && r.seriesId).map((r) => ({ slug: String(r.seriesId), incumbentId: r.id }))
+  return deckIds([...deck, { slug }]).at(-1)
+}
+
+/**
+ * Rows for contracts the chart desk set under a story this cycle, to be added
+ * to the snapshot beside the deck: each looked up by its slug, its history
+ * fetched and its title shortened as a deck row's is, and flagged
+ * `storyContract`. A market that has closed, been decided or has too short a
+ * history gives no row.
+ *
+ * @param {string[]} slugs  market slugs
+ * @param {any[]} existing  the snapshot's contract rows, which keep their ids
+ * @param {number} [now]
+ */
+export async function storyContractRows(slugs, existing, now = Date.now()) {
+  const rows = []
+  for (const m of await fetchChartedMarkets(slugs, now, slugs.length)) {
+    const row = await marketRow(m)
+    if (row) rows.push(row)
+  }
+  for (const r of rows) r.id = storyContractId(r._slug, [...existing, ...rows.filter((o) => o.id)])
+  await labelNew(rows)
+  for (const r of rows) {
+    delete r.rawTitle
+    delete r._slug
+    r.storyContract = true
+  }
+  return rows
+}
+
+/**
+ * One market's row, or null when it has no line worth drawing: the deck's and
+ * a story's contracts alike. `id` is left empty, for `deckIds` to give.
+ *
+ * @param {any} m  a market in `marketsFromEvents`' shape
+ */
+async function marketRow(m) {
+  // A market decided by its last price never gets here: `pickOutcome` passes
+  // over it before any history is paid for. `isDecidedSeries` below is for
+  // the one whose line has sat at an extreme while its last trade has not.
+  const tokens = parseOutcomeTokens(m)
+  if (!tokens) return null
+
+  let history = []
+  try {
+    history = await fetchPriceHistory(tokens.tokenId)
+  } catch (err) {
+    console.error(`  ✗ polymarket history ${m.slug}: ${err.message}`)
+    return null
+  }
+  if (history.length < MIN_HISTORY_POINTS) return null
+
+  const values = history.map((h) => Math.round((h.p || 0) * 100))
+  if (isDecidedSeries(values)) return null
+
+  const periods = history.map((h) => dayLabel(h.t * 1000))
+  const asOf = isoDay((history[history.length - 1].t || 0) * 1000)
+  const rawTitle = m.question || m.title || 'Untitled market'
+  const eventSlug = m.events?.[0]?.slug || null
+  const eventUrl = eventSlug ? `https://polymarket.com/event/${eventSlug}` : ''
+
+  // Shortened label is filled in by a batched Haiku call after the loop so
+  // we spend one Claude call on all kept markets rather than one each.
+  return {
+    // Given once the deck is settled (`deckIds`): an id depends on the rows
+    // beside it.
+    id: '',
+    label: rawTitle,
+    rawTitle,
+    unit: '%',
+    source: 'polymarket',
+    seriesId: m.slug || tokens.tokenId,
+    cadence: 'daily',
+    topicTags: ['prediction', 'polymarket', 'odds', ...extractTopicTags(rawTitle)],
+    defaultHighlight: 'last',
+    sourceLabel: 'Polymarket',
+    values,
+    periods,
+    asOf,
+    marketUrl: eventUrl,
+    outcomeLabel: tokens.label,
+    // The question's own deadline, so a consumer can tell a forecast from a
+    // question about to close: the writer's offer skips a contract in its
+    // last days (lib/indicator-offer.js). Null for an open-ended market.
+    endDate: m.endDate ?? m.endDateIso ?? null,
+    // 24h movement in percentage points, straight from the list response
+    // (zero extra calls) — lets consumers rank "biggest movers".
+    change24h: Number.isFinite(Number(m.oneDayPriceChange)) ? Math.round(Number(m.oneDayPriceChange) * 100) : null,
+    // The countries the source itself says this question is about. Set here
+    // rather than after the model call, so a killed call costs a long header
+    // and never a country tag.
+    countryTags: countriesFromEventTags(m._eventTags),
+    // Internal — what the id is cut from.
+    _slug: m.slug || rawTitle,
+  }
+}
+
+/**
+ * A short label and the countries for each row new to the snapshot, in place:
+ * one batched model call for all of them (`shortenTitlesViaHaiku`).
+ *
+ * @param {any[]} fresh rows with their `rawTitle`
+ */
+async function labelNew(fresh) {
+  if (fresh.length === 0) return
+  const enriched = await shortenTitlesViaHaiku(fresh.map((r) => r.rawTitle))
+  let tagged = 0
+  let rejected = 0
+  for (let i = 0; i < fresh.length; i++) {
+    // A title already inside the header budget keeps its own words: the model
+    // is here for the countries, and re-writing a label that did not need it
+    // is a change nobody asked for and nobody can review.
+    if (fresh[i].rawTitle.length > HEADER_CHARS) {
+      const proposed = enriched[i].label
+      if (isUsableShortTitle(fresh[i].rawTitle, proposed)) {
+        fresh[i].label = proposed
+      } else {
+        rejected++
+        console.log(`  · polymarket: rejected short title ${JSON.stringify(proposed)} for ${JSON.stringify(fresh[i].rawTitle)}`)
+        fresh[i].label = shortenTitleRegex(fresh[i].rawTitle)
+      }
+    }
+    // Union, not replacement. The tags are the floor and the model is the
+    // bonus: tag slugs cannot tell that a market on the FOMC is about the US,
+    // and the model cannot be relied on to answer inside its timeout.
+    fresh[i].countryTags = [
+      ...new Set([...(fresh[i].countryTags || []), ...enriched[i].countryTags]),
+    ]
+    if (fresh[i].countryTags.length) tagged++
+  }
+  console.log(`  · polymarket: ${tagged}/${fresh.length} new questions tagged with a country`)
+  if (rejected > 0) {
+    console.log(`  · polymarket: ${rejected} shortened title(s) rejected, kept the regex form`)
+  }
 }
 
 /** A series is "decided" if its tail (last DECIDED_TAIL_FRACTION of points)

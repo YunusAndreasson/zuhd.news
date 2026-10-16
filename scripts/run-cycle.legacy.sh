@@ -692,6 +692,14 @@ $ACRONYMS
   timeout 180 node scripts/extract-entities.js 2>&1 | tee -a "$LOG_FILE"
   echo "Entities exit: $? — $((SECONDS - T36))s" | tee -a "$LOG_FILE"
 
+  # Stage 3.62: Story contracts — each story's own open question, searched on
+  # Polymarket, for the chart desk to offer beside its series.
+  echo "" | tee -a "$LOG_FILE"
+  echo "--- Stage 3.62: Story contracts ---" | tee -a "$LOG_FILE"
+  T362=$SECONDS
+  timeout 120 node scripts/find-story-contracts.js 2>&1 | tee -a "$LOG_FILE"
+  echo "Story contracts exit: $? — $((SECONDS - T362))s" | tee -a "$LOG_FILE"
+
   # Stage 3.65: Chart desk — one batched Haiku call that sets `chart:` on
   # each new article, from the series the entity stage found for it and the
   # day's contracts. A failure leaves the batch without charts.
@@ -700,6 +708,19 @@ $ACRONYMS
   T365=$SECONDS
   timeout 120 node scripts/pick-charts.js 2>&1 | tee -a "$LOG_FILE"
   echo "Chart desk exit: $? — $((SECONDS - T365))s" | tee -a "$LOG_FILE"
+
+  # Stage 3.66: the story contracts the desk set, added to the snapshot, and
+  # their prose before the build, so the app draws them this cycle.
+  echo "" | tee -a "$LOG_FILE"
+  echo "--- Stage 3.66: Story contract admission ---" | tee -a "$LOG_FILE"
+  T366=$SECONDS
+  timeout 120 node scripts/admit-story-contracts.js 2>&1 | tee -a "$LOG_FILE"
+  echo "Admission exit: $? — $((SECONDS - T366))s" | tee -a "$LOG_FILE"
+  echo "" | tee -a "$LOG_FILE"
+  echo "--- Stage 3.67: Indicator dispatch (before the build) ---" | tee -a "$LOG_FILE"
+  T367=$SECONDS
+  timeout 300 node scripts/narrate-indicators.js --new-only 2>&1 | tee -a "$LOG_FILE" || echo "WARNING: indicator dispatch (before the build) failed" | tee -a "$LOG_FILE"
+  echo "Dispatch (before the build) — $((SECONDS - T367))s" | tee -a "$LOG_FILE"
 
   # Stage 3.7: Source-angle extraction — for each source URL, fetch and
   # summarize its distinctive framing via one batched Haiku call. Writes

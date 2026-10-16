@@ -67,6 +67,7 @@ export const ROLES = /** @type {const} */ (['subject', 'cause', 'decides'])
  * @property {any[]} [markets]      `.markets.json`'s `exchanges`
  * @property {any[]} [companies]    `.companies.json`'s `companies`
  * @property {any} [aiModels]       `.ai-models.json`: `labs` and `frontier`
+ * @property {Record<string, any[]>} [storyContracts] each story's own contracts, by slug (`find-story-contracts.js`)
  * @property {Record<string, any>} [dispatch] `.indicator-dispatch.json`'s `items`
  * @property {number} [now]
  */
@@ -165,11 +166,11 @@ const countriesOf = (body) => [...new Set([...String(body).matchAll(/\]\(country
  * strait a traffic history, a company a quote from this week. An id that
  * fails it draws nothing, and a choice spent on it is a story without a chart.
  *
- * @param {{ title?: string, body: string, meta: any }} article
+ * @param {{ slug?: string, title?: string, body: string, meta: any }} article
  * @param {DeskSources} sources
  * @returns {Candidate[]}
  */
-export function candidatesFor(article, { trends, chokepoints = [], markets = [], companies = [], aiModels = null, dispatch = {}, now = Date.now() } = {}) {
+export function candidatesFor(article, { trends, chokepoints = [], markets = [], companies = [], aiModels = null, storyContracts = {}, dispatch = {}, now = Date.now() } = {}) {
   const meta = article.meta || {}
   const indicators = (trends?.indicators || []).filter((i) => i?.id)
   const byId = new Map(indicators.map((i) => [i.id, i]))
@@ -207,6 +208,17 @@ export function candidatesFor(article, { trends, chokepoints = [], markets = [],
 
   // What it names.
   for (const e of Array.isArray(meta.entities) ? meta.entities : []) addId(e?.indicatorId, 'named')
+
+  // The contracts found for it: read as the deck reads one where the snapshot
+  // already holds it, and from the search's own price where it does not yet.
+  for (const f of storyContracts?.[article.slug ?? ''] || []) {
+    if (!f?.id || out.some((c) => c.id === f.id)) continue
+    const ind = byId.get(f.id)
+    const row = ind?.source === 'polymarket' ? oddsRow(ind, { now }) : null
+    const closes = typeof f.endDate === 'string' ? `, closes ${f.endDate.slice(0, 10)}` : ''
+    if (row && row !== 'stale') out.push({ id: row.id, kind: 'odds', label: row.question, reading: `${reading(row)}${closes}`, via: 'contract' })
+    else if (!ind) out.push({ id: f.id, kind: 'odds', label: String(f.question), reading: `${f.price}% chance of Yes${closes}`, via: 'contract' })
+  }
 
   // The money of the countries it links.
   if (meta.category === 'economy') {
@@ -287,6 +299,7 @@ A line belongs under a story in exactly three cases. Name the case as "role".
 "decides": the line is what is about to be decided.
   - A central bank's rate under a story about its decision, or the next one.
   - A CONTRACT (the list at the end; any story may take one) when the story leaves a question open and the contract asks that question: who wins the election the story is about, whether the truce it reports holds, whether the strike, deal or rate move it describes happens by the date. The test: if the contract settled tomorrow, would that be this story's next headline? When it would, take it, even if the story is politics and has no other line on its list.
+  - A story's own "series" list may hold contracts too (ids starting "poly-"), found by searching for that story's question. The same test decides them, and finding one is no reason to take it.
   - A contract that shares only a person, a country or a topic with the story fails that test. A leader's "next prime minister?" is not the chart for each act of his government; an election contract is not the chart for that country's diplomacy, courts or protests. Never for a story about something already settled.
 
 What is never a chart:
