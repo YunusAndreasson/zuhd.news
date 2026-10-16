@@ -177,6 +177,19 @@ ${movers}
 </unexplained-movers>`
     cycle.say(`Injecting unexplained-movers signal (${lineCount(movers)} companies) into selector prompt`)
   }
+  // Inject what the last cycle's snapshots say happened with no story here to
+  // report it: a live disaster alert, a contract that swung, a currency that
+  // slid (lib/data-gaps.js). Local read; fail-soft (empty → nothing).
+  const gaps = (await cycle.read(['timeout', '15', 'node', 'scripts/data-gaps.js'])).out
+  if (gaps) {
+    text += `
+
+What the data the site draws says happened in the past week, with no story on zuhd.news yet to report it: a GDACS disaster alert still live, a prediction market that swung, a currency that moved hard against the dollar. Each is a sign that something happened, never the story itself. If the feed carries a report of the event behind one — the storm's landfall or track, the talks that collapsed, the decision that sank the currency — weigh it as a strong pick, and the Consequence rule still holds. A disaster is filed as politics, never science. If your recent coverage already reports what moved it, or the feed has nothing on it, skip it; the list is a signal, never a quota.
+<data-gaps>
+${gaps}
+</data-gaps>`
+    cycle.say(`Injecting data-gaps signal (${lineCount(gaps)} lines) into selector prompt`)
+  }
   const target = PICK_TARGET[cycle.startHour] ?? 13
   text += `
 

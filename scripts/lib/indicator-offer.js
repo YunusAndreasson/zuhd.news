@@ -379,7 +379,7 @@ export const weekMove = (ind) => {
   return { pct: Number((((last - then) / Math.abs(then)) * 100).toFixed(1)), over: '7 days' }
 }
 
-const pointsMove = (ind, days) => {
+export const pointsMove = (ind, days) => {
   const last = (ind.values || []).at(-1)
   const then = valueDaysBack(ind, days)
   if (!Number.isFinite(last) || then == null) return null
@@ -404,7 +404,7 @@ const pointsMove = (ind, days) => {
  * @param {{ values?: number[], periods?: string[], dates?: string[], asOf?: string }} ind
  * @param {number} days
  */
-const daysMove = (ind, days) => {
+export const daysMove = (ind, days) => {
   const points = datedPoints(ind)
   if (!points || points.length < 2) return null
   const last = points[points.length - 1]

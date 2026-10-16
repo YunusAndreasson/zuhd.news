@@ -7,7 +7,8 @@ import { countryOf, extractConcepts, hasHeadline, mapCategory, redact, resultsAt
 import { PREFILTER_WINDOW_MS, eventCoveredRecently, loadDedupContext } from './lib/dedup.js'
 import { MAX_FEED_AGE_MS } from './lib/feed-age.js'
 import { readUnexplainedMovers } from './lib/company-gaps.js'
-import { namedSeries, pickTracked, TRACKED_KEYWORDS } from './lib/tracked-stories.js'
+import { readDataGaps } from './lib/data-gaps.js'
+import { namedSeries, namedStorms, pickTracked, TRACKED_KEYWORDS } from './lib/tracked-stories.js'
 import { fingerprint, slugify } from './lib/utils.js'
 import { writeJson } from './lib/json-file.js'
 import { runWithConcurrency } from './lib/concurrency.js'
@@ -377,12 +378,17 @@ function fetchBroadArticles() {
 // It also asks, by name, for a company whose share moved sharply this week
 // with no story here to say why (`lib/company-gaps.js`): the same token.
 const MOVERS = readUnexplainedMovers()
+// And, by name, a storm under a live GDACS Orange or Red alert that no story
+// here has reported (`lib/data-gaps.js`): on 2026-10-16 two such cyclones,
+// Champi near Guam and Simon off Mexico, had not one report in three days of
+// feeds. "Typhoon Champi", never the bare name, which is a person's too.
+const STORMS = readDataGaps().filter((g) => g.kind === 'hazard' && g.name)
 
 async function fetchTrackedArticles() {
   try {
     return await queryArticles({
       articlesSortBy: 'date',
-      keyword: [...TRACKED_KEYWORDS, ...MOVERS.flatMap((m) => m.keyword ?? [])],
+      keyword: [...TRACKED_KEYWORDS, ...MOVERS.flatMap((m) => m.keyword ?? []), ...STORMS.flatMap((g) => g.keywords)],
       keywordOper: 'or',
       keywordLoc: 'title',
       // "gold" is also a medal and a film; the category filter is what keeps
@@ -689,7 +695,7 @@ async function main() {
     usedEventUris,
     usedUrls: panelUris,
     maxAgeMs: MAX_FEED_AGE_MS,
-    named: namedSeries(MOVERS),
+    named: [...namedSeries(MOVERS), ...namedStorms(STORMS)],
   })
   let tracked = 0
   for (const group of trackedGroups) {
@@ -707,6 +713,7 @@ async function main() {
   if (MOVERS.length > 0) {
     console.error(`Unexplained movers asked for by name: ${MOVERS.map((m) => `${m.keyword ?? `${m.name} (not searched)`} ${m.pct > 0 ? '+' : ''}${m.pct}%`).join(', ')}`)
   }
+  if (STORMS.length > 0) console.error(`Unreported storms asked for by name: ${STORMS.map((g) => g.name).join(', ')}`)
   const unmatched = dedupedArticles.filter(a =>
     !panelUris.has(a.url) && !standaloneArticles.includes(a)
   )

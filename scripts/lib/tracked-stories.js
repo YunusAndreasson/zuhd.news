@@ -81,6 +81,22 @@ export const namedSeries = (movers) =>
     }))
 
 /**
+ * The storms the query also asked for by name (`hazardGaps`,
+ * `lib/data-gaps.js`), each a series of its own for the same reason: a
+ * typhoon's one report names no series the site charts.
+ *
+ * @param {{ id: string, keywords: string[] }[]} storms
+ * @returns {{ id: string, re: RegExp }[]}
+ */
+export const namedStorms = (storms) =>
+  (storms || [])
+    .filter((g) => g.keywords?.length)
+    .map((g) => ({
+      id: g.id,
+      re: new RegExp(`(^|[^a-z0-9])(?:${g.keywords.map((k) => k.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')).join('|')})([^a-z0-9]|$)`, 'i'),
+    }))
+
+/**
  * The tracked-series stories that get a slot, best first.
  *
  * Articles are grouped by the API's event cluster, one outlet once per group.
