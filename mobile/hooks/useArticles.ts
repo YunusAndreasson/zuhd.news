@@ -12,13 +12,10 @@ import {
   probeGenerated,
   retryFailedSnapshots,
 } from '../lib/arrival';
-import { flushBookmarks } from '../lib/bookmark-store';
 import { collectNewArticles, isOlderFeed } from '../lib/feed-diff';
 import { feedCache, fetchFeed } from '../lib/feed-source';
-import { flushFound } from '../lib/found-store';
-import { flushKnown, noteFeed } from '../lib/fresh-store';
-import { flushOnboarding } from '../lib/onboarding-store';
-import { flushRead } from '../lib/read-store';
+import { flushStores } from '../lib/flush-stores';
+import { noteFeed } from '../lib/fresh-store';
 import { getLastSeenAt, saveLastSeenAt } from '../lib/storage';
 import { useAppResume } from './useAppResume';
 
@@ -250,11 +247,7 @@ export function useArticles(
   const handleBackground = () => {
     seenAtBackgroundRef.current = feedSlugs(queryClient.getQueryData<FeedResponse>(FEED_QUERY_KEY));
     saveLastSeenAt(Date.now());
-    flushBookmarks();
-    flushFound();
-    flushKnown();
-    flushRead();
-    flushOnboarding();
+    flushStores();
   };
 
   useAppResume(handleResume, STALE_THRESHOLD, handleBackground);

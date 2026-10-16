@@ -1,6 +1,17 @@
+import { reloadAppAsync } from 'expo';
+import * as Updates from 'expo-updates';
 import { Component, type ReactNode } from 'react';
 import { Pressable, StyleSheet, Text, View } from 'react-native';
-import { DARK_COLORS, FONT_SYSTEM, LAYOUT, makeTypography, SPACING } from '../constants/theme';
+import {
+  DARK_COLORS,
+  FONT_SYSTEM,
+  LAYOUT,
+  MAX_FONT_SCALE,
+  makeTypography,
+  SPACING,
+} from '../constants/theme';
+import { type Recovery, recoveryFor } from '../lib/error-recovery';
+import { flushStores } from '../lib/flush-stores';
 
 interface Props {
   children: ReactNode;
@@ -8,17 +19,31 @@ interface Props {
 
 interface State {
   error: Error | null;
+  /** When the tree last threw. */
+  failedAt: number;
+  /** When the reader last pressed `try again`. */
+  resetAt: number | null;
 }
 
 // ErrorBoundary lives above ThemeProvider in the tree, so it can't consume the
-// theme context. Fall back to dark-mode defaults and the shared typography scale.
+// theme context. Fall back to dark-mode defaults and the shared typography
+// scale at its 375pt widths: the live window's scale is the theme's.
 const typography = makeTypography(1);
 
-export class ErrorBoundary extends Component<Props, State> {
-  state: State = { error: null };
+const COPY: Record<Recovery, { title: string; detail: string | null; action: string }> = {
+  retry: { title: 'Something went wrong.', detail: null, action: 'try again' },
+  reload: {
+    title: 'It went wrong again.',
+    detail: 'Reloading starts the app afresh.',
+    action: 'reload',
+  },
+};
 
-  static getDerivedStateFromError(error: Error): State {
-    return { error };
+export class ErrorBoundary extends Component<Props, State> {
+  state: State = { error: null, failedAt: 0, resetAt: null };
+
+  static getDerivedStateFromError(error: Error): Partial<State> {
+    return { error, failedAt: Date.now() };
   }
 
   componentDidCatch(error: Error) {
@@ -27,23 +52,53 @@ export class ErrorBoundary extends Component<Props, State> {
     }
   }
 
-  reset = () => this.setState({ error: null });
+  reset = () => this.setState({ error: null, resetAt: Date.now() });
+
+  /** Start the JavaScript again, on the newest update that has downloaded;
+   *  where updates are off (a development build), on the same bundle. The
+   *  stores' pending writes go first: a reload sends no background event. */
+  reload = () => {
+    try {
+      flushStores();
+    } catch {}
+    Updates.reloadAsync()
+      .catch(() => reloadAppAsync('The error screen asked for a reload'))
+      .catch(this.reset);
+  };
 
   render() {
-    if (!this.state.error) return this.props.children;
+    const { error, failedAt, resetAt } = this.state;
+    if (!error) return this.props.children;
+    const recovery = recoveryFor(resetAt, failedAt);
+    const copy = COPY[recovery];
+    // The raw message is a developer's ("undefined is not a function"); a
+    // reader gets what to do about it.
+    const detail = __DEV__ ? error.message : copy.detail;
     return (
       <View style={styles.root}>
-        <Text style={styles.title}>Something went wrong.</Text>
-        <Text style={styles.detail} numberOfLines={3}>
-          {this.state.error.message}
-        </Text>
+        <View style={styles.words}>
+          <Text style={styles.title} maxFontSizeMultiplier={MAX_FONT_SCALE.heading}>
+            {copy.title}
+          </Text>
+          {detail ? (
+            <Text
+              style={styles.detail}
+              numberOfLines={3}
+              maxFontSizeMultiplier={MAX_FONT_SCALE.body}
+            >
+              {detail}
+            </Text>
+          ) : null}
+        </View>
         <Pressable
-          onPress={this.reset}
+          onPress={recovery === 'reload' ? this.reload : this.reset}
           hitSlop={LAYOUT.hitSlop}
           accessibilityRole="button"
-          accessibilityLabel="Try again"
+          accessibilityLabel={recovery === 'reload' ? 'Reload the app' : 'Try again'}
         >
-          <Text style={styles.retry}>try again</Text>
+          <Text style={styles.retry} maxFontSizeMultiplier={MAX_FONT_SCALE.chrome}>
+            {copy.action}
+          </Text>
         </Pressable>
       </View>
     );
@@ -57,18 +112,21 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
     padding: SPACING.xl,
+    gap: SPACING.lg,
+  },
+  words: {
+    alignItems: 'center',
+    gap: SPACING.sm,
   },
   title: {
     color: DARK_COLORS.text,
     fontSize: typography.sizeLg,
-    marginBottom: SPACING.sm,
     textAlign: 'center',
   },
   detail: {
     color: DARK_COLORS.textSecondary,
     fontSize: typography.sizeSm,
     textAlign: 'center',
-    marginBottom: SPACING.lg,
   },
   retry: {
     color: DARK_COLORS.text,
