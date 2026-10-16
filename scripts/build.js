@@ -1324,6 +1324,8 @@ if (existsSync(companiesSrc)) {
 //
 // Caught, for the companies' reason.
 const aiModelsSrc = join(ROOT, 'content', '.ai-models.json')
+/** `ai:<id>` for every lab published, which a story's chart may name. */
+const aiChartIds = new Set()
 if (existsSync(aiModelsSrc)) {
   try {
     const payload = aiModelsPayload(JSON.parse(readFileSync(aiModelsSrc, 'utf8')))
@@ -1332,6 +1334,7 @@ if (existsSync(aiModelsSrc)) {
       join(DIST_DIR, 'api', 'ai-models.json'),
       JSON.stringify(apiStamps.hold('ai-models', payload)),
     )
+    for (const l of payload.labs) aiChartIds.add(`ai:${l.id}`)
     mapFeeds.push('ai-models')
     console.log(`  Built: api/ai-models.json (${payload.labs.length} labs)`)
   } catch (err) {
@@ -2133,10 +2136,11 @@ for (const a of sorted) {
       })(),
       // The story's chart, filtered like the strip: an id this build does not
       // publish would open an empty panel. A company's is published on
-      // `/api/companies.json` and nowhere in `indicatorMap`.
+      // `/api/companies.json` and a lab's on `/api/ai-models.json`, and neither
+      // is in `indicatorMap`.
       ...(() => {
         const id = typeof a.meta.chart === 'string' ? canonicalIndicatorId(a.meta.chart.trim()) : ''
-        return id && (indicatorMap.has(id) || companyChartIds.has(id)) ? { chart: id } : {}
+        return id && (indicatorMap.has(id) || companyChartIds.has(id) || aiChartIds.has(id)) ? { chart: id } : {}
       })(),
       ...(thread?.threadLabel ? { threadLabel: thread.threadLabel } : {}),
     }),

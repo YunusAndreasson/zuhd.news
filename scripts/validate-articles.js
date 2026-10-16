@@ -32,6 +32,7 @@ export function main() {
   for (const c of readJson(pathOf('chokepoints'))?.chokepoints || []) knownIds.add(`cp:${c.id}`)
   for (const m of readJson(pathOf('markets'))?.exchanges || []) knownIds.add(`mkt:${m.id}`)
   for (const c of readJson(pathOf('companies'))?.companies || []) knownIds.add(`co:${c.id}`)
+  for (const l of readJson(pathOf('aiModels'))?.labs || []) knownIds.add(`ai:${l.id}`)
 
   const validator = createValidator({ published, offeredBySlug, knownIds })
   /** @type {{ slug: string, reason: string }[]} */

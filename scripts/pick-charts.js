@@ -46,6 +46,7 @@ function readSources(trendsPath, now) {
     chokepoints: readJson(pathOf('chokepoints'))?.chokepoints || [],
     markets: readJson(pathOf('markets'))?.exchanges || [],
     companies: readJson(pathOf('companies'))?.companies || [],
+    aiModels: readJson(pathOf('aiModels')),
     dispatch: readJson(pathOf('indicatorDispatch'))?.items || {},
     now,
   }
