@@ -1,5 +1,6 @@
 import { BlurView } from 'expo-blur';
-import { memo, type ReactNode, useCallback, useEffect, useRef } from 'react';
+import { GlassView, isGlassEffectAPIAvailable, isLiquidGlassAvailable } from 'expo-glass-effect';
+import { memo, useCallback, useEffect, useRef } from 'react';
 import {
   type AccessibilityActionEvent,
   ActivityIndicator,
@@ -10,17 +11,29 @@ import {
 } from 'react-native';
 import Animated, {
   Easing,
-  FadeInDown,
-  FadeOutUp,
+  type EntryAnimationsValues,
+  type ExitAnimationsValues,
+  type LayoutAnimation,
   LinearTransition,
+  useReducedMotion,
   useSharedValue,
   withTiming,
 } from 'react-native-reanimated';
-import { ANIMATION, EASING, RADIUS, SPACING } from '../constants/theme';
+import {
+  ANIMATION,
+  type ColorPalette,
+  dissolveIn,
+  dissolveOut,
+  EASING,
+  RADIUS,
+  SPACING,
+} from '../constants/theme';
+import { useLegibility } from '../hooks/useLegibility';
 import { useScrub } from '../hooks/useScrub';
 import { useTheme } from '../hooks/useTheme';
 import { observationDate } from '../lib/data-freshness';
 import { largeContent } from '../lib/large-content';
+import { type PlayerMaterial, playerMaterial, playerMotion } from '../lib/player-material';
 import { Icon, IconButton, Text } from './primitives';
 import { ScrubBar, ScrubTooltip } from './ScrubBar';
 
@@ -34,16 +47,48 @@ const SCRUB_DETENTS = 0;
 
 const SEEK_ACTIONS = [{ name: 'increment' }, { name: 'decrement' }];
 
-// Drops from the top bar, where the `▶` that opened it was, and goes back up
-// into it: a plain fade out was the bottom bar's exit, and at the top it left
-// the bar vanishing in place rather than returning. Built once, out here: the
+/** Liquid Glass is in this build, on this iOS, and safe to make: some iOS 26
+ *  betas lacked the API and crashed creating the effect. Read once. */
+const GLASS_AVAILABLE =
+  Platform.OS === 'ios' && isGlassEffectAPIAvailable() && isLiquidGlassAvailable();
+
+// Down from above the screen, under the `▶` that opened it, and back up out
+// of it: a slide and never a fade, since glass stops rendering under an
+// opacity below 1 and a blur draws wrong under one. Built once, out here: the
 // bar re-renders on every playback tick, and Reanimated configures an exit or
 // a layout move again whenever the builder it is handed is a new one.
-const BAR_ENTER = FadeInDown.duration(ANIMATION.normal)
-  .easing(EASING.out)
-  .withInitialValues({ translateY: -SPACING.md });
-const BAR_EXIT = FadeOutUp.duration(ANIMATION.fast).easing(EASING.out);
-const BAR_MOVE = LinearTransition.duration(ANIMATION.normal);
+const SLIDE_IN_TIMING = { duration: ANIMATION.normal, easing: EASING.out } as const;
+const SLIDE_OUT_TIMING = { duration: ANIMATION.fast, easing: EASING.out } as const;
+const SLIDE_IN = (values: EntryAnimationsValues): LayoutAnimation => {
+  'worklet';
+  return {
+    initialValues: {
+      transform: [{ translateY: -(values.targetGlobalOriginY + values.targetHeight) }],
+    },
+    animations: { transform: [{ translateY: withTiming(0, SLIDE_IN_TIMING) }] },
+  };
+};
+const SLIDE_OUT = (values: ExitAnimationsValues): LayoutAnimation => {
+  'worklet';
+  return {
+    initialValues: { transform: [{ translateY: 0 }] },
+    animations: {
+      transform: [
+        {
+          translateY: withTiming(
+            -(values.currentGlobalOriginY + values.currentHeight),
+            SLIDE_OUT_TIMING,
+          ),
+        },
+      ],
+    },
+  };
+};
+// Under Reduce Motion: a solid bar dissolves, as a toast does; glass and a
+// blur, which cannot fade, appear in place (`playerMotion`).
+const DISSOLVE_IN = dissolveIn();
+const DISSOLVE_OUT = dissolveOut(ANIMATION.fast);
+const BAR_MOVE = LinearTransition.duration(ANIMATION.normal).easing(EASING.out);
 
 function formatTime(seconds: number): string {
   const m = Math.floor(seconds / 60);
@@ -76,7 +121,15 @@ export const BriefingBar = memo(function BriefingBar({
   topOffset,
   onHeightChange,
 }: BriefingBarProps) {
-  const { colors } = useTheme();
+  const { colors, resolvedAppearance } = useTheme();
+  const { reduceTransparency } = useLegibility();
+  const reduceMotion = useReducedMotion();
+  const material = playerMaterial({
+    os: Platform.OS,
+    glassAvailable: GLASS_AVAILABLE,
+    reduceTransparency,
+  });
+  const motion = playerMotion(material, reduceMotion);
   const preparing = state === 'preparing';
   const playing = state === 'playing';
 
@@ -142,14 +195,18 @@ export const BriefingBar = memo(function BriefingBar({
 
   return (
     <Animated.View
-      entering={BAR_ENTER}
-      exiting={BAR_EXIT}
+      entering={motion === 'slide' ? SLIDE_IN : motion === 'dissolve' ? DISSOLVE_IN : undefined}
+      exiting={motion === 'slide' ? SLIDE_OUT : motion === 'dissolve' ? DISSOLVE_OUT : undefined}
       layout={BAR_MOVE}
       style={[styles.wrapper, { top: topOffset }]}
       onLayout={handleLayout}
       pointerEvents="box-none"
     >
-      <BarBackground tintColor={colors.playerBg}>
+      <View style={styles.bar}>
+        {/* The material is a layer of its own, behind the bar's words: a
+            BlurView clips what it holds, which cut off the scrub's tooltip
+            hanging below, and Reduce Transparency swaps only this layer. */}
+        <BarMaterial material={material} appearance={resolvedAppearance} colors={colors} />
         {/* Tooltip lives outside the clipping inner so it can float clear of
             the bar without being chopped by the inner's overflow:hidden —
             BELOW it, over the globe: the bar hangs under the top bar, and
@@ -242,27 +299,51 @@ export const BriefingBar = memo(function BriefingBar({
             onAccessibilityAction={preparing ? undefined : handleSeekAction}
           />
         </View>
-      </BarBackground>
+      </View>
     </Animated.View>
   );
 });
 
-/** iOS uses a frosted-glass background so the chrome floats over the globe;
- *  Android falls back to a solid `playerBg` fill because Android's BlurView
- *  implementation is uneven across vendors. Solid, not `pillBg`: through
- *  `pillBg`'s 12% whatever was under the bar (the story card, when it sat on
- *  the dock; a lit coastline now) showed behind `briefing · Sep 19`. Both wrap the bar's
- *  rounded-rect with the same border radius and clip overflow so the inner
- *  edge-to-edge progress strip follows the corner curve. */
-function BarBackground({ children, tintColor }: { children: ReactNode; tintColor: string }) {
-  if (Platform.OS === 'ios') {
+/** What the bar is made of (`playerMaterial`): Liquid Glass on iOS 26, so the
+ *  chrome floats over the globe as the system's own does; the frosted blur
+ *  before it; and solid `playerBg` on Android, whose BlurView is uneven
+ *  across vendors, and under Reduce Transparency. Solid, not `pillBg`: through
+ *  `pillBg`'s 12% whatever was under the bar (a lit coastline) showed behind
+ *  `briefing · Sep 19`. The glass is `regular`, never `clear`, and takes the
+ *  app's appearance, not the phone's, so it is never the light glass behind
+ *  light words. */
+function BarMaterial({
+  material,
+  appearance,
+  colors,
+}: {
+  material: PlayerMaterial;
+  appearance: 'dark' | 'light';
+  colors: ColorPalette;
+}) {
+  if (material === 'glass') {
     return (
-      <BlurView intensity={60} tint="systemThinMaterial" style={styles.bar}>
-        {children}
-      </BlurView>
+      <GlassView
+        pointerEvents="none"
+        glassEffectStyle="regular"
+        colorScheme={appearance}
+        style={styles.material}
+      />
     );
   }
-  return <View style={[styles.bar, { backgroundColor: tintColor }]}>{children}</View>;
+  if (material === 'blur') {
+    return (
+      <BlurView
+        pointerEvents="none"
+        intensity={60}
+        tint="systemThinMaterial"
+        style={styles.material}
+      />
+    );
+  }
+  return (
+    <View pointerEvents="none" style={[styles.material, { backgroundColor: colors.playerBg }]} />
+  );
 }
 
 const styles = StyleSheet.create({
@@ -286,6 +367,12 @@ const styles = StyleSheet.create({
   bar: {
     width: '100%',
     borderRadius: RADIUS.floating,
+  },
+  // Behind the words, the bar's own size and curve.
+  material: {
+    ...StyleSheet.absoluteFill,
+    borderRadius: RADIUS.floating,
+    overflow: 'hidden',
   },
   // Clipping container for the bar's content. Holds the row + progress;
   // shares the bar's borderRadius so its overflow:hidden trims the strip

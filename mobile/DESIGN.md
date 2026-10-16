@@ -328,8 +328,9 @@ platform's.
 
 1. Icons are SF Symbols on iOS and Material Symbols on Android, one name
    for both in `primitives/icons.ts`.
-2. `BriefingBar` is frosted glass on iOS, the only surface that blurs.
-   Android gets solid `playerBg`.
+2. `BriefingBar` is the only surface that blurs: Liquid Glass on iOS 26, a
+   blur before it, solid `playerBg` on Android and under Reduce
+   Transparency (`playerMaterial`). It slides; it never fades.
 3. The top bar's shade (`MapHeader`): a gradient of `bg`, a legibility scrim.
 4. The resting story's veil (`StoryCard`): a gradient over text not meant
    to be read at rest.

@@ -163,3 +163,6 @@ paths:
 - The menu (three lines) is at the top right with `▶` beside it, both through
   `HeaderControl`. `▶` hides while the player is up and keeps its slot. The
   player hangs under the top bar and floats; it is not part of the layout.
+- The player slides in and out and never fades: glass stops rendering under
+  an opacity below 1. Under Reduce Motion it appears in place, or dissolves
+  when solid (`playerMotion`).
