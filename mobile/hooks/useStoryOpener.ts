@@ -9,7 +9,8 @@ import { articleFromStory, isStoryPayload } from '../lib/story-payload';
 export function useStoryOpener(
   groupedRef: { current: GroupedArticles },
   onOpen: (slug: string, article?: Article, category?: Category) => void,
-  onError: () => void,
+  /** Handed the slug, so the reader can be offered the same open again. */
+  onError: (slug: string) => void,
 ) {
   const request = useRef(0);
   return useCallback(
@@ -37,7 +38,7 @@ export function useStoryOpener(
         if (story.slug !== slug || !resolved) throw new Error('Unexpected story');
         onOpen(slug, resolved.article, resolved.category);
       } catch {
-        if (id === request.current) onError();
+        if (id === request.current) onError(slug);
       }
     },
     [groupedRef, onOpen, onError],

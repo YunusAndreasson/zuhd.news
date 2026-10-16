@@ -42,6 +42,7 @@ it('does not open a different article returned by the endpoint', async () => {
   await act(() => result.current('requested-story'));
   expect(open).not.toHaveBeenCalled();
   expect(error).toHaveBeenCalledTimes(1);
+  expect(error).toHaveBeenCalledWith('requested-story');
 });
 
 it('keeps the latest tap when an older request finishes afterwards', async () => {
@@ -78,4 +79,5 @@ it('reports a fetch failure instead of opening an unrelated story', async () => 
   await act(() => result.current('requested-story'));
   expect(open).not.toHaveBeenCalled();
   expect(error).toHaveBeenCalledTimes(1);
+  expect(error).toHaveBeenCalledWith('requested-story');
 });

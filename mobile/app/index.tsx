@@ -135,6 +135,7 @@ import { openExternal } from '../lib/open-link';
 import type { OverlaySelection } from '../lib/overlays';
 import { oddsByStory, oddsLabels, type StoryOdds } from '../lib/predictions';
 import { getSnapshot as getReadSlugs, pruneRead } from '../lib/read-store';
+import { refreshFailedToast } from '../lib/refresh-toast';
 import { resumeLanding, unreadNewBehind } from '../lib/resume-landing';
 import { maybeRequestReview } from '../lib/store-review';
 import { storyCharts } from '../lib/story-chart';
@@ -682,6 +683,8 @@ export default function HomeScreen() {
   groupedRef.current = grouped;
   const generatedRef = useRef(generated);
   generatedRef.current = generated;
+  const offlineRef = useRef(offline);
+  offlineRef.current = offline;
   const chokepointsRef = useRef(chokepoints);
   chokepointsRef.current = chokepoints;
   const trendsRef = useRef(trends);
@@ -1489,8 +1492,14 @@ export default function HomeScreen() {
     },
     [focusStory, injectArticle, pinStory],
   );
-  const reportStoryError = useCallback(() => {
-    toastRef.current?.show('Could not open that story');
+  // The opener is made before the press that uses it, so its retry reaches
+  // the press through a ref.
+  const storyPressRef = useRef<(slug: string) => void>(() => {});
+  const reportStoryError = useCallback((slug: string) => {
+    toastRef.current?.show('Could not open that story · tap to try again', {
+      onPress: () => storyPressRef.current(slug),
+      hint: 'Opens the story',
+    });
   }, []);
   const resolveStory = useStoryOpener(groupedRef, openResolvedStory, reportStoryError);
   const handleCardStoryPress = useCallback(
@@ -1504,6 +1513,7 @@ export default function HomeScreen() {
     },
     [resolveStory],
   );
+  storyPressRef.current = handleCardStoryPress;
   const handleOverlayDismiss = useCallback(() => {
     setActiveOverlay(null);
     runSheetHandOff();
@@ -1544,6 +1554,9 @@ export default function HomeScreen() {
     [handleSelectArticle],
   );
 
+  // The failure toast tries again with the same refresh, through a ref: the
+  // refresh is the toast's own caller.
+  const handleRefreshRef = useRef<() => Promise<void>>(async () => {});
   const handleRefresh = useCallback(async () => {
     setRefreshing(true);
     const startedAt = Date.now();
@@ -1577,11 +1590,16 @@ export default function HomeScreen() {
       }
     } catch {
       await held();
-      toastRef.current?.show('Could not refresh', undefined, 'top');
+      toastRef.current?.show(
+        refreshFailedToast(offlineRef.current, generatedRef.current),
+        { onPress: () => void handleRefreshRef.current(), hint: 'Checks for new stories again' },
+        'top',
+      );
     } finally {
       setRefreshing(false);
     }
   }, [refresh]);
+  handleRefreshRef.current = handleRefresh;
 
   // Android's back puts a grown story down before it leaves the app. The map
   // is the root screen, so without this the one key a reader reaches for to
