@@ -15,6 +15,12 @@ jest.mock('react-native', () => {
       announceForAccessibilityWithOptions: jest.fn(),
       // As iOS answers: the timeout it was asked about.
       getRecommendedTimeoutMillis: jest.fn((ms) => Promise.resolve(ms)),
+      // The reading settings a theme follows (`hooks/useLegibility.ts`): off.
+      isBoldTextEnabled: jest.fn(() => Promise.resolve(false)),
+      isDarkerSystemColorsEnabled: jest.fn(() => Promise.resolve(false)),
+      isHighTextContrastEnabled: jest.fn(() => Promise.resolve(false)),
+      isReduceTransparencyEnabled: jest.fn(() => Promise.resolve(false)),
+      addEventListener: jest.fn(() => ({ remove: jest.fn() })),
     },
     Text: 'Text',
     View: 'View',

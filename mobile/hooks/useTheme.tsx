@@ -7,18 +7,18 @@ import { IS_ANDROID } from '../constants/platform';
 import {
   type AppearanceMode,
   type ColorPalette,
-  DARK_COLORS,
   FONT_SIZE_SCALE,
   FONT_SOURCE,
+  FONT_SOURCE_BOLD,
   FONT_SYSTEM,
   type FontFamily,
   type FontSet,
   type FontSize,
-  LIGHT_COLORS,
   makeSheetStyles,
   makeTextVariants,
   makeTypography,
   type Preferences,
+  paletteFor,
   type TextVariants,
   type Typography,
 } from '../constants/theme';
@@ -31,6 +31,7 @@ import {
   unregisterPushToken,
 } from '../lib/notifications';
 import { getPreferences, savePreferences } from '../lib/storage';
+import { legibilityReady, useLegibility } from './useLegibility';
 
 // ---------------------------------------------------------------------------
 // Theme = visual style only. Splitting theme from preferences lets toggles
@@ -90,6 +91,9 @@ export function ThemeProvider({
   fontsAvailable?: boolean;
 }) {
   const initialPrefs = use(prefsPromise);
+  // Bold Text and Increase Contrast, read before the first frame is drawn.
+  use(legibilityReady());
+  const { boldText, moreContrast } = useLegibility();
   const [prefs, setPrefs] = useState<Preferences>(() => {
     const current = latestPrefs ?? initialPrefs;
     setHapticsEnabled(current.haptics);
@@ -176,8 +180,15 @@ export function ThemeProvider({
   // Theme depends only on visual inputs — haptics/notifications toggles
   // don't invalidate it, so consumers of useTheme don't re-render.
   const theme = useMemo<Theme>(() => {
-    const colors = resolvedAppearance === 'dark' ? DARK_COLORS : LIGHT_COLORS;
-    const font = prefs.fontFamily === 'source' && fontsAvailable ? FONT_SOURCE : FONT_SYSTEM;
+    const colors = paletteFor(resolvedAppearance, moreContrast);
+    // The system face follows Bold Text by itself; Source Sans is handed the
+    // next file up.
+    const font =
+      prefs.fontFamily === 'source' && fontsAvailable
+        ? boldText
+          ? FONT_SOURCE_BOLD
+          : FONT_SOURCE
+        : FONT_SYSTEM;
     const sizeScale = FONT_SIZE_SCALE[prefs.fontSize];
     const typography = makeTypography(sizeScale);
     const textVariants = makeTextVariants(colors, font, typography);
@@ -191,7 +202,14 @@ export function ThemeProvider({
       sheetStyles,
       resolvedAppearance,
     };
-  }, [resolvedAppearance, prefs.fontFamily, prefs.fontSize, fontsAvailable]);
+  }, [
+    resolvedAppearance,
+    prefs.fontFamily,
+    prefs.fontSize,
+    fontsAvailable,
+    boldText,
+    moreContrast,
+  ]);
 
   const preferencesApi = useMemo<PreferencesApi>(
     () => ({

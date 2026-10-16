@@ -1,6 +1,7 @@
 import { act, renderHook } from '@testing-library/react';
 import { Suspense } from 'react';
-import { DEFAULT_PREFS } from '../constants/theme';
+import { AccessibilityInfo } from 'react-native';
+import { DARK_COLORS, DARK_CONTRAST_COLORS, DEFAULT_PREFS } from '../constants/theme';
 import { ThemeProvider, usePreferences, useTheme } from '../hooks/useTheme';
 import * as Network from 'expo-network';
 import { enableNotifications, unregisterPushToken } from '../lib/notifications';
@@ -12,6 +13,10 @@ jest.mock('react-native', () => ({
   Dimensions: { get: () => ({ width: 411, height: 914 }) },
   Appearance: { setColorScheme: jest.fn() },
   AppState: { addEventListener: jest.fn(() => ({ remove: jest.fn() })) },
+  AccessibilityInfo: {
+    isHighTextContrastEnabled: jest.fn(async () => false),
+    addEventListener: jest.fn(() => ({ remove: jest.fn() })),
+  },
   useColorScheme: () => 'dark',
 }));
 jest.mock('expo-network', () => ({
@@ -107,4 +112,21 @@ it('retries notification opt-out on reconnect without resending on every network
     network?.({ isConnected: true } as never);
   });
   expect(unregisterPushToken).toHaveBeenCalledTimes(1);
+});
+
+it('steps the quiet inks up while High contrast text is on, and back when it is off', async () => {
+  let hook!: ReturnType<typeof renderHook<ReturnType<typeof useTheme>, unknown>>;
+  await act(async () => {
+    hook = renderHook(useTheme, { wrapper: Wrapper });
+  });
+  expect(hook.result.current.colors).toBe(DARK_COLORS);
+  const calls = jest.mocked(AccessibilityInfo.addEventListener).mock.calls;
+  const changed = calls.findLast(([event]) => event === 'highTextContrastChanged')?.[1] as
+    | ((on: boolean) => void)
+    | undefined;
+  expect(changed).toBeDefined();
+  act(() => changed?.(true));
+  expect(hook.result.current.colors).toBe(DARK_CONTRAST_COLORS);
+  act(() => changed?.(false));
+  expect(hook.result.current.colors).toBe(DARK_COLORS);
 });

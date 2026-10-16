@@ -350,6 +350,9 @@ platform's.
 - Reduce Motion as in Motion; motion that tracks a finger is exempt.
 - AA contrast (4.5:1 for body text) in both themes, at default and largest
   text.
+- Bold Text and Increase Contrast or High contrast text reach the app's own
+  face and inks only through `ThemeProvider` (`useLegibility`): a weight up,
+  and quiet ink at 7:1.
 
 ## Adding a component or a variant
 
