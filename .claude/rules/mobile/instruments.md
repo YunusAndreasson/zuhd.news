@@ -118,7 +118,9 @@ paths:
 - A row that opens as a page never moves the globe: the menu covers it. Only a
   row with no page (`onSelectRow`, a strait with nothing to chart) closes the
   menu and flies there.
-- A menu row never appears or leaves while the menu is open.
+- A menu row never appears or leaves while the menu is open: the root keeps
+  the groups it opened with (`holdGroups`), and `world hazards` is always a
+  row, whose page says when there is nothing to list.
 - The menu reopens where it was for five minutes (`MENU_RESUME_MS` in
   `app/index.tsx`). A longer gap opens its root (the `rootKey`
   prop).

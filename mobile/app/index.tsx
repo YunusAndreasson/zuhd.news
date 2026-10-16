@@ -117,6 +117,8 @@ import {
   buildInstrumentCatalog,
   type CatalogGroup,
   type CatalogRow,
+  type GroupKey,
+  holdGroups,
 } from '../lib/instrument-catalog';
 import { buildStoryRows, cameraTrackOf, type StoryRow } from '../lib/map-feed';
 import { coverageStory, mapCandidates } from '../lib/map-selection';
@@ -515,9 +517,16 @@ export default function HomeScreen() {
    *  it keeps what it last showed, so the rows do not vanish from a menu
    *  still sliding away. */
   const lastCatalogRef = useRef<CatalogGroup[]>([]);
+  // The groups the menu opened with. While it is open its rows refresh but
+  // none appears or leaves (DESIGN Rows); a group that arrives late is there
+  // the next time it opens.
+  const heldGroupsRef = useRef<readonly GroupKey[] | null>(null);
   const catalog = useMemo(() => {
-    if (!menuOpen) return lastCatalogRef.current;
-    lastCatalogRef.current = buildInstrumentCatalog({
+    if (!menuOpen) {
+      heldGroupsRef.current = null;
+      return lastCatalogRef.current;
+    }
+    const built = buildInstrumentCatalog({
       ranked: rankedInstruments,
       trends,
       chokepoints,
@@ -527,6 +536,8 @@ export default function HomeScreen() {
       companies,
       aiModels,
     });
+    heldGroupsRef.current ??= built.map((group) => group.key);
+    lastCatalogRef.current = holdGroups(built, heldGroupsRef.current);
     return lastCatalogRef.current;
   }, [
     menuOpen,

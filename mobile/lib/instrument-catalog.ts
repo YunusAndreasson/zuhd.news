@@ -640,3 +640,14 @@ export function buildInstrumentCatalog({
     };
   }).filter((group) => group.rows.length > 0);
 }
+
+/**
+ * The catalog held to the groups the menu opened with, in their order. A
+ * group that has lost its rows stays, with none; one that was not there when
+ * the menu opened waits for the next time it opens. DESIGN: a menu row never
+ * appears or leaves while the menu is open.
+ */
+export function holdGroups(catalog: CatalogGroup[], held: readonly GroupKey[]): CatalogGroup[] {
+  const byKey = new Map(catalog.map((group) => [group.key, group]));
+  return held.map((key) => byKey.get(key) ?? { key, title: GROUP_TITLES[key], rows: [] });
+}

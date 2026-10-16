@@ -412,7 +412,11 @@ export const MenuSheet = memo(function MenuSheet({
   function renderPage() {
     const current = nav.current;
     if (current === 'world hazards') {
-      return <HazardLayers layers={layers} hazards={hazards} onPress={navPush} />;
+      return layers.length > 0 ? (
+        <HazardLayers layers={layers} hazards={hazards} onPress={navPush} />
+      ) : (
+        <EmptyState message={NOTHING_LISTED} />
+      );
     }
 
     if (current === 'country rankings') {
@@ -607,7 +611,6 @@ export const MenuSheet = memo(function MenuSheet({
               <MenuRootPage
                 catalog={catalog}
                 hazards={hazards}
-                hasLayers={layers.length > 0}
                 navPush={navPush}
                 onGroup={handleGroup}
               />
@@ -721,13 +724,11 @@ const MENU_SECTION: Record<GroupKey, (typeof MENU_SECTIONS)[number]> = {
 function MenuRootPage({
   catalog,
   hazards,
-  hasLayers,
   navPush,
   onGroup,
 }: {
   catalog: CatalogGroup[];
   hazards: MenuHazards;
-  hasLayers: boolean;
   navPush: (page: PageKey) => void;
   onGroup: (group: CatalogGroup) => void;
 }) {
@@ -790,7 +791,6 @@ function MenuRootPage({
       })}
       <HazardsRow
         hazards={hazards}
-        listed={hasLayers}
         first={!catalog.some((group) => MENU_SECTION[group.key] === 'explore')}
         onPress={navPush}
       />
@@ -1035,17 +1035,16 @@ const GroupRow = memo(function GroupRow({
  *  `explore`. The layers counted in marks are a screen reader's hint. */
 const HazardsRow = memo(function HazardsRow({
   hazards,
-  listed,
   first,
   onPress,
 }: {
   hazards: MenuHazards;
-  /** Whether any layer has a mark to list. */
-  listed: boolean;
   first: boolean;
   onPress: (page: PageKey) => void;
 }) {
-  if (!listed) return null;
+  // Always a row, from the menu's first frame: the hazard layers load apart
+  // from the rest, and a row that appeared under a reader's finger was the
+  // one DESIGN's rows rule forbids. With nothing to list, its page says so.
   const counted = (n: number, one: string, many: string) => `${n} ${n === 1 ? one : many}`;
   // The count of the list the row leads to: the week's, where it is held.
   const conflictCount = hazards.conflictWeek?.events.length ?? hazards.conflict.length;
@@ -1067,7 +1066,7 @@ const HazardsRow = memo(function HazardsRow({
     <MenuRow
       first={first}
       title="world hazards"
-      hint={marks}
+      hint={marks || undefined}
       trailing="push"
       onPress={() => onPress('world hazards')}
     />

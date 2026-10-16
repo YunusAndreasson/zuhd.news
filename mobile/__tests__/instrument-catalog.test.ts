@@ -6,6 +6,7 @@ import {
   type CatalogGroup,
   type CatalogInputs,
   type GroupKey,
+  holdGroups,
   instrumentCardFor,
   rowFlag,
 } from '../lib/instrument-catalog';
@@ -778,5 +779,37 @@ describe('largest companies', () => {
     expect(instrumentCardFor('co:a', all)?.title).toBe('a');
     expect(instrumentCardFor('co:missing', all)).toBeNull();
     expect(instrumentCardFor('co:a', inputs())).toBeNull();
+  });
+});
+
+// The menu keeps the groups it opened with until it closes: no row appears or
+// leaves under the reader's hand.
+describe('holdGroups', () => {
+  const row = (id: string) => ({ id }) as unknown as CatalogGroup['rows'][number];
+  const listed = (key: GroupKey, rowIds: string[]): CatalogGroup => ({
+    key,
+    title: key,
+    rows: rowIds.map(row),
+  });
+
+  it('keeps the groups it was opened with, in their order, with their rows refreshed', () => {
+    const held = holdGroups(
+      [listed('stocks', ['b']), listed('energy', ['c'])],
+      ['stocks', 'energy'],
+    );
+    expect(held.map((g) => [g.key, g.rows.map((r) => r.id)])).toEqual([
+      ['stocks', ['b']],
+      ['energy', ['c']],
+    ]);
+  });
+
+  it('keeps a group that lost its rows, named, with none', () => {
+    const held = holdGroups([listed('stocks', ['b'])], ['stocks', 'calendar']);
+    expect(held[1]).toEqual({ key: 'calendar', title: 'coming up', rows: [] });
+  });
+
+  it('leaves out a group that arrived after the menu opened', () => {
+    const held = holdGroups([listed('stocks', ['b']), listed('crypto', ['btc'])], ['stocks']);
+    expect(held.map((g) => g.key)).toEqual(['stocks']);
   });
 });
