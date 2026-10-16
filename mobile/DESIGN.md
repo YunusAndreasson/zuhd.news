@@ -95,6 +95,8 @@ a primitive at the third caller.
   sentence case, its parts parted by ` · `; one a tap acts on ends
   `· tap to <verb>` (`__tests__/toast-copy.test.ts`). No dash, no "Please".
 - A link is never quieter than its sentence: the body's ink, underlined.
+- Sizes follow the live window's width, within 0.9–1.1 of their 375pt
+  sizes (`widthTypeScale`); the theme is rebuilt only when a size steps.
 
 ## Patterns
 

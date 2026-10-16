@@ -12,7 +12,7 @@ import {
   useState,
   useSyncExternalStore,
 } from 'react';
-import { Linking, StyleSheet, type TextStyle, View } from 'react-native';
+import { Linking, StyleSheet, type TextStyle, useWindowDimensions, View } from 'react-native';
 import { GestureDetector } from 'react-native-gesture-handler';
 import { LayoutAnimationConfig } from 'react-native-reanimated';
 import {
@@ -25,6 +25,7 @@ import {
   ICON,
   MAX_FONT_SCALE,
   SPACING,
+  widthTypeScale,
 } from '../constants/theme';
 import { useSheetBackNavigation } from '../hooks/useSheetBackNavigation';
 import { useSheetNavigation } from '../hooks/useSheetNavigation';
@@ -381,9 +382,10 @@ export const MenuSheet = memo(function MenuSheet({
 
   // The size picker sets each size in itself — the size the whole app will
   // take, whatever size it is at now.
+  const { width: windowWidth } = useWindowDimensions();
   const sizeLabelScale = useCallback(
-    (v: FontSize) => baseFontSize(v) / typography.sizeBase,
-    [typography.sizeBase],
+    (v: FontSize) => baseFontSize(v, widthTypeScale(windowWidth)) / typography.sizeBase,
+    [typography.sizeBase, windowWidth],
   );
 
   // A group key with no group is a list an arrival emptied while it was open:

@@ -2,7 +2,7 @@ import { NavigationBar } from 'expo-navigation-bar';
 import * as Network from 'expo-network';
 import * as SystemUI from 'expo-system-ui';
 import { createContext, use, useCallback, useEffect, useMemo, useRef, useState } from 'react';
-import { Appearance, AppState, useColorScheme } from 'react-native';
+import { Appearance, AppState, useColorScheme, useWindowDimensions } from 'react-native';
 import { IS_ANDROID } from '../constants/platform';
 import {
   type AppearanceMode,
@@ -16,11 +16,12 @@ import {
   type FontSize,
   makeSheetStyles,
   makeTextVariants,
-  makeTypography,
   type Preferences,
   paletteFor,
   type TextVariants,
   type Typography,
+  typographyFor,
+  widthTypeScale,
 } from '../constants/theme';
 import { setHapticsEnabled } from '../lib/haptics';
 import {
@@ -177,6 +178,11 @@ export function ThemeProvider({
         : 'dark'
       : prefs.appearance;
 
+  // The sizes follow the live window; `typographyFor` hands back the same
+  // object until a size actually steps, so a resize rebuilds nothing else.
+  const { width } = useWindowDimensions();
+  const typography = typographyFor(FONT_SIZE_SCALE[prefs.fontSize], widthTypeScale(width));
+
   // Theme depends only on visual inputs — haptics/notifications toggles
   // don't invalidate it, so consumers of useTheme don't re-render.
   const theme = useMemo<Theme>(() => {
@@ -189,8 +195,6 @@ export function ThemeProvider({
           ? FONT_SOURCE_BOLD
           : FONT_SOURCE
         : FONT_SYSTEM;
-    const sizeScale = FONT_SIZE_SCALE[prefs.fontSize];
-    const typography = makeTypography(sizeScale);
     const textVariants = makeTextVariants(colors, font, typography);
     const sheetStyles = makeSheetStyles(colors);
 
@@ -202,14 +206,7 @@ export function ThemeProvider({
       sheetStyles,
       resolvedAppearance,
     };
-  }, [
-    resolvedAppearance,
-    prefs.fontFamily,
-    prefs.fontSize,
-    fontsAvailable,
-    boldText,
-    moreContrast,
-  ]);
+  }, [resolvedAppearance, prefs.fontFamily, typography, fontsAvailable, boldText, moreContrast]);
 
   const preferencesApi = useMemo<PreferencesApi>(
     () => ({

@@ -1,10 +1,5 @@
 import type { Category } from '@shared/types';
-import {
-  Dimensions,
-  type TextProps as RNTextProps,
-  StyleSheet,
-  type TextStyle,
-} from 'react-native';
+import { type TextProps as RNTextProps, StyleSheet, type TextStyle } from 'react-native';
 import { Easing, FadeIn, FadeOut, ReduceMotion } from 'react-native-reanimated';
 import { ANDROID_TEXT_BASE } from './platform';
 
@@ -39,8 +34,17 @@ export const DEFAULT_PREFS: Preferences = {
 // Scale fonts relative to iPhone SE/8 width (375pt).
 // Clamp so text never shrinks below 90% or grows above 110%.
 const BASE_WIDTH = 375;
-const scale = Math.min(1.1, Math.max(0.9, Dimensions.get('window').width / BASE_WIDTH));
-const fs = (size: number, sizeScale = 1) => Math.round(size * scale * sizeScale);
+
+/** The type's width scale for a window: sizes are set for 375pt and follow the
+ *  window's width within 0.9–1.1, so a line holds about the same characters on
+ *  every phone. The live window's, not the launch's: a window resizes (split
+ *  screen, a foldable unfolding, iOS 27's resizable windows). */
+export function widthTypeScale(width: number): number {
+  return Math.min(1.1, Math.max(0.9, width / BASE_WIDTH));
+}
+
+const fs = (size: number, widthScale: number, sizeScale: number) =>
+  Math.round(size * widthScale * sizeScale);
 
 export const FONT_SIZE_SCALE: Record<FontSize, number> = {
   small: 0.88,
@@ -48,8 +52,10 @@ export const FONT_SIZE_SCALE: Record<FontSize, number> = {
   large: 1.15,
 };
 
-/** Resolved base font size for a given size preference — useful for size-picker previews. */
-export const baseFontSize = (size: FontSize): number => fs(17, FONT_SIZE_SCALE[size]);
+/** Resolved base font size for a given size preference, in a window of a
+ *  given width scale — the size picker's previews. */
+export const baseFontSize = (size: FontSize, widthScale: number): number =>
+  fs(17, widthScale, FONT_SIZE_SCALE[size]);
 
 // ---------------------------------------------------------------------------
 // Primitives — theme-invariant raw values
@@ -463,14 +469,14 @@ export const FONT_SOURCE_BOLD = emboldened(FONT_SOURCE);
 // Typography (can be rebuilt with a size scale)
 // ---------------------------------------------------------------------------
 
-export function makeTypography(sizeScale: number = 1) {
+export function makeTypography(sizeScale: number = 1, widthScale: number = 1) {
   return {
-    sizeBase: fs(17, sizeScale),
-    sizeLg: fs(21, sizeScale),
-    sizeSm: fs(13, sizeScale),
-    sizeXs: fs(11, sizeScale),
-    sizeH1: fs(28, sizeScale),
-    sizeWordmark: fs(14, sizeScale),
+    sizeBase: fs(17, widthScale, sizeScale),
+    sizeLg: fs(21, widthScale, sizeScale),
+    sizeSm: fs(13, widthScale, sizeScale),
+    sizeXs: fs(11, widthScale, sizeScale),
+    sizeH1: fs(28, widthScale, sizeScale),
+    sizeWordmark: fs(14, widthScale, sizeScale),
 
     // Compact prose leading keeps the reading column comfortable without
     // making short articles unnecessarily tall; font size stays unchanged.
@@ -496,6 +502,27 @@ export function makeTypography(sizeScale: number = 1) {
 }
 
 export type Typography = ReturnType<typeof makeTypography>;
+
+const typographies = new Map<string, Typography>();
+
+/** `makeTypography`, one object per set of sizes: a window that resizes
+ *  without crossing a size's rounding step keeps its typography, and with it
+ *  the theme, so a rotation does not re-render every reader of the theme. */
+export function typographyFor(sizeScale: number, widthScale: number): Typography {
+  const next = makeTypography(sizeScale, widthScale);
+  const key = [
+    next.sizeBase,
+    next.sizeLg,
+    next.sizeSm,
+    next.sizeXs,
+    next.sizeH1,
+    next.sizeWordmark,
+  ].join();
+  const known = typographies.get(key);
+  if (known) return known;
+  typographies.set(key, next);
+  return next;
+}
 
 export const SPACING = {
   xxs: 2,

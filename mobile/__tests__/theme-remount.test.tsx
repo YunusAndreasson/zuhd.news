@@ -18,6 +18,7 @@ jest.mock('react-native', () => ({
     addEventListener: jest.fn(() => ({ remove: jest.fn() })),
   },
   useColorScheme: () => 'dark',
+  useWindowDimensions: () => ({ width: 411, height: 914, fontScale: 1, scale: 2.625 }),
 }));
 jest.mock('expo-network', () => ({
   addNetworkStateListener: jest.fn(() => ({ remove: jest.fn() })),
