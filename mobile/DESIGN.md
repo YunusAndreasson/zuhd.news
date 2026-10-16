@@ -20,6 +20,8 @@ loads with the files it covers; this document is what things look like.
 | Token | Role |
 |---|---|
 | `bg`, `sheetBg` | The screen's ground; a sheet's ground |
+| `DARK_CONTRAST_COLORS`, `LIGHT_CONTRAST_COLORS` | The palettes under Increase Contrast or High contrast text: the quiet inks and the rule a step up (`paletteFor`) |
+| `FONT_SOURCE_BOLD` | Source Sans a weight up, under Bold Text (`emboldened`) |
 | `pillBg`, `playerBg`, `toastBg` | A button's or current row's fill on a sheet; solid chrome over the globe or text; toast |
 | `textEmphasis`, `text`, `accent`, `textSecondary` | Inks, strong to quiet; `accent` is not a brand colour |
 | `rule` | Every hairline |

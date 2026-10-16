@@ -263,6 +263,38 @@ export const LIGHT_COLORS = {
 
 export type ColorPalette = { [K in keyof typeof DARK_COLORS]: string };
 
+/**
+ * The palettes under the system's Increase Contrast (iOS) or High contrast
+ * text (Android). Only the quiet inks and the hairline step up: secondary ink
+ * to AAA on both grounds (8.0:1 dark, 8.2:1 light), accent and text a step
+ * above it so the ladder keeps its steps, and the rule to about 2.5:1. That is
+ * as far as the rule can go while the toggle's off thumb, secondary ink on the
+ * rule, keeps 3:1. Marks, categories and the tone inks are AA already and keep
+ * the globe's colours. Module constants, so a theme built on one keeps its
+ * identity (`paletteFor`).
+ */
+export const DARK_CONTRAST_COLORS: ColorPalette = {
+  ...DARK_COLORS,
+  textSecondary: '#a8a8a8',
+  accent: '#c4c4c4',
+  rule: '#575757',
+};
+
+export const LIGHT_CONTRAST_COLORS: ColorPalette = {
+  ...LIGHT_COLORS,
+  text: '#222222',
+  textSecondary: '#484848',
+  accent: '#363636',
+  rule: '#999590',
+};
+
+/** The palette for an appearance, stepped up when the reader has asked the
+ *  system for more contrast. */
+export function paletteFor(appearance: 'dark' | 'light', moreContrast: boolean): ColorPalette {
+  if (appearance === 'dark') return moreContrast ? DARK_CONTRAST_COLORS : DARK_COLORS;
+  return moreContrast ? LIGHT_CONTRAST_COLORS : LIGHT_COLORS;
+}
+
 /** Convert a 3- or 6-digit hex color to an rgba string at a given alpha.
  *  Use when a palette color needs an inline transparency override (e.g. a
  *  progress-track tint) — preferred over hex+alpha-byte concatenation
@@ -390,6 +422,42 @@ export const FONT_SYSTEM: FontSet = {
   boldItalic: { fontFamily: undefined, fontWeight: '700', fontStyle: 'italic' },
   smallCaps: { fontFamily: undefined, fontWeight: '600', fontVariant: ['small-caps'] },
 };
+
+/** The next Source Sans file up from each face the app ships one heavier of. */
+const HEAVIER_FACE: Readonly<Record<string, string>> = {
+  'SourceSans3-Regular': 'SourceSans3-SemiBold',
+  'SourceSans3-SemiBold': 'SourceSans3-Bold',
+  'SourceSans3-Italic': 'SourceSans3-BoldItalic',
+};
+
+/**
+ * The faces one weight up, for iOS's Bold Text: the system face follows that
+ * setting by itself, and Source Sans, drawn from its own files, does not. Bold,
+ * BoldItalic and the small-caps face have no heavier file and stay, so under
+ * the setting a title and the display figure share a weight and their sizes
+ * part them. A set with nothing to step comes back as itself.
+ */
+export function emboldened(font: FontSet): FontSet {
+  let changed = false;
+  const step = (face: FontEntry): FontEntry => {
+    const heavier = face.fontFamily ? HEAVIER_FACE[face.fontFamily] : undefined;
+    if (!heavier) return face;
+    changed = true;
+    return { ...face, fontFamily: heavier };
+  };
+  const stepped: FontSet = {
+    regular: step(font.regular),
+    semiBold: step(font.semiBold),
+    bold: step(font.bold),
+    italic: step(font.italic),
+    boldItalic: step(font.boldItalic),
+    smallCaps: step(font.smallCaps),
+  };
+  return changed ? stepped : font;
+}
+
+/** Source Sans under Bold Text: one constant, so the theme keeps its identity. */
+export const FONT_SOURCE_BOLD = emboldened(FONT_SOURCE);
 
 // ---------------------------------------------------------------------------
 // Typography (can be rebuilt with a size scale)

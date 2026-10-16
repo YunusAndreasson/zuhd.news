@@ -1,6 +1,13 @@
 import { readFileSync } from 'node:fs';
 import { resolve } from 'node:path';
-import { DARK_COLORS, LIGHT_COLORS } from '../constants/theme';
+import {
+  type ColorPalette,
+  DARK_COLORS,
+  DARK_CONTRAST_COLORS,
+  LIGHT_COLORS,
+  LIGHT_CONTRAST_COLORS,
+  paletteFor,
+} from '../constants/theme';
 
 // WCAG 2 relative luminance and contrast, on opaque hex only.
 function luminance(hex: string): number {
@@ -19,7 +26,13 @@ function contrast(a: string, b: string): number {
   return (Math.max(la, lb) + 0.05) / (Math.min(la, lb) + 0.05);
 }
 
-const THEMES = { dark: DARK_COLORS, light: LIGHT_COLORS } as const;
+// Every invariant holds under the system's more-contrast setting too.
+const THEMES = {
+  dark: DARK_COLORS,
+  light: LIGHT_COLORS,
+  'dark, more contrast': DARK_CONTRAST_COLORS,
+  'light, more contrast': LIGHT_CONTRAST_COLORS,
+} as const;
 
 describe.each(Object.entries(THEMES))('%s palette', (_, colors) => {
   const tones = [colors.toneFavorableText, colors.toneUnfavorableText, colors.toneNeutralText];
@@ -85,6 +98,12 @@ describe.each(Object.entries(THEMES))('%s palette', (_, colors) => {
     expect(contrast(colors.rule, colors.sheetBg)).toBeGreaterThanOrEqual(1.3);
   });
 
+  // A switch's off state is its thumb, secondary ink on the rule's track: a
+  // control's state clears 3:1 (WCAG 2.2 SC 1.4.11).
+  it('shows a switch’s off thumb on its track', () => {
+    expect(contrast(colors.textSecondary, colors.rule)).toBeGreaterThanOrEqual(3);
+  });
+
   it('sets the conflict count at AA on the ground', () => {
     expect(contrast(colors.markConflictText, colors.bg)).toBeGreaterThanOrEqual(4.5);
   });
@@ -136,5 +155,42 @@ describe('globe marks match the web map', () => {
 
   it('markContested is the web’s contested on the dark globe', () => {
     expect(DARK_COLORS.markContested.toLowerCase()).toBe(webValue('contested'));
+  });
+});
+
+// Increase Contrast (iOS) and High contrast text (Android): the quiet inks
+// and the hairline step up, and nothing else moves.
+describe.each([
+  ['dark', DARK_COLORS, DARK_CONTRAST_COLORS],
+  ['light', LIGHT_COLORS, LIGHT_CONTRAST_COLORS],
+] as const)('%s palette, more contrast', (appearance, base, more) => {
+  it('sets the quiet ink at AAA on the ground and the sheet', () => {
+    expect(contrast(more.textSecondary, more.bg)).toBeGreaterThanOrEqual(7);
+    expect(contrast(more.textSecondary, more.sheetBg)).toBeGreaterThanOrEqual(7);
+  });
+
+  it('draws the hairline stronger than the plain palette does', () => {
+    expect(contrast(more.rule, more.sheetBg)).toBeGreaterThanOrEqual(2.35);
+    expect(contrast(more.rule, more.bg)).toBeGreaterThanOrEqual(2.35);
+  });
+
+  it('makes no ink quieter than its plain one', () => {
+    for (const key of ['text', 'accent', 'textSecondary', 'rule'] as const) {
+      expect(contrast(more[key], more.bg)).toBeGreaterThanOrEqual(contrast(base[key], base.bg));
+    }
+  });
+
+  it('changes the quiet inks and the hairline, and nothing else', () => {
+    const changed = (Object.keys(base) as (keyof ColorPalette)[]).filter(
+      (key) => base[key] !== more[key],
+    );
+    expect(changed.every((key) => ['text', 'accent', 'textSecondary', 'rule'].includes(key))).toBe(
+      true,
+    );
+  });
+
+  it('is the palette the theme picks for the setting', () => {
+    expect(paletteFor(appearance, true)).toBe(more);
+    expect(paletteFor(appearance, false)).toBe(base);
   });
 });
