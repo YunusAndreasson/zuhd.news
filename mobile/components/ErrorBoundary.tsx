@@ -1,6 +1,6 @@
 import { reloadAppAsync } from 'expo';
 import * as Updates from 'expo-updates';
-import { Component, type ErrorInfo, type ReactNode } from 'react';
+import { Component, type ReactNode } from 'react';
 import { Pressable, StyleSheet, Text, View } from 'react-native';
 import {
   DARK_COLORS,
@@ -23,8 +23,6 @@ interface State {
   failedAt: number;
   /** When the reader last pressed `try again`. */
   resetAt: number | null;
-  /** Where in the tree it threw, for the diagnostic line. */
-  componentStack: string | null;
 }
 
 // ErrorBoundary lives above ThemeProvider in the tree, so it can't consume the
@@ -42,14 +40,13 @@ const COPY: Record<Recovery, { title: string; detail: string | null; action: str
 };
 
 export class ErrorBoundary extends Component<Props, State> {
-  state: State = { error: null, failedAt: 0, resetAt: null, componentStack: null };
+  state: State = { error: null, failedAt: 0, resetAt: null };
 
   static getDerivedStateFromError(error: Error): Partial<State> {
     return { error, failedAt: Date.now() };
   }
 
-  componentDidCatch(error: Error, info: ErrorInfo) {
-    this.setState({ componentStack: info.componentStack ?? null });
+  componentDidCatch(error: Error) {
     if (__DEV__) {
       console.error('[ErrorBoundary]', error);
     }
@@ -70,21 +67,13 @@ export class ErrorBoundary extends Component<Props, State> {
   };
 
   render() {
-    const { error, failedAt, resetAt, componentStack } = this.state;
+    const { error, failedAt, resetAt } = this.state;
     if (!error) return this.props.children;
     const recovery = recoveryFor(resetAt, failedAt);
     const copy = COPY[recovery];
     // The raw message is a developer's ("undefined is not a function"); a
     // reader gets what to do about it.
     const detail = __DEV__ ? error.message : copy.detail;
-    // For now the error itself is printed too, selectable, so a tester can
-    // copy it: the 2.9.0 build fails at launch and nothing else reports it.
-    const frames = (componentStack ?? '')
-      .split('\n')
-      .map((line) => line.trim())
-      .filter(Boolean)
-      .slice(0, 8);
-    const diagnostic = [`${error.name}: ${error.message}`, ...frames].join('\n');
     return (
       <View style={styles.root}>
         <View style={styles.words}>
@@ -100,9 +89,6 @@ export class ErrorBoundary extends Component<Props, State> {
               {detail}
             </Text>
           ) : null}
-          <Text selectable style={styles.diagnostic} maxFontSizeMultiplier={MAX_FONT_SCALE.body}>
-            {diagnostic}
-          </Text>
         </View>
         <Pressable
           onPress={recovery === 'reload' ? this.reload : this.reset}
@@ -141,11 +127,6 @@ const styles = StyleSheet.create({
     color: DARK_COLORS.textSecondary,
     fontSize: typography.sizeSm,
     textAlign: 'center',
-  },
-  diagnostic: {
-    color: DARK_COLORS.textSecondary,
-    fontSize: typography.sizeXs,
-    marginTop: SPACING.md,
   },
   retry: {
     color: DARK_COLORS.text,
