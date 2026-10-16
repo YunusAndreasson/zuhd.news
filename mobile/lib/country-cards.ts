@@ -102,6 +102,20 @@ export function countryTrajectories(name: string | null | undefined): Trajectory
   return trajectoryCards(getCountryCardData(name), getGlobalBenchmarks());
 }
 
+/**
+ * A trajectory card said in one go: what its chart draws, its figure and its
+ * sentence, the line it is held against, and where it comes from. Its chart
+ * says the first part; the carousel, whose pages a screen reader steps
+ * through as one control, says it whole.
+ */
+export function trajectorySentence(card: TrajectoryCard, { source = false } = {}): string {
+  const reference = card.reference
+    ? ` A dashed line marks ${card.reference.label}, ${card.reference.value}.`
+    : '';
+  const from = source && card.source ? ` ${card.source}.` : '';
+  return `${card.label}: ${card.headline}. ${card.subtitle}${reference} A thinner line shows the world median.${from}`;
+}
+
 /** Latest year/value pair from a YearValue series — convenience for headline numbers. */
 export function latest(series: YearValue[] | undefined): YearValue | null {
   if (!series || series.length === 0) return null;

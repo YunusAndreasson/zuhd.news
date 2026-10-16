@@ -1143,9 +1143,12 @@ export default function HomeScreen() {
     if (added) {
       toastRef.current?.show('Saved');
     } else {
-      toastRef.current?.show('Removed — tap to undo', () => {
-        if (removed) restoreBookmark(removed);
-        hapticNotification();
+      toastRef.current?.show('Removed — tap to undo', {
+        onPress: () => {
+          if (removed) restoreBookmark(removed);
+          hapticNotification();
+        },
+        hint: 'Puts the story back in saved stories',
       });
     }
   }, []);
@@ -1177,7 +1180,7 @@ export default function HomeScreen() {
     hapticError();
     toastRef.current?.show(
       'Could not play the briefing — tap to try again',
-      handleBriefingPress,
+      { onPress: handleBriefingPress, hint: 'Plays today’s briefing' },
       'top',
     );
   }, [handleBriefingPress]);
@@ -1638,15 +1641,18 @@ export default function HomeScreen() {
     (added: number) => {
       toastRef.current?.show(
         `${added} new · tap to see`,
-        () => {
-          const rows = storyRowsRef.current;
-          const readSlugs = getReadSlugs();
-          const fresh = rows.map((row) => row.fresh);
-          const read = rows.map((row) => readSlugs.has(row.slug));
-          let { first } = unreadNewBehind(fresh, read, deckIndexRef.current);
-          // All of them ahead of the reader: the first one there instead.
-          if (first < 0) first = rows.findIndex((row, i) => row.fresh && !read[i]);
-          if (first >= 0) goToStory(first);
+        {
+          hint: 'Goes to the first new story',
+          onPress: () => {
+            const rows = storyRowsRef.current;
+            const readSlugs = getReadSlugs();
+            const fresh = rows.map((row) => row.fresh);
+            const read = rows.map((row) => readSlugs.has(row.slug));
+            let { first } = unreadNewBehind(fresh, read, deckIndexRef.current);
+            // All of them ahead of the reader: the first one there instead.
+            if (first < 0) first = rows.findIndex((row, i) => row.fresh && !read[i]);
+            if (first >= 0) goToStory(first);
+          },
         },
         'top',
       );

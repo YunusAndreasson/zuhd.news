@@ -3,6 +3,7 @@ import {
   type TrajectoryCard as Trajectory,
 } from '@shared/countries/country-trajectories';
 import { useMemo } from 'react';
+import { trajectorySentence } from '../../lib/country-cards';
 import { TrajectoryChart } from '../charts/TrajectoryChart';
 import { CardShell } from './CardShell';
 
@@ -42,9 +43,7 @@ export function TrajectoryCard({ card }: TrajectoryCardProps) {
         minY={domain?.[0]}
         maxY={domain?.[1]}
         formatY={formatY}
-        accessibilityLabel={`${card.label}: ${card.headline}. ${card.subtitle}${
-          reference ? ` A dashed line marks ${reference.label}, ${reference.value}.` : ''
-        } A thinner line shows the world median.`}
+        accessibilityLabel={trajectorySentence(card)}
       />
     </CardShell>
   );

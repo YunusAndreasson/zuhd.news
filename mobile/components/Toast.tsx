@@ -1,5 +1,5 @@
 import { memo, useCallback, useEffect, useImperativeHandle, useRef, useState } from 'react';
-import { Pressable, StyleSheet } from 'react-native';
+import { AccessibilityInfo, Pressable, StyleSheet } from 'react-native';
 import Animated, { FadeInDown, FadeInUp, FadeOutDown, FadeOutUp } from 'react-native-reanimated';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import { ANIMATION, EASING, HIT_SLOP, PRESSED_STYLE, RADIUS, SPACING } from '../constants/theme';
@@ -9,10 +9,17 @@ import { Text } from './primitives';
 
 type ToastPosition = 'top' | 'bottom';
 
+/** What a tap on the toast does, and what a screen reader is told it does:
+ *  a toast that acts is a button, and a button says what it does. */
+export interface ToastAction {
+  onPress: () => void;
+  hint: string;
+}
+
 export interface ToastRef {
   show: (
     message: string,
-    onPress?: () => void,
+    action?: ToastAction,
     position?: ToastPosition,
     durationMs?: number,
   ) => void;
@@ -20,7 +27,9 @@ export interface ToastRef {
 
 // Actionable toasts linger — user needs time to decide to tap. Passive
 // acknowledgements ("Saved to bookmarks", "Removed from bookmarks") clear
-// quickly to stay out of the way.
+// quickly to stay out of the way. An actionable one stays as long as the
+// reader has asked the system to leave controls up (Android's "Time to take
+// action"; iOS answers with the default).
 const TOAST_VISIBLE_ACTIONABLE_MS = 4000;
 const TOAST_VISIBLE_PASSIVE_MS = 2000;
 const TOAST_SLIDE_OFFSET = SPACING.xxl;
@@ -59,11 +68,20 @@ export const Toast = memo(function Toast({
   const [message, setMessage] = useState('');
   const [pos, setPos] = useState<ToastPosition>('bottom');
   const [visible, setVisible] = useState(false);
+  const [hint, setHint] = useState<string | undefined>(undefined);
   const onPressRef = useRef<(() => void) | undefined>(undefined);
   const timerRef = useRef<ReturnType<typeof setTimeout> | undefined>(undefined);
+  const actionableMsRef = useRef(TOAST_VISIBLE_ACTIONABLE_MS);
 
   useEffect(() => {
+    let live = true;
+    AccessibilityInfo.getRecommendedTimeoutMillis(TOAST_VISIBLE_ACTIONABLE_MS)
+      .then((ms) => {
+        if (live) actionableMsRef.current = Math.max(ms, TOAST_VISIBLE_ACTIONABLE_MS);
+      })
+      .catch(() => {});
     return () => {
+      live = false;
       if (timerRef.current) clearTimeout(timerRef.current);
     };
   }, []);
@@ -75,19 +93,20 @@ export const Toast = memo(function Toast({
   useImperativeHandle(ref, () => ({
     show: (
       msg: string,
-      onPress?: () => void,
+      action?: ToastAction,
       position: ToastPosition = 'bottom',
       durationMs?: number,
     ) => {
       if (timerRef.current) clearTimeout(timerRef.current);
       setMessage(msg);
       setPos(position);
+      setHint(action?.hint);
       setVisible(true);
-      onPressRef.current = onPress;
-      announce(msg, { liveRegion: true });
+      onPressRef.current = action?.onPress;
+      // News the reader did not ask for: after whatever VoiceOver is saying.
+      announce(msg, { liveRegion: true, queue: true });
 
-      const visibleMs =
-        durationMs ?? (onPress ? TOAST_VISIBLE_ACTIONABLE_MS : TOAST_VISIBLE_PASSIVE_MS);
+      const visibleMs = durationMs ?? (action ? actionableMsRef.current : TOAST_VISIBLE_PASSIVE_MS);
       timerRef.current = setTimeout(() => setVisible(false), visibleMs);
     },
   }));
@@ -127,8 +146,9 @@ export const Toast = memo(function Toast({
           { backgroundColor: colors.toastBg },
           pressed && PRESSED_STYLE,
         ]}
-        accessibilityRole="alert"
+        accessibilityRole={hint ? 'button' : 'alert'}
         accessibilityLabel={message}
+        accessibilityHint={hint}
       >
         <Text variant="captionEmphasis">{message}</Text>
       </Pressable>

@@ -67,7 +67,8 @@ paths:
   The story in front is anchored by slug.
 - Pull to refresh is a pull on the sheet at rest (`MapSheet.onPullDown`).
   Never RN's `RefreshControl` here. A refresh that inserts stories keeps the
-  reader on their story.
+  reader on their story. A screen reader reaches it as the handle's `Check
+  for new stories` action.
 
 ## The sheet and its gestures
 

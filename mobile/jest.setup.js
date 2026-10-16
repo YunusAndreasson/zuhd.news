@@ -13,6 +13,8 @@ jest.mock('react-native', () => {
     AccessibilityInfo: {
       announceForAccessibility: jest.fn(),
       announceForAccessibilityWithOptions: jest.fn(),
+      // As iOS answers: the timeout it was asked about.
+      getRecommendedTimeoutMillis: jest.fn((ms) => Promise.resolve(ms)),
     },
     Text: 'Text',
     View: 'View',
@@ -58,8 +60,44 @@ jest.mock('react-native-reanimated', () => {
 
   const MockView = 'View';
 
+  // Layout animation builders. Each static call starts a chain that records
+  // its calls, so a test can read which builder reached `entering` or
+  // `exiting` and how it was configured (`kind`, `calls`).
+  const BUILDER_METHODS = [
+    'duration',
+    'delay',
+    'easing',
+    'withInitialValues',
+    'reduceMotion',
+    'springify',
+    'damping',
+    'stiffness',
+    'mass',
+    'withCallback',
+  ];
+  function chain(kind, calls, extra) {
+    const c = { kind, calls, ...extra };
+    for (const method of BUILDER_METHODS) {
+      c[method] = (arg) => chain(kind, [...calls, [method, arg]], extra);
+    }
+    return c;
+  }
+  const builder = (kind) => chain(kind, [], {});
+  function Keyframe(definitions) {
+    return chain('Keyframe', [], { definitions });
+  }
+
   return {
     __esModule: true,
+    FadeIn: builder('FadeIn'),
+    FadeOut: builder('FadeOut'),
+    FadeInDown: builder('FadeInDown'),
+    FadeInUp: builder('FadeInUp'),
+    FadeOutDown: builder('FadeOutDown'),
+    FadeOutUp: builder('FadeOutUp'),
+    LinearTransition: builder('LinearTransition'),
+    Keyframe,
+    LayoutAnimationConfig: ({ children }) => children,
     default: {
       FlatList: MockView,
       ScrollView: MockView,

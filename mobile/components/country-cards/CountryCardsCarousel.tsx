@@ -1,5 +1,6 @@
 import { memo, useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import {
+  type AccessibilityActionEvent,
   type LayoutChangeEvent,
   type NativeScrollEvent,
   type NativeSyntheticEvent,
@@ -18,8 +19,9 @@ import Animated, {
 } from 'react-native-reanimated';
 import { ANIMATION, EASING, OPACITY, SPACING } from '../../constants/theme';
 import { useTheme } from '../../hooks/useTheme';
-import { countryTrajectories } from '../../lib/country-cards';
+import { countryTrajectories, trajectorySentence } from '../../lib/country-cards';
 import { hapticSwipe } from '../../lib/haptics';
+import { displayCountryName } from '../../lib/place-names';
 import { Pressable } from '../primitives';
 import { TrajectoryCard } from './TrajectoryCard';
 
@@ -36,6 +38,9 @@ interface CountryCardsCarouselProps {
 // at max accessibility scale the chart still has enough vertical space
 // because subtitle/chart take the slack.
 const CARD_HEIGHT = 296;
+
+/** A screen reader steps the pages as one control, as the dock's track is. */
+const PAGE_ACTIONS = [{ name: 'increment' as const }, { name: 'decrement' as const }];
 
 export const CountryCardsCarousel = memo(function CountryCardsCarousel({
   countryName,
@@ -106,7 +111,23 @@ export const CountryCardsCarousel = memo(function CountryCardsCarousel({
     scrollRef.current?.scrollTo({ x: index * pageWidth, animated: false });
   }, [pageWidth, cards.length]);
 
+  const handlePageAction = useCallback(
+    (e: AccessibilityActionEvent) => {
+      const step =
+        e.nativeEvent.actionName === 'increment'
+          ? 1
+          : e.nativeEvent.actionName === 'decrement'
+            ? -1
+            : 0;
+      const next = Math.max(0, Math.min(cards.length - 1, active + step));
+      if (next !== active) goToPage(next);
+    },
+    [active, cards.length, goToPage],
+  );
+
   if (cards.length === 0) return null;
+  const paged = cards.length > 1;
+  const current = cards[Math.min(active, cards.length - 1)];
 
   return (
     // Top + bottom hairlines bridge the carousel into the metric table
@@ -117,31 +138,56 @@ export const CountryCardsCarousel = memo(function CountryCardsCarousel({
       style={[styles.wrap, { borderTopColor: colors.rule, borderBottomColor: colors.rule }]}
     >
       {pageWidth > 0 ? (
-        <ScrollView
-          ref={scrollRef}
-          horizontal
-          pagingEnabled
-          showsHorizontalScrollIndicator={false}
-          decelerationRate="fast"
-          snapToInterval={pageWidth}
-          snapToAlignment="start"
-          onMomentumScrollEnd={onMomentumEnd}
-          onContentSizeChange={alignPage}
-          directionalLockEnabled
-          canCancelContentTouches
-          // overflow:hidden is the load-bearing fix for "next card peeks
-          // through on the right". Pages set overflow:visible so chart
-          // year-tick boxes don't shave on Android — that overflow leaks
-          // into the next page's slot inside the horizontal ScrollView,
-          // which on iOS does NOT clip child rendering by default.
-          style={[styles.scroll, { height: CARD_HEIGHT }]}
+        // The pages as one adjustable control, on a View and not the
+        // ScrollView: Android's scroll views keep an accessibility delegate
+        // of their own, which drops the actions. Its value says the whole
+        // card in front, since the control hides the cards' own parts.
+        <View
+          accessible={paged}
+          accessibilityRole={paged ? 'adjustable' : undefined}
+          accessibilityLabel={
+            paged ? `${displayCountryName(countryName) ?? countryName}: trends` : undefined
+          }
+          accessibilityValue={
+            paged && current
+              ? {
+                  min: 1,
+                  max: cards.length,
+                  now: active + 1,
+                  text: `${active + 1} of ${cards.length}. ${trajectorySentence(current, { source: true })}`,
+                }
+              : undefined
+          }
+          accessibilityActions={paged ? PAGE_ACTIONS : undefined}
+          onAccessibilityAction={paged ? handlePageAction : undefined}
         >
-          {cards.map((card) => (
-            <View key={card.key} style={[styles.page, { width: pageWidth, height: CARD_HEIGHT }]}>
-              <TrajectoryCard card={card} />
-            </View>
-          ))}
-        </ScrollView>
+          <ScrollView
+            ref={scrollRef}
+            horizontal
+            pagingEnabled
+            importantForAccessibility={paged ? 'no-hide-descendants' : 'auto'}
+            showsHorizontalScrollIndicator={false}
+            decelerationRate="fast"
+            snapToInterval={pageWidth}
+            snapToAlignment="start"
+            onMomentumScrollEnd={onMomentumEnd}
+            onContentSizeChange={alignPage}
+            directionalLockEnabled
+            canCancelContentTouches
+            // overflow:hidden is the load-bearing fix for "next card peeks
+            // through on the right". Pages set overflow:visible so chart
+            // year-tick boxes don't shave on Android — that overflow leaks
+            // into the next page's slot inside the horizontal ScrollView,
+            // which on iOS does NOT clip child rendering by default.
+            style={[styles.scroll, { height: CARD_HEIGHT }]}
+          >
+            {cards.map((card) => (
+              <View key={card.key} style={[styles.page, { width: pageWidth, height: CARD_HEIGHT }]}>
+                <TrajectoryCard card={card} />
+              </View>
+            ))}
+          </ScrollView>
+        </View>
       ) : (
         <View style={{ height: CARD_HEIGHT }} />
       )}

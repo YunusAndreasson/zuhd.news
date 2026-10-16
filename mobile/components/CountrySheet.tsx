@@ -1,4 +1,9 @@
-import { getMetricValue, getRanking, type MetricKey } from '@shared/countries/country-ranking';
+import {
+  getMetricValue,
+  getRanking,
+  METRICS,
+  type MetricKey,
+} from '@shared/countries/country-ranking';
 import type { GdacsAlert } from '@shared/types';
 import { memo, useCallback } from 'react';
 import { StyleSheet, View } from 'react-native';
@@ -8,6 +13,7 @@ import { MAX_FONT_SCALE, OPACITY, SPACING } from '../constants/theme';
 import { useSheetBackNavigation } from '../hooks/useSheetBackNavigation';
 import { useSheetNavigation } from '../hooks/useSheetNavigation';
 import { useTheme } from '../hooks/useTheme';
+import { announce } from '../lib/announce';
 import type { CountryFact } from '../lib/country-hazards';
 import { EVENT_TYPE_LABEL, parseSeverityHero } from '../lib/gdacs';
 import { displayCountryName, displayLocation } from '../lib/place-names';
@@ -201,14 +207,14 @@ function AlertRow({
   );
 }
 
-/** "Cairo · 14:32": the capital and the local time, when known. */
-function countryDateline(country: TapResult | null): string {
-  if (!country?.data) return '';
+/** The capital and the local time, when known: printed "Cairo · 14:32". */
+function countryDatelineParts(country: TapResult | null): string[] {
+  if (!country?.data) return [];
   const parts: string[] = [];
   const capital = displayLocation(country.data.capital);
   if (capital) parts.push(capital);
   if (country.localTime) parts.push(country.localTime);
-  return parts.join(' · ');
+  return parts;
 }
 
 /**
@@ -225,10 +231,18 @@ export function CountryTitle({
 }) {
   const flag = country?.data?.flag;
   const name = displayCountryName(country?.countryName ?? null);
-  const dateline = countryDateline(country);
+  const parts = countryDatelineParts(country);
+  const dateline = parts.join(' · ');
   if (!flag && !name) return null;
   return (
-    <View style={[styles.handleRow, hasBack && styles.handleRowWithBack]}>
+    // One heading, as a string title is: the rotor's way to the sheet's top,
+    // read "Egypt, Cairo, 14:32".
+    <View
+      style={[styles.handleRow, hasBack && styles.handleRowWithBack]}
+      accessible
+      accessibilityRole="header"
+      accessibilityLabel={[name, ...parts].filter(Boolean).join(', ')}
+    >
       <View style={styles.handleIdent}>
         {flag && <FlagGlyph flag={flag} size="inline" />}
         {/* 21pt semibold so the country name reads as the canonical
@@ -422,10 +436,25 @@ export const CountrySheet = memo(function CountrySheet({
   const { push, pop, reset } = nav;
   const activeRanking = nav.current;
 
+  // A page is said as it arrives, as the menu's are: the ranking a row opened,
+  // and the country again on the way back, by any of the three backs.
+  const countryName = displayCountryName(country?.countryName ?? null);
+  const openRanking = useCallback(
+    (metric: MetricKey) => {
+      push(metric);
+      announce(METRICS[metric]?.label ?? 'ranking');
+    },
+    [push],
+  );
+  const back = useCallback(() => {
+    pop();
+    if (countryName) announce(countryName);
+  }, [pop, countryName]);
+
   const hasBack = activeRanking !== null;
   const handle = (
     <SheetHandle
-      onBack={hasBack ? pop : undefined}
+      onBack={hasBack ? back : undefined}
       title={<CountryTitle country={country} hasBack={hasBack} />}
     />
   );
@@ -439,7 +468,7 @@ export const CountrySheet = memo(function CountrySheet({
   // every multi-page sheet goes back identically (DESIGN §Sheets).
   const { gesture: swipeBack, drag: backDrag } = useSheetBackNavigation({
     canGoBack: hasBack,
-    onBack: pop,
+    onBack: back,
   });
 
   return (
@@ -447,7 +476,7 @@ export const CountrySheet = memo(function CountrySheet({
       sheetRef={sheetRef}
       handle={handle}
       onDismiss={handleDismiss}
-      onBackPress={hasBack ? pop : undefined}
+      onBackPress={hasBack ? back : undefined}
       // One height for both pages, so only the page moves between them.
       fill
     >
@@ -474,7 +503,7 @@ export const CountrySheet = memo(function CountrySheet({
                 onAlertPress={onAlertPress}
                 hazards={hazards}
                 facts={facts}
-                onRankingPress={push}
+                onRankingPress={openRanking}
               />
             </SheetScrollView>
           </LayoutAnimationConfig>

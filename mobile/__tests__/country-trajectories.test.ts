@@ -1,4 +1,4 @@
-import { countryTrajectories } from '../lib/country-cards';
+import { countryTrajectories, trajectorySentence } from '../lib/country-cards';
 
 // The sheet's cards are the site's (`trajectoryCards`), read off the bundled
 // series by the name the globe hands over.
@@ -40,4 +40,15 @@ it('hands the chart one value a year, with the world’s beside it', () => {
     expect({ key: c.key, n: c.values.length }).toEqual({ key: c.key, n: years });
     expect({ key: c.key, n: c.world.length }).toEqual({ key: c.key, n: years });
   }
+});
+
+it('says a card in one sentence, and its source when the whole card is said', () => {
+  const [card] = countryTrajectories('Sweden');
+  if (!card) throw new Error('Sweden has no trajectory cards');
+  const chart = trajectorySentence(card);
+  for (const part of [card.label, card.headline, card.subtitle, 'world median']) {
+    expect(chart).toContain(part);
+  }
+  expect(chart).not.toContain(card.source);
+  expect(trajectorySentence(card, { source: true })).toContain(card.source);
 });

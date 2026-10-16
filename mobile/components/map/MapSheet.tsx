@@ -127,6 +127,8 @@ const PULL_RESISTANCE = 0.35;
 
 /** The two detents, as accessibility actions. */
 const ADJUST_ACTIONS = [{ name: 'increment' as const }, { name: 'decrement' as const }];
+/** The pull to refresh, for a reader who cannot pull: the same check, by name. */
+const REFRESH_ACTIONS = [...ADJUST_ACTIONS, { name: 'refresh', label: 'Check for new stories' }];
 
 /** Who owns the current drag. Decided once, on the first update. */
 const UNDECIDED = 0;
@@ -401,12 +403,16 @@ export function MapSheet({
   // card (`expand`): one control, whichever way it is reached.
   const handleAccessibilityAction = useCallback(
     (event: { nativeEvent: { actionName: string } }) => {
+      if (event.nativeEvent.actionName === 'refresh') {
+        handlePullDown();
+        return;
+      }
       const expand = event.nativeEvent.actionName === 'increment';
       offset.value = withSpring(expand ? 0 : travel, ANIMATION.springSheet);
       committedDetent.value = expand ? 'full' : 'peek';
       targetRef.current = expand ? 'full' : 'peek';
     },
-    [committedDetent, offset, travel],
+    [committedDetent, offset, travel, handlePullDown],
   );
 
   const sheetStyle = useAnimatedStyle(() => ({
@@ -460,7 +466,7 @@ export function MapSheet({
             accessibilityLabel="Story"
             accessibilityValue={{ text: detent === 'full' ? 'expanded' : 'collapsed' }}
             accessibilityHint="Swipe up to read the whole story, down to see the globe"
-            accessibilityActions={ADJUST_ACTIONS}
+            accessibilityActions={onPullDown ? REFRESH_ACTIONS : ADJUST_ACTIONS}
             onAccessibilityAction={handleAccessibilityAction}
           >
             <Animated.View style={[styles.indicator, pullIndicatorStyle]} />

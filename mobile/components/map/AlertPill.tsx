@@ -45,12 +45,13 @@ export const AlertPill = memo(function AlertPill({
 }) {
   const { colors } = useTheme();
   const line = `now · ${title}`;
-  // A live region, which only Android speaks.
+  // TalkBack hears the row's live region; VoiceOver, which has none, hears
+  // this, after whatever it is reading: an alert is news nobody asked for.
   useEffect(() => {
-    announce(line, { liveRegion: true });
+    announce(line, { liveRegion: true, queue: true });
   }, [line]);
   return (
-    <View style={[styles.row, { top }]} pointerEvents="box-none">
+    <View style={[styles.row, { top }]} pointerEvents="box-none" accessibilityLiveRegion="polite">
       <Pressable
         onPress={onPress}
         disabled={!onPress}
