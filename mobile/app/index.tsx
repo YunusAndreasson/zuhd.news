@@ -140,6 +140,7 @@ import { resumeLanding, unreadNewBehind } from '../lib/resume-landing';
 import { maybeRequestReview } from '../lib/store-review';
 import { storyCharts } from '../lib/story-chart';
 import { buildStoryPlaces, completesFound, foundProgress } from '../lib/story-places';
+import { storyShare } from '../lib/story-share';
 import { countryTap, type TapResult } from '../lib/tap-result';
 
 /**
@@ -1196,20 +1197,8 @@ export default function HomeScreen() {
   }, []);
 
   const handleShare = useCallback((article: RiverArticle) => {
-    const url = `https://zuhd.news/a/${article.slug}`;
-    const title = article.title;
-    const content = Platform.select({
-      ios: { url, title },
-      default: { message: `${title}\n${url}`, title },
-    });
-    if (!content) return;
-    Share.share(
-      content,
-      Platform.select({
-        ios: { subject: `${title} — zuhd.news` },
-        default: { dialogTitle: 'Share' },
-      }),
-    ).catch(() => {});
+    const { content, options } = storyShare(article, Platform.OS);
+    Share.share(content, options).catch(() => {});
   }, []);
 
   const countryAlerts = useMemo<GdacsAlert[]>(
