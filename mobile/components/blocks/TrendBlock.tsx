@@ -10,8 +10,8 @@ import {
   vec,
 } from '@shopify/react-native-skia';
 import { scaleLinear } from 'd3-scale';
-import { memo, useCallback, useMemo, useState } from 'react';
-import { StyleSheet, useWindowDimensions, View } from 'react-native';
+import { memo, type ReactNode, useCallback, useMemo, useState } from 'react';
+import { type AccessibilityActionEvent, StyleSheet, useWindowDimensions, View } from 'react-native';
 import {
   GestureDetector,
   type PanGestureConfig,
@@ -49,7 +49,13 @@ import {
   type TrendTimeTick,
   trendLineVertices,
 } from './trend-geometry';
-import { periodPreposition, scrubReading } from './trend-readout';
+import {
+  periodPreposition,
+  type ScrubSource,
+  scrubReading,
+  spokenScrubReading,
+  stepIndex,
+} from './trend-readout';
 
 type Pt = { x: number; y: number };
 
@@ -354,6 +360,7 @@ const ScrubReadout = memo(function ScrubReadout({
   periods,
   unit,
   cited,
+  scrubHeld,
   moveSince,
   ground,
 }: {
@@ -366,6 +373,9 @@ const ScrubReadout = memo(function ScrubReadout({
   unit?: string;
   /** The points a cited story sits on — the only steps that tick. */
   cited: ReadonlySet<number>;
+  /** A finger is on the chart: a screen reader's steps move the readout and
+   *  make no tick, since a tick answers a hand. */
+  scrubHeld: SharedValue<boolean>;
   moveSince?: (index: number) => CardDelta | undefined;
   /** The sheet's ground, behind the readout: it stands over the plot's top,
    *  where the line is at its highest. */
@@ -377,9 +387,9 @@ const ScrubReadout = memo(function ScrubReadout({
   // the label and the tick were queued as separate JS tasks and could land on
   // different frames; bundling them keeps the notch and the readout together.
   const applyScrub = useCallback(
-    (idx: number, grabbed: boolean) => {
+    (idx: number, grabbed: boolean, held: boolean) => {
       setScrubIdxJs(idx);
-      if (grabbed || cited.has(idx)) hapticTick();
+      if (held && (grabbed || cited.has(idx))) hapticTick();
     },
     [cited],
   );
@@ -394,8 +404,9 @@ const ScrubReadout = memo(function ScrubReadout({
       // has found something. Not on every point between: a dense series
       // crossed one a frame, a 60–120 Hz buzz that told the hand nothing.
       // Release (current < 0) stays silent: letting go is its own signal.
-      if (current < 0) scheduleOnRN(applyScrub, current, false);
-      else scheduleOnRN(applyScrub, current, prev == null || prev < 0);
+      const held = scrubHeld.value;
+      if (current < 0) scheduleOnRN(applyScrub, current, false, held);
+      else scheduleOnRN(applyScrub, current, prev == null || prev < 0, held);
     },
   );
 
@@ -452,6 +463,64 @@ const ScrubReadout = memo(function ScrubReadout({
         {scrubInfo.period.toUpperCase()}
       </Text>
       {scrubInfo.move ? <DeltaChip delta={scrubInfo.move} scale={1} /> : null}
+    </View>
+  );
+});
+
+const STEP_ACTIONS = [{ name: 'increment' as const }, { name: 'decrement' as const }];
+
+/**
+ * A chart a finger scrubs, as one adjustable control for a screen reader: a
+ * swipe up or down steps a day, and the value is what the readout box says
+ * there (`spokenScrubReading`). A step writes the scrub's index, so the
+ * crosshair and the box show it; only this wrapper re-renders, since the
+ * chart is the same element. It rests on the chart's own highlighted point.
+ */
+const ScrubAdjustable = memo(function ScrubAdjustable({
+  label,
+  source,
+  restIndex,
+  count,
+  cited,
+  scrubIdx,
+  children,
+}: {
+  label: string;
+  source: ScrubSource;
+  restIndex: number;
+  count: number;
+  cited: ReadonlySet<number>;
+  scrubIdx: SharedValue<number>;
+  children: ReactNode;
+}) {
+  const [step, setStep] = useState<number | null>(null);
+  const index = step ?? Math.max(0, restIndex);
+  const reading = scrubReading(source, index);
+  const handleAction = useCallback(
+    (e: AccessibilityActionEvent) => {
+      const name = e.nativeEvent.actionName;
+      if (name !== 'increment' && name !== 'decrement') return;
+      const next = stepIndex(index, name, count);
+      setStep(next);
+      scrubIdx.value = next;
+    },
+    [index, count, scrubIdx],
+  );
+  return (
+    <View
+      accessible
+      accessibilityRole="adjustable"
+      accessibilityLabel={label}
+      accessibilityValue={{
+        min: 1,
+        max: count,
+        now: index + 1,
+        text: reading ? spokenScrubReading(reading, { cited: cited.has(index) }) : undefined,
+      }}
+      accessibilityActions={STEP_ACTIONS}
+      onAccessibilityAction={handleAction}
+    >
+      {children}
     </View>
   );
 });
@@ -665,6 +734,7 @@ export const TrendBlock = memo(function TrendBlock({
   }, [points, shape, reference, referenceY, width, height, insets]);
 
   const scrubIdx = useSharedValue(-1);
+  const scrubHeld = useSharedValue(false);
   const timeTicks: TrendTimeTick[] | null = xLayout.ticks;
   const tickXs = useMemo(() => (timeTicks ?? []).map((tick) => tick.x), [timeTicks]);
 
@@ -683,14 +753,19 @@ export const TrendBlock = memo(function TrendBlock({
       enabled: scrubbable,
       activeOffsetX: [-5, 5],
       failOffsetY: [-10, 10],
-      onActivate: scrubTo,
+      onActivate: (e) => {
+        'worklet';
+        scrubHeld.value = true;
+        scrubTo(e);
+      },
       onUpdate: scrubTo,
       onFinalize: () => {
         'worklet';
         scrubIdx.value = -1;
+        scrubHeld.value = false;
       },
     };
-  }, [points, scrubIdx, scrubbable]);
+  }, [points, scrubIdx, scrubHeld, scrubbable]);
   const pan = usePanGesture(panConfig);
 
   const firstPeriod = periods?.[0];
@@ -701,6 +776,12 @@ export const TrendBlock = memo(function TrendBlock({
   const referenceText = reference
     ? `${reference.label} ${formatBlockNumber(reference.value, unit)}`
     : null;
+  // The chart's name and scale; a screen reader steps the readings as its value.
+  const adjustableLabel = `${label}, range ${formatBlockNumber(min, unit)} to ${formatBlockNumber(max, unit)}${referenceText ? `, ${referenceText}` : ''}`;
+  const readoutSource = useMemo(
+    () => ({ series: normalizedSeries, primaryValues, periods, unit, moveSince }),
+    [normalizedSeries, primaryValues, periods, unit, moveSince],
+  );
   const a11yLabel =
     highlightValue !== undefined
       ? `${label}, ${formatBlockNumber(highlightValue, unit)}${highlightPeriod ? ` ${periodPreposition(highlightPeriod)} ${highlightPeriod}` : ''}, range ${formatBlockNumber(min, unit)} to ${formatBlockNumber(max, unit)}${referenceText ? `, ${referenceText}` : ''}`
@@ -806,6 +887,7 @@ export const TrendBlock = memo(function TrendBlock({
                 periods={periods}
                 unit={unit}
                 cited={citedPoints}
+                scrubHeld={scrubHeld}
                 moveSince={moveSince}
                 ground={colors.sheetBg}
               />
@@ -905,6 +987,20 @@ export const TrendBlock = memo(function TrendBlock({
     </View>
   );
 
+  if (!onPress && scrubbable && points.length > 1) {
+    return (
+      <ScrubAdjustable
+        label={adjustableLabel}
+        source={readoutSource}
+        restIndex={defaultHighlightIdx}
+        count={points.length}
+        cited={citedPoints}
+        scrubIdx={scrubIdx}
+      >
+        {inner}
+      </ScrubAdjustable>
+    );
+  }
   if (!onPress) {
     return (
       <View accessible accessibilityRole="image" accessibilityLabel={a11yLabel}>

@@ -214,7 +214,8 @@ groups them:
   each beside its own rule; close together they part (`partLabels`). A scale
   of its own is named by its ends and its middle.
 - The scrub's readout is the value, the day and the move since
-  (`moveSince`), on the sheet's ground.
+  (`moveSince`), on the sheet's ground. A screen reader steps the same
+  readout (`scrubReading`): a chart a finger scrubs is `adjustable`.
 - `StoryChart` sits in `OddsLine`'s frame, ruled and never filled, and
   replaces the odds line.
 - `Spark` is a list row's thirty days: the line alone, in its move's colour,

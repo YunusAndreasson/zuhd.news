@@ -3,6 +3,7 @@ paths:
   - "mobile/lib/cards/**"
   - "mobile/components/blocks/Trend*.tsx"
   - "mobile/components/blocks/trend-geometry.ts"
+  - "mobile/components/blocks/trend-readout.ts"
   - "mobile/lib/date-format.ts"
   - "mobile/components/cards/**"
   - "mobile/components/CardSheet.tsx"
@@ -183,7 +184,8 @@ paths:
   rises as the currency does, and its caption says so. The numbers on the
   scale stay the rate's.
 - The chart can be scrubbed, and the readout says the move from that day to
-  now (`moveSince`). It draws where the thirty days began as a dashed rule
+  now (`moveSince`). A screen reader steps it day by day as an adjustable
+  control whose value is the same readout (`scrubReading`). It draws where the thirty days began as a dashed rule
   (`spanReference`), or the start of the card's own window where it has no
   three, and the cited stories as numbered dots.
 - A chart reads its periods with `periodDates`, never `new Date`: Hermes
