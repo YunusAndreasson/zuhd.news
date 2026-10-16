@@ -1,105 +1,5 @@
 [
   {
-    "timestamp": "2026-09-25T17:11:46.256Z",
-    "candidateCount": 11,
-    "candidates": [
-      {
-        "slug": "2026-09-25-volkswagen-recall-2-9-million-steering-corrosion",
-        "title": "Volkswagen Recalls 2.9 Million Cars",
-        "category": "economy",
-        "eventCoverage": 314,
-        "importance": 6
-      },
-      {
-        "slug": "2026-09-25-trump-xi-china-help-iran-unacceptable",
-        "title": "Washington Presses China on Iran",
-        "category": "politics",
-        "eventCoverage": 226,
-        "importance": 6
-      },
-      {
-        "slug": "2026-09-25-us-joins-x-appeal-eu-dsa-fine",
-        "title": "US Backs X Against EU",
-        "category": "tech",
-        "eventCoverage": 104,
-        "importance": 6
-      },
-      {
-        "slug": "2026-09-25-un-settlement-database-214-firms",
-        "title": "UN Lists 214 Settlement Firms",
-        "category": "politics",
-        "eventCoverage": 0,
-        "importance": 6
-      },
-      {
-        "slug": "2026-09-25-burhan-us-visa-denied-rsf-blue-nile-kordofan",
-        "title": "US Denies Burhan Visa",
-        "category": "politics",
-        "eventCoverage": 0,
-        "importance": 6
-      },
-      {
-        "slug": "2026-09-25-pakistan-balochistan-33-killed-afghan-front",
-        "title": "Pakistan Claims 33 Militants Killed",
-        "category": "politics",
-        "eventCoverage": 0,
-        "importance": 6
-      },
-      {
-        "slug": "2026-09-25-drc-ebola-death-toll-3779-africa-cdc",
-        "title": "Ebola Toll Reaches 3,779",
-        "category": "science",
-        "eventCoverage": 0,
-        "importance": 6
-      },
-      {
-        "slug": "2026-09-25-antarctic-sea-ice-third-lowest-winter-peak",
-        "title": "Antarctic Ice Stays Low",
-        "category": "science",
-        "eventCoverage": 0,
-        "importance": 6
-      },
-      {
-        "slug": "2026-09-25-man-city-114-charges-guilty-uae-soft-power",
-        "title": "Man City Found Guilty",
-        "category": "economy",
-        "eventCoverage": 0,
-        "importance": 6
-      },
-      {
-        "slug": "2026-09-25-china-ev-charging-five-minutes-us-behind",
-        "title": "Geely Charges in 4.5 Minutes",
-        "category": "economy",
-        "eventCoverage": 0,
-        "importance": 6
-      },
-      {
-        "slug": "2026-09-25-starfish-space-otter-satellite-servicing",
-        "title": "Starfish Otter Nears Orbit",
-        "category": "tech",
-        "eventCoverage": 0,
-        "importance": 6
-      }
-    ],
-    "selected": {
-      "slug": "2026-09-25-volkswagen-recall-2-9-million-steering-corrosion",
-      "title": "Volkswagen Recalls 2.9 Million Cars",
-      "category": "economy",
-      "body": "One corroded bolt puts 2.86 million cars in",
-      "eventCoverage": 314,
-      "importance": 6
-    },
-    "skipReason": null,
-    "sent": true,
-    "pushTitle": "Breaking News",
-    "pushBody": "Volkswagen recalls 2.9 million cars over steering failure risk, regulator says",
-    "response": {
-      "pushed": 1,
-      "skipped": 0,
-      "tokens": 7
-    }
-  },
-  {
     "timestamp": "2026-09-25T22:17:10.941Z",
     "candidateCount": 11,
     "candidates": [
@@ -10000,6 +9900,106 @@
     "sent": true,
     "pushTitle": "Breaking News",
     "pushBody": "Afghanistan hunger hits record 15.9 million people, IPC says",
+    "response": {
+      "pushed": 1,
+      "skipped": 0,
+      "tokens": 5
+    }
+  },
+  {
+    "timestamp": "2026-10-16T05:12:23.214Z",
+    "candidateCount": 11,
+    "candidates": [
+      {
+        "slug": "2026-10-16-us-weighs-easing-russia-shadow-fleet-tanker-sanctions-oil",
+        "title": "US Weighs Tanker Sanctions Relief",
+        "category": "economy",
+        "eventCoverage": 151,
+        "importance": 6
+      },
+      {
+        "slug": "2026-10-16-ukraine-runs-out-of-patriot-interceptors",
+        "title": "Ukraine Runs Out of Patriots",
+        "category": "politics",
+        "eventCoverage": 113,
+        "importance": 6
+      },
+      {
+        "slug": "2026-10-16-israel-halts-commercial-goods-gaza-cogat-tax-claim",
+        "title": "Israel Halts Gaza Commercial Goods",
+        "category": "politics",
+        "eventCoverage": 79,
+        "importance": 6
+      },
+      {
+        "slug": "2026-10-16-msci-indonesia-emerging-market-downgrade-six-year-low",
+        "title": "MSCI Cuts Indonesia Status",
+        "category": "economy",
+        "eventCoverage": 69,
+        "importance": 6
+      },
+      {
+        "slug": "2026-10-16-alberta-independence-referendum-carney-remain-campaign",
+        "title": "Carney Urges Alberta Remain",
+        "category": "politics",
+        "eventCoverage": 67,
+        "importance": 6
+      },
+      {
+        "slug": "2026-10-16-meta-muse-spark-open-weights-trails-chinese-models",
+        "title": "Meta Releases Muse Spark Open",
+        "category": "tech",
+        "eventCoverage": 60,
+        "importance": 6
+      },
+      {
+        "slug": "2026-10-16-hormuz-two-ships-sink-projectiles-ukmto-severe",
+        "title": "Two Ships Sink Off Hormuz",
+        "category": "economy",
+        "eventCoverage": 0,
+        "importance": 6
+      },
+      {
+        "slug": "2026-10-16-musk-158-million-paxton-texas-senate-super-pac",
+        "title": "Musk Funds Paxton Senate Bid",
+        "category": "politics",
+        "eventCoverage": 0,
+        "importance": 6
+      },
+      {
+        "slug": "2026-10-16-openai-agent-took-ethereum-from-wallet-it-did-not-own",
+        "title": "OpenAI Agent Took Unowned Funds",
+        "category": "tech",
+        "eventCoverage": 0,
+        "importance": 6
+      },
+      {
+        "slug": "2026-10-16-uk-space-agency-clearspace-debris-removal-mission",
+        "title": "UK Taps ClearSpace for Cleanup",
+        "category": "tech",
+        "eventCoverage": 0,
+        "importance": 6
+      },
+      {
+        "slug": "2026-10-16-brain-organoids-identify-braille-letters-biocomputing",
+        "title": "Brain Tissue Reads Braille",
+        "category": "science",
+        "eventCoverage": 0,
+        "importance": 6
+      }
+    ],
+    "selected": {
+      "slug": "2026-10-16-alberta-independence-referendum-carney-remain-campaign",
+      "title": "Carney Urges Alberta Remain",
+      "category": "politics",
+      "body": "Alberta votes Monday on starting separation from",
+      "eventCoverage": 67,
+      "importance": 6
+    },
+    "skipReason": null,
+    "sent": true,
+    "pushTitle": "Breaking News",
+    "pushBody": "Alberta votes Monday on starting process to leave Canada",
     "response": {
       "pushed": 1,
       "skipped": 0,
