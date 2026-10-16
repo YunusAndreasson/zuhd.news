@@ -494,5 +494,8 @@ export const buildCountryPages = async ({
     emitted++
   }
 
-  return { count: emitted, codes, ogCached, ogRendered }
+  // By ISO2, for `/api/country-hazards.json`: the map's country card states
+  // what the page's section states, from a file that turns over with the
+  // snapshots rather than with `/api/country/*`'s day.
+  return { count: emitted, codes, ogCached, ogRendered, hazards: Object.fromEntries(hazardsByCountry) }
 }

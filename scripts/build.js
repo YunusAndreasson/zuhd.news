@@ -2504,6 +2504,13 @@ console.log(
   `  Built: country/ (${countryResult.count} pages · ${countryResult.ogCached} cached + ${countryResult.ogRendered} rendered share cards)`,
 )
 
+// What each country's page says the hazard sources count in it, for the map's
+// country card: the IPC's caseload, UCDP's latest week, the live GDACS alerts.
+// Its own file and not a key of `/api/country/*`, which is cached for a day
+// while an alert is fifteen minutes old (`public/_headers`).
+writeFileSync(join(DIST_DIR, 'api', 'country-hazards.json'), JSON.stringify({ countries: countryResult.hazards }))
+console.log(`  Built: api/country-hazards.json (${Object.keys(countryResult.hazards).length} countries)`)
+
 // The same 27 metrics arranged the other way round — one file per metric,
 // every country in it — so the map can tint the whole world by one dimension.
 // Country pages answer "what is this country like"; these answer "where does

@@ -399,3 +399,55 @@ test('the card names the country it is about, and lets go of it', async () => {
   popup.close()
   assert.deepEqual(told, ['SD', null, 'TD', null], 'closing the card lets go of Chad')
 })
+
+/** `/api/country/{ISO2}.json`, trimmed to what the card reads. */
+const profile = (iso2, name) => ({ iso2, name, flag: '', region: 'Northern Africa', metaLine: '', highlights: [{ label: 'Population', value: 52_000_000, rank: 28, total: 176 }], coverage: [] })
+
+/** A country card opened against `hazards` for `/api/country-hazards.json`, or a failed fetch of it when null. */
+const openCountryCard = async (iso, hazards) => {
+  await openCard(storyOf({}))
+  globalThis.fetch = /** @type {typeof fetch} */ (
+    /** @type {unknown} */ (
+      async (url) => {
+        if (String(url).endsWith('/api/country-hazards.json')) {
+          return hazards ? { ok: true, json: async () => ({ countries: hazards }) } : { ok: false, json: async () => ({}) }
+        }
+        const m = /\/api\/country\/([A-Z]{2})\.json$/.exec(String(url))
+        return { ok: true, json: async () => profile(m?.[1], m?.[1] === 'SD' ? 'Sudan' : 'Chad') }
+      }
+    )
+  )
+  const { createStoryPopup } = await import(`${bundlePath}?${Math.random()}`)
+  const popup = createStoryPopup({ on() {}, off() {} })
+  await popup.openCountry(iso, [30, 15])
+  return globalThis.__card
+}
+
+test('a country card states what the hazard sources count there, above its rankings', async () => {
+  const card = await openCountryCard('SD', {
+    SD: {
+      hunger: { analysed: 47_535_794, p3plus: 19_466_533, p5: 134_808, vintage: 'Jan 2026' },
+      conflict: { events: 6, killed: 57, civilians: 33, windowStart: '2026-08-25', windowEnd: '2026-08-31' },
+      alerts: [{ level: 'Orange', name: 'Flood in Sudan' }],
+      lowerAlerts: 2,
+    },
+  })
+  const facts = [...card.querySelectorAll('.map-country-fact')].map((li) => li.textContent)
+  assert.deepEqual(facts, [
+    'hunger19.5 million people in crisis or worse41% of the 47.5 million analysed · 134,808 in catastrophe · IPC, Jan 2026',
+    'conflict6 events · 57 killed · 33 civilians' + 'Aug 25–31, the latest week from UCDP',
+    'alertsFlood in Sudan (orange)and 2 at the lowest level · GDACS',
+  ])
+  const facts$ = card.querySelector('.map-country-facts')
+  const metrics = card.querySelector('.map-country-metrics')
+  assert.ok(facts$.compareDocumentPosition(metrics) & globalThis.Node.DOCUMENT_POSITION_FOLLOWING, 'the facts come before the rankings')
+})
+
+test('a country nothing is counted in, or a hazards file that fails, is a card without the block', async () => {
+  const quiet = await openCountryCard('TD', { SD: { alerts: [], lowerAlerts: 1 } })
+  assert.equal(quiet.querySelector('.map-country-facts'), null)
+  assert.ok(quiet.querySelector('.map-country-metrics'), 'the rankings still stand')
+  const failed = await openCountryCard('SD', null)
+  assert.equal(failed.querySelector('.map-country-facts'), null)
+  assert.ok(failed.querySelector('.map-country-metrics'))
+})

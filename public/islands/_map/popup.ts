@@ -26,6 +26,7 @@ import {
   fetchEntity,
 } from '../_entity-panel'
 import { shareUrl } from '@shared/share'
+import { conflictLine, formatCount, hungerLine, weekWindow, type ConflictCount, type HungerTotal } from '@shared/countries/country-facts'
 import { TONE_LABELS, divergenceNote, toneOf } from '@shared/source-framing'
 import { renderShare } from '../_share'
 import { sparkline } from '../_spark'
@@ -147,6 +148,16 @@ interface CountryProfile {
   /** Every metric, in page order. Read when the card expands in place. */
   metrics?: CountryMetric[]
   coverage: Array<{ slug: string; title: string; dateFormatted: string; category: string }>
+  /** From `/api/country-hazards.json`, joined on by `fetchCountry`. Absent where no source counts anything. */
+  hazards?: CountryHazards
+}
+
+/** A country's row of `/api/country-hazards.json` (`lib/country-hazards.js`). */
+interface CountryHazards {
+  hunger?: HungerTotal
+  conflict?: ConflictCount & { windowStart: string; windowEnd: string }
+  alerts: Array<{ level: 'Red' | 'Orange'; name: string }>
+  lowerAlerts: number
 }
 
 export interface StoryPopupOptions {
@@ -592,20 +603,77 @@ export function createStoryPopup(map: MapLibreMap, opts: StoryPopupOptions = {})
 
   const countryCache = new Map<string, CountryProfile>()
 
+  /**
+   * Every country's hazards, fetched once, on the first card. Its own file
+   * because `/api/country/*` is cached for a day and an alert is fifteen
+   * minutes old. A failure is no hazards, never no card.
+   */
+  let hazards: Promise<Record<string, CountryHazards>> | null = null
+  const fetchHazards = () =>
+    (hazards ??= fetch('/api/country-hazards.json')
+      .then((res) => (res.ok ? res.json() : null))
+      .then((j: { countries?: Record<string, CountryHazards> } | null) => j?.countries ?? {})
+      .catch((): Record<string, CountryHazards> => ({})))
+
   const fetchCountry = async (iso: string): Promise<CountryProfile | null> => {
     const hit = countryCache.get(iso)
     if (hit) return hit
     try {
-      const res = await fetch(`/api/country/${encodeURIComponent(iso)}.json`, {
-        cache: 'force-cache',
-      })
+      const [res, byCountry] = await Promise.all([
+        fetch(`/api/country/${encodeURIComponent(iso)}.json`, { cache: 'force-cache' }),
+        fetchHazards(),
+      ])
       if (!res.ok) return null
       const data = (await res.json()) as CountryProfile
+      const h = byCountry[iso]
+      if (h) data.hazards = h
       countryCache.set(iso, data)
       return data
     } catch {
       return null
     }
+  }
+
+  /**
+   * What the hazard sources count in the country, as its page states it
+   * (`hazardsHtml`, `scripts/build/country-pages.js`), in the same words
+   * (`shared/countries/country-facts.ts`). These are the figures no mark on the
+   * map gives: the famine marks are areas and the conflict marks are events,
+   * and neither says that 19.5 million Sudanese are in crisis or worse.
+   *
+   * Orange and Red alerts by name; Green is counted beside them and never
+   * makes the block on its own. Nothing at all where nothing is counted: a
+   * heading over the absence of a famine says nothing.
+   */
+  const hazardBlock = (h: CountryHazards | undefined): HTMLElement | null => {
+    if (!h) return null
+    const list = el('ul', 'map-country-facts')
+    const fact = (label: string, title: string, detail: string) => {
+      const li = el('li', 'map-country-fact')
+      li.append(el('span', 'map-country-fact-label', label), el('span', 'map-country-fact-title', title))
+      if (detail) li.append(el('span', 'map-country-fact-detail', detail))
+      list.append(li)
+    }
+    if (h.hunger) {
+      const line = hungerLine(h.hunger)
+      fact('hunger', line.title, line.detail)
+    }
+    if (h.conflict) {
+      fact(
+        'conflict',
+        conflictLine(h.conflict),
+        `${weekWindow(h.conflict.windowStart, h.conflict.windowEnd)}, the latest week from UCDP`,
+      )
+    }
+    if (h.alerts.length) {
+      const lower = h.lowerAlerts ? `and ${formatCount(h.lowerAlerts)} at the lowest level` : ''
+      fact(
+        'alerts',
+        h.alerts.map((a) => `${a.name} (${a.level.toLowerCase()})`).join(' · '),
+        [lower, 'GDACS'].filter(Boolean).join(' · '),
+      )
+    }
+    return list.childElementCount ? list : null
   }
 
   /**
@@ -751,6 +819,11 @@ export function createStoryPopup(map: MapLibreMap, opts: StoryPopupOptions = {})
     // asked by clicking. The highlights are what else is interesting about the
     // country; this is what they were looking at.
     if (standing) root.append(standingBlock(standing))
+
+    // Before the rankings: what is happening to the country now outranks where
+    // it sits on a table of slow figures.
+    const facts = hazardBlock(data.hazards)
+    if (facts) root.append(facts)
 
     const shown = expanded ? (data.metrics ?? data.highlights) : data.highlights
     if (shown?.length) {
@@ -934,6 +1007,8 @@ export function createStoryPopup(map: MapLibreMap, opts: StoryPopupOptions = {})
 
     const standing = opts.standingFor?.(iso) ?? null
     if (standing) body.append(standingBlock(standing))
+    const facts = hazardBlock(data.hazards)
+    if (facts) body.append(facts)
 
     // Four, not the full 27: this is an aside inside a story, and the rest is
     // one press away in the same panel for a reader who wants the table.
