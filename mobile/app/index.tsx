@@ -531,8 +531,10 @@ export default function HomeScreen() {
         analysis,
         articles: river,
         exchanges,
+        companies,
+        aiModels,
       }),
-    [rankedInstruments, trends, chokepoints, analysis, river, exchanges],
+    [rankedInstruments, trends, chokepoints, analysis, river, exchanges, companies, aiModels],
   );
 
   /** The alerts the globe draws, chosen once for the globe and for the
