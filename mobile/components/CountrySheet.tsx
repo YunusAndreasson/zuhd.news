@@ -1,7 +1,7 @@
 import { getMetricValue, getRanking, type MetricKey } from '@shared/countries/country-ranking';
 import type { GdacsAlert } from '@shared/types';
 import { memo, useCallback } from 'react';
-import { Text as RNText, StyleSheet, View } from 'react-native';
+import { StyleSheet, View } from 'react-native';
 import { GestureDetector } from 'react-native-gesture-handler';
 import Animated, { LayoutAnimationConfig } from 'react-native-reanimated';
 import { MAX_FONT_SCALE, OPACITY, SPACING } from '../constants/theme';
@@ -16,10 +16,10 @@ import type { TapResult } from '../lib/tap-result';
 import { CountryRankingView } from './CountryRankingView';
 import { CountryCardsCarousel } from './country-cards/CountryCardsCarousel';
 import { FlagGlyph } from './FlagChip';
-import { ListRow } from './ListRow';
+import { ListRow, RowReading } from './ListRow';
 import { MarkIcon } from './MarkGlyph';
 import { MenuRow, SectionLabel } from './MenuRow';
-import { Icon, Pressable, Text } from './primitives';
+import { Icon, Text } from './primitives';
 import { SheetScrollView } from './SheetContent';
 import { SheetHandle } from './SheetHandle';
 import { type BaseSheetProps, SheetLayout } from './SheetLayout';
@@ -64,6 +64,10 @@ const STRIP_WIDTH = 44;
 const STRIP_DOT_SIZE = 4;
 const STRIP_HEIGHT = 10;
 const STRIP_RULE_HEIGHT = 2;
+/** The rank's column, `#193` at its widest, digit under digit. */
+const RANK_COLUMN = 34;
+/** A metric row's mark: the rank, then where that rank stands. */
+const METRIC_LEADING = RANK_COLUMN + SPACING.sm + STRIP_WIDTH;
 
 function PercentileStrip({
   rank,
@@ -97,56 +101,58 @@ function PercentileStrip({
   );
 }
 
+/**
+ * One of the country's ranked metrics: the list's own row (`ListRow`), with
+ * the rank and its strip as the mark and the reading as the ranking page that
+ * it opens prints it. It was a row of its own, ruled under instead of over.
+ */
 function MoreRow({
   label,
   value,
   rank,
   total,
+  first,
   onPress,
 }: {
   label: string;
-  value: string | null;
+  value: string;
   rank: number | null;
   total: number;
+  first: boolean;
   onPress: () => void;
 }) {
-  const { colors, font, typography } = useTheme();
-  if (!value) return null;
   const hasRank = typeof rank === 'number' && rank > 0;
   const isTopRank = hasRank && rank <= GOLD_RANK_THRESHOLD;
-  // Rank column is a single-purpose typographic role (#N) — keep the per-cell
-  // style here rather than inventing a variant just for this.
-  const rankStyle = {
-    ...(isTopRank ? font.semiBold : font.regular),
-    fontSize: typography.sizeXs,
-    color: isTopRank ? colors.dome : colors.textSecondary,
-    letterSpacing: typography.trackingCaps,
-  };
   return (
-    <Pressable
+    <ListRow
+      title={label}
+      titleLines={1}
+      first={first}
       onPress={onPress}
-      style={[styles.moreRow, { borderBottomColor: colors.rule }]}
-      accessibilityRole="button"
       accessibilityLabel={`${label}: ${value}${rank ? `, ranked ${rank} of ${total}` : ''}`}
-    >
-      <RNText
-        style={[styles.rankCol, rankStyle]}
-        numberOfLines={1}
-        maxFontSizeMultiplier={MAX_FONT_SCALE.tabular}
-      >
-        {hasRank ? `#${rank}` : ''}
-      </RNText>
-      <PercentileStrip rank={rank} total={total} isTop={isTopRank} />
-      <Text variant="labelSm" style={styles.moreLabel} numberOfLines={1}>
-        {label}
-      </Text>
-      <View style={styles.moreRight}>
-        <Text variant="caption" tone="default" style={styles.value} numberOfLines={1}>
-          {value}
-        </Text>
-        <Icon name="chevron-forward" size="sm" tone="secondary" />
-      </View>
-    </Pressable>
+      leadingWidth={METRIC_LEADING}
+      leading={
+        <View style={styles.metricMark}>
+          {/* A column of figures, so it holds its width at any text size. */}
+          <Text
+            variant="labelXs"
+            tone={isTopRank ? 'dome' : 'secondary'}
+            numberOfLines={1}
+            maxFontSizeMultiplier={MAX_FONT_SCALE.tabular}
+            style={styles.rankCol}
+          >
+            {hasRank ? `#${rank}` : ''}
+          </Text>
+          <PercentileStrip rank={rank} total={total} isTop={isTopRank} />
+        </View>
+      }
+      trailing={
+        <View style={styles.moreRight}>
+          <RowReading>{value}</RowReading>
+          <Icon name="chevron-forward" size="sm" tone="secondary" />
+        </View>
+      }
+    />
   );
 }
 
@@ -351,9 +357,10 @@ export const CountryBody = memo(function CountryBody({
       )}
       {country?.data && (
         <Animated.View entering={staggerEnter(1)}>
-          {rankedRows.map((r) => (
+          {rankedRows.map((r, i) => (
             <MoreRow
               key={r.key}
+              first={i === 0}
               label={r.label}
               value={r.value}
               rank={r.rank}
@@ -508,21 +515,15 @@ const styles = StyleSheet.create({
     flexShrink: 0,
     textAlign: 'right',
   },
-  moreRow: {
+  metricMark: {
     flexDirection: 'row',
     alignItems: 'center',
-    justifyContent: 'space-between',
-    paddingVertical: SPACING.smPlus,
-    borderBottomWidth: StyleSheet.hairlineWidth,
+    gap: SPACING.sm,
   },
   rankCol: {
-    width: 34,
+    width: RANK_COLUMN,
     textAlign: 'right',
-    marginRight: SPACING.sm,
     fontVariant: ['tabular-nums'],
-  },
-  moreLabel: {
-    flex: 1,
   },
   moreRight: {
     flexDirection: 'row',
@@ -533,7 +534,6 @@ const styles = StyleSheet.create({
     width: STRIP_WIDTH,
     height: STRIP_HEIGHT,
     justifyContent: 'center',
-    marginRight: SPACING.md,
   },
   stripRule: {
     height: STRIP_RULE_HEIGHT,
@@ -551,9 +551,6 @@ const styles = StyleSheet.create({
     width: STRIP_DOT_SIZE,
     height: STRIP_DOT_SIZE,
     borderRadius: STRIP_DOT_SIZE / 2,
-  },
-  value: {
-    fontVariant: ['oldstyle-nums'],
   },
   factDetail: {
     marginTop: SPACING.xxs,
