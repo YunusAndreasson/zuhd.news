@@ -1143,7 +1143,7 @@ export default function HomeScreen() {
     if (added) {
       toastRef.current?.show('Saved');
     } else {
-      toastRef.current?.show('Removed — tap to undo', {
+      toastRef.current?.show('Removed · tap to undo', {
         onPress: () => {
           if (removed) restoreBookmark(removed);
           hapticNotification();
@@ -1179,7 +1179,7 @@ export default function HomeScreen() {
   const handleBriefingPlaybackError = useCallback(() => {
     hapticError();
     toastRef.current?.show(
-      'Could not play the briefing — tap to try again',
+      'Could not play the briefing · tap to try again',
       { onPress: handleBriefingPress, hint: 'Plays today’s briefing' },
       'top',
     );
@@ -1490,7 +1490,7 @@ export default function HomeScreen() {
     [focusStory, injectArticle, pinStory],
   );
   const reportStoryError = useCallback(() => {
-    toastRef.current?.show('Could not open that story. Please try again.');
+    toastRef.current?.show('Could not open that story');
   }, []);
   const resolveStory = useStoryOpener(groupedRef, openResolvedStory, reportStoryError);
   const handleCardStoryPress = useCallback(

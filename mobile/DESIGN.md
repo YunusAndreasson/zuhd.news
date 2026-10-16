@@ -89,6 +89,9 @@ a primitive at the third caller.
 
 - UI copy is typed as it prints (`today’s`); a straight `'` on screen is a
   bug.
+- An empty state is a lowercase `label` over a sentence-case hint. A toast is
+  sentence case, its parts parted by ` · `; one a tap acts on ends
+  `· tap to <verb>` (`__tests__/toast-copy.test.ts`). No dash, no "Please".
 - A link is never quieter than its sentence: the body's ink, underlined.
 
 ## Patterns

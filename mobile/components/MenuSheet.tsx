@@ -106,6 +106,9 @@ import { Toggle } from './Toggle';
 
 const APP_VERSION = Constants.expoConfig?.version ?? '';
 const CONTACT_EMAIL = 'contact@zuhd.news';
+/** A list with nothing in it, in the empty state's lowercase: the `label`
+ *  face is small caps, where a capital prints full size among them. */
+const NOTHING_LISTED = 'nothing to list right now';
 
 const FONT_SIZE_OPTIONS: SegmentOption<FontSize>[] = [
   { value: 'small', label: 'small' },
@@ -650,7 +653,7 @@ export const MenuSheet = memo(function MenuSheet({
                   />
                 </RetainedListPage>
               ) : groupKey ? (
-                <EmptyState message="Nothing to list right now" />
+                <EmptyState message={NOTHING_LISTED} />
               ) : null}
               {currentDetail ? (
                 // The page arrives as one (`SheetPager`): a body's own
@@ -1200,7 +1203,7 @@ function GroupPage({
           ) : null}
         </ListIntro>
       }
-      ListEmptyComponent={<EmptyState message="No readings available" />}
+      ListEmptyComponent={<EmptyState message={NOTHING_LISTED} />}
     />
   );
 }
