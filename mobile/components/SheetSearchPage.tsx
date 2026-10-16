@@ -1,16 +1,11 @@
 import { BottomSheetTextInput } from '@expo/ui/community/bottom-sheet';
 import type { Article, Category, GroupedArticles } from '@shared/types';
 import { useCallback, useDeferredValue, useEffect, useMemo, useRef, useState } from 'react';
-import {
-  AccessibilityInfo,
-  Pressable,
-  StyleSheet,
-  type TextInputInstance,
-  View,
-} from 'react-native';
+import { Pressable, StyleSheet, type TextInputInstance, View } from 'react-native';
 import { IS_ANDROID } from '../constants/platform';
 import { CATEGORIES, HIT_SLOP, LAYOUT, PRESSED_STYLE, SPACING } from '../constants/theme';
 import { useTheme } from '../hooks/useTheme';
+import { announce } from '../lib/announce';
 import { articleTime } from '../lib/article-utils';
 import { buildSearchIndex, plainText, type SearchDoc, type SearchNote } from '../lib/search';
 import { ArticleRow } from './ArticleRow';
@@ -78,8 +73,10 @@ export function SheetSearchPage({
     // A different query deserves feedback even when its count is unchanged,
     // including the first search returning zero matches.
     const timer = setTimeout(() => {
-      AccessibilityInfo.announceForAccessibility(
+      // Queued: it follows the letters VoiceOver is still echoing.
+      announce(
         resultCount === 0 ? 'No results' : `${resultCount} result${resultCount === 1 ? '' : 's'}`,
+        { queue: true },
       );
     }, 300);
     return () => clearTimeout(timer);

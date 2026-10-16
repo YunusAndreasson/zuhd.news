@@ -12,7 +12,7 @@ import {
   useState,
   useSyncExternalStore,
 } from 'react';
-import { AccessibilityInfo, Linking, StyleSheet, type TextStyle, View } from 'react-native';
+import { Linking, StyleSheet, type TextStyle, View } from 'react-native';
 import { GestureDetector } from 'react-native-gesture-handler';
 import { LayoutAnimationConfig } from 'react-native-reanimated';
 import {
@@ -29,6 +29,7 @@ import {
 import { useSheetBackNavigation } from '../hooks/useSheetBackNavigation';
 import { useSheetNavigation } from '../hooks/useSheetNavigation';
 import { usePreferences, useTheme } from '../hooks/useTheme';
+import { announce } from '../lib/announce';
 import {
   getSnapshot as getBookmarks,
   subscribe as subscribeBookmarks,
@@ -273,7 +274,7 @@ export const MenuSheet = memo(function MenuSheet({
   const navPush = useCallback(
     (page: PageKey) => {
       push(page);
-      AccessibilityInfo.announceForAccessibility(pageTitle(page));
+      announce(pageTitle(page));
     },
     [push],
   );
@@ -287,7 +288,7 @@ export const MenuSheet = memo(function MenuSheet({
     if (nav.current === 'search') setSearchQuery('');
     pop();
     const next = nav.stack[nav.stack.length - 2];
-    AccessibilityInfo.announceForAccessibility(next ? titleOf(next) : 'menu');
+    announce(next ? titleOf(next) : 'menu');
   }, [pop, nav.current, nav.stack, titleOf]);
   /** Push whatever a row opened, as a page: back is the list it came from. */
   const openDetail = useCallback(
@@ -296,7 +297,7 @@ export const MenuSheet = memo(function MenuSheet({
       const key: PageKey = `detail:${detailSeq.current}`;
       setDetails((all) => ({ ...all, [key]: detail }));
       push(key);
-      AccessibilityInfo.announceForAccessibility(menuDetailLabel(detail));
+      announce(menuDetailLabel(detail));
     },
     [push],
   );

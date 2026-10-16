@@ -27,13 +27,16 @@ it('announces the first empty result and another query with the same count', () 
     initialProps: { query: '' },
   });
   act(() => jest.advanceTimersByTime(300));
-  expect(AccessibilityInfo.announceForAccessibility).not.toHaveBeenCalled();
+  expect(AccessibilityInfo.announceForAccessibilityWithOptions).not.toHaveBeenCalled();
   rerender({ query: 'first' });
   act(() => jest.advanceTimersByTime(300));
-  expect(AccessibilityInfo.announceForAccessibility).toHaveBeenLastCalledWith('No results');
+  expect(AccessibilityInfo.announceForAccessibilityWithOptions).toHaveBeenLastCalledWith(
+    'No results',
+    { queue: true },
+  );
   rerender({ query: 'second' });
   act(() => jest.advanceTimersByTime(300));
-  expect(AccessibilityInfo.announceForAccessibility).toHaveBeenCalledTimes(2);
+  expect(AccessibilityInfo.announceForAccessibilityWithOptions).toHaveBeenCalledTimes(2);
 });
 
 it('cancels intermediate announcements while typing, clearing, and leaving', () => {
@@ -43,12 +46,12 @@ it('cancels intermediate announcements while typing, clearing, and leaving', () 
   act(() => jest.advanceTimersByTime(100));
   rerender({ query: 'first' });
   act(() => jest.advanceTimersByTime(200));
-  expect(AccessibilityInfo.announceForAccessibility).not.toHaveBeenCalled();
+  expect(AccessibilityInfo.announceForAccessibilityWithOptions).not.toHaveBeenCalled();
   rerender({ query: '' });
   act(() => jest.advanceTimersByTime(300));
-  expect(AccessibilityInfo.announceForAccessibility).not.toHaveBeenCalled();
+  expect(AccessibilityInfo.announceForAccessibilityWithOptions).not.toHaveBeenCalled();
   rerender({ query: 'another' });
   unmount();
   act(() => jest.advanceTimersByTime(300));
-  expect(AccessibilityInfo.announceForAccessibility).not.toHaveBeenCalled();
+  expect(AccessibilityInfo.announceForAccessibilityWithOptions).not.toHaveBeenCalled();
 });

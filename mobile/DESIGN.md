@@ -328,7 +328,8 @@ platform's.
 - A tap target of `HIT_SLOP` or `LAYOUT.rowMinHeight`.
 - No `maxFontSizeMultiplier` override without a reason.
 - An `adjustable` control states its position in `accessibilityValue`.
-- A change with no focus on it goes through `announce()`.
+- A change with no focus on it goes through `announce()`. What answers the
+  reader's own action interrupts; news they did not ask for passes `queue`.
 - Reduce Motion as in Motion; motion that tracks a finger is exempt.
 - AA contrast (4.5:1 for body text) in both themes, at default and largest
   text.

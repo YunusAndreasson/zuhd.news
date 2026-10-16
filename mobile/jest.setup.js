@@ -10,7 +10,10 @@ jest.mock('react-native', () => {
     },
     Dimensions: { get: () => ({ width: 375, height: 812 }) },
     Linking: { openURL: jest.fn() },
-    AccessibilityInfo: { announceForAccessibility: jest.fn() },
+    AccessibilityInfo: {
+      announceForAccessibility: jest.fn(),
+      announceForAccessibilityWithOptions: jest.fn(),
+    },
     Text: 'Text',
     View: 'View',
     Pressable: 'Pressable',
