@@ -29,6 +29,7 @@ import {
 import type { GraphCard } from '../../lib/cards/types';
 import { ACTIONS_ROW, AFTER_PROSE_GAP } from '../../lib/deck-layout';
 import { useNewSpent } from '../../lib/fresh-store';
+import { largeContent } from '../../lib/large-content';
 import type { StoryRow } from '../../lib/map-feed';
 import { COUNTRY_URL_SCHEME, makeMarkdownStyles, renderSentences } from '../../lib/markdown';
 import type { RiverArticle } from '../../lib/news-order';
@@ -594,6 +595,7 @@ const StoryActions = memo(function StoryActions({
         accessibilityLabel={saved ? 'Saved. Remove from saved stories' : 'Save this story'}
         accessibilityState={{ selected: saved }}
         hitSlop={ACTION_SLOP}
+        {...largeContent(saved ? 'saved' : 'save')}
       >
         <Text variant="captionEmphasis" tone={saved ? 'emphasis' : 'accent'}>
           {saved ? 'saved' : 'save'}
@@ -607,6 +609,7 @@ const StoryActions = memo(function StoryActions({
         accessibilityLabel="Share this story"
         accessibilityHint="Opens the system share sheet"
         hitSlop={ACTION_SLOP}
+        {...largeContent('share')}
       >
         <Text variant="captionEmphasis" tone="accent">
           share
@@ -629,6 +632,7 @@ const StoryActions = memo(function StoryActions({
           // `sources`, so "tap sources" found nothing on a one-source story.
           accessibilityLabel={`Sources, ${sourceCount}`}
           hitSlop={ACTION_SLOP}
+          {...largeContent('sources')}
         >
           <Text variant="captionEmphasis" tone="accent">
             sources

@@ -3,6 +3,7 @@ import { StyleSheet, View } from 'react-native';
 import { LAYOUT, RADIUS, SPACING } from '../constants/theme';
 import type { SheetMove } from '../hooks/useSheetNavigation';
 import { useTheme } from '../hooks/useTheme';
+import { largeContent } from '../lib/large-content';
 import { Icon, IconButton, Text } from './primitives';
 import { PageVeil } from './SheetPager';
 
@@ -44,7 +45,12 @@ export const SheetHandle = memo(function SheetHandle({
         // a back button of no size — nothing to tap.
         <View style={[styles.titleRow, { minHeight: typography.sizeBase }]}>
           {onBack && (
-            <IconButton onPress={onBack} style={styles.back} accessibilityLabel="Back">
+            <IconButton
+              onPress={onBack}
+              style={styles.back}
+              accessibilityLabel="Back"
+              {...largeContent('back')}
+            >
               <Icon name="chevron-back" tone="default" />
             </IconButton>
           )}

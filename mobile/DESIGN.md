@@ -340,6 +340,9 @@ platform's.
   for new stories` for the pull.
 - A toast a tap acts on is a `button` with a hint (`ToastAction`).
 - A sheet's title is a `header`, and a page it opens is announced.
+- Chrome whose text cannot grow (a gauge, a footer word, an icon) takes
+  `largeContent(words)`: iOS's Large Content Viewer shows the words large
+  when it is held at an accessibility text size.
 - A change with no focus on it goes through `announce()`. What answers the
   reader's own action interrupts; news they did not ask for passes `queue`.
 - Reduce Motion as in Motion; motion that tracks a finger is exempt.

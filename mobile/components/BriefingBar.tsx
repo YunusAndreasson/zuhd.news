@@ -20,6 +20,7 @@ import { ANIMATION, EASING, RADIUS, SPACING } from '../constants/theme';
 import { useScrub } from '../hooks/useScrub';
 import { useTheme } from '../hooks/useTheme';
 import { observationDate } from '../lib/data-freshness';
+import { largeContent } from '../lib/large-content';
 import { Icon, IconButton, Text } from './primitives';
 import { ScrubBar, ScrubTooltip } from './ScrubBar';
 
@@ -197,6 +198,7 @@ export const BriefingBar = memo(function BriefingBar({
               <IconButton
                 onPress={onToggle}
                 accessibilityLabel={playing ? 'Pause briefing' : 'Play briefing'}
+                {...largeContent(playing ? 'pause' : 'play')}
               >
                 <Icon name={playing ? 'pause' : 'play'} tone="emphasis" size="lg" />
               </IconButton>
@@ -208,6 +210,7 @@ export const BriefingBar = memo(function BriefingBar({
             <IconButton
               onPress={onDismiss}
               accessibilityLabel={preparing ? 'Cancel briefing loading' : 'Hide briefing player'}
+              {...largeContent(preparing ? 'cancel' : 'hide')}
             >
               <Icon name="close-sharp" tone="secondary" size="lg" />
             </IconButton>

@@ -15,6 +15,7 @@ import { nearestIndex, sameItems } from '../../lib/arrays';
 import { spokenDelta } from '../../lib/cards/format';
 import { CONTROL_ROW } from '../../lib/deck-layout';
 import { hapticSwipe } from '../../lib/haptics';
+import { largeContent } from '../../lib/large-content';
 import type { StripItem } from '../../lib/now';
 import { stripSnapOffsets } from '../../lib/strip-snap';
 import { DeltaChip } from '../DeltaChip';
@@ -102,6 +103,7 @@ const Slot = memo(function Slot({
       accessibilityHint={
         item.coords ? 'Turns the globe to this and opens its card' : 'Opens its card'
       }
+      {...largeContent(`${item.short} ${spokenDelta(item.delta, { window: false })}`)}
     >
       <View style={styles.value}>
         <Text

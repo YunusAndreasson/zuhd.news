@@ -15,6 +15,7 @@ import { useTheme } from '../../hooks/useTheme';
 import { announce } from '../../lib/announce';
 import { nearestIndex } from '../../lib/arrays';
 import { CONTROL_ROW } from '../../lib/deck-layout';
+import { largeContent } from '../../lib/large-content';
 import { useReadSlugs } from '../../lib/read-store';
 import type { FoundProgress } from '../../lib/story-places';
 import { positionAt, runMarks, timeTrackLayout } from '../../lib/time-track';
@@ -380,6 +381,7 @@ export const StoryDock = memo(function StoryDock({
             style={[styles.newAction, { marginLeft: inset }]}
             accessibilityLabel={`${newCount} new ${newCount === 1 ? 'story' : 'stories'}`}
             accessibilityHint="Goes to the newest story you have not seen"
+            {...largeContent(`${newCount} new`)}
           >
             {/* Solid: it rests on the card's text, which `pillBg` lets through. */}
             <View

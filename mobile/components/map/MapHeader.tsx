@@ -6,6 +6,7 @@ import { MAX_FONT_SCALE, SPACING } from '../../constants/theme';
 import { useTheme } from '../../hooks/useTheme';
 import { formatAudioDurationMinutes } from '../../lib/audio-duration';
 import { CONTROL_ROW } from '../../lib/deck-layout';
+import { largeContent } from '../../lib/large-content';
 import type { StripItem } from '../../lib/now';
 import { Icon, IconButton } from '../primitives';
 import type { IconButtonProps } from '../primitives/IconButton';
@@ -292,6 +293,7 @@ export const MapHeader = memo(function MapHeader({
           accessibilityHint={
             listenResumable ? "Resumes today's audio briefing" : "Plays today's audio briefing"
           }
+          {...largeContent('briefing')}
         >
           {heard > 0 ? (
             <HeardRing heard={heard} track={colors.rule} color={colors.textSecondary} />
@@ -307,6 +309,7 @@ export const MapHeader = memo(function MapHeader({
         onPress={onMenuPress}
         accessibilityLabel="Menu"
         accessibilityHint="Markets, search, saved stories, settings, the map key and about"
+        {...largeContent('menu')}
       >
         <Icon name="menu" size="md" tone="default" />
       </HeaderControl>

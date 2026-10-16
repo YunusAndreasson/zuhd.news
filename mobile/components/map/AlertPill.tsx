@@ -4,6 +4,7 @@ import { PRESSED_STYLE, SPACING } from '../../constants/theme';
 import { useTheme } from '../../hooks/useTheme';
 import { announce } from '../../lib/announce';
 import { CONTROL_ROW } from '../../lib/deck-layout';
+import { largeContent } from '../../lib/large-content';
 import { Text } from '../primitives';
 
 /** The pill's height, inside its `CONTROL_ROW` touch target: sized to its
@@ -58,6 +59,7 @@ export const AlertPill = memo(function AlertPill({
         accessibilityRole={onPress ? 'button' : 'text'}
         accessibilityLabel={line}
         accessibilityHint={onPress ? 'Opens the alert' : undefined}
+        {...largeContent(line)}
         style={({ pressed }) => [styles.action, pressed && onPress ? PRESSED_STYLE : null]}
       >
         {/* Solid, with a hairline edge: it rests on the globe, which is busy
