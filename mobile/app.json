@@ -6,6 +6,7 @@
     "orientation": "portrait",
     "icon": "./assets/icon.png",
     "userInterfaceStyle": "automatic",
+    "backgroundColor": "#0F0F11",
     "scheme": "zuhd-news",
     "owner": "edenmind",
     "platforms": [
@@ -107,12 +108,14 @@
       [
         "expo-splash-screen",
         {
-          "backgroundColor": "#f5f2ed",
-          "image": "./assets/splash-icon-light.png",
-          "dark": {
-            "backgroundColor": "#0F0F11",
-            "image": "./assets/splash-icon.png"
-          }
+          "backgroundColor": "#0F0F11",
+          "image": "./assets/splash-icon.png"
+        }
+      ],
+      [
+        "expo-status-bar",
+        {
+          "style": "light"
         }
       ],
       "expo-asset",

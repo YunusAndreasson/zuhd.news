@@ -10,7 +10,7 @@ import { GestureHandlerRootView } from 'react-native-gesture-handler';
 import { configureReanimatedLogger, ReanimatedLogLevel } from 'react-native-reanimated';
 import { ErrorBoundary } from '../components/ErrorBoundary';
 import { RUNTIME_FONTS } from '../constants/fonts';
-import { DARK_COLORS } from '../constants/theme';
+import { ANIMATION, DARK_COLORS } from '../constants/theme';
 import { ThemeProvider, useTheme } from '../hooks/useTheme';
 import { registerBackgroundTask } from '../lib/background-fetch';
 import { clearLegacyScheduledNotifications, setupNotificationChannels } from '../lib/notifications';
@@ -28,7 +28,7 @@ Notifications.setNotificationHandler({
 });
 
 SplashScreen.preventAutoHideAsync();
-SplashScreen.setOptions({ fade: true, duration: 250 });
+SplashScreen.setOptions({ fade: true, duration: ANIMATION.normal });
 
 // Fallback: if fonts or the first article load stall, force-hide the splash
 // after 8s so the user sees *something* rather than a frozen launch screen.
