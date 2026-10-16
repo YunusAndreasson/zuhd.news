@@ -1,0 +1,20 @@
+diff --git a/node_modules/react-native-reanimated/android/src/main/java/com/swmansion/reanimated/NativeProxy.kt b/node_modules/react-native-reanimated/android/src/main/java/com/swmansion/reanimated/NativeProxy.kt
+index 1c989e0..3f2c6df 100644
+--- a/node_modules/react-native-reanimated/android/src/main/java/com/swmansion/reanimated/NativeProxy.kt
++++ b/node_modules/react-native-reanimated/android/src/main/java/com/swmansion/reanimated/NativeProxy.kt
+@@ -445,12 +445,12 @@ open class NativeProxy {
+     @DoNotStrip
+     fun getIsReducedMotion(): Boolean {
+         val mContentResolver: ContentResolver = mContext.get()!!.contentResolver
+-        val rawValue =
+-            Settings.Global.getString(
++        val parsedValue =
++            Settings.Global.getFloat(
+                 mContentResolver,
+                 Settings.Global.TRANSITION_ANIMATION_SCALE,
++                1f,
+             )
+-        val parsedValue = if (rawValue != null) rawValue.toFloat() else 1f
+         return parsedValue == 0f
+     }
+ 

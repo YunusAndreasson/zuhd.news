@@ -298,7 +298,7 @@ Android uses `performAndroidHapticsAsync` only.
 
 - A `lineHeight`, spacing literal or opacity decimal in a component.
 - An icon that only pads a label.
-- `expo-symbols` imported outside `Icon.tsx`.
+- `expo-symbols` imported outside `Icon.ios.tsx`.
 - A shadow, blur or gradient outside the carve-outs.
 - Opacity that quiets text meant to be read.
 
@@ -308,7 +308,8 @@ Five. Nothing else in the app's chrome gets a blur or a gradient. The globe's
 marks and their row glyphs are drawn as the map draws them, and sheets are the
 platform's.
 
-1. Icons on iOS are SF Symbols, mapped from Ionicons names in `Icon.tsx`.
+1. Icons are SF Symbols on iOS and Material Symbols on Android, one name
+   for both in `primitives/icons.ts`.
 2. `BriefingBar` is frosted glass on iOS, the only surface that blurs.
    Android gets solid `playerBg`.
 3. The top bar's shade (`MapHeader`): a gradient of `bg`, a legibility scrim.

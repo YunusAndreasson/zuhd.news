@@ -37,7 +37,7 @@ beforeEach(() => {
     return mockNextIdle;
   });
   global.cancelIdleCallback = jest.fn((id) => {
-    mockIdle.delete(id);
+    if (id != null) mockIdle.delete(id);
   });
 });
 

@@ -28,12 +28,12 @@
     "production": {
       "autoIncrement": true,
       "channel": "production",
-      "node": "25.2.1",
+      "node": "26.12.0",
       "ios": {
-        "image": "latest"
+        "image": "auto"
       },
       "android": {
-        "image": "latest"
+        "image": "auto"
       }
     }
   },

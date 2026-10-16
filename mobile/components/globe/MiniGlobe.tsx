@@ -15,6 +15,7 @@ import {
   Path,
   Picture,
   rect,
+  type SharedValueSelector,
   type SkCanvas,
   type SkColor,
   type SkFont,
@@ -28,6 +29,7 @@ import {
   type SkTypeface,
   StrokeCap,
   StrokeJoin,
+  select,
   TileMode,
   type Transforms3d,
   useTexture,
@@ -2877,8 +2879,11 @@ export const MiniGlobe = memo(function MiniGlobe({
     const { prevGround } = framePictures.value;
     return t < 1 && prevGround !== EMPTY_PICTURE ? fadeLayer(prevGround, 1 - t) : EMPTY_PICTURE;
   });
-  const marksPicture = useDerivedValue(() => framePictures.value.marks);
-  const labelsPicture = useDerivedValue(() => framePictures.value.labels);
+  // Marks and labels draw straight from their key of the frame's one shared
+  // value: no mapper of their own, and the canvas subscribes to it once.
+  // Memoized, so `GlobeCanvas` keeps its props between renders.
+  const marksPicture = useMemo(() => select(framePictures, 'marks'), [framePictures]);
+  const labelsPicture = useMemo(() => select(framePictures, 'labels'), [framePictures]);
   // The current story's dot holds still. It breathed for three cycles each time
   // a story landed, and the user asked for it to go (2026-09-19): the location
   // label beside it is larger instead, and says which place is being read.
@@ -5528,8 +5533,8 @@ const GlobeCanvas = memo(function GlobeCanvas({
   warp: Value<Transforms3d>;
   prevGroundPicture: Value<SkPicture>;
   groundPicture: Value<SkPicture>;
-  marksPicture: Value<SkPicture>;
-  labelsPicture: Value<SkPicture>;
+  marksPicture: SharedValueSelector<SkPicture>;
+  labelsPicture: SharedValueSelector<SkPicture>;
   /** There is a day to find: draw the still-to-find ring. */
   ring: boolean;
   cx: number;

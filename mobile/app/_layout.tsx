@@ -9,6 +9,7 @@ import { StyleSheet, View } from 'react-native';
 import { GestureHandlerRootView } from 'react-native-gesture-handler';
 import { configureReanimatedLogger, ReanimatedLogLevel } from 'react-native-reanimated';
 import { ErrorBoundary } from '../components/ErrorBoundary';
+import { RUNTIME_FONTS } from '../constants/fonts';
 import { DARK_COLORS } from '../constants/theme';
 import { ThemeProvider, useTheme } from '../hooks/useTheme';
 import { registerBackgroundTask } from '../lib/background-fetch';
@@ -46,14 +47,9 @@ function ThemedShell() {
 }
 
 export default function RootLayout() {
-  const [fontsLoaded, fontError] = useFonts({
-    'SourceSans3-Regular': require('../assets/fonts/SourceSans3-Regular.ttf'),
-    'SourceSans3-SemiBold': require('../assets/fonts/SourceSans3-SemiBold.ttf'),
-    'SourceSans3-Bold': require('../assets/fonts/SourceSans3-Bold.ttf'),
-    'SourceSans3-Italic': require('../assets/fonts/SourceSans3-Italic.ttf'),
-    'SourceSans3-BoldItalic': require('../assets/fonts/SourceSans3-BoldItalic.ttf'),
-    'SourceSans3SC-SemiBold': require('../assets/fonts/SourceSans3SC-SemiBold.ttf'),
-  });
+  // iOS registers its faces here; Android's are embedded, so it is loaded at
+  // the first render (`constants/fonts`).
+  const [fontsLoaded, fontError] = useFonts(RUNTIME_FONTS);
 
   useEffect(() => {
     void registerBackgroundTask();

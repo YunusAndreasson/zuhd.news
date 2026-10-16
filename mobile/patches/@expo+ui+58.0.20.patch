@@ -1,8 +1,8 @@
 diff --git a/node_modules/@expo/ui/android/src/main/java/expo/modules/ui/ExpoUIModule.kt b/node_modules/@expo/ui/android/src/main/java/expo/modules/ui/ExpoUIModule.kt
-index f7f0d1b..133dc12 100644
+index d58b54f..214b4e4 100644
 --- a/node_modules/@expo/ui/android/src/main/java/expo/modules/ui/ExpoUIModule.kt
 +++ b/node_modules/@expo/ui/android/src/main/java/expo/modules/ui/ExpoUIModule.kt
-@@ -219,9 +219,13 @@ class ExpoUIModule : Module() {
+@@ -235,9 +235,13 @@ class ExpoUIModule : Module() {
        val expand by AsyncFunction()
        val partialExpand by AsyncFunction()
        val onDismissRequest by Event<Unit>()
@@ -18,7 +18,7 @@ index f7f0d1b..133dc12 100644
      }
  
 diff --git a/node_modules/@expo/ui/android/src/main/java/expo/modules/ui/ModalBottomSheetView.kt b/node_modules/@expo/ui/android/src/main/java/expo/modules/ui/ModalBottomSheetView.kt
-index e90edd3..71d1b24 100644
+index 9ca0932..c03b932 100644
 --- a/node_modules/@expo/ui/android/src/main/java/expo/modules/ui/ModalBottomSheetView.kt
 +++ b/node_modules/@expo/ui/android/src/main/java/expo/modules/ui/ModalBottomSheetView.kt
 @@ -8,6 +8,8 @@ import android.content.Context
@@ -29,16 +29,16 @@ index e90edd3..71d1b24 100644
 +import androidx.activity.OnBackPressedCallback
  import androidx.compose.material3.BottomSheetDefaults
  import androidx.compose.material3.ExperimentalMaterial3Api
- import androidx.compose.material3.ModalBottomSheet
-@@ -18,6 +20,7 @@ import androidx.compose.runtime.Composable
+ import androidx.compose.material3.MaterialTheme
+@@ -19,6 +21,7 @@ import androidx.compose.runtime.Composable
  import androidx.compose.runtime.DisposableEffect
  import androidx.compose.runtime.LaunchedEffect
  import androidx.compose.runtime.rememberCoroutineScope
 +import androidx.compose.runtime.rememberUpdatedState
- import androidx.compose.ui.platform.LocalView
- import androidx.compose.ui.window.DialogWindowProvider
- import expo.modules.kotlin.records.Field
-@@ -38,6 +41,7 @@ data class ModalBottomSheetPropertiesRecord(
+ import androidx.compose.ui.graphics.Color as ComposeColor
+ import androidx.compose.ui.graphics.luminance
+ import androidx.compose.ui.graphics.takeOrElse
+@@ -42,6 +45,7 @@ data class ModalBottomSheetPropertiesRecord(
  
  @OptimizedComposeProps
  data class ModalBottomSheetViewProps(
@@ -46,7 +46,7 @@ index e90edd3..71d1b24 100644
    val skipPartiallyExpanded: Boolean = false,
    val initialFullyExpanded: Boolean = false,
    val containerColor: Color? = null,
-@@ -70,14 +74,27 @@ private fun Activity.isAcceptingText(): Boolean {
+@@ -74,14 +78,27 @@ private fun Activity.isAcceptingText(): Boolean {
   * Without this check, typing "rr" in a sheet TextInput reloads the app.
   */
  @Composable
@@ -76,7 +76,7 @@ index e90edd3..71d1b24 100644
        val isForwardable = event.action == KeyEvent.ACTION_UP &&
          keyCode != KeyEvent.KEYCODE_BACK &&
          keyCode != KeyEvent.KEYCODE_ESCAPE &&
-@@ -85,6 +102,7 @@ private fun ForwardKeyEventsToActivity(activity: Activity?) {
+@@ -89,6 +106,7 @@ private fun ForwardKeyEventsToActivity(activity: Activity?) {
        isForwardable && activity.onKeyUp(keyCode, event)
      }
      onDispose {
@@ -84,7 +84,7 @@ index e90edd3..71d1b24 100644
        dialog.setOnKeyListener(null)
      }
    }
-@@ -96,7 +114,8 @@ fun FunctionalComposableScope.ModalBottomSheetContent(
+@@ -100,7 +118,8 @@ fun FunctionalComposableScope.ModalBottomSheetContent(
    hide: AsyncFunctionHandle<Unit>,
    expand: AsyncFunctionHandle<Unit>,
    partialExpand: AsyncFunctionHandle<Unit>,
@@ -94,7 +94,7 @@ index e90edd3..71d1b24 100644
  ) {
    val sheetState = rememberModalBottomSheetState(props.skipPartiallyExpanded)
    val scope = rememberCoroutineScope()
-@@ -156,12 +175,12 @@ fun FunctionalComposableScope.ModalBottomSheetContent(
+@@ -171,12 +190,12 @@ fun FunctionalComposableScope.ModalBottomSheetContent(
        else -> null
      },
      properties = ModalBottomSheetProperties(
@@ -109,8 +109,30 @@ index e90edd3..71d1b24 100644
      Children(UIComposableScope(), filter = { !isSlotView(it) })
    }
  
+diff --git a/node_modules/@expo/ui/build/community/bottom-sheet/BottomSheet.android.js b/node_modules/@expo/ui/build/community/bottom-sheet/BottomSheet.android.js
+index d39d9de..ba6cf4e 100644
+--- a/node_modules/@expo/ui/build/community/bottom-sheet/BottomSheet.android.js
++++ b/node_modules/@expo/ui/build/community/bottom-sheet/BottomSheet.android.js
+@@ -37,7 +37,7 @@ function findNearestSnapPointIndex(snapPoints, position) {
+  * @remarks Supports two snap states: partially expanded (~50%) and fully expanded.
+  * `snapToIndex(0)` maps to partial, `snapToIndex(lastIndex)` maps to expanded.
+  */ export function BottomSheet(props) {
+-    const { ref, snapPoints: snapPointsProp, index: indexProp = 0, onChange, onClose, onDismiss, enablePanDownToClose = false, enableDynamicSizing = true, handleComponent, backgroundStyle, children } = props;
++    const { ref, snapPoints: snapPointsProp, index: indexProp = 0, onChange, onClose, onDismiss, onBackPress, enablePanDownToClose = false, enableDynamicSizing = true, handleComponent, backgroundStyle, children } = props;
+     const { width } = useWindowDimensions();
+     const hasMultipleSnapPoints = snapPointsProp != null && snapPointsProp.length > 1;
+     const fitToContents = enableDynamicSizing && (!snapPointsProp || snapPointsProp.length === 0);
+@@ -174,6 +174,8 @@ function findNearestSnapPointIndex(snapPoints, position) {
+                 children: /*#__PURE__*/ _jsx(ModalBottomSheet, {
+                     ref: sheetRef,
+                     onDismissRequest: handleDismiss,
++                    interceptBackPress: !!onBackPress,
++                    onBackPress: onBackPress,
+                     skipPartiallyExpanded: skipPartially,
+                     initialFullyExpanded: hasMultipleSnapPoints && pendingIndexRef.current === maxIndex,
+                     showDragHandle: handleComponent !== null,
 diff --git a/node_modules/@expo/ui/build/community/bottom-sheet/types.d.ts b/node_modules/@expo/ui/build/community/bottom-sheet/types.d.ts
-index 72fc6be..e84ae46 100644
+index cf72b27..237a490 100644
 --- a/node_modules/@expo/ui/build/community/bottom-sheet/types.d.ts
 +++ b/node_modules/@expo/ui/build/community/bottom-sheet/types.d.ts
 @@ -112,6 +112,8 @@ export interface BottomSheetFooterProps {
@@ -123,7 +145,7 @@ index 72fc6be..e84ae46 100644
       * Ref to the bottom sheet component. Exposes imperative methods (`snapToIndex`,
       * `expand`, `collapse`, `close`, `present`, `dismiss`, etc.).
 diff --git a/node_modules/@expo/ui/build/jetpack-compose/ModalBottomSheet/index.d.ts b/node_modules/@expo/ui/build/jetpack-compose/ModalBottomSheet/index.d.ts
-index ddf89aa..4af2320 100644
+index 6d3806c..dad076e 100644
 --- a/node_modules/@expo/ui/build/jetpack-compose/ModalBottomSheet/index.d.ts
 +++ b/node_modules/@expo/ui/build/jetpack-compose/ModalBottomSheet/index.d.ts
 @@ -30,6 +30,9 @@ export type ModalBottomSheetProperties = {
@@ -137,7 +159,7 @@ index ddf89aa..4af2320 100644
       * The children of the `ModalBottomSheet` component.
       * Can include a `ModalBottomSheet.DragHandle` slot for a custom drag handle.
 diff --git a/node_modules/@expo/ui/src/community/bottom-sheet/BottomSheet.android.tsx b/node_modules/@expo/ui/src/community/bottom-sheet/BottomSheet.android.tsx
-index ac8ae4a..74fe919 100644
+index 419edef..d39a261 100644
 --- a/node_modules/@expo/ui/src/community/bottom-sheet/BottomSheet.android.tsx
 +++ b/node_modules/@expo/ui/src/community/bottom-sheet/BottomSheet.android.tsx
 @@ -60,6 +60,7 @@ export function BottomSheet(props: BottomSheetProps) {
@@ -158,7 +180,7 @@ index ac8ae4a..74fe919 100644
              initialFullyExpanded={hasMultipleSnapPoints && pendingIndexRef.current === maxIndex}
              showDragHandle={handleComponent !== null}
 diff --git a/node_modules/@expo/ui/src/community/bottom-sheet/types.ts b/node_modules/@expo/ui/src/community/bottom-sheet/types.ts
-index d7372fc..3610b43 100644
+index 51326fb..9357361 100644
 --- a/node_modules/@expo/ui/src/community/bottom-sheet/types.ts
 +++ b/node_modules/@expo/ui/src/community/bottom-sheet/types.ts
 @@ -121,6 +121,8 @@ export interface BottomSheetFooterProps {

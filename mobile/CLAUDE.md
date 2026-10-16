@@ -26,8 +26,8 @@ Run in `mobile/`.
 - No inline `fontSize`. Use `<Text variant>`, and its `scale` prop before any
   style override. A `fontVariant` override is fine; a font-family override is
   an escape hatch and needs a comment.
-- No raw `<Ionicons>`. Go through `<Icon>`. Primitives are in
-  `components/primitives/`.
+- No raw `<SymbolView>` or symbol glyph. Go through `<Icon>`. Primitives are
+  in `components/primitives/`.
 - One typeface: Source Sans 3.
 - A new token or variant goes in `constants/theme.ts` with a JSDoc that says
   what role it fills. Migrate the call sites and update `DESIGN.md`.
@@ -54,8 +54,7 @@ silently routed to the legacy detector.
 
 ## Dependencies
 
-- `react-native-gesture-handler` is 3.3.0, deliberately off the SDK 57 set, and
-  listed in `expo.install.exclude` so `deps:update` cannot move it. Keep one
+- `react-native-gesture-handler` follows the SDK set (3.3 on SDK 58). Keep one
   copy: two would mean two native gesture registries.
 - **Never pass an inline function to an array method (`.map`, `.filter`,
   `.forEach`, …) inside a worklet.** It aborts a release build on launch and
@@ -140,7 +139,7 @@ test is the rule.
   emulator hides it:
   - No opacity between 0 and 1 on a view with children. Fade a leaf over it, or
     switch 0/1 at the motion's true end.
-  - Never animate opacity on a view with `experimental_backgroundImage`.
+  - Never animate opacity on a view with `backgroundImage`.
   - No layout props (`top`, `bottom`, `height`) per frame.
   - A style that returns a fresh `transform` array is re-sent on every run.
     Keep a transform in a style whose inputs change only when it does.

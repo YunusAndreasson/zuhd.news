@@ -44,7 +44,7 @@ export function createJsonCache<T>(
     },
     write: (data) => {
       try {
-        file.write(JSON.stringify(data));
+        file.writeSync(JSON.stringify(data));
       } catch {}
       return Promise.resolve();
     },

@@ -1,68 +1,18 @@
-import { Ionicons } from '@expo/vector-icons';
-import { SymbolView, type SymbolViewProps } from 'expo-symbols';
-import { type ComponentProps, memo } from 'react';
-import { Platform } from 'react-native';
-import { ICON, type TextTone, toneColor } from '../../constants/theme';
+import { memo } from 'react';
+import { StyleSheet, Text, View } from 'react-native';
+import { ICON, toneColor } from '../../constants/theme';
 import { useTheme } from '../../hooks/useTheme';
+import { ICONS, type IconProps } from './icons';
 
-type IoniconName = ComponentProps<typeof Ionicons>['name'];
-type SFSymbolName =
-  NonNullable<SymbolViewProps['name']> extends infer N ? (N extends string ? N : never) : never;
-
-export interface IconProps {
-  name: IoniconName;
-  /** Pixel size — `xs` (11, a chip's caret only), `sm` (14), `md` (20), `lg`
-   *  (26). Anything else is a mistake. */
-  size?: keyof typeof ICON;
-  /** Semantic tone. Ignored if `color` is set. */
-  tone?: TextTone;
-  /** Explicit color override. Prefer `tone`. */
-  color?: string;
-}
+export type { IconProps } from './icons';
 
 /**
- * iOS renders the matching SF Symbol (system-native, optically tuned at every
- * size, automatic tinting). Android falls back to Ionicons since SF Symbols
- * are Apple-only. The cross-platform `<Icon>` API stays unified — call sites
- * pass an Ionicons name and the platform resolution happens here.
- *
- * If you add an Ionicons name not in `IONICON_TO_SF`, iOS will silently fall
- * back to Ionicons for that name (no missing-glyph placeholder).
- */
-const IONICON_TO_SF: Partial<Record<string, SFSymbolName>> = {
-  // The delta chip's direction arrows. A filled triangle rather than a line
-  // arrow: at 14px beside 13pt type a stroked glyph reads as noise, and the
-  // triangle is the mark a reader already associates with a price move.
-  'caret-up': 'arrowtriangle.up.fill',
-  'caret-down': 'arrowtriangle.down.fill',
-  'chevron-back': 'chevron.left',
-  'chevron-forward': 'chevron.right',
-  'chevron-up': 'chevron.up',
-  'chevron-down': 'chevron.down',
-  'close-circle': 'xmark.circle.fill',
-  'close-sharp': 'xmark',
-  // "More" is an ellipsis on both platforms. Android used to keep the Ionicons
-  // hamburger for it, and the story list's settings button — reached from a
-  // three-line list icon — was a second three-line icon doing something else.
-  'ellipsis-horizontal': 'ellipsis',
-  'information-circle': 'info.circle.fill',
-  'information-circle-outline': 'info.circle',
-  list: 'list.bullet',
-  // The top-right menu: search, saved, settings, the map key and the pages.
-  // The only three-line icon in the app since the story list went.
-  menu: 'line.3.horizontal',
-  // A menu row that leaves the app — mail, the store, a data provider's site —
-  // where a chevron would promise another page.
-  'open-outline': 'arrow.up.right.square',
-  pause: 'pause.fill',
-  play: 'play.fill',
-  search: 'magnifyingglass',
-  share: 'square.and.arrow.up',
-};
-
-/**
- * Centralizes the icon-pack choice and the four-tier size system. Never use
- * `<Ionicons>` or `<SymbolView>` directly in app code — go through this.
+ * Android draws the Material Symbol as a glyph of the Material Symbols font,
+ * which the expo-font plugin embeds (`app.json`), so it is there at the first
+ * frame. `expo-symbols`' own Android view loads the font again in every
+ * instance and draws nothing until that resolves; it is also kept out of this
+ * file so its copy of the font stays out of the bundle. iOS is `Icon.ios.tsx`.
+ * Never draw a symbol directly in app code — go through this.
  */
 export const Icon = memo(function Icon({
   name,
@@ -71,19 +21,33 @@ export const Icon = memo(function Icon({
   color,
 }: IconProps) {
   const { colors } = useTheme();
-  const resolved = color ?? toneColor(tone, colors);
-  const px = ICON[size];
+  return (
+    <View style={styles[size]}>
+      <Text
+        aria-hidden
+        allowFontScaling={false}
+        style={[glyphs[size], { color: color ?? toneColor(tone, colors) }]}
+      >
+        {String.fromCharCode(ICONS[name].glyph)}
+      </Text>
+    </View>
+  );
+});
 
-  if (Platform.OS === 'ios') {
-    const sf = IONICON_TO_SF[name];
-    if (sf) {
-      // SF Symbols inherit optical sizing — no `width`/`height` style, just
-      // `size` prop. The square frame style keeps layout math compatible
-      // with the Ionicons drop-in expectation.
-      return (
-        <SymbolView name={sf} size={px} tintColor={resolved} style={{ width: px, height: px }} />
-      );
-    }
-  }
-  return <Ionicons name={name} size={px} color={resolved} />;
+// The square frame matches iOS's.
+const styles = StyleSheet.create({
+  xs: { width: ICON.xs, height: ICON.xs },
+  sm: { width: ICON.sm, height: ICON.sm },
+  md: { width: ICON.md, height: ICON.md },
+  lg: { width: ICON.lg, height: ICON.lg },
+});
+
+// A font-family and size override, the escape hatch an icon needs: it is a
+// symbol, not running text, and it keeps its size when the reader's text grows.
+const SYMBOLS = 'MaterialSymbols_400Regular';
+const glyphs = StyleSheet.create({
+  xs: { fontFamily: SYMBOLS, fontSize: ICON.xs, lineHeight: ICON.xs },
+  sm: { fontFamily: SYMBOLS, fontSize: ICON.sm, lineHeight: ICON.sm },
+  md: { fontFamily: SYMBOLS, fontSize: ICON.md, lineHeight: ICON.md },
+  lg: { fontFamily: SYMBOLS, fontSize: ICON.lg, lineHeight: ICON.lg },
 });

@@ -1,7 +1,13 @@
 import { BottomSheetTextInput } from '@expo/ui/community/bottom-sheet';
 import type { Article, Category, GroupedArticles } from '@shared/types';
 import { useCallback, useDeferredValue, useEffect, useMemo, useRef, useState } from 'react';
-import { AccessibilityInfo, Pressable, StyleSheet, type TextInput, View } from 'react-native';
+import {
+  AccessibilityInfo,
+  Pressable,
+  StyleSheet,
+  type TextInputInstance,
+  View,
+} from 'react-native';
 import { IS_ANDROID } from '../constants/platform';
 import { CATEGORIES, HIT_SLOP, LAYOUT, PRESSED_STYLE, SPACING } from '../constants/theme';
 import { useTheme } from '../hooks/useTheme';
@@ -55,7 +61,7 @@ export function SheetSearchPage({
 }: SheetSearchPageProps) {
   const { colors, textVariants, resolvedAppearance } = useTheme();
   const deferredQuery = useDeferredValue(query.trim());
-  const inputRef = useRef<TextInput>(null);
+  const inputRef = useRef<TextInputInstance>(null);
 
   const searchIndex = useMemo(() => buildSearchIndex(searchDocs(grouped)), [grouped]);
   const results = useMemo(

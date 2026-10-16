@@ -73,6 +73,16 @@ config.resolver = {
       }
       throw new Error(`[metro.config] @shared resolver: nothing matched ${base}{${exts.join(',')}}`);
     }
+    // expo-router requires expo-symbols in case the app uses native tabs, which
+    // this one does not. On Android that require would bundle a second copy of
+    // the Material Symbols font the app already embeds (`primitives/Icon.tsx`).
+    if (
+      platform === 'android' &&
+      moduleName === 'expo-symbols' &&
+      context.originModulePath.includes(`${path.sep}expo-router${path.sep}`)
+    ) {
+      return { type: 'empty' };
+    }
     if (baseResolveRequest) return baseResolveRequest(context, moduleName, platform);
     return context.resolveRequest(context, moduleName, platform);
   },

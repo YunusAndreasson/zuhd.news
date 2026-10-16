@@ -3,6 +3,7 @@ import {
   type LayoutChangeEvent,
   type NativeScrollEvent,
   type NativeSyntheticEvent,
+  type ScrollViewInstance,
   StyleSheet,
   useWindowDimensions,
   View,
@@ -152,7 +153,7 @@ export const IndicatorStrip = memo(function IndicatorStrip({
     setViewport((prev) => (prev === next ? prev : next));
   }, []);
 
-  const scrollRef = useRef<ScrollView>(null);
+  const scrollRef = useRef<ScrollViewInstance>(null);
   const slotX = useRef(new Map<string, number>());
   // A slot placing itself is not news, so the offsets live in a ref — but the
   // recompute has to know they arrived. The row's own layout and its content's

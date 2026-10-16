@@ -92,7 +92,7 @@ export function SheetBookmarksPage({ bottomInset, onSelectArticle }: SheetBookma
               </Text>
             </Pressable>
           </Stack>
-        ) : null
+        ) : undefined
       }
     />
   );

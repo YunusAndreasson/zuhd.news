@@ -1,7 +1,12 @@
 import { BottomSheetFlatList, BottomSheetScrollView } from '@expo/ui/community/bottom-sheet';
 import { COUNTRY_DATA } from '@shared/countries/country-data';
 import type { ComponentProps, Ref } from 'react';
-import { type FlatList, type FlatListProps, type ScrollView, StyleSheet } from 'react-native';
+import {
+  type FlatList,
+  type FlatListProps,
+  type ScrollViewInstance,
+  StyleSheet,
+} from 'react-native';
 import Animated from 'react-native-reanimated';
 import { HIT_SLOP, LAYOUT, SPACING } from '../constants/theme';
 import { useTheme } from '../hooks/useTheme';
@@ -41,7 +46,7 @@ type ScrollViewProps = ComponentProps<typeof BottomSheetScrollView>;
 
 interface SheetScrollViewProps extends Omit<ScrollViewProps, 'contentContainerStyle' | 'style'> {
   /** Forwarded for programmatic scrolling (React 19: `ref` is a prop). */
-  ref?: Ref<ScrollView>;
+  ref?: Ref<ScrollViewInstance>;
   bottomInset: number;
   contentContainerStyle?: ScrollViewProps['contentContainerStyle'];
   style?: ScrollViewProps['style'];

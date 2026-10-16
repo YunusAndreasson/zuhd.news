@@ -208,11 +208,11 @@ export function ThemeProvider({
   // An in-app light or dark choice is the whole app's, not only the JS
   // palette's: the platform sheets, the search keyboard, alerts and the share
   // sheet draw themselves from the native appearance, and without this they
-  // stayed dark over a light app. `unspecified` hands it back to the system,
+  // stayed dark over a light app. `auto` hands it back to the system,
   // which is also what `useColorScheme` above then reports again.
   const appearancePref = prefs.appearance;
   useEffect(() => {
-    Appearance.setColorScheme(appearancePref === 'system' ? 'unspecified' : appearancePref);
+    Appearance.setColorScheme(appearancePref === 'system' ? 'auto' : appearancePref);
   }, [appearancePref]);
 
   // Sync native system UI with theme. Android edge-to-edge (SDK 54+) makes the

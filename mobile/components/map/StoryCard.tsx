@@ -177,8 +177,8 @@ const Veil = memo(function Veil({
   const gradient = useMemo(
     () => ({
       height,
-      experimental_backgroundImage: `linear-gradient(to bottom, ${withAlpha(color, VEIL_TOP)}, ${withAlpha(color, 1)})`,
-      experimental_backgroundRepeat: 'no-repeat',
+      backgroundImage: `linear-gradient(to bottom, ${withAlpha(color, VEIL_TOP)}, ${withAlpha(color, 1)})`,
+      backgroundRepeat: 'no-repeat',
     }),
     [height, color],
   );
@@ -537,8 +537,8 @@ export const StoryFooter = memo(function StoryFooter({
   // is the same picture with it and without, pixel for pixel.
   const fade = useMemo(
     () => ({
-      experimental_backgroundImage: `linear-gradient(to bottom, ${withAlpha(colors.sheetBg, 0)}, ${withAlpha(colors.sheetBg, 1)})`,
-      experimental_backgroundRepeat: 'no-repeat',
+      backgroundImage: `linear-gradient(to bottom, ${withAlpha(colors.sheetBg, 0)}, ${withAlpha(colors.sheetBg, 1)})`,
+      backgroundRepeat: 'no-repeat',
     }),
     [colors.sheetBg],
   );

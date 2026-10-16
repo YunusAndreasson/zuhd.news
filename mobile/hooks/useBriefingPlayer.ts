@@ -58,10 +58,10 @@ function resolveBriefingSource(url: string, controller: AbortController): Promis
       idempotent: true,
       signal: controller.signal,
     })
-      .then((downloaded) => {
+      .then(async (downloaded) => {
         if (controller.signal.aborted) throw new Error('Audio download cancelled');
         if (file.exists) downloaded.delete();
-        else downloaded.move(file);
+        else await downloaded.move(file);
         return { localUri: file.uri };
       })
       .catch((error: unknown) => {

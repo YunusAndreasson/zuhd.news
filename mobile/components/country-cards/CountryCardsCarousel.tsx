@@ -4,6 +4,7 @@ import {
   type NativeScrollEvent,
   type NativeSyntheticEvent,
   ScrollView,
+  type ScrollViewInstance,
   StyleSheet,
   View,
 } from 'react-native';
@@ -65,7 +66,7 @@ export const CountryCardsCarousel = memo(function CountryCardsCarousel({
   // the bottom sheet's vertical scroller is unreliable on Android (the sheet
   // can claim the pan), so the dots double as tap controls — `scrollTo` works
   // regardless of which gesture handler owns touches.
-  const scrollRef = useRef<ScrollView>(null);
+  const scrollRef = useRef<ScrollViewInstance>(null);
   const goToPage = useCallback(
     (i: number) => {
       if (pageWidth <= 0) return;
