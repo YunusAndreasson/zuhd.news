@@ -7,7 +7,7 @@ import Animated, {
   useSharedValue,
   withTiming,
 } from 'react-native-reanimated';
-import { ANIMATION, EASING, SPACING } from '../constants/theme';
+import { ANIMATION, EASING, KEEP_MOTION, SPACING } from '../constants/theme';
 import type { SheetMove } from '../hooks/useSheetNavigation';
 import { useTheme } from '../hooks/useTheme';
 
@@ -40,10 +40,12 @@ const TIMING = { duration: ANIMATION.normal, easing: EASING.out };
 /** How far a page is dragged before the ground has closed over it. */
 const DRAG_FADE = 200;
 
-/** Opaque, then clear: the veil's own style is the cleared one. */
-const VEIL_LIFT = new Keyframe({ 0: { opacity: 1 }, 100: { opacity: 0 } }).duration(
-  ANIMATION.normal,
-);
+/** Opaque, then clear: the veil's own style is the cleared one. It keeps its
+ *  fade under Reduce Motion, which drops the page's slide: the page then
+ *  dissolves in where it rests instead of replacing the last in one frame. */
+export const VEIL_LIFT = new Keyframe({ 0: { opacity: 1 }, 100: { opacity: 0 } })
+  .duration(ANIMATION.normal)
+  .reduceMotion(KEEP_MOTION.reduceMotion);
 
 /** Whether `move` is one this component has seen happen. The move it
  *  mounted with is already over: Android mounts a sheet's content each time

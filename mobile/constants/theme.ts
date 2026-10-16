@@ -5,7 +5,7 @@ import {
   StyleSheet,
   type TextStyle,
 } from 'react-native';
-import { Easing, ReduceMotion } from 'react-native-reanimated';
+import { Easing, FadeIn, FadeOut, ReduceMotion } from 'react-native-reanimated';
 import { ANDROID_TEXT_BASE } from './platform';
 
 // ---------------------------------------------------------------------------
@@ -630,7 +630,8 @@ export const ANIMATION = {
 
 /** Spread into an animation that Reduce Motion must not snap: one that carries
  *  a finger's motion on (a thrown sheet, a released swipe), or the cross-fade
- *  that stands in for movement under it (the globe's tap ring). Nothing else. */
+ *  that stands in for movement under it (the globe's tap ring, a sheet page's
+ *  veil, `dissolveIn`). Nothing else. */
 export const KEEP_MOTION = { reduceMotion: ReduceMotion.Never } as const;
 
 /** Reusable Reanimated easing curves. Compose with ANIMATION durations in withTiming. */
@@ -654,6 +655,20 @@ export const EASING = {
    */
   camera: Easing.bezier(0.25, 0.1, 0.25, 1),
 } as const;
+
+/**
+ * What stands in for a slide under Reduce Motion: the thing that would have
+ * moved fades in where it rests, or out where it was, and keeps that fade
+ * (`KEEP_MOTION`), since a cut gives no feedback at all. Reanimated can drop
+ * an animation under the setting but cannot swap it for another, so a caller
+ * picks between its slide and this with `useReducedMotion()`. Factories,
+ * because a builder's methods change it in place: keep what they return at
+ * module scope, so each mount is handed the same builder.
+ */
+export const dissolveIn = (ms: number = ANIMATION.normal) =>
+  FadeIn.duration(ms).easing(EASING.out).reduceMotion(KEEP_MOTION.reduceMotion);
+export const dissolveOut = (ms: number = ANIMATION.normal) =>
+  FadeOut.duration(ms).easing(EASING.out).reduceMotion(KEEP_MOTION.reduceMotion);
 
 /**
  * Opacity scale. Grouped by intent:

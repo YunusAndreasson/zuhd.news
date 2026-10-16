@@ -1,8 +1,23 @@
 import { memo, useCallback, useEffect, useImperativeHandle, useRef, useState } from 'react';
 import { AccessibilityInfo, Pressable, StyleSheet } from 'react-native';
-import Animated, { FadeInDown, FadeInUp, FadeOutDown, FadeOutUp } from 'react-native-reanimated';
+import Animated, {
+  FadeInDown,
+  FadeInUp,
+  FadeOutDown,
+  FadeOutUp,
+  useReducedMotion,
+} from 'react-native-reanimated';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
-import { ANIMATION, EASING, HIT_SLOP, PRESSED_STYLE, RADIUS, SPACING } from '../constants/theme';
+import {
+  ANIMATION,
+  dissolveIn,
+  dissolveOut,
+  EASING,
+  HIT_SLOP,
+  PRESSED_STYLE,
+  RADIUS,
+  SPACING,
+} from '../constants/theme';
 import { useTheme } from '../hooks/useTheme';
 import { announce } from '../lib/announce';
 import { Text } from './primitives';
@@ -34,19 +49,23 @@ const TOAST_VISIBLE_ACTIONABLE_MS = 4000;
 const TOAST_VISIBLE_PASSIVE_MS = 2000;
 const TOAST_SLIDE_OFFSET = SPACING.xxl;
 
-// Reanimated drops both to their end state under Reduce Motion by itself.
-function getEntering(pos: ToastPosition) {
-  const base = pos === 'top' ? FadeInDown : FadeInUp;
-  return base
-    .duration(ANIMATION.normal)
+// In from the edge it belongs to, and back out to it. Built once, out here,
+// so every toast is handed the same builders. Under Reduce Motion the slide
+// gives way to a dissolve in place (`dissolveIn`), not to a cut.
+const SLIDE_IN: Record<ToastPosition, ReturnType<typeof FadeInDown.duration>> = {
+  top: FadeInDown.duration(ANIMATION.normal)
     .easing(EASING.out)
-    .withInitialValues({ translateY: pos === 'top' ? -TOAST_SLIDE_OFFSET : TOAST_SLIDE_OFFSET });
-}
-
-function getExiting(pos: ToastPosition) {
-  const base = pos === 'top' ? FadeOutUp : FadeOutDown;
-  return base.duration(ANIMATION.normal).easing(EASING.out);
-}
+    .withInitialValues({ translateY: -TOAST_SLIDE_OFFSET }),
+  bottom: FadeInUp.duration(ANIMATION.normal)
+    .easing(EASING.out)
+    .withInitialValues({ translateY: TOAST_SLIDE_OFFSET }),
+};
+const SLIDE_OUT: Record<ToastPosition, ReturnType<typeof FadeOutUp.duration>> = {
+  top: FadeOutUp.duration(ANIMATION.normal).easing(EASING.out),
+  bottom: FadeOutDown.duration(ANIMATION.normal).easing(EASING.out),
+};
+const DISSOLVE_IN = dissolveIn();
+const DISSOLVE_OUT = dissolveOut();
 
 export const Toast = memo(function Toast({
   ref,
@@ -65,6 +84,7 @@ export const Toast = memo(function Toast({
 }) {
   const { colors } = useTheme();
   const insets = useSafeAreaInsets();
+  const reduceMotion = useReducedMotion();
   const [message, setMessage] = useState('');
   const [pos, setPos] = useState<ToastPosition>('bottom');
   const [visible, setVisible] = useState(false);
@@ -128,8 +148,8 @@ export const Toast = memo(function Toast({
       // Remount the view when position flips so the entering animation
       // runs from the correct off-screen origin (top vs. bottom).
       key={pos}
-      entering={getEntering(pos)}
-      exiting={getExiting(pos)}
+      entering={reduceMotion ? DISSOLVE_IN : SLIDE_IN[pos]}
+      exiting={reduceMotion ? DISSOLVE_OUT : SLIDE_OUT[pos]}
       style={[styles.container, positionStyle]}
       // `box-none`: the full-width container is only a positioning frame — it
       // must not intercept touches in its horizontal band (it overlaps the

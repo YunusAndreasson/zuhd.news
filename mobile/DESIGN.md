@@ -274,9 +274,12 @@ Space groups the card. Add no labels and no rules between blocks.
 - Reduce Motion is the library's job. Reanimated animations default to
   `ReduceMotion.System` and jump to their end, so a discrete animation needs
   no `useReducedMotion()` branch. Check in JS only what Reanimated cannot
-  see: a timer, an RN `scrollTo({ animated })`, an initial value.
+  see: a timer, an RN `scrollTo({ animated })`, an initial value, and the
+  one swap it cannot make: a slide that gives way to `dissolveIn` or
+  `dissolveOut` (a toast, a hint), never to a cut.
 - `KEEP_MOTION` is only for what must not snap: a spring released from a
-  finger, and the cross-fade that stands in for movement (the tap ring).
+  finger, and the cross-fade that stands in for movement (the tap ring, a
+  sheet page's veil, a dissolve).
 - Motion that tracks a finger is exempt. Gate the transition, not the
   tracking, and prefer a cross-fade to no feedback.
 - Camera moves ease on `EASING.camera`.

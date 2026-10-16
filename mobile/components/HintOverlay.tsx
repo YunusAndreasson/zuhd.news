@@ -1,7 +1,15 @@
 import { memo } from 'react';
 import { Pressable, StyleSheet, View } from 'react-native';
-import Animated, { FadeInUp, FadeOutDown } from 'react-native-reanimated';
-import { ANIMATION, EASING, PRESSED_STYLE, RADIUS, SPACING } from '../constants/theme';
+import Animated, { FadeInUp, FadeOutDown, useReducedMotion } from 'react-native-reanimated';
+import {
+  ANIMATION,
+  dissolveIn,
+  dissolveOut,
+  EASING,
+  PRESSED_STYLE,
+  RADIUS,
+  SPACING,
+} from '../constants/theme';
 import { useTheme } from '../hooks/useTheme';
 import type { HintId } from '../lib/onboarding-store';
 import { Text } from './primitives';
@@ -29,6 +37,14 @@ const HINT_COPY: Record<HintId, string> = {
 };
 
 const HINT_SLIDE_OFFSET = SPACING.xxl;
+// Up from under it, and down out again; a dissolve in place under Reduce
+// Motion. Built once, so a hint's re-render does not hand Reanimated new ones.
+const SLIDE_IN = FadeInUp.duration(ANIMATION.normal)
+  .easing(EASING.out)
+  .withInitialValues({ translateY: HINT_SLIDE_OFFSET });
+const SLIDE_OUT = FadeOutDown.duration(ANIMATION.normal).easing(EASING.out);
+const DISSOLVE_IN = dissolveIn();
+const DISSOLVE_OUT = dissolveOut();
 
 interface HintOverlayProps {
   hint: HintId | null;
@@ -57,14 +73,11 @@ export const HintOverlay = memo(function HintOverlay({
   bottomOffset = 0,
 }: HintOverlayProps) {
   const { colors } = useTheme();
+  const reduceMotion = useReducedMotion();
 
   if (!hint) return null;
-
-  // Reanimated drops both to their end state under Reduce Motion by itself.
-  const entering = FadeInUp.duration(ANIMATION.normal)
-    .easing(EASING.out)
-    .withInitialValues({ translateY: HINT_SLIDE_OFFSET });
-  const exiting = FadeOutDown.duration(ANIMATION.normal).easing(EASING.out);
+  const entering = reduceMotion ? DISSOLVE_IN : SLIDE_IN;
+  const exiting = reduceMotion ? DISSOLVE_OUT : SLIDE_OUT;
 
   return (
     <View
