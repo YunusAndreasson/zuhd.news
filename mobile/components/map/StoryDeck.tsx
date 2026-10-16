@@ -371,6 +371,10 @@ const DeckSlot = memo(function DeckSlot({
           scrollEventThrottle={16}
           bounces={false}
           overScrollMode="never"
+          // An open story's text can be held to copy, which makes it
+          // focusable on Android: a tap on a paragraph half under the footer
+          // then scrolled it whole into view, and the story jumped.
+          scrollsChildToFocus={false}
           showsVerticalScrollIndicator={readable}
         >
           {children}

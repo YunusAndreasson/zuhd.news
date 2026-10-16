@@ -343,11 +343,16 @@ export function makeMarkdownStyles(
   });
 }
 
+/** A press held to copy: given, so the press is not also a tap when the
+ *  finger lifts, which React Native makes of a long hold with no long press. */
+const COPY_HOLD = () => {};
+
 export function renderSegments(
   segments: Segment[],
   mdStyles: MarkdownStyles,
   openLink: LinkOpener,
   onEntityPress?: EntityPressHandler,
+  selectable = false,
 ): ReactNode[] {
   return segments.map((seg, j) => {
     switch (seg.type) {
@@ -376,6 +381,7 @@ export function renderSegments(
             key={j}
             style={isCountry ? mdStyles.countryLink : mdStyles.link}
             onPress={() => seg.url && openLink(seg.url)}
+            onLongPress={selectable ? COPY_HOLD : undefined}
             // Label inline links for assistive tech (the entity case already
             // does). Country mentions open a stats sheet ("button"); plain URLs
             // open the browser ("link"). Without this, screen-reader users get
@@ -397,6 +403,7 @@ export function renderSegments(
             key={j}
             style={mdStyles.entity}
             onPress={onPress}
+            onLongPress={selectable ? COPY_HOLD : undefined}
             accessibilityRole="button"
             accessibilityLabel={`${seg.text} — tap for live data`}
             // @ts-expect-error — see note on `link` case above
@@ -433,6 +440,10 @@ export interface SentenceOptions {
    * these blocks are still consumed, so a later block never tags the same one.
    */
   plainBlocks?: number;
+  /** Each block can be held to copy (an open story). The prop switches in
+   *  place, so turning it on rebuilds nothing; and the links in it then take a
+   *  long press of their own, so the hold that copies does not open them. */
+  selectable?: boolean;
 }
 
 /** A link or a mention as the words it shows, for a block that takes no press. */
@@ -458,6 +469,7 @@ export function renderSentences(
     entities,
     onEntityPress,
     plainBlocks = 0,
+    selectable = false,
   }: SentenceOptions = {},
 ): ReactNode[] {
   // Entities fire on first occurrence only across the whole body — track
@@ -502,8 +514,9 @@ export function renderSentences(
         {...SENTENCE_TEXT_PROPS}
         style={i === 0 ? [mdStyles.sentence, mdStyles.lede] : mdStyles.sentence}
         maxFontSizeMultiplier={MAX_FONT_SCALE.body}
+        selectable={selectable}
       >
-        {renderSegments(rendered, mdStyles, openLink, onEntityPress)}
+        {renderSegments(rendered, mdStyles, openLink, onEntityPress, selectable)}
       </Text>
     );
   });

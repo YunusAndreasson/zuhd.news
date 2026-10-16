@@ -297,8 +297,19 @@ export const StoryCard = memo(function StoryCard({
         openLink,
         entities: tappableEntities,
         onEntityPress,
+        // Open, a reader can hold a paragraph to copy it; at rest the card is
+        // one button. The prop switches in place: nothing is rebuilt.
+        selectable: open,
       }),
-    [article.sentences, article.location, mdStyles, openLink, tappableEntities, onEntityPress],
+    [
+      article.sentences,
+      article.location,
+      mdStyles,
+      openLink,
+      tappableEntities,
+      onEntityPress,
+      open,
+    ],
   );
   // **At rest the hook's links are its words** (`plainBlocks`): the resting
   // card is one button, and a country in the hook was a second, underlined
@@ -401,6 +412,7 @@ export const StoryCard = memo(function StoryCard({
           tone="emphasis"
           maxFontSizeMultiplier={MAX_FONT_SCALE.heading}
           style={styles.title}
+          selectable={open}
         >
           {row.title}
         </Text>

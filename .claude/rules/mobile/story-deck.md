@@ -120,6 +120,10 @@ paths:
   `Veil`. The veil is on only with the sheet exactly at rest and switches,
   never fades.
 - At rest the card is one button. The hook's links are plain words until open.
+- Open, the title and the blocks are `selectable`: a prop switch, never a
+  rebuild (it would be one if RN's `enablePreparedTextLayout` were turned
+  on). Their links take a no-op `onLongPress`, so the hold that copies does
+  not open them, and the slot's scroll has `scrollsChildToFocus={false}`.
 - Body text carries no `letterSpacing` (Android measures a phantom line).
 - The footer is `save · share · sources` (`StoryFooter`): outside the card,
   straight after the text, set to the right, no rule above or below, no count

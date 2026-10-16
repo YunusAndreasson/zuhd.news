@@ -263,4 +263,45 @@ describe('renderSentences', () => {
       ]);
     });
   });
+
+  // Open, a reader can hold a paragraph to copy it; at rest nothing can.
+  describe('selectable', () => {
+    const story = ['Strikes hit [Ukraine](country:UA) as Brent rose.', 'Then calm.'];
+    type Run = ReactElement<{ onPress?: unknown; onLongPress?: unknown }>;
+    type Block = ReactElement<{ selectable?: boolean; children: ReactNode[] }>;
+    const pressable = (blocks: ReactNode[]) =>
+      (blocks as Block[]).flatMap((block) =>
+        block.props.children.filter((run): run is Run => typeof run === 'object' && run !== null),
+      );
+
+    it('makes no block selectable and gives no link a long press, unless asked', () => {
+      const blocks = renderSentences(story, styles, {
+        entities: [brent],
+        onEntityPress: () => {},
+      }) as Block[];
+      expect(blocks.map((b) => b.props.selectable)).toEqual([false, false]);
+      for (const run of pressable(blocks)) expect(run.props.onLongPress).toBeUndefined();
+    });
+
+    it('makes every block selectable, and holds its links to a copy, when asked', () => {
+      const blocks = renderSentences(story, styles, {
+        entities: [brent],
+        onEntityPress: () => {},
+        selectable: true,
+      }) as Block[];
+      expect(blocks.map((b) => b.props.selectable)).toEqual([true, true]);
+      const runsWithPress = pressable(blocks).filter((run) => run.props.onPress);
+      expect(runsWithPress.length).toBe(2);
+      for (const run of runsWithPress) expect(run.props.onLongPress).toEqual(expect.any(Function));
+    });
+
+    it('keeps each block the same element, so switching it rebuilds nothing', () => {
+      const plain = renderSentences(story, styles, { entities: [brent] }) as Block[];
+      const copyable = renderSentences(story, styles, {
+        entities: [brent],
+        selectable: true,
+      }) as Block[];
+      expect(copyable.map((b) => [b.type, b.key])).toEqual(plain.map((b) => [b.type, b.key]));
+    });
+  });
 });

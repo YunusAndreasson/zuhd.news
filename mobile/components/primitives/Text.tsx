@@ -52,7 +52,7 @@ function LateSelectableText(props: RNTextProps) {
     const timer = setTimeout(() => setReady(true), SELECTABLE_AFTER_MS);
     return () => clearTimeout(timer);
   }, []);
-  return <RNText {...props} selectable={ready} />;
+  return <RNText {...props} selectable={ready && props.selectable === true} />;
 }
 
 export const Text = memo(function Text({
@@ -75,7 +75,12 @@ export const Text = memo(function Text({
         } as TextStyle)
       : null;
 
-  const Component = rest.selectable && IS_ANDROID ? LateSelectableText : RNText;
+  // Decided once, at mount: text that mounts selectable in a new Android
+  // window takes the late path, and text made selectable later (an open story,
+  // in the screen's own window) switches the prop in place. Switching the
+  // component instead would rebuild its native view, a reflow on every open.
+  const [late] = useState(() => IS_ANDROID && rest.selectable === true);
+  const Component = late ? LateSelectableText : RNText;
 
   return (
     // Variant-role line-breaking/Dynamic Type props apply first so any

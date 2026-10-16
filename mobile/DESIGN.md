@@ -126,8 +126,10 @@ a primitive at the third caller.
 - Android: a closing sheet swallows taps for half a second, and a sheet has
   only a half and a full stop.
 - A sheet with a text field passes `avoidKeyboard`: Android lifts it.
-- `selectable` text goes through the `Text` primitive. A raw RN `Text` paints
-  a focus band when an Android sheet opens.
+- Text selectable as it mounts goes through the `Text` primitive: in a new
+  Android window (a sheet) a raw RN `Text` paints a focus band. Text made
+  selectable later (an open story) switches the prop in place; the primitive
+  decides its path at mount.
 - Two spacing tiers: `SPACING.md` between paragraphs, `SPACING.lg` before a
   headed section.
 - Prose pages: opening paragraph `lead`, sections `labelSm` over `body`, never
