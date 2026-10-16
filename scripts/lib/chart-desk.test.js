@@ -78,6 +78,52 @@ test('a tracked company is offered only to a story about it, and only on a quote
   assert.deepEqual(ids(candidatesFor(about, { ...sources, companies: [company({ stale: true })] })), [])
 })
 
+const lab = (over = {}) => ({
+  id: 'meta', name: 'Meta', model: 'Muse Spark 1.3', score: 151.2, asOf: '2026-09-02', blurb: 'The AI arm of a company.',
+  series: { values: [140.1, 151.2], periods: ['2026-04-01', '2026-09-02'], models: ['Llama 5', 'Muse Spark 1.3'] }, ...over,
+})
+const aiModels = { frontier: { score: 166.8, model: 'Claude Opus 5.5', lab: 'Anthropic' }, labs: [lab()] }
+
+test('an AI lab is offered to a story whose headline names it or one of its models', () => {
+  for (const title of ['Meta Says New Model Reaches The Frontier', 'Muse Spark Trails Chinese Open Models', 'Llama 5 Weights Leak']) {
+    const rows = candidatesFor(article({}, 'A body.', title), { ...sources, aiModels })
+    assert.deepEqual(ids(rows), ['ai:meta'], title)
+    assert.equal(rows[0].via, 'about')
+    assert.match(rows[0].reading, /^151\.2 \(Muse Spark 1\.3, released 2026-09-02, up from 140\.1; the best any lab has is 166\.8 \(Anthropic\)\), as of 2026-09-02$/)
+  }
+  // A word that only contains a name, a body that names it, a lab with one point or no paragraph.
+  assert.deepEqual(ids(candidatesFor(article({}, 'Meta was there.', 'Metaverse Sales Slump'), { ...sources, aiModels })), [])
+  assert.deepEqual(ids(candidatesFor(article({}, 'A body.', 'Meta Fined'), { ...sources, aiModels: { ...aiModels, labs: [lab({ series: { values: [151.2], periods: ['2026-09-02'], models: ['Muse Spark 1.3'] } })] } })), [])
+  assert.deepEqual(ids(candidatesFor(article({}, 'A body.', 'Meta Fined'), { ...sources, aiModels: { ...aiModels, labs: [lab({ blurb: '' })] } })), [])
+  assert.deepEqual(ids(candidatesFor(article({}, 'A body.', 'Meta Fined'), sources)), [])
+})
+
+test('the desk may keep an AI lab it offered', () => {
+  const a = article({}, 'A body.', 'Meta Says New Model Reaches The Frontier')
+  const candidates = new Map([[a.slug, candidatesFor(a, { ...sources, aiModels })]])
+  assert.deepEqual(parseChartDesk({ s: { chart: 'ai:meta', role: 'subject' } }, candidates, []).get('s'), { chart: 'ai:meta', role: 'subject' })
+  assert.match(chartDeskPrompt([a], candidates, []), /An AI lab's model score is the subject only of a story about how capable the lab's own models are/)
+})
+
+test('a story is offered the contracts found for it, read from the snapshot where it holds them', () => {
+  const a = article({}, 'A body.', 'Erdogan Calls a Snap Vote')
+  const storyContracts = {
+    s: [
+      { id: 'poly-ankara-vote', slug: 'ankara-vote', question: 'Erdogan wins?', price: 40, endDate: '2026-11-20T00:00:00Z' },
+      { id: 'poly-new-question', slug: 'new-question', question: 'Snap vote held by December?', price: 62, endDate: '2026-12-31T00:00:00Z' },
+    ],
+    other: [{ id: 'poly-elsewhere', slug: 'elsewhere', question: 'Not this story?', price: 5, endDate: null }],
+  }
+  const rows = candidatesFor(a, { ...sources, storyContracts })
+  assert.deepEqual(ids(rows), ['poly-ankara-vote', 'poly-new-question'])
+  assert.ok(rows.every((r) => r.via === 'contract' && r.kind === 'odds'))
+  assert.match(rows[0].reading, /^109 % \(price of a Yes share\).*closes 2026-11-20$/)
+  assert.equal(rows[1].reading, '62% chance of Yes, closes 2026-12-31')
+  const candidates = new Map([[a.slug, rows]])
+  assert.deepEqual(parseChartDesk({ s: { chart: 'poly-new-question', role: 'decides' } }, candidates, []).get('s'), { chart: 'poly-new-question', role: 'decides' })
+  assert.match(chartDeskPrompt([a], candidates, []), /poly-new-question — Snap vote held by December\?: 62% chance of Yes/)
+})
+
 test('a country brings its currency and its rate to an economy story, and to no other', () => {
   const body = '[Turkey](country:TR) raised rates as the [US](country:US) watched.'
   assert.deepEqual(ids(candidatesFor(article({ category: 'economy' }, body), sources)), ['fx-try', 'tcmb-rate'])

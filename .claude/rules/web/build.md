@@ -45,6 +45,8 @@ shared helpers are indexed in `.claude/rules/shared-modules.md`.
   joined on codes and on where an event happened (1:50m), never on a name.
   Never put it in `/api/country/*`, which is cached for a day. A country
   nothing is counted in gets no element; Green alerts alone are nothing.
+  The map's country cards read the same join from `/api/country-hazards.json`
+  (`hazardBlock`, `_map/popup.ts`), cached as GDACS is.
 - JSON APIs under `/api/`: for the app (`feed`, `feed-lite`, `heatmap`,
   `trends`, `analysis`, `market-signals`, `companies`, `ai-models`, `meta`),
   for the map (`map`, `map-leads`, `map-archive`, `story/{slug}`,

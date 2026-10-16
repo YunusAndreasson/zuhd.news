@@ -23,7 +23,7 @@
 import { CC_TO_TOPOJSON_NAME } from '../../shared/countries/iso.ts'
 import { visibleText } from './article.js'
 import { companyMatcher, isAboutCompany, storyFacts } from './companies.js'
-import { canonicalIndicatorId } from './entity-registry.js'
+import { canonicalIndicatorId, matchesAnyTag } from './entity-registry.js'
 import { ageDays, closingSoon, exchangeRow, oddsRow, seriesRow, sig4, straitRow, weekMove } from './indicator-offer.js'
 
 /**
@@ -66,6 +66,8 @@ export const ROLES = /** @type {const} */ (['subject', 'cause', 'decides'])
  * @property {any[]} [chokepoints]  `.chokepoints.json`'s `chokepoints`
  * @property {any[]} [markets]      `.markets.json`'s `exchanges`
  * @property {any[]} [companies]    `.companies.json`'s `companies`
+ * @property {any} [aiModels]       `.ai-models.json`: `labs` and `frontier`
+ * @property {Record<string, any[]>} [storyContracts] each story's own contracts, by slug (`find-story-contracts.js`)
  * @property {Record<string, any>} [dispatch] `.indicator-dispatch.json`'s `items`
  * @property {number} [now]
  */
@@ -73,7 +75,7 @@ export const ROLES = /** @type {const} */ (['subject', 'cause', 'decides'])
 /**
  * @typedef {object} Candidate
  * @property {string} id
- * @property {string} kind  series, strait, exchange, company, odds
+ * @property {string} kind  series, strait, exchange, company, lab, odds
  * @property {string} label
  * @property {string} reading  the level, its move and its date, as one phrase
  * @property {'about' | 'named' | 'country' | 'contract'} via how it came to be on this story's list
@@ -116,6 +118,41 @@ function companyRow(c, now) {
   }
 }
 
+/**
+ * The words a headline names an AI lab by: its own name, and the family name
+ * of each model on its line (`Claude`, `GPT`, `Muse`), which a story about a
+ * release leads with and often without the lab's.
+ *
+ * @param {any} lab  an `.ai-models.json` lab
+ */
+function labNames(lab) {
+  const families = (lab?.series?.models || []).map((m) => String(m || '').split(/[\s-]/)[0])
+  return [...new Set([lab?.name, ...families].filter((w) => typeof w === 'string' && w.length >= 3))]
+}
+
+/**
+ * An AI lab's best capability score as a row, or null when the app's card for
+ * it would have no line (`aiLabCard`, mobile/lib/ai-models.ts): a step at each
+ * release that beat the last, with the best any lab has as its rule.
+ *
+ * @param {any} lab
+ * @param {any} frontier  `.ai-models.json`'s `frontier`
+ */
+function labRow(lab, frontier) {
+  const values = (lab?.series?.values || []).filter(Number.isFinite)
+  if (!lab?.id || values.length < 2 || !lab.blurb) return null
+  const n = values.length
+  const lead = frontier?.lab && frontier.lab !== lab.name && Number.isFinite(frontier.score) ? `; the best any lab has is ${frontier.score} (${frontier.lab})` : '; the best any lab has'
+  return {
+    id: `ai:${lab.id}`,
+    kind: 'lab',
+    label: `${lab.name}'s best AI model, on Epoch's capability index`,
+    level: lab.score,
+    unit: `(${lab.model}${lab.series.periods?.[n - 1] ? `, released ${lab.series.periods[n - 1]}` : ''}, up from ${values[n - 2]}${lead})`,
+    asOf: lab.asOf,
+  }
+}
+
 /** The country codes a body links, in the order it links them. */
 const countriesOf = (body) => [...new Set([...String(body).matchAll(/\]\(country:([A-Z]{2})\)/g)].map((m) => m[1]))]
 
@@ -129,11 +166,11 @@ const countriesOf = (body) => [...new Set([...String(body).matchAll(/\]\(country
  * strait a traffic history, a company a quote from this week. An id that
  * fails it draws nothing, and a choice spent on it is a story without a chart.
  *
- * @param {{ title?: string, body: string, meta: any }} article
+ * @param {{ slug?: string, title?: string, body: string, meta: any }} article
  * @param {DeskSources} sources
  * @returns {Candidate[]}
  */
-export function candidatesFor(article, { trends, chokepoints = [], markets = [], companies = [], dispatch = {}, now = Date.now() } = {}) {
+export function candidatesFor(article, { trends, chokepoints = [], markets = [], companies = [], aiModels = null, storyContracts = {}, dispatch = {}, now = Date.now() } = {}) {
   const meta = article.meta || {}
   const indicators = (trends?.indicators || []).filter((i) => i?.id)
   const byId = new Map(indicators.map((i) => [i.id, i]))
@@ -163,9 +200,25 @@ export function candidatesFor(article, { trends, chokepoints = [], markets = [],
   for (const c of companies) {
     if (isAboutCompany(facts, companyMatcher(c))) add(companyRow(c, now), 'about')
   }
+  // The AI labs its headline names: their line is a story's only when it is
+  // about a model, which is the desk's to judge.
+  for (const lab of aiModels?.labs || []) {
+    if (matchesAnyTag(labNames(lab), String(article.title ?? meta.title ?? '').toLowerCase())) add(labRow(lab, aiModels.frontier), 'about')
+  }
 
   // What it names.
   for (const e of Array.isArray(meta.entities) ? meta.entities : []) addId(e?.indicatorId, 'named')
+
+  // The contracts found for it: read as the deck reads one where the snapshot
+  // already holds it, and from the search's own price where it does not yet.
+  for (const f of storyContracts?.[article.slug ?? ''] || []) {
+    if (!f?.id || out.some((c) => c.id === f.id)) continue
+    const ind = byId.get(f.id)
+    const row = ind?.source === 'polymarket' ? oddsRow(ind, { now }) : null
+    const closes = typeof f.endDate === 'string' ? `, closes ${f.endDate.slice(0, 10)}` : ''
+    if (row && row !== 'stale') out.push({ id: row.id, kind: 'odds', label: row.question, reading: `${reading(row)}${closes}`, via: 'contract' })
+    else if (!ind) out.push({ id: f.id, kind: 'odds', label: String(f.question), reading: `${f.price}% chance of Yes${closes}`, via: 'contract' })
+  }
 
   // The money of the countries it links.
   if (meta.category === 'economy') {
@@ -230,12 +283,13 @@ ${rows.length ? rows.map(line).join('\n') : '    (none)'}`
     })
     .join('\n')
 
-  return `You are the data desk of a news site. Under each story the app can draw ONE small line chart: a price, a rate, ships through a strait, a company's shares, or a prediction market's odds. For each story below, say which line belongs under it, or that none does. Most stories get none: a court ruling, a strike on a town, an appointment, a summit, a study, a death. A chart that is not the story's own is worse than no chart.
+  return `You are the data desk of a news site. Under each story the app can draw ONE small line chart: a price, a rate, ships through a strait, a company's shares, an AI lab's best model score, or a prediction market's odds. For each story below, say which line belongs under it, or that none does. Most stories get none: a court ruling, a strike on a town, an appointment, a summit, a study, a death. A chart that is not the story's own is worse than no chart.
 
 A line belongs under a story in exactly three cases. Name the case as "role".
 
 "subject": the line IS the story. The story reports this price, rate, index, currency or traffic itself, or it is news for this company's shares: its results, a deal, a ruling or ban against it, a product that failed, a contract it won.
   - A story of ships attacked, seized, stopped or let through a strait is about that strait's traffic.
+  - An AI lab's model score is the subject only of a story about how capable the lab's own models are: a new model it released, a benchmark result, the lab claiming, reaching or losing the frontier. Not a model's price, speed, size or licence, not another company using or copying the lab's model (that story is the other company's), and not the lab's money, lawsuits, staff, safety research or a government's rules for it; where the lab is listed, those are its shares' or nothing.
   - A company that is only the place something happened, a supplier, a customer or a comparison is not the subject. Nor is one whose product is the setting of a political story (a government blocking a service, a regulator's review of a whole industry): the news has to be the company's own.
 
 "cause": the story says, in its own words, that a fresh move in this line is why the thing happened. Oil jumping this week is why an airline cut flights; a currency sliding is why a central bank acted.
@@ -245,6 +299,7 @@ A line belongs under a story in exactly three cases. Name the case as "role".
 "decides": the line is what is about to be decided.
   - A central bank's rate under a story about its decision, or the next one.
   - A CONTRACT (the list at the end; any story may take one) when the story leaves a question open and the contract asks that question: who wins the election the story is about, whether the truce it reports holds, whether the strike, deal or rate move it describes happens by the date. The test: if the contract settled tomorrow, would that be this story's next headline? When it would, take it, even if the story is politics and has no other line on its list.
+  - A story's own "series" list may hold contracts too (ids starting "poly-"), found by searching for that story's question. The same test decides them, and finding one is no reason to take it.
   - A contract that shares only a person, a country or a topic with the story fails that test. A leader's "next prime minister?" is not the chart for each act of his government; an election contract is not the chart for that country's diplomacy, courts or protests. Never for a story about something already settled.
 
 What is never a chart:

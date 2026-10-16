@@ -17,6 +17,7 @@ commands
   node scripts/coverage-map.js
   node scripts/trending-gaps.js
   node scripts/company-gaps.js
+  node scripts/data-gaps.js
   claude --no-session-persistence --setting-sources project --disable-slash-commands --strict-mcp-config --effort medium --model claude-opus-5-5 --fallback-model claude-sonnet-5-5 --allowedTools Read,Write,Glob,Grep --max-turns 35 --exclude-dynamic-system-prompt-sections -p «text 1»
   node scripts/cycle/tally.js selection
   node scripts/enrich-selection.js
@@ -47,7 +48,10 @@ commands
   node scripts/fetch-ipc.js
   node scripts/narrate-gdacs.js
   node scripts/extract-entities.js
+  node scripts/find-story-contracts.js
   node scripts/pick-charts.js
+  node scripts/admit-story-contracts.js
+  node scripts/narrate-indicators.js --new-only
   node scripts/extract-source-angles.js
   node scripts/translate-swedish.js
   node scripts/narrate-indicators.js --market-signals
@@ -110,6 +114,11 @@ commands
   | <unexplained-movers>
   | node:company-gaps: stdout
   | </unexplained-movers>
+  |
+  | What the data the site draws says happened in the past week, with no story on zuhd.news yet to report it: a GDACS disaster alert still live, a prediction market that swung, a currency that moved hard against the dollar. Each is a sign that something happened, never the story itself. If the feed carries a report of the event behind one — the storm's landfall or track, the talks that collapsed, the decision that sank the currency — weigh it as a strong pick, and the Consequence rule still holds. A disaster is filed as politics, never science. If your recent coverage already reports what moved it, or the feed has nothing on it, skip it; the list is a signal, never a quota.
+  | <data-gaps>
+  | node:data-gaps: stdout
+  | </data-gaps>
   |
   | <cycle-target>
   | Select 15 stories this cycle (18:00 UTC).
@@ -208,6 +217,7 @@ log
   | Injecting coverage map (1 topic groups) into selector prompt
   | Injecting trending-gaps signal (1 titles) into selector prompt
   | Injecting unexplained-movers signal (1 companies) into selector prompt
+  | Injecting data-gaps signal (1 lines) into selector prompt
   | Selection target: 15 stories (18:00 UTC)
   | Selected 2 stories.
   | «selector»
@@ -300,10 +310,25 @@ log
   | «node:extract-entities»
   | Entities exit: 0 — Ns
   |
+  | --- Stage 3.62: Story contracts ---
+  | node:find-story-contracts: stdout
+  | «node:find-story-contracts»
+  | Story contracts exit: 0 — Ns
+  |
   | --- Stage 3.65: Chart desk ---
   | node:pick-charts: stdout
   | «node:pick-charts»
   | Chart desk exit: 0 — Ns
+  |
+  | --- Stage 3.66: Story contract admission ---
+  | node:admit-story-contracts: stdout
+  | «node:admit-story-contracts»
+  | Admission exit: 0 — Ns
+  |
+  | --- Stage 3.67: Indicator dispatch (before the build) ---
+  | node:narrate-indicators: stdout
+  | «node:narrate-indicators»
+  | Dispatch (before the build) — Ns
   |
   | --- Stage 3.7: Source angles ---
   | node:extract-source-angles: stdout
@@ -413,6 +438,7 @@ journal
   | Injecting coverage map (1 topic groups) into selector prompt
   | Injecting trending-gaps signal (1 titles) into selector prompt
   | Injecting unexplained-movers signal (1 companies) into selector prompt
+  | Injecting data-gaps signal (1 lines) into selector prompt
   | Selection target: 15 stories (18:00 UTC)
   | Selected 2 stories.
   | «selector»
@@ -483,10 +509,25 @@ journal
   | «node:extract-entities»
   | Entities exit: 0 — Ns
   |
+  | --- Stage 3.62: Story contracts ---
+  | node:find-story-contracts: stdout
+  | «node:find-story-contracts»
+  | Story contracts exit: 0 — Ns
+  |
   | --- Stage 3.65: Chart desk ---
   | node:pick-charts: stdout
   | «node:pick-charts»
   | Chart desk exit: 0 — Ns
+  |
+  | --- Stage 3.66: Story contract admission ---
+  | node:admit-story-contracts: stdout
+  | «node:admit-story-contracts»
+  | Admission exit: 0 — Ns
+  |
+  | --- Stage 3.67: Indicator dispatch (before the build) ---
+  | node:narrate-indicators: stdout
+  | «node:narrate-indicators»
+  | Dispatch (before the build) — Ns
   |
   | --- Stage 3.7: Source angles ---
   | node:extract-source-angles: stdout

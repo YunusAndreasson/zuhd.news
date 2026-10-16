@@ -290,6 +290,19 @@ ${COMPANY_GAPS}
 </unexplained-movers>"
   echo "Injecting unexplained-movers signal ($(echo "$COMPANY_GAPS" | wc -l) companies) into selector prompt" | tee -a "$LOG_FILE"
 fi
+# Inject what the last cycle's snapshots say happened with no story here to
+# report it: a live disaster alert, a contract that swung, a currency that
+# slid (lib/data-gaps.js). Local read; fail-soft (empty → nothing).
+DATA_GAPS=$(timeout 15 node scripts/data-gaps.js 2>/dev/null)
+if [ -n "$DATA_GAPS" ]; then
+  SELECT_PROMPT="${SELECT_PROMPT}
+
+What the data the site draws says happened in the past week, with no story on zuhd.news yet to report it: a GDACS disaster alert still live, a prediction market that swung, a currency that moved hard against the dollar. Each is a sign that something happened, never the story itself. If the feed carries a report of the event behind one — the storm's landfall or track, the talks that collapsed, the decision that sank the currency — weigh it as a strong pick, and the Consequence rule still holds. A disaster is filed as politics, never science. If your recent coverage already reports what moved it, or the feed has nothing on it, skip it; the list is a signal, never a quota.
+<data-gaps>
+${DATA_GAPS}
+</data-gaps>"
+  echo "Injecting data-gaps signal ($(echo "$DATA_GAPS" | wc -l) lines) into selector prompt" | tee -a "$LOG_FILE"
+fi
 # How many stories this cycle picks follows how much news arrived since the
 # last one (measured 2026-09-25 across 14 global outlets: 05:00 ≈11% of the
 # day's publishing, 10:00 ≈16%, 14:00 ≈20%, 18:00 ≈28%, 22:00 ≈25%). A fixed
@@ -692,6 +705,14 @@ $ACRONYMS
   timeout 180 node scripts/extract-entities.js 2>&1 | tee -a "$LOG_FILE"
   echo "Entities exit: $? — $((SECONDS - T36))s" | tee -a "$LOG_FILE"
 
+  # Stage 3.62: Story contracts — each story's own open question, searched on
+  # Polymarket, for the chart desk to offer beside its series.
+  echo "" | tee -a "$LOG_FILE"
+  echo "--- Stage 3.62: Story contracts ---" | tee -a "$LOG_FILE"
+  T362=$SECONDS
+  timeout 120 node scripts/find-story-contracts.js 2>&1 | tee -a "$LOG_FILE"
+  echo "Story contracts exit: $? — $((SECONDS - T362))s" | tee -a "$LOG_FILE"
+
   # Stage 3.65: Chart desk — one batched Haiku call that sets `chart:` on
   # each new article, from the series the entity stage found for it and the
   # day's contracts. A failure leaves the batch without charts.
@@ -700,6 +721,19 @@ $ACRONYMS
   T365=$SECONDS
   timeout 120 node scripts/pick-charts.js 2>&1 | tee -a "$LOG_FILE"
   echo "Chart desk exit: $? — $((SECONDS - T365))s" | tee -a "$LOG_FILE"
+
+  # Stage 3.66: the story contracts the desk set, added to the snapshot, and
+  # their prose before the build, so the app draws them this cycle.
+  echo "" | tee -a "$LOG_FILE"
+  echo "--- Stage 3.66: Story contract admission ---" | tee -a "$LOG_FILE"
+  T366=$SECONDS
+  timeout 120 node scripts/admit-story-contracts.js 2>&1 | tee -a "$LOG_FILE"
+  echo "Admission exit: $? — $((SECONDS - T366))s" | tee -a "$LOG_FILE"
+  echo "" | tee -a "$LOG_FILE"
+  echo "--- Stage 3.67: Indicator dispatch (before the build) ---" | tee -a "$LOG_FILE"
+  T367=$SECONDS
+  timeout 300 node scripts/narrate-indicators.js --new-only 2>&1 | tee -a "$LOG_FILE" || echo "WARNING: indicator dispatch (before the build) failed" | tee -a "$LOG_FILE"
+  echo "Dispatch (before the build) — $((SECONDS - T367))s" | tee -a "$LOG_FILE"
 
   # Stage 3.7: Source-angle extraction — for each source URL, fetch and
   # summarize its distinctive framing via one batched Haiku call. Writes

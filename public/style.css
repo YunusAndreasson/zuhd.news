@@ -7514,6 +7514,45 @@ a.map-popup-source-name {
   gap: 0.3rem;
 }
 
+/* What the hazard sources count in the country (`hazardBlock`): the country
+   page's `.country-fact` rows at the card's scale, label over figure, because
+   the card has no 6rem to give a label column. Above the rankings, with the
+   same hairline. */
+.map-country-facts {
+  list-style: none;
+  margin: 0.55rem 0 0.2rem;
+  padding: 0.5rem 0 0;
+  border-top: 1px solid var(--map-line);
+  display: grid;
+  gap: 0.45rem;
+}
+
+.map-country-fact {
+  display: grid;
+  gap: 0.05rem;
+}
+
+.map-country-fact-label {
+  font-size: var(--size-xs);
+  font-variant-caps: all-small-caps;
+  letter-spacing: var(--track-caps);
+  color: var(--map-ink-dim);
+}
+
+.map-country-fact-title {
+  font-size: var(--size-xs);
+  line-height: 1.35;
+  color: var(--map-ink-strong);
+  font-variant-numeric: lining-nums tabular-nums;
+}
+
+.map-country-fact-detail {
+  font-size: var(--size-xs);
+  line-height: 1.35;
+  color: var(--map-ink-dim);
+  font-variant-numeric: lining-nums tabular-nums;
+}
+
 .map-country-metric {
   display: grid;
   grid-template-columns: minmax(0, 1fr) auto minmax(1.5rem, 2.75rem) auto;
