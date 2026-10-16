@@ -2585,15 +2585,15 @@ export const MiniGlobe = memo(function MiniGlobe({
   // edging + no hinting, so glyphs slide smoothly through fractional
   // positions instead of snapping. One-time mutation per font instance.
   //
-  // Note: setSubpixel's native binding calls `asNumber()` on its argument
-  // despite the TS type declaring `boolean`, so we pass `1` cast through
-  // unknown to satisfy the type while shipping the value the C++ side
-  // actually wants (a 0/1 numeric flag).
+  // A boolean, as its type says. Skia 2.6's binding read the argument as a
+  // number, so this passed `1` cast to a boolean; 2.14 binds it as `bool` and
+  // throws on a number ("Value is a number, expected a boolean"), which took
+  // the whole map down as the label fonts loaded.
   useEffect(() => {
     const fonts = [labelFont, subFont, countryFont, neighborFont, waterFont, valueFont];
     for (const f of fonts) {
       if (!f) continue;
-      f.setSubpixel(1 as unknown as boolean);
+      f.setSubpixel(true);
       f.setEdging(FontEdging.SubpixelAntiAlias);
       f.setHinting(FontHinting.None);
       textWidths.delete(f);
