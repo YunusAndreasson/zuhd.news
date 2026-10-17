@@ -34,16 +34,41 @@ export interface Options {
 export declare function configure(options: Options): void;
 /** @deprecated Use \`configure\`. */
 export declare function oldConfigure(): void;
+export type HookFn = () => void;
+/** @deprecated Use \`configure\`. */
+export declare const useOld: HookFn;
+export declare function overloaded(a: string): void;
+/** @deprecated Pass a string. */
+export declare function overloaded(a: number): void;
+export interface Base {
+  /** @deprecated Use \`z\`. */
+  y?: number;
+}
+export interface Own {
+  y?: number;
+}
+export declare function take(o: Own & Base): void;
 `;
 
-const USE = `
-import { configure, oldConfigure, Widget } from './lib';
-export const current = <Widget size={3} />;
-export const stale = <Widget width={3} />;
-configure({ mode: 'a' });
-configure({ legacyMode: 'b' });
-oldConfigure();
-`;
+// Each line of the fixture, so an expectation can name the line it is about.
+const USE_LINES = [
+  "import { configure, oldConfigure, overloaded, take, useOld, Widget } from './lib';",
+  'export const current = <Widget size={3} />;',
+  'export const stale = <Widget width={3} />;',
+  "configure({ mode: 'a' });",
+  "configure({ legacyMode: 'b' });",
+  'oldConfigure();',
+  'useOld();',
+  "overloaded('a');",
+  'overloaded(1);',
+  'take({ y: 1 });',
+  '// deprecated-api-allowed: waiting on lib v2',
+  'oldConfigure();',
+  'oldConfigure(); // deprecated-api-allowed: waiting on lib v2',
+  'oldConfigure();',
+];
+const USE = USE_LINES.join('\n');
+const lineOf = (text: string, from = 0) => USE_LINES.indexOf(text, from) + 1;
 
 let dir: string;
 
@@ -62,7 +87,7 @@ beforeAll(() => {
 
 afterAll(() => rmSync(dir, { recursive: true, force: true }));
 
-it('reports deprecated calls, JSX props and option keys, and nothing current', () => {
+it('reports deprecated names, calls, JSX props and option keys, and nothing current', () => {
   const run = spawnSync(process.execPath, [SCRIPT], { cwd: dir, encoding: 'utf8' });
   // A launch failure can also return status 1; report it before interpreting
   // an empty stderr stream as missing deprecation findings.
@@ -71,9 +96,24 @@ it('reports deprecated calls, JSX props and option keys, and nothing current', (
   const findings = run.stderr
     .split('\n')
     .filter((line) => line.startsWith('use.tsx:'))
-    .map((line) => line.replace(/^use\.tsx:\d+:\d+ /, ''));
-  // The import of a deprecated function counts as well as its call.
+    .map((line) => line.replace(/^use\.tsx:(\d+):\d+ (\S+) — .*$/, '$1 $2'));
+  const marked = lineOf('// deprecated-api-allowed: waiting on lib v2');
   expect(new Set(findings)).toEqual(
-    new Set(['width — Use `size`.', 'legacyMode — Use `mode`.', 'oldConfigure — Use `configure`.']),
+    new Set([
+      // A deprecated name counts where it is imported as well as where it is used,
+      // a const typed by an undeprecated alias included.
+      '1 oldConfigure',
+      '1 useOld',
+      `${lineOf('export const stale = <Widget width={3} />;')} width`,
+      `${lineOf("configure({ legacyMode: 'b' });")} legacyMode`,
+      `${lineOf('oldConfigure();')} oldConfigure`,
+      `${lineOf('useOld();')} useOld`,
+      // Only the call that resolves to the deprecated overload; the function's
+      // import is not deprecated, since one overload is current.
+      `${lineOf('overloaded(1);')} overloaded`,
+      // A marker excuses its own line, or the line under a comment-only line;
+      // one that ends a line does not reach the next.
+      `${lineOf('oldConfigure();', marked + 2)} oldConfigure`,
+    ]),
   );
 });
