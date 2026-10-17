@@ -386,8 +386,11 @@ export function renderSegments(
             // does). Country mentions open a stats sheet ("button"); plain URLs
             // open the browser ("link"). Without this, screen-reader users get
             // an unlabeled run swallowed by the article wrapper.
+            // The name is the words; what a press does is the hint, which a
+            // screen reader voices after it, in its own verb.
             accessibilityRole={isCountry ? 'button' : 'link'}
-            accessibilityLabel={isCountry ? `${seg.text} — tap for country data` : seg.text}
+            accessibilityLabel={seg.text}
+            accessibilityHint={isCountry ? 'Opens country data' : undefined}
             // @ts-expect-error — `hitSlop` on inline Text with onPress expands the tap target at runtime (RN docs) but isn't surfaced on TextProps
             hitSlop={INLINE_HIT_SLOP}
           >
@@ -404,8 +407,10 @@ export function renderSegments(
             style={mdStyles.entity}
             onPress={onPress}
             onLongPress={selectable ? COPY_HOLD : undefined}
-            accessibilityRole="button"
-            accessibilityLabel={`${seg.text} — tap for live data`}
+            // A button only where a press opens something.
+            accessibilityRole={onPress ? 'button' : undefined}
+            accessibilityLabel={seg.text}
+            accessibilityHint={onPress ? 'Opens live data' : undefined}
             // @ts-expect-error — see note on `link` case above
             hitSlop={INLINE_HIT_SLOP}
           >

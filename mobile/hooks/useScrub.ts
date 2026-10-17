@@ -409,7 +409,11 @@ export function useScrub({
     const half = tooltipWidth / 2;
     const x = Math.max(half, Math.min(fingerX.value, w - half));
     return {
-      opacity: shown.value,
+      // Switched, not faded: the tooltip has a border and up to three lines,
+      // and opacity between 0 and 1 on a view with children is drawn off
+      // screen every frame on iOS. Its pop (`tooltipScale`) carries the
+      // arrival; it goes at the end of the release's fade, which the stem keeps.
+      opacity: shown.value > 0.01 ? 1 : 0,
       transform: [{ translateX: x - half }, { scale: tooltipScale.value }],
     };
   });

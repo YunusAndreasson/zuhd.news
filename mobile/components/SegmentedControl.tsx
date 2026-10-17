@@ -79,12 +79,15 @@ export function SegmentedControl<T extends string>({
     pos.set(withTiming(index, { duration: ANIMATION.fast, easing: EASING.out }));
   }, [index, pos]);
 
-  const fillStyle = useAnimatedStyle(() => ({
-    width: segment.value,
+  // Widths apart from the slide: a style returning a fresh transform array is
+  // re-sent on every run, and it carried `width`, a layout prop, with it on
+  // each frame of the slide.
+  const fillWidth = useAnimatedStyle(() => ({ width: segment.value }));
+  const copyWidth = useAnimatedStyle(() => ({ width: segment.value * count }));
+  const fillSlide = useAnimatedStyle(() => ({
     transform: [{ translateX: pos.value * segment.value }],
   }));
-  const copyStyle = useAnimatedStyle(() => ({
-    width: segment.value * count,
+  const copySlide = useAnimatedStyle(() => ({
     transform: [{ translateX: -pos.value * segment.value }],
   }));
 
@@ -133,9 +136,9 @@ export function SegmentedControl<T extends string>({
         pointerEvents="none"
         accessibilityElementsHidden
         importantForAccessibility="no-hide-descendants"
-        style={[styles.fill, { backgroundColor: colors.text }, fillStyle]}
+        style={[styles.fill, { backgroundColor: colors.text }, fillWidth, fillSlide]}
       >
-        <Animated.View style={[styles.copy, copyStyle]}>
+        <Animated.View style={[styles.copy, copyWidth, copySlide]}>
           {options.map((o) => (
             <View key={o.value} style={styles.segment}>
               {label(o, 'inverse')}

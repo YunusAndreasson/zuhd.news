@@ -5,13 +5,7 @@ import {
   type PanGestureConfig,
   usePanGesture,
 } from 'react-native-gesture-handler';
-import Animated, {
-  Extrapolation,
-  interpolate,
-  useAnimatedStyle,
-  useSharedValue,
-  withSpring,
-} from 'react-native-reanimated';
+import Animated, { useAnimatedStyle, useSharedValue, withSpring } from 'react-native-reanimated';
 import { scheduleOnRN } from 'react-native-worklets';
 import { ANIMATION, KEEP_MOTION, SPACING } from '../constants/theme';
 import { useTheme } from '../hooks/useTheme';
@@ -96,15 +90,6 @@ export const SwipeableRow = memo(function SwipeableRow({
     transform: [{ translateX: translateX.value }],
   }));
 
-  const actionOpacity = useAnimatedStyle(() => ({
-    opacity: interpolate(
-      translateX.value,
-      [-ACTION_WIDTH, -ACTION_WIDTH * 0.3, 0],
-      [1, 0.6, 0],
-      Extrapolation.CLAMP,
-    ),
-  }));
-
   // Elevation idiom: the row sits at `sheetBg` (matching its sheet
   // container, so it appears flush, no card outline) and the action
   // slot beneath uses `bg` to read as a deeper layer revealed by the
@@ -113,11 +98,11 @@ export const SwipeableRow = memo(function SwipeableRow({
   // pairing is consistent with the surrounding chrome.
   return (
     <View style={styles.container}>
-      <Animated.View
-        style={[styles.actionContainer, { backgroundColor: colors.bg }, actionOpacity]}
-      >
+      {/* Uncovered by the row as it slides, not faded: opacity between 0 and
+          1 on a view with children is drawn off screen every frame on iOS. */}
+      <View style={[styles.actionContainer, { backgroundColor: colors.bg }]}>
         <Text variant="labelXs">remove</Text>
-      </Animated.View>
+      </View>
       <GestureDetector gesture={panGesture}>
         <Animated.View style={[{ backgroundColor: colors.sheetBg }, rowStyle]}>
           {children}

@@ -186,14 +186,16 @@ export const DARK_COLORS = {
 export const LIGHT_COLORS = {
   bg: '#f5f2ed',
   text: '#2a2a2a',
-  textSecondary: '#666666',
+  // Clears AA on the player and on a pill as well as on the sheet: at #666
+  // the briefing's date and length read 4.1:1 on the light player.
+  textSecondary: '#626262',
   // See DARK_COLORS.accent for the naming note (this is *not* the brand
   // accent — `dome` is). Light-mode value sits between `text` and
   // `textSecondary` in luminance the same way as dark: about two thirds of
   // the way down, in contrast. It was #5a5a5a, 6.2:1 beside secondary's 5.1,
   // so the "second voice" and the quiet one were one grey on cream (and a
   // second chart series drew in the third's ink).
-  accent: '#525252',
+  accent: '#4f4f4f',
   // A hairline as strong on cream as `#2e2e2e` is on the dark sheet (OKLab
   // ΔL 0.09 against 0.10). It was #d8d4ce, half that: 1.19:1 on `sheetBg`,
   // where the sheet's handle, the toggles' off track and every row rule sit.
@@ -207,9 +209,9 @@ export const LIGHT_COLORS = {
   // foundation.md is honored — both modes still use one gold, hue-aligned.
   dome: '#7a5e1a',
   sheetBg: '#eae6e0',
-  pillBg: 'rgba(220,216,210,0.88)',
+  pillBg: 'rgba(226,222,216,0.88)',
   /** See DARK_COLORS.playerBg: `pillBg` over `sheetBg`, solid. */
-  playerBg: '#dedad4',
+  playerBg: '#e3dfd9',
   atmosphere: '#8899aa',
   // See DARK_COLORS.daylight. On cream the night veil already reads; the day
   // side is lifted toward white so the terminator has two sides.
@@ -593,10 +595,15 @@ export const MAX_FONT_SCALE = {
   body: 1.5,
   /** Small-caps labels and metadata */
   label: 1.4,
-  /** Tabular / timer text — fixed-width layouts break at large scales */
-  tabular: 1.0,
+  /** Tabular text: moves, readings, timers. The strip's tier, so a move grows
+   *  with its name; the columns that hold numbers are sized from their
+   *  widest one, not fixed. At 1.0 every move stayed 11pt beside a reading
+   *  that grew. */
+  tabular: 1.3,
   /** UI chrome — pills, buttons, wordmark */
   chrome: 1.3,
+  /** Text in a slot set in points, which cannot grow: the dock's hour marks */
+  fixed: 1.0,
 } as const;
 
 /** Border-radius scale. Semantic names — the app uses few enough radii that

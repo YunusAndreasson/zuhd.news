@@ -44,6 +44,14 @@ describe.each(Object.entries(THEMES))('%s palette', (_, colors) => {
     }
   });
 
+  // The player and a pill are a step off the sheet: the briefing's date and
+  // length, and a ranking's current row, are quiet ink on them.
+  it('sets the quiet inks at AA on the player', () => {
+    for (const ink of [colors.textSecondary, colors.dome, colors.toneNeutralText]) {
+      expect(contrast(ink, colors.playerBg)).toBeGreaterThanOrEqual(4.5);
+    }
+  });
+
   // A category's name is the card's kicker, 11pt caps.
   it('sets every category name at AA on the sheet', () => {
     for (const ink of [

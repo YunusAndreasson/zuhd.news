@@ -13,7 +13,7 @@ import Animated, {
   type SharedValue,
   useAnimatedStyle,
 } from 'react-native-reanimated';
-import { ANIMATION, EASING, RADIUS, SPACING } from '../constants/theme';
+import { ANIMATION, EASING, MAX_FONT_SCALE, RADIUS, SPACING } from '../constants/theme';
 import { type Scrub, STEM_WIDTH } from '../hooks/useScrub';
 import { segmentLayout } from '../lib/scrub-segments';
 import { Text } from './primitives';
@@ -492,6 +492,8 @@ export const ScrubBar = memo(function ScrubBar({
                   tone="secondary"
                   pointerEvents="none"
                   numberOfLines={1}
+                  // Placed in a `MARK_LABEL_WIDTH` slot under the track.
+                  maxFontSizeMultiplier={MAX_FONT_SCALE.fixed}
                   style={[
                     styles.markLabel,
                     mark.bare

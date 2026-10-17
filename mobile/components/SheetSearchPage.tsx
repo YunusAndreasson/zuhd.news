@@ -3,7 +3,14 @@ import type { Article, Category, GroupedArticles } from '@shared/types';
 import { useCallback, useDeferredValue, useEffect, useMemo, useRef, useState } from 'react';
 import { Pressable, StyleSheet, type TextInputInstance, View } from 'react-native';
 import { IS_ANDROID } from '../constants/platform';
-import { CATEGORIES, HIT_SLOP, LAYOUT, PRESSED_STYLE, SPACING } from '../constants/theme';
+import {
+  CATEGORIES,
+  HIT_SLOP,
+  LAYOUT,
+  PRESSED_STYLE,
+  SPACING,
+  VARIANT_CAP,
+} from '../constants/theme';
 import { useTheme } from '../hooks/useTheme';
 import { announce } from '../lib/announce';
 import { articleTime } from '../lib/article-utils';
@@ -125,7 +132,11 @@ export function SheetSearchPage({
           // Default caret is iOS system blue — the one off-brand pixel in a
           // monochrome-plus-gold app. Tint it to the single brand accent.
           selectionColor={colors.dome}
-          style={[styles.input, textVariants.body]}
+          // A TextInput is not the `Text` primitive, so it takes the body's
+          // cap by hand, and grows in height with it; no line height, which
+          // on iOS shifts a field's text and caret off centre.
+          style={[styles.input, textVariants.body, styles.inputLine]}
+          maxFontSizeMultiplier={VARIANT_CAP.body}
           accessibilityRole="search"
           accessibilityLabel="Search stories"
           accessibilityHint="Filter stories by title, topic, or location"
@@ -173,6 +184,9 @@ export function SheetSearchPage({
           contentContainerStyle={listStyles.content}
           keyboardShouldPersistTaps="handled"
           keyboardDismissMode="on-drag"
+          // iOS: the last results sit behind the keyboard in the fixed-height
+          // menu. Android lifts the sheet over it (`useKeyboardTop`).
+          automaticallyAdjustKeyboardInsets
           ListHeaderComponent={
             <ListIntro
               note={`${results.length} ${results.length === 1 ? 'story' : 'stories'}`}
@@ -196,9 +210,10 @@ const styles = StyleSheet.create({
   },
   input: {
     flex: 1,
-    height: LAYOUT.inputHeight,
+    minHeight: LAYOUT.inputHeight,
     padding: 0,
   },
+  inputLine: { lineHeight: undefined },
   clearButton: {
     // Spacing before the clear button comes from the row `gap`.
     paddingLeft: 0,
