@@ -11,6 +11,8 @@ describe('redirectSystemPath', () => {
       '/?story=2026-09-26-trump-rejects-iran',
     );
     expect(go('/a/some-slug?utm_source=x')).toBe('/?story=some-slug');
+    // Slugs are lowercase: a link typed or shared in capitals still opens it.
+    expect(go('/A/Some-Slug')).toBe('/?story=some-slug');
   });
 
   it("opens a story from the website's own links", () => {

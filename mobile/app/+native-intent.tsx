@@ -22,7 +22,9 @@ export function redirectSystemPath({ path }: { path: string; initial: boolean })
     const noScheme = path.replace(/^[a-z][a-z0-9+.-]*:\/\//i, '').split(/[?#]/)[0] ?? '';
     const bare = noScheme.replace(SITE_HOST, '');
     const match = STORY_PATH.exec(bare.startsWith('/') ? bare : `/${bare}`);
-    return match ? `/?story=${match[1]}` : '/';
+    // Slugs are lowercase; the path matches either case.
+    const slug = match?.[1]?.toLowerCase();
+    return slug ? `/?story=${slug}` : '/';
   } catch {
     return '/';
   }

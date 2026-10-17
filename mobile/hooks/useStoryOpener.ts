@@ -2,15 +2,16 @@ import type { Article, Category, GroupedArticles } from '@shared/types';
 import { useCallback, useRef } from 'react';
 import { API_BASE, CATEGORIES } from '../constants/theme';
 import { getSnapshot as getBookmarks } from '../lib/bookmark-store';
-import { fetchJson } from '../lib/fetchJson';
+import { fetchJson, HttpError } from '../lib/fetchJson';
 import { articleFromStory, isStoryPayload } from '../lib/story-payload';
 
 /** Resolve the exact requested story, including stories outside the feed. */
 export function useStoryOpener(
   groupedRef: { current: GroupedArticles },
   onOpen: (slug: string, article?: Article, category?: Category) => void,
-  /** Handed the slug, so the reader can be offered the same open again. */
-  onError: (slug: string) => void,
+  /** Handed the slug, so the reader can be offered the same open again, and
+   *  whether the site has no such story (a 404), when again would not help. */
+  onError: (slug: string, missing: boolean) => void,
 ) {
   const request = useRef(0);
   return useCallback(
@@ -37,8 +38,9 @@ export function useStoryOpener(
         const resolved = articleFromStory(story);
         if (story.slug !== slug || !resolved) throw new Error('Unexpected story');
         onOpen(slug, resolved.article, resolved.category);
-      } catch {
-        if (id === request.current) onError(slug);
+      } catch (error) {
+        if (id === request.current)
+          onError(slug, error instanceof HttpError && error.status === 404);
       }
     },
     [groupedRef, onOpen, onError],

@@ -1,8 +1,11 @@
 import { act, renderHook } from '@testing-library/react';
 import { useStoryOpener } from '../hooks/useStoryOpener';
-import { fetchJson } from '../lib/fetchJson';
+import { fetchJson, HttpError } from '../lib/fetchJson';
 
-jest.mock('../lib/fetchJson', () => ({ fetchJson: jest.fn() }));
+jest.mock('../lib/fetchJson', () => ({
+  ...jest.requireActual('../lib/fetchJson'),
+  fetchJson: jest.fn(),
+}));
 jest.mock('../lib/bookmark-store', () => ({ getSnapshot: () => [] }));
 const fetchStory = jest.mocked(fetchJson);
 const grouped = { current: { politics: [], economy: [], science: [], tech: [] } };
@@ -42,7 +45,7 @@ it('does not open a different article returned by the endpoint', async () => {
   await act(() => result.current('requested-story'));
   expect(open).not.toHaveBeenCalled();
   expect(error).toHaveBeenCalledTimes(1);
-  expect(error).toHaveBeenCalledWith('requested-story');
+  expect(error).toHaveBeenCalledWith('requested-story', false);
 });
 
 it('keeps the latest tap when an older request finishes afterwards', async () => {
@@ -79,5 +82,17 @@ it('reports a fetch failure instead of opening an unrelated story', async () => 
   await act(() => result.current('requested-story'));
   expect(open).not.toHaveBeenCalled();
   expect(error).toHaveBeenCalledTimes(1);
-  expect(error).toHaveBeenCalledWith('requested-story');
+  expect(error).toHaveBeenCalledWith('requested-story', false);
+});
+
+// The site writes no file for a story without a place, and none for a slug
+// since removed: trying again cannot open either.
+it('reports a story the site has no file for as missing', async () => {
+  fetchStory.mockRejectedValue(new HttpError(404));
+  const open = jest.fn();
+  const error = jest.fn();
+  const { result } = renderHook(() => useStoryOpener(grouped, open, error));
+  await act(() => result.current('placeless-story'));
+  expect(open).not.toHaveBeenCalled();
+  expect(error).toHaveBeenCalledWith('placeless-story', true);
 });

@@ -1506,8 +1506,23 @@ export default function HomeScreen() {
     (slug: string, article?: Article, category?: Category) => {
       pinStory(slug);
       if (article && category) injectArticle(article, category);
-      cardSheetRef.current?.dismiss();
-      menuSheetRef.current?.dismiss();
+      // Every platform sheet, not only the card and the menu: a link that
+      // arrives over the country sheet, say, grew its story behind it, and
+      // looked as if it had done nothing. A closed sheet ignores the call.
+      for (const sheet of [
+        cardSheetRef,
+        menuSheetRef,
+        primerSheetRef,
+        sourcesSheetRef,
+        countrySheetRef,
+        disasterSheetRef,
+        conflictSheetRef,
+        disambiguationSheetRef,
+        entitySheetRef,
+        overlaySheetRef,
+      ]) {
+        sheet.current?.dismiss();
+      }
       focusStory(slug, { grow: true });
     },
     [focusStory, injectArticle, pinStory],
@@ -1515,7 +1530,13 @@ export default function HomeScreen() {
   // The opener is made before the press that uses it, so its retry reaches
   // the press through a ref.
   const storyPressRef = useRef<(slug: string) => void>(() => {});
-  const reportStoryError = useCallback((slug: string) => {
+  const reportStoryError = useCallback((slug: string, missing: boolean) => {
+    // A story the site has no file for (one without a place, or a slug since
+    // removed) cannot be fetched by trying again.
+    if (missing) {
+      toastRef.current?.show('That story is no longer available');
+      return;
+    }
     toastRef.current?.show('Could not open that story · tap to try again', {
       onPress: () => storyPressRef.current(slug),
       hint: 'Opens the story',
