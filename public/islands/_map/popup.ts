@@ -14,7 +14,7 @@
 
 import { rankStrip } from '@shared/chart/rank-strip'
 import { signedPct } from '@shared/chart/series'
-import { Popup, type Map as MapLibreMap, type PaddingOptions } from 'maplibre-gl'
+import { Popup, type LngLatLike, type Map as MapLibreMap, type PaddingOptions } from 'maplibre-gl'
 import { appPrompt } from '../_app-prompt'
 import { disclosure, growTo, moreLink, type Built, type Disclosure } from '../_disclosure'
 import { el } from '../_dom'
@@ -513,6 +513,40 @@ export function createStoryPopup(map: MapLibreMap, opts: StoryPopupOptions = {})
   }
   map.on('move', syncOccludedPointer)
   map.on('moveend', syncOccludedPointer)
+
+  /**
+   * The card's cap, sized to the room it actually has.
+   *
+   * The flat cap was half the map, because MapLibre picks `top` or `bottom`
+   * from the card's height and never checks that the side it picked fits
+   * either: half is the one height that fits on whichever side it picks,
+   * wherever the beacon is. But the beacon is rarely mid-map. The flight lands
+   * it below the centre, so the room above it is most of the map, and the half
+   * cap scrolled nearly every article in it: at 1440×900, 398px of card for
+   * 430–600px of story, with 520px free over the beacon.
+   *
+   * The larger of the two sides keeps the guarantee and gives up the waste. A
+   * card that fits above is not taller than the room above, so MapLibre keeps
+   * `bottom`; one that does not fits below, which is where `top` puts it. Its
+   * listener is registered before MapLibre binds `_update` (on `addTo`), so on
+   * a pan the cap is written before the card is measured against it.
+   *
+   * Written on the map's container, which outlives the popup's own elements:
+   * `setDOMContent` replaces `.maplibregl-popup-content` every time.
+   */
+  let padding: Required<PaddingOptions> = { top: 0, bottom: 0, left: 0, right: 0 }
+  const fit = (at: LngLatLike | null = popup.isOpen() ? popup.getLngLat() : null) => {
+    if (!at) return
+    const { y } = map.project(at)
+    const h = map.getCanvas().clientHeight
+    // MapLibre weighs the whole popup, the 7px tip included, against the
+    // room past its 14px offset: 4px short of that and it flips a card that
+    // fits above to below, off the canvas. The padding keeps 8px off the chrome.
+    const above = y - padding.top - 26
+    const below = h - padding.bottom - y - 26
+    map.getContainer().style.setProperty('--map-card-fit', `${Math.round(Math.max(above, below))}px`)
+  }
+  map.on('move', () => fit())
 
   const swap = (root: HTMLElement) => {
     const before = popup.isOpen() ? contentBox() : null
@@ -1305,6 +1339,7 @@ export function createStoryPopup(map: MapLibreMap, opts: StoryPopupOptions = {})
       const lead = leads[p.slug]
       if (lead) root.append(el('p', 'map-popup-lead', lead))
       root.append(el('p', 'map-popup-hint', 'Opening…'))
+      fit([p.lng, p.lat])
       popup.setLngLat([p.lng, p.lat]).setDOMContent(root)
       attach()
 
@@ -1331,6 +1366,7 @@ export function createStoryPopup(map: MapLibreMap, opts: StoryPopupOptions = {})
     async open(p, now) {
       about(null)
       pending = p.slug
+      fit([p.lng, p.lat])
       popup.setLngLat([p.lng, p.lat])
 
       // Warm from `preview`'s prefetch on the ordinary path, so the preview
@@ -1417,6 +1453,7 @@ export function createStoryPopup(map: MapLibreMap, opts: StoryPopupOptions = {})
       about(iso)
       const loading = el('div', 'map-popup-body map-popup-country')
       loading.append(el('p', 'map-popup-loading', 'Loading…'))
+      fit(at)
       popup.setLngLat(at).setDOMContent(loading)
       attach()
 
@@ -1439,12 +1476,15 @@ export function createStoryPopup(map: MapLibreMap, opts: StoryPopupOptions = {})
       // claimed, or a story fetch already in flight would land on top of this
       // card when it resolves.
       pending = `place:${place.key}`
+      fit([place.lng, place.lat])
       popup.setLngLat([place.lng, place.lat]).setDOMContent(placeCard(place, now))
       attach()
     },
 
-    setPadding(padding) {
-      popup.setPadding(padding)
+    setPadding(edges) {
+      padding = { ...padding, ...edges }
+      popup.setPadding(edges)
+      fit()
     },
     focus() {
       const box = contentBox()

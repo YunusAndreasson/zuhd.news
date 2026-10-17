@@ -85,12 +85,18 @@ const openCard = async (story, p = point, entities = {}) => {
     )
   )
   const { createStoryPopup } = await import(`${bundlePath}?${Math.random()}`)
-  const popup = createStoryPopup({ on() {}, off() {} })
+  const popup = createStoryPopup(fakeMap())
   await popup.open(p, Date.now())
   await settle()
   // Kept for a test that opens the same story again, with its records in hand.
   globalThis.__popup = popup
   return globalThis.__card
+}
+
+/** The map a card is opened on: listeners, and the canvas `fit` sizes it to. */
+const fakeMap = () => {
+  const host = document.createElement('div')
+  return { on() {}, off() {}, project: () => ({ x: 0, y: 0 }), getCanvas: () => host, getContainer: () => host }
 }
 
 /** Let a fetch and the growth behind it settle. */
@@ -388,7 +394,7 @@ test('the card names the country it is about, and lets go of it', async () => {
   await openCard(storyOf({}))
   const told = []
   const { createStoryPopup } = await import(`${bundlePath}?${Math.random()}`)
-  const popup = createStoryPopup({ on() {}, off() {} }, { onCountry: (iso) => told.push(iso) })
+  const popup = createStoryPopup(fakeMap(), { onCountry: (iso) => told.push(iso) })
   await popup.openCountry('SD', [30, 15])
   await popup.openCountry('SD', [31, 16])
   assert.deepEqual(told, ['SD'], 'told once, when the card became about Sudan')
@@ -418,7 +424,7 @@ const openCountryCard = async (iso, hazards) => {
     )
   )
   const { createStoryPopup } = await import(`${bundlePath}?${Math.random()}`)
-  const popup = createStoryPopup({ on() {}, off() {} })
+  const popup = createStoryPopup(fakeMap())
   await popup.openCountry(iso, [30, 15])
   return globalThis.__card
 }

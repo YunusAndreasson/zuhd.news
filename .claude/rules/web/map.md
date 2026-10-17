@@ -191,8 +191,11 @@ calendar `hijri.md`.
   prayers (`nextPrayers`, Umm al-Qura) and the year's markers (`comingMarks`).
   Its countdown ticks only while it is open. It takes the pointer last.
 - A card keeps off the rails and the timeline (`writeCardPadding`, the
-  popup's `padding`), and its cap is half of `--map-card-room`: MapLibre fits
-  a popup to the canvas, which runs under both rails.
+  popup's `padding`): MapLibre fits a popup to the canvas, which runs under
+  both rails. Its cap is `--map-card-fit` (`fit`), the larger of the room
+  above and below the beacon, never a fraction of the map; half of
+  `--map-card-room` is only the fallback. The card is the one scroll
+  container: no `max-height` inside it.
 - A story opened by Enter takes the focus into its card (`StoryPopup.focus`)
   and gives it back to its row on close (`returnFocus`). The feed reads the
   key from `keydown`: Gecko's keyed click has a `detail` of 1.

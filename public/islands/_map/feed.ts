@@ -547,7 +547,17 @@ export function createFeed(opts: FeedOptions): Feed {
       // scroll and the browser walks up to the nearest scrollable ancestor
       // instead — which on the map page is the document, and the document is
       // the map.
-      if (li && list.clientHeight > 0) li.scrollIntoView({ block: 'nearest' })
+      // And the list alone, by hand: `scrollIntoView` scrolls every ancestor
+      // too, `overflow: hidden` ones included. On a phone the drawer has just
+      // snapped shut round the row, so the row is below the screen, and the
+      // call scrolled `.map-shell` 152px up at 390x844: the map, its beacon
+      // and the story card with it, while MapLibre still placed the card in
+      // the unscrolled frame. The card's head sat 85px above the screen.
+      if (!li || list.clientHeight === 0) return
+      const view = list.getBoundingClientRect()
+      const row = li.getBoundingClientRect()
+      if (row.top < view.top) list.scrollTop += row.top - view.top
+      else if (row.bottom > view.bottom) list.scrollTop += row.bottom - view.bottom
     },
     focusRow(slug) {
       rows.get(slug)?.querySelector<HTMLElement>('a')?.focus()
