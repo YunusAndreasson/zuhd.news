@@ -1,98 +1,5 @@
 [
   {
-    "timestamp": "2026-09-27T05:14:32.125Z",
-    "candidateCount": 10,
-    "candidates": [
-      {
-        "slug": "2026-09-27-hamas-israel-election-gaza-blood-abbas",
-        "title": "Hamas Rejects Israeli Election",
-        "category": "politics",
-        "eventCoverage": 98,
-        "importance": 6
-      },
-      {
-        "slug": "2026-09-27-xi-skips-un-han-zheng-china-iran-war",
-        "title": "Xi Skips UN Assembly",
-        "category": "politics",
-        "eventCoverage": 79,
-        "importance": 6
-      },
-      {
-        "slug": "2026-09-27-swiss-neutrality-referendum-vote",
-        "title": "Swiss Vote On Neutrality",
-        "category": "politics",
-        "eventCoverage": 70,
-        "importance": 6
-      },
-      {
-        "slug": "2026-09-27-hormuz-pgsa-blacklist-saudi-rejects-fees",
-        "title": "Iran Threatens Hormuz Charterers",
-        "category": "economy",
-        "eventCoverage": 54,
-        "importance": 6
-      },
-      {
-        "slug": "2026-09-27-trump-rolls-back-fuel-economy-rules-oil-shock",
-        "title": "Trump Rolls Back Fuel Rules",
-        "category": "economy",
-        "eventCoverage": 37,
-        "importance": 6
-      },
-      {
-        "slug": "2026-09-27-india-cec-gyanesh-kumar-bjp-ticket-claim-sir",
-        "title": "Election Chief Faces Ticket Claim",
-        "category": "politics",
-        "eventCoverage": 29,
-        "importance": 6
-      },
-      {
-        "slug": "2026-09-27-manipur-naga-kuki-violence-soo-pact",
-        "title": "Naga Killings Deepen Manipur Crisis",
-        "category": "politics",
-        "eventCoverage": 24,
-        "importance": 6
-      },
-      {
-        "slug": "2026-09-27-openai-pauses-frontier-training-safety-incidents",
-        "title": "TASS Says OpenAI Paused Training",
-        "category": "tech",
-        "eventCoverage": 0,
-        "importance": 6
-      },
-      {
-        "slug": "2026-09-27-malaria-funding-cut-146-million-cases-africa",
-        "title": "Malaria Cuts Threaten 146m Cases",
-        "category": "economy",
-        "eventCoverage": 0,
-        "importance": 6
-      },
-      {
-        "slug": "2026-09-27-ai-weather-models-hurricane-intensity-gap",
-        "title": "AI Misses Hurricane Intensity",
-        "category": "science",
-        "eventCoverage": 0,
-        "importance": 6
-      }
-    ],
-    "selected": {
-      "slug": "2026-09-27-hormuz-pgsa-blacklist-saudi-rejects-fees",
-      "title": "Iran Threatens Hormuz Charterers",
-      "category": "economy",
-      "body": "Iran's state-affiliated Mehr agency says Hormuz authorities will blacklist",
-      "eventCoverage": 54,
-      "importance": 6
-    },
-    "skipReason": null,
-    "sent": true,
-    "pushTitle": "Breaking News",
-    "pushBody": "Iran says Hormuz authority will blacklist charterers forcing ships off approved routes",
-    "response": {
-      "pushed": 1,
-      "skipped": 0,
-      "tokens": 6
-    }
-  },
-  {
     "timestamp": "2026-09-27T10:23:01.157Z",
     "candidateCount": 8,
     "candidates": [
@@ -10042,6 +9949,113 @@
     "sent": true,
     "pushTitle": "Breaking News",
     "pushBody": "North Korea says it tests AI-guided torpedo in underwater trial",
+    "response": {
+      "pushed": 1,
+      "skipped": 0,
+      "tokens": 5
+    }
+  },
+  {
+    "timestamp": "2026-10-17T14:15:00.356Z",
+    "candidateCount": 12,
+    "candidates": [
+      {
+        "slug": "2026-10-17-west-bank-rabbi-edict-olive-seizure-settler-attacks",
+        "title": "Settlers Raid Olive Harvest",
+        "category": "politics",
+        "eventCoverage": 362,
+        "importance": 6
+      },
+      {
+        "slug": "2026-10-16-un-secretary-general-straw-poll-p5-veto-macky-sall-withdraws",
+        "title": "UN Chief Race Stalls",
+        "category": "politics",
+        "eventCoverage": 154,
+        "importance": 6
+      },
+      {
+        "slug": "2026-10-17-zelenskyy-us-sanctions-relief-russia-power-grid-strikes",
+        "title": "Zelenskyy Warns Sanctions Pause",
+        "category": "economy",
+        "eventCoverage": 91,
+        "importance": 6
+      },
+      {
+        "slug": "2026-10-17-coxs-bazar-inani-resort-fire-10-tourists-flagged-risky",
+        "title": "Inani Resort Fire Kills 10",
+        "category": "politics",
+        "eventCoverage": 81,
+        "importance": 6
+      },
+      {
+        "slug": "2026-10-17-pakistan-anchor-iqrarul-hassan-nccia-remand-extended",
+        "title": "Pakistan Holds Anchor Hassan",
+        "category": "politics",
+        "eventCoverage": 0,
+        "importance": 6
+      },
+      {
+        "slug": "2026-10-17-hormuz-ship-attacks-record-october-oil-exports-slow",
+        "title": "Hormuz Ship Attacks Hit Record",
+        "category": "economy",
+        "eventCoverage": 0,
+        "importance": 6
+      },
+      {
+        "slug": "2026-10-17-egypt-moodys-sovereign-upgrade-inflation-eases",
+        "title": "Egypt Exits Substantial Risk",
+        "category": "economy",
+        "eventCoverage": 0,
+        "importance": 6
+      },
+      {
+        "slug": "2026-10-17-bis-paper-bank-deposit-rates-slow-stablecoin-growth",
+        "title": "Deposit Rates Slow Stablecoins",
+        "category": "economy",
+        "eventCoverage": 0,
+        "importance": 6
+      },
+      {
+        "slug": "2026-10-17-neanderthal-spear-wound-75000-years-earliest-killing",
+        "title": "Neanderthal Spear Wound Found",
+        "category": "science",
+        "eventCoverage": 0,
+        "importance": 6
+      },
+      {
+        "slug": "2026-10-17-china-fast-telescope-starless-hydrogen-cloud-dark-galaxy",
+        "title": "Starless Cloud May Be Dark Galaxy",
+        "category": "science",
+        "eventCoverage": 0,
+        "importance": 6
+      },
+      {
+        "slug": "2026-10-17-deepseek-v4-1-flash-1017-open-weights-cost-cut-search-api",
+        "title": "DeepSeek Releases Cheaper Model",
+        "category": "tech",
+        "eventCoverage": 0,
+        "importance": 6
+      },
+      {
+        "slug": "2026-10-17-polygon-coinme-acquisition-stablecoin-payments-visa-stripe",
+        "title": "Polygon Buys Coinme",
+        "category": "tech",
+        "eventCoverage": 0,
+        "importance": 6
+      }
+    ],
+    "selected": {
+      "slug": "2026-10-17-zelenskyy-us-sanctions-relief-russia-power-grid-strikes",
+      "title": "Zelenskyy Warns Sanctions Pause",
+      "category": "economy",
+      "body": "Russia hit 15 power sites as Trump paused",
+      "eventCoverage": 91,
+      "importance": 6
+    },
+    "skipReason": null,
+    "sent": true,
+    "pushTitle": "Breaking News",
+    "pushBody": "Russia hits 15 Ukraine power sites as Trump pauses Russia sanctions",
     "response": {
       "pushed": 1,
       "skipped": 0,
