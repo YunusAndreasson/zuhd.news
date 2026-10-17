@@ -43,7 +43,19 @@ if [ "$LATEST" -eq 1 ]; then
   echo "▸ [3/5] Updating direct dependencies to their latest releases…"
   # The Expo SDK itself is a deliberate migration; Expo-managed packages are
   # updated separately in the next step against the currently installed SDK.
-  npx --yes npm-check-updates --upgrade --reject expo
+  #
+  # Held back on purpose — crossing these majors breaks the build, so they are
+  # rejected here and revisited by hand:
+  #   typescript     TS 7 has no stable programmatic API until 7.1, and
+  #                  scripts/check-deprecated-apis.mjs (api:check) uses it.
+  #   react,         RN's renderer is compiled against the exact React
+  #   react-dom      version the SDK pins; react-dom moves with it, or its
+  #                  peer range (^ the newer react) fails `npm install` below.
+  #   jest family    the SDK pins jest and @types/jest (30 on SDK 58) but not
+  #                  babel-jest or jest-environment-jsdom, so a new jest major
+  #                  would leave those two a major ahead. Move all four by hand.
+  npx --yes npm-check-updates --upgrade \
+    --reject expo,typescript,react,react-dom,jest,@types/jest,babel-jest,jest-environment-jsdom
   npm install
 else
   echo "▸ [3/5] Updating dependencies within package.json semver ranges…"
@@ -52,6 +64,9 @@ fi
 
 echo
 echo "▸ [4/5] Re-pinning Expo-managed packages to SDK-compatible versions…"
+# Any package listed under `expo.install.exclude` in package.json (none today) is
+# deliberately ahead of the installed SDK's pin and is skipped here.
+# `EXPO_DEBUG=1 npx expo install --check` prints exactly what was skipped.
 npx expo install --fix --npm
 
 echo
