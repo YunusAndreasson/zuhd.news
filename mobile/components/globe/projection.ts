@@ -6,8 +6,8 @@
  */
 
 import { COUNTRY_OVERRIDES } from '@shared/globe/coordinates';
+import { subsolarPoint } from '@shared/sun';
 import { geoContains } from 'd3-geo';
-import { DAY_MS } from '../../lib/time';
 import { getGlobeGeography } from './geography';
 import { countries, countryAreas, countryBboxes } from './shared';
 
@@ -144,16 +144,16 @@ export function invalidateSunCaches(): void {
   sunPosTs = 0;
 }
 
-/** Sun's subsolar point [lng, lat] at current UTC. Cached 60s. */
+/** Sun's subsolar point [lng, lat] at current UTC. Cached 60s.
+ *  The web's sun (`@shared/sun`): the prayer lines are solved from it, and a
+ *  terminator drawn from any other sun parts from them. This one used a cosine
+ *  for the declination and no equation of time, up to ~4° of longitude off. */
 export function getSunPosition(): [number, number] {
   const now = Date.now();
   if (now - sunPosTs < 60000) return cachedSunPos;
   sunPosTs = now;
-  const d = new Date(now);
-  const dayOfYear = Math.floor((now - Date.UTC(d.getUTCFullYear(), 0, 1)) / DAY_MS);
-  const declination = -23.44 * Math.cos((2 * Math.PI * (dayOfYear + 10)) / 365);
-  const hourAngle = ((d.getUTCHours() + d.getUTCMinutes() / 60) / 24) * 360 - 180;
-  cachedSunPos = [-hourAngle, declination];
+  const sun = subsolarPoint(new Date(now));
+  cachedSunPos = [sun.lng, sun.lat];
   return cachedSunPos;
 }
 
