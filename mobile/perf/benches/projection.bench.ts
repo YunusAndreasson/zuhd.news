@@ -36,7 +36,7 @@ export default bench<Ctx>({
   iterations: 400,
   warmup: 50,
   // Hard ceiling: half the 32ms JS-thread budget per frame
-  // (MiniGlobe.tsx; mobile/CLAUDE.md). Leaves headroom for everything
+  // (MiniGlobe.tsx; mobile/AGENTS.md). Leaves headroom for everything
   // else on the JS thread (gesture handling, React reconcile, etc).
   budgetP95Ms: 16,
   setup: () => {

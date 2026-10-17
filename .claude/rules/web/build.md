@@ -23,7 +23,7 @@ paths:
 
 `scripts/build.js` is one top-level-await script that writes all of `dist/`;
 `scripts/build/*` are the page builders it calls. Which cache keys to bump,
-the knip entry rule and the API contract are in the root `CLAUDE.md`; the
+the knip entry rule and the API contract are in the root `AGENTS.md`; the
 shared helpers are indexed in `.claude/rules/shared-modules.md`.
 
 ## What the site serves

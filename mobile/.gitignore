@@ -62,4 +62,7 @@ BUGS.md
 # Locally, `@shared/*` resolves to ../shared/ via metro.config + tsconfig;
 # this in-project copy only exists on the EAS build server.
 /shared
-
+# @generated expo skills start
+.agents/skills/expo-sqlite
+.claude/skills/expo-sqlite
+# @generated expo skills end

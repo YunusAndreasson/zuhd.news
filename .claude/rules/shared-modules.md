@@ -54,6 +54,8 @@ prefer a parameter (class names, a link renderer) over a copy, as
 | `shared/chart/smooth.ts` | `weekMeanSeries` and `trailingMean`: a daily count that is noise a day at a time (a strait's ships), as the series the build publishes and the map reads |
 | `shared/countries/country-trajectories.ts` | `trajectoryCards`: a country's four trajectories as a headline, a sentence and a series against the world's median |
 | `shared/countries/country-facts.ts` | the sentences for a country's hunger and conflict counts (`hungerLine`, `conflictLine`, `weekWindow`, `formatPeople`) |
+| `shared/sun.ts` | `subsolarPoint` and the solar primitives under it: the one sun the web map and the app's globe draw |
+| `shared/prayer.ts` | the five prayer lines (Umm al-Qura), `prayerRuns`, `prayerInstantAt`, `PRAYER_NOTE`; the web cuts them for a flat map |
 | `shared/source-framing.ts` | a source's lean and a story's divergence: the thresholds and their words, for the app, the article page and the map's card |
 | `public/islands/_dom.ts` | `el`, `svgEl` |
 | `public/islands/_entity-panel.ts` | the `follows` panel |

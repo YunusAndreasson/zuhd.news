@@ -2,7 +2,7 @@
 
 The reference for choosing a variant, a token or a motion. Values are in
 `constants/theme.ts`, the philosophy in root `foundation.md`, and the
-non-negotiables (hex, `fontSize`, icons, typeface) in `CLAUDE.md`.
+non-negotiables (hex, `fontSize`, icons, typeface) in `AGENTS.md`.
 
 How the screen behaves is in the repo root's `.claude/rules/mobile/`, which
 loads with the files it covers; this document is what things look like.
