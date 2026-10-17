@@ -6885,8 +6885,12 @@ body.map-wide .map-mapctl .map-filter-label { text-transform: capitalize; }
      every viewport height, which closes the band by construction rather than
      by testing a few sizes. What no longer fits scrolls.
      On the desktop the half is of `--map-card-room`, the canvas less the
-     timeline, which the card's padding (`writeCardPadding`) keeps it off. */
-  max-height: calc(var(--map-card-room, 100vh) / 2 - 1.5rem);
+     timeline, which the card's padding (`writeCardPadding`) keeps it off.
+     That half is only the fallback now: once the card has a place,
+     `--map-card-fit` (`fit` in `popup.ts`) is the larger of the room above and
+     below the beacon, which keeps the same guarantee and is most of the map
+     wherever the beacon is not mid-map. */
+  max-height: var(--map-card-fit, calc(var(--map-card-room, 100vh) / 2 - 1.5rem));
   overflow-y: auto;
   overscroll-behavior: contain;
 
@@ -6950,10 +6954,7 @@ body.map-wide .map-mapctl .map-filter-label { text-transform: capitalize; }
 
 .map-popup-body { max-width: 20rem; }
 
-/* The reading card scrolls internally, so a long article never pushes the
-   popup past the viewport.
-
-   The preview takes the same width, because it is the same card: it is what
+/* The preview takes the same width, because it is the same card: it is what
    the story card looks like while the camera is still flying to it, and a
    moment later the article replaces it in place. Sized apart — 20rem against
    30rem — that replacement widened the card by 46% in one frame, on top of
@@ -6967,13 +6968,12 @@ body.map-wide .map-mapctl .map-filter-label { text-transform: capitalize; }
   max-width: none;
 }
 
+/* No scroll of its own: the card is the one scroll container. A second one
+   inside it was a box that scrolled inside a box that scrolled, with the
+   sources and the share row under the outer edge whichever one the wheel
+   caught. */
 .map-popup-prose {
-  max-height: 52vh;
-  overflow-y: auto;
-  overscroll-behavior: contain;
   margin: 0 0 0.5rem;
-  padding-right: 0.35rem;
-  scrollbar-width: thin;
 
   p {
     margin: 0 0 0.6rem;
@@ -9061,25 +9061,6 @@ body.doc-page .chart {
   .map-popup-body.map-popup-preview { width: min(30rem, 88vw); }
 
   .map-popup-body { max-width: min(20rem, 88vw); }
-
-  /* And it has to fit *somewhere*. A popup is anchored to its beacon, so its
-     height is spent from whatever is above or below that point — 52vh of prose
-     plus a headline is taller than either half of a phone, and MapLibre flips
-     the anchor but cannot shrink the card, so the tail ran off the bottom of
-     the screen with no way to reach it.
-
-     It scrolls, and until now nothing said so. A scroll container whose last
-     visible line is cut mid-sentence with a hard edge under it reads as a
-     broken card, not a full one — and since a shared link makes this the first
-     thing a phone reader sees, "looks broken" is the whole first impression.
-     The mask fades the final few millimetres out, which is the one signal that
-     costs no height: there is more, and it is that way. `to bottom` in a mask
-     is the only place this file paints a gradient over content, and it is
-     doing an affordance's job rather than a decoration's. */
-  .map-popup-prose {
-    max-height: 32vh;
-    mask-image: linear-gradient(to bottom, #000 calc(100% - 1.6rem), transparent);
-  }
 }
 
 /* A drawer that slides is a drawer; one that jumps is a repaint. Both end in

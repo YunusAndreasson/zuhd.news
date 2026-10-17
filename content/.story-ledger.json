@@ -2,13 +2,133 @@
   "version": 1,
   "stories": [
     {
+      "id": "kenya-ebola-seven-cases-three-health-workers",
+      "label": "Number of Ebola cases in Kenya rises to seven -- agency",
+      "firstSeen": "2026-10-17T22:05:41.456Z",
+      "lastCovered": "2026-10-17T22:05:41.456Z",
+      "coverageCount": 1,
+      "category": "politics",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-10-17-kenya-ebola-seven-cases-three-health-workers"
+      ],
+      "eventUri": "eng-12104330",
+      "summary": "New development since our 14 Oct story (second case): Kenya confirmed four more Bundibugyo Ebola cases, total seven, and three of them are health workers who treated the country's first patient. Lead with the health workers: infections inside the clinic mean infection control failed at the first point of contact, and Bundibugyo has no licensed vaccine. Note the DRC outbreak behind it (over 9,000 cases) and what Nairobi is doing on quarantine and contact tracing. Dateline Nairobi. TASS is one of three sources; Al Jazeera and TRT carry it independently."
+    },
+    {
+      "id": "oic-52nd-foreign-ministers-baghdad-fidan-abdelatty",
+      "label": "Turkish, Egyptian foreign ministers meet in Baghdad",
+      "firstSeen": "2026-10-17T22:05:41.456Z",
+      "lastCovered": "2026-10-17T22:05:41.456Z",
+      "coverageCount": 1,
+      "category": "politics",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-10-17-oic-52nd-foreign-ministers-baghdad-fidan-abdelatty"
+      ],
+      "eventUri": "eng-12105970",
+      "summary": "Frame on the OIC's 52nd foreign ministers' session opening in Baghdad, with the Fidan–Abdelatty meeting as one thread: the Muslim world's main bloc convenes in an Iraqi capital with a Gulf war under way, Hormuz closed and Gaza goods halted. Lead with what the session is set to address and what, if anything, it can decide or enforce; Pakistan Observer reports Iraq praising Pakistan's peace efforts. Say plainly if no binding outcome is on the table. Dateline Baghdad."
+    },
+    {
+      "id": "pakistan-suspends-iran-trade-gabd-rimdan-taftan",
+      "label": "Pakistan suspends Iran trade corridors of Gabd-Rimdan, Taftan",
+      "firstSeen": "2026-10-17T22:05:41.456Z",
+      "lastCovered": "2026-10-17T22:05:41.456Z",
+      "coverageCount": 1,
+      "category": "economy",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-10-17-pakistan-suspends-iran-trade-gabd-rimdan-taftan"
+      ],
+      "eventUri": null,
+      "summary": "Pakistan's commerce ministry withdrew, with immediate effect, its earlier order allowing trade with Iran through the Gabd-Rimdan and Taftan crossings — the official land corridors that carry Iranian LPG and goods into Balochistan. Lead with who pays: border traders and LPG-dependent households in Gwadar and Quetta, in a province already short of fuel and work, a week after weekly inflation hit 11%. Ask why now (the Gulf war, US sanctions pressure) and what it does to the informal fuel trade. Dateline Quetta."
+    },
+    {
+      "id": "doj-california-election-officials-noncitizen-ballots-jail",
+      "label": "Trump Warns California Election Officials of Jail Time if They Let Noncitizens Vote",
+      "firstSeen": "2026-10-17T22:05:41.456Z",
+      "lastCovered": "2026-10-17T22:05:41.456Z",
+      "coverageCount": 1,
+      "category": "politics",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-10-17-doj-california-election-officials-noncitizen-ballots-jail"
+      ],
+      "eventUri": "eng-12103945",
+      "summary": "The DOJ warned California officials they will be criminally charged if they count mail-in ballots from some 200,000 people it flagged as potential noncitizens, and Trump promised jail. Lead with the mechanism: the federal government threatening prosecution of the state officials who certify a midterm count, weeks before the vote. Say how the 200,000 were identified and whether the list has been tested — flagged is not proven, and eligible voters can be caught in such matches. Attribute claims carefully; the source is partisan. Dateline Los Angeles."
+    },
+    {
+      "id": "yemen-government-claims-800-houthis-killed-eastern-front",
+      "label": "Yemeni government forces report killing 800 Houthis in past day",
+      "firstSeen": "2026-10-17T22:05:41.456Z",
+      "lastCovered": "2026-10-17T22:05:41.456Z",
+      "coverageCount": 1,
+      "category": "politics",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-10-17-yemen-government-claims-800-houthis-killed-eastern-front"
+      ],
+      "eventUri": null,
+      "summary": "The internationally recognised Yemeni government's spokesman Majid al-Nuzaili claims its forces killed over 800 Houthi fighters in a day and took new ground on the eastern front. Advances our 10–15 Oct coverage of the push toward Bab el-Mandeb and the Houthi strikes on Aden. Must be attributed: Russian state news agency TASS relaying a combatant's figure, unverified and likely inflated — say so, and say what independent counts exist. Lead with what the claim, if near true, means for the Red Sea chokepoint and for civilians on the front."
+    },
+    {
+      "id": "france-nationwide-protests-paris-police-clashes",
+      "label": "Police brutality at nationwide protests in France continues",
+      "firstSeen": "2026-10-17T22:05:41.456Z",
+      "lastCovered": "2026-10-17T22:05:41.456Z",
+      "coverageCount": 1,
+      "category": "politics",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-10-17-france-nationwide-protests-paris-police-clashes"
+      ],
+      "eventUri": "eng-12105084",
+      "summary": "Nationwide protests continued across France on Saturday, with demonstrators, largely young, trying to march on government buildings in Paris and clashing with police. Follows the 13 Oct student march over run-down schools. Lead with the facts the source can support — where, how many, arrests, injuries — and what the protesters demand. Must be attributed: Iranian state news agency Mehr reported it, and its 'brutality' framing cannot be stated as fact. Dateline Paris."
+    },
+    {
+      "id": "noise-cancelling-headphones-surgery-nausea-vomiting",
+      "label": "Noise-cancelling headphones prevent vomiting after surgery | New Scientist",
+      "firstSeen": "2026-10-17T22:05:41.456Z",
+      "lastCovered": "2026-10-17T22:05:41.456Z",
+      "coverageCount": 1,
+      "category": "science",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-10-17-noise-cancelling-headphones-surgery-nausea-vomiting"
+      ],
+      "eventUri": null,
+      "summary": "Patients who wore noise-cancelling headphones on the operating table, under general anaesthetic, were less likely to vomit after surgery. Lead with the surprise: the anaesthetised brain still processes operating-theatre noise, and that noise feeds nausea. Give the trial size and the size of the effect, and note what a near-free intervention means for hospitals that cannot afford anti-nausea drugs."
+    },
+    {
+      "id": "china-office-ai-context-battle-dingtalk-feishu",
+      "label": "上下文争夺，为何成了办公AI新战场？",
+      "firstSeen": "2026-10-17T22:05:41.456Z",
+      "lastCovered": "2026-10-17T22:05:41.456Z",
+      "coverageCount": 1,
+      "category": "tech",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-10-17-china-office-ai-context-battle-dingtalk-feishu"
+      ],
+      "eventUri": null,
+      "summary": "The inside view from China's tech press: office AI makers there are now fighting over context — who holds a company's internal chats, documents and customer records that agents need to work. Lead with the concrete moves and named platforms (DingTalk, Feishu, WeCom and others) the piece reports, and the mechanism: whoever owns the context locks in the customer. Stick to reported facts, not the outlet's forecasts. Dateline Beijing."
+    },
+    {
       "id": "taybeh-settlers-beat-french-mayor-eu-diplomats",
       "label": "West Bank: Israeli settlers attack EU diplomats, French mayor",
       "firstSeen": "2026-10-17T18:04:55.592Z",
       "lastCovered": "2026-10-17T18:04:55.592Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-10-17-taybeh-settlers-beat-french-mayor-eu-diplomats"
@@ -23,7 +143,7 @@
       "lastCovered": "2026-10-17T18:04:55.592Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-10-17-kolkata-durga-puja-pandal-stampede-17-dead"
@@ -38,7 +158,7 @@
       "lastCovered": "2026-10-17T18:04:55.592Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-10-17-ensenada-surfers-murder-158-year-sentences"
@@ -53,7 +173,7 @@
       "lastCovered": "2026-10-17T18:04:55.592Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-10-17-san-clemente-norte-fire-santa-ana-winds-evacuations"
@@ -68,7 +188,7 @@
       "lastCovered": "2026-10-17T18:04:55.592Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-10-17-ilhan-omar-raid-lawyers-demand-seized-property-speech-debate"
@@ -83,7 +203,7 @@
       "lastCovered": "2026-10-17T18:04:55.592Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-10-17-white-house-ballroom-donor-list-apple-nvidia-25m"
@@ -98,7 +218,7 @@
       "lastCovered": "2026-10-17T18:04:55.592Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-10-17-nigeria-gashaka-gumti-park-4000-gold-miners-evicted"
@@ -113,7 +233,7 @@
       "lastCovered": "2026-10-17T18:04:55.592Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-10-17-nigeria-senate-decriminalises-attempted-suicide-sb730"
@@ -128,7 +248,7 @@
       "lastCovered": "2026-10-17T18:04:55.592Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-10-17-tirana-protests-fifth-day-police-rubber-bullets"
@@ -143,7 +263,7 @@
       "lastCovered": "2026-10-17T18:04:55.592Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-10-17-sudan-fuel-crisis-fava-bean-import-ban-port-sudan"
@@ -158,7 +278,7 @@
       "lastCovered": "2026-10-17T18:04:55.592Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-10-17-pakistan-extends-indian-airspace-ban-november-24"
@@ -173,7 +293,7 @@
       "lastCovered": "2026-10-17T18:04:55.592Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-10-17-cass-li-yuankun-oecd-china-subsidy-benchmark"
@@ -188,7 +308,7 @@
       "lastCovered": "2026-10-17T18:04:55.592Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-10-17-iran-threatens-gulf-subsea-cables-ai-data-centres"
@@ -203,7 +323,7 @@
       "lastCovered": "2026-10-17T14:06:31.014Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-10-17-west-bank-rabbi-edict-olive-seizure-settler-attacks"
@@ -218,7 +338,7 @@
       "lastCovered": "2026-10-17T14:06:31.014Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-10-16-un-secretary-general-straw-poll-p5-veto-macky-sall-withdraws"
@@ -233,7 +353,7 @@
       "lastCovered": "2026-10-17T14:06:31.014Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-10-17-coxs-bazar-inani-resort-fire-10-tourists-flagged-risky"
@@ -248,7 +368,7 @@
       "lastCovered": "2026-10-17T14:06:31.014Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-10-17-pakistan-anchor-iqrarul-hassan-nccia-remand-extended"
@@ -263,7 +383,7 @@
       "lastCovered": "2026-10-17T14:06:31.014Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-10-17-hormuz-ship-attacks-record-october-oil-exports-slow"
@@ -278,7 +398,7 @@
       "lastCovered": "2026-10-17T14:06:31.014Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-10-17-zelenskyy-us-sanctions-relief-russia-power-grid-strikes"
@@ -293,7 +413,7 @@
       "lastCovered": "2026-10-17T14:06:31.014Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-10-17-egypt-moodys-sovereign-upgrade-inflation-eases"
@@ -308,7 +428,7 @@
       "lastCovered": "2026-10-17T14:06:31.014Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-10-17-bis-paper-bank-deposit-rates-slow-stablecoin-growth"
@@ -323,7 +443,7 @@
       "lastCovered": "2026-10-17T14:06:31.014Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-10-17-neanderthal-spear-wound-75000-years-earliest-killing"
@@ -338,7 +458,7 @@
       "lastCovered": "2026-10-17T14:06:31.014Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-10-17-china-fast-telescope-starless-hydrogen-cloud-dark-galaxy"
@@ -353,7 +473,7 @@
       "lastCovered": "2026-10-17T14:06:31.014Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-10-17-deepseek-v4-1-flash-1017-open-weights-cost-cut-search-api"
@@ -368,7 +488,7 @@
       "lastCovered": "2026-10-17T14:06:31.014Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-10-17-europe-china-industrial-ai-factory-floor-race"
@@ -383,7 +503,7 @@
       "lastCovered": "2026-10-17T14:06:31.014Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-10-17-polygon-coinme-acquisition-stablecoin-payments-visa-stripe"
@@ -398,7 +518,7 @@
       "lastCovered": "2026-10-17T10:06:31.734Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-10-17-india-cockroach-party-dipke-arrested-election-chief-protest"
@@ -413,7 +533,7 @@
       "lastCovered": "2026-10-17T10:06:31.734Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-10-17-north-korea-ai-guided-torpedo-test-kcna"
@@ -428,7 +548,7 @@
       "lastCovered": "2026-10-17T10:06:31.734Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-10-17-mastung-gunmen-abduct-20-police-recruits-balochistan"
@@ -443,7 +563,7 @@
       "lastCovered": "2026-10-17T10:06:31.734Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-10-17-un-pro-family-coalition-far-right-lgbti-core-group"
@@ -458,7 +578,7 @@
       "lastCovered": "2026-10-17T10:06:31.734Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-10-17-moscow-2730-ukrainian-drones-week-sobyanin"
@@ -473,7 +593,7 @@
       "lastCovered": "2026-10-17T10:06:31.734Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-10-17-lagarde-bond-selloff-ecb-december-hike-france"
@@ -488,7 +608,7 @@
       "lastCovered": "2026-10-17T10:06:31.734Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-10-17-imf-georgieva-low-income-debt-service-war-spillovers"
@@ -503,7 +623,7 @@
       "lastCovered": "2026-10-17T10:06:31.734Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-10-17-lagos-water-privatisation-prepaid-meters-cappa"
@@ -518,7 +638,7 @@
       "lastCovered": "2026-10-17T10:06:31.734Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-10-17-claude-nsa-nist-curve-seeds-mystery-bitcoin"
@@ -533,7 +653,7 @@
       "lastCovered": "2026-10-17T10:06:31.734Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-10-17-cert-in-ai-agents-corporate-data-undetected"
@@ -548,7 +668,7 @@
       "lastCovered": "2026-10-17T10:06:31.734Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-10-17-belem-amazon-ai-data-center-no-environmental-licence"
@@ -563,7 +683,7 @@
       "lastCovered": "2026-10-17T10:06:31.734Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-10-17-children-prefer-strivers-over-endowed-study"
@@ -578,7 +698,7 @@
       "lastCovered": "2026-10-17T05:06:39.658Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-10-17-trump-waives-russia-sanctions-law-executive-order"
@@ -593,7 +713,7 @@
       "lastCovered": "2026-10-17T05:06:39.658Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-10-17-brazil-amazon-deforestation-record-low-runoff"
@@ -608,7 +728,7 @@
       "lastCovered": "2026-10-17T05:06:39.658Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-10-17-honduras-19-mayors-prosecuted-organised-crime-impunity"
@@ -623,7 +743,7 @@
       "lastCovered": "2026-10-17T05:06:39.658Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-10-17-hormuz-supertanker-mine-irgc-prohibited-route"
@@ -638,7 +758,7 @@
       "lastCovered": "2026-10-17T05:06:39.658Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-10-17-jio-ipo-reliance-gulf-sovereign-funds"
@@ -653,7 +773,7 @@
       "lastCovered": "2026-10-17T05:06:39.658Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-10-17-chile-centinela-copper-strike-ends-antofagasta"
@@ -668,7 +788,7 @@
       "lastCovered": "2026-10-17T05:06:39.658Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-10-17-china-ai-export-controls-models-chip-designs"
@@ -683,7 +803,7 @@
       "lastCovered": "2026-10-17T05:06:39.658Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-10-17-china-projector-sales-fall-hongguo-short-dramas"
@@ -698,7 +818,7 @@
       "lastCovered": "2026-10-17T05:06:39.658Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-10-17-google-willow-magic-states-quantum-bitcoin-keys"
@@ -713,7 +833,7 @@
       "lastCovered": "2026-10-17T05:06:39.658Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-10-17-political-violence-justification-voter-approval-bjp-study"
@@ -728,7 +848,7 @@
       "lastCovered": "2026-10-16T22:03:46.756Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-10-16-zacharia-ousted-white-house-press-secretary-five-days"
@@ -743,7 +863,7 @@
       "lastCovered": "2026-10-16T22:03:46.756Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-10-16-ukraine-operation-vivaldi-donetsk-zelenskyy-eu-summit"
@@ -758,7 +878,7 @@
       "lastCovered": "2026-10-16T22:03:46.756Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-10-16-drones-missiles-yanbu-riyadh-saudi-oil-bypass-brent"
@@ -773,7 +893,7 @@
       "lastCovered": "2026-10-16T22:03:46.756Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-10-16-candiru-zero-click-spyware-delivered-through-ads"
@@ -788,7 +908,7 @@
       "lastCovered": "2026-10-16T22:03:46.756Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-10-16-honduras-ardon-confessed-56-murders-us-acquitted-at-home"
@@ -803,7 +923,7 @@
       "lastCovered": "2026-10-16T22:03:46.756Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-10-16-rio-mare-favela-polling-stations-moved-runoff"
@@ -818,7 +938,7 @@
       "lastCovered": "2026-10-16T22:03:46.756Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-10-16-nigeria-faisal-maina-arrested-six-years-pension-fraud"
@@ -833,7 +953,7 @@
       "lastCovered": "2026-10-16T22:03:46.756Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-10-16-eu-tool-restrict-single-market-access-trade-war-china"
@@ -848,7 +968,7 @@
       "lastCovered": "2026-10-16T22:03:46.756Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-10-16-datacanvas-hong-kong-ipo-ai-software-revenue-vanished"
@@ -863,7 +983,7 @@
       "lastCovered": "2026-10-16T22:03:46.756Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-10-16-jd-singles-day-ends-deposit-presales-services"
@@ -878,7 +998,7 @@
       "lastCovered": "2026-10-16T22:03:46.756Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-10-16-ray-ban-meta-glasses-recorded-audio-without-consent"
@@ -893,7 +1013,7 @@
       "lastCovered": "2026-10-16T22:03:46.756Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-10-16-stardust-intelligence-raises-1-billion-yuan-robots"
@@ -908,223 +1028,13 @@
       "lastCovered": "2026-10-16T22:03:46.756Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-10-16-f-22-pilot-controls-fq-44-drone-wingman-first"
       ],
       "eventUri": null,
       "summary": "For the first time, an F-22 pilot directed an FQ-44 Collaborative Combat Aircraft drone from the cockpit in flight. Lead with the milestone: one human now commands an armed autonomous wingman in the air, the model the US Air Force plans to field at scale. The question to raise is how much targeting the drone decides for itself and who is accountable when it does."
-    },
-    {
-      "id": "trump-moab-threat-iran-buried-nuclear-sites",
-      "label": "What is the 'Mother of All Bombs' US could use in Iran?",
-      "firstSeen": "2026-10-16T18:07:47.708Z",
-      "lastCovered": "2026-10-16T18:07:47.708Z",
-      "coverageCount": 1,
-      "category": "politics",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-10-16-trump-moab-threat-iran-buried-nuclear-sites"
-      ],
-      "eventUri": "eng-12099003",
-      "summary": "New development in the Gulf war arc: Trump on Thursday declined to rule out dropping the GBU-43 MOAB on Iran. Lead with the mismatch: an 11-tonne air-burst bomb built for caves and troops in the open cannot reach enrichment halls buried under a mountain at Fordow, so the threat lands on people and surface sites, not the nuclear programme. Datelined Tehran; carry the Al Jazeera and Dawn framing alongside Bloomberg's."
-    },
-    {
-      "id": "pope-leo-putin-truce-oleshky-aid",
-      "label": "Pope Leo XIV requests a truce from Putin to deliver aid to Oleshky",
-      "firstSeen": "2026-10-16T18:07:47.708Z",
-      "lastCovered": "2026-10-16T18:07:47.708Z",
-      "coverageCount": 1,
-      "category": "politics",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-10-16-pope-leo-putin-truce-oleshky-aid"
-      ],
-      "eventUri": "rus-2143271",
-      "summary": "Pope Leo XIV phoned Putin and asked for a local truce so aid can reach Oleshky, a Russian-occupied town on the Dnipro's left bank cut off from supplies and evacuation. Lead with the civilians trapped there; set the Vatican and Meduza accounts against TASS's version, in which Putin blamed Kyiv for the humanitarian situation while endorsing the Vatican's effort. Datelined Oleshky."
-    },
-    {
-      "id": "kast-chile-bolivia-state-visit-71-years",
-      "label": "Chile's president makes first state visit to Bolivia in 71 years as region shifts right",
-      "firstSeen": "2026-10-16T18:07:47.708Z",
-      "lastCovered": "2026-10-16T18:07:47.708Z",
-      "coverageCount": 1,
-      "category": "politics",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-10-16-kast-chile-bolivia-state-visit-71-years"
-      ],
-      "eventUri": "spa-4380091",
-      "summary": "José Antonio Kast is the first Chilean leader on a state visit to Bolivia in 71 years; the two countries have had no full diplomatic relations since 1978 over Bolivia's lost coastline. Lead with the 71 years; the mechanism is a shared rightward turn (Kast and Rodrigo Paz) and alignment with Washington overriding a century-old sea-access grievance. Datelined La Paz."
-    },
-    {
-      "id": "el-nino-drought-kills-hundreds-of-children-sudan",
-      "label": "El Niño has killed hundreds of children in Sudan | New Scientist",
-      "firstSeen": "2026-10-16T18:07:47.708Z",
-      "lastCovered": "2026-10-16T18:07:47.708Z",
-      "coverageCount": 1,
-      "category": "politics",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-10-16-el-nino-drought-kills-hundreds-of-children-sudan"
-      ],
-      "eventUri": null,
-      "summary": "Drought from the record El Niño has already killed hundreds of children in Sudan through starvation and disease, and famine risk is growing. Lead with the child deaths; the mechanism is a climate shock landing on a population the RSF-army war has already displaced and cut off from aid, so the drought kills through the war. Filed as politics, not science: it is a humanitarian disaster. Datelined in Darfur if the source names a place."
-    },
-    {
-      "id": "sisi-vows-leave-power-2030-constitution",
-      "label": "As Sisi vows to leave power by 2030, sources differ on whether he really means it",
-      "firstSeen": "2026-10-16T18:07:47.708Z",
-      "lastCovered": "2026-10-16T18:07:47.708Z",
-      "coverageCount": 1,
-      "category": "politics",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-10-16-sisi-vows-leave-power-2030-constitution"
-      ],
-      "eventUri": null,
-      "summary": "Sisi told an armed forces symposium that Egypt's constitution 'would not be touched', which implies he leaves office when his term ends in 2030, in the same speech that warned against a return to the protests of 2011. Lead with the pledge and the warning side by side; Mada Masr's sources inside the state disagree on whether it is meant, and the 2019 amendments that extended his rule are the precedent. Datelined Cairo."
-    },
-    {
-      "id": "kyrgyzstan-shumkar-opposition-declared-extremist",
-      "label": "В Кыргызстане признали экстремистской деятельность оппозиционного движения «Шумкар» — туда входят Кенжебаев и Болтурук",
-      "firstSeen": "2026-10-16T18:07:47.708Z",
-      "lastCovered": "2026-10-16T18:07:47.708Z",
-      "coverageCount": 1,
-      "category": "politics",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-10-16-kyrgyzstan-shumkar-opposition-declared-extremist"
-      ],
-      "eventUri": null,
-      "summary": "Kyrgyzstan has declared the opposition movement Shumkar 'extremist': a political blogger who was detained in Vietnam and brought home (Syrgak Kenzhebaev), an ecologist, a political analyst and the former external manager of the Kumtor gold mine (Tengiz Bolturuk). Lead with the rendition from Vietnam; the mechanism is the extremism label, which makes membership or support a crime and shuts opposition down under Japarov. Datelined Bishkek."
-    },
-    {
-      "id": "nigeria-hajj-seats-fall-95000-to-60000",
-      "label": "From 95,000 to 60,000 Pilgrims: How Nigeria lost Hajj seats, as citizens raise concerns",
-      "firstSeen": "2026-10-16T18:07:47.708Z",
-      "lastCovered": "2026-10-16T18:07:47.708Z",
-      "coverageCount": 1,
-      "category": "politics",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-10-16-nigeria-hajj-seats-fall-95000-to-60000"
-      ],
-      "eventUri": "eng-12102699",
-      "summary": "Within two Hajj seasons Nigeria's pilgrim allocation fell from 95,000 to 60,000, so tens of thousands who saved for years must postpone a religious obligation. Lead with the 35,000 lost seats; explain the mechanism (how the Saudi quota and Nigeria's own allocation and welfare failures cut the number) and who decides. Datelined Abuja."
-    },
-    {
-      "id": "hsbc-islamic-fund-38m-palantir-sharia-screens",
-      "label": "HSBC’s Islamic fund ploughs $38m in Palantir Technologies",
-      "firstSeen": "2026-10-16T18:07:47.708Z",
-      "lastCovered": "2026-10-16T18:07:47.708Z",
-      "coverageCount": 1,
-      "category": "economy",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-10-16-hsbc-islamic-fund-38m-palantir-sharia-screens"
-      ],
-      "eventUri": null,
-      "summary": "An HSBC sharia-compliant fund put $38m into Palantir, whose software supplies the Israeli military and US immigration enforcement. Lead with the gap between Islamic finance's screens (interest, alcohol, gambling) and what they ignore (weapons and surveillance work); Muslim savers are the ones whose money sits in this. Datelined Dubai."
-    },
-    {
-      "id": "meta-commercial-terms-ai-training-website-content",
-      "label": "Meta may use sweeping new commercial TOS to avoid millions in AI licensing fees",
-      "firstSeen": "2026-10-16T18:07:47.708Z",
-      "lastCovered": "2026-10-16T18:07:47.708Z",
-      "coverageCount": 1,
-      "category": "economy",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-10-16-meta-commercial-terms-ai-training-website-content"
-      ],
-      "eventUri": "eng-12104227",
-      "summary": "Meta's new commercial terms will require business accounts to let Meta train AI on their linked website content, not just their posts. Lead with the reach: any publisher or shop with a Facebook page grants a licence that Meta would otherwise pay millions for, and opting out means leaving the platform. The economic mechanism is terms of service replacing licensing deals."
-    },
-    {
-      "id": "telegram-user-data-us-government-court-records",
-      "label": "Here’s What Telegram Giving Data to the U.S. Government Looks Like",
-      "firstSeen": "2026-10-16T18:07:47.708Z",
-      "lastCovered": "2026-10-16T18:07:47.708Z",
-      "coverageCount": 1,
-      "category": "tech",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-10-16-telegram-user-data-us-government-court-records"
-      ],
-      "eventUri": null,
-      "summary": "Newly filed court records include a letter in which Telegram handed user data to US authorities under a court order. Lead with the document itself: the first concrete look at what a platform marketed as beyond government reach actually hands over, since the policy change after Durov's arrest in France. Users relying on Telegram for safety (activists, journalists, dissidents) are the ones affected."
-    },
-    {
-      "id": "brazil-prosecutors-probe-meta-x-blocked-lula-posts",
-      "label": "Meta bloqueia conteúdos políticos pró-Lula e contra Flávio acusando terrorismo e nudez",
-      "firstSeen": "2026-10-16T18:07:47.708Z",
-      "lastCovered": "2026-10-16T18:07:47.708Z",
-      "coverageCount": 1,
-      "category": "tech",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-10-16-brazil-prosecutors-probe-meta-x-blocked-lula-posts"
-      ],
-      "eventUri": null,
-      "summary": "New development in the Brazil runoff arc: Brazil's federal prosecutors (Ministério Público Federal) opened an investigation into Meta and X for violating free expression, after Meta blocked pro-Lula and anti-Flávio Bolsonaro posts by flagging them as terrorism and nudity. Lead with the probe; the mechanism is automated moderation misfiring on one side's campaign content days before the vote. Datelined São Paulo or Brasília as the source gives it."
-    },
-    {
-      "id": "quantum-alliance-6-4-million-vulnerable-bitcoin",
-      "label": "Quantum Alliance forms to defend 6.4 million vulnerable bitcoin against future threats",
-      "firstSeen": "2026-10-16T18:07:47.708Z",
-      "lastCovered": "2026-10-16T18:07:47.708Z",
-      "coverageCount": 1,
-      "category": "tech",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-10-16-quantum-alliance-6-4-million-vulnerable-bitcoin"
-      ],
-      "eventUri": "eng-12101425",
-      "summary": "A new Quantum Alliance is organising to protect 6.4 million bitcoin, including Satoshi Nakamoto's 1.1 million, held in addresses whose public keys are exposed and could be cracked by a future quantum computer. Lead with the 6.4 million coins; the dilemma is that freezing or moving them breaks bitcoin's property-rights promise while doing nothing lets an attacker take them. Name bitcoin."
-    },
-    {
-      "id": "japan-mmx-phobos-sample-return-launch",
-      "label": "Japan is launching a mission to Mars's largest moon Phobos | New Scientist",
-      "firstSeen": "2026-10-16T18:07:47.708Z",
-      "lastCovered": "2026-10-16T18:07:47.708Z",
-      "coverageCount": 1,
-      "category": "science",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-10-16-japan-mmx-phobos-sample-return-launch"
-      ],
-      "eventUri": "eng-12100693",
-      "summary": "JAXA's Martian Moons eXploration spacecraft launches on 20 October to land on Phobos and bring samples back to Earth. Lead with the century-old question it should settle: whether Phobos is a captured asteroid or debris blasted off Mars by an impact, which the sample chemistry can tell apart. Japan, not the US or China, would be first to return material from the Mars system. Datelined Tanegashima."
-    },
-    {
-      "id": "el-gordo-cluster-self-interacting-dark-matter",
-      "label": "A distant supercluster of galaxies points to self-interacting dark matter",
-      "firstSeen": "2026-10-16T18:07:47.708Z",
-      "lastCovered": "2026-10-16T18:07:47.708Z",
-      "coverageCount": 1,
-      "category": "science",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-10-16-el-gordo-cluster-self-interacting-dark-matter"
-      ],
-      "eventUri": null,
-      "summary": "El Gordo, a colliding galaxy cluster seven billion light-years away with more than two quadrillion solar masses, is too big for its era under standard cold dark matter; new modelling finds it fits if dark matter particles interact with each other. Lead with the size problem; the mechanism is that self-interaction changes how cluster cores collide and separate, making a rare object plausible. Name the study and its limits."
     }
   ]
 }

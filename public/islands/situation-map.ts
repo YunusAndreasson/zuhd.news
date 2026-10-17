@@ -4051,6 +4051,13 @@ export function mount(
    * `landed` runs once, on `moveend` or after the safety timeout, whichever
    * comes first: an interrupted flight may never emit `moveend`.
    */
+  /** How far below the padded centre a story lands (`flyToStory`). */
+  const storyDrop = () => {
+    const pad = map.getPadding()
+    const view = map.getCanvas().clientHeight - (pad.top ?? 0) - (pad.bottom ?? 0)
+    return Math.round(Math.max(110, Math.min(view * 0.2, view / 2 - 120)))
+  }
+
   const flyCamera = (options: FlyToOptions, landed?: () => void) => {
     flying = true
     let done = false
@@ -4107,9 +4114,13 @@ export function mount(
       {
         center: [p.lng, p.lat],
         zoom: target,
-        // Leaves room above the marker for the card, which opens upward. The
-        // horizontal correction for the rail comes from the map's padding.
-        offset: [0, 110],
+        // Leaves room above the marker for the card, which opens upward and
+        // takes all of that room (`fit` in `popup.ts`). A fifth of the padded
+        // view below the centre, where 110px left a 1440x900 card 70px short
+        // of the stories it scrolled; never under 110, and never within
+        // 120px of the chrome below, which on a phone is most of the screen.
+        // The horizontal correction for the rail comes from the map's padding.
+        offset: [0, storyDrop()],
         duration: 1150,
         curve: 1.35,
         // No `essential: true`. In MapLibre that flag means "animate anyway,

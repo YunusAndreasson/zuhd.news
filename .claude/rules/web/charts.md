@@ -110,8 +110,8 @@ The rail's readings are `map-rail.md`.
   country tags and `moreLink` keep their real `href`.
 - The click handler must `stopPropagation()`: a country tag is also a
   `data-island` trigger, and the loader would open its sheet.
-- `scrollIntoView` is for the map's card only, which is capped at 50vh: on
-  an article it lurches the page.
+- `scrollIntoView` is for the map's card only, which is capped to its room
+  (`fit`): on an article it lurches the page.
 - The map's card holds three folds (the story's chart, the country tags, the
   strip) and opening one shuts the others (`fold`, `onExpand`).
 - A story's chart (`storyChart`, `chartOf`) is a `sparkline` under the
