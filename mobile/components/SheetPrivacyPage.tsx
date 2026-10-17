@@ -50,7 +50,7 @@ const SECTIONS: InfoSection[] = [
     // on 09-13, `found` is any story opened, and `read-store` keeps which
     // stories, not a count. Erase keeps display settings and the
     // notification choice, so "all of it" was not true either.
-    body: 'Saved stories. Which stories were already here last time, so the new ones can be marked. Which stories you have opened and read. When you last left the app. Your place in a briefing. Which tips you have seen. Your display settings. A cached copy of the latest stories and map data, so they open without a connection and an unchanged file is not downloaded twice.\n\nNone of it leaves the device. You can erase it below.',
+    body: 'Saved stories. Which stories were already here last time, so the new ones can be marked. Which stories you have opened and read. When you last left the app. Your place in a briefing. Which tips you have seen. Your display settings. A cached copy of the latest stories and map data, so they open without a connection and an unchanged file is not downloaded twice. The last briefing you listened to, once it has downloaded.\n\nNone of it leaves the device. You can erase it below.',
   },
   {
     // Written to make opting in feel as safe as it actually is, because it
@@ -120,9 +120,9 @@ function EraseControl({ onDone }: { onDone?: (message: string) => void }) {
         erase local data
       </Text>
       <Text selectable variant="body">
-        Removes your saved stories, which stories you have opened and read, your place in a
-        briefing, the tips you have seen, and the cached stories and map data. Display settings and
-        your notification choice stay.
+        Removes your saved stories, which stories you have opened and read, your place in a briefing
+        and its audio, the tips you have seen, and the cached stories and map data. Display settings
+        and your notification choice stay.
       </Text>
       <Pressable
         onPress={handlePress}

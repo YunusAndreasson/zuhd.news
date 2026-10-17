@@ -28,6 +28,11 @@ export function useHeatmap(feedGenerated: string | null): HeatmapResult {
     // redrew the globe's hotspots in a second commit as the reader started
     // swiping.
     refetchOnWindowFocus: false,
+    // Nor on mount once the persister has restored a copy: the restored copy
+    // keeps its old fetch time, so every layer re-downloaded in full on each
+    // cold launch, beside the launch check's arrival asking for the same files
+    // with their tags. A layer with no copy still loads on mount.
+    refetchOnMount: false,
     refetchOnReconnect: false,
   });
 

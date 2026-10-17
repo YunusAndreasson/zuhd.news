@@ -15,7 +15,12 @@ jest.mock('@tanstack/react-query-persist-client', () => ({
 }));
 jest.mock('../lib/query-client', () => {
   const { QueryClient } = require('@tanstack/react-query');
-  return { queryClient: new QueryClient(), persister: {}, PERSIST_MAX_AGE_MS: 1 };
+  return {
+    queryClient: new QueryClient(),
+    persister: {},
+    PERSIST_MAX_AGE_MS: 1,
+    PERSIST_BUSTER: 'b',
+  };
 });
 jest.mock('../lib/arrival', () => ({
   ...jest.requireActual('../lib/arrival'),

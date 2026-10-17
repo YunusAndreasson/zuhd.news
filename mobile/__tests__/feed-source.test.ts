@@ -115,6 +115,29 @@ describe('fetchFeed', () => {
     expect(mockFetch.mock.calls[1]?.[0]).toMatch(/\/feed\.json$/);
   });
 
+  // A lost network or a timeout would fail the full feed too, at twelve times
+  // the bytes, and with the query's retries it was six requests before the
+  // reader saw an error.
+  it('does not fall back when the lite request fails on the network', async () => {
+    mockFetch.mockRejectedValueOnce(new Error('Network request failed'));
+    await expect(fetchFeed()).rejects.toThrow(/Network request failed/);
+    expect(mockFetch).toHaveBeenCalledTimes(1);
+  });
+
+  it('does not fall back on a server error', async () => {
+    mockFetch.mockResolvedValueOnce({ ...notFound(), status: 503 } as Response);
+    await expect(fetchFeed()).rejects.toThrow(/HTTP 503/);
+    expect(mockFetch).toHaveBeenCalledTimes(1);
+  });
+
+  it('falls back when the lite payload is malformed', async () => {
+    mockFetch.mockResolvedValueOnce(ok({ nope: true }));
+    mockFetch.mockResolvedValueOnce(ok(feed('2026-07-24T00:00:00.000Z')));
+    const result = await fetchFeed();
+    expect(result.generated).toBe('2026-07-24T00:00:00.000Z');
+    expect(mockFetch).toHaveBeenCalledTimes(2);
+  });
+
   it('surfaces the error when both endpoints fail', async () => {
     mockFetch.mockResolvedValueOnce(notFound());
     mockFetch.mockRejectedValueOnce(new Error('offline'));

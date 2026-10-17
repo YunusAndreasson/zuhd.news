@@ -9,12 +9,13 @@ import {
   useAudioPlayer,
   useAudioPlayerStatus,
 } from 'expo-audio';
-import { File, Paths } from 'expo-file-system';
+import { File } from 'expo-file-system';
 import { useCallback, useEffect, useRef, useState } from 'react';
 import { AppState, type AppStateStatus } from 'react-native';
 import { API_BASE } from '../constants/theme';
 import { resolveAudioDuration } from '../lib/audio-duration';
 import { resolveDownloadedAudioSource } from '../lib/audio-source';
+import { briefingAudioFile, briefingPartialFile, deleteBriefingAudio } from '../lib/briefing-audio';
 import { readSavedPlace, saveSavedPlace, subscribeToBriefingReset } from '../lib/briefing-progress';
 
 const PLAYBACK_STATUS_UPDATE = 'playbackStatusUpdate';
@@ -49,11 +50,11 @@ async function getArtworkUrl(): Promise<string | undefined> {
 let downloadSequence = 0;
 function resolveBriefingSource(url: string, controller: AbortController): Promise<string> {
   try {
-    const file = new File(Paths.cache, `briefing-${encodeURIComponent(url)}.mp3`);
+    const file = briefingAudioFile(url);
     if (file.exists && file.size > 0) return Promise.resolve(file.uri);
     // Only completed files use the cache name. Cancellation or process death
     // can leave a partial file behind; it must never be mistaken for audio.
-    const partial = new File(Paths.cache, `briefing-${Date.now()}-${++downloadSequence}.part`);
+    const partial = briefingPartialFile(++downloadSequence);
     const download = File.downloadFileAsync(url, partial, {
       idempotent: true,
       signal: controller.signal,
@@ -62,6 +63,8 @@ function resolveBriefingSource(url: string, controller: AbortController): Promis
         if (controller.signal.aborted) throw new Error('Audio download cancelled');
         if (file.exists) downloaded.delete();
         else await downloaded.move(file);
+        // One recording on the device: the one just saved.
+        deleteBriefingAudio({ keep: file });
         return { localUri: file.uri };
       })
       .catch((error: unknown) => {

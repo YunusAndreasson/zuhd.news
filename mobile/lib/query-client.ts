@@ -3,6 +3,7 @@ import { focusManager, onlineManager, QueryClient } from '@tanstack/react-query'
 import { File, Paths } from 'expo-file-system';
 import * as Network from 'expo-network';
 import Storage from 'expo-sqlite/kv-store';
+import * as Updates from 'expo-updates';
 import { AppState } from 'react-native';
 import { deleteLegacyFile } from './store-plumbing';
 import { DAY_MS } from './time';
@@ -87,3 +88,11 @@ export const persister = createAsyncStoragePersister({
 });
 
 export const PERSIST_MAX_AGE_MS = DAY_MS;
+
+/** The persisted cache belongs to the code that wrote it. A restored layer
+ *  reaches the screen without its validator (`snapshotData`), so after an
+ *  update that changed what a validator accepts, the old shape reached the UI
+ *  for up to a day; now an update starts the cache over, at one full download
+ *  of the layers. Pass it wherever the cache is restored or saved, or each
+ *  side discards the other's. */
+export const PERSIST_BUSTER = Updates.updateId ?? 'embedded';

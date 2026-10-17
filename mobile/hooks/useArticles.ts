@@ -290,8 +290,15 @@ export function useArticles(
     // Surface loading only on the very first attempt — cache hydration from
     // the persister presents data instantly, so loading flips false as soon
     // as there's *anything* to render.
-    loading: query.isPending && !query.data,
-    error: query.error ? (query.error.message ?? 'Unknown error') : null,
+    // A first launch with nothing on disk and no network pauses the query
+    // rather than failing it, so it is the error screen (which says no
+    // connection, and resumes with the network), not a spinner that never ends.
+    loading: query.isPending && !query.data && query.fetchStatus !== 'paused',
+    error: query.error
+      ? (query.error.message ?? 'Unknown error')
+      : query.fetchStatus === 'paused' && !query.data
+        ? 'Offline'
+        : null,
     refresh,
     retry,
     tick,

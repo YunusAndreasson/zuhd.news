@@ -91,13 +91,33 @@ const isBriefing = (v: unknown): boolean =>
   (v.duration === undefined || (isFiniteNumber(v.duration) && v.duration > 0)) &&
   (v.generated === undefined || typeof v.generated === 'string');
 
+/**
+ * Narrows a freshly parsed feed, pruning it in place: an article this build
+ * cannot read, or a category it does not know, is dropped rather than failing
+ * the feed. Every installed app reads the same file, so one bad article, or a
+ * category added on the site, rejected the feed for all of them at once, and
+ * each stayed on its cached copy without a word. A feed whose every article
+ * was dropped is still rejected: that is a changed contract, not one story.
+ */
 export const isFeedResponse = (v: unknown): v is FeedResponse => {
   if (!isObject(v) || !isIsoDate(v.generated)) return false;
   if (!isObject(v.categories)) return false;
-  for (const [k, arr] of Object.entries(v.categories)) {
-    if (!isCategory(k)) return false;
-    if (!Array.isArray(arr) || !arr.every(isArticle)) return false;
+  const categories = v.categories;
+  let offered = 0;
+  let kept = 0;
+  for (const [k, arr] of Object.entries(categories)) {
+    if (!Array.isArray(arr)) return false;
+    offered += arr.length;
+    if (!isCategory(k)) {
+      delete categories[k];
+      continue;
+    }
+    const readable = arr.filter(isArticle);
+    if (readable.length !== arr.length) categories[k] = readable;
+    kept += readable.length;
   }
+  if (offered > 0 && kept === 0) return false;
+  if (v.briefing === undefined) v.briefing = null;
   if (v.briefing !== null && !isBriefing(v.briefing)) return false;
   return true;
 };

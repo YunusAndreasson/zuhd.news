@@ -8,7 +8,7 @@ import * as TaskManager from 'expo-task-manager';
 import { applyArrival, FEED_QUERY_KEY, fetchArrival, probeGenerated } from './arrival';
 import { feedCache } from './feed-source';
 import { flushKnown } from './fresh-store';
-import { PERSIST_MAX_AGE_MS, persister, queryClient } from './query-client';
+import { PERSIST_BUSTER, PERSIST_MAX_AGE_MS, persister, queryClient } from './query-client';
 import { getLastSeenAt } from './storage';
 
 const TASK_NAME = 'ZUHD_BACKGROUND_FETCH';
@@ -35,7 +35,12 @@ async function applyNewBuild(): Promise<boolean> {
   let current = queryClient.getQueryData<FeedResponse>(FEED_QUERY_KEY);
   const headless = current === undefined;
   if (headless) {
-    await persistQueryClientRestore({ queryClient, persister, maxAge: PERSIST_MAX_AGE_MS });
+    await persistQueryClientRestore({
+      queryClient,
+      persister,
+      maxAge: PERSIST_MAX_AGE_MS,
+      buster: PERSIST_BUSTER,
+    });
     current = queryClient.getQueryData<FeedResponse>(FEED_QUERY_KEY);
   }
   const onScreen = current?.generated ?? (await feedCache.read())?.generated;
@@ -49,7 +54,7 @@ async function applyNewBuild(): Promise<boolean> {
   // The cache holds the data at once; the flush that notes which stories are
   // new runs on the next macrotask, and has to have run before it is saved.
   await new Promise((resolve) => setTimeout(resolve, 0));
-  await persistQueryClientSave({ queryClient, persister });
+  await persistQueryClientSave({ queryClient, persister, buster: PERSIST_BUSTER });
   flushKnown();
   return true;
 }

@@ -1,7 +1,7 @@
 import type { FeedResponse } from '@shared/types';
 import { API_BASE } from '../constants/theme';
 import { isOlderFeed } from './feed-diff';
-import { type FetchJsonOptions, fetchJson } from './fetchJson';
+import { type FetchJsonOptions, fetchJson, HttpError, MalformedResponseError } from './fetchJson';
 import { createJsonCache } from './json-cache';
 import { isFeedResponse } from './validate';
 
@@ -32,6 +32,14 @@ const FEED_TIMEOUT_MS = 10_000;
  *  background — so it is always the freshest feed the device has seen. */
 export const feedCache = createJsonCache<FeedResponse>('zuhd-feed.json', isFeedResponse);
 
+function isMissingOrMalformed(err: unknown): boolean {
+  return (
+    (err instanceof HttpError && err.status === 404) ||
+    err instanceof MalformedResponseError ||
+    err instanceof SyntaxError
+  );
+}
+
 /**
  * Fetch the feed, preferring the lite endpoint. A 404/malformed lite response
  * falls back to the full one; a genuine network failure propagates from the
@@ -45,9 +53,10 @@ export async function fetchFeed(opts: FetchJsonOptions = {}): Promise<FeedRespon
   try {
     feed = await fetchJson(FEED_LITE_URL, isFeedResponse, options);
   } catch (err) {
-    // Don't retry the fallback when the caller aborted — that's a cancelled
-    // query, not a missing endpoint, and a second request would outlive it.
-    if (options.signal?.aborted) throw err;
+    // Only a missing or unreadable lite file falls back. A timeout or a lost
+    // network would fail the full feed too, at twelve times the bytes, and an
+    // aborted caller is a cancelled query whose second request would outlive it.
+    if (options.signal?.aborted || !isMissingOrMalformed(err)) throw err;
     feed = await fetchJson(FEED_FULL_URL, isFeedResponse, options);
   }
   if (options.signal?.aborted) throw new Error('Feed fetch cancelled');

@@ -218,3 +218,11 @@ jest.mock('react-native-skia', () => ({
 jest.mock('react-native-safe-area-context', () => ({
   useSafeAreaInsets: () => ({ top: 0, bottom: 0, left: 0, right: 0 }),
 }));
+
+// ---------------------------------------------------------------------------
+// expo-updates mock: ships as ES modules; the cache's buster reads `updateId`
+// ---------------------------------------------------------------------------
+jest.mock('expo-updates', () => ({
+  updateId: null,
+  reloadAsync: jest.fn(() => Promise.resolve()),
+}));

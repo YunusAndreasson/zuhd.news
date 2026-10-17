@@ -1,6 +1,25 @@
 import { recordBytes, utf8ByteLength } from './data-usage';
 import { fetchWithTimeout } from './fetch';
 
+/** A non-2xx answer, carrying its status so a caller can tell a missing file
+ *  (404) from a server or network failure. */
+export class HttpError extends Error {
+  readonly status: number;
+  constructor(status: number) {
+    super(`HTTP ${status}`);
+    this.name = 'HttpError';
+    this.status = status;
+  }
+}
+
+/** A 2xx whose payload the validator rejected. */
+export class MalformedResponseError extends Error {
+  constructor(url: string) {
+    super(`Malformed response from ${url}`);
+    this.name = 'MalformedResponseError';
+  }
+}
+
 export interface FetchJsonOptions {
   timeoutMs?: number;
   signal?: AbortSignal;
@@ -25,14 +44,14 @@ export async function fetchJson<T>(
     signal: opts.signal,
     cache: opts.cache,
   });
-  if (!res.ok) throw new Error(`HTTP ${res.status}`);
+  if (!res.ok) throw new HttpError(res.status);
   // Read as text rather than `res.json()` so the payload can be weighed on the
   // way past. This is the only place every content download passes through,
   // which makes it the only honest place to count from — see `data-usage.ts`.
   const text = await res.text();
   recordBytes(utf8ByteLength(text));
   const raw: unknown = JSON.parse(text);
-  if (!validator(raw)) throw new Error(`Malformed response from ${url}`);
+  if (!validator(raw)) throw new MalformedResponseError(url);
   return raw;
 }
 
@@ -56,10 +75,10 @@ export async function fetchJsonIfChanged<T>(
     headers: opts.etag ? { 'If-None-Match': opts.etag } : undefined,
   });
   if (res.status === 304) return { changed: false };
-  if (!res.ok) throw new Error(`HTTP ${res.status}`);
+  if (!res.ok) throw new HttpError(res.status);
   const text = await res.text();
   recordBytes(utf8ByteLength(text));
   const raw: unknown = JSON.parse(text);
-  if (!validator(raw)) throw new Error(`Malformed response from ${url}`);
+  if (!validator(raw)) throw new MalformedResponseError(url);
   return { changed: true, data: raw, etag: res.headers?.get?.('etag') ?? null };
 }

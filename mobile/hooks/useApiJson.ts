@@ -4,7 +4,7 @@ import { type ApiSnapshot, fetchSnapshot, snapshotData } from '../lib/api-snapsh
 /**
  * Read-only API JSON hook over `useQuery`. Cache-first via TanStack Query's
  * persister (configured in `lib/query-client.ts`): hydrated from disk on
- * startup, refetched on mount if stale, persisted across launches.
+ * startup and persisted across launches; refreshed by arrivals, not on mount.
  *
  * Graceful degrade: any failure leaves `data` as null — callers handle the
  * empty state.
@@ -23,6 +23,11 @@ export function useApiJson<T>(snapshot: ApiSnapshot<T>): T | null {
     queryFn: ({ signal }) => fetchSnapshot(snapshot, { signal }),
     select: snapshotData<T>,
     refetchOnWindowFocus: false,
+    // Nor on mount once the persister has restored a copy: the restored copy
+    // keeps its old fetch time, so every layer re-downloaded in full on each
+    // cold launch, beside the launch check's arrival asking for the same files
+    // with their tags. A layer with no copy still loads on mount.
+    refetchOnMount: false,
     refetchOnReconnect: false,
     // Persister roundtrip needs a structural-clone-safe payload; queryFn
     // returns plain JSON so no special serializer needed.

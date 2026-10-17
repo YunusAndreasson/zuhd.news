@@ -2,15 +2,20 @@ let mockFiles: Map<string, string>;
 let mockKv: Map<string, string>;
 let mockSecure: Map<string, string>;
 
-jest.mock('expo-file-system', () => ({
-  Paths: { document: '/doc', cache: '/cache' },
-  File: class MockFile {
+jest.mock('expo-file-system', () => {
+  class MockFile {
     path: string;
     constructor(dir: string, name: string) {
       this.path = `${dir}/${name}`;
     }
     get exists() {
       return mockFiles.has(this.path);
+    }
+    get name() {
+      return this.path.slice(this.path.lastIndexOf('/') + 1);
+    }
+    get uri() {
+      return `file://${this.path}`;
     }
     textSync() {
       const value = mockFiles.get(this.path);
@@ -26,8 +31,16 @@ jest.mock('expo-file-system', () => ({
     delete() {
       mockFiles.delete(this.path);
     }
-  },
-}));
+  }
+  // `cache` is a directory too: the erase lists it for the briefing's audio.
+  const cache = Object.assign(new String('/cache'), {
+    list: () =>
+      [...mockFiles.keys()]
+        .filter((path) => path.startsWith('/cache/'))
+        .map((path) => new MockFile('/cache', path.slice('/cache/'.length))),
+  });
+  return { Paths: { document: '/doc', cache }, File: MockFile };
+});
 
 jest.mock('expo-sqlite/kv-store', () => ({
   __esModule: true,
@@ -121,6 +134,8 @@ describe('eraseLocalData', () => {
     mockKv.set('zuhd_review_prompted', '1700000000');
     mockKv.set('REACT_QUERY_OFFLINE_CACHE', '{"clientState":{}}');
     mockFiles.set('/cache/zuhd-feed.json', '{"generated":"x"}');
+    mockFiles.set('/cache/briefing-https%3A%2F%2Fzuhd.news%2Fa.mp3', 'audio');
+    mockFiles.set('/cache/briefing-1-1.part', 'half');
     queryClient.setQueryData(['feed'], { generated: 'x' });
     recordBytes(4096);
 
@@ -133,6 +148,8 @@ describe('eraseLocalData', () => {
     expect(getDataUsage()).toBe(0);
     expect(queryClient.getQueryData(['feed'])).toBeUndefined();
     expect(mockFiles.has('/cache/zuhd-feed.json')).toBe(false);
+    // The briefing's audio, finished or not: about 4 MB a recording.
+    expect([...mockFiles.keys()].filter((p) => p.startsWith('/cache/briefing-'))).toEqual([]);
     for (const key of [
       'zuhd_last_seen',
       'zuhd_briefing_pos',

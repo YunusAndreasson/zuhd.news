@@ -150,3 +150,56 @@ it.each([
     }),
   ).toBe(false);
 });
+
+describe('isFeedResponse prunes what it cannot read', () => {
+  const good = {
+    slug: 'good',
+    title: 'Title',
+    date: '2026-09-01',
+    addedAt: 1,
+    sources: [],
+    concepts: [],
+    sentences: ['Body'],
+  };
+
+  // Every installed app reads one file: a single bad article, or a category
+  // added on the site, used to reject the feed for all of them at once.
+  it('drops an unreadable article and keeps the rest', () => {
+    const feed = {
+      generated: '2026-09-01T08:21:00Z',
+      categories: { politics: [good, { ...good, slug: 'bad', publishedAt: null }] },
+      briefing: null,
+    };
+    expect(isFeedResponse(feed)).toBe(true);
+    expect(feed.categories.politics.map((a) => a.slug)).toEqual(['good']);
+  });
+
+  it('drops a category this build does not know', () => {
+    const feed: { generated: string; categories: Record<string, unknown[]>; briefing: null } = {
+      generated: '2026-09-01T08:21:00Z',
+      categories: { politics: [good], health: [{ ...good, slug: 'h' }] },
+      briefing: null,
+    };
+    expect(isFeedResponse(feed)).toBe(true);
+    expect(Object.keys(feed.categories)).toEqual(['politics']);
+  });
+
+  it('reads a missing briefing as none', () => {
+    const feed: Record<string, unknown> = {
+      generated: '2026-09-01T08:21:00Z',
+      categories: { politics: [good] },
+    };
+    expect(isFeedResponse(feed)).toBe(true);
+    expect(feed.briefing).toBeNull();
+  });
+
+  it('still rejects a feed with no readable article left', () => {
+    expect(
+      isFeedResponse({
+        generated: '2026-09-01T08:21:00Z',
+        categories: { politics: [{ ...good, title: 4 }], tech: [{ ...good, date: 'x' }] },
+        briefing: null,
+      }),
+    ).toBe(false);
+  });
+});
