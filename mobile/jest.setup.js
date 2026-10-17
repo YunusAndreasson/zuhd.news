@@ -203,9 +203,9 @@ jest.mock('expo-haptics', () => ({
 }));
 
 // ---------------------------------------------------------------------------
-// @shopify/react-native-skia mock
+// react-native-skia mock
 // ---------------------------------------------------------------------------
-jest.mock('@shopify/react-native-skia', () => ({
+jest.mock('react-native-skia', () => ({
   Canvas: 'Canvas',
   Rect: 'Rect',
   LinearGradient: 'LinearGradient',

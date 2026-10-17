@@ -1,7 +1,7 @@
 import { CHOKEPOINT_DISRUPTED } from '@shared/chokepoint-thresholds';
-import { Canvas, Circle } from '@shopify/react-native-skia';
 import { memo, type ReactNode } from 'react';
 import { StyleSheet, View } from 'react-native';
+import { Canvas, Circle } from 'react-native-skia';
 import type { ColorPalette } from '../constants/theme';
 import { useTheme } from '../hooks/useTheme';
 import { ListRow, ROW_LEADING } from './ListRow';

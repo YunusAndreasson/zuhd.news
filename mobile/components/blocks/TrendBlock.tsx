@@ -1,14 +1,4 @@
 import type { TrendAnnotation, TrendHighlight, TrendSeries } from '@shared/types';
-import {
-  Canvas,
-  Circle,
-  DashPathEffect,
-  Line,
-  Path,
-  Skia,
-  type SkPath,
-  vec,
-} from '@shopify/react-native-skia';
 import { scaleLinear } from 'd3-scale';
 import { memo, type ReactNode, useCallback, useMemo, useState } from 'react';
 import { type AccessibilityActionEvent, StyleSheet, useWindowDimensions, View } from 'react-native';
@@ -24,6 +14,16 @@ import {
   useSharedValue,
   withTiming,
 } from 'react-native-reanimated';
+import {
+  Canvas,
+  Circle,
+  DashPathEffect,
+  Line,
+  Path,
+  Skia,
+  type SkPath,
+  vec,
+} from 'react-native-skia';
 import { scheduleOnRN } from 'react-native-worklets';
 import { ANIMATION, type ColorPalette, EASING, SPACING } from '../../constants/theme';
 import { useTheme } from '../../hooks/useTheme';

@@ -1,6 +1,6 @@
-import { Canvas, Circle, Path, Skia } from '@shopify/react-native-skia';
 import { memo, useMemo } from 'react';
 import { StyleSheet } from 'react-native';
+import { Canvas, Circle, Path, Skia } from 'react-native-skia';
 import { toneColor } from '../constants/theme';
 import { useTheme } from '../hooks/useTheme';
 import type { MovePath } from '../lib/cards/path';

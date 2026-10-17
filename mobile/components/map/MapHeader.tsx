@@ -1,7 +1,7 @@
-import { Canvas, LinearGradient, Path, Rect, Skia, vec } from '@shopify/react-native-skia';
 import { memo, useCallback, useMemo, useState } from 'react';
 import { type LayoutChangeEvent, StyleSheet, useWindowDimensions, View } from 'react-native';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
+import { Canvas, LinearGradient, Path, Rect, Skia, vec } from 'react-native-skia';
 import { MAX_FONT_SCALE, SPACING } from '../../constants/theme';
 import { useTheme } from '../../hooks/useTheme';
 import { formatAudioDurationMinutes } from '../../lib/audio-duration';

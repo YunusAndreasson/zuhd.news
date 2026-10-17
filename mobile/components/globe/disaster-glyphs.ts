@@ -1,5 +1,5 @@
 import type { GdacsEventType as EventType } from '@shared/types';
-import { Skia, type SkPath } from '@shopify/react-native-skia';
+import { Skia, type SkPath } from 'react-native-skia';
 import { STRAIT_BULGE, STRAIT_END_DX, type StraitState } from '../../lib/strait-map';
 
 /** Glyph paths for GDACS event types. Each path is centered at (0,0) inside

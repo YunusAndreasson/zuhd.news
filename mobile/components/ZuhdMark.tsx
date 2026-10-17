@@ -1,5 +1,5 @@
-import { Canvas, Path, Skia } from '@shopify/react-native-skia';
 import { memo } from 'react';
+import { Canvas, Path, Skia } from 'react-native-skia';
 import { ZUHD_MARK_BOX, ZUHD_MARK_PATHS } from '../lib/zuhd-mark';
 
 /** The three shapes as one path, parsed once. */

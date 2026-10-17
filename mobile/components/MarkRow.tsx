@@ -1,5 +1,5 @@
-import { Canvas, Circle } from '@shopify/react-native-skia';
 import { memo, useCallback } from 'react';
+import { Canvas, Circle } from 'react-native-skia';
 import { useTheme } from '../hooks/useTheme';
 import type { MarkRowData } from '../lib/mark-rows';
 import type { TapResult } from '../lib/tap-result';

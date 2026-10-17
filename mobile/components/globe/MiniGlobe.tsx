@@ -1,6 +1,29 @@
 import { COUNTRY_DATA } from '@shared/countries/country-data';
 import { CITY_TZ, COUNTRY_TZ, SOURCE_COORDS, zoneAt } from '@shared/globe/coordinates';
 import type { Article, Chokepoint, ConflictEvent, GdacsAlert, HeatmapPoint } from '@shared/types';
+import { geoCentroid, geoDistance, geoOrthographic } from 'd3-geo';
+import {
+  memo,
+  useCallback,
+  useEffect,
+  useImperativeHandle,
+  useLayoutEffect,
+  useMemo,
+  useRef,
+} from 'react';
+import { StyleSheet, type ViewStyle } from 'react-native';
+import Animated, {
+  type DerivedValue,
+  Easing,
+  type SharedValue,
+  useAnimatedReaction,
+  useAnimatedStyle,
+  useDerivedValue,
+  useReducedMotion,
+  useSharedValue,
+  withDelay,
+  withTiming,
+} from 'react-native-reanimated';
 import {
   BlendMode,
   BlurMask,
@@ -35,30 +58,7 @@ import {
   useTexture,
   useTypeface,
   vec,
-} from '@shopify/react-native-skia';
-import { geoCentroid, geoDistance, geoOrthographic } from 'd3-geo';
-import {
-  memo,
-  useCallback,
-  useEffect,
-  useImperativeHandle,
-  useLayoutEffect,
-  useMemo,
-  useRef,
-} from 'react';
-import { StyleSheet, type ViewStyle } from 'react-native';
-import Animated, {
-  type DerivedValue,
-  Easing,
-  type SharedValue,
-  useAnimatedReaction,
-  useAnimatedStyle,
-  useDerivedValue,
-  useReducedMotion,
-  useSharedValue,
-  withDelay,
-  withTiming,
-} from 'react-native-reanimated';
+} from 'react-native-skia';
 import { scheduleOnRN, scheduleOnUI } from 'react-native-worklets';
 import {
   ANIMATION,
@@ -1324,7 +1324,7 @@ function collectCityLights(
 // per frame; this one removes the render, which is where the time went.
 //
 // The helpers below reproduce what the declarative nodes did, from
-// `@shopify/react-native-skia/src/sksg/Recorder`: a node's `color` sets the
+// `react-native-skia/src/sksg/Recorder`: a node's `color` sets the
 // paint colour, its `opacity` multiplies that colour's own alpha, and paints
 // antialias. Keep draw order in step with the comments beside each layer.
 

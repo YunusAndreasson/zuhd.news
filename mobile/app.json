@@ -13,7 +13,7 @@
       "ios",
       "android"
     ],
-    "runtimeVersion": "2.9.0",
+    "runtimeVersion": "2.10.0",
     "updates": {
       "url": "https://u.expo.dev/14c4589a-a039-41ad-b3f6-23cff746c7a8",
       "excludeFromBackup": true
@@ -135,6 +135,7 @@
         "expo-build-properties",
         {
           "android": {
+            "minSdkVersion": 26,
             "enableMinifyInReleaseBuilds": true,
             "enableShrinkResourcesInReleaseBuilds": true,
             "extraProguardRules": "-keep class * extends androidx.room.RoomDatabase { <init>(); }"
