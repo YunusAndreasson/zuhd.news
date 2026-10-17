@@ -326,9 +326,13 @@ function trace(solve: Solve): Sample[][] {
   const runs: Sample[][] = []
   let run: Sample[] = []
   let prev: Sample | null = null
+  // The latitude the walk visited last, whether or not the prayer had a time
+  // there: a run that opens after a gap reaches back into it.
+  let below: number | null = null
 
-  for (let i = 0; i < lats.length; i++) {
-    const lat = lats[i]
+  for (const lat of lats) {
+    const gap = below
+    below = lat
     const lng = solve(lat)
 
     if (lng === null) {
@@ -349,7 +353,7 @@ function trace(solve: Solve): Sample[][] {
     } else {
       // Opening a run. If there is a latitude below this one it was a gap, so
       // reach back into it for the real start the same way.
-      const start = i > 0 ? edgeSample(solve, here, lats[i - 1]) : here
+      const start = gap !== null ? edgeSample(solve, here, gap) : here
       run = [start]
       if (start.lat !== here.lat) refine(solve, start, here, 0, run)
     }
