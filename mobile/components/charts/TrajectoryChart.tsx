@@ -1,9 +1,9 @@
-import { Canvas, Circle, DashPathEffect, Line, Path, Skia, vec } from '@shopify/react-native-skia';
 import { extent } from 'd3-array';
 import { scaleLinear } from 'd3-scale';
 import { curveMonotoneX, line as d3Line } from 'd3-shape';
 import { memo, useMemo, useState } from 'react';
 import { StyleSheet, useWindowDimensions, View } from 'react-native';
+import { Canvas, Circle, DashPathEffect, Line, Path, Skia, vec } from 'react-native-skia';
 import { ANIMATION, SPACING } from '../../constants/theme';
 import { useTheme } from '../../hooks/useTheme';
 import { type ChartPoint, clearLabelSpot } from '../../lib/chart-label';

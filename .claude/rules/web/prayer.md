@@ -1,5 +1,7 @@
 ---
 paths:
+  - "shared/prayer.ts"
+  - "shared/sun.ts"
   - "public/islands/_map/prayer.ts"
   - "public/islands/_map/solar.ts"
   - "public/islands/situation-map.ts"
@@ -9,8 +11,9 @@ paths:
 # Prayer lines
 
 At any instant the places where a prayer is entering form a curve.
-`_map/prayer.ts` derives the five in closed form, `situation-map.ts` draws
-them, and `map-geo.test.js` pins them.
+`shared/prayer.ts` derives the five in closed form from `shared/sun.ts`, for
+the web and the app's globe alike; `_map/prayer.ts` cuts them for the flat
+map, `situation-map.ts` draws them, and `map-geo.test.js` pins them.
 
 ## The geometry
 

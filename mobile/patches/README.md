@@ -31,11 +31,3 @@ read the system transition animation scale as a string and parsed it with
 `toFloat()`, which throws on a value such as `1,0` or one written in
 Arabic-Indic digits: Android crashed at launch. `Settings.Global.getFloat`
 falls back to `1` instead. Drop once a Reanimated release includes #10824.
-
-## `@shopify+react-native-skia+2.14.0.patch`: Metal device over-release
-
-Backports wcandillon/react-native-skia#4131 (issue #4130). `MetalContext`
-handed the backend context the system Metal device with `reset`, which adopts
-a reference it never got; each thread-local context destroyed released the
-shared device once more, until iOS crashed inside Metal. `retain` balances it.
-Drop once a Skia 2.x release includes #4131.

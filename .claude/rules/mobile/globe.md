@@ -89,6 +89,13 @@ paths:
   Never draw from a shared value a reaction writes, such as `tapFrame`: the
   write can land a frame late, and a new picture is drawn with the last one's
   slide, which shows as a wobble before a landing.
+- The sun is the web's (`@shared/sun` via `getSunPosition`) and the prayer
+  lines are `@shared/prayer` via `prayerLinesNow`, solved once a minute; never
+  a second solver, or Maghrib parts from the terminator.
+- The night is four stacked caps (`NIGHT_DEPTHS`, the last at Fajr's angle)
+  that together make the old veil (`nightStep`): deep night does not darken.
+- Prayer names are packed after every other label; a line with no room goes
+  unnamed, as on the web.
 
 ## Marks
 
@@ -120,3 +127,6 @@ paths:
 - Famine and thermal are one tinted Atlas each, from the sprite sheet baked in
   `MiniGlobe`. Genocide is drawn as circles, above the stories. `useOverlays`
   fetches all three.
+- Atlas sprites are baked larger than drawn: their textures carry mipmaps
+  (`withMips`) and every `drawAtlas` passes `SPRITE_SAMPLING`, or thin
+  strokes shimmer as the globe turns.

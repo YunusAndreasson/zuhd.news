@@ -1,6 +1,6 @@
 import type { GdacsAlert } from '@shared/types';
-import { Canvas, Circle, Group, Path, RadialGradient, vec } from '@shopify/react-native-skia';
 import type { ComponentProps } from 'react';
+import { Canvas, Circle, Group, Path, RadialGradient, vec } from 'react-native-skia';
 import { type ColorPalette, straitMarkColor, withAlpha } from '../constants/theme';
 import { useTheme } from '../hooks/useTheme';
 import type { StraitState } from '../lib/strait-map';

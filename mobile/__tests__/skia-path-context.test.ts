@@ -1,4 +1,4 @@
-import type { SkPathBuilder } from '@shopify/react-native-skia';
+import type { SkPathBuilder } from 'react-native-skia';
 import { createSkiaPathContext } from '../components/globe/shared';
 
 function target() {

@@ -1,6 +1,29 @@
 import { COUNTRY_DATA } from '@shared/countries/country-data';
 import { CITY_TZ, COUNTRY_TZ, SOURCE_COORDS, zoneAt } from '@shared/globe/coordinates';
 import type { Article, Chokepoint, ConflictEvent, GdacsAlert, HeatmapPoint } from '@shared/types';
+import { geoCentroid, geoDistance, geoOrthographic } from 'd3-geo';
+import {
+  memo,
+  useCallback,
+  useEffect,
+  useImperativeHandle,
+  useLayoutEffect,
+  useMemo,
+  useRef,
+} from 'react';
+import { StyleSheet, type ViewStyle } from 'react-native';
+import Animated, {
+  type DerivedValue,
+  Easing,
+  type SharedValue,
+  useAnimatedReaction,
+  useAnimatedStyle,
+  useDerivedValue,
+  useReducedMotion,
+  useSharedValue,
+  withDelay,
+  withTiming,
+} from 'react-native-reanimated';
 import {
   BlendMode,
   BlurMask,
@@ -8,9 +31,12 @@ import {
   Canvas,
   Circle,
   createPicture,
+  FilterMode,
+  type FilterOptions,
   FontEdging,
   FontHinting,
   Group,
+  MipmapMode,
   PaintStyle,
   Path,
   Picture,
@@ -35,30 +61,7 @@ import {
   useTexture,
   useTypeface,
   vec,
-} from '@shopify/react-native-skia';
-import { geoCentroid, geoDistance, geoOrthographic } from 'd3-geo';
-import {
-  memo,
-  useCallback,
-  useEffect,
-  useImperativeHandle,
-  useLayoutEffect,
-  useMemo,
-  useRef,
-} from 'react';
-import { StyleSheet, type ViewStyle } from 'react-native';
-import Animated, {
-  type DerivedValue,
-  Easing,
-  type SharedValue,
-  useAnimatedReaction,
-  useAnimatedStyle,
-  useDerivedValue,
-  useReducedMotion,
-  useSharedValue,
-  withDelay,
-  withTiming,
-} from 'react-native-reanimated';
+} from 'react-native-skia';
 import { scheduleOnRN, scheduleOnUI } from 'react-native-worklets';
 import {
   ANIMATION,
@@ -158,6 +161,7 @@ import {
   getGlobeGeography,
   warmGlobeGeography,
 } from './geography';
+import { NIGHT_DEPTHS, nightStep } from './night';
 import { createOrthoLayer, type OrthoLayer } from './ortho-stream';
 import {
   FAMINE_FRAME_PATH,
@@ -168,6 +172,12 @@ import {
   THERMAL_RAYS_PATH,
 } from './overlay-glyphs';
 import { CAPITALS } from './places';
+import {
+  emitPrayerLines,
+  invalidatePrayerLines,
+  prayerLabelAnchors,
+  prayerLinesNow,
+} from './prayer-lines';
 import {
   ANCHOR_COUNTRY_AREA,
   ANCHOR_NAMES_EXTRA,
@@ -775,6 +785,17 @@ const MARK_NAMES_PLANET_CLIP = 45;
  * is still the largest text on the globe.
  */
 const MARK_VALUE_PT = 13;
+/** A prayer line's name: the web's 9 pt capitals, in the face the globe has. */
+const PRAYER_LABEL_PT = 9;
+/** A prayer line: the web's hairline, dashed three on four in line widths,
+ *  at the web's opacity. Its name is set at full strength beside it. */
+const PRAYER_LINE_WIDTH = 0.9;
+const PRAYER_LINE_OPACITY = 0.2;
+const PRAYER_DASH = Skia.PathEffect.MakeDash([3 * PRAYER_LINE_WIDTH, 4 * PRAYER_LINE_WIDTH], 0);
+/** A name sits this far right of the point it labels. */
+const PRAYER_LABEL_DX = 4;
+/** Places along a line tried for its name before it goes unnamed. */
+const PRAYER_LABEL_TRIES = 6;
 /** From the name's baseline to the move's. */
 const MARK_VALUE_DY = 15;
 /** A label's box above and below its first baseline, for collisions. */
@@ -1010,7 +1031,14 @@ interface GlobeState {
   discRadius: number;
   dayPath: SkPath | null;
   nightPath: SkPath | null;
+  /** The caps where the sun is `NIGHT_DEPTHS` below the horizon, shallowest
+   *  first. */
+  nightDepthPaths: SkPath[];
   twilightPath: SkPath | null;
+  /** The five prayer lines' visible stretches (`prayer-lines.ts`). */
+  prayerPath: SkPath | null;
+  /** Their names, where the packer found room: baseline-left, in capitals. */
+  prayerLabels: { name: string; x: number; y: number }[];
   graticulePath: SkPath | null;
   sourceArcs: SkPath | null;
   arcOpacity: number;
@@ -1223,7 +1251,10 @@ const EMPTY_GLOBE: GlobeState = {
   discRadius: 0,
   dayPath: null,
   nightPath: null,
+  nightDepthPaths: [],
   twilightPath: null,
+  prayerPath: null,
+  prayerLabels: [],
   graticulePath: null,
   sourceArcs: null,
   arcOpacity: 1,
@@ -1324,7 +1355,7 @@ function collectCityLights(
 // per frame; this one removes the render, which is where the time went.
 //
 // The helpers below reproduce what the declarative nodes did, from
-// `@shopify/react-native-skia/src/sksg/Recorder`: a node's `color` sets the
+// `react-native-skia/src/sksg/Recorder`: a node's `color` sets the
 // paint colour, its `opacity` multiplies that colour's own alpha, and paints
 // antialias. Keep draw order in step with the comments beside each layer.
 
@@ -1626,6 +1657,12 @@ type AtlasInputs = {
   colors?: Float32Array[];
 } | null;
 
+/** Sprites are baked large (`OVERLAY_RES`) and drawn smaller, and smaller
+ *  still under a pinch-out warp. Bilinear alone samples four texels of a
+ *  sprite three times its drawn size, so thin strokes shimmer as the globe
+ *  turns; the textures carry mipmaps (`withMips`) and the atlas reads them. */
+const SPRITE_SAMPLING: FilterOptions = { filter: FilterMode.Linear, mipmap: MipmapMode.Linear };
+
 /** An `<Atlas>`; tinted atlases modulate, for the reason `storyAtlas` gives. */
 function drawAtlasLayer(canvas: SkCanvas, image: SkImage | null, atlas: AtlasInputs) {
   if (!image || !atlas) return;
@@ -1637,10 +1674,26 @@ function drawAtlasLayer(canvas: SkCanvas, image: SkImage | null, atlas: AtlasInp
       plainPaint(),
       BlendMode.Modulate,
       atlas.colors,
+      SPRITE_SAMPLING,
     );
   } else {
-    canvas.drawAtlas(image, atlas.sprites, atlas.transforms, plainPaint());
+    canvas.drawAtlas(
+      image,
+      atlas.sprites,
+      atlas.transforms,
+      plainPaint(),
+      null,
+      null,
+      SPRITE_SAMPLING,
+    );
   }
+}
+
+/** The baked texture again, with mipmaps for `SPRITE_SAMPLING`. Uploaded on
+ *  the calling thread, once per bake. */
+function withMips(image: SkImage | null): SkImage | null {
+  'worklet';
+  return image ? image.makeTextureImage({ mipmapped: true }) : null;
 }
 
 interface GlobeTextures {
@@ -1675,6 +1728,8 @@ interface FrameStyle {
     water: SkFont | null;
     /** A mark's move, the second line of a market's or strait's label. */
     value: SkFont | null;
+    /** A prayer line's name. */
+    prayer: SkFont | null;
   };
   textures: GlobeTextures;
 }
@@ -1849,13 +1904,25 @@ function recordGlobeFrame(f: GlobeState, s: FrameStyle): FramePictures {
   // vanished.
   if (f.twilightPath) c.drawPath(f.twilightPath, fillPaint(BLACK, light ? 0.06 : 0.12));
   if (f.nightPath) {
-    c.drawPath(f.nightPath, fillPaint(BLACK, light ? 0.15 : 0.2));
+    // The veil in steps: past the terminator, then 6°, 12° and Fajr's angle
+    // below the horizon (`NIGHT_DEPTHS`).
+    const step = nightStep(light ? 0.15 : 0.2);
+    c.drawPath(f.nightPath, fillPaint(BLACK, step));
+    for (const depth of f.nightDepthPaths) c.drawPath(depth, fillPaint(BLACK, step));
     // The terminator itself: in daylight's tone on dark ground, where the
     // atmosphere slate was two values off the sea.
     c.drawPath(
       f.nightPath,
       light ? strokePaint(colors.atmosphere, 0.3, 0.7) : strokePaint(colors.daylight, 0.18, 0.7),
     );
+  }
+
+  // The prayer lines, under the veil's city lights and every mark: furniture,
+  // like the terminator they are measured from.
+  if (f.prayerPath) {
+    const paint = strokePaint(colors.markPrayer, PRAYER_LINE_OPACITY, PRAYER_LINE_WIDTH);
+    paint.setPathEffect(PRAYER_DASH);
+    c.drawPath(f.prayerPath, paint);
   }
 
   // Night-side city lights, after the veil so it darkens land but not them.
@@ -2251,6 +2318,12 @@ function recordGlobeFrame(f: GlobeState, s: FrameStyle): FramePictures {
   // ── Labels: above the tap pulse ─────────────────────────────────────────
   c = frameRecorder.beginRecording(bounds);
 
+  // Prayer names, under every other label: the packer placed them last.
+  if (fonts.prayer && f.prayerLabels.length > 0) {
+    const paint = fillPaint(colors.markPrayer);
+    for (const p of f.prayerLabels) c.drawText(p.name, p.x, p.y, paint, fonts.prayer);
+  }
+
   // Water — lightest tier, no halo (stroked text dominated the settled-frame
   // budget). Light mode borrows body ink at 0.92, the WCAG floor for this tier.
   if (water) {
@@ -2576,6 +2649,7 @@ export const MiniGlobe = memo(function MiniGlobe({
   //   - valueFont (SemiBold 13) is a market's or strait's move, the larger
   //     second line under its 11pt name (`MARK_VALUE_PT`).
   const valueFont = useSizedFont(semiBold, MARK_VALUE_PT);
+  const prayerFont = useSizedFont(semiBold, PRAYER_LABEL_PT);
   // Dynamic-text rendering polish for every map label. Skia's defaults
   // (integer-snapped positioning, outline hinting, plain anti-alias) are
   // tuned for static UI text. Each frame on the globe nudges every label to
@@ -2590,7 +2664,7 @@ export const MiniGlobe = memo(function MiniGlobe({
   // throws on a number ("Value is a number, expected a boolean"), which took
   // the whole map down as the label fonts loaded.
   useEffect(() => {
-    const fonts = [labelFont, subFont, countryFont, neighborFont, waterFont, valueFont];
+    const fonts = [labelFont, subFont, countryFont, neighborFont, waterFont, valueFont, prayerFont];
     for (const f of fonts) {
       if (!f) continue;
       f.setSubpixel(true);
@@ -2598,7 +2672,7 @@ export const MiniGlobe = memo(function MiniGlobe({
       f.setHinting(FontHinting.None);
       textWidths.delete(f);
     }
-  }, [labelFont, subFont, countryFont, neighborFont, waterFont, valueFont]);
+  }, [labelFont, subFont, countryFont, neighborFont, waterFont, valueFont, prayerFont]);
   // Fonts mirrored into refs so callReproject (a useCallback with `[]` deps,
   // stable closure) can measure text width for label-collision detection.
   // The fonts load asynchronously, so the ref pointer can flip from null to
@@ -2615,6 +2689,8 @@ export const MiniGlobe = memo(function MiniGlobe({
   waterFontRef.current = waterFont;
   const valueFontRef = useRef(valueFont);
   valueFontRef.current = valueFont;
+  const prayerFontRef = useRef(prayerFont);
+  prayerFontRef.current = prayerFont;
   // Anchor-label ambient floor mirrored into a ref for the same reason as
   // the fonts above: callReproject is a stable `[]`-deps closure and can't
   // see the theme, but the floor is mode-dependent (see the constant pair).
@@ -2944,6 +3020,7 @@ export const MiniGlobe = memo(function MiniGlobe({
         neighbor: neighborFont,
         water: waterFont,
         value: valueFont,
+        prayer: prayerFont,
       },
       textures: texturesRef.current,
     });
@@ -3195,6 +3272,10 @@ export const MiniGlobe = memo(function MiniGlobe({
   const dayPathRef = useRef(Skia.PathBuilder.Make().setIsVolatile(true));
   const nightPathRef = useRef(Skia.PathBuilder.Make().setIsVolatile(true));
   const twilightPathRef = useRef(Skia.PathBuilder.Make().setIsVolatile(true));
+  const prayerPathRef = useRef(Skia.PathBuilder.Make().setIsVolatile(true));
+  const nightDepthsRef = useRef(
+    NIGHT_DEPTHS.map((depth) => ({ depth, builder: Skia.PathBuilder.Make().setIsVolatile(true) })),
+  );
   const graticulePathRef = useRef(Skia.PathBuilder.Make().setIsVolatile(true));
   const sourceArcsRef = useRef(Skia.PathBuilder.Make().setIsVolatile(true));
   /** The market layout the moving globe carries (`followMarketLayout`): laid
@@ -3726,11 +3807,30 @@ export const MiniGlobe = memo(function MiniGlobe({
       skiaCtx.setPath(nightBuilder);
       capFill(skiaCtx, view, antiLng, -sunLat, 90);
       const nightPath = nightBuilder.build();
+      const nightDepthPaths: SkPath[] = [];
+      for (const { depth, builder } of nightDepthsRef.current) {
+        builder.reset();
+        skiaCtx.setPath(builder);
+        capFill(skiaCtx, view, antiLng, -sunLat, 90 - depth);
+        nightDepthPaths.push(builder.build());
+      }
       const twilightBuilder = twilightPathRef.current;
       twilightBuilder.reset();
       skiaCtx.setPath(twilightBuilder);
       capFill(skiaCtx, view, antiLng, -sunLat, TWILIGHT_RADIUS);
       const twilightPath = twilightBuilder.build();
+
+      // The five prayer lines, where each prayer is entering now: solved once
+      // a minute (`prayerLinesNow`), placed here like any other point.
+      const prayerBuilder = prayerPathRef.current;
+      prayerBuilder.reset();
+      skiaCtx.setPath(prayerBuilder);
+      const prayerCandidates = emitPrayerLines(
+        prayerLinesNow(),
+        (x, y, z) => screenPoint(view, x, y, z, clipCos),
+        skiaCtx,
+      );
+      const prayerPath = prayerCandidates.length > 0 ? prayerBuilder.build() : null;
 
       // Poles — culled against the clip cone like every other point marker:
       // a projection never nulls a far-side point, it mirrors it back inside the
@@ -4440,7 +4540,13 @@ export const MiniGlobe = memo(function MiniGlobe({
       let keptNeighbours = neighborLabels;
       let keptCapitals = capitalLabels;
       let keptWaters = waterLabels;
-      if (neighborLabels.length > 0 || capitalLabels.length > 0 || waterLabels.length > 0) {
+      const prayerLabels: GlobeState['prayerLabels'] = [];
+      if (
+        neighborLabels.length > 0 ||
+        capitalLabels.length > 0 ||
+        waterLabels.length > 0 ||
+        prayerCandidates.length > 0
+      ) {
         const lfont = labelFontRef.current;
         const cfont = countryFontRef.current;
         const sfont = subFontRef.current;
@@ -4555,6 +4661,33 @@ export const MiniGlobe = memo(function MiniGlobe({
           }
         }
         keptWaters = wkept;
+
+        // Prayer names last, as on the web, where country names win: each
+        // tries a few places along its line, nearest the centre first, and a
+        // line with no room goes unnamed.
+        const pfont = prayerFontRef.current;
+        for (const line of prayerCandidates) {
+          const name = line.name.toUpperCase();
+          const tw = pfont ? textWidth(pfont, name) : name.length * 6;
+          for (const a of prayerLabelAnchors(line.points, centerX, centerY, PRAYER_LABEL_TRIES)) {
+            const x0 = a.x + PRAYER_LABEL_DX - pad;
+            const x1 = a.x + PRAYER_LABEL_DX + tw + pad;
+            const y0 = a.y - 7 - pad;
+            const y1 = a.y + 3 + pad;
+            let collides = false;
+            for (const o of occupied) {
+              if (x0 < o.x1 && x1 > o.x0 && y0 < o.y1 && y1 > o.y0) {
+                collides = true;
+                break;
+              }
+            }
+            if (!collides) {
+              prayerLabels.push({ name, x: a.x + PRAYER_LABEL_DX, y: a.y + 3 });
+              occupied.push({ x0, y0, x1, y1 });
+              break;
+            }
+          }
+        }
       }
 
       const frame: GlobeState = {
@@ -4569,7 +4702,10 @@ export const MiniGlobe = memo(function MiniGlobe({
         discRadius: projScale,
         dayPath,
         nightPath,
+        nightDepthPaths,
         twilightPath,
+        prayerPath,
+        prayerLabels,
         graticulePath,
         sourceArcs: hasSourceArcs ? sourceArcsBuilder.build() : null,
         arcOpacity,
@@ -4845,7 +4981,14 @@ export const MiniGlobe = memo(function MiniGlobe({
       makkah: makkahTexture.value,
     }),
     (t) => {
-      scheduleOnRN(receiveTextures, t.ghost, t.storyHalo, t.overlay, t.dot, t.makkah);
+      scheduleOnRN(
+        receiveTextures,
+        withMips(t.ghost),
+        withMips(t.storyHalo),
+        withMips(t.overlay),
+        withMips(t.dot),
+        withMips(t.makkah),
+      );
     },
   );
   // No-op coalescing — last derived inputs handed to scheduleOnRN. The reaction
@@ -5227,6 +5370,7 @@ export const MiniGlobe = memo(function MiniGlobe({
       if (sunTickRef.current !== _tick) {
         sunTickRef.current = _tick;
         invalidateSunCaches();
+        invalidatePrayerLines();
       }
       replayProjection();
     },

@@ -1,9 +1,11 @@
 import { CHOKEPOINT_DISRUPTED } from '@shared/chokepoint-thresholds';
-import { Canvas, Circle } from '@shopify/react-native-skia';
+import { UMM_AL_QURA } from '@shared/prayer';
 import { memo, type ReactNode } from 'react';
 import { StyleSheet, View } from 'react-native';
-import type { ColorPalette } from '../constants/theme';
+import { Canvas, Circle, DashPathEffect, Line, vec } from 'react-native-skia';
+import { BLACK, type ColorPalette } from '../constants/theme';
 import { useTheme } from '../hooks/useTheme';
+import { NIGHT_DEPTHS } from './globe/night';
 import { ListRow, ROW_LEADING } from './ListRow';
 import { type Mark, MarkGlyph } from './MarkGlyph';
 import { SectionLabel } from './MenuRow';
@@ -167,13 +169,41 @@ const CRISES: readonly KeyEntry[] = [
   },
 ];
 
-/** Three groups, so a reader looking for one mark scans a heading, not
- *  thirteen rows: what the news is, what moves goods and money, and what
- *  befalls people. */
+const [CIVIL, NAUTICAL] = NIGHT_DEPTHS;
+
+const TIME: readonly KeyEntry[] = [
+  {
+    label: 'night',
+    meaning: `The dark side, deepening where the sun is ${CIVIL}°, ${NAUTICAL}° and ${UMM_AL_QURA.fajrAngle}° below the horizon. The last is where Fajr begins.`,
+    // Ground, then the steps the globe stacks on it, darker toward the middle.
+    draw: (colors) => (
+      <>
+        <Circle cx={C} cy={C} r={11} color={colors.textSecondary} opacity={0.45} />
+        <Circle cx={C} cy={C} r={11} color={BLACK} opacity={0.2} />
+        <Circle cx={C} cy={C} r={8} color={BLACK} opacity={0.2} />
+        <Circle cx={C} cy={C} r={5} color={BLACK} opacity={0.2} />
+      </>
+    ),
+  },
+  {
+    label: 'prayer lines',
+    meaning: `Where Fajr, Dhuhr, Asr, Maghrib and Isha are entering now, by Umm al-Qura: Fajr at ${UMM_AL_QURA.fajrAngle}° below the horizon, Isha ${UMM_AL_QURA.ishaIntervalMin} minutes after Maghrib, Asr at a shadow length of ${UMM_AL_QURA.shadowLength}. A line stops where the prayer has no time: there the sun never reaches that angle.`,
+    draw: (colors) => (
+      <Line p1={vec(1, C)} p2={vec(BOX - 1, C)} color={colors.markPrayer} strokeWidth={1.4}>
+        <DashPathEffect intervals={[4, 3]} />
+      </Line>
+    ),
+  },
+];
+
+/** Four groups, so a reader looking for one mark scans a heading, not
+ *  fifteen rows: what the news is, what moves goods and money, what befalls
+ *  people, and the time of day the globe shows. */
 const SECTIONS: readonly { label: string; entries: readonly KeyEntry[] }[] = [
   { label: 'stories', entries: STORIES },
   { label: 'shipping and markets', entries: SHIPPING },
   { label: 'crises', entries: CRISES },
+  { label: 'time of day', entries: TIME },
 ];
 
 const KeyRow = memo(function KeyRow({ entry, first }: { entry: KeyEntry; first: boolean }) {

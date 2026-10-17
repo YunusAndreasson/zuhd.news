@@ -20,7 +20,7 @@ module.exports = function (api) {
   //      local bundles were left uncompiled while EAS builds were compiled.
   //      Dev/prod divergence is precisely how a compiler-only bug reaches
   //      production first.
-  //   2. This app cannot run in Expo Go at all — @shopify/react-native-skia is
+  //   2. This app cannot run in Expo Go at all — react-native-skia is
   //      not in the Expo Go runtime, and the project is prebuilt (android/).
   //      The guard protected an impossible case.
   // Single switch now lives in app.json. To opt a file out of the compiler,
