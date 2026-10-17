@@ -6,8 +6,8 @@ import { SCREEN_POINT, unit } from './sphere-circles';
  * The five prayer lines on the globe: where Fajr, Dhuhr, Asr, Maghrib and Isha
  * are entering now, by the method the web map draws (`@shared/prayer`). The
  * curves are solved in latitude and longitude once a minute, the way the sun
- * is (`getSunPosition`), and kept as unit vectors, so a frame only rotates and
- * places them, as it does every other point on the globe.
+ * is (`getSunPosition`), thinned (`thin`) and kept as unit vectors,
+ * so a frame only rotates and places them, as it does every other point.
  */
 export type PrayerLine = {
   id: PrayerId;
@@ -17,6 +17,52 @@ export type PrayerLine = {
 };
 
 const REFRESH_MS = 60_000;
+/** How far a dropped sample may lie from the chord that replaces it, in
+ *  radians of the sphere: a pixel with the planet 6,000 px across, past the
+ *  deepest story framing. The shared walk steps a degree of latitude and
+ *  refines toward the poles for a flat map, about 200 samples a line; where a
+ *  line runs straight most of them add nothing on a sphere, and every one
+ *  dropped is one less placement and `lineTo` a frame. Where it bends, near
+ *  its polar ends, they stay. */
+const TOLERANCE_RAD = 1 / 3000;
+
+/** The run's samples as unit vectors, keeping only those a chord cannot
+ *  replace within `TOLERANCE_RAD`. Greedy: a chord grows while every sample it
+ *  skips stays within tolerance of its great circle. */
+function thin(units: readonly (readonly [number, number, number])[]): Float64Array {
+  const kept: number[] = [];
+  const first = units[0];
+  if (!first) return new Float64Array(0);
+  kept.push(...first);
+  let anchor = 0;
+  let i = 2;
+  while (i < units.length) {
+    const a = units[anchor];
+    const b = units[i];
+    if (!a || !b) break;
+    const nx = a[1] * b[2] - a[2] * b[1];
+    const ny = a[2] * b[0] - a[0] * b[2];
+    const nz = a[0] * b[1] - a[1] * b[0];
+    const len = Math.hypot(nx, ny, nz);
+    let fits = len > 0;
+    for (let k = anchor + 1; fits && k < i; k++) {
+      const s = units[k];
+      if (s && Math.abs(s[0] * nx + s[1] * ny + s[2] * nz) / len > TOLERANCE_RAD) fits = false;
+    }
+    if (fits) {
+      i += 1;
+      continue;
+    }
+    const prev = units[i - 1];
+    if (prev) kept.push(...prev);
+    anchor = i - 1;
+    i = anchor + 2;
+  }
+  const last = units[units.length - 1];
+  if (last && units.length > 1) kept.push(...last);
+  return Float64Array.from(kept);
+}
+
 let cached: PrayerLine[] = [];
 let cachedAt = Number.NEGATIVE_INFINITY;
 
@@ -27,18 +73,7 @@ export function prayerLinesNow(now = Date.now()): PrayerLine[] {
   cached = prayerRuns(new Date(now)).map(({ id, name, runs }) => ({
     id,
     name,
-    runs: runs.map((run) => {
-      const units = new Float64Array(run.length * 3);
-      for (let i = 0; i < run.length; i++) {
-        const sample = run[i];
-        if (!sample) continue;
-        const [x, y, z] = unit(sample.lng, sample.lat);
-        units[i * 3] = x;
-        units[i * 3 + 1] = y;
-        units[i * 3 + 2] = z;
-      }
-      return units;
-    }),
+    runs: runs.map((run) => thin(run.map((sample) => unit(sample.lng, sample.lat)))),
   }));
   return cached;
 }
