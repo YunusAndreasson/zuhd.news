@@ -178,6 +178,9 @@ export const DARK_COLORS = {
   /** The one unmuted tone on the globe, as on the web map. */
   markGenocide: '#f5372b',
   markGenocideCore: '#0b0d11',
+  /** The prayer lines and their names: the web map's `MAP_COLOURS.prayer`.
+   *  Near-neutral because they carry no value; the dash is their shape. */
+  markPrayer: '#c0c4ca',
 } as const satisfies Record<string, string>;
 
 export const LIGHT_COLORS = {
@@ -265,6 +268,9 @@ export const LIGHT_COLORS = {
   /** The one unmuted tone on the globe, as on the web map. */
   markGenocide: '#f5372b',
   markGenocideCore: '#0b0d11',
+  /** See DARK_COLORS.markPrayer: the same blue-grey, darkened for cream as
+   *  `markStrait` is, so a name at full strength clears AA. */
+  markPrayer: '#5d6570',
 } as const satisfies Record<string, string>;
 
 export type ColorPalette = { [K in keyof typeof DARK_COLORS]: string };

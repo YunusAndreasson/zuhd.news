@@ -90,6 +90,14 @@ paths:
   write can land a frame late, and a new picture is drawn with the last one's
   slide, which shows as a wobble before a landing.
 
+- The sun is the web's (`@shared/sun` via `getSunPosition`) and the prayer
+  lines are `@shared/prayer` via `prayerLinesNow`, solved once a minute; never
+  a second solver, or Maghrib parts from the terminator.
+- The night is four stacked caps (`NIGHT_DEPTHS`, the last at Fajr's angle)
+  that together make the old veil (`nightStep`): deep night does not darken.
+- Prayer names are packed after every other label; a line with no room goes
+  unnamed, as on the web.
+
 ## Marks
 
 - Colours are the web's: `mark*` tokens, both themes.
