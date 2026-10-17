@@ -120,3 +120,6 @@ paths:
 - Famine and thermal are one tinted Atlas each, from the sprite sheet baked in
   `MiniGlobe`. Genocide is drawn as circles, above the stories. `useOverlays`
   fetches all three.
+- Atlas sprites are baked larger than drawn: their textures carry mipmaps
+  (`withMips`) and every `drawAtlas` passes `SPRITE_SAMPLING`, or thin
+  strokes shimmer as the globe turns.

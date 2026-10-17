@@ -31,9 +31,12 @@ import {
   Canvas,
   Circle,
   createPicture,
+  FilterMode,
+  type FilterOptions,
   FontEdging,
   FontHinting,
   Group,
+  MipmapMode,
   PaintStyle,
   Path,
   Picture,
@@ -1626,6 +1629,12 @@ type AtlasInputs = {
   colors?: Float32Array[];
 } | null;
 
+/** Sprites are baked large (`OVERLAY_RES`) and drawn smaller, and smaller
+ *  still under a pinch-out warp. Bilinear alone samples four texels of a
+ *  sprite three times its drawn size, so thin strokes shimmer as the globe
+ *  turns; the textures carry mipmaps (`withMips`) and the atlas reads them. */
+const SPRITE_SAMPLING: FilterOptions = { filter: FilterMode.Linear, mipmap: MipmapMode.Linear };
+
 /** An `<Atlas>`; tinted atlases modulate, for the reason `storyAtlas` gives. */
 function drawAtlasLayer(canvas: SkCanvas, image: SkImage | null, atlas: AtlasInputs) {
   if (!image || !atlas) return;
@@ -1637,10 +1646,26 @@ function drawAtlasLayer(canvas: SkCanvas, image: SkImage | null, atlas: AtlasInp
       plainPaint(),
       BlendMode.Modulate,
       atlas.colors,
+      SPRITE_SAMPLING,
     );
   } else {
-    canvas.drawAtlas(image, atlas.sprites, atlas.transforms, plainPaint());
+    canvas.drawAtlas(
+      image,
+      atlas.sprites,
+      atlas.transforms,
+      plainPaint(),
+      null,
+      null,
+      SPRITE_SAMPLING,
+    );
   }
+}
+
+/** The baked texture again, with mipmaps for `SPRITE_SAMPLING`. Uploaded on
+ *  the calling thread, once per bake. */
+function withMips(image: SkImage | null): SkImage | null {
+  'worklet';
+  return image ? image.makeTextureImage({ mipmapped: true }) : null;
 }
 
 interface GlobeTextures {
@@ -4845,7 +4870,14 @@ export const MiniGlobe = memo(function MiniGlobe({
       makkah: makkahTexture.value,
     }),
     (t) => {
-      scheduleOnRN(receiveTextures, t.ghost, t.storyHalo, t.overlay, t.dot, t.makkah);
+      scheduleOnRN(
+        receiveTextures,
+        withMips(t.ghost),
+        withMips(t.storyHalo),
+        withMips(t.overlay),
+        withMips(t.dot),
+        withMips(t.makkah),
+      );
     },
   );
   // No-op coalescing — last derived inputs handed to scheduleOnRN. The reaction
