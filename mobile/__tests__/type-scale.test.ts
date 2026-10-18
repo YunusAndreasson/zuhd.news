@@ -13,7 +13,7 @@ import {
 
 const sizes = (width: number) => {
   const t = makeTypography(1, widthTypeScale(width));
-  return [t.sizeBase, t.sizeLg, t.sizeSm, t.sizeXs, t.sizeH1, t.sizeWordmark];
+  return [t.sizeBase, t.sizeLg, t.sizeSm, t.sizeXs, t.sizeH1];
 };
 
 it('scales with the width between its clamps, and only up as it widens', () => {
@@ -30,11 +30,11 @@ it('scales with the width between its clamps, and only up as it widens', () => {
 });
 
 it('gives phones the sizes they have always had', () => {
-  expect(sizes(360)).toEqual([16, 20, 12, 11, 27, 13]);
-  expect(sizes(375)).toEqual([17, 21, 13, 11, 28, 14]);
-  expect(sizes(393)).toEqual([18, 22, 14, 12, 29, 15]);
-  expect(sizes(402)).toEqual([18, 23, 14, 12, 30, 15]);
-  expect(sizes(430)).toEqual([19, 23, 14, 12, 31, 15]);
+  expect(sizes(360)).toEqual([16, 20, 12, 11, 27]);
+  expect(sizes(375)).toEqual([17, 21, 13, 11, 28]);
+  expect(sizes(393)).toEqual([18, 22, 14, 12, 29]);
+  expect(sizes(402)).toEqual([18, 23, 14, 12, 30]);
+  expect(sizes(430)).toEqual([19, 23, 14, 12, 31]);
   // Past the clamp, a tablet or an unfolded phone keeps the largest phone's.
   expect(sizes(1280)).toEqual(sizes(430));
 });

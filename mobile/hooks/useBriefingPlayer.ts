@@ -17,6 +17,7 @@ import { resolveAudioDuration } from '../lib/audio-duration';
 import { resolveDownloadedAudioSource } from '../lib/audio-source';
 import { briefingAudioFile, briefingPartialFile, deleteBriefingAudio } from '../lib/briefing-audio';
 import { readSavedPlace, saveSavedPlace, subscribeToBriefingReset } from '../lib/briefing-progress';
+import { recordBytes } from '../lib/data-usage';
 
 const PLAYBACK_STATUS_UPDATE = 'playbackStatusUpdate';
 // The CDN currently answers byte-range requests with the complete MP3, which
@@ -61,6 +62,9 @@ function resolveBriefingSource(url: string, controller: AbortController): Promis
     })
       .then(async (downloaded) => {
         if (controller.signal.aborted) throw new Error('Audio download cancelled');
+        // Fetched whether it is kept or not: the data figure in settings
+        // counts the briefing, the largest thing the app downloads.
+        recordBytes(downloaded.size);
         if (file.exists) downloaded.delete();
         else await downloaded.move(file);
         // One recording on the device: the one just saved.

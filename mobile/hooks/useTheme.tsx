@@ -11,7 +11,6 @@ import {
   FONT_SOURCE,
   FONT_SOURCE_BOLD,
   FONT_SYSTEM,
-  type FontFamily,
   type FontSet,
   type FontSize,
   makeSheetStyles,
@@ -51,7 +50,6 @@ export interface Theme {
 export interface PreferencesApi {
   preferences: Preferences;
   setFontSize: (v: FontSize) => void;
-  setFontFamily: (v: FontFamily) => void;
   setAppearance: (v: AppearanceMode) => void;
   setHaptics: (v: boolean) => void;
   /** Resolves with `true` if the preference was applied, `false` if the OS permission request was denied. */
@@ -113,7 +111,6 @@ export function ThemeProvider({
   );
 
   const setFontSize = useCallback((v: FontSize) => persist({ fontSize: v }), [persist]);
-  const setFontFamily = useCallback((v: FontFamily) => persist({ fontFamily: v }), [persist]);
   const setAppearance = useCallback((v: AppearanceMode) => persist({ appearance: v }), [persist]);
   const setHaptics = useCallback(
     (v: boolean) => {
@@ -187,14 +184,10 @@ export function ThemeProvider({
   // don't invalidate it, so consumers of useTheme don't re-render.
   const theme = useMemo<Theme>(() => {
     const colors = paletteFor(resolvedAppearance, moreContrast);
-    // The system face follows Bold Text by itself; Source Sans is handed the
-    // next file up.
-    const font =
-      prefs.fontFamily === 'source' && fontsAvailable
-        ? boldText
-          ? FONT_SOURCE_BOLD
-          : FONT_SOURCE
-        : FONT_SYSTEM;
+    // One typeface. The system face is only what draws when Source Sans has
+    // not loaded, and it follows Bold Text by itself; Source Sans is handed
+    // the next file up.
+    const font = fontsAvailable ? (boldText ? FONT_SOURCE_BOLD : FONT_SOURCE) : FONT_SYSTEM;
     const textVariants = makeTextVariants(colors, font, typography);
     const sheetStyles = makeSheetStyles(colors);
 
@@ -206,18 +199,17 @@ export function ThemeProvider({
       sheetStyles,
       resolvedAppearance,
     };
-  }, [resolvedAppearance, prefs.fontFamily, typography, fontsAvailable, boldText, moreContrast]);
+  }, [resolvedAppearance, typography, fontsAvailable, boldText, moreContrast]);
 
   const preferencesApi = useMemo<PreferencesApi>(
     () => ({
       preferences: prefs,
       setFontSize,
-      setFontFamily,
       setAppearance,
       setHaptics,
       setNotifications,
     }),
-    [prefs, setFontSize, setFontFamily, setAppearance, setHaptics, setNotifications],
+    [prefs, setFontSize, setAppearance, setHaptics, setNotifications],
   );
 
   // An in-app light or dark choice is the whole app's, not only the JS

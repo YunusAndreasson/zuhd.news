@@ -76,7 +76,7 @@ export const GROUP_TITLES: Readonly<Record<GroupKey, string>> = {
   borrowing: 'borrowing costs',
   other: 'other indicators',
   crypto: 'crypto',
-  ai: 'ai models',
+  ai: 'AI models',
   // What the list holds, as its first line says: a market's prices, not
   // forecasts. `predictions` called them the second.
   predictions: 'prediction markets',

@@ -30,7 +30,8 @@ const HINT_COPY: Record<HintId, string> = {
   // with copy that is at least true, should either come back.
   sources: 'open a story for its sources',
   bookmark: 'open a story and tap save to keep it',
-  globe: 'tap a light on the globe to find its story',
+  // A coloured light: the white ones on the night side are capitals.
+  globe: 'tap a coloured light on the globe for its story',
   // The id predates the dock; it is a persisted key, so it keeps its name.
   // It taught the dock's `⌃` too until that went (2026-09-22).
   masthead: '▶ plays the briefing',

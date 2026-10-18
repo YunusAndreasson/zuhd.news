@@ -2,7 +2,7 @@ import { CHOKEPOINT_DISRUPTED } from '@shared/chokepoint-thresholds';
 import { UMM_AL_QURA } from '@shared/prayer';
 import { memo, type ReactNode } from 'react';
 import { StyleSheet, View } from 'react-native';
-import { Canvas, Circle, DashPathEffect, Line, vec } from 'react-native-skia';
+import { Canvas, Circle, DashPathEffect, Line, Path, vec } from 'react-native-skia';
 import { BLACK, type ColorPalette } from '../constants/theme';
 import { useTheme } from '../hooks/useTheme';
 import { NIGHT_DEPTHS } from './globe/night';
@@ -41,7 +41,7 @@ const STORIES: readonly KeyEntry[] = [
   {
     label: 'coverage',
     meaning:
-      'A glow where reporting is concentrated. Tap it to find the newest story there you have not found, or reopen the newest. Older coverage opens the country when no current story matches.',
+      'A glow where reporting is concentrated. Tap it for the newest story there you have not read, or the newest when you have read them all. Older coverage opens the country when no current story matches.',
     draw: (colors) => (
       <>
         <Circle cx={C} cy={C} r={11} color={colors.textEmphasis} opacity={0.08} />
@@ -52,7 +52,7 @@ const STORIES: readonly KeyEntry[] = [
   {
     label: 'story',
     meaning:
-      'A place in the news, in its category’s colour: politics, economy, science, tech. Larger the more it was reported, fainter as it ages. A white number beside it is how many stories there you have not found yet.',
+      'A place in the news, in its category’s colour: politics, economy, science, tech. Larger the more it was reported, fainter as it ages. A white number beside it is how many stories there you have not read yet.',
     draw: (colors) => (
       <>
         <Circle cx={C} cy={C} r={6.7} color={colors.bg} />
@@ -61,10 +61,9 @@ const STORIES: readonly KeyEntry[] = [
     ),
   },
   {
-    // `found`, the word the dock and the all-found toast use for it; `read` is
-    // a different thing the app also tracks (two seconds in front, `read-store`).
-    label: 'found',
-    meaning: 'A place whose stories you have all found. Tap it to open the newest again.',
+    // `read`, the dock's word: the track's hairlines and this ring are one set.
+    label: 'read',
+    meaning: 'A place whose stories you have all read. Tap it to open the newest again.',
     draw: (colors) => (
       <Circle
         cx={C}
@@ -93,6 +92,24 @@ const STORIES: readonly KeyEntry[] = [
           opacity={0.85}
         />
       </>
+    ),
+  },
+  {
+    label: 'sources',
+    meaning:
+      'Dashed lines to the story in front from where its sources are based. None is drawn for a source in the same place.',
+    // The globe's dash, drawn a step stronger: at the globe's weight the key
+    // showed an empty square.
+    draw: (colors) => (
+      <Path
+        path={`M 2 ${C + 6} Q ${C} ${C - 10} ${BOX - 2} ${C + 6}`}
+        color={colors.accent}
+        style="stroke"
+        strokeWidth={1}
+        opacity={0.7}
+      >
+        <DashPathEffect intervals={[6, 3]} />
+      </Path>
     ),
   },
 ];
@@ -142,8 +159,9 @@ const SHIPPING: readonly KeyEntry[] = [
 
 const CRISES: readonly KeyEntry[] = [
   {
-    label: 'hazard',
-    meaning: 'An earthquake, cyclone, flood or other natural hazard on the UN–EU alert system.',
+    label: 'disaster',
+    meaning:
+      'An earthquake, cyclone, flood or other natural hazard on the UN–EU disaster alert system.',
     mark: { kind: 'gdacs', eventtype: 'EQ' },
   },
   {
@@ -152,7 +170,7 @@ const CRISES: readonly KeyEntry[] = [
     mark: { kind: 'famine', blocks: 2 },
   },
   {
-    label: 'heat',
+    label: 'fire',
     meaning: 'Heat a satellite saw where a story is: a fire, a strike, a flare.',
     mark: { kind: 'thermal' },
   },
@@ -174,7 +192,7 @@ const [CIVIL, NAUTICAL] = NIGHT_DEPTHS;
 const TIME: readonly KeyEntry[] = [
   {
     label: 'night',
-    meaning: `The dark side, deepening where the sun is ${CIVIL}°, ${NAUTICAL}° and ${UMM_AL_QURA.fajrAngle}° below the horizon. The last is where Fajr begins.`,
+    meaning: `The dark side, deepening where the sun is ${CIVIL}°, ${NAUTICAL}° and ${UMM_AL_QURA.fajrAngle}° below the horizon. The last is where Fajr begins. The lights on it are capitals.`,
     // Ground, then the steps the globe stacks on it, darker toward the middle.
     draw: (colors) => (
       <>
@@ -194,14 +212,26 @@ const TIME: readonly KeyEntry[] = [
       </Line>
     ),
   },
+  {
+    label: 'Makkah',
+    meaning: 'The Kaaba, which every prayer faces. A small gold light, never a story.',
+    // The globe's glow, in the layers it stacks (`MAKKAH_GLOW_LAYERS`).
+    draw: (colors) => (
+      <>
+        <Circle cx={C} cy={C} r={10} color={colors.dome} opacity={0.08} />
+        <Circle cx={C} cy={C} r={5} color={colors.dome} opacity={0.2} />
+        <Circle cx={C} cy={C} r={1.6} color={colors.dome} opacity={0.9} />
+      </>
+    ),
+  },
 ];
 
-/** Four groups, so a reader looking for one mark scans a heading, not
- *  fifteen rows: what the news is, what moves goods and money, what befalls
+/** Four groups, so a reader looking for one mark scans a heading, not a
+ *  column of rows: what the news is, what moves goods and money, what befalls
  *  people, and the time of day the globe shows. */
 const SECTIONS: readonly { label: string; entries: readonly KeyEntry[] }[] = [
   { label: 'stories', entries: STORIES },
-  { label: 'shipping and markets', entries: SHIPPING },
+  { label: 'shipping & markets', entries: SHIPPING },
   { label: 'crises', entries: CRISES },
   { label: 'time of day', entries: TIME },
 ];

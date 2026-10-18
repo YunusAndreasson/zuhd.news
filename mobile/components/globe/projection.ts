@@ -24,8 +24,8 @@ export const DECAY_LAMBDA = Math.LN2 / 18;
  *  its neighbours, and the wider view a swipe rises through names fewer.
  *  Anchor-tier countries (`area ≥ ANCHOR_COUNTRY_AREA`) bypass this gate
  *  and render at all zooms — they exist as persistent continental anchors
- *  that orient the reader before the zoom pill is touched. The zoom pill
- *  (level 1 = clip 18°, level 2 = clip 10°) reveals the rest of the atlas. */
+ *  that orient the reader before a pinch. Pinching in toward a 10° clip
+ *  reveals the rest of the atlas. */
 export const PLACES_APPEAR_CLIP = 25;
 export const PLACES_FULL_CLIP = 10;
 
@@ -59,7 +59,7 @@ export const ANCHOR_NAMES_EXTRA: ReadonlySet<string> = new Set([
   // only the large, centroid-isolated members that orient the reader; the
   // rest (Portugal, Netherlands, Switzerland, Ireland, the Nordics minus
   // Sweden, and the whole Central/Eastern band) are de-anchored and resurface
-  // through the non-anchor label path as the zoom pill tightens the clip.
+  // through the non-anchor label path as a pinch tightens the clip.
   'France',
   'Germany',
   'Spain',

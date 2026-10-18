@@ -12,15 +12,12 @@ import {
   useState,
   useSyncExternalStore,
 } from 'react';
-import { Linking, StyleSheet, type TextStyle, useWindowDimensions, View } from 'react-native';
+import { Linking, StyleSheet, useWindowDimensions, View } from 'react-native';
 import { GestureDetector } from 'react-native-gesture-handler';
 import { LayoutAnimationConfig } from 'react-native-reanimated';
 import {
   type AppearanceMode,
   baseFontSize,
-  FONT_SOURCE,
-  FONT_SYSTEM,
-  type FontFamily,
   type FontSize,
   ICON,
   MAX_FONT_SCALE,
@@ -117,20 +114,11 @@ const FONT_SIZE_OPTIONS: SegmentOption<FontSize>[] = [
   { value: 'large', label: 'large' },
 ];
 
-const FONT_FAMILY_OPTIONS: SegmentOption<FontFamily>[] = [
-  { value: 'source', label: 'Source Sans' },
-  { value: 'system', label: 'system' },
-];
-
 const APPEARANCE_OPTIONS: SegmentOption<AppearanceMode>[] = [
   { value: 'system', label: 'system' },
   { value: 'light', label: 'light' },
   { value: 'dark', label: 'dark' },
 ];
-
-/** Each family's name set in itself, so the picker shows what it picks. */
-const fontFamilyLabel = (v: FontFamily): TextStyle =>
-  v === 'source' ? FONT_SOURCE.regular : FONT_SYSTEM.regular;
 
 type PageKey =
   | 'privacy'
@@ -463,15 +451,6 @@ export const MenuSheet = memo(function MenuSheet({
               labelScale={sizeLabelScale}
             />
           </MenuControlRow>
-          <MenuControlRow title="font">
-            <SegmentedControl
-              accessibilityLabel="font"
-              options={FONT_FAMILY_OPTIONS}
-              selected={preferences.fontFamily}
-              onSelect={prefsApi.setFontFamily}
-              labelStyle={fontFamilyLabel}
-            />
-          </MenuControlRow>
           <MenuControlRow title="appearance">
             <SegmentedControl
               accessibilityLabel="appearance"
@@ -481,7 +460,7 @@ export const MenuSheet = memo(function MenuSheet({
             />
           </MenuControlRow>
 
-          <SectionLabel label="touch and alerts" />
+          <SectionLabel label="touch & alerts" />
           {/* The whole row is the target: a toggle-sized target alone is a
                 reach on a full-width row, and a screen reader gets one element
                 carrying the whole switch. */}
@@ -537,10 +516,10 @@ export const MenuSheet = memo(function MenuSheet({
             title="show tips again"
             // "tips" — the reader's word, and this row's. The code calls
             // them hints (HintId, HINT_COPY); no screen does.
-            description="The swipe and globe tips return as you read"
+            description="The tips return as you read"
             onPress={() => {
               resetOnboarding();
-              onToast?.('Tips will reappear as you read');
+              onToast?.('Tips return as you read');
               sheetRef.current?.dismiss();
             }}
           />
@@ -820,7 +799,7 @@ function MenuRootPage({
 
       <MenuRow
         title="settings"
-        hint="Text size, appearance, notifications, privacy, contact"
+        hint="Text size, appearance, haptics, notifications, data used, tips, about, privacy and contact"
         trailing="push"
         onPress={() => navPush('settings')}
       />
@@ -1051,7 +1030,7 @@ const HazardsRow = memo(function HazardsRow({
   const marks = [
     conflictCount > 0 ? counted(conflictCount, 'conflict event', 'conflict events') : null,
     hazards.famine.length > 0
-      ? counted(hazards.famine.length, 'famine area', 'famine areas')
+      ? counted(hazards.famine.length, 'hunger area', 'hunger areas')
       : null,
     hazards.disasters.length > 0
       ? counted(hazards.disasters.length, 'disaster', 'disasters')

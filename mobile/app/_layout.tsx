@@ -15,6 +15,7 @@ import { ThemeProvider, useTheme } from '../hooks/useTheme';
 import { registerBackgroundTask } from '../lib/background-fetch';
 import { clearLegacyScheduledNotifications, setupNotificationChannels } from '../lib/notifications';
 import { PERSIST_BUSTER, PERSIST_MAX_AGE_MS, persister, queryClient } from '../lib/query-client';
+import { dropRetiredFound } from '../lib/read-store';
 
 configureReanimatedLogger({ level: ReanimatedLogLevel.warn, strict: false });
 
@@ -54,6 +55,7 @@ export default function RootLayout() {
   useEffect(() => {
     void registerBackgroundTask();
     void clearLegacyScheduledNotifications();
+    dropRetiredFound();
     // Set up Android channels at startup so they exist before any push, even
     // if the user grants notification permission later via OS settings.
     void setupNotificationChannels().catch(() => {});

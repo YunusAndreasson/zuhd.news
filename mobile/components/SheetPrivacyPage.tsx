@@ -39,18 +39,18 @@ const SECTIONS: InfoSection[] = [
     // feed plus the eleven snapshots ~112 KB brotli cold, and 304s after
     // (ETags). Briefings are 64 kbps and ran 7.5–10 minutes: 3.6–4.8 MB.
     // It said 15 KB and 3 MB, and Settings counts decoded bytes.
-    body: 'The day’s stories are about 20 KB, compressed, and the map’s layers about 100 KB the first time; after that only what has changed is downloaded. There are no images to load. Audio briefings are the exception: about 4 MB each, downloaded only when you press listen. Settings shows what the app has fetched since you opened it, counted before compression, so it reads higher.',
+    body: 'The day’s stories are about 20 KB, compressed, and the map’s layers about 100 KB the first time; after that only what has changed is downloaded. There are no images to load. Audio briefings are the exception: about 4 MB each, downloaded only when you play one. Settings shows what the app has fetched since you opened it, the audio included, counted before compression, so it reads higher.',
   },
   {
     // Fragments, not a sentence. Six things joined by commas read as a
     // legal inventory; the same six as separate statements read as an
     // answer — and match the cadence of "No ads. No tracking." above.
     heading: 'on this device',
-    // Checked against the stores 2026-09-25: the chart-history store went
-    // on 09-13, `found` is any story opened, and `read-store` keeps which
-    // stories, not a count. Erase keeps display settings and the
-    // notification choice, so "all of it" was not true either.
-    body: 'Saved stories. Which stories were already here last time, so the new ones can be marked. Which stories you have opened and read. When you last left the app. Your place in a briefing. Which tips you have seen. Your display settings. A cached copy of the latest stories and map data, so they open without a connection and an unchanged file is not downloaded twice. The last briefing you listened to, once it has downloaded.\n\nNone of it leaves the device. You can erase it below.',
+    // Every key `wipe.ts` erases, in words: `read-store` keeps which stories,
+    // not a count, and the rating prompt keeps a count of swipes. Erase keeps
+    // display settings and the notification choice, so "all of it" is not
+    // said.
+    body: 'Saved stories. Which stories were already here last time, so the new ones can be marked. Which stories you have read. When you last left the app. Your place in a briefing. Which tips you have seen. How many stories you have swiped through, and when the app last asked for a rating, so it asks at most once in three months. Your display settings. A cached copy of the latest stories and map data, so they open without a connection and an unchanged file is not downloaded twice. The last briefing you listened to, once it has downloaded.\n\nNone of it leaves the device. You can erase it below.',
   },
   {
     // Written to make opting in feel as safe as it actually is, because it
@@ -120,9 +120,9 @@ function EraseControl({ onDone }: { onDone?: (message: string) => void }) {
         erase local data
       </Text>
       <Text selectable variant="body">
-        Removes your saved stories, which stories you have opened and read, your place in a briefing
-        and its audio, the tips you have seen, and the cached stories and map data. Display settings
-        and your notification choice stay.
+        Removes your saved stories, which stories you have read, your place in a briefing and its
+        audio, the tips you have seen, the rating count, and the cached stories and map data.
+        Display settings and your notification choice stay.
       </Text>
       <Pressable
         onPress={handlePress}

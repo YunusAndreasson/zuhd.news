@@ -28,9 +28,8 @@ import { IS_ANDROID } from '../constants/platform';
 //                  briefing can be playing while the track is scrubbed.
 //
 //   notification → notificationAsync / CONFIRM (REJECT for an error)
-//                  State committed: saved, removed, undone, erased, caught up,
-//                  the last story on the globe found. `hapticError` when it
-//                  could not be done.
+//                  State committed: saved, removed, undone, erased, caught up.
+//                  `hapticError` when it could not be done.
 //
 // Android goes through `View.performHapticFeedback` only
 // (`performAndroidHapticsAsync`): it follows the system's touch-feedback

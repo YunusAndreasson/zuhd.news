@@ -17,7 +17,6 @@ import { nearestIndex } from '../../lib/arrays';
 import { CONTROL_ROW } from '../../lib/deck-layout';
 import { largeContent } from '../../lib/large-content';
 import { useReadSlugs } from '../../lib/read-store';
-import type { FoundProgress } from '../../lib/story-places';
 import { positionAt, runMarks, timeTrackLayout } from '../../lib/time-track';
 import { Icon, IconButton, Text } from '../primitives';
 import { MARK_LABEL_WIDTH, ScrubBar, ScrubTooltip } from '../ScrubBar';
@@ -82,7 +81,6 @@ export const StoryDock = memo(function StoryDock({
   committedPosition,
   onScrubSeek,
   requestEpoch,
-  progress,
   onSeek,
   onClaim,
   timeAt,
@@ -108,8 +106,6 @@ export const StoryDock = memo(function StoryDock({
   committedPosition?: SharedValue<number>;
   onScrubSeek?: (index: number, slug?: string, cameraEpoch?: number) => void;
   requestEpoch?: SharedValue<number>;
-  /** Found on the globe — spoken, not printed. */
-  progress?: FoundProgress;
   /** Jump to a story from the track. */
   onSeek?: (index: number) => void;
   /** UI worklet: a scrub supersedes pending camera input immediately. */
@@ -348,11 +344,10 @@ export const StoryDock = memo(function StoryDock({
 
   // A tick is a ruler's, quieter than the words under it.
   const markInk = mixHex(colors.textSecondary, colors.sheetBg, 0.45);
-  const found = progress?.found ?? 0;
   const freshTotal = fresh?.reduce((n, isFresh) => (isFresh ? n + 1 : n), 0) ?? 0;
   const readTotal = read?.reduce((n, isRead) => (isRead ? n + 1 : n), 0) ?? 0;
   const when = index < count ? timeAt(index) : '';
-  const spoken = `${index >= count ? `End of all ${count} stories` : `Story ${index + 1} of ${count}`}${when ? `, ${when}` : ''}${freshTotal > 0 ? `, ${freshTotal} new` : ''}${readTotal > 0 ? `, ${readTotal} read` : ''}${found > 0 ? `, ${found} found on the globe` : ''}`;
+  const spoken = `${index >= count ? `End of all ${count} stories` : `Story ${index + 1} of ${count}`}${when ? `, ${when}` : ''}${freshTotal > 0 ? `, ${freshTotal} new` : ''}${readTotal > 0 ? `, ${readTotal} read` : ''}`;
 
   const inset = Math.max(SPACING.articlePadding, insets.left);
   return (
@@ -441,14 +436,14 @@ export const StoryDock = memo(function StoryDock({
             accessibilityRole="adjustable"
             // Where you are is the value, not the name, so VoiceOver reads the
             // new position after each adjustment.
-            accessibilityLabel="Today's stories"
+            accessibilityLabel="Today’s stories"
             accessibilityValue={{
               min: 1,
               max: count,
               now: Math.min(index + 1, count),
               text: spoken,
             }}
-            accessibilityHint="The newest stories are at the left and the oldest at the right. Drag along it to move through the day's stories"
+            accessibilityHint="The newest stories are at the left and the oldest at the right. Drag along it to move through the day’s stories"
             accessibilityActions={ADJUST_ACTIONS}
             onAccessibilityAction={handleAdjust}
           >

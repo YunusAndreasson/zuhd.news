@@ -107,7 +107,6 @@ import {
   openStoryHeight,
   readingWidth,
 } from '../lib/deck-layout';
-import { getSnapshot as getFound, markFound, pruneFound, useFoundSlugs } from '../lib/found-store';
 import { markLanded, spendNew, useFreshSlugs } from '../lib/fresh-store';
 import { globeGdacsAlerts } from '../lib/gdacs';
 import { arcDegrees, crossingFlies } from '../lib/globe-camera';
@@ -122,7 +121,7 @@ import {
 } from '../lib/instrument-catalog';
 import { buildStoryRows, cameraTrackOf, type StoryRow } from '../lib/map-feed';
 import { coverageStory, mapCandidates } from '../lib/map-selection';
-import { exchangeCard, exchangeIsStale, exchangesOf } from '../lib/markets';
+import { exchangeCard, exchangeIsStale, exchangesOf, stockMarketPlace } from '../lib/markets';
 import type { MenuHazards } from '../lib/menu-hazards';
 import { orderNewsRiver, type RiverArticle, recentRiver, riverAnchor } from '../lib/news-order';
 import {
@@ -132,6 +131,7 @@ import {
   type NowItem,
   STRIP_SLOTS,
   type StripItem,
+  stripLabel,
 } from '../lib/now';
 import {
   getSnapshot as getOnboarding,
@@ -141,12 +141,12 @@ import {
 import { openExternal } from '../lib/open-link';
 import type { OverlaySelection } from '../lib/overlays';
 import { oddsByStory, oddsLabels, type StoryOdds } from '../lib/predictions';
-import { getSnapshot as getReadSlugs, pruneRead } from '../lib/read-store';
+import { getSnapshot as getReadSlugs, markRead, pruneRead } from '../lib/read-store';
 import { refreshFailedToast } from '../lib/refresh-toast';
 import { resumeLanding, unreadNewBehind } from '../lib/resume-landing';
-import { maybeRequestReview } from '../lib/store-review';
+import { maybeRequestReview, recordStorySwipe } from '../lib/store-review';
 import { storyCharts } from '../lib/story-chart';
-import { buildStoryPlaces, completesFound, foundProgress } from '../lib/story-places';
+import { buildStoryPlaces } from '../lib/story-places';
 import { storyShare } from '../lib/story-share';
 import { countryTap, type TapResult } from '../lib/tap-result';
 
@@ -206,9 +206,9 @@ interface FocusOptions {
   afterBurst?: boolean;
   /** Grow the card into the whole story. */
   grow?: boolean;
-  /** A coverage glow was tapped: found as a tapped light is, with no burst
+  /** A coverage glow was tapped: read as a tapped light is, with no burst
    *  to wait for. */
-  find?: boolean;
+  read?: boolean;
 }
 
 /**
@@ -297,11 +297,10 @@ export default function HomeScreen() {
   /** The story in front of the deck. The end card is `storyRows.length`. */
   const [deckIndex, setDeckIndex] = useState(0);
   const deckIndexRef = useRef(0);
-  /** A swipe let go whose card has not landed: where it is heading, and the
-   *  story to record as found when it lands (it was let go with a story
-   *  open). `deckIndexRef` is already there; `deckIndex` follows at the
-   *  landing (`handleDeckLanded`). */
-  const releasedRef = useRef<{ index: number; find: string | null } | null>(null);
+  /** A swipe let go whose card has not landed: where it is heading.
+   *  `deckIndexRef` is already there; `deckIndex` follows at the landing
+   *  (`handleDeckLanded`). */
+  const releasedRef = useRef<{ index: number } | null>(null);
   /** `useReadTracking`'s restart, for a handler declared before the hook. */
   const restartDwellRef = useRef<() => void>(() => {});
   /** The slug in front, so a refresh that inserts stories keeps the reader on
@@ -631,9 +630,11 @@ export default function HomeScreen() {
         return {
           id: card.id,
           // The card's title, not the raw field: it carries the display name
-          // (`S&P/BMV IPC`, never the famine scale's `IPC`).
+          // (`S&P/BMV IPC`, never the hunger scale's `IPC`). The mark prints
+          // `short`, the strip's words (`Turkey stocks`): an index's name is a
+          // code a reader can read only if they already know it.
           label: card.title,
-          short: card.title,
+          short: stripLabel(card, stockMarketPlace(exchange.iso2)),
           reading: card.reading,
           // The strip's number, the past seven days: the mark the strip's slot
           // flies to reads what the slot read (`exchangeMove`).
@@ -652,7 +653,7 @@ export default function HomeScreen() {
       mapMarkets.map((item) => ({
         id: item.id,
         // Two lines on the globe: the name, then the move under it, larger.
-        label: item.label,
+        label: item.short,
         // As a strait's does (`markMove`), an asterisk on an older quote.
         move: `${markMove(item.delta)}${item.stale ? '*' : ''}`,
         direction: item.delta.direction,
@@ -679,24 +680,21 @@ export default function HomeScreen() {
   );
 
   // ---------------------------------------------------------------------
-  // Finding the news
+  // The news on the globe
   //
-  // Every story on the globe is a light until the reader opens it — by
-  // tapping its mark, or by reading its card grown — and a found story's mark
-  // is no longer drawn. Swiping past a card at rest does not find it: thirty
-  // seconds of swiping would otherwise empty the globe. `lib/found-store.ts`
-  // holds the set; `lib/story-places.ts` groups the river into the places the
-  // marks stand for.
+  // Every story is a light until the reader has read it, and a place whose
+  // stories are all read keeps a hollow ring. Read is the one notion of seen
+  // the screen has: the dock's hairlines, `caught up` and the globe's rings
+  // all come from `lib/read-store.ts`, so no two of them can disagree. The
+  // globe subscribes to it itself (`MiniGlobe`); `lib/story-places.ts`
+  // groups the river into the places the marks stand for.
   // ---------------------------------------------------------------------
-  const foundSlugs = useFoundSlugs();
   const places = useMemo(() => buildStoryPlaces(storyRows), [storyRows]);
-  const progress = useMemo(() => foundProgress(storyRows, foundSlugs), [storyRows, foundSlugs]);
 
   // Against the loaded river only: pruning against an empty one is exactly the
   // partial-payload wipe the store's age guard exists to refuse.
   useEffect(() => {
     if (river.length === 0) return;
-    pruneFound(new Set(river.map((a) => a.slug)));
     pruneRead(new Set(river.map((a) => a.slug)));
   }, [river]);
 
@@ -794,39 +792,13 @@ export default function HomeScreen() {
   // The deck
   // ---------------------------------------------------------------------
   /**
-   * Record a find, and mark the day complete once — with the one success
-   * haptic the game has — when it was the last light on the globe. Says
-   * whether it gave that haptic, so a swipe landing there gives no other.
-   * `haptic` is off for a swipe's landing: its lift already gave it
-   * (`handleDeckRelease`, by `completesFound`).
-   */
-  const findStory = useCallback((slug: string, haptic = true): boolean => {
-    // Asked before the store is written, and of the same function the lift
-    // asks (`handleDeckRelease`): a story with no place completes nothing.
-    const completes = completesFound(storyRowsRef.current, getFound(), slug);
-    if (!markFound(slug) || !completes) return false;
-    const { total } = foundProgress(storyRowsRef.current, getFound());
-    if (haptic) hapticNotification();
-    toastRef.current?.show(
-      `All ${total} found · new stories arrive through the day`,
-      undefined,
-      'top',
-    );
-    return true;
-  }, []);
-
-  /**
    * Forget a swipe whose landing will not be reported, because the deck is
    * being moved again first (a jump, a scrub, a feed that shifted the
-   * indices). Its find is recorded here: the lift already gave that find's
-   * haptic, and dropped with the release the story stayed lit and the day's
-   * last find was never said.
+   * indices).
    */
   const dropRelease = useCallback(() => {
-    const released = releasedRef.current;
     releasedRef.current = null;
-    if (released?.find) findStory(released.find, false);
-  }, [findStory]);
+  }, []);
 
   /**
    * Put a story in front of the deck — a tap on its light, a row in the list,
@@ -836,11 +808,11 @@ export default function HomeScreen() {
    * the thirtieth would send the camera through twenty-nine datelines. The
    * camera is held where it is (`cameraOwner = 1`) the instant the position
    * jumps, then flies. For a tapped light the order is the interaction: the
-   * store records the find first, so the next reprojection drops the mark on
-   * the frame the burst starts over it; the card swaps at once, so the words
-   * arrive with the burst; and the camera waits for the burst to finish, so
-   * the colour plays where the mark was instead of being dragged across the
-   * earth.
+   * story is read first — opening a story is reading it, without the dwell —
+   * so the next reprojection drops the mark on the frame the burst starts
+   * over it; the card swaps at once, so the words arrive with the burst; and
+   * the camera waits for the burst to finish, so the colour plays where the
+   * mark was instead of being dragged across the earth.
    */
   const focusStory = useCallback(
     (slug: string, options: FocusOptions = {}) => {
@@ -862,7 +834,7 @@ export default function HomeScreen() {
       pendingFocusRef.current = null;
       const row = storyRowsRef.current[index];
       dropRelease();
-      if (options.afterBurst || options.grow || options.find) findStory(slug);
+      if (options.afterBurst || options.grow || options.read) markRead(slug);
       cameraClaimedRef.current = true;
 
       const coords = row?.coords ?? null;
@@ -894,7 +866,6 @@ export default function HomeScreen() {
     },
     [
       dropRelease,
-      findStory,
       flyToStory,
       framingFor,
       holdCamera,
@@ -1087,7 +1058,7 @@ export default function HomeScreen() {
       // No haptic here: a press never gives one, and a globe tap has already
       // had its hit (`onImpact` on the tap layer).
       // Any path here — globe tap, marker tap, or inline country link — proves
-      // the reader found the map layer; the globe hint retires on all of them.
+      // the reader has met the map layer; the globe hint retires on all of them.
       markHintDone('globe');
       cameraClaimedRef.current = true;
       const candidates = mapCandidates(result.candidates ?? [result], {
@@ -1143,15 +1114,15 @@ export default function HomeScreen() {
         }
         return;
       }
-      // A coverage glow opens its newest unfound story just like a beacon.
+      // A coverage glow opens its newest unread story just like a beacon.
       // Heatmap history can outlive the river: in that case the country is
       // still useful, but a toast must never promise a story it cannot open.
       if (result.isHotspot) {
-        const slug = coverageStory(result, storyRowsRef.current, getFound());
+        const slug = coverageStory(result, storyRowsRef.current, getReadSlugs());
         if (slug) {
-          // Found, or the next tap on the glow would pick this story again
-          // and never reach the one under it.
-          focusStory(slug, { cameraEpoch, find: true });
+          // Read at once, or the next tap on the glow would pick this story
+          // again and never reach the one under it.
+          focusStory(slug, { cameraEpoch, read: true });
           return;
         }
         if (!result.countryName) {
@@ -1349,9 +1320,7 @@ export default function HomeScreen() {
       deckIndexRef.current = index;
       const row = storyRowsRef.current[index];
       currentSlugRef.current = row?.slug ?? null;
-      // Reading a story grown is opening it; swiping past one at rest is not.
-      const find = row && sheetDetentRef.current === 'full' ? row.slug : null;
-      releasedRef.current = { index, find };
+      releasedRef.current = { index };
       // The next swipe's claim reads the front before `deckIndex` has moved.
       setCameraFront(row?.coords ?? null);
       // The story being left is still the one in front until the landing, and
@@ -1361,14 +1330,9 @@ export default function HomeScreen() {
       // actions, and the card that replaces the one it was reading has no
       // focus to announce itself.
       if (row?.title) announce(row.title);
-      // One landing, one haptic: caught up or every story found says more
-      // than the swipe does, so either takes its place.
-      let said = false;
-      if (row?.mark === 'earlier') said = handleCaughtUp();
-      if (find && completesFound(storyRowsRef.current, getFound(), find)) {
-        hapticNotification();
-        said = true;
-      }
+      // One landing, one haptic: caught up says more than the swipe does, so
+      // it takes its place.
+      const said = row?.mark === 'earlier' && handleCaughtUp();
       if (!said) hapticSwipe();
       if (row?.coords) {
         const framing = framingFor(index);
@@ -1397,18 +1361,19 @@ export default function HomeScreen() {
    * then would put React on one story with the cards on another; a jump or a
    * scrub also lands the deck, and neither is a swipe.
    */
-  const handleDeckLanded = useCallback(
-    (index: number) => {
-      const released = releasedRef.current;
-      if (released?.index !== index || deckIndexRef.current !== index) return;
-      releasedRef.current = null;
-      setDeckIndex(index);
-      recordArticleSnap();
-      maybeRequestReview();
-      if (released.find) findStory(released.find, false);
-    },
-    [findStory],
-  );
+  const handleDeckLanded = useCallback((index: number) => {
+    const released = releasedRef.current;
+    if (released?.index !== index || deckIndexRef.current !== index) return;
+    releasedRef.current = null;
+    setDeckIndex(index);
+    recordArticleSnap();
+    void recordStorySwipe();
+    // The rating ask waits for the end of the day's stories, where reading
+    // has stopped by itself, and never in a session that already asked
+    // about notifications.
+    if (index >= storyRowsRef.current.length && !primerTriedRef.current && !sheetOpenRef.current)
+      void maybeRequestReview();
+  }, []);
 
   const goToStory = useCallback(
     (index: number) => {
@@ -1452,10 +1417,11 @@ export default function HomeScreen() {
       setSheetDetent(detent);
       if (detent !== 'full') return;
       dismissActiveHint();
+      // Opening a story is reading it, without waiting out the dwell.
       const row = storyRowsRef.current[deckIndexRef.current];
-      if (row) findStory(row.slug);
+      if (row) markRead(row.slug);
     },
-    [dismissActiveHint, findStory],
+    [dismissActiveHint],
   );
 
   const handleMastheadAlertPress = useCallback(() => {
@@ -2042,7 +2008,6 @@ export default function HomeScreen() {
         position={storyProgress}
         committedPosition={storyCommitted}
         onScrubSeek={goToScrubbedStory}
-        progress={progress}
         onSeek={goToStory}
         timeAt={storyTimeAt}
         categoryAt={storyCategoryAt}
@@ -2075,7 +2040,6 @@ export default function HomeScreen() {
       frontIndex,
       storyCount,
       storyProgress,
-      progress,
     ],
   );
 
@@ -2117,8 +2081,6 @@ export default function HomeScreen() {
           marketMarks={marketMarks}
           marketViewport={marketViewport}
           places={places}
-          foundSlugs={foundSlugs}
-          foundProgress={progress}
           famineAreas={famineAreas}
           thermalEvents={thermalEvents}
           genocideSituations={genocideSituations}

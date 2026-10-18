@@ -43,20 +43,6 @@ function isolated<T>(load: () => T): T {
 
 const STORES: { name: string; key: string; load: () => Store }[] = [
   {
-    name: 'found-store',
-    key: 'zuhd_found_v1',
-    load: () => {
-      const s: typeof import('../lib/found-store') = isolated(() => require('../lib/found-store'));
-      return {
-        mark: s.markFound,
-        prune: s.pruneFound,
-        clear: s.clearFound,
-        flush: s.flushFound,
-        getSnapshot: s.getSnapshot,
-      };
-    },
-  },
-  {
     name: 'read-store',
     key: 'zuhd_read_v1',
     load: () => {

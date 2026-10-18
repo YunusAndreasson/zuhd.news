@@ -3,10 +3,10 @@ import type { File } from 'expo-file-system';
 /**
  * What every local store here repeats.
  *
- * `bookmark-store`, `found-store` and `onboarding-store` each carried their own
- * copy of a listener set for `useSyncExternalStore` and a debounced synchronous
- * write flushed when the app backgrounds — and `found-store`'s header said
- * "same shape as `bookmark-store.ts`" instead of sharing it. Deleting the file
+ * The bookmark, onboarding and story-set stores each carried their own copy of
+ * a listener set for `useSyncExternalStore` and a debounced synchronous write
+ * flushed when the app backgrounds, one header saying "same shape as
+ * `bookmark-store.ts`" instead of sharing it. Deleting the file
  * an older build kept a store in joined them for the same reason.
  *
  * **Nothing here imports at run time**, and that is load-bearing: the data

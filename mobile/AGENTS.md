@@ -147,8 +147,8 @@ test is the rule.
 - No `localeCompare`, `Intl` or `toLocale*` in per-frame code. Compare with
   `<`; format a time through the cached `formatLocalTime`.
 - Subscribe to a store in the component that shows it. `HomeScreen` takes only
-  the `fresh` and `found` sets; the read store is `StoryDock`'s. The screen
-  reads the network as one boolean (`useOffline`).
+  the `fresh` set; the read store is `StoryDock`'s and `MiniGlobe`'s. The
+  screen reads the network as one boolean (`useOffline`).
 - Reduce Motion is Reanimated's default (`ReduceMotion.System`): no
   `useReducedMotion()` branch for a Reanimated animation. The exceptions and
   the spring rules are in `DESIGN.md` (Motion).

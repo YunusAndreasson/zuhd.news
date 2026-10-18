@@ -101,9 +101,9 @@ export const RIVER_WINDOW_MS = DAY_MS;
 /**
  * The last day of the river, preserving its order.
  *
- * The feed carries several days of stories, and swiping, the globe's lights,
- * the found ring and the list all read the same river, so a story from three
- * days ago was one more card to swipe past and one more light to find. The
+ * The feed carries several days of stories, and swiping, the globe's lights
+ * and the track all read the same river, so a story from three days ago was
+ * one more card to swipe past and one more light to read. The
  * window is measured on the time each card prints (`articleTime`): a day of
  * what zuhd published.
  *

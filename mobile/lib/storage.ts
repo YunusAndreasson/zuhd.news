@@ -35,11 +35,14 @@ export async function saveLastSeenAt(ts: number): Promise<void> {
 }
 
 /** Stored preferences over the defaults, or null when they do not parse into
- *  valid preferences. */
+ *  valid preferences. Only the keys a preference still has are kept: a typeface
+ *  choice saved by an older build is dropped the next time they are saved. */
 function parsePreferences(text: string): Preferences | null {
   try {
     const merged = { ...DEFAULT_PREFS, ...JSON.parse(text) };
-    return isPreferences(merged) ? merged : null;
+    if (!isPreferences(merged)) return null;
+    const { fontSize, appearance, haptics, notifications } = merged;
+    return { fontSize, appearance, haptics, notifications };
   } catch {
     return null;
   }

@@ -10,7 +10,8 @@ loads with the files it covers; this document is what things look like.
 ## Voice
 
 - Hierarchy comes from type and whitespace, not from colour.
-- Colour carries meaning only. `dome` gold is the one brand accent.
+- Colour carries meaning only. `dome` gold is the one brand accent: Makkah's
+  light and the search caret, never text.
 - Quiet is an ink step (`text`, `accent`, `textSecondary`), never opacity.
 - A kicker's status word (`new`, `earlier`, `current`) is an ink step, never
   a move's colour.
@@ -40,8 +41,8 @@ one exception.
 
 - A move is green up, red down and slate unmoved. `moveTone`
   (`lib/valence.ts`) decides wherever a `DeltaChip` prints one, returning
-  `rise`, `fall` or `neutral`; the globe's marks draw up and down in the same
-  two inks. A second colour rule is the regression.
+  `rise`, `fall` or `neutral`; the globe's marks and their glyphs draw all
+  three in the same inks. A second colour rule is the regression.
 - A move outside the card's chip takes the same colour: a figure row's is a
   chip of its own (`CardFigure.delta`), one in a caption line is tinted by
   `MoveCaption`. Never a contract's.
@@ -55,6 +56,9 @@ one exception.
   `toneUnfavorableText` only to a Red GDACS alert or a conflict event with
   deaths. Lower tiers are monochrome.
 - A chart's reference line is secondary ink, dashed, never gold or rose.
+- A rank is a place, never a medal: its digits are secondary ink and its strip
+  a dot on a rule (`PercentileStrip`), whatever the measure. Rank one is the
+  largest value, which is not always the better one.
 
 ## Primitives — `components/primitives/`
 
@@ -88,7 +92,6 @@ a primitive at the third caller.
 | `labelXsTight` | One caps line beside its move: the gauges |
 | `tabular`, `tabularEmphasis` | Time and count readouts; scrub tooltips |
 | `sectionHeading` | The italic line over a group of sources |
-| `wordmark` | The app's wordmark |
 
 - UI copy is typed as it prints (`today’s`); a straight `'` on screen is a
   bug.

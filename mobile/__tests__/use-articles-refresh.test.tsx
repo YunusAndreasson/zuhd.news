@@ -38,7 +38,6 @@ jest.mock('../lib/storage', () => ({
   saveLastSeenAt: jest.fn(),
 }));
 jest.mock('../lib/bookmark-store', () => ({ flushBookmarks: jest.fn() }));
-jest.mock('../lib/found-store', () => ({ flushFound: jest.fn() }));
 jest.mock('../lib/read-store', () => ({ flushRead: jest.fn() }));
 jest.mock('../lib/onboarding-store', () => ({ flushOnboarding: jest.fn() }));
 jest.mock('../lib/fresh-store', () => ({ noteFeed: jest.fn(), flushKnown: jest.fn() }));

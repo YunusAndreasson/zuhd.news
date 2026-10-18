@@ -28,10 +28,10 @@ export interface TapResult {
    *  parent resolves it against the ranked instruments and opens the card. */
   marketSignalId?: string;
   /** Set when the tap landed on a story mark: the newest story at that place
-   *  the reader has not found yet. The parent opens it in the sheet, and the
-   *  mark stops being drawn once the found store records it. */
+   *  the reader has not read yet. The parent opens it in the sheet, and the
+   *  mark stops being drawn once the read store records it. */
   storySlug?: string;
-  /** The tapped mark's hue, so the found burst is drawn in the same colour. */
+  /** The tapped mark's hue, so its burst is drawn in the same colour. */
   storyColor?: string;
   /** An IPC famine classification — opens `OverlaySheet`. */
   famineAreaId?: string;

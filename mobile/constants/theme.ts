@@ -8,12 +8,10 @@ import { ANDROID_TEXT_BASE } from './platform';
 // ---------------------------------------------------------------------------
 
 export type FontSize = 'small' | 'default' | 'large';
-export type FontFamily = 'source' | 'system';
 export type AppearanceMode = 'dark' | 'system' | 'light';
 
 export interface Preferences {
   fontSize: FontSize;
-  fontFamily: FontFamily;
   appearance: AppearanceMode;
   haptics: boolean;
   notifications: boolean;
@@ -21,7 +19,6 @@ export interface Preferences {
 
 export const DEFAULT_PREFS: Preferences = {
   fontSize: 'default',
-  fontFamily: 'source',
   appearance: 'dark',
   haptics: true,
   notifications: false,
@@ -89,7 +86,7 @@ export const DARK_COLORS = {
   accent: '#b3b3b3',
   rule: '#2e2e2e',
   textEmphasis: '#FAFAFA',
-  dome: '#c9a84c', // Dome of the Rock gold — the only chromatic accent in the app
+  dome: '#c9a84c', // Dome of the Rock gold: Makkah's light and the search caret, never text
   sheetBg: '#161619',
   // 0.88 alpha keeps `labelSm` text WCAG AA across the brightest composites
   // on the globe (over a `colors.dome` hotspot glow). The base luminance
@@ -202,11 +199,10 @@ export const LIGHT_COLORS = {
   rule: '#cfcac2',
   textEmphasis: '#1a1a1a',
   // Dome darkens significantly on cream — the dark-mode #c9a84c gold sits
-  // at ~2:1 against `bg`, invisible as foreground text. Shifting to a
-  // deeper bronze-gold (~5:1 on bg) preserves the warm signature while
-  // clearing AA for the top-rank rows in CountrySheet/CountryRankingView
-  // that color text via `tone="dome"`. The single-gold rule from
-  // foundation.md is honored — both modes still use one gold, hue-aligned.
+  // at ~2:1 against `bg`, invisible on it. A deeper bronze-gold (~5:1 on bg)
+  // keeps Makkah's light and the search caret seen. No text is set in it:
+  // gold on a rank read as a medal. Both modes still use one gold,
+  // hue-aligned.
   dome: '#7a5e1a',
   sheetBg: '#eae6e0',
   pillBg: 'rgba(226,222,216,0.88)',
@@ -484,7 +480,6 @@ export function makeTypography(sizeScale: number = 1, widthScale: number = 1) {
     sizeSm: fs(13, widthScale, sizeScale),
     sizeXs: fs(11, widthScale, sizeScale),
     sizeH1: fs(28, widthScale, sizeScale),
-    sizeWordmark: fs(14, widthScale, sizeScale),
 
     // Compact prose leading keeps the reading column comfortable without
     // making short articles unnecessarily tall; font size stays unchanged.
@@ -501,7 +496,6 @@ export function makeTypography(sizeScale: number = 1, widthScale: number = 1) {
      *  about that on the 11pt labels that carry most of it, and less on the
      *  larger tiers, which need it less. */
     trackingCaps: 0.6,
-    trackingWordmark: -0.3,
     /** Editorial H1 tracking — slight negative letterspacing tightens bold
      *  large text so headlines read with publication weight rather than
      *  feeling airy. Subtle: -0.3 at 28pt is ≈1% kern. */
@@ -518,14 +512,7 @@ const typographies = new Map<string, Typography>();
  *  the theme, so a rotation does not re-render every reader of the theme. */
 export function typographyFor(sizeScale: number, widthScale: number): Typography {
   const next = makeTypography(sizeScale, widthScale);
-  const key = [
-    next.sizeBase,
-    next.sizeLg,
-    next.sizeSm,
-    next.sizeXs,
-    next.sizeH1,
-    next.sizeWordmark,
-  ].join();
+  const key = [next.sizeBase, next.sizeLg, next.sizeSm, next.sizeXs, next.sizeH1].join();
   const known = typographies.get(key);
   if (known) return known;
   typographies.set(key, next);
@@ -600,7 +587,7 @@ export const MAX_FONT_SCALE = {
    *  widest one, not fixed. At 1.0 every move stayed 11pt beside a reading
    *  that grew. */
   tabular: 1.3,
-  /** UI chrome — pills, buttons, wordmark */
+  /** UI chrome — pills, buttons */
   chrome: 1.3,
   /** Text in a slot set in points, which cannot grow: the dock's hour marks */
   fixed: 1.0,
@@ -994,14 +981,6 @@ export function makeTextVariants(colors: ColorPalette, font: FontSet, typography
       lineHeight: typography.sizeSm * typography.leadingBody,
       color: colors.accent,
     } as TextStyle,
-    /** App wordmark — header chrome */
-    wordmark: {
-      ...font.bold,
-      ...ANDROID_TEXT_BASE,
-      fontSize: typography.sizeWordmark,
-      letterSpacing: typography.trackingWordmark,
-      color: colors.text,
-    } as TextStyle,
   };
 }
 
@@ -1027,7 +1006,6 @@ export const VARIANT_CAP: Record<TextVariant, number> = {
   tabular: MAX_FONT_SCALE.tabular,
   tabularEmphasis: MAX_FONT_SCALE.tabular,
   sectionHeading: MAX_FONT_SCALE.body,
-  wordmark: MAX_FONT_SCALE.chrome,
 };
 
 /** Line-breaking and Dynamic Type behavior per typographic role. Variants
@@ -1047,8 +1025,7 @@ export const VARIANT_CAP: Record<TextVariant, number> = {
  *    multiplier. `VARIANT_CAP` still clamps the extremes.
  *
  *  Platform-suffixed props are ignored on the other platform — safe to set
- *  unconditionally. `wordmark` is deliberately absent: fixed chrome, never
- *  wraps, never scales past its cap. */
+ *  unconditionally. */
 export const PROSE_BREAK_PROPS = {
   android_hyphenationFrequency: 'normal',
   lineBreakStrategyIOS: 'standard',
@@ -1093,7 +1070,6 @@ export type TextTone =
   | 'secondary'
   | 'accent'
   | 'emphasis'
-  | 'dome'
   | 'favorable'
   | 'unfavorable'
   | 'neutral'
@@ -1117,8 +1093,6 @@ export function toneColor(tone: TextTone, colors: ColorPalette): string | undefi
       return colors.accent;
     case 'emphasis':
       return colors.textEmphasis;
-    case 'dome':
-      return colors.dome;
     case 'favorable':
       return colors.toneFavorableText;
     case 'unfavorable':

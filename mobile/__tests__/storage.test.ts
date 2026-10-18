@@ -59,7 +59,6 @@ function loadStorage(): StorageModule {
 
 const customPrefs: Preferences = {
   fontSize: 'large',
-  fontFamily: 'system',
   appearance: 'light',
   haptics: false,
   notifications: true,
@@ -80,6 +79,12 @@ describe('SQLite-backed UX storage', () => {
 
     await expect(loadStorage().getPreferences()).resolves.toEqual(customPrefs);
     expect(mockDeleteSecure).not.toHaveBeenCalled();
+  });
+
+  it('keeps a reader’s settings saved with the retired typeface choice, without it', async () => {
+    mockKv.set('zuhd_preferences_v2', JSON.stringify({ ...customPrefs, fontFamily: 'system' }));
+
+    await expect(loadStorage().getPreferences()).resolves.toEqual(customPrefs);
   });
 
   it('migrates valid file preferences into SQLite', async () => {

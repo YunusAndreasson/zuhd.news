@@ -377,7 +377,6 @@ export const isPreferences = (v: unknown): v is Preferences => {
   if (!isObject(v)) return false;
   return (
     (v.fontSize === 'small' || v.fontSize === 'default' || v.fontSize === 'large') &&
-    (v.fontFamily === 'source' || v.fontFamily === 'system') &&
     (v.appearance === 'dark' || v.appearance === 'light' || v.appearance === 'system') &&
     typeof v.haptics === 'boolean' &&
     typeof v.notifications === 'boolean'
@@ -390,7 +389,7 @@ export const isBookmark = (v: unknown): v is Bookmark =>
 export const isBookmarkArray = (v: unknown): v is Bookmark[] =>
   Array.isArray(v) && v.every(isBookmark);
 
-/** A slug → when map, as the found, read and known stores persist it. */
+/** A slug → when map, as the read and known stores persist it. */
 export const isTimestampMap = (v: unknown): v is Record<string, number> =>
   isObject(v) && Object.values(v).every((at) => typeof at === 'number');
 

@@ -558,7 +558,7 @@ describe('AI models', () => {
     });
     expect(groups.map((g) => g.key)).toEqual(['crypto', 'ai']);
     const list = group(groups, 'ai');
-    expect(list?.title).toBe('ai models');
+    expect(list?.title).toBe('AI models');
     expect(list?.rows.map((r) => r.id)).toEqual(['ai:alpha', 'ai:beta']);
     for (const row of list?.rows ?? []) {
       expect(row.weekly).toBe(false);

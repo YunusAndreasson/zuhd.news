@@ -27,9 +27,9 @@ const glow = {
   hotspotCoords: [50, 20] as const,
 };
 
-it('selects the newest unfound match across every coverage label, regardless of category order', () => {
-  const rows = [row('old', 1), row('newest', 3), row('unfound', 2)];
-  expect(coverageStory(glow, rows, new Set(['newest']))).toBe('unfound');
+it('selects the newest unread match across every coverage label, regardless of category order', () => {
+  const rows = [row('old', 1), row('newest', 3), row('unread', 2)];
+  expect(coverageStory(glow, rows, new Set(['newest']))).toBe('unread');
   expect(coverageStory(glow, rows, new Set(rows.map((r) => r.slug)))).toBe('newest');
 });
 

@@ -1,12 +1,6 @@
 import type { StoryRow } from '../lib/map-feed';
 import type { RiverArticle } from '../lib/news-order';
-import {
-  buildStoryPlaces,
-  completesFound,
-  foundProgress,
-  topUnfound,
-  unfoundSlugs,
-} from '../lib/story-places';
+import { buildStoryPlaces, topUnread, unreadSlugs } from '../lib/story-places';
 
 function row(
   slug: string,
@@ -89,35 +83,17 @@ describe('buildStoryPlaces', () => {
     fresh.article.category = 'tech';
     const places = buildStoryPlaces([old, fresh]);
     expect(places[0]).toMatchObject({ key: 'new-tech', slugs: ['new-tech', 'old-politics'] });
-    expect(topUnfound(places[0]!, new Set())).toBe('new-tech');
+    expect(topUnread(places[0]!, new Set())).toBe('new-tech');
   });
 });
 
-describe('found helpers', () => {
+describe('read helpers', () => {
   const place = { key: 'a', lat: 0, lng: 0, slugs: ['a', 'b', 'c'] };
 
-  it('opens the newest unfound story and counts what is left', () => {
-    expect(topUnfound(place, new Set())).toBe('a');
-    expect(topUnfound(place, new Set(['a']))).toBe('b');
-    expect(topUnfound(place, new Set(['a', 'b', 'c']))).toBeNull();
-    expect(unfoundSlugs(place, new Set(['b']))).toEqual(['a', 'c']);
-  });
-
-  it('counts only stories that can be found on the globe', () => {
-    const rows = [row('a', [1, 1]), row('b', [2, 2]), row('c', null)];
-    expect(foundProgress(rows, new Set(['a', 'c']))).toEqual({ found: 1, total: 2 });
-  });
-
-  it('knows the last light before the store is told of it', () => {
-    const rows = [row('a', [1, 1]), row('b', [2, 2]), row('c', null)];
-    // What `foundProgress` will say once the find is written.
-    expect(completesFound(rows, new Set(['a']), 'b')).toBe(true);
-    expect(completesFound(rows, new Set(), 'b')).toBe(false);
-    // A story found already completes nothing a second time.
-    expect(completesFound(rows, new Set(['a', 'b']), 'b')).toBe(false);
-    expect(completesFound([row('c', null)], new Set(), 'c')).toBe(false);
-    // A story with no place is not a light: finding it completes nothing,
-    // even with every placed story already found.
-    expect(completesFound([...rows, row('c', null)], new Set(['a', 'b']), 'c')).toBe(false);
+  it('opens the newest unread story and counts what is left', () => {
+    expect(topUnread(place, new Set())).toBe('a');
+    expect(topUnread(place, new Set(['a']))).toBe('b');
+    expect(topUnread(place, new Set(['a', 'b', 'c']))).toBeNull();
+    expect(unreadSlugs(place, new Set(['b']))).toEqual(['a', 'c']);
   });
 });

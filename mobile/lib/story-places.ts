@@ -14,7 +14,7 @@ import type { StoryRow } from './map-feed';
  * Grouping is what makes the globe's marks tappable at all. The old story
  * layer deduped marks in screen space, so a capital with six datelines was one
  * glow standing for six stories and a tap on it could not say which. A place
- * knows its stories, so a tap resolves to the newest one not yet found and the
+ * knows its stories, so a tap resolves to the newest one not yet read and the
  * mark stays, one lighter, until the stack is empty.
  *
  * Runs once per river, not per frame. At the river's size (tens of stories) a
@@ -33,12 +33,6 @@ export interface StoryPlace {
   lng: number;
   /** Newest first, as the deck is. */
   slugs: string[];
-}
-
-export interface FoundProgress {
-  found: number;
-  /** Stories that have a place on the globe. A story with none cannot be found. */
-  total: number;
 }
 
 function haversineKm(aLat: number, aLng: number, bLat: number, bLng: number): number {
@@ -120,50 +114,12 @@ export function buildStoryPlaces(rows: readonly StoryRow[]): StoryPlace[] {
   return places;
 }
 
-/** The newest story at a place the reader has not found yet, or null. */
-export function topUnfound(place: StoryPlace, found: ReadonlySet<string>): string | null {
-  for (const slug of place.slugs) if (!found.has(slug)) return slug;
+/** The newest story at a place the reader has not read yet, or null. */
+export function topUnread(place: StoryPlace, read: ReadonlySet<string>): string | null {
+  for (const slug of place.slugs) if (!read.has(slug)) return slug;
   return null;
 }
 
-export function unfoundSlugs(place: StoryPlace, found: ReadonlySet<string>): string[] {
-  return place.slugs.filter((slug) => !found.has(slug));
-}
-
-export function foundProgress(
-  rows: readonly StoryRow[],
-  found: ReadonlySet<string>,
-): FoundProgress {
-  let total = 0;
-  let count = 0;
-  for (const row of rows) {
-    if (!row.coords) continue;
-    total += 1;
-    if (found.has(row.slug)) count += 1;
-  }
-  return { found: count, total };
-}
-
-/**
- * Whether finding `slug` now would leave every placed story found: what
- * `foundProgress` would say once the store held it, asked before the store is
- * written. For a caller that must answer at once and write later — a swipe's
- * haptic belongs to the lift, its find to the landing.
- */
-export function completesFound(
-  rows: readonly StoryRow[],
-  found: ReadonlySet<string>,
-  slug: string,
-): boolean {
-  if (found.has(slug)) return false;
-  // The find has to be one of the lights. A story with no place is none of
-  // them, and with every light already found it completed the day again on
-  // each such story opened.
-  let placed = false;
-  for (const row of rows) {
-    if (!row.coords) continue;
-    if (row.slug === slug) placed = true;
-    else if (!found.has(row.slug)) return false;
-  }
-  return placed;
+export function unreadSlugs(place: StoryPlace, read: ReadonlySet<string>): string[] {
+  return place.slugs.filter((slug) => !read.has(slug));
 }

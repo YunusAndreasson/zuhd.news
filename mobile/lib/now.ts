@@ -1,8 +1,6 @@
 import type { MarketSignal } from '@shared/market-signals';
-import type { Article, Chokepoint, GdacsAlert, Indicator, TrendsSnapshot } from '@shared/types';
-import { type AnalysisById, countryCurrencies, currencyCard } from './cards/markets';
+import type { Article, Chokepoint, GdacsAlert } from '@shared/types';
 import type { SwipeCard } from './cards/rank';
-import { admitted } from './cards/sections';
 import type { CardDelta } from './cards/types';
 import { type GaugeMove, gaugeMove } from './cards/week-move';
 import { EVENT_TYPE_EYEBROW } from './gdacs';
@@ -25,7 +23,7 @@ import { DAY_MS } from './time';
  * every reading that moved, what was left of that was contracts and dates
  * sitting above the stories as if they were stories. They left the sheet: a
  * contract still rides the story it settles as an odds chip, and every
- * instrument is one tap away at the end of the strip. What stays is a Red
+ * instrument is in the menu's lists. What stays is a Red
  * alert, which is news that has no article yet and whose globe mark would
  * otherwise have no accessible row.
  *
@@ -284,46 +282,6 @@ function toStripItem(
     delta: move.delta,
     coords: locateCard(card, chokepoints, signals, countryCentroid, exchanges),
     card,
-  };
-}
-
-/** The country currencies (`countryCurrencies`) and how to make a slot of one. */
-export interface CountryCurrencies {
-  indicators: readonly Indicator[];
-  /** Null without a seven-day move. */
-  slot: (indicator: Indicator) => StripItem | null;
-}
-
-/**
- * A country's currency as a slot, outside the ranked pool on purpose: the pool
- * takes two currencies by the size of their move, and these are shown for
- * where the reader is looking (`contextualStrip`). A currency has no place on
- * the globe, so no coordinates.
- *
- * Each slot is built the first time it is asked for and kept: a card costs a
- * pass over the day's stories, and most capitals are never in view.
- */
-export function countryCurrencySlots(
-  snapshot: TrendsSnapshot | null,
-  analysis: AnalysisById,
-  articles: Article[],
-  now = Date.now(),
-): CountryCurrencies {
-  const built = new Map<string, StripItem | null>();
-  return {
-    indicators: countryCurrencies(snapshot),
-    slot(indicator) {
-      let slot = built.get(indicator.id);
-      if (slot === undefined) {
-        const made = snapshot ? currencyCard(snapshot, analysis, articles, indicator) : null;
-        // The deck's own gate: a card with no account of itself opens on nothing.
-        const card = made && admitted(made) ? made : null;
-        const move = card ? gaugeMove(card, now) : null;
-        slot = card && move ? toStripItem(card, move, [], []) : null;
-        built.set(indicator.id, slot);
-      }
-      return slot;
-    },
   };
 }
 

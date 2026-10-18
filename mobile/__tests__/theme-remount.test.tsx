@@ -55,7 +55,6 @@ it('keeps edited preferences when Android recreates the provider in the same run
   expect(first.result.current.api.preferences).toEqual(DEFAULT_PREFS);
   act(() => first.result.current.api.setAppearance('light'));
   act(() => first.result.current.api.setFontSize('large'));
-  act(() => first.result.current.api.setFontFamily('system'));
   act(() => first.result.current.api.setHaptics(false));
   const edited = first.result.current.api.preferences;
   expect(savePreferences).toHaveBeenLastCalledWith(edited);

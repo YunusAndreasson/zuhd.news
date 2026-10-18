@@ -128,7 +128,7 @@ export function MarkGlyph({
               ? colors.markMarketUp
               : mark.direction === 'down'
                 ? colors.markMarketDown
-                : colors.textSecondary
+                : colors.toneNeutralText
           }
           plate={plate}
           width={1.2}

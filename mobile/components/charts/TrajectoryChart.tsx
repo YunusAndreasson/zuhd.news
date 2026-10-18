@@ -198,7 +198,8 @@ export const TrajectoryChart = memo(function TrajectoryChart({
 
       const yScaleFn = scaleLinear().domain([lo, hi]).range([INNER_BOTTOM, PAD_TOP]);
       // Each line spans the plot by its own index; both arrive aligned to one
-      // run of years (`trajectoryOf`), so index and year agree.
+      // run of years (`aligned` in `@shared/countries/country-trajectories`),
+      // so index and year agree.
       const toPoints = (vs: (number | null)[]) =>
         vs.map((v, i) =>
           v == null

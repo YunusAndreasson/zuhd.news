@@ -221,9 +221,10 @@ paths:
 
 ## Hazard lists
 
-- Famine: the list leads with countries by people (`lib/famine-totals.ts`). A
-  total says its month, and its share is of the people analysed, never of the
-  country.
+- Hunger (`famine` in code): the list is every area in IPC crisis or worse,
+  so it is never titled famine. It leads with countries by people
+  (`lib/famine-totals.ts`). A total says its month, and its share is of the
+  people analysed, never of the country.
 - What a hazard list holds, its headings and the page a row opens are data
   (`lib/menu-hazards.ts`), tested there; `MenuSheet` only renders them.
 - Conflict: the list is the source's whole week under each country's toll

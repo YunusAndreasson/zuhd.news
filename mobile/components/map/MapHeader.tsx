@@ -46,8 +46,8 @@ import { GAUGE_EXTRA, IndicatorStrip } from './IndicatorStrip';
  * moves it vertically; the user asked for the pair to line up exactly, and a
  * per-button offset is how two icons drift a point apart.
  *
- * **It is three lines, not a cog.** It opens markets, search, saved, settings,
- * the map key and the pages, and a cog promises only settings — a reader looking for
+ * **It is three lines, not a cog.** It opens markets, hazards, rankings,
+ * search, saved, the map key and settings, and a cog promises only settings — a reader looking for
  * a saved story or search would not look under a gear (2026-09-19).
  *
  * **The gauges stay when a story opens.** They used to fade out and stop
@@ -291,7 +291,7 @@ export const MapHeader = memo(function MapHeader({
           onPress={onListenPress}
           accessibilityLabel={`${listenResumable ? 'Resume daily briefing' : 'Daily briefing'}${listenMinutes ? `, ${listenMinutes}${heard > 0 ? ' left' : ''}` : ''}`}
           accessibilityHint={
-            listenResumable ? "Resumes today's audio briefing" : "Plays today's audio briefing"
+            listenResumable ? 'Resumes today’s audio briefing' : 'Plays today’s audio briefing'
           }
           {...largeContent('briefing')}
         >
@@ -308,7 +308,7 @@ export const MapHeader = memo(function MapHeader({
       <HeaderControl
         onPress={onMenuPress}
         accessibilityLabel="Menu"
-        accessibilityHint="Markets, search, saved stories, settings, the map key and about"
+        accessibilityHint="Markets and the economy, world hazards, country rankings, search, saved stories, the map key and settings"
         {...largeContent('menu')}
       >
         <Icon name="menu" size="md" tone="default" />

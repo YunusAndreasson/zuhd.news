@@ -2,7 +2,6 @@ import type { ConflictEvent, GdacsAlert } from '@shared/types';
 import { type HazardLayers, hazardLead } from '../lib/hazard-leaders';
 import type { FamineArea, GenocideSituation, ThermalEvent } from '../lib/overlays';
 import { leadNames } from '../lib/row-leaders';
-import { settingsSummary } from '../lib/settings-summary';
 
 const layers = (over: Partial<HazardLayers>): HazardLayers => ({
   disasters: [],
@@ -131,16 +130,5 @@ describe('hazardLead', () => {
     expect(hazardLead('fires', layers({ fires }))).toBe('Fort McMurray · Ilsky');
     expect(hazardLead('fires', layers({ fires: [{ frp: 90 }] as ThermalEvent[] }))).toBe('');
     expect(hazardLead('conflict', layers({}))).toBe('');
-  });
-});
-
-describe('settingsSummary', () => {
-  it('says what the settings are', () => {
-    expect(settingsSummary({ fontSize: 'large', appearance: 'dark', notifications: true })).toBe(
-      'Large text · dark · notifications on',
-    );
-    expect(
-      settingsSummary({ fontSize: 'default', appearance: 'system', notifications: false }),
-    ).toBe('Default text · system theme · notifications off');
   });
 });

@@ -37,10 +37,13 @@ import { countryTap, markTap, type TapResult } from './tap-result';
 /** The hazard layers the globe draws, each a list under `world hazards`. */
 export type HazardKey = 'disasters' | 'conflict' | 'famine' | 'genocide' | 'fires';
 
+/** The map key's words, in the plural. `hunger`, not `famine`: the list holds
+ *  every area in crisis or worse on the IPC scale, and famine is only its
+ *  last phase. */
 export const HAZARD_TITLES: Readonly<Record<HazardKey, string>> = {
   disasters: 'disasters',
   conflict: 'conflict',
-  famine: 'famine',
+  famine: 'hunger',
   genocide: 'genocide',
   fires: 'fires',
 };

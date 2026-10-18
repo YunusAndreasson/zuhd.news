@@ -1,5 +1,5 @@
 import { useEffect } from 'react';
-import { Pressable as RNPressable, StyleSheet, type TextStyle, View } from 'react-native';
+import { Pressable as RNPressable, StyleSheet, View } from 'react-native';
 import Animated, { useAnimatedStyle, useSharedValue, withTiming } from 'react-native-reanimated';
 import { ANIMATION, EASING, LAYOUT, OPACITY, SPACING, type TextTone } from '../constants/theme';
 import { useTheme } from '../hooks/useTheme';
@@ -29,8 +29,6 @@ interface SegmentedControlProps<T extends string> {
   size?: 'regular' | 'compact';
   /** Multiplies one option's label size — the text-size picker sets each size in itself. */
   labelScale?: (value: T) => number;
-  /** Merged onto one option's label — the font picker sets each family in itself. */
-  labelStyle?: (value: T) => TextStyle | undefined;
 }
 
 /**
@@ -58,7 +56,6 @@ export function SegmentedControl<T extends string>({
   role = 'radio',
   size = 'regular',
   labelScale,
-  labelStyle,
 }: SegmentedControlProps<T>) {
   const { colors } = useTheme();
   const count = options.length;
@@ -93,13 +90,7 @@ export function SegmentedControl<T extends string>({
 
   const variant = size === 'compact' ? 'captionEmphasis' : 'body';
   const label = (o: SegmentOption<T>, tone: TextTone) => (
-    <Text
-      variant={variant}
-      tone={tone}
-      scale={labelScale?.(o.value)}
-      style={labelStyle?.(o.value)}
-      numberOfLines={1}
-    >
+    <Text variant={variant} tone={tone} scale={labelScale?.(o.value)} numberOfLines={1}>
       {o.label}
     </Text>
   );

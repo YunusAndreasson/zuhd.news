@@ -46,7 +46,12 @@ paths:
   kicker ends `· new`, and the first already-known card after them ends
   `· earlier`. The category word always starts at the text's edge. A story read
   once says `new` no more. When every story in the day is new, none is.
-- Read is two seconds in front (`READ_DWELL_MS`, `hooks/useReadTracking.ts`).
+- Read is two seconds in front (`READ_DWELL_MS`, `hooks/useReadTracking.ts`),
+  or at once when a story is opened. It is the screen's only seen-state: the
+  track's hairlines, `caught up`, `‹ n new` and the globe's rings all read it.
+- The rating prompt asks only on the end card (`maybeRequestReview`), never
+  in a session that showed the primer; a swipe only counts it
+  (`recordStorySwipe`). A dialog mid-swipe interrupts reading.
 - `‹ n new` counts unread new stories behind the reader only
   (`unreadNewBehind`). It floats over the track, never in its row.
 

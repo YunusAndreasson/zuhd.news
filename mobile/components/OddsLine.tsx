@@ -79,7 +79,7 @@ export const OddsLine = memo(function OddsLine({
       style={[styles.odds, { borderColor: colors.rule }, last && styles.last]}
       accessibilityRole="button"
       accessibilityLabel={spoken}
-      accessibilityHint="Opens the market's chart"
+      accessibilityHint="Opens the market’s chart"
     >
       {body}
     </Pressable>

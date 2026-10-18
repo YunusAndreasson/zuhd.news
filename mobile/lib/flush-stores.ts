@@ -1,5 +1,4 @@
 import { flushBookmarks } from './bookmark-store';
-import { flushFound } from './found-store';
 import { flushKnown } from './fresh-store';
 import { flushOnboarding } from './onboarding-store';
 import { flushRead } from './read-store';
@@ -11,7 +10,6 @@ import { flushRead } from './read-store';
  */
 export function flushStores(): void {
   flushBookmarks();
-  flushFound();
   flushKnown();
   flushRead();
   flushOnboarding();

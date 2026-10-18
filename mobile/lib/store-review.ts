@@ -42,17 +42,27 @@ export function resetReviewState(): void {
 }
 
 /**
- * Call after a "signature interaction" (e.g. article snap).
- * Increments a counter and prompts for review once the threshold is met,
- * respecting a 90-day cooldown between prompts.
+ * Count one story swiped to. Nothing is asked here: the swipe is the middle
+ * of reading, and a dialog over it interrupts the reader to talk about the
+ * app.
+ */
+export async function recordStorySwipe(): Promise<void> {
+  try {
+    await hydrate();
+    memCount += 1;
+    // Write-through: fire and forget — only the in-memory value matters for gating
+    Storage.setItem(COUNT_KEY, String(memCount)).catch(() => {});
+  } catch {}
+}
+
+/**
+ * Ask for a rating where reading has stopped on its own: the end of the day's
+ * stories. Only after `ARTICLE_THRESHOLD` swipes since the last ask, and at
+ * most once per `COOLDOWN_MS`.
  */
 export async function maybeRequestReview(): Promise<void> {
   try {
     await hydrate();
-
-    memCount += 1;
-    // Write-through: fire and forget — only the in-memory value matters for gating
-    Storage.setItem(COUNT_KEY, String(memCount)).catch(() => {});
 
     if (memCount < ARTICLE_THRESHOLD) return;
 

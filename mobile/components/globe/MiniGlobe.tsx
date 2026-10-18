@@ -21,7 +21,6 @@ import Animated, {
   useDerivedValue,
   useReducedMotion,
   useSharedValue,
-  withDelay,
   withTiming,
 } from 'react-native-reanimated';
 import {
@@ -125,12 +124,8 @@ import {
   thermalBox,
 } from '../../lib/overlays';
 import { displayCountryName, displayLocation, wrapCountryLabel } from '../../lib/place-names';
-import {
-  type FoundProgress,
-  type StoryPlace,
-  topUnfound,
-  unfoundSlugs,
-} from '../../lib/story-places';
+import { useReadSlugs } from '../../lib/read-store';
+import { type StoryPlace, topUnread, unreadSlugs } from '../../lib/story-places';
 import {
   STRAIT_SIGN_R,
   type StraitState,
@@ -260,7 +255,7 @@ function glowAtlas(spec: GlowSpec, points: { x: number; y: number }[]) {
 }
 
 interface PlaceMark {
-  /** Every story here is found: a quiet ring, not a beacon. */
+  /** Every story here is read: a quiet ring, not a beacon. */
   read: boolean;
   /** The place, as a unit vector for `screenPoint`. */
   unit: readonly [number, number, number];
@@ -272,8 +267,6 @@ interface PlaceMark {
   count: number;
   contested: boolean;
 }
-
-const EMPTY_FOUND: ReadonlySet<string> = new Set();
 
 /** `#rrggbb` → 0–1 channels, for the Atlas colour channel. */
 function hexRgb(hex: string): readonly [number, number, number] {
@@ -400,12 +393,9 @@ const DOT_LABEL_CHAR_W = 8;
 /** The local time's baseline below the dot: one line under the location's,
  *  which sits at +4. */
 const DOT_SUB_DY = 4 + DOT_LABEL_PT;
-/** The found burst's length. The screen waits this long before flying the
+/** The tapped light's burst. The screen waits this long before flying the
  *  camera, so the burst plays where the mark was rather than being dragged. */
 export const COLLECT_MS = 420;
-/** The still-to-find ring: its distance outside the disc, and its weight. */
-const RING_GAP = 6;
-const RING_WIDTH = 2;
 const COLLECT_REDUCED_MS = 150;
 
 const MAKKAH_GLOW_LAYERS: GlowLayer[] = [
@@ -470,8 +460,8 @@ const STORY_HALO_LAYERS: GlowLayer[] = [
 const STORY_HALO = makeGlowSpec(STORY_HALO_LAYERS, 40);
 /** Scaled by coverage (`STORY_SCALE_*`) onto the web's 3.4–7.5 px radius. */
 const BEACON_R = 5.5;
-/** A place whose stories are all found keeps a hollow ring this size: small
- *  enough that the beacons still to find stay the loud marks, visible enough to
+/** A place whose stories are all read keeps a hollow ring this size: small
+ *  enough that the beacons still unread stay the loud marks, visible enough to
  *  say where the reader has been. */
 const READ_R = 3.5;
 /** The ring around the selected gauge's place: clear of a strait's glyph and
@@ -881,7 +871,7 @@ const MOTION_RESAMPLE_SCALE = 400;
 export interface MiniGlobeRef {
   hitTest: (x: number, y: number, displayed?: GlobeTapFrame) => TapResult | null;
   showPulse: (x: number, y: number) => void;
-  /** The found burst: a story mark's own hue swelling and fading at `x, y`. */
+  /** The tap's burst: a story mark's own hue swelling and fading at `x, y`. */
   collect: (x: number, y: number, color: string) => void;
   /** Wake the camera's normal final-frame check after a pinch, provided no
    * newer camera interaction has replaced that pinch's epoch. */
@@ -911,15 +901,12 @@ interface MiniGlobeProps {
   conflictEvents?: ConflictEvent[];
   /**
    * The river grouped into places (`lib/story-places.ts`). Each place with a
-   * story the reader has not found is one tappable mark, in the category hue
-   * of its newest unfound story.
+   * story the reader has not read is one tappable mark, in the category hue
+   * of its newest unread story; one whose stories are all read keeps a hollow
+   * ring. The globe reads the read store itself (`useReadSlugs`), so a story
+   * read re-renders this and not the screen around it.
    */
   places?: StoryPlace[];
-  /** Stories the reader has opened. A place whose stories are all found keeps a
-   *  hollow ring rather than a beacon. */
-  foundSlugs?: ReadonlySet<string>;
-  /** Found stories of those with a place — the ring outside the globe. */
-  foundProgress?: FoundProgress;
   /** IPC famine classifications, from `/api/ipc.json`. */
   famineAreas?: FamineArea[];
   /** FIRMS thermal anomalies joined to coverage, from `/api/firms.json`. */
@@ -1060,16 +1047,16 @@ interface GlobeState {
     slug: string;
     color: string;
     rgb: readonly [number, number, number];
-    /** Unfound stories at this place. */
+    /** Unread stories at this place. */
     count: number;
     contested: boolean;
     /** Whether its count is printed: at least `storyCountMin`, and clear of
      *  a larger count beside it. Decided in the reprojection. */
     showCount?: boolean;
   }[];
-  /** Stack counts show beside places with at least this many unfound stories. */
+  /** Stack counts show beside places with at least this many unread stories. */
   storyCountMin: number;
-  /** Places whose stories are all found. Tappable, below any beacon in reach. */
+  /** Places whose stories are all read. Tappable, below any beacon in reach. */
   readMarks: { x: number; y: number; slug: string; color: string }[];
   famineMarks: { x: number; y: number; id: string; blocks: number; alpha: number; scale: number }[];
   thermalMarks: { x: number; y: number; id: string; alpha: number; scale: number }[];
@@ -1347,7 +1334,7 @@ function collectCityLights(
 // with no React render at all — the route its docs give for a scene whose
 // command count changes frame to frame. Three rather than one because two
 // declarative layers sit between them: the static limb glaze (under the marks)
-// and the tap pulse and found burst, which animate on the UI thread under the
+// and the tap pulse and the tapped light's burst, which animate on the UI thread under the
 // labels.
 //
 // A label `Picture` was tried once before and reverted with no commit gain.
@@ -1741,9 +1728,8 @@ interface FramePictures {
   labels: SkPicture;
 }
 
-/** What the canvas reads per projection: the pictures and the limb they were
- *  drawn to, so the sky behind the planet and the ring around it follow the
- *  zoom in the same replay. */
+/** What the canvas reads per projection: the pictures, and where the settled
+ *  dot was drawn. */
 interface FrameOut extends FramePictures {
   revision: number;
   /** The ground a settling frame replaces, and the camera it was drawn from:
@@ -1752,7 +1738,6 @@ interface FrameOut extends FramePictures {
   prevCam: RecordedCamera | null;
   activeDot: { x: number; y: number } | null;
   activeColor: string;
-  disc: number;
   /** The camera the pictures were projected from — what the warp measures
    *  the live camera against. `k` is the projection's scale. */
   cam: RecordedCamera | null;
@@ -1811,7 +1796,7 @@ type SettledGeometry = {
   /** Filled by the first frame at this camera that draws rivers; `undefined`
    *  until then. They were the one settled layer left out, and at ~9k
    *  vertices the heaviest: 80–400 ms of every same-camera redraw on the
-   *  emulator — a font arriving, a story found, a gauge opened. */
+   *  emulator — a font arriving, a story read, a gauge opened. */
   riversPath?: SkPath;
 };
 function recordGlobeFrame(f: GlobeState, s: FrameStyle): FramePictures {
@@ -2004,12 +1989,13 @@ function recordGlobeFrame(f: GlobeState, s: FrameStyle): FramePictures {
     // Compact traffic sign beside the coastline glyph; its touch area stays
     // generous. Green up, red down, as every move in the app is printed
     // (`moveTone`, 2026-09-25): more ships or fewer. How bad a fall is, is the
-    // glyph's to say — its shape pinches and turns gold past the disruption
+    // glyph's to say — its shape pinches and turns rose past the disruption
     // bar — so Gibraltar's ↓2% and Hormuz's ↓62% share a red and not a shape.
     const moveColor = cp.direction === 'up' ? colors.markMarketUp : colors.markMarketDown;
     if (cp.direction) {
       const x = cp.x + straitSignDx(state, STRAIT_STROKE);
-      const color = cp.direction === 'flat' ? colors.textSecondary : moveColor;
+      // Unmoved is slate, as `moveTone` prints it everywhere else.
+      const color = cp.direction === 'flat' ? colors.toneNeutralText : moveColor;
       c.drawCircle(x, cp.y, STRAIT_SIGN_R, fillPaint(colors.bg, 0.98));
       if (cp.direction === 'flat') c.drawLine(x - 3, cp.y, x + 3, cp.y, strokePaint(color, 1, 1.5));
       else {
@@ -2027,7 +2013,7 @@ function recordGlobeFrame(f: GlobeState, s: FrameStyle): FramePictures {
         cp.labelY,
         {
           name: colors.text,
-          move: cp.direction === 'flat' ? colors.textSecondary : moveColor,
+          move: cp.direction === 'flat' ? colors.toneNeutralText : moveColor,
           basis: colors.textSecondary,
           halo: colors.bg,
         },
@@ -2049,7 +2035,7 @@ function recordGlobeFrame(f: GlobeState, s: FrameStyle): FramePictures {
         ? colors.markMarketUp
         : m.direction === 'down'
           ? colors.markMarketDown
-          : colors.text;
+          : colors.toneNeutralText;
     // A leader only for a single market. A cluster's origin is the mean of
     // its members, which is no place: the line ended on the story's label or
     // in the sea between cities, and its count and chooser already say where.
@@ -2241,7 +2227,7 @@ function recordGlobeFrame(f: GlobeState, s: FrameStyle): FramePictures {
   );
 
   // Places read to the end — a hollow ring in the story's hue, under the
-  // beacons, so the lights still to find stay the loud ones.
+  // beacons, so the lights still unread stay the loud ones.
   for (const m of f.readMarks) {
     c.drawCircle(m.x, m.y, READ_R, strokePaint(m.color, READ_ALPHA, 1.2));
   }
@@ -2525,8 +2511,6 @@ export const MiniGlobe = memo(function MiniGlobe({
   marketViewport,
   selectedAt,
   places,
-  foundSlugs,
-  foundProgress,
   famineAreas,
   thermalEvents,
   genocideSituations,
@@ -2728,12 +2712,12 @@ export const MiniGlobe = memo(function MiniGlobe({
     });
   }, [articles, _tick]);
 
-  // Places → what each story mark draws: its newest unfound story, that
+  // Places → what each story mark draws: its newest unread story, that
   // story's category hue, and the widest coverage and freshest alpha among the
-  // stories still unfound there. Static per snapshot and per find, so the frame
+  // stories still unread there. Static per snapshot and per read, so the frame
   // loop only culls and projects.
+  const readSlugs = useReadSlugs();
   const placeMarks = useMemo(() => {
-    const found = foundSlugs ?? EMPTY_FOUND;
     const indexBySlug = new Map<string, number>();
     for (let i = 0; i < articles.length; i++) {
       const a = articles[i];
@@ -2741,9 +2725,9 @@ export const MiniGlobe = memo(function MiniGlobe({
     }
     const marks: PlaceMark[] = [];
     for (const place of places ?? []) {
-      const slug = topUnfound(place, found);
+      const slug = topUnread(place, readSlugs);
       if (!slug) {
-        // Every story here is found. The place keeps a ring in its newest
+        // Every story here is read. The place keeps a ring in its newest
         // story's hue: a globe that empties as it is read hides where the
         // reader has been, and a tap there can still reopen the story.
         const newest = place.slugs[0];
@@ -2770,7 +2754,7 @@ export const MiniGlobe = memo(function MiniGlobe({
       let alpha = 0;
       let count = 0;
       let contested = false;
-      for (const s of unfoundSlugs(place, found)) {
+      for (const s of unreadSlugs(place, readSlugs)) {
         const i = indexBySlug.get(s);
         if (i == null) continue;
         count += 1;
@@ -2795,7 +2779,7 @@ export const MiniGlobe = memo(function MiniGlobe({
       });
     }
     return marks;
-  }, [places, foundSlugs, articles, articleGeo, colors]);
+  }, [places, readSlugs, articles, articleGeo, colors]);
   const placeMarksRef = useRef(placeMarks);
   placeMarksRef.current = placeMarks;
 
@@ -2830,7 +2814,6 @@ export const MiniGlobe = memo(function MiniGlobe({
     prevCam: null,
     marks: EMPTY_PICTURE,
     labels: EMPTY_PICTURE,
-    disc: globeRadius,
     activeDot: null,
     activeColor: colors.textEmphasis,
     cam: null,
@@ -3078,7 +3061,6 @@ export const MiniGlobe = memo(function MiniGlobe({
         (articlesRef.current[lastSettled.current] as { category?: string } | undefined)?.category,
         colors,
       ),
-      disc: frame.discRadius > 0 ? frame.discRadius : globeRadius,
       cam: recordedCamRef.current,
     };
     if (sharpen) {
@@ -3686,7 +3668,7 @@ export const MiniGlobe = memo(function MiniGlobe({
       let dot: { x: number; y: number } | null = null;
       if (geo && seen(geo.unit)) dot = { x: SCREEN_POINT[0], y: SCREEN_POINT[1] };
 
-      // Story marks — one per place with a story the reader has not found.
+      // Story marks — one per place with a story the reader has not read.
       // Everything but position was decided in `placeMarks`; this culls against
       // the zoom cone (direct point projection ignores `.clipAngle`, see
       // clipRad above) and projects.
@@ -5382,9 +5364,10 @@ export const MiniGlobe = memo(function MiniGlobe({
   const pulseR = useSharedValue(0);
   const pulseOpacity = useSharedValue(0);
 
-  // Found burst — the story's own hue swelling and fading where its mark was.
-  // Two shapes so it reads as a thing collected rather than a tap ring: a disc
-  // that grows as it fades, and a hairline ring that outruns it.
+  // The tapped light's burst — the story's own hue swelling and fading where
+  // its mark was. Two shapes, so it reads as the light opened rather than a
+  // tap ring: a disc that grows as it fades, and a hairline ring that outruns
+  // it.
   const collectX = useSharedValue(0);
   const collectY = useSharedValue(0);
   const collectDiscR = useSharedValue(0);
@@ -5559,38 +5542,6 @@ export const MiniGlobe = memo(function MiniGlobe({
     },
   }));
 
-  // What is still to find, as a ring just outside the globe. The track is the
-  // day's stories with a place; the arc is what is left, starting at twelve
-  // o'clock and shrinking back toward it with each find — after the burst, so
-  // the colour at the mark plays first. A number already says it on the sheet's
-  // masthead; this says it where the lights are, without a word.
-  const foundTotal = foundProgress?.total ?? 0;
-  const leftFraction = foundTotal > 0 ? (foundTotal - (foundProgress?.found ?? 0)) / foundTotal : 0;
-  const ringLeft = useSharedValue(leftFraction);
-  useEffect(() => {
-    ringLeft.value = reduceMotion
-      ? leftFraction
-      : withDelay(
-          COLLECT_MS,
-          withTiming(leftFraction, { duration: ANIMATION.slow, easing: PULSE_EASING }),
-        );
-  }, [leftFraction, reduceMotion, ringLeft]);
-  // The ring follows the limb as the globe zooms, off the screen's edge with
-  // it when the planet outgrows the screen: a ring left at the resting size
-  // would be a reticle drawn across the ground.
-  const ringRadius = useDerivedValue(() => framePictures.value.disc + RING_GAP);
-  // A plain derived value, never Skia's `usePathValue`: that hook writes its
-  // path and then reads it back (`notifyChange`) inside the same derived
-  // value, so the value subscribes to itself and re-runs every frame. Each run
-  // handed the canvas a new path, and the whole globe replayed on the UI thread
-  // ~60 times a second with nothing moving.
-  const ringPath = useDerivedValue(() => {
-    const r = framePictures.value.disc + RING_GAP;
-    return Skia.PathBuilder.Make()
-      .addArc(Skia.XYWHRect(cx - r, cy - r, 2 * r, 2 * r), -90, 360)
-      .build();
-  });
-
   return (
     <GlobeCanvas
       width={width}
@@ -5601,14 +5552,6 @@ export const MiniGlobe = memo(function MiniGlobe({
       groundPicture={groundPicture}
       marksPicture={marksPicture}
       labelsPicture={labelsPicture}
-      ring={foundTotal > 0}
-      cx={cx}
-      cy={cy}
-      ringRadius={ringRadius}
-      ringPath={ringPath}
-      ringLeft={ringLeft}
-      ringColor={colors.rule}
-      ringLeftColor={colors.textSecondary}
       pulseColor={colors.textEmphasis}
       pulseX={pulseX}
       pulseY={pulseY}
@@ -5630,11 +5573,10 @@ type Value<T> = SharedValue<T> | DerivedValue<T>;
 /**
  * The canvas, on its own and memoized. Everything that moves reaches it
  * through shared values, which the UI thread redraws from; what React hands
- * it — the layout, the ring's colours and whether there is a ring — changes
- * about never.
+ * it — the layout and the pulse's colour — changes about never.
  *
  * It was the tail of `MiniGlobe`'s own render, so every globe render — a
- * find, a gauge's ring, an arrival's layers — rebuilt the `Canvas` element,
+ * story read, a gauge's ring, an arrival's layers — rebuilt the `Canvas` element,
  * and Skia's reconciler answers a commit by redrawing the whole scene on the
  * JS thread (`resetAfterCommit` → `redraw`), reading every picture and warp
  * through `runOnUISync` while the UI thread was busy with the very burst,
@@ -5650,14 +5592,6 @@ const GlobeCanvas = memo(function GlobeCanvas({
   groundPicture,
   marksPicture,
   labelsPicture,
-  ring,
-  cx,
-  cy,
-  ringRadius,
-  ringPath,
-  ringLeft,
-  ringColor,
-  ringLeftColor,
   pulseColor,
   pulseX,
   pulseY,
@@ -5679,15 +5613,6 @@ const GlobeCanvas = memo(function GlobeCanvas({
   groundPicture: Value<SkPicture>;
   marksPicture: SharedValueSelector<SkPicture>;
   labelsPicture: SharedValueSelector<SkPicture>;
-  /** There is a day to find: draw the still-to-find ring. */
-  ring: boolean;
-  cx: number;
-  cy: number;
-  ringRadius: Value<number>;
-  ringPath: Value<SkPath>;
-  ringLeft: SharedValue<number>;
-  ringColor: string;
-  ringLeftColor: string;
   pulseColor: string;
   pulseX: SharedValue<number>;
   pulseY: SharedValue<number>;
@@ -5719,29 +5644,6 @@ const GlobeCanvas = memo(function GlobeCanvas({
           <Picture picture={marksPicture} />
         </Group>
 
-        {/* Still to find — see `ringLeft`. */}
-        {ring ? (
-          <Group>
-            <Circle
-              cx={cx}
-              cy={cy}
-              r={ringRadius}
-              color={ringColor}
-              style="stroke"
-              strokeWidth={RING_WIDTH}
-            />
-            <Path
-              path={ringPath}
-              start={0}
-              end={ringLeft}
-              color={ringLeftColor}
-              style="stroke"
-              strokeWidth={RING_WIDTH}
-              strokeCap="round"
-            />
-          </Group>
-        ) : null}
-
         {/* Tap pulse — stroked ring (selection cartouche) rather than a blurred
         fill. The globe's vocabulary is *rings* (chokepoint arcs, earthquake
         glyphs, hotspot halos, GDACS Red alarm ring); a soft-blur ripple
@@ -5759,7 +5661,7 @@ const GlobeCanvas = memo(function GlobeCanvas({
           strokeWidth={1.4}
         />
 
-        {/* Found burst — see `collect`. */}
+        {/* The tapped light's burst — see `collect`. */}
         <Group opacity={collectOpacity}>
           <Circle cx={collectX} cy={collectY} r={collectDiscR} color={collectColor} opacity={0.5} />
           <Circle

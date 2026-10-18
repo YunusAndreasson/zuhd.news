@@ -17,7 +17,7 @@ export function coverageCell(lat: number, lng: number): number {
 export function coverageStory(
   result: TapResult,
   rows: readonly StoryRow[],
-  found: ReadonlySet<string>,
+  read: ReadonlySet<string>,
 ): string | null {
   const labels = new Set(result.hotspotLabels ?? []);
   const at = result.hotspotCoords;
@@ -38,7 +38,7 @@ export function coverageStory(
     // fallback cells have no labels and select by the same half-degree cell.
     if (!(at ? nearby && (labels.size === 0 || matches) : matches)) continue;
     if (!newest || articleTime(row.article) > articleTime(newest.article)) newest = row;
-    if (!found.has(row.slug) && (!unread || articleTime(row.article) > articleTime(unread.article)))
+    if (!read.has(row.slug) && (!unread || articleTime(row.article) > articleTime(unread.article)))
       unread = row;
   }
   return (unread ?? newest)?.slug ?? null;

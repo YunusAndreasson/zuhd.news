@@ -139,7 +139,7 @@ export function SheetSearchPage({
           maxFontSizeMultiplier={VARIANT_CAP.body}
           accessibilityRole="search"
           accessibilityLabel="Search stories"
-          accessibilityHint="Filter stories by title, topic, or location"
+          accessibilityHint="Filter stories by title, topic or place"
           autoCorrect={false}
           autoCapitalize="none"
           autoComplete="off"

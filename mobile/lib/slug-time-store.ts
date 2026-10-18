@@ -7,12 +7,12 @@ import { isTimestampMap } from './validate';
 
 /**
  * A set of slugs, each with when it joined, kept on the device: the stories a
- * reader has found (`found-store`) and the ones they have read (`read-store`).
+ * reader has read (`read-store`).
  *
- * Those two were one file written twice — the same cap, the same prune, the
- * same load, write and subscription, line for line — and `fresh-store` held a
- * third copy of the validator and the prune rule. A rule that is the same for
- * all three is defined once here, so they cannot part.
+ * It and a second such set were one file written twice — the same cap, the
+ * same prune, the same load, write and subscription, line for line — and
+ * `fresh-store` held a third copy of the validator and the prune rule. A rule
+ * that is the same for every set is defined once here, so they cannot part.
  *
  * Loaded synchronously when created, so the first render has it; emitted to
  * `useSyncExternalStore`; written on a debounce and flushed when the app

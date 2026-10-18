@@ -8,7 +8,7 @@ paths:
   - "mobile/lib/map-feed.ts"
   - "mobile/lib/market-map-layout.ts"
   - "mobile/lib/story-places.ts"
-  - "mobile/lib/found-store.ts"
+  - "mobile/lib/read-store.ts"
   - "mobile/lib/strait-map.ts"
   - "mobile/lib/tap-result.ts"
   - "mobile/scripts/generate-globe-geography.mjs"
@@ -100,12 +100,12 @@ paths:
 ## Marks
 
 - Colours are the web's: `mark*` tokens, both themes.
-- A tap on a beacon finds its story: `collect` bursts, `found-store` records
-  the slug, the deck jumps (`focusStory`) and stays at peek. The camera waits
-  for most of the burst (`COLLECT_MS`) before it flies.
-- Found means opened: a mark tap, growing a card, or landing on a card while
-  grown. Swiping past a card at rest does not find it.
-- A found place dims to a hollow ring. It is never erased.
+- A tap on a beacon opens its story: `collect` bursts, the story is read at
+  once (`markRead`), the deck jumps (`focusStory`) and stays at peek. The
+  camera waits for most of the burst (`COLLECT_MS`) before it flies.
+- A light follows `read-store`, the set the track and `caught up` read: no
+  second seen-state, no count of what is left, no prize for the last one.
+- A read place dims to a hollow ring. It is never erased.
 - A story's beacon within 32 px wins the hit test unless a strait, exchange,
   hazard or conflict mark is nearer the finger. Hotspots, the settled dot and
   Makkah never outrank a story.
@@ -120,8 +120,10 @@ paths:
   strait only its mark. Single exchanges and pinched or surging straits keep
   their names.
 - A mark prints the week, as the strip does, wherever the series has one
-  (`exchangeMove` for an exchange, `straitMoves` for a strait). Marks keep the
-  index name; the strip uses words.
+  (`exchangeMove` for an exchange, `straitMoves` for a strait). An exchange
+  is named as its slot is (`stripLabel`): `Turkey stocks`, never `BIST 100`.
+- Unmoved is slate (`toneNeutralText`) on a mark, its glyph and its figure,
+  as `moveTone` prints it on a chip.
 - Conflict marks are the last day only and are sized by the dead
   (`conflictScale`). The list holds the whole week.
 - Famine and thermal are one tinted Atlas each, from the sprite sheet baked in

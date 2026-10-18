@@ -220,11 +220,11 @@ export const GlobeGestureLayer = memo(function GlobeGestureLayer({
       const localY = y - canvasTop;
       const result = globeRef.current?.hitTest(x, localY, frame);
       // Nothing under the finger: no pulse. The ring is a confirmation that
-      // something was found, and drawing it over empty ocean would claim
-      // there had been.
+      // something was hit, and drawing it over empty ocean would claim there
+      // had been.
       if (!result) return;
-      // A story is found, not selected: its own hue bursts where the mark was,
-      // in place of the neutral selection ring every other mark gets.
+      // A story is opened, not selected: its own hue bursts where the mark
+      // was, in place of the neutral selection ring every other mark gets.
       if (result.storySlug) globeRef.current?.collect(x, localY, result.storyColor ?? WHITE);
       else globeRef.current?.showPulse(x, localY);
       onImpact();

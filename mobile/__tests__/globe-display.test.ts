@@ -71,17 +71,15 @@ it('keeps story priority unless a reference mark is closer', () => {
   expect(hitGlobeMarks(frame, 220, 300, 1, context)?.gdacsEventId).toBe('flood');
 });
 
-it('keeps unread stories ahead of found rings and coverage', () => {
+it('keeps unread stories ahead of read rings and coverage', () => {
   const frame = {
     ...empty,
     storyMarks: [story],
-    readMarks: [{ ...story, x: 205, slug: 'found' }],
+    readMarks: [{ ...story, x: 205, slug: 'read' }],
     hotspotGlows: [{ x: 205, y: 300, lat: 50, lng: 20, countryName: 'Poland', labels: [] }],
   };
   expect(hitGlobeMarks(frame, 205, 300, 1, context)?.storySlug).toBe('story');
-  expect(hitGlobeMarks({ ...frame, storyMarks: [] }, 205, 300, 1, context)?.storySlug).toBe(
-    'found',
-  );
+  expect(hitGlobeMarks({ ...frame, storyMarks: [] }, 205, 300, 1, context)?.storySlug).toBe('read');
 });
 
 it('keeps every overlapping reference and market cluster member selectable', () => {

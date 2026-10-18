@@ -13,11 +13,10 @@ import { createListeners } from './store-plumbing';
  * therefore smaller, so this over-reports rather than under-reports. That
  * direction is deliberate: a data claim should never flatter itself.
  *
- * Audio is not counted here — briefing mp3s are fetched by the native player,
- * not by `fetchJson`. They are also the one genuinely large download in the
- * app, which is why they only happen on an explicit press (see
- * `useBriefingPlayer`) and why the privacy page names their size directly
- * rather than folding them into this figure.
+ * The briefing's audio is counted too, as its download finishes
+ * (`useBriefingPlayer`): it is the one genuinely large download in the app,
+ * fetched only on an explicit press, and a figure that left it out would
+ * flatter itself by the largest amount there is.
  *
  * Session-scoped by design. A lifetime total would be a usage statistic about
  * the reader, kept on their device, for no purpose either of us needs.

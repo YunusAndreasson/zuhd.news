@@ -31,41 +31,15 @@ import { SheetHandle } from './SheetHandle';
 import { type BaseSheetProps, SheetLayout } from './SheetLayout';
 import { SheetPager } from './SheetPager';
 
-const MORE_METRICS: { key: MetricKey; label: string }[] = [
-  { key: 'population', label: 'population' },
-  { key: 'gdp', label: 'gdp' },
-  { key: 'gdpPerCapita', label: 'gdp per capita' },
-  { key: 'militaryPctGdp', label: 'military % of gdp' },
-  { key: 'democracyIndex', label: 'democracy (v-dem)' },
-  { key: 'corruptionCpi', label: 'clean government' },
-  { key: 'pressFreedomScore', label: 'press freedom' },
-  { key: 'hdi', label: 'human development' },
-  { key: 'giniIndex', label: 'gini inequality' },
-  { key: 'literacyPct', label: 'adult literacy' },
-  { key: 'youthUnemploymentPct', label: 'youth unemployment' },
-  { key: 'refugeesHosted', label: 'refugees hosted' },
-  { key: 'refugeesProduced', label: 'refugees produced' },
-  { key: 'remittancePctGdp', label: 'remittances % of gdp' },
-  { key: 'rdPctGdp', label: 'r&d % of gdp' },
-  { key: 'researchersPerMillion', label: 'researchers per million' },
-  { key: 'scientificArticles', label: 'scientific articles / yr' },
-  { key: 'highTechExportsPct', label: 'high-tech exports %' },
-  { key: 'populationDensity', label: 'density' },
-  { key: 'lifeExpectancy', label: 'life expectancy' },
-  { key: 'fertilityRate', label: 'fertility rate' },
-  { key: 'urbanPct', label: 'urbanisation' },
-  { key: 'internetPct', label: 'internet' },
-  { key: 'migrantPct', label: 'foreign-born' },
-  { key: 'co2PerCapita', label: 'co₂ per capita' },
-  { key: 'area', label: 'area' },
-];
+/** Every ranked measure, named as the rankings list names it (`METRICS`): one
+ *  list, so a measure reads the same on a country as on its ranking. */
+const COUNTRY_METRICS = Object.keys(METRICS) as MetricKey[];
 
-const GOLD_RANK_THRESHOLD = 5;
-
-// Percentile strip: thin rule + dot whose horizontal position reflects the
-// country's place in the full ranking. "Better" (lower rank number) = dot
-// further right, with the left half of the rule filled from 0 → dot. Uses
-// the dome accent for top-N ranks to match the rank-column typography.
+// Where the rank stands among every country ranked: a dot on a quiet rule,
+// first at the right. A place, never a medal: rank one is the largest value,
+// which is the most refugees produced and the most carbon as surely as the
+// longest lives, so the dot is not gold at the top and the rule is not filled
+// up to it like a bar of progress.
 const STRIP_WIDTH = 44;
 const STRIP_DOT_SIZE = 4;
 const STRIP_HEIGHT = 10;
@@ -75,34 +49,17 @@ const RANK_COLUMN = 34;
 /** A metric row's mark: the rank, then where that rank stands. */
 const METRIC_LEADING = RANK_COLUMN + SPACING.sm + STRIP_WIDTH;
 
-function PercentileStrip({
-  rank,
-  total,
-  isTop,
-}: {
-  rank: number | null;
-  total: number;
-  isTop: boolean;
-}) {
+function PercentileStrip({ rank, total }: { rank: number | null; total: number }) {
   const { colors } = useTheme();
   if (rank == null || total < 2) return <View style={styles.strip} />;
   const percentile = Math.max(0, Math.min(1, (total - rank) / (total - 1)));
   const dotLeft = percentile * STRIP_WIDTH - STRIP_DOT_SIZE / 2;
-  const dotColor = isTop ? colors.dome : colors.textEmphasis;
-  // Rule + fill share `textSecondary` as the hue and differ only by
-  // opacity — the base reads as "unfilled %" and the fill as "achieved %",
-  // mirroring a progress bar. `colors.rule` was too faint here (tuned for
-  // row dividers, not load-bearing chrome).
+  // The rule in `textSecondary` at a muted step: `colors.rule` was too faint
+  // here (tuned for row dividers, not a scale).
   return (
     <View style={styles.strip}>
       <View style={[styles.stripRule, { backgroundColor: colors.textSecondary }]} />
-      <View
-        style={[
-          styles.stripFill,
-          { width: percentile * STRIP_WIDTH, backgroundColor: colors.textSecondary },
-        ]}
-      />
-      <View style={[styles.stripDot, { left: dotLeft, backgroundColor: dotColor }]} />
+      <View style={[styles.stripDot, { left: dotLeft, backgroundColor: colors.textEmphasis }]} />
     </View>
   );
 }
@@ -128,7 +85,6 @@ function MoreRow({
   onPress: () => void;
 }) {
   const hasRank = typeof rank === 'number' && rank > 0;
-  const isTopRank = hasRank && rank <= GOLD_RANK_THRESHOLD;
   return (
     <ListRow
       title={label}
@@ -142,14 +98,14 @@ function MoreRow({
           {/* A column of figures, so it holds its width at any text size. */}
           <Text
             variant="labelXs"
-            tone={isTopRank ? 'dome' : 'secondary'}
+            tone="secondary"
             numberOfLines={1}
             maxFontSizeMultiplier={MAX_FONT_SCALE.tabular}
             style={styles.rankCol}
           >
             {hasRank ? `#${rank}` : ''}
           </Text>
-          <PercentileStrip rank={rank} total={total} isTop={isTopRank} />
+          <PercentileStrip rank={rank} total={total} />
         </View>
       }
       trailing={
@@ -315,11 +271,11 @@ function metricRows(country: TapResult | null): MetricRow[] {
   if (!country?.data) return [];
   const name = country.countryName;
   const rows: MetricRow[] = [];
-  for (const m of MORE_METRICS) {
-    const value = getMetricValue(name ?? '', country.data, m.key);
+  for (const key of COUNTRY_METRICS) {
+    const value = getMetricValue(name ?? '', country.data, key);
     if (value == null) continue;
-    const { rank, total } = name ? rankIn(m.key, name) : { rank: null, total: 0 };
-    rows.push({ key: m.key, label: m.label, value, rank, total });
+    const { rank, total } = name ? rankIn(key, name) : { rank: null, total: 0 };
+    rows.push({ key, label: METRICS[key].label, value, rank, total });
   }
   rows.sort((a, b) => {
     if (a.rank == null && b.rank == null) return 0;
@@ -567,12 +523,6 @@ const styles = StyleSheet.create({
   stripRule: {
     height: STRIP_RULE_HEIGHT,
     opacity: OPACITY.muted,
-  },
-  stripFill: {
-    position: 'absolute',
-    left: 0,
-    height: STRIP_RULE_HEIGHT,
-    opacity: 1,
   },
   stripDot: {
     position: 'absolute',

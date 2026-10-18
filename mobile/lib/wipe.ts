@@ -6,7 +6,6 @@ import { deleteBriefingAudio } from './briefing-audio';
 import { clearBriefingProgress } from './briefing-progress';
 import { resetDataUsage } from './data-usage';
 import { feedCache } from './feed-source';
-import { clearFound } from './found-store';
 import { clearKnown } from './fresh-store';
 import { deleteLegacy, type LegacyCopy } from './legacy-store';
 import { resetOnboarding } from './onboarding-store';
@@ -34,6 +33,7 @@ const KEYS = [
   'zuhd_last_seen', // when the app was last left; only a pre-`zuhd_known_v1` install reads it
   'zuhd_snapshot_etags_v1', // obsolete standalone snapshot tags
   'zuhd_known_v1', // which stories were already here, so new ones are marked new
+  'zuhd_found_v1', // which stories were opened, from before the globe followed what was read
   'zuhd_review_count', // article snaps since the last rating prompt
   'zuhd_review_prompted', // when the rating prompt was last shown
   'REACT_QUERY_OFFLINE_CACHE', // the persisted article cache
@@ -64,7 +64,7 @@ export async function eraseLocalData(): Promise<void> {
   // In-memory stores first, so nothing flushes itself back over the cleared
   // keys afterwards.
   cancelArrivals();
-  const cleared = [clearBookmarks(), clearFound(), clearKnown(), clearRead(), resetOnboarding()];
+  const cleared = [clearBookmarks(), clearKnown(), clearRead(), resetOnboarding()];
   resetReviewState();
   resetDataUsage();
   queryClient.clear();

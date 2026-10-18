@@ -19,7 +19,7 @@ import { isTimestampMap } from './validate';
  *
  *   - `known` — slugs the reader has had: in a feed before anything was new
  *     to them, or new and then landed on. Persisted with when each became
- *     known, and pruned as `found-store` prunes (`isPrunable`): only once a
+ *     known, and pruned as `read-store` prunes (`isPrunable`): only once a
  *     slug has left the feed *and* is two weeks old, so one short payload
  *     cannot relight a day.
  *   - `fresh` — the feed's slugs that are not known, taken each time a new

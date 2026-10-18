@@ -47,8 +47,25 @@ beforeEach(() => {
 afterEach(() => jest.restoreAllMocks());
 
 describe('store-review persistence and gating', () => {
-  it('prompts at the threshold and atomically resets the persisted count', async () => {
+  it('counts a swipe without asking anything', async () => {
     mockKv.set('zuhd_review_count', '19');
+    const review = loadReview();
+    await review.recordStorySwipe();
+
+    expect(mockKv.get('zuhd_review_count')).toBe('20');
+    expect(mockRequestReview).not.toHaveBeenCalled();
+  });
+
+  it('asks only once enough swipes are counted', async () => {
+    mockKv.set('zuhd_review_count', '19');
+    await loadReview().maybeRequestReview();
+
+    expect(mockRequestReview).not.toHaveBeenCalled();
+    expect(mockKv.get('zuhd_review_count')).toBe('19');
+  });
+
+  it('prompts at the threshold and atomically resets the persisted count', async () => {
+    mockKv.set('zuhd_review_count', '20');
     await loadReview().maybeRequestReview();
 
     expect(mockRequestReview).toHaveBeenCalledTimes(1);
@@ -57,7 +74,7 @@ describe('store-review persistence and gating', () => {
   });
 
   it('migrates a missing legacy cooldown independently of an existing SQLite count', async () => {
-    mockKv.set('zuhd_review_count', '19');
+    mockKv.set('zuhd_review_count', '20');
     mockSecure.set('zuhd_review_prompted', String(Date.now() - 1_000));
     await loadReview().maybeRequestReview();
 
@@ -69,7 +86,7 @@ describe('store-review persistence and gating', () => {
   });
 
   it('does not claim a prompt occurred when the platform has no review action', async () => {
-    mockKv.set('zuhd_review_count', '19');
+    mockKv.set('zuhd_review_count', '20');
     mockHasAction.mockResolvedValue(false);
     await loadReview().maybeRequestReview();
 
