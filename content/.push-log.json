@@ -1,91 +1,5 @@
 [
   {
-    "timestamp": "2026-09-28T05:19:00.995Z",
-    "candidateCount": 9,
-    "candidates": [
-      {
-        "slug": "2026-09-28-south-korea-ukraine-pow-transfer-apology",
-        "title": "Seoul Demands Zelensky Apology",
-        "category": "politics",
-        "eventCoverage": 121,
-        "importance": 6
-      },
-      {
-        "slug": "2026-09-28-siti-hasmah-mahathir-wife-dies-100",
-        "title": "Malaysia's Siti Hasmah Dies",
-        "category": "politics",
-        "eventCoverage": 55,
-        "importance": 6
-      },
-      {
-        "slug": "2026-09-28-australia-senate-summons-altman-amodei-ai-agents",
-        "title": "Australia Summons Altman, Amodei",
-        "category": "tech",
-        "eventCoverage": 51,
-        "importance": 6
-      },
-      {
-        "slug": "2026-09-28-sensex-seven-week-losing-streak-oil-iran",
-        "title": "Sensex Extends Losing Streak",
-        "category": "economy",
-        "eventCoverage": 51,
-        "importance": 6
-      },
-      {
-        "slug": "2026-09-28-uttar-pradesh-floods-62-dead",
-        "title": "Uttar Pradesh Floods Kill 62",
-        "category": "politics",
-        "eventCoverage": 43,
-        "importance": 6
-      },
-      {
-        "slug": "2026-09-28-netanyahu-icc-case-erdogan-leverage",
-        "title": "Netanyahu Preps ICC Case",
-        "category": "politics",
-        "eventCoverage": 37,
-        "importance": 6
-      },
-      {
-        "slug": "2026-09-28-pakistan-hangor-submarine-live-fire-china",
-        "title": "Pakistan Fires Hangor Missile",
-        "category": "tech",
-        "eventCoverage": 35,
-        "importance": 6
-      },
-      {
-        "slug": "2026-09-28-khyber-pakhtunkhwa-sehat-card-hospital-deductions",
-        "title": "Khyber Pakhtunkhwa Cuts Hospital Pay",
-        "category": "economy",
-        "eventCoverage": 0,
-        "importance": 6
-      },
-      {
-        "slug": "2026-09-28-soil-smell-microbes-electronic-nose",
-        "title": "Soil's Smell Reveals Health",
-        "category": "science",
-        "eventCoverage": 0,
-        "importance": 6
-      }
-    ],
-    "selected": {
-      "slug": "2026-09-28-uttar-pradesh-floods-62-dead",
-      "title": "Uttar Pradesh Floods Kill 62",
-      "category": "politics",
-      "body": "At least 62 people have died in [India](country:IN)'s Uttar Pradesh",
-      "eventCoverage": 43,
-      "importance": 6
-    },
-    "skipReason": null,
-    "sent": true,
-    "pushTitle": "Breaking News",
-    "pushBody": "Uttar Pradesh floods kill 62, damage more than 1,000 homes",
-    "response": {
-      "pushed": 1,
-      "skipped": 0,
-      "tokens": 6
-    }
-  },
-  {
     "timestamp": "2026-09-28T10:21:16.265Z",
     "candidateCount": 11,
     "candidates": [
@@ -10098,6 +10012,106 @@
     "sent": true,
     "pushTitle": "Breaking News",
     "pushBody": "Russia says it downed 1,015 Ukrainian drones overnight, oil terminal ablaze",
+    "response": {
+      "pushed": 1,
+      "skipped": 0,
+      "tokens": 5
+    }
+  },
+  {
+    "timestamp": "2026-10-18T14:16:29.063Z",
+    "candidateCount": 11,
+    "candidates": [
+      {
+        "slug": "2026-10-18-france-protests-1000-arrests-macron-crisis",
+        "title": "France Protests Become Political Crisis",
+        "category": "politics",
+        "eventCoverage": 947,
+        "importance": 6
+      },
+      {
+        "slug": "2026-10-18-netanyahu-smear-settler-attacks-olive-harvest-eu",
+        "title": "Netanyahu Alleges Settler Smear",
+        "category": "politics",
+        "eventCoverage": 521,
+        "importance": 6
+      },
+      {
+        "slug": "2026-10-18-lithuania-drone-from-poland-debris-hits-car-kaunas",
+        "title": "Drone Debris Hits Lithuanian Car",
+        "category": "politics",
+        "eventCoverage": 103,
+        "importance": 6
+      },
+      {
+        "slug": "2026-10-18-iran-defence-minister-akhlaghi-missiles-us-war",
+        "title": "Iran Names Missile Builder Minister",
+        "category": "politics",
+        "eventCoverage": 75,
+        "importance": 6
+      },
+      {
+        "slug": "2026-10-18-imf-ai-investment-growth-risk",
+        "title": "IMF Flags AI Dependence",
+        "category": "economy",
+        "eventCoverage": 48,
+        "importance": 6
+      },
+      {
+        "slug": "2026-10-18-lahore-four-death-sentences-cyber-blasphemy-fia",
+        "title": "Lahore Court Sentences Four",
+        "category": "politics",
+        "eventCoverage": 0,
+        "importance": 6
+      },
+      {
+        "slug": "2026-10-18-banco-master-vorcaro-messages-bolsonaro-right",
+        "title": "Banco Master Owner Backs Right",
+        "category": "politics",
+        "eventCoverage": 0,
+        "importance": 6
+      },
+      {
+        "slug": "2026-10-18-brent-crude-near-110-iran-war-hormuz",
+        "title": "Brent Crude Nears $110",
+        "category": "economy",
+        "eventCoverage": 0,
+        "importance": 6
+      },
+      {
+        "slug": "2026-10-18-us-stocks-1-7-trillion-lockup-expiry-buybacks-2027",
+        "title": "Wall Street's 2027 Supply Test",
+        "category": "economy",
+        "eventCoverage": 0,
+        "importance": 6
+      },
+      {
+        "slug": "2026-10-18-crypto-hacks-1-18-billion-q3-audit-gap-hacken",
+        "title": "Crypto Audits Miss Attack Targets",
+        "category": "tech",
+        "eventCoverage": 0,
+        "importance": 6
+      },
+      {
+        "slug": "2026-10-18-ghana-nigeria-scam-sweep-meta-3-7-million-accounts",
+        "title": "West Africa Scam Sweep",
+        "category": "tech",
+        "eventCoverage": 0,
+        "importance": 6
+      }
+    ],
+    "selected": {
+      "slug": "2026-10-18-france-protests-1000-arrests-macron-crisis",
+      "title": "France Protests Become Political Crisis",
+      "category": "politics",
+      "body": "Over 1,800 arrested in [France](country:FR), the interior minister",
+      "eventCoverage": 947,
+      "importance": 6
+    },
+    "skipReason": null,
+    "sent": true,
+    "pushTitle": "Breaking News",
+    "pushBody": "France arrests more than 1,800 as protests deepen political crisis, interior minister says",
     "response": {
       "pushed": 1,
       "skipped": 0,
