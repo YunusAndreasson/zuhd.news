@@ -1,40 +1,38 @@
 {
-  "date": "2026-10-17",
+  "date": "2026-10-18",
   "metrics": {
-    "articles": { "value": 53, "detail": "5 cycles, all completed; avg 12 published per cycle (one cycle 8); 0 quarantined" },
-    "freshness": { "median": 0.1, "p90": 0.2, "max": 0.6, "target": 1.0, "met": true },
-    "categories": { "politics": 25, "economy": 14, "science": 5, "tech": 9 },
-    "multiSource": { "pct": 28, "target": 30, "met": false },
-    "usDatelines": { "pct": 19, "target": 25, "met": true },
-    "latAmDatelines": { "pct": 9, "target": 5, "met": true },
+    "articles": { "value": 57, "detail": "5 cycles, all completed; avg 12 published per cycle; 0 quarantined" },
+    "freshness": { "median": 0.1, "p90": 0.5, "max": 0.7, "target": 1.0, "met": true },
+    "categories": { "politics": 23, "economy": 15, "science": 5, "tech": 14 },
+    "multiSource": { "pct": 40, "target": 30, "met": true },
+    "usDatelines": { "pct": 16, "target": 25, "met": true },
+    "latAmDatelines": { "pct": 4, "target": 5, "met": false },
     "sameEventDuplicates": { "value": 0, "target": 0, "met": true },
     "missingDatelines": { "value": 0, "target": 0, "met": true },
-    "stateOrAdvocacyOnly": 5,
-    "imageUrlPct": 100,
-    "regions": { "count": 5, "target": 4, "met": true, "breakdown": { "AM": 15, "ME": 15, "AS": 14, "EU": 5, "AF": 4 } },
-    "sciTech": { "ratio": 26, "target": 25, "met": true },
-    "topSourceShare": { "source": "Al Jazeera Online", "pct": 19, "target": 20, "met": true },
-    "uniqueSources": 50,
+    "stateOrAdvocacyOnly": 4,
+    "imageUrlPct": 98,
+    "regions": { "count": 5, "target": 4, "met": true, "breakdown": { "ME": 19, "AM": 12, "EU": 12, "AS": 11, "AF": 3 } },
+    "sciTech": { "ratio": 33, "target": 25, "met": true },
+    "topSourceShare": { "source": "Al Jazeera Online", "pct": 18, "target": 20, "met": true },
+    "uniqueSources": 63,
     "duplicates": 0,
-    "avgCycleDuration": 976
+    "avgCycleDuration": 994
   },
-  "experiment": "Skipped. No experiment is active and the pause gate (`noNewExperimentsUntil` 2026-11-05, for the stage-runner refactor) bars a new one; nothing was evaluated or changed.",
-  "weakestArea": "Multi-source is at 28% (15 of 53), 2 points under target, after 26% yesterday: two days under 30% now, though close to it. Sci-tech fell to 26% from 38%, just above its 25% floor, as tech dropped from 17 to 9 and science sat on its floor of 5. Al Jazeera is 19% of output, 1 point under the 20% source cap, and TASS rose to 7 from 1. If multi-source stays under 30% through the pause, the lever is feed-side event enrichment, since the 2026-05-09 floor raise was already tried and reverted.",
+  "experiment": "Skipped. No experiment is active, and the pause gate (`noNewExperimentsUntil` 2026-11-05, for the stage-runner refactor) bars a new one. Nothing was evaluated or changed.",
+  "weakestArea": "Latin America is at 4% of datelines (Guatemala City, plus one story datelined only 'Brazil'), down from 9% yesterday and 1 point under target. It is the only goal missed today. Multi-source recovered to 40% (23 of 57) from 28%, its best in the recent record, so yesterday's shortfall looks like feed noise, not a trend. Al Jazeera is still the top source at 18% (10 stories, the same as yesterday), and TASS holds at 7.",
   "watching": [
-    "Gulf war: a supertanker hit a mine on a route the IRGC had banned, Iran threatened Gulf subsea cables and AI data centres, and Pakistan suspended trade with Iran at three crossings.",
-    "Russia sanctions: Trump waived the Russia sanctions law by executive order while Zelenskyy pressed against relief as strikes hit Ukraine's power grid.",
-    "West Bank: settlers beat a French mayor and EU diplomats in Taybeh, and a rabbi's edict backed olive seizures.",
-    "Kenya has seven Ebola cases, three of them health workers.",
-    "Europe unrest: Tirana protests entered a fifth day with rubber bullets, and nationwide protests in France ended in clashes in Paris.",
-    "China's AI export controls now cover models and chip designs; DeepSeek released V4.1 Flash with open weights.",
-    "Bond selloff: Lagarde signalled a possible December ECB hike, with France's debt under pressure."
+    "Gulf war economy: Brent is near $110, Iran proposed reopening Hormuz through Baghdad, fishermen are salvaging sunken cargo, and the Houthis warned Aramco shareholders.",
+    "France: the protests became a political crisis, with Macron answering the riots and Limoges town hall burned.",
+    "Saudi–Yemen front: a Saudi helicopter crashed near Najran while Egypt pledged support and then delayed its vote on sending troops.",
+    "Russia–Ukraine: drones hit St Petersburg oil and a VK data centre, drone debris struck a car in Lithuania, and Bessent warned Zelenskyy.",
+    "Typhoon Champi is nearing the Philippines.",
+    "Open-weight Chinese models and China's second drone mothership extend the AI and military-tech thread."
   ],
   "coverageGaps": [
-    "Oceania had no datelines for a fourth day running.",
-    "Europe fell to 5 datelines from 10.",
-    "Twelve stories carry a country, not a city, as their location (China ×4, United States ×3, Iran, Pakistan, Sudan, Nigeria, Yemen); the dateline rule wants the city. That is up from eight yesterday.",
-    "Two economy stories sit in Bangkok (IMF and Lagarde), which looks like a meetings venue, not the story's place.",
-    "Science stayed at the 5 floor; a CoinDesk quantum-bitcoin piece counted as science, and Nature, Science and STAT were absent again."
+    "Oceania had no datelines for a fifth day running, and Africa had only 3 (Accra, Durban, Pretoria).",
+    "Ten stories carry a country, not a city, as their location (United States ×3, Iran ×2, China ×2, Yemen, Brazil, Britain), and one carries 'Wall Street'. That is down from twelve but still breaks the city-only dateline rule.",
+    "The two Egypt–Saudi troop stories from Cairo and the two Paris riot stories each look like near-same-event pairs that the duplicate check did not flag.",
+    "Science held at its floor of 5, from Phys.org, Nature Communications and Premium Times. Science, STAT and New Scientist were absent."
   ],
-  "context": "All five cycles completed in 976s on average (selector 155s, writer 136s, editor 78s). Five stories rest only on state or advocacy sources, up from two (French protests, Iran's cable threat, Sobyanin's drone count, Tirana protests, Yemen's Houthi casualty claim). All are allowed and labelled, but the rise follows TASS's jump to 7 stories. Image URLs are back at 100%."
+  "context": "All five cycles completed, averaging 994s (selector 139s, writer 169s, editor 96s). Four stories rest only on state or advocacy sources, down from five: Brent, Iran's gasoline claim, the OPEC+ coordination story and the VK data-centre strike. All four are allowed and labelled. Tech rose to 14 from 9, which lifted sci-tech to 33%, though 4 of those 14 tech stories are about crypto (CoinDesk has 5 stories overall)."
 }
