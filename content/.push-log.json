@@ -1,105 +1,5 @@
 [
   {
-    "timestamp": "2026-09-28T10:21:16.265Z",
-    "candidateCount": 11,
-    "candidates": [
-      {
-        "slug": "2026-09-28-taiwan-pushback-trump-xi-summit-wwii-weapons-offer",
-        "title": "Trump Offered Xi US Arms",
-        "category": "politics",
-        "eventCoverage": 331,
-        "importance": 6
-      },
-      {
-        "slug": "2026-09-28-kazakhstan-caspian-exercise-14-dead-defence-minister-fired",
-        "title": "Tokayev Fires Defence Minister",
-        "category": "politics",
-        "eventCoverage": 233,
-        "importance": 6
-      },
-      {
-        "slug": "2026-09-28-socar-eni-italy-fuel-price-cap",
-        "title": "Azerbaijan Caps Italian Fuel",
-        "category": "economy",
-        "eventCoverage": 161,
-        "importance": 6
-      },
-      {
-        "slug": "2026-09-28-taiz-market-strike-saudi-houthi-front",
-        "title": "Taiz Market Strike Kills Seven",
-        "category": "politics",
-        "eventCoverage": 145,
-        "importance": 6
-      },
-      {
-        "slug": "2026-09-28-netanyahu-secret-abu-dhabi-trip-october-7-warning",
-        "title": "Netanyahu Visits UAE Secretly",
-        "category": "politics",
-        "eventCoverage": 113,
-        "importance": 6
-      },
-      {
-        "slug": "2026-09-28-hungary-lifts-immunity-magyar-orban-ministers",
-        "title": "Budapest Lifts PM's Immunity",
-        "category": "politics",
-        "eventCoverage": 50,
-        "importance": 6
-      },
-      {
-        "slug": "2026-09-28-anambra-debt-peter-obi-dmo-records",
-        "title": "Anambra Debt Claim Disputed",
-        "category": "economy",
-        "eventCoverage": 0,
-        "importance": 6
-      },
-      {
-        "slug": "2026-09-28-h5n1-human-patient-variants-receptor-binding",
-        "title": "H5N1 Mutation Blunts Binding",
-        "category": "science",
-        "eventCoverage": 0,
-        "importance": 6
-      },
-      {
-        "slug": "2026-09-28-herring-fishery-collapse-400-years-rebound",
-        "title": "Herring Collapse Took 400 Years",
-        "category": "science",
-        "eventCoverage": 0,
-        "importance": 6
-      },
-      {
-        "slug": "2026-09-28-ai-agents-rogue-liability-gap",
-        "title": "AI Agents' Liability Gap",
-        "category": "tech",
-        "eventCoverage": 0,
-        "importance": 6
-      },
-      {
-        "slug": "2026-09-28-redotpay-stablecoin-audit-us-ipo",
-        "title": "RedotPay Targets $5B IPO",
-        "category": "tech",
-        "eventCoverage": 0,
-        "importance": 6
-      }
-    ],
-    "selected": {
-      "slug": "2026-09-28-netanyahu-secret-abu-dhabi-trip-october-7-warning",
-      "title": "Netanyahu Visits UAE Secretly",
-      "category": "politics",
-      "body": "Netanyahu secretly flew to Abu Dhabi seeking a",
-      "eventCoverage": 113,
-      "importance": 6
-    },
-    "skipReason": null,
-    "sent": true,
-    "pushTitle": "Breaking News",
-    "pushBody": "Netanyahu makes secret Abu Dhabi trip seeking denial over October 7",
-    "response": {
-      "pushed": 1,
-      "skipped": 0,
-      "tokens": 6
-    }
-  },
-  {
     "timestamp": "2026-09-28T14:27:57.843Z",
     "candidateCount": 12,
     "candidates": [
@@ -10112,6 +10012,127 @@
     "sent": true,
     "pushTitle": "Breaking News",
     "pushBody": "France arrests more than 1,800 as protests deepen political crisis, interior minister says",
+    "response": {
+      "pushed": 1,
+      "skipped": 0,
+      "tokens": 5
+    }
+  },
+  {
+    "timestamp": "2026-10-18T18:15:14.094Z",
+    "candidateCount": 14,
+    "candidates": [
+      {
+        "slug": "2026-10-18-trump-endorses-netanyahu-israel-election-icc",
+        "title": "Trump Endorses Netanyahu",
+        "category": "politics",
+        "eventCoverage": 278,
+        "importance": 6
+      },
+      {
+        "slug": "2026-10-18-bessent-warns-zelenskyy-starshield-cut-intel-resumes",
+        "title": "Bessent Warns Zelenskyy",
+        "category": "politics",
+        "eventCoverage": 164,
+        "importance": 6
+      },
+      {
+        "slug": "2026-10-18-flydubai-co-pilot-axe-attack-captain-tabuk",
+        "title": "Captain Recounts Cockpit Axe Attack",
+        "category": "politics",
+        "eventCoverage": 79,
+        "importance": 6
+      },
+      {
+        "slug": "2026-10-18-trump-energy-prices-pledge-fails-brent-inflation",
+        "title": "Trump's Cheap-Energy Pledge Fails",
+        "category": "economy",
+        "eventCoverage": 79,
+        "importance": 6
+      },
+      {
+        "slug": "2026-10-18-kashmiri-bus-attacked-haryana-karnal-omar-abdullah",
+        "title": "Kashmir-Bound Bus Attacked",
+        "category": "politics",
+        "eventCoverage": 59,
+        "importance": 6
+      },
+      {
+        "slug": "2026-10-18-gaza-mass-funeral-75-bodies-rubble-daraj",
+        "title": "Gaza Buries 75 Recovered Dead",
+        "category": "politics",
+        "eventCoverage": 55,
+        "importance": 6
+      },
+      {
+        "slug": "2026-10-18-houthis-warn-aramco-shareholders-brent-crude",
+        "title": "Houthis Warn Aramco Shareholders",
+        "category": "economy",
+        "eventCoverage": 0,
+        "importance": 6
+      },
+      {
+        "slug": "2026-10-18-durban-port-transnet-workers-recalled-private-partner",
+        "title": "Durban Port Recalls Workers",
+        "category": "economy",
+        "eventCoverage": 0,
+        "importance": 6
+      },
+      {
+        "slug": "2026-10-18-iran-pezeshkian-gasoline-self-sufficiency-claim",
+        "title": "Iran Claims Gasoline Self-Sufficiency",
+        "category": "economy",
+        "eventCoverage": 0,
+        "importance": 6
+      },
+      {
+        "slug": "2026-10-18-chen-deming-china-overcapacity-investment-talks",
+        "title": "Chen Deming Disputes Overcapacity",
+        "category": "economy",
+        "eventCoverage": 0,
+        "importance": 6
+      },
+      {
+        "slug": "2026-10-18-anthropic-outside-ai-watchdog-employee-access",
+        "title": "Anthropic Embeds Outside Evaluators",
+        "category": "tech",
+        "eventCoverage": 0,
+        "importance": 6
+      },
+      {
+        "slug": "2026-10-18-canton-fair-humanoid-robots-dongyi-llm-control-split",
+        "title": "Humanoids Work Canton Fair",
+        "category": "tech",
+        "eventCoverage": 0,
+        "importance": 6
+      },
+      {
+        "slug": "2026-10-18-latvia-crypto-tax-payments-2027-parliament",
+        "title": "Latvia Offers Crypto Tax Amnesty",
+        "category": "tech",
+        "eventCoverage": 0,
+        "importance": 6
+      },
+      {
+        "slug": "2026-10-18-quantum-speed-limit-thermalization-proof",
+        "title": "Quantum Thermalization Limit Proven",
+        "category": "science",
+        "eventCoverage": 0,
+        "importance": 6
+      }
+    ],
+    "selected": {
+      "slug": "2026-10-18-trump-endorses-netanyahu-israel-election-icc",
+      "title": "Trump Endorses Netanyahu",
+      "category": "politics",
+      "body": "Trump tied [Israel](country:IL)'s 27 October vote to the war on",
+      "eventCoverage": 278,
+      "importance": 6
+    },
+    "skipReason": null,
+    "sent": true,
+    "pushTitle": "Breaking News",
+    "pushBody": "Trump endorses Netanyahu ahead of Israel's 27 October election",
     "response": {
       "pushed": 1,
       "skipped": 0,
