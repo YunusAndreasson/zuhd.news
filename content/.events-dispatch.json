@@ -73,12 +73,14 @@
     },
     "g20-2026-miami": {
       "standingFingerprint": "041eb1ecc79e970b",
-      "recentFingerprint": "94684a405d6fff25",
+      "recentFingerprint": "59586fbba03c7ce7",
       "prompt": "cc42a1f1",
       "standing": "The annual meeting of leaders of the world's largest economies, hosted by the member holding the rotating presidency. Its members produce about 85% of global output, and its communiqué sets shared lines on trade and debt.",
-      "recent": "The US presidency hosts it after Zelenskyy, fresh from an EU summit overshadowed by a spat with Trump, said he is eyeing a possible meeting with the US and Russia on its sidelines. That brings the war over Ukraine to a table where Russia sits as a member and the host is the government Zelenskyy has just been at odds with.",
-      "citations": [],
-      "generatedAt": "2026-10-18T05:24:47.273Z"
+      "recent": "Zelenskyy has floated a meeting with the US and Russia on the sidelines of this G20 summit, days after Putin proposed a three-way summit that would seat 3 leaders and no Ukrainian. The US presidency puts the host at the centre of that dispute over who sits at the table when Ukraine's future is negotiated.",
+      "citations": [
+        "2026-10-19-putin-proposes-trump-xi-summit-ukraine-deal"
+      ],
+      "generatedAt": "2026-10-19T05:25:41.636Z"
     },
     "ecb-2026-12": {
       "standingFingerprint": "644eb225dab9953a",
@@ -104,17 +106,35 @@
     },
     "boj-2026-12": {
       "standingFingerprint": "b08124a86f654bb7",
-      "recentFingerprint": "aa27058f40dcb514",
+      "recentFingerprint": "c55346f098b5e843",
       "prompt": "cc42a1f1",
       "standing": "The Bank of Japan's policy board, which meets eight times a year to set the country's short-term interest rate. Its decisions move the yen and the yield on Japanese government debt, and reach borrowers far beyond Japan.",
-      "recent": "Yen-priced imports cost 24.5% more than a year ago, and three sources say the Bank of Japan may declare that underlying inflation has reached its 2% goal. Ueda has said he can't tolerate it running further over 2%, and the IMF says the BOJ may need to tighten faster if inflation beats forecast.",
+      "recent": "Yen-priced imports cost 24.5% more than a year ago, and three sources say the Bank of Japan is weighing whether to declare underlying inflation at its 2% goal. Ueda has said he 'can't tolerate' it running further over 2%, and the IMF has urged faster tightening if inflation beats forecast.",
       "citations": [
         "2026-10-06-boj-may-signal-underlying-inflation-has-hit-2-goal-sources-s",
         "2026-10-13-japan-wholesale-inflation-6-8-percent-boj-rate-hike-yen"
       ],
-      "generatedAt": "2026-10-18T05:24:59.039Z"
+      "generatedAt": "2026-10-19T05:25:52.409Z"
+    },
+    "fred-us-pce-2026-10-29": {
+      "standingFingerprint": "f7794ed88caf73b9",
+      "recentFingerprint": "f7a382d442b2336a",
+      "prompt": "cc42a1f1",
+      "standing": "The Bureau of Economic Analysis's monthly report on personal income and spending, carrying the PCE price index the Federal Reserve targets at 2%. It moves rate expectations, Treasury yields and the dollar.",
+      "recent": "The Bureau of Economic Analysis reports US PCE, settling how fast the prices households pay rose over the month and whether their spending kept pace with their income.",
+      "citations": [],
+      "generatedAt": "2026-10-19T05:25:37.949Z"
+    },
+    "fred-us-gdp-2026-10-29": {
+      "standingFingerprint": "f941ab836edf2e53",
+      "recentFingerprint": "77dfad07ba7db781",
+      "prompt": "cc42a1f1",
+      "standing": "The Bureau of Economic Analysis's quarterly estimate of US gross domestic product, first published about a month after each quarter ends and revised twice after. Treasury yields, the dollar and Fed expectations move on it.",
+      "recent": "The Bureau of Economic Analysis publishes its first estimate of US output for the quarter just ended. It settles how fast the economy grew over the period and how much of that growth came from consumer spending rather than investment, trade and inventories.",
+      "citations": [],
+      "generatedAt": "2026-10-19T05:25:39.280Z"
     }
   },
-  "generatedAt": "2026-10-18T05:24:59.041Z",
+  "generatedAt": "2026-10-19T05:25:52.409Z",
   "windowDays": 14
 }
