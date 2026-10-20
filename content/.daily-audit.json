@@ -1,38 +1,38 @@
 {
-  "date": "2026-10-19",
+  "date": "2026-10-20",
   "metrics": {
-    "articles": { "value": 58, "detail": "5 cycles, all completed; avg 11 published per cycle; 1 quarantined (Yemen Taiz)" },
-    "freshness": { "median": 0.1, "p90": 0.3, "max": 0.4, "target": 1.0, "met": true },
-    "categories": { "politics": 22, "economy": 16, "science": 6, "tech": 14 },
-    "multiSource": { "pct": 36, "target": 30, "met": true },
-    "usDatelines": { "pct": 22, "target": 25, "met": true },
-    "latAmDatelines": { "pct": 5, "target": 5, "met": true },
+    "articles": { "value": 61, "detail": "5 cycles, all completed; avg 12 published per cycle; 0 quarantined" },
+    "freshness": { "median": 0.1, "p90": 0.4, "max": 0.8, "target": 1.0, "met": true },
+    "categories": { "politics": 24, "economy": 16, "science": 5, "tech": 16 },
+    "multiSource": { "pct": 38, "target": 30, "met": true },
+    "usDatelines": { "pct": 15, "target": 25, "met": true },
+    "latAmDatelines": { "pct": 8, "target": 5, "met": true },
     "sameEventDuplicates": { "value": 0, "target": 0, "met": true },
     "missingDatelines": { "value": 0, "target": 0, "met": true },
-    "stateOrAdvocacyOnly": 1,
-    "imageUrlPct": 100,
-    "regions": { "count": 6, "target": 4, "met": true, "breakdown": { "AM": 17, "ME": 13, "EU": 11, "AS": 10, "AF": 5, "OC": 2 } },
+    "stateOrAdvocacyOnly": 3,
+    "imageUrlPct": 98,
+    "regions": { "count": 6, "target": 4, "met": true, "breakdown": { "AM": 15, "ME": 15, "EU": 13, "AS": 13, "AF": 4, "OC": 1 } },
     "sciTech": { "ratio": 34, "target": 25, "met": true },
-    "topSourceShare": { "source": "Al Jazeera Online / Reuters (tied)", "pct": 10, "target": 20, "met": true },
-    "uniqueSources": 64,
+    "topSourceShare": { "source": "Al Jazeera Online", "pct": 18, "target": 20, "met": true },
+    "uniqueSources": 55,
     "duplicates": 0,
-    "avgCycleDuration": 984
+    "avgCycleDuration": 1050
   },
   "experiment": "Skipped. No experiment is active, and the pause gate (`noNewExperimentsUntil` 2026-11-05, for the stage-runner refactor) bars a new one. Nothing was evaluated or changed.",
-  "weakestArea": "Every goal is met today. The softest is Latin America, exactly at 5% (two São Paulo stories and Haiti), up from 4%. Science at 6 clears its floor of 5, but two of the six are AI research (the Quanta proof, Goodfire), and Science, Nature and STAT are absent. Al Jazeera fell from 10 stories to 6, tied with Reuters at 10% of articles.",
+  "weakestArea": "Every goal is met today. The closest to its limit is Al Jazeera Online: it is the source on 11 of 61 stories (18%), up from 6 yesterday and 2 points under the 20% cap. Most of those are Gulf-war stories, where it is often the fastest English wire. Science is exactly at its 5, drawn from Nature, Phys.org, Carbon Brief and 404 Media, with no Science, STAT or health outlet among them.",
   "watching": [
-    "Gulf war: Iran set six-day terms for reopening Hormuz, Lavrov went to Tehran offering to broker US–Iran talks, and Houthi missiles killed 18 at a Shabwa camp.",
-    "Russia–Ukraine: Russia hit 28 energy facilities and cut power to 550,000 households, while Putin floated a Trump–Xi summit on a Ukraine deal and reshuffled his cabinet.",
-    "Brazil's runoff: Lula and Flávio Bolsonaro debated, and Meta began blocking political posts.",
-    "France: curfews and a Paris protest ban follow last week's riots.",
-    "AI compute and China's model price war: Nscale's talks over a $45bn Anthropic deal, its lost Microsoft UK site, Texas pausing data-centre permits, and MiniMax undercutting DeepSeek.",
-    "Pakistan: the Khyber Pakhtunkhwa chief minister is missing, and a Sindh court upheld Mahrang Baloch's acquittal."
+    "Hormuz: mines hit a third tanker and set a supertanker on fire, Iran's new strait authority blacklisted 122 vessels, and Qatari LNG is being rerouted through the Red Sea.",
+    "Ukraine peace talks: US–Ukraine talks in Oslo were followed by Witkoff going to Moscow, as Trump and Zelensky fall out in public.",
+    "Brazil's runoff is tied as the farm lobby backs Bolsonaro, alongside the Ancine film-funding story and US State Department money for a free-speech NGO.",
+    "Ebola has reached Abuja, and Kenya has a ninth case, so the outbreak is spreading across the region.",
+    "Houthi attacks are reaching the Gulf states: Saudi Arabia postponed its FII conference, and RAF Typhoons are flying air patrols over Saudi Arabia.",
+    "French bond yields are at a quarter-century high as the protests continue."
   ],
   "coverageGaps": [
-    "Eleven stories carry a country or region, not a city, as their location (United States ×5, China ×2, Ghana, Germany, Massachusetts, Europe), up from ten yesterday; it still breaks the city-only dateline rule.",
-    "Africa had 5 datelines but only one hard-news story south of the Sahara outside South Africa (Kinshasa), and none from the Sahel or the Horn.",
-    "Science drew no story from Science, Nature, STAT or a health outlet; two of the six are AI research.",
-    "The Yemen Taiz advance story was quarantined (.bad), so the Saudi–Yemen front has only the Shabwa strike today."
+    "Twelve stories carry a country or region, not a city, as their location (United States ×4, Europe ×2, China ×2, Sudan, India, Israel, New Zealand), up from eleven yesterday. That still breaks the city-only dateline rule, and tuning cannot fix it: the fix belongs in the writer or validator.",
+    "Oceania has one dateline (New Zealand, which is a country), and Africa has four. Sudan's drone strikes, which killed 160, have no city.",
+    "Science drew no story from Science, STAT or a health outlet, although the Ebola spread could have been one.",
+    "Three stories rest only on state or advocacy sources (the Hormuz MQ-9 drone, Iraq expelling the Iranian Kurdish group, US in-absentia asylum orders), up from one. That is allowed, and they are labelled."
   ],
-  "context": "All five cycles completed, averaging 984s (selector 159s, writer 160s, editor 56s). One story rests only on state or advocacy sources (the Philippines data-centre protests), down from four, allowed and labelled. Oceania returned with two datelines (Wangaratta, Tocal) after five days without one. Multi-source held at 36% after 40% yesterday."
+  "context": "All five cycles completed, averaging 1050s (selector 146s, writer 156s, editor 87s). Multi-source rose to 38% from 36%, US datelines fell to 15%, and Latin America rose to 8% (Brazil, Honduras, Colombia). The pause gate holds until 2026-11-05, when the stage-runner refactor is due to have cut over."
 }
