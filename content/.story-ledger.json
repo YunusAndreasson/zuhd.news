@@ -2,13 +2,238 @@
   "version": 1,
   "stories": [
     {
+      "id": "icc-sakharov-prize-us-sanctions",
+      "label": "International Criminal Court Wins E.U.'s Top Human Rights Prize",
+      "firstSeen": "2026-10-22T18:04:54.921Z",
+      "lastCovered": "2026-10-22T18:04:54.921Z",
+      "coverageCount": 1,
+      "category": "politics",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-10-22-icc-sakharov-prize-us-sanctions"
+      ],
+      "eventUri": "eng-12115814",
+      "summary": "The European Parliament gave the Sakharov Prize to the ICC itself, an institution, while Washington has sanctioned its judges and prosecutor for the Netanyahu and Gallant warrants. Lead with the collision: Europe's legislature honours the court the US is trying to cripple. Explain what the US sanctions do in practice (frozen assets, banking cut-offs for judges) and whether the EU has done anything binding, such as activating its blocking statute, beyond giving a prize."
+    },
+    {
+      "id": "guterres-west-bank-settler-violence-out-of-control",
+      "label": "UN chief to travel to Egypt Friday",
+      "firstSeen": "2026-10-22T18:04:54.921Z",
+      "lastCovered": "2026-10-22T18:04:54.921Z",
+      "coverageCount": 1,
+      "category": "politics",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-10-22-guterres-west-bank-settler-violence-out-of-control"
+      ],
+      "eventUri": "por-1351188",
+      "summary": "Guterres said settler violence in the occupied West Bank is 'simply out of control' and aimed at driving Palestinian communities off their land, and he flies to Egypt on Friday. Lead with the named actors: armed settlers, operating under Israeli military protection, emptying villages. Give the latest UN OCHA counts of attacks and of displaced communities, and explain what the Cairo trip is for (Gaza crossings, aid). The story is the dispossession, not the travel schedule."
+    },
+    {
+      "id": "canada-turkiye-strategic-partnership-defence",
+      "label": "Carney and Erdogan launch 'strong and resilient' Canada-Turkiye partnership",
+      "firstSeen": "2026-10-22T18:04:54.921Z",
+      "lastCovered": "2026-10-22T18:04:54.921Z",
+      "coverageCount": 1,
+      "category": "politics",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-10-22-canada-turkiye-strategic-partnership-defence"
+      ],
+      "eventUri": "eng-12115109",
+      "summary": "Canada and Türkiye signed a strategic partnership in Ankara with agreements on the defence industry, air transport and energy. Al-Monitor frames it as part of Carney's push to cut Canada's reliance on the US. Lead with the reversal: Ottawa embargoed drone optics exports to Türkiye in 2020–21 over Nagorno-Karabakh, and now signs a defence-industry pact. A middle power is hedging away from Washington by going to another middle power."
+    },
+    {
+      "id": "un-withdraws-rafah-crossing-gaza",
+      "label": "Exclusive: UN abandons Rafah crossing; PHP flaws expose websites; AIPAC ends endorsements",
+      "firstSeen": "2026-10-22T18:04:54.921Z",
+      "lastCovered": "2026-10-22T18:04:54.921Z",
+      "coverageCount": 1,
+      "category": "politics",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-10-22-un-withdraws-rafah-crossing-gaza"
+      ],
+      "eventUri": null,
+      "summary": "Write only the lead item, Drop Site's exclusive that the UN is pulling out of the Rafah crossing, and ignore the PHP and AIPAC items in the same newsletter. Lead with what the withdrawal means for Gazans who need medical evacuation and aid. Name who now controls the crossing and on what terms, and say why the UN left (Israeli restrictions, staff safety). Attribute it as Drop Site reporting; this follows our 10-22 story on the cancer patient arrested at Rafah."
+    },
+    {
+      "id": "italy-spain-lift-border-controls-ceuta",
+      "label": "Italy and Spain lift border controls after months of tension over Ceuta",
+      "firstSeen": "2026-10-22T18:04:54.921Z",
+      "lastCovered": "2026-10-22T18:04:54.921Z",
+      "coverageCount": 1,
+      "category": "politics",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-10-22-italy-spain-lift-border-controls-ceuta"
+      ],
+      "eventUri": "spa-4388670",
+      "summary": "More than 70,000 people crossed irregularly from Morocco into Ceuta in late July, and Italy answered by reimposing checks on Spanish citizens, breaking Schengen between two founding members for three months. Lead with the scale of the crossing and the precedent: one country's migration surge suspended free movement inside the bloc. Then ask what happened to the 70,000, and what Rabat's role at the fence was before and after."
+    },
+    {
+      "id": "egypt-hospital-beds-decline-health-minister-claims",
+      "label": "‘Citizens’ health’ session at Egypt Forum 2026 boasts spending success with no mention of declining hospital bed numbers",
+      "firstSeen": "2026-10-22T18:04:54.921Z",
+      "lastCovered": "2026-10-22T18:04:54.921Z",
+      "coverageCount": 1,
+      "category": "politics",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-10-22-egypt-hospital-beds-decline-health-minister-claims"
+      ],
+      "eventUri": null,
+      "summary": "At Egypt Forum 2026, Health Minister Khaled Abdel Ghaffar praised 'unprecedented' state support for health care, while Egypt's own statistics show hospital beds per person falling. Lead with that gap between the claim and the count. Give the bed numbers Mada Masr cites, and the share of health spending that patients pay out of pocket, which is the cost the forum left out."
+    },
+    {
+      "id": "guinea-bissau-cancels-hepatitis-b-vaccine-trial-newborns",
+      "label": "\"Unethical\" vaccine trial on babies backed by RFK Jr. is formally canceled",
+      "firstSeen": "2026-10-22T18:04:54.921Z",
+      "lastCovered": "2026-10-22T18:04:54.921Z",
+      "coverageCount": 1,
+      "category": "science",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-10-22-guinea-bissau-cancels-hepatitis-b-vaccine-trial-newborns"
+      ],
+      "eventUri": "eng-12112287",
+      "summary": "Guinea-Bissau formally rejected a US-funded trial, run by Danish researchers, that would have withheld the birth dose of hepatitis B vaccine from newborns to look for 'nonspecific harms', after police had already seized the doses. Lead with the ethics: the trial would have denied a proven vaccine to African babies in a country with high hepatitis B prevalence, to test a claim promoted by RFK Jr. Explain mother-to-child transmission and why the birth dose is the standard. Dateline Bissau."
+    },
+    {
+      "id": "national-academies-ranks-nonpolar-moon-landing-sites",
+      "label": "National Academies Rank Nonpolar Moon Sites",
+      "firstSeen": "2026-10-22T18:04:54.921Z",
+      "lastCovered": "2026-10-22T18:04:54.921Z",
+      "coverageCount": 1,
+      "category": "science",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-10-22-national-academies-ranks-nonpolar-moon-landing-sites"
+      ],
+      "eventUri": null,
+      "summary": "Every Artemis landing is planned for the lunar south pole, chasing water ice. A National Academies report now ranks the four best non-polar sites for crewed missions. Lead with the scientific case: which questions about the Moon's volcanic history, its age and the early solar system can only be answered away from the pole. Name the four sites and what each could tell us."
+    },
+    {
+      "id": "qatar-buys-us-lng-2054-hormuz",
+      "label": "Qatar locks in US LNG through 2054 as it looks beyond Hormuz",
+      "firstSeen": "2026-10-22T18:04:54.921Z",
+      "lastCovered": "2026-10-22T18:04:54.921Z",
+      "coverageCount": 1,
+      "category": "economy",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-10-22-qatar-buys-us-lng-2054-hormuz"
+      ],
+      "eventUri": "eng-12121425",
+      "summary": "QatarEnergy, owner of the world's largest single gas field, has agreed to buy up to 4 million tonnes a year of US LNG through 2054. It is buying gas it cannot ship out of the Gulf, because IRGC mines and tanker strikes threaten ship traffic through the Strait of Hormuz. Lead with the inversion: an exporter becomes a buyer to keep its customer contracts. Name the series: natural gas prices and ship traffic through the Strait of Hormuz."
+    },
+    {
+      "id": "china-desalination-exports-water-technology",
+      "label": "China bets on manufactured water, and wants to sell it to the world",
+      "firstSeen": "2026-10-22T18:04:54.921Z",
+      "lastCovered": "2026-10-22T18:04:54.921Z",
+      "coverageCount": 1,
+      "category": "economy",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-10-22-china-desalination-exports-water-technology"
+      ],
+      "eventUri": "eng-12119993",
+      "summary": "Shrinking water supplies at home pushed Beijing into desalination and filtration, and Chinese firms now sell membranes and whole plants to dry countries across Asia, the Middle East and Africa. Lead with the dependency this creates: Gulf and North African states whose drinking water runs on Chinese membranes. Give market-share figures where the source has them, and compare it with what China did in solar panels."
+    },
+    {
+      "id": "pemex-oil-spills-mexico-compensation",
+      "label": "Mexico’s year of oil spills fuels growing concern",
+      "firstSeen": "2026-10-22T18:04:54.921Z",
+      "lastCovered": "2026-10-22T18:04:54.921Z",
+      "coverageCount": 1,
+      "category": "economy",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-10-22-pemex-oil-spills-mexico-compensation"
+      ],
+      "eventUri": null,
+      "summary": "Pemex, Mexico's state oil company and the world's most indebted oil major, has spilled oil repeatedly this year, and fishing communities say they are not compensated and regulators do not hold it to account. Lead with the number of spills and who pays for them: fishers on the Gulf coast. The mechanism: a state company that the state cannot afford to police. Dateline at the worst spill site."
+    },
+    {
+      "id": "south-africa-court-voids-arv-tender",
+      "label": "High court sets aside multi-billion ARV tender awards over procurement irregularities",
+      "firstSeen": "2026-10-22T18:04:54.921Z",
+      "lastCovered": "2026-10-22T18:04:54.921Z",
+      "coverageCount": 1,
+      "category": "economy",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-10-22-south-africa-court-voids-arv-tender"
+      ],
+      "eventUri": null,
+      "summary": "South Africa runs the world's largest HIV treatment programme, and a high court has found parts of the health department's multibillion-rand antiretroviral tender unlawful. The department must redo the awards within 120 days, while current suppliers keep delivering so that patients are not left short. Lead with the stakes: roughly 6 million people on ARVs depend on this contract. Name the irregularities, the losing bidders and Cipla, and the possible bid-rigging investigation. Dateline Pretoria."
+    },
+    {
+      "id": "eu-data-omnibus-ai-training-gdpr",
+      "label": "EU-Länder einig beim Daten-Omnibus: Mehr KI-Training, weniger Datenschutz",
+      "firstSeen": "2026-10-22T18:04:54.921Z",
+      "lastCovered": "2026-10-22T18:04:54.921Z",
+      "coverageCount": 1,
+      "category": "tech",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-10-22-eu-data-omnibus-ai-training-gdpr"
+      ],
+      "eventUri": null,
+      "summary": "EU member states agreed their Council position on the 'data omnibus' on Wednesday. It frees personal data for AI training, widens trade-secret protection and weakens GDPR rights. Lead with the precedent: the bloc that set the global privacy standard is relaxing it for AI companies. Name which GDPR provisions change (legitimate interest for training, access-request limits) and say that trilogue talks with Parliament come next. Dateline Brussels."
+    },
+    {
+      "id": "microsoft-connectwise-chinese-hackers-ai-agents",
+      "label": "Microsoft blames ConnectWise attacks on Chinese state hacker using ARTEX AI agents",
+      "firstSeen": "2026-10-22T18:04:54.921Z",
+      "lastCovered": "2026-10-22T18:04:54.921Z",
+      "coverageCount": 1,
+      "category": "tech",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-10-22-microsoft-connectwise-chinese-hackers-ai-agents"
+      ],
+      "eventUri": null,
+      "summary": "Microsoft attributes the ConnectWise supply-chain attack to a Chinese state-aligned group running automated AI agents ('ARTEX'), and says the same tooling is now probing organisations worldwide. Lead with the mechanism: one remote-management vendor gives access to thousands of downstream networks, and AI agents make exploiting that access cheap and fast. Name the group and the sectors targeted, and give Beijing's denial if there is one."
+    },
+    {
+      "id": "ai-weapons-laws-of-armed-conflict",
+      "label": "AI Is Already 'Amplifying the Destruction' of War",
+      "firstSeen": "2026-10-22T18:04:54.921Z",
+      "lastCovered": "2026-10-22T18:04:54.921Z",
+      "coverageCount": 1,
+      "category": "tech",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-10-22-ai-weapons-laws-of-armed-conflict"
+      ],
+      "eventUri": null,
+      "summary": "The international humanitarian law experts who write the Laws of Armed Conflict want guardrails on AI targeting and weapons systems. Lead with the concrete harm already documented: AI target-generation in Gaza producing strikes faster than humans can verify them. Name who is drafting the rules (ICRC, the experts 404 Media spoke to) and which states are resisting binding limits."
+    },
+    {
       "id": "china-djibouti-bab-el-mandeb-joint-statement",
       "label": "China urges opening Bab al-Mandeb in first joint statement with regional nation",
       "firstSeen": "2026-10-22T14:03:41.578Z",
       "lastCovered": "2026-10-22T14:03:41.578Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-10-22-china-djibouti-bab-el-mandeb-joint-statement"
@@ -23,7 +248,7 @@
       "lastCovered": "2026-10-22T14:03:41.578Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-10-22-brent-futures-rally-physical-oil-slides"
@@ -38,7 +263,7 @@
       "lastCovered": "2026-10-22T14:03:41.578Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-10-22-meta-class-c-nonvoting-shares-zuckerberg-control"
@@ -53,7 +278,7 @@
       "lastCovered": "2026-10-22T14:03:41.578Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-10-22-delhi-air-pollution-season-grap-curbs"
@@ -68,7 +293,7 @@
       "lastCovered": "2026-10-22T14:03:41.578Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-10-22-shamonda-virus-first-human-case-france"
@@ -83,7 +308,7 @@
       "lastCovered": "2026-10-22T14:03:41.578Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-10-22-israel-arrests-cancer-patient-daughter-rafah-gaza"
@@ -98,7 +323,7 @@
       "lastCovered": "2026-10-22T14:03:41.578Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-10-22-ogun-toxic-gas-schools-pupils-hospital"
@@ -113,7 +338,7 @@
       "lastCovered": "2026-10-22T14:03:41.578Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-10-22-sumatra-illegal-gold-mine-landslide-gold-price"
@@ -128,7 +353,7 @@
       "lastCovered": "2026-10-22T14:03:41.578Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-10-22-iucn-tropical-coral-reefs-collapse-2075"
@@ -143,7 +368,7 @@
       "lastCovered": "2026-10-22T14:03:41.578Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-10-22-tor-exit-nodes-hijacked-ssh-email"
@@ -158,7 +383,7 @@
       "lastCovered": "2026-10-22T14:03:41.578Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-10-22-bellingcat-tests-llm-photo-geolocation"
@@ -173,7 +398,7 @@
       "lastCovered": "2026-10-22T14:03:41.578Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-10-22-iflytek-spark-model-trained-on-chinese-chips"
@@ -188,7 +413,7 @@
       "lastCovered": "2026-10-22T14:03:41.578Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-10-22-germany-intelligence-reform-ad-data-surveillance-gap"
@@ -203,7 +428,7 @@
       "lastCovered": "2026-10-22T10:08:12.035Z",
       "coverageCount": 2,
       "category": "economy",
-      "importance": 5,
+      "importance": 4,
       "arc": "developing",
       "articles": [
         "2026-10-22-us-treasury-yields-fall-ai-doubts-haven",
@@ -219,7 +444,7 @@
       "lastCovered": "2026-10-22T10:08:12.035Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-10-22-irgc-strikes-mines-seven-tankers-hormuz"
@@ -234,7 +459,7 @@
       "lastCovered": "2026-10-22T10:08:12.035Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-10-22-dammam-airport-drone-attack-kills-two"
@@ -249,7 +474,7 @@
       "lastCovered": "2026-10-22T10:08:12.035Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-10-22-philippines-central-bank-jumbo-rate-hike-peso"
@@ -264,7 +489,7 @@
       "lastCovered": "2026-10-22T10:08:12.035Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-10-22-barclays-cuts-5000-jobs-ai"
@@ -279,7 +504,7 @@
       "lastCovered": "2026-10-22T10:08:12.035Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-10-22-ukraine-630-drones-moscow-biggest-attack"
@@ -294,7 +519,7 @@
       "lastCovered": "2026-10-22T10:08:12.035Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-10-22-yanomami-mining-boss-cataratas-us-assets"
@@ -309,7 +534,7 @@
       "lastCovered": "2026-10-22T10:08:12.035Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-10-22-uae-lana-nusseibeh-un-secretary-general-race"
@@ -324,7 +549,7 @@
       "lastCovered": "2026-10-22T10:08:12.035Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-10-22-deepseek-raises-15-billion-largest-china-ai-round"
@@ -339,7 +564,7 @@
       "lastCovered": "2026-10-22T10:08:12.035Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-10-22-meituan-keeta-brazil-ifood-exclusive-deals"
@@ -354,7 +579,7 @@
       "lastCovered": "2026-10-22T10:08:12.035Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-10-22-twas-genetics-studies-wrong-direction"
@@ -369,7 +594,7 @@
       "lastCovered": "2026-10-22T10:08:12.035Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-10-22-wild-emmer-wheat-genome-centromeres"
@@ -384,7 +609,7 @@
       "lastCovered": "2026-10-22T05:06:28.691Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-10-22-houthi-drone-shaybah-oil-110-brent"
@@ -399,7 +624,7 @@
       "lastCovered": "2026-10-22T05:06:28.691Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-10-22-us-ordered-departure-saudi-arabia-houthi-threat"
@@ -414,7 +639,7 @@
       "lastCovered": "2026-10-22T05:06:28.691Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-10-22-zelensky-freeze-front-putin-november-talks"
@@ -429,7 +654,7 @@
       "lastCovered": "2026-10-22T05:06:28.691Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-10-22-nabu-searches-national-bank-of-ukraine-governor"
@@ -444,7 +669,7 @@
       "lastCovered": "2026-10-22T05:06:28.691Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-10-22-emudhra-certificate-authority-private-keys-compromised"
@@ -459,7 +684,7 @@
       "lastCovered": "2026-10-22T05:06:28.691Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-10-22-meta-negative-free-cash-flow-muse-monetise"
@@ -474,7 +699,7 @@
       "lastCovered": "2026-10-22T05:06:28.691Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-10-22-elevenlabs-realtime-voice-models-chinese-rivals-lead"
@@ -489,7 +714,7 @@
       "lastCovered": "2026-10-22T05:06:28.691Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-10-22-bukele-commission-closed-doors-prison-releases"
@@ -504,7 +729,7 @@
       "lastCovered": "2026-10-22T05:06:28.691Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-10-21-blaze-betting-willer-tomaz-federal-police-laundering"
@@ -519,7 +744,7 @@
       "lastCovered": "2026-10-22T05:06:28.691Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-10-22-giant-manta-ray-pups-coastal-nurseries"
@@ -534,7 +759,7 @@
       "lastCovered": "2026-10-21T22:07:03.233Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-10-21-macron-riots-foreign-leaders-blame-muslim-migrants"
@@ -549,7 +774,7 @@
       "lastCovered": "2026-10-21T22:07:03.233Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-10-21-iran-enriched-uranium-red-line-munir-mediation"
@@ -564,7 +789,7 @@
       "lastCovered": "2026-10-21T22:07:03.233Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-10-21-qatar-turkiye-pakistan-indonesia-defence-industry-accord"
@@ -579,7 +804,7 @@
       "lastCovered": "2026-10-21T22:07:03.233Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-10-21-russia-ukraine-talks-november-abu-dhabi-witkoff"
@@ -594,7 +819,7 @@
       "lastCovered": "2026-10-21T22:07:03.233Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-10-21-brazil-politicians-undeclared-meta-networks-tse"
@@ -609,7 +834,7 @@
       "lastCovered": "2026-10-21T22:07:03.233Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-10-21-colombia-espriella-national-museum-artefacts-removed"
@@ -624,7 +849,7 @@
       "lastCovered": "2026-10-21T22:07:03.233Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-10-21-meta-25-billion-new-mexico-cambridge-analytica"
@@ -639,7 +864,7 @@
       "lastCovered": "2026-10-21T22:07:03.233Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-10-21-tesla-q3-profit-falls-43-percent-spacex-merger"
@@ -654,7 +879,7 @@
       "lastCovered": "2026-10-21T22:07:03.233Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-10-21-south-africa-budget-fuel-levy-cut-godongwana"
@@ -669,7 +894,7 @@
       "lastCovered": "2026-10-21T22:07:03.233Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-10-21-pakistan-petrol-cut-diesel-rise-fortnightly-price"
@@ -684,7 +909,7 @@
       "lastCovered": "2026-10-21T22:07:03.233Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-10-21-yen-stablecoin-south-korea-shinhan-sbi"
@@ -699,7 +924,7 @@
       "lastCovered": "2026-10-21T22:07:03.233Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-10-21-tencent-yuanbao-search-api-ai-agents"
@@ -714,7 +939,7 @@
       "lastCovered": "2026-10-21T22:07:03.233Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-10-21-ghost-shark-uncrewed-submarine-launches-drones"
@@ -729,7 +954,7 @@
       "lastCovered": "2026-10-21T22:07:03.233Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-10-21-ariane-6-block-2-lightweight-aft-bay-shortfall"
@@ -744,7 +969,7 @@
       "lastCovered": "2026-10-21T22:07:03.233Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-10-21-montreal-wildfire-smoke-warnings-modest-effect"
@@ -759,7 +984,7 @@
       "lastCovered": "2026-10-21T18:08:48.248Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-10-21-brad-lander-west-bank-olive-harvest-detention"
@@ -774,7 +999,7 @@
       "lastCovered": "2026-10-21T18:08:48.248Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-10-21-macron-riyadh-surprise-visit-houthi-attacks-diesel"
@@ -789,7 +1014,7 @@
       "lastCovered": "2026-10-21T18:08:48.248Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-10-21-russia-first-diesel-tanker-us-trump-putin-deal-refineries"
@@ -804,7 +1029,7 @@
       "lastCovered": "2026-10-21T18:08:48.248Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-10-21-wmo-el-nino-strongest-on-record-warning"
@@ -819,7 +1044,7 @@
       "lastCovered": "2026-10-21T18:08:48.248Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-10-21-greece-students-teachers-march-school-funding-rents"
@@ -834,7 +1059,7 @@
       "lastCovered": "2026-10-21T18:08:48.248Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-10-21-imran-khan-sisters-detention-lahore-high-court"
@@ -849,7 +1074,7 @@
       "lastCovered": "2026-10-21T18:08:48.248Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-10-21-gaza-hospitals-power-shutdowns-fuel"
@@ -864,7 +1089,7 @@
       "lastCovered": "2026-10-21T18:08:48.248Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-10-21-egypt-school-attendance-teacher-shortage-classrooms"
@@ -879,7 +1104,7 @@
       "lastCovered": "2026-10-21T18:08:48.248Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-10-21-saudi-crude-exports-high-production-record-low-jodi"
@@ -894,7 +1119,7 @@
       "lastCovered": "2026-10-21T18:08:48.248Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-10-21-guatemala-maya-biosphere-reserve-usaid-cuts"
@@ -909,7 +1134,7 @@
       "lastCovered": "2026-10-21T18:08:48.248Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-10-21-smart-tv-acr-tracking-continues-after-opt-out"
@@ -924,7 +1149,7 @@
       "lastCovered": "2026-10-21T18:08:48.248Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-10-21-openevidence-ai-doctors-pharma-ads-15-billion"
@@ -939,7 +1164,7 @@
       "lastCovered": "2026-10-21T18:08:48.248Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-10-21-flock-police-bulletin-council-meeting-opponents"
@@ -954,7 +1179,7 @@
       "lastCovered": "2026-10-21T18:08:48.248Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-10-21-baden-wurttemberg-police-facial-recognition-palestine-protest"
@@ -969,208 +1194,13 @@
       "lastCovered": "2026-10-21T18:08:48.248Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-10-21-bacteria-phage-coexistence-migration-study"
       ],
       "eventUri": null,
       "summary": "Researchers at the University of Maryland and the University of Exeter show that bacteria and the viruses that infect them can coexist through migration between patches, not only through the evolutionary arms race long assumed. Lead with the overturned assumption. Then say why it matters: phage therapy against antibiotic-resistant infections depends on predicting when phages wipe out bacteria and when they settle into coexistence. Name the journal. Dateline College Park."
-    },
-    {
-      "id": "php-vulnerability-governments-take-websites-offline",
-      "label": "Governments Take Websites Offline After PHP Security Warnings",
-      "firstSeen": "2026-10-21T14:04:34.068Z",
-      "lastCovered": "2026-10-21T14:04:34.068Z",
-      "coverageCount": 1,
-      "category": "tech",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-10-21-php-vulnerability-governments-take-websites-offline"
-      ],
-      "eventUri": "eng-12115983",
-      "summary": "Finland took every public-facing government service offline and Dutch national and local bodies followed, after warnings about critical flaws in PHP — the language under up to 70% of the world's websites, WordPress included. WSJ reports an AI system found the bug. Lead with a state pulling its whole web presence as a precaution; the mechanism is one language that much of the internet depends on, and the question of who patches the long tail of sites nobody maintains."
-    },
-    {
-      "id": "armenia-eaeu-report-russia-remittances-eu-pivot",
-      "label": "Armenia could lose more than half of remittances from Russia",
-      "firstSeen": "2026-10-21T14:04:34.068Z",
-      "lastCovered": "2026-10-21T14:04:34.068Z",
-      "coverageCount": 1,
-      "category": "economy",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-10-21-armenia-eaeu-report-russia-remittances-eu-pivot"
-      ],
-      "eventUri": "rus-2145404",
-      "summary": "A Eurasian Economic Union report warns Armenia could lose more than half its remittances from Russia if it keeps moving toward the EU, and Foreign Minister Mirzoyan says Yerevan is still drafting its answer. Lead with the size of the remittance dependence: the mechanism is how a migrant-labour economy is tied to a bloc it wants to leave, and who pays — Armenian households, not the government. Azerbaijani and Russian state coverage frame it differently; use the contrast."
-    },
-    {
-      "id": "poland-tusk-lviv-upa-2027-volhynia-rift",
-      "label": "Poland Blasts Ukrainian City's Honor for World War II Fighters",
-      "firstSeen": "2026-10-21T14:04:34.068Z",
-      "lastCovered": "2026-10-21T14:04:34.068Z",
-      "coverageCount": 1,
-      "category": "politics",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-10-21-poland-tusk-lviv-upa-2027-volhynia-rift"
-      ],
-      "eventUri": "rus-2146018",
-      "summary": "Lviv's council dedicated 2027 to the Ukrainian Insurgent Army and figures like Roman Shukhevych, whose units massacred Poles in Volhynia, and Tusk called it 'harmful for Ukraine.' Lead with the rift opening between Kyiv and its most important logistics ally while Ukraine's peace talks and EU bid are in play; the mechanism is how unresolved wartime memory becomes leverage in Polish politics."
-    },
-    {
-      "id": "multan-ccd-encounter-killing-punjab-extrajudicial",
-      "label": "'Where are the courts?': Killing of Multan suspect in alleged CCD encounter sparks concern among lawyers, journalists",
-      "firstSeen": "2026-10-21T14:04:34.068Z",
-      "lastCovered": "2026-10-21T14:04:34.068Z",
-      "coverageCount": 1,
-      "category": "politics",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-10-21-multan-ccd-encounter-killing-punjab-extrajudicial"
-      ],
-      "eventUri": null,
-      "summary": "A suspect in Multan died in what Punjab's Crime Control Department calls an exchange of fire, the latest of the 'encounter' killings rights groups have tied to the CCD since it was set up last year. Name the institution and the provincial government that created it; lead with the lawyers' question — 'where are the courts?' — and the mechanism: a police unit that skips trial, with a count of its encounter deaths if the source gives one."
-    },
-    {
-      "id": "pakistan-jamaat-islami-petroleum-levy-protests-brent",
-      "label": "JI announces third wave of anti-levy protests across country on Friday",
-      "firstSeen": "2026-10-21T14:04:34.068Z",
-      "lastCovered": "2026-10-21T14:04:34.068Z",
-      "coverageCount": 1,
-      "category": "economy",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-10-21-pakistan-jamaat-islami-petroleum-levy-protests-brent"
-      ],
-      "eventUri": null,
-      "summary": "Jamaat-i-Islami is calling sit-ins in every district of Pakistan on Friday against the petroleum levy, as Brent crude tops $110 on the Gulf war. Lead with what the levy adds per litre and who pays it; the mechanism is an IMF-programme government taxing fuel for revenue at the moment a war has already pushed the import bill up. Name Brent crude as the series."
-    },
-    {
-      "id": "uk-electricity-bills-gas-90-percent-carbon-brief",
-      "label": "Revealed: Expensive gas behind ‘nearly 90%’ of rise in UK electricity bills",
-      "firstSeen": "2026-10-21T14:04:34.068Z",
-      "lastCovered": "2026-10-21T14:04:34.068Z",
-      "coverageCount": 1,
-      "category": "economy",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-10-21-uk-electricity-bills-gas-90-percent-carbon-brief"
-      ],
-      "eventUri": null,
-      "summary": "Carbon Brief's analysis finds wholesale gas costs explain nearly 90% of the rise in UK household electricity bills, not green levies. Lead with the 90%; the mechanism is marginal pricing, where gas sets the power price even when most supply is cheaper, so a Hormuz-driven gas spike lands on every bill. Name natural gas prices as the series, and tie it to the Bank of England's expected hike on energy-driven inflation."
-    },
-    {
-      "id": "hong-kong-cmu-yuan-clearing-foreign-banks",
-      "label": "Hong Kong working to boost global banks' use of yuan trading tools",
-      "firstSeen": "2026-10-21T14:04:34.068Z",
-      "lastCovered": "2026-10-21T14:04:34.068Z",
-      "coverageCount": 1,
-      "category": "economy",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-10-21-hong-kong-cmu-yuan-clearing-foreign-banks"
-      ],
-      "eventUri": "eng-12109382",
-      "summary": "Hong Kong is recruiting foreign banks into its Central Moneymarkets Unit, the bond-clearing system, to make the city the main offshore yuan hub. Lead with the plumbing: clearing is what makes a currency usable outside the dollar system, and the push comes as sanctions and war raise the cost of dollar dependence. Name the yuan as the series."
-    },
-    {
-      "id": "csto-weapons-tajikistan-afghanistan-border",
-      "label": "CSTO to supply weapons to Tajikistan to strengthen border with Afghanistan",
-      "firstSeen": "2026-10-21T14:04:34.068Z",
-      "lastCovered": "2026-10-21T14:04:34.068Z",
-      "coverageCount": 1,
-      "category": "politics",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-10-21-csto-weapons-tajikistan-afghanistan-border"
-      ],
-      "eventUri": null,
-      "summary": "Russian state agency TASS reports the Russia-led CSTO will begin arms deliveries to Tajikistan to fortify its 1,300km border with Taliban-ruled Afghanistan; the CSTO chief insists it threatens no one. State-media only: attribute every claim to TASS. Lead with Moscow arming a Central Asian frontier while it fights in Ukraine; the mechanism is Russia keeping its security umbrella over Central Asia as China and the Taliban shift the region."
-    },
-    {
-      "id": "nigeria-ebola-house-unreleased-health-funds-abuja",
-      "label": "Ebola: Nigerian lawmakers demand release of outstanding funds for health agencies to strengthen response",
-      "firstSeen": "2026-10-21T14:04:34.068Z",
-      "lastCovered": "2026-10-21T14:04:34.068Z",
-      "coverageCount": 1,
-      "category": "politics",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-10-21-nigeria-ebola-house-unreleased-health-funds-abuja"
-      ],
-      "eventUri": null,
-      "summary": "New development on the Abuja Ebola case: Nigeria's House of Representatives says money already appropriated for health agencies has not been released, and demands it now for surveillance and contact tracing. Lead with the gap between budgeted and disbursed funds while the virus is in the capital; the accountability point is that the executive holds money parliament voted for outbreak response."
-    },
-    {
-      "id": "europe-utilities-powers-shoot-down-drones",
-      "label": "Europe weighs giving utilities, infrastructure companies more powers to bring down drones",
-      "firstSeen": "2026-10-21T14:04:34.068Z",
-      "lastCovered": "2026-10-21T14:04:34.068Z",
-      "coverageCount": 1,
-      "category": "politics",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-10-21-europe-utilities-powers-shoot-down-drones"
-      ],
-      "eventUri": null,
-      "summary": "European officials are weighing letting power utilities and other infrastructure operators shoot down or jam drones themselves, fearing strikes like Russia's on Ukraine's grid could black out millions. Lead with private companies gaining a use-of-force power once reserved for militaries and police; the question is who is accountable when a utility brings down the wrong aircraft."
-    },
-    {
-      "id": "cashapp-identity-fraud-amanda-smith-prosecution",
-      "label": "Someone Opened a CashApp In Her Name. She Faces Years in Prison",
-      "firstSeen": "2026-10-21T14:04:34.068Z",
-      "lastCovered": "2026-10-21T14:04:34.068Z",
-      "coverageCount": 1,
-      "category": "tech",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-10-21-cashapp-identity-fraud-amanda-smith-prosecution"
-      ],
-      "eventUri": null,
-      "summary": "Amanda Smith spent three nights in jail and faces years in prison because a Facebook Marketplace scam produced a CashApp account in her name, which she says she never opened. Lead with her; the mechanism is prosecutors treating account records from a fintech's weak identity checks as proof of who did it, so the cost of the platform's lax KYC lands on the person whose identity was stolen."
-    },
-    {
-      "id": "west-virginia-american-chestnut-grove-ai-data-center",
-      "label": "The Chestnut Grove Caught in the Middle of A Years-Long Data Center Fight",
-      "firstSeen": "2026-10-21T14:04:34.068Z",
-      "lastCovered": "2026-10-21T14:04:34.068Z",
-      "coverageCount": 1,
-      "category": "tech",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-10-21-west-virginia-american-chestnut-grove-ai-data-center"
-      ],
-      "eventUri": null,
-      "summary": "A grove of rare surviving American chestnuts — a species blight all but wiped out — sits in the path of an AI data center in West Virginia, and locals have fought it for years. Lead with the trees as the concrete cost; the mechanism is how the AI build-out takes land, power and water through state incentives that leave local communities little say."
-    },
-    {
-      "id": "deepseek-v4-1-flash-open-source-inference-framework",
-      "label": "DeepSeek Wants Better AI at Lower Cost",
-      "firstSeen": "2026-10-21T14:04:34.068Z",
-      "lastCovered": "2026-10-21T14:04:34.068Z",
-      "coverageCount": 1,
-      "category": "tech",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-10-21-deepseek-v4-1-flash-open-source-inference-framework"
-      ],
-      "eventUri": null,
-      "summary": "DeepSeek shipped a V4.1 Flash update built to finish tasks faster with shorter outputs, and open-sourced a framework for cheaper inference. Lead with the cost of running a model, not training it: the Chinese labs are competing on inference efficiency under US chip export controls, and an open framework hands that saving to every rival. Give the speed or cost figures the source reports."
     }
   ]
 }
