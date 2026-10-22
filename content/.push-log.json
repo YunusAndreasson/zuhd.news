@@ -1,105 +1,5 @@
 [
   {
-    "timestamp": "2026-10-01T22:17:18.963Z",
-    "candidateCount": 11,
-    "candidates": [
-      {
-        "slug": "2026-10-01-raf-fairford-british-iranian-arrested-burnham-iran-link",
-        "title": "UK Arrests Fairford Suspect",
-        "category": "politics",
-        "eventCoverage": 726,
-        "importance": 6
-      },
-      {
-        "slug": "2026-10-01-putin-rules-out-long-range-strike-ceasefire-ukraine",
-        "title": "Putin Rejects Strike Truce",
-        "category": "politics",
-        "eventCoverage": 561,
-        "importance": 6
-      },
-      {
-        "slug": "2026-10-01-greer-us-india-trade-deal-not-imminent-goyal",
-        "title": "India Trade Deal Stalls",
-        "category": "economy",
-        "eventCoverage": 226,
-        "importance": 6
-      },
-      {
-        "slug": "2026-10-01-canada-carney-fast-track-west-coast-oil-pipeline",
-        "title": "Canada Fast-Tracks Pacific Pipeline",
-        "category": "economy",
-        "eventCoverage": 105,
-        "importance": 6
-      },
-      {
-        "slug": "2026-10-01-us-third-carrier-10000-troops-middle-east-wsj",
-        "title": "Third US Carrier Reported",
-        "category": "politics",
-        "eventCoverage": 100,
-        "importance": 6
-      },
-      {
-        "slug": "2026-10-01-johannesburg-police-profiling-not-south-african-enough",
-        "title": "Joburg Police Accused of Profiling",
-        "category": "politics",
-        "eventCoverage": 100,
-        "importance": 6
-      },
-      {
-        "slug": "2026-10-01-pentagon-breach-2-million-personnel-records-stolen",
-        "title": "Pentagon Breach Exposes Troops",
-        "category": "tech",
-        "eventCoverage": 100,
-        "importance": 6
-      },
-      {
-        "slug": "2026-10-01-judge-dismisses-chegg-penske-antitrust-suits-google-ai-overviews",
-        "title": "Judge Dismisses Google AI Suits",
-        "category": "tech",
-        "eventCoverage": 100,
-        "importance": 6
-      },
-      {
-        "slug": "2026-10-01-iranian-accused-university-hacks-extradited-montenegro",
-        "title": "Montenegro Extradites Hacking Suspect",
-        "category": "tech",
-        "eventCoverage": 100,
-        "importance": 6
-      },
-      {
-        "slug": "2026-10-01-ukraine-first-combat-use-robotic-amphibious-vehicles",
-        "title": "Ukraine Fields Swimming Robots",
-        "category": "tech",
-        "eventCoverage": 100,
-        "importance": 6
-      },
-      {
-        "slug": "2026-10-01-us-decoupled-nuclear-test-detection-tunnel-experiment",
-        "title": "US Blasts Tunnel Mimicking Test",
-        "category": "science",
-        "eventCoverage": 100,
-        "importance": 6
-      }
-    ],
-    "selected": {
-      "slug": "2026-10-01-pentagon-breach-2-million-personnel-records-stolen",
-      "title": "Pentagon Breach Exposes Troops",
-      "category": "tech",
-      "body": "Pentagon says hackers compromised 2.8 million personnel",
-      "eventCoverage": 100,
-      "importance": 6
-    },
-    "skipReason": null,
-    "sent": true,
-    "pushTitle": "Breaking News",
-    "pushBody": "Pentagon says hackers stole 2.8 million personnel records",
-    "response": {
-      "pushed": 1,
-      "skipped": 0,
-      "tokens": 5
-    }
-  },
-  {
     "timestamp": "2026-10-02T05:17:04.761Z",
     "candidateCount": 8,
     "candidates": [
@@ -10084,6 +9984,92 @@
     "sent": true,
     "pushTitle": "Breaking News",
     "pushBody": "Judge orders Meta to pay $25 billion over New Mexico privacy violations",
+    "response": {
+      "pushed": 1,
+      "skipped": 0,
+      "tokens": 5
+    }
+  },
+  {
+    "timestamp": "2026-10-22T05:14:24.871Z",
+    "candidateCount": 9,
+    "candidates": [
+      {
+        "slug": "2026-10-22-nabu-searches-national-bank-of-ukraine-governor",
+        "title": "Detectives Search Ukraine's Central Bank",
+        "category": "economy",
+        "eventCoverage": 192,
+        "importance": 6
+      },
+      {
+        "slug": "2026-10-22-us-ordered-departure-saudi-arabia-houthi-threat",
+        "title": "US Pulls Families From Riyadh",
+        "category": "politics",
+        "eventCoverage": 140,
+        "importance": 6
+      },
+      {
+        "slug": "2026-10-22-emudhra-certificate-authority-private-keys-compromised",
+        "title": "eMudhra Certificate Keys Compromised",
+        "category": "tech",
+        "eventCoverage": 117,
+        "importance": 6
+      },
+      {
+        "slug": "2026-10-22-houthi-drone-shaybah-oil-110-brent",
+        "title": "Drone Strike Lifts Brent",
+        "category": "economy",
+        "eventCoverage": 87,
+        "importance": 6
+      },
+      {
+        "slug": "2026-10-22-zelensky-freeze-front-putin-november-talks",
+        "title": "Zelensky Backs Frozen Front",
+        "category": "politics",
+        "eventCoverage": 58,
+        "importance": 6
+      },
+      {
+        "slug": "2026-10-22-meta-negative-free-cash-flow-muse-monetise",
+        "title": "Meta Cash Flow Turns Negative",
+        "category": "tech",
+        "eventCoverage": 0,
+        "importance": 6
+      },
+      {
+        "slug": "2026-10-22-elevenlabs-realtime-voice-models-chinese-rivals-lead",
+        "title": "ElevenLabs Trails Chinese Rivals",
+        "category": "tech",
+        "eventCoverage": 0,
+        "importance": 6
+      },
+      {
+        "slug": "2026-10-22-bukele-commission-closed-doors-prison-releases",
+        "title": "Bukele Weighs Quiet Releases",
+        "category": "politics",
+        "eventCoverage": 0,
+        "importance": 6
+      },
+      {
+        "slug": "2026-10-21-blaze-betting-willer-tomaz-federal-police-laundering",
+        "title": "Blaze Address Links Plaintiff",
+        "category": "politics",
+        "eventCoverage": 0,
+        "importance": 6
+      }
+    ],
+    "selected": {
+      "slug": "2026-10-22-houthi-drone-shaybah-oil-110-brent",
+      "title": "Drone Strike Lifts Brent",
+      "category": "economy",
+      "body": "Brent crude hit $110.63 after a Houthi drone",
+      "eventCoverage": 87,
+      "importance": 6
+    },
+    "skipReason": null,
+    "sent": true,
+    "pushTitle": "Breaking News",
+    "pushBody": "Brent crude surges to $110.63 after Houthi drone strike near Saudi oil field",
     "response": {
       "pushed": 1,
       "skipped": 0,
