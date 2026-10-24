@@ -1,23 +1,5 @@
 [
   {
-    "ts": "2026-08-05T04:21:04.194Z",
-    "cycleId": "2026-08-05T04-21",
-    "cycleHour": "04",
-    "schema": 2,
-    "rvs": 69.01,
-    "clusters": {
-      "picking": null,
-      "writing": 78.85,
-      "briefing": null,
-      "sourcing": 36.04,
-      "coverage": 88.87
-    },
-    "articleCount": 13,
-    "briefCount": 0,
-    "guardrailFailures": [],
-    "degenerate": false
-  },
-  {
     "ts": "2026-08-05T08:22:01.504Z",
     "cycleId": "2026-08-05T08-22",
     "cycleHour": "08",
@@ -6939,6 +6921,28 @@
     "briefCount": 0,
     "guardrailFailures": [
       "category economy below floor 3 (got 2)",
+      "category tech below floor 3 (got 2)"
+    ],
+    "degenerate": false
+  },
+  {
+    "ts": "2026-10-24T14:12:18.291Z",
+    "cycleId": "2026-10-24T14-12",
+    "runId": "2026-10-24_1400",
+    "cycleHour": "14",
+    "schema": 3,
+    "rvs": 81.72,
+    "clusters": {
+      "picking": null,
+      "writing": 100,
+      "briefing": null,
+      "sourcing": 45.69,
+      "coverage": 93.37
+    },
+    "articleCount": 10,
+    "briefCount": 0,
+    "guardrailFailures": [
+      "category politics below floor 3 (got 2)",
       "category tech below floor 3 (got 2)"
     ],
     "degenerate": false
