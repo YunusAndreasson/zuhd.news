@@ -1,37 +1,37 @@
 {
-  "date": "2026-10-23",
+  "date": "2026-10-24",
   "metrics": {
-    "articles": { "value": 59, "detail": "5 cycles, all completed; avg 11 published per cycle; 0 quarantined" },
-    "freshness": { "median": 0.1, "p90": 0.3, "max": 0.6, "target": 1.0, "met": true },
-    "categories": { "politics": 24, "economy": 15, "science": 5, "tech": 15 },
-    "multiSource": { "pct": 32, "target": 30, "met": true },
-    "usDatelines": { "pct": 14, "target": 25, "met": true },
-    "latAmDatelines": { "pct": 12, "target": 5, "met": true },
+    "articles": { "value": 50, "detail": "5 cycles, all completed; avg 10 published per cycle; 0 quarantined" },
+    "freshness": { "median": 0.1, "p90": 0.5, "max": 0.9, "target": 1.0, "met": true },
+    "categories": { "politics": 23, "economy": 12, "science": 5, "tech": 10 },
+    "multiSource": { "pct": 34, "target": 30, "met": true },
+    "usDatelines": { "pct": 10, "target": 25, "met": true },
+    "latAmDatelines": { "pct": 18, "target": 5, "met": true },
     "sameEventDuplicates": { "value": 0, "target": 0, "met": true },
     "missingDatelines": { "value": 0, "target": 0, "met": true },
-    "stateOrAdvocacyOnly": 2,
-    "imageUrlPct": 100,
-    "regions": { "count": 6, "target": 4, "met": true, "breakdown": { "AS": 16, "AM": 16, "EU": 12, "ME": 10, "AF": 4, "OC": 1 } },
-    "sciTech": { "ratio": 34, "target": 25, "met": true },
-    "topSourceShare": { "source": "Al Jazeera Online", "pct": 17, "target": 20, "met": true },
-    "uniqueSources": 59,
+    "stateOrAdvocacyOnly": 4,
+    "imageUrlPct": 96,
+    "regions": { "count": 5, "target": 4, "met": true, "breakdown": { "AM": 15, "AS": 13, "ME": 8, "EU": 7, "AF": 7, "OC": 0 } },
+    "sciTech": { "ratio": 30, "target": 25, "met": true },
+    "topSourceShare": { "source": "Al Jazeera Online", "pct": 10, "target": 20, "met": true },
+    "uniqueSources": 49,
     "duplicates": 0,
-    "avgCycleDuration": 1031
+    "avgCycleDuration": 950
   },
   "experiment": "Skipped. No experiment is active, every metric is within target, and the pause gate (`noNewExperimentsUntil` 2026-11-05) bars a new one. Nothing was evaluated or changed.",
-  "weakestArea": "Top-source share is the closest to its line: Al Jazeera supplied 10 of 59 stories (17% against a 20% cap), up from 8% yesterday. Science met its floor exactly at 5, down from 7, and one of its four sources is Investing.com.",
+  "weakestArea": "Science met its floor exactly at 5 for a second day, and politics took 23 of 50 stories (46%) while economy fell to 12 from 15. Sci-tech held at 30% only because tech carried 10; one science story (NASA's Artemis plan) is closer to space policy than research.",
   "watching": [
-    "Gulf escalation: the IRGC says two more supertankers were hit and mines laid in Hormuz, and Trump is weighing post-midterm strikes on Iran.",
-    "Russia–Ukraine–US talks set for Abu Dhabi in November, alongside the Oleshky ceasefire and a drone strike that sank a cargo ship off Constanța.",
-    "Brazil's runoff between Lula and Flávio Bolsonaro, with inflation through the target ceiling and the ABIN 'paralela' note.",
-    "Sudan drone strikes killing hundreds across Khartoum, Nyala and Kurmuk.",
-    "The PHP2Shell exploitation surge, which took South Africa's presidency website offline.",
-    "Ebola Bundibugyo in Nigeria, which Africa CDC says is underestimated."
+    "Hormuz: Brent above $116, Iran's offer to reopen the strait against the US blockade, four states demanding reopening, and the US pulling diplomats from the Gulf.",
+    "Houthi strikes on Aden and Saudi sites, widening the Gulf escalation into Yemen.",
+    "A magnitude-7 earthquake in Xizang that has killed at least 16.",
+    "Ebola preparedness in Lagos after the Bundibugyo cases in Nigeria.",
+    "Brazil's runoff: Telegram channels spreading ballot doubts and questions over the Supreme Court's docket.",
+    "China's AI race: Moonshot undercutting GPT-6 Astra on price while accused of hidden promotion, and DeepSeek and Kimi diverging."
   ],
   "coverageGaps": [
-    "Nine datelines are a country or state rather than a city (China ×2, Brazil ×2, United States, South Africa, Pakistan, Argentina, Alaska), which the missing-dateline metric does not catch.",
-    "Oceania carried one story (Hobart) and Africa four; the region floor still holds.",
-    "Two Hebron stories and two Argentina RIGI stories read as one developing thread each; the same-event check flagged neither, and they may be distinct angles."
+    "Twelve datelines are a country rather than a city (China ×4, Brazil ×3, United States ×3, Nigeria, South Africa), up from nine yesterday; the missing-dateline metric does not catch them.",
+    "Oceania carried no story, the first zero in the window; the region floor still holds at five.",
+    "Four stories rest only on state or advocacy sources, three of them Hormuz stories leaning on Iranian and Gulf outlets."
   ],
-  "context": "Volume held at 59 for a second day; multi-source rose to 32% from 31%, and image URLs reached 100%. Two stories rest only on state or advocacy sources (the Bank of Russia hold, the Karak funeral shooting). Cycles averaged 1031s: selector 151s, writer 165s, editor 76s."
+  "context": "Volume fell to 50 from 60 with all five cycles completing at about 10 published each. Multi-source rose to 34% from 33%, US datelines fell to 10% and Latin America rose to 18%. Cycles averaged 950s: selector 139s, writer 137s, editor 56s."
 }
