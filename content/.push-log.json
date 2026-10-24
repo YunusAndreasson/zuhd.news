@@ -1,77 +1,5 @@
 [
   {
-    "timestamp": "2026-10-04T14:14:17.749Z",
-    "candidateCount": 7,
-    "candidates": [
-      {
-        "slug": "2026-10-04-russia-defence-ministry-vows-more-strikes-kyiv-response-zelensky",
-        "title": "Moscow Declares Strike Escalation",
-        "category": "politics",
-        "eventCoverage": 142,
-        "importance": 6
-      },
-      {
-        "slug": "2026-10-04-catalonia-floods-two-dead-one-missing-mini-hurricane",
-        "title": "Catalonia Floods Kill Two",
-        "category": "politics",
-        "eventCoverage": 92,
-        "importance": 6
-      },
-      {
-        "slug": "2026-10-04-trump-names-clayton-ai-czar-white-house-task-force",
-        "title": "Trump Names AI Czar",
-        "category": "tech",
-        "eventCoverage": 79,
-        "importance": 6
-      },
-      {
-        "slug": "2026-10-04-opec-plus-seven-keep-november-output-unchanged",
-        "title": "OPEC+ Holds November Quotas",
-        "category": "economy",
-        "eventCoverage": 0,
-        "importance": 6
-      },
-      {
-        "slug": "2026-10-04-tether-usdt-returns-to-bitcoin-rgb-protocol",
-        "title": "Tether Relaunches Dollar Token",
-        "category": "economy",
-        "eventCoverage": 0,
-        "importance": 6
-      },
-      {
-        "slug": "2026-10-04-pakistan-dera-ismail-khan-operation-eight-killed-state-media",
-        "title": "Pakistan Reports Eight Killed",
-        "category": "politics",
-        "eventCoverage": 0,
-        "importance": 6
-      },
-      {
-        "slug": "2026-10-04-inka-coca-leaves-sacrificed-llamas-tambo-viejo-peru",
-        "title": "Inka Coca Ritual Confirmed",
-        "category": "science",
-        "eventCoverage": 0,
-        "importance": 6
-      }
-    ],
-    "selected": {
-      "slug": "2026-10-04-russia-defence-ministry-vows-more-strikes-kyiv-response-zelensky",
-      "title": "Moscow Declares Strike Escalation",
-      "category": "politics",
-      "body": "[Russia](country:RU) will step up Kyiv strikes, Russian state news agency TASS",
-      "eventCoverage": 142,
-      "importance": 6
-    },
-    "skipReason": null,
-    "sent": true,
-    "pushTitle": "Breaking News",
-    "pushBody": "Russia says it will step up strikes on Kyiv, TASS reports",
-    "response": {
-      "pushed": 1,
-      "skipped": 0,
-      "tokens": 5
-    }
-  },
-  {
     "timestamp": "2026-10-04T18:16:21.251Z",
     "candidateCount": 12,
     "candidates": [
@@ -10189,6 +10117,99 @@
     "sent": true,
     "pushTitle": "Breaking News",
     "pushBody": "Jio IPO draws record bids of Rs 7.4 lakh crore, fills in 100 minutes",
+    "response": {
+      "pushed": 1,
+      "skipped": 0,
+      "tokens": 6
+    }
+  },
+  {
+    "timestamp": "2026-10-24T18:13:05.316Z",
+    "candidateCount": 10,
+    "candidates": [
+      {
+        "slug": "2026-10-24-hebron-lockdown-2000-palestinians-displaced",
+        "title": "Israel Locks Down Hebron",
+        "category": "politics",
+        "eventCoverage": 1199,
+        "importance": 6
+      },
+      {
+        "slug": "2026-10-24-houthis-saudi-strikes-aden-oil-facilities",
+        "title": "Houthis Hit Aden, Saudi Sites",
+        "category": "politics",
+        "eventCoverage": 213,
+        "importance": 6
+      },
+      {
+        "slug": "2026-10-23-trump-canada-tariff-cuts-maine-collins-midterms",
+        "title": "Trump Trims Canada Tariffs",
+        "category": "economy",
+        "eventCoverage": 196,
+        "importance": 6
+      },
+      {
+        "slug": "2026-10-24-france-protests-410000-paris-clashes-arrests",
+        "title": "Paris Protest Ends In Tear Gas",
+        "category": "politics",
+        "eventCoverage": 129,
+        "importance": 6
+      },
+      {
+        "slug": "2026-10-24-israel-election-trump-advisers-netanyahu-eisenkot",
+        "title": "Trump Camp Doubts Netanyahu",
+        "category": "politics",
+        "eventCoverage": 101,
+        "importance": 6
+      },
+      {
+        "slug": "2026-10-24-brazil-tse-nunes-marques-docket-flavio-bolsonaro",
+        "title": "Brazil Court Docket Questioned",
+        "category": "politics",
+        "eventCoverage": 0,
+        "importance": 6
+      },
+      {
+        "slug": "2026-10-24-cbn-jpmorgan-merchant-bank-licence-nigeria",
+        "title": "Nigeria Admits JPMorgan Bank",
+        "category": "economy",
+        "eventCoverage": 0,
+        "importance": 6
+      },
+      {
+        "slug": "2026-10-24-china-stocks-record-gap-us-national-team",
+        "title": "China Stocks Trail US",
+        "category": "economy",
+        "eventCoverage": 0,
+        "importance": 6
+      },
+      {
+        "slug": "2026-10-24-vorcaro-banco-master-lagoinha-church-intercepts",
+        "title": "Banker Promised Church Millions",
+        "category": "economy",
+        "eventCoverage": 0,
+        "importance": 6
+      },
+      {
+        "slug": "2026-10-24-kimi-moonshot-influencer-marketing-brief",
+        "title": "Moonshot Accused Of Hidden Promotion",
+        "category": "tech",
+        "eventCoverage": 0,
+        "importance": 6
+      }
+    ],
+    "selected": {
+      "slug": "2026-10-24-france-protests-410000-paris-clashes-arrests",
+      "title": "Paris Protest Ends In Tear Gas",
+      "category": "politics",
+      "body": "410,000 marched across [France](country:FR) on Saturday, the government",
+      "eventCoverage": 129,
+      "importance": 6
+    },
+    "skipReason": null,
+    "sent": true,
+    "pushTitle": "Breaking News",
+    "pushBody": "France protest draws 410,000 as Paris police fire tear gas, arrest 135",
     "response": {
       "pushed": 1,
       "skipped": 0,
