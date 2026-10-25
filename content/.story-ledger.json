@@ -2,13 +2,133 @@
   "version": 1,
   "stories": [
     {
+      "id": "mercuria-baltic-exchange-hormuz-freight-benchmark-lawsuit",
+      "label": "Mercuria challenging the 'Dow Jones of shipping' in court after Hormuz losses",
+      "firstSeen": "2026-10-25T10:07:34.332Z",
+      "lastCovered": "2026-10-25T10:07:34.332Z",
+      "coverageCount": 1,
+      "category": "economy",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-10-25-mercuria-baltic-exchange-hormuz-freight-benchmark-lawsuit"
+      ],
+      "eventUri": null,
+      "summary": "Commodity trader Mercuria is suing the 282-year-old Baltic Exchange for continuing to publish benchmark freight rates for tankers through the Strait of Hormuz during the war, rates on which contracts were settled while ships could barely move. The mechanism: who sets the price when a market physically stops, and who carries the loss when a benchmark keeps printing. Tie it to ship traffic through the Strait of Hormuz and Brent crude."
+    },
+    {
+      "id": "bulgaria-presidential-election-pro-kremlin-candidates-black-sea",
+      "label": "Bulgarians vote for president in shadow of Russia's war in Ukraine",
+      "firstSeen": "2026-10-25T10:07:34.332Z",
+      "lastCovered": "2026-10-25T10:07:34.332Z",
+      "coverageCount": 1,
+      "category": "politics",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-10-25-bulgaria-presidential-election-pro-kremlin-candidates-black-sea"
+      ],
+      "eventUri": "eng-12126355",
+      "summary": "Twenty-seven tickets contest the first round, nearly half openly pro-Kremlin, in an EU and NATO state on the Black Sea where drones have struck shipping. Lead with that share: the vote tests how far Moscow-friendly politics has reached inside the alliance's southeastern flank, and what a pro-Russian president could block."
+    },
+    {
+      "id": "serap-ecowas-court-nigeria-cash-transfer-78-billion",
+      "label": "SERAP sues Nigerian govt at ECOWAS Court over ₦78.8bn cash transfer",
+      "firstSeen": "2026-10-25T10:07:34.332Z",
+      "lastCovered": "2026-10-25T10:07:34.332Z",
+      "coverageCount": 1,
+      "category": "politics",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-10-25-serap-ecowas-court-nigeria-cash-transfer-78-billion"
+      ],
+      "eventUri": null,
+      "summary": "A rights group is taking Nigeria's federal government to the ECOWAS regional court over ₦78.8 billion in cash-transfer funds meant for the poorest households that the Ministry of Humanitarian Affairs allegedly diverted or cannot account for. Lead with who the money was for, as Tinubu campaigns for re-election through economic pain; the mechanism is going over the heads of Nigerian courts to a regional one."
+    },
+    {
+      "id": "obama-ohio-midterms-iran-war-costs",
+      "label": "'We are voting for change right here in Ohio,' Obama tells Cleveland crowd",
+      "firstSeen": "2026-10-25T10:07:34.332Z",
+      "lastCovered": "2026-10-25T10:07:34.332Z",
+      "coverageCount": 1,
+      "category": "politics",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-10-25-obama-ohio-midterms-iran-war-costs"
+      ],
+      "eventUri": "eng-12125965",
+      "summary": "Nine days before the November 3 midterms, Obama made the Iran war a campaign issue in Ohio and Michigan, calling it unnecessary and tying it to rising prices and drained US missile stockpiles. The point is not the speech itself: the war has become a domestic voting question, and Democrats are betting its costs at the pump decide Senate seats."
+    },
+    {
+      "id": "pakistan-polio-seven-cases-eradication",
+      "label": "PM's aide vows full polio eradication as this year's tally stands at seven",
+      "firstSeen": "2026-10-25T10:07:34.332Z",
+      "lastCovered": "2026-10-25T10:07:34.332Z",
+      "coverageCount": 1,
+      "category": "politics",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-10-25-pakistan-polio-seven-cases-eradication"
+      ],
+      "eventUri": "eng-12127039",
+      "summary": "Pakistan has recorded seven wild polio cases this year, against dozens in recent years, as one of the last two countries where the virus is still endemic. Lead with the number and what it is measured against; the structural point is that eradication hinges on reaching children in insecure districts and the Afghan border belt, not on vaccine supply."
+    },
+    {
+      "id": "madrid-pension-rally-inflation-indexation",
+      "label": "About 25,000 rally in Madrid in support of Spain's state pension scheme",
+      "firstSeen": "2026-10-25T10:07:34.332Z",
+      "lastCovered": "2026-10-25T10:07:34.332Z",
+      "coverageCount": 1,
+      "category": "economy",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-10-25-madrid-pension-rally-inflation-indexation"
+      ],
+      "eventUri": "spa-4391624",
+      "summary": "About 25,000 marched in Madrid to keep state pensions indexed to inflation and close the gender pension gap, part of a wave of cost-of-living protests across Europe after France's. The mechanism: with war-driven energy prices pushing inflation up, indexation is what decides whether pensioners' purchasing power holds, and privatisation pressure is the threat they name."
+    },
+    {
+      "id": "deepseek-deepinfer-revenue-dhs-ban",
+      "label": "【数智周报】MiniMax港股破发；DeepSeek开源推理框架DeepInfer并披露收入账本；美国国土安全部正式下令禁采DeepSeek……",
+      "firstSeen": "2026-10-25T10:07:34.332Z",
+      "lastCovered": "2026-10-25T10:07:34.332Z",
+      "coverageCount": 1,
+      "category": "tech",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-10-25-deepseek-deepinfer-revenue-dhs-ban"
+      ],
+      "eventUri": null,
+      "summary": "In one week DeepSeek open-sourced its inference framework DeepInfer, disclosed its revenue for the first time and was reported raising about 100 billion yuan, while the US Department of Homeland Security formally banned buying it. Lead with the revenue disclosure and the ban together: the Chinese lab is opening its books and its code just as Washington shuts it out. Use the mainland view; do not repeat the AI stock selloff or Kimi angles already run."
+    },
+    {
+      "id": "china-ai-application-engineers-million-yuan-salaries",
+      "label": "China's tech giants are paying 1 million yuan for a new kind of AI engineer",
+      "firstSeen": "2026-10-25T10:07:34.332Z",
+      "lastCovered": "2026-10-25T10:07:34.332Z",
+      "coverageCount": 1,
+      "category": "tech",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-10-25-china-ai-application-engineers-million-yuan-salaries"
+      ],
+      "eventUri": "eng-12120799",
+      "summary": "ByteDance, Tencent and Alibaba are offering close to 1 million yuan a year (about $150,000) for engineers who turn models into products, not those who train them. The shift says where China's AI race is now fought: the scarce skill is deployment and commercialisation, which is also where investors doubt the payoff."
+    },
+    {
       "id": "houthis-riyadh-king-khalid-airport-military-target",
       "label": "Yemen's Houthis renew warning against using Riyadh airport",
       "firstSeen": "2026-10-25T05:04:10.668Z",
       "lastCovered": "2026-10-25T05:04:10.668Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-10-25-houthis-riyadh-king-khalid-airport-military-target"
@@ -23,7 +143,7 @@
       "lastCovered": "2026-10-25T05:04:10.668Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-10-25-tinubu-kaduna-reelection-campaign-economic-pain"
@@ -38,7 +158,7 @@
       "lastCovered": "2026-10-25T05:04:10.668Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-10-25-ahmadis-sentenced-lahore-hate-speech-fia"
@@ -53,7 +173,7 @@
       "lastCovered": "2026-10-25T05:04:10.668Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-10-25-new-york-archdiocese-800-million-abuse-settlement"
@@ -68,7 +188,7 @@
       "lastCovered": "2026-10-25T05:04:10.668Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-10-25-irgc-drone-strike-komala-balisan-iraq"
@@ -83,7 +203,7 @@
       "lastCovered": "2026-10-25T05:04:10.668Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-10-25-audi-georgia-plant-tariffs-volkswagen"
@@ -98,7 +218,7 @@
       "lastCovered": "2026-10-25T05:04:10.668Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-10-25-pakistan-wheat-prices-dar-hoarding"
@@ -113,7 +233,7 @@
       "lastCovered": "2026-10-25T05:04:10.668Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-10-25-china-ai-stocks-selloff-valuations-earnings"
@@ -128,7 +248,7 @@
       "lastCovered": "2026-10-25T05:04:10.668Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-10-25-chloroplast-protein-import-pore-toc159-cyanobacteria"
@@ -143,7 +263,7 @@
       "lastCovered": "2026-10-24T22:04:07.806Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-10-24-iran-hormuz-reopening-offer-us-blockade-pakistan"
@@ -158,7 +278,7 @@
       "lastCovered": "2026-10-24T22:04:07.806Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-10-24-openai-agents-cpu-cache-covert-channel-red-team"
@@ -173,7 +293,7 @@
       "lastCovered": "2026-10-24T22:04:07.806Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-10-24-brazil-runoff-telegram-channels-voting-machine-disinformation"
@@ -188,7 +308,7 @@
       "lastCovered": "2026-10-24T22:04:07.806Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-10-24-flavio-bolsonaro-90-companies-inss-fraud-map"
@@ -203,7 +323,7 @@
       "lastCovered": "2026-10-24T22:04:07.806Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-10-24-nigeria-minister-ekpo-federal-might-akwa-ibom-2027"
@@ -218,7 +338,7 @@
       "lastCovered": "2026-10-24T22:04:07.806Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-10-24-venezuela-protests-demand-presidential-election-date"
@@ -233,7 +353,7 @@
       "lastCovered": "2026-10-24T22:04:07.806Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-10-24-philippine-air-force-sf260-crash-batangas-grounded"
@@ -248,7 +368,7 @@
       "lastCovered": "2026-10-24T22:04:07.806Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-10-24-eagles-nest-kehlsteinhaus-fire-arson-arrest"
@@ -263,7 +383,7 @@
       "lastCovered": "2026-10-24T22:04:07.806Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-10-24-brent-crude-117-irgc-hormuz-blockade"
@@ -278,7 +398,7 @@
       "lastCovered": "2026-10-24T22:04:07.806Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-10-24-bitcoin-holders-loans-private-banking-xapo"
@@ -293,7 +413,7 @@
       "lastCovered": "2026-10-24T22:04:07.806Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-10-24-australopithecus-early-homo-brain-organization"
@@ -308,7 +428,7 @@
       "lastCovered": "2026-10-24T18:04:49.635Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-10-24-hebron-lockdown-2000-palestinians-displaced"
@@ -323,7 +443,7 @@
       "lastCovered": "2026-10-24T18:04:49.635Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-10-24-houthis-saudi-strikes-aden-oil-facilities"
@@ -338,7 +458,7 @@
       "lastCovered": "2026-10-24T18:04:49.635Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-10-24-israel-election-trump-advisers-netanyahu-eisenkot"
@@ -353,7 +473,7 @@
       "lastCovered": "2026-10-24T18:04:49.635Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-10-24-brazil-tse-nunes-marques-docket-flavio-bolsonaro"
@@ -368,7 +488,7 @@
       "lastCovered": "2026-10-24T18:04:49.635Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-10-24-france-protests-410000-paris-clashes-arrests"
@@ -383,7 +503,7 @@
       "lastCovered": "2026-10-24T18:04:49.635Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-10-23-trump-canada-tariff-cuts-maine-collins-midterms"
@@ -398,7 +518,7 @@
       "lastCovered": "2026-10-24T18:04:49.635Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-10-24-cbn-jpmorgan-merchant-bank-licence-nigeria"
@@ -413,7 +533,7 @@
       "lastCovered": "2026-10-24T18:04:49.635Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-10-24-china-stocks-record-gap-us-national-team"
@@ -428,7 +548,7 @@
       "lastCovered": "2026-10-24T18:04:49.635Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-10-24-vorcaro-banco-master-lagoinha-church-intercepts"
@@ -443,7 +563,7 @@
       "lastCovered": "2026-10-24T18:04:49.635Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-10-24-kimi-moonshot-influencer-marketing-brief"
@@ -458,7 +578,7 @@
       "lastCovered": "2026-10-24T14:04:21.631Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-10-24-jamia-protests-sharjeel-imam-bjp-congress-kashmir"
@@ -473,7 +593,7 @@
       "lastCovered": "2026-10-24T14:04:21.631Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-10-24-ebola-bundibugyo-lagos-emergency-response"
@@ -488,7 +608,7 @@
       "lastCovered": "2026-10-24T14:04:21.631Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-10-24-jio-platforms-ipo-record-bids-reliance"
@@ -503,7 +623,7 @@
       "lastCovered": "2026-10-24T14:04:21.631Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-10-24-kazakhstan-central-bank-rate-cut-inflation"
@@ -518,7 +638,7 @@
       "lastCovered": "2026-10-24T14:04:21.631Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-10-24-ras-al-khaimah-oil-spill-beaches-closed"
@@ -533,7 +653,7 @@
       "lastCovered": "2026-10-24T14:04:21.631Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-10-24-mars-arsia-mons-cloud-ice-physics"
@@ -548,7 +668,7 @@
       "lastCovered": "2026-10-24T14:04:21.631Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-10-24-ancient-retrovirus-primate-brain-genes-humans"
@@ -563,7 +683,7 @@
       "lastCovered": "2026-10-24T14:04:21.631Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-10-24-barnes-ice-cap-laurentide-growth-reversed-warming"
@@ -578,7 +698,7 @@
       "lastCovered": "2026-10-24T14:04:21.631Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-10-24-hesai-kosmo-lidar-robots-bosch-strategy"
@@ -593,7 +713,7 @@
       "lastCovered": "2026-10-24T14:04:21.631Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-10-24-clarity-act-stall-tokenized-funds-gulf-asia"
@@ -608,7 +728,7 @@
       "lastCovered": "2026-10-24T10:06:46.342Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-10-24-ukraine-starlink-outage-sovereign-satellite-system"
@@ -623,7 +743,7 @@
       "lastCovered": "2026-10-24T10:06:46.342Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-10-24-jordan-karak-church-attack-toll-eight-king-abdullah"
@@ -638,7 +758,7 @@
       "lastCovered": "2026-10-24T10:06:46.342Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-10-24-kim-jong-un-china-new-yalu-river-bridge"
@@ -653,7 +773,7 @@
       "lastCovered": "2026-10-24T10:06:46.342Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-10-24-nairobi-eastleigh-building-collapse-seven-missing"
@@ -668,7 +788,7 @@
       "lastCovered": "2026-10-24T10:06:46.342Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-10-24-delhi-police-peace-bonds-protesters-neha-bora"
@@ -683,7 +803,7 @@
       "lastCovered": "2026-10-24T10:06:46.342Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-10-24-french-government-corporate-bond-yields-converge"
@@ -698,7 +818,7 @@
       "lastCovered": "2026-10-24T10:06:46.342Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-10-24-meta-free-cash-flow-negative-ai-spending"
@@ -713,7 +833,7 @@
       "lastCovered": "2026-10-24T10:06:46.342Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-10-24-deepseek-kimi-ai-talent-hiring-strategies"
@@ -728,178 +848,13 @@
       "lastCovered": "2026-10-24T10:06:46.342Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-10-24-nasa-artemis-iii-iv-mission-plans"
       ],
       "eventUri": null,
       "summary": "NASA laid out the mission plans for Artemis III (2027) and IV (2028), still aiming to land astronauts on the Moon in 2028. Lead with what changed in the mission design and which pieces (lander, suits) the timeline depends on, set against China's crewed lunar target of 2030."
-    },
-    {
-      "id": "argentina-milei-crypto-meme-coin-probe-dropped",
-      "label": "Argentina drops investigation into Milei over crypto fraud",
-      "firstSeen": "2026-10-24T05:06:08.449Z",
-      "lastCovered": "2026-10-24T05:06:08.449Z",
-      "coverageCount": 1,
-      "category": "politics",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-10-24-argentina-milei-crypto-meme-coin-probe-dropped"
-      ],
-      "eventUri": "spa-4390957",
-      "summary": "A criminal investigation into President Javier Milei and his sister Karina over the meme-coin scandal in which he promoted a token whose price collapsed was dropped on Friday. Lead with who closed it and on what grounds, and what the retail investors who lost money are left with; the mechanism is how a sitting president's endorsement moved a token and why no court will now test it."
-    },
-    {
-      "id": "rubio-cia-cuba-regime-change-oil-blockade",
-      "label": "Marco Rubio calls on Cubans to partner with CIA as Trump vows to 'take care of Cuba'; Cuba mocks US 'desperation'",
-      "firstSeen": "2026-10-24T05:06:08.449Z",
-      "lastCovered": "2026-10-24T05:06:08.449Z",
-      "coverageCount": 1,
-      "category": "politics",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-10-24-rubio-cia-cuba-regime-change-oil-blockade"
-      ],
-      "eventUri": "spa-4391046",
-      "summary": "The US secretary of state openly invited Cubans to work with the CIA, and Trump said Cuba comes 'next' after Iran, while a US oil blockade already starves the island. Lead with the public recruitment call: a regime-change aim stated aloud. Who bears it is 11 million Cubans living with fuel shortages and blackouts; give Havana's reply. Dateline Havana, where the policy lands."
-    },
-    {
-      "id": "us-diplomats-ordered-out-middle-east-iran-plots",
-      "label": "Iran steps up plots to kill US diplomats in Middle East",
-      "firstSeen": "2026-10-24T05:06:08.449Z",
-      "lastCovered": "2026-10-24T05:06:08.449Z",
-      "coverageCount": 1,
-      "category": "politics",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-10-24-us-diplomats-ordered-out-middle-east-iran-plots"
-      ],
-      "eventUri": "eng-12126004",
-      "summary": "New development in the Gulf war: the US has ordered diplomatic staff out of posts across the Middle East after the director of national intelligence warned of increased Iranian and Houthi plotting against US officials. Departure orders usually come before an escalation. Tie it to Trump's remarks the same day that another operation against Iran may come as the war nears eight months, and give the US claim as a US intelligence claim, not as fact. Name which posts are affected."
-    },
-    {
-      "id": "egypt-pakistan-saudi-turkey-hormuz-traffic-statement",
-      "label": "Arab and Islamic countries call for resumption of traffic in Strait of Hormuz -- statement",
-      "firstSeen": "2026-10-24T05:06:08.449Z",
-      "lastCovered": "2026-10-24T05:06:08.449Z",
-      "coverageCount": 1,
-      "category": "economy",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-10-24-egypt-pakistan-saudi-turkey-hormuz-traffic-statement"
-      ],
-      "eventUri": "eng-12125675",
-      "summary": "The foreign ministers of Egypt, Pakistan, Saudi Arabia and Turkey jointly demanded that traffic through the Strait of Hormuz resume in full, and said the Iran–Israel–US war must be settled by diplomacy alone. It comes a day after the IRGC said two more supertankers were hit and mines laid. Lead with four Muslim-majority powers, two of them US allies, speaking as a bloc on the shipping lane their economies depend on. Chart ship traffic through the Strait of Hormuz and Brent crude. TASS is the only source: attribute the statement to it."
-    },
-    {
-      "id": "southwest-china-magnitude-7-earthquake-rescue",
-      "label": "Xi orders all-out rescue efforts after 7.0-magnitude quake",
-      "firstSeen": "2026-10-24T05:06:08.449Z",
-      "lastCovered": "2026-10-24T05:06:08.449Z",
-      "coverageCount": 1,
-      "category": "politics",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-10-24-southwest-china-magnitude-7-earthquake-rescue"
-      ],
-      "eventUri": null,
-      "summary": "A magnitude 7.0 earthquake struck a county in southwest China, and Xi Jinping ordered an all-out search for the missing. Lead with the county, the toll and the number missing as reported so far; say the figures are early. Only state media carry it (Iran's Mehr, relaying Chinese state reporting), so attribute every figure."
-    },
-    {
-      "id": "zamfara-dansadau-bandit-reprisal-attacks-gold-mining",
-      "label": "Inside Zamfara communities, where residents bear brunt of reprisal attacks by bandits",
-      "firstSeen": "2026-10-24T05:06:08.449Z",
-      "lastCovered": "2026-10-24T05:06:08.449Z",
-      "coverageCount": 1,
-      "category": "politics",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-10-24-zamfara-dansadau-bandit-reprisal-attacks-gold-mining"
-      ],
-      "eventUri": null,
-      "summary": "Ground reporting from Dansadau in Zamfara: after soldiers killed his fighters, the bandit leader Dankarami Gwaska attacked a military base and mining sites on 5 October, and villagers paid for it. Lead with the reprisal cycle, in which each military operation is followed by attacks on civilians who have no protection. Bring in the gold-mining economy that funds the armed groups."
-    },
-    {
-      "id": "honduras-unpaid-doctors-strike-asfura-health-minister",
-      "label": "Salud promete pagarle a 727 médicos mientras el presidente-ministro está de gira",
-      "firstSeen": "2026-10-24T05:06:08.449Z",
-      "lastCovered": "2026-10-24T05:06:08.449Z",
-      "coverageCount": 1,
-      "category": "politics",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-10-24-honduras-unpaid-doctors-strike-asfura-health-minister"
-      ],
-      "eventUri": null,
-      "summary": "After 47 days of protest by unpaid doctors, Honduras's health ministry has promised to pay 727 of them, while President Nasry Asfura, who also holds the health portfolio himself, is on a tour of Italy. Lead with the president running the ministry in absentia while public hospitals go without doctors. Patients bear the cost. Dateline Tegucigalpa."
-    },
-    {
-      "id": "franklin-templeton-tokenized-fund-xrp-ledger-freeze",
-      "label": "Ripple news: Franklin Templeton adds $150 million of money-market shares to XRP Ledger",
-      "firstSeen": "2026-10-24T05:06:08.449Z",
-      "lastCovered": "2026-10-24T05:06:08.449Z",
-      "coverageCount": 1,
-      "category": "economy",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-10-24-franklin-templeton-tokenized-fund-xrp-ledger-freeze"
-      ],
-      "eventUri": null,
-      "summary": "Franklin Templeton put $150 million of tokenized money-market fund shares onto the XRP Ledger, all of them in a single wallet, and the issuer can approve, freeze or claw back any holding. Lead with that control: 'on-chain' dollar debt that the asset manager can still freeze is a permissioned ledger on a public chain. The mechanism is how tokenized Treasuries are spreading into crypto collateral, and what that means for the claim that crypto is censorship-resistant."
-    },
-    {
-      "id": "moonshot-kimi-k3-1-pro-open-source-3-trillion-parameters",
-      "label": "3万亿级参数！Kimi K3.1空降国产第一，1/5价格狙击Astra，实测跑通3D建模",
-      "firstSeen": "2026-10-24T05:06:08.449Z",
-      "lastCovered": "2026-10-24T05:06:08.449Z",
-      "coverageCount": 1,
-      "category": "tech",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-10-24-moonshot-kimi-k3-1-pro-open-source-3-trillion-parameters"
-      ],
-      "eventUri": null,
-      "summary": "Moonshot AI released Kimi K3.1 Pro, a 3-trillion-parameter model with a 1-million-token context, and will open-source it by 4 November. It ranks fourth on Artificial Analysis, ahead of GPT-6 Astra, at about a fifth of Astra's price ($2/$10 per million tokens against $10/$50). Lead with the open weights at that size and price: a Chinese lab is giving away near-frontier capability that US labs sell. The mechanism is heavily scaled reinforcement-learning post-training. Its Terminal Bench 4.0 score is 65.7% against 66.4% for Claude Opus 5.5."
-    },
-    {
-      "id": "china-first-ai-feature-film-sanxingdui-vidu-box-office",
-      "label": "首部！国产AI超写实电影上院线了",
-      "firstSeen": "2026-10-24T05:06:08.449Z",
-      "lastCovered": "2026-10-24T05:06:08.449Z",
-      "coverageCount": 1,
-      "category": "tech",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-10-24-china-first-ai-feature-film-sanxingdui-vidu-box-office"
-      ],
-      "eventUri": null,
-      "summary": "China's first photorealistic AI-generated feature film licensed for cinema release, 'Sanxingdui: Future Past', opened with 301,500 yuan on its first day. Built with Shengshu's Vidu video model and Bona Film, it cost tens of millions of yuan, about 90% less than a comparable live-action sci-fi film. Lead with that gap: costs collapsed, but audiences have not paid. Add the industrial scale: iQiyi plans more than 40 AIGC films this year and Netflix says nearly 300 titles use generative AI."
-    },
-    {
-      "id": "lithography-machine-shortage-advanced-packaging-ai-chips",
-      "label": "全线扩产仍供不应求，光刻机被抢疯了",
-      "firstSeen": "2026-10-24T05:06:08.449Z",
-      "lastCovered": "2026-10-24T05:06:08.449Z",
-      "coverageCount": 1,
-      "category": "tech",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-10-24-lithography-machine-shortage-advanced-packaging-ai-chips"
-      ],
-      "eventUri": null,
-      "summary": "Lithography tools are sold out even as every maker expands capacity, because new investment now covers more lithography steps, from wafer fabrication to advanced packaging, driven by AI chip demand. Lead with the bottleneck and who controls it: ASML at the top, export controls on China, and the Chinese and Japanese makers filling the packaging tier. Use the article's order and capacity figures."
     }
   ]
 }
