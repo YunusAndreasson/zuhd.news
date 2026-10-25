@@ -1,105 +1,5 @@
 [
   {
-    "timestamp": "2026-10-05T05:15:39.846Z",
-    "candidateCount": 11,
-    "candidates": [
-      {
-        "slug": "2026-10-04-iran-studying-us-response-to-its-7-day-proposal",
-        "title": "Iran Weighs US Reply",
-        "category": "politics",
-        "eventCoverage": 147,
-        "importance": 6
-      },
-      {
-        "slug": "2026-10-04-iran-s-oil-minister-resigns-no-reason-given",
-        "title": "Iran Oil Minister Resigns",
-        "category": "economy",
-        "eventCoverage": 78,
-        "importance": 6
-      },
-      {
-        "slug": "2026-10-05-us-fbi-arrests-woman-accused-of-spying-for-china",
-        "title": "FBI Arrests Alleged Chinese Agent",
-        "category": "politics",
-        "eventCoverage": 48,
-        "importance": 6
-      },
-      {
-        "slug": "2026-10-05-ethiopia-s-forces-retake-mekelle-amid-renewed-tigray-fightin",
-        "title": "Ethiopia Retakes Mekelle",
-        "category": "politics",
-        "eventCoverage": 42,
-        "importance": 6
-      },
-      {
-        "slug": "2026-10-05-sudan-s-rsf-refused-to-rescue-dozens-in-gold-mine-collapse-w",
-        "title": "Sudan Gold Mine Collapses",
-        "category": "politics",
-        "eventCoverage": 0,
-        "importance": 6
-      },
-      {
-        "slug": "2026-10-05-middle-east-crude-oil-exports-exceed-pre-war-levels-but-tank",
-        "title": "Crude Exports Top Pre-War",
-        "category": "economy",
-        "eventCoverage": 0,
-        "importance": 6
-      },
-      {
-        "slug": "2026-10-05-steep-fuel-price-rise-close-to-midterms-forces-one-third-of",
-        "title": "States Cut Fuel Taxes",
-        "category": "economy",
-        "eventCoverage": 0,
-        "importance": 6
-      },
-      {
-        "slug": "2026-10-05-new-forensic-evidence-supports-egyptian-retainer-sacrifice",
-        "title": "Skulls Suggest Pharaonic Sacrifice",
-        "category": "science",
-        "eventCoverage": 0,
-        "importance": 6
-      },
-      {
-        "slug": "2026-10-05-associations-between-vaccine-misinformation-and-influenza-va",
-        "title": "Misinformation Cuts Flu Vaccination",
-        "category": "science",
-        "eventCoverage": 0,
-        "importance": 6
-      },
-      {
-        "slug": "2026-10-05-tehran-summons-norwegian-envoy-over-starlink",
-        "title": "Iran Summons Norway's Envoy",
-        "category": "tech",
-        "eventCoverage": 0,
-        "importance": 6
-      },
-      {
-        "slug": "2026-10-05-okxice-files-for-24-7-tokenized-trading-in-60-u-s-stocks",
-        "title": "OKXICE Files Tokenized Venue",
-        "category": "tech",
-        "eventCoverage": 0,
-        "importance": 6
-      }
-    ],
-    "selected": {
-      "slug": "2026-10-04-iran-studying-us-response-to-its-7-day-proposal",
-      "title": "Iran Weighs US Reply",
-      "category": "politics",
-      "body": "The [US](country:US) answered Iran's 7-day plan through",
-      "eventCoverage": 147,
-      "importance": 6
-    },
-    "skipReason": null,
-    "sent": true,
-    "pushTitle": "Breaking News",
-    "pushBody": "US answers Iran's 7-day proposal via Qatar, Tehran reviewing reply",
-    "response": {
-      "pushed": 1,
-      "skipped": 0,
-      "tokens": 5
-    }
-  },
-  {
     "timestamp": "2026-10-05T10:17:18.607Z",
     "candidateCount": 10,
     "candidates": [
@@ -10196,6 +10096,85 @@
     "sent": true,
     "pushTitle": "Breaking News",
     "pushBody": "New York Archdiocese to pay $800 million to 1,300 abuse survivors",
+    "response": {
+      "pushed": 1,
+      "skipped": 0,
+      "tokens": 6
+    }
+  },
+  {
+    "timestamp": "2026-10-25T10:15:31.430Z",
+    "candidateCount": 8,
+    "candidates": [
+      {
+        "slug": "2026-10-25-obama-ohio-midterms-iran-war-costs",
+        "title": "Obama Campaigns Against Iran War",
+        "category": "politics",
+        "eventCoverage": 178,
+        "importance": 6
+      },
+      {
+        "slug": "2026-10-25-bulgaria-presidential-election-pro-kremlin-candidates-black-sea",
+        "title": "Bulgaria Votes for President",
+        "category": "politics",
+        "eventCoverage": 113,
+        "importance": 6
+      },
+      {
+        "slug": "2026-10-25-pakistan-polio-seven-cases-eradication",
+        "title": "Pakistan Polio Cases Persist",
+        "category": "politics",
+        "eventCoverage": 100,
+        "importance": 6
+      },
+      {
+        "slug": "2026-10-25-madrid-pension-rally-inflation-indexation",
+        "title": "Madrid Marches for Pensions",
+        "category": "economy",
+        "eventCoverage": 55,
+        "importance": 6
+      },
+      {
+        "slug": "2026-10-25-mercuria-baltic-exchange-hormuz-freight-benchmark-lawsuit",
+        "title": "Mercuria Sues Baltic Exchange",
+        "category": "economy",
+        "eventCoverage": 0,
+        "importance": 6
+      },
+      {
+        "slug": "2026-10-25-serap-ecowas-court-nigeria-cash-transfer-78-billion",
+        "title": "Rights Group Sues Over Cash Transfers",
+        "category": "politics",
+        "eventCoverage": 0,
+        "importance": 6
+      },
+      {
+        "slug": "2026-10-25-deepseek-deepinfer-revenue-dhs-ban",
+        "title": "DeepSeek Opens Its Books",
+        "category": "tech",
+        "eventCoverage": 0,
+        "importance": 6
+      },
+      {
+        "slug": "2026-10-25-china-ai-application-engineers-million-yuan-salaries",
+        "title": "ByteDance Bids for Deployers",
+        "category": "tech",
+        "eventCoverage": 0,
+        "importance": 6
+      }
+    ],
+    "selected": {
+      "slug": "2026-10-25-obama-ohio-midterms-iran-war-costs",
+      "title": "Obama Campaigns Against Iran War",
+      "category": "politics",
+      "body": "Obama blamed the [Iran](country:IR) war for rising diesel",
+      "eventCoverage": 178,
+      "importance": 6
+    },
+    "skipReason": null,
+    "sent": true,
+    "pushTitle": "Breaking News",
+    "pushBody": "Obama blames Iran war for rising diesel prices at Ohio rally",
     "response": {
       "pushed": 1,
       "skipped": 0,
