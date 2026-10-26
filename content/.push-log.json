@@ -1,91 +1,5 @@
 [
   {
-    "timestamp": "2026-10-06T10:12:41.438Z",
-    "candidateCount": 9,
-    "candidates": [
-      {
-        "slug": "2026-10-06-congress-plans-nationwide-stir-seeking-cec-s-removal-restora",
-        "title": "Congress Targets Election Chief",
-        "category": "politics",
-        "eventCoverage": 284,
-        "importance": 6
-      },
-      {
-        "slug": "2026-10-06-germany-s-ex-spy-chief-arrested-for-espionage",
-        "title": "Germany Arrests Ex-Spy Chief",
-        "category": "politics",
-        "eventCoverage": 150,
-        "importance": 6
-      },
-      {
-        "slug": "2026-10-06-countries-weigh-banning-smart-glasses-over-privacy-concerns",
-        "title": "Countries Weigh Smart Glasses Bans",
-        "category": "tech",
-        "eventCoverage": 116,
-        "importance": 6
-      },
-      {
-        "slug": "2026-10-05-mexico-seeks-evidence-of-border-shooting-that-prompted-us-tr",
-        "title": "Mexico Demands Shooting Evidence",
-        "category": "politics",
-        "eventCoverage": 102,
-        "importance": 6
-      },
-      {
-        "slug": "2026-10-06-kenya-reports-first-ever-ebola-death",
-        "title": "Kenya Confirms First Ebola Death",
-        "category": "politics",
-        "eventCoverage": 93,
-        "importance": 6
-      },
-      {
-        "slug": "2026-10-06-pm-shehbaz-urges-pti-to-call-off-long-march-resolve-issues-t",
-        "title": "Shehbaz Offers Talks, Blocks March",
-        "category": "politics",
-        "eventCoverage": 0,
-        "importance": 6
-      },
-      {
-        "slug": "2026-10-06-un-human-rights-council-extends-mandate-of-sudan-fact-findin",
-        "title": "UN Extends Sudan Inquiry",
-        "category": "politics",
-        "eventCoverage": 0,
-        "importance": 6
-      },
-      {
-        "slug": "2026-10-06-lithuania-s-parliament-votes-to-remove-ban-on-nuclear-weapon",
-        "title": "Lithuania Moves on Nuclear Ban",
-        "category": "politics",
-        "eventCoverage": 0,
-        "importance": 6
-      },
-      {
-        "slug": "2026-10-06-arc-fmd-vaccine-privatisation-a-decision-long-overdue-farmer",
-        "title": "South Africa Opens Vaccine Production",
-        "category": "economy",
-        "eventCoverage": 0,
-        "importance": 6
-      }
-    ],
-    "selected": {
-      "slug": "2026-10-06-germany-s-ex-spy-chief-arrested-for-espionage",
-      "title": "Germany Arrests Ex-Spy Chief",
-      "category": "politics",
-      "body": "[Germany](country:DE)'s ex-spy chief allegedly received 2,000 classified",
-      "eventCoverage": 150,
-      "importance": 6
-    },
-    "skipReason": null,
-    "sent": true,
-    "pushTitle": "Breaking News",
-    "pushBody": "Germany arrests ex-spy chief August Hanning on suspicion of espionage",
-    "response": {
-      "pushed": 1,
-      "skipped": 0,
-      "tokens": 5
-    }
-  },
-  {
     "timestamp": "2026-10-06T14:17:32.393Z",
     "candidateCount": 11,
     "candidates": [
@@ -10063,6 +9977,120 @@
     "sent": true,
     "pushTitle": "Breaking News",
     "pushBody": "Israel army chief warns US against striking Iran before election, report says",
+    "response": {
+      "pushed": 1,
+      "skipped": 0,
+      "tokens": 6
+    }
+  },
+  {
+    "timestamp": "2026-10-26T14:13:15.310Z",
+    "candidateCount": 13,
+    "candidates": [
+      {
+        "slug": "2026-10-26-anthropic-s1-ipo-filing-revenue-losses",
+        "title": "Anthropic Files Listing",
+        "category": "economy",
+        "eventCoverage": 110,
+        "importance": 6
+      },
+      {
+        "slug": "2026-10-26-meta-95-billion-stock-offering-ai-data-centres",
+        "title": "Meta Raises $95bn Equity",
+        "category": "economy",
+        "eventCoverage": 92,
+        "importance": 6
+      },
+      {
+        "slug": "2026-10-26-brazil-real-stocks-fall-lula-fiscal-deficit",
+        "title": "Brazil Markets Slump",
+        "category": "economy",
+        "eventCoverage": 70,
+        "importance": 6
+      },
+      {
+        "slug": "2026-10-26-kyrgyzstan-private-jets-extradite-critics-kloop",
+        "title": "Kyrgyzstan Flies Critics Home",
+        "category": "politics",
+        "eventCoverage": 0,
+        "importance": 6
+      },
+      {
+        "slug": "2026-10-26-syrians-detained-israel-prisons-southern-syria",
+        "title": "Syrians Held in Israel",
+        "category": "politics",
+        "eventCoverage": 0,
+        "importance": 6
+      },
+      {
+        "slug": "2026-10-26-st-catherine-monastery-egypt-land-deal-lawsuits",
+        "title": "St. Catherine Archbishop Yields",
+        "category": "politics",
+        "eventCoverage": 0,
+        "importance": 6
+      },
+      {
+        "slug": "2026-10-26-lucky-qatarenergy-quit-port-qasim-lng-terminal",
+        "title": "Energas Quits Port Qasim",
+        "category": "economy",
+        "eventCoverage": 0,
+        "importance": 6
+      },
+      {
+        "slug": "2026-10-26-iraq-fuel-shortage-hormuz-closure-oil-dependence",
+        "title": "Iraq Runs Short of Fuel",
+        "category": "economy",
+        "eventCoverage": 0,
+        "importance": 6
+      },
+      {
+        "slug": "2026-10-26-amoc-weakening-18-percent-satellite-heat-flux",
+        "title": "Atlantic Current Slows 18%",
+        "category": "science",
+        "eventCoverage": 0,
+        "importance": 6
+      },
+      {
+        "slug": "2026-10-26-cattle-virus-human-infection-spillover",
+        "title": "Cattle Virus Infects Human",
+        "category": "science",
+        "eventCoverage": 0,
+        "importance": 6
+      },
+      {
+        "slug": "2026-10-26-litellm-unrevoked-key-supply-chain-attack",
+        "title": "LiteLLM Key Left Live",
+        "category": "tech",
+        "eventCoverage": 0,
+        "importance": 6
+      },
+      {
+        "slug": "2026-10-26-ai-tokenizer-tax-non-english-languages",
+        "title": "AI Charges Non-English Speakers More",
+        "category": "tech",
+        "eventCoverage": 0,
+        "importance": 6
+      },
+      {
+        "slug": "2026-10-26-jd-huawei-kunpeng-ai-ads-inference-latency",
+        "title": "JD Cuts Ad Latency",
+        "category": "tech",
+        "eventCoverage": 0,
+        "importance": 6
+      }
+    ],
+    "selected": {
+      "slug": "2026-10-26-anthropic-s1-ipo-filing-revenue-losses",
+      "title": "Anthropic Files Listing",
+      "category": "economy",
+      "body": "Anthropic lost $80.7 billion on $16.3 billion of",
+      "eventCoverage": 110,
+      "importance": 6
+    },
+    "skipReason": null,
+    "sent": true,
+    "pushTitle": "Breaking News",
+    "pushBody": "Anthropic files for Nasdaq IPO, reports $80.7 billion loss on $16.3 billion revenue",
     "response": {
       "pushed": 1,
       "skipped": 0,
