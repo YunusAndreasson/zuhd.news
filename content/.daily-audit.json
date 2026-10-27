@@ -1,37 +1,38 @@
 {
-  "date": "2026-10-26",
+  "date": "2026-10-27",
   "metrics": {
-    "articles": { "value": 57, "detail": "5 cycles, all completed; avg 11 published per cycle (57 vs 45 yesterday); 1 quarantined" },
-    "freshness": { "median": 0.1, "p90": 0.3, "max": 0.6, "target": 1.0, "met": true },
-    "categories": { "politics": 22, "economy": 17, "science": 5, "tech": 13 },
+    "articles": { "value": 58, "detail": "5 cycles, all completed; avg 11 published per cycle (58 vs 57 yesterday); 0 quarantined" },
+    "freshness": { "median": 0.1, "p90": 0.2, "max": 0.4, "target": 1.0, "met": true },
+    "categories": { "politics": 19, "economy": 20, "science": 3, "tech": 16 },
     "multiSource": { "pct": 28, "target": 30, "met": false },
     "usDatelines": { "pct": 19, "target": 25, "met": true },
-    "latAmDatelines": { "pct": 5, "target": 5, "met": true },
+    "latAmDatelines": { "pct": 14, "target": 5, "met": true },
     "sameEventDuplicates": { "value": 0, "target": 0, "met": true },
     "missingDatelines": { "value": 0, "target": 0, "met": true },
-    "stateOrAdvocacyOnly": 2,
-    "imageUrlPct": 96,
-    "regions": { "count": 6, "target": 4, "met": true, "breakdown": { "ME": 18, "AM": 14, "AS": 11, "EU": 10, "AF": 3, "OC": 1 } },
-    "sciTech": { "ratio": 32, "target": 25, "met": true },
-    "topSourceShare": { "source": "Dawn", "pct": 18, "target": 20, "met": true },
-    "uniqueSources": 62,
+    "stateOrAdvocacyOnly": 0,
+    "imageUrlPct": 98,
+    "regions": { "count": 5, "target": 4, "met": true, "breakdown": { "AM": 20, "EU": 12, "ME": 11, "AS": 10, "AF": 5, "OC": 0 } },
+    "sciTech": { "ratio": 33, "target": 25, "met": true },
+    "topSourceShare": { "source": "Al Jazeera Online", "pct": 10, "target": 20, "met": true },
+    "uniqueSources": 49,
     "duplicates": 0,
-    "avgCycleDuration": 1019
+    "avgCycleDuration": 1050
   },
   "experiment": "Skipped. No experiment is active and the pause gate (`noNewExperimentsUntil` 2026-11-05) bars a new one. Nothing was evaluated or changed.",
-  "weakestArea": "Multi-source fell to 28% (16 of 57) from 42% yesterday, just under the 30% target; the jump in volume came mostly from single-source tech and Pakistan economy stories. Dawn supplied 10 of 57 (18%), close to the 20% cap, and seven stories were Pakistan domestic economy and politics. Science recovered to 5 from 0, all from science outlets (New Scientist, STAT, Quanta, Phys.org).",
+  "weakestArea": "Science fell to 3 from 5, against a goal of 5 per day; all three came from science outlets (Carbon Brief, Phys.org, New Scientist), and two were climate measurements (Greenland ice, WMO greenhouse gases). Multi-source held at 28% (16 of 58) for a second day, just under the 30% target, with tech again leaning on single outlets (16 tech stories, mostly from one source each).",
   "watching": [
-    "Iran war risk: Israel's army chief resisting a strike, Tehran convening a regional meeting with Saudi and Pakistani officials, and Uzbekistan summoning Iran's ambassador.",
-    "Houthis claiming a strike on a Saudi pipeline, and Egypt authorising Saudi defence cooperation.",
-    "Brazil after the runoff: Bolsonaro rejecting Lula's win and markets slumping.",
-    "Israel's Tuesday vote, the UN finding of extermination in the West Bank, and Hebron expulsions.",
-    "Comey charged a third time, and the Fed expected to hold this week.",
-    "Uganda quarantining returnees from Congo, and UK sanctions on Sudan commanders over El Fasher."
+    "Brazil after the runoff: Bolsonaro reported fleeing to the US, firms moving out of the real, and US lawmakers pressing Meta over Brazil.",
+    "Iran: Khamenei backing peace conditions, Saudi-Iran talks in Tehran, and Iran threatening Sinokor tankers.",
+    "Jordanian strikes in southern Syria and reports of UAE aid to Ansarallah in Yemen.",
+    "Russia-Ukraine: an Oleshky local truce, Lavrov predicting escalation, and Nordic leaders calling Putin.",
+    "Cyclone Arnab nearing India's Odisha coast at Ganjam.",
+    "Egypt closing Mada Masr, which is one of the pipeline's own sources and may stop publishing."
   ],
   "coverageGaps": [
-    "Twelve datelines are a country rather than a city (United States ×4, China ×2, India, Brazil, France, Pakistan, United Kingdom, Switzerland), up from six; the missing-dateline metric does not catch them.",
-    "Pakistan took seven stories, five of them domestic economy items from Dawn, while Africa had three and Oceania one.",
-    "Multi-source dipped to 28%; most tech stories rest on a single outlet."
+    "Eleven datelines are a country or region rather than a city (United States ×7, China ×3, Europe ×1), against twelve yesterday; the missing-dateline metric does not catch them.",
+    "No Oceania story today, and Africa had five (Nigeria ×3, Cameroon, Mozambique).",
+    "Science reached 3 against a goal of 5; under the 2026-09-26 decision the floor may go unmet, so the remedy is wider science sources, not a higher floor.",
+    "Multi-source stuck at 28% for two days; most tech and crypto stories (CoinDesk ×4, Ars Technica ×4) rest on one outlet."
   ],
-  "context": "Output rose to 57 across five completed cycles with freshness at a 0.1-day median. The experiment pause holds until 2026-11-05 for the runner cut-over, so the multi-source dip and Dawn's share are recorded for the next round rather than acted on; one day under 30% after a 42% day is not yet a trend."
+  "context": "Output held at 58 across five completed cycles, with freshness at a 0.1-day median and no duplicates, quarantines or state-only stories. Latin America rose to 14% of datelines (Brazil, Guatemala, Honduras, Venezuela), and no source exceeded 10%. The experiment pause holds until 2026-11-05 for the runner cut-over, so the science shortfall and the multi-source dip are recorded for the next round rather than acted on."
 }
