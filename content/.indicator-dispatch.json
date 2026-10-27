@@ -2328,8 +2328,101 @@
         "2026-10-27-hsbc-profit-jumps-rate-hikes-buyback"
       ],
       "generatedAt": "2026-10-27T05:12:49.353Z"
+    },
+    "poly-will-david-lisnard-win-the-2027-french-president": {
+      "standingFingerprint": "27ed13d23d82b700",
+      "recentFingerprint": "8cae3676f365289c",
+      "standing": "A Polymarket contract that pays out if David Lisnard, the mayor of Cannes from France's liberal right, wins the 2027 presidential election. Its price is what traders will pay for that outcome, not a forecast.",
+      "recent": "",
+      "citations": [],
+      "generatedAt": "2026-10-27T10:13:17.132Z"
+    },
+    "poly-will-jd-vance-win-the-2028-republican-presidenti": {
+      "standingFingerprint": "dccbdfbeb3989c5b",
+      "recentFingerprint": "46a7637819a393a7",
+      "standing": "A Polymarket contract that pays out if J.D. Vance, the US vice-president, wins the Republican nomination for the 2028 presidential race. Its price is what traders will pay on him inheriting the party Donald Trump leads.",
+      "recent": "",
+      "citations": [],
+      "generatedAt": "2026-10-27T10:13:18.437Z"
+    },
+    "poly-will-steve-hilton-win-the-california-governor-el": {
+      "standingFingerprint": "10e0974c7dc5d280",
+      "recentFingerprint": "cdd8a9fe6df1c025",
+      "standing": "A Polymarket contract on whether Steve Hilton, the Republican former Fox News host and adviser to David Cameron, wins California's governorship. The state has not elected a Republican governor since Schwarzenegger in 2006.",
+      "recent": "",
+      "citations": [],
+      "generatedAt": "2026-10-27T10:13:19.768Z"
+    },
+    "wiki-deepseek": {
+      "standingFingerprint": "e15bcc42dc137246",
+      "recentFingerprint": "ad12df81f3a9f51d",
+      "standing": "Daily readership of Wikipedia's article on DeepSeek, the Hangzhou AI lab backed by the hedge fund High-Flyer, whose cheap open-weight models made it the reference point for Chinese AI.",
+      "recent": "Within a week, DeepSeek released a model that cut its cost per coding task 60%, open-sourced the inference stack it runs on, and was ordered off civilian agencies' devices by Homeland Security. Two days later the Hangzhou lab, which had long avoided outside capital, raised about $15 billion, the largest round in Chinese AI.",
+      "citations": [
+        "2026-10-20-us-federal-agencies-deepseek-ban-dhs",
+        "2026-10-22-deepseek-raises-15-billion-largest-china-ai-round",
+        "2026-10-17-deepseek-v4-1-flash-1017-open-weights-cost-cut-search-api",
+        "2026-10-20-deepseek-open-sources-deepinfer-inference-ascend-margins"
+      ],
+      "generatedAt": "2026-10-27T10:13:30.338Z"
+    },
+    "stocks:HAPV3.SA": {
+      "standingFingerprint": "1cd7ba58117e9d99",
+      "recentFingerprint": "82d382d0c904f95a",
+      "standing": "One of Brazil's largest private health-plan operators, running its own hospitals and clinics, and listed on the B3 in São Paulo. Its margins move with medical-cost inflation and with the rules the regulator ANS sets for health plans.",
+      "recent": "The only report on Hapvida's own business here appeared after the fall and does not explain it: an Agência Pública investigation found that STF justice André Mendonça ruled twice in the company's favour weeks after meeting one of its executives at a seminar in Frankfurt.",
+      "citations": [],
+      "generatedAt": "2026-10-27T10:13:32.816Z"
+    },
+    "stocks:VOW3.DE": {
+      "standingFingerprint": "18c7c77eccd24997",
+      "recentFingerprint": "a7a667222e8f0445",
+      "standing": "Europe's largest carmaker by sales, owner of Audi, Porsche, Škoda and SEAT, listed in Frankfurt. The Porsche and Piëch families control it and Lower Saxony holds a fifth of its votes, so politics shapes its pay and plants.",
+      "recent": "Volkswagen plans a pay freeze for 660,000 workers until 2030. Its Audi unit committed $4 billion to a Georgia plant building 200,000 cars a year, announced on Trump's stage under tariff pressure. Audi is also in talks for Huawei to develop its next A8. All of it came after the share's low, and none of it accounts for the price.",
+      "citations": [
+        "2026-10-19-volkswagen-pay-freeze-2030-ig-metall",
+        "2026-10-25-audi-georgia-plant-tariffs-volkswagen",
+        "2026-10-27-audi-ceo-trump-rally-georgia-plant-backlash",
+        "2026-10-23-audi-a8-huawei-platform-china"
+      ],
+      "generatedAt": "2026-10-27T10:13:34.502Z"
+    },
+    "stocks:002230.SZ": {
+      "standingFingerprint": "14d2ed2965ad2fb6",
+      "recentFingerprint": "312baa0195a89396",
+      "standing": "A Hefei-based maker of speech-recognition and AI software, listed in Shenzhen, whose Spark models sell into Chinese schools and government. On the US entity list since 2019, it is a test of building AI without American chips.",
+      "recent": "iFlytek said it trained Spark X2.6 on domestic chips without Nvidia, and that it had cut one training run from 4.5 months to 1.2. For a company under export controls, that claim goes to whether it can keep training competitive models without imported hardware.",
+      "citations": [
+        "2026-10-27-iflytek-spark-x2-6-domestic-compute-export-controls",
+        "2026-10-22-iflytek-spark-model-trained-on-chinese-chips"
+      ],
+      "generatedAt": "2026-10-27T10:13:42.960Z"
+    },
+    "stocks:005930.KS": {
+      "standingFingerprint": "89baaa362c0b1c37",
+      "recentFingerprint": "d60539ec10ca6880",
+      "standing": "South Korea's largest company and one of the world's biggest makers of memory chips, smartphones and displays. It carries so much weight in Seoul's stock market that its share price moves the national index with it.",
+      "recent": "Samsung and SK Hynix led a selloff that dragged South Korea's benchmark stock index down 5.5%, as doubts over AI spending met pressure from Chinese memory rivals. The economy those chipmakers anchor grew 1% last quarter, 3x the forecast, on demand for AI chips.",
+      "citations": [
+        "2026-10-13-korea-chip-stocks-tumble-ai-spending-chinese-memory-rivals",
+        "2026-10-27-south-korea-gdp-beats-forecasts-ai-chips"
+      ],
+      "generatedAt": "2026-10-27T10:13:43.994Z"
+    },
+    "poly-russia-x-ukraine-ceasefire-agreement-by-november": {
+      "standingFingerprint": "6dec6e36aba918d4",
+      "recentFingerprint": "85da877a95d97453",
+      "standing": "A Polymarket contract that pays out if Russia and Ukraine agree a ceasefire by the end of November 2026. Its price is what traders will pay for that outcome, and it moves with each round of talks and each wave of strikes.",
+      "recent": "Moscow ruled out the pause this contract pays on: confirming the Abu Dhabi talks, the Kremlin said Putin wants a final settlement, not a \"short\" truce. The one truce agreed covers occupied Oleshky alone, and Russian strikes on 28 energy facilities left 550,000 households without power.",
+      "citations": [
+        "2026-10-23-russia-ukraine-us-talks-abu-dhabi-november-kremlin",
+        "2026-10-23-oleshky-ceasefire-melania-trump-occupied-kherson",
+        "2026-10-19-russia-strikes-28-ukraine-energy-facilities-550000-households",
+        "2026-10-26-kremlin-europe-seat-ukraine-talks-november-trilateral"
+      ],
+      "generatedAt": "2026-10-27T10:13:48.005Z"
     }
   },
-  "generatedAt": "2026-10-27T05:26:52.955Z",
+  "generatedAt": "2026-10-27T10:13:48.006Z",
   "windowDays": 14
 }
