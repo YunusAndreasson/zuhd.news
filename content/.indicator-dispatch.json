@@ -2494,8 +2494,97 @@
         "2026-10-29-doordash-buys-instacart-17-billion-gig-workers"
       ],
       "generatedAt": "2026-10-29T18:14:39.156Z"
+    },
+    "poly-billionaire-one-time-wealth-tax-passes-in-califo": {
+      "standingFingerprint": "e3dcc0beaa2233e0",
+      "recentFingerprint": "7f2b500e8dd3c6ac",
+      "standing": "A Polymarket contract that settles yes if California enacts a tax on billionaires' net worth in 2026. The state has more billionaires than any other US state, so the measure bears on its budget and where its richest live.",
+      "recent": "",
+      "citations": [],
+      "generatedAt": "2026-10-29T22:14:22.981Z"
+    },
+    "poly-will-the-republicans-win-the-texas-governor-race": {
+      "standingFingerprint": "1805f9b18a938f93",
+      "recentFingerprint": "862f19b2e54abfab",
+      "standing": "A Polymarket contract that pays out if the Republican nominee wins the Texas governor's race in November 2026. Texas has not elected a Democratic governor since 1990, so the price is what traders will pay on that streak holding.",
+      "recent": "The only prediction-market news in the input was about the markets' legality, with the CFTC suing Utah over a gambling ban that shuts out Kalshi. None of it concerns the Texas race or accounts for this contract's price.",
+      "citations": [],
+      "generatedAt": "2026-10-29T22:14:24.359Z"
+    },
+    "poly-will-predictfun-launch-a-token-by-october-31-202": {
+      "standingFingerprint": "c3a216961d458172",
+      "recentFingerprint": "ad3a8ef6bc837579",
+      "standing": "A Polymarket contract on whether Predict.fun, a crypto prediction-market platform, issues its own token by the deadline. Platform tokens often reward early users, so the market tracks one rival's plans in a crowded field.",
+      "recent": "The fortnight's prediction-market news was about regulation, not tokens: the CFTC sued Utah over a gambling ban that reaches Kalshi, and a Pentagon memo warned that insider bets put troops' lives at risk. None of it concerns Predict.fun or explains the price.",
+      "citations": [],
+      "generatedAt": "2026-10-29T22:14:28.458Z"
+    },
+    "stocks:RDDT": {
+      "standingFingerprint": "7e8184bd72e168d9",
+      "recentFingerprint": "aa9521f4fbf7c143",
+      "standing": "Shares of Reddit, the US forum built from thousands of user-run communities, listed on the New York Stock Exchange since 2024. It earns from advertising and from licensing its users' posts to AI companies as training data.",
+      "recent": "Reddit lost over 1 million weekly search referrals in October as AI answers stopped sending clicks, and Steve Huffman told shareholders the site is moving to logged-in-only access. The wall serves two ends at once: keeping AI scrapers out and selling its data to them, at the cost of the search visitors who arrived without an account.",
+      "citations": [
+        "2026-10-29-reddit-logged-in-only-search-traffic-ai"
+      ],
+      "generatedAt": "2026-10-29T22:14:37.543Z"
+    },
+    "stocks:RTX": {
+      "standingFingerprint": "424fbad291142463",
+      "recentFingerprint": "798e94f4f70b2bfd",
+      "standing": "An American aerospace and defence group whose Raytheon unit builds missiles such as the Patriot, and whose Pratt & Whitney engines power airliners and fighters. Its share moves on defence budgets and jet-engine output.",
+      "recent": "",
+      "citations": [],
+      "generatedAt": "2026-10-29T22:14:38.239Z"
+    },
+    "poly-will-the-republican-party-win-the-nc-11-house-se": {
+      "standingFingerprint": "c0914c23954b6c80",
+      "recentFingerprint": "0ac70753fb3f2b70",
+      "standing": "A Polymarket contract that pays out if a Republican wins North Carolina's 11th congressional district, the western mountain seat around Asheville, in the November House election.",
+      "recent": "The fortnight carried nothing on the NC-11 race itself. What it did carry was the fight over whether such contracts may trade at all: the CFTC sued Utah over its total ban on Kalshi and has gone to court against 10 states, none of which accounts for the odds.",
+      "citations": [],
+      "generatedAt": "2026-10-29T22:14:38.822Z"
+    },
+    "stocks:ABBN.SW": {
+      "standingFingerprint": "10437aea05f90c8e",
+      "recentFingerprint": "e7460345bc286373",
+      "standing": "A Zurich-based maker of electrification and automation equipment: switchgear, motors, drives and the control systems that run plants and grids. Its orders track what industry and utilities spend on power infrastructure.",
+      "recent": "",
+      "citations": [],
+      "generatedAt": "2026-10-29T22:14:46.537Z"
+    },
+    "stocks:6954.T": {
+      "standingFingerprint": "35dd49eb63da6ba9",
+      "recentFingerprint": "6d9c9a24c062759c",
+      "standing": "Fanuc Corporation is a Japanese maker of industrial robots and the numerical controllers that run machine tools. Its orders track how much factories worldwide spend on automation, especially carmakers and electronics makers.",
+      "recent": "Trump set a 180-day clock on foreign robot imports in Washington, the first step toward tariffs on the machines Fanuc sells into American factories. That decision came at the end of the window, and nothing in the input explains the share's earlier fall.",
+      "citations": [
+        "2026-10-29-trump-section-232-robot-imports-tariffs"
+      ],
+      "generatedAt": "2026-10-29T22:14:49.255Z"
+    },
+    "stocks:6506.T": {
+      "standingFingerprint": "5ef175f0f85d6045",
+      "recentFingerprint": "3d56ac778af627c0",
+      "standing": "One of the world's largest makers of industrial robots, servo motors and drives, based in Kitakyushu and listed in Tokyo. Its orders are read as an early gauge of factory spending in China and beyond.",
+      "recent": "Trump set a 180-day clock on foreign robot imports, which bears directly on the robots this company ships into the American market. That move came after the slide, and nothing in the input explains the earlier fall.",
+      "citations": [
+        "2026-10-29-trump-section-232-robot-imports-tariffs"
+      ],
+      "generatedAt": "2026-10-29T22:14:52.617Z"
+    },
+    "stocks:INTC": {
+      "standingFingerprint": "13aa581d3f7fd753",
+      "recentFingerprint": "d9bc8d9bd8696e31",
+      "standing": "The American chipmaker that both designs processors and makes them in its own fabs, the largest US bid at leading-edge manufacturing. Its share price answers to Washington's industrial policy as much as to PC and server demand.",
+      "recent": "Intel won a waiver from the US ban on foreign-made robots after arguing that no US-made robot fits its fabs, and Trump has since set a 180-day clock on robot imports. Neither development explains the fall in the share price.",
+      "citations": [
+        "2026-10-23-intel-fcc-waiver-foreign-robot-ban-huawei-devices",
+        "2026-10-29-trump-section-232-robot-imports-tariffs"
+      ],
+      "generatedAt": "2026-10-29T22:14:59.534Z"
     }
   },
-  "generatedAt": "2026-10-29T18:14:39.158Z",
+  "generatedAt": "2026-10-29T22:14:59.547Z",
   "windowDays": 14
 }
