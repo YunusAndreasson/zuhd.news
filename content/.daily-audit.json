@@ -1,38 +1,38 @@
 {
-  "date": "2026-10-28",
+  "date": "2026-10-29",
   "metrics": {
-    "articles": { "value": 56, "detail": "5 cycles, all completed; avg 11 published per cycle (56 vs 58 yesterday); 0 quarantined" },
-    "freshness": { "median": 0.1, "p90": 0.3, "max": 0.4, "target": 1.0, "met": true },
-    "categories": { "politics": 19, "economy": 17, "science": 5, "tech": 15 },
-    "multiSource": { "pct": 25, "target": 30, "met": false },
-    "usDatelines": { "pct": 25, "target": 25, "met": true },
-    "latAmDatelines": { "pct": 11, "target": 5, "met": true },
+    "articles": { "value": 63, "detail": "5 cycles, all completed; avg 12 published per cycle (63 vs 56 yesterday); 1 quarantined" },
+    "freshness": { "median": 0.1, "p90": 0.3, "max": 0.8, "target": 1.0, "met": true },
+    "categories": { "politics": 23, "economy": 18, "science": 8, "tech": 14 },
+    "multiSource": { "pct": 17, "target": 30, "met": false },
+    "usDatelines": { "pct": 27, "target": 25, "met": false },
+    "latAmDatelines": { "pct": 5, "target": 5, "met": true },
     "sameEventDuplicates": { "value": 0, "target": 0, "met": true },
     "missingDatelines": { "value": 0, "target": 0, "met": true },
-    "stateOrAdvocacyOnly": 1,
-    "imageUrlPct": 98,
-    "regions": { "count": 7, "target": 4, "met": true, "breakdown": { "AM": 21, "ME": 10, "EU": 10, "AS": 8, "AF": 5, "OC": 1, "GL": 1 } },
-    "sciTech": { "ratio": 36, "target": 25, "met": true },
-    "topSourceShare": { "source": "Bloomberg Business / Al Jazeera Online", "pct": 7, "target": 20, "met": true },
-    "uniqueSources": 57,
+    "stateOrAdvocacyOnly": 2,
+    "imageUrlPct": 97,
+    "regions": { "count": 6, "target": 4, "met": true, "breakdown": { "AM": 20, "EU": 13, "ME": 13, "AS": 12, "AF": 4, "OC": 1 } },
+    "sciTech": { "ratio": 35, "target": 25, "met": true },
+    "topSourceShare": { "source": "Dawn", "pct": 8, "target": 20, "met": true },
+    "uniqueSources": 48,
     "duplicates": 0,
-    "avgCycleDuration": 1003
+    "avgCycleDuration": 1098
   },
   "experiment": "Skipped. No experiment is active and the pause gate (`noNewExperimentsUntil` 2026-11-05) bars a new one. Nothing was evaluated or changed.",
-  "weakestArea": "Multi-source fell to 25% (14 of 56), down from 28% for the previous two days and 5 points under the 30% target; tech carried 15 stories, mostly from one outlet each (Ars Technica, CoinDesk, The Record, TechNode). Science recovered to 5, meeting its goal, all from science outlets (Nature, Quanta, New Scientist, Phys.org, Ars Technica).",
+  "weakestArea": "Multi-source fell to 17% (11 of 63), its third straight drop (28 → 25 → 17) and 13 points under target. The day grew by seven stories, and the extra ones were single-outlet picks, many of them China tech and economy items from Zhidx, TMTPost and SCMP and science items from one journal outlet each. US datelines rose to 27%, two points over the ceiling.",
   "watching": [
-    "Spain's Toledo high-speed rail crash, with the toll up from at least 10 to at least 68 and a controller who cleared a train past a red light.",
-    "Iran: war costs rising in Washington's tally, gas rationing at home, and a Houthi strike that lifted Brent.",
-    "Brazil after the runoff: Lula winning the relocated sections and his WhatsApp campaign network under scrutiny.",
-    "Israel's coalition arithmetic now hanging on Arab parties, alongside expulsions of families in Hebron.",
-    "The Fed held rates while EU gas topped €100 and the RBI defended the rupee.",
-    "Venezuela talks moving into a court, and another US boat strike in the eastern Pacific killing five."
+    "Hormuz: mines hitting tankers, Gulf pipelines rerouting exports past the strait, and Iran weighing a Qatari plan, with Vance writing to Rezaei.",
+    "The European Central Bank: Lagarde leaving early while the bank faces opposing shocks, as commodity prices rise 23% and copper premiums hit a record.",
+    "Pentagon churn: Hegseth firing General Sylvia, a Chinook crash in Bosnia killing four, and Japan agreeing to assemble US missiles.",
+    "Yemen, with 281,000 displaced, and Gaza going into winter with its solar power fading under the siege.",
+    "Cyclone Arnab over Andhra Pradesh, and bandits killing 60 in Taraba, Nigeria.",
+    "Maduro's New York case losing its judge as the Venezuela talks move into court."
   ],
   "coverageGaps": [
-    "The same-event check missed a duplicate: the Toledo crash ran twice (09:50 and 16:23, slugs spain-high-speed-train-collision-toledo and spain-toledo-train-crash-toll-68-rear-end), and the two disagree on the facts: 'second' vs 'third' fatal crash this year, and 45 vs 46 deaths in January.",
-    "Six datelines are a country or region rather than a city (Brazil, China, Ethiopia, United States, Saudi Arabia, Russia), against eleven yesterday; the missing-dateline metric does not catch them.",
-    "Multi-source at 25%, the lowest in three days; tech and crypto stories mostly rest on one outlet.",
-    "One state-media-only story (Russia eyes an African east-coast port, from TASS), labelled in the body."
+    "Multi-source hit 17%, the lowest in the recent window. Most single-outlet stories are tech, crypto (CoinDesk) and China business.",
+    "Eleven datelines name a country, not a city (United States ×6, China ×2, Switzerland ×2, Israel), up from six yesterday. The missing-dateline metric does not catch them, and mobile's dateline strip needs exact city names.",
+    "One science story is crypto from CoinDesk (Fewer Qubits Threaten Bitcoin), so CoinDesk is counted as a science source. The science count of 8 overstates the science desk by one.",
+    "Two stories rest only on state media or advocacy outlets (the Putin Africa summits story from TASS, and the Gaza solar story), labelled in the body. One story was quarantined."
   ],
-  "context": "Output held at 56 across five completed cycles, with a 0.1-day freshness median, seven regions including Oceania, and no source above 7%. US datelines reached exactly the 25% ceiling and Latin America held at 11%. The pause holds until 2026-11-05, so the multi-source dip and the missed Toledo duplicate are recorded for the operator rather than acted on; the duplicate is a dedup or follow-up-handling question, not a tunable parameter."
+  "context": "Output rose to 63 across five completed cycles, with a 0.1-day freshness median, six regions, and no outlet above 8%. Science reached 8 and sci-tech made up 35%. The pause holds until 2026-11-05 while the stage runner cuts over, so the multi-source slide and the country-only datelines are recorded for the operator rather than acted on. The datelines are a writer-prompt question, and no tunable parameter covers them."
 }
