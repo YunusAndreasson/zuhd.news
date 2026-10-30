@@ -2,11 +2,23 @@ const BUCKET_SIZE = 30
 const REFILL_RATE = 10 // tokens per minute
 const KEYED_BUCKET_SIZE = 120
 const KEYED_REFILL_RATE = 40
+// KV refuses a key over 512 bytes, and the longest key an API key goes into is `rl:key:<key>`.
+const MAX_API_KEY_BYTES = 512 - 'rl:key:'.length
 
 export async function checkRateLimit(request, env) {
   const kv = env.RATE_LIMIT
   if (!kv) return { allowed: true, remaining: BUCKET_SIZE }
 
+  // A limiter that cannot reach its store must not take the endpoint down with it.
+  try {
+    return await takeToken(request, kv)
+  } catch (err) {
+    console.error(`Rate limit skipped: ${err.message}`)
+    return { allowed: true, remaining: BUCKET_SIZE }
+  }
+}
+
+async function takeToken(request, kv) {
   const authHeader = request.headers.get('authorization') || ''
   const apiKey = authHeader.startsWith('Bearer ') ? authHeader.slice(7) : null
 
@@ -14,7 +26,8 @@ export async function checkRateLimit(request, env) {
   let refillRate = REFILL_RATE
   let key = request.headers.get('cf-connecting-ip') || 'unknown'
 
-  if (apiKey) {
+  // An over-long key cannot be a stored one: it is limited as anonymous, by address.
+  if (apiKey && new TextEncoder().encode(apiKey).length <= MAX_API_KEY_BYTES) {
     const stored = await kv.get(`key:${apiKey}`)
     if (stored) {
       bucketSize = KEYED_BUCKET_SIZE

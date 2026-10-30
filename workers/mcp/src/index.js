@@ -13,19 +13,36 @@ const SERVER_CARD = {
     { name: 'get_briefing', description: "Today's top stories" },
     { name: 'get_articles', description: 'Articles by category' },
     { name: 'search_articles', description: 'Search by keyword' },
-    { name: 'get_story_context', description: 'Story background and timeline' },
+    { name: 'get_story_context', description: "A story's thread and its articles in the feed" },
     { name: 'get_source_perspectives', description: 'Source diversity analysis' },
     { name: 'get_coverage_map', description: 'Geographic news distribution' }
   ],
   resources: [
     { uri: 'zuhd://meta', description: 'Site metadata and article counts' },
-    { uri: 'zuhd://sources', description: 'All 40+ news sources' },
+    { uri: 'zuhd://sources', description: 'The outlets read directly, and others the news API brings' },
     { uri: 'zuhd://about', description: 'Editorial philosophy' }
   ],
   prompts: [
     { name: 'daily_briefing', description: 'Structured news briefing' },
     { name: 'story_deep_dive', description: 'Comprehensive topic analysis' }
   ]
+}
+
+// The SDK advertises only a plain z.object's parameters, and a plain z.object
+// rejects a missing `arguments`, which a client may leave out of a tools/call when
+// every parameter is optional.
+function withToolArguments(message) {
+  return message?.method === 'tools/call' && message.params && message.params.arguments === undefined
+    ? { ...message, params: { ...message.params, arguments: {} } }
+    : message
+}
+
+// Undefined for a body that is not JSON: the transport then reads the request
+// itself and answers with its own parse error.
+async function parseBody(request) {
+  if (request.method !== 'POST') return undefined
+  const body = await request.clone().json().catch(() => undefined)
+  return Array.isArray(body) ? body.map(withToolArguments) : withToolArguments(body)
 }
 
 function createServer() {
@@ -86,7 +103,7 @@ export default {
       })
 
       await server.connect(transport)
-      const response = await transport.handleRequest(request)
+      const response = await transport.handleRequest(request, { parsedBody: await parseBody(request) })
 
       // Append CORS and rate limit headers
       const headers = new Headers(response.headers)

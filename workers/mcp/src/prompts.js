@@ -23,7 +23,7 @@ export function registerPrompts(server) {
 
 Instructions:
 1. Call get_briefing${focus ? ` with focus "${focus}"` : ''} to get today's stories.
-2. For the 2-3 most significant stories, call get_story_context to provide background.
+2. For the 2-3 most significant stories, call get_story_context with the story's slug to see how long it has been running and what else its thread holds.
 3. ${focusInstruction}
 
 Format:
@@ -53,13 +53,13 @@ Format:
 
 Instructions:
 1. Call search_articles with relevant keywords to find coverage.
-2. For the most relevant article, call get_story_context to get the historical timeline.
+2. For the most relevant article, call get_story_context to get its thread and the thread's articles in the feed.
 3. Call get_source_perspectives to understand how different outlets are covering this.
 4. Call get_coverage_map if the story has a geographic dimension.
 
 Format:
 - Start with a 2-sentence summary of the current situation.
-- "Timeline" — key developments in chronological order (from thread context).
+- "Timeline" — key developments in chronological order, only as those articles and their dates show them. For a thread of one article, say the coverage is new and skip this section.
 - "Source analysis" — which countries/outlets are covering this and any sentiment divergence.
 - "What's missing" — perspectives or angles not represented in current coverage.
 - Keep the entire analysis under 500 words.
