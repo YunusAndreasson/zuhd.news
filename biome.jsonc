@@ -2,7 +2,7 @@
 //
 // mobile/ has its own biome.json and is deliberately not claimed here — Biome
 // resolves the nearest config walking up, and listing only the web directories
-// below removes the ambiguity. Both pin 2.5.5, so the two cannot disagree about
+// below removes the ambiguity. Both pin 2.5.15, so the two cannot disagree about
 // what a rule means.
 //
 // The formatter is OFF, and that is a decision rather than an omission. This
@@ -22,7 +22,7 @@
 // It is JSONC because Biome rejects an unknown key anywhere in the config,
 // including the `"//"` convention, so a comment has to be a real comment.
 {
-  "$schema": "https://biomejs.dev/schemas/2.5.5/schema.json",
+  "$schema": "https://biomejs.dev/schemas/2.5.15/schema.json",
   "vcs": { "enabled": true, "clientKind": "git", "useIgnoreFile": true },
 
   "files": {
@@ -99,7 +99,9 @@
   "overrides": [
     {
       "includes": ["public/**"],
-      "linter": { "rules": { "a11y": "error" } }
+      // `noFocusedTests`: no test runs here, and the rule takes `map.fit()` for
+      // Jasmine's `fit`.
+      "linter": { "rules": { "a11y": "error", "suspicious": { "noFocusedTests": "off" } } }
     },
     {
       "includes": ["scripts/lib/*.test.js"],
