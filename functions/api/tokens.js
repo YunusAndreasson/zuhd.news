@@ -1,7 +1,11 @@
 // Pages Function: register/unregister Expo push tokens in KV
 
+// The whole shape, not just its ends: anyone can post here, and what passes
+// becomes a KV key and a recipient in every later push.
+const EXPO_TOKEN = /^ExponentPushToken\[[A-Za-z0-9_-]{1,128}\]$/
+
 function isValidToken(token) {
-  return typeof token === 'string' && token.startsWith('ExponentPushToken[') && token.endsWith(']')
+  return typeof token === 'string' && EXPO_TOKEN.test(token)
 }
 
 export async function onRequestPost({ request, env }) {
