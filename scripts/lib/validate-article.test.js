@@ -57,6 +57,14 @@ test('what cannot be read as an article is stopped, with the reason', () => {
   assert.equal(v.counts.removed, 9)
 })
 
+// The sitemap and the feed call `toISOString` on it: one of these failed every
+// later build until the file was removed.
+test('a date nothing can parse is stopped', () => {
+  const v = validator()
+  assert.equal(v.check(article({ date: '"last Tuesday"' }), FILE).bad, 'date does not parse: last Tuesday')
+  assert.equal(v.check(article(), FILE).bad, null)
+})
+
 // The stage prints `SKIP (<reason>): <file>`. The cycle counts the lines that
 // open `SKIP (` (`validate`, `lib/cycle-steps.js`) and the run record takes the
 // reason from between the brackets (`lib/cycle-log.js`).

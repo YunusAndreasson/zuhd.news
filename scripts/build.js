@@ -25,6 +25,7 @@ import {
   renderIsnad,
 } from './lib/article-chain.js'
 import { escHtml, escXml, smartQuotes } from './lib/html.js'
+import { dropRulesNeedingClass, KEPT_MAP_CLASSES } from './lib/page-css.js'
 import { ARCHETYPE_HEADER, siteFooter, WORDMARK, footerStatusLine } from './lib/site-chrome.js'
 import { dayLabel } from './lib/period.js'
 import { listRow } from './lib/list-row.js'
@@ -71,8 +72,19 @@ const rewriteLinkHref = (href) => {
   return href
 }
 
+// The two kinds of link a body may carry beside a country tag. The body is a
+// model's reading of feed text, and this HTML reaches `innerHTML` on the map's
+// card, so a `javascript:` href stays prose.
+const SAFE_HREF = /^(https?:\/\/|\/)/
+
+// Quotes are left for `smartQuotes`, which curls them; every other character
+// that could open a tag or an entity is text. An entity already written out
+// stays one.
+const escapeProse = (md) =>
+  md.replace(/&(?!#?\w+;)/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;')
+
 const markdownToHtml = (md) => {
-  const html = smartQuotes(md)
+  const html = smartQuotes(escapeProse(md))
     .replace(/^### (.+)$/gm, '<h3>$1</h3>')
     .replace(/^## (.+)$/gm, '<h2>$1</h2>')
     .replace(/^# (.+)$/gm, '<h1>$1</h1>')
@@ -95,7 +107,8 @@ const markdownToHtml = (md) => {
         // the link works without JS.
         return `<a href="${rewritten}" class="country-link" data-island="country-preview" data-iso="${iso2}">${text}</a>`
       }
-      return `<a href="${rewritten}">${text}</a>`
+      if (!SAFE_HREF.test(rewritten)) return text
+      return `<a href="${rewritten.replace(/"/g, '%22')}">${text}</a>`
     })
     .replace(/^---$/gm, '<hr>')
 
@@ -152,7 +165,7 @@ const buildArticle = (filename, dir = CONTENT_DIR) => {
     const location = datelineMatch[1].trim()
     renderedHtml = renderedHtml.replace(
       /^<p>/,
-      `<p><span class="article-dateline">${location}</span>`,
+      () => `<p><span class="article-dateline">${escHtml(location)}</span>`,
     )
   }
 
@@ -203,13 +216,13 @@ const buildHomepage = (sorted, cutoff, homepageTemplate) => {
     .filter(a => includedSlugs.has(a.slug))
     .map(({ slug, title, meta, dateFormatted }) => `
       <article class="article-preview">
-        <span class="category">${meta.category || ''}</span>
-        <h2><a href="/a/${slug}">${title}</a></h2>
+        <span class="category">${escHtml(meta.category || '')}</span>
+        <h2><a href="/a/${slug}">${escHtml(title)}</a></h2>
         <time datetime="${meta.date}">${dateFormatted}</time>
       </article>`)
     .join('\n')
 
-  return homepageTemplate.replace(/{{fallbackArticleList}}/g, fallbackArticleList)
+  return homepageTemplate.replace(/{{fallbackArticleList}}/g, () => fallbackArticleList)
 }
 
 // Extract a clean OG/meta description from body: first 1-2 sentences, ≤170 chars.
@@ -280,18 +293,10 @@ const eventTime = (a) => {
   return Number.isFinite(parsed) ? parsed : Math.round(a.addedAt)
 }
 
-// Relative time-ago label — mirror of mobile/lib/article-utils.formatTimeAgo.
-// Kicker shows this instead of a fixed date so the article header reads
-// the same as mobile ("3h ago") rather than an abstract calendar date.
-const formatTimeAgo = (addedAt) => {
-  const diffMs = Date.now() - addedAt
-  const diffMin = Math.floor(diffMs / 60_000)
-  if (diffMin < 1) return 'now'
-  if (diffMin < 60) return `${diffMin}m ago`
-  const diffHours = Math.floor(diffMin / 60)
-  if (diffHours < 24) return `${diffHours}h ago`
-  const diffDays = Math.floor(diffHours / 24)
-  if (diffDays < 7) return `${diffDays}d ago`
+// The kicker's date. `island-loader.js` turns it into "3h ago", the same as
+// mobile/lib/article-utils.formatTimeAgo: a page is built hours before it is
+// read, and an age printed here stays "17m ago" until the next cycle.
+const formatKickerDate = (addedAt) => {
   // Day first and UTC, as every other date the build prints, and the month
   // from `period.js`'s table: with no locale this was the build machine's
   // (`Sep 26` over a footer that read `26 September`), and en-GB's own short
@@ -305,7 +310,7 @@ const buildArticlePage = (article, prev, next, thread, template, indicatorMap) =
   const isoDate = meta.date || new Date(addedAt).toISOString()
   const category = meta.category || 'politics'
   const description = buildDescription(body)
-  const timeAgo = formatTimeAgo(eventTime(article))
+  const kickerDate = formatKickerDate(eventTime(article))
   const prevLink = prev
     ? `<a class="article-pagination-prev" href="/a/${prev.slug}" rel="prev"><span class="article-pagination-label">Previous</span><span class="article-pagination-title">${escHtml(prev.title)}</span></a>`
     : '<span class="article-pagination-prev"></span>'
@@ -354,15 +359,15 @@ const buildArticlePage = (article, prev, next, thread, template, indicatorMap) =
   }).replace(/<\//g, '<\\/')}</script>`
 
   return template
-    .replace(/{{jsonLd}}/g, jsonLd)
-    .replace(/{{slug}}/g, slug)
-    .replace(/{{title}}/g, escHtml(title))
-    .replace(/{{titleAttr}}/g, escHtml(title))
-    .replace(/{{description}}/g, escHtml(description))
-    .replace(/{{category}}/g, category)
-    .replace(/{{dateFormatted}}/g, dateFormatted)
-    .replace(/{{isoDate}}/g, isoDate)
-    .replace(/{{timeAgo}}/g, escHtml(timeAgo))
+    .replace(/{{jsonLd}}/g, () => jsonLd)
+    .replace(/{{slug}}/g, () => slug)
+    .replace(/{{title}}/g, () => escHtml(title))
+    .replace(/{{titleAttr}}/g, () => escHtml(title))
+    .replace(/{{description}}/g, () => escHtml(description))
+    .replace(/{{category}}/g, () => category)
+    .replace(/{{dateFormatted}}/g, () => dateFormatted)
+    .replace(/{{isoDate}}/g, () => isoDate)
+    .replace(/{{kickerDate}}/g, () => escHtml(kickerDate))
     .replace(
       /{{footerStatus}}/g,
       footerStatusLine({ dateLabel: 'Published', dateHtml: `<time datetime="${isoDate}">${dateFormatted}</time>` }),
@@ -376,15 +381,15 @@ const buildArticlePage = (article, prev, next, thread, template, indicatorMap) =
         ? '<a class="article-corrected" href="#corrections">corrected</a>'
         : '',
     )
-    .replace(/{{bodyHtml}}/g, bodyHtml)
-    .replace(/{{entityStrip}}/g, entityStripHtml(meta.entities, indicatorMap))
-    .replace(/{{threadBlock}}/g, threadBlockHtml(thread?.threadContext))
+    .replace(/{{bodyHtml}}/g, () => bodyHtml)
+    .replace(/{{entityStrip}}/g, () => entityStripHtml(meta.entities, indicatorMap))
+    .replace(/{{threadBlock}}/g, () => threadBlockHtml(thread?.threadContext))
     // The map, not this page. A reader on the article is looking at the
     // canonical surface and sharing the front door — see `shareUrl` in
     // shared/share.ts for why both surfaces send the same link.
-    .replace(/{{shareRow}}/g, shareRowHtml(SHARE.shareUrl(slug), title))
-    .replace(/{{prevLink}}/g, prevLink)
-    .replace(/{{nextLink}}/g, nextLink)
+    .replace(/{{shareRow}}/g, () => shareRowHtml(SHARE.shareUrl(slug), title))
+    .replace(/{{prevLink}}/g, () => prevLink)
+    .replace(/{{nextLink}}/g, () => nextLink)
 }
 
 // Main build
@@ -455,7 +460,17 @@ const { weekMeanSeries } = await loadShared('chart/smooth.ts')
 // the shared-modules table exists to prevent.
 const FRAMING = await loadShared('source-framing.ts')
 
+// `public/` is copied whole, and no page has linked the source sheet since it was
+// inlined: 346 KB, authoring comments and all, served to no one.
+rmSync(join(DIST_DIR, 'style.css'), { force: true })
+
 const cssContent = transformSync(readFileSync(join(ROOT, 'public', 'style.css'), 'utf-8'), { loader: 'css', minify: true }).code
+
+// Every page but the map, without the map's rules. A rule that needs a `.map-*`
+// class cannot match where no element has one, and they were over half of what
+// each article re-downloaded. `KEPT_MAP_CLASSES` are the ones another island
+// borrows; `island-css.test.js` fails when a new one appears in those bundles.
+const pageCss = dropRulesNeedingClass(cssContent, /\.map-[\w-]+/, KEPT_MAP_CLASSES)
 
 /**
  * The head every page shares.
@@ -491,8 +506,7 @@ const headCommon = `<meta charset="utf-8">
   <link rel="icon" href="/favicon.svg" type="image/svg+xml">
   <link rel="apple-touch-icon" href="/apple-touch-icon.png">
   <link rel="manifest" href="/manifest.json">
-  <script type="speculationrules">{"prerender":[{"where":{"and":[{"href_matches":"/*"},{"not":{"href_matches":"/api/*"}},{"not":{"href_matches":"/audio/*"}},{"not":{"href_matches":"/feed.xml"}},{"not":{"href_matches":"/sitemap.xml"}},{"not":{"href_matches":"/og-image.png"}}]},"eagerness":"moderate"}]}</script>
-  <style>${cssContent}</style>`
+  <script type="speculationrules">{"prerender":[{"where":{"and":[{"href_matches":"/*"},{"not":{"href_matches":"/api/*"}},{"not":{"href_matches":"/audio/*"}},{"not":{"href_matches":"/feed.xml"}},{"not":{"href_matches":"/sitemap.xml"}},{"not":{"href_matches":"/og-image.png"}}]},"eagerness":"moderate"}]}</script>`
 
 /**
  * The head for the two page types that commit to dark.
@@ -637,6 +651,7 @@ const BASEMAP_V = (() => {
     join(ROOT, 'shared', 'data', 'countries-50m.json'),
     join(ROOT, 'shared', 'data', 'countries-10m.json'),
     join(ROOT, 'shared', 'data', 'places-50m.geojson'),
+    join(ROOT, 'shared', 'data', 'capitals-50m.json'),
     // Every file the basemap is built from belongs here, or the layer it feeds
     // is the one that goes stale for a day with no way for a reader to force it.
     join(ROOT, 'shared', 'data', 'lakes-50m.json'),
@@ -655,20 +670,23 @@ const BASEMAP_V = (() => {
 // `lib/site-chrome.js` — two of them had already drifted before this existed.
 const FOOTER_NAV = siteFooter(SHARE)
 
-const loadTemplate = (name, head = headCommon) =>
+const loadTemplate = (name, head = headCommon, css = pageCss) =>
   readFileSync(join(TEMPLATES_DIR, name), 'utf-8')
-    .replace('{{headCommon}}', head)
-    .replace('{{archetypeHeader}}', ARCHETYPE_HEADER)
-    .replace('{{footerNav}}', FOOTER_NAV)
-    .replaceAll('{{wordmark}}', WORDMARK)
-    .replaceAll('{{v}}', ISLAND_V)
-    .replaceAll('{{basemapV}}', BASEMAP_V)
-    .replaceAll('{{maplibreV}}', MAPLIBRE_V)
+    .replace('{{headCommon}}', () => head)
+    // Last in the head: at 50-100 KB, anything after it is parsed only once the
+    // sheet has been, and that was the title, the description and every preload.
+    .replace('</head>', () => `  <style>${css}</style>\n</head>`)
+    .replace('{{archetypeHeader}}', () => ARCHETYPE_HEADER)
+    .replace('{{footerNav}}', () => FOOTER_NAV)
+    .replaceAll('{{wordmark}}', () => WORDMARK)
+    .replaceAll('{{v}}', () => ISLAND_V)
+    .replaceAll('{{basemapV}}', () => BASEMAP_V)
+    .replaceAll('{{maplibreV}}', () => MAPLIBRE_V)
 
 // The map and the document pages carry `body.map-page` / `body.doc-page`, which
 // pin `color-scheme: dark` — so they take the dark head. Everything else
 // follows the reader.
-const homepageTemplate = loadTemplate('index.html', headCommonDark)
+const homepageTemplate = loadTemplate('index.html', headCommonDark, cssContent)
 
 const articleTemplate = loadTemplate('article.html')
 
@@ -820,35 +838,14 @@ if (existsSync(briefingMetaPath)) {
     const cycleHour = cycles.reduce((prev, c) => c <= genHour ? c : prev, 0)
     const briefingKey = `${meta.date}-${String(cycleHour).padStart(2, '0')}00`
     const playSvg = '<svg width="14" height="14" viewBox="0 0 14 14" fill="currentColor"><polygon points="3,1 12,7 3,13"/></svg>'
-    const pauseSvg = '<svg width="14" height="14" viewBox="0 0 14 14" fill="currentColor"><rect x="2" y="1" width="3.5" height="12"/><rect x="8.5" y="1" width="3.5" height="12"/></svg>'
-    audioBriefingHtml = `<div class="audio-briefing" data-key="${briefingKey}">
-      <button class="briefing-play" aria-label="Play briefing">${playSvg}</button>
+    // Wired by `islands/briefing-player.ts`. The track is the seek control and has
+    // to be reachable by keyboard; only the play button was.
+    audioBriefingHtml = `<div class="audio-briefing" data-island-auto="briefing-player" data-key="${briefingKey}" data-date="${meta.date}">
+      <button type="button" class="briefing-play" aria-label="Play briefing">${playSvg}</button>
       <span class="briefing-label">Today's briefing</span>
-      <div class="briefing-track"><div class="briefing-bar"></div></div>
+      <div class="briefing-track" role="slider" tabindex="0" aria-label="Seek in the briefing" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0"><div class="briefing-bar"></div></div>
       <audio preload="none" src="/audio/briefing-${meta.date}.mp3"></audio>
-    </div>
-    <script>(()=>{const b=document.querySelector('.audio-briefing');if(!b)return;
-const a=b.querySelector('audio'),p=b.querySelector('.briefing-play'),l=b.querySelector('.briefing-label'),t=b.querySelector('.briefing-track'),r=b.querySelector('.briefing-bar'),k='briefing-listened-'+b.dataset.key;
-const play='${playSvg.replace(/'/g, "\\'")}',pause='${pauseSvg.replace(/'/g, "\\'")}',txt='Today\\u2019s briefing';
-const ms='mediaSession'in navigator?navigator.mediaSession:null;
-const fmt=s=>{const m=Math.floor(s/60),ss=Math.floor(s%60);return m+':'+(ss<10?'0':'')+ss};
-const syncPos=()=>{if(ms&&a.duration)ms.setPositionState({duration:a.duration,playbackRate:a.playbackRate,position:a.currentTime})};
-const doPlay=()=>{a.play();p.innerHTML=pause;if(ms)ms.playbackState='playing'};
-const doPause=()=>{a.pause();p.innerHTML=play;l.textContent=txt;if(ms)ms.playbackState='paused'};
-if(localStorage.getItem(k))b.classList.add('listened');
-b.style.cursor='pointer';
-b.onclick=e=>{if(e.target.closest('.briefing-track'))return;a.paused?doPlay():doPause()};
-a.ontimeupdate=()=>{r.style.width=a.duration?(a.currentTime/a.duration*100)+'%':'0';if(a.duration&&!a.paused)l.textContent=fmt(a.duration-a.currentTime);if(a.currentTime>10&&!localStorage.getItem(k)){localStorage.setItem(k,'1');b.classList.add('listened')}syncPos()};
-a.onended=()=>{p.innerHTML=play;r.style.width='0';l.textContent=txt;localStorage.setItem(k,'1');b.classList.add('listened');if(ms)ms.playbackState='none'};
-t.onclick=e=>{if(a.duration){a.currentTime=e.offsetX/t.offsetWidth*a.duration;syncPos()}};
-if(ms){ms.metadata=new MediaMetadata({title:'Daily Briefing',artist:'zuhd.news',album:'${meta.date}',artwork:[{src:'/briefing-artwork-192.png',sizes:'192x192',type:'image/png'},{src:'/briefing-artwork.png',sizes:'512x512',type:'image/png'}]});
-ms.setActionHandler('play',doPlay);
-ms.setActionHandler('pause',doPause);
-ms.setActionHandler('stop',()=>{a.pause();a.currentTime=0;p.innerHTML=play;r.style.width='0';l.textContent=txt;ms.playbackState='none'});
-ms.setActionHandler('seekto',d=>{if(d.fastSeek&&'fastSeek'in a)a.fastSeek(d.seekTime);else a.currentTime=d.seekTime;syncPos()});
-ms.setActionHandler('seekbackward',d=>{a.currentTime=Math.max(0,a.currentTime-(d.seekOffset||15));syncPos()});
-ms.setActionHandler('seekforward',d=>{a.currentTime=Math.min(a.duration||0,a.currentTime+(d.seekOffset||15));syncPos()});
-}})()</script>`
+    </div>`
   }
 }
 
@@ -1063,7 +1060,10 @@ let marketSignals = { version: 1, generatedAt: new Date().toISOString(), signals
 try {
   const candidate = JSON.parse(readFileSync(signalPath, 'utf8'))
   if (isMarketSignalsSnapshot(candidate) && Date.now() - Date.parse(candidate.generatedAt) < 7 * 86400000) marketSignals = candidate
-} catch { /* optional pipeline output */ }
+} catch (err) {
+  // Optional pipeline output, so absent is fine. Present and unreadable is not.
+  if (existsSync(signalPath)) console.warn(`  .market-signals.json unreadable: ${err.message}`)
+}
 writeFileSync(join(DIST_DIR, 'api', 'market-signals.json'), JSON.stringify(marketSignals))
 
 const dispatchSrc = join(ROOT, 'content', '.indicator-dispatch.json')
@@ -1636,7 +1636,7 @@ writeFileSync(join(DIST_DIR, 'api', 'sv', 'feed.json'), JSON.stringify({
 }))
 console.log(`  Built: api/sv/feed.json (${svArticles.length} articles, sv, 48h)`)
 
-// (eventTime hoisted above formatTimeAgo — every surface that says how old a
+// (eventTime hoisted above formatKickerDate — every surface that says how old a
 // story is now reads it, not just the geo layers.)
 
 // Heatmap endpoint — 72h of geo-located article points for globe time-decay rendering
@@ -2187,15 +2187,20 @@ console.log(`  Built: api/map-leads.json (${Object.keys(mapLeads).length} leads)
   )
 }
 
+// When an article last changed, for the feed and the sitemap. Through `eventTime`
+// because `toISOString` throws on a bad date, and one bad date there is every
+// later build failing.
+const lastChanged = (a) => new Date(a.correctedAt || eventTime(a)).toISOString()
+
 // Atom feed for RSS readers
 const feedArticles = sorted.filter(a => a.addedAt >= cutoff).slice(0, 30)
 const atomEntries = feedArticles.map(a => `  <entry>
     <title>${escXml(a.meta.title || 'Untitled')}</title>
     <link href="https://zuhd.news/a/${a.slug}" rel="alternate"/>
     <id>tag:zuhd.news,${a.meta.date?.slice(0, 10) || '2026'}:${a.slug}</id>
-    <updated>${new Date(a.correctedAt || a.meta.date || a.addedAt).toISOString()}</updated>
+    <updated>${lastChanged(a)}</updated>
     <category term="${escXml(a.meta.category || 'politics')}"/>
-    <summary>${escXml(a.body.trim())}</summary>${a.sources[0] ? `\n    <source><title>${escXml(a.sources[0].name)}</title></source>` : ''}
+    <summary>${escXml(a.body.trim().replace(/\[([^\]]+)\]\([^)]*\)/g, '$1'))}</summary>${a.sources[0] ? `\n    <source><title>${escXml(a.sources[0].name)}</title></source>` : ''}
   </entry>`).join('\n')
 
 const atomFeed = `<?xml version="1.0" encoding="utf-8"?>
@@ -2207,6 +2212,7 @@ const atomFeed = `<?xml version="1.0" encoding="utf-8"?>
   <id>tag:zuhd.news,2025:feed</id>
   <updated>${generated}</updated>
   <icon>https://zuhd.news/favicon.svg</icon>
+  <author><name>zuhd.news</name></author>
 ${atomEntries}
 </feed>
 `
@@ -2223,8 +2229,8 @@ console.log('  Built: api/meta.json')
 
 // Homepage and static pages
 const homepage = buildHomepage(sorted, cutoff, homepageTemplate)
-  .replace(/{{audioBriefing}}/g, audioBriefingHtml)
-  .replace(/{{mapFeeds}}/g, mapFeeds.join(' '))
+  .replace(/{{audioBriefing}}/g, () => audioBriefingHtml)
+  .replace(/{{mapFeeds}}/g, () => mapFeeds.join(' '))
 writeFileSync(join(DIST_DIR, 'index.html'), homepage)
 console.log(`  Built: index.html (${articles.length} articles)`)
 
@@ -2397,11 +2403,9 @@ for (const a of sorted) {
 // date column repeating on every row. Days come in reverse-chronological
 // order (newest first).
 const formatDayHeading = (iso) => {
-  // `iso` is a UTC day, so it is compared and printed as one: the machine's
-  // zone moved `Today` by a day and its locale set the month before the date.
-  const utcDay = (t) => new Date(t).toISOString().slice(0, 10)
-  if (iso === utcDay(Date.now())) return 'Today'
-  if (iso === utcDay(Date.now() - 86400000)) return 'Yesterday'
+  // `iso` is a UTC day, so it is printed as one: the machine's locale set the
+  // month before the date. `island-loader.js` makes the last two "Today" and
+  // "Yesterday", which printed here stayed true only until midnight.
   return new Date(iso).toLocaleDateString('en-GB', { weekday: 'long', day: 'numeric', month: 'long', timeZone: 'UTC' })
 }
 for (const cat of CATEGORY_ORDER) {
@@ -2420,7 +2424,7 @@ for (const cat of CATEGORY_ORDER) {
     groups[groups.length - 1].items.push(a)
   }
   const rows = groups.map(g => `<li class="category-day-group">
-      <h2 class="label section-title category-day-heading"><time datetime="${g.day}">${formatDayHeading(g.day)}</time></h2>
+      <h2 class="label section-title category-day-heading"><time datetime="${g.day}" data-day>${formatDayHeading(g.day)}</time></h2>
       <ol class="category-day-list">${g.items.map(a => `<li>${listRow({
         title: a.title,
         url: `/a/${a.slug}`,
@@ -2429,13 +2433,13 @@ for (const cat of CATEGORY_ORDER) {
       })}</li>`).join('')}</ol>
     </li>`).join('\n')
   const html = categoryPageTemplate
-    .replaceAll('{{shareRow}}', shareRowHtml(`/c/${cat}`, `${capitalize(cat)} — zuhd.news`))
-    .replaceAll('{{cat}}', cat)
-    .replaceAll('{{catCap}}', capitalize(cat))
-    .replaceAll('{{count}}', String(items.length))
-    .replaceAll('{{days}}', String(BUILD_WINDOW_DAYS))
-    .replaceAll('{{description}}', escHtml(`${items.length} ${cat} articles on zuhd.news. Minimalist global news, typography-first.`))
-    .replaceAll('{{rows}}', rows)
+    .replaceAll('{{shareRow}}', () => shareRowHtml(`/c/${cat}`, `${capitalize(cat)} — zuhd.news`))
+    .replaceAll('{{cat}}', () => cat)
+    .replaceAll('{{catCap}}', () => capitalize(cat))
+    .replaceAll('{{count}}', () => String(items.length))
+    .replaceAll('{{days}}', () => String(BUILD_WINDOW_DAYS))
+    .replaceAll('{{description}}', () => escHtml(`${items.length} ${cat} articles on zuhd.news. Minimalist global news, typography-first.`))
+    .replaceAll('{{rows}}', () => rows)
   writeFileSync(join(DIST_DIR, 'c', `${cat}.html`), html)
 
   // The desk's own share card. Four files, no disk cache — the render is a
@@ -2521,13 +2525,19 @@ console.log(`  Built: api/metric/ (${metricResult.count} metrics)`)
 // sitemap.xml covers homepage, static pages, and all article pages.
 // Cloudflare Pages serves /a/{slug}.html at /a/{slug} (extensionless).
 const staticPages = ['about', 'contact', 'privacy', 'mcp']
+const STATIC_DESCRIPTIONS = {
+  about: 'What zuhd.news is, and how an editorial pipeline writes global hard news without the noise.',
+  contact: 'How to reach zuhd.news.',
+  privacy: 'What zuhd.news and its app collect: no cookies, no analytics, no tracking, and a push token only if you turn on notifications.',
+  mcp: 'Connect an AI assistant to zuhd.news through its MCP server.',
+}
 // Build timestamp as lastmod for non-article pages (lists/indices that change
 // whenever the corpus does); articles carry their own publication date.
 const buildIso = new Date().toISOString()
 const sitemapEntries = [
   `  <url><loc>https://zuhd.news/</loc><lastmod>${buildIso}</lastmod><changefreq>hourly</changefreq><priority>1.0</priority></url>`,
   ...staticPages.map(p => `  <url><loc>https://zuhd.news/${p}</loc><lastmod>${buildIso}</lastmod><changefreq>monthly</changefreq><priority>0.3</priority></url>`),
-  ...sorted.map(a => `  <url><loc>https://zuhd.news/a/${a.slug}</loc><lastmod>${new Date(a.meta.date || a.addedAt).toISOString()}</lastmod><priority>0.8</priority></url>`),
+  ...sorted.map(a => `  <url><loc>https://zuhd.news/a/${a.slug}</loc><lastmod>${lastChanged(a)}</lastmod><priority>0.8</priority></url>`),
   ...(countryResult.codes || []).map(cc => `  <url><loc>https://zuhd.news/country/${cc}</loc><lastmod>${buildIso}</lastmod><changefreq>weekly</changefreq><priority>0.5</priority></url>`),
   ...CATEGORY_ORDER.filter(c => (byCategory[c]||[]).length > 0).map(c => `  <url><loc>https://zuhd.news/c/${c}</loc><lastmod>${buildIso}</lastmod><changefreq>hourly</changefreq><priority>0.7</priority></url>`),
   ...(entityResult.ids || []).map(id => `  <url><loc>https://zuhd.news/e/${id}</loc><lastmod>${buildIso}</lastmod><changefreq>daily</changefreq><priority>0.5</priority></url>`),
@@ -2553,7 +2563,7 @@ const newsArticles = sorted.filter((a) => {
   return Number.isFinite(pubMs) && pubMs >= newsCutoff
 })
 const newsEntries = newsArticles.map((a) => {
-  const pubDate = new Date(a.meta.date || a.addedAt).toISOString()
+  const pubDate = new Date(eventTime(a)).toISOString()
   return `  <url>
     <loc>https://zuhd.news/a/${a.slug}</loc>
     <news:news>
@@ -2581,8 +2591,9 @@ for (const page of staticPages) {
   // With the homepage now a full-bleed map they get their own plain template.
   const contentHtml = markdownToHtml(body)
   writeFileSync(join(DIST_DIR, `${page}.html`), staticPageTemplate
-    .replace(/{{pageName}}/g, page)
-    .replace('{{content}}', contentHtml)
+    .replace(/{{pageName}}/g, () => page)
+    .replace(/{{description}}/g, () => STATIC_DESCRIPTIONS[page])
+    .replace('{{content}}', () => contentHtml)
     // The link to the page you are already reading is marked current and loses
     // its overlay trigger — opening a sheet of the page behind it is a no-op
     // the reader has to undo.

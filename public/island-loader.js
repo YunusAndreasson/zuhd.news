@@ -52,7 +52,6 @@
     if (!name || !/^[a-z0-9-]+$/.test(name)) return;
     const container = document.createElement('div');
     container.className = 'island-container';
-    container.dataset.island = name;
     document.body.appendChild(container);
     try {
       const mod = await import(islandUrl(name));
@@ -119,6 +118,30 @@
         });
     }
   };
+
+  // How long ago, and which day. The build prints the date (`data-ago`, `data-day`)
+  // because a page is read hours after it is built, and this is the one script on
+  // every page. Same wording as mobile/lib/article-utils.formatTimeAgo, and past a
+  // week the printed date stands. `data-day` is a UTC day, as the build groups it.
+  const utcDay = (t) => new Date(t).toISOString().slice(0, 10);
+  const refreshDates = () => {
+    const now = Date.now();
+    for (const el of document.querySelectorAll('time[data-ago]')) {
+      const min = Math.floor((now - Date.parse(el.dateTime)) / 60_000);
+      if (Number.isNaN(min) || min >= 7 * 1440) continue;
+      el.textContent = min < 1 ? 'now'
+        : min < 60 ? `${min}m ago`
+        : min < 1440 ? `${Math.floor(min / 60)}h ago`
+        : `${Math.floor(min / 1440)}d ago`;
+    }
+    for (const el of document.querySelectorAll('time[data-day]')) {
+      if (el.dateTime === utcDay(now)) el.textContent = 'Today';
+      else if (el.dateTime === utcDay(now - 86_400_000)) el.textContent = 'Yesterday';
+    }
+  };
+  refreshDates();
+  // A page restored from the back-forward cache runs nothing else.
+  window.addEventListener('pageshow', (e) => { if (e.persisted) refreshDates(); });
 
   if (document.readyState === 'loading') {
     document.addEventListener('DOMContentLoaded', autoMount, { once: true });

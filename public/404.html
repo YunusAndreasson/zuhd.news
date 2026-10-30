@@ -7,6 +7,8 @@
   <meta name="color-scheme" content="light dark">
   <meta name="robots" content="noindex">
   <title>Not found — zuhd.news</title>
+  <meta name="theme-color" content="#fff" media="(prefers-color-scheme: light)">
+  <meta name="theme-color" content="#080808" media="(prefers-color-scheme: dark)">
   <link rel="icon" href="/favicon.svg" type="image/svg+xml">
   <style>
     /* The site's roman, from the path the stylesheet uses, so a reader who has
@@ -21,6 +23,8 @@
       src: url('/fonts/source-sans-3-var.woff2') format('woff2');
     }
     :root { color-scheme: light dark; }
+    /* A landmark and no box, so the three lines stay the body's flex items. */
+    main { display: contents; }
     html, body { height: 100%; margin: 0; }
     body {
       /* `border-box`, or the padding is added to the full height above and a
@@ -52,8 +56,10 @@
   </style>
 </head>
 <body>
+  <main>
   <a href="/" class="wordmark">zuhd<span class="wordmark-dot">.</span><span class="wordmark-tld">news</span></a>
   <h1>404 — page not found</h1>
   <p>That page doesn't exist. <a class="home" href="/">Back to the map</a>.</p>
+  </main>
 </body>
 </html>

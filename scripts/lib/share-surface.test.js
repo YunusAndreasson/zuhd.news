@@ -311,6 +311,7 @@ test('the share route and _headers state the same security headers', () => {
     'X-Frame-Options',
     'Referrer-Policy',
     'Permissions-Policy',
+    'Strict-Transport-Security',
     'Content-Security-Policy',
   ]) {
     const value = stated(name)

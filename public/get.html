@@ -28,26 +28,10 @@
 <meta name="twitter:site" content="@zuhd_news">
 <meta name="twitter:image" content="https://zuhd.news/og-image.png?v=3">
 <meta name="twitter:image:alt" content="zuhd.news — global news, no noise">
-<script>
-// Fast path: redirect mobile visitors to their store from <head>, BEFORE the body
-// paints, so Android/iOS don't pay for rendering a page they never see. Desktop /
-// unknown clients fall through to the rendered page with both store buttons.
-(() => {
-  var PLAY = "https://play.google.com/store/apps/details?id=news.zuhd.app";
-  var IOS = "https://apps.apple.com/app/id6760964753";
-  var ua = navigator.userAgent || "";
-  var qs = (location.search || "").replace(/^\?/, "");
-  // Paid-only landing page (noindex): if the ad link carried no params, still
-  // attribute the store visit to paid so Play's Install Referrer can read it
-  // (control arm of the bridge-vs-direct destination test).
-  if (!qs) qs = "utm_source=facebook&utm_medium=paid&utm_content=bridge";
-  var isAndroid = /Android/i.test(ua);
-  var isIOS = /iPhone|iPad|iPod/i.test(ua) ||
-    (/Macintosh/.test(ua) && "ontouchend" in document); // iPadOS desktop-mode
-  if (isAndroid) location.replace(`${PLAY}&referrer=${encodeURIComponent(qs)}`);
-  else if (isIOS) location.replace(`${IOS}?${qs}`);
-})();
-</script>
+<meta name="description" content="Global news that barely uses data. No ads, no tracking, no accounts.">
+<meta name="theme-color" content="#141414">
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<script src="/get.js"></script>
 <style>
   /* The site's face and its two-weight wordmark: this page was set in the
      system's sans under a masthead no other page wears. Only a desktop paints
@@ -100,17 +84,5 @@
     </div>
     <p class="note">Text-first and lightweight — it works on slow connections.</p>
   </main>
-  <script>
-  // Desktop / unknown visitors stay here — wire both buttons with the same params
-  // so a manual click-through is still attributed store-side.
-  (() => {
-    var PLAY = "https://play.google.com/store/apps/details?id=news.zuhd.app";
-    var IOS = "https://apps.apple.com/app/id6760964753";
-    var qs = (location.search || "").replace(/^\?/, "");
-    if (!qs) qs = "utm_source=facebook&utm_medium=paid&utm_content=bridge";
-    document.getElementById("play").href = `${PLAY}&referrer=${encodeURIComponent(qs)}`;
-    document.getElementById("ios").href = `${IOS}?${qs}`;
-  })();
-  </script>
 </body>
 </html>
