@@ -1,38 +1,40 @@
 {
-  "date": "2026-10-29",
+  "date": "2026-10-30",
   "metrics": {
-    "articles": { "value": 63, "detail": "5 cycles, all completed; avg 12 published per cycle (63 vs 56 yesterday); 1 quarantined" },
-    "freshness": { "median": 0.1, "p90": 0.3, "max": 0.8, "target": 1.0, "met": true },
-    "categories": { "politics": 23, "economy": 18, "science": 8, "tech": 14 },
-    "multiSource": { "pct": 17, "target": 30, "met": false },
-    "usDatelines": { "pct": 27, "target": 25, "met": false },
-    "latAmDatelines": { "pct": 5, "target": 5, "met": true },
+    "articles": { "value": 57, "detail": "5 cycles, all completed; avg 11 published per cycle (57 vs 63 yesterday); 0 quarantined" },
+    "freshness": { "median": 0.1, "p90": 0.4, "max": 0.5, "target": 1.0, "met": true },
+    "categories": { "politics": 22, "economy": 15, "science": 6, "tech": 14 },
+    "multiSource": { "pct": 33, "target": 30, "met": true },
+    "usDatelines": { "pct": 21, "target": 25, "met": true },
+    "latAmDatelines": { "pct": 7, "target": 5, "met": true },
     "sameEventDuplicates": { "value": 0, "target": 0, "met": true },
     "missingDatelines": { "value": 0, "target": 0, "met": true },
     "stateOrAdvocacyOnly": 2,
-    "imageUrlPct": 97,
-    "regions": { "count": 6, "target": 4, "met": true, "breakdown": { "AM": 20, "EU": 13, "ME": 13, "AS": 12, "AF": 4, "OC": 1 } },
+    "imageUrlPct": 98,
+    "regions": { "count": 6, "target": 4, "met": true, "breakdown": { "AM": 18, "ME": 12, "AS": 11, "EU": 11, "AF": 4, "OC": 1 } },
     "sciTech": { "ratio": 35, "target": 25, "met": true },
-    "topSourceShare": { "source": "Dawn", "pct": 8, "target": 20, "met": true },
-    "uniqueSources": 48,
+    "topSourceShare": { "source": "Al Jazeera Online", "pct": 14, "target": 20, "met": true },
+    "uniqueSources": 59,
     "duplicates": 0,
-    "avgCycleDuration": 1098
+    "avgCycleDuration": 1056
   },
-  "experiment": "Skipped. No experiment is active and the pause gate (`noNewExperimentsUntil` 2026-11-05) bars a new one. Nothing was evaluated or changed.",
-  "weakestArea": "Multi-source fell to 17% (11 of 63), its third straight drop (28 → 25 → 17) and 13 points under target. The day grew by seven stories, and the extra ones were single-outlet picks, many of them China tech and economy items from Zhidx, TMTPost and SCMP and science items from one journal outlet each. US datelines rose to 27%, two points over the ceiling.",
+  "experiment": "Skipped. Every metric met its target, no experiment is active, and the pause gate (`noNewExperimentsUntil` 2026-11-05) bars a new one. Nothing was evaluated or changed.",
+  "weakestArea": "No reported metric missed, but the zero on same-event duplicates is wrong: \"Explosives Hit Hormuz Tanker\" (05:23) and \"Limpet Mines Hit Tanker\" (20:06) report the same Thursday attack, a small boat attaching two devices that set the engine room on fire, under one Khasab dateline. The later story adds the Central Command claim and more sources, but no story was updated or merged. Multi-source rebounded from 17% to 33% (19 of 57), one day against three straight drops, so it is not yet a trend.",
   "watching": [
-    "Hormuz: mines hitting tankers, Gulf pipelines rerouting exports past the strait, and Iran weighing a Qatari plan, with Vance writing to Rezaei.",
-    "The European Central Bank: Lagarde leaving early while the bank faces opposing shocks, as commodity prices rise 23% and copper premiums hit a record.",
-    "Pentagon churn: Hegseth firing General Sylvia, a Chinook crash in Bosnia killing four, and Japan agreeing to assemble US missiles.",
-    "Yemen, with 281,000 displaced, and Gaza going into winter with its solar power fading under the siege.",
-    "Cyclone Arnab over Andhra Pradesh, and bandits killing 60 in Taraba, Nigeria.",
-    "Maduro's New York case losing its judge as the Venezuela talks move into court."
+    "Hormuz: Brent hit $117.56 for a fourth monthly gain while tankers keep being hit, Central Command says the main routes are cleared of mines, and Qatar's mediators returned to Tehran.",
+    "Binance: at least $5.9 billion stolen by the first count and $6.3 billion by the later one, about $3 billion frozen, more breach points than the first account gave, and withdrawals promised by Sunday.",
+    "Saudi Arabia and the Houthis: a drone the coalition says it downed in the Mecca region, which the Houthis deny, a day after two missiles aimed at Riyadh.",
+    "Ukraine's refinery strikes, which military officials say stopped in mid-October under US pressure over diesel prices, while Zelensky denies any order.",
+    "Poland: riot police around the Constitutional Tribunal as its president was suspended.",
+    "Pentagon policy chief Elbridge Colby privately asking the Baltic states to soften their Russia warnings during a review of US troop levels in Europe.",
+    "Venezuela and Bolivia: Machado says the US proposed 2027 elections, and Bolivia arrested its attorney general two days after US sanctions.",
+    "Novaya Gazeta shutting inside Russia, and dockworkers striking over Gaza at 110 ports in 22 countries."
   ],
   "coverageGaps": [
-    "Multi-source hit 17%, the lowest in the recent window. Most single-outlet stories are tech, crypto (CoinDesk) and China business.",
-    "Eleven datelines name a country, not a city (United States ×6, China ×2, Switzerland ×2, Israel), up from six yesterday. The missing-dateline metric does not catch them, and mobile's dateline strip needs exact city names.",
-    "One science story is crypto from CoinDesk (Fewer Qubits Threaten Bitcoin), so CoinDesk is counted as a science source. The science count of 8 overstates the science desk by one.",
-    "Two stories rest only on state media or advocacy outlets (the Putin Africa summits story from TASS, and the Gaza solar story), labelled in the body. One story was quarantined."
+    "The same-event metric missed the Hormuz pair, whose titles share little wording. The two Binance stories are a real follow-up rather than a duplicate, but they repeat much of the same ground.",
+    "Fifteen datelines name a country, not a city (United States ×4, Canada ×2, China ×2, and Bolivia, Estonia, Fiji, Nigeria, Sudan, Switzerland and the United Kingdom), up from eleven yesterday, and two more name a US state (California, Maine). The missing-dateline metric does not catch them, and mobile's dateline strip needs exact city names.",
+    "One of the six science stories is a disaster report (the Bhutan glacial lake flood, from Economic Times), so the science count overstates the desk by one and leaves it at the floor of five.",
+    "Two stories rest only on state media or advocacy outlets (the Burhan Red Sea offer from TASS and the first Hormuz tanker story from TRT World), labelled in the body."
   ],
-  "context": "Output rose to 63 across five completed cycles, with a 0.1-day freshness median, six regions, and no outlet above 8%. Science reached 8 and sci-tech made up 35%. The pause holds until 2026-11-05 while the stage runner cuts over, so the multi-source slide and the country-only datelines are recorded for the operator rather than acted on. The datelines are a writer-prompt question, and no tunable parameter covers them."
+  "context": "Output fell slightly to 57 across five completed cycles, with a 0.1-day freshness median, six regions, 59 outlets and none above 14%. US datelines fell back under the ceiling at 21% and Latin America reached 7%. The pause holds until 2026-11-05 while the stage runner cuts over, so the duplicate and the country-only datelines are recorded for the operator, and no tunable parameter covers either."
 }
