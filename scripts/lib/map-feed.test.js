@@ -230,6 +230,27 @@ test('the refresh control says what it found, including nothing', async () => {
   assert.equal(label(), 'Try again')
 })
 
+test('an empty list blames the filters only when the stories did load', async () => {
+  setupDom()
+  const { createFeed } = await import(bundlePath)
+  const feed = createFeed({ onSelect() {}, onHover() {} })
+  const empty = () => feed.element.querySelector('.map-feed-empty')?.textContent ?? ''
+  const count = () => feed.element.querySelector('.map-feed-count').textContent
+
+  feed.setItems([], Date.now())
+  assert.match(empty(), /Widen the range/)
+  assert.equal(count(), '0 stories')
+
+  feed.setLoadFailed(true)
+  feed.setItems([], Date.now())
+  assert.match(empty(), /could not be loaded/)
+  assert.equal(count(), 'Stories did not load')
+
+  feed.setLoadFailed(false)
+  feed.setItems([point('a')], Date.now())
+  assert.equal(empty(), '')
+})
+
 // --- the scrubber's live edge ----------------------------------------------
 
 test('a fresh scrubber knows it is live before anyone touches it', async () => {

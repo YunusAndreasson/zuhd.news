@@ -258,6 +258,9 @@ export function createChart(opts: ChartOptions): Chart | null {
   let windowAt = options.window ?? 0
 
   const drawRanges = () => {
+    // Replacing the buttons drops the focus of the reader who pressed one.
+    const active = document.activeElement
+    const held = active && ranges.contains(active) ? active.textContent : null
     ranges.replaceChildren()
     const opts = options.ranges === false ? [] : rangeOptions(model.totalLength)
     ranges.hidden = opts.length === 0
@@ -278,6 +281,7 @@ export function createChart(opts: ChartOptions): Chart | null {
         rebuild()
       })
       ranges.append(b)
+      if (b.textContent === held) b.focus({ preventScroll: true })
     }
   }
 

@@ -38,6 +38,11 @@ export interface Feed {
    * disables it; a number reports how many stories arrived, including zero.
    */
   setRefreshState(state: 'idle' | 'busy' | 'error' | number): void
+  /**
+   * The stories themselves never arrived, so an empty list says that and not
+   * that a filter emptied it. Takes effect at the next `setItems`.
+   */
+  setLoadFailed(failed: boolean): void
   /** Phone layout only — the rail is a column on a desktop and always open. */
   isExpanded(): boolean
   /**
@@ -361,6 +366,7 @@ export function createFeed(opts: FeedOptions): Feed {
   const points = new Map<string, MapPoint>()
 
   let emptyRow: HTMLLIElement | null = null
+  let loadFailed = false
 
   const rowFor = (p: MapPoint, now: number): HTMLLIElement => {
     const existing = rows.get(p.slug)
@@ -458,8 +464,9 @@ export function createFeed(opts: FeedOptions): Feed {
       // it with everything else, and re-appending the same node is one DOM op.
       emptyRow ??= document.createElement('li')
       emptyRow.className = 'map-feed-empty'
-      emptyRow.textContent =
-        'No stories in this slice. Widen the range, or turn a category back on.'
+      emptyRow.textContent = loadFailed
+        ? 'The stories could not be loaded. Press Refresh to try again.'
+        : 'No stories in this slice. Widen the range, or turn a category back on.'
       list.append(emptyRow)
     }
 
@@ -467,10 +474,13 @@ export function createFeed(opts: FeedOptions): Feed {
     // The count describes the map; the rail stops at MAX_ROWS. Saying "722
     // stories" over a list that ends at 120 makes the reader think they have
     // reached the end of the corpus, so the cap is stated rather than hidden.
+    // On a phone this is the drawer's label, the one line of the rail in sight.
     const label =
-      n > MAX_ROWS
-        ? `${n} stories \u00b7 newest ${MAX_ROWS} listed`
-        : `${n} ${n === 1 ? 'story' : 'stories'}`
+      !n && loadFailed
+        ? 'Stories did not load'
+        : n > MAX_ROWS
+          ? `${n} stories \u00b7 newest ${MAX_ROWS} listed`
+          : `${n} ${n === 1 ? 'story' : 'stories'}`
     // Guarded because `count` is an `aria-live` region: writing the same text
     // back into it re-announces it, and a scrub would then read the story count
     // aloud on every frame.
@@ -539,6 +549,9 @@ export function createFeed(opts: FeedOptions): Feed {
       if (li) applyRead(li)
     },
     setRefreshState,
+    setLoadFailed(failed) {
+      loadFailed = failed
+    },
     highlight(slug) {
       for (const [key, li] of rows) li.classList.toggle('is-active', key === slug)
       if (!slug) return

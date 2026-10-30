@@ -9,7 +9,9 @@
 // The standalone `/about` page is still the canonical one: it is what a shared
 // link, a crawler and a JS-less browser get. This only intercepts a plain
 // left-click, and pushes the same URL into history so the address bar, the
-// back button and a reload all behave as if the page had loaded.
+// back button and a reload all behave as if the page had loaded. The sheet
+// lives exactly as long as that history entry is current: closing it steps back
+// off the entry, and Forward onto the entry opens it again.
 
 interface Doc {
   page: string
@@ -31,6 +33,29 @@ const cache = new Map<string, Doc>()
 // being told outright that the page doesn't exist.
 /** Only these can be opened, so a crafted `data-doc` cannot fetch elsewhere. */
 const ALLOWED = new Set(['about', 'contact', 'privacy', 'mcp'])
+
+/**
+ * Stamps the entries this document pushed. `history.state` outlives a reload,
+ * which makes the same URL a standalone page with no sheet to open or close.
+ */
+const THIS_DOCUMENT = performance.timeOrigin
+
+/** The doc whose sheet belongs on the current history entry, if any. */
+const entryDoc = (): string | null => {
+  const state = history.state as { doc?: string; by?: number } | null
+  return state?.by === THIS_DOCUMENT && state.doc ? state.doc : null
+}
+
+/** The doc with a sheet up. One at a time: the sheet is modal. */
+let openDoc: string | null = null
+
+// Closing leaves the pushed entry ahead in history, and the browser offers no
+// way to drop it, so Forward lands on it: `/about` over the map, unless the
+// sheet comes back. Once, for the page: the loader keeps this module.
+window.addEventListener('popstate', () => {
+  const doc = entryDoc()
+  if (doc && doc !== openDoc) mount(document.createElement('div'), { doc })
+})
 
 export function mount(container: HTMLElement, props: Props) {
   const page = String(props.doc || '').toLowerCase()
@@ -74,22 +99,20 @@ export function mount(container: HTMLElement, props: Props) {
   dialog.append(closeForm, inner)
   document.body.append(dialog)
 
-  // Restore whatever the address bar said before, so closing does not strand
-  // the reader on /about while they are looking at the map.
-  const previousUrl = location.pathname + location.search
-  let pushed = false
-
   const close = () => {
     if (dialog.open) dialog.close()
   }
 
+  // A popstate close has already moved history; this one must not move it again.
+  let historyMoved = false
+
   dialog.addEventListener('close', () => {
-    // Only rewind history if this sheet is what put the URL there; a popstate
-    // close has already moved it.
-    if (pushed && location.pathname === `/${page}`) {
-      history.replaceState({}, '', previousUrl)
-    }
     window.removeEventListener('popstate', onPop)
+    if (openDoc === page) openDoc = null
+    // × or Escape: step back off our entry, so the address bar says what it
+    // said before and Back goes where the reader came from. A replaceState here
+    // left a second copy of the previous URL, and Back did nothing once.
+    if (!historyMoved && entryDoc() === page) history.back()
     dialog.remove()
     container.remove()
   })
@@ -103,13 +126,17 @@ export function mount(container: HTMLElement, props: Props) {
     if (outside) close()
   })
 
-  const onPop = () => close()
+  const onPop = () => {
+    historyMoved = true
+    close()
+  }
   window.addEventListener('popstate', onPop)
 
   dialog.showModal()
+  openDoc = page
+  // Reopened by Forward, the URL is already ours.
   if (location.pathname !== `/${page}`) {
-    history.pushState({ doc: page }, '', `/${page}`)
-    pushed = true
+    history.pushState({ doc: page, by: THIS_DOCUMENT }, '', `/${page}`)
   }
 
   const render = (doc: Doc) => {

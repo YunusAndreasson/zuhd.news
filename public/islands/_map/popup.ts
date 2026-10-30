@@ -268,9 +268,12 @@ export interface StoryPopup {
 // be noise at best and wrong at worst. `build.js` still computes the fields; if
 // the ledger starts grouping properly this is a small change to reinstate.
 
-/** An outlet, linked to its own reporting when we hold the URL. */
+/** The test GDACS's report link passes in `scripts/lib/gdacs.js`, at the build. */
+const isWebUrl = (url: string) => /^https?:\/\//.test(url)
+
+/** An outlet, linked to its own reporting when we hold a web URL for it. */
 const sourceName = (s: StorySource): Node => {
-  if (!s.url) return el('span', 'map-popup-source-name', s.name)
+  if (!s.url || !isWebUrl(s.url)) return el('span', 'map-popup-source-name', s.name)
   const a = el('a', 'map-popup-source-name', s.name)
   a.href = s.url
   a.target = '_blank'
@@ -1329,6 +1332,9 @@ export function createStoryPopup(map: MapLibreMap, opts: StoryPopupOptions = {})
   return {
     preview(p, leads, now) {
       about(null)
+      // Claimed, as `openPlace` does: a story or country fetch in flight would
+      // land on this card. `open` claims it again for this story.
+      pending = null
       // `n` has been on every map point since the endpoint was written and
       // nothing has ever read it. It belongs here rather than in a fifth visual
       // channel on the beacon — size, alpha and the ring are already spoken
@@ -1400,8 +1406,8 @@ export function createStoryPopup(map: MapLibreMap, opts: StoryPopupOptions = {})
           }),
         )
         const body = el('div', 'map-popup-prose')
-        // Trusted content: this HTML is produced by our own build from the
-        // article markdown, the same string the /a/{slug} page renders.
+        // The build escapes any HTML in the article markdown, so this is only
+        // what its renderer wrote: the same string the /a/{slug} page renders.
         body.innerHTML = story.bodyHtml
         // And because it is that same string, it opens with the article's own
         // `City — ` dateline, which `.map-popup-prose` restyles onto a line of

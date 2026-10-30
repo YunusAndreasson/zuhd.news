@@ -1506,3 +1506,31 @@ test('the block edge is the newest close any member reached', () => {
   assert.equal(lastTradedDay([west, { values: [1, 2], pct: 0 }]), Date.UTC(2026, 7, 7))
   assert.equal(lastTradedDay([{ values: [1, 2], pct: 0 }]), undefined, 'no dates, no edge')
 })
+
+test('Escape on a group panel shuts the panel and stops there', () => {
+  // The panel, the card under it and the camera all listen on `document`, where
+  // `stopPropagation` stops nothing: the key shut the story card too.
+  const fall = Array.from({ length: 40 }, (_, i) => 200 - i * 2)
+  withDom(() => {
+    const dialog = globalThis.window.HTMLDialogElement.prototype
+    dialog.show = function show() { this.setAttribute('open', '') }
+    dialog.close = function close() { this.removeAttribute('open') }
+    const strip = createMarketStrip({ rangeDays: 7, onSelect() {}, onQuote() {}, onStrait() {} })
+    strip.update([exchangeOf('bist', fall, '2026-10-09')], Date.parse('2026-10-10T12:00:00Z'))
+    strip.element.querySelector('.map-markets-group, .map-markets-summary').dispatchEvent(
+      new globalThis.window.MouseEvent('click', { bubbles: true }),
+    )
+    const panel = globalThis.document.querySelector('.map-markets-panel')
+    assert.ok(panel.hasAttribute('open'))
+    let heard = 0
+    const later = () => heard++
+    globalThis.document.addEventListener('keydown', later)
+    globalThis.document.body.dispatchEvent(
+      new globalThis.window.KeyboardEvent('keydown', { key: 'Escape', bubbles: true }),
+    )
+    assert.equal(panel.hasAttribute('open'), false, 'the panel shuts')
+    assert.equal(heard, 0, 'and the key stops there')
+    globalThis.document.removeEventListener('keydown', later)
+    strip.destroy()
+  })
+})

@@ -315,6 +315,26 @@ test('the keyboard walks the series and the readout follows', async () => {
   assert.match(out.rest, /^d80 · /, 'which names the latest point — date and all')
 })
 
+test('a pressed range keeps the keyboard focus through the redraw', async () => {
+  const { createChart } = await import(chartPath)
+  const out = withDom((window) => {
+    const chart = createChart({ ...baseOpts })
+    window.document.body.append(chart.element)
+    const range = (text) =>
+      [...chart.element.querySelectorAll('.chart-range')].find((b) => b.textContent === text)
+    range('30').focus()
+    range('30').click()
+    const kept = window.document.activeElement === range('30')
+    const other = window.document.createElement('button')
+    window.document.body.append(other)
+    other.focus()
+    chart.update({ ...baseOpts })
+    return { kept, untouched: window.document.activeElement === other }
+  })
+  assert.equal(out.kept, true, 'the focus is on the new button, not on <body>')
+  assert.equal(out.untouched, true, 'a redraw takes no focus that was elsewhere')
+})
+
 test('the range control rebuilds the chart it labels', async () => {
   const { createChart } = await import(chartPath)
   const out = withDom(() => {

@@ -3262,9 +3262,11 @@ export function createMarketStrip(opts: MarketStripOptions): MarketStrip {
    * The three things `show()` does not give us, unlike `showModal()`.
    *
    * Escape is registered here, at strip construction, which is before the
-   * island's own `keydown` — so it runs first and `stopPropagation` keeps the
-   * same key from also resetting the camera. That is the island's stated
-   * "innermost first" order, honoured by registration rather than by asking.
+   * island's own `keydown` — so it runs first and `stopImmediatePropagation`
+   * keeps the same key from also shutting the card under the panel or resetting
+   * the camera. Both listeners are on `document`, where `stopPropagation` stops
+   * nothing. That is the island's stated "innermost first" order, honoured by
+   * registration rather than by asking.
    *
    * The light-dismiss is `pointerdown`, not `click`: a `click` listener on
    * `document` fires *after* the summary's own handler on the way back up, so
@@ -3277,7 +3279,7 @@ export function createMarketStrip(opts: MarketStripOptions): MarketStrip {
     const btn = openOn
     closePanel()
     btn.focus()
-    e.stopPropagation()
+    e.stopImmediatePropagation()
   }
   const onDocDown = (e: Event) => {
     if (!openOn) return
