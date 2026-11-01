@@ -25,12 +25,14 @@
     },
     "g20-2026-miami": {
       "standingFingerprint": "041eb1ecc79e970b",
-      "recentFingerprint": "51527f34d2eb0176",
+      "recentFingerprint": "be8865edcad55dfe",
       "prompt": "cc42a1f1",
       "standing": "The annual meeting of leaders of the world's largest economies, hosted by the member holding the rotating presidency. Its members produce about 85% of global output, and its communiqué sets shared lines on trade and debt.",
-      "recent": "The fight before Miami is over who gets a seat: Merz has urged Trump to invite South Africa, and Lavrov was snubbed at the foreign ministers' meeting in Atlanta. Zelenskyy is eyeing a possible meeting with the US and Russia during the summit, which makes the guest list a question about Ukraine as well as about the G20's membership.",
-      "citations": [],
-      "generatedAt": "2026-10-31T05:29:16.472Z"
+      "recent": "Europeans refused to stand with Lavrov in Atlanta, costing the foreign ministers their group photo, and Kallas says hosting Putin at the G20 may normalize war crimes. Merz is separately urging Trump to invite South Africa to Miami. The guest list is now the dispute: who the US presidency seats at the table in Miami, and who it leaves out.",
+      "citations": [
+        "2026-10-30-g20-atlanta-group-photo-scrapped-europeans-lavrov"
+      ],
+      "generatedAt": "2026-11-01T05:21:28.833Z"
     },
     "ecb-2026-12": {
       "standingFingerprint": "644eb225dab9953a",
@@ -56,16 +58,15 @@
     },
     "boj-2026-12": {
       "standingFingerprint": "b08124a86f654bb7",
-      "recentFingerprint": "3c36ad9932517f03",
+      "recentFingerprint": "1adacc318607afe4",
       "prompt": "cc42a1f1",
       "standing": "The Bank of Japan's policy board, which meets eight times a year to set the country's short-term interest rate. Its decisions move the yen and the yield on Japanese government debt, and reach borrowers far beyond Japan.",
-      "recent": "Tokyo's debate has turned to wages, and this meeting settles how much weight the Bank of Japan gives pay-driven inflation. It also lands with markets fully pricing a December Fed rate hike, which bears directly on a yen whose one-month high, on AI doubts, was only 156.28 per dollar.",
+      "recent": "Foreign issuers sold a record $16 billion of yen bonds in April to September as AI hyperscalers' fundraising reached Japan, putting Japanese investors' money behind a build-out elsewhere. This meeting sets Japan's side of the interest-rate gap that trade rests on, while the question at home is whether wages are now driving inflation.",
       "citations": [
-        "2026-10-21-japan-wage-driven-inflation-katayama-consumption-tax-yen",
-        "2026-10-23-ai-jitters-yen-safe-haven-treasury-yields-fall",
-        "2026-10-28-fed-holds-rates-warsh-midterms-inflation"
+        "2026-10-31-yen-bond-foreign-issuers-record-16bn-ai-funding-japan",
+        "2026-10-21-japan-wage-driven-inflation-katayama-consumption-tax-yen"
       ],
-      "generatedAt": "2026-10-31T05:29:27.703Z"
+      "generatedAt": "2026-11-01T05:21:30.565Z"
     },
     "fred-us-jobs-report-2026-11-06": {
       "standingFingerprint": "76dd59465c94d59d",
@@ -88,6 +89,6 @@
       "generatedAt": "2026-10-31T05:29:09.601Z"
     }
   },
-  "generatedAt": "2026-10-31T05:29:27.705Z",
+  "generatedAt": "2026-11-01T05:21:30.566Z",
   "windowDays": 14
 }
