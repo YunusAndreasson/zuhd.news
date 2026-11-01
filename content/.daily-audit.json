@@ -1,43 +1,42 @@
 {
-  "date": "2026-10-31",
+  "date": "2026-11-01",
   "metrics": {
-    "articles": { "value": 54, "detail": "5 cycles, all completed; avg 11 published per cycle (54 vs 62 yesterday); 0 quarantined" },
-    "freshness": { "median": 0.1, "p90": 0.3, "max": 0.9, "target": 1.0, "met": true },
-    "categories": { "politics": 23, "economy": 14, "science": 4, "tech": 13 },
-    "multiSource": { "pct": 26, "target": 30, "met": false },
-    "usDatelines": { "pct": 30, "target": 25, "met": false },
-    "latAmDatelines": { "pct": 2, "target": 5, "met": false },
+    "articles": { "value": 52, "detail": "5 cycles, all completed; avg 10 published per cycle (52 vs 57 yesterday); 0 quarantined" },
+    "freshness": { "median": 0.1, "p90": 0.4, "max": 0.9, "target": 1.0, "met": true },
+    "categories": { "politics": 25, "economy": 14, "science": 4, "tech": 9 },
+    "multiSource": { "pct": 21, "target": 30, "met": false },
+    "usDatelines": { "pct": 21, "target": 25, "met": true },
+    "latAmDatelines": { "pct": 0, "target": 5, "met": false },
     "sameEventDuplicates": { "value": 0, "target": 0, "met": true },
     "missingDatelines": { "value": 0, "target": 0, "met": true },
-    "stateOrAdvocacyOnly": 3,
+    "stateOrAdvocacyOnly": 6,
     "imageUrlPct": 100,
-    "regions": { "count": 5, "target": 4, "met": true, "breakdown": { "AM": 17, "AS": 15, "ME": 10, "EU": 9, "AF": 3, "OC": 0 } },
-    "sciTech": { "ratio": 31, "target": 25, "met": true },
-    "topSourceShare": { "source": "Dawn, Al Jazeera Online and TRT World (tied)", "pct": 11, "target": 20, "met": true },
-    "uniqueSources": 42,
+    "regions": { "count": 6, "target": 4, "met": true, "breakdown": { "ME": 15, "AM": 12, "EU": 10, "AS": 8, "AF": 6, "OC": 1 } },
+    "sciTech": { "ratio": 25, "target": 25, "met": true },
+    "topSourceShare": { "source": "Al Jazeera Online", "pct": 15, "target": 20, "met": true },
+    "uniqueSources": 38,
     "duplicates": 0,
-    "avgCycleDuration": 1093
+    "avgCycleDuration": 1066
   },
-  "experiment": "Skipped. Multi-source, US datelines and Latin America datelines missed their targets, but the pause gate (`noNewExperimentsUntil` 2026-11-05) bars a new experiment and none is active. Nothing was evaluated or changed.",
-  "weakestArea": "Latin America is furthest from target at 2% against 5%: Corumbá was the only dateline, after 7% yesterday and at least 5% on each of the seven days before, so this is one low day rather than a trend. US datelines reached 30% with the midterms three days out, though the metric's bounding box counts Témiscaming, Quebec as US; the true share is 15 of 54, or 28%, still over the 25% ceiling. Multi-source fell to 26% from 33% as reported yesterday; the 05:00, 10:00, 14:00 and 22:00 selectors each landed 0 or 1 economy multi-source picks against a floor of 2 and said the feed had too few.",
+  "experiment": "Skipped. Multi-source, Latin America datelines and the science count missed their targets, but the pause gate (`noNewExperimentsUntil` 2026-11-05) bars a new experiment and none is active. Nothing was evaluated or changed.",
+  "weakestArea": "Latin America is furthest from target at 0% against 5%, down from 2% yesterday, with no dateline in the region. Selectors passed over an Inkstick piece on Brazil as opinion-forward, a TMTPost feature on Lula and Chinese carmakers, and an Agência Pública interview, so the supply they saw was thin. Multi-source fell to 21% from 28%; fetching found 12 to 17 multi-source stories per cycle, but the selectors reported only 6 or 7 in their feed at 05:00, 14:00 and 22:00, and none at 18:00.",
   "watching": [
-    "Hormuz: over 30 ship attacks in October set a record, Iran says it would reopen the strait within 2 days of a deal on its own route, and the Guards claim a fourth tanker fire that no other source confirms.",
-    "Iran: Khamenei ordered retaliation plans without geographic limits, while Iranian media say Vance's letter is unanswered and a Qatari delegation is in Tehran.",
-    "Binance: it says 90% of the $6.3 billion stolen has been replaced, withdrawals reopen on 1 November and cryptographic proof of reserves is due on 3 November.",
-    "Moscow: the US warned of a mass-casualty attack at Tsaritsyno on Saturday, and neither government has named a suspect.",
-    "Western Sahara: rival US and Russian resolutions failed with the UN mission's mandate expiring Saturday, and Morocco says UN personnel should leave.",
-    "US midterms: Newsom warned judges that federal agents may seize ballots, three days before the vote.",
-    "Nigeria: laboratory results on 2 suspected Ebola cases in the northeast decide whether there is an outbreak; no date has been given.",
-    "Ukraine: Congress reviews the 500-missile Patriot sale with delivery possibly years off, and Turkey has promised to raise the grain corridor with Russia."
+    "Iran-US: three days of Doha talks produced no deal, and both sides say they are ready to resume fighting after 3 November.",
+    "Hormuz: the Guards claim 2 tankers hit mines and a Qatari LNG carrier with Pakistani-negotiated safe passage was struck, with Brent at $113.4 on 30 October.",
+    "Iran's nuclear treaty: a lawmaker says parliament would unanimously quit and the decision rests with the Leader, though no withdrawal bill has been reported.",
+    "US midterms: voting is on Tuesday, and in Michigan Democrat Haley Stevens endorsed Republican Mike Rogers over her party's nominee.",
+    "Binance: the FBI blames North Korea's TraderTraitor for the $6.3 billion theft as the funds move into Ethereum, and proof of reserves was promised for 3 November.",
+    "Bulgaria: exit polls give Iotova about 51% in the run-off, with official results due Monday.",
+    "Cyclone Murasu: India's weather agency expects it to cross the Andhra Pradesh coast on Tuesday morning.",
+    "France: more than 500 arrests in a third weekend of unrest over living costs, with a fourth weekend undecided."
   ],
   "coverageGaps": [
-    "\"Iran Offers Faster Hormuz Reopening\" says traffic is \"19% below the normal 4\" ships a day. That normal is the indicator's 90-day average, taken from this year's disrupted months rather than ordinary traffic, so the sentence likely understates how far the strait has fallen, and the indicator row hands the writer a field called `normal`.",
-    "The Binance dateline is a guess: the editor log says no source places the story anywhere, so it added Washington to avoid quarantine. That also adds a US dateline to the count.",
-    "Four datelines name a country (China ×3, United States) and one names a state (Ohio), down from seventeen such datelines yesterday; the missing-dateline metric catches none of them.",
-    "Science reached 4 against the target of 5, with no disaster filler. Four of 5 cycles ran under the floor of 2, and the 10:00 selector said it passed over Scientific Reports papers and thin items, which points to science sources rather than the floor.",
-    "Tech's 13 is generous: two stories filed there are chiefly political or military (the US-Hungary antifa pact, air defence at Mar-a-Lago), and the 10:00 and 14:00 selectors said they took weak company features to reach the floor.",
-    "No Oceania dateline ran today, and Africa had 3, all from Nigeria (Abuja, Enugu, Minna).",
-    "Three stories rest only on state media or advocacy outlets: the Hami solar plant, Iran's Hormuz offer and the Guards' tanker claim, all labelled in the body."
+    "Six stories rest only on state media or advocacy outlets, double yesterday's 3: three from Iran's Mehr and three from Russia's TASS, including TASS as the only source on the drone strike in Sudan. All six are labelled in the body.",
+    "Science reached 4 against the target of 5, with no cycle above 1 against a floor of 2 and none filled with disasters; selectors kept citing barred Scientific Reports papers as the main remaining supply, which points to science sources rather than the floor.",
+    "Economy multi-source missed its floor of 2 at 05:00, 18:00 and 22:00, with selectors saying the feed held none, and the only one tagged economy at 22:00 was a misfiled story about a stroke.",
+    "Selectors said they filled tech with weak picks at 10:00 and 14:00, including the Sherrod Brown crypto story, which they called chiefly political; tech's 9 therefore overstates hard tech news, and the sci-tech ratio sits exactly on its 25% target.",
+    "Four datelines name a country rather than a place (United States ×3, Latvia), which the missing-dateline metric does not catch.",
+    "The Hormuz mines story again says traffic ran 19% below normal, using the same indicator baseline flagged yesterday as drawn from this year's disrupted months."
   ],
-  "context": "Today's figures are provisional: the 05:00 cycle on 10-31 added 5 articles dated 10-30, which took yesterday from the 57 audited to 62 and its multi-source share from 33% to 35%, so today's count may rise the same way. Freshness (0.1-day median), duplicates and source concentration stayed healthy, with 42 outlets and none above 11%. The pause holds until 2026-11-05 while the stage runner cuts over; no tunable parameter covers the dateline or \"normal\" wording issues, so they are recorded for the operator."
+  "context": "Today's figures are provisional: yesterday's count rose from the 54 audited to 57 and its multi-source share from 26% to 28%, so today's may rise too. Freshness, duplicates and source concentration stayed healthy, and US datelines returned under the ceiling at 21% despite the midterms. The gap between multi-source stories fetched and those the selectors report seeing has not been traced, and it deserves a look once the pause lifts on 2026-11-05."
 }
