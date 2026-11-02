@@ -275,6 +275,9 @@ const casualtyLine = (e: ConflictEvent): string => {
 export function createSheet(): Sheet {
   const dialog = document.createElement('dialog')
   dialog.className = 'island-sheet map-sheet'
+  // Every card names itself by its title (`render`); this is for one that has
+  // none, since a dialog with no name is announced as just "dialog".
+  dialog.setAttribute('aria-label', 'Details')
 
   const closeForm = el('form', 'island-sheet-close-form')
   closeForm.method = 'dialog'
@@ -408,11 +411,13 @@ export function createSheet(): Sheet {
    * Escape and the light dismiss, which `show()` does not give us.
    *
    * Registered once at construction rather than per open, and both no-ops
-   * unless a docked card is up. `stopPropagation` on Escape is load-bearing:
-   * the island listens for the same key to reset the camera, and a reader
-   * shutting a card has not asked to be sent back to the whole world. Same
-   * ordering the markets panel relies on — registered earlier, so it runs
-   * first.
+   * unless a docked card is up. `stopImmediatePropagation` on Escape is
+   * load-bearing: the island listens for the same key to reset the camera, and
+   * a reader shutting a card has not asked to be sent back to the whole world.
+   * All three listeners are on `document`, where `stopPropagation` stops
+   * nothing. Same ordering the markets panel relies on — `createSheet` runs
+   * before `createMarketStrip`, and both before the island's own listener, so
+   * this runs first, and one press shuts one thing.
    *
    * The dismiss is `pointerdown` in the capture phase. It cannot close the card
    * that is being opened, because at the pointerdown that precedes that click
@@ -422,7 +427,7 @@ export function createSheet(): Sheet {
    */
   const onDocKey = (e: KeyboardEvent) => {
     if (!isDocked || !dialog.open || e.key !== 'Escape') return
-    e.stopPropagation()
+    e.stopImmediatePropagation()
     dialog.close()
   }
   const onDocDown = (e: Event) => {
@@ -455,6 +460,14 @@ export function createSheet(): Sheet {
       if (app) nodes = [...nodes, app]
     }
     inner.replaceChildren(...nodes)
+    // Each card builds its own title, so the name is read off what was built.
+    const title = inner.querySelector('.island-sheet-title')
+    if (title) {
+      title.id = 'map-sheet-title'
+      dialog.setAttribute('aria-labelledby', title.id)
+    } else {
+      dialog.removeAttribute('aria-labelledby')
+    }
     open(pin, docked)
   }
 

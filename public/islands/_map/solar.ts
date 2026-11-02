@@ -15,7 +15,7 @@ import { subsolarPoint } from '@shared/sun'
 
 const DEG = Math.PI / 180
 
-export { daysSinceJ2000, gmstHours, obliquity, subpoint, subsolarPoint, sunEquatorial } from '@shared/sun'
+export { daysSinceJ2000, gmstHours, subsolarPoint, sunEquatorial } from '@shared/sun'
 
 /**
  * MapLibre's `light.position` for the globe's atmosphere, from the real sun.

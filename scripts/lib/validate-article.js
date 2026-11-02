@@ -161,6 +161,11 @@ export function createValidator({ published, offeredBySlug, knownIds }) {
     if (!hasSources) missing.push('sources')
     if (missing.length) return verdict(`missing ${missing.join(', ')}`)
 
+    // The sitemap and the feed call `toISOString` on this, so a date nothing can
+    // parse is every build failing until someone removes the file.
+    const date = yaml.match(/^date:\s*["']?([^"'\n]*)/m)?.[1]
+    if (date !== undefined && !Number.isFinite(Date.parse(date))) return verdict(`date does not parse: ${date}`)
+
     // The writer's contract is four blocks, or five when the optional
     // counterpoint-or-quote block was earned (`scripts/write-prompt.md` §rhythm).
     // This range is deliberately wider than the contract in BOTH directions,

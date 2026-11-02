@@ -28,11 +28,11 @@
 <body class="article-page-body">
   {{archetypeHeader}}
 
-  <main class="article-page-main">
+  <main id="content" class="article-page-main">
     <article class="article-standalone">
       <div class="article-kicker">
         <span class="category">{{category}}</span>
-        <time datetime="{{isoDate}}">{{timeAgo}}</time>
+        <time datetime="{{isoDate}}" data-ago>{{kickerDate}}</time>
         {{correctionMark}}
       </div>
       <h1 class="article-title">{{title}}</h1>

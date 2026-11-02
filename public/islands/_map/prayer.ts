@@ -10,12 +10,12 @@ import type { Feature, MultiLineString, Position } from 'geojson'
 import { type PrayerParams, prayerRuns, type Sample, UMM_AL_QURA } from '@shared/prayer'
 
 export {
+  /** @knipignore asserted in map-geo.test.js, which reaches it through the esbuild bundle. */
   asrAltitude,
   PRAYER_NOTE,
   PRAYERS,
   type PrayerId,
   prayerInstantAt,
-  prayerLongitude,
   type PrayerParams,
   UMM_AL_QURA,
 } from '@shared/prayer'

@@ -89,7 +89,12 @@ const CountryPreview: Island<Props> = ({ iso, href }) => {
   const fullProfileHref = href || `/country/${iso}`
 
   return html`
-    <dialog ref=${dialogRef} class="island-sheet country-preview-sheet">
+    <dialog
+      ref=${dialogRef}
+      class="island-sheet country-preview-sheet"
+      aria-labelledby=${data ? 'country-preview-name' : undefined}
+      aria-label=${data ? undefined : 'Country preview'}
+    >
       <form method="dialog" class="island-sheet-close-form" aria-label="Close country preview">
         <button class="island-sheet-close" aria-label="Close">×</button>
       </form>
@@ -106,7 +111,9 @@ const CountryPreview: Island<Props> = ({ iso, href }) => {
                 <span class="country-preview-flag" aria-hidden="true">${data.flag}</span>
                 <div class="country-preview-titleblock">
                   <span class="label country-preview-region">${data.region.toUpperCase()}</span>
-                  <h2 class="island-sheet-title country-preview-name">${data.name}</h2>
+                  <h2 id="country-preview-name" class="island-sheet-title country-preview-name">
+                    ${data.name}
+                  </h2>
                   <p class="t-caption country-preview-meta">${data.metaLine}</p>
                 </div>
               </header>

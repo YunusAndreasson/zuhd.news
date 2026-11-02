@@ -1,9 +1,15 @@
 import { z } from 'zod'
 import { getFeed, getArticlesByCategory, getHeatmap, getContext, getAllArticles } from './cache.js'
 import { searchArticles } from './search.js'
+import { classifyRegion } from './region.js'
 
 const CATEGORIES = ['politics', 'economy', 'science', 'tech']
-const CATEGORY_NAMES = { 0: 'politics', 1: 'economy', 2: 'science', 3: 'tech' }
+
+// Threads have no id in the feed except where a brief exists, so a label's slug
+// is the id clients are given, and what a thread_id is matched against.
+function threadSlug(label) {
+  return label.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/(^-|-$)/g, '')
+}
 
 function summarizeArticle(a, full = false) {
   const sentences = a.sentences || []
@@ -17,12 +23,37 @@ function summarizeArticle(a, full = false) {
     concepts: a.concepts || [],
     sentences: full ? sentences : sentences.slice(0, 3),
     thread: a.threadLabel ? {
+      id: threadSlug(a.threadLabel) || null,
       label: a.threadLabel,
       arc: a.threadArc || null,
       day: a.threadDay || null,
       articleCount: a.threadArticleCount || null,
       summary: a.threadSummary || null
     } : null
+  }
+}
+
+// One story as the feed holds it: `story` is the thread's articles there, or one
+// article with no thread. `threadSummary` is left out, being null by decision
+// (build.js), and the rest of the thread is only counted: it has left the feed.
+function storyContext(story) {
+  const { threadLabel, threadArc, threadDay, threadArticleCount } = story[0]
+  return {
+    thread: threadLabel ? {
+      id: threadSlug(threadLabel) || null,
+      label: threadLabel,
+      arc: threadArc || null,
+      day: threadDay || null,
+      articleCount: threadArticleCount || null,
+      articlesInFeed: story.length
+    } : null,
+    articles: [...story]
+      .sort((a, b) => new Date(a.date).getTime() - new Date(b.date).getTime())
+      .map(a => {
+        const { thread: _thread, ...article } = summarizeArticle(a, true)
+        const sources = (a.sources || []).map(({ name, country, angle }) => ({ name, country, angle }))
+        return { ...article, sources }
+      })
   }
 }
 
@@ -35,11 +66,11 @@ export function registerTools(server) {
     inputSchema: z.object({
       focus: z.enum(['politics', 'economy', 'science', 'tech']).optional()
         .describe('Optional category to focus on')
-    }).optional(),
+    }),
     annotations: { readOnlyHint: true, openWorldHint: false }
   }, async (args) => {
     const feed = await getFeed()
-    const focus = args?.focus
+    const focus = args.focus
     const categories = focus ? [focus] : CATEGORIES
     const result = {}
 
@@ -47,6 +78,7 @@ export function registerTools(server) {
       const articles = feed.categories[cat]
       if (!Array.isArray(articles)) continue
       result[cat] = articles.slice(0, 5).map(a => ({
+        slug: a.slug,
         title: a.title,
         source: a.source,
         location: a.location || null,
@@ -79,12 +111,12 @@ export function registerTools(server) {
         .describe('Number of articles to return (default 10, max 30)'),
       full: z.boolean().default(false).optional()
         .describe('Return full article text instead of first 3 sentences')
-    }).optional(),
+    }),
     annotations: { readOnlyHint: true, openWorldHint: false }
   }, async (args) => {
-    const category = args?.category
-    const limit = args?.limit || 10
-    const full = args?.full || false
+    const category = args.category
+    const limit = args.limit || 10
+    const full = args.full || false
 
     let articles
     if (category) {
@@ -134,44 +166,46 @@ export function registerTools(server) {
   // 4. get_story_context
   server.registerTool('get_story_context', {
     title: 'Get Story Context',
-    description: 'Get background context and historical timeline for a story thread. Provide either a thread ID (from article thread data) or an article slug to find its thread.',
+    description: 'What the site holds on a story now: its thread (arc, day running, article count) and the thread\'s articles in the current feed, oldest first, in full, with each source\'s angle. Most threads are a single new article, and earlier ones may have left the feed, so articleCount can exceed articlesInFeed. A thread_id no longer in the feed may return a written background brief; those stopped in 2026, so check generatedAt. Provide a thread_id (or label) from article thread data, or an article slug.',
     inputSchema: z.object({
-      thread_id: z.string().optional().describe('Thread/context ID'),
+      thread_id: z.string().optional().describe('Thread id or label'),
       article_slug: z.string().optional().describe('Article slug to find its thread')
     }),
     annotations: { readOnlyHint: true, openWorldHint: false }
   }, async (args) => {
-    const feed = await getFeed()
-    let threadId = args.thread_id
+    const articles = await getAllArticles()
 
-    // If given a slug, find its thread
-    if (!threadId && args.article_slug) {
-      for (const cat of Object.keys(feed.categories)) {
-        const articles = feed.categories[cat]
-        if (!Array.isArray(articles)) continue
-        const found = articles.find(a => a.slug === args.article_slug)
-        if (found?.threadLabel) {
-          // Derive thread ID from label
-          threadId = found.threadLabel.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/(^-|-$)/g, '')
-          break
-        }
+    let story = []
+    if (args.thread_id) {
+      const id = threadSlug(args.thread_id)
+      if (id) story = articles.filter(a => a.threadLabel && threadSlug(a.threadLabel) === id)
+    } else if (args.article_slug) {
+      const article = articles.find(a => a.slug === args.article_slug)
+      if (article) {
+        story = article.threadLabel ? articles.filter(a => a.threadLabel === article.threadLabel) : [article]
       }
     }
 
-    if (!threadId) {
-      return { content: [{ type: 'text', text: 'No thread found. Provide a valid thread_id or article_slug.' }] }
+    if (story.length) {
+      return { content: [{ type: 'text', text: JSON.stringify(storyContext(story), null, 2) }] }
     }
 
-    // Try to fetch context
+    if (!args.thread_id) {
+      return { content: [{ type: 'text', text: 'No story found. Provide a thread_id, or the slug of an article in the current feed.' }] }
+    }
+
+    // The briefs are frozen: a thread still running has none, and only a few
+    // older threads' files are still published.
+    const threadId = args.thread_id
     try {
       const ctx = await getContext(threadId)
       return { content: [{ type: 'text', text: JSON.stringify(ctx, null, 2) }] }
     } catch {
-      // Check contexts embedded in feed
-      if (feed.contexts?.[threadId]) {
-        return { content: [{ type: 'text', text: feed.contexts[threadId] }] }
+      const { contexts } = await getFeed()
+      if (contexts && Object.hasOwn(contexts, threadId)) {
+        return { content: [{ type: 'text', text: JSON.stringify(contexts[threadId], null, 2) }] }
       }
-      return { content: [{ type: 'text', text: `No context found for thread "${threadId}".` }] }
+      return { content: [{ type: 'text', text: `No story found for thread "${threadId}".` }] }
     }
   })
 
@@ -196,7 +230,7 @@ export function registerTools(server) {
       const id = args.thread_id
       target = allArticles.filter(a => {
         if (!a.threadLabel) return false
-        const derived = a.threadLabel.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/(^-|-$)/g, '')
+        const derived = threadSlug(a.threadLabel)
         return derived === id || derived.includes(id)
       })
     }
@@ -242,13 +276,13 @@ export function registerTools(server) {
         east: z.number().describe('Eastern longitude bound'),
         west: z.number().describe('Western longitude bound')
       }).optional().describe('Bounding box to filter by region')
-    }).optional(),
+    }),
     annotations: { readOnlyHint: true, openWorldHint: false }
   }, async (args) => {
     const data = await getHeatmap()
     let points = data.points || []
 
-    if (args?.region) {
+    if (args.region) {
       const { north, south, east, west } = args.region
       points = points.filter(p =>
         p.lat >= south && p.lat <= north &&
@@ -261,7 +295,7 @@ export function registerTools(server) {
     for (const p of points) {
       const region = classifyRegion(p.lat, p.lng)
       if (!regions[region]) regions[region] = []
-      regions[region].push({ title: p.l, lat: p.lat, lng: p.lng, category: CATEGORY_NAMES[p.c] || 'unknown' })
+      regions[region].push({ title: p.l, lat: p.lat, lng: p.lng, coverage: p.c })
     }
 
     return {
@@ -275,17 +309,4 @@ export function registerTools(server) {
       }]
     }
   })
-}
-
-function classifyRegion(lat, lng) {
-  if (lat > 60) return 'Arctic/Nordic'
-  if (lat > 35 && lng > -10 && lng < 40) return 'Europe'
-  if (lat > 25 && lng > -130 && lng < -60) return 'North America'
-  if (lat > -15 && lat < 35 && lng > 25 && lng < 75) return 'Middle East & Central Asia'
-  if (lat > 5 && lat < 55 && lng > 65 && lng < 145) return 'East & South Asia'
-  if (lat > -40 && lat < 5 && lng > 95 && lng < 180) return 'Southeast Asia & Oceania'
-  if (lat > -35 && lat < 35 && lng > -20 && lng < 55) return 'Africa'
-  if (lat > -60 && lng > -85 && lng < -30) return 'Latin America'
-  if (lat < -30 && lng > 110) return 'Oceania'
-  return 'Other'
 }

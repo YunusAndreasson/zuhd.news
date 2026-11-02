@@ -16,7 +16,7 @@ In Claude Desktop, Cursor, or any MCP client, add zuhd-news as a remote server w
 
 **search_articles** — Keyword search across titles, concepts, locations, and content. Parameters: query (required), category (optional), limit (1-30).
 
-**get_story_context** — Historical timeline and background for a story thread. Parameters: thread_id or article_slug.
+**get_story_context** — A story thread's arc and its articles, oldest first. Parameters: thread_id or article_slug.
 
 **get_source_perspectives** — Source diversity analysis: which countries cover a story, sentiment divergence, missing perspectives. Parameters: article_slug or thread_id.
 
@@ -26,7 +26,7 @@ In Claude Desktop, Cursor, or any MCP client, add zuhd-news as a remote server w
 
 **zuhd://meta** — Article counts per category, last update time, briefing status.
 
-**zuhd://sources** — All 41 sources with countries, regions, and types.
+**zuhd://sources** — The outlets zuhd.news reads directly and those seen through its news API, with countries, regions, and types.
 
 **zuhd://about** — Editorial philosophy and principles.
 

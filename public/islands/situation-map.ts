@@ -4050,6 +4050,12 @@ export function mount(
    * never cleared it left the map dead to the pointer until a story opened.
    * `landed` runs once, on `moveend` or after the safety timeout, whichever
    * comes first: an interrupted flight may never emit `moveend`.
+   *
+   * `map.stop()` comes first because `flyTo` calls it anyway, and it fires
+   * `moveend` synchronously if a flight is under way. That belongs to the old
+   * flight: its `land` runs (a story's checks `openSlug`, so a superseded card
+   * stays shut) and hands `flying` back. Listening before it took the new
+   * flight's `land` too, opening its card at once and leaving `flying` false.
    */
   /** How far below the padded centre a story lands (`flyToStory`). */
   const storyDrop = () => {
@@ -4059,6 +4065,7 @@ export function mount(
   }
 
   const flyCamera = (options: FlyToOptions, landed?: () => void) => {
+    map.stop()
     flying = true
     let done = false
     const land = () => {
@@ -5353,7 +5360,8 @@ export function mount(
    * an empty world.
    */
   const loadArchive = async () => {
-    if (archiveState !== 'idle') return
+    // `loadCore` asks again when it lands: it replaces `points` outright.
+    if (archiveState !== 'idle' || !coreLoaded) return
     archiveState = 'loading'
     const data = await json<{ window: { start: number }; points: MapPoint[] }>(
       '/api/map-archive.json',
@@ -5380,12 +5388,26 @@ export function mount(
     refresh()
   }
 
-  const loadCore = async () => {
+  /**
+   * The one load that builds the scrubber and opens a shared link, so a failure
+   * here has to stay recoverable: `refreshStories` runs it again until it has
+   * landed. Says whether it did.
+   */
+  const loadCore = async (revalidate = false): Promise<boolean> => {
     const data = await json<{ window: { start: number; end: number }; points: MapPoint[] }>(
       '/api/map.json',
       abort.signal,
+      revalidate,
     )
-    if (!data || !mounted) return
+    if (!mounted) return false
+    if (!data) {
+      // Or the empty rail blames the reader's filters for a failed fetch.
+      feed.setLoadFailed(true)
+      feed.setRefreshState('error')
+      refresh()
+      return false
+    }
+    feed.setLoadFailed(false)
     points = data.points
     pointBySlug = new Map(points.map((p) => [p.slug, p]))
     // Resolved once per payload, not per frame: which place a story belongs to
@@ -5411,6 +5433,18 @@ export function mount(
     refresh()
     coreLoaded = true
     openSharedStory()
+    if (rangeHours > BUILD_WINDOW_HOURS) void loadArchive()
+    return true
+  }
+
+  /** Shared, so a press during a load waits on it instead of building a second
+   *  scrubber. */
+  let coreLoad: Promise<boolean> | null = null
+  const startCore = (revalidate = false) => {
+    coreLoad ??= loadCore(revalidate).finally(() => {
+      coreLoad = null
+    })
+    return coreLoad
   }
 
   /**
@@ -5641,6 +5675,10 @@ export function mount(
     refreshing = true
     feed.setRefreshState('busy')
     try {
+      if (!coreLoaded) {
+        if (await startCore(true)) feed.setRefreshState(points.length)
+        return
+      }
       const data = await json<{ window: { start: number; end: number }; points: MapPoint[] }>(
         '/api/map.json',
         abort.signal,
@@ -5678,10 +5716,12 @@ export function mount(
       // first paint would drift out of step with the header over a long visit.
       const end = liveEdge(data.window.end)
       corpusStart = Math.min(corpusStart || data.window.start, data.window.start)
+      const endMoved = end !== windowEnd
       windowEnd = end
+      // After `windowEnd`, which it reads.
       const start = railStart()
 
-      if (timeline && (start !== windowStart || end !== windowEnd)) {
+      if (timeline && (start !== windowStart || endMoved)) {
         rebuildTimeline(start, end)
       } else {
         timeline?.setPoints(points)
@@ -5875,10 +5915,14 @@ export function mount(
     }
   }
 
+  /** The latest pick wins: arrowing through the select races its responses. */
+  let metricSeq = 0
+
   /** Fetches a metric and paints it. Leaves the land alone if it can't. */
   const loadMetric = async (key: string) => {
+    const seq = ++metricSeq
     const data = await json<MetricPayload>(`/api/metric/${key}.json`, abort.signal)
-    if (!mounted) return
+    if (!mounted || seq !== metricSeq) return
     if (!data) {
       // The select has already moved to the metric the reader picked. Putting
       // it back is the honest answer to a fetch that failed: a picker naming
@@ -6285,7 +6329,7 @@ export function mount(
   ]
   container.append(...seams.map((s) => s.element))
 
-  void loadCore()
+  void startCore()
 
   const onKeyDown = (e: KeyboardEvent) => {
     // `e.target` is only an Element when something focusable has focus — a key

@@ -397,9 +397,9 @@ export const buildEntityPages = async ({
       : ''
 
     const html = template
-      .replaceAll('{{shareRow}}', shareRowHtml(`/e/${ind.id}`, `${ind.label} — zuhd.news`))
-      .replaceAll('{{id}}', escHtml(ind.id))
-      .replaceAll('{{label}}', escHtml(ind.label))
+      .replaceAll('{{shareRow}}', () => shareRowHtml(`/e/${ind.id}`, `${ind.label} — zuhd.news`))
+      .replaceAll('{{id}}', () => escHtml(ind.id))
+      .replaceAll('{{label}}', () => escHtml(ind.label))
       // The standing sentence where there is one. The fallback it replaces —
       // "<label> — <source>. N related articles on zuhd.news." — described the
       // page rather than the subject, so every search result and every share
@@ -412,12 +412,12 @@ export const buildEntityPages = async ({
             `${ind.label} — ${ind.sourceLabel || ind.source}. ${mentions.length} related articles on zuhd.news.`,
         ).slice(0, 300),
       )
-      .replaceAll('{{kind}}', escHtml(record.kind))
-      .replaceAll('{{source}}', escHtml(record.sourceLabel))
-      .replaceAll('{{current}}', escHtml(record.currentFormatted))
-      .replaceAll('{{delta}}', escHtml(record.deltaLabel))
-      .replaceAll('{{deltaTone}}', record.deltaTone)
-      .replaceAll('{{spark}}', chartHtml(chart, record))
+      .replaceAll('{{kind}}', () => escHtml(record.kind))
+      .replaceAll('{{source}}', () => escHtml(record.sourceLabel))
+      .replaceAll('{{current}}', () => escHtml(record.currentFormatted))
+      .replaceAll('{{delta}}', () => escHtml(record.deltaLabel))
+      .replaceAll('{{deltaTone}}', () => record.deltaTone)
+      .replaceAll('{{spark}}', () => chartHtml(chart, record))
       // `</` is the only sequence that can end a script element early, and
       // escaping it is what keeps a label like "S&P 500 </script>" from being
       // a way to write markup into this page. JSON keeps `<` as a `<` on
@@ -433,9 +433,9 @@ export const buildEntityPages = async ({
           caption: record.caption,
         }).replace(/</g, '\\u003c'),
       )
-      .replaceAll('{{standing}}', standingSection)
-      .replaceAll('{{recent}}', recentSection)
-      .replaceAll('{{mentioned}}', mentionedSection)
+      .replaceAll('{{standing}}', () => standingSection)
+      .replaceAll('{{recent}}', () => recentSection)
+      .replaceAll('{{mentioned}}', () => mentionedSection)
       .replaceAll(
         '{{footerStatus}}',
         footerStatusLine({

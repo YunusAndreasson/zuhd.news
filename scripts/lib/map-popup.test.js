@@ -457,3 +457,36 @@ test('a country nothing is counted in, or a hazards file that fails, is a card w
   assert.equal(failed.querySelector('.map-country-facts'), null)
   assert.ok(failed.querySelector('.map-country-metrics'))
 })
+
+test('a source URL that is not a web address is no link', async () => {
+  const card = await openCard(
+    storyOf({ sources: [outlet('good'), outlet('bad', { url: 'javascript:alert(1)' })] }),
+  )
+  const names = [...card.querySelectorAll('.map-popup-source-name')]
+  const named = (text) => names.find((n) => n.textContent === text)
+  assert.equal(named('good').tagName, 'A')
+  assert.equal(named('bad').tagName, 'SPAN')
+})
+
+test('a story still loading does not land on the preview of the next one pressed', async () => {
+  await openCard(storyOf({}))
+  const popup = globalThis.__popup
+  let answer = () => {}
+  globalThis.fetch = /** @type {typeof fetch} */ (
+    /** @type {unknown} */ (
+      (url) =>
+        String(url).includes('slow')
+          ? new Promise((resolve) => {
+              answer = () => resolve({ ok: true, json: async () => storyOf({ title: 'Slow' }) })
+            })
+          : Promise.resolve({ ok: false, json: async () => ({}) })
+    )
+  )
+  const opening = popup.open({ ...point, slug: 'slow', title: 'Slow' }, Date.now())
+  popup.preview({ ...point, slug: 'next', title: 'Next' }, {}, Date.now())
+  answer()
+  await opening
+  await settle()
+  assert.match(globalThis.__card.textContent, /Next/)
+  assert.doesNotMatch(globalThis.__card.textContent, /Slow/)
+})

@@ -4,12 +4,12 @@
 <head>
   {{headCommon}}
   <title>zuhd.news — {{pageName}}</title>
-  <meta name="description" content="Global news, no noise. Concise world news from 40 sources, curated by AI.">
+  <meta name="description" content="{{description}}">
   <link rel="canonical" href="https://zuhd.news/{{pageName}}">
   <meta property="og:type" content="website">
   <meta property="og:site_name" content="zuhd.news">
   <meta property="og:title" content="zuhd.news — {{pageName}}">
-  <meta property="og:description" content="Global news, no noise. Concise world news from 40 sources, curated by AI.">
+  <meta property="og:description" content="{{description}}">
   <meta property="og:url" content="https://zuhd.news/{{pageName}}">
   <meta property="og:image" content="https://zuhd.news/og-image.png?v=3">
   <meta property="og:image:type" content="image/png">
@@ -24,7 +24,7 @@
 <body class="doc-page">
   {{archetypeHeader}}
 
-  <main>
+  <main id="content">
     <article class="doc-panel">
       <h1 class="page-title">{{pageName}}</h1>
       <div class="about-body">

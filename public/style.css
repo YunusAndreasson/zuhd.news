@@ -36,12 +36,14 @@
    below let the wordmark morph in place across pages.
    Browsers without support (e.g. Firefox today) silently fall back to
    instant navigation. */
-@view-transition { navigation: auto; }
+@media (prefers-reduced-motion: no-preference) {
+  @view-transition { navigation: auto; }
 
-::view-transition-old(root),
-::view-transition-new(root) {
-  animation-duration: 220ms;
-  animation-timing-function: cubic-bezier(0.2, 0.7, 0.2, 1);
+  ::view-transition-old(root),
+  ::view-transition-new(root) {
+    animation-duration: 220ms;
+    animation-timing-function: cubic-bezier(0.2, 0.7, 0.2, 1);
+  }
 }
 
 /* --- Modern keyword animation ---
@@ -762,6 +764,19 @@ footer {
   cursor: pointer;
   text-decoration: none;
   transition: color var(--dur-fast) ease;
+
+  /* And 24px across, which "X" at 7px wide was not. A hit area rather than a
+     min-width, so the row's spacing stays where it is. */
+  position: relative;
+
+  &::after {
+    content: "";
+    position: absolute;
+    inset-block: 0;
+    left: 50%;
+    width: max(100%, 24px);
+    transform: translateX(-50%);
+  }
 
   &:hover {
     color: var(--text);
@@ -1853,7 +1868,13 @@ body.archetype-page-body {
 .country-link:focus-visible {
   border-bottom-color: var(--accent);
   border-bottom-style: solid;
-  outline: none;
+}
+
+/* Hover's change of underline is 1.3:1 at best, which is no way to find the
+   keyboard's place in a paragraph of these. */
+.country-link:focus-visible {
+  outline: 1px solid var(--focus);
+  outline-offset: 2px;
 }
 
 /* --- Country preview sheet ---
@@ -2640,13 +2661,13 @@ body.doc-page {
   z-index: 100;
   padding: 0.4rem 0.75rem;
   font-size: var(--size-xs);
-  color: var(--map-ink);
-  background: var(--map-panel);
-  border: 1px solid var(--map-line-card);
-  border-radius: var(--map-radius);
+  color: var(--map-ink, var(--text));
+  background: var(--map-panel, var(--bg));
+  border: 1px solid var(--map-line-card, var(--rule));
+  border-radius: var(--map-radius, 0);
   transform: translateY(-200%);
 
-  &:focus-visible { transform: none; outline: 2px solid var(--map-focus); outline-offset: 2px; }
+  &:focus-visible { transform: none; outline: 2px solid var(--map-focus, var(--focus)); outline-offset: 2px; }
 }
 .map-feed-list:focus { outline: none; }
 
@@ -3740,6 +3761,17 @@ body.map-page > footer .footer-links {
     color: var(--text-dim);
     text-decoration: none;
     transition: color var(--dur-fast) ease;
+    /* "X" is 7px wide; see `.share-choice`. */
+    position: relative;
+
+    &::after {
+      content: "";
+      position: absolute;
+      inset-block: 0;
+      left: 50%;
+      width: max(100%, 24px);
+      transform: translateX(-50%);
+    }
 
     &:hover {
       color: var(--text);

@@ -36,7 +36,8 @@ export const WORDMARK =
  * The way home is `← Map`: `/` is the map, and this link said `All stories`
  * for the list the homepage used to be.
  */
-export const ARCHETYPE_HEADER = `<header class="article-page-header">
+export const ARCHETYPE_HEADER = `<a class="skip-link" href="#content">Skip to content</a>
+  <header class="article-page-header">
     ${WORDMARK}
     <a href="/" class="article-back-link" aria-label="Back to the map">← Map</a>
   </header>`
@@ -130,7 +131,7 @@ export const siteFooter = (share) => {
       `<a href="${href}" target="_blank" rel="me noopener noreferrer">${label}</a>`,
   ).join('\n        ')
 
-  return `<nav class="footer-links">
+  return `<nav class="footer-links" aria-label="About this site">
       ${docs}
     </nav>
     <nav class="footer-social" aria-label="Follow and download">

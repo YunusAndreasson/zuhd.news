@@ -1,120 +1,92 @@
 {
   "items": {
-    "uk-cpi-2026-10": {
-      "standingFingerprint": "d2de00bd6534466c",
-      "recentFingerprint": "01bae2ba40042f3c",
-      "prompt": "cc42a1f1",
-      "standing": "The Office for National Statistics' monthly measure of how fast UK consumer prices are rising. The Bank of England targets it at 2%, so it moves rate expectations and the pound; the September figure also sets benefit uprating.",
-      "recent": "The Office for National Statistics publishes the September figure for UK consumer price inflation. It settles how fast prices across the UK rose over the year to September.",
-      "citations": [],
-      "generatedAt": "2026-10-18T05:24:32.072Z"
-    },
-    "fomc-2026-10": {
-      "standingFingerprint": "7461ec820c9cf170",
-      "recentFingerprint": "5e990a22bc2d1068",
-      "prompt": "cc42a1f1",
-      "standing": "The Federal Reserve's rate-setting committee, which meets eight times a year to set the overnight rate US banks lend at. Its decisions price dollar borrowing worldwide, from American mortgages to emerging-market debt.",
-      "recent": "Gasoline pushed September inflation to 3.7%, and most Fed officials expect another hike by year-end. Warsh, who calls AI a shock to the economy, has withheld any guidance ahead of this meeting. It also lands while Trump's panel weighs removing Governor Lisa Cook, which puts the committee's own membership in question.",
-      "citations": [
-        "2026-10-16-warsh-fed-ai-shock-imf-bangkok-october-hold",
-        "2026-10-14-us-inflation-3-7-percent-september-gasoline-fed-hike-bets",
-        "2026-10-07-fed-sees-higher-rates-ahead-even-as-borrowing-costs-climb",
-        "2026-10-09-trump-launches-probe-into-federal-reserve-governor-lisa-cook"
-      ],
-      "generatedAt": "2026-10-17T05:25:58.935Z"
-    },
-    "ecb-2026-10": {
-      "standingFingerprint": "644eb225dab9953a",
-      "recentFingerprint": "334d968c89c6671b",
-      "prompt": "cc42a1f1",
-      "standing": "The European Central Bank's Governing Council, which meets eight times a year to set interest rates for the countries sharing the euro. Its deposit rate drives borrowing costs for some 350 million people, and the euro moves with it.",
-      "recent": "With inflation at 3.8% after a September hike, Lagarde argued in Bangkok that the bond selloff is already tightening credit, while Knot wants a mildly hawkish stance. The selloff's cost falls hardest on France, where Moulin says no rescue is needed yet. This meeting weighs whether markets have done enough of the work before December.",
-      "citations": [
-        "2026-10-17-lagarde-bond-selloff-ecb-december-hike-france",
-        "2026-10-08-ecb-officials-took-proporionate-step-with-last-month-s-hike",
-        "2026-10-07-ecb-s-moulin-says-conditions-for-france-intervention-aren-t"
-      ],
-      "generatedAt": "2026-10-18T05:24:37.666Z"
-    },
-    "boj-2026-10": {
-      "standingFingerprint": "b08124a86f654bb7",
-      "recentFingerprint": "f327f7409f38b753",
-      "prompt": "cc42a1f1",
-      "standing": "The Bank of Japan's policy board, which meets eight times a year to set the country's short-term interest rate. Its decisions move the yen and the yield on Japanese government debt, and reach borrowers far beyond Japan.",
-      "recent": "Yen-priced imports cost 24.5% more than a year ago, and Ueda has said he can't tolerate underlying inflation running further over 2%. Three sources say the board is weighing whether to declare that goal reached, and the IMF has urged faster tightening if inflation beats forecast.",
-      "citations": [
-        "2026-10-06-boj-may-signal-underlying-inflation-has-hit-2-goal-sources-s",
-        "2026-10-13-japan-wholesale-inflation-6-8-percent-boj-rate-hike-yen"
-      ],
-      "generatedAt": "2026-10-18T05:24:35.527Z"
-    },
     "boe-2026-11": {
       "standingFingerprint": "498a0992d302cf13",
-      "recentFingerprint": "dc044e457970a7a4",
+      "recentFingerprint": "9d50d129e60c7ccc",
       "prompt": "cc42a1f1",
       "standing": "The Bank of England's Monetary Policy Committee, nine members who vote eight times a year on Bank Rate. Their decision sets the price of UK mortgages and business loans, and sterling and gilt yields move with it.",
-      "recent": "This decision comes after Bank of England officials split in public over how much inflation risk the UK faces, so the vote will show which reading holds on the committee. It settles whether the Bank treats that risk as pressing enough to act on, and that falls on UK borrowers and savers.",
+      "recent": "Inflation and borrowing data have framed the chancellor's Budget challenge, and both bear on this decision: inflation is the figure the committee answers for, and borrowing is what its rate helps price. The vote settles how much of the inflation fight falls to interest rates rather than the Budget.",
       "citations": [],
-      "generatedAt": "2026-10-18T05:24:44.818Z"
+      "generatedAt": "2026-11-02T05:22:43.050Z"
     },
     "fomc-2026-12": {
       "standingFingerprint": "7461ec820c9cf170",
-      "recentFingerprint": "aa98b9d83a5dc822",
+      "recentFingerprint": "eedbefcb06a0e43a",
       "prompt": "cc42a1f1",
       "standing": "The Federal Reserve's rate-setting committee, which meets eight times a year to set the overnight rate US banks lend at. Its decisions price dollar borrowing worldwide, from American mortgages to emerging-market debt.",
-      "recent": "Gasoline lifted September inflation to 3.7%, and Fed officials are split over whether another hike is needed by year-end. Warsh has withheld guidance while calling AI a shock to the economy, and Trump has convened a panel on removing Lisa Cook, one of the governors who votes on the rate.",
+      "recent": "The last hold came despite intensifying inflation, with TD Securities expecting 3 dissents against it, and a Reuters commentary says Warsh's muddled messaging has revived doubts about Fed credibility. This December meeting settles whether a rate hike answers them, with AI financing, which Warsh singled out as vulnerable to Fed policy, among the exposed.",
       "citations": [
-        "2026-10-14-us-inflation-3-7-percent-september-gasoline-fed-hike-bets",
-        "2026-10-07-fed-sees-higher-rates-ahead-even-as-borrowing-costs-climb",
-        "2026-10-16-warsh-fed-ai-shock-imf-bangkok-october-hold",
-        "2026-10-09-trump-launches-probe-into-federal-reserve-governor-lisa-cook"
+        "2026-10-26-fed-expected-hold-rates-before-midterms-warsh",
+        "2026-10-28-fed-holds-rates-warsh-midterms-inflation"
       ],
-      "generatedAt": "2026-10-17T05:26:10.790Z"
+      "generatedAt": "2026-10-31T05:29:07.319Z"
     },
     "g20-2026-miami": {
       "standingFingerprint": "041eb1ecc79e970b",
-      "recentFingerprint": "94684a405d6fff25",
+      "recentFingerprint": "be8865edcad55dfe",
       "prompt": "cc42a1f1",
       "standing": "The annual meeting of leaders of the world's largest economies, hosted by the member holding the rotating presidency. Its members produce about 85% of global output, and its communiqué sets shared lines on trade and debt.",
-      "recent": "The US presidency hosts it after Zelenskyy, fresh from an EU summit overshadowed by a spat with Trump, said he is eyeing a possible meeting with the US and Russia on its sidelines. That brings the war over Ukraine to a table where Russia sits as a member and the host is the government Zelenskyy has just been at odds with.",
-      "citations": [],
-      "generatedAt": "2026-10-18T05:24:47.273Z"
+      "recent": "Europeans refused to stand with Lavrov in Atlanta, costing the foreign ministers their group photo, and Kallas says hosting Putin at the G20 may normalize war crimes. Merz is separately urging Trump to invite South Africa to Miami. The guest list is now the dispute: who the US presidency seats at the table in Miami, and who it leaves out.",
+      "citations": [
+        "2026-10-30-g20-atlanta-group-photo-scrapped-europeans-lavrov"
+      ],
+      "generatedAt": "2026-11-01T05:21:28.833Z"
     },
     "ecb-2026-12": {
       "standingFingerprint": "644eb225dab9953a",
-      "recentFingerprint": "2a7f45e2b2c2edc4",
+      "recentFingerprint": "db9d091e31cbcf61",
       "prompt": "cc42a1f1",
       "standing": "The European Central Bank's Governing Council, which meets eight times a year to set interest rates for the countries sharing the euro. Its deposit rate drives borrowing costs for some 350 million people, and the euro moves with it.",
-      "recent": "Lagarde argued in Bangkok that the bond selloff is already tightening euro-zone credit, doing part of the ECB's work with inflation at 3.8%. Knot wants a mildly hawkish stance. The meeting weighs how much more tightening France can carry: Moulin says it needs no ECB help yet, and Draghi sees a high bar for the crisis tool.",
+      "recent": "Christine Lagarde leaves on 7 February 2027, and the Governing Council she chairs is already arguing in public over a hike, with Panetta saying more increases may be needed. An energy shock from the Iran war is raising prices as growth weakens; this decision settles how hard the bank leans against it, with France's debt exposed.",
       "citations": [
-        "2026-10-17-lagarde-bond-selloff-ecb-december-hike-france",
-        "2026-10-08-ecb-officials-took-proporionate-step-with-last-month-s-hike",
-        "2026-10-07-ecb-s-moulin-says-conditions-for-france-intervention-aren-t"
+        "2026-10-30-ecb-rate-hike-debate-panetta-italy-inflation",
+        "2026-10-29-lagarde-quits-ecb-february-rates-held-energy",
+        "2026-10-29-ecb-holds-rates-france-bonds-energy-euro"
       ],
-      "generatedAt": "2026-10-18T05:24:51.221Z"
+      "generatedAt": "2026-10-31T05:29:20.164Z"
     },
     "boe-2026-12": {
       "standingFingerprint": "498a0992d302cf13",
-      "recentFingerprint": "707968a9c81228ba",
+      "recentFingerprint": "65a5c59b44293932",
       "prompt": "cc42a1f1",
       "standing": "The Bank of England's Monetary Policy Committee, nine members who vote eight times a year on Bank Rate. Their decision sets the price of UK mortgages and business loans, and sterling and gilt yields move with it.",
-      "recent": "Bank of England officials have split in public over how large the inflation risk facing the UK is. This decision is where that argument turns into votes, and it settles which reading of the risk the Bank carries into the new year.",
+      "recent": "Inflation and borrowing data have already framed the chancellor's Budget challenge, which puts this decision where price pressure meets public debt. The committee settles how it answers that inflation, and with it what households and the government pay to borrow.",
       "citations": [],
-      "generatedAt": "2026-10-18T05:24:55.412Z"
+      "generatedAt": "2026-10-31T05:29:19.685Z"
     },
     "boj-2026-12": {
       "standingFingerprint": "b08124a86f654bb7",
-      "recentFingerprint": "aa27058f40dcb514",
+      "recentFingerprint": "1adacc318607afe4",
       "prompt": "cc42a1f1",
       "standing": "The Bank of Japan's policy board, which meets eight times a year to set the country's short-term interest rate. Its decisions move the yen and the yield on Japanese government debt, and reach borrowers far beyond Japan.",
-      "recent": "Yen-priced imports cost 24.5% more than a year ago, and three sources say the Bank of Japan may declare that underlying inflation has reached its 2% goal. Ueda has said he can't tolerate it running further over 2%, and the IMF says the BOJ may need to tighten faster if inflation beats forecast.",
+      "recent": "Foreign issuers sold a record $16 billion of yen bonds in April to September as AI hyperscalers' fundraising reached Japan, putting Japanese investors' money behind a build-out elsewhere. This meeting sets Japan's side of the interest-rate gap that trade rests on, while the question at home is whether wages are now driving inflation.",
       "citations": [
-        "2026-10-06-boj-may-signal-underlying-inflation-has-hit-2-goal-sources-s",
-        "2026-10-13-japan-wholesale-inflation-6-8-percent-boj-rate-hike-yen"
+        "2026-10-31-yen-bond-foreign-issuers-record-16bn-ai-funding-japan",
+        "2026-10-21-japan-wage-driven-inflation-katayama-consumption-tax-yen"
       ],
-      "generatedAt": "2026-10-18T05:24:59.039Z"
+      "generatedAt": "2026-11-01T05:21:30.565Z"
+    },
+    "fred-us-jobs-report-2026-11-06": {
+      "standingFingerprint": "76dd59465c94d59d",
+      "recentFingerprint": "a973988cc7fa897f",
+      "prompt": "cc42a1f1",
+      "standing": "The Bureau of Labor Statistics' monthly employment report, released on the first Friday of most months, counting jobs added, the unemployment rate and wage growth. Treasury yields, the dollar and Fed rate bets reprice within minutes.",
+      "recent": "This US jobs report settles how many jobs employers added in the latest month and where the unemployment rate stands, along with revisions to the two months before it.",
+      "citations": [],
+      "generatedAt": "2026-10-30T05:23:53.600Z"
+    },
+    "fred-us-cpi-2026-11-10": {
+      "standingFingerprint": "64727509ea55676d",
+      "recentFingerprint": "a82f0f65f2ee3e3c",
+      "prompt": "cc42a1f1",
+      "standing": "The Bureau of Labor Statistics' monthly count of what US households pay for a basket of goods and services. It drives Social Security's yearly raise and inflation-linked Treasury payouts, and bond markets reprice on it within minutes.",
+      "recent": "The Fed held rates despite intensifying inflation, and a Reuters commentary says Warsh's muddled messaging has revived doubts about its credibility. With a December hike now the live question, this release tests that hold against fresh US price data: whether energy-led inflation has stayed in fuel or spread into what households pay.",
+      "citations": [
+        "2026-10-28-fed-holds-rates-warsh-midterms-inflation"
+      ],
+      "generatedAt": "2026-10-31T05:29:09.601Z"
     }
   },
-  "generatedAt": "2026-10-18T05:24:59.041Z",
+  "generatedAt": "2026-11-02T05:22:43.051Z",
   "windowDays": 14
 }

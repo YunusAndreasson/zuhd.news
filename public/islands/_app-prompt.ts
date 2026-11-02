@@ -8,7 +8,7 @@
 // the privacy claim on /privacy says we do not keep — the app-open beacon was
 // removed for the same reason. So the honest version of "get told when
 // something breaks" is the app, which already has push (`functions/api/push.js`
-// sends it, and Expo holds the token, not us).
+// sends it, and a reader who turns it on is told on /privacy that the token is stored).
 //
 // That turns a nag into an answer. The line does not say "download our app",
 // which is a request; it says what the reader gets, which is a reason. And it

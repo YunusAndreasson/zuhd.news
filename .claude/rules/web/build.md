@@ -56,6 +56,17 @@ shared helpers are indexed in `.claude/rules/shared-modules.md`.
 
 ## Templates and bundles
 
+- `loadTemplate` puts the `<style>` last in the head, so the title and the
+  preloads are not parsed behind it. Every page but the map gets `pageCss`:
+  the sheet without rules that need a `.map-*` class. A `.map-*` class an island
+  uses off the map goes in `KEPT_MAP_CLASSES` (`lib/page-css.js`), and
+  `page-css.test.js` fails until it does.
+- The build prints dates. `island-loader.js` turns `time[data-ago]` and
+  `time[data-day]` into "3h ago" and "Today", which a build would freeze.
+- No inline script: the CSP is `script-src 'self' 'inline-speculation-rules'`, in
+  `_headers` and in `functions/s/[slug].js`. New page script is an island or a
+  file.
+
 - `loadTemplate` (`build.js`) fills the shared placeholders once. A page
   builder takes the resolved template as an argument and never reads
   `templates/` itself: an unfilled `{{name}}` ships as literal text.

@@ -41,8 +41,9 @@ const SECURITY_HEADERS = {
   'X-Frame-Options': 'DENY',
   'Referrer-Policy': 'strict-origin-when-cross-origin',
   'Permissions-Policy': 'camera=(), microphone=(), geolocation=()',
+  'Strict-Transport-Security': 'max-age=15552000',
   'Content-Security-Policy':
-    "default-src 'none'; script-src 'self' 'unsafe-inline'; worker-src 'self' blob:; " +
+    "default-src 'none'; script-src 'self' 'inline-speculation-rules'; manifest-src 'self'; worker-src 'self' blob:; " +
     "child-src 'self' blob:; style-src 'self' 'unsafe-inline'; font-src 'self'; " +
     "connect-src 'self'; img-src 'self' data: blob:; media-src 'self'; base-uri 'self'; " +
     "form-action 'none'; frame-ancestors 'none'",
@@ -83,6 +84,16 @@ const escapeAttr = (s) =>
     .replace(/</g, '&lt;')
     .replace(/>/g, '&gt;')
     .replace(/"/g, '&quot;')
+
+// What the tags name, whichever host and query this request came in on: a visit
+// on `pages.dev` must not declare `pages.dev` canonical.
+const SITE = 'https://zuhd.news'
+
+// A link checker or preview client asking HEAD got a 404 for a live story.
+export async function onRequestHead(context) {
+  const res = await onRequestGet(context)
+  return new Response(null, res)
+}
 
 export async function onRequestGet(context) {
   const { params, request } = context
@@ -132,14 +143,14 @@ export async function onRequestGet(context) {
       element(el) { if (title) el.setInnerContent(title) },
     })
     .on('link[rel="canonical"]', {
-      element(el) { el.setAttribute('href', articleUrl.href) },
+      element(el) { el.setAttribute('href', `${SITE}/a/${slug}`) },
     })
     .on('meta', {
       element(el) {
         const key = el.getAttribute('property') ?? el.getAttribute('name')
         if (!key) return
         // The one tag that describes where the reader actually is.
-        if (key === 'og:url') return el.setAttribute('content', url.href)
+        if (key === 'og:url') return el.setAttribute('content', `${SITE}/s/${slug}`)
         if (key in meta) {
           seen.add(key)
           el.setAttribute('content', meta[key])

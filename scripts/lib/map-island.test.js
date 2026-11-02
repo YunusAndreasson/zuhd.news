@@ -204,7 +204,14 @@ writeFileSync(
       var l = Math.hypot(pe, pn) || 1
       return { x: cx + pe / l * r, y: cy - pn / l * r }
     }
-    flyTo() {}
+    // As MapLibre: flyTo stops what is under way, and stopping a flight fires
+    // moveend synchronously.
+    flyTo() { this.stop(); this.flight = true }
+    stop() {
+      if (!this.flight) return
+      this.flight = false
+      for (const f of [...(this.handlers.moveend || [])]) f({ type: 'moveend' })
+    }
     easeTo() {}
     isStyleLoaded() { return true }
     addControl() {}
@@ -367,7 +374,7 @@ function setupDom() {
   // `Element` is here because the island narrows event targets with
   // `instanceof` — a real document has every one of these and a harness that
   // omits one turns a correct guard into a ReferenceError jsdom swallows.
-  const globals = ['window', 'document', 'Element', 'HTMLElement', 'Event', 'CustomEvent', 'Node']
+  const globals = ['window', 'self', 'document', 'Element', 'HTMLElement', 'Event', 'CustomEvent', 'Node']
   const saved = {}
   for (const k of globals) {
     saved[k] = globalThis[k]
@@ -1418,14 +1425,9 @@ test('the camera has one pose, and the wheel zooms to the planet, never to space
   }
 })
 
-test('a strait row’s flight hands the pointer back when it lands', async () => {
-  // A rail row flies the camera, and `flying` pauses hover for the flight. The
-  // row handlers once set it and never cleared it, so after one press the
-  // globe stopped answering the pointer until a story happened to be opened.
-  globalThis.__zuhdMaps = []
-  const env = setupDom()
+const straitFixture = () => {
   const day = (i) => new Date(Date.now() - (20 - i) * 86_400_000)
-  const strait = {
+  return {
     id: 'hormuz',
     name: 'Strait of Hormuz',
     blurb: 'A strait.',
@@ -1444,6 +1446,15 @@ test('a strait row’s flight hands the pointer back when it lands', async () =>
     },
     asOf: day(20).toISOString().slice(0, 10),
   }
+}
+
+test('a strait row’s flight hands the pointer back when it lands', async () => {
+  // A rail row flies the camera, and `flying` pauses hover for the flight. The
+  // row handlers once set it and never cleared it, so after one press the
+  // globe stopped answering the pointer until a story happened to be opened.
+  globalThis.__zuhdMaps = []
+  const env = setupDom()
+  const strait = straitFixture()
   globalThis.fetch = /** @type {typeof fetch} */ (
     /** @type {unknown} */ (
       async (url) =>
@@ -1489,6 +1500,11 @@ test('a strait row’s flight hands the pointer back when it lands', async () =>
     row.click()
     assert.equal(hover(), false, 'mid-flight, hover waits')
 
+    // A second press stops the first flight, which fires its moveend. That one
+    // must not land the second.
+    row.click()
+    assert.equal(hover(), false, 'a second flight still holds hover')
+
     for (const f of [...(map.handlers.moveend || [])]) f({ type: 'moveend' })
     assert.ok(hover(), 'and once the camera lands the pointer is answered again')
 
@@ -1496,5 +1512,171 @@ test('a strait row’s flight hands the pointer back when it lands', async () =>
   } finally {
     env.restore()
     delete globalThis.__zuhdMaps
+  }
+})
+
+test('Escape on a docked card shuts the card and nothing else', async () => {
+  // Every Escape listener is on `document`, so `stopPropagation` stopped none of
+  // them: with the camera moved, the key shut the card and reset the view too.
+  const env = setupDom()
+  const strait = straitFixture()
+  globalThis.fetch = /** @type {typeof fetch} */ (
+    /** @type {unknown} */ (
+      async (url) =>
+        String(url).includes('/api/chokepoints.json')
+          ? { ok: true, json: async () => ({ chokepoints: [strait] }) }
+          : { ok: false, json: async () => ({}) }
+    )
+  )
+  globalThis.matchMedia = env.window.matchMedia = /** @type {typeof matchMedia} */ (
+    /** @type {unknown} */ (
+      (q) => ({ matches: q.includes('min-width'), addEventListener() {}, removeEventListener() {} })
+    )
+  )
+  try {
+    const { mount } = await import(bundlePath)
+    const teardown = mount(env.host)
+    env.pump()
+    await settle()
+    env.pump()
+    env.window.dispatchEvent(new env.window.Event('resize'))
+    const row = [...env.host.querySelectorAll('button')].find((b) => b.textContent?.includes('Hormuz'))
+    row.click()
+    const card = env.window.document.querySelector('dialog.map-sheet')
+    assert.ok(card.hasAttribute('open') && card.classList.contains('is-docked'), 'a docked card is up')
+    assert.equal(
+      env.window.document.getElementById(card.getAttribute('aria-labelledby'))?.textContent,
+      strait.name,
+      'and it is named by its title',
+    )
+
+    // Registered after the island's, so it hears the key only if the island did.
+    let heard = 0
+    const later = () => heard++
+    env.window.document.addEventListener('keydown', later)
+    const press = () =>
+      env.window.document.body.dispatchEvent(
+        new env.window.KeyboardEvent('keydown', { key: 'Escape', bubbles: true }),
+      )
+    press()
+    assert.equal(card.hasAttribute('open'), false, 'the card shuts')
+    assert.equal(heard, 0, 'and the key stops there')
+    press()
+    assert.equal(heard, 1, 'with no card up it reaches the island again')
+    env.window.document.removeEventListener('keydown', later)
+    teardown()
+  } finally {
+    env.restore()
+  }
+})
+
+test('a failed map.json says so, and Refresh recovers everything it was to build', async () => {
+  // The rail said "No stories in this slice" over a failed fetch, and a later
+  // Refresh filled the list but never built the scrubber or set `coreLoaded`, so
+  // a shared link stayed shut.
+  const env = setupDom()
+  let online = false
+  const now = Date.now()
+  const requests = []
+  globalThis.fetch = /** @type {typeof fetch} */ (
+    /** @type {unknown} */ (
+      async (url, init) => {
+        if (!String(url).includes('/api/map.json')) return { ok: false, json: async () => ({}) }
+        requests.push(init?.cache)
+        if (!online) return { ok: false, json: async () => ({}) }
+        return {
+          ok: true,
+          json: async () => ({
+            window: { start: now - 86_400_000, end: now },
+            points: [{ slug: 's', title: 'A Story', cat: 'politics', loc: 'Somewhere', t: now - 3_600_000, lat: 1, lng: 1, c: 0, n: 1 }],
+          }),
+        }
+      }
+    )
+  )
+  try {
+    const { mount } = await import(bundlePath)
+    const teardown = mount(env.host)
+    env.pump()
+    await settle()
+    env.pump()
+    const empty = () => env.host.querySelector('.map-feed-empty')?.textContent ?? ''
+    const refresh = env.host.querySelector('.map-feed-refresh')
+    const label = () => refresh.querySelector('.map-feed-refresh-label').textContent
+
+    assert.match(empty(), /could not be loaded/)
+    assert.equal(label(), 'Try again')
+    assert.equal(env.host.querySelector('.map-timeline'), null)
+
+    refresh.click()
+    await settle()
+    env.pump()
+    assert.match(empty(), /could not be loaded/, 'a retry that fails says the same')
+    assert.equal(requests.at(-1), 'no-cache', 'and a retry revalidates')
+
+    online = true
+    refresh.click()
+    await settle()
+    env.pump()
+    assert.equal(empty(), '')
+    assert.ok(env.host.querySelector('.map-feed-item'), 'the story is listed')
+    assert.ok(env.host.querySelector('.map-timeline'), 'the scrubber is built')
+    assert.equal(label(), '+1 new')
+    teardown()
+  } finally {
+    env.restore()
+  }
+})
+
+test('the ground select lands on the last metric picked, whatever order the answers come in', async () => {
+  const env = setupDom()
+  const answers = new Map()
+  const metricOf = (key) => ({
+    key,
+    label: key,
+    description: key,
+    source: 'x',
+    sourceUrl: 'https://x.example',
+    ascending: false,
+    scale: 'linear',
+    ends: { low: '0', high: '1' },
+    total: 0,
+    values: {},
+  })
+  globalThis.fetch = /** @type {typeof fetch} */ (
+    /** @type {unknown} */ (
+      (url) => {
+        const m = /\/api\/metric\/(pick-[ab])\.json/.exec(String(url))
+        if (!m) return Promise.resolve({ ok: false, json: async () => ({}) })
+        return new Promise((resolve) => {
+          answers.set(m[1], () => resolve({ ok: true, json: async () => metricOf(m[1]) }))
+        })
+      }
+    )
+  )
+  try {
+    const { mount } = await import(bundlePath)
+    const teardown = mount(env.host)
+    env.pump()
+    await settle()
+    env.pump()
+    const select = env.window.document.querySelector('.map-ground-select')
+    for (const key of ['pick-a', 'pick-b']) {
+      const opt = env.window.document.createElement('option')
+      opt.value = key
+      select.append(opt)
+    }
+    for (const key of ['pick-a', 'pick-b']) {
+      select.value = key
+      select.dispatchEvent(new env.window.Event('change'))
+    }
+    answers.get('pick-b')()
+    await settle()
+    answers.get('pick-a')()
+    await settle()
+    assert.equal(select.value, 'pick-b')
+    teardown()
+  } finally {
+    env.restore()
   }
 })

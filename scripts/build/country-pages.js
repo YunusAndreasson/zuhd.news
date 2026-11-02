@@ -272,13 +272,30 @@ export const buildCountryPages = async ({
 
   // Map datelined articles to their containing country (best-effort).
   // Linking lat/lng → country lets country pages surface real coverage.
+  //
+  // 1:50m first: at 1:110m Gaza is too small to be a polygon, Geneva is in France
+  // and Singapore in Malaysia. 1:110m after it, because 1:50m's coast leaves
+  // Beirut and fourteen US datelines at sea. Keyed by code, since the two
+  // resolutions do not name every country alike; a place repeats, so it is asked
+  // once.
+  const topo50 = JSON.parse(readFileSync(join(ROOT, 'shared', 'data', 'countries-50m.json'), 'utf8'))
+  const countries50 = /** @type {import('geojson').FeatureCollection} */ (/** @type {unknown} */ (feature(topo50, topo50.objects.countries)))
+  const countryAt = new Map()
+  const articleCountry = (lat, lng) => {
+    const key = `${lat},${lng}`
+    if (!countryAt.has(key)) {
+      const name = resolveArticleCountry(geoContains, countries50, lat, lng) ?? resolveArticleCountry(geoContains, countries, lat, lng)
+      countryAt.set(key, name ? (codeFromTopojsonName(name) ?? name) : null)
+    }
+    return countryAt.get(key)
+  }
   const articlesByCountry = {}
   for (const a of sorted) {
     if (a.meta.lat == null || a.meta.lng == null) continue
-    const name = resolveArticleCountry(geoContains, countries, Number(a.meta.lat), Number(a.meta.lng))
-    if (!name) continue
+    const key = articleCountry(Number(a.meta.lat), Number(a.meta.lng))
+    if (!key) continue
     // biome-ignore lint/suspicious/noAssignInExpressions: the (x ??= []) group-by idiom, in statement position. The rule is here for `if (a = b)`.
-    ;(articlesByCountry[name] ??= []).push(a)
+    ;(articlesByCountry[key] ??= []).push(a)
   }
 
   // Where each country's share card points its globe, keyed by the same raw
@@ -294,8 +311,6 @@ export const buildCountryPages = async ({
   // What the hazard sources count in each country. Events are placed at 1:50m:
   // at 1:110m Gaza is too small to be a polygon and seventeen of its eighteen
   // events fell in no country at all.
-  const topo50 = JSON.parse(readFileSync(join(ROOT, 'shared', 'data', 'countries-50m.json'), 'utf8'))
-  const countries50 = /** @type {import('geojson').FeatureCollection} */ (/** @type {unknown} */ (feature(topo50, topo50.objects.countries)))
   const hazardsByCountry = countryHazards(hazards, {
     iso2At: (lat, lng) => {
       const name = resolveArticleCountry(geoContains, countries50, lat, lng)
@@ -382,7 +397,7 @@ export const buildCountryPages = async ({
       CHART,
     )
 
-    const recent = articlesByCountry[name] || []
+    const recent = articlesByCountry[iso2 ?? name] || []
     const coverageSection = recent.length
       ? `<section class="country-coverage">
           <h2 class="label section-title">Recent coverage · ${recent.length}</h2>
@@ -433,18 +448,18 @@ export const buildCountryPages = async ({
     }
 
     const html = template
-      .replace(/{{name}}/g, escHtml(label))
-      .replace(/{{description}}/g, escHtml(`${label} country profile: ${metaLine}. ${recent.length} recent articles on zuhd.news.`))
-      .replace(/{{shareRow}}/g, shareRowHtml(`/country/${iso2}`, `${label} — zuhd.news`))
-      .replace(/{{iso2}}/g, iso2)
-      .replace(/{{region}}/g, escHtml((data.region || '').toUpperCase()))
-      .replace(/{{flag}}/g, data.flag || '')
-      .replace(/{{metaLine}}/g, escHtml(metaLine))
-      .replace(/{{hazards}}/g, hazardsSection)
-      .replace(/{{trajectories}}/g, trajectoriesSection)
-      .replace(/{{metricRows}}/g, metricRows)
-      .replace(/{{coverageSection}}/g, coverageSection)
-      .replace(/{{footerStatus}}/g, footerStatusLine({ sources: 'REST Countries · World Bank · OWID' }))
+      .replace(/{{name}}/g, () => escHtml(label))
+      .replace(/{{description}}/g, () => escHtml(`${label} country profile: ${metaLine}. ${recent.length} recent articles on zuhd.news.`))
+      .replace(/{{shareRow}}/g, () => shareRowHtml(`/country/${iso2}`, `${label} — zuhd.news`))
+      .replace(/{{iso2}}/g, () => iso2)
+      .replace(/{{region}}/g, () => escHtml((data.region || '').toUpperCase()))
+      .replace(/{{flag}}/g, () => data.flag || '')
+      .replace(/{{metaLine}}/g, () => escHtml(metaLine))
+      .replace(/{{hazards}}/g, () => hazardsSection)
+      .replace(/{{trajectories}}/g, () => trajectoriesSection)
+      .replace(/{{metricRows}}/g, () => metricRows)
+      .replace(/{{coverageSection}}/g, () => coverageSection)
+      .replace(/{{footerStatus}}/g, () => footerStatusLine({ sources: 'REST Countries · World Bank · OWID' }))
 
     writeFileSync(join(distDir, 'country', `${iso2}.html`), html)
 

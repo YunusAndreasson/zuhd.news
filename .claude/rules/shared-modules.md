@@ -16,6 +16,7 @@ prefer a parameter (class names, a link renderer) over a copy, as
 |---|---|
 | `scripts/lib/site-chrome.js` | the footer and the archetype header |
 | `scripts/lib/html.js` | `escHtml`, `escXml`, `smartQuotes` |
+| `scripts/lib/page-css.js` | the stylesheet without the map's rules |
 | `scripts/lib/contrast.js` | WCAG and HSL arithmetic |
 | `scripts/lib/regions.js` | lat/lng to region |
 | `scripts/lib/concurrency.js` | `runWithConcurrency` |
