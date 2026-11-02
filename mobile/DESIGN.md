@@ -7,6 +7,22 @@ non-negotiables (hex, `fontSize`, icons, typeface) in `AGENTS.md`.
 How the screen behaves is in the repo root's `.claude/rules/mobile/`, which
 loads with the files it covers; this document is what things look like.
 
+## Lineage
+
+The rules below are two designers applied to one map screen. When a case is
+not written down, reason from them.
+
+- **Dieter Rams, *less, but better*.** As little design as possible, honest
+  and unobtrusive. A token, a variant or a mark earns its place or goes;
+  nothing decorates.
+- **Don Norman, *The Design of Everyday Things*.** The UI explains itself by
+  looking: a control signals what it does, answers when it is used, and moves
+  the way it maps onto the globe. "Every mark has a row" and "words, not
+  codes" in `AGENTS.md` are his.
+
+When they pull apart, Rams decides what is on screen and Norman decides how
+it is found and used.
+
 ## Voice
 
 - Hierarchy comes from type and whitespace, not from colour.

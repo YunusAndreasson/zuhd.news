@@ -92,8 +92,8 @@ calendar `hijri.md`.
   every later layer is lost. Per-feature terms go in the outputs.
   `map-island.test.js` runs every layer through `validateStyleMin`.
 - `antialias` is on below a device pixel ratio of 2: without it the limb crawls
-  against the sky's circle. At 2 it halved the drag (16 to 35 fps) for no
-  visible edge.
+  against the sky's circle. At 2 and above it is off: it halves the drag's
+  frame rate for no visible edge.
 - `Popup` keeps `locationOccludedOpacity: 0`, and `syncOccludedPointer`
   mirrors it to `pointer-events`: opacity alone leaves an unseen card taking
   clicks.

@@ -109,8 +109,8 @@ stages assume about each other.
   chances. The rule lives in the cut: the selector reads what it is given.
 - A thin cycle widens the cut to hold `MIN_POOL_ITEMS`, never past 24 hours
   (`poolAgeCapMs`): a late pick publishes as an old story.
-- Do not bring backfill back: it filled floors by a noisy feed tag, and a
-  short slot beats one the writer must refuse.
+- No backfill: a floor filled by a feed tag fills it with noise, and a short
+  slot beats one the writer must refuse.
 - An outlet read in another language is a row like any other (`lib/rss-sources.js`): no
   translation step. A title in another script keeps its letters in `fingerprint` and gets a
   hashed slug (`slugify`), or the merge reads every such title as one story.
@@ -136,7 +136,7 @@ stages assume about each other.
   `detail=dataonly` is required, a series older than
   `STALE_DAYS` is dropped, and tags name the bank, never the bare country.
 - Wheat, rice, copper and European gas come from the IMF's own service
-  (`trends-sources/imf.js`): FRED's copy of them stopped at July 2026.
+  (`trends-sources/imf.js`), never FRED's copy, which is not kept current.
 - Oil, US gas, gold and silver are the front-month contract
   (`trends-sources/futures.js`). Each row names a `fallback` series, published
   under its own `source`, `seriesId` and source line. Never a spot series
@@ -227,8 +227,8 @@ stages assume about each other.
   (`pointsMove`), and a contract is offered on its subject, not its country
   (`oddsScore`).
 - The chart desk (`pick-charts.js`, `lib/chart-desk.js`) is the only thing
-  that sets `chart:`, after the entity stage: the writer chose from a word
-  match made before it wrote, and 24 of 55 charts in ten days were one strait.
+  that sets `chart:`, after the entity stage: a word match made before the
+  article is written piles the charts onto one series.
 - `candidatesFor` lists only what the app can draw (`instrumentCardFor`): a
   series with a `standing`, a strait with traffic, a tracked company with a
   quote from this week. A country brings its currency and rate to an economy
@@ -258,7 +258,7 @@ stages assume about each other.
   lose an exchange's newest bar for a night.
 - The list under an exchange or a strait is the stories the entity stage read
   as about it (`venues:`, `onVenueList`, `lib/stock-mentions.js`). **Never**
-  give it a word-match fallback: tags put 40 wrong stories on 42 places.
+  give it a word-match fallback: tags put wrong stories on almost every place.
 - `thermal:` is recorded by the same reading and read by nothing: the thermal
   layer's gate is still `THERMAL_VOCABULARY`, an editorial list.
 

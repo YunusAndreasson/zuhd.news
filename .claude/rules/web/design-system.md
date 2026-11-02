@@ -11,7 +11,7 @@ paths:
 
 One type scale and two palettes, each declared once in `public/style.css`.
 `scripts/lib/colour-system.test.js` holds the colour rules. It runs under
-`npm run verify`, not in CI and not in the build.
+`npm run verify` and in CI (`test:unit`), not in the build.
 
 ## Type
 

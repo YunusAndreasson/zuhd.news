@@ -19,6 +19,10 @@ Run in `mobile/`.
 | `npm run deps:check` / `deps:update` | what Expo would change; the second applies it |
 | `npm run lint` | Biome. Not `@expo/agent-cli lint` from the generated block below: that runs ESLint, which this project does not use |
 
+The scripts in this table take precedence over their `@expo/agent-cli`
+equivalents in the generated block below; use agent-cli for operations no
+script here covers.
+
 ## Non-negotiables
 
 - Vanilla `StyleSheet` + `useTheme()`. No NativeWind, Unistyles, Tamagui or
