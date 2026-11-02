@@ -16,7 +16,6 @@ Each article says:
 Where a story is told from determines who is treated as a person and who as a statistic. People who bear power's consequences are the subject, not the background.
 
 - No ads.
-- No tracking.
 - No investors.
 - No social login.
 - No algorithmic feed.

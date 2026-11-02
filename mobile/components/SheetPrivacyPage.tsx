@@ -1,11 +1,18 @@
-import { useCallback, useEffect, useState } from 'react';
-import { StyleSheet } from 'react-native';
+import { useCallback, useEffect, useState, useSyncExternalStore } from 'react';
+import { Platform, StyleSheet } from 'react-native';
 import { HIT_SLOP, LAYOUT, SPACING } from '../constants/theme';
 import { useTheme } from '../hooks/useTheme';
-import { hapticError, hapticNotification } from '../lib/haptics';
+import { hapticError, hapticNotification, hapticTick } from '../lib/haptics';
+import {
+  getMeasurementAnswer,
+  setMeasurementAnswer,
+  subscribeMeasurement,
+} from '../lib/measurement';
 import { eraseLocalData } from '../lib/wipe';
+import { MenuRow } from './MenuRow';
 import { Pressable, Text } from './primitives';
 import { type InfoSection, SheetInfoPage } from './SheetInfoPage';
+import { Toggle } from './Toggle';
 
 // Every sentence here has to survive someone reading the source. The page
 // previously claimed "No device identifiers, IP addresses, or usage data are
@@ -21,17 +28,23 @@ const SECTIONS: InfoSection[] = [
     // `EAS-Client-ID`, every launch) and the push service (exp.host, only
     // with notifications on) made all three untrue. Named in plain words,
     // not by vendor: a reader has no idea what Expo is.
-    body: 'No accounts. No analytics. No advertising.',
+    body: 'No accounts. No ads in the app. One optional measure of our own advertising, on Android only.',
   },
   {
     heading: 'what the app contacts',
-    body: 'Stories, map data and audio come from one address: zuhd-news.pages.dev. The app also checks for updates when it opens, which sends its version and a random number for this install — nothing about what you read. With notifications on, the service that delivers them is contacted too. No analytics, no ad network, no font, map or image service. Source links open in your browser only when you tap them.',
+    body: 'Stories, map data and audio come from one address: zuhd-news.pages.dev. The app also checks for updates when it opens, which sends its version and a random number for this install — nothing about what you read. With notifications on, the service that delivers them is contacted too. On Android, if you agree to ad measurement, so is Meta. No other analytics or ad network, and no font, map or image service. Source links open in your browser only when you tap them.',
   },
   {
     // Shares its core sentence verbatim with SheetAboutPage's
     // NO_PROFILE_LINE and the store listing. Change it in all three.
     heading: 'what we know about you',
-    body: 'Nothing. There are no accounts. The app sends no identifier when it fetches the news, so the news server cannot tell readers apart, and it keeps no record of what anyone reads.',
+    body: 'There are no accounts. The app sends no identifier when it fetches the news, so the news server cannot tell readers apart, and it keeps no record of what anyone reads.',
+  },
+  {
+    // Named, against the rule for vendors: what a reader agrees to has to say
+    // who receives it. `lib/measurement.ts` is what makes each sentence true.
+    heading: 'ad measurement',
+    body: 'We advertise this app on Facebook and Instagram. On Android, if you say yes, the app tells Meta it was installed and opened and sends your phone’s advertising ID, so we can see which ads bring readers. Meta may combine this with what it already holds about you. The app sends it nothing about what you read. Say no and none of this runs. Its traffic is not in the data figure in Settings. The iPhone app does none of this.',
   },
   {
     heading: 'data used',
@@ -48,9 +61,9 @@ const SECTIONS: InfoSection[] = [
     heading: 'on this device',
     // Every key `wipe.ts` erases, in words: `read-store` keeps which stories,
     // not a count, and the rating prompt keeps a count of swipes. Erase keeps
-    // display settings and the notification choice, so "all of it" is not
-    // said.
-    body: 'Saved stories. Which stories were already here last time, so the new ones can be marked. Which stories you have read. When you last left the app. Your place in a briefing. Which tips you have seen. How many stories you have swiped through, and when the app last asked for a rating, so it asks at most once in three months. Your display settings. A cached copy of the latest stories and map data, so they open without a connection and an unchanged file is not downloaded twice. The last briefing you listened to, once it has downloaded.\n\nNone of it leaves the device. You can erase it below.',
+    // display settings and the notification and measurement choices, so "all
+    // of it" is not said.
+    body: 'Saved stories. Which stories were already here last time, so the new ones can be marked. Which stories you have read. When you last left the app. Your place in a briefing. Which tips you have seen. How many stories you have swiped through, and when the app last asked for a rating, so it asks at most once in three months. Your display settings. Your answer about ad measurement. A cached copy of the latest stories and map data, so they open without a connection and an unchanged file is not downloaded twice. The last briefing you listened to, once it has downloaded.\n\nNone of it leaves the device. You can erase most of it below.',
   },
   {
     // Written to make opting in feel as safe as it actually is, because it
@@ -76,6 +89,26 @@ const SECTIONS: InfoSection[] = [
     body: 'Briefing audio is read by Google’s speech models and hosted on our own infrastructure. Google receives the text to read aloud, and the recording back once, to check that no sentence was skipped. It receives nothing about you.',
   },
 ];
+
+/** The way back from the question at first launch. Android only: the iPhone
+ *  build has nothing to measure with. No answer yet reads as off. */
+function MeasurementRow() {
+  const allowed = useSyncExternalStore(subscribeMeasurement, getMeasurementAnswer) === true;
+  return (
+    <MenuRow
+      first
+      title="ad measurement"
+      description="Tell Meta when the app is installed and opened"
+      trailing={<Toggle value={allowed} />}
+      accessibilityRole="switch"
+      accessibilityState={{ checked: allowed }}
+      onPress={() => {
+        hapticTick();
+        setMeasurementAnswer(!allowed);
+      }}
+    />
+  );
+}
 
 /**
  * Erase control for the privacy page. Two taps, not a native Alert: the app
@@ -122,7 +155,7 @@ function EraseControl({ onDone }: { onDone?: (message: string) => void }) {
       <Text selectable variant="body">
         Removes your saved stories, which stories you have read, your place in a briefing and its
         audio, the tips you have seen, the rating count, and the cached stories and map data.
-        Display settings and your notification choice stay.
+        Display settings and your notification and ad measurement choices stay.
       </Text>
       <Pressable
         onPress={handlePress}
@@ -143,7 +176,17 @@ function EraseControl({ onDone }: { onDone?: (message: string) => void }) {
 /** The privacy page: what the app contacts and keeps, and the control that
  *  erases what it keeps. */
 export function SheetPrivacyPage({ onToast }: { onToast?: (message: string) => void }) {
-  return <SheetInfoPage sections={SECTIONS} footer={<EraseControl onDone={onToast} />} />;
+  return (
+    <SheetInfoPage
+      sections={SECTIONS}
+      footer={
+        <>
+          {Platform.OS === 'android' && <MeasurementRow />}
+          <EraseControl onDone={onToast} />
+        </>
+      }
+    />
+  );
 }
 
 const styles = StyleSheet.create({

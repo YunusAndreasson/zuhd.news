@@ -13,6 +13,7 @@ import { RUNTIME_FONTS } from '../constants/fonts';
 import { ANIMATION, DARK_COLORS } from '../constants/theme';
 import { ThemeProvider, useTheme } from '../hooks/useTheme';
 import { registerBackgroundTask } from '../lib/background-fetch';
+import { startMeasurement } from '../lib/measurement';
 import { clearLegacyScheduledNotifications, setupNotificationChannels } from '../lib/notifications';
 import { PERSIST_BUSTER, PERSIST_MAX_AGE_MS, persister, queryClient } from '../lib/query-client';
 import { dropRetiredFound } from '../lib/read-store';
@@ -56,6 +57,8 @@ export default function RootLayout() {
     void registerBackgroundTask();
     void clearLegacyScheduledNotifications();
     dropRetiredFound();
+    // Only if the reader has said yes (`lib/measurement.ts`).
+    startMeasurement();
     // Set up Android channels at startup so they exist before any push, even
     // if the user grants notification permission later via OS settings.
     void setupNotificationChannels().catch(() => {});

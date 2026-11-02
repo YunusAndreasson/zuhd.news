@@ -2528,7 +2528,7 @@ const staticPages = ['about', 'contact', 'privacy', 'mcp']
 const STATIC_DESCRIPTIONS = {
   about: 'What zuhd.news is, and how an editorial pipeline writes global hard news without the noise.',
   contact: 'How to reach zuhd.news.',
-  privacy: 'What zuhd.news and its app collect: no cookies, no analytics, no tracking, and a push token only if you turn on notifications.',
+  privacy: 'What zuhd.news and its app collect: no cookies or analytics on the site, a push token only if you turn on notifications, and ad measurement on Android only if you agree.',
   mcp: 'Connect an AI assistant to zuhd.news through its MCP server.',
 }
 // Build timestamp as lastmod for non-article pages (lists/indices that change

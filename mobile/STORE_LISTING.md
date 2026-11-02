@@ -28,20 +28,20 @@ Global hard news that barely uses data. Works on slow connections.
      promotional-keyword filter that rejected "no ads, no tracking".) -->
 
 ## Full Description
-A day's news costs about 15 KB. It works on slow and unreliable connections.
+A day's stories are about 20 KB. It works on slow and unreliable connections.
 
 Global hard news — politics, economy, science, technology — from sources across six continents, updated five times daily. Each article says what happened, why it matters, and what comes next. Then it stops.
 
 Where a story is told from determines who counts as a person and who becomes a number. Every article cites its sources, shows how each one framed the story, and links to the original reporting.
 
-There are no accounts. The app sends no identifier when it fetches the news, so we have no way to tell readers apart.
+There are no accounts. The app sends no identifier when it fetches the news, so the news server cannot tell readers apart.
 
 Features:
 • Smart Brevity format: lead, context, details, what's next
 • Every article links out to the sources it was written from
 • Daily audio briefings, downloaded only when you press listen
-• One server. No analytics, ad networks, or third-party SDKs
-• No ads. No tracking.
+• No ads
+• No analytics. On Android, you are asked once whether we may measure our own advertising through Meta
 
 Settings shows how much data the app has used since you opened it. The same page erases everything stored on your device.
 
@@ -58,12 +58,12 @@ Zuhd — the discipline of doing without what you do not need.
      defend itself to the reader.
 
      Claim discipline: every line above is checkable against the app.
-     - "about 15 KB a day" — /api/feed-lite.json, gzipped, one editorial cycle.
-     - "one server" — the app contacts zuhd-news.pages.dev and nothing else
-       automatically; the attribution links on the About page open in the
-       browser only when tapped.
-     - "no tracking" — no SDKs, no analytics, no beacon (the Pages middleware
-       that logged country+path per app-open was removed 2026-07-25).
+     - "about 20 KB" — /api/feed-lite.json, gzipped, one editorial cycle. The
+       map's layers are about 100 KB more the first time (the privacy page).
+     - "cannot tell readers apart" — the news server only. The update check and
+       the push service carry an install's number, and the privacy page says so.
+     - "no tracking" is not said: on Android a reader can allow Meta's SDK
+       (`lib/measurement.ts`). Off until they say yes, and absent from iOS.
      Do NOT restore "No data collected" as an absolute: turning notifications
      on stores an anonymous push token server-side (90-day TTL, broadcast to
      all, nothing attached). That's disclosed on the in-app privacy page and
@@ -72,7 +72,7 @@ Zuhd — the discipline of doing without what you do not need.
      the Data Safety form declares an identifier is a direct contradiction, on
      the one feature we most want people to opt into.
 
-     "We have no way to tell readers apart" is not a hedge against that — it
+     "Cannot tell readers apart" is not a hedge against that — it
      is the stronger line. "No data collected" is a promise, and every app
      makes it. This is a statement about capability: no accounts, no
      identifier sent with content requests, and push delivered as one
@@ -86,7 +86,8 @@ Zuhd — the discipline of doing without what you do not need.
 Keep these in sync with `mobile/components/MenuSheet.tsx` → INFO_PAGES.privacy.
 
 ### Apple — App Privacy
-- Tracking: **No**. The app does not track; `app.json` declares
+- Tracking: **No**. The iOS build leaves Meta's SDK out
+  (`expo.autolinking.ios.exclude`). `app.json` declares
   `ios.privacyManifests.NSPrivacyTracking: false` with no tracking domains.
 - Data collected: **Identifiers → Device ID**, linked to the user: **No**,
   used for tracking: **No**, purpose: **App Functionality**. This is the push
@@ -101,10 +102,15 @@ Keep these in sync with `mobile/components/MenuSheet.tsx` → INFO_PAGES.privacy
 - Encrypted in transit: yes. User can request deletion: yes — switching
   notifications off deletes the token, and the privacy page's erase control
   clears everything held on the device.
+- Device or other IDs, and App activity → App interactions: **shared with
+  Meta**, optional, purpose Advertising or marketing. This is ad measurement,
+  and only where the reader said yes. Collected through Meta's SDK.
+- App content → Advertising ID: **Yes**, for Advertising or marketing. Play
+  rejects an upload carrying `AD_ID` until this is declared.
 - Everything else: not collected.
 
 ## Keywords (App Store, 100 chars)
-news,world,global,politics,economy,science,tech,briefing,minimal,privacy
+news,world,global,politics,economy,science,tech,briefing,minimal,low data
 
 ## Category
 News (primary)

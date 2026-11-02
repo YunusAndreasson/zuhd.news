@@ -21,7 +21,7 @@ import { resetReviewState } from './store-review';
  * rather than merely stated: they can empty it and watch the app start over.
  *
  * Deliberately NOT erased: display preferences (appearance, text size,
- * haptics) and the notification setting. Those are the reader's choices about
+ * haptics) and the notification and measurement answers. Those are the reader's choices about
  * how the app should look and behave, not a record of what they read — and
  * silently resetting someone's text size is a hostile way to honour a privacy
  * request. The copy on the erase control says so.

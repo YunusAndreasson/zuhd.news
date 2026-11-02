@@ -1,0 +1,34 @@
+diff --git a/node_modules/react-native-fbsdk-next/android/src/main/java/com/facebook/reactnative/androidsdk/FBSettingsModule.java b/node_modules/react-native-fbsdk-next/android/src/main/java/com/facebook/reactnative/androidsdk/FBSettingsModule.java
+index dc37b2f..79b14b2 100644
+--- a/node_modules/react-native-fbsdk-next/android/src/main/java/com/facebook/reactnative/androidsdk/FBSettingsModule.java
++++ b/node_modules/react-native-fbsdk-next/android/src/main/java/com/facebook/reactnative/androidsdk/FBSettingsModule.java
+@@ -8,9 +8,13 @@
+ 
+ package com.facebook.reactnative.androidsdk;
+ 
++import android.app.Application;
++import android.content.Context;
++
+ import androidx.annotation.Nullable;
+ 
+ import com.facebook.FacebookSdk;
++import com.facebook.appevents.AppEventsLogger;
+ import com.facebook.react.bridge.BaseJavaModule;
+ import com.facebook.react.bridge.ReactMethod;
+ import com.facebook.react.bridge.ReadableArray;
+@@ -53,6 +57,15 @@ public class FBSettingsModule extends BaseJavaModule {
+     @ReactMethod
+     public void initializeSDK() {
+         FacebookSdk.fullyInitialize();
++
++        // With auto-init off, the SDK's own activateApp runs at process start, before
++        // this call, so its one-time install report fails, and fails the same way on
++        // every launch. Repeating it here lets the report through. Once one has been
++        // accepted the SDK sends no more.
++        Context context = FacebookSdk.getApplicationContext();
++        if (context instanceof Application) {
++            AppEventsLogger.activateApp((Application) context);
++        }
+     }
+ 
+     /**
