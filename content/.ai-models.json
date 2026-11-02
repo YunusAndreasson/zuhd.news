@@ -1,0 +1,572 @@
+{
+  "generated": "2026-10-03T23:09:02.811Z",
+  "fetched": "2026-10-03T23:09:02.811Z",
+  "source": "Epoch AI",
+  "sourceUrl": "https://epoch.ai/benchmarks",
+  "license": "CC BY 4.0",
+  "models": 270,
+  "frontier": {
+    "score": 167.4,
+    "model": "Claude Opus 5.5",
+    "lab": "Anthropic"
+  },
+  "labs": [
+    {
+      "id": "anthropic",
+      "name": "Anthropic",
+      "iso2": "US",
+      "blurb": "A San Francisco company that makes the Claude models and sells them mostly to businesses and software developers. Amazon and Google are among its largest backers.",
+      "model": "Claude Opus 5.5",
+      "score": 167.4,
+      "low": 164,
+      "high": 172,
+      "asOf": "2026-09-22",
+      "series": {
+        "periods": [
+          "2023-07-11",
+          "2023-08-09",
+          "2024-02-29",
+          "2024-06-20",
+          "2024-10-22",
+          "2025-02-24",
+          "2025-05-22",
+          "2025-08-05",
+          "2025-09-29",
+          "2025-11-24",
+          "2026-02-05",
+          "2026-04-16",
+          "2026-05-28",
+          "2026-06-09",
+          "2026-07-24",
+          "2026-09-01",
+          "2026-09-22"
+        ],
+        "values": [
+          120.1,
+          120.3,
+          126.9,
+          130,
+          133.5,
+          141.2,
+          142.7,
+          144.1,
+          146.8,
+          150.1,
+          155.3,
+          156.4,
+          158.3,
+          162.2,
+          162.9,
+          164.8,
+          167.4
+        ],
+        "models": [
+          "Claude 2",
+          "Claude Instant",
+          "Claude 3 Opus",
+          "Claude 3.5 Sonnet",
+          "Claude 3.5 Sonnet (October 2024)",
+          "Claude 3.7 Sonnet",
+          "Claude Opus 4",
+          "Claude Opus 4.1",
+          "Claude Sonnet 4.5",
+          "Claude Opus 4.5",
+          "Claude Opus 4.6",
+          "Claude Opus 4.7",
+          "Claude Opus 4.8",
+          "Claude Fable 5",
+          "Claude Opus 5",
+          "Claude Fable 5.1",
+          "Claude Opus 5.5"
+        ]
+      },
+      "revenue": {
+        "usd": 65000000000,
+        "asOf": "2026-07-31",
+        "confidence": "Likely"
+      },
+      "valuation": {
+        "usd": 965000000000,
+        "asOf": "2026-05-28",
+        "confidence": "Confident"
+      }
+    },
+    {
+      "id": "openai",
+      "name": "OpenAI",
+      "iso2": "US",
+      "blurb": "The San Francisco company behind ChatGPT, the assistant that brought these models to a mass audience, and the GPT models under it. Microsoft is its largest outside backer.",
+      "model": "GPT-6 Astra",
+      "score": 166.5,
+      "low": 163.1,
+      "high": 171.1,
+      "asOf": "2026-09-03",
+      "series": {
+        "periods": [
+          "2023-03-14",
+          "2024-01-25",
+          "2024-04-09",
+          "2024-05-13",
+          "2024-09-12",
+          "2024-12-17",
+          "2025-04-16",
+          "2025-06-10",
+          "2025-08-07",
+          "2025-10-07",
+          "2025-12-11",
+          "2026-02-05",
+          "2026-03-05",
+          "2026-04-23",
+          "2026-09-03"
+        ],
+        "values": [
+          125.9,
+          126.5,
+          127.3,
+          129,
+          135.8,
+          141.9,
+          146.9,
+          147.4,
+          150,
+          150.3,
+          155.4,
+          156.8,
+          159.1,
+          162.4,
+          166.5
+        ],
+        "models": [
+          "GPT-4 (Mar 2023)",
+          "GPT-4 Turbo (Nov 2023)",
+          "GPT-4 Turbo (Apr 2024)",
+          "GPT-4o (May 2024)",
+          "o1-mini",
+          "o1",
+          "o3",
+          "o3-pro",
+          "GPT-5",
+          "GPT-5 Pro",
+          "GPT-5.2 Pro",
+          "GPT-5.3 Codex",
+          "GPT-5.4 Pro",
+          "GPT-5.5 Pro",
+          "GPT-6 Astra"
+        ]
+      },
+      "revenue": {
+        "usd": 70000000000,
+        "asOf": "2026-09-29",
+        "confidence": "Likely"
+      },
+      "valuation": {
+        "usd": 852000000000,
+        "asOf": "2026-03-31",
+        "confidence": "Confident"
+      }
+    },
+    {
+      "id": "moonshot",
+      "name": "Moonshot",
+      "iso2": "CN",
+      "blurb": "A Beijing startup that makes the Kimi assistant and the models under it, and releases its strongest models for anyone to run.",
+      "model": "Kimi K3",
+      "score": 157.6,
+      "low": 154.9,
+      "high": 160.4,
+      "asOf": "2026-07-16",
+      "series": {
+        "periods": [
+          "2025-07-12",
+          "2025-11-06",
+          "2026-01-27",
+          "2026-04-20",
+          "2026-07-16"
+        ],
+        "values": [
+          140.1,
+          146,
+          148,
+          151.1,
+          157.6
+        ],
+        "models": [
+          "Kimi K2 (Jul 2025)",
+          "Kimi K2 Thinking",
+          "Kimi K2.5",
+          "Kimi K2.6",
+          "Kimi K3"
+        ]
+      },
+      "revenue": {
+        "usd": 1000000000,
+        "asOf": "2026-08-31",
+        "confidence": "Confident"
+      }
+    },
+    {
+      "id": "google-deepmind",
+      "name": "Google DeepMind",
+      "iso2": "US",
+      "blurb": "Google’s AI research arm, run from London, which builds the Gemini models that answer in Google’s search, run on its phones and are sold through its cloud.",
+      "model": "Gemini 3.7 Flash",
+      "score": 157.4,
+      "low": 155.4,
+      "high": 160.1,
+      "asOf": "2026-08-13",
+      "series": {
+        "periods": [
+          "2023-12-13",
+          "2024-05-14",
+          "2024-09-24",
+          "2024-12-11",
+          "2025-01-21",
+          "2025-03-31",
+          "2025-06-05",
+          "2025-11-18",
+          "2026-02-19",
+          "2026-08-13"
+        ],
+        "values": [
+          117.1,
+          126.9,
+          131.7,
+          134.7,
+          135.4,
+          144.2,
+          145.3,
+          153,
+          154.8,
+          157.4
+        ],
+        "models": [
+          "Gemini 1.0 Pro",
+          "Gemini 1.5 Pro (May 2024)",
+          "Gemini 1.5 Pro (Sept 2024)",
+          "Gemini 2.0 Flash (Dec 2024)",
+          "Gemini 2.0 Flash Thinking (Jan 2025)",
+          "Gemini 2.5 Pro (Mar 2025)",
+          "Gemini 2.5 Pro (Jun 2025)",
+          "Gemini 3 Pro",
+          "Gemini 3.1 Pro",
+          "Gemini 3.7 Flash"
+        ]
+      }
+    },
+    {
+      "id": "meta",
+      "name": "Meta",
+      "iso2": "US",
+      "blurb": "The AI arm of the company that owns Facebook, Instagram and WhatsApp. It builds the assistant inside those apps and has released many of its models for anyone to run.",
+      "model": "Muse Spark 1.3",
+      "score": 156.9,
+      "low": 154.7,
+      "high": 159.6,
+      "asOf": "2026-09-02",
+      "series": {
+        "periods": [
+          "2023-02-24",
+          "2023-07-18",
+          "2024-04-18",
+          "2024-07-23",
+          "2025-04-05",
+          "2025-04-06",
+          "2026-04-08",
+          "2026-07-09",
+          "2026-08-05",
+          "2026-09-02"
+        ],
+        "values": [
+          110.2,
+          113.8,
+          122.9,
+          128.8,
+          129.7,
+          132.2,
+          152.1,
+          154.3,
+          155,
+          156.9
+        ],
+        "models": [
+          "LLaMA-65B",
+          "Llama 2-70B",
+          "Llama 3-70B",
+          "Llama 3.1-405B",
+          "Llama 4 Scout",
+          "Llama 4 Maverick",
+          "Muse Spark",
+          "Muse Spark 1.1",
+          "Muse Spark 1.2",
+          "Muse Spark 1.3"
+        ]
+      }
+    },
+    {
+      "id": "alibaba",
+      "name": "Alibaba",
+      "iso2": "CN",
+      "blurb": "The Chinese online-shopping and cloud company. Its Qwen models are released openly in many sizes, and other developers build on them widely.",
+      "model": "Qwen 3.8 Max",
+      "score": 156.6,
+      "low": 154.5,
+      "high": 158.8,
+      "asOf": "2026-08-02",
+      "series": {
+        "periods": [
+          "2023-09-24",
+          "2024-06-07",
+          "2024-09-17",
+          "2024-09-19",
+          "2025-01-25",
+          "2025-03-05",
+          "2025-04-28",
+          "2025-07-25",
+          "2026-02-13",
+          "2026-02-16",
+          "2026-03-31",
+          "2026-04-20",
+          "2026-05-19",
+          "2026-08-02"
+        ],
+        "values": [
+          113.1,
+          125.3,
+          128.5,
+          129,
+          132.5,
+          137.6,
+          139.4,
+          143.8,
+          146.7,
+          146.8,
+          147.6,
+          149.2,
+          153.7,
+          156.6
+        ],
+        "models": [
+          "Qwen-14B",
+          "Qwen2-72B",
+          "Qwen2.5-32B",
+          "Qwen2.5-72B",
+          "Qwen2.5-Max",
+          "QwQ-32B",
+          "Qwen3-235B-A22B",
+          "Qwen3-235B-A22B-Thinking (Jul 2025)",
+          "Qwen3.5 397B-A17B",
+          "Qwen 3.5 Plus (hosted 397B-A17B)",
+          "Qwen 3.6 Plus",
+          "Qwen 3.6 Max (Preview)",
+          "Qwen3.7-Max",
+          "Qwen 3.8 Max"
+        ]
+      }
+    },
+    {
+      "id": "xai",
+      "name": "xAI",
+      "iso2": "US",
+      "blurb": "Elon Musk’s AI company, which makes the Grok models and offers them through the X social network. It builds its own data centres to train them.",
+      "model": "Grok 4.6",
+      "score": 156.6,
+      "low": 154.7,
+      "high": 158.9,
+      "asOf": "2026-08-12",
+      "series": {
+        "periods": [
+          "2024-12-12",
+          "2025-04-09",
+          "2025-06-24",
+          "2025-07-09",
+          "2026-02-17",
+          "2026-07-08",
+          "2026-08-12"
+        ],
+        "values": [
+          130.5,
+          138.3,
+          140.4,
+          146.5,
+          152,
+          154,
+          156.6
+        ],
+        "models": [
+          "Grok-2 (Dec 2024)",
+          "Grok 3",
+          "Grok-3 mini",
+          "Grok 4",
+          "Grok 4.20",
+          "Grok 4.5",
+          "Grok 4.6"
+        ]
+      },
+      "valuation": {
+        "usd": 230000000000,
+        "asOf": "2026-01-06",
+        "confidence": "Likely"
+      }
+    },
+    {
+      "id": "zhipu",
+      "name": "Zhipu",
+      "iso2": "CN",
+      "blurb": "A Beijing company that grew out of Tsinghua University and makes the GLM models, sold mostly to Chinese businesses and state bodies. It also trades as Z.ai.",
+      "model": "GLM-5.3",
+      "score": 155.8,
+      "low": 153.7,
+      "high": 158.3,
+      "asOf": "2026-08-14",
+      "series": {
+        "periods": [
+          "2025-12-22",
+          "2026-02-11",
+          "2026-04-07",
+          "2026-06-16",
+          "2026-08-14"
+        ],
+        "values": [
+          143.5,
+          145.8,
+          149.9,
+          151.8,
+          155.8
+        ],
+        "models": [
+          "GLM-4.7",
+          "GLM-5",
+          "GLM-5.1",
+          "GLM-5.2",
+          "GLM-5.3"
+        ]
+      },
+      "revenue": {
+        "usd": 1600000000,
+        "asOf": "2026-08-31",
+        "confidence": "Confident"
+      },
+      "valuation": {
+        "usd": 39400000000,
+        "asOf": "2026-03-31",
+        "confidence": "Confident"
+      }
+    },
+    {
+      "id": "deepseek",
+      "name": "DeepSeek",
+      "iso2": "CN",
+      "blurb": "A lab in Hangzhou that grew out of a hedge fund. Its openly released models showed that capable systems could be built for a fraction of what the largest US labs spend.",
+      "model": "DeepSeek V4 Pro 0813",
+      "score": 155.4,
+      "low": 153.7,
+      "high": 157.6,
+      "asOf": "2026-08-13",
+      "series": {
+        "periods": [
+          "2023-11-02",
+          "2023-11-29",
+          "2024-05-07",
+          "2024-12-26",
+          "2025-01-20",
+          "2025-05-28",
+          "2025-09-29",
+          "2025-12-01",
+          "2026-04-24",
+          "2026-07-31",
+          "2026-08-13"
+        ],
+        "values": [
+          96.4,
+          110.6,
+          124.8,
+          132.3,
+          139,
+          141.3,
+          145,
+          146.3,
+          149.1,
+          154.5,
+          155.4
+        ],
+        "models": [
+          "DeepSeek Coder 33B",
+          "DeepSeek LLM 67B",
+          "DeepSeek-V2 (MoE-236B, May 2024)",
+          "DeepSeek-V3",
+          "DeepSeek-R1",
+          "DeepSeek-R1 (May 2025)",
+          "DeepSeek-V3.2-Exp",
+          "DeepSeek-V3.2",
+          "DeepSeek-V4-Pro",
+          "DeepSeek V4 Flash 0731",
+          "DeepSeek V4 Pro 0813"
+        ]
+      },
+      "revenue": {
+        "usd": 1000000000,
+        "asOf": "2026-09-24",
+        "confidence": "Likely"
+      },
+      "valuation": {
+        "usd": 50000000000,
+        "asOf": "2026-06-16",
+        "confidence": "Likely"
+      }
+    },
+    {
+      "id": "mistral",
+      "name": "Mistral",
+      "iso2": "FR",
+      "blurb": "A Paris company that builds language models, many released openly, and sells them to European firms and governments that want a supplier outside the United States and China.",
+      "model": "Mistral Medium 3.5",
+      "score": 141.4,
+      "low": 138.4,
+      "high": 143.7,
+      "asOf": "2026-04-28",
+      "series": {
+        "periods": [
+          "2023-09-27",
+          "2023-12-11",
+          "2024-02-26",
+          "2024-04-17",
+          "2024-07-24",
+          "2024-11-18",
+          "2025-05-07",
+          "2026-04-28"
+        ],
+        "values": [
+          112.2,
+          118.5,
+          122,
+          122,
+          127.5,
+          128.5,
+          134.1,
+          141.4
+        ],
+        "models": [
+          "Mistral 7B v0.1",
+          "Mixtral 8x7B",
+          "Mistral Large",
+          "Mixtral 8x22B",
+          "Mistral Large 2 (Jul 2024)",
+          "Mistral Large 2 (Nov 2024)",
+          "Mistral Medium 3",
+          "Mistral Medium 3.5"
+        ]
+      },
+      "revenue": {
+        "usd": 1000000000,
+        "asOf": "2026-09-08",
+        "confidence": "Confident"
+      },
+      "valuation": {
+        "usd": 24000000000,
+        "asOf": "2026-09-15",
+        "confidence": "Confident"
+      }
+    }
+  ],
+  "skipped": []
+}
