@@ -68,6 +68,7 @@
     "expo-updates": "~58.0.17",
     "react": "19.3.0",
     "react-native": "0.88.1",
+    "react-native-fbsdk-next": "13.4.3",
     "react-native-gesture-handler": "~3.3.0",
     "react-native-reanimated": "4.7.1",
     "react-native-safe-area-context": "~5.10.1",
@@ -110,6 +111,11 @@
       "android": {
         "buildFromSource": [
           "expo-ui"
+        ]
+      },
+      "ios": {
+        "exclude": [
+          "react-native-fbsdk-next"
         ]
       }
     }

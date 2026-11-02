@@ -37,22 +37,13 @@ const WHATS = [
 const STANCE =
   'Where a story is told from determines who is treated as a person and who as a statistic. People who bear power\u2019s consequences are the subject, not the background.';
 
-const SUBTRACTIONS = [
-  'No ads.',
-  'No tracking.',
-  'No profile.',
-  'No investors.',
-  'No social login.',
-  'No algorithmic feed.',
-];
+const SUBTRACTIONS = ['No ads.', 'No investors.', 'No social login.', 'No algorithmic feed.'];
 
-// The positive form of the list above, and the strongest true claim the app
-// has: not a promise about what we choose not to do, but a statement about
-// what we are unable to do. No accounts exist, no identifier is sent with a
-// content request, and a push goes out as one broadcast to every registered
-// token — so there is no seam along which readers could be told apart even
-// if someone wanted to. The privacy page and the store listing use the same
-// sentence; if it changes, change it in all three.
+// The strongest true claim the app has: no accounts exist, no identifier is
+// sent with a content request, and a push goes out as one broadcast to every
+// registered token. "No tracking" and "No profile" left the list above with ad
+// measurement, which a reader on Android can allow. The privacy page and the
+// store listing use the same sentence; if it changes, change it in all three.
 //
 // Scoped to the news server since 2026-09-25. It said "we have no way to tell
 // readers apart", but the app's update check sends a random per-install ID to

@@ -31,3 +31,10 @@ read the system transition animation scale as a string and parsed it with
 `toFloat()`, which throws on a value such as `1,0` or one written in
 Arabic-Indic digits: Android crashed at launch. `Settings.Global.getFloat`
 falls back to `1` instead. Drop once a Reanimated release includes #10824.
+
+## `react-native-fbsdk-next+13.4.3.patch`: the install report after consent
+
+With auto-init off, the SDK's `activateApp` runs at process start, before
+`initializeSDK` has made it deliverable, so its one-time install report fails
+the same way on every launch. `initializeSDK` repeats it. Android only: the iOS
+build does not link this package.

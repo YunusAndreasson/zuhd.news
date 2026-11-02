@@ -69,6 +69,9 @@ silently routed to the legacy detector.
   abort the app. Tell JS from a reaction on the value, at the finger's lift, or
   with a JS timer.
 - A native change needs a `runtimeVersion` bump and a store build.
+- `react-native-fbsdk-next` is Android-only and off until the reader says yes
+  (`lib/measurement.ts`). The app logs no event of its own, so nothing it sends
+  can say what anyone read.
 
 ## One screen
 
