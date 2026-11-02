@@ -46,7 +46,9 @@
       "!templates",
       // A favicon has no accessible context to describe; the rule wants a
       // <title> in it and there is nothing true to put there.
-      "!**/*.svg"
+      "!**/*.svg",
+      // Biome 2.6 began formatting and linting these; they stay hand-written.
+      "!**/*.md", "!**/*.yaml", "!**/*.yml"
     ]
   },
 

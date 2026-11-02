@@ -46,8 +46,9 @@ function Wrapper({ children }: { children: React.ReactNode }) {
   );
 }
 
+const useSettings = () => ({ api: usePreferences(), theme: useTheme() });
+
 it('keeps edited preferences when Android recreates the provider in the same runtime', async () => {
-  const useSettings = () => ({ api: usePreferences(), theme: useTheme() });
   let first!: ReturnType<typeof renderHook<ReturnType<typeof useSettings>, unknown>>;
   await act(async () => {
     first = renderHook(useSettings, { wrapper: Wrapper });

@@ -42,7 +42,8 @@
       "lib/**",
       "scripts/**",
       "perf/**",
-      "__tests__/**"
+      "__tests__/**",
+      "!**/*.md"
     ]
   },
   "overrides": [

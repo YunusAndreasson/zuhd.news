@@ -5,7 +5,7 @@ changes native code: a native rebuild is required; a JavaScript-only update
 cannot supply it. When the package moves, rebuild the patch against the new
 version or drop it once upstream carries the fix.
 
-## `@expo+ui+58.0.20.patch`: Android Back inside a bottom sheet
+## `@expo+ui+58.0.26.patch`: Android Back inside a bottom sheet
 
 Adds an optional `onBackPress` to community bottom sheets. The Android adapter
 forwards it to the dialog's Android Back dispatcher and key listener, disabling
