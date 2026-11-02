@@ -1,0 +1,14 @@
+steps:
+  - echo: Open settings & about from the bottom of the menu; Back must return to the
+      same menu position.
+  - tap:
+      text: settings & about
+  - await: { visible: { text: privacy } }
+  - await: { idle: true }
+  - echo: On settings & about; press Back and expect the bottom of the root menu.
+  - tap:
+      text: Back
+  - await: { visible: { text: zuhd.news, role: View } }
+  - await: { idle: true }
+  - assert: { visible: { text: settings & about, role: Button } }
+executionPrerequisite: Android Menu root scrolled to the bottom, with settings & about visible.

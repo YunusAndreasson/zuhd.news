@@ -1,0 +1,33 @@
+steps:
+  - tool: run-sequence
+    args:
+      steps:
+        - tool: gesture-swipe
+          args:
+            fromX: 0.3
+            fromY: 0.35
+            toX: 0.7
+            toY: 0.35
+            durationMs: 600
+        - tool: gesture-swipe
+          args:
+            fromX: 0.7
+            fromY: 0.35
+            toX: 0.3
+            toY: 0.35
+            durationMs: 600
+        - tool: gesture-swipe
+          args:
+            fromX: 0.5
+            fromY: 0.25
+            toX: 0.5
+            toY: 0.55
+            durationMs: 600
+        - tool: gesture-swipe
+          args:
+            fromX: 0.5
+            fromY: 0.55
+            toX: 0.5
+            toY: 0.25
+            durationMs: 600
+executionPrerequisite: Main screen loaded at rest with no modal sheets open

@@ -1,0 +1,54 @@
+{
+  "date": "2026-10-15",
+  "issue": "Previously read stories can appear unread after reopening the app or when newer stories arrive.",
+  "confirmedPaths": [
+    {
+      "path": "Failed debounced write is discarded",
+      "reproduction": "Inject one or more SQLite write failures after marking a story read. The old helper clears its timer before writing and drops the error, so a later background flush does not retry and a fresh store loses the mark.",
+      "fix": "Track unsaved changes independently of the timer; clear the dirty flag only after a successful synchronous save."
+    },
+    {
+      "path": "Failed initial read is treated as an empty history",
+      "reproduction": "Seed earlier progress on disk, fail the launch getItemSync call, mark a new story, then flush. Before the fix, the saved map is overwritten with only the new story.",
+      "fix": "Distinguish unavailable storage from absent/malformed data; restore and merge existing history before persisting. Block writes until the initial read recovers, and retry at subscription, mark, prune and flush."
+    },
+    {
+      "path": "History cap removes a read story still in the current feed",
+      "reproduction": "Mark an old story, declare it live, and add more than 600 newer progress records. Before the fix, the still-live story is evicted and appears unread.",
+      "fix": "Evict old records outside the current feed first; preserve live stories, allowing a soft-cap overflow only if the feed itself exceeds the cap."
+    }
+  ],
+  "redGreenEvidence": {
+    "initialFailureCases": "Six failing assertions across read-store and found-store before the persistence fix.",
+    "capFailureCases": "Two failing assertions across read-store and found-store before live-record protection.",
+    "finalSlugTimeSuiteTests": 24
+  },
+  "nativeFaultProbe": {
+    "explicitEraseStaysEmpty": true,
+    "failedSaveStillOnOldDisk": true,
+    "liveReadSurvivesCap": true,
+    "originalDiskPreserved": true,
+    "retryPersistedBoth": true
+  },
+  "appRestart": {
+    "beforeCount": 38,
+    "afterCount": 38,
+    "missingInMemory": [],
+    "missingOnDisk": [],
+    "temporaryKeyRemoved": true
+  },
+  "validation": {
+    "typecheck": "passed",
+    "lint": "passed",
+    "deprecatedApiScan": "passed",
+    "testSuites": 124,
+    "totalTests": 1313,
+    "tests": "1312 passed in full sandboxed run; one child-process fixture blocked by EPERM passed when rerun outside the sandbox using existing approval.",
+    "ui": "Globe drag flow passed; story 1→2→3→2→1 assertions passed; story expansion and Android-back collapse passed.",
+    "flowRepair": "Extended deck verification accessibility waits from 5 to 15 seconds after a tree-read timeout; assertions unchanged.",
+    "runtime": "No runtime warnings or errors observed after the clean restart and final flows."
+  },
+  "limits": "Confirmed these paths with injected transient storage faults and a controlled history-cap test. This does not establish which path caused the user's prior observation. Marks already overwritten on disk cannot be reconstructed.",
+  "scope": "Read and found stores share the fix. The debounced-write retry also protects other stores using that helper. Existing saved values and keys remain compatible.",
+  "performance": "Healthy loads do not add disk reads to the normal mark/save path. The separately validated bound Skia-method optimization is retained."
+}

@@ -1,0 +1,30 @@
+{
+  "device": "emulator-5556",
+  "date": "2026-10-04",
+  "scope": "Main-page story scrubber and new-arrival notice",
+  "reproduced": {
+    "seek_then_immediate_swipe": {
+      "before": "Starting at story 1, scrub to story 35 then immediately swipe next: landed on story 2. Reproduced twice from different starting indices.",
+      "after": "Shared UI-thread commit updates story position and committed swipe origin at release. Three consecutive end-of-feed sequences passed."
+    },
+    "new_pill": "Previously counted fresh unread stories skipped during ordinary browsing, without an arrival."
+  },
+  "checks": [
+    "20 alternating story swipes and scrubs",
+    "Expanded reader scroll then scrub",
+    "Last story to end card, then scrub to first",
+    "12-step main-news-scrubber flow passed",
+    "6-step delayed-JS held-drag regression passed",
+    "Ordinary browsing in collapsed main page shows no new-arrival pill",
+    "Arrival, acknowledgement, reintroduction, initial feed, older backfill and anchor remap covered by unit/hook tests",
+    "Runtime console: no warnings or errors"
+  ],
+  "limitations": [
+    "Android emulator only",
+    "New-arrival positive path verified with deterministic hook fixtures; no live feed arrival was forced"
+  ],
+  "flows": [
+    ".argent/flows/main-news-scrubber-20261004.yaml",
+    ".argent/flows/scrubber-race-20261004.yaml"
+  ]
+}

@@ -1,0 +1,366 @@
+{
+  "date": "2026-10-15",
+  "focus": "Story swipe landing and persistence",
+  "device": "Android API 35 Pixel x86_64 emulator; Hermes; development build; React Compiler enabled",
+  "baseline": {
+    "flow": ".argent/flows/deck-verified-20261004.yaml",
+    "passedSteps": 12,
+    "reactSession": {
+      "sessionId": "20261015-165456",
+      "cpuProfile": "/tmp/argent-profiler-cwd/react-profiler-20261015-165456_cpu.json",
+      "commits": "/tmp/argent-profiler-cwd/react-profiler-20261015-165456_commits.json"
+    },
+    "reactCommits": 27,
+    "retainedHotCommits": 13,
+    "homeScreenCommitCount": 4,
+    "homeScreenInclusiveCommitMs": 633.2,
+    "storageRunSyncSampledMs": 452.97,
+    "samplingCaveat": "Sampling interval ~11.1 ms, largest stalled sample 239.4 ms. Sampled cost is an investigation lead, not precise operation latency.",
+    "nativeTrace": "/tmp/argent-profiler-cwd/native-profiler-20261015-165422.pftrace",
+    "nativeCaveat": "Emulator native jank includes rendering and scheduling overhead. Combined report did not establish a causal match to storage."
+  },
+  "experiment": {
+    "method": "Dedicated SQLiteStorage database, warmed connection, alternating synchronous and asynchronous writes; same 600-entry timestamp payload (~22 KB); 50 ms between operations; normal user storage untouched.",
+    "bytes": 22091,
+    "stats": {
+      "sync": {
+        "samples": 12,
+        "medianReturnMs": 10.80690050125122,
+        "medianCompletionMs": 10.882026500999928
+      },
+      "async": {
+        "samples": 12,
+        "medianReturnMs": 0.10769749991595745,
+        "medianCompletionMs": 15.821221999824047
+      }
+    },
+    "samples": [
+      {
+        "completedMs": 11.54610899835825,
+        "mode": "sync",
+        "returnedMs": 11.446529000997543
+      },
+      {
+        "completedMs": 18.33736700192094,
+        "mode": "async",
+        "returnedMs": 0.24349500238895416
+      },
+      {
+        "completedMs": 11.480367999523878,
+        "mode": "sync",
+        "returnedMs": 11.288282997906208
+      },
+      {
+        "completedMs": 14.287374000996351,
+        "mode": "async",
+        "returnedMs": 0.12358000129461288
+      },
+      {
+        "completedMs": 3.193706002086401,
+        "mode": "sync",
+        "returnedMs": 3.1616640016436577
+      },
+      {
+        "completedMs": 15.655253000557423,
+        "mode": "async",
+        "returnedMs": 0.08891399949789047
+      },
+      {
+        "completedMs": 10.968146998435259,
+        "mode": "sync",
+        "returnedMs": 10.88484900072217
+      },
+      {
+        "completedMs": 48.45684900134802,
+        "mode": "async",
+        "returnedMs": 0.15998100116848946
+      },
+      {
+        "completedMs": 10.872831001877785,
+        "mode": "sync",
+        "returnedMs": 10.787204001098871
+      },
+      {
+        "completedMs": 15.788746997714043,
+        "mode": "async",
+        "returnedMs": 0.0975320003926754
+      },
+      {
+        "completedMs": 12.554800998419523,
+        "mode": "sync",
+        "returnedMs": 12.487422000616789
+      },
+      {
+        "completedMs": 17.445116002112627,
+        "mode": "async",
+        "returnedMs": 0.13867400214076042
+      },
+      {
+        "completedMs": 10.085076000541449,
+        "mode": "sync",
+        "returnedMs": 10.024998001754284
+      },
+      {
+        "completedMs": 15.853697001934052,
+        "mode": "async",
+        "returnedMs": 0.10448599979281425
+      },
+      {
+        "completedMs": 10.03540899977088,
+        "mode": "sync",
+        "returnedMs": 9.97367399930954
+      },
+      {
+        "completedMs": 16.312392000108957,
+        "mode": "async",
+        "returnedMs": 0.1355160027742386
+      },
+      {
+        "completedMs": 12.511650998145342,
+        "mode": "sync",
+        "returnedMs": 12.447319000959396
+      },
+      {
+        "completedMs": 16.1388549990952,
+        "mode": "async",
+        "returnedMs": 0.09537800028920174
+      },
+      {
+        "completedMs": 8.810770999640226,
+        "mode": "sync",
+        "returnedMs": 8.745705001056194
+      },
+      {
+        "completedMs": 14.813501000404358,
+        "mode": "async",
+        "returnedMs": 0.0937729999423027
+      },
+      {
+        "completedMs": 10.89122200012207,
+        "mode": "sync",
+        "returnedMs": 10.82659700140357
+      },
+      {
+        "completedMs": 14.312189001590014,
+        "mode": "async",
+        "returnedMs": 0.09461800009012222
+      },
+      {
+        "completedMs": 10.026620998978615,
+        "mode": "sync",
+        "returnedMs": 9.967317000031471
+      },
+      {
+        "completedMs": 13.979230999946594,
+        "mode": "async",
+        "returnedMs": 0.11090900003910065
+      }
+    ]
+  },
+  "correctnessProbe": {
+    "method": "Start setItemAsync('probe','old'), immediately setItemSync('probe','{}'), await old write, then read. Repeat eight times on isolated test database.",
+    "values": ["old", "old", "old", "old", "old", "old", "old", "old"],
+    "staleValueRestored": 8
+  },
+  "decision": "Reject a direct synchronous-to-asynchronous replacement. It frees JS sooner but violates the immediate erase invariant: an older pending write restored data in all eight probes. No application source changed.",
+  "nextInvestigation": "Before any WAL rollout, use a SQLite build with the WAL-reset fix, then verify background/foreground writes, immediate erases, persistence across restart, checkpoints, and the same swipe flow.",
+  "limits": "The isolated test measures API return time and completion latency, not swipe FPS. No whole-screen improvement claimed.",
+  "journalExperiment": {
+    "settings": [
+      {
+        "journal": {
+          "journal_mode": "delete"
+        },
+        "synchronous": {
+          "synchronous": 2
+        }
+      },
+      {
+        "journal": {
+          "journal_mode": "wal"
+        },
+        "synchronous": {
+          "synchronous": 2
+        }
+      }
+    ],
+    "stats": {
+      "delete": {
+        "samples": 20,
+        "medianMs": 11.009862998500466
+      },
+      "wal": {
+        "samples": 20,
+        "medianMs": 6.3236634992063046
+      }
+    },
+    "samples": [
+      {
+        "mode": "delete",
+        "ms": 9.967579998075962
+      },
+      {
+        "mode": "wal",
+        "ms": 9.989321000874043
+      },
+      {
+        "mode": "wal",
+        "ms": 5.61174900084734
+      },
+      {
+        "mode": "delete",
+        "ms": 10.017811998724937
+      },
+      {
+        "mode": "delete",
+        "ms": 9.736354000866413
+      },
+      {
+        "mode": "wal",
+        "ms": 6.642064999789
+      },
+      {
+        "mode": "wal",
+        "ms": 23.35283299908042
+      },
+      {
+        "mode": "delete",
+        "ms": 9.846999999135733
+      },
+      {
+        "mode": "delete",
+        "ms": 9.61021700128913
+      },
+      {
+        "mode": "wal",
+        "ms": 7.424517001956701
+      },
+      {
+        "mode": "wal",
+        "ms": 6.361457999795675
+      },
+      {
+        "mode": "delete",
+        "ms": 11.582566998898983
+      },
+      {
+        "mode": "delete",
+        "ms": 12.640521999448538
+      },
+      {
+        "mode": "wal",
+        "ms": 6.364389002323151
+      },
+      {
+        "mode": "wal",
+        "ms": 6.088068999350071
+      },
+      {
+        "mode": "delete",
+        "ms": 11.805358998477459
+      },
+      {
+        "mode": "delete",
+        "ms": 11.829082001000643
+      },
+      {
+        "mode": "wal",
+        "ms": 5.8727299980819225
+      },
+      {
+        "mode": "wal",
+        "ms": 6.520417001098394
+      },
+      {
+        "mode": "delete",
+        "ms": 11.409007001668215
+      },
+      {
+        "mode": "delete",
+        "ms": 10.885397002100945
+      },
+      {
+        "mode": "wal",
+        "ms": 5.973556999117136
+      },
+      {
+        "mode": "wal",
+        "ms": 5.947231002151966
+      },
+      {
+        "mode": "delete",
+        "ms": 10.57005500048399
+      },
+      {
+        "mode": "delete",
+        "ms": 8.96128299832344
+      },
+      {
+        "mode": "wal",
+        "ms": 6.055886998772621
+      },
+      {
+        "mode": "wal",
+        "ms": 6.012730002403259
+      },
+      {
+        "mode": "delete",
+        "ms": 11.095344997942448
+      },
+      {
+        "mode": "delete",
+        "ms": 10.27462299913168
+      },
+      {
+        "mode": "wal",
+        "ms": 5.748877998441458
+      },
+      {
+        "mode": "wal",
+        "ms": 6.285868998616934
+      },
+      {
+        "mode": "delete",
+        "ms": 11.435412000864744
+      },
+      {
+        "mode": "delete",
+        "ms": 11.165837999433279
+      },
+      {
+        "mode": "wal",
+        "ms": 9.25399000197649
+      },
+      {
+        "mode": "wal",
+        "ms": 6.49541299790144
+      },
+      {
+        "mode": "delete",
+        "ms": 10.924380999058485
+      },
+      {
+        "mode": "delete",
+        "ms": 12.342295996844769
+      },
+      {
+        "mode": "wal",
+        "ms": 5.810078997164965
+      },
+      {
+        "mode": "wal",
+        "ms": 6.602803997695446
+      },
+      {
+        "mode": "delete",
+        "ms": 11.75314499810338
+      }
+    ],
+    "runtimeSQLiteVersion": "3.50.3",
+    "vendoredSQLiteVersion": "3.50.3",
+    "decision": "Not enabled in application: current SQLite predates the WAL-reset fix; existing app also has synchronous and asynchronous writers.",
+    "source": "https://www.sqlite.org/wal.html#walreset",
+    "fixedVersions": "3.51.3 and later; backports 3.50.7 and 3.44.6",
+    "durability": "Both modes used synchronous=FULL; automatic checkpoint configuration retained."
+  }
+}

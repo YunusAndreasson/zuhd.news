@@ -1,0 +1,37 @@
+steps:
+  - tap:
+      text: search
+  - await: { idle: true }
+  - tap:
+      text: Search stories
+  - tool: keyboard
+    args:
+      text: Cornell
+  - tool: await-ui-element
+    args:
+      condition: visible
+      selector:
+        text: Cornell Promises Fraternity Review
+        role: Button
+  - await: { idle: true }
+  - tap:
+      text: Back
+      role: Button
+  - tool: await-ui-element
+    args:
+      condition: visible
+      selector:
+        text: zuhd.news
+        role: View
+  - tap:
+      text: search
+  - tool: await-ui-element
+    args:
+      condition: text
+      selector:
+        text: Search stories
+        role: TextField
+      expectedText: search stories…
+      timeoutMs: 10000
+executionPrerequisite: Menu root open at the top, search row visible, query
+  empty, Cornell story in feed.

@@ -1,0 +1,83 @@
+{
+  "date": "2026-10-04",
+  "target": {
+    "platform": "Android",
+    "api": 35,
+    "device": "emulator-5556",
+    "avd": "zuhd-qa",
+    "logicalViewport": "411x914",
+    "app": "news.zuhd.app",
+    "metro": 8081
+  },
+  "scope": "Argent gestures on the story timeline and shared briefing scrubber; inspect rendered UI and React/shared-value state.",
+  "fixes": [
+    {
+      "issue": "Delayed JS commit from an earlier drag moved a newer held playhead back to the earlier story.",
+      "reproduction": "Block JS for 2500 ms; scrub x=.5 to .25 at y=.934, release; immediately drag x=.5 to .75 and hold. Inspect after queued callbacks drain.",
+      "before": {
+        "holding": 1,
+        "fraction": 0.2512498544692562,
+        "preview": "Talon Blue Makes First Flight",
+        "selectedStory": "Trump Defends Ohio Data Centers"
+      },
+      "after": {
+        "holding": 1,
+        "fraction": 0.7683566245626474,
+        "preview": "Talon Blue Makes First Flight",
+        "selectedStory": "Trump Defends Ohio Data Centers"
+      },
+      "change": "Optional useScrub snapTo worklet settles taps and releases on UI. StoryDock JS commit only selects the story; it no longer writes the shared playhead.",
+      "verification": "Recorded race replay asserts held fraction after a 3000 ms drain, then asserts released story equals preview and deck position equals index."
+    },
+    {
+      "issue": "Briefing tooltip rounded to nearest second while elapsed time rounded down.",
+      "before": {
+        "fraction": 0.1746791934281956,
+        "duration": 524,
+        "preview": "1:32",
+        "releasedElapsed": 91
+      },
+      "after": {
+        "fraction": 0.1746791934281956,
+        "duration": 524,
+        "preview": "1:31",
+        "releasedElapsed": 91
+      },
+      "change": "Preview uses Math.floor, matching playback elapsed seconds."
+    }
+  ],
+  "checks": [
+    "First/last story seeks; out-of-track horizontal endpoints clamp.",
+    "Sixteen reversals within one held drag; final preview agrees with selected story.",
+    "Twelve alternating 80 ms seeks with no inter-gesture delay, including expanded story.",
+    "Long held preview, then reverse and release.",
+    "Diagonal drag outside the track after activation; final position clamps.",
+    "Vertical drag rejects without selecting another story.",
+    "Two-finger input completes and clears holding.",
+    "Tap within already-selected story snaps back to its marker.",
+    "Home during held story drag restores committed position.",
+    "Audio playing advances elapsed while held fraction stays fixed.",
+    "Paused audio seeks to both endpoints and rapidly reverses.",
+    "Post-fix audio tooltip and released whole seconds agree.",
+    "Post-fix Home during held paused audio cancels: elapsed stays 91, holding=0, shown=0 after return.",
+    "Post-fix broad flow: 8 passed, 0 failed/errored/skipped; final story and preview agree, holding=0, tooltip settles hidden.",
+    "Post-fix race flow: 6 passed, 0 failed/errored/skipped.",
+    "Runtime log: 2 app-start log entries, no warnings or errors."
+  ],
+  "testEvidence": {
+    "before": "Two new snap/cancellation regressions failed before implementation.",
+    "focused": "3 suites, 8 tests passed.",
+    "full": "npm run verify: typecheck, Biome, deprecated API check, 105 suites / 1060 tests passed.",
+    "diffCheck": "git diff --check passed"
+  },
+  "flows": [
+    ".argent/flows/scrubber-isolated-20261004.yaml",
+    ".argent/flows/scrubber-race-20261004.yaml"
+  ],
+  "limitations": [
+    "Android emulator validation; not an iOS or physical-device performance claim.",
+    "Starting a drag in the Android system Back edge can leave the app. Verified cancellation separately; repeatable in-app flow begins away from that edge.",
+    "Story indices and headlines vary with feed time; regression compares the live preview and selected story."
+  ],
+  "cleanup": "No release, deployment or commit. User-owned Metro preserved."
+}

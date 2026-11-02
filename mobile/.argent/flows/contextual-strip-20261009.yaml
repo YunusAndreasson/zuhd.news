@@ -1,0 +1,84 @@
+steps:
+  - tool: await-screen-idle
+    args:
+      minStableMs: 400
+      timeoutMs: 3000
+  - tool: describe
+  - tap:
+      x: 0.13
+      y: 0.08
+  - tool: await-screen-idle
+    args:
+      minStableMs: 400
+      timeoutMs: 3000
+  - tool: button
+    args:
+      button: back
+  - tool: await-screen-idle
+    args:
+      minStableMs: 400
+      timeoutMs: 3000
+  - tool: gesture-swipe
+    args:
+      fromX: 0.5
+      fromY: 0.4
+      toX: 0.62
+      toY: 0.4
+      durationMs: 700
+      momentum: false
+  - tool: await-screen-idle
+    args:
+      minStableMs: 400
+      timeoutMs: 3000
+  - tool: gesture-swipe
+    args:
+      fromX: 0.65
+      fromY: 0.08
+      toX: 0.15
+      toY: 0.08
+      durationMs: 400
+  - tool: await-screen-idle
+    args:
+      minStableMs: 400
+      timeoutMs: 3000
+  - tool: gesture-pinch
+    args:
+      centerX: 0.5
+      centerY: 0.4
+      startDistance: 0.7
+      endDistance: 0.12
+      durationMs: 700
+  - tool: await-screen-idle
+    args:
+      minStableMs: 400
+      timeoutMs: 3000
+  - tool: describe
+  - tap:
+      x: 0.95
+      y: 0.08
+  - tool: await-screen-idle
+    args:
+      minStableMs: 400
+      timeoutMs: 3000
+  - tool: button
+    args:
+      button: back
+  - tool: await-screen-idle
+    args:
+      minStableMs: 400
+      timeoutMs: 3000
+  - tool: describe
+  - tap:
+      x: 0.25
+      y: 0.95
+  - tool: await-screen-idle
+    args:
+      minStableMs: 400
+      timeoutMs: 3000
+  - tool: describe
+  - tap:
+      x: 0.22
+      y: 0.95
+executionPrerequisite: Android emulator-5554 running news.zuhd.app from Metro
+  8082, story sheet collapsed, Isaias Nears Gulf Coast selected with Oil first in the
+  strip. Coordinates target the 411x914 logical-pixel portrait layout; rediscover if resized.

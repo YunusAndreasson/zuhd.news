@@ -1,0 +1,131 @@
+executionPrerequisite: news.zuhd.app foreground, portrait 411x914, expanded
+  main-page reader, no modal or briefing. Discover story body and scrubber
+  before replay. Track y=.934 and expanded body y=.6.
+steps:
+  - tool: debugger-evaluate
+    args:
+      expression: globalThis.__scrubQAFind=(name)=>{const
+        h=globalThis.__REACT_DEVTOOLS_GLOBAL_HOOK__;for(const id of
+        h.renderers.keys())for(const root of h.getFiberRoots(id)){const
+        q=[root.current];while(q.length){const
+        f=q.pop();if((f.type?.displayName||f.type?.name||f.type?.type?.name)===name)return
+        f;if(f.child)q.push(f.child);if(f.sibling)q.push(f.sibling);}}};globalThis.__scrubQASnapshot=()=>{const
+        p=__scrubQAFind('StoryDock').memoizedProps;const
+        b=__scrubQAFind('ScrubBar').memoizedProps;return
+        {index:p.index,count:p.count,position:p.position.value,title:p.titleAt(p.index),fraction:b.fraction.value,holding:b.scrub.holding.value,shown:b.scrub.shown.value,preview:b.scrub.caption,width:b.scrub.width.value}};JSON.stringify(__scrubQASnapshot())
+  - tool: gesture-swipe
+    args:
+      fromX: 0.5
+      fromY: 0.934
+      toX: 0.001
+      toY: 0.934
+      durationMs: 200
+    delayMs: 500
+  - tool: run-sequence
+    args:
+      steps:
+        - tool: gesture-swipe
+          args:
+            fromX: 0.5
+            fromY: 0.934
+            toX: 0.999
+            toY: 0.934
+            durationMs: 120
+          delayMs: 0
+        - tool: gesture-swipe
+          args:
+            fromX: 0.7
+            fromY: 0.6
+            toX: 0.2
+            toY: 0.6
+            durationMs: 200
+          delayMs: 0
+  - tool: debugger-evaluate
+    delayMs: 2500
+    args:
+      expression: "JSON.stringify((()=>{const
+        s=__scrubQASnapshot();if(s.index!==s.count||s.position!==s.count||s.hol\
+        ding!==0)throw Error('Seek/swipe lost target:
+        '+JSON.stringify(s));return s})())"
+  - tool: gesture-swipe
+    args:
+      fromX: 0.5
+      fromY: 0.934
+      toX: 0.001
+      toY: 0.934
+      durationMs: 200
+    delayMs: 500
+  - tool: run-sequence
+    args:
+      steps:
+        - tool: gesture-swipe
+          args:
+            fromX: 0.5
+            fromY: 0.934
+            toX: 0.999
+            toY: 0.934
+            durationMs: 120
+          delayMs: 0
+        - tool: gesture-swipe
+          args:
+            fromX: 0.7
+            fromY: 0.6
+            toX: 0.2
+            toY: 0.6
+            durationMs: 200
+          delayMs: 0
+  - tool: debugger-evaluate
+    delayMs: 2500
+    args:
+      expression: "JSON.stringify((()=>{const
+        s=__scrubQASnapshot();if(s.index!==s.count||s.position!==s.count||s.hol\
+        ding!==0)throw Error('Seek/swipe lost target:
+        '+JSON.stringify(s));return s})())"
+  - tool: gesture-swipe
+    args:
+      fromX: 0.5
+      fromY: 0.934
+      toX: 0.001
+      toY: 0.934
+      durationMs: 200
+    delayMs: 500
+  - tool: run-sequence
+    args:
+      steps:
+        - tool: gesture-swipe
+          args:
+            fromX: 0.5
+            fromY: 0.934
+            toX: 0.999
+            toY: 0.934
+            durationMs: 120
+          delayMs: 0
+        - tool: gesture-swipe
+          args:
+            fromX: 0.7
+            fromY: 0.6
+            toX: 0.2
+            toY: 0.6
+            durationMs: 200
+          delayMs: 0
+  - tool: debugger-evaluate
+    delayMs: 2500
+    args:
+      expression: "JSON.stringify((()=>{const
+        s=__scrubQASnapshot();if(s.index!==s.count||s.position!==s.count||s.hol\
+        ding!==0)throw Error('Seek/swipe lost target:
+        '+JSON.stringify(s));return s})())"
+  - tool: gesture-swipe
+    args:
+      fromX: 0.5
+      fromY: 0.934
+      toX: 0.001
+      toY: 0.934
+      durationMs: 200
+    delayMs: 0
+  - tool: debugger-evaluate
+    delayMs: 2500
+    args:
+      expression: "JSON.stringify((()=>{const
+        s=__scrubQASnapshot();if(s.index!==0||s.position!==0||s.holding!==0)thr\
+        ow Error('Cannot leave end card: '+JSON.stringify(s));return s})())"

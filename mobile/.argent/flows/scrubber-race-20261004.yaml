@@ -1,0 +1,61 @@
+steps:
+  - tool: debugger-evaluate
+    args:
+      expression: globalThis.__scrubQAFind=(name)=>{const
+        h=globalThis.__REACT_DEVTOOLS_GLOBAL_HOOK__;for(const id of
+        h.renderers.keys())for(const root of h.getFiberRoots(id)){const
+        q=[root.current];while(q.length){const
+        f=q.pop();if((f.type?.displayName||f.type?.name||f.type?.type?.name)===name)return
+        f;if(f.child)q.push(f.child);if(f.sibling)q.push(f.sibling);}}};globalThis.__scrubQASnapshot=()=>{const
+        p=__scrubQAFind('StoryDock').memoizedProps;const
+        b=__scrubQAFind('ScrubBar').memoizedProps;return
+        {index:p.index,count:p.count,position:p.position.value,title:p.titleAt(p.index),fraction:b.fraction.value,holding:b.scrub.holding.value,shown:b.scrub.shown.value,preview:b.scrub.caption,width:b.scrub.width.value}};JSON.stringify(__scrubQASnapshot())
+  - tool: debugger-evaluate
+    args:
+      expression: setTimeout(()=>{const
+        until=Date.now()+2500;while(Date.now()<until){}},100); 'JS stall armed'
+  - tool: run-sequence
+    args:
+      steps:
+        - tool: gesture-swipe
+          args:
+            fromX: 0.5
+            fromY: 0.934
+            toX: 0.25
+            toY: 0.934
+            durationMs: 300
+          delayMs: 0
+        - tool: gesture-custom
+          args:
+            events:
+              - type: Down
+                x: 0.5
+                y: 0.934
+              - type: Move
+                x: 0.75
+                y: 0.934
+                delayMs: 300
+            interpolate: 8
+          delayMs: 0
+  - tool: debugger-evaluate
+    delayMs: 3000
+    args:
+      expression: "JSON.stringify((()=>{const s=__scrubQASnapshot();if(s.holding!==1
+        || Math.abs(s.fraction-0.76836)>0.01)throw Error('Older commit overwrote
+        held playhead: '+JSON.stringify(s));return s})())"
+  - tool: gesture-custom
+    args:
+      events:
+        - type: Up
+          x: 0.75
+          y: 0.934
+  - tool: debugger-evaluate
+    delayMs: 500
+    args:
+      expression: "JSON.stringify((()=>{const
+        s=__scrubQASnapshot();if(s.holding!==0||s.title!==s.preview||s.position\
+        !==s.index)throw Error('Released story differs from preview:
+        '+JSON.stringify(s));return s})())"
+executionPrerequisite: news.zuhd.app foreground on emulator-5556, portrait
+  411x914, no modal or briefing. Track discovered at x .034-.965, y .921-.973.
+  This regression deliberately blocks JS for 2.5 seconds.

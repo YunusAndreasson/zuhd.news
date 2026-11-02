@@ -1,0 +1,13 @@
+steps:
+  - echo: Open stock markets from Menu; expect a list of market readings.
+  - tap:
+      text: stock markets
+  - await: { visible: { text: Filter markets } }
+  - await: { idle: true }
+  - echo: On stock markets; return to the Menu.
+  - tap:
+      text: Back
+  - await: { visible: { text: country rankings } }
+  - await: { idle: true }
+executionPrerequisite: Android app with loaded feed and Menu sheet open at the
+  top, showing stock markets.

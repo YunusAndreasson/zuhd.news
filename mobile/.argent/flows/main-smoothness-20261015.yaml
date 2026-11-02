@@ -1,0 +1,33 @@
+steps:
+  - tool: run-sequence
+    args:
+      steps:
+        - tool: gesture-swipe
+          args:
+            fromX: 0.1
+            fromY: 0.95
+            toX: 0.9
+            toY: 0.95
+            durationMs: 700
+        - tool: gesture-swipe
+          args:
+            fromX: 0.9
+            fromY: 0.95
+            toX: 0.1
+            toY: 0.95
+            durationMs: 700
+        - tool: gesture-swipe
+          args:
+            fromX: 0.3
+            fromY: 0.4
+            toX: 0.7
+            toY: 0.4
+            durationMs: 700
+        - tool: gesture-swipe
+          args:
+            fromX: 0.7
+            fromY: 0.4
+            toX: 0.3
+            toY: 0.4
+            durationMs: 700
+executionPrerequisite: Main screen loaded, sheets closed, System UI dialog dismissed

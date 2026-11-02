@@ -1,0 +1,378 @@
+steps:
+  - tool: gesture-swipe
+    args:
+      fromX: 0.1
+      fromY: 0.934
+      toX: 0.94
+      toY: 0.934
+      durationMs: 700
+  - tool: gesture-custom
+    args:
+      events:
+        - type: Down
+          x: 0.5
+          y: 0.934
+          delayMs: 0
+        - type: Move
+          x: 0.025
+          y: 0.934
+          delayMs: 65
+        - type: Move
+          x: 0.97
+          y: 0.934
+          delayMs: 65
+        - type: Move
+          x: 0.025
+          y: 0.934
+          delayMs: 65
+        - type: Move
+          x: 0.97
+          y: 0.934
+          delayMs: 65
+        - type: Move
+          x: 0.025
+          y: 0.934
+          delayMs: 65
+        - type: Move
+          x: 0.97
+          y: 0.934
+          delayMs: 65
+        - type: Move
+          x: 0.025
+          y: 0.934
+          delayMs: 65
+        - type: Move
+          x: 0.97
+          y: 0.934
+          delayMs: 65
+        - type: Move
+          x: 0.025
+          y: 0.934
+          delayMs: 65
+        - type: Move
+          x: 0.97
+          y: 0.934
+          delayMs: 65
+        - type: Move
+          x: 0.025
+          y: 0.934
+          delayMs: 65
+        - type: Move
+          x: 0.97
+          y: 0.934
+          delayMs: 65
+        - type: Move
+          x: 0.025
+          y: 0.934
+          delayMs: 65
+        - type: Move
+          x: 0.97
+          y: 0.934
+          delayMs: 65
+        - type: Move
+          x: 0.025
+          y: 0.934
+          delayMs: 65
+        - type: Move
+          x: 0.97
+          y: 0.934
+          delayMs: 65
+        - type: Move
+          x: 0.5
+          y: 0.934
+          delayMs: 150
+        - type: Up
+          x: 0.5
+          y: 0.934
+          delayMs: 10
+      interpolate: 2
+  - tool: gesture-custom
+    args:
+      events:
+        - type: Down
+          x: 0.5
+          y: 0.934
+          delayMs: 0
+        - type: Move
+          x: 0.52
+          y: 0.934
+          delayMs: 100
+        - type: Move
+          x: 0.001
+          y: 0.934
+          delayMs: 100
+        - type: Move
+          x: 0.999
+          y: 0.934
+          delayMs: 100
+        - type: Move
+          x: 0.001
+          y: 0.934
+          delayMs: 100
+        - type: Move
+          x: 0.999
+          y: 0.934
+          delayMs: 100
+        - type: Move
+          x: 0.001
+          y: 0.934
+          delayMs: 100
+        - type: Move
+          x: 0.999
+          y: 0.934
+          delayMs: 100
+        - type: Move
+          x: 0.001
+          y: 0.934
+          delayMs: 100
+        - type: Move
+          x: 0.999
+          y: 0.934
+          delayMs: 100
+        - type: Move
+          x: 0.001
+          y: 0.934
+          delayMs: 100
+        - type: Move
+          x: 0.999
+          y: 0.934
+          delayMs: 100
+        - type: Move
+          x: 0.001
+          y: 0.934
+          delayMs: 100
+        - type: Move
+          x: 0.999
+          y: 0.934
+          delayMs: 100
+        - type: Move
+          x: 0.001
+          y: 0.934
+          delayMs: 100
+        - type: Move
+          x: 0.999
+          y: 0.934
+          delayMs: 100
+        - type: Move
+          x: 0.001
+          y: 0.934
+          delayMs: 100
+        - type: Move
+          x: 0.999
+          y: 0.934
+          delayMs: 100
+        - type: Move
+          x: 0.5
+          y: 0.934
+          delayMs: 200
+        - type: Up
+          x: 0.5
+          y: 0.934
+          delayMs: 80
+      interpolate: 3
+  - tool: run-sequence
+    args:
+      steps:
+        - tool: gesture-swipe
+          args:
+            fromX: 0.5
+            fromY: 0.934
+            toX: 0.001
+            toY: 0.934
+            durationMs: 120
+          delayMs: 0
+        - tool: gesture-swipe
+          args:
+            fromX: 0.5
+            fromY: 0.934
+            toX: 0.999
+            toY: 0.934
+            durationMs: 120
+          delayMs: 0
+        - tool: gesture-custom
+          args:
+            events:
+              - type: Down
+                x: 0.5
+                y: 0.934
+              - type: Move
+                x: 0.55
+                y: 0.934
+                delayMs: 80
+              - type: Move
+                x: 0.2
+                y: 0.6
+                delayMs: 300
+              - type: Move
+                x: 0.001
+                y: 0.8
+                delayMs: 200
+              - type: Up
+                x: 0.001
+                y: 0.8
+                delayMs: 50
+            interpolate: 4
+          delayMs: 0
+  - tool: gesture-custom
+    args:
+      events:
+        - type: Down
+          x: 0.4
+          y: 0.934
+        - type: Move
+          x: 0.41
+          y: 0.934
+          delayMs: 100
+        - type: Move
+          x: 0.7
+          y: 0.934
+          delayMs: 600
+        - type: Move
+          x: 0.7
+          y: 0.934
+          delayMs: 2500
+        - type: Move
+          x: 0.3
+          y: 0.934
+          delayMs: 300
+        - type: Up
+          x: 0.3
+          y: 0.934
+          delayMs: 80
+      interpolate: 4
+  - tool: run-sequence
+    args:
+      steps:
+        - tool: gesture-swipe
+          args:
+            fromX: 0.5
+            fromY: 0.934
+            toX: 0.82
+            toY: 0.934
+            durationMs: 80
+          delayMs: 0
+        - tool: gesture-swipe
+          args:
+            fromX: 0.5
+            fromY: 0.934
+            toX: 0.32
+            toY: 0.934
+            durationMs: 80
+          delayMs: 0
+        - tool: gesture-swipe
+          args:
+            fromX: 0.5
+            fromY: 0.934
+            toX: 0.82
+            toY: 0.934
+            durationMs: 80
+          delayMs: 0
+        - tool: gesture-swipe
+          args:
+            fromX: 0.5
+            fromY: 0.934
+            toX: 0.32
+            toY: 0.934
+            durationMs: 80
+          delayMs: 0
+        - tool: gesture-swipe
+          args:
+            fromX: 0.5
+            fromY: 0.934
+            toX: 0.82
+            toY: 0.934
+            durationMs: 80
+          delayMs: 0
+        - tool: gesture-swipe
+          args:
+            fromX: 0.5
+            fromY: 0.934
+            toX: 0.32
+            toY: 0.934
+            durationMs: 80
+          delayMs: 0
+        - tool: gesture-swipe
+          args:
+            fromX: 0.5
+            fromY: 0.934
+            toX: 0.82
+            toY: 0.934
+            durationMs: 80
+          delayMs: 0
+        - tool: gesture-swipe
+          args:
+            fromX: 0.5
+            fromY: 0.934
+            toX: 0.32
+            toY: 0.934
+            durationMs: 80
+          delayMs: 0
+        - tool: gesture-swipe
+          args:
+            fromX: 0.5
+            fromY: 0.934
+            toX: 0.82
+            toY: 0.934
+            durationMs: 80
+          delayMs: 0
+        - tool: gesture-swipe
+          args:
+            fromX: 0.5
+            fromY: 0.934
+            toX: 0.32
+            toY: 0.934
+            durationMs: 80
+          delayMs: 0
+        - tool: gesture-swipe
+          args:
+            fromX: 0.5
+            fromY: 0.934
+            toX: 0.82
+            toY: 0.934
+            durationMs: 80
+          delayMs: 0
+        - tool: gesture-swipe
+          args:
+            fromX: 0.5
+            fromY: 0.934
+            toX: 0.32
+            toY: 0.934
+            durationMs: 80
+          delayMs: 0
+  - tool: gesture-swipe
+    args:
+      fromX: 0.5
+      fromY: 0.934
+      toX: 0.5
+      toY: 0.55
+      durationMs: 500
+  - tool: gesture-custom
+    args:
+      events:
+        - type: Down
+          x: 0.3
+          y: 0.934
+          x2: 0.65
+          y2: 0.934
+        - type: Move
+          x: 0.35
+          y: 0.934
+          x2: 0.7
+          y2: 0.934
+          delayMs: 100
+        - type: Move
+          x: 0.45
+          y: 0.934
+          x2: 0.82
+          y2: 0.934
+          delayMs: 500
+        - type: Up
+          x: 0.45
+          y: 0.934
+          x2: 0.82
+          y2: 0.934
+          delayMs: 100
+      interpolate: 6
+executionPrerequisite: news.zuhd.app foreground on dedicated zuhd-qa emulator
+  (emulator-5556); portrait 411x914. Story track at x .034-.965, y .921-.973
+  discovered before replay; no modal or briefing.

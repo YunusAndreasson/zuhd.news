@@ -1,0 +1,39 @@
+steps:
+  - tap:
+      text: Search stories
+  - tool: keyboard
+    args:
+      text: Cornell
+  - tool: await-ui-element
+    args:
+      condition: visible
+      selector:
+        text: Cornell Promises Fraternity Review
+        role: Button
+  - tap:
+      text: Cornell Promises Fraternity Review
+      role: Button
+  - tool: await-ui-element
+    args:
+      condition: visible
+      selector:
+        text: Menu
+        role: Button
+  - tap:
+      text: Menu
+      role: Button
+  - tool: await-ui-element
+    args:
+      condition: text
+      selector:
+        text: Search stories
+        role: TextField
+      expectedText: Cornell
+      timeoutMs: 10000
+  - tool: await-ui-element
+    args:
+      condition: hidden
+      selector:
+        identifier: android:id/input_method_nav_back
+  - await: { idle: true }
+executionPrerequisite: Empty search page open on Android; Cornell story present in feed.

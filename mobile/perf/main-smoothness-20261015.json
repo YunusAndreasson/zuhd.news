@@ -1,0 +1,136 @@
+{
+  "date": "2026-10-15",
+  "device": "Pixel Android emulator, API 35",
+  "build": "Expo development build; Hermes; React Compiler enabled",
+  "change": "Keep scrub preview text in a per-hook external store; subscribe only ScrubTooltip so preview changes do not rerender StoryDock or its gesture detector. Shared implementation also serves briefing seeking.",
+  "flow": ".argent/flows/main-smoothness-20261015.yaml",
+  "method": "Reload each variant, warm the same four-gesture flow once, then replay under React and Android native profiling. Only the two scrubber runtime files were switched; other worktree changes were preserved.",
+  "preview_filter": "Captured commits containing ScrubTooltip and no HomeScreen or StoryCard; Argent retains hot commits and nearby margin commits, so these are selected samples, not every frame.",
+  "results": {
+    "before": {
+      "session": "20261015-121525",
+      "raw_commits": "/tmp/argent-profiler-cwd/react-profiler-20261015-121525_commits.json",
+      "captured_preview_commits": [
+        {
+          "commit": 2,
+          "duration_ms": 46.991,
+          "rendered_components": 18,
+          "dock_rendered": true
+        },
+        {
+          "commit": 3,
+          "duration_ms": 166.96,
+          "rendered_components": 18,
+          "dock_rendered": true
+        },
+        {
+          "commit": 4,
+          "duration_ms": 10.629,
+          "rendered_components": 20,
+          "dock_rendered": true
+        },
+        {
+          "commit": 5,
+          "duration_ms": 97.989,
+          "rendered_components": 18,
+          "dock_rendered": true
+        },
+        {
+          "commit": 6,
+          "duration_ms": 120.273,
+          "rendered_components": 20,
+          "dock_rendered": true
+        },
+        {
+          "commit": 9,
+          "duration_ms": 25.293,
+          "rendered_components": 18,
+          "dock_rendered": true
+        }
+      ],
+      "median_components": 18.0,
+      "median_duration_ms": 72.49000000000001,
+      "dock_preview_renders": 6
+    },
+    "after": {
+      "session": "20261015-121605",
+      "raw_commits": "/tmp/argent-profiler-cwd/react-profiler-20261015-121605_commits.json",
+      "captured_preview_commits": [
+        {
+          "commit": 1,
+          "duration_ms": 75.556,
+          "rendered_components": 10,
+          "dock_rendered": false
+        },
+        {
+          "commit": 2,
+          "duration_ms": 61.703,
+          "rendered_components": 10,
+          "dock_rendered": false
+        },
+        {
+          "commit": 3,
+          "duration_ms": 108.313,
+          "rendered_components": 10,
+          "dock_rendered": false
+        },
+        {
+          "commit": 4,
+          "duration_ms": 68.034,
+          "rendered_components": 10,
+          "dock_rendered": false
+        },
+        {
+          "commit": 5,
+          "duration_ms": 57.213,
+          "rendered_components": 10,
+          "dock_rendered": false
+        },
+        {
+          "commit": 6,
+          "duration_ms": 4.4,
+          "rendered_components": 10,
+          "dock_rendered": false
+        },
+        {
+          "commit": 13,
+          "duration_ms": 3.427,
+          "rendered_components": 10,
+          "dock_rendered": false
+        },
+        {
+          "commit": 15,
+          "duration_ms": 4.587,
+          "rendered_components": 12,
+          "dock_rendered": false
+        },
+        {
+          "commit": 17,
+          "duration_ms": 6.772,
+          "rendered_components": 12,
+          "dock_rendered": false
+        },
+        {
+          "commit": 18,
+          "duration_ms": 3.552,
+          "rendered_components": 12,
+          "dock_rendered": false
+        }
+      ],
+      "median_components": 10.0,
+      "median_duration_ms": 31.9925,
+      "dock_preview_renders": 0
+    }
+  },
+  "interpretation": "Median rendered components per captured preview commit fell from 18 to 10 (44%). Dock renders in these commits fell from 6 to 0. Median sampled preview commit duration fell from 72.49 to 31.9925 ms in this comparison; timing varied considerably across repeats. This proves less unnecessary rendering, not a consistent whole-screen FPS gain.",
+  "native_caveat": "Native jank event counts rose from 26 to 30 in this comparison. Dominant CPU frames were emulator GPU transport/kernel work. Combined reports also showed clock alignment issues. No native frame-time improvement or leak fix is claimed.",
+  "validation": {
+    "full_verify": "npm run verify: typecheck, lint, deprecated API check, 122 Jest suites / 1293 tests passed before final controlled replay",
+    "final_checks": "typecheck, lint and diff whitespace check passed; 23 tests in scrub-steps, scrub-camera-claim and gesture-cancellation passed after restoring optimized source",
+    "runtime": "Recorded flow passed for both variants; inspected rendered main screen; exercised card swipes, story expansion, menu opening/dismissal and briefing seek/pause; no warning/error entries in final connected log registry before Metro stopped"
+  },
+  "remaining_opportunities": [
+    "Profile bounded idle batching for initial StoryMeasure card measurement. Source review identified this; no change was made without a targeted startup profile.",
+    "Native frame smoothness needs a representative physical-device measurement to separate app cost from emulator graphics overhead."
+  ]
+}

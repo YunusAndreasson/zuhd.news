@@ -1,0 +1,67 @@
+steps:
+  - tool: gesture-swipe
+    args:
+      fromX: 0.85
+      fromY: 0.86
+      toX: 0.2
+      toY: 0.86
+      durationMs: 400
+  - tool: await-ui-element
+    args:
+      condition: text
+      selector:
+        role: SeekBar
+        text: Today's stories
+      expectedText: Story 2 of
+      timeoutMs: 15000
+  - await: { idle: true }
+  - tool: gesture-swipe
+    args:
+      fromX: 0.85
+      fromY: 0.86
+      toX: 0.2
+      toY: 0.86
+      durationMs: 400
+  - tool: await-ui-element
+    args:
+      condition: text
+      selector:
+        role: SeekBar
+        text: Today's stories
+      expectedText: Story 3 of
+      timeoutMs: 15000
+  - await: { idle: true }
+  - tool: gesture-swipe
+    args:
+      fromX: 0.2
+      fromY: 0.86
+      toX: 0.85
+      toY: 0.86
+      durationMs: 400
+  - tool: await-ui-element
+    args:
+      condition: text
+      selector:
+        role: SeekBar
+        text: Today's stories
+      expectedText: Story 2 of
+      timeoutMs: 15000
+  - await: { idle: true }
+  - tool: gesture-swipe
+    args:
+      fromX: 0.2
+      fromY: 0.86
+      toX: 0.85
+      toY: 0.86
+      durationMs: 400
+  - tool: await-ui-element
+    args:
+      condition: text
+      selector:
+        role: SeekBar
+        text: Today's stories
+      expectedText: Story 1 of
+      timeoutMs: 15000
+  - await: { idle: true }
+executionPrerequisite: Loaded Android app on story 1 at peek, no platform sheet
+  or keyboard open, with at least 3 stories.
