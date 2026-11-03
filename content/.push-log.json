@@ -1,105 +1,5 @@
 [
   {
-    "timestamp": "2026-10-14T10:12:00.560Z",
-    "candidateCount": 11,
-    "candidates": [
-      {
-        "slug": "2026-10-14-imf-georgieva-saudi-attacks-spillover-fiscal-repair",
-        "title": "IMF Warns Fiscal Limits",
-        "category": "economy",
-        "eventCoverage": 653,
-        "importance": 6
-      },
-      {
-        "slug": "2026-10-14-starlink-speed-limit-ukraine-military-missions",
-        "title": "SpaceX Throttles Ukraine's Starlink",
-        "category": "tech",
-        "eventCoverage": 198,
-        "importance": 6
-      },
-      {
-        "slug": "2026-10-14-punjab-anti-drug-activist-killed-bulldozer-demolition",
-        "title": "Punjab Bulldozes Accused's Home",
-        "category": "politics",
-        "eventCoverage": 187,
-        "importance": 6
-      },
-      {
-        "slug": "2026-10-14-china-exports-surge-36-percent-september-ai-demand",
-        "title": "China Exports Surge 36%",
-        "category": "economy",
-        "eventCoverage": 86,
-        "importance": 6
-      },
-      {
-        "slug": "2026-10-14-turkish-police-raid-halk-tv-opposition-broadcaster",
-        "title": "Police Raid Halk TV",
-        "category": "politics",
-        "eventCoverage": 0,
-        "importance": 6
-      },
-      {
-        "slug": "2026-10-14-bahia-police-killings-2019-rule-blocks-investigations",
-        "title": "Bahia Police Kill Most",
-        "category": "politics",
-        "eventCoverage": 0,
-        "importance": 6
-      },
-      {
-        "slug": "2026-10-14-nvidia-china-ai-chip-share-34-percent-huawei-28",
-        "title": "Nvidia China Share Falls",
-        "category": "tech",
-        "eventCoverage": 0,
-        "importance": 6
-      },
-      {
-        "slug": "2026-10-14-openai-talks-acquire-trail-of-bits-security",
-        "title": "OpenAI Eyes Trail of Bits",
-        "category": "tech",
-        "eventCoverage": 0,
-        "importance": 6
-      },
-      {
-        "slug": "2026-10-14-coinbase-bitcoin-quantum-resistant-migration-now",
-        "title": "Coinbase Urges Quantum Fix",
-        "category": "tech",
-        "eventCoverage": 0,
-        "importance": 6
-      },
-      {
-        "slug": "2026-10-14-maternal-autoantibodies-preterm-birth-nature-immunology",
-        "title": "Autoantibodies Linked to Preterm Birth",
-        "category": "science",
-        "eventCoverage": 0,
-        "importance": 6
-      },
-      {
-        "slug": "2026-10-14-deforestation-slowed-2025-surged-congo-basin",
-        "title": "Congo Basin Forest Loss Surges",
-        "category": "science",
-        "eventCoverage": 0,
-        "importance": 6
-      }
-    ],
-    "selected": {
-      "slug": "2026-10-14-china-exports-surge-36-percent-september-ai-demand",
-      "title": "China Exports Surge 36%",
-      "category": "economy",
-      "body": "Chip exports jumped 108% in September.",
-      "eventCoverage": 86,
-      "importance": 6
-    },
-    "skipReason": null,
-    "sent": true,
-    "pushTitle": "Breaking News",
-    "pushBody": "China's September exports jump 36.3% to $447.18bn, biggest rise since 2021",
-    "response": {
-      "pushed": 1,
-      "skipped": 0,
-      "tokens": 5
-    }
-  },
-  {
     "timestamp": "2026-10-14T14:10:54.290Z",
     "candidateCount": 11,
     "candidates": [
@@ -10266,6 +10166,99 @@
     "sent": true,
     "pushTitle": "Breaking News",
     "pushBody": "US midterms open with Trump's Iran war and fuel prices top of voters' concerns",
+    "response": {
+      "pushed": 1,
+      "skipped": 0,
+      "tokens": 5
+    }
+  },
+  {
+    "timestamp": "2026-11-03T10:18:14.674Z",
+    "candidateCount": 10,
+    "candidates": [
+      {
+        "slug": "2026-11-03-north-korea-denies-binance-hack-fbi-tradertraitor",
+        "title": "Pyongyang Denies Binance Hack",
+        "category": "politics",
+        "eventCoverage": 280,
+        "importance": 6
+      },
+      {
+        "slug": "2026-11-03-uk-settlement-wait-ten-years-care-workers-exempt",
+        "title": "UK Doubles Settlement Wait",
+        "category": "politics",
+        "eventCoverage": 226,
+        "importance": 6
+      },
+      {
+        "slug": "2026-11-03-madrid-police-clear-puerta-del-sol-housing-camp",
+        "title": "Madrid Police Clear Camp",
+        "category": "politics",
+        "eventCoverage": 118,
+        "importance": 6
+      },
+      {
+        "slug": "2026-11-03-schaeffler-3500-jobs-four-german-sites",
+        "title": "Schaeffler Axes 3,500 Jobs",
+        "category": "economy",
+        "eventCoverage": 100,
+        "importance": 6
+      },
+      {
+        "slug": "2026-11-03-lahore-foreign-women-rape-case-police-report-drops-charges",
+        "title": "Lahore Report Drops Rape Charges",
+        "category": "politics",
+        "eventCoverage": 0,
+        "importance": 6
+      },
+      {
+        "slug": "2026-11-03-pboc-forex-reserve-ratio-yuan-rally",
+        "title": "PBOC Tightens Forex Reserves",
+        "category": "economy",
+        "eventCoverage": 0,
+        "importance": 6
+      },
+      {
+        "slug": "2026-11-03-transsion-memory-prices-africa-phones",
+        "title": "Memory Squeezes Transsion",
+        "category": "tech",
+        "eventCoverage": 0,
+        "importance": 6
+      },
+      {
+        "slug": "2026-11-03-ao3-clone-audiobooks-takedown-notices",
+        "title": "AO3 Clone Falls",
+        "category": "tech",
+        "eventCoverage": 0,
+        "importance": 6
+      },
+      {
+        "slug": "2026-11-03-grok-bot-quota-cuts-musk-cost-unsustainable",
+        "title": "Grok Bot Quotas Cut",
+        "category": "tech",
+        "eventCoverage": 0,
+        "importance": 6
+      },
+      {
+        "slug": "2026-11-03-three-parent-ivf-mitochondrial-replacement-doubts",
+        "title": "Three-Parent IVF Faces Doubts",
+        "category": "science",
+        "eventCoverage": 0,
+        "importance": 6
+      }
+    ],
+    "selected": {
+      "slug": "2026-11-03-north-korea-denies-binance-hack-fbi-tradertraitor",
+      "title": "Pyongyang Denies Binance Hack",
+      "category": "politics",
+      "body": "Kim Yo-jong denies [North Korea](country:KP) stole $6.3bn from",
+      "eventCoverage": 280,
+      "importance": 6
+    },
+    "skipReason": null,
+    "sent": true,
+    "pushTitle": "Breaking News",
+    "pushBody": "North Korea denies stealing $6.3bn from Binance, Kim Yo-jong says",
     "response": {
       "pushed": 1,
       "skipped": 0,
