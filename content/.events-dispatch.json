@@ -23,14 +23,16 @@
     },
     "g20-2026-miami": {
       "standingFingerprint": "041eb1ecc79e970b",
-      "recentFingerprint": "be8865edcad55dfe",
+      "recentFingerprint": "b3e8ba8e01b1e943",
       "prompt": "cc42a1f1",
       "standing": "The annual meeting of leaders of the world's largest economies, hosted by the member holding the rotating presidency. Its members produce about 85% of global output, and its communiqué sets shared lines on trade and debt.",
-      "recent": "Europeans refused to stand with Lavrov in Atlanta, costing the foreign ministers their group photo, and Kallas says hosting Putin at the G20 may normalize war crimes. Merz is separately urging Trump to invite South Africa to Miami. The guest list is now the dispute: who the US presidency seats at the table in Miami, and who it leaves out.",
+      "recent": "The foreign ministers' run-up in Atlanta ended with no group photo, after Europeans refused to stand with Lavrov, and no joint statement. Kallas has warned that hosting Putin risks normalizing war crimes; Rubio, defending Russia's presence, sees growing interest in a Black Sea ceasefire. Merz has urged Trump to invite South Africa to Miami.",
       "citations": [
-        "2026-10-30-g20-atlanta-group-photo-scrapped-europeans-lavrov"
+        "2026-10-30-g20-atlanta-group-photo-scrapped-europeans-lavrov",
+        "2026-11-01-rubio-black-sea-limited-ceasefire-trump-putin-apec-g20-russia",
+        "2026-10-31-rubio-quad-g20-atlanta-ends-jaishankar-energy-lavrov-apec"
       ],
-      "generatedAt": "2026-11-01T05:21:28.833Z"
+      "generatedAt": "2026-11-03T05:28:27.717Z"
     },
     "ecb-2026-12": {
       "standingFingerprint": "644eb225dab9953a",
@@ -68,25 +70,35 @@
     },
     "fred-us-jobs-report-2026-11-06": {
       "standingFingerprint": "76dd59465c94d59d",
-      "recentFingerprint": "a973988cc7fa897f",
+      "recentFingerprint": "52ab669520c9887c",
       "prompt": "cc42a1f1",
       "standing": "The Bureau of Labor Statistics' monthly employment report, released on the first Friday of most months, counting jobs added, the unemployment rate and wage growth. Treasury yields, the dollar and Fed rate bets reprice within minutes.",
-      "recent": "This US jobs report settles how many jobs employers added in the latest month and where the unemployment rate stands, along with revisions to the two months before it.",
+      "recent": "This release lands in the same week as the U.S. midterms, which makes it the first official count of hiring and unemployment published after voters go to the polls. It settles where the labour market stood going into the vote.",
       "citations": [],
-      "generatedAt": "2026-10-30T05:23:53.600Z"
+      "generatedAt": "2026-11-03T05:28:19.170Z"
     },
     "fred-us-cpi-2026-11-10": {
       "standingFingerprint": "64727509ea55676d",
-      "recentFingerprint": "a82f0f65f2ee3e3c",
+      "recentFingerprint": "21ec10b2d0989d28",
       "prompt": "cc42a1f1",
       "standing": "The Bureau of Labor Statistics' monthly count of what US households pay for a basket of goods and services. It drives Social Security's yearly raise and inflation-linked Treasury payouts, and bond markets reprice on it within minutes.",
-      "recent": "The Fed held rates despite intensifying inflation, and a Reuters commentary says Warsh's muddled messaging has revived doubts about its credibility. With a December hike now the live question, this release tests that hold against fresh US price data: whether energy-led inflation has stayed in fuel or spread into what households pay.",
+      "recent": "The Fed held rates despite intensifying inflation, and Warsh's muddled messaging has since revived doubts about its credibility. Markets now fully price a December rate hike. With energy leading inflation, this reading shows whether price pressure is spreading beyond oil, which is the question the hold left open.",
       "citations": [
-        "2026-10-28-fed-holds-rates-warsh-midterms-inflation"
+        "2026-10-28-fed-holds-rates-warsh-midterms-inflation",
+        "2026-10-23-gold-weekly-loss-oil-war-fed-higher-for-longer"
       ],
-      "generatedAt": "2026-10-31T05:29:09.601Z"
+      "generatedAt": "2026-11-03T05:28:24.688Z"
+    },
+    "fred-us-ppi-2026-11-13": {
+      "standingFingerprint": "2edeeef889391405",
+      "recentFingerprint": "f7a382d442b2336a",
+      "prompt": "cc42a1f1",
+      "standing": "The Bureau of Labor Statistics' monthly Producer Price Index, which measures what US businesses receive for goods and services before they reach shoppers. It is an early read on cost pressure that feeds into consumer prices and Fed thinking.",
+      "recent": "",
+      "citations": [],
+      "generatedAt": "2026-11-03T05:28:13.307Z"
     }
   },
-  "generatedAt": "2026-11-02T05:22:43.051Z",
+  "generatedAt": "2026-11-03T05:28:27.719Z",
   "windowDays": 14
 }
