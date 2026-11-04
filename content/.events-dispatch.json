@@ -2,12 +2,12 @@
   "items": {
     "boe-2026-11": {
       "standingFingerprint": "498a0992d302cf13",
-      "recentFingerprint": "9d50d129e60c7ccc",
+      "recentFingerprint": "28209ff83f42c015",
       "prompt": "cc42a1f1",
       "standing": "The Bank of England's Monetary Policy Committee, nine members who vote eight times a year on Bank Rate. Their decision sets the price of UK mortgages and business loans, and sterling and gilt yields move with it.",
-      "recent": "Inflation and borrowing data have framed the chancellor's Budget challenge, and both bear on this decision: inflation is the figure the committee answers for, and borrowing is what its rate helps price. The vote settles how much of the inflation fight falls to interest rates rather than the Budget.",
+      "recent": "Recent inflation and borrowing data have sharpened the chancellor's Budget challenge, and the Bank of England's rate sets what that borrowing costs. This decision settles whether the committee holds or moves against inflation, and with it the cost of credit for the households and government the Budget is written around.",
       "citations": [],
-      "generatedAt": "2026-11-02T05:22:43.050Z"
+      "generatedAt": "2026-11-04T05:27:26.017Z"
     },
     "fomc-2026-12": {
       "standingFingerprint": "7461ec820c9cf170",
@@ -36,16 +36,18 @@
     },
     "ecb-2026-12": {
       "standingFingerprint": "644eb225dab9953a",
-      "recentFingerprint": "db9d091e31cbcf61",
+      "recentFingerprint": "1dbae4a7ac08fb71",
       "prompt": "cc42a1f1",
       "standing": "The European Central Bank's Governing Council, which meets eight times a year to set interest rates for the countries sharing the euro. Its deposit rate drives borrowing costs for some 350 million people, and the euro moves with it.",
-      "recent": "Christine Lagarde leaves on 7 February 2027, and the Governing Council she chairs is already arguing in public over a hike, with Panetta saying more increases may be needed. An energy shock from the Iran war is raising prices as growth weakens; this decision settles how hard the bank leans against it, with France's debt exposed.",
+      "recent": "Bundesbank chief Nagel has joined the governors calling a third hike this year almost inevitable, and Panetta has argued for more, with households now expecting 3.1% inflation. It is also Lagarde's last stretch in the chair: she leaves on 7 February 2027, and governments have until Friday to nominate the successor who inherits the rate.",
       "citations": [
+        "2026-11-03-ecb-december-rate-hike-nagel-bundesbank",
         "2026-10-30-ecb-rate-hike-debate-panetta-italy-inflation",
+        "2026-10-23-ecb-household-inflation-expectations-rate-hikes",
         "2026-10-29-lagarde-quits-ecb-february-rates-held-energy",
-        "2026-10-29-ecb-holds-rates-france-bonds-energy-euro"
+        "2026-11-03-eurogroup-ecb-president-nominations-deadline-lagarde"
       ],
-      "generatedAt": "2026-10-31T05:29:20.164Z"
+      "generatedAt": "2026-11-04T05:27:30.832Z"
     },
     "boe-2026-12": {
       "standingFingerprint": "498a0992d302cf13",
@@ -58,15 +60,16 @@
     },
     "boj-2026-12": {
       "standingFingerprint": "b08124a86f654bb7",
-      "recentFingerprint": "1adacc318607afe4",
+      "recentFingerprint": "1414486137991bc1",
       "prompt": "cc42a1f1",
       "standing": "The Bank of Japan's policy board, which meets eight times a year to set the country's short-term interest rate. Its decisions move the yen and the yield on Japanese government debt, and reach borrowers far beyond Japan.",
-      "recent": "Foreign issuers sold a record $16 billion of yen bonds in April to September as AI hyperscalers' fundraising reached Japan, putting Japanese investors' money behind a build-out elsewhere. This meeting sets Japan's side of the interest-rate gap that trade rests on, while the question at home is whether wages are now driving inflation.",
+      "recent": "Japan's argument has turned to whether its inflation is now driven by wages rather than a weak yen, and that distinction is what this decision rests on. It arrives with markets fully pricing a December Fed rate hike, which widens the rate gap that has weighed on the yen, just as foreign issuers sold a record $16 billion of yen bonds.",
       "citations": [
-        "2026-10-31-yen-bond-foreign-issuers-record-16bn-ai-funding-japan",
-        "2026-10-21-japan-wage-driven-inflation-katayama-consumption-tax-yen"
+        "2026-10-21-japan-wage-driven-inflation-katayama-consumption-tax-yen",
+        "2026-10-28-fed-holds-rates-warsh-midterms-inflation",
+        "2026-10-31-yen-bond-foreign-issuers-record-16bn-ai-funding-japan"
       ],
-      "generatedAt": "2026-11-01T05:21:30.565Z"
+      "generatedAt": "2026-11-04T05:27:41.841Z"
     },
     "fred-us-jobs-report-2026-11-06": {
       "standingFingerprint": "76dd59465c94d59d",
@@ -79,15 +82,14 @@
     },
     "fred-us-cpi-2026-11-10": {
       "standingFingerprint": "64727509ea55676d",
-      "recentFingerprint": "21ec10b2d0989d28",
+      "recentFingerprint": "8bc89c2b7b9f1c7a",
       "prompt": "cc42a1f1",
       "standing": "The Bureau of Labor Statistics' monthly count of what US households pay for a basket of goods and services. It drives Social Security's yearly raise and inflation-linked Treasury payouts, and bond markets reprice on it within minutes.",
-      "recent": "The Fed held rates despite intensifying inflation, and Warsh's muddled messaging has since revived doubts about its credibility. Markets now fully price a December rate hike. With energy leading inflation, this reading shows whether price pressure is spreading beyond oil, which is the question the hold left open.",
+      "recent": "The Fed held rates last week despite intensifying inflation, yet markets now fully price a December hike; this print tests that gap before the Fed meets again. Warsh's muddled messaging has revived doubts about Fed credibility, so the number lands on a central bank whose signals markets are still learning to read.",
       "citations": [
-        "2026-10-28-fed-holds-rates-warsh-midterms-inflation",
-        "2026-10-23-gold-weekly-loss-oil-war-fed-higher-for-longer"
+        "2026-10-28-fed-holds-rates-warsh-midterms-inflation"
       ],
-      "generatedAt": "2026-11-03T05:28:24.688Z"
+      "generatedAt": "2026-11-04T05:27:27.792Z"
     },
     "fred-us-ppi-2026-11-13": {
       "standingFingerprint": "2edeeef889391405",
@@ -99,6 +101,6 @@
       "generatedAt": "2026-11-03T05:28:13.307Z"
     }
   },
-  "generatedAt": "2026-11-03T05:28:27.719Z",
+  "generatedAt": "2026-11-04T05:27:41.842Z",
   "windowDays": 14
 }
