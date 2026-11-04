@@ -1,98 +1,5 @@
 [
   {
-    "timestamp": "2026-10-15T05:13:47.067Z",
-    "candidateCount": 10,
-    "candidates": [
-      {
-        "slug": "2026-10-15-brazil-senate-40-hour-workweek-ends-6x1",
-        "title": "Brazil Ends Six-Day Week",
-        "category": "economy",
-        "eventCoverage": 151,
-        "importance": 6
-      },
-      {
-        "slug": "2026-10-15-india-idbi-bank-fairfax-largest-privatisation",
-        "title": "Fairfax Wins IDBI Bank",
-        "category": "economy",
-        "eventCoverage": 147,
-        "importance": 6
-      },
-      {
-        "slug": "2026-10-15-north-korea-china-new-yalu-river-bridge-opens-sanctions",
-        "title": "China, North Korea Open Bridge",
-        "category": "politics",
-        "eventCoverage": 119,
-        "importance": 6
-      },
-      {
-        "slug": "2026-10-15-ronen-bar-sues-netanyahu-defamation-october-7",
-        "title": "Ex-Shin Bet Chief Sues Netanyahu",
-        "category": "politics",
-        "eventCoverage": 78,
-        "importance": 6
-      },
-      {
-        "slug": "2026-10-15-trump-leakers-should-be-shot-arizona-rally",
-        "title": "Trump: Leakers Should Be Shot",
-        "category": "politics",
-        "eventCoverage": 75,
-        "importance": 6
-      },
-      {
-        "slug": "2026-10-15-iran-hormuz-ship-strikes-emirati-vessels-sink-midterms",
-        "title": "Iran Escalates Hormuz Strikes",
-        "category": "economy",
-        "eventCoverage": 0,
-        "importance": 6
-      },
-      {
-        "slug": "2026-10-15-pakistan-bannu-bars-afghan-medical-graduates-house-jobs",
-        "title": "Bannu Ends Afghan Doctors' Training",
-        "category": "politics",
-        "eventCoverage": 0,
-        "importance": 6
-      },
-      {
-        "slug": "2026-10-15-colossal-dodo-de-extinction-ai-skull-genes",
-        "title": "Colossal Edges Toward Dodo",
-        "category": "science",
-        "eventCoverage": 0,
-        "importance": 6
-      },
-      {
-        "slug": "2026-10-15-china-gig-workers-algorithm-rules-54-articles",
-        "title": "China Drafts Gig Worker Rules",
-        "category": "tech",
-        "eventCoverage": 0,
-        "importance": 6
-      },
-      {
-        "slug": "2026-10-15-anthropic-quarterly-revenue-16-8-billion",
-        "title": "Anthropic Revenue Climbs 45%",
-        "category": "tech",
-        "eventCoverage": 0,
-        "importance": 6
-      }
-    ],
-    "selected": {
-      "slug": "2026-10-15-brazil-senate-40-hour-workweek-ends-6x1",
-      "title": "Brazil Ends Six-Day Week",
-      "category": "economy",
-      "body": "75 senators to 1 ended the six-day work",
-      "eventCoverage": 151,
-      "importance": 6
-    },
-    "skipReason": null,
-    "sent": true,
-    "pushTitle": "Breaking News",
-    "pushBody": "Brazil's Senate votes 75-1 to end six-day work week",
-    "response": {
-      "pushed": 1,
-      "skipped": 0,
-      "tokens": 5
-    }
-  },
-  {
     "timestamp": "2026-10-15T10:15:55.023Z",
     "candidateCount": 11,
     "candidates": [
@@ -10238,6 +10145,99 @@
     "sent": true,
     "pushTitle": "Breaking News",
     "pushBody": "Iran demands recognition of Hormuz sovereignty, sets 5 conditions for regional security",
+    "response": {
+      "pushed": 1,
+      "skipped": 0,
+      "tokens": 5
+    }
+  },
+  {
+    "timestamp": "2026-11-04T05:16:20.371Z",
+    "candidateCount": 10,
+    "candidates": [
+      {
+        "slug": "2026-11-03-greenland-parliament-approves-us-denmark-security-deal",
+        "title": "Greenland Approves US Deal",
+        "category": "politics",
+        "eventCoverage": 122,
+        "importance": 6
+      },
+      {
+        "slug": "2026-11-04-dollar-falls-yen-franc-rise-us-midterms",
+        "title": "Franc, Yen Beat Dollar",
+        "category": "economy",
+        "eventCoverage": 0,
+        "importance": 6
+      },
+      {
+        "slug": "2026-11-03-honduras-maga-network-winklevoss-prospera-evangelicals",
+        "title": "Honduras Recognises Próspera Enclave",
+        "category": "politics",
+        "eventCoverage": 0,
+        "importance": 6
+      },
+      {
+        "slug": "2026-11-04-nigeria-university-of-jos-disabled-students-inaccessible",
+        "title": "UNIJOS Fails Disabled Students",
+        "category": "politics",
+        "eventCoverage": 0,
+        "importance": 6
+      },
+      {
+        "slug": "2026-11-04-pakistan-refinery-audit-fuel-prices-rs40-50",
+        "title": "Pakistan Refinery Audit Demanded",
+        "category": "economy",
+        "eventCoverage": 0,
+        "importance": 6
+      },
+      {
+        "slug": "2026-11-04-pakistan-cotton-sugarcane-heat-textile-crop",
+        "title": "Sugarcane Squeezes Pakistan Cotton",
+        "category": "economy",
+        "eventCoverage": 0,
+        "importance": 6
+      },
+      {
+        "slug": "2026-11-04-kling-ai-video-valuation-tops-kuaishou",
+        "title": "Kling Valued Above Parent",
+        "category": "tech",
+        "eventCoverage": 0,
+        "importance": 6
+      },
+      {
+        "slug": "2026-11-04-brazil-betting-disinformation-x-supreme-court-ban",
+        "title": "Betting Posts Mislead Brazilians",
+        "category": "tech",
+        "eventCoverage": 0,
+        "importance": 6
+      },
+      {
+        "slug": "2026-11-03-shield-ai-x-bat-vtol-combat-drone-prototype",
+        "title": "Shield AI Unveils X-BAT",
+        "category": "tech",
+        "eventCoverage": 0,
+        "importance": 6
+      },
+      {
+        "slug": "2026-11-04-km3net-neutrinos-test-lorentz-invariance-mediterranean",
+        "title": "Neutrinos Test Einstein's Relativity",
+        "category": "science",
+        "eventCoverage": 0,
+        "importance": 6
+      }
+    ],
+    "selected": {
+      "slug": "2026-11-03-greenland-parliament-approves-us-denmark-security-deal",
+      "title": "Greenland Approves US Deal",
+      "category": "politics",
+      "body": "Parliament passed the US security deal 16-0, with 7",
+      "eventCoverage": 122,
+      "importance": 6
+    },
+    "skipReason": null,
+    "sent": true,
+    "pushTitle": "Breaking News",
+    "pushBody": "Greenland parliament approves US security deal 16-0",
     "response": {
       "pushed": 1,
       "skipped": 0,
