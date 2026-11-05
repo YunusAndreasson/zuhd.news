@@ -1,37 +1,37 @@
 {
-  "date": "2026-11-04",
+  "date": "2026-11-05",
   "metrics": {
-    "articles": { "value": 59, "detail": "5 cycles, all completed; avg 12 published per cycle (59, same as yesterday); 0 quarantined" },
-    "freshness": { "median": 0.1, "p90": 0.3, "max": 1.4, "target": 1.0, "met": true },
-    "categories": { "politics": 22, "economy": 17, "science": 4, "tech": 16 },
-    "multiSource": { "pct": 32, "target": 30, "met": true },
-    "usDatelines": { "pct": 25, "target": 25, "met": true },
-    "latAmDatelines": { "pct": 8, "target": 5, "met": true },
+    "articles": { "value": 58, "detail": "5 cycles, all completed, avg 12/cycle" },
+    "freshness": { "median": 0.1, "p90": 0.3, "max": 0.8, "target": 1.0, "met": true },
+    "categories": { "politics": 20, "economy": 17, "science": 5, "tech": 16 },
+    "multiSource": { "pct": 28, "target": 30, "met": false },
+    "usDatelines": { "pct": 16, "target": 25, "met": true },
+    "latAmDatelines": { "pct": 7, "target": 5, "met": true },
     "sameEventDuplicates": { "value": 0, "target": 0, "met": true },
     "missingDatelines": { "value": 0, "target": 0, "met": true },
-    "stateOrAdvocacyOnly": 0,
-    "imageUrlPct": 95,
-    "regions": { "count": 5, "target": 4, "met": true, "breakdown": { "AM": 20, "EU": 13, "AS": 12, "ME": 9, "AF": 5, "OC": 0 } },
-    "sciTech": { "ratio": 34, "target": 25, "met": true },
-    "topSourceShare": { "source": "Bloomberg Business / Dawn (tied)", "pct": 10, "target": 20, "met": true },
-    "uniqueSources": 48,
+    "stateOrAdvocacyOnly": 1,
+    "imageUrlPct": 98,
+    "regions": { "count": 6, "target": 4, "met": true, "breakdown": { "AM": 13, "AS": 15, "EU": 12, "ME": 12, "AF": 5, "OC": 1 } },
+    "sciTech": { "ratio": 36, "target": 25, "met": true },
+    "topSourceShare": { "source": "Al Jazeera Online", "pct": 12, "target": 20, "met": true },
+    "uniqueSources": 57,
     "duplicates": 0,
-    "avgCycleDuration": 1020
+    "avgCycleDuration": 1022
   },
-  "experiment": "Skipped. No experiment is active, and the pause gate (`noNewExperimentsUntil` 2026-11-05) still bars a new one for one more day; the only miss, science at 4/day, is supply-bound and the science floor is not to be raised to chase it.",
-  "weakestArea": "Science fell to 4 (from 6), under its 5/day target, and ran under its per-cycle floor of 2 in four of five cycles (one cycle at 0). Selectors named the same supply each time: barred Scientific Reports papers, Nature-family methods papers, Carbon Brief COP policy pieces and space-industry announcements, with Quanta, New Scientist and SciDev.Net largely silent; one of the four (Swift's reentry) rests on Breitbart alone. The lever is wider science sources, not a higher floor.",
+  "experiment": "Skipped. No experiment is active and the pause gate (`noNewExperimentsUntil` 2026-11-05) runs through today; the field is left for tomorrow's tuner to drop. The one miss, multi-source at 28%, is a 2-point dip inside the noise of a week that averaged ~28% (17–38%), and the last floor-based fix for it (2026-05-09-multi-source-floor-3) was reverted.",
+  "weakestArea": "Multi-source at 28% (16 of 58), down from 32–38% over the previous two days. Its 7-day range of 17–38% centres on the target, so this is variance in how much same-event coverage the feed carries, not a step change. If it stays under 30% for the week after the gate lifts, look at the feed side (eventsCount, minArticlesInEvent) rather than selector floors, since that floor change was already tried and reverted.",
   "watching": [
-    "US midterms: Democrats won the House and the Senate, with the Iran war and fuel prices cited as the drivers and Musk's $500 million and AIPAC's $55 million failing to hold seats.",
-    "Markets after the midterms: the dollar fell against the yen and franc, Brent slipped below $100 on peace hopes, and bitcoin dropped on doubts over the CLARITY Act.",
-    "Hormuz: four tankers ablaze after mine strikes amid continuing US strikes on Iran.",
-    "Pakistan: emergency and governor's rule are on the table in Khyber Pakhtunkhwa as the opposition objects.",
-    "South Africa: 110 hung councils are in coalition talks after the local elections.",
-    "Europe's cyber front: a Russian hosting provider wiped, the Kyiv Independent hit, and French blood banks' refrigeration attacked."
+    "Hormuz: another tanker hit a mine and Seoul is extending a navy deployment toward the strait as the US–Iran war goes on.",
+    "Israel: Herzog opened coalition talks and Arab parties backed Eisenkot.",
+    "Rates: the Bank of England hiked and the Bank of Russia raised its expected key-rate path.",
+    "Paraguay: the president resigned over a bank scandal.",
+    "Nigeria: a court voided Atiku's nomination.",
+    "Ebola has reached a British doctor."
   ],
   "coverageGaps": [
-    "Science: research findings from top journals were scarce all day; four cycles missed the science floor of 2.",
-    "Oceania carried no datelines today.",
-    "Midterm results dominated the AM count (20 of 59), while US datelines sat exactly at the 25% ceiling."
+    "Oceania had one dateline (Sydney, a science story); there was no Pacific hard news.",
+    "Science made 5, just at target, with 4 science sources, one of them 404 Media; top-journal research stayed thin.",
+    "Africa had 5 datelines, all from Nigeria, South Africa and the DRC; the Sahel and East Africa were absent."
   ],
-  "context": "Every other target was met: multi-source 32%, US datelines 25% (at the ceiling), Latin America 8% (up from 4%, with Brazil, Honduras and El Salvador), zero duplicates and zero missing datelines. The pause gate expires 2026-11-05; tomorrow's tuner should drop the field and, if science stays short, consider a science-source addition to CURATED_SOURCES rather than a floor change."
+  "context": "Every target but multi-source was met: freshness median 0.1 days, US datelines 16% (down from 25%), Latin America 7% (Brazil, Paraguay, Venezuela, Chile), zero duplicates, zero missing datelines and no outlet above 12%. The single state-or-advocacy-only story is the Bank of Russia rate path, sourced to TASS. If science runs short after the gate lifts, add a science source to CURATED_SOURCES rather than raising the floor."
 }
