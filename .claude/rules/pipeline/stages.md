@@ -55,3 +55,7 @@ The daily hour is `DAILY_HOUR` in `scripts/lib/cycle-run.js`.
   network, which a bare run does not.
 - `touch .cycle-legacy` in the repository root hands the next cycle back to
   `run-cycle.legacy.sh`, for as long as that file is kept.
+- Every pull and push is `scripts/cycle/sync.js` (`lib/git-sync.js`), in both
+  orchestrators. It keeps the box's copy of a `content/` file over the remote's
+  and states git's reason for anything it cannot settle: a push refused while
+  the site deploys from the box is otherwise invisible (2026-11-02→06).

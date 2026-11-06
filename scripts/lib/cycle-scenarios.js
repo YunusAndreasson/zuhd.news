@@ -47,6 +47,8 @@ const healthy = () => [
   rule('feed-stats', 'node', '^scripts/cycle/tally\\.js feed$', says('13 multi + 47 niche\n')),
   rule('selection-count', 'node', '^scripts/cycle/tally\\.js selection$', says('2\n')),
   rule('body-lengths', 'node', '^scripts/body-lengths\\.js$', says(`ok 452 chars  4 blocks  ${A}\nOVER 571 chars  5 blocks  ${B}\n`)),
+  // The pull, install and push, one call (`lib/git-sync.js`): it reports and never fails.
+  rule('sync', 'node', '^scripts/cycle/sync\\.js$'),
   rule('breaking-pick', 'node', '^scripts/cycle/breaking-push\\.js pick$', says(`${PUSH}\n`)),
   rule('push-slug', 'node', '^scripts/cycle/push-payload\\.js slug$', says('2026-10-08-fed-raises-rates\n')),
   rule('push-inject', 'node', '^scripts/cycle/push-payload\\.js inject$', says(PUSHED)),
@@ -198,14 +200,15 @@ export const SCENARIOS = {
       'node:extract-entities': fails(), 'node:pick-charts': fails(), 'node:extract-source-angles': fails(124), 'node:translate-swedish': fails(), 'node:narrate-indicators': fails(),
       validate: [says('TypeError: Cannot read properties of undefined\n', { exit: 1 })], 'node:write-last-cycle': fails(), 'node:pick-breaking-social': fails(124),
       'npm:typecheck': [says('scripts/x.js(1,1): error TS2304: Cannot find name\n', { exit: 2 })], 'git:add': fails(128), commit: [says('nothing to commit, working tree clean\n', { exit: 1 })],
-      'git:pull': [says('error: cannot pull with rebase: You have unstaged changes.\n', { exit: 128 })], 'npm:install': fails(), 'git:push': [says(' ! [rejected] master -> master (fetch first)\n', { exit: 1 })],
+      sync: [says('WARNING: git pull --rebase failed: error: cannot pull with rebase: You have unstaged changes.\nWARNING: npm install after pull failed\nWARNING: git push failed: ! [rejected] master -> master (fetch first); 3 commit(s) here are not on origin\n')],
       'node:post-to-twitter': fails(), 'node:post-to-instagram': fails(124), 'node:score-production-cycle': fails(),
     },
   }),
   'advisory-stages-fail-daily': cycle(DAILY, {
     answers: {
       'node:narrate-indicators': fails(124), 'node:narrate-events': fails(), 'node:fetch-analytics': fails(),
-      'git:pull': fails(128), 'npm:install': fails(), 'git:push': fails(),
+      // The sync crashed, each time: the cycle says so and goes on.
+      sync: fails(),
       // The cycle's own build works; the rebuild with the audio does not.
       build: [says('Built 812 pages.\n'), says('ENOSPC: no space left on device\n', { exit: 1 })],
     },

@@ -165,6 +165,14 @@ commit_only() {
   git commit --only "${paths[@]}" -m "$msg" 2>&1 | tee -a "$LOG_FILE"
 }
 
+# Pull, install, push: what follows every commit that has to reach the remote.
+# scripts/cycle/sync.js settles what it can of a remote that moved and says
+# what it cannot (lib/git-sync.js). It never fails the cycle; this says so if
+# it crashed.
+sync_remote() {
+  node scripts/cycle/sync.js 2>&1 | tee -a "$LOG_FILE" || echo "WARNING: sync failed (see above)" | tee -a "$LOG_FILE"
+}
+
 cleanup() {
   local exit_status=$?
   echo "" | tee -a "$LOG_FILE"
@@ -835,16 +843,7 @@ $ACRONYMS
     CYCLE_TIME=$(date -u +"%Y-%m-%d %H:%M UTC")
     commit_only "Editorial cycle $CYCLE_TIME: ${FUNNEL_VALIDATED:-$NEW_COUNT} articles" \
       content/articles/ content/.last-cycle.json content/.story-ledger.json content/.context-briefs.json content/.sv.json
-    # --autostash: the working tree always carries uncommitted churn (.analytics.json,
-    # .block-cache.json, rotated feed-snapshots) that a plain `pull --rebase` refuses to
-    # run over ("You have unstaged changes"), which let the remote drift unmerged and every
-    # subsequent push fail non-fast-forward (2026-05-22→27 divergence). Autostash reconciles
-    # regardless. The remote's only parallel writer is mobile/ work — disjoint from content/.
-    git pull --rebase --autostash origin master 2>&1 | tee -a "$LOG_FILE" || echo "WARNING: git pull --rebase failed (likely a mobile/backend file overlap — investigate)" | tee -a "$LOG_FILE"
-    # Install any new build deps the pull may have added (fast no-op when
-    # unchanged) so the next build.js doesn't crash on a missing module.
-    npm install --no-audit --no-fund 2>&1 | tee -a "$LOG_FILE" || echo "WARNING: npm install after pull failed" | tee -a "$LOG_FILE"
-    git push origin master 2>&1 | tee -a "$LOG_FILE" || echo "WARNING: git push failed" | tee -a "$LOG_FILE"
+    sync_remote
 
     # Deploy
     npx wrangler pages deploy dist --project-name zuhd-news --branch master --commit-dirty=true 2>&1 | tee -a "$LOG_FILE"
@@ -1009,11 +1008,7 @@ if [ "${START_HOUR:-$HOUR_UTC}" = "$DAILY_HOUR" ]; then
     build_site
     echo "Audio rebuild exit: $BUILD_EXIT" | tee -a "$LOG_FILE"
     commit_only "Audio briefing $(date -u +%Y-%m-%d)" content/audio/
-    git pull --rebase --autostash origin master 2>&1 | tee -a "$LOG_FILE" || echo "WARNING: git pull --rebase failed (likely a mobile/backend file overlap — investigate)" | tee -a "$LOG_FILE"
-    # Install any new build deps the pull may have added (fast no-op when
-    # unchanged) so the next build.js doesn't crash on a missing module.
-    npm install --no-audit --no-fund 2>&1 | tee -a "$LOG_FILE" || echo "WARNING: npm install after pull failed" | tee -a "$LOG_FILE"
-    git push origin master 2>&1 | tee -a "$LOG_FILE" || echo "WARNING: git push failed" | tee -a "$LOG_FILE"
+    sync_remote
     if [ "$BUILD_EXIT" -eq 0 ]; then
       npx wrangler pages deploy dist --project-name zuhd-news --branch master --commit-dirty=true 2>&1 | tee -a "$LOG_FILE"
       DEPLOY_EXIT=${PIPESTATUS[0]}
@@ -1112,10 +1107,7 @@ if [ "$START_HOUR" = "22" ]; then
       AUDIT_DATE=$(date -u +%Y-%m-%d)
       commit_only "Daily audit $AUDIT_DATE" \
         content/.experiments.json content/.daily-audit.json content/.daily-audit.md
-      git pull --rebase --autostash origin master 2>&1 | tee -a "$LOG_FILE" || echo "WARNING: git pull --rebase failed (likely a mobile/backend file overlap — investigate)" | tee -a "$LOG_FILE"
-      # Install any new build deps the pull may have added (fast no-op when unchanged).
-      npm install --no-audit --no-fund 2>&1 | tee -a "$LOG_FILE" || echo "WARNING: npm install after pull failed" | tee -a "$LOG_FILE"
-      git push origin master 2>&1 | tee -a "$LOG_FILE" || echo "WARNING: git push failed" | tee -a "$LOG_FILE"
+      sync_remote
     fi
   else
     echo "Metrics computation failed — skipping tuning" | tee -a "$LOG_FILE"

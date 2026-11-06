@@ -433,20 +433,12 @@ export class Cycle {
 
   /**
    * Pull, install and push: what follows every commit that has to reach the
-   * remote. Each may fail and the cycle goes on, with a line that says so.
-   *
-   * `--autostash`: the working tree always carries uncommitted churn that a
-   * plain `pull --rebase` refuses to run over, which let the remote drift
-   * unmerged and every later push fail (2026-05-22 to 27). The install picks
-   * up any build dependency the pull brought, so the next build does not
-   * crash on a missing module.
+   * remote. `scripts/cycle/sync.js`, started by name, settles what it can of a
+   * remote that moved and says what it cannot (`lib/git-sync.js`). It never
+   * fails the cycle; this says so if it crashed.
    */
   async sync() {
-    if ((await this.run(['git', 'pull', '--rebase', '--autostash', 'origin', 'master'])) !== 0) {
-      this.say('WARNING: git pull --rebase failed (likely a mobile/backend file overlap — investigate)')
-    }
-    if ((await this.run(['npm', 'install', '--no-audit', '--no-fund'])) !== 0) this.say('WARNING: npm install after pull failed')
-    if ((await this.run(['git', 'push', 'origin', 'master'])) !== 0) this.say('WARNING: git push failed')
+    if ((await this.run(['node', 'scripts/cycle/sync.js'])) !== 0) this.say('WARNING: sync failed (see above)')
   }
 
   /**

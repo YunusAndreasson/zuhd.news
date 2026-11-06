@@ -64,9 +64,7 @@ commands
   node scripts/build.js
   git add content/articles/ content/.last-cycle.json content/.story-ledger.json content/.context-briefs.json content/.sv.json
   git commit --only content/articles/ content/.last-cycle.json content/.story-ledger.json content/.context-briefs.json content/.sv.json -m Editorial cycle 2026-10-08 18:04 UTC: 2 articles
-  git pull --rebase --autostash origin master
-  npm install --no-audit --no-fund
-  git push origin master
+  node scripts/cycle/sync.js
   npx wrangler pages deploy dist --project-name zuhd-news --branch master --commit-dirty=true
   node scripts/cycle/breaking-push.js pick
   node scripts/cycle/push-payload.js slug
@@ -265,12 +263,8 @@ log
   | «git:add»
   | [master 1234567] committed
   | «commit»
-  | git:pull: stdout
-  | «git:pull»
-  | npm:install: stdout
-  | «npm:install»
-  | git:push: stdout
-  | «git:push»
+  | sync: stdout
+  | «sync»
   | Deployment complete.
   | «deploy»
   | Deploy exit: 0

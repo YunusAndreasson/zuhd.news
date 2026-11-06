@@ -98,30 +98,31 @@ test('no new silent stage failures', () => {
   assert.deepEqual(failures, [], `new stage failures:\n  ${failures.join('\n  ')}`)
 })
 
-// Git push failure is logged only as WARNING in run-cycle.sh and the cycle
-// proceeds. Deploy still works (wrangler uploads local files) but the git
-// remote drifts, and the next cycle's pull can conflict. The recurring cause
-// is divergence: mobile-app work is pushed to the GitHub remote from a dev
-// machine while editorial cycles commit content/ locally, so a plain `git
-// push` is rejected non-fast-forward until someone reconciles. History:
-//   - 2026-04-18→19: 3 failures (original debt)
-//   - 2026-04-23→25: 12 failures from a parallel backlog merge; reconciled
-//     manually 2026-04-25, baseline raised to the post-reconciliation count (17)
-//   - 2026-05-22→27: 21 failures — every cycle's push rejected because local
-//     sat 70 ahead / 30 behind origin/master (30 mobile-only commits upstream).
-//     Reconciled 2026-05-27 via `git merge origin/master` (disjoint file sets,
-//     clean). Baseline reset below to the post-reconciliation count.
-// NOTE: this counts across ALL logs on disk, but cycle logs rotate, so the
-// baseline only stays meaningful while the failing logs are still present —
-// once they age out the count drops well under baseline (still passes). The
-// ratchet's real job is to fire when a NEW divergence cluster starts growing.
-test('git push failure rate does not grow', () => {
-  const failed = loadAll()
-    .filter(({ log }) => log.warnings.some(w => w.startsWith('WARNING: git push failed')))
-    .map(({ f }) => f)
-  const BASELINE = 21 // 2026-05-27 reconciliation: May 22→27 divergence cluster (April logs already rotated off disk)
-  assert.ok(failed.length <= BASELINE,
-    `git push failures ${failed.length} > baseline ${BASELINE}; new:\n  ${failed.slice(BASELINE).join('\n  ')}`)
+// Git push failure is logged only as WARNING and the cycle proceeds. Deploy
+// still works (wrangler uploads local files) but the git remote drifts. The
+// recurring cause is divergence: work pushed to the GitHub remote from a dev
+// machine while editorial cycles commit content/ locally. History:
+//   - 2026-04-23→25: 12 failures from a parallel backlog merge; reconciled by hand
+//   - 2026-05-22→27: 21 failures, local 70 ahead / 30 behind origin/master;
+//     reconciled by hand with `git merge origin/master`
+//   - 2026-11-02→06: 20 failures. The owner committed two content/ files the
+//     box writes and never tracked, and every `git pull` refused to overwrite
+//     them. Reconciled by hand 2026-11-06 19:32; `lib/git-sync.js` now settles
+//     that case, and the others it can, and says what it cannot.
+// The baseline here was a count of 21 across every log on disk, set in May.
+// With a 41-log window it let the November cluster run 20 cycles and still
+// pass. One refused push can be the network; two in a row is divergence.
+test('no two cycles in a row fail to push', () => {
+  // Runs already reconciled, first and last log: kept until they rotate off.
+  const KNOWN_RUNS = [['cycle-2026-11-02_2203.log', 'cycle-2026-11-06_1802.log']]
+  const known = (f) => KNOWN_RUNS.some(([from, to]) => f >= from && f <= to)
+  const logs = loadAll().sort((a, b) => a.f.localeCompare(b.f))
+  const refused = ({ log }) => log.warnings.some(w => w.startsWith('WARNING: git push failed'))
+  const second = []
+  for (let i = 1; i < logs.length; i++) {
+    if (refused(logs[i]) && refused(logs[i - 1]) && !known(logs[i].f)) second.push(logs[i].f)
+  }
+  assert.deepEqual(second, [], `cycles whose push was refused the cycle after one that was too:\n  ${second.join('\n  ')}`)
 })
 
 // The typecheck stage added to run-cycle.sh on 2026-08-01 is non-blocking by

@@ -64,9 +64,7 @@ commands
   node scripts/build.js
   git add content/articles/ content/.last-cycle.json content/.story-ledger.json content/.context-briefs.json content/.sv.json
   git commit --only content/articles/ content/.last-cycle.json content/.story-ledger.json content/.context-briefs.json content/.sv.json -m Editorial cycle 2026-10-08 18:04 UTC: 2 articles
-  git pull --rebase --autostash origin master
-  npm install --no-audit --no-fund
-  git push origin master
+  node scripts/cycle/sync.js
   npx wrangler pages deploy dist --project-name zuhd-news --branch master --commit-dirty=true
   node scripts/cycle/breaking-push.js pick
   node scripts/cycle/push-payload.js slug
@@ -275,15 +273,10 @@ log
   | «git:add»
   | nothing to commit, working tree clean
   | «commit»
-  | error: cannot pull with rebase: You have unstaged changes.
-  | «git:pull»
-  | WARNING: git pull --rebase failed (likely a mobile/backend file overlap — investigate)
-  | npm:install: stdout
-  | «npm:install»
+  | WARNING: git pull --rebase failed: error: cannot pull with rebase: You have unstaged changes.
   | WARNING: npm install after pull failed
-  |  ! [rejected] master -> master (fetch first)
-  | «git:push»
-  | WARNING: git push failed
+  | WARNING: git push failed: ! [rejected] master -> master (fetch first); 3 commit(s) here are not on origin
+  | «sync»
   | Deployment complete.
   | «deploy»
   | Deploy exit: 0

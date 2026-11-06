@@ -71,7 +71,7 @@ test('every stage has a name of its own', () => {
 test('every script the cycle starts is a file that is there', () => {
   const inList = STAGES.flatMap((s) => s.command ?? []).filter((a) => a.startsWith('scripts/'))
   const inSteps = readFileSync(join(ROOT, 'scripts', 'lib', 'cycle-steps.js'), 'utf8').match(/'scripts\/[\w/-]+\.js'/g)?.map((a) => a.slice(1, -1)) ?? []
-  const inEngine = ['scripts/build.js', 'scripts/cycle/alert.js', 'scripts/cycle/record.js']
+  const inEngine = ['scripts/build.js', 'scripts/cycle/alert.js', 'scripts/cycle/record.js', 'scripts/cycle/sync.js']
   assert.ok(inList.length > 25 && inSteps.length > 10, 'the list or the steps were not read')
   for (const script of new Set([...inList, ...inSteps, ...inEngine])) assert.ok(existsSync(join(ROOT, script)), `${script} is not there`)
 })
@@ -89,7 +89,7 @@ test('the list starts every script the shell script started, and no other', { sk
   const code = script.split('\n').filter((l) => !/^\s*#/.test(l)).join('\n')
   const inScript = new Set(code.match(/(?<=node (?:"\$SCRIPT_DIR\/|scripts\/))[\w/-]+\.js/g)?.map((n) => `scripts/${n}`))
   const steps = readFileSync(join(ROOT, 'scripts', 'lib', 'cycle-steps.js'), 'utf8').match(/'scripts\/[\w/-]+\.js'/g)?.map((a) => a.slice(1, -1)) ?? []
-  const inRunner = new Set([...STAGES.flatMap((s) => s.command ?? []).filter((a) => a.startsWith('scripts/')), ...steps, 'scripts/build.js', 'scripts/cycle/alert.js', 'scripts/cycle/record.js'])
+  const inRunner = new Set([...STAGES.flatMap((s) => s.command ?? []).filter((a) => a.startsWith('scripts/')), ...steps, 'scripts/build.js', 'scripts/cycle/alert.js', 'scripts/cycle/record.js', 'scripts/cycle/sync.js'])
   assert.deepEqual([...inRunner].sort(), [...inScript].sort())
 })
 
