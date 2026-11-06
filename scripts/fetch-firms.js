@@ -52,7 +52,9 @@ import {
   minDistanceKm,
   newestDetection,
   parseFirmsCsv,
+  pickSource,
   RECENT_WINDOW_MS,
+  VIIRS_SOURCES,
 } from './lib/firms.js'
 import { fetchText } from './lib/http.js'
 import { articleFilesSince } from './lib/article-files.js'
@@ -61,12 +63,8 @@ import { stageBudget } from './lib/stage-budget.js'
 
 const ARTICLES_DIR = pathOf('articles')
 
-/**
- * VIIRS aboard Suomi-NPP. One instrument rather than the four available: each
- * extra source is another request per cell for detections of the same fires, and
- * `satellites` on the published event already says which pass saw it.
- */
-const SOURCE = 'VIIRS_SNPP_NRT'
+/** For FIRMS's table of what each of its products holds (`currentSource`). */
+const AVAILABILITY_TIMEOUT_MS = 15_000
 
 /**
  * Days per query. Five is the API's ceiling, and the whole reason to ask for
@@ -111,12 +109,45 @@ if (written) {
   )
 }
 
+/**
+ * The first of `VIIRS_SOURCES` whose feed reaches yesterday, by FIRMS's own
+ * table (`pickSource`). One request; when it fails, or no feed is current, the
+ * first is read and the log says so.
+ *
+ * @returns {Promise<string>}
+ */
+async function currentSource() {
+  const fallback = VIIRS_SOURCES[0]
+  let csv
+  try {
+    csv = await fetchText(`https://firms.modaps.eosdis.nasa.gov/api/data_availability/csv/${key}/all`, {
+      timeoutMs: AVAILABILITY_TIMEOUT_MS,
+      signal: budget,
+    })
+  } catch (err) {
+    console.error(`  ⚠ FIRMS availability not read (${err.message}): asking ${fallback}`)
+    return fallback
+  }
+  try {
+    const { source, current, newest } = pickSource(csv, VIIRS_SOURCES, Date.now())
+    const days = VIIRS_SOURCES.map((id) => `${id} to ${newest[id]}`).join(', ')
+    if (current) console.log(`  source: ${source} (${days})`)
+    else console.error(`  ⚠ no VIIRS feed reaches yesterday (${days}): asking ${source}`)
+    return source
+  } catch (err) {
+    const said = csv.slice(0, 120).replace(/\s+/g, ' ').trim()
+    console.error(`  ⚠ FIRMS availability unreadable (${err.message}; it said: ${said}): asking ${fallback}`)
+    return fallback
+  }
+}
+
 /** The snapshot: the anomalies the instrument saw in the last day, within reach of a story. */
 async function produce() {
   // Same shape as the optional keys in fetch-trends.js: a missing credential is
   // a skipped source, never a failed cycle.
   if (!key) throw new Skip('FIRMS_MAP_KEY not set')
 
+  const SOURCE = await currentSource()
   console.log(`Fetching thermal anomalies (${SOURCE}, ${DAY_RANGE}d)`)
 
   // --- Seeds ----------------------------------------------------------------
@@ -196,6 +227,8 @@ async function produce() {
   // instrument. When it goes quiet the rows keep coming, all of them older, and
   // what is written is `events: []` with every skip count at zero: the same file
   // as a day on which nothing burned. Said here, so the log can tell them apart.
+  // `currentSource` moves to another satellite once FIRMS's table says a feed
+  // has stopped; this is for when the table is wrong or every feed is behind.
   if (newest !== null && now - newest > RECENT_WINDOW_MS) {
     console.error(
       `  ⚠ the newest detection is ${((now - newest) / 3600_000).toFixed(0)}h old, outside the ` +

@@ -22,6 +22,8 @@ import {
   nearestStories,
   newestDetection,
   parseFirmsCsv,
+  pickSource,
+  VIIRS_SOURCES,
 } from './firms.js'
 
 const NOW = Date.UTC(2026, 6, 29, 12)
@@ -39,6 +41,53 @@ const det = (lat, lng, date, hourUtc, frp, extra = {}) => ({
   satellite: 'N',
   daynight: 'N',
   ...extra,
+})
+
+// ---------------------------------------------------------------------------
+// 0. Which instrument
+// ---------------------------------------------------------------------------
+
+// FIRMS's availability table as it read on 2026-11-06, four days after Suomi
+// NPP's feed stopped (abridged: the archive and burned-area products cut).
+const AVAILABILITY = `data_id,min_date,max_date
+MODIS_NRT,2026-09-01,2026-11-06
+VIIRS_NOAA20_NRT,2026-08-01,2026-11-06
+VIIRS_NOAA21_NRT,2024-01-17,2026-11-06
+VIIRS_SNPP_NRT,2026-08-01,2026-11-02
+`
+const NOV_6 = Date.UTC(2026, 10, 6, 18)
+
+test('the source read is the first preferred one whose feed is current', () => {
+  const pick = pickSource(AVAILABILITY, VIIRS_SOURCES, NOV_6)
+  assert.equal(pick.source, 'VIIRS_NOAA20_NRT')
+  assert.equal(pick.current, true)
+  assert.deepEqual(pick.newest, { VIIRS_NOAA20_NRT: '2026-11-06', VIIRS_NOAA21_NRT: '2026-11-06', VIIRS_SNPP_NRT: '2026-11-02' })
+})
+
+test('a feed that stopped is passed over, and one that ends yesterday is not', () => {
+  // The order the four days went: Suomi NPP first, as it was read until then.
+  const snppFirst = ['VIIRS_SNPP_NRT', 'VIIRS_NOAA21_NRT']
+  assert.equal(pickSource(AVAILABILITY, snppFirst, NOV_6).source, 'VIIRS_NOAA21_NRT')
+  // Just after midnight UTC a feed's newest day is still yesterday's.
+  assert.equal(pickSource(AVAILABILITY, ['VIIRS_NOAA21_NRT'], Date.UTC(2026, 10, 7, 0, 30)).current, true)
+  assert.equal(pickSource(AVAILABILITY, ['VIIRS_NOAA21_NRT'], Date.UTC(2026, 10, 8, 0, 30)).current, false)
+})
+
+test('with no feed current the first is read, and the pick says it is not current', () => {
+  const pick = pickSource(AVAILABILITY, ['VIIRS_SNPP_NRT', 'VIIRS_J3_NRT'], NOV_6)
+  assert.equal(pick.source, 'VIIRS_SNPP_NRT')
+  assert.equal(pick.current, false)
+  // A product the table does not list is absent, not current.
+  assert.equal(pick.newest.VIIRS_J3_NRT, 'absent')
+})
+
+test('a day that is not a date is never current', () => {
+  const odd = 'data_id,min_date,max_date\nVIIRS_NOAA20_NRT,2026-08-01,yesterday\nVIIRS_NOAA21_NRT,2026-08-01,2026-11-06\n'
+  assert.equal(pickSource(odd, VIIRS_SOURCES, NOV_6).source, 'VIIRS_NOAA21_NRT')
+})
+
+test('a sentence in place of the table throws, so the fetcher can say what FIRMS said', () => {
+  assert.throws(() => pickSource('Invalid MAP_KEY.', VIIRS_SOURCES, NOV_6))
 })
 
 // ---------------------------------------------------------------------------

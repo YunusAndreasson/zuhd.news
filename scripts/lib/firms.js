@@ -3,7 +3,8 @@
 // NASA FIRMS publishes active-fire detections: one row per satellite pixel where
 // a VIIRS or MODIS pass measured infrared radiance above the local background.
 // Turning that into something a news map may draw takes four steps, and three of
-// them exist because of what the product does *not* say.
+// them exist because of what the product does *not* say. Before them, which
+// satellite to ask (`pickSource`): the one whose feed is current.
 //
 //   1. Where to ask (`aoiCells`). Global VIIRS is 50–150k detections a day,
 //      overwhelmingly agricultural burning. This layer is scoped to places the
@@ -25,7 +26,8 @@
 // event, from a different kind of witness. Nothing here touches the network, so
 // all of it is testable against fixtures — see `firms.test.js`.
 
-import { parseCsv } from './csv.js'
+import { csvObjects, parseCsv } from './csv.js'
+import { isIsoDate } from './iso-date.js'
 
 /**
  * Columns we read. VIIRS and MODIS differ in exactly one of them — VIIRS
@@ -125,6 +127,52 @@ const num = (v) => {
   const s = typeof v === 'string' ? v.trim() : v
   if (s === '') return Number.NaN
   return Number(s)
+}
+
+// --- 0. Which instrument ----------------------------------------------------
+
+/**
+ * The VIIRS sources, in the order they are preferred. One is read a cycle:
+ * each extra source is another request per cell for detections of the same
+ * fires, and `satellites` on the published event already says which pass saw
+ * one. The three are one instrument design on three satellites, with the same
+ * columns and the same 375 m pixel.
+ *
+ * Suomi NPP was the only one read until its feed stopped on 2026-11-02. The
+ * layer was then empty for four days, written each cycle as a day on which
+ * nothing burned, while NOAA-20 and NOAA-21 were current.
+ */
+export const VIIRS_SOURCES = /** @type {const} */ (['VIIRS_NOAA20_NRT', 'VIIRS_NOAA21_NRT', 'VIIRS_SNPP_NRT'])
+
+/**
+ * Which source to read: the first in `preference` whose newest day of data is
+ * today or yesterday (UTC), by FIRMS's own table of what it holds
+ * (`/api/data_availability/csv/{key}/all`, one row a product: `data_id`,
+ * `min_date`, `max_date`). Yesterday counts because a new UTC day has no pass
+ * in it yet for its first hours. With none current the first is read, and the
+ * fetcher's own check of the newest detection says that the layer is empty
+ * because the instrument is silent.
+ *
+ * Throws on a table without those columns, which is also what FIRMS's
+ * sentence for a bad key or an exhausted quota parses as.
+ *
+ * @param {string} csv
+ * @param {readonly string[]} preference
+ * @param {number} now
+ * @returns {{ source: string, current: boolean, newest: Record<string, string> }}
+ *   `newest` is each preferred source's last day, as the table gave it
+ */
+export function pickSource(csv, preference, now) {
+  const rows = csvObjects(csv, ['data_id', 'max_date'])
+  const lastDay = new Map(rows.map((r) => [r.data_id.trim(), r.max_date.trim()]))
+  const yesterday = new Date(now - 86_400_000).toISOString().slice(0, 10)
+  /** @type {Record<string, string>} */
+  const newest = {}
+  for (const id of preference) newest[id] = lastDay.get(id) ?? 'absent'
+  // A day is compared as text: `max_date` is `YYYY-MM-DD`, and anything else
+  // (absent, a changed format) sorts as not current rather than as a date.
+  const source = preference.find((id) => isIsoDate(newest[id]) && newest[id] >= yesterday)
+  return { source: source ?? preference[0], current: source !== undefined, newest }
 }
 
 // --- 1. Where to ask ------------------------------------------------------
