@@ -5,7 +5,7 @@
 import { rmSync } from 'node:fs'
 import { XMLParser } from 'fast-xml-parser'
 import { pathOf } from './lib/datasets.js'
-import { feedPubDate } from './lib/feed-age.js'
+import { feedPubDate, MAX_AHEAD_MS } from './lib/feed-age.js'
 import { rssItemImage } from './lib/feed-image.js'
 import { fetchSourcePage, stripTags } from './lib/fetch-source-text.js'
 import { bestStoryIds, bodiesFirst, documentHolds, hackerNewsStories, worthRetrying } from './lib/rss-feed.js'
@@ -267,7 +267,15 @@ export async function main() {
     // and on 2026-10-09 a day ahead. `feedPubDate` says what the story carries.
     const { pubDate, ahead } = feedPubDate(item.pubDate, now)
     if (ahead >= AHEAD_WORTH_SAYING_MS) {
-      console.error(`⚠ RSS date ahead of the clock: ${item.source} dates "${item.title}" ${item.pubDate}, ${(ahead / 3_600_000).toFixed(1)} h from now. Taken as now.`)
+      // Within a time-zone slip the story is taken as published now. Past one,
+      // its date is wrong and its age unknown, and taken as now it would be
+      // new to every cycle for as long as the feed carries it.
+      const wrong = ahead > MAX_AHEAD_MS
+      console.error(
+        `⚠ RSS date ahead of the clock: ${item.source} dates "${item.title}" ${item.pubDate}, ` +
+          `${(ahead / 3_600_000).toFixed(1)} h from now. ${wrong ? 'Left out: no time-zone slip, a wrong date.' : 'Taken as now.'}`,
+      )
+      if (wrong) continue
     }
 
     stories.push({

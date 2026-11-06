@@ -1,7 +1,7 @@
 // Run: node --test scripts/lib/feed-age.test.js
 import { test } from 'node:test'
 import { strict as assert } from 'node:assert'
-import { MAX_FEED_AGE_MS, MAX_WIDENED_AGE_MS, feedItemAgeMs, feedPubDate, isFreshFeedItem, poolAgeCapMs } from './feed-age.js'
+import { MAX_AHEAD_MS, MAX_FEED_AGE_MS, MAX_WIDENED_AGE_MS, feedItemAgeMs, feedPubDate, isFreshFeedItem, poolAgeCapMs } from './feed-age.js'
 
 const HOUR = 60 * 60 * 1000
 // The 10:01 cycle of 2026-09-26, which published two stories 21 h after
@@ -67,6 +67,17 @@ test('a date that has not happened yet is taken as now, and says by how much', (
   assert.equal(ahead, Date.parse('2026-10-10T00:55:00Z') - FETCHED)
   assert.ok(Date.parse(pubDate) <= FETCHED, 'never later than now, to the millisecond')
   assert.equal(feedItemAgeMs(pubDate, FETCHED), 565)
+})
+
+test('a date further ahead than any time-zone slip is a wrong date, not an early one', () => {
+  // The Record's fifteen hours (above) is a slip; Lowy Interpreter's next
+  // year, as fetched at the 2026-11-03 10:04 cycle, is not.
+  assert.ok(feedPubDate('Sat, 10 Oct 2026 00:55:00 GMT', FETCHED).ahead < MAX_AHEAD_MS)
+  const lowy = feedPubDate('Tue, 05 Oct 2027 03:00:00 +1100', Date.parse('2026-11-03T10:04:00Z'))
+  assert.ok(lowy.ahead > MAX_AHEAD_MS)
+  assert.ok(lowy.ahead > 330 * 24 * HOUR, 'eleven months ahead')
+  // Fourteen hours is the widest offset there is, and passes.
+  assert.ok(14 * HOUR < MAX_AHEAD_MS)
 })
 
 test('local midnight is a date with no time, as midnight UTC is', () => {

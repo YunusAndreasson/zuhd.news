@@ -56,6 +56,17 @@ const TIME_AND_OFFSET = /\d{2}:\d{2}(?::\d{2}(?:\.\d+)?)?\s*(?:GMT|UTC?)?\s*([+-
 const isoSecond = (ms) => new Date(ms).toISOString().replace(/\.\d{3}Z$/, 'Z')
 
 /**
+ * How far ahead of the clock an RSS date may be and still be a slip. The widest
+ * time-zone error is fourteen hours, and the furthest a real item has been seen
+ * ahead is The Record's fifteen (2026-10-09). Past this the date is wrong, not
+ * early: Lowy Interpreter dated an item `Tue, 05 Oct 2027` on 2026-11-02, and
+ * taken as now it was new to six cycles running. Its age is unknown, so
+ * `fetch-news.js` leaves such an item out, as nothing takes a date that does not
+ * parse for fresh.
+ */
+export const MAX_AHEAD_MS = 36 * 60 * 60 * 1000
+
+/**
  * An RSS item's date as the feed carries it: ISO, in UTC, never later than
  * `now`. `ahead` is how far past `now` the publisher's own date was, in ms.
  *
@@ -66,6 +77,7 @@ const isoSecond = (ms) => new Date(ms).toISOString().replace(/\.\d{3}Z$/, 'Z')
  * - **A date that has not happened yet** is taken as now. The Record stamped
  *   an item `Sat, 10 Oct 2026 00:55:00 GMT` on the 9th; the article went out at
  *   10:12 dated nearly fifteen hours ahead, first on every surface until then.
+ *   Past `MAX_AHEAD_MS` the caller drops the item instead.
  * - **Local midnight is a date with no time**, as midnight UTC is
  *   (`feedItemAgeMs`), and becomes that date at `T00:00:00Z`. Lowy Interpreter
  *   stamps `00:00:00 +1100`: read as 13:00 the day before, none of its three
