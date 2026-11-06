@@ -65,7 +65,7 @@ const healthy = () => [
   rule('metrics', 'node', '^scripts/compute-metrics\\.js$', says('{"date":"2026-10-08"}\n')),
 
   // The six sessions, told apart by what each is allowed to do or is asked.
-  rule('selector', 'claude', '--allowedTools Read,Write,Glob,Grep ', says('Selected 2 stories.\n', { writes: { '/tmp/zuhd-selection.json': SELECTION } })),
+  rule('selector', 'claude', '--allowedTools Read,Write,Edit,Glob,Grep ', says('Selected 2 stories.\n', { writes: { '/tmp/zuhd-selection.json': SELECTION } })),
   rule('writer', 'claude', '--allowedTools Read,Write,Edit --add-dir', says('Wrote 2 articles.\n')),
   rule('editor', 'claude', '--allowedTools Read,Edit,Glob,Grep ', says('Trimmed one, left one.\n')),
   rule('tuner', 'claude', '--allowedTools Read,Write,Edit,Glob,Grep,Bash ', says('All metrics within targets. No experiment.\n')),

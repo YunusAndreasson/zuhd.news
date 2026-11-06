@@ -29,10 +29,14 @@ const CLAUDE_FLAGS = ['--no-session-persistence', '--setting-sources', 'project'
 // Tool whitelist for Claude CLI (--dangerously-skip-permissions is blocked as root).
 // Stage-specific tool sets: narrower access = fewer wrong turns.
 // The selector needs no Bash: the feed is fetched before its session starts.
-// The writer keeps Edit: Sonnet 5 self-revises just-written files with it, and
-// without it stalls on permission prompts (43 articles lost 07-01→07-03).
+// Both keep Edit. The writer: Sonnet 5 self-revises just-written files with it,
+// and without it stalls on permission prompts (43 articles lost 07-01→07-03).
+// The selector: Opus corrects its own selection with it, and without it the
+// correction was refused and the error went to the writer as first written, an
+// unsupported claim in an angle (2026-11-02) and a doubled source (11-05). Edit
+// went with the ledger edits in March; the self-revision is newer.
 const TOOLS = {
-  selector: 'Read,Write,Glob,Grep',
+  selector: 'Read,Write,Edit,Glob,Grep',
   writer: 'Read,Write,Edit',
   editor: 'Read,Edit,Glob,Grep',
   tuner: 'Read,Write,Edit,Glob,Grep,Bash',

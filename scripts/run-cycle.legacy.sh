@@ -44,8 +44,10 @@ export ZUHD_MODEL="$CLAUDE_MODEL"
 
 # Tool whitelist for Claude CLI (--dangerously-skip-permissions is blocked as root)
 # Stage-specific tool sets: narrower access = fewer wrong turns
-# Selector no longer needs Bash — RSS feed is pre-fetched to /tmp/zuhd-feed.json before session starts
-TOOLS_SELECTOR="Read,Write,Glob,Grep"
+# Selector no longer needs Bash — RSS feed is pre-fetched to /tmp/zuhd-feed.json before session starts.
+# It keeps Edit: Opus corrects its own selection with it, and without it the
+# correction was refused and the error went on to the writer (2026-11-02, -05).
+TOOLS_SELECTOR="Read,Write,Edit,Glob,Grep"
 TOOLS_WRITER="Read,Write,Edit"
 TOOLS_EDITOR="Read,Edit,Glob,Grep"
 # Common flags for all headless Claude CLI invocations (no --model: passed per stage).
