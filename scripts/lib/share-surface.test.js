@@ -235,9 +235,12 @@ test('every page type wears the same footer', (t) => {
     t.skip('dist not built')
     return
   }
+  // The opening tag with whatever attributes it carries: the navs gained an
+  // `aria-label` on 2026-10-30 (1b26e5f4), this read `<nav class="footer-links">`
+  // exactly, and from then on it found no footer on any built homepage.
   const footer = (html) =>
     html
-      .match(/<nav class="footer-links">[\s\S]*?<nav class="footer-maker"[\s\S]*?\n\s*<\/nav>/)?.[0]
+      .match(/<nav class="footer-links"[^>]*>[\s\S]*?<nav class="footer-maker"[\s\S]*?\n\s*<\/nav>/)?.[0]
       // A static page marks the link to itself current and drops its overlay
       // trigger — opening a sheet of the page behind it is a no-op the reader
       // then has to undo. That is the one difference allowed here.
