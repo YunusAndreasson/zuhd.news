@@ -1,6 +1,6 @@
 import assert from 'node:assert/strict'
 import { test } from 'node:test'
-import { chokepointRows, parseArcgisDate } from './trends-sources/portwatch.js'
+import { arcgisRefusal, chokepointRows, parseArcgisDate } from './trends-sources/portwatch.js'
 
 // PortWatch re-published `date` as a DateOnly string around 2026-04-28. The
 // per-indicator fetcher compared it against epoch ms, dropped every row, and
@@ -44,4 +44,19 @@ test('chokepointRows gives the same answer for epoch-ms features', () => {
 test('chokepointRows drops rows with no value for the requested class', () => {
   const rows = chokepointRows([feature('2026-08-30', null), feature('2026-08-29', 5)], 'n_tanker', 0)
   assert.deepEqual(rows.map((r) => r.calls), [5])
+})
+
+// What the service answered on 2026-11-06 at 20:09:00, a third of a second
+// into a fresh minute, and every cycle from 2026-11-04 10:03: HTTP 200, no
+// `features`, and the log said "no features returned".
+test('a refusal inside a 200 is said in the service\'s words, and an answer is not a refusal', () => {
+  const refused = { error: { code: 429, message: 'Unable to perform query. Too many requests.', details: ['API calls quota exceeded (6078 request units)! maximum allowed request units (6000) per Minute. Retry after 60 sec.'] } }
+  assert.equal(
+    arcgisRefusal(refused),
+    '429 Unable to perform query. Too many requests. API calls quota exceeded (6078 request units)! maximum allowed request units (6000) per Minute. Retry after 60 sec.',
+  )
+  assert.equal(arcgisRefusal({ features: [] }), null)
+  assert.equal(arcgisRefusal({ features: [feature('2026-11-06', 3)] }), null)
+  assert.equal(arcgisRefusal({ error: {} }), 'an error with nothing in it')
+  assert.equal(arcgisRefusal(null), null)
 })

@@ -50,6 +50,27 @@ export function parseArcgisDate(v) {
 }
 
 /**
+ * What ArcGIS said instead of answering, or null when it answered.
+ *
+ * A refused query comes back as HTTP 200 with an `error` object and no
+ * `features`, so `data.features || []` read it as an empty answer. From the
+ * 2026-11-04 10:03 cycle the chokepoint layer kept its morning snapshot and
+ * the log said "no features returned" every cycle, when the service had said
+ * `429 … API calls quota exceeded (6391 request units)! maximum allowed request
+ * units (6000) per Minute`: the IMF's quota, spent by every caller of the service
+ * together, even a tenth of a second into a fresh minute.
+ *
+ * @param {any} data a parsed response
+ * @returns {string | null}
+ */
+export function arcgisRefusal(data) {
+  const err = data?.error
+  if (!err || typeof err !== 'object') return null
+  const details = Array.isArray(err.details) ? err.details.filter(Boolean).join(' ') : ''
+  return [err.code, err.message, details].filter(Boolean).join(' ').slice(0, 300) || 'an error with nothing in it'
+}
+
+/**
  * The usable rows of a per-indicator response: one `{ ts, calls }` per feature
  * with a parseable date and a value, inside the window, oldest first. Pure, so
  * the regression above has a test.
@@ -99,6 +120,11 @@ export async function fetchPortWatchChokepoint(indicator) {
 
   try {
     const data = await fetchJson(url, { timeoutMs: 15_000 })
+    const refused = arcgisRefusal(data)
+    if (refused) {
+      console.error(`  ✗ portwatch:${indicator.id}: the service refused: ${refused}`)
+      return null
+    }
     const features = data.features || []
     if (features.length === 0) {
       console.error(`  ✗ portwatch:${indicator.id}: no features returned`)
@@ -180,6 +206,11 @@ export async function fetchAllChokepointsSnapshot() {
 
   try {
     const data = await fetchJson(url, { timeoutMs: 20_000 })
+    const refused = arcgisRefusal(data)
+    if (refused) {
+      console.error(`  ✗ portwatch-snapshot: the service refused: ${refused}`)
+      return null
+    }
     const features = data.features || []
     if (features.length === 0) {
       console.error('  ✗ portwatch-snapshot: no features returned')
