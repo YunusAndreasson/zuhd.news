@@ -243,6 +243,7 @@ test('a cycle is what its log says, with its two moments as ISO', () => {
     daily: true,
     target: null,
     warnings: 0,
+    pushRefused: null,
     // Every stage that printed a status or a time: the page drew four of them.
     allStages: [
       { id: 'feed', exit: null, seconds: 30, retried: false },
@@ -381,6 +382,31 @@ test('the daily cycle is timed against its own bar, and a quiet cycle is not a f
   const quiet = { ...ended, totalSeconds: 60, funnel: { ...ended.funnel, written: 0, validated: 0, published: 0 } }
   const after = status([quiet, sound('cycle-2026-10-09_1402.log')])
   assert.deepEqual([after.status.lastCycle, after.status.siteFreshness, after.status.overall], ['green', 'green', 'green'])
+})
+
+// 2026-11-02 22:03 to 11-06 18:02: every push refused, twenty cycles, while
+// the site deployed from the box and every light here was green.
+test('a push GitHub refused is a light of its own, red from the second cycle running', () => {
+  const refusal = 'WARNING: git push failed: ! [rejected]          master -> master (non-fast-forward); 114 commit(s) here are not on origin'
+  const refused = (name) => {
+    const cycle = cycleOf(logText({ end: `Build exit: 0\n${refusal}\nDeploy exit: 0` }), name)
+    return { ...cycle, totalSeconds: 800, funnel: { ...cycle.funnel, validated: cycle.funnel.written } }
+  }
+  const pushed = sound('cycle-2026-11-02_1800.log')
+  assert.equal(refused('cycle-2026-11-02_2203.log').pushRefused, refusal)
+  assert.equal(pushed.pushRefused, null)
+
+  assert.deepEqual([status([pushed]).status.remote, status([pushed]).why.remote], ['green', 'the last cycle pushed'])
+  const once = status([refused('cycle-2026-11-02_2203.log'), pushed])
+  assert.equal(once.status.remote, 'amber')
+  assert.match(once.why.remote, /^the last cycle did not reach GitHub: ! \[rejected\]/)
+  const twice = status([refused('cycle-2026-11-03_0503.log'), refused('cycle-2026-11-02_2203.log'), pushed])
+  assert.deepEqual([twice.status.remote, twice.status.overall], ['red', 'red'])
+  assert.match(twice.why.remote, /^the last 2 cycles did not reach GitHub: .*114 commit\(s\) here are not on origin$/)
+  // A cycle that ended before its commit never pushed, and does not break the run.
+  const aborted = cycleOf(ABORTED, 'cycle-2026-11-03_1004.log')
+  assert.equal(status([aborted, refused('cycle-2026-11-03_0503.log'), refused('cycle-2026-11-02_2203.log')]).why.remote.slice(0, 35), 'the last 2 cycles did not reach Git')
+  assert.equal(status([aborted]).status.remote, 'unknown')
 })
 
 test('a timer that is not armed is red, and the sources colour the whole', () => {

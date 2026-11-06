@@ -226,6 +226,9 @@ export function cycleView(log, filename) {
     daily: id ? id.slice(11, 13) === DAILY_HOUR : false,
     target: log.selection.target,
     warnings: log.warnings.length,
+    // The line a refused push leaves, git's reason in it; null when the push
+    // went through or was never tried.
+    pushRefused: log.warnings.find((w) => w.startsWith('WARNING: git push failed')) ?? null,
     // Every stage that printed a status or a time, as it last ran.
     allStages: [
       ...(log.feed.seconds != null ? [{ id: 'feed', exit: null, seconds: log.feed.seconds, retried: false }] : []),
@@ -378,6 +381,20 @@ export function cycleStatus({ cycles, metaGenerated, systemd, alert, sources = n
     const removed = last.funnel.written - last.funnel.validated
     set('validation', removed <= 0 ? 'green' : removed <= 2 ? 'amber' : 'red', removed > 0 ? `${removed} of ${last.funnel.written} written did not pass` : 'every article written passed')
   }
+
+  // GitHub: whether the cycles' commits reach it. The site deploys from this
+  // tree whatever the remote holds, so no other light shows a refused push:
+  // from 2026-11-02 22:03 every one was, twenty cycles, with every light here
+  // green. A cycle that deployed pushed first; one refused says so.
+  const pushing = finished.filter((c) => c.pushRefused || deployed(c))
+  const firstPushed = pushing.findIndex((c) => !c.pushRefused)
+  const refused = firstPushed === -1 ? pushing.length : firstPushed
+  const reason = (pushing[0]?.pushRefused ?? '').replace(/^WARNING: git push failed:?\s*/, '')
+  const because = reason ? `: ${reason}` : ''
+  if (pushing.length === 0) set('remote', 'unknown', 'no cycle on record has pushed')
+  else if (refused >= 2) set('remote', 'red', `the last ${refused} cycles did not reach GitHub${because}`)
+  else if (refused === 1) set('remote', 'amber', `the last cycle did not reach GitHub${because}`)
+  else set('remote', 'green', 'the last cycle pushed')
 
   if (systemd.timerActive === false) set('timer', 'red', 'the timer is not active: no cycle will start')
   else if (!systemd.nextFire) set('timer', 'unknown', 'systemd did not say when the next cycle fires')

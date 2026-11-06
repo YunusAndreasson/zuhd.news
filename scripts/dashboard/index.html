@@ -759,7 +759,7 @@ function renderOverview(o) {
 // The lights, each with the sentence the server gives for it.
 function renderHealth(o) {
   const lights = [
-    ['lastCycle', 'last cycle'], ['alert', 'alert'], ['siteFreshness', 'site'], ['sources', 'sources'], ['pubRate', 'published'],
+    ['lastCycle', 'last cycle'], ['alert', 'alert'], ['siteFreshness', 'site'], ['remote', 'GitHub'], ['sources', 'sources'], ['pubRate', 'published'],
     ['cycleTiming', 'duration'], ['validation', 'validation'], ['timer', 'timer'],
   ]
   document.getElementById('health-list').innerHTML = lights.filter(([key]) => o.status[key]).map(([key, label]) =>
