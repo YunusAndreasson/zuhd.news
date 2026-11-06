@@ -1,37 +1,37 @@
 {
-  "date": "2026-11-05",
+  "date": "2026-11-06",
   "metrics": {
     "articles": { "value": 58, "detail": "5 cycles, all completed, avg 12/cycle" },
-    "freshness": { "median": 0.1, "p90": 0.3, "max": 0.8, "target": 1.0, "met": true },
-    "categories": { "politics": 20, "economy": 17, "science": 5, "tech": 16 },
-    "multiSource": { "pct": 28, "target": 30, "met": false },
-    "usDatelines": { "pct": 16, "target": 25, "met": true },
+    "freshness": { "median": 0.1, "p90": 0.4, "max": 0.8, "target": 1.0, "met": true },
+    "categories": { "politics": 22, "economy": 18, "science": 6, "tech": 12 },
+    "multiSource": { "pct": 33, "target": 30, "met": true },
+    "usDatelines": { "pct": 29, "target": 25, "met": false },
     "latAmDatelines": { "pct": 7, "target": 5, "met": true },
     "sameEventDuplicates": { "value": 0, "target": 0, "met": true },
     "missingDatelines": { "value": 0, "target": 0, "met": true },
-    "stateOrAdvocacyOnly": 1,
-    "imageUrlPct": 98,
-    "regions": { "count": 6, "target": 4, "met": true, "breakdown": { "AM": 13, "AS": 15, "EU": 12, "ME": 12, "AF": 5, "OC": 1 } },
-    "sciTech": { "ratio": 36, "target": 25, "met": true },
-    "topSourceShare": { "source": "Al Jazeera Online", "pct": 12, "target": 20, "met": true },
-    "uniqueSources": 57,
+    "stateOrAdvocacyOnly": 2,
+    "imageUrlPct": 100,
+    "regions": { "count": 6, "target": 4, "met": true, "breakdown": { "AM": 21, "AS": 11, "ME": 8, "EU": 13, "AF": 4, "OC": 1 } },
+    "sciTech": { "ratio": 31, "target": 25, "met": true },
+    "topSourceShare": { "source": "Al Jazeera Online / Bloomberg Business / Reuters (tied)", "pct": 14, "target": 20, "met": true },
+    "uniqueSources": 44,
     "duplicates": 0,
-    "avgCycleDuration": 1022
+    "avgCycleDuration": 986
   },
-  "experiment": "Skipped. No experiment is active and the pause gate (`noNewExperimentsUntil` 2026-11-05) runs through today; the field is left for tomorrow's tuner to drop. The one miss, multi-source at 28%, is a 2-point dip inside the noise of a week that averaged ~28% (17–38%), and the last floor-based fix for it (2026-05-09-multi-source-floor-3) was reverted.",
-  "weakestArea": "Multi-source at 28% (16 of 58), down from 32–38% over the previous two days. Its 7-day range of 17–38% centres on the target, so this is variance in how much same-event coverage the feed carries, not a step change. If it stays under 30% for the week after the gate lifts, look at the feed side (eventsCount, minArticlesInEvent) rather than selector floors, since that floor change was already tried and reverted.",
+  "experiment": "Skipped. No experiment is active. The pause gate (`noNewExperimentsUntil` 2026-11-05) has passed and was dropped today. US datelines at 29% is the only miss, and it is a one-day spike: the 8-day mean is about 24% (16–30%), so no change is warranted.",
+  "weakestArea": "US datelines at 29% (yesterday 16%), driven by a heavy US news day: the October jobs report, Dhillon's resignation, Stephen Miller as chief of staff, the court ruling on the Oval Office arch, and US-hub markets stories on the AI selloff and the midterms. It went over target 3 times in 8 days, with no trend. If the weekly mean passes 25%, look at GAP_COUNTRIES or READER_ALIGNED in fetch-news-api.js, not the floors.",
   "watching": [
-    "Hormuz: another tanker hit a mine and Seoul is extending a navy deployment toward the strait as the US–Iran war goes on.",
-    "Israel: Herzog opened coalition talks and Arab parties backed Eisenkot.",
-    "Rates: the Bank of England hiked and the Bank of Russia raised its expected key-rate path.",
-    "Paraguay: the president resigned over a bank scandal.",
-    "Nigeria: a court voided Atiku's nomination.",
-    "Ebola has reached a British doctor."
+    "Hormuz: a seafarer was killed on the Velos Sapphire, more tankers hit mines, freight rates rose, and a third US carrier (Theodore Roosevelt) is heading to the region.",
+    "Ukraine: US-brokered talks in Abu Dhabi with Umerov, and the EU rejected the Trump deal.",
+    "AI selloff: it spread across Asian chipmakers and pulled down Bitcoin and copper ahead of the US midterms.",
+    "Oil: talk of a glut and demand destruction rose alongside the oil majors' war windfalls.",
+    "Venezuela: Machado returned to Caracas.",
+    "Super El Niño: the forecast peak is December, with record heat expected."
   ],
   "coverageGaps": [
-    "Oceania had one dateline (Sydney, a science story); there was no Pacific hard news.",
-    "Science made 5, just at target, with 4 science sources, one of them 404 Media; top-journal research stayed thin.",
-    "Africa had 5 datelines, all from Nigeria, South Africa and the DRC; the Sahel and East Africa were absent."
+    "Oceania had a single dateline again, so there was no Pacific hard news for a second day.",
+    "Africa had 4 datelines (Kenya, South Africa and others); Sahel and Horn of Africa conflict coverage was thin despite the Taiz siege getting a story.",
+    "Science made 6, over the target of 5, but one of its 4 sources (Ars Technica) is general tech press; journal-grade sources were Nature, Phys.org and Carbon Brief."
   ],
-  "context": "Every target but multi-source was met: freshness median 0.1 days, US datelines 16% (down from 25%), Latin America 7% (Brazil, Paraguay, Venezuela, Chile), zero duplicates, zero missing datelines and no outlet above 12%. The single state-or-advocacy-only story is the Bank of Russia rate path, sourced to TASS. If science runs short after the gate lifts, add a science source to CURATED_SOURCES rather than raising the floor."
+  "context": "This is the first day after the refactor pause. Every target was met except US datelines: multi-source recovered to 33% from 28%, and LatAm held at 7%. Unique sources fell from 57 to 44 while Bloomberg, Reuters and Al Jazeera each carried 8 stories. That is still under the 20% cap, but watch the concentration. One article was quarantined (europe-data-centre-protests, .bad)."
 }
