@@ -13,9 +13,11 @@
 //   filterRecentWindow(events, days) → { kept, windowStart, windowEnd }
 //   emptyReleaseReport(rows, events) → string | null    a release with no event in it
 //   candidateCsvUrl(version), nextReleases(version)     the release's file, and what follows it
+//   compareReleases(a, b), newestRelease(from, ask)     release order, and the newest one published
 //
 // Nothing here touches the network or the clock, so all of it is tested
-// against fixtures: `conflict.test.js`.
+// against fixtures: `conflict.test.js`. `newestRelease` is handed its
+// question (`ask`); the fetcher asks it over HTTP.
 
 import { isIsoDate } from './iso-date.js'
 
@@ -42,6 +44,60 @@ export const candidateCsvUrl = (version) =>
 export function nextReleases(version) {
   const [year, minor, month] = version.split('.').map(Number)
   return [`${year}.${minor}.${month + 1}`, `${year + 1}.${minor}.1`]
+}
+
+/**
+ * Two releases in order: below zero when `a` came out before `b`. By number,
+ * part by part: `26.0.9` before `26.0.10`, `26.0.12` before `27.0.1`. A part
+ * that does not read as a number counts as 0, so a malformed version sorts
+ * first and is never taken for the newest.
+ *
+ * @param {string} a
+ * @param {string} b
+ */
+export function compareReleases(a, b) {
+  const part = (/** @type {string} */ v, /** @type {number} */ i) => Number(String(v).split('.')[i]) || 0
+  for (let i = 0; i < 3; i++) {
+    const d = part(a, i) - part(b, i)
+    if (d !== 0) return d
+  }
+  return 0
+}
+
+/**
+ * The newest release UCDP has published, walking forward from one it has:
+ * ask after what can follow (`nextReleases`), step to the newest of those that
+ * exist, and ask again, until a round finds none or `steps` run out.
+ *
+ * `ask` is the fetcher's HEAD on a release's file. One that throws is an
+ * answer of not there, so a slow or failing probe leaves the walk where it
+ * stood, never short of `from`.
+ *
+ * @param {string} from a release whose file exists: the floor, or the snapshot's own
+ * @param {(version: string) => Promise<{ ok: boolean, said: string }>} ask
+ * @param {number} [steps] how far one run may walk; a month a step
+ * @returns {Promise<{ version: string, asked: { version: string, ok: boolean, said: string }[] }>}
+ *   `asked` is the last round, which says why the walk stopped there
+ */
+export async function newestRelease(from, ask, steps = 4) {
+  let version = from
+  /** @type {{ version: string, ok: boolean, said: string }[]} */
+  let asked = []
+  for (let i = 0; i < steps; i++) {
+    asked = await Promise.all(
+      nextReleases(version).map(async (v) => {
+        try {
+          return { version: v, ...(await ask(v)) }
+        } catch (err) {
+          return { version: v, ok: false, said: err instanceof Error ? err.message : String(err) }
+        }
+      }),
+    )
+    const found = asked.filter((a) => a.ok).map((a) => a.version).sort(compareReleases)
+    if (found.length === 0) break
+    version = found[found.length - 1]
+  }
+  return { version, asked }
 }
 
 // CSV columns we depend on. If any of these are missing from the upstream

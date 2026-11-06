@@ -11,10 +11,12 @@ import test from 'node:test'
 import assert from 'node:assert/strict'
 import {
   candidateCsvUrl,
+  compareReleases,
   droppedRowsReport,
   emptyReleaseReport,
   filterRecentWindow,
   mapUcdpRow,
+  newestRelease,
   newGateTally,
   nextReleases,
   parseSourceArticle,
@@ -259,6 +261,46 @@ test('what follows a release is next month, or the first of next year', () => {
   assert.deepEqual(nextReleases('26.0.12'), ['26.0.13', '27.0.1'])
   assert.equal(candidateCsvUrl('26.0.8'), 'https://ucdp.uu.se/downloads/candidateged/GEDEvent_v26_0_8.csv')
   assert.equal(candidateCsvUrl('27.0.1'), 'https://ucdp.uu.se/downloads/candidateged/GEDEvent_v27_0_1.csv')
+})
+
+test('releases sort by number, and a December comes before the next January', () => {
+  assert.ok(compareReleases('26.0.9', '26.0.10') < 0)
+  assert.ok(compareReleases('26.0.12', '27.0.1') < 0)
+  assert.equal(compareReleases('26.0.9', '26.0.9'), 0)
+  // As text, 26.0.10 would sort before 26.0.9 and October would never be read.
+  assert.deepEqual(['26.0.10', '26.0.9', '27.0.1'].sort(compareReleases), ['26.0.9', '26.0.10', '27.0.1'])
+  assert.ok(compareReleases('nonsense', '26.0.1') < 0)
+})
+
+/** A UCDP that has published these files, asked as the fetcher's HEAD asks. */
+const publishedAs = (/** @type {string[]} */ files) => async (/** @type {string} */ v) =>
+  files.includes(v) ? { ok: true, said: 'HTTP 200' } : { ok: false, said: 'HTTP 404' }
+
+test('the newest release is found by walking forward from the floor', async () => {
+  // 2026-11-06: 26.0.9 was out from 10-20 while 26.0.8 stayed pinned and the
+  // log said "bump UCDP_VERSION" 24 cycles running.
+  const nov = await newestRelease('26.0.8', publishedAs(['26.0.8', '26.0.9']))
+  assert.equal(nov.version, '26.0.9')
+  assert.deepEqual(nov.asked.map((a) => `${a.version} ${a.said}`), ['26.0.10 HTTP 404', '27.0.1 HTTP 404'])
+  // Two releases behind is two steps, and a year's turn is one.
+  assert.equal((await newestRelease('26.0.8', publishedAs(['26.0.9', '26.0.10']))).version, '26.0.10')
+  assert.equal((await newestRelease('26.0.11', publishedAs(['26.0.12', '27.0.1', '27.0.2']))).version, '27.0.2')
+})
+
+test('with nothing newer, or a probe that fails, the walk stays where it began', async () => {
+  assert.equal((await newestRelease('26.0.9', publishedAs([]))).version, '26.0.9')
+  const down = await newestRelease('26.0.9', async () => {
+    throw new Error('The operation was aborted due to timeout')
+  })
+  assert.equal(down.version, '26.0.9')
+  assert.equal(down.asked[0].said, 'The operation was aborted due to timeout')
+})
+
+test('a walk is bounded, so a probe that says yes to everything cannot run away', async () => {
+  const yes = async () => ({ ok: true, said: 'HTTP 200' })
+  // Each step takes the newer of next month's and next year's first: a probe
+  // that answers yes to all of them is four years on after four steps.
+  assert.equal((await newestRelease('26.0.9', yes, 4)).version, '30.0.1')
 })
 
 test('a row dated after today is not an event, and cannot move the window', () => {

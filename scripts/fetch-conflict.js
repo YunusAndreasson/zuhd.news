@@ -13,10 +13,12 @@
 // quality gates in `lib/conflict.js`, and the snapshot is the last week of the
 // release, counted back from its own newest date and never from today.
 //
-// The release is pinned (`UCDP_VERSION`), and the pin is the dataset's recency:
-// nothing fails while it goes stale. Two things watch it, both below. The lag
-// alarm warns when the window has fallen 45 days behind, and after each write
-// the fetcher asks UCDP whether the next release's file exists yet.
+// The release read is the newest UCDP has published, found on each fetch by
+// asking after the files that can follow the one in hand (`newestRelease`,
+// `lib/conflict.js`): one HEAD a name, starting from the snapshot's own release
+// or the floor (`UCDP_FLOOR`), whichever is newer. UCDP publishes month M on the
+// 20th of M+1. The lag alarm warns when the window has fallen behind what that
+// cadence allows, which now means the walk has stopped finding releases.
 //
 // The cycle calls this every run and it fetches when the snapshot is six hours
 // old, by the `generated` stamp inside it and never by the file's mtime.
@@ -31,12 +33,13 @@
 
 import {
   candidateCsvUrl,
+  compareReleases,
   emptyReleaseReport,
   filterRecentWindow,
   droppedRowsReport,
   mapUcdpRow,
+  newestRelease,
   newGateTally,
-  nextReleases,
   REQUIRED_COLUMNS,
 } from './lib/conflict.js'
 import { csvObjects } from './lib/csv.js'
@@ -45,15 +48,20 @@ import { fetchOk } from './lib/http.js'
 import { Degrade, snapshotStage } from './lib/snapshot-stage.js'
 import { stageBudget } from './lib/stage-budget.js'
 
-// The candidate release this reads. Its last number is the month: 26.0.8 is
-// August 2026, and the release after 26.0.12 is 27.0.1.
-// Was pinned at 26.0.3 until 2026-08-30, four releases behind, which is the
-// only reason the globe's conflict layer was showing a 25-31 March window in
-// late August. The bump is not optional maintenance: this constant IS the
-// dataset's recency, and nothing failed while it rotted — see DATASET_STALE_DAYS
-// and the probe after the write.
-const UCDP_VERSION = '26.0.8'
-const UCDP_URL = candidateCsvUrl(UCDP_VERSION)
+// The oldest candidate release a snapshot may come from, and where the walk to
+// the newest starts when there is no snapshot. Its last number is the month:
+// 26.0.9 is September 2026, and the release after 26.0.12 is 27.0.1.
+//
+// It was the release itself, pinned and bumped by hand, and it rotted twice:
+// at 26.0.3 until 2026-08-30, four releases behind, when the globe showed a
+// 25-31 March week in late August; and at 26.0.8 from 2026-10-20, when 26.0.9
+// came out, until 2026-11-06, while the log said "bump UCDP_VERSION" every
+// cycle. Nothing needs it moved now; move it only to stop an old release from
+// ever being read again.
+const UCDP_FLOOR = '26.0.9'
+
+// UCDP's answer to one HEAD on a release's file name. Inside the stage's budget.
+const PROBE_TIMEOUT_MS = 10_000
 
 // UCDP candidate is a daily-precision dataset trailing real-time by 1-3
 // months — narrow windows (1-2d) collapse to whatever the dataset's max
@@ -71,7 +79,7 @@ const CACHE_MAX_AGE_MS = 6 * 60 * 60 * 1000
 const CSV_TIMEOUT_MS = 105_000
 
 const started = Date.now()
-/** One signal for the download and for the probe after it: `lib/stage-budget.js`. */
+/** One signal for the release probes and the download: `lib/stage-budget.js`. */
 const budget = stageBudget('fetch-conflict')
 
 const { written, snapshot } = await snapshotStage('fetch-conflict', 'conflict', produce, {
@@ -84,53 +92,47 @@ const { written, snapshot } = await snapshotStage('fetch-conflict', 'conflict', 
   // week later. coverage-map.js already carries this warning ("git ops change
   // mtime, breaking the window"); this fetcher was the one place that missed it.
   freshFor: CACHE_MAX_AGE_MS,
-  // A bumped pin must fetch now, not up to six hours later.
-  freshIf: (previous) => previous.ucdpVersion === UCDP_VERSION,
+  // A raised floor must fetch now, not up to six hours later. A new release
+  // is found by the walk at the next fetch, at most six hours after it is out.
+  freshIf: (previous) => compareReleases(previous.ucdpVersion ?? '', UCDP_FLOOR) >= 0,
   force: Boolean(process.env.FORCE),
 })
 
 if (written) {
   console.log(`Wrote ${snapshot.events.length} events to ${pathOf('conflict')} in ${Date.now() - started}ms`)
-
-  // The next release, asked directly. The lag alarm in `produce` is a proxy that
-  // fires weeks late (26.0.8 was live while 26.0.7 was pinned and nothing
-  // warned); a HEAD on the next file's name is the fact itself. Both names it
-  // could have are asked: next month's, and the first of next year's, which is
-  // what follows a December and which `patch + 1` alone would never find.
-  //
-  // After the write, because it is advice. Ahead of it, its fifteen seconds were
-  // added to the download's 105 inside a 120-second stage, so a slow answer to a
-  // question nobody needed answered could cost a snapshot already in hand. It is
-  // under the stage's budget as well, so after a slow download it is cut short
-  // rather than left to run the stage into its `timeout`.
-  //
-  // One line either way: "not yet" from a probe that works and silence from one
-  // that has stopped working must not look the same in the log.
-  const asked = await Promise.all(
-    nextReleases(UCDP_VERSION).map(async (version) => {
-      try {
-        const head = await fetch(candidateCsvUrl(version), {
-          method: 'HEAD',
-          signal: AbortSignal.any([budget, AbortSignal.timeout(15_000)]),
-        })
-        return { version, ok: head.ok, said: `HTTP ${head.status}` }
-      } catch (err) {
-        return { version, ok: false, said: err.message }
-      }
-    }),
-  )
-  const out = asked.filter((a) => a.ok)
-  if (out.length > 0) {
-    console.error(
-      `  ⚠ UCDP candidate v${out.map((a) => a.version).join(', v')} is published — bump UCDP_VERSION (pinned ${UCDP_VERSION})`,
-    )
-  } else {
-    console.log(`  next release not yet published (${asked.map((a) => `v${a.version}: ${a.said}`).join('; ')})`)
-  }
 }
 
-/** The snapshot: the last week of the pinned release, of the rows that pass the gates. */
-async function produce() {
+/**
+ * Whether a release's file is there: one HEAD, inside the stage's budget.
+ *
+ * @param {string} version
+ * @returns {Promise<{ ok: boolean, said: string }>}
+ */
+async function published(version) {
+  const head = await fetch(candidateCsvUrl(version), {
+    method: 'HEAD',
+    signal: AbortSignal.any([budget, AbortSignal.timeout(PROBE_TIMEOUT_MS)]),
+  })
+  return { ok: head.ok, said: `HTTP ${head.status}` }
+}
+
+/**
+ * The snapshot: the last week of the newest release, of the rows that pass the gates.
+ *
+ * @param {{ previous: any }} context
+ */
+async function produce({ previous }) {
+  // The release, found. From the snapshot's own when it is past the floor: the
+  // walk need not ask again after the months it has already found.
+  const held = typeof previous?.ucdpVersion === 'string' ? previous.ucdpVersion : ''
+  const from = compareReleases(held, UCDP_FLOOR) > 0 ? held : UCDP_FLOOR
+  const { version, asked } = await newestRelease(from, published)
+  // One line either way: "not yet" from a probe that works and silence from
+  // one that has stopped working must not look the same in the log.
+  const notYet = asked.map((a) => `v${a.version}: ${a.said}`).join('; ')
+  console.log(`UCDP release v${version}${version === from ? '' : ` (new since v${from})`}; after it, ${notYet || 'nothing asked'}`)
+  const url = candidateCsvUrl(version)
+
   // The release, as rows. There was a second way in, UCDP's paginated JSON API
   // behind an access token, written on the belief that the CSV was ~50 MB. It is
   // 1.4 MB, the token was never set, and the path had never run: it asked for up
@@ -138,8 +140,8 @@ async function produce() {
   // the column check below. It is gone; this is the one fetch.
   let rows
   try {
-    console.log(`Fetching UCDP candidate GED v${UCDP_VERSION}: ${UCDP_URL}`)
-    const res = await fetchOk(UCDP_URL, { timeoutMs: CSV_TIMEOUT_MS, signal: budget })
+    console.log(`Fetching UCDP candidate GED v${version}: ${url}`)
+    const res = await fetchOk(url, { timeoutMs: CSV_TIMEOUT_MS, signal: budget })
     const csv = await res.text()
     console.log(`Downloaded ${csv.length.toLocaleString('en-US')} bytes`)
     rows = csvObjects(csv, REQUIRED_COLUMNS)
@@ -177,25 +179,27 @@ async function produce() {
     `Kept ${kept.length} events in window ${windowStart} → ${windowEnd} (last ${WINDOW_DAYS}d of dataset)`,
   )
 
-  // UCDP candidate trails real-time by 1-3 months by design, so a window a few
-  // weeks back is normal and must not warn. Past this, the pin is stale rather
-  // than the dataset lagging — which is exactly how a 25-31 March window went
-  // unnoticed into late August: the line above printed it every time, correctly,
-  // and read as normal. Bump UCDP_VERSION when this fires.
-  const DATASET_STALE_DAYS = 45
+  // A release ends on its month's last day and the next comes out on the 20th
+  // of the month after (26.0.5 to 26.0.9, June to October 2026, all on the
+  // 20th). So the newest window is up to 51 days old in the ordinary course,
+  // and the 45 this was set at warned every month from the 15th to the 20th.
+  // Past 60 a release is more than a week late or the walk has stopped finding
+  // them: a 25-31 March window went unnoticed into late August because the
+  // line above printed it every time, correctly, and it read as normal.
+  const DATASET_STALE_DAYS = 60
   const windowEndMs = Date.parse(windowEnd)
   if (Number.isFinite(windowEndMs)) {
     const lagDays = Math.floor((Date.now() - windowEndMs) / 86400000)
     if (lagDays > DATASET_STALE_DAYS) {
       console.error(
-        `  ⚠ UCDP v${UCDP_VERSION} is ${lagDays}d behind (window ends ${windowEnd}) — a newer candidate release is probably out; bump UCDP_VERSION`,
+        `  ⚠ UCDP v${version} is ${lagDays}d behind (window ends ${windowEnd}), and no newer release was found — see the release line above`,
       )
     }
   }
 
   return {
     generated: new Date().toISOString(),
-    ucdpVersion: UCDP_VERSION,
+    ucdpVersion: version,
     windowStart,
     windowEnd,
     events: kept,

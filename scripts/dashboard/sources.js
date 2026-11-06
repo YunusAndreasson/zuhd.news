@@ -32,7 +32,7 @@ const DAY = 24 * HOUR
 export const KEPT_FOR_MS = { aiModels: 20 * HOUR, conflict: 6 * HOUR }
 
 /** `DATASET_STALE_DAYS` in `fetch-conflict.js`: how far behind UCDP's last week may be. Held by the same test. */
-export const CONFLICT_STALE_DAYS = 45
+export const CONFLICT_STALE_DAYS = 60
 
 /**
  * How old a series' newest point may be before the row says so, by the
