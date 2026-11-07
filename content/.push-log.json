@@ -1,105 +1,5 @@
 [
   {
-    "timestamp": "2026-10-18T14:16:29.063Z",
-    "candidateCount": 11,
-    "candidates": [
-      {
-        "slug": "2026-10-18-france-protests-1000-arrests-macron-crisis",
-        "title": "France Protests Become Political Crisis",
-        "category": "politics",
-        "eventCoverage": 947,
-        "importance": 6
-      },
-      {
-        "slug": "2026-10-18-netanyahu-smear-settler-attacks-olive-harvest-eu",
-        "title": "Netanyahu Alleges Settler Smear",
-        "category": "politics",
-        "eventCoverage": 521,
-        "importance": 6
-      },
-      {
-        "slug": "2026-10-18-lithuania-drone-from-poland-debris-hits-car-kaunas",
-        "title": "Drone Debris Hits Lithuanian Car",
-        "category": "politics",
-        "eventCoverage": 103,
-        "importance": 6
-      },
-      {
-        "slug": "2026-10-18-iran-defence-minister-akhlaghi-missiles-us-war",
-        "title": "Iran Names Missile Builder Minister",
-        "category": "politics",
-        "eventCoverage": 75,
-        "importance": 6
-      },
-      {
-        "slug": "2026-10-18-imf-ai-investment-growth-risk",
-        "title": "IMF Flags AI Dependence",
-        "category": "economy",
-        "eventCoverage": 48,
-        "importance": 6
-      },
-      {
-        "slug": "2026-10-18-lahore-four-death-sentences-cyber-blasphemy-fia",
-        "title": "Lahore Court Sentences Four",
-        "category": "politics",
-        "eventCoverage": 0,
-        "importance": 6
-      },
-      {
-        "slug": "2026-10-18-banco-master-vorcaro-messages-bolsonaro-right",
-        "title": "Banco Master Owner Backs Right",
-        "category": "politics",
-        "eventCoverage": 0,
-        "importance": 6
-      },
-      {
-        "slug": "2026-10-18-brent-crude-near-110-iran-war-hormuz",
-        "title": "Brent Crude Nears $110",
-        "category": "economy",
-        "eventCoverage": 0,
-        "importance": 6
-      },
-      {
-        "slug": "2026-10-18-us-stocks-1-7-trillion-lockup-expiry-buybacks-2027",
-        "title": "Wall Street's 2027 Supply Test",
-        "category": "economy",
-        "eventCoverage": 0,
-        "importance": 6
-      },
-      {
-        "slug": "2026-10-18-crypto-hacks-1-18-billion-q3-audit-gap-hacken",
-        "title": "Crypto Audits Miss Attack Targets",
-        "category": "tech",
-        "eventCoverage": 0,
-        "importance": 6
-      },
-      {
-        "slug": "2026-10-18-ghana-nigeria-scam-sweep-meta-3-7-million-accounts",
-        "title": "West Africa Scam Sweep",
-        "category": "tech",
-        "eventCoverage": 0,
-        "importance": 6
-      }
-    ],
-    "selected": {
-      "slug": "2026-10-18-france-protests-1000-arrests-macron-crisis",
-      "title": "France Protests Become Political Crisis",
-      "category": "politics",
-      "body": "Over 1,800 arrested in [France](country:FR), the interior minister",
-      "eventCoverage": 947,
-      "importance": 6
-    },
-    "skipReason": null,
-    "sent": true,
-    "pushTitle": "Breaking News",
-    "pushBody": "France arrests more than 1,800 as protests deepen political crisis, interior minister says",
-    "response": {
-      "pushed": 1,
-      "skipped": 0,
-      "tokens": 5
-    }
-  },
-  {
     "timestamp": "2026-10-18T18:15:14.094Z",
     "candidateCount": 14,
     "candidates": [
@@ -10217,6 +10117,99 @@
     "sent": true,
     "pushTitle": "Breaking News",
     "pushBody": "US offers up to $20 million reward for tips on Iran nuclear program",
+    "response": {
+      "pushed": 1,
+      "skipped": 0,
+      "tokens": 5
+    }
+  },
+  {
+    "timestamp": "2026-11-07T14:15:31.706Z",
+    "candidateCount": 10,
+    "candidates": [
+      {
+        "slug": "2026-11-07-trump-more-firings-keeps-hegseth-after-midterms",
+        "title": "Trump Spares Hegseth",
+        "category": "politics",
+        "eventCoverage": 530,
+        "importance": 6
+      },
+      {
+        "slug": "2026-11-07-russia-ballistic-barrage-kyiv-energy-saratov-refinery",
+        "title": "Kyiv Intercepts 4 Missiles",
+        "category": "economy",
+        "eventCoverage": 200,
+        "importance": 6
+      },
+      {
+        "slug": "2026-11-07-italy-tajani-data-leak-pro-russian-hackers-dark-web",
+        "title": "Hackers Leak Tajani Data",
+        "category": "tech",
+        "eventCoverage": 104,
+        "importance": 6
+      },
+      {
+        "slug": "2026-11-07-west-bengal-abhishek-banerjee-home-attack-mamata-bjp",
+        "title": "Attack on Banerjee Home",
+        "category": "politics",
+        "eventCoverage": 94,
+        "importance": 6
+      },
+      {
+        "slug": "2026-11-07-houston-police-ice-traffic-stops-whitmire-abbott",
+        "title": "Houston Curbs ICE Referrals",
+        "category": "politics",
+        "eventCoverage": 80,
+        "importance": 6
+      },
+      {
+        "slug": "2026-11-07-us-strikes-qeshm-tanker-mine-fire-hormuz-mediators",
+        "title": "US Strikes Qeshm Again",
+        "category": "politics",
+        "eventCoverage": 40,
+        "importance": 6
+      },
+      {
+        "slug": "2026-11-07-pakistan-auto-policy-cheaper-cars-electric-vehicles",
+        "title": "Pakistan Unveils Auto Policy",
+        "category": "economy",
+        "eventCoverage": 20,
+        "importance": 6
+      },
+      {
+        "slug": "2026-11-07-british-soldier-estonia-sim-card-sextortion-court-martial",
+        "title": "Corporal Sextorted After Ignoring Order",
+        "category": "tech",
+        "eventCoverage": 10,
+        "importance": 6
+      },
+      {
+        "slug": "2026-11-07-bantu-expansion-ancient-dna-africa-migration",
+        "title": "Bantu Migration Split Late",
+        "category": "science",
+        "eventCoverage": 10,
+        "importance": 6
+      },
+      {
+        "slug": "2026-11-07-iran-nuclear-strike-fallout-map-pakistan-physics",
+        "title": "Iran Strike Fallout Overstated",
+        "category": "science",
+        "eventCoverage": 10,
+        "importance": 6
+      }
+    ],
+    "selected": {
+      "slug": "2026-11-07-us-strikes-qeshm-tanker-mine-fire-hormuz-mediators",
+      "title": "US Strikes Qeshm Again",
+      "category": "politics",
+      "body": "2 [US](country:US) projectiles hit the island Friday",
+      "eventCoverage": 40,
+      "importance": 6
+    },
+    "skipReason": null,
+    "sent": true,
+    "pushTitle": "Breaking News",
+    "pushBody": "US projectiles hit Iran's Qeshm island again, UKMTO says 11 ships attacked",
     "response": {
       "pushed": 1,
       "skipped": 0,
