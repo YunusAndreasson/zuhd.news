@@ -1,37 +1,39 @@
 {
-  "date": "2026-11-06",
+  "date": "2026-11-07",
   "metrics": {
-    "articles": { "value": 58, "detail": "5 cycles, all completed, avg 12/cycle" },
-    "freshness": { "median": 0.1, "p90": 0.4, "max": 0.8, "target": 1.0, "met": true },
-    "categories": { "politics": 22, "economy": 18, "science": 6, "tech": 12 },
-    "multiSource": { "pct": 33, "target": 30, "met": true },
-    "usDatelines": { "pct": 29, "target": 25, "met": false },
-    "latAmDatelines": { "pct": 7, "target": 5, "met": true },
+    "articles": { "value": 48, "detail": "5 cycles, all completed, avg 9/cycle (yesterday 61)" },
+    "freshness": { "median": 0.1, "p90": 0.3, "max": 0.5, "target": 1.0, "met": true },
+    "categories": { "politics": 24, "economy": 11, "science": 4, "tech": 9 },
+    "multiSource": { "pct": 31, "target": 30, "met": true },
+    "usDatelines": { "pct": 25, "target": 25, "met": true },
+    "latAmDatelines": { "pct": 6, "target": 5, "met": true },
     "sameEventDuplicates": { "value": 0, "target": 0, "met": true },
     "missingDatelines": { "value": 0, "target": 0, "met": true },
-    "stateOrAdvocacyOnly": 2,
+    "stateOrAdvocacyOnly": 4,
     "imageUrlPct": 100,
-    "regions": { "count": 6, "target": 4, "met": true, "breakdown": { "AM": 21, "AS": 11, "ME": 8, "EU": 13, "AF": 4, "OC": 1 } },
-    "sciTech": { "ratio": 31, "target": 25, "met": true },
-    "topSourceShare": { "source": "Al Jazeera Online / Bloomberg Business / Reuters (tied)", "pct": 14, "target": 20, "met": true },
-    "uniqueSources": 44,
+    "regions": { "count": 5, "target": 4, "met": true, "breakdown": { "AM": 15, "ME": 13, "EU": 11, "AS": 5, "AF": 4 } },
+    "sciTech": { "ratio": 27, "target": 25, "met": true },
+    "topSourceShare": { "source": "Al Jazeera Online", "pct": 19, "target": 20, "met": true },
+    "uniqueSources": 46,
     "duplicates": 0,
-    "avgCycleDuration": 986
+    "avgCycleDuration": 921
   },
-  "experiment": "Skipped. No experiment is active. The pause gate (`noNewExperimentsUntil` 2026-11-05) has passed and was dropped today. US datelines at 29% is the only miss, and it is a one-day spike: the 8-day mean is about 24% (16–30%), so no change is warranted.",
-  "weakestArea": "US datelines at 29% (yesterday 16%), driven by a heavy US news day: the October jobs report, Dhillon's resignation, Stephen Miller as chief of staff, the court ruling on the Oval Office arch, and US-hub markets stories on the AI selloff and the midterms. It went over target 3 times in 8 days, with no trend. If the weekly mean passes 25%, look at GAP_COUNTRIES or READER_ALIGNED in fetch-news-api.js, not the floors.",
+  "experiment": "Skipped. No experiment is active and none is queued. The only miss is science at 4 against a target of 5, on one day, and by the 2026-09-26 decision that floor may go unmet. US datelines came back to 25% from 29%, so the issue from yesterday did not persist.",
+  "weakestArea": "Science made 4 of 5 (yesterday 6): Bantu-expansion ancient DNA, the AHA blood-pressure trials, a trapped-ion quantum simulation, and the DRC Ebola outbreak. Its sources were Ars Technica, STAT, Dawn and Phys.org, with nothing journal-grade like Nature. Politics took half the output (24 of 48) on a heavy war day in Hormuz, Yemen and Ukraine. Revisit the science sources only if the weekly mean drops below 5.",
   "watching": [
-    "Hormuz: a seafarer was killed on the Velos Sapphire, more tankers hit mines, freight rates rose, and a third US carrier (Theodore Roosevelt) is heading to the region.",
-    "Ukraine: US-brokered talks in Abu Dhabi with Umerov, and the EU rejected the Trump deal.",
-    "AI selloff: it spread across Asian chipmakers and pulled down Bitcoin and copper ahead of the US midterms.",
-    "Oil: talk of a glut and demand destruction rose alongside the oil majors' war windfalls.",
-    "Venezuela: Machado returned to Caracas.",
-    "Super El Niño: the forecast peak is December, with record heat expected."
+    "Hormuz: UKMTO counts 11 ships attacked in the third week, US strikes hit Qeshm, and a US Caspian task force is blockading Iran by land.",
+    "Yemen and Saudi Arabia: the Houthis claim six strikes on Saudi targets including Aramco, and Saudi strikes on Sanaa killed 27.",
+    "Ukraine: Russia sent a higher-level delegation to the Abu Dhabi talks during a ballistic barrage on Kyiv's energy grid.",
+    "DRC Ebola: the WHO calls it the largest outbreak in history, with 5,198 deaths.",
+    "Israel: Eisenkot was given the mandate to form a government.",
+    "Krakow: six were killed in the main-square shooting, and three more bodies were found at the shooter's home.",
+    "Paraguay: President Peña was impeached over the Ueno bank affair."
   ],
   "coverageGaps": [
-    "Oceania had a single dateline again, so there was no Pacific hard news for a second day.",
-    "Africa had 4 datelines (Kenya, South Africa and others); Sahel and Horn of Africa conflict coverage was thin despite the Taiz siege getting a story.",
-    "Science made 6, over the target of 5, but one of its 4 sources (Ars Technica) is general tech press; journal-grade sources were Nature, Phys.org and Carbon Brief."
+    "Oceania had no datelines, so the regions fell to 5, and Pacific hard news is missing for the second time in three days.",
+    "There were 5 Asia datelines against 12 yesterday, and East Asia had only the Busan trade deal, China memory chips and Japanese manufacturers.",
+    "State-or-advocacy-only stories doubled to 4 (Gaza floods, Houthi claims, Rezaei-Putin, Krakow shooter's home); they are labelled, but the Houthi claims especially need independent confirmation.",
+    "Science sources were general and health press, with no journal-grade outlet in the day's four."
   ],
-  "context": "This is the first day after the refactor pause. Every target was met except US datelines: multi-source recovered to 33% from 28%, and LatAm held at 7%. Unique sources fell from 57 to 44 while Bloomberg, Reuters and Al Jazeera each carried 8 stories. That is still under the 20% cap, but watch the concentration. One article was quarantined (europe-data-centre-protests, .bad)."
+  "context": "Volume fell to 48 from 61, and avg 9 per cycle is below the 11 to 15 picked, which is worth checking against the validator and dedup logs if it repeats. Every other target was met: multi-source 31%, US 25%, LatAm 6%, sci+tech 27%. Al Jazeera carried 9 stories (19%), close to the 20% cap, and it carried 9 yesterday as well."
 }
