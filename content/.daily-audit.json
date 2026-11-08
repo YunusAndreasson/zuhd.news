@@ -1,39 +1,39 @@
 {
-  "date": "2026-11-07",
+  "date": "2026-11-08",
   "metrics": {
-    "articles": { "value": 48, "detail": "5 cycles, all completed, avg 9/cycle (yesterday 61)" },
-    "freshness": { "median": 0.1, "p90": 0.3, "max": 0.5, "target": 1.0, "met": true },
-    "categories": { "politics": 24, "economy": 11, "science": 4, "tech": 9 },
-    "multiSource": { "pct": 31, "target": 30, "met": true },
-    "usDatelines": { "pct": 25, "target": 25, "met": true },
-    "latAmDatelines": { "pct": 6, "target": 5, "met": true },
+    "articles": { "value": 48, "detail": "5 cycles, all completed, avg 10/cycle (yesterday 49)" },
+    "freshness": { "median": 0.1, "p90": 0.2, "max": 1.2, "target": 1.0, "met": true },
+    "categories": { "politics": 21, "economy": 15, "science": 4, "tech": 8 },
+    "multiSource": { "pct": 33, "target": 30, "met": true },
+    "usDatelines": { "pct": 15, "target": 25, "met": true },
+    "latAmDatelines": { "pct": 4, "target": 5, "met": false },
     "sameEventDuplicates": { "value": 0, "target": 0, "met": true },
     "missingDatelines": { "value": 0, "target": 0, "met": true },
-    "stateOrAdvocacyOnly": 4,
+    "stateOrAdvocacyOnly": 5,
     "imageUrlPct": 100,
-    "regions": { "count": 5, "target": 4, "met": true, "breakdown": { "AM": 15, "ME": 13, "EU": 11, "AS": 5, "AF": 4 } },
-    "sciTech": { "ratio": 27, "target": 25, "met": true },
-    "topSourceShare": { "source": "Al Jazeera Online", "pct": 19, "target": 20, "met": true },
-    "uniqueSources": 46,
+    "regions": { "count": 7, "target": 4, "met": true, "breakdown": { "ME": 16, "AS": 10, "AM": 9, "EU": 7, "AF": 4, "OC": 1, "GL": 1 } },
+    "sciTech": { "ratio": 25, "target": 25, "met": true },
+    "topSourceShare": { "source": "TASS", "pct": 19, "target": 20, "met": true },
+    "uniqueSources": 42,
     "duplicates": 0,
-    "avgCycleDuration": 921
+    "avgCycleDuration": 894
   },
-  "experiment": "Skipped. No experiment is active and none is queued. The only miss is science at 4 against a target of 5, on one day, and by the 2026-09-26 decision that floor may go unmet. US datelines came back to 25% from 29%, so the issue from yesterday did not persist.",
-  "weakestArea": "Science made 4 of 5 (yesterday 6): Bantu-expansion ancient DNA, the AHA blood-pressure trials, a trapped-ion quantum simulation, and the DRC Ebola outbreak. Its sources were Ars Technica, STAT, Dawn and Phys.org, with nothing journal-grade like Nature. Politics took half the output (24 of 48) on a heavy war day in Hormuz, Yemen and Ukraine. Revisit the science sources only if the weekly mean drops below 5.",
+  "experiment": "Skipped. No experiment is active or queued, and there is no pause gate. The two misses are each a single day inside a healthy week: science at 4 may go unmet by the 2026-09-26 decision (7-day mean 5.1), and Latin America at 4% against a 7-day mean near 5.4%. The GAP_COUNTRIES Latin America lever was tried and reverted on 2026-09-23, so it is not repeated.",
+  "weakestArea": "Latin America made 4% (2 datelines: the Colombia drone attack and Pope Leo on Argentina's austerity), down from 6% yesterday; the week averages above target, so this reads as a heavy Middle East day (16 of 48 datelines, from Hormuz, Yemen and Iran) and not as a trend. Science made 4, all from Phys.org and Ars Technica plus the coral, perovskite, cuprate and bird-loss papers, with nothing from a journal-grade source.",
   "watching": [
-    "Hormuz: UKMTO counts 11 ships attacked in the third week, US strikes hit Qeshm, and a US Caspian task force is blockading Iran by land.",
-    "Yemen and Saudi Arabia: the Houthis claim six strikes on Saudi targets including Aramco, and Saudi strikes on Sanaa killed 27.",
-    "Ukraine: Russia sent a higher-level delegation to the Abu Dhabi talks during a ballistic barrage on Kyiv's energy grid.",
-    "DRC Ebola: the WHO calls it the largest outbreak in history, with 5,198 deaths.",
-    "Israel: Eisenkot was given the mandate to form a government.",
-    "Krakow: six were killed in the main-square shooting, and three more bodies were found at the shooter's home.",
-    "Paraguay: President Peña was impeached over the Ueno bank affair."
+    "Hormuz: two more tankers hit mines and a third burned as the IRGC asserts control of the route off Khasab and Khorfakkan.",
+    "Pakistan and Iran reached a Hormuz deal for LNG passage after a tanker attack cut Pakistan's gas supply.",
+    "Yemen and Saudi Arabia: Houthi missiles damaged an Aramco building in Riyadh, and Saudi strikes on Yemen have caused 1,039 casualties since July.",
+    "Ukraine: Russian strikes left 850,000 without power in Dnipropetrovsk and Kharkiv, hit three cargo ships near Odesa, and cut Zaporizhzhia's external power again.",
+    "Israel: Eisenkot is negotiating a coalition that would rely on the Joint List's 19 seats from outside.",
+    "Iran: three January protesters were executed in Karaj while an Iraqi channel carries US–Iran messages.",
+    "New Zealand: Luxon's majority narrows as special votes are counted."
   ],
   "coverageGaps": [
-    "Oceania had no datelines, so the regions fell to 5, and Pacific hard news is missing for the second time in three days.",
-    "There were 5 Asia datelines against 12 yesterday, and East Asia had only the Busan trade deal, China memory chips and Japanese manufacturers.",
-    "State-or-advocacy-only stories doubled to 4 (Gaza floods, Houthi claims, Rezaei-Putin, Krakow shooter's home); they are labelled, but the Houthi claims especially need independent confirmation.",
-    "Science sources were general and health press, with no journal-grade outlet in the day's four."
+    "A same-event duplicate slipped past the metric: the El-Ayyat derailment (TASS, 13:41) and the Giza rail collision (Al Jazeera and BBC, 16:37) are the same crash at the same coordinates, so sameEventDuplicates reads 0 but is 1.",
+    "State-or-advocacy-only stories rose to 5 (from 4), including the TASS-only El-Ayyat story and Iranian-state stories on the Rey depot and the Rasht–Astara railway.",
+    "TASS was the top source at 9 of 48 (19%), just under the 20% cap; Al Jazeera led every day of the previous week.",
+    "Latin America had only Colombia and Argentina; Brazil, Mexico and the Andean countries were absent."
   ],
-  "context": "Volume fell to 48 from 61, and avg 9 per cycle is below the 11 to 15 picked, which is worth checking against the validator and dedup logs if it repeats. Every other target was met: multi-source 31%, US 25%, LatAm 6%, sci+tech 27%. Al Jazeera carried 9 stories (19%), close to the 20% cap, and it carried 9 yesterday as well."
+  "context": "The pipeline was steady: five of five cycles completed in an average 894s, freshness median 0.1 days, and multi-source at 33% for a third day above target. The duplicate detector missed the Egypt pair because the titles and outlets differ (\"derails, 150 hurt\" against \"collision toll rises\"); a later cycle wrote the update as a new story instead of revising the first, which is a dedup fix rather than a tunable."
 }
