@@ -27,6 +27,8 @@ content/.breaking-pick.json
 # PNGs into the repo root as untracked files.
 .shots/
 .shots-*/
+# argent's screen recordings
+.argent/recordings/
 .refs/
 .diag.mjs
 
