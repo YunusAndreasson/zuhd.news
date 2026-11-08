@@ -2,13 +2,193 @@
   "version": 1,
   "stories": [
     {
+      "id": "aramco-riyadh-building-damaged-houthi-missiles",
+      "label": "Saudi Aramco building in Riyadh damaged by falling debris after attempted attack, ministry says",
+      "firstSeen": "2026-11-08T10:05:31.127Z",
+      "lastCovered": "2026-11-08T10:05:31.127Z",
+      "coverageCount": 1,
+      "category": "economy",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-11-08-aramco-riyadh-building-damaged-houthi-missiles"
+      ],
+      "eventUri": "spa-4405027",
+      "summary": "New development on the Houthi-Saudi exchange: Saudi Arabia's own Energy Ministry now confirms an Aramco administrative building in Riyadh was damaged by debris after Houthi ballistic missiles were intercepted over the capital, and a Reuters witness saw windows blown out across several floors — the first independent confirmation after days of Houthi-only claims. Lead with the hit in the capital, not a remote oil field; tie it to Saudi strikes on Yemen (1,039 killed or wounded since July 13, per Yemen's health ministry) and to Brent crude, as the war now reaches the headquarters city of the world's largest oil exporter."
+    },
+    {
+      "id": "japan-earthquake-aichi-22-injured",
+      "label": "Earthquake hits central Japan, injuring more than 20 people",
+      "firstSeen": "2026-11-08T10:05:31.127Z",
+      "lastCovered": "2026-11-08T10:05:31.127Z",
+      "coverageCount": 1,
+      "category": "politics",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-11-08-japan-earthquake-aichi-22-injured"
+      ],
+      "eventUri": "eng-12169229",
+      "summary": "A strong quake centred on Aichi shattered windows and injured at least 22 people across central Japan's industrial belt; Shinkansen trains ran at reduced speed as a precaution. Lead with the injuries and where the shaking hit, then the mechanism: how Japan's early-warning and rail-safety systems kept a quake in its most densely built manufacturing corridor from turning deadly. File as a disaster, not science."
+    },
+    {
+      "id": "zaporizhzhia-nuclear-plant-loses-external-power-diesel",
+      "label": "External power line to ZNPP disconnected due to damage",
+      "firstSeen": "2026-11-08T10:05:31.127Z",
+      "lastCovered": "2026-11-08T10:05:31.127Z",
+      "coverageCount": 1,
+      "category": "politics",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-11-08-zaporizhzhia-nuclear-plant-loses-external-power-diesel"
+      ],
+      "eventUri": "ukr-374119",
+      "summary": "Europe's largest nuclear plant, Russian-occupied Zaporizhzhia, lost its external power line (Ferrosplavnaya-1) and is running on backup diesel generators to keep reactor cooling going. Both sides report it (TASS and Ukrainska Pravda) — attribute who blames whom. Lead with the diesel fallback and how many times the plant has been cut off; the mechanism is that cooling of spent fuel depends on one line amid strikes on the grid while Abu Dhabi talks continue."
+    },
+    {
+      "id": "modi-maoists-eliminated-dimagi-naxals-bastar",
+      "label": "Armed Maoists eliminated, but 'dimagi Naxals' remain a threat: PM Modi",
+      "firstSeen": "2026-11-08T10:05:31.127Z",
+      "lastCovered": "2026-11-08T10:05:31.127Z",
+      "coverageCount": 1,
+      "category": "politics",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-11-08-modi-maoists-eliminated-dimagi-naxals-bastar"
+      ],
+      "eventUri": "eng-12169564",
+      "summary": "Speaking at a CRPF CoBRA base in Bastar, Modi declared India's armed Maoist insurgency over, then named a new target: 'dimagi Naxals' (\"brain Naxals\") he says have infiltrated parties and organisations. Lead with the pivot — the end of a decades-long war in India's adivasi forest belt is being used to recast ideological opponents and civil society as security threats. Who bears the cost: the Bastar adivasis displaced by the campaign and activists who could now be labelled."
+    },
+    {
+      "id": "india-congress-party-donations-fall-75-percent",
+      "label": "Congress donations fall nearly 75%, sharpest decline in a decade",
+      "firstSeen": "2026-11-08T10:05:31.127Z",
+      "lastCovered": "2026-11-08T10:05:31.127Z",
+      "coverageCount": 1,
+      "category": "economy",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-11-08-india-congress-party-donations-fall-75-percent"
+      ],
+      "eventUri": "eng-12167907",
+      "summary": "Donations to India's main opposition party, Congress, fell nearly 75% — the sharpest drop in a decade — per its filings with the Election Commission. Lead with the number and the gap against the BJP's haul; the mechanism is where corporate political money flows after the Supreme Court struck down electoral bonds, and what an opposition starved of funds means for Indian democracy. Use the Economic Times article; the mint URL in the cluster is a mismatched Kalpataru story."
+    },
+    {
+      "id": "khyber-pakhtunkhwa-faceless-anti-terrorism-courts",
+      "label": "KP plans to set up faceless ATCs, spend Rs70bn on CTD and police in a year as part of efforts against terrorism",
+      "firstSeen": "2026-11-08T10:05:31.127Z",
+      "lastCovered": "2026-11-08T10:05:31.127Z",
+      "coverageCount": 1,
+      "category": "politics",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-11-08-khyber-pakhtunkhwa-faceless-anti-terrorism-courts"
+      ],
+      "eventUri": null,
+      "summary": "Khyber Pakhtunkhwa plans 'faceless' anti-terrorism courts — judges and prosecutors kept anonymous — and Rs70bn for counter-terrorism police in a year. Lead with the faceless courts: a model tried in Peru and Colombia that protects judges from militant reprisal but strips defendants of a known accuser and open trial. Context: Pakistan says attacks are launched from Afghan soil, and Pak-Afghan trade stays frozen over it (Dawn, same day)."
+    },
+    {
+      "id": "japan-price-rises-backfire-uniqlo-deflation-mindset",
+      "label": "Why raising prices in Japan amid 'insanely high' inflation backfires on firms",
+      "firstSeen": "2026-11-08T10:05:31.127Z",
+      "lastCovered": "2026-11-08T10:05:31.127Z",
+      "coverageCount": 1,
+      "category": "economy",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-11-08-japan-price-rises-backfire-uniqlo-deflation-mindset"
+      ],
+      "eventUri": "eng-12169544",
+      "summary": "Uniqlo reversed a sock price rise within days and Saizeriya apologised for raising its doria price: Japanese firms facing record input costs from a weak yen cannot pass them on to consumers raised in three decades of deflation. Lead with the Uniqlo U-turn; the mechanism is how an entrenched deflationary mindset squeezes margins and complicates the Bank of Japan's exit from easy money. Name the yen."
+    },
+    {
+      "id": "europe-gas-storage-record-withdrawals-cold-snap",
+      "label": "Europe withdraws 5% of gas injected into UGS facilities in summer in just ten days",
+      "firstSeen": "2026-11-08T10:05:31.127Z",
+      "lastCovered": "2026-11-08T10:05:31.127Z",
+      "coverageCount": 1,
+      "category": "economy",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-11-08-europe-gas-storage-record-withdrawals-cold-snap"
+      ],
+      "eventUri": null,
+      "summary": "An early-November cold snap has Europe drawing gas from underground storage at a record pace — 5% of everything injected over the summer gone in ten days — from reserves that started the winter at historically low levels. Russian state agency TASS computed this from Gas Infrastructure Europe data: attribute it, and lead with the drawdown rate and what it means for natural gas prices and household bills if the cold holds, with Hormuz LNG flows disrupted."
+    },
+    {
+      "id": "antipersonnel-mines-return-3d-printing-drones-ukraine",
+      "label": "Antipersonnel mines have returned in Ukraine and now threaten the world | New Scientist",
+      "firstSeen": "2026-11-08T10:05:31.127Z",
+      "lastCovered": "2026-11-08T10:05:31.127Z",
+      "coverageCount": 1,
+      "category": "tech",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-11-08-antipersonnel-mines-return-3d-printing-drones-ukraine"
+      ],
+      "eventUri": null,
+      "summary": "3D printers, cheap microcontrollers and drone delivery have revived the antipersonnel mine nearly three decades after the 1997 Ottawa Treaty — Ukraine's war has made them cheaper, deadlier and easy to build. Lead with the technology that undid the ban; the stakes are civilians, who are most landmine victims, and the export of these designs to every conflict after Ukraine."
+    },
+    {
+      "id": "ai-data-centre-bottleneck-electricians-labour",
+      "label": "从资本密集到人力密集：全球AI的瓶颈，卡在缺乏“电工”",
+      "firstSeen": "2026-11-08T10:05:31.127Z",
+      "lastCovered": "2026-11-08T10:05:31.127Z",
+      "coverageCount": 1,
+      "category": "tech",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-11-08-ai-data-centre-bottleneck-electricians-labour"
+      ],
+      "eventUri": null,
+      "summary": "The AI build-out's bottleneck has moved from GPUs to power to electrical equipment, and now to electricians: capital can buy equipment delivery slots but cannot shorten the years it takes to train a skilled tradesperson. A Chinese tech-press view — lead with the claim that compute expansion is now limited by labour, not money, and what that means for the US-China data-centre race."
+    },
+    {
+      "id": "china-moon-landing-long-march-10-lunar-orbit-docking",
+      "label": "登月的胜负手，不在火箭点火那一刻",
+      "firstSeen": "2026-11-08T10:05:31.127Z",
+      "lastCovered": "2026-11-08T10:05:31.127Z",
+      "coverageCount": 1,
+      "category": "tech",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-11-08-china-moon-landing-long-march-10-lunar-orbit-docking"
+      ],
+      "eventUri": null,
+      "summary": "China's crewed Moon plan uses two Long March 10 launches with docking in lunar orbit, aimed at a lasting Earth-Moon transport system with a distant retrograde orbit (DRO) hub and deep-space tracking, rather than a one-off landing. Contrast it with Artemis's dependence on commercial contractors and its delays. The inside view: what China is building beyond the rocket launch."
+    },
+    {
+      "id": "great-unconformity-supercontinents-billion-years-missing",
+      "label": "How Earth Lost a Billion Years of Its History",
+      "firstSeen": "2026-11-08T10:05:31.127Z",
+      "lastCovered": "2026-11-08T10:05:31.127Z",
+      "coverageCount": 1,
+      "category": "science",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-11-07-great-unconformity-supercontinents-billion-years-missing"
+      ],
+      "eventUri": null,
+      "summary": "Earth's rock record is missing up to a billion years before the Cambrian, 538 million years ago — the 'Great Unconformity'. A new study says the rise and break-up of ancient supercontinents eroded it away. Lead with the size of the gap; the mechanism links plate tectonics to why we can't read the run-up to complex life, and possibly to the chemistry that triggered it."
+    },
+    {
       "id": "new-zealand-election-luxon-slim-majority-special-votes",
       "label": "New Zealand preliminary vote leaves unclear who will govern",
       "firstSeen": "2026-11-08T05:04:04.108Z",
       "lastCovered": "2026-11-08T05:04:04.108Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-11-08-new-zealand-election-luxon-slim-majority-special-votes"
@@ -23,7 +203,7 @@
       "lastCovered": "2026-11-08T05:04:04.108Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-11-08-hormuz-two-more-tankers-mines-irgc-route-khorfakkan"
@@ -38,7 +218,7 @@
       "lastCovered": "2026-11-08T05:04:04.108Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-11-08-pakistan-iran-hormuz-deal-lng-tanker-attack-gas"
@@ -53,7 +233,7 @@
       "lastCovered": "2026-11-08T05:04:04.108Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-11-08-el-hierro-emergency-3300-boat-arrivals-atlantic-route"
@@ -68,7 +248,7 @@
       "lastCovered": "2026-11-08T05:04:04.108Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-11-08-colombia-drone-attack-santa-rosa-del-sur-soldiers-killed"
@@ -83,7 +263,7 @@
       "lastCovered": "2026-11-08T05:04:04.108Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-11-08-yemen-saudi-strikes-1039-casualties-since-july-sanaa"
@@ -98,7 +278,7 @@
       "lastCovered": "2026-11-08T05:04:04.108Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-11-08-pakistan-fcc-workplace-harassment-ruling-review"
@@ -113,7 +293,7 @@
       "lastCovered": "2026-11-08T05:04:04.108Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-11-08-judge-special-master-doj-lawyers-ethics-trump-golf"
@@ -128,7 +308,7 @@
       "lastCovered": "2026-11-08T05:04:04.108Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-11-08-china-baijiu-exports-south-korea-85-percent"
@@ -143,7 +323,7 @@
       "lastCovered": "2026-11-08T05:04:04.108Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-11-08-tropics-lose-most-birds-urban-expansion"
@@ -158,7 +338,7 @@
       "lastCovered": "2026-11-07T22:06:10.266Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-11-07-us-blockade-iran-land-caspian-task-force-ship-disabled"
@@ -173,7 +353,7 @@
       "lastCovered": "2026-11-07T22:06:10.266Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-11-07-saudi-strikes-sanaa-27-killed-syria-denies-yemen-troops"
@@ -188,7 +368,7 @@
       "lastCovered": "2026-11-07T22:06:10.266Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-11-07-france-yellow-vest-student-protests-146000-cost-of-living"
@@ -203,7 +383,7 @@
       "lastCovered": "2026-11-07T22:06:10.266Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-11-07-trump-orders-doj-investigate-democrats-threats"
@@ -218,7 +398,7 @@
       "lastCovered": "2026-11-07T22:06:10.266Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-11-07-gaza-rain-floods-70000-tents-displacement-camps"
@@ -233,7 +413,7 @@
       "lastCovered": "2026-11-07T22:06:10.266Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-11-07-anc-coalition-scramble-metros-14-days"
@@ -248,7 +428,7 @@
       "lastCovered": "2026-11-07T22:06:10.266Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-11-07-japan-manufacturers-profit-forecasts-weak-yen"
@@ -263,7 +443,7 @@
       "lastCovered": "2026-11-07T22:06:10.266Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-11-07-cop31-antalya-african-negotiators-climate-finance"
@@ -278,7 +458,7 @@
       "lastCovered": "2026-11-07T22:06:10.266Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-11-07-binance-eu-accounts-close-mica-licence"
@@ -293,7 +473,7 @@
       "lastCovered": "2026-11-07T22:06:10.266Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-11-07-apple-mac-undocumented-family-member-classifier"
@@ -308,7 +488,7 @@
       "lastCovered": "2026-11-07T22:06:10.266Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-11-07-blood-pressure-trials-stroke-diabetes-aha"
@@ -323,7 +503,7 @@
       "lastCovered": "2026-11-07T22:06:10.266Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-11-07-pakistan-information-commission-na-committee-perks-disclosure"
@@ -338,7 +518,7 @@
       "lastCovered": "2026-11-07T22:06:10.266Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-11-07-iran-rezaei-putin-security-defence-north-south-corridor"
@@ -353,7 +533,7 @@
       "lastCovered": "2026-11-07T22:06:10.266Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-11-07-krakow-shooter-home-three-more-bodies-tusk"
@@ -368,7 +548,7 @@
       "lastCovered": "2026-11-07T18:05:26.543Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-11-07-paraguay-pena-impeached-ueno-bank-alliana-cartes"
@@ -383,7 +563,7 @@
       "lastCovered": "2026-11-07T18:05:26.543Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-11-07-krakow-main-square-shooting-six-killed"
@@ -398,7 +578,7 @@
       "lastCovered": "2026-11-07T18:05:26.543Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-11-07-melenchon-revolutionary-programme-rally-france-election"
@@ -413,7 +593,7 @@
       "lastCovered": "2026-11-07T18:05:26.543Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-11-07-jericho-settlers-seize-palestinian-homes-west-bank"
@@ -428,7 +608,7 @@
       "lastCovered": "2026-11-07T18:05:26.543Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-11-07-drc-ebola-outbreak-largest-history-who-5198-deaths"
@@ -443,7 +623,7 @@
       "lastCovered": "2026-11-07T18:05:26.543Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-11-07-russia-upgrades-abu-dhabi-delegation-zelenskyy-warns"
@@ -458,7 +638,7 @@
       "lastCovered": "2026-11-07T18:05:26.543Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-11-07-houthis-claim-six-strikes-saudi-arabia-aramco"
@@ -473,7 +653,7 @@
       "lastCovered": "2026-11-07T18:05:26.543Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-11-07-us-treasury-mexc-crypto-exchange-16-billion-iran-russia"
@@ -488,7 +668,7 @@
       "lastCovered": "2026-11-07T18:05:26.543Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-11-07-bio-lawsuit-medicare-globe-drug-prices-peer-countries"
@@ -503,7 +683,7 @@
       "lastCovered": "2026-11-07T18:05:26.543Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-11-07-gnosis-pay-breach-card-numbers-addresses-crypto-wallets"
@@ -518,7 +698,7 @@
       "lastCovered": "2026-11-07T18:05:26.543Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-11-07-trapped-ion-quantum-simulation-aharonov-bohm-gauge-theory"
@@ -533,7 +713,7 @@
       "lastCovered": "2026-11-07T14:07:47.017Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-11-07-us-strikes-qeshm-tanker-mine-fire-hormuz-mediators"
@@ -548,7 +728,7 @@
       "lastCovered": "2026-11-07T14:07:47.017Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-11-07-russia-ballistic-barrage-kyiv-energy-saratov-refinery"
@@ -563,7 +743,7 @@
       "lastCovered": "2026-11-07T14:07:47.017Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-11-07-italy-tajani-data-leak-pro-russian-hackers-dark-web"
@@ -578,7 +758,7 @@
       "lastCovered": "2026-11-07T14:07:47.017Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-11-07-west-bengal-abhishek-banerjee-home-attack-mamata-bjp"
@@ -593,7 +773,7 @@
       "lastCovered": "2026-11-07T14:07:47.017Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-11-07-trump-more-firings-keeps-hegseth-after-midterms"
@@ -608,7 +788,7 @@
       "lastCovered": "2026-11-07T14:07:47.017Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-11-07-houston-police-ice-traffic-stops-whitmire-abbott"
@@ -623,7 +803,7 @@
       "lastCovered": "2026-11-07T14:07:47.017Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-11-07-pakistan-auto-policy-cheaper-cars-electric-vehicles"
@@ -638,7 +818,7 @@
       "lastCovered": "2026-11-07T14:07:47.017Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-11-07-british-soldier-estonia-sim-card-sextortion-court-martial"
@@ -653,7 +833,7 @@
       "lastCovered": "2026-11-07T14:07:47.017Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-11-07-bantu-expansion-ancient-dna-africa-migration"
@@ -668,7 +848,7 @@
       "lastCovered": "2026-11-07T14:07:47.017Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-11-07-iran-nuclear-strike-fallout-map-pakistan-physics"
@@ -683,7 +863,7 @@
       "lastCovered": "2026-11-07T14:07:47.017Z",
       "coverageCount": 2,
       "category": "tech",
-      "importance": 2,
+      "importance": 1,
       "arc": "developing",
       "articles": [
         "2026-11-06-nigeria-big-tech-ai-digital-surveillance-data",
@@ -699,7 +879,7 @@
       "lastCovered": "2026-11-07T10:03:46.275Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-11-07-us-20-million-reward-iran-nuclear-iaea-continuity"
@@ -714,7 +894,7 @@
       "lastCovered": "2026-11-07T10:03:46.275Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-11-07-delhi-air-quality-364-diwali-grap-3-curbs"
@@ -729,7 +909,7 @@
       "lastCovered": "2026-11-07T10:03:46.275Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-11-07-israel-eisenkot-mandate-form-government-netanyahu"
@@ -744,7 +924,7 @@
       "lastCovered": "2026-11-07T10:03:46.275Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-11-07-nigeria-atiku-adc-convoy-attack-kebbi-amnesty"
@@ -759,7 +939,7 @@
       "lastCovered": "2026-11-07T10:03:46.275Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-11-07-pakistan-bushra-bibi-eyesight-ihc-medical-treatment"
@@ -774,7 +954,7 @@
       "lastCovered": "2026-11-07T10:03:46.275Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-11-07-us-china-busan-trade-deal-bessent-he-lifeng"
@@ -789,7 +969,7 @@
       "lastCovered": "2026-11-07T10:03:46.275Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-11-07-brazil-meta-boycotts-pt-voters-labour-prosecutors"
@@ -804,7 +984,7 @@
       "lastCovered": "2026-11-07T10:03:46.275Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-11-07-china-memory-chip-prices-niche-phone-makers-squeezed"
@@ -819,118 +999,13 @@
       "lastCovered": "2026-11-07T10:03:46.275Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-11-06-perry-johnson-medical-records-hack-state-ag-settlement"
       ],
       "eventUri": null,
       "summary": "Attorneys general in Connecticut, New Jersey, New York and Michigan settled with the transcription, coding and imaging subsidiaries of Nevada-based Perry Johnson Companies over a 2023 breach of sensitive patient records. Lead with how many patients were exposed, what was taken and what the settlement costs and requires, set against the three years it took. The structural why: the medical back-office contractors patients never chose hold their records, and state AGs, not a federal regulator, are the ones enforcing."
-    },
-    {
-      "id": "tanzania-tundu-lissu-jailed-incitement-treason-dropped",
-      "label": "Democracy falters in Tanzania",
-      "firstSeen": "2026-11-07T05:05:48.817Z",
-      "lastCovered": "2026-11-07T05:05:48.817Z",
-      "coverageCount": 1,
-      "category": "politics",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-11-06-tanzania-tundu-lissu-jailed-incitement-treason-dropped"
-      ],
-      "eventUri": "eng-12164628",
-      "summary": "A Tanzanian court jailed Tundu Lissu, the country's most influential opposition leader and Chadema's chairman, for incitement, while lifting the treason charge that carried the death penalty. Lead with the swap: dropping the capital charge still takes Samia Suluhu Hassan's main challenger out of politics. The structural why is the wider African pattern of opposition leaders removed through treason and incitement trials rather than at the ballot box. Datelined Dar es Salaam."
-    },
-    {
-      "id": "honduras-hospital-escuela-surgery-backlog-private-trust",
-      "label": "Hospital Escuela: más de 6,000 pacientes esperan cirugía y el plan para reducir la mora avanza con apenas 405 operaciones en privados",
-      "firstSeen": "2026-11-07T05:05:48.817Z",
-      "lastCovered": "2026-11-07T05:05:48.817Z",
-      "coverageCount": 1,
-      "category": "politics",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-11-07-honduras-hospital-escuela-surgery-backlog-private-trust"
-      ],
-      "eventUri": null,
-      "summary": "More than 6,000 patients are waiting for surgery at Honduras's largest public hospital, the Hospital Escuela, and over 1,000 elective operations piled up during 49 days of doctors' assemblies. The government's fix — paying private hospitals up to 110,000 lempiras per operation through a 500-million-lempira trust — had delivered only 405 procedures by July, and how the trust's money is spent is not disclosed. Lead with 6,000 against 405: the poor wait while public money flows to private clinics with no accounting. Datelined Tegucigalpa."
-    },
-    {
-      "id": "ukmto-11-ships-attacked-hormuz-week-three-sunk",
-      "label": "UKMTO says 11 ships attacked in week to 4 Nov in Hormuz, Arabian Gulf",
-      "firstSeen": "2026-11-07T05:05:48.817Z",
-      "lastCovered": "2026-11-07T05:05:48.817Z",
-      "coverageCount": 1,
-      "category": "economy",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-11-07-ukmto-11-ships-attacked-hormuz-week-three-sunk"
-      ],
-      "eventUri": null,
-      "summary": "UK Maritime Trade Operations counted 11 attacks on commercial shipping in the seven days to November 4 — eight in the Strait of Hormuz, three in the Arabian Gulf — and three vessels sunk. Lead with the weekly toll and the sinkings: the first official tally after the Velos Sapphire death shows the strait is now a battlefield, not a risk premium, and the seafarers crewing it bear the cost. Name the series: ship traffic through the Strait of Hormuz, and Brent crude."
-    },
-    {
-      "id": "india-e20-petrol-karnataka-ethanol-above-limit-tests",
-      "label": "'E20 turned into 420': Rahul Gandhi alleges petrol samples from Karnataka exceed 20% ethanol limit",
-      "firstSeen": "2026-11-07T05:05:48.817Z",
-      "lastCovered": "2026-11-07T05:05:48.817Z",
-      "coverageCount": 1,
-      "category": "economy",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-11-07-india-e20-petrol-karnataka-ethanol-above-limit-tests"
-      ],
-      "eventUri": "eng-12164971",
-      "summary": "Opposition leader Rahul Gandhi published lab tests of petrol from seven Karnataka districts in which 11 samples exceeded the 20% ethanol cap of India's E20 mandate. Lead with the lab figures and who supplies the fuel — the state refiners Indian Oil, BPCL and HPCL. The structural why: the ethanol mandate saves India oil imports and pays sugar growers, while motorists carry the engine wear and mileage loss, and nobody independently tests the blend at the pump. Present it as an allegation backed by tests, with the refiners' response. Datelined Bengaluru."
-    },
-    {
-      "id": "china-everbright-bank-executive-salary-bribes",
-      "label": "Ex-Everbright Executive and Wife Took 4.29 Million Yuan in Salary Bribes",
-      "firstSeen": "2026-11-07T05:05:48.817Z",
-      "lastCovered": "2026-11-07T05:05:48.817Z",
-      "coverageCount": 1,
-      "category": "economy",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-11-06-china-everbright-bank-executive-salary-bribes"
-      ],
-      "eventUri": null,
-      "summary": "China's top judicial authorities released case details showing a former China Everbright Bank executive and his wife collected 4.29 million yuan ($640,000) as salaries for nominal jobs at companies he helped win loans. Lead with the mechanism: a bribe paid as a payroll line, a disguise that prosecutors are now publicising as a pattern. The structural why is Beijing's anti-graft campaign in state finance turning to hidden forms of payment between state-bank lenders and their borrowers."
-    },
-    {
-      "id": "nvidia-jensen-huang-alice-huang-china-spy-house-committee",
-      "label": "US Believes Woman Close to Nvidia CEO Was a China Spy, NYT Says",
-      "firstSeen": "2026-11-07T05:05:48.817Z",
-      "lastCovered": "2026-11-07T05:05:48.817Z",
-      "coverageCount": 1,
-      "category": "tech",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-11-07-nvidia-jensen-huang-alice-huang-china-spy-house-committee"
-      ],
-      "eventUri": "eng-12164869",
-      "summary": "US intelligence officials told the Trump administration that Alice Huang, a woman close to Nvidia chief executive Jensen Huang, was a Chinese intelligence asset, and the House Select Committee on China has asked him to a briefing on his contacts with her and Nvidia's counter-espionage protocols. Lead with the stakes: the head of the company whose chips sit at the centre of US export controls on China is now himself a counter-intelligence question. Attribute the claim to US officials, as reported by the NYT. Datelined Washington."
-    },
-    {
-      "id": "openai-11-billion-1-25-trillion-anthropic-ipo-valuation-cut",
-      "label": "刚刚，OpenAI被曝又拿730亿，估值超8.3万亿",
-      "firstSeen": "2026-11-07T05:05:48.817Z",
-      "lastCovered": "2026-11-07T05:05:48.817Z",
-      "coverageCount": 1,
-      "category": "tech",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-11-07-openai-11-billion-1-25-trillion-anthropic-ipo-valuation-cut"
-      ],
-      "eventUri": null,
-      "summary": "OpenAI closed a first tranche of about $11 billion at a $1.25 trillion valuation, from a round it cut from a planned $30 billion at $1.4 trillion to at most $20 billion after the AI-stock rout. Investors in Anthropic's planned IPO have meanwhile marked it down from $1.4-1.5 trillion to $1.1-1.3 trillion, and Blackstone has warned its debt may rate as junk against about $895 billion in compute and lease commitments. Lead with the shrinking round: the AI selloff has reached the private labs, whose spending depends on capital that is now harder to raise. Datelined San Francisco."
     }
   ]
 }
