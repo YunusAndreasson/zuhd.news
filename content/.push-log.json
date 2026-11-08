@@ -1,98 +1,5 @@
 [
   {
-    "timestamp": "2026-10-19T14:14:41.484Z",
-    "candidateCount": 10,
-    "candidates": [
-      {
-        "slug": "2026-10-19-volkswagen-pay-freeze-2030-ig-metall",
-        "title": "VW Plans Global Pay Freeze",
-        "category": "economy",
-        "eventCoverage": 113,
-        "importance": 6
-      },
-      {
-        "slug": "2026-10-19-european-telecoms-joint-satellite-bid-starlink",
-        "title": "Telecoms Challenge Starlink",
-        "category": "tech",
-        "eventCoverage": 88,
-        "importance": 6
-      },
-      {
-        "slug": "2026-10-19-houthi-missiles-kill-18-shabwa-military-camp",
-        "title": "Houthi Missiles Hit Shabwa Camp",
-        "category": "politics",
-        "eventCoverage": 69,
-        "importance": 6
-      },
-      {
-        "slug": "2026-10-19-lavrov-tehran-russia-broker-us-iran-war-gulf",
-        "title": "Gulf Sends Lavrov to Tehran",
-        "category": "politics",
-        "eventCoverage": 65,
-        "importance": 6
-      },
-      {
-        "slug": "2026-10-19-saudi-executes-two-bangladeshis-mecca-no-notice",
-        "title": "Saudi Executes Two Bangladeshis",
-        "category": "politics",
-        "eventCoverage": 50,
-        "importance": 6
-      },
-      {
-        "slug": "2026-10-19-canada-inflation-3-1-percent-fuel-brent-war",
-        "title": "Canada Inflation Hits 3.1%",
-        "category": "economy",
-        "eventCoverage": 40,
-        "importance": 6
-      },
-      {
-        "slug": "2026-10-19-sindh-court-rejects-appeal-mahrang-baloch-acquittal",
-        "title": "Court Rejects Mahrang Appeal",
-        "category": "politics",
-        "eventCoverage": 0,
-        "importance": 6
-      },
-      {
-        "slug": "2026-10-19-pboc-bond-liquidity-backstop-yuan-foreign-banks",
-        "title": "PBOC Backstops Bond Market",
-        "category": "economy",
-        "eventCoverage": 0,
-        "importance": 6
-      },
-      {
-        "slug": "2026-10-19-crime-ring-hacked-staples-gift-cards-millions",
-        "title": "Crime Ring Hacks Staples",
-        "category": "tech",
-        "eventCoverage": 0,
-        "importance": 6
-      },
-      {
-        "slug": "2026-10-19-china-telecom-open-sources-intent-model-xing-29b",
-        "title": "China Telecom Opens Intent Model",
-        "category": "tech",
-        "eventCoverage": 0,
-        "importance": 6
-      }
-    ],
-    "selected": {
-      "slug": "2026-10-19-volkswagen-pay-freeze-2030-ig-metall",
-      "title": "VW Plans Global Pay Freeze",
-      "category": "economy",
-      "body": "660,000 Volkswagen workers face zero raises until",
-      "eventCoverage": 113,
-      "importance": 6
-    },
-    "skipReason": null,
-    "sent": true,
-    "pushTitle": "Breaking News",
-    "pushBody": "Volkswagen seeks pay freeze for 660,000 workers through 2030, union says",
-    "response": {
-      "pushed": 1,
-      "skipped": 0,
-      "tokens": 5
-    }
-  },
-  {
     "timestamp": "2026-10-19T18:15:36.273Z",
     "candidateCount": 15,
     "candidates": [
@@ -10231,6 +10138,99 @@
     "sent": true,
     "pushTitle": "Breaking News",
     "pushBody": "Zaporizhzhia nuclear plant loses all power, switches to diesel generators, Energoatom says",
+    "response": {
+      "pushed": 1,
+      "skipped": 0,
+      "tokens": 5
+    }
+  },
+  {
+    "timestamp": "2026-11-08T14:15:48.163Z",
+    "candidateCount": 10,
+    "candidates": [
+      {
+        "slug": "2026-11-08-nvidia-huang-megaspeed-chinese-spy-allegation",
+        "title": "Nvidia Chief Faces Spy Allegation",
+        "category": "tech",
+        "eventCoverage": 139,
+        "importance": 6
+      },
+      {
+        "slug": "2026-11-08-russian-strikes-dnipropetrovsk-kharkiv-850000-without-power",
+        "title": "Russian Strikes Darken Dnipropetrovsk",
+        "category": "politics",
+        "eventCoverage": 73,
+        "importance": 6
+      },
+      {
+        "slug": "2026-11-08-ghaziabad-police-outpost-blast-terror-claim",
+        "title": "Ghaziabad Outpost Blast Probed",
+        "category": "politics",
+        "eventCoverage": 67,
+        "importance": 6
+      },
+      {
+        "slug": "2026-11-08-iran-executes-three-january-protesters-karaj",
+        "title": "Iran Executes Three Protesters",
+        "category": "politics",
+        "eventCoverage": 46,
+        "importance": 6
+      },
+      {
+        "slug": "2026-11-08-hormuz-third-tanker-fire-irgc-control-khasab",
+        "title": "Hormuz Tankers Ablaze",
+        "category": "economy",
+        "eventCoverage": 0,
+        "importance": 6
+      },
+      {
+        "slug": "2026-11-08-cuprate-pseudogap-shot-noise-electron-pairs",
+        "title": "Noise Exposes Superconductor Pairing",
+        "category": "science",
+        "eventCoverage": 0,
+        "importance": 6
+      },
+      {
+        "slug": "2026-11-08-finland-homes-bitcoin-mining-heat-70000",
+        "title": "Bitcoin Boilers Heat Finnish Homes",
+        "category": "economy",
+        "eventCoverage": 0,
+        "importance": 6
+      },
+      {
+        "slug": "2026-11-08-huawei-openai-bytedance-ai-drug-discovery",
+        "title": "Tech Giants Enter Drug Discovery",
+        "category": "tech",
+        "eventCoverage": 0,
+        "importance": 6
+      },
+      {
+        "slug": "2026-11-08-nigeria-asaba-opposition-rally-death-2027",
+        "title": "Asaba Rally Violence Kills One",
+        "category": "politics",
+        "eventCoverage": 0,
+        "importance": 6
+      },
+      {
+        "slug": "2026-11-08-egypt-el-ayyat-train-derailment-150-injured",
+        "title": "Egypt Train Derails, 150 Hurt",
+        "category": "politics",
+        "eventCoverage": 0,
+        "importance": 6
+      }
+    ],
+    "selected": {
+      "slug": "2026-11-08-russian-strikes-dnipropetrovsk-kharkiv-850000-without-power",
+      "title": "Russian Strikes Darken Dnipropetrovsk",
+      "category": "politics",
+      "body": "About 850,000 people lost power after Russian",
+      "eventCoverage": 73,
+      "importance": 6
+    },
+    "skipReason": null,
+    "sent": true,
+    "pushTitle": "Breaking News",
+    "pushBody": "Russian strikes cut power to 850,000 people in Ukraine, DTEK says",
     "response": {
       "pushed": 1,
       "skipped": 0,
