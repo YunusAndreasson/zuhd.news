@@ -2,13 +2,148 @@
   "version": 1,
   "stories": [
     {
+      "id": "iran-us-talks-iraqi-message-trump-strikes-unlikely",
+      "label": "Trump says fresh strikes on Iran 'highly unlikely' if talks progress",
+      "firstSeen": "2026-11-08T22:05:28.407Z",
+      "lastCovered": "2026-11-08T22:05:28.407Z",
+      "coverageCount": 1,
+      "category": "politics",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-11-08-iran-us-talks-iraqi-message-trump-strikes-unlikely"
+      ],
+      "eventUri": "ita-963666",
+      "summary": "The war is shifting into a negotiating channel: an Iraqi delegation spent eight hours in Tehran handing over a US message, Trump says new strikes are 'highly unlikely' if Iran signs 'a very strong agreement' on its nuclear programme and reopens the Strait of Hormuz, and Araghchi answers that Washington must choose between a deal and a war it would lose. Lead with the Iraqi mediation and the terms Trump attached; the Israel-Iran ceasefire market went from 65% to 92% this week. Attribute the Iraqi-message report to Al Arabiya sources via TASS, and Araghchi's remarks to Mehr. Datelined Tehran."
+    },
+    {
+      "id": "eisenkot-coalition-talks-joint-list-19-seats-outside-support",
+      "label": "Eisenkot says Israel in 'devastating diplomatic crisis' as he seeks to form govt",
+      "firstSeen": "2026-11-08T22:05:28.407Z",
+      "lastCovered": "2026-11-08T22:05:28.407Z",
+      "coverageCount": 1,
+      "category": "politics",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-11-08-eisenkot-coalition-talks-joint-list-19-seats-outside-support"
+      ],
+      "eventUri": "fra-1361213",
+      "summary": "New since Eisenkot received the mandate: he has begun reaching out to Netanyahu's own allies, and the Arab Joint List, with 19 seats, says it will back him from outside to keep Netanyahu from returning but will not join a cabinet. Lead with the arithmetic: the first post-Netanyahu government may depend on Palestinian citizens' parties it will not seat. Attribute the Joint List position to Jabareen via TASS. Datelined Jerusalem."
+    },
+    {
+      "id": "pakistan-auto-policy-imf-ev-levy-6bn-exports",
+      "label": "Auto policy sets $6bn export target over five years",
+      "firstSeen": "2026-11-08T22:05:28.407Z",
+      "lastCovered": "2026-11-08T22:05:28.407Z",
+      "coverageCount": 1,
+      "category": "economy",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-11-08-pakistan-auto-policy-imf-ev-levy-6bn-exports"
+      ],
+      "eventUri": "eng-12168504",
+      "summary": "Pakistan's new auto policy, approved only after the IMF signed off, puts a development levy on conventional cars to pay for EV and export incentives, exempts cars up to 1,000cc, and caps the advance a manufacturer may demand at 20% of the price. Lead with the IMF's veto over industrial policy and the $6bn export target, against an industry that has mostly assembled for a protected home market. Datelined Islamabad."
+    },
+    {
+      "id": "fed-warsh-december-rate-hike-odds-october-cpi",
+      "label": "Will US inflation data ease affordability concerns?",
+      "firstSeen": "2026-11-08T22:05:28.407Z",
+      "lastCovered": "2026-11-08T22:05:28.407Z",
+      "coverageCount": 1,
+      "category": "economy",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-11-08-fed-warsh-december-rate-hike-odds-october-cpi"
+      ],
+      "eventUri": "eng-12168535",
+      "summary": "After Friday's jobs report, traders price about a 78% chance that Kevin Warsh's Fed raises rates on 9 December, with the S&P 500 5.6% below its October high; Tuesday's October CPI is expected to keep that pressure on, days after Democrats won Congress campaigning on affordability. Lead with a Fed set to hike into a falling market, and who pays: borrowers and the dollar-debt countries outside the US. Name the Fed funds rate and US inflation for the charts. Datelined Washington."
+    },
+    {
+      "id": "iran-oil-storage-80-percent-restored-rey-depot",
+      "label": "Iran's oil storage facilities 80% restored -- NIOEC CEO",
+      "firstSeen": "2026-11-08T22:05:28.407Z",
+      "lastCovered": "2026-11-08T22:05:28.407Z",
+      "coverageCount": 1,
+      "category": "economy",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-11-08-iran-oil-storage-80-percent-restored-rey-depot"
+      ],
+      "eventUri": null,
+      "summary": "Iran's state refiner says 80% of its bombed oil storage is back and fuel-pumping facilities are 60% rebuilt, and that Tehran's fuel supply came back within two weeks of the strikes on the Rey depot. Lead with what the war did to the domestic fuel system and how quickly it was patched while the blockade holds. This is the NIOEC chief speaking to Russian state agency TASS: attribute every figure and do not state them as fact. Name Brent crude. Datelined Tehran."
+    },
+    {
+      "id": "stablecoin-payments-half-percent-transfer-value",
+      "label": "Stablecoin market cap is frozen. The money inside it isn't",
+      "firstSeen": "2026-11-08T22:05:28.407Z",
+      "lastCovered": "2026-11-08T22:05:28.407Z",
+      "coverageCount": 1,
+      "category": "tech",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-11-08-stablecoin-payments-half-percent-transfer-value"
+      ],
+      "eventUri": null,
+      "summary": "Stablecoin supply has barely grown this year, but the money in it moves faster, and payments are only about 0.5% of the value transferred on-chain; the rest is trading and internal shuffling. Lead with that 0.5%: it punctures the headline 'transfer volume' figures used to sell stablecoins as a payments rail to regulators and remittance users. Name bitcoin for the chart only if the piece ties to it. Datelined New York."
+    },
+    {
+      "id": "midterms-democrats-congress-crypto-industry-oversight",
+      "label": "What the election results mean for crypto: State of Crypto",
+      "firstSeen": "2026-11-08T22:05:28.407Z",
+      "lastCovered": "2026-11-08T22:05:28.407Z",
+      "coverageCount": 1,
+      "category": "tech",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-11-08-midterms-democrats-congress-crypto-industry-oversight"
+      ],
+      "eventUri": null,
+      "summary": "With Democrats taking both chambers by large margins, the crypto industry that spent heavily on the midterms faces a Congress that can subpoena it and is unlikely to pass the market-structure bill it wanted. Lead with what changes in January: which bills die, and which oversight powers return. Datelined Washington."
+    },
+    {
+      "id": "nigeria-south-africans-arrested-cartel-drug-trafficking",
+      "label": "'South Africans entering Nigeria to help cartels traffic drugs,' security briefing told",
+      "firstSeen": "2026-11-08T22:05:28.407Z",
+      "lastCovered": "2026-11-08T22:05:28.407Z",
+      "coverageCount": 1,
+      "category": "politics",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-11-08-nigeria-south-africans-arrested-cartel-drug-trafficking"
+      ],
+      "eventUri": null,
+      "summary": "A Nigerian anti-drug official turns around the familiar South African claim that Nigerians run the drug trade: South Africans are now being arrested in Nigeria working for cartels on a route that runs through Mozambique to Mexican networks. Lead with the arrests and the route, the mechanism by which Latin American cartels use African couriers and ports. Datelined Abuja."
+    },
+    {
+      "id": "perovskite-liquid-crystal-growth-defects-solar-led",
+      "label": "Liquid-assisted crystal growth cuts perovskite defects for efficient solar cells and LEDs",
+      "firstSeen": "2026-11-08T22:05:28.407Z",
+      "lastCovered": "2026-11-08T22:05:28.407Z",
+      "coverageCount": 1,
+      "category": "science",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-11-08-perovskite-liquid-crystal-growth-defects-solar-led"
+      ],
+      "eventUri": null,
+      "summary": "A Korean-American team (Sungkyunkwan, KRICT, UC San Diego, Princeton) grew perovskite films through a liquid phase that sharply cuts the crystal defects which make perovskite solar cells degrade, and made both efficient solar cells and LEDs from the same film. Lead with the defect reduction and the efficiency figure, and say what it does and does not fix about perovskites' durability problem. Datelined Suwon."
+    },
+    {
       "id": "egypt-giza-aswan-train-crash-seven-killed",
       "label": "Egypt train collision kills 4, injures 88 in Giza",
       "firstSeen": "2026-11-08T18:02:48.236Z",
       "lastCovered": "2026-11-08T18:02:48.236Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-11-08-egypt-giza-aswan-train-crash-seven-killed"
@@ -23,7 +158,7 @@
       "lastCovered": "2026-11-08T18:02:48.236Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-11-08-turkiye-azerbaijan-erdogan-aliyev-shusha-rift"
@@ -38,7 +173,7 @@
       "lastCovered": "2026-11-08T18:02:48.236Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-11-08-pope-leo-argentina-milei-austerity-church"
@@ -53,7 +188,7 @@
       "lastCovered": "2026-11-08T18:02:48.236Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-11-08-russia-strikes-three-cargo-ships-black-sea-odesa"
@@ -68,7 +203,7 @@
       "lastCovered": "2026-11-08T18:02:48.236Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-11-08-south-africa-retailers-sweatshops-newcastle-factories"
@@ -83,7 +218,7 @@
       "lastCovered": "2026-11-08T18:02:48.236Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-11-08-cocos-keeling-largest-coral-colony-mapped"
@@ -98,7 +233,7 @@
       "lastCovered": "2026-11-08T18:02:48.236Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-11-08-nasa-moon-base-awards-lunar-lander-contracts"
@@ -113,7 +248,7 @@
       "lastCovered": "2026-11-08T14:08:23.963Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-11-08-iran-executes-three-january-protesters-karaj"
@@ -128,7 +263,7 @@
       "lastCovered": "2026-11-08T14:08:23.963Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-11-08-hormuz-third-tanker-fire-irgc-control-khasab"
@@ -143,7 +278,7 @@
       "lastCovered": "2026-11-08T14:08:23.963Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-11-08-nvidia-huang-megaspeed-chinese-spy-allegation"
@@ -158,7 +293,7 @@
       "lastCovered": "2026-11-08T14:08:23.963Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-11-08-russian-strikes-dnipropetrovsk-kharkiv-850000-without-power"
@@ -173,7 +308,7 @@
       "lastCovered": "2026-11-08T14:08:23.963Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-11-08-cuprate-pseudogap-shot-noise-electron-pairs"
@@ -188,7 +323,7 @@
       "lastCovered": "2026-11-08T14:08:23.963Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-11-08-finland-homes-bitcoin-mining-heat-70000"
@@ -203,7 +338,7 @@
       "lastCovered": "2026-11-08T14:08:23.963Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-11-08-huawei-openai-bytedance-ai-drug-discovery"
@@ -218,7 +353,7 @@
       "lastCovered": "2026-11-08T14:08:23.963Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-11-08-nigeria-asaba-opposition-rally-death-2027"
@@ -233,7 +368,7 @@
       "lastCovered": "2026-11-08T14:08:23.963Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-11-08-egypt-el-ayyat-train-derailment-150-injured"
@@ -248,7 +383,7 @@
       "lastCovered": "2026-11-08T14:08:23.963Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-11-08-ghaziabad-police-outpost-blast-terror-claim"
@@ -263,7 +398,7 @@
       "lastCovered": "2026-11-08T10:05:31.127Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-11-08-aramco-riyadh-building-damaged-houthi-missiles"
@@ -278,7 +413,7 @@
       "lastCovered": "2026-11-08T10:05:31.127Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-11-08-japan-earthquake-aichi-22-injured"
@@ -293,7 +428,7 @@
       "lastCovered": "2026-11-08T10:05:31.127Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-11-08-zaporizhzhia-nuclear-plant-loses-external-power-diesel"
@@ -308,7 +443,7 @@
       "lastCovered": "2026-11-08T10:05:31.127Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-11-08-modi-maoists-eliminated-dimagi-naxals-bastar"
@@ -323,7 +458,7 @@
       "lastCovered": "2026-11-08T10:05:31.127Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-11-08-india-congress-party-donations-fall-75-percent"
@@ -338,7 +473,7 @@
       "lastCovered": "2026-11-08T10:05:31.127Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-11-08-khyber-pakhtunkhwa-faceless-anti-terrorism-courts"
@@ -353,7 +488,7 @@
       "lastCovered": "2026-11-08T10:05:31.127Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-11-08-japan-price-rises-backfire-uniqlo-deflation-mindset"
@@ -368,7 +503,7 @@
       "lastCovered": "2026-11-08T10:05:31.127Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-11-08-europe-gas-storage-record-withdrawals-cold-snap"
@@ -383,7 +518,7 @@
       "lastCovered": "2026-11-08T10:05:31.127Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-11-08-antipersonnel-mines-return-3d-printing-drones-ukraine"
@@ -398,7 +533,7 @@
       "lastCovered": "2026-11-08T10:05:31.127Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-11-08-ai-data-centre-bottleneck-electricians-labour"
@@ -413,7 +548,7 @@
       "lastCovered": "2026-11-08T10:05:31.127Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-11-08-china-moon-landing-long-march-10-lunar-orbit-docking"
@@ -428,7 +563,7 @@
       "lastCovered": "2026-11-08T10:05:31.127Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-11-07-great-unconformity-supercontinents-billion-years-missing"
@@ -443,7 +578,7 @@
       "lastCovered": "2026-11-08T18:02:48.236Z",
       "coverageCount": 2,
       "category": "politics",
-      "importance": 3,
+      "importance": 2,
       "arc": "developing",
       "articles": [
         "2026-11-07-iran-rezaei-putin-security-defence-north-south-corridor",
@@ -459,7 +594,7 @@
       "lastCovered": "2026-11-08T05:04:04.108Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-11-08-new-zealand-election-luxon-slim-majority-special-votes"
@@ -474,7 +609,7 @@
       "lastCovered": "2026-11-08T05:04:04.108Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-11-08-hormuz-two-more-tankers-mines-irgc-route-khorfakkan"
@@ -489,7 +624,7 @@
       "lastCovered": "2026-11-08T05:04:04.108Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-11-08-pakistan-iran-hormuz-deal-lng-tanker-attack-gas"
@@ -504,7 +639,7 @@
       "lastCovered": "2026-11-08T05:04:04.108Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-11-08-el-hierro-emergency-3300-boat-arrivals-atlantic-route"
@@ -519,7 +654,7 @@
       "lastCovered": "2026-11-08T05:04:04.108Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-11-08-colombia-drone-attack-santa-rosa-del-sur-soldiers-killed"
@@ -534,7 +669,7 @@
       "lastCovered": "2026-11-08T05:04:04.108Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-11-08-yemen-saudi-strikes-1039-casualties-since-july-sanaa"
@@ -549,7 +684,7 @@
       "lastCovered": "2026-11-08T05:04:04.108Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-11-08-pakistan-fcc-workplace-harassment-ruling-review"
@@ -564,7 +699,7 @@
       "lastCovered": "2026-11-08T05:04:04.108Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-11-08-judge-special-master-doj-lawyers-ethics-trump-golf"
@@ -579,7 +714,7 @@
       "lastCovered": "2026-11-08T05:04:04.108Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-11-08-china-baijiu-exports-south-korea-85-percent"
@@ -594,7 +729,7 @@
       "lastCovered": "2026-11-08T05:04:04.108Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-11-08-tropics-lose-most-birds-urban-expansion"
@@ -609,7 +744,7 @@
       "lastCovered": "2026-11-07T22:06:10.266Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-11-07-us-blockade-iran-land-caspian-task-force-ship-disabled"
@@ -624,7 +759,7 @@
       "lastCovered": "2026-11-07T22:06:10.266Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-11-07-saudi-strikes-sanaa-27-killed-syria-denies-yemen-troops"
@@ -639,7 +774,7 @@
       "lastCovered": "2026-11-07T22:06:10.266Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-11-07-france-yellow-vest-student-protests-146000-cost-of-living"
@@ -654,7 +789,7 @@
       "lastCovered": "2026-11-07T22:06:10.266Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-11-07-trump-orders-doj-investigate-democrats-threats"
@@ -669,7 +804,7 @@
       "lastCovered": "2026-11-07T22:06:10.266Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-11-07-gaza-rain-floods-70000-tents-displacement-camps"
@@ -684,7 +819,7 @@
       "lastCovered": "2026-11-07T22:06:10.266Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-11-07-anc-coalition-scramble-metros-14-days"
@@ -699,7 +834,7 @@
       "lastCovered": "2026-11-07T22:06:10.266Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-11-07-japan-manufacturers-profit-forecasts-weak-yen"
@@ -714,7 +849,7 @@
       "lastCovered": "2026-11-07T22:06:10.266Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-11-07-cop31-antalya-african-negotiators-climate-finance"
@@ -729,7 +864,7 @@
       "lastCovered": "2026-11-07T22:06:10.266Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-11-07-binance-eu-accounts-close-mica-licence"
@@ -744,7 +879,7 @@
       "lastCovered": "2026-11-07T22:06:10.266Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-11-07-apple-mac-undocumented-family-member-classifier"
@@ -759,7 +894,7 @@
       "lastCovered": "2026-11-07T22:06:10.266Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-11-07-blood-pressure-trials-stroke-diabetes-aha"
@@ -774,7 +909,7 @@
       "lastCovered": "2026-11-07T22:06:10.266Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-11-07-pakistan-information-commission-na-committee-perks-disclosure"
@@ -789,178 +924,13 @@
       "lastCovered": "2026-11-07T22:06:10.266Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-11-07-krakow-shooter-home-three-more-bodies-tusk"
       ],
       "eventUri": null,
       "summary": "Material new development on the Krakow Main Square shooting: police found two women and a man dead in the gunman's home, confirmed by Prime Minister Donald Tusk, raising the toll from six to nine. Lead with the new toll and Tusk's confirmation; attribute to Polsat via Russian state agency TASS. Do not retell the square attack beyond one line."
-    },
-    {
-      "id": "paraguay-pena-impeached-ueno-bank-alliana-cartes",
-      "label": "Paraguay's new president Pedro Alliana",
-      "firstSeen": "2026-11-07T18:05:26.543Z",
-      "lastCovered": "2026-11-07T18:05:26.543Z",
-      "coverageCount": 1,
-      "category": "economy",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-11-07-paraguay-pena-impeached-ueno-bank-alliana-cartes"
-      ],
-      "eventUri": "spa-4408312",
-      "summary": "A bank failure toppled a president: Congress impeached Santiago Peña over the collapse of Ueno Bank, which had grown on regulatory favours and public-sector deposits during his term, and Vice President Pedro Alliana has taken office. Lead with the mechanism — state money parked in a politically connected bank, then lost — and who pays: depositors and the public purse. The structural why: ex-president Horacio Cartes, sanctioned by the US for corruption, uses the crisis to claw back control of the ruling Colorado Party. Datelined Asunción."
-    },
-    {
-      "id": "krakow-main-square-shooting-six-killed",
-      "label": "Deadly shooting in popular Krakow tourist spot",
-      "firstSeen": "2026-11-07T18:05:26.543Z",
-      "lastCovered": "2026-11-07T18:05:26.543Z",
-      "coverageCount": 1,
-      "category": "politics",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-11-07-krakow-main-square-shooting-six-killed"
-      ],
-      "eventUri": "eng-12168653",
-      "summary": "A gunman drove into Kraków's historic Main Square and fired at random, killing six people and wounding about 15; police arrested him. Lead with the dead and the count's uncertainty (sources range 5-6), and that mass shootings are rare in Poland, which has among the EU's strictest gun-licensing regimes — so how the attacker was armed is the question to answer. Report only what police have confirmed about motive. Datelined Kraków."
-    },
-    {
-      "id": "melenchon-revolutionary-programme-rally-france-election",
-      "label": "'Everything must change,' Mélenchon tells supporters at rally",
-      "firstSeen": "2026-11-07T18:05:26.543Z",
-      "lastCovered": "2026-11-07T18:05:26.543Z",
-      "coverageCount": 1,
-      "category": "politics",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-11-07-melenchon-revolutionary-programme-rally-france-election"
-      ],
-      "eventUri": "fra-1361797",
-      "summary": "Jean-Luc Mélenchon unveiled a 'revolutionary programme' before 20,000 supporters near Paris, riding a wave of protests into the presidential race. Lead with what the programme would actually change — the economy, NATO membership — and the structural why: France's two poll leaders are now the far left and the far right, the centre that ran the state is hollowed out, and a heavily indebted country's creditors are watching. Datelined Le Bourget."
-    },
-    {
-      "id": "jericho-settlers-seize-palestinian-homes-west-bank",
-      "label": "In Jericho, Israeli Settlers Violently Seize and Occupy Palestinian Homes",
-      "firstSeen": "2026-11-07T18:05:26.543Z",
-      "lastCovered": "2026-11-07T18:05:26.543Z",
-      "coverageCount": 1,
-      "category": "politics",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-11-07-jericho-settlers-seize-palestinian-homes-west-bank"
-      ],
-      "eventUri": null,
-      "summary": "Israeli settlers have forcibly taken over Palestinian homes inside the city of Jericho — not an outlying hamlet but a Palestinian Authority-run city in the occupied West Bank — with soldiers present. Lead with the families thrown out and how many homes, and the escalation: dispossession has moved from the hills and Area C into a Palestinian city itself. Name who protected the takeover and who has done nothing to reverse it. Datelined Jericho."
-    },
-    {
-      "id": "drc-ebola-outbreak-largest-history-who-5198-deaths",
-      "label": "Ebola outbreak in DR Congo becomes largest in country's history - WHO",
-      "firstSeen": "2026-11-07T18:05:26.543Z",
-      "lastCovered": "2026-11-07T18:05:26.543Z",
-      "coverageCount": 1,
-      "category": "politics",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-11-07-drc-ebola-outbreak-largest-history-who-5198-deaths"
-      ],
-      "eventUri": null,
-      "summary": "The WHO says the DR Congo's Ebola outbreak is now the largest in the country's history: 10,668 confirmed cases and 5,198 deaths as of 3 November, across 67 health zones in eight provinces. Lead with the toll — roughly half of the confirmed sick have died — and the spread, then the mechanism: why containment failed (conflict in the east, funding cuts to response, vaccine reach) and which neighbours are on alert. Datelined Kinshasa."
-    },
-    {
-      "id": "russia-upgrades-abu-dhabi-delegation-zelenskyy-warns",
-      "label": "Russia upgrades Abu Dhabi delegation as Zelenskyy warns Trump's plan is dangerous",
-      "firstSeen": "2026-11-07T18:05:26.543Z",
-      "lastCovered": "2026-11-07T18:05:26.543Z",
-      "coverageCount": 1,
-      "category": "politics",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-11-07-russia-upgrades-abu-dhabi-delegation-zelenskyy-warns"
-      ],
-      "eventUri": "deu-2195697",
-      "summary": "New since our 11-06 story on the Abu Dhabi talks: the Kremlin has upgraded its team to senior diplomats, military officers and intelligence chiefs, while Zelenskyy publicly calls the US plan dangerous. Lead with the upgrade — Moscow signalling it expects to negotiate terms, not just talk — set against Kyiv's warning, and what Ukraine says the plan would cost it. Datelined Abu Dhabi."
-    },
-    {
-      "id": "houthis-claim-six-strikes-saudi-arabia-aramco",
-      "label": "Yemeni military coducts 6 operations deep inside Saudi Arabia",
-      "firstSeen": "2026-11-07T18:05:26.543Z",
-      "lastCovered": "2026-11-07T18:05:26.543Z",
-      "coverageCount": 1,
-      "category": "politics",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-11-07-houthis-claim-six-strikes-saudi-arabia-aramco"
-      ],
-      "eventUri": "eng-12168885",
-      "summary": "The Houthi military spokesman Yahya Saree claims six missile and drone operations against 'strategic sites' deep inside Saudi Arabia, reportedly including Saudi Aramco facilities. Attribute every claim: this is Iranian state news agency Mehr relaying the Houthis, with no independent confirmation in the feed. Lead with what was claimed hit, then the stakes — a reopened Yemen–Saudi front during the Iran war, with Syrian advisers already on Saudi soil (our 11-06 story) — and what it means for Brent crude if Aramco sites are hit. Datelined Sanaa."
-    },
-    {
-      "id": "us-treasury-mexc-crypto-exchange-16-billion-iran-russia",
-      "label": "U.S. Treasury moves to cut off crypto exchange MEXC over $16 billion in alleged illicit flows",
-      "firstSeen": "2026-11-07T18:05:26.543Z",
-      "lastCovered": "2026-11-07T18:05:26.543Z",
-      "coverageCount": 1,
-      "category": "economy",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-11-07-us-treasury-mexc-crypto-exchange-16-billion-iran-russia"
-      ],
-      "eventUri": "eng-12160454",
-      "summary": "FinCEN is moving to cut crypto exchange MEXC off from the US financial system, alleging it handled at least $16 billion tied to Iran, Russia and cybercrime; the order bites 30 days after Federal Register publication. Lead with the $16 billion and the tool — a primary-money-laundering designation that forces banks to sever ties — and who it lands on: the exchange's users and the sanctions-evasion route for Tehran and Moscow. MEXC says it operates normally. Mention bitcoin only if the source ties the order to a price move."
-    },
-    {
-      "id": "bio-lawsuit-medicare-globe-drug-prices-peer-countries",
-      "label": "BIO joins the legal fight against Medicare pilot that ties drug prices to peer countries",
-      "firstSeen": "2026-11-07T18:05:26.543Z",
-      "lastCovered": "2026-11-07T18:05:26.543Z",
-      "coverageCount": 1,
-      "category": "economy",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-11-07-bio-lawsuit-medicare-globe-drug-prices-peer-countries"
-      ],
-      "eventUri": null,
-      "summary": "The biotech industry's lobby, BIO, has sued to block GLOBE, a Medicare pilot that pegs US drug prices to what peer countries pay. Lead with the paradox STAT reports: the pilot itself saves little, but the industry is fighting it for the precedent — international reference pricing would end the arrangement in which Americans pay several times what other rich countries do for the same medicine. Name who pays now and who funds the suit. Datelined Washington."
-    },
-    {
-      "id": "gnosis-pay-breach-card-numbers-addresses-crypto-wallets",
-      "label": "Gnosis Pay breach exposes card numbers, home addresses and linked crypto wallets",
-      "firstSeen": "2026-11-07T18:05:26.543Z",
-      "lastCovered": "2026-11-07T18:05:26.543Z",
-      "coverageCount": 1,
-      "category": "tech",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-11-07-gnosis-pay-breach-card-numbers-addresses-crypto-wallets"
-      ],
-      "eventUri": "eng-12166442",
-      "summary": "Crypto debit-card provider Gnosis Pay disclosed a breach exposing card numbers, home addresses and the crypto wallets linked to them — weeks before it shuts its branded cards on 20 December, and after a $1.5 million exploit in June. Lead with the dangerous combination: a leaked home address tied to a known wallet balance is a map for physical 'wrench attacks' on holders. The structural point: self-custody crypto plugged into card rails inherits the card industry's KYC data honeypot."
-    },
-    {
-      "id": "trapped-ion-quantum-simulation-aharonov-bohm-gauge-theory",
-      "label": "Two paths, one flux: Trapped ions simulate Aharonov–Bohm interference in a lattice gauge theory",
-      "firstSeen": "2026-11-07T18:05:26.543Z",
-      "lastCovered": "2026-11-07T18:05:26.543Z",
-      "coverageCount": 1,
-      "category": "science",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-11-07-trapped-ion-quantum-simulation-aharonov-bohm-gauge-theory"
-      ],
-      "eventUri": null,
-      "summary": "A Nature Physics study used a hybrid trapped-ion quantum computer to reproduce the Aharonov–Bohm effect — a particle 'feeling' a magnetic field it never passes through — inside a simulated lattice gauge theory, the mathematical framework of the forces in the Standard Model. Lead with the effect in plain words, then why it matters: quantum simulators are starting to compute the gauge physics that classical supercomputers cannot. Thin source; the writer should read the Nature Physics paper."
     }
   ]
 }
