@@ -1,98 +1,5 @@
 [
   {
-    "timestamp": "2026-10-19T10:13:52.093Z",
-    "candidateCount": 10,
-    "candidates": [
-      {
-        "slug": "2026-10-19-putin-cabinet-reshuffle-siluanov-deputy-pm",
-        "title": "Putin Approves Cabinet Reshuffle",
-        "category": "politics",
-        "eventCoverage": 107,
-        "importance": 6
-      },
-      {
-        "slug": "2026-10-19-helen-haines-mp-critical-wangaratta-attack",
-        "title": "MP Haines Critically Injured",
-        "category": "politics",
-        "eventCoverage": 99,
-        "importance": 6
-      },
-      {
-        "slug": "2026-10-19-turkey-osman-gazi-platform-sakarya-gas-doubles",
-        "title": "Turkey Launches Gas Platform",
-        "category": "economy",
-        "eventCoverage": 60,
-        "importance": 6
-      },
-      {
-        "slug": "2026-10-19-wfp-cuts-gaza-food-aid-half-million-winter",
-        "title": "WFP Cuts Gaza Food Aid",
-        "category": "politics",
-        "eventCoverage": 41,
-        "importance": 6
-      },
-      {
-        "slug": "2026-10-19-indonesia-stocks-plunge-msci-downgrade-threat",
-        "title": "Jakarta Stocks Plunge on MSCI",
-        "category": "economy",
-        "eventCoverage": 0,
-        "importance": 6
-      },
-      {
-        "slug": "2026-10-19-hong-kong-sfc-freezes-ipo-fake-demand-probe",
-        "title": "Hong Kong Freezes IPO Funds",
-        "category": "economy",
-        "eventCoverage": 0,
-        "importance": 6
-      },
-      {
-        "slug": "2026-10-19-anthropic-public-benefit-fund-shares-ai-jobs",
-        "title": "Anthropic Funds Public Benefit",
-        "category": "tech",
-        "eventCoverage": 0,
-        "importance": 6
-      },
-      {
-        "slug": "2026-10-19-underdog-on-device-ai-agent-qwen-conway",
-        "title": "Underdog Runs AI Offline",
-        "category": "tech",
-        "eventCoverage": 0,
-        "importance": 6
-      },
-      {
-        "slug": "2026-10-19-ai-agents-virtual-island-undirected-play-study",
-        "title": "AI Agents Invent Games",
-        "category": "tech",
-        "eventCoverage": 0,
-        "importance": 6
-      },
-      {
-        "slug": "2026-10-19-el-nino-sea-level-40cm-eastern-pacific",
-        "title": "El Niño Lifts Pacific Seas",
-        "category": "science",
-        "eventCoverage": 0,
-        "importance": 6
-      }
-    ],
-    "selected": {
-      "slug": "2026-10-19-wfp-cuts-gaza-food-aid-half-million-winter",
-      "title": "WFP Cuts Gaza Food Aid",
-      "category": "politics",
-      "body": "500,000 people lose food aid as winter",
-      "eventCoverage": 41,
-      "importance": 6
-    },
-    "skipReason": null,
-    "sent": true,
-    "pushTitle": "Breaking News",
-    "pushBody": "WFP cuts food aid to 500,000 people in Gaza as winter nears",
-    "response": {
-      "pushed": 1,
-      "skipped": 0,
-      "tokens": 5
-    }
-  },
-  {
     "timestamp": "2026-10-19T14:14:41.484Z",
     "candidateCount": 10,
     "candidates": [
@@ -10217,6 +10124,113 @@
     "sent": true,
     "pushTitle": "Breaking News",
     "pushBody": "2 tankers burn after hitting mines in Hormuz, Iran's Revolutionary Guards say",
+    "response": {
+      "pushed": 1,
+      "skipped": 0,
+      "tokens": 5
+    }
+  },
+  {
+    "timestamp": "2026-11-08T10:14:22.747Z",
+    "candidateCount": 12,
+    "candidates": [
+      {
+        "slug": "2026-11-08-japan-earthquake-aichi-22-injured",
+        "title": "Quake Injures 22 in Japan",
+        "category": "politics",
+        "eventCoverage": 204,
+        "importance": 6
+      },
+      {
+        "slug": "2026-11-08-modi-maoists-eliminated-dimagi-naxals-bastar",
+        "title": "Modi Names Ideological Naxals",
+        "category": "politics",
+        "eventCoverage": 109,
+        "importance": 6
+      },
+      {
+        "slug": "2026-11-08-india-congress-party-donations-fall-75-percent",
+        "title": "Congress Donations Collapse",
+        "category": "economy",
+        "eventCoverage": 60,
+        "importance": 6
+      },
+      {
+        "slug": "2026-11-08-zaporizhzhia-nuclear-plant-loses-external-power-diesel",
+        "title": "Zaporizhzhia Plant Loses Power",
+        "category": "politics",
+        "eventCoverage": 50,
+        "importance": 6
+      },
+      {
+        "slug": "2026-11-08-aramco-riyadh-building-damaged-houthi-missiles",
+        "title": "Aramco Tower Damaged in Riyadh",
+        "category": "economy",
+        "eventCoverage": 0,
+        "importance": 6
+      },
+      {
+        "slug": "2026-11-08-khyber-pakhtunkhwa-faceless-anti-terrorism-courts",
+        "title": "Khyber Pakhtunkhwa Plans Faceless Courts",
+        "category": "politics",
+        "eventCoverage": 0,
+        "importance": 6
+      },
+      {
+        "slug": "2026-11-08-japan-price-rises-backfire-uniqlo-deflation-mindset",
+        "title": "Japan's Price Rises Backfire",
+        "category": "economy",
+        "eventCoverage": 0,
+        "importance": 6
+      },
+      {
+        "slug": "2026-11-08-europe-gas-storage-record-withdrawals-cold-snap",
+        "title": "Europe's Gas Storage Drains",
+        "category": "economy",
+        "eventCoverage": 0,
+        "importance": 6
+      },
+      {
+        "slug": "2026-11-08-antipersonnel-mines-return-3d-printing-drones-ukraine",
+        "title": "Mines Return Through 3D Printing",
+        "category": "tech",
+        "eventCoverage": 0,
+        "importance": 6
+      },
+      {
+        "slug": "2026-11-08-ai-data-centre-bottleneck-electricians-labour",
+        "title": "AI Build-Out Short of Electricians",
+        "category": "tech",
+        "eventCoverage": 0,
+        "importance": 6
+      },
+      {
+        "slug": "2026-11-08-china-moon-landing-long-march-10-lunar-orbit-docking",
+        "title": "China Fixes Moon Landing Route",
+        "category": "tech",
+        "eventCoverage": 0,
+        "importance": 6
+      },
+      {
+        "slug": "2026-11-07-great-unconformity-supercontinents-billion-years-missing",
+        "title": "Earth Lost a Billion Years",
+        "category": "science",
+        "eventCoverage": 0,
+        "importance": 6
+      }
+    ],
+    "selected": {
+      "slug": "2026-11-08-zaporizhzhia-nuclear-plant-loses-external-power-diesel",
+      "title": "Zaporizhzhia Plant Loses Power",
+      "category": "politics",
+      "body": "Diesel generators now power Europe's largest nuclear",
+      "eventCoverage": 50,
+      "importance": 6
+    },
+    "skipReason": null,
+    "sent": true,
+    "pushTitle": "Breaking News",
+    "pushBody": "Zaporizhzhia nuclear plant loses all power, switches to diesel generators, Energoatom says",
     "response": {
       "pushed": 1,
       "skipped": 0,
