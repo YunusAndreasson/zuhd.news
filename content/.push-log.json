@@ -1,91 +1,5 @@
 [
   {
-    "timestamp": "2026-10-20T05:14:35.099Z",
-    "candidateCount": 9,
-    "candidates": [
-      {
-        "slug": "2026-10-20-north-korea-border-threat-seoul-kim-jong-un-reappears",
-        "title": "Seoul Vows Border Punishment",
-        "category": "politics",
-        "eventCoverage": 238,
-        "importance": 6
-      },
-      {
-        "slug": "2026-10-20-kenya-mackenzie-shakahola-cult-191-murders-convicted",
-        "title": "Kenyan Pastor Convicted of Murder",
-        "category": "politics",
-        "eventCoverage": 181,
-        "importance": 6
-      },
-      {
-        "slug": "2026-10-20-openai-engineer-recording-device-saudi-backing-prosecutors",
-        "title": "Ex-OpenAI Engineer Tied to Riyadh",
-        "category": "tech",
-        "eventCoverage": 114,
-        "importance": 6
-      },
-      {
-        "slug": "2026-10-20-micron-taiwan-union-strike-bonus-dram",
-        "title": "Micron Union Strikes",
-        "category": "economy",
-        "eventCoverage": 100,
-        "importance": 6
-      },
-      {
-        "slug": "2026-10-20-saudi-fii-davos-desert-postponed-houthi-attacks",
-        "title": "Saudi Investor Summit Postponed",
-        "category": "economy",
-        "eventCoverage": 89,
-        "importance": 6
-      },
-      {
-        "slug": "2026-10-20-colombia-narino-illegal-gold-mine-collapse-14-dead",
-        "title": "Colombian Gold Pit Collapses",
-        "category": "politics",
-        "eventCoverage": 0,
-        "importance": 6
-      },
-      {
-        "slug": "2026-10-20-iran-strait-authority-hormuz-122-vessels-blacklist",
-        "title": "Iran Blacklists Hormuz Vessels",
-        "category": "economy",
-        "eventCoverage": 0,
-        "importance": 6
-      },
-      {
-        "slug": "2026-10-20-new-zealand-climate-assessment-uncharted-territory-el-nino",
-        "title": "New Zealand Climate Uncharted",
-        "category": "science",
-        "eventCoverage": 0,
-        "importance": 6
-      },
-      {
-        "slug": "2026-10-20-bytedance-seed-restructure-wu-yonghui-cofounder-exit",
-        "title": "ByteDance Reorganizes Seed",
-        "category": "tech",
-        "eventCoverage": 0,
-        "importance": 6
-      }
-    ],
-    "selected": {
-      "slug": "2026-10-20-kenya-mackenzie-shakahola-cult-191-murders-convicted",
-      "title": "Kenyan Pastor Convicted of Murder",
-      "category": "politics",
-      "body": "190 of the 191 people murdered were",
-      "eventCoverage": 181,
-      "importance": 6
-    },
-    "skipReason": null,
-    "sent": true,
-    "pushTitle": "Breaking News",
-    "pushBody": "Kenyan court convicts pastor Paul Mackenzie of murder in cult deaths of 191",
-    "response": {
-      "pushed": 1,
-      "skipped": 0,
-      "tokens": 5
-    }
-  },
-  {
     "timestamp": "2026-10-20T10:16:49.598Z",
     "candidateCount": 11,
     "candidates": [
@@ -10140,6 +10054,99 @@
     "sent": true,
     "pushTitle": "Breaking News",
     "pushBody": "Trump says Iran strikes unlikely if talks progress, threatens 38 bridges",
+    "response": {
+      "pushed": 1,
+      "skipped": 0,
+      "tokens": 5
+    }
+  },
+  {
+    "timestamp": "2026-11-09T05:15:48.106Z",
+    "candidateCount": 10,
+    "candidates": [
+      {
+        "slug": "2026-11-09-trump-midterm-loss-deportations-hegseth-impeachment",
+        "title": "Trump Vows Comeback After Loss",
+        "category": "politics",
+        "eventCoverage": 139,
+        "importance": 6
+      },
+      {
+        "slug": "2026-11-09-iran-araghchi-ultimatum-trump-qatar-mediation",
+        "title": "Iran Issues US Ultimatum",
+        "category": "politics",
+        "eventCoverage": 54,
+        "importance": 6
+      },
+      {
+        "slug": "2026-11-09-khor-mor-gasfield-drone-attack-kurdistan-power",
+        "title": "Drone Hits Khor Mor Gasfield",
+        "category": "economy",
+        "eventCoverage": 47,
+        "importance": 6
+      },
+      {
+        "slug": "2026-11-09-iraq-us-hormuz-oil-export-lane-oman",
+        "title": "Iraq Secures Hormuz Lane",
+        "category": "economy",
+        "eventCoverage": 0,
+        "importance": 6
+      },
+      {
+        "slug": "2026-11-09-zamfara-maradun-attack-12-family-killed",
+        "title": "Gunmen Burn Zamfara Family",
+        "category": "politics",
+        "eventCoverage": 0,
+        "importance": 6
+      },
+      {
+        "slug": "2026-11-09-nvidia-board-investigation-jensen-huang",
+        "title": "Nvidia Board Probes Huang",
+        "category": "tech",
+        "eventCoverage": 0,
+        "importance": 6
+      },
+      {
+        "slug": "2026-11-09-anthropic-generators-onepwr-ai-power",
+        "title": "Anthropic Buys Own Power",
+        "category": "tech",
+        "eventCoverage": 0,
+        "importance": 6
+      },
+      {
+        "slug": "2026-11-09-bytedance-brazil-pecem-data-center-expansion",
+        "title": "ByteDance Weighs Brazil Expansion",
+        "category": "tech",
+        "eventCoverage": 0,
+        "importance": 6
+      },
+      {
+        "slug": "2026-11-09-binance-bitcoin-mining-pool-shutdown",
+        "title": "Binance Mining Pool Fades",
+        "category": "economy",
+        "eventCoverage": 0,
+        "importance": 6
+      },
+      {
+        "slug": "2026-11-09-el-nino-floods-peru-sacrifice-violence-rare",
+        "title": "Flood Sacrifices Didn't Spark War",
+        "category": "science",
+        "eventCoverage": 0,
+        "importance": 6
+      }
+    ],
+    "selected": {
+      "slug": "2026-11-09-trump-midterm-loss-deportations-hegseth-impeachment",
+      "title": "Trump Vows Comeback After Loss",
+      "category": "politics",
+      "body": "Stephen Miller starts as White House chief of staff",
+      "eventCoverage": 139,
+      "importance": 6
+    },
+    "skipReason": null,
+    "sent": true,
+    "pushTitle": "Breaking News",
+    "pushBody": "Trump names Stephen Miller White House chief of staff after midterm loss",
     "response": {
       "pushed": 1,
       "skipped": 0,
