@@ -2,13 +2,208 @@
   "version": 1,
   "stories": [
     {
+      "id": "nigeria-big-tech-ai-digital-surveillance",
+      "label": "Big Tech, AI, and the quiet expansion of digital surveillance in Nigeria",
+      "firstSeen": "2026-11-09T10:04:11.631Z",
+      "lastCovered": "2026-11-09T14:04:51.409Z",
+      "coverageCount": 2,
+      "category": "tech",
+      "importance": 6,
+      "arc": "developing",
+      "articles": [
+        "2026-11-09-nigeria-big-tech-ai-digital-surveillance"
+      ],
+      "eventUri": null,
+      "summary": "Nigerians' data is being collected by Big Tech and AI systems on a scale they do not expect or understand, under a data-protection law with weak enforcement. Lead with the concrete collection practice the piece documents and who profits; the mechanism is commercial incentive to over-collect in a market where the regulator lacks teeth."
+    },
+    {
+      "id": "gaza-rains-flood-tents-mobile-homes-blocked",
+      "label": "'Tents don't protect us': Rains flood displaced Palestinians in Gaza",
+      "firstSeen": "2026-11-09T14:04:51.409Z",
+      "lastCovered": "2026-11-09T14:04:51.409Z",
+      "coverageCount": 1,
+      "category": "politics",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-11-09-gaza-rains-flood-tents-mobile-homes-blocked"
+      ],
+      "eventUri": "eng-12169897",
+      "summary": "Lead with the four Palestinians Reuters reports killed when a sand embankment collapsed onto tents in the first heavy rains, then the mechanism: Israel still blocks the entry of mobile homes (caravans), so hundreds of thousands of displaced people face winter in tents on flooded ground. The weather is not the cause; the blockade on shelter materials is. Name who holds the crossings and what the aid agencies say is being refused."
+    },
+    {
+      "id": "orban-brother-detained-hungary-smuggling-raids",
+      "label": "Police detain brother of Hungary's ex-PM Orban",
+      "firstSeen": "2026-11-09T14:04:51.409Z",
+      "lastCovered": "2026-11-09T14:04:51.409Z",
+      "coverageCount": 1,
+      "category": "politics",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-11-09-orban-brother-detained-hungary-smuggling-raids"
+      ],
+      "eventUri": "rus-2157704",
+      "summary": "Hungarian police took Viktor Orbán's brother into custody in a human-trafficking and smuggling case, seven months after Péter Magyar's landslide ended 16 years of Orbán rule on a promise to hold the old order to account. Use OCCRP's reporting on the smuggling raids that pointed to him; give the brother's 'the target is me' reply. The question for the reader: accountability or a new government's score-settling — show what evidence is public."
+    },
+    {
+      "id": "quneitra-syria-olive-harvest-israel-occupation",
+      "label": "From Palestine to Lebanon, and now Syria, Israel is destroying the Arab olive harvest",
+      "firstSeen": "2026-11-09T14:04:51.409Z",
+      "lastCovered": "2026-11-09T14:04:51.409Z",
+      "coverageCount": 1,
+      "category": "politics",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-11-09-quneitra-syria-olive-harvest-israel-occupation"
+      ],
+      "eventUri": null,
+      "summary": "Ground report from Quneitra in southern Syria: Israeli troops occupying the area are cutting farmers off from their olive groves at harvest and arbitrarily detaining young men. Lead with the farmers and the losses they say will take decades to recover; the mechanism is the same access denial used in the West Bank and south Lebanon, now applied inside Syria. Datelined Quneitra."
+    },
+    {
+      "id": "pakistan-farmers-sue-german-firms-2022-floods",
+      "label": "Pakistani farmers in long fight to make German firms pay for 2022 flood damage",
+      "firstSeen": "2026-11-09T14:04:51.409Z",
+      "lastCovered": "2026-11-09T14:04:51.409Z",
+      "coverageCount": 1,
+      "category": "politics",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-11-09-pakistan-farmers-sue-german-firms-2022-floods"
+      ],
+      "eventUri": "eng-12171795",
+      "summary": "Sindh farmers whose fields drowned in the 2022 floods are suing German emitters in a German court for a share of the damage. Lead with Abdul Hafeez Khoso, the rice farmer who flew to Germany to file it; the mechanism is attribution — whether a court will tie a company's share of historic emissions to a specific loss — and the precedent it would set for every Global South victim of climate damage. Mention COP31 opening this week."
+    },
+    {
+      "id": "egypt-moves-to-shut-mada-masr",
+      "label": "Fighting to Expand the Margins of Journalism in Egypt",
+      "firstSeen": "2026-11-09T14:04:51.409Z",
+      "lastCovered": "2026-11-09T14:04:51.409Z",
+      "coverageCount": 1,
+      "category": "politics",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-11-09-egypt-moves-to-shut-mada-masr"
+      ],
+      "eventUri": null,
+      "summary": "The news: Egyptian authorities are moving to shut Mada Masr, one of the last independent outlets in the country. Report the move as the lead — what authority, what legal instrument, what happens next — and use editor Lina Attalah's own account as the quote, not the frame. The structural point: the closing of the last space for independent reporting in the Arab world's most populous state."
+    },
+    {
+      "id": "hormuz-tanker-mine-fire-brent-falls",
+      "label": "Iranian Army reports another tanker fire in east of Hormuz",
+      "firstSeen": "2026-11-09T14:04:51.409Z",
+      "lastCovered": "2026-11-09T14:04:51.409Z",
+      "coverageCount": 1,
+      "category": "economy",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-11-09-hormuz-tanker-mine-fire-brent-falls"
+      ],
+      "eventUri": "deu-2194505",
+      "summary": "Another tanker burned after hitting a mine in the eastern Strait of Hormuz; Iran's navy says it was in a prohibited zone with transponders off, and Iranian media count 4 tankers halted and 11 'unauthorized' tankers targeted in 10 days. The paradox to lead with: Brent crude fell today anyway, because Trump signalled restraint and meets Qatar's prime minister, and prediction markets now price the ceasefire as near-certain. Name ship traffic through the Strait of Hormuz and Brent crude; attribute Iranian claims to Iranian state media."
+    },
+    {
+      "id": "ecb-president-succession-lagarde-knot",
+      "label": "EU seeks to pick new ECB head by year end: Eurogroup chief said",
+      "firstSeen": "2026-11-09T14:04:51.409Z",
+      "lastCovered": "2026-11-09T14:04:51.409Z",
+      "coverageCount": 1,
+      "category": "economy",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-11-09-ecb-president-succession-lagarde-knot"
+      ],
+      "eventUri": "spa-4407426",
+      "summary": "Lagarde's early exit forces the euro zone to choose the next ECB president by December; finance ministers want to package it with two other top jobs, with Klaas Knot among the nominees. Explain the horse-trading mechanism — national quotas, hawk versus dove — and what it means for the ECB rate path with inflation pushed up by the Iran war's oil shock. Name the ECB rate."
+    },
+    {
+      "id": "kirishi-refinery-drone-fire-energy-war",
+      "label": "At least one person killed as Russia and Ukraine trade strikes overnight",
+      "firstSeen": "2026-11-09T14:04:51.409Z",
+      "lastCovered": "2026-11-09T14:04:51.409Z",
+      "coverageCount": 1,
+      "category": "economy",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-11-09-kirishi-refinery-drone-fire-energy-war"
+      ],
+      "eventUri": "eng-12171448",
+      "summary": "Ukrainian drones set fire to the Kirishi refinery in Leningrad region, Russia's second-largest, while Russian strikes hit Ukrainian energy sites again. Lead with Kirishi: the mechanism is a mutual war on energy infrastructure — Russian fuel exports and refining capacity on one side, Ukrainian power for 850,000 households on the other. Name Brent crude only if the refinery outage is tied to fuel export flows."
+    },
+    {
+      "id": "china-yuan-marine-insurance-shipping-risk",
+      "label": "China plans to boost yuan use in shipping risk-pricing, reduce reliance on West",
+      "firstSeen": "2026-11-09T14:04:51.409Z",
+      "lastCovered": "2026-11-09T14:04:51.409Z",
+      "coverageCount": 1,
+      "category": "economy",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-11-09-china-yuan-marine-insurance-shipping-risk"
+      ],
+      "eventUri": null,
+      "summary": "Seven Chinese agencies issued a road map to build Chinese marine insurance and price shipping risk in yuan, cutting dependence on London's P&I clubs and Lloyd's. The mechanism: Western control of ship insurance is what made the Russian oil price cap enforceable, and war-risk premiums in Hormuz now set the cost of Gulf trade. Name the yuan."
+    },
+    {
+      "id": "berlin-surveillance-ai-trained-synthetic-violence",
+      "label": "Trainingsvideos für Verhaltensanalyse: Für die Überwachungs-KI gibt es nie genug Gewalt",
+      "firstSeen": "2026-11-09T14:04:51.409Z",
+      "lastCovered": "2026-11-09T14:04:51.409Z",
+      "coverageCount": 1,
+      "category": "tech",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-11-09-berlin-surveillance-ai-trained-synthetic-violence"
+      ],
+      "eventUri": null,
+      "summary": "Berlin's police 'behaviour scanner' — AI that flags violence in CCTV footage — is trained on AI-generated videos of violence because real examples are scarce, and to improve it the system also uses footage of the people it watches. Lead with the synthetic-violence training set; the mechanism is a feedback loop where surveilled citizens become training data without consent."
+    },
+    {
+      "id": "dayone-ipo-bytedance-johor-data-centres",
+      "label": "字节的算力供应商，要IPO了",
+      "firstSeen": "2026-11-09T14:04:51.409Z",
+      "lastCovered": "2026-11-09T14:04:51.409Z",
+      "coverageCount": 1,
+      "category": "tech",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-11-09-dayone-ipo-bytedance-johor-data-centres"
+      ],
+      "eventUri": null,
+      "summary": "Singapore data-centre builder DayOne filed an F-1 for a Nasdaq IPO of up to $5bn at a ~$20bn valuation; one unnamed customer — ByteDance, per The Information — paid nearly 70% of its revenue, with 838 MW committed in Malaysia, Thailand and Finland. Lead with the concentration; the mechanism is the Singapore–Johor–Batam corridor where AI compute lands on Malaysian and Indonesian land and power. Note it is still loss-making as neocloud stocks slide."
+    },
+    {
+      "id": "great-zimbabwe-iron-migration-africa",
+      "label": "The migration that remade Africa",
+      "firstSeen": "2026-11-09T14:04:51.409Z",
+      "lastCovered": "2026-11-09T14:04:51.409Z",
+      "coverageCount": 1,
+      "category": "science",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-11-09-great-zimbabwe-iron-migration-africa"
+      ],
+      "eventUri": null,
+      "summary": "Research on the ironworking of Great Zimbabwe (AD 1000–1700) and the migration that spread the technique across Africa. Lead with the finding — what the evidence shows about how and when iron smelting knowledge moved — and the point that an African kingdom mastered a difficult metallurgy on its own terms. Name the study and journal behind it."
+    },
+    {
       "id": "cop31-antalya-opens-wmo-el-nino-heat",
       "label": "UN chief urges leaders to 'get serious' as COP31 set to open",
       "firstSeen": "2026-11-09T10:04:11.631Z",
       "lastCovered": "2026-11-09T10:04:11.631Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-11-09-cop31-antalya-opens-wmo-el-nino-heat"
@@ -23,7 +218,7 @@
       "lastCovered": "2026-11-09T10:04:11.631Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-11-09-hasina-passport-bangladesh-extradition-india"
@@ -38,7 +233,7 @@
       "lastCovered": "2026-11-09T10:04:11.631Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-11-09-crete-migrant-boats-20-dead-libya-route"
@@ -53,7 +248,7 @@
       "lastCovered": "2026-11-09T10:04:11.631Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-11-09-mexico-cjng-r2-arrest-dea-intelligence"
@@ -68,7 +263,7 @@
       "lastCovered": "2026-11-09T10:04:11.631Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-11-09-flavio-bolsonaro-networks-persecution-narrative-flight"
@@ -83,7 +278,7 @@
       "lastCovered": "2026-11-09T10:04:11.631Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-11-09-china-ppi-four-year-high-oil-brent-crude"
@@ -98,7 +293,7 @@
       "lastCovered": "2026-11-09T10:04:11.631Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-11-09-japan-yen-intervention-record-us-coordinated"
@@ -113,7 +308,7 @@
       "lastCovered": "2026-11-09T10:04:11.631Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-11-09-china-gold-etf-inflows-falling-prices"
@@ -128,7 +323,7 @@
       "lastCovered": "2026-11-09T10:04:11.631Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-11-09-europe-warehouses-data-centers-grid-power"
@@ -143,7 +338,7 @@
       "lastCovered": "2026-11-09T10:04:11.631Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-11-09-chinese-ai-labs-silicon-valley-hiring-minimax-moonshot"
@@ -152,28 +347,13 @@
       "summary": "MiniMax and Moonshot are opening US outposts to hire engineers from OpenAI and Anthropic, but pay gaps, prestige and national-security suspicion stand in the way. Lead with the pay gap figure and the security barrier: the AI talent war is now fought under export-control politics, and Chinese labs are trying to buy what they cannot import."
     },
     {
-      "id": "nigeria-big-tech-ai-digital-surveillance",
-      "label": "Big Tech, AI, and the quiet expansion of digital surveillance in Nigeria",
-      "firstSeen": "2026-11-09T10:04:11.631Z",
-      "lastCovered": "2026-11-09T10:04:11.631Z",
-      "coverageCount": 1,
-      "category": "tech",
-      "importance": 6,
-      "arc": "breaking",
-      "articles": [
-        "2026-11-09-nigeria-big-tech-ai-digital-surveillance"
-      ],
-      "eventUri": null,
-      "summary": "Nigerians' data is being collected by Big Tech and AI systems on a scale they do not expect or understand, under a data-protection law with weak enforcement. Lead with the concrete collection practice the piece documents and who profits; the mechanism is commercial incentive to over-collect in a market where the regulator lacks teeth."
-    },
-    {
       "id": "iran-us-talks-iraqi-message-trump-strikes-unlikely",
       "label": "Trump says fresh strikes on Iran 'highly unlikely' if talks progress",
       "firstSeen": "2026-11-08T22:05:28.407Z",
       "lastCovered": "2026-11-09T10:04:11.631Z",
       "coverageCount": 2,
       "category": "politics",
-      "importance": 5,
+      "importance": 4,
       "arc": "developing",
       "articles": [
         "2026-11-08-iran-us-talks-iraqi-message-trump-strikes-unlikely",
@@ -189,7 +369,7 @@
       "lastCovered": "2026-11-09T05:07:25.207Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-11-09-iran-araghchi-ultimatum-trump-qatar-mediation"
@@ -204,7 +384,7 @@
       "lastCovered": "2026-11-09T05:07:25.207Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-11-09-iraq-us-hormuz-oil-export-lane-oman"
@@ -219,7 +399,7 @@
       "lastCovered": "2026-11-09T05:07:25.207Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-11-09-khor-mor-gasfield-drone-attack-kurdistan-power"
@@ -234,7 +414,7 @@
       "lastCovered": "2026-11-09T05:07:25.207Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-11-09-trump-midterm-loss-deportations-hegseth-impeachment"
@@ -249,7 +429,7 @@
       "lastCovered": "2026-11-09T05:07:25.207Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-11-09-zamfara-maradun-attack-12-family-killed"
@@ -264,7 +444,7 @@
       "lastCovered": "2026-11-09T05:07:25.207Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-11-09-nvidia-board-investigation-jensen-huang"
@@ -279,7 +459,7 @@
       "lastCovered": "2026-11-09T05:07:25.207Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-11-09-anthropic-generators-onepwr-ai-power"
@@ -294,7 +474,7 @@
       "lastCovered": "2026-11-09T05:07:25.207Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-11-09-bytedance-brazil-pecem-data-center-expansion"
@@ -309,7 +489,7 @@
       "lastCovered": "2026-11-09T05:07:25.207Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-11-09-binance-bitcoin-mining-pool-shutdown"
@@ -324,7 +504,7 @@
       "lastCovered": "2026-11-09T05:07:25.207Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-11-09-el-nino-floods-peru-sacrifice-violence-rare"
@@ -339,7 +519,7 @@
       "lastCovered": "2026-11-09T05:07:25.207Z",
       "coverageCount": 2,
       "category": "politics",
-      "importance": 4,
+      "importance": 3,
       "arc": "developing",
       "articles": [
         "2026-11-08-pope-leo-argentina-milei-austerity-church",
@@ -355,7 +535,7 @@
       "lastCovered": "2026-11-08T22:05:28.407Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-11-08-eisenkot-coalition-talks-joint-list-19-seats-outside-support"
@@ -370,7 +550,7 @@
       "lastCovered": "2026-11-08T22:05:28.407Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-11-08-pakistan-auto-policy-imf-ev-levy-6bn-exports"
@@ -385,7 +565,7 @@
       "lastCovered": "2026-11-08T22:05:28.407Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-11-08-fed-warsh-december-rate-hike-odds-october-cpi"
@@ -400,7 +580,7 @@
       "lastCovered": "2026-11-08T22:05:28.407Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-11-08-iran-oil-storage-80-percent-restored-rey-depot"
@@ -415,7 +595,7 @@
       "lastCovered": "2026-11-08T22:05:28.407Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-11-08-stablecoin-payments-half-percent-transfer-value"
@@ -430,7 +610,7 @@
       "lastCovered": "2026-11-08T22:05:28.407Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-11-08-midterms-democrats-congress-crypto-industry-oversight"
@@ -445,7 +625,7 @@
       "lastCovered": "2026-11-08T22:05:28.407Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-11-08-nigeria-south-africans-arrested-cartel-drug-trafficking"
@@ -460,7 +640,7 @@
       "lastCovered": "2026-11-08T22:05:28.407Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-11-08-perovskite-liquid-crystal-growth-defects-solar-led"
@@ -475,7 +655,7 @@
       "lastCovered": "2026-11-08T18:02:48.236Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-11-08-egypt-giza-aswan-train-crash-seven-killed"
@@ -490,7 +670,7 @@
       "lastCovered": "2026-11-08T18:02:48.236Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-11-08-turkiye-azerbaijan-erdogan-aliyev-shusha-rift"
@@ -505,7 +685,7 @@
       "lastCovered": "2026-11-08T18:02:48.236Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-11-08-russia-strikes-three-cargo-ships-black-sea-odesa"
@@ -520,7 +700,7 @@
       "lastCovered": "2026-11-08T18:02:48.236Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-11-08-south-africa-retailers-sweatshops-newcastle-factories"
@@ -535,7 +715,7 @@
       "lastCovered": "2026-11-08T18:02:48.236Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-11-08-cocos-keeling-largest-coral-colony-mapped"
@@ -550,7 +730,7 @@
       "lastCovered": "2026-11-08T18:02:48.236Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-11-08-nasa-moon-base-awards-lunar-lander-contracts"
@@ -565,7 +745,7 @@
       "lastCovered": "2026-11-08T14:08:23.963Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-11-08-iran-executes-three-january-protesters-karaj"
@@ -580,7 +760,7 @@
       "lastCovered": "2026-11-08T14:08:23.963Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-11-08-hormuz-third-tanker-fire-irgc-control-khasab"
@@ -595,7 +775,7 @@
       "lastCovered": "2026-11-08T14:08:23.963Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-11-08-nvidia-huang-megaspeed-chinese-spy-allegation"
@@ -610,7 +790,7 @@
       "lastCovered": "2026-11-08T14:08:23.963Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-11-08-russian-strikes-dnipropetrovsk-kharkiv-850000-without-power"
@@ -625,7 +805,7 @@
       "lastCovered": "2026-11-08T14:08:23.963Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-11-08-cuprate-pseudogap-shot-noise-electron-pairs"
@@ -640,7 +820,7 @@
       "lastCovered": "2026-11-08T14:08:23.963Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-11-08-finland-homes-bitcoin-mining-heat-70000"
@@ -655,7 +835,7 @@
       "lastCovered": "2026-11-08T14:08:23.963Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-11-08-huawei-openai-bytedance-ai-drug-discovery"
@@ -670,7 +850,7 @@
       "lastCovered": "2026-11-08T14:08:23.963Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-11-08-nigeria-asaba-opposition-rally-death-2027"
@@ -685,7 +865,7 @@
       "lastCovered": "2026-11-08T14:08:23.963Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-11-08-egypt-el-ayyat-train-derailment-150-injured"
@@ -700,193 +880,13 @@
       "lastCovered": "2026-11-08T14:08:23.963Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-11-08-ghaziabad-police-outpost-blast-terror-claim"
       ],
       "eventUri": "eng-12167612",
       "summary": "A blast hit the Vasundhara police outpost in Ghaziabad, on Delhi's edge, and a militant group has claimed it. Uttar Pradesh's Anti-Terrorism Squad is checking the claim and possible links to a wider network. Report what is established and what is only claimed. Do not name a group as responsible beyond its own claim, and watch for any collective suspicion falling on local Muslims."
-    },
-    {
-      "id": "aramco-riyadh-building-damaged-houthi-missiles",
-      "label": "Saudi Aramco building in Riyadh damaged by falling debris after attempted attack, ministry says",
-      "firstSeen": "2026-11-08T10:05:31.127Z",
-      "lastCovered": "2026-11-08T10:05:31.127Z",
-      "coverageCount": 1,
-      "category": "economy",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-11-08-aramco-riyadh-building-damaged-houthi-missiles"
-      ],
-      "eventUri": "spa-4405027",
-      "summary": "New development on the Houthi-Saudi exchange: Saudi Arabia's own Energy Ministry now confirms an Aramco administrative building in Riyadh was damaged by debris after Houthi ballistic missiles were intercepted over the capital, and a Reuters witness saw windows blown out across several floors — the first independent confirmation after days of Houthi-only claims. Lead with the hit in the capital, not a remote oil field; tie it to Saudi strikes on Yemen (1,039 killed or wounded since July 13, per Yemen's health ministry) and to Brent crude, as the war now reaches the headquarters city of the world's largest oil exporter."
-    },
-    {
-      "id": "japan-earthquake-aichi-22-injured",
-      "label": "Earthquake hits central Japan, injuring more than 20 people",
-      "firstSeen": "2026-11-08T10:05:31.127Z",
-      "lastCovered": "2026-11-08T10:05:31.127Z",
-      "coverageCount": 1,
-      "category": "politics",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-11-08-japan-earthquake-aichi-22-injured"
-      ],
-      "eventUri": "eng-12169229",
-      "summary": "A strong quake centred on Aichi shattered windows and injured at least 22 people across central Japan's industrial belt; Shinkansen trains ran at reduced speed as a precaution. Lead with the injuries and where the shaking hit, then the mechanism: how Japan's early-warning and rail-safety systems kept a quake in its most densely built manufacturing corridor from turning deadly. File as a disaster, not science."
-    },
-    {
-      "id": "zaporizhzhia-nuclear-plant-loses-external-power-diesel",
-      "label": "External power line to ZNPP disconnected due to damage",
-      "firstSeen": "2026-11-08T10:05:31.127Z",
-      "lastCovered": "2026-11-08T10:05:31.127Z",
-      "coverageCount": 1,
-      "category": "politics",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-11-08-zaporizhzhia-nuclear-plant-loses-external-power-diesel"
-      ],
-      "eventUri": "ukr-374119",
-      "summary": "Europe's largest nuclear plant, Russian-occupied Zaporizhzhia, lost its external power line (Ferrosplavnaya-1) and is running on backup diesel generators to keep reactor cooling going. Both sides report it (TASS and Ukrainska Pravda) — attribute who blames whom. Lead with the diesel fallback and how many times the plant has been cut off; the mechanism is that cooling of spent fuel depends on one line amid strikes on the grid while Abu Dhabi talks continue."
-    },
-    {
-      "id": "modi-maoists-eliminated-dimagi-naxals-bastar",
-      "label": "Armed Maoists eliminated, but 'dimagi Naxals' remain a threat: PM Modi",
-      "firstSeen": "2026-11-08T10:05:31.127Z",
-      "lastCovered": "2026-11-08T10:05:31.127Z",
-      "coverageCount": 1,
-      "category": "politics",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-11-08-modi-maoists-eliminated-dimagi-naxals-bastar"
-      ],
-      "eventUri": "eng-12169564",
-      "summary": "Speaking at a CRPF CoBRA base in Bastar, Modi declared India's armed Maoist insurgency over, then named a new target: 'dimagi Naxals' (\"brain Naxals\") he says have infiltrated parties and organisations. Lead with the pivot — the end of a decades-long war in India's adivasi forest belt is being used to recast ideological opponents and civil society as security threats. Who bears the cost: the Bastar adivasis displaced by the campaign and activists who could now be labelled."
-    },
-    {
-      "id": "india-congress-party-donations-fall-75-percent",
-      "label": "Congress donations fall nearly 75%, sharpest decline in a decade",
-      "firstSeen": "2026-11-08T10:05:31.127Z",
-      "lastCovered": "2026-11-08T10:05:31.127Z",
-      "coverageCount": 1,
-      "category": "economy",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-11-08-india-congress-party-donations-fall-75-percent"
-      ],
-      "eventUri": "eng-12167907",
-      "summary": "Donations to India's main opposition party, Congress, fell nearly 75% — the sharpest drop in a decade — per its filings with the Election Commission. Lead with the number and the gap against the BJP's haul; the mechanism is where corporate political money flows after the Supreme Court struck down electoral bonds, and what an opposition starved of funds means for Indian democracy. Use the Economic Times article; the mint URL in the cluster is a mismatched Kalpataru story."
-    },
-    {
-      "id": "khyber-pakhtunkhwa-faceless-anti-terrorism-courts",
-      "label": "KP plans to set up faceless ATCs, spend Rs70bn on CTD and police in a year as part of efforts against terrorism",
-      "firstSeen": "2026-11-08T10:05:31.127Z",
-      "lastCovered": "2026-11-08T10:05:31.127Z",
-      "coverageCount": 1,
-      "category": "politics",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-11-08-khyber-pakhtunkhwa-faceless-anti-terrorism-courts"
-      ],
-      "eventUri": null,
-      "summary": "Khyber Pakhtunkhwa plans 'faceless' anti-terrorism courts — judges and prosecutors kept anonymous — and Rs70bn for counter-terrorism police in a year. Lead with the faceless courts: a model tried in Peru and Colombia that protects judges from militant reprisal but strips defendants of a known accuser and open trial. Context: Pakistan says attacks are launched from Afghan soil, and Pak-Afghan trade stays frozen over it (Dawn, same day)."
-    },
-    {
-      "id": "japan-price-rises-backfire-uniqlo-deflation-mindset",
-      "label": "Why raising prices in Japan amid 'insanely high' inflation backfires on firms",
-      "firstSeen": "2026-11-08T10:05:31.127Z",
-      "lastCovered": "2026-11-08T10:05:31.127Z",
-      "coverageCount": 1,
-      "category": "economy",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-11-08-japan-price-rises-backfire-uniqlo-deflation-mindset"
-      ],
-      "eventUri": "eng-12169544",
-      "summary": "Uniqlo reversed a sock price rise within days and Saizeriya apologised for raising its doria price: Japanese firms facing record input costs from a weak yen cannot pass them on to consumers raised in three decades of deflation. Lead with the Uniqlo U-turn; the mechanism is how an entrenched deflationary mindset squeezes margins and complicates the Bank of Japan's exit from easy money. Name the yen."
-    },
-    {
-      "id": "europe-gas-storage-record-withdrawals-cold-snap",
-      "label": "Europe withdraws 5% of gas injected into UGS facilities in summer in just ten days",
-      "firstSeen": "2026-11-08T10:05:31.127Z",
-      "lastCovered": "2026-11-08T10:05:31.127Z",
-      "coverageCount": 1,
-      "category": "economy",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-11-08-europe-gas-storage-record-withdrawals-cold-snap"
-      ],
-      "eventUri": null,
-      "summary": "An early-November cold snap has Europe drawing gas from underground storage at a record pace — 5% of everything injected over the summer gone in ten days — from reserves that started the winter at historically low levels. Russian state agency TASS computed this from Gas Infrastructure Europe data: attribute it, and lead with the drawdown rate and what it means for natural gas prices and household bills if the cold holds, with Hormuz LNG flows disrupted."
-    },
-    {
-      "id": "antipersonnel-mines-return-3d-printing-drones-ukraine",
-      "label": "Antipersonnel mines have returned in Ukraine and now threaten the world | New Scientist",
-      "firstSeen": "2026-11-08T10:05:31.127Z",
-      "lastCovered": "2026-11-08T10:05:31.127Z",
-      "coverageCount": 1,
-      "category": "tech",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-11-08-antipersonnel-mines-return-3d-printing-drones-ukraine"
-      ],
-      "eventUri": null,
-      "summary": "3D printers, cheap microcontrollers and drone delivery have revived the antipersonnel mine nearly three decades after the 1997 Ottawa Treaty — Ukraine's war has made them cheaper, deadlier and easy to build. Lead with the technology that undid the ban; the stakes are civilians, who are most landmine victims, and the export of these designs to every conflict after Ukraine."
-    },
-    {
-      "id": "ai-data-centre-bottleneck-electricians-labour",
-      "label": "从资本密集到人力密集：全球AI的瓶颈，卡在缺乏“电工”",
-      "firstSeen": "2026-11-08T10:05:31.127Z",
-      "lastCovered": "2026-11-08T10:05:31.127Z",
-      "coverageCount": 1,
-      "category": "tech",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-11-08-ai-data-centre-bottleneck-electricians-labour"
-      ],
-      "eventUri": null,
-      "summary": "The AI build-out's bottleneck has moved from GPUs to power to electrical equipment, and now to electricians: capital can buy equipment delivery slots but cannot shorten the years it takes to train a skilled tradesperson. A Chinese tech-press view — lead with the claim that compute expansion is now limited by labour, not money, and what that means for the US-China data-centre race."
-    },
-    {
-      "id": "china-moon-landing-long-march-10-lunar-orbit-docking",
-      "label": "登月的胜负手，不在火箭点火那一刻",
-      "firstSeen": "2026-11-08T10:05:31.127Z",
-      "lastCovered": "2026-11-08T10:05:31.127Z",
-      "coverageCount": 1,
-      "category": "tech",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-11-08-china-moon-landing-long-march-10-lunar-orbit-docking"
-      ],
-      "eventUri": null,
-      "summary": "China's crewed Moon plan uses two Long March 10 launches with docking in lunar orbit, aimed at a lasting Earth-Moon transport system with a distant retrograde orbit (DRO) hub and deep-space tracking, rather than a one-off landing. Contrast it with Artemis's dependence on commercial contractors and its delays. The inside view: what China is building beyond the rocket launch."
-    },
-    {
-      "id": "great-unconformity-supercontinents-billion-years-missing",
-      "label": "How Earth Lost a Billion Years of Its History",
-      "firstSeen": "2026-11-08T10:05:31.127Z",
-      "lastCovered": "2026-11-08T10:05:31.127Z",
-      "coverageCount": 1,
-      "category": "science",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-11-07-great-unconformity-supercontinents-billion-years-missing"
-      ],
-      "eventUri": null,
-      "summary": "Earth's rock record is missing up to a billion years before the Cambrian, 538 million years ago — the 'Great Unconformity'. A new study says the rise and break-up of ancient supercontinents eroded it away. Lead with the size of the gap; the mechanism links plate tectonics to why we can't read the run-up to complex life, and possibly to the chemistry that triggered it."
     }
   ]
 }
