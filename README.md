@@ -169,3 +169,7 @@ Zuhd (زهد) is the discipline of doing without what you do not need. In 1971
 Herbert Simon observed that a wealth of information creates a poverty of
 attention; seven centuries earlier, Ibn Taymiyyah had named the discipline:
 abandon what does not bring benefit. [About](https://zuhd.news/about).
+
+## License
+
+[MIT](LICENSE).
