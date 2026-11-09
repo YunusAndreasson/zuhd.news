@@ -2,16 +2,17 @@
   "items": {
     "fomc-2026-12": {
       "standingFingerprint": "7461ec820c9cf170",
-      "recentFingerprint": "04bc0252044f46ea",
+      "recentFingerprint": "e4945e100d4be39e",
       "prompt": "cc42a1f1",
       "standing": "The Federal Reserve's rate-setting committee, which meets eight times a year to set the overnight rate US banks lend at. Its decisions price dollar borrowing worldwide, from American mortgages to emerging-market debt.",
-      "recent": "October's hold came despite intensifying inflation, and Warsh's muddled messaging afterwards revived doubts about Fed credibility. Since then employers added 165,000 jobs against 65,000 forecast, and Democrats now control confirmation of every future Fed governor. December tests whether the hold survives a jobs market that strong.",
+      "recent": "The committee held in October despite intensifying inflation, with TD Securities expecting 3 dissents, and Warsh's muddled messaging revived doubts about Fed credibility. October's 165,000 jobs, against 65,000 forecast, weakens the labour-market case for waiting, and a Democratic Senate now controls confirmation of every future Fed governor.",
       "citations": [
         "2026-10-28-fed-holds-rates-warsh-midterms-inflation",
         "2026-11-06-us-jobs-october-165000-fed-rates",
+        "2026-10-26-fed-expected-hold-rates-before-midterms-warsh",
         "2026-11-04-democratic-senate-fed-independence-confirmations"
       ],
-      "generatedAt": "2026-11-08T05:21:39.481Z"
+      "generatedAt": "2026-11-09T05:27:46.079Z"
     },
     "g20-2026-miami": {
       "standingFingerprint": "041eb1ecc79e970b",
@@ -67,15 +68,16 @@
     },
     "fred-us-cpi-2026-11-10": {
       "standingFingerprint": "64727509ea55676d",
-      "recentFingerprint": "a877b3b6b1ba7e6b",
+      "recentFingerprint": "ba5283ebaee93b5f",
       "prompt": "cc42a1f1",
       "standing": "The Bureau of Labor Statistics' monthly count of what US households pay for a basket of goods and services. It drives Social Security's yearly raise and inflation-linked Treasury payouts, and bond markets reprice on it within minutes.",
-      "recent": "The Fed held rates in October despite intensifying inflation, and the pause revived doubts about Warsh's messaging. October payrolls then beat forecast at 165,000 against 65,000, so with the jobs side of the Fed's case answered, this price reading carries the question of whether Warsh's hold survives into December.",
+      "recent": "October's 165,000 jobs, against 65,000 forecast, left traders at 78% odds of a December hike from Kevin Warsh's Fed, which held in October despite rising inflation. The October print settles whether prices back that hike, and it lands days after Democrats won Congress campaigning on affordability.",
       "citations": [
-        "2026-10-28-fed-holds-rates-warsh-midterms-inflation",
-        "2026-11-06-us-jobs-october-165000-fed-rates"
+        "2026-11-08-fed-warsh-december-rate-hike-odds-october-cpi",
+        "2026-11-06-us-jobs-october-165000-fed-rates",
+        "2026-10-28-fed-holds-rates-warsh-midterms-inflation"
       ],
-      "generatedAt": "2026-11-07T05:24:47.830Z"
+      "generatedAt": "2026-11-09T05:27:47.459Z"
     },
     "fred-us-ppi-2026-11-13": {
       "standingFingerprint": "2edeeef889391405",
@@ -96,6 +98,6 @@
       "generatedAt": "2026-11-07T05:24:39.940Z"
     }
   },
-  "generatedAt": "2026-11-08T05:21:39.482Z",
+  "generatedAt": "2026-11-09T05:27:47.459Z",
   "windowDays": 14
 }
