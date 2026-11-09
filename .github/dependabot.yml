@@ -1,0 +1,33 @@
+# Weekly, grouped so a week's updates arrive as a few pull requests. Each runs
+# the checks workflow; merge it when it's green. The app (mobile) is its own
+# entry: native packages there belong in a store build, not in a drive-by merge.
+version: 2
+updates:
+  - package-ecosystem: npm
+    directory: /
+    schedule:
+      interval: weekly
+    groups:
+      dependencies:
+        patterns: ["*"]
+  - package-ecosystem: npm
+    directory: /mobile
+    schedule:
+      interval: weekly
+    groups:
+      app:
+        patterns: ["*"]
+  - package-ecosystem: npm
+    directory: /workers/mcp
+    schedule:
+      interval: weekly
+    groups:
+      mcp:
+        patterns: ["*"]
+  - package-ecosystem: github-actions
+    directory: /
+    schedule:
+      interval: weekly
+    groups:
+      actions:
+        patterns: ["*"]
