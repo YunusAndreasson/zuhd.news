@@ -1,38 +1,36 @@
 {
-  "date": "2026-11-09",
+  "date": "2026-11-10",
   "metrics": {
-    "articles": { "value": 60, "detail": "5 cycles, all completed, avg 11-12/cycle (yesterday 48)" },
-    "freshness": { "median": 0.1, "p90": 0.4, "max": 0.5, "target": 1.0, "met": true },
-    "categories": { "politics": 24, "economy": 18, "science": 4, "tech": 14 },
-    "multiSource": { "pct": 42, "target": 30, "met": true },
-    "usDatelines": { "pct": 23, "target": 25, "met": true },
-    "latAmDatelines": { "pct": 10, "target": 5, "met": true },
+    "articles": { "value": 51, "detail": "5 of 5 cycles completed, avg 10/cycle (61 yesterday)" },
+    "freshness": { "median": 0.1, "p90": 0.2, "max": 0.8, "target": 1.0, "met": true },
+    "categories": { "politics": 23, "economy": 16, "science": 1, "tech": 11 },
+    "multiSource": { "pct": 39, "target": 30, "met": true },
+    "usDatelines": { "pct": 14, "target": 25, "met": true },
+    "latAmDatelines": { "pct": 4, "target": 5, "met": false },
     "sameEventDuplicates": { "value": 0, "target": 0, "met": true },
     "missingDatelines": { "value": 0, "target": 0, "met": true },
     "stateOrAdvocacyOnly": 0,
-    "imageUrlPct": 100,
-    "regions": { "count": 5, "target": 4, "met": true, "breakdown": { "AM": 21, "ME": 14, "AS": 10, "EU": 9, "AF": 6 } },
-    "sciTech": { "ratio": 30, "target": 25, "met": true },
-    "topSourceShare": { "source": "Al Jazeera Online", "pct": 18, "target": 20, "met": true },
-    "uniqueSources": 57,
+    "imageUrlPct": 96,
+    "regions": { "count": 6, "target": 4, "met": true, "breakdown": { "ME": 18, "EU": 10, "AM": 9, "AS": 8, "AF": 5, "OC": 1 } },
+    "sciTech": { "ratio": 24, "target": 25, "met": false },
+    "topSourceShare": { "source": "Reuters / Bloomberg Business (tied, 8 each)", "pct": 16, "target": 20, "met": true },
+    "uniqueSources": 46,
     "duplicates": 0,
-    "avgCycleDuration": 1021
+    "avgCycleDuration": 1058
   },
-  "experiment": "Skipped. No experiment is active and there is no pause gate. Every target is met except science (4 against 5), which may go unmet by the 2026-09-26 decision. The floor stays where it is, and the fix for science is wider sources, which is not a tunable.",
-  "weakestArea": "Science made 4 for the second day running: the Peru El Niño floods, Great Zimbabwe iron migration, a perovskite optics artefact and the ZFX autism gene. The sources were Phys.org and New Scientist, with nothing journal-grade. Tech reached 14, so the sci-tech share (30%) is carried by tech, not science.",
+  "experiment": "Skipped. No experiment is active and there is no pause gate. The misses are science (1), which may go unmet by the 2026-09-26 decision, sci-tech share (24%, carried down by science), and Latin America (4%, after 10% yesterday). None of them has a tunable fix that history hasn't already tried: the GAP_COUNTRIES Latin America experiment was reverted on 2026-09-23.",
+  "weakestArea": "Science is furthest from target: 1 story against 5. It was the FDA GLP-1 eye warning, sourced from NDTV, and nothing came from a journal-grade or science-desk outlet. That is down from 4 a day on 11-08 and 11-09. Without science, the sci-tech share fell to 24% even though tech held at 11. By decision the floor stays where it is, so the fix is wider science sources, and that is an operator change, not a tunable.",
   "watching": [
-    "Iran: Trump calls renewed strikes highly unlikely while Rubio calls Tehran's demands unrealistic, and Araghchi sets an ultimatum through Qatari mediation.",
-    "Hormuz: Iran has targeted 11 tankers in 10 days, Iraq is seeking a US-escorted export lane via Oman, and Brent fell to a 10-week low of $92.80.",
-    "Houthi strikes hit Saudi Arabia's East-West pipeline near Yanbu, and a drone hit the Khor Mor gasfield in Kurdistan.",
-    "US politics after the midterms: Trump's fraud claims, and Massie's push to impeach Hegseth over the Iran war.",
-    "Japan carried out a record yen intervention, reportedly coordinated with the US.",
-    "Press freedom: Novaya Gazeta has closed in Russia and Egypt has moved to shut Mada Masr on the same day.",
-    "COP31 opens in Antalya with WMO El Niño heat warnings."
+    "Iran–US: Trump is holding off on strikes while Tehran denies any talks, Abu Dhabi talks have opened, and tankers are burning on the Hormuz route.",
+    "COP31 in Antalya: record registrations and Brazil's fossil-fuel road map; expect negotiating-text stories through the week.",
+    "US force posture in the UK: a second base is being vacated and a US soldier has been arrested in Gloucester.",
+    "Fed: Logan has argued for hikes, which runs against Brazil's central bank citing four shocks; watch rate-path pricing."
   ],
   "coverageGaps": [
-    "A same-event duplicate slipped past the metric again: the two Gaza stories (05:18 and 18:49, both datelined Deir al-Balah) report the same embankment collapse that buried tents and killed 4. sameEventDuplicates reads 0 but is 1, the second same-day miss in two days.",
-    "Trump's 'strikes unlikely' remark leads two stories (the 08:20 politics story and the 16:35 Brent story). The market angle differs, so this is overlap and not a duplicate.",
-    "Science sourcing is narrow: 2 outlets on each of the last two days, Phys.org both times."
+    "Science: one story, and no Phys.org, New Scientist, Nature or STAT pick today, though they carried 4 science stories yesterday.",
+    "Latin America: only Brasília and Frontera were datelined there; the COP31 Brazil story was datelined Antalya.",
+    "Oceania: one story (Australia's AI regulator).",
+    "Twelve stories carry a country or bloc as the dateline (Nigeria, United States, China, Oman, Kyrgyzstan, Romania, Ukraine, European Union) rather than a city. missingDateline counts them as present, but they break the city-only convention the app's dateline strip relies on."
   ],
-  "context": "A strong day by volume (60 articles) and by sourcing: 42% multi-source, 57 outlets, no state-or-advocacy-only stories. Latin America reached 10% with Peru, Brazil, Haiti, Mexico and Argentina. The same-event metric has now missed two real duplicates in two days (the Egypt rail crash on 11-08 and the Gaza embankment today); both pairs share a dateline and an event, which points at the detector, not at a tunable."
+  "context": "Freshness, multi-source (39%), US share (14%) and source spread (46 outlets, top 16%) are all healthy, and every cycle completed. The one-day dip in Latin America and science looks like news-flow variance on a Middle East-heavy day (18 ME stories), not a structural shift: watch for two more days before calling it a trend. The country-name datelines are a writer issue, outside the tuner's scope."
 }
