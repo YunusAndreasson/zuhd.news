@@ -2,17 +2,17 @@
   "items": {
     "fomc-2026-12": {
       "standingFingerprint": "7461ec820c9cf170",
-      "recentFingerprint": "e4945e100d4be39e",
+      "recentFingerprint": "807df5975dcb1a48",
       "prompt": "cc42a1f1",
       "standing": "The Federal Reserve's rate-setting committee, which meets eight times a year to set the overnight rate US banks lend at. Its decisions price dollar borrowing worldwide, from American mortgages to emerging-market debt.",
-      "recent": "The committee held in October despite intensifying inflation, with TD Securities expecting 3 dissents, and Warsh's muddled messaging revived doubts about Fed credibility. October's 165,000 jobs, against 65,000 forecast, weakens the labour-market case for waiting, and a Democratic Senate now controls confirmation of every future Fed governor.",
+      "recent": "October's payrolls beat forecast at 165,000 against 65,000, weeks after the committee held through intensifying inflation and Warsh's muddled messaging revived doubts about Fed credibility. Warsh has also flagged how exposed AI financing is to Fed policy, and a Democratic Senate now controls confirmation of every future Fed governor.",
       "citations": [
-        "2026-10-28-fed-holds-rates-warsh-midterms-inflation",
         "2026-11-06-us-jobs-october-165000-fed-rates",
-        "2026-10-26-fed-expected-hold-rates-before-midterms-warsh",
-        "2026-11-04-democratic-senate-fed-independence-confirmations"
+        "2026-10-28-fed-holds-rates-warsh-midterms-inflation",
+        "2026-11-04-democratic-senate-fed-independence-confirmations",
+        "2026-11-08-fed-warsh-december-rate-hike-odds-october-cpi"
       ],
-      "generatedAt": "2026-11-09T05:27:46.079Z"
+      "generatedAt": "2026-11-10T05:28:31.032Z"
     },
     "g20-2026-miami": {
       "standingFingerprint": "041eb1ecc79e970b",
@@ -29,19 +29,18 @@
     },
     "ecb-2026-12": {
       "standingFingerprint": "644eb225dab9953a",
-      "recentFingerprint": "abe343afd8222268",
+      "recentFingerprint": "7a12f7d6bb7c1c22",
       "prompt": "cc42a1f1",
       "standing": "The European Central Bank's Governing Council, which meets eight times a year to set interest rates for the countries sharing the euro. Its deposit rate drives borrowing costs for some 350 million people, and the euro moves with it.",
-      "recent": "With inflation at 4%, Nagel has backed a third hike this year and Panetta says more may be needed, while euro zone firms already report tighter credit. It is also one of Lagarde's last meetings: governments are choosing between Klaas Knot, a hawk, and Pablo Hernández de Cos in a north–south bargain over who steers the rate after February.",
+      "recent": "Eurozone inflation has hit 4%, above 2% for eight straight months, and Nagel has backed a December hike that would be the third this year; Panetta has said more may be needed. Lagarde leaves on 7 February, so this is among her last decisions while Knot and De Cos vie to succeed her.",
       "citations": [
+        "2026-11-04-eurozone-inflation-4-percent-ecb-boe",
         "2026-11-03-ecb-december-rate-hike-nagel-bundesbank",
         "2026-10-30-ecb-rate-hike-debate-panetta-italy-inflation",
-        "2026-11-04-eurozone-inflation-4-percent-ecb-boe",
-        "2026-11-06-ecb-president-knot-de-cos-two-candidates",
         "2026-10-29-lagarde-quits-ecb-february-rates-held-energy",
-        "2026-10-26-ecb-survey-euro-zone-firms-credit-tightening"
+        "2026-11-06-ecb-president-knot-de-cos-two-candidates"
       ],
-      "generatedAt": "2026-11-07T05:24:55.566Z"
+      "generatedAt": "2026-11-10T05:28:33.335Z"
     },
     "boe-2026-12": {
       "standingFingerprint": "498a0992d302cf13",
@@ -56,48 +55,48 @@
     },
     "boj-2026-12": {
       "standingFingerprint": "b08124a86f654bb7",
-      "recentFingerprint": "c08528282514cc2d",
+      "recentFingerprint": "fc1f382b16d9a541",
       "prompt": "cc42a1f1",
       "standing": "The Bank of Japan's policy board, which meets eight times a year to set the country's short-term interest rate. Its decisions move the yen and the yield on Japanese government debt, and reach borrowers far beyond Japan.",
-      "recent": "Nearly half of Japan's manufacturers raised profit forecasts on the weak yen, while households pay more for imported energy and food. That is the split this board weighs when it sets the price of yen. Cheap yen funding also drew a record $16 billion of foreign yen bond sales, and a decision here reprices that borrowing.",
+      "recent": "Japan spent a record ¥7.98 trillion in one day buying yen, in its first coordinated operation with the US in nearly three decades, and the rate gap with the US kept pushing it down. With a December Fed hike fully priced, the board weighs that gap against nearly half of manufacturers raising profit forecasts on the weak yen.",
       "citations": [
-        "2026-11-07-japan-manufacturers-profit-forecasts-weak-yen",
-        "2026-10-31-yen-bond-foreign-issuers-record-16bn-ai-funding-japan"
+        "2026-11-09-japan-yen-intervention-record-us-coordinated",
+        "2026-10-28-fed-holds-rates-warsh-midterms-inflation",
+        "2026-11-07-japan-manufacturers-profit-forecasts-weak-yen"
       ],
-      "generatedAt": "2026-11-08T05:21:34.345Z"
+      "generatedAt": "2026-11-10T05:28:38.956Z"
     },
     "fred-us-cpi-2026-11-10": {
       "standingFingerprint": "64727509ea55676d",
-      "recentFingerprint": "ba5283ebaee93b5f",
+      "recentFingerprint": "5b3facd314b39c72",
       "prompt": "cc42a1f1",
       "standing": "The Bureau of Labor Statistics' monthly count of what US households pay for a basket of goods and services. It drives Social Security's yearly raise and inflation-linked Treasury payouts, and bond markets reprice on it within minutes.",
-      "recent": "October's 165,000 jobs, against 65,000 forecast, left traders at 78% odds of a December hike from Kevin Warsh's Fed, which held in October despite rising inflation. The October print settles whether prices back that hike, and it lands days after Democrats won Congress campaigning on affordability.",
+      "recent": "It is the first CPI since the Fed held rates despite intensifying inflation, and it follows a jobs report of 165,000 against 65,000 forecast. Traders put 78% odds on a December hike, and Warsh's messaging is already drawing credibility doubts. This print tests whether the Fed can still defend that hold.",
       "citations": [
         "2026-11-08-fed-warsh-december-rate-hike-odds-october-cpi",
-        "2026-11-06-us-jobs-october-165000-fed-rates",
-        "2026-10-28-fed-holds-rates-warsh-midterms-inflation"
+        "2026-11-06-us-jobs-october-165000-fed-rates"
       ],
-      "generatedAt": "2026-11-09T05:27:47.459Z"
+      "generatedAt": "2026-11-10T05:28:26.113Z"
     },
     "fred-us-ppi-2026-11-13": {
       "standingFingerprint": "2edeeef889391405",
-      "recentFingerprint": "a973988cc7fa897f",
+      "recentFingerprint": "6bed32c5dc32f64b",
       "prompt": "cc42a1f1",
       "standing": "The Bureau of Labor Statistics' monthly Producer Price Index, which measures what US businesses receive for goods and services before they reach shoppers. It is an early read on cost pressure that feeds into consumer prices and Fed thinking.",
-      "recent": "The US PPI release settles whether price pressure at the wholesale level is building or easing before it reaches shop shelves.",
+      "recent": "The Bureau of Labor Statistics publishes the US PPI for the latest month, settling how fast prices at the factory gate and in wholesale trade moved before they pass to consumers.",
       "citations": [],
-      "generatedAt": "2026-11-06T05:24:51.881Z"
+      "generatedAt": "2026-11-10T05:28:16.768Z"
     },
     "fred-us-retail-sales-2026-11-17": {
       "standingFingerprint": "88dc24dc4edbc81f",
-      "recentFingerprint": "f7a382d442b2336a",
+      "recentFingerprint": "a973988cc7fa897f",
       "prompt": "cc42a1f1",
       "standing": "The Census Bureau's monthly early estimate of what US retailers and restaurants sold. Consumer spending drives most of the American economy, so the figure moves Treasury yields, the dollar and expectations for interest rates.",
-      "recent": "The Census Bureau publishes the next US retail sales figures on 2026-11-17. The release will show whether households kept spending through the month it covers, and it revises the month before.",
+      "recent": "The Census Bureau reports another month of US spending at stores, restaurants and online sellers, settling how much demand households carried into the year-end shopping season.",
       "citations": [],
-      "generatedAt": "2026-11-07T05:24:39.940Z"
+      "generatedAt": "2026-11-10T05:28:19.558Z"
     }
   },
-  "generatedAt": "2026-11-09T05:27:47.459Z",
+  "generatedAt": "2026-11-10T05:28:38.958Z",
   "windowDays": 14
 }
