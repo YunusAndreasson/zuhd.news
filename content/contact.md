@@ -21,4 +21,4 @@ Email [contact@zuhd.news](mailto:contact@zuhd.news) with the article title and t
 
 ## Developer
 
-Yunus Andreasson — [andreassonphoto.com](https://andreassonphoto.com)
+Yunus Andreasson — [andreassonphoto.com](https://andreassonphoto.com) · [GitHub](https://github.com/YunusAndreasson)
