@@ -60,15 +60,16 @@ export const isGdacsFeatureCollection = (v) => {
 }
 
 function htmlToPlain(html) {
-  return html
-    .replace(/<br\s*\/?>(?:\s*\n)?/gi, '\n')
-    .replace(/<[^>]+>/g, '')
-    .replace(/&nbsp;/g, ' ')
-    .replace(/&amp;/g, '&')
-    .replace(/&lt;/g, '<')
-    .replace(/&gt;/g, '>')
-    .replace(/&#39;/g, "'")
-    .replace(/&quot;/g, '"')
+  let text = html.replace(/<br\s*\/?>(?:\s*\n)?/gi, '\n')
+  let prev
+  do {
+    prev = text
+    text = text.replace(/<[^>]+>/g, '')
+  } while (text !== prev)
+  // One pass, so `&amp;lt;` stays `&lt;` instead of decoding twice.
+  const named = { nbsp: ' ', amp: '&', lt: '<', gt: '>', quot: '"', '#39': "'" }
+  return text
+    .replace(/&(nbsp|amp|lt|gt|quot|#39);/g, (_, n) => named[n])
     .replace(/\s+/g, ' ')
     .trim()
 }

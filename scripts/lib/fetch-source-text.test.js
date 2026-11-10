@@ -2,7 +2,7 @@ import assert from 'node:assert/strict'
 import { test } from 'node:test'
 import { Readability } from '@mozilla/readability'
 import { JSDOM } from 'jsdom'
-import { fetchSourcePage, fetchSourceText, htmlForReadability, pageText, stripTags } from './fetch-source-text.js'
+import { decodeEntities, fetchSourcePage, fetchSourceText, htmlForReadability, pageText, stripHtml, stripTags } from './fetch-source-text.js'
 
 test('styles and scripts are dropped, the prose survives', () => {
   const prose = 'The ministry said 40 people were displaced by the flooding overnight. '.repeat(8)
@@ -64,4 +64,23 @@ test('no address, no request', async () => {
   assert.equal(await fetchSourcePage(''), null)
   assert.equal(await fetchSourcePage(undefined), null)
   assert.equal(await fetchSourceText(null), null)
+})
+
+test('stripHtml removes markup that the removal itself would rebuild', () => {
+  assert.doesNotMatch(stripHtml('<p>a<scr<script>x</script>ipt>alert(1)</script>b</p>'), /</)
+  assert.doesNotMatch(stripHtml('<p>a <<b>script>x<</b>/script> b</p>'), /<\/?script/i)
+  assert.doesNotMatch(stripHtml('<p>a<!-<!-- x -->- y -->b</p>'), /<!--/)
+  assert.equal(stripHtml('<p>one</p><script >var x</script ><p>two</p>'), 'one two')
+})
+
+test('stripTags leaves no tag behind however the input nests them', () => {
+  assert.doesNotMatch(stripTags('a<<b>script>x<</b>/script>b'), /<\/?script/i)
+  assert.equal(stripTags('<p>a</p><p>b <a href="#">c</a>.</p>'), 'a b c.')
+})
+
+test('entities are decoded once, never twice', () => {
+  assert.equal(decodeEntities('&amp;lt;b&amp;gt;'), '&lt;b&gt;')
+  assert.equal(decodeEntities('&amp;#39; &amp;amp;'), '&#39; &amp;')
+  assert.equal(stripHtml('<p>Tom &amp; Jerry &lt;3 &#x41;&#66; &nbsp;&mdash; &unknown;</p>'), 'Tom & Jerry <3 AB — &unknown;')
+  assert.equal(decodeEntities('&#99999999;'), '&#99999999;')
 })
