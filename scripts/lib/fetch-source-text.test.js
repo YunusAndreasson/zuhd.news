@@ -84,3 +84,8 @@ test('entities are decoded once, never twice', () => {
   assert.equal(stripHtml('<p>Tom &amp; Jerry &lt;3 &#x41;&#66; &nbsp;&mdash; &unknown;</p>'), 'Tom & Jerry <3 AB — &unknown;')
   assert.equal(decodeEntities('&#99999999;'), '&#99999999;')
 })
+
+test('script end tags with attributes or whitespace still close the block', () => {
+  assert.equal(stripHtml('<p>a</p><script>x</script\t\n bar><p>b</p>'), 'a b')
+  assert.doesNotMatch(htmlForReadability('<style>a</style x><scr<script>y</script>ipt>z</script>'), /<script/i)
+})

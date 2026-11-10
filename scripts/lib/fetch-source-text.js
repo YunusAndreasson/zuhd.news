@@ -57,10 +57,10 @@ export function stripHtml(html) {
   // Drop everything that isn't prose: scripts, styles, nav chrome, ads.
   text = untilStable(text, (t) =>
     t
-      .replace(/<script\b[^>]*>[\s\S]*?<\/script\s*>/gi, ' ')
-      .replace(/<style\b[^>]*>[\s\S]*?<\/style\s*>/gi, ' ')
-      .replace(/<noscript\b[^>]*>[\s\S]*?<\/noscript\s*>/gi, ' ')
-      .replace(/<(nav|header|footer|aside|form)\b[^>]*>[\s\S]*?<\/\1\s*>/gi, ' ')
+      .replace(/<script\b[^>]*>[\s\S]*?<\/script[^>]*>/gi, ' ')
+      .replace(/<style\b[^>]*>[\s\S]*?<\/style[^>]*>/gi, ' ')
+      .replace(/<noscript\b[^>]*>[\s\S]*?<\/noscript[^>]*>/gi, ' ')
+      .replace(/<(nav|header|footer|aside|form)\b[^>]*>[\s\S]*?<\/\1[^>]*>/gi, ' ')
       .replace(/<!--[\s\S]*?--!?>/g, ' '),
   )
 
@@ -123,12 +123,13 @@ export function stripTags(html) {
  * @param {string} html
  */
 export function htmlForReadability(html) {
-  return html
-    .slice(0, 1_500_000)
-    .replace(/<style\b[^>]*>[\s\S]*?<\/style\s*>/gi, '')
-    .replace(/<script\b[^>]*>[\s\S]*?<\/script\s*>/gi, '')
-    .replace(/<link\b[^>]*rel=["']?stylesheet[^>]*>/gi, '')
-    .replace(/\sstyle="[^"]*"/gi, '')
+  return untilStable(html.slice(0, 1_500_000), (t) =>
+    t
+      .replace(/<style\b[^>]*>[\s\S]*?<\/style[^>]*>/gi, '')
+      .replace(/<script\b[^>]*>[\s\S]*?<\/script[^>]*>/gi, '')
+      .replace(/<link\b[^>]*rel=["']?stylesheet[^>]*>/gi, '')
+      .replace(/\sstyle="[^"]*"/gi, ''),
+  )
 }
 
 /**
