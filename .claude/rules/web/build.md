@@ -65,7 +65,9 @@ shared helpers are indexed in `.claude/rules/shared-modules.md`.
   `time[data-day]` into "3h ago" and "Today", which a build would freeze.
 - No inline script: the CSP is `script-src 'self' 'inline-speculation-rules'`, in
   `_headers` and in `functions/s/[slug].js`. New page script is an island or a
-  file.
+  file. The one outside origin is Cloudflare Web Analytics (`CF_BEACON` in
+  `headCommon`, and in `404.html` and `get.html`): its script host in
+  `script-src`, its report host in `connect-src`.
 
 - `loadTemplate` (`build.js`) fills the shared placeholders once. A page
   builder takes the resolved template as an argument and never reads

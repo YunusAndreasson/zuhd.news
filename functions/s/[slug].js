@@ -43,9 +43,9 @@ const SECURITY_HEADERS = {
   'Permissions-Policy': 'camera=(), microphone=(), geolocation=()',
   'Strict-Transport-Security': 'max-age=15552000',
   'Content-Security-Policy':
-    "default-src 'none'; script-src 'self' 'inline-speculation-rules'; manifest-src 'self'; worker-src 'self' blob:; " +
+    "default-src 'none'; script-src 'self' 'inline-speculation-rules' https://static.cloudflareinsights.com; manifest-src 'self'; worker-src 'self' blob:; " +
     "child-src 'self' blob:; style-src 'self' 'unsafe-inline'; font-src 'self'; " +
-    "connect-src 'self'; img-src 'self' data: blob:; media-src 'self'; base-uri 'self'; " +
+    "connect-src 'self' https://cloudflareinsights.com; img-src 'self' data: blob:; media-src 'self'; base-uri 'self'; " +
     "form-action 'none'; frame-ancestors 'none'",
 }
 

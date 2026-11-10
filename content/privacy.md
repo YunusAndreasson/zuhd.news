@@ -1,10 +1,12 @@
-No accounts. The website has no cookies, no analytics and no third-party scripts. The app has no ads, and one optional measure of our own advertising, on Android only.
+No accounts. The website sets no cookies and counts visits without knowing who made them. The app has no ads, and one optional measure of our own advertising, on Android only.
 
 zuhd.news does not collect personal data on the website. In the mobile app it holds one thing, and only if you turn on notifications: the push token. If you agree to ad measurement on Android, Meta receives the data described below.
 
 ## Website
 
-Your browser remembers which articles you have read. That data stays on your device. Fonts are self-hosted. Nothing loads from outside.
+Your browser remembers which articles you have read. That data stays on your device. Fonts are self-hosted.
+
+One script loads from outside: Cloudflare Web Analytics, from the company that already serves the site. It counts page views and measures how fast pages load. It sends Cloudflare the page's address, the site that linked to it and the load times. It sets no cookie, stores nothing in your browser and does not identify visitors or follow anyone across sites.
 
 ## Mobile app
 

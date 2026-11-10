@@ -488,6 +488,15 @@ const pageCss = dropRulesNeedingClass(cssContent, /\.map-[\w-]+/, KEPT_MAP_CLASS
  * block is inlined into roughly a thousand pages, so prose inside it is prose
  * every reader downloads.
  */
+/**
+ * Cloudflare Web Analytics: page views and load timings, with no cookie and
+ * nothing stored in the browser. The token is public by design. It is the one
+ * script from another origin, so the CSP names it in `script-src` and its
+ * report endpoint in `connect-src` (`public/_headers`, `functions/s/[slug].js`).
+ * The hand-written `public/404.html` and `public/get.html` carry the same tag.
+ */
+const CF_BEACON = `<script defer src="https://static.cloudflareinsights.com/beacon.min.js" data-cf-beacon='{"token": "9b35a0f25a0543849d0e830feb07a183"}'></script>`
+
 const headCommon = `<meta charset="utf-8">
   <meta name="google-site-verification" content="wE52hhFpRSdZ0DSAJM4Z57wM4AXTQ68eLrlo-zk_xLw">
   <meta name="author" content="Yunus Andreasson">
@@ -506,7 +515,8 @@ const headCommon = `<meta charset="utf-8">
   <link rel="icon" href="/favicon.svg" type="image/svg+xml">
   <link rel="apple-touch-icon" href="/apple-touch-icon.png">
   <link rel="manifest" href="/manifest.json">
-  <script type="speculationrules">{"prerender":[{"where":{"and":[{"href_matches":"/*"},{"not":{"href_matches":"/api/*"}},{"not":{"href_matches":"/audio/*"}},{"not":{"href_matches":"/feed.xml"}},{"not":{"href_matches":"/sitemap.xml"}},{"not":{"href_matches":"/og-image.png"}}]},"eagerness":"moderate"}]}</script>`
+  <script type="speculationrules">{"prerender":[{"where":{"and":[{"href_matches":"/*"},{"not":{"href_matches":"/api/*"}},{"not":{"href_matches":"/audio/*"}},{"not":{"href_matches":"/feed.xml"}},{"not":{"href_matches":"/sitemap.xml"}},{"not":{"href_matches":"/og-image.png"}}]},"eagerness":"moderate"}]}</script>
+  ${CF_BEACON}`
 
 /**
  * The head for the two page types that commit to dark.
@@ -2528,7 +2538,7 @@ const staticPages = ['about', 'contact', 'privacy', 'mcp']
 const STATIC_DESCRIPTIONS = {
   about: 'What zuhd.news is, and how an editorial pipeline writes global hard news without the noise.',
   contact: 'How to reach zuhd.news.',
-  privacy: 'What zuhd.news and its app collect: no cookies or analytics on the site, a push token only if you turn on notifications, and ad measurement on Android only if you agree.',
+  privacy: 'What zuhd.news and its app collect: no cookies on the site and only cookieless visit counts, a push token only if you turn on notifications, and ad measurement on Android only if you agree.',
   mcp: 'Connect an AI assistant to zuhd.news through its MCP server.',
 }
 // Build timestamp as lastmod for non-article pages (lists/indices that change
