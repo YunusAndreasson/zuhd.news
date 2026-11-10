@@ -106,7 +106,14 @@ const BLOCK_TAG = /<\/?(?:p|div|br|hr|li|ul|ol|dl|dt|dd|h[1-6]|blockquote|pre|ta
  * @param {string} html
  */
 export function stripTags(html) {
-  return untilStable(html, (t) => t.replace(BLOCK_TAG, ' ').replace(/<[^>]*>/g, ''))
+  let text = html
+  let prev
+  do {
+    prev = text
+    text = text.replace(BLOCK_TAG, ' ')
+    text = text.replace(/<[^>]*>/g, '')
+  } while (text !== prev)
+  return text
     .replace(/[ \t]+/g, ' ')
     .replace(/ ?\n ?/g, '\n')
     .trim()
@@ -123,13 +130,16 @@ export function stripTags(html) {
  * @param {string} html
  */
 export function htmlForReadability(html) {
-  return untilStable(html.slice(0, 1_500_000), (t) =>
-    t
-      .replace(/<style\b[^>]*>[\s\S]*?<\/style[^>]*>/gi, '')
-      .replace(/<script\b[^>]*>[\s\S]*?<\/script[^>]*>/gi, '')
-      .replace(/<link\b[^>]*rel=["']?stylesheet[^>]*>/gi, '')
-      .replace(/\sstyle="[^"]*"/gi, ''),
-  )
+  let text = html.slice(0, 1_500_000)
+  let prev
+  do {
+    prev = text
+    text = text.replace(/<style\b[^>]*>[\s\S]*?<\/style[^>]*>/gi, '')
+    text = text.replace(/<script\b[^>]*>[\s\S]*?<\/script[^>]*>/gi, '')
+    text = text.replace(/<link\b[^>]*rel=["']?stylesheet[^>]*>/gi, '')
+    text = text.replace(/\sstyle="[^"]*"/gi, '')
+  } while (text !== prev)
+  return text
 }
 
 /**
