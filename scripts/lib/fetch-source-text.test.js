@@ -89,3 +89,10 @@ test('script end tags with attributes or whitespace still close the block', () =
   assert.equal(stripHtml('<p>a</p><script>x</script\t\n bar><p>b</p>'), 'a b')
   assert.doesNotMatch(htmlForReadability('<style>a</style x><scr<script>y</script>ipt>z</script>'), /<script/i)
 })
+
+test('an unclosed < or script block is left as written, tags inside a sentence leave no gap', () => {
+  assert.equal(stripTags('1 < 2 and <b>bold</b>, ok'), '1 bold, ok')
+  assert.equal(stripTags('a<br/>b<P class=x>c</P>d'), 'a b c d')
+  assert.match(htmlForReadability('<p>x</p><script>never closed'), /never closed/)
+  assert.equal(htmlForReadability('<P>x</P><SCRIPT type="a">y</SCRIPT ><scripts>keep</scripts>'), '<P>x</P><scripts>keep</scripts>')
+})

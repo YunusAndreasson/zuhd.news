@@ -85,7 +85,42 @@ export function stripHtml(html) {
 
 // The tags that end a run of prose: a paragraph, a heading, a list item, a
 // line break. Every other tag (a link, an emphasis) sits inside a sentence.
-const BLOCK_TAG = /<\/?(?:p|div|br|hr|li|ul|ol|dl|dt|dd|h[1-6]|blockquote|pre|table|thead|tbody|tfoot|tr|td|th|caption|figure|figcaption|section|article|aside|header|footer|nav|main|address|details|summary)\b[^>]*>/gi
+const BLOCK_NAME = /^\/?(?:p|div|br|hr|li|ul|ol|dl|dt|dd|h[1-6]|blockquote|pre|table|thead|tbody|tfoot|tr|td|th|caption|figure|figcaption|section|article|aside|header|footer|nav|main|address|details|summary)$/i
+
+/** Every `<...>` removed, a block tag leaving a space. Scans for `<` and the
+ *  next `>` instead of matching, so text left over can never be glued into a
+ *  new tag, and an unclosed `<` stays as it was. */
+function dropTags(html) {
+  let out = ''
+  let i = 0
+  for (;;) {
+    const open = html.indexOf('<', i)
+    const close = open === -1 ? -1 : html.indexOf('>', open)
+    if (close === -1) return out + html.slice(i)
+    out += html.slice(i, open)
+    const name = /^\/?\w*/.exec(html.slice(open + 1, close))[0]
+    if (BLOCK_NAME.test(name)) out += ' '
+    i = close + 1
+  }
+}
+
+/** Every `<name ...>...</name ...>` block removed, found by search rather
+ *  than by pattern. A block that never closes stays. */
+function dropBlocks(html, name) {
+  const lower = html.toLowerCase()
+  let out = ''
+  let i = 0
+  for (;;) {
+    let open = lower.indexOf(`<${name}`, i)
+    while (open !== -1 && /\w/.test(lower[open + name.length + 1] ?? '')) open = lower.indexOf(`<${name}`, open + 1)
+    const openEnd = open === -1 ? -1 : lower.indexOf('>', open)
+    const closeAt = openEnd === -1 ? -1 : lower.indexOf(`</${name}`, openEnd + 1)
+    const closeEnd = closeAt === -1 ? -1 : lower.indexOf('>', closeAt)
+    if (closeEnd === -1) return out + html.slice(i)
+    out += html.slice(i, open)
+    i = closeEnd + 1
+  }
+}
 
 /**
  * A fragment of HTML as text: an RSS item's description or `content:encoded`.
@@ -106,14 +141,7 @@ const BLOCK_TAG = /<\/?(?:p|div|br|hr|li|ul|ol|dl|dt|dd|h[1-6]|blockquote|pre|ta
  * @param {string} html
  */
 export function stripTags(html) {
-  let text = html
-  let prev
-  do {
-    prev = text
-    text = text.replace(BLOCK_TAG, ' ')
-    text = text.replace(/<[^>]*>/g, '')
-  } while (text !== prev)
-  return text
+  return untilStable(html, dropTags)
     .replace(/[ \t]+/g, ' ')
     .replace(/ ?\n ?/g, '\n')
     .trim()
@@ -130,16 +158,9 @@ export function stripTags(html) {
  * @param {string} html
  */
 export function htmlForReadability(html) {
-  let text = html.slice(0, 1_500_000)
-  let prev
-  do {
-    prev = text
-    text = text.replace(/<style\b[^>]*>[\s\S]*?<\/style[^>]*>/gi, '')
-    text = text.replace(/<script\b[^>]*>[\s\S]*?<\/script[^>]*>/gi, '')
-    text = text.replace(/<link\b[^>]*rel=["']?stylesheet[^>]*>/gi, '')
-    text = text.replace(/\sstyle="[^"]*"/gi, '')
-  } while (text !== prev)
-  return text
+  let text = untilStable(html.slice(0, 1_500_000), (t) => dropBlocks(dropBlocks(t, 'style'), 'script'))
+  text = text.replace(/<link\b[^>]*rel=["']?stylesheet[^>]*>/gi, '')
+  return text.replace(/\sstyle="[^"]*"/gi, '')
 }
 
 /**
