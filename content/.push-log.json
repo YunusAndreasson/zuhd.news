@@ -1,119 +1,5 @@
 [
   {
-    "timestamp": "2026-10-21T14:14:03.494Z",
-    "candidateCount": 13,
-    "candidates": [
-      {
-        "slug": "2026-10-21-armenia-eaeu-report-russia-remittances-eu-pivot",
-        "title": "Eurasian Bloc Threatens Armenia",
-        "category": "economy",
-        "eventCoverage": 214,
-        "importance": 6
-      },
-      {
-        "slug": "2026-10-21-poland-tusk-lviv-upa-2027-volhynia-rift",
-        "title": "Poland Rebukes Lviv Commemoration",
-        "category": "politics",
-        "eventCoverage": 119,
-        "importance": 6
-      },
-      {
-        "slug": "2026-10-21-php-vulnerability-governments-take-websites-offline",
-        "title": "Finland Pulls Government Websites",
-        "category": "tech",
-        "eventCoverage": 112,
-        "importance": 6
-      },
-      {
-        "slug": "2026-10-21-multan-ccd-encounter-killing-punjab-extrajudicial",
-        "title": "Punjab Suspect Dies, Courts Bypassed",
-        "category": "politics",
-        "eventCoverage": 0,
-        "importance": 6
-      },
-      {
-        "slug": "2026-10-21-pakistan-jamaat-islami-petroleum-levy-protests-brent",
-        "title": "Jamaat Plans Levy Sit-Ins",
-        "category": "economy",
-        "eventCoverage": 0,
-        "importance": 6
-      },
-      {
-        "slug": "2026-10-21-uk-electricity-bills-gas-90-percent-carbon-brief",
-        "title": "Gas Drives UK Bills",
-        "category": "economy",
-        "eventCoverage": 0,
-        "importance": 6
-      },
-      {
-        "slug": "2026-10-21-hong-kong-cmu-yuan-clearing-foreign-banks",
-        "title": "Hong Kong Courts Yuan Banks",
-        "category": "economy",
-        "eventCoverage": 0,
-        "importance": 6
-      },
-      {
-        "slug": "2026-10-21-csto-weapons-tajikistan-afghanistan-border",
-        "title": "CSTO Arms Tajik Border",
-        "category": "politics",
-        "eventCoverage": 0,
-        "importance": 6
-      },
-      {
-        "slug": "2026-10-21-nigeria-ebola-house-unreleased-health-funds-abuja",
-        "title": "Nigeria Lawmakers Demand Ebola Funds",
-        "category": "politics",
-        "eventCoverage": 0,
-        "importance": 6
-      },
-      {
-        "slug": "2026-10-21-europe-utilities-powers-shoot-down-drones",
-        "title": "Utilities Gain Drone Powers",
-        "category": "politics",
-        "eventCoverage": 0,
-        "importance": 6
-      },
-      {
-        "slug": "2026-10-21-cashapp-identity-fraud-amanda-smith-prosecution",
-        "title": "Identity Theft Jails Pennsylvania Woman",
-        "category": "tech",
-        "eventCoverage": 0,
-        "importance": 6
-      },
-      {
-        "slug": "2026-10-21-west-virginia-american-chestnut-grove-ai-data-center",
-        "title": "Data Center Threatens Chestnut Grove",
-        "category": "tech",
-        "eventCoverage": 0,
-        "importance": 6
-      },
-      {
-        "slug": "2026-10-21-deepseek-v4-1-flash-open-source-inference-framework",
-        "title": "DeepSeek Cuts Inference Costs",
-        "category": "tech",
-        "eventCoverage": 0,
-        "importance": 6
-      }
-    ],
-    "selected": {
-      "slug": "2026-10-21-php-vulnerability-governments-take-websites-offline",
-      "title": "Finland Pulls Government Websites",
-      "category": "tech",
-      "body": "[Finland](country:FI) took every public-facing government service offline",
-      "eventCoverage": 112,
-      "importance": 6
-    },
-    "skipReason": null,
-    "sent": true,
-    "pushTitle": "Breaking News",
-    "pushBody": "Finland takes all public government services offline over PHP security flaw",
-    "response": {
-      "pushed": 1,
-      "skipped": 0,
-      "tokens": 5
-    }
-  },
-  {
     "timestamp": "2026-10-21T18:17:09.559Z",
     "candidateCount": 13,
     "candidates": [
@@ -10119,6 +10005,92 @@
     "sent": true,
     "pushTitle": "Breaking News",
     "pushBody": "France accuses Iran of hacking freezers in 700 supermarkets, prosecutors say",
+    "response": {
+      "pushed": 1,
+      "skipped": 0,
+      "tokens": 5
+    }
+  },
+  {
+    "timestamp": "2026-11-10T14:15:47.657Z",
+    "candidateCount": 9,
+    "candidates": [
+      {
+        "slug": "2026-11-10-cop31-antalya-brazil-fossil-fuel-transition-road-map",
+        "title": "Brazil Unveils Fossil Fuel Road Map",
+        "category": "politics",
+        "eventCoverage": 350,
+        "importance": 6
+      },
+      {
+        "slug": "2026-11-10-spain-tiktok-suspension-child-abuse-videos-maldita",
+        "title": "Spain Weighs TikTok Suspension",
+        "category": "tech",
+        "eventCoverage": 193,
+        "importance": 6
+      },
+      {
+        "slug": "2026-11-10-brazil-central-bank-four-shocks-inflation-44-hour-week",
+        "title": "Brazil Bank Cites Four Shocks",
+        "category": "economy",
+        "eventCoverage": 0,
+        "importance": 6
+      },
+      {
+        "slug": "2026-11-10-pakistan-rs5-trillion-devolved-subjects-auditor-general-senate",
+        "title": "Senator Flags Rs5tr Overspend",
+        "category": "economy",
+        "eventCoverage": 0,
+        "importance": 6
+      },
+      {
+        "slug": "2026-11-10-houthi-missiles-riyadh-saudi-asian-cup-postponed",
+        "title": "Houthi Strikes Postpone Asian Cup",
+        "category": "politics",
+        "eventCoverage": 0,
+        "importance": 6
+      },
+      {
+        "slug": "2026-11-10-nigeria-wike-n10m-councillors-tinubu-2027-wards",
+        "title": "Wike Defends Councillor Payout",
+        "category": "politics",
+        "eventCoverage": 0,
+        "importance": 6
+      },
+      {
+        "slug": "2026-11-10-germany-dobrindt-freedom-of-information-curbs-press",
+        "title": "Dobrindt Targets Information Law",
+        "category": "politics",
+        "eventCoverage": 0,
+        "importance": 6
+      },
+      {
+        "slug": "2026-11-10-ukraine-fiber-optic-drones-ai-data-centers-china-fiber",
+        "title": "Drone Fiber Prices Surge",
+        "category": "tech",
+        "eventCoverage": 0,
+        "importance": 6
+      },
+      {
+        "slug": "2026-11-10-russian-hackers-romania-kazakhstan-government-email-nato-eu",
+        "title": "Turla Hijacks Government Email",
+        "category": "tech",
+        "eventCoverage": 0,
+        "importance": 6
+      }
+    ],
+    "selected": {
+      "slug": "2026-11-10-spain-tiktok-suspension-child-abuse-videos-maldita",
+      "title": "Spain Weighs TikTok Suspension",
+      "category": "tech",
+      "body": "1,000 TikTok abuse videos drew 48 million views, investigators",
+      "eventCoverage": 193,
+      "importance": 6
+    },
+    "skipReason": null,
+    "sent": true,
+    "pushTitle": "Breaking News",
+    "pushBody": "Spain weighs TikTok suspension after probe finds 1,000 abuse videos with 48 million views",
     "response": {
       "pushed": 1,
       "skipped": 0,
