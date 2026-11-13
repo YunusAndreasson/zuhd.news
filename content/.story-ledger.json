@@ -2,13 +2,163 @@
   "version": 1,
   "stories": [
     {
+      "id": "trump-cuba-military-campaign-vance-iran-talks",
+      "label": "G7 repeats US falsehoods about Cuba: Cuban FM",
+      "firstSeen": "2026-11-13T05:04:38.554Z",
+      "lastCovered": "2026-11-13T05:04:38.554Z",
+      "coverageCount": 1,
+      "category": "politics",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-11-13-trump-cuba-military-campaign-vance-iran-talks"
+      ],
+      "eventUri": "spa-4415696",
+      "summary": "Trump says he would consider a military campaign to topple Cuba's government before leaving office, hours after ordering JD Vance to abandon ceasefire talks with Tehran. Lead with the threat against an island the US has already cut off from the world's oil (mint: Cuba now runs on American fuel); Cuba's foreign minister says the G7 is repeating US falsehoods. Datelined Havana: the policy lands there."
+    },
+    {
+      "id": "irgc-strikes-us-radar-bahrain-sirik-telecom-tower",
+      "label": "IRGC destroys U.S. early warning radar in Bahrain",
+      "firstSeen": "2026-11-13T05:04:38.554Z",
+      "lastCovered": "2026-11-13T05:04:38.554Z",
+      "coverageCount": 1,
+      "category": "politics",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-11-13-irgc-strikes-us-radar-bahrain-sirik-telecom-tower"
+      ],
+      "eventUri": "eng-12184777",
+      "summary": "Iranian state news agency Mehr reports the IRGC Aerospace Force struck a US early-warning radar in Bahrain, in retaliation for a US air attack on a telecommunications tower in Sirik, and threatens a 'limitless response' to further strikes. State-media only: attribute every claim to the IRGC via Mehr. The structural point: a tit-for-tat on infrastructure while the ceasefire is untested and Washington has just pulled Vance from the talks — Bahrain, a Gulf host of US forces, carries the cost. Datelined Manama."
+    },
+    {
+      "id": "venezuela-alfredo-diaz-death-custody-un-report",
+      "label": "How medical neglect killed Alfredo Díaz in a Venezuelan cell",
+      "firstSeen": "2026-11-13T05:04:38.554Z",
+      "lastCovered": "2026-11-13T05:04:38.554Z",
+      "coverageCount": 1,
+      "category": "politics",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-11-13-venezuela-alfredo-diaz-death-custody-un-report"
+      ],
+      "eventUri": null,
+      "summary": "A UN report documents how medical neglect in state custody killed opposition politician and former regional governor Alfredo Díaz, and finds Venezuela's repressive apparatus still active despite the government's shifts and the new US oil deal. Lead with the named victim and the named custodians; the accountability gap is that a détente with Washington has not reached the cells."
+    },
+    {
+      "id": "india-inflation-6-09-percent-rbi-rate-hike",
+      "label": "Indian Markets Open Lower Amid Inflation And Rate Hike Concerns Today",
+      "firstSeen": "2026-11-13T05:04:38.554Z",
+      "lastCovered": "2026-11-13T05:04:38.554Z",
+      "coverageCount": 1,
+      "category": "economy",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-11-13-india-inflation-6-09-percent-rbi-rate-hike"
+      ],
+      "eventUri": "eng-12181365",
+      "summary": "India's retail inflation surged to 6.09% in October, above the RBI's 6% tolerance ceiling, and markets now price a policy rate hike next month. Lead with the inflation figure, not the Sensex: the mechanism is imported oil through a closed Strait of Hormuz feeding into prices for 1.4 billion people. Name the series: Brent crude."
+    },
+    {
+      "id": "intesa-italy-bank-levies-ecb-sovereign-debt",
+      "label": "Intesa criticises Italy for bank levies in 2027 budget, says ECB may intervene",
+      "firstSeen": "2026-11-13T05:04:38.554Z",
+      "lastCovered": "2026-11-13T05:04:38.554Z",
+      "coverageCount": 1,
+      "category": "economy",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-11-13-intesa-italy-bank-levies-ecb-sovereign-debt"
+      ],
+      "eventUri": null,
+      "summary": "Italy's largest bank warns Rome's punitive bank levies in the 2027 budget could push the ECB to order Italian lenders to cut their sovereign-debt holdings. The mechanism to explain: Italian banks are the biggest buyers of Italian government bonds, so taxing them risks weakening the state's own funding — the doom loop in reverse."
+    },
+    {
+      "id": "bitcoin-below-70000-liquidations-yields-fed-hike",
+      "label": "BTC news: Prices slip below $70K, triggering $1.2 billion in liquidations",
+      "firstSeen": "2026-11-13T05:04:38.554Z",
+      "lastCovered": "2026-11-13T05:04:38.554Z",
+      "coverageCount": 1,
+      "category": "economy",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-11-13-bitcoin-below-70000-liquidations-yields-fed-hike"
+      ],
+      "eventUri": null,
+      "summary": "Bitcoin fell below $70,000 for the first time since August, forcing exchanges to liquidate more than $1.3 billion of leveraged futures in 24 hours. The cause is the story: rising bond yields on expected Fed hikes (New York Fed's Williams called inflation 'far too high' last night) punish non-yielding assets. Name the series: bitcoin and the US 10-year Treasury yield."
+    },
+    {
+      "id": "north-korea-facestealer-deepfake-crypto-binance-seizure",
+      "label": "US disrupts North Korea's $400 million crypto scam, FBI says",
+      "firstSeen": "2026-11-13T05:04:38.554Z",
+      "lastCovered": "2026-11-13T05:04:38.554Z",
+      "coverageCount": 1,
+      "category": "tech",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-11-13-north-korea-facestealer-deepfake-crypto-binance-seizure"
+      ],
+      "eventUri": "eng-12184283",
+      "summary": "The Justice Department seized cloud servers behind a North Korean operation that used fake video meetings and deepfaked faces ('FaceStealer') to steal over $400 million in crypto, and moved to seize $1.2 billion taken from Binance. Lead with the technique: deepfaked video calls as the attack vector against developers and exchange staff, funding a sanctioned state's weapons programme."
+    },
+    {
+      "id": "brazil-digital-markets-bill-pl-4675-big-tech-censorship",
+      "label": "Organizações lançam carta defendendo projeto que regula mercados digitais",
+      "firstSeen": "2026-11-13T05:04:38.554Z",
+      "lastCovered": "2026-11-13T05:04:38.554Z",
+      "coverageCount": 1,
+      "category": "tech",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-11-13-brazil-digital-markets-bill-pl-4675-big-tech-censorship"
+      ],
+      "eventUri": null,
+      "summary": "Brazilian civil-society groups launched a letter backing PL 4.675, the bill to regulate digital markets and big-tech platforms, while deputies aligned with the tech companies brand it 'censorship 2.0'. Lead with the fight over framing: competition law recast as speech control, the same playbook used against Brazil's platform rules before. Datelined Brasília."
+    },
+    {
+      "id": "nonprofits-sue-openai-google-meta-freeze-ai-training",
+      "label": "US nonprofits sue tech giants to halt AI development",
+      "firstSeen": "2026-11-13T05:04:38.554Z",
+      "lastCovered": "2026-11-13T05:04:38.554Z",
+      "coverageCount": 1,
+      "category": "tech",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-11-13-nonprofits-sue-openai-google-meta-freeze-ai-training"
+      ],
+      "eventUri": "eng-12183161",
+      "summary": "A coalition of consumer and digital-safety watchdogs including Public Citizen has sued OpenAI, Google, Meta and other leading labs in California, asking a court to freeze training and deployment of 'catastrophic' AI models. Lead with the remedy sought — a court-ordered training freeze has no precedent — and the legal theory that carries it."
+    },
+    {
+      "id": "spacex-74-billion-ai-campuses-tesla-merger-report",
+      "label": "Elon Musk's SpaceX plans over $74 billion in AI computing campuses across Texas and Arizona, including a $50 billion proposal that promises 6,500 jobs but faces opposition from 2,400 local petition signers",
+      "firstSeen": "2026-11-13T05:04:38.554Z",
+      "lastCovered": "2026-11-13T05:04:38.554Z",
+      "coverageCount": 1,
+      "category": "tech",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-11-13-spacex-74-billion-ai-campuses-tesla-merger-report"
+      ],
+      "eventUri": "eng-12183553",
+      "summary": "SpaceX plans more than $74 billion of AI computing campuses in Texas and Arizona, one $50 billion site promising 6,500 jobs against 2,400 local petition signers, while Bloomberg reports (via TASS) that SpaceX and Tesla may announce a merger in December, the largest deal in history. Lead with SpaceX turning from rockets into an AI-compute company; the local opposition is about water and power. Datelined Brownsville."
+    },
+    {
       "id": "trump-mexico-tariffs-double-migrant-caravan",
       "label": "Trump threatens to double tariffs on Mexico if migrant caravans not stopped",
       "firstSeen": "2026-11-12T22:07:48.866Z",
       "lastCovered": "2026-11-12T22:07:48.866Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-11-12-trump-mexico-tariffs-double-migrant-caravan"
@@ -23,7 +173,7 @@
       "lastCovered": "2026-11-12T22:07:48.866Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-11-12-dublin-european-political-community-hybrid-attacks-ukraine-envoy"
@@ -38,7 +188,7 @@
       "lastCovered": "2026-11-12T22:07:48.866Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-11-12-european-commission-starshield-restoration-spacex-denies"
@@ -53,7 +203,7 @@
       "lastCovered": "2026-11-12T22:07:48.866Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-11-12-south-africa-nicoc-sifolo-testimony-criminal-networks-justice-system"
@@ -68,7 +218,7 @@
       "lastCovered": "2026-11-12T22:07:48.866Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-11-12-south-africa-council-of-the-left-mk-eff-sacp-anc-conditions"
@@ -83,7 +233,7 @@
       "lastCovered": "2026-11-12T22:07:48.866Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-11-12-trinidad-privy-council-colonial-sodomy-law-unconstitutional"
@@ -98,7 +248,7 @@
       "lastCovered": "2026-11-12T22:07:48.866Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-11-12-brazil-inflation-4-63-percent-lula-fiscal-gap"
@@ -113,7 +263,7 @@
       "lastCovered": "2026-11-12T22:07:48.866Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-11-12-mercedes-benz-halts-germany-investment-plant-closures-ig-metall"
@@ -128,7 +278,7 @@
       "lastCovered": "2026-11-12T22:07:48.866Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-11-12-emefiele-trial-witness-forex-window-naira-properties-proxies"
@@ -143,7 +293,7 @@
       "lastCovered": "2026-11-12T22:07:48.866Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-11-12-nigeria-tinubu-n11-trillion-oil-backed-loans-makinde-disclosure"
@@ -158,7 +308,7 @@
       "lastCovered": "2026-11-12T22:07:48.866Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-11-12-microsoft-365-outlook-teams-outage-server-capacity"
@@ -173,7 +323,7 @@
       "lastCovered": "2026-11-12T22:07:48.866Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-11-12-nvidia-chip-tracking-feasible-chip-security-act-foster"
@@ -188,7 +338,7 @@
       "lastCovered": "2026-11-12T22:07:48.866Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-11-12-google-gemini-4-hydrogen-replaces-flash-fast-release"
@@ -203,7 +353,7 @@
       "lastCovered": "2026-11-12T22:07:48.866Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-11-12-mecklenburg-vorpommern-coalition-police-data-analysis-palantir"
@@ -218,7 +368,7 @@
       "lastCovered": "2026-11-12T18:04:54.299Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-11-12-nvidia-huang-resigns-kress-interim-ceo"
@@ -233,7 +383,7 @@
       "lastCovered": "2026-11-12T18:04:54.299Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-11-12-ecb-lagarde-succession-spain-netherlands-skip-summit"
@@ -248,7 +398,7 @@
       "lastCovered": "2026-11-12T18:04:54.299Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-11-12-opec-capacity-audit-2027-quotas-saudi-output"
@@ -263,7 +413,7 @@
       "lastCovered": "2026-11-12T18:04:54.299Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-11-12-nigeria-gas-flaring-cop31-investment-pitch"
@@ -278,7 +428,7 @@
       "lastCovered": "2026-11-12T18:04:54.299Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-11-12-south-africa-woolworths-food-slowdown-middle-class"
@@ -293,7 +443,7 @@
       "lastCovered": "2026-11-12T18:04:54.299Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-11-12-softbank-loss-ai-natural-gas-power-plant"
@@ -308,7 +458,7 @@
       "lastCovered": "2026-11-12T18:04:54.299Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-11-12-kremlin-putin-xi-trump-trilateral-apec-china"
@@ -323,7 +473,7 @@
       "lastCovered": "2026-11-12T18:04:54.299Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-11-12-germany-bnd-intelligence-reform-vote-civil-society"
@@ -338,7 +488,7 @@
       "lastCovered": "2026-11-12T18:04:54.299Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-11-12-halima-salman-conviction-girls-forced-into-isis"
@@ -353,7 +503,7 @@
       "lastCovered": "2026-11-12T18:04:54.299Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-11-12-meta-muse-sexual-roleplay-real-people"
@@ -368,7 +518,7 @@
       "lastCovered": "2026-11-12T18:04:54.299Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-11-12-stealc-infostealer-takedown-germany-netherlands"
@@ -383,7 +533,7 @@
       "lastCovered": "2026-11-12T18:04:54.299Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-11-12-bytedance-doubao-work-kimi-glm-deepseek-models"
@@ -398,7 +548,7 @@
       "lastCovered": "2026-11-12T18:04:54.299Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-11-12-pink-noise-sleep-alzheimers-memory"
@@ -413,7 +563,7 @@
       "lastCovered": "2026-11-12T18:04:54.299Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-11-12-sawfish-skin-microbes-dry-season-survival"
@@ -422,13 +572,29 @@
       "summary": "Flinders University researchers found that skin microbes on the critically endangered largetooth sawfish may help young fish endure the oxygen-poor, shrinking pools of northern Australia's dry season. Lead with the finding; the mechanism is the microbiome as a stress buffer, and what it means for conserving a species wiped out across most of its former range. Dateline: Adelaide."
     },
     {
+      "id": "yen-160-fed-hike-intervention-risk",
+      "label": "Dollar near one-month high as yen edges toward 160",
+      "firstSeen": "2026-11-12T10:07:04.441Z",
+      "lastCovered": "2026-11-13T05:04:38.554Z",
+      "coverageCount": 2,
+      "category": "economy",
+      "importance": 3,
+      "arc": "developing",
+      "articles": [
+        "2026-11-12-yen-160-fed-hike-intervention-risk",
+        "2026-11-13-yen-breaches-160-us-confirms-500-million-intervention"
+      ],
+      "eventUri": "eng-12177634",
+      "summary": "The yen slid to about 159.90 per dollar after hot US inflation data and hawkish Fed officials made a December Fed rate hike near-certain — 160 is the line where Tokyo intervened before. Lead with the mechanism: a Fed hiking to fight war-driven inflation drains Asia's currencies, and Japanese households pay more for imported oil and food (gold also fell below $4,000 on the same dollar move). Name the series: the yen, the Fed rate."
+    },
+    {
       "id": "hormuz-two-supertankers-explode-unauthorised-route",
       "label": "Two supertankers with oil exploded in Hormuz -- IRGC Navy",
       "firstSeen": "2026-11-12T14:05:28.382Z",
       "lastCovered": "2026-11-12T14:05:28.382Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-11-12-hormuz-two-supertankers-explode-unauthorised-route"
@@ -443,7 +609,7 @@
       "lastCovered": "2026-11-12T14:05:28.382Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-11-12-ukraine-starshield-restrictions-us-envoys-moscow"
@@ -458,7 +624,7 @@
       "lastCovered": "2026-11-12T14:05:28.382Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-11-12-aimim-azad-social-change-front-uttar-pradesh"
@@ -473,7 +639,7 @@
       "lastCovered": "2026-11-12T14:05:28.382Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-11-12-iran-assembly-of-experts-npt-withdrawal"
@@ -488,7 +654,7 @@
       "lastCovered": "2026-11-12T14:05:28.382Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-11-12-pakistan-kp-chief-minister-afridi-detained-fcc-petition"
@@ -503,7 +669,7 @@
       "lastCovered": "2026-11-12T14:05:28.382Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-11-12-ecuador-students-protest-noboa-temporary-jobs"
@@ -518,7 +684,7 @@
       "lastCovered": "2026-11-12T14:05:28.382Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-11-12-sudan-bankak-app-hack-west-kordofan-traders"
@@ -533,7 +699,7 @@
       "lastCovered": "2026-11-12T14:05:28.382Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-11-12-citi-bets-on-yuan-internationalisation-china-inc"
@@ -548,7 +714,7 @@
       "lastCovered": "2026-11-12T14:05:28.382Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-11-12-chinese-workers-pay-own-ai-subscriptions"
@@ -563,7 +729,7 @@
       "lastCovered": "2026-11-12T14:05:28.382Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-11-12-romania-stops-russian-cyber-espionage-government-email"
@@ -578,7 +744,7 @@
       "lastCovered": "2026-11-12T14:05:28.382Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-11-12-germany-psychiatric-patients-police-risk-scoring-schleswig-holstein"
@@ -593,7 +759,7 @@
       "lastCovered": "2026-11-12T14:05:28.382Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-11-12-uk-military-astronomers-track-spy-satellites"
@@ -608,7 +774,7 @@
       "lastCovered": "2026-11-12T10:07:04.441Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-11-12-trump-netanyahu-call-iran-strikes-shouting-match"
@@ -623,7 +789,7 @@
       "lastCovered": "2026-11-12T10:07:04.441Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-11-12-xi-taiwan-reunification-history-no-force-mention"
@@ -638,7 +804,7 @@
       "lastCovered": "2026-11-12T10:07:04.441Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-11-12-brazil-post-election-violence-18-killed-27-days"
@@ -653,7 +819,7 @@
       "lastCovered": "2026-11-12T10:07:04.441Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-11-12-gombe-pantami-convoy-attack-nigeria-2027-election"
@@ -662,28 +828,13 @@
       "summary": "A convoy carrying former minister Isa Pantami was attacked on Jekadafari Road in Gombe in what Amnesty calls a deliberate attempt to keep a gubernatorial challenger out of the state capital — the same day an opposition leader (Dickson, NDC) alleged a plot to deploy fake security officers to intimidate voters. Lead with the attack and who was hurt; the mechanism is incumbents using violence to close political space a year before Nigeria's 2027 elections. Name who controls Gombe and whether police have acted."
     },
     {
-      "id": "yen-160-fed-hike-intervention-risk",
-      "label": "Dollar near one-month high as yen edges toward 160",
-      "firstSeen": "2026-11-12T10:07:04.441Z",
-      "lastCovered": "2026-11-12T10:07:04.441Z",
-      "coverageCount": 1,
-      "category": "economy",
-      "importance": 3,
-      "arc": "breaking",
-      "articles": [
-        "2026-11-12-yen-160-fed-hike-intervention-risk"
-      ],
-      "eventUri": "eng-12177634",
-      "summary": "The yen slid to about 159.90 per dollar after hot US inflation data and hawkish Fed officials made a December Fed rate hike near-certain — 160 is the line where Tokyo intervened before. Lead with the mechanism: a Fed hiking to fight war-driven inflation drains Asia's currencies, and Japanese households pay more for imported oil and food (gold also fell below $4,000 on the same dollar move). Name the series: the yen, the Fed rate."
-    },
-    {
       "id": "msci-removes-strategy-bitcoin-treasury-model",
       "label": "MSCI dumps Strategy, putting its bitcoin-buying model on the line",
       "firstSeen": "2026-11-12T10:07:04.441Z",
       "lastCovered": "2026-11-12T10:07:04.441Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-11-12-msci-removes-strategy-bitcoin-treasury-model"
@@ -698,7 +849,7 @@
       "lastCovered": "2026-11-12T10:07:04.441Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-11-12-baidu-kunlun-chips-tianchi-supernode-ernie-5-5"
@@ -713,7 +864,7 @@
       "lastCovered": "2026-11-12T10:07:04.441Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-11-12-china-humanoid-robot-startups-secondary-share-discount"
@@ -728,7 +879,7 @@
       "lastCovered": "2026-11-12T10:07:04.441Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-11-12-bytedance-muse-style-ai-assistant-super-app-race"
@@ -743,7 +894,7 @@
       "lastCovered": "2026-11-12T10:07:04.441Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-11-12-alphagenome-2-single-cell-dna-variants-deepmind"
@@ -758,7 +909,7 @@
       "lastCovered": "2026-11-12T05:04:27.534Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-11-12-scott-colom-mississippi-senate-democrat-first-since-1982"
@@ -773,7 +924,7 @@
       "lastCovered": "2026-11-12T05:04:27.534Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-11-12-kishtwar-special-police-officers-killed-kashmir"
@@ -788,7 +939,7 @@
       "lastCovered": "2026-11-12T05:04:27.534Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-11-12-najib-razak-house-arrest-malaysia-1mdb"
@@ -803,7 +954,7 @@
       "lastCovered": "2026-11-12T05:04:27.534Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-11-12-ricardo-salles-sao-paulo-tarcisio-timber-case-cop31"
@@ -818,7 +969,7 @@
       "lastCovered": "2026-11-12T05:04:27.534Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-11-12-india-black-mass-battery-export-ban-critical-minerals"
@@ -833,7 +984,7 @@
       "lastCovered": "2026-11-12T05:04:27.534Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-11-12-el-salvador-ulloa-economy-claims-foreign-investment-falls"
@@ -848,7 +999,7 @@
       "lastCovered": "2026-11-12T05:04:27.534Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-11-12-winter-sea-ice-summer-drought-romania-kazakhstan"
@@ -863,7 +1014,7 @@
       "lastCovered": "2026-11-12T05:04:27.534Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-11-12-nvidia-jensen-huang-removal-report-perps-fall"
@@ -878,7 +1029,7 @@
       "lastCovered": "2026-11-12T05:04:27.534Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-11-12-united-airlines-bans-ai-agents-booking"
@@ -893,208 +1044,13 @@
       "lastCovered": "2026-11-12T05:04:27.534Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-11-12-yingxin-development-property-to-chips-share-unlock"
       ],
       "eventUri": null,
       "summary": "Yingxin Development, a loss-making old-line Chinese property developer, is turning to chips as 1.2 billion shares held by the Huaruan group come up for unlock. Lead with the pivot and the share overhang; the mechanism is China's property bust sending capital and listed shells toward semiconductors, the sector Beijing favours, and the question is whether the pivot is real capability or a story for the share price. Dateline: the company's headquarters city."
-    },
-    {
-      "id": "eisenkot-warns-netanyahu-caretaker-military-moves",
-      "label": "Israel's Eisenkot warns Netanyahu against 'dangerous moves' before new government takes office",
-      "firstSeen": "2026-11-11T22:06:52.287Z",
-      "lastCovered": "2026-11-11T22:06:52.287Z",
-      "coverageCount": 1,
-      "category": "politics",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-11-11-eisenkot-warns-netanyahu-caretaker-military-moves"
-      ],
-      "eventUri": "eng-12176432",
-      "summary": "Gadi Eisenkot, tasked with forming Israel's next government, wrote to caretaker PM Netanyahu warning him not to launch military or security operations without an immediate threat, and told The National Israel should not return to war for now. Lead with the letter: an outgoing prime minister whose wars have killed tens of thousands in Gaza and Lebanon still commands the army during the handover. The mechanism is the caretaker gap; what Eisenkot's own record and coalition mean for Palestinians belongs in the body."
-    },
-    {
-      "id": "csto-moscow-summit-armenia-russia-grip",
-      "label": "CSTO leaders approve nearly 20 documents at Moscow summit",
-      "firstSeen": "2026-11-11T22:06:52.287Z",
-      "lastCovered": "2026-11-11T22:06:52.287Z",
-      "coverageCount": 1,
-      "category": "politics",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-11-11-csto-moscow-summit-armenia-russia-grip"
-      ],
-      "eventUri": "eng-12171983",
-      "summary": "Putin chaired a CSTO summit in the Kremlin that adopted a declaration and 18 other documents, while Al Jazeera frames the meeting as a test of Russia's waning grip on former Soviet allies, with Armenia's absence and distance the clearest sign. Lead with who came and who did not; the mechanism is a security alliance that failed Armenia in 2022-23 and whose Central Asian members (Kazakhstan, Kyrgyzstan, Tajikistan) now hedge toward China and Turkey. Attribute summit outcomes to TASS; Al Jazeera's independent reporting lifts the state-media label."
-    },
-    {
-      "id": "darchiev-russia-ambassador-us-dies",
-      "label": "Alexander Darchiev, Russia's Ambassador to the U.S., Dies at 66",
-      "firstSeen": "2026-11-11T22:06:52.287Z",
-      "lastCovered": "2026-11-11T22:06:52.287Z",
-      "coverageCount": 1,
-      "category": "politics",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-11-11-darchiev-russia-ambassador-us-dies"
-      ],
-      "eventUri": "eng-12180058",
-      "summary": "Russia's foreign ministry announced the death of Alexander Darchiev, its ambassador in Washington since 2025 and the envoy of the Kremlin-White House rapprochement; no cause was given. Lead with what his post carried: he ran the embassy-normalisation track that preceded the Abu Dhabi talks, and his death leaves that channel without its man in the middle of negotiations. Dateline: Moscow, where the death was announced."
-    },
-    {
-      "id": "honduras-tomas-zambrano-congress-far-right",
-      "label": "Tomás Zambrano, el discípulo de la ultraderecha que tienta a Honduras",
-      "firstSeen": "2026-11-11T22:06:52.287Z",
-      "lastCovered": "2026-11-11T22:06:52.287Z",
-      "coverageCount": 1,
-      "category": "politics",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-11-11-honduras-tomas-zambrano-congress-far-right"
-      ],
-      "eventUri": null,
-      "summary": "Contracorriente reports how Tomás Zambrano, president of Honduras's National Congress since January, opened his term by raising an anti-abortion flag beside the national coat of arms and has set the legislative agenda by the values of the ultraconservative groups he allied with. Lead with the flag and what bills have followed; the mechanism is the far-right network across Central America (Bukele's model, the Próspera lobby) reaching the legislature of the hemisphere's second-poorest country. Dateline: Tegucigalpa."
-    },
-    {
-      "id": "russian-espo-crude-record-premium-brent-china-india",
-      "label": "Russian crude oil prices jump on China, India demand",
-      "firstSeen": "2026-11-11T22:06:52.287Z",
-      "lastCovered": "2026-11-11T22:06:52.287Z",
-      "coverageCount": 1,
-      "category": "economy",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-11-11-russian-espo-crude-record-premium-brent-china-india"
-      ],
-      "eventUri": "eng-12173402",
-      "summary": "Sanctioned Russian ESPO crude, shipped mainly to Asia, topped $141 a barrel and its premium over Brent hit a record, because China and India, cut off from Gulf barrels by the Hormuz closure, are bidding for Russian oil. Lead with the inversion: sanctions meant to discount Russian oil now coexist with Moscow selling above the benchmark. The mechanism is the war in the Gulf turning Russia into Asia's supplier of last resort. Series: Brent crude and ship traffic through the Strait of Hormuz."
-    },
-    {
-      "id": "codelco-adani-copper-kaburkaala-antofagasta",
-      "label": "Codelco, Adani Group sign pact for copper exploration project",
-      "firstSeen": "2026-11-11T22:06:52.287Z",
-      "lastCovered": "2026-11-11T22:06:52.287Z",
-      "coverageCount": 1,
-      "category": "economy",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-11-11-codelco-adani-copper-kaburkaala-antofagasta"
-      ],
-      "eventUri": null,
-      "summary": "Chile's state copper miner Codelco signed with India's Adani Group to develop the Kaburkaala exploration project in Antofagasta, with Adani financing it in exchange for potential long-term supply to its Mundra smelter. Lead with the trade: Chile's state champion takes capital from an Indian conglomerate under US fraud indictment to secure the metal of electrification. The mechanism is India's push to lock in copper supply outside China's reach. Series: copper. Dateline: Santiago."
-    },
-    {
-      "id": "pakistan-fuel-price-cut-diesel-petrol",
-      "label": "Fuel prices slashed once again; high-speed diesel cut by Rs7 per litre, petrol by Rs3",
-      "firstSeen": "2026-11-11T22:06:52.287Z",
-      "lastCovered": "2026-11-11T22:06:52.287Z",
-      "coverageCount": 1,
-      "category": "economy",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-11-11-pakistan-fuel-price-cut-diesel-petrol"
-      ],
-      "eventUri": "ita-964630",
-      "summary": "Pakistan cut diesel by Rs7 and petrol by Rs3 a litre from 12 November, to Rs364 and Rs335, its latest reduction. Lead with the level: even after the cut, fuel costs a Pakistani worker far more than before the Gulf war, with diesel (which moves food and freight) still above petrol. The mechanism is the fortnightly pricing formula, the petroleum levy the IMF programme requires, and the rupee. Series: Brent crude. Dateline: Islamabad."
-    },
-    {
-      "id": "kenya-last-ebola-patient-42-day-countdown",
-      "label": "Kenya discharges last Ebola patient, awaits disease-free status",
-      "firstSeen": "2026-11-11T22:06:52.287Z",
-      "lastCovered": "2026-11-11T22:06:52.287Z",
-      "coverageCount": 1,
-      "category": "science",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-11-11-kenya-last-ebola-patient-42-day-countdown"
-      ],
-      "eventUri": "eng-12173871",
-      "summary": "Kenya has discharged its last Ebola patient and started the 42-day countdown, to 23 December, before it can be declared free of the disease, Health Minister Aden Duale said. Lead with the countdown and the case and death count; the mechanism is how the outbreak crossed from eastern DR Congo and what contact tracing and vaccination stopped it. Dateline: Nairobi."
-    },
-    {
-      "id": "all-of-us-pharmacogenetic-variants-diverse-ancestry",
-      "label": "All of Us study finds thousands of new genetic variants affecting drug responses",
-      "firstSeen": "2026-11-11T22:06:52.287Z",
-      "lastCovered": "2026-11-11T22:06:52.287Z",
-      "coverageCount": 1,
-      "category": "science",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-11-11-all-of-us-pharmacogenetic-variants-diverse-ancestry"
-      ],
-      "eventUri": "eng-12180509",
-      "summary": "A study of nearly 100,000 participants in the NIH's All of Us cohort found thousands of previously unknown variants in the genes that govern how people respond to prescription drugs, because it included ancestries that genetic databases have long left out. Lead with the number and who was missing before; the mechanism is that dosing guidance built on mostly European genomes misses variants common in African, Asian and Latin American ancestry."
-    },
-    {
-      "id": "invisible-object-supermassive-neutron-star",
-      "label": "Scientists Discovered An ‘Invisible’ Object In Space. It’s Challenging Our Understanding of the Cosmos",
-      "firstSeen": "2026-11-11T22:06:52.287Z",
-      "lastCovered": "2026-11-11T22:06:52.287Z",
-      "coverageCount": 1,
-      "category": "science",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-11-11-invisible-object-supermassive-neutron-star"
-      ],
-      "eventUri": null,
-      "summary": "Astronomers have found an object that emits no detectable light, inferred only from its gravity, which is most likely an ultra-rare supermassive neutron star. Lead with how it was found and its mass; the mechanism is the upper limit on how heavy a neutron star can be before it collapses into a black hole, which this object tests. Name the journal and the team."
-    },
-    {
-      "id": "marshall-islands-bikar-bokak-pristine-atolls",
-      "label": "Scientists find some of the 'very last wild and healthy ecosystems' in the world's oceans untouched by humans",
-      "firstSeen": "2026-11-11T22:06:52.287Z",
-      "lastCovered": "2026-11-11T22:06:52.287Z",
-      "coverageCount": 1,
-      "category": "science",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-11-11-marshall-islands-bikar-bokak-pristine-atolls"
-      ],
-      "eventUri": null,
-      "summary": "A study in Frontiers in Marine Science found two remote Marshall Islands atolls, Bikar and Bokak, to be among the most intact reef ecosystems left anywhere. Lead with what an untouched reef looks like (predator biomass, coral cover) against the degraded norm; the mechanism is distance from people and fishing, and whether the Marshall Islands, whose own people bear the legacy of US nuclear tests, can protect them. Dateline: Majuro."
-    },
-    {
-      "id": "t-mobile-low-income-internet-cap-new-york",
-      "label": "T-Mobile illegally imposed 50 GB cap on low-income home Internet plan, NY says",
-      "firstSeen": "2026-11-11T22:06:52.287Z",
-      "lastCovered": "2026-11-11T22:06:52.287Z",
-      "coverageCount": 1,
-      "category": "tech",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-11-11-t-mobile-low-income-internet-cap-new-york"
-      ],
-      "eventUri": "eng-12177065",
-      "summary": "New York says T-Mobile broke the state law requiring affordable 25 Mbps home internet for low-income households by capping its plan at 50 GB a month and then throttling to 600 kbps, under one-fortieth of the legal speed. Lead with the throttle against the requirement; the mechanism is a carrier meeting the letter of an affordability mandate while making the service unusable for the poorest customers, and what the settlement makes it pay. Dateline: New York."
-    },
-    {
-      "id": "minimax-h3-image-open-weights-4k",
-      "label": "10秒直出4K图，能画CAD、拆机械，MiniMax这个开源图像模型有点东西",
-      "firstSeen": "2026-11-11T22:06:52.287Z",
-      "lastCovered": "2026-11-11T22:06:52.287Z",
-      "coverageCount": 1,
-      "category": "tech",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-11-11-minimax-h3-image-open-weights-4k"
-      ],
-      "eventUri": null,
-      "summary": "Shanghai's MiniMax released H3-Image with open weights: it renders a 4096x4096 image in about 10 seconds, roughly a fifth of the time of leading closed models, and in Zhidx's tests handled dense Chinese text and 16 reference images at once. Lead with the speed and the open weights; the mechanism is the Chinese labs' open-weight strategy, with commercial licences required above a usage threshold and Nvidia among the licensees of its video model. Dateline: Shanghai."
     }
   ]
 }
