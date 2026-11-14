@@ -25,6 +25,29 @@ const MAX_TEXT = 3500 // enough for Haiku to judge the angle; more is diminishin
 // to read the rest" which adds nothing.
 const MIN_USEFUL = 500
 
+/** Apply a replacement until the text stops changing, so markup rebuilt by
+ *  the removal itself (`<scr<script></script>ipt>`) is removed too. */
+function untilStable(text, replace) {
+  let prev
+  do {
+    prev = text
+    text = replace(text)
+  } while (text !== prev)
+  return text
+}
+
+const NAMED_ENTITIES = { nbsp: ' ', amp: '&', lt: '<', gt: '>', quot: '"', apos: "'", mdash: '—', ndash: '–' }
+
+/** Decode the common entities in one pass, so `&amp;lt;` becomes `&lt;` and
+ *  is not decoded a second time into `<`. */
+export function decodeEntities(text) {
+  return text.replace(/&(?:#x([0-9a-f]+)|#(\d+)|([a-z]+));/gi, (m, hex, dec, name) => {
+    if (name) return NAMED_ENTITIES[name.toLowerCase()] ?? m
+    const code = hex ? parseInt(hex, 16) : Number(dec)
+    return code <= 0x10ffff ? String.fromCodePoint(code) : m
+  })
+}
+
 /** Strip HTML to readable plain text. Not robust to every site's markup —
  *  just good enough to give Haiku the gist of an article's framing. */
 export function stripHtml(html) {
@@ -32,11 +55,14 @@ export function stripHtml(html) {
   let text = html
 
   // Drop everything that isn't prose: scripts, styles, nav chrome, ads.
-  text = text.replace(/<script\b[^>]*>[\s\S]*?<\/script>/gi, ' ')
-  text = text.replace(/<style\b[^>]*>[\s\S]*?<\/style>/gi, ' ')
-  text = text.replace(/<noscript\b[^>]*>[\s\S]*?<\/noscript>/gi, ' ')
-  text = text.replace(/<(nav|header|footer|aside|form)\b[^>]*>[\s\S]*?<\/\1>/gi, ' ')
-  text = text.replace(/<!--[\s\S]*?-->/g, ' ')
+  text = untilStable(text, (t) =>
+    t
+      .replace(/<script\b[^>]*>[\s\S]*?<\/script[^>]*>/gi, ' ')
+      .replace(/<style\b[^>]*>[\s\S]*?<\/style[^>]*>/gi, ' ')
+      .replace(/<noscript\b[^>]*>[\s\S]*?<\/noscript[^>]*>/gi, ' ')
+      .replace(/<(nav|header|footer|aside|form)\b[^>]*>[\s\S]*?<\/\1[^>]*>/gi, ' ')
+      .replace(/<!--[\s\S]*?--!?>/g, ' '),
+  )
 
   // Try to narrow to the article body — if the site tagged one. Prefer the
   // largest <article> block; fall back to <main>; fall back to the whole doc.
@@ -49,19 +75,8 @@ export function stripHtml(html) {
     if (mainMatch) text = mainMatch[1]
   }
 
-  // Strip remaining tags, decode a few common entities, collapse whitespace.
-  text = text
-    .replace(/<[^>]+>/g, ' ')
-    .replace(/&nbsp;/g, ' ')
-    .replace(/&amp;/g, '&')
-    .replace(/&lt;/g, '<')
-    .replace(/&gt;/g, '>')
-    .replace(/&quot;/g, '"')
-    .replace(/&#39;|&apos;/g, "'")
-    .replace(/&mdash;/g, '—')
-    .replace(/&ndash;/g, '–')
-    .replace(/&#x([0-9a-f]+);/gi, (_, h) => String.fromCodePoint(parseInt(h, 16)))
-    .replace(/&#(\d+);/g, (_, d) => String.fromCodePoint(Number(d)))
+  // Strip remaining tags, decode entities once, collapse whitespace.
+  text = decodeEntities(untilStable(text, (t) => t.replace(/<[^>]+>/g, ' ')))
     .replace(/\s+/g, ' ')
     .trim()
 
@@ -70,7 +85,42 @@ export function stripHtml(html) {
 
 // The tags that end a run of prose: a paragraph, a heading, a list item, a
 // line break. Every other tag (a link, an emphasis) sits inside a sentence.
-const BLOCK_TAG = /<\/?(?:p|div|br|hr|li|ul|ol|dl|dt|dd|h[1-6]|blockquote|pre|table|thead|tbody|tfoot|tr|td|th|caption|figure|figcaption|section|article|aside|header|footer|nav|main|address|details|summary)\b[^>]*>/gi
+const BLOCK_NAME = /^\/?(?:p|div|br|hr|li|ul|ol|dl|dt|dd|h[1-6]|blockquote|pre|table|thead|tbody|tfoot|tr|td|th|caption|figure|figcaption|section|article|aside|header|footer|nav|main|address|details|summary)$/i
+
+/** Every `<...>` removed, a block tag leaving a space. Scans for `<` and the
+ *  next `>` instead of matching, so text left over can never be glued into a
+ *  new tag, and an unclosed `<` stays as it was. */
+function dropTags(html) {
+  let out = ''
+  let i = 0
+  for (;;) {
+    const open = html.indexOf('<', i)
+    const close = open === -1 ? -1 : html.indexOf('>', open)
+    if (close === -1) return out + html.slice(i)
+    out += html.slice(i, open)
+    const name = /^\/?\w*/.exec(html.slice(open + 1, close))[0]
+    if (BLOCK_NAME.test(name)) out += ' '
+    i = close + 1
+  }
+}
+
+/** Every `<name ...>...</name ...>` block removed, found by search rather
+ *  than by pattern. A block that never closes stays. */
+function dropBlocks(html, name) {
+  const lower = html.toLowerCase()
+  let out = ''
+  let i = 0
+  for (;;) {
+    let open = lower.indexOf(`<${name}`, i)
+    while (open !== -1 && /\w/.test(lower[open + name.length + 1] ?? '')) open = lower.indexOf(`<${name}`, open + 1)
+    const openEnd = open === -1 ? -1 : lower.indexOf('>', open)
+    const closeAt = openEnd === -1 ? -1 : lower.indexOf(`</${name}`, openEnd + 1)
+    const closeEnd = closeAt === -1 ? -1 : lower.indexOf('>', closeAt)
+    if (closeEnd === -1) return out + html.slice(i)
+    out += html.slice(i, open)
+    i = closeEnd + 1
+  }
+}
 
 /**
  * A fragment of HTML as text: an RSS item's description or `content:encoded`.
@@ -91,9 +141,7 @@ const BLOCK_TAG = /<\/?(?:p|div|br|hr|li|ul|ol|dl|dt|dd|h[1-6]|blockquote|pre|ta
  * @param {string} html
  */
 export function stripTags(html) {
-  return html
-    .replace(BLOCK_TAG, ' ')
-    .replace(/<[^>]*>/g, '')
+  return untilStable(html, dropTags)
     .replace(/[ \t]+/g, ' ')
     .replace(/ ?\n ?/g, '\n')
     .trim()
@@ -110,12 +158,9 @@ export function stripTags(html) {
  * @param {string} html
  */
 export function htmlForReadability(html) {
-  return html
-    .slice(0, 1_500_000)
-    .replace(/<style\b[^>]*>[\s\S]*?<\/style>/gi, '')
-    .replace(/<script\b[^>]*>[\s\S]*?<\/script>/gi, '')
-    .replace(/<link\b[^>]*rel=["']?stylesheet[^>]*>/gi, '')
-    .replace(/\sstyle="[^"]*"/gi, '')
+  let text = untilStable(html.slice(0, 1_500_000), (t) => dropBlocks(dropBlocks(t, 'style'), 'script'))
+  text = text.replace(/<link\b[^>]*rel=["']?stylesheet[^>]*>/gi, '')
+  return text.replace(/\sstyle="[^"]*"/gi, '')
 }
 
 /**

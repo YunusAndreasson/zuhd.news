@@ -11,7 +11,7 @@
 import { createServer } from 'node:http'
 import { readFile } from 'node:fs/promises'
 import { existsSync } from 'node:fs'
-import { join, extname } from 'node:path'
+import { join, extname, resolve, sep } from 'node:path'
 import { ROOT } from './paths.js'
 
 /**
@@ -58,7 +58,12 @@ export async function serveDist(opts = {}) {
     try {
       let path = decodeURIComponent((req.url ?? '/').split('?')[0])
       if (path.endsWith('/')) path += 'index.html'
-      let file = join(dist, path)
+      let file = join(resolve(dist), path)
+      if (!file.startsWith(resolve(dist) + sep)) {
+        res.writeHead(403)
+        res.end()
+        return
+      }
       if (!existsSync(file) && existsSync(`${file}.html`)) file += '.html'
       const raw = await readFile(file)
       const body =
