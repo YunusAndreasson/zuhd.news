@@ -1,0 +1,16 @@
+// Hermes v1 guard, part 2: `using` and `await using` declarations. Hermes v1
+// (RN 0.88) has no explicit resource management, so these typecheck, pass jest
+// on Node and then throw on device. Biome has no rule for a declaration's kind,
+// so this plugin matches it. The methods are in hermes-v1-properties.grit; the
+// two Stack globals are `noRestrictedGlobals` in biome.json's app-source override.
+// Anchored on the text so `const using = 1` stays legal.
+language js
+
+or { JsVariableDeclaration(), JsForVariableDeclaration() } as $decl where {
+  $decl <: or { r"^using\s[\s\S]*", r"^await\s+using\s[\s\S]*" },
+  register_diagnostic(
+    span = $decl,
+    message = "`using` / `await using`: missing from the Hermes v1 VM RN 0.88 ships (typechecks and passes jest, crashes on device). Use try/finally.",
+    severity = "error"
+  )
+}

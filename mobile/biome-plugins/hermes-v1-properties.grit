@@ -1,0 +1,20 @@
+// Hermes v1 guard, part 1: methods the Hermes v1 VM (RN 0.88) does not have. They
+// typecheck and pass jest on Node, then throw on device; `toSorted` shipped once in
+// open-arabic. A plugin rather than nursery `noJsRestrictedProperties`, because zuhd
+// takes Biome minors (^2.6) and a nursery rule may be renamed in any of them.
+language js
+
+or {
+  or { `$obj.toSorted`, `$obj?.toSorted` } as $m where {
+    register_diagnostic(span = $m, message = "`toSorted`: missing from the Hermes v1 VM RN 0.88 ships (typechecks and passes jest, crashes on device). Use [...array].sort().", severity = "error")
+  },
+  `Array.fromAsync` as $m where {
+    register_diagnostic(span = $m, message = "`Array.fromAsync`: missing from the Hermes v1 VM RN 0.88 ships (typechecks and passes jest, crashes on device). Use Promise.all() or a for await...of loop.", severity = "error")
+  },
+  `Map.groupBy` as $m where {
+    register_diagnostic(span = $m, message = "`Map.groupBy`: missing from the Hermes v1 VM RN 0.88 ships (typechecks and passes jest, crashes on device). Build the Map in a loop (Object.groupBy is fine).", severity = "error")
+  },
+  `Promise.try` as $m where {
+    register_diagnostic(span = $m, message = "`Promise.try`: missing from the Hermes v1 VM RN 0.88 ships (typechecks and passes jest, crashes on device). Use new Promise(resolve => resolve(fn())).", severity = "error")
+  }
+}

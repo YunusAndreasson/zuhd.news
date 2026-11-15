@@ -48,6 +48,34 @@
   },
   "overrides": [
     {
+      "includes": [
+        "app/**",
+        "components/**",
+        "constants/**",
+        "hooks/**",
+        "lib/**",
+        "!**/__tests__/**",
+        "!**/*.test.ts",
+        "!**/*.test.tsx"
+      ],
+      "plugins": ["./biome-plugins/hermes-v1-using.grit", "./biome-plugins/hermes-v1-properties.grit"],
+      "linter": {
+        "rules": {
+          "style": {
+            "noRestrictedGlobals": {
+              "level": "error",
+              "options": {
+                "deniedGlobals": {
+                  "DisposableStack": "Missing from the Hermes v1 VM RN 0.88 ships (typechecks and passes jest, crashes on device). Use try/finally.",
+                  "AsyncDisposableStack": "Missing from the Hermes v1 VM RN 0.88 ships (typechecks and passes jest, crashes on device). Use try/finally."
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    {
       "includes": ["**/__tests__/**", "**/*.test.ts", "**/*.test.tsx"],
       "assist": {
         "actions": {

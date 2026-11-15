@@ -113,6 +113,28 @@
           "style": { "noNonNullAssertion": "off" }
         }
       }
+    },
+    // shared/ is bundled into the app, so it gets the app's Hermes v1 guard
+    // (mobile/biome.json): APIs the Hermes VM in RN 0.88 lacks, which typecheck
+    // and pass every test on Node, then throw on device.
+    {
+      "includes": ["shared/**"],
+      "plugins": ["./mobile/biome-plugins/hermes-v1-using.grit", "./mobile/biome-plugins/hermes-v1-properties.grit"],
+      "linter": {
+        "rules": {
+          "style": {
+            "noRestrictedGlobals": {
+              "level": "error",
+              "options": {
+                "deniedGlobals": {
+                  "DisposableStack": "Missing from Hermes v1 (the app's VM). Use try/finally.",
+                  "AsyncDisposableStack": "Missing from Hermes v1 (the app's VM). Use try/finally."
+                }
+              }
+            }
+          }
+        }
+      }
     }
   ]
 }
