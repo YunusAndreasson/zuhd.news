@@ -102,6 +102,6 @@ command -v eas >/dev/null || { echo "error: missing required command: eas" >&2; 
 echo "› Publishing to production ($PLATFORM${ROLLOUT:+, ${ROLLOUT}% rollout}) at $(git rev-parse --short HEAD)..."
 "${CMD[@]}"
 
-# No crash reporting yet. When @sentry/react-native lands (a native change, so a new
-# runtimeVersion), upload this update's source maps here, from the dist/ eas update
-# just exported, so its crashes symbolicate.
+# Sentry is in the app (runtime 2.16.0), but this script doesn't upload an update's
+# source maps yet, so crashes in OTA-delivered JS show minified frames. To add it:
+# `npx sentry-expo-upload-sourcemaps dist` here, with SENTRY_AUTH_TOKEN set locally.
