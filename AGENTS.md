@@ -117,7 +117,7 @@ frontmatter so they enter context only when you read a file they cover.
 |---|---|
 | `.claude/rules/web/` | the map (`map`, `map-rail`, `map-layers`), `sky`, `prayer`, `hijri`, `charts`, `design-system`, `share-surface`, `islands`, and `build` (routes, JSON APIs, caches, static checks) |
 | `.claude/rules/pipeline/` | `stages` (the stage list), `cycle` (what stages assume), `articles` (the body's shape, the isnad, corrections) |
-| `.claude/rules/mobile/` | the app's `globe`, `story-deck` and `instruments` |
+| `.claude/rules/mobile/` | the app's `globe`, `story-deck`, `instruments` and `release` |
 | `.claude/rules/shared-modules.md` | the index of shared helpers |
 | `mobile/AGENTS.md` + `mobile/DESIGN.md` | the app — read DESIGN.md before any UI change |
 

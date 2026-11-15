@@ -1,0 +1,49 @@
+# EAS archives the Git root, not mobile/: with `requireCommit` it clones HEAD here
+# and then deletes every tracked file this list ignores. The build needs mobile/
+# alone: eas-build-pre-install (mobile/scripts/eas-fetch-shared.js) fetches shared/
+# from GitHub at the build's commit, so the root copy would go unused. The site,
+# the pipeline and content/ stay home.
+/*
+!/.easignore
+!/mobile/
+
+# Tracked under mobile/ but never part of a build: device flows and recordings,
+# store screenshots, perf captures.
+/mobile/.argent/
+/mobile/store/
+/mobile/perf/
+
+# .easignore replaces every .gitignore, so keep mobile's generated-file and
+# credential exclusions here too (they matter if requireCommit is ever turned off).
+node_modules/
+.agents/
+.claude/
+.codex/
+.opencode/
+.zed/
+.mcp.json
+opencode.json
+.expo/
+.wrangler/
+dist/
+web-build/
+expo-env.d.ts
+.kotlin/
+*.orig.*
+*.jks
+*.p8
+*.p12
+*.key
+*.mobileprovision
+*.pem
+*service-account*.json
+.metro-health-check*
+*.log
+*.tsbuildinfo
+.DS_Store
+.env
+.env.*
+BUGS.md
+/mobile/ios/
+/mobile/android/
+/mobile/shared

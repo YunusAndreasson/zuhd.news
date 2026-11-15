@@ -12,11 +12,13 @@ Run in `mobile/`.
 
 | | |
 |---|---|
-| `npm run verify` | typecheck, lint, the deprecated-API check and tests. Run it before finishing |
+| `npm run verify` | the native runtime gate, typecheck, lint, the deprecated-API check and tests. Run it before finishing |
 | `npm test -- <name>` | one jest file, for example `npm test -- globe-camera` |
 | `npm run dev` | boots the Android emulator, installs the dev client if missing, starts Metro |
 | `npm run bench` | the perf benches in `perf/` |
 | `npm run deps:check` / `deps:update` | what Expo would change; the second applies it |
+| `npm run release` / `npm run ota -- -m "…"` | a store build / an OTA update to production; the only ways to ship (`release.md`) |
+| `npm run runtime:record` | record a new `runtimeVersion`'s native fingerprint in `native-runtimes.json` |
 | `npm run lint` | Biome. Not `@expo/agent-cli lint` from the generated block below: that runs ESLint, which this project does not use |
 
 The scripts in this table take precedence over their `@expo/agent-cli`
@@ -68,7 +70,8 @@ silently routed to the legacy detector.
 - Don't call `scheduleOnRN` from an animation's completion callback: it can
   abort the app. Tell JS from a reaction on the value, at the finger's lift, or
   with a JS timer.
-- A native change needs a `runtimeVersion` bump and a store build.
+- A native change needs a `runtimeVersion` bump, `npm run runtime:record` and a
+  store build; the gate refuses it otherwise.
 - `react-native-fbsdk-next` is Android-only and off until the reader says yes
   (`lib/measurement.ts`). It logs no event of the app's own. The app's own
   events go to Mixpanel, anonymous, only those in `constants/analytics.ts`, and
@@ -127,6 +130,7 @@ subsystem rules there, not here.
 | `globe.md` | `MiniGlobe`, the camera, projection, marks, hazard layers |
 | `story-deck.md` | the river, the sheet, the card, the dock, arrivals |
 | `instruments.md` | the strip, the menu's lists, cards, hazard lists |
+| `release.md` | store builds, OTA updates, the runtime record, `.easignore` |
 
 A rule is one or two lines: what to do or not do, the symbol it lives in, and
 a clause of why. No history, dates or measurements. If a test pins it, the

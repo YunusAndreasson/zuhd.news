@@ -14,7 +14,10 @@
     "api:check": "node ./scripts/check-deprecated-apis.mjs",
     "deps:update": "bash ./scripts/update-deps.sh --apply",
     "deps:update:latest": "bash ./scripts/update-deps.sh --apply --latest",
-    "verify": "npm run typecheck && npm run lint && npm run api:check && npm run test",
+    "verify": "npm run runtime:check && npm run typecheck && npm run lint && npm run api:check && npm run test",
+    "runtime:check": "node scripts/check-runtime.js",
+    "runtime:record": "node scripts/check-runtime.js --record",
+    "ota": "bash scripts/eas-update.sh",
     "bump": "node scripts/bump.js",
     "icons": "node scripts/generate-icons.mjs",
     "test": "jest",
@@ -27,7 +30,8 @@
     "release:android": "./scripts/release.sh android",
     "release:all": "./scripts/release.sh all",
     "postinstall": "patch-package --error-on-fail && node ./scripts/setup-shared-link.js",
-    "eas-build-pre-install": "node ./scripts/eas-fetch-shared.js"
+    "eas-build-pre-install": "node ./scripts/eas-fetch-shared.js",
+    "eas-build-post-install": "node scripts/check-runtime.js"
   },
   "dependencies": {
     "@expo-google-fonts/material-symbols": "0.4.54",
