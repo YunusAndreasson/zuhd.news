@@ -200,15 +200,6 @@ export function formatLocalTime(tz: string): string | null {
   }
 }
 
-// ── Hit-test / geometry helpers ────────────────────────────────────────────
-
-/** Squared-distance hit test: is (x, y) within `r` of (px, py)? Caller passes r². */
-export function isNear(x: number, y: number, px: number, py: number, r2: number): boolean {
-  const dx = x - px;
-  const dy = y - py;
-  return dx * dx + dy * dy <= r2;
-}
-
 // ── Point-in-country lookup ────────────────────────────────────────────────
 
 /** Nudge offsets for coastal/border coordinate fallback. 0.1° ≈ 11 km. */

@@ -386,9 +386,6 @@ export const isPreferences = (v: unknown): v is Preferences => {
 export const isBookmark = (v: unknown): v is Bookmark =>
   isObject(v) && isArticle(v.article) && isCategory(v.category) && typeof v.savedAt === 'number';
 
-export const isBookmarkArray = (v: unknown): v is Bookmark[] =>
-  Array.isArray(v) && v.every(isBookmark);
-
 /** A slug → when map, as the read and known stores persist it. */
 export const isTimestampMap = (v: unknown): v is Record<string, number> =>
   isObject(v) && Object.values(v).every((at) => typeof at === 'number');

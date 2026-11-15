@@ -166,6 +166,9 @@ export function clearKnown(): boolean {
 
 const subscribe = listeners.subscribe;
 
+/** The whole state, for tests. `__tests__/fresh-store.test.ts` reaches it
+ *  through a fresh `require` per test, an edge knip cannot follow.
+ *  @knipignore */
 export function getFreshState(): FreshState {
   return state;
 }
