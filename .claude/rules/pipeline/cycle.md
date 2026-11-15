@@ -159,6 +159,10 @@ stages assume about each other.
 - Every tracked exchange carries its country's `gdp` (`market-metadata.js`),
   published as an optional key: the weight of its week in the app's `world
   stocks`. Entered by hand; read the figures again once a year.
+- BYMA's index is the MSCI Merval since 2026-10-19, started at 100,000; Yahoo's
+  `^MERV` is the S&P MERVAL it replaced, ended. It comes from Rava
+  (`trends-sources/rava.js`, symbol `rava:MERVAL`), history rescaled: never
+  splice the old series onto it, which draws a 96% fall.
 - Yahoo serves four indices no daily history (`sessionsFromHourly`,
   `trends-sources/stocks.js`). Their closes are the last hourly bar's, near
   the official close and not it: never quote one to the cent.

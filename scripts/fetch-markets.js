@@ -9,7 +9,8 @@
 //          fx?: { dates, perUsd: { TRY: [41.2, null, …] } } }
 //
 // Reads MARKET_TRACKED from lib/market-metadata.js and fetches each symbol from
-// Yahoo Finance through lib/trends-sources/stocks.js, which already carries the
+// Yahoo Finance through lib/trends-sources/stocks.js (BYMA's index from Rava,
+// lib/trends-sources/rava.js), which already carries the
 // host alternation and 7-day last-good cache that source needs. The loop is
 // `fetchQuotes` (lib/quote-snapshot.js), which the company list shares, and an
 // exchange's record is `exchangeRecord`, beside the catalog.
@@ -38,7 +39,7 @@ const started = Date.now()
 // Twenty-five seconds kept back, not ten: a symbol in flight when the budget
 // runs out cannot be cut and may take twenty (two hosts, ten seconds each).
 const budget = stageBudget('fetch-markets', { keptBack: 25_000 })
-console.log(`Fetching market snapshot (Yahoo Finance, ${MARKET_TRACKED.length} exchanges)`)
+console.log(`Fetching market snapshot (Yahoo Finance and Rava Bursátil, ${MARKET_TRACKED.length} exchanges)`)
 
 /** What the loop came to, for the last line. */
 let run

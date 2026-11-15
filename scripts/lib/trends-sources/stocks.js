@@ -83,7 +83,13 @@ function readCache(path) {
   return cache && typeof cache === 'object' && !Array.isArray(cache) ? cache : {}
 }
 
-function writeCache(path, key, entry, now) {
+/**
+ * Keep a series as the last good one under `key`; `trends-sources/rava.js` keeps
+ * its own here too.
+ *
+ * @param {string} path @param {string} key @param {object} entry @param {number} now
+ */
+export function writeCache(path, key, entry, now) {
   try {
     const cache = readCache(path)
     cache[key] = { ...entry, cachedAt: now }
@@ -99,7 +105,12 @@ function writeCache(path, key, entry, now) {
   }
 }
 
-function readCachedSeries(path, key, now) {
+/**
+ * The last good series under `key` while it is within the week, marked `stale`.
+ *
+ * @param {string} path @param {string} key @param {number} now
+ */
+export function readCachedSeries(path, key, now) {
   const entry = readCache(path)[key]
   if (!entry?.cachedAt || now - entry.cachedAt > CACHE_MAX_AGE_MS) return null
   const { cachedAt, ...series } = entry
