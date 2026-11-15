@@ -1,0 +1,82 @@
+name: Mobile
+
+# The app's gate, run on push and PR: the same `npm run verify` a developer
+# runs in mobile/ (the native runtime gate, typecheck, Biome, the
+# deprecated-API check, jest). checks.yml ignores mobile/** and this one
+# listens only to what the app is built from, so the editorial pipeline's five
+# content/ commits a day start neither.
+#
+# shared/ is in the filter because the app imports it as `@shared/*`: the
+# postinstall (scripts/setup-shared-link.js) links mobile/shared to the
+# checkout's shared/, and typecheck and jest read it from there. On EAS it is
+# fetched instead (scripts/eas-fetch-shared.js), which only a build needs.
+#
+# No secrets: verify reads nothing from the environment and calls no service.
+
+on:
+  push:
+    paths:
+      - 'mobile/**'
+      - 'shared/**'
+      - '!**/*.md'
+      - 'knip.jsonc'
+      - '.github/workflows/mobile.yml'
+  pull_request:
+    paths:
+      - 'mobile/**'
+      - 'shared/**'
+      - '!**/*.md'
+      - 'knip.jsonc'
+      - '.github/workflows/mobile.yml'
+
+# A new push to the same ref makes the previous run's answer irrelevant.
+concurrency:
+  group: mobile-${{ github.ref }}
+  cancel-in-progress: true
+
+permissions:
+  contents: read
+
+defaults:
+  run:
+    working-directory: mobile
+
+jobs:
+  verify:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@fbc6f3992d24b796d5a048ff273f7fcc4a7b6c09 # v5
+        with:
+          persist-credentials: false
+      - uses: actions/setup-node@a0853c24544627f65ddf259abe73b1d18a591444 # v5
+        with:
+          node-version: 24
+          cache: npm
+          cache-dependency-path: |
+            mobile/package-lock.json
+            package-lock.json
+
+      - run: npm ci
+
+      # Typed routes live in mobile/.expo/types, which the dev server writes and
+      # git ignores. Without them expo-router's Href falls back to a plain
+      # string, so a mistyped route would pass the typecheck. It changes no
+      # tracked file.
+      - name: Generate typed routes
+        run: npx expo customize tsconfig.json
+
+      - name: Verify
+        run: npm run verify
+
+      # knip runs at the root (knip.jsonc, where mobile/ is a workspace), and
+      # checks.yml skips mobile-only pushes, so the app's dead code is checked
+      # here. It reads mobile's babel and jest config, hence after mobile's
+      # install.
+      - name: Install root deps
+        working-directory: .
+        run: npm ci
+
+      - name: Dead code
+        working-directory: .
+        run: npm run deadcode

@@ -62,7 +62,8 @@ Run at the repo root. `mobile/` has its own.
 | `npm run perf` / `perf:idle` / `perf:profile` | browser instruments in `scripts/perf/` |
 
 CI (`.github/workflows/checks.yml`): lint, typecheck, deadcode, `test:unit`,
-build. `test:live` is deliberately not in CI — `logs.test.js` reads gitignored
+build. A change to `mobile/` or `shared/` also runs `mobile.yml`: the app's
+`npm run verify`, then deadcode. `test:live` is deliberately not in CI — `logs.test.js` reads gitignored
 `logs/` and `corpus.test.js` ratchets against the live corpus.
 
 ## Gotchas
