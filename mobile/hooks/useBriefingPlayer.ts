@@ -12,7 +12,9 @@ import {
 import { File } from 'expo-file-system';
 import { useCallback, useEffect, useRef, useState } from 'react';
 import { AppState, type AppStateStatus } from 'react-native';
+import { ANALYTICS_EVENTS } from '../constants/analytics';
 import { API_BASE } from '../constants/theme';
+import { analytics } from '../lib/analytics';
 import { resolveAudioDuration } from '../lib/audio-duration';
 import { resolveDownloadedAudioSource } from '../lib/audio-source';
 import { briefingAudioFile, briefingPartialFile, deleteBriefingAudio } from '../lib/briefing-audio';
@@ -671,6 +673,7 @@ export function useBriefingPlayer(
       sourcePreparingRef.current = false;
       player.play();
       armGiveUp();
+      void analytics.track(ANALYTICS_EVENTS.BRIEFING_STARTED);
 
       // Defer lock-screen activation until AVPlayer reports a real duration.
       // The first MPNowPlayingInfo write must carry it — if duration is 0 at

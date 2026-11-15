@@ -57,6 +57,7 @@ import { Screen } from '../components/primitives';
 import type { BottomSheetMethodsRef } from '../components/SheetLayout';
 import { SourcesSheet } from '../components/SourcesSheet';
 import { Toast, type ToastRef } from '../components/Toast';
+import { ANALYTICS_EVENTS } from '../constants/analytics';
 import { CATEGORIES, categoryMarkColor, EDITORIAL, VARIANT_CAP } from '../constants/theme';
 import { useAiModels } from '../hooks/useAiModels';
 import { useAnalysis } from '../hooks/useAnalysis';
@@ -86,6 +87,7 @@ import { useStoryOpener } from '../hooks/useStoryOpener';
 import { useHardwareBack } from '../hooks/useSwipeBack';
 import { usePreferences, useTheme } from '../hooks/useTheme';
 import { useTrendsSnapshot } from '../hooks/useTrendsSnapshot';
+import { analytics } from '../lib/analytics';
 import { announce } from '../lib/announce';
 import { articleTime, formatTimeAgo } from '../lib/article-utils';
 import {
@@ -1205,6 +1207,7 @@ export default function HomeScreen() {
   const handleShare = useCallback((article: RiverArticle) => {
     const { content, options } = storyShare(article, Platform.OS);
     Share.share(content, options).catch(() => {});
+    void analytics.track(ANALYTICS_EVENTS.STORY_SHARED);
   }, []);
 
   const countryAlerts = useMemo<GdacsAlert[]>(

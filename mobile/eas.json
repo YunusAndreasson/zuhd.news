@@ -21,6 +21,11 @@
     "preview": {
       "distribution": "internal",
       "channel": "preview",
+      "env": {
+        "SENTRY_ORG": "openarabic",
+        "SENTRY_PROJECT": "zuhd",
+        "SENTRY_ALLOW_FAILURE": "true"
+      },
       "android": {
         "buildType": "apk"
       }
@@ -29,6 +34,11 @@
       "autoIncrement": true,
       "channel": "production",
       "node": "26.12.0",
+      "env": {
+        "SENTRY_ORG": "openarabic",
+        "SENTRY_PROJECT": "zuhd",
+        "SENTRY_ALLOW_FAILURE": "true"
+      },
       "ios": {
         "image": "auto"
       },

@@ -41,7 +41,8 @@ Features:
 • Every article links out to the sources it was written from
 • Daily audio briefings, downloaded only when you press listen
 • No ads
-• No analytics. On Android, you are asked once whether we may measure our own advertising through Meta
+• Usage statistics (Mixpanel) and crash reports (Sentry), not linked to a name or account
+• On Android, you are asked once whether we may measure our own advertising through Meta
 
 Settings shows how much data the app has used since you opened it. The same page erases everything stored on your device.
 
@@ -61,7 +62,8 @@ Zuhd — the discipline of doing without what you do not need.
      - "about 20 KB" — /api/feed-lite.json, gzipped, one editorial cycle. The
        map's layers are about 100 KB more the first time (the privacy page).
      - "cannot tell readers apart" — the news server only. The update check and
-       the push service carry an install's number, and the privacy page says so.
+       the push service carry an install's number, as do Mixpanel and Sentry
+       (since 2026-11-15), and the privacy page says so.
      - "no tracking" is not said: on Android a reader can allow Meta's SDK
        (`lib/measurement.ts`). Off until they say yes, and absent from iOS.
      Do NOT restore "No data collected" as an absolute: turning notifications
@@ -90,9 +92,17 @@ Keep these in sync with `mobile/components/MenuSheet.tsx` → INFO_PAGES.privacy
   (`expo.autolinking.ios.exclude`). `app.json` declares
   `ios.privacyManifests.NSPrivacyTracking: false` with no tracking domains.
 - Data collected: **Identifiers → Device ID**, linked to the user: **No**,
-  used for tracking: **No**, purpose: **App Functionality**. This is the push
-  token, and only when the reader enables notifications. Everything else is
-  "Data Not Collected".
+  used for tracking: **No**, purposes: **App Functionality** (the push token,
+  only when the reader enables notifications) and **Analytics** (Mixpanel's
+  random anonymous ID, and Sentry's install ID).
+- **Usage Data → Product Interaction**: not linked, not tracking, purpose
+  **Analytics**. Mixpanel events in `constants/analytics.ts`.
+- **Diagnostics → Crash Data** and **Performance Data**: not linked, not
+  tracking, purpose **App Functionality**. Sentry (`lib/sentry.ts`), since
+  2026-11-15; crashes, errors, sessions, a 10% trace sample.
+- **Location → Coarse Location**: not linked, not tracking, purpose
+  **Analytics**. Mixpanel derives city/region/country from the IP address.
+- Everything else: "Data Not Collected".
 
 ### Google Play — Data Safety
 - Data collected: the push token, under **App activity / Other**, or
@@ -107,6 +117,13 @@ Keep these in sync with `mobile/components/MenuSheet.tsx` → INFO_PAGES.privacy
   and only where the reader said yes. Collected through Meta's SDK.
 - App content → Advertising ID: **Yes**, for Advertising or marketing. Play
   rejects an upload carrying `AD_ID` until this is declared.
+- App activity → App interactions, and Device or other IDs: collected for
+  **Analytics** (Mixpanel, anonymous ID). Not shared (Mixpanel is a service
+  provider). Required: the app has no off switch.
+- Location → Approximate location: collected for **Analytics** (Mixpanel's
+  IP geolocation). Not shared. Required.
+- App info and performance → Crash logs and Diagnostics: collected for
+  **Analytics** (Sentry). Not shared. Required.
 - Everything else: not collected.
 
 ## Keywords (App Store, 100 chars)
