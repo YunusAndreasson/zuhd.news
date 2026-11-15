@@ -96,3 +96,10 @@ test('an unclosed < or script block is left as written, tags inside a sentence l
   assert.match(htmlForReadability('<p>x</p><script>never closed'), /never closed/)
   assert.equal(htmlForReadability('<P>x</P><SCRIPT type="a">y</SCRIPT ><scripts>keep</scripts>'), '<P>x</P><scripts>keep</scripts>')
 })
+
+test('a block is cut at its own place on a page whose text lowercases longer', () => {
+  // "İ".toLowerCase() is two code units: a lowercased copy's positions run
+  // ahead of the page's by one for every capital dotted I before the block.
+  const page = '<title>İstanbul İzmir İçişleri</title><script>var x</script></head><p>İstanbul</p>'
+  assert.equal(htmlForReadability(page), '<title>İstanbul İzmir İçişleri</title></head><p>İstanbul</p>')
+})

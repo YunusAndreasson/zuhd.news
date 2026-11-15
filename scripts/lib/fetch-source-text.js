@@ -107,7 +107,9 @@ function dropTags(html) {
 /** Every `<name ...>...</name ...>` block removed, found by search rather
  *  than by pattern. A block that never closes stays. */
 function dropBlocks(html, name) {
-  const lower = html.toLowerCase()
+  // ASCII only: positions found here cut `html`, and a full toLowerCase()
+  // turns "İ" into two code units, which moves every cut after it.
+  const lower = html.replace(/[A-Z]+/g, (s) => s.toLowerCase())
   let out = ''
   let i = 0
   for (;;) {
