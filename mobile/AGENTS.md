@@ -70,8 +70,9 @@ silently routed to the legacy detector.
   with a JS timer.
 - A native change needs a `runtimeVersion` bump and a store build.
 - `react-native-fbsdk-next` is Android-only and off until the reader says yes
-  (`lib/measurement.ts`). The app logs no event of its own, so nothing it sends
-  can say what anyone read.
+  (`lib/measurement.ts`). It logs no event of the app's own. The app's own
+  events go to Mixpanel, anonymous, only those in `constants/analytics.ts`, and
+  no property may name a story, title, country or search.
 
 ## One screen
 

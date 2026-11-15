@@ -3,6 +3,7 @@ import * as Network from 'expo-network';
 import * as SystemUI from 'expo-system-ui';
 import { createContext, use, useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import { Appearance, AppState, useColorScheme, useWindowDimensions } from 'react-native';
+import { ANALYTICS_EVENTS } from '../constants/analytics';
 import { IS_ANDROID } from '../constants/platform';
 import {
   type AppearanceMode,
@@ -22,6 +23,7 @@ import {
   typographyFor,
   widthTypeScale,
 } from '../constants/theme';
+import { analytics } from '../lib/analytics';
 import { setHapticsEnabled } from '../lib/haptics';
 import {
   addPushTokenListener,
@@ -125,6 +127,7 @@ export function ThemeProvider({
       const request = ++notificationRequest.current;
       if (v) {
         const granted = await enableNotifications();
+        void analytics.track(ANALYTICS_EVENTS.NOTIFICATIONS_ANSWERED, { granted });
         if (!granted || request !== notificationRequest.current) return false;
         persist({ notifications: true });
       } else {

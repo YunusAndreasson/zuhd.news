@@ -1,7 +1,8 @@
+import * as Sentry from '@sentry/react-native';
 import { PersistQueryClientProvider } from '@tanstack/react-query-persist-client';
 import { useFonts } from 'expo-font';
 import * as Notifications from 'expo-notifications';
-import { Slot } from 'expo-router';
+import { Slot, useNavigationContainerRef, useSegments } from 'expo-router';
 import * as SplashScreen from 'expo-splash-screen';
 import { StatusBar } from 'expo-status-bar';
 import { Suspense, useEffect } from 'react';
@@ -9,14 +10,17 @@ import { StyleSheet, View } from 'react-native';
 import { GestureHandlerRootView } from 'react-native-gesture-handler';
 import { configureReanimatedLogger, ReanimatedLogLevel } from 'react-native-reanimated';
 import { ErrorBoundary } from '../components/ErrorBoundary';
+import { ANALYTICS_EVENTS } from '../constants/analytics';
 import { RUNTIME_FONTS } from '../constants/fonts';
 import { ANIMATION, DARK_COLORS } from '../constants/theme';
 import { ThemeProvider, useTheme } from '../hooks/useTheme';
+import { analytics } from '../lib/analytics';
 import { registerBackgroundTask } from '../lib/background-fetch';
 import { startMeasurement } from '../lib/measurement';
 import { clearLegacyScheduledNotifications, setupNotificationChannels } from '../lib/notifications';
 import { PERSIST_BUSTER, PERSIST_MAX_AGE_MS, persister, queryClient } from '../lib/query-client';
 import { dropRetiredFound } from '../lib/read-store';
+import { navigationIntegration, sentryEnabled } from '../lib/sentry';
 
 configureReanimatedLogger({ level: ReanimatedLogLevel.warn, strict: false });
 
@@ -48,7 +52,19 @@ function ThemedShell() {
   );
 }
 
-export default function RootLayout() {
+function RootLayout() {
+  const navigationRef = useNavigationContainerRef();
+  useEffect(() => {
+    if (navigationRef) navigationIntegration.registerNavigationContainer(navigationRef);
+  }, [navigationRef]);
+
+  // The route's pattern, never its params: a param can be a story's slug.
+  const segments = useSegments();
+  const screen = `/${segments.join('/')}`;
+  useEffect(() => {
+    void analytics.track(ANALYTICS_EVENTS.SCREEN_VIEWED, { screen });
+  }, [screen]);
+
   // iOS registers its faces here; Android's are embedded, so it is loaded at
   // the first render (`constants/fonts`).
   const [fontsLoaded, fontError] = useFonts(RUNTIME_FONTS);
@@ -110,6 +126,8 @@ export default function RootLayout() {
     </GestureHandlerRootView>
   );
 }
+
+export default sentryEnabled ? Sentry.wrap(RootLayout) : RootLayout;
 
 const styles = StyleSheet.create({
   root: {

@@ -32,13 +32,20 @@ const SECTIONS: InfoSection[] = [
   },
   {
     heading: 'what the app contacts',
-    body: 'Stories, map data and audio come from one address: zuhd-news.pages.dev. The app also checks for updates when it opens, which sends its version and a random number for this install — nothing about what you read. With notifications on, the service that delivers them is contacted too. On Android, if you agree to ad measurement, so is Meta. No other analytics or ad network, and no font, map or image service. Source links open in your browser only when you tap them.',
+    body: 'Stories, map data and audio come from one address: zuhd-news.pages.dev. The app also checks for updates when it opens, which sends its version and a random number for this install — nothing about what you read. With notifications on, the service that delivers them is contacted too. Usage statistics go to Mixpanel and crash reports to Sentry. On Android, if you agree to ad measurement, Meta is contacted too. No other ad network, and no font, map or image service. Source links open in your browser only when you tap them.',
   },
   {
     // Shares its core sentence verbatim with SheetAboutPage's
     // NO_PROFILE_LINE and the store listing. Change it in all three.
     heading: 'what we know about you',
     body: 'There are no accounts. The app sends no identifier when it fetches the news, so the news server cannot tell readers apart, and it keeps no record of what anyone reads.',
+  },
+  {
+    // Named, like Meta below: a reader has to know who receives it. Events and
+    // their properties are `constants/analytics.ts`; what Sentry may send is
+    // `lib/sentry.ts`. Neither has an off switch, so none is described.
+    heading: 'usage and crashes',
+    body: 'The app sends usage events to Mixpanel: which screen is opened and a few actions, such as starting a briefing or sharing a story. They do not include which story. They are linked to a random ID created on this device, not to a name or account, and Mixpanel derives an approximate location from the IP address. Mixpanel stores them in the EU. Crash and error reports go to Sentry, in the US: the error, the device model, the operating system and the app version, with no screenshot and no web address. There is no setting to turn these off. Erasing local data below gives usage events a new random ID.',
   },
   {
     // Named, against the rule for vendors: what a reader agrees to has to say

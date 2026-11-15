@@ -1,5 +1,6 @@
 import { File, Paths } from 'expo-file-system';
 import Storage from 'expo-sqlite/kv-store';
+import { analytics } from './analytics';
 import { cancelArrivals } from './arrival';
 import { clearBookmarks } from './bookmark-store';
 import { deleteBriefingAudio } from './briefing-audio';
@@ -71,6 +72,8 @@ export async function eraseLocalData(): Promise<void> {
   // The briefing's downloaded audio, which the privacy page counts among
   // what nothing downloaded outlives.
   deleteBriefingAudio({ partials: true });
+  // Analytics starts again under a new anonymous id.
+  void analytics.reset();
 
   await Promise.all([
     clearBriefingProgress(),

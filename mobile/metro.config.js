@@ -9,7 +9,9 @@
 //     custom resolveRequest, so the EAS build keeps everything inside the
 //     project root.
 
-const { getDefaultConfig } = require('expo/metro-config');
+// Sentry's wrapper over Expo's defaults: it adds the debug IDs that tie an
+// uploaded source map to its bundle.
+const { getSentryExpoConfig } = require('@sentry/react-native/metro');
 const fs = require('fs');
 const path = require('path');
 
@@ -34,7 +36,7 @@ if (process.env.EAS_BUILD) {
   }
 }
 
-const config = getDefaultConfig(projectRoot);
+const config = getSentryExpoConfig(projectRoot);
 
 config.watchFolders = [...(config.watchFolders ?? []), sharedRoot];
 
