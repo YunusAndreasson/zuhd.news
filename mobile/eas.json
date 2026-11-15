@@ -44,8 +44,6 @@
       },
       "android": {
         "image": "auto",
-        // The default worker's Gradle daemon was killed (out of memory) on
-        // 1448.6.4, 2026-11-15; qamar360 and edenmind build on large too.
         "resourceClass": "large"
       }
     }
