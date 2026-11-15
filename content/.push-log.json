@@ -1,84 +1,5 @@
 [
   {
-    "timestamp": "2026-10-25T05:11:29.711Z",
-    "candidateCount": 8,
-    "candidates": [
-      {
-        "slug": "2026-10-25-tinubu-kaduna-reelection-campaign-economic-pain",
-        "title": "Tinubu Launches Re-election Bid",
-        "category": "politics",
-        "eventCoverage": 157,
-        "importance": 6
-      },
-      {
-        "slug": "2026-10-25-houthis-riyadh-king-khalid-airport-military-target",
-        "title": "Houthis Threaten Riyadh Airport",
-        "category": "economy",
-        "eventCoverage": 99,
-        "importance": 6
-      },
-      {
-        "slug": "2026-10-25-audi-georgia-plant-tariffs-volkswagen",
-        "title": "Trump Claims Audi Tariff Win",
-        "category": "economy",
-        "eventCoverage": 68,
-        "importance": 6
-      },
-      {
-        "slug": "2026-10-25-new-york-archdiocese-800-million-abuse-settlement",
-        "title": "Archdiocese Settles Abuse Claims",
-        "category": "politics",
-        "eventCoverage": 49,
-        "importance": 6
-      },
-      {
-        "slug": "2026-10-25-ahmadis-sentenced-lahore-hate-speech-fia",
-        "title": "Ahmadis Sentenced in Lahore",
-        "category": "politics",
-        "eventCoverage": 0,
-        "importance": 6
-      },
-      {
-        "slug": "2026-10-25-irgc-drone-strike-komala-balisan-iraq",
-        "title": "Iran Claims Komala Strike",
-        "category": "politics",
-        "eventCoverage": 0,
-        "importance": 6
-      },
-      {
-        "slug": "2026-10-25-pakistan-wheat-prices-dar-hoarding",
-        "title": "Dar Orders Wheat Price Action",
-        "category": "economy",
-        "eventCoverage": 0,
-        "importance": 6
-      },
-      {
-        "slug": "2026-10-25-china-ai-stocks-selloff-valuations-earnings",
-        "title": "China Tech Stocks Reprice",
-        "category": "tech",
-        "eventCoverage": 0,
-        "importance": 6
-      }
-    ],
-    "selected": {
-      "slug": "2026-10-25-new-york-archdiocese-800-million-abuse-settlement",
-      "title": "Archdiocese Settles Abuse Claims",
-      "category": "politics",
-      "body": "The archdiocese will pay $800 million to 1,300",
-      "eventCoverage": 49,
-      "importance": 6
-    },
-    "skipReason": null,
-    "sent": true,
-    "pushTitle": "Breaking News",
-    "pushBody": "New York Archdiocese to pay $800 million to 1,300 abuse survivors",
-    "response": {
-      "pushed": 1,
-      "skipped": 0,
-      "tokens": 6
-    }
-  },
-  {
     "timestamp": "2026-10-25T10:15:31.430Z",
     "candidateCount": 8,
     "candidates": [
@@ -10112,6 +10033,134 @@
     "sent": true,
     "pushTitle": "Breaking News",
     "pushBody": "FAA halts all departing US flights after communication fault, officials say",
+    "response": {
+      "pushed": 1,
+      "skipped": 0,
+      "tokens": 5
+    }
+  },
+  {
+    "timestamp": "2026-11-15T18:20:06.028Z",
+    "candidateCount": 15,
+    "candidates": [
+      {
+        "slug": "2026-11-15-us-proposes-ukraine-cede-donbas-for-nato-membership",
+        "title": "US Floats Donbas-NATO Swap",
+        "category": "politics",
+        "eventCoverage": 397,
+        "importance": 6
+      },
+      {
+        "slug": "2026-11-15-canada-560-million-tropical-forest-forever-facility",
+        "title": "Canada Funds Brazil's Forest Project",
+        "category": "economy",
+        "eventCoverage": 192,
+        "importance": 6
+      },
+      {
+        "slug": "2026-11-14-france-yellow-vest-protests-219-arrested-cost-of-living",
+        "title": "France Protests Enter Fifth Weekend",
+        "category": "politics",
+        "eventCoverage": 181,
+        "importance": 6
+      },
+      {
+        "slug": "2026-11-15-jordan-karak-church-attack-three-sentenced-death",
+        "title": "Jordan Sentences Church Attackers",
+        "category": "politics",
+        "eventCoverage": 122,
+        "importance": 6
+      },
+      {
+        "slug": "2026-11-15-trump-holds-fire-iran-hormuz-mines-fertiliser-shipments",
+        "title": "Hormuz Blockade Threatens Harvests",
+        "category": "politics",
+        "eventCoverage": 82,
+        "importance": 6
+      },
+      {
+        "slug": "2026-11-15-comac-ce-25a-electric-aircraft-first-piloted-flight",
+        "title": "China's Electric Airliner Flies",
+        "category": "tech",
+        "eventCoverage": 55,
+        "importance": 6
+      },
+      {
+        "slug": "2026-11-14-portugal-housing-protests-30-cities-rents",
+        "title": "Portugal Housing Marches Grow",
+        "category": "economy",
+        "eventCoverage": 48,
+        "importance": 6
+      },
+      {
+        "slug": "2026-11-15-yemen-government-withdraws-bab-el-mandeb-houthis-control",
+        "title": "Yemeni Forces Quit Strait",
+        "category": "politics",
+        "eventCoverage": 0,
+        "importance": 6
+      },
+      {
+        "slug": "2026-11-14-panama-journalist-rolando-rodriguez-house-arson-clip-investigation",
+        "title": "Arson Hits Panamanian Journalist",
+        "category": "politics",
+        "eventCoverage": 0,
+        "importance": 6
+      },
+      {
+        "slug": "2026-11-15-egypt-red-sea-land-decree-public-debt",
+        "title": "Egypt Pledges Coast Against Debt",
+        "category": "economy",
+        "eventCoverage": 0,
+        "importance": 6
+      },
+      {
+        "slug": "2026-11-15-ocean-network-express-red-sea-bab-el-mandeb-return",
+        "title": "Container Line Returns to Red Sea",
+        "category": "economy",
+        "eventCoverage": 0,
+        "importance": 6
+      },
+      {
+        "slug": "2026-11-15-covid-lockdowns-cut-global-fire-activity-12-percent",
+        "title": "Lockdowns Cut Global Fires",
+        "category": "science",
+        "eventCoverage": 0,
+        "importance": 6
+      },
+      {
+        "slug": "2026-11-15-quantum-vortex-tangle-bose-einstein-condensate-observed",
+        "title": "Quantum Vortex Tangle Observed",
+        "category": "science",
+        "eventCoverage": 0,
+        "importance": 6
+      },
+      {
+        "slug": "2026-11-15-spacex-catches-starship-upper-stage-orbit-first",
+        "title": "SpaceX Catches Starship Upper Stage",
+        "category": "tech",
+        "eventCoverage": 0,
+        "importance": 6
+      },
+      {
+        "slug": "2026-11-15-megaspeed-alice-huang-left-august-2025-nvidia-timeline",
+        "title": "Megaspeed Dates Huang Exit",
+        "category": "tech",
+        "eventCoverage": 0,
+        "importance": 6
+      }
+    ],
+    "selected": {
+      "slug": "2026-11-15-us-proposes-ukraine-cede-donbas-for-nato-membership",
+      "title": "US Floats Donbas-NATO Swap",
+      "category": "politics",
+      "body": "Washington asked Ukraine to trade Donbas for NATO entry, Zelensky",
+      "eventCoverage": 397,
+      "importance": 6
+    },
+    "skipReason": null,
+    "sent": true,
+    "pushTitle": "Breaking News",
+    "pushBody": "US asks Ukraine to give up Donbas in exchange for NATO entry, Zelensky says",
     "response": {
       "pushed": 1,
       "skipped": 0,
