@@ -1,84 +1,5 @@
 [
   {
-    "timestamp": "2026-10-25T10:15:31.430Z",
-    "candidateCount": 8,
-    "candidates": [
-      {
-        "slug": "2026-10-25-obama-ohio-midterms-iran-war-costs",
-        "title": "Obama Campaigns Against Iran War",
-        "category": "politics",
-        "eventCoverage": 178,
-        "importance": 6
-      },
-      {
-        "slug": "2026-10-25-bulgaria-presidential-election-pro-kremlin-candidates-black-sea",
-        "title": "Bulgaria Votes for President",
-        "category": "politics",
-        "eventCoverage": 113,
-        "importance": 6
-      },
-      {
-        "slug": "2026-10-25-pakistan-polio-seven-cases-eradication",
-        "title": "Pakistan Polio Cases Persist",
-        "category": "politics",
-        "eventCoverage": 100,
-        "importance": 6
-      },
-      {
-        "slug": "2026-10-25-madrid-pension-rally-inflation-indexation",
-        "title": "Madrid Marches for Pensions",
-        "category": "economy",
-        "eventCoverage": 55,
-        "importance": 6
-      },
-      {
-        "slug": "2026-10-25-mercuria-baltic-exchange-hormuz-freight-benchmark-lawsuit",
-        "title": "Mercuria Sues Baltic Exchange",
-        "category": "economy",
-        "eventCoverage": 0,
-        "importance": 6
-      },
-      {
-        "slug": "2026-10-25-serap-ecowas-court-nigeria-cash-transfer-78-billion",
-        "title": "Rights Group Sues Over Cash Transfers",
-        "category": "politics",
-        "eventCoverage": 0,
-        "importance": 6
-      },
-      {
-        "slug": "2026-10-25-deepseek-deepinfer-revenue-dhs-ban",
-        "title": "DeepSeek Opens Its Books",
-        "category": "tech",
-        "eventCoverage": 0,
-        "importance": 6
-      },
-      {
-        "slug": "2026-10-25-china-ai-application-engineers-million-yuan-salaries",
-        "title": "ByteDance Bids for Deployers",
-        "category": "tech",
-        "eventCoverage": 0,
-        "importance": 6
-      }
-    ],
-    "selected": {
-      "slug": "2026-10-25-obama-ohio-midterms-iran-war-costs",
-      "title": "Obama Campaigns Against Iran War",
-      "category": "politics",
-      "body": "Obama blamed the [Iran](country:IR) war for rising diesel",
-      "eventCoverage": 178,
-      "importance": 6
-    },
-    "skipReason": null,
-    "sent": true,
-    "pushTitle": "Breaking News",
-    "pushBody": "Obama blames Iran war for rising diesel prices at Ohio rally",
-    "response": {
-      "pushed": 1,
-      "skipped": 0,
-      "tokens": 6
-    }
-  },
-  {
     "timestamp": "2026-10-25T14:14:32.171Z",
     "candidateCount": 11,
     "candidates": [
@@ -10161,6 +10082,134 @@
     "sent": true,
     "pushTitle": "Breaking News",
     "pushBody": "US asks Ukraine to give up Donbas in exchange for NATO entry, Zelensky says",
+    "response": {
+      "pushed": 1,
+      "skipped": 0,
+      "tokens": 5
+    }
+  },
+  {
+    "timestamp": "2026-11-15T22:17:12.983Z",
+    "candidateCount": 15,
+    "candidates": [
+      {
+        "slug": "2026-11-15-manila-asean-summit-lula-carney-trade-hedge-us-tariffs",
+        "title": "Middle Powers Court Southeast Asia",
+        "category": "economy",
+        "eventCoverage": 148,
+        "importance": 6
+      },
+      {
+        "slug": "2026-11-15-modi-claims-500-million-out-of-extreme-poverty-maoism-ended",
+        "title": "Modi Declares Maoism Over",
+        "category": "economy",
+        "eventCoverage": 141,
+        "importance": 6
+      },
+      {
+        "slug": "2026-11-15-francophonie-summit-cambodia-rwanda-drc-leadership-fight",
+        "title": "Francophonie Splits Over Rwanda",
+        "category": "politics",
+        "eventCoverage": 132,
+        "importance": 6
+      },
+      {
+        "slug": "2026-11-15-mullin-iran-drone-threat-trump-mossad-report",
+        "title": "Mullin Downplays Iran Drones",
+        "category": "politics",
+        "eventCoverage": 109,
+        "importance": 6
+      },
+      {
+        "slug": "2026-11-15-likud-yashar-unity-government-talks-eisenkot-netanyahu",
+        "title": "Eisenkot Weighs Netanyahu Unity",
+        "category": "politics",
+        "eventCoverage": 106,
+        "importance": 6
+      },
+      {
+        "slug": "2026-11-15-cape-verde-presidential-election-neves-joana-rosa",
+        "title": "Cape Verde Votes President",
+        "category": "politics",
+        "eventCoverage": 71,
+        "importance": 6
+      },
+      {
+        "slug": "2026-11-15-houthi-missiles-riyadh-king-khalid-airport-gulf-markets",
+        "title": "Houthis Claim Riyadh Airport",
+        "category": "politics",
+        "eventCoverage": 0,
+        "importance": 6
+      },
+      {
+        "slug": "2026-11-15-taliban-kandahar-radio-cricket-ban",
+        "title": "Kandahar Bans Cricket Coverage",
+        "category": "politics",
+        "eventCoverage": 0,
+        "importance": 6
+      },
+      {
+        "slug": "2026-11-15-nelson-mandela-bay-udm-councillor-namette-murder-threats",
+        "title": "Threats Preceded Councillor's Murder",
+        "category": "politics",
+        "eventCoverage": 0,
+        "importance": 6
+      },
+      {
+        "slug": "2026-11-15-iran-shoots-down-orbiter-4-drone-nahavand",
+        "title": "Iran Claims Orbiter Shootdown",
+        "category": "politics",
+        "eventCoverage": 0,
+        "importance": 6
+      },
+      {
+        "slug": "2026-11-15-nigeria-gas-flaring-deadline-nuprc-cop31",
+        "title": "Nigeria Flaring Deadline Slips",
+        "category": "economy",
+        "eventCoverage": 0,
+        "importance": 6
+      },
+      {
+        "slug": "2026-11-15-trump-xi-meeting-nvidia-huang-spy-silence",
+        "title": "Trump Silent on Nvidia Spy",
+        "category": "tech",
+        "eventCoverage": 0,
+        "importance": 6
+      },
+      {
+        "slug": "2026-11-15-faa-outage-trump-blames-biden-miami-taxiway-collision",
+        "title": "Upgrade Grounds US Flights",
+        "category": "tech",
+        "eventCoverage": 0,
+        "importance": 6
+      },
+      {
+        "slug": "2026-11-15-honda-profit-up-66-percent-car-business-loses-money",
+        "title": "Honda Motorcycles Carry Profit",
+        "category": "tech",
+        "eventCoverage": 0,
+        "importance": 6
+      },
+      {
+        "slug": "2026-11-15-saudi-mundafan-125000-year-old-lake-early-humans",
+        "title": "Green Arabia Lakeside Found",
+        "category": "science",
+        "eventCoverage": 0,
+        "importance": 6
+      }
+    ],
+    "selected": {
+      "slug": "2026-11-15-mullin-iran-drone-threat-trump-mossad-report",
+      "title": "Mullin Downplays Iran Drones",
+      "category": "politics",
+      "body": "Mossad reportedly warned the [US](country:US) of explosive drones aimed at",
+      "eventCoverage": 109,
+      "importance": 6
+    },
+    "skipReason": null,
+    "sent": true,
+    "pushTitle": "Breaking News",
+    "pushBody": "Mossad warns US of explosive Iranian drones targeting Trump, DHS chief says",
     "response": {
       "pushed": 1,
       "skipped": 0,
