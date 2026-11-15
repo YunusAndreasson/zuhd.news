@@ -15,6 +15,7 @@
 // (`exchangeRecord`, `companyRecord`): an exchange publishes the bar of a
 // session still open, a company only completed closes.
 
+import { fetchRavaIndex } from './trends-sources/rava.js'
 import { fetchYahooStock, isStaleAsOf } from './trends-sources/stocks.js'
 
 /**
@@ -22,6 +23,17 @@ import { fetchYahooStock, isStaleAsOf } from './trends-sources/stocks.js'
  * which is a wobble rather than a shape once it is drawn 640 units wide.
  */
 export const QUOTE_RANGE = '3mo'
+
+/**
+ * A catalog symbol's series: `rava:<especie>` from Rava Bursátil, any other a
+ * Yahoo ticker. BYMA's index is the one Rava row (`market-metadata.js`).
+ *
+ * @param {string} symbol
+ * @param {{ range?: string }} [opts]
+ */
+export function fetchSeries(symbol, opts) {
+  return symbol.startsWith('rava:') ? fetchRavaIndex(symbol.slice('rava:'.length), opts) : fetchYahooStock(symbol, opts)
+}
 
 /**
  * @typedef {object} QuoteRun
@@ -66,7 +78,7 @@ export const QUOTE_RANGE = '3mo'
  *   `previous`: the last snapshot's records; `fetchQuote` and `now` are for the tests
  * @returns {Promise<QuoteRun>}
  */
-export async function fetchQuotes(entries, toRecord, { range = QUOTE_RANGE, signal, previous = [], fetchQuote = fetchYahooStock, now = Date.now() } = {}) {
+export async function fetchQuotes(entries, toRecord, { range = QUOTE_RANGE, signal, previous = [], fetchQuote = fetchSeries, now = Date.now() } = {}) {
   const records = []
   const skipped = []
   const last = new Map((Array.isArray(previous) ? previous : []).map((record) => [record.id, record]))
@@ -93,7 +105,7 @@ export async function fetchQuotes(entries, toRecord, { range = QUOTE_RANGE, sign
     const data = await fetchQuote(/** @type {string} */ (entry.symbol), { range })
     if (!data) {
       missing++
-      skipped.push({ id: entry.id, reason: 'no series from Yahoo, live or cached' })
+      skipped.push({ id: entry.id, reason: `no series from ${entry.symbol?.startsWith('rava:') ? 'Rava' : 'Yahoo'}, live or cached` })
       continue
     }
 

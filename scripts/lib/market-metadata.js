@@ -8,7 +8,9 @@
 //                  `world stocks` (`worldStocks`, `mobile/lib/markets.ts`),
 //                  so Dubai does not count as much as New York. See "The
 //                  weights" below.
-//   - symbol     — Yahoo Finance ticker, passed verbatim to fetchYahooStock.
+//   - symbol     — Yahoo Finance ticker, passed verbatim to fetchYahooStock;
+//                  `rava:<especie>` is a series from Rava Bursátil instead
+//                  (`fetchSeries`, lib/quote-snapshot.js).
 //   - currency   — the currency Yahoo reports for this symbol. This is an
 //                  ASSERTION, not a label: the fetcher rejects a response that
 //                  disagrees. See "Why the expectations are pinned" below.
@@ -518,15 +520,15 @@ export const MARKET_CATALOG = [
   {
     id: 'byma',
     name: 'Bolsas y Mercados Argentinos',
-    indexName: 'MERVAL',
+    indexName: 'MSCI Merval',
     city: 'Buenos Aires',
     iso2: 'AR',
     gdp: 683e9,
     lat: -34.6037,
     lng: -58.3816,
-    symbol: '^MERV',
-    // Yahoo reports an empty currency for this symbol, so the fetcher cannot
-    // assert one here; the zone is specific enough to identify the instrument.
+    // The MSCI Merval, which replaced the S&P MERVAL on 2026-10-19, from Rava
+    // (`trends-sources/rava.js`): Yahoo's `^MERV` is the S&P series, ended.
+    symbol: 'rava:MERVAL',
     currency: 'ARS',
     tz: 'America/Argentina/Buenos_Aires',
     sessionStart: '11:00',
@@ -868,9 +870,10 @@ export const MARKET_TRACKED = MARKET_CATALOG.filter((m) => m.available)
  * impostors (`^PSI` → a PIMCO fund, `^NGX` → Nasdaq Next Generation 100) — a
  * guard against silent wrongness is worth little if nothing proves it fires.
  *
- * An absent currency is not a contradicting one: Yahoo reports none at all for
- * ^MERV, and treating silence as a mismatch would drop a good series. The zone
- * is specific enough to pin the instrument on its own.
+ * An absent currency is not a contradicting one: Yahoo reported none at all for
+ * ^MERV, and Rava reports neither (`trends-sources/rava.js`, whose own guard is
+ * the index each row names). Treating silence as a mismatch would drop a good
+ * series; the zone is specific enough to pin a Yahoo instrument on its own.
  *
  * @param {{ symbol: string, currency: string|null, tz: string|null }} entry
  * @param {{ currencyReported?: string, timezone?: string }} data
@@ -954,7 +957,7 @@ export function exchangeRecord(m, data, { stale = false } = {}) {
       days: m.days,
       series: { periods: data.periods, values, dates: data.dates, completed: data.completed },
       asOf: data.asOf,
-      sourceLabel: `Yahoo Finance · ${data.exchange || m.indexName}`,
+      sourceLabel: `${data.source || 'Yahoo Finance'} · ${data.exchange || m.indexName}`,
       blurb: m.blurb,
       topicTags: m.topicTags,
       countryTags: m.countryTags,
