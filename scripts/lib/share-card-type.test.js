@@ -81,8 +81,12 @@ const textElements = (svg) =>
     const attrs = Object.fromEntries(
       [...m[1].matchAll(/([\w-]+)="([^"]*)"/g)].map((a) => [a[1], a[2]]),
     )
-    const text = m[2]
-      .replace(/<[^>]+>/g, '')
+    let bare = m[2]
+    for (let prev = ''; prev !== bare; ) {
+      prev = bare
+      bare = bare.replace(/<[^>]+>/g, '')
+    }
+    const text = bare
       .replace(/&apos;/g, "'")
       .replace(/&quot;/g, '"')
       .replace(/&lt;/g, '<')

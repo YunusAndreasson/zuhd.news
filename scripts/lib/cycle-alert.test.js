@@ -36,7 +36,7 @@ test('the entry script writes the record it was pointed at and prints the line',
     const written = JSON.parse(readFileSync(file, 'utf8'))
     assert.deepEqual([written.reason, written.log, written.consecutive, written.since], ['cycle exited 1 before publishing', '/logs/x.log', 1, written.at])
     assert.equal(first.stdout, `ALERT: cycle exited 1 before publishing (1 cycle(s) in a row since ${written.since})\n`)
-    assert.match(run().stdout, new RegExp(`\\(2 cycle\\(s\\) in a row since ${written.since.replace(/\./g, '\\.')}\\)\n$`))
+    assert.ok(run().stdout.endsWith(`(2 cycle(s) in a row since ${written.since})\n`))
     writeFileSync(file, 'not json')
     assert.match(run().stdout, /\(1 cycle\(s\) in a row since /, 'a record that cannot be read starts over')
     assert.ok(readFileSync(file, 'utf8').endsWith('}\n'))

@@ -69,7 +69,7 @@ export function htmlLeadImage(html) {
   if (typeof html !== 'string') return null
   const head = html.slice(0, 200_000)
   for (const key of ['og:image:secure_url', 'og:image', 'twitter:image', 'twitter:image:src']) {
-    const k = key.replace(/:/g, '\\:')
+    const k = key.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')
     const a = head.match(new RegExp(`<meta[^>]+(?:property|name)=["']${k}["'][^>]*content=["']([^"']+)["']`, 'i'))
     const b = head.match(new RegExp(`<meta[^>]+content=["']([^"']+)["'][^>]*(?:property|name)=["']${k}["']`, 'i'))
     const u = httpUrl((a || b)?.[1])
