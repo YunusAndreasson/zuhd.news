@@ -1,5 +1,7 @@
 // Mail from the server: the cycle's alerts. SMTP, by default Gmail with an
-// app password (Google account → Security → App passwords).
+// app password (Google account → Security → App passwords), on 587 with
+// STARTTLS required: Hetzner blocks outbound 25 and 465 on this server, and a
+// send on 465 only ever timed out.
 import nodemailer from 'nodemailer'
 
 /** Where alerts go when `ALERT_EMAIL_TO` does not say. */
@@ -28,7 +30,7 @@ export function mailConfig(env = process.env) {
   if (!user || !pass) return null
   return {
     host: env.SMTP_HOST || 'smtp.gmail.com',
-    port: Number(env.SMTP_PORT || 465),
+    port: Number(env.SMTP_PORT || 587),
     user,
     pass,
     to: env.ALERT_EMAIL_TO || ALERT_TO,
@@ -48,6 +50,8 @@ export async function sendMail(config, { subject, text }) {
     host: config.host,
     port: config.port,
     secure: config.port === 465,
+    // Never authenticate before the connection is encrypted.
+    requireTLS: config.port !== 465,
     auth: { user: config.user, pass: config.pass },
     connectionTimeout: 20_000,
     greetingTimeout: 20_000,

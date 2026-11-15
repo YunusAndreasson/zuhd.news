@@ -96,12 +96,12 @@ test('mail is off without an account, Gmail and the support address by default',
   assert.equal(mailConfig({ SMTP_USER: 'a@example.com' }), null)
   assert.deepEqual(mailConfig({ SMTP_USER: ' a@example.com ', SMTP_PASS: 'abcd efgh ijkl mnop' }), {
     host: 'smtp.gmail.com',
-    port: 465,
+    port: 587,
     user: 'a@example.com',
     pass: 'abcdefghijklmnop',
     to: 'support@zuhd.news',
     from: 'zuhd.news cycle <a@example.com>',
   })
-  const other = mailConfig({ SMTP_USER: 'u', SMTP_PASS: 'p', SMTP_HOST: 'mail.example.com', SMTP_PORT: '587', ALERT_EMAIL_TO: 'ops@example.com', ALERT_EMAIL_FROM: 'Ops <u@example.com>' })
-  assert.deepEqual([other?.host, other?.port, other?.to, other?.from], ['mail.example.com', 587, 'ops@example.com', 'Ops <u@example.com>'])
+  const other = mailConfig({ SMTP_USER: 'u', SMTP_PASS: 'p', SMTP_HOST: 'mail.example.com', SMTP_PORT: '465', ALERT_EMAIL_TO: 'ops@example.com', ALERT_EMAIL_FROM: 'Ops <u@example.com>' })
+  assert.deepEqual([other?.host, other?.port, other?.to, other?.from], ['mail.example.com', 465, 'ops@example.com', 'Ops <u@example.com>'])
 })
