@@ -40,13 +40,13 @@ const COPY: Record<Recovery, { title: string; detail: string | null; action: str
 };
 
 export class ErrorBoundary extends Component<Props, State> {
-  state: State = { error: null, failedAt: 0, resetAt: null };
+  override state: State = { error: null, failedAt: 0, resetAt: null };
 
   static getDerivedStateFromError(error: Error): Partial<State> {
     return { error, failedAt: Date.now() };
   }
 
-  componentDidCatch(error: Error) {
+  override componentDidCatch(error: Error) {
     if (__DEV__) {
       console.error('[ErrorBoundary]', error);
     }
@@ -66,7 +66,7 @@ export class ErrorBoundary extends Component<Props, State> {
       .catch(this.reset);
   };
 
-  render() {
+  override render() {
     const { error, failedAt, resetAt } = this.state;
     if (!error) return this.props.children;
     const recovery = recoveryFor(resetAt, failedAt);
