@@ -81,6 +81,8 @@ const catalog = {
   stocksCache: { path: 'content/.stocks-cache.json', class: 'cache' },
   // The consecutive count of cycles that published nothing; the run records say the same.
   cycleAlert: { path: 'content/.cycle-alert.json', class: 'cache' },
+  // What scripts/cycle/notify.js last mailed about that, so a failure is mailed once and then about daily.
+  alertMail: { path: 'logs/alert-mail.json', class: 'cache' },
   apiStamps: { path: '.cache/api-stamps.json', class: 'cache' },
   ogCards: { path: '.cache/og', class: 'cache' },
   igCards: { path: '.cache/ig', class: 'cache' },

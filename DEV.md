@@ -67,6 +67,10 @@ What the pipeline reads from its environment. A missing key skips its source wit
 | `GOOGLE_APPLICATION_CREDENTIALS` | the Google TTS client in `generate-briefing.js` | no fallback voice |
 | `PUSH_SECRET` | `lib/cycle-steps.js` | no push notifications |
 | `X_*`, `IG_*` | the two posters | no post |
+| `CLAUDE_CODE_OAUTH_TOKEN` | every `claude` call (the CLI reads it) | the interactive login in `~/.claude/.credentials.json`, which expires |
+| `SMTP_USER`, `SMTP_PASS` (`SMTP_HOST`, `SMTP_PORT`, `ALERT_EMAIL_TO`, `ALERT_EMAIL_FROM`) | `scripts/cycle/notify.js` (`lib/mail.js`) | no alert mail; Gmail on 465 and `support@zuhd.news` by default |
+
+`notify.js` runs after every cycle from systemd, not from the cycle: `ExecStopPost=` in `/etc/systemd/system/zuhd-news-cycle.service.d/notify.conf`. It mails when a cycle fails (after two quiet ones in a row), about daily while the failure lasts, when cycles publish again, and once a day while the CLI warns that its login is ending. `--dry-run` prints what it would send; `--test` sends one mail now.
 
 Knobs for a run by hand. The unit file and `.env` set none of them.
 
