@@ -5,7 +5,7 @@ import { ISOLATION_FLAGS, callCost, claudeArgs, claudeFailure, cleanProse, first
 
 // `command: 'node'` stands in for the CLI: the helper's job is the spawn, not
 // the flags, and a real `claude` call would cost money on every test run.
-const sleeper = (ms, out) => ['-e', `setTimeout(() => process.stdout.write(${JSON.stringify(out)}), ${ms})`]
+const sleeper = (ms, out) => ['-e', 'setTimeout(() => process.stdout.write(process.argv[1]), Number(process.argv[2]))', out, String(ms)]
 
 test('spawnClaude returns spawnSync-shaped output', async () => {
   const r = await spawnClaude(sleeper(0, '{"ok":1}'), { command: 'node' })

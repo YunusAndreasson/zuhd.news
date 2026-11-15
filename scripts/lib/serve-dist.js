@@ -53,18 +53,22 @@ const MIME = {
  * @returns {Promise<{ server: import('node:http').Server, base: string, close: () => void }>}
  */
 export async function serveDist(opts = {}) {
-  const dist = opts.dist ?? join(ROOT, 'dist')
+  const root = resolve(opts.dist ?? join(ROOT, 'dist'))
   const server = createServer(async (req, res) => {
     try {
       let path = decodeURIComponent((req.url ?? '/').split('?')[0])
       if (path.endsWith('/')) path += 'index.html'
-      let file = join(resolve(dist), path)
-      if (!file.startsWith(resolve(dist) + sep)) {
+      // Both files a request can reach are resolved and held inside `root`
+      // before either touches the disk: `${asked}.html` is a second path, and
+      // a check on the first does not cover it.
+      const asked = resolve(root, `.${path}`)
+      const page = resolve(`${asked}.html`)
+      if (!asked.startsWith(root + sep) || !page.startsWith(root + sep)) {
         res.writeHead(403)
         res.end()
         return
       }
-      if (!existsSync(file) && existsSync(`${file}.html`)) file += '.html'
+      const file = !existsSync(asked) && existsSync(page) ? page : asked
       const raw = await readFile(file)
       const body =
         opts.transformHtml && extname(file) === '.html'

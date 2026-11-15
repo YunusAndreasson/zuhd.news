@@ -233,8 +233,8 @@ test('a period label cannot write markup into the page', () => {
     label: '</svg><img onerror=alert(1)>',
   })
   const html = renderMarkup(staticFigure(model, { caption: '<b>no</b>' }))
-  assert.doesNotMatch(html, /<script>/)
-  assert.doesNotMatch(html, /<img/)
+  assert.doesNotMatch(html, /<script/i)
+  assert.doesNotMatch(html, /<img/i)
   assert.doesNotMatch(html, /<b>no<\/b>/)
   assert.match(html, /&lt;script&gt;/)
 })
