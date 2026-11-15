@@ -1,7 +1,7 @@
 name: Checks
 
-# The web surface had no CI at all until 2026-08-01 — release.yml is
-# workflow_dispatch-only and runs entirely inside mobile/. Nothing checked
+# The web surface had no CI at all until 2026-08-01 — the old release.yml (removed
+# 2026-11-15; releases are `npm run release` in mobile/) only ran there. Nothing checked
 # scripts/, public/, shared/, functions/ or workers/ on push or PR, ever.
 #
 # paths-ignore is load-bearing, not tidiness. The editorial pipeline commits to
