@@ -61,9 +61,12 @@ const ENTITIES: Record<string, string> = {
 export function sentencesFromHtml(html: string): string[] {
   const out: string[] = [];
   for (const chunk of html.split(/<\/p>/i)) {
-    const text = chunk
-      .replace(/<span class="article-dateline">[\s\S]*?<\/span>/i, '')
-      .replace(/<[^>]+>/g, '')
+    let stripped = chunk.replace(/<span class="article-dateline">[\s\S]*?<\/span>/i, '');
+    for (let prev = ''; prev !== stripped; ) {
+      prev = stripped;
+      stripped = stripped.replace(/<[^>]+>/g, '');
+    }
+    const text = stripped
       .replace(/&(amp|lt|gt|quot|#39|nbsp);/g, (m) => ENTITIES[m] ?? m)
       .replace(/\s+/g, ' ')
       .trim();
