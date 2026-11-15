@@ -55,14 +55,17 @@ jobs:
 
       - name: Commit version bump
         working-directory: .
+        # The version reaches the shell as a variable, never as text spliced into the script.
+        env:
+          VERSION: ${{ steps.version.outputs.version }}
         run: |
           git config --local user.email "action@github.com"
           git config --local user.name "GitHub Action"
           git add mobile/package.json mobile/app.json
-          git commit -m "chore: bump version to ${{ steps.version.outputs.version }}"
-          git tag "v${{ steps.version.outputs.version }}"
+          git commit -m "chore: bump version to $VERSION"
+          git tag "v$VERSION"
           git push origin HEAD
-          git push origin "v${{ steps.version.outputs.version }}"
+          git push origin "v$VERSION"
 
       - name: Setup EAS
         uses: expo/expo-github-action@c7b66a9c327a43a8fa7c0158e7f30d6040d2481e # v8
@@ -95,9 +98,10 @@ jobs:
       - name: Create GitHub Release
         if: success()
         run: |
-          gh release create "v${{ steps.version.outputs.version }}" \
-            --title "v${{ steps.version.outputs.version }}" \
+          gh release create "v$VERSION" \
+            --title "v$VERSION" \
             --generate-notes \
             --latest
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          VERSION: ${{ steps.version.outputs.version }}
