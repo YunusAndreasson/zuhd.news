@@ -1,6 +1,6 @@
 import { readFileSync } from 'node:fs';
 import { join } from 'node:path';
-import { loadSync } from 'opentype.js';
+import { parse } from 'opentype.js';
 import { ICONS } from '../components/primitives/icons';
 
 describe('the icons', () => {
@@ -12,7 +12,7 @@ describe('the icons', () => {
       (p: unknown) => Array.isArray(p) && p[0] === 'expo-font',
     );
     const path = options.android.fonts.find((f: string) => f.includes('MaterialSymbols'));
-    const font = loadSync(join(__dirname, '..', path));
+    const font = parse(readFileSync(join(__dirname, '..', path)));
     for (const [name, icon] of Object.entries(ICONS)) {
       expect([name, font.charToGlyph(String.fromCharCode(icon.glyph)).name]).toEqual([
         name,
