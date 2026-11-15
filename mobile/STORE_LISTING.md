@@ -123,7 +123,8 @@ Keep these in sync with `mobile/components/MenuSheet.tsx` → INFO_PAGES.privacy
 - Location → Approximate location: collected for **Analytics** (Mixpanel's
   IP geolocation). Not shared. Required.
 - App info and performance → Crash logs and Diagnostics: collected for
-  **Analytics** (Sentry). Not shared. Required.
+  **App functionality** (Sentry: finding and fixing faults). Not shared.
+  Required.
 - Everything else: not collected.
 
 ## Keywords (App Store, 100 chars)
