@@ -261,6 +261,25 @@ test('no two instruments ship the same explanation', () => {
     'fomc-2026-09 ~ fomc-2026-12',
     'fomc-2026-10 ~ fomc-2026-12',
   ])
-  const fresh = dupes.filter((d) => !KNOWN.has(d.replace(/ \(\d+%\)$/, '')))
+  // A company card and its own listed stock are one entity seen twice (co:spacex
+  // and stocks:SPCX, 2026-11-13): the same week's news is the right text for both.
+  // Only that pairing is exempt; two different instruments still may not share one.
+  const companies = (() => {
+    try {
+      const c = JSON.parse(readFileSync('content/.companies.json', 'utf8'))
+      const list = Array.isArray(c) ? c : Array.isArray(c.companies) ? c.companies : Object.values(c)
+      return new Set(list.filter((x) => x?.id && x?.symbol).map((x) => `co:${x.id} ~ stocks:${x.symbol}`))
+    } catch {
+      return new Set()
+    }
+  })()
+  const sameEntity = (pair) => {
+    const [a, b] = pair.split(' ~ ')
+    return companies.has(`${a} ~ ${b}`) || companies.has(`${b} ~ ${a}`)
+  }
+  const fresh = dupes
+    .map((d) => d.replace(/ \(\d+%\)$/, ''))
+    .filter((d) => !KNOWN.has(d) && !sameEntity(d))
+    .map((d) => dupes.find((x) => x.startsWith(d)))
   assert.deepEqual(fresh, [], `\ncards saying one thing:\n${fresh.join('\n')}\n`)
 })
