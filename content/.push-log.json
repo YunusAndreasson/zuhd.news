@@ -1,77 +1,5 @@
 [
   {
-    "timestamp": "2026-10-26T10:16:54.504Z",
-    "candidateCount": 7,
-    "candidates": [
-      {
-        "slug": "2026-10-26-germany-ifo-expectations-sixth-rise-ecb-hold",
-        "title": "German Business Outlook Brightens",
-        "category": "economy",
-        "eventCoverage": 3740,
-        "importance": 6
-      },
-      {
-        "slug": "2026-10-26-rahul-gandhi-acquitted-defamation-amit-shah-sultanpur",
-        "title": "Rahul Gandhi Cleared",
-        "category": "politics",
-        "eventCoverage": 170,
-        "importance": 6
-      },
-      {
-        "slug": "2026-10-26-zamir-warned-us-iran-strike-israel-election-netanyahu",
-        "title": "Army Chief Resists Iran Strike",
-        "category": "politics",
-        "eventCoverage": 78,
-        "importance": 6
-      },
-      {
-        "slug": "2026-10-26-japan-indicts-us-marine-okinawa-murder-futenma",
-        "title": "Marine Charged Over Okinawa Killing",
-        "category": "politics",
-        "eventCoverage": 45,
-        "importance": 6
-      },
-      {
-        "slug": "2026-10-26-fed-expected-hold-rates-before-midterms-warsh",
-        "title": "Fed Expected to Hold",
-        "category": "economy",
-        "eventCoverage": 0,
-        "importance": 6
-      },
-      {
-        "slug": "2026-10-26-jamaat-islami-march-islamabad-petroleum-levy",
-        "title": "Jamaat-i-Islami Threatens Islamabad March",
-        "category": "economy",
-        "eventCoverage": 0,
-        "importance": 6
-      },
-      {
-        "slug": "2026-10-26-unitree-h2-x-humanoid-loses-leg-hangzhou-demo",
-        "title": "Unitree Robot Loses Leg",
-        "category": "tech",
-        "eventCoverage": 0,
-        "importance": 6
-      }
-    ],
-    "selected": {
-      "slug": "2026-10-26-zamir-warned-us-iran-strike-israel-election-netanyahu",
-      "title": "Army Chief Resists Iran Strike",
-      "category": "politics",
-      "body": "[Israel](country:IL)'s army chief reportedly warned Washington off striking",
-      "eventCoverage": 78,
-      "importance": 6
-    },
-    "skipReason": null,
-    "sent": true,
-    "pushTitle": "Breaking News",
-    "pushBody": "Israel army chief warns US against striking Iran before election, report says",
-    "response": {
-      "pushed": 1,
-      "skipped": 0,
-      "tokens": 6
-    }
-  },
-  {
     "timestamp": "2026-10-26T14:13:15.310Z",
     "candidateCount": 13,
     "candidates": [
@@ -10266,6 +10194,134 @@
     "sent": true,
     "pushTitle": "Breaking News",
     "pushBody": "Iran cuts Hormuz reopening plan from 7 days to 2",
+    "response": {
+      "pushed": 1,
+      "skipped": 0,
+      "tokens": 5
+    }
+  },
+  {
+    "timestamp": "2026-11-16T22:15:10.435Z",
+    "candidateCount": 15,
+    "candidates": [
+      {
+        "slug": "2026-11-16-us-bank-outages-chase-software-bug-third-in-week",
+        "title": "Chase Outage Hits Banks",
+        "category": "tech",
+        "eventCoverage": 514,
+        "importance": 6
+      },
+      {
+        "slug": "2026-11-16-pope-leo-peru-indigenous-defenders-amazon-murders",
+        "title": "Pope Demands Amazon Justice",
+        "category": "politics",
+        "eventCoverage": 474,
+        "importance": 6
+      },
+      {
+        "slug": "2026-11-16-faa-50-billion-emergency-funding-thune-skeptical",
+        "title": "Thune Questions FAA Funding",
+        "category": "politics",
+        "eventCoverage": 368,
+        "importance": 6
+      },
+      {
+        "slug": "2026-11-16-cargo-ship-capsizes-bulgaria-black-sea-crew-rescued",
+        "title": "Wheat Ship Capsizes Off Bulgaria",
+        "category": "politics",
+        "eventCoverage": 162,
+        "importance": 6
+      },
+      {
+        "slug": "2026-11-16-california-sues-openai-deception-hugging-face-incidents",
+        "title": "California Sues OpenAI",
+        "category": "tech",
+        "eventCoverage": 0,
+        "importance": 6
+      },
+      {
+        "slug": "2026-11-16-roj-camp-somali-women-children-damascus-basement",
+        "title": "Roj Camp Families Detained",
+        "category": "politics",
+        "eventCoverage": 0,
+        "importance": 6
+      },
+      {
+        "slug": "2026-11-16-us-army-concrete-bunkers-israel-saudi-lebanon",
+        "title": "Army Seeks Concrete Bunkers",
+        "category": "politics",
+        "eventCoverage": 0,
+        "importance": 6
+      },
+      {
+        "slug": "2026-11-16-pakistan-sbp-inflation-target-fy2027-growth",
+        "title": "Pakistan Forecasts Easing Inflation",
+        "category": "economy",
+        "eventCoverage": 0,
+        "importance": 6
+      },
+      {
+        "slug": "2026-11-16-south-africa-sugar-tax-16000-job-losses-unverified",
+        "title": "Sugar Tax Job Claim Unverified",
+        "category": "economy",
+        "eventCoverage": 0,
+        "importance": 6
+      },
+      {
+        "slug": "2026-11-16-johannesburg-rea-vaya-shutdown-averted-municipal-debt",
+        "title": "Rea Vaya Shutdown Averted",
+        "category": "economy",
+        "eventCoverage": 0,
+        "importance": 6
+      },
+      {
+        "slug": "2026-11-16-vampire-bat-genomes-blood-diet-adaptations",
+        "title": "Vampire Bat Genomes Decoded",
+        "category": "science",
+        "eventCoverage": 0,
+        "importance": 6
+      },
+      {
+        "slug": "2026-11-16-colored-passive-radiative-cooling-coating-hong-kong",
+        "title": "Coloured Coating Cools Passively",
+        "category": "science",
+        "eventCoverage": 0,
+        "importance": 6
+      },
+      {
+        "slug": "2026-11-16-eigencomm-cat1bis-chip-price-halved-china-iot",
+        "title": "Eigencomm Chip Prices Halve",
+        "category": "tech",
+        "eventCoverage": 0,
+        "importance": 6
+      },
+      {
+        "slug": "2026-11-16-germany-2027-budget-open-source-underfunded",
+        "title": "Germany Underfunds Open Source",
+        "category": "tech",
+        "eventCoverage": 0,
+        "importance": 6
+      },
+      {
+        "slug": "2026-11-16-uk-mod-starshield-dependence-satcom-skynet",
+        "title": "UK Defends Starshield Use",
+        "category": "tech",
+        "eventCoverage": 0,
+        "importance": 6
+      }
+    ],
+    "selected": {
+      "slug": "2026-11-16-cargo-ship-capsizes-bulgaria-black-sea-crew-rescued",
+      "title": "Wheat Ship Capsizes Off Bulgaria",
+      "category": "politics",
+      "body": "All 12 crew survived a reported sea-drone strike off",
+      "eventCoverage": 162,
+      "importance": 6
+    },
+    "skipReason": null,
+    "sent": true,
+    "pushTitle": "Breaking News",
+    "pushBody": "Wheat ship capsizes off Bulgaria after reported sea-drone strike, crew survive",
     "response": {
       "pushed": 1,
       "skipped": 0,
