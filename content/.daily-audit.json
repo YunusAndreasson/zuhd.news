@@ -1,37 +1,36 @@
 {
-  "date": "2026-11-15",
+  "date": "2026-11-16",
   "metrics": {
-    "articles": { "value": 27, "detail": "2 of 5 cycles completed, avg 4 published per cycle run (3 yesterday, 0 of 5 completed)" },
-    "freshness": { "median": 0.3, "p90": 0.7, "max": 0.7, "target": 1.0, "met": true },
-    "categories": { "politics": 12, "economy": 6, "science": 3, "tech": 6 },
-    "multiSource": { "pct": 30, "target": 30, "met": true },
-    "usDatelines": { "pct": 15, "target": 25, "met": true },
-    "latAmDatelines": { "pct": 0, "target": 5, "met": false },
+    "articles": { "value": 62, "detail": "5 of 5 cycles completed, avg 12 published per cycle (27 yesterday, 2 of 5 completed)" },
+    "freshness": { "median": 0.1, "p90": 0.4, "max": 1.4, "target": 1.0, "met": true },
+    "categories": { "politics": 23, "economy": 17, "science": 5, "tech": 17 },
+    "multiSource": { "pct": 35, "target": 30, "met": true },
+    "usDatelines": { "pct": 23, "target": 25, "met": true },
+    "latAmDatelines": { "pct": 8, "target": 5, "met": true },
     "sameEventDuplicates": { "value": 0, "target": 0, "met": true },
     "missingDatelines": { "value": 0, "target": 0, "met": true },
-    "stateOrAdvocacyOnly": 1,
-    "imageUrlPct": 100,
-    "regions": { "count": 6, "target": 4, "met": true, "breakdown": { "AS": 10, "ME": 8, "AM": 4, "AF": 2, "EU": 2, "OC": 0, "GL": 1 } },
-    "sciTech": { "ratio": 33, "target": 25, "met": true },
-    "topSourceShare": { "source": "Al Jazeera Online", "pct": 19, "target": 20, "met": true },
-    "uniqueSources": 29,
+    "stateOrAdvocacyOnly": 2,
+    "imageUrlPct": 98,
+    "regions": { "count": 6, "target": 4, "met": true, "breakdown": { "AM": 19, "ME": 14, "EU": 13, "AS": 9, "AF": 6, "OC": 1 } },
+    "sciTech": { "ratio": 35, "target": 25, "met": true },
+    "topSourceShare": { "source": "Al Jazeera Online", "pct": 13, "target": 20, "met": true },
+    "uniqueSources": 66,
     "duplicates": 0,
-    "avgCycleDuration": 320
+    "avgCycleDuration": 1129
   },
-  "experiment": "Skipped. No experiment is active, none is queued and there is no pause gate. The 2026-11-13 rule (propose a minArticlesInEvent change if 11-14 also missed multi-source) cannot fire: 11-14 had no completed cycles, and today's two cycles met 30%. Two days of outage-shaped data are not a baseline for any parameter change; re-assess once five full cycles run.",
-  "weakestArea": "Throughput, not a tunable: 0 of 5 cycles completed on 11-14 and 2 of 5 today (the Claude login expiry), so the day has 27 articles instead of ~60. Inside that small sample, Latin America is at 0% (target 5%) and science at 3 (target 5); with 27 articles a single story moves either by 4 points, so neither is read as a trend.",
+  "experiment": "Skipped: every goal is met, there are no active or queued experiments and there is no pause gate. This is the first full five-cycle day since 11-13, and one good day is not a reason to change a parameter.",
+  "weakestArea": "Science is exactly at its floor (5, target 5), from four outlets (Nature, STAT, BBC, Al Jazeera). The US dateline share (23%, cap 25%) has the least headroom of the share targets. Neither one is a miss.",
   "watching": [
-    "Hormuz and the Red Sea: Trump holds fire on Iran over mines, Houthi missiles hit near Riyadh's airport, and Ocean Network Express weighs a return through Bab el-Mandeb as Yemen's government pulls back.",
-    "Ukraine: a US proposal that Ukraine cede Donbas in exchange for NATO membership.",
-    "Israel: Likud and Yashar talk of a unity government with Eisenkot.",
-    "Trump–Xi and Nvidia: the meeting's silence on the spy case and the corrected Megaspeed timeline.",
-    "Manila ASEAN summit: Lula and Carney hedge against US tariffs.",
-    "SpaceX caught a Starship upper stage returning from orbit for the first time."
+    "Hormuz: three Tehran-datelined stories across cycles (two tankers mined at 04:51, a projectile strike at 08:40, a third mined tanker at 16:40), plus Iran's winter gas shortage.",
+    "Black Sea: drones hit ships off Romania and the Crimean bridge, and a wheat ship capsized off Bulgaria.",
+    "Trump, Xi and Putin meet; Trump backs Huang's return and the US closes an AI chip loophole.",
+    "Starshield: limits that hobble Ukraine's interceptor drones, and the UK defending its own dependence on it.",
+    "Brazil: the Senate passes the fiscal adjustment and the fake-news inquiry closes.",
+    "AI governance: California sues OpenAI, ten countries sign the San Francisco supply-chain pact, and the UN presses for rules on killer robots."
   ],
   "coverageGaps": [
-    "Latin America: no datelines today (8% on 11-13), the only region with a share target that went unmet; Lula appears only via the Manila summit.",
-    "Oceania: no stories for a third recorded day.",
-    "Science: 3 stories from two outlets (Phys.org, Ars Technica), below the 5/day target on a short day."
+    "Oceania: 1 story (the Coles cyber attack) after three days at zero.",
+    "Science: at the floor with 5 stories; Phys.org and Ars Technica, yesterday's science sources, supplied none today."
   ],
-  "context": "Cycles failed on 11-14 and 11-15 because the Claude login expired; the cycle now runs on a setup-token. The two completed cycles averaged 320s, far below the usual ~1100s, because they published little. Al Jazeera's 19% top-source share is a small-sample effect (5 of 27). Tomorrow's audit should be the first full day since 11-13 and can resume the multi-source watch."
+  "context": "Throughput is back to 62 articles from 5 of 5 cycles now that the cycle runs on a setup-token after the login expiry of 11-14/15. The 2026-11-13 multi-source watch ended at 35%, met without a change. The three Hormuz stories are separate incidents rather than duplicates (sameEventDuplicates 0), but a rolling single-thread story could serve readers better than one item per incident. Both state-or-advocacy-only stories (the Hormuz projectile from Mehr, the San Francisco AI pact) are labelled in the body."
 }
