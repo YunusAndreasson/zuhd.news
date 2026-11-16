@@ -1,70 +1,5 @@
 [
   {
-    "timestamp": "2026-10-25T22:08:12.150Z",
-    "candidateCount": 6,
-    "candidates": [
-      {
-        "slug": "2026-10-25-centcom-hormuz-escort-1-5-billion-barrels-mines",
-        "title": "CENTCOM Claims Hormuz Cleared",
-        "category": "economy",
-        "eventCoverage": 268,
-        "importance": 6
-      },
-      {
-        "slug": "2026-10-25-serbia-students-list-wins-snap-election-vucic",
-        "title": "Serbia's Students Win Election",
-        "category": "politics",
-        "eventCoverage": 268,
-        "importance": 6
-      },
-      {
-        "slug": "2026-10-25-kp-governor-confirms-afridi-speaker-house-arrest",
-        "title": "Kundi Confirms Afridi Detention",
-        "category": "politics",
-        "eventCoverage": 268,
-        "importance": 6
-      },
-      {
-        "slug": "2026-10-25-iran-russia-gas-swap-deal-final-stages",
-        "title": "Iran Nears Russian Gas Deal",
-        "category": "economy",
-        "eventCoverage": 268,
-        "importance": 6
-      },
-      {
-        "slug": "2026-10-25-liv-golf-successor-saudi-pif-private-equity",
-        "title": "LIV 2.0 Draws 15 Golfers",
-        "category": "economy",
-        "eventCoverage": 67,
-        "importance": 6
-      },
-      {
-        "slug": "2026-10-25-nigeria-ebola-ncdc-traveller-health-declaration",
-        "title": "Nigeria Widens Ebola Screening",
-        "category": "politics",
-        "eventCoverage": 64,
-        "importance": 6
-      }
-    ],
-    "selected": {
-      "slug": "2026-10-25-serbia-students-list-wins-snap-election-vucic",
-      "title": "Serbia's Students Win Election",
-      "category": "politics",
-      "body": "[Serbia](country:RS)'s Vucic says he lost, Russian state news agency TASS",
-      "eventCoverage": 268,
-      "importance": 6
-    },
-    "skipReason": null,
-    "sent": true,
-    "pushTitle": "Breaking News",
-    "pushBody": "Serbia's Vucic concedes defeat to student-led list, TASS reports",
-    "response": {
-      "pushed": 1,
-      "skipped": 0,
-      "tokens": 6
-    }
-  },
-  {
     "timestamp": "2026-10-26T05:11:25.347Z",
     "candidateCount": 9,
     "candidates": [
@@ -10182,6 +10117,120 @@
     "sent": true,
     "pushTitle": "Breaking News",
     "pushBody": "Trump, Xi, Putin to meet in Shenzhen on Nov 19 without Ukraine, Europe",
+    "response": {
+      "pushed": 1,
+      "skipped": 0,
+      "tokens": 5
+    }
+  },
+  {
+    "timestamp": "2026-11-16T14:12:38.682Z",
+    "candidateCount": 13,
+    "candidates": [
+      {
+        "slug": "2026-11-16-eu-clears-unicredit-commerzbank-takeover",
+        "title": "EU Clears UniCredit Takeover",
+        "category": "economy",
+        "eventCoverage": 142,
+        "importance": 6
+      },
+      {
+        "slug": "2026-11-16-us-rule-closes-remote-ai-chip-loophole-china",
+        "title": "US Closes AI Chip Loophole",
+        "category": "economy",
+        "eventCoverage": 76,
+        "importance": 6
+      },
+      {
+        "slug": "2026-11-16-who-antimicrobial-resistance-39-million-deaths",
+        "title": "WHO Warns of Resistance Deaths",
+        "category": "science",
+        "eventCoverage": 60,
+        "importance": 6
+      },
+      {
+        "slug": "2026-11-16-south-africa-two-mass-shootings-17-killed",
+        "title": "South Africa Shootings Kill 17",
+        "category": "politics",
+        "eventCoverage": 55,
+        "importance": 6
+      },
+      {
+        "slug": "2026-11-16-eu-sanctions-wildberries-founder-145-listings",
+        "title": "EU Sanctions Wildberries Founder",
+        "category": "politics",
+        "eventCoverage": 52,
+        "importance": 6
+      },
+      {
+        "slug": "2026-11-16-brazil-supreme-court-fake-news-inquiry-ends",
+        "title": "Brazil Closes Fake News Inquiry",
+        "category": "politics",
+        "eventCoverage": 0,
+        "importance": 6
+      },
+      {
+        "slug": "2026-11-16-bitcoin-november-slide-binance-okx-feud",
+        "title": "Bitcoin Slide Splits Exchange Founders",
+        "category": "economy",
+        "eventCoverage": 0,
+        "importance": 6
+      },
+      {
+        "slug": "2026-11-16-china-drug-reimbursement-list-car-t-commercial-insurance",
+        "title": "China Covers First CAR-T",
+        "category": "economy",
+        "eventCoverage": 0,
+        "importance": 6
+      },
+      {
+        "slug": "2026-11-16-brazil-senate-fiscal-adjustment-vote",
+        "title": "Brazil Senate Passes Fiscal Adjustment",
+        "category": "economy",
+        "eventCoverage": 0,
+        "importance": 6
+      },
+      {
+        "slug": "2026-11-16-helus-psychedelic-depression-phase-3-safety",
+        "title": "Psychedelic Beats Placebo, Raises Safety Questions",
+        "category": "science",
+        "eventCoverage": 0,
+        "importance": 6
+      },
+      {
+        "slug": "2026-11-16-ghana-minohealth-ai-bioweapons-dna-synthesis",
+        "title": "Ghana Lab Warns on Bioweapons",
+        "category": "tech",
+        "eventCoverage": 0,
+        "importance": 6
+      },
+      {
+        "slug": "2026-11-16-mirendil-billion-raise-agents-pretrained-model",
+        "title": "Mirendil Raises $1 Billion",
+        "category": "tech",
+        "eventCoverage": 0,
+        "importance": 6
+      },
+      {
+        "slug": "2026-11-16-un-geneva-talks-autonomous-weapons-guterres",
+        "title": "UN Presses Killer Robot Rules",
+        "category": "tech",
+        "eventCoverage": 0,
+        "importance": 6
+      }
+    ],
+    "selected": {
+      "slug": "2026-11-16-eu-clears-unicredit-commerzbank-takeover",
+      "title": "EU Clears UniCredit Takeover",
+      "category": "economy",
+      "body": "UniCredit's €45 billion bid for Commerzbank won unconditional EU",
+      "eventCoverage": 142,
+      "importance": 6
+    },
+    "skipReason": null,
+    "sent": true,
+    "pushTitle": "Breaking News",
+    "pushBody": "EU clears UniCredit takeover of Commerzbank in €45 billion deal",
     "response": {
       "pushed": 1,
       "skipped": 0,
