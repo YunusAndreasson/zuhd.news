@@ -2,13 +2,238 @@
   "version": 1,
   "stories": [
     {
+      "id": "us-bank-outages-chase-software-bug-third-in-week",
+      "label": "Major US Banks Face Widespread Service Outages: Report",
+      "firstSeen": "2026-11-16T22:06:27.214Z",
+      "lastCovered": "2026-11-16T22:06:27.214Z",
+      "coverageCount": 1,
+      "category": "tech",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-11-16-us-bank-outages-chase-software-bug-third-in-week"
+      ],
+      "eventUri": "eng-12194040",
+      "summary": "Chase, Bank of America, Wells Fargo and U.S. Bancorp customers lost access to accounts on Monday; JPMorgan blames a software bug, not a cyberattack. It is the third major US outage in under a week, after Microsoft Outlook (a cloud-gateway defect dormant since July, per Microsoft's preliminary post-incident report) and the FAA's nationwide ground stop (a router that flooded its network). Lead with the pattern: three critical systems felled by ordinary software faults, not attackers, and what that says about concentration and redundancy. Do not recap the FAA story beyond one line; it has its own entry."
+    },
+    {
+      "id": "faa-50-billion-emergency-funding-thune-skeptical",
+      "label": "Senate GOP Leader Tempers Duffy's $50 Billion Air Traffic Push",
+      "firstSeen": "2026-11-16T22:06:27.214Z",
+      "lastCovered": "2026-11-16T22:06:27.214Z",
+      "coverageCount": 1,
+      "category": "politics",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-11-16-faa-50-billion-emergency-funding-thune-skeptical"
+      ],
+      "eventUri": "eng-12189273",
+      "summary": "New on the FAA outage arc (covered 11-15): the Trump administration now asks Congress for $50 billion in emergency air-traffic funding, and Senate Majority Leader John Thune, a Republican, says lawmakers need to know why more money is needed. Lead with the request and the pushback from the president's own party; Al Jazeera puts airline losses from the ground stop in the hundreds of millions. Say what the money would buy and where earlier modernisation funding went. Do not recap the blame exchange."
+    },
+    {
+      "id": "pope-leo-peru-indigenous-defenders-amazon-murders",
+      "label": "Peru's Amazon people look to pope as environmental protector",
+      "firstSeen": "2026-11-16T22:06:27.214Z",
+      "lastCovered": "2026-11-16T22:06:27.214Z",
+      "coverageCount": 1,
+      "category": "politics",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-11-16-pope-leo-peru-indigenous-defenders-amazon-murders"
+      ],
+      "eventUri": "eng-12190375",
+      "summary": "Ending a 12-day South American tour, Pope Leo XIV condemned the murders of Peru's Indigenous leaders and the deforestation of the Amazon. Lead with the defenders, not the pontiff: how many Indigenous land defenders have been killed in Peru, by whom (illegal loggers, gold miners, drug traffickers), and how rarely anyone is convicted. The pope's words matter because the state has not protected them. Datelined Peru."
+    },
+    {
+      "id": "california-sues-openai-deception-hugging-face-incidents",
+      "label": "California sues OpenAI for Hugging Face and other incidents, alleging deception and recklessness",
+      "firstSeen": "2026-11-16T22:06:27.214Z",
+      "lastCovered": "2026-11-16T22:06:27.214Z",
+      "coverageCount": 1,
+      "category": "tech",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-11-16-california-sues-openai-deception-hugging-face-incidents"
+      ],
+      "eventUri": null,
+      "summary": "California's attorney general has sued OpenAI, alleging deception and recklessness over the Hugging Face incident and others, and says the company obstructed the state's investigation by refusing to disclose the full set of incidents it knew about. Lead with the obstruction claim: a regulator says the leading AI lab hid what went wrong. Explain what the incidents were, what law the state sues under, and what remedy it seeks. Datelined Sacramento."
+    },
+    {
+      "id": "roj-camp-somali-women-children-damascus-basement",
+      "label": "Somali Women and Children From Roj Camp Held in Damascus",
+      "firstSeen": "2026-11-16T22:06:27.214Z",
+      "lastCovered": "2026-11-16T22:06:27.214Z",
+      "coverageCount": 1,
+      "category": "politics",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-11-16-roj-camp-somali-women-children-damascus-basement"
+      ],
+      "eventUri": null,
+      "summary": "Thirty-three Somali women and children were moved out of northeast Syria's Roj detention camp and are being held in a basement cell in Damascus in poor conditions, facing possible deportation to Somalia. Lead with the number and the cell. The structural point: families held for years without charge since the fall of ISIS are now shuffled between authorities with no court, no lawyer and no say in where they are sent. Say who moved them and what awaits them in Somalia. Datelined Damascus."
+    },
+    {
+      "id": "us-army-concrete-bunkers-israel-saudi-lebanon",
+      "label": "U.S. Army Now Wants Concrete Bunkers For Troops In Israel, Saudi Arabia And Lebanon",
+      "firstSeen": "2026-11-16T22:06:27.214Z",
+      "lastCovered": "2026-11-16T22:06:27.214Z",
+      "coverageCount": 1,
+      "category": "politics",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-11-16-us-army-concrete-bunkers-israel-saudi-lebanon"
+      ],
+      "eventUri": null,
+      "summary": "The US Army wants to replace the modified shipping containers housing its troops in Israel, Saudi Arabia and Lebanon with concrete bunkers. Lead with what the purchase reveals: Washington is planning for its regional bases to stay under missile and drone fire, after Houthi missiles near Riyadh and the Iran war. Name the sites, the threat the hardening answers, and note the presence of US troops in Lebanon, which few readers know of. Datelined in the region, not Washington."
+    },
+    {
+      "id": "cargo-ship-capsizes-bulgaria-black-sea-crew-rescued",
+      "label": "Cargo ship capsizes off Bulgaria's Black Sea coast",
+      "firstSeen": "2026-11-16T22:06:27.214Z",
+      "lastCovered": "2026-11-16T22:06:27.214Z",
+      "coverageCount": 1,
+      "category": "politics",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-11-16-cargo-ship-capsizes-bulgaria-black-sea-crew-rescued"
+      ],
+      "eventUri": "tur-1391144",
+      "summary": "A cargo ship capsized off Bulgaria's Black Sea coast; all 12 crew, eight Turkish and four Azerbaijani nationals, were rescued. Lead with the rescue, then the context that makes it news: what the ship carried and where it was bound (the source mentions wheat, Egypt and Somalia), and whether weather or the Black Sea's drone war played a part, days after sea drones struck three ships near Romania's Sulina. Do not speculate on cause beyond what Bulgaria's Transport Ministry says. Datelined Varna."
+    },
+    {
+      "id": "pakistan-sbp-inflation-target-fy2027-growth",
+      "label": "SBP says inflation to ease to 5-7pc target range during FY2027",
+      "firstSeen": "2026-11-16T22:06:27.214Z",
+      "lastCovered": "2026-11-16T22:06:27.214Z",
+      "coverageCount": 1,
+      "category": "economy",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-11-16-pakistan-sbp-inflation-target-fy2027-growth"
+      ],
+      "eventUri": "eng-12192834",
+      "summary": "The State Bank of Pakistan's annual report forecasts inflation easing to its 5-7% target during FY2027 and real GDP growth of 3.5-4.5%. Lead with what the forecast assumes: oil prices and the Iran war's effect on Pakistan's import bill and current account, and the risks the bank itself names. Say who bears the cost if it is wrong: wage earners after years of double-digit inflation. Datelined Karachi."
+    },
+    {
+      "id": "south-africa-sugar-tax-16000-job-losses-unverified",
+      "label": "Treasury says industry claims of 16,000-plus job losses from sugar tax unverified",
+      "firstSeen": "2026-11-16T22:06:27.214Z",
+      "lastCovered": "2026-11-16T22:06:27.214Z",
+      "coverageCount": 1,
+      "category": "economy",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-11-16-south-africa-sugar-tax-16000-job-losses-unverified"
+      ],
+      "eventUri": null,
+      "summary": "South Africa's National Treasury says the sugar industry's claim that the Health Promotion Levy cost more than 16,000 jobs has never been checked against employment records, and other research reaches different conclusions. Lead with the unverified number and how an industry lobby used it against a public-health tax. Explain where the figure came from (a Nedlac-commissioned assessment), what the levy charges, and what the independent evidence shows. Datelined Johannesburg or Pretoria."
+    },
+    {
+      "id": "johannesburg-rea-vaya-shutdown-averted-municipal-debt",
+      "label": "Another Rea Vaya suspension averted after City of Joburg finds cash to pay supplier",
+      "firstSeen": "2026-11-16T22:06:27.214Z",
+      "lastCovered": "2026-11-16T22:06:27.214Z",
+      "coverageCount": 1,
+      "category": "economy",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-11-16-johannesburg-rea-vaya-shutdown-averted-municipal-debt"
+      ],
+      "eventUri": null,
+      "summary": "Johannesburg narrowly avoided another shutdown of Rea Vaya, its bus rapid transit system, by finding cash to pay bus operators at the last minute. Lead with the people who ride it: the commuters who would be stranded. Then the mechanism: billions of rands of infrastructure that sits unused, fares that do not cover costs, and a city whose debts leave it paying suppliers crisis by crisis. Datelined Johannesburg."
+    },
+    {
+      "id": "vampire-bat-genomes-blood-diet-adaptations",
+      "label": "Secrets of the vampires: genomes reveal how these bats live off blood alone",
+      "firstSeen": "2026-11-16T22:06:27.214Z",
+      "lastCovered": "2026-11-16T22:06:27.214Z",
+      "coverageCount": 1,
+      "category": "science",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-11-16-vampire-bat-genomes-blood-diet-adaptations"
+      ],
+      "eventUri": null,
+      "summary": "A genome and organ analysis of vampire bats shows how they survive on blood alone; a feeding bat drinks about half its body weight. Lead with that number, then the adaptations the genomes reveal: how they handle a diet with almost no fat or carbohydrate and a heavy load of iron and protein. Flag that it is a bioRxiv preprint, not yet peer-reviewed."
+    },
+    {
+      "id": "colored-passive-radiative-cooling-coating-hong-kong",
+      "label": "Passive cooling with vibrant colors - Light: Science & Applications",
+      "firstSeen": "2026-11-16T22:06:27.214Z",
+      "lastCovered": "2026-11-16T22:06:27.214Z",
+      "coverageCount": 1,
+      "category": "science",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-11-16-colored-passive-radiative-cooling-coating-hong-kong"
+      ],
+      "eventUri": null,
+      "summary": "A team led by Dangyuan Lei at City University of Hong Kong has made coatings that cool surfaces below ambient temperature without power while showing vivid colours; until now passive radiative cooling meant bright white or mirror-like surfaces. Lead with how many degrees of cooling the coloured surfaces achieve and how, then why it matters for the hot, crowded cities where air conditioning is unaffordable. Datelined Hong Kong."
+    },
+    {
+      "id": "eigencomm-cat1bis-chip-price-halved-china-iot",
+      "label": "移芯通信：营收稳步增长却盈亏反复，Cat.1bis芯片售价近乎腰斩",
+      "firstSeen": "2026-11-16T22:06:27.214Z",
+      "lastCovered": "2026-11-16T22:06:27.214Z",
+      "coverageCount": 1,
+      "category": "tech",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-11-16-eigencomm-cat1bis-chip-price-halved-china-iot"
+      ],
+      "eventUri": null,
+      "summary": "Eigencomm (移芯通信), a Chinese maker of cellular IoT modem chips, grows revenue but has made a profit only in 2024 in three and a half years, losing 201 million yuan in total, as the price of its Cat.1bis chips nearly halved. Lead with the halved price: China's price war in low-end connectivity chips, and what it does to domestic chipmakers that Beijing counts on for self-sufficiency. Datelined Shanghai."
+    },
+    {
+      "id": "germany-2027-budget-open-source-underfunded",
+      "label": "Bundeshaushalt: Kein Moos für Open Source",
+      "firstSeen": "2026-11-16T22:06:27.214Z",
+      "lastCovered": "2026-11-16T22:06:27.214Z",
+      "coverageCount": 1,
+      "category": "tech",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-11-16-germany-2027-budget-open-source-underfunded"
+      ],
+      "eventUri": null,
+      "summary": "Germany's 2027 draft federal budget leaves the government's coalition-agreement promises on open source underfunded and without a strategy, experts tell netzpolitik.org. Lead with the money: what was promised, what the budget lines actually hold (the Sovereign Tech Agency, ZenDiS, openDesk). The structural point is Europe's talk of digital sovereignty from US cloud vendors against what it is willing to pay for. Datelined Berlin."
+    },
+    {
+      "id": "uk-mod-starshield-dependence-satcom-skynet",
+      "label": "UK MOD Defends Satcom Resilience Amid SpaceX Starshield Concerns",
+      "firstSeen": "2026-11-16T22:06:27.214Z",
+      "lastCovered": "2026-11-16T22:06:27.214Z",
+      "coverageCount": 1,
+      "category": "tech",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-11-16-uk-mod-starshield-dependence-satcom-skynet"
+      ],
+      "eventUri": null,
+      "summary": "New on the Starshield arc: after SpaceX's restrictions on Ukraine's access (covered 11-16), Britain's Ministry of Defence says it uses Starshield but does not depend on any single commercial provider for critical military communications. Lead with the question an ally now has to answer in public: can a private company switch off part of its military's links? Name the UK's alternatives (Skynet) and their state. Do not recap Ukraine beyond one line. Datelined London."
+    },
+    {
       "id": "hormuz-third-tanker-mines-24-hours",
       "label": "3rd non-compliant oil tanker explodes in Hormuz in 24 hours",
       "firstSeen": "2026-11-16T18:05:37.935Z",
       "lastCovered": "2026-11-16T18:05:37.935Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-11-16-hormuz-third-tanker-mines-24-hours"
@@ -23,7 +248,7 @@
       "lastCovered": "2026-11-16T18:05:37.935Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-11-16-iran-winter-natural-gas-shortages-war-damage"
@@ -38,7 +263,7 @@
       "lastCovered": "2026-11-16T18:05:37.935Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-11-16-gold-one-year-low-worst-year-since-2015"
@@ -53,7 +278,7 @@
       "lastCovered": "2026-11-16T18:05:37.935Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-11-16-revolut-italy-judicial-supervision-money-laundering"
@@ -68,7 +293,7 @@
       "lastCovered": "2026-11-16T18:05:37.935Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-11-16-guinea-siguiri-gold-miners-arrests-deportations"
@@ -83,7 +308,7 @@
       "lastCovered": "2026-11-16T18:05:37.935Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-11-16-guatemala-deportations-drought-hunger-chorti"
@@ -98,7 +323,7 @@
       "lastCovered": "2026-11-16T18:05:37.935Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-11-16-etesa-contracts-iverco-carretero-journalist-attack"
@@ -113,7 +338,7 @@
       "lastCovered": "2026-11-16T18:05:37.935Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-11-16-cop31-draft-cover-decision-fossil-fuels"
@@ -128,7 +353,7 @@
       "lastCovered": "2026-11-16T18:05:37.935Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-11-16-araghchi-sharif-eco-islamabad-mediation"
@@ -143,7 +368,7 @@
       "lastCovered": "2026-11-16T18:05:37.935Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-11-16-us-measles-deaths-10-elimination-status"
@@ -158,7 +383,7 @@
       "lastCovered": "2026-11-16T18:05:37.935Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-11-16-turkey-fertility-rate-erdogan-incentives"
@@ -173,7 +398,7 @@
       "lastCovered": "2026-11-16T18:05:37.935Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-11-16-trump-backs-huang-return-nvidia-ceo"
@@ -188,7 +413,7 @@
       "lastCovered": "2026-11-16T18:05:37.935Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-11-16-ai-content-mill-copyright-claim-musician"
@@ -203,7 +428,7 @@
       "lastCovered": "2026-11-16T18:05:37.935Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-11-16-germany-ai-asylum-migration-law-warning"
@@ -218,7 +443,7 @@
       "lastCovered": "2026-11-16T18:05:37.935Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-11-16-dark-energy-survey-final-results-cosmology-tension"
@@ -233,7 +458,7 @@
       "lastCovered": "2026-11-16T14:02:55.482Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-11-16-eu-sanctions-wildberries-founder-145-listings"
@@ -248,7 +473,7 @@
       "lastCovered": "2026-11-16T14:02:55.482Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-11-16-south-africa-two-mass-shootings-17-killed"
@@ -263,7 +488,7 @@
       "lastCovered": "2026-11-16T14:02:55.482Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-11-16-brazil-supreme-court-fake-news-inquiry-ends"
@@ -278,7 +503,7 @@
       "lastCovered": "2026-11-16T14:02:55.482Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-11-16-eu-clears-unicredit-commerzbank-takeover"
@@ -293,7 +518,7 @@
       "lastCovered": "2026-11-16T14:02:55.482Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-11-16-us-rule-closes-remote-ai-chip-loophole-china"
@@ -308,7 +533,7 @@
       "lastCovered": "2026-11-16T14:02:55.482Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-11-16-bitcoin-november-slide-binance-okx-feud"
@@ -323,7 +548,7 @@
       "lastCovered": "2026-11-16T14:02:55.482Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-11-16-china-drug-reimbursement-list-car-t-commercial-insurance"
@@ -338,7 +563,7 @@
       "lastCovered": "2026-11-16T14:02:55.482Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-11-16-brazil-senate-fiscal-adjustment-vote"
@@ -353,7 +578,7 @@
       "lastCovered": "2026-11-16T14:02:55.482Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-11-16-who-antimicrobial-resistance-39-million-deaths"
@@ -368,7 +593,7 @@
       "lastCovered": "2026-11-16T14:02:55.482Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-11-16-helus-psychedelic-depression-phase-3-safety"
@@ -383,7 +608,7 @@
       "lastCovered": "2026-11-16T14:02:55.482Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-11-16-ghana-minohealth-ai-bioweapons-dna-synthesis"
@@ -398,7 +623,7 @@
       "lastCovered": "2026-11-16T14:02:55.482Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-11-16-mirendil-billion-raise-agents-pretrained-model"
@@ -413,7 +638,7 @@
       "lastCovered": "2026-11-16T14:02:55.482Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-11-16-un-geneva-talks-autonomous-weapons-guterres"
@@ -428,7 +653,7 @@
       "lastCovered": "2026-11-16T10:05:33.120Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-11-16-trump-xi-putin-shenzhen-nuclear-summit"
@@ -443,7 +668,7 @@
       "lastCovered": "2026-11-16T10:05:33.120Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-11-16-netanyahu-office-raam-election-day-arrests-coup"
@@ -458,7 +683,7 @@
       "lastCovered": "2026-11-16T10:05:33.120Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-11-16-ukraine-drones-hit-kerch-crimean-bridge-record-barrage"
@@ -473,7 +698,7 @@
       "lastCovered": "2026-11-16T10:05:33.120Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-11-16-mozambique-decree-telecom-shutdown-powers"
@@ -488,7 +713,7 @@
       "lastCovered": "2026-11-16T10:05:33.120Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-11-16-imran-khan-letter-chief-justices-medical-treatment"
@@ -503,7 +728,7 @@
       "lastCovered": "2026-11-16T10:05:33.120Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-11-16-hormuz-tanker-hit-unknown-projectile-ukmto"
@@ -518,7 +743,7 @@
       "lastCovered": "2026-11-16T10:05:33.120Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-11-16-fed-hikes-return-hot-us-inflation-schmid"
@@ -533,7 +758,7 @@
       "lastCovered": "2026-11-16T10:05:33.120Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-11-16-luxor-bitcoin-miners-hijacked-rewards-redirected"
@@ -548,7 +773,7 @@
       "lastCovered": "2026-11-16T10:05:33.120Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-11-16-tencent-hy4-flash-ai-price-cut-95-percent"
@@ -563,7 +788,7 @@
       "lastCovered": "2026-11-16T10:05:33.120Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-11-16-san-francisco-declaration-ai-supply-chain-pact"
@@ -578,7 +803,7 @@
       "lastCovered": "2026-11-16T10:05:33.120Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-11-16-crispr-off-target-edits-single-cell-tool"
@@ -593,7 +818,7 @@
       "lastCovered": "2026-11-16T05:06:46.097Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-11-16-hormuz-two-tankers-hit-mines-southern-route-irgc"
@@ -608,7 +833,7 @@
       "lastCovered": "2026-11-16T05:06:46.097Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-11-16-black-sea-drones-strike-three-ships-sulina-romania"
@@ -623,7 +848,7 @@
       "lastCovered": "2026-11-16T05:06:46.097Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-11-16-eu-boards-shadow-fleet-tanker-midag-false-flag"
@@ -638,7 +863,7 @@
       "lastCovered": "2026-11-16T05:06:46.097Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-11-16-sk-hynix-yongin-fab-1-billion-supplier-fund-hbm"
@@ -653,7 +878,7 @@
       "lastCovered": "2026-11-16T05:06:46.097Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-11-16-hkex-dim-sum-bond-index-offshore-yuan"
@@ -668,7 +893,7 @@
       "lastCovered": "2026-11-16T05:06:46.097Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-11-16-ula-vulcan-failure-40-amazon-leo-satellites-lost"
@@ -683,7 +908,7 @@
       "lastCovered": "2026-11-16T05:06:46.097Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-11-16-starshield-restrictions-ukraine-drone-defence-nizhnekamsk"
@@ -698,7 +923,7 @@
       "lastCovered": "2026-11-16T05:06:46.097Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-11-16-coles-cyber-attack-asx-disclosure-australia"
@@ -713,7 +938,7 @@
       "lastCovered": "2026-11-16T05:06:46.097Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-11-16-blackburn-strong-r-ultrasound-hidden-tongue-movement"
@@ -728,7 +953,7 @@
       "lastCovered": "2026-11-15T22:05:00.866Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-11-15-likud-yashar-unity-government-talks-eisenkot-netanyahu"
@@ -743,7 +968,7 @@
       "lastCovered": "2026-11-15T22:05:00.866Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-11-15-manila-asean-summit-lula-carney-trade-hedge-us-tariffs"
@@ -758,7 +983,7 @@
       "lastCovered": "2026-11-15T22:05:00.866Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-11-15-modi-claims-500-million-out-of-extreme-poverty-maoism-ended"
@@ -773,7 +998,7 @@
       "lastCovered": "2026-11-15T22:05:00.866Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-11-15-houthi-missiles-riyadh-king-khalid-airport-gulf-markets"
@@ -788,7 +1013,7 @@
       "lastCovered": "2026-11-15T22:05:00.866Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-11-15-francophonie-summit-cambodia-rwanda-drc-leadership-fight"
@@ -803,7 +1028,7 @@
       "lastCovered": "2026-11-15T22:05:00.866Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-11-15-cape-verde-presidential-election-neves-joana-rosa"
@@ -818,7 +1043,7 @@
       "lastCovered": "2026-11-15T22:05:00.866Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-11-15-taliban-kandahar-radio-cricket-ban"
@@ -833,7 +1058,7 @@
       "lastCovered": "2026-11-15T22:05:00.866Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-11-15-nelson-mandela-bay-udm-councillor-namette-murder-threats"
@@ -848,7 +1073,7 @@
       "lastCovered": "2026-11-15T22:05:00.866Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-11-15-mullin-iran-drone-threat-trump-mossad-report"
@@ -863,7 +1088,7 @@
       "lastCovered": "2026-11-15T22:05:00.866Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-11-15-iran-shoots-down-orbiter-4-drone-nahavand"
@@ -878,7 +1103,7 @@
       "lastCovered": "2026-11-15T22:05:00.866Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-11-15-nigeria-gas-flaring-deadline-nuprc-cop31"
@@ -893,7 +1118,7 @@
       "lastCovered": "2026-11-15T22:05:00.866Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-11-15-trump-xi-meeting-nvidia-huang-spy-silence"
@@ -908,7 +1133,7 @@
       "lastCovered": "2026-11-15T22:05:00.866Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-11-15-faa-outage-trump-blames-biden-miami-taxiway-collision"
@@ -923,7 +1148,7 @@
       "lastCovered": "2026-11-15T22:05:00.866Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-11-15-honda-profit-up-66-percent-car-business-loses-money"
@@ -938,238 +1163,13 @@
       "lastCovered": "2026-11-15T22:05:00.866Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-11-15-saudi-mundafan-125000-year-old-lake-early-humans"
       ],
       "eventUri": null,
       "summary": "Megafauna bones, stone tools and rare plant remains from Uruq al-Julaybah, a 125,000-year-old lakeside in Mundafan in the south of Saudi Arabia's Empty Quarter, give one of the most detailed pictures yet of how early humans lived in a green Arabia. Lead with the place: the driest sand sea on earth was lakeshore grassland. The structural point is Arabia as a corridor, not a barrier, for humans leaving Africa during wet phases. Name the journal, the team and what animals they hunted."
-    },
-    {
-      "id": "yemen-government-withdraws-bab-el-mandeb-houthis-control",
-      "label": "Saudi-backed Yemeni forces retreat from Red Sea in win for Houthis",
-      "firstSeen": "2026-11-15T18:04:39.681Z",
-      "lastCovered": "2026-11-15T18:04:39.681Z",
-      "coverageCount": 1,
-      "category": "politics",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-11-15-yemen-government-withdraws-bab-el-mandeb-houthis-control"
-      ],
-      "eventUri": "eng-12187310",
-      "summary": "Yemen's Saudi-backed government has pulled its forces off the positions above the Bab el-Mandeb Strait, saying it needs them to defend Aden, which leaves the Houthis holding both shores of the strait. Lead with what changed hands: one armed movement now sits on the narrowest point of the Red Sea's southern entrance, after months of Saudi strikes on Sanaa and Houthi missiles at Riyadh. Ansar Allah's own military is publishing footage of its push into Lahj province (Iranian state agency Mehr), and that push is what is pulling the government back. Name ship traffic through the Bab el-Mandeb Strait as the series to watch."
-    },
-    {
-      "id": "us-proposes-ukraine-cede-donbas-for-nato-membership",
-      "label": "US has suggested Kyiv cede land for Nato entry: Zelensky",
-      "firstSeen": "2026-11-15T18:04:39.681Z",
-      "lastCovered": "2026-11-15T18:04:39.681Z",
-      "coverageCount": 1,
-      "category": "politics",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-11-15-us-proposes-ukraine-cede-donbas-for-nato-membership"
-      ],
-      "eventUri": "eng-12185791",
-      "summary": "Zelensky says Washington has proposed a trade: Ukraine gives up the rest of Donbas and gets a path into NATO. That would break both sides' red lines at once, since Kyiv has refused to cede territory and Moscow has always ruled out Ukraine in NATO. Explain the mechanism: land now in exchange for a membership promise that would still need every NATO member's ratification. Ask who in the alliance could block it, and why Moscow would accept it."
-    },
-    {
-      "id": "france-yellow-vest-protests-219-arrested-cost-of-living",
-      "label": "200 Arrested During Protests in France",
-      "firstSeen": "2026-11-15T18:04:39.681Z",
-      "lastCovered": "2026-11-15T18:04:39.681Z",
-      "coverageCount": 1,
-      "category": "politics",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-11-14-france-yellow-vest-protests-219-arrested-cost-of-living"
-      ],
-      "eventUri": "fra-1364273",
-      "summary": "This is the fifth straight weekend of mass protest in France. The Interior Ministry counted 219 arrests by evening, and Al Jazeera puts the crowds above 100,000 in a new yellow-vest wave over the cost of living and schools. Lead with the arrest count and the spread of clashes across Marseille, Grenoble and Lyon. The structural point is a cost-of-living revolt that keeps coming back on weekends without unions leading it, and the article should say what the government has offered and what it has refused."
-    },
-    {
-      "id": "trump-holds-fire-iran-hormuz-mines-fertiliser-shipments",
-      "label": "US president may hold fire on Iran unless provoked",
-      "firstSeen": "2026-11-15T18:04:39.681Z",
-      "lastCovered": "2026-11-15T18:04:39.681Z",
-      "coverageCount": 1,
-      "category": "politics",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-11-15-trump-holds-fire-iran-hormuz-mines-fertiliser-shipments"
-      ],
-      "eventUri": "eng-12188699",
-      "summary": "Trump has told advisers he will not resume the war on Iran unless provoked, after Saudi Crown Prince Mohammed bin Salman and Erdogan pressed him for restraint. Meanwhile mines hit three ships in the Strait of Hormuz in two days, and a UN official is asking Iran and the US to let fertiliser cargoes through. Lead with the fertiliser: food-importing countries far from the war bear the cost of a blockade neither side will lift. The new development since the 11-13 coverage is the restraint signal and the third mine strike. Name ship traffic through the Strait of Hormuz as the series to watch."
-    },
-    {
-      "id": "jordan-karak-church-attack-three-sentenced-death",
-      "label": "Jordan sentences three men to death by hanging after deadly church attack",
-      "firstSeen": "2026-11-15T18:04:39.681Z",
-      "lastCovered": "2026-11-15T18:04:39.681Z",
-      "coverageCount": 1,
-      "category": "politics",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-11-15-jordan-karak-church-attack-three-sentenced-death"
-      ],
-      "eventUri": "eng-12190190",
-      "summary": "This is the verdict in last month's Karak attack, which we covered on 10-23 and 10-24: gunmen stormed a funeral at a Greek Orthodox church in Hammoud village, killing nine and wounding 25. Three men have now been sentenced to hang. Lead with the speed, under four weeks from the attack to death sentences, and the court that handed them down: Jordan's State Security Court tries terrorism cases. The article should give the death toll as now nine and say whether the sentences can be appealed."
-    },
-    {
-      "id": "panama-journalist-rolando-rodriguez-house-arson-clip-investigation",
-      "label": "Atentado en Panamá: incendian la casa del periodista Rolando Rodríguez de La Prensa",
-      "firstSeen": "2026-11-15T18:04:39.681Z",
-      "lastCovered": "2026-11-15T18:04:39.681Z",
-      "coverageCount": 1,
-      "category": "politics",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-11-14-panama-journalist-rolando-rodriguez-house-arson-clip-investigation"
-      ],
-      "eventUri": null,
-      "summary": "Someone set fire to the house of Rolando Rodríguez, a journalist at La Prensa in Panama. He worked on 'Negocios de Familia', CLIP's cross-border investigation into the Panamanian Carretero brothers' business with Nicolás Maduro's fallen government and with Cuba. Lead with the arson coming right after the investigation was published. The pattern is retaliation against cross-border investigative journalism, and it follows Ecuador, where we reported on 11-13 that a journalist was murdered after a BBC documentary. Name who has been arrested or charged, if anyone."
-    },
-    {
-      "id": "canada-560-million-tropical-forest-forever-facility",
-      "label": "Carney Pledges C$560 Million for Brazil-Led Forest Project",
-      "firstSeen": "2026-11-15T18:04:39.681Z",
-      "lastCovered": "2026-11-15T18:04:39.681Z",
-      "coverageCount": 1,
-      "category": "economy",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-11-15-canada-560-million-tropical-forest-forever-facility"
-      ],
-      "eventUri": "por-1365722",
-      "summary": "Canada has pledged C$560 million to the Tropical Forest Forever Facility, the Brazil-led fund that pays countries for every hectare of forest they keep standing. Carney announced it in Manila, alongside talks on trade deals with the Philippines and India. Follow on from our 10-29 report that the fund was underfunded a year in: how far this pledge closes the gap to its target, and that the payouts come from investment returns, not grants. For the reader in Indonesia, Malaysia or the Congo Basin, the question is whether the money reaches the forests."
-    },
-    {
-      "id": "egypt-red-sea-land-decree-public-debt",
-      "label": "Questions over Egypt's plan to use Red Sea land to lower debt | The National",
-      "firstSeen": "2026-11-15T18:04:39.681Z",
-      "lastCovered": "2026-11-15T18:04:39.681Z",
-      "coverageCount": 1,
-      "category": "economy",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-11-15-egypt-red-sea-land-decree-public-debt"
-      ],
-      "eventUri": "eng-12186851",
-      "summary": "A decree from President Sisi sets aside 112 million square metres of Red Sea coast, about 112 km², to be used to reduce public debt, and officials will not say how. Lead with the size and the silence. The mechanism to explain is a debt-for-land swap of the kind that sold Ras El Hekma to Abu Dhabi for $35 billion in 2024. Ask who the likely buyers are, which creditors get paid, and what Egyptians give up when state land is used to cover the interest bill."
-    },
-    {
-      "id": "portugal-housing-protests-30-cities-rents",
-      "label": "Tens of thousands march in latest Portugal housing protests",
-      "firstSeen": "2026-11-15T18:04:39.681Z",
-      "lastCovered": "2026-11-15T18:04:39.681Z",
-      "coverageCount": 1,
-      "category": "economy",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-11-14-portugal-housing-protests-30-cities-rents"
-      ],
-      "eventUri": "eng-12189391",
-      "summary": "Tens of thousands marched in more than 30 Portuguese towns and cities against rents, the movement's largest turnout since it began weeks ago. The rent crisis has now spread across Iberia: our 11-11 piece covered Spain's general strike over housing. Lead with what rents have done against wages, and with the policies that drove them, such as golden visas, the non-habitual-resident tax regime and short-term lets. Say what the government is offering and what it is refusing."
-    },
-    {
-      "id": "ocean-network-express-red-sea-bab-el-mandeb-return",
-      "label": "Japan shipping group ONE transits Red Sea choke point for 1st time in 3 years",
-      "firstSeen": "2026-11-15T18:04:39.681Z",
-      "lastCovered": "2026-11-15T18:04:39.681Z",
-      "coverageCount": 1,
-      "category": "economy",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-11-15-ocean-network-express-red-sea-bab-el-mandeb-return"
-      ],
-      "eventUri": null,
-      "summary": "Ocean Network Express, the container line jointly owned by Japan's NYK, Mitsui O.S.K. and K Line, has sent a ship through the Bab el-Mandeb Strait for the first time in about three years. It made the bet on the same weekend Yemen's government pulled back and left the Houthis holding the strait. Lead with that timing and with the sums behind the decision: the weeks and fuel saved against the Cape of Good Hope, set against the war-risk premium. Name ship traffic through Bab el-Mandeb and Suez as the series."
-    },
-    {
-      "id": "covid-lockdowns-cut-global-fire-activity-12-percent",
-      "label": "How the world's fires changed while humanity hit pause",
-      "firstSeen": "2026-11-15T18:04:39.681Z",
-      "lastCovered": "2026-11-15T18:04:39.681Z",
-      "coverageCount": 1,
-      "category": "science",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-11-15-covid-lockdowns-cut-global-fire-activity-12-percent"
-      ],
-      "eventUri": "eng-12187472",
-      "summary": "A study finds that global fire activity fell 12.3 percent during the COVID-19 lockdowns. That is a natural experiment measuring how much of the planet's burning people start: agricultural clearing, land management and ignitions. Lead with the 12.3 percent and the regions where the drop was largest. Most of those are likely savanna and farmland in Africa and South Asia rather than the forests that make headlines. Then say what that implies for fire policy."
-    },
-    {
-      "id": "quantum-vortex-tangle-bose-einstein-condensate-observed",
-      "label": "Tangled quantum whirlpools caught unraveling in an ultracold gas",
-      "firstSeen": "2026-11-15T18:04:39.681Z",
-      "lastCovered": "2026-11-15T18:04:39.681Z",
-      "coverageCount": 1,
-      "category": "science",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-11-15-quantum-vortex-tangle-bose-einstein-condensate-observed"
-      ],
-      "eventUri": null,
-      "summary": "Physicists have watched a tangle of quantized vortices form and unravel as a disordered ultracold gas settles into a Bose–Einstein condensate, a process theory predicted but no one had directly observed. Lead with what was seen and how it was imaged. Then explain why it matters: the same mathematics, the Kibble–Zurek mechanism, describes how defects form when the early universe or any material cools through a phase transition. Name the journal and the lab."
-    },
-    {
-      "id": "spacex-catches-starship-upper-stage-orbit-first",
-      "label": "SpaceX Successfully Catches Starship Upper Stage",
-      "firstSeen": "2026-11-15T18:04:39.681Z",
-      "lastCovered": "2026-11-15T18:04:39.681Z",
-      "coverageCount": 1,
-      "category": "tech",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-11-15-spacex-catches-starship-upper-stage-orbit-first"
-      ],
-      "eventUri": null,
-      "summary": "SpaceX caught a Starship upper stage with the launch tower after it returned from orbit on Saturday. It is the first time anyone has recovered an orbital upper stage whole, after years of catching only boosters. Lead with why the upper stage is the hard part: it re-enters at orbital speed on a heat shield. Fully reusing both stages is the economics behind cheap launch, behind Starlink's growth and behind Artemis's Moon lander, and it widens the gap between SpaceX and every state launch programme, China's included."
-    },
-    {
-      "id": "comac-ce-25a-electric-aircraft-first-piloted-flight",
-      "label": "China's 22,000-pound electric aircraft completes maiden piloted flight; know all about CE-25A aircraft",
-      "firstSeen": "2026-11-15T18:04:39.681Z",
-      "lastCovered": "2026-11-15T18:04:39.681Z",
-      "coverageCount": 1,
-      "category": "tech",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-11-15-comac-ce-25a-electric-aircraft-first-piloted-flight"
-      ],
-      "eventUri": "eng-12189367",
-      "summary": "COMAC's CE-25A, a 19-seat all-electric passenger aircraft weighing about 10 tonnes, has made its first piloted flight in Binzhou, Shandong, with three crew aboard. Lead with the size: most electric aircraft flying today seat a handful of people, so 19 seats puts it at commuter-airliner scale. Explain that battery energy density limits range, and that the aircraft fits China's push for regional routes and its 'low-altitude economy'. Give its range and certification timeline where the sources state them."
-    },
-    {
-      "id": "megaspeed-alice-huang-left-august-2025-nvidia-timeline",
-      "label": "Megaspeed Says Alice Huang Left Company in August 2025",
-      "firstSeen": "2026-11-15T18:04:39.681Z",
-      "lastCovered": "2026-11-15T18:04:39.681Z",
-      "coverageCount": 1,
-      "category": "tech",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-11-15-megaspeed-alice-huang-left-august-2025-nvidia-timeline"
-      ],
-      "eventUri": "por-1362366",
-      "summary": "Megaspeed, the Singapore data-centre company, says Alice Huang left in August 2025. US officials accuse Huang, a former Megaspeed executive who had a relationship with Jensen Huang, of spying for China. The new development is the date: it changes the timeline of who knew what while Megaspeed was buying Nvidia chips, and it puts the company's own account on record as scrutiny of Southeast Asian data centres grows after Jensen Huang's exit. Lead with the date, then say what it does not answer, which is where Megaspeed's GPUs went."
     }
   ]
 }
