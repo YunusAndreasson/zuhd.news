@@ -217,9 +217,23 @@ test('every hardcoded store and account link names the right thing', () => {
       seen++
       assert.equal(found, SHARE.SOCIAL_INSTAGRAM, `${f} points at ${found}, not ${SHARE.SOCIAL_INSTAGRAM}`)
     }
+    for (const found of src.match(/https:\/\/www\.facebook\.com\/[^"'\s)]+/g) || []) {
+      seen++
+      assert.equal(found, SHARE.SOCIAL_FACEBOOK, `${f} points at ${found}, not ${SHARE.SOCIAL_FACEBOOK}`)
+    }
   }
   // A regex that stops matching is a test that passes by finding nothing.
   assert.ok(seen > 10, `only ${seen} store/account links found — the patterns have gone stale`)
+})
+
+test('the homepage graph names every account the masthead has', () => {
+  // The homepage spells its Organization out by hand, apart from ORG_SAME_AS;
+  // an account added to one and not the other is a profile search engines are
+  // told about on articles and never on the front page.
+  const html = readFileSync(join(ROOT, 'templates/index.html'), 'utf8')
+  const graph = JSON.parse(html.match(/<script type="application\/ld\+json">(.*?)<\/script>/s)[1])['@graph']
+  const org = graph.find((n) => n['@id'] === 'https://zuhd.news/#org')
+  assert.deepEqual(org.sameAs, SHARE.ORG_SAME_AS)
 })
 
 test('every page type wears the same footer', (t) => {

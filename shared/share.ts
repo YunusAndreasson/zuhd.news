@@ -27,15 +27,17 @@ export const APP_SCHEME = 'zuhd-news'
 export const X_HANDLE = 'zuhd_news'
 export const SOCIAL_X = `https://x.com/${X_HANDLE}`
 export const SOCIAL_INSTAGRAM = 'https://www.instagram.com/zuhdnews/'
+// The page has no username yet, so its id URL; it keeps resolving after one is set.
+export const SOCIAL_FACEBOOK = 'https://www.facebook.com/profile.php?id=61591595672407'
 
 /**
  * Everywhere a search engine or a social platform can be told that these
  * accounts and listings are the same organisation as this domain. This is the
  * property `sameAs` wants in schema.org — it is what lets a knowledge panel
- * connect the site to the feeds, rather than treating them as four strangers
+ * connect the site to the feeds, rather than treating them as five strangers
  * that happen to use the same word.
  */
-export const ORG_SAME_AS = [SOCIAL_X, SOCIAL_INSTAGRAM, APP_IOS, APP_ANDROID]
+export const ORG_SAME_AS = [SOCIAL_X, SOCIAL_INSTAGRAM, SOCIAL_FACEBOOK, APP_IOS, APP_ANDROID]
 
 export interface ShareTarget {
   /** Canonical URL. Absolute — a share is read somewhere else. */
