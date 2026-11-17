@@ -1,119 +1,5 @@
 [
   {
-    "timestamp": "2026-10-26T14:13:15.310Z",
-    "candidateCount": 13,
-    "candidates": [
-      {
-        "slug": "2026-10-26-anthropic-s1-ipo-filing-revenue-losses",
-        "title": "Anthropic Files Listing",
-        "category": "economy",
-        "eventCoverage": 110,
-        "importance": 6
-      },
-      {
-        "slug": "2026-10-26-meta-95-billion-stock-offering-ai-data-centres",
-        "title": "Meta Raises $95bn Equity",
-        "category": "economy",
-        "eventCoverage": 92,
-        "importance": 6
-      },
-      {
-        "slug": "2026-10-26-brazil-real-stocks-fall-lula-fiscal-deficit",
-        "title": "Brazil Markets Slump",
-        "category": "economy",
-        "eventCoverage": 70,
-        "importance": 6
-      },
-      {
-        "slug": "2026-10-26-kyrgyzstan-private-jets-extradite-critics-kloop",
-        "title": "Kyrgyzstan Flies Critics Home",
-        "category": "politics",
-        "eventCoverage": 0,
-        "importance": 6
-      },
-      {
-        "slug": "2026-10-26-syrians-detained-israel-prisons-southern-syria",
-        "title": "Syrians Held in Israel",
-        "category": "politics",
-        "eventCoverage": 0,
-        "importance": 6
-      },
-      {
-        "slug": "2026-10-26-st-catherine-monastery-egypt-land-deal-lawsuits",
-        "title": "St. Catherine Archbishop Yields",
-        "category": "politics",
-        "eventCoverage": 0,
-        "importance": 6
-      },
-      {
-        "slug": "2026-10-26-lucky-qatarenergy-quit-port-qasim-lng-terminal",
-        "title": "Energas Quits Port Qasim",
-        "category": "economy",
-        "eventCoverage": 0,
-        "importance": 6
-      },
-      {
-        "slug": "2026-10-26-iraq-fuel-shortage-hormuz-closure-oil-dependence",
-        "title": "Iraq Runs Short of Fuel",
-        "category": "economy",
-        "eventCoverage": 0,
-        "importance": 6
-      },
-      {
-        "slug": "2026-10-26-amoc-weakening-18-percent-satellite-heat-flux",
-        "title": "Atlantic Current Slows 18%",
-        "category": "science",
-        "eventCoverage": 0,
-        "importance": 6
-      },
-      {
-        "slug": "2026-10-26-cattle-virus-human-infection-spillover",
-        "title": "Cattle Virus Infects Human",
-        "category": "science",
-        "eventCoverage": 0,
-        "importance": 6
-      },
-      {
-        "slug": "2026-10-26-litellm-unrevoked-key-supply-chain-attack",
-        "title": "LiteLLM Key Left Live",
-        "category": "tech",
-        "eventCoverage": 0,
-        "importance": 6
-      },
-      {
-        "slug": "2026-10-26-ai-tokenizer-tax-non-english-languages",
-        "title": "AI Charges Non-English Speakers More",
-        "category": "tech",
-        "eventCoverage": 0,
-        "importance": 6
-      },
-      {
-        "slug": "2026-10-26-jd-huawei-kunpeng-ai-ads-inference-latency",
-        "title": "JD Cuts Ad Latency",
-        "category": "tech",
-        "eventCoverage": 0,
-        "importance": 6
-      }
-    ],
-    "selected": {
-      "slug": "2026-10-26-anthropic-s1-ipo-filing-revenue-losses",
-      "title": "Anthropic Files Listing",
-      "category": "economy",
-      "body": "Anthropic lost $80.7 billion on $16.3 billion of",
-      "eventCoverage": 110,
-      "importance": 6
-    },
-    "skipReason": null,
-    "sent": true,
-    "pushTitle": "Breaking News",
-    "pushBody": "Anthropic files for Nasdaq IPO, reports $80.7 billion loss on $16.3 billion revenue",
-    "response": {
-      "pushed": 1,
-      "skipped": 0,
-      "tokens": 6
-    }
-  },
-  {
     "timestamp": "2026-10-26T18:17:00.811Z",
     "candidateCount": 13,
     "candidates": [
@@ -10322,6 +10208,99 @@
     "sent": true,
     "pushTitle": "Breaking News",
     "pushBody": "Wheat ship capsizes off Bulgaria after reported sea-drone strike, crew survive",
+    "response": {
+      "pushed": 1,
+      "skipped": 0,
+      "tokens": 5
+    }
+  },
+  {
+    "timestamp": "2026-11-17T05:13:46.702Z",
+    "candidateCount": 10,
+    "candidates": [
+      {
+        "slug": "2026-11-17-united-airlines-system-outage-ground-stop",
+        "title": "United Outage Halts Departures",
+        "category": "tech",
+        "eventCoverage": 978,
+        "importance": 6
+      },
+      {
+        "slug": "2026-11-17-third-us-carrier-gulf-iran-ceasefire-blockade",
+        "title": "Third US Carrier Reaches Gulf",
+        "category": "politics",
+        "eventCoverage": 203,
+        "importance": 6
+      },
+      {
+        "slug": "2026-11-17-paraguay-pena-military-prison-digital-lender-collapse",
+        "title": "Paraguay Moves Peña to Prison",
+        "category": "politics",
+        "eventCoverage": 202,
+        "importance": 6
+      },
+      {
+        "slug": "2026-11-17-hormuz-fourth-tanker-mine-iraq-gas-field-drone",
+        "title": "Iran Claims Four Tankers Mined",
+        "category": "economy",
+        "eventCoverage": 0,
+        "importance": 6
+      },
+      {
+        "slug": "2026-11-17-grand-ayatollah-vahid-khorasani-dies-qom",
+        "title": "Grand Ayatollah Khorasani Dies",
+        "category": "politics",
+        "eventCoverage": 0,
+        "importance": 6
+      },
+      {
+        "slug": "2026-11-17-bahrain-life-sentences-scholars-asset-confiscation",
+        "title": "Iran Condemns Bahrain Sentences",
+        "category": "politics",
+        "eventCoverage": 0,
+        "importance": 6
+      },
+      {
+        "slug": "2026-11-17-kano-cng-buses-idle-seven-months-nigeria",
+        "title": "Kano's Gas Buses Sit Idle",
+        "category": "economy",
+        "eventCoverage": 0,
+        "importance": 6
+      },
+      {
+        "slug": "2026-11-17-adb-conditions-karachi-brt-red-line-delays",
+        "title": "Lender Sets Red Line Deadline",
+        "category": "economy",
+        "eventCoverage": 0,
+        "importance": 6
+      },
+      {
+        "slug": "2026-11-17-nigeria-inec-voter-register-ai-generated-photos",
+        "title": "Fake Voters Hit Nigeria Register",
+        "category": "tech",
+        "eventCoverage": 0,
+        "importance": 6
+      },
+      {
+        "slug": "2026-11-17-south-korea-suneung-ai-cheating-smart-glasses",
+        "title": "Korea Grounds Flights for Exam",
+        "category": "tech",
+        "eventCoverage": 0,
+        "importance": 6
+      }
+    ],
+    "selected": {
+      "slug": "2026-11-17-third-us-carrier-gulf-iran-ceasefire-blockade",
+      "title": "Third US Carrier Reaches Gulf",
+      "category": "politics",
+      "body": "3 [US](country:US) carriers and 13 destroyers now face",
+      "eventCoverage": 203,
+      "importance": 6
+    },
+    "skipReason": null,
+    "sent": true,
+    "pushTitle": "Breaking News",
+    "pushBody": "Third US aircraft carrier arrives in Persian Gulf as 13 destroyers face Iran",
     "response": {
       "pushed": 1,
       "skipped": 0,
