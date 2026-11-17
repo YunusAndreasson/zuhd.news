@@ -27,8 +27,7 @@ export const APP_SCHEME = 'zuhd-news'
 export const X_HANDLE = 'zuhd_news'
 export const SOCIAL_X = `https://x.com/${X_HANDLE}`
 export const SOCIAL_INSTAGRAM = 'https://www.instagram.com/zuhdnews/'
-// The page has no username yet, so its id URL; it keeps resolving after one is set.
-export const SOCIAL_FACEBOOK = 'https://www.facebook.com/profile.php?id=61591595672407'
+export const SOCIAL_FACEBOOK = 'https://www.facebook.com/zuhdnews'
 
 /**
  * Everywhere a search engine or a social platform can be told that these
