@@ -1,98 +1,5 @@
 [
   {
-    "timestamp": "2026-10-27T10:16:11.696Z",
-    "candidateCount": 10,
-    "candidates": [
-      {
-        "slug": "2026-10-27-audi-ceo-trump-rally-georgia-plant-backlash",
-        "title": "Audi CEO Faces Backlash",
-        "category": "economy",
-        "eventCoverage": 329,
-        "importance": 6
-      },
-      {
-        "slug": "2026-10-27-oleshky-local-truce-russia-ukraine-kherson",
-        "title": "Oleshky Truce Takes Effect",
-        "category": "politics",
-        "eventCoverage": 198,
-        "importance": 6
-      },
-      {
-        "slug": "2026-10-27-south-korea-gdp-beats-forecasts-ai-chips",
-        "title": "South Korea Growth Beats Forecast",
-        "category": "economy",
-        "eventCoverage": 156,
-        "importance": 6
-      },
-      {
-        "slug": "2026-10-27-wmo-greenhouse-gases-record-levels-2025",
-        "title": "Greenhouse Gases Hit Records",
-        "category": "science",
-        "eventCoverage": 120,
-        "importance": 6
-      },
-      {
-        "slug": "2026-10-27-guatemala-foppa-murder-seven-police-no-mastermind",
-        "title": "Foppa Case Names No Mastermind",
-        "category": "politics",
-        "eventCoverage": 0,
-        "importance": 6
-      },
-      {
-        "slug": "2026-10-27-brazil-stf-mendonca-hapvida-rulings-germany-event",
-        "title": "Mendonça Rules For Hapvida",
-        "category": "politics",
-        "eventCoverage": 0,
-        "importance": 6
-      },
-      {
-        "slug": "2026-10-27-china-digital-yuan-university-salaries-jiangsu",
-        "title": "Jiangsu Universities Pay Digital Yuan",
-        "category": "economy",
-        "eventCoverage": 0,
-        "importance": 6
-      },
-      {
-        "slug": "2026-10-27-iflytek-spark-x2-6-domestic-compute-export-controls",
-        "title": "iFlytek Trains On Domestic Chips",
-        "category": "tech",
-        "eventCoverage": 0,
-        "importance": 6
-      },
-      {
-        "slug": "2026-10-27-solana-firedancer-bug-report-fee-ai-spam",
-        "title": "Solana Charges For Bug Reports",
-        "category": "tech",
-        "eventCoverage": 0,
-        "importance": 6
-      },
-      {
-        "slug": "2026-10-27-deepseek-hiring-growth-plans-investors",
-        "title": "DeepSeek Ramps Up Hiring",
-        "category": "tech",
-        "eventCoverage": 0,
-        "importance": 6
-      }
-    ],
-    "selected": {
-      "slug": "2026-10-27-audi-ceo-trump-rally-georgia-plant-backlash",
-      "title": "Audi CEO Faces Backlash",
-      "category": "economy",
-      "body": "Audi announced a $4 billion Georgia plant on Trump's",
-      "eventCoverage": 329,
-      "importance": 6
-    },
-    "skipReason": null,
-    "sent": true,
-    "pushTitle": "Breaking News",
-    "pushBody": "Audi announces $4 billion Georgia plant at Trump rally",
-    "response": {
-      "pushed": 1,
-      "skipped": 0,
-      "tokens": 6
-    }
-  },
-  {
     "timestamp": "2026-10-27T14:17:25.849Z",
     "candidateCount": 11,
     "candidates": [
@@ -10329,6 +10236,113 @@
     "sent": true,
     "pushTitle": "Breaking News",
     "pushBody": "Russia strikes 2 Kyiv bridges and subway, cutting water and power",
+    "response": {
+      "pushed": 1,
+      "skipped": 0,
+      "tokens": 5
+    }
+  },
+  {
+    "timestamp": "2026-11-17T22:13:32.505Z",
+    "candidateCount": 12,
+    "candidates": [
+      {
+        "slug": "2026-11-17-nvidia-q3-results-130-billion-forecast-kress-first-call",
+        "title": "Nvidia Forecasts $130bn Quarter",
+        "category": "tech",
+        "eventCoverage": 1060,
+        "importance": 6
+      },
+      {
+        "slug": "2026-11-17-us-outage-wave-gmail-apple-trump-staff-cuts",
+        "title": "Outages Hit US Spy Agency",
+        "category": "tech",
+        "eventCoverage": 468,
+        "importance": 6
+      },
+      {
+        "slug": "2026-11-17-russian-an-12-crash-kemerovo-19-killed",
+        "title": "Siberian Military Plane Crashes",
+        "category": "politics",
+        "eventCoverage": 307,
+        "importance": 6
+      },
+      {
+        "slug": "2026-11-17-france-military-personnel-ukraine-not-co-belligerent",
+        "title": "France Denies Co-Belligerence",
+        "category": "politics",
+        "eventCoverage": 224,
+        "importance": 6
+      },
+      {
+        "slug": "2026-11-17-openai-gpt-6-2-astra-sol-release",
+        "title": "OpenAI Releases Astra, Sol",
+        "category": "tech",
+        "eventCoverage": 0,
+        "importance": 6
+      },
+      {
+        "slug": "2026-11-17-battery-molecules-electrochemistry-oil-water-interface",
+        "title": "Battery Molecules Drive Chemistry",
+        "category": "science",
+        "eventCoverage": 0,
+        "importance": 6
+      },
+      {
+        "slug": "2026-11-17-italy-palestinian-activist-terrorism-trial-west-bank-resistance",
+        "title": "Italy Jails Palestinian Activist",
+        "category": "politics",
+        "eventCoverage": 0,
+        "importance": 6
+      },
+      {
+        "slug": "2026-11-17-cuba-invasion-poll-us-government-funding",
+        "title": "Cuba Poll Funding Questioned",
+        "category": "politics",
+        "eventCoverage": 0,
+        "importance": 6
+      },
+      {
+        "slug": "2026-11-17-akwa-ibom-ntan-mbat-oil-sheen-capped-wells-petition",
+        "title": "Akwa Ibom Fishers Petition Regulators",
+        "category": "politics",
+        "eventCoverage": 0,
+        "importance": 6
+      },
+      {
+        "slug": "2026-11-17-colombia-amazon-copper-mine-lawfare-activists",
+        "title": "Copper Firm Accused Of Lawfare",
+        "category": "politics",
+        "eventCoverage": 0,
+        "importance": 6
+      },
+      {
+        "slug": "2026-11-17-deutsche-bank-leak-trump-companies-money-laundering",
+        "title": "Deutsche Bank Memo Links Trump",
+        "category": "economy",
+        "eventCoverage": 0,
+        "importance": 6
+      },
+      {
+        "slug": "2026-11-17-etesa-contract-addenda-iverco-neminca-426-million",
+        "title": "Etesa Addenda Quadruple Contract",
+        "category": "economy",
+        "eventCoverage": 0,
+        "importance": 6
+      }
+    ],
+    "selected": {
+      "slug": "2026-11-17-nvidia-q3-results-130-billion-forecast-kress-first-call",
+      "title": "Nvidia Forecasts $130bn Quarter",
+      "category": "tech",
+      "body": "Nvidia doubled profit to $65.3 billion without Jensen",
+      "eventCoverage": 1060,
+      "importance": 6
+    },
+    "skipReason": null,
+    "sent": true,
+    "pushTitle": "Breaking News",
+    "pushBody": "Nvidia forecasts $130 billion quarterly revenue after profit doubles to $65.3 billion",
     "response": {
       "pushed": 1,
       "skipped": 0,
