@@ -1,37 +1,37 @@
 {
-  "date": "2026-11-17",
+  "date": "2026-11-18",
   "metrics": {
-    "articles": { "value": 62, "detail": "5 of 5 cycles completed, avg 13 published per cycle (62 yesterday)" },
-    "freshness": { "median": 0.1, "p90": 0.3, "max": 0.5, "target": 1.0, "met": true },
-    "categories": { "politics": 25, "economy": 17, "science": 5, "tech": 15 },
-    "multiSource": { "pct": 34, "target": 30, "met": true },
-    "usDatelines": { "pct": 19, "target": 25, "met": true },
-    "latAmDatelines": { "pct": 8, "target": 5, "met": true },
+    "articles": { "value": 61, "detail": "5 of 5 cycles completed, avg 12 published per cycle (62 yesterday)" },
+    "freshness": { "median": 0.1, "p90": 0.4, "max": 0.5, "target": 1.0, "met": true },
+    "categories": { "politics": 24, "economy": 15, "science": 7, "tech": 15 },
+    "multiSource": { "pct": 23, "target": 30, "met": false },
+    "usDatelines": { "pct": 21, "target": 25, "met": true },
+    "latAmDatelines": { "pct": 11, "target": 5, "met": true },
     "sameEventDuplicates": { "value": 0, "target": 0, "met": true },
     "missingDatelines": { "value": 0, "target": 0, "met": true },
-    "stateOrAdvocacyOnly": 4,
-    "imageUrlPct": 95,
-    "regions": { "count": 6, "target": 4, "met": true, "breakdown": { "AM": 17, "ME": 13, "EU": 13, "AS": 12, "AF": 6, "GL": 1 } },
-    "sciTech": { "ratio": 32, "target": 25, "met": true },
-    "topSourceShare": { "source": "Dawn / Bloomberg Business / Al Jazeera Online (tied)", "pct": 10, "target": 20, "met": true },
-    "uniqueSources": 62,
+    "stateOrAdvocacyOnly": 1,
+    "imageUrlPct": 97,
+    "regions": { "count": 5, "target": 4, "met": true, "breakdown": { "AM": 21, "EU": 13, "ME": 12, "AS": 11, "AF": 4 } },
+    "sciTech": { "ratio": 36, "target": 25, "met": true },
+    "topSourceShare": { "source": "Reuters / Al Jazeera Online (tied)", "pct": 11, "target": 20, "met": true },
+    "uniqueSources": 46,
     "duplicates": 0,
-    "avgCycleDuration": 1067
+    "avgCycleDuration": 1046
   },
-  "experiment": "Skipped: every goal is met for a second straight full day, with no active or queued experiments and no pause gate.",
-  "weakestArea": "Science is at its floor again (5, target 5), from Phys.org, STAT, Carbon Brief and 404 Media, and nothing came from Nature today. Two story pairs that the same-event check missed, the NSA outage (17:41 and 21:42) and the Deutsche Bank leak (09:23 and 15:30), took four slots for two events.",
+  "experiment": "Skipped. Multi-source fell to 23% after 34% yesterday, one day under target. The one experiment that raised selector floors to lift it (2026-05-09-multi-source-floor-3) was reverted. No active or queued experiments and no pause gate.",
+  "weakestArea": "Multi-source is 23% against a 30% target: 14 of 61 stories carry two or more sources, down from 21 of 62 yesterday. Many of today's picks came from single-outlet niche reporting (Zhidx, TMTPost, Dawn, Drop Site, The Record, Agência Pública) that no second outlet had picked up. If it stays under 30% for three days, look at feed-side corroboration rather than floors.",
   "watching": [
-    "Gulf: Iran says four tankers have been mined, Iranian drones hit a Bahrain base, a third US carrier has reached the Gulf, and Tehran disputes Bahrain's sentences.",
-    "Russia–Ukraine: a Kerch bridge span has fallen, Russia struck Kyiv's bridges, and France denies it is a co-belligerent.",
-    "Deutsche Bank leak: 1.5 million files on compliance failures and a 2020 memo tying two Trump companies to the laundromats.",
-    "US federal IT: the NSA classified network is down and outages are spreading amid staff cuts.",
-    "Asia: Mongolia's president resigned, Russian aircraft breached Japanese airspace, and the Quad is taking on mineral dependence.",
-    "AI: OpenAI released Astra and Sol, Nvidia forecasts a $130bn quarter, and Isomorphic Labs raised $5bn."
+    "Gulf and Hormuz: war-risk insurance has reached $64m a transit, Qatar faces a gas shock, and Pakistan's mango exports suffer from the closure.",
+    "Europe and Ukraine: the EU proposes a conditional Ukraine loan and rebuffs the Pentagon on strikes.",
+    "Deutsche Bank leak: the files now show the bank shielding Brazilian clients.",
+    "Latin America: Venezuela rejoins US military cooperation, Salvadoran helicopters strike in Haiti, and El Salvador's election watchdog has been sidelined.",
+    "Cyclone Akvan is nearing Andhra Pradesh.",
+    "AI and China tech: Anthropic's oversubscribed share sale, Tencent's capex up 528%, and Nvidia pitching local AI in Shanghai."
   ],
   "coverageGaps": [
-    "Oceania: no Oceania-datelined story today; Australia appears only inside the Carbon Brief emissions ranking.",
-    "Science: at the floor with 5 stories and no Nature or Ars Technica pick.",
-    "Same-event detection: the NSA outage pair and the Deutsche Bank pair both passed the check, the first at different datelines (United States vs Washington) and the second under different slugs on the same dateline."
+    "Oceania: no Oceania-datelined story for a second day.",
+    "Datelines: seven stories carry a country or state instead of a city (China, El Salvador, United Kingdom, Pakistan, Washington State, United States twice). The missing-dateline check counts these as present.",
+    "Science: 7 stories, above the floor, but one is a cyclone and only Phys.org, SciDev.Net and STAT are dedicated science outlets; there is no Nature pick."
   ],
-  "context": "This is the second full five-cycle day on the setup-token: 62 articles, freshness at 0.1 days median, US datelines down to 19%. 'NSA Classified Network Down' carries the country-level dateline 'United States' rather than a city, which counts as present but breaks the city-only dateline rule. Four stories are state-or-advocacy-only (Bahrain sentences, Khorasani's death, the Hodeidah strikes, the end of MINURSO), up from 2."
+  "context": "This is the third full five-cycle day in a row: 61 articles, 0.1-day median freshness, no same-event duplicates, and US datelines at 21%. Only one story is state-or-advocacy-only (the Norm Coleman Pentagon board story), down from 4. Latin America is at 11% of datelines, its best showing in the recent run."
 }
