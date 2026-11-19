@@ -2,8 +2,8 @@
 //
 // These strings were spread across four templates, `get.html`, two islands and
 // the build script, which is fine right up until one of them moves. The X
-// account has already been renamed once (`@zuhd_news`), the Instagram handle is
-// a placeholder that is expected to change, and the App Store id appears in
+// account has already been renamed once (`@zuhd_news`), so has the Instagram
+// one (`4884com` → `zuhdnews`), and the App Store id appears in
 // three different link shapes. So: declared once, imported by the SSG through
 // `loadShared()` and by the islands through `@shared/share`.
 //
