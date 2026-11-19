@@ -1,37 +1,36 @@
 {
-  "date": "2026-11-18",
+  "date": "2026-11-19",
   "metrics": {
-    "articles": { "value": 61, "detail": "5 of 5 cycles completed, avg 12 published per cycle (62 yesterday)" },
+    "articles": { "value": 60, "detail": "5 cycles, all completed, avg 12/cycle (61 yesterday)" },
     "freshness": { "median": 0.1, "p90": 0.4, "max": 0.5, "target": 1.0, "met": true },
-    "categories": { "politics": 24, "economy": 15, "science": 7, "tech": 15 },
-    "multiSource": { "pct": 23, "target": 30, "met": false },
-    "usDatelines": { "pct": 21, "target": 25, "met": true },
-    "latAmDatelines": { "pct": 11, "target": 5, "met": true },
+    "categories": { "politics": 25, "economy": 13, "science": 6, "tech": 16 },
+    "multiSource": { "pct": 30, "target": 30, "met": true },
+    "usDatelines": { "pct": 27, "target": 25, "met": false },
+    "latAmDatelines": { "pct": 12, "target": 5, "met": true },
     "sameEventDuplicates": { "value": 0, "target": 0, "met": true },
     "missingDatelines": { "value": 0, "target": 0, "met": true },
-    "stateOrAdvocacyOnly": 1,
-    "imageUrlPct": 97,
-    "regions": { "count": 5, "target": 4, "met": true, "breakdown": { "AM": 21, "EU": 13, "ME": 12, "AS": 11, "AF": 4 } },
-    "sciTech": { "ratio": 36, "target": 25, "met": true },
-    "topSourceShare": { "source": "Reuters / Al Jazeera Online (tied)", "pct": 11, "target": 20, "met": true },
-    "uniqueSources": 46,
+    "stateOrAdvocacyOnly": 2,
+    "imageUrlPct": 95,
+    "regions": { "count": 6, "target": 4, "met": true, "breakdown": { "AM": 23, "EU": 15, "ME": 10, "AS": 8, "AF": 3, "OC": 1 } },
+    "sciTech": { "ratio": 37, "target": 25, "met": true },
+    "topSourceShare": { "source": "Al Jazeera Online", "pct": 15, "target": 20, "met": true },
+    "uniqueSources": 48,
     "duplicates": 0,
-    "avgCycleDuration": 1046
+    "avgCycleDuration": 1013
   },
-  "experiment": "Skipped. Multi-source fell to 23% after 34% yesterday, one day under target. The one experiment that raised selector floors to lift it (2026-05-09-multi-source-floor-3) was reverted. No active or queued experiments and no pause gate.",
-  "weakestArea": "Multi-source is 23% against a 30% target: 14 of 61 stories carry two or more sources, down from 21 of 62 yesterday. Many of today's picks came from single-outlet niche reporting (Zhidx, TMTPost, Dawn, Drop Site, The Record, Agência Pública) that no second outlet had picked up. If it stays under 30% for three days, look at feed-side corroboration rather than floors.",
+  "experiment": "Skipped. Every target is met except US datelines, which are at 27% against a 25% cap, one day after 21%. No active or queued experiments, no pause gate, and one day over the line is not a trend.",
+  "weakestArea": "US datelines are 27% of output against a 25% cap (16 of 60), driven by a heavy US tech and Fed day: the Anthropic Nasdaq debut, two Fed-hike stories, Google Gemini and Android, GTA VI. Yesterday was 21%, so this reads as news mix rather than drift; if it stays over 25% for three days, GAP_COUNTRIES is the lever, keeping in mind the 2026-09-18 GAP_COUNTRIES experiment was reverted. Multi-source recovered to 30% (18 of 60) from 23% yesterday, exactly at target.",
   "watching": [
-    "Gulf and Hormuz: war-risk insurance has reached $64m a transit, Qatar faces a gas shock, and Pakistan's mango exports suffer from the closure.",
-    "Europe and Ukraine: the EU proposes a conditional Ukraine loan and rebuffs the Pentagon on strikes.",
-    "Deutsche Bank leak: the files now show the bank shielding Brazilian clients.",
-    "Latin America: Venezuela rejoins US military cooperation, Salvadoran helicopters strike in Haiti, and El Salvador's election watchdog has been sidelined.",
-    "Cyclone Akvan is nearing Andhra Pradesh.",
-    "AI and China tech: Anthropic's oversubscribed share sale, Tencent's capex up 528%, and Nvidia pitching local AI in Shanghai."
+    "Iran struck Kuwait and Bahrain after a US strike on Qeshm, while LNG tankers are being hit in Hormuz; the IEA's World Energy Outlook frames Gulf pipeline dependence.",
+    "The Trump-Xi-Putin trilateral at APEC Shenzhen produced a declaration that omits the wars; two stories today covered the summit and the declaration.",
+    "The Fed minutes and Goolsbee both raise the risk of a rate hike tied to AI-driven inflation.",
+    "COP31's draft text dropped the fossil-fuel transition language; the final text is due before close.",
+    "The Gaza ceasefire under the Board of Peace is reported as collapsing; Houthis advance on Aden and fired a missile at Riyadh."
   ],
   "coverageGaps": [
-    "Oceania: no Oceania-datelined story for a second day.",
-    "Datelines: seven stories carry a country or state instead of a city (China, El Salvador, United Kingdom, Pakistan, Washington State, United States twice). The missing-dateline check counts these as present.",
-    "Science: 7 stories, above the floor, but one is a cyclone and only Phys.org, SciDev.Net and STAT are dedicated science outlets; there is no Nature pick."
+    "Oceania had one dateline all day.",
+    "Africa had three datelines (Nigeria, South Africa twice) while Sudan and the Sahel appear only via Port Sudan's Iran-Houthi angle.",
+    "Two stories rest only on state or advocacy outlets (the Hormuz LNG tankers and the Shenzhen trilateral), both labelled in the body."
   ],
-  "context": "This is the third full five-cycle day in a row: 61 articles, 0.1-day median freshness, no same-event duplicates, and US datelines at 21%. Only one story is state-or-advocacy-only (the Norm Coleman Pentagon board story), down from 4. Latin America is at 11% of datelines, its best showing in the recent run."
+  "context": "All five cycles completed, averaging 1013s with the selector at 161s, the writer at 130s and the editor at 60s. Science (6) cleared its floor of 5 from real science sources (New Scientist, Phys.org, European Spaceflight), and LatAm datelines are at 12%, well above the 5% target."
 }
