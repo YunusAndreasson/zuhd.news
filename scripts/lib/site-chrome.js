@@ -142,5 +142,6 @@ export const siteFooter = (share) => {
       <span class="footer-maker-links">
         ${maker}
       </span>
+      <span class="footer-publisher">Published by Jonas Yunus Andreasson</span>
     </nav>`
 }

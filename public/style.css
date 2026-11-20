@@ -500,6 +500,10 @@ footer {
 
 .footer-maker a:visited { color: var(--text-secondary); }
 
+/* The publisher's legal name, which Meta's business verification looks for on
+   the site. Set like the byline, without a link. */
+.footer-publisher { color: var(--text-secondary); }
+
 /* --- Page Title --- */
 .page-title {
   font-size: var(--size-sm);
