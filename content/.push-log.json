@@ -1,105 +1,5 @@
 [
   {
-    "timestamp": "2026-10-30T10:18:27.101Z",
-    "candidateCount": 11,
-    "candidates": [
-      {
-        "slug": "2026-10-30-canada-eu-associate-member-carney-montreal-us-trade",
-        "title": "Canada-EU Summit Trims Ambition",
-        "category": "economy",
-        "eventCoverage": 470,
-        "importance": 6
-      },
-      {
-        "slug": "2026-10-30-amazon-ai-capex-record-cash-burn-big-tech-selloff",
-        "title": "Amazon AI Spending Drains Cash",
-        "category": "economy",
-        "eventCoverage": 118,
-        "importance": 6
-      },
-      {
-        "slug": "2026-10-30-saudi-houthi-drone-mecca-region-intercepted-denied",
-        "title": "Houthis Deny Mecca Drone",
-        "category": "politics",
-        "eventCoverage": 81,
-        "importance": 6
-      },
-      {
-        "slug": "2026-10-30-stroke-treatment-window-longer-study-catch",
-        "title": "Stroke Window May Stretch",
-        "category": "science",
-        "eventCoverage": 81,
-        "importance": 6
-      },
-      {
-        "slug": "2026-10-30-pentagon-baltic-states-tone-down-russia-rhetoric",
-        "title": "Pentagon Tells Baltics: Quiet",
-        "category": "politics",
-        "eventCoverage": 71,
-        "importance": 6
-      },
-      {
-        "slug": "2026-10-30-bolivia-attorney-general-arrested-cerimedo-investigation",
-        "title": "Bolivia Jails Attorney General",
-        "category": "politics",
-        "eventCoverage": 0,
-        "importance": 6
-      },
-      {
-        "slug": "2026-10-30-afreximbank-first-offshore-yuan-loan-china-africa-trade",
-        "title": "Afreximbank Mulls Yuan Borrowing",
-        "category": "economy",
-        "eventCoverage": 0,
-        "importance": 6
-      },
-      {
-        "slug": "2026-10-30-deepseek-funding-state-investors-27-percent-nvidia-b300",
-        "title": "DeepSeek Doubles Funding Round",
-        "category": "tech",
-        "eventCoverage": 0,
-        "importance": 6
-      },
-      {
-        "slug": "2026-10-30-cohere-canada-government-stake-sovereign-ai-schwarz",
-        "title": "Canada Takes Cohere Stake",
-        "category": "tech",
-        "eventCoverage": 0,
-        "importance": 6
-      },
-      {
-        "slug": "2026-10-30-europe-funding-offensive-space-capabilities",
-        "title": "Europe Funds Offensive Orbit",
-        "category": "tech",
-        "eventCoverage": 0,
-        "importance": 6
-      },
-      {
-        "slug": "2026-10-30-glp1-weight-loss-drugs-eating-disorders-misuse",
-        "title": "GLP-1s Raise Eating-Disorder Fears",
-        "category": "science",
-        "eventCoverage": 0,
-        "importance": 6
-      }
-    ],
-    "selected": {
-      "slug": "2026-10-30-pentagon-baltic-states-tone-down-russia-rhetoric",
-      "title": "Pentagon Tells Baltics: Quiet",
-      "category": "politics",
-      "body": "Pentagon officials asked 3 Baltic states to soften their [Russia](country:RU)",
-      "eventCoverage": 71,
-      "importance": 6
-    },
-    "skipReason": null,
-    "sent": true,
-    "pushTitle": "Breaking News",
-    "pushBody": "Pentagon asks 3 Baltic states to tone down Russia warnings, sources say",
-    "response": {
-      "pushed": 1,
-      "skipped": 0,
-      "tokens": 6
-    }
-  },
-  {
     "timestamp": "2026-10-30T14:17:45.019Z",
     "candidateCount": 13,
     "candidates": [
@@ -10357,6 +10257,134 @@
     "sent": true,
     "pushTitle": "Breaking News",
     "pushBody": "US wants Ukraine peace deal by January 2027, officials say",
+    "response": {
+      "pushed": 1,
+      "skipped": 0,
+      "tokens": 5
+    }
+  },
+  {
+    "timestamp": "2026-11-20T22:15:21.758Z",
+    "candidateCount": 15,
+    "candidates": [
+      {
+        "slug": "2026-11-20-denmark-expels-russian-attache-assassination-plot",
+        "title": "Denmark Expels Russian Attaché",
+        "category": "politics",
+        "eventCoverage": 170,
+        "importance": 6
+      },
+      {
+        "slug": "2026-11-20-mamdani-rikers-island-closure-2032-borough-jails",
+        "title": "Mamdani Sets Rikers Deadline",
+        "category": "politics",
+        "eventCoverage": 161,
+        "importance": 6
+      },
+      {
+        "slug": "2026-11-20-riemann-hypothesis-proof-claim-ai-claude",
+        "title": "Riemann Proof Claimed",
+        "category": "science",
+        "eventCoverage": 107,
+        "importance": 6
+      },
+      {
+        "slug": "2026-11-20-oruc-reis-pakistan-offshore-oil-gas-survey-turkey",
+        "title": "Turkey Surveys Pakistan Waters",
+        "category": "economy",
+        "eventCoverage": 101,
+        "importance": 6
+      },
+      {
+        "slug": "2026-11-20-nikhil-gupta-sentenced-sikh-murder-plot-india",
+        "title": "Gupta Jailed Over Pannun Plot",
+        "category": "politics",
+        "eventCoverage": 0,
+        "importance": 6
+      },
+      {
+        "slug": "2026-11-20-kohat-police-lines-attack-mastermind-killed-ctd",
+        "title": "CTD Claims Kohat Planner Killed",
+        "category": "politics",
+        "eventCoverage": 0,
+        "importance": 6
+      },
+      {
+        "slug": "2026-11-20-bitcoin-below-60000-two-year-low-fed-hikes",
+        "title": "Bitcoin Falls Below $60,000",
+        "category": "economy",
+        "eventCoverage": 0,
+        "importance": 6
+      },
+      {
+        "slug": "2026-11-20-japan-noetra-sovereign-ai-cost-surge-weak-yen",
+        "title": "Japan AI Costs Surge",
+        "category": "economy",
+        "eventCoverage": 0,
+        "importance": 6
+      },
+      {
+        "slug": "2026-11-20-meta-net-zero-2030-ai-data-center-emissions",
+        "title": "Meta Rethinks Net Zero",
+        "category": "economy",
+        "eventCoverage": 0,
+        "importance": 6
+      },
+      {
+        "slug": "2026-11-20-cop31-net-negative-carbon-removal-nature",
+        "title": "COP31 Pushes Net Negative",
+        "category": "science",
+        "eventCoverage": 0,
+        "importance": 6
+      },
+      {
+        "slug": "2026-11-20-jamaica-fossil-reefs-coral-survival-map",
+        "title": "Fossil Reefs Guide Coral Rescue",
+        "category": "science",
+        "eventCoverage": 0,
+        "importance": 6
+      },
+      {
+        "slug": "2026-11-20-quantum-superposition-repulsive-gravity-theory",
+        "title": "Quantum Effect May Reverse Gravity",
+        "category": "science",
+        "eventCoverage": 0,
+        "importance": 6
+      },
+      {
+        "slug": "2026-11-20-ai-supply-chain-routers-leak-user-secrets-tripwires",
+        "title": "AI Routers Leak User Secrets",
+        "category": "tech",
+        "eventCoverage": 0,
+        "importance": 6
+      },
+      {
+        "slug": "2026-11-20-chinese-carrier-tanker-drone-satellite-imagery",
+        "title": "Chinese Tanker-Like Drone Spotted",
+        "category": "tech",
+        "eventCoverage": 0,
+        "importance": 6
+      },
+      {
+        "slug": "2026-11-20-google-homepage-drops-search-button-ai-sidebar",
+        "title": "Google Redesigns Homepage Around AI",
+        "category": "tech",
+        "eventCoverage": 0,
+        "importance": 6
+      }
+    ],
+    "selected": {
+      "slug": "2026-11-20-denmark-expels-russian-attache-assassination-plot",
+      "title": "Denmark Expels Russian Attaché",
+      "category": "politics",
+      "body": "Danish intelligence says [Russia](country:RU) hired a gang to kill",
+      "eventCoverage": 170,
+      "importance": 6
+    },
+    "skipReason": null,
+    "sent": true,
+    "pushTitle": "Breaking News",
+    "pushBody": "Denmark expels Russian attaché over gang-hired assassination plot, intelligence says",
     "response": {
       "pushed": 1,
       "skipped": 0,
