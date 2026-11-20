@@ -276,6 +276,10 @@ stages assume about each other.
   mention. `isAboutCompany` (`lib/companies.js`) guards it: the mention must
   match the company's tags or `commonName`. A company tag in the title also
   passes, and a story the model never read falls back to weaker tag signs.
+- One company, one `stocks:` id: a second listing the scan names is charted
+  as its home listing (`LISTING_ALIASES`, `lib/entity-registry.js`), or the
+  dispatch writes two cards one week's news. An entry is a known issuer,
+  never a name match.
 - A share that moved `MOVER_PCT` in a week with no story about it is asked
   for by name in Q6 and named to the selector (`unexplainedMovers`,
   `lib/company-gaps.js`): the narration can explain a move only from a story

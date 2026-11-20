@@ -6,6 +6,7 @@
 // with the limit that keeps a carried row from standing in for a fresh one.
 // Pure, so the choice has tests; the script is the reading and writing.
 
+import { canonicalIndicatorId } from './entity-registry.js'
 import { isStaleAsOf } from './trends-sources/stocks.js'
 
 const DAY = 86400_000
@@ -124,6 +125,11 @@ export function calendarIsFrom(prior, day) {
  * `extract-entities.js` replaces a carried row in place when a new article
  * names the ticker, which is what its own comment has always said it did.
  *
+ * A company's second listing is not carried (`LISTING_ALIASES`,
+ * `lib/entity-registry.js`): its chips and its card are the home listing's,
+ * and the entity stage no longer writes it, so carried it would only be a page
+ * with nothing pointing at it.
+ *
  * @param {any} prior the snapshot being replaced, as it was read: any JSON, or none
  * @param {Set<string>} held ids this run already has
  * @param {number} [now]
@@ -135,6 +141,7 @@ export function carriedStocks(prior, held, now = Date.now()) {
   let lapsed = 0
   for (const row of prior?.indicators ?? []) {
     if (row?.source !== 'stocks' || typeof row.id !== 'string' || held.has(row.id)) continue
+    if (canonicalIndicatorId(row.id) !== row.id) continue
     if (!drawable(row) || isStaleAsOf(row.asOf, now)) lapsed++
     else kept.push(row)
   }

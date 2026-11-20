@@ -46,6 +46,13 @@ test('only stock rows are carried, and none over a row this run holds', () => {
   assert.deepEqual(ids(carriedStocks(left, new Set(['stocks:NVDA']), NOW).kept), ['stocks:MARA'])
 })
 
+test('a second listing is not carried beside its home listing', () => {
+  // `stocks:DB` was appended on 2026-11-19 by a story that named Deutsche Bank
+  // by its New York line; its chips and card are `stocks:DBK.DE`'s now.
+  const left = prior(stock('DBK.DE', '2026-10-08'), stock('DB', '2026-10-08'), stock('NVDA', '2026-10-08'))
+  assert.deepEqual(carriedStocks(left, new Set(), NOW), { kept: [left.indicators[0], left.indicators[2]], lapsed: 0 })
+})
+
 test('a row whose last close is over a week old is left behind', () => {
   const left = prior(
     stock('OLD', '2026-10-01'),

@@ -21,6 +21,7 @@
 // not yet read: the word list is an editorial one, and still the gate.
 
 import { CHOKEPOINT_CATALOG } from './chokepoint-metadata.js'
+import { canonicalIndicatorId } from './entity-registry.js'
 import { yamlString } from './frontmatter.js'
 import { MARKET_TRACKED } from './market-metadata.js'
 
@@ -113,11 +114,25 @@ Return ONLY the JSON object. No commentary, no markdown fences.`
 }
 
 /**
+ * The ticker a company is charted under: its home listing where the model
+ * named a second one (`LISTING_ALIASES`, `lib/entity-registry.js`), so one
+ * company is one chart and one card. Any other ticker as the model gave it.
+ *
+ * @param {string} ticker
+ */
+const homeListing = (ticker) => {
+  const id = `stocks:${ticker.toUpperCase()}`
+  const home = canonicalIndicatorId(id)
+  return home !== id && home.startsWith('stocks:') ? home.slice('stocks:'.length) : ticker
+}
+
+/**
  * What is kept of the model's answer: per slug, the companies whose three
- * strings are present and whose ticker looks like one. `subject` is true only
- * for a literal `true` — an absent flag, a string or a guess at another type
- * is a mention, because a wrong "about" puts the wrong story under a chart and
- * a wrong "mention" only leaves one out.
+ * strings are present and whose ticker looks like one, each under its home
+ * listing (`homeListing`). `subject` is true only for a literal `true` — an
+ * absent flag, a string or a guess at another type is a mention, because a
+ * wrong "about" puts the wrong story under a chart and a wrong "mention" only
+ * leaves one out.
  *
  * Every slug the model answered for is in the map, with an empty list where
  * it found no company: "read, and nothing there" is a different answer from
@@ -147,7 +162,7 @@ export function parseStockMentions(obj) {
         )
         .map((c) => ({
           mention: c.mention,
-          ticker: c.ticker,
+          ticker: homeListing(c.ticker),
           name: c.name,
           subject: c.subject === true,
         })),

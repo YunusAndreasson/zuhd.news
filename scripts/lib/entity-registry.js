@@ -275,8 +275,31 @@ const ENTITY_ID_ALIASES = {
   'portwatch-gibraltar-total': 'cp:gibraltar',
 }
 
-/** Resolve a possibly-renamed indicator id to its current form. */
-export const canonicalIndicatorId = (id) => ENTITY_ID_ALIASES[id] ?? id
+/**
+ * A company's second listing → its home listing: one company, one `stocks:` id.
+ *
+ * The entity stage's scan names a company by whichever listing the model
+ * reaches for that day (its prompt asks for "the main ADR when one exists"),
+ * and every ticker it names becomes its own chart and its own card. Deutsche
+ * Bank went in as `stocks:DBK.DE` for five stories and as `stocks:DB`, the New
+ * York line, for two; on 2026-11-20 the dispatch gave the two cards one leak's
+ * news in nearly one sentence (`corpus.test.js`, "no two instruments ship the
+ * same explanation"). The home listing wins, as `symbol` does in
+ * `company-metadata.js`: the week's move is the share's, not the share's plus
+ * the exchange rate's.
+ *
+ * Unlike a rename, an entry here is never dropped: the scan is mapped through
+ * it (`parseStockMentions`), and so are the trends rows the dispatch narrates
+ * and the stock rows a snapshot carries. Editorial: an entry is a company
+ * known to be one issuer, never a name match (`WOW.AX` and `WHL.JO` are two
+ * Woolworths).
+ */
+const LISTING_ALIASES = {
+  'stocks:DB': 'stocks:DBK.DE',
+}
+
+/** Resolve a possibly-renamed indicator id, or a second listing, to its current form. */
+export const canonicalIndicatorId = (id) => ENTITY_ID_ALIASES[id] ?? LISTING_ALIASES[id] ?? id
 
 /** The rules, longest mention first, which is the order `extractEntities` tries
  *  them in. An indicator keeps the first rule of its own that matched, so the

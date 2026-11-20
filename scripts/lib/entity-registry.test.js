@@ -36,6 +36,12 @@ test('a renamed id reads as the one it became, and any other as itself', () => {
   assert.equal(canonicalIndicatorId('brent'), 'brent')
 })
 
+test('a second listing reads as its home listing, and the home listing as itself', () => {
+  assert.equal(canonicalIndicatorId('stocks:DB'), 'stocks:DBK.DE')
+  assert.equal(canonicalIndicatorId('stocks:DBK.DE'), 'stocks:DBK.DE')
+  assert.equal(canonicalIndicatorId('stocks:NVDA'), 'stocks:NVDA')
+})
+
 // `smi`, the Swiss index, matched "transmission" when this was a substring test.
 test('a tag matches as a whole tag, phrases included', () => {
   assert.equal(matchesAnyTag(['smi'], 'power transmission lines failed'), false)

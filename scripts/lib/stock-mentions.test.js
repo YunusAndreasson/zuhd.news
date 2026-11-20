@@ -55,6 +55,24 @@ test('a malformed company is dropped and its article is still answered for', () 
   assert.equal(out.has('absent'), false)
 })
 
+test('a second listing is charted as the home listing', () => {
+  // Deutsche Bank was `stocks:DBK.DE` for five stories and `stocks:DB` for two,
+  // and the dispatch wrote the two cards one sentence (2026-11-20).
+  const out = parseStockMentions({
+    story: [
+      { mention: 'Deutsche Bank', ticker: 'DB', name: 'Deutsche Bank', subject: true },
+      { mention: 'Deutsche Bank', ticker: 'db', name: 'Deutsche Bank', subject: false },
+      { mention: 'Deutsche Bank', ticker: 'DBK.DE', name: 'Deutsche Bank', subject: true },
+      { mention: 'Nvidia', ticker: 'NVDA', name: 'Nvidia', subject: false },
+    ],
+  })
+  const companies = out.get('story') ?? []
+  assert.deepEqual(companies.map((c) => c.ticker), ['DBK.DE', 'DBK.DE', 'DBK.DE', 'NVDA'])
+  const { entities, subjects } = companyEntries(companies, new Set(['stocks:DBK.DE', 'stocks:NVDA']))
+  assert.deepEqual(entities.map((e) => e.indicatorId), ['stocks:DBK.DE', 'stocks:NVDA'])
+  assert.deepEqual(subjects, ['stocks:DBK.DE'])
+})
+
 test('an answer that is not an object is no answer', () => {
   assert.equal(parseStockMentions(null).size, 0)
   assert.equal(parseStockMentions([]).size, 0)

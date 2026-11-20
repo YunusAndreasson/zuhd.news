@@ -56,6 +56,7 @@ import { readFileSync } from 'node:fs'
 import { basename, join } from 'node:path'
 import { companyMatcher, isAboutCompany, storyFacts } from './lib/companies.js'
 import { loadArticles, loadFeedWindow } from './lib/coverage-window.js'
+import { canonicalIndicatorId } from './lib/entity-registry.js'
 import {
   MAX_COVERAGE, MAX_FEED, WINDOW_DAYS, askModel, coverageRow, dryRun, feedRow, loadPrompt, offeredArticles,
   offeredStories, openCache, promptWithInput, runDispatch, storedStanding, threadsFor,
@@ -210,6 +211,11 @@ const items = []
 
 for (const ind of trends.indicators || []) {
   if (!ind?.id || !Array.isArray(ind.values) || ind.values.length < 2) continue
+  // A company's second listing (`stocks:DB`) is no instrument of its own: its
+  // card is the home listing's (`LISTING_ALIASES`, `lib/entity-registry.js`),
+  // and narrated apart it is the same news told twice. A snapshot can still
+  // hold such a row from before its alias; the daily pass prunes its entry.
+  if (canonicalIndicatorId(ind.id) !== ind.id) continue
   const values = ind.values.filter(Number.isFinite)
   items.push({
     key: ind.id,
