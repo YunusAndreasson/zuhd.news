@@ -205,6 +205,74 @@ const RELEVANCE_MIN_HITS = 2
 const RELEVANCE_MIN_RATIO = 0.3
 
 /**
+ * A title word as the text may hold it: its last three letters off, never
+ * under four. The feed carries a body's first 3,000 characters, and a feature's
+ * headline is in other words than its lede: Dialogue Earth's "Johor's AI boom
+ * is leaving communities and endangered wildlife behind" opens on "our
+ * community" and matched 2 of 7 exact words, under the 30 per cent, so the
+ * pick was dropped three cycles running (2026-11-19). The NixOS blurb this
+ * gate was made for still matches none.
+ *
+ * @param {string} word
+ */
+const stemOf = (word) => word.slice(0, Math.max(4, word.length - 3))
+
+/**
+ * How many of a title's words a source text holds, by stem, or null for a
+ * title of under three words, which is not judged.
+ *
+ * @param {string} title
+ * @param {string} text
+ * @returns {{ hits: number, of: number, about: boolean } | null}
+ */
+export function relevance(title, text) {
+  const words = [...titleWords(title)]
+  if (words.length < 3) return null
+  const lower = text.toLowerCase()
+  const hits = words.filter((w) => lower.includes(stemOf(w))).length
+  return { hits, of: words.length, about: hits >= RELEVANCE_MIN_HITS && hits / words.length >= RELEVANCE_MIN_RATIO }
+}
+
+/** @param {any} entry */
+const sourceText = (entry) => entry.sources.map((/** @type {any} */ s) => s.body || '').join(' ')
+
+/**
+ * Step 2, once more. The sources of each pick whose text is not about its
+ * title, for their pages to be read before the pick is given up: the feed's
+ * text is a dek or a lede, and the page is the article. Quanta's "Network
+ * Researchers Nail Down Theory of 'Perfect Resilience'" was dropped at 2 of 7
+ * on its feed text; its page holds 6 (2026-11-20).
+ *
+ * @param {any[]} selection
+ * @returns {{ entry: any, sources: { url: string, body?: string }[] }[]}
+ */
+export function offTopicPicks(selection) {
+  return selection
+    .filter((e) => Array.isArray(e.sources) && e.sources.length > 0 && !isThin(e))
+    .filter((e) => relevance(e.title, sourceText(e))?.about === false)
+    .map((entry) => ({ entry, sources: entry.sources.filter((/** @type {any} */ s) => typeof s?.url === 'string' && s.url) }))
+}
+
+/**
+ * Read each off-topic pick's pages, four at a time, and keep a page's text
+ * where it holds more of the title than the text it replaces.
+ *
+ * @param {ReturnType<typeof offTopicPicks>} picks
+ * @param {(url: string) => Promise<string | null>} fetchText null when the page gave nothing
+ * @returns {Promise<number>} how many picks are about their title now
+ */
+export async function refetchOffTopic(picks, fetchText) {
+  const sources = picks.flatMap(({ entry, sources }) => sources.map((src) => ({ entry, src })))
+  await runWithConcurrency(sources, 4, async ({ entry, src }) => {
+    const text = await fetchText(src.url)
+    if (!text) return
+    const before = relevance(entry.title, src.body || '')?.hits ?? 0
+    if ((relevance(entry.title, text)?.hits ?? 0) > before) src.body = text
+  })
+  return picks.filter(({ entry }) => relevance(entry.title, sourceText(entry))?.about).length
+}
+
+/**
  * Step 3. Take out every pick the writer could not write, and say why of each
  * that had sources to begin with.
  *
@@ -244,12 +312,9 @@ export function dropUnwritable(selection) {
 
   for (const entry of selection) {
     if (!Array.isArray(entry.sources) || entry.sources.length === 0) continue
-    const words = [...titleWords(entry.title)]
-    if (words.length < 3) continue
-    const text = entry.sources.map((s) => (s.body || '').toLowerCase()).join(' ')
-    const hits = words.filter((w) => text.includes(w)).length
-    if (hits < RELEVANCE_MIN_HITS || hits / words.length < RELEVANCE_MIN_RATIO) {
-      dropped.push({ entry, why: `its source text matches ${hits}/${words.length} title words — not about this story` })
+    const score = relevance(entry.title, sourceText(entry))
+    if (score && !score.about) {
+      dropped.push({ entry, why: `its source text matches ${score.hits}/${score.of} title words — not about this story` })
       entry.sources = []
     }
   }
