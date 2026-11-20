@@ -10,9 +10,9 @@
 (() => {
   const PLAY = 'https://play.google.com/store/apps/details?id=news.zuhd.app';
   const IOS = 'https://apps.apple.com/app/id6760964753';
-  // App Store Connect's provider token, public in every campaign link. Empty until it's
-  // copied from App Analytics; until then the App Store link stays plain.
-  const APPLE_PROVIDER_TOKEN = '';
+  // App Store Connect's provider token, public in every campaign link (App Analytics,
+  // Campaigns, Generate a Campaign Link). One value for every app on the account.
+  const APPLE_PROVIDER_TOKEN = '2189605';
   // Apple takes campaign tokens of up to 30 characters.
   const APPLE_CAMPAIGN_LIMIT = 30;
   const UTM_KEYS = ['utm_source', 'utm_medium', 'utm_campaign', 'utm_content', 'utm_term'];

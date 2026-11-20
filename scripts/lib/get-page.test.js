@@ -41,23 +41,15 @@ test('a visit with no tags goes to the store untagged, never credited to an ad',
   assert.equal(storeFor('', IPHONE), 'https://apps.apple.com/app/id6760964753')
 })
 
-test('the App Store link stays plain until the provider token is set', () => {
-  assert.equal(storeFor('?utm_source=x&utm_campaign=x-bio', IPHONE), 'https://apps.apple.com/app/id6760964753')
-})
-
-test('with the provider token, the App Store gets the campaign as ct', () => {
-  const withToken = SCRIPT.replace("const APPLE_PROVIDER_TOKEN = ''", "const APPLE_PROVIDER_TOKEN = '123456'")
-  assert.notEqual(withToken, SCRIPT)
-  let target = null
-  runInNewContext(withToken, {
-    URLSearchParams,
-    encodeURIComponent,
-    location: { search: '?utm_source=x&utm_campaign=x-bio', replace: (url) => { target = url } },
-    navigator: { userAgent: IPHONE },
-    document: { addEventListener: () => {} },
-  })
-  const url = new URL(target)
-  assert.equal(url.searchParams.get('pt'), '123456')
+test('the App Store gets the provider token, and the campaign as ct', () => {
+  const url = new URL(storeFor('?utm_source=x&utm_medium=social&utm_campaign=x-bio', IPHONE))
+  assert.equal(`${url.origin}${url.pathname}`, 'https://apps.apple.com/app/id6760964753')
+  assert.equal(url.searchParams.get('pt'), '2189605')
   assert.equal(url.searchParams.get('ct'), 'x-bio')
   assert.equal(url.searchParams.get('mt'), '8')
+})
+
+test('a campaign longer than Apple takes is cut to its 30 characters', () => {
+  const url = new URL(storeFor(`?utm_campaign=${'a'.repeat(40)}`, IPHONE))
+  assert.equal(url.searchParams.get('ct'), 'a'.repeat(30))
 })
