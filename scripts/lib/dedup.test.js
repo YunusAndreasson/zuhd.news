@@ -138,6 +138,26 @@ test('wouldDedup title layer covers every outlet, but only over 72h', () => {
   assert.equal(wouldDedup(multi, ctxAt(120)).deduped, false)
 })
 
+// Changed 2026-11-20. The 14:00 cycle wrote Huawei's OSTA launch a second time
+// off Zhidx's Chinese headline, 55 hours after TechNode's: the title gave
+// `titleWords` nothing and the slug window is 48 hours.
+test('a headline in another script is matched by the selector slug, over 72h only', () => {
+  const hoursAgo = (h) => Date.now() - h * 3600 * 1000
+  const ctxAt = (h) => ({
+    recentSlugs: [],
+    ledgerEventUris: new Map(),
+    recentWordSets: [],
+    recentTitleSets: buildTitleSets([{ slug: '2026-11-18-huawei-osta-ai-phone-kirin-9030s', title: 'Huawei Launches OSTA Brand', date: hoursAgo(h) }]),
+    ledgerLabelSets: [],
+  })
+  const zhidx = story('AI时代，华为要再造一个“荣耀”！首款鸿蒙AI手机来了', ['Zhidx'], '2099-01-01-huawei-osta-sub-brand-harmonyos-ai-phone')
+  assert.deepEqual(wouldDedup(zhidx, ctxAt(55)), { deduped: true, reason: 'recap', match: '2026-11-18-huawei-osta-ai-phone-kirin-9030s' })
+  assert.equal(wouldDedup(zhidx, ctxAt(100)).deduped, false, 'past 72h a slug match is a running story')
+  // A headline with words of its own is matched on them, never on its slug.
+  const english = story('Huawei shows a foldable at MWC', ['Zhidx'], '2099-01-01-huawei-osta-sub-brand-harmonyos-ai-phone')
+  assert.equal(wouldDedup(english, ctxAt(55)).deduped, false)
+})
+
 // --- ledger labels, changed 2026-10-09 --------------------------------------
 // The three ledger stories whose labels removed a feed story between 09-30 and
 // 10-09, as the ledger held them. Only the third had an article: the writer
