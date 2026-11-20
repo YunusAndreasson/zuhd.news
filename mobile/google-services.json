@@ -1,0 +1,46 @@
+{
+  "project_info": {
+    "project_number": "417419719833",
+    "project_id": "zuhdnews",
+    "storage_bucket": "zuhdnews.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:417419719833:android:785b3d3b9e259421d87408",
+        "android_client_info": {
+          "package_name": "news.zuhd.app"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "417419719833-iiu3j0l8nl10jbhitckddgss6ksdh3kb.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAgtHR_hl43oYQG5lOAeoqEOlHhfGoUcFk"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "417419719833-iiu3j0l8nl10jbhitckddgss6ksdh3kb.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "417419719833-o6u0bg7tqjgvovlfib3sc1d303ab0bf9.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.qamar360.app"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

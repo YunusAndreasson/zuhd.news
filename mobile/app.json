@@ -13,7 +13,7 @@
       "ios",
       "android"
     ],
-    "runtimeVersion": "2.17.0",
+    "runtimeVersion": "2.18.0",
     "updates": {
       "url": "https://u.expo.dev/14c4589a-a039-41ad-b3f6-23cff746c7a8",
       "excludeFromBackup": true
@@ -41,6 +41,7 @@
     },
     "android": {
       "package": "news.zuhd.app",
+      "googleServicesFile": "./google-services.json",
       "adaptiveIcon": {
         "backgroundColor": "#0F0F11",
         "foregroundImage": "./assets/android-icon-foreground.png",
