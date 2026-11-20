@@ -2,7 +2,7 @@
   "expo": {
     "name": "zuhd.news",
     "slug": "zuhd-news",
-    "version": "1448.6.4",
+    "version": "1448.6.5",
     "orientation": "portrait",
     "icon": "./assets/icon.png",
     "userInterfaceStyle": "automatic",
@@ -21,7 +21,7 @@
     "ios": {
       "supportsTablet": false,
       "bundleIdentifier": "zuhd.news",
-      "buildNumber": "290",
+      "buildNumber": "291",
       "associatedDomains": [
         "applinks:zuhd.news"
       ],
@@ -48,7 +48,7 @@
         "backgroundImage": "./assets/android-icon-background.png",
         "monochromeImage": "./assets/android-icon-monochrome.png"
       },
-      "versionCode": 290,
+      "versionCode": 291,
       "intentFilters": [
         {
           "action": "VIEW",
