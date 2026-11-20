@@ -1924,10 +1924,15 @@ test('the published chokepoint delta really is a signed fractional change', (t) 
     // -0.400 the rounded pair gives). The slack is what the rounding permits.
     // It still catches what this test is for: a percent where a fraction
     // belongs is off by a factor of a hundred, a lost sign by twice the delta.
-    const slack = Math.max(0.02, (0.05 / base) * (1 + last7 / base) + 0.001)
+    // The bounds are the ratio's own over both roundings, not a first-order
+    // slack, which assumed the rounding small beside the baseline: Kerch at
+    // 0.4 against 0.1 on 2026-11-20 was a true 0.41 against 0.06, delta 5.771,
+    // and the slack allowed 2.5 around the 3.0 the rounded pair gives.
+    const lo = Math.max(0, last7 - 0.05) / (base + 0.05) - 1
+    const hi = base > 0.05 ? (last7 + 0.05) / (base - 0.05) - 1 : Number.POSITIVE_INFINITY
     assert.ok(
-      Math.abs(delta - (last7 / base - 1)) < slack,
-      `${cp.id}: delta ${delta} is not ${(last7 / base - 1).toFixed(3)} within ${slack.toFixed(3)} (last7 ${last7} / base ${base})`,
+      delta >= lo - 0.02 && delta <= hi + 0.02,
+      `${cp.id}: delta ${delta} is outside ${lo.toFixed(3)}…${hi.toFixed(3)}, what last7 ${last7} / base ${base} allow`,
     )
   }
   assert.ok(checked > 5, `only ${checked} chokepoints carried a comparable delta`)
