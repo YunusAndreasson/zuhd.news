@@ -15,6 +15,7 @@ import {
 import { Linking, StyleSheet, useWindowDimensions, View } from 'react-native';
 import { GestureDetector } from 'react-native-gesture-handler';
 import { LayoutAnimationConfig } from 'react-native-reanimated';
+import { ANALYTICS_EVENTS } from '../constants/analytics';
 import {
   type AppearanceMode,
   baseFontSize,
@@ -27,6 +28,7 @@ import {
 import { useSheetBackNavigation } from '../hooks/useSheetBackNavigation';
 import { useSheetNavigation } from '../hooks/useSheetNavigation';
 import { usePreferences, useTheme } from '../hooks/useTheme';
+import { analytics } from '../lib/analytics';
 import { announce } from '../lib/announce';
 import {
   getSnapshot as getBookmarks,
@@ -138,6 +140,13 @@ type PageKey =
 const isHazardKey = (k: PageKey): k is HazardKey => k in HAZARD_TITLES;
 const isGroupKey = (k: PageKey): k is GroupKey => k in GROUP_TITLES;
 const isDetailKey = (k: PageKey): k is `detail:${number}` => k.startsWith('detail:');
+
+/** A page's `Screen Viewed`. A detail page is whatever a row opened — a
+ *  country, a card — so it is `detail` and never its name. */
+function trackPage(key: PageKey): void {
+  const page = isDetailKey(key) ? 'detail' : key.replace(/ /g, '-');
+  void analytics.track(ANALYTICS_EVENTS.SCREEN_VIEWED, { screen: `/menu/${page}` });
+}
 
 /** What a fixed page is called — in its handle and when a screen reader
  *  announces it. A group's key is a code (`stocks`), which no reader should
@@ -267,6 +276,7 @@ export const MenuSheet = memo(function MenuSheet({
     (page: PageKey) => {
       push(page);
       announce(pageTitle(page));
+      trackPage(page);
     },
     [push],
   );
@@ -290,6 +300,7 @@ export const MenuSheet = memo(function MenuSheet({
       setDetails((all) => ({ ...all, [key]: detail }));
       push(key);
       announce(menuDetailLabel(detail));
+      trackPage(key);
     },
     [push],
   );

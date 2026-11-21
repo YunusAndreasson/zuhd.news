@@ -5,21 +5,26 @@ import * as Notifications from 'expo-notifications';
 import { Slot, useNavigationContainerRef, useSegments } from 'expo-router';
 import * as SplashScreen from 'expo-splash-screen';
 import { StatusBar } from 'expo-status-bar';
-import { Suspense, useEffect } from 'react';
-import { StyleSheet, View } from 'react-native';
+import { Suspense, useCallback, useEffect } from 'react';
+import { AppState, StyleSheet, View } from 'react-native';
 import { GestureHandlerRootView } from 'react-native-gesture-handler';
 import { configureReanimatedLogger, ReanimatedLogLevel } from 'react-native-reanimated';
 import { ErrorBoundary } from '../components/ErrorBoundary';
 import { ANALYTICS_EVENTS } from '../constants/analytics';
 import { RUNTIME_FONTS } from '../constants/fonts';
-import { ANIMATION, DARK_COLORS } from '../constants/theme';
+import { IS_ANDROID } from '../constants/platform';
+import { ANIMATION, DARK_COLORS, STALE_THRESHOLD } from '../constants/theme';
+import { useAppResume } from '../hooks/useAppResume';
 import { ThemeProvider, useTheme } from '../hooks/useTheme';
 import { analytics } from '../lib/analytics';
+import { awayBucket, utcDay } from '../lib/analytics-buckets';
 import { registerBackgroundTask } from '../lib/background-fetch';
-import { startMeasurement } from '../lib/measurement';
+import { startFirsts } from '../lib/firsts';
+import { getMeasurementAnswer, startMeasurement, subscribeMeasurement } from '../lib/measurement';
 import { clearLegacyScheduledNotifications, setupNotificationChannels } from '../lib/notifications';
+import { firstRun, getSnapshot as getOnboarding } from '../lib/onboarding-store';
 import { PERSIST_BUSTER, PERSIST_MAX_AGE_MS, persister, queryClient } from '../lib/query-client';
-import { dropRetiredFound } from '../lib/read-store';
+import { dropRetiredFound, startReadingVisit } from '../lib/read-store';
 import { navigationIntegration, sentryEnabled } from '../lib/sentry';
 
 configureReanimatedLogger({ level: ReanimatedLogLevel.warn, strict: false });
@@ -39,6 +44,20 @@ SplashScreen.setOptions({ fade: true, duration: ANIMATION.normal });
 // Fallback: if fonts or the first article load stall, force-hide the splash
 // after 8s so the user sees *something* rather than a frozen launch screen.
 const SPLASH_FALLBACK_MS = 8000;
+
+// Once per JS runtime, not per mount: Android can recreate the activity, and
+// so this layout, while the runtime lives on (`useTheme`'s `latestPrefs`).
+let launchRecorded = false;
+let coldOpenSent = false;
+let lastScreen: string | null = null;
+
+/** The launch's `App Opened`, once; true if this call sent it. */
+function sendColdOpen(): boolean {
+  if (coldOpenSent) return false;
+  coldOpenSent = true;
+  void analytics.track(ANALYTICS_EVENTS.APP_OPENED, { launch: 'cold' });
+  return true;
+}
 
 function ThemedShell() {
   const { colors, resolvedAppearance } = useTheme();
@@ -60,16 +79,63 @@ function RootLayout() {
 
   // The route's pattern, never its params: a param can be a story's slug.
   const segments = useSegments();
-  const screen = `/${segments.join('/')}`;
+  const screen = `/${segments.join('/')}` as const;
   useEffect(() => {
+    // A recreated activity mounts the same route again; nothing came into view.
+    if (screen === lastScreen) return;
+    lastScreen = screen;
     void analytics.track(ANALYTICS_EVENTS.SCREEN_VIEWED, { screen });
   }, [screen]);
+
+  // `App Opened` is the active-user event, so only when the reader can see
+  // the app. iOS launches it in the background for the background task, and
+  // a launch there waits for the reader to bring it up.
+  useEffect(() => {
+    if (AppState.currentState === 'active') {
+      sendColdOpen();
+      return;
+    }
+    let timer: ReturnType<typeof setTimeout> | undefined;
+    const subscription = AppState.addEventListener('change', (state) => {
+      // A tick later, so a warm open answering the same change goes first
+      // and sends this as the cold one it is.
+      if (state === 'active') timer = setTimeout(sendColdOpen, 0);
+    });
+    return () => {
+      subscription.remove();
+      clearTimeout(timer);
+    };
+  }, []);
+  // Back after five minutes or more: a warm open, and a new visit.
+  const handleResume = useCallback((awayMs: number) => {
+    startReadingVisit();
+    if (sendColdOpen()) return;
+    void analytics.track(ANALYTICS_EVENTS.APP_OPENED, { launch: 'warm', away: awayBucket(awayMs) });
+  }, []);
+  useAppResume(handleResume, STALE_THRESHOLD);
 
   // iOS registers its faces here; Android's are embedded, so it is loaded at
   // the first render (`constants/fonts`).
   const [fontsLoaded, fontError] = useFonts(RUNTIME_FONTS);
 
   useEffect(() => {
+    if (!launchRecorded) {
+      launchRecorded = true;
+      void analytics.registerOnce({ install_date: utcDay(getOnboarding().seededAt) });
+      // After the install date, which it carries. Never for an install
+      // updated over the air: that is the store's `firstRun`.
+      if (firstRun) {
+        startFirsts();
+        void analytics.track(ANALYTICS_EVENTS.FIRST_OPEN);
+      }
+    }
+    // Asked only on Android (`lib/measurement.ts`).
+    const measurement = IS_ANDROID
+      ? subscribeMeasurement(() => {
+          void analytics.register({ ad_measurement: getMeasurementAnswer() === true });
+        })
+      : null;
+    if (IS_ANDROID) void analytics.register({ ad_measurement: getMeasurementAnswer() === true });
     void registerBackgroundTask();
     void clearLegacyScheduledNotifications();
     dropRetiredFound();
@@ -94,6 +160,7 @@ function RootLayout() {
 
     return () => {
       clearTimeout(splashFallback);
+      measurement?.();
     };
   }, []);
 

@@ -57,7 +57,7 @@ import { Screen } from '../components/primitives';
 import type { BottomSheetMethodsRef } from '../components/SheetLayout';
 import { SourcesSheet } from '../components/SourcesSheet';
 import { Toast, type ToastRef } from '../components/Toast';
-import { ANALYTICS_EVENTS } from '../constants/analytics';
+import { ANALYTICS_EVENTS, type PrimerSource, type StoryOpenVia } from '../constants/analytics';
 import { CATEGORIES, categoryMarkColor, EDITORIAL, VARIANT_CAP } from '../constants/theme';
 import { useAiModels } from '../hooks/useAiModels';
 import { useAnalysis } from '../hooks/useAnalysis';
@@ -128,6 +128,7 @@ import { exchangeCard, exchangeIsStale, exchangesOf, stockMarketPlace } from '..
 import { shouldAskForMeasurement } from '../lib/measurement';
 import type { MenuHazards } from '../lib/menu-hazards';
 import { orderNewsRiver, type RiverArticle, recentRiver, riverAnchor } from '../lib/news-order';
+import { notificationPermissionUndetermined } from '../lib/notifications';
 import {
   buildNowSurfaces,
   type LatLng,
@@ -145,7 +146,7 @@ import {
 import { openExternal } from '../lib/open-link';
 import type { OverlaySelection } from '../lib/overlays';
 import { oddsByStory, oddsLabels, type StoryOdds } from '../lib/predictions';
-import { getSnapshot as getReadSlugs, markRead, pruneRead } from '../lib/read-store';
+import { getSnapshot as getReadSlugs, markRead, onVisitRead, pruneRead } from '../lib/read-store';
 import { refreshFailedToast } from '../lib/refresh-toast';
 import { resumeLanding, unreadNewBehind } from '../lib/resume-landing';
 import { maybeRequestReview, recordStorySwipe } from '../lib/store-review';
@@ -184,6 +185,13 @@ import { countryTap, type TapResult } from '../lib/tap-result';
 // the right one — it is the pause between the app saying you can stop and the
 // app asking a favour.
 const PRIMER_PRESENT_DELAY_MS = 2600;
+/** The primer's moment for a reader who reads: this many stories newly read
+ *  in one visit. Caught up needs a second look the same day, which a reader
+ *  who comes once a day never makes. */
+const PRIMER_AFTER_READS = 5;
+/** How long a story asked for by name may take to grow before the next open
+ *  of the sheet no longer counts as it (`Story Opened`'s `via`). */
+const STORY_OPEN_VIA_MS = 5_000;
 
 // How long the splash may wait on the heatmap *after* articles are ready.
 // The heatmap degrades gracefully to an empty layer, so it must not hold a
@@ -210,6 +218,8 @@ interface FocusOptions {
   afterBurst?: boolean;
   /** Grow the card into the whole story. */
   grow?: boolean;
+  /** Where the grown story was asked for, for its `Story Opened`. */
+  via?: StoryOpenVia;
   /** A coverage glow was tapped: read as a tapped light is, with no burst
    *  to wait for. */
   read?: boolean;
@@ -299,6 +309,13 @@ export default function HomeScreen() {
    *  with a story open, the strip of earth above it puts the story down. */
   const [sheetDetent, setSheetDetent] = useState<MapSheetDetent>('peek');
   const sheetDetentRef = useRef<MapSheetDetent>('peek');
+  /** Where the story growing now was asked for, until the sheet is open
+   *  (`handleDetentChange`). An open with none is the reader's own, on the
+   *  map: `card`. */
+  const openViaRef = useRef<{ via: StoryOpenVia; at: number } | null>(null);
+  /** The opener of the story last asked for by name (`handleCardStoryPress`),
+   *  read when it resolves (`openResolvedStory`). */
+  const pressViaRef = useRef<{ slug: string; via: StoryOpenVia } | null>(null);
   /** The story in front of the deck. The end card is `storyRows.length`. */
   const [deckIndex, setDeckIndex] = useState(0);
   const deckIndexRef = useRef(0);
@@ -868,7 +885,16 @@ export default function HomeScreen() {
           options.cameraEpoch,
         );
       }
-      if (options.grow) mapSheetRef.current?.expand();
+      if (options.grow) {
+        const via = options.via ?? 'card';
+        // Already open, the sheet does not move, and nothing else would say so.
+        if (sheetDetentRef.current === 'full') {
+          void analytics.track(ANALYTICS_EVENTS.STORY_OPENED, { via });
+        } else {
+          openViaRef.current = { via, at: Date.now() };
+        }
+        mapSheetRef.current?.expand();
+      }
     },
     [
       dropRelease,
@@ -913,7 +939,7 @@ export default function HomeScreen() {
   }, [storyRows, dropRelease, remapStory, setCameraFront, storyCommitted]);
 
   const handleSelectArticle = useCallback(
-    (slug: string, category: Category) => {
+    (slug: string, category: Category, via: StoryOpenVia = 'card') => {
       menuSheetRef.current?.dismiss();
       // `category` is still in the signature because callers (bookmarks,
       // notification payloads, related-story rows) know it and the feed is
@@ -930,9 +956,14 @@ export default function HomeScreen() {
           return;
         }
       }
-      focusStory(slug, { grow: true });
+      focusStory(slug, { grow: true, via });
     },
     [focusStory, injectArticle, pinStory],
+  );
+  /** A saved story, from the menu. */
+  const handleMenuSelectArticle = useCallback(
+    (slug: string, category: Category) => handleSelectArticle(slug, category, 'menu'),
+    [handleSelectArticle],
   );
 
   // The gauge whose card is open: its slot is marked and the globe rings its
@@ -1154,6 +1185,7 @@ export default function HomeScreen() {
     hapticNotification();
     if (added) {
       toastRef.current?.show('Saved');
+      void analytics.track(ANALYTICS_EVENTS.STORY_SAVED);
     } else {
       toastRef.current?.show('Removed · tap to undo', {
         onPress: () => {
@@ -1184,6 +1216,12 @@ export default function HomeScreen() {
     markHintDone('masthead');
     briefingChromeRef.current?.toggle();
   }, []);
+  /** A briefing push: it plays, and one already playing goes on. A toggle
+   *  here paused the briefing the reader was listening to. */
+  const handleBriefingPush = useCallback(() => {
+    markHintDone('masthead');
+    briefingChromeRef.current?.play();
+  }, []);
   const handleBriefingUnavailable = useCallback(() => {
     hapticError();
     toastRef.current?.show('No briefing today yet', undefined, 'top');
@@ -1206,8 +1244,14 @@ export default function HomeScreen() {
 
   const handleShare = useCallback((article: RiverArticle) => {
     const { content, options } = storyShare(article, Platform.OS);
-    Share.share(content, options).catch(() => {});
-    void analytics.track(ANALYTICS_EVENTS.STORY_SHARED);
+    // Where it went (iOS's `activityType`) is not sent.
+    Share.share(content, options)
+      .then((result) =>
+        analytics.track(ANALYTICS_EVENTS.STORY_SHARED, {
+          completed: result.action === Share.sharedAction,
+        }),
+      )
+      .catch(() => {});
   }, []);
 
   const countryAlerts = useMemo<GdacsAlert[]>(
@@ -1273,6 +1317,35 @@ export default function HomeScreen() {
   const sheetOpenRef = useRef(sheetOpen);
   sheetOpenRef.current = sheetOpen;
 
+  // A platform sheet coming up is a screen: `/sheet/<sheet>`, by the sheet
+  // and never by what it shows. A hand-off opens the next before the last
+  // has closed, so each is told as it joins what is open.
+  const openSheets = [
+    menuOpen && 'menu',
+    primerOpen && 'primer',
+    measurementOpen && 'measurement',
+    sheetSources.length > 0 && 'sources',
+    countrySheet !== null && 'country',
+    activeAlert !== null && 'disaster',
+    activeConflict !== null && 'conflict',
+    activeCard !== null && 'card',
+    activeOverlay !== null && 'overlay',
+    chooserCandidates.length > 0 && 'chooser',
+    activeEntity !== null && 'entity',
+  ]
+    .filter((name): name is string => typeof name === 'string')
+    .join(' ');
+  const viewedSheetsRef = useRef<ReadonlySet<string>>(new Set());
+  useEffect(() => {
+    const open = new Set(openSheets ? openSheets.split(' ') : []);
+    for (const name of open) {
+      if (!viewedSheetsRef.current.has(name)) {
+        void analytics.track(ANALYTICS_EVENTS.SCREEN_VIEWED, { screen: `/sheet/${name}` });
+      }
+    }
+    viewedSheetsRef.current = open;
+  }, [openSheets]);
+
   const { activeHint, dismissActiveHint } = useOnboardingHints({
     ready: !loading && heatmapReady,
     // Not on the end card either: every lesson there points at a next story
@@ -1280,9 +1353,14 @@ export default function HomeScreen() {
     suppressed: sheetOpen || briefingVisible || deckIndex >= storyRows.length,
   });
 
+  /** The pill itself was tapped away. */
+  const handleHintTap = useCallback(() => dismissActiveHint('tap'), [dismissActiveHint]);
+
   const notificationsOnRef = useRef(preferences.notifications);
   notificationsOnRef.current = preferences.notifications;
   const primerTriedRef = useRef(false);
+  /** The moment the primer is presented at, for its answer's `source`. */
+  const [primerSource, setPrimerSource] = useState<PrimerSource>('caught_up');
 
   // A new reader on Android, once the map has had a moment. If another sheet got
   // there first the question waits for the row on the privacy page, not a nag.
@@ -1292,9 +1370,74 @@ export default function HomeScreen() {
       if (sheetOpenRef.current) return;
       setMeasurementOpen(true);
       measurementSheetRef.current?.present();
+      void analytics.track(ANALYTICS_EVENTS.PERMISSION_PROMPT_SHOWN, {
+        permission: 'ad_measurement',
+        primed: true,
+      });
     }, PRIMER_PRESENT_DELAY_MS);
     return () => clearTimeout(timer);
   }, []);
+
+  /** The primer, once a session, a moment after `source`'s moment, unless a
+   *  sheet has come up by then. */
+  const presentPrimer = useCallback((source: PrimerSource) => {
+    primerTriedRef.current = true;
+    primerTimerRef.current = setTimeout(() => {
+      primerTimerRef.current = null;
+      if (sheetOpenRef.current) return;
+      setPrimerSource(source);
+      setPrimerOpen(true);
+      primerSheetRef.current?.present();
+      void analytics.track(ANALYTICS_EVENTS.PERMISSION_PROMPT_SHOWN, {
+        permission: 'notifications',
+        primed: true,
+        source,
+      });
+    }, PRIMER_PRESENT_DELAY_MS);
+  }, []);
+
+  /**
+   * The primer's moments for a reader caught up never reaches: the first
+   * briefing heard to its end, or the fifth story read in a visit, whichever
+   * comes first. Only for a reader the OS has never asked and the primer
+   * never has, and never over another sheet; a moment that finds one open
+   * leaves the ask to the next. A briefing that ends with the phone locked
+   * asks when the reader comes back.
+   */
+  const askAtMomentRef = useRef<(source: PrimerSource) => void>(() => {});
+  const deferredPrimerRef = useRef<PrimerSource | null>(null);
+  const askAtMoment = useCallback(
+    (source: PrimerSource) => {
+      if (primerTriedRef.current || sheetOpenRef.current) return;
+      if (getOnboarding().primer.status !== 'pending' || notificationsOnRef.current) return;
+      if (AppState.currentState !== 'active') {
+        deferredPrimerRef.current = source;
+        return;
+      }
+      void notificationPermissionUndetermined().then((undetermined) => {
+        if (!undetermined || primerTriedRef.current || sheetOpenRef.current) return;
+        presentPrimer(source);
+      });
+    },
+    [presentPrimer],
+  );
+  askAtMomentRef.current = askAtMoment;
+  useEffect(() => {
+    const visits = onVisitRead((count) => {
+      if (count >= PRIMER_AFTER_READS) askAtMomentRef.current('stories_read');
+    });
+    const subscription = AppState.addEventListener('change', (state) => {
+      const deferred = deferredPrimerRef.current;
+      if (state !== 'active' || !deferred) return;
+      deferredPrimerRef.current = null;
+      askAtMomentRef.current(deferred);
+    });
+    return () => {
+      visits();
+      subscription.remove();
+    };
+  }, []);
+  const handleBriefingFinished = useCallback(() => askAtMoment('first_briefing'), [askAtMoment]);
 
   const caughtUpFiredRef = useRef(false);
 
@@ -1307,15 +1450,9 @@ export default function HomeScreen() {
     hapticNotification();
     if (primerTriedRef.current) return true;
     if (getOnboarding().primer.status !== 'pending' || notificationsOnRef.current) return true;
-    primerTriedRef.current = true;
-    primerTimerRef.current = setTimeout(() => {
-      primerTimerRef.current = null;
-      if (sheetOpenRef.current) return;
-      setPrimerOpen(true);
-      primerSheetRef.current?.present();
-    }, PRIMER_PRESENT_DELAY_MS);
+    presentPrimer('caught_up');
     return true;
-  }, []);
+  }, [presentPrimer]);
 
   /**
    * A finger has started a swipe on the deck. Whether the camera follows it is
@@ -1325,7 +1462,7 @@ export default function HomeScreen() {
    */
   const handleDeckDragStart = useCallback(() => {
     cameraClaimedRef.current = true;
-    dismissActiveHint();
+    dismissActiveHint('swipe');
   }, [dismissActiveHint]);
 
   /**
@@ -1436,8 +1573,13 @@ export default function HomeScreen() {
     (detent: MapSheetDetent) => {
       sheetDetentRef.current = detent;
       setSheetDetent(detent);
+      const asked = openViaRef.current;
+      openViaRef.current = null;
       if (detent !== 'full') return;
-      dismissActiveHint();
+      // Asked for by name a moment ago, or the reader's own open on the map.
+      const via = asked && Date.now() - asked.at < STORY_OPEN_VIA_MS ? asked.via : 'card';
+      void analytics.track(ANALYTICS_EVENTS.STORY_OPENED, { via });
+      dismissActiveHint('swipe');
       // Opening a story is reading it, without waiting out the dwell.
       const row = storyRowsRef.current[deckIndexRef.current];
       if (row) markRead(row.slug);
@@ -1512,7 +1654,8 @@ export default function HomeScreen() {
       ]) {
         sheet.current?.dismiss();
       }
-      focusStory(slug, { grow: true });
+      const pressed = pressViaRef.current;
+      focusStory(slug, { grow: true, via: pressed?.slug === slug ? pressed.via : 'card' });
     },
     [focusStory, injectArticle, pinStory],
   );
@@ -1544,6 +1687,18 @@ export default function HomeScreen() {
     [resolveStory],
   );
   storyPressRef.current = handleCardStoryPress;
+  /** `handleCardStoryPress`, saying where the story was asked for. */
+  const storyPressFrom = useCallback(
+    (via: StoryOpenVia) => (slug: string) => {
+      pressViaRef.current = { slug, via };
+      handleCardStoryPress(slug);
+    },
+    [handleCardStoryPress],
+  );
+  const handleNotificationStory = useMemo(() => storyPressFrom('notification'), [storyPressFrom]);
+  const handleLinkedStory = useMemo(() => storyPressFrom('link'), [storyPressFrom]);
+  const handleMenuStoryPress = useMemo(() => storyPressFrom('menu'), [storyPressFrom]);
+  const handleCardSheetStoryPress = useMemo(() => storyPressFrom('card'), [storyPressFrom]);
   const handleOverlayDismiss = useCallback(() => {
     setActiveOverlay(null);
     runSheetHandOff();
@@ -1647,8 +1802,8 @@ export default function HomeScreen() {
     return () => clearTimeout(timer);
   }, [loading, heatmapReady]);
 
-  usePendingNotification(loading, grouped, handleCardStoryPress, handleBriefingPress);
-  useLinkedStory(loading, grouped, handleCardStoryPress);
+  usePendingNotification(loading, grouped, handleNotificationStory, handleBriefingPush);
+  useLinkedStory(loading, grouped, handleLinkedStory);
 
   const storyCount = storyRows.length;
   const frontIndex = Math.min(deckIndex, storyCount);
@@ -2209,7 +2364,7 @@ export default function HomeScreen() {
 
       <HintOverlay
         hint={activeHint}
-        onDismiss={dismissActiveHint}
+        onDismiss={handleHintTap}
         bottomInset={insets.bottom}
         // Above whatever height the sheet has settled at, so the pill never
         // sits on the words it is pointing at.
@@ -2223,6 +2378,7 @@ export default function HomeScreen() {
         recorded={briefing?.generated}
         onUnavailable={handleBriefingUnavailable}
         onPlaybackError={handleBriefingPlaybackError}
+        onFinish={handleBriefingFinished}
         onVisibilityChange={setBriefingVisible}
         onStatusChange={setBriefingStatus}
         topOffset={topChromeHeight}
@@ -2234,13 +2390,13 @@ export default function HomeScreen() {
         bottomInset={insets.bottom}
         onDismiss={handleMenuDismiss}
         grouped={grouped}
-        onSelectArticle={handleSelectArticle}
+        onSelectArticle={handleMenuSelectArticle}
         catalog={catalog}
         hazards={menuHazards}
         gdacsDetails={gdacsDetails}
         articles={river}
         onSelectRow={handleMenuRowSelect}
-        onStoryPress={handleCardStoryPress}
+        onStoryPress={handleMenuStoryPress}
         rootKey={menuRootKey}
         onToast={handleMenuToast}
       />
@@ -2251,7 +2407,7 @@ export default function HomeScreen() {
         card={activeCard}
         peekHeight={layout.peek}
         onDismiss={handleCardDismiss}
-        onStoryPress={handleCardStoryPress}
+        onStoryPress={handleCardSheetStoryPress}
       />
 
       <CountrySheet
@@ -2331,6 +2487,7 @@ export default function HomeScreen() {
         bottomInset={insets.bottom}
         onDismiss={handlePrimerDismiss}
         onToast={handleMenuToast}
+        source={primerSource}
       />
 
       <MeasurementSheet

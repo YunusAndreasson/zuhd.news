@@ -1,11 +1,16 @@
 import type { Category, GroupedArticles } from '@shared/types';
 import * as Notifications from 'expo-notifications';
 import { useEffect, useRef } from 'react';
+import { ANALYTICS_EVENTS } from '../constants/analytics';
 import { CATEGORIES } from '../constants/theme';
+import { analytics } from '../lib/analytics';
 import { getSnapshot as getBookmarks } from '../lib/bookmark-store';
 
 /** Dispatch each notification tap once after the feed is ready. Missing stories
- * are resolved by the opener through the per-story endpoint. */
+ * are resolved by the opener through the per-story endpoint. `onPlayBriefing`
+ * plays the briefing, and a briefing already playing goes on: the push says
+ * it is ready, so a tap on it is never a pause. Each tap is a `Notification
+ * Opened`, with its kind and never its story or date. */
 export function usePendingNotification(
   loading: boolean,
   grouped: GroupedArticles,
@@ -21,6 +26,7 @@ export function usePendingNotification(
     if (data?.kind === 'briefing') {
       if (onPlayBriefing) {
         handled.current = response;
+        void analytics.track(ANALYTICS_EVENTS.NOTIFICATION_OPENED, { type: 'briefing' });
         onPlayBriefing();
         Notifications.clearLastNotificationResponse();
       }
@@ -30,10 +36,12 @@ export function usePendingNotification(
     const slug = typeof data?.slug === 'string' ? data.slug : null;
     if (slug) {
       handled.current = response;
+      void analytics.track(ANALYTICS_EVENTS.NOTIFICATION_OPENED, { type: 'breaking' });
       onSelectArticle(slug, categoryOf(slug, grouped) ?? 'politics');
       Notifications.clearLastNotificationResponse();
     } else {
       handled.current = response;
+      void analytics.track(ANALYTICS_EVENTS.NOTIFICATION_OPENED, { type: 'other' });
       // The response is not routable by this app; consume it so it cannot be
       // replayed on a later launch.
       Notifications.clearLastNotificationResponse();

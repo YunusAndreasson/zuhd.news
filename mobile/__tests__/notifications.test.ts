@@ -4,6 +4,8 @@ const mockGetSecure = jest.fn();
 const mockSetSecure = jest.fn();
 const mockDeleteSecure = jest.fn();
 const mockFetch = jest.fn();
+const mockGetPermissions = jest.fn();
+const mockRequestPermissions = jest.fn();
 
 jest.mock('expo-constants', () => ({
   __esModule: true,
@@ -14,8 +16,10 @@ jest.mock('expo-notifications', () => ({
   getExpoPushTokenAsync: (...args: unknown[]) => mockGetExpoPushToken(...args),
   addPushTokenListener: (...args: unknown[]) => mockAddPushTokenListener(...args),
   cancelAllScheduledNotificationsAsync: jest.fn(),
-  requestPermissionsAsync: jest.fn(),
+  getPermissionsAsync: (...args: unknown[]) => mockGetPermissions(...args),
+  requestPermissionsAsync: (...args: unknown[]) => mockRequestPermissions(...args),
   AndroidImportance: { DEFAULT: 3, HIGH: 4 },
+  PermissionStatus: { GRANTED: 'granted', DENIED: 'denied', UNDETERMINED: 'undetermined' },
 }));
 
 jest.mock('expo-secure-store', () => ({
@@ -30,6 +34,8 @@ jest.mock('../lib/fetch', () => ({
 
 import {
   addPushTokenListener,
+  enableNotifications,
+  notificationPermissionUndetermined,
   registerPushToken,
   TOKEN_FETCH_TIMEOUT_MS,
   unregisterPushToken,
@@ -187,4 +193,39 @@ it('an opt-out reaches the server even while a token request hangs', async () =>
   } finally {
     jest.useRealTimers();
   }
+});
+
+describe('asking for permission', () => {
+  const permission = (status: string, granted: boolean, canAskAgain: boolean) => ({
+    status,
+    granted,
+    canAskAgain,
+  });
+
+  it('a first ask can show the system dialog, and its answer is the answer', async () => {
+    mockGetPermissions.mockResolvedValue(permission('undetermined', false, true));
+    mockRequestPermissions.mockResolvedValue(permission('denied', false, false));
+    await expect(enableNotifications()).resolves.toEqual({ granted: false, osPrompt: true });
+  });
+
+  it('once refused for good, the system answers without its dialog', async () => {
+    mockGetPermissions.mockResolvedValue(permission('denied', false, false));
+    mockRequestPermissions.mockResolvedValue(permission('denied', false, false));
+    await expect(enableNotifications()).resolves.toEqual({ granted: false, osPrompt: false });
+  });
+
+  it('already allowed: granted, with no dialog', async () => {
+    mockGetPermissions.mockResolvedValue(permission('granted', true, true));
+    mockRequestPermissions.mockResolvedValue(permission('granted', true, true));
+    await expect(enableNotifications()).resolves.toEqual({ granted: true, osPrompt: false });
+  });
+
+  it('undetermined only while the system has never been asked', async () => {
+    mockGetPermissions.mockResolvedValueOnce(permission('undetermined', false, true));
+    await expect(notificationPermissionUndetermined()).resolves.toBe(true);
+    mockGetPermissions.mockResolvedValueOnce(permission('denied', false, true));
+    await expect(notificationPermissionUndetermined()).resolves.toBe(false);
+    mockGetPermissions.mockRejectedValueOnce(new Error('no module'));
+    await expect(notificationPermissionUndetermined()).resolves.toBe(false);
+  });
 });

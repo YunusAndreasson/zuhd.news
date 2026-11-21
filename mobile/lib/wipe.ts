@@ -1,5 +1,6 @@
 import { File, Paths } from 'expo-file-system';
 import Storage from 'expo-sqlite/kv-store';
+import { ANALYTICS_EVENTS } from '../constants/analytics';
 import { analytics } from './analytics';
 import { cancelArrivals } from './arrival';
 import { clearBookmarks } from './bookmark-store';
@@ -7,6 +8,7 @@ import { deleteBriefingAudio } from './briefing-audio';
 import { clearBriefingProgress } from './briefing-progress';
 import { resetDataUsage } from './data-usage';
 import { feedCache } from './feed-source';
+import { clearFirsts } from './firsts';
 import { clearKnown } from './fresh-store';
 import { deleteLegacy, type LegacyCopy } from './legacy-store';
 import { resetOnboarding } from './onboarding-store';
@@ -39,6 +41,7 @@ const KEYS = [
   'zuhd_review_prompted', // when the rating prompt was last shown
   'REACT_QUERY_OFFLINE_CACHE', // the persisted article cache
   'zuhd_card_history_v1', // viewed-card history, written only by older builds
+  'zuhd_firsts_v1', // whether a story was read and a briefing played yet (`firsts.ts`)
 ];
 
 /**
@@ -66,14 +69,16 @@ export async function eraseLocalData(): Promise<void> {
   // keys afterwards.
   cancelArrivals();
   const cleared = [clearBookmarks(), clearKnown(), clearRead(), resetOnboarding()];
+  clearFirsts();
   resetReviewState();
   resetDataUsage();
   queryClient.clear();
   // The briefing's downloaded audio, which the privacy page counts among
   // what nothing downloaded outlives.
   deleteBriefingAudio({ partials: true });
-  // Analytics starts again under a new anonymous id.
-  void analytics.reset();
+  // Analytics starts again under a new anonymous id, the erase being the
+  // last event under the old one.
+  void analytics.track(ANALYTICS_EVENTS.LOCAL_DATA_ERASED).then(() => analytics.reset());
 
   await Promise.all([
     clearBriefingProgress(),

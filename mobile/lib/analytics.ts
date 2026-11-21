@@ -1,8 +1,10 @@
 import type * as MixpanelModule from 'mixpanel-react-native';
 import {
   type AnalyticsEventName,
+  type AnalyticsEventProperties,
   MIXPANEL_SERVER_URL,
   MIXPANEL_TOKEN,
+  type SuperProperties,
 } from '../constants/analytics';
 
 /**
@@ -12,12 +14,31 @@ import {
  * Anonymous by design: no `identify`, no people profile, no user id in a
  * property, so events stay on Mixpanel's anonymous device id. Mixpanel's own
  * IP geolocation (city, region, country) is left on. Automatic events are off;
- * only `ANALYTICS_EVENTS` are sent.
+ * only `ANALYTICS_EVENTS` are sent, each with its own properties
+ * (`AnalyticsEventProperties`).
  */
 
-type AnalyticsProperties = Record<string, string | number | boolean | null | undefined>;
+/** The event's properties, or nothing for an event that has none. */
+type PropertiesArg<E extends AnalyticsEventName> = AnalyticsEventProperties[E] extends undefined
+  ? []
+  : [properties: AnalyticsEventProperties[E]];
 
 let mixpanelInstance: MixpanelModule.Mixpanel | null = null;
+
+/**
+ * The super properties this run has registered. A reset wipes Mixpanel's
+ * copy, and a register before Mixpanel has started has nowhere to go yet, so
+ * these are what both put back.
+ */
+const registered: SuperProperties = {};
+const registeredOnce: SuperProperties = {};
+
+function applySuperProperties(instance: MixpanelModule.Mixpanel): void {
+  if (Object.keys(registeredOnce).length > 0) {
+    instance.registerSuperPropertiesOnce({ ...registeredOnce });
+  }
+  if (Object.keys(registered).length > 0) instance.registerSuperProperties({ ...registered });
+}
 
 async function startMixpanel(token: string): Promise<void> {
   // Loaded on first use, so a build or test without the token never touches
@@ -27,7 +48,8 @@ async function startMixpanel(token: string): Promise<void> {
   const instance = new Mixpanel(token.trim(), trackAutomaticEvents);
   const optOutTrackingDefault = false;
   await instance.init(optOutTrackingDefault, {}, MIXPANEL_SERVER_URL);
-  // Published only once initialized.
+  // Before it is published, so no event goes out without them.
+  applySuperProperties(instance);
   mixpanelInstance = instance;
 }
 
@@ -63,20 +85,50 @@ function initializeMixpanel(): Promise<void> {
 
 export const analytics = {
   /** Send one of `ANALYTICS_EVENTS`. Resolves whatever happens. */
-  async track(event: AnalyticsEventName, properties?: AnalyticsProperties): Promise<void> {
+  async track<E extends AnalyticsEventName>(event: E, ...args: PropertiesArg<E>): Promise<void> {
     try {
       await initializeMixpanel();
-      mixpanelInstance?.track(event, properties);
+      mixpanelInstance?.track(event, args[0]);
     } catch {
       // Analytics is never worth surfacing to a reader.
     }
   },
 
-  /** Start a new anonymous id. For an erase of the reader's data. */
+  /** Send these with every event from now on, replacing what they were. */
+  async register(properties: SuperProperties): Promise<void> {
+    Object.assign(registered, properties);
+    try {
+      await initializeMixpanel();
+      mixpanelInstance?.registerSuperProperties({ ...properties });
+    } catch {
+      // As above.
+    }
+  },
+
+  /** As `register`, but a property already set keeps its value. */
+  async registerOnce(properties: SuperProperties): Promise<void> {
+    Object.assign(registeredOnce, { ...properties, ...registeredOnce });
+    try {
+      await initializeMixpanel();
+      mixpanelInstance?.registerSuperPropertiesOnce({ ...properties });
+    } catch {
+      // As above.
+    }
+  },
+
+  /**
+   * Start a new anonymous id. For an erase of the reader's data. What was
+   * queued goes first, under the id it was recorded with, and the super
+   * properties are put back: they say how the app is set up, not who read.
+   */
   async reset(): Promise<void> {
     try {
       await initializeMixpanel();
-      mixpanelInstance?.reset();
+      const instance = mixpanelInstance;
+      if (!instance) return;
+      instance.flush();
+      instance.reset();
+      applySuperProperties(instance);
     } catch {
       // As above.
     }

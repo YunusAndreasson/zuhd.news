@@ -15,11 +15,13 @@ import { AppState, type AppStateStatus } from 'react-native';
 import { ANALYTICS_EVENTS } from '../constants/analytics';
 import { API_BASE } from '../constants/theme';
 import { analytics } from '../lib/analytics';
+import { heardPct } from '../lib/analytics-buckets';
 import { resolveAudioDuration } from '../lib/audio-duration';
 import { resolveDownloadedAudioSource } from '../lib/audio-source';
 import { briefingAudioFile, briefingPartialFile, deleteBriefingAudio } from '../lib/briefing-audio';
 import { readSavedPlace, saveSavedPlace, subscribeToBriefingReset } from '../lib/briefing-progress';
 import { recordBytes } from '../lib/data-usage';
+import { claimFirst } from '../lib/firsts';
 
 const PLAYBACK_STATUS_UPDATE = 'playbackStatusUpdate';
 // The CDN currently answers byte-range requests with the complete MP3, which
@@ -98,12 +100,16 @@ interface BriefingPlayer {
   resumeAt: number;
   /** Monotonic signal: increments once for each terminal playback failure. */
   failureCount: number;
+  /** Monotonic signal: increments once for each briefing heard to its end. */
+  finishCount: number;
   /** False when the feed didn't surface a briefing date — typically because
    *  the latest mp3 has aged out of the 7-day server retention window or
    *  generation has been broken longer than that. Consumers should toast
    *  rather than calling toggle, since toggle() is a no-op in this state. */
   available: boolean;
   toggle: () => void;
+  /** Play, or go on playing: a toggle that never pauses. A briefing push's tap. */
+  play: () => void;
   seek: (seconds: number) => void;
   dismiss: () => void;
 }
@@ -179,6 +185,7 @@ export function useBriefingPlayer(
   const [resumeAt, setResumeAt] = useState(0);
   const [hasPlayer, setHasPlayer] = useState(false);
   const [failureCount, setFailureCount] = useState(0);
+  const [finishCount, setFinishCount] = useState(0);
   const playerRef = useRef<AudioPlayer | null>(null);
   const savedDate = useRef<string | null>(null);
   const lockScreenActive = useRef(false);
@@ -207,6 +214,14 @@ export function useBriefingPlayer(
   const sourceAbort = useRef<AbortController | null>(null);
   const progressGeneration = useRef(0);
   const closedRef = useRef(false);
+  // A fresh load's play, armed until the player is heard playing: only then
+  // is it a `Briefing Started`. A load that fails or gives up never is, so a
+  // retry counts once; a pause and resume within one load is the same start.
+  const startRef = useRef<{ resumed: boolean } | null>(null);
+  // Played to the end, or closed, with the player kept: the next play is a
+  // start again, from the top or from where it was closed.
+  const finishedRef = useRef(false);
+  const stoppedRef = useRef(false);
 
   // Surface persisted progress before playback begins so the idle affordance
   // can say RESUME after a relaunch. Playback restoration remains lazy.
@@ -302,6 +317,9 @@ export function useBriefingPlayer(
     playingIntentRef.current = false;
     toggleTokenRef.current += 1;
     sourcePreparingRef.current = false;
+    startRef.current = null;
+    finishedRef.current = false;
+    stoppedRef.current = false;
     if (playerRef.current) {
       try {
         playerRef.current.clearLockScreenControls();
@@ -500,6 +518,14 @@ export function useBriefingPlayer(
         clearTimeout(giveUpTimer.current);
         giveUpTimer.current = null;
       }
+      const start = startRef.current;
+      if (start) {
+        startRef.current = null;
+        void analytics.track(ANALYTICS_EVENTS.BRIEFING_STARTED, {
+          resumed: start.resumed,
+          first_time: claimFirst('briefing'),
+        });
+      }
     }
 
     if (!wantsToPlayRef.current && !sourcePreparingRef.current) {
@@ -511,6 +537,12 @@ export function useBriefingPlayer(
       if (status.currentTime > 0) setResumable(true);
     }
 
+    if (status.didJustFinish && !finishedRef.current) {
+      finishedRef.current = true;
+      startRef.current = null;
+      void analytics.track(ANALYTICS_EVENTS.BRIEFING_COMPLETED);
+      setFinishCount((count) => count + 1);
+    }
     if (status.didJustFinish) {
       wantsToPlayRef.current = false;
       playingIntentRef.current = false;
@@ -566,6 +598,8 @@ export function useBriefingPlayer(
           clearTimeout(giveUpTimer.current);
           giveUpTimer.current = null;
         }
+        // An armed start stays armed: a play before it was heard is still
+        // this load's start when the reader plays again.
         wantsToPlayRef.current = false;
         if (playerRef.current) {
           if (!playerRef.current.isLoaded) {
@@ -594,6 +628,13 @@ export function useBriefingPlayer(
           playerRef.current !== player
         )
           return;
+        // Heard to the end or closed, and played again: a start, from the
+        // top or from the place it was closed at.
+        if (finishedRef.current || stoppedRef.current) {
+          startRef.current = { resumed: !finishedRef.current };
+          finishedRef.current = false;
+          stoppedRef.current = false;
+        }
         player.play();
         armGiveUp();
         return;
@@ -645,12 +686,14 @@ export function useBriefingPlayer(
 
       // Restore persisted progress only after the source exists; opening the
       // app remains free of audio I/O.
+      let resumed = false;
       try {
         const [savedPos, savedDateStr] = await readSavedPlace();
         if (toggleToken !== toggleTokenRef.current || loadToken !== sourceLoadToken.current) return;
         if (isSameRecording(savedDateStr, effectiveDate, recording) && savedPos) {
           const pos = Number.parseInt(savedPos, 10);
           if (pos > 0) {
+            resumed = true;
             player.seekTo(pos).catch(() => {});
             setElapsed(pos);
             setResumable(true);
@@ -671,9 +714,11 @@ export function useBriefingPlayer(
       // safely no-ops if AVPlayer is still buffering — the cold-start retry
       // in the status listener re-issues it once isLoaded flips true.
       sourcePreparingRef.current = false;
+      finishedRef.current = false;
+      stoppedRef.current = false;
+      startRef.current = { resumed };
       player.play();
       armGiveUp();
-      void analytics.track(ANALYTICS_EVENTS.BRIEFING_STARTED);
 
       // Defer lock-screen activation until AVPlayer reports a real duration.
       // The first MPNowPlayingInfo write must carry it — if duration is 0 at
@@ -720,7 +765,23 @@ export function useBriefingPlayer(
     setElapsed(Math.floor(clamped));
   }, []);
 
+  /** For a briefing push: a tap on it is never a pause (`usePendingNotification`). */
+  const play = useCallback(() => {
+    if (playingIntentRef.current) return;
+    void toggle();
+  }, [toggle]);
+
   const dismiss = useCallback(() => {
+    // How far the reader got before closing it, from the player when it has
+    // the place, else from what the bar last showed.
+    const player = playerRef.current;
+    const heardAt = player?.isLoaded ? player.currentTime : elapsed;
+    void analytics.track(ANALYTICS_EVENTS.BRIEFING_STOPPED, {
+      heard_pct: heardPct(heardAt, resolveAudioDuration(player?.duration, feedDuration)),
+    });
+    // Kept loaded, the player resumes on the next play, and that is a start
+    // again — or still the one armed, if it was never heard playing.
+    if (!startRef.current) stoppedRef.current = true;
     sourceAbort.current?.abort();
     closedRef.current = true;
     playingIntentRef.current = false;
@@ -744,7 +805,7 @@ export function useBriefingPlayer(
     setPreparing(false);
     setPlaying(false);
     if (elapsed > 0) setResumable(true);
-  }, [elapsed, savePosition, teardownPlayer]);
+  }, [elapsed, feedDuration, savePosition, teardownPlayer]);
 
   // Native duration is authoritative once loaded. Feed duration keeps the
   // in-app timeline visible during startup instead of coupling it to AVPlayer's
@@ -767,8 +828,10 @@ export function useBriefingPlayer(
     resumable,
     resumeAt,
     failureCount,
+    finishCount,
     available,
     toggle,
+    play,
     seek,
     dismiss,
   };

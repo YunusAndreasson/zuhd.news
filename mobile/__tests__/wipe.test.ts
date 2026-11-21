@@ -91,6 +91,19 @@ jest.mock('expo-store-review', () => ({
   requestReview: jest.fn(() => Promise.resolve()),
 }));
 
+// Mixpanel, in the order the erase reached it.
+const mockAnalyticsCalls: string[] = [];
+jest.mock('../lib/analytics', () => ({
+  analytics: {
+    track: async (event: string) => {
+      mockAnalyticsCalls.push(event);
+    },
+    reset: async () => {
+      mockAnalyticsCalls.push('reset');
+    },
+  },
+}));
+
 import Storage from 'expo-sqlite/kv-store';
 import type { Article, Category } from '@shared/types';
 import { getSnapshot as getBookmarks, toggle as toggleBookmark } from '../lib/bookmark-store';
@@ -133,6 +146,7 @@ describe('eraseLocalData', () => {
     mockKv.set('zuhd_review_count', '19');
     mockKv.set('zuhd_review_prompted', '1700000000');
     mockKv.set('REACT_QUERY_OFFLINE_CACHE', '{"clientState":{}}');
+    mockKv.set('zuhd_firsts_v1', '["read"]');
     mockFiles.set('/cache/zuhd-feed.json', '{"generated":"x"}');
     mockFiles.set('/cache/briefing-https%3A%2F%2Fzuhd.news%2Fa.mp3', 'audio');
     mockFiles.set('/cache/briefing-1-1.part', 'half');
@@ -158,9 +172,17 @@ describe('eraseLocalData', () => {
       'zuhd_review_prompted',
       'REACT_QUERY_OFFLINE_CACHE',
       'zuhd_card_history_v1',
+      'zuhd_firsts_v1',
     ]) {
       expect(mockKv.has(key)).toBe(false);
     }
+  });
+
+  it('says so under the old anonymous id, then starts a new one', async () => {
+    mockAnalyticsCalls.length = 0;
+    await eraseLocalData();
+    await new Promise((resolve) => setTimeout(resolve, 0));
+    expect(mockAnalyticsCalls).toEqual(['Local Data Erased', 'reset']);
   });
 
   // The erase copy promises display settings survive. Wiping someone's text

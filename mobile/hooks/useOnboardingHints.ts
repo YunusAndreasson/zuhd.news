@@ -78,7 +78,9 @@ export function eligibleHint(
  *  the briefing player owns the pill's airspace. */
 export function useOnboardingHints(opts: { ready: boolean; suppressed: boolean }): {
   activeHint: HintId | null;
-  dismissActiveHint: () => void;
+  /** `tap`: the pill itself was tapped; `swipe`: the reader moved on under it
+   *  — a swipe of the deck, or the story opening. */
+  dismissActiveHint: (how: 'tap' | 'swipe') => void;
 } {
   const { ready, suppressed } = opts;
   const state = useSyncExternalStore(subscribe, getSnapshot);
@@ -153,7 +155,7 @@ export function useOnboardingHints(opts: { ready: boolean; suppressed: boolean }
     }, HINT_VISIBLE_MS);
     return () => clearTimeout(timer);
   }, [activeHint]);
-  const dismissActiveHint = useCallback(() => {
+  const dismissActiveHint = useCallback((how: 'tap' | 'swipe') => {
     const id = activeHintRef.current;
     // Pause only when there is a lesson to pause: one on screen or one
     // counting down. This runs at the start of every swipe, and the snap
@@ -163,7 +165,7 @@ export function useOnboardingHints(opts: { ready: boolean; suppressed: boolean }
     if (!id && !armIdRef.current) return;
     setPausedAtSnapCount(snapCountRef.current);
     if (!id) return;
-    dismissHint(id);
+    dismissHint(id, how);
     setActiveHint(null);
   }, []);
 

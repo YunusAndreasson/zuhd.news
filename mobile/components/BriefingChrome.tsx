@@ -4,6 +4,8 @@ import { BriefingBar } from './BriefingBar';
 
 export interface BriefingChromeRef {
   toggle: () => void;
+  /** Play, or go on playing: never a pause. */
+  play: () => void;
 }
 
 /** What the header needs to draw its control. Deliberately none of the
@@ -26,6 +28,8 @@ interface BriefingChromeProps {
   recorded?: string;
   onUnavailable: () => void;
   onPlaybackError: () => void;
+  /** A briefing was heard to its end. */
+  onFinish: () => void;
   onVisibilityChange: (visible: boolean) => void;
   /** Fired when the *slow* fields change, never on an elapsed tick. */
   onStatusChange: (status: BriefingStatus) => void;
@@ -67,6 +71,7 @@ export function BriefingChrome({
   recorded,
   onUnavailable,
   onPlaybackError,
+  onFinish,
   onVisibilityChange,
   onStatusChange,
   topOffset,
@@ -77,7 +82,7 @@ export function BriefingChrome({
   // Called as functions, not as `player.toggle()`: a method call reads as a
   // change to `player`, and the compiler could not keep the callbacks below
   // memoized on the function alone.
-  const { available, toggle, dismiss } = player;
+  const { available, toggle, play, dismiss } = player;
   const [presented, setPresented] = useState(false);
   const visible = presented && player.state !== 'idle';
 
@@ -90,12 +95,24 @@ export function BriefingChrome({
     toggle();
   }, [onUnavailable, available, toggle]);
 
+  const handlePlay = useCallback(() => {
+    if (!available) {
+      onUnavailable();
+      return;
+    }
+    setPresented(true);
+    play();
+  }, [onUnavailable, available, play]);
+
   const handleDismiss = useCallback(() => {
     setPresented(false);
     dismiss();
   }, [dismiss]);
 
-  useImperativeHandle(ref, () => ({ toggle: handleToggle }), [handleToggle]);
+  useImperativeHandle(ref, () => ({ toggle: handleToggle, play: handlePlay }), [
+    handleToggle,
+    handlePlay,
+  ]);
 
   useEffect(() => {
     onVisibilityChange(visible);
@@ -133,6 +150,10 @@ export function BriefingChrome({
     setPresented(false);
     onPlaybackError();
   }, [onPlaybackError, player.failureCount]);
+
+  useEffect(() => {
+    if (player.finishCount > 0) onFinish();
+  }, [onFinish, player.finishCount]);
 
   if (!visible) return null;
 
