@@ -84,3 +84,19 @@ it('tells a listener the visit’s count, until it unsubscribes', () => {
   store.markRead('c');
   expect(counts).toEqual([1, 2]);
 });
+
+it('a story newly read is a step toward Activated; one read again is not', () => {
+  // A new install's record (`install-record.ts`), as the first launch opens it.
+  mockKv.set(
+    'zuhd_install_v1',
+    JSON.stringify({ version: 1, kind: 'new', firstOpenSent: true, activatedSent: false }),
+  );
+  const store = load();
+  store.markRead('a');
+  store.markRead('a');
+  store.markRead('b');
+  store.startReadingVisit();
+  expect(mockTracked.map(([event]) => event)).not.toContain('Activated');
+  store.markRead('c');
+  expect(mockTracked.filter(([event]) => event === 'Activated')).toEqual([['Activated']]);
+});

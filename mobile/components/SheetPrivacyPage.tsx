@@ -44,14 +44,16 @@ const SECTIONS: InfoSection[] = [
     // Named, like Meta below: a reader has to know who receives it. Events and
     // their properties are `constants/analytics.ts`; what Sentry may send is
     // `lib/sentry.ts`. Neither has an off switch, so none is described.
+    // The installation ID is `lib/install-id.ts` (an erase replaces it); the
+    // Play Store's referrer goes only after a yes (`lib/install-attribution.ts`).
     heading: 'usage and crashes',
-    body: 'The app sends usage events to Mixpanel: when it is opened, which screen is opened, which tips were seen, your answers to the notification and ad measurement questions, and a few actions, such as starting or finishing a briefing, opening, saving or sharing a story, and how many stories were read in a visit. They do not include which story. Each event also says the day the app was first opened and whether notifications are on. They are linked to a random ID created on this device, not to a name or account, and Mixpanel derives an approximate location from the IP address. Mixpanel stores them in the EU. Crash and error reports go to Sentry, in the US: the error, the device model, the operating system and the app version, with no screenshot and no web address. There is no setting to turn these off. Erasing local data below gives usage events a new random ID.',
+    body: 'The app sends usage events to Mixpanel: when it is opened, which screen is opened, which tips were seen, your answers to the notification and ad measurement questions, and a few actions, such as starting or finishing a briefing, opening, saving or sharing a story, and how many stories were read in a visit. They do not include which story. They carry a random ID for this installation, and on Android, once you say yes to ad measurement, one of them says which link or ad the Play Store reports brought the install. Each event also says the day the app was first opened and whether notifications are on. They are linked to a random ID created on this device, not to a name or account, and Mixpanel derives an approximate location from the IP address. Mixpanel stores them in the EU. Crash and error reports go to Sentry, in the US: the error, the device model, the operating system and the app version, with no screenshot and no web address. There is no setting to turn these off. Erasing local data below gives usage events a new random ID.',
   },
   {
     // Named, against the rule for vendors: what a reader agrees to has to say
     // who receives it. `lib/measurement.ts` is what makes each sentence true.
     heading: 'ad measurement',
-    body: 'We advertise this app on Facebook and Instagram. On Android, if you say yes, the app tells Meta it was installed and opened and sends your phone’s advertising ID, so we can see which ads bring readers. Meta may combine this with what it already holds about you. The app sends it nothing about what you read. Say no and none of this runs. Its traffic is not in the data figure in Settings. The iPhone app does none of this.',
+    body: 'We advertise this app on Facebook and Instagram. On Android, if you say yes, the app tells Meta it was installed and opened and sends your phone’s advertising ID, so we can see which ads bring readers. Meta may combine this with what it already holds about you. The app sends it nothing about what you read. A yes also lets the app send Mixpanel which link or ad the Play Store says brought the install. Say no and none of this runs. Its traffic is not in the data figure in Settings. The iPhone app does none of this.',
   },
   {
     heading: 'data used',
@@ -66,11 +68,13 @@ const SECTIONS: InfoSection[] = [
     // legal inventory; the same six as separate statements read as an
     // answer — and match the cadence of "No ads. No tracking." above.
     heading: 'on this device',
-    // Every key `wipe.ts` erases, in words: `read-store` keeps which stories,
-    // not a count, and the rating prompt keeps a count of swipes. Erase keeps
-    // display settings and the notification and measurement choices, so "all
-    // of it" is not said.
-    body: 'Saved stories. Which stories were already here last time, so the new ones can be marked. Which stories you have read. When you last left the app. Your place in a briefing. Which tips you have seen. How many stories you have swiped through, and when the app last asked for a rating, so it asks at most once in three months. Whether you have read a story and played a briefing yet, so a usage event can say it is the first. Your display settings. Your answer about ad measurement. A cached copy of the latest stories and map data, so they open without a connection and an unchanged file is not downloaded twice. The last briefing you listened to, once it has downloaded.\n\nNone of it leaves the device. You can erase most of it below.',
+    // Every key `wipe.ts` erases, in words, and the once-per-install record
+    // it keeps (`install-record.ts`); the installation ID leaves the device,
+    // so it is under usage. `read-store` keeps which stories, not a count, and
+    // the rating prompt keeps a count of swipes. Erase keeps display settings,
+    // the notification and measurement choices and that record, so "all of
+    // it" is not said.
+    body: 'Saved stories. Which stories were already here last time, so the new ones can be marked. Which stories you have read. When you last left the app. Your place in a briefing. Which tips you have seen. How many stories you have swiped through, and when the app last asked for a rating, so it asks at most once in three months. Whether you have read a story and played a briefing yet, so a usage event can say it is the first. Which once-per-install usage events have been sent, such as the first open, so none is sent twice. Your display settings. Your answer about ad measurement. A cached copy of the latest stories and map data, so they open without a connection and an unchanged file is not downloaded twice. The last briefing you listened to, once it has downloaded.\n\nNone of it leaves the device. You can erase most of it below.',
   },
   {
     // Written to make opting in feel as safe as it actually is, because it

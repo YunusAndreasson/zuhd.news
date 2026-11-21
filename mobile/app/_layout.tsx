@@ -20,6 +20,8 @@ import { analytics } from '../lib/analytics';
 import { awayBucket, utcDay } from '../lib/analytics-buckets';
 import { registerBackgroundTask } from '../lib/background-fetch';
 import { startFirsts } from '../lib/firsts';
+import { sendInstallAttribution } from '../lib/install-attribution';
+import { openInstallRecord, trackFirstOpen } from '../lib/install-record';
 import { getMeasurementAnswer, startMeasurement, subscribeMeasurement } from '../lib/measurement';
 import { clearLegacyScheduledNotifications, setupNotificationChannels } from '../lib/notifications';
 import { firstRun, getSnapshot as getOnboarding } from '../lib/onboarding-store';
@@ -122,20 +124,25 @@ function RootLayout() {
     if (!launchRecorded) {
       launchRecorded = true;
       void analytics.registerOnce({ install_date: utcDay(getOnboarding().seededAt) });
-      // After the install date, which it carries. Never for an install
-      // updated over the air: that is the store's `firstRun`.
-      if (firstRun) {
-        startFirsts();
-        void analytics.track(ANALYTICS_EVENTS.FIRST_OPEN);
-      }
+      // New only for the store's `firstRun`; an install updated over the air
+      // into this code is existing, and its firsts were long ago.
+      if (firstRun) startFirsts();
+      openInstallRecord(firstRun ? 'new' : 'existing');
+      // After the install date, which it carries. Once per install, either kind.
+      trackFirstOpen();
     }
-    // Asked only on Android (`lib/measurement.ts`).
+    // Asked only on Android (`lib/measurement.ts`). A yes is also when a new
+    // install's Install Attribution may go (`lib/install-attribution.ts`).
     const measurement = IS_ANDROID
       ? subscribeMeasurement(() => {
           void analytics.register({ ad_measurement: getMeasurementAnswer() === true });
+          void sendInstallAttribution();
         })
       : null;
-    if (IS_ANDROID) void analytics.register({ ad_measurement: getMeasurementAnswer() === true });
+    if (IS_ANDROID) {
+      void analytics.register({ ad_measurement: getMeasurementAnswer() === true });
+      void sendInstallAttribution();
+    }
     void registerBackgroundTask();
     void clearLegacyScheduledNotifications();
     dropRetiredFound();

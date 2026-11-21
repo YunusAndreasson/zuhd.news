@@ -185,6 +185,21 @@ describe('eraseLocalData', () => {
     expect(mockAnalyticsCalls).toEqual(['Local Data Erased', 'reset']);
   });
 
+  // The privacy page promises the erase gives usage events a new random ID; a
+  // kept install_id would join the old one to the new. The record of what the
+  // install sent once stays, so an erased install is never counted again.
+  it('replaces install_id before the reset, and keeps the once-per-install record', async () => {
+    const old = '3f2c1d4e-5a6b-4c7d-8e9f-0a1b2c3d4e5f';
+    const record = '{"version":1,"kind":"new","firstOpenSent":true}';
+    mockKv.set('zuhd_install_id_v1', old);
+    mockKv.set('zuhd_install_v1', record);
+    await eraseLocalData();
+    await new Promise((resolve) => setTimeout(resolve, 0));
+    expect(mockKv.get('zuhd_install_id_v1')).toMatch(/^[0-9a-f-]{36}$/);
+    expect(mockKv.get('zuhd_install_id_v1')).not.toBe(old);
+    expect(mockKv.get('zuhd_install_v1')).toBe(record);
+  });
+
   // The erase copy promises display settings survive. Wiping someone's text
   // size because they asked about privacy would be a hostile reading of the
   // request, so it's pinned here rather than left to a future refactor.

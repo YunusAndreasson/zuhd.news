@@ -72,6 +72,10 @@ jest.mock('../constants/analytics', () =>
   ),
 );
 
+/** What `install-id.ts` answers; `null` (an unreadable store) leaves it out. */
+const mockInstallId: { value: string | null } = { value: null };
+jest.mock('../lib/install-id', () => ({ getInstallId: () => mockInstallId.value }));
+
 const { ANALYTICS_EVENTS, MIXPANEL_SERVER_URL } =
   jest.requireActual<typeof import('../constants/analytics')>('../constants/analytics');
 
@@ -94,6 +98,7 @@ beforeEach(() => {
   mockMixpanel.calls = [];
   mockMixpanel.superProperties = {};
   mockToken.value = 'test-token';
+  mockInstallId.value = null;
 });
 
 it('sends to Mixpanel’s EU endpoint, without automatic events', async () => {
@@ -150,8 +155,10 @@ it('has no identify: events stay on the anonymous device id', () => {
 it('a super property registered before Mixpanel starts goes with the first event', async () => {
   const analytics = load();
   void analytics.registerOnce({ install_date: '2026-11-21' });
-  await analytics.track(ANALYTICS_EVENTS.FIRST_OPEN);
-  expect(mockMixpanel.tracked).toEqual([['First Open', { install_date: '2026-11-21' }]]);
+  await analytics.track(ANALYTICS_EVENTS.FIRST_OPEN, { install_kind: 'new' });
+  expect(mockMixpanel.tracked).toEqual([
+    ['First Open', { install_date: '2026-11-21', install_kind: 'new' }],
+  ]);
 });
 
 it('register replaces a value; registerOnce keeps the first', async () => {
@@ -195,4 +202,46 @@ it('reads the token from app.json extra, so an OTA update keeps it', async () =>
     delete mockExtra.mixpanelToken;
   }
   expect(mockMixpanel.constructed).toEqual([['extra-token', false]]);
+});
+
+describe('install_id', () => {
+  const ID = '3f2c1d4e-5a6b-4c7d-8e9f-0a1b2c3d4e5f';
+
+  it('is registered before the first event of a launch', async () => {
+    mockInstallId.value = ID;
+    await load().track(ANALYTICS_EVENTS.APP_OPENED, { launch: 'cold' });
+    expect(mockMixpanel.calls).toEqual(['registerSuperProperties', 'track']);
+    expect(mockMixpanel.tracked).toEqual([['App Opened', { install_id: ID, launch: 'cold' }]]);
+  });
+
+  it('is on concurrent first events too', async () => {
+    mockInstallId.value = ID;
+    const analytics = load();
+    await Promise.all([
+      analytics.track(ANALYTICS_EVENTS.SCREEN_VIEWED, { screen: '/' }),
+      analytics.track(ANALYTICS_EVENTS.FIRST_OPEN, { install_kind: 'new' }),
+    ]);
+    expect(
+      mockMixpanel.tracked.map(([, props]) => (props as { install_id?: string }).install_id),
+    ).toEqual([ID, ID]);
+  });
+
+  it('is registered again after a reset, as the id it now is', async () => {
+    mockInstallId.value = ID;
+    const analytics = load();
+    await analytics.track(ANALYTICS_EVENTS.LOCAL_DATA_ERASED);
+    const next = '9a8b7c6d-5e4f-4a3b-9c2d-1e0f9a8b7c6d';
+    mockInstallId.value = next;
+    await analytics.reset();
+    await analytics.track(ANALYTICS_EVENTS.APP_OPENED, { launch: 'cold' });
+    expect(mockMixpanel.tracked).toEqual([
+      ['Local Data Erased', { install_id: ID }],
+      ['App Opened', { install_id: next, launch: 'cold' }],
+    ]);
+  });
+
+  it('an unreadable store sends events without it, as before', async () => {
+    await load().track(ANALYTICS_EVENTS.STORY_SAVED);
+    expect(mockMixpanel.tracked).toEqual([['Story Saved']]);
+  });
 });

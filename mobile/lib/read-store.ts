@@ -3,6 +3,7 @@ import { ANALYTICS_EVENTS } from '../constants/analytics';
 import { analytics } from './analytics';
 import { isReadMilestone } from './analytics-buckets';
 import { claimFirst } from './firsts';
+import { noteActivation } from './install-record';
 import { createSlugTimeStore } from './slug-time-store';
 
 /** The stories the reader has seen: the one notion of it the screen has. A
@@ -41,6 +42,7 @@ export function markRead(slug: string, now?: number): boolean {
   if (!newly) return false;
   visitReads += 1;
   if (visitReads === 1) visitFirstTime = claimFirst('read');
+  noteActivation('story_read');
   if (isReadMilestone(visitReads)) {
     void analytics.track(ANALYTICS_EVENTS.STORIES_READ, {
       count: visitReads,

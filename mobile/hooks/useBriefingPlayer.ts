@@ -22,6 +22,7 @@ import { briefingAudioFile, briefingPartialFile, deleteBriefingAudio } from '../
 import { readSavedPlace, saveSavedPlace, subscribeToBriefingReset } from '../lib/briefing-progress';
 import { recordBytes } from '../lib/data-usage';
 import { claimFirst } from '../lib/firsts';
+import { noteActivation } from '../lib/install-record';
 
 const PLAYBACK_STATUS_UPDATE = 'playbackStatusUpdate';
 // The CDN currently answers byte-range requests with the complete MP3, which
@@ -541,6 +542,7 @@ export function useBriefingPlayer(
       finishedRef.current = true;
       startRef.current = null;
       void analytics.track(ANALYTICS_EVENTS.BRIEFING_COMPLETED);
+      noteActivation('briefing_completed');
       setFinishCount((count) => count + 1);
     }
     if (status.didJustFinish) {

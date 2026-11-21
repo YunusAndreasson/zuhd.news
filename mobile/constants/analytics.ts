@@ -24,8 +24,17 @@ export const ANALYTICS_EVENTS = {
   /** The app came to the foreground: the active-user event. A launch in the
    *  background is not one until the reader brings the app up. */
   APP_OPENED: 'App Opened',
-  /** A new install's first launch. An install updated over the air never sends it. */
+  /** Once per install, on the first launch of a build with it: `install_kind`
+   *  says whether the install is new or one that updated into it
+   *  (`lib/install-record.ts`). Count new installs by `install_kind: 'new'`. */
   FIRST_OPEN: 'First Open',
+  /** Android only, a new install, once, and only after a yes to ad measurement:
+   *  the Play Store's install referrer, which says which link or ad brought the
+   *  install (`lib/install-attribution.ts`). */
+  INSTALL_ATTRIBUTION: 'Install Attribution',
+  /** A new install reached the activation moment, once (`ACTIVATION` in
+   *  `lib/install-record.ts`). Nothing beyond the super properties. */
+  ACTIVATED: 'Activated',
   /** A tip pill came up; once a session for each. */
   ONBOARDING_STEP_VIEWED: 'Onboarding Step Viewed',
   /** None of the three tips is waiting any more: learned, waved away or worn out. */
@@ -77,6 +86,10 @@ export type NotificationType = 'briefing' | 'breaking' | 'other';
 /** The share of a briefing heard when it was closed, in whole quarters. */
 export type HeardPct = 0 | 25 | 50 | 75;
 export type StoriesReadCount = 1 | 3 | 10;
+/** `new`: this install began on a build with `First Open`. `existing`: it updated into one. */
+export type InstallKind = 'new' | 'existing';
+/** The raw referrer in 200-character parts, `referrer_0` first (Mixpanel cuts a string at 255 bytes). */
+export type ReferrerParts = { [part: `referrer_${number}`]: string };
 
 /**
  * What each event carries: closed sets and flags, and a screen's pattern.
@@ -87,7 +100,10 @@ export interface AnalyticsEventProperties {
   /** `/` for the route, `/sheet/<sheet>`, `/menu/<page>`; never a country or a card's name. */
   [ANALYTICS_EVENTS.SCREEN_VIEWED]: { screen: `/${string}` };
   [ANALYTICS_EVENTS.APP_OPENED]: { launch: 'cold' } | { launch: 'warm'; away: AwayBucket };
-  [ANALYTICS_EVENTS.FIRST_OPEN]: undefined;
+  [ANALYTICS_EVENTS.FIRST_OPEN]: { install_kind: InstallKind };
+  /** Never decoded or parsed: marketer reads the parts joined. */
+  [ANALYTICS_EVENTS.INSTALL_ATTRIBUTION]: ReferrerParts;
+  [ANALYTICS_EVENTS.ACTIVATED]: undefined;
   /** `index` is the step's place in the order, from 0. */
   [ANALYTICS_EVENTS.ONBOARDING_STEP_VIEWED]: { step: OnboardingStep; index: number };
   [ANALYTICS_EVENTS.ONBOARDING_COMPLETED]: undefined;
@@ -128,6 +144,13 @@ export interface AnalyticsEventProperties {
  * after a reset, which wipes them.
  */
 export type SuperProperties = {
+  /**
+   * A random UUID made once per install (`lib/install-id.ts`), the one join
+   * between an install's events. `lib/analytics.ts` registers it before the
+   * first event of a launch and again after a reset. Mixpanel only: never
+   * Meta, Sentry or zuhd's own server. An erase replaces it (`wipe.ts`).
+   */
+  install_id?: string;
   /** The day this install was first opened, `YYYY-MM-DD` in UTC. */
   install_date?: string;
   /** Notifications on in the app and allowed by the OS: whether a push can reach this reader. */

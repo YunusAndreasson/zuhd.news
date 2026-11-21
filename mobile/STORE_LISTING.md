@@ -87,6 +87,10 @@ Zuhd — the discipline of doing without what you do not need.
 
 Keep these in sync with `mobile/components/MenuSheet.tsx` → INFO_PAGES.privacy.
 
+Usage events carry a random installation ID, and on Android, after the reader
+says yes to ad measurement, one event says which link or ad the Play Store
+reports brought the install (`lib/install-id.ts`, `lib/install-attribution.ts`).
+
 ### Apple — App Privacy
 - Tracking: **No**. The iOS build leaves Meta's SDK out
   (`expo.autolinking.ios.exclude`). `app.json` declares
@@ -94,7 +98,8 @@ Keep these in sync with `mobile/components/MenuSheet.tsx` → INFO_PAGES.privacy
 - Data collected: **Identifiers → Device ID**, linked to the user: **No**,
   used for tracking: **No**, purposes: **App Functionality** (the push token,
   only when the reader enables notifications) and **Analytics** (Mixpanel's
-  random anonymous ID, and Sentry's install ID).
+  random anonymous ID, the app's random installation ID sent with it, and
+  Sentry's install ID). The iOS build sends no install referrer.
 - **Usage Data → Product Interaction**: not linked, not tracking, purpose
   **Analytics**. Mixpanel events in `constants/analytics.ts`.
 - **Diagnostics → Crash Data** and **Performance Data**: not linked, not
@@ -118,8 +123,11 @@ Keep these in sync with `mobile/components/MenuSheet.tsx` → INFO_PAGES.privacy
 - App content → Advertising ID: **Yes**, for Advertising or marketing. Play
   rejects an upload carrying `AD_ID` until this is declared.
 - App activity → App interactions, and Device or other IDs: collected for
-  **Analytics** (Mixpanel, anonymous ID). Not shared (Mixpanel is a service
-  provider). Required: the app has no off switch.
+  **Analytics** (Mixpanel, anonymous ID and the random installation ID). Not
+  shared (Mixpanel is a service provider). Required: the app has no off switch.
+  After a yes to ad measurement, the Play install referrer (which link or ad
+  brought the install) goes to Mixpanel too, once, for **Advertising or
+  marketing** (measuring our own ads); it is not shared with Meta from here.
 - Location → Approximate location: collected for **Analytics** (Mixpanel's
   IP geolocation). Not shared. Required.
 - App info and performance → Crash logs and Diagnostics: collected for

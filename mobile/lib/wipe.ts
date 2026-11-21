@@ -10,6 +10,7 @@ import { resetDataUsage } from './data-usage';
 import { feedCache } from './feed-source';
 import { clearFirsts } from './firsts';
 import { clearKnown } from './fresh-store';
+import { rotateInstallId } from './install-id';
 import { deleteLegacy, type LegacyCopy } from './legacy-store';
 import { resetOnboarding } from './onboarding-store';
 import { queryClient } from './query-client';
@@ -76,9 +77,14 @@ export async function eraseLocalData(): Promise<void> {
   // The briefing's downloaded audio, which the privacy page counts among
   // what nothing downloaded outlives.
   deleteBriefingAudio({ partials: true });
-  // Analytics starts again under a new anonymous id, the erase being the
-  // last event under the old one.
-  void analytics.track(ANALYTICS_EVENTS.LOCAL_DATA_ERASED).then(() => analytics.reset());
+  // Analytics starts again under a new anonymous id and a new `install_id`,
+  // the erase being the last event under the old ones. The install's record
+  // of what it sent once (`install-record.ts`) stays: an erased install is
+  // not a new one.
+  void analytics.track(ANALYTICS_EVENTS.LOCAL_DATA_ERASED).then(() => {
+    rotateInstallId();
+    return analytics.reset();
+  });
 
   await Promise.all([
     clearBriefingProgress(),

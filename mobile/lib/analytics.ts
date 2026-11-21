@@ -6,6 +6,7 @@ import {
   MIXPANEL_TOKEN,
   type SuperProperties,
 } from '../constants/analytics';
+import { getInstallId } from './install-id';
 
 /**
  * Product analytics through Mixpanel. Never throws: an analytics failure must
@@ -16,6 +17,9 @@ import {
  * IP geolocation (city, region, country) is left on. Automatic events are off;
  * only `ANALYTICS_EVENTS` are sent, each with its own properties
  * (`AnalyticsEventProperties`).
+ *
+ * Every event carries `install_id` (`install-id.ts`): it is registered as
+ * Mixpanel starts, before any event can go out, and put back after a reset.
  */
 
 /** The event's properties, or nothing for an event that has none. */
@@ -34,6 +38,9 @@ const registered: SuperProperties = {};
 const registeredOnce: SuperProperties = {};
 
 function applySuperProperties(instance: MixpanelModule.Mixpanel): void {
+  // Read each time: an erase replaces it just before its reset.
+  const installId = getInstallId();
+  if (installId) registered.install_id = installId;
   if (Object.keys(registeredOnce).length > 0) {
     instance.registerSuperPropertiesOnce({ ...registeredOnce });
   }
