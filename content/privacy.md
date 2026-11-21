@@ -16,9 +16,9 @@ The app fetches articles from zuhd-news.pages.dev over HTTPS. Those requests car
 
 The app sends usage events to Mixpanel to show how the app is used: which screen is opened and a few actions, such as starting a briefing, opening the share sheet and answering the notification question. The events do not include which story you read.
 
-The events are linked to a random ID created on your device. The app does not send your name, email or an account. Mixpanel derives an approximate location (city, region, country) from your IP address. The app does not send your device's location. Mixpanel stores the data in the EU.
+The events are linked to random IDs created on your device: one for this installation and one Mixpanel uses. The app does not send your name, email or an account. Mixpanel derives an approximate location (city, region, country) from your IP address. The app does not send your device's location. Mixpanel stores the data in the EU.
 
-There is no setting to turn this off. Erasing local data, under settings, then privacy, replaces the random ID with a new one.
+There is no setting to turn this off. Erasing local data, under settings, then privacy, replaces the random IDs with new ones.
 
 ### Crash reports
 
@@ -36,7 +36,7 @@ If you turn on notifications, the app gets a push token from Expo, the service t
 
 We advertise the app on Facebook and Instagram. A new reader on Android is asked once whether to allow ad measurement. If you say yes, the app runs Meta's SDK, which tells Meta the app was installed and opened and sends your phone's advertising ID and basic device details, so we can see which ads bring readers. Meta and zuhd.news are joint controllers of that collection, and Meta may combine it with what it already holds about you, under [its own policy](https://www.facebook.com/privacy/policy).
 
-The app sends Meta nothing about what you read, and no name, email or account. Say no, or dismiss the question, and none of this runs. You can change your answer at any time in the app under settings, then privacy. Your phone's own settings can also reset or delete its advertising ID. Meta holds no name or account from us, so to delete what Meta holds, use the tools in your Facebook account or write to Meta.
+The app sends Meta nothing about what you read, and no name, email or account. A yes also lets the app send Mixpanel, once, which link or ad the Play Store says brought the install, so we can see which of our own links and ads bring readers. Say no, or dismiss the question, and none of this runs. You can change your answer at any time in the app under settings, then privacy. Your phone's own settings can also reset or delete its advertising ID. Meta holds no name or account from us, so to delete what Meta holds, use the tools in your Facebook account or write to Meta.
 
 The iPhone app does not contain this SDK.
 
@@ -50,7 +50,7 @@ Apart from Meta's SDK, the app uses no advertising framework.
 - Meta: ad measurement, on Android only and only if you agree.
 - Google: generates the audio briefings from the text. It receives no user data.
 
-We do not sell data. Mixpanel and Sentry data is not used for advertising or shared with advertisers.
+We do not sell data. Mixpanel and Sentry data is not used to show you ads or shared with advertisers. After a yes to ad measurement, Mixpanel data shows which of our own links and ads brought the install, and nothing more.
 
 ## Audio briefings
 
