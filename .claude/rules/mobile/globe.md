@@ -129,6 +129,10 @@ paths:
 - Famine and thermal are one tinted Atlas each, from the sprite sheet baked in
   `MiniGlobe`. Genocide is drawn as circles, above the stories. `useOverlays`
   fetches all three.
-- Atlas sprites are baked larger than drawn: their textures carry mipmaps
-  (`withMips`) and every `drawAtlas` passes `SPRITE_SAMPLING`, or thin
+- Atlas sprites are baked larger than drawn, and every `drawAtlas` passes
+  `SPRITE_SAMPLING`: the render thread uploads them with mipmaps, or thin
   strokes shimmer as the globe turns.
+- Sprites are raster images baked on the JS thread (`bakeSprite`). No GPU call
+  from JS or a worklet (`__tests__/skia-gpu.test.ts`): it throws without a
+  Dawn adapter, and on iOS the UI runtime is the main thread.
+- Without a GPU at all (`gpuMissing`), `GlobeCanvas` mounts nothing.
