@@ -45,7 +45,7 @@ const SECTIONS: InfoSection[] = [
     // their properties are `constants/analytics.ts`; what Sentry may send is
     // `lib/sentry.ts`. Neither has an off switch, so none is described.
     heading: 'usage and crashes',
-    body: 'The app sends usage events to Mixpanel: which screen is opened and a few actions, such as starting a briefing or sharing a story. They do not include which story. They are linked to a random ID created on this device, not to a name or account, and Mixpanel derives an approximate location from the IP address. Mixpanel stores them in the EU. Crash and error reports go to Sentry, in the US: the error, the device model, the operating system and the app version, with no screenshot and no web address. There is no setting to turn these off. Erasing local data below gives usage events a new random ID.',
+    body: 'The app sends usage events to Mixpanel: when it is opened, which screen is opened, which tips were seen, your answers to the notification and ad measurement questions, and a few actions, such as starting or finishing a briefing, opening, saving or sharing a story, and how many stories were read in a visit. They do not include which story. Each event also says the day the app was first opened and whether notifications are on. They are linked to a random ID created on this device, not to a name or account, and Mixpanel derives an approximate location from the IP address. Mixpanel stores them in the EU. Crash and error reports go to Sentry, in the US: the error, the device model, the operating system and the app version, with no screenshot and no web address. There is no setting to turn these off. Erasing local data below gives usage events a new random ID.',
   },
   {
     // Named, against the rule for vendors: what a reader agrees to has to say
@@ -70,7 +70,7 @@ const SECTIONS: InfoSection[] = [
     // not a count, and the rating prompt keeps a count of swipes. Erase keeps
     // display settings and the notification and measurement choices, so "all
     // of it" is not said.
-    body: 'Saved stories. Which stories were already here last time, so the new ones can be marked. Which stories you have read. When you last left the app. Your place in a briefing. Which tips you have seen. How many stories you have swiped through, and when the app last asked for a rating, so it asks at most once in three months. Your display settings. Your answer about ad measurement. A cached copy of the latest stories and map data, so they open without a connection and an unchanged file is not downloaded twice. The last briefing you listened to, once it has downloaded.\n\nNone of it leaves the device. You can erase most of it below.',
+    body: 'Saved stories. Which stories were already here last time, so the new ones can be marked. Which stories you have read. When you last left the app. Your place in a briefing. Which tips you have seen. How many stories you have swiped through, and when the app last asked for a rating, so it asks at most once in three months. Whether you have read a story and played a briefing yet, so a usage event can say it is the first. Your display settings. Your answer about ad measurement. A cached copy of the latest stories and map data, so they open without a connection and an unchanged file is not downloaded twice. The last briefing you listened to, once it has downloaded.\n\nNone of it leaves the device. You can erase most of it below.',
   },
   {
     // Written to make opting in feel as safe as it actually is, because it

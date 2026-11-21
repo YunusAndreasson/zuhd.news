@@ -67,6 +67,16 @@ jest.mock('../lib/storage', () => ({
   getPreferences: jest.fn(async () => mockPrefs),
 }));
 
+// What the store sent Mixpanel: the event and its properties.
+const mockTracked: unknown[][] = [];
+jest.mock('../lib/analytics', () => ({
+  analytics: {
+    track: async (...args: unknown[]) => {
+      mockTracked.push(args);
+    },
+  },
+}));
+
 const ONBOARDING_PATH = '/doc/zuhd-onboarding.json';
 const LAST_SEEN_PATH = '/doc/zuhd-last-seen';
 
@@ -106,6 +116,7 @@ beforeEach(() => {
   mockSecure = new Map();
   mockPermissions = { granted: false, canAskAgain: true };
   mockPrefs.notifications = false;
+  mockTracked.length = 0;
 });
 
 afterEach(() => {
@@ -257,7 +268,7 @@ describe('eligibleHint', () => {
   it('the globe lesson follows a dismissed swipe lesson', () => {
     const s = loadStore();
     const h = loadHints();
-    s.dismissHint('swipe');
+    s.dismissHint('swipe', 'tap');
     expect(h.eligibleHint(s.getSnapshot(), ctx)).toBe('globe');
   });
 
@@ -393,5 +404,95 @@ describe('persistence', () => {
     const s = loadStore();
     await s.markOsPromptSpent();
     expect(mockSecure.get('zuhd_notif_asked')).toBe('1');
+  });
+});
+
+describe('first run', () => {
+  it('a fresh install is a first run', () => {
+    expect(loadStore().firstRun).toBe(true);
+  });
+
+  it('an install with a trace of earlier use is not, though the store was seeded', () => {
+    mockFiles.set(LAST_SEEN_PATH, '1751970000000');
+    expect(loadStore().firstRun).toBe(false);
+  });
+
+  it('the launch after the first is not', () => {
+    loadStore().flushOnboarding();
+    expect(loadStore().firstRun).toBe(false);
+  });
+});
+
+describe('onboarding events', () => {
+  const named = (name: string) => mockTracked.filter(([event]) => event === name);
+
+  it('a tip that comes up is a step viewed, once a session, with its place in the order', () => {
+    const s = loadStore();
+    s.recordHintShown('globe');
+    s.recordHintShown('globe');
+    expect(named('Onboarding Step Viewed')).toEqual([
+      ['Onboarding Step Viewed', { step: 'globe', index: 1 }],
+    ]);
+  });
+
+  it('a tip that is never taught sends nothing', () => {
+    const s = loadStore();
+    s.recordHintShown('sources');
+    s.markHintDone('bookmark');
+    expect(mockTracked).toEqual([]);
+  });
+
+  it('completed once, when the last of the three leaves pending, however it left', () => {
+    const s = loadStore();
+    s.recordArticleSnap(); // swipe: done
+    s.markHintDone('globe');
+    expect(named('Onboarding Completed')).toEqual([]);
+    s.dismissHint('masthead', 'tap');
+    expect(named('Onboarding Completed')).toHaveLength(1);
+    s.markHintDone('masthead');
+    s.recordArticleSnap();
+    expect(named('Onboarding Completed')).toHaveLength(1);
+  });
+
+  it('a tip worn out on its last showing completes it too', () => {
+    let s = loadStore();
+    s.recordArticleSnap();
+    s.markHintDone('globe');
+    for (let session = 1; session <= s.MAX_HINT_SHOWS; session++) {
+      s.recordHintShown('masthead');
+      s.flushOnboarding();
+      if (session < s.MAX_HINT_SHOWS) s = loadStore();
+    }
+    expect(named('Onboarding Completed')).toHaveLength(1);
+  });
+
+  it('an existing reader, who has no tips, completes nothing', () => {
+    mockFiles.set(LAST_SEEN_PATH, '1');
+    const s = loadStore();
+    s.markHintDone('globe');
+    s.dismissHint('masthead', 'tap');
+    expect(mockTracked).toEqual([]);
+  });
+
+  it('a tip waved away is skipped, with how', () => {
+    const s = loadStore();
+    s.dismissHint('globe', 'swipe');
+    s.dismissHint('masthead', 'tap');
+    expect(named('Onboarding Skipped')).toEqual([
+      ['Onboarding Skipped', { at_step: 'globe', how: 'swipe' }],
+      ['Onboarding Skipped', { at_step: 'masthead', how: 'tap' }],
+    ]);
+  });
+
+  it('a swipe under the swipe tip is its lesson, not a skip; a tap on it is', () => {
+    let s = loadStore();
+    s.dismissHint('swipe', 'swipe');
+    expect(named('Onboarding Skipped')).toEqual([]);
+    mockKv.clear();
+    s = loadStore();
+    s.dismissHint('swipe', 'tap');
+    expect(named('Onboarding Skipped')).toEqual([
+      ['Onboarding Skipped', { at_step: 'swipe', how: 'tap' }],
+    ]);
   });
 });

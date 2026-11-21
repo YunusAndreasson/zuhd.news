@@ -35,13 +35,43 @@ export async function setupNotificationChannels(): Promise<void> {
 // Public API
 // ---------------------------------------------------------------------------
 
-/** Request permission and setup channels. Returns true if granted. */
-export async function enableNotifications(): Promise<boolean> {
+/** What asking for notification permission came to: whether it was granted,
+ *  and whether the system's dialog could appear at all, read before the ask.
+ *  Once refused for good, the system answers without showing it. */
+export interface NotificationAnswer {
+  granted: boolean;
+  osPrompt: boolean;
+}
+
+/** Request permission and setup channels. */
+export async function enableNotifications(): Promise<NotificationAnswer> {
+  let osPrompt = false;
   try {
+    const before = await Notifications.getPermissionsAsync();
+    osPrompt = !before.granted && before.canAskAgain;
     const { granted } = await Notifications.requestPermissionsAsync();
-    if (!granted) return false;
+    if (!granted) return { granted: false, osPrompt };
     await setupNotificationChannels();
-    return true;
+    return { granted: true, osPrompt };
+  } catch {
+    return { granted: false, osPrompt };
+  }
+}
+
+/** Whether the OS lets the app notify, without asking. */
+export async function notificationsGranted(): Promise<boolean> {
+  try {
+    return (await Notifications.getPermissionsAsync()).granted;
+  } catch {
+    return false;
+  }
+}
+
+/** Whether the OS has never been asked on this install: its dialog is still to come. */
+export async function notificationPermissionUndetermined(): Promise<boolean> {
+  try {
+    const { status } = await Notifications.getPermissionsAsync();
+    return status === Notifications.PermissionStatus.UNDETERMINED;
   } catch {
     return false;
   }

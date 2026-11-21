@@ -3,7 +3,7 @@ import * as Network from 'expo-network';
 import * as SystemUI from 'expo-system-ui';
 import { createContext, use, useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import { Appearance, AppState, useColorScheme, useWindowDimensions } from 'react-native';
-import { ANALYTICS_EVENTS } from '../constants/analytics';
+import { ANALYTICS_EVENTS, type PrimerSource } from '../constants/analytics';
 import { IS_ANDROID } from '../constants/platform';
 import {
   type AppearanceMode,
@@ -29,6 +29,7 @@ import {
   addPushTokenListener,
   disableNotifications,
   enableNotifications,
+  notificationsGranted,
   registerPushToken,
   unregisterPushToken,
 } from '../lib/notifications';
@@ -49,13 +50,20 @@ export interface Theme {
   resolvedAppearance: 'dark' | 'light';
 }
 
+/** Who asked for notifications, for `Permission Result`: the primer, at one
+ *  of its moments, or (unprimed) the settings toggle. */
+export interface NotificationAsk {
+  primed: boolean;
+  source?: PrimerSource;
+}
+
 export interface PreferencesApi {
   preferences: Preferences;
   setFontSize: (v: FontSize) => void;
   setAppearance: (v: AppearanceMode) => void;
   setHaptics: (v: boolean) => void;
   /** Resolves with `true` if the preference was applied, `false` if the OS permission request was denied. */
-  setNotifications: (v: boolean) => Promise<boolean>;
+  setNotifications: (v: boolean, ask?: NotificationAsk) => Promise<boolean>;
 }
 
 const ThemeContext = createContext<Theme | null>(null);
@@ -123,15 +131,22 @@ export function ThemeProvider({
   );
   const notificationRequest = useRef(0);
   const setNotifications = useCallback(
-    async (v: boolean): Promise<boolean> => {
+    async (v: boolean, ask: NotificationAsk = { primed: false }): Promise<boolean> => {
       const request = ++notificationRequest.current;
       if (v) {
-        const granted = await enableNotifications();
-        void analytics.track(ANALYTICS_EVENTS.NOTIFICATIONS_ANSWERED, { granted });
+        const { granted, osPrompt } = await enableNotifications();
+        void analytics.track(ANALYTICS_EVENTS.PERMISSION_RESULT, {
+          permission: 'notifications',
+          granted,
+          primed: ask.primed,
+          os_prompt: osPrompt,
+          ...(ask.source && { source: ask.source }),
+        });
         if (!granted || request !== notificationRequest.current) return false;
         persist({ notifications: true });
       } else {
         persist({ notifications: false });
+        void analytics.track(ANALYTICS_EVENTS.NOTIFICATIONS_TURNED_OFF);
         await disableNotifications();
       }
       return true;
@@ -140,9 +155,19 @@ export function ThemeProvider({
   );
 
   useEffect(() => {
+    let current = true;
     const sync = () => {
       if (prefs.notifications) void registerPushToken();
       else void unregisterPushToken();
+      // Whether a push can reach this reader: the setting, and the OS's
+      // permission, which can be withdrawn in system settings while away.
+      if (!prefs.notifications) {
+        void analytics.register({ notifications_enabled: false });
+        return;
+      }
+      void notificationsGranted().then((granted) => {
+        if (current) void analytics.register({ notifications_enabled: granted });
+      });
     };
     sync();
     const tokenSubscription = prefs.notifications ? addPushTokenListener() : null;
@@ -165,6 +190,7 @@ export function ThemeProvider({
       if (state === 'active') sync();
     });
     return () => {
+      current = false;
       tokenSubscription?.remove();
       network.remove();
       appState.remove();

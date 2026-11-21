@@ -2,6 +2,8 @@ import { File, Paths } from 'expo-file-system';
 import * as Notifications from 'expo-notifications';
 import * as SecureStore from 'expo-secure-store';
 import Storage from 'expo-sqlite/kv-store';
+import { ANALYTICS_EVENTS, type OnboardingStep } from '../constants/analytics';
+import { analytics } from './analytics';
 import { getPreferences } from './storage';
 import { createDebouncedWrite, createListeners, deleteLegacyFile } from './store-plumbing';
 
@@ -37,6 +39,9 @@ export interface OnboardingState {
 }
 
 export const HINT_IDS: readonly HintId[] = ['swipe', 'sources', 'bookmark', 'globe', 'masthead'];
+/** The lessons taught, in their order (`eligibleHint`): the onboarding steps
+ *  analytics counts. `sources` and `bookmark` are never shown any more. */
+const TAUGHT_HINTS: readonly OnboardingStep[] = ['swipe', 'globe', 'masthead'];
 /**
  * Hints added after the store shipped. State saved before one existed has no
  * entry for it, and requiring every id would fail validation and reseed the
@@ -129,6 +134,13 @@ function withAddedHints(s: OnboardingState): OnboardingState {
 
 let state: OnboardingState;
 let justSeeded = false;
+let seededForExistingUser = false;
+
+function seedNow(): OnboardingState {
+  seededForExistingUser = isExistingUser();
+  justSeeded = true;
+  return seed(seededForExistingUser);
+}
 
 // Sync load at import so first render decides welcome visibility with no
 // flash. Corrupt/missing file → reseed via the existing-user check
@@ -147,17 +159,21 @@ try {
         deleteLegacyFile(ONBOARDING_FILE);
       }
     } else {
-      state = seed(isExistingUser());
-      justSeeded = true;
+      state = seedNow();
     }
   } else {
-    state = seed(isExistingUser());
-    justSeeded = true;
+    state = seedNow();
   }
 } catch {
-  state = seed(isExistingUser());
-  justSeeded = true;
+  state = seedNow();
 }
+
+/**
+ * This launch is a new install's first: the store was seeded here, and
+ * nothing of an earlier install was on the device. An install updated over
+ * the air is not one, whatever the update brought.
+ */
+export const firstRun = justSeeded && !seededForExistingUser;
 
 // ---------------------------------------------------------------------------
 // Persistence + subscription plumbing
@@ -172,10 +188,22 @@ const persist = createDebouncedWrite(() => {
 /** Flush any pending write — call from app-background transitions. */
 export const flushOnboarding = persist.flush;
 
+function isTaught(id: HintId): id is OnboardingStep {
+  return (TAUGHT_HINTS as readonly HintId[]).includes(id);
+}
+
+/** Some lesson is still waiting to be taught. */
+function learning(s: OnboardingState): boolean {
+  return TAUGHT_HINTS.some((id) => s.hints[id].status === 'pending');
+}
+
 function commit(next: OnboardingState) {
+  const wasLearning = learning(state);
   state = next;
   listeners.emit();
   persist.later();
+  // The last lesson left pending: learned, waved away or worn out.
+  if (wasLearning && !learning(state)) void analytics.track(ANALYTICS_EVENTS.ONBOARDING_COMPLETED);
 }
 
 // ---------------------------------------------------------------------------
@@ -249,9 +277,17 @@ export function markHintDone(id: HintId): void {
   setHint(id, 'done');
 }
 
-/** The reader tapped the pill away — never show it again. */
-export function dismissHint(id: HintId): void {
+/** The reader waved the pill away — never show it again. `tap`: on the pill
+ *  itself; `swipe`: by moving on under it (`useOnboardingHints`). */
+export function dismissHint(id: HintId, how: 'tap' | 'swipe'): void {
+  const was = state.hints[id].status;
   setHint(id, 'dismissed');
+  if (!isTaught(id) || (was !== 'pending' && was !== 'expired')) return;
+  // A swipe under the swipe lesson is the lesson itself, which the snap
+  // retires as done (`recordArticleSnap`); so is opening the story under it,
+  // its `tap to read`.
+  if (id === 'swipe' && how === 'swipe') return;
+  void analytics.track(ANALYTICS_EVENTS.ONBOARDING_SKIPPED, { at_step: id, how });
 }
 
 /** Count a lifetime showing (once per session); the MAX_HINT_SHOWS-th showing
@@ -259,6 +295,12 @@ export function dismissHint(id: HintId): void {
 export function recordHintShown(id: HintId): void {
   if (shownThisSession.has(id)) return;
   shownThisSession.add(id);
+  if (isTaught(id)) {
+    void analytics.track(ANALYTICS_EVENTS.ONBOARDING_STEP_VIEWED, {
+      step: id,
+      index: TAUGHT_HINTS.indexOf(id),
+    });
+  }
   const entry = state.hints[id];
   const showCount = entry.showCount + 1;
   commit({

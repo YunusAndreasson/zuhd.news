@@ -72,6 +72,11 @@ jest.mock('expo-sqlite/kv-store', () => ({
   },
 }));
 jest.mock('../assets/icon.png', () => 1);
+const mockTrack = jest.fn();
+jest.mock('../lib/analytics', () => ({
+  analytics: { track: (...args: unknown[]) => mockTrack(...args) },
+}));
+jest.mock('../lib/firsts', () => ({ claimFirst: () => false }));
 
 let resume: (state: AppStateStatus) => Promise<void>;
 beforeEach(() => {
@@ -303,4 +308,117 @@ it('cancels an interrupted download without playing it, and starts a fresh downl
   expect(download).toHaveBeenCalledTimes(2);
   expect(download.mock.calls[1]?.[1]?.uri).not.toBe(download.mock.calls[0]?.[1]?.uri);
   expect(mockPlayer.play).toHaveBeenCalledTimes(1);
+});
+
+describe('briefing events', () => {
+  const sent = (name: string) => mockTrack.mock.calls.filter(([event]) => event === name);
+  const status = async (
+    hook: { rerender: () => void },
+    change: Partial<typeof mockStatus>,
+  ): Promise<void> => {
+    mockStatus = { ...mockStatus, ...change };
+    await act(async () => {
+      hook.rerender();
+    });
+  };
+
+  it('a start is sent once the briefing is heard playing, and a pause and play is the same start', async () => {
+    const hook = renderHook(() => useBriefingPlayer('2026-09-27', 120));
+    await act(async () => {
+      await hook.result.current.toggle();
+    });
+    expect(sent('Briefing Started')).toEqual([]);
+    await status(hook, { playing: true });
+    expect(sent('Briefing Started')).toEqual([
+      ['Briefing Started', { resumed: false, first_time: false }],
+    ]);
+    await act(async () => {
+      await hook.result.current.toggle();
+    });
+    await status(hook, { playing: false });
+    await act(async () => {
+      await hook.result.current.toggle();
+    });
+    await status(hook, { playing: true });
+    expect(sent('Briefing Started')).toHaveLength(1);
+  });
+
+  it('a load that gives up is no start; the retry that plays is one', async () => {
+    jest.useFakeTimers();
+    try {
+      const hook = renderHook(() => useBriefingPlayer('2026-09-27', 120));
+      await act(async () => {
+        await hook.result.current.toggle();
+      });
+      await act(async () => {
+        jest.advanceTimersByTime(10_000);
+      });
+      expect(hook.result.current.failureCount).toBe(1);
+      expect(sent('Briefing Started')).toEqual([]);
+      await act(async () => {
+        await hook.result.current.toggle();
+      });
+      await status(hook, { playing: true });
+      expect(sent('Briefing Started')).toHaveLength(1);
+      hook.unmount();
+    } finally {
+      jest.useRealTimers();
+    }
+  });
+
+  it('a briefing heard to its end is completed once, and its finish is signalled', async () => {
+    const hook = renderHook(() => useBriefingPlayer('2026-09-27', 120));
+    await act(async () => {
+      await hook.result.current.toggle();
+    });
+    await status(hook, { playing: true });
+    await status(hook, { playing: false, currentTime: 120, didJustFinish: true });
+    await act(async () => {
+      hook.rerender();
+    });
+    expect(sent('Briefing Completed')).toHaveLength(1);
+    expect(hook.result.current.finishCount).toBe(1);
+  });
+
+  it('closing the player says how much was heard, in quarters', async () => {
+    const hook = renderHook(() => useBriefingPlayer('2026-09-27', 120));
+    await act(async () => {
+      await hook.result.current.toggle();
+    });
+    await status(hook, { playing: true });
+    mockPlayer.currentTime = 70;
+    act(() => hook.result.current.dismiss());
+    expect(sent('Briefing Stopped')).toEqual([['Briefing Stopped', { heard_pct: 50 }]]);
+  });
+
+  it('play goes on playing a briefing that plays: a briefing push is never a pause', async () => {
+    const hook = renderHook(() => useBriefingPlayer('2026-09-27', 120));
+    await act(async () => {
+      hook.result.current.play();
+    });
+    await status(hook, { playing: true });
+    mockPlayer.pause.mockClear();
+    await act(async () => {
+      hook.result.current.play();
+    });
+    expect(mockPlayer.pause).not.toHaveBeenCalled();
+    expect(hook.result.current.state).toBe('playing');
+  });
+
+  it('play resumes a paused briefing', async () => {
+    const hook = renderHook(() => useBriefingPlayer('2026-09-27', 120));
+    await act(async () => {
+      await hook.result.current.toggle();
+    });
+    await status(hook, { playing: true });
+    await act(async () => {
+      await hook.result.current.toggle();
+    });
+    await status(hook, { playing: false });
+    mockPlayer.play.mockClear();
+    await act(async () => {
+      hook.result.current.play();
+    });
+    expect(mockPlayer.play).toHaveBeenCalled();
+  });
 });

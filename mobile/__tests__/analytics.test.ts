@@ -10,6 +10,10 @@ const mockMixpanel = {
   resets: 0,
   failNextInit: false,
   throwOnTrack: false,
+  /** Every call that reached the SDK, in order, by method. */
+  calls: [] as string[],
+  /** The super properties as the SDK holds them: a reset empties them. */
+  superProperties: {} as Record<string, unknown>,
 };
 
 jest.mock('mixpanel-react-native', () => ({
@@ -27,10 +31,29 @@ jest.mock('mixpanel-react-native', () => ({
     }
     track(...args: unknown[]) {
       if (mockMixpanel.throwOnTrack) throw new Error('track failed');
-      mockMixpanel.tracked.push(args);
+      mockMixpanel.calls.push('track');
+      // As the SDK sends it: the super properties under the event's own.
+      mockMixpanel.tracked.push(
+        args[1] === undefined && Object.keys(mockMixpanel.superProperties).length === 0
+          ? args
+          : [args[0], { ...mockMixpanel.superProperties, ...(args[1] as object) }],
+      );
+    }
+    registerSuperProperties(properties: Record<string, unknown>) {
+      mockMixpanel.calls.push('registerSuperProperties');
+      Object.assign(mockMixpanel.superProperties, properties);
+    }
+    registerSuperPropertiesOnce(properties: Record<string, unknown>) {
+      mockMixpanel.calls.push('registerSuperPropertiesOnce');
+      mockMixpanel.superProperties = { ...properties, ...mockMixpanel.superProperties };
+    }
+    flush() {
+      mockMixpanel.calls.push('flush');
     }
     reset() {
+      mockMixpanel.calls.push('reset');
       mockMixpanel.resets++;
+      mockMixpanel.superProperties = {};
     }
   },
 }));
@@ -68,22 +91,24 @@ beforeEach(() => {
   mockMixpanel.resets = 0;
   mockMixpanel.failNextInit = false;
   mockMixpanel.throwOnTrack = false;
+  mockMixpanel.calls = [];
+  mockMixpanel.superProperties = {};
   mockToken.value = 'test-token';
 });
 
 it('sends to Mixpanel’s EU endpoint, without automatic events', async () => {
   expect(MIXPANEL_SERVER_URL).toBe('https://api-eu.mixpanel.com');
-  await load().track(ANALYTICS_EVENTS.STORY_SHARED);
+  await load().track(ANALYTICS_EVENTS.STORY_SHARED, { completed: true });
   expect(mockMixpanel.constructed).toEqual([['test-token', false]]);
   expect(mockMixpanel.inits).toEqual([[false, {}, 'https://api-eu.mixpanel.com']]);
-  expect(mockMixpanel.tracked).toEqual([['Story Shared', undefined]]);
+  expect(mockMixpanel.tracked).toEqual([['Story Shared', { completed: true }]]);
 });
 
 it('concurrent first calls initialise Mixpanel once', async () => {
   const analytics = load();
   await Promise.all([
     analytics.track(ANALYTICS_EVENTS.SCREEN_VIEWED, { screen: '/' }),
-    analytics.track(ANALYTICS_EVENTS.BRIEFING_STARTED),
+    analytics.track(ANALYTICS_EVENTS.BRIEFING_COMPLETED),
     analytics.reset(),
   ]);
   expect(mockMixpanel.constructed).toHaveLength(1);
@@ -94,8 +119,8 @@ it('concurrent first calls initialise Mixpanel once', async () => {
 it('a failed initialisation is tried again by the next call', async () => {
   const analytics = load();
   mockMixpanel.failNextInit = true;
-  await analytics.track(ANALYTICS_EVENTS.STORY_SHARED);
-  await analytics.track(ANALYTICS_EVENTS.STORY_SHARED);
+  await analytics.track(ANALYTICS_EVENTS.STORY_SAVED);
+  await analytics.track(ANALYTICS_EVENTS.STORY_SAVED);
   expect(mockMixpanel.inits).toHaveLength(2);
   expect(mockMixpanel.tracked).toHaveLength(1);
 });
@@ -103,28 +128,69 @@ it('a failed initialisation is tried again by the next call', async () => {
 it('never throws', async () => {
   const analytics = load();
   mockMixpanel.throwOnTrack = true;
-  await expect(analytics.track(ANALYTICS_EVENTS.STORY_SHARED)).resolves.toBeUndefined();
+  await expect(analytics.track(ANALYTICS_EVENTS.STORY_SAVED)).resolves.toBeUndefined();
   mockMixpanel.failNextInit = true;
   await expect(analytics.reset()).resolves.toBeUndefined();
+  await expect(analytics.register({ notifications_enabled: true })).resolves.toBeUndefined();
 });
 
 it('without a token, nothing is constructed', async () => {
   mockToken.value = undefined;
   const analytics = load();
-  await analytics.track(ANALYTICS_EVENTS.STORY_SHARED);
+  await analytics.track(ANALYTICS_EVENTS.STORY_SAVED);
+  await analytics.register({ install_date: '2026-11-21' });
   await analytics.reset();
   expect(mockMixpanel.constructed).toHaveLength(0);
 });
 
 it('has no identify: events stay on the anonymous device id', () => {
-  expect(Object.keys(load()).sort()).toEqual(['reset', 'track']);
+  expect(Object.keys(load()).sort()).toEqual(['register', 'registerOnce', 'reset', 'track']);
+});
+
+it('a super property registered before Mixpanel starts goes with the first event', async () => {
+  const analytics = load();
+  void analytics.registerOnce({ install_date: '2026-11-21' });
+  await analytics.track(ANALYTICS_EVENTS.FIRST_OPEN);
+  expect(mockMixpanel.tracked).toEqual([['First Open', { install_date: '2026-11-21' }]]);
+});
+
+it('register replaces a value; registerOnce keeps the first', async () => {
+  const analytics = load();
+  await analytics.register({ notifications_enabled: false });
+  await analytics.register({ notifications_enabled: true });
+  await analytics.registerOnce({ install_date: '2026-11-20' });
+  await analytics.registerOnce({ install_date: '2026-11-21' });
+  await analytics.track(ANALYTICS_EVENTS.STORY_SAVED);
+  expect(mockMixpanel.tracked).toEqual([
+    ['Story Saved', { notifications_enabled: true, install_date: '2026-11-20' }],
+  ]);
+});
+
+it('a reset sends what was queued, then puts the super properties back', async () => {
+  const analytics = load();
+  await analytics.registerOnce({ install_date: '2026-11-20' });
+  await analytics.register({ notifications_enabled: true, ad_measurement: false });
+  await analytics.track(ANALYTICS_EVENTS.LOCAL_DATA_ERASED);
+  mockMixpanel.calls = [];
+  await analytics.reset();
+  expect(mockMixpanel.calls.slice(0, 2)).toEqual(['flush', 'reset']);
+  await analytics.track(ANALYTICS_EVENTS.APP_OPENED, { launch: 'cold' });
+  expect(mockMixpanel.tracked.at(-1)).toEqual([
+    'App Opened',
+    {
+      install_date: '2026-11-20',
+      notifications_enabled: true,
+      ad_measurement: false,
+      launch: 'cold',
+    },
+  ]);
 });
 
 it('reads the token from app.json extra, so an OTA update keeps it', async () => {
   mockToken.value = undefined;
   mockExtra.mixpanelToken = 'extra-token';
   try {
-    await load().track(ANALYTICS_EVENTS.STORY_SHARED);
+    await load().track(ANALYTICS_EVENTS.STORY_SAVED);
   } finally {
     delete mockExtra.mixpanelToken;
   }

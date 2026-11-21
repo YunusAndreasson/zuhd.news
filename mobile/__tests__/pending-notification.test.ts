@@ -15,6 +15,11 @@ jest.mock('../lib/bookmark-store', () => ({
   getSnapshot: () => mockBookmarks,
 }));
 
+const mockTrack = jest.fn();
+jest.mock('../lib/analytics', () => ({
+  analytics: { track: (...args: unknown[]) => mockTrack(...args) },
+}));
+
 function article(slug: string): Article {
   return {
     slug,
@@ -48,6 +53,7 @@ beforeEach(() => {
   mockLastResponse = null;
   mockBookmarks = [];
   mockClearResponse.mockClear();
+  mockTrack.mockClear();
 });
 
 describe('notification response routing', () => {
@@ -121,5 +127,32 @@ describe('notification response routing', () => {
     mockLastResponse = response({ unrelated: true });
     renderHook(() => usePendingNotification(false, emptyGrouped, jest.fn()));
     expect(mockClearResponse).toHaveBeenCalledTimes(1);
+  });
+
+  it('each tap is a Notification Opened of its kind, never with its story or date', () => {
+    const cases: [Record<string, unknown>, string][] = [
+      [{ kind: 'briefing', date: '2026-11-21' }, 'briefing'],
+      [{ slug: 'story' }, 'breaking'],
+      [{ unrelated: true }, 'other'],
+    ];
+    for (const [data, type] of cases) {
+      mockTrack.mockClear();
+      mockLastResponse = response(data);
+      renderHook(() => usePendingNotification(false, emptyGrouped, jest.fn(), jest.fn()));
+      expect(mockTrack.mock.calls).toEqual([['Notification Opened', { type }]]);
+    }
+  });
+
+  it('a briefing tap waiting for its player is sent once, when it plays', () => {
+    mockLastResponse = response({ kind: 'briefing' });
+    const { rerender } = renderHook(
+      ({ callback }) =>
+        usePendingNotification(false, emptyGrouped, jest.fn(), callback ? jest.fn() : undefined),
+      { initialProps: { callback: false } },
+    );
+    expect(mockTrack).not.toHaveBeenCalled();
+    rerender({ callback: true });
+    rerender({ callback: true });
+    expect(mockTrack).toHaveBeenCalledTimes(1);
   });
 });

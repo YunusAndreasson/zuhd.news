@@ -15,17 +15,47 @@ export const MIXPANEL_SERVER_URL = 'https://api-eu.mixpanel.com';
 /**
  * A handful of product events, and none may say what anyone read: no slug,
  * title, country or search goes in a property. Events stay on Mixpanel's
- * anonymous device id; the app sends no user id.
+ * anonymous device id; the app sends no user id. What each carries is
+ * `AnalyticsEventProperties`, below.
  */
 export const ANALYTICS_EVENTS = {
-  /** A route came into view. `screen` is the route's pattern, never its params. */
+  /** A route, a platform sheet or a page of the menu came into view. */
   SCREEN_VIEWED: 'Screen Viewed',
-  /** A briefing began to play from a fresh load. */
+  /** The app came to the foreground: the active-user event. A launch in the
+   *  background is not one until the reader brings the app up. */
+  APP_OPENED: 'App Opened',
+  /** A new install's first launch. An install updated over the air never sends it. */
+  FIRST_OPEN: 'First Open',
+  /** A tip pill came up; once a session for each. */
+  ONBOARDING_STEP_VIEWED: 'Onboarding Step Viewed',
+  /** None of the three tips is waiting any more: learned, waved away or worn out. */
+  ONBOARDING_COMPLETED: 'Onboarding Completed',
+  /** A tip was waved away before its lesson was done. */
+  ONBOARDING_SKIPPED: 'Onboarding Skipped',
+  /** The app's own ask came up: the notification primer, or Android's ad measurement question. */
+  PERMISSION_PROMPT_SHOWN: 'Permission Prompt Shown',
+  /** The answer to an ask: the primer's, the settings toggle's or the measurement question's. */
+  PERMISSION_RESULT: 'Permission Result',
+  /** The reader turned notifications off in settings. */
+  NOTIFICATIONS_TURNED_OFF: 'Notifications Turned Off',
+  /** A push was tapped. Never its story or its date. */
+  NOTIFICATION_OPENED: 'Notification Opened',
+  /** A story grew to the whole sheet. Which story is not sent. */
+  STORY_OPENED: 'Story Opened',
+  /** The 1st, 3rd and 10th story newly read in a visit: at most three a visit. */
+  STORIES_READ: 'Stories Read',
+  /** A briefing began to play from a fresh load, once it was heard playing. */
   BRIEFING_STARTED: 'Briefing Started',
-  /** The share sheet was opened for a story. Which story is not sent. */
+  /** A briefing played to its end. */
+  BRIEFING_COMPLETED: 'Briefing Completed',
+  /** The reader closed the player. */
+  BRIEFING_STOPPED: 'Briefing Stopped',
+  /** The share sheet closed for a story. Which story, and where it went, are not sent. */
   STORY_SHARED: 'Story Shared',
-  /** The answer to the notification permission ask. `granted` is the answer. */
-  NOTIFICATIONS_ANSWERED: 'Notifications Answered',
+  /** A story was saved. Which story is not sent. */
+  STORY_SAVED: 'Story Saved',
+  /** The reader erased the local data: the last event under the old id. */
+  LOCAL_DATA_ERASED: 'Local Data Erased',
 } as const;
 
 /**
@@ -33,3 +63,75 @@ export const ANALYTICS_EVENTS = {
  * `string`, so an ad-hoc name is a compile error, not a row no dashboard reads.
  */
 export type AnalyticsEventName = (typeof ANALYTICS_EVENTS)[keyof typeof ANALYTICS_EVENTS];
+
+/** The three tips, in the order they are taught (`eligibleHint`). */
+export type OnboardingStep = 'swipe' | 'globe' | 'masthead';
+/** How long the app was away before a warm open. */
+export type AwayBucket = '5m-1h' | '1-6h' | '6-24h' | '1d+';
+export type PermissionKind = 'notifications' | 'ad_measurement';
+/** The moment the notification primer came up at. */
+export type PrimerSource = 'first_briefing' | 'stories_read' | 'caught_up';
+/** How a story came to be opened: on the map itself, from a push, a link or the menu. */
+export type StoryOpenVia = 'card' | 'notification' | 'link' | 'menu';
+export type NotificationType = 'briefing' | 'breaking' | 'other';
+/** The share of a briefing heard when it was closed, in whole quarters. */
+export type HeardPct = 0 | 25 | 50 | 75;
+export type StoriesReadCount = 1 | 3 | 10;
+
+/**
+ * What each event carries: closed sets and flags, and a screen's pattern.
+ * `undefined` is an event with nothing. An event missing here fails the
+ * typecheck at `analytics.track`.
+ */
+export interface AnalyticsEventProperties {
+  /** `/` for the route, `/sheet/<sheet>`, `/menu/<page>`; never a country or a card's name. */
+  [ANALYTICS_EVENTS.SCREEN_VIEWED]: { screen: `/${string}` };
+  [ANALYTICS_EVENTS.APP_OPENED]: { launch: 'cold' } | { launch: 'warm'; away: AwayBucket };
+  [ANALYTICS_EVENTS.FIRST_OPEN]: undefined;
+  /** `index` is the step's place in the order, from 0. */
+  [ANALYTICS_EVENTS.ONBOARDING_STEP_VIEWED]: { step: OnboardingStep; index: number };
+  [ANALYTICS_EVENTS.ONBOARDING_COMPLETED]: undefined;
+  /** `tap`: the pill itself was tapped away. `swipe`: the reader moved on under it. */
+  [ANALYTICS_EVENTS.ONBOARDING_SKIPPED]: { at_step: OnboardingStep; how: 'tap' | 'swipe' };
+  [ANALYTICS_EVENTS.PERMISSION_PROMPT_SHOWN]: {
+    permission: PermissionKind;
+    primed: boolean;
+    source?: PrimerSource;
+  };
+  /** `primed`: the app's own ask came first. `os_prompt`: the system's dialog
+   *  could appear, so `granted` answered it. `source` is the primer's only. */
+  [ANALYTICS_EVENTS.PERMISSION_RESULT]: {
+    permission: PermissionKind;
+    granted: boolean;
+    primed: boolean;
+    os_prompt: boolean;
+    source?: PrimerSource;
+  };
+  [ANALYTICS_EVENTS.NOTIFICATIONS_TURNED_OFF]: undefined;
+  [ANALYTICS_EVENTS.NOTIFICATION_OPENED]: { type: NotificationType };
+  [ANALYTICS_EVENTS.STORY_OPENED]: { via: StoryOpenVia };
+  /** `first_time`: the first visit in which this install read a story. */
+  [ANALYTICS_EVENTS.STORIES_READ]: { count: StoriesReadCount; first_time: boolean };
+  /** `resumed`: from a place saved in an earlier play. `first_time`: this install's first. */
+  [ANALYTICS_EVENTS.BRIEFING_STARTED]: { resumed: boolean; first_time: boolean };
+  [ANALYTICS_EVENTS.BRIEFING_COMPLETED]: undefined;
+  [ANALYTICS_EVENTS.BRIEFING_STOPPED]: { heard_pct: HeardPct };
+  /** Android reports every close of its share sheet as shared. */
+  [ANALYTICS_EVENTS.STORY_SHARED]: { completed: boolean };
+  [ANALYTICS_EVENTS.STORY_SAVED]: undefined;
+  [ANALYTICS_EVENTS.LOCAL_DATA_ERASED]: undefined;
+}
+
+/**
+ * Super properties: sent with every event, so retention can be split by them
+ * on Mixpanel's free plan. `lib/analytics.ts` keeps them and puts them back
+ * after a reset, which wipes them.
+ */
+export type SuperProperties = {
+  /** The day this install was first opened, `YYYY-MM-DD` in UTC. */
+  install_date?: string;
+  /** Notifications on in the app and allowed by the OS: whether a push can reach this reader. */
+  notifications_enabled?: boolean;
+  /** Android only: the reader said yes to ad measurement. */
+  ad_measurement?: boolean;
+};

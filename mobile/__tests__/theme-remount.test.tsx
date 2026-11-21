@@ -4,7 +4,12 @@ import { AccessibilityInfo } from 'react-native';
 import { DARK_COLORS, DARK_CONTRAST_COLORS, DEFAULT_PREFS } from '../constants/theme';
 import { ThemeProvider, usePreferences, useTheme } from '../hooks/useTheme';
 import * as Network from 'expo-network';
-import { enableNotifications, unregisterPushToken } from '../lib/notifications';
+import { analytics } from '../lib/analytics';
+import {
+  enableNotifications,
+  notificationsGranted,
+  unregisterPushToken,
+} from '../lib/notifications';
 import { savePreferences } from '../lib/storage';
 
 jest.mock('react-native', () => ({
@@ -30,8 +35,12 @@ jest.mock('../lib/notifications', () => ({
   addPushTokenListener: jest.fn(),
   registerPushToken: jest.fn(),
   unregisterPushToken: jest.fn(),
-  enableNotifications: jest.fn(),
+  enableNotifications: jest.fn(async () => ({ granted: true, osPrompt: true })),
   disableNotifications: jest.fn(),
+  notificationsGranted: jest.fn(async () => true),
+}));
+jest.mock('../lib/analytics', () => ({
+  analytics: { track: jest.fn(async () => {}), register: jest.fn(async () => {}) },
 }));
 jest.mock('../lib/storage', () => ({
   getPreferences: jest.fn(async () => require('../constants/theme').DEFAULT_PREFS),
@@ -66,7 +75,7 @@ it('keeps edited preferences when Android recreates the provider in the same run
 });
 
 it('merges a delayed notification permission result into the latest display preferences', async () => {
-  let grant!: (value: boolean) => void;
+  let grant!: (value: { granted: boolean; osPrompt: boolean }) => void;
   jest.mocked(enableNotifications).mockImplementationOnce(
     () =>
       new Promise((resolve) => {
@@ -86,7 +95,7 @@ it('merges a delayed notification permission result into the latest display pref
     hook.result.current.setFontSize('small');
   });
   await act(async () => {
-    grant(true);
+    grant({ granted: true, osPrompt: true });
     await pending;
   });
   expect(hook.result.current.preferences).toMatchObject({
@@ -130,4 +139,50 @@ it('steps the quiet inks up while High contrast text is on, and back when it is 
   expect(hook.result.current.colors).toBe(DARK_CONTRAST_COLORS);
   act(() => changed?.(false));
   expect(hook.result.current.colors).toBe(DARK_COLORS);
+});
+
+it('answers the primer’s ask with its source, and says whether a push can reach the reader', async () => {
+  let hook!: ReturnType<typeof renderHook<ReturnType<typeof usePreferences>, unknown>>;
+  await act(async () => {
+    hook = renderHook(usePreferences, { wrapper: Wrapper });
+  });
+  jest.mocked(analytics.track).mockClear();
+  jest.mocked(analytics.register).mockClear();
+  // The OS has the permission off: on in the app is not enough.
+  jest.mocked(notificationsGranted).mockResolvedValueOnce(false);
+  await act(async () => {
+    await hook.result.current.setNotifications(true, { primed: true, source: 'first_briefing' });
+  });
+  expect(analytics.track).toHaveBeenCalledWith('Permission Result', {
+    permission: 'notifications',
+    granted: true,
+    primed: true,
+    os_prompt: true,
+    source: 'first_briefing',
+  });
+  expect(analytics.register).toHaveBeenLastCalledWith({ notifications_enabled: false });
+  jest.mocked(analytics.track).mockClear();
+  await act(async () => {
+    await hook.result.current.setNotifications(false);
+  });
+  expect(analytics.track).toHaveBeenCalledWith('Notifications Turned Off');
+  expect(analytics.register).toHaveBeenLastCalledWith({ notifications_enabled: false });
+});
+
+it('the settings toggle is an unprimed ask, with no source', async () => {
+  let hook!: ReturnType<typeof renderHook<ReturnType<typeof usePreferences>, unknown>>;
+  await act(async () => {
+    hook = renderHook(usePreferences, { wrapper: Wrapper });
+  });
+  jest.mocked(analytics.track).mockClear();
+  jest.mocked(enableNotifications).mockResolvedValueOnce({ granted: false, osPrompt: false });
+  await act(async () => {
+    await hook.result.current.setNotifications(true);
+  });
+  expect(analytics.track).toHaveBeenCalledWith('Permission Result', {
+    permission: 'notifications',
+    granted: false,
+    primed: false,
+    os_prompt: false,
+  });
 });

@@ -1,7 +1,9 @@
 import { memo, useCallback } from 'react';
 import { StyleSheet, View } from 'react-native';
+import { ANALYTICS_EVENTS } from '../constants/analytics';
 import { HIT_SLOP, RADIUS, SPACING } from '../constants/theme';
 import { useTheme } from '../hooks/useTheme';
+import { analytics } from '../lib/analytics';
 import { getMeasurementAnswer, setMeasurementAnswer } from '../lib/measurement';
 import { Pressable, Text } from './primitives';
 import { SheetScrollView } from './SheetContent';
@@ -26,6 +28,16 @@ function Answer({ label, hint, onPress }: { label: string; hint: string; onPress
   );
 }
 
+/** The sheet is the app's own ask, and there is no system dialog behind it. */
+function trackAnswer(allowed: boolean): void {
+  void analytics.track(ANALYTICS_EVENTS.PERMISSION_RESULT, {
+    permission: 'ad_measurement',
+    granted: allowed,
+    primed: true,
+    os_prompt: false,
+  });
+}
+
 /** Asked once, on Android, at a new reader's first launch. Any dismissal is a
  *  no, and there is no re-ask: the row on the privacy page is the way back. */
 export const MeasurementSheet = memo(function MeasurementSheet({
@@ -36,13 +48,17 @@ export const MeasurementSheet = memo(function MeasurementSheet({
   const answer = useCallback(
     (allowed: boolean) => {
       setMeasurementAnswer(allowed);
+      trackAnswer(allowed);
       sheetRef.current?.dismiss();
     },
     [sheetRef],
   );
 
   const handleDismiss = useCallback(() => {
-    if (getMeasurementAnswer() === null) setMeasurementAnswer(false);
+    if (getMeasurementAnswer() === null) {
+      setMeasurementAnswer(false);
+      trackAnswer(false);
+    }
     onDismiss();
   }, [onDismiss]);
 
