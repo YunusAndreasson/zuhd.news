@@ -2,17 +2,17 @@
   "items": {
     "fomc-2026-12": {
       "standingFingerprint": "7461ec820c9cf170",
-      "recentFingerprint": "aefdc55ad4cdd968",
+      "recentFingerprint": "9f2e2c41cb144ef2",
       "prompt": "cc42a1f1",
       "standing": "The Federal Reserve's rate-setting committee, which meets eight times a year to set the overnight rate US banks lend at. Its decisions price dollar borrowing worldwide, from American mortgages to emerging-market debt.",
-      "recent": "The argument inside the committee has moved from whether to raise to how fast: the October minutes showed almost all officials expect more hikes, Logan wants two more, possibly rapidly, and Goolsbee has left a larger-than-usual rise open, naming the AI investment surge. This meeting settles whether Warsh's Fed moves in 50 bps steps.",
+      "recent": "October consumer prices rose 0.4%, and the committee's argument is now about size, not direction: the minutes showed almost all officials expect more hikes, Logan wants two more, and Goolsbee has left a larger-than-usual rise open, citing the AI investment surge. December settles whether that means 50 bps, and how Warsh's Fed explains it.",
       "citations": [
-        "2026-11-19-fed-minutes-rate-hike-risk-daly",
         "2026-11-19-fed-goolsbee-larger-hike-ai-inflation",
-        "2026-11-10-us-cpi-october-fed-logan-two-more-rate-hikes",
+        "2026-11-19-fed-minutes-rate-hike-risk-daly",
+        "2026-11-16-fed-hikes-return-hot-us-inflation-schmid",
         "2026-11-11-bonds-selloff-half-point-fed-hike-risk-gold"
       ],
-      "generatedAt": "2026-11-20T05:28:14.521Z"
+      "generatedAt": "2026-11-21T05:28:05.653Z"
     },
     "g20-2026-miami": {
       "standingFingerprint": "041eb1ecc79e970b",
@@ -41,37 +41,38 @@
     },
     "boe-2026-12": {
       "standingFingerprint": "498a0992d302cf13",
-      "recentFingerprint": "644c3e828b993cf0",
+      "recentFingerprint": "3c8a05f299114943",
       "prompt": "cc42a1f1",
       "standing": "The Bank of England's Monetary Policy Committee, nine members who vote eight times a year on Bank Rate. Their decision sets the price of UK mortgages and business loans, and sterling and gilt yields move with it.",
-      "recent": "UK inflation accelerated again in October and has now run above target for more than two years, so the committee meets with prices moving away from it rather than towards it. This decision settles whether the Bank of England reads that run as a reason to tighten, or holds and waits for more readings.",
+      "recent": "UK inflation accelerated again in October and has now run above target for more than two years, which leaves the committee weighing a persistence that no longer reads as a one-off to look through. The decision settles whether the Bank of England answers a second run of acceleration or keeps waiting for prices to turn on their own.",
       "citations": [
         "2026-11-18-uk-inflation-3-6-october-bank-of-england"
       ],
-      "generatedAt": "2026-11-20T05:28:26.035Z"
+      "generatedAt": "2026-11-21T05:28:02.810Z"
     },
     "boj-2026-12": {
       "standingFingerprint": "b08124a86f654bb7",
-      "recentFingerprint": "635667250a55cd22",
+      "recentFingerprint": "cf791858589fd173",
       "prompt": "cc42a1f1",
       "standing": "The Bank of Japan's policy board, which meets eight times a year to set the country's short-term interest rate. Its decisions move the yen and the yield on Japanese government debt, and reach borrowers far beyond Japan.",
-      "recent": "Japan spent a record ¥7.98 trillion in one day buying yen, and Washington sold $500 million of euros for yen after it breached 160, leaving the board to weigh a currency that intervention has not steadied. Core inflation came in at 2.2%, below forecast, while nearly half of Japan's manufacturers raised profit forecasts on the weak yen.",
+      "recent": "Japan spent a record ¥7.98 trillion in one day buying yen, and Washington sold $500 million of euros to join it, as the currency breached 160. Core inflation came in at 2.2%, under the 2.3% forecast, so the board weighs whether rates should defend a yen whose weakness lifts manufacturers' profits and threatens Noetra with an 800 billion yen overrun.",
       "citations": [
         "2026-11-09-japan-yen-intervention-record-us-coordinated",
         "2026-11-13-yen-breaches-160-us-confirms-500-million-intervention",
         "2026-11-20-japan-core-inflation-boj-hike-yen",
-        "2026-11-07-japan-manufacturers-profit-forecasts-weak-yen"
+        "2026-11-07-japan-manufacturers-profit-forecasts-weak-yen",
+        "2026-11-20-japan-noetra-sovereign-ai-cost-surge-weak-yen"
       ],
-      "generatedAt": "2026-11-20T05:28:27.410Z"
+      "generatedAt": "2026-11-21T05:28:18.036Z"
     },
     "fred-us-gdp-2026-11-25": {
       "standingFingerprint": "f941ab836edf2e53",
-      "recentFingerprint": "d1cb85b30c3a820c",
+      "recentFingerprint": "2bbca0905c36c613",
       "prompt": "cc42a1f1",
       "standing": "The Bureau of Economic Analysis's measure of US output, published each quarter as an advance estimate and then revised twice. It sets the growth figure the Federal Reserve, Treasury yields and the dollar trade on.",
-      "recent": "The Bureau of Economic Analysis publishes its latest reading of US GDP, settling how fast the economy grew over the quarter it covers and what any revision does to the earlier estimate.",
+      "recent": "The Bureau of Economic Analysis publishes its latest reading of US GDP. It settles how fast the American economy grew over the quarter it covers.",
       "citations": [],
-      "generatedAt": "2026-11-19T05:25:19.593Z"
+      "generatedAt": "2026-11-21T05:28:00.846Z"
     },
     "fred-us-pce-2026-11-25": {
       "standingFingerprint": "f7794ed88caf73b9",
@@ -83,6 +84,6 @@
       "generatedAt": "2026-11-18T05:25:16.145Z"
     }
   },
-  "generatedAt": "2026-11-20T05:28:27.411Z",
+  "generatedAt": "2026-11-21T05:28:18.039Z",
   "windowDays": 14
 }
