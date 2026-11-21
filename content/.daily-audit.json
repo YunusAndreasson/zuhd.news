@@ -1,36 +1,37 @@
 {
-  "date": "2026-11-20",
+  "date": "2026-11-21",
   "metrics": {
-    "articles": { "value": 60, "detail": "5 cycles, all completed, avg 12/cycle (63 yesterday)" },
-    "freshness": { "median": 0.1, "p90": 0.3, "max": 0.9, "target": 1.0, "met": true },
-    "categories": { "politics": 23, "economy": 15, "science": 8, "tech": 14 },
-    "multiSource": { "pct": 32, "target": 30, "met": true },
-    "usDatelines": { "pct": 35, "target": 25, "met": false },
-    "latAmDatelines": { "pct": 5, "target": 5, "met": true },
+    "articles": { "value": 52, "detail": "6 cycles, all completed, avg 10 published/cycle (61 yesterday)" },
+    "freshness": { "median": 0.1, "p90": 0.5, "max": 0.9, "target": 1.0, "met": true },
+    "categories": { "politics": 20, "economy": 13, "science": 7, "tech": 12 },
+    "multiSource": { "pct": 38, "target": 30, "met": true },
+    "usDatelines": { "pct": 25, "target": 25, "met": true },
+    "latAmDatelines": { "pct": 4, "target": 5, "met": false },
     "sameEventDuplicates": { "value": 0, "target": 0, "met": true },
     "missingDatelines": { "value": 0, "target": 0, "met": true },
-    "stateOrAdvocacyOnly": 3,
+    "stateOrAdvocacyOnly": 1,
     "imageUrlPct": 98,
-    "regions": { "count": 5, "target": 4, "met": true, "breakdown": { "AM": 25, "EU": 13, "ME": 11, "AS": 10, "OC": 1 } },
+    "regions": { "count": 5, "target": 4, "met": true, "breakdown": { "AM": 15, "EU": 14, "ME": 12, "AF": 6, "AS": 5 } },
     "sciTech": { "ratio": 37, "target": 25, "met": true },
-    "topSourceShare": { "source": "Dawn", "pct": 13, "target": 20, "met": true },
-    "uniqueSources": 55,
+    "topSourceShare": { "source": "Al Jazeera Online", "pct": 17, "target": 20, "met": true },
+    "uniqueSources": 50,
     "duplicates": 0,
-    "avgCycleDuration": 1037
+    "avgCycleDuration": 919
   },
-  "experiment": "Skipped. US datelines are over the cap for the second day running (27%, then 35%), short of the three days set yesterday as the trigger. Nine of the 21 US datelines are the bare country name \"United States\" on market and tech stories that have no US place (Bitcoin, Ethereum, an oil-bond spread), a writer dateline problem that no listed parameter reaches. No experiments active, no pause gate.",
-  "weakestArea": "US datelines are 35% of output against a 25% cap (21 of 60). Washington and real US cities account for 12; the other 9 carry the generic location \"United States\", mostly on crypto, AI and global-market stories (CoinDesk 5, Bloomberg 6), so the overshoot is mostly in how datelines get assigned, not in where the stories come from. GAP_COUNTRIES was tried on 2026-09-18 and reverted. If tomorrow is also over 25%, the operator should look at the writer's dateline rule for placeless stories before running another feed experiment.",
+  "experiment": "Skipped. No experiments are active and there is no pause gate. Every target is met except Latin American datelines: 4% today against a 5% floor, after 5% yesterday. One day just under the floor is not enough to act on, and the only lever for it, GAP_COUNTRIES, was tried on 2026-09-18 and reverted.",
+  "weakestArea": "Latin American datelines are 4% against a 5% floor. Today's three are Marcovia (Honduras), Guasave (Mexico) and Port-au-Prince (Haiti). US datelines fell from 35% to exactly the 25% cap, though three of the 13 still carry the bare place name \"United States\". Multi-source rose to 38%, the best reading in recent audits.",
   "watching": [
-    "The AI-led selloff spread to Asia (KOSPI, Samsung), with Bitcoin below $60,000 and gold having its worst week as markets price in a Fed hike.",
-    "Kushner's January deadline on Russian security guarantees for Ukraine, alongside a suspected Russian missile near Lublin and Denmark expelling a Russian attaché.",
-    "The Houthis claim a strike on a Saudi power plant and port, and a tanker burned off Khasab in Hormuz.",
-    "Pakistan's minister goes to Delhi for the SCO, the first visit since the 2025 war, while Islamabad leaves Afghanistan out of the ECO meeting.",
-    "Spain's election debate and Villepin's French presidential bid open two European campaigns."
+    "The Hormuz crisis: Iran calls the blockade an act of war, claims strikes on tankers and a downed F-16 that CENTCOM denies, oil shipments are falling, and Qatar is hosting talks.",
+    "The Houthis fired missiles at Riyadh for a third night.",
+    "Poland calls two Russian missiles a provocation, while drones hit a cargo ship from Kaliningrad in the Gulf of Finland.",
+    "Chip stocks crashed on an SEC accounting probe into Nvidia, deepening the AI-led selloff across Nasdaq, TSMC and ASML.",
+    "COP31 in Antalya went into overtime, deadlocked on fossil-fuel finance.",
+    "El Chapo's son Isidro was captured after a gunfight in Sinaloa, and Salvadoran soldiers were killed in Haiti."
   ],
   "coverageGaps": [
-    "Region tally shows no Africa although the Sudan grid-collapse story is datelined Khartoum; either Khartoum is missing from the metrics' region map or Africa really got one story all day.",
-    "Oceania had one dateline (Sydney).",
-    "Three stories rest only on state or advocacy outlets (the Houthi strike claim, the Pentagon audit, Russia's gold reserves), each labelled in the body."
+    "No Oceania dateline today, and one yesterday (Sydney).",
+    "Asia had only 5 datelines, down from 10, and four of those were Indian; there was no Southeast Asia and only one China dateline (Shenzhen).",
+    "Some placeless stories get datelines that do not fit them: the Ars Technica race-science piece is datelined Davos, and several others carry only a country name (Sweden, Germany, Japan, Denmark, United States)."
   ],
-  "context": "All five cycles completed, averaging 1037s with the selector at 167s, the writer at 145s and the editor at 74s. Science (8) cleared its target from Nature, Phys.org and New Scientist; multi-source held at 32% for a second day. One article was quarantined (the Huawei OSTA brand story, left as a .bad file)."
+  "context": "Six cycles ran today against the usual five, all completed, with an average of 919s, down from 1037s. The writer quarantined one article (araghchi-us-peace-agreement-iran-war.md.bad). Only one story rests on state or advocacy outlets alone (France protests). Pick the dateline problem up in the writer's dateline rule, not with a tuning parameter."
 }
