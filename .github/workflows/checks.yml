@@ -58,8 +58,11 @@ jobs:
       - name: Typecheck
         run: npm run typecheck
 
+      # The root workspace only. knip.jsonc's mobile workspace loads mobile's
+      # Metro and Babel config, which needs mobile/node_modules; mobile.yml
+      # installs both and runs the whole report.
       - name: Dead code
-        run: npm run deadcode
+        run: npm run deadcode -- --workspace .
 
       # The tests that need nothing but the source. Before the build on
       # purpose: with no dist/ the cases that read a built site skip, and what
