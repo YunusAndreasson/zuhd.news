@@ -135,6 +135,41 @@ describe('First Open', () => {
   });
 });
 
+describe('new or existing', () => {
+  const DAY = 86_400_000;
+
+  it("is new at a store's first run, whenever that is", () => {
+    const { installKind, NEW_INSTALLS_FROM } = launch();
+    expect(installKind(true, NEW_INSTALLS_FROM - 400 * DAY)).toBe('new');
+  });
+
+  it('is new for an install first opened by an older build since counting began', () => {
+    // An ad's install: its first launch ran the store bundle, this code came over the air.
+    const { installKind, NEW_INSTALLS_FROM } = launch();
+    expect(installKind(false, NEW_INSTALLS_FROM)).toBe('new');
+    expect(installKind(false, NEW_INSTALLS_FROM + 30 * DAY)).toBe('new');
+  });
+
+  it('is existing for an install first opened before counting began', () => {
+    const { installKind, NEW_INSTALLS_FROM } = launch();
+    expect(installKind(false, NEW_INSTALLS_FROM - 1)).toBe('existing');
+  });
+
+  it('counting began on 2026-11-21, UTC', () => {
+    expect(new Date(launch().NEW_INSTALLS_FROM).toISOString()).toBe('2026-11-21T00:00:00.000Z');
+  });
+
+  it('a new install first opened by an older build sends its referrer after a yes', async () => {
+    mockAnswer.value = true;
+    const app = launch();
+    app.openInstallRecord(app.installKind(false, app.NEW_INSTALLS_FROM + 3_600_000));
+    app.trackFirstOpen();
+    await app.sendInstallAttribution();
+    expect(mockTracked[0]).toEqual(['First Open', { install_kind: 'new' }]);
+    expect(names()).toEqual(['First Open', 'Install Attribution']);
+  });
+});
+
 describe('the upgrade path: an existing install', () => {
   it('has Install Attribution and Activated spent, and sends neither', async () => {
     mockAnswer.value = true;

@@ -9,9 +9,10 @@ import { analytics } from './analytics';
  * (`install-id.ts`).
  *
  * NEW OR EXISTING. Decided once, at the first launch of a build with this
- * code (`openInstallRecord`, from `app/_layout.tsx`): new when the onboarding
- * store was seeded on this launch with no trace of earlier use (its
- * `firstRun`), existing otherwise. An existing install has Install
+ * code (`openInstallRecord`, from `app/_layout.tsx`, by `installKind`): new
+ * when the onboarding store was seeded on this launch with no trace of
+ * earlier use (its `firstRun`), or was seeded since `NEW_INSTALLS_FROM`;
+ * existing otherwise. An existing install has Install
  * Attribution and Activated spent without either being sent: there is no
  * install to attribute and no first briefing left to count. `First Open`
  * goes out for both, once, with `install_kind` saying which.
@@ -25,6 +26,23 @@ import { analytics } from './analytics';
  */
 
 const KEY = 'zuhd_install_v1';
+
+/**
+ * The day marketer began counting installs. Every install first opened since
+ * then is new, even when a build without this code opened it first: an ad's
+ * install runs the store build's own bundle at its first launch and this code,
+ * over the air, only from the next, by which time `firstRun` has passed. Its
+ * Play referrer is still there to read. Installs first opened before it are
+ * existing: their ads were never meant to be followed.
+ */
+export const NEW_INSTALLS_FROM = Date.UTC(2026, 10, 21);
+
+/** New for a store's first run, or for an install first opened (`seededAt`)
+ *  since `NEW_INSTALLS_FROM`; existing otherwise. Only a launch with no
+ *  record yet asks (`openInstallRecord`). */
+export function installKind(firstRun: boolean, seededAt: number): InstallKind {
+  return firstRun || seededAt >= NEW_INSTALLS_FROM ? 'new' : 'existing';
+}
 
 /**
  * ACTIVATION, A PROPOSAL the owner confirms before release: the first finished
