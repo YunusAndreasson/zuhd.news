@@ -2,13 +2,178 @@
   "version": 1,
   "stories": [
     {
+      "id": "kaliningrad-cargo-ship-drones-gulf-of-finland",
+      "label": "Finnish border guards head towards drone-hit cargo ship",
+      "firstSeen": "2026-11-21T14:07:28.749Z",
+      "lastCovered": "2026-11-21T14:07:28.749Z",
+      "coverageCount": 1,
+      "category": "politics",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-11-21-kaliningrad-cargo-ship-drones-gulf-of-finland"
+      ],
+      "eventUri": "eng-12209787",
+      "summary": "A cargo ship bound for Kaliningrad was hit by two drones in the Gulf of Finland, three nautical miles from Russia's border, and is now burning in Finnish waters with its crew being evacuated. Lead with where it happened: the war at sea has reached the Baltic route that keeps Russia's exclave supplied, beside a NATO member's coast. Attribute Russian officials' account and the Kaliningrad governor's 'no threat to supplies' line to TASS; Finland's border guard is the independent voice. Nobody has claimed it — say so. Dateline Gulf of Finland / Helsinki."
+    },
+    {
+      "id": "poland-two-russian-missiles-provocation-nato",
+      "label": "Russian missiles hit Poland: What happened, and could NATO respond?",
+      "firstSeen": "2026-11-21T14:07:28.749Z",
+      "lastCovered": "2026-11-21T14:07:28.749Z",
+      "coverageCount": 1,
+      "category": "politics",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-11-21-poland-two-russian-missiles-provocation-nato"
+      ],
+      "eventUri": "eng-12207358",
+      "summary": "Follow-up to our 11-20 story on the suspected missile in Lublin province. The new development: Warsaw now says it may have been hit by two missiles, security cameras caught the impact, and the government calls it an intentional Russian provocation, not stray debris. Lead with that shift from 'investigating' to an accusation. Then explain the mechanism: what Article 4 consultations and Article 5 each require, and why the bar for collective defence stays high. Dateline Warsaw."
+    },
+    {
+      "id": "kryvyi-rih-ballistic-missile-boy-paramedic-killed",
+      "label": "Ballistic missile attack on Zelenskyy's hometown kills two people",
+      "firstSeen": "2026-11-21T14:07:28.749Z",
+      "lastCovered": "2026-11-21T14:07:28.749Z",
+      "coverageCount": 1,
+      "category": "politics",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-11-21-kryvyi-rih-ballistic-missile-boy-paramedic-killed"
+      ],
+      "eventUri": "eng-12208530",
+      "summary": "A Russian ballistic missile on Kryvyi Rih killed a seven-year-old boy and a young paramedic. Lead with the two dead by name if the sources give them, and with the paramedic: a responder killed in a city that has been hit again and again. The mechanism: ballistic missiles give minutes or none of warning, so air defence and shelters fail first in cities near the front. Note Zelensky calling Putin a 'killer' while Washington courts Moscow over a January deal deadline. Dateline Kryvyi Rih."
+    },
+    {
+      "id": "cop31-civil-society-turkey-australia-presidency-climate-finance",
+      "label": "COP31: Nigerian, global groups accuse presidencies of risking 'disappointing' climate deal",
+      "firstSeen": "2026-11-21T14:07:28.749Z",
+      "lastCovered": "2026-11-21T14:07:28.749Z",
+      "coverageCount": 1,
+      "category": "politics",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-11-21-cop31-civil-society-turkey-australia-presidency-climate-finance"
+      ],
+      "eventUri": "fra-1365847",
+      "summary": "As COP31 in Antalya runs into its final hours, a coalition of 100 civil society groups led from Nigeria says the joint Türkiye–Australia presidency failed to steer the talks, letting climate finance, adaptation and the fossil-fuel transition weaken. Lead with who is speaking: Global South groups whose countries carry the cost of warming they did not cause. The mechanism: a split presidency with no single broker. This follows our stories on the draft dropping fossil-fuel language and on net-negative emissions. Dateline Antalya."
+    },
+    {
+      "id": "bayelsa-boat-capsize-mourners-funeral-nigeria",
+      "label": "Overturned boat carrying mourners to funeral kills at least four in Nigeria",
+      "firstSeen": "2026-11-21T14:07:28.749Z",
+      "lastCovered": "2026-11-21T14:07:28.749Z",
+      "coverageCount": 1,
+      "category": "politics",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-11-20-bayelsa-boat-capsize-mourners-funeral-nigeria"
+      ],
+      "eventUri": "eng-12207860",
+      "summary": "A boat believed to carry hundreds of mourners to a funeral capsized in Bayelsa State after a mechanical failure; at least four are dead, two of them children, and the search goes on. Lead with the gap between hundreds aboard and four counted. The mechanism: in the creeks of the Niger Delta boats are the only road, and overloading and missing life jackets go unenforced, so capsizes recur every year. Dateline Bayelsa State."
+    },
+    {
+      "id": "uk-eu-summit-deals-tuition-fees-row",
+      "label": "Minister clashes with BBC host on UK-EU tuition fees talks - 'you're the expert'",
+      "firstSeen": "2026-11-21T14:07:28.749Z",
+      "lastCovered": "2026-11-21T14:07:28.749Z",
+      "coverageCount": 1,
+      "category": "economy",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-11-21-uk-eu-summit-deals-tuition-fees-row"
+      ],
+      "eventUri": "spa-4425389",
+      "summary": "Report the substance, not the radio row: Friday's UK-EU summit agreed deals that ministers insist are not at risk, while a dispute over what EU students pay at British universities hangs over them. Lead with what was agreed at the summit and what Brussels wants on tuition fees in return. The mechanism: the EU ties market access to youth mobility and fee parity, so a university-funding question becomes a trade lever. Who pays: UK universities that rely on higher international fees. Dateline London."
+    },
+    {
+      "id": "btcs-ether-treasury-aave-loan-liquidation-risk",
+      "label": "ETH news: Ether's plunge puts a Nasdaq-listed treasury in a $54 million loan squeeze",
+      "firstSeen": "2026-11-21T14:07:28.749Z",
+      "lastCovered": "2026-11-21T14:07:28.749Z",
+      "coverageCount": 1,
+      "category": "economy",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-11-21-btcs-ether-treasury-aave-loan-liquidation-risk"
+      ],
+      "eventUri": null,
+      "summary": "BTCS, a Nasdaq-listed company whose main asset is ether, told the SEC it cannot rule out liquidation of a $54 million Aave loan backed by that ether, even after paying down about $10 million in ten days. Lead with the filing. The mechanism: 'crypto treasury' firms borrowed against the coin they hold, so a falling price shrinks the collateral and can force a sale that pushes the price lower. Context: bitcoin at a two-year low after the Fed's hikes. Dateline New York."
+    },
+    {
+      "id": "signal-blocks-ai-agents-screen-capture-encryption",
+      "label": "Signal Cracks Down on AI Agents, Says They Threaten Users' Privacy",
+      "firstSeen": "2026-11-21T14:07:28.749Z",
+      "lastCovered": "2026-11-21T14:07:28.749Z",
+      "coverageCount": 1,
+      "category": "tech",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-11-21-signal-blocks-ai-agents-screen-capture-encryption"
+      ],
+      "eventUri": "eng-12206654",
+      "summary": "Signal is blocking OS-level AI agents such as Google's Gemini and Apple's Siri from screen-capturing its chats. Lead with the threat model: end-to-end encryption protects a message in transit, but an assistant that reads the screen takes it after decryption, at the operating-system layer the app does not control. Who is exposed: the journalists, officials and dissidents who rely on Signal. Explain what Signal can block and what it cannot."
+    },
+    {
+      "id": "gomspace-blue-origin-lunar-prospecting-contract",
+      "label": "Denmark's GomSpace Secures €8M Contract for Blue Origin Moon Mission",
+      "firstSeen": "2026-11-21T14:07:28.749Z",
+      "lastCovered": "2026-11-21T14:07:28.749Z",
+      "coverageCount": 1,
+      "category": "tech",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-11-21-gomspace-blue-origin-lunar-prospecting-contract"
+      ],
+      "eventUri": null,
+      "summary": "Danish satellite maker GomSpace won an €8 million phase-two contract to build two spacecraft for a lunar resource-prospecting mission. Its announcement names only a 'leading North American' customer; European Spaceflight identifies it as Blue Origin. Lead with the hidden customer and what the craft are meant to prospect for. The structural point: European small-satellite firms are becoming suppliers to a US-led race to claim resources on the Moon. Dateline Aalborg."
+    },
+    {
+      "id": "kalahari-craton-failed-rift-reawakening-botswana",
+      "label": "An ancient failed rift is reawakening inside one of Africa's oldest landmasses",
+      "firstSeen": "2026-11-21T14:07:28.749Z",
+      "lastCovered": "2026-11-21T14:07:28.749Z",
+      "coverageCount": 1,
+      "category": "science",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-11-21-kalahari-craton-failed-rift-reawakening-botswana"
+      ],
+      "eventUri": null,
+      "summary": "The magnitude 6.5 earthquake of April 2017 in eastern Botswana came from the middle of the Kalahari Craton, crust up to 3.7 billion years old that geologists thought too cold and thick to tear. New work finds an ancient failed rift there reactivating. Lead with that 2017 quake and why it should not have happened. The mechanism: what is weakening the old rift. Why it matters: seismic hazard in a region whose buildings were never designed for it. Dateline Gaborone."
+    },
+    {
+      "id": "eagles-hunt-adult-baboons-chad-human-ancestors",
+      "label": "Scientists Discover New and Horrible Eagle-Based Way Our Ancestors Died",
+      "firstSeen": "2026-11-21T14:07:28.749Z",
+      "lastCovered": "2026-11-21T14:07:28.749Z",
+      "coverageCount": 1,
+      "category": "science",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-11-21-eagles-hunt-adult-baboons-chad-human-ancestors"
+      ],
+      "eventUri": null,
+      "summary": "Researchers documented eagles in Chad hunting large adult baboons, prey far heavier than thought possible. That suggests birds of prey threatened early humans and other hominins later in our evolution than believed. Lead with the observed kill and the animal's size. The mechanism: what talon marks on fossil skulls, like the Taung child's, now mean when read against live behaviour. Dateline Chad."
+    },
+    {
       "id": "lithospheric-dripping-rock-sinks-mantle-andes",
       "label": "What makes rock deep beneath continents break away and sink?",
       "firstSeen": "2026-11-21T05:07:35.066Z",
       "lastCovered": "2026-11-21T10:06:40.536Z",
       "coverageCount": 2,
       "category": "science",
-      "importance": 6,
+      "importance": 5,
       "arc": "developing",
       "articles": [
         "2026-11-21-lithospheric-dripping-rock-sinks-mantle-andes",
@@ -24,7 +189,7 @@
       "lastCovered": "2026-11-21T10:06:40.536Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-11-21-un-killer-robots-talks-no-ban-two-years"
@@ -39,7 +204,7 @@
       "lastCovered": "2026-11-21T10:06:40.536Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-11-21-salvadoran-soldiers-killed-haiti-gang-operation-prisons"
@@ -54,7 +219,7 @@
       "lastCovered": "2026-11-21T10:06:40.536Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-11-21-chapo-isidro-captured-sinaloa-gunfight"
@@ -69,7 +234,7 @@
       "lastCovered": "2026-11-21T10:06:40.536Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-11-21-hormuz-oil-shipments-fall-iranian-strikes-us-drone"
@@ -84,7 +249,7 @@
       "lastCovered": "2026-11-21T10:06:40.536Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-11-21-chinese-carmakers-india-byd-cells-mahindra"
@@ -99,7 +264,7 @@
       "lastCovered": "2026-11-21T10:06:40.536Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-11-21-bitcoin-core-bug-ai-scanner-loupe-block"
@@ -114,7 +279,7 @@
       "lastCovered": "2026-11-21T10:06:40.536Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-11-21-honduras-marcovia-gobai-ai-contract-chatbot"
@@ -129,7 +294,7 @@
       "lastCovered": "2026-11-21T10:06:40.536Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-11-21-direct-to-cell-satellites-starlink-digital-sovereignty"
@@ -144,7 +309,7 @@
       "lastCovered": "2026-11-21T10:06:40.536Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-11-21-daisy-chain-molecular-turing-machine-fluorescence"
@@ -159,7 +324,7 @@
       "lastCovered": "2026-11-21T05:07:35.066Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-11-21-trump-tax-us-firms-data-centres-abroad"
@@ -174,7 +339,7 @@
       "lastCovered": "2026-11-21T05:07:35.066Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-11-21-bayer-roundup-7-25bn-settlement-approved"
@@ -189,7 +354,7 @@
       "lastCovered": "2026-11-21T05:07:35.066Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-11-21-punjab-wheat-release-price-flour-cap"
@@ -204,7 +369,7 @@
       "lastCovered": "2026-11-21T05:07:35.066Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-11-21-araghchi-us-peace-agreement-iran-war"
@@ -219,7 +384,7 @@
       "lastCovered": "2026-11-21T05:07:35.066Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-11-21-iran-hormuz-mine-claims-exaggerated-fear"
@@ -234,7 +399,7 @@
       "lastCovered": "2026-11-21T05:07:35.066Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-11-21-gaza-displaced-families-winter-floods-tents"
@@ -249,7 +414,7 @@
       "lastCovered": "2026-11-21T05:07:35.066Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-11-21-ukraine-children-occupation-abducted-forced-fight-russia"
@@ -264,7 +429,7 @@
       "lastCovered": "2026-11-21T05:07:35.066Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-11-21-chip-stocks-crash-sec-nvidia-accounting-probe"
@@ -279,7 +444,7 @@
       "lastCovered": "2026-11-21T05:07:35.066Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-11-21-thinking-machines-inkling-looped-model-open-weights"
@@ -294,7 +459,7 @@
       "lastCovered": "2026-11-21T05:07:35.066Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-11-21-fbi-ncic-crime-database-breach"
@@ -309,7 +474,7 @@
       "lastCovered": "2026-11-20T22:06:58.297Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-11-20-denmark-expels-russian-attache-assassination-plot"
@@ -324,7 +489,7 @@
       "lastCovered": "2026-11-20T22:06:58.297Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-11-20-mamdani-rikers-island-closure-2032-borough-jails"
@@ -339,7 +504,7 @@
       "lastCovered": "2026-11-20T22:06:58.297Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-11-20-nikhil-gupta-sentenced-sikh-murder-plot-india"
@@ -354,7 +519,7 @@
       "lastCovered": "2026-11-20T22:06:58.297Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-11-20-kohat-police-lines-attack-mastermind-killed-ctd"
@@ -369,7 +534,7 @@
       "lastCovered": "2026-11-20T22:06:58.297Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-11-20-bitcoin-below-60000-two-year-low-fed-hikes"
@@ -384,7 +549,7 @@
       "lastCovered": "2026-11-20T22:06:58.297Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-11-20-japan-noetra-sovereign-ai-cost-surge-weak-yen"
@@ -399,7 +564,7 @@
       "lastCovered": "2026-11-20T22:06:58.297Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-11-20-oruc-reis-pakistan-offshore-oil-gas-survey-turkey"
@@ -414,7 +579,7 @@
       "lastCovered": "2026-11-20T22:06:58.297Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-11-20-meta-net-zero-2030-ai-data-center-emissions"
@@ -429,7 +594,7 @@
       "lastCovered": "2026-11-20T22:06:58.297Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-11-20-riemann-hypothesis-proof-claim-ai-claude"
@@ -444,7 +609,7 @@
       "lastCovered": "2026-11-20T22:06:58.297Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-11-20-cop31-net-negative-carbon-removal-nature"
@@ -459,7 +624,7 @@
       "lastCovered": "2026-11-20T22:06:58.297Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-11-20-jamaica-fossil-reefs-coral-survival-map"
@@ -474,7 +639,7 @@
       "lastCovered": "2026-11-20T22:06:58.297Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-11-20-quantum-superposition-repulsive-gravity-theory"
@@ -489,7 +654,7 @@
       "lastCovered": "2026-11-20T22:06:58.297Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-11-20-ai-supply-chain-routers-leak-user-secrets-tripwires"
@@ -504,7 +669,7 @@
       "lastCovered": "2026-11-20T22:06:58.297Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-11-20-chinese-carrier-tanker-drone-satellite-imagery"
@@ -519,7 +684,7 @@
       "lastCovered": "2026-11-20T22:06:58.297Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-11-20-google-homepage-drops-search-button-ai-sidebar"
@@ -534,7 +699,7 @@
       "lastCovered": "2026-11-20T18:08:22.973Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-11-20-kushner-russia-security-guarantees-ukraine-january-deadline"
@@ -549,7 +714,7 @@
       "lastCovered": "2026-11-20T18:08:22.973Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-11-20-spain-election-debate-sanchez-feijoo-corruption-housing"
@@ -564,7 +729,7 @@
       "lastCovered": "2026-11-20T18:08:22.973Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-11-20-estonia-closes-russia-border-crossings-december"
@@ -579,7 +744,7 @@
       "lastCovered": "2026-11-20T18:08:22.973Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-11-20-hormuz-tanker-fire-khasab-brent-third-weekly-loss"
@@ -594,7 +759,7 @@
       "lastCovered": "2026-11-20T18:08:22.973Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-11-20-sudan-power-grid-collapse-strikes-blackouts"
@@ -609,7 +774,7 @@
       "lastCovered": "2026-11-20T18:08:22.973Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-11-20-houthis-claim-strike-saudi-power-plant-port"
@@ -624,7 +789,7 @@
       "lastCovered": "2026-11-20T18:08:22.973Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-11-20-europe-protests-25-countries-wages-military-spending"
@@ -639,7 +804,7 @@
       "lastCovered": "2026-11-20T18:08:22.973Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-11-20-ai-selloff-asia-kospi-samsung-anthropic-slide"
@@ -654,7 +819,7 @@
       "lastCovered": "2026-11-20T18:08:22.973Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-11-20-valve-steam-machine-price-ram-shortage-ai"
@@ -669,7 +834,7 @@
       "lastCovered": "2026-11-20T18:08:22.973Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-11-20-cairn-ai-tool-china-hackers-university-zero-day"
@@ -684,7 +849,7 @@
       "lastCovered": "2026-11-20T18:08:22.973Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-11-20-tencent-hy4-open-weights-apache-million-token"
@@ -699,7 +864,7 @@
       "lastCovered": "2026-11-20T18:08:22.973Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-11-20-eu-privacy-watchdog-kids-act-age-verification"
@@ -714,7 +879,7 @@
       "lastCovered": "2026-11-20T18:08:22.973Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-11-20-germany-attack-drones-live-fire-helsing-deliveries"
@@ -729,7 +894,7 @@
       "lastCovered": "2026-11-20T18:08:22.973Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-11-20-indoor-wildlife-database-2000-species-homes"
@@ -744,7 +909,7 @@
       "lastCovered": "2026-11-20T14:08:01.843Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-11-20-malaysia-resettle-10000-rohingya-turkey"
@@ -759,7 +924,7 @@
       "lastCovered": "2026-11-20T14:08:01.843Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-11-20-bukele-registers-third-term-el-salvador"
@@ -774,7 +939,7 @@
       "lastCovered": "2026-11-20T14:08:01.843Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-11-20-villepin-announces-french-presidential-run"
@@ -789,7 +954,7 @@
       "lastCovered": "2026-11-20T14:08:01.843Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-11-20-pakistan-excludes-afghanistan-eco-islamabad"
@@ -804,7 +969,7 @@
       "lastCovered": "2026-11-20T14:08:01.843Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-11-20-bitcoin-etf-record-outflow-fed-hike-tech-selloff"
@@ -819,7 +984,7 @@
       "lastCovered": "2026-11-20T14:08:01.843Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-11-20-pakistan-weekly-inflation-flour-10-percent"
@@ -834,7 +999,7 @@
       "lastCovered": "2026-11-20T14:08:01.843Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-11-20-russia-central-bank-gold-reserves-lowest-since-2019"
@@ -849,7 +1014,7 @@
       "lastCovered": "2026-11-20T14:08:01.843Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-11-20-europa-sodium-cloud-ocean-origin-keck"
@@ -864,7 +1029,7 @@
       "lastCovered": "2026-11-20T14:08:01.843Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-11-20-national-academies-journals-retractions-report"
@@ -879,7 +1044,7 @@
       "lastCovered": "2026-11-20T14:08:01.843Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-11-20-bitcoin-wallet-nonce-flaw-106-million-bots"
@@ -894,7 +1059,7 @@
       "lastCovered": "2026-11-20T14:08:01.843Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-11-20-tp-link-routers-us-ban-fcc"
@@ -909,193 +1074,13 @@
       "lastCovered": "2026-11-20T14:08:01.843Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-11-20-huawei-osta-sub-brand-harmonyos-ai-phone"
       ],
       "eventUri": null,
       "summary": "Huawei launched OSTA, its first new phone sub-brand since it was forced to sell Honor in 2020, with the OSTA O1 Pro on its own Kirin 9030S chip and HarmonyOS 7: an agent-style assistant that books restaurants, sends WeChat messages and hails Didi from one spoken command, at 5,499 yuan. Lead with the comeback: six years after US sanctions cost it Honor, Huawei has rebuilt chips and an operating system at home and is splitting into two brands again. Inside view from mainland tech press. Dateline Shenzhen."
-    },
-    {
-      "id": "poland-suspected-russian-missile-lublin-coalition-troops",
-      "label": "Poland investigates possible airspace violations near Ukraine border",
-      "firstSeen": "2026-11-20T10:04:09.521Z",
-      "lastCovered": "2026-11-20T10:04:09.521Z",
-      "coverageCount": 1,
-      "category": "politics",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-11-20-poland-suspected-russian-missile-lublin-coalition-troops"
-      ],
-      "eventUri": "eng-12206362",
-      "summary": "A suspected Russian cruise missile came down and burned in a field in Lublin province, 28 miles inside Poland and about 60 miles from where Coalition of the Willing troops, British among them, were exercising. Lead with the distance from the troops: a NATO state's airspace was crossed during a Russian strike on Ukraine, and the question is what Warsaw and the alliance do when the debris lands this close to foreign soldiers. Note Moscow's same-day line, via TASS, that NATO is 'openly preparing' for war."
-    },
-    {
-      "id": "pakistan-minister-malik-delhi-sco-first-since-2025-war",
-      "label": "Pakistan minister visits India for first time since 2025 war",
-      "firstSeen": "2026-11-20T10:04:09.521Z",
-      "lastCovered": "2026-11-20T10:04:09.521Z",
-      "coverageCount": 1,
-      "category": "politics",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-11-20-pakistan-minister-malik-delhi-sco-first-since-2025-war"
-      ],
-      "eventUri": "eng-12204050",
-      "summary": "Pakistani minister Musadik Malik is in New Delhi for an SCO Civilisation Dialogue — the first ministerial visit since the May 2025 war — and India's opposition Congress is attacking the government for inviting him. Lead with the multilateral cover: the SCO forces a contact neither capital would arrange bilaterally. Set the Indian domestic backlash (Pahalgam) against how Dawn and Pakistani outlets frame the visit; what talks, if any, happen on the sidelines."
-    },
-    {
-      "id": "lufthansa-cuts-1000-jobs-fuel-costs-munich-frankfurt",
-      "label": "Lufthansa to Eliminate 1,000 Jobs At Struggling Flagship Airline",
-      "firstSeen": "2026-11-20T10:04:09.521Z",
-      "lastCovered": "2026-11-20T10:04:09.521Z",
-      "coverageCount": 1,
-      "category": "economy",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-11-20-lufthansa-cuts-1000-jobs-fuel-costs-munich-frankfurt"
-      ],
-      "eventUri": "deu-2200792",
-      "summary": "Lufthansa will cut 1,000 full-time jobs at its loss-making mainline airline at the Munich and Frankfurt hubs, with high jet fuel costs named as the pressure. Lead with the cost chain: the Iran war's grip on Gulf energy shows up as job losses at Europe's largest airline group. Name Brent crude as the series behind the fuel bill, and note the collective-bargaining fight with pilots and cabin unions that follows."
-    },
-    {
-      "id": "india-wheat-acreage-biggest-drop-26-years-monsoon",
-      "label": "India's wheat area set for biggest drop in 26 years as farmers switch crops",
-      "firstSeen": "2026-11-20T10:04:09.521Z",
-      "lastCovered": "2026-11-20T10:04:09.521Z",
-      "coverageCount": 1,
-      "category": "economy",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-11-20-india-wheat-acreage-biggest-drop-26-years-monsoon"
-      ],
-      "eventUri": "eng-12202166",
-      "summary": "India's wheat acreage is heading for its steepest fall in 26 years because the weakest monsoon in over a decade left fields parched and farmers are switching to chickpeas and other crops that pay better on less water. Lead with the 26-year figure. The world's second-largest wheat producer planting less raises the odds of imports and food inflation for hundreds of millions; name wheat prices as the series and El Niño as the driver."
-    },
-    {
-      "id": "oil-bond-yield-correlation-breaks-inflation-spreads",
-      "label": "Oil loses grip on bond markets as inflation 'virus' spreads",
-      "firstSeen": "2026-11-20T10:04:09.521Z",
-      "lastCovered": "2026-11-20T10:04:09.521Z",
-      "coverageCount": 1,
-      "category": "economy",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-11-20-oil-bond-yield-correlation-breaks-inflation-spreads"
-      ],
-      "eventUri": null,
-      "summary": "All year, government borrowing costs tracked Brent crude because the Iran war's energy shock was the inflation story; that link has now broken, as traders price how central banks handle inflation that has spread from fuel into the wider economy. Lead with the mechanism: when inflation stops depending on oil, a ceasefire or a price drop no longer brings yields down. Name Brent crude and the US 10-year Treasury yield as the series, and who pays — governments and borrowers refinancing at higher rates."
-    },
-    {
-      "id": "brazil-kapot-nhinore-indigenous-land-raoni-lula",
-      "label": "Lula visits ailing Chief Raoni as Brazil recognises Indigenous land",
-      "firstSeen": "2026-11-20T10:04:09.521Z",
-      "lastCovered": "2026-11-20T10:04:09.521Z",
-      "coverageCount": 1,
-      "category": "politics",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-11-20-brazil-kapot-nhinore-indigenous-land-raoni-lula"
-      ],
-      "eventUri": "por-1368359",
-      "summary": "Brazil declared Kapot Nhinore in Mato Grosso the permanent land of the Mebengokre (Kayapó) and Yudja peoples, a legal step toward demarcation, as Lula visited the ailing Chief Raoni. Lead with the land, not the visit: who held the claim, how long it waited, and which ranching or soy interests contest it in the agribusiness heartland. Explain what the declaration protects and what demarcation still requires."
-    },
-    {
-      "id": "israeli-diplomat-iowa-attorney-general-trip-anti-boycott",
-      "label": "Israeli Diplomat Offered Iowa Attorney General Free Trip, Then Asked for Favors",
-      "firstSeen": "2026-11-20T10:04:09.521Z",
-      "lastCovered": "2026-11-20T10:04:09.521Z",
-      "coverageCount": 1,
-      "category": "politics",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-11-20-israeli-diplomat-iowa-attorney-general-trip-anti-boycott"
-      ],
-      "eventUri": null,
-      "summary": "FOIA records and hacked email archives show an Israeli diplomat offered Iowa Attorney General Brenna Bird a free trip and then asked her for favours, including support for laws against boycotts of Israel. Lead with the sequence — gift, then ask — documented in the state's own records. The mechanism is the pattern: Israel cultivating state-level officials to pass anti-boycott laws that restrict Americans' speech, below the federal scrutiny of foreign lobbying."
-    },
-    {
-      "id": "pentagon-fails-ninth-consecutive-audit",
-      "label": "Deep Dive: The Pentagon Fails Ninth Consecutive Annual Audit",
-      "firstSeen": "2026-11-20T10:04:09.521Z",
-      "lastCovered": "2026-11-20T10:04:09.521Z",
-      "coverageCount": 1,
-      "category": "politics",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-11-20-pentagon-fails-ninth-consecutive-audit"
-      ],
-      "eventUri": null,
-      "summary": "The Pentagon failed its ninth straight annual audit: the Inspector General's auditors could not gather enough evidence to say whether its numbers are correct. Lead with that — the largest US agency, now funding a war with Iran, cannot show where its money goes. Give the budget size, the share of assets that cannot be accounted for, and the 2028 clean-audit deadline Congress set."
-    },
-    {
-      "id": "waymo-pulled-off-highways-robotaxi-regulation",
-      "label": "Waymo被迫退出高速公路，无人驾驶的商业化开始碰到监管天花板",
-      "firstSeen": "2026-11-20T10:04:09.521Z",
-      "lastCovered": "2026-11-20T10:04:09.521Z",
-      "coverageCount": 1,
-      "category": "tech",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-11-20-waymo-pulled-off-highways-robotaxi-regulation"
-      ],
-      "eventUri": null,
-      "summary": "Waymo has been forced off highways, and the Chinese tech press reads it as robotaxi commercialisation hitting a regulatory ceiling. Lead with what made Waymo withdraw and which regulator acted. The structural point, from a mainland view: whether a car can drive like a human is no longer the question — who permits it at speed is, and Chinese rivals Baidu Apollo and Pony.ai face the same ceiling."
-    },
-    {
-      "id": "danish-soldiers-starlink-terminals-greenland",
-      "label": "Danish Soldiers Are Sneaking Starlink Terminals into Greenland",
-      "firstSeen": "2026-11-20T10:04:09.521Z",
-      "lastCovered": "2026-11-20T10:04:09.521Z",
-      "coverageCount": 1,
-      "category": "tech",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-11-20-danish-soldiers-starlink-terminals-greenland"
-      ],
-      "eventUri": null,
-      "summary": "A parliamentary question from Greenlandic politician Pele Broberg says Danish soldiers are bringing privately owned Starlink terminals into Greenland despite restrictions. Lead with the contradiction: the same week Denmark ratified its security deal with Washington, its own troops route around rules on Elon Musk's satellite network. The mechanism is sovereignty over communications — Europe has no alternative to Starlink in the Arctic, and IRIS² is years off."
-    },
-    {
-      "id": "nccia-karachi-arrest-stolen-us-government-data",
-      "label": "NCCIA arrests suspect over alleged sale of stolen US government data in Karachi",
-      "firstSeen": "2026-11-20T10:04:09.521Z",
-      "lastCovered": "2026-11-20T10:04:09.521Z",
-      "coverageCount": 1,
-      "category": "tech",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-11-20-nccia-karachi-arrest-stolen-us-government-data"
-      ],
-      "eventUri": "eng-12206426",
-      "summary": "Pakistan's National Cyber Crime Investigation Agency arrested a Karachi suspect accused of acquiring and selling confidential data from US government agencies, law enforcement and private companies. Lead with what was sold and to whom — which agencies' data, through which marketplace. Pakistan acting on breaches of US systems shows the cross-border data trade and the cooperation behind the arrest."
-    },
-    {
-      "id": "milky-way-star-formation-unusual-nearby-galaxies",
-      "label": "Galactic shock: Discovery challenges our understanding of the Milky Way's structure",
-      "firstSeen": "2026-11-20T10:04:09.521Z",
-      "lastCovered": "2026-11-20T10:04:09.521Z",
-      "coverageCount": 1,
-      "category": "science",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-11-20-milky-way-star-formation-unusual-nearby-galaxies"
-      ],
-      "eventUri": null,
-      "summary": "A University of Sydney PhD student found that the Milky Way is unusual in where it forms new stars compared with nearby galaxies. Lead with the finding: our galaxy, used as the template for galaxy models, may be an outlier. Explain how star formation was measured across the comparison galaxies and what it means for models that assume the Milky Way is typical."
     }
   ]
 }
