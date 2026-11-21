@@ -22,7 +22,7 @@ import { registerBackgroundTask } from '../lib/background-fetch';
 import { startFirsts } from '../lib/firsts';
 import { sendInstallAttribution } from '../lib/install-attribution';
 import { installKind, openInstallRecord, trackFirstOpen } from '../lib/install-record';
-import { getMeasurementAnswer, startMeasurement, subscribeMeasurement } from '../lib/measurement';
+import { isMeasurementOn, startMeasurement, subscribeMeasurement } from '../lib/measurement';
 import { clearLegacyScheduledNotifications, setupNotificationChannels } from '../lib/notifications';
 import { firstRun, getSnapshot as getOnboarding } from '../lib/onboarding-store';
 import { PERSIST_BUSTER, PERSIST_MAX_AGE_MS, persister, queryClient } from '../lib/query-client';
@@ -132,22 +132,23 @@ function RootLayout() {
       // After the install date, which it carries. Once per install, either kind.
       trackFirstOpen();
     }
-    // Asked only on Android (`lib/measurement.ts`). A yes is also when a new
-    // install's Install Attribution may go (`lib/install-attribution.ts`).
+    // Android only, on unless the reader turned it off (`lib/measurement.ts`).
+    // Turning it back on is also when a held Install Attribution may go
+    // (`lib/install-attribution.ts`).
     const measurement = IS_ANDROID
       ? subscribeMeasurement(() => {
-          void analytics.register({ ad_measurement: getMeasurementAnswer() === true });
+          void analytics.register({ ad_measurement: isMeasurementOn() });
           void sendInstallAttribution();
         })
       : null;
     if (IS_ANDROID) {
-      void analytics.register({ ad_measurement: getMeasurementAnswer() === true });
+      void analytics.register({ ad_measurement: isMeasurementOn() });
       void sendInstallAttribution();
     }
     void registerBackgroundTask();
     void clearLegacyScheduledNotifications();
     dropRetiredFound();
-    // Only if the reader has said yes (`lib/measurement.ts`).
+    // Unless the reader turned it off (`lib/measurement.ts`).
     startMeasurement();
     // Set up Android channels at startup so they exist before any push, even
     // if the user grants notification permission later via OS settings.

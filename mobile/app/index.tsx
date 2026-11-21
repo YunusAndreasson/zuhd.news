@@ -41,7 +41,6 @@ import { ErrorState } from '../components/ErrorState';
 import { COLLECT_MS, MiniGlobe, type MiniGlobeRef } from '../components/globe/MiniGlobe';
 import { FRAMING_WIDEST } from '../components/globe/projection';
 import { HintOverlay } from '../components/HintOverlay';
-import { MeasurementSheet } from '../components/MeasurementSheet';
 import { MenuSheet } from '../components/MenuSheet';
 import { ALERT_ROW, AlertPill } from '../components/map/AlertPill';
 import { GlobeGestureLayer } from '../components/map/GlobeGestureLayer';
@@ -125,7 +124,6 @@ import {
 import { buildStoryRows, cameraTrackOf, type StoryRow } from '../lib/map-feed';
 import { coverageStory, mapCandidates } from '../lib/map-selection';
 import { exchangeCard, exchangeIsStale, exchangesOf, stockMarketPlace } from '../lib/markets';
-import { shouldAskForMeasurement } from '../lib/measurement';
 import type { MenuHazards } from '../lib/menu-hazards';
 import { orderNewsRiver, type RiverArticle, recentRiver, riverAnchor } from '../lib/news-order';
 import { notificationPermissionUndetermined } from '../lib/notifications';
@@ -258,7 +256,6 @@ export default function HomeScreen() {
 
   const menuSheetRef = useRef<BottomSheetMethodsRef>(null);
   const primerSheetRef = useRef<BottomSheetMethodsRef>(null);
-  const measurementSheetRef = useRef<BottomSheetMethodsRef>(null);
   const sourcesSheetRef = useRef<BottomSheetMethodsRef>(null);
   const countrySheetRef = useRef<BottomSheetMethodsRef>(null);
   const disasterSheetRef = useRef<BottomSheetMethodsRef>(null);
@@ -352,7 +349,6 @@ export default function HomeScreen() {
   // payload state above.
   const [menuOpen, setMenuOpen] = useState(false);
   const [primerOpen, setPrimerOpen] = useState(false);
-  const [measurementOpen, setMeasurementOpen] = useState(false);
 
   // ---------------------------------------------------------------------
   // The camera
@@ -1305,7 +1301,6 @@ export default function HomeScreen() {
   const sheetOpen =
     menuOpen ||
     primerOpen ||
-    measurementOpen ||
     sheetSources.length > 0 ||
     countrySheet !== null ||
     activeAlert !== null ||
@@ -1323,7 +1318,6 @@ export default function HomeScreen() {
   const openSheets = [
     menuOpen && 'menu',
     primerOpen && 'primer',
-    measurementOpen && 'measurement',
     sheetSources.length > 0 && 'sources',
     countrySheet !== null && 'country',
     activeAlert !== null && 'disaster',
@@ -1361,22 +1355,6 @@ export default function HomeScreen() {
   const primerTriedRef = useRef(false);
   /** The moment the primer is presented at, for its answer's `source`. */
   const [primerSource, setPrimerSource] = useState<PrimerSource>('caught_up');
-
-  // A new reader on Android, once the map has had a moment. If another sheet got
-  // there first the question waits for the row on the privacy page, not a nag.
-  useEffect(() => {
-    if (!shouldAskForMeasurement(getOnboarding().snapCount)) return;
-    const timer = setTimeout(() => {
-      if (sheetOpenRef.current) return;
-      setMeasurementOpen(true);
-      measurementSheetRef.current?.present();
-      void analytics.track(ANALYTICS_EVENTS.PERMISSION_PROMPT_SHOWN, {
-        permission: 'ad_measurement',
-        primed: true,
-      });
-    }, PRIMER_PRESENT_DELAY_MS);
-    return () => clearTimeout(timer);
-  }, []);
 
   /** The primer, once a session, a moment after `source`'s moment, unless a
    *  sheet has come up by then. */
@@ -1619,7 +1597,6 @@ export default function HomeScreen() {
   }, [runSheetHandOff]);
   const handleEntityDismiss = useCallback(() => setActiveEntity(null), []);
   const handlePrimerDismiss = useCallback(() => setPrimerOpen(false), []);
-  const handleMeasurementDismiss = useCallback(() => setMeasurementOpen(false), []);
   const handleCardDismiss = useCallback(() => {
     setActiveCard(null);
     setSelectedGauge(null);
@@ -1643,7 +1620,6 @@ export default function HomeScreen() {
         cardSheetRef,
         menuSheetRef,
         primerSheetRef,
-        measurementSheetRef,
         sourcesSheetRef,
         countrySheetRef,
         disasterSheetRef,
@@ -2488,12 +2464,6 @@ export default function HomeScreen() {
         onDismiss={handlePrimerDismiss}
         onToast={handleMenuToast}
         source={primerSource}
-      />
-
-      <MeasurementSheet
-        sheetRef={measurementSheetRef}
-        bottomInset={insets.bottom}
-        onDismiss={handleMeasurementDismiss}
       />
     </View>
   );

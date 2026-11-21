@@ -64,8 +64,8 @@ Zuhd — the discipline of doing without what you do not need.
      - "cannot tell readers apart" — the news server only. The update check and
        the push service carry an install's number, as do Mixpanel and Sentry
        (since 2026-11-15), and the privacy page says so.
-     - "no tracking" is not said: on Android a reader can allow Meta's SDK
-       (`lib/measurement.ts`). Off until they say yes, and absent from iOS.
+     - "no tracking" is not said: on Android the app runs Meta's SDK
+       (`lib/measurement.ts`), unless the reader turns it off. Absent from iOS.
      Do NOT restore "No data collected" as an absolute: turning notifications
      on stores an anonymous push token server-side (90-day TTL, broadcast to
      all, nothing attached). That's disclosed on the in-app privacy page and
@@ -87,8 +87,8 @@ Zuhd — the discipline of doing without what you do not need.
 
 Keep these in sync with `mobile/components/MenuSheet.tsx` → INFO_PAGES.privacy.
 
-Usage events carry a random installation ID, and on Android, after the reader
-says yes to ad measurement, one event says which link or ad the Play Store
+Usage events carry a random installation ID, and on Android, unless the reader
+turned ad measurement off, one event says which link or ad the Play Store
 reports brought the install (`lib/install-id.ts`, `lib/install-attribution.ts`).
 
 ### Apple — App Privacy
@@ -118,14 +118,15 @@ reports brought the install (`lib/install-id.ts`, `lib/install-attribution.ts`).
   notifications off deletes the token, and the privacy page's erase control
   clears everything held on the device.
 - Device or other IDs, and App activity → App interactions: **shared with
-  Meta**, optional, purpose Advertising or marketing. This is ad measurement,
-  and only where the reader said yes. Collected through Meta's SDK.
+  Meta**, optional, purpose Advertising or marketing. This is ad measurement:
+  on by default, and the privacy page's switch turns it off, which is what
+  keeps "optional" true. Collected through Meta's SDK.
 - App content → Advertising ID: **Yes**, for Advertising or marketing. Play
   rejects an upload carrying `AD_ID` until this is declared.
 - App activity → App interactions, and Device or other IDs: collected for
   **Analytics** (Mixpanel, anonymous ID and the random installation ID). Not
   shared (Mixpanel is a service provider). Required: the app has no off switch.
-  After a yes to ad measurement, the Play install referrer (which link or ad
+  Unless ad measurement is off, the Play install referrer (which link or ad
   brought the install) goes to Mixpanel too, once, for **Advertising or
   marketing** (measuring our own ads); it is not shared with Meta from here.
 - Location → Approximate location: collected for **Analytics** (Mixpanel's

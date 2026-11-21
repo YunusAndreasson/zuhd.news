@@ -3,11 +3,7 @@ import { Platform, StyleSheet } from 'react-native';
 import { HIT_SLOP, LAYOUT, SPACING } from '../constants/theme';
 import { useTheme } from '../hooks/useTheme';
 import { hapticError, hapticNotification, hapticTick } from '../lib/haptics';
-import {
-  getMeasurementAnswer,
-  setMeasurementAnswer,
-  subscribeMeasurement,
-} from '../lib/measurement';
+import { isMeasurementOn, setMeasurementAnswer, subscribeMeasurement } from '../lib/measurement';
 import { eraseLocalData } from '../lib/wipe';
 import { MenuRow } from './MenuRow';
 import { Pressable, Text } from './primitives';
@@ -32,7 +28,7 @@ const SECTIONS: InfoSection[] = [
   },
   {
     heading: 'what the app contacts',
-    body: 'Stories, map data and audio come from one address: zuhd-news.pages.dev. The app also checks for updates when it opens, which sends its version and a random number for this install — nothing about what you read. With notifications on, the service that delivers them is contacted too. Usage statistics go to Mixpanel and crash reports to Sentry. On Android, if you agree to ad measurement, Meta is contacted too. No other ad network, and no font, map or image service. Source links open in your browser only when you tap them.',
+    body: 'Stories, map data and audio come from one address: zuhd-news.pages.dev. The app also checks for updates when it opens, which sends its version and a random number for this install — nothing about what you read. With notifications on, the service that delivers them is contacted too. Usage statistics go to Mixpanel and crash reports to Sentry. On Android, unless you turn off ad measurement below, Meta is contacted too. No other ad network, and no font, map or image service. Source links open in your browser only when you tap them.',
   },
   {
     // Shares its core sentence verbatim with SheetAboutPage's
@@ -45,15 +41,16 @@ const SECTIONS: InfoSection[] = [
     // their properties are `constants/analytics.ts`; what Sentry may send is
     // `lib/sentry.ts`. Neither has an off switch, so none is described.
     // The installation ID is `lib/install-id.ts` (an erase replaces it); the
-    // Play Store's referrer goes only after a yes (`lib/install-attribution.ts`).
+    // Play Store's referrer goes only while ad measurement is on
+    // (`lib/install-attribution.ts`).
     heading: 'usage and crashes',
-    body: 'The app sends usage events to Mixpanel: when it is opened, which screen is opened, which tips were seen, your answers to the notification and ad measurement questions, and a few actions, such as starting or finishing a briefing, opening, saving or sharing a story, and how many stories were read in a visit. They do not include which story. They carry a random ID for this installation, and on Android, once you say yes to ad measurement, one of them says which link or ad the Play Store reports brought the install. Each event also says the day the app was first opened and whether notifications are on. They are linked to a random ID created on this device, not to a name or account, and Mixpanel derives an approximate location from the IP address. Mixpanel stores them in the EU. Crash and error reports go to Sentry, in the US: the error, the device model, the operating system and the app version, with no screenshot and no web address. There is no setting to turn these off. Erasing local data below gives usage events a new random ID.',
+    body: 'The app sends usage events to Mixpanel: when it is opened, which screen is opened, which tips were seen, your answer to the notification question, and a few actions, such as starting or finishing a briefing, opening, saving or sharing a story, and how many stories were read in a visit. They do not include which story. They carry a random ID for this installation, and on Android, unless ad measurement is off, one of them says which link or ad the Play Store reports brought the install. Each event also says the day the app was first opened and whether notifications are on. They are linked to a random ID created on this device, not to a name or account, and Mixpanel derives an approximate location from the IP address. Mixpanel stores them in the EU. Crash and error reports go to Sentry, in the US: the error, the device model, the operating system and the app version, with no screenshot and no web address. There is no setting to turn these off. Erasing local data below gives usage events a new random ID.',
   },
   {
-    // Named, against the rule for vendors: what a reader agrees to has to say
-    // who receives it. `lib/measurement.ts` is what makes each sentence true.
+    // Named, against the rule for vendors: what a reader can turn off has to
+    // say who receives it. `lib/measurement.ts` is what makes each sentence true.
     heading: 'ad measurement',
-    body: 'We advertise this app on Facebook and Instagram. On Android, if you say yes, the app tells Meta it was installed and opened and sends your phone’s advertising ID, so we can see which ads bring readers. Meta may combine this with what it already holds about you. The app sends it nothing about what you read. A yes also lets the app send Mixpanel which link or ad the Play Store says brought the install. Say no and none of this runs. Its traffic is not in the data figure in Settings. The iPhone app does none of this.',
+    body: 'We advertise this app on Facebook and Instagram. On Android, the app tells Meta it was installed and opened and sends your phone’s advertising ID, so we can see which ads bring readers. Meta may combine this with what it already holds about you. The app sends it nothing about what you read. It also sends Mixpanel, once, which link or ad the Play Store says brought the install. Turn ad measurement off below and none of this runs. Its traffic is not in the data figure in Settings. The iPhone app does none of this.',
   },
   {
     heading: 'data used',
@@ -74,7 +71,7 @@ const SECTIONS: InfoSection[] = [
     // the rating prompt keeps a count of swipes. Erase keeps display settings,
     // the notification and measurement choices and that record, so "all of
     // it" is not said.
-    body: 'Saved stories. Which stories were already here last time, so the new ones can be marked. Which stories you have read. When you last left the app. Your place in a briefing. Which tips you have seen. How many stories you have swiped through, and when the app last asked for a rating, so it asks at most once in three months. Whether you have read a story and played a briefing yet, so a usage event can say it is the first. Which once-per-install usage events have been sent, such as the first open, so none is sent twice. Your display settings. Your answer about ad measurement. A cached copy of the latest stories and map data, so they open without a connection and an unchanged file is not downloaded twice. The last briefing you listened to, once it has downloaded.\n\nNone of it leaves the device. You can erase most of it below.',
+    body: 'Saved stories. Which stories were already here last time, so the new ones can be marked. Which stories you have read. When you last left the app. Your place in a briefing. Which tips you have seen. How many stories you have swiped through, and when the app last asked for a rating, so it asks at most once in three months. Whether you have read a story and played a briefing yet, so a usage event can say it is the first. Which once-per-install usage events have been sent, such as the first open, so none is sent twice. Your display settings. Whether ad measurement is off. A cached copy of the latest stories and map data, so they open without a connection and an unchanged file is not downloaded twice. The last briefing you listened to, once it has downloaded.\n\nNone of it leaves the device. You can erase most of it below.',
   },
   {
     // Written to make opting in feel as safe as it actually is, because it
@@ -101,10 +98,10 @@ const SECTIONS: InfoSection[] = [
   },
 ];
 
-/** The way back from the question at first launch. Android only: the iPhone
- *  build has nothing to measure with. No answer yet reads as off. */
+/** The off switch for ad measurement, on unless turned off. Android only: the
+ *  iPhone build has nothing to measure with. */
 function MeasurementRow() {
-  const allowed = useSyncExternalStore(subscribeMeasurement, getMeasurementAnswer) === true;
+  const allowed = useSyncExternalStore(subscribeMeasurement, isMeasurementOn);
   return (
     <MenuRow
       first

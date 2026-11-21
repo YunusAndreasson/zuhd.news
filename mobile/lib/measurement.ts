@@ -3,14 +3,18 @@ import { LogBox, Platform } from 'react-native';
 import { createListeners } from './store-plumbing';
 
 /**
- * Ad measurement: Meta's SDK, on Android, once the reader has said yes.
+ * Ad measurement: Meta's SDK, on Android, unless the reader has turned it off
+ * on the privacy page. Nothing asks: the owner's call (2026-11-21), as Open
+ * Arabic does.
  *
- * Nothing else starts it. The manifest turns off auto-init, auto-logging and
- * advertising ID collection (`plugins/with-meta-android.js`), and until
- * `initializeSDK` runs no request of the SDK's gets a response. The iOS build
- * does not contain the SDK (`expo.autolinking.ios.exclude`).
+ * Only `startMeasurement` starts it. The manifest turns off auto-init,
+ * auto-logging and advertising ID collection (`plugins/with-meta-android.js`),
+ * and until `initializeSDK` runs no request of the SDK's gets a response. The
+ * iOS build does not contain the SDK (`expo.autolinking.ios.exclude`).
  *
- * The reader's answer is the only input. The app logs no event of its own: what
+ * The stored answer is the only input: none is on, a no is off. Builds before
+ * 2026-11-21 asked at first launch and stored a dismissal as a no; those stay
+ * off. The app logs no event of its own: what
  * Meta receives is the SDK's own install and open, so nothing here can say what
  * anyone read. Don't add `logEvent`, `setUserID` or `setUserData`. Meta's SDK 19
  * adds a screen's title to every event, so the Android SDK stays on 18 until
@@ -18,12 +22,13 @@ import { createListeners } from './store-plumbing';
  *
  * The SDK's settings persist natively, which is what makes a withdrawal last. A
  * process that started the SDK cannot wholly undo it, so `stop` also holds the
- * queue: what is held goes out only if the reader says yes again, and a later
- * launch delivers nothing, because nothing initializes the SDK.
+ * queue: what is held goes out only if the reader turns it on again, and a
+ * later launch delivers nothing, because nothing initializes the SDK.
  */
 
 const CONSENT_KEY = 'zuhd_measurement_consent_v1';
-/** Bump with the wording: a stored answer to other words counts as no answer. */
+/** Never bump: a stored answer to other words counts as none, and none is on,
+ *  so a bump would turn every reader's off back on. */
 const CONSENT_VERSION = 1;
 
 interface MetaSettings {
@@ -61,23 +66,22 @@ function readAnswer(): boolean | null {
   }
 }
 
-/** Yes, no, or `null` for not asked. A reader on iOS is never asked. */
+/** On, off, or `null` for never set: what the privacy page's switch stored. */
 export function getMeasurementAnswer(): boolean | null {
   if (answer === undefined) answer = readAnswer();
   return answer;
 }
 
-export const subscribeMeasurement = listeners.subscribe;
-
-/** Asked once, at a new reader's first launch: an existing reader's install is
- *  long past measuring, and has the row on the privacy page. */
-export function shouldAskForMeasurement(storiesSwiped: number): boolean {
-  return Platform.OS === 'android' && storiesSwiped === 0 && getMeasurementAnswer() === null;
+/** Whether Meta's SDK may run: Android, unless the reader turned it off. */
+export function isMeasurementOn(): boolean {
+  return Platform.OS === 'android' && getMeasurementAnswer() !== false;
 }
 
+export const subscribeMeasurement = listeners.subscribe;
+
 // Each loads only its own module: the package's index evaluates every export,
-// the login tracker among them. Loaded on first use, after consent, so a reader
-// who says no never touches the native SDK from here.
+// the login tracker among them. Loaded on first use, so a reader who turned it
+// off never touches the native SDK from here.
 function loadSettings(): MetaSettings {
   return require('react-native-fbsdk-next/lib/commonjs/FBSettings').default as MetaSettings;
 }
@@ -90,9 +94,10 @@ function loadLogger(): MetaLogger | null {
   }
 }
 
-/** Switch the SDK on, if the reader has said yes. Called at launch and on a yes. */
+/** Switch the SDK on, unless the reader turned it off. Called at launch and
+ *  when the switch goes on. */
 export function startMeasurement(): void {
-  if (Platform.OS !== 'android' || started || getMeasurementAnswer() !== true) return;
+  if (started || !isMeasurementOn()) return;
   // Before the work: a throw must not retry on every launch path.
   started = true;
   try {
@@ -132,10 +137,10 @@ function stopMeasurement(): void {
   }
 }
 
-/** Record the reader's answer, and act on it. In force from this call, whether
- *  or not the write lands; a failed write asks again, the safe way round. */
+/** Record the switch, and act on it. In force from this call, whether or not
+ *  the write lands; a failed write of an off holds for this launch only. */
 export function setMeasurementAnswer(allowed: boolean): void {
-  const hadYes = getMeasurementAnswer() === true;
+  const wasOn = isMeasurementOn();
   answer = allowed;
   try {
     Storage.setItemSync(
@@ -146,7 +151,7 @@ export function setMeasurementAnswer(allowed: boolean): void {
     // Held in memory for this launch.
   }
   if (allowed) startMeasurement();
-  // A "no" on a phone that never said yes makes no call to the SDK at all.
-  else if (hadYes) stopMeasurement();
+  // An off on a phone where it was never on makes no call to the SDK at all.
+  else if (wasOn) stopMeasurement();
   listeners.emit();
 }

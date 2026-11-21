@@ -2,7 +2,7 @@ import { Platform } from 'react-native';
 import { ANALYTICS_EVENTS, type ReferrerParts } from '../constants/analytics';
 import { analytics } from './analytics';
 import { attributionDue, noteReferrerFailure, settleAttribution } from './install-record';
-import { getMeasurementAnswer } from './measurement';
+import { isMeasurementOn } from './measurement';
 
 /**
  * `Install Attribution`: which link or ad brought a new Android install, as the
@@ -10,10 +10,9 @@ import { getMeasurementAnswer } from './measurement';
  * puts an encrypted ad id in it, a marketer link a `utm_campaign`; the app
  * sends the raw string and never reads it.
  *
- * Linking an install to an ad is ad measurement, so it waits for the reader's
- * yes to the Android measurement question (`measurement.ts`): sent at launch
- * or at the yes, whichever comes first, and never while the answer is no or
- * not given. iOS has no referrer and sends nothing.
+ * Linking an install to an ad is ad measurement, so it follows the privacy
+ * page's switch (`isMeasurementOn`): sent at launch, never while the switch is
+ * off, and when it is turned back on. iOS has no referrer and sends nothing.
  *
  * It goes to Mixpanel alone, with the super properties (`install_id` among
  * them). Meta's SDK gets nothing from here: it reads its own referrer.
@@ -73,8 +72,8 @@ async function attempt(): Promise<void> {
     noteReferrerFailure(MAX_REFERRER_READS);
     return;
   }
-  // The reader may have said no while the Play Store answered.
-  if (getMeasurementAnswer() !== true) {
+  // The reader may have turned it off while the Play Store answered.
+  if (!isMeasurementOn()) {
     attempted = false;
     return;
   }
@@ -86,11 +85,11 @@ async function attempt(): Promise<void> {
 }
 
 /**
- * Send `Install Attribution` if it is due and the reader has said yes. Called
- * at launch and whenever the measurement answer changes. Never throws.
+ * Send `Install Attribution` if it is due and measurement is on. Called at
+ * launch and whenever the switch changes. Never throws.
  */
 export function sendInstallAttribution(): Promise<void> {
-  if (Platform.OS !== 'android' || getMeasurementAnswer() !== true) return Promise.resolve();
+  if (Platform.OS !== 'android' || !isMeasurementOn()) return Promise.resolve();
   if (inFlight) return inFlight;
   if (attempted || !attributionDue()) return Promise.resolve();
   attempted = true;

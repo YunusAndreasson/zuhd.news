@@ -1,7 +1,7 @@
 /**
  * The events marketer counts once per install: `First Open` with
- * `install_kind`, `Install Attribution` (Android, after a yes to ad
- * measurement) and `Activated`, and the `install_id` that joins them. Each
+ * `install_kind`, `Install Attribution` (Android, unless ad measurement is
+ * switched off) and `Activated`, and the `install_id` that joins them. Each
  * `launch()` is a fresh set of modules over the same device storage.
  */
 let mockKv: Map<string, string>;
@@ -38,7 +38,10 @@ jest.mock('../lib/analytics', () => ({
     },
   },
 }));
-jest.mock('../lib/measurement', () => ({ getMeasurementAnswer: () => mockAnswer.value }));
+// As `lib/measurement.ts`: Android, unless the stored answer is an off.
+jest.mock('../lib/measurement', () => ({
+  isMeasurementOn: () => mockPlatform.OS === 'android' && mockAnswer.value !== false,
+}));
 
 type Record_ = typeof import('../lib/install-record');
 type Attribution = typeof import('../lib/install-attribution');
@@ -159,7 +162,7 @@ describe('new or existing', () => {
     expect(new Date(launch().NEW_INSTALLS_FROM).toISOString()).toBe('2026-11-21T00:00:00.000Z');
   });
 
-  it('a new install first opened by an older build sends its referrer after a yes', async () => {
+  it('a new install first opened by an older build sends its referrer', async () => {
     mockAnswer.value = true;
     const app = launch();
     app.openInstallRecord(app.installKind(false, app.NEW_INSTALLS_FROM + 3_600_000));
@@ -238,7 +241,7 @@ describe('Install Attribution', () => {
     expect(splitReferrer('x'.repeat(200))).toEqual({ referrer_0: 'x'.repeat(200) });
   });
 
-  it('after a yes, a new Android install sends the raw referrer once', async () => {
+  it('a new Android install sends the raw referrer once', async () => {
     mockAnswer.value = true;
     await open('new').sendInstallAttribution();
     await open('new').sendInstallAttribution();
@@ -259,14 +262,15 @@ describe('Install Attribution', () => {
     expect(Object.values(parts).join('')).toBe(referrer);
   });
 
-  describe('the measurement gate', () => {
-    it('no answer yet: nothing is read or sent', async () => {
+  describe('the measurement switch', () => {
+    it('nothing stored, nothing asked: read and sent once', async () => {
       await open('new').sendInstallAttribution();
-      expect(mockReferrer).not.toHaveBeenCalled();
-      expect(names()).toEqual(['First Open']);
+      await open('new').sendInstallAttribution();
+      expect(mockReferrer).toHaveBeenCalledTimes(1);
+      expect(names()).toEqual(['First Open', 'Install Attribution']);
     });
 
-    it('a no: never read, never sent, across launches', async () => {
+    it('switched off: never read, never sent, across launches', async () => {
       mockAnswer.value = false;
       await open('new').sendInstallAttribution();
       await open('new').sendInstallAttribution();
@@ -274,7 +278,7 @@ describe('Install Attribution', () => {
       expect(names()).toEqual(['First Open']);
     });
 
-    it('a later yes sends it then, in the same launch', async () => {
+    it('switched back on, it is sent then, in the same launch', async () => {
       mockAnswer.value = false;
       const app = open('new');
       await app.sendInstallAttribution();
@@ -283,7 +287,7 @@ describe('Install Attribution', () => {
       expect(names()).toEqual(['First Open', 'Install Attribution']);
     });
 
-    it('a yes on a later launch sends it then', async () => {
+    it('switched back on in a later launch, it is sent then', async () => {
       mockAnswer.value = false;
       await open('new').sendInstallAttribution();
       mockAnswer.value = true;
@@ -291,7 +295,7 @@ describe('Install Attribution', () => {
       expect(names()).toEqual(['First Open', 'Install Attribution']);
     });
 
-    it('a no given while the Play Store answers: not sent, and still owed', async () => {
+    it('switched off while the Play Store answers: not sent, and still owed', async () => {
       mockAnswer.value = true;
       const app = open('new');
       let answer: (value: string) => void = () => {};

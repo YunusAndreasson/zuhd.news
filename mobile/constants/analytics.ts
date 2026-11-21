@@ -28,8 +28,8 @@ export const ANALYTICS_EVENTS = {
    *  says whether the install is new or one that updated into it
    *  (`lib/install-record.ts`). Count new installs by `install_kind: 'new'`. */
   FIRST_OPEN: 'First Open',
-  /** Android only, a new install, once, and only after a yes to ad measurement:
-   *  the Play Store's install referrer, which says which link or ad brought the
+  /** Android only, a new install, once, unless ad measurement is off on the
+   *  privacy page: the Play Store's install referrer, which says which link or ad brought the
    *  install (`lib/install-attribution.ts`). */
   INSTALL_ATTRIBUTION: 'Install Attribution',
   /** A new install reached the activation moment, once (`ACTIVATION` in
@@ -41,9 +41,11 @@ export const ANALYTICS_EVENTS = {
   ONBOARDING_COMPLETED: 'Onboarding Completed',
   /** A tip was waved away before its lesson was done. */
   ONBOARDING_SKIPPED: 'Onboarding Skipped',
-  /** The app's own ask came up: the notification primer, or Android's ad measurement question. */
+  /** The app's own ask came up: the notification primer. Builds before
+   *  2026-11-21 also sent it for Android's ad measurement question. */
   PERMISSION_PROMPT_SHOWN: 'Permission Prompt Shown',
-  /** The answer to an ask: the primer's, the settings toggle's or the measurement question's. */
+  /** The answer to an ask: the primer's or the settings toggle's (and, before
+   *  2026-11-21, Android's ad measurement question's). */
   PERMISSION_RESULT: 'Permission Result',
   /** The reader turned notifications off in settings. */
   NOTIFICATIONS_TURNED_OFF: 'Notifications Turned Off',
@@ -155,6 +157,6 @@ export type SuperProperties = {
   install_date?: string;
   /** Notifications on in the app and allowed by the OS: whether a push can reach this reader. */
   notifications_enabled?: boolean;
-  /** Android only: the reader said yes to ad measurement. */
+  /** Android only: ad measurement is on (it is unless turned off on the privacy page). */
   ad_measurement?: boolean;
 };
