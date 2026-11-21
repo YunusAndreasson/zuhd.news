@@ -5,8 +5,8 @@ import { tmpdir } from 'node:os'
 import { join } from 'node:path'
 import { test } from 'node:test'
 import {
-  coverageRow, dryRun, feedRow, judgeAnswer, loadPrompt, offeredArticles, offeredStories, openCache, promptWithInput,
-  runDispatch, staleKeys, stampRun, storedStanding, threadsFor,
+  coverageRow, dealToSiblings, dryRun, eventSiblings, feedRow, judgeAnswer, loadPrompt, offeredArticles, offeredStories,
+  openCache, promptWithInput, runDispatch, staleKeys, stampRun, storedStanding, threadsFor,
 } from './dispatch.js'
 import { matchesAnyTag } from './entity-registry.js'
 import { haversineKm } from './firms.js'
@@ -61,6 +61,78 @@ test('an attention series joins on the Wikipedia title alone', () => {
   const feed = [story('Tehran Reopens Talks', ['iran', 'tehran']), story('Iran in the Headlines'), story('Oil Falls', ['brent crude'])]
   const offered = offeredStories(feed, { wikiTitle: 'iran', topicTags: ['iran', 'oil'] })
   assert.deepEqual(offered.map((s) => s.title), ['Tehran Reopens Talks'])
+})
+
+// ── eventSiblings, dealToSiblings ─────────────────────────────────────────
+
+/** Two outcomes of Nigeria's 2027 election as the snapshot carried them on 2026-11-21, both a story's contract. */
+const NG_EVENT = 'https://polymarket.com/event/nigerian-presidential-election-winner-20260602162945585'
+const OBI = {
+  key: 'poly-will-peter-obi-win-the-2027-nigerian-presidentia',
+  event: NG_EVENT,
+  slug: 'will-peter-obi-win-the-2027-nigerian-presidential-election-20260602163030948',
+  latest: 26,
+  storyContract: true,
+}
+const TINUBU = {
+  key: 'poly-will-bola-tinubu-win-the-2027-nigerian-president',
+  event: NG_EVENT,
+  slug: 'will-bola-tinubu-win-the-2027-nigerian-presidential-election-20260602163030949',
+  latest: 69,
+  storyContract: true,
+}
+
+test('the outcomes of one event are siblings, each named by the slug words no other has', () => {
+  const lone = { key: 'poly-us-strike-on-cuba-by-december-31', event: 'https://polymarket.com/event/us-strike-on-cuba-by', slug: 'us-strike-on-cuba-by-december-31', latest: 9 }
+  const unlinked = { key: 'poly-no-event', event: null, slug: 'will-peter-obi-x', latest: 50 }
+  const groups = eventSiblings([OBI, lone, TINUBU, unlinked])
+  assert.deepEqual([...groups.keys()], [OBI.key, TINUBU.key], 'an event with one contract, and a row with no event, are no one’s siblings')
+  const group = groups.get(OBI.key)
+  assert.equal(groups.get(TINUBU.key), group, 'one group, shared')
+  assert.deepEqual(group?.words, { [OBI.key]: ['peter', 'obi'], [TINUBU.key]: ['bola', 'tinubu'] })
+  assert.equal(group?.lead, TINUBU.key, 'two story contracts: the dearest leads')
+})
+
+test('the deck’s pick leads its event ahead of a dearer story contract', () => {
+  const deckPick = { ...OBI, storyContract: false }
+  assert.equal(eventSiblings([TINUBU, deckPick]).get(OBI.key)?.lead, OBI.key)
+  // A price the row lacks loses to one it has; a tie goes to the key.
+  assert.equal(eventSiblings([{ ...TINUBU, latest: null }, OBI]).get(OBI.key)?.lead, OBI.key)
+  assert.equal(eventSiblings([{ ...TINUBU, latest: 26 }, OBI]).get(OBI.key)?.lead, TINUBU.key)
+})
+
+test('the function words a differing slug template leaves behind name no outcome', () => {
+  const event = 'https://polymarket.com/event/fed-decision-in-december'
+  const cut = { key: 'poly-cut', event, slug: 'will-the-fed-decrease-interest-rates-by-25-bps-after-the-december-2026-meeting', latest: 60 }
+  const hold = { key: 'poly-hold', event, slug: 'no-change-in-fed-interest-rates-after-december-2026-meeting', latest: 35 }
+  // Not `will` or `the`, which every headline carries.
+  assert.deepEqual(eventSiblings([cut, hold]).get(cut.key)?.words, { [cut.key]: ['decrease', 'bps'], [hold.key]: ['change'] })
+})
+
+test('siblings are not offered one story twice: the event’s news goes to the lead, a candidate’s to that candidate', () => {
+  const group = /** @type {import('./dispatch.js').SiblingGroup} */ (eventSiblings([OBI, TINUBU]).get(OBI.key))
+  // What both were offered on 2026-11-21, matched on the event's tag `election`.
+  const register = article('2026-11-17-nigeria-inec-voter-register-ai-generated-photos', 'Fake Voters Hit Nigeria Register Abuja General election')
+  const convoy = article('2026-11-12-gombe-pantami-convoy-attack-nigeria-2027-election', 'Gombe Convoy Attack Condemned Gombe General election')
+  const rally = article('obi-rally', 'Obi Draws Crowds in Lagos Peter Obi General election')
+  const debate = article('debate', 'Tinubu and Obi Trade Blows General election')
+  // The story the chart desk set under Tinubu, made to name Obi too: the claim outranks the name.
+  const wards = {
+    ...article('2026-11-10-nigeria-wike-n10m-councillors-tinubu-2027-wards', 'Wike Defends Councillor Payout Abuja Nyesom Wike Peter Obi'),
+    chart: TINUBU.key,
+  }
+  const dealt = dealToSiblings([rally, register, debate, wards, convoy], group, { hay: (a) => a.hay, claims: (a, key) => a.chart === key })
+  assert.deepEqual(
+    dealt.get(TINUBU.key)?.map((a) => a.slug),
+    [wards.slug, debate.slug, register.slug, convoy.slug],
+    'its own story first, then the ones naming it, then the event’s',
+  )
+  assert.deepEqual(dealt.get(OBI.key)?.map((a) => a.slug), [rally.slug, debate.slug], 'a story naming both is both candidates’ news')
+
+  // With nothing about either candidate, as on 2026-11-21: one card tells the race, the other is handed nothing.
+  const quiet = dealToSiblings([register, convoy], group, { hay: (a) => a.hay })
+  assert.deepEqual(quiet.get(TINUBU.key)?.map((a) => a.slug), [register.slug, convoy.slug])
+  assert.deepEqual(quiet.get(OBI.key), [])
 })
 
 // ── storedStanding ────────────────────────────────────────────────────────

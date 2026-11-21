@@ -165,6 +165,118 @@ export function offeredStories(feedWindow, { wikiTitle, topicTags = [], countryT
   return [...tagged, ...feedWindow.filter((s) => !taken.has(s) && matchesAnyTag(names, s.hay))]
 }
 
+// ── Sibling contracts ─────────────────────────────────────────────────────
+
+/**
+ * @typedef {object} SiblingGroup the outcomes of one event the snapshot carries
+ * @property {string[]} keys every member, in the order the rows came
+ * @property {string} lead the member the event's own news is offered to
+ * @property {Record<string, string[]>} words by key, the words that name that
+ *   member's outcome and no other's
+ */
+
+/** Slug words that say nothing about which outcome a market is. Polymarket's
+ *  slugs are templated, so most such words are in every sibling's and fall out
+ *  anyway; these are the ones a differing template leaves behind. */
+const SLUG_FUNCTION_WORDS = new Set(['the', 'and', 'for', 'will', 'with', 'after', 'before', 'than', 'from', 'into', 'not', 'any'])
+
+const slugWords = (slug) =>
+  String(slug || '').toLowerCase().split(/[^a-z0-9]+/).filter((w) => /^[a-z]{3,}$/.test(w) && !SLUG_FUNCTION_WORDS.has(w))
+
+/**
+ * The prediction markets that are outcomes of one event, by member key.
+ *
+ * The deck takes one outcome an event (`pickOutcome`), but a story's contract
+ * is added beside it (`storyContract`), so one election can be two cards or
+ * more. Each sibling is matched on the event's tags, which name the event and
+ * never the outcome, so every sibling was offered the same stories, and with
+ * no news about either candidate the cards recited one fortnight between them:
+ * Obi and Tinubu on 2026-11-21, both on Nigeria's fake voter records and the
+ * attack on Pantami's convoy, at 40% against `corpus.test.js`'s 0.30.
+ *
+ * `lead` is the member the event's own news is offered to (`dealToSiblings`):
+ * the deck's pick, which the volume table chose to stand for the event, then
+ * the dearest outcome, then the key, so two passes over one snapshot agree.
+ *
+ * `words` are what is left of a member's slug once every sibling's slug words
+ * are taken out: `will-peter-obi-win-the-2027-nigerian-...` beside
+ * `will-bola-tinubu-win-...` is `peter`, `obi`. The slug is the source's own,
+ * where a `label` is a model's shortening that may drop a first name.
+ *
+ * @param {{ key: string, event?: string | null, slug?: string | null, latest?: number | null, storyContract?: boolean }[]} rows
+ *   `event`: what names the event (a market's `marketUrl`); a row without one is no one's sibling
+ * @returns {Map<string, SiblingGroup>} only the members of an event with two or more
+ */
+export function eventSiblings(rows) {
+  /** @type {Map<string, typeof rows>} */
+  const byEvent = new Map()
+  for (const r of rows) {
+    if (!r.event) continue
+    const members = byEvent.get(r.event) ?? []
+    members.push(r)
+    byEvent.set(r.event, members)
+  }
+  /** @type {Map<string, SiblingGroup>} */
+  const out = new Map()
+  for (const members of byEvent.values()) {
+    if (members.length < 2) continue
+    const price = (r) => (Number.isFinite(r.latest) ? /** @type {number} */ (r.latest) : -Infinity)
+    const [lead] = [...members].sort(
+      (a, b) => Number(Boolean(a.storyContract)) - Number(Boolean(b.storyContract)) || price(b) - price(a) || a.key.localeCompare(b.key),
+    )
+    const own = members.map((r) => [...new Set(slugWords(r.slug))])
+    /** @type {Record<string, string[]>} */
+    const words = {}
+    members.forEach((r, i) => {
+      words[r.key] = own[i].filter((w) => !own.some((theirs, j) => j !== i && theirs.includes(w)))
+    })
+    const group = { keys: members.map((r) => r.key), lead: lead.key, words }
+    for (const r of members) out.set(r.key, group)
+  }
+  return out
+}
+
+/**
+ * What an event's siblings are offered between them, dealt so that a story
+ * goes to the cards it concerns and to no other.
+ *
+ * A story goes to the members it is claimed for (`claims`: a resolved claim
+ * that it is about that one, such as the story that charts it); failing that,
+ * to the members whose own words it names; failing that, it is news about the
+ * event, and goes to the `lead` alone. So the race is told once, and a
+ * candidate's card carries that candidate's news or nothing: an empty
+ * `recent` is the prompt's own answer to a bundle with nothing in it.
+ *
+ * In each member's list the claimed stories come first, then the named, then
+ * the event's, each in the pool's order: strongest claim first, as
+ * `offeredArticles` ranks.
+ *
+ * @template T
+ * @param {T[]} pool everything any member is offered, each story once
+ * @param {SiblingGroup} group
+ * @param {{ hay: (story: T) => string, claims?: (story: T, key: string) => boolean }} how
+ *   `hay`: the story's lowercased text the words are matched in
+ * @returns {Map<string, T[]>} every member's share, by key
+ */
+export function dealToSiblings(pool, group, { hay, claims = () => false }) {
+  const tiers = new Map(group.keys.map((k) => [k, { claimed: /** @type {T[]} */ ([]), named: /** @type {T[]} */ ([]), event: /** @type {T[]} */ ([]) }]))
+  for (const story of pool) {
+    const claimed = group.keys.filter((k) => claims(story, k))
+    if (claimed.length > 0) {
+      for (const k of claimed) tiers.get(k)?.claimed.push(story)
+      continue
+    }
+    const text = hay(story)
+    const named = group.keys.filter((k) => matchesAnyTag(group.words[k], text))
+    if (named.length > 0) {
+      for (const k of named) tiers.get(k)?.named.push(story)
+      continue
+    }
+    tiers.get(group.lead)?.event.push(story)
+  }
+  return new Map([...tiers].map(([k, t]) => [k, [...t.claimed, ...t.named, ...t.event]]))
+}
+
 /** One of our articles as the model sees it. The keys and their order are the
  *  prompt's `coverage[]`; `slug` is also what a fingerprint hashes. */
 export const coverageRow = (a) => ({

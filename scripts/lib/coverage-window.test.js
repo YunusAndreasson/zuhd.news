@@ -142,7 +142,7 @@ test('an article is read into the row the joins use', () => {
   const [row] = withArticles(
     {
       '2026-10-01-hormuz-reopens.md': md(
-        ['title: "Hormuz Reopens"', 'date: "2026-10-01T10:00:00Z"', 'location: "Muscat"', 'concepts:', '  - "Strait of Hormuz"', '  - label: "Oman"', 'entities:', '  - mention: "Hormuz"', '    indicatorId: "portwatch-hormuz-tanker"'],
+        ['title: "Hormuz Reopens"', 'date: "2026-10-01T10:00:00Z"', 'location: "Muscat"', 'concepts:', '  - "Strait of Hormuz"', '  - label: "Oman"', 'entities:', '  - mention: "Hormuz"', '    indicatorId: "portwatch-hormuz-tanker"', 'chart: "portwatch-hormuz-tanker"'],
         'Muscat — Tankers crossed for [Iran](country:IR) and [Oman](country:OM), and [Iran](country:IR) again.\n\nWhy it matters.',
       ),
       '2026-09-01-too-old.md': md(['title: "Before The Window"', 'date: "2026-09-01T10:00:00Z"'], 'Nowhere — Old.'),
@@ -154,6 +154,7 @@ test('an article is read into the row the joins use', () => {
   assert.equal(row.lead, 'Muscat — Tankers crossed for Iran and Oman, and Iran again.', 'the first block, as a reader sees it')
   assert.deepEqual(row.countries, ['IR', 'OM'])
   assert.deepEqual(row.entityIds, ['cp:hormuz'], 'a renamed id is read as its current one')
+  assert.equal(row.chart, 'cp:hormuz', 'and so is the chart')
   assert.equal(row.hay, 'hormuz reopens muscat strait of hormuz oman')
 })
 
@@ -175,4 +176,5 @@ test('an unquoted date is still a date: newest first, and a day when cut to ten 
   assert.deepEqual(rows.map((a) => a.slug), ['2026-10-03-newest', '2026-10-02-unquoted', '2026-10-01-oldest', '2026-09-30-undated'])
   assert.equal(rows[1].date, '2026-10-02T11:43:44Z')
   assert.deepEqual(rows.map((a) => String(a.date).slice(0, 10)), ['2026-10-03', '2026-10-02', '2026-10-01', '2026-09-30'])
+  assert.ok(rows.every((a) => a.chart === null), 'a story with no chart says so')
 })

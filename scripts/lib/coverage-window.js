@@ -64,6 +64,9 @@ export const loadArticles = (windowStart, dir = ARTICLES_DIR) => {
         // `subjects` is absent on a story that stage never read.
         concepts,
         entities: Array.isArray(meta.entities) ? meta.entities : [],
+        // The series the chart desk set under the story, canonicalised as
+        // `entityIds` are; null when it set none.
+        chart: typeof meta.chart === 'string' && meta.chart.trim() ? canonicalIndicatorId(meta.chart.trim()) : null,
         ...(Array.isArray(meta.subjects) ? { subjects: meta.subjects } : {}),
         // The exchanges and straits the same reading judged it to be about
         // (`mkt:lse`, `cp:hormuz`); absent, like `subjects`, on a story it

@@ -190,6 +190,12 @@ stages assume about each other.
   counted, because a dropped `standing` drops the app's card.
 - `citations` are the offered slugs `recent` was built from; the build
   prefers them to tag matches.
+- Outcomes of one Polymarket event (`marketUrl`) are siblings: each story goes
+  to one card (`eventSiblings`, `dealToSiblings`, `lib/dispatch.js`), the one
+  that charts it or whose slug words it names, else the event's lead. Their
+  tags name the event, so undealt every candidate recites the same race.
+- A contract's own story is the one that charts it (`chart:`, `isAbout`): the
+  entity stage never names a contract.
 - `BLURB_IS_DEFINITION` (`chokepoint`, `company`): the catalog blurb is
   `standing`. An exchange's is the model's: its blurb describes the exchange,
   not the index.

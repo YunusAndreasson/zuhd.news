@@ -58,8 +58,8 @@ import { companyMatcher, isAboutCompany, storyFacts } from './lib/companies.js'
 import { loadArticles, loadFeedWindow } from './lib/coverage-window.js'
 import { canonicalIndicatorId } from './lib/entity-registry.js'
 import {
-  MAX_COVERAGE, MAX_FEED, WINDOW_DAYS, askModel, coverageRow, dryRun, feedRow, loadPrompt, offeredArticles,
-  offeredStories, openCache, promptWithInput, runDispatch, storedStanding, threadsFor,
+  MAX_COVERAGE, MAX_FEED, WINDOW_DAYS, askModel, coverageRow, dealToSiblings, dryRun, eventSiblings, feedRow, loadPrompt,
+  offeredArticles, offeredStories, openCache, promptWithInput, runDispatch, storedStanding, threadsFor,
 } from './lib/dispatch.js'
 import { sig4 } from './lib/indicator-offer.js'
 import { argAt, hasFlag } from './lib/argv.js'
@@ -237,6 +237,12 @@ for (const ind of trends.indicators || []) {
     wikiTitle: ind.source === 'wikipedia' ? String(ind.seriesId || '').replace(/_/g, ' ').toLowerCase() : null,
     topicTags: ind.topicTags || [],
     catalogBlurb: null,
+    // A contract's event and slug, which `eventSiblings` groups and tells
+    // apart by. Hashed nowhere: what they change is a sibling's share of the
+    // stories, and `recentFingerprint` hashes those.
+    ...(ind.source === 'polymarket'
+      ? { market: { event: ind.marketUrl || null, slug: ind.seriesId || null, storyContract: Boolean(ind.storyContract) } }
+      : {}),
   })
 }
 
@@ -346,6 +352,16 @@ for (const co of companies) {
   })
 }
 
+/**
+ * The contracts that are outcomes of one event (`eventSiblings`), over every
+ * item rather than this pass's, so a `--only` or `--new-only` pass deals their
+ * stories as the daily one does.
+ */
+const siblings = eventSiblings(
+  items.filter((it) => it.market).map((it) => ({ key: it.key, ...it.market, latest: it.series.latest })),
+)
+const itemByKey = new Map(items.map((it) => [it.key, it]))
+
 const selected = items
   .filter((it) => (ONLY ? it.key === ONLY : true))
   .filter((it) => (NEW_ONLY ? !cache.items[it.key]?.standing : true))
@@ -358,25 +374,59 @@ console.log(
 // ── Bundles ───────────────────────────────────────────────────────────────
 
 /**
+ * Whether a story is about an item. An exchange's or a strait's own stories
+ * are the ones the entity stage read as about it (`venues`,
+ * `lib/stock-mentions.js`). A contract's is the story that charts it: the
+ * entity stage never names a contract, and a story's contract is in the
+ * snapshot because a story set it, so on its tags alone it was never offered
+ * the one story that is its own (Tinubu's, on 2026-11-21). Every other
+ * series' charting story is already one of its `entityIds`.
+ */
+const isAbout = (item, a) =>
+  item.about ? item.about(a) : a.entityIds.includes(item.key) || Boolean(a.venues?.includes(item.key)) || a.chart === item.key
+
+/**
+ * What one item is offered of a pool, and for an outcome of an event the
+ * snapshot carries more than one of, its share of what the event's siblings
+ * are offered between them (`dealToSiblings`): their tags name the event, so
+ * left alone every sibling is handed the same stories and writes them twice.
+ */
+const shareOf = (item, offered, how, idOf = (story) => story) => {
+  const group = siblings.get(item.key)
+  if (!group) return offered(item)
+  const pool = new Map()
+  for (const k of group.keys) for (const story of offered(itemByKey.get(k))) if (!pool.has(idOf(story))) pool.set(idOf(story), story)
+  return dealToSiblings([...pool.values()], group, how).get(item.key) ?? []
+}
+
+/**
  * Articles offered to the model for one item: the stories about it, then the
  * stories that carry one of its tags, then (an exchange) its own country's.
  * The tiers and why they are in that order are `offeredArticles`'.
  */
 const coverageFor = (item) =>
-  offeredArticles(articles, {
-    // An exchange's or a strait's own stories are the ones the entity stage
-    // read as about it (`venues`, `lib/stock-mentions.js`): first, ahead of
-    // the stories that only carry one of its tags.
-    direct: (a) => (item.about ? item.about(a) : a.entityIds.includes(item.key) || Boolean(a.venues?.includes(item.key))),
-    topicTags: item.topicTags,
-    countryTags: item.countryTags,
-  })
+  shareOf(
+    item,
+    (it) => offeredArticles(articles, { direct: (a) => isAbout(it, a), topicTags: it.topicTags, countryTags: it.countryTags }),
+    { hay: (a) => a.hay, claims: (a, key) => isAbout(itemByKey.get(key), a) },
+  )
     .slice(0, MAX_COVERAGE)
     .map(coverageRow)
 
 /** Feed stories offered to the model for one item (`offeredStories`): by
  *  Wikipedia title for an attention series, by tag for everything else. */
-const feedFor = (item) => offeredStories(feedWindow, item).slice(0, MAX_FEED).map(feedRow)
+const feedFor = (item) =>
+  shareOf(item, (it) => offeredStories(feedWindow, it), { hay: (s) => s.hay }).slice(0, MAX_FEED).map(feedRow)
+
+/** The ledger's threads an item's tags name (`threadsFor`), dealt as stories
+ *  are; a thread is a new row each time it is read, so it is known by its label. */
+const threadsOf = (item) =>
+  shareOf(
+    item,
+    (it) => threadsFor(ledger, it.topicTags),
+    { hay: (t) => `${t.label} ${t.summary || ''}`.toLowerCase() },
+    (t) => t.label,
+  )
 
 const buildBundle = (item) => ({
   // `catalogBlurb` rides the identity block rather than sitting beside it,
@@ -388,7 +438,7 @@ const buildBundle = (item) => ({
   series: item.series,
   coverage: coverageFor(item),
   feedWindow: feedFor(item),
-  threads: threadsFor(ledger, item.topicTags),
+  threads: threadsOf(item),
 })
 
 /**
