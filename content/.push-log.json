@@ -1,91 +1,5 @@
 [
   {
-    "timestamp": "2026-10-31T05:18:52.786Z",
-    "candidateCount": 9,
-    "candidates": [
-      {
-        "slug": "2026-10-30-oleshky-evacuation-four-hour-ceasefire-melania-trump",
-        "title": "Oleshky Evacuates Under Truce",
-        "category": "politics",
-        "eventCoverage": 654,
-        "importance": 6
-      },
-      {
-        "slug": "2026-10-31-christa-pike-tennessee-failed-execution-constant-pain",
-        "title": "Pike Survives Execution",
-        "category": "politics",
-        "eventCoverage": 399,
-        "importance": 6
-      },
-      {
-        "slug": "2026-10-30-isro-nvs-03-navic-launch-pyro-valves-open",
-        "title": "NavIC Regains Four Satellites",
-        "category": "tech",
-        "eventCoverage": 129,
-        "importance": 6
-      },
-      {
-        "slug": "2026-10-31-china-factory-activity-export-orders-li-qiang-steinmeier",
-        "title": "China Factory Orders Fall",
-        "category": "economy",
-        "eventCoverage": 76,
-        "importance": 6
-      },
-      {
-        "slug": "2026-10-30-pakistan-father-self-immolation-muzaffargarh-court-nine-year-rape-trial",
-        "title": "Father Burns Himself Outside Court",
-        "category": "politics",
-        "eventCoverage": 0,
-        "importance": 6
-      },
-      {
-        "slug": "2026-10-31-openai-cuts-fundraising-target-valuation-ai-selloff",
-        "title": "OpenAI Cuts Funding Target",
-        "category": "economy",
-        "eventCoverage": 0,
-        "importance": 6
-      },
-      {
-        "slug": "2026-10-31-temiscaming-quebec-paper-mill-idle-us-tariffs",
-        "title": "Quebec Mill Town Faces Closure",
-        "category": "economy",
-        "eventCoverage": 0,
-        "importance": 6
-      },
-      {
-        "slug": "2026-10-31-kling-kuaishou-ai-video-funding-19-8-billion-yuan",
-        "title": "Kling Closes Record Round",
-        "category": "tech",
-        "eventCoverage": 0,
-        "importance": 6
-      },
-      {
-        "slug": "2026-10-30-character-ai-chats-sale-doj-privacy-ombudsman",
-        "title": "Character.AI Chats Face Sale",
-        "category": "tech",
-        "eventCoverage": 0,
-        "importance": 6
-      }
-    ],
-    "selected": {
-      "slug": "2026-10-31-christa-pike-tennessee-failed-execution-constant-pain",
-      "title": "Pike Survives Execution",
-      "category": "politics",
-      "body": "Two lethal doses on September 30 failed to kill Christa",
-      "eventCoverage": 399,
-      "importance": 6
-    },
-    "skipReason": null,
-    "sent": true,
-    "pushTitle": "Breaking News",
-    "pushBody": "Tennessee fails to execute Christa Pike after 2 lethal injection doses",
-    "response": {
-      "pushed": 1,
-      "skipped": 0,
-      "tokens": 5
-    }
-  },
-  {
     "timestamp": "2026-10-31T10:17:29.670Z",
     "candidateCount": 12,
     "candidates": [
@@ -10322,6 +10236,99 @@
     "sent": true,
     "pushTitle": "Breaking News",
     "pushBody": "Two Russian missiles and drone hit southeast Poland, Tusk says",
+    "response": {
+      "pushed": 1,
+      "skipped": 0,
+      "tokens": 5
+    }
+  },
+  {
+    "timestamp": "2026-11-21T18:14:13.734Z",
+    "candidateCount": 10,
+    "candidates": [
+      {
+        "slug": "2026-11-21-iran-nuclear-doctrine-debate-vance-trump-claim",
+        "title": "Iran Debates Nuclear Doctrine",
+        "category": "politics",
+        "eventCoverage": 313,
+        "importance": 6
+      },
+      {
+        "slug": "2026-11-21-eu-budget-cuts-digital-services-tax-costa",
+        "title": "EU Proposes Digital Tax",
+        "category": "economy",
+        "eventCoverage": 256,
+        "importance": 6
+      },
+      {
+        "slug": "2026-11-21-ai-selloff-nasdaq-micron-tsmc-asml-week",
+        "title": "AI Selloff Hits Nasdaq",
+        "category": "economy",
+        "eventCoverage": 252,
+        "importance": 6
+      },
+      {
+        "slug": "2026-11-21-houthi-missiles-riyadh-third-night-alerts",
+        "title": "Houthi Missiles Target Riyadh",
+        "category": "politics",
+        "eventCoverage": 136,
+        "importance": 6
+      },
+      {
+        "slug": "2026-11-21-manipur-toxic-liquor-21-dead-600-hospitalised",
+        "title": "Manipur Liquor Deaths Hit 21",
+        "category": "politics",
+        "eventCoverage": 113,
+        "importance": 6
+      },
+      {
+        "slug": "2026-11-21-india-congress-protests-meta-account-removals",
+        "title": "Congress Youth Protests Meta",
+        "category": "tech",
+        "eventCoverage": 89,
+        "importance": 6
+      },
+      {
+        "slug": "2026-11-21-iran-f16-claim-centcom-denies-hormuz-qatar-talks",
+        "title": "Iran Claims F-16 Hit",
+        "category": "economy",
+        "eventCoverage": 86,
+        "importance": 6
+      },
+      {
+        "slug": "2026-11-21-akwa-ibom-uyo-estate-flood-budget-accountability",
+        "title": "Uyo Estate Floods Displace Families",
+        "category": "politics",
+        "eventCoverage": 0,
+        "importance": 6
+      },
+      {
+        "slug": "2026-11-21-race-realism-genetics-evidence-iq-somalia",
+        "title": "Genetics Rejects Racial Intelligence Claims",
+        "category": "science",
+        "eventCoverage": 0,
+        "importance": 6
+      },
+      {
+        "slug": "2026-11-21-tencent-music-results-acquisitions-merchandise-growth",
+        "title": "Tencent Music Buys Growth",
+        "category": "tech",
+        "eventCoverage": 0,
+        "importance": 6
+      }
+    ],
+    "selected": {
+      "slug": "2026-11-21-ai-selloff-nasdaq-micron-tsmc-asml-week",
+      "title": "AI Selloff Hits Nasdaq",
+      "category": "economy",
+      "body": "The Nasdaq fell 5.28% Friday, erasing all of 2026's",
+      "eventCoverage": 252,
+      "importance": 6
+    },
+    "skipReason": null,
+    "sent": true,
+    "pushTitle": "Breaking News",
+    "pushBody": "Nasdaq falls 5.28% in day, erasing all 2026 gains",
     "response": {
       "pushed": 1,
       "skipped": 0,
