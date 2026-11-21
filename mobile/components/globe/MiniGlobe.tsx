@@ -10,6 +10,7 @@ import {
   useLayoutEffect,
   useMemo,
   useRef,
+  useState,
 } from 'react';
 import { StyleSheet, type ViewStyle } from 'react-native';
 import Animated, {
@@ -57,7 +58,6 @@ import {
   select,
   TileMode,
   type Transforms3d,
-  useTexture,
   useTypeface,
   vec,
 } from 'react-native-skia';
@@ -125,6 +125,7 @@ import {
 } from '../../lib/overlays';
 import { displayCountryName, displayLocation, wrapCountryLabel } from '../../lib/place-names';
 import { useReadSlugs } from '../../lib/read-store';
+import { gpuMissing, readSkiaGpu } from '../../lib/skia-gpu';
 import { type StoryPlace, topUnread, unreadSlugs } from '../../lib/story-places';
 import {
   STRAIT_SIGN_R,
@@ -207,6 +208,7 @@ import {
   screenPoint,
   unit,
 } from './sphere-circles';
+import { bakeSprite } from './sprite-bake';
 import { getCoords } from './storyDots';
 
 interface GlowLayer {
@@ -215,20 +217,18 @@ interface GlowLayer {
   blur?: number;
 }
 
-/** Bake a GlowSpec into a Skia texture once per color. The concentric
- *  circles + BlurMasks are drawn into an offscreen image so the runtime
- *  cost of the glow is one Atlas draw call regardless of layer count. */
-function useGlowTexture(spec: GlowSpec, color: string) {
-  return useTexture(
+/** A GlowSpec in one colour, for `bakeSprite`. The concentric circles and
+ *  BlurMasks are baked into one image so the runtime cost of the glow is one
+ *  Atlas draw call regardless of layer count. */
+function glowSprite(spec: GlowSpec, color: string) {
+  return (
     <Group>
       {spec.layers.map((l, i) => (
         <Circle key={i} cx={spec.center} cy={spec.center} r={l.r} color={color} opacity={l.opacity}>
           {l.blur != null && <BlurMask blur={l.blur} style="solid" />}
         </Circle>
       ))}
-    </Group>,
-    spec.size,
-    [color],
+    </Group>
   );
 }
 
@@ -518,6 +518,39 @@ const THERMAL_CELL = 4;
 const overlayCell = (i: number) => rect(i * OVERLAY_CELL, 0, OVERLAY_CELL, OVERLAY_CELL);
 const FAMINE_SRC = [overlayCell(0), overlayCell(1), overlayCell(2), overlayCell(3)] as const;
 const THERMAL_SRC = overlayCell(THERMAL_CELL);
+/** The hazard sprite sheet, white, for `bakeSprite`: the famine column with
+ *  0–3 blocks filled, then the thermal burst, each at `OVERLAY_RES`. */
+function overlaySprite() {
+  return (
+    <Group>
+      {FAMINE_SRC.map((_, blocks) => (
+        <Group
+          key={`famine-${blocks}`}
+          transform={[{ translateX: blocks * OVERLAY_CELL }, { scale: OVERLAY_RES }]}
+        >
+          <Path
+            path={FAMINE_FRAME_PATH}
+            color={WHITE}
+            style="stroke"
+            strokeWidth={FAMINE_FRAME_STROKE}
+          />
+          <Path path={getFamineBlocksPath(blocks)} color={WHITE} />
+        </Group>
+      ))}
+      <Group transform={[{ translateX: THERMAL_CELL * OVERLAY_CELL }, { scale: OVERLAY_RES }]}>
+        <Path path={THERMAL_CORE_PATH} color={WHITE} />
+        <Path
+          path={THERMAL_RAYS_PATH}
+          color={WHITE}
+          style="stroke"
+          strokeWidth={THERMAL_RAY_STROKE}
+          strokeCap="round"
+        />
+      </Group>
+    </Group>
+  );
+}
+
 /** A famine column's drawn frame is 10 × 14 of its 16-unit box, at most
  *  `FAMINE_BOX_MAX` — about 9 × 12 pt. Two columns closer than that, plus a
  *  point, on both axes overlap, and the lesser one is not drawn. */
@@ -1647,7 +1680,8 @@ type AtlasInputs = {
 /** Sprites are baked large (`OVERLAY_RES`) and drawn smaller, and smaller
  *  still under a pinch-out warp. Bilinear alone samples four texels of a
  *  sprite three times its drawn size, so thin strokes shimmer as the globe
- *  turns; the textures carry mipmaps (`withMips`) and the atlas reads them. */
+ *  turns; the atlas reads mipmaps, which the canvas's render thread builds
+ *  when it uploads the raster sprite (`bakeSprite`). */
 const SPRITE_SAMPLING: FilterOptions = { filter: FilterMode.Linear, mipmap: MipmapMode.Linear };
 
 /** An `<Atlas>`; tinted atlases modulate, for the reason `storyAtlas` gives. */
@@ -1676,13 +1710,7 @@ function drawAtlasLayer(canvas: SkCanvas, image: SkImage | null, atlas: AtlasInp
   }
 }
 
-/** The baked texture again, with mipmaps for `SPRITE_SAMPLING`. Uploaded on
- *  the calling thread, once per bake. */
-function withMips(image: SkImage | null): SkImage | null {
-  'worklet';
-  return image ? image.makeTextureImage({ mipmapped: true }) : null;
-}
-
+/** The sprite sheets, raster images baked on the JS thread (`bakeSprite`). */
 interface GlobeTextures {
   ghost: SkImage | null;
   storyHalo: SkImage | null;
@@ -2544,9 +2572,8 @@ export const MiniGlobe = memo(function MiniGlobe({
   // one. It sat at the top of the file after the imports until 2026-10-02,
   // which is not a directive position: the formatter wrapped it in
   // parentheses and it opted nothing out — `MiniGlobe` escaped the compiler
-  // only by bailing on other shapes in it. `GlobeCanvas` and
-  // `useGlowTexture` are compiled, as they were then
-  // (`__tests__/directives.test.ts`).
+  // only by bailing on other shapes in it. `GlobeCanvas` is compiled, as it
+  // was then (`__tests__/directives.test.ts`).
   'use no memo';
   const { colors, resolvedAppearance } = useTheme();
   const light = resolvedAppearance === 'light';
@@ -2555,46 +2582,6 @@ export const MiniGlobe = memo(function MiniGlobe({
   // is deliberately NOT gated: it tracks the user's finger, and direct
   // manipulation is exactly what Reduce Motion is not meant to suppress.
   const reduceMotion = useReducedMotion();
-
-  // Glow textures baked once per color so each glow renders as a single
-  // Atlas draw instead of N concentric Circle+BlurMask draws.
-  // Baked white and tinted per instance (conflict hue). Baking in
-  // `textEmphasis` tinted near-black in light mode, where modulate multiplies
-  // a hue by almost zero.
-  const ghostTexture = useGlowTexture(GHOST_GLOW, WHITE);
-  const storyHaloTexture = useGlowTexture(STORY_HALO, WHITE);
-  const overlayTexture = useTexture(
-    <Group>
-      {FAMINE_SRC.map((_, blocks) => (
-        <Group
-          key={`famine-${blocks}`}
-          transform={[{ translateX: blocks * OVERLAY_CELL }, { scale: OVERLAY_RES }]}
-        >
-          <Path
-            path={FAMINE_FRAME_PATH}
-            color={WHITE}
-            style="stroke"
-            strokeWidth={FAMINE_FRAME_STROKE}
-          />
-          <Path path={getFamineBlocksPath(blocks)} color={WHITE} />
-        </Group>
-      ))}
-      <Group transform={[{ translateX: THERMAL_CELL * OVERLAY_CELL }, { scale: OVERLAY_RES }]}>
-        <Path path={THERMAL_CORE_PATH} color={WHITE} />
-        <Path
-          path={THERMAL_RAYS_PATH}
-          color={WHITE}
-          style="stroke"
-          strokeWidth={THERMAL_RAY_STROKE}
-          strokeCap="round"
-        />
-      </Group>
-    </Group>,
-    OVERLAY_TEXTURE_SIZE,
-    [],
-  );
-  const dotTexture = useGlowTexture(DOT_GLOW, colors.textEmphasis);
-  const makkahTexture = useGlowTexture(MAKKAH_GLOW, colors.dome);
 
   // Where the earth sits, in canvas pixels.
   //
@@ -2975,8 +2962,7 @@ export const MiniGlobe = memo(function MiniGlobe({
     };
   });
 
-  // Textures bake on the UI thread; they reach here once each, by reaction,
-  // rather than being read synchronously on every frame.
+  // The sprite sheets, as they land from `bakeSprite` (see `receiveTextures`).
   const texturesRef = useRef<GlobeTextures>(NO_TEXTURES);
   // Assigned every render so a draw always sees the current theme and fonts;
   // `callReproject` is a stable closure and calls through it.
@@ -4941,38 +4927,53 @@ export const MiniGlobe = memo(function MiniGlobe({
     redrawLast();
   }, [colors, light, redrawLast]);
 
+  /** Sprite sheets landed: the last frame is replayed with them. */
   const receiveTextures = useCallback(
-    (
-      ghost: SkImage | null,
-      storyHalo: SkImage | null,
-      overlay: SkImage | null,
-      dot: SkImage | null,
-      makkah: SkImage | null,
-    ) => {
-      texturesRef.current = { ghost, storyHalo, overlay, dot, makkah };
+    (baked: Partial<GlobeTextures>) => {
+      texturesRef.current = { ...texturesRef.current, ...baked };
       redrawLast();
     },
     [redrawLast],
   );
-  useAnimatedReaction(
-    () => ({
-      ghost: ghostTexture.value,
-      storyHalo: storyHaloTexture.value,
-      overlay: overlayTexture.value,
-      dot: dotTexture.value,
-      makkah: makkahTexture.value,
-    }),
-    (t) => {
-      scheduleOnRN(
-        receiveTextures,
-        withMips(t.ghost),
-        withMips(t.storyHalo),
-        withMips(t.overlay),
-        withMips(t.dot),
-        withMips(t.makkah),
-      );
-    },
-  );
+  // The sprite sheets are baked on the CPU, on this thread (`bakeSprite`), and
+  // each canvas uploads them from its own render thread. No GPU call from JS
+  // or a worklet: the GPU bake on the UI runtime threw where Dawn found no
+  // adapter, and on iOS, where the UI runtime is the main thread, it held the
+  // app for as long as Metal took to compile the bake's pipelines.
+  // The ghost and the story halo are baked white and tinted per instance
+  // (conflict hue). Baking in `textEmphasis` tinted near-black in light mode,
+  // where modulate multiplies a hue by almost zero.
+  useEffect(() => {
+    let live = true;
+    Promise.all([
+      bakeSprite(glowSprite(GHOST_GLOW, WHITE), GHOST_GLOW.size),
+      bakeSprite(glowSprite(STORY_HALO, WHITE), STORY_HALO.size),
+      bakeSprite(overlaySprite(), OVERLAY_TEXTURE_SIZE),
+    ]).then(([ghost, storyHalo, overlay]) => {
+      if (live) receiveTextures({ ghost, storyHalo, overlay });
+    });
+    return () => {
+      live = false;
+    };
+  }, [receiveTextures]);
+  useEffect(() => {
+    let live = true;
+    bakeSprite(glowSprite(DOT_GLOW, colors.textEmphasis), DOT_GLOW.size).then((dot) => {
+      if (live) receiveTextures({ dot });
+    });
+    return () => {
+      live = false;
+    };
+  }, [colors.textEmphasis, receiveTextures]);
+  useEffect(() => {
+    let live = true;
+    bakeSprite(glowSprite(MAKKAH_GLOW, colors.dome), MAKKAH_GLOW.size).then((makkah) => {
+      if (live) receiveTextures({ makkah });
+    });
+    return () => {
+      live = false;
+    };
+  }, [colors.dome, receiveTextures]);
   // No-op coalescing — last derived inputs handed to scheduleOnRN. The reaction
   // tick still fires every 32ms while withTiming animations ease, but if the
   // resulting (lng, lat, frac, oA, oG) round to the same values as last
@@ -5626,6 +5627,11 @@ const GlobeCanvas = memo(function GlobeCanvas({
   collectColor: SharedValue<string>;
   beaconStyle: ReturnType<typeof useAnimatedStyle<ViewStyle>>;
 }) {
+  // No GPU for Skia on this device (`gpuMissing`): the canvas could only stay
+  // blank, and the beacon would mark a place on nothing. Every mark has a row
+  // in the strip, a card or the menu, so the screen keeps its news.
+  const [drawable] = useState(() => !gpuMissing(readSkiaGpu()));
+  if (!drawable) return null;
   return (
     <>
       <Canvas style={[styles.canvas, { width, height }]} pointerEvents="none">
