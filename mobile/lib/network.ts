@@ -5,6 +5,11 @@ const listeners = new Set<Listener>();
 let lastKnown: boolean | undefined;
 let stop: (() => void) | undefined;
 
+/** Unknown until the first native reading. Only a known outage is shown. */
+export function isOffline(): boolean {
+  return lastKnown === false;
+}
+
 /** Share one native subscription and one initial probe across the query client,
  * feed, offline message and push registration. A late probe cannot undo a
  * native event, including after every subscriber has unmounted. */

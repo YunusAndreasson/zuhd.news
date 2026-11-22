@@ -127,6 +127,39 @@ it('pauses before rewinding an ended player so the briefing does not loop', asyn
   ]);
 });
 
+it('discards a first play when the feed rotates during audio-session setup', async () => {
+  let finishSetup!: () => void;
+  jest.mocked(setIsAudioActiveAsync).mockImplementationOnce(
+    () =>
+      new Promise<void>((resolve) => {
+        finishSetup = resolve;
+      }),
+  );
+  const hook = renderHook(({ date }) => useBriefingPlayer(date), {
+    initialProps: { date: '2026-09-20' },
+  });
+  let firstPlay!: Promise<void>;
+  await act(async () => {
+    firstPlay = Promise.resolve(hook.result.current.toggle());
+  });
+  hook.rerender({ date: '2026-09-21' });
+  await act(async () => {
+    finishSetup();
+    await firstPlay;
+  });
+  expect(File.downloadFileAsync).not.toHaveBeenCalled();
+  expect(mockPlayer.play).not.toHaveBeenCalled();
+  expect(hook.result.current.state).toBe('idle');
+  await act(async () => {
+    await hook.result.current.toggle();
+  });
+  expect(File.downloadFileAsync).toHaveBeenCalledWith(
+    expect.stringContaining('briefing-2026-09-21.mp3'),
+    expect.anything(),
+    expect.anything(),
+  );
+});
+
 it.each(['dismiss', 'rotate date', 'unmount'] as const)(
   'ignores a deferred foreground resume after %s',
   async (change) => {

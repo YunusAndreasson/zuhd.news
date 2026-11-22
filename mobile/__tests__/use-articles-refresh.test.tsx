@@ -4,6 +4,7 @@ import { act, renderHook } from '@testing-library/react';
 import * as Network from 'expo-network';
 import type { ReactNode } from 'react';
 import { useArticles } from '../hooks/useArticles';
+import { useOffline } from '../hooks/useOffline';
 import { fetchArrival, probeGenerated, retryFailedSnapshots } from '../lib/arrival';
 import { fetchFeed } from '../lib/feed-source';
 
@@ -117,6 +118,18 @@ it('retries failed snapshots even on the current feed build', async () => {
   });
   expect(retryFailedSnapshots).toHaveBeenCalledWith(hook.client);
   expect(fetchArrival).not.toHaveBeenCalled();
+});
+
+it('renders a known offline state on the first render of a new reader', async () => {
+  mount();
+  await act(async () => {
+    mockReconnect({ isConnected: false });
+  });
+  const renders: boolean[] = [];
+  renderHook(() => {
+    renders.push(useOffline());
+  });
+  expect(renders[0]).toBe(true);
 });
 
 it('a reconnect checks for a coordinated arrival instead of fetching the feed alone', async () => {

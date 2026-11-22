@@ -365,7 +365,7 @@ export function useBriefingPlayer(
   // resume that old source as the new one: discard it, reset the visible
   // position, and let the next tap load it through the normal first-play path.
   useEffect(() => {
-    if (!playerRef.current || !savedDate.current || savedDate.current === recording) return;
+    if (!savedDate.current || savedDate.current === recording) return;
     teardownPlayer();
     savedDate.current = null;
     setPlaying(false);
@@ -642,7 +642,8 @@ export function useBriefingPlayer(
         return;
       }
 
-      // First play — configure the managed player and install its source.
+      // A feed refresh can replace this recording while audio-session setup is pending.
+      savedDate.current = recording;
       try {
         await setAudioModeAsync({
           playsInSilentMode: true,
@@ -654,7 +655,6 @@ export function useBriefingPlayer(
       if (toggleToken !== toggleTokenRef.current || !playingIntentRef.current) return;
 
       const player = managedPlayer;
-      savedDate.current = recording;
       playerRef.current = player;
       setHasPlayer(true);
       const loadToken = ++sourceLoadToken.current;
