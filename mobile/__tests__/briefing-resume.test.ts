@@ -19,6 +19,7 @@ const initialStatus: PlaybackStatus = {
   error: null,
 };
 let mockStatus = initialStatus;
+const mockCachedAudio = new Set<string>();
 const mockListeners = new Set<(status: PlaybackStatus) => void>();
 const mockPlayer = {
   isLoaded: true,
@@ -72,17 +73,26 @@ jest.mock('expo-file-system', () => ({
   Paths: { cache: '/cache' },
   File: Object.assign(
     class {
-      exists = false;
-      size = 0;
+      get exists() {
+        return mockCachedAudio.has(this.uri);
+      }
+      get size() {
+        return this.exists ? 13 : 0;
+      }
       uri: string;
       constructor(directory: string, name: string) {
         this.uri = `${directory}/${name}`;
+      }
+      delete() {
+        mockCachedAudio.delete(this.uri);
       }
     },
     {
       downloadFileAsync: jest.fn(async () => ({
         uri: 'file:///briefing.mp3',
-        move: jest.fn(),
+        move: jest.fn((destination: File) => {
+          mockCachedAudio.add(destination.uri);
+        }),
         delete: jest.fn(),
       })),
     },
@@ -114,6 +124,7 @@ jest.mock('../lib/firsts', () => ({ claimFirst: () => false }));
 let resume: (state: AppStateStatus) => Promise<void>;
 beforeEach(() => {
   jest.clearAllMocks();
+  mockCachedAudio.clear();
   mockPlayer.duration = 120;
   mockPlayer.isLoaded = true;
   mockPlayer.currentTime = 0;
@@ -150,6 +161,24 @@ it('pauses before rewinding an ended player so the briefing does not loop', asyn
     ['zuhd_briefing_pos', '0'],
     ['zuhd_briefing_date', '2026-09-27'],
   ]);
+});
+
+it('keeps media controls cleared across rewind events until the next play', async () => {
+  const hook = renderHook(() => useBriefingPlayer('2026-09-27'));
+  await act(async () => {
+    await hook.result.current.toggle();
+  });
+  await status({ playing: true });
+  await status({ currentTime: 120, playing: false, didJustFinish: true });
+  expect(mockPlayer.clearLockScreenControls).toHaveBeenCalled();
+  mockPlayer.setActiveForLockScreen.mockClear();
+  await status({ currentTime: 0, playing: false, didJustFinish: false });
+  expect(mockPlayer.setActiveForLockScreen).not.toHaveBeenCalled();
+  await act(async () => {
+    await hook.result.current.toggle();
+  });
+  await status({ playing: true });
+  expect(mockPlayer.setActiveForLockScreen).toHaveBeenCalledTimes(1);
 });
 
 it('discards a first play when the feed rotates during audio-session setup', async () => {
@@ -429,6 +458,19 @@ describe('briefing events', () => {
       expect(hook.result.current.failureCount).toBe(1);
     },
   );
+
+  it('downloads a fresh copy when native playback rejects the cached recording', async () => {
+    const hook = renderHook(() => useBriefingPlayer('2026-09-27', 120));
+    await act(async () => {
+      await hook.result.current.toggle();
+    });
+    expect(mockCachedAudio.size).toBe(1);
+    await status({ error: 'Source error', isLoaded: false });
+    await act(async () => {
+      await hook.result.current.toggle();
+    });
+    expect(File.downloadFileAsync).toHaveBeenCalledTimes(2);
+  });
 
   it("a failed load's lock-screen deadline cannot activate the retry", async () => {
     jest.useFakeTimers();

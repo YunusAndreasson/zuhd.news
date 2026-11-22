@@ -213,6 +213,7 @@ export function useBriefingPlayer(
   const sourcePreparingRef = useRef(false);
   const sourceLoadToken = useRef(0);
   const sourceAbort = useRef<AbortController | null>(null);
+  const cachedRecordingUrl = useRef<string | null>(null);
   const progressGeneration = useRef(0);
   const closedRef = useRef(false);
   // A fresh load's play, armed until the player is heard playing: only then
@@ -314,6 +315,7 @@ export function useBriefingPlayer(
     }
     sourceAbort.current?.abort();
     sourceAbort.current = null;
+    cachedRecordingUrl.current = null;
     wantsToPlayRef.current = false;
     playingIntentRef.current = false;
     toggleTokenRef.current += 1;
@@ -355,12 +357,23 @@ export function useBriefingPlayer(
     [teardownPlayer],
   );
 
-  const failPlayback = useCallback(() => {
-    teardownPlayer();
-    setPreparing(false);
-    setPlaying(false);
-    setFailureCount((count) => count + 1);
-  }, [teardownPlayer]);
+  const failPlayback = useCallback(
+    (sourceRejected = false) => {
+      const rejectedUrl = sourceRejected ? cachedRecordingUrl.current : null;
+      teardownPlayer();
+      // A nonempty cached file can still be undecodable. The next play must
+      // fetch that recording again, while retaining the reader's saved place.
+      if (rejectedUrl) {
+        try {
+          briefingAudioFile(rejectedUrl).delete();
+        } catch {}
+      }
+      setPreparing(false);
+      setPlaying(false);
+      setFailureCount((count) => count + 1);
+    },
+    [teardownPlayer],
+  );
 
   // A feed refresh can rotate to a new briefing while yesterday's player is
   // still paused in memory — or to a new recording of today's. Never label and
@@ -409,6 +422,7 @@ export function useBriefingPlayer(
     async (player: AudioPlayer, allowUnknownDuration = false) => {
       const hasDuration = Number.isFinite(player.duration) && player.duration > 0;
       if (
+        finishedRef.current ||
         lockScreenActive.current ||
         lockScreenActivationPending.current ||
         (!allowUnknownDuration && !hasDuration)
@@ -482,10 +496,13 @@ export function useBriefingPlayer(
   // can replace either before React commits a snapshot from useAudioPlayerStatus.
   useEventListener(managedPlayer, PLAYBACK_STATUS_UPDATE, (status) => {
     const player = playerRef.current;
-    if (player !== managedPlayer || closedRef.current || sourceAbort.current) return;
+    // Rewinding after completion emits more native status events. Only an
+    // explicit replay may restore progress or the finished media controls.
+    if (player !== managedPlayer || closedRef.current || sourceAbort.current || finishedRef.current)
+      return;
     if (status.error) {
       savePosition();
-      failPlayback();
+      failPlayback(true);
       return;
     }
     setNativeDuration(status.duration);
@@ -546,14 +563,12 @@ export function useBriefingPlayer(
       if (status.currentTime > 0) setResumable(true);
     }
 
-    if (status.didJustFinish && !finishedRef.current) {
+    if (status.didJustFinish) {
       finishedRef.current = true;
       startRef.current = null;
       void analytics.track(ANALYTICS_EVENTS.BRIEFING_COMPLETED);
       noteActivation('briefing_completed');
       setFinishCount((count) => count + 1);
-    }
-    if (status.didJustFinish) {
       wantsToPlayRef.current = false;
       playingIntentRef.current = false;
       if (giveUpTimer.current) {
@@ -687,10 +702,11 @@ export function useBriefingPlayer(
         !playingIntentRef.current
       )
         return;
+      cachedRecordingUrl.current = playbackSource === remoteUrl ? null : remoteUrl;
       try {
         player.replace(playbackSource);
       } catch {
-        failPlayback();
+        failPlayback(true);
         return;
       }
 
