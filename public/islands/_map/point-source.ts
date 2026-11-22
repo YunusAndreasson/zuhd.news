@@ -16,6 +16,7 @@ export function pointSourceWriter() {
     const add: MapPoint[] = []
     const update: GeoJSONFeatureDiff[] = []
     const remove: FeatureId[] = []
+    let replace = last === null
     for (const feature of collection.features) {
       const id = feature.id
       // Preserve all marks if a publisher supplies ambiguous ids. A complete
@@ -28,6 +29,8 @@ export function pointSourceWriter() {
       next.set(id, feature)
       const old = last?.get(id)
       if (!old) {
+        // The tile index appends additions first, then moves edits to the end.
+        if (update.length) replace = true
         add.push(feature)
         continue
       }
@@ -51,15 +54,22 @@ export function pointSourceWriter() {
       }
       if (change.newGeometry || change.addOrUpdateProperties || change.removeProperties) {
         update.push(change)
+      } else if (add.length || update.length) {
+        replace = true
       }
     }
     if (last) {
+      const desired = next.keys()
       for (const id of last.keys()) {
         if (!next.has(id)) remove.push(id)
+        // The GeoJSON source retains surviving ids in their original order.
+        else if (desired.next().value !== id) replace = true
       }
+      // Pending diffs can be coalesced, changing the order of appends and edits.
+      if ((add.length || update.length) && !source.loaded()) replace = true
     }
     previous.set(source, next)
-    if (last === null) void source.setData(collection)
+    if (replace) void source.setData(collection)
     else if (add.length || update.length || remove.length) void source.updateData({ add, update, remove })
   }
 }

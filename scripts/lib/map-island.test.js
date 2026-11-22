@@ -15,8 +15,9 @@ import test from 'node:test'
 import assert from 'node:assert/strict'
 import { JSDOM } from 'jsdom'
 import { validateStyleMin } from '@maplibre/maplibre-gl-style-spec'
-import { writeFileSync } from 'node:fs'
-import { join } from 'node:path'
+import { readFileSync, writeFileSync } from 'node:fs'
+import { dirname, join } from 'node:path'
+import { findPackageJSON } from 'node:module'
 import { bundleIsland, scratchDir } from './island-bundle.js'
 
 const dir = scratchDir('map-island')
@@ -96,6 +97,7 @@ writeFileSync(
     addSource(id, cfg) {
       this.sources[id] = {
         cfg, writes: 0, diffs: [],
+        loaded() { return true },
         setData(d) { this.data = d; this.writes++ },
         updateData(diff) { this.diffs.push(diff); this.writes++ },
       }
@@ -1717,7 +1719,7 @@ test('point updates move, restyle, remove and restore the same ids across timeli
   const path = await bundleIsland(dir, 'public/islands/_map/point-source.ts', 'point-source.mjs')
   const write = (await import(path)).pointSourceWriter()
   const diffs = []
-  const source = { updateData: (d) => diffs.push(d), setData: () => assert.fail('whole-source write') }
+  const source = { loaded: () => true, updateData: (d) => diffs.push(d), setData: () => assert.fail('whole-source write') }
   const point = (id, x, properties) => ({
     type: 'Feature', id, geometry: { type: 'Point', coordinates: [x, 0] }, properties,
   })
@@ -1736,4 +1738,43 @@ test('point updates move, restyle, remove and restore the same ids across timeli
     { add: [], update: [], remove: ['slug'] },
     { add: [first, other], update: [], remove: [] },
   ])
+})
+
+test('overlapping marks keep full-collection order through rewind, filtering and restyling', async () => {
+  const path = await bundleIsland(dir, 'public/islands/_map/point-source.ts', 'ordered-points.mjs')
+  const write = (await import(path)).pointSourceWriter()
+  // Use the same tiler version as MapLibre's worker, including when npm nests it.
+  const manifest = findPackageJSON('@maplibre/geojson-vt', import.meta.resolve('maplibre-gl'))
+  const entry = JSON.parse(readFileSync(manifest, 'utf8')).exports['.'].import
+  const { GeoJSONVT } = await import(join(dirname(manifest), entry))
+  const index = features => new GeoJSONVT({ type: 'FeatureCollection', features }, { updateable: true })
+  const tile = idx => idx.getTile(0, 0, 0)?.features.map(f => [f.id, f.tags]) ?? []
+  let actual = index([])
+  let idle = true
+  let writes = 0
+  const source = {
+    loaded: () => idle,
+    updateData(diff) { actual.updateData(diff) },
+    setData(collection) { actual = index(collection.features); writes++ },
+  }
+  const point = (id, weight = 0) => ({
+    type: 'Feature', id, geometry: { type: 'Point', coordinates: [0, 0] }, properties: { weight },
+  })
+  const [a, b, c] = ['a', 'b', 'c'].map(id => point(id))
+  const check = (...features) => {
+    write(source, { type: 'FeatureCollection', features })
+    assert.deepEqual(tile(actual), tile(index(features)))
+  }
+  check(a, b)
+  check(a, b, c)
+  check(b, c)
+  assert.equal(writes, 0, 'tail appends and removals stay incremental')
+  check(a, b, c) // Rewind puts a back under the other two.
+  check(c, a, b) // Same ids, different publisher order.
+  check(c, point('a', 1), b) // Editing an interior mark also moves it in the tile.
+  check(c)
+  idle = false // A second filter change while MapLibre can still merge diffs.
+  const before = writes
+  check(c, b)
+  assert.equal(writes, before + 1)
 })
