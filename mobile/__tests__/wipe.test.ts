@@ -54,6 +54,9 @@ jest.mock('expo-sqlite/kv-store', () => ({
       mockKv.set(key, value);
       return Promise.resolve();
     }),
+    multiRemove: jest.fn(async (keys: string[]) => {
+      for (const key of keys) mockKv.delete(key);
+    }),
     removeItemSync: jest.fn((key: string) => mockKv.delete(key)),
     removeItem: jest.fn((key: string) => {
       mockKv.delete(key);

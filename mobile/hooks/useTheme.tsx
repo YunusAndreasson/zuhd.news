@@ -1,5 +1,4 @@
 import { NavigationBar } from 'expo-navigation-bar';
-import * as Network from 'expo-network';
 import * as SystemUI from 'expo-system-ui';
 import { createContext, use, useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import { Appearance, AppState, useColorScheme, useWindowDimensions } from 'react-native';
@@ -25,6 +24,7 @@ import {
 } from '../constants/theme';
 import { analytics } from '../lib/analytics';
 import { setHapticsEnabled } from '../lib/haptics';
+import { subscribeConnectivity } from '../lib/network';
 import {
   addPushTokenListener,
   disableNotifications,
@@ -172,19 +172,10 @@ export function ThemeProvider({
     sync();
     const tokenSubscription = prefs.notifications ? addPushTokenListener() : null;
     let connected = true;
-    let receivedEvent = false;
-    void Network.getNetworkStateAsync()
-      .then((state) => {
-        if (!receivedEvent) connected = state.isInternetReachable ?? state.isConnected ?? true;
-      })
-      .catch(() => {});
-    const network = Network.addNetworkStateListener((state) => {
-      receivedEvent = true;
-      const next = state.isInternetReachable ?? state.isConnected;
-      if (next == null) return;
+    const unsubscribeNetwork = subscribeConnectivity((next, initial) => {
       const previous = connected;
       connected = next;
-      if (next && !previous) sync();
+      if (!initial && next && !previous) sync();
     });
     const appState = AppState.addEventListener('change', (state) => {
       if (state === 'active') sync();
@@ -192,7 +183,7 @@ export function ThemeProvider({
     return () => {
       current = false;
       tokenSubscription?.remove();
-      network.remove();
+      unsubscribeNetwork();
       appState.remove();
     };
   }, [prefs.notifications]);

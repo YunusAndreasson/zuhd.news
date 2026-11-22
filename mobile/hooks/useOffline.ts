@@ -1,5 +1,5 @@
-import * as Network from 'expo-network';
 import { useEffect, useState } from 'react';
+import { subscribeConnectivity } from '../lib/network';
 
 /**
  * Whether the device says the internet is unreachable — the one thing the
@@ -13,18 +13,6 @@ import { useEffect, useState } from 'react';
  */
 export function useOffline(): boolean {
   const [offline, setOffline] = useState(false);
-  useEffect(() => {
-    let receivedEvent = false;
-    const subscription = Network.addNetworkStateListener((state) => {
-      receivedEvent = true;
-      setOffline(state.isInternetReachable === false);
-    });
-    void Network.getNetworkStateAsync()
-      .then((state) => {
-        if (!receivedEvent) setOffline(state.isInternetReachable === false);
-      })
-      .catch(() => {});
-    return () => subscription.remove();
-  }, []);
+  useEffect(() => subscribeConnectivity((online) => setOffline(!online)), []);
   return offline;
 }

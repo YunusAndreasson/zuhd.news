@@ -31,13 +31,15 @@ export async function readMigrated(
   const stored = await Storage.getItem(key);
   if (stored !== null) return stored;
   let value: string | null = null;
-  try {
-    if (legacy.file?.exists) value = await legacy.file.text();
-    if (value === null && legacy.secureKey) {
-      value = await SecureStore.getItemAsync(legacy.secureKey);
+  if (legacy.file) {
+    try {
+      if (legacy.file.exists) value = await legacy.file.text();
+    } catch {
+      // The encrypted store may still hold a readable copy.
     }
-  } catch {
-    return null;
+  }
+  if ((value === null || !accept(value)) && legacy.secureKey) {
+    value = await SecureStore.getItemAsync(legacy.secureKey).catch(() => null);
   }
   if (value === null || !accept(value)) return null;
   try {

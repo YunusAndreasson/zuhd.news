@@ -6,6 +6,9 @@ const mockRequestReview = jest.fn();
 jest.mock('expo-sqlite/kv-store', () => ({
   __esModule: true,
   default: {
+    multiSet: jest.fn(async (pairs: [string, string][]) => {
+      for (const [key, value] of pairs) mockKv.set(key, value);
+    }),
     getItem: jest.fn(async (key: string) => mockKv.get(key) ?? null),
     setItem: jest.fn(async (key: string, value: string) => {
       mockKv.set(key, value);
@@ -47,6 +50,15 @@ beforeEach(() => {
 afterEach(() => jest.restoreAllMocks());
 
 describe('store-review persistence and gating', () => {
+  it('counts concurrent swipes from the persisted count and requests one review', async () => {
+    mockKv.set('zuhd_review_count', '18');
+    const review = loadReview();
+    await Promise.all([review.recordStorySwipe(), review.recordStorySwipe()]);
+    expect(mockKv.get('zuhd_review_count')).toBe('20');
+    await Promise.all([review.maybeRequestReview(), review.maybeRequestReview()]);
+    expect(mockRequestReview).toHaveBeenCalledTimes(1);
+  });
+
   it('counts a swipe without asking anything', async () => {
     mockKv.set('zuhd_review_count', '19');
     const review = loadReview();

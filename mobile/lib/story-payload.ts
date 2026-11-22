@@ -1,7 +1,7 @@
 import type { Article, ArticleSource, Category } from '@shared/types';
 import { CATEGORIES } from '../constants/theme';
 import { isIsoDate } from './data-freshness';
-import { isArticleSource } from './validate';
+import { isArticleSource, type WireSource } from './validate';
 
 /**
  * One story from `/api/story/{slug}.json`, as the app's `Article`.
@@ -18,11 +18,11 @@ export interface StoryPayload {
   title: string;
   date: string;
   category: string;
-  location: string | null;
+  location?: string | null;
   eventCoverage?: number | null;
   sentimentDivergence?: number | null;
   bodyHtml: string;
-  sources?: { name: string; url: string; country?: string; sentiment?: number | null }[];
+  sources?: WireSource[];
   /** The series the prose cites, already filtered to ones the build
    *  publishes. (Its `entities` are the map's `{ id, label }` reshape, which
    *  drops the word the body used, so they cannot be re-tagged here.) */
@@ -83,7 +83,7 @@ export function articleFromStory(
   const at = Date.parse(story.date);
   if (!category || sentences.length === 0 || !Number.isFinite(at)) return null;
   const sources = (story.sources ?? []).filter(
-    (s) => typeof s?.name === 'string' && typeof s?.url === 'string',
+    (s): s is ArticleSource => typeof s.name === 'string',
   );
   return {
     category,
@@ -95,7 +95,7 @@ export function articleFromStory(
       eventAt: at,
       source: sources[0]?.name ?? null,
       sourceUrl: sources[0]?.url ?? null,
-      sources: sources as unknown as ArticleSource[],
+      sources,
       concepts: [],
       eventCoverage: story.eventCoverage ?? null,
       sentimentDivergence: story.sentimentDivergence ?? null,

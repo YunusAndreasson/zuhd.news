@@ -15,9 +15,10 @@ import * as Updates from 'expo-updates';
 // The DSN is public. It lives in app.json's `extra`, which reaches a store build
 // and an OTA update alike; eas.json's build env would not reach `eas update`.
 // `EXPO_PUBLIC_SENTRY_DSN` overrides it.
+const configuredDsn: unknown = Constants.expoConfig?.extra?.sentryDsn;
 const dsn =
   process.env.EXPO_PUBLIC_SENTRY_DSN ||
-  (Constants.expoConfig?.extra?.sentryDsn as string | undefined);
+  (typeof configuredDsn === 'string' ? configuredDsn : undefined);
 export const sentryEnabled = Boolean(dsn && !__DEV__);
 
 /** Registered against the Router's container in `app/_layout.tsx`. */

@@ -1,10 +1,10 @@
 import { createAsyncStoragePersister } from '@tanstack/query-async-storage-persister';
 import { focusManager, onlineManager, QueryClient } from '@tanstack/react-query';
 import { File, Paths } from 'expo-file-system';
-import * as Network from 'expo-network';
 import Storage from 'expo-sqlite/kv-store';
 import * as Updates from 'expo-updates';
 import { AppState } from 'react-native';
+import { subscribeConnectivity } from './network';
 import { deleteLegacyFile } from './store-plumbing';
 import { DAY_MS } from './time';
 
@@ -19,19 +19,7 @@ focusManager.setEventListener((setFocused) => {
   return () => subscription.remove();
 });
 
-onlineManager.setEventListener((setOnline) => {
-  let receivedEvent = false;
-  const subscription = Network.addNetworkStateListener((state) => {
-    receivedEvent = true;
-    setOnline(!!state.isConnected);
-  });
-  void Network.getNetworkStateAsync()
-    .then((state) => {
-      if (!receivedEvent) setOnline(!!state.isConnected);
-    })
-    .catch(() => {});
-  return () => subscription.remove();
-});
+onlineManager.setEventListener((setOnline) => subscribeConnectivity((online) => setOnline(online)));
 
 const CACHE_FILE = new File(Paths.cache, 'query-cache.json');
 const QUERY_CACHE_KEY = 'REACT_QUERY_OFFLINE_CACHE';

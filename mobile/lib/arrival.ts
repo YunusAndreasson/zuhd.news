@@ -1,5 +1,5 @@
 import type { Article, FeedResponse } from '@shared/types';
-import { hashKey, notifyManager, type QueryClient } from '@tanstack/react-query';
+import { hashKey, notifyManager, type QueryClient, queryOptions } from '@tanstack/react-query';
 import { API_BASE } from '../constants/theme';
 import { type FetchedSnapshot, fetchAllSnapshots } from './api-snapshots';
 import { collectNewArticles, isOlderFeed } from './feed-diff';
@@ -22,7 +22,12 @@ import { isMetaResponse } from './validate';
  * commit.
  */
 
-export const FEED_QUERY_KEY = ['feed'] as const;
+export const feedQuery = queryOptions({
+  queryKey: ['feed'] as const,
+  queryFn: ({ signal }) => fetchFeed({ signal }),
+});
+
+export const FEED_QUERY_KEY = feedQuery.queryKey;
 
 export interface Arrival {
   feed: FeedResponse;
@@ -97,7 +102,7 @@ export function applyArrival(
   }: { lastSeenAt: number | null; alsoInFlush?: (added: Article[]) => void },
 ): Article[] {
   if (arrival.generation !== undefined && arrival.generation !== generation) return [];
-  const before = queryClient.getQueryData<FeedResponse>(FEED_QUERY_KEY);
+  const before = queryClient.getQueryData(FEED_QUERY_KEY);
   // The feed may have downloaded first, then waited on a slow layer while a
   // foreground/background request applied a newer complete arrival.
   if (isOlderFeed(arrival.feed, before)) return [];
@@ -109,7 +114,7 @@ export function applyArrival(
     notifyManager.schedule(() => {
       if (
         appliedIn !== generation ||
-        queryClient.getQueryData<FeedResponse>(FEED_QUERY_KEY)?.generated !== arrival.feed.generated
+        queryClient.getQueryData(FEED_QUERY_KEY)?.generated !== arrival.feed.generated
       )
         return;
       if (lastSeenAt !== null) {

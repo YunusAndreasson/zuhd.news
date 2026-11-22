@@ -30,8 +30,5 @@ export function storyCharts(
 }
 
 function graphOf(card: SwipeCard | null): GraphCard | null {
-  if (!card) return null;
-  if (card.kind === 'belief') return card;
-  if (card.kind === 'reading' && card.series) return card as GraphCard;
-  return null;
+  return card?.kind === 'belief' || card?.kind === 'reading' ? card : null;
 }

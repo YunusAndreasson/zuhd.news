@@ -6,7 +6,7 @@ jest.mock('expo-sqlite/kv-store', () => ({
 }));
 jest.mock('expo-task-manager', () => ({ defineTask: jest.fn() }));
 jest.mock('expo-background-task', () => ({
-  BackgroundTaskResult: { Success: 1 },
+  BackgroundTaskResult: { Success: 1, Failed: 2 },
   registerTaskAsync: jest.fn(),
 }));
 jest.mock('@tanstack/react-query-persist-client', () => ({
@@ -78,5 +78,11 @@ it('does nothing past the probe when the build on screen is current', async () =
   await task();
   expect(persistQueryClientRestore).not.toHaveBeenCalled();
   expect(fetchArrival).not.toHaveBeenCalled();
+  expect(persistQueryClientSave).not.toHaveBeenCalled();
+});
+
+it('reports a failed download to the scheduler', async () => {
+  jest.mocked(probeGenerated).mockRejectedValueOnce(new Error('offline'));
+  expect(await task()).toBe(2);
   expect(persistQueryClientSave).not.toHaveBeenCalled();
 });

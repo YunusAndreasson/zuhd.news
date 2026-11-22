@@ -27,17 +27,15 @@ export function readSavedPlace(): Promise<[string | null, string | null]> {
 }
 
 export function saveSavedPlace(position: number, recording: string): Promise<void> {
-  return ordered(async () => {
-    await Promise.all([
-      Storage.setItem(POSITION_KEY, String(Math.floor(position))),
-      Storage.setItem(DATE_KEY, recording),
-    ]);
-  });
+  return ordered(() =>
+    Storage.multiSet([
+      [POSITION_KEY, String(Math.floor(position))],
+      [DATE_KEY, recording],
+    ]),
+  );
 }
 
 export function clearBriefingProgress(): Promise<void> {
   resets.emit();
-  return ordered(async () => {
-    await Promise.all([Storage.removeItem(POSITION_KEY), Storage.removeItem(DATE_KEY)]);
-  });
+  return ordered(() => Storage.multiRemove([POSITION_KEY, DATE_KEY]));
 }

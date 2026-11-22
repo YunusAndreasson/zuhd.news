@@ -39,7 +39,9 @@ export async function saveLastSeenAt(ts: number): Promise<void> {
  *  choice saved by an older build is dropped the next time they are saved. */
 function parsePreferences(text: string): Preferences | null {
   try {
-    const merged = { ...DEFAULT_PREFS, ...JSON.parse(text) };
+    const parsed: unknown = JSON.parse(text);
+    if (!parsed || typeof parsed !== 'object' || Array.isArray(parsed)) return null;
+    const merged = { ...DEFAULT_PREFS, ...parsed };
     if (!isPreferences(merged)) return null;
     const { fontSize, appearance, haptics, notifications } = merged;
     return { fontSize, appearance, haptics, notifications };

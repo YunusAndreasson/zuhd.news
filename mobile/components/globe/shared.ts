@@ -6,9 +6,7 @@ import type { GeometryCollection, Topology } from 'topojson-specification';
 import countryMetrics from '../../assets/geo/country-metrics.json';
 import type { ConicSink } from './sphere-circles';
 
-interface TopoWithObjects extends Topology {
-  objects: Record<string, GeometryCollection>;
-}
+type TopoWithObjects = Topology<{ countries: GeometryCollection<{ name: string }> }>;
 
 // The 110m countries: point-in-country lookup, areas and label centroids.
 // The globe draws its land, borders and highlight from the tiers in
@@ -19,10 +17,7 @@ const countriesData = countriesTopo as unknown as TopoWithObjects;
 const countriesObj = countriesData.objects.countries;
 if (!countriesObj) throw new Error('missing topojson objects');
 
-export const countries = feature(
-  countriesData,
-  countriesObj,
-) as unknown as GeoJSON.FeatureCollection;
+export const countries = feature(countriesData, countriesObj);
 
 // Precomputed bounding boxes for fast point-in-country pre-filtering.
 // [minLng, minLat, maxLng, maxLat] per feature — avoids expensive

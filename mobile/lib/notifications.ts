@@ -47,11 +47,11 @@ export interface NotificationAnswer {
 export async function enableNotifications(): Promise<NotificationAnswer> {
   let osPrompt = false;
   try {
+    await setupNotificationChannels();
     const before = await Notifications.getPermissionsAsync();
     osPrompt = !before.granted && before.canAskAgain;
     const { granted } = await Notifications.requestPermissionsAsync();
     if (!granted) return { granted: false, osPrompt };
-    await setupNotificationChannels();
     return { granted: true, osPrompt };
   } catch {
     return { granted: false, osPrompt };
@@ -134,8 +134,9 @@ export function registerPushToken(devicePushToken?: Notifications.DevicePushToke
   return queueTokenWork(async () => {
     try {
       if (version !== registrationVersion) return;
-      const projectId = Constants.expoConfig?.extra?.eas?.projectId as string | undefined;
-      if (!projectId) return;
+      const projectId: unknown =
+        Constants.easConfig?.projectId ?? Constants.expoConfig?.extra?.eas?.projectId;
+      if (typeof projectId !== 'string' || !projectId) return;
       // Bounded, so a stalled network cannot hold an opt-out's DELETE behind
       // it. Nothing has been sent yet, so giving up here registers nothing.
       const { data: token } = await within(

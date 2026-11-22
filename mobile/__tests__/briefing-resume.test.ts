@@ -68,7 +68,8 @@ jest.mock('expo-sqlite/kv-store', () => ({
   default: {
     getItem: jest.fn().mockResolvedValue(null),
     setItem: jest.fn().mockResolvedValue(undefined),
-    removeItem: jest.fn().mockResolvedValue(undefined),
+    multiSet: jest.fn().mockResolvedValue(undefined),
+    multiRemove: jest.fn().mockResolvedValue(undefined),
   },
 }));
 jest.mock('../assets/icon.png', () => 1);
@@ -90,7 +91,7 @@ beforeEach(() => {
     isLoaded: true,
     didJustFinish: false,
   };
-  jest.mocked(Storage.setItem).mockResolvedValue(undefined);
+  jest.mocked(Storage.multiSet).mockResolvedValue(undefined);
   jest.mocked(AppState.addEventListener).mockImplementation((_event, callback) => {
     resume = callback as typeof resume;
     return { remove: jest.fn() };
@@ -120,7 +121,10 @@ it('pauses before rewinding an ended player so the briefing does not loop', asyn
   expect(hook.result.current.elapsed).toBe(0);
   expect(hook.result.current.resumable).toBe(false);
   expect(hook.result.current.state).toBe('idle');
-  expect(Storage.setItem).toHaveBeenCalledWith('zuhd_briefing_pos', '0');
+  expect(Storage.multiSet).toHaveBeenCalledWith([
+    ['zuhd_briefing_pos', '0'],
+    ['zuhd_briefing_date', '2026-09-27'],
+  ]);
 });
 
 it.each(['dismiss', 'rotate date', 'unmount'] as const)(
@@ -138,7 +142,7 @@ it.each(['dismiss', 'rotate date', 'unmount'] as const)(
     const write = new Promise<void>((resolve) => {
       finishWrite = resolve;
     });
-    jest.mocked(Storage.setItem).mockReturnValue(write);
+    jest.mocked(Storage.multiSet).mockReturnValue(write);
     jest.mocked(setIsAudioActiveAsync).mockClear();
     const pendingResume = resume('active');
 
@@ -219,7 +223,10 @@ it('saves progress when the app backgrounds', async () => {
   await act(async () => {
     await resume('background');
   });
-  expect(Storage.setItem).toHaveBeenCalledWith('zuhd_briefing_pos', '45');
+  expect(Storage.multiSet).toHaveBeenCalledWith([
+    ['zuhd_briefing_pos', '45'],
+    ['zuhd_briefing_date', '2026-09-27'],
+  ]);
 });
 
 it('erases a mounted player after earlier writes finish, without restoring progress later', async () => {
@@ -235,12 +242,12 @@ it('erases a mounted player after earlier writes finish, without restoring progr
   expect(hook.result.current.resumeAt).toBe(0);
   expect(hook.result.current.resumable).toBe(false);
   expect(mockPlayer.replace).toHaveBeenLastCalledWith(null);
-  jest.mocked(Storage.setItem).mockClear();
+  jest.mocked(Storage.multiSet).mockClear();
   await act(async () => {
     await resume('active');
     hook.result.current.dismiss();
   });
-  expect(Storage.setItem).not.toHaveBeenCalled();
+  expect(Storage.multiSet).not.toHaveBeenCalled();
 });
 
 it('checkpoints ongoing playback without requiring a pause or foreground return', async () => {
@@ -257,7 +264,10 @@ it('checkpoints ongoing playback without requiring a pause or foreground return'
   await act(async () => {
     jest.advanceTimersByTime(15_000);
   });
-  expect(Storage.setItem).toHaveBeenCalledWith('zuhd_briefing_pos', '35');
+  expect(Storage.multiSet).toHaveBeenCalledWith([
+    ['zuhd_briefing_pos', '35'],
+    ['zuhd_briefing_date', '2026-09-27'],
+  ]);
   hook.unmount();
   jest.useRealTimers();
 });

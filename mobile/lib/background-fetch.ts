@@ -1,4 +1,3 @@
-import type { FeedResponse } from '@shared/types';
 import {
   persistQueryClientRestore,
   persistQueryClientSave,
@@ -32,7 +31,7 @@ const TASK_NAME = 'ZUHD_BACKGROUND_FETCH';
  * Returns true when a new build was applied.
  */
 async function applyNewBuild(): Promise<boolean> {
-  let current = queryClient.getQueryData<FeedResponse>(FEED_QUERY_KEY);
+  let current = queryClient.getQueryData(FEED_QUERY_KEY);
   const headless = current === undefined;
   if (headless) {
     await persistQueryClientRestore({
@@ -41,7 +40,7 @@ async function applyNewBuild(): Promise<boolean> {
       maxAge: PERSIST_MAX_AGE_MS,
       buster: PERSIST_BUSTER,
     });
-    current = queryClient.getQueryData<FeedResponse>(FEED_QUERY_KEY);
+    current = queryClient.getQueryData(FEED_QUERY_KEY);
   }
   const onScreen = current?.generated ?? (await feedCache.read())?.generated;
   if ((await probeGenerated()) === onScreen) return false;
@@ -63,10 +62,11 @@ async function applyNewBuild(): Promise<boolean> {
 TaskManager.defineTask(TASK_NAME, async () => {
   try {
     await applyNewBuild();
+    return BackgroundTask.BackgroundTaskResult.Success;
   } catch {
     // Offline or a failed fetch: the next run, return or pull tries again.
+    return BackgroundTask.BackgroundTaskResult.Failed;
   }
-  return BackgroundTask.BackgroundTaskResult.Success;
 });
 
 export async function registerBackgroundTask(): Promise<void> {
