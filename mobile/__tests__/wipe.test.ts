@@ -111,7 +111,7 @@ import Storage from 'expo-sqlite/kv-store';
 import type { Article, Category } from '@shared/types';
 import { getSnapshot as getBookmarks, toggle as toggleBookmark } from '../lib/bookmark-store';
 import { getSnapshot as getDataUsage, recordBytes } from '../lib/data-usage';
-import { queryClient } from '../lib/query-client';
+import { immediatePersister, persister, queryClient } from '../lib/query-client';
 import { getLastSeenAt } from '../lib/storage';
 import { eraseLocalData } from '../lib/wipe';
 
@@ -305,4 +305,38 @@ it('rejects when clearing a synchronous store fails', async () => {
     throw new Error('disk full');
   });
   await expect(eraseLocalData()).rejects.toThrow('Could not erase all local data');
+});
+
+it('orders background persistence behind an active save and discards delayed writes on erase', async () => {
+  jest.useFakeTimers();
+  try {
+    const client = (timestamp: number) => ({
+      timestamp,
+      buster: 'b',
+      clientState: { queries: [], mutations: [] },
+    });
+    const key = 'REACT_QUERY_OFFLINE_CACHE';
+    let complete!: () => void;
+    jest.mocked(Storage.setItem).mockImplementationOnce(async (key, value) => {
+      await new Promise<void>((resolve) => {
+        complete = resolve;
+      });
+      mockKv.set(key, String(value));
+    });
+    const first = immediatePersister.persistClient(client(1));
+    await Promise.resolve();
+    persister.persistClient(client(2));
+    const completed = immediatePersister.persistClient(client(3));
+    expect(mockKv.has(key)).toBe(false);
+    complete();
+    await Promise.all([first, completed]);
+    await jest.advanceTimersByTimeAsync(1000);
+    expect(mockKv.get(key)).toBe(JSON.stringify(client(3)));
+    persister.persistClient(client(4));
+    await eraseLocalData();
+    await jest.advanceTimersByTimeAsync(1000);
+    expect(mockKv.has(key)).toBe(false);
+  } finally {
+    jest.useRealTimers();
+  }
 });

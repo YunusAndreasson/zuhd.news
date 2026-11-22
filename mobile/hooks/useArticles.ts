@@ -4,6 +4,7 @@ import { useCallback, useEffect, useEffectEvent, useMemo, useRef, useState } fro
 import { STALE_THRESHOLD } from '../constants/theme';
 import {
   applyArrival,
+  arrivalGeneration,
   FEED_QUERY_KEY,
   feedQuery,
   feedSlugs,
@@ -132,8 +133,9 @@ export function useArticles(
   /** The build the site is on, when it is not the one on screen; null when
    *  it is. Throws when the site cannot be reached. */
   const newerBuild = useCallback(async (): Promise<string | null> => {
-    const current = queryClient.getQueryData(FEED_QUERY_KEY)?.generated;
     const generated = await probeGenerated();
+    // A background arrival may have finished while this probe waited.
+    const current = queryClient.getQueryData(FEED_QUERY_KEY)?.generated;
     return generated === current ? null : generated;
   }, [queryClient]);
 
@@ -146,11 +148,14 @@ export function useArticles(
       const callbacks = refreshCallbacksRef.current;
       refreshingRef.current = (async () => {
         try {
-          if ((await newerBuild()) === null) {
+          const generation = arrivalGeneration();
+          const build = await newerBuild();
+          if (generation !== arrivalGeneration()) return { added: [], applied: false };
+          if (build === null) {
             await retryFailedSnapshots(queryClient);
             return { added: [], applied: false };
           }
-          const arrival = await fetchArrival(queryClient);
+          const arrival = await fetchArrival(queryClient, build);
           if (isOlderFeed(arrival.feed, queryClient.getQueryData(FEED_QUERY_KEY))) {
             return { added: [], applied: false };
           }

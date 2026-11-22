@@ -8,7 +8,7 @@ const HEATMAP = API_SNAPSHOTS.heatmap;
 
 interface HeatmapResult {
   points: HeatmapPoint[];
-  /** True after the first cache or network attempt has completed. Splash gate. */
+  /** True after the first cache or network attempt has completed. */
   ready: boolean;
 }
 
@@ -20,7 +20,8 @@ export function useHeatmap(feedGenerated: string | null): HeatmapResult {
   const queryClient = useQueryClient();
   const query = useQuery({
     queryKey: HEATMAP.queryKey,
-    queryFn: ({ signal }) => fetchSnapshot(HEATMAP, { signal }),
+    queryFn: ({ client, signal }) =>
+      fetchSnapshot(HEATMAP, { signal }, client.getQueryData(HEATMAP.queryKey)),
     select: snapshotData,
     // Not on focus, for `useApiJson`'s reason: an arrival carries the heatmap
     // with the feed in one commit (`lib/arrival.ts`). Left on, every return

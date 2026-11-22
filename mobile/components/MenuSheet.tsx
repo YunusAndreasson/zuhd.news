@@ -257,7 +257,7 @@ export const MenuSheet = memo(function MenuSheet({
   // to `nav`, and the compiler could not keep the callbacks below memoized on
   // `nav.push` alone.
   const { push, pop, reset } = nav;
-  const [canRate, setCanRate] = useState(false);
+  const [canRate, setCanRate] = useState<boolean | null>(null);
   const [notificationPermissionDenied, setNotificationPermissionDenied] = useState(false);
 
   // The pages a row opened, by key. Kept until the menu closes: a key popped
@@ -351,10 +351,11 @@ export const MenuSheet = memo(function MenuSheet({
   );
 
   useEffect(() => {
+    if (nav.current !== 'settings' || canRate !== null) return;
     StoreReview.hasAction()
       .then(setCanRate)
       .catch(() => {});
-  }, []);
+  }, [nav.current, canRate]);
 
   const handle = (
     <SheetHandle

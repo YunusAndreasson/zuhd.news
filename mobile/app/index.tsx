@@ -192,12 +192,6 @@ const PRIMER_AFTER_READS = 5;
  *  of the sheet no longer counts as it (`Story Opened`'s `via`). */
 const STORY_OPEN_VIA_MS = 5_000;
 
-// How long the splash may wait on the heatmap *after* articles are ready.
-// The heatmap degrades gracefully to an empty layer, so it must not hold a
-// launch whose content is already on screen — without this cap a slow
-// heatmap parks the user on the splash until the 8s `_layout.tsx` fallback.
-const HEATMAP_SPLASH_GRACE_MS = 1200;
-
 /** The handlers a measured card is given: it is never shown or touched. */
 const noop = () => {};
 
@@ -253,7 +247,7 @@ export default function HomeScreen() {
   // A story is set in its column, up to `LAYOUT.readingMax` wide: what is
   // measured is what is drawn. The deck, the globe and its centre stay on the
   // window.
-  const readingColumn = readingWidth(screenWidth);
+  const readingColumn = readingWidth(screenWidth, insets.left, insets.right);
 
   const menuSheetRef = useRef<BottomSheetMethodsRef>(null);
   const primerSheetRef = useRef<BottomSheetMethodsRef>(null);
@@ -436,6 +430,8 @@ export default function HomeScreen() {
   const deckInput = useMemo(
     () => ({
       width: screenWidth,
+      leftInset: insets.left,
+      rightInset: insets.right,
       height: screenHeight,
       chromeHeight: topChromeHeight,
       bottomInset: insets.bottom,
@@ -459,6 +455,8 @@ export default function HomeScreen() {
       screenHeight,
       topChromeHeight,
       insets.bottom,
+      insets.left,
+      insets.right,
       fontScale,
       typography.sizeBase,
       textVariants,
@@ -1769,16 +1767,10 @@ export default function HomeScreen() {
   // get back down to the globe closed zuhd instead.
   useHardwareBack({ enabled: sheetDetent === 'full', onBack: collapseSheet });
 
-  // Hold the splash until we have something for *every* visible layer.
+  // The optional heatmap can arrive over the globe while the reader uses it.
   useEffect(() => {
-    if (loading) return;
-    if (heatmapReady) {
-      SplashScreen.hide();
-      return;
-    }
-    const timer = setTimeout(() => SplashScreen.hide(), HEATMAP_SPLASH_GRACE_MS);
-    return () => clearTimeout(timer);
-  }, [loading, heatmapReady]);
+    if (!loading) SplashScreen.hide();
+  }, [loading]);
 
   usePendingNotification(loading, grouped, handleNotificationStory, handleBriefingPush);
   useLinkedStory(loading, grouped, handleLinkedStory);
@@ -2201,7 +2193,7 @@ export default function HomeScreen() {
 
   if (loading)
     return (
-      <Screen>
+      <Screen edges={['left', 'right']}>
         <EmptyState message="loading" hint="This is taking longer than usual" />
       </Screen>
     );

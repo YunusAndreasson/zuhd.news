@@ -13,7 +13,7 @@ import { clearKnown } from './fresh-store';
 import { rotateInstallId } from './install-id';
 import { deleteLegacy, type LegacyCopy } from './legacy-store';
 import { resetOnboarding } from './onboarding-store';
-import { queryClient } from './query-client';
+import { persister, queryClient } from './query-client';
 import { clearRead } from './read-store';
 import { orderStorageWork } from './store-plumbing';
 import { resetReviewState } from './store-review';
@@ -41,7 +41,6 @@ const KEYS = [
   'zuhd_found_v1', // which stories were opened, from before the globe followed what was read
   'zuhd_review_count', // article snaps since the last rating prompt
   'zuhd_review_prompted', // when the rating prompt was last shown
-  'REACT_QUERY_OFFLINE_CACHE', // the persisted article cache
   'zuhd_card_history_v1', // viewed-card history, written only by older builds
   'zuhd_firsts_v1', // whether a story was read and a briefing played yet (`firsts.ts`)
 ];
@@ -89,6 +88,7 @@ export async function eraseLocalData(): Promise<void> {
 
   await Promise.all([
     clearBriefingProgress(),
+    persister.removeClient(),
     feedCache.clear(),
     orderStorageWork(async () => {
       const removed = await Promise.allSettled([

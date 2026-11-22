@@ -45,9 +45,9 @@ function isMissingOrMalformed(err: unknown): boolean {
  * falls back to the full one; a genuine network failure propagates from the
  * fallback so callers still see a real error.
  *
- * Every success is written through to `feedCache` before returning.
+ * An arrival holds the result until its other layers finish.
  */
-export async function fetchFeed(opts: FetchJsonOptions = {}): Promise<FeedResponse> {
+export async function downloadFeed(opts: FetchJsonOptions = {}): Promise<FeedResponse> {
   const options = { timeoutMs: FEED_TIMEOUT_MS, ...opts };
   let feed: FeedResponse;
   try {
@@ -60,8 +60,19 @@ export async function fetchFeed(opts: FetchJsonOptions = {}): Promise<FeedRespon
     feed = await fetchJson(FEED_FULL_URL, isFeedResponse, options);
   }
   if (options.signal?.aborted) throw new Error('Feed fetch cancelled');
+  return feed;
+}
+
+/** Compare and write together, including for a feed held while its layers arrived. */
+export async function saveFeed(feed: FeedResponse): Promise<void> {
   if (isOlderFeed(feed, feedCache.readSync()))
     throw new Error('Feed response is older than cached feed');
   await feedCache.write(feed);
+}
+
+export async function fetchFeed(opts: FetchJsonOptions = {}): Promise<FeedResponse> {
+  const feed = await downloadFeed(opts);
+  if (opts.signal?.aborted) throw new Error('Feed fetch cancelled');
+  await saveFeed(feed);
   return feed;
 }

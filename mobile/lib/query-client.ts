@@ -1,11 +1,12 @@
 import { createAsyncStoragePersister } from '@tanstack/query-async-storage-persister';
 import { focusManager, onlineManager, QueryClient } from '@tanstack/react-query';
+import type { PersistedClient, Persister } from '@tanstack/react-query-persist-client';
 import { File, Paths } from 'expo-file-system';
 import Storage from 'expo-sqlite/kv-store';
 import * as Updates from 'expo-updates';
 import { AppState } from 'react-native';
 import { subscribeConnectivity } from './network';
-import { deleteLegacyFile } from './store-plumbing';
+import { deleteLegacyFile, orderStorageWork } from './store-plumbing';
 import { DAY_MS } from './time';
 
 // TanStack Query's browser focus/network listeners do not exist in React
@@ -68,12 +69,50 @@ export const queryClient = new QueryClient({
   },
 });
 
-export const persister = createAsyncStoragePersister({
-  storage: Storage,
-  // Coalesce persistence writes. Without throttling, every query result would
-  // trigger a full client serialization into the SQLite-backed KV store.
-  throttleTime: 1000,
-});
+// Keep the existing SQLite key and TanStack serialization across upgrades.
+const disk = createAsyncStoragePersister({ storage: Storage, throttleTime: 1000 });
+let pending: PersistedClient | undefined;
+let timer: ReturnType<typeof setTimeout> | undefined;
+let removal = 0;
+
+function cancelPendingSave() {
+  clearTimeout(timer);
+  timer = undefined;
+  pending = undefined;
+}
+
+function saveNow(client: PersistedClient) {
+  cancelPendingSave();
+  return orderStorageWork(() => Storage.setItem(QUERY_CACHE_KEY, JSON.stringify(client)));
+}
+
+// A completed background task needs the actual write's promise. TanStack's
+// async throttle can resolve a caller while a previous save is still scheduled.
+export const immediatePersister: Persister = {
+  persistClient: saveNow,
+  async restoreClient() {
+    const before = removal;
+    const client = await orderStorageWork(async () => disk.restoreClient());
+    return before === removal ? client : undefined;
+  },
+  removeClient() {
+    removal++;
+    cancelPendingSave();
+    return orderStorageWork(async () => disk.removeClient());
+  },
+};
+
+export const persister: Persister = {
+  ...immediatePersister,
+  persistClient(client) {
+    pending = client;
+    if (timer === undefined) {
+      timer = setTimeout(() => {
+        if (pending) void saveNow(pending).catch(() => {});
+      }, 1000);
+    }
+  },
+};
 
 export const PERSIST_MAX_AGE_MS = DAY_MS;
 

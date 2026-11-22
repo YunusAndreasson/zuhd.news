@@ -145,9 +145,15 @@ function RootLayout() {
       void analytics.register({ ad_measurement: isMeasurementOn() });
       void sendInstallAttribution();
     }
-    void registerBackgroundTask();
-    void clearLegacyScheduledNotifications();
-    dropRetiredFound();
+    // Give the opening frame priority over maintenance of previous installs.
+    const maintenance = requestIdleCallback(
+      () => {
+        void registerBackgroundTask();
+        void clearLegacyScheduledNotifications();
+        dropRetiredFound();
+      },
+      { timeout: SPLASH_FALLBACK_MS },
+    );
     // Unless the reader turned it off (`lib/measurement.ts`).
     startMeasurement();
     // Set up Android channels at startup so they exist before any push, even
@@ -168,6 +174,7 @@ function RootLayout() {
     // the primer spends the dialog (rollback insurance).
 
     return () => {
+      cancelIdleCallback(maintenance);
       clearTimeout(splashFallback);
       measurement?.();
     };

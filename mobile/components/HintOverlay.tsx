@@ -1,6 +1,7 @@
 import { memo } from 'react';
 import { Pressable, StyleSheet, View } from 'react-native';
 import Animated, { FadeInUp, FadeOutDown, useReducedMotion } from 'react-native-reanimated';
+import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import {
   ANIMATION,
   dissolveIn,
@@ -76,6 +77,7 @@ export const HintOverlay = memo(function HintOverlay({
   const { colors } = useTheme();
   const reduceMotion = useReducedMotion();
 
+  const { left, right } = useSafeAreaInsets();
   if (!hint) return null;
   const entering = reduceMotion ? DISSOLVE_IN : SLIDE_IN;
   const exiting = reduceMotion ? DISSOLVE_OUT : SLIDE_OUT;
@@ -87,6 +89,8 @@ export const HintOverlay = memo(function HintOverlay({
       style={[
         styles.container,
         {
+          left,
+          right,
           bottom: Math.max(
             bottomOffset + SPACING.md,
             Math.max(bottomInset, SPACING.sm) + SPACING.xxl + SPACING.md,

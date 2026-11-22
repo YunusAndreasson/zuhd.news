@@ -137,6 +137,8 @@ interface DeckLines {
 export interface DeckLayoutInput {
   width: number;
   height: number;
+  leftInset?: number;
+  rightInset?: number;
   /** The bar above the earth (`MapHeader`), measured. */
   chromeHeight: number;
   /** The safe-area inset under the dock. */
@@ -197,10 +199,15 @@ export function computeDeckLayout(input: DeckLayoutInput): DeckLayout {
   const content = above + HOOK_LINES * body + SPACING.md + dock;
   const floor = above + body + dock;
   const bandCap = height - topChrome - Math.round(PEEK_BAND_FRACTION * height);
-  const absoluteCap = height - topChrome - BAND_MIN;
+  // A short landscape window still needs a handle, a scrollable line and the
+  // footer above the dock. Leave a real drag between the two stops there.
+  const room = Math.max(0, height - topChrome);
+  const storyCap = storyCapOf(input);
+  const cap = Math.min(room - BAND_MIN, storyCap - CONTROL_ROW);
+  const peekCap = Math.min(room, Math.max(HANDLE + dock, cap));
 
-  const peek = Math.round(Math.min(Math.max(Math.min(content, bandCap), floor), absoluteCap));
-  const band = height - topChrome - peek;
+  const peek = Math.round(Math.min(Math.max(Math.min(content, bandCap), floor), peekCap));
+  const band = room - peek;
 
   // The whole story — its lines and the gaps between its blocks, the lede's
   // twice the rest — then the section gap, the odds or thread line and the row
@@ -217,9 +224,8 @@ export function computeDeckLayout(input: DeckLayoutInput): DeckLayout {
         lineHeight(input, 'caption') +
         ACTIONS_ROW +
         dock;
-  const storyCap = storyCapOf(input);
   const full = Math.round(Math.max(peek, Math.min(story, storyCap)));
-  const storyBand = height - topChrome - full;
+  const storyBand = room - full;
 
   return {
     width,
@@ -239,13 +245,23 @@ export function computeDeckLayout(input: DeckLayoutInput): DeckLayout {
 /** The open sheet's ceiling: the window less the bar and the globe's floor. */
 function storyCapOf(input: DeckLayoutInput): number {
   const { height, chromeHeight } = input;
-  return height - chromeHeight - Math.max(BAND_MIN, Math.round(STORY_BAND_FRACTION * height));
+  const room = Math.max(0, height - chromeHeight);
+  const controls =
+    HANDLE +
+    ACTIONS_ROW +
+    CONTROL_ROW +
+    input.bottomInset +
+    Math.max(CONTROL_ROW, lineHeight(input, 'body'));
+  return Math.min(
+    room,
+    Math.max(controls, room - Math.max(BAND_MIN, Math.round(STORY_BAND_FRACTION * height))),
+  );
 }
 
 /** The story column's width in a window: the window, up to `LAYOUT.readingMax`.
  *  The sheet, the swipe's pitch and the deck's slots stay the window's. */
-export function readingWidth(width: number): number {
-  return Math.min(width, LAYOUT.readingMax);
+export function readingWidth(width: number, left = 0, right = 0): number {
+  return Math.max(0, Math.min(width - left - right, LAYOUT.readingMax));
 }
 
 /** Characters an em of body type is assumed to hold when bounding a story
@@ -257,7 +273,8 @@ const CHARS_PER_EM_BOUND = 2.5;
  *  bounding a story from below: about 50 on a phone, where one really holds
  *  ~43, and at most 70 in the widest column. */
 export function lineCharsBound(input: DeckLayoutInput): number {
-  const line = readingWidth(input.width) - 2 * SPACING.articlePadding;
+  const width = readingWidth(input.width, input.leftInset, input.rightInset);
+  const line = Math.max(1, width - 2 * SPACING.articlePadding);
   return (
     (line / (input.bodySize * Math.min(input.fontScale, input.caps.body))) * CHARS_PER_EM_BOUND
   );

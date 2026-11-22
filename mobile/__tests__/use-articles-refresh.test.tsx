@@ -336,3 +336,17 @@ it('still reports a long return when a slower arrival has already been supersede
   expect(hook.onReturn).toHaveBeenCalledTimes(1);
   expect(hook.onReturn.mock.calls[0][0].added.map((a: Article) => a.slug)).toEqual(['latest']);
 });
+
+it('a foreground probe accepts a build that the background task finished while it waited', async () => {
+  const hook = mount();
+  await act(async () => {});
+  const probe = deferred<string>();
+  jest.mocked(probeGenerated).mockReturnValueOnce(probe.promise);
+  await act(async () => {
+    const resume = mockResume(600_000);
+    hook.client.setQueryData(['feed'], mockFeed('new', ['two']));
+    probe.resolve('new');
+    await resume;
+  });
+  expect(fetchArrival).not.toHaveBeenCalled();
+});

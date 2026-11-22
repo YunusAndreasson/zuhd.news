@@ -265,3 +265,19 @@ describe('the gaps the estimate counts', () => {
     expect(LEDE_GAP_RATIO).toBeCloseTo(2 * BLOCK_GAP_RATIO, 6);
   });
 });
+
+it('measures the same reading column shown between either side bar', () => {
+  expect(readingWidth(600, 0, 72)).toBe(528);
+  expect(readingWidth(600, 72, 0)).toBe(528);
+  expect(readingWidth(1200, 40, 72)).toBe(560);
+  expect(lineCharsBound(wide({ width: 600, leftInset: 20, rightInset: 52 }))).toBe(
+    lineCharsBound(wide({ width: 528 })),
+  );
+});
+
+it('leaves a reachable footer and scrollable story in short landscape windows at large type', () => {
+  const layout = computeDeckLayout(wide({ height: 320, chromeHeight: 90, fontScale: 2 }));
+  expect(layout.full - layout.peek).toBeGreaterThanOrEqual(40);
+  expect(layout.full - layout.dock - 16 - 40).toBeGreaterThanOrEqual(48);
+  expect(layout.storyBand).toBeGreaterThan(0);
+});

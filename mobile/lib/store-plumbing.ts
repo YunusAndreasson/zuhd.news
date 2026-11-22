@@ -70,8 +70,8 @@ export function createDebouncedWrite(write: () => void, delayMs: number) {
       if (timer) clearTimeout(timer);
       timer = setTimeout(now, delayMs);
     },
-    flush(): void {
-      if (dirty) now();
+    flush(): boolean {
+      return !dirty || now();
     },
   };
 }
