@@ -1,9 +1,15 @@
 import Constants from 'expo-constants';
 import * as Notifications from 'expo-notifications';
 import { deleteItemAsync, getItemAsync, setItemAsync } from 'expo-secure-store';
+import { Platform, type TurboModule, TurboModuleRegistry } from 'react-native';
 import { IS_ANDROID } from '../constants/platform';
 import { API_BASE } from '../constants/theme';
 import { fetchWithTimeout } from './fetch';
+import { markOsPromptSpent, osPromptSpent } from './notification-prompt';
+
+interface AndroidPermissions extends TurboModule {
+  shouldShowRequestPermissionRationale(permission: string): Promise<boolean>;
+}
 
 const CHANNEL_ID = 'briefing';
 
@@ -50,6 +56,7 @@ export async function enableNotifications(): Promise<NotificationAnswer> {
     await setupNotificationChannels();
     const before = await Notifications.getPermissionsAsync();
     osPrompt = !before.granted && before.canAskAgain;
+    if (osPrompt && IS_ANDROID && Number(Platform.Version) >= 33) await markOsPromptSpent();
     const { granted } = await Notifications.requestPermissionsAsync();
     if (!granted) return { granted: false, osPrompt };
     return { granted: true, osPrompt };
@@ -70,8 +77,22 @@ export async function notificationsGranted(): Promise<boolean> {
 /** Whether the OS has never been asked on this install: its dialog is still to come. */
 export async function notificationPermissionUndetermined(): Promise<boolean> {
   try {
-    const { status } = await Notifications.getPermissionsAsync();
-    return status === Notifications.PermissionStatus.UNDETERMINED;
+    const { status, granted, canAskAgain } = await Notifications.getPermissionsAsync();
+    const undetermined = status === Notifications.PermissionStatus.UNDETERMINED;
+    if (!IS_ANDROID) return undetermined;
+    if (Number(Platform.Version) < 33 || granted || !canAskAgain || (await osPromptSpent())) {
+      return false;
+    }
+    if (undetermined) return true;
+    if (status !== Notifications.PermissionStatus.DENIED) return false;
+
+    // Expo also reports denied before the first ask. On installs that predate
+    // the Settings marker, Android remembers a refusal that still permits a
+    // second ask: it tells the app to show a rationale for that second dialog.
+    const permissions = TurboModuleRegistry.getEnforcing<AndroidPermissions>('PermissionsAndroid');
+    return !(await permissions.shouldShowRequestPermissionRationale(
+      'android.permission.POST_NOTIFICATIONS',
+    ));
   } catch {
     return false;
   }

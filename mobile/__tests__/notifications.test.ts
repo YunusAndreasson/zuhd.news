@@ -18,6 +18,7 @@ jest.mock('expo-notifications', () => ({
   cancelAllScheduledNotificationsAsync: jest.fn(),
   getPermissionsAsync: (...args: unknown[]) => mockGetPermissions(...args),
   requestPermissionsAsync: (...args: unknown[]) => mockRequestPermissions(...args),
+  setNotificationChannelAsync: jest.fn(),
   AndroidImportance: { DEFAULT: 3, HIGH: 4 },
   PermissionStatus: { GRANTED: 'granted', DENIED: 'denied', UNDETERMINED: 'undetermined' },
 }));
@@ -32,6 +33,7 @@ jest.mock('../lib/fetch', () => ({
   fetchWithTimeout: (...args: unknown[]) => mockFetch(...args),
 }));
 
+import * as platform from '../constants/platform';
 import {
   addPushTokenListener,
   enableNotifications,
@@ -41,12 +43,26 @@ import {
   unregisterPushToken,
 } from '../lib/notifications';
 
+const mockRationale = jest.fn();
+const postNotifications = 'android.permission.POST_NOTIFICATIONS';
+
+function android(api: number): void {
+  jest.replaceProperty(platform, 'IS_ANDROID', true);
+  const rn = jest.requireMock('react-native');
+  rn.Platform.Version = api;
+  rn.TurboModuleRegistry = {
+    getEnforcing: () => ({ shouldShowRequestPermissionRationale: mockRationale }),
+  };
+}
+
 function http(ok: boolean, status = ok ? 200 : 500): Response {
   return { ok, status } as Response;
 }
 
 beforeEach(() => {
   jest.clearAllMocks();
+  mockRationale.mockResolvedValue(false);
+  mockSetSecure.mockResolvedValue(undefined);
   mockGetExpoPushToken.mockResolvedValue({ data: 'ExponentPushToken[new]' });
   mockFetch.mockResolvedValue(http(true));
   mockGetSecure.mockResolvedValue(null);
@@ -220,7 +236,7 @@ describe('asking for permission', () => {
     await expect(enableNotifications()).resolves.toEqual({ granted: true, osPrompt: false });
   });
 
-  it('undetermined only while the system has never been asked', async () => {
+  it('on iOS, undetermined only while the system has never been asked', async () => {
     mockGetPermissions.mockResolvedValueOnce(permission('undetermined', false, true));
     await expect(notificationPermissionUndetermined()).resolves.toBe(true);
     mockGetPermissions.mockResolvedValueOnce(permission('denied', false, true));
@@ -228,4 +244,51 @@ describe('asking for permission', () => {
     mockGetPermissions.mockRejectedValueOnce(new Error('no module'));
     await expect(notificationPermissionUndetermined()).resolves.toBe(false);
   });
+  it('a fresh Android 13 install is eligible even though Expo reports denied', async () => {
+    android(33);
+    mockGetPermissions.mockResolvedValue(permission('denied', false, true));
+    await expect(notificationPermissionUndetermined()).resolves.toBe(true);
+    expect(mockRationale).toHaveBeenCalledWith(postNotifications);
+    expect(mockRequestPermissions).not.toHaveBeenCalled();
+  });
+
+  it('remembers a Settings request before its dialog returns, even after a refusal', async () => {
+    android(35);
+    mockGetPermissions.mockResolvedValue(permission('denied', false, true));
+    const saved = new Map<string, string>();
+    mockSetSecure.mockImplementation(async (key: string, value: string) => saved.set(key, value));
+    mockGetSecure.mockImplementation(async (key: string) => saved.get(key) ?? null);
+    let markerAtRequest: string | undefined;
+    mockRequestPermissions.mockImplementation(async () => {
+      markerAtRequest = saved.get('zuhd_notif_asked');
+      return permission('denied', false, true);
+    });
+    await expect(enableNotifications()).resolves.toEqual({ granted: false, osPrompt: true });
+    expect(markerAtRequest).toBe('1');
+    expect(mockRequestPermissions).toHaveBeenCalledTimes(1);
+    await expect(notificationPermissionUndetermined()).resolves.toBe(false);
+  });
+
+  it('recognizes an older Settings refusal even without the app marker', async () => {
+    android(33);
+    mockGetPermissions.mockResolvedValue(permission('denied', false, true));
+    mockRationale.mockResolvedValue(true);
+    await expect(notificationPermissionUndetermined()).resolves.toBe(false);
+  });
+
+  it.each([
+    [33, 'denied', false, false],
+    [35, 'granted', true, true],
+    [32, 'denied', false, false],
+    [32, 'granted', true, true],
+    [32, 'denied', false, true],
+  ] as const)(
+    'skips the primer on API %d with %s, granted=%s, canAskAgain=%s',
+    async (api, status, granted, canAskAgain) => {
+      android(api);
+      mockGetPermissions.mockResolvedValue(permission(status, granted, canAskAgain));
+      await expect(notificationPermissionUndetermined()).resolves.toBe(false);
+      expect(mockRationale).not.toHaveBeenCalled();
+    },
+  );
 });

@@ -57,6 +57,7 @@ import type { BottomSheetMethodsRef } from '../components/SheetLayout';
 import { SourcesSheet } from '../components/SourcesSheet';
 import { Toast, type ToastRef } from '../components/Toast';
 import { ANALYTICS_EVENTS, type PrimerSource, type StoryOpenVia } from '../constants/analytics';
+import { IS_ANDROID } from '../constants/platform';
 import { CATEGORIES, categoryMarkColor, EDITORIAL, VARIANT_CAP } from '../constants/theme';
 import { useAiModels } from '../hooks/useAiModels';
 import { useAnalysis } from '../hooks/useAnalysis';
@@ -1428,9 +1429,10 @@ export default function HomeScreen() {
     hapticNotification();
     if (primerTriedRef.current) return true;
     if (getOnboarding().primer.status !== 'pending' || notificationsOnRef.current) return true;
-    presentPrimer('caught_up');
+    if (IS_ANDROID) askAtMoment('caught_up');
+    else presentPrimer('caught_up');
     return true;
-  }, [presentPrimer]);
+  }, [askAtMoment, presentPrimer]);
 
   /**
    * A finger has started a swipe on the deck. Whether the camera follows it is

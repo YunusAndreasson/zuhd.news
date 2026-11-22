@@ -1,14 +1,12 @@
 import { memo, useCallback, useRef } from 'react';
 import { StyleSheet, View } from 'react-native';
 import { ANALYTICS_EVENTS, type PrimerSource } from '../constants/analytics';
+import { IS_ANDROID } from '../constants/platform';
 import { HIT_SLOP, RADIUS, SPACING } from '../constants/theme';
 import { usePreferences, useTheme } from '../hooks/useTheme';
 import { analytics } from '../lib/analytics';
-import {
-  getSnapshot as getOnboarding,
-  markOsPromptSpent,
-  setPrimerStatus,
-} from '../lib/onboarding-store';
+import { markOsPromptSpent } from '../lib/notification-prompt';
+import { getSnapshot as getOnboarding, setPrimerStatus } from '../lib/onboarding-store';
 import { Pressable, Text } from './primitives';
 import { SheetScrollView } from './SheetContent';
 import { type BaseSheetProps, SheetLayout } from './SheetLayout';
@@ -51,9 +49,9 @@ export const NotificationPrimerSheet = memo(function NotificationPrimerSheet({
     if (busyRef.current) return;
     busyRef.current = true;
     try {
-      // Record the spend first — insurance so an OTA rollback to the old
-      // cold-prompt code can never fire a second OS ask.
-      await markOsPromptSpent();
+      // iOS keeps its legacy cold-prompt marker. Android records every OS
+      // request in enableNotifications, including one made from Settings.
+      if (!IS_ANDROID) await markOsPromptSpent();
       const granted = await setNotifications(true, { primed: true, source });
       setPrimerStatus(granted ? 'accepted' : 'declined');
       sheetRef.current?.dismiss();

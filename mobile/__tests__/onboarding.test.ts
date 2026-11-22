@@ -6,6 +6,8 @@
  * app session (the shown-once-per-session guard resets with the module).
  */
 
+import { markOsPromptSpent } from '../lib/notification-prompt';
+
 // In-memory backing for the expo mocks. `mock` prefix required — jest.mock
 // factories may only reference out-of-scope variables with that prefix.
 let mockFiles: Map<string, string>;
@@ -401,8 +403,7 @@ describe('persistence', () => {
   });
 
   it('markOsPromptSpent writes the legacy key', async () => {
-    const s = loadStore();
-    await s.markOsPromptSpent();
+    await markOsPromptSpent();
     expect(mockSecure.get('zuhd_notif_asked')).toBe('1');
   });
 });
