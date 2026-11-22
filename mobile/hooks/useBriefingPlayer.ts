@@ -1,3 +1,4 @@
+import { useEventListener } from 'expo';
 import { Asset } from 'expo-asset';
 // The managed player starts with a null source; native media loading remains
 // lazy while Expo owns subscription and unmount cleanup.
@@ -7,7 +8,6 @@ import {
   setAudioModeAsync,
   setIsAudioActiveAsync,
   useAudioPlayer,
-  useAudioPlayerStatus,
 } from 'expo-audio';
 import { File } from 'expo-file-system';
 import { useCallback, useEffect, useRef, useState } from 'react';
@@ -178,7 +178,7 @@ export function useBriefingPlayer(
     updateInterval: 500,
     keepAudioSessionActive: true,
   });
-  const status = useAudioPlayerStatus(managedPlayer);
+  const [nativeDuration, setNativeDuration] = useState(0);
   const [playing, setPlaying] = useState(false);
   const [preparing, setPreparing] = useState(false);
   const [elapsed, setElapsed] = useState(0);
@@ -321,14 +321,16 @@ export function useBriefingPlayer(
     startRef.current = null;
     finishedRef.current = false;
     stoppedRef.current = false;
-    if (playerRef.current) {
+    const player = playerRef.current;
+    playerRef.current = null;
+    if (player) {
       try {
-        playerRef.current.clearLockScreenControls();
-        playerRef.current.pause();
-        playerRef.current.replace(null);
+        player.clearLockScreenControls();
+        player.pause();
+        player.replace(null);
       } catch {}
     }
-    playerRef.current = null;
+    setNativeDuration(0);
     setHasPlayer(false);
     sourceLoadToken.current += 1;
     lockScreenActivationToken.current += 1;
@@ -476,11 +478,17 @@ export function useBriefingPlayer(
     }, PLAY_GIVE_UP_MS);
   }, [failPlayback]);
 
-  // Expo owns the playback-status subscription. Keep only the app-specific
-  // policy here: recovery, lock-screen metadata, cold-load retry, and UI state.
-  useEffect(() => {
+  // The error and finish flags last one native event. A later progress update
+  // can replace either before React commits a snapshot from useAudioPlayerStatus.
+  useEventListener(managedPlayer, PLAYBACK_STATUS_UPDATE, (status) => {
     const player = playerRef.current;
-    if (!player || player !== managedPlayer || closedRef.current) return;
+    if (player !== managedPlayer || closedRef.current || sourceAbort.current) return;
+    if (status.error) {
+      savePosition();
+      failPlayback();
+      return;
+    }
+    setNativeDuration(status.duration);
 
     if (status.mediaServicesDidReset && lockScreenActive.current) {
       void refreshLockScreenMetadata(player);
@@ -572,7 +580,7 @@ export function useBriefingPlayer(
       lockScreenActive.current = false;
       lockScreenDurationKnown.current = false;
     }
-  }, [activateLockScreen, managedPlayer, refreshLockScreenMetadata, status]);
+  });
 
   const toggle = useCallback(async () => {
     closedRef.current = false;
@@ -733,11 +741,11 @@ export function useBriefingPlayer(
       // a duration AVPlayer may not discover promptly on this MP3 response.
       const loadedWithDuration = await waitForLoaded(player, 5000);
 
-      // Bail if the user closed the player or swapped dates during the wait.
-      if (closedRef.current || playerRef.current !== player) return;
+      // Dismissal, a new recording or a failed load invalidates this wait.
+      if (closedRef.current || loadToken !== sourceLoadToken.current) return;
 
       // The timeout fallback restores artwork/play/pause/skip immediately.
-      // If native duration arrives later, the status effect recreates the card
+      // If native duration arrives later, the status listener recreates the card
       // so iOS receives duration on its first metadata write.
       await activateLockScreen(player, !loadedWithDuration);
     } catch {
@@ -812,7 +820,7 @@ export function useBriefingPlayer(
   // Native duration is authoritative once loaded. Feed duration keeps the
   // in-app timeline visible during startup instead of coupling it to AVPlayer's
   // metadata timing.
-  const effectiveDuration = resolveAudioDuration(status.duration, feedDuration);
+  const effectiveDuration = resolveAudioDuration(nativeDuration, feedDuration);
 
   const state: BriefingPlayer['state'] = preparing
     ? 'preparing'
