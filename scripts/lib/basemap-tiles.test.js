@@ -9,11 +9,11 @@
 
 import test from 'node:test'
 import assert from 'node:assert/strict'
-import { existsSync, readFileSync } from 'node:fs'
+import { existsSync, readFileSync, writeFileSync } from 'node:fs'
 import { join } from 'node:path'
 import { VectorTile } from '@mapbox/vector-tile'
 import { PbfReader } from 'pbf'
-import { buildMapSources } from '../build/basemap.js'
+import { basemapVersion, buildMapSources } from '../build/basemap.js'
 import {
   COUNTRY_TILE_LAYER,
   COUNTRY_TILE_MAX_ZOOM,
@@ -42,6 +42,18 @@ const tileAt = (z, lng, lat) => {
 }
 const read = (z, x, y, root = out) => readFileSync(join(root, String(z), String(x), `${y}.pbf`))
 const layerOf = (buf, name = COUNTRY_TILE_LAYER) => new VectorTile(new PbfReader(buf)).layers[name]
+
+test('a tile-generator dependency update changes the basemap cache key', () => {
+  const root = scratchDir('basemap-version')
+  const lock = join(root, 'package-lock.json')
+  const setGenerator = (version) => writeFileSync(lock, JSON.stringify({
+    packages: { 'node_modules/@maplibre/geojson-vt': { version } },
+  }))
+  setGenerator('6.3.1')
+  const before = basemapVersion(root)
+  setGenerator('7.0.1')
+  assert.notEqual(basemapVersion(root), before)
+})
 
 test('every tile up to the top zoom is written, an empty one as an empty file', () => {
   let expected = 0
