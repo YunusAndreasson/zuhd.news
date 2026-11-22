@@ -1,6 +1,7 @@
 import Storage from 'expo-sqlite/kv-store';
 import * as StoreReview from 'expo-store-review';
 import { readMigrated } from './legacy-store';
+import { orderStorageWork } from './store-plumbing';
 import { DAY_MS } from './time';
 
 const COUNT_KEY = 'zuhd_review_count';
@@ -15,19 +16,18 @@ let counters: Promise<Counters> | undefined;
 
 function hydrate(): Promise<Counters> {
   if (counters) return counters;
-  const pending = Promise.all([
-    readMigrated(COUNT_KEY, { secureKey: COUNT_KEY }),
-    readMigrated(PROMPTED_KEY, { secureKey: PROMPTED_KEY }),
-  ])
-    .then(([count, prompted]) => ({
+  const pending = orderStorageWork(async () => {
+    const count = await readMigrated(COUNT_KEY, { secureKey: COUNT_KEY });
+    const prompted = await readMigrated(PROMPTED_KEY, { secureKey: PROMPTED_KEY });
+    return {
       count: Number.parseInt(count ?? '0', 10) || 0,
       promptedAt: Number.parseInt(prompted ?? '0', 10) || 0,
       requesting: false,
-    }))
-    .catch((error: unknown) => {
-      if (counters === pending) counters = undefined;
-      throw error;
-    });
+    };
+  }).catch((error: unknown) => {
+    if (counters === pending) counters = undefined;
+    throw error;
+  });
   counters = pending;
   return pending;
 }
@@ -50,8 +50,8 @@ export async function recordStorySwipe(): Promise<void> {
     const state = await pending;
     if (pending !== counters) return;
     state.count += 1;
-    // Write-through: fire and forget — only the in-memory value matters for gating
-    Storage.setItem(COUNT_KEY, String(state.count)).catch(() => {});
+    const count = String(state.count);
+    await orderStorageWork(() => Storage.setItem(COUNT_KEY, count));
   } catch {}
 }
 
@@ -74,10 +74,12 @@ export async function maybeRequestReview(): Promise<void> {
       if (pending !== counters) return;
       state.promptedAt = Date.now();
       state.count = 0;
-      await Storage.multiSet([
-        [PROMPTED_KEY, String(state.promptedAt)],
-        [COUNT_KEY, '0'],
-      ]);
+      await orderStorageWork(() =>
+        Storage.multiSet([
+          [PROMPTED_KEY, String(state.promptedAt)],
+          [COUNT_KEY, '0'],
+        ]),
+      );
     } finally {
       state.requesting = false;
     }

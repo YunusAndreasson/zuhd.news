@@ -2,6 +2,7 @@ import { File, Paths } from 'expo-file-system';
 import Storage from 'expo-sqlite/kv-store';
 import { DEFAULT_PREFS, type Preferences } from '../constants/theme';
 import { type LegacyCopy, readMigrated } from './legacy-store';
+import { orderStorageWork } from './store-plumbing';
 import { isPreferences } from './validate';
 
 // UX state — not secrets. SQLite kv-store is the active backing store; the
@@ -21,7 +22,7 @@ const LEGACY_PREFS: LegacyCopy = {
 
 export async function getLastSeenAt(): Promise<number> {
   try {
-    const stored = await readMigrated(LAST_SEEN_KEY, LEGACY_LAST_SEEN);
+    const stored = await orderStorageWork(() => readMigrated(LAST_SEEN_KEY, LEGACY_LAST_SEEN));
     return stored === null ? 0 : parseInt(stored, 10) || 0;
   } catch {
     return 0;
@@ -30,7 +31,7 @@ export async function getLastSeenAt(): Promise<number> {
 
 export async function saveLastSeenAt(ts: number): Promise<void> {
   try {
-    await Storage.setItem(LAST_SEEN_KEY, String(ts));
+    await orderStorageWork(() => Storage.setItem(LAST_SEEN_KEY, String(ts)));
   } catch {}
 }
 

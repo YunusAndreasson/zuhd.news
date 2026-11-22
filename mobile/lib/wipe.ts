@@ -15,6 +15,7 @@ import { deleteLegacy, type LegacyCopy } from './legacy-store';
 import { resetOnboarding } from './onboarding-store';
 import { queryClient } from './query-client';
 import { clearRead } from './read-store';
+import { orderStorageWork } from './store-plumbing';
 import { resetReviewState } from './store-review';
 
 /**
@@ -89,8 +90,14 @@ export async function eraseLocalData(): Promise<void> {
   await Promise.all([
     clearBriefingProgress(),
     feedCache.clear(),
-    ...KEYS.map((k) => Storage.removeItem(k)),
-    ...LEGACY_COPIES.map((copy) => deleteLegacy(copy, true)),
+    orderStorageWork(async () => {
+      const removed = await Promise.allSettled([
+        ...KEYS.map((key) => Storage.removeItem(key)),
+        ...LEGACY_COPIES.map((copy) => deleteLegacy(copy, true)),
+      ]);
+      const failed = removed.find((entry) => entry.status === 'rejected');
+      if (failed) throw failed.reason;
+    }),
   ]);
   if (cleared.some((success) => !success)) throw new Error('Could not erase all local data');
 }

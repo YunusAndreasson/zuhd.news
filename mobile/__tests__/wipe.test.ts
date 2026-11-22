@@ -138,6 +138,50 @@ beforeEach(() => {
 });
 
 describe('eraseLocalData', () => {
+  it('waits for the exclusive briefing transaction before deleting the other keys', async () => {
+    let finish!: () => void;
+    const transaction = new Promise<void>((resolve) => {
+      finish = resolve;
+    });
+    jest.mocked(Storage.multiRemove).mockImplementationOnce(() => transaction);
+    jest.mocked(Storage.removeItem).mockClear();
+    const erase = eraseLocalData();
+    await new Promise((resolve) => setTimeout(resolve, 0));
+    const overlappingDeletes = jest.mocked(Storage.removeItem).mock.calls.length;
+    finish();
+    await erase;
+    expect(overlappingDeletes).toBe(0);
+    expect(Storage.removeItem).toHaveBeenCalledWith('zuhd_review_count');
+  });
+
+  it.each([
+    ['zuhd_review_count', 'zuhd_review_count'],
+    ['zuhd_lastSeenAt', 'zuhd_last_seen'],
+  ])('cannot migrate %s back to SQLite after erasure', async (legacyKey, activeKey) => {
+    await jest.isolateModulesAsync(async () => {
+      const secure = require('expo-secure-store') as typeof import('expo-secure-store');
+      const review = require('../lib/store-review') as typeof import('../lib/store-review');
+      const storage = require('../lib/storage') as typeof import('../lib/storage');
+      const wipe = require('../lib/wipe') as typeof import('../lib/wipe');
+      let finishRead!: (value: string) => void;
+      const legacyValue = new Promise<string>((resolve) => {
+        finishRead = resolve;
+      });
+      jest
+        .mocked(secure.getItemAsync)
+        .mockImplementationOnce(async (key) => (key === legacyKey ? legacyValue : null));
+      const read =
+        legacyKey === 'zuhd_review_count' ? review.recordStorySwipe() : storage.getLastSeenAt();
+      await new Promise((resolve) => setTimeout(resolve, 0));
+      expect(secure.getItemAsync).toHaveBeenCalledWith(legacyKey);
+      const erase = wipe.eraseLocalData();
+      await new Promise((resolve) => setTimeout(resolve, 0));
+      finishRead('19');
+      await Promise.all([read, erase]);
+      expect(mockKv.has(activeKey)).toBe(false);
+    });
+  });
+
   it('clears every kind of stored state it promises to', async () => {
     // Something of each kind: a bookmark, the persisted keys, a cached feed
     // file, a live query, and a non-zero data meter.

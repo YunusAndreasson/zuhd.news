@@ -2,9 +2,11 @@ import { act, renderHook } from '@testing-library/react';
 import { type AudioStatus, setIsAudioActiveAsync } from 'expo-audio';
 import Storage from 'expo-sqlite/kv-store';
 import { clearBriefingProgress } from '../lib/briefing-progress';
+import { briefingAudioFile } from '../lib/briefing-audio';
 import { File } from 'expo-file-system';
 import { AppState, type AppStateStatus } from 'react-native';
 import { useBriefingPlayer } from '../hooks/useBriefingPlayer';
+import { API_BASE } from '../constants/theme';
 
 type PlaybackStatus = Pick<
   AudioStatus,
@@ -19,7 +21,7 @@ const initialStatus: PlaybackStatus = {
   error: null,
 };
 let mockStatus = initialStatus;
-const mockCachedAudio = new Set<string>();
+const mockCachedAudio = new Map<string, number>();
 const mockListeners = new Set<(status: PlaybackStatus) => void>();
 const mockPlayer = {
   isLoaded: true,
@@ -77,7 +79,7 @@ jest.mock('expo-file-system', () => ({
         return mockCachedAudio.has(this.uri);
       }
       get size() {
-        return this.exists ? 13 : 0;
+        return mockCachedAudio.get(this.uri) ?? 0;
       }
       uri: string;
       constructor(directory: string, name: string) {
@@ -90,8 +92,9 @@ jest.mock('expo-file-system', () => ({
     {
       downloadFileAsync: jest.fn(async () => ({
         uri: 'file:///briefing.mp3',
-        move: jest.fn((destination: File) => {
-          mockCachedAudio.add(destination.uri);
+        size: 13,
+        moveSync: jest.fn((destination: File) => {
+          mockCachedAudio.set(destination.uri, 13);
         }),
         delete: jest.fn(),
       })),
@@ -179,6 +182,27 @@ it('keeps media controls cleared across rewind events until the next play', asyn
   });
   await status({ playing: true });
   expect(mockPlayer.setActiveForLockScreen).toHaveBeenCalledTimes(1);
+});
+
+it('keeps a finished briefing at zero when the app backgrounds or unmounts during rewind', async () => {
+  const hook = renderHook(() => useBriefingPlayer('2026-09-27'));
+  await act(async () => {
+    await hook.result.current.toggle();
+  });
+  // AVPlayer's seek is asynchronous. Its currentTime still describes the end.
+  mockPlayer.currentTime = 120;
+  await status({ currentTime: 120, playing: false, didJustFinish: true });
+  await act(async () => {
+    await resume('background');
+  });
+  const afterBackground = hook.result.current.state;
+  hook.unmount();
+  await act(async () => {});
+  expect(Storage.multiSet).toHaveBeenLastCalledWith([
+    ['zuhd_briefing_pos', '0'],
+    ['zuhd_briefing_date', '2026-09-27'],
+  ]);
+  expect(afterBackground).toBe('idle');
 });
 
 it('discards a first play when the feed rotates during audio-session setup', async () => {
@@ -365,10 +389,51 @@ it('publishes only completed downloads under the reusable MP3 cache name', async
   const target = download.mock.calls[0]?.[1];
   expect(target?.uri).toMatch(/\.part$/);
   const complete = await download.mock.results[0]?.value;
-  expect(complete.move).toHaveBeenCalledWith(
+  expect(complete.moveSync).toHaveBeenCalledWith(
     expect.objectContaining({ uri: expect.stringMatching(/\.mp3$/) }),
+    { overwrite: true },
   );
   expect(mockPlayer.replace).toHaveBeenCalledWith(expect.stringMatching(/\.mp3$/));
+});
+
+it('plays the fresh download on the first tap when an empty MP3 was left in cache', async () => {
+  const file = briefingAudioFile(`${API_BASE}/audio/briefing-2026-09-27.mp3`);
+  mockCachedAudio.set(file.uri, 0);
+  const hook = renderHook(() => useBriefingPlayer('2026-09-27'));
+  await act(async () => {
+    await hook.result.current.toggle();
+  });
+  expect(File.downloadFileAsync).toHaveBeenCalledTimes(1);
+  expect(mockPlayer.replace).toHaveBeenCalledWith(file.uri);
+  expect(file.size).toBeGreaterThan(0);
+});
+
+it('cannot put a downloaded MP3 back after the reader erases it', async () => {
+  let allowMove!: () => void;
+  const moving = new Promise<void>((resolve) => {
+    allowMove = resolve;
+  });
+  const publish = (file: File) => mockCachedAudio.set(file.uri, 13);
+  jest.mocked(File.downloadFileAsync).mockResolvedValueOnce({
+    size: 13,
+    move: async (file: File) => {
+      await moving;
+      publish(file);
+    },
+    moveSync: publish,
+  } as unknown as File);
+  const hook = renderHook(() => useBriefingPlayer('2026-09-27'));
+  let pending!: Promise<void>;
+  await act(async () => {
+    pending = Promise.resolve(hook.result.current.toggle());
+  });
+  await act(async () => {
+    mockCachedAudio.clear();
+    await clearBriefingProgress();
+    allowMove();
+    await pending;
+  });
+  expect(mockCachedAudio.size).toBe(0);
 });
 
 it('cancels an interrupted download without playing it, and starts a fresh download on retry', async () => {

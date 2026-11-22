@@ -65,13 +65,17 @@ function resolveBriefingSource(url: string, controller: AbortController): Promis
       idempotent: true,
       signal: controller.signal,
     })
-      .then(async (downloaded) => {
+      .then((downloaded) => {
         if (controller.signal.aborted) throw new Error('Audio download cancelled');
         // Fetched whether it is kept or not: the data figure in settings
         // counts the briefing, the largest thing the app downloads.
-        recordBytes(downloaded.size);
-        if (file.exists) downloaded.delete();
-        else await downloaded.move(file);
+        const bytes = downloaded.size;
+        if (!bytes) throw new Error('Empty briefing download');
+        recordBytes(bytes);
+        // Both files are in the cache directory. Finish the rename in this
+        // turn so an erase or a new recording cannot run ahead of it.
+        if (file.exists && file.size > 0) downloaded.delete();
+        else downloaded.moveSync(file, { overwrite: true });
         // One recording on the device: the one just saved.
         deleteBriefingAudio({ keep: file });
         return { localUri: file.uri };
@@ -263,10 +267,13 @@ export function useBriefingPlayer(
     let disposed = false;
     const sub = AppState.addEventListener('change', async (state: AppStateStatus) => {
       const player = playerRef.current;
-      if (!player) return;
+      if (!player || finishedRef.current) return;
       const token = toggleTokenRef.current;
       const isCurrent = () =>
-        !disposed && playerRef.current === player && token === toggleTokenRef.current;
+        !disposed &&
+        !finishedRef.current &&
+        playerRef.current === player &&
+        token === toggleTokenRef.current;
 
       // Save position for any cold-start that might happen next
       try {
@@ -390,7 +397,7 @@ export function useBriefingPlayer(
   }, [recording, teardownPlayer]);
 
   const savePosition = useCallback(() => {
-    if (!playerRef.current || !savedDate.current) return;
+    if (!playerRef.current || !savedDate.current || finishedRef.current) return;
     try {
       const pos = playerRef.current.currentTime;
       if (pos > 0) {
