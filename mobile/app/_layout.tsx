@@ -76,7 +76,7 @@ function ThemedShell() {
 function RootLayout() {
   const navigationRef = useNavigationContainerRef();
   useEffect(() => {
-    if (navigationRef) navigationIntegration.registerNavigationContainer(navigationRef);
+    if (navigationRef) navigationIntegration?.registerNavigationContainer(navigationRef);
   }, [navigationRef]);
 
   // The route's pattern, never its params: a param can be a story's slug.

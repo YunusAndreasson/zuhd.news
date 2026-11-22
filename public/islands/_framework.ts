@@ -51,7 +51,7 @@ export const mountIsland = <P extends object>(
   container: HTMLElement,
   props: P,
 ): (() => void) => {
-  render(h(Component, props as never), container)
+  render(h<P>(Component, props), container)
   return () => render(null, container)
 }
 

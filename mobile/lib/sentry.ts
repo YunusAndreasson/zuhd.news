@@ -22,11 +22,11 @@ const dsn =
 export const sentryEnabled = Boolean(dsn && !__DEV__);
 
 /** Registered against the Router's container in `app/_layout.tsx`. */
-export const navigationIntegration = Sentry.reactNavigationIntegration({
-  enableTimeToInitialDisplay: false,
-});
+export const navigationIntegration = sentryEnabled
+  ? Sentry.reactNavigationIntegration({ enableTimeToInitialDisplay: false })
+  : undefined;
 
-if (sentryEnabled) {
+if (navigationIntegration) {
   Sentry.init({
     dsn,
     environment: Updates.channel || 'production',

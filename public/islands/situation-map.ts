@@ -2511,7 +2511,7 @@ export function mount(
   // cached for fifteen minutes would otherwise keep insisting Tokyo was open
   // long after it shut.
 
-  const src = (id: string) => map.getSource(id) as GeoJSONSource | undefined
+  const src = (id: string) => map.getSource<GeoJSONSource>(id)
 
   /** Layer toggles are visibility, not data — no rebuild to turn one off. */
   const applyLayerVisibility = () => {
@@ -5650,8 +5650,8 @@ export function mount(
           json<FeatureCollection>(basemapUrl('rivers.geojson', basemapV), abort.signal),
         ])
         if (!mounted) return
-        if (lakes) (map.getSource('lakes') as GeoJSONSource | undefined)?.setData(lakes)
-        if (rivers) (map.getSource('rivers') as GeoJSONSource | undefined)?.setData(rivers)
+        if (lakes) src('lakes')?.setData(lakes)
+        if (rivers) src('rivers')?.setData(rivers)
       })()
     }, 6000)
   }
