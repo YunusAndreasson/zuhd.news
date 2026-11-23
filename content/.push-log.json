@@ -1,91 +1,5 @@
 [
   {
-    "timestamp": "2026-11-02T10:17:57.799Z",
-    "candidateCount": 9,
-    "candidates": [
-      {
-        "slug": "2026-11-02-frankfurt-riots-ministers-tough-response-100-police-hurt",
-        "title": "Frankfurt Riots Prompt Penalty Vow",
-        "category": "politics",
-        "eventCoverage": 140,
-        "importance": 6
-      },
-      {
-        "slug": "2026-11-02-belgium-de-wever-may-resign-budget-talks-collapse",
-        "title": "De Wever Heads to Palace",
-        "category": "politics",
-        "eventCoverage": 83,
-        "importance": 6
-      },
-      {
-        "slug": "2026-11-02-ryanair-pay-freeze-hiring-cut-2bn-jet-fuel-iran-war",
-        "title": "Ryanair Freezes Pay",
-        "category": "economy",
-        "eventCoverage": 80,
-        "importance": 6
-      },
-      {
-        "slug": "2026-11-02-lahore-high-court-imran-khan-sisters-detention-noreen-niazi",
-        "title": "Court Probes Imran Sisters' Detention",
-        "category": "politics",
-        "eventCoverage": 0,
-        "importance": 6
-      },
-      {
-        "slug": "2026-11-02-oil-slides-trump-more-time-iran-diplomacy-hormuz-attacks",
-        "title": "Oil Slides on Iran Hopes",
-        "category": "economy",
-        "eventCoverage": 0,
-        "importance": 6
-      },
-      {
-        "slug": "2026-11-02-pboc-weaker-yuan-fixing-four-year-high-appreciation",
-        "title": "PBOC Slows Yuan Rise",
-        "category": "economy",
-        "eventCoverage": 0,
-        "importance": 6
-      },
-      {
-        "slug": "2026-11-02-china-party-school-paper-social-security-inequality-pensions",
-        "title": "Party School Paper Slams Pensions",
-        "category": "economy",
-        "eventCoverage": 0,
-        "importance": 6
-      },
-      {
-        "slug": "2026-11-02-three-parent-ivf-albania-clinic-stat-investigation",
-        "title": "Three-Parent IVF Tourism",
-        "category": "science",
-        "eventCoverage": 0,
-        "importance": 6
-      },
-      {
-        "slug": "2026-11-02-robots-race-mount-tai-3000-steps-eggs-china",
-        "title": "Robots Race Mount Tai",
-        "category": "tech",
-        "eventCoverage": 0,
-        "importance": 6
-      }
-    ],
-    "selected": {
-      "slug": "2026-11-02-frankfurt-riots-ministers-tough-response-100-police-hurt",
-      "title": "Frankfurt Riots Prompt Penalty Vow",
-      "category": "politics",
-      "body": "Rioters injured more than 100 of 1,300 deployed",
-      "eventCoverage": 140,
-      "importance": 6
-    },
-    "skipReason": null,
-    "sent": true,
-    "pushTitle": "Breaking News",
-    "pushBody": "Rioters injure more than 100 police in Frankfurt protest, officials say",
-    "response": {
-      "pushed": 1,
-      "skipped": 0,
-      "tokens": 5
-    }
-  },
-  {
     "timestamp": "2026-11-02T14:17:14.842Z",
     "candidateCount": 10,
     "candidates": [
@@ -10196,6 +10110,127 @@
     "sent": true,
     "pushTitle": "Breaking News",
     "pushBody": "COP31 ends without climate deal as nearly 200 nations fail to agree",
+    "response": {
+      "pushed": 1,
+      "skipped": 0,
+      "tokens": 4
+    }
+  },
+  {
+    "timestamp": "2026-11-23T18:20:40.395Z",
+    "candidateCount": 14,
+    "candidates": [
+      {
+        "slug": "2026-11-23-nvidia-reinstates-jensen-huang-ceo-national-security",
+        "title": "Nvidia Reinstates Jensen Huang",
+        "category": "economy",
+        "eventCoverage": 2963,
+        "importance": 6
+      },
+      {
+        "slug": "2026-11-23-eu-22nd-sanctions-package-russian-athletes-flag-ban",
+        "title": "EU Targets Russian Sport",
+        "category": "politics",
+        "eventCoverage": 201,
+        "importance": 6
+      },
+      {
+        "slug": "2026-11-23-armenia-draft-constitution-drops-karabakh-claim",
+        "title": "Armenia Drops Karabakh Claim",
+        "category": "politics",
+        "eventCoverage": 191,
+        "importance": 6
+      },
+      {
+        "slug": "2026-11-23-west-bank-settlers-jericho-military-zones-outposts",
+        "title": "Settlers Enter Jericho Neighbourhood",
+        "category": "politics",
+        "eventCoverage": 172,
+        "importance": 6
+      },
+      {
+        "slug": "2026-11-23-oxfam-gaza-toxic-pollution-99-percent",
+        "title": "Oxfam Finds Gaza Poisoned",
+        "category": "politics",
+        "eventCoverage": 90,
+        "importance": 6
+      },
+      {
+        "slug": "2026-11-23-virginia-oregon-sue-xai-grok-sexualised-images",
+        "title": "States Sue SpaceX Over Grok",
+        "category": "tech",
+        "eventCoverage": 76,
+        "importance": 6
+      },
+      {
+        "slug": "2026-11-23-kyrgyzstan-2191-dead-russia-war-ukraine-leak",
+        "title": "Kyrgyz Dead in Russia's War",
+        "category": "politics",
+        "eventCoverage": 0,
+        "importance": 6
+      },
+      {
+        "slug": "2026-11-23-deutsche-bank-financed-merkava-tank-parts-gaza",
+        "title": "Deutsche Bank Financed Tank Parts",
+        "category": "politics",
+        "eventCoverage": 0,
+        "importance": 6
+      },
+      {
+        "slug": "2026-11-23-strategy-value-below-bitcoin-holdings-saylor",
+        "title": "Saylor's Bitcoin Bet Sours",
+        "category": "economy",
+        "eventCoverage": 0,
+        "importance": 6
+      },
+      {
+        "slug": "2026-11-23-nigeria-naira-weakens-election-risk-fed",
+        "title": "Naira Slides on Election Risk",
+        "category": "economy",
+        "eventCoverage": 0,
+        "importance": 6
+      },
+      {
+        "slug": "2026-11-23-artex-ai-hacking-tool-copied-everywhere",
+        "title": "ARTEX Hacking Tool Spreads",
+        "category": "tech",
+        "eventCoverage": 0,
+        "importance": 6
+      },
+      {
+        "slug": "2026-11-23-ai-assistants-undermine-encrypted-messengers-signal",
+        "title": "Signal Fights AI Screen Reading",
+        "category": "tech",
+        "eventCoverage": 0,
+        "importance": 6
+      },
+      {
+        "slug": "2026-11-23-ant-group-open-source-lingsante-medical-ai",
+        "title": "Ant Opens Medical AI Models",
+        "category": "tech",
+        "eventCoverage": 0,
+        "importance": 6
+      },
+      {
+        "slug": "2026-11-23-eutelsat-oneweb-us-space-force-contract",
+        "title": "Eutelsat Wins Space Force Deal",
+        "category": "tech",
+        "eventCoverage": 0,
+        "importance": 6
+      }
+    ],
+    "selected": {
+      "slug": "2026-11-23-nvidia-reinstates-jensen-huang-ceo-national-security",
+      "title": "Nvidia Reinstates Jensen Huang",
+      "category": "economy",
+      "body": "Nvidia stock rose nearly 31% as Jensen Huang returned as",
+      "eventCoverage": 2963,
+      "importance": 6
+    },
+    "skipReason": null,
+    "sent": true,
+    "pushTitle": "Breaking News",
+    "pushBody": "Nvidia reinstates Jensen Huang as CEO, shares jump nearly 31%",
     "response": {
       "pushed": 1,
       "skipped": 0,
