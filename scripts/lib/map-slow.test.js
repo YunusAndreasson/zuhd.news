@@ -16,10 +16,12 @@ import { bundleIsland, scratchDir } from './island-bundle.js'
 const dir = scratchDir('map-slow')
 const slow = await import(await bundleIsland(dir, 'public/islands/_map/slow.ts', 'slow.mjs'))
 const markets = await import(await bundleIsland(dir, 'public/islands/_map/markets.ts', 'mk.mjs'))
+// The figure is shared with the story card's line and the article page's.
+const { pointsFigure } = await import(await bundleIsland(dir, 'shared/chart/spark.ts', 'spark-shared.mjs'))
 
 const { economyGroups, aiScoreChange, aiSummary, AI_CHANGE_DAYS } = slow
 const {
-  economyBlocks, aiBlock, companyEntries, pointsFigure, tickerEntries, worldEntries,
+  economyBlocks, aiBlock, companyEntries, tickerEntries, worldEntries,
   createMarketStrip, sparkInput,
 } = markets
 

@@ -44,13 +44,45 @@
     size-adjust: 95%;
     src: url('/fonts/source-sans-3-var.woff2') format('woff2');
   }
+  /* Arial at Source Sans 3's width and line, while the face travels
+     (`style.css` has the measurements). */
+  @font-face {
+    font-family: 'Source Sans 3 Fallback';
+    font-style: normal;
+    font-weight: 200 500;
+    src: local('Arial'), local('ArialMT'), local('Helvetica'), local('Liberation Sans');
+    size-adjust: 87.69%;
+    ascent-override: 108.34%;
+    descent-override: 35.32%;
+    line-gap-override: 0%;
+  }
+  @font-face {
+    font-family: 'Source Sans 3 Fallback';
+    font-style: normal;
+    font-weight: 501 650;
+    src: local('Arial Bold'), local('Arial-BoldMT'), local('Helvetica Bold'), local('Liberation Sans Bold');
+    size-adjust: 84.32%;
+    ascent-override: 112.67%;
+    descent-override: 36.73%;
+    line-gap-override: 0%;
+  }
+  @font-face {
+    font-family: 'Source Sans 3 Fallback';
+    font-style: normal;
+    font-weight: 651 900;
+    src: local('Arial Bold'), local('Arial-BoldMT'), local('Helvetica Bold'), local('Liberation Sans Bold');
+    size-adjust: 86.58%;
+    ascent-override: 109.73%;
+    descent-override: 35.77%;
+    line-gap-override: 0%;
+  }
   :root { color-scheme: dark; }
   * { box-sizing: border-box; }
   html, body { height: 100%; margin: 0; }
   body {
     background: #141414;
     color: #f2f2f2;
-    font-family: "Source Sans 3", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+    font-family: "Source Sans 3", "Source Sans 3 Fallback", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
     -webkit-font-smoothing: antialiased;
     display: flex; align-items: center; justify-content: center;
     padding: 24px;

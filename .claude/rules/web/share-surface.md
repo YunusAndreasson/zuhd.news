@@ -88,5 +88,8 @@ pinned in `scripts/lib/share-surface.test.js`.
 - **No web push.** This is a decision. `_app-prompt.ts` offers the app
   instead, bounded by `PROMPT_AFTER` and `PROMPT_LIMIT`, counted only in the
   reader's `localStorage`.
+- On a phone an article ends with `.article-app` (one store, `pickStore`);
+  Android's foot bar is `appBar`, on the line's own counters. Neither shows
+  on a desktop.
 - `manifest.json` keeps `prefer_related_applications: false`, so desktop can
   still install the PWA.

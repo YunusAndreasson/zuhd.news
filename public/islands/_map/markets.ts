@@ -14,6 +14,7 @@
 // below is a third reader of the same predicates, and inline that third drift
 // was only a matter of time.
 
+import { pointsFigure } from '@shared/chart/spark'
 import { CHOKEPOINT_DISRUPTED } from '@shared/chokepoint-thresholds'
 import { weekMeanSeries } from '@shared/chart/smooth'
 import { el } from '../_dom'
@@ -1890,17 +1891,11 @@ export const companyEntries = (companies: readonly MapCompany[]): TickerEntry[] 
 
 // --- The slow blocks -------------------------------------------------------
 
-/**
- * A change in points at the places its series is published to.
- *
- * `ribbonPoints` rounds a move of a point or more to a whole number, which is
- * right for a contract's price and wrong here: a central bank that cut by two
- * and a half points would print `−3 pts`.
- */
-export const pointsFigure = (delta: number, places: number): string => {
-  const body = Math.abs(delta).toFixed(places)
-  return Number(body) === 0 ? '0 pts' : `${delta > 0 ? '+' : '−'}${body} pts`
-}
+// A change in points at the places its series is published to is
+// `pointsFigure` (`shared/chart/spark.ts`), which the story card's line and
+// the article page's print with too. Not `ribbonPoints`, which rounds a move
+// of a point or more to a whole number: a central bank that cut by two and a
+// half points would print `−3 pts`.
 
 /** A month's move as the row prints it, or the bare month where there is none. */
 const monthReading = (

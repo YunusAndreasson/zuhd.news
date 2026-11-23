@@ -26,6 +26,48 @@
   src: url('/fonts/source-sans-3-var-italic.woff2') format('woff2');
 }
 
+/* The fallback, shaped like the webfont. The roman is `optional`: on a slow
+   first visit it misses its window and the page is set in the fallback for
+   the whole visit, and before this face that was the system's sans at its own
+   width, half again as wide on the measure. These faces are Arial (Helvetica,
+   Liberation Sans: the same widths) scaled to Source Sans 3's advance and
+   given its ascent and descent, so a visit that misses the font wraps where
+   the font would have. Measured on article text at 100px, against the
+   webfont at its 95%: 400 is 87.69% of Arial's width, 600 84.32% and 700
+   86.58% of Arial Bold's. Each override is Source Sans 3's metric (ascent
+   1000, descent 326, gap 0 per 1000) times 95%, over that face's
+   `size-adjust`, which the browser multiplies them by. */
+@font-face {
+  font-family: 'Source Sans 3 Fallback';
+  font-style: normal;
+  font-weight: 200 500;
+  src: local('Arial'), local('ArialMT'), local('Helvetica'), local('Liberation Sans');
+  size-adjust: 87.69%;
+  ascent-override: 108.34%;
+  descent-override: 35.32%;
+  line-gap-override: 0%;
+}
+@font-face {
+  font-family: 'Source Sans 3 Fallback';
+  font-style: normal;
+  font-weight: 501 650;
+  src: local('Arial Bold'), local('Arial-BoldMT'), local('Helvetica Bold'), local('Liberation Sans Bold');
+  size-adjust: 84.32%;
+  ascent-override: 112.67%;
+  descent-override: 36.73%;
+  line-gap-override: 0%;
+}
+@font-face {
+  font-family: 'Source Sans 3 Fallback';
+  font-style: normal;
+  font-weight: 651 900;
+  src: local('Arial Bold'), local('Arial-BoldMT'), local('Helvetica Bold'), local('Liberation Sans Bold');
+  size-adjust: 86.58%;
+  ascent-override: 109.73%;
+  descent-override: 35.77%;
+  line-gap-override: 0%;
+}
+
 /* --- Reset --- */
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
@@ -41,8 +83,8 @@
 
   ::view-transition-old(root),
   ::view-transition-new(root) {
-    animation-duration: 220ms;
-    animation-timing-function: cubic-bezier(0.2, 0.7, 0.2, 1);
+    animation-duration: var(--dur-normal);
+    animation-timing-function: var(--ease-out);
   }
 }
 
@@ -58,7 +100,7 @@
 */
 
 :root {
-  --font-sans: 'Source Sans 3', system-ui, sans-serif;
+  --font-sans: 'Source Sans 3', 'Source Sans 3 Fallback', system-ui, sans-serif;
 
   /* Extended scale: major-third up to h1, perfect-fourth above for
      archetype pages (article/country/entity) that need editorial mass.
@@ -215,13 +257,30 @@
   --space-lg: 4rem;
   --space-xl: 6rem;
 
-  /* Motion budget — nothing exceeds 260ms. */
-  --dur-fast: 120ms;
-  --dur-normal: 180ms;
-  --dur-slow: 240ms;
+  /* One motion system. Every transition and animation names a duration and a
+     curve from here; the only exceptions are loops and scroll timelines, which
+     have no duration to choose. Controls highlight at `--dur-instant` and
+     fade out at `--dur-fast` (the hover rule under the reset). Nothing moves
+     `width`, `height` or `font-weight`: transform and opacity only, except
+     the disclosure (`_disclosure.ts`) and the phone's drawer, which are boxes
+     whose height is the layout. */
+  /* One focus ring: `--focus` (the map's `--map-focus` on its two dark pages),
+     2px, standing 2px off the element. An outline follows the element's own
+     border-radius, so the ring has the shape of what it rings. */
+  --ring-width: 2px;
+  --ring-offset: 2px;
+
+  --dur-instant: 0ms;
+  --dur-fast: 150ms;
+  --dur-normal: 200ms;
+  --dur-slow: 260ms;
   --dur-sheet: 260ms;
-  --ease-out: cubic-bezier(0.2, 0.7, 0.2, 1);
-  --ease-in-out: cubic-bezier(0.3, 0.8, 0.2, 1);
+  /* Arrives fast and settles: anything entering, and every hover fade. */
+  --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
+  /* Something already on screen moving to a new place. */
+  --ease-in-out: cubic-bezier(0.65, 0, 0.35, 1);
+  /* A sheet or drawer: the iOS sheet's curve, quick off the mark, long tail. */
+  --ease-sheet: cubic-bezier(0.32, 0.72, 0, 1);
 }
 
 /* --- Named typographic roles ---
@@ -355,11 +414,33 @@ a {
   text-decoration-color: var(--accent);
   text-underline-offset: 0.25em;
   text-decoration-thickness: 1px;
-  transition: text-decoration-color var(--dur-fast);
+  transition: text-decoration-color var(--dur-fast) var(--ease-out);
 
   &:visited { color: var(--text); }
   &:hover { text-decoration-color: var(--text); }
 }
+
+/* Hover, everywhere: the highlight arrives with the pointer and fades when it
+   leaves. A control's own rule names what fades (`transition: color
+   var(--dur-fast) var(--ease-out)`); this sets the way in to nothing. The
+   `!important` is the point of it: a control's shorthand restates the
+   duration, and one rule here beats every rule there. A pointer that cannot
+   hover gets no hover state to fade. */
+@media (hover: hover) {
+  :is(a, button, summary, label, select, [role='button'], .map-feed-item):hover,
+  .wordmark:hover :is(.wordmark-dot, .wordmark-tld) {
+    transition-duration: var(--dur-instant) !important;
+  }
+}
+
+/* The ring every focusable thing wears unless it says otherwise, and what the
+   ones that do say otherwise restate: the width and the offset are the tokens,
+   the colour is the palette's. */
+:focus-visible {
+  outline: var(--ring-width) solid var(--ring-colour, var(--focus));
+  outline-offset: var(--ring-offset);
+}
+body.map-page, body.doc-page { --ring-colour: var(--map-focus); }
 
 /* --- Shared label pattern --- */
 /* Small caps with case-sensitive punctuation for labels.
@@ -396,19 +477,21 @@ header {
   text-decoration: none;
   letter-spacing: -0.02em;
   font-variant-numeric: lining-nums;
-  transition: font-weight var(--dur-normal) ease;
   /* Shared element across every page — pairs up during cross-document
      view transitions so the masthead morphs in place instead of fading. */
   view-transition-name: wordmark;
-
-  &:hover { font-weight: 800; }
 }
 
 .wordmark-dot,
 .wordmark-tld {
   color: var(--text-secondary);
   font-weight: 300;
+  transition: color var(--dur-fast) var(--ease-out);
 }
+
+/* Hover inks the light half rather than thickening the bold one: a weight
+   change reflows the lockup and moves everything after it. */
+.wordmark:hover :is(.wordmark-dot, .wordmark-tld) { color: inherit; }
 
 /* The period sits between bold "zuhd" and light "news" — at 700 the dot
    reads as a heavy disc; at 300 it's a small punctuation mark again.
@@ -442,7 +525,7 @@ footer {
     font-size: var(--size-xs);
     color: var(--text-secondary);
     text-decoration: none;
-    transition: color var(--dur-fast);
+    transition: color var(--dur-fast) var(--ease-out);
     padding: var(--space-xs) 0;
 
     &:visited { color: var(--text-secondary); }
@@ -493,7 +576,7 @@ footer {
 .footer-maker a {
   color: var(--text-secondary);
   text-decoration: none;
-  transition: color var(--dur-fast);
+  transition: color var(--dur-fast) var(--ease-out);
 }
 
 .footer-maker a:hover { color: var(--text); }
@@ -703,7 +786,7 @@ footer {
   content: '\25B8';
   display: inline-block;
   margin-right: 0.3em;
-  transition: transform var(--dur-fast);
+  transition: transform var(--dur-fast) var(--ease-in-out);
 }
 .article-context[open] .context-label::before { transform: rotate(90deg); }
 .context-body {
@@ -767,7 +850,7 @@ footer {
   font: inherit;
   cursor: pointer;
   text-decoration: none;
-  transition: color var(--dur-fast) ease;
+  transition: color var(--dur-fast) var(--ease-out);
 
   /* And 24px across, which "X" at 7px wide was not. A hit area rather than a
      min-width, so the row's spacing stays where it is. */
@@ -789,8 +872,8 @@ footer {
   }
 
   &:focus-visible {
-    outline: 1px solid var(--focus);
-    outline-offset: 3px;
+    outline: var(--ring-width) solid var(--focus);
+    outline-offset: var(--ring-offset);
     border-radius: 2px;
   }
 }
@@ -805,7 +888,7 @@ footer {
   /* A real tap target — this is the whole control on the devices that get it. */
   padding: 0.35rem 0.85rem;
   cursor: pointer;
-  transition: color var(--dur-fast) ease, border-color var(--dur-fast) ease;
+  transition: color var(--dur-fast) var(--ease-out), border-color var(--dur-fast) var(--ease-out);
 
   &:hover {
     color: var(--text);
@@ -813,8 +896,8 @@ footer {
   }
 
   &:focus-visible {
-    outline: 1px solid var(--focus);
-    outline-offset: 2px;
+    outline: var(--ring-width) solid var(--focus);
+    outline-offset: var(--ring-offset);
   }
 }
 
@@ -923,7 +1006,7 @@ body.article-page-body::before {
   font-size: var(--size-xs);
   color: var(--text-secondary);
   text-decoration: none;
-  transition: color var(--dur-fast);
+  transition: color var(--dur-fast) var(--ease-out);
 }
 
 .article-back-link:hover { color: var(--text); }
@@ -953,19 +1036,10 @@ body.article-page-body::before {
   flex-direction: column;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .article-standalone {
-    animation: article-page-reveal 520ms cubic-bezier(0.2, 0, 0, 1) both;
-  }
-  .article-standalone > * { animation: article-page-reveal 520ms cubic-bezier(0.2, 0, 0, 1) both; }
-  .article-standalone > .article-title { animation-delay: 80ms; }
-  .article-standalone > .article-body { animation-delay: 160ms; }
-}
-
-@keyframes article-page-reveal {
-  from { opacity: 0; transform: translateY(6px); }
-  to { opacity: 1; transform: none; }
-}
+/* The headline is there at once. It used to rise from nothing over 520ms,
+   staggered under the page's own cross-fade, so the largest thing painted
+   first was the wordmark and the headline came a third of a second later.
+   The cross-fade (`@view-transition` above) is the page's only arrival. */
 
 /* Editorial overline + small-caps kicker. CATEGORY · TIME, hairline rule
    sitting above to mark the start of the article composition. */
@@ -1197,6 +1271,150 @@ body.article-page-body::before {
   text-decoration-color: currentColor;
 }
 
+/* --- Where it happened, and its number ---
+   The locator (`build/locator.js`) stands beside the hook: a globe turned to
+   the place, the land a quiet step, the place's country a step darker, and
+   the one gold mark. Sea is the page's own ground, so the globe is a rule and
+   some land rather than a picture. The story's chart (`build/story-chart.js`)
+   is the map card's line, under the prose and before the isnad. */
+.article-locator {
+  float: right;
+  width: 7rem;
+  margin: 0.25rem 0 var(--space-sm) var(--space-md);
+  display: grid;
+  justify-items: center;
+  gap: var(--space-xxs);
+}
+
+.article-locator-globe {
+  display: block;
+  width: 100%;
+  height: auto;
+  aspect-ratio: 1;
+}
+
+.article-locator-sea {
+  fill: var(--bg);
+  stroke: var(--rule);
+  stroke-width: 1;
+}
+
+.article-locator-land { fill: color-mix(in srgb, var(--text) 16%, var(--bg)); }
+.article-locator-home { fill: color-mix(in srgb, var(--text) 34%, var(--bg)); }
+
+.article-locator-ring {
+  fill: none;
+  stroke: var(--brand);
+  stroke-width: 1;
+}
+
+.article-locator-dot { fill: var(--brand); }
+
+/* A heading's role: small caps at 600, the dateline's ink. */
+.article-locator-place {
+  font-size: var(--size-2xs);
+  font-weight: var(--weight-semibold);
+  font-variant-caps: all-small-caps;
+  font-feature-settings: "case" 1;
+  letter-spacing: var(--track-caps);
+  line-height: 1.3;
+  color: var(--text-secondary);
+  text-align: center;
+  text-wrap: balance;
+}
+
+@media (max-width: 640px) {
+  .article-locator {
+    width: 5.25rem;
+    margin-left: var(--space-sm);
+  }
+}
+
+.article-chart {
+  clear: both;
+  margin: var(--space-md) 0 0;
+}
+
+/* The line takes the direction's ink, as the card's does: colour here says
+   the series rose or fell, and nothing else on the page is tinted. */
+.article-chart-link {
+  display: block;
+  padding: 0.8rem 0 0.6rem;
+  border-block: 1px solid var(--rule);
+  color: var(--text-dim);
+  text-decoration: none;
+
+  &:visited { color: var(--text-dim); }
+}
+
+.article-chart.is-pos .article-chart-link { color: var(--pos); }
+.article-chart.is-neg .article-chart-link { color: var(--neg); }
+
+.article-chart-head {
+  display: flex;
+  align-items: baseline;
+  gap: 0.75rem;
+  font-size: var(--size-sm);
+  line-height: 1.3;
+  font-variant-numeric: lining-nums tabular-nums;
+}
+
+.article-chart-label {
+  flex: 1 1 auto;
+  min-width: 0;
+  color: var(--text);
+}
+
+.article-chart-link:hover .article-chart-label {
+  text-decoration: underline;
+  text-underline-offset: 0.2em;
+}
+
+.article-chart-reading { color: var(--text-emphasis); }
+
+/* `.spark` is a flex item in the rail; here it is block flow at full width. */
+.article-chart-link .spark {
+  width: 100%;
+  height: 4.75rem;
+  margin: 0.6rem 0 0.3rem;
+}
+
+.article-chart-span {
+  display: flex;
+  justify-content: space-between;
+  font-size: var(--size-2xs);
+  line-height: 1.3;
+  color: var(--text-dim);
+  font-variant-numeric: lining-nums tabular-nums;
+}
+
+.article-chart-source {
+  margin-top: var(--space-xs);
+  font-size: var(--size-2xs);
+  line-height: 1.3;
+  color: var(--text-dim);
+}
+
+@media (max-width: 640px) {
+  .article-chart-link .spark { height: 3.75rem; }
+}
+
+/* The way to the map, after the sources: the story's own card on the globe. */
+.article-page-main .article-body > .article-map-link {
+  margin: var(--space-sm) 0 0;
+  font-size: var(--size-sm);
+  line-height: 1.4;
+
+  a {
+    color: var(--text);
+    text-decoration: underline;
+    text-decoration-color: var(--text-dim);
+    text-underline-offset: 0.2em;
+  }
+
+  a:hover { text-decoration-color: currentColor; }
+}
+
 /* What each outlet brought that the others did not.
 
    The pipeline has written a per-source `angle` and `sentiment` for months and
@@ -1306,7 +1524,7 @@ body.article-page-body::before {
   flex-direction: column;
   gap: var(--space-xs);
   min-width: 0;
-  transition: color var(--dur-fast);
+  transition: color var(--dur-fast) var(--ease-out);
 }
 
 .article-pagination-label {
@@ -1604,7 +1822,6 @@ body.archetype-page-body {
   width: var(--fill, 0%);
   background: var(--accent);
   transform-origin: left;
-  transition: width var(--dur-slow) var(--ease-out);
 }
 
 .metric-rank {
@@ -1658,7 +1875,7 @@ body.archetype-page-body {
   border-bottom: 1px solid var(--rule-soft);
   text-decoration: none;
   color: var(--text);
-  transition: color var(--dur-fast);
+  transition: color var(--dur-fast) var(--ease-out);
 }
 
 .list-row:hover { color: var(--text-emphasis); }
@@ -1865,7 +2082,7 @@ body.archetype-page-body {
   border-bottom: 1px dotted var(--text-secondary);
   padding-bottom: 1px;
   cursor: pointer;
-  transition: border-bottom-color var(--dur-fast), border-bottom-style var(--dur-fast);
+  transition: border-bottom-color var(--dur-fast) var(--ease-out), border-bottom-style var(--dur-fast) var(--ease-out);
 }
 
 .country-link:hover,
@@ -1877,8 +2094,8 @@ body.archetype-page-body {
 /* Hover's change of underline is 1.3:1 at best, which is no way to find the
    keyboard's place in a paragraph of these. */
 .country-link:focus-visible {
-  outline: 1px solid var(--focus);
-  outline-offset: 2px;
+  outline: var(--ring-width) solid var(--focus);
+  outline-offset: var(--ring-offset);
 }
 
 /* --- Country preview sheet ---
@@ -2047,7 +2264,7 @@ body.archetype-page-body {
   text-decoration-color: var(--text-dim);
   text-underline-offset: 3px;
   font-size: var(--size-sm);
-  transition: text-decoration-color var(--dur-fast);
+  transition: text-decoration-color var(--dur-fast) var(--ease-out);
 }
 .country-preview-full-link:hover {
   text-decoration-color: var(--accent);
@@ -2079,8 +2296,8 @@ body.archetype-page-body {
   transition:
     display var(--dur-sheet) allow-discrete,
     overlay var(--dur-sheet) allow-discrete,
-    transform var(--dur-sheet) var(--ease-in-out),
-    opacity var(--dur-sheet) var(--ease-in-out);
+    transform var(--dur-sheet) var(--ease-sheet),
+    opacity var(--dur-sheet) var(--ease-sheet);
   opacity: 1;
   transform: translateY(0);
 }
@@ -2091,7 +2308,7 @@ body.archetype-page-body {
   transition:
     display var(--dur-sheet) allow-discrete,
     overlay var(--dur-sheet) allow-discrete,
-    background var(--dur-sheet) var(--ease-in-out);
+    background var(--dur-sheet) var(--ease-sheet);
 }
 
 @starting-style {
@@ -2139,7 +2356,7 @@ body.archetype-page-body {
   border-radius: 999px;
   font-size: var(--size-md);
   outline: none;
-  transition: color var(--dur-fast);
+  transition: color var(--dur-fast) var(--ease-out);
 }
 
 .island-sheet-close:hover {
@@ -2149,8 +2366,94 @@ body.archetype-page-body {
 
 /* `outline: none` above left the one dismiss control with no ring at all. */
 .island-sheet-close:focus-visible {
-  outline: 1px solid var(--focus);
-  outline-offset: 2px;
+  outline: var(--ring-width) solid var(--focus);
+  outline-offset: var(--ring-offset);
+}
+
+/* --- The app, at the end of an article, on a phone ---
+   `appHandoffHtml` (`build.js`). A desktop never sees it: the app is a phone's.
+   Ink and rules, as the rest of the page: the one filled box is the store's
+   button, in the page's own ink. */
+.article-app { display: none; }
+
+@media (pointer: coarse) {
+  .article-app {
+    display: grid;
+    gap: var(--space-sm);
+    margin-top: var(--space-lg);
+    padding-top: var(--space-md);
+    border-top: 1px solid var(--rule);
+    font-size: var(--size-sm);
+    line-height: 1.4;
+  }
+}
+
+.article-app-text { color: var(--text); }
+
+.article-app-store,
+.article-app-store:visited {
+  display: block;
+  padding: 0.85rem var(--space-sm);
+  border-radius: 8px;
+  background: var(--text);
+  color: var(--bg);
+  text-align: center;
+  text-decoration: none;
+}
+
+.article-app-note {
+  font-size: var(--size-2xs);
+  color: var(--text-secondary);
+}
+
+/* Android's bar (`appBar`, `_app-prompt.ts`): the foot of the screen, and a
+   padding on `body` the same height while it stands, so it never covers the
+   last lines of the page. */
+.app-bar {
+  position: fixed;
+  inset: auto 0 0;
+  z-index: 20;
+  display: flex;
+  align-items: center;
+  gap: var(--space-xs);
+  min-height: 3rem;
+  padding: 0 var(--space-xs) env(safe-area-inset-bottom) var(--page-gutter, var(--space-sm));
+  background: var(--bg);
+  border-top: 1px solid var(--rule);
+  font-size: var(--size-xs);
+  line-height: 1.3;
+}
+
+body.has-app-bar { padding-bottom: calc(3rem + env(safe-area-inset-bottom)); }
+
+.app-bar-text {
+  flex: 0 1 auto;
+  min-width: 0;
+  color: var(--text-secondary);
+}
+
+.app-bar-sep { color: var(--text-dim); }
+
+.app-bar-link,
+.app-bar-link:visited {
+  margin-right: auto;
+  color: var(--text);
+  text-decoration: underline;
+  text-decoration-color: var(--text-dim);
+  text-underline-offset: 0.2em;
+  white-space: nowrap;
+}
+
+.app-bar-close {
+  flex: none;
+  min-width: 2.75rem;
+  min-height: 2.75rem;
+  background: none;
+  border: none;
+  color: var(--text-secondary);
+  font: inherit;
+  font-size: var(--size-sm);
+  cursor: pointer;
 }
 
 /* --- Entity strip on article pages --- */
@@ -2178,7 +2481,7 @@ body.archetype-page-body {
   font-size: var(--size-sm);
   line-height: 1.2;
   text-decoration: none;
-  transition: border-color var(--dur-fast), background-color var(--dur-fast);
+  transition: border-color var(--dur-fast) var(--ease-out), background-color var(--dur-fast) var(--ease-out);
 }
 .article-entity-chip:hover,
 .article-entity-chip:focus-visible {
@@ -2253,7 +2556,7 @@ body.archetype-page-body {
   text-decoration: underline;
   text-decoration-color: var(--text-dim);
   text-underline-offset: 3px;
-  transition: color var(--dur-fast), text-decoration-color var(--dur-fast);
+  transition: color var(--dur-fast) var(--ease-out), text-decoration-color var(--dur-fast) var(--ease-out);
 
   &:hover { color: var(--text); text-decoration-color: var(--accent); }
 
@@ -2359,7 +2662,7 @@ body.archetype-page-body {
   border-radius: var(--map-radius);
   cursor: pointer;
   backdrop-filter: blur(6px);
-  transition: opacity var(--dur-normal) var(--ease-out), color var(--dur-fast);
+  transition: opacity var(--dur-normal) var(--ease-out), color var(--dur-fast) var(--ease-out);
 
   svg { width: 13px; height: 13px; flex: 0 0 auto; }
 
@@ -2671,7 +2974,7 @@ body.doc-page {
   border-radius: var(--map-radius, 0);
   transform: translateY(-200%);
 
-  &:focus-visible { transform: none; outline: 2px solid var(--map-focus, var(--focus)); outline-offset: 2px; }
+  &:focus-visible { transform: none; outline: var(--ring-width) solid var(--map-focus, var(--focus)); outline-offset: var(--ring-offset); }
 }
 .map-feed-list:focus { outline: none; }
 
@@ -3010,7 +3313,8 @@ body.map-page { --map-spine-w: 5.5rem; }
     left: 4px;
     width: 1px;
     background: var(--map-ink-dim);
-    transition: opacity var(--dur-fast), height var(--dur-fast);
+    transform-origin: center;
+    transition: opacity var(--dur-fast) var(--ease-out), scale var(--dur-fast) var(--ease-out);
     opacity: 0.55;
   }
 
@@ -3018,8 +3322,8 @@ body.map-page { --map-spine-w: 5.5rem; }
   &:focus-within::before,
   &.is-dragging::before {
     opacity: 1;
-    height: 108px;
-    top: calc(50% - 54px);
+    /* 68px to 108px, as a scale: a height transition lays out every frame. */
+    scale: 1 calc(108 / 68);
   }
 }
 
@@ -3086,7 +3390,7 @@ body.is-pane-dragging {
   border: 1px solid var(--map-line-card);
   border-radius: 2px;
   cursor: pointer;
-  transition: color var(--dur-fast), border-color var(--dur-fast);
+  transition: color var(--dur-fast) var(--ease-out), border-color var(--dur-fast) var(--ease-out);
 
   & svg { width: 7px; height: 10px; }
 
@@ -3103,8 +3407,8 @@ body.is-pane-dragging {
   &:hover { color: var(--map-ink); border-color: var(--map-line-loud); }
 
   &:focus-visible {
-    outline: 1px solid var(--map-focus);
-    outline-offset: 2px;
+    outline: var(--ring-width) solid var(--map-focus);
+    outline-offset: var(--ring-offset);
   }
 
   /* Pointing at the edge it would move the pane toward, so the glyph states a
@@ -3369,8 +3673,8 @@ body.map-wide .map-feed-count {
 
 .map-feed-disclosure:focus-visible,
 .map-feed-refresh:focus-visible {
-  outline: 1px solid var(--map-focus);
-  outline-offset: 2px;
+  outline: var(--ring-width) solid var(--map-focus);
+  outline-offset: var(--ring-offset);
 }
 
 /* Check for new stories without leaving the page.
@@ -3545,7 +3849,7 @@ body.map-wide .map-feed-filters {
   padding: 0.5rem var(--map-gutter-x);
   border-bottom: 1px solid var(--map-line-soft);
   cursor: pointer;
-  transition: background var(--dur-fast);
+  transition: background var(--dur-fast) var(--ease-out);
 
   &:hover { background: var(--map-row-hover); }
   &.is-active { background: var(--map-row-active); }
@@ -3684,6 +3988,13 @@ body.map-page > header {
      whatever width its own row has. Shrink-wrapped, that width is the content,
      and the track stayed 0px even after it got a line of its own. */
   .audio-briefing { align-self: stretch; }
+
+  /* The header is a fixed box over the rail's band, and on a day with a
+     briefing it is taller than the band's first line: it covered refresh, and
+     a click on it landed on the header. The box takes no pointer; what is in
+     it does. */
+  pointer-events: none;
+  > * { pointer-events: auto; }
 }
 
 body.map-page > footer {
@@ -3764,7 +4075,7 @@ body.map-page > footer .footer-links {
   a {
     color: var(--text-dim);
     text-decoration: none;
-    transition: color var(--dur-fast) ease;
+    transition: color var(--dur-fast) var(--ease-out);
     /* "X" is 7px wide; see `.share-choice`. */
     position: relative;
 
@@ -3929,7 +4240,7 @@ body.map-wide .map-range-group { display: block; }
   font-variant-numeric: lining-nums tabular-nums;
   color: var(--map-ink-muted);
   cursor: pointer;
-  transition: color var(--dur-fast), background var(--dur-fast);
+  transition: color var(--dur-fast) var(--ease-out), background var(--dur-fast) var(--ease-out);
 
   &:hover { color: var(--map-ink-soft); }
   &.is-on { color: var(--map-ink); background: var(--map-raised); }
@@ -3978,7 +4289,7 @@ body.map-wide .map-range-group { display: block; }
   display: flex;
   align-items: center;
   gap: 0.35rem;
-  transition: color var(--dur-fast);
+  transition: color var(--dur-fast) var(--ease-out);
 
   & svg {
     width: 13px;
@@ -3986,7 +4297,7 @@ body.map-wide .map-range-group { display: block; }
     flex: 0 0 auto;
     overflow: visible;
     color: var(--map-ink-dim);
-    transition: color var(--dur-fast);
+    transition: color var(--dur-fast) var(--ease-out);
   }
 
   &:hover { color: var(--map-ink-soft); }
@@ -4054,8 +4365,8 @@ body.map-wide .map-range-group { display: block; }
 .map-markets-group:focus-visible,
 .map-feed-title:focus-visible,
 .map-timeline-live:focus-visible {
-  outline: 1px solid var(--map-focus);
-  outline-offset: 2px;
+  outline: var(--ring-width) solid var(--map-focus);
+  outline-offset: var(--ring-offset);
   border-radius: var(--map-radius-ctl);
 }
 
@@ -4143,7 +4454,7 @@ body.map-wide .map-range-group { display: block; }
   border: 1px solid transparent;
   border-radius: 2px;
   cursor: pointer;
-  transition: color var(--dur-fast), border-color var(--dur-fast);
+  transition: color var(--dur-fast) var(--ease-out), border-color var(--dur-fast) var(--ease-out);
 
   svg { width: 15px; height: 11px; flex: 0 0 auto; overflow: visible; }
 
@@ -4245,8 +4556,8 @@ body.map-wide .map-range-group { display: block; }
   &:hover { border-color: var(--map-line-loud); }
 
   &:focus-visible {
-    outline: 1px solid var(--map-focus);
-    outline-offset: 2px;
+    outline: var(--ring-width) solid var(--map-focus);
+    outline-offset: var(--ring-offset);
   }
 }
 
@@ -6112,7 +6423,7 @@ body.map-wide .map-key-glow { margin-inline: 2px; }
     padding: 0.1rem 0.45rem 0.2rem;
     background: color-mix(in srgb, var(--map-ground) 92%, transparent);
     opacity: 0;
-    transition: opacity var(--dur-fast) ease;
+    transition: opacity var(--dur-fast) var(--ease-out);
     pointer-events: none;
   }
 
@@ -6340,7 +6651,7 @@ body.map-wide .map-mapctl .map-filter-label { text-transform: capitalize; }
     color: var(--map-ink-dim);
     /* Rotated rather than swapped for a second glyph, so the two states are one
        mark in two positions and there is no chance of them disagreeing. */
-    transition: transform var(--dur-fast) ease, opacity var(--dur-fast) ease;
+    transition: transform var(--dur-fast) var(--ease-in-out), opacity var(--dur-fast) var(--ease-out);
     opacity: 0;
   }
 
@@ -6396,7 +6707,7 @@ body.map-wide .map-mapctl .map-filter-label { text-transform: capitalize; }
     line-height: 1em;
     text-align: center;
     color: var(--map-ink-dim);
-    transition: transform var(--dur-fast);
+    transition: transform var(--dur-fast) var(--ease-in-out);
   }
 
   &[aria-expanded='true'] .map-layers-caret { transform: rotate(90deg); }
@@ -6464,7 +6775,7 @@ body.map-wide .map-mapctl .map-filter-label { text-transform: capitalize; }
      edge it is anchored by — growing from anywhere else would read as the panel
      arriving from somewhere other than the control that summoned it. */
   &[open] {
-    animation: map-markets-unfold 140ms ease-out;
+    animation: map-markets-unfold var(--dur-fast) var(--ease-out);
   }
 
   @media (prefers-reduced-motion: reduce) {
@@ -6488,7 +6799,7 @@ body.map-wide .map-mapctl .map-filter-label { text-transform: capitalize; }
   &.is-rail {
     box-shadow: 0 14px 34px rgb(0 0 0 / 0.5);
 
-    &[open] { animation: map-markets-unslide 140ms ease-out; }
+    &[open] { animation: map-markets-unslide var(--dur-fast) var(--ease-out); }
 
     @media (prefers-reduced-motion: reduce) {
       &[open] { animation: none; }
@@ -6641,8 +6952,9 @@ body.map-wide .map-mapctl .map-filter-label { text-transform: capitalize; }
   &:focus-visible {
     background: var(--map-row-hover);
     color: var(--map-ink);
-    outline: 1px solid var(--map-focus);
-    outline-offset: -1px;
+    outline: var(--ring-width) solid var(--map-focus);
+    /* Inside the panel's clip: an outer ring would be cut by its edge. */
+    outline-offset: calc(-1 * var(--ring-width));
   }
 
   /* Fixed columns, so an exchange row with no flag still lines its tick up with
@@ -6812,7 +7124,6 @@ body.map-wide .map-mapctl .map-filter-label { text-transform: capitalize; }
     background: var(--map-ink);
     border: none;
     border-radius: 0;
-    transition: width var(--dur-normal);
   }
 
   &::-moz-range-thumb {
@@ -6821,10 +7132,9 @@ body.map-wide .map-mapctl .map-filter-label { text-transform: capitalize; }
     background: var(--map-ink);
     border: none;
     border-radius: 0;
-    transition: width var(--dur-normal);
   }
 
-  &:focus-visible { outline: 1px solid var(--map-focus); outline-offset: 2px; }
+  &:focus-visible { outline: var(--ring-width) solid var(--map-focus); outline-offset: var(--ring-offset); }
 }
 
 /* The head thickens under the pointer — 2px to 4px, the whole hover state of
@@ -6933,7 +7243,7 @@ body.map-wide .map-mapctl .map-filter-label { text-transform: capitalize; }
   /* A card a key opened takes the focus (`StoryPopup.focus`): the map's one
      ring, round the card's own corners. */
   &:focus { outline: none; }
-  &:focus-visible { outline: 1px solid var(--map-focus); outline-offset: 2px; }
+  &:focus-visible { outline: var(--ring-width) solid var(--map-focus); outline-offset: var(--ring-offset); }
 }
 
 /* --- More below ----------------------------------------------------------
@@ -7255,7 +7565,7 @@ body.map-wide .map-mapctl .map-filter-label { text-transform: capitalize; }
   content: '›';
   flex: none;
   color: var(--map-ink-dim);
-  transition: transform 120ms ease;
+  transition: transform var(--dur-fast) var(--ease-in-out);
 }
 
 .map-popup-framing[open] > .map-popup-sources-flat::after { transform: rotate(90deg); }
@@ -7708,7 +8018,7 @@ a.map-popup-source-name {
   font-size: var(--size-xs);
   line-height: 1.3;
   text-decoration: none;
-  transition: border-color var(--dur-fast), color var(--dur-fast);
+  transition: border-color var(--dur-fast) var(--ease-out), color var(--dur-fast) var(--ease-out);
 }
 
 .map-entity-chip:hover {
@@ -7717,8 +8027,8 @@ a.map-popup-source-name {
 }
 
 .map-entity-chip:focus-visible {
-  outline: 2px solid var(--map-focus);
-  outline-offset: 2px;
+  outline: var(--ring-width) solid var(--map-focus);
+  outline-offset: var(--ring-offset);
 }
 
 /* Open reads as filled, the same vocabulary the rest of this map uses for
@@ -8262,8 +8572,8 @@ body.doc-page .chart {
 }
 
 .chart-plot:focus-visible {
-  outline: 2px solid var(--chart-focus);
-  outline-offset: 3px;
+  outline: var(--ring-width) solid var(--chart-focus);
+  outline-offset: var(--ring-offset);
 }
 
 .chart-svg {
@@ -8476,8 +8786,8 @@ body.doc-page .chart {
 }
 
 .chart-range:focus-visible {
-  outline: 2px solid var(--chart-focus);
-  outline-offset: 2px;
+  outline: var(--ring-width) solid var(--chart-focus);
+  outline-offset: var(--ring-offset);
 }
 
 .chart-caption {
@@ -8523,8 +8833,8 @@ body.doc-page .chart {
 .chart-data[open] > .chart-data-summary::before { content: '−'; }
 
 .chart-data-summary:focus-visible {
-  outline: 2px solid var(--chart-focus);
-  outline-offset: 2px;
+  outline: var(--ring-width) solid var(--chart-focus);
+  outline-offset: var(--ring-offset);
 }
 
 /* "the numbers" and the count beside it: the label is what the reader is
@@ -8618,8 +8928,8 @@ body.doc-page .chart {
 .chart-copy:hover { color: var(--chart-ink); }
 
 .chart-copy:focus-visible {
-  outline: 2px solid var(--chart-focus);
-  outline-offset: 2px;
+  outline: var(--ring-width) solid var(--chart-focus);
+  outline-offset: var(--ring-offset);
 }
 
 /* A pointer cursor over a chart that cannot be read with one is a lie, and a
@@ -9015,7 +9325,7 @@ body.doc-page .chart {
     background: color-mix(in srgb, var(--map-sunken) 95%, transparent);
     backdrop-filter: blur(8px);
     z-index: 3;
-    transition: height var(--dur-normal) var(--ease-out);
+    transition: height var(--dur-sheet) var(--ease-sheet);
 
     /* Set for one reflow when the drawer has to be shut *and measured* in the
        same frame — see `setExpanded(open, instant)`. */
@@ -9054,7 +9364,7 @@ body.doc-page .chart {
   .map-feed-chevron {
     display: flex;
     color: var(--map-ink-muted);
-    transition: transform var(--dur-normal) var(--ease-out);
+    transition: transform var(--dur-sheet) var(--ease-sheet);
 
     svg { width: 16px; height: 16px; }
   }

@@ -13,7 +13,7 @@
 // zoom.
 
 import { rankStrip } from '@shared/chart/rank-strip'
-import { signedPct } from '@shared/chart/series'
+import { sparkMove } from '@shared/chart/spark'
 import { Popup, type LngLatLike, type Map as MapLibreMap, type PaddingOptions } from 'maplibre-gl'
 import { appPrompt } from '../_app-prompt'
 import { disclosure, growTo, moreLink, type Built, type Disclosure } from '../_disclosure'
@@ -34,7 +34,6 @@ import { CONTESTED_D, type MapPoint } from './types'
 import type { StoryPlace } from './places'
 import { CATEGORY_COLOUR, FALLBACK_CATEGORY_COLOUR, rampColour } from './style'
 import * as fmt from './format'
-import { pointsFigure } from './markets'
 
 /**
  * Whether a story's `chart` id has a record at `/api/entity/{id}.json`.
@@ -1173,23 +1172,16 @@ export function createStoryPopup(map: MapLibreMap, opts: StoryPopupOptions = {})
       if (!spark) return false
 
       // A series quoted in percent moves in points: a yield going 4.62 to 5.22
-      // rose 0.60, not 13%.
-      const points = record.unit === '%'
-      const delta = points ? spark.ends[1] - spark.ends[0] : spark.windowPct
-      block.classList.toggle('is-pos', delta > 0)
-      block.classList.toggle('is-neg', delta < 0)
+      // rose 0.60, not 13%. `sparkMove` is the article page's figure too.
+      const move = sparkMove(spark, record.unit)
+      block.classList.toggle('is-pos', move.delta > 0)
+      block.classList.toggle('is-neg', move.delta < 0)
 
       const head = el('span', 'map-popup-chart-head')
       head.append(
         el('span', 'map-popup-chart-label', record.label),
         el('span', 'map-popup-chart-reading', record.currentFormatted),
-        // To the hundredth, as a rate is published: rounded to a whole point
-        // a cut of 1.25 read `−1 pts` beside a line that fell further.
-        el(
-          'span',
-          'map-popup-chart-move',
-          points ? pointsFigure(delta, Math.abs(delta) >= 10 ? 1 : 2) : signedPct(delta),
-        ),
+        el('span', 'map-popup-chart-move', move.text),
       )
 
       // The dates the line runs between, which is the period the move is over.

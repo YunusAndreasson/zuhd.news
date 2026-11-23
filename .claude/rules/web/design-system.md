@@ -40,6 +40,17 @@ One type scale and two palettes, each declared once in `public/style.css`.
 - An article or archetype page has one column (`--page-column`,
   `--page-gutter` on `body`). Never `ch`: it is a different length on each box.
 
+## Motion, focus and the fallback face
+
+- Every transition names a `--dur-*` and an `--ease-*` token; a hover comes
+  in at `--dur-instant` (the `@media (hover: hover)` rule) and fades at
+  `--dur-fast`. Never transition `width`, `height` or `font-weight`.
+- One focus ring: `--ring-width` at `--ring-offset` in `--focus`
+  (`--map-focus` on the dark pages). A control's own `:focus-visible`
+  restates the tokens, never a pixel width.
+- `Source Sans 3 Fallback` is Arial scaled to the webfont at its 95%:
+  re-measure its `size-adjust` and overrides if the face or that 95% moves.
+
 ## Colour
 
 - The site palette (`:root`) follows the reader: four inks, two surfaces, two

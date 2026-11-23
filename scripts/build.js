@@ -15,6 +15,8 @@ import { writeBasemapTiles } from './build/basemap-tiles.js'
 import { buildCountryPages } from './build/country-pages.js'
 import { buildCountryMetrics } from './build/country-metrics.js'
 import { buildEntityPages } from './build/entity-pages.js'
+import { locatorHtml } from './build/locator.js'
+import { storyChartHtml, storyChartId } from './build/story-chart.js'
 import { latestTrendsPath } from './lib/trends-snapshot.js'
 import { canonicalIndicatorId } from './lib/entity-registry.js'
 import { loadShared } from './build/shared-ts.js'
@@ -305,8 +307,39 @@ const formatKickerDate = (addedAt) => {
   return `${day} ${month}`
 }
 
-const buildArticlePage = (article, prev, next, thread, template, indicatorMap) => {
-  const { slug, meta, body, bodyHtml, title, dateFormatted, addedAt, correctedAt } = article
+/**
+ * The article's end, on a phone: the app, named once, for the reader's own
+ * platform. Both stores are in the HTML, so a reader with no script gets both;
+ * `share-bar.ts` keeps the one their phone takes (`pickStore`,
+ * `_app-prompt.ts`). The stylesheet shows it only to a coarse pointer, so a
+ * desktop never sees it.
+ */
+const appHandoffHtml = () =>
+  `<aside class="article-app" aria-label="The app">` +
+  `<span class="label article-app-label">The app</span>` +
+  `<p class="article-app-text">This story’s map, and the globe it sits on, live in the app.</p>` +
+  `<a class="article-app-store" data-platform="ios" href="${SHARE.APP_IOS}" rel="noopener" target="_blank">Download on the App Store</a>` +
+  `<a class="article-app-store" data-platform="android" href="${SHARE.APP_ANDROID}" rel="noopener" target="_blank">Get it on Google Play</a>` +
+  `<p class="article-app-note">No ads, no accounts.</p>` +
+  `</aside>`
+
+/**
+ * @param {object} [extras] what the article carries beyond its text
+ * @param {string} [extras.locator] the globe beside the hook (`locatorHtml`)
+ * @param {string} [extras.chart] the story's series (`storyChartHtml`)
+ * @param {boolean} [extras.onMap] whether `/s/{slug}` can open it on the map
+ */
+const buildArticlePage = (article, prev, next, thread, template, indicatorMap, extras = {}) => {
+  const { slug, meta, body, title, dateFormatted, addedAt, correctedAt } = article
+  // The prose, then the story's chart, then the corrections and the isnad, then
+  // the way to the map: `bodyHtml` is the prose and the source mark, and
+  // `bodyHtmlBare` the prose alone, so the mark is what follows it.
+  const prose = article.bodyHtmlBare ?? article.bodyHtml
+  const sourcemark = article.bodyHtml.slice(prose.length)
+  const mapLink = extras.onMap
+    ? `<p class="article-map-link"><a href="/s/${slug}">See it on the map →</a></p>`
+    : ''
+  const bodyHtml = (extras.locator ?? '') + prose + (extras.chart ?? '') + sourcemark + mapLink
   const isoDate = meta.date || new Date(addedAt).toISOString()
   const category = meta.category || 'politics'
   const description = buildDescription(body)
@@ -388,6 +421,13 @@ const buildArticlePage = (article, prev, next, thread, template, indicatorMap) =
     // canonical surface and sharing the front door — see `shareUrl` in
     // shared/share.ts for why both surfaces send the same link.
     .replace(/{{shareRow}}/g, () => shareRowHtml(SHARE.shareUrl(slug), title))
+    .replace(/{{appHandoff}}/g, () => appHandoffHtml())
+    // Safari's banner opens the app on this story rather than on its front
+    // page: the app claims `/a/*` (`share-surface.md`).
+    .replace(
+      `content="app-id=${SHARE.APP_STORE_ID}"`,
+      () => `content="app-id=${SHARE.APP_STORE_ID}, app-argument=${url}"`,
+    )
     .replace(/{{prevLink}}/g, () => prevLink)
     .replace(/{{nextLink}}/g, () => nextLink)
 }
@@ -497,6 +537,14 @@ const pageCss = dropRulesNeedingClass(cssContent, /\.map-[\w-]+/, KEPT_MAP_CLASS
  */
 const CF_BEACON = `<script defer src="https://static.cloudflareinsights.com/beacon.min.js" data-cf-beacon='{"token": "9b35a0f25a0543849d0e830feb07a183"}'></script>`
 
+/*
+ * Speculation rules prerender a same-origin link after a 200ms hover. A link
+ * whose click is answered in place is left out (`selector_matches`): the map's
+ * story rows and cards open a card, a `data-island` link opens a sheet, a
+ * follows chip unfolds its chart. Prerendering those fetched a page per hover
+ * that no click would show. The article's previous and next links still
+ * prerender.
+ */
 const headCommon = `<meta charset="utf-8">
   <meta name="google-site-verification" content="wE52hhFpRSdZ0DSAJM4Z57wM4AXTQ68eLrlo-zk_xLw">
   <meta name="author" content="Yunus Andreasson">
@@ -515,7 +563,7 @@ const headCommon = `<meta charset="utf-8">
   <link rel="icon" href="/favicon.svg" type="image/svg+xml">
   <link rel="apple-touch-icon" href="/apple-touch-icon.png">
   <link rel="manifest" href="/manifest.json">
-  <script type="speculationrules">{"prerender":[{"where":{"and":[{"href_matches":"/*"},{"not":{"href_matches":"/api/*"}},{"not":{"href_matches":"/audio/*"}},{"not":{"href_matches":"/feed.xml"}},{"not":{"href_matches":"/sitemap.xml"}},{"not":{"href_matches":"/og-image.png"}}]},"eagerness":"moderate"}]}</script>
+  <script type="speculationrules">{"prerender":[{"where":{"and":[{"href_matches":"/*"},{"not":{"href_matches":"/api/*"}},{"not":{"href_matches":"/audio/*"}},{"not":{"href_matches":"/feed.xml"}},{"not":{"href_matches":"/sitemap.xml"}},{"not":{"href_matches":"/og-image.png"}},{"not":{"selector_matches":["[data-island]",".article-entity-chip",".map-entity-chip",".map-feed a",".maplibregl-popup a",".map-sheet a"]}}]},"eagerness":"moderate"}]}</script>
   ${CF_BEACON}`
 
 /**
@@ -2210,21 +2258,6 @@ const homepage = buildHomepage(sorted, cutoff, homepageTemplate)
 writeFileSync(join(DIST_DIR, 'index.html'), homepage)
 console.log(`  Built: index.html (${articles.length} articles)`)
 
-// Per-article static pages at /a/{slug}.html — replaces the legacy
-// functions/a/[slug].js runtime redirect with real, crawlable, share-ready
-// HTML. Uses `sorted` so prev/next navigation follows reverse-chronological
-// order (newest → oldest), matching the homepage list semantics.
-
-mkdirSync(join(DIST_DIR, 'a'), { recursive: true })
-for (let i = 0; i < sorted.length; i++) {
-  const article = sorted[i]
-  const prev = sorted[i + 1] ?? null
-  const next = sorted[i - 1] ?? null
-  const thread = threadLookup.get(article.slug) || null
-  const html = buildArticlePage(article, prev, next, thread, articleTemplate, indicatorMap)
-  writeFileSync(join(DIST_DIR, 'a', `${article.slug}.html`), html)
-}
-console.log(`  Built: a/ (${sorted.length} article pages)`)
 
 // Islands: compile public/islands/*.ts via esbuild into dist/islands/*.js.
 // Each island is an ESM entry that island-loader.js lazy-loads on first
@@ -2467,6 +2500,35 @@ const entityResult = await buildEntityPages({
   extraIndicators,
 })
 console.log(`  Built: e/ (${entityResult.count} entity pages)`)
+
+// Per-article static pages at /a/{slug}.html — replaces the legacy
+// functions/a/[slug].js runtime redirect with real, crawlable, share-ready
+// HTML. Uses `sorted` so prev/next navigation follows reverse-chronological
+// order (newest → oldest), matching the homepage list semantics.
+
+// Built after the entity pages: an article prints its story's series from the
+// `/api/entity/{id}.json` those write, the file the map's card reads. And only
+// a story `map.json` holds gets a way to the map: `/s/{slug}` sends any other
+// back here (`openSharedStory`).
+mkdirSync(join(DIST_DIR, 'a'), { recursive: true })
+const onMapSlugs = new Set(mapPoints.map((p) => p.slug))
+for (let i = 0; i < sorted.length; i++) {
+  const article = sorted[i]
+  const prev = sorted[i + 1] ?? null
+  const next = sorted[i - 1] ?? null
+  const thread = threadLookup.get(article.slug) || null
+  const html = buildArticlePage(article, prev, next, thread, articleTemplate, indicatorMap, {
+    locator: locatorHtml({
+      lat: article.meta.lat,
+      lng: article.meta.lng,
+      place: displayLocation(article.meta.location || ''),
+    }),
+    chart: storyChartHtml(storyChartId(article.meta, indicatorMap, canonicalIndicatorId), DIST_DIR),
+    onMap: onMapSlugs.has(article.slug),
+  })
+  writeFileSync(join(DIST_DIR, 'a', `${article.slug}.html`), html)
+}
+console.log(`  Built: a/ (${sorted.length} article pages)`)
 
 // Per-country pages at /country/{ISO2}.html — country profile (flag,
 // capital, 26 metrics × percentile strip × source attribution) + recent
