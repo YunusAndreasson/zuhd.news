@@ -16,6 +16,7 @@
 // the engine is fetched once and shared with the worker it spawns.
 import {
   clearPrewarmedResources,
+  Marker,
   Map as MapLibreMap,
   prewarm,
   type ExpressionSpecification,
@@ -62,6 +63,7 @@ import {
   flowerOffset as petalOffset,
   PETAL_PX,
   flowerRadius,
+  haversineKm,
   placeHeat,
   type PlaceIndex,
   type StoryPlace,
@@ -93,7 +95,8 @@ import { createPaneSeam, type PaneSeam } from './_map/panes'
 import { createTimeline, type Timeline } from './_map/timeline'
 import { createSheet, type Sheet } from './_map/sheet'
 import { MAKKAH_LABEL, MAKKAH_TZ, metricName, relativeTime, solarClock, zoneOffset } from './_map/format'
-import { createStoryPopup, type CountryStanding, type StoryPopup } from './_map/popup'
+import { createStoryPopup, type CountryStanding, type ShownStory, type StoryPopup } from './_map/popup'
+import { reducedMotion } from './_disclosure'
 import { dayPolygon, nightPolygon, sunLightPosition, terminatorBand } from './_map/solar'
 import { PRAYER_NOTE, PRAYERS, type PrayerId, prayerInstantAt, prayerLines } from './_map/prayer'
 import { HIJRI_NOTE, hijriLabel } from './_map/hijri'
@@ -305,6 +308,42 @@ const RANGES: Array<[label: string, hours: number]> = [
  * paint while still being the news. 24h is one press away.
  */
 const DEFAULT_RANGE_HOURS = 72
+
+/**
+ * The range the address asks for (`?r=7d`), so Back from an article lands on
+ * the slice the reader left. The default is never written, so `/` stays `/`.
+ */
+const rangeFromUrl = (): number | null => {
+  const r = new URLSearchParams(location.search).get('r')
+  return RANGES.find(([label]) => label === r)?.[1] ?? null
+}
+
+/**
+ * How long a flight to a story takes: 350ms to a neighbour, 800ms across the
+ * globe, by the larger of the arc and the zoom step, on its square root so a
+ * short hop is not a crawl. It was a fixed 1150ms, so moving one country over
+ * took as long as crossing the planet, and the card waited on it.
+ */
+const FLIGHT_MS: [near: number, far: number] = [350, 800]
+const flightMs = (fromKm: number, zoomStep: number): number => {
+  const reach = Math.min(1, Math.max(fromKm / 10_000, Math.abs(zoomStep) / 4))
+  return Math.round(FLIGHT_MS[0] + (FLIGHT_MS[1] - FLIGHT_MS[0]) * Math.sqrt(reach))
+}
+/** A strong ease-out: the camera is nearly there in the first half. */
+const easeOutQuart = (t: number) => 1 - (1 - t) ** 4
+
+/** Between the docked story card and the part of the map the camera uses. */
+const DOCK_GAP = 8
+
+/**
+ * How far the other stories' dots step back while one is open: one step, so
+ * the open story's place stands out and the rest of the map still reads.
+ * Paint, never a scrim over the canvas.
+ */
+const OPEN_DIM = 0.4
+/** The dots' and the contested rings' own opacity, which the dim multiplies. */
+const STORY_OPACITY: ExpressionSpecification = ['get', 'a']
+const CONTESTED_OPACITY: ExpressionSpecification = ['*', ['get', 'a'], 0.55]
 
 /** How often the terminator is redrawn. The sun moves 0.25° a minute. */
 const SUN_TICK_MS = 120_000
@@ -529,7 +568,7 @@ function renderFallback(container: HTMLElement): () => void {
 
 export function mount(
   container: HTMLElement,
-  props: { basemap?: string; story?: string; feeds?: string } = {},
+  props: { basemap?: string; story?: string; feeds?: string; homeTitle?: string } = {},
 ) {
   /**
    * Start MapLibre's worker pool before anything needs it.
@@ -1538,7 +1577,7 @@ export function mount(
     // event, and `map-island.test.js` fails if the scrubber reaches it.
     genocide: true,
   }
-  let rangeHours: number = DEFAULT_RANGE_HOURS
+  let rangeHours: number = rangeFromUrl() ?? DEFAULT_RANGE_HOURS
   let scrubNow = Date.now()
   let mounted = true
   let layersReady = false
@@ -1656,7 +1695,7 @@ export function mount(
    * payload lands; filled in later, when the exchanges arrive.
    */
   const marketStrip: MarketStrip = createMarketStrip({
-    rangeDays: DEFAULT_RANGE_HOURS / 24,
+    rangeDays: rangeHours / 24,
     onSelect: (id, anchor) => {
       sheet.dockTo(anchor)
       const ex = markets.find((m) => m.id === id)
@@ -2124,7 +2163,24 @@ export function mount(
    * lands.
    */
   let paddingPending = false
-  const writePadding = (next: PaddingOptions) => {
+  /**
+   * Padding held back until the camera next moves on its own account (`park`).
+   *
+   * The docked story card closing gives its width back to the camera, but a
+   * padding write moves the view: the place the reader was looking at slid
+   * half the card's width, and on the sphere a jump re-centred on the same
+   * point still turned the planet. So the old padding stays while nothing
+   * moves, and the next flight or reset carries this one (`flyCamera`,
+   * `resetView`). A drag keeps the old one, which only says where the centre
+   * of a wheel over space is.
+   */
+  let parkedPadding: PaddingOptions | null = null
+  const writePadding = (next: PaddingOptions, park = false) => {
+    if (park) {
+      parkedPadding = next
+      return
+    }
+    parkedPadding = null
     if (flying) {
       paddingPending = true
       return
@@ -2135,6 +2191,21 @@ export function mount(
     )
     if (same) return
     map.setPadding(next)
+  }
+
+  /**
+   * The docked story card's right edge in the canvas, which the camera keeps
+   * left of, or 0 with no card docked. Its layout box, not its rect: the card
+   * slides in, and a rect taken mid-slide is short by the slide.
+   */
+  const dockEdge = (): number => {
+    const box = popup?.dockBox()
+    return box ? box.offsetLeft + box.offsetWidth + DOCK_GAP : 0
+  }
+  /** The camera's padding with the story card docked: the rest kept as is. */
+  const dockedPadding = (): PaddingOptions => {
+    const base = parkedPadding ?? map.getPadding()
+    return { ...base, left: Math.max(base.left ?? 0, dockEdge()) }
   }
 
   /**
@@ -2156,7 +2227,7 @@ export function mount(
     popup?.setPadding(cardPadding)
   }
 
-  const applyPadding = () => {
+  const applyPadding = (park = false) => {
     // The style can finish loading after teardown.
     if (!mounted) return
     paddingPending = false
@@ -2196,7 +2267,9 @@ export function mount(
 
     if (!rail || rail.w < canvas.width - 1) {
       const left = rail?.w ?? 0
-      writePadding({ top: 0, bottom: 0, right: aside, left })
+      // The camera centres in what the docked story card leaves; the card's
+      // own popup padding is unchanged, since no popup is open beside it.
+      writePadding({ top: 0, bottom: 0, right: aside, left: Math.max(left, dockEdge()) }, park)
       // The camera centres between the rails; a card must also clear the
       // timeline under the globe, which the camera has never been padded for.
       const scrub = inset(timeline?.element)
@@ -3608,7 +3681,7 @@ export function mount(
         'icon-halo-color': MAP_COLOURS.contested,
         'icon-halo-width': 1,
         'icon-halo-blur': 0,
-        'icon-opacity': ['*', ['get', 'a'], 0.55],
+        'icon-opacity': CONTESTED_OPACITY,
       },
     })
 
@@ -3647,7 +3720,7 @@ export function mount(
       },
       paint: {
         'icon-color': catColour(FALLBACK_CATEGORY_COLOUR),
-        'icon-opacity': ['get', 'a'],
+        'icon-opacity': STORY_OPACITY,
         'icon-halo-width': [
           'case',
           ['boolean', ['feature-state', 'hover'], false], 1.8,
@@ -4091,22 +4164,126 @@ export function mount(
     }
     map.on('moveend', land)
     window.setTimeout(land, 1600)
-    map.flyTo(options)
+    const parked = parkedPadding
+    parkedPadding = null
+    map.flyTo(parked && !options.padding ? { ...options, padding: parked } : options)
   }
 
   /**
-   * A short hop toward the story rather than a jump to a fixed zoom: from the
-   * world view it settles at a regional scale, and if you are already zoomed in
-   * it only steps a little closer. The vertical offset leaves room for the
-   * popup, which opens above its anchor.
+   * The open story's place, ringed in the map's gold, and the strait it charts
+   * or follows, ringed more quietly: the series under the card's headline
+   * found on the map. DOM markers, so the one pulse when the camera lands is a
+   * CSS animation (none under reduced motion) and nothing is written to a
+   * source. A marker on the far side of the planet is hidden, not dimmed.
    */
+  let storyRing: { slug: string; marker: Marker } | null = null
+  let seriesRings: Marker[] = []
+  let seriesRinged = ''
+  const ring = (lng: number, lat: number, className: string, radius: number): Marker => {
+    const element = document.createElement('div')
+    element.className = className
+    element.setAttribute('aria-hidden', 'true')
+    element.style.setProperty('--ring-r', `${Math.round(radius)}px`)
+    return new Marker({ element, opacityWhenCovered: '0' }).setLngLat([lng, lat]).addTo(map)
+  }
+  const ringStory = (slug: string | null, pulse = false, series: string[] = []) => {
+    if (storyRing && storyRing.slug !== slug) {
+      storyRing.marker.remove()
+      storyRing = null
+    }
+    if (slug && !storyRing) {
+      const key = placeIndex.of.get(slug)
+      const at = (key && placeIndex.at.get(key)) || pointBySlug.get(slug)
+      if (at) {
+        const count = (key && placeByKey.get(key)?.count) || 1
+        storyRing = { slug, marker: ring(at.lng, at.lat, 'map-story-ring', flowerRadius(count) + 7) }
+      }
+    }
+    if (pulse && storyRing && !reducedMotion()) {
+      const el = storyRing.marker.getElement()
+      el.classList.remove('is-pulse')
+      // A reflow between, or a second landing on the same place never pulses.
+      void el.offsetWidth
+      el.classList.add('is-pulse')
+    }
+    const straits = slug
+      ? series.flatMap((id) => {
+          const cp = id.startsWith('cp:') ? chokepoints.find((c) => c.id === id.slice(3)) : undefined
+          return cp ? [cp] : []
+        })
+      : []
+    const key = straits.map((c) => c.id).join(' ')
+    if (key === seriesRinged) return
+    seriesRinged = key
+    for (const m of seriesRings) m.remove()
+    seriesRings = straits.map((c) => ring(c.lng, c.lat, 'map-story-ring is-series', 11))
+  }
+
   /**
-   * Flies to a story, then opens the full article once the camera settles.
+   * The other stories' dots step back while one is open. One paint write per
+   * open and per close, never per pointer move, so nothing reloads: the
+   * expression reads a property the feature already has.
+   */
+  let dimmedFor: string | null = null
+  const dimStories = (slug: string | null) => {
+    if (!layersReady || slug === dimmedFor) return
+    dimmedFor = slug
+    const dim = (base: ExpressionSpecification): ExpressionSpecification =>
+      slug ? ['case', ['==', ['get', 'slug'], slug], base, ['*', base, OPEN_DIM]] : base
+    map.setPaintProperty('story-points', 'icon-opacity', dim(STORY_OPACITY))
+    map.setPaintProperty('story-contested', 'icon-opacity', dim(CONTESTED_OPACITY))
+  }
+
+  /**
+   * The open story and the range, in the address and the tab's title.
    *
-   * Opening mid-flight means reading a card that is still sliding across the
-   * screen, so the card waits for `moveend`. The timeout is a safety net: if
-   * the movement is interrupted (a drag, another click) `moveend` may never
-   * arrive for this flight, and the reader is left staring at nothing.
+   * `/s/{slug}` is the route that opens a story on the map
+   * (`functions/s/[slug].js`), so Back from an article, a reload or a copied
+   * address returns to the same card on the same slice. `replaceState`, never
+   * a push: opening ten stories must not take ten presses of Back to leave.
+   */
+  let shownStory: ShownStory | null = null
+  const homeTitle = props.homeTitle || document.title
+  const syncAddress = () => {
+    const path = shownStory ? `/s/${shownStory.slug}` : '/'
+    const label = RANGES.find(([, hours]) => hours === rangeHours)?.[0]
+    const query = rangeHours !== DEFAULT_RANGE_HOURS && label ? `?r=${label}` : ''
+    const next = `${path}${query}${location.hash}`
+    // The prototype's own method: the analytics script wraps `history`'s to
+    // count each change of address as a page view, and opening a story is
+    // not one. Which stories a reader opens was never sent anywhere.
+    if (`${location.pathname}${location.search}${location.hash}` !== next) {
+      History.prototype.replaceState.call(history, history.state, '', next)
+    }
+    const title = shownStory ? `${shownStory.title} — zuhd.news` : homeTitle
+    if (document.title !== title) document.title = title
+  }
+  const onStory = (story: ShownStory | null) => {
+    const closing = !story && !!shownStory
+    shownStory = story
+    syncAddress()
+    dimStories(story?.slug ?? null)
+    ringStory(story?.slug ?? null, false, story?.series ?? [])
+    // What moves out of the docked card's way (the peek) asks this.
+    document.body.classList.toggle('map-story-docked', !!popup?.dockBox())
+    // The docked card gave its width back: the camera's next move takes it,
+    // and nothing on screen moves now (`parkedPadding`).
+    if (closing) applyPadding(true)
+  }
+
+  /**
+   * Flies to a story and opens its card.
+   *
+   * On the desktop the card docks beside the story list and opens at once,
+   * before the camera has moved: it is not anchored to the place, so nothing
+   * is gained by waiting and a reader clicking a row wants the words first.
+   * The camera centres the place in the map the card leaves (`padding`, from
+   * `dockEdge`) and marks it when it lands (`ringStory`).
+   *
+   * On a phone the card is a popup on its place, so it still waits for
+   * `moveend`: opening mid-flight means reading a card that is sliding across
+   * the screen. The preview shows meanwhile, and the timeout in `flyCamera` is
+   * the safety net for a flight that never lands.
    */
   const flyToStory = (p: MapPoint, keyboard = false) => {
     if (openSlug === p.slug) return
@@ -4115,9 +4292,14 @@ export function mount(
     feed.highlight(p.slug)
     markRead(p.slug)
 
-    // Immediate feedback while the camera is still travelling; the full
-    // article replaces it once the map settles.
-    popup?.preview(p, leads, scrubNow)
+    const dock = docked()
+    const focusCard = () => {
+      if (cardReturnSlug === p.slug && openSlug === p.slug) popup?.focus()
+    }
+    // Docked: the card now. On a phone: immediate feedback while the camera
+    // is still travelling; the full article replaces it once the map settles.
+    if (dock) void popup?.open(p, scrubNow).then(focusCard)
+    else popup?.preview(p, leads, scrubNow)
 
     // Close enough to place the story in its region, not so close that the
     // region is all that is left. Jumping the world view straight to 3.6 threw
@@ -4127,32 +4309,36 @@ export function mount(
     // can scroll.
     const z = map.getZoom()
     const target = z < 2.5 ? 2.5 : Math.min(z + 0.4, 6)
+    const from = map.getCenter()
+    const duration = reducedMotion()
+      ? 0
+      : flightMs(haversineKm(from.lat, from.lng, p.lat, p.lng), target - z)
 
     flyCamera(
       {
         center: [p.lng, p.lat],
         zoom: target,
-        // Leaves room above the marker for the card, which opens upward and
-        // takes all of that room (`fit` in `popup.ts`). A fifth of the padded
-        // view below the centre, where 110px left a 1440x900 card 70px short
-        // of the stories it scrolled; never under 110, and never within
-        // 120px of the chrome below, which on a phone is most of the screen.
-        // The horizontal correction for the rail comes from the map's padding.
-        offset: [0, storyDrop()],
-        duration: 1150,
-        curve: 1.35,
-        // No `essential: true`. In MapLibre that flag means "animate anyway,
-        // whatever the reader's motion preference" — and a 1.15s flight across
-        // the globe is the exact motion `prefers-reduced-motion` exists to
-        // suppress. Without the flag MapLibre still makes the move, it just
-        // arrives instantly, which is what someone who asked for less motion
-        // wants: the destination, not the journey.
+        // Docked, the place is centred in the map the card leaves: the
+        // padding moves with the flight, so it is never written mid-flight.
+        // On a phone the popup opens upward from the place and takes all the
+        // room above it (`fit` in `popup.ts`), so the place lands a fifth of
+        // the padded view below the centre: never under 110px, and never
+        // within 120px of the chrome below, which on a phone is most of the
+        // screen.
+        ...(dock
+          ? { padding: dockedPadding() }
+          : { offset: [0, storyDrop()] as [number, number] }),
+        duration,
+        easing: easeOutQuart,
+        // No `essential: true`: MapLibre would animate whatever the reader's
+        // motion preference. Reduced motion is a jump (`duration: 0`): the
+        // destination, not the journey.
       },
       () => {
         if (openSlug !== p.slug) return
-        void popup?.open(p, scrubNow).then(() => {
-          if (cardReturnSlug === p.slug && openSlug === p.slug) popup?.focus()
-        })
+        ringStory(p.slug, true)
+        if (dock) return
+        void popup?.open(p, scrubNow).then(focusCard)
       },
     )
   }
@@ -4324,11 +4510,19 @@ export function mount(
     hoverStateWritten = hoverSlug
   }
 
+  /**
+   * A pointer that rests on a story's row or dot for a moment fetches it, so
+   * the click opens the whole card on its own frame. A pointer passing over
+   * the list fetches nothing.
+   */
+  let prefetchTimer: number | undefined
   const setHoverSlug = (slug: string | null) => {
     if (slug === hoverSlug) return
     hoverSlug = slug
     feed.highlight(slug)
     syncHoverState()
+    window.clearTimeout(prefetchTimer)
+    if (slug) prefetchTimer = window.setTimeout(() => popup?.prefetch(slug), 90)
   }
 
   /**
@@ -4485,7 +4679,9 @@ export function mount(
     feed.highlight(null)
     // As above: reduced motion turns this into an instant return, not a
     // suppressed one.
-    map.easeTo({ ...HOME_VIEW, bearing: 0, pitch: 0, duration: 800 })
+    const parked = parkedPadding
+    parkedPadding = null
+    map.easeTo({ ...HOME_VIEW, bearing: 0, pitch: 0, duration: 800, ...(parked ? { padding: parked } : {}) })
   }
 
   /**
@@ -4959,6 +5155,7 @@ export function mount(
   function setRange(hours: number) {
     rangeHours = hours
     syncRangeChips()
+    syncAddress()
     // The strip holds its own payloads and redraws from them; it does not
     // refetch, so this is arithmetic on data already in hand.
     marketStrip.setRangeDays(hours / 24)
@@ -5389,7 +5586,7 @@ export function mount(
     // here is two beacons on one coordinate and two rows in the rail.
     const have = new Set(points.map((p) => p.slug))
     const older = data.points.filter((p) => !have.has(p.slug))
-    if (!older.length) return
+    if (!older.length) return openSharedStory()
     archivePoints = older
     points = [...older, ...points].sort((a, b) => a.t - b.t)
     pointBySlug = new Map(points.map((p) => [p.slug, p]))
@@ -5397,6 +5594,7 @@ export function mount(
     corpusStart = Math.min(corpusStart, data.window.start)
     rebuildTimeline(railStart(), windowEnd)
     refresh()
+    openSharedStory()
   }
 
   /**
@@ -5492,8 +5690,12 @@ export function mount(
     // `popup?.preview` and `popup?.open` were both optional-chaining past a
     // `null` that would exist a few hundred milliseconds later.
     if (!coreLoaded || !popup) return
-    sharedDone = true
     const p = pointBySlug.get(sharedStory)
+    // A story older than the fortnight, reopened on the 30d or 90d slice it
+    // was read on (`?r=`, Back from its article): it is in the archive, which
+    // asks again when it lands.
+    if (!p && rangeHours > BUILD_WINDOW_HOURS && archiveState !== 'done') return
+    sharedDone = true
     if (!p) {
       location.replace(`/a/${sharedStory}`)
       return
@@ -5962,6 +6164,8 @@ export function mount(
       // set and `flyToStory`'s "already open" guard swallowed the next click
       // on that same beacon.
       onCountry: writeCountrySelected,
+      onStory,
+      docked,
       onClose: () => {
         returnFocus()
         if (!openSlug) return
@@ -6404,6 +6608,7 @@ export function mount(
     clearInterval(clockTimer)
     clearInterval(sunTimer)
     if (refreshFrame) cancelAnimationFrame(refreshFrame)
+    window.clearTimeout(prefetchTimer)
     clearPeekClose()
     chromeObserver.disconnect()
     rootObserver.disconnect()
@@ -6411,7 +6616,7 @@ export function mount(
     window.removeEventListener('resize', onResize)
     document.removeEventListener('keydown', onKeyDown)
     document.removeEventListener('click', onWordmarkClick)
-    document.body.classList.remove('map-wide')
+    document.body.classList.remove('map-wide', 'map-story-docked')
     for (const seam of seams) seam.destroy()
     timeline?.destroy()
     feed.destroy()

@@ -193,7 +193,7 @@ export const placeDensity = (count: number, amax = 1): number =>
 const EARTH_KM = 6371
 
 /** Great-circle distance, for the one comparison that needs to be real. */
-const haversineKm = (
+export const haversineKm = (
   aLat: number,
   aLng: number,
   bLat: number,

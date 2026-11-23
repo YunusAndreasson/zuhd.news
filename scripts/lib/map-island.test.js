@@ -224,6 +224,14 @@ writeFileSync(
     remove() { this.removed = true }
   }
   export class NavigationControl {}
+  // The open story's ring (\`ringStory\`): an element placed on the map.
+  export class Marker {
+    constructor(opts) { this.element = opts?.element ?? document.createElement('div') }
+    setLngLat(at) { this.at = at; return this }
+    addTo() { return this }
+    remove() { this.element.remove(); return this }
+    getElement() { return this.element }
+  }
   const makeStubPopupEl = () => {
     const root = document.createElement('div')
     root.className = 'maplibregl-popup'
@@ -380,7 +388,9 @@ function setupDom() {
   // `Element` is here because the island narrows event targets with
   // `instanceof` — a real document has every one of these and a harness that
   // omits one turns a correct guard into a ReferenceError jsdom swallows.
-  const globals = ['window', 'self', 'document', 'Element', 'HTMLElement', 'Event', 'CustomEvent', 'Node']
+  // `location`, `history` and `History`: the open story and the range live
+  // in the address (`syncAddress`).
+  const globals = ['window', 'self', 'document', 'Element', 'HTMLElement', 'Event', 'CustomEvent', 'Node', 'location', 'history', 'History']
   const saved = {}
   for (const k of globals) {
     saved[k] = globalThis[k]

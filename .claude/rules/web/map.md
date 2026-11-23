@@ -27,8 +27,12 @@ calendar `hijri.md`.
 ## Camera and projection
 
 - The map opens on Makkah (`HOME_CENTER`), the frame the clock uses. "Whole
-  world", a bare Escape and the wordmark call `resetView`; the URL never
-  changes.
+  world", a bare Escape and the wordmark call `resetView`, which never
+  navigates.
+- The open story and a range other than 3d live in the address
+  (`syncAddress`: `/s/{slug}?r=7d`), by `replaceState` on the prototype, never
+  a push: Back leaves the site, and the analytics script never sees a story
+  open as a page view.
 - It opens on three days (`DEFAULT_RANGE_HOURS`), and a story's decay
   half-life is 72 hours (`DECAY_HALF_LIFE_HOURS`). Both are decisions.
 - The world is a sphere below `GLOBE_ZOOM.sphere` (3) and Mercator above
@@ -177,6 +181,12 @@ calendar `hijri.md`.
   `--map-ink`, then the body. A country's own card shares the headline.
 - A story card is one width at two densities. `preview()` prefetches the
   story, and `growTo` runs after the position is final.
+- On the desktop a story's card is docked beside the list (`.map-story-dock`,
+  `toDock`), not a popup: it opens at once, grows only downward, and the
+  camera centres the place in the map it leaves (`dockEdge`), ringed in gold
+  (`ringStory`) with the other dots one step back (`dimStories`, paint).
+- Closing the docked card parks the padding (`parkedPadding`) for the next
+  flight or reset: any padding write moves the view, even re-centred.
 - The card's sources (`sourceBlock`) take their thresholds and words from
   `shared/source-framing.ts`, and the fold's words from the article page. A
   lean is a word in ink, never a number and never `--map-pos`/`--map-neg`.

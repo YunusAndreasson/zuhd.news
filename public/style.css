@@ -4050,6 +4050,7 @@ body.map-wide .map-range-group { display: block; }
 .map-range:focus-visible,
 .map-filter:focus-visible,
 .map-reset:focus-visible,
+.map-story-dock-close:focus-visible,
 .map-more:focus-visible,
 .map-markets-group:focus-visible,
 .map-feed-title:focus-visible,
@@ -6953,6 +6954,7 @@ body.map-wide .map-mapctl .map-filter-label { text-transform: capitalize; }
 
    It takes no pointer, or it would eat a press on the link it fades. */
 .maplibregl-popup-content::after,
+.map-story-dock-body::after,
 .map-markets-panel::after,
 .country-preview-sheet .island-sheet-inner::after,
 .map-sheet:not(.is-peek) .island-sheet-inner::after {
@@ -6965,7 +6967,8 @@ body.map-wide .map-mapctl .map-filter-label { text-transform: capitalize; }
   pointer-events: none;
 }
 
-.maplibregl-popup-close-button {
+.maplibregl-popup-close-button,
+.map-story-dock-close {
   position: absolute;
   top: 0.1rem;
   right: 0.25rem;
@@ -7436,11 +7439,154 @@ a.map-popup-source-name {
   }
 }
 
+/* And leave the same way, faster (`is-leaving`, `leave` in `popup.ts`): it
+   was gone in one frame, which read as the card being cut. */
+.maplibregl-popup.is-leaving {
+  opacity: 0;
+  translate: 0 6px;
+  transition-duration: var(--dur-fast);
+  pointer-events: none;
+}
+
 @media (prefers-reduced-motion: reduce) {
   .maplibregl-popup {
     transition: none;
     @starting-style { opacity: 1; translate: 0 0; }
   }
+}
+
+/* --- The docked story card ---
+   On the desktop a story's card stands beside the story list, from under the
+   `layers` control (4.5rem, as a pinned mark's card rises to) down to above
+   the timeline and its range chips, and takes its content's height inside
+   that. The camera centres the story's place in the map it leaves
+   (`dockEdge`). Not a popup: nothing points at the place, which is ringed
+   instead (`.map-story-ring`). The phone keeps the popup.
+
+   `--map-dock-w` is read by the peek too, which moves out from under it. It
+   leaves the map at least 12rem between the card and the instrument rail. */
+body.map-page {
+  --map-dock-w: min(
+    clamp(23.75rem, 28vw, 26.25rem),
+    calc(100vw - var(--map-rail-w) - var(--map-aside-w) - 12rem)
+  );
+}
+
+.map-story-dock {
+  position: absolute;
+  z-index: 2;
+  top: 4.5rem;
+  left: calc(var(--map-rail-w) + var(--space-sm));
+  width: var(--map-dock-w);
+  max-height: calc(100% - 4.5rem - var(--map-scrub-reach, 5.5rem) - var(--space-xs));
+  display: flex;
+  flex-direction: column;
+  background: var(--map-panel);
+  border: 1px solid var(--map-line-card);
+  border-radius: var(--map-radius);
+  box-shadow: 0 12px 38px rgb(0 0 0 / 0.55);
+  transition: opacity var(--dur-normal) var(--ease-out),
+    translate var(--dur-normal) var(--ease-out);
+
+  /* It comes from the list's side and goes back to it. */
+  @starting-style {
+    opacity: 0;
+    translate: -0.5rem 0;
+  }
+
+  &.is-leaving {
+    opacity: 0;
+    translate: -0.5rem 0;
+    transition-duration: var(--dur-fast);
+    pointer-events: none;
+  }
+
+  &[hidden] { display: none; }
+}
+
+/* The scroll container, under the close button, which stays put. */
+.map-story-dock-body {
+  min-height: 0;
+  overflow-y: auto;
+  overscroll-behavior: contain;
+  padding: 0.75rem 0.85rem 0;
+  --card-foot: 1.25rem;
+  --card-surface: var(--map-panel);
+
+  &:focus { outline: none; }
+  &:focus-visible { outline: 1px solid var(--map-focus); outline-offset: -1px; }
+}
+
+/* The card's width is the dock's; a popup's is its own. */
+.map-story-dock .map-popup-body.map-popup-article {
+  width: auto;
+  max-width: none;
+}
+
+/* What the fetch brought fades in under the headline, which stays where it
+   was; a different story fades in whole. Opacity only: nothing slides under
+   a line being read. */
+.map-story-dock .is-arriving > :not(.map-popup-kicker, .map-popup-title),
+.map-story-dock .is-entering {
+  animation: map-card-in var(--dur-normal) var(--ease-out) both;
+}
+
+@keyframes map-card-in {
+  from { opacity: 0; }
+}
+
+/* The open story's place, ringed in the one gold, with one pulse as the
+   camera lands; the strait its chart follows, a quieter ring. A MapLibre
+   marker, whose own stylesheet is not shipped: it is placed by `transform`
+   from the canvas's corner. The shadow keeps the ring off pale land. */
+.maplibregl-marker {
+  position: absolute;
+  top: 0;
+  left: 0;
+  will-change: transform;
+}
+
+.map-story-ring {
+  width: calc(var(--ring-r) * 2);
+  height: calc(var(--ring-r) * 2);
+  border: 2px solid var(--brand);
+  border-radius: 50%;
+  box-shadow: 0 0 0 1px rgb(0 0 0 / 0.5), inset 0 0 0 1px rgb(0 0 0 / 0.5);
+  pointer-events: none;
+
+  &::after {
+    content: '';
+    position: absolute;
+    inset: -2px;
+    border: 2px solid var(--brand);
+    border-radius: 50%;
+    opacity: 0;
+  }
+
+  &.is-pulse::after {
+    animation: map-ring-pulse calc(var(--dur-slow) * 3) var(--ease-out) 1;
+  }
+
+  &.is-series {
+    border-width: 1px;
+    border-style: dashed;
+  }
+}
+
+@keyframes map-ring-pulse {
+  from { opacity: 0.9; scale: 1; }
+  to { opacity: 0; scale: 2.2; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .map-story-dock,
+  .maplibregl-popup.is-leaving {
+    transition: none;
+    @starting-style { opacity: 1; translate: 0 0; }
+  }
+  .map-story-dock .is-arriving > *,
+  .map-story-dock .is-entering,
+  .map-story-ring.is-pulse::after { animation: none; }
 }
 
 /* --- Country card ---
@@ -7861,6 +8007,12 @@ a.map-popup-source-name {
   border-radius: var(--map-radius);
   border: 1px solid var(--map-line-card);
   box-shadow: 0 14px 44px rgb(0 0 0 / 0.5);
+}
+
+/* A peek opens in the docked story card's corner; with a story docked
+   (`.map-story-dock`) it opens beside it. */
+body.map-wide.map-story-docked .map-sheet.is-peek {
+  left: calc(var(--map-rail-w) + var(--map-dock-w) + 2 * var(--space-sm));
 }
 
 /* A card the reader reached from the rail, opened beside it rather than over
