@@ -3684,6 +3684,13 @@ body.map-page > header {
      whatever width its own row has. Shrink-wrapped, that width is the content,
      and the track stayed 0px even after it got a line of its own. */
   .audio-briefing { align-self: stretch; }
+
+  /* The header is a fixed box over the rail's band, and on a day with a
+     briefing it is taller than the band's first line: it covered refresh, and
+     a click on it landed on the header. The box takes no pointer; what is in
+     it does. */
+  pointer-events: none;
+  > * { pointer-events: auto; }
 }
 
 body.map-page > footer {
