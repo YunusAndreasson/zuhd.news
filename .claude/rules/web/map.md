@@ -164,6 +164,11 @@ calendar `hijri.md`.
 ## Cards and the pointer
 
 - Hover never moves the camera. Hover previews or peeks; a click commits.
+- A hovered story is ringed by `_map/hover-mark.ts` (a chevron at the limb when
+  it is out of sight) and the rest dim by feature state up to `DIM_MAX`: each
+  hover writes one state per story.
+- The quick switcher (`_map/switcher.ts`) does what each item's own control
+  does; it never has a second path to open a story, a place or a group.
 - There is one `click` and one `mousemove`, resolved by `topHit` through
   `HIT_ORDER`, the same set as `MARKER_LAYERS`. Per-layer handlers both fire
   for one pointer.

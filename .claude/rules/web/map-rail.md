@@ -303,6 +303,10 @@ Camera, MapLibre and cards are `map.md`; layers and marks are `map-layers.md`.
   on every scrub frame.
 - The list has delegated listeners only: a per-row closure reports the
   `MapPoint` a reused row was built with.
+- The list is one Tab stop (roving `tabindex`, `syncRoving`); arrows, `j`/`k`,
+  Home and End move focus instantly, and focus drives `onHover` as the pointer
+  does. A row's figure (`f`, `storyFigure` in `build.js`) is only a `chart:`
+  the prose names, never a tag match.
 - `.map-feed-count` is `aria-live`: write it only when the text differs. On
   the desktop it is said and not shown (`body.map-wide .map-feed-count`); on a
   phone it is the drawer handle's label.
