@@ -15,6 +15,8 @@ import { writeBasemapTiles } from './build/basemap-tiles.js'
 import { buildCountryPages } from './build/country-pages.js'
 import { buildCountryMetrics } from './build/country-metrics.js'
 import { buildEntityPages } from './build/entity-pages.js'
+import { locatorHtml } from './build/locator.js'
+import { storyChartHtml, storyChartId } from './build/story-chart.js'
 import { latestTrendsPath } from './lib/trends-snapshot.js'
 import { canonicalIndicatorId } from './lib/entity-registry.js'
 import { loadShared } from './build/shared-ts.js'
@@ -305,8 +307,23 @@ const formatKickerDate = (addedAt) => {
   return `${day} ${month}`
 }
 
-const buildArticlePage = (article, prev, next, thread, template, indicatorMap) => {
-  const { slug, meta, body, bodyHtml, title, dateFormatted, addedAt, correctedAt } = article
+/**
+ * @param {object} [extras] what the article carries beyond its text
+ * @param {string} [extras.locator] the globe beside the hook (`locatorHtml`)
+ * @param {string} [extras.chart] the story's series (`storyChartHtml`)
+ * @param {boolean} [extras.onMap] whether `/s/{slug}` can open it on the map
+ */
+const buildArticlePage = (article, prev, next, thread, template, indicatorMap, extras = {}) => {
+  const { slug, meta, body, title, dateFormatted, addedAt, correctedAt } = article
+  // The prose, then the story's chart, then the corrections and the isnad, then
+  // the way to the map: `bodyHtml` is the prose and the source mark, and
+  // `bodyHtmlBare` the prose alone, so the mark is what follows it.
+  const prose = article.bodyHtmlBare ?? article.bodyHtml
+  const sourcemark = article.bodyHtml.slice(prose.length)
+  const mapLink = extras.onMap
+    ? `<p class="article-map-link"><a href="/s/${slug}">See it on the map →</a></p>`
+    : ''
+  const bodyHtml = (extras.locator ?? '') + prose + (extras.chart ?? '') + sourcemark + mapLink
   const isoDate = meta.date || new Date(addedAt).toISOString()
   const category = meta.category || 'politics'
   const description = buildDescription(body)
@@ -2218,21 +2235,6 @@ const homepage = buildHomepage(sorted, cutoff, homepageTemplate)
 writeFileSync(join(DIST_DIR, 'index.html'), homepage)
 console.log(`  Built: index.html (${articles.length} articles)`)
 
-// Per-article static pages at /a/{slug}.html — replaces the legacy
-// functions/a/[slug].js runtime redirect with real, crawlable, share-ready
-// HTML. Uses `sorted` so prev/next navigation follows reverse-chronological
-// order (newest → oldest), matching the homepage list semantics.
-
-mkdirSync(join(DIST_DIR, 'a'), { recursive: true })
-for (let i = 0; i < sorted.length; i++) {
-  const article = sorted[i]
-  const prev = sorted[i + 1] ?? null
-  const next = sorted[i - 1] ?? null
-  const thread = threadLookup.get(article.slug) || null
-  const html = buildArticlePage(article, prev, next, thread, articleTemplate, indicatorMap)
-  writeFileSync(join(DIST_DIR, 'a', `${article.slug}.html`), html)
-}
-console.log(`  Built: a/ (${sorted.length} article pages)`)
 
 // Islands: compile public/islands/*.ts via esbuild into dist/islands/*.js.
 // Each island is an ESM entry that island-loader.js lazy-loads on first
@@ -2475,6 +2477,35 @@ const entityResult = await buildEntityPages({
   extraIndicators,
 })
 console.log(`  Built: e/ (${entityResult.count} entity pages)`)
+
+// Per-article static pages at /a/{slug}.html — replaces the legacy
+// functions/a/[slug].js runtime redirect with real, crawlable, share-ready
+// HTML. Uses `sorted` so prev/next navigation follows reverse-chronological
+// order (newest → oldest), matching the homepage list semantics.
+
+// Built after the entity pages: an article prints its story's series from the
+// `/api/entity/{id}.json` those write, the file the map's card reads. And only
+// a story `map.json` holds gets a way to the map: `/s/{slug}` sends any other
+// back here (`openSharedStory`).
+mkdirSync(join(DIST_DIR, 'a'), { recursive: true })
+const onMapSlugs = new Set(mapPoints.map((p) => p.slug))
+for (let i = 0; i < sorted.length; i++) {
+  const article = sorted[i]
+  const prev = sorted[i + 1] ?? null
+  const next = sorted[i - 1] ?? null
+  const thread = threadLookup.get(article.slug) || null
+  const html = buildArticlePage(article, prev, next, thread, articleTemplate, indicatorMap, {
+    locator: locatorHtml({
+      lat: article.meta.lat,
+      lng: article.meta.lng,
+      place: displayLocation(article.meta.location || ''),
+    }),
+    chart: storyChartHtml(storyChartId(article.meta, indicatorMap, canonicalIndicatorId), DIST_DIR),
+    onMap: onMapSlugs.has(article.slug),
+  })
+  writeFileSync(join(DIST_DIR, 'a', `${article.slug}.html`), html)
+}
+console.log(`  Built: a/ (${sorted.length} article pages)`)
 
 // Per-country pages at /country/{ISO2}.html — country profile (flag,
 // capital, 26 metrics × percentile strip × source attribution) + recent

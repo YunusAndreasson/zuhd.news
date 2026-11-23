@@ -1271,6 +1271,150 @@ body.article-page-body::before {
   text-decoration-color: currentColor;
 }
 
+/* --- Where it happened, and its number ---
+   The locator (`build/locator.js`) stands beside the hook: a globe turned to
+   the place, the land a quiet step, the place's country a step darker, and
+   the one gold mark. Sea is the page's own ground, so the globe is a rule and
+   some land rather than a picture. The story's chart (`build/story-chart.js`)
+   is the map card's line, under the prose and before the isnad. */
+.article-locator {
+  float: right;
+  width: 7rem;
+  margin: 0.25rem 0 var(--space-sm) var(--space-md);
+  display: grid;
+  justify-items: center;
+  gap: var(--space-xxs);
+}
+
+.article-locator-globe {
+  display: block;
+  width: 100%;
+  height: auto;
+  aspect-ratio: 1;
+}
+
+.article-locator-sea {
+  fill: var(--bg);
+  stroke: var(--rule);
+  stroke-width: 1;
+}
+
+.article-locator-land { fill: color-mix(in srgb, var(--text) 16%, var(--bg)); }
+.article-locator-home { fill: color-mix(in srgb, var(--text) 34%, var(--bg)); }
+
+.article-locator-ring {
+  fill: none;
+  stroke: var(--brand);
+  stroke-width: 1;
+}
+
+.article-locator-dot { fill: var(--brand); }
+
+/* A heading's role: small caps at 600, the dateline's ink. */
+.article-locator-place {
+  font-size: var(--size-2xs);
+  font-weight: var(--weight-semibold);
+  font-variant-caps: all-small-caps;
+  font-feature-settings: "case" 1;
+  letter-spacing: var(--track-caps);
+  line-height: 1.3;
+  color: var(--text-secondary);
+  text-align: center;
+  text-wrap: balance;
+}
+
+@media (max-width: 640px) {
+  .article-locator {
+    width: 5.25rem;
+    margin-left: var(--space-sm);
+  }
+}
+
+.article-chart {
+  clear: both;
+  margin: var(--space-md) 0 0;
+}
+
+/* The line takes the direction's ink, as the card's does: colour here says
+   the series rose or fell, and nothing else on the page is tinted. */
+.article-chart-link {
+  display: block;
+  padding: 0.8rem 0 0.6rem;
+  border-block: 1px solid var(--rule);
+  color: var(--text-dim);
+  text-decoration: none;
+
+  &:visited { color: var(--text-dim); }
+}
+
+.article-chart.is-pos .article-chart-link { color: var(--pos); }
+.article-chart.is-neg .article-chart-link { color: var(--neg); }
+
+.article-chart-head {
+  display: flex;
+  align-items: baseline;
+  gap: 0.75rem;
+  font-size: var(--size-sm);
+  line-height: 1.3;
+  font-variant-numeric: lining-nums tabular-nums;
+}
+
+.article-chart-label {
+  flex: 1 1 auto;
+  min-width: 0;
+  color: var(--text);
+}
+
+.article-chart-link:hover .article-chart-label {
+  text-decoration: underline;
+  text-underline-offset: 0.2em;
+}
+
+.article-chart-reading { color: var(--text-emphasis); }
+
+/* `.spark` is a flex item in the rail; here it is block flow at full width. */
+.article-chart-link .spark {
+  width: 100%;
+  height: 4.75rem;
+  margin: 0.6rem 0 0.3rem;
+}
+
+.article-chart-span {
+  display: flex;
+  justify-content: space-between;
+  font-size: var(--size-2xs);
+  line-height: 1.3;
+  color: var(--text-dim);
+  font-variant-numeric: lining-nums tabular-nums;
+}
+
+.article-chart-source {
+  margin-top: var(--space-xs);
+  font-size: var(--size-2xs);
+  line-height: 1.3;
+  color: var(--text-dim);
+}
+
+@media (max-width: 640px) {
+  .article-chart-link .spark { height: 3.75rem; }
+}
+
+/* The way to the map, after the sources: the story's own card on the globe. */
+.article-page-main .article-body > .article-map-link {
+  margin: var(--space-sm) 0 0;
+  font-size: var(--size-sm);
+  line-height: 1.4;
+
+  a {
+    color: var(--text);
+    text-decoration: underline;
+    text-decoration-color: var(--text-dim);
+    text-underline-offset: 0.2em;
+  }
+
+  a:hover { text-decoration-color: currentColor; }
+}
+
 /* What each outlet brought that the others did not.
 
    The pipeline has written a per-source `angle` and `sentiment` for months and
