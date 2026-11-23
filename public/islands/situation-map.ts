@@ -2363,8 +2363,7 @@ export function mount(
 
   // --- Data shaping -------------------------------------------------------
   const visiblePoints = (): MapPoint[] => {
-    // A replay holds the slice's start and fills it (see `startReplay`).
-    const from = replay ? replay.from : scrubNow - rangeHours * 3_600_000
+    const from = scrubNow - rangeHours * 3_600_000
     // Tell the rail which slice of itself is on the map.
     timeline?.setWindow(from)
     return points.filter((p) => p.t <= scrubNow && p.t >= from && enabled.has(p.cat))
@@ -2691,15 +2690,8 @@ export function mount(
   }
 
   /** Moves the dated overlays with the scrub head, style-side. */
-  /** The slot the dated filters were last moved to during a replay. */
-  let filtersAt = Number.NaN
   const applyTimeFilters = () => {
     if (!layersReady) return
-    if (replay) {
-      const slot = Math.floor(scrubNow / REPLAY_FILTER_MS)
-      if (slot === filtersAt) return
-      filtersAt = slot
-    } else filtersAt = Number.NaN
     map.setFilter('gdacs-marks', ['<=', ['get', 't'], scrubNow])
     map.setFilter('conflict-marks', ['<=', ['get', 't'], scrubNow])
     // A satellite pass happened at a moment, so the scrubber moves these too.
@@ -5248,197 +5240,6 @@ export function mount(
       btn.addEventListener('click', () => setRange(hours))
       ranges.append(btn)
     }
-    rangeHead.append(playBtn)
-  }
-
-  // --- Replay -------------------------------------------------------------
-  /**
-   * Play the range: the selected slice replayed from its first hour to now.
-   *
-   * It drives the machinery a scrub already uses — `scrubNow`, `applyRefresh`,
-   * the timeline's head — so the stories land on the globe in the order they
-   * happened and fade on the same 72-hour decay, the hazard marks step with
-   * the head, and the list follows. Only the lower edge differs: the window is
-   * held at the range's start (`visiblePoints`), so the slice fills rather
-   * than slides. About ten updates a second (`REPLAY_STEP_MS`), each one a
-   * `setData` of the stories; the dated overlays' filters move by the 6-hour
-   * slot, since a `setFilter` re-tiles its source.
-   *
-   * Any key, press or wheel stops it where it stands. At the end it returns to
-   * live. With reduced motion it steps in `REPLAY_COARSE` jumps instead.
-   */
-  const REPLAY_MS: Record<number, number> = { 24: 8000, 72: 10000, 168: 12000, 720: 14000, 2160: 16000 }
-  const REPLAY_STEP_MS = 90
-  const REPLAY_COARSE = 6
-  const REPLAY_FILTER_MS = 6 * 3_600_000
-  type Replay = {
-    from: number
-    to: number
-    dur: number
-    t0: number
-    last: number
-    k: number
-    frame: number
-    /** A step is still being drawn: the next waits for its `idle`. */
-    drawing: boolean
-  }
-  let replay: Replay | null = null
-
-  const PLAY_ICON =
-    '<svg viewBox="0 0 12 12" width="12" height="12" aria-hidden="true"><path d="M3 1.8v8.4L10.2 6z" fill="currentColor"/></svg>'
-  const PAUSE_ICON =
-    '<svg viewBox="0 0 12 12" width="12" height="12" aria-hidden="true"><path d="M2.6 1.8h2.3v8.4H2.6zM7.1 1.8h2.3v8.4H7.1z" fill="currentColor"/></svg>'
-  const playBtn = document.createElement('button')
-  playBtn.type = 'button'
-  playBtn.className = 'map-play'
-  const syncPlayBtn = () => {
-    const on = replay !== null
-    playBtn.innerHTML = on ? PAUSE_ICON : PLAY_ICON
-    playBtn.setAttribute('aria-label', on ? 'Pause' : 'Play the range')
-    playBtn.title = on ? 'Pause' : 'Play the range'
-    playBtn.classList.toggle('is-on', on)
-  }
-  syncPlayBtn()
-  playBtn.addEventListener('click', () => {
-    if (replay) stopReplay(false)
-    else void startReplay()
-  })
-
-  /** The instant, large, over the open map while the range plays. */
-  const stamp = document.createElement('p')
-  stamp.className = 'map-replay-stamp'
-  stamp.setAttribute('aria-hidden', 'true')
-  stamp.hidden = true
-  mapEl.append(stamp)
-  const stampDay = new Intl.DateTimeFormat('en-GB', {
-    weekday: 'short',
-    day: 'numeric',
-    month: 'short',
-    timeZone: MAKKAH_TZ,
-  })
-  const stampHour = new Intl.DateTimeFormat('en-GB', {
-    hour: '2-digit',
-    minute: '2-digit',
-    hourCycle: 'h23',
-    timeZone: MAKKAH_TZ,
-  })
-  const writeStamp = (t: number) => {
-    const hour = Math.floor(t / 3_600_000) * 3_600_000
-    const text = `${stampDay.format(hour).replace(',', '')} \u00b7 ${stampHour.format(hour)}`
-    if (stamp.textContent !== text) stamp.textContent = text
-  }
-  /**
-   * The top-left of the open map: inside the story rail, under the map's own
-   * controls (`layers` on the desktop, the phone's header and `More`).
-   */
-  const placeStamp = () => {
-    const host = mapEl.getBoundingClientRect()
-    const pad = map.getPadding()
-    const boxes = [
-      container.querySelector('.map-mapctl.is-left'),
-      container.querySelector('.map-more'),
-      document.querySelector('body.map-page > header'),
-    ]
-      .map((el) => el?.getBoundingClientRect())
-      .filter((r): r is DOMRect => !!r && r.height > 0 && r.top < host.top + host.height / 3)
-    const below = Math.max(0, ...boxes.map((r) => r.bottom - host.top))
-    const ctl = container.querySelector('.map-mapctl.is-left')?.getBoundingClientRect()
-    const left = ctl && ctl.width > 0 ? ctl.left - host.left : (pad.left ?? 0) + 14
-    stamp.style.left = `${Math.round(left)}px`
-    stamp.style.top = `${Math.round(Math.max(pad.top ?? 0, below))}px`
-  }
-
-  const stopOnKey = (e: KeyboardEvent) => {
-    // Enter and Space on the button are its own click, which toggles.
-    if (e.target === playBtn && (e.key === 'Enter' || e.key === ' ')) return
-    if (['Shift', 'Control', 'Alt', 'Meta'].includes(e.key)) return
-    stopReplay(false)
-  }
-  const stopOnPress = (e: Event) => {
-    if (e.target instanceof Node && playBtn.contains(e.target)) return
-    stopReplay(false)
-  }
-
-  const replayStep = (now: number) => {
-    const r = replay
-    if (!r || !mounted) return
-    const raw = Math.min(1, (now - r.t0) / r.dur)
-    if (raw >= 1) {
-      stopReplay(true)
-      return
-    }
-    const k = reduceQuery.matches ? Math.floor(raw * REPLAY_COARSE) / REPLAY_COARSE : raw
-    // Self-paced: never more than one step in the engine at a time, so a slow
-    // machine draws fewer steps rather than queueing frames it cannot show.
-    // The clock is the wall's, so the replay still ends on time.
-    if (k !== r.k && !r.drawing && now - r.last >= REPLAY_STEP_MS) {
-      r.k = k
-      r.last = now
-      r.drawing = true
-      map.once('idle', () => {
-        r.drawing = false
-      })
-      drawReplay(r.from + (r.to - r.from) * k)
-    } else if (r.drawing && now - r.last > 600) r.drawing = false
-    r.frame = requestAnimationFrame(replayStep)
-  }
-
-  const drawReplay = (t: number) => {
-    scrubNow = t
-    timeline?.setPlayhead(t, true)
-    writeStamp(t)
-    applyRefresh()
-  }
-
-  const startReplay = async () => {
-    if (replay || !timeline || !coreLoaded) return
-    // A range past the fortnight plays what the archive holds.
-    if (rangeHours > BUILD_WINDOW_HOURS && archiveState === 'idle') await loadArchive()
-    if (!mounted || replay || !timeline) return
-    const to = windowEnd
-    const from = Math.max(corpusStart, to - rangeHours * 3_600_000)
-    replay = {
-      from,
-      to,
-      dur: REPLAY_MS[rangeHours] ?? 12000,
-      t0: performance.now(),
-      last: 0,
-      k: 0,
-      frame: 0,
-      drawing: false,
-    }
-    syncPlayBtn()
-    placeStamp()
-    stamp.hidden = false
-    container.classList.add('is-replaying')
-    document.addEventListener('keydown', stopOnKey, true)
-    mapEl.addEventListener('pointerdown', stopOnPress, true)
-    mapEl.addEventListener('wheel', stopOnPress, { capture: true, passive: true })
-    timeline.element.addEventListener('pointerdown', stopOnPress, true)
-    drawReplay(from)
-    replay.frame = requestAnimationFrame(replayStep)
-  }
-
-  /** Stops where it stands, or (at the end) returns to live. */
-  function stopReplay(toLive: boolean) {
-    const r = replay
-    if (!r) return
-    cancelAnimationFrame(r.frame)
-    replay = null
-    syncPlayBtn()
-    stamp.hidden = true
-    container.classList.remove('is-replaying')
-    document.removeEventListener('keydown', stopOnKey, true)
-    mapEl.removeEventListener('pointerdown', stopOnPress, true)
-    mapEl.removeEventListener('wheel', stopOnPress, true)
-    timeline?.element.removeEventListener('pointerdown', stopOnPress, true)
-    if (toLive) {
-      timeline?.goLive()
-      if (!timeline) onScrub(windowEnd, true)
-      return
-    }
-    timeline?.setPlayhead(scrubNow, false)
-    refresh()
   }
 
   /**
@@ -5842,8 +5643,6 @@ export function mount(
    */
   const rebuildTimeline = (start: number, end: number) => {
     if (!timeline) return
-    // A replay drives the rail it started on; a new rail ends it where it is.
-    stopReplay(false)
     const wasLive = timeline.isLive()
     const held = scrubNow
     const old = timeline
@@ -7162,7 +6961,6 @@ export function mount(
   document.addEventListener('click', onWordmarkClick)
 
   return () => {
-    stopReplay(false)
     mounted = false
     abort.abort()
     clearTimeout(loadingTimer)

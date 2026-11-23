@@ -4504,26 +4504,6 @@ body.map-wide .map-range-group { display: block; }
   &.is-on { color: var(--map-ink); background: var(--map-raised); }
 }
 
-/* Play the range: beside the range chips, in their box's ink and height. A
-   glyph, not a word: its name is the accessible label. */
-.map-play {
-  display: inline-flex;
-  align-items: center;
-  align-self: center;
-  justify-content: center;
-  min-height: var(--map-hud-row-h);
-  padding: 0 0.55rem;
-  background: none;
-  border: 1px solid var(--map-line);
-  border-radius: 2px;
-  color: var(--map-ink-muted);
-  cursor: pointer;
-  transition: color var(--dur-fast), background var(--dur-fast);
-
-  &:hover { color: var(--map-ink-soft); }
-  &.is-on { color: var(--map-ink); background: var(--map-raised); }
-}
-
 /* Before the scrubber exists the range chips have no place to stand, and in
    the rail they took a row the money then moved up into: held out of the
    flow until `placeRangeGroup` puts them on the scrubber. */
@@ -4645,7 +4625,6 @@ body.map-wide .map-hud > .map-range-group {
    chrome did, so tabbing through the HUD fell back to the UA default on some
    controls and matched the slider on others. One ring, everywhere. */
 .map-range:focus-visible,
-.map-play:focus-visible,
 .map-filter:focus-visible,
 .map-reset:focus-visible,
 .map-story-dock-close:focus-visible,
@@ -6486,26 +6465,6 @@ body.map-wide .map-key-glow { margin-inline: 2px; }
   transition: opacity var(--dur-normal) var(--ease-out);
 }
 
-/* The instant a replay stands at, large over the open map, top left. Placed
-   by the island (`placeStamp`) under the map's own controls. Light, because it
-   is a reading to glance at, not a heading. */
-.map-replay-stamp {
-  position: absolute;
-  z-index: 1;
-  margin: 0;
-  padding-top: 0.6rem;
-  font-size: var(--size-h1);
-  font-weight: var(--weight-light);
-  font-variant-numeric: lining-nums tabular-nums;
-  letter-spacing: var(--track-tight);
-  line-height: 1.1;
-  white-space: nowrap;
-  color: var(--map-ink);
-  pointer-events: none;
-}
-
-body:not(.map-wide) .map-replay-stamp { font-size: var(--size-h3); }
-
 @keyframes map-arrive {
   from { opacity: 0; }
 }
@@ -6531,7 +6490,6 @@ body:not(.map-wide) .map-markets.is-waiting { display: none; }
   /* The scrubber's first build and a figure's first fill come in as the globe
      does; a range press after that redraws without one. */
   .map-timeline.is-arriving,
-  .map-replay-stamp,
   .map-loading {
     animation: map-arrive var(--dur-normal) var(--ease-out) both;
   }
