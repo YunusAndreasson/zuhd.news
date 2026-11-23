@@ -9,7 +9,7 @@ import { signedPct } from '@shared/chart/series'
 import { NARROW_PX, type MapPoint } from './types'
 import { CATEGORY_COLOUR, FALLBACK_CATEGORY_COLOUR } from './style'
 import { MAKKAH_TZ, relativeTime, zoneOffset } from './format'
-import { pointsFigure } from './markets'
+import { pointsFigure } from '@shared/chart/spark'
 
 export interface Feed {
   element: HTMLElement
