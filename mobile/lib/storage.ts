@@ -1,9 +1,9 @@
 import { File, Paths } from 'expo-file-system';
 import Storage from 'expo-sqlite/kv-store';
-import { DEFAULT_PREFS, type Preferences } from '../constants/theme';
+import { BRIEFING_SPEEDS, DEFAULT_PREFS, type Preferences } from '../constants/theme';
 import { type LegacyCopy, readMigrated } from './legacy-store';
 import { orderStorageWork } from './store-plumbing';
-import { isPreferences } from './validate';
+import { isBasePreferences } from './validate';
 
 // UX state — not secrets. SQLite kv-store is the active backing store; the
 // document files and SecureStore keys below are migration sources only, moved
@@ -43,9 +43,12 @@ function parsePreferences(text: string): Preferences | null {
     const parsed: unknown = JSON.parse(text);
     if (!parsed || typeof parsed !== 'object' || Array.isArray(parsed)) return null;
     const merged = { ...DEFAULT_PREFS, ...parsed };
-    if (!isPreferences(merged)) return null;
+    if (!isBasePreferences(merged)) return null;
+    const briefingSpeed =
+      BRIEFING_SPEEDS.find((speed) => speed === merged.briefingSpeed) ??
+      DEFAULT_PREFS.briefingSpeed;
     const { fontSize, appearance, haptics, notifications } = merged;
-    return { fontSize, appearance, haptics, notifications };
+    return { briefingSpeed, fontSize, appearance, haptics, notifications };
   } catch {
     return null;
   }

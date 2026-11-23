@@ -13,7 +13,7 @@ import { File } from 'expo-file-system';
 import { useCallback, useEffect, useRef, useState } from 'react';
 import { AppState, type AppStateStatus } from 'react-native';
 import { ANALYTICS_EVENTS } from '../constants/analytics';
-import { API_BASE } from '../constants/theme';
+import { API_BASE, type BriefingSpeed } from '../constants/theme';
 import { analytics } from '../lib/analytics';
 import { heardPct } from '../lib/analytics-buckets';
 import { resolveAudioDuration } from '../lib/audio-duration';
@@ -167,6 +167,7 @@ export function useBriefingPlayer(
   feedDuration?: number,
   /** When the recording was made (`FeedResponse.briefing.generated`). */
   recorded?: string,
+  speed: BriefingSpeed = '1',
 ): BriefingPlayer {
   // No synthetic fallback to today's UTC date — that path produced a
   // guaranteed 404 whenever the latest briefing was >36h old. The feed
@@ -192,6 +193,11 @@ export function useBriefingPlayer(
   const [failureCount, setFailureCount] = useState(0);
   const [finishCount, setFinishCount] = useState(0);
   const playerRef = useRef<AudioPlayer | null>(null);
+  const speedRef = useRef(speed);
+  useEffect(() => {
+    speedRef.current = speed;
+    playerRef.current?.setPlaybackRate(Number(speed));
+  }, [speed]);
   const savedDate = useRef<string | null>(null);
   const lockScreenActive = useRef(false);
   const lockScreenDurationKnown = useRef(false);
@@ -712,6 +718,9 @@ export function useBriefingPlayer(
       cachedRecordingUrl.current = playbackSource === remoteUrl ? null : remoteUrl;
       try {
         player.replace(playbackSource);
+        // iOS applies pitch correction to the current item. Read the speed
+        // after the download in case the listener changed it during loading.
+        player.setPlaybackRate(Number(speedRef.current));
       } catch {
         failPlayback(true);
         return;

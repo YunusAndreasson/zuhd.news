@@ -6,7 +6,7 @@ import { briefingAudioFile } from '../lib/briefing-audio';
 import { File } from 'expo-file-system';
 import { AppState, type AppStateStatus } from 'react-native';
 import { useBriefingPlayer } from '../hooks/useBriefingPlayer';
-import { API_BASE } from '../constants/theme';
+import { API_BASE, type BriefingSpeed } from '../constants/theme';
 
 type PlaybackStatus = Pick<
   AudioStatus,
@@ -44,6 +44,7 @@ const mockPlayer = {
     mockPlayer.playing = false;
   }),
   replace: jest.fn(),
+  setPlaybackRate: jest.fn(),
   seekTo: jest.fn().mockResolvedValue(undefined),
   clearLockScreenControls: jest.fn(),
   setActiveForLockScreen: jest.fn(),
@@ -645,4 +646,23 @@ describe('briefing events', () => {
     });
     expect(mockPlayer.play).toHaveBeenCalled();
   });
+});
+
+it('sets the chosen speed and changes it without replacing or starting the recording', async () => {
+  const { result, rerender } = renderHook(
+    ({ speed }: { speed: BriefingSpeed }) => useBriefingPlayer('2026-09-27', 120, undefined, speed),
+    { initialProps: { speed: '0.75' as BriefingSpeed } },
+  );
+  expect(mockPlayer.setPlaybackRate).not.toHaveBeenCalled();
+  expect(mockPlayer.play).not.toHaveBeenCalled();
+  await act(async () => {
+    await result.current.toggle();
+  });
+  expect(mockPlayer.setPlaybackRate).toHaveBeenLastCalledWith(0.75);
+  mockPlayer.play.mockClear();
+  mockPlayer.replace.mockClear();
+  rerender({ speed: '1.5' });
+  expect(mockPlayer.setPlaybackRate).toHaveBeenLastCalledWith(1.5);
+  expect(mockPlayer.play).not.toHaveBeenCalled();
+  expect(mockPlayer.replace).not.toHaveBeenCalled();
 });

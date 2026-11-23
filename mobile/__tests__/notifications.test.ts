@@ -7,6 +7,8 @@ const mockFetch = jest.fn();
 const mockGetPermissions = jest.fn();
 const mockRequestPermissions = jest.fn();
 
+jest.mock('expo-application', () => ({ applicationId: 'news.zuhd.app' }));
+
 jest.mock('expo-constants', () => ({
   __esModule: true,
   default: { expoConfig: { extra: { eas: { projectId: 'project-id' } } } },
@@ -38,6 +40,7 @@ import {
   addPushTokenListener,
   enableNotifications,
   notificationPermissionUndetermined,
+  openNotificationSettings,
   registerPushToken,
   TOKEN_FETCH_TIMEOUT_MS,
   unregisterPushToken,
@@ -291,4 +294,36 @@ describe('asking for permission', () => {
       expect(mockRationale).not.toHaveBeenCalled();
     },
   );
+});
+
+describe('notification settings', () => {
+  const sendIntent = jest.fn();
+  const openSettings = jest.fn();
+
+  beforeEach(() => {
+    Object.assign(jest.requireMock('react-native').Linking, { sendIntent, openSettings });
+  });
+
+  it('opens the app’s notification settings on Android', async () => {
+    android(33);
+    await openNotificationSettings();
+    expect(sendIntent).toHaveBeenCalledWith('android.settings.APP_NOTIFICATION_SETTINGS', [
+      { key: 'android.provider.extra.APP_PACKAGE', value: 'news.zuhd.app' },
+    ]);
+    expect(openSettings).not.toHaveBeenCalled();
+  });
+
+  it('falls back to app settings when the device has no notification settings activity', async () => {
+    android(33);
+    sendIntent.mockRejectedValueOnce(new Error('No activity'));
+    await openNotificationSettings();
+    expect(openSettings).toHaveBeenCalledTimes(1);
+  });
+
+  it('opens app settings directly on iOS', async () => {
+    jest.replaceProperty(platform, 'IS_ANDROID', false);
+    await openNotificationSettings();
+    expect(sendIntent).not.toHaveBeenCalled();
+    expect(openSettings).toHaveBeenCalledTimes(1);
+  });
 });

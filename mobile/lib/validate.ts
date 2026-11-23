@@ -375,7 +375,7 @@ export const isTrendsSnapshot = (v: unknown): v is TrendsSnapshot => {
   return true;
 };
 
-export const isPreferences = (v: unknown): v is Preferences => {
+export const isBasePreferences = (v: unknown): v is Omit<Preferences, 'briefingSpeed'> => {
   if (!isObject(v)) return false;
   return (
     (v.fontSize === 'small' || v.fontSize === 'default' || v.fontSize === 'large') &&

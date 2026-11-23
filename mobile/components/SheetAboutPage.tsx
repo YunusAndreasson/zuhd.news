@@ -1,4 +1,5 @@
 import type { Article } from '@shared/types';
+import { useUpdates } from 'expo-updates';
 import { useMemo, useState } from 'react';
 import { StyleSheet, View } from 'react-native';
 import Animated from 'react-native-reanimated';
@@ -314,12 +315,26 @@ export function SheetAboutPage({ articles, version }: SheetAboutPageProps) {
       <View>
         <SectionLabel label="colophon" />
         <SheetLink label={MAKER_BYLINE} onPress={() => openExternal(MAKER_PROJECTS)} />
-        {version ? (
-          <Text selectable variant="caption" style={styles.aside}>
-            version {version}
-          </Text>
-        ) : null}
+        <VersionNote version={version} />
       </View>
+    </>
+  );
+}
+
+function VersionNote({ version }: { version: string }) {
+  const { isUpdatePending } = useUpdates();
+  return (
+    <>
+      {version ? (
+        <Text selectable variant="caption" style={styles.aside}>
+          version {version}
+        </Text>
+      ) : null}
+      {isUpdatePending ? (
+        <Text variant="caption" accessibilityLiveRegion="polite" style={styles.aside}>
+          App update ready for the next launch.
+        </Text>
+      ) : null}
     </>
   );
 }

@@ -58,6 +58,7 @@ function loadStorage(): StorageModule {
 }
 
 const customPrefs: Preferences = {
+  briefingSpeed: '1.25',
   fontSize: 'large',
   appearance: 'light',
   haptics: false,
@@ -86,6 +87,17 @@ describe('SQLite-backed UX storage', () => {
 
     await expect(loadStorage().getPreferences()).resolves.toEqual(customPrefs);
   });
+
+  it.each([undefined, '3'])(
+    'defaults an absent or unsupported briefing speed (%s) alone',
+    async (briefingSpeed) => {
+      mockKv.set('zuhd_preferences_v2', JSON.stringify({ ...customPrefs, briefingSpeed }));
+      await expect(loadStorage().getPreferences()).resolves.toEqual({
+        ...customPrefs,
+        briefingSpeed: '1',
+      });
+    },
+  );
 
   it('migrates valid file preferences into SQLite', async () => {
     const serialized = JSON.stringify(customPrefs);

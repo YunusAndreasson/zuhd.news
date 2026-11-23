@@ -1,7 +1,8 @@
+import { applicationId } from 'expo-application';
 import Constants from 'expo-constants';
 import * as Notifications from 'expo-notifications';
 import { deleteItemAsync, getItemAsync, setItemAsync } from 'expo-secure-store';
-import { Platform, type TurboModule, TurboModuleRegistry } from 'react-native';
+import { Linking, Platform, type TurboModule, TurboModuleRegistry } from 'react-native';
 import { IS_ANDROID } from '../constants/platform';
 import { API_BASE } from '../constants/theme';
 import { fetchWithTimeout } from './fetch';
@@ -47,6 +48,21 @@ export async function setupNotificationChannels(): Promise<void> {
 export interface NotificationAnswer {
   granted: boolean;
   osPrompt: boolean;
+}
+
+/** Android can open the app’s alert controls directly. Some devices only offer app settings. */
+export async function openNotificationSettings(): Promise<void> {
+  if (IS_ANDROID && Number(Platform.Version) >= 26 && applicationId) {
+    try {
+      await Linking.sendIntent('android.settings.APP_NOTIFICATION_SETTINGS', [
+        { key: 'android.provider.extra.APP_PACKAGE', value: applicationId },
+      ]);
+      return;
+    } catch {
+      // The settings activity varies by Android vendor.
+    }
+  }
+  await Linking.openSettings();
 }
 
 /** Request permission and setup channels. */

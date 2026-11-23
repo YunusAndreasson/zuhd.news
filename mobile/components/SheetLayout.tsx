@@ -1,5 +1,5 @@
 import { BottomSheetModal, type BottomSheetProps } from '@expo/ui/community/bottom-sheet';
-import { memo, type ReactNode, useMemo } from 'react';
+import { memo, type ReactNode, useCallback, useMemo } from 'react';
 import { StyleSheet, useWindowDimensions } from 'react-native';
 import { GestureHandlerRootView } from 'react-native-gesture-handler';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
@@ -58,8 +58,10 @@ export const SheetLayout = memo(function SheetLayout({
   fill = false,
   children,
   enableDynamicSizing = true,
+  onBackPress,
   ...rest
 }: SheetLayoutProps) {
+  const dismiss = useCallback(() => sheetRef.current?.dismiss(), [sheetRef]);
   const { sheetStyles } = useTheme();
   const { height } = useWindowDimensions();
   const keyboardTop = useKeyboardTop(avoidKeyboard);
@@ -121,9 +123,13 @@ export const SheetLayout = memo(function SheetLayout({
       enableDynamicSizing={enableDynamicSizing}
       backgroundStyle={sheetStyles.bg}
       handleComponent={null}
+      onBackPress={onBackPress}
       {...rest}
     >
       <GestureHandlerRootView
+        // VoiceOver needs a native ancestor to receive Escape from a focused child.
+        collapsable={false}
+        onAccessibilityEscape={onBackPress ?? dismiss}
         style={[
           fitToContents ? capStyle : styles.fill,
           IS_ANDROID && fitToContents && styles.androidFittedColumn,
