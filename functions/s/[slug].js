@@ -147,7 +147,11 @@ export async function onRequestGet(context) {
       text(t) {
         homeTitle += t.text
         if (!title) return
-        if (t.lastInTextNode) t.replace(title)
+        // `title` is the article's own <title> as it streamed past: raw text,
+        // its entities still encoded (`S&amp;P`). Written back as HTML so the
+        // browser decodes it once; as text it was escaped again and the tab
+        // read `S&amp;P`.
+        if (t.lastInTextNode) t.replace(title, { html: true })
         else t.remove()
       },
     })

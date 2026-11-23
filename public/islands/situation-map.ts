@@ -4404,7 +4404,9 @@ export function mount(
       },
       () => {
         if (openSlug !== p.slug) return
-        ringStory(p.slug, true)
+        // The strait rings the card already asked for (`syncAddress`) stay:
+        // landing with no series would read as "none" and take them away.
+        ringStory(p.slug, true, shownStory?.slug === p.slug ? shownStory.series : [])
         if (dock) return
         void popup?.open(p, scrubNow).then(focusCard)
       },
@@ -5690,6 +5692,7 @@ export function mount(
       // this range can honestly show without the archive.
       syncAxis()
       refresh()
+      openSharedStory(true)
       return
     }
     archiveState = 'done'
@@ -5799,7 +5802,7 @@ export function mount(
    * chip row is told, because a row still reading `3d` over a fortnight of
    * beacons is a legend contradicting its own map.
    */
-  const openSharedStory = () => {
+  const openSharedStory = (archiveFailed = false) => {
     if (!sharedStory || sharedDone) return
     // Two independent arrivals have to have happened: `/api/map.json`, which is
     // what makes `pointBySlug` mean anything, and MapLibre's `load`, which is
@@ -5812,8 +5815,9 @@ export function mount(
     const p = pointBySlug.get(sharedStory)
     // A story older than the fortnight, reopened on the 30d or 90d slice it
     // was read on (`?r=`, Back from its article): it is in the archive, which
-    // asks again when it lands.
-    if (!p && rangeHours > BUILD_WINDOW_HOURS && archiveState !== 'done') return
+    // asks again when it lands, or when it fails, and then the article it
+    // came from is where the reader goes, as before.
+    if (!p && rangeHours > BUILD_WINDOW_HOURS && archiveState !== 'done' && !archiveFailed) return
     sharedDone = true
     if (!p) {
       location.replace(`/a/${sharedStory}`)
@@ -5994,8 +5998,16 @@ export function mount(
           json<FeatureCollection>(basemapUrl('rivers.geojson', basemapV), abort.signal),
         ])
         if (!mounted) return
-        if (lakes) src('lakes')?.setData(lakes)
-        if (rivers) src('rivers')?.setData(rivers)
+        const put = () => {
+          if (!mounted) return
+          if (lakes) src('lakes')?.setData(lakes)
+          if (rivers) src('rivers')?.setData(rivers)
+        }
+        // The sources are the base style's: `arrive` can come at its cap before
+        // the style's `load` on a slow machine, and data handed to a source that
+        // is not there yet is dropped in silence for the whole session.
+        if (src('lakes') && src('rivers')) put()
+        else map.once('load', put)
       })()
     }, 6000)
   }
@@ -6783,11 +6795,14 @@ export function mount(
   let countryPoints: Map<string, [number, number]> | null = null
   const readCountryPoints = () => {
     if (countryPoints) return
+    // Before the style has loaded there is no source to read: leave the cache
+    // unset so the next opening asks again, rather than keeping an empty list.
+    const source = map.getSource<GeoJSONSource>('countryLabels')
+    if (!source) return
     countryPoints = new Map()
     const points = countryPoints
-    void map
-      .getSource<GeoJSONSource>('countryLabels')
-      ?.getData()
+    void source
+      .getData()
       .then((data) => {
         if (data.type !== 'FeatureCollection') return
         for (const f of data.features) {
@@ -6835,9 +6850,14 @@ export function mount(
         sub: `${pl.count} ${pl.count === 1 ? 'story' : 'stories'}`,
         run: () => {
           feed.setExpanded(false, true)
-          flyCamera({ center: [pl.lng, pl.lat], zoom: Math.max(map.getZoom(), 3.2), duration: 900 }, () =>
-            popup?.openPlace(pl, scrubNow),
-          )
+          flyCamera({ center: [pl.lng, pl.lat], zoom: Math.max(map.getZoom(), 3.2), duration: 900 }, () => {
+            // As the map's own way to a place: the place card replaces a story
+            // without a close, so the story is let go of here, or its row and
+            // dot would answer "already open" and do nothing.
+            openSlug = null
+            feed.highlight(null)
+            void popup?.openPlace(pl, scrubNow)
+          })
         },
       })
     }

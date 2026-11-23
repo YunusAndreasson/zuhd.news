@@ -563,7 +563,7 @@ const headCommon = `<meta charset="utf-8">
   <link rel="icon" href="/favicon.svg" type="image/svg+xml">
   <link rel="apple-touch-icon" href="/apple-touch-icon.png">
   <link rel="manifest" href="/manifest.json">
-  <script type="speculationrules">{"prerender":[{"where":{"and":[{"href_matches":"/*"},{"not":{"href_matches":"/api/*"}},{"not":{"href_matches":"/audio/*"}},{"not":{"href_matches":"/feed.xml"}},{"not":{"href_matches":"/sitemap.xml"}},{"not":{"href_matches":"/og-image.png"}},{"not":{"selector_matches":["[data-island]",".article-entity-chip",".map-entity-chip",".map-feed a",".maplibregl-popup a",".map-sheet a"]}}]},"eagerness":"moderate"}]}</script>
+  <script type="speculationrules">{"prerender":[{"where":{"and":[{"href_matches":"/*"},{"not":{"href_matches":"/api/*"}},{"not":{"href_matches":"/audio/*"}},{"not":{"href_matches":"/feed.xml"}},{"not":{"href_matches":"/sitemap.xml"}},{"not":{"href_matches":"/og-image.png"}},{"not":{"selector_matches":["[data-island]",".article-entity-chip",".map-entity-chip",".map-feed a",".maplibregl-popup a",".map-story-dock a",".map-sheet a"]}}]},"eagerness":"moderate"}]}</script>
   ${CF_BEACON}`
 
 /**

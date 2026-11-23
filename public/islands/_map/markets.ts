@@ -4131,6 +4131,9 @@ export function createMarketStrip(opts: MarketStripOptions): MarketStrip {
     settle() {
       const held = root.querySelectorAll<HTMLElement>('.map-markets-ph')
       for (const ph of held) {
+        // Settled once already: `settle` runs again when a wider window
+        // fetches the rail's lists, and a second pass said "no data" twice.
+        if (ph.classList.contains('is-nodata')) continue
         // Kept, so nothing below it moves; said, so it is not a bare row.
         ph.classList.add('is-nodata')
         ph.title = 'no data'

@@ -683,7 +683,7 @@ export function createStoryPopup(map: MapLibreMap, opts: StoryPopupOptions = {})
    * with a timer behind it for a transition that never runs (a hidden tab).
    * Reduced motion has no transition, and the card goes at once.
    */
-  const leave = (node: HTMLElement, done: () => void): (() => void) => {
+  const leave = (node: HTMLElement, done: () => void): (() => void) | null => {
     let over = false
     const finish = () => {
       if (over) return
@@ -695,9 +695,11 @@ export function createStoryPopup(map: MapLibreMap, opts: StoryPopupOptions = {})
     const onEnd = (e: TransitionEvent) => {
       if (e.target === node && e.propertyName === 'opacity') finish()
     }
+    // Nothing to cancel: a no-op handed back here would read as a card still
+    // on its way out (`cancelPopupLeave`) until the next open.
     if (reducedMotion()) {
       done()
-      return () => {}
+      return null
     }
     node.addEventListener('transitionend', onEnd)
     const timer = window.setTimeout(finish, 400)
@@ -738,17 +740,22 @@ export function createStoryPopup(map: MapLibreMap, opts: StoryPopupOptions = {})
   }
   const removePopup = () => {
     if (!popup.isOpen() || cancelPopupLeave) return
-    // What the card was about is let go of now; only the pixels linger.
+    // What the card was about is let go of now, the island included; only the
+    // pixels linger. Told at the press, not after the fade: until then the
+    // island still held the story open, so a flight landing inside the fade
+    // reopened the card, and a second tap on its dot did nothing.
+    pending = null
     about(null)
     tell(null)
+    opts.onClose?.()
     const node = popup.getElement()
     if (!node) {
-      popup.remove()
+      removeQuietly()
       return
     }
     cancelPopupLeave = leave(node, () => {
       cancelPopupLeave = null
-      popup.remove()
+      removeQuietly()
     })
   }
 
