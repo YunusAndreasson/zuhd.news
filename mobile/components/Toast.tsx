@@ -150,7 +150,7 @@ export const Toast = memo(function Toast({
       key={pos}
       entering={reduceMotion ? DISSOLVE_IN : SLIDE_IN[pos]}
       exiting={reduceMotion ? DISSOLVE_OUT : SLIDE_OUT[pos]}
-      style={[styles.container, positionStyle]}
+      style={[styles.container, positionStyle, { left: insets.left, right: insets.right }]}
       // `box-none`: the full-width container is only a positioning frame — it
       // must not intercept touches in its horizontal band (it overlaps the
       // bottom action-pill row when a bottom toast is visible). Only the inner

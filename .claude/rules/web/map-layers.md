@@ -27,8 +27,8 @@ Camera, MapLibre and cards are `map.md`; the rails are `map-rail.md`.
 
 ## Basemap and build
 
-- Every file the basemap is built from belongs in the list `BASEMAP_V` hashes
-  (`scripts/build.js`). The basemap files `public/_headers` names are cached
+- Every file the basemap is built from belongs in the list `basemapVersion` hashes
+  (`scripts/build/basemap.js`). The basemap files `public/_headers` names are cached
   for a day, so a source left out goes stale with no way for a reader to force
   it.
 - There is no 1:110m first-paint tier: 110m deletes real geography.

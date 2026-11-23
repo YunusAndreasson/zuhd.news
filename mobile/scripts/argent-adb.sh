@@ -1,10 +1,8 @@
 #!/usr/bin/env bash
 # argent-adb.sh — adb-based fallback for argent gesture/screenshot tools on Linux.
 #
-# Background: argent ships macOS-only simulator-server / ax-service / dylibs, so
-# screenshot, gesture-tap, gesture-swipe, keyboard, run-sequence all fail on Linux
-# (see https://github.com/software-mansion/argent/issues/246). Discovery tools
-# (describe, list-devices, launch-app) still work because they use adb/uiautomator.
+# Argent added a Linux simulator-server in https://github.com/software-mansion/argent/pull/249.
+# Use this fallback when the installed Linux package lacks a working server.
 #
 # This wrapper accepts NORMALIZED [0,1] coordinates — the same space argent's
 # discovery tools return — and converts them to pixels for `adb shell input`.

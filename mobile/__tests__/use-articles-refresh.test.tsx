@@ -4,6 +4,7 @@ import { act, renderHook } from '@testing-library/react';
 import * as Network from 'expo-network';
 import type { ReactNode } from 'react';
 import { useArticles } from '../hooks/useArticles';
+import { useOffline } from '../hooks/useOffline';
 import { fetchArrival, probeGenerated, retryFailedSnapshots } from '../lib/arrival';
 import { fetchFeed } from '../lib/feed-source';
 
@@ -75,6 +76,17 @@ beforeEach(() => {
 });
 afterEach(() => notifyManager.setScheduler((cb) => setTimeout(cb, 0)));
 
+it('keeps the grouped stories when only the build stamp changes', async () => {
+  const hook = mount();
+  await act(async () => {});
+  const before = hook.result.current.grouped;
+  await act(async () => {
+    hook.client.setQueryData(['feed'], mockFeed('new', ['one']));
+  });
+  expect(hook.result.current.generated).toBe('new');
+  expect(hook.result.current.grouped).toBe(before);
+});
+
 it('a pull joins the launch check and receives its added stories', async () => {
   const probe = deferred<string>();
   jest.mocked(probeGenerated).mockReturnValue(probe.promise);
@@ -117,6 +129,18 @@ it('retries failed snapshots even on the current feed build', async () => {
   });
   expect(retryFailedSnapshots).toHaveBeenCalledWith(hook.client);
   expect(fetchArrival).not.toHaveBeenCalled();
+});
+
+it('renders a known offline state on the first render of a new reader', async () => {
+  mount();
+  await act(async () => {
+    mockReconnect({ isConnected: false });
+  });
+  const renders: boolean[] = [];
+  renderHook(() => {
+    renders.push(useOffline());
+  });
+  expect(renders[0]).toBe(true);
 });
 
 it('a reconnect checks for a coordinated arrival instead of fetching the feed alone', async () => {
@@ -322,4 +346,18 @@ it('still reports a long return when a slower arrival has already been supersede
   expect(hook.result.current.generated).toBe('2026-10-15T12:00:00Z');
   expect(hook.onReturn).toHaveBeenCalledTimes(1);
   expect(hook.onReturn.mock.calls[0][0].added.map((a: Article) => a.slug)).toEqual(['latest']);
+});
+
+it('a foreground probe accepts a build that the background task finished while it waited', async () => {
+  const hook = mount();
+  await act(async () => {});
+  const probe = deferred<string>();
+  jest.mocked(probeGenerated).mockReturnValueOnce(probe.promise);
+  await act(async () => {
+    const resume = mockResume(600_000);
+    hook.client.setQueryData(['feed'], mockFeed('new', ['two']));
+    probe.resolve('new');
+    await resume;
+  });
+  expect(fetchArrival).not.toHaveBeenCalled();
 });

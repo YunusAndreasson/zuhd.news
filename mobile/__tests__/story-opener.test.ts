@@ -28,6 +28,7 @@ it('fetches and opens the notification article absent from the cached feed', asy
   expect(fetchStory).toHaveBeenCalledWith(
     expect.stringContaining('/api/story/notified-story.json'),
     expect.any(Function),
+    expect.objectContaining({ signal: expect.any(AbortSignal) }),
   );
   expect(open).toHaveBeenCalledWith(
     'notified-story',
@@ -62,6 +63,7 @@ it('keeps the latest tap when an older request finishes afterwards', async () =>
   const { result } = renderHook(() => useStoryOpener(grouped, open, error));
   const first = result.current('first');
   await act(() => result.current('second'));
+  expect(fetchStory.mock.calls[0]?.[2]?.signal?.aborted).toBe(true);
   await act(async () => {
     finish(payload('first'));
     await first;

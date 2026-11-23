@@ -3,7 +3,7 @@ import assert from 'node:assert/strict'
 import { readFileSync } from 'node:fs'
 import { test } from 'node:test'
 import { THIN_BODY } from './dedup.js'
-import { attachSources, dropUnwritable, fillThinSources, readablePicks, thinSourcesOf, unionSources } from './enrich.js'
+import { attachSources, dropUnwritable, fillThinSources, offTopicPicks, readablePicks, refetchOffTopic, relevance, thinSourcesOf, unionSources } from './enrich.js'
 
 const long = (about) => `${about} `.repeat(Math.ceil((THIN_BODY + 50) / (about.length + 1)))
 const src = (name, url, body) => ({ name, url, country: null, ...(body === undefined ? {} : { body }) })
@@ -185,6 +185,37 @@ test('two title words in the text are not enough when they are under a third of 
   const { dropped: under } = dropUnwritable([entry('regional lenders met')])
   assert.equal(under[0].why, 'its source text matches 2/10 title words — not about this story')
   assert.deepEqual(dropUnwritable([entry('regional lenders agree on something')]).dropped, [])
+})
+
+// Dialogue Earth's lede as the feed carried it on 2026-11-19, three cycles
+// running: the headline's words are the lede's only by their stems.
+const JOHOR = 'Johor’s AI boom is leaving communities and endangered wildlife behind'
+const JOHOR_LEDE = '“I’m not against economic development, but it should be for the people. We’ve lost our way of life to a data centre that does not benefit our community.” Ulaganathan Krishnan’s home is about 400 metres from a “hyperscale” data centre under construction in Gelang Patah. The once-quiet town in Malaysia’s southern Johor state has become a major hub for Southeast Asia’s AI infrastructure boom.'
+
+test('a title word counts when the text holds its stem', () => {
+  assert.deepEqual(relevance(JOHOR, JOHOR_LEDE), { hits: 3, of: 7, about: true })
+  assert.deepEqual(dropUnwritable([{ title: JOHOR, sources: [src('Dialogue Earth', 'https://dialogue.earth/j', long(JOHOR_LEDE))] }]).dropped, [])
+  assert.equal(relevance('Oil Up', 'anything'), null, 'a title of two words is not judged')
+})
+
+test('a pick whose text is about something else has its pages read before it is given up', async () => {
+  const quanta = { title: 'Network Researchers Nail Down Theory of Perfect Resilience', sources: [src('Quanta', 'https://quanta.example/r', long('A dek about networks and a historic message sent in 1969'))] }
+  const nixos = { title: 'Dutch government adopts NixOS across its ministries', sources: [src('Group', 'https://group.example/about', long('We are a community that meets monthly to share open source'))] }
+  const fine = { title: 'Geneva trade body doubles its growth forecast', sources: [src('Dawn', 'https://dawn.example/wto', long('Geneva trade body doubles growth forecast'))] }
+  const picks = offTopicPicks([quanta, nixos, fine])
+  assert.deepEqual(picks.map((p) => p.entry.title.split(' ')[0]), ['Network', 'Dutch'])
+  /** @type {string[]} */
+  const asked = []
+  const pages = { 'https://quanta.example/r': long('network researchers have a theory of perfect resilience') }
+  const recovered = await refetchOffTopic(picks, async (url) => {
+    asked.push(url)
+    return pages[url] ?? null
+  })
+  assert.deepEqual(asked.sort(), ['https://group.example/about', 'https://quanta.example/r'])
+  assert.equal(recovered, 1)
+  const { kept, dropped } = dropUnwritable([quanta, nixos, fine])
+  assert.deepEqual(kept.map((e) => e.title.split(' ')[0]), ['Network', 'Geneva'], 'the page was the article')
+  assert.deepEqual(dropped.map((d) => d.entry.title.split(' ')[0]), ['Dutch'], 'a page that gave nothing leaves the pick as it was')
 })
 
 // --- before step 1: the selector's file, held to its shape -------------------

@@ -1,5 +1,6 @@
 import { type Ref, useCallback, useEffect, useImperativeHandle, useState } from 'react';
 import { useBriefingPlayer } from '../hooks/useBriefingPlayer';
+import { usePreferences } from '../hooks/useTheme';
 import { BriefingBar } from './BriefingBar';
 
 export interface BriefingChromeRef {
@@ -78,7 +79,8 @@ export function BriefingChrome({
   onHeightChange,
   ref,
 }: BriefingChromeProps) {
-  const player = useBriefingPlayer(date, duration, recorded);
+  const { preferences } = usePreferences();
+  const player = useBriefingPlayer(date, duration, recorded, preferences.briefingSpeed);
   // Called as functions, not as `player.toggle()`: a method call reads as a
   // change to `player`, and the compiler could not keep the callbacks below
   // memoized on the function alone.

@@ -40,31 +40,32 @@ beforeEach(() => {
   mockReactions.length = 0;
 });
 
-function setup() {
+function setup(index = 0) {
   const progress = shared(0);
   const committedPosition = shared(0);
   const onRelease = jest.fn();
   const onSettle = jest.fn();
   const onRollback = jest.fn();
-  render(
-    <StoryDeck
-      index={0}
-      count={5}
-      width={400}
-      sheetGesture={{} as ComponentProps<typeof StoryDeck>['sheetGesture']}
-      progress={progress}
-      committedPosition={committedPosition}
-      scrollEnabled={false}
-      onScrollOffset={shared(0)}
-      keyOf={String}
-      renderStory={() => null}
-      renderEnd={() => null}
-      onDragStart={jest.fn()}
-      onRelease={onRelease}
-      onSettle={onSettle}
-      onRollback={onRollback}
-    />,
-  );
+  const renderStory = jest.fn(() => null);
+  const renderFooter = jest.fn(() => null);
+  const props = {
+    count: 5,
+    width: 400,
+    sheetGesture: {} as ComponentProps<typeof StoryDeck>['sheetGesture'],
+    progress,
+    committedPosition,
+    scrollEnabled: false,
+    onScrollOffset: shared(0),
+    keyOf: String,
+    renderStory,
+    renderFooter,
+    renderEnd: () => null,
+    onDragStart: jest.fn(),
+    onRelease,
+    onSettle,
+    onRollback,
+  };
+  const { rerender } = render(<StoryDeck {...props} index={index} />);
   const drain = () =>
     act(() => {
       for (const fn of mockQueue.splice(0)) fn();
@@ -76,8 +77,29 @@ function setup() {
       (mockPan.onUpdate as (event: never) => void)({ translationX: -260 } as never);
       mockPan.onDeactivate?.({ translationX: -260, velocityX: -1400, canceled } as never);
     });
-  return { progress, committedPosition, onRelease, onSettle, onRollback, drain, flick };
+  const land = (next: number) => rerender(<StoryDeck {...props} index={next} />);
+  return {
+    progress,
+    committedPosition,
+    onRelease,
+    onSettle,
+    onRollback,
+    drain,
+    flick,
+    land,
+    renderStory,
+    renderFooter,
+  };
 }
+
+it('builds the three visible and neighbouring story slots once per landing', () => {
+  const { land, renderStory, renderFooter } = setup(1);
+  renderStory.mockClear();
+  renderFooter.mockClear();
+  land(2);
+  expect(renderStory.mock.calls).toEqual([[1], [2], [3]]);
+  expect(renderFooter.mock.calls).toEqual([[1], [2], [3]]);
+});
 
 it('three quick flicks advance three stories while JS is blocked and springs are caught early', () => {
   const { progress, committedPosition, onRelease, onSettle, drain, flick } = setup();

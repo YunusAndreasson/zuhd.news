@@ -1,9 +1,9 @@
 import { File, Paths } from 'expo-file-system';
 import * as Notifications from 'expo-notifications';
-import * as SecureStore from 'expo-secure-store';
 import Storage from 'expo-sqlite/kv-store';
 import { ANALYTICS_EVENTS, type OnboardingStep } from '../constants/analytics';
 import { analytics } from './analytics';
+import { osPromptSpent } from './notification-prompt';
 import { getPreferences } from './storage';
 import { createDebouncedWrite, createListeners, deleteLegacyFile } from './store-plumbing';
 
@@ -54,12 +54,6 @@ const ADDED_HINT_IDS: readonly HintId[] = ['masthead'];
 export const MAX_HINT_SHOWS = 3;
 /** No onboarding rule distinguishes reading depth beyond the fourth article. */
 export const ONBOARDING_SNAP_CAP = 3;
-
-// Written by the pre-onboarding cold prompt in _layout.tsx; read at seed as
-// the "this device already spent the OS dialog" signal, and re-written when
-// the primer fires the dialog so an OTA rollback to the old code never
-// cold-prompts. Never deleted.
-const NOTIF_ASKED_KEY = 'zuhd_notif_asked';
 
 const ONBOARDING_FILE = new File(Paths.document, 'zuhd-onboarding.json');
 const ONBOARDING_KEY = 'zuhd_onboarding';
@@ -215,7 +209,7 @@ function commit(next: OnboardingState) {
 async function resolveLegacyPrimer(): Promise<void> {
   try {
     const [asked, prefs, perms] = await Promise.all([
-      SecureStore.getItemAsync(NOTIF_ASKED_KEY).catch(() => null),
+      osPromptSpent().catch(() => false),
       getPreferences(),
       Notifications.getPermissionsAsync().catch(() => null),
     ]);
@@ -314,12 +308,6 @@ export function recordHintShown(id: HintId): void {
 
 export function setPrimerStatus(status: PrimerStatus): void {
   commit({ ...state, primer: { status, decidedAt: Date.now() } });
-}
-
-/** Record that the once-ever OS dialog is being spent — insurance so an OTA
- *  rollback to the old cold-prompt code never fires a second ask. */
-export async function markOsPromptSpent(): Promise<void> {
-  await SecureStore.setItemAsync(NOTIF_ASKED_KEY, '1').catch(() => {});
 }
 
 // ---------------------------------------------------------------------------

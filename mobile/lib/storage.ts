@@ -1,8 +1,9 @@
 import { File, Paths } from 'expo-file-system';
 import Storage from 'expo-sqlite/kv-store';
-import { DEFAULT_PREFS, type Preferences } from '../constants/theme';
+import { BRIEFING_SPEEDS, DEFAULT_PREFS, type Preferences } from '../constants/theme';
 import { type LegacyCopy, readMigrated } from './legacy-store';
-import { isPreferences } from './validate';
+import { orderStorageWork } from './store-plumbing';
+import { isBasePreferences } from './validate';
 
 // UX state — not secrets. SQLite kv-store is the active backing store; the
 // document files and SecureStore keys below are migration sources only, moved
@@ -21,7 +22,7 @@ const LEGACY_PREFS: LegacyCopy = {
 
 export async function getLastSeenAt(): Promise<number> {
   try {
-    const stored = await readMigrated(LAST_SEEN_KEY, LEGACY_LAST_SEEN);
+    const stored = await orderStorageWork(() => readMigrated(LAST_SEEN_KEY, LEGACY_LAST_SEEN));
     return stored === null ? 0 : parseInt(stored, 10) || 0;
   } catch {
     return 0;
@@ -30,7 +31,7 @@ export async function getLastSeenAt(): Promise<number> {
 
 export async function saveLastSeenAt(ts: number): Promise<void> {
   try {
-    await Storage.setItem(LAST_SEEN_KEY, String(ts));
+    await orderStorageWork(() => Storage.setItem(LAST_SEEN_KEY, String(ts)));
   } catch {}
 }
 
@@ -39,10 +40,15 @@ export async function saveLastSeenAt(ts: number): Promise<void> {
  *  choice saved by an older build is dropped the next time they are saved. */
 function parsePreferences(text: string): Preferences | null {
   try {
-    const merged = { ...DEFAULT_PREFS, ...JSON.parse(text) };
-    if (!isPreferences(merged)) return null;
+    const parsed: unknown = JSON.parse(text);
+    if (!parsed || typeof parsed !== 'object' || Array.isArray(parsed)) return null;
+    const merged = { ...DEFAULT_PREFS, ...parsed };
+    if (!isBasePreferences(merged)) return null;
+    const briefingSpeed =
+      BRIEFING_SPEEDS.find((speed) => speed === merged.briefingSpeed) ??
+      DEFAULT_PREFS.briefingSpeed;
     const { fontSize, appearance, haptics, notifications } = merged;
-    return { fontSize, appearance, haptics, notifications };
+    return { briefingSpeed, fontSize, appearance, haptics, notifications };
   } catch {
     return null;
   }

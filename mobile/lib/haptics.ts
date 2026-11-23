@@ -44,10 +44,9 @@ export function setHapticsEnabled(v: boolean): void {
   enabled = v;
 }
 
-// `performAndroidHapticsAsync` resolves its constant by reflection on
-// `HapticFeedbackConstants`, and a constant the OS does not have throws — which
-// `fire` swallows. `SEGMENT_TICK`/`SEGMENT_FREQUENT_TICK` arrived in API 34 and
-// `CONFIRM`/`REJECT` in API 30; below those, an older View constant stands in.
+// `performAndroidHapticsAsync` rejects constants unavailable on this OS.
+// Segment ticks arrived in API 34 and CONFIRM/REJECT in API 30. Older
+// versions use a View constant they support.
 const ANDROID_API = IS_ANDROID ? Number(Platform.Version) : 0;
 const HAS_SEGMENT_TICK = ANDROID_API >= 34;
 const HAS_CONFIRM = ANDROID_API >= 30;

@@ -1,4 +1,4 @@
-import { useEffect, useMemo } from 'react';
+import { useEffect, useEffectEvent, useMemo } from 'react';
 import { BackHandler } from 'react-native';
 import { type PanGestureConfig, usePanGesture } from 'react-native-gesture-handler';
 import {
@@ -111,12 +111,13 @@ export function useSwipeBackGesture({
 /** Android's hardware back, gated so a surface that is not showing cannot
  *  swallow it. A no-op on iOS. */
 export function useHardwareBack({ enabled, onBack }: { enabled: boolean; onBack: () => void }) {
+  const handleBack = useEffectEvent(() => {
+    onBack();
+    return true;
+  });
   useEffect(() => {
     if (!IS_ANDROID || !enabled) return;
-    const sub = BackHandler.addEventListener('hardwareBackPress', () => {
-      onBack();
-      return true;
-    });
+    const sub = BackHandler.addEventListener('hardwareBackPress', handleBack);
     return () => sub.remove();
-  }, [enabled, onBack]);
+  }, [enabled]);
 }

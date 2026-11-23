@@ -1,9 +1,9 @@
 import type { Article, FeedResponse } from '@shared/types';
-import { hashKey, notifyManager, type QueryClient } from '@tanstack/react-query';
+import { hashKey, notifyManager, type QueryClient, queryOptions } from '@tanstack/react-query';
 import { API_BASE } from '../constants/theme';
 import { type FetchedSnapshot, fetchAllSnapshots } from './api-snapshots';
 import { collectNewArticles, isOlderFeed } from './feed-diff';
-import { fetchFeed } from './feed-source';
+import { downloadFeed, fetchFeed, saveFeed } from './feed-source';
 import { fetchJson } from './fetchJson';
 import { type FeedStory, noteFeed } from './fresh-store';
 import { isMetaResponse } from './validate';
@@ -22,7 +22,12 @@ import { isMetaResponse } from './validate';
  * commit.
  */
 
-export const FEED_QUERY_KEY = ['feed'] as const;
+export const feedQuery = queryOptions({
+  queryKey: ['feed'] as const,
+  queryFn: ({ signal }) => fetchFeed({ signal }),
+});
+
+export const FEED_QUERY_KEY = feedQuery.queryKey;
 
 export interface Arrival {
   feed: FeedResponse;
@@ -32,6 +37,10 @@ export interface Arrival {
 
 let generation = 0;
 const pendingArrivals = new Set<AbortController>();
+
+export function arrivalGeneration(): number {
+  return generation;
+}
 
 export function cancelArrivals(): void {
   generation++;
@@ -56,29 +65,64 @@ export function feedStories(feed: FeedResponse): FeedStory[] {
 }
 
 /** The build the site is on now: a ~0.2KB probe. Throws when unreachable. */
-export async function probeGenerated(): Promise<string> {
+export async function probeGenerated(signal?: AbortSignal): Promise<string> {
   const meta = await fetchJson(`${API_BASE}/api/meta.json`, isMetaResponse, {
     cache: 'no-store',
+    signal,
   });
   return meta.generated;
 }
 
-/** The feed and every snapshot that changed, side by side. Only the feed
- *  failing fails it. */
-export async function fetchArrival(queryClient: QueryClient): Promise<Arrival> {
-  const startedIn = generation;
+interface Download {
+  build?: string;
+  controller: AbortController;
+  foreground: boolean;
+  work: Promise<Arrival>;
+}
+const downloads = new WeakMap<QueryClient, Download>();
+
+/** A return while the background task is downloading the same build joins
+ * the transfer. Once the reader joins, iOS task expiry only ends its own interest. */
+export function fetchArrival(
+  queryClient: QueryClient,
+  build?: string,
+  background?: AbortSignal,
+): Promise<Arrival> {
+  const previous = downloads.get(queryClient);
+  if (previous && previous.build === build && !previous.controller.signal.aborted) {
+    if (!background) previous.foreground = true;
+    return previous.work;
+  }
   const controller = new AbortController();
-  pendingArrivals.add(controller);
-  try {
+  const startedIn = generation;
+  async function downloadBuild(): Promise<Arrival> {
     const [feed, snapshots] = await Promise.all([
-      fetchFeed({ cache: 'no-store', signal: controller.signal }),
+      downloadFeed({ cache: 'no-store', signal: controller.signal }),
       fetchAllSnapshots((key) => queryClient.getQueryData(key), false, controller.signal),
     ]);
+    if (controller.signal.aborted) throw new Error('Arrival cancelled');
+    await saveFeed(feed);
     return { feed, snapshots, generation: startedIn };
-  } finally {
-    controller.abort();
-    pendingArrivals.delete(controller);
   }
+  pendingArrivals.add(controller);
+  const download: Download = {
+    build,
+    controller,
+    foreground: !background,
+    work: downloadBuild().finally(() => {
+      controller.abort();
+      pendingArrivals.delete(controller);
+      background?.removeEventListener('abort', expire);
+      if (downloads.get(queryClient) === download) downloads.delete(queryClient);
+    }),
+  };
+  function expire() {
+    if (!download.foreground) controller.abort();
+  }
+  downloads.set(queryClient, download);
+  background?.addEventListener('abort', expire);
+  if (background?.aborted) expire();
+  return download.work;
 }
 
 /**
@@ -94,10 +138,11 @@ export function applyArrival(
   {
     lastSeenAt,
     alsoInFlush,
-  }: { lastSeenAt: number | null; alsoInFlush?: (added: Article[]) => void },
+    background = false,
+  }: { lastSeenAt: number | null; alsoInFlush?: (added: Article[]) => void; background?: boolean },
 ): Article[] {
   if (arrival.generation !== undefined && arrival.generation !== generation) return [];
-  const before = queryClient.getQueryData<FeedResponse>(FEED_QUERY_KEY);
+  const before = queryClient.getQueryData(FEED_QUERY_KEY);
   // The feed may have downloaded first, then waited on a slow layer while a
   // foreground/background request applied a newer complete arrival.
   if (isOlderFeed(arrival.feed, before)) return [];
@@ -106,21 +151,24 @@ export function applyArrival(
     // Scheduled, not called: `noteFeed` tells its subscribers at once, and
     // called here it would re-render the kickers a commit ahead of the river.
     const appliedIn = generation;
-    notifyManager.schedule(() => {
+    const notify = () => {
       if (
         appliedIn !== generation ||
-        queryClient.getQueryData<FeedResponse>(FEED_QUERY_KEY)?.generated !== arrival.feed.generated
+        queryClient.getQueryData(FEED_QUERY_KEY)?.generated !== arrival.feed.generated
       )
         return;
       if (lastSeenAt !== null) {
         noteFeed(arrival.feed.generated, feedStories(arrival.feed), lastSeenAt);
       }
       alsoInFlush?.(added);
-    });
+    };
+    if (!background) notifyManager.schedule(notify);
     queryClient.setQueryData(FEED_QUERY_KEY, arrival.feed);
     for (const snapshot of arrival.snapshots) {
       queryClient.setQueryData(snapshot.queryKey, snapshot.data);
     }
+    // iOS may suspend the task before a scheduled notification runs.
+    if (background) notify();
   });
   return added;
 }

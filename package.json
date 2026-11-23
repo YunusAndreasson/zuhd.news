@@ -29,7 +29,7 @@
   },
   "dependencies": {
     "@google-cloud/text-to-speech": "^7.2.0",
-    "@maplibre/geojson-vt": "^6.3.1",
+    "@maplibre/geojson-vt": "^7.0.1",
     "@maplibre/vt-pbf": "^4.3.3",
     "@mozilla/readability": "^0.6.0",
     "@resvg/resvg-js": "^2.6.2",
@@ -40,8 +40,8 @@
     "jpeg-js": "^0.4.4",
     "js-yaml": "^5.5.0",
     "jsdom": "^31.0.1",
-    "maplibre-gl": "^6.18.0",
-    "nodemailer": "^10.5.0",
+    "maplibre-gl": "^6.19.0",
+    "nodemailer": "^10.6.1",
     "preact": "^11.2.0",
     "topojson-client": "^3.1.0"
   },
@@ -49,7 +49,7 @@
     "@biomejs/biome": "^2.6.8",
     "@mapbox/tiny-sdf": "^2.3.0",
     "@mapbox/vector-tile": "^3.0.0",
-    "@maplibre/maplibre-gl-style-spec": "^26.8.0",
+    "@maplibre/maplibre-gl-style-spec": "^26.9.0",
     "@types/d3-geo": "^3.1.1",
     "@types/geojson": "^7946.0.16",
     "@types/node": "^26.6.6",
@@ -57,8 +57,8 @@
     "@types/topojson-specification": "^1.0.5",
     "adhan": "^4.4.6",
     "astronomy-engine": "^2.1.19",
-    "knip": "^6.45.1",
-    "pbf": "^5.1.2",
+    "knip": "^6.48.0",
+    "pbf": "^5.2.0",
     "playwright": "^1.65.1",
     "typescript": "^7.0.2"
   }

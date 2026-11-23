@@ -14,6 +14,7 @@ const mockStorage = {
 };
 
 jest.mock('@tanstack/react-query', () => ({
+  ...jest.requireActual('@tanstack/react-query'),
   focusManager: {
     setEventListener: (...args: unknown[]) => mockFocusListener(...args),
   },
@@ -35,6 +36,8 @@ jest.mock('expo-network', () => ({
 }));
 
 jest.mock('react-native', () => ({
+  Platform: { OS: 'ios' },
+  StyleSheet: { hairlineWidth: 0.5 },
   AppState: {
     currentState: 'active',
     addEventListener: (...args: unknown[]) => mockAppStateListener(...args),
@@ -145,6 +148,43 @@ describe('TanStack Query native lifecycle configuration', () => {
     expect(setOnline).toHaveBeenCalledTimes(1);
     expect(setOnline).toHaveBeenCalledWith(false);
     cleanup();
+    expect(remove).toHaveBeenCalledTimes(1);
+  });
+
+  it('prefers internet reachability and ignores an initial result after cleanup', async () => {
+    mockGetNetworkState.mockResolvedValue({ isConnected: true });
+    mockNetworkListener.mockReturnValue({ remove: jest.fn() });
+    jest.isolateModules(() => require('../lib/query-client'));
+    const install = mockOnlineListener.mock.calls[0][0];
+    const online = jest.fn();
+    const cleanup = install(online);
+    const event = mockNetworkListener.mock.calls[0][0];
+    event({});
+    expect(online).not.toHaveBeenCalled();
+    event({ isConnected: true, isInternetReachable: false });
+    expect(online).toHaveBeenLastCalledWith(false);
+    cleanup();
+    const cleanupPending = install(online);
+    cleanupPending();
+    await Promise.resolve();
+    expect(online).toHaveBeenCalledTimes(1);
+  });
+
+  it('shares a native listener and replays its current state to a later subscriber', () => {
+    const remove = jest.fn();
+    mockNetworkListener.mockReturnValue({ remove });
+    jest.isolateModules(() => require('../lib/query-client'));
+    const install = mockOnlineListener.mock.calls[0][0];
+    const first = install(jest.fn());
+    mockNetworkListener.mock.calls[0][0]({ isInternetReachable: false });
+    const online = jest.fn();
+    const second = install(online);
+    expect(online).toHaveBeenCalledWith(false);
+    expect(mockNetworkListener).toHaveBeenCalledTimes(1);
+    expect(mockGetNetworkState).toHaveBeenCalledTimes(1);
+    first();
+    expect(remove).not.toHaveBeenCalled();
+    second();
     expect(remove).toHaveBeenCalledTimes(1);
   });
 

@@ -292,6 +292,12 @@ export function recapMatch(candidateTitle, titleSets) {
 
 const RECAP_ALL_WINDOW_MS = 72 * 3600 * 1000
 
+/** The title sets dated within the last `ms`; an undated one is left out. */
+function titlesWithin(titleSets, ms) {
+  const since = Date.now() - ms
+  return (titleSets || []).filter(t => (typeof t.date === 'number' ? t.date : Date.parse(t.date)) >= since)
+}
+
 function isNicheOnly(story) {
   const sources = story.sources || []
   if (sources.length === 0) return false
@@ -372,10 +378,21 @@ export function wouldDedup(story, ctx) {
     // Measured on three 09-24/25 feeds: 8-10 hits each, every one an event
     // already published. 72h rather than the context's 7d, because a running
     // story's genuine next development does share the words.
-    const since = Date.now() - RECAP_ALL_WINDOW_MS
-    const recentOnly = (recentTitleSets || []).filter(t => (typeof t.date === 'number' ? t.date : Date.parse(t.date)) >= since)
-    const titleMatch = recapMatch(story.title, recentOnly)
+    const titleMatch = recapMatch(story.title, titlesWithin(recentTitleSets, RECAP_ALL_WINDOW_MS))
     if (titleMatch) return { deduped: true, reason: 'recap', match: titleMatch }
+  }
+  // Layer 5b: a title that gives `titleWords` fewer than three words, which is
+  // every headline in another script (Zhidx, TMTPost, Kloop: `titleWords` keeps
+  // a-z), so layer 5 never saw one. "Huawei Launches OSTA Brand" was written
+  // again off a Chinese headline 55 hours later, past the 48-hour slug window,
+  // and only the validator's same-title gate stopped it (2026-11-20). For such a
+  // pick the selector's English slug stands in, over 72 hours only. A slug
+  // shares a running story's words: across all 427 picks from 09-30 to 11-20 it
+  // matched 19 genuine follow-ups two to fourteen days on. Across the 27 picks
+  // whose titles gave too few words, it matched that one duplicate and nothing else.
+  if (slug && titleWords(story.title).size < 3) {
+    const slugMatch = recapMatch(slug.replace(/^\d{4}-\d{2}-\d{2}-/, '').replace(/-/g, ' '), titlesWithin(recentTitleSets, RECAP_ALL_WINDOW_MS))
+    if (slugMatch) return { deduped: true, reason: 'recap', match: slugMatch }
   }
   return { deduped: false }
 }

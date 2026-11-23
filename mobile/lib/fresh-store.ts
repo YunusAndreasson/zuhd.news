@@ -129,8 +129,15 @@ export function noteFeed(
   known = next;
 
   const fresh = new Set<string>();
-  for (const story of stories) if (next[story.slug] == null) fresh.add(story.slug);
-  state = { fresh, landed: new Set(), spent: new Set() };
+  let gainedSlug = false;
+  for (const { slug } of stories) {
+    if (next[slug] != null) continue;
+    fresh.add(slug);
+    if (!state.fresh.has(slug)) gainedSlug = true;
+  }
+  // The globe subscribes to this set. A new build can carry the same stories.
+  const sameFresh = !gainedSlug && fresh.size === state.fresh.size;
+  state = { fresh: sameFresh ? state.fresh : fresh, landed: new Set(), spent: new Set() };
   listeners.emit();
   persist.later();
 }

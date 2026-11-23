@@ -10,7 +10,6 @@ import {
   useLayoutEffect,
   useMemo,
   useRef,
-  useState,
 } from 'react';
 import { StyleSheet, type ViewStyle } from 'react-native';
 import Animated, {
@@ -71,7 +70,7 @@ import {
   straitMarkColor,
   WHITE,
 } from '../../constants/theme';
-import { useGlobeRedraw } from '../../hooks/useGlobeRedraw';
+import { useGlobeRedraw, useSpriteRedraw } from '../../hooks/useGlobeRedraw';
 import { useTheme } from '../../hooks/useTheme';
 import { articleTime } from '../../lib/article-utils';
 import type { CardDelta } from '../../lib/cards/types';
@@ -101,6 +100,7 @@ import {
 } from '../../lib/globe-display';
 import { type GlobeHitGeometry, hitGlobeMarks } from '../../lib/globe-hit-test';
 import { isStorySettled, requestGlobeSettle } from '../../lib/globe-settle';
+import { markLaunch } from '../../lib/launch-timing';
 import { coverageCell } from '../../lib/map-selection';
 import {
   followMarketLayout,
@@ -125,7 +125,6 @@ import {
 } from '../../lib/overlays';
 import { displayCountryName, displayLocation, wrapCountryLabel } from '../../lib/place-names';
 import { useReadSlugs } from '../../lib/read-store';
-import { gpuMissing, readSkiaGpu } from '../../lib/skia-gpu';
 import { type StoryPlace, topUnread, unreadSlugs } from '../../lib/story-places';
 import {
   STRAIT_SIGN_R,
@@ -3049,6 +3048,12 @@ export const MiniGlobe = memo(function MiniGlobe({
       ),
       cam: recordedCamRef.current,
     };
+    if (!last.cam && recordedCamRef.current) {
+      markLaunch('first-picture-published', {
+        heatPoints: heatmapPoints?.length ?? 0,
+        visibleHotspots: hotspotGlows.length,
+      });
+    }
     if (sharpen) {
       groundFade.value = 0;
       groundFade.value = withTiming(1, {
@@ -4908,6 +4913,7 @@ export const MiniGlobe = memo(function MiniGlobe({
     const first = geos.findIndex((g) => g != null);
     const geo = geos[first];
     if (!geo) return;
+    markLaunch('first-projection-start');
     callReproject(
       geo.lng,
       geo.lat,
@@ -4927,13 +4933,13 @@ export const MiniGlobe = memo(function MiniGlobe({
     redrawLast();
   }, [colors, light, redrawLast]);
 
-  /** Sprite sheets landed: the last frame is replayed with them. */
+  const redrawSprites = useSpriteRedraw(redrawLast);
   const receiveTextures = useCallback(
     (baked: Partial<GlobeTextures>) => {
       texturesRef.current = { ...texturesRef.current, ...baked };
-      redrawLast();
+      redrawSprites();
     },
-    [redrawLast],
+    [redrawSprites],
   );
   // The sprite sheets are baked on the CPU, on this thread (`bakeSprite`), and
   // each canvas uploads them from its own render thread. No GPU call from JS
@@ -5627,11 +5633,6 @@ const GlobeCanvas = memo(function GlobeCanvas({
   collectColor: SharedValue<string>;
   beaconStyle: ReturnType<typeof useAnimatedStyle<ViewStyle>>;
 }) {
-  // No GPU for Skia on this device (`gpuMissing`): the canvas could only stay
-  // blank, and the beacon would mark a place on nothing. Every mark has a row
-  // in the strip, a card or the menu, so the screen keeps its news.
-  const [drawable] = useState(() => !gpuMissing(readSkiaGpu()));
-  if (!drawable) return null;
   return (
     <>
       <Canvas style={[styles.canvas, { width, height }]} pointerEvents="none">

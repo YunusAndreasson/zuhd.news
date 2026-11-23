@@ -1,7 +1,9 @@
 import type { Article, Category } from '@shared/types';
+import { renderHook } from '@testing-library/react';
+import { useMapStories } from '../hooks/useMapStories';
 import { CATEGORIES } from '../constants/theme';
 import { articleTime, eventTime } from '../lib/article-utils';
-import { buildStoryRows } from '../lib/map-feed';
+import { buildStoryRows, locateStories } from '../lib/map-feed';
 import {
   orderNewsRiver,
   RIVER_WINDOW_MS,
@@ -283,14 +285,31 @@ describe('buildStoryRows — new and earlier', () => {
 
   it('marks the first story the reader already had as earlier', () => {
     const river = [at('n1', 1), at('n2', 2), at('old', 5)];
-    const rows = buildStoryRows({ river, fresh: new Set(['n1', 'n2']) });
+    const rows = buildStoryRows(locateStories(river), new Set(['n1', 'n2']));
     expect(rows.map((r) => r.mark)).toEqual(['new', 'new', 'earlier']);
   });
 
   it('marks nothing new when every story is: there is nothing it is new beside', () => {
     const river = [at('a', 1), at('b', 2), at('c', 3)];
-    const rows = buildStoryRows({ river, fresh: new Set(['a', 'b', 'c']) });
+    const rows = buildStoryRows(locateStories(river), new Set(['a', 'b', 'c']));
     expect(rows.map((r) => r.mark)).toEqual([null, null, null]);
     expect(rows.some((r) => r.fresh)).toBe(false);
   });
+});
+
+it('keeps the camera and places while card annotations arrive, and updates both when stories move', () => {
+  const located = makeArticle({ slug: 'first', lat: 10, lng: 20 });
+  const unlocated = makeArticle({ slug: 'second', lat: null, lng: null });
+  const river = [located, unlocated];
+  const initial = { river, fresh: new Set<string>(), odds: new Map<string, string>() };
+  const { result, rerender } = renderHook(useMapStories, { initialProps: initial });
+  const first = result.current;
+  const restored = { ...initial, fresh: new Set(['first']), odds: new Map([['first', '40%']]) };
+  rerender(restored);
+  expect(result.current.storyRows[0]).toMatchObject({ mark: 'new', odds: '40%' });
+  expect(result.current.cameraTrack).toBe(first.cameraTrack);
+  expect(result.current.places).toBe(first.places);
+  rerender({ ...restored, river: [unlocated, { ...located, lat: 30 }] });
+  expect(result.current.cameraTrack).toEqual([null, null, 30, 20]);
+  expect(result.current.places[0]).toMatchObject({ lat: 30, lng: 20, slugs: ['first'] });
 });

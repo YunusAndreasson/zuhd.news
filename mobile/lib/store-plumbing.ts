@@ -15,6 +15,15 @@ import type { File } from 'expo-file-system';
  * failed four suites that do not mock it.
  */
 
+// A legacy read can write to SQLite as it migrates. Drain these reads and
+// writes before erasure, including the briefing's exclusive transactions.
+let storageWork: Promise<unknown> = Promise.resolve();
+export function orderStorageWork<T>(operation: () => Promise<T>): Promise<T> {
+  const result = storageWork.then(operation);
+  storageWork = result.catch(() => {});
+  return result;
+}
+
 /** Listeners for `useSyncExternalStore`: `subscribe` is its first argument. */
 export function createListeners() {
   const listeners = new Set<() => void>();
@@ -61,8 +70,8 @@ export function createDebouncedWrite(write: () => void, delayMs: number) {
       if (timer) clearTimeout(timer);
       timer = setTimeout(now, delayMs);
     },
-    flush(): void {
-      if (dirty) now();
+    flush(): boolean {
+      return !dirty || now();
     },
   };
 }

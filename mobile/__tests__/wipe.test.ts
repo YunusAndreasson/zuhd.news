@@ -54,6 +54,12 @@ jest.mock('expo-sqlite/kv-store', () => ({
       mockKv.set(key, value);
       return Promise.resolve();
     }),
+    multiSet: jest.fn(async (pairs: [string, string][]) => {
+      for (const [key, value] of pairs) mockKv.set(key, value);
+    }),
+    multiRemove: jest.fn(async (keys: string[]) => {
+      for (const key of keys) mockKv.delete(key);
+    }),
     removeItemSync: jest.fn((key: string) => mockKv.delete(key)),
     removeItem: jest.fn((key: string) => {
       mockKv.delete(key);
@@ -108,7 +114,7 @@ import Storage from 'expo-sqlite/kv-store';
 import type { Article, Category } from '@shared/types';
 import { getSnapshot as getBookmarks, toggle as toggleBookmark } from '../lib/bookmark-store';
 import { getSnapshot as getDataUsage, recordBytes } from '../lib/data-usage';
-import { queryClient } from '../lib/query-client';
+import { immediatePersister, persister, queryClient } from '../lib/query-client';
 import { getLastSeenAt } from '../lib/storage';
 import { eraseLocalData } from '../lib/wipe';
 
@@ -135,6 +141,50 @@ beforeEach(() => {
 });
 
 describe('eraseLocalData', () => {
+  it('waits for the exclusive briefing transaction before deleting the other keys', async () => {
+    let finish!: () => void;
+    const transaction = new Promise<void>((resolve) => {
+      finish = resolve;
+    });
+    jest.mocked(Storage.multiRemove).mockImplementationOnce(() => transaction);
+    jest.mocked(Storage.removeItem).mockClear();
+    const erase = eraseLocalData();
+    await new Promise((resolve) => setTimeout(resolve, 0));
+    const overlappingDeletes = jest.mocked(Storage.removeItem).mock.calls.length;
+    finish();
+    await erase;
+    expect(overlappingDeletes).toBe(0);
+    expect(Storage.removeItem).toHaveBeenCalledWith('zuhd_review_count');
+  });
+
+  it.each([
+    ['zuhd_review_count', 'zuhd_review_count'],
+    ['zuhd_lastSeenAt', 'zuhd_last_seen'],
+  ])('cannot migrate %s back to SQLite after erasure', async (legacyKey, activeKey) => {
+    await jest.isolateModulesAsync(async () => {
+      const secure = require('expo-secure-store') as typeof import('expo-secure-store');
+      const review = require('../lib/store-review') as typeof import('../lib/store-review');
+      const storage = require('../lib/storage') as typeof import('../lib/storage');
+      const wipe = require('../lib/wipe') as typeof import('../lib/wipe');
+      let finishRead!: (value: string) => void;
+      const legacyValue = new Promise<string>((resolve) => {
+        finishRead = resolve;
+      });
+      jest
+        .mocked(secure.getItemAsync)
+        .mockImplementationOnce(async (key) => (key === legacyKey ? legacyValue : null));
+      const read =
+        legacyKey === 'zuhd_review_count' ? review.recordStorySwipe() : storage.getLastSeenAt();
+      await new Promise((resolve) => setTimeout(resolve, 0));
+      expect(secure.getItemAsync).toHaveBeenCalledWith(legacyKey);
+      const erase = wipe.eraseLocalData();
+      await new Promise((resolve) => setTimeout(resolve, 0));
+      finishRead('19');
+      await Promise.all([read, erase]);
+      expect(mockKv.has(activeKey)).toBe(false);
+    });
+  });
+
   it('clears every kind of stored state it promises to', async () => {
     // Something of each kind: a bookmark, the persisted keys, a cached feed
     // file, a live query, and a non-zero data meter.
@@ -146,6 +196,7 @@ describe('eraseLocalData', () => {
     mockKv.set('zuhd_review_count', '19');
     mockKv.set('zuhd_review_prompted', '1700000000');
     mockKv.set('REACT_QUERY_OFFLINE_CACHE', '{"clientState":{}}');
+    mockKv.set('REACT_QUERY_LAUNCH_HEAT', '{"clientState":{}}');
     mockKv.set('zuhd_firsts_v1', '["read"]');
     mockFiles.set('/cache/zuhd-feed.json', '{"generated":"x"}');
     mockFiles.set('/cache/briefing-https%3A%2F%2Fzuhd.news%2Fa.mp3', 'audio');
@@ -171,6 +222,7 @@ describe('eraseLocalData', () => {
       'zuhd_review_count',
       'zuhd_review_prompted',
       'REACT_QUERY_OFFLINE_CACHE',
+      'REACT_QUERY_LAUNCH_HEAT',
       'zuhd_card_history_v1',
       'zuhd_firsts_v1',
     ]) {
@@ -258,4 +310,40 @@ it('rejects when clearing a synchronous store fails', async () => {
     throw new Error('disk full');
   });
   await expect(eraseLocalData()).rejects.toThrow('Could not erase all local data');
+});
+
+it('orders background persistence behind an active save and discards delayed writes on erase', async () => {
+  jest.useFakeTimers();
+  try {
+    const client = (timestamp: number) => ({
+      timestamp,
+      buster: 'b',
+      clientState: { queries: [], mutations: [] },
+    });
+    const key = 'REACT_QUERY_OFFLINE_CACHE';
+    let complete!: () => void;
+    jest.mocked(Storage.multiSet).mockImplementationOnce(async (pairs) => {
+      await new Promise<void>((resolve) => {
+        complete = resolve;
+      });
+      for (const [key, value] of pairs) mockKv.set(key, value);
+    });
+    const first = immediatePersister.persistClient(client(1));
+    await Promise.resolve();
+    persister.persistClient(client(2));
+    const completed = immediatePersister.persistClient(client(3));
+    expect(mockKv.has(key)).toBe(false);
+    expect(mockKv.has('REACT_QUERY_LAUNCH_HEAT')).toBe(false);
+    complete();
+    await Promise.all([first, completed]);
+    await jest.advanceTimersByTimeAsync(1000);
+    expect(mockKv.get(key)).toBe(JSON.stringify(client(3)));
+    persister.persistClient(client(4));
+    await eraseLocalData();
+    await jest.advanceTimersByTimeAsync(1000);
+    expect(mockKv.has(key)).toBe(false);
+    expect(mockKv.has('REACT_QUERY_LAUNCH_HEAT')).toBe(false);
+  } finally {
+    jest.useRealTimers();
+  }
 });

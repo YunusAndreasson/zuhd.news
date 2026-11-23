@@ -1,6 +1,22 @@
-import { useEffect, useState } from 'react';
+import { useSyncExternalStore } from 'react';
 import { Keyboard } from 'react-native';
 import { IS_ANDROID } from '../constants/platform';
+
+const noKeyboard = () => null;
+const skipSubscription = () => () => {};
+
+function keyboardTop() {
+  return Keyboard.metrics()?.screenY ?? null;
+}
+
+function subscribe(notify: () => void) {
+  const shown = Keyboard.addListener('keyboardDidShow', notify);
+  const hidden = Keyboard.addListener('keyboardDidHide', notify);
+  return () => {
+    shown.remove();
+    hidden.remove();
+  };
+}
 
 /**
  * Where the keyboard's top edge is on the screen, in points, or `null` while
@@ -10,17 +26,9 @@ import { IS_ANDROID } from '../constants/platform';
  */
 export function useKeyboardTop(enabled: boolean): number | null {
   const listen = enabled && IS_ANDROID;
-  const [top, setTop] = useState<number | null>(null);
-  useEffect(() => {
-    if (!listen) return;
-    const shown = Keyboard.addListener('keyboardDidShow', (e) => {
-      setTop(e.endCoordinates.screenY);
-    });
-    const hidden = Keyboard.addListener('keyboardDidHide', () => setTop(null));
-    return () => {
-      shown.remove();
-      hidden.remove();
-    };
-  }, [listen]);
-  return listen ? top : null;
+  return useSyncExternalStore(
+    listen ? subscribe : skipSubscription,
+    listen ? keyboardTop : noKeyboard,
+    noKeyboard,
+  );
 }

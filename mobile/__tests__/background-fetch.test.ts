@@ -6,7 +6,8 @@ jest.mock('expo-sqlite/kv-store', () => ({
 }));
 jest.mock('expo-task-manager', () => ({ defineTask: jest.fn() }));
 jest.mock('expo-background-task', () => ({
-  BackgroundTaskResult: { Success: 1 },
+  BackgroundTaskResult: { Success: 1, Failed: 2 },
+  addExpirationListener: jest.fn(() => ({ remove: jest.fn() })),
   registerTaskAsync: jest.fn(),
 }));
 jest.mock('@tanstack/react-query-persist-client', () => ({
@@ -17,7 +18,7 @@ jest.mock('../lib/query-client', () => {
   const { QueryClient } = require('@tanstack/react-query');
   return {
     queryClient: new QueryClient(),
-    persister: {},
+    immediatePersister: {},
     PERSIST_MAX_AGE_MS: 1,
     PERSIST_BUSTER: 'b',
   };
@@ -30,13 +31,14 @@ jest.mock('../lib/arrival', () => ({
 jest.mock('../lib/feed-source', () => ({
   feedCache: { read: jest.fn(() => Promise.resolve(null)) },
 }));
-jest.mock('../lib/fresh-store', () => ({ noteFeed: jest.fn(), flushKnown: jest.fn() }));
+jest.mock('../lib/fresh-store', () => ({ noteFeed: jest.fn(), flushKnown: jest.fn(() => true) }));
 jest.mock('../lib/storage', () => ({ getLastSeenAt: jest.fn(() => Promise.resolve(0)) }));
 
 import {
   persistQueryClientRestore,
   persistQueryClientSave,
 } from '@tanstack/react-query-persist-client';
+import { addExpirationListener } from 'expo-background-task';
 import * as TaskManager from 'expo-task-manager';
 import { FEED_QUERY_KEY, fetchArrival, probeGenerated } from '../lib/arrival';
 import '../lib/background-fetch';
@@ -77,6 +79,66 @@ it('does nothing past the probe when the build on screen is current', async () =
   jest.mocked(probeGenerated).mockResolvedValue('same');
   await task();
   expect(persistQueryClientRestore).not.toHaveBeenCalled();
+  expect(fetchArrival).not.toHaveBeenCalled();
+  expect(persistQueryClientSave).not.toHaveBeenCalled();
+});
+
+it('reports a failed download to the scheduler', async () => {
+  jest.mocked(probeGenerated).mockRejectedValueOnce(new Error('offline'));
+  expect(await task()).toBe(2);
+  expect(persistQueryClientSave).not.toHaveBeenCalled();
+});
+
+it('keeps a completed build on expiry and returns success only after storage finishes', async () => {
+  let complete!: () => void;
+  let saving!: () => void;
+  const writing = new Promise<void>((resolve) => {
+    saving = resolve;
+  });
+  jest.mocked(persistQueryClientSave).mockImplementationOnce(() => {
+    saving();
+    return new Promise<void>((resolve) => {
+      complete = resolve;
+    });
+  });
+  jest.mocked(probeGenerated).mockResolvedValue('completed');
+  jest.mocked(fetchArrival).mockResolvedValue({ feed: feed('completed'), snapshots: [] });
+  let finished = false;
+  const run = task().then((result) => {
+    finished = true;
+    return result;
+  });
+  await writing;
+  jest.mocked(addExpirationListener).mock.lastCall?.[0]();
+  await Promise.resolve();
+  expect(finished).toBe(false);
+  expect(flushKnown).toHaveBeenCalledTimes(1);
+  complete();
+  expect(await run).toBe(1);
+  expect(jest.mocked(addExpirationListener).mock.results.at(-1)?.value.remove).toHaveBeenCalled();
+});
+
+it('retries a failed write even when the probe now matches the in-memory build', async () => {
+  jest.mocked(persistQueryClientSave).mockRejectedValueOnce(new Error('busy'));
+  jest.mocked(probeGenerated).mockResolvedValue('completed');
+  jest.mocked(fetchArrival).mockResolvedValue({ feed: feed('completed'), snapshots: [] });
+  expect(await task()).toBe(2);
+  expect(await task()).toBe(1);
+  expect(persistQueryClientSave).toHaveBeenCalledTimes(2);
+  expect(fetchArrival).toHaveBeenCalledTimes(1);
+});
+
+it('expires an unfinished probe without writing a partial build', async () => {
+  jest.mocked(probeGenerated).mockImplementationOnce(
+    (signal) =>
+      new Promise<string>((_, reject) => {
+        signal?.addEventListener('abort', () => reject(new Error('expired')));
+      }),
+  );
+  queryClient.setQueryData(FEED_QUERY_KEY, feed('old'));
+  const pending = task();
+  jest.mocked(addExpirationListener).mock.lastCall?.[0]();
+  expect(await pending).toBe(2);
   expect(fetchArrival).not.toHaveBeenCalled();
   expect(persistQueryClientSave).not.toHaveBeenCalled();
 });

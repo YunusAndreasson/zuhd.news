@@ -70,15 +70,15 @@ describe('fetchWithTimeout', () => {
 
   // Expo's fetch ignores `cache`, and iOS serves a layer from the phone's URL
   // cache while its max-age holds.
-  it("sends 'no-store' as a no-cache request header", async () => {
-    mockFetch.mockResolvedValue({ ok: false, status: 304, text: () => Promise.resolve('') });
-    await fetchWithTimeout('https://example.test/a', 1000, {
-      cache: 'no-store',
-      headers: { 'If-None-Match': '"x"' },
-    });
-    expect(mockFetch.mock.calls[0]?.[1].headers).toEqual({
-      'If-None-Match': '"x"',
-      'Cache-Control': 'no-cache',
-    });
+  it.each<{ headers: HeadersInit }>([
+    { headers: { 'If-None-Match': '"x"' } },
+    { headers: [['If-None-Match', '"x"']] },
+    { headers: new Headers({ 'If-None-Match': '"x"', 'cache-control': 'max-age=60' }) },
+  ])('preserves request headers when bypassing the cache', async ({ headers }) => {
+    mockFetch.mockResolvedValue({ ok: false, status: 304 });
+    await fetchWithTimeout('https://example.test/a', 1000, { cache: 'no-store', headers });
+    const sent = mockFetch.mock.calls[0]?.[1].headers as Headers;
+    expect(sent.get('If-None-Match')).toBe('"x"');
+    expect(sent.get('Cache-Control')).toBe('no-cache');
   });
 });

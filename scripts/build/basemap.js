@@ -10,9 +10,49 @@
 // fed (`/api/basemap.json`) had stopped being written — so it was deleted
 // rather than left to look load-bearing.
 
-import { readFileSync } from 'node:fs'
+import { createHash } from 'node:crypto'
+import { existsSync, readFileSync } from 'node:fs'
 import { join } from 'node:path'
 import { loadShared } from './shared-ts.js'
+
+/**
+ * Cache key for the basemap, stamped into every URL the map fetches it from.
+ *
+ * `/basemap/*` is served with `max-age=86400` because Natural Earth geometry
+ * does not change between deploys — but *our treatment of it* does, and when it
+ * does the reader keeps the old copy for a day. That is not academic: the map
+ * kept printing "Tel Aviv" and "Jerusalem" for a full day after the build
+ * started emitting "Yafa" and "Al-Quds", and no amount of reloading fixed it,
+ * because a reload re-requests a URL the browser is entitled to answer from
+ * disk. Hashing what goes into the basemap gives a URL that changes exactly
+ * when its inputs do, which is what makes a long cache safe.
+ * @param {string} root
+ */
+export function basemapVersion(root) {
+  const inputs = [
+    // Tile slicing and PBF encoding are part of the bytes the map caches.
+    join(root, 'package-lock.json'),
+    join(root, 'scripts', 'build', 'basemap.js'),
+    join(root, 'scripts', 'build', 'basemap-tiles.js'),
+    join(root, 'shared', 'place-names.ts'),
+    join(root, 'shared', 'countries', 'iso.ts'),
+    join(root, 'shared', 'data', 'countries-110m.json'),
+    join(root, 'shared', 'data', 'countries-50m.json'),
+    join(root, 'shared', 'data', 'countries-10m.json'),
+    join(root, 'shared', 'data', 'places-50m.geojson'),
+    join(root, 'shared', 'data', 'capitals-50m.json'),
+    // Every file the basemap is built from belongs here, or the layer it feeds
+    // is the one that goes stale for a day with no way for a reader to force it.
+    join(root, 'shared', 'data', 'lakes-50m.json'),
+    join(root, 'shared', 'data', 'rivers-50m.json'),
+    join(root, 'shared', 'data', 'seas-50m.json'),
+    join(root, 'shared', 'data', 'bathymetry-10m.geojson'),
+    join(root, 'shared', 'data', 'regions-50m.geojson'),
+  ]
+  const h = createHash('sha256')
+  for (const f of inputs) if (existsSync(f)) h.update(readFileSync(f))
+  return h.digest('hex').slice(0, 10)
+}
 
 /**
  * Makes a ring's longitudes continuous across the antimeridian.

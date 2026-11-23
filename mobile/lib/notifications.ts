@@ -1,9 +1,16 @@
+import { applicationId } from 'expo-application';
 import Constants from 'expo-constants';
 import * as Notifications from 'expo-notifications';
 import { deleteItemAsync, getItemAsync, setItemAsync } from 'expo-secure-store';
+import { Linking, Platform, type TurboModule, TurboModuleRegistry } from 'react-native';
 import { IS_ANDROID } from '../constants/platform';
 import { API_BASE } from '../constants/theme';
 import { fetchWithTimeout } from './fetch';
+import { markOsPromptSpent, osPromptSpent } from './notification-prompt';
+
+interface AndroidPermissions extends TurboModule {
+  shouldShowRequestPermissionRationale(permission: string): Promise<boolean>;
+}
 
 const CHANNEL_ID = 'briefing';
 
@@ -43,15 +50,31 @@ export interface NotificationAnswer {
   osPrompt: boolean;
 }
 
+/** Android can open the app’s alert controls directly. Some devices only offer app settings. */
+export async function openNotificationSettings(): Promise<void> {
+  if (IS_ANDROID && Number(Platform.Version) >= 26 && applicationId) {
+    try {
+      await Linking.sendIntent('android.settings.APP_NOTIFICATION_SETTINGS', [
+        { key: 'android.provider.extra.APP_PACKAGE', value: applicationId },
+      ]);
+      return;
+    } catch {
+      // The settings activity varies by Android vendor.
+    }
+  }
+  await Linking.openSettings();
+}
+
 /** Request permission and setup channels. */
 export async function enableNotifications(): Promise<NotificationAnswer> {
   let osPrompt = false;
   try {
+    await setupNotificationChannels();
     const before = await Notifications.getPermissionsAsync();
     osPrompt = !before.granted && before.canAskAgain;
+    if (osPrompt && IS_ANDROID && Number(Platform.Version) >= 33) await markOsPromptSpent();
     const { granted } = await Notifications.requestPermissionsAsync();
     if (!granted) return { granted: false, osPrompt };
-    await setupNotificationChannels();
     return { granted: true, osPrompt };
   } catch {
     return { granted: false, osPrompt };
@@ -70,8 +93,22 @@ export async function notificationsGranted(): Promise<boolean> {
 /** Whether the OS has never been asked on this install: its dialog is still to come. */
 export async function notificationPermissionUndetermined(): Promise<boolean> {
   try {
-    const { status } = await Notifications.getPermissionsAsync();
-    return status === Notifications.PermissionStatus.UNDETERMINED;
+    const { status, granted, canAskAgain } = await Notifications.getPermissionsAsync();
+    const undetermined = status === Notifications.PermissionStatus.UNDETERMINED;
+    if (!IS_ANDROID) return undetermined;
+    if (Number(Platform.Version) < 33 || granted || !canAskAgain || (await osPromptSpent())) {
+      return false;
+    }
+    if (undetermined) return true;
+    if (status !== Notifications.PermissionStatus.DENIED) return false;
+
+    // Expo also reports denied before the first ask. On installs that predate
+    // the Settings marker, Android remembers a refusal that still permits a
+    // second ask: it tells the app to show a rationale for that second dialog.
+    const permissions = TurboModuleRegistry.getEnforcing<AndroidPermissions>('PermissionsAndroid');
+    return !(await permissions.shouldShowRequestPermissionRationale(
+      'android.permission.POST_NOTIFICATIONS',
+    ));
   } catch {
     return false;
   }
@@ -134,8 +171,9 @@ export function registerPushToken(devicePushToken?: Notifications.DevicePushToke
   return queueTokenWork(async () => {
     try {
       if (version !== registrationVersion) return;
-      const projectId = Constants.expoConfig?.extra?.eas?.projectId as string | undefined;
-      if (!projectId) return;
+      const projectId: unknown =
+        Constants.easConfig?.projectId ?? Constants.expoConfig?.extra?.eas?.projectId;
+      if (typeof projectId !== 'string' || !projectId) return;
       // Bounded, so a stalled network cannot hold an opt-out's DELETE behind
       // it. Nothing has been sent yet, so giving up here registers nothing.
       const { data: token } = await within(

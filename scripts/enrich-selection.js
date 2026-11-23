@@ -8,7 +8,7 @@
 // `lib/selection-match.js`.
 import { readFileSync } from 'node:fs'
 import { pathOf } from './lib/datasets.js'
-import { attachSources, dropUnwritable, fillThinSources, readablePicks, thinSourcesOf } from './lib/enrich.js'
+import { attachSources, dropUnwritable, fillThinSources, offTopicPicks, readablePicks, refetchOffTopic, thinSourcesOf } from './lib/enrich.js'
 import { fetchSourceText } from './lib/fetch-source-text.js'
 import { writeJson } from './lib/json-file.js'
 import { runStage } from './lib/stage.js'
@@ -30,6 +30,12 @@ export async function main() {
     filled = await fillThinSources(thinSources, fetchSourceText)
     console.log(`Thin sources: fetched full text for ${filled}/${thinSources.length}`)
   }
+  const offTopic = offTopicPicks(selection)
+  let recovered = 0
+  if (offTopic.length > 0) {
+    recovered = await refetchOffTopic(offTopic, fetchSourceText)
+    console.log(`Off-topic sources: read the pages of ${offTopic.length} pick(s), ${recovered} about their title now`)
+  }
 
   // A pick with no sources by now goes without a line of its own: the summary counts it.
   const sourceless = selection.filter((e) => !Array.isArray(e.sources) || e.sources.length === 0)
@@ -49,7 +55,7 @@ export async function main() {
   const nameOf = (entry) => entry.suggestedSlug || entry.title
   const unmatched = new Set(missing)
   return {
-    counts: { selected: selection.length + unreadable.length, enriched, kept: kept.length, thinSources: thinSources.length, thinFilled: filled },
+    counts: { selected: selection.length + unreadable.length, enriched, kept: kept.length, thinSources: thinSources.length, thinFilled: filled, offTopic: offTopic.length, offTopicRecovered: recovered },
     dropped: [
       ...unreadable,
       ...sourceless.map((entry) => ({ slug: nameOf(entry), reason: unmatched.has(nameOf(entry)) ? 'no story in the feed matched it' : 'the story it matched has no sources' })),

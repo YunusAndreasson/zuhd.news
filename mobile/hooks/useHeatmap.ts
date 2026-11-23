@@ -1,5 +1,5 @@
 import type { HeatmapPoint } from '@shared/types';
-import { useQuery, useQueryClient } from '@tanstack/react-query';
+import { useIsRestoring, useQuery, useQueryClient } from '@tanstack/react-query';
 import { useEffect, useRef } from 'react';
 import { API_SNAPSHOTS, fetchSnapshot, snapshotData } from '../lib/api-snapshots';
 
@@ -8,7 +8,7 @@ const HEATMAP = API_SNAPSHOTS.heatmap;
 
 interface HeatmapResult {
   points: HeatmapPoint[];
-  /** True after the first cache or network attempt has completed. Splash gate. */
+  /** True after the first cache or network attempt has completed. */
   ready: boolean;
 }
 
@@ -18,9 +18,11 @@ interface HeatmapResult {
  *  layer empty. */
 export function useHeatmap(feedGenerated: string | null): HeatmapResult {
   const queryClient = useQueryClient();
+  const restoring = useIsRestoring();
   const query = useQuery({
     queryKey: HEATMAP.queryKey,
-    queryFn: ({ signal }) => fetchSnapshot(HEATMAP, { signal }),
+    queryFn: ({ client, signal }) =>
+      fetchSnapshot(HEATMAP, { signal }, client.getQueryData(HEATMAP.queryKey)),
     select: snapshotData,
     // Not on focus, for `useApiJson`'s reason: an arrival carries the heatmap
     // with the feed in one commit (`lib/arrival.ts`). Left on, every return
@@ -40,14 +42,16 @@ export function useHeatmap(feedGenerated: string | null): HeatmapResult {
   // skip refetching when the snapshot is still aligned with the current feed.
   const lastInvalidatedRef = useRef<string | null>(null);
   useEffect(() => {
-    if (!feedGenerated) return;
+    // The first-frame seed can predate a restored or background arrival.
+    // Until restoration finishes this observer isn't subscribed to refetch.
+    if (restoring || !feedGenerated) return;
     const dataGenerated = query.data?.generated ?? null;
     if (!dataGenerated) return;
     if (dataGenerated === feedGenerated) return;
     if (lastInvalidatedRef.current === feedGenerated) return;
     lastInvalidatedRef.current = feedGenerated;
     queryClient.invalidateQueries({ queryKey: HEATMAP.queryKey });
-  }, [feedGenerated, query.data?.generated, queryClient]);
+  }, [restoring, feedGenerated, query.data?.generated, queryClient]);
 
   return {
     points: query.data?.points ?? EMPTY_POINTS,

@@ -4,7 +4,7 @@ import type { SwipeCard } from '../lib/cards/rank';
 import type { ReadingCard } from '../lib/cards/types';
 import { WEEK_WINDOW } from '../lib/cards/week-move';
 import type { CatalogGroup, CatalogRow, GroupKey } from '../lib/instrument-catalog';
-import type { Exchange } from '../lib/markets';
+import * as markets from '../lib/markets';
 import {
   CURRENCY_TAIL,
   companiesSummary,
@@ -12,6 +12,7 @@ import {
   groupFigure,
   groupLadder,
   groupPath,
+  groupTableRow,
   exchangeTally,
   shippingCaption,
   shippingSummary,
@@ -36,7 +37,7 @@ const weekRow = (id: string, pct: number, over: Partial<CatalogRow> = {}): Catal
 });
 
 /** An exchange as the payload carries one: two sessions a week apart. */
-const listing = (over: Partial<Exchange>): Exchange => ({
+const listing = (over: Partial<markets.Exchange>): markets.Exchange => ({
   id: 'x',
   name: 'X',
   indexName: 'X',
@@ -72,6 +73,22 @@ describe('world stocks', () => {
     const summary = stocksSummary([group('stocks', [market('a', 3), market('b', -1)])]);
     expect(summary?.move).toMatchObject({ direction: 'up', magnitude: '1%', window: WEEK_WINDOW });
     expect(summary?.members).toBe(2);
+  });
+
+  it('reads each exchange history once for all the figures on its menu row', () => {
+    const stocks = group('stocks', [market('a', 3), market('b', -1)]);
+    const expected = {
+      rungs: groupLadder(stocks, NOW),
+      path: groupPath(stocks, NOW),
+      figure: groupFigure(stocks, NOW),
+    };
+    const reads = jest.spyOn(markets, 'sessionLevels');
+    try {
+      expect(groupTableRow(stocks, NOW)).toEqual(expected);
+      expect(reads).toHaveBeenCalledTimes(2);
+    } finally {
+      reads.mockRestore();
+    }
   });
 
   it('leaves an exchange with no week out of the average, and still counts it', () => {
@@ -177,7 +194,7 @@ describe('world stocks, weighed and in dollars', () => {
   /** A market with a session thirty days back, one a week back and today's. */
   const month = (
     id: string,
-    over: Partial<Exchange>,
+    over: Partial<markets.Exchange>,
     values: [number, number, number],
     perUsd?: (number | null)[],
   ) => {

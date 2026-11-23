@@ -20,11 +20,10 @@ export class MalformedResponseError extends Error {
   }
 }
 
-export interface FetchJsonOptions {
+export type FetchJsonOptions = Pick<RequestInit, 'cache'> & {
   timeoutMs?: number;
   signal?: AbortSignal;
-  cache?: RequestCache;
-}
+};
 
 /**
  * Fetch JSON from `url`, verify HTTP 2xx, and narrow the payload with a
@@ -44,6 +43,14 @@ export async function fetchJson<T>(
     signal: opts.signal,
     cache: opts.cache,
   });
+  return readValidated(res, url, validator);
+}
+
+async function readValidated<T>(
+  res: Awaited<ReturnType<typeof fetchWithTimeout>>,
+  url: string,
+  validator: (raw: unknown) => raw is T,
+): Promise<T> {
   if (!res.ok) throw new HttpError(res.status);
   // Read as text rather than `res.json()` so the payload can be weighed on the
   // way past. This is the only place every content download passes through,
@@ -75,10 +82,6 @@ export async function fetchJsonIfChanged<T>(
     headers: opts.etag ? { 'If-None-Match': opts.etag } : undefined,
   });
   if (res.status === 304) return { changed: false };
-  if (!res.ok) throw new HttpError(res.status);
-  const text = await res.text();
-  recordBytes(utf8ByteLength(text));
-  const raw: unknown = JSON.parse(text);
-  if (!validator(raw)) throw new MalformedResponseError(url);
-  return { changed: true, data: raw, etag: res.headers?.get?.('etag') ?? null };
+  const data = await readValidated(res, url, validator);
+  return { changed: true, data, etag: res.headers?.get?.('etag') ?? null };
 }

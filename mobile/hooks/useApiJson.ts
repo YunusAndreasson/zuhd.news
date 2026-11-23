@@ -20,7 +20,8 @@ import { type ApiSnapshot, fetchSnapshot, snapshotData } from '../lib/api-snapsh
 export function useApiJson<T>(snapshot: ApiSnapshot<T>): T | null {
   const query = useQuery({
     queryKey: snapshot.queryKey,
-    queryFn: ({ signal }) => fetchSnapshot(snapshot, { signal }),
+    queryFn: ({ client, signal }) =>
+      fetchSnapshot(snapshot, { signal }, client.getQueryData(snapshot.queryKey)),
     select: snapshotData<T>,
     refetchOnWindowFocus: false,
     // Nor on mount once the persister has restored a copy: the restored copy

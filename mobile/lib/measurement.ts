@@ -1,5 +1,6 @@
 import Storage from 'expo-sqlite/kv-store';
 import { LogBox, Platform } from 'react-native';
+import type { AppEventsLogger, Settings } from 'react-native-fbsdk-next';
 import { createListeners } from './store-plumbing';
 
 /**
@@ -30,17 +31,6 @@ const CONSENT_KEY = 'zuhd_measurement_consent_v1';
 /** Never bump: a stored answer to other words counts as none, and none is on,
  *  so a bump would turn every reader's off back on. */
 const CONSENT_VERSION = 1;
-
-interface MetaSettings {
-  initializeSDK(): void;
-  setAutoLogAppEventsEnabled(enabled: boolean): void;
-  setAdvertiserIDCollectionEnabled(enabled: boolean): void;
-}
-
-interface MetaLogger {
-  setFlushBehavior(behavior: 'auto' | 'explicit_only'): void;
-  flush(): void;
-}
 
 // react-native-fbsdk-next reads a native constant as this module loads, and that
 // throws if the SDK has not settled. The throw is caught below, but Android also
@@ -82,13 +72,14 @@ export const subscribeMeasurement = listeners.subscribe;
 // Each loads only its own module: the package's index evaluates every export,
 // the login tracker among them. Loaded on first use, so a reader who turned it
 // off never touches the native SDK from here.
-function loadSettings(): MetaSettings {
-  return require('react-native-fbsdk-next/lib/commonjs/FBSettings').default as MetaSettings;
+function loadSettings(): typeof Settings {
+  return require('react-native-fbsdk-next/lib/commonjs/FBSettings').default as typeof Settings;
 }
 
-function loadLogger(): MetaLogger | null {
+function loadLogger(): typeof AppEventsLogger | null {
   try {
-    return require('react-native-fbsdk-next/lib/commonjs/FBAppEventsLogger').default as MetaLogger;
+    return require('react-native-fbsdk-next/lib/commonjs/FBAppEventsLogger')
+      .default as typeof AppEventsLogger;
   } catch {
     return null;
   }

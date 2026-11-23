@@ -1,8 +1,7 @@
 diff --git a/node_modules/@expo/ui/android/src/main/java/expo/modules/ui/ExpoUIModule.kt b/node_modules/@expo/ui/android/src/main/java/expo/modules/ui/ExpoUIModule.kt
-index d58b54f..214b4e4 100644
 --- a/node_modules/@expo/ui/android/src/main/java/expo/modules/ui/ExpoUIModule.kt
 +++ b/node_modules/@expo/ui/android/src/main/java/expo/modules/ui/ExpoUIModule.kt
-@@ -235,9 +235,13 @@ class ExpoUIModule : Module() {
+@@ -241,9 +241,13 @@
        val expand by AsyncFunction()
        val partialExpand by AsyncFunction()
        val onDismissRequest by Event<Unit>()
@@ -18,10 +17,9 @@ index d58b54f..214b4e4 100644
      }
  
 diff --git a/node_modules/@expo/ui/android/src/main/java/expo/modules/ui/ModalBottomSheetView.kt b/node_modules/@expo/ui/android/src/main/java/expo/modules/ui/ModalBottomSheetView.kt
-index 9ca0932..c03b932 100644
 --- a/node_modules/@expo/ui/android/src/main/java/expo/modules/ui/ModalBottomSheetView.kt
 +++ b/node_modules/@expo/ui/android/src/main/java/expo/modules/ui/ModalBottomSheetView.kt
-@@ -8,6 +8,8 @@ import android.content.Context
+@@ -8,6 +8,8 @@
  import android.graphics.Color
  import android.view.KeyEvent
  import android.view.inputmethod.InputMethodManager
@@ -30,7 +28,7 @@ index 9ca0932..c03b932 100644
  import androidx.compose.material3.BottomSheetDefaults
  import androidx.compose.material3.ExperimentalMaterial3Api
  import androidx.compose.material3.MaterialTheme
-@@ -19,6 +21,7 @@ import androidx.compose.runtime.Composable
+@@ -19,6 +21,7 @@
  import androidx.compose.runtime.DisposableEffect
  import androidx.compose.runtime.LaunchedEffect
  import androidx.compose.runtime.rememberCoroutineScope
@@ -38,7 +36,7 @@ index 9ca0932..c03b932 100644
  import androidx.compose.ui.graphics.Color as ComposeColor
  import androidx.compose.ui.graphics.luminance
  import androidx.compose.ui.graphics.takeOrElse
-@@ -42,6 +45,7 @@ data class ModalBottomSheetPropertiesRecord(
+@@ -42,6 +45,7 @@
  
  @OptimizedComposeProps
  data class ModalBottomSheetViewProps(
@@ -46,7 +44,7 @@ index 9ca0932..c03b932 100644
    val skipPartiallyExpanded: Boolean = false,
    val initialFullyExpanded: Boolean = false,
    val containerColor: Color? = null,
-@@ -74,14 +78,27 @@ private fun Activity.isAcceptingText(): Boolean {
+@@ -74,14 +78,27 @@
   * Without this check, typing "rr" in a sheet TextInput reloads the app.
   */
  @Composable
@@ -76,7 +74,7 @@ index 9ca0932..c03b932 100644
        val isForwardable = event.action == KeyEvent.ACTION_UP &&
          keyCode != KeyEvent.KEYCODE_BACK &&
          keyCode != KeyEvent.KEYCODE_ESCAPE &&
-@@ -89,6 +106,7 @@ private fun ForwardKeyEventsToActivity(activity: Activity?) {
+@@ -89,6 +106,7 @@
        isForwardable && activity.onKeyUp(keyCode, event)
      }
      onDispose {
@@ -84,7 +82,7 @@ index 9ca0932..c03b932 100644
        dialog.setOnKeyListener(null)
      }
    }
-@@ -100,7 +118,8 @@ fun FunctionalComposableScope.ModalBottomSheetContent(
+@@ -100,7 +118,8 @@
    hide: AsyncFunctionHandle<Unit>,
    expand: AsyncFunctionHandle<Unit>,
    partialExpand: AsyncFunctionHandle<Unit>,
@@ -94,7 +92,7 @@ index 9ca0932..c03b932 100644
  ) {
    val sheetState = rememberModalBottomSheetState(props.skipPartiallyExpanded)
    val scope = rememberCoroutineScope()
-@@ -171,12 +190,12 @@ fun FunctionalComposableScope.ModalBottomSheetContent(
+@@ -171,12 +190,12 @@
        else -> null
      },
      properties = ModalBottomSheetProperties(
@@ -110,10 +108,9 @@ index 9ca0932..c03b932 100644
    }
  
 diff --git a/node_modules/@expo/ui/build/community/bottom-sheet/BottomSheet.android.js b/node_modules/@expo/ui/build/community/bottom-sheet/BottomSheet.android.js
-index d39d9de..ba6cf4e 100644
 --- a/node_modules/@expo/ui/build/community/bottom-sheet/BottomSheet.android.js
 +++ b/node_modules/@expo/ui/build/community/bottom-sheet/BottomSheet.android.js
-@@ -37,7 +37,7 @@ function findNearestSnapPointIndex(snapPoints, position) {
+@@ -37,7 +37,7 @@
   * @remarks Supports two snap states: partially expanded (~50%) and fully expanded.
   * `snapToIndex(0)` maps to partial, `snapToIndex(lastIndex)` maps to expanded.
   */ export function BottomSheet(props) {
@@ -122,7 +119,7 @@ index d39d9de..ba6cf4e 100644
      const { width } = useWindowDimensions();
      const hasMultipleSnapPoints = snapPointsProp != null && snapPointsProp.length > 1;
      const fitToContents = enableDynamicSizing && (!snapPointsProp || snapPointsProp.length === 0);
-@@ -174,6 +174,8 @@ function findNearestSnapPointIndex(snapPoints, position) {
+@@ -176,6 +176,8 @@
                  children: /*#__PURE__*/ _jsx(ModalBottomSheet, {
                      ref: sheetRef,
                      onDismissRequest: handleDismiss,
@@ -132,10 +129,9 @@ index d39d9de..ba6cf4e 100644
                      initialFullyExpanded: hasMultipleSnapPoints && pendingIndexRef.current === maxIndex,
                      showDragHandle: handleComponent !== null,
 diff --git a/node_modules/@expo/ui/build/community/bottom-sheet/types.d.ts b/node_modules/@expo/ui/build/community/bottom-sheet/types.d.ts
-index cf72b27..237a490 100644
 --- a/node_modules/@expo/ui/build/community/bottom-sheet/types.d.ts
 +++ b/node_modules/@expo/ui/build/community/bottom-sheet/types.d.ts
-@@ -112,6 +112,8 @@ export interface BottomSheetFooterProps {
+@@ -112,6 +112,8 @@
   * a modal sheet overlay on iOS and Android. On web, it renders inline.
   */
  export interface BottomSheetProps {
@@ -145,10 +141,9 @@ index cf72b27..237a490 100644
       * Ref to the bottom sheet component. Exposes imperative methods (`snapToIndex`,
       * `expand`, `collapse`, `close`, `present`, `dismiss`, etc.).
 diff --git a/node_modules/@expo/ui/build/jetpack-compose/ModalBottomSheet/index.d.ts b/node_modules/@expo/ui/build/jetpack-compose/ModalBottomSheet/index.d.ts
-index 6d3806c..dad076e 100644
 --- a/node_modules/@expo/ui/build/jetpack-compose/ModalBottomSheet/index.d.ts
 +++ b/node_modules/@expo/ui/build/jetpack-compose/ModalBottomSheet/index.d.ts
-@@ -30,6 +30,9 @@ export type ModalBottomSheetProperties = {
+@@ -30,6 +30,9 @@
      shouldDismissOnClickOutside?: boolean;
  };
  export interface ModalBottomSheetProps {
@@ -159,10 +154,9 @@ index 6d3806c..dad076e 100644
       * The children of the `ModalBottomSheet` component.
       * Can include a `ModalBottomSheet.DragHandle` slot for a custom drag handle.
 diff --git a/node_modules/@expo/ui/src/community/bottom-sheet/BottomSheet.android.tsx b/node_modules/@expo/ui/src/community/bottom-sheet/BottomSheet.android.tsx
-index 419edef..d39a261 100644
 --- a/node_modules/@expo/ui/src/community/bottom-sheet/BottomSheet.android.tsx
 +++ b/node_modules/@expo/ui/src/community/bottom-sheet/BottomSheet.android.tsx
-@@ -60,6 +60,7 @@ export function BottomSheet(props: BottomSheetProps) {
+@@ -60,6 +60,7 @@
      onChange,
      onClose,
      onDismiss,
@@ -170,7 +164,7 @@ index 419edef..d39a261 100644
      enablePanDownToClose = false,
      enableDynamicSizing = true,
      handleComponent,
-@@ -190,6 +191,8 @@ export function BottomSheet(props: BottomSheetProps) {
+@@ -191,6 +192,8 @@
            <ModalBottomSheet
              ref={sheetRef}
              onDismissRequest={handleDismiss}
@@ -180,10 +174,9 @@ index 419edef..d39a261 100644
              initialFullyExpanded={hasMultipleSnapPoints && pendingIndexRef.current === maxIndex}
              showDragHandle={handleComponent !== null}
 diff --git a/node_modules/@expo/ui/src/community/bottom-sheet/types.ts b/node_modules/@expo/ui/src/community/bottom-sheet/types.ts
-index 51326fb..9357361 100644
 --- a/node_modules/@expo/ui/src/community/bottom-sheet/types.ts
 +++ b/node_modules/@expo/ui/src/community/bottom-sheet/types.ts
-@@ -121,6 +121,8 @@ export interface BottomSheetFooterProps {
+@@ -121,6 +121,8 @@
   * a modal sheet overlay on iOS and Android. On web, it renders inline.
   */
  export interface BottomSheetProps {
@@ -193,10 +186,9 @@ index 51326fb..9357361 100644
     * Ref to the bottom sheet component. Exposes imperative methods (`snapToIndex`,
     * `expand`, `collapse`, `close`, `present`, `dismiss`, etc.).
 diff --git a/node_modules/@expo/ui/src/jetpack-compose/ModalBottomSheet/index.tsx b/node_modules/@expo/ui/src/jetpack-compose/ModalBottomSheet/index.tsx
-index c3225b1..ae21e75 100644
 --- a/node_modules/@expo/ui/src/jetpack-compose/ModalBottomSheet/index.tsx
 +++ b/node_modules/@expo/ui/src/jetpack-compose/ModalBottomSheet/index.tsx
-@@ -44,6 +44,9 @@ export type ModalBottomSheetProperties = {
+@@ -44,6 +44,9 @@
  };
  
  export interface ModalBottomSheetProps {

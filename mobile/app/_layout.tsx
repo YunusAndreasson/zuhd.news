@@ -5,7 +5,7 @@ import * as Notifications from 'expo-notifications';
 import { Slot, useNavigationContainerRef, useSegments } from 'expo-router';
 import * as SplashScreen from 'expo-splash-screen';
 import { StatusBar } from 'expo-status-bar';
-import { Suspense, useCallback, useEffect } from 'react';
+import { Suspense, useCallback, useEffect, useState } from 'react';
 import { AppState, StyleSheet, View } from 'react-native';
 import { GestureHandlerRootView } from 'react-native-gesture-handler';
 import { configureReanimatedLogger, ReanimatedLogLevel } from 'react-native-reanimated';
@@ -22,10 +22,16 @@ import { registerBackgroundTask } from '../lib/background-fetch';
 import { startFirsts } from '../lib/firsts';
 import { sendInstallAttribution } from '../lib/install-attribution';
 import { installKind, openInstallRecord, trackFirstOpen } from '../lib/install-record';
+import { markLaunch } from '../lib/launch-timing';
 import { isMeasurementOn, startMeasurement, subscribeMeasurement } from '../lib/measurement';
 import { clearLegacyScheduledNotifications, setupNotificationChannels } from '../lib/notifications';
 import { firstRun, getSnapshot as getOnboarding } from '../lib/onboarding-store';
-import { PERSIST_BUSTER, PERSIST_MAX_AGE_MS, persister, queryClient } from '../lib/query-client';
+import {
+  getLaunchQueryClient,
+  PERSIST_BUSTER,
+  PERSIST_MAX_AGE_MS,
+  persister,
+} from '../lib/query-client';
 import { dropRetiredFound, startReadingVisit } from '../lib/read-store';
 import { navigationIntegration, sentryEnabled } from '../lib/sentry';
 
@@ -74,9 +80,10 @@ function ThemedShell() {
 }
 
 function RootLayout() {
+  const [queryClient] = useState(getLaunchQueryClient);
   const navigationRef = useNavigationContainerRef();
   useEffect(() => {
-    if (navigationRef) navigationIntegration.registerNavigationContainer(navigationRef);
+    if (navigationRef) navigationIntegration?.registerNavigationContainer(navigationRef);
   }, [navigationRef]);
 
   // The route's pattern, never its params: a param can be a story's slug.
@@ -145,9 +152,15 @@ function RootLayout() {
       void analytics.register({ ad_measurement: isMeasurementOn() });
       void sendInstallAttribution();
     }
-    void registerBackgroundTask();
-    void clearLegacyScheduledNotifications();
-    dropRetiredFound();
+    // Give the opening frame priority over maintenance of previous installs.
+    const maintenance = requestIdleCallback(
+      () => {
+        void registerBackgroundTask();
+        void clearLegacyScheduledNotifications();
+        dropRetiredFound();
+      },
+      { timeout: SPLASH_FALLBACK_MS },
+    );
     // Unless the reader turned it off (`lib/measurement.ts`).
     startMeasurement();
     // Set up Android channels at startup so they exist before any push, even
@@ -168,6 +181,7 @@ function RootLayout() {
     // the primer spends the dialog (rollback insurance).
 
     return () => {
+      cancelIdleCallback(maintenance);
       clearTimeout(splashFallback);
       measurement?.();
     };
@@ -182,6 +196,7 @@ function RootLayout() {
         <Suspense fallback={<View style={styles.root} />}>
           <PersistQueryClientProvider
             client={queryClient}
+            onSuccess={() => markLaunch('query-restore-complete')}
             persistOptions={{
               persister,
               maxAge: PERSIST_MAX_AGE_MS,
