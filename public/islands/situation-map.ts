@@ -67,6 +67,8 @@ import {
   type StoryPlace,
 } from './_map/places'
 import { createFeed, type Feed } from './_map/feed'
+import { createHoverMark } from './_map/hover-mark'
+import { createSwitcher, type SwitchItem } from './_map/switcher'
 import { graticuleLines } from './_map/graticule'
 import { MAKKAH_AT } from './_map/makkah'
 import { CALLOUT_GAP_PX, callouts, type LostMark, type ScreenMark } from './_map/callouts'
@@ -119,6 +121,8 @@ import {
   type ThermalEvent,
 } from './_map/types'
 import { detailKey } from '@shared/gdacs'
+import { CC_TO_TOPOJSON_NAME } from '@shared/countries/iso'
+import { displayCountryName } from '@shared/place-names'
 
 /**
  * The coastline's address for feature state. A vector source takes state per
@@ -328,6 +332,14 @@ const beaconRadius = (w: number) => 3.4 + 4.1 * w
 const RING_GAP = 2
 /** A dot's size from its baked radius `pr`, in pixels. */
 const BEACON_SIZE = ['/', ['get', 'pr'], DOT_R] as unknown as ExpressionSpecification
+/**
+ * How far every other story steps back while one is hovered, from its row or
+ * its dot: a feature-state bit (`syncHoverState`), so the lit one is the one
+ * seen without a scrim over the map.
+ */
+const STORY_DIM = ['case', ['boolean', ['feature-state', 'dim'], false], 0.35, 1] as unknown as ExpressionSpecification
+/** The most stories the hover dims, one feature-state write each (`syncHoverState`). */
+const DIM_MAX = 1500
 /**
  * A petal's `icon-offset`, by its age rank `k`: a table, one literal `[x, y]`
  * per rank, in units of an icon `radius` px across (`icon-offset` is multiplied
@@ -1557,6 +1569,8 @@ export function mount(
   let placeByKey = new Map<string, StoryPlace>()
 
   let hoverSlug: string | null = null
+  /** The slugs the `stories` source holds now, for the hover's dim. */
+  let storySlugs: string[] = []
   let openSlug: string | null = null
   /** Which overlay marker the hover sheet is currently previewing. */
   let peekId: string | null = null
@@ -1738,6 +1752,7 @@ export function mount(
   const feed: Feed = createFeed({
     isRead: (slug) => readState.has(slug),
     onRefresh: () => void refreshStories(),
+    onSearch: () => switcher.open(),
     onSelect: (p, keyboard) => {
       // On a phone the list is a drawer over the map, so committing to a story
       // has to give the map back — otherwise the camera flies somewhere the
@@ -1981,6 +1996,7 @@ export function mount(
   map.touchZoomRotate.disableRotation()
   // With no keys, the canvas would be a Tab stop that does nothing.
   map.getCanvas().tabIndex = -1
+  const hoverMark = createHoverMark(map, mapEl)
 
   /**
    * Where a zoom is anchored on the sphere: the pointer while it is over the
@@ -2594,6 +2610,7 @@ export function mount(
       hoverSlug = null
       feed.highlight(null)
     }
+    storySlugs = visible.map((p) => p.slug)
     // Nothing may be left in the source's feature-state map across a `setData`
     // — see `syncHoverState`. Restored by the `idle` handler once the new
     // tiles are in.
@@ -2607,6 +2624,8 @@ export function mount(
     writePoints(src('stories'), storyCollection(visible, flowerSlots(places)))
     writePoints(src('story-places'), placeCollection(places))
     applyTimeFilters()
+    // A scrub can move the hovered story within its flower, or take it away.
+    hoverMark.show(hoverTarget(hoverSlug))
   }
 
   /**
@@ -3608,7 +3627,7 @@ export function mount(
         'icon-halo-color': MAP_COLOURS.contested,
         'icon-halo-width': 1,
         'icon-halo-blur': 0,
-        'icon-opacity': ['*', ['get', 'a'], 0.55],
+        'icon-opacity': ['*', ['get', 'a'], 0.55, STORY_DIM],
       },
     })
 
@@ -3647,15 +3666,16 @@ export function mount(
       },
       paint: {
         'icon-color': catColour(FALLBACK_CATEGORY_COLOUR),
-        'icon-opacity': ['get', 'a'],
+        'icon-opacity': ['*', ['get', 'a'], STORY_DIM],
         'icon-halo-width': [
           'case',
           ['boolean', ['feature-state', 'hover'], false], 1.8,
           1,
         ],
+        // The hovered dot's rim in Makkah's gold, the ring's (`hover-mark.ts`).
         'icon-halo-color': [
           'case',
-          ['boolean', ['feature-state', 'hover'], false], '#ffffff',
+          ['boolean', ['feature-state', 'hover'], false], MAP_COLOURS.makkah,
           MAP_COLOURS.space,
         ],
       },
@@ -4320,8 +4340,37 @@ export function mount(
     if (!layersReady || !map.isSourceLoaded('stories')) return
     if (hoverStateWritten === hoverSlug) return
     map.removeFeatureState({ source: 'stories' })
-    if (hoverSlug) map.setFeatureState({ source: 'stories', id: hoverSlug }, { hover: true })
+    if (hoverSlug) {
+      map.setFeatureState({ source: 'stories', id: hoverSlug }, { hover: true })
+      // Every other story steps back (`STORY_DIM`), so the one lit is the one
+      // seen. One bit per feature, written only when the hovered slug changes:
+      // paint cannot read another feature's state, and `global-state` would
+      // reload the source (`map.md`). Measured per hover, synchronous part:
+      // +2.5 ms over 147 stories (3d), +21 ms over 5,075 (90d), so past
+      // `DIM_MAX` the ring and the gold rim carry the hover alone.
+      if (storySlugs.length <= DIM_MAX) {
+        for (const slug of storySlugs) {
+          if (slug !== hoverSlug) map.setFeatureState({ source: 'stories', id: slug }, { dim: true })
+        }
+      }
+    }
     hoverStateWritten = hoverSlug
+  }
+
+  /**
+   * Where the hovered story's dot is drawn: its place, its petal's offset and
+   * its radius, as `storyCollection` lays it out. Past `FLOWER_MAX` a story
+   * draws no dot and the ring stands on its place.
+   */
+  const hoverTarget = (slug: string | null) => {
+    const p = slug ? pointBySlug.get(slug) : undefined
+    if (!slug || !p) return null
+    const pl = placeByKey.get(placeIndex.of.get(slug) ?? '')
+    const rank = pl ? pl.slugs.indexOf(slug) : 0
+    const drawn = rank >= 0 && rank < FLOWER_MAX
+    const [dx, dy] = drawn ? petalOffset(rank) : [0, 0]
+    const r = drawn && rank > 0 ? PETAL_PX : beaconRadius(p.w ?? UNKNOWN_COVERAGE_W)
+    return { lng: pl?.lng ?? p.lng, lat: pl?.lat ?? p.lat, dx, dy, r, loc: p.loc }
   }
 
   const setHoverSlug = (slug: string | null) => {
@@ -4329,6 +4378,7 @@ export function mount(
     hoverSlug = slug
     feed.highlight(slug)
     syncHoverState()
+    hoverMark.show(hoverTarget(slug))
   }
 
   /**
@@ -6342,6 +6392,135 @@ export function mount(
 
   void startCore()
 
+  /**
+   * Where each country's name stands on the map, from the `countryLabels`
+   * source the map already holds: the switcher flies there and opens the
+   * country's card at that point. Read once, when the switcher first opens.
+   */
+  let countryPoints: Map<string, [number, number]> | null = null
+  const readCountryPoints = () => {
+    if (countryPoints) return
+    countryPoints = new Map()
+    const points = countryPoints
+    void map
+      .getSource<GeoJSONSource>('countryLabels')
+      ?.getData()
+      .then((data) => {
+        if (data.type !== 'FeatureCollection') return
+        for (const f of data.features) {
+          const name = f.properties?.name
+          if (typeof name === 'string' && f.geometry.type === 'Point') {
+            points.set(name, f.geometry.coordinates as [number, number])
+          }
+        }
+      })
+      .catch(() => {
+        countryPoints = null
+      })
+  }
+
+  /**
+   * Everything the quick switcher can find, asked at every keystroke so it is
+   * the edition, range and rail on screen now.
+   *
+   * Each choice does what its own control does: a story opens through the
+   * row's path, a place flies and opens its list, a country flies and opens
+   * its card, a rail group is pressed, an exchange or a strait flies and pins
+   * its card as its row does. A country without a name on the map (Israel's
+   * is drawn as Palestine's, `map-layers.md`) is left out.
+   */
+  const switchItems = (): SwitchItem[] => {
+    readCountryPoints()
+    const items: SwitchItem[] = []
+    for (const p of [...visiblePoints()].sort((a, b) => b.t - a.t)) {
+      items.push({
+        kind: 'story',
+        label: p.title,
+        sub: [p.loc, relativeTime(p.t, scrubNow)].filter(Boolean).join(' \u00b7 '),
+        href: `/a/${p.slug}`,
+        // A row's press, as the feed's `onSelect` makes it.
+        run: () => {
+          feed.setExpanded(false, true)
+          flyToStory(p, true)
+        },
+      })
+    }
+    for (const pl of [...places].sort((a, b) => b.count - a.count)) {
+      items.push({
+        kind: 'place',
+        label: pl.loc,
+        sub: `${pl.count} ${pl.count === 1 ? 'story' : 'stories'}`,
+        run: () => {
+          feed.setExpanded(false, true)
+          flyCamera({ center: [pl.lng, pl.lat], zoom: Math.max(map.getZoom(), 3.2), duration: 900 }, () =>
+            popup?.openPlace(pl, scrubNow),
+          )
+        },
+      })
+    }
+    const named = new Set<string>()
+    for (const [cc, topo] of Object.entries(CC_TO_TOPOJSON_NAME)) {
+      const name = displayCountryName(topo) ?? topo
+      const at = countryPoints?.get(name)
+      if (!at || named.has(name)) continue
+      named.add(name)
+      items.push({
+        kind: 'country',
+        label: name,
+        href: `/country/${cc}`,
+        run: () => {
+          feed.setExpanded(false, true)
+          flyCamera({ center: at, zoom: Math.max(map.getZoom(), 2.5), duration: 900 }, () => {
+            openSlug = null
+            void popup?.openCountry(cc, at, standingFor(cc))
+          })
+        },
+      })
+    }
+    // The rail's rows as they stand: pressing one is pressing the row.
+    for (const host of [marketStrip.element, marketStrip.signals]) {
+      for (const btn of host.querySelectorAll<HTMLButtonElement>('.map-markets-group')) {
+        const label = btn.querySelector('.map-markets-label')?.textContent?.trim()
+        if (!label || btn.offsetParent === null) continue
+        items.push({
+          kind: 'data',
+          label: label.charAt(0).toUpperCase() + label.slice(1),
+          run: () => btn.click(),
+        })
+      }
+    }
+    for (const ex of markets) {
+      items.push({
+        kind: 'data',
+        label: ex.name,
+        sub: [ex.indexName, ex.city].filter(Boolean).join(', '),
+        href: `/e/${encodeURIComponent(`mkt:${ex.id}`)}`,
+        run: () => {
+          sheet.dockTo(null)
+          feed.setExpanded(false, true)
+          flyCamera({ center: [ex.lng, ex.lat], zoom: Math.max(map.getZoom(), 3.2), duration: 900 })
+          sheet.showMarket(ex, true, marketStrip.rangeDays(), docked(), { signal: signalFor(ex.id, signals) })
+        },
+      })
+    }
+    for (const cp of chokepoints) {
+      items.push({
+        kind: 'data',
+        label: cp.name,
+        sub: 'Shipping',
+        href: `/e/${encodeURIComponent(`cp:${cp.id}`)}`,
+        run: () => {
+          sheet.dockTo(null)
+          feed.setExpanded(false, true)
+          flyCamera({ center: [cp.lng, cp.lat], zoom: Math.max(map.getZoom(), 3.2), duration: 900 })
+          sheet.showChokepoint(cp, true, docked())
+        },
+      })
+    }
+    return items
+  }
+  const switcher = createSwitcher({ items: switchItems })
+
   const onKeyDown = (e: KeyboardEvent) => {
     // `e.target` is only an Element when something focusable has focus — a key
     // event delivered straight to `document` is not one, and calling `matches`
@@ -6414,6 +6593,8 @@ export function mount(
     document.body.classList.remove('map-wide')
     for (const seam of seams) seam.destroy()
     timeline?.destroy()
+    switcher.destroy()
+    hoverMark.destroy()
     feed.destroy()
     popup?.destroy()
     sheet.destroy()
