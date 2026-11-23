@@ -18,6 +18,9 @@ jest.mock('expo-sqlite/kv-store', () => ({
   __esModule: true,
   default: {
     getItemSync: jest.fn((key: string) => mockDisk.get(key) ?? null),
+    setItemAsync: jest.fn(async (key: string, update: (previous: string | null) => string) => {
+      mockDisk.set(key, update(mockDisk.get(key) ?? null));
+    }),
     getItem: jest.fn(async (key: string) => mockDisk.get(key) ?? null),
     multiSet: async (pairs: [string, string][]) => {
       for (const [key, value] of pairs) mockDisk.set(key, value);
@@ -150,4 +153,33 @@ it('honours expiry, buster, payload validation and removal on the early read', a
   await removal;
   expect(mockDisk.size).toBe(0);
   expect(getLaunchQueryClient().getQueryData(['heatmap'])).toBeUndefined();
+});
+
+it('migrates a legacy launch once even when the reader closes before any query changes', async () => {
+  const previous = saved();
+  mockDisk.set(fullCacheKey, JSON.stringify(previous));
+  expect(getLaunchQueryClient().getQueryData(['heatmap'])).toEqual(tagged);
+  await waitFor(() => expect(mockDisk.has('REACT_QUERY_LAUNCH_HEAT')).toBe(true));
+  expect(mockDisk.get('REACT_QUERY_LAUNCH_HEAT')).not.toContain('other layer');
+  queryClient.clear();
+  jest.mocked(Storage.getItemSync).mockClear();
+  expect(getLaunchQueryClient().getQueryData(['heatmap'])).toEqual(tagged);
+  expect(Storage.getItemSync).not.toHaveBeenCalledWith(fullCacheKey);
+});
+
+it('keeps a newer save queued ahead of legacy migration and an erase queued behind it', async () => {
+  mockDisk.set(fullCacheKey, JSON.stringify(saved()));
+  const fresh = { snapshot: { generated: newBuild, points: [] }, etag: 'new-tag' };
+  const save = immediatePersister.persistClient(saved(fresh));
+  expect(getLaunchQueryClient().getQueryData(['heatmap'])).toEqual(tagged);
+  await save;
+  await waitFor(() => expect(Storage.setItemAsync).toHaveBeenCalled());
+  queryClient.clear();
+  expect(getLaunchQueryClient().getQueryData(['heatmap'])).toEqual(fresh);
+
+  mockDisk.delete('REACT_QUERY_LAUNCH_HEAT');
+  queryClient.clear();
+  getLaunchQueryClient();
+  await immediatePersister.removeClient();
+  expect(mockDisk.size).toBe(0);
 });

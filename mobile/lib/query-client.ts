@@ -87,16 +87,19 @@ function cancelPendingSave() {
   pending = undefined;
 }
 
+function launchHeat(client: PersistedClient): PersistedClient {
+  const queries = client.clientState.queries.filter((query) => query.queryHash === HEAT_HASH);
+  return { ...client, clientState: { queries, mutations: [] } };
+}
+
 function saveNow(client: PersistedClient) {
   cancelPendingSave();
   return orderStorageWork(() => {
     // Both foreground and headless saves commit the small first-frame read
     // with the full restore, including when this save drops the heat query.
-    const queries = client.clientState.queries.filter((query) => query.queryHash === HEAT_HASH);
-    const heat = { ...client, clientState: { queries, mutations: [] } };
     return Storage.multiSet([
       [QUERY_CACHE_KEY, JSON.stringify(client)],
-      [HEAT_CACHE_KEY, JSON.stringify(heat)],
+      [HEAT_CACHE_KEY, JSON.stringify(launchHeat(client))],
     ]);
   });
 }
@@ -152,9 +155,8 @@ export function getLaunchQueryClient(): QueryClient {
   }
   markLaunch('heat-read-start');
   try {
-    // A previous app version only wrote the full key. Its next save creates
-    // the separate key, even for an empty heat layer.
-    const raw = Storage.getItemSync(HEAT_CACHE_KEY) ?? Storage.getItemSync(QUERY_CACHE_KEY);
+    const compact = Storage.getItemSync(HEAT_CACHE_KEY);
+    const raw = compact ?? Storage.getItemSync(QUERY_CACHE_KEY);
     markLaunch('heat-read-complete');
     if (!raw) return queryClient;
     const client: PersistedClient = JSON.parse(raw);
@@ -165,6 +167,14 @@ export function getLaunchQueryClient(): QueryClient {
       Date.now() - client.timestamp > PERSIST_MAX_AGE_MS
     )
       return queryClient;
+    if (compact === null) {
+      // An unchanged feed may never trigger a save. Migrate the old launch
+      // once, behind any pending save, without overwriting a newer heat entry.
+      const heat = launchHeat(client);
+      void orderStorageWork(() =>
+        Storage.setItemAsync(HEAT_CACHE_KEY, (previous) => previous ?? JSON.stringify(heat)),
+      ).catch(() => {});
+    }
     const state = client.clientState.queries.find((query) => query.queryHash === HEAT_HASH)?.state;
     if (
       state?.status === 'success' &&

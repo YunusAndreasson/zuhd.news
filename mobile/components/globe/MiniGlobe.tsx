@@ -70,7 +70,7 @@ import {
   straitMarkColor,
   WHITE,
 } from '../../constants/theme';
-import { useGlobeRedraw } from '../../hooks/useGlobeRedraw';
+import { useGlobeRedraw, useSpriteRedraw } from '../../hooks/useGlobeRedraw';
 import { useTheme } from '../../hooks/useTheme';
 import { articleTime } from '../../lib/article-utils';
 import type { CardDelta } from '../../lib/cards/types';
@@ -4933,13 +4933,13 @@ export const MiniGlobe = memo(function MiniGlobe({
     redrawLast();
   }, [colors, light, redrawLast]);
 
-  /** Sprite sheets landed: the last frame is replayed with them. */
+  const redrawSprites = useSpriteRedraw(redrawLast);
   const receiveTextures = useCallback(
     (baked: Partial<GlobeTextures>) => {
       texturesRef.current = { ...texturesRef.current, ...baked };
-      redrawLast();
+      redrawSprites();
     },
-    [redrawLast],
+    [redrawSprites],
   );
   // The sprite sheets are baked on the CPU, on this thread (`bakeSprite`), and
   // each canvas uploads them from its own render thread. No GPU call from JS

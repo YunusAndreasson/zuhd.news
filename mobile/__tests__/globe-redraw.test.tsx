@@ -1,5 +1,5 @@
 import { renderHook } from '@testing-library/react';
-import { useGlobeRedraw } from '../hooks/useGlobeRedraw';
+import { useGlobeRedraw, useSpriteRedraw } from '../hooks/useGlobeRedraw';
 
 it('redraws when disasters or conflicts alone arrive or disappear on a stationary map', () => {
   const draw = jest.fn();
@@ -29,4 +29,26 @@ it('coalesces several changed layers and viewport bounds into one redraw per com
   expect(draw).toHaveBeenCalledTimes(2);
   rerender({ inputs: { ...updated, top: 80 } });
   expect(draw).toHaveBeenCalledTimes(3);
+});
+
+it('records the latest baked sprites once per frame and cancels a pending redraw at unmount', () => {
+  jest.useFakeTimers();
+  try {
+    const draw = jest.fn();
+    const { result, unmount } = renderHook(() => useSpriteRedraw(draw));
+    result.current();
+    result.current();
+    result.current();
+    jest.advanceTimersToNextFrame();
+    expect(draw).toHaveBeenCalledTimes(1);
+    result.current();
+    jest.advanceTimersToNextFrame();
+    expect(draw).toHaveBeenCalledTimes(2);
+    result.current();
+    unmount();
+    jest.advanceTimersToNextFrame();
+    expect(draw).toHaveBeenCalledTimes(2);
+  } finally {
+    jest.useRealTimers();
+  }
 });

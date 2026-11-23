@@ -71,6 +71,7 @@ import { useGdacsAlerts } from '../hooks/useGdacsAlerts';
 import { useHeatmap } from '../hooks/useHeatmap';
 import { useLaunchSplash } from '../hooks/useLaunchSplash';
 import { useLinkedStory } from '../hooks/useLinkedStory';
+import { useMapStories } from '../hooks/useMapStories';
 import { useMarketSignals } from '../hooks/useMarketSignals';
 import { useMarkets } from '../hooks/useMarkets';
 import { useOffline } from '../hooks/useOffline';
@@ -123,7 +124,7 @@ import {
   type GroupKey,
   holdGroups,
 } from '../lib/instrument-catalog';
-import { buildStoryRows, cameraTrackOf, type StoryRow } from '../lib/map-feed';
+import type { StoryRow } from '../lib/map-feed';
 import { coverageStory, mapCandidates } from '../lib/map-selection';
 import { exchangeCard, exchangeIsStale, exchangesOf, stockMarketPlace } from '../lib/markets';
 import type { MenuHazards } from '../lib/menu-hazards';
@@ -151,7 +152,6 @@ import { refreshFailedToast } from '../lib/refresh-toast';
 import { resumeLanding, unreadNewBehind } from '../lib/resume-landing';
 import { maybeRequestReview, recordStorySwipe } from '../lib/store-review';
 import { storyCharts } from '../lib/story-chart';
-import { buildStoryPlaces } from '../lib/story-places';
 import { storyShare } from '../lib/story-share';
 import { countryTap, type TapResult } from '../lib/tap-result';
 
@@ -685,19 +685,6 @@ export default function HomeScreen() {
   const odds = useMemo(() => oddsByStory(trends, analysis), [trends, analysis]);
   const oddsLabelBySlug = useMemo(() => oddsLabels(odds), [odds]);
 
-  const fresh = useFreshSlugs();
-  const storyRows = useMemo(
-    () => buildStoryRows({ river, fresh, odds: oddsLabelBySlug }),
-    [river, fresh, oddsLabelBySlug],
-  );
-  const cameraTrack = useMemo(() => cameraTrackOf(storyRows), [storyRows]);
-
-  const resolvableEntityIds = useMemo(() => new Set(indicatorsById.keys()), [indicatorsById]);
-  const activeIndicator = useMemo(
-    () => (activeEntity ? (indicatorsById.get(activeEntity.indicatorId) ?? null) : null),
-    [activeEntity, indicatorsById],
-  );
-
   // ---------------------------------------------------------------------
   // The news on the globe
   //
@@ -708,7 +695,14 @@ export default function HomeScreen() {
   // globe subscribes to it itself (`MiniGlobe`); `lib/story-places.ts`
   // groups the river into the places the marks stand for.
   // ---------------------------------------------------------------------
-  const places = useMemo(() => buildStoryPlaces(storyRows), [storyRows]);
+  const fresh = useFreshSlugs();
+  const { storyRows, cameraTrack, places } = useMapStories({ river, fresh, odds: oddsLabelBySlug });
+
+  const resolvableEntityIds = useMemo(() => new Set(indicatorsById.keys()), [indicatorsById]);
+  const activeIndicator = useMemo(
+    () => (activeEntity ? (indicatorsById.get(activeEntity.indicatorId) ?? null) : null),
+    [activeEntity, indicatorsById],
+  );
 
   // Against the loaded river only: pruning against an empty one is exactly the
   // partial-payload wipe the store's age guard exists to refuse.
