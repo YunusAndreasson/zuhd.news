@@ -994,19 +994,10 @@ body.article-page-body::before {
   flex-direction: column;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .article-standalone {
-    animation: article-page-reveal 520ms cubic-bezier(0.2, 0, 0, 1) both;
-  }
-  .article-standalone > * { animation: article-page-reveal 520ms cubic-bezier(0.2, 0, 0, 1) both; }
-  .article-standalone > .article-title { animation-delay: 80ms; }
-  .article-standalone > .article-body { animation-delay: 160ms; }
-}
-
-@keyframes article-page-reveal {
-  from { opacity: 0; transform: translateY(6px); }
-  to { opacity: 1; transform: none; }
-}
+/* The headline is there at once. It used to rise from nothing over 520ms,
+   staggered under the page's own cross-fade, so the largest thing painted
+   first was the wordmark and the headline came a third of a second later.
+   The cross-fade (`@view-transition` above) is the page's only arrival. */
 
 /* Editorial overline + small-caps kicker. CATEGORY · TIME, hairline rule
    sitting above to mark the start of the article composition. */
