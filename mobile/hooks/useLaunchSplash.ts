@@ -1,5 +1,6 @@
 import * as SplashScreen from 'expo-splash-screen';
 import { useEffect, useRef } from 'react';
+import { markLaunch } from '../lib/launch-timing';
 
 const HEATMAP_SPLASH_GRACE_MS = 1200;
 
@@ -10,6 +11,7 @@ export function useLaunchSplash(loading: boolean, heatmapReady: boolean): void {
     if (loading || hidden.current) return;
     const reveal = () => {
       hidden.current = true;
+      markLaunch('splash-hide-requested');
       SplashScreen.hide();
     };
     if (heatmapReady) {

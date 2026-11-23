@@ -14,6 +14,7 @@ const mockStorage = {
 };
 
 jest.mock('@tanstack/react-query', () => ({
+  ...jest.requireActual('@tanstack/react-query'),
   focusManager: {
     setEventListener: (...args: unknown[]) => mockFocusListener(...args),
   },
@@ -35,6 +36,8 @@ jest.mock('expo-network', () => ({
 }));
 
 jest.mock('react-native', () => ({
+  Platform: { OS: 'ios' },
+  StyleSheet: { hairlineWidth: 0.5 },
   AppState: {
     currentState: 'active',
     addEventListener: (...args: unknown[]) => mockAppStateListener(...args),

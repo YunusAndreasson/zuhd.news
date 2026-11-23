@@ -17,7 +17,7 @@ import {
   useWindowDimensions,
   View,
 } from 'react-native';
-import Animated, {
+import {
   type SharedValue,
   useAnimatedStyle,
   useReducedMotion,
@@ -43,6 +43,7 @@ import { HintOverlay } from '../components/HintOverlay';
 import { MenuSheet } from '../components/MenuSheet';
 import { ALERT_ROW, AlertPill } from '../components/map/AlertPill';
 import { GlobeGestureLayer } from '../components/map/GlobeGestureLayer';
+import { GlobeLayer } from '../components/map/GlobeLayer';
 import { MapHeader } from '../components/map/MapHeader';
 import { MapSheet, type MapSheetDetent, type MapSheetRef } from '../components/map/MapSheet';
 import { EndCard, StoryCard, StoryFooter } from '../components/map/StoryCard';
@@ -2210,7 +2211,7 @@ export default function HomeScreen() {
           projection carried past the screen for the ground the shrink
           uncovered. Opening a story was slow (2026-09-21); the sheet is
           opaque, so now the globe draws nothing while it moves. */}
-      <Animated.View style={[styles.globeLayer, globeLiftStyle]} pointerEvents="none">
+      <GlobeLayer style={[styles.globeLayer, globeLiftStyle]}>
         <MiniGlobe
           ref={globeRef}
           tapFrame={globeTapFrame}
@@ -2246,7 +2247,7 @@ export default function HomeScreen() {
           viewLng={viewLng}
           tick={tick}
         />
-      </Animated.View>
+      </GlobeLayer>
 
       <GlobeGestureLayer
         globeRef={globeRef}

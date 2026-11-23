@@ -1,10 +1,12 @@
 import { createAsyncStoragePersister } from '@tanstack/query-async-storage-persister';
-import { focusManager, onlineManager, QueryClient } from '@tanstack/react-query';
+import { focusManager, hashKey, onlineManager, QueryClient } from '@tanstack/react-query';
 import type { PersistedClient, Persister } from '@tanstack/react-query-persist-client';
 import { File, Paths } from 'expo-file-system';
 import Storage from 'expo-sqlite/kv-store';
 import * as Updates from 'expo-updates';
 import { AppState } from 'react-native';
+import { API_SNAPSHOTS, snapshotData } from './api-snapshots';
+import { markLaunch } from './launch-timing';
 import { subscribeConnectivity } from './network';
 import { deleteLegacyFile, orderStorageWork } from './store-plumbing';
 import { DAY_MS } from './time';
@@ -24,6 +26,9 @@ onlineManager.setEventListener((setOnline) => subscribeConnectivity((online) => 
 
 const CACHE_FILE = new File(Paths.cache, 'query-cache.json');
 const QUERY_CACHE_KEY = 'REACT_QUERY_OFFLINE_CACHE';
+const HEAT_CACHE_KEY = 'REACT_QUERY_LAUNCH_HEAT';
+const HEATMAP = API_SNAPSHOTS.heatmap;
+const HEAT_HASH = hashKey(HEATMAP.queryKey);
 
 // One-time migration from the previous file-backed AsyncStorage shim. The
 // shim stored the persister's already-serialized value inside a JSON object.
@@ -74,6 +79,7 @@ const disk = createAsyncStoragePersister({ storage: Storage, throttleTime: 1000 
 let pending: PersistedClient | undefined;
 let timer: ReturnType<typeof setTimeout> | undefined;
 let removal = 0;
+let completedRemoval = 0;
 
 function cancelPendingSave() {
   clearTimeout(timer);
@@ -83,7 +89,16 @@ function cancelPendingSave() {
 
 function saveNow(client: PersistedClient) {
   cancelPendingSave();
-  return orderStorageWork(() => Storage.setItem(QUERY_CACHE_KEY, JSON.stringify(client)));
+  return orderStorageWork(() => {
+    // Both foreground and headless saves commit the small first-frame read
+    // with the full restore, including when this save drops the heat query.
+    const queries = client.clientState.queries.filter((query) => query.queryHash === HEAT_HASH);
+    const heat = { ...client, clientState: { queries, mutations: [] } };
+    return Storage.multiSet([
+      [QUERY_CACHE_KEY, JSON.stringify(client)],
+      [HEAT_CACHE_KEY, JSON.stringify(heat)],
+    ]);
+  });
 }
 
 // A completed background task needs the actual write's promise. TanStack's
@@ -96,9 +111,12 @@ export const immediatePersister: Persister = {
     return before === removal ? client : undefined;
   },
   removeClient() {
-    removal++;
+    const generation = ++removal;
     cancelPendingSave();
-    return orderStorageWork(async () => disk.removeClient());
+    return orderStorageWork(async () => {
+      await Storage.multiRemove([QUERY_CACHE_KEY, HEAT_CACHE_KEY]);
+      completedRemoval = generation;
+    });
   },
 };
 
@@ -123,3 +141,43 @@ export const PERSIST_MAX_AGE_MS = DAY_MS;
  *  of the layers. Pass it wherever the cache is restored or saved, or each
  *  side discards the other's. */
 export const PERSIST_BUSTER = Updates.updateId ?? 'embedded';
+
+/** Seed just the globe's heat before its first observer mounts. The rest of
+ *  the cache restores asynchronously. Its own update time lets a newer
+ *  restore win and avoids a second redraw for the same points. */
+export function getLaunchQueryClient(): QueryClient {
+  // A remounted activity can reach here while erasure is draining an older save.
+  if (removal !== completedRemoval || queryClient.getQueryData(HEATMAP.queryKey) !== undefined) {
+    return queryClient;
+  }
+  markLaunch('heat-read-start');
+  try {
+    // A previous app version only wrote the full key. Its next save creates
+    // the separate key, even for an empty heat layer.
+    const raw = Storage.getItemSync(HEAT_CACHE_KEY) ?? Storage.getItemSync(QUERY_CACHE_KEY);
+    markLaunch('heat-read-complete');
+    if (!raw) return queryClient;
+    const client: PersistedClient = JSON.parse(raw);
+    if (
+      client.buster !== PERSIST_BUSTER ||
+      !Number.isFinite(client.timestamp) ||
+      client.timestamp <= 0 ||
+      Date.now() - client.timestamp > PERSIST_MAX_AGE_MS
+    )
+      return queryClient;
+    const state = client.clientState.queries.find((query) => query.queryHash === HEAT_HASH)?.state;
+    if (
+      state?.status === 'success' &&
+      Number.isFinite(state.dataUpdatedAt) &&
+      HEATMAP.validate(snapshotData(state.data))
+    ) {
+      queryClient.setQueryData(HEATMAP.queryKey, state.data, { updatedAt: state.dataUpdatedAt });
+      markLaunch('heat-seeded');
+    }
+  } catch {
+    // Missing or damaged cache: normal query restore/fetch and splash grace.
+  } finally {
+    markLaunch('heat-read-end');
+  }
+  return queryClient;
+}

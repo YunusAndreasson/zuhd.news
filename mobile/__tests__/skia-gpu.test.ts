@@ -44,6 +44,7 @@ const GPU_CALLS = new Set([
   'drawAsImage',
   'drawAsImageFromPicture',
   'makeImageFromView',
+  'makeImageSnapshot',
   'getNativeDevice',
 ]);
 
@@ -54,7 +55,7 @@ function sources(dir: string): string[] {
   return readdirSync(dir, { withFileTypes: true }).flatMap((entry) => {
     const path = join(dir, entry.name);
     if (entry.isDirectory()) return sources(path);
-    return /\.tsx?$/.test(entry.name) && !entry.name.endsWith('.d.ts') ? [path] : [];
+    return /\.[jt]sx?$/.test(entry.name) && !entry.name.endsWith('.d.ts') ? [path] : [];
   });
 }
 
@@ -74,7 +75,7 @@ function walk(node: unknown, visit: (n: Node) => void): void {
 }
 
 it('makes no GPU call from JS or a worklet', () => {
-  const files = DIRS.flatMap((dir) => sources(join(ROOT, dir)));
+  const files = [join(ROOT, 'index.js'), ...DIRS.flatMap((dir) => sources(join(ROOT, dir)))];
   expect(files.length).toBeGreaterThan(150);
   const found: string[] = [];
   for (const file of files) {
@@ -85,6 +86,10 @@ it('makes no GPU call from JS or a worklet', () => {
     // Identifiers only: a comment may name what is not called.
     walk(ast.program, (n) => {
       if (n.type !== 'Identifier' || typeof n.name !== 'string' || !GPU_CALLS.has(n.name)) return;
+      // A Canvas snapshot replays into a GPU surface. This helper snapshots
+      // a MakeRaster surface instead, as sprite-bake.test.ts exercises.
+      if (n.name === 'makeImageSnapshot' && file === join(ROOT, 'components/globe/sprite-bake.ts'))
+        return;
       const line = (n.loc as { start: { line: number } } | undefined)?.start.line;
       found.push(`${relative(ROOT, file)}:${line} ${n.name}`);
     });

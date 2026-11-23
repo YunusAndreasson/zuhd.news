@@ -54,6 +54,9 @@ jest.mock('expo-sqlite/kv-store', () => ({
       mockKv.set(key, value);
       return Promise.resolve();
     }),
+    multiSet: jest.fn(async (pairs: [string, string][]) => {
+      for (const [key, value] of pairs) mockKv.set(key, value);
+    }),
     multiRemove: jest.fn(async (keys: string[]) => {
       for (const key of keys) mockKv.delete(key);
     }),
@@ -193,6 +196,7 @@ describe('eraseLocalData', () => {
     mockKv.set('zuhd_review_count', '19');
     mockKv.set('zuhd_review_prompted', '1700000000');
     mockKv.set('REACT_QUERY_OFFLINE_CACHE', '{"clientState":{}}');
+    mockKv.set('REACT_QUERY_LAUNCH_HEAT', '{"clientState":{}}');
     mockKv.set('zuhd_firsts_v1', '["read"]');
     mockFiles.set('/cache/zuhd-feed.json', '{"generated":"x"}');
     mockFiles.set('/cache/briefing-https%3A%2F%2Fzuhd.news%2Fa.mp3', 'audio');
@@ -218,6 +222,7 @@ describe('eraseLocalData', () => {
       'zuhd_review_count',
       'zuhd_review_prompted',
       'REACT_QUERY_OFFLINE_CACHE',
+      'REACT_QUERY_LAUNCH_HEAT',
       'zuhd_card_history_v1',
       'zuhd_firsts_v1',
     ]) {
@@ -317,17 +322,18 @@ it('orders background persistence behind an active save and discards delayed wri
     });
     const key = 'REACT_QUERY_OFFLINE_CACHE';
     let complete!: () => void;
-    jest.mocked(Storage.setItem).mockImplementationOnce(async (key, value) => {
+    jest.mocked(Storage.multiSet).mockImplementationOnce(async (pairs) => {
       await new Promise<void>((resolve) => {
         complete = resolve;
       });
-      mockKv.set(key, String(value));
+      for (const [key, value] of pairs) mockKv.set(key, value);
     });
     const first = immediatePersister.persistClient(client(1));
     await Promise.resolve();
     persister.persistClient(client(2));
     const completed = immediatePersister.persistClient(client(3));
     expect(mockKv.has(key)).toBe(false);
+    expect(mockKv.has('REACT_QUERY_LAUNCH_HEAT')).toBe(false);
     complete();
     await Promise.all([first, completed]);
     await jest.advanceTimersByTimeAsync(1000);
@@ -336,6 +342,7 @@ it('orders background persistence behind an active save and discards delayed wri
     await eraseLocalData();
     await jest.advanceTimersByTimeAsync(1000);
     expect(mockKv.has(key)).toBe(false);
+    expect(mockKv.has('REACT_QUERY_LAUNCH_HEAT')).toBe(false);
   } finally {
     jest.useRealTimers();
   }
