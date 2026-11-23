@@ -138,9 +138,18 @@ export async function onRequestGet(context) {
     .arrayBuffer()
 
   const seen = new Set()
+  // The shell's own title, which the island restores when the reader closes
+  // the story and the address goes back to `/`. Read as the text streams
+  // past, before the island's element, and only then replaced.
+  let homeTitle = ''
   const rewritten = new HTMLRewriter()
     .on('title', {
-      element(el) { if (title) el.setInnerContent(title) },
+      text(t) {
+        homeTitle += t.text
+        if (!title) return
+        if (t.lastInTextNode) t.replace(title)
+        else t.remove()
+      },
     })
     .on('link[rel="canonical"]', {
       element(el) { el.setAttribute('href', `${SITE}/a/${slug}`) },
@@ -185,7 +194,10 @@ export async function onRequestGet(context) {
     // How the island learns which card to open. Same `data-*` prop channel the
     // loader already reads, so nothing new is invented to carry it.
     .on('[data-island-auto="situation-map"]', {
-      element(el) { el.setAttribute('data-story', slug) },
+      element(el) {
+        el.setAttribute('data-story', slug)
+        if (homeTitle) el.setAttribute('data-home-title', homeTitle)
+      },
     })
     .transform(shellRes)
 
