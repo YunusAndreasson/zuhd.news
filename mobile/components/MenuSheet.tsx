@@ -18,6 +18,7 @@ import { LayoutAnimationConfig } from 'react-native-reanimated';
 import { ANALYTICS_EVENTS } from '../constants/analytics';
 import {
   type AppearanceMode,
+  BRIEFING_SPEEDS,
   baseFontSize,
   type FontSize,
   ICON,
@@ -64,6 +65,7 @@ import {
 } from '../lib/menu-hazards';
 import { metricGroups, rankingLeaders } from '../lib/metric-groups';
 import type { RiverArticle } from '../lib/news-order';
+import { openNotificationSettings } from '../lib/notifications';
 import { resetOnboarding } from '../lib/onboarding-store';
 import { MARKET_CAVEAT } from '../lib/predictions';
 import { LEADERS_SEPARATOR } from '../lib/row-leaders';
@@ -71,8 +73,7 @@ import type { TapResult } from '../lib/tap-result';
 import {
   type GroupFigure,
   groupFigure,
-  groupLadder,
-  groupPath,
+  groupTableRow,
   stocksLine,
   stocksSummary,
   WORLD_STOCKS,
@@ -109,6 +110,12 @@ const CONTACT_EMAIL = 'contact@zuhd.news';
 /** A list with nothing in it, in the empty state's lowercase: the `label`
  *  face is small caps, where a capital prints full size among them. */
 const NOTHING_LISTED = 'nothing to list right now';
+
+const SPEED_OPTIONS = BRIEFING_SPEEDS.map((value) => ({
+  value,
+  label: `${value}×`,
+  accessibilityLabel: value === '1' ? 'Normal speed' : `${value} times normal speed`,
+}));
 
 const FONT_SIZE_OPTIONS: SegmentOption<FontSize>[] = [
   { value: 'small', label: 'small' },
@@ -257,7 +264,7 @@ export const MenuSheet = memo(function MenuSheet({
   // to `nav`, and the compiler could not keep the callbacks below memoized on
   // `nav.push` alone.
   const { push, pop, reset } = nav;
-  const [canRate, setCanRate] = useState(false);
+  const [canRate, setCanRate] = useState<boolean | null>(null);
   const [notificationPermissionDenied, setNotificationPermissionDenied] = useState(false);
 
   // The pages a row opened, by key. Kept until the menu closes: a key popped
@@ -351,10 +358,11 @@ export const MenuSheet = memo(function MenuSheet({
   );
 
   useEffect(() => {
+    if (nav.current !== 'settings' || canRate !== null) return;
     StoreReview.hasAction()
       .then(setCanRate)
       .catch(() => {});
-  }, []);
+  }, [nav.current, canRate]);
 
   const handle = (
     <SheetHandle
@@ -471,6 +479,17 @@ export const MenuSheet = memo(function MenuSheet({
             />
           </MenuControlRow>
 
+          <SectionLabel label="audio" />
+          <MenuControlRow first title="briefing speed">
+            <SegmentedControl
+              accessibilityLabel="briefing speed"
+              options={SPEED_OPTIONS}
+              selected={preferences.briefingSpeed}
+              onSelect={prefsApi.setBriefingSpeed}
+              size="compact"
+            />
+          </MenuControlRow>
+
           <SectionLabel label="touch & alerts" />
           {/* The whole row is the target: a toggle-sized target alone is a
                 reach on a full-width row, and a screen reader gets one element
@@ -515,7 +534,9 @@ export const MenuSheet = memo(function MenuSheet({
             <MenuRow
               title="open device settings"
               trailing="leave"
-              onPress={() => Linking.openSettings().catch(() => {})}
+              onPress={() =>
+                openNotificationSettings().catch(() => onToast?.('Couldn’t open device settings'))
+              }
             />
           ) : null}
 
@@ -796,7 +817,7 @@ function MenuRootPage({
       <MenuRow
         first
         title="search"
-        hint="Recent stories, by title, topic or place"
+        hint="Recent and saved stories, by title, topic or place"
         trailing="push"
         onPress={() => navPush('search')}
       />
@@ -810,7 +831,7 @@ function MenuRootPage({
 
       <MenuRow
         title="settings"
-        hint="Text size, appearance, haptics, notifications, data used, tips, about, privacy and contact"
+        hint="Text size, appearance, briefing speed, haptics, notifications, data used, tips, about, privacy and contact"
         trailing="push"
         onPress={() => navPush('settings')}
       />
@@ -897,11 +918,15 @@ const GroupEntry = memo(function GroupEntry({
   first: boolean;
   onPress: () => void;
 }) {
-  const rungs = groupLadder(group);
-  if (!rungs) return <GroupRow group={group} first={first} onPress={onPress} />;
+  const row = groupTableRow(group);
+  if (!row) return <GroupRow group={group} first={first} onPress={onPress} />;
+  const {
+    rungs,
+    path,
+    figure: { detail, coverage },
+  } = row;
   const headline = group.key === 'stocks';
   const title = headline ? WORLD_STOCKS : group.title;
-  const { detail, coverage } = groupFigure(group);
   const said: string[] = [title];
   for (const rung of rungs) if (rung.delta) said.push(spokenDelta(rung.delta));
   if (detail) said.push(detail);
@@ -917,7 +942,7 @@ const GroupEntry = memo(function GroupEntry({
         <>
           <MoveWindows
             rungs={rungs}
-            path={groupPath(group)}
+            path={path}
             scale={headline ? HEADLINE_SCALE : 1}
             room={HEADLINE_SCALE}
           />

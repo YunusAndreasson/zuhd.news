@@ -1,5 +1,6 @@
 import { memo, useEffect } from 'react';
 import { Pressable, StyleSheet, View } from 'react-native';
+import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import { PRESSED_STYLE, SPACING } from '../../constants/theme';
 import { useTheme } from '../../hooks/useTheme';
 import { announce } from '../../lib/announce';
@@ -45,6 +46,7 @@ export const AlertPill = memo(function AlertPill({
   onPress?: () => void;
 }) {
   const { colors } = useTheme();
+  const { left, right } = useSafeAreaInsets();
   const line = `now · ${title}`;
   // TalkBack hears the row's live region; VoiceOver, which has none, hears
   // this, after whatever it is reading: an alert is news nobody asked for.
@@ -52,7 +54,11 @@ export const AlertPill = memo(function AlertPill({
     announce(line, { liveRegion: true, queue: true });
   }, [line]);
   return (
-    <View style={[styles.row, { top }]} pointerEvents="box-none" accessibilityLiveRegion="polite">
+    <View
+      style={[styles.row, { top, left, right }]}
+      pointerEvents="box-none"
+      accessibilityLiveRegion="polite"
+    >
       <Pressable
         onPress={onPress}
         disabled={!onPress}

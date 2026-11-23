@@ -267,6 +267,81 @@ export function companyEntries(companies, charted) {
   return { entities, subjects }
 }
 
+// Words a company's name shares with unrelated ones, or carries on one
+// listing and not another: never what two names are matched on.
+const LEGAL_WORDS = new Set([
+  'inc', 'co', 'ltd', 'the', 'and', 'of', 'de', 'plc', 'sa', 'ag', 'nv', 'se', 'spa', 'asa', 'ab', 'oyj', 'bhd', 'tbk',
+  'corp', 'corporation', 'company', 'limited', 'group', 'holding', 'holdings', 'technologies', 'technology', 'international', 'industries',
+])
+
+/** @param {string} name */
+function nameWords(name) {
+  return String(name || '').normalize('NFKD').replace(/[̀-ͯ]/g, '').toLowerCase().split(/[^a-z0-9]+/).filter(Boolean)
+}
+
+/**
+ * Whether the listing Yahoo answered for is the company the model named.
+ *
+ * Yahoo answers any symbol it holds, so a wrong ticker charts some other
+ * company under the mention: Staples (private since 2017) as `SPLS`, a PIMCO
+ * bond fund, and Tanaka Kikinzoku as `7782.T`, Sincere Co. (2026-10). The two
+ * names must share a word, one word must begin the other ("SpaceX", "Space
+ * Exploration Technologies"), or the model's name must be the initials of
+ * Yahoo's ("CATL", "Contemporary Amperex Technology Co., Limited"). Over the
+ * 201 stock rows from 10-21 to 11-20 this refuses those two and Audi as
+ * `VOW3.DE`, its parent, Volkswagen; no chip beats one that opens a stranger's chart.
+ *
+ * @param {string} named  the model's `name` for the company
+ * @param {string} yahooName  Yahoo's long name for the symbol
+ */
+export function sameCompany(named, yahooName) {
+  const ours = nameWords(named).filter((w) => !LEGAL_WORDS.has(w))
+  const all = nameWords(yahooName)
+  const theirs = all.filter((w) => !LEGAL_WORDS.has(w))
+  if (ours.length === 0 || theirs.length === 0) return true
+  if (ours.some((a) => theirs.some((b) => a === b || (Math.min(a.length, b.length) >= 3 && (a.startsWith(b) || b.startsWith(a)))))) return true
+  const initials = all.filter((w) => !['inc', 'co', 'the', 'and', 'of'].includes(w)).map((w) => w[0]).join('')
+  return ours.some((w) => w.length >= 2 && initials.startsWith(w))
+}
+
+/**
+ * Per ticker charted under a second listing of a company already tracked, the
+ * ticker that company is tracked under.
+ *
+ * The scan picks a listing afresh in every cycle, so one company became two
+ * instruments, each with a card and a paragraph saying the same: Deutsche Bank
+ * as `DBK.DE` in five articles and `DB` in one, BYD, Barclays, Nestlé, ZTE and
+ * Volkswagen the same way (10-01 to 11-20). Listings of one company carry one
+ * long name on Yahoo ("Deutsche Bank Aktiengesellschaft" on both); two
+ * companies with one name do not ("Woolworths Holdings", "Woolworths Group").
+ * Of two already tracked, the first by ticker stands, so the choice does not
+ * move between cycles; within a batch, the first one fetched.
+ *
+ * @param {Map<string, { name: string }>} charts  ticker → chart, as fetched
+ * @param {{ id?: string, label?: string }[]} tracked  the trends snapshot's rows
+ * @returns {Map<string, string>} second listing's ticker → the tracked one
+ */
+export function secondListings(charts, tracked) {
+  const key = (/** @type {string} */ name) => nameWords(name).join(' ')
+  /** @type {Map<string, string>} */
+  const standing = new Map()
+  const rows = tracked
+    .filter((r) => typeof r?.id === 'string' && r.id.startsWith('stocks:') && typeof r.label === 'string')
+    .map((r) => ({ ticker: /** @type {string} */ (r.id).slice('stocks:'.length), name: key(/** @type {string} */ (r.label)) }))
+    .sort((a, b) => (a.ticker < b.ticker ? -1 : a.ticker > b.ticker ? 1 : 0))
+  for (const r of rows) if (r.name && !standing.has(r.name)) standing.set(r.name, r.ticker)
+  /** @type {Map<string, string>} */
+  const out = new Map()
+  for (const [ticker, chart] of charts) {
+    const name = key(chart.name)
+    if (!name) continue
+    const held = standing.get(name)
+    if (!held) standing.set(name, ticker)
+    else if (held !== ticker) out.set(ticker, held)
+  }
+  return out
+}
+
 /**
  * A chart for each ticker, one request at a time, until time is up. No
  * request is begun after `until`; the tickers that were not asked for are

@@ -116,6 +116,7 @@ export const marketCollection = (
     const abs = Math.abs(change)
     return {
       type: 'Feature' as const,
+      id: m.id,
       properties: {
         id: m.id,
         name: m.name,
@@ -2307,6 +2308,7 @@ export const straitCollection = (points: MapChokepoint[], days: number, now = Da
       const reading = input ? readingOf(input) : null
       return {
         type: 'Feature' as const,
+        id: c.id,
         properties: {
           id: c.id,
           name: c.name,

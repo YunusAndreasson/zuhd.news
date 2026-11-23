@@ -1,8 +1,9 @@
 import { BottomSheetModal, type BottomSheetProps } from '@expo/ui/community/bottom-sheet';
-import { memo, type ReactNode, useMemo } from 'react';
+import { memo, type ReactNode, useCallback, useMemo } from 'react';
 import { StyleSheet, useWindowDimensions } from 'react-native';
 import { GestureHandlerRootView } from 'react-native-gesture-handler';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
+import { IS_ANDROID } from '../constants/platform';
 import { LAYOUT, SPACING } from '../constants/theme';
 import { useKeyboardTop } from '../hooks/useKeyboardTop';
 import { useTheme } from '../hooks/useTheme';
@@ -57,12 +58,14 @@ export const SheetLayout = memo(function SheetLayout({
   fill = false,
   children,
   enableDynamicSizing = true,
+  onBackPress,
   ...rest
 }: SheetLayoutProps) {
+  const dismiss = useCallback(() => sheetRef.current?.dismiss(), [sheetRef]);
   const { sheetStyles } = useTheme();
   const { height } = useWindowDimensions();
   const keyboardTop = useKeyboardTop(avoidKeyboard);
-  const { top: topInset } = useSafeAreaInsets();
+  const { left, right, top: topInset } = useSafeAreaInsets();
   // A content-sized sheet needs a ceiling, and the native side cannot give it
   // one. `enableDynamicSizing` with no `snapPoints` puts the library in
   // `fitToContents`, which measures the RN content's *natural* height and makes
@@ -91,7 +94,7 @@ export const SheetLayout = memo(function SheetLayout({
   const capStyle = useMemo(() => {
     const cap = Math.round(height * LAYOUT.sheetMaxFraction);
     const room = keyboardTop === null ? cap : Math.round(keyboardTop - topInset - SPACING.sm);
-    const ceiling = Math.min(cap, room);
+    const ceiling = Math.max(0, Math.min(cap, room));
     return fill ? { height: ceiling } : [styles.fitted, { maxHeight: ceiling }];
   }, [height, keyboardTop, topInset, fill]);
   // `handleComponent` is deliberately pinned to `null` and our handle rendered
@@ -120,9 +123,19 @@ export const SheetLayout = memo(function SheetLayout({
       enableDynamicSizing={enableDynamicSizing}
       backgroundStyle={sheetStyles.bg}
       handleComponent={null}
+      onBackPress={onBackPress}
       {...rest}
     >
-      <GestureHandlerRootView style={fitToContents ? capStyle : styles.fill}>
+      <GestureHandlerRootView
+        // VoiceOver needs a native ancestor to receive Escape from a focused child.
+        collapsable={false}
+        onAccessibilityEscape={onBackPress ?? dismiss}
+        style={[
+          fitToContents ? capStyle : styles.fill,
+          IS_ANDROID && fitToContents && styles.androidFittedColumn,
+          { paddingLeft: left, paddingRight: right },
+        ]}
+      >
         {handle ?? <SheetHandle title={handleTitle} />}
         {children}
       </GestureHandlerRootView>
@@ -131,6 +144,9 @@ export const SheetLayout = memo(function SheetLayout({
 });
 
 const styles = StyleSheet.create({
+  // Expo's Android fit-to-contents host takes the window width and Compose
+  // centres it inside Material 3's narrower BottomSheetDefaults.SheetMaxWidth.
+  androidFittedColumn: { width: '100%', maxWidth: 640, alignSelf: 'center' },
   // Content-sized: the natural height, capped. `flex: 1` would measure the
   // content as zero and collapse the sheet.
   fitted: { flexShrink: 1 },

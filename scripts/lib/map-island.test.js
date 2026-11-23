@@ -15,8 +15,9 @@ import test from 'node:test'
 import assert from 'node:assert/strict'
 import { JSDOM } from 'jsdom'
 import { validateStyleMin } from '@maplibre/maplibre-gl-style-spec'
-import { writeFileSync } from 'node:fs'
-import { join } from 'node:path'
+import { readFileSync, writeFileSync } from 'node:fs'
+import { dirname, join } from 'node:path'
+import { findPackageJSON } from 'node:module'
 import { bundleIsland, scratchDir } from './island-bundle.js'
 
 const dir = scratchDir('map-island')
@@ -94,7 +95,12 @@ writeFileSync(
     // Writes are counted: a range press may rebuild two sources once each, and
     // nothing else may rebuild them at all.
     addSource(id, cfg) {
-      this.sources[id] = { cfg, writes: 0, setData(d) { this.data = d; this.writes++ } }
+      this.sources[id] = {
+        cfg, writes: 0, diffs: [],
+        loaded() { return true },
+        setData(d) { this.data = d; this.writes++ },
+        updateData(diff) { this.diffs.push(diff); this.writes++ },
+      }
     }
     // beforeId is recorded, because for two layers it is the whole design and
     // not a detail: the density wash has to go under the borders so a coastline
@@ -1205,6 +1211,20 @@ test('a market’s and a strait’s name are layers of their own, and only a ran
   // idle that also wrote would be forty-one features re-laid out for nothing.
   globalThis.__zuhdMaps = []
   const env = setupDom()
+  // The ranges must have different readings to warrant writing the sources.
+  const strait = straitFixture()
+  strait.series.total = strait.series.total.map((_, i) => 10 + i)
+  const exchange = {
+    id: 'test', name: 'Exchange', indexName: 'Index', city: 'London', iso2: 'GB',
+    lat: 51, lng: 0, tz: 'Europe/London', sessionStart: '08:00', sessionEnd: '16:30',
+    currency: 'GBP', level: 30, changePct: 4, days: [1, 2, 3, 4, 5], asOf: strait.asOf,
+    series: { periods: strait.series.periods, values: strait.series.total },
+  }
+  globalThis.fetch = /** @type {typeof fetch} */ (/** @type {unknown} */ (async (url) => {
+    const data = String(url).endsWith('/chokepoints.json') ? { chokepoints: [strait] }
+      : String(url).endsWith('/markets.json') ? { exchanges: [exchange] } : null
+    return { ok: Boolean(data), json: async () => data }
+  }))
   try {
     const { mount, MARKER_LAYERS, HIT_ORDER } = await import(bundlePath)
     const teardown = mount(env.host)
@@ -1252,6 +1272,8 @@ test('a market’s and a strait’s name are layers of their own, and only a ran
     const [m0, c0] = writes()
     off.click()
     assert.deepEqual(writes(), [m0 + 1, c0 + 1], 'a range press rebuilds each source once')
+    assert.deepEqual(map.sources.markets.diffs.at(-1).update.map((f) => f.id), ['test'])
+    assert.deepEqual(map.sources.chokepoints.diffs.at(-1).update.map((f) => f.id), [strait.id])
     off.click()
     assert.deepEqual(writes(), [m0 + 1, c0 + 1], 'and a press on the range already showing writes nothing')
     for (let i = 0; i < 25; i++) for (const f of map.handlers.idle || []) f({ type: 'idle' })
@@ -1622,6 +1644,18 @@ test('a failed map.json says so, and Refresh recovers everything it was to build
     assert.ok(env.host.querySelector('.map-feed-item'), 'the story is listed')
     assert.ok(env.host.querySelector('.map-timeline'), 'the scrubber is built')
     assert.equal(label(), '+1 new')
+    const { stories, 'story-places': places } = globalThis.__zuhdMaps.at(-1).sources
+    const placeId = places.diffs.at(-1).add[0].id
+    assert.ok(placeId)
+    const category = env.host.querySelector('.map-filter[data-key="politics"]')
+    category.click()
+    env.pump()
+    assert.deepEqual(stories.diffs.at(-1).remove, ['s'])
+    assert.deepEqual(places.diffs.at(-1).remove, [placeId])
+    category.click()
+    env.pump()
+    assert.equal(stories.diffs.at(-1).add[0].id, 's')
+    assert.equal(places.diffs.at(-1).add[0].id, placeId)
     teardown()
   } finally {
     env.restore()
@@ -1679,4 +1713,68 @@ test('the ground select lands on the last metric picked, whatever order the answ
   } finally {
     env.restore()
   }
+})
+
+test('point updates move, restyle, remove and restore the same ids across timeline resets', async () => {
+  const path = await bundleIsland(dir, 'public/islands/_map/point-source.ts', 'point-source.mjs')
+  const write = (await import(path)).pointSourceWriter()
+  const diffs = []
+  const source = { loaded: () => true, updateData: (d) => diffs.push(d), setData: () => assert.fail('whole-source write') }
+  const point = (id, x, properties) => ({
+    type: 'Feature', id, geometry: { type: 'Point', coordinates: [x, 0] }, properties,
+  })
+  const first = point('slug', 1, { a: 1, old: 1 })
+  const next = point('slug', 2, { a: 0.8 })
+  const other = point('other', 0, { a: 1 })
+  const apply = (...features) => write(source, { type: 'FeatureCollection', features })
+  apply(first, other)
+  apply(structuredClone(first), structuredClone(other))
+  apply(next)
+  apply()
+  apply(first, other)
+  assert.deepEqual(diffs, [
+    { add: [first, other], update: [], remove: [] },
+    { add: [], update: [{ id: 'slug', newGeometry: next.geometry, removeProperties: ['old'], addOrUpdateProperties: [{ key: 'a', value: 0.8 }] }], remove: ['other'] },
+    { add: [], update: [], remove: ['slug'] },
+    { add: [first, other], update: [], remove: [] },
+  ])
+})
+
+test('overlapping marks keep full-collection order through rewind, filtering and restyling', async () => {
+  const path = await bundleIsland(dir, 'public/islands/_map/point-source.ts', 'ordered-points.mjs')
+  const write = (await import(path)).pointSourceWriter()
+  // Use the same tiler version as MapLibre's worker, including when npm nests it.
+  const manifest = findPackageJSON('@maplibre/geojson-vt', import.meta.resolve('maplibre-gl'))
+  const entry = JSON.parse(readFileSync(manifest, 'utf8')).exports['.'].import
+  const { GeoJSONVT } = await import(join(dirname(manifest), entry))
+  const index = features => new GeoJSONVT({ type: 'FeatureCollection', features }, { updateable: true })
+  const tile = idx => idx.getTile(0, 0, 0)?.features.map(f => [f.id, f.tags]) ?? []
+  let actual = index([])
+  let idle = true
+  let writes = 0
+  const source = {
+    loaded: () => idle,
+    updateData(diff) { actual.updateData(diff) },
+    setData(collection) { actual = index(collection.features); writes++ },
+  }
+  const point = (id, weight = 0) => ({
+    type: 'Feature', id, geometry: { type: 'Point', coordinates: [0, 0] }, properties: { weight },
+  })
+  const [a, b, c] = ['a', 'b', 'c'].map(id => point(id))
+  const check = (...features) => {
+    write(source, { type: 'FeatureCollection', features })
+    assert.deepEqual(tile(actual), tile(index(features)))
+  }
+  check(a, b)
+  check(a, b, c)
+  check(b, c)
+  assert.equal(writes, 0, 'tail appends and removals stay incremental')
+  check(a, b, c) // Rewind puts a back under the other two.
+  check(c, a, b) // Same ids, different publisher order.
+  check(c, point('a', 1), b) // Editing an interior mark also moves it in the tile.
+  check(c)
+  idle = false // A second filter change while MapLibre can still merge diffs.
+  const before = writes
+  check(c, b)
+  assert.equal(writes, before + 1)
 })

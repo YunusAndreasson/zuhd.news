@@ -179,3 +179,14 @@ describe('fetchFeed', () => {
     expect(mockCacheWrite).not.toHaveBeenCalled();
   });
 });
+
+it('holds an arrival feed in memory until explicitly saved and rechecks newer writes', async () => {
+  const { downloadFeed, saveFeed } =
+    require('../lib/feed-source') as typeof import('../lib/feed-source');
+  mockFetch.mockResolvedValueOnce(ok(feed('2026-10-14T12:00:00Z')));
+  const staged = await downloadFeed();
+  expect(mockCacheWrite).not.toHaveBeenCalled();
+  mockCacheReadSync.mockReturnValue(feed('2026-10-15T12:00:00Z'));
+  await expect(saveFeed(staged)).rejects.toThrow(/older/i);
+  expect(mockCacheWrite).not.toHaveBeenCalled();
+});

@@ -54,8 +54,21 @@ if [ "$LATEST" -eq 1 ]; then
   #   jest family    the SDK pins jest and @types/jest (30 on SDK 58) but not
   #                  babel-jest or jest-environment-jsdom, so a new jest major
   #                  would leave those two a major ahead. Move all four by hand.
-  npx --yes npm-check-updates --upgrade \
-    --reject expo,typescript,react,react-dom,jest,@types/jest,babel-jest,jest-environment-jsdom
+  # npm install runs patch-package before Expo can repair an incompatible
+  # upgrade. Derive both sets of names so newly added patches are protected.
+  reject=$(node - <<'NODE'
+const { readdirSync } = require('node:fs');
+const sdk = require('expo/bundledNativeModules.json');
+const patched = readdirSync('patches')
+  .filter((file) => file.endsWith('.patch'))
+  .map((file) => file.split(/\+(?=\d+\.\d+\.\d+)/)[0].replace('+', '/'));
+console.log([...new Set([
+  ...Object.keys(sdk), ...patched, 'expo', 'typescript', 'react', 'react-dom',
+  'jest', '@types/jest', 'babel-jest', 'jest-environment-jsdom',
+])].join(','));
+NODE
+)
+  npx --yes npm-check-updates --upgrade --reject "$reject"
   npm install
 else
   echo "▸ [3/5] Updating dependencies within package.json semver ranges…"

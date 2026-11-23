@@ -42,7 +42,8 @@ const isNullableNumber = (v: unknown): boolean => v == null || isFiniteNumber(v)
 
 // `name` may be missing: the build forwards `s.name` as it finds it, and the
 // readers skip a nameless source. Rejecting it would cost the whole feed.
-export const isArticleSource = (v: unknown): v is ArticleSource =>
+export type WireSource = Omit<ArticleSource, 'name'> & { name?: string | null };
+export const isArticleSource = (v: unknown): v is WireSource =>
   isObject(v) &&
   isNullableString(v.name) &&
   isNullableString(v.url) &&
@@ -51,14 +52,15 @@ export const isArticleSource = (v: unknown): v is ArticleSource =>
   isNullableNumber(v.sentiment);
 
 const isArticle = (v: unknown): v is Article => {
-  if (!isObject(v)) return false;
+  if (!isObject(v) || !Array.isArray(v.sources) || !v.sources.every(isArticleSource)) return false;
+  if (v.sources.some((source) => typeof source.name !== 'string')) {
+    v.sources = v.sources.filter((source) => typeof source.name === 'string');
+  }
   return (
     typeof v.slug === 'string' &&
     typeof v.title === 'string' &&
     isIsoDate(v.date) &&
     isFiniteNumber(v.addedAt) &&
-    Array.isArray(v.sources) &&
-    v.sources.every(isArticleSource) &&
     isNullableString(v.location) &&
     isNullableString(v.source) &&
     isNullableString(v.sourceUrl) &&
@@ -373,7 +375,7 @@ export const isTrendsSnapshot = (v: unknown): v is TrendsSnapshot => {
   return true;
 };
 
-export const isPreferences = (v: unknown): v is Preferences => {
+export const isBasePreferences = (v: unknown): v is Omit<Preferences, 'briefingSpeed'> => {
   if (!isObject(v)) return false;
   return (
     (v.fontSize === 'small' || v.fontSize === 'default' || v.fontSize === 'large') &&

@@ -312,8 +312,7 @@ export function createFeed(opts: FeedOptions): Feed {
     // `moveBefore` throws if the node is not already in a document; a fresh row
     // has to be inserted the ordinary way. Feature-detected per call rather than
     // once, because the check is a property read and the branch is predictable.
-    const mv = (parent as unknown as { moveBefore?: (n: Node, b: Node | null) => void }).moveBefore
-    if (mv && node.isConnected) mv.call(parent, node, before)
+    if (typeof parent.moveBefore === 'function' && node.isConnected) parent.moveBefore(node, before)
     else parent.insertBefore(node, before)
   }
 

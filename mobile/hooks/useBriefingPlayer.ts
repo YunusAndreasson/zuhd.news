@@ -1,3 +1,4 @@
+import { useEventListener } from 'expo';
 import { Asset } from 'expo-asset';
 // The managed player starts with a null source; native media loading remains
 // lazy while Expo owns subscription and unmount cleanup.
@@ -7,13 +8,12 @@ import {
   setAudioModeAsync,
   setIsAudioActiveAsync,
   useAudioPlayer,
-  useAudioPlayerStatus,
 } from 'expo-audio';
 import { File } from 'expo-file-system';
 import { useCallback, useEffect, useRef, useState } from 'react';
 import { AppState, type AppStateStatus } from 'react-native';
 import { ANALYTICS_EVENTS } from '../constants/analytics';
-import { API_BASE } from '../constants/theme';
+import { API_BASE, type BriefingSpeed } from '../constants/theme';
 import { analytics } from '../lib/analytics';
 import { heardPct } from '../lib/analytics-buckets';
 import { resolveAudioDuration } from '../lib/audio-duration';
@@ -65,13 +65,17 @@ function resolveBriefingSource(url: string, controller: AbortController): Promis
       idempotent: true,
       signal: controller.signal,
     })
-      .then(async (downloaded) => {
+      .then((downloaded) => {
         if (controller.signal.aborted) throw new Error('Audio download cancelled');
         // Fetched whether it is kept or not: the data figure in settings
         // counts the briefing, the largest thing the app downloads.
-        recordBytes(downloaded.size);
-        if (file.exists) downloaded.delete();
-        else await downloaded.move(file);
+        const bytes = downloaded.size;
+        if (!bytes) throw new Error('Empty briefing download');
+        recordBytes(bytes);
+        // Both files are in the cache directory. Finish the rename in this
+        // turn so an erase or a new recording cannot run ahead of it.
+        if (file.exists && file.size > 0) downloaded.delete();
+        else downloaded.moveSync(file, { overwrite: true });
         // One recording on the device: the one just saved.
         deleteBriefingAudio({ keep: file });
         return { localUri: file.uri };
@@ -163,6 +167,7 @@ export function useBriefingPlayer(
   feedDuration?: number,
   /** When the recording was made (`FeedResponse.briefing.generated`). */
   recorded?: string,
+  speed: BriefingSpeed = '1',
 ): BriefingPlayer {
   // No synthetic fallback to today's UTC date — that path produced a
   // guaranteed 404 whenever the latest briefing was >36h old. The feed
@@ -178,7 +183,7 @@ export function useBriefingPlayer(
     updateInterval: 500,
     keepAudioSessionActive: true,
   });
-  const status = useAudioPlayerStatus(managedPlayer);
+  const [nativeDuration, setNativeDuration] = useState(0);
   const [playing, setPlaying] = useState(false);
   const [preparing, setPreparing] = useState(false);
   const [elapsed, setElapsed] = useState(0);
@@ -188,6 +193,11 @@ export function useBriefingPlayer(
   const [failureCount, setFailureCount] = useState(0);
   const [finishCount, setFinishCount] = useState(0);
   const playerRef = useRef<AudioPlayer | null>(null);
+  const speedRef = useRef(speed);
+  useEffect(() => {
+    speedRef.current = speed;
+    playerRef.current?.setPlaybackRate(Number(speed));
+  }, [speed]);
   const savedDate = useRef<string | null>(null);
   const lockScreenActive = useRef(false);
   const lockScreenDurationKnown = useRef(false);
@@ -213,6 +223,7 @@ export function useBriefingPlayer(
   const sourcePreparingRef = useRef(false);
   const sourceLoadToken = useRef(0);
   const sourceAbort = useRef<AbortController | null>(null);
+  const cachedRecordingUrl = useRef<string | null>(null);
   const progressGeneration = useRef(0);
   const closedRef = useRef(false);
   // A fresh load's play, armed until the player is heard playing: only then
@@ -262,10 +273,13 @@ export function useBriefingPlayer(
     let disposed = false;
     const sub = AppState.addEventListener('change', async (state: AppStateStatus) => {
       const player = playerRef.current;
-      if (!player) return;
+      if (!player || finishedRef.current) return;
       const token = toggleTokenRef.current;
       const isCurrent = () =>
-        !disposed && playerRef.current === player && token === toggleTokenRef.current;
+        !disposed &&
+        !finishedRef.current &&
+        playerRef.current === player &&
+        token === toggleTokenRef.current;
 
       // Save position for any cold-start that might happen next
       try {
@@ -314,6 +328,7 @@ export function useBriefingPlayer(
     }
     sourceAbort.current?.abort();
     sourceAbort.current = null;
+    cachedRecordingUrl.current = null;
     wantsToPlayRef.current = false;
     playingIntentRef.current = false;
     toggleTokenRef.current += 1;
@@ -321,14 +336,16 @@ export function useBriefingPlayer(
     startRef.current = null;
     finishedRef.current = false;
     stoppedRef.current = false;
-    if (playerRef.current) {
+    const player = playerRef.current;
+    playerRef.current = null;
+    if (player) {
       try {
-        playerRef.current.clearLockScreenControls();
-        playerRef.current.pause();
-        playerRef.current.replace(null);
+        player.clearLockScreenControls();
+        player.pause();
+        player.replace(null);
       } catch {}
     }
-    playerRef.current = null;
+    setNativeDuration(0);
     setHasPlayer(false);
     sourceLoadToken.current += 1;
     lockScreenActivationToken.current += 1;
@@ -353,19 +370,30 @@ export function useBriefingPlayer(
     [teardownPlayer],
   );
 
-  const failPlayback = useCallback(() => {
-    teardownPlayer();
-    setPreparing(false);
-    setPlaying(false);
-    setFailureCount((count) => count + 1);
-  }, [teardownPlayer]);
+  const failPlayback = useCallback(
+    (sourceRejected = false) => {
+      const rejectedUrl = sourceRejected ? cachedRecordingUrl.current : null;
+      teardownPlayer();
+      // A nonempty cached file can still be undecodable. The next play must
+      // fetch that recording again, while retaining the reader's saved place.
+      if (rejectedUrl) {
+        try {
+          briefingAudioFile(rejectedUrl).delete();
+        } catch {}
+      }
+      setPreparing(false);
+      setPlaying(false);
+      setFailureCount((count) => count + 1);
+    },
+    [teardownPlayer],
+  );
 
   // A feed refresh can rotate to a new briefing while yesterday's player is
   // still paused in memory — or to a new recording of today's. Never label and
   // resume that old source as the new one: discard it, reset the visible
   // position, and let the next tap load it through the normal first-play path.
   useEffect(() => {
-    if (!playerRef.current || !savedDate.current || savedDate.current === recording) return;
+    if (!savedDate.current || savedDate.current === recording) return;
     teardownPlayer();
     savedDate.current = null;
     setPlaying(false);
@@ -375,7 +403,7 @@ export function useBriefingPlayer(
   }, [recording, teardownPlayer]);
 
   const savePosition = useCallback(() => {
-    if (!playerRef.current || !savedDate.current) return;
+    if (!playerRef.current || !savedDate.current || finishedRef.current) return;
     try {
       const pos = playerRef.current.currentTime;
       if (pos > 0) {
@@ -407,6 +435,7 @@ export function useBriefingPlayer(
     async (player: AudioPlayer, allowUnknownDuration = false) => {
       const hasDuration = Number.isFinite(player.duration) && player.duration > 0;
       if (
+        finishedRef.current ||
         lockScreenActive.current ||
         lockScreenActivationPending.current ||
         (!allowUnknownDuration && !hasDuration)
@@ -476,11 +505,20 @@ export function useBriefingPlayer(
     }, PLAY_GIVE_UP_MS);
   }, [failPlayback]);
 
-  // Expo owns the playback-status subscription. Keep only the app-specific
-  // policy here: recovery, lock-screen metadata, cold-load retry, and UI state.
-  useEffect(() => {
+  // The error and finish flags last one native event. A later progress update
+  // can replace either before React commits a snapshot from useAudioPlayerStatus.
+  useEventListener(managedPlayer, PLAYBACK_STATUS_UPDATE, (status) => {
     const player = playerRef.current;
-    if (!player || player !== managedPlayer || closedRef.current) return;
+    // Rewinding after completion emits more native status events. Only an
+    // explicit replay may restore progress or the finished media controls.
+    if (player !== managedPlayer || closedRef.current || sourceAbort.current || finishedRef.current)
+      return;
+    if (status.error) {
+      savePosition();
+      failPlayback(true);
+      return;
+    }
+    setNativeDuration(status.duration);
 
     if (status.mediaServicesDidReset && lockScreenActive.current) {
       void refreshLockScreenMetadata(player);
@@ -538,14 +576,12 @@ export function useBriefingPlayer(
       if (status.currentTime > 0) setResumable(true);
     }
 
-    if (status.didJustFinish && !finishedRef.current) {
+    if (status.didJustFinish) {
       finishedRef.current = true;
       startRef.current = null;
       void analytics.track(ANALYTICS_EVENTS.BRIEFING_COMPLETED);
       noteActivation('briefing_completed');
       setFinishCount((count) => count + 1);
-    }
-    if (status.didJustFinish) {
       wantsToPlayRef.current = false;
       playingIntentRef.current = false;
       if (giveUpTimer.current) {
@@ -572,7 +608,7 @@ export function useBriefingPlayer(
       lockScreenActive.current = false;
       lockScreenDurationKnown.current = false;
     }
-  }, [activateLockScreen, managedPlayer, refreshLockScreenMetadata, status]);
+  });
 
   const toggle = useCallback(async () => {
     closedRef.current = false;
@@ -642,7 +678,8 @@ export function useBriefingPlayer(
         return;
       }
 
-      // First play — configure the managed player and install its source.
+      // A feed refresh can replace this recording while audio-session setup is pending.
+      savedDate.current = recording;
       try {
         await setAudioModeAsync({
           playsInSilentMode: true,
@@ -654,7 +691,6 @@ export function useBriefingPlayer(
       if (toggleToken !== toggleTokenRef.current || !playingIntentRef.current) return;
 
       const player = managedPlayer;
-      savedDate.current = recording;
       playerRef.current = player;
       setHasPlayer(true);
       const loadToken = ++sourceLoadToken.current;
@@ -679,10 +715,14 @@ export function useBriefingPlayer(
         !playingIntentRef.current
       )
         return;
+      cachedRecordingUrl.current = playbackSource === remoteUrl ? null : remoteUrl;
       try {
         player.replace(playbackSource);
+        // iOS applies pitch correction to the current item. Read the speed
+        // after the download in case the listener changed it during loading.
+        player.setPlaybackRate(Number(speedRef.current));
       } catch {
-        failPlayback();
+        failPlayback(true);
         return;
       }
 
@@ -733,11 +773,11 @@ export function useBriefingPlayer(
       // a duration AVPlayer may not discover promptly on this MP3 response.
       const loadedWithDuration = await waitForLoaded(player, 5000);
 
-      // Bail if the user closed the player or swapped dates during the wait.
-      if (closedRef.current || playerRef.current !== player) return;
+      // Dismissal, a new recording or a failed load invalidates this wait.
+      if (closedRef.current || loadToken !== sourceLoadToken.current) return;
 
       // The timeout fallback restores artwork/play/pause/skip immediately.
-      // If native duration arrives later, the status effect recreates the card
+      // If native duration arrives later, the status listener recreates the card
       // so iOS receives duration on its first metadata write.
       await activateLockScreen(player, !loadedWithDuration);
     } catch {
@@ -812,7 +852,7 @@ export function useBriefingPlayer(
   // Native duration is authoritative once loaded. Feed duration keeps the
   // in-app timeline visible during startup instead of coupling it to AVPlayer's
   // metadata timing.
-  const effectiveDuration = resolveAudioDuration(status.duration, feedDuration);
+  const effectiveDuration = resolveAudioDuration(nativeDuration, feedDuration);
 
   const state: BriefingPlayer['state'] = preparing
     ? 'preparing'

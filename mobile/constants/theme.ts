@@ -10,7 +10,11 @@ import { ANDROID_TEXT_BASE } from './platform';
 export type FontSize = 'small' | 'default' | 'large';
 export type AppearanceMode = 'dark' | 'system' | 'light';
 
+export const BRIEFING_SPEEDS = ['0.75', '1', '1.25', '1.5'] as const;
+export type BriefingSpeed = (typeof BRIEFING_SPEEDS)[number];
+
 export interface Preferences {
+  briefingSpeed: BriefingSpeed;
   fontSize: FontSize;
   appearance: AppearanceMode;
   haptics: boolean;
@@ -18,6 +22,7 @@ export interface Preferences {
 }
 
 export const DEFAULT_PREFS: Preferences = {
+  briefingSpeed: '1',
   fontSize: 'default',
   appearance: 'dark',
   haptics: true,

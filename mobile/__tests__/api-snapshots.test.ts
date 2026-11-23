@@ -1,5 +1,9 @@
 jest.mock('../lib/fetchJson', () => ({ fetchJsonIfChanged: jest.fn(), fetchJson: jest.fn() }));
-jest.mock('../lib/feed-source', () => ({ fetchFeed: jest.fn() }));
+jest.mock('../lib/feed-source', () => ({
+  downloadFeed: jest.fn(),
+  saveFeed: jest.fn(),
+  fetchFeed: jest.fn(),
+}));
 jest.mock('../lib/fresh-store', () => ({ noteFeed: jest.fn() }));
 
 import { dehydrate, hydrate, QueryClient } from '@tanstack/react-query';
@@ -10,7 +14,7 @@ import {
   snapshotData,
 } from '../lib/api-snapshots';
 import { fetchArrival } from '../lib/arrival';
-import { fetchFeed } from '../lib/feed-source';
+import { downloadFeed } from '../lib/feed-source';
 import { fetchJsonIfChanged } from '../lib/fetchJson';
 
 const request = jest.mocked(fetchJsonIfChanged);
@@ -39,7 +43,7 @@ it('persists a tag with its payload and sends it after restoring that same paylo
 it('does not advance tags when snapshots succeed but the feed fails', async () => {
   const client = new QueryClient();
   client.setQueryData(trends.queryKey, { snapshot: { reading: 0 }, etag: 'old' });
-  jest.mocked(fetchFeed).mockRejectedValue(new Error('offline'));
+  jest.mocked(downloadFeed).mockRejectedValue(new Error('offline'));
   await expect(fetchArrival(client)).rejects.toThrow('offline');
   // Allow every parallel snapshot to finish after the feed's failure.
   await Promise.resolve();
@@ -87,4 +91,11 @@ it('retries only failed layers even when no new feed build exists', async () => 
   request.mockClear();
   await fetchAllSnapshots(() => undefined, true);
   expect(request).not.toHaveBeenCalled();
+});
+
+it('revalidates a query-owned copy by its paired ETag and reuses it on a 304', async () => {
+  const previous = await fetchSnapshot(trends);
+  request.mockResolvedValueOnce({ changed: false });
+  expect(await fetchSnapshot(trends, {}, previous)).toBe(previous);
+  expect(request.mock.lastCall?.[2]?.etag).toBe('v1');
 });

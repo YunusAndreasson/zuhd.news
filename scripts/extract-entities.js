@@ -24,7 +24,7 @@ import { pathOf } from './lib/datasets.js'
 import { replaceFrontmatterKey, yamlString } from './lib/frontmatter.js'
 import { extractEntities } from './lib/entity-registry.js'
 import { fetchYahooStock } from './lib/trends-sources/stocks.js'
-import { chartsUntil, companyEntries, parseStockMentions, parseStoryReadings, readingBlocks, stockMentionsPrompt, subjectsBlock } from './lib/stock-mentions.js'
+import { chartsUntil, companyEntries, parseStockMentions, parseStoryReadings, readingBlocks, sameCompany, secondListings, stockMentionsPrompt, subjectsBlock } from './lib/stock-mentions.js'
 import { writeJson, writeText } from './lib/json-file.js'
 import { modelFor } from './lib/models.js'
 import { latestTrendsPath } from './lib/trends-snapshot.js'
@@ -311,6 +311,8 @@ const subjectsBySlug = new Map()
  *  carried both (`parseStoryReadings`). */
 let readingsBySlug = new Map()
 const newStockIndicators = []
+/** Tracked rows a second listing was pointed at that were not fetched again. */
+const carriedHeld = new Set()
 if (files.length > 0) {
   console.log(`  · stocks-haiku: scanning ${files.length} article(s) for tickers`)
   const scanned = await extractStocksViaHaiku(
@@ -345,6 +347,42 @@ if (files.length > 0) {
     if (unasked.length > 0) {
       console.log(`  · stocks: out of time, ${unasked.length} ticker(s) not asked for: ${unasked.join(' ')}`)
     }
+    // A symbol Yahoo names as some other company is no chart (`sameCompany`).
+    for (const [ticker, data] of charts) {
+      const named = uniqueTickers.get(ticker)?.name ?? ''
+      if (data.name === ticker || sameCompany(named, data.name)) continue
+      console.log(`  · stocks: ${ticker} is "${data.name}" on Yahoo, not ${named}: no chart`)
+      charts.delete(ticker)
+    }
+    // A second listing of a company already tracked is charted under the
+    // first (`secondListings`), and the articles' mentions point at it.
+    const trackedPath = latestTrendsPath()
+    /** @type {{ id?: string, label?: string }[]} */
+    let tracked = []
+    try {
+      tracked = trackedPath ? JSON.parse(readFileSync(trackedPath, 'utf8')).indicators ?? [] : []
+    } catch (err) {
+      console.error(`  ✗ stocks: ${trackedPath} not read (${err.message}), so no listing is matched to a tracked one`)
+    }
+    const relisted = secondListings(charts, tracked)
+    for (const [ticker, held] of relisted) {
+      console.log(`  · stocks: ${ticker} is a second listing of ${charts.get(ticker)?.name}, tracked as ${held}`)
+      if (!uniqueTickers.has(held)) uniqueTickers.set(held, /** @type {{ name: string, mention: string }} */ (uniqueTickers.get(ticker)))
+      charts.delete(ticker)
+    }
+    const heldUnfetched = [...new Set(relisted.values())].filter((t) => !charts.has(t))
+    if (heldUnfetched.length > 0) {
+      const again = await chartsUntil(heldUnfetched, (ticker) => fetchYahooStock(ticker), { until: YAHOO_UNTIL })
+      for (const [ticker, data] of again.charts) charts.set(ticker, data)
+    }
+    for (const [, companies] of stocksHits) {
+      for (const c of companies) c.ticker = relisted.get(c.ticker.toUpperCase()) ?? c.ticker
+    }
+    // A tracked listing Yahoo did not answer for again keeps its row, which
+    // the snapshot carries, and a chip still opens it.
+    for (const held of relisted.values()) {
+      if (!charts.has(held) && tracked.some((/** @type {{ id?: string }} */ r) => r.id === `stocks:${held}`)) carriedHeld.add(`stocks:${held}`)
+    }
     for (const [ticker, data] of charts) {
       const meta = uniqueTickers.get(ticker)
       const values = data.values
@@ -378,7 +416,7 @@ if (files.length > 0) {
   //
   // Only the articles the model answered for were read. One it left out — an
   // answer cut short — has no judgement, and is not recorded as "about none".
-  const charted = new Set(newStockIndicators.map((i) => i.id))
+  const charted = new Set([...newStockIndicators.map((i) => i.id), ...carriedHeld])
   for (const [slug, companies] of stocksHits) {
     const file = files.find((f) => f.slug === slug)
     if (!file) continue

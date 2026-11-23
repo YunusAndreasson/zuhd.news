@@ -1,5 +1,9 @@
 jest.mock('../lib/fresh-store', () => ({ noteFeed: jest.fn() }));
-jest.mock('../lib/feed-source', () => ({ fetchFeed: jest.fn() }));
+jest.mock('../lib/feed-source', () => ({
+  downloadFeed: jest.fn(),
+  saveFeed: jest.fn(),
+  fetchFeed: jest.fn(),
+}));
 jest.mock('../lib/api-snapshots', () => ({ fetchAllSnapshots: jest.fn() }));
 
 import type { Article, FeedResponse } from '@shared/types';
@@ -159,10 +163,10 @@ it('does not apply an arrival completed before an erase, or a queued pre-erase n
   const { cancelArrivals, fetchArrival } = jest.requireActual(
     '../lib/arrival',
   ) as typeof import('../lib/arrival');
-  const { fetchFeed } = require('../lib/feed-source') as typeof import('../lib/feed-source');
+  const { downloadFeed } = require('../lib/feed-source') as typeof import('../lib/feed-source');
   const { fetchAllSnapshots } =
     require('../lib/api-snapshots') as typeof import('../lib/api-snapshots');
-  jest.mocked(fetchFeed).mockResolvedValue(feed('new', ['story']));
+  jest.mocked(downloadFeed).mockResolvedValue(feed('new', ['story']));
   jest.mocked(fetchAllSnapshots).mockResolvedValue([]);
   const client = new QueryClient();
   const arrival = await fetchArrival(client);
@@ -181,4 +185,43 @@ it('does not apply an arrival completed before an erase, or a queued pre-erase n
   for (const callback of queued) callback();
   expect(noteFeed).not.toHaveBeenCalled();
   notifyManager.setScheduler((callback) => setTimeout(callback, 0));
+});
+
+it('shares an in-flight background build with a returning reader even if iOS then expires the task', async () => {
+  const { fetchArrival } = jest.requireActual('../lib/arrival') as typeof import('../lib/arrival');
+  const { downloadFeed } = require('../lib/feed-source') as typeof import('../lib/feed-source');
+  jest.mocked(downloadFeed).mockClear().mockResolvedValue(feed('build', []));
+  jest.mocked(fetchAllSnapshots).mockClear().mockResolvedValue([]);
+  const client = new QueryClient();
+  const background = new AbortController();
+  const download = fetchArrival(client, 'build', background.signal);
+  const foreground = fetchArrival(client, 'build');
+  background.abort();
+  expect(jest.mocked(downloadFeed).mock.calls[0]?.[0]?.signal?.aborted).toBe(false);
+  expect(await foreground).toBe(await download);
+  expect(downloadFeed).toHaveBeenCalledTimes(1);
+  expect(fetchAllSnapshots).toHaveBeenCalledTimes(1);
+});
+
+it('an expired partial transfer cannot advance the feed file past its layers', async () => {
+  const { fetchArrival } = jest.requireActual('../lib/arrival') as typeof import('../lib/arrival');
+  const { downloadFeed, saveFeed } =
+    require('../lib/feed-source') as typeof import('../lib/feed-source');
+  jest.mocked(downloadFeed).mockResolvedValue(feed('partial', []));
+  let finish!: () => void;
+  jest.mocked(fetchAllSnapshots).mockImplementationOnce(
+    () =>
+      new Promise((resolve) => {
+        finish = () => resolve([]);
+      }),
+  );
+  jest.mocked(saveFeed).mockClear();
+  const expiry = new AbortController();
+  const pending = fetchArrival(new QueryClient(), 'partial', expiry.signal);
+  await Promise.resolve();
+  expect(saveFeed).not.toHaveBeenCalled();
+  expiry.abort();
+  finish();
+  await expect(pending).rejects.toThrow('cancelled');
+  expect(saveFeed).not.toHaveBeenCalled();
 });

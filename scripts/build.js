@@ -10,7 +10,7 @@ import { SV_WINDOW_MS, eventTime as svEventTime, svFeedItem } from './lib/sv-pay
 import { buildCategoryOgPng, buildOgPng, buildSiteOgPng } from './lib/og-image.js'
 import { buildIgJpeg, IG_FEED, IG_STORY, igCardInputs } from './lib/ig-image.js'
 import { MAPLIBRE_V, buildIslands } from './build/islands.js'
-import { buildMapSources } from './build/basemap.js'
+import { basemapVersion, buildMapSources } from './build/basemap.js'
 import { writeBasemapTiles } from './build/basemap-tiles.js'
 import { buildCountryPages } from './build/country-pages.js'
 import { buildCountryMetrics } from './build/country-metrics.js'
@@ -639,41 +639,7 @@ const ISLAND_V = (() => {
   return h.digest('hex').slice(0, 10)
 })()
 
-/**
- * Cache key for the basemap, stamped into every URL the map fetches it from.
- *
- * `/basemap/*` is served with `max-age=86400` because Natural Earth geometry
- * does not change between deploys — but *our treatment of it* does, and when it
- * does the reader keeps the old copy for a day. That is not academic: the map
- * kept printing "Tel Aviv" and "Jerusalem" for a full day after the build
- * started emitting "Yafa" and "Al-Quds", and no amount of reloading fixed it,
- * because a reload re-requests a URL the browser is entitled to answer from
- * disk. Hashing what goes into the basemap gives a URL that changes exactly
- * when its contents do, which is what makes a long cache safe.
- */
-const BASEMAP_V = (() => {
-  const inputs = [
-    join(ROOT, 'scripts', 'build', 'basemap.js'),
-    join(ROOT, 'scripts', 'build', 'basemap-tiles.js'),
-    join(ROOT, 'shared', 'place-names.ts'),
-    join(ROOT, 'shared', 'countries', 'iso.ts'),
-    join(ROOT, 'shared', 'data', 'countries-110m.json'),
-    join(ROOT, 'shared', 'data', 'countries-50m.json'),
-    join(ROOT, 'shared', 'data', 'countries-10m.json'),
-    join(ROOT, 'shared', 'data', 'places-50m.geojson'),
-    join(ROOT, 'shared', 'data', 'capitals-50m.json'),
-    // Every file the basemap is built from belongs here, or the layer it feeds
-    // is the one that goes stale for a day with no way for a reader to force it.
-    join(ROOT, 'shared', 'data', 'lakes-50m.json'),
-    join(ROOT, 'shared', 'data', 'rivers-50m.json'),
-    join(ROOT, 'shared', 'data', 'seas-50m.json'),
-    join(ROOT, 'shared', 'data', 'bathymetry-10m.geojson'),
-    join(ROOT, 'shared', 'data', 'regions-50m.geojson'),
-  ]
-  const h = createHash('sha256')
-  for (const f of inputs) if (existsSync(f)) h.update(readFileSync(f))
-  return h.digest('hex').slice(0, 10)
-})()
+const BASEMAP_V = basemapVersion(ROOT)
 
 // The page furniture, built once from `shared/share.ts` so the store and
 // account links in six footers cannot become six different answers. See

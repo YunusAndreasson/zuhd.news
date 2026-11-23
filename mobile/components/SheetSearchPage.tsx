@@ -1,6 +1,14 @@
 import { BottomSheetTextInput } from '@expo/ui/community/bottom-sheet';
 import type { Article, Category, GroupedArticles } from '@shared/types';
-import { useCallback, useDeferredValue, useEffect, useMemo, useRef, useState } from 'react';
+import {
+  useCallback,
+  useDeferredValue,
+  useEffect,
+  useMemo,
+  useRef,
+  useState,
+  useSyncExternalStore,
+} from 'react';
 import { Pressable, StyleSheet, type TextInputInstance, View } from 'react-native';
 import { IS_ANDROID } from '../constants/platform';
 import {
@@ -14,6 +22,7 @@ import {
 import { useTheme } from '../hooks/useTheme';
 import { announce } from '../lib/announce';
 import { articleTime } from '../lib/article-utils';
+import { type Bookmark, getSnapshot, subscribe } from '../lib/bookmark-store';
 import { buildSearchIndex, plainText, type SearchDoc, type SearchNote } from '../lib/search';
 import { ArticleRow } from './ArticleRow';
 import { EmptyState } from './EmptyState';
@@ -27,21 +36,26 @@ interface SearchResult extends Article {
   note?: SearchNote;
 }
 
-/** The feed as search reads it: the words on the card, not its markdown. */
-function searchDocs(grouped: GroupedArticles): SearchDoc<SearchResult>[] {
+/** Search local copies once per slug. The feed has the latest edits to a saved story. */
+function searchDocs(grouped: GroupedArticles, bookmarks: Bookmark[]): SearchDoc<SearchResult>[] {
   const docs: SearchDoc<SearchResult>[] = [];
-  for (const category of CATEGORIES) {
-    for (const article of grouped[category]) {
-      docs.push({
-        item: { ...article, category },
-        time: articleTime(article),
-        title: article.title,
-        place: article.location ?? '',
-        topics: article.concepts,
-        body: article.sentences.map(plainText),
-      });
-    }
+  const seen = new Set<string>();
+  function add(article: Article, category: Category) {
+    if (seen.has(article.slug)) return;
+    seen.add(article.slug);
+    docs.push({
+      item: { ...article, category },
+      time: articleTime(article),
+      title: article.title,
+      place: article.location ?? '',
+      topics: article.concepts,
+      body: article.sentences.map(plainText),
+    });
   }
+  for (const category of CATEGORIES) {
+    for (const article of grouped[category]) add(article, category);
+  }
+  for (const { article, category } of bookmarks) add(article, category);
   return docs;
 }
 
@@ -65,7 +79,11 @@ export function SheetSearchPage({
   const deferredQuery = useDeferredValue(query.trim());
   const inputRef = useRef<TextInputInstance>(null);
 
-  const searchIndex = useMemo(() => buildSearchIndex(searchDocs(grouped)), [grouped]);
+  const bookmarks = useSyncExternalStore(subscribe, getSnapshot);
+  const searchIndex = useMemo(
+    () => buildSearchIndex(searchDocs(grouped, bookmarks)),
+    [grouped, bookmarks],
+  );
   const results = useMemo(
     () =>
       searchIndex
@@ -139,7 +157,7 @@ export function SheetSearchPage({
           maxFontSizeMultiplier={VARIANT_CAP.body}
           accessibilityRole="search"
           accessibilityLabel="Search stories"
-          accessibilityHint="Filter stories by title, topic or place"
+          accessibilityHint="Filter recent and saved stories by title, topic or place"
           autoCorrect={false}
           autoCapitalize="none"
           autoComplete="off"
@@ -167,13 +185,14 @@ export function SheetSearchPage({
 
       {deferredQuery.length === 0 ? (
         <View style={styles.emptyFill}>
-          {/* The feed is the last couple of days. It said "every story", which
-              promised an archive the app does not hold. */}
-          <EmptyState message="search recent stories" hint="By title, topic or place" />
+          <EmptyState
+            message="search stories"
+            hint="Recent and saved stories, by title, topic or place"
+          />
         </View>
       ) : results.length === 0 ? (
         <View style={styles.emptyFill}>
-          <EmptyState message="no recent story matches" hint="Try fewer words, or another one" />
+          <EmptyState message="no matching stories" hint="Try fewer words, or another one" />
         </View>
       ) : (
         <SheetFlatList

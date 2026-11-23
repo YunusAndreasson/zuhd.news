@@ -7,7 +7,6 @@ import type {
   Entity,
   GdacsAlert,
 } from '@shared/types';
-import * as SplashScreen from 'expo-splash-screen';
 import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import {
   AppState,
@@ -18,7 +17,7 @@ import {
   useWindowDimensions,
   View,
 } from 'react-native';
-import Animated, {
+import {
   type SharedValue,
   useAnimatedStyle,
   useReducedMotion,
@@ -44,6 +43,7 @@ import { HintOverlay } from '../components/HintOverlay';
 import { MenuSheet } from '../components/MenuSheet';
 import { ALERT_ROW, AlertPill } from '../components/map/AlertPill';
 import { GlobeGestureLayer } from '../components/map/GlobeGestureLayer';
+import { GlobeLayer } from '../components/map/GlobeLayer';
 import { MapHeader } from '../components/map/MapHeader';
 import { MapSheet, type MapSheetDetent, type MapSheetRef } from '../components/map/MapSheet';
 import { EndCard, StoryCard, StoryFooter } from '../components/map/StoryCard';
@@ -57,6 +57,7 @@ import type { BottomSheetMethodsRef } from '../components/SheetLayout';
 import { SourcesSheet } from '../components/SourcesSheet';
 import { Toast, type ToastRef } from '../components/Toast';
 import { ANALYTICS_EVENTS, type PrimerSource, type StoryOpenVia } from '../constants/analytics';
+import { IS_ANDROID } from '../constants/platform';
 import { CATEGORIES, categoryMarkColor, EDITORIAL, VARIANT_CAP } from '../constants/theme';
 import { useAiModels } from '../hooks/useAiModels';
 import { useAnalysis } from '../hooks/useAnalysis';
@@ -68,7 +69,9 @@ import { useCompanies } from '../hooks/useCompanies';
 import { useConflictEvents } from '../hooks/useConflictEvents';
 import { useGdacsAlerts } from '../hooks/useGdacsAlerts';
 import { useHeatmap } from '../hooks/useHeatmap';
+import { useLaunchSplash } from '../hooks/useLaunchSplash';
 import { useLinkedStory } from '../hooks/useLinkedStory';
+import { useMapStories } from '../hooks/useMapStories';
 import { useMarketSignals } from '../hooks/useMarketSignals';
 import { useMarkets } from '../hooks/useMarkets';
 import { useOffline } from '../hooks/useOffline';
@@ -121,7 +124,7 @@ import {
   type GroupKey,
   holdGroups,
 } from '../lib/instrument-catalog';
-import { buildStoryRows, cameraTrackOf, type StoryRow } from '../lib/map-feed';
+import type { StoryRow } from '../lib/map-feed';
 import { coverageStory, mapCandidates } from '../lib/map-selection';
 import { exchangeCard, exchangeIsStale, exchangesOf, stockMarketPlace } from '../lib/markets';
 import type { MenuHazards } from '../lib/menu-hazards';
@@ -149,7 +152,6 @@ import { refreshFailedToast } from '../lib/refresh-toast';
 import { resumeLanding, unreadNewBehind } from '../lib/resume-landing';
 import { maybeRequestReview, recordStorySwipe } from '../lib/store-review';
 import { storyCharts } from '../lib/story-chart';
-import { buildStoryPlaces } from '../lib/story-places';
 import { storyShare } from '../lib/story-share';
 import { countryTap, type TapResult } from '../lib/tap-result';
 
@@ -190,12 +192,6 @@ const PRIMER_AFTER_READS = 5;
 /** How long a story asked for by name may take to grow before the next open
  *  of the sheet no longer counts as it (`Story Opened`'s `via`). */
 const STORY_OPEN_VIA_MS = 5_000;
-
-// How long the splash may wait on the heatmap *after* articles are ready.
-// The heatmap degrades gracefully to an empty layer, so it must not hold a
-// launch whose content is already on screen — without this cap a slow
-// heatmap parks the user on the splash until the 8s `_layout.tsx` fallback.
-const HEATMAP_SPLASH_GRACE_MS = 1200;
 
 /** The handlers a measured card is given: it is never shown or touched. */
 const noop = () => {};
@@ -252,7 +248,7 @@ export default function HomeScreen() {
   // A story is set in its column, up to `LAYOUT.readingMax` wide: what is
   // measured is what is drawn. The deck, the globe and its centre stay on the
   // window.
-  const readingColumn = readingWidth(screenWidth);
+  const readingColumn = readingWidth(screenWidth, insets.left, insets.right);
 
   const menuSheetRef = useRef<BottomSheetMethodsRef>(null);
   const primerSheetRef = useRef<BottomSheetMethodsRef>(null);
@@ -435,6 +431,8 @@ export default function HomeScreen() {
   const deckInput = useMemo(
     () => ({
       width: screenWidth,
+      leftInset: insets.left,
+      rightInset: insets.right,
       height: screenHeight,
       chromeHeight: topChromeHeight,
       bottomInset: insets.bottom,
@@ -458,6 +456,8 @@ export default function HomeScreen() {
       screenHeight,
       topChromeHeight,
       insets.bottom,
+      insets.left,
+      insets.right,
       fontScale,
       typography.sizeBase,
       textVariants,
@@ -685,19 +685,6 @@ export default function HomeScreen() {
   const odds = useMemo(() => oddsByStory(trends, analysis), [trends, analysis]);
   const oddsLabelBySlug = useMemo(() => oddsLabels(odds), [odds]);
 
-  const fresh = useFreshSlugs();
-  const storyRows = useMemo(
-    () => buildStoryRows({ river, fresh, odds: oddsLabelBySlug }),
-    [river, fresh, oddsLabelBySlug],
-  );
-  const cameraTrack = useMemo(() => cameraTrackOf(storyRows), [storyRows]);
-
-  const resolvableEntityIds = useMemo(() => new Set(indicatorsById.keys()), [indicatorsById]);
-  const activeIndicator = useMemo(
-    () => (activeEntity ? (indicatorsById.get(activeEntity.indicatorId) ?? null) : null),
-    [activeEntity, indicatorsById],
-  );
-
   // ---------------------------------------------------------------------
   // The news on the globe
   //
@@ -708,7 +695,14 @@ export default function HomeScreen() {
   // globe subscribes to it itself (`MiniGlobe`); `lib/story-places.ts`
   // groups the river into the places the marks stand for.
   // ---------------------------------------------------------------------
-  const places = useMemo(() => buildStoryPlaces(storyRows), [storyRows]);
+  const fresh = useFreshSlugs();
+  const { storyRows, cameraTrack, places } = useMapStories({ river, fresh, odds: oddsLabelBySlug });
+
+  const resolvableEntityIds = useMemo(() => new Set(indicatorsById.keys()), [indicatorsById]);
+  const activeIndicator = useMemo(
+    () => (activeEntity ? (indicatorsById.get(activeEntity.indicatorId) ?? null) : null),
+    [activeEntity, indicatorsById],
+  );
 
   // Against the loaded river only: pruning against an empty one is exactly the
   // partial-payload wipe the store's age guard exists to refuse.
@@ -1428,9 +1422,10 @@ export default function HomeScreen() {
     hapticNotification();
     if (primerTriedRef.current) return true;
     if (getOnboarding().primer.status !== 'pending' || notificationsOnRef.current) return true;
-    presentPrimer('caught_up');
+    if (IS_ANDROID) askAtMoment('caught_up');
+    else presentPrimer('caught_up');
     return true;
-  }, [presentPrimer]);
+  }, [askAtMoment, presentPrimer]);
 
   /**
    * A finger has started a swipe on the deck. Whether the camera follows it is
@@ -1767,16 +1762,7 @@ export default function HomeScreen() {
   // get back down to the globe closed zuhd instead.
   useHardwareBack({ enabled: sheetDetent === 'full', onBack: collapseSheet });
 
-  // Hold the splash until we have something for *every* visible layer.
-  useEffect(() => {
-    if (loading) return;
-    if (heatmapReady) {
-      SplashScreen.hide();
-      return;
-    }
-    const timer = setTimeout(() => SplashScreen.hide(), HEATMAP_SPLASH_GRACE_MS);
-    return () => clearTimeout(timer);
-  }, [loading, heatmapReady]);
+  useLaunchSplash(loading, heatmapReady);
 
   usePendingNotification(loading, grouped, handleNotificationStory, handleBriefingPush);
   useLinkedStory(loading, grouped, handleLinkedStory);
@@ -2199,7 +2185,7 @@ export default function HomeScreen() {
 
   if (loading)
     return (
-      <Screen>
+      <Screen edges={['left', 'right']}>
         <EmptyState message="loading" hint="This is taking longer than usual" />
       </Screen>
     );
@@ -2219,7 +2205,7 @@ export default function HomeScreen() {
           projection carried past the screen for the ground the shrink
           uncovered. Opening a story was slow (2026-09-21); the sheet is
           opaque, so now the globe draws nothing while it moves. */}
-      <Animated.View style={[styles.globeLayer, globeLiftStyle]} pointerEvents="none">
+      <GlobeLayer style={[styles.globeLayer, globeLiftStyle]}>
         <MiniGlobe
           ref={globeRef}
           tapFrame={globeTapFrame}
@@ -2255,7 +2241,7 @@ export default function HomeScreen() {
           viewLng={viewLng}
           tick={tick}
         />
-      </Animated.View>
+      </GlobeLayer>
 
       <GlobeGestureLayer
         globeRef={globeRef}

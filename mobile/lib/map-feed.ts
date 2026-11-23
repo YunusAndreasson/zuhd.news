@@ -12,7 +12,7 @@ import type { LatLng } from './now';
  * **The camera track has to be parallel to the list.** `MiniGlobe` finds the
  * row under the reader by dividing scroll offset by row height, so row *n* of
  * the list and pair *n* of the track must be the same story. Building both
- * from one pass is the only way that stays true when either changes.
+ * from the same located stories keeps them aligned when the river changes.
  *
  * **Location is deliberately absent from the meta line.** `ArticleRow` prints
  * it, and it is right there — but on this screen the globe is turning to the
@@ -51,15 +51,20 @@ export interface StoryRow {
   coords: LatLng | null;
 }
 
-export interface BuildStoryRowsInput {
-  river: RiverArticle[];
-  /** Slugs new to the reader (`fresh-store`). */
-  fresh: ReadonlySet<string>;
-  /** slug → bare percentage, from `lib/predictions.ts`. */
-  odds?: ReadonlyMap<string, string>;
+export type LocatedStory = Pick<StoryRow, 'slug' | 'article' | 'coords'>;
+
+export function locateStories(river: RiverArticle[]): LocatedStory[] {
+  return river.map((article) => {
+    const coords = getCoords(article);
+    return { slug: article.slug, article, coords: coords ? [coords[0], coords[1]] : null };
+  });
 }
 
-export function buildStoryRows({ river, fresh, odds }: BuildStoryRowsInput): StoryRow[] {
+export function buildStoryRows(
+  stories: LocatedStory[],
+  fresh: ReadonlySet<string>,
+  odds?: ReadonlyMap<string, string>,
+): StoryRow[] {
   // The boundary is the first story the reader already had. By slug, never by
   // `addedAt`: the question is "was this here last time you looked", and a
   // rewritten file's mtime says it was published a minute ago.
@@ -69,9 +74,9 @@ export function buildStoryRows({ river, fresh, odds }: BuildStoryRowsInput): Sto
   // "43 new" of 43 to a screen reader — said nothing the day did not. New
   // means new beside what the reader already had; the dock's pill follows
   // the same rule (`unreadNewBehind`).
-  const allNew = river.length > 0 && river.every((article) => fresh.has(article.slug));
+  const allNew = stories.length > 0 && stories.every((story) => fresh.has(story.slug));
 
-  return river.map((article, index) => {
+  return stories.map(({ article, coords }, index) => {
     const isFresh = !allNew && fresh.has(article.slug);
     let mark: StoryRow['mark'] = isFresh ? 'new' : null;
     // Suppress a boundary on the opening card: `earlier ·` there reads as
@@ -80,7 +85,6 @@ export function buildStoryRows({ river, fresh, odds }: BuildStoryRowsInput): Sto
       if (index > 0) mark = 'earlier';
       boundaryMarked = true;
     }
-    const coords = getCoords(article);
     return {
       slug: article.slug,
       article,
@@ -90,14 +94,14 @@ export function buildStoryRows({ river, fresh, odds }: BuildStoryRowsInput): Sto
       mostCovered: isMostCovered(article),
       fresh: isFresh,
       odds: odds?.get(article.slug) ?? null,
-      coords: coords ? [coords[0], coords[1]] : null,
+      coords,
     };
   });
 }
 
 /** The flat `[lat, lng, …]` array `MiniGlobe.cameraTrack` expects, one pair
  *  per row, `null, null` where a story has no place. */
-export function cameraTrackOf(rows: StoryRow[]): (number | null)[] {
+export function cameraTrackOf(rows: readonly LocatedStory[]): (number | null)[] {
   const track: (number | null)[] = [];
   for (const row of rows) {
     track.push(row.coords ? row.coords[0] : null, row.coords ? row.coords[1] : null);

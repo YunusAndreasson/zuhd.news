@@ -1,17 +1,39 @@
-import type { FeedResponse } from '@shared/types';
 import {
   persistQueryClientRestore,
   persistQueryClientSave,
 } from '@tanstack/react-query-persist-client';
 import * as BackgroundTask from 'expo-background-task';
 import * as TaskManager from 'expo-task-manager';
-import { applyArrival, FEED_QUERY_KEY, fetchArrival, probeGenerated } from './arrival';
-import { feedCache } from './feed-source';
+import { Platform } from 'react-native';
+import {
+  applyArrival,
+  arrivalGeneration,
+  FEED_QUERY_KEY,
+  fetchArrival,
+  probeGenerated,
+} from './arrival';
 import { flushKnown } from './fresh-store';
-import { PERSIST_BUSTER, PERSIST_MAX_AGE_MS, persister, queryClient } from './query-client';
+import {
+  immediatePersister,
+  PERSIST_BUSTER,
+  PERSIST_MAX_AGE_MS,
+  queryClient,
+} from './query-client';
 import { getLastSeenAt } from './storage';
 
 const TASK_NAME = 'ZUHD_BACKGROUND_FETCH';
+let unsavedGeneration: number | undefined;
+
+async function saveCompletedBuild() {
+  const noted = flushKnown();
+  await persistQueryClientSave({
+    queryClient,
+    persister: immediatePersister,
+    buster: PERSIST_BUSTER,
+  });
+  if (!noted) throw new Error('Could not persist known stories');
+  unsavedGeneration = undefined;
+}
 
 /**
  * Do a return's waiting while nobody is looking.
@@ -31,42 +53,52 @@ const TASK_NAME = 'ZUHD_BACKGROUND_FETCH';
  *
  * Returns true when a new build was applied.
  */
-async function applyNewBuild(): Promise<boolean> {
-  let current = queryClient.getQueryData<FeedResponse>(FEED_QUERY_KEY);
-  const headless = current === undefined;
-  if (headless) {
+async function applyNewBuild(controller: AbortController): Promise<boolean> {
+  const generation = arrivalGeneration();
+  if (unsavedGeneration === generation) await saveCompletedBuild();
+  if (queryClient.getQueryData(FEED_QUERY_KEY) === undefined) {
     await persistQueryClientRestore({
       queryClient,
-      persister,
+      persister: immediatePersister,
       maxAge: PERSIST_MAX_AGE_MS,
       buster: PERSIST_BUSTER,
     });
-    current = queryClient.getQueryData<FeedResponse>(FEED_QUERY_KEY);
   }
-  const onScreen = current?.generated ?? (await feedCache.read())?.generated;
-  if ((await probeGenerated()) === onScreen) return false;
+  // A feed file alone may have landed before an interrupted layer download.
+  // Only a complete query cache can satisfy the probe.
+  const build = await probeGenerated(controller.signal);
+  if (build === queryClient.getQueryData(FEED_QUERY_KEY)?.generated) return false;
+  const lastSeenAt = await getLastSeenAt();
+  if (controller.signal.aborted) throw new Error('Background refresh expired');
+  if (generation !== arrivalGeneration()) return false;
 
-  // `fetchFeed` writes through to `feedCache` and resolves only once the
+  // A completed arrival writes through to `feedCache` and resolves only once the
   // write has completed: the OS may suspend the runtime as soon as this task
   // resolves, so nothing here may be left to a later tick.
-  const arrival = await fetchArrival(queryClient);
-  applyArrival(queryClient, arrival, { lastSeenAt: await getLastSeenAt() });
-  // The cache holds the data at once; the flush that notes which stories are
-  // new runs on the next macrotask, and has to have run before it is saved.
-  await new Promise((resolve) => setTimeout(resolve, 0));
-  await persistQueryClientSave({ queryClient, persister, buster: PERSIST_BUSTER });
-  flushKnown();
+  const arrival = await fetchArrival(queryClient, build, controller.signal);
+  if (generation !== arrivalGeneration()) return false;
+  applyArrival(queryClient, arrival, { lastSeenAt, background: true });
+  unsavedGeneration = generation;
+  await saveCompletedBuild();
   return true;
 }
 
 // Must be called at module top level before React renders
 TaskManager.defineTask(TASK_NAME, async () => {
+  const controller = new AbortController();
+  const expiry =
+    Platform.OS === 'ios'
+      ? BackgroundTask.addExpirationListener(() => controller.abort())
+      : undefined;
   try {
-    await applyNewBuild();
+    await applyNewBuild(controller);
+    return BackgroundTask.BackgroundTaskResult.Success;
   } catch {
     // Offline or a failed fetch: the next run, return or pull tries again.
+    return BackgroundTask.BackgroundTaskResult.Failed;
+  } finally {
+    expiry?.remove();
   }
-  return BackgroundTask.BackgroundTaskResult.Success;
 });
 
 export async function registerBackgroundTask(): Promise<void> {

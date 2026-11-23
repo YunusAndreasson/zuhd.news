@@ -1,16 +1,42 @@
 import { act, renderHook } from '@testing-library/react';
-import { setIsAudioActiveAsync } from 'expo-audio';
+import { type AudioStatus, setIsAudioActiveAsync } from 'expo-audio';
 import Storage from 'expo-sqlite/kv-store';
 import { clearBriefingProgress } from '../lib/briefing-progress';
+import { briefingAudioFile } from '../lib/briefing-audio';
 import { File } from 'expo-file-system';
 import { AppState, type AppStateStatus } from 'react-native';
 import { useBriefingPlayer } from '../hooks/useBriefingPlayer';
+import { API_BASE, type BriefingSpeed } from '../constants/theme';
 
+type PlaybackStatus = Pick<
+  AudioStatus,
+  'duration' | 'currentTime' | 'playing' | 'isLoaded' | 'didJustFinish' | 'error'
+>;
+const initialStatus: PlaybackStatus = {
+  duration: 120,
+  currentTime: 0,
+  playing: false,
+  isLoaded: true,
+  didJustFinish: false,
+  error: null,
+};
+let mockStatus = initialStatus;
+const mockCachedAudio = new Map<string, number>();
+const mockListeners = new Set<(status: PlaybackStatus) => void>();
 const mockPlayer = {
   isLoaded: true,
   duration: 120,
   currentTime: 0,
   playing: false,
+  addListener(event: string, listener: (status: PlaybackStatus) => void) {
+    if (event !== 'playbackStatusUpdate') throw new Error(`Unexpected player event: ${event}`);
+    mockListeners.add(listener);
+    return {
+      remove: () => {
+        mockListeners.delete(listener);
+      },
+    };
+  },
   play: jest.fn(() => {
     mockPlayer.playing = true;
   }),
@@ -18,21 +44,31 @@ const mockPlayer = {
     mockPlayer.playing = false;
   }),
   replace: jest.fn(),
+  setPlaybackRate: jest.fn(),
   seekTo: jest.fn().mockResolvedValue(undefined),
   clearLockScreenControls: jest.fn(),
   setActiveForLockScreen: jest.fn(),
 };
-let mockStatus = {
-  duration: 120,
-  currentTime: 0,
-  playing: false,
-  isLoaded: true,
-  didJustFinish: false,
-};
+jest.mock('expo', () => ({
+  useEventListener: (
+    player: typeof mockPlayer,
+    event: string,
+    listener: (status: PlaybackStatus) => void,
+  ) => {
+    const { useEffect } = jest.requireActual<typeof import('react')>('react');
+    useEffect(() => player.addListener(event, listener).remove, [player, event, listener]);
+  },
+}));
+
+function emitStatus(change: Partial<PlaybackStatus>) {
+  mockStatus = { ...mockStatus, ...change };
+  for (const listener of mockListeners) listener(mockStatus);
+}
+
+const status = (change: Partial<PlaybackStatus>) => act(() => emitStatus(change));
 
 jest.mock('expo-audio', () => ({
   useAudioPlayer: () => mockPlayer,
-  useAudioPlayerStatus: () => mockStatus,
   setAudioModeAsync: jest.fn().mockResolvedValue(undefined),
   setIsAudioActiveAsync: jest.fn().mockResolvedValue(undefined),
 }));
@@ -40,17 +76,27 @@ jest.mock('expo-file-system', () => ({
   Paths: { cache: '/cache' },
   File: Object.assign(
     class {
-      exists = false;
-      size = 0;
+      get exists() {
+        return mockCachedAudio.has(this.uri);
+      }
+      get size() {
+        return mockCachedAudio.get(this.uri) ?? 0;
+      }
       uri: string;
       constructor(directory: string, name: string) {
         this.uri = `${directory}/${name}`;
+      }
+      delete() {
+        mockCachedAudio.delete(this.uri);
       }
     },
     {
       downloadFileAsync: jest.fn(async () => ({
         uri: 'file:///briefing.mp3',
-        move: jest.fn(),
+        size: 13,
+        moveSync: jest.fn((destination: File) => {
+          mockCachedAudio.set(destination.uri, 13);
+        }),
         delete: jest.fn(),
       })),
     },
@@ -68,7 +114,8 @@ jest.mock('expo-sqlite/kv-store', () => ({
   default: {
     getItem: jest.fn().mockResolvedValue(null),
     setItem: jest.fn().mockResolvedValue(undefined),
-    removeItem: jest.fn().mockResolvedValue(undefined),
+    multiSet: jest.fn().mockResolvedValue(undefined),
+    multiRemove: jest.fn().mockResolvedValue(undefined),
   },
 }));
 jest.mock('../assets/icon.png', () => 1);
@@ -81,16 +128,13 @@ jest.mock('../lib/firsts', () => ({ claimFirst: () => false }));
 let resume: (state: AppStateStatus) => Promise<void>;
 beforeEach(() => {
   jest.clearAllMocks();
+  mockCachedAudio.clear();
+  mockPlayer.duration = 120;
+  mockPlayer.isLoaded = true;
   mockPlayer.currentTime = 0;
   mockPlayer.playing = false;
-  mockStatus = {
-    duration: 120,
-    currentTime: 0,
-    playing: false,
-    isLoaded: true,
-    didJustFinish: false,
-  };
-  jest.mocked(Storage.setItem).mockResolvedValue(undefined);
+  mockStatus = initialStatus;
+  jest.mocked(Storage.multiSet).mockResolvedValue(undefined);
   jest.mocked(AppState.addEventListener).mockImplementation((_event, callback) => {
     resume = callback as typeof resume;
     return { remove: jest.fn() };
@@ -111,16 +155,88 @@ it('pauses before rewinding an ended player so the briefing does not loop', asyn
   mockPlayer.seekTo.mockImplementationOnce(async () => {
     mockPlayer.playing = playWhenReady;
   });
-  mockStatus = { ...mockStatus, currentTime: 120, playing: false, didJustFinish: true };
-  await act(async () => {
-    hook.rerender();
-  });
+  await status({ currentTime: 120, playing: false, didJustFinish: true });
   expect(mockPlayer.playing).toBe(false);
   expect(mockPlayer.seekTo).toHaveBeenLastCalledWith(0);
   expect(hook.result.current.elapsed).toBe(0);
   expect(hook.result.current.resumable).toBe(false);
   expect(hook.result.current.state).toBe('idle');
-  expect(Storage.setItem).toHaveBeenCalledWith('zuhd_briefing_pos', '0');
+  expect(Storage.multiSet).toHaveBeenCalledWith([
+    ['zuhd_briefing_pos', '0'],
+    ['zuhd_briefing_date', '2026-09-27'],
+  ]);
+});
+
+it('keeps media controls cleared across rewind events until the next play', async () => {
+  const hook = renderHook(() => useBriefingPlayer('2026-09-27'));
+  await act(async () => {
+    await hook.result.current.toggle();
+  });
+  await status({ playing: true });
+  await status({ currentTime: 120, playing: false, didJustFinish: true });
+  expect(mockPlayer.clearLockScreenControls).toHaveBeenCalled();
+  mockPlayer.setActiveForLockScreen.mockClear();
+  await status({ currentTime: 0, playing: false, didJustFinish: false });
+  expect(mockPlayer.setActiveForLockScreen).not.toHaveBeenCalled();
+  await act(async () => {
+    await hook.result.current.toggle();
+  });
+  await status({ playing: true });
+  expect(mockPlayer.setActiveForLockScreen).toHaveBeenCalledTimes(1);
+});
+
+it('keeps a finished briefing at zero when the app backgrounds or unmounts during rewind', async () => {
+  const hook = renderHook(() => useBriefingPlayer('2026-09-27'));
+  await act(async () => {
+    await hook.result.current.toggle();
+  });
+  // AVPlayer's seek is asynchronous. Its currentTime still describes the end.
+  mockPlayer.currentTime = 120;
+  await status({ currentTime: 120, playing: false, didJustFinish: true });
+  await act(async () => {
+    await resume('background');
+  });
+  const afterBackground = hook.result.current.state;
+  hook.unmount();
+  await act(async () => {});
+  expect(Storage.multiSet).toHaveBeenLastCalledWith([
+    ['zuhd_briefing_pos', '0'],
+    ['zuhd_briefing_date', '2026-09-27'],
+  ]);
+  expect(afterBackground).toBe('idle');
+});
+
+it('discards a first play when the feed rotates during audio-session setup', async () => {
+  let finishSetup!: () => void;
+  jest.mocked(setIsAudioActiveAsync).mockImplementationOnce(
+    () =>
+      new Promise<void>((resolve) => {
+        finishSetup = resolve;
+      }),
+  );
+  const hook = renderHook(({ date }) => useBriefingPlayer(date), {
+    initialProps: { date: '2026-09-20' },
+  });
+  let firstPlay!: Promise<void>;
+  await act(async () => {
+    firstPlay = Promise.resolve(hook.result.current.toggle());
+  });
+  hook.rerender({ date: '2026-09-21' });
+  await act(async () => {
+    finishSetup();
+    await firstPlay;
+  });
+  expect(File.downloadFileAsync).not.toHaveBeenCalled();
+  expect(mockPlayer.play).not.toHaveBeenCalled();
+  expect(hook.result.current.state).toBe('idle');
+  await act(async () => {
+    await hook.result.current.toggle();
+  });
+  expect(File.downloadFileAsync).toHaveBeenCalledWith(
+    expect.stringContaining('briefing-2026-09-21.mp3'),
+    expect.anything(),
+    expect.anything(),
+  );
 });
 
 it.each(['dismiss', 'rotate date', 'unmount'] as const)(
@@ -138,7 +254,7 @@ it.each(['dismiss', 'rotate date', 'unmount'] as const)(
     const write = new Promise<void>((resolve) => {
       finishWrite = resolve;
     });
-    jest.mocked(Storage.setItem).mockReturnValue(write);
+    jest.mocked(Storage.multiSet).mockReturnValue(write);
     jest.mocked(setIsAudioActiveAsync).mockClear();
     const pendingResume = resume('active');
 
@@ -219,7 +335,10 @@ it('saves progress when the app backgrounds', async () => {
   await act(async () => {
     await resume('background');
   });
-  expect(Storage.setItem).toHaveBeenCalledWith('zuhd_briefing_pos', '45');
+  expect(Storage.multiSet).toHaveBeenCalledWith([
+    ['zuhd_briefing_pos', '45'],
+    ['zuhd_briefing_date', '2026-09-27'],
+  ]);
 });
 
 it('erases a mounted player after earlier writes finish, without restoring progress later', async () => {
@@ -235,12 +354,12 @@ it('erases a mounted player after earlier writes finish, without restoring progr
   expect(hook.result.current.resumeAt).toBe(0);
   expect(hook.result.current.resumable).toBe(false);
   expect(mockPlayer.replace).toHaveBeenLastCalledWith(null);
-  jest.mocked(Storage.setItem).mockClear();
+  jest.mocked(Storage.multiSet).mockClear();
   await act(async () => {
     await resume('active');
     hook.result.current.dismiss();
   });
-  expect(Storage.setItem).not.toHaveBeenCalled();
+  expect(Storage.multiSet).not.toHaveBeenCalled();
 });
 
 it('checkpoints ongoing playback without requiring a pause or foreground return', async () => {
@@ -249,15 +368,15 @@ it('checkpoints ongoing playback without requiring a pause or foreground return'
   await act(async () => {
     await hook.result.current.toggle();
   });
-  mockStatus = { ...mockStatus, playing: true, currentTime: 20 };
-  await act(async () => {
-    hook.rerender();
-  });
+  await status({ playing: true, currentTime: 20 });
   mockPlayer.currentTime = 35;
   await act(async () => {
     jest.advanceTimersByTime(15_000);
   });
-  expect(Storage.setItem).toHaveBeenCalledWith('zuhd_briefing_pos', '35');
+  expect(Storage.multiSet).toHaveBeenCalledWith([
+    ['zuhd_briefing_pos', '35'],
+    ['zuhd_briefing_date', '2026-09-27'],
+  ]);
   hook.unmount();
   jest.useRealTimers();
 });
@@ -271,10 +390,51 @@ it('publishes only completed downloads under the reusable MP3 cache name', async
   const target = download.mock.calls[0]?.[1];
   expect(target?.uri).toMatch(/\.part$/);
   const complete = await download.mock.results[0]?.value;
-  expect(complete.move).toHaveBeenCalledWith(
+  expect(complete.moveSync).toHaveBeenCalledWith(
     expect.objectContaining({ uri: expect.stringMatching(/\.mp3$/) }),
+    { overwrite: true },
   );
   expect(mockPlayer.replace).toHaveBeenCalledWith(expect.stringMatching(/\.mp3$/));
+});
+
+it('plays the fresh download on the first tap when an empty MP3 was left in cache', async () => {
+  const file = briefingAudioFile(`${API_BASE}/audio/briefing-2026-09-27.mp3`);
+  mockCachedAudio.set(file.uri, 0);
+  const hook = renderHook(() => useBriefingPlayer('2026-09-27'));
+  await act(async () => {
+    await hook.result.current.toggle();
+  });
+  expect(File.downloadFileAsync).toHaveBeenCalledTimes(1);
+  expect(mockPlayer.replace).toHaveBeenCalledWith(file.uri);
+  expect(file.size).toBeGreaterThan(0);
+});
+
+it('cannot put a downloaded MP3 back after the reader erases it', async () => {
+  let allowMove!: () => void;
+  const moving = new Promise<void>((resolve) => {
+    allowMove = resolve;
+  });
+  const publish = (file: File) => mockCachedAudio.set(file.uri, 13);
+  jest.mocked(File.downloadFileAsync).mockResolvedValueOnce({
+    size: 13,
+    move: async (file: File) => {
+      await moving;
+      publish(file);
+    },
+    moveSync: publish,
+  } as unknown as File);
+  const hook = renderHook(() => useBriefingPlayer('2026-09-27'));
+  let pending!: Promise<void>;
+  await act(async () => {
+    pending = Promise.resolve(hook.result.current.toggle());
+  });
+  await act(async () => {
+    mockCachedAudio.clear();
+    await clearBriefingProgress();
+    allowMove();
+    await pending;
+  });
+  expect(mockCachedAudio.size).toBe(0);
 });
 
 it('cancels an interrupted download without playing it, and starts a fresh download on retry', async () => {
@@ -312,35 +472,100 @@ it('cancels an interrupted download without playing it, and starts a fresh downl
 
 describe('briefing events', () => {
   const sent = (name: string) => mockTrack.mock.calls.filter(([event]) => event === name);
-  const status = async (
-    hook: { rerender: () => void },
-    change: Partial<typeof mockStatus>,
-  ): Promise<void> => {
-    mockStatus = { ...mockStatus, ...change };
-    await act(async () => {
-      hook.rerender();
-    });
-  };
-
   it('a start is sent once the briefing is heard playing, and a pause and play is the same start', async () => {
     const hook = renderHook(() => useBriefingPlayer('2026-09-27', 120));
     await act(async () => {
       await hook.result.current.toggle();
     });
     expect(sent('Briefing Started')).toEqual([]);
-    await status(hook, { playing: true });
+    await status({ playing: true });
     expect(sent('Briefing Started')).toEqual([
       ['Briefing Started', { resumed: false, first_time: false }],
     ]);
     await act(async () => {
       await hook.result.current.toggle();
     });
-    await status(hook, { playing: false });
+    await status({ playing: false });
     await act(async () => {
       await hook.result.current.toggle();
     });
-    await status(hook, { playing: true });
+    await status({ playing: true });
     expect(sent('Briefing Started')).toHaveLength(1);
+  });
+
+  it.each([false, true])(
+    'reports a native failure immediately, including after playback has started (%s)',
+    async (started) => {
+      const hook = renderHook(() => useBriefingPlayer('2026-09-27', 120));
+      await act(async () => {
+        await hook.result.current.toggle();
+      });
+      if (started) {
+        mockPlayer.currentTime = 15;
+        await status({ playing: true, currentTime: 15 });
+      }
+      // The next native status is idle and clears the transient error. React can batch both.
+      await act(async () => {
+        emitStatus({ error: 'Decoder failed', playing: false, isLoaded: false });
+        emitStatus({ error: null });
+      });
+      expect(hook.result.current.failureCount).toBe(1);
+      expect(mockPlayer.replace).toHaveBeenLastCalledWith(null);
+      if (started)
+        expect(Storage.multiSet).toHaveBeenCalledWith([
+          ['zuhd_briefing_pos', '15'],
+          ['zuhd_briefing_date', '2026-09-27'],
+        ]);
+      await act(async () => {
+        await hook.result.current.toggle();
+      });
+      await status({ playing: true, isLoaded: true });
+      expect(hook.result.current.state).toBe('playing');
+      expect(hook.result.current.failureCount).toBe(1);
+    },
+  );
+
+  it('downloads a fresh copy when native playback rejects the cached recording', async () => {
+    const hook = renderHook(() => useBriefingPlayer('2026-09-27', 120));
+    await act(async () => {
+      await hook.result.current.toggle();
+    });
+    expect(mockCachedAudio.size).toBe(1);
+    await status({ error: 'Source error', isLoaded: false });
+    await act(async () => {
+      await hook.result.current.toggle();
+    });
+    expect(File.downloadFileAsync).toHaveBeenCalledTimes(2);
+  });
+
+  it("a failed load's lock-screen deadline cannot activate the retry", async () => {
+    jest.useFakeTimers();
+    try {
+      mockPlayer.duration = 0;
+      mockPlayer.isLoaded = false;
+      const hook = renderHook(() => useBriefingPlayer('2026-09-27'));
+      const playWithoutDuration = () =>
+        act(async () => {
+          void hook.result.current.toggle();
+        });
+      await playWithoutDuration();
+      await act(async () => {
+        await jest.advanceTimersByTimeAsync(1000);
+      });
+      await status({ error: 'Decode failed', duration: 0, isLoaded: false });
+      await playWithoutDuration();
+      await act(async () => {
+        await jest.advanceTimersByTimeAsync(4000);
+      });
+      expect(mockPlayer.setActiveForLockScreen).not.toHaveBeenCalled();
+      await act(async () => {
+        await jest.advanceTimersByTimeAsync(1000);
+      });
+      expect(mockPlayer.setActiveForLockScreen).toHaveBeenCalledTimes(1);
+      hook.unmount();
+    } finally {
+      jest.useRealTimers();
+    }
   });
 
   it('a load that gives up is no start; the retry that plays is one', async () => {
@@ -358,7 +583,7 @@ describe('briefing events', () => {
       await act(async () => {
         await hook.result.current.toggle();
       });
-      await status(hook, { playing: true });
+      await status({ playing: true });
       expect(sent('Briefing Started')).toHaveLength(1);
       hook.unmount();
     } finally {
@@ -371,8 +596,8 @@ describe('briefing events', () => {
     await act(async () => {
       await hook.result.current.toggle();
     });
-    await status(hook, { playing: true });
-    await status(hook, { playing: false, currentTime: 120, didJustFinish: true });
+    await status({ playing: true });
+    await status({ playing: false, currentTime: 120, didJustFinish: true });
     await act(async () => {
       hook.rerender();
     });
@@ -385,7 +610,7 @@ describe('briefing events', () => {
     await act(async () => {
       await hook.result.current.toggle();
     });
-    await status(hook, { playing: true });
+    await status({ playing: true });
     mockPlayer.currentTime = 70;
     act(() => hook.result.current.dismiss());
     expect(sent('Briefing Stopped')).toEqual([['Briefing Stopped', { heard_pct: 50 }]]);
@@ -396,7 +621,7 @@ describe('briefing events', () => {
     await act(async () => {
       hook.result.current.play();
     });
-    await status(hook, { playing: true });
+    await status({ playing: true });
     mockPlayer.pause.mockClear();
     await act(async () => {
       hook.result.current.play();
@@ -410,15 +635,34 @@ describe('briefing events', () => {
     await act(async () => {
       await hook.result.current.toggle();
     });
-    await status(hook, { playing: true });
+    await status({ playing: true });
     await act(async () => {
       await hook.result.current.toggle();
     });
-    await status(hook, { playing: false });
+    await status({ playing: false });
     mockPlayer.play.mockClear();
     await act(async () => {
       hook.result.current.play();
     });
     expect(mockPlayer.play).toHaveBeenCalled();
   });
+});
+
+it('sets the chosen speed and changes it without replacing or starting the recording', async () => {
+  const { result, rerender } = renderHook(
+    ({ speed }: { speed: BriefingSpeed }) => useBriefingPlayer('2026-09-27', 120, undefined, speed),
+    { initialProps: { speed: '0.75' as BriefingSpeed } },
+  );
+  expect(mockPlayer.setPlaybackRate).not.toHaveBeenCalled();
+  expect(mockPlayer.play).not.toHaveBeenCalled();
+  await act(async () => {
+    await result.current.toggle();
+  });
+  expect(mockPlayer.setPlaybackRate).toHaveBeenLastCalledWith(0.75);
+  mockPlayer.play.mockClear();
+  mockPlayer.replace.mockClear();
+  rerender({ speed: '1.5' });
+  expect(mockPlayer.setPlaybackRate).toHaveBeenLastCalledWith(1.5);
+  expect(mockPlayer.play).not.toHaveBeenCalled();
+  expect(mockPlayer.replace).not.toHaveBeenCalled();
 });

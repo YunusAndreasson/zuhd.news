@@ -1,5 +1,5 @@
 import { articleTime } from './article-utils';
-import type { StoryRow } from './map-feed';
+import type { LocatedStory } from './map-feed';
 
 /**
  * The river's stories, grouped into the places the globe draws them at.
@@ -44,8 +44,8 @@ function haversineKm(aLat: number, aLng: number, bLat: number, bLng: number): nu
   return 2 * EARTH_KM * Math.asin(Math.min(1, Math.sqrt(h)));
 }
 
-export function buildStoryPlaces(rows: readonly StoryRow[]): StoryPlace[] {
-  const located: { row: StoryRow; lat: number; lng: number; name: string }[] = [];
+export function buildStoryPlaces(rows: readonly LocatedStory[]): StoryPlace[] {
+  const located: { row: LocatedStory; lat: number; lng: number; name: string }[] = [];
   for (const row of rows) {
     if (!row.coords) continue;
     const [lat, lng] = row.coords;

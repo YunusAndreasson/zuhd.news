@@ -1,4 +1,4 @@
-import { useEffect, useRef } from 'react';
+import { useCallback, useEffect, useRef } from 'react';
 
 /** One redraw per committed input snapshot. The renderer reads its latest
  * refs, so ordinary effect dependency inference cannot see these inputs.
@@ -17,4 +17,24 @@ export function useGlobeRedraw(inputs: Readonly<Record<string, unknown>>, redraw
       return;
     redraw();
   }, [inputs, redraw]);
+}
+
+/** Sheets finish baking independently. Replay their latest textures together
+ *  on the next frame, including a sheet that finishes after that frame. */
+export function useSpriteRedraw(redraw: () => void) {
+  const frame = useRef<number | null>(null);
+  useEffect(
+    () => () => {
+      if (frame.current !== null) cancelAnimationFrame(frame.current);
+      frame.current = null;
+    },
+    [],
+  );
+  return useCallback(() => {
+    if (frame.current !== null) return;
+    frame.current = requestAnimationFrame(() => {
+      frame.current = null;
+      redraw();
+    });
+  }, [redraw]);
 }

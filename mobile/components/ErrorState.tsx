@@ -24,7 +24,7 @@ export function ErrorState({ offline, error, onRetry }: ErrorStateProps) {
       } catch {}
     });
   return (
-    <Screen>
+    <Screen edges={['top', 'bottom', 'left', 'right']}>
       <Stack fill align="center" justify="center" padding="xl" gap="tight">
         <Text variant="body" style={styles.center}>
           {offline ? 'No connection.' : 'Could not load the news.'}

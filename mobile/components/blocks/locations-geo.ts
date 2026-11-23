@@ -4,9 +4,7 @@ import type { GeometryCollection, Topology } from 'topojson-specification';
 // Higher-resolution Natural Earth detail used by the globe. Loaded lazily so
 // cold start does not pay the JSON.parse + topojson→GeoJSON cost.
 
-interface TopoWithObjects extends Topology {
-  objects: Record<string, GeometryCollection>;
-}
+type TopoWithObjects = Topology<Record<string, GeometryCollection>>;
 
 export interface Sea {
   name: string;
@@ -27,7 +25,7 @@ export function getLakesHiRes(): GeoJSON.FeatureCollection {
   const data = require('@shared/data/lakes-50m.json') as TopoWithObjects;
   const obj = data.objects.lakes;
   if (!obj) throw new Error('missing lakes topojson object');
-  _lakes = feature(data, obj) as unknown as GeoJSON.FeatureCollection;
+  _lakes = feature(data, obj);
   return _lakes;
 }
 
@@ -41,7 +39,7 @@ export function getRiversHiRes(): RiversFC {
   const data = require('@shared/data/rivers-50m.json') as TopoWithObjects;
   const obj = data.objects.rivers;
   if (!obj) throw new Error('missing rivers topojson object');
-  _rivers = feature(data, obj) as unknown as RiversFC;
+  _rivers = feature(data, obj) as RiversFC;
   return _rivers;
 }
 

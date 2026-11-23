@@ -31,6 +31,7 @@ import {
 // exposes to non-module files — so the namespace never resolved in here.
 // Type-only, so esbuild drops it.
 import type { FeatureCollection } from 'geojson'
+import { pointSourceWriter } from './_map/point-source'
 import {
   basemapUrl,
   buildStyle,
@@ -2265,6 +2266,7 @@ export function mount(
       const rank = slot?.rank ?? 0
       return {
         type: 'Feature' as const,
+        id: p.slug,
         // Decay is baked into the feature so MapLibre can drive opacity from a
         // plain property — style expressions have no exponential.
         // Only what a style expression reads or a hit-test needs. `title`, `loc`,
@@ -2311,6 +2313,7 @@ export function mount(
     type: 'FeatureCollection' as const,
     features: visible.map((pl) => ({
       type: 'Feature' as const,
+      id: pl.key,
       properties: {
         key: pl.key,
         loc: pl.loc,
@@ -2391,6 +2394,7 @@ export function mount(
         const t = Date.parse(a.fromDate)
         return {
           type: 'Feature' as const,
+          id: detailKey(a),
           properties: {
             id: a.eventid,
             level: a.alertlevel || 'Green',
@@ -2424,6 +2428,7 @@ export function mount(
     type: 'FeatureCollection' as const,
     features: thermal.map((e) => ({
       type: 'Feature' as const,
+      id: e.id,
       properties: {
         id: e.id,
         mag: Math.min(1, Math.log1p(e.frp) / Math.log(5000)),
@@ -2457,6 +2462,7 @@ export function mount(
     type: 'FeatureCollection' as const,
     features: famine.map((a) => ({
       type: 'Feature' as const,
+      id: a.id,
       properties: {
         id: a.id,
         phase: Math.max(3, Math.min(5, Math.round(a.phase))),
@@ -2480,6 +2486,7 @@ export function mount(
       const ageDays = Math.max(0, (conflictNewest - t) / 86_400_000)
       return {
         type: 'Feature' as const,
+        id: e.id,
         properties: {
           id: e.id,
           fatalities: e.fatalities || 0,
@@ -2511,7 +2518,8 @@ export function mount(
   // cached for fifteen minutes would otherwise keep insisting Tokyo was open
   // long after it shut.
 
-  const src = (id: string) => map.getSource(id) as GeoJSONSource | undefined
+  const writePoints = pointSourceWriter()
+  const src = (id: string) => map.getSource<GeoJSONSource>(id)
 
   /** Layer toggles are visibility, not data — no rebuild to turn one off. */
   const applyLayerVisibility = () => {
@@ -2589,13 +2597,15 @@ export function mount(
     // Nothing may be left in the source's feature-state map across a `setData`
     // — see `syncHoverState`. Restored by the `idle` handler once the new
     // tiles are in.
-    map.removeFeatureState({ source: 'stories' })
-    hoverStateWritten = null
+    if (hoverStateWritten !== null) {
+      map.removeFeatureState({ source: 'stories' })
+      hoverStateWritten = null
+    }
     // Stories and their places are the layers whose *features* change with the
     // scrub head: decay alpha is baked per feature, and a place's count has to
     // reflect the filtered set. Everything else moves by filter above.
-    src('stories')?.setData(storyCollection(visible, flowerSlots(places)))
-    src('story-places')?.setData(placeCollection(places))
+    writePoints(src('stories'), storyCollection(visible, flowerSlots(places)))
+    writePoints(src('story-places'), placeCollection(places))
     applyTimeFilters()
   }
 
@@ -2614,6 +2624,7 @@ export function mount(
     type: 'FeatureCollection' as const,
     features: genocide.map((g) => ({
       type: 'Feature' as const,
+      id: g.id,
       properties: { id: g.id, name: g.name },
       geometry: { type: 'Point' as const, coordinates: [g.lng, g.lat] },
     })),
@@ -2638,21 +2649,21 @@ export function mount(
     const days = rangeHours / 24
     if (!layersReady || days === marksDays) return
     marksDays = days
-    src('chokepoints')?.setData(straitCollection(chokepoints, days))
-    src('markets')?.setData(marketCollection(markets, days, Date.now(), signals))
+    writePoints(src('chokepoints'), straitCollection(chokepoints, days))
+    writePoints(src('markets'), marketCollection(markets, days, Date.now(), signals))
   }
 
   /** Rebuilds the overlay sources. Called when their data arrives, not per frame. */
   const setOverlayData = () => {
     if (!layersReady) return
-    src('gdacs')?.setData(gdacsCollection())
-    src('thermal')?.setData(thermalCollection())
+    writePoints(src('gdacs'), gdacsCollection())
+    writePoints(src('thermal'), thermalCollection())
     marksDays = rangeHours / 24
-    src('chokepoints')?.setData(straitCollection(chokepoints, marksDays))
-    src('markets')?.setData(marketCollection(markets, marksDays, Date.now(), signals))
-    src('conflict')?.setData(conflictCollection())
-    src('famine')?.setData(famineCollection())
-    src('genocide')?.setData(genocideCollection())
+    writePoints(src('chokepoints'), straitCollection(chokepoints, marksDays))
+    writePoints(src('markets'), marketCollection(markets, marksDays, Date.now(), signals))
+    writePoints(src('conflict'), conflictCollection())
+    writePoints(src('famine'), famineCollection())
+    writePoints(src('genocide'), genocideCollection())
     genocideChip.hidden = genocide.length === 0
     applyTimeFilters()
     applyLayerVisibility()
@@ -5650,8 +5661,8 @@ export function mount(
           json<FeatureCollection>(basemapUrl('rivers.geojson', basemapV), abort.signal),
         ])
         if (!mounted) return
-        if (lakes) (map.getSource('lakes') as GeoJSONSource | undefined)?.setData(lakes)
-        if (rivers) (map.getSource('rivers') as GeoJSONSource | undefined)?.setData(rivers)
+        if (lakes) src('lakes')?.setData(lakes)
+        if (rivers) src('rivers')?.setData(rivers)
       })()
     }, 6000)
   }

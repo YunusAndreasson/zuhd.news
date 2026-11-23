@@ -6,7 +6,7 @@ import {
 } from '@shared/countries/country-ranking';
 import type { GdacsAlert } from '@shared/types';
 import { memo, useCallback } from 'react';
-import { StyleSheet, View } from 'react-native';
+import { Alert, Platform, Share, StyleSheet, View } from 'react-native';
 import { GestureDetector } from 'react-native-gesture-handler';
 import Animated, { LayoutAnimationConfig } from 'react-native-reanimated';
 import { MAX_FONT_SCALE, OPACITY, SPACING } from '../constants/theme';
@@ -18,6 +18,7 @@ import type { CountryFact } from '../lib/country-hazards';
 import { EVENT_TYPE_LABEL, parseSeverityHero } from '../lib/gdacs';
 import { displayCountryName, displayLocation } from '../lib/place-names';
 import { staggerEnter } from '../lib/stagger';
+import { countryShare } from '../lib/story-share';
 import type { TapResult } from '../lib/tap-result';
 import { CountryRankingView } from './CountryRankingView';
 import { CountryCardsCarousel } from './country-cards/CountryCardsCarousel';
@@ -312,6 +313,7 @@ export const CountryBody = memo(function CountryBody({
   onRankingPress,
 }: CountryBodyProps) {
   const rankedRows = metricRows(country);
+  const share = country && countryShare(country.countryName, Platform.OS);
 
   return (
     <>
@@ -372,6 +374,17 @@ export const CountryBody = memo(function CountryBody({
             />
           ))}
         </Animated.View>
+      )}
+      {share && (
+        <MenuRow
+          title="share country profile"
+          hint="Opens the system share sheet"
+          onPress={() => {
+            Share.share(share.content, share.options).catch(() =>
+              Alert.alert('Couldn’t open the share sheet'),
+            );
+          }}
+        />
       )}
     </>
   );

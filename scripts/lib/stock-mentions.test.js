@@ -1,6 +1,6 @@
 import assert from 'node:assert/strict'
 import { test } from 'node:test'
-import { VENUES, chartsUntil, companyEntries, onVenueList, parseStockMentions, parseStoryReadings, readingBlocks, stockMentionsPrompt, subjectsBlock } from './stock-mentions.js'
+import { VENUES, chartsUntil, companyEntries, onVenueList, parseStockMentions, parseStoryReadings, readingBlocks, sameCompany, secondListings, stockMentionsPrompt, subjectsBlock } from './stock-mentions.js'
 
 test('the prompt carries each article and asks for the subject', () => {
   const prompt = stockMentionsPrompt([
@@ -174,6 +174,45 @@ test('what an article is about does not depend on Yahoo answering for the ticker
     entities: [{ mention: 'Nintendo', indicatorId: 'stocks:NTDOY', kind: 'stock' }],
     subjects: ['stocks:SNE'],
   })
+})
+
+// The stock rows from 2026-10-21 to 11-20, as the scan named each company and
+// Yahoo named the symbol.
+test('a symbol Yahoo holds for some other company is not the company named', () => {
+  assert.equal(sameCompany('Staples', 'PIMCO US Stocks PLUS Active Bond Exchange Traded Fund'), false)
+  assert.equal(sameCompany('Tanaka Kikinzoku Kogyo', 'Sincere Co., LTD.'), false)
+  assert.equal(sameCompany('Boyd', 'Boyd Gaming Corporation'), true)
+  assert.equal(sameCompany('BYD', 'Boyd Gaming Corporation'), false)
+  for (const [named, yahoo] of [
+    ['Alphabet', 'Alphabet Inc.'],
+    ['SpaceX', 'Space Exploration Technologies Corp.'],
+    ['CATL', 'Contemporary Amperex Technology Co., Limited'],
+    ['IBM', 'International Business Machines Corporation'],
+    ['Nestlé', 'Nestlé S.A.'],
+    ['Fast Retailing', 'Fast Retailing Co., Ltd.'],
+    ['Taiwan Semiconductor', 'Taiwan Semiconductor Manufacturing Company Limited'],
+  ]) {
+    assert.equal(sameCompany(named, yahoo), true, `${named} is ${yahoo}`)
+  }
+})
+
+test('a second listing of a tracked company is charted as the tracked one', () => {
+  const tracked = [
+    { id: 'stocks:DBK.DE', label: 'Deutsche Bank Aktiengesellschaft' },
+    { id: 'stocks:WHL.JO', label: 'Woolworths Holdings Limited' },
+    { id: 'fx-eur', label: 'Euro' },
+  ]
+  const charts = new Map([
+    ['DB', { name: 'Deutsche Bank Aktiengesellschaft' }],
+    ['WOW.AX', { name: 'Woolworths Group Limited' }],
+    ['DBK.DE', { name: 'Deutsche Bank Aktiengesellschaft' }],
+  ])
+  assert.deepEqual([...secondListings(charts, tracked)], [['DB', 'DBK.DE']], 'one name on Yahoo is one company; two names are two')
+  // Within a batch, the first fetched stands.
+  assert.deepEqual([...secondListings(new Map([['1211.HK', { name: 'BYD COMPANY LIMITED' }], ['002594.SZ', { name: 'BYD Company Limited' }]]), [])], [['002594.SZ', '1211.HK']])
+  // Of two already tracked, the first by ticker, whichever was fetched.
+  const both = [{ id: 'stocks:DBK.DE', label: 'Deutsche Bank Aktiengesellschaft' }, { id: 'stocks:DB', label: 'Deutsche Bank Aktiengesellschaft' }]
+  assert.deepEqual([...secondListings(new Map([['DBK.DE', { name: 'Deutsche Bank Aktiengesellschaft' }]]), both)], [['DBK.DE', 'DB']])
 })
 
 test('charts are fetched one at a time until time is up, and the tickers left out are named', async () => {

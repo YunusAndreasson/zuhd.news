@@ -19,6 +19,7 @@ import Animated, {
   useSharedValue,
   withTiming,
 } from 'react-native-reanimated';
+import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import {
   ANIMATION,
   type ColorPalette,
@@ -121,6 +122,7 @@ export const BriefingBar = memo(function BriefingBar({
   topOffset,
   onHeightChange,
 }: BriefingBarProps) {
+  const { left, right } = useSafeAreaInsets();
   const { colors, resolvedAppearance } = useTheme();
   const { reduceTransparency } = useLegibility();
   const reduceMotion = useReducedMotion();
@@ -198,7 +200,7 @@ export const BriefingBar = memo(function BriefingBar({
       entering={motion === 'slide' ? SLIDE_IN : motion === 'dissolve' ? DISSOLVE_IN : undefined}
       exiting={motion === 'slide' ? SLIDE_OUT : motion === 'dissolve' ? DISSOLVE_OUT : undefined}
       layout={BAR_MOVE}
-      style={[styles.wrapper, { top: topOffset }]}
+      style={[styles.wrapper, { top: topOffset, left, right }]}
       onLayout={handleLayout}
       pointerEvents="box-none"
     >

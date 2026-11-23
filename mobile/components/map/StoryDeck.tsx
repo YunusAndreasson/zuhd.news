@@ -28,6 +28,7 @@ import Animated, {
   useSharedValue,
   withSpring,
 } from 'react-native-reanimated';
+import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import { scheduleOnRN, scheduleOnUI } from 'react-native-worklets';
 import { ANIMATION, KEEP_MOTION } from '../../constants/theme';
 import { useTheme } from '../../hooks/useTheme';
@@ -205,6 +206,7 @@ const DeckSlot = memo(function DeckSlot({
   children: ReactNode;
 }) {
   const { colors } = useTheme();
+  const { left, right } = useSafeAreaInsets();
   const scrollRef = useAnimatedRef<Animated.ScrollView>();
   // Reanimated runs both styles once on the JS thread when the slot mounts,
   // for their first values. A slot mounted as every swipe landed until slots
@@ -351,7 +353,7 @@ const DeckSlot = memo(function DeckSlot({
     // `current` the card being landed on ignored a tap or a scroll for the
     // whole spring. A screen reader still meets only the current one.
     <Animated.View
-      style={[styles.slot, { width }, slideStyle]}
+      style={[styles.slot, { width, paddingLeft: left, paddingRight: right }, slideStyle]}
       accessibilityElementsHidden={!current}
       importantForAccessibility={current ? 'auto' : 'no-hide-descendants'}
     >
@@ -594,10 +596,10 @@ export const StoryDeck = memo(function StoryDeck({
     keys: windowKeys,
     slots: assignSlots(windowKeys, new Map()),
   }));
-  let slotOf = assigned.slots;
   if (!sameItems(assigned.keys, windowKeys)) {
-    slotOf = assignSlots(windowKeys, assigned.slots);
-    setAssigned({ keys: windowKeys, slots: slotOf });
+    setAssigned({ keys: windowKeys, slots: assignSlots(windowKeys, assigned.slots) });
+    // React retries this render before committing. Build the cards on that pass.
+    return null;
   }
 
   return (
@@ -605,7 +607,7 @@ export const StoryDeck = memo(function StoryDeck({
       <View style={[styles.fill, { marginBottom: bottomInset }]}>
         {slots.map((i, j) => (
           <DeckSlot
-            key={`slot-${slotOf.get(windowKeys[j] ?? '') ?? j}`}
+            key={`slot-${assigned.slots.get(windowKeys[j] ?? '') ?? j}`}
             storyKey={windowKeys[j] ?? ''}
             position={i}
             restOffset={i - index}

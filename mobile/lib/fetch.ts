@@ -1,10 +1,5 @@
 /** A response whose body has already arrived inside the deadline. */
-interface TimedResponse {
-  ok: boolean;
-  status: number;
-  headers?: Headers;
-  text(): Promise<string>;
-}
+type TimedResponse = Pick<Response, 'ok' | 'status' | 'headers' | 'text'>;
 
 /**
  * `fetch` with one deadline over the headers and the body both. Expo's fetch
@@ -29,11 +24,13 @@ export async function fetchWithTimeout(
     if (external.aborted) controller.abort();
     else external.addEventListener('abort', onExternalAbort);
   }
-  const headers =
-    init?.cache === 'no-store'
-      ? { ...(init.headers as Record<string, string> | undefined), 'Cache-Control': 'no-cache' }
-      : init?.headers;
   try {
+    let headers = init?.headers;
+    if (init?.cache === 'no-store') {
+      const normalized = new Headers(headers);
+      normalized.set('Cache-Control', 'no-cache');
+      headers = normalized;
+    }
     const res = await fetch(url, { ...init, headers, signal: controller.signal });
     const body = res.ok ? await res.text() : '';
     return {

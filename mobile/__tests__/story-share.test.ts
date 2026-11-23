@@ -1,6 +1,6 @@
 import { shareUrl } from '@shared/share';
 import { redirectSystemPath } from '../app/+native-intent';
-import { storyShare } from '../lib/story-share';
+import { countryShare, storyShare } from '../lib/story-share';
 
 const story = { slug: '2026-10-16-gaza-aid-corridor', title: 'Aid corridor opens' };
 
@@ -33,4 +33,16 @@ it('hands Android one message, the title over the link', () => {
 it('sends a link the app opens on that story', () => {
   const url = shareUrl(story.slug);
   expect(redirectSystemPath({ path: url, initial: true })).toBe(`/?story=${story.slug}`);
+});
+
+it('shares the country page by its published ISO code', () => {
+  expect(countryShare('Sweden', 'ios')).toEqual({
+    content: { url: 'https://zuhd.news/country/SE', title: 'Sweden' },
+    options: { subject: 'Sweden — zuhd.news' },
+  });
+  expect(countryShare('Sweden', 'android')?.content).toEqual({
+    message: 'Sweden\nhttps://zuhd.news/country/SE',
+    title: 'Sweden',
+  });
+  expect(countryShare('Open water', 'ios')).toBeNull();
 });

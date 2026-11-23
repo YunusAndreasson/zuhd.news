@@ -49,6 +49,7 @@ it.each([true, false])('does not initialize without a DSN (development: %s)', (d
   delete process.env.EXPO_PUBLIC_SENTRY_DSN;
   expect(load().sentryEnabled).toBe(false);
   expect(mockSentry.init).not.toHaveBeenCalled();
+  expect(mockSentry.reactNavigationIntegration).not.toHaveBeenCalled();
 });
 
 it('does not send local development failures to the production project', () => {
@@ -56,6 +57,15 @@ it('does not send local development failures to the production project', () => {
   mockExtra.sentryDsn = DSN;
   expect(load().sentryEnabled).toBe(false);
   expect(mockSentry.init).not.toHaveBeenCalled();
+  expect(mockSentry.reactNavigationIntegration).not.toHaveBeenCalled();
+});
+
+it('keeps native startup behind the JavaScript development check', () => {
+  // With useNativeInit the Expo plugin starts Sentry before JavaScript runs.
+  expect(require('../app.json').expo.plugins).not.toContainEqual([
+    '@sentry/react-native/expo',
+    expect.objectContaining({ useNativeInit: true }),
+  ]);
 });
 
 it('reads the DSN from app.json extra, so an OTA update keeps it', () => {
@@ -74,6 +84,7 @@ it('reports crashes in releases without capturing what anyone read', () => {
   expect(options).toMatchObject({
     dsn: DSN,
     environment: 'production',
+    enableNative: true,
     enableNativeCrashHandling: true,
     attachScreenshot: false,
     attachViewHierarchy: false,

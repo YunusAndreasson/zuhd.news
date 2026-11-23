@@ -1,11 +1,12 @@
 import type { Article, Category, FeedResponse, GroupedArticles } from '@shared/types';
 import { useQuery, useQueryClient } from '@tanstack/react-query';
-import * as Network from 'expo-network';
 import { useCallback, useEffect, useEffectEvent, useMemo, useRef, useState } from 'react';
 import { STALE_THRESHOLD } from '../constants/theme';
 import {
   applyArrival,
+  arrivalGeneration,
   FEED_QUERY_KEY,
+  feedQuery,
   feedSlugs,
   feedStories,
   fetchArrival,
@@ -13,9 +14,10 @@ import {
   retryFailedSnapshots,
 } from '../lib/arrival';
 import { collectNewArticles, isOlderFeed } from '../lib/feed-diff';
-import { feedCache, fetchFeed } from '../lib/feed-source';
+import { feedCache } from '../lib/feed-source';
 import { flushStores } from '../lib/flush-stores';
 import { noteFeed } from '../lib/fresh-store';
+import { subscribeConnectivity } from '../lib/network';
 import { getLastSeenAt, saveLastSeenAt } from '../lib/storage';
 import { useAppResume } from './useAppResume';
 
@@ -94,8 +96,7 @@ export function useArticles(
   // Stamped now, so the persister's restore (always older: the disk copy is
   // written on every fetch) never overwrites it.
   const query = useQuery({
-    queryKey: FEED_QUERY_KEY,
-    queryFn: ({ signal }) => fetchFeed({ signal }),
+    ...feedQuery,
     initialData: () => feedCache.readSync() ?? undefined,
     initialDataUpdatedAt: Date.now,
     // Only when there is nothing to show. Once there is, a newer build
@@ -132,8 +133,9 @@ export function useArticles(
   /** The build the site is on, when it is not the one on screen; null when
    *  it is. Throws when the site cannot be reached. */
   const newerBuild = useCallback(async (): Promise<string | null> => {
-    const current = queryClient.getQueryData<FeedResponse>(FEED_QUERY_KEY)?.generated;
     const generated = await probeGenerated();
+    // A background arrival may have finished while this probe waited.
+    const current = queryClient.getQueryData(FEED_QUERY_KEY)?.generated;
     return generated === current ? null : generated;
   }, [queryClient]);
 
@@ -146,12 +148,15 @@ export function useArticles(
       const callbacks = refreshCallbacksRef.current;
       refreshingRef.current = (async () => {
         try {
-          if ((await newerBuild()) === null) {
+          const generation = arrivalGeneration();
+          const build = await newerBuild();
+          if (generation !== arrivalGeneration()) return { added: [], applied: false };
+          if (build === null) {
             await retryFailedSnapshots(queryClient);
             return { added: [], applied: false };
           }
-          const arrival = await fetchArrival(queryClient);
-          if (isOlderFeed(arrival.feed, queryClient.getQueryData<FeedResponse>(FEED_QUERY_KEY))) {
+          const arrival = await fetchArrival(queryClient, build);
+          if (isOlderFeed(arrival.feed, queryClient.getQueryData(FEED_QUERY_KEY))) {
             return { added: [], applied: false };
           }
           const added = applyArrival(queryClient, arrival, {
@@ -201,14 +206,14 @@ export function useArticles(
     let applied = false;
     try {
       const load = loadLatest(() => {
-        report(queryClient.getQueryData<FeedResponse>(FEED_QUERY_KEY));
+        report(queryClient.getQueryData(FEED_QUERY_KEY));
       });
       resumeLoadRef.current = load;
       applied = (await load).applied;
     } catch {
       // Keep cached content when offline; a manual caller still sees failure.
     }
-    if (!applied) report(queryClient.getQueryData<FeedResponse>(FEED_QUERY_KEY));
+    if (!applied) report(queryClient.getQueryData(FEED_QUERY_KEY));
   };
 
   // A reconnect is not a return. It reports what its own arrival added (counted
@@ -227,25 +232,15 @@ export function useArticles(
   });
   useEffect(() => {
     let connected: boolean | null = null;
-    let receivedEvent = false;
-    void Network.getNetworkStateAsync()
-      .then((state) => {
-        if (!receivedEvent) connected = state.isInternetReachable ?? state.isConnected ?? null;
-      })
-      .catch(() => {});
-    const subscription = Network.addNetworkStateListener((state) => {
-      receivedEvent = true;
-      const next = state.isInternetReachable ?? state.isConnected;
-      if (next == null) return;
+    return subscribeConnectivity((next, initial) => {
       const wasConnected = connected;
       connected = next;
-      if (next && wasConnected !== true) reconnect();
+      if (!initial && next && wasConnected !== true) reconnect();
     });
-    return () => subscription.remove();
   }, []);
 
   const handleBackground = () => {
-    seenAtBackgroundRef.current = feedSlugs(queryClient.getQueryData<FeedResponse>(FEED_QUERY_KEY));
+    seenAtBackgroundRef.current = feedSlugs(queryClient.getQueryData(FEED_QUERY_KEY));
     saveLastSeenAt(Date.now());
     flushStores();
   };
@@ -273,8 +268,9 @@ export function useArticles(
     });
   }, []);
 
+  const categories = query.data?.categories;
   const grouped = useMemo<GroupedArticles>(() => {
-    const result = { ...emptyGrouped, ...query.data?.categories };
+    const result = { ...emptyGrouped, ...categories };
     const present = new Set(
       Object.values(result).flatMap((articles) => articles.map((a) => a.slug)),
     );
@@ -282,7 +278,7 @@ export function useArticles(
       if (!present.has(article.slug)) result[category] = [...result[category], article];
     }
     return result;
-  }, [query.data, openedArticles]);
+  }, [categories, openedArticles]);
 
   return {
     grouped,

@@ -44,6 +44,17 @@ describe('fresh-store', () => {
     expect(fresh(store)).toEqual(['c']);
   });
 
+  it('keeps the fresh subscription stable until membership changes, even with the same count', () => {
+    const store = loadStore();
+    store.noteFeed('g1', feed('a'));
+    store.noteFeed('g2', feed('b', 'a'));
+    const before = store.getFreshState().fresh;
+    store.noteFeed('g3', feed('a', 'b'));
+    expect(store.getFreshState().fresh).toBe(before);
+    store.noteFeed('g4', feed('c', 'a'));
+    expect(fresh(store)).toEqual(['c']);
+  });
+
   it('ignores addedAt: a rewritten file that reads as just published is not new', () => {
     const store = loadStore();
     store.noteFeed('g1', [{ slug: 'yesterday', addedAt: 1000 }]);

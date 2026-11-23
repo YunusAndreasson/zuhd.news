@@ -58,6 +58,7 @@ function loadStorage(): StorageModule {
 }
 
 const customPrefs: Preferences = {
+  briefingSpeed: '1.25',
   fontSize: 'large',
   appearance: 'light',
   haptics: false,
@@ -87,6 +88,17 @@ describe('SQLite-backed UX storage', () => {
     await expect(loadStorage().getPreferences()).resolves.toEqual(customPrefs);
   });
 
+  it.each([undefined, '3'])(
+    'defaults an absent or unsupported briefing speed (%s) alone',
+    async (briefingSpeed) => {
+      mockKv.set('zuhd_preferences_v2', JSON.stringify({ ...customPrefs, briefingSpeed }));
+      await expect(loadStorage().getPreferences()).resolves.toEqual({
+        ...customPrefs,
+        briefingSpeed: '1',
+      });
+    },
+  );
+
   it('migrates valid file preferences into SQLite', async () => {
     const serialized = JSON.stringify(customPrefs);
     mockFiles.set('/doc/zuhd-preferences.json', serialized);
@@ -113,6 +125,16 @@ describe('SQLite-backed UX storage', () => {
     expect(mockKv.has('zuhd_preferences_v2')).toBe(false);
     expect(mockFiles.has('/doc/zuhd-preferences.json')).toBe(true);
   });
+
+  it.each(['null', '[]', '"broken"', '{bad json'])(
+    'recovers the encrypted preferences when the legacy file contains %s',
+    async (bad) => {
+      mockFiles.set('/doc/zuhd-preferences.json', bad);
+      mockSecure.set('zuhd_preferences', JSON.stringify(customPrefs));
+      await expect(loadStorage().getPreferences()).resolves.toEqual(customPrefs);
+      expect(mockKv.get('zuhd_preferences_v2')).toBe(JSON.stringify(customPrefs));
+    },
+  );
 
   it('migrates SecureStore last-seen state and removes the legacy secret', async () => {
     mockSecure.set('zuhd_lastSeenAt', '1751970000000');

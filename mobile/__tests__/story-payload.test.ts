@@ -49,3 +49,9 @@ it.each([
 ])('rejects malformed optional story fields before rendering: %j', (change) => {
   expect(isStoryPayload({ ...story, ...change })).toBe(false);
 });
+
+it('keeps named sources without URLs and skips a legacy nameless entry', () => {
+  const payload = { ...story, sources: [{ url: null }, { name: 'Nature', url: null }] };
+  expect(isStoryPayload(payload)).toBe(true);
+  expect(articleFromStory(payload)?.article.sources).toEqual([{ name: 'Nature', url: null }]);
+});
