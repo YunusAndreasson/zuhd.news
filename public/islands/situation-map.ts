@@ -971,6 +971,17 @@ export function mount(
    */
   ground.append(groundSelect, groundScale)
 
+  // The opening metric is known before any payload: named and ramped from the
+  // first frame, with a dash at each end until its figures land, so the box
+  // never stands empty and never changes height.
+  {
+    const opt = document.createElement('option')
+    opt.value = DEFAULT_METRIC
+    opt.textContent = metricName(DEFAULT_METRIC)
+    groundSelect.append(opt)
+    for (const end of groundScale.querySelectorAll('.map-ground-end')) end.textContent = '\u2013'
+  }
+
   /** Fills the picker once the index has landed. */
   const buildMetricPicker = () => {
     if (!metricIndex.length) return
@@ -1478,7 +1489,19 @@ export function mount(
   // the scrubber instead.
   hud.append(moneyBox)
 
-  mapEl.append(loading)
+  /**
+   * The planet's place, held before there is a planet.
+   *
+   * The map canvas and the sky stay at opacity 0 until the world is drawn
+   * (`arrive`), so what a reader meets first is this: a quiet disc where the
+   * globe will stand, measured off the same camera (`placeDisc`), and nothing
+   * else. Appended after the sky and before MapLibre's canvas, so the globe
+   * covers it as it fades in.
+   */
+  const disc = document.createElement('div')
+  disc.className = 'map-disc'
+  disc.setAttribute('aria-hidden', 'true')
+  mapEl.append(disc)
   container.append(mapEl, hud, resetBtn)
 
   // --- State --------------------------------------------------------------
@@ -1542,6 +1565,17 @@ export function mount(
   let scrubNow = Date.now()
   let mounted = true
   let layersReady = false
+  /** The hazard and market payloads have landed (or failed): see `arrive`. */
+  let layersLoaded = false
+  /** The globe is shown (`arrive`); before it the canvas is held unseen. */
+  let arrived = false
+  /** The land layer has rendered features: the coastline is drawn. */
+  let landPainted = false
+  /**
+   * Scales every story's alpha. 0 until the globe has arrived, so the marks
+   * come in as a beat of their own (`fadeMarks`).
+   */
+  let markFade = 0
   const abort = new AbortController()
 
   /**
@@ -1657,6 +1691,7 @@ export function mount(
    */
   const marketStrip: MarketStrip = createMarketStrip({
     rangeDays: DEFAULT_RANGE_HOURS / 24,
+    companies: feeds.has('companies'),
     onSelect: (id, anchor) => {
       sheet.dockTo(anchor)
       const ex = markets.find((m) => m.id === id)
@@ -2236,7 +2271,8 @@ export function mount(
 
   // --- Data shaping -------------------------------------------------------
   const visiblePoints = (): MapPoint[] => {
-    const from = scrubNow - rangeHours * 3_600_000
+    // A replay holds the slice's start and fills it (see `startReplay`).
+    const from = replay ? replay.from : scrubNow - rangeHours * 3_600_000
     // Tell the rail which slice of itself is on the map.
     timeline?.setWindow(from)
     return points.filter((p) => p.t <= scrubNow && p.t >= from && enabled.has(p.cat))
@@ -2283,7 +2319,7 @@ export function mount(
           // rescue the faint end is gone. A week-old beacon now measures 1.89:1
           // against the ocean where it measured 1.57:1; today's is 5.20:1, so a
           // 2.2x range is still an unmistakable step.
-          a: Math.round((0.45 + 0.55 * decayAt(p.t, scrubNow)) * 100) / 100,
+          a: Math.round((0.45 + 0.55 * decayAt(p.t, scrubNow)) * markFade * 100) / 100,
           // Percentile rank from the build, or the neutral "unknown" size.
           w,
           contested: (p.d ?? 0) >= CONTESTED_D ? 1 : 0,
@@ -2317,11 +2353,13 @@ export function mount(
       properties: {
         key: pl.key,
         loc: pl.loc,
-        n: pl.count,
-        amax: pl.amax,
+        // No numeral before its dots: the count reads 0 until the marks' first
+        // step (`fadeMarks`), and the numeral prints only from 2.
+        n: markFade > 0 ? pl.count : 0,
+        amax: pl.amax * markFade,
         // The flower's reach in pixels, which the bloom and the numeral clear.
         r: Math.round(flowerRadius(pl.count) * 10) / 10,
-        heat: Math.round(placeHeat(pl) * 100) / 100,
+        heat: Math.round(placeHeat(pl) * markFade * 100) / 100,
       },
       geometry: { type: 'Point' as const, coordinates: [pl.lng, pl.lat] },
     })),
@@ -2561,8 +2599,15 @@ export function mount(
   }
 
   /** Moves the dated overlays with the scrub head, style-side. */
+  /** The slot the dated filters were last moved to during a replay. */
+  let filtersAt = Number.NaN
   const applyTimeFilters = () => {
     if (!layersReady) return
+    if (replay) {
+      const slot = Math.floor(scrubNow / REPLAY_FILTER_MS)
+      if (slot === filtersAt) return
+      filtersAt = slot
+    } else filtersAt = Number.NaN
     map.setFilter('gdacs-marks', ['<=', ['get', 't'], scrubNow])
     map.setFilter('conflict-marks', ['<=', ['get', 't'], scrubNow])
     // A satellite pass happened at a moment, so the scrubber moves these too.
@@ -2604,9 +2649,17 @@ export function mount(
     // Stories and their places are the layers whose *features* change with the
     // scrub head: decay alpha is baked per feature, and a place's count has to
     // reflect the filtered set. Everything else moves by filter above.
-    writePoints(src('stories'), storyCollection(visible, flowerSlots(places)))
-    writePoints(src('story-places'), placeCollection(places))
+    shownStories = visible
+    writeStories()
     applyTimeFilters()
+  }
+
+  /** The stories last written, so `fadeMarks` can rewrite them alone. */
+  let shownStories: MapPoint[] = []
+  const writeStories = () => {
+    if (!layersReady) return
+    writePoints(src('stories'), storyCollection(shownStories, flowerSlots(places)))
+    writePoints(src('story-places'), placeCollection(places))
   }
 
   /**
@@ -4946,6 +4999,197 @@ export function mount(
       btn.addEventListener('click', () => setRange(hours))
       ranges.append(btn)
     }
+    rangeHead.append(playBtn)
+  }
+
+  // --- Replay -------------------------------------------------------------
+  /**
+   * Play the range: the selected slice replayed from its first hour to now.
+   *
+   * It drives the machinery a scrub already uses — `scrubNow`, `applyRefresh`,
+   * the timeline's head — so the stories land on the globe in the order they
+   * happened and fade on the same 72-hour decay, the hazard marks step with
+   * the head, and the list follows. Only the lower edge differs: the window is
+   * held at the range's start (`visiblePoints`), so the slice fills rather
+   * than slides. About ten updates a second (`REPLAY_STEP_MS`), each one a
+   * `setData` of the stories; the dated overlays' filters move by the 6-hour
+   * slot, since a `setFilter` re-tiles its source.
+   *
+   * Any key, press or wheel stops it where it stands. At the end it returns to
+   * live. With reduced motion it steps in `REPLAY_COARSE` jumps instead.
+   */
+  const REPLAY_MS: Record<number, number> = { 24: 8000, 72: 10000, 168: 12000, 720: 14000, 2160: 16000 }
+  const REPLAY_STEP_MS = 90
+  const REPLAY_COARSE = 6
+  const REPLAY_FILTER_MS = 6 * 3_600_000
+  type Replay = {
+    from: number
+    to: number
+    dur: number
+    t0: number
+    last: number
+    k: number
+    frame: number
+    /** A step is still being drawn: the next waits for its `idle`. */
+    drawing: boolean
+  }
+  let replay: Replay | null = null
+
+  const PLAY_ICON =
+    '<svg viewBox="0 0 12 12" width="12" height="12" aria-hidden="true"><path d="M3 1.8v8.4L10.2 6z" fill="currentColor"/></svg>'
+  const PAUSE_ICON =
+    '<svg viewBox="0 0 12 12" width="12" height="12" aria-hidden="true"><path d="M2.6 1.8h2.3v8.4H2.6zM7.1 1.8h2.3v8.4H7.1z" fill="currentColor"/></svg>'
+  const playBtn = document.createElement('button')
+  playBtn.type = 'button'
+  playBtn.className = 'map-play'
+  const syncPlayBtn = () => {
+    const on = replay !== null
+    playBtn.innerHTML = on ? PAUSE_ICON : PLAY_ICON
+    playBtn.setAttribute('aria-label', on ? 'Pause' : 'Play the range')
+    playBtn.title = on ? 'Pause' : 'Play the range'
+    playBtn.classList.toggle('is-on', on)
+  }
+  syncPlayBtn()
+  playBtn.addEventListener('click', () => {
+    if (replay) stopReplay(false)
+    else void startReplay()
+  })
+
+  /** The instant, large, over the open map while the range plays. */
+  const stamp = document.createElement('p')
+  stamp.className = 'map-replay-stamp'
+  stamp.setAttribute('aria-hidden', 'true')
+  stamp.hidden = true
+  mapEl.append(stamp)
+  const stampDay = new Intl.DateTimeFormat('en-GB', {
+    weekday: 'short',
+    day: 'numeric',
+    month: 'short',
+    timeZone: MAKKAH_TZ,
+  })
+  const stampHour = new Intl.DateTimeFormat('en-GB', {
+    hour: '2-digit',
+    minute: '2-digit',
+    hourCycle: 'h23',
+    timeZone: MAKKAH_TZ,
+  })
+  const writeStamp = (t: number) => {
+    const hour = Math.floor(t / 3_600_000) * 3_600_000
+    const text = `${stampDay.format(hour).replace(',', '')} \u00b7 ${stampHour.format(hour)}`
+    if (stamp.textContent !== text) stamp.textContent = text
+  }
+  /**
+   * The top-left of the open map: inside the story rail, under the map's own
+   * controls (`layers` on the desktop, the phone's header and `More`).
+   */
+  const placeStamp = () => {
+    const host = mapEl.getBoundingClientRect()
+    const pad = map.getPadding()
+    const boxes = [
+      container.querySelector('.map-mapctl.is-left'),
+      container.querySelector('.map-more'),
+      document.querySelector('body.map-page > header'),
+    ]
+      .map((el) => el?.getBoundingClientRect())
+      .filter((r): r is DOMRect => !!r && r.height > 0 && r.top < host.top + host.height / 3)
+    const below = Math.max(0, ...boxes.map((r) => r.bottom - host.top))
+    const ctl = container.querySelector('.map-mapctl.is-left')?.getBoundingClientRect()
+    const left = ctl && ctl.width > 0 ? ctl.left - host.left : (pad.left ?? 0) + 14
+    stamp.style.left = `${Math.round(left)}px`
+    stamp.style.top = `${Math.round(Math.max(pad.top ?? 0, below))}px`
+  }
+
+  const stopOnKey = (e: KeyboardEvent) => {
+    // Enter and Space on the button are its own click, which toggles.
+    if (e.target === playBtn && (e.key === 'Enter' || e.key === ' ')) return
+    if (['Shift', 'Control', 'Alt', 'Meta'].includes(e.key)) return
+    stopReplay(false)
+  }
+  const stopOnPress = (e: Event) => {
+    if (e.target instanceof Node && playBtn.contains(e.target)) return
+    stopReplay(false)
+  }
+
+  const replayStep = (now: number) => {
+    const r = replay
+    if (!r || !mounted) return
+    const raw = Math.min(1, (now - r.t0) / r.dur)
+    if (raw >= 1) {
+      stopReplay(true)
+      return
+    }
+    const k = reducedMotion.matches ? Math.floor(raw * REPLAY_COARSE) / REPLAY_COARSE : raw
+    // Self-paced: never more than one step in the engine at a time, so a slow
+    // machine draws fewer steps rather than queueing frames it cannot show.
+    // The clock is the wall's, so the replay still ends on time.
+    if (k !== r.k && !r.drawing && now - r.last >= REPLAY_STEP_MS) {
+      r.k = k
+      r.last = now
+      r.drawing = true
+      map.once('idle', () => {
+        r.drawing = false
+      })
+      drawReplay(r.from + (r.to - r.from) * k)
+    } else if (r.drawing && now - r.last > 600) r.drawing = false
+    r.frame = requestAnimationFrame(replayStep)
+  }
+
+  const drawReplay = (t: number) => {
+    scrubNow = t
+    timeline?.setPlayhead(t, true)
+    writeStamp(t)
+    applyRefresh()
+  }
+
+  const startReplay = async () => {
+    if (replay || !timeline || !coreLoaded) return
+    // A range past the fortnight plays what the archive holds.
+    if (rangeHours > BUILD_WINDOW_HOURS && archiveState === 'idle') await loadArchive()
+    if (!mounted || replay || !timeline) return
+    const to = windowEnd
+    const from = Math.max(corpusStart, to - rangeHours * 3_600_000)
+    replay = {
+      from,
+      to,
+      dur: REPLAY_MS[rangeHours] ?? 12000,
+      t0: performance.now(),
+      last: 0,
+      k: 0,
+      frame: 0,
+      drawing: false,
+    }
+    syncPlayBtn()
+    placeStamp()
+    stamp.hidden = false
+    container.classList.add('is-replaying')
+    document.addEventListener('keydown', stopOnKey, true)
+    mapEl.addEventListener('pointerdown', stopOnPress, true)
+    mapEl.addEventListener('wheel', stopOnPress, { capture: true, passive: true })
+    timeline.element.addEventListener('pointerdown', stopOnPress, true)
+    drawReplay(from)
+    replay.frame = requestAnimationFrame(replayStep)
+  }
+
+  /** Stops where it stands, or (at the end) returns to live. */
+  function stopReplay(toLive: boolean) {
+    const r = replay
+    if (!r) return
+    cancelAnimationFrame(r.frame)
+    replay = null
+    syncPlayBtn()
+    stamp.hidden = true
+    container.classList.remove('is-replaying')
+    document.removeEventListener('keydown', stopOnKey, true)
+    mapEl.removeEventListener('pointerdown', stopOnPress, true)
+    mapEl.removeEventListener('wheel', stopOnPress, true)
+    timeline?.element.removeEventListener('pointerdown', stopOnPress, true)
+    if (toLive) {
+      timeline?.goLive()
+      if (!timeline) onScrub(windowEnd, true)
+      return
+    }
+    timeline?.setPlayhead(scrubNow, false)
+    refresh()
   }
 
   /**
@@ -4963,20 +5207,30 @@ export function mount(
     // refetch, so this is arithmetic on data already in hand.
     marketStrip.setRangeDays(hours / 24)
     applyMarketRange()
-    // A range past the build window has stories the payload does not carry.
-    // Fired and not awaited: the beacons the map *does* have should move on the
-    // press rather than after a 250 KB round trip, and `loadArchive` refreshes
-    // again when it lands.
-    if (hours > BUILD_WINDOW_HOURS) void loadArchive()
-    // The axis follows the range once the range leaves the fortnight. Cheap
-    // when it has not: `railStart()` returns the same instant and this returns
-    // without touching the DOM.
+    // A range past the build window has stories the payload does not carry,
+    // and the list, the count and the beacons wait for them: drawn first from
+    // the fortnight and again when the archive landed, the count read 398,
+    // 777 and 1,617 inside a third of a second and the list rebuilt twice.
+    // `loadArchive` draws once, whether it lands or fails.
+    if (hours > BUILD_WINDOW_HOURS && archiveState !== 'done' && coreLoaded) {
+      void loadArchive()
+      return
+    }
+    syncAxis()
+    refresh()
+  }
+
+  /**
+   * The axis follows the range once the range leaves the fortnight. Cheap
+   * when it has not: `railStart()` returns the same instant and this returns
+   * without touching the DOM.
+   */
+  function syncAxis() {
     const start = railStart()
     if (timeline && start !== windowStart) {
       windowStart = start
       rebuildTimeline(start, windowEnd)
     }
-    refresh()
   }
 
   /**
@@ -5338,6 +5592,8 @@ export function mount(
    */
   const rebuildTimeline = (start: number, end: number) => {
     if (!timeline) return
+    // A replay drives the rail it started on; a new rail ends it where it is.
+    stopReplay(false)
     const wasLive = timeline.isLive()
     const held = scrubNow
     const old = timeline
@@ -5378,8 +5634,13 @@ export function mount(
       '/api/map-archive.json',
       abort.signal,
     )
-    if (!data || !mounted) {
+    if (!mounted) return
+    if (!data) {
       archiveState = 'idle'
+      // The press is still owed its drawing: the fortnight's, which is what
+      // this range can honestly show without the archive.
+      syncAxis()
+      refresh()
       return
     }
     archiveState = 'done'
@@ -5389,13 +5650,17 @@ export function mount(
     // here is two beacons on one coordinate and two rows in the rail.
     const have = new Set(points.map((p) => p.slug))
     const older = data.points.filter((p) => !have.has(p.slug))
-    if (!older.length) return
-    archivePoints = older
-    points = [...older, ...points].sort((a, b) => a.t - b.t)
-    pointBySlug = new Map(points.map((p) => [p.slug, p]))
-    placeIndex = buildPlaceIndex(points)
-    corpusStart = Math.min(corpusStart, data.window.start)
-    rebuildTimeline(railStart(), windowEnd)
+    if (older.length) {
+      archivePoints = older
+      points = [...older, ...points].sort((a, b) => a.t - b.t)
+      pointBySlug = new Map(points.map((p) => [p.slug, p]))
+      placeIndex = buildPlaceIndex(points)
+      corpusStart = Math.min(corpusStart, data.window.start)
+    }
+    // A frame between the merge and the drawing, so neither is one long task.
+    await new Promise(requestAnimationFrame)
+    if (!mounted) return
+    syncAxis()
     refresh()
   }
 
@@ -5437,6 +5702,8 @@ export function mount(
       lead: marketStrip.element,
     })
     timeline.setPoints(points)
+    // The first scrubber fades in with the globe; a rebuilt one replaces it in place.
+    timeline.element.classList.add('is-arriving')
     container.append(timeline.element)
     placeMarketStrip()
     placeRangeGroup()
@@ -5599,6 +5866,18 @@ export function mount(
     if (th?.events) thermal = th.events
     if (ipc?.areas) famine = ipc.areas.filter((a) => Number.isFinite(a.lat) && Number.isFinite(a.lng))
     setOverlayData()
+    layersLoaded = true
+    railLanded('layers')
+  }
+
+  /**
+   * The rail's payloads still in flight. When the last lands, failed or not,
+   * the rail settles: a row that never filled says so (`MarketStrip.settle`).
+   */
+  const railPending = new Set(['layers', 'trends'])
+  const railLanded = (name: string) => {
+    if (!railPending.delete(name) || railPending.size || !mounted) return
+    marketStrip.settle()
   }
 
   // The conflict feed is the largest payload the map pulls — a quarter of a
@@ -5804,10 +6083,11 @@ export function mount(
    * the same question and fires nothing.
    */
   const clearLoading = () => {
-    if (!loading.isConnected) return
+    if (landPainted) return
     if (!map.getLayer('land')) return
     if (map.queryRenderedFeatures({ layers: ['land'] }).length === 0) return
-    loading.remove()
+    // The label itself goes at `arrive`, with the canvas it stood in for.
+    landPainted = true
     map.off('idle', clearLoading)
     map.off('sourcedata', onLoadingProbe)
   }
@@ -5818,6 +6098,106 @@ export function mount(
   }
   map.on('idle', clearLoading)
   map.on('sourcedata', onLoadingProbe)
+
+  // --- Arrival ------------------------------------------------------------
+  /**
+   * The globe arrives once, in one fade.
+   *
+   * MapLibre draws a cold load in cuts: a bare ocean disc, the coastline in
+   * bands as tiles land, the borders, the names, then the land changing tone
+   * when the metric is applied, then every mark at once. Measured on the live
+   * site at 1440×900 that was six visible states in two and a half seconds.
+   * So the canvas and the sky are held at opacity 0 (`.map-canvas-host` without
+   * `.is-drawn`) while all of that happens unseen, and are shown when the land
+   * is painted and shaded, the stories are on it and the hazard and market
+   * marks have landed — asked on `idle`, so the frame being revealed is a
+   * settled one. The stories follow `MARK_DELAY_MS` later, as their own beat.
+   *
+   * `ARRIVAL_CAP_MS` after `load` is the bound: a slow source shows the globe as it stands
+   * rather than holding a blank disc. "Drawing the world…" appears only if the
+   * wait passes `LOADING_DELAY_MS`, so a fast load never flashes it.
+   */
+  const ARRIVAL_CAP_MS = 3000
+  const LOADING_DELAY_MS = 300
+  const MARK_DELAY_MS = 150
+  const MARK_FADE_MS = 220
+  const reducedMotion = matchMedia('(prefers-reduced-motion: reduce)')
+  const loadingTimer = setTimeout(() => {
+    if (!arrived && mounted) mapEl.append(loading)
+  }, LOADING_DELAY_MS)
+  // Counted from the style's `load`, not from mount: the wait it bounds is the
+  // sources', and the engine's own start (shader compiles that block the main
+  // thread on a busy GPU) is not a source a reader can be spared.
+  let arrivalCap: ReturnType<typeof setTimeout> | undefined
+  map.once('load', () => {
+    if (!arrived && mounted) arrivalCap = setTimeout(() => arrive(), ARRIVAL_CAP_MS)
+  })
+
+  /** Sits the placeholder on the disc the camera will draw, or leaves it hidden. */
+  const placeDisc = () => {
+    if (arrived) return
+    const c = map.getCenter()
+    const cam = calibrate((ll) => map.project(ll), [c.lng, c.lat], map.getBearing(), map.getPitch())
+    if (!cam) return
+    // A transform, not `left`/`top`: the disc follows the padding as the
+    // chrome lands (a phone's scrubber), and a moved transform is no layout shift.
+    disc.style.transform = `translate(${cam.cx - cam.r}px, ${cam.cy - cam.r}px)`
+    disc.style.width = `${cam.r * 2}px`
+    disc.style.height = `${cam.r * 2}px`
+    disc.classList.add('is-placed')
+  }
+  map.once('styledata', () => {
+    if (!mounted) return
+    applyPadding()
+    placeDisc()
+  })
+  // Padding settles as the chrome lands (the phone's scrubber), and every
+  // change of it is a `move`; detached at `arrive`.
+  map.on('move', placeDisc)
+
+  /** Steps the stories' alpha from nothing to their decay, a few frames apart. */
+  const fadeMarks = () => {
+    if (markFade >= 1) return
+    const t0 = performance.now() + MARK_DELAY_MS
+    let last = 0
+    const step = (now: number) => {
+      if (!mounted) return
+      const k = Math.min(1, Math.max(0, (now - t0) / MARK_FADE_MS))
+      // Each step is a `setData`, so a handful, not one per frame.
+      if (k >= 1 || now - last >= 55) {
+        last = now
+        markFade = k
+        if (k > 0) writeStories()
+      }
+      if (k < 1) requestAnimationFrame(step)
+    }
+    requestAnimationFrame(step)
+  }
+
+  const arrive = () => {
+    if (arrived || !mounted) return
+    arrived = true
+    clearTimeout(arrivalCap)
+    clearTimeout(loadingTimer)
+    map.off('idle', onArrivalIdle)
+    map.off('move', placeDisc)
+    loading.remove()
+    mapEl.classList.add('is-drawn')
+    // Under the globe once it is up, and gone once the fade has run.
+    setTimeout(() => disc.remove(), 800)
+    if (reducedMotion.matches) {
+      markFade = 1
+      writeStories()
+    } else fadeMarks()
+    // Inland water is detail, and it waits for the world to be drawn first.
+    loadWater()
+  }
+
+  const onArrivalIdle = () => {
+    if (!landPainted || !metricApplied || !coreLoaded || !layersLoaded) return
+    arrive()
+  }
+  map.on('idle', onArrivalIdle)
 
   const applyMetric = () => {
     // `load` means the *style* is ready, not that a source has fetched and
@@ -6009,14 +6389,14 @@ export function mount(
     drawSolar()
     applyRefresh()
     openSharedStory()
+    placeDisc()
     // The land tint waits for the countries source to settle, which `load`
     // does not promise for tiles fetched over the network, so listen for it
-    // rather than guess when it has.
+    // rather than guess when it has. Inland water waits for `arrive`.
     void loadLayers()
     void loadMetric(metricKey)
     loadConflict()
     loadLeads()
-    loadWater()
     // The sky's canvas has a box only once MapLibre has laid the host out, so
     // it is measured here rather than at construction.
     sky.resize()
@@ -6027,44 +6407,43 @@ export function mount(
     // the crypto tier, the three world instruments, the Polymarket questions,
     // the Wikipedia attention series and the release calendar — so this is a
     // read of something the build already publishes rather than a new source.
-    // 12 KB gzipped, and nothing on screen waits for it, so it goes behind the
-    // idle callback with the metric index.
+    // 12 KB gzipped. It was behind the idle callback on the reasoning that
+    // nothing on screen waits for it; the rail does, now that every block
+    // stands from the first frame with a placeholder in each row, and a fetch
+    // left for idle filled them a second or more after the money above.
     //
     // **56 indicators, of which the rail read 13** for as long as this fetch
     // existed. The blocks below the world are what the other 43 were for; the
     // fetch itself did not change, because the data was never the thing that
     // was missing.
-    whenIdle(() => {
-      void (async () => {
-        const t = await json<{
-          indicators: TrendIndicator[]
-          events?: TrendEvent[]
-        }>('/api/trends.json', abort.signal)
-        if (!mounted || !t?.indicators) return
-        marketStrip.setTrends(t.indicators, t.events ?? [])
-      })()
-    })
+    void (async () => {
+      const t = await json<{
+        indicators: TrendIndicator[]
+        events?: TrendEvent[]
+      }>('/api/trends.json', abort.signal)
+      if (mounted && t?.indicators) marketStrip.setTrends(t.indicators, t.events ?? [])
+      railLanded('trends')
+    })()
     // The two lists the app's menu had and this rail did not: the largest
     // companies, as a money row, and the AI labs' scores, as the last of the
-    // slow blocks. Idle, for the trends payload's reason: no mark on the map
-    // waits for either.
+    // slow blocks. With the trends, for the trends' reason: their rows stand.
     fetchRailLists = () => {
       fetchRailLists = null
       if (feeds.has('companies')) {
-        whenIdle(() => {
-          void (async () => {
-            const c = await json<{ companies: MapCompany[] }>('/api/companies.json', abort.signal)
-            if (mounted && Array.isArray(c?.companies)) marketStrip.setCompanies(c.companies)
-          })()
-        })
+        railPending.add('companies')
+        void (async () => {
+          const c = await json<{ companies: MapCompany[] }>('/api/companies.json', abort.signal)
+          if (mounted && Array.isArray(c?.companies)) marketStrip.setCompanies(c.companies)
+          railLanded('companies')
+        })()
       }
       if (feeds.has('ai-models')) {
-        whenIdle(() => {
-          void (async () => {
-            const a = await json<AiModels>('/api/ai-models.json', abort.signal)
-            if (mounted && Array.isArray(a?.labs)) marketStrip.setAiModels(a)
-          })()
-        })
+        railPending.add('ai')
+        void (async () => {
+          const a = await json<AiModels>('/api/ai-models.json', abort.signal)
+          if (mounted && Array.isArray(a?.labs)) marketStrip.setAiModels(a)
+          railLanded('ai')
+        })()
       }
     }
     if (wideQuery.matches) fetchRailLists()
@@ -6399,8 +6778,11 @@ export function mount(
   document.addEventListener('click', onWordmarkClick)
 
   return () => {
+    stopReplay(false)
     mounted = false
     abort.abort()
+    clearTimeout(loadingTimer)
+    clearTimeout(arrivalCap)
     clearInterval(clockTimer)
     clearInterval(sunTimer)
     if (refreshFrame) cancelAnimationFrame(refreshFrame)

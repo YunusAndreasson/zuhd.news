@@ -258,6 +258,10 @@ export const buildPlaceIndex = (points: MapPoint[]): PlaceIndex => {
   for (const idx of byName.values()) {
     for (let a = 0; a < idx.length; a++) {
       for (let b = a + 1; b < idx.length; b++) {
+        // Already one place: the distance cannot change that, and a dateline
+        // with hundreds of stories (Gaza at 90 days) is otherwise a quarter of a
+        // million distances for one archive merge.
+        if (find(idx[a]) === find(idx[b])) continue
         const p = points[idx[a]]
         const q = points[idx[b]]
         if (haversineKm(p.lat, p.lng, q.lat, q.lng) <= PLACE_SPLIT_KM) union(idx[a], idx[b])
