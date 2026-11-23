@@ -15,7 +15,7 @@
 // click — the row is already there, and the upgrade has to happen before the
 // reader reaches for it.
 
-import { appPrompt } from './_app-prompt'
+import { appBar, appPrompt, pickStore } from './_app-prompt'
 import { renderShare } from './_share'
 import { SITE_URL } from '@shared/share'
 
@@ -36,6 +36,16 @@ export function mount(node: HTMLElement, props: Props = {}): void {
   // is the same reader either way. The prompt lands after the row rather than
   // inside it: sharing and installing are two different offers and should not
   // read as one list.
+  //
+  // On a phone the article already ends in the app block (`.article-app`,
+  // shown to a coarse pointer only), so the line would say it twice: there the
+  // block keeps the reader's store and Android's bar is the bounded offer.
+  const handoff = document.querySelector<HTMLElement>('.article-app')
+  if (handoff) pickStore(handoff)
+  if (handoff && getComputedStyle(handoff).display !== 'none') {
+    appBar()
+    return
+  }
   const prompt = appPrompt()
   if (prompt) node.after(prompt)
 }

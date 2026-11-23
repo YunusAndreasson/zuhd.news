@@ -308,6 +308,22 @@ const formatKickerDate = (addedAt) => {
 }
 
 /**
+ * The article's end, on a phone: the app, named once, for the reader's own
+ * platform. Both stores are in the HTML, so a reader with no script gets both;
+ * `share-bar.ts` keeps the one their phone takes (`pickStore`,
+ * `_app-prompt.ts`). The stylesheet shows it only to a coarse pointer, so a
+ * desktop never sees it.
+ */
+const appHandoffHtml = () =>
+  `<aside class="article-app" aria-label="The app">` +
+  `<span class="label article-app-label">The app</span>` +
+  `<p class="article-app-text">This story’s map, and the globe it sits on, live in the app.</p>` +
+  `<a class="article-app-store" data-platform="ios" href="${SHARE.APP_IOS}" rel="noopener" target="_blank">Download on the App Store</a>` +
+  `<a class="article-app-store" data-platform="android" href="${SHARE.APP_ANDROID}" rel="noopener" target="_blank">Get it on Google Play</a>` +
+  `<p class="article-app-note">No ads, no accounts.</p>` +
+  `</aside>`
+
+/**
  * @param {object} [extras] what the article carries beyond its text
  * @param {string} [extras.locator] the globe beside the hook (`locatorHtml`)
  * @param {string} [extras.chart] the story's series (`storyChartHtml`)
@@ -405,6 +421,13 @@ const buildArticlePage = (article, prev, next, thread, template, indicatorMap, e
     // canonical surface and sharing the front door — see `shareUrl` in
     // shared/share.ts for why both surfaces send the same link.
     .replace(/{{shareRow}}/g, () => shareRowHtml(SHARE.shareUrl(slug), title))
+    .replace(/{{appHandoff}}/g, () => appHandoffHtml())
+    // Safari's banner opens the app on this story rather than on its front
+    // page: the app claims `/a/*` (`share-surface.md`).
+    .replace(
+      `content="app-id=${SHARE.APP_STORE_ID}"`,
+      () => `content="app-id=${SHARE.APP_STORE_ID}, app-argument=${url}"`,
+    )
     .replace(/{{prevLink}}/g, () => prevLink)
     .replace(/{{nextLink}}/g, () => nextLink)
 }

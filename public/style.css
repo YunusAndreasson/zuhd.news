@@ -2366,8 +2366,94 @@ body.archetype-page-body {
 
 /* `outline: none` above left the one dismiss control with no ring at all. */
 .island-sheet-close:focus-visible {
-  outline: 1px solid var(--focus);
-  outline-offset: 2px;
+  outline: var(--ring-width) solid var(--focus);
+  outline-offset: var(--ring-offset);
+}
+
+/* --- The app, at the end of an article, on a phone ---
+   `appHandoffHtml` (`build.js`). A desktop never sees it: the app is a phone's.
+   Ink and rules, as the rest of the page: the one filled box is the store's
+   button, in the page's own ink. */
+.article-app { display: none; }
+
+@media (pointer: coarse) {
+  .article-app {
+    display: grid;
+    gap: var(--space-sm);
+    margin-top: var(--space-lg);
+    padding-top: var(--space-md);
+    border-top: 1px solid var(--rule);
+    font-size: var(--size-sm);
+    line-height: 1.4;
+  }
+}
+
+.article-app-text { color: var(--text); }
+
+.article-app-store,
+.article-app-store:visited {
+  display: block;
+  padding: 0.85rem var(--space-sm);
+  border-radius: 8px;
+  background: var(--text);
+  color: var(--bg);
+  text-align: center;
+  text-decoration: none;
+}
+
+.article-app-note {
+  font-size: var(--size-2xs);
+  color: var(--text-secondary);
+}
+
+/* Android's bar (`appBar`, `_app-prompt.ts`): the foot of the screen, and a
+   padding on `body` the same height while it stands, so it never covers the
+   last lines of the page. */
+.app-bar {
+  position: fixed;
+  inset: auto 0 0;
+  z-index: 20;
+  display: flex;
+  align-items: center;
+  gap: var(--space-xs);
+  min-height: 3rem;
+  padding: 0 var(--space-xs) env(safe-area-inset-bottom) var(--page-gutter, var(--space-sm));
+  background: var(--bg);
+  border-top: 1px solid var(--rule);
+  font-size: var(--size-xs);
+  line-height: 1.3;
+}
+
+body.has-app-bar { padding-bottom: calc(3rem + env(safe-area-inset-bottom)); }
+
+.app-bar-text {
+  flex: 0 1 auto;
+  min-width: 0;
+  color: var(--text-secondary);
+}
+
+.app-bar-sep { color: var(--text-dim); }
+
+.app-bar-link,
+.app-bar-link:visited {
+  margin-right: auto;
+  color: var(--text);
+  text-decoration: underline;
+  text-decoration-color: var(--text-dim);
+  text-underline-offset: 0.2em;
+  white-space: nowrap;
+}
+
+.app-bar-close {
+  flex: none;
+  min-width: 2.75rem;
+  min-height: 2.75rem;
+  background: none;
+  border: none;
+  color: var(--text-secondary);
+  font: inherit;
+  font-size: var(--size-sm);
+  cursor: pointer;
 }
 
 /* --- Entity strip on article pages --- */
