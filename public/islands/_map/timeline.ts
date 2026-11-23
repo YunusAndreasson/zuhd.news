@@ -68,6 +68,15 @@ export interface Timeline {
    * actually knows, so it is the thing that answers.
    */
   isLive(): boolean
+  /**
+   * Stand the head at an exact instant without telling `onChange`: the replay
+   * drives the island itself and moves this rail to match. `playing` dims the
+   * track after the head. The instant holds until the reader moves the
+   * scrubber or goes live.
+   */
+  setPlayhead(t: number, playing: boolean): void
+  /** Back to the live edge, as "Back to live" does. */
+  goLive(): void
   destroy(): void
 }
 
@@ -215,8 +224,11 @@ export function createTimeline(opts: TimelineOptions): Timeline {
   let ctx: CanvasRenderingContext2D | null = null
   let windowFrom: number | null = null
 
-  const scrubTime = () => Math.min(end, start + value * SLOT_MS)
-  const live = () => value >= slots
+  /** An exact instant set by `setPlayhead`, finer than a slot; null otherwise. */
+  let pinned: number | null = null
+  let playing = false
+  const scrubTime = () => pinned ?? Math.min(end, start + value * SLOT_MS)
+  const live = () => (pinned === null ? value >= slots : pinned >= end)
 
   // Shifted into Makkah, then read with the UTC accessors — which is what the
   // offset is for. Doing it this way keeps one arithmetic frame across the
@@ -300,6 +312,7 @@ export function createTimeline(opts: TimelineOptions): Timeline {
       dim: colour('--map-line', '#232936'),
       mid: colour('--map-ink-dim', '#7f8896'),
       bright: colour('--map-ink', '#e6eaf0'),
+      ground: colour('--map-ground', '#080a0d'),
       family: getComputedStyle(probe).fontFamily || 'sans-serif',
     }
     probe.remove()
@@ -476,6 +489,13 @@ export function createTimeline(opts: TimelineOptions): Timeline {
       ctx.globalAlpha = 0.9
       ctx.fillRect(x, barH - bh, bw, bh)
     }
+    // A replay's future: what has not happened yet at the head sits back.
+    if (playing) {
+      const x = Math.max(0, xOf(headT))
+      ctx.fillStyle = palette.ground
+      ctx.globalAlpha = 0.6
+      ctx.fillRect(x, 0, w - x, h)
+    }
     ctx.globalAlpha = 1
   }
 
@@ -504,11 +524,13 @@ export function createTimeline(opts: TimelineOptions): Timeline {
   }
 
   const onInput = () => {
+    pinned = null
     value = Number(range.value)
     emit()
   }
 
   const onLive = () => {
+    pinned = null
     value = slots
     range.value = String(slots)
     emit()
@@ -540,6 +562,23 @@ export function createTimeline(opts: TimelineOptions): Timeline {
       scheduleDraw()
     },
     isLive: live,
+    setPlayhead(t, play) {
+      pinned = Math.max(start, Math.min(end, t))
+      value = Math.max(0, Math.min(slots, Math.round((pinned - start) / SLOT_MS)))
+      range.value = String(value)
+      if (play !== playing) {
+        playing = play
+        root.classList.toggle('is-playing', play)
+        // An `<output>` is a live region: a replay would read out every step.
+        if (play) readout.setAttribute('aria-live', 'off')
+        else readout.removeAttribute('aria-live')
+      }
+      updateReadout()
+      liveBtn.hidden = live()
+      root.classList.toggle('is-scrubbed', !live())
+      scheduleDraw()
+    },
+    goLive: onLive,
     destroy() {
       if (drawFrame) cancelAnimationFrame(drawFrame)
       range.removeEventListener('input', onInput)

@@ -3935,6 +3935,34 @@ body.map-wide .map-range-group { display: block; }
   &.is-on { color: var(--map-ink); background: var(--map-raised); }
 }
 
+/* Play the range: beside the range chips, in their box's ink and height. A
+   glyph, not a word: its name is the accessible label. */
+.map-play {
+  display: inline-flex;
+  align-items: center;
+  align-self: center;
+  justify-content: center;
+  min-height: var(--map-hud-row-h);
+  padding: 0 0.55rem;
+  background: none;
+  border: 1px solid var(--map-line);
+  border-radius: 2px;
+  color: var(--map-ink-muted);
+  cursor: pointer;
+  transition: color var(--dur-fast), background var(--dur-fast);
+
+  &:hover { color: var(--map-ink-soft); }
+  &.is-on { color: var(--map-ink); background: var(--map-raised); }
+}
+
+/* Before the scrubber exists the range chips have no place to stand, and in
+   the rail they took a row the money then moved up into: held out of the
+   flow until `placeRangeGroup` puts them on the scrubber. */
+body.map-wide .map-hud > .map-range-group {
+  position: absolute;
+  visibility: hidden;
+}
+
 /* A box, which is the base it should always have had. It was `display:
    contents`, dissolving the group so its chips packed into the top strip's wrap
    run instead of breaking as one indivisible 814px block — and both layouts that
@@ -4048,6 +4076,7 @@ body.map-wide .map-range-group { display: block; }
    chrome did, so tabbing through the HUD fell back to the UA default on some
    controls and matched the slider on others. One ring, everywhere. */
 .map-range:focus-visible,
+.map-play:focus-visible,
 .map-filter:focus-visible,
 .map-reset:focus-visible,
 .map-more:focus-visible,
@@ -5846,6 +5875,99 @@ body.map-wide .map-key-glow { margin-inline: 2px; }
   font-size: var(--size-sm);
   color: var(--map-ink-dim);
   pointer-events: none;
+}
+
+/* --- Arrival ---
+   The globe is held unseen while MapLibre draws it in cuts (bare disc, tiles in
+   bands, borders, names, the metric's tone, the marks), and shown in one fade
+   when it is whole: `arrive` in the island adds `.is-drawn`. Until then the
+   reader sees `.map-disc`, a quiet disc measured off the same camera, so the
+   planet's place is held without a frame of the drawing showing. */
+.map-canvas-host > .map-sky,
+.map-canvas-host > .maplibregl-canvas-container {
+  opacity: 0;
+}
+
+.map-canvas-host.is-drawn > .map-sky,
+.map-canvas-host.is-drawn > .maplibregl-canvas-container {
+  opacity: 1;
+  transition: opacity var(--dur-normal) var(--ease-out);
+}
+
+.map-disc {
+  position: absolute;
+  top: 0;
+  left: 0;
+  border-radius: 50%;
+  background: var(--map-inset);
+  box-shadow: 0 0 0 1px var(--map-line-soft);
+  opacity: 0;
+  pointer-events: none;
+
+  &.is-placed {
+    opacity: 1;
+    transition: opacity var(--dur-slow) var(--ease-out);
+  }
+}
+
+.map-canvas-host.is-drawn > .map-disc {
+  opacity: 0;
+  transition: opacity var(--dur-normal) var(--ease-out);
+}
+
+/* The instant a replay stands at, large over the open map, top left. Placed
+   by the island (`placeStamp`) under the map's own controls. Light, because it
+   is a reading to glance at, not a heading. */
+.map-replay-stamp {
+  position: absolute;
+  z-index: 1;
+  margin: 0;
+  padding-top: 0.6rem;
+  font-size: var(--size-h1);
+  font-weight: var(--weight-light);
+  font-variant-numeric: lining-nums tabular-nums;
+  letter-spacing: var(--track-tight);
+  line-height: 1.1;
+  white-space: nowrap;
+  color: var(--map-ink);
+  pointer-events: none;
+}
+
+body:not(.map-wide) .map-replay-stamp { font-size: var(--size-h3); }
+
+@keyframes map-arrive {
+  from { opacity: 0; }
+}
+
+/* A rail row before its reading: a dash where the figure will stand, at the
+   row's own height (`RailShape`). Never a target. The phone's strip has no
+   room for a placeholder, so it waits whole (`.is-waiting`). */
+.map-markets-ph-dash { color: var(--map-ink-dim); }
+body.map-wide .map-markets .map-markets-item.map-markets-ph:hover { background: none; }
+/* No door until there is a row behind it. */
+body.map-wide .map-markets .map-markets-ph .map-markets-summary::after { visibility: hidden; }
+body:not(.map-wide) .map-markets-ph,
+body:not(.map-wide) .map-markets.is-waiting { display: none; }
+
+@media (prefers-reduced-motion: reduce) {
+  .map-canvas-host.is-drawn > .map-sky,
+  .map-canvas-host.is-drawn > .maplibregl-canvas-container,
+  .map-canvas-host.is-drawn > .map-disc,
+  .map-disc.is-placed { transition: none; }
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  /* The scrubber's first build and a figure's first fill come in as the globe
+     does; a range press after that redraws without one. */
+  .map-timeline.is-arriving,
+  .map-replay-stamp,
+  .map-loading {
+    animation: map-arrive var(--dur-normal) var(--ease-out) both;
+  }
+
+  .map-markets.is-arriving .map-markets-item:not(.map-markets-ph) .map-markets-move > * {
+    animation: map-arrive var(--dur-slow) var(--ease-out) both;
+  }
 }
 
 /* --- Prayer-line readout ---
