@@ -1,38 +1,38 @@
 {
-  "date": "2026-11-22",
+  "date": "2026-11-23",
   "metrics": {
-    "articles": { "value": 50, "detail": "5 cycles, all completed, avg 10 published/cycle (52 yesterday)" },
-    "freshness": { "median": 0.1, "p90": 0.6, "max": 0.9, "target": 1.0, "met": true },
-    "categories": { "politics": 21, "economy": 13, "science": 4, "tech": 12 },
+    "articles": { "value": 56, "detail": "5 cycles, all completed, avg 11 published/cycle (50 yesterday)" },
+    "freshness": { "median": 0.1, "p90": 0.3, "max": 0.8, "target": 1.0, "met": true },
+    "categories": { "politics": 22, "economy": 12, "science": 4, "tech": 18 },
     "multiSource": { "pct": 34, "target": 30, "met": true },
-    "usDatelines": { "pct": 16, "target": 25, "met": true },
-    "latAmDatelines": { "pct": 0, "target": 5, "met": false },
+    "usDatelines": { "pct": 25, "target": 25, "met": true },
+    "latAmDatelines": { "pct": 5, "target": 5, "met": true },
     "sameEventDuplicates": { "value": 0, "target": 0, "met": true },
     "missingDatelines": { "value": 0, "target": 0, "met": true },
-    "stateOrAdvocacyOnly": 1,
-    "imageUrlPct": 100,
-    "regions": { "count": 5, "target": 4, "met": true, "breakdown": { "AS": 16, "ME": 13, "EU": 9, "AM": 8, "AF": 4 } },
-    "sciTech": { "ratio": 32, "target": 25, "met": true },
-    "topSourceShare": { "source": "Al Jazeera Online", "pct": 18, "target": 20, "met": true },
-    "uniqueSources": 51,
+    "stateOrAdvocacyOnly": 0,
+    "imageUrlPct": 98,
+    "regions": { "count": 5, "target": 4, "met": true, "breakdown": { "AM": 17, "EU": 13, "ME": 10, "AS": 9, "AF": 7 } },
+    "sciTech": { "ratio": 39, "target": 25, "met": true },
+    "topSourceShare": { "source": "Reuters / Al Jazeera Online / Bloomberg Business (tie)", "pct": 11, "target": 20, "met": true },
+    "uniqueSources": 58,
     "duplicates": 0,
-    "avgCycleDuration": 910
+    "avgCycleDuration": 1123
   },
-  "experiment": "Skipped. No experiments are active and there is no pause gate. The only target missed is Latin American datelines, at 0% today after 4% yesterday. That is a feed-supply gap: today's five snapshots held 1-2 Latin American items each out of about 78, almost all on the El Chapo Isidro capture, which ran yesterday. The 14-day average is about 7%, above the 5% floor. GAP_COUNTRIES with Mexico and Argentina was reverted on 2026-09-23 for crowding out Africa. If the gap holds for a third day, the next candidate is adding English-language Latin American outlets to CURATED_SOURCES, which is one call whatever the array length and so costs no extra tokens.",
-  "weakestArea": "Latin American datelines are 0% against a 5% floor. The cause is supply, not selection: the feed carried almost no Latin American stories today beyond the El Chapo Isidro follow-ups (yesterday's dateline). Science is 4 against a target of 5, which is allowed when the feed is thin on science. Nine of today's datelines are bare country names (\"United States\" ×3, \"China\" ×3, \"Germany\", \"Finland\", \"United Kingdom\").",
+  "experiment": "Skipped. No experiment is active, there is no pause gate, and every target is met except science, at 4 against 5, which the 2026-09-26 decision allows on a thin-science day. Latin American datelines recovered from 0% to 5% without a change, which supports yesterday's reading that the gap was supply, not selection.",
+  "weakestArea": "Science is 4 against 5 for the second day running, and it comes from only two outlets (Phys.org ×3, STAT). The fix by policy is wider science sources, not a higher floor. US datelines sit exactly on the 25% ceiling, and five of the fourteen are the bare country name \"United States\" rather than a city.",
   "watching": [
-    "Hormuz: two tankers were hit near a mine off Khasab, Iran struck a civilian site in Bahrain and drew Gulf condemnation, and Oman and Jordan are rerouting fuel and trade.",
-    "The Baltic: an air alert over Kaliningrad and Baltiysk, Lithuania denies drone launches, and Finland blames Ukraine for a Russian ship that caught fire and is sinking.",
-    "Israel: Likud's coalition talks with Yashar collapsed over Ben-Gvir, while settler arson hit four West Bank villages.",
-    "The Pentagon has restricted defence ties with Canada under Hegseth.",
-    "Sudan: drone attacks on Khartoum and Omdurman killed five children.",
-    "Gaza: strikes on Khan Younis and al-Mawasi are raising the toll despite the ceasefire."
+    "Hormuz and the Gulf: Iran now says the tankers were hit by mines, and coastguards are forming a joint Red Sea arrangement.",
+    "Gaza: Oxfam reports poisoned water and the Yellow Line keeps displacing people, while settlers entered a Jericho neighbourhood in the West Bank.",
+    "Nigeria: gunmen hit a Delta State campaign event and the naira slid on election risk, and Abuja has protested to South Africa over killings of Nigerians.",
+    "Ukraine at sea: Ukraine says it sank a Russian corvette off Libya, and NATO warned about a Russian nuclear-armed satellite.",
+    "Deutsche Bank: two stories on financing of meatpackers and tank parts, likely to draw follow-ups.",
+    "COP31 ended without a deal, so watch for national responses and a fallback text."
   ],
   "coverageGaps": [
-    "No Latin American dateline today; the feed carried almost none beyond the El Chapo Isidro follow-ups.",
-    "No Oceania dateline today.",
-    "Science fell to 4 (7 yesterday); the science sources were Phys.org, Ars Technica and Al-Monitor, and Nature did not appear.",
-    "Nine datelines are bare country names, not cities, which weakens the location data the app reads."
+    "Science came from two outlets only (Phys.org, STAT); health, climate and physics journals were absent.",
+    "Tech is 18 of 56 (32%) and leans on Chinese tech press and security news, while science is thin.",
+    "Oceania had no datelines today.",
+    "Six datelines are bare country names (\"United States\" ×5, \"South Africa\") rather than cities."
   ],
-  "context": "Every other target is met: freshness 0.1 days, multi-source 34%, US datelines 16% (down from 25%), no duplicates, no missing datelines. One article was quarantined today (Houthi claims of Saudi attacks, .md.bad), and one story's only source is state media or an advocacy outlet (the Ukrainian strike on Donetsk's power grid). Asia led the regions with 16 datelines, carried by the Chinese tech press (TMTPost 6, Zhidx 2)."
+  "context": "This is the third straight day with all five cycles completed. Cycles averaged 1123s against 910s yesterday, with the selector at 169s, the writer at 143s and the editor at 93s. Source spread is the widest this week: 58 outlets, none above 11%."
 }
