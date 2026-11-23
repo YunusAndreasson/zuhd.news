@@ -2112,6 +2112,12 @@ export interface MarketStrip {
   setCompanies(companies: MapCompany[]): void
   /** The AI labs' scores, as the last of the slow blocks. */
   setAiModels(models: AiModels | null): void
+  /**
+   * Every payload the rail waits on has landed or failed. A row still holding
+   * its placeholder says it has no data, and the rail's shape is remembered
+   * for the next visit's placeholders (`readShape`).
+   */
+  settle(): void
   setVisible(on: boolean): void
   /**
    * The box the detail panel should open under, or `null` to open it as a
@@ -2160,6 +2166,56 @@ export interface MarketStripOptions {
   /** Open an event's card. Nothing to fly to — a calendar entry is not a
    *  place — so this only opens the sheet, the way `onQuote` does. */
   onEvent: (entry: TrendEvent, anchor: HTMLElement) => void
+  /** Whether this build publishes the companies' list, so its row is held. */
+  companies?: boolean
+}
+
+/**
+ * The rail's shape before its data: each block's rows, as heights in px.
+ *
+ * The rail filled in four steps on a cold load (3 rows, 6, 7, then 46 in the
+ * last 120 ms) and its blocks jumped up to 371px as the ones above them
+ * landed. So every block is laid out from the first frame at the height it
+ * will have, its rows quiet placeholders, and the figures fill in place. The
+ * heights are what the rail measured the last time it filled, kept in this
+ * browser only (a convenience; nothing reads it back but the next visit), and
+ * on a first visit the shape of a typical day. `money` is the trend groups
+ * under `markets` and `companies`, whose rows always stand.
+ */
+type RailShape = Record<string, number[]>
+const SHAPE_KEY = 'zuhd-rail-shape'
+const ROW_PX = 27
+const DEFAULT_SHAPE: RailShape = {
+  money: [ROW_PX, ROW_PX, ROW_PX, ROW_PX],
+  events: [ROW_PX, ROW_PX, ROW_PX, 35, 35],
+  world: [ROW_PX, ROW_PX],
+  straits: [ROW_PX, ROW_PX, ROW_PX],
+  economy: [ROW_PX, ROW_PX, ROW_PX, ROW_PX],
+  ai: [ROW_PX],
+  odds: [],
+  attention: [],
+}
+const readShape = (): RailShape => {
+  const shape = { ...DEFAULT_SHAPE }
+  try {
+    const saved: unknown = JSON.parse(localStorage.getItem(SHAPE_KEY) ?? 'null')
+    if (saved && typeof saved === 'object') {
+      for (const [k, v] of Object.entries(saved)) {
+        if (!(k in shape) || !Array.isArray(v) || v.length > 20) continue
+        if (v.every((h) => typeof h === 'number' && h >= 10 && h <= 120)) shape[k] = v
+      }
+    }
+  } catch {
+    // No storage, or something else in it: the typical day stands.
+  }
+  return shape
+}
+const writeShape = (shape: RailShape) => {
+  try {
+    localStorage.setItem(SHAPE_KEY, JSON.stringify(shape))
+  } catch {
+    // A private window: the next visit opens on the typical day.
+  }
 }
 
 /**
@@ -2525,8 +2581,10 @@ export const dockedPanelTop = ({
  * design.
  */
 export function createMarketStrip(opts: MarketStripOptions): MarketStrip {
-  const root = el('div', 'map-markets')
-  root.hidden = true
+  // Waiting, not hidden: the rail lays the block out at once from its
+  // placeholders (`RailShape`); the phone's strip, which has no room for a
+  // placeholder, keeps it out of sight until `update` (`.is-waiting`).
+  const root = el('div', 'map-markets is-waiting is-arriving')
 
   /**
    * One row, four summaries, and every detail behind a fold-up panel.
@@ -2599,6 +2657,35 @@ export function createMarketStrip(opts: MarketStripOptions): MarketStrip {
   companiesItem.hidden = true
 
   row.append(moneyItem(tallyGroup), companiesItem)
+
+  /**
+   * A row that is not yet a reading: a dash where the figure will stand, at
+   * the height the row had last time. Not a button, and out of the
+   * accessibility tree until `settle` says it never filled.
+   */
+  const placeholder = (px = ROW_PX) => {
+    const box = el('div', 'map-markets-item map-markets-ph')
+    box.setAttribute('aria-hidden', 'true')
+    box.style.height = `${px}px`
+    const summary = el('span', 'map-markets-group map-markets-summary')
+    const move = el('span', 'map-markets-move is-stale')
+    move.append(el('span', 'map-markets-window map-markets-ph-dash', '\u2013'))
+    summary.append(el('span', 'map-markets-label'), move)
+    box.append(summary)
+    return box
+  }
+  const dashInto = (host: HTMLElement) => {
+    host.replaceChildren(el('span', 'map-markets-window map-markets-ph-dash', '\u2013'))
+  }
+  const shape = readShape()
+  dashInto(tallyMove)
+  if (opts.companies) {
+    companiesItem.hidden = false
+    companiesItem.append(...placeholder().childNodes)
+    companiesItem.classList.add('map-markets-ph')
+    companiesItem.setAttribute('aria-hidden', 'true')
+  }
+  row.append(...shape.money.map(placeholder))
 
   /**
    * Two headings and a second block, which exist only in the rail.
@@ -2748,6 +2835,24 @@ export function createMarketStrip(opts: MarketStripOptions): MarketStrip {
     aiHead,
     ai,
   )
+
+  /** Each block the shape covers, with the heading that stands or goes with it. */
+  const shapeBlocks: Array<[key: string, host: HTMLElement, head: HTMLElement]> = [
+    ['events', eventsBox, eventsHead],
+    ['world', world, worldHead],
+    ['straits', straits, straitsHead],
+    ['economy', economy, economyHead],
+    ['ai', ai, aiHead],
+    ['odds', odds, oddsHead],
+    ['attention', attention, attentionHead],
+  ]
+  for (const [key, host, head] of shapeBlocks) {
+    const rows = shape[key] ?? []
+    if (!rows.length) continue
+    host.replaceChildren(...rows.map(placeholder))
+    host.hidden = false
+    head.hidden = false
+  }
 
   /**
    * The panel the summaries open, folded up from the strip.
@@ -3395,6 +3500,7 @@ export function createMarketStrip(opts: MarketStripOptions): MarketStrip {
 
   const update = (markets: MapExchange[], now = Date.now()) => {
     lastMarkets = markets
+    root.classList.remove('is-waiting')
     const t = marketTally(markets, rangeDays, now)
     // The tally's own figures: asked for again inside the comparator, this was
     // some two hundred readings a press to order thirty rows.
@@ -3603,6 +3709,9 @@ export function createMarketStrip(opts: MarketStripOptions): MarketStrip {
     companiesItem.replaceChildren(
       ...(entries.length ? [groupSummary('companies', entries).summary] : []),
     )
+    companiesItem.classList.remove('map-markets-ph', 'is-nodata')
+    companiesItem.removeAttribute('aria-hidden')
+    companiesItem.style.removeProperty('height')
     companiesItem.hidden = entries.length === 0
   }
 
@@ -3747,6 +3856,10 @@ export function createMarketStrip(opts: MarketStripOptions): MarketStrip {
     // exactly a row tall ever shows up.
     for (const stale of row.querySelectorAll('.map-markets-group[data-trend]')) {
       ;(stale.closest('.map-markets-item') ?? stale).remove()
+    }
+    // The money rows held for these groups, now that the groups are here.
+    for (const held of row.querySelectorAll(':scope > .map-markets-ph')) {
+      if (held !== companiesItem) held.remove()
     }
     const quotes = tickerEntries(indicators)
 
@@ -4020,6 +4133,31 @@ export function createMarketStrip(opts: MarketStripOptions): MarketStrip {
     setStraits,
     setCompanies,
     setAiModels,
+    settle() {
+      const held = root.querySelectorAll<HTMLElement>('.map-markets-ph')
+      for (const ph of held) {
+        // Kept, so nothing below it moves; said, so it is not a bare row.
+        ph.classList.add('is-nodata')
+        ph.title = 'no data'
+        ph.removeAttribute('aria-hidden')
+        ph.querySelector('.map-markets-label')?.append(el('span', 'sr-only', 'no data'))
+      }
+      if (!lastMarkets) tallyMove.title = 'no data'
+      // Fills after this one are range presses: no fade.
+      setTimeout(() => root.classList.remove('is-arriving'), 900)
+      // Remembered only from a whole rail, laid out: a phone's strip and a
+      // failed payload are not the shape of the next visit.
+      if (held.length || !root.offsetParent) return
+      const heights = (items: Iterable<Element>) =>
+        [...items].map((n) => Math.round((n as HTMLElement).offsetHeight)).filter((h) => h > 0)
+      const next: RailShape = {
+        money: heights(
+          [...row.children].filter((n) => n !== companiesItem && n !== row.firstElementChild),
+        ),
+      }
+      for (const [key, host] of shapeBlocks) next[key] = host.hidden ? [] : heights(host.children)
+      writeShape(next)
+    },
     rangeDays: () => rangeDays,
     setRangeDays(days: number) {
       if (days === rangeDays) return
