@@ -6368,11 +6368,11 @@ export function mount(
    * marks have landed — asked on `idle`, so the frame being revealed is a
    * settled one. The stories follow `MARK_DELAY_MS` later, as their own beat.
    *
-   * `ARRIVAL_CAP_MS` after `load` is the bound: a slow source shows the globe as it stands
+   * `ARRIVAL_CAP_MS` after mount is the bound: a slow source shows the globe as it stands
    * rather than holding a blank disc. "Drawing the world…" appears only if the
    * wait passes `LOADING_DELAY_MS`, so a fast load never flashes it.
    */
-  const ARRIVAL_CAP_MS = 3000
+  const ARRIVAL_CAP_MS = 2500
   const LOADING_DELAY_MS = 300
   const MARK_DELAY_MS = 150
   const MARK_FADE_MS = 220
@@ -6380,13 +6380,11 @@ export function mount(
   const loadingTimer = setTimeout(() => {
     if (!arrived && mounted) mapEl.append(loading)
   }, LOADING_DELAY_MS)
-  // Counted from the style's `load`, not from mount: the wait it bounds is the
-  // sources', and the engine's own start (shader compiles that block the main
-  // thread on a busy GPU) is not a source a reader can be spared.
-  let arrivalCap: ReturnType<typeof setTimeout> | undefined
-  map.once('load', () => {
-    if (!arrived && mounted) arrivalCap = setTimeout(() => arrive(), ARRIVAL_CAP_MS)
-  })
+  // Counted from mount, not from the style's `load`: on a slow machine `load`
+  // itself came 5 to 9 s in, and counting from it held a blank disc for up to
+  // 12 s where master let the reader watch the world draw. Past the cap the
+  // globe shows as it stands and finishes in view.
+  const arrivalCap = setTimeout(() => arrive(), ARRIVAL_CAP_MS)
 
   /** Sits the placeholder on the disc the camera will draw, or leaves it hidden. */
   const placeDisc = () => {
