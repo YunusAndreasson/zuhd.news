@@ -350,6 +350,19 @@ export function stocksSummary(catalog: readonly CatalogGroup[]): StocksSummary |
 /** The headline's name: the stock list's figure, on the menu's first line. */
 export const WORLD_STOCKS = 'world stocks';
 
+/** The three readings displayed together on a daily group's menu row. */
+export function groupTableRow(group: CatalogGroup, now = Date.now()) {
+  if (group.key === 'stocks') {
+    // The ladder, line and spoken figure share the same exchange histories.
+    const stocks = stocksSummary([group]);
+    if (!stocks?.move) return null;
+    return { rungs: stocksLadder(stocks), path: stocks.path, figure: stocksFigure(stocks) };
+  }
+  const rungs = groupLadder(group, now);
+  if (!rungs) return null;
+  return { rungs, path: groupPath(group, now), figure: groupFigure(group, now) };
+}
+
 /**
  * What `world stocks` is of, for its list's page and a listener: `30 markets
  * in US dollars, weighted by each economy’s size`.
@@ -358,6 +371,15 @@ export function stocksCoverage({ members, tally, dollars, weighted }: StocksSumm
   const of = members < tally.total ? `${members} of ${tally.total} markets` : `${members} markets`;
   const money = dollars ? 'in US dollars' : 'in their own currencies';
   return `${of} ${money}, ${weighted ? 'weighted by each economy’s size' : 'each counted once'}`;
+}
+
+function stocksFigure(stocks: StocksSummary): GroupFigure {
+  return {
+    move: stocks.move,
+    measure: 'average',
+    detail: tallyCaption(stocks.tally),
+    coverage: stocks.move ? stocksCoverage(stocks) : undefined,
+  };
 }
 
 /**
@@ -965,13 +987,7 @@ export function groupFigure(group: CatalogGroup, now = Date.now()): GroupFigure 
   switch (group.key) {
     case 'stocks': {
       const stocks = stocksSummary(catalog);
-      if (!stocks) return {};
-      return {
-        move: stocks.move,
-        measure: 'average',
-        detail: tallyCaption(stocks.tally),
-        coverage: stocks.move ? stocksCoverage(stocks) : undefined,
-      };
+      return stocks ? stocksFigure(stocks) : {};
     }
     case 'companies':
       return { move: companiesSummary(catalog)?.move, measure: 'average' };

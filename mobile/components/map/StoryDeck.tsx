@@ -596,10 +596,10 @@ export const StoryDeck = memo(function StoryDeck({
     keys: windowKeys,
     slots: assignSlots(windowKeys, new Map()),
   }));
-  let slotOf = assigned.slots;
   if (!sameItems(assigned.keys, windowKeys)) {
-    slotOf = assignSlots(windowKeys, assigned.slots);
-    setAssigned({ keys: windowKeys, slots: slotOf });
+    setAssigned({ keys: windowKeys, slots: assignSlots(windowKeys, assigned.slots) });
+    // React retries this render before committing. Build the cards on that pass.
+    return null;
   }
 
   return (
@@ -607,7 +607,7 @@ export const StoryDeck = memo(function StoryDeck({
       <View style={[styles.fill, { marginBottom: bottomInset }]}>
         {slots.map((i, j) => (
           <DeckSlot
-            key={`slot-${slotOf.get(windowKeys[j] ?? '') ?? j}`}
+            key={`slot-${assigned.slots.get(windowKeys[j] ?? '') ?? j}`}
             storyKey={windowKeys[j] ?? ''}
             position={i}
             restOffset={i - index}

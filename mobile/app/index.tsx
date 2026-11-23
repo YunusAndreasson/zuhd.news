@@ -7,7 +7,6 @@ import type {
   Entity,
   GdacsAlert,
 } from '@shared/types';
-import * as SplashScreen from 'expo-splash-screen';
 import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import {
   AppState,
@@ -69,6 +68,7 @@ import { useCompanies } from '../hooks/useCompanies';
 import { useConflictEvents } from '../hooks/useConflictEvents';
 import { useGdacsAlerts } from '../hooks/useGdacsAlerts';
 import { useHeatmap } from '../hooks/useHeatmap';
+import { useLaunchSplash } from '../hooks/useLaunchSplash';
 import { useLinkedStory } from '../hooks/useLinkedStory';
 import { useMarketSignals } from '../hooks/useMarketSignals';
 import { useMarkets } from '../hooks/useMarkets';
@@ -1767,10 +1767,7 @@ export default function HomeScreen() {
   // get back down to the globe closed zuhd instead.
   useHardwareBack({ enabled: sheetDetent === 'full', onBack: collapseSheet });
 
-  // The optional heatmap can arrive over the globe while the reader uses it.
-  useEffect(() => {
-    if (!loading) SplashScreen.hide();
-  }, [loading]);
+  useLaunchSplash(loading, heatmapReady);
 
   usePendingNotification(loading, grouped, handleNotificationStory, handleBriefingPush);
   useLinkedStory(loading, grouped, handleLinkedStory);

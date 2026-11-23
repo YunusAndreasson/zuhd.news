@@ -268,8 +268,9 @@ export function useArticles(
     });
   }, []);
 
+  const categories = query.data?.categories;
   const grouped = useMemo<GroupedArticles>(() => {
-    const result = { ...emptyGrouped, ...query.data?.categories };
+    const result = { ...emptyGrouped, ...categories };
     const present = new Set(
       Object.values(result).flatMap((articles) => articles.map((a) => a.slug)),
     );
@@ -277,7 +278,7 @@ export function useArticles(
       if (!present.has(article.slug)) result[category] = [...result[category], article];
     }
     return result;
-  }, [query.data, openedArticles]);
+  }, [categories, openedArticles]);
 
   return {
     grouped,

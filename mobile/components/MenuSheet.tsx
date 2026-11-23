@@ -71,8 +71,7 @@ import type { TapResult } from '../lib/tap-result';
 import {
   type GroupFigure,
   groupFigure,
-  groupLadder,
-  groupPath,
+  groupTableRow,
   stocksLine,
   stocksSummary,
   WORLD_STOCKS,
@@ -898,11 +897,15 @@ const GroupEntry = memo(function GroupEntry({
   first: boolean;
   onPress: () => void;
 }) {
-  const rungs = groupLadder(group);
-  if (!rungs) return <GroupRow group={group} first={first} onPress={onPress} />;
+  const row = groupTableRow(group);
+  if (!row) return <GroupRow group={group} first={first} onPress={onPress} />;
+  const {
+    rungs,
+    path,
+    figure: { detail, coverage },
+  } = row;
   const headline = group.key === 'stocks';
   const title = headline ? WORLD_STOCKS : group.title;
-  const { detail, coverage } = groupFigure(group);
   const said: string[] = [title];
   for (const rung of rungs) if (rung.delta) said.push(spokenDelta(rung.delta));
   if (detail) said.push(detail);
@@ -918,7 +921,7 @@ const GroupEntry = memo(function GroupEntry({
         <>
           <MoveWindows
             rungs={rungs}
-            path={groupPath(group)}
+            path={path}
             scale={headline ? HEADLINE_SCALE : 1}
             room={HEADLINE_SCALE}
           />

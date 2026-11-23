@@ -76,6 +76,17 @@ beforeEach(() => {
 });
 afterEach(() => notifyManager.setScheduler((cb) => setTimeout(cb, 0)));
 
+it('keeps the grouped stories when only the build stamp changes', async () => {
+  const hook = mount();
+  await act(async () => {});
+  const before = hook.result.current.grouped;
+  await act(async () => {
+    hook.client.setQueryData(['feed'], mockFeed('new', ['one']));
+  });
+  expect(hook.result.current.generated).toBe('new');
+  expect(hook.result.current.grouped).toBe(before);
+});
+
 it('a pull joins the launch check and receives its added stories', async () => {
   const probe = deferred<string>();
   jest.mocked(probeGenerated).mockReturnValue(probe.promise);
