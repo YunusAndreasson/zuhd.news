@@ -5,9 +5,11 @@
 // reading surface back to the homepage after the old split-pane reader was
 // retired — the list is scannable on its own, and each row is a link.
 
+import { signedPct } from '@shared/chart/series'
 import { NARROW_PX, type MapPoint } from './types'
 import { CATEGORY_COLOUR, FALLBACK_CATEGORY_COLOUR } from './style'
 import { MAKKAH_TZ, relativeTime, zoneOffset } from './format'
+import { pointsFigure } from './markets'
 
 export interface Feed {
   element: HTMLElement
@@ -33,6 +35,11 @@ export interface Feed {
   setRead(slug: string): void
   /** Give the focus back to a row, when a card opened from it closes. */
   focusRow(slug: string): void
+  /**
+   * Put the focus on the list: its last focused row, else its first. What a
+   * reader who jumps to the stories lands on.
+   */
+  focusList(): void
   /**
    * What the refresh control is doing. `idle` restores the button; `busy`
    * disables it; a number reports how many stories arrived, including zero.
@@ -64,7 +71,20 @@ export interface FeedOptions {
   onRefresh?: () => void
   /** Has this reader already opened the story? Drives the greyed-out state. */
   isRead?: (slug: string) => boolean
+  /** The quick switcher's affordance was pressed. No option, no affordance. */
+  onSearch?: () => void
 }
+
+/**
+ * A row's figure as its card states it: `pointsFigure` for a series quoted in
+ * percent, `signedPct` for the rest, at the card's own places.
+ */
+export const figureText = (f: NonNullable<MapPoint['f']>): string =>
+  f.u === 'pts' ? pointsFigure(f.m, Math.abs(f.m) >= 10 ? 1 : 2) : signedPct(f.m)
+
+/** `⌘K` where the reader's keyboard has a Command key, `Ctrl K` elsewhere. */
+export const switcherKeys = (): string =>
+  /Mac|iPhone|iPad/.test(navigator.platform || navigator.userAgent) ? '\u2318K' : 'Ctrl K'
 
 const MAX_ROWS = 120
 
@@ -165,7 +185,31 @@ export function createFeed(opts: FeedOptions): Feed {
     opts.onRefresh?.()
   })
 
-  head.append(disclosure, refresh)
+  /**
+   * The quick switcher's door: a glass and the key that opens it, in the band
+   * beside refresh on the desktop. Quiet on purpose: the keys are the way in,
+   * and this says they exist. The word is the button's name, not its face:
+   * spelled out it met the wordmark in a 21rem rail.
+   */
+  const search = document.createElement('button')
+  search.type = 'button'
+  search.className = 'map-feed-search'
+  const searchIcon = document.createElement('span')
+  searchIcon.className = 'map-feed-search-icon'
+  searchIcon.setAttribute('aria-hidden', 'true')
+  searchIcon.innerHTML =
+    '<svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" ' +
+    'stroke-linecap="round" focusable="false"><circle cx="7" cy="7" r="4.5"/><path d="m10.5 10.5 3 3"/></svg>'
+  const searchKeys = document.createElement('kbd')
+  searchKeys.className = 'map-feed-search-keys'
+  searchKeys.textContent = switcherKeys()
+  search.append(searchIcon, searchKeys)
+  search.setAttribute('aria-label', 'Search the map')
+  search.title = `Search the map (${switcherKeys()} or /)`
+  search.setAttribute('aria-keyshortcuts', 'Meta+K Control+K /')
+  search.addEventListener('click', () => opts.onSearch?.())
+
+  head.append(disclosure, ...(opts.onSearch ? [search] : []), refresh)
 
   // Between the head and the list, and outside both: see `filterHost`.
   const filterHost = document.createElement('div')
@@ -354,6 +398,34 @@ export function createFeed(opts: FeedOptions): Feed {
     [p.loc, relativeTime(p.t, now)].filter(Boolean).join(' \u00b7 ')
 
   /**
+   * The meta line: `place · age`, and the card's figure after it where the
+   * story has a series (`Tehran · 14h ago · Hormuz −46.5%`). The figure is its
+   * own span, toned by sign as every move on the map is, and never rewritten:
+   * only the age moves with the scrub head.
+   */
+  const metaFor = (p: MapPoint, now: number): HTMLParagraphElement => {
+    const meta = document.createElement('p')
+    meta.className = 'map-feed-meta'
+    const when = document.createElement('span')
+    when.className = 'map-feed-when'
+    when.textContent = metaOf(p, now)
+    meta.append(when)
+    const figure = p.f ? figureText(p.f) : ''
+    if (p.f && figure) {
+      const fig = document.createElement('span')
+      const tone = figure.startsWith('+') ? ' is-pos' : figure.startsWith('\u2212') ? ' is-neg' : ''
+      fig.className = `map-feed-fig${tone}`
+      fig.append(' \u00b7 ', `${p.f.l} `)
+      const value = document.createElement('span')
+      value.className = 'map-feed-fig-value'
+      value.textContent = figure
+      fig.append(value)
+      meta.append(fig)
+    }
+    return meta
+  }
+
+  /**
    * The points currently on screen, by slug.
    *
    * This exists because the row listeners are **delegated to the list** rather
@@ -374,9 +446,9 @@ export function createFeed(opts: FeedOptions): Feed {
       // slug; the dateline moves because `relativeTime` is relative to the
       // scrub head, and writing it unconditionally would dirty the row on
       // every frame.
-      const meta = existing.querySelector<HTMLElement>('.map-feed-meta')
+      const when = existing.querySelector<HTMLElement>('.map-feed-when')
       const text = metaOf(p, now)
-      if (meta && meta.textContent !== text) meta.textContent = text
+      if (when && when.textContent !== text) when.textContent = text
       if (opts.isRead?.(p.slug)) applyRead(existing)
       return existing
     }
@@ -400,10 +472,10 @@ export function createFeed(opts: FeedOptions): Feed {
     link.className = 'map-feed-title'
     link.href = `/a/${p.slug}`
     link.textContent = p.title
+    // Out of the Tab order until it is the list's one stop (`syncRoving`).
+    link.tabIndex = -1
 
-    const meta = document.createElement('p')
-    meta.className = 'map-feed-meta'
-    meta.textContent = metaOf(p, now)
+    const meta = metaFor(p, now)
 
     // The headline and where it happened, and no sentence between them: the
     // rail is scanned for a story to open, and the story's card has its prose.
@@ -418,6 +490,56 @@ export function createFeed(opts: FeedOptions): Feed {
 
     rows.set(p.slug, li)
     return li
+  }
+
+  /**
+   * The list is one Tab stop (roving tabindex).
+   *
+   * 120 headlines were 120 stops, so a reader tabbing to the range chips under
+   * the map pressed Tab 178 times. One row holds `tabindex=0`, the last one
+   * focused or else the first, and the arrows, `j`/`k`, Home and End move
+   * between rows. Written only where it changes: a scrub patches the slice on
+   * every frame.
+   */
+  let rovingSlug: string | null = null
+  let rovingLink: HTMLAnchorElement | null = null
+  const linkOf = (li: HTMLLIElement | undefined) =>
+    li?.querySelector<HTMLAnchorElement>('.map-feed-title') ?? null
+  const firstSlug = (): string =>
+    list.querySelector<HTMLElement>('.map-feed-item')?.dataset.slug ?? ''
+  const rovingRow = () => (rovingSlug ? rows.get(rovingSlug) : undefined) ?? rows.get(firstSlug())
+  const syncRoving = () => {
+    const link = linkOf(rovingRow())
+    if (link === rovingLink) return
+    if (rovingLink) rovingLink.tabIndex = -1
+    if (link) link.tabIndex = 0
+    rovingLink = link
+  }
+
+  /**
+   * Bring a row into the list's view, scrolling the list alone: see
+   * `highlight` for why never `scrollIntoView`. The sticky day heading covers
+   * the list's top, so a row is in view only below it.
+   */
+  const reveal = (li: HTMLElement) => {
+    if (list.clientHeight === 0) return
+    const view = list.getBoundingClientRect()
+    const row = li.getBoundingClientRect()
+    const day = list.querySelector<HTMLElement>('.map-feed-day')
+    const top = view.top + (day?.offsetHeight ?? 0)
+    if (row.top < top) list.scrollTop += row.top - top
+    else if (row.bottom > view.bottom) list.scrollTop += row.bottom - view.bottom
+  }
+
+  const focusItem = (li: HTMLLIElement | undefined) => {
+    const link = linkOf(li)
+    if (!li || !link) return
+    rovingSlug = li.dataset.slug ?? null
+    syncRoving()
+    // `preventScroll`, then the list alone: a focus scroll walks every
+    // ancestor, and on this page one of them is the map.
+    link.focus({ preventScroll: true })
+    reveal(li)
   }
 
   const build = (sorted: MapPoint[], now: number) => {
@@ -468,6 +590,13 @@ export function createFeed(opts: FeedOptions): Feed {
         : 'No stories in this slice. Widen the range, or turn a category back on.'
       list.append(emptyRow)
     }
+
+    syncRoving()
+    // A row the pointer or the focus was on has left the slice. The island
+    // puts its place out itself (`applyRefresh`), so this only forgets it.
+    if (pointed && !points.has(pointed)) pointed = null
+    if (focused && !points.has(focused)) focused = null
+    if (hovered && !points.has(hovered)) hovered = null
 
     const n = sorted.length
     // The count describes the map; the rail stops at MAX_ROWS. Saying "722
@@ -524,17 +653,66 @@ export function createFeed(opts: FeedOptions): Feed {
   // does not bubble, so it cannot be delegated. The guard is that a move
   // *within* one row reports the same slug, so the hover is only re-sent when
   // the row under the pointer actually changes.
+  //
+  // Focus does what hover does: a row the keyboard is on lights its place on
+  // the map as a row under the pointer does. The pointer wins while both are
+  // on the list, because it is the one that just moved.
+  let pointed: string | null = null
+  let focused: string | null = null
   let hovered: string | null = null
+  const sendHover = () => {
+    const slug = pointed ?? focused
+    if (slug === hovered) return
+    hovered = slug
+    opts.onHover(slug ? (points.get(slug) ?? null) : null)
+  }
   list.addEventListener('mouseover', (e) => {
-    const p = pointAt(e.target)
-    if (p?.slug === hovered) return
-    hovered = p?.slug ?? null
-    opts.onHover(p)
+    pointed = pointAt(e.target)?.slug ?? null
+    sendHover()
   })
   list.addEventListener('mouseleave', () => {
-    if (hovered === null) return
-    hovered = null
-    opts.onHover(null)
+    pointed = null
+    sendHover()
+  })
+  list.addEventListener('focusin', (e) => {
+    const slug = pointAt(e.target)?.slug ?? null
+    focused = slug
+    if (slug) {
+      rovingSlug = slug
+      syncRoving()
+    }
+    sendHover()
+  })
+  list.addEventListener('focusout', (e) => {
+    if (list.contains(e.relatedTarget as Node | null)) return
+    focused = null
+    sendHover()
+  })
+
+  /**
+   * ↑/↓ and `j`/`k` step a row, Home and End jump to the ends. Instantly: the
+   * highlight is the keyboard's cursor, and a cursor that animates lags a key
+   * held down. Enter is the link's own, read by the click handler above.
+   */
+  const STEPS: Record<string, number> = {
+    ArrowDown: 1,
+    j: 1,
+    ArrowUp: -1,
+    k: -1,
+    Home: Number.NEGATIVE_INFINITY,
+    End: Number.POSITIVE_INFINITY,
+  }
+  list.addEventListener('keydown', (e) => {
+    if (e.ctrlKey || e.metaKey || e.altKey) return
+    const step = STEPS[e.key]
+    if (!step) return
+    const items = [...list.querySelectorAll<HTMLLIElement>('.map-feed-item')]
+    if (!items.length) return
+    const current = (e.target as Element | null)?.closest?.('.map-feed-item') as HTMLLIElement | null
+    const at = current ? items.indexOf(current) : -1
+    const next = Math.min(items.length - 1, Math.max(0, Number.isFinite(step) ? at + step : step))
+    e.preventDefault()
+    focusItem(items[next])
   })
 
   return {
@@ -572,7 +750,12 @@ export function createFeed(opts: FeedOptions): Feed {
       else if (row.bottom > view.bottom) list.scrollTop += row.bottom - view.bottom
     },
     focusRow(slug) {
-      rows.get(slug)?.querySelector<HTMLElement>('a')?.focus()
+      focusItem(rows.get(slug))
+    },
+    focusList() {
+      const li = rovingRow()
+      if (li) focusItem(li)
+      else list.focus()
     },
     isExpanded: () => expanded,
     setExpanded,

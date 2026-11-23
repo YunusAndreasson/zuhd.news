@@ -1788,9 +1788,8 @@ const mapWindow = {
   start: mapPoints.length ? mapPoints[0].t : Date.now(),
   end: mapPoints.length ? mapPoints[mapPoints.length - 1].t : Date.now(),
 }
-writeFileSync(join(DIST_DIR, 'api', 'map.json'),
-  JSON.stringify({ generated, window: mapWindow, points: mapPoints }))
-console.log(`  Built: api/map.json (${mapPoints.length} points, ${BUILD_WINDOW_DAYS}d)`)
+// Written after the story cards, which is where a row's figure (`f`) is known:
+// see `storyFigure` below.
 
 // The story archive — everything between the build window and 90 days back.
 //
@@ -2080,7 +2079,7 @@ const indicatorMap = new Map()
     const trends = JSON.parse(readFileSync(p, 'utf8'))
     for (const ind of trends.indicators || []) {
       if (ind?.id && !indicatorMap.has(ind.id)) {
-        indicatorMap.set(ind.id, { label: ind.label, kind: ind.cadence || 'indicator' })
+        indicatorMap.set(ind.id, { label: ind.label, kind: ind.cadence || 'indicator', values: ind.values, unit: ind.unit })
       }
     }
     if (indicatorMap.size) break
@@ -2091,7 +2090,7 @@ const indicatorMap = new Map()
   // from payloads that have nothing to do with which snapshot won.
   for (const ind of extraIndicators) {
     if (!indicatorMap.has(ind.id)) {
-      indicatorMap.set(ind.id, { label: ind.label, kind: ind.cadence || 'indicator' })
+      indicatorMap.set(ind.id, { label: ind.label, kind: ind.cadence || 'indicator', values: ind.values, unit: ind.unit })
     }
   }
 }
@@ -2172,6 +2171,62 @@ for (const a of sorted) {
   storyCount++
 }
 console.log(`  Built: api/story/ (${storyCount} story cards)`)
+
+/**
+ * A story row's figure: the move its card's chart states, on the row's
+ * `place · age` line (`Tehran · 14h ago · Hormuz −46.5%`).
+ *
+ * Only for a story whose prose names its series (`chart:`), the one the card
+ * draws first (`chartOf` in `_map/popup.ts`). The card also falls back to the
+ * first tagged entity, and on a row that fallback printed `Rice −6.1%` under
+ * a fossil flower: a tag match is a guess the card can show its dates for and
+ * a row cannot. The same model as the card's sparkline (`seriesModel` over
+ * the whole published series), so the row and the card cannot state two
+ * moves. Raw numbers only: the island formats them with the card's own
+ * `signedPct` and `pointsFigure`. An optional key on `map.json`, which is the
+ * map's and not one of the app's contracts.
+ *
+ * The label is the series' name cut to what a meta line holds. Attention
+ * series are left out: `Iran +300%` beside a story about Iran reads as a fact
+ * about the country, not about its Wikipedia page.
+ */
+{
+  const { seriesModel } = await loadShared('chart/series.ts')
+  const shortLabel = (label) =>
+    String(label || '')
+      .replace(/\s*\([^)]*\)/g, '')
+      .replace(/^Strait of /, '')
+      .replace(/ (?:Strait )?transits$/, '')
+      .trim()
+  const bySlug = new Map(sorted.map((a) => [a.slug, a]))
+  const storyFigure = (a) => {
+    const id = typeof a.meta.chart === 'string' ? canonicalIndicatorId(a.meta.chart.trim()) : ''
+    if (!id || !indicatorMap.has(id) || id.startsWith('wiki-')) return null
+    const ind = indicatorMap.get(id)
+    const values = Array.isArray(ind.values) ? ind.values : []
+    const model = seriesModel({ values, window: values.length })
+    if (!model.ok) return null
+    const open = model.points[0]
+    const close = model.points[model.points.length - 1]
+    const points = ind.unit === '%'
+    const move = points ? close.value - open.value : model.windowPct
+    const l = shortLabel(ind.label)
+    if (!l || l.length > 24 || !Number.isFinite(move)) return null
+    return { l, m: Math.round(move * 100) / 100, ...(points ? { u: 'pts' } : {}) }
+  }
+  let figures = 0
+  for (const p of mapPoints) {
+    const a = bySlug.get(p.slug)
+    const f = a && storyFigure(a)
+    if (f) {
+      Object.assign(p, { f })
+      figures++
+    }
+  }
+  writeFileSync(join(DIST_DIR, 'api', 'map.json'),
+    JSON.stringify({ generated, window: mapWindow, points: mapPoints }))
+  console.log(`  Built: api/map.json (${mapPoints.length} points, ${figures} with a figure, ${BUILD_WINDOW_DAYS}d)`)
+}
 
 // Lead sentences, keyed by slug. Lazily fetched by the map island so a beacon
 // sheet has real text the moment it opens, without a per-beacon round trip.

@@ -54,6 +54,13 @@ export interface MapPoint {
   w?: number
   /** Sentiment spread across the outlets covering the story, 0..~1. */
   d?: number
+  /**
+   * The move the story's card charts, for its row's meta line: the series'
+   * short name (`l`), the move (`m`, a percentage, or points where `u` says
+   * so). Built from the card's own series and model (`storyFigure`,
+   * `build.js`); absent on a story with no series and on the archive's.
+   */
+  f?: { l: string; m: number; u?: 'pts' }
 }
 
 /**
