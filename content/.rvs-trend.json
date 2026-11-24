@@ -1,86 +1,5 @@
 [
   {
-    "ts": "2026-09-08T22:22:21.916Z",
-    "cycleId": "2026-09-08T22-22",
-    "cycleHour": "22",
-    "schema": 2,
-    "rvs": 74.73,
-    "clusters": {
-      "picking": null,
-      "writing": 87.5,
-      "briefing": null,
-      "sourcing": 48.59,
-      "coverage": 83.85
-    },
-    "articleCount": 10,
-    "briefCount": 0,
-    "guardrailFailures": [
-      "category science below floor 2 (got 1)",
-      "category tech below floor 2 (got 1)"
-    ],
-    "degenerate": false
-  },
-  {
-    "ts": "2026-09-09T04:22:45.392Z",
-    "cycleId": "2026-09-09T04-22",
-    "cycleHour": "04",
-    "schema": 2,
-    "rvs": 64.68,
-    "clusters": {
-      "picking": null,
-      "writing": 56.25,
-      "briefing": null,
-      "sourcing": 48.24,
-      "coverage": 92.36
-    },
-    "articleCount": 12,
-    "briefCount": 0,
-    "guardrailFailures": [
-      "category economy below floor 3 (got 2)"
-    ],
-    "degenerate": false
-  },
-  {
-    "ts": "2026-09-09T08:26:48.153Z",
-    "cycleId": "2026-09-09T08-26",
-    "cycleHour": "08",
-    "schema": 2,
-    "rvs": 72.42,
-    "clusters": {
-      "picking": null,
-      "writing": 84.62,
-      "briefing": null,
-      "sourcing": 42.74,
-      "coverage": 85.85
-    },
-    "articleCount": 13,
-    "briefCount": 0,
-    "guardrailFailures": [],
-    "degenerate": false
-  },
-  {
-    "ts": "2026-09-09T12:24:14.144Z",
-    "cycleId": "2026-09-09T12-24",
-    "cycleHour": "12",
-    "schema": 2,
-    "rvs": 70.58,
-    "clusters": {
-      "picking": null,
-      "writing": 78.85,
-      "briefing": null,
-      "sourcing": 37.47,
-      "coverage": 92.68
-    },
-    "articleCount": 13,
-    "briefCount": 0,
-    "guardrailFailures": [
-      "article 2026-09-09-florida-flood-insurer-ipo-climate-risk-priced missing fields or body too short",
-      "article 2026-09-09-gulf-war-migrant-workers-kafala-blocks-exit missing fields or body too short",
-      "category economy below floor 3 (got 2)"
-    ],
-    "degenerate": false
-  },
-  {
     "ts": "2026-09-09T17:25:24.839Z",
     "cycleId": "2026-09-09T17-25",
     "cycleHour": "17",
@@ -7183,6 +7102,86 @@
       "coverage": 83.8
     },
     "articleCount": 14,
+    "briefCount": 0,
+    "guardrailFailures": [],
+    "degenerate": false
+  },
+  {
+    "ts": "2026-11-23T22:15:48.070Z",
+    "cycleId": "2026-11-23T22-15",
+    "runId": "2026-11-23_2202",
+    "cycleHour": "22",
+    "schema": 3,
+    "rvs": 74.3,
+    "clusters": {
+      "picking": null,
+      "writing": 100,
+      "briefing": null,
+      "sourcing": 33.15,
+      "coverage": 81.2
+    },
+    "articleCount": 11,
+    "briefCount": 0,
+    "guardrailFailures": [
+      "category economy below floor 3 (got 1)"
+    ],
+    "degenerate": false
+  },
+  {
+    "ts": "2026-11-24T05:16:20.444Z",
+    "cycleId": "2026-11-24T05-16",
+    "runId": "2026-11-24_0504",
+    "cycleHour": "05",
+    "schema": 3,
+    "rvs": 74.11,
+    "clusters": {
+      "picking": null,
+      "writing": 96.88,
+      "briefing": null,
+      "sourcing": 68.09,
+      "coverage": 49.77
+    },
+    "articleCount": 8,
+    "briefCount": 0,
+    "guardrailFailures": [
+      "category economy below floor 3 (got 2)"
+    ],
+    "degenerate": false
+  },
+  {
+    "ts": "2026-11-24T10:14:06.879Z",
+    "cycleId": "2026-11-24T10-14",
+    "runId": "2026-11-24_1001",
+    "cycleHour": "10",
+    "schema": 3,
+    "rvs": 76.33,
+    "clusters": {
+      "picking": null,
+      "writing": 87.5,
+      "briefing": null,
+      "sourcing": 46.67,
+      "coverage": 91.1
+    },
+    "articleCount": 12,
+    "briefCount": 0,
+    "guardrailFailures": [],
+    "degenerate": false
+  },
+  {
+    "ts": "2026-11-24T14:19:56.736Z",
+    "cycleId": "2026-11-24T14-19",
+    "runId": "2026-11-24_1404",
+    "cycleHour": "14",
+    "schema": 3,
+    "rvs": 75.86,
+    "clusters": {
+      "picking": null,
+      "writing": 91.67,
+      "briefing": null,
+      "sourcing": 40,
+      "coverage": 90.65
+    },
+    "articleCount": 12,
     "briefCount": 0,
     "guardrailFailures": [],
     "degenerate": false

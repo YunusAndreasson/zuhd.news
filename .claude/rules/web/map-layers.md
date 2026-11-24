@@ -55,11 +55,11 @@ Camera, MapLibre and cards are `map.md`; the rails are `map-rail.md`.
   before country and city names.
 - Makkah is the map's own mark: `makkah-glow` in `--brand`'s gold, never a dot
   (`economy` is a hair away), and `makkah-label` in `makkahLabel`, the gold
-  lightened to AA. The gazetteer's Makkah is filtered out of `place-dots` and
+  adjusted for AA. The gazetteer's Makkah is filtered out of `place-dots` and
   `place-labels`, or it is named twice.
-- Country names stay quiet (Regular, halo 1) in `labelDim`; `neutral` fails on
+- Country names stay quiet (Regular, halo 1) in `countryLabel`; `neutral` fails on
   the brightest land. A halo does not make a label readable.
-- `DENSITY_STOPS` peaks at 0.30: type on the wash must keep 3:1.
+- The regional wash and its key use `DENSITY_OPACITY` (0.5) on `DENSITY_STOPS`; the local bloom keeps its own strength.
 - The land's physical names are `region-labels`, from
   `shared/data/regions-50m.geojson` (`scripts/build/regions.mjs`, which holds
   the editorial cuts). Under the country names, in `labelDim`, quieter by case
@@ -70,13 +70,15 @@ Camera, MapLibre and cards are `map.md`; the rails are `map-rail.md`.
 
 - Rivers and lake rims take `water`, not `ocean`, which vanishes on hatched
   land. Saturation is what separates `water` from `border`.
-- `lakes` fill in `ocean`, above `land` and under `borders`: a frontier across
-  a lake stays drawn.
+- `lakes` fill in `ocean`, above `land`, the hatch and the hover lift, and
+  under `borders`: a frontier across a lake stays drawn.
 - River width does not vary by rank: a river is not a quantity.
 - `night-shade` is `MAP_COLOURS.space` at 0.28, not black: the dark half must
   not be darker than space, and the night sea keeps its blue.
-- `day-shade`, `night-shade` and `twilight` are inserted before `land`, so
-  they light only water: the land's tone is the metric's value, and night over
+- `day-shade`, `night-shade`, `twilight` and the graticule are one source,
+  `sphere`, told apart by `kind` (`sphereData`): one source in a row is one set
+  of tile masks. The first three are inserted before `land`, so they light only
+  water: the land's tone is the metric's value, and night over
   it drew India, the top of population, darker than Algeria. Which pole
   `dayPolygon` closes over fails silently if reversed.
 - `twilight` is one blurred band that lightens. The three real twilight caps
@@ -102,6 +104,10 @@ Camera, MapLibre and cards are `map.md`; the rails are `map-rail.md`.
 - No figure is hatched, never shaded (`nodataHatch`, `land-nodata`): any tone
   claims a position. Its registration is the only try/catch in
   `addDataLayers`. `NODATA_HATCH` feeds the sprite and the key's swatch.
+- Antarctica (`pole`, `scripts/build/basemap.js`) is not hatched: past 85°S
+  the globe stretches a tile's edge to the pole, and the hatch drew a pinwheel.
+  `borders` strokes its coast line (`coastOf`), never its polygon, whose
+  closure along the pole draws a ring at 85°S.
 - `CC_TO_TOPOJSON_NAME` (`shared/countries/iso.ts`) is a join key in Natural
   Earth's spelling (`Macedonia`), not a label. A miss leaves a country
   unshadeable and unclickable, with nothing thrown.
@@ -115,6 +121,7 @@ Camera, MapLibre and cards are `map.md`; the rails are `map-rail.md`.
 - Genocide marks only what a named UN body has determined
   (`shared/genocide.ts`). It draws last, never collides, and its card leads
   with the body that made the finding, not a casualty figure.
+- `ambientOpacity` preserves observation strength at rest; feature state lifts the hovered mark and the mark named by the open sheet.
 - Genocide and famine are conditions: the scrubber must never filter them.
 - The genocide chip is a real toggle switching `genocide-marks`, `-core` and
   `-labels` together. It is the last chip, after `famine`, and shares

@@ -7,7 +7,7 @@
 // Dark by design rather than by theme: coloured markers need a dark ground to
 // read against, and every operational map worth copying commits to it.
 
-import type { ExpressionSpecification, StyleSpecification } from 'maplibre-gl'
+import type { ExpressionSpecification, LineLayerSpecification, StyleSpecification } from 'maplibre-gl'
 import { MAKKAH_LABEL } from './format'
 
 /**
@@ -27,225 +27,36 @@ export const MAP_COLOURS = {
   /** = `--map-ground` in style.css: behind the planet, and what every scrim
    *  fades into. */
   space: '#080a0d',
-  /**
-   * The sea, a deep blue apart from `space`, so the planet stands out from the
-   * night around it by hue as well as by its rim. When the two were one tone
-   * the night limb's only edge was a 2px airglow and the disc read as grey
-   * land floating on black. Lightness is held at the land's own (1.0–1.1:1
-   * against `land`), so the land ramp still starts at the sea and a coastline
-   * is still `border`'s job; the blue is the difference.
-   */
-  ocean: '#061523',
-  land: '#15181e',
+  /** Deep water, 1.09:1 against space. The coast supplies the edge. */
+  ocean: '#0a1622',
+  land: '#171b22',
   landHi: '#1b1f27',
-  /**
-   * Frontiers *and* coastlines — `borders` is the only line layer, so this one
-   * value has to read against the ocean on one side and against whatever the
-   * metric has painted the land on the other.
-   *
-   * Was `#2b313b`, which measured 1.06:1 against the land it was drawn on. That
-   * is not a quiet border, it is an absent one: the line was there and nobody
-   * could see it. It sat just above the old ramp's ceiling, and the ramp was
-   * capped to protect it — a cap that cost the metric encoding its whole range
-   * and bought a border that was invisible anyway.
-   *
-   * Now above the widened ramp's ceiling (1.36:1) and 3.3:1 against the ocean,
-   * so a coastline is a coastline and a country with no figure still reads as
-   * land rather than sea.
-   */
-  border: '#5c6470',
-  /**
-   * A mark that is making no claim: a strait running at its baseline, an
-   * exchange that has not moved.
-   *
-   * Was `coast: '#39414e'`, and the name was already wrong — nothing has ever
-   * drawn a coastline in it, because `borders` is the only line layer and it
-   * uses `border`. Its three real users were all "nothing to report", and it
-   * did that job at **1.93:1 against the ocean** and 1.26:1 against the land
-   * ramp's top. So the map's most common state — on a quiet day most of the
-   * market layer is flat — was also its least visible one, on marks that sit in
-   * straits and coastal cities.
-   *
-   * It was `label`'s value when it was chosen, on the reasoning that this is the
-   * map's tone for "furniture, not data": 6.7:1 on the ocean, 2.8:1 on the ramp's
-   * brightest stop, and with the marks' dark halo the ground stops being a
-   * variable at all. `label` has since moved much lighter and this has not,
-   * because that argument is sound for a *mark* and was never sound for text —
-   * see the note there. A 7px silhouette with a dark halo is read by its shape;
-   * a letterform needs the ground behind it. Same value once, two jobs, and the
-   * jobs have parted.
-   */
+  /** Coast and frontier: 2.70:1 on the ocean, 1.32:1 on the brightest land. */
+  border: '#545c68',
+  /** A flat market or a strait at baseline. */
   neutral: '#8d97a6',
-  /**
-   * Basemap place labels, and the numeral naming how many stories a place holds.
-   *
-   * Was `#8d97a6`, the same value as `neutral` — and the note there still
-   * describes that value as "the map's tone for furniture, not data". The two
-   * have parted: `neutral` is a *mark* saying nothing is happening, which a dark
-   * halo and 7px of silhouette carry perfectly well, and this is **text**. A
-   * letterform is read by its shape, so what matters is its contrast against the
-   * pixels immediately behind it, not against a halo drawn around it.
-   *
-   * At `#8d97a6` a city name measured **2.76:1 on the brightest land the metric
-   * can paint and 1.80:1 once the density wash lifted it** — well under AA, on
-   * the labels naming the places the news is happening in. It is 5.66:1 and
-   * 3.87:1 now. The chrome's own text uses `--map-ink-*`, which is a different
-   * scale tuned against the panels rather than against the land.
-   */
+  /** Story numerals and selection keep the strongest ink. */
   label: '#d3d7dd',
-  /**
-   * Country names, and the dot marking a capital.
-   *
-   * This used to be `#727b88` and read *"quiet on purpose, and carried by
-   * `labelHalo` rather than by its own contrast — the land underneath is now a
-   * variable, so the halo is the only thing about a label that does not move."*
-   * That reasoning is why the map was hard to read, and it is worth keeping the
-   * sentence to say so. A halo makes a label **findable**; it does not make it
-   * **readable**. A 1.1px outline around an 8.5px glyph leaves the letterform
-   * itself at whatever contrast the ground happens to allow — and measured, that
-   * was **1.90:1 on the brightest land and 1.24:1 under the density wash**. The
-   * most prominent text on the map was, on a third of the world, an outline of a
-   * word rather than a word.
-   *
-   * It is 4.90:1 and 3.35:1 now: AA against every tone the ground can take
-   * unwashed, and clear of the 3:1 non-text floor even at the wash's peak. Which
-   * is only reachable because the wash's own ceiling came down at the same time
-   * — see `DENSITY_STOPS`. The halo did not go away, it got thicker; it is now
-   * the *second* line of defence rather than the only one.
-   *
-   * Deliberately still a step below `label`: cities are the louder of the two,
-   * because a country name is already carried by being uppercase, letter-spaced
-   * and set at a centroid with nothing near it. And it lands within a hair of
-   * `prayer` (1.05:1), which is not an oversight — both are basemap furniture in
-   * the same 216° family, and what separates a prayer label from a country name
-   * is that one runs along a dashed curve and the other sits still. Shape does
-   * the work, exactly as `MAP_COLOURS.prayer` argues.
-   */
-  labelDim: '#c5c9cf',
+  /** A city's name still clears 3:1 over the combined density wash and bloom. */
+  placeLabel: '#bbc2ca',
+  /** Country names stand one ink step above physical regions. */
+  countryLabel: '#b6bdc6',
+  /** Regions and quiet callout names: 4.53:1 on the brightest Population fill. */
+  labelDim: '#b2bac2',
   labelHalo: '#05070a',
-  /**
-   * Makkah, the map's centre: a glow in the site's one gold, the dark half of
-   * `--brand` (`colour-system.test.js` holds them equal), as the app draws it.
-   * A glow and not a dot, because the gold is within a hair of `economy`'s.
-   */
+  /** Makkah glows in the site's gold (the dark half of `--brand`). */
   makkah: '#c9a84c',
-  /**
-   * Makkah's name: the same gold lightened in OKLCH until it clears AA on the
-   * brightest land (4.72:1), where `makkah` itself measures 3.56:1.
-   */
-  makkahLabel: '#e3c266',
-  /**
-   * The prayer lines, and their labels.
-   *
-   * Near-neutral on purpose. Every hue on this map means something — a
-   * category, a direction, a severity — and these lines mean none of those:
-   * they carry no value, so they get no value channel. Shape does the work
-   * instead, the way `glyphs.ts` argues it should. A dash is the one silhouette
-   * nothing else here uses.
-   *
-   * A warm tone was the first instinct and it was wrong: at 38° of hue it lands
-   * six points from `OVERLAY_COLOUR.straits` (#c9a84c), which is the exact
-   * collision the mark alphabet was built to stop making. Lighter than `border`
-   * and cooler than nothing, so a hairline at 0.2 sits at about 1.5:1 over the
-   * land — present, and quieter than a frontier — while the label at full
-   * strength clears AA against every ground tone the ramp can paint.
-   */
+  /** A muted gold that clears AA even over the brightest land. */
+  makkahLabel: '#d6b66c',
+  /** Prayer curves and their names share a neutral ink, lifted together on hover. */
   prayer: '#c0c4ca',
-  /**
-   * The graticule.
-   *
-   * 216°, the blue-grey this map's furniture is already in — `border` and
-   * `prayer` are both at that hue, and a coordinate grid is the last thing on a
-   * map that should spend one. What separates it from them is weight, not hue:
-   * **1.44:1 against the ocean**, against a frontier's 3.3 and a prayer
-   * hairline's ~1.5.
-   *
-   * It has exactly one ground and that is why it can be tuned at all. The layer
-   * is drawn *under* `land`, so this value never meets the ramp — the same
-   * escape `day-shade` takes, and the reason the long argument on
-   * `MAP_COLOURS.water` (there is no tone that works flat for a line crossing
-   * six possible grounds) does not have to be had again here.
-   *
-   * Below a week-old beacon's 1.89:1 on the same water, which is the figure that
-   * matters: the grid must never be the thing a reader's eye finds first in an
-   * empty sea. And the cue does not depend on the number anyway — a graticule
-   * reads as curvature through the *shape* of its lines, not their contrast, so
-   * unlike the terminator over water there is no floor to clear.
-   */
+  /** Only drawn over water. The 1.2px graticule fades out with the sphere. */
   graticule: '#272d38',
-  /**
-   * Inland water — river threads, and the rim of a lake.
-   *
-   * There is no colour that works flat here, and finding that out is the whole
-   * reason this is a separate token rather than a reuse. A river drawn in
-   * `ocean` — the obvious choice, since it is literally the same substance —
-   * measures **1.04:1 against `LAND_NO_DATA`** and 1.21:1 on the ramp's darkest
-   * stop, so it would vanish across the thirty hatched countries and most of
-   * the dark half of every metric. And any mid-tone picked to survive that
-   * collides with one of the ramp's own five stops: the best flat candidate a
-   * search could find still measured 1.10:1 against `border`, which is a river
-   * indistinguishable from a frontier.
-   *
-   * Hue cannot break the tie either, because `border` and `prayer` are *both*
-   * at 216° — the blue-grey family is already this map's furniture. So the
-   * separation is saturation, the same argument the genocide tone makes against
-   * conflict: 40% here against `border`'s 10%, thirty points clear, in a family
-   * a reader already reads as "ground, not data". Against the six tones the
-   * land can be painted it holds a 1.92:1 minimum — louder than the prayer
-   * lines' ~1.5:1, which is right, since a river is a fact about the ground
-   * rather than a construction laid over it.
-   */
+  /** Rivers and lake rims are bluer than frontiers and clear 2:1 on every ramp stop. */
   water: '#4a7fae',
-  /**
-   * Marine labels — the seas, gulfs and straits.
-   *
-   * Split off from `water` on 2026-07-30 for the reason `label` split from
-   * `neutral`: a line and a word are not the same job. Everything the long note
-   * on `water` argues is about a *line* — it has to separate from `border` at
-   * thirty saturation points and survive on a hatched country — and none of it is
-   * about text. Measured as text, `water` read **1.92:1 on the brightest land**
-   * and 1.25:1 under the wash, which is where labels like the Persian Gulf and
-   * the Red Sea sit once they drift onto a coast.
-   *
-   * Same hue, same family, lightness raised until a sea name clears 3:1 on every
-   * ground it can reach: 4.6:1 unwashed, 3.2:1 at the wash's peak, and 11:1 on
-   * the open water where most of them actually sit. Saturation is held near
-   * `water`'s so a sea *reads* as the same substance as the rivers running into
-   * it — the relationship that note was written to protect.
-   */
-  waterLabel: '#b8c4d7',
-  /**
-   * The density wash — how far the news reaches.
-   *
-   * 216°, the same hue as `border` and `prayer`, because blue-grey is already
-   * this map's furniture family and a field carrying one quantity is furniture.
-   * Saturation is **5.4% against `border`'s 9.8%**, so the wash is *less*
-   * chromatic than a frontier and cannot compete with a category — which is the
-   * whole reason `LAND_RAMP`'s first constraint exists, restated one layer up.
-   *
-   * Two things keep it off the land ramp, and the first is not a colour.
-   *
-   * 1. **Structural.** `story-density` is inserted *under* `borders`, so the
-   *    wash is the only thing on this map with no edge. A shaded country is a
-   *    polygon bounded by a frontier; a patch of field is a gradient bounded by
-   *    nothing. That is a difference of kind, the same argument `nodataHatch`
-   *    makes, and no choice of tone substitutes for it.
-   * 2. **Numerical.** Composited over `LAND_RAMP[4]` — the brightest tone the
-   *    ground can ever take — the faintest visible stop lifts it **1.26:1** and
-   *    the peak **1.54:1**, against the ramp's own largest internal step of
-   *    1.21:1. So the wash's *quietest* visible tone is already outside the
-   *    ramp's entire vocabulary.
-   *
-   * And a ceiling, which is the constraint nobody writes down until the map
-   * inverts: the peak stays **1.24:1 below `labelDim`**, the quietest ink ever
-   * drawn over it. Every label, beacon and glyph on this map is lighter than its
-   * ground — that is what the opening comment means by coloured markers needing
-   * a dark ground — so a wash bright enough to pass the ink would locally invert
-   * the map, and every colour on it was chosen for light-on-dark. The corridor
-   * between `LAND_RAMP[4]` and `labelDim` is 1.90:1 wide and the field spends
-   * 1.54:1 of it. That restraint is the point: magnitude is carried by how
-   * *wide* a patch is, not how bright.
-   */
+  /** A sea name can cross onto land at a strait. Keep AA on both surfaces. */
+  waterLabel: '#aebacc',
+  /** Edge-free regional wash under the borders, also the tone of the local story bloom. */
   density: '#9ea2a8',
   /**
    * The ring on a story its sources disagree sharply about.
@@ -254,47 +65,9 @@ export const MAP_COLOURS = {
    * cannot see it — that test reads this file and `style.css` and nothing else.
    */
   contested: '#e8e2d4',
-  /**
-   * The atmosphere at the globe's limb.
-   *
-   * The one thing on this map drawn purely to say where something ends — and it
-   * is not decoration: a planet's edge *is* its air. Space (`space`, behind the
-   * canvas) and the sea (`ocean`) differ by hue; this is the edge on the day
-   * side, the airglow below on the night side.
-   *
-   * 216°, the furniture family, because `border` and `prayer` are already there
-   * and this is furniture in the strictest sense: it carries no value, so it
-   * gets no value channel. That is `MAP_COLOURS.prayer`'s argument, and it
-   * applies here with more force, since the limb is the one line on this map
-   * that is a fact about the *camera* rather than about the world.
-   *
-   * Measured, and the middle figure is the one that was chosen for:
-   * **1.45:1 against `space`**, so the rim is present and no louder than the
-   * prayer hairlines' ~1.5:1; **1.18:1 above `LAND_RAMP[0]`**, so it sits just
-   * inside the ramp rather than under it; and **1.68:1 below `LAND_RAMP[4]`**,
-   * so the brightest land the ground metric can paint still reads as more solid
-   * than the air outside it. Getting that last one backwards is the failure
-   * mode — an atmosphere brighter than the continents makes the planet look
-   * like a hole.
-   *
-   * Saturation is 31%, which is chromatic enough to be air and still 60 points
-   * clear of the corridor `map-geo.test.js` reserves above every overlay for the
-   * genocide mark.
-   *
-   * Only our own sky canvas reads it: `drawSky` fades MapLibre's sky out
-   * wherever the globe shows, and MapLibre's atmosphere glow takes its colour
-   * from its shader, not from `horizon-color`.
-   */
+  /** Air at the sunlit limb, in the furniture's blue-grey family. */
   horizon: '#222e40',
-  /**
-   * The airglow line round the whole limb, the night limb's only edge
-   * (`sky-paint.ts`). `horizon` at 1.45:1 drew it, and on the night side the
-   * planet still dissolved into space.
-   *
-   * 2.2:1 against `space`, so the edge is seen; 1.11:1 below `LAND_RAMP[4]`, so
-   * the air stays dimmer than the brightest land; `horizon`'s hue at 28%
-   * saturation, inside the genocide corridor.
-   */
+  /** The night limb's edge clears 2:1 against space and sits below the land ceiling. */
   airglow: '#384a64',
 } as const
 
@@ -425,10 +198,9 @@ export const OVERLAY_COLOUR = {
    * the famine glyph is a filled level and this is one tone.
    *
    * Muted like every mark that is not genocide: s = 0.37 against that mark's
-   * 0.91. And measured where it matters — **6.94:1 against `labelHalo`**, which
+   * 0.91. At full strength — **6.94:1 against `labelHalo`**, which
    * `MAP_COLOURS.neutral` explains is the real invariant for a haloed overlay
-   * mark, plus 6.82:1 on the ocean and 5.68:1 on the brightest tone the land ramp
-   * can take. A ramp-stop bar is not the standard here; the halo is.
+   * mark. Resting opacity carries the age of the IPC assessment.
    */
   famine: '#a98bc9',
   /**
@@ -463,34 +235,9 @@ export const OVERLAY_COLOUR = {
  *    fill and doubling as the coastline, so land tinted to the border's own
  *    lightness erases both the frontier and the shore.
  *
- * ── Why this ramp is not the old one ───────────────────────────────────────
- *
- * The previous stops ran `#191d24` → `#272d36`, and constraint 2 was read as
- * "stay under `#2b313b`", the border's old value. That capped the entire scale
- * inside 14 points of one channel, and the arithmetic was brutal: **adjacent
- * stops measured 1.04–1.06:1, and the whole range from worst to best measured
- * 1.22:1** — less contrast across the complete encoding than a single step
- * needs to be perceptible. The land was not subtly shaded, it was flat. Picking
- * press freedom and picking urbanisation produced the same picture, which is
- * why the picker felt like it did nothing.
- *
- * The cap was also not buying what it claimed. The border measured 1.06:1
- * against the land it was drawn on — it had already vanished. So the constraint
- * that cost the ramp its range was protecting something that did not survive
- * anyway.
- *
- * The fix is to move the border up rather than hold the ramp down: `border` is
- * now `#5c6470`, comfortably above the ceiling here and 3.3:1 against the
- * ocean. That frees the ramp to span 2.01:1 floor to ceiling, with every step
- * at 1.15:1 or better. Still dark, still neutral, still quiet — but now a
- * reader can actually tell the quartiles apart, which is the entire point of
- * shading the land at all.
- *
- * `scripts/lib/map-geo.test.js` pins the step contrast, because the old ramp
- * passed every test there was: monotonic, neutral, under the border. Nothing
- * asked whether the steps could be seen.
+ * The scale spans 1.85:1. Even its smallest adjacent step clears 1.13:1.
  */
-export const LAND_RAMP = ['#192029', '#242b37', '#303843', '#3c4450', '#48505c'] as const
+export const LAND_RAMP = ['#192029', '#232a33', '#2d343f', '#37404a', '#414b55'] as const
 
 /**
  * The tone the land layer paints at a given ramp position, in CSS.
@@ -532,12 +279,12 @@ export const rampColour = (p: number): string => {
  * covers 144 countries against `country-data`'s 176, so on metrics like press
  * freedom or HDI roughly 30 countries have nothing — and painting them the
  * ramp's lowest tone would state a value we do not have. The gap to the floor
- * is wider than the gap between any two adjacent stops, so "off the scale"
+ * is wider than the first ramp step, so "off the scale"
  * cannot be misread as "bottom of the scale". Same principle as a story with
  * no coverage figure getting a fixed neutral radius instead of the smallest.
  *
  * It sits close to the ocean, and that is safe now in a way it was not before:
- * `border` outlines every country at 3.3:1 against the sea, so an unshaded
+ * `border` outlines every country at 2.70:1 against the sea, so an unshaded
  * country reads as an empty outline rather than dissolving into water. The
  * legend says the same thing in words — "the rest left dark".
  *
@@ -651,7 +398,7 @@ export const nodataHatch = (): { width: number; height: number; data: Uint8Array
  * neighbourhood at 0.264 and the US northeast at the 0.300 ceiling — a real
  * gradient from "barely crowding" to "the busiest region on the planet".
  *
- * The first visible stop is deliberately **under** the land ramp's own largest
+ * At full layer opacity the first visible stop is **under** the land ramp's own largest
  * internal step. That is the onset of the scale — a place that has only just
  * begun to crowd — and it is not tone that keeps it from reading as a shaded
  * country, it is the absence of an edge. From the second visible stop up, tone
@@ -677,6 +424,9 @@ export const DENSITY_STOPS: ReadonlyArray<readonly [number, number]> = [
   [0.65, 0.21],
   [1.5, 0.3],
 ] as const
+
+/** World-view opacity of the regional field and its legend. */
+export const DENSITY_OPACITY = 0.5
 
 /**
  * `DENSITY_STOPS` as the tail of a `heatmap-color` interpolate expression, and
@@ -711,7 +461,7 @@ export const densityRamp = (): Array<number | string> =>
  */
 export const densityCssRamp = (): string =>
   [0, ...DENSITY_STOPS.filter(([, a]) => a > 0).map(([, a]) => a)]
-    .map((a, i, arr) => `${overOcean(a)} ${Math.round((i / (arr.length - 1)) * 100)}%`)
+    .map((a, i, arr) => `${overOcean(a * DENSITY_OPACITY)} ${Math.round((i / (arr.length - 1)) * 100)}%`)
     .join(', ')
 
 /** `MAP_COLOURS.density` at `alpha` over the ocean, as an opaque CSS colour. */
@@ -777,23 +527,23 @@ export const basemapUrl = (file: string, v?: string) =>
  * zoom written, past which MapLibre overzooms, and the one layer in each tile.
  * `map-geo.test.js` pins both to the build's.
  */
-export const COUNTRY_TILES = { maxzoom: 5, layer: 'countries', depthLayer: 'depth' } as const
+export const COUNTRY_TILES = { maxzoom: 5, layer: 'countries', depthLayer: 'depth', coastLayer: 'coast' } as const
 
 /**
  * The sea floor's tone from each depth (`d`, metres) down, shallowest first.
  * The abyss, 4000 m and down, is `ocean` itself, so the open sea looks as it
  * did and the shelves, ridges and shallow straits lift a step at a time in the
- * same hue; the trenches go one step under it. The shelf ends 1.10:1 against
+ * same hue; the trenches go one step under it. The shelf ends 1.03:1 against
  * the abyss and stays within the land's own lightness, so a coastline is still
  * `border`'s job (`map-geo.test.js`). The shelf is the background, not a band:
  * every band is a pass over the sea.
  */
 export const DEPTH_TONES: ReadonlyArray<readonly [number, string]> = [
-  [0, '#091f34'],
-  [200, '#081c2f'],
-  [2000, '#071827'],
+  [0, '#0b1926'],
+  [200, '#0b1825'],
+  [2000, '#0a1724'],
   [4000, MAP_COLOURS.ocean],
-  [6000, '#05121e'],
+  [6000, '#091521'],
 ]
 
 /** A band's tone by its floor. Spread from the table, so it is cast as the
@@ -993,6 +743,13 @@ export const globeFitZoom = (span: number, lat: number): number => {
 export const globeSpan = (canvasW: number, canvasH: number, left: number, right: number): number =>
   Math.min(canvasH, Math.max(1, canvasW - left - right))
 
+/** Every frontier and coastline: `borders`, and Antarctica's `pole-coast`. */
+const BORDER_PAINT: NonNullable<LineLayerSpecification['paint']> = {
+  'line-color': MAP_COLOURS.border,
+  // Borders stay hairline at world zoom and firm up as you go in.
+  'line-width': ['interpolate', ['linear'], ['zoom'], 0, 0.4, 4, 0.8, 8, 1.2],
+}
+
 export function buildStyle(v?: string): StyleSpecification {
   return {
     version: 8,
@@ -1029,51 +786,22 @@ export function buildStyle(v?: string): StyleSpecification {
       ],
     },
     /**
-     * The atmosphere, and nothing else.
+     * No MapLibre atmosphere: the island's sky canvas (`sky-paint.ts`) draws
+     * the crescent and the airglow outside the limb.
      *
-     * `sky-color` is `ocean` deliberately: the canvas clears to transparent and
-     * `.map-canvas-host` paints `--map-ground` behind it, so space is already
-     * this tone. Setting the sky to anything else would put a second, disagreeing
-     * ground behind the globe and reopen the seam the CSS fix closes — the HUD
-     * and scrubber scrims fade into `--map-ground`, and they do not know which
-     * of the two they are sitting on.
+     * MapLibre's atmosphere is a sphere drawn over every layer, lit from the
+     * sun. Over the poles its lit edge read as a second, shadowed sphere inside
+     * the planet, it washed the day limb's names, and it cost a full-canvas
+     * pass every frame. With `atmosphere-blend` at 0 `draw_sky.ts` draws
+     * nothing. It is stated: a `sky` block without it means the 0.8 default.
      *
-     * `atmosphere-blend` takes a **constant, not a zoom interpolation**, and
-     * that is not laziness. `draw_sky.ts` computes
-     * `blend × projectionData.projectionTransition`, so it already fades out
-     * exactly in step with the globe. Interpolating it here would be a second
-     * copy of `GLOBE_ZOOM` that nothing checks against the first — the class of
-     * duplication this file's header is about.
-     *
-     * `fog-*` is untouched: it requires 3D terrain, and there is none.
+     * `sky-color` is space's tone: the canvas clears to transparent and
+     * `.map-canvas-host` paints `--map-ground` behind it.
      */
     sky: {
       'sky-color': MAP_COLOURS.space,
       'horizon-color': MAP_COLOURS.horizon,
-      /**
-       * 0.2, not the 0.8 default, and the number was measured rather than
-       * chosen.
-       *
-       * The atmosphere is lit from the sun's own direction — `draw_sky.ts`
-       * takes a `sunPos` uniform — so it is a *crescent* along the day limb,
-       * not a ring. At 0.8 that crescent renders near-white, which on this map
-       * is a category error: `OVERLAY_COLOUR.genocide` is the one unmuted tone
-       * the whole palette is rationed to afford, and a white arc a thousand
-       * pixels long was louder than it, drawn by the camera rather than by any
-       * fact about the world.
-       *
-       * At 0.34 the limb was a rim rather than a light source, but the glow is
-       * drawn after every layer, labels and marks included, in a pale blue
-       * fixed in MapLibre's shader: a band ~90px deep over the day limb's land
-       * washed its names and marks. At 0.2 the rim stays and the wash recedes:
-       * one pixel over Mali at world zoom went from (84,103,121) to
-       * (72,86,102).
-       *
-       * The night limb is unlit by this glow, since the scattering is dark
-       * wherever the sun is behind the planet. Its edge is the airglow line on
-       * the island's own sky canvas (`MAP_COLOURS.airglow`, `sky-paint.ts`).
-       */
-      'atmosphere-blend': 0.2,
+      'atmosphere-blend': 0,
     },
     sources: {
       // `promoteId` lifts each feature's `iso2` into the feature id, which is
@@ -1115,8 +843,7 @@ export function buildStyle(v?: string): StyleSpecification {
       },
       // The sea floor (`DEPTH_TONES`), under everything the sea carries. Each
       // band lies inside the one above it, so the sort key draws the deeper
-      // over the shallower. No antialiasing: neighbouring tones are 1.03:1
-      // apart and an edge between them is invisible either way.
+      // over the shallower. No antialiasing: neighbouring tones sit close together and an edge between them is invisible either way.
       {
         id: 'depth',
         type: 'fill',
@@ -1178,7 +905,7 @@ export function buildStyle(v?: string): StyleSpecification {
        * Caspian — is a fact about the lake and has to stay drawn.
        *
        * The fill alone is not enough: `ocean` against `LAND_NO_DATA` is
-       * 1.04:1, so on a hatched country a lake would be an invisible hole. The
+       * too close to distinguish, so on a hatched country a lake would be an invisible hole. The
        * rim in `water` is what guarantees it reads, and it is the same thread
        * the rivers are drawn in — a river running into a lake continues as its
        * edge rather than stopping at an unrelated colour.
@@ -1274,11 +1001,17 @@ export function buildStyle(v?: string): StyleSpecification {
         type: 'line',
         source: 'countries',
         'source-layer': COUNTRY_TILES.layer,
-        paint: {
-          'line-color': MAP_COLOURS.border,
-          // Borders stay hairline at world zoom and firm up as you go in.
-          'line-width': ['interpolate', ['linear'], ['zoom'], 0, 0.4, 4, 0.8, 8, 1.2],
-        },
+        // Antarctica's coast is `pole-coast`: its polygon's closure along the
+        // pole drew a ring at 85°S (`coastOf`, `scripts/build/basemap.js`).
+        filter: ['!', ['has', 'pole']],
+        paint: BORDER_PAINT,
+      },
+      {
+        id: 'pole-coast',
+        type: 'line',
+        source: 'countries',
+        'source-layer': COUNTRY_TILES.coastLayer,
+        paint: BORDER_PAINT,
       },
       /**
        * Ranges, deserts, plateaus, basins and plains: the Sahel, the Hindu
@@ -1287,9 +1020,7 @@ export function buildStyle(v?: string): StyleSpecification {
        * names rather than relief.
        *
        * Under the country names, so a country and a city claim their space
-       * first and a region yields. Quieter than them by case and size, never
-       * by ink: `labelDim` is the only ink that clears AA on the brightest land
-       * (`map-geo.test.js`). Letterspaced, which is what tells an area from a
+       * first and a region yields. Quieter in case, size and ink. Letterspaced, which is what tells an area from a
        * town in the same case, and a range more widely, along its own axis
        * (`rot`) once it is big enough to read that way. The tiers arrive as the
        * camera earns them.
@@ -1367,30 +1098,7 @@ export function buildStyle(v?: string): StyleSpecification {
         ],
         layout: {
           'text-field': ['get', 'name'],
-          /**
-           * Regular, not Bold, and the weight is the half of this that matters.
-           *
-           * Measured off the rendered canvas at the view the map opens on: of
-           * every pixel at **11:1 or better against the ocean, 100% was neutral
-           * grey** — which is to say all of it was this layer and `sea-labels`.
-           * Not one story beacon, conflict mark, famine glyph or genocide ring
-           * reached that band, and the top 1% of ink on the whole map came out
-           * 88% neutral. The loudest thing on a news map was the names of the
-           * countries, which are the one layer here carrying no news at all.
-           *
-           * It got there by stacking every emphasis channel typography has —
-           * bold, uppercase, letterspaced, near-white ink, and a halo *darker
-           * than the ocean* — over a ground whose own encoding (`LAND_RAMP`)
-           * spans 1.36:1 end to end. Four of the five are spent down here.
-           *
-           * The ink is deliberately **not** one of them, because it is the only
-           * channel that cannot be spent: `labelDim` measures 9.87:1 on the
-           * ramp's darkest stop and **4.90:1 on its brightest**, which is the AA
-           * floor with 0.4 to spare, while `neutral` — the obvious step down —
-           * measures **2.76:1** there. That is the wall the note on
-           * `MAP_COLOURS.label` already hit from the other side, and it is why
-           * this layer gets quieter without getting dimmer.
-           */
+          // Regular caps leave the strong ink to the news.
           'text-font': ['Source Sans 3 Regular'],
           // 8.5px was too small for the most prominent text on the map, and small
           // type is the other half of why it was hard to read — contrast and size
@@ -1429,19 +1137,8 @@ export function buildStyle(v?: string): StyleSpecification {
           'symbol-sort-key': ['-', 1, ['get', 'area']],
         },
         paint: {
-          'text-color': MAP_COLOURS.labelDim,
+          'text-color': MAP_COLOURS.countryLabel,
           'text-halo-color': MAP_COLOURS.labelHalo,
-          /**
-           * Back to 1, because 1.6 was the loudest single number in this block.
-           *
-           * `labelHalo` is `#05070a` — *darker than the ocean* — so the halo is
-           * not a softening, it is a second contrast edge drawn around every
-           * letterform at **12.13:1** against the ink it surrounds. That is the
-           * highest local contrast anywhere on this map, and it was being spent
-           * on the basemap. At 1 the ink still carries the letterform, which is
-           * what the previous note here had right; what it had wrong was that a
-           * second line of defence is free.
-           */
           'text-halo-width': 1,
         },
       },
@@ -1496,7 +1193,7 @@ export function buildStyle(v?: string): StyleSpecification {
           'symbol-sort-key': ['-', 0, ['get', 'p']],
         },
         paint: {
-          'text-color': MAP_COLOURS.label,
+          'text-color': MAP_COLOURS.placeLabel,
           'text-halo-color': MAP_COLOURS.labelHalo,
           'text-halo-width': 1.5,
         },
@@ -1523,13 +1220,8 @@ export function buildStyle(v?: string): StyleSpecification {
        * It still loses to everything `addDataLayers` adds, which is correct:
        * the stories are the subject and the basemap is the ground.
        *
-       * Set in `water`, the same tone as the rivers and lake rims, so
-       * everything on this map that is about water is one family a reader can
-       * learn once. 4.66:1 on the ocean, so it clears AA on the surface it will
-       * always be drawn against. Regular rather than the country labels' Bold,
-       * and wider tracking: cartography sets water names in italic, which is
-       * not available here — the basemap ships no italic face — so weight and
-       * tracking carry the distinction instead.
+       * A cool ink and wider tracking distinguish the water names. The ink
+       * also clears AA over land where a long name crosses the coast.
        */
       {
         id: 'sea-labels',

@@ -16,6 +16,7 @@
 // the engine is fetched once and shared with the worker it spawns.
 import {
   clearPrewarmedResources,
+  Marker,
   Map as MapLibreMap,
   prewarm,
   type ExpressionSpecification,
@@ -30,7 +31,7 @@ import {
 // `GeoJSON.*` was being reached for as a UMD global, which @types/geojson only
 // exposes to non-module files — so the namespace never resolved in here.
 // Type-only, so esbuild drops it.
-import type { FeatureCollection } from 'geojson'
+import type { Feature, FeatureCollection, LineString, Polygon } from 'geojson'
 import { pointSourceWriter } from './_map/point-source'
 import {
   basemapUrl,
@@ -38,6 +39,7 @@ import {
   CATEGORY_COLOUR,
   CATEGORY_ORDER,
   COUNTRY_TILES,
+  DENSITY_OPACITY,
   densityCssRamp,
   densityRamp,
   FALLBACK_CATEGORY_COLOUR,
@@ -62,11 +64,14 @@ import {
   flowerOffset as petalOffset,
   PETAL_PX,
   flowerRadius,
+  haversineKm,
   placeHeat,
   type PlaceIndex,
   type StoryPlace,
 } from './_map/places'
 import { createFeed, type Feed } from './_map/feed'
+import { createHoverMark } from './_map/hover-mark'
+import { createSwitcher, type SwitchItem } from './_map/switcher'
 import { graticuleLines } from './_map/graticule'
 import { MAKKAH_AT } from './_map/makkah'
 import { CALLOUT_GAP_PX, callouts, type LostMark, type ScreenMark } from './_map/callouts'
@@ -91,9 +96,10 @@ import {
 import { liveSignals, signalFor, type MarketSignal } from './_map/signals'
 import { createPaneSeam, type PaneSeam } from './_map/panes'
 import { createTimeline, type Timeline } from './_map/timeline'
-import { createSheet, type Sheet } from './_map/sheet'
+import { createSheet, type AmbientMark, type Sheet } from './_map/sheet'
 import { MAKKAH_LABEL, MAKKAH_TZ, metricName, relativeTime, solarClock, zoneOffset } from './_map/format'
-import { createStoryPopup, type CountryStanding, type StoryPopup } from './_map/popup'
+import { createStoryPopup, type CountryStanding, type ShownStory, type StoryPopup } from './_map/popup'
+import { reducedMotion } from './_disclosure'
 import { dayPolygon, nightPolygon, sunLightPosition, terminatorBand } from './_map/solar'
 import { PRAYER_NOTE, PRAYERS, type PrayerId, prayerInstantAt, prayerLines } from './_map/prayer'
 import { HIJRI_NOTE, hijriLabel } from './_map/hijri'
@@ -119,6 +125,8 @@ import {
   type ThermalEvent,
 } from './_map/types'
 import { detailKey } from '@shared/gdacs'
+import { CC_TO_TOPOJSON_NAME } from '@shared/countries/iso'
+import { displayCountryName } from '@shared/place-names'
 
 /**
  * The coastline's address for feature state. A vector source takes state per
@@ -257,6 +265,14 @@ export const HIT_ORDER = [
  */
 const PRAYER_HOVER: ExpressionSpecification = ['boolean', ['feature-state', 'hover'], false]
 
+/** Keep each observation's age or severity at rest. A targeted glyph comes forward. */
+const ambientOpacity = (strength: ExpressionSpecification, atRest: number): ExpressionSpecification => [
+  'case',
+  ['any', ['boolean', ['feature-state', 'hover'], false], ['boolean', ['feature-state', 'selected'], false]],
+  1,
+  ['*', strength, atRest],
+]
+
 /** How wide, in pixels, the pointer may miss a hairline by and still find it. */
 const PRAYER_GRAB_PX = 7
 
@@ -306,6 +322,51 @@ const RANGES: Array<[label: string, hours: number]> = [
  */
 const DEFAULT_RANGE_HOURS = 72
 
+/**
+ * The range the address asks for (`?r=7d`), so Back from an article lands on
+ * the slice the reader left. The default is never written, so `/` stays `/`.
+ */
+const rangeFromUrl = (): number | null => {
+  const r = new URLSearchParams(location.search).get('r')
+  return RANGES.find(([label]) => label === r)?.[1] ?? null
+}
+
+/**
+ * How long a flight to a story takes: 350ms to a neighbour, 800ms across the
+ * globe, by the larger of the arc and the zoom step, on its square root so a
+ * short hop is not a crawl. It was a fixed 1150ms, so moving one country over
+ * took as long as crossing the planet, and the card waited on it.
+ */
+const FLIGHT_MS: [near: number, far: number] = [350, 800]
+const flightMs = (fromKm: number, zoomStep: number): number => {
+  const reach = Math.min(1, Math.max(fromKm / 10_000, Math.abs(zoomStep) / 4))
+  return Math.round(FLIGHT_MS[0] + (FLIGHT_MS[1] - FLIGHT_MS[0]) * Math.sqrt(reach))
+}
+/** A strong ease-out: the camera is nearly there in the first half. */
+const easeOutQuart = (t: number) => 1 - (1 - t) ** 4
+
+/** Between the docked story card and the part of the map the camera uses. */
+const DOCK_GAP = 8
+
+/**
+ * How far the other stories' dots step back while one is open: one step, so
+ * the open story's place stands out and the rest of the map still reads.
+ * Paint, never a scrim over the canvas.
+ */
+const OPEN_DIM = 0.4
+/**
+ * How far every other story steps back while one is hovered, from its row or
+ * its dot: a feature-state bit (`syncHoverState`), so the lit one is the one
+ * seen without a scrim over the map.
+ */
+const STORY_DIM = ['case', ['boolean', ['feature-state', 'dim'], false], 0.35, 1] as unknown as ExpressionSpecification
+/**
+ * The dots' and the contested rings' own opacity, the hover's dim included;
+ * the open story's dim (`dimStories`) multiplies it.
+ */
+const STORY_OPACITY: ExpressionSpecification = ['*', ['get', 'a'], STORY_DIM]
+const CONTESTED_OPACITY: ExpressionSpecification = ['*', ['get', 'a'], 0.55, STORY_DIM]
+
 /** How often the terminator is redrawn. The sun moves 0.25° a minute. */
 const SUN_TICK_MS = 120_000
 
@@ -328,6 +389,8 @@ const beaconRadius = (w: number) => 3.4 + 4.1 * w
 const RING_GAP = 2
 /** A dot's size from its baked radius `pr`, in pixels. */
 const BEACON_SIZE = ['/', ['get', 'pr'], DOT_R] as unknown as ExpressionSpecification
+/** The most stories the hover dims, one feature-state write each (`syncHoverState`). */
+const DIM_MAX = 1500
 /**
  * A petal's `icon-offset`, by its age rank `k`: a table, one literal `[x, y]`
  * per rank, in units of an icon `radius` px across (`icon-offset` is multiplied
@@ -398,6 +461,28 @@ const json = async <T>(
 }
 
 const empty = { type: 'FeatureCollection' as const, features: [] }
+
+/** The graticule, tagged for the `sphere` source. It never changes. */
+const GRID: Feature[] = graticuleLines().map((f) => ({ ...f, properties: { ...f.properties, kind: 'grid' } }))
+
+/**
+ * The `sphere` source: the graticule, and the night, the day and the twilight
+ * band when there is a sun to cut them from (all null at the equinox).
+ */
+const sphereData = (
+  night: Feature<Polygon> | null,
+  day: Feature<Polygon> | null,
+  band: Feature<LineString> | null,
+): FeatureCollection => {
+  const features: Feature[] = [...GRID]
+  const tag = (f: Feature | null, kind: string) => {
+    if (f) features.push({ ...f, properties: { ...f.properties, kind } })
+  }
+  tag(night, 'night')
+  tag(day, 'day')
+  tag(band, 'band')
+  return { type: 'FeatureCollection', features }
+}
 
 const catColour = (fallback: string) =>
   [
@@ -529,7 +614,7 @@ function renderFallback(container: HTMLElement): () => void {
 
 export function mount(
   container: HTMLElement,
-  props: { basemap?: string; story?: string; feeds?: string } = {},
+  props: { basemap?: string; story?: string; feeds?: string; homeTitle?: string } = {},
 ) {
   /**
    * Start MapLibre's worker pool before anything needs it.
@@ -970,6 +1055,17 @@ export function mount(
    * that depended on the word is left without it.
    */
   ground.append(groundSelect, groundScale)
+
+  // The opening metric is known before any payload: named and ramped from the
+  // first frame, with a dash at each end until its figures land, so the box
+  // never stands empty and never changes height.
+  {
+    const opt = document.createElement('option')
+    opt.value = DEFAULT_METRIC
+    opt.textContent = metricName(DEFAULT_METRIC)
+    groundSelect.append(opt)
+    for (const end of groundScale.querySelectorAll('.map-ground-end')) end.textContent = '\u2013'
+  }
 
   /** Fills the picker once the index has landed. */
   const buildMetricPicker = () => {
@@ -1478,7 +1574,19 @@ export function mount(
   // the scrubber instead.
   hud.append(moneyBox)
 
-  mapEl.append(loading)
+  /**
+   * The planet's place, held before there is a planet.
+   *
+   * The map canvas and the sky stay at opacity 0 until the world is drawn
+   * (`arrive`), so what a reader meets first is this: a quiet disc where the
+   * globe will stand, measured off the same camera (`placeDisc`), and nothing
+   * else. Appended after the sky and before MapLibre's canvas, so the globe
+   * covers it as it fades in.
+   */
+  const disc = document.createElement('div')
+  disc.className = 'map-disc'
+  disc.setAttribute('aria-hidden', 'true')
+  mapEl.append(disc)
   container.append(mapEl, hud, resetBtn)
 
   // --- State --------------------------------------------------------------
@@ -1538,10 +1646,21 @@ export function mount(
     // event, and `map-island.test.js` fails if the scrubber reaches it.
     genocide: true,
   }
-  let rangeHours: number = DEFAULT_RANGE_HOURS
+  let rangeHours: number = rangeFromUrl() ?? DEFAULT_RANGE_HOURS
   let scrubNow = Date.now()
   let mounted = true
   let layersReady = false
+  /** The hazard and market payloads have landed (or failed): see `arrive`. */
+  let layersLoaded = false
+  /** The globe is shown (`arrive`); before it the canvas is held unseen. */
+  let arrived = false
+  /** The land layer has rendered features: the coastline is drawn. */
+  let landPainted = false
+  /**
+   * Scales every story's alpha. 0 until the globe has arrived, so the marks
+   * come in as a beat of their own (`fadeMarks`).
+   */
+  let markFade = 0
   const abort = new AbortController()
 
   /**
@@ -1557,6 +1676,8 @@ export function mount(
   let placeByKey = new Map<string, StoryPlace>()
 
   let hoverSlug: string | null = null
+  /** The slugs the `stories` source holds now, for the hover's dim. */
+  let storySlugs: string[] = []
   let openSlug: string | null = null
   /** Which overlay marker the hover sheet is currently previewing. */
   let peekId: string | null = null
@@ -1625,7 +1746,15 @@ export function mount(
    */
   let lastPointer: Point | null = null
 
-  const sheet: Sheet = createSheet()
+  const ambientMarks: Record<'hover' | 'selected', AmbientMark | null> = { hover: null, selected: null }
+  const writeAmbientMark = (state: keyof typeof ambientMarks, mark: AmbientMark | null) => {
+    const previous = ambientMarks[state]
+    if (previous?.id === mark?.id && previous?.source === mark?.source) return
+    if (previous) map.removeFeatureState(previous, state)
+    if (mark) map.setFeatureState(mark, { [state]: true })
+    ambientMarks[state] = mark
+  }
+  const sheet: Sheet = createSheet((mark) => writeAmbientMark('selected', mark))
   let popup: StoryPopup | null = null
   /**
    * The row a keyboard opened the card from. The card is in the map, early in
@@ -1656,7 +1785,8 @@ export function mount(
    * payload lands; filled in later, when the exchanges arrive.
    */
   const marketStrip: MarketStrip = createMarketStrip({
-    rangeDays: DEFAULT_RANGE_HOURS / 24,
+    rangeDays: rangeHours / 24,
+    companies: feeds.has('companies'),
     onSelect: (id, anchor) => {
       sheet.dockTo(anchor)
       const ex = markets.find((m) => m.id === id)
@@ -1738,6 +1868,7 @@ export function mount(
   const feed: Feed = createFeed({
     isRead: (slug) => readState.has(slug),
     onRefresh: () => void refreshStories(),
+    onSearch: () => switcher.open(),
     onSelect: (p, keyboard) => {
       // On a phone the list is a drawer over the map, so committing to a story
       // has to give the map back — otherwise the camera flies somewhere the
@@ -1871,12 +2002,17 @@ export function mount(
    * takes no width. Measured here rather than through `applyPadding`'s `inset`,
    * which is declared further down and does not exist yet at the first call.
    */
+  const railEdges = (canvas: DOMRect) => ({
+    left: Math.max(0, feed.element.getBoundingClientRect().right - canvas.left),
+    right: Math.max(0, canvas.right - hud.getBoundingClientRect().left),
+  })
   const fitZoom = (lat: number) => {
     const w = mapEl.clientWidth || window.innerWidth || 1280
     const h = mapEl.clientHeight || window.innerHeight || 800
-    const wide = document.body.classList.contains('map-wide')
-    const side = (el: Element) => (wide ? el.getBoundingClientRect().width : 0)
-    return globeFitZoom(globeSpan(w, h, side(feed.element), side(hud)), lat)
+    const { left, right } = wideQuery.matches
+      ? railEdges(mapEl.getBoundingClientRect())
+      : { left: 0, right: 0 }
+    return globeFitZoom(globeSpan(w, h, left, right), lat)
   }
 
   /**
@@ -1981,6 +2117,7 @@ export function mount(
   map.touchZoomRotate.disableRotation()
   // With no keys, the canvas would be a Tab stop that does nothing.
   map.getCanvas().tabIndex = -1
+  const hoverMark = createHoverMark(map, mapEl)
 
   /**
    * Where a zoom is anchored on the sphere: the pointer while it is over the
@@ -2124,7 +2261,24 @@ export function mount(
    * lands.
    */
   let paddingPending = false
-  const writePadding = (next: PaddingOptions) => {
+  /**
+   * Padding held back until the camera next moves on its own account (`park`).
+   *
+   * The docked story card closing gives its width back to the camera, but a
+   * padding write moves the view: the place the reader was looking at slid
+   * half the card's width, and on the sphere a jump re-centred on the same
+   * point still turned the planet. So the old padding stays while nothing
+   * moves, and the next flight or reset carries this one (`flyCamera`,
+   * `resetView`). A drag keeps the old one, which only says where the centre
+   * of a wheel over space is.
+   */
+  let parkedPadding: PaddingOptions | null = null
+  const writePadding = (next: PaddingOptions, park = false) => {
+    if (park) {
+      parkedPadding = next
+      return
+    }
+    parkedPadding = null
     if (flying) {
       paddingPending = true
       return
@@ -2135,6 +2289,21 @@ export function mount(
     )
     if (same) return
     map.setPadding(next)
+  }
+
+  /**
+   * The docked story card's right edge in the canvas, which the camera keeps
+   * left of, or 0 with no card docked. Its layout box, not its rect: the card
+   * slides in, and a rect taken mid-slide is short by the slide.
+   */
+  const dockEdge = (): number => {
+    const box = popup?.dockBox()
+    return box ? box.offsetLeft + box.offsetWidth + DOCK_GAP : 0
+  }
+  /** The camera's padding with the story card docked: the rest kept as is. */
+  const dockedPadding = (): PaddingOptions => {
+    const base = parkedPadding ?? map.getPadding()
+    return { ...base, left: Math.max(base.left ?? 0, dockEdge()) }
   }
 
   /**
@@ -2156,7 +2325,7 @@ export function mount(
     popup?.setPadding(cardPadding)
   }
 
-  const applyPadding = () => {
+  const applyPadding = (park = false) => {
     // The style can finish loading after teardown.
     if (!mounted) return
     paddingPending = false
@@ -2171,38 +2340,18 @@ export function mount(
       return w > 0 && h > 0 ? { w, h, top: Math.max(r.top, canvas.top) } : null
     }
 
-    const rail = inset(feed.element)
-    /**
-     * The instrument rail, which now intersects too.
-     *
-     * This measured only the story rail for as long as the canvas was its own
-     * grid column — then *neither* rail intersected it, `inset` returned null on
-     * the first line and the zero padding that followed was right by accident
-     * rather than by measurement. The canvas spans the whole grid now so the
-     * rails can be seen through, which turns both of them into real overlaps,
-     * and measuring one of two is worse than measuring neither: the camera gets
-     * pushed right by half the story rail and nothing pushes it back. Measured
-     * at 1896×913 the disc centred at **x=1109 against a visible-gap centre of
-     * 924** — 185px off, which reads as a globe adrift toward the instruments
-     * with a band of dead sky down the left.
-     *
-     * Guarded on being a genuine side column: on a phone the rail is a bar
-     * across the foot and the money block lives inside the scrubber, so a
-     * full-width intersection is the *bottom* being eaten and belongs to the
-     * union below, not to a left or right inset.
-     */
-    const asideBox = inset(hud)
-    const aside = asideBox && asideBox.w < canvas.width - 1 ? asideBox.w : 0
-
-    if (!rail || rail.w < canvas.width - 1) {
-      const left = rail?.w ?? 0
-      writePadding({ top: 0, bottom: 0, right: aside, left })
+    if (wideQuery.matches) {
+      const { left, right } = railEdges(canvas)
+      // The camera centres in what the docked story card leaves; the card's
+      // own popup padding is unchanged, since no popup is open beside it.
+      writePadding({ top: 0, bottom: 0, right, left: Math.max(left, dockEdge()) }, park)
       // The camera centres between the rails; a card must also clear the
       // timeline under the globe, which the camera has never been padded for.
       const scrub = inset(timeline?.element)
-      writeCardPadding({ top: 0, bottom: scrub?.h ?? 0, right: aside, left })
+      const bottom = scrub ? canvas.bottom - scrub.top : 0
+      writeCardPadding({ top: 0, bottom, right, left })
       // The height the card's cap halves (`.maplibregl-popup-content`).
-      mapEl.style.setProperty('--map-card-room', `${Math.round(canvas.height - (scrub?.h ?? 0))}px`)
+      mapEl.style.setProperty('--map-card-room', `${Math.round(canvas.height - bottom)}px`)
       return
     }
 
@@ -2212,6 +2361,8 @@ export function mount(
     // two heights would count the same pixels twice. Only reached on the
     // full-width branch: on the desktop side the rail is a column and the
     // timeline has never contributed padding, and that stays true.
+    const rail = inset(feed.element)
+    if (!rail) return
     const scrubber = inset(timeline?.element)
     const top = scrubber && scrubber.w >= canvas.width - 1
       ? Math.min(rail.top, scrubber.top)
@@ -2258,9 +2409,12 @@ export function mount(
   }
 
 
+  // Oldest first: `story-points` draws in this order (`symbol-z-order:
+  // 'source'`), so the newest story is on top wherever two dots touch, and
+  // `pointSourceWriter` keeps the order through every diff.
   const storyCollection = (visible: MapPoint[], slots: Map<string, FlowerSlot>) => ({
     type: 'FeatureCollection' as const,
-    features: visible.map((p) => {
+    features: [...visible].sort((a, b) => a.t - b.t).map((p) => {
       const slot = slots.get(p.slug)
       const w = p.w ?? UNKNOWN_COVERAGE_W
       const rank = slot?.rank ?? 0
@@ -2283,7 +2437,7 @@ export function mount(
           // rescue the faint end is gone. A week-old beacon now measures 1.89:1
           // against the ocean where it measured 1.57:1; today's is 5.20:1, so a
           // 2.2x range is still an unmistakable step.
-          a: Math.round((0.45 + 0.55 * decayAt(p.t, scrubNow)) * 100) / 100,
+          a: Math.round((0.45 + 0.55 * decayAt(p.t, scrubNow)) * markFade * 100) / 100,
           // Percentile rank from the build, or the neutral "unknown" size.
           w,
           contested: (p.d ?? 0) >= CONTESTED_D ? 1 : 0,
@@ -2317,11 +2471,13 @@ export function mount(
       properties: {
         key: pl.key,
         loc: pl.loc,
-        n: pl.count,
-        amax: pl.amax,
+        // No numeral before its dots: the count reads 0 until the marks' first
+        // step (`fadeMarks`), and the numeral prints only from 2.
+        n: markFade > 0 ? pl.count : 0,
+        amax: pl.amax * markFade,
         // The flower's reach in pixels, which the bloom and the numeral clear.
         r: Math.round(flowerRadius(pl.count) * 10) / 10,
-        heat: Math.round(placeHeat(pl) * 100) / 100,
+        heat: Math.round(placeHeat(pl) * markFade * 100) / 100,
       },
       geometry: { type: 'Point' as const, coordinates: [pl.lng, pl.lat] },
     })),
@@ -2392,11 +2548,12 @@ export function mount(
       type: 'FeatureCollection' as const,
       features: gdacs.map((a) => {
         const t = Date.parse(a.fromDate)
+        const id = detailKey(a)
         return {
           type: 'Feature' as const,
-          id: detailKey(a),
+          id,
           properties: {
-            id: a.eventid,
+            id,
             level: a.alertlevel || 'Green',
             name: a.name,
             kind: a.eventtype || '',
@@ -2594,6 +2751,7 @@ export function mount(
       hoverSlug = null
       feed.highlight(null)
     }
+    storySlugs = visible.map((p) => p.slug)
     // Nothing may be left in the source's feature-state map across a `setData`
     // — see `syncHoverState`. Restored by the `idle` handler once the new
     // tiles are in.
@@ -2604,9 +2762,19 @@ export function mount(
     // Stories and their places are the layers whose *features* change with the
     // scrub head: decay alpha is baked per feature, and a place's count has to
     // reflect the filtered set. Everything else moves by filter above.
-    writePoints(src('stories'), storyCollection(visible, flowerSlots(places)))
-    writePoints(src('story-places'), placeCollection(places))
+    shownStories = visible
+    writeStories()
     applyTimeFilters()
+    // A scrub can move the hovered story within its flower, or take it away.
+    hoverMark.show(hoverTarget(hoverSlug))
+  }
+
+  /** The stories last written, so `fadeMarks` can rewrite them alone. */
+  let shownStories: MapPoint[] = []
+  const writeStories = () => {
+    if (!layersReady) return
+    writePoints(src('stories'), storyCollection(shownStories, flowerSlots(places)))
+    writePoints(src('story-places'), placeCollection(places))
   }
 
   /**
@@ -2704,14 +2872,14 @@ export function mount(
     // for the basemap's cities, and overwriting it would replace the world's
     // place labels with our own datelines.
     map.addSource('story-places', { type: 'geojson', data: empty })
-    map.addSource('gdacs', { type: 'geojson', data: empty })
-    map.addSource('thermal', { type: 'geojson', data: empty })
+    map.addSource('gdacs', { type: 'geojson', data: empty, promoteId: 'id' })
+    map.addSource('thermal', { type: 'geojson', data: empty, promoteId: 'id' })
     map.addSource('chokepoints', { type: 'geojson', data: empty })
     map.addSource('markets', { type: 'geojson', data: empty })
     map.addSource('callouts', { type: 'geojson', data: empty })
     map.addSource('callout-leaders', { type: 'geojson', data: empty })
-    map.addSource('conflict', { type: 'geojson', data: empty })
-    map.addSource('famine', { type: 'geojson', data: empty })
+    map.addSource('conflict', { type: 'geojson', data: empty, promoteId: 'id' })
+    map.addSource('famine', { type: 'geojson', data: empty, promoteId: 'id' })
     map.addSource('genocide', { type: 'geojson', data: empty })
     // The one fixed place: the map's centre, where the clock and the calendar
     // are read.
@@ -2728,20 +2896,11 @@ export function mount(
         ],
       },
     })
-    map.addSource('night', { type: 'geojson', data: empty })
-    map.addSource('day', { type: 'geojson', data: empty })
-    // The same curve the two hemispheres are cut from, kept open — see
-    // `terminatorBand`. A separate source rather than a filter on `night`,
-    // because one is a polygon and the other is the line around it.
-    map.addSource('terminator', { type: 'geojson', data: empty })
-    // Built here rather than fetched: 761 points of arithmetic, so a file would
-    // be a request and an entry in `BASEMAP_V` bought for something the client
-    // can produce before the first frame. It never changes, so unlike `night`
-    // and `day` it is filled at declaration and no tick ever rewrites it.
-    map.addSource('graticule', {
-      type: 'geojson',
-      data: { type: 'FeatureCollection', features: graticuleLines() },
-    })
+    // The night, the day, the twilight band along the terminator and the
+    // graticule: one source, told apart by `kind` (`sphereData`). The four
+    // layers draw next to each other, so one source is one set of tile masks
+    // and one tile pyramid a frame instead of four.
+    map.addSource('sphere', { type: 'geojson', data: sphereData(null, null, null) })
     // `promoteId` so hover can address a whole prayer by name. The geometry is
     // a MultiLineString cut at the antimeridian and at the poles, so a segment
     // is not a thing a reader would ever mean to point at.
@@ -2783,7 +2942,11 @@ export function mount(
           type: 'fill',
           source: 'countries',
           'source-layer': COUNTRY_TILES.layer,
+          // Antarctica is no country's missing figure, and its hatch drew a
+          // pinwheel round the pole (`pole` in `scripts/build/basemap.js`).
+          filter: ['!', ['has', 'pole']],
           paint: {
+            'fill-antialias': false,
             'fill-pattern': 'nodata-hatch',
             'fill-opacity': [
               'case',
@@ -2793,7 +2956,9 @@ export function mount(
             ],
           },
         },
-        'borders',
+        // Over `land`, under the lakes: a lake is not the country's missing
+        // figure, and one source in a row shares one set of tile masks.
+        'lakes',
       )
     } catch (err) {
       console.warn('[map] no-data hatch unavailable', err)
@@ -2846,9 +3011,13 @@ export function mount(
         paint: {
           'fill-color': '#ffffff',
           'fill-opacity': ['case', ['boolean', ['feature-state', 'hover'], false], 0.06, 0],
+          // `borders` draws the edge; an outline pass here drew every
+          // country's at opacity 0, every frame.
+          'fill-antialias': false,
         },
       },
-      'borders',
+      // Beside `land` and the hatch, under the lakes: see the hatch.
+      'lakes',
     )
 
     // The country whose card is open, drawn round in the label's ink, above
@@ -2882,8 +3051,11 @@ export function mount(
       {
         id: 'day-shade',
         type: 'fill',
-        source: 'day',
-        paint: { 'fill-color': DAYLIGHT, 'fill-opacity': 0.055 },
+        source: 'sphere',
+        filter: ['==', ['get', 'kind'], 'day'],
+        // No outline pass: on a translucent fill it doubles the alpha along
+        // every edge, the antimeridian cut and the pole closure included.
+        paint: { 'fill-color': DAYLIGHT, 'fill-opacity': 0.055, 'fill-antialias': false },
       },
       'land',
     )
@@ -2915,8 +3087,9 @@ export function mount(
       {
         id: 'night-shade',
         type: 'fill',
-        source: 'night',
-        paint: { 'fill-color': MAP_COLOURS.space, 'fill-opacity': 0.28 },
+        source: 'sphere',
+        filter: ['==', ['get', 'kind'], 'night'],
+        paint: { 'fill-color': MAP_COLOURS.space, 'fill-opacity': 0.28, 'fill-antialias': false },
       },
       'land',
     )
@@ -2976,7 +3149,8 @@ export function mount(
       {
         id: 'twilight',
         type: 'line',
-        source: 'terminator',
+        source: 'sphere',
+        filter: ['==', ['get', 'kind'], 'band'],
         paint: {
           'line-color': DAYLIGHT,
           'line-width': twilightWidth,
@@ -3011,7 +3185,7 @@ export function mount(
      *
      * The related one: there is no tone that works flat for a grid line, which
      * is the argument `MAP_COLOURS.water` already makes about rivers. A line
-     * quiet enough on `#080a0d` sea is *darker than every stop of the land ramp*
+     * quiet enough on the open sea is *darker than every stop of the land ramp*
      * and vanishes over the continents; anything that survives the ramp's
      * bright end is loud over water, where the beacons are. Drawn first, the
      * question does not arise: it has exactly one ground and is tuned against
@@ -3052,54 +3226,18 @@ export function mount(
       {
         id: 'graticule',
         type: 'line',
-        source: 'graticule',
+        source: 'sphere',
+        filter: ['==', ['get', 'kind'], 'grid'],
         paint: {
           'line-color': MAP_COLOURS.graticule,
-          /**
-           * 1.2, and 0.6 was never the width this line was measured at.
-           *
-           * `MAP_COLOURS.graticule` states its value as "1.44:1 against the
-           * ocean", and that is true of the **tone**. It was not true of
-           * anything on screen, because MapLibre's line shader extrudes to
-           *
-           *     ANTIALIASING = 1.0 / u_device_pixel_ratio / 2.0
-           *     outset = halfwidth + ANTIALIASING
-           *
-           * so at `line-width: 0.6` the solid core is 0.3px against 0.5px of
-           * falloff on a 1× display: **the line never reaches full alpha
-           * anywhere along its length**. Composited that is 1.20:1 by day and
-           * 1.11:1 under the night wash it then sat beneath — two or three
-           * values at 8-bit, and
-           * measured off the rendered canvas over open water it came back at
-           * **1.00–1.06:1**. The one mark added to say the world is a sphere
-           * was, on the hemisphere it was added for, not on the screen at all.
-           * A 16× exposure boost shows it perfectly; nothing else does.
-           *
-           * `ANTIALIASING` is 0.25 at DPR 2, and the arithmetic says a 0.3
-           * half-width should therefore clear it — so the first version of this
-           * note said the bug was a 1× display's alone. **Measured off a
-           * `shoot.mjs` capture at DPR 2, it is not**: the line came out
-           * `rgb(28,32,40)` at 1.2 and `rgb(18,21,26)` at 0.6, which is 47% of
-           * the tone, not 100%. A half-width under one *device* pixel loses
-           * coverage to the rasteriser whatever the falloff term says. Both
-           * densities were short; the retina one was merely less short.
-           *
-           * 1.2 leaves margin on both without becoming a second line family
-           * beside the frontiers. Measured after: **1.24:1 on the night ocean
-           * against 1.10:1 before**, still under the night wash; above it the
-           * tone is about 1.35:1 by day and night alike.
-           *
-           * The tone is deliberately left alone. It was measured correctly and
-           * the defect was never in it — raising it now would spend a second
-           * change on the same symptom and leave nothing to attribute.
-           */
+          // Keep a solid core at 1×. Quiet the grid with opacity.
           'line-width': 1.2,
           'line-opacity': [
             'interpolate',
             ['linear'],
             ['zoom'],
             GLOBE_ZOOM.sphere,
-            1,
+            0.35,
             GLOBE_ZOOM.plane,
             0,
           ],
@@ -3203,7 +3341,7 @@ export function mount(
             'interpolate',
             ['linear'],
             ['zoom'],
-            3.2, 1,
+            3.2, DENSITY_OPACITY,
             DENSITY_FADE_OUT, 0,
           ],
         },
@@ -3227,7 +3365,7 @@ export function mount(
           'circle-radius': ['interpolate', ['linear'], ['zoom'], 0, 9, 3, 15, 6, 22],
           'circle-color': MAP_COLOURS.makkah,
           'circle-blur': 1,
-          'circle-opacity': 0.75,
+          'circle-opacity': 0.4,
         },
       },
       'borders',
@@ -3258,19 +3396,8 @@ export function mount(
           'line-color': MAP_COLOURS.prayer,
           'line-width': 0.9,
           'line-dasharray': [3, 4],
-          // Stays `line-opacity`, unlike `rivers`, and the reason is that this
-          // one is data-driven. `line-layer-opacity` is `data-constant` in the
-          // spec, so it cannot read `feature-state` and cannot carry the hover
-          // step — splitting the two across both properties would express one
-          // decision as a product of two numbers, which is how a hover ends up
-          // at some tone nobody chose.
-          //
-          // The accumulation it would fix is also much smaller here than at a
-          // river confluence: these are five curves of constant solar hour angle,
-          // so they run parallel almost everywhere and only approach each other
-          // near the poles, at 0.2 alpha, in a layer a reader has to switch on.
-          // Not worth a full-canvas compositing pass per frame.
-          'line-opacity': ['case', PRAYER_HOVER, 0.55, 0.2],
+          // Per-feature opacity lifts just the prayer under the pointer.
+          'line-opacity': ['case', PRAYER_HOVER, 0.55, 0.08],
         },
       },
       'borders',
@@ -3322,8 +3449,7 @@ export function mount(
           'text-padding': 2,
         },
         paint: {
-          // Full strength, deliberately, while the line stays at 0.2: the label
-          // is the whole difference between a prayer time and a stray hairline.
+          'text-opacity': ['case', PRAYER_HOVER, 1, 0.35],
           'text-color': MAP_COLOURS.prayer,
           'text-halo-color': MAP_COLOURS.labelHalo,
           'text-halo-width': 1.2,
@@ -3389,7 +3515,7 @@ export function mount(
         // halo: a solid square in the darker red, outlined in the lighter one,
         // is the same two-tone mark the circle drew.
         'icon-color': OVERLAY_COLOUR.conflictFill,
-        'icon-opacity': ['*', ['get', 'a'], 0.55],
+        'icon-opacity': ambientOpacity(['*', ['get', 'a'], 0.55], 0.4),
         'icon-halo-color': OVERLAY_COLOUR.conflict,
         'icon-halo-width': 0.8,
       },
@@ -3454,14 +3580,14 @@ export function mount(
         'icon-color': OVERLAY_COLOUR.gdacs,
         // Green is 98% of the feed, so a flat 0.4 there made the whole layer
         // one weight. Within Green, severity drives presence instead.
-        'icon-opacity': [
+        'icon-opacity': ambientOpacity([
           'case',
           ['==', ['get', 'level'], 'Red'],
           0.95,
           ['==', ['get', 'level'], 'Orange'],
           0.85,
           ['interpolate', ['linear'], ['get', 'mag'], 0, 0.32, 1, 0.8],
-        ],
+        ], 0.45),
         'icon-halo-color': MAP_COLOURS.labelHalo,
         'icon-halo-width': 1,
       },
@@ -3507,7 +3633,7 @@ export function mount(
         id: 'callout-leaders',
         type: 'line',
         source: 'callout-leaders',
-        paint: { 'line-color': MAP_COLOURS.label, 'line-width': 1, 'line-opacity': 0.6 },
+        paint: { 'line-color': MAP_COLOURS.labelDim, 'line-width': 1, 'line-opacity': 0.35 },
       },
       'chokepoint-labels',
     )
@@ -3608,7 +3734,7 @@ export function mount(
         'icon-halo-color': MAP_COLOURS.contested,
         'icon-halo-width': 1,
         'icon-halo-blur': 0,
-        'icon-opacity': ['*', ['get', 'a'], 0.55],
+        'icon-opacity': CONTESTED_OPACITY,
       },
     })
 
@@ -3642,20 +3768,23 @@ export function mount(
         'icon-offset': flowerOffsets(PETAL_PX),
         'icon-allow-overlap': true,
         'icon-ignore-placement': true,
-        // Newest on top where two dots of a flower touch.
-        'symbol-sort-key': ['get', 't'],
+        // Newest on top where two dots touch, by the source's order
+        // (`storyCollection`). A `symbol-sort-key` of the story's time drew
+        // each story in its own call, every frame.
+        'symbol-z-order': 'source',
       },
       paint: {
         'icon-color': catColour(FALLBACK_CATEGORY_COLOUR),
-        'icon-opacity': ['get', 'a'],
+        'icon-opacity': STORY_OPACITY,
         'icon-halo-width': [
           'case',
           ['boolean', ['feature-state', 'hover'], false], 1.8,
           1,
         ],
+        // The hovered dot's rim in Makkah's gold, the ring's (`hover-mark.ts`).
         'icon-halo-color': [
           'case',
-          ['boolean', ['feature-state', 'hover'], false], '#ffffff',
+          ['boolean', ['feature-state', 'hover'], false], MAP_COLOURS.makkah,
           MAP_COLOURS.space,
         ],
       },
@@ -3772,13 +3901,13 @@ export function mount(
         // where sun glint or a weak (<15 K) anomaly could account for the
         // reading, and a mark the satellite is unsure of must not arrive at the
         // same weight as a saturated night pass.
-        'icon-opacity': [
+        'icon-opacity': ambientOpacity([
           'match',
           ['get', 'conf'],
           'high', 0.95,
           'nominal', 0.8,
           0.5,
-        ],
+        ], 0.35),
         'icon-halo-color': MAP_COLOURS.labelHalo,
         'icon-halo-width': 1.2,
       },
@@ -3851,7 +3980,7 @@ export function mount(
         // drawn at all — and it is not the same claim as one made last month. The
         // floor is high on purpose: this layer's quietest mark still has to be a
         // mark, unlike a fortnight-old story beacon which may fade to a hint.
-        'icon-opacity': ['interpolate', ['linear'], ['get', 'age'], 0, 1, 1, 0.55],
+        'icon-opacity': ambientOpacity(['interpolate', ['linear'], ['get', 'age'], 0, 1, 1, 0.55], 0.35),
         'icon-halo-color': MAP_COLOURS.labelHalo,
         'icon-halo-width': 1.4,
       },
@@ -3884,7 +4013,7 @@ export function mount(
       source: 'makkah',
       layout: {
         'text-field': ['get', 'name'],
-        'text-font': ['Source Sans 3 Bold'],
+        'text-font': ['Source Sans 3 Regular'],
         'text-size': ['interpolate', ['linear'], ['zoom'], 0, 12, 4, 15],
         'text-letter-spacing': 0.04,
         'text-anchor': 'top',
@@ -3970,18 +4099,11 @@ export function mount(
   const drawSolar = () => {
     if (!mounted || !layersReady) return
     const now = new Date()
-    const night = nightPolygon(now)
-    src('night')?.setData(
-      night ? { type: 'FeatureCollection', features: [night] } : empty,
-    )
-    // The same boundary from the other side, for the water. See `dayPolygon`.
-    const day = dayPolygon(now)
-    src('day')?.setData(day ? { type: 'FeatureCollection', features: [day] } : empty)
-    // And the boundary itself, for the twilight ramp drawn along it. All three
-    // come back null together at the equinox, so the shade, the lift and the
-    // band appear and disappear as one picture rather than in pieces.
-    const band = terminatorBand(now)
-    src('terminator')?.setData(band ? { type: 'FeatureCollection', features: [band] } : empty)
+    // The night, the same boundary from the other side for the water (see
+    // `dayPolygon`), and the boundary itself for the twilight ramp drawn along
+    // it. All three come back null together at the equinox, so the shade, the
+    // lift and the band appear and disappear as one picture.
+    src('sphere')?.setData(sphereData(nightPolygon(now), dayPolygon(now), terminatorBand(now)))
     // Note these keep drawing at the equinox, when `terminatorLat` degenerates
     // and the two polygons above come back null: the closed form behind them
     // has no such singularity. Across that instant — a window about twelve
@@ -4091,22 +4213,126 @@ export function mount(
     }
     map.on('moveend', land)
     window.setTimeout(land, 1600)
-    map.flyTo(options)
+    const parked = parkedPadding
+    parkedPadding = null
+    map.flyTo(parked && !options.padding ? { ...options, padding: parked } : options)
   }
 
   /**
-   * A short hop toward the story rather than a jump to a fixed zoom: from the
-   * world view it settles at a regional scale, and if you are already zoomed in
-   * it only steps a little closer. The vertical offset leaves room for the
-   * popup, which opens above its anchor.
+   * The open story's place, ringed in the map's gold, and the strait it charts
+   * or follows, ringed more quietly: the series under the card's headline
+   * found on the map. DOM markers, so the one pulse when the camera lands is a
+   * CSS animation (none under reduced motion) and nothing is written to a
+   * source. A marker on the far side of the planet is hidden, not dimmed.
    */
+  let storyRing: { slug: string; marker: Marker } | null = null
+  let seriesRings: Marker[] = []
+  let seriesRinged = ''
+  const ring = (lng: number, lat: number, className: string, radius: number): Marker => {
+    const element = document.createElement('div')
+    element.className = className
+    element.setAttribute('aria-hidden', 'true')
+    element.style.setProperty('--ring-r', `${Math.round(radius)}px`)
+    return new Marker({ element, opacityWhenCovered: '0' }).setLngLat([lng, lat]).addTo(map)
+  }
+  const ringStory = (slug: string | null, pulse = false, series: string[] = []) => {
+    if (storyRing && storyRing.slug !== slug) {
+      storyRing.marker.remove()
+      storyRing = null
+    }
+    if (slug && !storyRing) {
+      const key = placeIndex.of.get(slug)
+      const at = (key && placeIndex.at.get(key)) || pointBySlug.get(slug)
+      if (at) {
+        const count = (key && placeByKey.get(key)?.count) || 1
+        storyRing = { slug, marker: ring(at.lng, at.lat, 'map-story-ring', flowerRadius(count) + 7) }
+      }
+    }
+    if (pulse && storyRing && !reducedMotion()) {
+      const el = storyRing.marker.getElement()
+      el.classList.remove('is-pulse')
+      // A reflow between, or a second landing on the same place never pulses.
+      void el.offsetWidth
+      el.classList.add('is-pulse')
+    }
+    const straits = slug
+      ? series.flatMap((id) => {
+          const cp = id.startsWith('cp:') ? chokepoints.find((c) => c.id === id.slice(3)) : undefined
+          return cp ? [cp] : []
+        })
+      : []
+    const key = straits.map((c) => c.id).join(' ')
+    if (key === seriesRinged) return
+    seriesRinged = key
+    for (const m of seriesRings) m.remove()
+    seriesRings = straits.map((c) => ring(c.lng, c.lat, 'map-story-ring is-series', 11))
+  }
+
   /**
-   * Flies to a story, then opens the full article once the camera settles.
+   * The other stories' dots step back while one is open. One paint write per
+   * open and per close, never per pointer move, so nothing reloads: the
+   * expression reads a property the feature already has.
+   */
+  let dimmedFor: string | null = null
+  const dimStories = (slug: string | null) => {
+    if (!layersReady || slug === dimmedFor) return
+    dimmedFor = slug
+    const dim = (base: ExpressionSpecification): ExpressionSpecification =>
+      slug ? ['case', ['==', ['get', 'slug'], slug], base, ['*', base, OPEN_DIM]] : base
+    map.setPaintProperty('story-points', 'icon-opacity', dim(STORY_OPACITY))
+    map.setPaintProperty('story-contested', 'icon-opacity', dim(CONTESTED_OPACITY))
+  }
+
+  /**
+   * The open story and the range, in the address and the tab's title.
    *
-   * Opening mid-flight means reading a card that is still sliding across the
-   * screen, so the card waits for `moveend`. The timeout is a safety net: if
-   * the movement is interrupted (a drag, another click) `moveend` may never
-   * arrive for this flight, and the reader is left staring at nothing.
+   * `/s/{slug}` is the route that opens a story on the map
+   * (`functions/s/[slug].js`), so Back from an article, a reload or a copied
+   * address returns to the same card on the same slice. `replaceState`, never
+   * a push: opening ten stories must not take ten presses of Back to leave.
+   */
+  let shownStory: ShownStory | null = null
+  const homeTitle = props.homeTitle || document.title
+  const syncAddress = () => {
+    const path = shownStory ? `/s/${shownStory.slug}` : '/'
+    const label = RANGES.find(([, hours]) => hours === rangeHours)?.[0]
+    const query = rangeHours !== DEFAULT_RANGE_HOURS && label ? `?r=${label}` : ''
+    const next = `${path}${query}${location.hash}`
+    // The prototype's own method: the analytics script wraps `history`'s to
+    // count each change of address as a page view, and opening a story is
+    // not one. Which stories a reader opens was never sent anywhere.
+    if (`${location.pathname}${location.search}${location.hash}` !== next) {
+      History.prototype.replaceState.call(history, history.state, '', next)
+    }
+    const title = shownStory ? `${shownStory.title} — zuhd.news` : homeTitle
+    if (document.title !== title) document.title = title
+  }
+  const onStory = (story: ShownStory | null) => {
+    const closing = !story && !!shownStory
+    shownStory = story
+    syncAddress()
+    dimStories(story?.slug ?? null)
+    ringStory(story?.slug ?? null, false, story?.series ?? [])
+    // What moves out of the docked card's way (the peek) asks this.
+    document.body.classList.toggle('map-story-docked', !!popup?.dockBox())
+    // The docked card gave its width back: the camera's next move takes it,
+    // and nothing on screen moves now (`parkedPadding`).
+    if (closing) applyPadding(true)
+  }
+
+  /**
+   * Flies to a story and opens its card.
+   *
+   * On the desktop the card docks beside the story list and opens at once,
+   * before the camera has moved: it is not anchored to the place, so nothing
+   * is gained by waiting and a reader clicking a row wants the words first.
+   * The camera centres the place in the map the card leaves (`padding`, from
+   * `dockEdge`) and marks it when it lands (`ringStory`).
+   *
+   * On a phone the card is a popup on its place, so it still waits for
+   * `moveend`: opening mid-flight means reading a card that is sliding across
+   * the screen. The preview shows meanwhile, and the timeout in `flyCamera` is
+   * the safety net for a flight that never lands.
    */
   const flyToStory = (p: MapPoint, keyboard = false) => {
     if (openSlug === p.slug) return
@@ -4115,9 +4341,14 @@ export function mount(
     feed.highlight(p.slug)
     markRead(p.slug)
 
-    // Immediate feedback while the camera is still travelling; the full
-    // article replaces it once the map settles.
-    popup?.preview(p, leads, scrubNow)
+    const dock = docked()
+    const focusCard = () => {
+      if (cardReturnSlug === p.slug && openSlug === p.slug) popup?.focus()
+    }
+    // Docked: the card now. On a phone: immediate feedback while the camera
+    // is still travelling; the full article replaces it once the map settles.
+    if (dock) void popup?.open(p, scrubNow).then(focusCard)
+    else popup?.preview(p, leads, scrubNow)
 
     // Close enough to place the story in its region, not so close that the
     // region is all that is left. Jumping the world view straight to 3.6 threw
@@ -4127,32 +4358,38 @@ export function mount(
     // can scroll.
     const z = map.getZoom()
     const target = z < 2.5 ? 2.5 : Math.min(z + 0.4, 6)
+    const from = map.getCenter()
+    const duration = reducedMotion()
+      ? 0
+      : flightMs(haversineKm(from.lat, from.lng, p.lat, p.lng), target - z)
 
     flyCamera(
       {
         center: [p.lng, p.lat],
         zoom: target,
-        // Leaves room above the marker for the card, which opens upward and
-        // takes all of that room (`fit` in `popup.ts`). A fifth of the padded
-        // view below the centre, where 110px left a 1440x900 card 70px short
-        // of the stories it scrolled; never under 110, and never within
-        // 120px of the chrome below, which on a phone is most of the screen.
-        // The horizontal correction for the rail comes from the map's padding.
-        offset: [0, storyDrop()],
-        duration: 1150,
-        curve: 1.35,
-        // No `essential: true`. In MapLibre that flag means "animate anyway,
-        // whatever the reader's motion preference" — and a 1.15s flight across
-        // the globe is the exact motion `prefers-reduced-motion` exists to
-        // suppress. Without the flag MapLibre still makes the move, it just
-        // arrives instantly, which is what someone who asked for less motion
-        // wants: the destination, not the journey.
+        // Docked, the place is centred in the map the card leaves: the
+        // padding moves with the flight, so it is never written mid-flight.
+        // On a phone the popup opens upward from the place and takes all the
+        // room above it (`fit` in `popup.ts`), so the place lands a fifth of
+        // the padded view below the centre: never under 110px, and never
+        // within 120px of the chrome below, which on a phone is most of the
+        // screen.
+        ...(dock
+          ? { padding: dockedPadding() }
+          : { offset: [0, storyDrop()] as [number, number] }),
+        duration,
+        easing: easeOutQuart,
+        // No `essential: true`: MapLibre would animate whatever the reader's
+        // motion preference. Reduced motion is a jump (`duration: 0`): the
+        // destination, not the journey.
       },
       () => {
         if (openSlug !== p.slug) return
-        void popup?.open(p, scrubNow).then(() => {
-          if (cardReturnSlug === p.slug && openSlug === p.slug) popup?.focus()
-        })
+        // The strait rings the card already asked for (`syncAddress`) stay:
+        // landing with no series would read as "none" and take them away.
+        ringStory(p.slug, true, shownStory?.slug === p.slug ? shownStory.series : [])
+        if (dock) return
+        void popup?.open(p, scrubNow).then(focusCard)
       },
     )
   }
@@ -4320,15 +4557,53 @@ export function mount(
     if (!layersReady || !map.isSourceLoaded('stories')) return
     if (hoverStateWritten === hoverSlug) return
     map.removeFeatureState({ source: 'stories' })
-    if (hoverSlug) map.setFeatureState({ source: 'stories', id: hoverSlug }, { hover: true })
+    if (hoverSlug) {
+      map.setFeatureState({ source: 'stories', id: hoverSlug }, { hover: true })
+      // Every other story steps back (`STORY_DIM`), so the one lit is the one
+      // seen. One bit per feature, written only when the hovered slug changes:
+      // paint cannot read another feature's state, and `global-state` would
+      // reload the source (`map.md`). Measured per hover, synchronous part:
+      // +2.5 ms over 147 stories (3d), +21 ms over 5,075 (90d), so past
+      // `DIM_MAX` the ring and the gold rim carry the hover alone.
+      if (storySlugs.length <= DIM_MAX) {
+        for (const slug of storySlugs) {
+          if (slug !== hoverSlug) map.setFeatureState({ source: 'stories', id: slug }, { dim: true })
+        }
+      }
+    }
     hoverStateWritten = hoverSlug
   }
 
+  /**
+   * Where the hovered story's dot is drawn: its place, its petal's offset and
+   * its radius, as `storyCollection` lays it out. Past `FLOWER_MAX` a story
+   * draws no dot and the ring stands on its place.
+   */
+  const hoverTarget = (slug: string | null) => {
+    const p = slug ? pointBySlug.get(slug) : undefined
+    if (!slug || !p) return null
+    const pl = placeByKey.get(placeIndex.of.get(slug) ?? '')
+    const rank = pl ? pl.slugs.indexOf(slug) : 0
+    const drawn = rank >= 0 && rank < FLOWER_MAX
+    const [dx, dy] = drawn ? petalOffset(rank) : [0, 0]
+    const r = drawn && rank > 0 ? PETAL_PX : beaconRadius(p.w ?? UNKNOWN_COVERAGE_W)
+    return { lng: pl?.lng ?? p.lng, lat: pl?.lat ?? p.lat, dx, dy, r, loc: p.loc }
+  }
+
+  /**
+   * A pointer that rests on a story's row or dot for a moment fetches it, so
+   * the click opens the whole card on its own frame. A pointer passing over
+   * the list fetches nothing.
+   */
+  let prefetchTimer: number | undefined
   const setHoverSlug = (slug: string | null) => {
     if (slug === hoverSlug) return
     hoverSlug = slug
     feed.highlight(slug)
     syncHoverState()
+    hoverMark.show(hoverTarget(slug))
+    window.clearTimeout(prefetchTimer)
+    if (slug) prefetchTimer = window.setTimeout(() => popup?.prefetch(slug), 90)
   }
 
   /**
@@ -4485,7 +4760,9 @@ export function mount(
     feed.highlight(null)
     // As above: reduced motion turns this into an instant return, not a
     // suppressed one.
-    map.easeTo({ ...HOME_VIEW, bearing: 0, pitch: 0, duration: 800 })
+    const parked = parkedPadding
+    parkedPadding = null
+    map.easeTo({ ...HOME_VIEW, bearing: 0, pitch: 0, duration: 800, ...(parked ? { padding: parked } : {}) })
   }
 
   /**
@@ -4555,10 +4832,8 @@ export function mount(
       const dock = pin && docked()
       if (pin) sheet.dockTo(null)
       if (key === 'makkah') return sheet.showMakkah(Date.now(), pin, dock)
-      const alert = gdacs.find((a) => a.eventid === key)
-      // `details` is keyed by `${eventtype}:${eventid}`, which is why the bare
-      // event id never found anything — see `detailKey` in shared/gdacs.
-      if (alert) return sheet.showGdacs(alert, gdacsDetails[detailKey(alert)] ?? null, pin, dock)
+      const alert = gdacs.find((a) => detailKey(a) === key)
+      if (alert) return sheet.showGdacs(alert, gdacsDetails[key] ?? null, pin, dock)
       const cp = chokepoints.find((c) => c.id === key)
       if (cp) return sheet.showChokepoint(cp, pin, dock)
       const ex = markets.find((m) => m.id === key)
@@ -4790,6 +5065,9 @@ export function mount(
      */
     function resolvePointer(point: Point, lngLat: [number, number]) {
       const f = topHit(point)
+      const source = f?.source
+      const ambient = source === 'conflict' || source === 'thermal' || source === 'famine' || source === 'gdacs'
+      writeAmbientMark('hover', ambient && f?.id != null ? { source, id: String(f.id) } : null)
       const overMarker = f !== null
       const e = { point, lngLat: { lng: lngLat[0], lat: lngLat[1] } }
 
@@ -4850,6 +5128,7 @@ export function mount(
 
     map.on('mouseout', () => {
       lastPointer = null
+      writeAmbientMark('hover', null)
       setHoverSlug(null)
       setHoverPrayer(null)
       hidePrayerTip()
@@ -4959,24 +5238,35 @@ export function mount(
   function setRange(hours: number) {
     rangeHours = hours
     syncRangeChips()
+    syncAddress()
     // The strip holds its own payloads and redraws from them; it does not
     // refetch, so this is arithmetic on data already in hand.
     marketStrip.setRangeDays(hours / 24)
     applyMarketRange()
-    // A range past the build window has stories the payload does not carry.
-    // Fired and not awaited: the beacons the map *does* have should move on the
-    // press rather than after a 250 KB round trip, and `loadArchive` refreshes
-    // again when it lands.
-    if (hours > BUILD_WINDOW_HOURS) void loadArchive()
-    // The axis follows the range once the range leaves the fortnight. Cheap
-    // when it has not: `railStart()` returns the same instant and this returns
-    // without touching the DOM.
+    // A range past the build window has stories the payload does not carry,
+    // and the list, the count and the beacons wait for them: drawn first from
+    // the fortnight and again when the archive landed, the count read 398,
+    // 777 and 1,617 inside a third of a second and the list rebuilt twice.
+    // `loadArchive` draws once, whether it lands or fails.
+    if (hours > BUILD_WINDOW_HOURS && archiveState !== 'done' && coreLoaded) {
+      void loadArchive()
+      return
+    }
+    syncAxis()
+    refresh()
+  }
+
+  /**
+   * The axis follows the range once the range leaves the fortnight. Cheap
+   * when it has not: `railStart()` returns the same instant and this returns
+   * without touching the DOM.
+   */
+  function syncAxis() {
     const start = railStart()
     if (timeline && start !== windowStart) {
       windowStart = start
       rebuildTimeline(start, windowEnd)
     }
-    refresh()
   }
 
   /**
@@ -5378,8 +5668,14 @@ export function mount(
       '/api/map-archive.json',
       abort.signal,
     )
-    if (!data || !mounted) {
+    if (!mounted) return
+    if (!data) {
       archiveState = 'idle'
+      // The press is still owed its drawing: the fortnight's, which is what
+      // this range can honestly show without the archive.
+      syncAxis()
+      refresh()
+      openSharedStory(true)
       return
     }
     archiveState = 'done'
@@ -5389,14 +5685,19 @@ export function mount(
     // here is two beacons on one coordinate and two rows in the rail.
     const have = new Set(points.map((p) => p.slug))
     const older = data.points.filter((p) => !have.has(p.slug))
-    if (!older.length) return
-    archivePoints = older
-    points = [...older, ...points].sort((a, b) => a.t - b.t)
-    pointBySlug = new Map(points.map((p) => [p.slug, p]))
-    placeIndex = buildPlaceIndex(points)
-    corpusStart = Math.min(corpusStart, data.window.start)
-    rebuildTimeline(railStart(), windowEnd)
+    if (older.length) {
+      archivePoints = older
+      points = [...older, ...points].sort((a, b) => a.t - b.t)
+      pointBySlug = new Map(points.map((p) => [p.slug, p]))
+      placeIndex = buildPlaceIndex(points)
+      corpusStart = Math.min(corpusStart, data.window.start)
+    }
+    // A frame between the merge and the drawing, so neither is one long task.
+    await new Promise(requestAnimationFrame)
+    if (!mounted) return
+    syncAxis()
     refresh()
+    openSharedStory()
   }
 
   /**
@@ -5437,6 +5738,8 @@ export function mount(
       lead: marketStrip.element,
     })
     timeline.setPoints(points)
+    // The first scrubber fades in with the globe; a rebuilt one replaces it in place.
+    timeline.element.classList.add('is-arriving')
     container.append(timeline.element)
     placeMarketStrip()
     placeRangeGroup()
@@ -5482,7 +5785,7 @@ export function mount(
    * chip row is told, because a row still reading `3d` over a fortnight of
    * beacons is a legend contradicting its own map.
    */
-  const openSharedStory = () => {
+  const openSharedStory = (archiveFailed = false) => {
     if (!sharedStory || sharedDone) return
     // Two independent arrivals have to have happened: `/api/map.json`, which is
     // what makes `pointBySlug` mean anything, and MapLibre's `load`, which is
@@ -5492,8 +5795,13 @@ export function mount(
     // `popup?.preview` and `popup?.open` were both optional-chaining past a
     // `null` that would exist a few hundred milliseconds later.
     if (!coreLoaded || !popup) return
-    sharedDone = true
     const p = pointBySlug.get(sharedStory)
+    // A story older than the fortnight, reopened on the 30d or 90d slice it
+    // was read on (`?r=`, Back from its article): it is in the archive, which
+    // asks again when it lands, or when it fails, and then the article it
+    // came from is where the reader goes, as before.
+    if (!p && rangeHours > BUILD_WINDOW_HOURS && archiveState !== 'done' && !archiveFailed) return
+    sharedDone = true
     if (!p) {
       location.replace(`/a/${sharedStory}`)
       return
@@ -5599,6 +5907,18 @@ export function mount(
     if (th?.events) thermal = th.events
     if (ipc?.areas) famine = ipc.areas.filter((a) => Number.isFinite(a.lat) && Number.isFinite(a.lng))
     setOverlayData()
+    layersLoaded = true
+    railLanded('layers')
+  }
+
+  /**
+   * The rail's payloads still in flight. When the last lands, failed or not,
+   * the rail settles: a row that never filled says so (`MarketStrip.settle`).
+   */
+  const railPending = new Set(['layers', 'trends'])
+  const railLanded = (name: string) => {
+    if (!railPending.delete(name) || railPending.size || !mounted) return
+    marketStrip.settle()
   }
 
   // The conflict feed is the largest payload the map pulls — a quarter of a
@@ -5661,8 +5981,16 @@ export function mount(
           json<FeatureCollection>(basemapUrl('rivers.geojson', basemapV), abort.signal),
         ])
         if (!mounted) return
-        if (lakes) src('lakes')?.setData(lakes)
-        if (rivers) src('rivers')?.setData(rivers)
+        const put = () => {
+          if (!mounted) return
+          if (lakes) src('lakes')?.setData(lakes)
+          if (rivers) src('rivers')?.setData(rivers)
+        }
+        // The sources are the base style's: `arrive` can come at its cap before
+        // the style's `load` on a slow machine, and data handed to a source that
+        // is not there yet is dropped in silence for the whole session.
+        if (src('lakes') && src('rivers')) put()
+        else map.once('load', put)
       })()
     }, 6000)
   }
@@ -5804,10 +6132,11 @@ export function mount(
    * the same question and fires nothing.
    */
   const clearLoading = () => {
-    if (!loading.isConnected) return
+    if (landPainted) return
     if (!map.getLayer('land')) return
     if (map.queryRenderedFeatures({ layers: ['land'] }).length === 0) return
-    loading.remove()
+    // The label itself goes at `arrive`, with the canvas it stood in for.
+    landPainted = true
     map.off('idle', clearLoading)
     map.off('sourcedata', onLoadingProbe)
   }
@@ -5818,6 +6147,104 @@ export function mount(
   }
   map.on('idle', clearLoading)
   map.on('sourcedata', onLoadingProbe)
+
+  // --- Arrival ------------------------------------------------------------
+  /**
+   * The globe arrives once, in one fade.
+   *
+   * MapLibre draws a cold load in cuts: a bare ocean disc, the coastline in
+   * bands as tiles land, the borders, the names, then the land changing tone
+   * when the metric is applied, then every mark at once. Measured on the live
+   * site at 1440×900 that was six visible states in two and a half seconds.
+   * So the canvas and the sky are held at opacity 0 (`.map-canvas-host` without
+   * `.is-drawn`) while all of that happens unseen, and are shown when the land
+   * is painted and shaded, the stories are on it and the hazard and market
+   * marks have landed — asked on `idle`, so the frame being revealed is a
+   * settled one. The stories follow `MARK_DELAY_MS` later, as their own beat.
+   *
+   * `ARRIVAL_CAP_MS` after mount is the bound: a slow source shows the globe as it stands
+   * rather than holding a blank disc. "Drawing the world…" appears only if the
+   * wait passes `LOADING_DELAY_MS`, so a fast load never flashes it.
+   */
+  const ARRIVAL_CAP_MS = 2500
+  const LOADING_DELAY_MS = 300
+  const MARK_DELAY_MS = 150
+  const MARK_FADE_MS = 220
+  const reduceQuery = matchMedia('(prefers-reduced-motion: reduce)')
+  const loadingTimer = setTimeout(() => {
+    if (!arrived && mounted) mapEl.append(loading)
+  }, LOADING_DELAY_MS)
+  // Counted from mount, not from the style's `load`: on a slow machine `load`
+  // itself came 5 to 9 s in, and counting from it held a blank disc for up to
+  // 12 s where master let the reader watch the world draw. Past the cap the
+  // globe shows as it stands and finishes in view.
+  const arrivalCap = setTimeout(() => arrive(), ARRIVAL_CAP_MS)
+
+  /** Sits the placeholder on the disc the camera will draw, or leaves it hidden. */
+  const placeDisc = () => {
+    if (arrived) return
+    const c = map.getCenter()
+    const cam = calibrate((ll) => map.project(ll), [c.lng, c.lat], map.getBearing(), map.getPitch())
+    if (!cam) return
+    // A transform, not `left`/`top`: the disc follows the padding as the
+    // chrome lands (a phone's scrubber), and a moved transform is no layout shift.
+    disc.style.transform = `translate(${cam.cx - cam.r}px, ${cam.cy - cam.r}px)`
+    disc.style.width = `${cam.r * 2}px`
+    disc.style.height = `${cam.r * 2}px`
+    disc.classList.add('is-placed')
+  }
+  map.once('styledata', () => {
+    if (!mounted) return
+    applyPadding()
+    placeDisc()
+  })
+  // Padding settles as the chrome lands (the phone's scrubber), and every
+  // change of it is a `move`; detached at `arrive`.
+  map.on('move', placeDisc)
+
+  /** Steps the stories' alpha from nothing to their decay, a few frames apart. */
+  const fadeMarks = () => {
+    if (markFade >= 1) return
+    const t0 = performance.now() + MARK_DELAY_MS
+    let last = 0
+    const step = (now: number) => {
+      if (!mounted) return
+      const k = Math.min(1, Math.max(0, (now - t0) / MARK_FADE_MS))
+      // Each step is a `setData`, so a handful, not one per frame.
+      if (k >= 1 || now - last >= 55) {
+        last = now
+        markFade = k
+        if (k > 0) writeStories()
+      }
+      if (k < 1) requestAnimationFrame(step)
+    }
+    requestAnimationFrame(step)
+  }
+
+  const arrive = () => {
+    if (arrived || !mounted) return
+    arrived = true
+    clearTimeout(arrivalCap)
+    clearTimeout(loadingTimer)
+    map.off('idle', onArrivalIdle)
+    map.off('move', placeDisc)
+    loading.remove()
+    mapEl.classList.add('is-drawn')
+    // Under the globe once it is up, and gone once the fade has run.
+    setTimeout(() => disc.remove(), 800)
+    if (reduceQuery.matches) {
+      markFade = 1
+      writeStories()
+    } else fadeMarks()
+    // Inland water is detail, and it waits for the world to be drawn first.
+    loadWater()
+  }
+
+  const onArrivalIdle = () => {
+    if (!landPainted || !metricApplied || !coreLoaded || !layersLoaded) return
+    arrive()
+  }
+  map.on('idle', onArrivalIdle)
 
   const applyMetric = () => {
     // `load` means the *style* is ready, not that a source has fetched and
@@ -5962,6 +6389,8 @@ export function mount(
       // set and `flyToStory`'s "already open" guard swallowed the next click
       // on that same beacon.
       onCountry: writeCountrySelected,
+      onStory,
+      docked,
       onClose: () => {
         returnFocus()
         if (!openSlug) return
@@ -6009,14 +6438,14 @@ export function mount(
     drawSolar()
     applyRefresh()
     openSharedStory()
+    placeDisc()
     // The land tint waits for the countries source to settle, which `load`
     // does not promise for tiles fetched over the network, so listen for it
-    // rather than guess when it has.
+    // rather than guess when it has. Inland water waits for `arrive`.
     void loadLayers()
     void loadMetric(metricKey)
     loadConflict()
     loadLeads()
-    loadWater()
     // The sky's canvas has a box only once MapLibre has laid the host out, so
     // it is measured here rather than at construction.
     sky.resize()
@@ -6027,44 +6456,43 @@ export function mount(
     // the crypto tier, the three world instruments, the Polymarket questions,
     // the Wikipedia attention series and the release calendar — so this is a
     // read of something the build already publishes rather than a new source.
-    // 12 KB gzipped, and nothing on screen waits for it, so it goes behind the
-    // idle callback with the metric index.
+    // 12 KB gzipped. It was behind the idle callback on the reasoning that
+    // nothing on screen waits for it; the rail does, now that every block
+    // stands from the first frame with a placeholder in each row, and a fetch
+    // left for idle filled them a second or more after the money above.
     //
     // **56 indicators, of which the rail read 13** for as long as this fetch
     // existed. The blocks below the world are what the other 43 were for; the
     // fetch itself did not change, because the data was never the thing that
     // was missing.
-    whenIdle(() => {
-      void (async () => {
-        const t = await json<{
-          indicators: TrendIndicator[]
-          events?: TrendEvent[]
-        }>('/api/trends.json', abort.signal)
-        if (!mounted || !t?.indicators) return
-        marketStrip.setTrends(t.indicators, t.events ?? [])
-      })()
-    })
+    void (async () => {
+      const t = await json<{
+        indicators: TrendIndicator[]
+        events?: TrendEvent[]
+      }>('/api/trends.json', abort.signal)
+      if (mounted && t?.indicators) marketStrip.setTrends(t.indicators, t.events ?? [])
+      railLanded('trends')
+    })()
     // The two lists the app's menu had and this rail did not: the largest
     // companies, as a money row, and the AI labs' scores, as the last of the
-    // slow blocks. Idle, for the trends payload's reason: no mark on the map
-    // waits for either.
+    // slow blocks. With the trends, for the trends' reason: their rows stand.
     fetchRailLists = () => {
       fetchRailLists = null
       if (feeds.has('companies')) {
-        whenIdle(() => {
-          void (async () => {
-            const c = await json<{ companies: MapCompany[] }>('/api/companies.json', abort.signal)
-            if (mounted && Array.isArray(c?.companies)) marketStrip.setCompanies(c.companies)
-          })()
-        })
+        railPending.add('companies')
+        void (async () => {
+          const c = await json<{ companies: MapCompany[] }>('/api/companies.json', abort.signal)
+          if (mounted && Array.isArray(c?.companies)) marketStrip.setCompanies(c.companies)
+          railLanded('companies')
+        })()
       }
       if (feeds.has('ai-models')) {
-        whenIdle(() => {
-          void (async () => {
-            const a = await json<AiModels>('/api/ai-models.json', abort.signal)
-            if (mounted && Array.isArray(a?.labs)) marketStrip.setAiModels(a)
-          })()
-        })
+        railPending.add('ai')
+        void (async () => {
+          const a = await json<AiModels>('/api/ai-models.json', abort.signal)
+          if (mounted && Array.isArray(a?.labs)) marketStrip.setAiModels(a)
+          railLanded('ai')
+        })()
       }
     }
     if (wideQuery.matches) fetchRailLists()
@@ -6121,15 +6549,11 @@ export function mount(
   const measureChrome = () => {
     const scrub = timeline?.element
     if (scrub) {
-      document.body.style.setProperty('--map-scrub-h', `${Math.round(scrub.offsetHeight)}px`)
-      // The range chips stand above the scrubber's box on the desktop, so a
-      // card in the canvas's lower-left corner measures to their top
-      // (`--map-scrub-reach`), or it lies over them.
-      const top = Math.min(
-        scrub.getBoundingClientRect().top,
-        timeline?.controls.getBoundingClientRect().top ?? Number.POSITIVE_INFINITY,
-      )
-      document.body.style.setProperty('--map-scrub-reach', `${Math.round(window.innerHeight - top)}px`)
+      const reach = Math.round(window.innerHeight - scrub.getBoundingClientRect().top)
+      // On phones the drawer's own height is reserved separately.
+      const height = wideQuery.matches ? reach : scrub.offsetHeight
+      document.body.style.setProperty('--map-scrub-h', `${height}px`)
+      document.body.style.setProperty('--map-scrub-reach', `${reach}px`)
     }
   }
 
@@ -6322,7 +6746,7 @@ export function mount(
       prop: '--map-rail-user',
       id: 'rail',
       name: 'story list',
-      edge: () => feed.element.getBoundingClientRect().width,
+      edge: () => feed.element.getBoundingClientRect().right,
       onChange: onResize,
     }),
     createPaneSeam({
@@ -6334,13 +6758,150 @@ export function mount(
       // spine of sparklines. See the stylesheet's `body.map-aside-off`, and the
       // note on `verbs` for why the button must not go on saying "show".
       verbs: { off: 'Expand', on: 'Collapse' },
-      edge: () => hud.getBoundingClientRect().width,
+      edge: () => window.innerWidth - hud.getBoundingClientRect().left,
       onChange: onResize,
     }),
   ]
   container.append(...seams.map((s) => s.element))
 
   void startCore()
+
+  /**
+   * Where each country's name stands on the map, from the `countryLabels`
+   * source the map already holds: the switcher flies there and opens the
+   * country's card at that point. Read once, when the switcher first opens.
+   */
+  let countryPoints: Map<string, [number, number]> | null = null
+  const readCountryPoints = () => {
+    if (countryPoints) return
+    // Before the style has loaded there is no source to read: leave the cache
+    // unset so the next opening asks again, rather than keeping an empty list.
+    const source = map.getSource<GeoJSONSource>('countryLabels')
+    if (!source) return
+    countryPoints = new Map()
+    const points = countryPoints
+    void source
+      .getData()
+      .then((data) => {
+        if (data.type !== 'FeatureCollection') return
+        for (const f of data.features) {
+          const name = f.properties?.name
+          if (typeof name === 'string' && f.geometry.type === 'Point') {
+            points.set(name, f.geometry.coordinates as [number, number])
+          }
+        }
+      })
+      .catch(() => {
+        countryPoints = null
+      })
+  }
+
+  /**
+   * Everything the quick switcher can find, asked at every keystroke so it is
+   * the edition, range and rail on screen now.
+   *
+   * Each choice does what its own control does: a story opens through the
+   * row's path, a place flies and opens its list, a country flies and opens
+   * its card, a rail group is pressed, an exchange or a strait flies and pins
+   * its card as its row does. A country without a name on the map (Israel's
+   * is drawn as Palestine's, `map-layers.md`) is left out.
+   */
+  const switchItems = (): SwitchItem[] => {
+    readCountryPoints()
+    const items: SwitchItem[] = []
+    for (const p of [...visiblePoints()].sort((a, b) => b.t - a.t)) {
+      items.push({
+        kind: 'story',
+        label: p.title,
+        sub: [p.loc, relativeTime(p.t, scrubNow)].filter(Boolean).join(' \u00b7 '),
+        href: `/a/${p.slug}`,
+        // A row's press, as the feed's `onSelect` makes it.
+        run: () => {
+          feed.setExpanded(false, true)
+          flyToStory(p, true)
+        },
+      })
+    }
+    for (const pl of [...places].sort((a, b) => b.count - a.count)) {
+      items.push({
+        kind: 'place',
+        label: pl.loc,
+        sub: `${pl.count} ${pl.count === 1 ? 'story' : 'stories'}`,
+        run: () => {
+          feed.setExpanded(false, true)
+          flyCamera({ center: [pl.lng, pl.lat], zoom: Math.max(map.getZoom(), 3.2), duration: 900 }, () => {
+            // As the map's own way to a place: the place card replaces a story
+            // without a close, so the story is let go of here, or its row and
+            // dot would answer "already open" and do nothing.
+            openSlug = null
+            feed.highlight(null)
+            void popup?.openPlace(pl, scrubNow)
+          })
+        },
+      })
+    }
+    const named = new Set<string>()
+    for (const [cc, topo] of Object.entries(CC_TO_TOPOJSON_NAME)) {
+      const name = displayCountryName(topo) ?? topo
+      const at = countryPoints?.get(name)
+      if (!at || named.has(name)) continue
+      named.add(name)
+      items.push({
+        kind: 'country',
+        label: name,
+        href: `/country/${cc}`,
+        run: () => {
+          feed.setExpanded(false, true)
+          flyCamera({ center: at, zoom: Math.max(map.getZoom(), 2.5), duration: 900 }, () => {
+            openSlug = null
+            void popup?.openCountry(cc, at, standingFor(cc))
+          })
+        },
+      })
+    }
+    // The rail's rows as they stand: pressing one is pressing the row.
+    for (const host of [marketStrip.element, marketStrip.signals]) {
+      for (const btn of host.querySelectorAll<HTMLButtonElement>('.map-markets-group')) {
+        const label = btn.querySelector('.map-markets-label')?.textContent?.trim()
+        if (!label || btn.offsetParent === null) continue
+        items.push({
+          kind: 'data',
+          label: label.charAt(0).toUpperCase() + label.slice(1),
+          run: () => btn.click(),
+        })
+      }
+    }
+    for (const ex of markets) {
+      items.push({
+        kind: 'data',
+        label: ex.name,
+        sub: [ex.indexName, ex.city].filter(Boolean).join(', '),
+        href: `/e/${encodeURIComponent(`mkt:${ex.id}`)}`,
+        run: () => {
+          sheet.dockTo(null)
+          feed.setExpanded(false, true)
+          flyCamera({ center: [ex.lng, ex.lat], zoom: Math.max(map.getZoom(), 3.2), duration: 900 })
+          sheet.showMarket(ex, true, marketStrip.rangeDays(), docked(), { signal: signalFor(ex.id, signals) })
+        },
+      })
+    }
+    for (const cp of chokepoints) {
+      items.push({
+        kind: 'data',
+        label: cp.name,
+        sub: 'Shipping',
+        href: `/e/${encodeURIComponent(`cp:${cp.id}`)}`,
+        run: () => {
+          sheet.dockTo(null)
+          feed.setExpanded(false, true)
+          flyCamera({ center: [cp.lng, cp.lat], zoom: Math.max(map.getZoom(), 3.2), duration: 900 })
+          sheet.showChokepoint(cp, true, docked())
+        },
+      })
+    }
+    return items
+  }
+  const switcher = createSwitcher({ items: switchItems })
 
   const onKeyDown = (e: KeyboardEvent) => {
     // `e.target` is only an Element when something focusable has focus — a key
@@ -6401,9 +6962,12 @@ export function mount(
   return () => {
     mounted = false
     abort.abort()
+    clearTimeout(loadingTimer)
+    clearTimeout(arrivalCap)
     clearInterval(clockTimer)
     clearInterval(sunTimer)
     if (refreshFrame) cancelAnimationFrame(refreshFrame)
+    window.clearTimeout(prefetchTimer)
     clearPeekClose()
     chromeObserver.disconnect()
     rootObserver.disconnect()
@@ -6411,9 +6975,11 @@ export function mount(
     window.removeEventListener('resize', onResize)
     document.removeEventListener('keydown', onKeyDown)
     document.removeEventListener('click', onWordmarkClick)
-    document.body.classList.remove('map-wide')
+    document.body.classList.remove('map-wide', 'map-story-docked')
     for (const seam of seams) seam.destroy()
     timeline?.destroy()
+    switcher.destroy()
+    hoverMark.destroy()
     feed.destroy()
     popup?.destroy()
     sheet.destroy()

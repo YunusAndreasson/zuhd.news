@@ -15,6 +15,8 @@ import { writeBasemapTiles } from './build/basemap-tiles.js'
 import { buildCountryPages } from './build/country-pages.js'
 import { buildCountryMetrics } from './build/country-metrics.js'
 import { buildEntityPages } from './build/entity-pages.js'
+import { locatorHtml } from './build/locator.js'
+import { storyChartHtml, storyChartId } from './build/story-chart.js'
 import { latestTrendsPath } from './lib/trends-snapshot.js'
 import { canonicalIndicatorId } from './lib/entity-registry.js'
 import { loadShared } from './build/shared-ts.js'
@@ -28,7 +30,8 @@ import { escHtml, escXml, smartQuotes } from './lib/html.js'
 import { dropRulesNeedingClass, KEPT_MAP_CLASSES } from './lib/page-css.js'
 import { ARCHETYPE_HEADER, siteFooter, WORDMARK, footerStatusLine } from './lib/site-chrome.js'
 import { dayLabel } from './lib/period.js'
-import { listRow } from './lib/list-row.js'
+import { storyDays } from './build/story-days.js'
+import { bundleIslands, scratchDir } from './lib/island-bundle.js'
 import { publishedTimes } from './lib/published-at.js'
 import { pruneOlderThan } from './lib/prune-cache.js'
 import { openStampLedger } from './lib/stable-stamp.js'
@@ -43,7 +46,12 @@ const TEMPLATES_DIR = join(ROOT, 'templates')
 
 const CATEGORY_ORDER = ['politics', 'economy', 'science', 'tech']
 
-
+const { CATEGORY_COLOUR, FALLBACK_CATEGORY_COLOUR, metricName } = await import(
+  await bundleIslands(scratchDir('page-labels'), [
+    { path: 'public/islands/_map/style.ts', names: ['CATEGORY_COLOUR', 'FALLBACK_CATEGORY_COLOUR'] },
+    { path: 'public/islands/_map/format.ts', names: ['metricName'] },
+  ], 'page-labels.mjs')
+)
 
 // Convert structured timeline array to HTML for web rendering
 const contextToHtml = (timeline) => {
@@ -153,21 +161,13 @@ const buildArticle = (filename, dir = CONTENT_DIR) => {
   // strip to the reader's HTML body.
   const concepts = Array.isArray(meta.concepts) ? meta.concepts : []
 
-  // Wrap a leading `Location — ` prefix in a small-caps dateline. The em
-  // dash is dropped; CSS handles the spacing. We strip the dateline from
-  // the markdown source before HTML rendering (so smartQuotes doesn't
-  // curl our attribute quotes), then inject the styled span back into
-  // the first paragraph of the rendered HTML.
+  // Both surfaces use the same prose. The map card gives the place its own
+  // line; in the reader it runs into the lede with the original dash.
   const datelineMatch = body.match(DATELINE_RE)
   const strippedBody = datelineMatch ? body.slice(datelineMatch[0].length) : body
-  let renderedHtml = markdownToHtml(strippedBody)
-  if (datelineMatch) {
-    const location = datelineMatch[1].trim()
-    renderedHtml = renderedHtml.replace(
-      /^<p>/,
-      () => `<p><span class="article-dateline">${escHtml(location)}</span>`,
-    )
-  }
+  const renderedHtml = markdownToHtml(strippedBody)
+  const dateline = datelineMatch ? escHtml(datelineMatch[1].trim()) : ''
+  const withDateline = (prefix) => dateline ? renderedHtml.replace(/^<p>/, () => `<p>${prefix}`) : renderedHtml
 
   const slug = basename(filename, '.md')
   return {
@@ -179,13 +179,9 @@ const buildArticle = (filename, dir = CONTENT_DIR) => {
     // newsletter — the correction reaches a subscriber through the channel
     // they already have rather than sitting on a page nobody revisits.
     correctedAt: corrections.length ? corrections[corrections.length - 1].date : null,
-    bodyHtml: renderedHtml + sourcemark,
-    // The same prose without the flat `Sources:` line. The map's story card
-    // renders its own attribution from the `sources[]` array — linked, and on a
-    // contested story annotated with each outlet's country and tone — so it
-    // needs the body to stop short of naming them, or the card would print the
-    // same outlets twice under two different treatments.
-    bodyHtmlBare: renderedHtml,
+    prose: withDateline(`<strong class="article-dateline">${dateline}</strong> — `),
+    sourcemark,
+    bodyHtmlBare: withDateline(`<span class="article-dateline">${dateline}</span>`),
     title: smartQuotes(meta.title || 'Untitled'),
     dateFormatted: formatDate(meta.date),
     sourceCount: sources.length,
@@ -305,8 +301,36 @@ const formatKickerDate = (addedAt) => {
   return `${day} ${month}`
 }
 
-const buildArticlePage = (article, prev, next, thread, template, indicatorMap) => {
-  const { slug, meta, body, bodyHtml, title, dateFormatted, addedAt, correctedAt } = article
+/**
+ * The article's end, on a phone: the app, named once, for the reader's own
+ * platform. Both stores are in the HTML, so a reader with no script gets both;
+ * `share-bar.ts` keeps the one their phone takes (`pickStore`,
+ * `_app-prompt.ts`). The stylesheet shows it only to a coarse pointer, so a
+ * desktop never sees it.
+ */
+const appHandoffHtml = () =>
+  `<aside class="article-app" aria-label="The app">` +
+  `<span class="label article-app-label">The app</span>` +
+  `<p class="article-app-text">This story’s map, and the globe it sits on, live in the app.</p>` +
+  `<a class="article-app-store" data-platform="ios" href="${SHARE.APP_IOS}" rel="noopener" target="_blank">Download on the App Store</a>` +
+  `<a class="article-app-store" data-platform="android" href="${SHARE.APP_ANDROID}" rel="noopener" target="_blank">Get it on Google Play</a>` +
+  `<p class="article-app-note">No ads, no accounts.</p>` +
+  `</aside>`
+
+/**
+ * @param {object} [extras] what the article carries beyond its text
+ * @param {string} [extras.locator] the globe beside the hook (`locatorHtml`)
+ * @param {string} [extras.chart] the story's series (`storyChartHtml`)
+ * @param {boolean} [extras.onMap] whether `/s/{slug}` can open it on the map
+ */
+const buildArticlePage = (article, prev, next, thread, template, indicatorMap, extras = {}) => {
+  const { slug, meta, body, title, dateFormatted, addedAt, correctedAt } = article
+  // The standalone reader puts the source label in the ledger gutter.
+  const sourceRows = article.sourcemark
+    .replace('<p class="article-sources-flat">Sources: ', '<p class="article-sources-flat"><span class="ledger-label">Sources</span>')
+  const mapLink = extras.onMap
+    ? `<p class="article-map-link"><span class="ledger-label">Map</span><a href="/s/${slug}">See it on the map →</a></p>`
+    : ''
   const isoDate = meta.date || new Date(addedAt).toISOString()
   const category = meta.category || 'politics'
   const description = buildDescription(body)
@@ -364,7 +388,9 @@ const buildArticlePage = (article, prev, next, thread, template, indicatorMap) =
     .replace(/{{title}}/g, () => escHtml(title))
     .replace(/{{titleAttr}}/g, () => escHtml(title))
     .replace(/{{description}}/g, () => escHtml(description))
-    .replace(/{{category}}/g, () => category)
+    .replace(/{{category}}/g, () => escHtml(category))
+    .replace('{{categoryName}}', () => escHtml(capitalize(category)))
+    .replace('{{categoryHue}}', () => CATEGORY_COLOUR[category] ?? FALLBACK_CATEGORY_COLOUR)
     .replace(/{{dateFormatted}}/g, () => dateFormatted)
     .replace(/{{isoDate}}/g, () => isoDate)
     .replace(/{{kickerDate}}/g, () => escHtml(kickerDate))
@@ -381,13 +407,22 @@ const buildArticlePage = (article, prev, next, thread, template, indicatorMap) =
         ? '<a class="article-corrected" href="#corrections">corrected</a>'
         : '',
     )
-    .replace(/{{bodyHtml}}/g, () => bodyHtml)
+    .replace('{{bodyHtml}}', () => (extras.locator ?? '') + article.prose)
+    .replace('{{storyChart}}', () => extras.chart ?? '')
+    .replace('{{sourceRows}}', () => sourceRows + mapLink)
     .replace(/{{entityStrip}}/g, () => entityStripHtml(meta.entities, indicatorMap))
     .replace(/{{threadBlock}}/g, () => threadBlockHtml(thread?.threadContext))
     // The map, not this page. A reader on the article is looking at the
     // canonical surface and sharing the front door — see `shareUrl` in
     // shared/share.ts for why both surfaces send the same link.
     .replace(/{{shareRow}}/g, () => shareRowHtml(SHARE.shareUrl(slug), title))
+    .replace(/{{appHandoff}}/g, () => appHandoffHtml())
+    // Safari's banner opens the app on this story rather than on its front
+    // page: the app claims `/a/*` (`share-surface.md`).
+    .replace(
+      `content="app-id=${SHARE.APP_STORE_ID}"`,
+      () => `content="app-id=${SHARE.APP_STORE_ID}, app-argument=${url}"`,
+    )
     .replace(/{{prevLink}}/g, () => prevLink)
     .replace(/{{nextLink}}/g, () => nextLink)
 }
@@ -466,6 +501,14 @@ rmSync(join(DIST_DIR, 'style.css'), { force: true })
 
 const cssContent = transformSync(readFileSync(join(ROOT, 'public', 'style.css'), 'utf-8'), { loader: 'css', minify: true }).code
 
+// The two standalone pages need only the shared face and tokens, even on a 404.
+const standaloneCss = cssContent.match(/(?:@font-face|:root)\{[^{}]*\}/g).join('')
+for (const page of ['404.html', 'get.html']) {
+  const path = join(DIST_DIR, page)
+  const html = readFileSync(path, 'utf-8')
+  writeFileSync(path, html.replace('<link rel="stylesheet" href="/style.css">', () => `<style>${standaloneCss}</style>`))
+}
+
 // Every page but the map, without the map's rules. A rule that needs a `.map-*`
 // class cannot match where no element has one, and they were over half of what
 // each article re-downloaded. `KEPT_MAP_CLASSES` are the ones another island
@@ -497,6 +540,14 @@ const pageCss = dropRulesNeedingClass(cssContent, /\.map-[\w-]+/, KEPT_MAP_CLASS
  */
 const CF_BEACON = `<script defer src="https://static.cloudflareinsights.com/beacon.min.js" data-cf-beacon='{"token": "9b35a0f25a0543849d0e830feb07a183"}'></script>`
 
+/*
+ * Speculation rules prerender a same-origin link after a 200ms hover. A link
+ * whose click is answered in place is left out (`selector_matches`): the map's
+ * story rows and cards open a card, a `data-island` link opens a sheet, a
+ * follows chip unfolds its chart. Prerendering those fetched a page per hover
+ * that no click would show. The article's previous and next links still
+ * prerender.
+ */
 const headCommon = `<meta charset="utf-8">
   <meta name="google-site-verification" content="wE52hhFpRSdZ0DSAJM4Z57wM4AXTQ68eLrlo-zk_xLw">
   <meta name="author" content="Yunus Andreasson">
@@ -505,7 +556,7 @@ const headCommon = `<meta charset="utf-8">
   <meta name="color-scheme" content="light dark">
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
   <meta name="theme-color" content="#fff" media="(prefers-color-scheme: light)">
-  <meta name="theme-color" content="#080808" media="(prefers-color-scheme: dark)">
+  <meta name="theme-color" content="#080a0d" media="(prefers-color-scheme: dark)">
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="default">
@@ -515,7 +566,7 @@ const headCommon = `<meta charset="utf-8">
   <link rel="icon" href="/favicon.svg" type="image/svg+xml">
   <link rel="apple-touch-icon" href="/apple-touch-icon.png">
   <link rel="manifest" href="/manifest.json">
-  <script type="speculationrules">{"prerender":[{"where":{"and":[{"href_matches":"/*"},{"not":{"href_matches":"/api/*"}},{"not":{"href_matches":"/audio/*"}},{"not":{"href_matches":"/feed.xml"}},{"not":{"href_matches":"/sitemap.xml"}},{"not":{"href_matches":"/og-image.png"}}]},"eagerness":"moderate"}]}</script>
+  <script type="speculationrules">{"prerender":[{"where":{"and":[{"href_matches":"/*"},{"not":{"href_matches":"/api/*"}},{"not":{"href_matches":"/audio/*"}},{"not":{"href_matches":"/feed.xml"}},{"not":{"href_matches":"/sitemap.xml"}},{"not":{"href_matches":"/og-image.png"}},{"not":{"selector_matches":["[data-island]",".article-entity-chip",".map-entity-chip",".map-feed a",".maplibregl-popup a",".map-story-dock a",".map-sheet a"]}}]},"eagerness":"moderate"}]}</script>
   ${CF_BEACON}`
 
 /**
@@ -531,9 +582,7 @@ const headCommon = `<meta charset="utf-8">
  *
  * Unconditional, because these pages are unconditional. The value is
  * `--map-ground` itself, so the chrome and the canvas are the same black
- * rather than two blacks a few points apart. (The site-wide dark value was
- * `#141414`, which was a third black again — it matched neither `--bg`'s
- * `#080808` nor the map's ground.)
+ * across both page types.
  */
 const headCommonDark = headCommon.replace(
   / {2}<meta name="theme-color"[^\n]*\n {2}<meta name="theme-color"[^\n]*/,
@@ -1740,9 +1789,8 @@ const mapWindow = {
   start: mapPoints.length ? mapPoints[0].t : Date.now(),
   end: mapPoints.length ? mapPoints[mapPoints.length - 1].t : Date.now(),
 }
-writeFileSync(join(DIST_DIR, 'api', 'map.json'),
-  JSON.stringify({ generated, window: mapWindow, points: mapPoints }))
-console.log(`  Built: api/map.json (${mapPoints.length} points, ${BUILD_WINDOW_DAYS}d)`)
+// Written after the story cards, which is where a row's figure (`f`) is known:
+// see `storyFigure` below.
 
 // The story archive — everything between the build window and 90 days back.
 //
@@ -2032,7 +2080,7 @@ const indicatorMap = new Map()
     const trends = JSON.parse(readFileSync(p, 'utf8'))
     for (const ind of trends.indicators || []) {
       if (ind?.id && !indicatorMap.has(ind.id)) {
-        indicatorMap.set(ind.id, { label: ind.label, kind: ind.cadence || 'indicator' })
+        indicatorMap.set(ind.id, { label: ind.label, kind: ind.cadence || 'indicator', values: ind.values, unit: ind.unit })
       }
     }
     if (indicatorMap.size) break
@@ -2043,7 +2091,7 @@ const indicatorMap = new Map()
   // from payloads that have nothing to do with which snapshot won.
   for (const ind of extraIndicators) {
     if (!indicatorMap.has(ind.id)) {
-      indicatorMap.set(ind.id, { label: ind.label, kind: ind.cadence || 'indicator' })
+      indicatorMap.set(ind.id, { label: ind.label, kind: ind.cadence || 'indicator', values: ind.values, unit: ind.unit })
     }
   }
 }
@@ -2066,7 +2114,7 @@ for (const a of sorted) {
       category: a.meta.category || 'politics',
       location: a.meta.location || '',
       eventCoverage: Number(a.meta.eventCoverage) || 0,
-      bodyHtml: a.bodyHtmlBare ?? a.bodyHtml,
+      bodyHtml: a.bodyHtmlBare,
       sentimentDivergence:
         a.meta.sentimentDivergence != null ? Number(a.meta.sentimentDivergence) : null,
       // `country` and `sentiment` were dropped here while feed.json (above)
@@ -2125,6 +2173,62 @@ for (const a of sorted) {
 }
 console.log(`  Built: api/story/ (${storyCount} story cards)`)
 
+/**
+ * A story row's figure: the move its card's chart states, on the row's
+ * `place · age` line (`Tehran · 14h ago · Hormuz −46.5%`).
+ *
+ * Only for a story whose prose names its series (`chart:`), the one the card
+ * draws first (`chartOf` in `_map/popup.ts`). The card also falls back to the
+ * first tagged entity, and on a row that fallback printed `Rice −6.1%` under
+ * a fossil flower: a tag match is a guess the card can show its dates for and
+ * a row cannot. The same model as the card's sparkline (`seriesModel` over
+ * the whole published series), so the row and the card cannot state two
+ * moves. Raw numbers only: the island formats them with the card's own
+ * `signedPct` and `pointsFigure`. An optional key on `map.json`, which is the
+ * map's and not one of the app's contracts.
+ *
+ * The label is the series' name cut to what a meta line holds. Attention
+ * series are left out: `Iran +300%` beside a story about Iran reads as a fact
+ * about the country, not about its Wikipedia page.
+ */
+{
+  const { seriesModel } = await loadShared('chart/series.ts')
+  const shortLabel = (label) =>
+    String(label || '')
+      .replace(/\s*\([^)]*\)/g, '')
+      .replace(/^Strait of /, '')
+      .replace(/ (?:Strait )?transits$/, '')
+      .trim()
+  const bySlug = new Map(sorted.map((a) => [a.slug, a]))
+  const storyFigure = (a) => {
+    const id = typeof a.meta.chart === 'string' ? canonicalIndicatorId(a.meta.chart.trim()) : ''
+    if (!id || !indicatorMap.has(id) || id.startsWith('wiki-')) return null
+    const ind = indicatorMap.get(id)
+    const values = Array.isArray(ind.values) ? ind.values : []
+    const model = seriesModel({ values, window: values.length })
+    if (!model.ok) return null
+    const open = model.points[0]
+    const close = model.points[model.points.length - 1]
+    const points = ind.unit === '%'
+    const move = points ? close.value - open.value : model.windowPct
+    const l = shortLabel(ind.label)
+    if (!l || l.length > 24 || !Number.isFinite(move)) return null
+    return { l, m: Math.round(move * 100) / 100, ...(points ? { u: 'pts' } : {}) }
+  }
+  let figures = 0
+  for (const p of mapPoints) {
+    const a = bySlug.get(p.slug)
+    const f = a && storyFigure(a)
+    if (f) {
+      Object.assign(p, { f })
+      figures++
+    }
+  }
+  writeFileSync(join(DIST_DIR, 'api', 'map.json'),
+    JSON.stringify({ generated, window: mapWindow, points: mapPoints }))
+  console.log(`  Built: api/map.json (${mapPoints.length} points, ${figures} with a figure, ${BUILD_WINDOW_DAYS}d)`)
+}
+
 // Lead sentences, keyed by slug. Lazily fetched by the map island so a beacon
 // sheet has real text the moment it opens, without a per-beacon round trip.
 const mapLeads = {}
@@ -2142,7 +2246,7 @@ console.log(`  Built: api/map-leads.json (${Object.keys(mapLeads).length} leads)
 // `default-src 'none'`.
 {
   mkdirSync(join(DIST_DIR, 'basemap'), { recursive: true })
-  const { countriesUltra, depth, countryLabels, places, lakes, rivers, seas, regions } =
+  const { countriesUltra, coast, depth, countryLabels, places, lakes, rivers, seas, regions } =
     await buildMapSources(ROOT)
   const emit = (name, data) => {
     writeFileSync(join(DIST_DIR, 'basemap', name), JSON.stringify(data))
@@ -2154,7 +2258,7 @@ console.log(`  Built: api/map-leads.json (${Object.keys(mapLeads).length} leads)
   const r = emit('rivers.geojson', rivers)
   const s = emit('seas.geojson', seas)
   const g = emit('regions.geojson', regions)
-  const tiles = writeBasemapTiles({ countries: countriesUltra, depth }, join(DIST_DIR, 'basemap', 'tiles'))
+  const tiles = writeBasemapTiles({ countries: countriesUltra, depth, coast }, join(DIST_DIR, 'basemap', 'tiles'))
   console.log(
     `  Built: basemap/ (` +
       `${tiles.files} tiles ${Math.round(tiles.bytes / 1024)}KB, ${places.features.length} places ${c}KB, ` +
@@ -2210,21 +2314,6 @@ const homepage = buildHomepage(sorted, cutoff, homepageTemplate)
 writeFileSync(join(DIST_DIR, 'index.html'), homepage)
 console.log(`  Built: index.html (${articles.length} articles)`)
 
-// Per-article static pages at /a/{slug}.html — replaces the legacy
-// functions/a/[slug].js runtime redirect with real, crawlable, share-ready
-// HTML. Uses `sorted` so prev/next navigation follows reverse-chronological
-// order (newest → oldest), matching the homepage list semantics.
-
-mkdirSync(join(DIST_DIR, 'a'), { recursive: true })
-for (let i = 0; i < sorted.length; i++) {
-  const article = sorted[i]
-  const prev = sorted[i + 1] ?? null
-  const next = sorted[i - 1] ?? null
-  const thread = threadLookup.get(article.slug) || null
-  const html = buildArticlePage(article, prev, next, thread, articleTemplate, indicatorMap)
-  writeFileSync(join(DIST_DIR, 'a', `${article.slug}.html`), html)
-}
-console.log(`  Built: a/ (${sorted.length} article pages)`)
 
 // Islands: compile public/islands/*.ts via esbuild into dist/islands/*.js.
 // Each island is an ESM entry that island-loader.js lazy-loads on first
@@ -2375,47 +2464,20 @@ for (const a of sorted) {
   // biome-ignore lint/suspicious/noAssignInExpressions: the (x ??= []) group-by idiom, in statement position. The rule is here for `if (a = b)`.
   ;(byCategory[cat] ??= []).push(a)
 }
-// Group rows under a date heading so a 14-day archive scans without the
-// date column repeating on every row. Days come in reverse-chronological
-// order (newest first).
-const formatDayHeading = (iso) => {
-  // `iso` is a UTC day, so it is printed as one: the machine's locale set the
-  // month before the date. `island-loader.js` makes the last two "Today" and
-  // "Yesterday", which printed here stayed true only until midnight.
-  return new Date(iso).toLocaleDateString('en-GB', { weekday: 'long', day: 'numeric', month: 'long', timeZone: 'UTC' })
-}
 for (const cat of CATEGORY_ORDER) {
   const items = (byCategory[cat] || [])
     .slice()
     .sort((a, b) => (b.meta.date || '').localeCompare(a.meta.date || ''))
   if (items.length === 0) continue
-  const groups = []
-  let currentDay = null
-  for (const a of items) {
-    const day = (a.meta.date || '').slice(0, 10)
-    if (day !== currentDay) {
-      currentDay = day
-      groups.push({ day, items: [] })
-    }
-    groups[groups.length - 1].items.push(a)
-  }
-  const rows = groups.map(g => `<li class="category-day-group">
-      <h2 class="label section-title category-day-heading"><time datetime="${g.day}" data-day>${formatDayHeading(g.day)}</time></h2>
-      <ol class="category-day-list">${g.items.map(a => `<li>${listRow({
-        title: a.title,
-        url: `/a/${a.slug}`,
-        source: a.sources[0]?.name || '',
-        variant: 'title-source',
-      })}</li>`).join('')}</ol>
-    </li>`).join('\n')
   const html = categoryPageTemplate
     .replaceAll('{{shareRow}}', () => shareRowHtml(`/c/${cat}`, `${capitalize(cat)} — zuhd.news`))
     .replaceAll('{{cat}}', () => cat)
+    .replace('{{categoryHue}}', () => CATEGORY_COLOUR[cat])
     .replaceAll('{{catCap}}', () => capitalize(cat))
     .replaceAll('{{count}}', () => String(items.length))
     .replaceAll('{{days}}', () => String(BUILD_WINDOW_DAYS))
     .replaceAll('{{description}}', () => escHtml(`${items.length} ${cat} articles on zuhd.news. Minimalist global news, typography-first.`))
-    .replaceAll('{{rows}}', () => rows)
+    .replaceAll('{{rows}}', () => storyDays(items))
   writeFileSync(join(DIST_DIR, 'c', `${cat}.html`), html)
 
   // The desk's own share card. Four files, no disk cache — the render is a
@@ -2468,11 +2530,41 @@ const entityResult = await buildEntityPages({
 })
 console.log(`  Built: e/ (${entityResult.count} entity pages)`)
 
+// Per-article static pages at /a/{slug}.html — replaces the legacy
+// functions/a/[slug].js runtime redirect with real, crawlable, share-ready
+// HTML. Uses `sorted` so prev/next navigation follows reverse-chronological
+// order (newest → oldest), matching the homepage list semantics.
+
+// Built after the entity pages: an article prints its story's series from the
+// `/api/entity/{id}.json` those write, the file the map's card reads. And only
+// a story `map.json` holds gets a way to the map: `/s/{slug}` sends any other
+// back here (`openSharedStory`).
+mkdirSync(join(DIST_DIR, 'a'), { recursive: true })
+const onMapSlugs = new Set(mapPoints.map((p) => p.slug))
+for (let i = 0; i < sorted.length; i++) {
+  const article = sorted[i]
+  const prev = sorted[i + 1] ?? null
+  const next = sorted[i - 1] ?? null
+  const thread = threadLookup.get(article.slug) || null
+  const html = buildArticlePage(article, prev, next, thread, articleTemplate, indicatorMap, {
+    locator: locatorHtml({
+      lat: article.meta.lat,
+      lng: article.meta.lng,
+      place: displayLocation(article.meta.location || ''),
+    }),
+    chart: storyChartHtml(storyChartId(article.meta, indicatorMap, canonicalIndicatorId), DIST_DIR),
+    onMap: onMapSlugs.has(article.slug),
+  })
+  writeFileSync(join(DIST_DIR, 'a', `${article.slug}.html`), html)
+}
+console.log(`  Built: a/ (${sorted.length} article pages)`)
+
 // Per-country pages at /country/{ISO2}.html — country profile (flag,
 // capital, 26 metrics × percentile strip × source attribution) + recent
 // coverage for articles datelined in the country. Reads COUNTRY_DATA,
 // COUNTRY_AUGMENTED, and country-ranking.ts directly from /shared/.
 const countryResult = await buildCountryPages({
+  metricName,
   sorted,
   distDir: DIST_DIR,
   template: countryTemplate,

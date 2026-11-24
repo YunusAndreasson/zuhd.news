@@ -56,6 +56,8 @@ shared helpers are indexed in `.claude/rules/shared-modules.md`.
 
 ## Templates and bundles
 
+- The build inlines the shared font faces and root tokens at the `/style.css`
+  link in `get.html` and `404.html` so both render in one request for HTML and CSS.
 - `loadTemplate` puts the `<style>` last in the head, so the title and the
   preloads are not parsed behind it. Every page but the map gets `pageCss`:
   the sheet without rules that need a `.map-*` class. A `.map-*` class an island
@@ -84,6 +86,17 @@ shared helpers are indexed in `.claude/rules/shared-modules.md`.
 - `@shared` means `shared/` in `islands.js`, `island-bundle.js` and both
   tsconfigs. Tests bundle through `bundleIsland` and never override it.
 - Country cards have their own `OG_VERSION`, in `country-pages.js`.
+
+## An article page's figures
+
+- Article pages are built after the entity pages: the story's chart
+  (`build/story-chart.js`) reads the `/api/entity/{id}.json` the map's card
+  reads, picks the series by `chartOf`'s rule and draws it with
+  `shared/chart/spark.ts`. Never compute its figures a second way.
+- The locator (`build/locator.js`) culls and caches by view centre; keep it
+  off d3's clip for polygons wholly on one side, or the build gains minutes.
+- The speculation rules leave out links answered in place
+  (`selector_matches`): a new in-place link class joins that list.
 
 ## An article's three times
 

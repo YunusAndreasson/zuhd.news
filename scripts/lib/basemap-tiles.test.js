@@ -18,6 +18,7 @@ import {
   COUNTRY_TILE_LAYER,
   COUNTRY_TILE_MAX_ZOOM,
   DEPTH_TILE_LAYER,
+  COAST_TILE_LAYER,
   writeBasemapTiles,
 } from '../build/basemap-tiles.js'
 import { bundleIsland, scratchDir } from './island-bundle.js'
@@ -25,8 +26,8 @@ import { bundleIsland, scratchDir } from './island-bundle.js'
 const ROOT = new URL('../..', import.meta.url).pathname
 const dir = scratchDir('basemap-tiles')
 const out = join(dir, 'tiles')
-const { countriesUltra, depth } = await buildMapSources(ROOT)
-const written = writeBasemapTiles({ countries: countriesUltra, depth }, out)
+const { countriesUltra, coast, depth } = await buildMapSources(ROOT)
+const written = writeBasemapTiles({ countries: countriesUltra, depth, coast }, out)
 // The countries alone, which leave the open sea with nothing to draw.
 const landOnly = join(dir, 'land-only')
 writeBasemapTiles({ countries: countriesUltra }, landOnly)
@@ -95,9 +96,10 @@ test('the style asks for the tiles the build writes', () => {
   assert.equal(style.COUNTRY_TILES.maxzoom, COUNTRY_TILE_MAX_ZOOM)
   assert.equal(style.COUNTRY_TILES.layer, COUNTRY_TILE_LAYER)
   assert.equal(style.COUNTRY_TILES.depthLayer, DEPTH_TILE_LAYER)
+  assert.equal(style.COUNTRY_TILES.coastLayer, COAST_TILE_LAYER)
   for (const layer of style.buildStyle().layers) {
     if (layer.source !== 'countries') continue
-    const want = layer.id === 'depth' ? DEPTH_TILE_LAYER : COUNTRY_TILE_LAYER
+    const want = { depth: DEPTH_TILE_LAYER, 'pole-coast': COAST_TILE_LAYER }[layer.id] ?? COUNTRY_TILE_LAYER
     assert.equal(layer['source-layer'], want, layer.id)
   }
 })
@@ -112,6 +114,23 @@ test('the world tile carries every country the coastline has, keyed by iso2', ()
   }
   const expected = new Set(countriesUltra.features.map((f) => f.properties?.iso2).filter(Boolean))
   assert.deepEqual([...expected].filter((c) => !codes.has(c)), [], 'missing from the world tile')
+})
+
+test('Antarctica is a polygon in `countries` and its coast a line in `coast`', () => {
+  // Past 85°S the globe stretches a tile's edge to the pole: stroked as a
+  // polygon, the closure along the pole drew a ring there, and a line in
+  // `countries` was triangulated by `land` into the Weddell Sea.
+  const types = (name) => {
+    const layer = layerOf(read(0, 0, 0), name)
+    const seen = new Set()
+    for (let i = 0; i < (layer?.length ?? 0); i++) {
+      const f = layer.feature(i)
+      if (name === COAST_TILE_LAYER || f.properties.pole) seen.add(f.type)
+    }
+    return [...seen]
+  }
+  assert.deepEqual(types(COUNTRY_TILE_LAYER), [3], 'Antarctica is not a pole-marked polygon')
+  assert.deepEqual(types(COAST_TILE_LAYER), [2], 'the coast layer is not lines')
 })
 
 test('a small state is drawn by the top zoom', () => {

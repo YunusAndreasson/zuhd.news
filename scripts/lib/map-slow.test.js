@@ -16,10 +16,12 @@ import { bundleIsland, scratchDir } from './island-bundle.js'
 const dir = scratchDir('map-slow')
 const slow = await import(await bundleIsland(dir, 'public/islands/_map/slow.ts', 'slow.mjs'))
 const markets = await import(await bundleIsland(dir, 'public/islands/_map/markets.ts', 'mk.mjs'))
+// The figure is shared with the story card's line and the article page's.
+const { pointsFigure } = await import(await bundleIsland(dir, 'shared/chart/spark.ts', 'spark-shared.mjs'))
 
 const { economyGroups, aiScoreChange, aiSummary, AI_CHANGE_DAYS } = slow
 const {
-  economyBlocks, aiBlock, companyEntries, pointsFigure, tickerEntries, worldEntries,
+  economyBlocks, aiBlock, companyEntries, tickerEntries, worldEntries,
   createMarketStrip, sparkInput,
 } = markets
 
@@ -342,9 +344,11 @@ test('the slow rows print their own period, and a range press leaves them standi
     strip.setRangeDays(30)
     assert.equal(strip.element.querySelector('.map-markets-economy .map-markets-summary'), rates)
 
-    // The AI block is hidden until its payload lands, and takes one row.
+    // The AI block holds its row with a placeholder until its payload lands,
+    // and goes when the payload has no labs.
     const ai = strip.element.querySelector('.map-markets-ai')
-    assert.equal(ai.hidden, true)
+    assert.equal(ai.hidden, false)
+    assert.ok(ai.querySelector('.map-markets-ph[aria-hidden="true"]'), 'a placeholder, out of the tree')
     strip.setAiModels(null)
     assert.equal(ai.hidden, true)
     strip.destroy()
@@ -362,16 +366,19 @@ test('the companies’ row stands under markets whichever payload lands first', 
       asOf: days.at(-1), series: { values, periods: dayLabels(days) },
     })
     const labels = () =>
-      [...strip.element.querySelectorAll('.map-markets-row > .map-markets-item:not([hidden]) .map-markets-label')]
+      [...strip.element.querySelectorAll('.map-markets-row > .map-markets-item:not([hidden]):not(.map-markets-ph) .map-markets-label')]
         .map((n) => n.textContent)
+    const held = () => strip.element.querySelectorAll('.map-markets-row > .map-markets-ph').length
 
-    assert.deepEqual(labels(), ['markets'], 'no blank row before the payload')
+    assert.deepEqual(labels(), ['markets'], 'no named row before the payload')
+    assert.ok(held() > 0, 'the groups to come are held by placeholders')
     strip.setTrends([
       daily('btc', 'Bitcoin', days, [60000, 61000, 62000], '$'),
       daily('eth', 'Ethereum', days, [3000, 3100, 3050], '$'),
     ])
     strip.setCompanies([company('a', [100, 101, 103]), company('b', [50, 50, 49])])
     assert.deepEqual(labels(), ['markets', 'companies', 'crypto'])
+    assert.equal(held(), 0, 'and give way when they land')
 
     // And it keeps its place through a redraw, which rebuilds the trend groups.
     strip.setRangeDays(7)

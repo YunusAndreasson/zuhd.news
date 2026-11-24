@@ -24,8 +24,27 @@ import { el } from './_dom'
  * every panel below, because they are the same gesture at two scales: a card
  * admitting it has more to say.
  */
-export const GROW_MS = 220
-export const GROW_EASE = 'cubic-bezier(0.2, 0.7, 0.3, 1)'
+export const GROW_MS = 200
+export const GROW_EASE = 'cubic-bezier(0.16, 1, 0.3, 1)'
+
+/**
+ * The stylesheet's motion tokens (`--dur-normal`, `--ease-out`), read once, so
+ * a box growing here moves on the curve every CSS transition uses. The two
+ * constants above are those tokens' values, for a page whose sheet has not
+ * applied yet.
+ */
+let motion: { duration: number; easing: string } | null = null
+const growTiming = (): { duration: number; easing: string } => {
+  if (motion) return motion
+  const root = document.defaultView?.getComputedStyle?.(document.documentElement)
+  const duration = Number.parseFloat(root?.getPropertyValue('--dur-normal') ?? '')
+  const easing = root?.getPropertyValue('--ease-out').trim() ?? ''
+  motion = {
+    duration: Number.isFinite(duration) ? duration : GROW_MS,
+    easing: easing || GROW_EASE,
+  }
+  return motion
+}
 
 export const reducedMotion = () => matchMedia('(prefers-reduced-motion: reduce)').matches
 
@@ -77,8 +96,7 @@ export const growTo = async (
   node.style.overflow = 'hidden'
   try {
     await node.animate([{ height: `${from}px` }, { height: `${to}px` }], {
-      duration: GROW_MS,
-      easing: GROW_EASE,
+      ...growTiming(),
     }).finished
   } catch {
     // A cancelled animation is an ordinary outcome here — a second chip
@@ -180,10 +198,7 @@ export const disclosure = (
     const overflow = panel.style.overflow
     panel.style.overflow = 'hidden'
     panel
-      .animate([{ height: `${from}px` }, { height: '0px' }], {
-        duration: GROW_MS,
-        easing: GROW_EASE,
-      })
+      .animate([{ height: `${from}px` }, { height: '0px' }], growTiming())
       .finished.finally(() => {
         panel.style.overflow = overflow
         // A trigger pressed while this was folding has reopened the panel, and

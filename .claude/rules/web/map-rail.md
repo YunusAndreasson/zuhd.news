@@ -173,7 +173,7 @@ Camera, MapLibre and cards are `map.md`; layers and marks are `map-layers.md`.
 - **Never** a prayer-times column in the rail: the `prayer-lines` hover gives each time where it is true.
 - One column always: no two-abreast `auto-fill` money grid.
 - Every row in the wide rail is a grid on `--map-rail-cols` (label, level,
-  tick, figure, age, caret), and `.map-markets-move` is `display: contents`,
+  tick, figure, age), and `.map-markets-move` is `display: contents`,
   so each column keeps one x down the rail. A row with no age leaves the cell
   empty. Size a track to the widest value it prints.
 - A phrase is a `.map-markets-caption` across the label and level tracks, so
@@ -240,16 +240,15 @@ Camera, MapLibre and cards are `map.md`; layers and marks are `map-layers.md`.
 - Seams (`_map/panes.ts`) write `--map-rail-user` and `--map-aside-user`,
   never the properties the layout reads. No `preventDefault()` on
   `pointerdown`: it kills the double-click reset.
-- The rails float over a full-width `.map-canvas-host` at 80% of
-  `--map-sunken`. That is a contrast floor for `.map-feed-count`: lift the
-  quiet inks before lowering it. `applyPadding` measures both rails.
+- Floating chrome shares `--map-inset-gap` and `--map-float-fill`. Measure quiet ink over the brightest land before reducing the fill.
+- `railEdges` measures to each panel’s inner edge including its outer inset, for both camera padding and fit zoom.
 - The phone's `--map-head-h`, `--map-bar-h` and `--map-gutter` on
   `body.map-page` are the one statement of those heights.
 - Both rails' top band is `--map-band-h` (taller on a day with a briefing), so
   the two hairlines and the first headings sit level. Both rails' inner edge
   is `--map-gutter-x`.
 - A heading stands `--map-block-gap` under the block above and
-  `--map-head-gap` over its rows: about five to one, or proximity stops
+  `--map-head-gap` over its rows: about three to one, or proximity stops
   saying which rows it names.
 
 ## Time range and scrubber
@@ -269,13 +268,12 @@ Camera, MapLibre and cards are `map.md`; layers and marks are `map-layers.md`.
 - `railStart()` is the larger of the range and `BUILD_WINDOW_HOURS` (the
   build's `BUILD_WINDOW_DAYS`). A rail that is only the range has no band.
 - The band and the bars key on `windowStart` to the head, not on before or
-  after it. Out-of-window bars step down to `--map-line`, never fade.
+  after it. Out-of-window bars share one neutral grey.
   In-window bars stack their stories by category (`CATEGORY_ORDER`, in
   `CATEGORY_COLOUR`): the window is the slice of the globe, in its colours.
 - `readPalette` reads `--map-*` tokens: the site's `--rule` and `--text-dim`
   are invisible on this page.
-- The scrims on `.map-hud` and `.map-timeline` fade in an overhang outside
-  the box: padding would move all that reads `--map-scrub-h`.
+- The desktop timeline holds the range and track in one panel. `--map-scrub-reach` includes its bottom inset.
 
 ## Payloads
 
@@ -303,9 +301,11 @@ Camera, MapLibre and cards are `map.md`; layers and marks are `map-layers.md`.
   on every scrub frame.
 - The list has delegated listeners only: a per-row closure reports the
   `MapPoint` a reused row was built with.
-- `.map-feed-count` is `aria-live`: write it only when the text differs. On
-  the desktop it is said and not shown (`body.map-wide .map-feed-count`); on a
-  phone it is the drawer handle's label.
+- The list is one Tab stop (roving `tabindex`, `syncRoving`); arrows, `j`/`k`,
+  Home and End move focus instantly, and focus drives `onHover` as the pointer
+  does. A row's figure (`f`, `storyFigure` in `build.js`) is only a `chart:`
+  the prose names, never a tag match.
+- `.map-feed-count` is an offscreen live region. On phones the store link and story drawer handle are independent targets.
 - On the desktop the head keeps no row of its own: refresh stands in the
   band, level with the wordmark (`body.map-wide .map-feed-refresh`), by CSS
   and not by moving it. There is no `stories` heading: the four category

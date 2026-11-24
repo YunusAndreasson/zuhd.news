@@ -25,31 +25,21 @@
 // have a shape" rule all stay in one place.
 
 import { seriesModel } from '@shared/chart/series'
+import {
+  SPARK_H,
+  SPARK_W,
+  sparkAreaPath,
+  sparkBars,
+  sparkDot,
+  sparkGeometry,
+  sparkLinePoints,
+} from '@shared/chart/spark'
 import { svgEl } from './_dom'
 
-/**
- * The spark's own box, which is a *proportion* rather than a size.
- *
- * The rendered element is a fixed height and whatever width the row has left,
- * which is between about 80px in the spine and 240px in an open rail — a 4:1
- * swing. So the viewBox is a unit grid the stylesheet stretches, and the
- * numbers here are only how finely the line is quantised.
- */
-export const SPARK_W = 100
-export const SPARK_H = 20
-
-/**
- * Room for the stroke at the top and the bottom of the box.
- *
- * The line is `non-scaling-stroke`, so its width is in CSS pixels and does not
- * shrink with the viewBox — a peak drawn exactly on y=0 would lose half its
- * stroke to the edge. Which is the same failure the graticule's `line-width`
- * records one layer down: a half-width under one device pixel loses coverage
- * whatever the antialiasing arithmetic says.
- */
-const INSET = 1.5
-
-const round = (n: number): number => Number(n.toFixed(1))
+// The box (`SPARK_W` by `SPARK_H`, a proportion the stylesheet stretches), the
+// inset that keeps a peak's stroke inside it and the renormalisation out of
+// `seriesModel`'s box are `shared/chart/spark.ts`, which the article page's
+// build-time line reads too.
 
 /**
  * Makes each spark's fill gradient a unique target for `url(#…)`.
@@ -176,30 +166,8 @@ export const sparkPct = (opts: Pick<SparkOptions, 'values' | 'window' | 'domain'
  */
 export const sparkline = (opts: SparkOptions): Spark | null => {
   const shape = opts.shape ?? 'line'
-  const model = seriesModel({
-    values: opts.values,
-    window: opts.window,
-    domain: opts.domain,
-  })
-  if (!model.ok) return null
-
-  const { pad } = model
-  const iw = model.width - pad.l - pad.r
-  const ih = model.height - pad.t - pad.b
-  if (iw <= 0 || ih <= 0) return null
-
-  const [x0, x1] = opts.span ?? [0, 1]
-  const left = x0 * SPARK_W
-  const width = Math.max(0, (x1 - x0) * SPARK_W)
-
-  const plot = SPARK_H - INSET * 2
-  const floor = SPARK_H - INSET
-  const xOf = (x: number) => left + ((x - pad.l) / iw) * width
-  const yOf = (y: number) => INSET + ((y - pad.t) / ih) * plot
-  const pts = model.points.map((p) => [xOf(p.x), yOf(p.y)] as const)
-  const first = pts[0]
-  const last = pts[pts.length - 1]
-  if (!first || !last) return null
+  const g = sparkGeometry(opts)
+  if (!g) return null
 
   const svg = svgEl('svg', {
     class: 'spark',
@@ -246,16 +214,14 @@ export const sparkline = (opts: SparkOptions): Spark | null => {
      * Zero stories in an hour is an observation; a gap in the run reads as a
      * bucket that was never measured.
      */
-    const slot = width / Math.max(1, pts.length)
-    const bw = Math.max(0.5, slot * 0.72)
-    for (const [x, y] of pts) {
+    for (const bar of sparkBars(g)) {
       svg.append(
         svgEl('rect', {
           class: 'spark-bar',
-          x: String(round(x - bw / 2)),
-          y: String(round(Math.min(y, floor - 0.5))),
-          width: String(round(bw)),
-          height: String(round(Math.max(0.5, floor - y))),
+          x: String(bar.x),
+          y: String(bar.y),
+          width: String(bar.width),
+          height: String(bar.height),
         }),
       )
     }
@@ -282,10 +248,7 @@ export const sparkline = (opts: SparkOptions): Spark | null => {
      * 17px shape findable and states nothing. The sign is the tone's job and
      * the magnitude is the figure's.
      */
-    const d =
-      `M${round(first[0])},${round(floor)} ` +
-      pts.map(([x, y]) => `L${round(x)},${round(y)}`).join(' ') +
-      ` L${round(last[0])},${round(floor)} Z`
+    const d = sparkAreaPath(g)
 
     /**
      * The fill fades downward, and a flat one is what made this look wrong.
@@ -318,7 +281,7 @@ export const sparkline = (opts: SparkOptions): Spark | null => {
     svg.append(
       svgEl('polyline', {
         class: 'spark-line',
-        points: pts.map(([x, y]) => `${round(x)},${round(y)}`).join(' '),
+        points: sparkLinePoints(g),
       }),
     )
     /**
@@ -332,19 +295,19 @@ export const sparkline = (opts: SparkOptions): Spark | null => {
      * at every width — the one construction that gets a dot past the
      * `preserveAspectRatio` trade.
      */
-    svg.append(
-      svgEl('line', {
-        class: 'spark-dot',
-        x1: String(round(last[0])),
-        y1: String(round(last[1])),
-        x2: String(round(last[0])),
-        y2: String(round(last[1])),
-      }),
-    )
+    const dot = sparkDot(g)
+    if (dot) {
+      svg.append(
+        svgEl('line', {
+          class: 'spark-dot',
+          x1: String(dot[0]),
+          y1: String(dot[1]),
+          x2: String(dot[0]),
+          y2: String(dot[1]),
+        }),
+      )
+    }
   }
 
-  const open = model.points[0]
-  const close = model.points[model.points.length - 1]
-  if (!open || !close) return null
-  return { element: svg, windowPct: model.windowPct, ends: [open.value, close.value] }
+  return { element: svg, windowPct: g.windowPct, ends: g.ends }
 }

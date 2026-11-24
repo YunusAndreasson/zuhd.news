@@ -20,7 +20,7 @@
 // keeps peek clear of `.map-sheet.is-peek`'s 55vh ceiling, above which content
 // is clipped rather than scrolled.
 
-import { displaySourceName, EVENT_TYPE_EYEBROW, parseSeverityHero } from '@shared/gdacs'
+import { detailKey, displaySourceName, EVENT_TYPE_EYEBROW, parseSeverityHero } from '@shared/gdacs'
 import { el } from '../_dom'
 import { appPrompt } from '../_app-prompt'
 import { createChart, type ChartOptions } from '../_chart'
@@ -58,6 +58,11 @@ import type {
   ThermalEvent,
   VesselField,
 } from './types'
+
+export interface AmbientMark {
+  source: 'conflict' | 'famine' | 'thermal' | 'gdacs'
+  id: string
+}
 
 export interface Sheet {
   element: HTMLDialogElement
@@ -272,7 +277,7 @@ const casualtyLine = (e: ConflictEvent): string => {
   return `${fmt.grouped(dead)} killed`
 }
 
-export function createSheet(): Sheet {
+export function createSheet(onMark?: (mark: AmbientMark | null) => void): Sheet {
   const dialog = document.createElement('dialog')
   dialog.className = 'island-sheet map-sheet'
   // Every card names itself by its title (`render`); this is for one that has
@@ -353,6 +358,7 @@ export function createSheet(): Sheet {
   dialog.addEventListener('close', () => {
     if (!dialog.open) {
       pinned = false
+      onMark?.(null)
       stopMakkah()
     }
   })
@@ -445,7 +451,7 @@ export function createSheet(): Sheet {
   document.addEventListener('keydown', onDocKey)
   document.addEventListener('pointerdown', onDocDown, true)
 
-  const render = (nodes: Node[], pin: boolean, docked = false) => {
+  const render = (nodes: Node[], pin: boolean, docked = false, mark: AmbientMark | null = null) => {
     if (pinned && !pin) return
     stopMakkah()
     // The app line used to hang off the story sheet, which the map no longer
@@ -469,6 +475,7 @@ export function createSheet(): Sheet {
       dialog.removeAttribute('aria-labelledby')
     }
     open(pin, docked)
+    onMark?.(mark)
   }
 
   const kicker = (parts: Array<string | null | undefined>) =>
@@ -750,7 +757,7 @@ export function createSheet(): Sheet {
           nodes.push(a)
         }
       }
-      render(nodes, pin, docked)
+      render(nodes, pin, docked, { source: 'gdacs', id: detailKey(alert) })
     },
 
     showChokepoint(cp, pin, docked) {
@@ -1366,7 +1373,7 @@ export function createSheet(): Sheet {
         // the difference between a dated record and a false "now".
         nodes.push(el('p', 'map-sheet-note', 'Conflict records publish on a lag and are not live.'))
       }
-      render(nodes, pin, docked)
+      render(nodes, pin, docked, { source: 'conflict', id: event.id })
     },
 
     /**
@@ -1502,7 +1509,7 @@ export function createSheet(): Sheet {
         // join is 75 km wide and the card has to admit it.
         nodes.push(...relatedList(event.related ?? [], 'Reported near here'))
       }
-      render(nodes, pin, docked)
+      render(nodes, pin, docked, { source: 'thermal', id: event.id })
     },
 
     /**
@@ -1644,7 +1651,7 @@ export function createSheet(): Sheet {
         if (area.iso2) links.append(readMore(`/country/${area.iso2}`, 'Country in profile'))
         nodes.push(links)
       }
-      render(nodes, pin, docked)
+      render(nodes, pin, docked, { source: 'famine', id: area.id })
     },
 
     close() {

@@ -8,20 +8,11 @@
   <meta name="robots" content="noindex">
   <title>Not found — zuhd.news</title>
   <meta name="theme-color" content="#fff" media="(prefers-color-scheme: light)">
-  <meta name="theme-color" content="#080808" media="(prefers-color-scheme: dark)">
+  <meta name="theme-color" content="#080a0d" media="(prefers-color-scheme: dark)">
   <link rel="icon" href="/favicon.svg" type="image/svg+xml">
+  <link rel="preload" href="/fonts/source-sans-3-var.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="stylesheet" href="/style.css">
   <style>
-    /* The site's roman, from the path the stylesheet uses, so a reader who has
-       seen any other page already holds it. Without it the stack below named a
-       face nothing loaded and the page was set in the system's. */
-    @font-face {
-      font-family: 'Source Sans 3';
-      font-style: normal;
-      font-weight: 200 900;
-      font-display: swap;
-      size-adjust: 95%;
-      src: url('/fonts/source-sans-3-var.woff2') format('woff2');
-    }
     :root { color-scheme: light dark; }
     /* A landmark and no box, so the three lines stay the body's flex items. */
     main { display: contents; }
@@ -30,28 +21,18 @@
       /* `border-box`, or the padding is added to the full height above and a
          page of three lines scrolls by 64px. */
       box-sizing: border-box;
-      font-family: "Source Sans 3", system-ui, -apple-system, sans-serif;
+      font-family: var(--font-sans);
       display: flex; flex-direction: column; align-items: center; justify-content: center;
       gap: 1rem; text-align: center; padding: 2rem;
-      background: #fff; color: #1a1a1a;
+      background: var(--bg); color: var(--ink-prose);
     }
-    @media (prefers-color-scheme: dark) { body { background: #080808; color: #d4d4d4; } }
-    /* This page carries its own styles on purpose — it has to render when the
-       stylesheet is the thing that could not be found — so these values are
-       copied from the site palette rather than referenced. Keep them in step
-       with `.wordmark`, `--bg`, `--text` and `--text-secondary` in style.css: the dot used to be
-       #c0392b, a red that appears nowhere else on the site, and the tld a
-       different weight again, so the one page a lost reader sees wore a
-       masthead they had never seen before. */
-    .wordmark { font-weight: 700; font-size: 1.25rem; letter-spacing: -0.02em; text-decoration: none; color: inherit; }
-    .wordmark-dot, .wordmark-tld { color: #555; font-weight: 300; }
+    .wordmark { font-weight: var(--weight-bold); font-size: var(--type-copy); letter-spacing: var(--track-item); text-decoration: none; color: inherit; }
+    .wordmark-dot, .wordmark-tld { color: var(--ink-quiet); font-weight: 300; }
     .wordmark-dot { margin-inline: -0.04em; }
-    @media (prefers-color-scheme: dark) { .wordmark-dot, .wordmark-tld { color: #a3a3a3; } }
-    h1 { font-size: 1rem; font-weight: 600; margin: 0; }
+    h1 { font-size: var(--type-heading); font-weight: var(--weight-title); letter-spacing: var(--track-display); color: var(--ink-heading); margin: 0; }
     /* The secondary ink, as the wordmark's tail takes it: quiet is an ink
        step on this site, never an opacity. */
-    p { margin: 0; color: #555; font-size: 0.95rem; }
-    @media (prefers-color-scheme: dark) { p { color: #a3a3a3; } }
+    p { margin: 0; color: var(--ink-quiet); font-size: var(--type-item); }
     a.home { color: inherit; }
   </style>
   <script defer src="https://static.cloudflareinsights.com/beacon.min.js" data-cf-beacon='{"token": "9b35a0f25a0543849d0e830feb07a183"}'></script>

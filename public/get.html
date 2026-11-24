@@ -29,61 +29,103 @@
 <meta name="twitter:image" content="https://zuhd.news/og-image.png?v=3">
 <meta name="twitter:image:alt" content="zuhd.news — global news, no noise">
 <meta name="description" content="Global news that barely uses data. No ads, no accounts.">
-<meta name="theme-color" content="#141414">
+<meta name="theme-color" content="#080a0d">
 <link rel="icon" href="/favicon.svg" type="image/svg+xml">
 <script src="/get.js"></script>
+<link rel="preload" href="/fonts/source-sans-3-var.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="/style.css">
 <style>
-  /* The site's face and its two-weight wordmark: this page was set in the
-     system's sans under a masthead no other page wears. Only a desktop paints
-     it (a phone has left by now), and the system stack still stands behind. */
-  @font-face {
-    font-family: 'Source Sans 3';
-    font-style: normal;
-    font-weight: 200 900;
-    font-display: swap;
-    size-adjust: 95%;
-    src: url('/fonts/source-sans-3-var.woff2') format('woff2');
-  }
   :root { color-scheme: dark; }
   * { box-sizing: border-box; }
-  html, body { height: 100%; margin: 0; }
   body {
-    background: #141414;
-    color: #f2f2f2;
-    font-family: "Source Sans 3", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
-    -webkit-font-smoothing: antialiased;
-    display: flex; align-items: center; justify-content: center;
-    padding: 24px;
+    margin: 0;
+    background: var(--ground-dark);
+    color: var(--ink-heading);
+    font-family: var(--font-sans);
   }
-  main { width: 100%; max-width: 420px; text-align: center; }
-  .wordmark { font-size: 34px; font-weight: 700; letter-spacing: -0.02em; margin: 0; }
-  .wordmark-dot, .wordmark-tld { color: #a3a3a3; font-weight: 300; }
-  .wordmark-dot { margin-inline: -0.04em; }
-  .tag { color: #9a9a9a; font-size: 16px; line-height: 1.5; margin: 14px 0 34px; }
-  .stores { display: flex; flex-direction: column; gap: 12px; }
-  .btn {
-    display: block; text-decoration: none;
-    color: #141414; background: #f2f2f2;
-    font-size: 16px; font-weight: 700;
-    padding: 15px 18px; border-radius: 12px;
-    border: 1px solid #f2f2f2;
+  main {
+    display: grid;
+    grid-template-columns: minmax(18rem, 0.85fr) minmax(0, 1.15fr);
+    align-items: center;
+    gap: clamp(2rem, 6vw, 6rem);
+    width: min(100% - 4rem, 74rem);
+    min-height: 100svh;
+    margin: auto;
+    padding-block: var(--space-lg);
   }
-  .btn.secondary { color: #f2f2f2; background: transparent; border-color: #333; }
-  /* #8a8a8a is 5.3:1 on this ground. It was #6a6a6a, 3.4:1, under AA for
-     13px type on the one page an advertisement lands on. */
-  .note { color: #8a8a8a; font-size: 13px; margin-top: 26px; }
+  .app-icon { display: block; border-radius: 18px; }
+  h1 {
+    margin: var(--space-sm) 0 0;
+    font-size: var(--type-title);
+    font-weight: var(--weight-title);
+    letter-spacing: var(--track-display);
+    line-height: var(--leading-tight);
+  }
+  h1 span { color: var(--ink-quiet); font-weight: var(--weight-light); }
+  .promise {
+    margin: var(--space-sm) 0 var(--space-md);
+    max-width: 25rem;
+    font-size: var(--type-lede);
+    letter-spacing: var(--track-heading);
+    line-height: 1.38;
+    color: var(--ink-prose);
+    text-wrap: balance;
+  }
+  .stores { display: flex; gap: 0.75rem; flex-wrap: wrap; }
+  .stores a {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 46px;
+    padding-inline: 1.25rem;
+    border-radius: 10px;
+    color: var(--bg);
+    background: var(--ink-heading);
+    font-size: var(--type-item);
+    font-weight: var(--weight-semibold);
+    text-decoration: none;
+  }
+  .stores a:hover { background: var(--ink-prose); }
+  a:focus-visible { outline: var(--ring-width) solid var(--focus); outline-offset: var(--ring-offset); }
+  .scan {
+    display: flex;
+    align-items: center;
+    gap: var(--space-sm);
+    margin: var(--space-md) 0 0;
+    padding-top: var(--space-md);
+    border-top: 1px solid var(--line-divider);
+    font-size: var(--type-item);
+    color: var(--ink-quiet);
+  }
+  .scan img { display: block; border-radius: 6px; }
+  .screens { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: var(--space-sm); }
+  .screens img { display: block; width: 100%; height: auto; border: 1px solid var(--line-edge); border-radius: 12px; }
+  @media (max-width: 780px) {
+    main { grid-template-columns: 1fr; width: min(100% - 2rem, 34rem); gap: var(--space-md); }
+    .screens { gap: var(--space-xs); }
+  }
 </style>
 <script defer src="https://static.cloudflareinsights.com/beacon.min.js" data-cf-beacon='{"token": "9b35a0f25a0543849d0e830feb07a183"}'></script>
 </head>
 <body>
   <main>
-    <h1 class="wordmark">zuhd<span class="wordmark-dot">.</span><span class="wordmark-tld">news</span></h1>
-    <p class="tag">Global news that barely uses data.<br>No ads, no accounts.</p>
-    <div class="stores">
-      <a id="play" class="btn" href="https://play.google.com/store/apps/details?id=news.zuhd.app" rel="noopener">Get it on Google Play</a>
-      <a id="ios" class="btn secondary" href="https://apps.apple.com/app/id6760964753" rel="noopener">Download on the App Store</a>
+    <section aria-labelledby="app-name">
+      <img class="app-icon" src="/apple-touch-icon.png" width="76" height="76" alt="">
+      <h1 id="app-name">zuhd<span>.news</span></h1>
+      <p class="promise">Global news that barely uses data. No ads, no accounts.</p>
+      <div class="stores">
+        <a id="ios" href="https://apps.apple.com/app/id6760964753" rel="noopener">Download on the App Store</a>
+        <a id="play" href="https://play.google.com/store/apps/details?id=news.zuhd.app" rel="noopener">Get it on Google Play</a>
+      </div>
+      <figure class="scan">
+        <img src="/app-preview/get-qr.svg" width="99" height="99" alt="QR code for https://zuhd.news/get">
+        <figcaption>Scan with your phone</figcaption>
+      </figure>
+    </section>
+    <div class="screens">
+      <img src="/app-preview/map.webp" width="640" height="1391" alt="The day’s news, where it happened. Stories marked on the app’s globe.">
+      <img src="/app-preview/story.webp" width="640" height="1391" alt="What happened, why it matters, what’s next. A dispatch open beneath its map.">
     </div>
-    <p class="note">Text-first and lightweight — it works on slow connections.</p>
   </main>
 </body>
 </html>

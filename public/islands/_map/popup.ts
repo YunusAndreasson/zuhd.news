@@ -13,10 +13,10 @@
 // zoom.
 
 import { rankStrip } from '@shared/chart/rank-strip'
-import { signedPct } from '@shared/chart/series'
+import { sparkMove } from '@shared/chart/spark'
 import { Popup, type LngLatLike, type Map as MapLibreMap, type PaddingOptions } from 'maplibre-gl'
 import { appPrompt } from '../_app-prompt'
-import { disclosure, growTo, moreLink, type Built, type Disclosure } from '../_disclosure'
+import { disclosure, growTo, moreLink, reducedMotion, type Built, type Disclosure } from '../_disclosure'
 import { el } from '../_dom'
 import {
   buildEntityPanel,
@@ -34,7 +34,6 @@ import { CONTESTED_D, type MapPoint } from './types'
 import type { StoryPlace } from './places'
 import { CATEGORY_COLOUR, FALLBACK_CATEGORY_COLOUR, rampColour } from './style'
 import * as fmt from './format'
-import { pointsFigure } from './markets'
 
 /**
  * Whether a story's `chart` id has a record at `/api/entity/{id}.json`.
@@ -211,6 +210,25 @@ export interface StoryPopupOptions {
    * which is why `openPlace` is the one card here that is not async.
    */
   storiesAt?: (place: StoryPlace) => MapPoint[]
+  /**
+   * Whether a story's card opens docked beside the story list rather than as
+   * a popup on its place: the desktop layout. Asked on every open.
+   */
+  docked?: () => boolean
+  /**
+   * The story the card shows, or null once it shows none (closed, or a
+   * country's or a place's card in its stead). Told only on a change, and
+   * again once the story has loaded with the series it follows.
+   */
+  onStory?: (story: ShownStory | null) => void
+}
+
+/** What the island is told about the story on screen. */
+export interface ShownStory {
+  slug: string
+  title: string
+  /** The series the story charts and follows, once it has loaded. */
+  series: string[]
 }
 
 export interface StoryPopup {
@@ -251,6 +269,10 @@ export interface StoryPopup {
   setPadding(padding: PaddingOptions): void
   /** Take the keyboard into the card, so its links are the next Tab. */
   focus(): void
+  /** Fetch a story (and the series it charts) ahead of a click. */
+  prefetch(slug: string): void
+  /** The docked card while one is open, for the camera's padding. */
+  dockBox(): HTMLElement | null
   /** Whether a node is inside the card. */
   contains(node: Node): boolean
   close(): void
@@ -600,12 +622,166 @@ export function createStoryPopup(map: MapLibreMap, opts: StoryPopupOptions = {})
     }
   }
 
+  /** Take the popup off the map without telling the island it was closed. */
+  const removeQuietly = () => {
+    if (!popup.isOpen()) return
+    reattaching = true
+    try {
+      popup.remove()
+    } finally {
+      reattaching = false
+    }
+  }
+
   let country: string | null = null
   const about = (iso: string | null) => {
     if (iso === country) return
     country = iso
     opts.onCountry?.(iso)
   }
+
+  /** What the island was last told is on screen (`onStory`). */
+  let told: string | null = null
+  const tell = (story: ShownStory | null) => {
+    const key = story ? `${story.slug}|${story.series.join(' ')}` : null
+    if (key === told) return
+    told = key
+    opts.onStory?.(story)
+  }
+
+  /**
+   * The story card on the desktop: a column beside the story list, from under
+   * the map's top controls to above the timeline, instead of a popup on its
+   * place.
+   *
+   * A popup opens upward from its tip, so the place it names sat squeezed at
+   * the card's foot and the region around it (the Gulf, for a Hormuz story)
+   * was pushed down against the timeline. Docked, the card covers the map's
+   * left edge and the camera centres the place in what is left
+   * (`dockBox`, the island's padding). It is never anchored, so it opens at
+   * once, before the camera lands, and grows only downward.
+   *
+   * In the canvas host, as the popup is: a press inside it is a press inside
+   * the map's own chrome, and Escape and the map's click close it the same.
+   */
+  const dock = el('section', 'map-popup map-story-dock')
+  dock.hidden = true
+  dock.setAttribute('aria-label', 'Story')
+  const dockBody = el('div', 'map-story-dock-body')
+  const dockClose = el('button', 'map-story-dock-close', '×')
+  dockClose.type = 'button'
+  dockClose.setAttribute('aria-label', 'Close story')
+  dock.append(dockBody, dockClose)
+  map.getContainer().append(dock)
+  /** Whether the open card is the dock. False from the first frame of its exit. */
+  let docked = false
+
+  /**
+   * A card leaves the way it came, faded and slid a few pixels, in
+   * `--dur-fast`. It was removed in one frame while it opened in 180ms, which
+   * read as the card being cut rather than put away. `transitionend` ends it,
+   * with a timer behind it for a transition that never runs (a hidden tab).
+   * Reduced motion has no transition, and the card goes at once.
+   */
+  const leave = (node: HTMLElement, done: () => void): (() => void) | null => {
+    let over = false
+    const finish = () => {
+      if (over) return
+      over = true
+      node.removeEventListener('transitionend', onEnd)
+      window.clearTimeout(timer)
+      done()
+    }
+    const onEnd = (e: TransitionEvent) => {
+      if (e.target === node && e.propertyName === 'opacity') finish()
+    }
+    // Nothing to cancel: a no-op handed back here would read as a card still
+    // on its way out (`cancelPopupLeave`) until the next open.
+    if (reducedMotion()) {
+      done()
+      return null
+    }
+    node.addEventListener('transitionend', onEnd)
+    const timer = window.setTimeout(finish, 400)
+    node.classList.add('is-leaving')
+    // Cancelled by a card opening before the exit finished: it stays.
+    return () => {
+      if (over) return
+      over = true
+      node.removeEventListener('transitionend', onEnd)
+      window.clearTimeout(timer)
+      node.classList.remove('is-leaving')
+    }
+  }
+
+  let cancelDockLeave: (() => void) | null = null
+  const showDock = () => {
+    cancelDockLeave?.()
+    cancelDockLeave = null
+    dock.hidden = false
+    docked = true
+  }
+  const hideDock = () => {
+    if (!docked) return
+    docked = false
+    cancelDockLeave = leave(dock, () => {
+      cancelDockLeave = null
+      dock.classList.remove('is-leaving')
+      dock.hidden = true
+      dockBody.replaceChildren()
+    })
+  }
+
+  /** A popup on its way out, so `isOpen` can say no while it fades. */
+  let cancelPopupLeave: (() => void) | null = null
+  const stayOpen = () => {
+    cancelPopupLeave?.()
+    cancelPopupLeave = null
+  }
+  const removePopup = () => {
+    if (!popup.isOpen() || cancelPopupLeave) return
+    // What the card was about is let go of now, the island included; only the
+    // pixels linger. Told at the press, not after the fade: until then the
+    // island still held the story open, so a flight landing inside the fade
+    // reopened the card, and a second tap on its dot did nothing.
+    pending = null
+    about(null)
+    tell(null)
+    opts.onClose?.()
+    const node = popup.getElement()
+    if (!node) {
+      removeQuietly()
+      return
+    }
+    cancelPopupLeave = leave(node, () => {
+      cancelPopupLeave = null
+      removeQuietly()
+    })
+  }
+
+  /** The reader closing the docked card: the popup's `close`, for the dock. */
+  const closeDock = () => {
+    if (!docked) return
+    pending = null
+    hideDock()
+    about(null)
+    tell(null)
+    opts.onClose?.()
+  }
+  dockClose.addEventListener('click', closeDock)
+
+  // MapLibre's × removes its popup at once, from a listener on the button.
+  // Caught on the way down so the card leaves as Escape makes it leave.
+  map.getContainer().addEventListener(
+    'click',
+    (e) => {
+      if (!(e.target as Element | null)?.closest?.('.maplibregl-popup-close-button')) return
+      e.stopPropagation()
+      e.preventDefault()
+      removePopup()
+    },
+    true,
+  )
 
   // Fires for the × button and for a real `popup.remove()` alike, so the island
   // is told even when it is the one doing the closing — that is harmless, it
@@ -615,6 +791,7 @@ export function createStoryPopup(map: MapLibreMap, opts: StoryPopupOptions = {})
     if (reattaching) return
     pending = null
     about(null)
+    tell(null)
     opts.onClose?.()
   })
 
@@ -1173,23 +1350,16 @@ export function createStoryPopup(map: MapLibreMap, opts: StoryPopupOptions = {})
       if (!spark) return false
 
       // A series quoted in percent moves in points: a yield going 4.62 to 5.22
-      // rose 0.60, not 13%.
-      const points = record.unit === '%'
-      const delta = points ? spark.ends[1] - spark.ends[0] : spark.windowPct
-      block.classList.toggle('is-pos', delta > 0)
-      block.classList.toggle('is-neg', delta < 0)
+      // rose 0.60, not 13%. `sparkMove` is the article page's figure too.
+      const move = sparkMove(spark, record.unit)
+      block.classList.toggle('is-pos', move.delta > 0)
+      block.classList.toggle('is-neg', move.delta < 0)
 
       const head = el('span', 'map-popup-chart-head')
       head.append(
         el('span', 'map-popup-chart-label', record.label),
         el('span', 'map-popup-chart-reading', record.currentFormatted),
-        // To the hundredth, as a rate is published: rounded to a whole point
-        // a cut of 1.25 read `−1 pts` beside a line that fell further.
-        el(
-          'span',
-          'map-popup-chart-move',
-          points ? pointsFigure(delta, Math.abs(delta) >= 10 ? 1 : 2) : signedPct(delta),
-        ),
+        el('span', 'map-popup-chart-move', move.text),
       )
 
       // The dates the line runs between, which is the period the move is over.
@@ -1329,12 +1499,123 @@ export function createStoryPopup(map: MapLibreMap, opts: StoryPopupOptions = {})
     }
   }
 
+  /**
+   * The whole story: headline, chart, prose, tags, strip, sources and foot.
+   * The same nodes in the dock and in the popup.
+   */
+  const article = (p: MapPoint, now: number, story: Story | null): HTMLElement => {
+    const root = shell(p, now, 'article')
+    if (story) {
+      const folds: Disclosure[] = []
+      // Between the title and the prose, where the app has it: the series is
+      // what the story is about, and the prose reads against it.
+      // The strip is built further down, after the prose it sits under, and
+      // the chart may be drawn before or after it is: whichever comes second
+      // gives up the chip.
+      let charted = false
+      let strip: ReturnType<typeof entityStrip> | null = null
+      const chartId = chartOf(story)
+      root.append(
+        ...storyChart(story, folds, () => pending === p.slug, () => {
+          charted = true
+          if (chartId) strip?.without(chartId)
+        }),
+      )
+      const body = el('div', 'map-popup-prose')
+      // The build escapes any HTML in the article markdown, so this is only
+      // what its renderer wrote: the same string the /a/{slug} page renders.
+      body.innerHTML = story.bodyHtml
+      // And because it is that same string, it opens with the article's own
+      // `City — ` dateline, which `.map-popup-prose` restyles onto a line of
+      // its own exactly as the article page does — directly under a kicker
+      // that has already printed the place. Measured on the built map: the
+      // card said `economy · Ranchi · 3h ago`, then the headline, then
+      // **RANCHI** again two lines later. `mapLeads` strips the same prefix
+      // out of the preview's lead sentence for the same reason (`build.js`,
+      // `DATELINE_RE`); the pinned card renders the whole article and so
+      // never went through that path, which is why the fix reached one of the
+      // two cards and not the other.
+      //
+      // Removed rather than hidden, so it leaves the accessibility tree with
+      // the pixels — a screen reader was hearing the place twice too. And
+      // only when the kicker really does carry it: `kickerFor` drops `loc`
+      // when a story has none, and there the body's dateline is the card's
+      // only statement of where this happened.
+      if (p.loc) body.querySelector('.article-dateline')?.remove()
+      root.append(body)
+      // Directly under the prose, because that is where the tags are. A
+      // disclosure that opens somewhere else is a navigation.
+      root.append(countryTags(body, folds))
+      // Above the isnad, because the chain has to stay last — `about.md`
+      // says every article ends with its sources, and this card is the
+      // article on this surface.
+      strip = entityStrip(story, folds)
+      if (charted && chartId) strip.without(chartId)
+      root.append(...strip.nodes)
+      root.append(...sourceBlock(story, p))
+      // Only on a card that rendered. A story that failed to load is not one
+      // the reader has read, so it must not count towards the app line and
+      // there is nothing worth passing on.
+      root.append(...cardFoot(shareUrl(p.slug), story.title || p.title))
+    } else {
+      // Only when the card itself cannot render does the standalone page
+      // become worth offering — otherwise it holds nothing this does not.
+      root.append(el('p', 'map-popup-lead', 'Could not load this story.'))
+      const link = el('a', 'map-popup-link', 'Open full page')
+      link.href = `/a/${p.slug}`
+      root.append(link)
+    }
+    return root
+  }
+
+  /** The series a story charts and follows, for the island to bring forward. */
+  const seriesOf = (story: Story | null): string[] => {
+    if (!story) return []
+    const ids = [chartOf(story), ...(story.entities ?? []).map((e) => e.id)]
+    return [...new Set(ids.filter((id): id is string => !!id))]
+  }
+
+  /**
+   * Fetch a story and the series it charts. A click asks for both and so does
+   * a pointer resting on its row or dot, so the card is usually whole on the
+   * click's own frame.
+   * Only a series with a record behind it, as `storyChart` draws: a company's
+   * or a lab's id is published on a story and has no `/api/entity` file.
+   */
+  const prefetch = (slug: string) => {
+    void fetchStory(slug).then((story) => {
+      const id = story ? chartOf(story) : null
+      if (id) void fetchEntity(id)
+    })
+  }
+
+  /**
+   * Put a story's nodes in the dock.
+   *
+   * `arriving` is the article replacing its own headline (the fetch had not
+   * landed): the kicker and headline are the same nodes' twins and stay where
+   * they were, and what is new fades in under them. The card only ever grows
+   * downward from the top it opened with: nothing above the line being read
+   * moves. Another story starts at its top.
+   */
+  const toDock = (root: HTMLElement, arriving: boolean) => {
+    stayOpen()
+    removeQuietly()
+    if (!arriving) dockBody.scrollTop = 0
+    root.classList.add(arriving ? 'is-arriving' : 'is-entering')
+    dockBody.replaceChildren(root)
+    showDock()
+  }
+
   return {
     preview(p, leads, now) {
       about(null)
       // Claimed, as `openPlace` does: a story or country fetch in flight would
       // land on this card. `open` claims it again for this story.
       pending = null
+      stayOpen()
+      hideDock()
+      tell({ slug: p.slug, title: p.title, series: [] })
       // `n` has been on every map point since the endpoint was written and
       // nothing has ever read it. It belongs here rather than in a fifth visual
       // channel on the beacon — size, alpha and the ring are already spoken
@@ -1349,29 +1630,40 @@ export function createStoryPopup(map: MapLibreMap, opts: StoryPopupOptions = {})
       popup.setLngLat([p.lng, p.lat]).setDOMContent(root)
       attach()
 
-      // The flight is 1150ms and the fetch is one small same-origin JSON, so
-      // asking for it now means the article is in hand before the camera
-      // lands. Waiting until `moveend` — which is what this did — put a
-      // "Loading…" card between the preview and the story: a third state, and
-      // the one that looked worst, because the article shell with a single
-      // line in it is *shorter* than the preview it replaced. The card grew
-      // wide, collapsed to half its height, then doubled. This is the same
-      // request either way; only its timing changed.
-      // And the series a story charts, behind it: the card draws that under
-      // the title, and a block filled a moment after the card opens is a block
-      // the reader watched arrive.
-      // Only a series with a record behind it, as `storyChart` draws: a
-      // company's or a lab's id is published on a story and has no
-      // `/api/entity` file, so asking was a 404 on every preview.
-      void fetchStory(p.slug).then((story) => {
-        const id = story ? chartOf(story) : null
-        if (id) void fetchEntity(id)
-      })
+      // Asking for the article now means it is in hand before the camera
+      // lands. Waiting until `moveend` put a "Loading…" card between the
+      // preview and the story: a third state, shorter than the preview it
+      // replaced. And the series a story charts, behind it: a block filled a
+      // moment after the card opens is a block the reader watched arrive.
+      prefetch(p.slug)
     },
 
     async open(p, now) {
       about(null)
       pending = p.slug
+      // Docked, the card waits for nothing: the article if it is in hand (a
+      // pointer that rested on the row fetched it), else its headline at once
+      // and the rest under it when the fetch lands. No "Opening…" or
+      // "Loading…" line for the article to replace. The island is told after
+      // the dock is up, so it can measure it.
+      if (opts.docked?.()) {
+        let story = cache.get(p.slug) ?? null
+        if (story) {
+          toDock(article(p, now, story), false)
+        } else {
+          toDock(shell(p, now, 'article'), false)
+          tell({ slug: p.slug, title: p.title, series: [] })
+          story = await fetchStory(p.slug)
+          if (pending !== p.slug) return
+          toDock(article(p, now, story), true)
+        }
+        tell({ slug: p.slug, title: p.title, series: seriesOf(story) })
+        return
+      }
+
+      tell({ slug: p.slug, title: p.title, series: seriesOf(cache.get(p.slug) ?? null) })
+      stayOpen()
+      hideDock()
       fit([p.lng, p.lat])
       popup.setLngLat([p.lng, p.lat])
 
@@ -1388,75 +1680,19 @@ export function createStoryPopup(map: MapLibreMap, opts: StoryPopupOptions = {})
         if (pending !== p.slug) return
       }
 
-      const root = shell(p, now, 'article')
-      if (story) {
-        const folds: Disclosure[] = []
-        // Between the title and the prose, where the app has it: the series is
-        // what the story is about, and the prose reads against it.
-        // The strip is built further down, after the prose it sits under, and
-        // the chart may be drawn before or after it is: whichever comes second
-        // gives up the chip.
-        let charted = false
-        let strip: ReturnType<typeof entityStrip> | null = null
-        const chartId = chartOf(story)
-        root.append(
-          ...storyChart(story, folds, () => pending === p.slug, () => {
-            charted = true
-            if (chartId) strip?.without(chartId)
-          }),
-        )
-        const body = el('div', 'map-popup-prose')
-        // The build escapes any HTML in the article markdown, so this is only
-        // what its renderer wrote: the same string the /a/{slug} page renders.
-        body.innerHTML = story.bodyHtml
-        // And because it is that same string, it opens with the article's own
-        // `City — ` dateline, which `.map-popup-prose` restyles onto a line of
-        // its own exactly as the article page does — directly under a kicker
-        // that has already printed the place. Measured on the built map: the
-        // card said `economy · Ranchi · 3h ago`, then the headline, then
-        // **RANCHI** again two lines later. `mapLeads` strips the same prefix
-        // out of the preview's lead sentence for the same reason (`build.js`,
-        // `DATELINE_RE`); the pinned card renders the whole article and so
-        // never went through that path, which is why the fix reached one of the
-        // two cards and not the other.
-        //
-        // Removed rather than hidden, so it leaves the accessibility tree with
-        // the pixels — a screen reader was hearing the place twice too. And
-        // only when the kicker really does carry it: `kickerFor` drops `loc`
-        // when a story has none, and there the body's dateline is the card's
-        // only statement of where this happened.
-        if (p.loc) body.querySelector('.article-dateline')?.remove()
-        root.append(body)
-        // Directly under the prose, because that is where the tags are. A
-        // disclosure that opens somewhere else is a navigation.
-        root.append(countryTags(body, folds))
-        // Above the isnad, because the chain has to stay last — `about.md`
-        // says every article ends with its sources, and this card is the
-        // article on this surface.
-        strip = entityStrip(story, folds)
-        if (charted && chartId) strip.without(chartId)
-        root.append(...strip.nodes)
-        root.append(...sourceBlock(story, p))
-        // Only on a card that rendered. A story that failed to load is not one
-        // the reader has read, so it must not count towards the app line and
-        // there is nothing worth passing on.
-        root.append(...cardFoot(shareUrl(p.slug), story.title || p.title))
-      } else {
-        // Only when the card itself cannot render does the standalone page
-        // become worth offering — otherwise it holds nothing this does not.
-        root.append(el('p', 'map-popup-lead', 'Could not load this story.'))
-        const link = el('a', 'map-popup-link', 'Open full page')
-        link.href = `/a/${p.slug}`
-        root.append(link)
-      }
-      swap(root)
+      swap(article(p, now, story))
       attach()
+      tell({ slug: p.slug, title: p.title, series: seriesOf(story) })
     },
 
     async openCountry(iso, at, standing = null) {
       const key = `country:${iso}`
       pending = key
       about(iso)
+      // A country's card takes the story's place, in the popup.
+      stayOpen()
+      hideDock()
+      tell(null)
       const loading = el('div', 'map-popup-body map-popup-country')
       loading.append(el('p', 'map-popup-loading', 'Loading…'))
       fit(at)
@@ -1482,6 +1718,9 @@ export function createStoryPopup(map: MapLibreMap, opts: StoryPopupOptions = {})
       // claimed, or a story fetch already in flight would land on top of this
       // card when it resolves.
       pending = `place:${place.key}`
+      stayOpen()
+      hideDock()
+      tell(null)
       fit([place.lng, place.lat])
       popup.setLngLat([place.lng, place.lat]).setDOMContent(placeCard(place, now))
       attach()
@@ -1493,22 +1732,28 @@ export function createStoryPopup(map: MapLibreMap, opts: StoryPopupOptions = {})
       fit()
     },
     focus() {
-      const box = contentBox()
+      const box = docked ? dockBody : contentBox()
       if (!box) return
       box.tabIndex = -1
       box.focus({ preventScroll: true })
     },
-    contains: (node) => popup.getElement()?.contains(node) ?? false,
+    prefetch,
+    dockBox: () => (docked ? dock : null),
+    contains: (node) => dock.contains(node) || (popup.getElement()?.contains(node) ?? false),
     close() {
       pending = null
-      popup.remove()
+      if (docked) closeDock()
+      removePopup()
     },
-    isOpen: () => popup.isOpen(),
+    // Not while it fades out: a press that lands on the map then is a new one.
+    isOpen: () => docked || (popup.isOpen() && !cancelPopupLeave),
     destroy() {
       pending = null
       cache.clear()
       countryCache.clear()
+      stayOpen()
       popup.remove()
+      dock.remove()
     },
   }
 }

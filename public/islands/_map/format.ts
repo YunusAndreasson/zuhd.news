@@ -68,17 +68,45 @@ export const solarClock = (t: number, lng: number): string =>
  * formatted value. That is safe for Makkah, which has no daylight saving, and
  * would need revisiting for a zone that does.
  */
+const zoneFormats = new Map<string, Intl.DateTimeFormat>()
+/**
+ * Offsets already asked, by zone and quarter hour. Every zone's offset changes
+ * on a quarter hour or not at all, and `formatToParts` is the cost that is
+ * left once the formatter is cached: the story list asks per row and per
+ * frame of a scrub or a replay.
+ */
+const zoneOffsets = new Map<string, number>()
+const QUARTER_MS = 900_000
+
 export const zoneOffset = (t: number, tz: string): number => {
-  const parts = new Intl.DateTimeFormat('en-US', {
-    timeZone: tz,
-    hour12: false,
-    year: 'numeric',
-    month: '2-digit',
-    day: '2-digit',
-    hour: '2-digit',
-    minute: '2-digit',
-    second: '2-digit',
-  }).formatToParts(t)
+  const quarter = Math.floor(t / QUARTER_MS)
+  const memo = `${tz} ${quarter}`
+  const known = zoneOffsets.get(memo)
+  if (known !== undefined) return known
+  if (zoneOffsets.size > 20_000) zoneOffsets.clear()
+  const offset = zoneOffsetAt(quarter * QUARTER_MS, tz)
+  zoneOffsets.set(memo, offset)
+  return offset
+}
+
+const zoneOffsetAt = (t: number, tz: string): number => {
+  // One formatter per zone: constructing one costs far more than using it, and
+  // the story list asks three times a row (`dayKey`), 360 times a range press.
+  let format = zoneFormats.get(tz)
+  if (!format) {
+    format = new Intl.DateTimeFormat('en-US', {
+      timeZone: tz,
+      hour12: false,
+      year: 'numeric',
+      month: '2-digit',
+      day: '2-digit',
+      hour: '2-digit',
+      minute: '2-digit',
+      second: '2-digit',
+    })
+    zoneFormats.set(tz, format)
+  }
+  const parts = format.formatToParts(t)
   const f: Record<string, string> = {}
   for (const p of parts) f[p.type] = p.value
   // `hourCycle: h23` is what `hour12: false` asks for, but some ICU builds
@@ -333,15 +361,23 @@ const WEEKDAY_INDEX: Record<string, number> = {
 }
 
 /** Minutes since local midnight, and the local weekday, in an IANA zone. */
+const weekdayFormats = new Map<string, Intl.DateTimeFormat>()
+
 const zonedNow = (tz: string, at: number): { day: number; minutes: number } | null => {
   try {
-    const parts = new Intl.DateTimeFormat('en-US', {
-      timeZone: tz,
-      weekday: 'short',
-      hour: '2-digit',
-      minute: '2-digit',
-      hourCycle: 'h23',
-    }).formatToParts(new Date(at))
+    // Cached for `zoneOffset`'s reason: thirty exchanges ask on every range press.
+    let format = weekdayFormats.get(tz)
+    if (!format) {
+      format = new Intl.DateTimeFormat('en-US', {
+        timeZone: tz,
+        weekday: 'short',
+        hour: '2-digit',
+        minute: '2-digit',
+        hourCycle: 'h23',
+      })
+      weekdayFormats.set(tz, format)
+    }
+    const parts = format.formatToParts(new Date(at))
     const get = (type: string) => parts.find((p) => p.type === type)?.value ?? ''
     const day = WEEKDAY_INDEX[get('weekday')]
     const minutes = Number(get('hour')) * 60 + Number(get('minute'))

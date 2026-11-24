@@ -27,8 +27,12 @@ calendar `hijri.md`.
 ## Camera and projection
 
 - The map opens on Makkah (`HOME_CENTER`), the frame the clock uses. "Whole
-  world", a bare Escape and the wordmark call `resetView`; the URL never
-  changes.
+  world", a bare Escape and the wordmark call `resetView`, which never
+  navigates.
+- The open story and a range other than 3d live in the address
+  (`syncAddress`: `/s/{slug}?r=7d`), by `replaceState` on the prototype, never
+  a push: Back leaves the site, and the analytics script never sees a story
+  open as a page view.
 - It opens on three days (`DEFAULT_RANGE_HOURS`), and a story's decay
   half-life is 72 hours (`DECAY_HALF_LIFE_HOURS`). Both are decisions.
 - The world is a sphere below `GLOBE_ZOOM.sphere` (3) and Mercator above
@@ -40,8 +44,11 @@ calendar `hijri.md`.
   the gap between the rails (`globeSpan`), not the canvas the rails float over;
   capped at `GLOBE_ZOOM.sphere`. `onResize` must call `map.resize()` and
   re-apply it.
-- The reachable floor is about 0.1 below `minZoom`: MapLibre adds
-  `log2(cos lat)` on the sphere. Not a bug.
+- The reachable floor is `minZoom + log2(cos lat)`: MapLibre lowers the zoom
+  to hold the planet's size as the centre moves north, down to 3.5 levels at a
+  pole. Not a bug, but every `['zoom']` drifts with it. Do not clamp the
+  centre with `transformConstrain`: the override replaces MapLibre's own
+  constrain on both projections and reads the committed camera mid-update.
 - Keep `maxPitch: 0` and `touchPitch: false`: `calibrate` (`_map/sky.ts`)
   draws no sky for a tilted or turned camera.
 - The globe takes no keys (`keyboard: false`) and its canvas is out of the
@@ -67,9 +74,9 @@ calendar `hijri.md`.
 - The graticule (`_map/graticule.ts`) is generated, not fetched, and stops at
   85°. It sits before `land`: no tone works on both sea and land. Keep
   `line-width` at 1.2 or more: thinner never reaches its tone.
-- `atmosphere-blend` is a constant 0.2. Never zoom-interpolate it: MapLibre
-  already fades it with the projection. Its colour is MapLibre's own and it
-  paints over labels and marks, so raising it washes the day limb.
+- MapLibre's atmosphere is off (`atmosphere-blend` 0, stated: a `sky` block
+  without it is 0.8). It paints over every layer, and over the poles its lit
+  edge drew a second, shadowed sphere. The sky canvas draws the limb.
 - `drawSolar` sets the light with `anchor: 'map'` and `sunLightPosition`, the
   antisolar direction (MapLibre negates it). With no `light` the crescent is
   fixed to the screen. No other `sky` property reaches the globe.
@@ -97,6 +104,9 @@ calendar `hijri.md`.
 - `Popup` keeps `locationOccludedOpacity: 0`, and `syncOccludedPointer`
   mirrors it to `pointer-events`: opacity alone leaves an unseen card taking
   clicks.
+- A non-constant `symbol-sort-key` draws each run of equal keys in its own
+  call, every frame: never key on one value per feature. `story-points` draws
+  in source order (`symbol-z-order: 'source'`), written oldest first.
 - Hover is `promoteId` and `setFeatureState`, never a `setFilter` or
   `setPaintProperty` per pointer move, which reloads the source.
 - Only `applyMetric` calls `removeFeatureState` on `countries` without an id,
@@ -164,6 +174,11 @@ calendar `hijri.md`.
 ## Cards and the pointer
 
 - Hover never moves the camera. Hover previews or peeks; a click commits.
+- A hovered story is ringed by `_map/hover-mark.ts` (a chevron at the limb when
+  it is out of sight) and the rest dim by feature state up to `DIM_MAX`: each
+  hover writes one state per story.
+- The quick switcher (`_map/switcher.ts`) does what each item's own control
+  does; it never has a second path to open a story, a place or a group.
 - There is one `click` and one `mousemove`, resolved by `topHit` through
   `HIT_ORDER`, the same set as `MARKER_LAYERS`. Per-layer handlers both fire
   for one pointer.
@@ -172,11 +187,16 @@ calendar `hijri.md`.
   one thing that clears `flying`; a bare `map.flyTo` leaves hover dead.
 - `Popup.addTo` fires `close` synchronously on an open popup. Attach only
   through `attach()` (`reattaching`), or the card stays on "Loading…".
-- A story card speaks as the article page does: headline at `--size-h3`,
-  the hook (the prose's first paragraph, the preview's lead) at `--size-md` in
-  `--map-ink`, then the body. A country's own card shares the headline.
+- Story and country card headlines use the 25px step (`--type-lede`).
+  A story's hook uses `--type-copy` in `--map-ink` in both preview and full card.
 - A story card is one width at two densities. `preview()` prefetches the
   story, and `growTo` runs after the position is final.
+- On the desktop a story's card is docked beside the list (`.map-story-dock`,
+  `toDock`), not a popup: it opens at once, grows only downward, and the
+  camera centres the place in the map it leaves (`dockEdge`), ringed in gold
+  (`ringStory`) with the other dots one step back (`dimStories`, paint).
+- Closing the docked card parks the padding (`parkedPadding`) for the next
+  flight or reset: any padding write moves the view, even re-centred.
 - The card's sources (`sourceBlock`) take their thresholds and words from
   `shared/source-framing.ts`, and the fold's words from the article page. A
   lean is a word in ink, never a number and never `--map-pos`/`--map-neg`.
@@ -204,7 +224,7 @@ calendar `hijri.md`.
 - A story's `chart` is fetched only where `hasSeriesRecord`: a company's or a
   lab's id has no `/api/entity` file.
 - Peek answers one question and clips (`.map-sheet.is-peek`). Its offsets
-  are `--map-scrub-reach` (the scrubber or the range chips above it) and
+  are `--map-scrub-reach` (the range bar and its bottom inset) and
   `--map-rail-w`; the first is set on `body`, where the sheet is appended,
   and teardown removes it.
 - A docked card takes the canvas's free height (`--sheet-max-h`) and its width

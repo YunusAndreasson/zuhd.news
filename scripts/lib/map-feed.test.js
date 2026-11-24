@@ -16,6 +16,7 @@ const bundlePath = await bundleIslands(
     'public/islands/_map/feed.ts',
     'public/islands/_map/read-state.ts',
     'public/islands/_map/timeline.ts',
+    'public/islands/_map/switcher.ts',
   ],
   'feed.mjs',
 )
@@ -249,6 +250,115 @@ test('an empty list blames the filters only when the stories did load', async ()
   feed.setLoadFailed(false)
   feed.setItems([point('a')], Date.now())
   assert.equal(empty(), '')
+})
+
+// --- the keyboard: one Tab stop, the arrows, focus as hover ----------------
+
+const key = (dom, target, k) =>
+  target.dispatchEvent(new dom.window.KeyboardEvent('keydown', { key: k, bubbles: true, cancelable: true }))
+
+test('the list is one Tab stop, and the arrows walk it', async () => {
+  const { dom } = setupDom()
+  const { createFeed } = await import(bundlePath)
+  const hovers = []
+  const feed = createFeed({ onSelect() {}, onHover: (p) => hovers.push(p?.slug ?? null) })
+  document.body.append(feed.element)
+  const now = Date.now()
+  feed.setItems([point('a', now), point('b', now - 1000), point('c', now - 2000), point('d', now - 3000)], now)
+
+  const stops = () => [...feed.element.querySelectorAll('.map-feed-title')].filter((a) => a.tabIndex === 0)
+  // 120 headlines were 120 Tab stops, between the map and the range chips.
+  assert.deepEqual(stops().map((a) => a.closest('li').dataset.slug), ['a'], 'one stop, the first row')
+
+  const focused = () => document.activeElement?.closest('.map-feed-item')?.getAttribute('data-slug')
+  stops()[0].focus()
+  assert.equal(focused(), 'a')
+  assert.deepEqual(hovers, ['a'], 'a focused row lights its place, as hover does')
+
+  key(dom, document.activeElement, 'ArrowDown')
+  key(dom, document.activeElement, 'j')
+  assert.equal(focused(), 'c')
+  key(dom, document.activeElement, 'k')
+  assert.equal(focused(), 'b')
+  key(dom, document.activeElement, 'End')
+  assert.equal(focused(), 'd')
+  key(dom, document.activeElement, 'ArrowDown')
+  assert.equal(focused(), 'd', 'the last row holds')
+  key(dom, document.activeElement, 'Home')
+  assert.equal(focused(), 'a')
+  key(dom, document.activeElement, 'ArrowUp')
+  assert.equal(focused(), 'a', 'the first row holds')
+  assert.deepEqual(hovers, ['a', 'b', 'c', 'b', 'd', 'a'])
+
+  // The stop follows the focus, so Tab back into the list lands where it left.
+  key(dom, document.activeElement, 'ArrowDown')
+  assert.deepEqual(stops().map((a) => a.closest('li').dataset.slug), ['b'])
+
+  // Leaving the list puts the place out.
+  const outside = document.createElement('button')
+  document.body.append(outside)
+  outside.focus()
+  assert.equal(hovers.at(-1), null)
+
+  // A rebuild keeps the stop on that row, and on the first when the row goes.
+  feed.setItems([point('a', now), point('b', now - 1000), point('c', now - 2000)], now)
+  assert.deepEqual(stops().map((a) => a.closest('li').dataset.slug), ['b'])
+  feed.setItems([point('c', now - 2000), point('e', now - 4000)], now)
+  assert.deepEqual(stops().map((a) => a.closest('li').dataset.slug), ['c'])
+})
+
+test('a row whose card charts a series prints its move on the meta line', async () => {
+  setupDom()
+  const { createFeed } = await import(bundlePath)
+  const feed = createFeed({ onSelect() {}, onHover() {} })
+  const now = Date.now()
+  feed.setItems(
+    [
+      { ...point('strait', now), loc: 'Tehran', f: { l: 'Hormuz', m: -46.52 } },
+      { ...point('rate', now - 1000), f: { l: 'Fed target rate', m: 0.25, u: 'pts' } },
+      point('plain', now - 2000),
+    ],
+    now,
+  )
+  const fig = (slug) => feed.element.querySelector(`[data-slug="${slug}"] .map-feed-fig`)
+  assert.match(feed.element.querySelector('[data-slug="strait"] .map-feed-meta').textContent, /^Tehran · .+ · Hormuz \u221246\.5%$/)
+  assert.ok(fig('strait').classList.contains('is-neg'))
+  assert.equal(fig('rate').textContent, ' · Fed target rate +0.25 pts')
+  assert.ok(fig('rate').classList.contains('is-pos'))
+  assert.equal(fig('plain'), null)
+
+  // The age moves with the scrub head; the figure stays.
+  feed.setItems([{ ...point('strait', now), loc: 'Tehran', f: { l: 'Hormuz', m: -46.52 } }], now + 7_200_000)
+  assert.match(feed.element.querySelector('[data-slug="strait"] .map-feed-meta').textContent, /2h ago · Hormuz/)
+})
+
+// --- the quick switcher's ranking ------------------------------------------
+
+test('the switcher ranks a name that starts with the query first, and folds accents', async () => {
+  setupDom()
+  const { rankItems } = await import(bundlePath)
+  const item = (kind, label, sub) => ({ kind, label, sub, run() {} })
+  const items = [
+    item('story', 'Bahrain Reports Iranian Strike', 'Manama'),
+    item('story', 'Iran Says Tankers Hit Mines', 'Tehran'),
+    item('story', 'Talks in Doha', 'Iranshahr'),
+    item('country', 'Iran'),
+    item('country', 'Türkiye'),
+    item('country', 'Turkmenistan'),
+    item('data', 'Metals'),
+  ]
+  const labels = (q) => rankItems(items, q).map((r) => r.item.label)
+  assert.deepEqual(labels('iran'), [
+    'Iran Says Tankers Hit Mines',
+    'Bahrain Reports Iranian Strike',
+    'Talks in Doha',
+    'Iran',
+  ])
+  assert.deepEqual(labels('turk'), ['Türkiye', 'Turkmenistan'])
+  const hit = rankItems(items, 'iran')[1].hit
+  assert.deepEqual(hit, { at: 16, length: 4 }, 'the highlight is where the match is in the printed name')
+  assert.deepEqual(labels('zzz'), [])
+  assert.deepEqual(labels(''), ['Bahrain Reports Iranian Strike', 'Iran Says Tankers Hit Mines', 'Talks in Doha'])
 })
 
 // --- the scrubber's live edge ----------------------------------------------
