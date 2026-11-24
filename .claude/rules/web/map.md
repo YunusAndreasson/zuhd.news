@@ -101,6 +101,12 @@ calendar `hijri.md`.
 - `Popup` keeps `locationOccludedOpacity: 0`, and `syncOccludedPointer`
   mirrors it to `pointer-events`: opacity alone leaves an unseen card taking
   clicks.
+- Every source with a visible layer costs each frame its own tile selection
+  (about 0.45 ms of main thread on a spin, Intel HD 630). Put static or
+  co-written GeoJSON in one source told apart by a property (`names`,
+  `sphere`); never merge sources written in two steps, as the callouts are.
+- Measure a frame with `npm run perf:spin`: draw calls and thread CPU time,
+  A/B in one tab. Wall time on this laptop swings ±30%.
 - A non-constant `symbol-sort-key` draws each run of equal keys in its own
   call, every frame: never key on one value per feature. `story-points` draws
   in source order (`symbol-z-order: 'source'`), written oldest first.
