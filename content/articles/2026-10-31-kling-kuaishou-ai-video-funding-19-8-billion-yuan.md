@@ -38,6 +38,8 @@ subjects:
   - "stocks:1024.HK"
 venues: []
 thermal: false
+starterEligible: true
+starterReview: {"revision":"0ede425c243a46c704512b4089b6d1c40c333e2efced3b39533d544ab01b5870","domain":"companies","exclusions":[],"actors":"nonpartisan","measurement":"19.8 billion yuan","sourceIndex":0,"subjectChart":null}
 ---
 
 Beijing — Kuaishou's Kling raised 19.8 billion yuan for AI video.

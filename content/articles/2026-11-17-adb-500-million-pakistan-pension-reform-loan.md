@@ -22,6 +22,8 @@ entities: []
 subjects: []
 venues: []
 thermal: false
+starterEligible: true
+starterReview: {"revision":"080ab5795540defe4992813ea4e91da4e5a27b9b6f3ffadc521f32db251f36e6","domain":"economy","exclusions":[],"actors":"none","measurement":"Rs1 trillion a year","sourceIndex":0,"subjectChart":null}
 ---
 
 Pakistan — [Pakistan](country:PK)'s federal pension bill now exceeds Rs1 trillion a year.

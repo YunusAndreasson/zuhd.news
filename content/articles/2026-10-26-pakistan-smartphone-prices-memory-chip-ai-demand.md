@@ -20,6 +20,8 @@ entities: []
 subjects: []
 venues: []
 thermal: false
+starterEligible: true
+starterReview: {"revision":"979b45a5514fe986dc0edf0182542ede19a6998145b844d669883a8b36b709a0","domain":"consumer-prices","exclusions":[],"actors":"nonpartisan","measurement":"Rs40,000","sourceIndex":0,"subjectChart":null}
 ---
 
 Karachi — Dealers now quote Rs40,000 for phones that cost Rs22,000.

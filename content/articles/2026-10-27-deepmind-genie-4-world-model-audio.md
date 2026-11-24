@@ -22,6 +22,8 @@ entities: []
 subjects: []
 venues: []
 thermal: false
+starterEligible: true
+starterReview: {"revision":"876782733b554ab0e6ef7d303fc175b22d1a413eea204dffe0f5e23e80d8df8a","domain":"products","exclusions":[],"actors":"none","measurement":"$100 a month","sourceIndex":0,"subjectChart":null}
 ---
 
 London — DeepMind's Genie 4 worlds now speak, for $100 a month.

@@ -19,6 +19,8 @@ entities: []
 subjects: []
 venues: []
 thermal: false
+starterReview: {"revision":"68c085dc7f8b6e0fa943422302d9170a842f5b6df90d1f98bc2e74d8c375bf0e","domain":"technology","exclusions":[],"actors":"nonpartisan","measurement":"20GB","sourceIndex":0,"subjectChart":null}
+starterEligible: true
 ---
 
 United States — Thinking Machines' Inkling 2 Mini runs on a laptop in 20GB.

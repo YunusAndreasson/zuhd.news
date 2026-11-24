@@ -23,6 +23,8 @@ entities:
 subjects: []
 venues: []
 thermal: false
+starterEligible: true
+starterReview: {"revision":"de85a71d6dddec8b5ab74a7a0816cd5b21eb477bb48699d81b40c9d22c57e42a","domain":"products","exclusions":[],"actors":"nonpartisan","measurement":"$4,187","sourceIndex":0,"subjectChart":null}
 ---
 
 United States — A $4,187 mining board needs over six years to repay.

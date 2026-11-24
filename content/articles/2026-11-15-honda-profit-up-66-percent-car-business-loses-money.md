@@ -24,6 +24,8 @@ subjects:
 venues:
   - "mkt:tse"
 thermal: false
+starterEligible: true
+starterReview: {"revision":"1708c76727ad4f0486376a4a9e38fae6481fcf0a75eb706ae22f6dfcd51fe7c6","domain":"companies","exclusions":[],"actors":"none","measurement":"66%","sourceIndex":0,"subjectChart":null}
 ---
 
 Tokyo — Honda's profit rose 66% while its cars still lost money.

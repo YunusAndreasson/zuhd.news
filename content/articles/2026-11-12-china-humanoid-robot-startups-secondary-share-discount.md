@@ -19,6 +19,8 @@ entities:
 subjects: []
 venues: []
 thermal: false
+starterEligible: true
+starterReview: {"revision":"7172e02833006e61de521a265231c37e269163dd6bf0c3d4a892c5a2f5c09c4c","domain":"markets","exclusions":[],"actors":"none","measurement":"65-80%","sourceIndex":0,"subjectChart":null}
 ---
 
 China — Early investors offer robot-startup shares at 65-80% of last valuation.

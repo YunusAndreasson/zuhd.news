@@ -16,6 +16,8 @@ entities: []
 subjects: []
 venues: []
 thermal: false
+starterEligible: true
+starterReview: {"revision":"ea67e5ac5eb2c34b98e1c1ef8f09778bcf3f8726071ba1de8b8bb38ade9a53e3","domain":"technology","exclusions":[],"actors":"none","measurement":"5 times","sourceIndex":0,"subjectChart":null}
 ---
 
 India — Some popular languages need up to 5 times more AI tokens than others.

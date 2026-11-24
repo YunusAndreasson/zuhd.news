@@ -28,6 +28,8 @@ entities:
 subjects: []
 venues: []
 thermal: false
+starterEligible: true
+starterReview: {"revision":"7fdec1ae187cf321a8e75eab7e23dbb3925fa8cb1674be44c993854c38f99bcb","domain":"energy","exclusions":[],"actors":"none","measurement":"15.27%","sourceIndex":0,"subjectChart":null}
 ---
 
 Islamabad — Imported gas for Punjab rose 14%, for Sindh 15.27%.

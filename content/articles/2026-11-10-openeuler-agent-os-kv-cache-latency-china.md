@@ -18,6 +18,8 @@ entities: []
 subjects: []
 venues: []
 thermal: false
+starterEligible: true
+starterReview: {"revision":"d1b6965cfe34fb3e8e720993997a65ee7010182c4d15211e011088c4a40eee80","domain":"technology","exclusions":[],"actors":"nonpartisan","measurement":"84%","sourceIndex":0,"subjectChart":null}
 ---
 
 China — openEuler's supernode operating system cut cache latency nearly 84% in ad bidding.

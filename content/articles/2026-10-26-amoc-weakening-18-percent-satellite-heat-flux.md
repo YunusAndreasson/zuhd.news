@@ -22,6 +22,8 @@ entities: []
 subjects: []
 venues: []
 thermal: false
+starterEligible: true
+starterReview: {"revision":"306cf1d9758ca69a9da89e78e90b21f914b2ddf1498dd9379cf47d6c87983fd7","domain":"climate-data","exclusions":[],"actors":"nonpartisan","measurement":"18%","sourceIndex":0,"subjectChart":null}
 ---
 
 Reading — Satellites show the north Atlantic releasing 18% less heat than 40 years ago.

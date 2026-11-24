@@ -23,6 +23,8 @@ entities:
 subjects: []
 venues: []
 thermal: false
+starterEligible: true
+starterReview: {"revision":"b5ffc397e9d10e3e475e0b646b15e3a563bae460d6b4f9c2bc857c68b4496380","domain":"technology","exclusions":[],"actors":"none","measurement":"16 minutes 38 seconds","sourceIndex":0,"subjectChart":null}
 ---
 
 Binzhou — [China](country:CN)'s 19-seat electric airliner flew 16 minutes 38 seconds.

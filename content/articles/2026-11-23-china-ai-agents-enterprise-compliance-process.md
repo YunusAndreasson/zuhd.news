@@ -19,6 +19,8 @@ entities: []
 subjects: []
 venues: []
 thermal: false
+starterEligible: true
+starterReview: {"revision":"bbdb20b5ef93e63ab5ca661446bb196fa089205179288d27155b023c9a75cde5","domain":"technology","exclusions":[],"actors":"nonpartisan","measurement":"20-40%","sourceIndex":0,"subjectChart":null}
 ---
 
 Beijing — AI made 2,000 engineers 20-40% faster, the company no faster.

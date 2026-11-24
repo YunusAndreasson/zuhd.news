@@ -22,6 +22,8 @@ entities:
 subjects: []
 venues: []
 thermal: false
+starterEligible: true
+starterReview: {"revision":"8c46fb2647ff176ca00ceda6baa0e1f3b97843ce338f3d42455f59c5e147dda1","domain":"technology","exclusions":[],"actors":"nonpartisan","measurement":"3GB","sourceIndex":0,"subjectChart":null}
 ---
 
 Beijing — A 35-billion-parameter AI now runs in 3GB on phones.

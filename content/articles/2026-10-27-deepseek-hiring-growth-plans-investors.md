@@ -18,6 +18,8 @@ entities: []
 subjects: []
 venues: []
 thermal: false
+starterEligible: true
+starterReview: {"revision":"4730ce7459d9f56b73f869b2d5ad67d83fe594cbbfacfdb95c0f32e0e4cf48e8","domain":"companies","exclusions":[],"actors":"none","measurement":"150 openings","sourceIndex":0,"subjectChart":null}
 ---
 
 Beijing — DeepSeek's Harness team advertised about 150 openings in September.

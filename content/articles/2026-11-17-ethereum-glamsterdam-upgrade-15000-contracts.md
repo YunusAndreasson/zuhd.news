@@ -25,6 +25,8 @@ entities:
 subjects: []
 venues: []
 thermal: false
+starterEligible: true
+starterReview: {"revision":"f6e5dd997c46f879f75261817b829edf34950693bace95e74d9e0ed29cf8cc19","domain":"technology","exclusions":[],"actors":"nonpartisan","measurement":"15,000 contracts","sourceIndex":0,"subjectChart":null}
 ---
 
 United States — An Ethereum Foundation developer counts 15,000 contracts at risk.

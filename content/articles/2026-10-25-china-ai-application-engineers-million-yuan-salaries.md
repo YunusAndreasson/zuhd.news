@@ -25,6 +25,8 @@ entities:
 subjects: []
 venues: []
 thermal: false
+starterEligible: true
+starterReview: {"revision":"e552b160c7aa001cff1731a0e24e1d44f5093945ad8e492871e709bdf04951c2","domain":"companies","exclusions":[],"actors":"nonpartisan","measurement":"975,000 yuan","sourceIndex":0,"subjectChart":null}
 ---
 
 China — ByteDance is advertising engineer pay of up to 975,000 yuan.

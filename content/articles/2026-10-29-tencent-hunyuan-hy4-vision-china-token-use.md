@@ -21,6 +21,8 @@ subjects:
 venues:
   - "mkt:hkex"
 thermal: false
+starterEligible: true
+starterReview: {"revision":"28762287c98a6de2c944bb1e7ba623b86abb7ed30cd79ec22465430d86dad1ba","domain":"technology","exclusions":[],"actors":"nonpartisan","measurement":"5,000-fold","sourceIndex":0,"subjectChart":null}
 ---
 
 China — Daily AI token use rose 5,000-fold since early 2024.

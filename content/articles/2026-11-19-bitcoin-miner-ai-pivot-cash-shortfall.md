@@ -24,6 +24,8 @@ entities:
 subjects: []
 venues: []
 thermal: false
+starterEligible: true
+starterReview: {"revision":"2fc4f7e446cb1bf2af323001df6999601482de079e37e18d8af5c6fcf14a0e71","domain":"companies","exclusions":[],"actors":"none","measurement":"$17 million","sourceIndex":0,"subjectChart":null}
 ---
 
 Dowagiac — Hyperscale Data has $17 million cash and needs $74.8 million.

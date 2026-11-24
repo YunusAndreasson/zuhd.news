@@ -25,6 +25,8 @@ entities:
 subjects: []
 venues: []
 thermal: false
+starterEligible: true
+starterReview: {"revision":"e73e61a14e707d41f230366c6a8681b8a1131c209c79f09585f65181ffae18c1","domain":"markets","exclusions":[],"actors":"nonpartisan","measurement":"3.2 billion yen","sourceIndex":0,"subjectChart":null}
 ---
 
 Tokyo — Only 3.2 billion yen of JPYC circulates, a quarter of target.

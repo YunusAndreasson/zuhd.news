@@ -23,6 +23,8 @@ subjects: []
 venues:
   - "mkt:sse"
 thermal: false
+starterEligible: true
+starterReview: {"revision":"6f4e5db4fa208986e7155cc542dd35ecfc4e8efa0d787e7650cfa8676ee3fec9","domain":"economy","exclusions":[],"actors":"none","measurement":"140%","sourceIndex":0,"subjectChart":null}
 ---
 
 Beijing — [China](country:CN)'s tech profit rose 140%, property lost 53.2 billion yuan.

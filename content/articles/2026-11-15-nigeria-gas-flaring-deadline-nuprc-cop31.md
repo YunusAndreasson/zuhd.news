@@ -22,6 +22,8 @@ entities: []
 subjects: []
 venues: []
 thermal: false
+starterEligible: true
+starterReview: {"revision":"a4cad1a50ad58d407c2aae6cb0f13c5bfd60aa99adf26515a51e3b1d5eb64f45","domain":"climate-data","exclusions":[],"actors":"none","measurement":"12%","sourceIndex":0,"subjectChart":null}
 ---
 
 Antalya — [Nigeria](country:NG) flared 12% more gas in 2024, the World Bank says.

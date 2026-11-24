@@ -20,6 +20,8 @@ subjects:
   - "stocks:GEV"
 venues: []
 thermal: false
+starterReview: {"revision":"f0324809abd85fceff5a0a21a35b8690edf9e11ea3a266ffaf570c96c34ee05e","domain":"infrastructure","exclusions":[],"actors":"none","measurement":"$2 billion","sourceIndex":0,"subjectChart":null}
+starterEligible: true
 ---
 
 Carroll County — A funded $2 billion Ohio gas plant is delayed 2 years.

@@ -52,6 +52,8 @@ subjects:
   - "stocks:JPM"
 venues: []
 thermal: false
+starterEligible: true
+starterReview: {"revision":"ef8bc90c42b5bb5451ff09e555d5b3ac5ad10cd92ca470805e92f7d51dc5e9ca","domain":"technology","exclusions":[],"actors":"none","measurement":"5,000 Chase customers","sourceIndex":3,"subjectChart":null}
 ---
 
 New York — Nearly 5,000 Chase customers reported outages Monday, Downdetector counted.

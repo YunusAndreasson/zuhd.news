@@ -21,6 +21,8 @@ subjects:
 venues:
   - "mkt:hkex"
 thermal: false
+starterEligible: true
+starterReview: {"revision":"49d9f204506aed1d529962abc09e65ba939c9cbc2fdd368728e7fed511e94f02","domain":"products","exclusions":[],"actors":"none","measurement":"$0.07 per million input tokens","sourceIndex":0,"subjectChart":null}
 ---
 
 China — Tencent prices Hy4 flash at $0.07 per million input tokens.

@@ -25,6 +25,8 @@ venues:
   - "mkt:sse"
 thermal: false
 chart: "mkt:sse"
+starterEligible: true
+starterReview: {"revision":"2d44c2ccfd20a2984c1d9007bbe3da12fbab11f4b75c1620bca893ea505bc447","domain":"markets","exclusions":[],"actors":"none","measurement":"15%","sourceIndex":0,"subjectChart":null}
 ---
 
 China — Contemporary Amperex's shares fell 15% despite 21.2 billion yuan quarterly profit.

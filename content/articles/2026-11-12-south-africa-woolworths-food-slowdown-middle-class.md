@@ -27,6 +27,8 @@ subjects:
 venues:
   - "mkt:jse"
 thermal: false
+starterEligible: true
+starterReview: {"revision":"b38d082ce560479fb87eca9674f9de2e0a0f98e3966604e21955e2709243e0bd","domain":"companies","exclusions":[],"actors":"nonpartisan","measurement":"1.9%","sourceIndex":0,"subjectChart":null}
 ---
 
 Cape Town — Woolworths Foods turnover grew 1.9%, concession sales 0.1%.

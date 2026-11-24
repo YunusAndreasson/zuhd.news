@@ -19,6 +19,8 @@ entities:
 subjects: []
 venues: []
 thermal: false
+starterReview: {"revision":"c90fb6e09bddeb755572f3737773a8ca516b592322a00175de29eb61f34a4f39","domain":"companies","exclusions":[],"actors":"nonpartisan","measurement":"$1.5 billion","sourceIndex":0,"subjectChart":null}
+starterEligible: true
 ---
 
 China — ByteDance's AI drug unit is worth about $1.5 billion.

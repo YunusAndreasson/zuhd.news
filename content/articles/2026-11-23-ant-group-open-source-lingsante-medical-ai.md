@@ -16,6 +16,8 @@ entities: []
 subjects: []
 venues: []
 thermal: false
+starterEligible: true
+starterReview: {"revision":"c1d3c4fa9468f2b892f5eded6f5f863da82ec06b3bd1c805994fcecdb74b191a","domain":"technology","exclusions":[],"actors":"nonpartisan","measurement":"560-billion-parameter","sourceIndex":0,"subjectChart":null}
 ---
 
 Guangzhou — Ant Group open-sourced a 560-billion-parameter medical AI model.

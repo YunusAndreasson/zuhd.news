@@ -22,6 +22,8 @@ entities:
 subjects: []
 venues: []
 thermal: false
+starterEligible: true
+starterReview: {"revision":"791d306f46c52f0f0f8da2190c51bce28a4c06b190e7328b640d1ea0337b5f84","domain":"products","exclusions":[],"actors":"none","measurement":"2.5 days","sourceIndex":0,"subjectChart":null}
 ---
 
 Beijing — A theremin took 2.5 days and under 200 yuan.

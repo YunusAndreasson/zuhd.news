@@ -20,6 +20,8 @@ entities: []
 subjects: []
 venues: []
 thermal: false
+starterEligible: true
+starterReview: {"revision":"5344c3150d7d1fc2b0ad0d40272463295f8861d148195d12acbd2e39ec9e3bdf","domain":"companies","exclusions":[],"actors":"nonpartisan","measurement":"57%","sourceIndex":0,"subjectChart":null}
 ---
 
 San Francisco — Rippling's coding work on Anthropic fell from 57% to 18%.

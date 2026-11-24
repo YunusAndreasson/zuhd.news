@@ -23,6 +23,8 @@ entities:
 subjects: []
 venues: []
 thermal: false
+starterEligible: true
+starterReview: {"revision":"5abe90ec05310635c4dd93630bf9e51ad0e83eeb64e490ffd20fdcaf0fe89111","domain":"consumer-prices","exclusions":[],"actors":"nonpartisan","measurement":"₦1,379 to ₦1,430 a litre","sourceIndex":0,"subjectChart":null}
 ---
 
 Zaria — Stations sell petrol at ₦1,379 to ₦1,430 a litre.

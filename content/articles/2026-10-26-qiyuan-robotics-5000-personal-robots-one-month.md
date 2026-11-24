@@ -19,6 +19,8 @@ entities: []
 subjects: []
 venues: []
 thermal: false
+starterEligible: true
+starterReview: {"revision":"81dd0ed2b3f61e138bd06dccfcda7aa8bb131d03d5b2743d0cbd80901e728927","domain":"products","exclusions":[],"actors":"none","measurement":"2.5 minutes","sourceIndex":0,"subjectChart":null}
 ---
 
 China — Qiyuan Robotics now builds one personal robot every 2.5 minutes.

@@ -34,6 +34,8 @@ venues:
   - "mkt:jse"
 thermal: false
 chart: "poly-will-the-south-african-reserve-bank-increase-the"
+starterEligible: true
+starterReview: {"revision":"e7a822ef35d23aaaa5e6bb739959a6d4c001a4df08a1bb79ee5d7234508ebdbd","domain":"economy","exclusions":[],"actors":"nonpartisan","measurement":"7.25%","sourceIndex":0,"subjectChart":null}
 ---
 
 Pretoria — 3 of 7 rate-setters voted to hike from 7.25%.

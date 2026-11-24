@@ -19,6 +19,8 @@ entities: []
 subjects: []
 venues: []
 thermal: false
+starterEligible: true
+starterReview: {"revision":"a8566d2b7e1422133bf8234b452188dd6de1c9c0ff6451070bf216a2b4897f2e","domain":"energy","exclusions":[],"actors":"none","measurement":"1,500 MW","sourceIndex":0,"subjectChart":null}
 ---
 
 Hami — [China](country:CN) is building a 1,500 MW solar project with heat storage, Iranian state agency Mehr reported.

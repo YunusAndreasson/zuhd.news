@@ -22,6 +22,8 @@ subjects:
   - "stocks:0020.HK"
 venues: []
 thermal: false
+starterEligible: true
+starterReview: {"revision":"37792a40cd815dd017aedccbdfe35dd2c9ea8f791f364495aeb26505b8f9179f","domain":"technology","exclusions":[],"actors":"none","measurement":"24 layers","sourceIndex":0,"subjectChart":null}
 ---
 
 China — SenseTime released a model that runs 24 layers twice.

@@ -30,6 +30,8 @@ subjects:
 venues:
   - "mkt:nyse"
 thermal: false
+starterReview: {"revision":"8e387611f1a53b063a46260c8f3f639e5f56a4106235f2e519fb74e7120a8ee7","domain":"companies","exclusions":[],"actors":"none","measurement":"$54 million","sourceIndex":0,"subjectChart":null}
+starterEligible: true
 ---
 
 New York — BTCS can't rule out liquidation of a $54 million loan.

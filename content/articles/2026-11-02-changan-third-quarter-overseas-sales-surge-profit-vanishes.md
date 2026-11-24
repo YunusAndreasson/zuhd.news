@@ -22,6 +22,8 @@ subjects: []
 venues:
   - "mkt:sse"
 thermal: false
+starterEligible: true
+starterReview: {"revision":"8c88289e30132fc1e5b30f2060dc8e1eb04a1beeb972a745dedcbac1174e24f4","domain":"companies","exclusions":[],"actors":"nonpartisan","measurement":"64%","sourceIndex":0,"subjectChart":null}
 ---
 
 Chongqing — Changan's overseas sales rose 64% as its nine-month profit fell 98%.

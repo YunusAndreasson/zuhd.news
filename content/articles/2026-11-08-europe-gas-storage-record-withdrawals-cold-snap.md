@@ -22,6 +22,8 @@ entities: []
 subjects: []
 venues: []
 thermal: false
+starterEligible: true
+starterReview: {"revision":"9bb3de8b70adf4d9bd258f6c5dc24f78953beb7c9fe04488957bea807cdded69","domain":"energy","exclusions":[],"actors":"none","measurement":"5%","sourceIndex":0,"subjectChart":null}
 ---
 
 Europe — Storage lost 5% of its summer gas, Russian state news agency TASS calculated.

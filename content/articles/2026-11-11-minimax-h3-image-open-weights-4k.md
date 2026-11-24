@@ -19,6 +19,8 @@ entities: []
 subjects: []
 venues: []
 thermal: false
+starterEligible: true
+starterReview: {"revision":"61882a1715f1910b7fb7d5dd16e76f782bdc4603138505a021ba04f8356bc7da","domain":"products","exclusions":[],"actors":"none","measurement":"10 seconds","sourceIndex":0,"subjectChart":null}
 ---
 
 China — MiniMax's fast H3-Image renders 16-megapixel pictures in about 10 seconds.

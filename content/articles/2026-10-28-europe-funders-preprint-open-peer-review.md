@@ -20,6 +20,8 @@ entities: []
 subjects: []
 venues: []
 thermal: false
+starterEligible: true
+starterReview: {"revision":"ce06beac53fbd15e94e160a9eb50892be210e4e95b10d30cad6fafc20caccfe8","domain":"science","exclusions":[],"actors":"nonpartisan","measurement":"2.5 million researchers","sourceIndex":0,"subjectChart":null}
 ---
 
 Geneva — 2.5 million researchers gain free publishing services on one platform.

@@ -19,6 +19,8 @@ entities:
 subjects: []
 venues: []
 thermal: false
+starterReview: {"revision":"79680362a8738a965ef22637e8562b3a2085597dc56becb9598b75306cdc2a07","domain":"consumer-prices","exclusions":[],"actors":"none","measurement":"288,600 yuan","sourceIndex":0,"subjectChart":null}
+starterEligible: true
 ---
 
 Beijing — A 1.29 million yuan CAR-T therapy now costs 288,600 yuan.

@@ -25,6 +25,8 @@ entities:
 subjects: []
 venues: []
 thermal: false
+starterEligible: true
+starterReview: {"revision":"326d85a7702957b0510b11ac65cfcdb22fd7b7efc7c9d74de441fc36c0c8eab8","domain":"energy","exclusions":[],"actors":"none","measurement":"$3.4 billion","sourceIndex":0,"subjectChart":null}
 ---
 
 San Antonio — Anthropic paid $3.4 billion for 1.7 gigawatts of generators.

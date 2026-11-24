@@ -29,6 +29,8 @@ venues:
   - "mkt:bse"
 thermal: false
 chart: "poly-will-the-reserve-bank-of-india-make-no-change-to"
+starterEligible: true
+starterReview: {"revision":"4985cd6dd8157bcca6f1e5889b530e6c9d9fd9705fd881fcf59ff459185bbdf8","domain":"consumer-prices","exclusions":[],"actors":"nonpartisan","measurement":"6.09%","sourceIndex":0,"subjectChart":null}
 ---
 
 Mumbai — [India](country:IN)'s retail inflation hit 6.09% in October, a two-year high.

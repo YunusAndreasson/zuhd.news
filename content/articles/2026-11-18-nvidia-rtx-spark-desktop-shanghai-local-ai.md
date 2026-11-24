@@ -20,6 +20,8 @@ subjects:
   - "stocks:NVDA"
 venues: []
 thermal: false
+starterEligible: true
+starterReview: {"revision":"1c65e54ce5ef0815ddcf9f7bd0fc72aff8154920916ca58f996f74b2a9801bf0","domain":"technology","exclusions":[],"actors":"none","measurement":"2 months","sourceIndex":0,"subjectChart":null}
 ---
 
 Shanghai — Nvidia says local AI models now trail cloud models by 2 months.

@@ -16,6 +16,8 @@ entities: []
 subjects: []
 venues: []
 thermal: false
+starterEligible: true
+starterReview: {"revision":"ad8cebce382518b02903ea1410216757e890247cf5f21bddeabdc72e1ab4e30a","domain":"technology","exclusions":[],"actors":"none","measurement":"15 frames a second","sourceIndex":0,"subjectChart":null}
 ---
 
 United States — World Labs generates explorable 3D scenes at up to 1440p and 15 frames a second.

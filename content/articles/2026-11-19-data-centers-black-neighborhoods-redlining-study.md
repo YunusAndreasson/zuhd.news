@@ -16,6 +16,8 @@ entities: []
 subjects: []
 venues: []
 thermal: false
+starterEligible: true
+starterReview: {"revision":"9cef99cb12c0b7728c870c83c8ec100f598db84f5368b76d5edc6dd4a74c196c","domain":"science","exclusions":[],"actors":"nonpartisan","measurement":"2.2 times","sourceIndex":0,"subjectChart":null}
 ---
 
 United States — Majority-Black neighborhoods have 2.2 times the odds of hosting a data center.

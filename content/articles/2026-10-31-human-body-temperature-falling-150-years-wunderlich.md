@@ -22,6 +22,8 @@ entities: []
 subjects: []
 venues: []
 thermal: false
+starterEligible: true
+starterReview: {"revision":"e4ab3ab63e8d67fea80e484c44c149d4d946faaf7ce9f581eba98df437f2eeb3","domain":"health-research","exclusions":[],"actors":"nonpartisan","measurement":"190,000 people","sourceIndex":0,"subjectChart":null}
 ---
 
 Stanford — Readings from nearly 190,000 people put normal adult temperature near 36.39C.

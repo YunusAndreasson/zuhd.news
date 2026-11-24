@@ -28,6 +28,8 @@ entities: []
 subjects: []
 venues: []
 thermal: false
+starterEligible: true
+starterReview: {"revision":"5741712db7b115d8d1b6502e73de069e583c5a24725395da4d688c0acb92272d","domain":"sport","exclusions":[],"actors":"nonpartisan","measurement":"15 golfers","sourceIndex":0,"subjectChart":null}
 ---
 
 Saudi Arabia — 15 golfers have tentatively joined a $300mn LIV Golf successor.

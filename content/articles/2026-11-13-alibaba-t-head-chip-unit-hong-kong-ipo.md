@@ -21,6 +21,8 @@ subjects:
 venues:
   - "mkt:hkex"
 thermal: false
+starterEligible: true
+starterReview: {"revision":"8606a0c1164a90e4e9f16c069d09af176cfa2fdd40678c82bb2ba57d023b56fc","domain":"companies","exclusions":[],"actors":"none","measurement":"60%","sourceIndex":0,"subjectChart":null}
 ---
 
 Hong Kong — Alibaba says over 60% of T-Head's computing serves outside customers.

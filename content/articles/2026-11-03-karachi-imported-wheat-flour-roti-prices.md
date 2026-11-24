@@ -23,6 +23,8 @@ subjects: []
 venues: []
 thermal: false
 chart: "wheat"
+starterEligible: true
+starterReview: {"revision":"0e2a6f4e51b1bb50dee494223ae0a786f8ac0d2f0e8e126de150191526e8b55d","domain":"consumer-prices","exclusions":[],"actors":"nonpartisan","measurement":"Rs10 a kilo","sourceIndex":0,"subjectChart":null}
 ---
 
 Karachi — Wheat fell Rs10 a kilo but chapati still costs Rs20.

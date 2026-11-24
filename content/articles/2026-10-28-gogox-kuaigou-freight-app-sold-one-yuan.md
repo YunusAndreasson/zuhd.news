@@ -23,6 +23,8 @@ entities:
 subjects: []
 venues: []
 thermal: false
+starterEligible: true
+starterReview: {"revision":"c1bf0f65ff10a861f8fdce7bab572be9874beed1c34cf651faddfc6e90df5b07","domain":"companies","exclusions":[],"actors":"none","measurement":"1 yuan","sourceIndex":0,"subjectChart":null}
 ---
 
 Hong Kong — GOGOX agreed to sell its mainland business for 1 yuan.

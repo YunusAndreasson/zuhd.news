@@ -23,6 +23,8 @@ entities:
 subjects: []
 venues: []
 thermal: false
+starterEligible: true
+starterReview: {"revision":"80cdd98661df7f1110d7b7f483ad91f71025f12caffa7c572f3ed7f9fd05621d","domain":"energy","exclusions":[],"actors":"nonpartisan","measurement":"700,000 pesos","sourceIndex":0,"subjectChart":null}
 ---
 
 Manila — A Las Piñas family paid 700,000 pesos for solar and saves 20,000 monthly.

@@ -19,6 +19,8 @@ entities: []
 subjects: []
 venues: []
 thermal: false
+starterReview: {"revision":"964e069bddad46b99be87e095241b69bba9abc7bb796ea0918d6fc2ac5bebb02","domain":"products","exclusions":[],"actors":"none","measurement":"$71,000","sourceIndex":0,"subjectChart":null}
+starterEligible: true
 ---
 
 Marcovia — A $71,000 chatbot told testers it serves only the capital.

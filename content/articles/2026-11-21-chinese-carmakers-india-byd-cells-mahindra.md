@@ -25,6 +25,8 @@ subjects:
 venues:
   - "mkt:bse"
 thermal: false
+starterReview: {"revision":"9e79ab2db46648e11487099889433928f5a6066791886d018822fe75cc21c01e","domain":"companies","exclusions":[],"actors":"none","measurement":"6,755 electric cars","sourceIndex":0,"subjectChart":null}
+starterEligible: true
 ---
 
 Mumbai — BYD registered 6,755 electric cars in [India](country:IN) this year.

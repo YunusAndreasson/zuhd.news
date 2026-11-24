@@ -28,6 +28,8 @@ subjects:
 venues:
   - "mkt:nyse"
 thermal: false
+starterEligible: true
+starterReview: {"revision":"5e5bc867a3a907c8287f60ac88fa2f14bb5e7b4e6a627e4495d778e82fded525","domain":"technology","exclusions":[],"actors":"nonpartisan","measurement":"60%","sourceIndex":0,"subjectChart":null}
 ---
 
 Santa Clara — Open-weight models' share of AI tokens rose from under 5% to over 60%.

@@ -19,6 +19,8 @@ entities: []
 subjects: []
 venues: []
 thermal: false
+starterEligible: true
+starterReview: {"revision":"09159af6bfe70e54d2e0db236e7081931a4f35a55e8b690baeb5005c82e9e47d","domain":"technology","exclusions":[],"actors":"nonpartisan","measurement":"40.9%","sourceIndex":0,"subjectChart":null}
 ---
 
 Beijing — ByteDance apps took 40.9% of time on China's 50 top apps in July, Nomura found.

@@ -28,6 +28,8 @@ entities:
 subjects: []
 venues: []
 thermal: false
+starterEligible: true
+starterReview: {"revision":"342388f9cc3bdb2def520d0620275ef370fff90c3215d97826effb6eec84ade6","domain":"energy","exclusions":[],"actors":"none","measurement":"500 million cubic feet","sourceIndex":0,"subjectChart":null}
 ---
 
 Abuja — [Nigeria](country:NG) still flares 500 million cubic feet daily, regulator says.

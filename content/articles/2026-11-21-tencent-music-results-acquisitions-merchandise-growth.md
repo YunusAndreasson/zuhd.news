@@ -27,6 +27,8 @@ subjects:
 venues:
   - "mkt:hkex"
 thermal: false
+starterEligible: true
+starterReview: {"revision":"013c2be9a4f818f6e5ca4c49724bc4729242a2ebe942d52c97e6aaa24b09d830","domain":"companies","exclusions":[],"actors":"none","measurement":"5.6%","sourceIndex":0,"subjectChart":null}
 ---
 
 Shenzhen — Tencent Music's third-quarter revenue grew 5.6% to 8.94bn yuan.

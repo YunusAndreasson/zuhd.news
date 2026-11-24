@@ -19,6 +19,8 @@ entities:
 subjects: []
 venues: []
 thermal: false
+starterEligible: true
+starterReview: {"revision":"3a6cc2d3b67f8627a5515701b5bb5633dd6c37ffc2f0bd84e349bc158b7b4ad6","domain":"companies","exclusions":[],"actors":"none","measurement":"$38 per chip-hour","sourceIndex":0,"subjectChart":null}
 ---
 
 China — DeepSeek revealed it earns $38 per chip-hour at off-peak prices.

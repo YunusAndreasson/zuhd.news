@@ -43,6 +43,8 @@ subjects:
   - "stocks:AAPL"
 venues: []
 thermal: false
+starterEligible: true
+starterReview: {"revision":"49b837745ca1f6e2ffce59aaca156772b77736d9bd05cdb20e1e5088b800b69b","domain":"products","exclusions":[],"actors":"nonpartisan","measurement":"$1,999","sourceIndex":0,"subjectChart":null}
 ---
 
 Cupertino — Apple's M6 MacBook Pro claims 24 hours of battery, from $1,999.

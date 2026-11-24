@@ -20,6 +20,8 @@ entities: []
 subjects: []
 venues: []
 thermal: false
+starterEligible: true
+starterReview: {"revision":"aae8b912ce759a5e0d15647496d79f1c1eea4cc9a5eeffddbbaffcb604e13911","domain":"science","exclusions":[],"actors":"nonpartisan","measurement":"3 stable oxoboranes","sourceIndex":0,"subjectChart":null}
 ---
 
 Würzburg — 3 stable oxoboranes now exist after a 60-year search.

@@ -19,6 +19,8 @@ entities: []
 subjects: []
 venues: []
 thermal: false
+starterEligible: true
+starterReview: {"revision":"cf5f1759c0b731d943d305d26f8edb11c77cd99be015efc34fd018abbf19cc86","domain":"health-research","exclusions":[],"actors":"none","measurement":"0.88 word pairs","sourceIndex":0,"subjectChart":null}
 ---
 
 Spain — Pink noise lifted recall 0.88 word pairs in 37 Alzheimer's patients.

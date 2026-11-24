@@ -34,6 +34,8 @@ entities:
 subjects: []
 venues: []
 thermal: false
+starterEligible: true
+starterReview: {"revision":"5feffc6fd05d524989518f51621276621371524312e7e265ef4a15a7c8f4d5b9","domain":"technology","exclusions":[],"actors":"none","measurement":"10 top robot-vacuum makers","sourceIndex":0,"subjectChart":null}
 ---
 
 Zhuhai — Amicro says 8 of 10 top robot-vacuum makers use it.

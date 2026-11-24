@@ -20,6 +20,8 @@ subjects: []
 venues:
   - "mkt:sse"
 thermal: false
+starterEligible: true
+starterReview: {"revision":"945da337aa7400edd2a19a0299cf8e49011eb2521e3423bdaa5895e1ad013474","domain":"companies","exclusions":[],"actors":"none","measurement":"4.93 billion yuan","sourceIndex":0,"subjectChart":null}
 ---
 
 Beijing — Embodied-AI funding hit 4.93 billion yuan in 15 days.

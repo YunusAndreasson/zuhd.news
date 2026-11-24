@@ -19,6 +19,8 @@ entities: []
 subjects: []
 venues: []
 thermal: false
+starterEligible: true
+starterReview: {"revision":"3645c31b77306db5f9c2ee4ffcae4072357f23871fec24b7b4ca143f2546bfa1","domain":"science","exclusions":[],"actors":"nonpartisan","measurement":"10,000 bends","sourceIndex":0,"subjectChart":null}
 ---
 
 St. Louis — A sugar-based gel got stronger after 10,000 bends.

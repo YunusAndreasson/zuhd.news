@@ -23,6 +23,8 @@ subjects:
 venues:
   - "mkt:lse"
 thermal: false
+starterEligible: true
+starterReview: {"revision":"624ae78650b75ccffe5ae2c3ff1328f523c710160408472cd77a1a636182f90b","domain":"companies","exclusions":[],"actors":"none","measurement":"$9.6 billion","sourceIndex":0,"subjectChart":null}
 ---
 
 Hong Kong — HSBC's pretax profit hit $9.6 billion in the July-September quarter.

@@ -23,6 +23,8 @@ subjects:
   - "stocks:0700.HK"
 venues: []
 thermal: false
+starterEligible: true
+starterReview: {"revision":"69506d1c0948f07a14b5220b121d48bb1ff520a80993e19c03fd104eda1b70bc","domain":"technology","exclusions":[],"actors":"none","measurement":"770-billion-parameter","sourceIndex":0,"subjectChart":null}
 ---
 
 Shenzhen — Tencent's 770-billion-parameter Hy4 can now be downloaded and modified.

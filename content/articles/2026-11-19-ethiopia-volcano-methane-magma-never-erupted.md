@@ -19,6 +19,8 @@ entities: []
 subjects: []
 venues: []
 thermal: false
+starterEligible: true
+starterReview: {"revision":"b2e559043aed86afe07664d7f0e20ccf901572fa143ff96b2aba8fae99534c7b","domain":"climate-data","exclusions":[],"actors":"nonpartisan","measurement":"38 kilotonnes","sourceIndex":0,"subjectChart":null}
 ---
 
 Bristol — [Ethiopia](country:ET)'s Fentale volcano released 38 kilotonnes of methane without erupting.

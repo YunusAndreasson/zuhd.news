@@ -20,6 +20,8 @@ entities: []
 subjects: []
 venues: []
 thermal: false
+starterEligible: true
+starterReview: {"revision":"7149c5e9bbc4786f93d36bebecbb990d3918fa2fc50beac3544d15905f3eac71","domain":"consumer-prices","exclusions":[],"actors":"nonpartisan","measurement":"N25,000","sourceIndex":0,"subjectChart":null}
 ---
 
 Abuja — A 12.5kg cooking gas cylinder now costs up to N25,000.

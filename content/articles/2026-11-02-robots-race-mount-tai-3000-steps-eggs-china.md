@@ -20,6 +20,8 @@ entities: []
 subjects: []
 venues: []
 thermal: false
+starterEligible: true
+starterReview: {"revision":"209fb67aad8257ee31e7a947a4901ab39c76ae6d01cc476368073f6d3e32b29b","domain":"technology","exclusions":[],"actors":"none","measurement":"43 minutes","sourceIndex":0,"subjectChart":null}
 ---
 
 Tai'an — A robot dog won the Mount Tai climb in 43 minutes, 41 seconds.

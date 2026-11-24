@@ -19,6 +19,8 @@ entities: []
 subjects: []
 venues: []
 thermal: false
+starterEligible: true
+starterReview: {"revision":"8722036339cc8da375d590e7ee9ff2491d9e8ced0978de60b13f627016168b24","domain":"science","exclusions":[],"actors":"nonpartisan","measurement":"5,828 neutrino events","sourceIndex":0,"subjectChart":null}
 ---
 
 Toulon — Researchers tested relativity on 5,828 neutrino events.

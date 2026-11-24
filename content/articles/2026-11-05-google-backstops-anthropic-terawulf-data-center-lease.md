@@ -33,6 +33,8 @@ venues:
   - "mkt:nyse"
 thermal: false
 chart: "co:alphabet"
+starterEligible: true
+starterReview: {"revision":"78154ff8e84e77fb9bf53dc2307f2b07d412a991a1e35c4b1c30d37c2130b9c1","domain":"companies","exclusions":[],"actors":"none","measurement":"$19 billion","sourceIndex":0,"subjectChart":null}
 ---
 
 United States — Google can take over Anthropic's $19 billion data center lease.

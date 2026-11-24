@@ -19,6 +19,8 @@ entities: []
 subjects: []
 venues: []
 thermal: false
+starterEligible: true
+starterReview: {"revision":"247e95f20b66d1f595a4241febff57ffb52517f694ec059e22190a02bf05571e","domain":"space","exclusions":[],"actors":"nonpartisan","measurement":"2.8 Suns","sourceIndex":0,"subjectChart":null}
 ---
 
 China — A dark companion in J0008+0128 weighs up to 2.8 Suns.

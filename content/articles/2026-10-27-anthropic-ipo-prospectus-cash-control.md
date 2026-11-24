@@ -38,6 +38,8 @@ subjects: []
 venues: []
 thermal: false
 chart: "poly-will-anthropic-ipo-by-november-30-2026"
+starterEligible: true
+starterReview: {"revision":"6a881757b95507534e645e6a86754a4516fc75c3802b648235c788b59cb237d0","domain":"companies","exclusions":[],"actors":"nonpartisan","measurement":"50.1%","sourceIndex":1,"subjectChart":null}
 ---
 
 United States — 7 co-founders control 50.1% of Anthropic's votes with one share.

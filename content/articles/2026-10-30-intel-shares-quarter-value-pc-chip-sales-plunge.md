@@ -35,6 +35,8 @@ subjects:
 venues:
   - "mkt:nyse"
 thermal: false
+starterEligible: true
+starterReview: {"revision":"bc7d4306eeac32a291268ae13460ad7c9814f30f9c05f9e139df994e2bf8ee85","domain":"markets","exclusions":[],"actors":"nonpartisan","measurement":"23%","sourceIndex":0,"subjectChart":null}
 ---
 
 Santa Clara — Intel beat revenue guidance and still lost 23% after hours.

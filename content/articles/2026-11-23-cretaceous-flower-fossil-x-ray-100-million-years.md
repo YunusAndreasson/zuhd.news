@@ -21,6 +21,8 @@ entities:
 subjects: []
 venues: []
 thermal: false
+starterEligible: true
+starterReview: {"revision":"5f152a394e5ed5408b74fd6f2b036e68b203fe410a5b318a0a1f37a2be6966e0","domain":"science","exclusions":[],"actors":"none","measurement":"130 years","sourceIndex":0,"subjectChart":null}
 ---
 
 Washington — A grain-of-rice flower hid in rock for 130 years.

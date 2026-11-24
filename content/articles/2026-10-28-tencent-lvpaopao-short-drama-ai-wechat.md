@@ -24,6 +24,8 @@ subjects:
   - "stocks:0700.HK"
 venues: []
 thermal: false
+starterEligible: true
+starterReview: {"revision":"9608cf13adc27b5f4c044cc0d3466266645cb951af1c905698f9e5331970003c","domain":"culture","exclusions":[],"actors":"none","measurement":"143 million monthly users","sourceIndex":0,"subjectChart":null}
 ---
 
 Shenzhen — QuestMobile counted Tencent's Lvpaopao at 143 million monthly users in August.

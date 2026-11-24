@@ -38,6 +38,8 @@ subjects:
   - "stocks:CG"
 venues: []
 thermal: false
+starterEligible: true
+starterReview: {"revision":"7b2d919f247125d3cba9d84c3fa0de58d664bab5de158ddbd9ee6e7654d08db8","domain":"energy","exclusions":[],"actors":"none","measurement":"10%","sourceIndex":0,"subjectChart":null}
 ---
 
 Bucharest — A field supplying 10% of Romanian gas changes owners.

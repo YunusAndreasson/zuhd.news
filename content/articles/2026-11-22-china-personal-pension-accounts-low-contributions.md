@@ -16,6 +16,8 @@ entities: []
 subjects: []
 venues: []
 thermal: false
+starterEligible: true
+starterReview: {"revision":"cdc05331d57cde6ef01eb4cc0ce7bb9b0636ac92aedd0bce04b1b3d3ad285eb5","domain":"economy","exclusions":[],"actors":"none","measurement":"79%","sourceIndex":0,"subjectChart":null}
 ---
 
 China — About 79% of [China](country:CN)'s 150 million pension accounts are empty.

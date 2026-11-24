@@ -23,6 +23,8 @@ subjects:
   - "stocks:BIDU"
 venues: []
 thermal: false
+starterEligible: true
+starterReview: {"revision":"6b1a4eaa3c46a3336c1134224a63186c79c064b1ba336ac9b1722bf88832df64","domain":"technology","exclusions":[],"actors":"none","measurement":"700,000km","sourceIndex":0,"subjectChart":null}
 ---
 
 Shenzhen — Baidu says each model iteration needs over 700,000km of road testing.

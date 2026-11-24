@@ -22,6 +22,8 @@ entities:
 subjects: []
 venues: []
 thermal: false
+starterEligible: true
+starterReview: {"revision":"5e19f6b0da22398560ca6977cae93d907ec35bcefd47ebf782f1e34495620631","domain":"companies","exclusions":[],"actors":"none","measurement":"75.8%","sourceIndex":0,"subjectChart":null}
 ---
 
 Guangzhou — CATL supplied 75.8% of Yihong Intelligent's 2025 revenue, its prospectus shows.

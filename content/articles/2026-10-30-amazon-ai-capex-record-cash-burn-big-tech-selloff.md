@@ -41,6 +41,8 @@ venues:
   - "mkt:nyse"
 thermal: false
 chart: "co:amazon"
+starterEligible: true
+starterReview: {"revision":"b2d2557c31c28cb4cb5a95fd62bd8f18f97bed389f36ca3320c76f7342f9299f","domain":"companies","exclusions":[],"actors":"nonpartisan","measurement":"$42.4 billion","sourceIndex":0,"subjectChart":null}
 ---
 
 United States — Amazon's 12-month cash burn hit a record $42.4 billion.

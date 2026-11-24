@@ -20,6 +20,8 @@ entities: []
 subjects: []
 venues: []
 thermal: false
+starterEligible: true
+starterReview: {"revision":"d01f1a3d69e63735546b7eedef7d43ada5ec6d22974604a6f6e186ff8ca0a55f","domain":"products","exclusions":[],"actors":"none","measurement":"30-billion-parameter","sourceIndex":0,"subjectChart":null}
 ---
 
 China — Huawei's Kirin 9050 runs a 30-billion-parameter AI model offline.

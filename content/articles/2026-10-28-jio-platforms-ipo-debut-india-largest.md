@@ -45,6 +45,8 @@ subjects: []
 venues:
   - "mkt:bse"
 thermal: false
+starterEligible: true
+starterReview: {"revision":"0b4ed7f12c79d5d1d7a9a5034c2985106efce2425cd584d9667b19b82ff3e8b2","domain":"markets","exclusions":[],"actors":"nonpartisan","measurement":"21.4%","sourceIndex":0,"subjectChart":null}
 ---
 
 Mumbai — Jio Platforms shares rose 21.4% after [India](country:IN)'s largest initial public offering.

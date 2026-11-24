@@ -34,6 +34,8 @@ venues:
   - "mkt:nyse"
 thermal: false
 chart: "co:alphabet"
+starterEligible: true
+starterReview: {"revision":"b52fc9419a76d1e9598965263acf877b29fb22dd0470dcdfe97b37ea6bde8e11","domain":"companies","exclusions":[],"actors":"nonpartisan","measurement":"$51.4 billion","sourceIndex":0,"subjectChart":null}
 ---
 
 Mountain View — Alphabet's capex jumped 114% to $51.4 billion in one quarter.

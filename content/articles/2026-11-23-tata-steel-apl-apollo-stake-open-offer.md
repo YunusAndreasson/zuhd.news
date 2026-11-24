@@ -41,6 +41,8 @@ subjects:
 venues:
   - "mkt:bse"
 thermal: false
+starterEligible: true
+starterReview: {"revision":"5cbd17d45048eadd36a088e6655446c00b57f21922c3e42c8a3a988157e8ed11","domain":"markets","exclusions":[],"actors":"none","measurement":"15%","sourceIndex":2,"subjectChart":null}
 ---
 
 Mumbai — APL Apollo shares fell more than 15% Monday.

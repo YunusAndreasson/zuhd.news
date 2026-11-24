@@ -19,6 +19,8 @@ entities: []
 subjects: []
 venues: []
 thermal: false
+starterEligible: true
+starterReview: {"revision":"5cb9081f9243f1178a0e73a063338c3678241689417889f5296c356cf2e587cd","domain":"trade","exclusions":[],"actors":"nonpartisan","measurement":"40.3%","sourceIndex":0,"subjectChart":null}
 ---
 
 China — AI hardware drove 40.3% of [China](country:CN)'s export growth in nine months.

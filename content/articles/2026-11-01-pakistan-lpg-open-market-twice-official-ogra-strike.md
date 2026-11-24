@@ -20,6 +20,8 @@ entities: []
 subjects: []
 venues: []
 thermal: false
+starterEligible: true
+starterReview: {"revision":"e3f95e3dc0ac585c782bc4d01296a13032d604a3cb4320343c7584796b592092","domain":"consumer-prices","exclusions":[],"actors":"nonpartisan","measurement":"Rs630 a kilo","sourceIndex":0,"subjectChart":null}
 ---
 
 Islamabad — Cooking gas sells up to Rs630 a kilo, double the official rate.

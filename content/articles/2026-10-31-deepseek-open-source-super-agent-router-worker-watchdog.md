@@ -16,6 +16,8 @@ entities: []
 subjects: []
 venues: []
 thermal: false
+starterEligible: true
+starterReview: {"revision":"588f745f6610ddcca45df7de30b3600b31f367842abcc70a5351f1fac95c8a3a","domain":"technology","exclusions":[],"actors":"none","measurement":"12.4 minutes","sourceIndex":0,"subjectChart":null}
 ---
 
 China — DeepSeek's agent design finished half its tasks in 12.4 minutes.

@@ -20,6 +20,8 @@ entities: []
 subjects: []
 venues: []
 thermal: false
+starterEligible: true
+starterReview: {"revision":"4c3ab2f8e10ae7bcab1b26409db642771dd28b06694be6ce070866dd9e3c4dcc","domain":"health-research","exclusions":[],"actors":"none","measurement":"$1.55 billion","sourceIndex":0,"subjectChart":null}
 ---
 
 France — Servier's $1.55 billion drug failed to slow Becker muscular dystrophy.

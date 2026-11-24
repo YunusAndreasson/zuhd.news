@@ -29,6 +29,8 @@ subjects: []
 venues:
   - "mkt:hkex"
 thermal: false
+starterEligible: true
+starterReview: {"revision":"75c354696964816d5996cdf238287d87266642abbaeaf12cdbc3c07e977cd164","domain":"markets","exclusions":[],"actors":"none","measurement":"305 offshore yuan bonds","sourceIndex":1,"subjectChart":null}
 ---
 
 Hong Kong — The city's stock exchange launched an index of 305 offshore yuan bonds.

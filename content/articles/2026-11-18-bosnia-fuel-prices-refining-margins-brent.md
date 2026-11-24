@@ -25,6 +25,8 @@ subjects: []
 venues: []
 thermal: false
 chart: "brent"
+starterEligible: true
+starterReview: {"revision":"2a08394358df7ba0f4f181064a05e604c42c05e255c4bbb07bb53a841962054d","domain":"consumer-prices","exclusions":[],"actors":"none","measurement":"28%","sourceIndex":0,"subjectChart":null}
 ---
 
 Sarajevo — Crude is under 28% of Bosnia's 3.78-mark diesel price.

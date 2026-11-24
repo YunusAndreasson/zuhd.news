@@ -25,6 +25,8 @@ subjects:
 venues:
   - "mkt:lse"
 thermal: false
+starterEligible: true
+starterReview: {"revision":"3511a730c908e6b88991a915d0892cbae0f3cbad2395ca49c25f73627c5c43ec","domain":"infrastructure","exclusions":[],"actors":"none","measurement":"15,498 Dutch firms","sourceIndex":0,"subjectChart":null}
 ---
 
 Netherlands — By mid-2026, 15,498 Dutch firms queued for grid capacity.

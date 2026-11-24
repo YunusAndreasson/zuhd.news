@@ -21,6 +21,8 @@ entities: []
 subjects: []
 venues: []
 thermal: false
+starterEligible: true
+starterReview: {"revision":"c679fa27e1101a6ccbe2a3b381b7312912fc4622948fd8b6b62dc15c1fc7bbd0","domain":"health-research","exclusions":[],"actors":"none","measurement":"6 per 100,000 GLP-1 patients","sourceIndex":0,"subjectChart":null}
 ---
 
 Washington — 6 per 100,000 GLP-1 patients developed optic neuropathy.

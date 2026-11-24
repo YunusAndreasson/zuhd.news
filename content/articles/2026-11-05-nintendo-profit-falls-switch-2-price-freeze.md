@@ -41,6 +41,8 @@ subjects:
 venues:
   - "mkt:tse"
 thermal: false
+starterEligible: true
+starterReview: {"revision":"e76684b67b39229669443f9c6825838d752b99a7bb63e97c7149c0fb2fe3b541","domain":"products","exclusions":[],"actors":"nonpartisan","measurement":"2.67 million units","sourceIndex":0,"subjectChart":null}
 ---
 
 Japan — Switch 2 sales fell 41% to 2.67 million units.

@@ -22,6 +22,8 @@ entities:
 subjects: []
 venues: []
 thermal: false
+starterEligible: true
+starterReview: {"revision":"c5ee72f35e3f12d1c26d91be490657a29184774bd69c329e8b7a7d5d3e6e78fc","domain":"companies","exclusions":[],"actors":"nonpartisan","measurement":"$7.7 billion","sourceIndex":0,"subjectChart":null}
 ---
 
 London — Isomorphic Labs has raised $7.7 billion with no drug yet in human trials.

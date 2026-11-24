@@ -20,6 +20,8 @@ subjects:
   - "stocks:JD"
 venues: []
 thermal: false
+starterEligible: true
+starterReview: {"revision":"5f1e35b0c99da82b36b5379b683442a1e2a28c4d365caf78a153e2455a277b94","domain":"technology","exclusions":[],"actors":"none","measurement":"15%","sourceIndex":0,"subjectChart":null}
 ---
 
 China — JD.com says it cut ad inference latency 15% with Huawei.

@@ -22,6 +22,8 @@ entities:
 subjects: []
 venues: []
 thermal: false
+starterEligible: true
+starterReview: {"revision":"353d3a43629962e847fa794699ee7dfd97d3b9ec143a050625f41bd4f504a571","domain":"technology","exclusions":[],"actors":"none","measurement":"680 tokens a second","sourceIndex":0,"subjectChart":null}
 ---
 
 Shenzhen — A diffusion language model reached 680 tokens a second.

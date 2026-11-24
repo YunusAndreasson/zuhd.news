@@ -19,6 +19,8 @@ entities: []
 subjects: []
 venues: []
 thermal: false
+starterEligible: true
+starterReview: {"revision":"94a78f1206ded2e4fa70af061d97b15e50986aa81d17a86e8fb23bf5d6d833fd","domain":"health-research","exclusions":[],"actors":"nonpartisan","measurement":"189 tumours","sourceIndex":0,"subjectChart":null}
 ---
 
 Boston — 189 tumours, from patients in their 20s to 90s, now form one colorectal atlas.

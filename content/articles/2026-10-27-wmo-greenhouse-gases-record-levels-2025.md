@@ -20,6 +20,8 @@ entities: []
 subjects: []
 venues: []
 thermal: false
+starterEligible: true
+starterReview: {"revision":"44911e0050a6e9746939872544078ca404723ac090c70639dbbb01020b79c259","domain":"climate-data","exclusions":[],"actors":"none","measurement":"24,000 times","sourceIndex":0,"subjectChart":null}
 ---
 
 Geneva — Sulphur hexafluoride warms 24,000 times more than CO2 over a century.

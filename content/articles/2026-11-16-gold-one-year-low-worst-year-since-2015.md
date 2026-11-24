@@ -27,6 +27,8 @@ venues:
   - "mkt:nyse"
 thermal: false
 chart: "paxg"
+starterReview: {"revision":"2b0462da97daa7a3a65bf57fe539cab102fb8decf5da01033f346b0560493272","domain":"markets","exclusions":[],"actors":"none","measurement":"$3,830.74 an ounce","sourceIndex":0,"subjectChart":null}
+starterEligible: true
 ---
 
 Bengaluru — Gold fell to $3,830.74 an ounce, down 31.5% since January.

@@ -18,6 +18,8 @@ entities: []
 subjects: []
 venues: []
 thermal: false
+starterEligible: true
+starterReview: {"revision":"26d21bda86b73192b890c02bcad3224764392eaf05ab37e3e4bed29a0915cc82","domain":"science","exclusions":[],"actors":"none","measurement":"97%","sourceIndex":0,"subjectChart":null}
 ---
 
 Hong Kong — A vividly coloured coating reflects 97% of light.

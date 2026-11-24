@@ -26,6 +26,8 @@ subjects: []
 venues: []
 thermal: false
 chart: "ecb-rate"
+starterEligible: true
+starterReview: {"revision":"0f471e8ca2e3992b8590814e16226014564c1fce851c9cd8a8186780f53a93d2","domain":"economy","exclusions":[],"actors":"none","measurement":"7%","sourceIndex":0,"subjectChart":null}
 ---
 
 Frankfurt — Loan obstacles now hit 7% of euro zone firms.

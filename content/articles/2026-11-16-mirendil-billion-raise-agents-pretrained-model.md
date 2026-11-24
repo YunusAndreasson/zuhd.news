@@ -16,6 +16,8 @@ entities: []
 subjects: []
 venues: []
 thermal: false
+starterReview: {"revision":"c5c36506d01220abd71929b0cf7f5121a70dbf2edc404c7b20f0bd7a35b14cfc","domain":"technology","exclusions":[],"actors":"none","measurement":"$10 million","sourceIndex":0,"subjectChart":null}
+starterEligible: true
 ---
 
 San Francisco — Mirendil says one researcher trained a model for under $10 million.

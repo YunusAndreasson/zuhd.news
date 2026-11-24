@@ -17,6 +17,8 @@ subjects: []
 venues: []
 thermal: false
 chart: "poly-openai-1t-valuation-in-2026"
+starterEligible: true
+starterReview: {"revision":"ff88c95cc73d705a5d63c06d201f4f0208f76e7daf962362d55c98ae24ec8e94","domain":"companies","exclusions":[],"actors":"none","measurement":"$10.9 billion","sourceIndex":0,"subjectChart":null}
 ---
 
 United States — OpenAI's operating loss hit $10.9 billion on $10 billion of quarterly revenue.

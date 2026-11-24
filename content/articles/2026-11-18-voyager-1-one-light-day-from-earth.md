@@ -36,6 +36,8 @@ entities: []
 subjects: []
 venues: []
 thermal: false
+starterEligible: true
+starterReview: {"revision":"8a5e1a55ca47c2485416a53d962dbd1b5c83feade3415607d949f0190f841c90","domain":"space","exclusions":[],"actors":"none","measurement":"24 hours","sourceIndex":0,"subjectChart":null}
 ---
 
 Pasadena — A command to Voyager 1 now takes 24 hours to arrive.

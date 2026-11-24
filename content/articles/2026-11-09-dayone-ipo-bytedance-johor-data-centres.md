@@ -20,6 +20,8 @@ subjects: []
 venues:
   - "mkt:nyse"
 thermal: false
+starterEligible: true
+starterReview: {"revision":"55e8ab466274281148528d8f786feb4afa2d01829ee84750c587c1ca66a23b81","domain":"companies","exclusions":[],"actors":"none","measurement":"70%","sourceIndex":0,"subjectChart":null}
 ---
 
 Singapore — One customer paid DayOne nearly 70% of its revenue.

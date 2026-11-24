@@ -19,6 +19,8 @@ entities: []
 subjects: []
 venues: []
 thermal: false
+starterEligible: true
+starterReview: {"revision":"d60a3660e16237e248a354b7764cdff0cd82d8d605aeec310f50ff388a6241dd","domain":"markets","exclusions":[],"actors":"none","measurement":"79%","sourceIndex":0,"subjectChart":null}
 ---
 
 China — OKE Precision, down 79% from peak, seeks ¥950 million.

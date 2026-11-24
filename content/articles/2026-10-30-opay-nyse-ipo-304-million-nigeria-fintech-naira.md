@@ -22,6 +22,8 @@ entities: []
 subjects: []
 venues: []
 thermal: false
+starterEligible: true
+starterReview: {"revision":"552aa40e479e465b6e79a0bb163473da5d90329bd74aceda63640ee0b3e2a0c0","domain":"markets","exclusions":[],"actors":"none","measurement":"$304 million","sourceIndex":0,"subjectChart":null}
 ---
 
 Nigeria — OPay raised $304 million in a New York listing.

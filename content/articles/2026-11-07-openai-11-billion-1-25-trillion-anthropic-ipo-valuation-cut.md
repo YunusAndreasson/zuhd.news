@@ -18,6 +18,8 @@ venues:
   - "mkt:nyse"
 thermal: false
 chart: "poly-will-anthropic-ipo-by-november-30-2026"
+starterEligible: true
+starterReview: {"revision":"e45472eaf124f9f6d1e2ee006ef3d0067b4e070106d1aeccfa27df6c1e75e173","domain":"companies","exclusions":[],"actors":"none","measurement":"$11 billion","sourceIndex":0,"subjectChart":null}
 ---
 
 San Francisco — OpenAI banked $11 billion of a round once planned at $30 billion.

@@ -20,6 +20,8 @@ entities: []
 subjects: []
 venues: []
 thermal: false
+starterEligible: true
+starterReview: {"revision":"d351f89a17a8a68dd36a5a36af43da965a03838ad45676fbb0bdbc8e8de5d313","domain":"health-research","exclusions":[],"actors":"nonpartisan","measurement":"100,000 Americans","sourceIndex":0,"subjectChart":null}
 ---
 
 Pittsburgh — Nearly 100,000 Americans revealed thousands of new drug-response gene variants.

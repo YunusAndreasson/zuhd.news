@@ -19,6 +19,8 @@ entities: []
 subjects: []
 venues: []
 thermal: false
+starterEligible: true
+starterReview: {"revision":"deddaefad60e8a2578435adc95046f8f2e73ab10590b7e044b2433da487d18f8","domain":"products","exclusions":[],"actors":"none","measurement":"$1 per million input tokens","sourceIndex":0,"subjectChart":null}
 ---
 
 United States — OpenAI prices GPT-6.1 Terra at $1 per million input tokens.

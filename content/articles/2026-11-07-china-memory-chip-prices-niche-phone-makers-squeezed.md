@@ -26,6 +26,8 @@ subjects:
   - "stocks:688036.SS"
 venues: []
 thermal: false
+starterEligible: true
+starterReview: {"revision":"6db2717deb8a7343565b84e5219b187d89e4a5344a9bf29283f41823a0945e11","domain":"products","exclusions":[],"actors":"none","measurement":"40-50%","sourceIndex":0,"subjectChart":null}
 ---
 
 Beijing — Memory now takes 40-50% of a low-end phone's cost, research firm IDC estimates.

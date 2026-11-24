@@ -20,6 +20,8 @@ entities: []
 subjects: []
 venues: []
 thermal: false
+starterEligible: true
+starterReview: {"revision":"0f77a72281b8015fc326358b334eb9018658eeeee491ca162093d34bd096aaa2","domain":"science","exclusions":[],"actors":"nonpartisan","measurement":"4 times","sourceIndex":0,"subjectChart":null}
 ---
 
 United States — Southern Hemisphere conifer plantations grow up to 4 times faster.

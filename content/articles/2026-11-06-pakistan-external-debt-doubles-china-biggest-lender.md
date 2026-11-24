@@ -23,6 +23,8 @@ entities: []
 subjects: []
 venues: []
 thermal: false
+starterEligible: true
+starterReview: {"revision":"e7bf648fad531c2b2024ef2e665528fb925515406ac675e090f21f00fc0a711f","domain":"economy","exclusions":[],"actors":"none","measurement":"$22.4 billion","sourceIndex":0,"subjectChart":null}
 ---
 
 Islamabad — [China](country:CN) holds $22.4 billion of Pakistan's external debt.

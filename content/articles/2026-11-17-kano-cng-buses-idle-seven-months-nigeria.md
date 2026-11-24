@@ -25,6 +25,8 @@ entities:
 subjects: []
 venues: []
 thermal: false
+starterEligible: true
+starterReview: {"revision":"b3d4ed51bc1172cb00a7f51d2b66fc7a607c545a67f752c5c3785d3914be1ec9","domain":"infrastructure","exclusions":[],"actors":"nonpartisan","measurement":"222 gas-powered vehicles","sourceIndex":0,"subjectChart":null}
 ---
 
 Kano — 222 gas-powered vehicles unveiled in May still carry no passengers.

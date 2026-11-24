@@ -37,6 +37,8 @@ subjects:
   - "stocks:DAL"
 venues: []
 thermal: false
+starterEligible: true
+starterReview: {"revision":"7f72b693e0e75405585dd1d446d49b07f22cc007ce84289f5bf6981c1050a7c8","domain":"infrastructure","exclusions":[],"actors":"none","measurement":"48%","sourceIndex":1,"subjectChart":null}
 ---
 
 Atlanta — 48% of Delta flights ran late Sunday, FlightAware shows.

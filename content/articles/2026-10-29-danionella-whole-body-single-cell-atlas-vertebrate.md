@@ -16,6 +16,8 @@ entities: []
 subjects: []
 venues: []
 thermal: false
+starterEligible: true
+starterReview: {"revision":"8ee3eacb98ec29fdf4719e55bea74e2820e13af3b8e8abc3d6d3a5a8873627fe","domain":"science","exclusions":[],"actors":"none","measurement":"600,000 cells","sourceIndex":0,"subjectChart":null}
 ---
 
 Cambridge — 600,000 cells of one adult fish, mapped gene by gene.

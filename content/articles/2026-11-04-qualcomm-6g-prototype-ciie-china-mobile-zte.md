@@ -30,6 +30,8 @@ subjects:
   - "stocks:QCOM"
 venues: []
 thermal: false
+starterEligible: true
+starterReview: {"revision":"d4f5fe4912a0823273d5ad837c9f54523d30833800d4d18da669a07581ae6ab0","domain":"technology","exclusions":[],"actors":"none","measurement":"14 Gbps","sourceIndex":0,"subjectChart":null}
 ---
 
 Shanghai — Qualcomm's public 6G prototype reaches peak speeds near 14 Gbps.

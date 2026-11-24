@@ -20,6 +20,8 @@ entities: []
 subjects: []
 venues: []
 thermal: false
+starterEligible: true
+starterReview: {"revision":"ef4199e20157b82d38c353f5a81ab562ce4f4b9d5fa4e3ca4d8d60b52a6528ca","domain":"science","exclusions":[],"actors":"nonpartisan","measurement":"12.8 million tonnes","sourceIndex":0,"subjectChart":null}
 ---
 
 Hong Kong — Air drops 12.8 million tonnes of organic nitrogen into oceans.

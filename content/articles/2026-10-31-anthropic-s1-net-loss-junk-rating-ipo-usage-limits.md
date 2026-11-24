@@ -21,6 +21,8 @@ venues:
   - "mkt:nyse"
 thermal: false
 chart: "poly-will-anthropic-ipo-on-november-20-2026"
+starterEligible: true
+starterReview: {"revision":"631d6338d79dcb7128a5ac75349d1077a887fe620866891ec9e714f01ad1af6d","domain":"companies","exclusions":[],"actors":"none","measurement":"$80.7 billion","sourceIndex":0,"subjectChart":null}
 ---
 
 San Francisco — Anthropic reports an $80.7 billion first-half loss.

@@ -24,6 +24,8 @@ subjects: []
 venues: []
 thermal: false
 chart: "btc"
+starterEligible: true
+starterReview: {"revision":"d7849748424195e9aaae65cfab02f4939c9c7d661969060965e8eaf3045130ef","domain":"markets","exclusions":[],"actors":"nonpartisan","measurement":"29%","sourceIndex":0,"subjectChart":null}
 ---
 
 United States — Bitcoin fell seven straight weeks, losing 29% since early October.

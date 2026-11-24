@@ -19,6 +19,8 @@ entities: []
 subjects: []
 venues: []
 thermal: false
+starterReview: {"revision":"32379cec35040e502c99d05a085f7392d8ca544238a4fbcac1b35c3ae6596900","domain":"space","exclusions":[],"actors":"none","measurement":"10,000 satellites","sourceIndex":0,"subjectChart":null}
+starterEligible: true
 ---
 
 Germany — Starlink alone flies over 10,000 satellites.

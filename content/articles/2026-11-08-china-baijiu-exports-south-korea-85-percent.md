@@ -20,6 +20,8 @@ subjects: []
 venues:
   - "mkt:krx"
 thermal: false
+starterReview: {"revision":"e59dcfe621f59b906355037abe113c3d4f08ac6416917be1e711f552dd382e32","domain":"trade","exclusions":[],"actors":"none","measurement":"85%","sourceIndex":0,"subjectChart":null}
+starterEligible: true
 ---
 
 South Korea — [China](country:CN)'s baijiu exports jumped 85% to $33.3 million in 9 months.

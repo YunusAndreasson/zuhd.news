@@ -26,6 +26,8 @@ entities:
 subjects: []
 venues: []
 thermal: false
+starterEligible: true
+starterReview: {"revision":"e5e64cfdbb9c7e7c25971c5a9537f39e0fee532898d309f1beca55a6cbecdddb","domain":"climate-data","exclusions":[],"actors":"none","measurement":"6.6 billion cubic metres","sourceIndex":0,"subjectChart":null}
 ---
 
 Antalya — [Nigeria](country:NG) flared 6.6 billion cubic metres of gas in 2025.

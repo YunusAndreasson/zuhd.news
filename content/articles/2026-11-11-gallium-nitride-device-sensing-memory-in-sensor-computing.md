@@ -16,6 +16,8 @@ entities: []
 subjects: []
 venues: []
 thermal: false
+starterEligible: true
+starterReview: {"revision":"0dced5bf4a67c1d8a290a44c75f5c6db765c979762af6617abe7dfed615c5290","domain":"technology","exclusions":[],"actors":"none","measurement":"300°C","sourceIndex":0,"subjectChart":null}
 ---
 
 Changchun — One chip senses, stores and processes light at 300°C.

@@ -27,6 +27,8 @@ subjects: []
 venues:
   - "mkt:xetra"
 thermal: false
+starterEligible: true
+starterReview: {"revision":"e9a7ad00477844ad9073c0190c6ae29aa52ef45054a21935a201dd7fe6b74dac","domain":"economy","exclusions":[],"actors":"none","measurement":"Ifo expectations index rose to 91.6","sourceIndex":0,"subjectChart":null}
 ---
 
 Munich — [Germany](country:DE)'s Ifo expectations index rose to 91.6 from 90.4.

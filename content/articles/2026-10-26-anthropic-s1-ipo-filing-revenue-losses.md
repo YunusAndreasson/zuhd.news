@@ -53,6 +53,8 @@ venues:
   - "mkt:nyse"
 thermal: false
 chart: "poly-will-anthropic-ipo-by-november-30-2026"
+starterEligible: true
+starterReview: {"revision":"73d8dfed3b6b9edd8b02070c76681975a52352ccce711cd33cf86791953cd760","domain":"companies","exclusions":[],"actors":"none","measurement":"$80.7 billion","sourceIndex":0,"subjectChart":null}
 ---
 
 United States — Anthropic lost $80.7 billion on $16.3 billion of revenue.

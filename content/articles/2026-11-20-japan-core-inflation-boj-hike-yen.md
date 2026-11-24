@@ -35,6 +35,8 @@ venues:
   - "mkt:tse"
 thermal: false
 chart: "boj-rate"
+starterEligible: true
+starterReview: {"revision":"d17c8f76b6b90c66d8d2b4e87892b2526f5d23e7e8570c6571ea88992aa35b09","domain":"consumer-prices","exclusions":[],"actors":"none","measurement":"2.2%","sourceIndex":0,"subjectChart":null}
 ---
 
 Tokyo — Core inflation hit 2.2%, below the 2.3% forecast.

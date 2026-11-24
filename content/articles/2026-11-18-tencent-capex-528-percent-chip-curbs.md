@@ -24,6 +24,8 @@ subjects:
 venues:
   - "mkt:hkex"
 thermal: false
+starterEligible: true
+starterReview: {"revision":"df5097278662e0bfbfad635a9f17de17f4797a7f5991fd44b1359981e027c54e","domain":"companies","exclusions":[],"actors":"nonpartisan","measurement":"528%","sourceIndex":0,"subjectChart":null}
 ---
 
 Shenzhen — Tencent's quarterly capital spending jumped 528% to 81.4 billion yuan.

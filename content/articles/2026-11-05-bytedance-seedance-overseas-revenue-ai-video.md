@@ -32,6 +32,8 @@ entities:
 subjects: []
 venues: []
 thermal: false
+starterEligible: true
+starterReview: {"revision":"3cfe3d6ddeac6edbfd6396346e8e1f37694e8a5ecfed2ddac2b1f5b047268249","domain":"companies","exclusions":[],"actors":"none","measurement":"5-fold","sourceIndex":0,"subjectChart":null}
 ---
 
 Beijing — Seedance's overseas revenue grew nearly 5-fold in 6 months.

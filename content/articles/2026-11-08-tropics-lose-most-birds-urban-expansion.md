@@ -19,6 +19,8 @@ entities: []
 subjects: []
 venues: []
 thermal: false
+starterReview: {"revision":"9a471fa342e5a1523e69755cc5a0a62e38298195393075cb2e3fbda57045bac8","domain":"science","exclusions":[],"actors":"none","measurement":"42%","sourceIndex":0,"subjectChart":null}
+starterEligible: true
 ---
 
 Singapore — A city square near the equator holds 42% fewer bird species.

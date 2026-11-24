@@ -33,6 +33,8 @@ venues:
   - "mkt:sse"
 thermal: false
 chart: "paxg"
+starterEligible: true
+starterReview: {"revision":"83b68c477ae27140540ae9c25dbbefba6a783585eb5fd14888d5c99d004576ca","domain":"markets","exclusions":[],"actors":"none","measurement":"$784 million","sourceIndex":0,"subjectChart":null}
 ---
 
 Beijing — Chinese gold ETFs drew $784 million in October.

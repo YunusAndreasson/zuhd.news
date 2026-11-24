@@ -41,6 +41,8 @@ venues:
   - "mkt:nyse"
 thermal: false
 chart: "fed-funds"
+starterReview: {"revision":"2caf3d4ca96a1880f8cd48271c030636d0a792861ae1545cdb55feea07bc5c08","domain":"consumer-prices","exclusions":[],"actors":"none","measurement":"0.4%","sourceIndex":0,"subjectChart":null}
+starterEligible: true
 ---
 
 Kansas City — [US](country:US) consumer prices rose 0.4% in October, beating forecasts.

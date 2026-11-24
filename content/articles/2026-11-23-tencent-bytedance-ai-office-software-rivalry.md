@@ -27,6 +27,8 @@ subjects:
 venues:
   - "mkt:hkex"
 thermal: false
+starterEligible: true
+starterReview: {"revision":"15119e52731be2c942b4d8c7404126b585b09098c2bc96e6dbeb675d4f12fe6d","domain":"technology","exclusions":[],"actors":"none","measurement":"10 million daily AI-office users","sourceIndex":0,"subjectChart":null}
 ---
 
 China — Tencent claims 10 million daily AI-office users, ByteDance 8 million.

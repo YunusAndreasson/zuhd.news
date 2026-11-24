@@ -22,6 +22,8 @@ entities:
 subjects: []
 venues: []
 thermal: false
+starterEligible: true
+starterReview: {"revision":"514bd255d32821da45f126f60e0bf09aef57c12b441cf7283b7539508f42684a","domain":"companies","exclusions":[],"actors":"none","measurement":"27%","sourceIndex":0,"subjectChart":null}
 ---
 
 China — State investors now supply 27% of DeepSeek's funding, up from 2%.

@@ -22,6 +22,8 @@ entities: []
 subjects: []
 venues: []
 thermal: false
+starterEligible: true
+starterReview: {"revision":"6c6835946583eada4db546ac038ed1ce939a3a5afee8958727027d5eb9c8bb12","domain":"science","exclusions":[],"actors":"nonpartisan","measurement":"200-plus robot-arm commands","sourceIndex":0,"subjectChart":null}
 ---
 
 Toronto — AI agents wrote 200-plus robot-arm commands after testing them virtually.

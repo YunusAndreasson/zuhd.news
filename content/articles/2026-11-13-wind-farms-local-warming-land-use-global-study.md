@@ -18,6 +18,8 @@ entities: []
 subjects: []
 venues: []
 thermal: false
+starterEligible: true
+starterReview: {"revision":"5393f1ea6f370936c3266eb3a86a8b04f6eac07b76cd5ac90091a6d3a64800c5","domain":"climate-data","exclusions":[],"actors":"none","measurement":"0.041-0.125 °C","sourceIndex":0,"subjectChart":null}
 ---
 
 Worldwide — A global study finds nights near wind farms 0.041-0.125 °C warmer.

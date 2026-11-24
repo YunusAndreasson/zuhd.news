@@ -31,6 +31,8 @@ subjects: []
 venues: []
 thermal: false
 chart: "poly-will-anthropics-market-cap-be-less-than-1pt25t-a"
+starterEligible: true
+starterReview: {"revision":"1b92485696861dbae608c91a1d10a841f67d66f2a2303a27afaca41abc27671a","domain":"markets","exclusions":[],"actors":"none","measurement":"24%","sourceIndex":0,"subjectChart":null}
 ---
 
 New York — Crypto traders price Anthropic 24% above its $83 offering price.

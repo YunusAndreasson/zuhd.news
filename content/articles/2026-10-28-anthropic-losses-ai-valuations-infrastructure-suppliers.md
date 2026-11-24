@@ -20,6 +20,8 @@ subjects: []
 venues: []
 thermal: false
 chart: "poly-will-anthropic-ipo-by-november-30-2026"
+starterEligible: true
+starterReview: {"revision":"d2462a7c735098f964dcd036ee6ebd87d8fd39f237e43dd9ea22e479086db7cc","domain":"companies","exclusions":[],"actors":"none","measurement":"$80.7 billion","sourceIndex":0,"subjectChart":null}
 ---
 
 San Francisco — Anthropic lost $80.7 billion in six months, its prospectus shows.

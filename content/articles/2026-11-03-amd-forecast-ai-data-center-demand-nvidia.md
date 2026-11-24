@@ -38,6 +38,8 @@ venues:
   - "mkt:nyse"
 thermal: false
 chart: "co:amd"
+starterEligible: true
+starterReview: {"revision":"37583b0af6bad45923ae6c7c3e552b793fd88a42dbda893c5692b4163c214164","domain":"companies","exclusions":[],"actors":"none","measurement":"$8.55 billion","sourceIndex":0,"subjectChart":null}
 ---
 
 United States — AMD's data-center revenue jumped 97% to $8.55 billion.

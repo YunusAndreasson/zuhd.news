@@ -22,6 +22,8 @@ entities:
 subjects: []
 venues: []
 thermal: false
+starterEligible: true
+starterReview: {"revision":"63ab936ef9dde9381d2e7c111b4c7a5749d554623e0ae5697094066d595cd4dc","domain":"technology","exclusions":[],"actors":"none","measurement":"6 AgiBot humanoids","sourceIndex":0,"subjectChart":null}
 ---
 
 Beijing — A convenience store dismissed 2 of 6 AgiBot humanoids.

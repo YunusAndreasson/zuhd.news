@@ -23,6 +23,8 @@ subjects: []
 venues: []
 thermal: false
 chart: "paxg"
+starterEligible: true
+starterReview: {"revision":"b7068ad7e9ef7a80fac7814fa51dfda2e0c56c54fc4d59847608b8deb06bd4b0","domain":"markets","exclusions":[],"actors":"nonpartisan","measurement":"Rs30,000 extra per tola","sourceIndex":0,"subjectChart":null}
 ---
 
 Karachi — Dealers charge up to Rs30,000 extra per tola for gold bars.

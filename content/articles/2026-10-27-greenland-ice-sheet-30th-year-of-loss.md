@@ -16,6 +16,8 @@ entities: []
 subjects: []
 venues: []
 thermal: false
+starterEligible: true
+starterReview: {"revision":"2142368b0028981f17bc47cbbe0f152a4b6264d768f317b0d79cea91d2e0bd87","domain":"climate-data","exclusions":[],"actors":"none","measurement":"135 billion tonnes","sourceIndex":0,"subjectChart":null}
 ---
 
 Nuuk — Greenland lost ice for the 30th straight year, 135 billion tonnes.

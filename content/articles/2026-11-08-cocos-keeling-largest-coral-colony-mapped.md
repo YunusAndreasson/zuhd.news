@@ -16,6 +16,8 @@ entities: []
 subjects: []
 venues: []
 thermal: false
+starterEligible: true
+starterReview: {"revision":"ae3f6d37dff9cc6f3300a0daf6f78a0af6ee2530207fda27b41c07554a52687b","domain":"science","exclusions":[],"actors":"nonpartisan","measurement":"1.56 km","sourceIndex":0,"subjectChart":null}
 ---
 
 Cocos (Keeling) Islands — One rose coral spans 1.56 km, 100 buses end to end.
