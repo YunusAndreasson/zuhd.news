@@ -2,13 +2,208 @@
   "version": 1,
   "stories": [
     {
+      "id": "iraq-orders-takeover-kurdish-oilfields",
+      "label": "Iraq orders takeover of oilfields in areas under Kurdish control",
+      "firstSeen": "2026-11-24T22:05:17.744Z",
+      "lastCovered": "2026-11-24T22:05:17.744Z",
+      "coverageCount": 1,
+      "category": "economy",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-11-24-iraq-orders-takeover-kurdish-oilfields"
+      ],
+      "eventUri": "eng-12216575",
+      "summary": "Iraq's prime minister ordered federal authorities to take over management of oilfields in four provinces held by the Kurdistan Regional Government, and the Kurds rejected it. Lead with who controls the barrels and the revenue: Baghdad's claim to the fields, Erbil's budget dependence, and the smuggling charge used to justify the move. Name Brent crude, since Kurdish output feeds export routes the market watches, and note the risk of armed confrontation around Kirkuk."
+    },
+    {
+      "id": "iraq-opec-capacity-review-2027-quotas",
+      "label": "Iraq Rejects OPEC+ Assessment of Its Oil Production Capacity",
+      "firstSeen": "2026-11-24T22:05:17.744Z",
+      "lastCovered": "2026-11-24T22:05:17.744Z",
+      "coverageCount": 1,
+      "category": "economy",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-11-24-iraq-opec-capacity-review-2027-quotas"
+      ],
+      "eventUri": "eng-12218617",
+      "summary": "OPEC+ is running its first-ever review of members' production capacity, and the review will set 2027 quotas. Iraq is pushing for a higher estimate. The mechanism: capacity becomes the baseline for how much each state may pump, so the review decides oil revenue for Baghdad, Abu Dhabi, Riyadh and Luanda in a market already in glut. Name Brent crude and the three-month low it hit on oversupply. Mention that Baghdad is also moving on Kurdish fields the same day, but keep this about the cartel."
+    },
+    {
+      "id": "turkey-military-helicopter-crash-eskisehir-five-dead",
+      "label": "Turkish military helicopter crash kills five in western Turkiye",
+      "firstSeen": "2026-11-24T22:05:17.744Z",
+      "lastCovered": "2026-11-24T22:05:17.744Z",
+      "coverageCount": 1,
+      "category": "politics",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-11-24-turkey-military-helicopter-crash-eskisehir-five-dead"
+      ],
+      "eventUri": "tur-1394853",
+      "summary": "A Turkish Air Force helicopter crashed near Eskişehir and killed five crew members, days after another deadly army helicopter accident. The defence ministry has given no cause. Lead with the second fatal crash in days and the accountability question: what the ministry has disclosed, what fleet is involved and what investigations are open. Datelined Eskişehir."
+    },
+    {
+      "id": "colombia-cartagena-supermarket-hostages",
+      "label": "Hostage situation reported in Colombia as armed men flee into supermarket",
+      "firstSeen": "2026-11-24T22:05:17.744Z",
+      "lastCovered": "2026-11-24T22:05:17.744Z",
+      "coverageCount": 1,
+      "category": "politics",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-11-24-colombia-cartagena-supermarket-hostages"
+      ],
+      "eventUri": "spa-4430881",
+      "summary": "About 25 people are held hostage in a Cartagena supermarket after armed men failed to rob an armoured vehicle. This is a separate event from the Villavicencio car bomb we already covered: use that bomb, and a second bomb in a central city that injured 23, only as context for violence spreading into Colombian cities under President de la Espriella's hardline security policy. Report the hostages' status as of the latest source. Datelined Cartagena."
+    },
+    {
+      "id": "us-measles-deaths-14-cases-6000",
+      "label": "Measles death toll rises to 14 as national case tally nears 6,000",
+      "firstSeen": "2026-11-24T22:05:17.744Z",
+      "lastCovered": "2026-11-24T22:05:17.744Z",
+      "coverageCount": 1,
+      "category": "politics",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-11-24-us-measles-deaths-14-cases-6000"
+      ],
+      "eventUri": "spa-4428229",
+      "summary": "Wisconsin reported the third US measles death today and Pennsylvania its ninth yesterday, bringing the national toll to 14 with almost 6,000 cases, one week after PAHO formally ruled the US had lost elimination status. Lead with the deaths. The accountability angle is falling vaccination coverage and the federal health policy behind it. Dateline the state where today's death was reported."
+    },
+    {
+      "id": "nigeria-police-nestoil-sahara-executives-wanted",
+      "label": "Police declare Nestoil chair, Sahara Group's ED, seven others wanted",
+      "firstSeen": "2026-11-24T22:05:17.744Z",
+      "lastCovered": "2026-11-24T22:05:17.744Z",
+      "coverageCount": 1,
+      "category": "politics",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-11-24-nigeria-police-nestoil-sahara-executives-wanted"
+      ],
+      "eventUri": "eng-12218775",
+      "summary": "Nigeria's police declared nine business executives wanted, among them the Nestoil chair and a Sahara Group executive director, after only one of ten people invited for questioning showed up on 12 November. Lead with the size of the names involved in Nigeria's oil-services elite and with what the investigation alleges, which may involve First Bank. The structural question is whether Nigerian law enforcement can compel the very powerful to appear. Datelined Lagos."
+    },
+    {
+      "id": "pakistan-sugar-deregulation-imf-benchmark",
+      "label": "Cabinet approves deregulation of sugar sector to meet vital IMF benchmark",
+      "firstSeen": "2026-11-24T22:05:17.744Z",
+      "lastCovered": "2026-11-24T22:05:17.744Z",
+      "coverageCount": 1,
+      "category": "economy",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-11-24-pakistan-sugar-deregulation-imf-benchmark"
+      ],
+      "eventUri": "eng-12218174",
+      "summary": "To meet an IMF structural benchmark it had long postponed, Pakistan's cabinet approved deregulating sugar: export subsidies end and sugar may move freely between provinces. The mechanism: sugar mills are owned by many of the politicians who set sugar policy, and subsidies and export permits have produced recurring price shocks. Lead with who loses the rent (mill owners) and what consumers and cane farmers can expect. Datelined Islamabad."
+    },
+    {
+      "id": "south-africa-offshore-oil-blowout-model-75-percent",
+      "label": "Modelled West Coast blowout -- oil reached shore in 75% of simulations",
+      "firstSeen": "2026-11-24T22:05:17.744Z",
+      "lastCovered": "2026-11-24T22:05:17.744Z",
+      "coverageCount": 1,
+      "category": "economy",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-11-24-south-africa-offshore-oil-blowout-model-75-percent"
+      ],
+      "eventUri": null,
+      "summary": "A new oil-spill model for South Africa's West and South coasts found that a major offshore blowout would reach the shore in 75% of simulations, threatening fisheries, tourism and coastal livelihoods while TotalEnergies and others pursue deepwater drilling. Lead with the 75%. The accountability question is who carries the risk, small-scale fishers, and who takes the profit. Datelined Cape Town."
+    },
+    {
+      "id": "llms-protein-biology-alphafold-nature",
+      "label": "Watch out, AlphaFold: Claude and ChatGPT's new biology skills wow scientists",
+      "firstSeen": "2026-11-24T22:05:17.744Z",
+      "lastCovered": "2026-11-24T22:05:17.744Z",
+      "coverageCount": 1,
+      "category": "science",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-11-24-llms-protein-biology-alphafold-nature"
+      ],
+      "eventUri": null,
+      "summary": "Researchers testing general-purpose LLMs from OpenAI, Anthropic and Google found they can predict sequences and properties of obscure proteins, a task once reserved for specialist tools like AlphaFold. Lead with the test and what the models got right, then the caveat: what validation is still missing and why general models changing structural biology matters for labs without specialist compute."
+    },
+    {
+      "id": "riemann-hypothesis-ai-assisted-proof",
+      "label": "What's going on with the Riemann hypothesis?",
+      "firstSeen": "2026-11-24T22:05:17.744Z",
+      "lastCovered": "2026-11-24T22:05:17.744Z",
+      "coverageCount": 1,
+      "category": "science",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-11-24-riemann-hypothesis-ai-assisted-proof"
+      ],
+      "eventUri": "fra-1366483",
+      "summary": "An AI-assisted proof of the Riemann hypothesis, one of mathematics' largest open problems, appears to hold up under early scrutiny, but mathematicians are unsure what it teaches. Lead with the verification status: who has checked it and how. Then the structural point: when a machine finds a proof, the proof may come without the understanding mathematics has traditionally prized."
+    },
+    {
+      "id": "eu-kids-act-member-states-age-verification-objections",
+      "label": "Alterskontrollen, Sorgerechtsnachweise: EU-Länder haben Bedenken zum Kids Act",
+      "firstSeen": "2026-11-24T22:05:17.744Z",
+      "lastCovered": "2026-11-24T22:05:17.744Z",
+      "coverageCount": 1,
+      "category": "tech",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-11-24-eu-kids-act-member-states-age-verification-objections"
+      ],
+      "eventUri": null,
+      "summary": "EU member states are raising first objections to the Commission's planned Kids Act. Estonia rejects age limits altogether, several states criticise the mini-accounts for 13- and 14-year-olds, and Germany balks at requiring proof of parental custody. Lead with the custody-proof requirement: verifying age and guardianship means identity checks for everyone online. This is a fight over whether Europe's internet becomes ID-gated. Datelined Brussels."
+    },
+    {
+      "id": "hamburg-behaviour-scanner-cameras-expansion",
+      "label": "Hamburg: Jetzt noch mehr Verhaltensscanner-Kameras",
+      "firstSeen": "2026-11-24T22:05:17.744Z",
+      "lastCovered": "2026-11-24T22:05:17.744Z",
+      "coverageCount": 1,
+      "category": "tech",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-11-24-hamburg-behaviour-scanner-cameras-expansion"
+      ],
+      "eventUri": null,
+      "summary": "Hamburg is extending its automated behaviour-recognition cameras to the Landungsbrücken transit stop from early next year, although there are almost no reliable figures on whether the system works. Lead with the expansion despite missing evidence. The structural point: algorithmic surveillance of public space is spreading in Germany under the AI Act's exceptions, without measured accuracy. Datelined Hamburg."
+    },
+    {
+      "id": "amazon-leo-ariane-6-spacex-ula-failure",
+      "label": "Amazon surges launches with rival SpaceX after ULA fails to deliver",
+      "firstSeen": "2026-11-24T22:05:17.744Z",
+      "lastCovered": "2026-11-24T22:05:17.744Z",
+      "coverageCount": 1,
+      "category": "tech",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-11-24-amazon-leo-ariane-6-spacex-ula-failure"
+      ],
+      "eventUri": "eng-12217324",
+      "summary": "An Ariane 6 lifted off from Kourou with 36 Amazon Leo broadband satellites, weeks after a ULA Vulcan failure destroyed 40. Amazon now has hundreds of satellites in storage and is buying launches from its direct rival SpaceX. Lead with that dependency: the challenger to Starlink needs Starlink's owner to reach orbit. Datelined Kourou."
+    },
+    {
       "id": "houthi-drone-riyadh-pif-tower-second-strike",
       "label": "At least 11 injured in Houthi attack on Saudi PIF: What to know",
       "firstSeen": "2026-11-24T18:03:41.714Z",
       "lastCovered": "2026-11-24T18:03:41.714Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-11-24-houthi-drone-riyadh-pif-tower-second-strike"
@@ -23,7 +218,7 @@
       "lastCovered": "2026-11-24T18:03:41.714Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-11-24-hormuz-fourth-tanker-mine-traffic-down-40-percent"
@@ -38,7 +233,7 @@
       "lastCovered": "2026-11-24T18:03:41.714Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-11-24-trump-new-tariffs-china-eu-japan-india-after-midterms"
@@ -53,7 +248,7 @@
       "lastCovered": "2026-11-24T18:03:41.714Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-11-24-magyar-zelensky-uzhhorod-first-meeting-hungary"
@@ -68,7 +263,7 @@
       "lastCovered": "2026-11-24T18:03:41.714Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-11-24-gaza-tents-sandbags-israeli-gunfire-ceasefire"
@@ -83,7 +278,7 @@
       "lastCovered": "2026-11-24T18:03:41.714Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-11-24-punjab-assembly-blasphemy-298a-tougher-punishment"
@@ -98,7 +293,7 @@
       "lastCovered": "2026-11-24T18:03:41.714Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-11-24-judge-blocked-doj-search-ilhan-omar-home"
@@ -113,7 +308,7 @@
       "lastCovered": "2026-11-24T18:03:41.714Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-11-24-nigeria-lenacapavir-30000-hiv-prevention-injection"
@@ -128,7 +323,7 @@
       "lastCovered": "2026-11-24T18:03:41.714Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-11-24-us-entity-list-megaspeed-alibaba-subsidiary-southeast-asia"
@@ -143,7 +338,7 @@
       "lastCovered": "2026-11-24T18:03:41.714Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-11-24-cf40-china-property-bottom-trade-surplus"
@@ -158,7 +353,7 @@
       "lastCovered": "2026-11-24T18:03:41.714Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-11-24-tidal-bans-ai-generated-music-december-9"
@@ -173,7 +368,7 @@
       "lastCovered": "2026-11-24T18:03:41.714Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-11-24-germany-consumer-group-sues-meta-ray-ban-glasses-gdpr"
@@ -188,7 +383,7 @@
       "lastCovered": "2026-11-24T18:03:41.714Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-11-24-sensetime-sensenova-u1-6-open-source-image-self-correction"
@@ -203,7 +398,7 @@
       "lastCovered": "2026-11-24T18:03:41.714Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-11-24-homo-erectus-guangxi-rainforest-denisovans"
@@ -218,7 +413,7 @@
       "lastCovered": "2026-11-24T14:07:19.693Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-11-24-syria-marota-city-evicted-families-property-rights"
@@ -233,7 +428,7 @@
       "lastCovered": "2026-11-24T14:07:19.693Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-11-24-pakistan-lawyers-repeal-26th-27th-amendments-bilawal"
@@ -248,7 +443,7 @@
       "lastCovered": "2026-11-24T14:07:19.693Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-11-24-uganda-journalist-john-odele-criminal-libel-detained"
@@ -263,7 +458,7 @@
       "lastCovered": "2026-11-24T14:07:19.693Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-11-24-punjab-akali-dal-bjp-alliance-2027-farm-laws"
@@ -278,7 +473,7 @@
       "lastCovered": "2026-11-24T14:07:19.693Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-11-24-brent-crude-three-month-low-glut-iran"
@@ -293,7 +488,7 @@
       "lastCovered": "2026-11-24T14:07:19.693Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-11-24-anthropic-shares-ipo-price-nvidia-huang-return"
@@ -308,7 +503,7 @@
       "lastCovered": "2026-11-24T14:07:19.693Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-11-24-lebanon-liban-telecom-asset-valuation-public-funds"
@@ -323,7 +518,7 @@
       "lastCovered": "2026-11-24T14:07:19.693Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-11-24-amazon-cairn-ai-agents-zero-day-exploit"
@@ -338,7 +533,7 @@
       "lastCovered": "2026-11-24T14:07:19.693Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-11-24-brazil-palantir-agu-pilot-abin-sovereignty-risk"
@@ -353,7 +548,7 @@
       "lastCovered": "2026-11-24T14:07:19.693Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-11-24-xiaomi-q3-profit-falls-memory-prices-ai-spending"
@@ -368,7 +563,7 @@
       "lastCovered": "2026-11-24T14:07:19.693Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-11-24-china-biolight-dialysis-plant-halted-falsified-records"
@@ -383,7 +578,7 @@
       "lastCovered": "2026-11-24T14:07:19.693Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-11-24-stellenbosch-fungal-virulence-antifungal-strategy"
@@ -392,13 +587,29 @@
       "summary": "Stellenbosch University microbiologists propose fighting emerging fungal infections such as Candida auris by targeting the processes that make fungi virulent, rather than killing them outright, which is how resistance to the few existing antifungals builds. Lead with the scarcity: there are only a handful of antifungal drug classes, and fungal infections kill heavily in the Global South. Name the journal and say whether this is a review or new data. Dateline Stellenbosch."
     },
     {
+      "id": "google-personalised-ai-tv-channel-ads",
+      "label": "Google Wants To Make a 24/7 AI TV Channel. You’ll Be the Main Character",
+      "firstSeen": "2026-11-24T05:07:21.202Z",
+      "lastCovered": "2026-11-24T22:05:17.744Z",
+      "coverageCount": 2,
+      "category": "tech",
+      "importance": 3,
+      "arc": "developing",
+      "articles": [
+        "2026-11-24-google-personalised-ai-tv-channel-ads",
+        "2026-11-24-google-ai-tv-channel-starring-you"
+      ],
+      "eventUri": null,
+      "summary": "Google is working toward an always-on AI-generated TV channel personalised to each viewer, with ads generated to match. Lead with the business model: content built around a profile of you exists to carry ads built around a profile of you, and the surveillance needed to make it is the product. Say what Google has actually filed or shown, and how far it is from launch."
+    },
+    {
       "id": "russian-military-aircraft-south-korea-adiz",
       "label": "South Korea reports Russian military aircraft in its 'air defence identification zone'",
       "firstSeen": "2026-11-24T05:07:21.202Z",
       "lastCovered": "2026-11-24T10:03:58.560Z",
       "coverageCount": 2,
       "category": "politics",
-      "importance": 4,
+      "importance": 3,
       "arc": "developing",
       "articles": [
         "2026-11-24-russian-military-aircraft-south-korea-adiz",
@@ -414,7 +625,7 @@
       "lastCovered": "2026-11-24T10:03:58.560Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-11-24-spain-supreme-court-puigdemont-amnesty-return"
@@ -429,7 +640,7 @@
       "lastCovered": "2026-11-24T10:03:58.560Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-11-24-sheikh-hasina-return-bangladesh-december-16"
@@ -444,7 +655,7 @@
       "lastCovered": "2026-11-24T10:03:58.560Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-11-24-solomon-islands-ends-china-security-pact-australia"
@@ -459,7 +670,7 @@
       "lastCovered": "2026-11-24T10:03:58.560Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-11-24-villavicencio-car-bomb-colombia-farc-anniversary"
@@ -474,7 +685,7 @@
       "lastCovered": "2026-11-24T10:03:58.560Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-11-24-sanofi-insmed-41bn-patent-cliff"
@@ -489,7 +700,7 @@
       "lastCovered": "2026-11-24T10:03:58.560Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-11-24-adani-attero-recycled-copper-deal-india"
@@ -504,7 +715,7 @@
       "lastCovered": "2026-11-24T10:03:58.560Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-11-24-egypt-wheat-black-sea-drone-strikes-benghazi"
@@ -519,7 +730,7 @@
       "lastCovered": "2026-11-24T10:03:58.560Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-11-24-shenzhou-24-pakistani-astronaut-tiangong"
@@ -534,7 +745,7 @@
       "lastCovered": "2026-11-24T10:03:58.560Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-11-24-zhipu-glm-5-4-loop-transformer"
@@ -549,7 +760,7 @@
       "lastCovered": "2026-11-24T10:03:58.560Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-11-24-huawei-mate-x8-kirin-harmonyos-cost"
@@ -564,7 +775,7 @@
       "lastCovered": "2026-11-24T10:03:58.560Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-11-24-tsmc-texas-tax-abatement-brazos-fab"
@@ -579,7 +790,7 @@
       "lastCovered": "2026-11-24T18:03:41.714Z",
       "coverageCount": 2,
       "category": "politics",
-      "importance": 3,
+      "importance": 2,
       "arc": "developing",
       "articles": [
         "2026-11-23-nigeria-delta-ndc-campaign-attack-killed",
@@ -595,7 +806,7 @@
       "lastCovered": "2026-11-24T05:07:21.202Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-11-24-iowa-army-lead-azide-detonation-delay"
@@ -610,7 +821,7 @@
       "lastCovered": "2026-11-24T05:07:21.202Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-11-24-qatar-mediation-iran-us-talks-hormuz"
@@ -625,7 +836,7 @@
       "lastCovered": "2026-11-24T05:07:21.202Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-11-24-rutte-european-army-nato-command-warning"
@@ -640,7 +851,7 @@
       "lastCovered": "2026-11-24T05:07:21.202Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-11-24-fed-bowman-blackout-probe-bank-of-america-dinner"
@@ -655,7 +866,7 @@
       "lastCovered": "2026-11-24T05:07:21.202Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-11-24-gold-rebounds-14-month-low-inflation-data"
@@ -664,28 +875,13 @@
       "summary": "Gold is near $3,630 an ounce after jumping 2.7% on Monday, recovering part of last week's near-9% drop to a 14-month low. Lead with what drove the selloff and the rebound, not the price: rate expectations ahead of US inflation data, and who holds bullion as a hedge (central banks in the Muslim world and Asia have been the steady buyers). Name the series: gold, and US inflation."
     },
     {
-      "id": "google-personalised-ai-tv-channel-ads",
-      "label": "Google Wants To Make a 24/7 AI TV Channel. You’ll Be the Main Character",
-      "firstSeen": "2026-11-24T05:07:21.202Z",
-      "lastCovered": "2026-11-24T05:07:21.202Z",
-      "coverageCount": 1,
-      "category": "tech",
-      "importance": 3,
-      "arc": "breaking",
-      "articles": [
-        "2026-11-24-google-personalised-ai-tv-channel-ads"
-      ],
-      "eventUri": null,
-      "summary": "Google is working toward an always-on AI-generated TV channel personalised to each viewer, with ads generated to match. Lead with the business model: content built around a profile of you exists to carry ads built around a profile of you, and the surveillance needed to make it is the product. Say what Google has actually filed or shown, and how far it is from launch."
-    },
-    {
       "id": "xiaomi-ev-uae-preorders-overseas-expansion",
       "label": "Xiaomi’s overseas expansion takes shape with UAE pre-orders and European ambitions",
       "firstSeen": "2026-11-24T05:07:21.202Z",
       "lastCovered": "2026-11-24T05:07:21.202Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-11-24-xiaomi-ev-uae-preorders-overseas-expansion"
@@ -700,7 +896,7 @@
       "lastCovered": "2026-11-24T05:07:21.202Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-11-24-colombia-asks-x-ban-petro"
@@ -715,7 +911,7 @@
       "lastCovered": "2026-11-23T22:05:24.839Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-11-23-ukraine-claims-benghazi-strike-merkury-sunk"
@@ -730,7 +926,7 @@
       "lastCovered": "2026-11-23T22:05:24.839Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-11-23-gaza-yellow-line-expansion-displacement-ceasefire"
@@ -745,7 +941,7 @@
       "lastCovered": "2026-11-23T22:05:24.839Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-11-23-yelwata-massacre-trial-abuja-testimony"
@@ -760,7 +956,7 @@
       "lastCovered": "2026-11-23T22:05:24.839Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-11-23-pakistan-pemra-bans-infant-formula-ads"
@@ -775,7 +971,7 @@
       "lastCovered": "2026-11-23T22:05:24.839Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-11-23-brazil-cuts-2027-gdp-forecast-raises-inflation"
@@ -790,7 +986,7 @@
       "lastCovered": "2026-11-23T22:05:24.839Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-11-23-fda-approves-first-limb-girdle-muscular-dystrophy-drug"
@@ -805,7 +1001,7 @@
       "lastCovered": "2026-11-23T22:05:24.839Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-11-23-bacteria-nuclear-power-mars-habitats-preprint"
@@ -820,7 +1016,7 @@
       "lastCovered": "2026-11-23T22:05:24.839Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-11-23-michigan-regents-approve-nuclear-weapons-data-center-ypsilanti"
@@ -835,7 +1031,7 @@
       "lastCovered": "2026-11-23T22:05:24.839Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-11-23-germany-bundesrat-smart-glasses-digital-violence-law"
@@ -850,223 +1046,13 @@
       "lastCovered": "2026-11-23T22:05:24.839Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-11-23-arion-kurtaj-gta-hacker-sentenced-released"
       ],
       "eventUri": "eng-12214443",
       "summary": "Arion Kurtaj, the Lapsus$-linked hacker who breached Rockstar Games and other companies including BT, was freed on the day he was sentenced to seven years. Lead with the paradox and explain the mechanism: time already served on remand and how UK sentencing credits it. The wider point: how courts handle teenage hackers who breached major firms."
-    },
-    {
-      "id": "armenia-draft-constitution-drops-karabakh-claim",
-      "label": "Armenia drops Nagorno-Karabakh claim in proposed new constitution",
-      "firstSeen": "2026-11-23T18:05:49.699Z",
-      "lastCovered": "2026-11-23T18:05:49.699Z",
-      "coverageCount": 1,
-      "category": "politics",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-11-23-armenia-draft-constitution-drops-karabakh-claim"
-      ],
-      "eventUri": "eng-12213037",
-      "summary": "Pashinyan's government published a draft constitution that removes the preamble's reference to Nagorno-Karabakh reunification, the condition Azerbaijan has set for signing a peace treaty, and that would also allow citizenship to be stripped by court order for some crimes. Lead with the concession: a state formally giving up a territorial claim in its founding text, two years after 100,000 Karabakh Armenians fled. The mechanism: Baku will not sign until the text changes, and it needs a referendum Pashinyan must win. Dateline Yerevan."
-    },
-    {
-      "id": "eu-22nd-sanctions-package-russian-athletes-flag-ban",
-      "label": "EU Proposes Ban On Russian Athletes And Teams",
-      "firstSeen": "2026-11-23T18:05:49.699Z",
-      "lastCovered": "2026-11-23T18:05:49.699Z",
-      "coverageCount": 1,
-      "category": "politics",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-11-23-eu-22nd-sanctions-package-russian-athletes-flag-ban"
-      ],
-      "eventUri": "rus-2167349",
-      "summary": "The Commission's 22nd sanctions package against Russia would bar Russian teams and athletes from competing under their flag anywhere in the EU, and deny visas to Russians who fought in Ukraine. Lead with the sport ban, a sanction the IOC and FIFA have resisted, because it would reach World Cup and Olympic qualifiers hosted in the bloc. Then what else is in the package, and the context: it lands the same day von der Leyen and Jared Kushner clashed over when European security belongs in the US-led peace talks, so Brussels is tightening pressure while Washington negotiates. Dateline Brussels."
-    },
-    {
-      "id": "west-bank-settlers-jericho-military-zones-outposts",
-      "label": "US lawmaker calls situation in West Bank 'horrific'",
-      "firstSeen": "2026-11-23T18:05:49.699Z",
-      "lastCovered": "2026-11-23T18:05:49.699Z",
-      "coverageCount": 1,
-      "category": "politics",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-11-23-west-bank-settlers-jericho-military-zones-outposts"
-      ],
-      "eventUri": "eng-12209294",
-      "summary": "Lead with the ground, not the statement: the LA Times reports settlers moving into a Palestinian neighbourhood on Jericho's doorstep and bringing deadly violence with them, and Al Jazeera documents how Israeli military firing zones in the occupied West Bank are being turned into settler outpost land. The mechanism: land closed to Palestinians 'for security' is handed to settlers, so displacement runs through the army's own designations. Rep. Joaquin Castro's condemnation is the counterpoint, a sign the US Congress elected this month reads it differently. This advances the settler-arson story of 11-22 with new places and a new method. Dateline Jericho."
-    },
-    {
-      "id": "oxfam-gaza-toxic-pollution-99-percent",
-      "label": "'Environmental crimes': Israel blamed for toxic pollution in 99% of Gaza",
-      "firstSeen": "2026-11-23T18:05:49.699Z",
-      "lastCovered": "2026-11-23T18:05:49.699Z",
-      "coverageCount": 1,
-      "category": "politics",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-11-23-oxfam-gaza-toxic-pollution-99-percent"
-      ],
-      "eventUri": "eng-12212865",
-      "summary": "A new Oxfam report finds toxic pollution across 99% of Gaza: poisoned water, contaminated soil and asbestos from destroyed buildings, which it calls environmental crimes. Lead with the 99% and what it means for people living there now: the harm continues after the bombing stops, in the water children drink and the soil any rebuilding sits on. Name who caused it and what Oxfam asks of states. Dateline Gaza City."
-    },
-    {
-      "id": "kyrgyzstan-2191-dead-russia-war-ukraine-leak",
-      "label": "Война против Украины унесла жизни как минимум 2191 выходца из Кыргызстана — утечка",
-      "firstSeen": "2026-11-23T18:05:49.699Z",
-      "lastCovered": "2026-11-23T18:05:49.699Z",
-      "coverageCount": 1,
-      "category": "politics",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-11-23-kyrgyzstan-2191-dead-russia-war-ukraine-leak"
-      ],
-      "eventUri": null,
-      "summary": "A classified Rosstat database of Russian death records, leaked to Kloop, shows at least 2,191 people born in Kyrgyzstan died in Russia's war on Ukraine between February 2022 and August 2026, 228 of them Kyrgyz citizens. Lead with the number and where it comes from, Russia's own civil registry. The mechanism: Central Asian migrant workers recruited with cash and fast-track Russian passports, which is why most of the dead held Russian citizenship. Say what Bishkek has said about recruiting its citizens, which is illegal under Kyrgyz law. Dateline Bishkek."
-    },
-    {
-      "id": "deutsche-bank-financed-merkava-tank-parts-gaza",
-      "label": "Deutsche Bank financiou armamentos para Israel atacar Gaza",
-      "firstSeen": "2026-11-23T18:05:49.699Z",
-      "lastCovered": "2026-11-23T18:05:49.699Z",
-      "coverageCount": 1,
-      "category": "politics",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-11-23-deutsche-bank-financed-merkava-tank-parts-gaza"
-      ],
-      "eventUri": null,
-      "summary": "Agência Pública, working from the same leaked Deutsche Bank documents behind its JBS investigation, reports the bank took part in transactions that financed parts for Merkava tanks used in Gaza. This is a new revelation from that leak, not a repeat: lead with the transactions, the parts and the suppliers named, and how much money moved. The mechanism: a European bank with human-rights commitments in its compliance code funding the supply chain of an army accused of genocide. Give Deutsche Bank's response. Dateline Frankfurt."
-    },
-    {
-      "id": "nvidia-reinstates-jensen-huang-ceo-national-security",
-      "label": "Nvidia board Reinstates Jensen Huang as CEO",
-      "firstSeen": "2026-11-23T18:05:49.699Z",
-      "lastCovered": "2026-11-23T18:05:49.699Z",
-      "coverageCount": 1,
-      "category": "economy",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-11-23-nvidia-reinstates-jensen-huang-ceo-national-security"
-      ],
-      "eventUri": "eng-12207753",
-      "summary": "Eleven days after he resigned, Nvidia's board unanimously reinstated Jensen Huang as CEO, saying it had consulted senior US government officials and was satisfied his return poses no national-security risk, while the inquiry into reports that he was targeted by a foreign intelligence operation continues. Lead with that clause: a government vouching for the CEO of the world's most valuable chipmaker, with Trump posting his approval. The stake: Nvidia lost about 27% and more than $1 trillion in value after he left and jumped as much as 34% before the open. The board also created a national-security and export-control committee and a chief compliance officer post. This is the material development on the Alice Huang story covered today. Dateline Santa Clara."
-    },
-    {
-      "id": "strategy-value-below-bitcoin-holdings-saylor",
-      "label": "Strategy's Saylor Stumbles as Firm's Value Trails Bitcoin Hoard",
-      "firstSeen": "2026-11-23T18:05:49.699Z",
-      "lastCovered": "2026-11-23T18:05:49.699Z",
-      "coverageCount": 1,
-      "category": "economy",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-11-23-strategy-value-below-bitcoin-holdings-saylor"
-      ],
-      "eventUri": "eng-12209656",
-      "summary": "Strategy, Michael Saylor's company, is now worth less as an enterprise than the 851,305 bitcoin it holds, so the market values its business and leadership at below zero. Lead with that inversion. The mechanism: Strategy buys bitcoin by issuing shares and preferred stock at a premium to its holdings; with the premium gone, issuing more shares to buy coins destroys value, and the question becomes whether it must sell bitcoin to pay its preferred dividends. Context: bitcoin hit a two-year low near $55,000 after the $6.3bn Binance hack the FBI blames on North Korea. Name the series: bitcoin. Use the Bloomberg article as the main text; the Reuters link is video. Dateline Tysons, Virginia."
-    },
-    {
-      "id": "nigeria-naira-weakens-election-risk-fed",
-      "label": "Nigeria's Naira Weakens With Investors Wary of Election Upset",
-      "firstSeen": "2026-11-23T18:05:49.699Z",
-      "lastCovered": "2026-11-23T18:05:49.699Z",
-      "coverageCount": 1,
-      "category": "economy",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-11-23-nigeria-naira-weakens-election-risk-fed"
-      ],
-      "eventUri": null,
-      "summary": "The naira has lost 3.6% against the dollar this month, to 1,403.50 on Monday, as foreign portfolio investors pull out ahead of next year's election and on expectations of higher US interest rates. Lead with who pays: Nigeria imports much of its food and fuel, so a weaker naira feeds straight into prices for households already returning to charcoal as cooking gas rises. The mechanism: hot money that came in after Tinubu's FX reforms leaves at the first sign of political risk, and the central bank must choose between spending reserves and letting it fall. Name the series: the naira. Dateline Lagos."
-    },
-    {
-      "id": "artex-ai-hacking-tool-copied-everywhere",
-      "label": "‘The Code Is Already Copied Everywhere’: The AI Hacking Tool Causing Havoc Around the World",
-      "firstSeen": "2026-11-23T18:05:49.699Z",
-      "lastCovered": "2026-11-23T18:05:49.699Z",
-      "coverageCount": 1,
-      "category": "tech",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-11-23-artex-ai-hacking-tool-copied-everywhere"
-      ],
-      "eventUri": null,
-      "summary": "ARTEX, an AI framework that automates hacking, may have been taken down by its author, but 404 Media found multiple people redistributing it for anyone to download. Lead with the title's point: once offensive code is public, a takedown changes nothing. Explain what ARTEX automates, which attacks it has been tied to and where, and what GitHub and the author have said. The reader is a developer: say what this means for the cost of attacking an unpatched system. Dateline where the source places the attacks; not a US story unless the source makes it one."
-    },
-    {
-      "id": "ai-assistants-undermine-encrypted-messengers-signal",
-      "label": "Künstliche Intelligenz: Wie KI-Assistenten verschlüsselte Messenger unsicher machen",
-      "firstSeen": "2026-11-23T18:05:49.699Z",
-      "lastCovered": "2026-11-23T18:05:49.699Z",
-      "coverageCount": 1,
-      "category": "tech",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-11-23-ai-assistants-undermine-encrypted-messengers-signal"
-      ],
-      "eventUri": null,
-      "summary": "Signal is adding new protections because operating-system AI assistants that read the screen can see chats that end-to-end encryption is meant to keep private. Lead with the mechanism: encryption protects the message in transit, but an assistant built into the phone reads it after decryption, so the weak point moves from the network to the device. Say what Signal is changing and which assistants are at issue. Dateline Berlin."
-    },
-    {
-      "id": "ant-group-open-source-lingsante-medical-ai",
-      "label": "百灵甩出健康模型全家桶：开源、专业、死磕智效比",
-      "firstSeen": "2026-11-23T18:05:49.699Z",
-      "lastCovered": "2026-11-23T18:05:49.699Z",
-      "coverageCount": 1,
-      "category": "tech",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-11-23-ant-group-open-source-lingsante-medical-ai"
-      ],
-      "eventUri": null,
-      "summary": "Ant Group open-sourced two medical AI models at its Afu health conference in Guangzhou: LingSante-3.1-flash (560B parameters, clinical reasoning) and LingSante-3.1-air-VL (124B, medical images and reports), which it says score near GPT-6 Astra and above Claude Opus 5.5 on HealthBench Professional. Lead with the open release and its stated reason: hospitals bought costly AI appliances they barely use, and models efficient enough to run locally keep patient data inside the clinic. The counterpoint is in the source: Ant's own CTOs admit the vision model misreads complex skin conditions, and a Peking University surgeon says benchmark scores do not make a clinician. Benchmarks are Ant's own claims; say so. Dateline Guangzhou."
-    },
-    {
-      "id": "virginia-oregon-sue-xai-grok-sexualised-images",
-      "label": "Elon Musk's SpaceX just got sued over 3 million Grok AI images",
-      "firstSeen": "2026-11-23T18:05:49.699Z",
-      "lastCovered": "2026-11-23T18:05:49.699Z",
-      "coverageCount": 1,
-      "category": "tech",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-11-23-virginia-oregon-sue-xai-grok-sexualised-images"
-      ],
-      "eventUri": "eng-12213905",
-      "summary": "Virginia and Oregon sued Musk's xAI, now part of SpaceX, in separate suits saying Grok was designed and promoted without safeguards against generating sexualised images of real people, including children, without consent; the figure in the coverage is 3 million images. Lead with the theory of the case: the states are suing over product design, not over what users did, which is the route around the liability shield platforms rely on. Say what the states seek. Dateline Richmond, Virginia."
-    },
-    {
-      "id": "eutelsat-oneweb-us-space-force-contract",
-      "label": "Eutelsat Wins $60 Million US Space Force Contract",
-      "firstSeen": "2026-11-23T18:05:49.699Z",
-      "lastCovered": "2026-11-23T18:05:49.699Z",
-      "coverageCount": 1,
-      "category": "tech",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-11-23-eutelsat-oneweb-us-space-force-contract"
-      ],
-      "eventUri": null,
-      "summary": "Eutelsat's US arm won a two-year contract worth more than $60 million to give US forces satellite links through its OneWeb low-Earth-orbit constellation, plus alternative positioning, navigation and timing. Lead with the reversal: Europe built OneWeb as its sovereign answer to Starlink, and the Pentagon is now buying it as a second source so it does not depend on one Musk-owned network, or on GPS, which jamming across the Gulf and the Baltic has made unreliable. Say what alternative PNT means and how Eutelsat provides it. Dateline Paris."
     }
   ]
 }
