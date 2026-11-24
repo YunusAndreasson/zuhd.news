@@ -817,7 +817,10 @@ export function buildStyle(v?: string): StyleSpecification {
         maxzoom: COUNTRY_TILES.maxzoom,
         promoteId: 'iso2',
       },
-      countryLabels: { type: 'geojson', data: basemapUrl('country-labels.geojson', v) },
+      // Country, sea and region names in one source, told apart by `set`
+      // (`scripts/build.js`): each source costs every frame its own tile
+      // selection, whatever it draws.
+      names: { type: 'geojson', data: basemapUrl('names.geojson', v) },
       places: { type: 'geojson', data: basemapUrl('places.geojson', v) },
       // Lakes and rivers start empty and are filled after first paint — see
       // `loadWater` in `situation-map.ts`. GeoJSON expands TopoJSON's shared
@@ -825,14 +828,10 @@ export function buildStyle(v?: string): StyleSpecification {
       // 546 KB: a 37% heavier first paint, spent on detail that is not what
       // anyone opens this map to see. Simplification will not recover it
       // (rivers barely respond — their vertices are already sparse), so the
-      // fix is when, not how much. The seas are 1 KB and are needed at world
-      // zoom, so they load with the style.
+      // fix is when, not how much. The sea and region names are needed at
+      // world zoom, so they load with the style, in `names`.
       lakes: { type: 'geojson', data: EMPTY_FC },
       rivers: { type: 'geojson', data: EMPTY_FC },
-      seas: { type: 'geojson', data: basemapUrl('seas.geojson', v) },
-      // The land's physical names (`scripts/build/regions.mjs`), 37 KB of
-      // points, with the style like the seas.
-      regions: { type: 'geojson', data: basemapUrl('regions.geojson', v) },
     },
     layers: [
       {
@@ -1028,8 +1027,8 @@ export function buildStyle(v?: string): StyleSpecification {
       {
         id: 'region-labels',
         type: 'symbol',
-        source: 'regions',
-        filter: ['<=', ['get', 'tier'], ['step', ['zoom'], 1, 2.6, 2, 3.8, 3]],
+        source: 'names',
+        filter: ['all', ['==', ['get', 'set'], 'region'], ['<=', ['get', 'tier'], ['step', ['zoom'], 1, 2.6, 2, 3.8, 3]]],
         layout: {
           'text-field': ['get', 'name'],
           'text-font': ['Source Sans 3 Regular'],
@@ -1052,7 +1051,7 @@ export function buildStyle(v?: string): StyleSpecification {
       {
         id: 'country-labels',
         type: 'symbol',
-        source: 'countryLabels',
+        source: 'names',
         /**
          * No `minzoom`, for the reason `sea-labels` has none — and this layer had
          * the very bug that note was written about, unnoticed for longer.
@@ -1092,9 +1091,13 @@ export function buildStyle(v?: string): StyleSpecification {
          * keeps exactly the density it had.
          */
         filter: [
+          'all',
+          ['==', ['get', 'set'], 'country'],
+          [
           '>=',
           ['get', 'area'],
           ['step', ['zoom'], 0.006, 1.1, 0.00008, 3, 0.00001, 4.5, 0.000002, 6, 0],
+          ],
         ],
         layout: {
           'text-field': ['get', 'name'],
@@ -1226,7 +1229,7 @@ export function buildStyle(v?: string): StyleSpecification {
       {
         id: 'sea-labels',
         type: 'symbol',
-        source: 'seas',
+        source: 'names',
         /**
          * No `minzoom`, and that is the whole point of the layer.
          *
@@ -1236,7 +1239,7 @@ export function buildStyle(v?: string): StyleSpecification {
          * at the one view every reader starts from, which is the view they were
          * added for. Density is the rank filter's job, not a zoom floor's.
          */
-        filter: ['<=', ['get', 'rank'], ['step', ['zoom'], 1, 3.2, 2]],
+        filter: ['all', ['==', ['get', 'set'], 'sea'], ['<=', ['get', 'rank'], ['step', ['zoom'], 1, 3.2, 2]]],
         layout: {
           'text-field': ['get', 'name'],
           'text-font': ['Source Sans 3 Regular'],

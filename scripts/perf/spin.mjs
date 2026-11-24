@@ -177,8 +177,8 @@ const fmt = (r) =>
 const results = { A: [], B: [] }
 for (let i = 0; i < RUNS; i++) {
   const side = B && i % 2 === 1 ? 'B' : 'A'
-  if (side === 'B') await page.evaluate(`{ const m = globalThis.__map; ${B} }`)
-  else if (B && A && i > 0) await page.evaluate(`{ const m = globalThis.__map; ${A} }`)
+  if (side === 'B') await page.evaluate(`(async () => { const m = globalThis.__map; ${B} })()`)
+  else if (B && A && i > 0) await page.evaluate(`(async () => { const m = globalThis.__map; ${A} })()`)
   await page.waitForTimeout(1500)
   await browser.startTracing(undefined, { categories: ['toplevel', 'disabled-by-default-devtools.timeline'] })
   const r = await spin()

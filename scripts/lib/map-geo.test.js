@@ -1665,13 +1665,16 @@ test('the basemap flags national capitals and not provincial ones', (t) => {
 // ---------------------------------------------------------------------------
 
 test('the basemap labels territories with the name of the people whose land it is', (t) => {
-  const path = join(ROOT, 'dist/basemap/country-labels.geojson')
+  const path = join(ROOT, 'dist/basemap/names.geojson')
   if (!existsSync(path)) {
-    t.skip('dist/basemap/country-labels.geojson not built')
+    t.skip('dist/basemap/names.geojson not built')
     return
   }
   const names = new Set(
-    JSON.parse(readFileSync(path, 'utf8')).features.map((f) => f.properties?.name).filter(Boolean),
+    JSON.parse(readFileSync(path, 'utf8'))
+      .features.filter((f) => f.properties?.set === 'country')
+      .map((f) => f.properties?.name)
+      .filter(Boolean),
   )
   // Natural Earth ships the coloniser's name; `displayCountryName` is what
   // replaces it, and it is easy to bypass by reading `properties.name`
@@ -1694,13 +1697,15 @@ test('the basemap labels territories with the name of the people whose land it i
 // ---------------------------------------------------------------------------
 
 test('the marine labels name the disputed waters the way we decided to', (t) => {
-  const path = join(ROOT, 'dist/basemap/seas.geojson')
+  const path = join(ROOT, 'dist/basemap/names.geojson')
   if (!existsSync(path)) {
-    t.skip('dist/basemap/seas.geojson not built')
+    t.skip('dist/basemap/names.geojson not built')
     return
   }
   const names = new Set(
-    JSON.parse(readFileSync(path, 'utf8')).features.map((f) => f.properties?.name),
+    JSON.parse(readFileSync(path, 'utf8'))
+      .features.filter((f) => f.properties?.set === 'sea')
+      .map((f) => f.properties?.name),
   )
   // Two of the 54 are live disputes, and this is the decision rather than an
   // oversight: **Persian Gulf** and **Sea of Japan** are the UN and IHO terms,

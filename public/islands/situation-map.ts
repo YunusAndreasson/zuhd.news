@@ -6751,8 +6751,8 @@ export function mount(
   void startCore()
 
   /**
-   * Where each country's name stands on the map, from the `countryLabels`
-   * source the map already holds: the switcher flies there and opens the
+   * Where each country's name stands on the map, from the `names` source the
+   * map already holds (its `set: 'country'` points): the switcher flies there and opens the
    * country's card at that point. Read once, when the switcher first opens.
    */
   let countryPoints: Map<string, [number, number]> | null = null
@@ -6760,7 +6760,7 @@ export function mount(
     if (countryPoints) return
     // Before the style has loaded there is no source to read: leave the cache
     // unset so the next opening asks again, rather than keeping an empty list.
-    const source = map.getSource<GeoJSONSource>('countryLabels')
+    const source = map.getSource<GeoJSONSource>('names')
     if (!source) return
     countryPoints = new Map()
     const points = countryPoints
@@ -6770,7 +6770,7 @@ export function mount(
         if (data.type !== 'FeatureCollection') return
         for (const f of data.features) {
           const name = f.properties?.name
-          if (typeof name === 'string' && f.geometry.type === 'Point') {
+          if (f.properties?.set === 'country' && typeof name === 'string' && f.geometry.type === 'Point') {
             points.set(name, f.geometry.coordinates as [number, number])
           }
         }

@@ -2252,18 +2252,22 @@ console.log(`  Built: api/map-leads.json (${Object.keys(mapLeads).length} leads)
     writeFileSync(join(DIST_DIR, 'basemap', name), JSON.stringify(data))
     return Math.round(statSync(join(DIST_DIR, 'basemap', name)).size / 1024)
   }
-  emit('country-labels.geojson', countryLabels)
+  // Country, sea and region names, one file and one map source (`names`):
+  // each source costs the map its own tile selection every frame.
+  const tagged = (fc, set) => fc.features.map((f) => ({ ...f, properties: { ...f.properties, set } }))
+  const n = emit('names.geojson', {
+    type: 'FeatureCollection',
+    features: [...tagged(countryLabels, 'country'), ...tagged(seas, 'sea'), ...tagged(regions, 'region')],
+  })
   const c = emit('places.geojson', places)
   const l = emit('lakes.geojson', lakes)
   const r = emit('rivers.geojson', rivers)
-  const s = emit('seas.geojson', seas)
-  const g = emit('regions.geojson', regions)
   const tiles = writeBasemapTiles({ countries: countriesUltra, depth, coast }, join(DIST_DIR, 'basemap', 'tiles'))
   console.log(
     `  Built: basemap/ (` +
       `${tiles.files} tiles ${Math.round(tiles.bytes / 1024)}KB, ${places.features.length} places ${c}KB, ` +
       `${lakes.features.length} lakes ${l}KB, ${rivers.features.length} rivers ${r}KB, ` +
-      `${seas.features.length} seas ${s}KB, ${regions.features.length} regions ${g}KB)`,
+      `${countryLabels.features.length + seas.features.length + regions.features.length} names ${n}KB)`,
   )
 }
 
