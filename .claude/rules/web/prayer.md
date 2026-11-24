@@ -57,7 +57,7 @@ map, `situation-map.ts` draws them, and `map-geo.test.js` pins them.
   (`.map-prayer-tip`). Civil time would need a zone dataset the site does not
   ship. It is the one place the map does not speak Makkah.
 - Dashed and near-neutral (`MAP_COLOURS.prayer`): the lines carry no value, so
-  they get no hue. The line is `line-opacity` 0.2 and the label full strength.
+  they get no hue. Line and label rest at 0.08 and 0.35 opacity; hover lifts them to 0.55 and 1.
   `line-width` is constant, because `line-dasharray` is measured in line
   widths.
 - Hover lights a line through `feature-state`; nothing takes a click. The

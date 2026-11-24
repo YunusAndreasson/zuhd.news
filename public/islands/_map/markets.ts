@@ -171,7 +171,7 @@ export const LABEL_ZOOM = 1.1
 const labelOf = (nameFont: string): ExpressionSpecification => [
   'format',
   ['get', 'city'],
-  { 'text-font': ['literal', [nameFont]], 'text-color': MAP_COLOURS.label },
+  { 'text-font': ['literal', [nameFont]], 'text-color': MAP_COLOURS.labelDim },
   ['case', ['==', ['get', 'label'], ''], '', ['concat', ' ', ['get', 'label']]],
   { 'text-font': ['literal', ['Source Sans 3 Bold']], 'text-color': TONE },
 ]
@@ -301,7 +301,7 @@ export const marketLabelLayout = (): NonNullable<SymbolLayerSpecification['layou
 
 export const marketLabelPaint = (): NonNullable<SymbolLayerSpecification['paint']> => ({
   // The sections carry their own colour; this is the halo they share.
-  'text-color': MAP_COLOURS.label,
+  'text-color': MAP_COLOURS.labelDim,
   'text-halo-color': MAP_COLOURS.labelHalo,
   'text-halo-width': 1.3,
 })
@@ -2419,7 +2419,7 @@ export const straitLabelLayout = (): NonNullable<SymbolLayerSpecification['layou
 export const straitLabelPaint = (): NonNullable<SymbolLayerSpecification['paint']> => ({
   // Label ink for both sections: the move is a figure about a place, and the
   // gold and teal on this map already mean pinch and surge.
-  'text-color': MAP_COLOURS.label,
+  'text-color': MAP_COLOURS.labelDim,
   'text-halo-color': MAP_COLOURS.labelHalo,
   'text-halo-width': 1.3,
 })
