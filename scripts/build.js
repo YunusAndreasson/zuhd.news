@@ -506,6 +506,14 @@ rmSync(join(DIST_DIR, 'style.css'), { force: true })
 
 const cssContent = transformSync(readFileSync(join(ROOT, 'public', 'style.css'), 'utf-8'), { loader: 'css', minify: true }).code
 
+// The two standalone pages need only the shared face and tokens, even on a 404.
+const standaloneCss = cssContent.match(/(?:@font-face|:root)\{[^{}]*\}/g).join('')
+for (const page of ['404.html', 'get.html']) {
+  const path = join(DIST_DIR, page)
+  const html = readFileSync(path, 'utf-8')
+  writeFileSync(path, html.replace('<link rel="stylesheet" href="/style.css">', () => `<style>${standaloneCss}</style>`))
+}
+
 // Every page but the map, without the map's rules. A rule that needs a `.map-*`
 // class cannot match where no element has one, and they were over half of what
 // each article re-downloaded. `KEPT_MAP_CLASSES` are the ones another island
@@ -553,7 +561,7 @@ const headCommon = `<meta charset="utf-8">
   <meta name="color-scheme" content="light dark">
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
   <meta name="theme-color" content="#fff" media="(prefers-color-scheme: light)">
-  <meta name="theme-color" content="#080808" media="(prefers-color-scheme: dark)">
+  <meta name="theme-color" content="#080a0d" media="(prefers-color-scheme: dark)">
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="default">
@@ -579,9 +587,7 @@ const headCommon = `<meta charset="utf-8">
  *
  * Unconditional, because these pages are unconditional. The value is
  * `--map-ground` itself, so the chrome and the canvas are the same black
- * rather than two blacks a few points apart. (The site-wide dark value was
- * `#141414`, which was a third black again — it matched neither `--bg`'s
- * `#080808` nor the map's ground.)
+ * across both page types.
  */
 const headCommonDark = headCommon.replace(
   / {2}<meta name="theme-color"[^\n]*\n {2}<meta name="theme-color"[^\n]*/,

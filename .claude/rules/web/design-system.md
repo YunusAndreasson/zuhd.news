@@ -1,6 +1,8 @@
 ---
 paths:
   - "public/style.css"
+  - "public/get.html"
+  - "public/404.html"
   - "public/islands/**"
   - "templates/**"
   - "scripts/lib/colour-system.test.js"
@@ -15,20 +17,20 @@ One type scale and two palettes, each declared once in `public/style.css`.
 
 ## Type
 
-- One scale in `:root`: 11 / 12 / 14 / 16 / 18 / 20 (`--size-base`, body
-  copy), then 25 / 31 / 40 / 52 / 68 for editorial mass.
-- No `font-size` literal: every size is a `--size-*` step.
+- Set sizes through the `--type-*` roles, backed by rem steps in `--size-*`.
+  The chart axis keeps its 11px floor.
+- Use `--type-label` (12px/600) for caps, `--type-item` (15px/500) for
+  controls and names, and `--type-figure` (15px/600) with `--figure-numerals` for readings.
+- Prose uses `--type-copy` (19px/400), ledes `--type-lede` (25px), headings
+  `--type-heading` (31px), and display titles `--type-title` (60px/650).
+- H1s and display titles take `--weight-title` and `--track-display` (−0.035em).
+  Use `--track-heading` at 25–40px, `--track-item` at 18–20px, and `--track-caps` (+0.08em) for caps.
 - Quiet is an ink step, never `opacity`. The colour test cannot measure
   opacity, so for controls that were caught dimmed (`.map-seam-toggle`,
   `.map-range`, `.map-markets-age`, `.map-markets-level`, `.map-mapctl`) it
   asserts there is none. Add a control there when it must stay legible.
 - Metric names are lower case in `shared/` (the app and the APIs read them);
   the web prints them through `metricName` (`_map/format.ts`).
-- Four text roles. Heading: `--size-2xs`, 600, small caps, `--track-caps`.
-  Item (a row's name, a link, a control): `--size-xs`, 400, sentence case.
-  Figure: `--size-2xs`, tabular. Qualifier: `--size-2xs`, a muted ink. Small
-  caps and 600 mean heading and nothing else.
-- Tracking is a `--track-*` token; small caps take `--track-caps`.
 - A label the phone sets in small caps stays lower case in its source, and the
   desktop draws the capital with `::first-letter`, which needs a block box (an
   `inline-block` span). A one-word label in a shrink-to-fit box takes
@@ -53,20 +55,16 @@ One type scale and two palettes, each declared once in `public/style.css`.
 
 ## Colour
 
-- The site palette (`:root`) follows the reader: four inks, two surfaces, two
-  rules, and the marks `--accent` (neutral), `--brand` (gold, the one
-  chromatic mark), `--pos` and `--neg`, `--focus`, `--scrim`. Tokens are
-  `light-dark()` pairs, `--brand` included: one gold hue, darkened on white to
-  clear 3:1. There is no `[data-theme]` and no second dark block.
-- A rule is a divider, never a link's underline: that takes an ink.
-- `light-dark()` is a colour function. `opacity: light-dark(0, 0.85)` is an
-  invalid declaration and is dropped silently.
-- The dark-surface palette (`body.map-page, body.doc-page`) is for the two
-  page types that are dark whatever the reader prefers. It is not the site in
-  dark mode: it is blue-grey chrome built to sit under saturated data marks.
-- No hex or `rgba()` literal outside those two blocks. The test does not see
-  the `rgb(… / a)` form the box shadows use; do not use that form for
-  anything else.
+- Use `--ink-heading`, `--ink-prose` and `--ink-quiet` for emphasis, body
+  and metadata. Reserve `--ink-inactive` for off controls. Map and doc chrome use the `--map-ink-*` roles.
+- `:root` follows the reader with `light-dark()`. The map and documents pin dark.
+  Every dark page shares `--ground-dark` with the canvas and `--panel-dark` for floating cards.
+- Separate rows with `--line-divider` (8% black / 7% white) and enclose panels
+  with `--line-edge` (14%). The map equivalents use the `--map-line-` prefix. Links underline in ink.
+- Keep colour literals in the two palette blocks. Hairlines use `rgb(… / …%)`
+  and the contrast test composites them over the surface. Shadows may use alpha black.
+- `--brand` is the gold mark, `--accent` neutral, and `--pos` and `--neg` signed changes.
+  `light-dark()` takes colours, including the two ends of a scrim.
 - Every ink clears AA (4.5:1) on every surface of its palette in both
   schemes, and focus rings clear 3:1. The test checks combinations no rule
   uses yet, on purpose.
@@ -74,8 +72,7 @@ One type scale and two palettes, each declared once in `public/style.css`.
   chrome, and neither can import the other. The test holds the shared values
   equal: `MAP_COLOURS.space` and `--map-ground`; `OVERLAY_COLOUR.straits` and
   `.straitsSurge` and `--map-straits` and `--map-straits-surge`; `marketUp`
-  and `marketDown` and `--map-pos` and `--map-neg`. `--map-stale` mirrors
-  `MAP_COLOURS.neutral` and nothing checks it.
+  and `marketDown` and `--map-pos` and `--map-neg`. Stale readings use quiet ink.
 - Category and overlay hues are not duplicated: a chip receives its layer's
   value inline as `--cat`, so it cannot disagree with its mark. The four
   categories share one OKLCH lightness; only the hue says which.

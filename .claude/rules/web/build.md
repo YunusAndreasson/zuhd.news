@@ -56,6 +56,8 @@ shared helpers are indexed in `.claude/rules/shared-modules.md`.
 
 ## Templates and bundles
 
+- The build inlines the shared font faces and root tokens at the `/style.css`
+  link in `get.html` and `404.html` so both render in one request for HTML and CSS.
 - `loadTemplate` puts the `<style>` last in the head, so the title and the
   preloads are not parsed behind it. Every page but the map gets `pageCss`:
   the sheet without rules that need a `.map-*` class. A `.map-*` class an island

@@ -92,56 +92,41 @@
    Lets `height: auto`, `width: max-content`, etc. participate in
    transitions so disclosure widgets and panes can animate smoothly
    without explicit pixel targets. */
-:root { interpolate-size: allow-keywords; }
 
-/* --- Scale ---
-   Base: 20px, ratio: 1.25 (Major Third)
-   20 / 25 / 31.25 / 39
-*/
-
+/* Site tokens. Sizes are rem steps on the reader's default text size. */
 :root {
+  interpolate-size: allow-keywords;
   --font-sans: 'Source Sans 3', 'Source Sans 3 Fallback', system-ui, sans-serif;
 
-  /* Extended scale: major-third up to h1, perfect-fourth above for
-     archetype pages (article/country/entity) that need editorial mass.
+  --size-script: 0.75em;   /* relative to surrounding prose */
+  --size-3xs: 0.6875rem;   /* 11px chart axis floor */
+  --size-2xs: 0.75rem;
+  --size-xs: 0.875rem;
+  --size-15: 0.9375rem;
+  --size-sm: 1rem;
+  --size-md: 1.125rem;
+  --size-19: 1.1875rem;
+  --size-base: 1.25rem;
+  --size-h3: 1.5625rem;
+  --size-h2: 1.9375rem;
+  --size-h1: 2.5rem;
+  --size-d1: 3.25rem;
+  --size-60: 3.75rem;
+  --size-d2: 4.25rem;
 
-     The steps below `--size-base` exist for the chrome, which had no scale at
-     all: ten distinct control types in the map HUD were all `--size-xs`, so a
-     legend and the control it explains were set at the same rank and nothing in
-     the strip could be read as subordinate to anything else. The rule is three
-     rungs — a control you press is `--size-xs`, a readout is `--size-xs`
-     tabular, and a caption or a legend that explains one is `--size-2xs`.
-
-     ── The small end was a floor, not a scale (2026-07-27) ───────────────────
-     Those three rungs were 12 / 12 / 11px, on a bottom rung of 10, and between
-     `--size-sm` (14) and `--size-base` (20) sat a 6px gap with nothing in it.
-     So *everything* that was not body copy fell to 11–14px and stayed there:
-     the map's story headlines, the whole HUD, the money ribbon, the footer, and
-     — on the article page — the kicker, the share row, the pagination and the
-     isnad, which is a sentence this site publishes about itself set two rungs
-     below the prose it certifies. There was no rung to promote any of it *to*.
-
-     Every rung below `--size-base` therefore moves up one step and the missing
-     middle is filled: 11 / 12 / 14 / 16 / 18 / 20. Nothing is renamed, so the
-     ~200 existing call sites all rise together and the *relationships* the
-     three-rung rule encodes are untouched — a legend is still a step under the
-     control it explains. 12px is the floor now, not 10, because the floor is
-     where a reader without perfect vision meets this site first. */
-  --size-3xs: 0.6875rem;   /* 11px — the floor: sparkline axis labels */
-  --size-2xs: 0.75rem;     /* 12px — captions and legends */
-  --size-xs: 0.875rem;     /* 14px — a control you press, a readout */
-  --size-sm: 1rem;         /* 16px */
-  --size-md: 1.125rem;     /* 18px — the rung that was missing between sm and base */
-  --size-base: 1.25rem;    /* 20px */
-  --size-h3: 1.563rem;     /* 25px */
-  --size-h2: 1.953rem;     /* 31.25px */
-  --size-h1: 2.5rem;       /* 40px */
-  --size-d1: 3.25rem;      /* 52px */
-  --size-d2: 4.25rem;      /* 68px */
+  --type-label: var(--size-2xs);
+  --type-item: var(--size-15);
+  --type-figure: var(--size-15);
+  --type-copy: var(--size-19);
+  --type-lede: var(--size-h3);
+  --type-heading: var(--size-h2);
+  --type-title: var(--size-60);
+  --figure-numerals: lining-nums tabular-nums;
 
   --weight-regular: 400;
   --weight-medium: 500;
   --weight-semibold: 600;
+  --weight-title: 650;
   --weight-bold: 700;
   --weight-light: 300;
   --weight-ultra: 200;
@@ -151,62 +136,32 @@
   --leading-tight: 1.1;
   --leading-tabular: 1.0;
 
-  /* Tracking. There were fifty raw `letter-spacing` literals in this file and
-     no token, of which 0.03 / 0.04 / 0.05 / 0.06 em were one idea measured four
-     times — and the four sat side by side in the map HUD, so controls set at the
-     same size rendered at visibly different widths. One rule: small-caps chrome
-     gets `--track-wide`, genuine all-caps gets `--track-caps`, display type gets
-     `--track-tight`, everything else gets none.
-
-     The rule was stated and then barely applied: on 2026-08-01 only
-     `--track-caps` was referenced anywhere, once, while forty-seven literals
-     stood. Every literal whose value already *equalled* a token now uses it —
-     twelve sites, no pixel moved. What is left is ~35 sites at values no token
-     names (0.03, 0.05, 0.06, 0.1, 0.14, 0.2 and six negatives between -0.005
-     and -0.024), and folding those in is a change to how the type is set, not a
-     substitution. It needs measuring, and it is not this. */
-  --track-tight: -0.01em;
-  --track-wide: 0.04em;
+  --track-display: -0.035em;
+  --track-heading: -0.025em;
+  --track-item: -0.01em;
   --track-caps: 0.08em;
 
-  /* ---------------------------------------------------------------- Colour
-     Four roles, and every colour in the file belongs to exactly one of them:
-     ink (what you read), surface (what it sits on), line (what divides it),
-     mark (the few things allowed to carry meaning in hue).
+  /* The reader's palette. Inactive ink is reserved for an unselected control. */
+  --ink-heading: light-dark(#0b0d10, #edf0f4);
+  --ink-prose: light-dark(#2a2e35, #cbd0d6);
+  --ink-quiet: light-dark(#60666c, #8c9298);
+  --ink-inactive: light-dark(#6d7175, #80868c);
+  --text-emphasis: var(--ink-heading);
+  --text: var(--ink-prose);
+  --text-secondary: var(--ink-quiet);
+  --text-dim: var(--ink-quiet);
 
-     Every token here is `light-dark()`. That is the whole theming mechanism —
-     there is no `[data-theme]` class and no duplicate dark block to keep in
-     step, because `html { color-scheme: light dark }` resolves these and a
-     page that wants one scheme pins it with its own `color-scheme` (see
-     `body.map-page`). The one thing `light-dark()` cannot do is a non-colour
-     property: it is a *colour* function, so `opacity: light-dark(0, 0.85)` is
-     an invalid declaration that gets dropped — that mistake shipped a black
-     page over every light-mode article once already.
+  --ground-dark: #080a0d;
+  --panel-dark: #14191f;
+  --bg: light-dark(#fff, var(--ground-dark));
+  --bg-soft: light-dark(#fafafa, var(--panel-dark));
 
-     Contrast is a constraint, not an outcome. Every ink/surface pair below
-     clears WCAG AA (4.5:1) in *both* schemes and against both `--bg` and
-     `--bg-soft`; `--text-dim` is the floor and is set exactly there. */
-
-  /* Ink, most to least emphatic. */
-  --text-emphasis: light-dark(#000, #fafafa);
-  --text: light-dark(#1a1a1a, #d4d4d4);
-  --text-secondary: light-dark(#555, #a3a3a3);
-  /* The quietest ink that is still text. Was #777/#7a7a7a, which measured
-     4.48:1 on white and 4.05:1 on `--bg-soft` — under AA on both, by a hair
-     on one and clearly on the other. These are the darkest/lightest greys
-     that clear 4.5:1 against the softer surface as well as the plain one. */
-  --text-dim: light-dark(#737373, #828282);
-
-  /* Surface. */
-  --bg: light-dark(#fff, #080808);
-  --bg-soft: light-dark(#fafafa, #1a1a1a);
-
-  /* Line. Dark mode's were #181818 and #111: 1.13:1 on `--bg` and darker
-     than `--bg-soft`, so a divider there was a line in name only. These sit
-     about as far from the dark surfaces as the light pair does from white. A
-     rule is never a link's underline, which takes an ink (`--text-dim`). */
-  --rule: light-dark(#e8e8e8, #2a2a2a);
-  --rule-soft: light-dark(#f2f2f2, #1c1c1c);
+  --divider-dark: rgb(255 255 255 / 7%);
+  --edge-dark: rgb(255 255 255 / 14%);
+  --line-divider: light-dark(rgb(0 0 0 / 8%), var(--divider-dark));
+  --line-edge: light-dark(rgb(0 0 0 / 14%), var(--edge-dark));
+  --rule: var(--line-divider);
+  --rule-soft: var(--line-divider);
 
   /* Marks — the only colours that mean something.
 
@@ -288,21 +243,21 @@
    pages. Keep these thin — they set size/weight/family only; layout
    tokens stay on the container. */
 .t-display {
-  font-size: var(--size-h1);
-  font-weight: var(--weight-bold);
+  font-size: var(--type-title);
+  font-weight: var(--weight-title);
   line-height: var(--leading-tight);
-  letter-spacing: var(--track-tight);
+  letter-spacing: var(--track-display);
   text-wrap: balance;
 }
 .t-caption {
-  font-size: var(--size-sm);
+  font-size: var(--type-label);
   font-weight: var(--weight-regular);
   color: var(--text-secondary);
   line-height: var(--leading-heading);
   font-variant-numeric: oldstyle-nums proportional-nums;
 }
 .label {
-  font-size: var(--size-xs);
+  font-size: var(--type-label);
   font-weight: var(--weight-semibold);
   color: var(--text-secondary);
   font-variant-caps: all-small-caps;
@@ -325,26 +280,36 @@
   margin-right: 0.5em;
 }
 .t-tabular {
-  font-variant-numeric: lining-nums tabular-nums;
+  font-variant-numeric: var(--figure-numerals);
+}
+.metric-value,
+.country-preview-metric-value,
+.map-country-metric-value,
+.map-markets-window,
+.map-markets-row-level,
+.map-markets-row-pct,
+.map-markets-panel-change {
+  font-size: var(--type-figure);
+  font-weight: var(--weight-semibold);
+  font-variant-numeric: var(--figure-numerals);
 }
 .t-data-numeral {
   font-size: var(--size-d1);
   font-weight: var(--weight-ultra);
   line-height: var(--leading-tabular);
-  letter-spacing: -0.02em;
-  font-variant-numeric: lining-nums tabular-nums;
+  letter-spacing: var(--track-display);
+  font-variant-numeric: var(--figure-numerals);
 }
 .t-source-host {
-  font-size: var(--size-xs);
+  font-size: var(--type-item);
   font-weight: var(--weight-regular);
   color: var(--text-secondary);
-  letter-spacing: var(--track-wide);
+  letter-spacing: normal;
   font-variant-numeric: oldstyle-nums proportional-nums;
 }
 
 /* --- Base --- */
 html {
-  font-size: 100%;
   /* The switch that makes every `light-dark()` token above resolve, and that
      tells the UA to draw its own furniture — scrollbars, form controls, the
      spellcheck underline — in the matching scheme. */
@@ -370,7 +335,7 @@ html {
 
 body {
   font-family: var(--font-sans);
-  font-size: var(--size-base);
+  font-size: var(--type-copy);
   line-height: var(--leading-body);
   color: var(--text);
   background: var(--bg);
@@ -394,20 +359,24 @@ body {
 
 /* --- Typography --- */
 h1 {
-  font-size: var(--size-h1);
+  font-size: var(--type-title);
   line-height: var(--leading-heading);
-  font-weight: 700;
+  font-weight: var(--weight-title);
+  letter-spacing: var(--track-display);
+  color: var(--text-emphasis);
   margin-bottom: var(--space-sm);
   text-wrap: balance;
   font-feature-settings: "titl" 1;
 }
 
+h2, h3, h4, h5, h6 { letter-spacing: var(--track-heading); }
+
 p { margin-bottom: var(--space-sm); }
 strong { font-weight: 700; }
 em { font-style: italic; }
 time { font-feature-settings: "zero" 1; }
-sup { font-size: 0.75em; font-variant-position: super; }
-sub { font-size: 0.75em; font-variant-position: sub; }
+sup { font-size: var(--size-script); font-variant-position: super; }
+sub { font-size: var(--size-script); font-variant-position: sub; }
 
 a {
   color: var(--text);
@@ -451,12 +420,12 @@ body.map-page, body.doc-page { --ring-colour: var(--map-focus); }
    later, leaving a live-looking declaration that did nothing. Editing one
    restyled the other. The chip now restates the four properties it actually
    wants, in its own block. */
-.page-title, .category, .about-body h2 {
+.category, .about-body h2 {
   font-variant-caps: all-small-caps;
-  font-variant-numeric: lining-nums tabular-nums;
+  font-variant-numeric: var(--figure-numerals);
   font-feature-settings: "case" 1;
-  letter-spacing: var(--track-wide);
-  font-weight: 600;
+  letter-spacing: var(--track-caps);
+  font-weight: var(--weight-semibold);
   color: var(--text-secondary);
 }
 
@@ -472,10 +441,10 @@ header {
    with a z, and side by side they read as a stutter. It carries the identity
    where there is no room for words — the favicon, the touch icon, the app. */
 .wordmark {
-  font-size: var(--size-h2);
+  font-size: var(--type-heading);
   font-weight: 700;
   text-decoration: none;
-  letter-spacing: -0.02em;
+  letter-spacing: var(--track-heading);
   font-variant-numeric: lining-nums;
   /* Shared element across every page — pairs up during cross-document
      view transitions so the masthead morphs in place instead of fading. */
@@ -512,7 +481,7 @@ footer {
   contain: layout style;
 
   .update-status {
-    font-size: var(--size-xs);
+    font-size: var(--type-item);
     color: var(--text-secondary);
     margin: 0;
     padding: 0;
@@ -522,7 +491,8 @@ footer {
   .footer-links { margin-left: auto; }
 
   a {
-    font-size: var(--size-xs);
+    font-size: var(--type-item);
+    font-weight: var(--weight-medium);
     color: var(--text-secondary);
     text-decoration: none;
     transition: color var(--dur-fast) var(--ease-out);
@@ -564,7 +534,7 @@ footer {
   align-items: baseline;
   gap: var(--space-xs) var(--space-md);
   margin-top: var(--space-sm);
-  font-size: var(--size-xs);
+  font-size: var(--type-item);
 }
 
 .footer-maker-links {
@@ -589,7 +559,7 @@ footer {
 
 /* --- Page Title --- */
 .page-title {
-  font-size: var(--size-sm);
+  font-size: var(--type-title);
   margin-bottom: var(--space-sm);
 }
 
@@ -600,7 +570,7 @@ footer {
   margin-bottom: var(--space-lg);
 
   h2 {
-    font-size: var(--size-sm);
+    font-size: var(--type-label);
     margin-top: var(--space-md);
     margin-bottom: var(--space-xs);
   }
@@ -609,7 +579,7 @@ footer {
     list-style: none;
     line-height: 2;
     color: var(--text-secondary);
-    font-size: var(--size-sm);
+    font-size: var(--type-item);
     /* A paragraph's own, so the one after a list starts where the one after a
        paragraph does. With none, `Then stops.` ran into the sentence under it
        while the sentence above stood a line clear. */
@@ -619,7 +589,7 @@ footer {
   ul a {
     text-decoration: none;
     color: var(--text);
-    font-size: var(--size-base);
+    font-size: var(--type-copy);
 
     &:hover {
       text-decoration: underline;
@@ -630,7 +600,7 @@ footer {
 }
 
 .category {
-  font-size: var(--size-xs);
+  font-size: var(--type-label);
   display: block;
   margin-bottom: var(--space-xs);
 }
@@ -643,7 +613,7 @@ footer {
   &:first-child { padding-top: 0; }
 
   h2 {
-    font-size: var(--size-h2);
+    font-size: var(--type-heading);
     margin-top: var(--space-xs);
     margin-bottom: var(--space-xs);
     text-wrap: balance;
@@ -652,9 +622,9 @@ footer {
   }
 
   time {
-    font-size: var(--size-sm);
+    font-size: var(--type-item);
     color: var(--text-secondary);
-    font-variant-numeric: lining-nums tabular-nums;
+    font-variant-numeric: var(--figure-numerals);
   }
 }
 
@@ -676,12 +646,8 @@ footer {
      and was the fold's only sign that it opens. It was never drawn. */
   font-variant-ligatures: common-ligatures contextual;
   font-variant-numeric: oldstyle-nums proportional-nums;
-  font-size: clamp(1.375rem, 0.4vw + 1.2rem, 1.5rem);
-  /* 1.6, not the 1.75 that stood at the top of this rule until 2026-08-01.
-     The commit that introduced the clamp above set 1.6 in the same breath —
-     bigger type is paid for out of the leading — and left the old value in
-     place, where it has been dead ever since. Deleting it changes nothing on
-     screen; it makes the rule say what the page has always done. */
+  font-size: var(--type-copy);
+  letter-spacing: var(--track-item);
   line-height: 1.6;
 
   p {
@@ -707,7 +673,7 @@ footer {
 /* --- Mobile --- */
 @media (max-width: 640px) {
   body {
-    font-size: var(--size-base);
+    font-size: var(--type-copy);
     padding: var(--space-sm);
     padding-top: var(--space-md);
     padding-bottom: var(--space-sm);
@@ -746,10 +712,10 @@ footer {
 }
 
 .briefing-label {
-  font-size: var(--size-sm);
+  font-size: var(--type-item);
   color: var(--text);
   white-space: nowrap;
-  font-variant-numeric: lining-nums tabular-nums;
+  font-variant-numeric: var(--figure-numerals);
 }
 
 .briefing-track {
@@ -772,14 +738,15 @@ footer {
 /* --- Progressive Disclosure: Context Brief --- */
 .article-context {
   margin-top: 1.2em;
-  font-size: var(--size-sm);
+  font-size: var(--type-item);
   color: var(--text-secondary);
 }
 .context-label {
+  font-size: var(--type-label);
   cursor: pointer;
   font-variant-caps: all-small-caps;
-  letter-spacing: var(--track-wide);
-  font-weight: 600;
+  letter-spacing: var(--track-caps);
+  font-weight: var(--weight-semibold);
   list-style: none;
 }
 .context-label::before {
@@ -795,10 +762,10 @@ footer {
   line-height: var(--leading-body);
 }
 .context-body .context-heading {
-  font-size: var(--size-sm);
+  font-size: var(--type-label);
   font-variant-caps: all-small-caps;
   letter-spacing: var(--track-caps);
-  font-weight: 600;
+  font-weight: var(--weight-semibold);
   margin: 1em 0 0.3em 0;
 }
 .context-body .context-heading:first-child { margin-top: 0; }
@@ -825,14 +792,16 @@ footer {
   margin-top: var(--space-lg);
   padding-top: var(--space-sm);
   border-top: 1px solid var(--rule-soft);
-  font-size: var(--size-xs);
+  font-size: var(--type-item);
   line-height: 1.3;
 }
 
 .share-label {
+  font-size: var(--type-label);
   color: var(--text-dim);
   font-variant-caps: all-small-caps;
-  letter-spacing: var(--track-wide);
+  font-weight: var(--weight-semibold);
+  letter-spacing: var(--track-caps);
 }
 
 .share-choice {
@@ -880,10 +849,11 @@ footer {
 
 .share-trigger {
   font: inherit;
-  font-size: var(--size-xs);
+  font-size: var(--type-item);
+  font-weight: var(--weight-medium);
   color: var(--text-secondary);
   background: none;
-  border: 1px solid var(--rule);
+  border: 1px solid var(--line-edge);
   border-radius: 999px;
   /* A real tap target — this is the whole control on the devices that get it. */
   padding: 0.35rem 0.85rem;
@@ -911,7 +881,7 @@ footer {
    have found it useful (see `_app-prompt.ts` for the counters). */
 .app-prompt {
   margin: var(--space-sm) 0 0;
-  font-size: var(--size-xs);
+  font-size: var(--type-item);
   line-height: 1.45;
   color: var(--text-dim);
 }
@@ -997,13 +967,14 @@ body.article-page-body::before {
 }
 
 .article-page-header .wordmark {
-  font-size: var(--size-base);
-  letter-spacing: var(--track-tight);
+  font-size: var(--type-copy);
+  letter-spacing: var(--track-item);
 }
 
-/* A control, so an item: sentence case at the regular weight. */
+/* Navigation uses the item role. */
 .article-back-link {
-  font-size: var(--size-xs);
+  font-size: var(--type-item);
+  font-weight: var(--weight-medium);
   color: var(--text-secondary);
   text-decoration: none;
   transition: color var(--dur-fast) var(--ease-out);
@@ -1011,13 +982,9 @@ body.article-page-body::before {
 
 .article-back-link:hover { color: var(--text); }
 
-/* Reading column. The measure is `--page-column`, which the header and the
-   footer take too; the type is set on the container so everything inside it
-   reads at one size. Between them they keep a line at ~60–65 characters, the
-   sweet spot for sustained on-screen reading, however the type scales between
-   a phone and a wide viewport. */
+/* Header, body and footer share the reading column. */
 .article-page-main {
-  font-size: clamp(1.5rem, 0.45vw + 1.35rem, 1.75rem);
+  font-size: var(--type-copy);
   line-height: 1.65;
   max-width: var(--page-column);
   margin: 0 auto;
@@ -1049,7 +1016,7 @@ body.article-page-body::before {
   gap: var(--space-xs);
   flex-wrap: wrap;
   color: var(--text-secondary);
-  font-size: var(--size-xs);
+  font-size: var(--type-label);
   font-variant-caps: all-small-caps;
   font-feature-settings: "case" 1;
   letter-spacing: var(--track-caps);
@@ -1076,22 +1043,22 @@ body.article-page-body::before {
 }
 
 .article-kicker time {
-  font-variant-numeric: lining-nums tabular-nums;
+  font-variant-numeric: var(--figure-numerals);
 }
 
 .article-kicker > time::before {
   content: '·';
   margin-right: var(--space-xs);
-  color: var(--rule);
+  color: var(--ink-quiet);
   font-variant-caps: normal;
   letter-spacing: 0;
 }
 
 .article-title {
-  font-size: var(--size-h1);
-  font-weight: var(--weight-bold);
+  font-size: var(--type-title);
+  font-weight: var(--weight-title);
   line-height: 1.02;
-  letter-spacing: -0.024em;
+  letter-spacing: var(--track-display);
   text-wrap: balance;
   margin: 0 0 var(--space-sm);
   color: var(--text-emphasis);
@@ -1099,16 +1066,10 @@ body.article-page-body::before {
 
 @media (min-width: 641px) {
   .article-title {
-    font-size: clamp(3.75rem, 4vw + 2rem, 6.5rem);
     margin-bottom: clamp(1rem, 0.5vw + 0.75rem, 1.5rem);
   }
 }
 
-/* Body — inherits font-size + line-height from `.article-page-main`
-   (set there so the `ch` measure tracks the actual reading size). Each
-   markdown paragraph renders as its own `<p>` block; the per-block rhythm
-   reads as deliberate space rather than tight running prose. Block margins
-   live on the `> p, > h2, ...` rule below. */
 .article-page-main .article-body {
   margin-top: 0;
 }
@@ -1118,12 +1079,12 @@ body.article-page-body::before {
    wide step + brighter colour does the visual separation; horizontal
    margins stay flush with body so the column reads as a single column. */
 .article-page-main .article-body > p:first-of-type {
-  font-size: clamp(2.125rem, 1vw + 1.8rem, 3rem);
+  font-size: var(--type-lede);
   font-weight: var(--weight-regular);
   line-height: 1.35;
   color: var(--text-emphasis);
   margin-bottom: var(--space-lg);
-  letter-spacing: -0.012em;
+  letter-spacing: var(--track-heading);
   text-wrap: balance;
 }
 
@@ -1132,7 +1093,7 @@ body.article-page-body::before {
    ink) rather than outshouting the headline and the lede between which it
    stands: at 18px bold and 0.2em it was the loudest capitals on the site. */
 .article-page-main .article-body > p:first-of-type .article-dateline {
-  font-size: var(--size-xs);
+  font-size: var(--type-label);
   margin-right: 0;
   display: block;
   margin-bottom: var(--space-xs);
@@ -1151,20 +1112,20 @@ body.article-page-body::before {
 }
 
 .article-page-main .article-body h2 {
-  font-size: clamp(2rem, 0.7vw + 1.7rem, 2.5rem);
+  font-size: var(--type-heading);
   font-weight: var(--weight-semibold);
   line-height: 1.15;
-  letter-spacing: -0.014em;
+  letter-spacing: var(--track-heading);
   color: var(--text-emphasis);
   margin-top: var(--space-xl);
   margin-bottom: var(--space-sm);
 }
 
 .article-page-main .article-body h3 {
-  font-size: clamp(1.75rem, 0.5vw + 1.55rem, 2.125rem);
+  font-size: var(--type-lede);
   font-weight: var(--weight-semibold);
   line-height: 1.2;
-  letter-spacing: -0.008em;
+  letter-spacing: var(--track-heading);
   color: var(--text-emphasis);
   margin-top: var(--space-lg);
   margin-bottom: var(--space-xs);
@@ -1177,7 +1138,7 @@ body.article-page-body::before {
   margin: var(--space-lg) 0;
   padding: var(--space-xs) 0 var(--space-xs) var(--space-md);
   border-left: 2px solid var(--brand);
-  font-size: clamp(1.375rem, 0.35vw + 1.25rem, 1.625rem);
+  font-size: var(--type-lede);
   font-weight: var(--weight-light);
   font-style: italic;
   line-height: 1.4;
@@ -1203,12 +1164,12 @@ body.article-page-body::before {
   padding: var(--space-sm) var(--space-md);
   background: var(--bg-soft);
   border-left: 2px solid var(--accent);
-  font-size: var(--size-sm);
+  font-size: var(--type-item);
   color: var(--text-secondary);
 }
 
 .article-corrections-label {
-  font-size: var(--size-xs);
+  font-size: var(--type-label);
   font-variant-caps: all-small-caps;
   font-feature-settings: "case" 1;
   letter-spacing: var(--track-caps);
@@ -1227,7 +1188,7 @@ body.article-page-body::before {
 .article-corrections-list li + li { margin-top: var(--space-xs); }
 
 .article-corrections-list time {
-  font-variant-numeric: lining-nums tabular-nums;
+  font-variant-numeric: var(--figure-numerals);
   color: var(--text-dim);
   white-space: nowrap;
 }
@@ -1252,7 +1213,7 @@ body.article-page-body::before {
 /* A step under the body rather than three: the body is 22–24px, and the
    isnad and the framing at 14px fell off it. */
 .article-sources-flat {
-  font-size: var(--size-sm);
+  font-size: var(--type-item);
   color: var(--text-dim);
   margin-top: var(--space-sm);
   line-height: 1.4;
@@ -1312,7 +1273,7 @@ body.article-page-body::before {
 
 /* A heading's role: small caps at 600, the dateline's ink. */
 .article-locator-place {
-  font-size: var(--size-2xs);
+  font-size: var(--type-label);
   font-weight: var(--weight-semibold);
   font-variant-caps: all-small-caps;
   font-feature-settings: "case" 1;
@@ -1354,9 +1315,9 @@ body.article-page-body::before {
   display: flex;
   align-items: baseline;
   gap: 0.75rem;
-  font-size: var(--size-sm);
+  font-size: var(--type-item);
   line-height: 1.3;
-  font-variant-numeric: lining-nums tabular-nums;
+  font-variant-numeric: var(--figure-numerals);
 }
 
 .article-chart-label {
@@ -1382,15 +1343,15 @@ body.article-page-body::before {
 .article-chart-span {
   display: flex;
   justify-content: space-between;
-  font-size: var(--size-2xs);
+  font-size: var(--type-label);
   line-height: 1.3;
   color: var(--text-dim);
-  font-variant-numeric: lining-nums tabular-nums;
+  font-variant-numeric: var(--figure-numerals);
 }
 
 .article-chart-source {
   margin-top: var(--space-xs);
-  font-size: var(--size-2xs);
+  font-size: var(--type-label);
   line-height: 1.3;
   color: var(--text-dim);
 }
@@ -1402,7 +1363,7 @@ body.article-page-body::before {
 /* The way to the map, after the sources: the story's own card on the globe. */
 .article-page-main .article-body > .article-map-link {
   margin: var(--space-sm) 0 0;
-  font-size: var(--size-sm);
+  font-size: var(--type-item);
   line-height: 1.4;
 
   a {
@@ -1432,7 +1393,7 @@ body.article-page-body::before {
    label passes `colour-system.test.js` while failing a reader. */
 .article-framing {
   margin-top: var(--space-sm);
-  font-size: var(--size-sm);
+  font-size: var(--type-item);
   line-height: 1.4;
 }
 
@@ -1454,7 +1415,7 @@ body.article-page-body::before {
   position: absolute;
   right: 100%;
   margin-right: 0.45em;
-  font-variant-numeric: lining-nums tabular-nums;
+  font-variant-numeric: var(--figure-numerals);
 }
 
 .article-framing[open] > summary::before { content: '−'; }
@@ -1513,7 +1474,7 @@ body.article-page-body::before {
   margin-top: var(--space-xl);
   padding-top: var(--space-md);
   border-top: 1px solid var(--rule);
-  font-size: var(--size-sm);
+  font-size: var(--type-item);
   line-height: var(--leading-heading);
 }
 
@@ -1531,7 +1492,7 @@ body.article-page-body::before {
   font-variant-caps: all-small-caps;
   font-feature-settings: "case" 1;
   letter-spacing: var(--track-caps);
-  font-size: var(--size-xs);
+  font-size: var(--type-label);
   font-weight: var(--weight-semibold);
   color: var(--text-secondary);
 }
@@ -1543,9 +1504,9 @@ body.article-page-body::before {
   overflow: hidden;
   text-overflow: ellipsis;
   line-height: 1.25;
-  font-size: var(--size-base);
+  font-size: var(--type-copy);
   font-weight: var(--weight-semibold);
-  letter-spacing: -0.005em;
+  letter-spacing: var(--track-item);
   color: var(--text-emphasis);
   text-wrap: balance;
 }
@@ -1564,7 +1525,7 @@ body.article-page-body::before {
 
 /* A link, so an item, set as the header's `← Map` is. */
 .article-pagination-home {
-  font-size: var(--size-xs);
+  font-size: var(--type-item);
   color: var(--text-secondary);
   text-decoration: none;
   grid-column: 1 / -1;
@@ -1592,7 +1553,7 @@ body.archetype-page-body > footer {
   flex-wrap: wrap;
   gap: var(--space-sm);
   border-top: 1px solid var(--rule);
-  font-size: var(--size-sm);
+  font-size: var(--type-item);
   color: var(--text-secondary);
 }
 
@@ -1603,7 +1564,7 @@ body.archetype-page-body > footer {
     padding-bottom: var(--space-md);
   }
   .article-title {
-    font-size: calc(var(--size-h1) * 1.25);
+    font-size: var(--size-d1);
   }
   .article-pagination {
     grid-template-columns: 1fr;
@@ -1613,9 +1574,9 @@ body.archetype-page-body > footer {
   .article-pagination-prev,
   .article-pagination-next { text-align: left; }
   .article-pagination-next .article-pagination-label::after { content: ' →'; }
-  .article-pagination-title { font-size: var(--size-base); }
+  .article-pagination-title { font-size: var(--type-copy); }
   .article-page-main .article-body > p:first-of-type {
-    font-size: var(--size-h3);
+    font-size: var(--type-lede);
   }
 }
 
@@ -1677,7 +1638,7 @@ body.archetype-page-body {
    is (`.t-display`): a name, not a numeral. */
 .country-header .country-flag {
   grid-area: flag;
-  font-size: var(--size-h1);
+  font-size: var(--type-title);
   line-height: 1;
   align-self: center;
 }
@@ -1722,10 +1683,10 @@ body.archetype-page-body {
 
 .country-fact-title {
   margin: 0;
-  font-size: var(--size-sm);
+  font-size: var(--type-item);
   line-height: 1.35;
   color: var(--text-emphasis);
-  font-variant-numeric: lining-nums tabular-nums;
+  font-variant-numeric: var(--figure-numerals);
 }
 
 .country-fact-detail { margin: 0.15rem 0 0; }
@@ -1747,10 +1708,10 @@ body.archetype-page-body {
 
 .country-trajectory-headline {
   margin: var(--space-xs) 0 0;
-  font-size: var(--size-h2);
+  font-size: var(--type-heading);
   line-height: 1.1;
   color: var(--text-emphasis);
-  font-variant-numeric: lining-nums tabular-nums;
+  font-variant-numeric: var(--figure-numerals);
 }
 
 .country-trajectory-subtitle { margin: var(--space-xs) 0 0; max-width: 44rem; }
@@ -1761,7 +1722,7 @@ body.archetype-page-body {
 }
 
 @media (max-width: 640px) {
-  .country-trajectory-headline { font-size: var(--size-h3); }
+  .country-trajectory-headline { font-size: var(--type-lede); }
 }
 
 .section-title {
@@ -1788,21 +1749,22 @@ body.archetype-page-body {
   gap: var(--space-xxs) var(--space-sm);
   padding: var(--space-xs) 0;
   border-bottom: 1px solid var(--rule-soft);
-  font-size: var(--size-sm);
+  font-size: var(--type-item);
 }
 
 .metric-label {
   grid-area: label;
+  font-size: var(--type-label);
   color: var(--text);
   font-variant-caps: all-small-caps;
+  font-weight: var(--weight-semibold);
   font-feature-settings: "case" 1;
-  letter-spacing: var(--track-wide);
+  letter-spacing: var(--track-caps);
 }
 
 .metric-value {
   grid-area: value;
   color: var(--text-emphasis);
-  font-weight: var(--weight-semibold);
   text-align: right;
   white-space: nowrap;
 }
@@ -1834,7 +1796,7 @@ body.archetype-page-body {
 .metric-source {
   grid-area: source;
   color: var(--text-dim);
-  font-size: var(--size-xs);
+  font-size: var(--type-item);
   padding-left: 11em;
   margin-top: var(--space-xxs);
 }
@@ -1882,22 +1844,25 @@ body.archetype-page-body {
 
 .list-row-date {
   color: var(--text-secondary);
-  font-size: var(--size-sm);
-  font-variant-numeric: lining-nums tabular-nums;
+  font-size: var(--type-item);
+  font-variant-numeric: var(--figure-numerals);
   white-space: nowrap;
 }
 
 .list-row-title {
-  font-size: var(--size-base);
+  font-size: var(--type-copy);
+  font-weight: var(--weight-medium);
+  letter-spacing: var(--track-item);
   line-height: var(--leading-heading);
 }
 
 .list-row-category {
   font-variant-caps: all-small-caps;
+  font-weight: var(--weight-semibold);
   font-feature-settings: "case" 1;
-  letter-spacing: var(--track-wide);
+  letter-spacing: var(--track-caps);
   color: var(--text-secondary);
-  font-size: var(--size-xs);
+  font-size: var(--type-label);
   /* The cell also wears `.category`, whose 8px foot is the article kicker's:
      it made this the one list whose rows were 50px to the others' 43. */
   margin-bottom: 0;
@@ -1972,7 +1937,9 @@ body.archetype-page-body {
 
 .entity-delta {
   color: var(--text-secondary);
-  font-size: var(--size-sm);
+  font-size: var(--type-figure);
+  font-weight: var(--weight-semibold);
+  font-variant-numeric: var(--figure-numerals);
 }
 
 .entity-delta.pos { color: var(--pos); }
@@ -2154,8 +2121,9 @@ body.archetype-page-body {
   margin: 0;
 }
 .country-preview-name {
-  font-size: var(--size-h2);
-  font-weight: var(--weight-bold);
+  font-size: var(--type-heading);
+  font-weight: var(--weight-semibold);
+  letter-spacing: var(--track-heading);
   line-height: var(--leading-heading);
   margin: 0;
   text-wrap: balance;
@@ -2183,7 +2151,7 @@ body.archetype-page-body {
   align-items: baseline;
   padding: var(--space-xs) 0;
   border-bottom: 1px solid var(--rule-soft, var(--rule));
-  font-size: var(--size-sm);
+  font-size: var(--type-item);
 }
 .country-preview-metric:last-child {
   border-bottom: none;
@@ -2194,7 +2162,6 @@ body.archetype-page-body {
 }
 .country-preview-metric-value {
   color: var(--text);
-  font-variant-numeric: oldstyle-nums proportional-nums;
 }
 /* Same module and the same fill/track pairing country-pages.js already uses
    for this exact data on the full /country/{ISO2} page (`.metric-strip`) —
@@ -2233,7 +2200,7 @@ body.archetype-page-body {
   align-items: baseline;
   padding: var(--space-xs) 0;
   color: var(--text);
-  font-size: var(--size-sm);
+  font-size: var(--type-item);
   text-decoration: none;
   border-bottom: 1px solid var(--rule-soft, var(--rule));
 }
@@ -2249,7 +2216,7 @@ body.archetype-page-body {
 }
 .country-preview-coverage-row time {
   color: var(--text-secondary);
-  font-size: var(--size-xs);
+  font-size: var(--type-item);
   white-space: nowrap;
 }
 
@@ -2263,7 +2230,7 @@ body.archetype-page-body {
   text-decoration: underline;
   text-decoration-color: var(--text-dim);
   text-underline-offset: 3px;
-  font-size: var(--size-sm);
+  font-size: var(--type-item);
   transition: text-decoration-color var(--dur-fast) var(--ease-out);
 }
 .country-preview-full-link:hover {
@@ -2280,12 +2247,13 @@ body.archetype-page-body {
    worth protecting; it is wrong for a question a sentence just raised, which
    is answered under that sentence — see `.article-entity-panel`. */
 .island-sheet {
+  --bg: var(--bg-soft);
   border: none;
   padding: 0;
   background: var(--bg);
   color: var(--text);
   font-family: var(--font-sans);
-  font-size: var(--size-base);
+  font-size: var(--type-copy);
   max-width: min(44rem, 100vw);
   width: min(44rem, 100vw);
   max-height: 90vh;
@@ -2354,7 +2322,7 @@ body.archetype-page-body {
   cursor: pointer;
   padding: 0.25rem 0.5rem;
   border-radius: 999px;
-  font-size: var(--size-md);
+  font-size: var(--type-copy);
   outline: none;
   transition: color var(--dur-fast) var(--ease-out);
 }
@@ -2383,7 +2351,7 @@ body.archetype-page-body {
     margin-top: var(--space-lg);
     padding-top: var(--space-md);
     border-top: 1px solid var(--rule);
-    font-size: var(--size-sm);
+    font-size: var(--type-item);
     line-height: 1.4;
   }
 }
@@ -2402,7 +2370,7 @@ body.archetype-page-body {
 }
 
 .article-app-note {
-  font-size: var(--size-2xs);
+  font-size: var(--type-label);
   color: var(--text-secondary);
 }
 
@@ -2420,7 +2388,7 @@ body.archetype-page-body {
   padding: 0 var(--space-xs) env(safe-area-inset-bottom) var(--page-gutter, var(--space-sm));
   background: var(--bg);
   border-top: 1px solid var(--rule);
-  font-size: var(--size-xs);
+  font-size: var(--type-item);
   line-height: 1.3;
 }
 
@@ -2452,7 +2420,8 @@ body.has-app-bar { padding-bottom: calc(3rem + env(safe-area-inset-bottom)); }
   border: none;
   color: var(--text-secondary);
   font: inherit;
-  font-size: var(--size-sm);
+  font-size: var(--type-item);
+  font-weight: var(--weight-medium);
   cursor: pointer;
 }
 
@@ -2475,10 +2444,10 @@ body.has-app-bar { padding-bottom: calc(3rem + env(safe-area-inset-bottom)); }
   align-items: center;
   gap: var(--space-xs);
   padding: 4px 10px;
-  border: 1px solid var(--rule);
+  border: 1px solid var(--line-edge);
   border-radius: 999px;
   color: var(--text);
-  font-size: var(--size-sm);
+  font-size: var(--type-item);
   line-height: 1.2;
   text-decoration: none;
   transition: border-color var(--dur-fast) var(--ease-out), background-color var(--dur-fast) var(--ease-out);
@@ -2503,8 +2472,9 @@ body.has-app-bar { padding-bottom: calc(3rem + env(safe-area-inset-bottom)); }
 
 .article-entity-head {
   margin: 0;
-  font-size: var(--size-xs);
+  font-size: var(--type-label);
   font-variant-caps: all-small-caps;
+  font-weight: var(--weight-semibold);
   letter-spacing: var(--track-caps);
   color: var(--text-secondary);
 }
@@ -2517,22 +2487,19 @@ body.has-app-bar { padding-bottom: calc(3rem + env(safe-area-inset-bottom)); }
   margin: 2px 0 var(--space-sm);
 }
 
-/* The sheet set this at `--size-h1`, which it could afford: a modal has no
-   other subject. This panel is a guest inside an article whose headline is
-   `--size-h2`, so the figure states itself without outranking the story that
-   raised it — the same argument the map's card makes at its own scale. */
 .article-entity-value {
-  font-size: var(--size-h3);
+  font-size: var(--type-lede);
   font-weight: 300;
-  letter-spacing: -0.02em;
+  letter-spacing: var(--track-heading);
   line-height: 1.05;
-  font-variant-numeric: tabular-nums;
+  font-variant-numeric: var(--figure-numerals);
 }
 
 .article-entity-delta {
-  font-size: var(--size-sm);
+  font-size: var(--type-figure);
+  font-weight: var(--weight-semibold);
   color: var(--text-secondary);
-  font-variant-numeric: tabular-nums;
+  font-variant-numeric: var(--figure-numerals);
 }
 .article-entity-delta.pos { color: var(--pos); }
 .article-entity-delta.neg { color: var(--neg); }
@@ -2544,14 +2511,14 @@ body.has-app-bar { padding-bottom: calc(3rem + env(safe-area-inset-bottom)); }
 
 .article-entity-loading {
   margin: 0;
-  font-size: var(--size-sm);
+  font-size: var(--type-item);
   color: var(--text-secondary);
 }
 
 .article-entity-full {
   display: inline-block;
   margin-top: var(--space-sm);
-  font-size: var(--size-sm);
+  font-size: var(--type-item);
   color: var(--text-secondary);
   text-decoration: underline;
   text-decoration-color: var(--text-dim);
@@ -2571,7 +2538,7 @@ body.has-app-bar { padding-bottom: calc(3rem + env(safe-area-inset-bottom)); }
    and quiet is an ink step here as everywhere (never `opacity`). */
 .article-entity-recent {
   margin: var(--space-sm) 0 0;
-  font-size: var(--size-sm);
+  font-size: var(--type-item);
   color: var(--text-secondary);
 }
 
@@ -2584,13 +2551,15 @@ body.has-app-bar { padding-bottom: calc(3rem + env(safe-area-inset-bottom)); }
 .article-entity-provenance,
 .article-entity-section {
   margin: 0;
-  font-size: var(--size-xs);
+  font-size: var(--type-item);
   color: var(--text-secondary);
 }
 
 .article-entity-section {
+  font-size: var(--type-label);
   margin-top: var(--space-sm);
   font-variant-caps: all-small-caps;
+  font-weight: var(--weight-semibold);
   letter-spacing: var(--track-caps);
 }
 
@@ -2613,7 +2582,7 @@ body.has-app-bar { padding-bottom: calc(3rem + env(safe-area-inset-bottom)); }
 }
 
 .article-entity-mention-title {
-  font-size: var(--size-sm);
+  font-size: var(--type-item);
   line-height: 1.35;
   color: var(--text);
   text-decoration: none;
@@ -2626,9 +2595,9 @@ body.has-app-bar { padding-bottom: calc(3rem + env(safe-area-inset-bottom)); }
 }
 
 .article-entity-mention-time {
-  font-size: var(--size-xs);
+  font-size: var(--type-item);
   color: var(--text-secondary);
-  font-variant-numeric: lining-nums tabular-nums;
+  font-variant-numeric: var(--figure-numerals);
   text-align: right;
 }
 
@@ -2655,7 +2624,8 @@ body.has-app-bar { padding-bottom: calc(3rem + env(safe-area-inset-bottom)); }
   gap: 0.4rem;
   padding: 0.3rem 0.6rem 0.3rem 0.45rem;
   font: inherit;
-  font-size: var(--size-xs);
+  font-size: var(--type-item);
+  font-weight: var(--weight-medium);
   color: var(--map-ink-body);
   background: color-mix(in srgb, var(--map-panel) 85%, transparent);
   border: 1px solid var(--map-line-card);
@@ -2666,7 +2636,7 @@ body.has-app-bar { padding-bottom: calc(3rem + env(safe-area-inset-bottom)); }
 
   svg { width: 13px; height: 13px; flex: 0 0 auto; }
 
-  &:hover { color: var(--map-ink); border-color: var(--map-line-loud); }
+  &:hover { color: var(--map-ink); border-color: var(--map-line-edge); }
   &[hidden] { display: none; }
 }
 
@@ -2686,11 +2656,6 @@ body.has-app-bar { padding-bottom: calc(3rem + env(safe-area-inset-bottom)); }
   width: min(44rem, calc(100vw - 3rem));
   max-width: none;
   max-height: 82vh;
-  /* The base sheet is docked to the bottom edge and painted in --bg, which on
-     the map's dark ground is nearly the same black as the dimmed map behind
-     it — the card had no edge. This is the same surface the story and country
-     cards use, floated rather than docked, because it is a document to read
-     and not a tray of controls. */
   margin: auto;
   background: var(--map-panel);
   border: 1px solid var(--map-line-card);
@@ -2721,8 +2686,9 @@ body.has-app-bar { padding-bottom: calc(3rem + env(safe-area-inset-bottom)); }
 
 .doc-sheet-kicker {
   margin: 0 0 var(--space-sm);
-  font-size: var(--size-xs);
+  font-size: var(--type-label);
   font-variant-caps: all-small-caps;
+  font-weight: var(--weight-semibold);
   letter-spacing: var(--track-caps);
   color: var(--map-ink-muted);
 }
@@ -2742,7 +2708,7 @@ body.has-app-bar { padding-bottom: calc(3rem + env(safe-area-inset-bottom)); }
 .doc-sheet-permalink {
   display: inline-block;
   margin-top: var(--space-sm);
-  font-size: var(--size-xs);
+  font-size: var(--type-item);
   color: var(--map-ink-muted);
   text-decoration-color: var(--map-underline);
   text-underline-offset: 0.2em;
@@ -2817,7 +2783,7 @@ body.doc-page > main {
 }
 
 body.doc-page .page-title {
-  color: var(--map-ink-muted);
+  color: var(--map-ink-heading);
   margin-bottom: var(--space-sm);
 }
 
@@ -2853,86 +2819,51 @@ body.doc-page > footer {
   .doc-panel { padding: var(--space-sm); }
 }
 
-/* ---------------------------------------------------------- Dark surface ---
-   The palette for the two pages that commit to dark regardless of the reader's
-   scheme: the map, and the documents that open over it.
-
-   It exists because those pages are not "the site in dark mode". The site's
-   dark tokens are neutral greys on near-black; this is a blue-grey chrome
-   built to sit under saturated data marks without competing with them, and
-   the two must not be confused — which is exactly what happened while these
-   values lived as 180 raw hex literals spread through the file. There were
-   nine near-black surfaces within three points of each other, thirteen inks
-   across six, and no way to tell an intentional step from a typo.
-
-   Read as three scales plus states. Each step has a job; if a new colour is
-   needed, the first question is which of these it already is.
-
-   ── Kept in step with `_map/style.ts` ──
-   `--map-ground` is `MAP_COLOURS.ocean`. MapLibre paints from the TypeScript,
-   this chrome paints from here, and the two sit pixel-adjacent — the HUD
-   gradient fades into the canvas, and the place numeral is set in the canvas's
-   own label tone. They cannot be generated from one source (the style is built
-   in the worker before any stylesheet is queryable), so they are
-   cross-referenced instead: change one and change the other.
-
-   `--map-ink-muted` used to be described as a rounding of `MAP_COLOURS.label`,
-   and that stopped being true on 2026-07-30: the map's label tones moved much
-   lighter because they are text sitting on a *data* surface that the ground
-   metric and the density wash both move, where this scale sits on fixed panels.
-   Same family, different problem, and no longer the same value. */
+/* Fixed dark chrome over the map and on document pages. */
 body.map-page,
 body.doc-page {
-  /* Surface, deepest to highest. */
-  --map-ground: #080a0d;        /* the ocean; the ground everything sits on */
-  --map-sunken: #0a0c10;        /* rail and footer — below the ground */
-  --map-inset: #0d1016;         /* wells: code blocks, pressed panels */
-  --map-panel: #12151c;         /* raised chrome: cards, popups, selects */
-  --map-raised: #1a1f2a;        /* a control that is switched on */
+  --map-ground: var(--ground-dark);  /* MAP_COLOURS.space */
+  --map-panel: var(--panel-dark);    /* floating chrome */
+  --map-sunken: var(--map-ground);
+  --map-inset: var(--map-ground);
 
-  /* Row states, which are surfaces the pointer makes. */
   --map-row-hover: #10131a;
-  --map-row-active: #141922;
+  --map-row-active: #1a1f2a;
+  --map-raised: var(--map-row-active);
 
-  /* Line, quietest to loudest. */
-  --map-line-soft: #1c2029;     /* rail dividers */
-  --map-line: #232936;          /* the default hairline */
-  --map-line-panel: #262c38;    /* the edge of a raised panel */
-  --map-line-card: #2b3240;     /* the edge of a floating card */
-  --map-line-loud: #3a4353;     /* hover on a bordered control */
+  --map-line-divider: var(--divider-dark);
+  --map-line-edge: var(--edge-dark);
+  --map-line: var(--map-line-divider);
+  --map-line-soft: var(--map-line-divider);
+  --map-line-card: var(--map-line-edge);
 
-  /* Ink, brightest to quietest. Every step clears AA on `--map-panel`, which
-     is the lightest surface any of them lands on. */
-  /* Headings and the answer. **Not an active chip any more** — see
-     `.map-filter.is-on`: in the rail's column that made the switches louder
-     than every reading above them. */
-  --map-ink: #e6eaf0;
-  --map-ink-strong: #d3d8e0;
-  --map-ink-body: #c3c9d3;      /* prose */
-  --map-ink-soft: #aab2be;
-  --map-ink-muted: #89919f;     /* labels, captions, an inactive chip */
-  /* The quietest thing still meant to be read, and therefore the step that
-     defines the floor: 4.61:1 against `--map-raised`, the lightest surface in
-     this palette. It was #767f8c, which cleared AA on every surface except
-     that one — a token that fails somewhere inside its own system is a trap
-     waiting for whoever next puts dim text on a lit control. */
-  --map-ink-dim: #7f8896;
+  --map-ink-heading: #eef1f5;
+  --map-ink-prose: #c9ced6;
+  --map-ink-quiet: #8a919c;
+  --map-ink-inactive: #7f8896;
+  --map-ink: var(--map-ink-heading);
+  --map-ink-strong: var(--map-ink-heading);
+  --map-ink-body: var(--map-ink-prose);
+  --map-ink-soft: var(--map-ink-quiet);
+  --map-ink-muted: var(--map-ink-quiet);
+  --map-ink-dim: var(--map-ink-quiet);
 
-  /* Marks. `--map-underline` is decoration rather than ink and sits below the
-     ink floor on purpose; it only ever appears under text that is `--map-ink`.
-     The signed-change pair is the site's dark `--pos`/`--neg`. */
-  /* Was #586274, which measured 2.97:1 on `--map-panel` — the surface the
-     document sheet's links actually sit on. The underline is not the only
-     thing identifying those links (their text is `--map-ink` at 15:1), so it
-     was never a strict 1.4.11 failure, but three hundredths under the line is
-     not a place to leave a token. */
-  --map-underline: #5c6678;
+  /* Shared components inherit this palette on the fixed-dark pages. */
+  --ink-heading: var(--map-ink-heading);
+  --ink-prose: var(--map-ink-prose);
+  --ink-quiet: var(--map-ink-quiet);
+  --ink-inactive: var(--map-ink-inactive);
+  --text-emphasis: var(--ink-heading);
+  --text: var(--ink-prose);
+  --text-secondary: var(--ink-quiet);
+  --text-dim: var(--ink-quiet);
+
+  /* Links underline in quiet ink; signed data keeps its own hues. */
+  --map-underline: var(--map-ink-quiet);
   --map-pos: #6cbb7e;
   --map-neg: #e68ba8;
-  /* A row's third state — flat, or too old to trust the direction of — reusing
-     `MAP_COLOURS.neutral`, the canvas's own tone for "nothing to report" on a
-     mark, for the same fact in the chrome. */
-  --map-stale: #8d97a6;
+  /* A stale reading uses the same quiet ink as its timestamp. */
+  --map-stale: var(--map-ink-quiet);
 
   /* The two data hues the chrome has to name.
      Category and overlay colours belong to `_map/style.ts` — MapLibre paints
@@ -2967,7 +2898,7 @@ body.doc-page {
   left: var(--space-xs);
   z-index: 100;
   padding: 0.4rem 0.75rem;
-  font-size: var(--size-xs);
+  font-size: var(--type-item);
   color: var(--map-ink, var(--text));
   background: var(--map-panel, var(--bg));
   border: 1px solid var(--map-line-card, var(--rule));
@@ -3069,9 +3000,7 @@ body.map-page {
   --map-band-h: 4.5rem;
   --map-block-gap: 1.2rem;
   --map-head-gap: 0.15rem;
-  /* Every instrument row's columns: name, level, tick, figure, age, caret.
-     The figure track fits `−0.09 pts` and the age track `10d`, both at
-     `--size-2xs` in tabular figures. */
+  /* Shared tracks for name, level, direction, figure, age and disclosure. */
   --map-rail-cols:
     [label] minmax(0, 1fr)
     [level] 3.1rem
@@ -3259,12 +3188,7 @@ body.map-page.map-rail-off {
   & > footer { display: none; }
 }
 
-/* The instrument rail's folded width, declared here beside the open one.
-   What it holds is in "The spine" further down; this is only the number, and
-   it lives with `--map-aside-w` because the two are the same measurement in
-   two states and a reader looking for one wants the other. 5.5rem is the
-   widest group label (`currencies`, 11px at `--track-wide`) plus the reduced
-   padding either side, measured rather than chosen. */
+/* The folded instrument rail. */
 body.map-page { --map-spine-w: 5.5rem; }
 
 /* --- The seams -----------------------------------------------------------
@@ -3404,7 +3328,7 @@ body.is-pane-dragging {
     inset: -4px -5px;
   }
 
-  &:hover { color: var(--map-ink); border-color: var(--map-line-loud); }
+  &:hover { color: var(--map-ink); border-color: var(--map-line-edge); }
 
   &:focus-visible {
     outline: var(--ring-width) solid var(--map-focus);
@@ -3427,7 +3351,7 @@ body.is-pane-dragging {
 .map-seam:focus-within .map-seam-toggle,
 .map-seam-toggle[aria-expanded='false'] {
   color: var(--map-ink);
-  border-color: var(--map-line-loud);
+  border-color: var(--map-line-edge);
 }
 
 /* A folded seam stops straddling and sits wholly inside the window.
@@ -3644,11 +3568,12 @@ body.map-wide .map-feed-count {
      `--map-band-h`, level with the one under the clock. */
   padding: calc(var(--map-band-h) - 0.5rem) var(--map-gutter-x) 0.5rem;
   font: inherit;
-  font-size: var(--size-xs);
+  font-size: var(--type-label);
   text-align: left;
   color: var(--text-dim);
   font-variant-caps: all-small-caps;
-  letter-spacing: var(--track-wide);
+  font-weight: var(--weight-semibold);
+  letter-spacing: var(--track-caps);
   background: none;
   border: none;
   border-bottom: 1px solid var(--map-line-soft);
@@ -3751,7 +3676,7 @@ body.map-wide .map-feed-refresh {
   top: calc(var(--map-band-h) / 2 + 0.3rem);
   right: var(--map-gutter-x);
   transform: translateY(-50%);
-  font-size: var(--size-2xs);
+  font-size: var(--type-label);
 }
 
 /* `.map-hud-more` is a pass-through on the desktop: it generates no box, so
@@ -3834,8 +3759,8 @@ body.map-wide .map-feed-filters {
   top: 0;
   z-index: 1;
   padding: 0.7rem var(--map-gutter-x) 0.3rem;
-  font-size: var(--size-2xs);
-  font-weight: 600;
+  font-size: var(--type-label);
+  font-weight: var(--weight-semibold);
   font-variant-caps: all-small-caps;
   letter-spacing: var(--track-caps);
   color: var(--map-ink-muted);
@@ -3918,13 +3843,11 @@ body.map-wide .map-feed-item {
 
 .map-feed-body { min-width: 0; }
 
-/* These are headlines — the list of what happened, and the only prose on the
-   map surface. `0.9rem` was a literal outside the scale entirely, which is how
-   the rail's most important type ended up smaller than the article page's
-   *kicker*. `--size-sm` puts it back on the ramp at 16px. */
+/* The story list carries each title in heading ink. */
 .map-feed-title {
   display: block;
-  font-size: var(--size-xs);
+  font-size: var(--type-item);
+  font-weight: var(--weight-medium);
   line-height: 1.3;
   color: var(--map-ink-strong);
   text-decoration: none;
@@ -3933,13 +3856,6 @@ body.map-wide .map-feed-item {
   &:hover { text-decoration: underline; text-underline-offset: 0.2em; }
 }
 
-/* The hook: the story's opening sentence, under its headline.
-
-   One rung under the headline and one ink step above the meta line, so a row
-   reads title, sentence, place. At `--size-2xs` on the 21rem rail two lines
-   hold about a hundred characters and a hook's 95th percentile is 87, so the
-   clamp is a floor under the row's height rather than the usual case: nearly
-   every hook prints whole. A row is about 88px with it against 53px without. */
 .map-feed-sub {
   display: -webkit-box;
   -webkit-box-orient: vertical;
@@ -3947,23 +3863,18 @@ body.map-wide .map-feed-item {
   line-clamp: 2;
   overflow: hidden;
   margin: 0.15rem 0 0;
-  font-size: var(--size-2xs);
+  font-size: var(--type-label);
   line-height: 1.35;
   color: var(--map-ink-soft);
   text-wrap: pretty;
 }
 
-/* Stays one rung under the headline. A rail of 120 rows is scanned, not read —
-   reader feedback on the live page called the 2026-07-27 sizes (16/14) too
-   heavy for a list this dense, so both step back down one rung (14/12); the
-   contrast measurements that change was made for still hold a rung lower,
-   since nothing here approaches the AA floor at this weight. */
 .map-feed-meta {
   margin: 0.1rem 0 0;
-  font-size: var(--size-2xs);
+  font-size: var(--type-label);
   line-height: 1.35;
   color: var(--map-ink-muted);
-  font-variant-numeric: lining-nums tabular-nums;
+  font-variant-numeric: var(--figure-numerals);
 }
 
 /* The card's figure on the meta line: the series' name stays a qualifier, the
@@ -3980,7 +3891,7 @@ body.map-wide .map-feed-item {
   gap: 0.45em;
   padding: 0.15rem 0.3rem;
   font: inherit;
-  font-size: var(--size-2xs);
+  font-size: var(--type-label);
   font-variant-caps: normal;
   letter-spacing: normal;
   color: var(--map-ink-muted);
@@ -4003,7 +3914,7 @@ body.map-wide .map-feed-item {
 .map-feed-search-keys {
   padding: 0 0.3em;
   font: inherit;
-  font-variant-numeric: tabular-nums;
+  font-variant-numeric: var(--figure-numerals);
   color: var(--map-ink-dim);
   border: 1px solid var(--map-line-card);
   border-radius: var(--map-radius-ctl);
@@ -4067,7 +3978,7 @@ body.map-wide .map-feed-search {
   top: 0.9rem;
   left: 0;
   transform: translateX(-50%);
-  font-size: var(--size-2xs);
+  font-size: var(--type-label);
   white-space: nowrap;
   color: var(--map-ink-soft);
   text-shadow: 0 0 3px var(--map-ground), 0 0 3px var(--map-ground);
@@ -4125,7 +4036,8 @@ body.map-wide .map-feed-search {
   width: 100%;
   padding: 0.75rem 0.9rem;
   font: inherit;
-  font-size: var(--size-sm);
+  font-size: var(--type-item);
+  font-weight: var(--weight-medium);
   color: var(--map-ink);
   background: none;
   border: none;
@@ -4149,8 +4061,8 @@ body.map-wide .map-feed-search {
 
 .map-switcher-head {
   padding: 0.55rem 0.9rem 0.2rem;
-  font-size: var(--size-2xs);
-  font-weight: 600;
+  font-size: var(--type-label);
+  font-weight: var(--weight-semibold);
   font-variant-caps: all-small-caps;
   letter-spacing: var(--track-caps);
   color: var(--map-ink-muted);
@@ -4162,7 +4074,7 @@ body.map-wide .map-feed-search {
   align-items: baseline;
   gap: 0.6rem;
   padding: 0.35rem 0.9rem;
-  font-size: var(--size-xs);
+  font-size: var(--type-item);
   line-height: 1.3;
   color: var(--map-ink-strong);
   cursor: pointer;
@@ -4196,15 +4108,15 @@ body.map-wide .map-feed-search {
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
-  font-size: var(--size-2xs);
+  font-size: var(--type-label);
   color: var(--map-ink-dim);
-  font-variant-numeric: tabular-nums;
+  font-variant-numeric: var(--figure-numerals);
 }
 
 .map-switcher-empty {
   margin: 0;
   padding: 0.8rem 0.9rem;
-  font-size: var(--size-xs);
+  font-size: var(--type-item);
   color: var(--map-ink-muted);
 }
 
@@ -4301,7 +4213,7 @@ body.map-page > footer {
 body.map-page > footer .footer-links {
   display: flex;
   gap: var(--space-sm);
-  font-size: var(--size-2xs);
+  font-size: var(--type-label);
   line-height: 1.3;
   /* The base footer pushes these right so they sit opposite the byline on a
      wide page. In the rail they are the first row of a column, and an auto
@@ -4322,7 +4234,7 @@ body.map-page > footer .footer-links {
   flex-wrap: wrap;
   align-items: baseline;
   gap: 0.55rem;
-  font-size: var(--size-xs);
+  font-size: var(--type-item);
   line-height: 1.3;
 
   /* `opacity: 0.62` here (times 0.85 on the map's own wrapper below) put these
@@ -4361,7 +4273,7 @@ body.map-page > footer .footer-links {
 
 body.map-page > footer .footer-social {
   gap: var(--space-sm);
-  font-size: var(--size-2xs);
+  font-size: var(--type-label);
 
   a { color: var(--map-ink-muted); }
   a:hover { color: var(--map-ink); }
@@ -4494,13 +4406,14 @@ body.map-wide .map-range-group { display: block; }
   border: none;
   padding: 0.2rem 0.5rem;
   font: inherit;
-  font-size: var(--size-xs);
-  font-variant-numeric: lining-nums tabular-nums;
-  color: var(--map-ink-muted);
+  font-size: var(--type-item);
+  font-weight: var(--weight-medium);
+  font-variant-numeric: var(--figure-numerals);
+  color: var(--map-ink-inactive);
   cursor: pointer;
   transition: color var(--dur-fast) var(--ease-out), background var(--dur-fast) var(--ease-out);
 
-  &:hover { color: var(--map-ink-soft); }
+  &:hover { color: var(--map-ink-prose); }
   &.is-on { color: var(--map-ink); background: var(--map-raised); }
 }
 
@@ -4521,36 +4434,19 @@ body.map-wide .map-hud > .map-range-group {
    to restate `display: flex` to escape a dissolve neither wanted. */
 .map-filters { display: flex; }
 
-/* A chip is a toggle and a legend at once, so both jobs have to be legible.
-
-   ── Off is an ink step, not opacity ────────────────────────────────────────
-   This used to be `opacity: 0.5` over `--map-ink-muted`, which composites to
-   #484d56 against the ocean: **2.33:1**, well under AA, on the label naming
-   what the map is currently showing. `colour-system.test.js` could not see it
-   because opacity is not a colour literal — which is exactly why it survived.
-   Off is now `--map-ink-dim`, the tested floor, at full strength, and the mark
-   beside it goes hollow. Two channels saying "off", both of them legible.
-
-   ── The mark is the layer's own silhouette ────────────────────────────────
-   It was a 6px disc for everything, with a hollow variant — so `disasters` and
-   `straits` were the same ring and `markets` was a grey ring while the layer
-   drew olive and terracotta ticks. The chip row is the map's legend and it was
-   teaching one wrong thing and two nothings. The SVG is now built from the same
-   vertex table `map.addImage` rasterises (`_map/glyphs.ts`), so a chip cannot
-   disagree with the mark it names, and `currentColor`/`--cat` keeps every hue
-   in TypeScript where `colour-system.test.js` requires it. */
+/* Off uses the inactive ink. The active glyph takes its layer’s own hue. */
 .map-filter {
   background: none;
   border: none;
   padding: 0;
   font: inherit;
-  font-size: var(--size-xs);
+  font-size: var(--type-label);
   font-variant-caps: all-small-caps;
-  font-variant-numeric: lining-nums tabular-nums;
+  font-variant-numeric: var(--figure-numerals);
   font-feature-settings: "case" 1;
-  font-weight: 600;
-  letter-spacing: var(--track-wide);
-  color: var(--map-ink-dim);
+  font-weight: var(--weight-semibold);
+  letter-spacing: var(--track-caps);
+  color: var(--map-ink-inactive);
   cursor: pointer;
   display: flex;
   align-items: center;
@@ -4562,30 +4458,12 @@ body.map-wide .map-hud > .map-range-group {
     height: 13px;
     flex: 0 0 auto;
     overflow: visible;
-    color: var(--map-ink-dim);
+    color: var(--map-ink-inactive);
     transition: color var(--dur-fast) var(--ease-out);
   }
 
   &:hover { color: var(--map-ink-soft); }
 
-  /* **`--map-ink-body`, not `--map-ink`** (2026-08-03), and this overrides the
-     palette's own note, which lists "an active chip" among the things at the
-     top of the ink ladder. That was written when the chips were a horizontal
-     strip of four beside the clock. In a column of eleven, under fourteen rows
-     of readings, it made the *switches* the loudest text in the rail: measured
-     off the render, a lit chip label sits at `rgb(230,234,240)` while the
-     brightest reading above it — a level like `$91.82` — is `rgb(195,201,211)`.
-     So the rail's own reading order (what the world is doing, then what is
-     drawn) was inverted in ink, and the eye went to the vocabulary rather than
-     to the numbers. The same mistake this map's record already logs twice: the
-     loudest ink on the canvas was the names of the countries, and a coloured
-     genocide caption made the gravest mark read as an alert about the
-     interface.
-
-     One rung down puts nothing in the rail above the data. The on/off step is
-     still `rgb(195,201,211)` against `rgb(127,136,150)`, and it was never
-     carrying that signal alone — the glyph takes the layer's own hue when lit
-     and grey when not, which is the channel a reader actually reads. */
   &.is-on {
     color: var(--map-ink-body);
 
@@ -4615,9 +4493,10 @@ body.map-wide .map-hud > .map-range-group {
    last one lit — which is where it lived, as a `title` on a moving target that
    a touch reader could never reach. */
 .map-filters-note {
-  font-size: var(--size-2xs);
+  font-size: var(--type-label);
   font-variant-caps: all-small-caps;
-  letter-spacing: var(--track-wide);
+  font-weight: var(--weight-semibold);
+  letter-spacing: var(--track-caps);
   color: var(--map-ink-dim);
 }
 
@@ -4641,7 +4520,7 @@ body.map-wide .map-hud > .map-range-group {
 /* Empty rail — the filters excluded everything. */
 .map-feed-empty {
   padding: 1.2rem var(--map-gutter-x);
-  font-size: var(--size-xs);
+  font-size: var(--type-item);
   line-height: 1.5;
   color: var(--map-ink-muted);
 }
@@ -4670,9 +4549,10 @@ body.map-wide .map-hud > .map-range-group {
   display: inline-flex;
   align-items: center;
   gap: 0.3rem;
-  font-size: var(--size-xs);
+  font-size: var(--type-label);
   font-variant-caps: all-small-caps;
-  letter-spacing: var(--track-wide);
+  font-weight: var(--weight-semibold);
+  letter-spacing: var(--track-caps);
   color: var(--map-ink-dim);
   cursor: default;
 }
@@ -4716,7 +4596,8 @@ body.map-wide .map-hud > .map-range-group {
   gap: 0.35rem;
   padding: 0.22rem 0.5rem;
   font: inherit;
-  font-size: var(--size-xs);
+  font-size: var(--type-item);
+  font-weight: var(--weight-medium);
   color: var(--map-ink-dim);
   background: none;
   border: 1px solid transparent;
@@ -4816,12 +4697,13 @@ body.map-wide .map-hud > .map-range-group {
   padding: 0.14rem 0.3rem;
   max-width: 12rem;
   font: inherit;
-  font-size: var(--size-xs);
-  letter-spacing: var(--track-wide);
+  font-size: var(--type-item);
+  font-weight: var(--weight-medium);
+  letter-spacing: var(--track-caps);
   color: var(--map-ink-strong);
   cursor: pointer;
 
-  &:hover { border-color: var(--map-line-loud); }
+  &:hover { border-color: var(--map-line-edge); }
 
   &:focus-visible {
     outline: var(--ring-width) solid var(--map-focus);
@@ -4855,19 +4737,15 @@ body.map-wide .map-hud > .map-range-group {
     transparent 0 calc(var(--hatch-gap) - 1px),
     var(--hatch) calc(var(--hatch-gap) - 1px) var(--hatch-gap)
   );
-  border: 1px solid var(--map-line-loud);
+  border: 1px solid var(--map-line-edge);
 }
 
 .map-ground-ramp {
   width: 72px;
   height: 9px;
   background: linear-gradient(to right, var(--ramp));
-  /* `--map-line-loud`, not `--map-line`. Both of these are samples of the map's
-     ground and both start near-black at their dark end, so at 1.42:1 the old
-     hairline left the low end of the ramp with no edge at all — the swatch read
-     as an empty outline and the gradient as a bar that begins a third of the
-     way in. An edge is what makes a sample a sample. */
-  border: 1px solid var(--map-line-loud);
+  /* Keep the edge visible around the ground sample. */
+  border: 1px solid var(--map-line-edge);
 }
 
 /* The value at each end of the ramp, in the metric's own units.
@@ -4877,10 +4755,10 @@ body.map-wide .map-hud > .map-range-group {
    `colour-system.test.js` looked straight past it, because opacity is not a
    colour literal. */
 .map-ground-end {
-  font-size: var(--size-xs);
+  font-size: var(--type-item);
   line-height: 1;
   color: var(--map-ink-dim);
-  font-variant-numeric: tabular-nums;
+  font-variant-numeric: var(--figure-numerals);
   white-space: nowrap;
 }
 
@@ -4894,7 +4772,7 @@ body.map-wide .map-hud > .map-range-group {
    Off the strip there is nothing to truncate against. */
 .map-ground-note {
   margin: 0;
-  font-size: var(--size-xs);
+  font-size: var(--type-item);
   line-height: 1.45;
   color: var(--map-ink-dim);
 }
@@ -4914,7 +4792,7 @@ body.map-wide .map-hud > .map-range-group {
    that needed them; the phone drops the clock outright, because the scrubber's
    readout carries the same instant in the same frame with more of it. */
 .map-status {
-  font-variant-numeric: lining-nums tabular-nums;
+  font-variant-numeric: var(--figure-numerals);
 }
 
 /* --- The HUD as a column ---------------------------------------------------
@@ -5198,8 +5076,8 @@ body.map-wide .map-status {
   min-height: 0;
   padding: 1.35rem 0 0.5rem;
   border-bottom: 1px solid var(--map-line-soft);
-  font-size: var(--size-sm);
-  font-variant-numeric: tabular-nums;
+  font-size: var(--type-item);
+  font-variant-numeric: var(--figure-numerals);
   line-height: 1.2;
   color: var(--map-ink);
   pointer-events: auto;
@@ -5207,19 +5085,12 @@ body.map-wide .map-status {
 
 body.map-wide .map-now-hijri {
   display: block;
-  font-size: var(--size-2xs);
+  font-size: var(--type-label);
   color: var(--map-ink-muted);
   white-space: nowrap;
 }
 
-/* Group names exist only in the rail — see `groupLabel` in the island for why a
-   rule between two lists is not enough there and was enough on the strip.
-
-   The register is `.map-markets-label`'s, deliberately: this map already had an
-   idiom for "the name of a group of readouts" and inventing a second one would
-   be two vocabularies for one job. No glyph column, so the name starts at the
-   rail's left edge while every chip's label starts 22px in — which is what
-   separates a heading from an unlit chip, since both are `--map-ink-dim`. */
+/* Group names are visible in the rail. */
 .map-group-label { display: none; }
 
 body.map-wide .map-group-label {
@@ -5234,13 +5105,13 @@ body.map-wide .map-group-label {
      once rather than one heading at a time. The type's own leading is what keeps
      the word off its first row. */
   margin-bottom: var(--map-head-gap);
-  font-size: var(--size-2xs);
+  font-size: var(--type-label);
   line-height: 1.3;
   /* The one place in the rails that small caps and 600 appear, so the pair
      means "heading" and nothing else. Small caps want the wider tracking. */
   font-variant-caps: all-small-caps;
   letter-spacing: var(--track-caps);
-  font-weight: 600;
+  font-weight: var(--weight-semibold);
   color: var(--map-ink-dim);
 }
 
@@ -5347,11 +5218,10 @@ body.map-wide .map-feed-filters .map-filter {
      stories' dot column, and the last word ends on the rail's right edge. */
   .map-group-label + & { margin-left: -0.4rem; }
   &:last-child { margin-right: -0.4rem; }
-  /* A filter is an item, set like the stories it filters: sentence case at the
-     regular weight. In small caps at 600 it was the loudest thing in the rail,
-     louder than the headlines under it. */
+  /* Story filters use the same item role as their headlines. */
   font-variant-caps: normal;
-  font-weight: 400;
+  font-size: var(--type-item);
+  font-weight: var(--weight-medium);
   letter-spacing: 0;
 
   & .map-filter-label::first-letter { text-transform: uppercase; }
@@ -5387,6 +5257,7 @@ body.map-wide .map-feed-filters .map-filter {
    its own so the marks align down the rail, and the hover state has somewhere
    to land. On the strip a chip could only be as tall as its type. */
 body.map-wide .map-filter {
+  font-size: var(--type-item);
   gap: 0.45rem;
   /* The money rows' padding, so `--map-hud-row-h` decides this box rather than
      the type inside it. See `.map-filters` above for the 4.3px this closes. */
@@ -5519,7 +5390,7 @@ body.map-wide .map-key-item.is-layer-note {
      the misalignment that makes one row of a list read as not belonging to it,
      which is what the outdent was written to prevent. */
   gap: 0.3rem;
-  font-size: var(--size-xs);
+  font-size: var(--type-item);
   font-feature-settings: "case" 1;
 
   /* The key's mark column: a 16px box, as `.map-key-item svg` draws. */
@@ -5686,7 +5557,7 @@ body.map-wide {
   & .map-markets-head-note {
     margin-left: 0.35rem;
     font-variant-caps: normal;
-    font-weight: 400;
+    font-weight: var(--weight-regular);
     letter-spacing: 0;
     color: var(--map-ink-muted);
   }
@@ -5815,21 +5686,17 @@ body.map-wide {
     & svg { width: 9px; height: 9px; }
   }
 
-  /* A row's name is an item, not a heading: sentence case at the regular
-     weight, so small caps and 600 mean one thing in this rail, a block's
-     heading. The source strings are lower case (the phone strip sets them in
-     small caps), so the capital is drawn here. One ink step above
-     `--map-ink-dim`, which the weight used to carry. */
+  /* The rail draws the initial capital on the shared lower-case names. */
   & .map-markets-label {
     grid-column: label;
     min-width: 0;
     /* Both row families are `<button>`s, and a button centres its text. */
     text-align: left;
-    font-size: var(--size-xs);
+    font-size: var(--type-item);
     font-variant-caps: normal;
-    font-weight: 400;
+    font-weight: var(--weight-medium);
     letter-spacing: 0;
-    color: var(--map-ink-soft);
+    color: var(--map-ink-prose);
 
     &::first-letter { text-transform: uppercase; }
   }
@@ -5861,8 +5728,9 @@ body.map-wide {
     grid-column: level;
     overflow: hidden;
     color: var(--map-ink-body);
-    font-size: var(--size-2xs);
-    font-variant-numeric: tabular-nums;
+    font-size: var(--type-figure);
+    font-weight: var(--weight-semibold);
+    font-variant-numeric: var(--figure-numerals);
     letter-spacing: 0;
     text-overflow: ellipsis;
     white-space: nowrap;
@@ -5905,8 +5773,6 @@ body.map-wide {
     grid-column: fig;
     justify-self: end;
     white-space: nowrap;
-    font-size: var(--size-2xs);
-    font-variant-numeric: tabular-nums;
     letter-spacing: 0;
   }
 
@@ -5925,8 +5791,8 @@ body.map-wide {
     grid-column: age;
     justify-self: end;
     color: var(--map-ink-muted);
-    font-size: var(--size-2xs);
-    font-variant-numeric: tabular-nums;
+    font-size: var(--type-label);
+    font-variant-numeric: var(--figure-numerals);
     letter-spacing: 0;
   }
 
@@ -6053,20 +5919,12 @@ body.map-wide {
     flex: 1 1 0;
     min-width: 0;
     overflow: hidden;
-    /* The **label's** ink, not a step brighter. `--map-ink-muted` was the first
-       choice, on the reasoning that a caption is a caption — and it is one step
-       *lighter* than `--map-ink-dim`, so the phrases came out brighter than the
-       codes above them while also reading larger for being out of small caps.
-       That is a hierarchy inversion: the loudest thing in a column of readings
-       was the block furthest from a fact. Same ink as every other row label
-       now, so the difference between them reads as a difference of kind rather
-       than of importance. */
-    color: var(--map-ink-soft);
+    color: var(--map-ink-prose);
     /* Sentence case, not the all-small-caps every other label wears: these are
        phrases rather than tickers, and small caps on a phrase is a headline
        treatment on something that is not a headline. */
     font-variant-caps: normal;
-    font-weight: 400;
+    font-weight: var(--weight-medium);
     letter-spacing: 0;
     /* Tight, because every unit of leading here is space between a question and
        its own answer — see the padding rule on the summary. */
@@ -6422,7 +6280,7 @@ body.map-wide .map-key-glow { margin-inline: 2px; }
   display: grid;
   place-items: center;
   margin: 0;
-  font-size: var(--size-sm);
+  font-size: var(--type-item);
   color: var(--map-ink-dim);
   pointer-events: none;
 }
@@ -6519,14 +6377,14 @@ body:not(.map-wide) .map-markets.is-waiting { display: none; }
   border: 1px solid var(--map-line-card);
   border-radius: 2px;
   background: var(--map-panel);
-  font-size: var(--size-xs);
+  font-size: var(--type-label);
   font-variant-caps: all-small-caps;
-  font-variant-numeric: lining-nums tabular-nums;
-  letter-spacing: var(--track-wide);
+  font-variant-numeric: var(--figure-numerals);
+  letter-spacing: var(--track-caps);
   white-space: nowrap;
   color: var(--map-ink);
 
-  & b { font-weight: 600; }
+  & b { font-weight: var(--weight-semibold); }
 
   /* The frame, not the figure. It has to be said — up to an hour and a half
      separates solar time from the clock on a phone standing there — and it
@@ -6556,15 +6414,15 @@ body:not(.map-wide) .map-markets.is-waiting { display: none; }
   border: 1px solid var(--map-line-card);
   border-radius: 2px;
   background: var(--map-panel);
-  font-size: var(--size-2xs);
+  font-size: var(--type-label);
   line-height: 1.35;
-  font-variant-numeric: lining-nums tabular-nums;
+  font-variant-numeric: var(--figure-numerals);
   color: var(--map-ink-muted);
 
   & p { margin: 0; }
 
   & b {
-    font-weight: 600;
+    font-weight: var(--weight-semibold);
     color: var(--map-ink);
     margin-right: 0.4rem;
   }
@@ -6575,7 +6433,7 @@ body:not(.map-wide) .map-markets.is-waiting { display: none; }
   align-items: baseline;
   gap: 0.4rem;
   min-width: 0;
-  font-size: var(--size-xs);
+  font-size: var(--type-item);
   color: var(--map-ink);
 
   & > span:first-child {
@@ -6588,7 +6446,7 @@ body:not(.map-wide) .map-markets.is-waiting { display: none; }
 
 .map-place-tip-age {
   flex: none;
-  font-size: var(--size-2xs);
+  font-size: var(--type-label);
   color: var(--map-ink-dim);
 }
 
@@ -6695,13 +6553,13 @@ body:not(.map-wide) .map-markets.is-waiting { display: none; }
      ribbon's own rows sit 0.05rem apart; a new line here should not be four
      times as expensive as a new line there. */
   gap: 0.15rem var(--space-sm);
-  font-size: var(--size-xs);
+  font-size: var(--type-item);
   /* Was `opacity: 0.8` over `--map-ink-muted`, which is the same composite-and-
      hope trick the filter chips were doing. An ink step says the same thing and
      stays at its tested contrast — which matters more now that the markets
      strip shares this row and would otherwise have inherited the dimming. */
   color: var(--map-ink-dim);
-  font-variant-numeric: lining-nums tabular-nums;
+  font-variant-numeric: var(--figure-numerals);
   margin-bottom: 0.15rem;
 }
 
@@ -6824,9 +6682,10 @@ body:not(.map-wide) .map-markets.is-waiting { display: none; }
   border: none;
   padding: 0;
   font: inherit;
-  font-size: var(--size-xs);
+  font-size: var(--type-label);
   font-variant-caps: all-small-caps;
-  letter-spacing: var(--track-wide);
+  font-weight: var(--weight-semibold);
+  letter-spacing: var(--track-caps);
   color: var(--brand);
   cursor: pointer;
   text-decoration: underline;
@@ -6842,7 +6701,7 @@ body.map-wide .map-more,
 body.map-wide .map-key-item,
 body.map-wide .map-timeline-live {
   font-variant-caps: normal;
-  font-weight: 400;
+  font-weight: var(--weight-medium);
   letter-spacing: 0;
 }
 
@@ -6944,10 +6803,10 @@ body.map-wide .map-mapctl .map-filter-label { text-transform: capitalize; }
 }
 
 .map-markets-label {
-  font-size: var(--size-2xs);
+  font-size: var(--type-label);
   font-variant-caps: all-small-caps;
-  letter-spacing: var(--track-wide);
-  font-weight: 600;
+  letter-spacing: var(--track-caps);
+  font-weight: var(--weight-semibold);
   color: var(--map-ink-dim);
 }
 
@@ -6986,7 +6845,7 @@ body.map-wide .map-mapctl .map-filter-label { text-transform: capitalize; }
 
   &::after {
     content: '›';
-    font-size: var(--size-2xs);
+    font-size: var(--type-label);
     line-height: 1;
     color: var(--map-ink-dim);
     /* Rotated rather than swapped for a second glyph, so the two states are one
@@ -7043,7 +6902,7 @@ body.map-wide .map-mapctl .map-filter-label { text-transform: capitalize; }
     width: 1em;
     height: 1em;
     margin-left: 0.15rem;
-    font-size: var(--size-2xs);
+    font-size: var(--type-label);
     line-height: 1em;
     text-align: center;
     color: var(--map-ink-dim);
@@ -7165,10 +7024,10 @@ body.map-wide .map-mapctl .map-filter-label { text-transform: capitalize; }
   flex-wrap: wrap;
   gap: 0 0.5rem;
   margin: 0 0 0.35rem;
-  font-size: var(--size-2xs);
+  font-size: var(--type-label);
   font-variant-caps: all-small-caps;
-  letter-spacing: var(--track-wide);
-  font-weight: 600;
+  letter-spacing: var(--track-caps);
+  font-weight: var(--weight-semibold);
   color: var(--map-ink-dim);
 }
 
@@ -7178,7 +7037,7 @@ body.map-wide .map-mapctl .map-filter-label { text-transform: capitalize; }
    gap where a figure should be. */
 .map-markets-panel-meta {
   font-variant-caps: normal;
-  font-weight: 400;
+  font-weight: var(--weight-medium);
   letter-spacing: 0;
   color: var(--map-ink-muted);
 
@@ -7227,7 +7086,7 @@ body.map-wide .map-mapctl .map-filter-label { text-transform: capitalize; }
   align-items: center;
   gap: 0.35rem;
   margin: 0.25rem 0 0;
-  font-size: var(--size-2xs);
+  font-size: var(--type-label);
   letter-spacing: 0;
 
   & .map-markets-tick {
@@ -7237,10 +7096,6 @@ body.map-wide .map-mapctl .map-filter-label { text-transform: capitalize; }
 
     & svg { width: 9px; height: 9px; }
   }
-}
-
-.map-markets-panel-change {
-  font-variant-numeric: tabular-nums;
 }
 
 /* The period the shape above covers, in words, because it has no axis to say
@@ -7273,14 +7128,9 @@ body.map-wide .map-mapctl .map-filter-label { text-transform: capitalize; }
   border-bottom: 1px solid var(--map-line);
   padding: 0.4rem 0.15rem;
   font: inherit;
-  /* A step up from the strip's own `--size-xs`/`--map-ink-body`. The strip is
-     glanced at over a map and is rationed accordingly; this was opened on
-     purpose, and the reason to open it is to *read* seven figures against each
-     other. Matching the strip here would have been consistency for its own sake
-     — the same argument the type scale makes against `.map-feed-title` sitting
-     at 0.9rem because it happened to be chrome. */
-  font-size: var(--size-sm);
-  font-variant-numeric: lining-nums tabular-nums;
+  font-size: var(--type-item);
+  font-weight: var(--weight-medium);
+  font-variant-numeric: var(--figure-numerals);
   color: var(--map-ink);
   text-align: left;
   cursor: pointer;
@@ -7313,7 +7163,7 @@ body.map-wide .map-mapctl .map-filter-label { text-transform: capitalize; }
 /* What a company does, or the model a lab's score belongs to: beside the name,
    a rung under it, so the name is still what the row is of. */
 .map-markets-row-about {
-  font-size: var(--size-2xs);
+  font-size: var(--type-label);
   color: var(--map-ink-muted);
 }
 
@@ -7329,7 +7179,7 @@ body.map-wide .map-mapctl .map-filter-label { text-transform: capitalize; }
 
 .map-markets-row-stamp {
   min-width: 1.6rem;
-  font-size: var(--size-2xs);
+  font-size: var(--type-label);
   color: var(--map-ink-muted);
   white-space: nowrap;
 
@@ -7350,7 +7200,7 @@ body.map-wide .map-mapctl .map-filter-label { text-transform: capitalize; }
 .map-markets-row-note {
   grid-column: 3 / -1;
   margin-top: -0.25rem;
-  font-size: var(--size-2xs);
+  font-size: var(--type-label);
   color: var(--map-ink-muted);
   white-space: normal;
 }
@@ -7367,8 +7217,9 @@ body.map-wide .map-mapctl .map-filter-label { text-transform: capitalize; }
   display: inline-flex;
   align-items: center;
   gap: 0.2rem;
-  font-size: var(--size-xs);
-  font-variant-numeric: lining-nums tabular-nums;
+  font-size: var(--type-figure);
+  font-weight: var(--weight-semibold);
+  font-variant-numeric: var(--figure-numerals);
 
   &.is-pos { color: var(--map-pos); }
   &.is-neg { color: var(--map-neg); }
@@ -7388,7 +7239,7 @@ body.map-wide .map-mapctl .map-filter-label { text-transform: capitalize; }
    character of width. Sized down slightly — emoji run large for their point
    size and would otherwise set the line height for the whole ribbon. */
 .map-markets-flag {
-  font-size: 0.9em;
+  font-size: var(--type-label);
   line-height: 1;
 }
 
@@ -7396,9 +7247,9 @@ body.map-wide .map-mapctl .map-filter-label { text-transform: capitalize; }
    those figures are last night's. One number, rather than thirty mark-states a
    reader would have to decode individually. */
 .map-markets-note {
-  font-size: var(--size-2xs);
+  font-size: var(--type-label);
   color: var(--map-ink-dim);
-  font-variant-numeric: lining-nums tabular-nums;
+  font-variant-numeric: var(--figure-numerals);
   white-space: nowrap;
 
   &:empty { display: none; }
@@ -7632,7 +7483,8 @@ body.map-wide .map-mapctl .map-filter-label { text-transform: capitalize; }
   min-height: 24px;
   padding: 0;
   font: inherit;
-  font-size: var(--size-sm);
+  font-size: var(--type-item);
+  font-weight: var(--weight-medium);
   line-height: 1;
   color: var(--map-ink-dim);
   cursor: pointer;
@@ -7665,7 +7517,7 @@ body.map-wide .map-mapctl .map-filter-label { text-transform: capitalize; }
 
   p {
     margin: 0 0 0.6rem;
-    font-size: var(--size-sm);
+    font-size: var(--type-item);
     line-height: 1.55;
     color: var(--map-ink-body);
   }
@@ -7680,7 +7532,7 @@ body.map-wide .map-mapctl .map-filter-label { text-transform: capitalize; }
     font-variant-caps: all-small-caps;
     font-feature-settings: "case" 1;
     letter-spacing: var(--track-caps);
-    font-weight: 600;
+    font-weight: var(--weight-semibold);
     color: var(--map-ink);
     margin-right: 0;
     display: block;
@@ -7691,7 +7543,7 @@ body.map-wide .map-mapctl .map-filter-label { text-transform: capitalize; }
     margin-top: 0.6rem;
     padding-top: 0.5rem;
     border-top: 1px solid var(--map-line);
-    font-size: var(--size-xs);
+    font-size: var(--type-item);
     color: var(--map-ink-muted);
   }
 
@@ -7707,7 +7559,7 @@ body.map-wide .map-mapctl .map-filter-label { text-transform: capitalize; }
 .map-popup-hint,
 .map-popup-loading {
   margin: 0.35rem 0 0;
-  font-size: var(--size-xs);
+  font-size: var(--type-item);
   color: var(--map-ink-dim);
 }
 
@@ -7717,9 +7569,10 @@ body.map-wide .map-mapctl .map-filter-label { text-transform: capitalize; }
   gap: 0.35rem;
   margin: 0 0 0.3rem;
   padding-right: 1rem;
-  font-size: var(--size-xs);
+  font-size: var(--type-label);
   font-variant-caps: all-small-caps;
-  letter-spacing: var(--track-wide);
+  font-weight: var(--weight-semibold);
+  letter-spacing: var(--track-caps);
   color: var(--map-ink-muted);
 }
 
@@ -7730,43 +7583,36 @@ body.map-wide .map-mapctl .map-filter-label { text-transform: capitalize; }
   flex: 0 0 auto;
 }
 
-/* The card's headline, and the map's one moment of reading. It was `1.05rem` —
-   a literal off the scale entirely, and smaller than the article page's own
-   kicker once the chrome moved up a rung. `--size-md` is the step that was
-   missing between `--size-sm` and `--size-base`, and this is what wanted it. */
 .map-popup-title {
   margin: 0 0 0.35rem;
-  font-size: var(--size-md);
+  letter-spacing: var(--track-item);
+  font-size: var(--type-copy);
   line-height: 1.25;
-  font-weight: 600;
+  font-weight: var(--weight-semibold);
   color: var(--map-ink);
   text-wrap: balance;
 }
 
-/* A story's card is the article on this surface, so it takes the article
-   page's order of voice: a headline, then the hook as a lede, then the body.
-   Every line was one size and one ink, and the hook read as the first of five
-   equal paragraphs. Only the story card: a place or a country card keeps its
-   title at `--size-md`. */
+/* A story card opens with a headline and a lede. */
 .map-popup-article .map-popup-title,
 .map-popup-preview .map-popup-title {
   margin: 0.1rem 0 0.6rem;
-  font-size: var(--size-h3);
+  font-size: var(--type-lede);
   line-height: 1.15;
-  font-weight: 700;
-  letter-spacing: var(--track-tight);
+  font-weight: var(--weight-semibold);
+  letter-spacing: var(--track-heading);
 }
 
 .map-popup-article .map-popup-prose > p:first-of-type {
   margin-bottom: 0.85rem;
-  font-size: var(--size-md);
+  font-size: var(--type-copy);
   line-height: 1.45;
   color: var(--map-ink);
 }
 
 .map-popup-lead {
   margin: 0 0 0.4rem;
-  font-size: var(--size-sm);
+  font-size: var(--type-item);
   line-height: 1.45;
   color: var(--map-ink-soft);
 }
@@ -7774,15 +7620,15 @@ body.map-wide .map-mapctl .map-filter-label { text-transform: capitalize; }
 /* The preview's lead is the same hook the article opens with, so it is set
    as the article will set it: the swap then changes nothing the reader is on. */
 .map-popup-preview .map-popup-lead {
-  font-size: var(--size-md);
+  font-size: var(--type-copy);
   color: var(--map-ink);
 }
 
 .map-popup-meta {
   margin: 0 0 0.45rem;
-  font-size: var(--size-xs);
+  font-size: var(--type-item);
   color: var(--map-ink-muted);
-  font-variant-numeric: lining-nums tabular-nums;
+  font-variant-numeric: var(--figure-numerals);
 }
 
 /* --- A story's chart ---
@@ -7832,9 +7678,9 @@ body.map-wide .map-mapctl .map-filter-label { text-transform: capitalize; }
   display: flex;
   align-items: baseline;
   gap: 0.6rem;
-  font-size: var(--size-xs);
+  font-size: var(--type-item);
   line-height: 1.3;
-  font-variant-numeric: lining-nums tabular-nums;
+  font-variant-numeric: var(--figure-numerals);
 }
 
 .map-popup-chart-label {
@@ -7853,7 +7699,7 @@ body.map-wide .map-mapctl .map-filter-label { text-transform: capitalize; }
 .map-popup-chart-span {
   display: flex;
   justify-content: space-between;
-  font-size: var(--size-3xs);
+  font-size: var(--type-label);
   line-height: 1.3;
   color: var(--map-ink-dim);
 }
@@ -7872,7 +7718,7 @@ body.map-wide .map-mapctl .map-filter-label { text-transform: capitalize; }
   min-width: 0;
   padding-top: 0.45rem;
   border-top: 1px solid var(--map-line);
-  font-size: var(--size-2xs);
+  font-size: var(--type-label);
   line-height: 1.5;
   color: var(--map-ink-muted);
   cursor: pointer;
@@ -7882,8 +7728,10 @@ body.map-wide .map-mapctl .map-filter-label { text-transform: capitalize; }
 .map-popup-sources-flat::-webkit-details-marker { display: none; }
 
 .map-popup-sources-label {
+  font-size: var(--type-label);
   flex: none;
   font-variant-caps: all-small-caps;
+  font-weight: var(--weight-semibold);
   letter-spacing: var(--track-caps);
   color: var(--map-ink-dim);
 }
@@ -7918,9 +7766,10 @@ body.map-wide .map-mapctl .map-filter-label { text-transform: capitalize; }
   margin: 0.55rem 0 0.35rem;
   padding-top: 0.5rem;
   border-top: 1px solid var(--map-line);
-  font-size: var(--size-xs);
+  font-size: var(--type-label);
   font-variant-caps: all-small-caps;
-  letter-spacing: var(--track-wide);
+  font-weight: var(--weight-semibold);
+  letter-spacing: var(--track-caps);
   color: var(--map-ink-dim);
 }
 
@@ -7934,7 +7783,7 @@ body.map-wide .map-mapctl .map-filter-label { text-transform: capitalize; }
 
 .map-popup-framing-note {
   margin: 0 0 0.4rem;
-  font-size: var(--size-xs);
+  font-size: var(--type-item);
   line-height: 1.4;
   color: var(--map-ink-soft);
 }
@@ -7949,7 +7798,7 @@ body.map-wide .map-mapctl .map-filter-label { text-transform: capitalize; }
   grid-template-columns: auto 1fr auto;
   align-items: baseline;
   column-gap: 0.5rem;
-  font-size: var(--size-xs);
+  font-size: var(--type-item);
 }
 
 .map-popup-source + .map-popup-source { margin-top: 0.3rem; }
@@ -7966,10 +7815,12 @@ a.map-popup-source-name {
 }
 
 .map-popup-source-cc {
+  font-size: var(--type-label);
   grid-column: 2;
   color: var(--map-ink-dim);
   font-variant-caps: all-small-caps;
-  letter-spacing: var(--track-wide);
+  font-weight: var(--weight-semibold);
+  letter-spacing: var(--track-caps);
 }
 
 /* A word, in ink. A lean is a reading of framing, not a verdict, so it does
@@ -7988,7 +7839,7 @@ a.map-popup-source-name {
 }
 
 .map-popup-link {
-  font-size: var(--size-xs);
+  font-size: var(--type-item);
   color: var(--map-ink);
   text-decoration-color: var(--map-underline);
   text-underline-offset: 0.2em;
@@ -8005,7 +7856,8 @@ a.map-popup-source-name {
     border: 0;
     padding: 0;
     font: inherit;
-    font-size: var(--size-xs);
+    font-size: var(--type-item);
+    font-weight: var(--weight-medium);
     text-align: left;
     cursor: pointer;
     text-decoration: underline;
@@ -8052,7 +7904,7 @@ a.map-popup-source-name {
 
   &:hover {
     color: var(--map-ink);
-    border-color: var(--map-line-loud);
+    border-color: var(--map-line-edge);
   }
 
   &:focus-visible { outline-color: var(--map-focus); }
@@ -8253,7 +8105,7 @@ body.map-page {
   .map-popup-title { margin: 0; }
 }
 
-.map-country-flag { font-size: var(--size-md); line-height: 1; flex: 0 0 auto; }
+.map-country-flag { font-size: var(--type-copy); line-height: 1; flex: 0 0 auto; }
 
 /* A country's own card speaks with the story card's headline; a country panel
    unfolded inside a story keeps the quieter title. */
@@ -8261,12 +8113,12 @@ body.map-page {
   margin-bottom: 0.35rem;
 
   .map-popup-title {
-    font-size: var(--size-h3);
+    font-size: var(--type-lede);
     line-height: 1.15;
-    font-weight: 700;
-    letter-spacing: var(--track-tight);
+    font-weight: var(--weight-semibold);
+    letter-spacing: var(--track-heading);
   }
-  .map-country-flag { font-size: var(--size-base); }
+  .map-country-flag { font-size: var(--type-copy); }
 }
 
 /* Why this country is that colour.
@@ -8311,13 +8163,14 @@ body.map-page {
 
 .map-country-standing-label {
   color: var(--map-ink-muted);
-  font-size: var(--size-xs);
+  font-size: var(--type-item);
 }
 
 .map-country-standing-value {
   color: var(--map-ink);
-  font-size: var(--size-sm);
-  font-variant-numeric: lining-nums tabular-nums;
+  font-size: var(--type-figure);
+  font-weight: var(--weight-semibold);
+  font-variant-numeric: var(--figure-numerals);
 }
 
 .map-country-standing-foot {
@@ -8331,7 +8184,7 @@ body.map-page {
    one-line note, this card has the width and the reader has stopped to read. */
 .map-country-standing-note {
   margin: 0;
-  font-size: var(--size-xs);
+  font-size: var(--type-item);
   line-height: 1.35;
   color: var(--map-ink-dim);
 }
@@ -8364,24 +8217,25 @@ body.map-page {
 }
 
 .map-country-fact-label {
-  font-size: var(--size-xs);
+  font-size: var(--type-label);
   font-variant-caps: all-small-caps;
+  font-weight: var(--weight-semibold);
   letter-spacing: var(--track-caps);
   color: var(--map-ink-dim);
 }
 
 .map-country-fact-title {
-  font-size: var(--size-xs);
+  font-size: var(--type-item);
   line-height: 1.35;
   color: var(--map-ink-strong);
-  font-variant-numeric: lining-nums tabular-nums;
+  font-variant-numeric: var(--figure-numerals);
 }
 
 .map-country-fact-detail {
-  font-size: var(--size-xs);
+  font-size: var(--type-item);
   line-height: 1.35;
   color: var(--map-ink-dim);
-  font-variant-numeric: lining-nums tabular-nums;
+  font-variant-numeric: var(--figure-numerals);
 }
 
 .map-country-metric {
@@ -8389,7 +8243,7 @@ body.map-page {
   grid-template-columns: minmax(0, 1fr) auto minmax(1.5rem, 2.75rem) auto;
   align-items: baseline;
   gap: 0.5rem;
-  font-size: var(--size-xs);
+  font-size: var(--type-item);
 }
 
 /* The percentile strip. Same 2px track and accent fill as the country page's
@@ -8426,12 +8280,11 @@ body.map-page {
 .map-country-metric-label { color: var(--map-ink-muted); }
 .map-country-metric-value {
   color: var(--map-ink);
-  font-variant-numeric: lining-nums tabular-nums;
 }
 .map-country-metric-rank {
   color: var(--map-ink-dim);
-  font-size: var(--size-xs);
-  font-variant-numeric: lining-nums tabular-nums;
+  font-size: var(--type-item);
+  font-variant-numeric: var(--figure-numerals);
   min-width: 3.4em;
   text-align: right;
 }
@@ -8440,9 +8293,10 @@ body.map-page {
   margin: 0.65rem 0 0.3rem;
   padding-top: 0.5rem;
   border-top: 1px solid var(--map-line);
-  font-size: var(--size-xs);
+  font-size: var(--type-label);
   font-variant-caps: all-small-caps;
-  letter-spacing: var(--track-wide);
+  font-weight: var(--weight-semibold);
+  letter-spacing: var(--track-caps);
   color: var(--map-ink-muted);
 }
 
@@ -8456,7 +8310,7 @@ body.map-page {
   li { display: grid; gap: 0.05rem; }
 
   a {
-    font-size: var(--size-xs);
+    font-size: var(--type-item);
     line-height: 1.35;
     color: var(--map-ink-strong);
     text-decoration: none;
@@ -8466,9 +8320,9 @@ body.map-page {
 }
 
 .map-country-coverage-time {
-  font-size: var(--size-xs);
+  font-size: var(--type-item);
   color: var(--map-ink-dim);
-  font-variant-numeric: lining-nums tabular-nums;
+  font-variant-numeric: var(--figure-numerals);
 }
 
 /* --- The story card's indicator strip ---
@@ -8487,8 +8341,9 @@ body.map-page {
 
 .map-popup-entities-label {
   margin-right: 0.15rem;
-  font-size: var(--size-xs);
+  font-size: var(--type-label);
   font-variant-caps: all-small-caps;
+  font-weight: var(--weight-semibold);
   letter-spacing: var(--track-caps);
   color: var(--map-ink-dim);
 }
@@ -8497,10 +8352,10 @@ body.map-page {
   display: inline-flex;
   align-items: center;
   padding: 2px 8px;
-  border: 1px solid var(--map-line-loud);
+  border: 1px solid var(--map-line-edge);
   border-radius: 999px;
   color: var(--map-ink-body);
-  font-size: var(--size-xs);
+  font-size: var(--type-item);
   line-height: 1.3;
   text-decoration: none;
   transition: border-color var(--dur-fast) var(--ease-out), color var(--dur-fast) var(--ease-out);
@@ -8532,8 +8387,9 @@ body.map-page {
 
 .map-popup-entity-head {
   margin: 0;
-  font-size: var(--size-xs);
+  font-size: var(--type-label);
   font-variant-caps: all-small-caps;
+  font-weight: var(--weight-semibold);
   letter-spacing: var(--track-caps);
   color: var(--map-ink-dim);
 }
@@ -8546,24 +8402,20 @@ body.map-page {
   margin: 0.1rem 0 0.35rem;
 }
 
-/* The map's own sheets set a focal figure at `--size-h2`, but those cards have
-   no other subject. This one is a guest inside a story, whose headline is
-   `--size-md` — a 31px number over an 18px headline would invert what the card
-   is about. `--size-base` is plainly the focal figure of the panel without
-   outranking the story it was opened from. */
 .map-popup-entity-value {
-  font-size: var(--size-base);
+  font-size: var(--type-copy);
   line-height: 1.15;
   color: var(--map-ink-strong);
-  font-variant-numeric: tabular-nums;
+  font-variant-numeric: var(--figure-numerals);
 }
 
 /* The map keeps its own signed pair rather than borrowing the site's — same
    axis, different surface, and `--pos`/`--neg` are tuned for a white page. */
 .map-popup-entity-delta {
-  font-size: var(--size-sm);
+  font-size: var(--type-figure);
+  font-weight: var(--weight-semibold);
   color: var(--map-ink-muted);
-  font-variant-numeric: tabular-nums;
+  font-variant-numeric: var(--figure-numerals);
 }
 .map-popup-entity-delta.pos { color: var(--map-pos); }
 .map-popup-entity-delta.neg { color: var(--map-neg); }
@@ -8578,7 +8430,7 @@ body.map-page {
    names as parameters instead of sharing them with the article page. */
 .map-popup-entity-recent {
   margin: 0.4rem 0 0;
-  font-size: var(--size-sm);
+  font-size: var(--type-item);
   line-height: var(--leading-body);
   color: var(--map-ink-muted);
 }
@@ -8586,7 +8438,7 @@ body.map-page {
 .map-popup-entity-full {
   display: inline-block;
   margin-top: 0.4rem;
-  font-size: var(--size-xs);
+  font-size: var(--type-item);
   color: var(--map-ink-muted);
   text-underline-offset: 0.2em;
 
@@ -8624,7 +8476,7 @@ body.map-page {
    and navigates where it does not, and it looks the same either way — the
    difference is a fact about our window, not about the story. */
 .map-popup-story-link {
-  font-size: var(--size-xs);
+  font-size: var(--type-item);
   line-height: 1.35;
   color: var(--map-ink-strong);
   text-decoration: none;
@@ -8733,30 +8585,18 @@ body.map-wide.map-story-docked .map-sheet.is-peek {
   container-type: inline-size;
 }
 
-/* The card's rules are written in the site's inks, and `.island-sheet` paints
-   `--bg`: on this page that is the site in dark mode (#080808, neutral grey
-   type), a black hole beside chrome that is blue-grey everywhere else. The
-   doc sheet met the same thing and took `--map-panel` by hand. Here the site
-   tokens are re-pointed at the map's palette on the dialog itself, so every
-   rule below, the chart's and the shared sheet's read the right colour without
-   being rewritten, and each ink is one the colour test already holds to AA on
-   this surface. */
+/* Shared card components use the panel as their local ground. */
 .map-sheet {
   --bg: var(--map-panel);
   --bg-soft: var(--map-raised);
-  --text-emphasis: var(--map-ink);
-  --text: var(--map-ink-strong);
-  --text-secondary: var(--map-ink-soft);
-  --text-dim: var(--map-ink-dim);
-  --rule: var(--map-line);
-  --rule-soft: var(--map-line-soft);
   --focus: var(--map-focus);
 }
 
 .map-sheet-kicker {
-  font-size: var(--size-xs);
+  font-size: var(--type-label);
   font-variant-caps: all-small-caps;
-  letter-spacing: var(--track-wide);
+  font-weight: var(--weight-semibold);
+  letter-spacing: var(--track-caps);
   color: var(--text-dim);
   margin: 0 0 var(--space-xs);
   /* Clears the close button, which is positioned against the dialog rather
@@ -8765,7 +8605,7 @@ body.map-wide.map-story-docked .map-sheet.is-peek {
 }
 
 .map-sheet .island-sheet-title {
-  font-size: var(--size-h3);
+  font-size: var(--type-lede);
   line-height: var(--leading-heading);
   margin: 0 0 var(--space-xs);
   text-wrap: balance;
@@ -8797,7 +8637,7 @@ body.map-wide.map-story-docked .map-sheet.is-peek {
 
 .map-sheet-lead {
   margin: 0 0 var(--space-xs);
-  font-size: var(--size-sm);
+  font-size: var(--type-item);
   line-height: var(--leading-body);
   color: var(--text);
 }
@@ -8813,10 +8653,10 @@ body.map-wide.map-story-docked .map-sheet.is-peek {
    the two figures read as a move and the run it belongs to. */
 .map-sheet-flag {
   margin: 0 0 var(--space-xs);
-  font-size: var(--size-xs);
+  font-size: var(--type-item);
   line-height: 1.4;
   color: var(--text);
-  font-variant-numeric: lining-nums tabular-nums;
+  font-variant-numeric: var(--figure-numerals);
 }
 
 /* The same thing over a day, a week and a month. Three columns that keep
@@ -8829,18 +8669,19 @@ body.map-wide.map-story-docked .map-sheet.is-peek {
   grid-template-columns: repeat(3, minmax(0, 1fr));
   gap: var(--space-xs);
   margin: 0 0 var(--space-xs);
-  font-variant-numeric: lining-nums tabular-nums;
+  font-variant-numeric: var(--figure-numerals);
 
   & dt {
-    font-size: var(--size-2xs);
+    font-size: var(--type-label);
     font-variant-caps: all-small-caps;
-    letter-spacing: var(--track-wide);
+    font-weight: var(--weight-semibold);
+    letter-spacing: var(--track-caps);
     color: var(--text-dim);
   }
 
   & dd {
     margin: 0;
-    font-size: var(--size-sm);
+    font-size: var(--type-item);
     color: var(--text);
 
     &.is-pos { color: var(--map-pos); }
@@ -8857,8 +8698,8 @@ body.map-wide.map-story-docked .map-sheet.is-peek {
    sits from its own ninety days. */
 .map-sheet-classes {
   margin: 0 0 var(--space-xs);
-  font-size: var(--size-xs);
-  font-variant-numeric: lining-nums tabular-nums;
+  font-size: var(--type-item);
+  font-variant-numeric: var(--figure-numerals);
 }
 
 .map-sheet-class {
@@ -8875,16 +8716,17 @@ body.map-wide.map-story-docked .map-sheet.is-peek {
   & .map-sheet-class-delta { text-align: right; color: var(--text-dim); }
 
   &.is-head dd {
-    font-size: var(--size-2xs);
+    font-size: var(--type-label);
     font-variant-caps: all-small-caps;
-    letter-spacing: var(--track-wide);
+    font-weight: var(--weight-semibold);
+    letter-spacing: var(--track-caps);
     color: var(--text-dim);
   }
 }
 
 .map-sheet-standing {
   margin: 0 0 var(--space-xs);
-  font-size: var(--size-xs);
+  font-size: var(--type-item);
   line-height: var(--leading-body);
   color: var(--text-dim);
 }
@@ -8910,9 +8752,9 @@ body.map-wide.map-story-docked .map-sheet.is-peek {
    be read first and it is not the subject. */
 .map-sheet-authority {
   margin: 0 0 0.15rem;
-  font-size: var(--size-sm);
+  font-size: var(--type-item);
   line-height: 1.35;
-  font-weight: 600;
+  font-weight: var(--weight-semibold);
   color: var(--text-emphasis);
   text-wrap: pretty;
 }
@@ -8939,10 +8781,10 @@ body.map-wide.map-story-docked .map-sheet.is-peek {
 }
 
 .map-sheet-hero-focal {
-  font-size: var(--size-h2);
+  font-size: var(--type-heading);
   line-height: 1.1;
-  font-weight: 600;
-  font-variant-numeric: lining-nums tabular-nums;
+  font-weight: var(--weight-semibold);
+  font-variant-numeric: var(--figure-numerals);
   color: var(--map-ink-strong);
 
   /* The number is the colour of the mark the reader clicked. Same argument
@@ -8953,7 +8795,7 @@ body.map-wide.map-story-docked .map-sheet.is-peek {
 }
 
 .map-sheet-hero-note {
-  font-size: var(--size-sm);
+  font-size: var(--type-item);
   color: var(--text-dim);
 }
 
@@ -8961,13 +8803,13 @@ body.map-wide.map-story-docked .map-sheet.is-peek {
    consequence of the number above it, not a footnote to it. */
 .map-sheet-stat {
   margin: 0 0 var(--space-xs);
-  font-size: var(--size-sm);
+  font-size: var(--type-item);
   line-height: var(--leading-body);
   color: var(--text);
 }
 
 .map-sheet-stat strong {
-  font-variant-numeric: lining-nums tabular-nums;
+  font-variant-numeric: var(--figure-numerals);
 }
 
 /* The chart's frame on a card. Everything inside it is `.chart`, which now
@@ -8995,6 +8837,7 @@ body.map-wide.map-story-docked .map-sheet.is-peek {
 .chart {
   --chart-ink: var(--text);
   --chart-ink-muted: var(--text-secondary);
+  --chart-ink-inactive: var(--ink-inactive);
   --chart-ink-dim: var(--text-dim);
   --chart-line: var(--rule);
   --chart-surface: var(--bg);
@@ -9017,6 +8860,7 @@ body.map-page .chart,
 body.doc-page .chart {
   --chart-ink: var(--map-ink);
   --chart-ink-muted: var(--map-ink-muted);
+  --chart-ink-inactive: var(--map-ink-inactive);
   --chart-ink-dim: var(--map-ink-dim);
   --chart-line: var(--map-line);
   --chart-surface: var(--map-panel);
@@ -9036,10 +8880,10 @@ body.doc-page .chart {
 .chart-readout {
   margin: 0;
   min-height: 1.4em;
-  font-size: var(--size-xs);
+  font-size: var(--type-item);
   line-height: 1.4;
   color: var(--chart-ink);
-  font-variant-numeric: lining-nums tabular-nums;
+  font-variant-numeric: var(--figure-numerals);
 }
 
 /* Reading a value is a live state, and it needs to look like one or the row
@@ -9188,7 +9032,7 @@ body.doc-page .chart {
 .chart-cite-label {
   fill: var(--chart-ink);
   font-size: var(--size-3xs);
-  font-variant-numeric: lining-nums tabular-nums;
+  font-variant-numeric: var(--figure-numerals);
 }
 
 .chart-cursor-rule {
@@ -9211,7 +9055,7 @@ body.doc-page .chart {
 .chart-axis {
   fill: var(--chart-ink-muted);
   font-size: var(--size-3xs);
-  font-variant-numeric: lining-nums tabular-nums;
+  font-variant-numeric: var(--figure-numerals);
 
   /* The rule is drawn in the dim ink and dashed; its label matches it rather
      than the extremes, so the eye can tell which number belongs to it. */
@@ -9221,7 +9065,7 @@ body.doc-page .chart {
 .chart-date {
   fill: var(--chart-ink-dim);
   font-size: var(--size-3xs);
-  font-variant-numeric: lining-nums tabular-nums;
+  font-variant-numeric: var(--figure-numerals);
 }
 
 /* See "The chart's type, held to the floor", above. */
@@ -9261,9 +9105,9 @@ body.doc-page .chart {
   border-bottom: 1px solid transparent;
   padding: 0.05rem 0.34rem;
   font: inherit;
-  font-size: var(--size-2xs);
-  font-variant-numeric: lining-nums tabular-nums;
-  color: var(--chart-ink-muted);
+  font-size: var(--type-label);
+  font-variant-numeric: var(--figure-numerals);
+  color: var(--chart-ink-inactive);
   cursor: pointer;
 }
 
@@ -9285,7 +9129,7 @@ body.doc-page .chart {
   margin: 0;
   flex: 1 1 12rem;
   order: 1;
-  font-size: var(--size-2xs);
+  font-size: var(--type-label);
   line-height: 1.4;
   color: var(--chart-ink-muted);
 }
@@ -9295,7 +9139,7 @@ body.doc-page .chart {
 /* --- The numbers -------------------------------------------------------- */
 
 .chart-data {
-  font-size: var(--size-2xs);
+  font-size: var(--type-label);
   border-top: 1px solid var(--chart-line);
   padding-top: 0.3rem;
 }
@@ -9317,7 +9161,7 @@ body.doc-page .chart {
 
 .chart-data-summary::before {
   content: '+';
-  font-variant-numeric: lining-nums tabular-nums;
+  font-variant-numeric: var(--figure-numerals);
   color: var(--chart-ink-dim);
 }
 
@@ -9336,7 +9180,7 @@ body.doc-page .chart {
 
 .chart-data-count {
   color: var(--chart-ink-dim);
-  font-variant-numeric: lining-nums tabular-nums;
+  font-variant-numeric: var(--figure-numerals);
 }
 
 .chart-data-body {
@@ -9355,7 +9199,7 @@ body.doc-page .chart {
 .chart-table {
   width: 100%;
   border-collapse: collapse;
-  font-variant-numeric: lining-nums tabular-nums;
+  font-variant-numeric: var(--figure-numerals);
 }
 
 .chart-table th,
@@ -9397,8 +9241,9 @@ body.doc-page .chart {
 
 .chart-mark {
   margin-left: 0.4em;
-  font-size: 0.9em;
+  font-size: var(--type-label);
   font-variant-caps: all-small-caps;
+  font-weight: var(--weight-semibold);
   letter-spacing: var(--track-caps);
   color: var(--chart-ink-dim);
 }
@@ -9410,7 +9255,7 @@ body.doc-page .chart {
   border: 0;
   padding: 0;
   font: inherit;
-  font-size: var(--size-2xs);
+  font-size: var(--type-label);
   color: var(--chart-ink-muted);
   border-bottom: 1px solid var(--chart-line);
   cursor: pointer;
@@ -9433,21 +9278,22 @@ body.doc-page .chart {
 .map-sheet-meta,
 .map-sheet-note {
   margin: 0 0 var(--space-xs);
-  font-size: var(--size-xs);
+  font-size: var(--type-item);
   color: var(--text-dim);
-  font-variant-numeric: lining-nums tabular-nums;
+  font-variant-numeric: var(--figure-numerals);
 }
 
 .map-sheet-link {
   display: inline-block;
-  font-size: var(--size-sm);
+  font-size: var(--type-item);
   margin-top: 0.15rem;
 }
 
 .map-sheet-more-label {
   margin: var(--space-sm) 0 0.25rem;
-  font-size: var(--size-xs);
+  font-size: var(--type-label);
   font-variant-caps: all-small-caps;
+  font-weight: var(--weight-semibold);
   color: var(--text-dim);
   border-top: 1px solid var(--rule);
   padding-top: var(--space-xs);
@@ -9457,7 +9303,7 @@ body.doc-page .chart {
   list-style: none;
   margin: 0;
   padding: 0;
-  font-size: var(--size-sm);
+  font-size: var(--type-item);
 
   li {
     display: flex;
@@ -9488,7 +9334,7 @@ body.doc-page .chart {
    own lead read as equally important, which they are not. One step down on
    both channels, the same demotion `.map-sheet-meta` already gets. */
 .map-sheet-more-link {
-  font-size: var(--size-xs);
+  font-size: var(--type-item);
   color: var(--text-dim);
 }
 
@@ -9497,16 +9343,16 @@ body.doc-page .chart {
   display: inline-block;
   min-width: 1.1em;
   margin-right: 0.35em;
-  font-size: var(--size-2xs);
-  font-variant-numeric: lining-nums tabular-nums;
+  font-size: var(--type-label);
+  font-variant-numeric: var(--figure-numerals);
   color: var(--text);
 }
 
 .map-sheet-more-time {
   color: var(--text-dim);
-  font-size: var(--size-xs);
+  font-size: var(--type-item);
   white-space: nowrap;
-  font-variant-numeric: lining-nums tabular-nums;
+  font-variant-numeric: var(--figure-numerals);
 }
 
 .noscript-list {
@@ -9546,7 +9392,7 @@ body.doc-page .chart {
   padding-bottom: var(--space-md);
   border-bottom: 1px solid var(--map-line);
   color: var(--map-ink-muted);
-  font-size: var(--size-sm);
+  font-size: var(--type-item);
 }
 
 /* `.article-preview` is written for pages that follow the reader, so its rule
@@ -9621,7 +9467,7 @@ body.doc-page .chart {
     .briefing-track { display: none; }
   }
 
-  body.map-page .wordmark { font-size: var(--size-h3); }
+  body.map-page .wordmark { font-size: var(--type-lede); }
 
   /* --- Chrome: one row, plus a panel --- */
   .map-hud {
@@ -9645,7 +9491,7 @@ body.doc-page .chart {
   .map-more {
     margin-left: auto;
     padding: 0.42rem 0.6rem;
-    letter-spacing: var(--track-wide);
+    letter-spacing: var(--track-caps);
     font-weight: normal;
     color: var(--map-ink-soft);
     background: color-mix(in srgb, var(--map-panel) 85%, transparent);
@@ -9656,7 +9502,7 @@ body.doc-page .chart {
 
     &[aria-expanded='true'] {
       color: var(--map-ink);
-      border-color: var(--map-line-loud);
+      border-color: var(--map-line-edge);
       background: color-mix(in srgb, var(--map-panel) 85%, transparent);
     }
 
@@ -9841,9 +9687,10 @@ body.doc-page .chart {
     height: var(--map-bar-h);
     padding: 0 var(--map-gutter);
     font: inherit;
-    font-size: var(--size-xs);
+    font-size: var(--type-label);
     font-variant-caps: all-small-caps;
-    letter-spacing: var(--track-wide);
+    font-weight: var(--weight-semibold);
+    letter-spacing: var(--track-caps);
     color: var(--text-dim);
     text-align: left;
     background: none;
@@ -9923,7 +9770,7 @@ body.doc-page .chart {
 }
 
 .map-popup-country-inline-name {
-  font-size: var(--size-base);
+  font-size: var(--type-copy);
   line-height: 1.15;
   color: var(--map-ink-strong);
 }

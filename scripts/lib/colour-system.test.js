@@ -21,7 +21,7 @@ import test from 'node:test'
 import assert from 'node:assert/strict'
 import { readFileSync } from 'node:fs'
 import { join } from 'node:path'
-import { AA, channels, contrast, luminance, NON_TEXT } from './contrast.js'
+import { AA, channels, composite, contrast, luminance, luminanceOf, NON_TEXT } from './contrast.js'
 
 const ROOT = new URL('../..', import.meta.url).pathname
 const css = readFileSync(join(ROOT, 'public/style.css'), 'utf8')
@@ -32,7 +32,7 @@ const mapStyle = readFileSync(join(ROOT, 'public/islands/_map/style.ts'), 'utf8'
 const token = (name) => {
   const m = css.match(new RegExp(`\\n\\s*${name}:\\s*([^;]+);`))
   assert.ok(m, `token ${name} is not declared`)
-  return m[1].trim()
+  return m[1].trim().replace(/var\((--[\w-]+)\)/g, (_, alias) => token(alias))
 }
 
 /** `light-dark(a, b)` → [a, b]; anything else → [v, v]. */
@@ -44,8 +44,16 @@ const scheme = (value) => {
 // --- contrast --------------------------------------------------------------
 
 
+// Hairlines are translucent; contrast belongs to the pixel on each surface.
+const painted = (value, bg) => {
+  const alpha = value.match(/^rgb\((\d+) (\d+) (\d+) \/ (\d+)%\)$/)
+  if (alpha) return composite(alpha.slice(1, 4).map(Number), Number(alpha[4]) / 100, channels(bg))
+  assert.match(value, /^#(?:[\da-f]{3}|[\da-f]{6})$/i)
+  return channels(value)
+}
+
 const assertContrast = (fgName, fg, bgName, bg, min) => {
-  const r = contrast(fg, bg)
+  const r = contrast(painted(fg, bg), bg)
   assert.ok(
     r >= min,
     `${fgName} (${fg}) on ${bgName} (${bg}) is ${r.toFixed(2)}:1, needs ${min}:1`,
@@ -57,7 +65,7 @@ const assertContrast = (fgName, fg, bgName, bg, min) => {
 test('no colour literal lives outside the two token blocks', () => {
   const rootStart = css.indexOf(':root {')
   const rootEnd = css.indexOf('\n}\n', rootStart)
-  const darkStart = css.indexOf('body.map-page,\nbody.doc-page {\n  /* Surface, deepest to highest. */')
+  const darkStart = css.indexOf('body.map-page,\nbody.doc-page {\n  --map-ground:')
   assert.ok(darkStart > 0, 'the dark-surface token block should be findable')
   const darkEnd = css.indexOf('\n}\n', darkStart)
 
@@ -86,7 +94,7 @@ test('no colour literal lives outside the two token blocks', () => {
 
 // --- 2. the contrast the comments promise ---------------------------------
 
-const SITE_INK = ['--text-emphasis', '--text', '--text-secondary', '--text-dim']
+const SITE_INK = ['--ink-heading', '--ink-prose', '--ink-quiet', '--ink-inactive']
 const SITE_SURFACE = ['--bg', '--bg-soft']
 
 test('every site ink clears AA on every site surface, in both schemes', () => {
@@ -117,21 +125,27 @@ test('a signed change is legible in both schemes', () => {
   }
 })
 
-const MAP_INK = [
-  '--map-ink',
-  '--map-ink-strong',
-  '--map-ink-body',
-  '--map-ink-soft',
-  '--map-ink-muted',
-  '--map-ink-dim',
-]
-const MAP_SURFACE = [
-  '--map-ground',
-  '--map-sunken',
-  '--map-inset',
-  '--map-panel',
-  '--map-raised',
-]
+const MAP_INK = ['--map-ink-heading', '--map-ink-prose', '--map-ink-quiet', '--map-ink-inactive']
+const MAP_SURFACE = ['--map-ground', '--map-row-hover', '--map-panel', '--map-row-active']
+
+test('compatibility names resolve to the inks, surfaces and lines the palette measures', () => {
+  const aliases = {
+    '--ink-heading': ['--text-emphasis'],
+    '--ink-prose': ['--text'],
+    '--ink-quiet': ['--text-secondary', '--text-dim'],
+    '--line-divider': ['--rule', '--rule-soft'],
+    '--map-ink-heading': ['--map-ink', '--map-ink-strong'],
+    '--map-ink-prose': ['--map-ink-body'],
+    '--map-ink-quiet': ['--map-ink-soft', '--map-ink-muted', '--map-ink-dim', '--map-stale'],
+    '--map-ground': ['--map-inset', '--map-sunken'],
+    '--map-row-active': ['--map-raised'],
+    '--map-line-divider': ['--map-line', '--map-line-soft'],
+    '--map-line-edge': ['--map-line-card'],
+  }
+  for (const [role, names] of Object.entries(aliases)) {
+    for (const name of names) assert.equal(token(name), token(role), name)
+  }
+})
 
 test('every dark-surface ink clears AA on every dark surface', () => {
   // Including combinations no rule currently makes. The point of a scale is
@@ -181,7 +195,7 @@ test('focus rings meet the non-text threshold wherever they land', () => {
  * `.map-range` is now two controls — the map's story window and the money
  * rail's — so an `opacity` added to it to quieten an unpressed position would
  * dim both, and this suite cannot see it happen. The unlit state is
- * `--map-ink-muted` and the lit one `--map-ink` on `--map-raised`; both are
+ * `--map-ink-inactive` and the lit one `--map-ink` on `--map-raised`; both are
  * measured below, and neither means anything if an alpha is composited over
  * them afterwards.
  */
@@ -193,7 +207,7 @@ test('the range switch is quiet by ink, not by alpha', () => {
     'a range position is dimmed with opacity, which this suite cannot measure — use an ink step',
   )
   assertContrast(
-    '--map-ink-muted', token('--map-ink-muted'),
+    '--map-ink-inactive', token('--map-ink-inactive'),
     '--map-sunken', token('--map-sunken'),
     NON_TEXT,
   )
@@ -312,7 +326,13 @@ test('decoration and data marks meet the non-text threshold', () => {
 })
 
 test('the ink scale actually descends', () => {
-  // Six steps that do not monotonically dim are six names for four colours.
+  // The four roles must remain distinguishable, even at the AA floor.
+  for (const i of [0, 1]) {
+    const lums = SITE_INK.map(n => luminance(scheme(token(n))[i]))
+    for (let j = 1; j < lums.length; j++) {
+      assert.ok(i === 0 ? lums[j] > lums[j - 1] : lums[j] < lums[j - 1], SITE_INK[j])
+    }
+  }
   const lums = MAP_INK.map((n) => luminance(token(n)))
   for (let i = 1; i < lums.length; i++) {
     assert.ok(
@@ -321,9 +341,7 @@ test('the ink scale actually descends', () => {
     )
   }
   const surfaces = MAP_SURFACE.map((n) => luminance(token(n)))
-  // Ground → sunken is the one deliberate inversion: the rail sits *below* the
-  // ocean it borders, so it is lighter by a hair, not darker.
-  for (let i = 2; i < surfaces.length; i++) {
+  for (let i = 1; i < surfaces.length; i++) {
     assert.ok(
       surfaces[i] > surfaces[i - 1],
       `${MAP_SURFACE[i]} is not higher than ${MAP_SURFACE[i - 1]}`,
@@ -342,6 +360,8 @@ test('the values shared with _map/style.ts agree', () => {
   // The HUD and scrubber gradients fade into the canvas's space. A drift here
   // is a visible seam between the map and the chrome on top of it.
   assert.equal(token('--map-ground'), ts('space'), '--map-ground must equal MAP_COLOURS.space')
+  assert.equal(scheme(token('--bg'))[1], ts('space'), 'dark pages share the map ground')
+  assert.equal(scheme(token('--bg-soft'))[1], token('--map-panel'), 'floating panels share a tone')
   // Makkah on the map is the site's gold, as on the page and in the app.
   assert.equal(scheme(token('--brand'))[1], ts('makkah'), 'MAP_COLOURS.makkah must equal --brand on dark')
   // The chokepoint sparkline is CSS, and is tinted with the same two colours
@@ -369,10 +389,10 @@ test('the brand mark is the only chromatic token on the site palette', () => {
   // Every other site token is a neutral. If a second hue appears here it is
   // either a mistake or a decision that deserves its own name and comment.
   const chromatic = (hex) => {
-    const [r, g, b] = channels(hex)
+    const [r, g, b] = painted(hex, '#fff')
     return Math.max(r, g, b) - Math.min(r, g, b) > 12
   }
-  for (const name of [...SITE_INK, ...SITE_SURFACE, '--rule', '--rule-soft', '--accent', '--focus']) {
+  for (const name of [...SITE_INK, ...SITE_SURFACE, '--line-divider', '--line-edge', '--accent', '--focus']) {
     for (const v of scheme(token(name))) {
       assert.ok(!chromatic(v), `${name} (${v}) carries a hue; only --brand may`)
     }
@@ -400,11 +420,11 @@ test('a rule is seen on both surfaces and never underlines a link', () => {
   for (const [i, name] of ['light', 'dark'].entries()) {
     const ink = luminance(scheme(token('--text'))[i])
     for (const surface of SITE_SURFACE) {
-      const rule = scheme(token('--rule'))[i]
       const bg = scheme(token(surface))[i]
+      const rule = painted(scheme(token('--rule'))[i], bg)
       assert.ok(contrast(rule, bg) >= 1.1, `${name} --rule is ${contrast(rule, bg).toFixed(2)}:1 on ${surface}`)
       assert.ok(
-        Math.abs(luminance(rule) - ink) < Math.abs(luminance(bg) - ink),
+        Math.abs(luminanceOf(rule) - ink) < Math.abs(luminance(bg) - ink),
         `${name} --rule sits beyond ${surface}, away from the ink`,
       )
     }
