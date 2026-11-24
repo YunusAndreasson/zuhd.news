@@ -1,27 +1,5 @@
 [
   {
-    "ts": "2026-09-09T12:24:14.144Z",
-    "cycleId": "2026-09-09T12-24",
-    "cycleHour": "12",
-    "schema": 2,
-    "rvs": 70.58,
-    "clusters": {
-      "picking": null,
-      "writing": 78.85,
-      "briefing": null,
-      "sourcing": 37.47,
-      "coverage": 92.68
-    },
-    "articleCount": 13,
-    "briefCount": 0,
-    "guardrailFailures": [
-      "article 2026-09-09-florida-flood-insurer-ipo-climate-risk-priced missing fields or body too short",
-      "article 2026-09-09-gulf-war-migrant-workers-kafala-blocks-exit missing fields or body too short",
-      "category economy below floor 3 (got 2)"
-    ],
-    "degenerate": false
-  },
-  {
     "ts": "2026-09-09T17:25:24.839Z",
     "cycleId": "2026-09-09T17-25",
     "cycleHour": "17",
@@ -7183,6 +7161,25 @@
       "briefing": null,
       "sourcing": 46.67,
       "coverage": 91.1
+    },
+    "articleCount": 12,
+    "briefCount": 0,
+    "guardrailFailures": [],
+    "degenerate": false
+  },
+  {
+    "ts": "2026-11-24T14:19:56.736Z",
+    "cycleId": "2026-11-24T14-19",
+    "runId": "2026-11-24_1404",
+    "cycleHour": "14",
+    "schema": 3,
+    "rvs": 75.86,
+    "clusters": {
+      "picking": null,
+      "writing": 91.67,
+      "briefing": null,
+      "sourcing": 40,
+      "coverage": 90.65
     },
     "articleCount": 12,
     "briefCount": 0,
