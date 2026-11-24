@@ -40,7 +40,7 @@ One type scale and two palettes, each declared once in `public/style.css`.
 - The italic face is `font-display: swap` and nothing preloads it. Keep italics
   for prose (`em`, a quotation): chrome set in italic fetches 78 KB for a word.
 - An article or archetype page has one column (`--page-column`,
-  `--page-gutter` on `body`). Never `ch`: it is a different length on each box.
+  `--page-gutter` on `body`). Cap article prose at 40rem and the balanced headline at 16ch.
 
 ## Motion, focus and the fallback face
 

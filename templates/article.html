@@ -30,31 +30,27 @@
 
   <main id="content" class="article-page-main">
     <article class="article-standalone">
-      <div class="article-kicker">
-        <span class="category">{{category}}</span>
+      <div class="article-kicker" style="--cat:{{categoryHue}}">
+        <span class="article-category">{{categoryName}}</span>
         <time datetime="{{isoDate}}" data-ago>{{kickerDate}}</time>
         {{correctionMark}}
       </div>
       <h1 class="article-title">{{title}}</h1>
       <div class="article-body">{{bodyHtml}}</div>
-      {{entityStrip}}
+      {{storyChart}}
       {{threadBlock}}
+      <div class="article-ledger">
+        {{sourceRows}}
+        {{entityStrip}}
+        {{shareRow}}
+      </div>
     </article>
 
     {{appHandoff}}
 
-    <!--
-      Pass it on. Rendered here as plain links so it works with JavaScript off
-      and survives the island bundle failing; `share-bar.ts` swaps it for the
-      device's own share sheet where one exists. This is the page a shared link
-      lands on, so it is also where the next share starts.
-    -->
-    {{shareRow}}
-
     <nav class="article-pagination" aria-label="Article navigation">
       {{prevLink}}
       {{nextLink}}
-      <a class="article-pagination-home" href="/">Map</a>
     </nav>
   </main>
 

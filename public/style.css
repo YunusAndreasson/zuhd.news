@@ -266,11 +266,7 @@
   text-transform: uppercase;
 }
 
-/* Article dateline — leading "Location — " prefix in body copy is
-   wrapped at build time and rendered as small-caps without the dash.
-   Inherits body line-height + size so the run-in flows naturally
-   into the first sentence; the small-caps + letter-spacing reads as
-   editorial polish (FT/Bloomberg dateline convention). */
+/* The map card's dateline. The standalone reader sets its locality in the lede. */
 .article-dateline {
   font-variant-caps: all-small-caps;
   font-feature-settings: "case" 1;
@@ -638,12 +634,6 @@ footer {
      column still gets the breaks that matter there. */
   hyphenate-limit-chars: 10 4 4;
   text-wrap: pretty;
-  /* No `content-visibility: auto`. It was here from the days this class was a
-     list of articles down one page, where skipping the ones off screen paid.
-     There is one body now, at the top of its own page, so it skipped nothing,
-     and its paint containment clipped whatever stood outside the box: the
-     framing fold's marker hangs in the margin (`.article-framing > summary`)
-     and was the fold's only sign that it opens. It was never drawn. */
   font-variant-ligatures: common-ligatures contextual;
   font-variant-numeric: oldstyle-nums proportional-nums;
   font-size: var(--type-copy);
@@ -908,20 +898,7 @@ body.article-page-body {
   padding: 0;
   display: block;
   background: var(--bg);
-  /* One column and one gutter, stated here and taken by the header, the
-     reading column and the footer alike.
-
-     They were three numbers that were meant to be one. The reading column was
-     `64ch` of its own type, which is a clamp on the viewport, and the header
-     and footer were a `46rem` cap "wide enough for both". It was, while the
-     type was 24px; at 28px the column is 832px and the masthead sat 48px
-     inside the headline it stands over, on both sides.
-
-     In rem, not `ch`, for a second reason: `ch` is the advance of the font's
-     zero, which Chromium rounds to a whole pixel and Gecko does not, so the
-     same column was 832px in one and 846px in the other, and it moved when
-     the webfont arrived. 52rem holds 59 to 65 characters a line across the
-     type's whole clamp, which is the measure `64ch` was reaching for. */
+  /* The masthead, ledger and footer share a column; prose sets a narrower measure. */
   --page-column: 52rem;
   --page-gutter: var(--space-md);
 }
@@ -999,107 +976,72 @@ body.article-page-body::before {
 }
 
 .article-standalone {
+  position: relative;
   display: flex;
   flex-direction: column;
 }
 
-/* The headline is there at once. It used to rise from nothing over 520ms,
-   staggered under the page's own cross-fade, so the largest thing painted
-   first was the wordmark and the headline came a third of a second later.
-   The cross-fade (`@view-transition` above) is the page's only arrival. */
-
-/* Editorial overline + small-caps kicker. CATEGORY · TIME, hairline rule
-   sitting above to mark the start of the article composition. */
 .article-kicker {
   display: flex;
   align-items: baseline;
   gap: var(--space-xs);
   flex-wrap: wrap;
-  color: var(--text-secondary);
-  font-size: var(--type-label);
-  font-variant-caps: all-small-caps;
-  font-feature-settings: "case" 1;
-  letter-spacing: var(--track-caps);
-  font-weight: var(--weight-semibold);
-  margin: 0 0 var(--space-md);
-  position: relative;
-}
-
-.article-kicker::before {
-  content: '';
-  display: block;
-  width: 2.5rem;
-  height: 1px;
-  background: var(--text-secondary);
-  margin-right: var(--space-sm);
-  align-self: center;
-}
-
-.article-kicker .category {
-  display: inline;
-  margin: 0;
-  font-size: inherit;
-  color: var(--text);
-}
-
-.article-kicker time {
-  font-variant-numeric: var(--figure-numerals);
-}
-
-.article-kicker > time::before {
-  content: '·';
-  margin-right: var(--space-xs);
+  font-size: var(--type-item);
   color: var(--ink-quiet);
-  font-variant-caps: normal;
-  letter-spacing: 0;
+  margin-bottom: 1.25rem;
 }
+
+.article-kicker::before,
+.category-page-title::before {
+  content: '';
+  display: inline-block;
+  flex: none;
+  border-radius: 50%;
+  background: var(--cat);
+}
+
+.article-kicker::before { width: 8px; height: 8px; align-self: center; }
+
+.article-category {
+  font-weight: var(--weight-medium);
+  color: var(--ink-prose);
+}
+
+.article-kicker time { font-variant-numeric: var(--figure-numerals); }
+.article-kicker time::before { content: '·'; margin-right: var(--space-xs); }
 
 .article-title {
-  font-size: var(--type-title);
+  max-width: 16ch;
+  font-size: clamp(var(--type-heading), calc(var(--type-heading) + 2.2vw), var(--type-title));
   font-weight: var(--weight-title);
   line-height: 1.02;
   letter-spacing: var(--track-display);
   text-wrap: balance;
-  margin: 0 0 var(--space-sm);
-  color: var(--text-emphasis);
-}
-
-@media (min-width: 641px) {
-  .article-title {
-    margin-bottom: clamp(1rem, 0.5vw + 0.75rem, 1.5rem);
-  }
+  color: var(--ink-heading);
+  margin: 0 0 1.75rem;
 }
 
 .article-page-main .article-body {
-  margin-top: 0;
+  max-width: 40rem;
+  color: var(--ink-prose);
 }
 
-/* Lead paragraph — the orienting block right after the title. Steps up
-   noticeably from body type so the reader's eye lands here first. The
-   wide step + brighter colour does the visual separation; horizontal
-   margins stay flush with body so the column reads as a single column. */
 .article-page-main .article-body > p:first-of-type {
   font-size: var(--type-lede);
-  font-weight: var(--weight-regular);
-  line-height: 1.35;
-  color: var(--text-emphasis);
-  margin-bottom: var(--space-lg);
+  line-height: 1.38;
   letter-spacing: var(--track-heading);
-  text-wrap: balance;
+  color: var(--ink-heading);
+  padding-bottom: 2.25rem;
+  margin-bottom: 2.25rem;
+  border-bottom: 1px solid var(--line-divider);
 }
 
-/* Dateline — the geographic anchor of the story, on its own line above the
-   lede. It is a label, so it wears the kicker's role (size, weight, tracking,
-   ink) rather than outshouting the headline and the lede between which it
-   stands: at 18px bold and 0.2em it was the loudest capitals on the site. */
-.article-page-main .article-body > p:first-of-type .article-dateline {
-  font-size: var(--type-label);
-  margin-right: 0;
-  display: block;
-  margin-bottom: var(--space-xs);
-  color: var(--text-secondary);
-  font-weight: var(--weight-semibold);
-  letter-spacing: var(--track-caps);
+.article-page-main .article-dateline {
+  font-weight: var(--weight-title);
+  font-variant-caps: normal;
+  letter-spacing: inherit;
+  color: inherit;
+  margin: 0;
 }
 
 .article-page-main .article-body > p,
@@ -1203,21 +1145,44 @@ body.article-page-body::before {
   text-underline-offset: 0.2em;
 }
 
-/* The isnad: the chain of sources, named and linked, nearest the event first.
-
-   Dimmed and small because it is metadata, but every name is a real link — the
-   about page promises the chain is followable and for a long time this line was
-   the one place on the site where it wasn't. The links carry no colour of their
-   own: they inherit the line's ink and take an underline, so the chain reads as
-   one run of text rather than a rank of blue. */
-/* A step under the body rather than three: the body is 22–24px, and the
-   isnad and the framing at 14px fell off it. */
-.article-sources-flat {
-  font-size: var(--type-item);
-  color: var(--text-dim);
-  margin-top: var(--space-sm);
-  line-height: 1.4;
+/* Ledger labels occupy the same gutter even when links wrap or a fold opens. */
+.article-ledger {
+  --ledger-gutter: clamp(5rem, 15vw, 8.125rem);
+  border-block: 1px solid var(--line-divider);
 }
+
+.article-ledger :is(.article-framing, .article-sources-flat, .article-map-link, .article-entities, .share) {
+  position: relative;
+  margin: 0;
+  padding: 0.875rem 0 0.875rem var(--ledger-gutter);
+  font-size: var(--type-item);
+  line-height: 1.4;
+  color: var(--ink-prose);
+}
+
+.article-ledger > * + * {
+  border-top: 1px solid var(--line-divider);
+}
+
+.article-ledger :is(.ledger-label, .article-entities-label, .share-label),
+.article-ledger .article-framing::before {
+  position: absolute;
+  inset: 0.99rem auto auto 0;
+  color: var(--ink-quiet);
+  font-size: var(--type-label);
+  line-height: 1.4;
+  font-weight: var(--weight-semibold);
+  font-variant-caps: normal;
+  letter-spacing: var(--track-caps);
+  text-transform: uppercase;
+}
+
+.article-ledger .article-framing::before { content: 'Framing'; }
+
+.article-ledger .share { gap: var(--space-xs) var(--space-sm); }
+.article-ledger > .share:first-child { border-top: 0; }
+.article-ledger .share-choice { color: var(--ink-prose); }
+.article-ledger .share:not(:has(.share-label)) { padding-left: 0; }
 
 .article-sources-flat a {
   color: inherit;
@@ -1233,7 +1198,7 @@ body.article-page-body::before {
 }
 
 /* --- Where it happened, and its number ---
-   The locator (`build/locator.js`) stands beside the hook: a globe turned to
+   The locator (`build/locator.js`) hangs beside the title on wide screens: a globe turned to
    the place, the land a quiet step, the place's country a step darker, and
    the one gold mark. Sea is the page's own ground, so the globe is a rule and
    some land rather than a picture. The story's chart (`build/story-chart.js`)
@@ -1271,7 +1236,7 @@ body.article-page-body::before {
 
 .article-locator-dot { fill: var(--brand); }
 
-/* A heading's role: small caps at 600, the dateline's ink. */
+/* Place name under the locator. */
 .article-locator-place {
   font-size: var(--type-label);
   font-weight: var(--weight-semibold);
@@ -1291,27 +1256,36 @@ body.article-page-body::before {
   }
 }
 
-.article-chart {
-  clear: both;
-  margin: var(--space-md) 0 0;
+@media (min-width: 1200px) {
+  .article-locator {
+    position: absolute;
+    inset: 0.375rem auto auto calc(100% + var(--space-md));
+    width: 7.5rem;
+    margin: 0;
+    float: none;
+  }
 }
 
-/* The line takes the direction's ink, as the card's does: colour here says
-   the series rose or fell, and nothing else on the page is tinted. */
+.article-chart {
+  clear: both;
+  margin: 0 0 1.5rem;
+  padding: 1rem 0 0.875rem;
+  border-top: 1px solid var(--line-edge);
+  border-bottom: 1px solid var(--line-divider);
+}
+
 .article-chart-link {
   display: block;
-  padding: 0.8rem 0 0.6rem;
-  border-block: 1px solid var(--rule);
-  color: var(--text-dim);
+  color: var(--ink-quiet);
   text-decoration: none;
-
-  &:visited { color: var(--text-dim); }
+  &:visited { color: var(--ink-quiet); }
 }
 
 .article-chart.is-pos .article-chart-link { color: var(--pos); }
 .article-chart.is-neg .article-chart-link { color: var(--neg); }
 
 .article-chart-head {
+  --type-figure: var(--size-base);
   display: flex;
   align-items: baseline;
   gap: 0.75rem;
@@ -1321,6 +1295,10 @@ body.article-page-body::before {
 }
 
 .article-chart-label {
+  letter-spacing: normal;
+  margin: 0;
+  font-size: var(--type-item);
+  font-weight: var(--weight-medium);
   flex: 1 1 auto;
   min-width: 0;
   color: var(--text);
@@ -1331,7 +1309,19 @@ body.article-page-body::before {
   text-underline-offset: 0.2em;
 }
 
-.article-chart-reading { color: var(--text-emphasis); }
+.article-chart-reading {
+  color: var(--ink-heading);
+  font-size: var(--type-figure);
+  letter-spacing: var(--track-item);
+  font-weight: var(--weight-semibold);
+  text-align: right;
+}
+
+.article-chart-move {
+  font-size: var(--type-item);
+  font-weight: var(--weight-semibold);
+  text-align: right;
+}
 
 /* `.spark` is a flex item in the rail; here it is block flow at full width. */
 .article-chart-link .spark {
@@ -1360,43 +1350,13 @@ body.article-page-body::before {
   .article-chart-link .spark { height: 3.75rem; }
 }
 
-/* The way to the map, after the sources: the story's own card on the globe. */
-.article-page-main .article-body > .article-map-link {
-  margin: var(--space-sm) 0 0;
-  font-size: var(--type-item);
-  line-height: 1.4;
-
-  a {
-    color: var(--text);
-    text-decoration: underline;
-    text-decoration-color: var(--text-dim);
-    text-underline-offset: 0.2em;
-  }
-
-  a:hover { text-decoration-color: currentColor; }
+.article-map-link a {
+  color: var(--ink-prose);
+  text-decoration-color: var(--ink-quiet);
+  text-underline-offset: 0.2em;
 }
 
-/* What each outlet brought that the others did not.
-
-   The pipeline has written a per-source `angle` and `sentiment` for months and
-   this page showed neither; the app has shown the angle since it shipped. It
-   sits under the isnad because it is the same claim carried one level further —
-   the chain names who transmitted, this says what each of them made of it.
-
-   Closed by default, and a `<details>` rather than an island: it is static, it
-   is below the prose, and `island-loader.js` is for things that need behaviour.
-   `renderFraming` draws nothing at all when no source carried an angle, so the
-   marker never promises an expansion that opens onto an empty box.
-
-   Ink only — no rule, no surface, no box. The quiet steps are `--text-dim`,
-   which is the AA floor and set exactly there, never opacity: a composited
-   label passes `colour-system.test.js` while failing a reader. */
-.article-framing {
-  margin-top: var(--space-sm);
-  font-size: var(--type-item);
-  line-height: 1.4;
-}
-
+/* The outlet accounts stay folded until requested. */
 .article-framing > summary {
   position: relative;
   color: var(--text-dim);
@@ -1425,8 +1385,7 @@ body.article-page-body::before {
   color: var(--text);
 }
 
-/* A phone's gutter is 16px and the marker hangs 17px out, so there it comes
-   inside the line rather than lose its tip to the edge of the screen. */
+/* On a phone keep the disclosure marker inside the content column. */
 @media (max-width: 640px) {
   .article-framing > summary::before {
     position: static;
@@ -1466,14 +1425,15 @@ body.article-page-body::before {
 }
 
 .article-pagination {
+  --type-heading: var(--size-base);
   display: grid;
   grid-template-columns: 1fr 1fr;
   column-gap: var(--space-lg);
   row-gap: var(--space-md);
   align-items: start;
-  margin-top: var(--space-xl);
-  padding-top: var(--space-md);
-  border-top: 1px solid var(--rule);
+  margin-top: var(--space-lg);
+  padding-top: 1.375rem;
+  border-top: 1px solid var(--line-edge);
   font-size: var(--type-item);
   line-height: var(--leading-heading);
 }
@@ -1504,7 +1464,7 @@ body.article-page-body::before {
   overflow: hidden;
   text-overflow: ellipsis;
   line-height: 1.25;
-  font-size: var(--type-copy);
+  font-size: var(--type-heading);
   font-weight: var(--weight-semibold);
   letter-spacing: var(--track-item);
   color: var(--text-emphasis);
@@ -1522,20 +1482,6 @@ body.article-page-body::before {
 .article-pagination-prev .article-pagination-label::before { content: '← '; }
 .article-pagination-next { text-align: right; }
 .article-pagination-next .article-pagination-label::after { content: ' →'; }
-
-/* A link, so an item, set as the header's `← Map` is. */
-.article-pagination-home {
-  font-size: var(--type-item);
-  color: var(--text-secondary);
-  text-decoration: none;
-  grid-column: 1 / -1;
-  text-align: center;
-  padding-top: var(--space-sm);
-  border-top: 1px solid var(--rule-soft);
-  white-space: nowrap;
-}
-
-.article-pagination-home:hover { color: var(--text); }
 
 /* `> footer`: the page's own, a child of `body`. As a descendant selector this
    also dressed the country preview's `<footer>`, which is mounted inside the
@@ -1563,9 +1509,6 @@ body.archetype-page-body > footer {
     padding-top: var(--space-md);
     padding-bottom: var(--space-md);
   }
-  .article-title {
-    font-size: var(--size-d1);
-  }
   .article-pagination {
     grid-template-columns: 1fr;
     grid-auto-rows: auto;
@@ -1575,9 +1518,6 @@ body.archetype-page-body > footer {
   .article-pagination-next { text-align: left; }
   .article-pagination-next .article-pagination-label::after { content: ' →'; }
   .article-pagination-title { font-size: var(--type-copy); }
-  .article-page-main .article-body > p:first-of-type {
-    font-size: var(--type-lede);
-  }
 }
 
 /* --- Archetype page (shared base for country/thread/entity/category) ---
@@ -1655,12 +1595,6 @@ body.archetype-page-body {
   }
 }
 
-/* Shared `.label` modifier for a heading that introduces a sub-list —
-   "Metrics", "Recent coverage · N", "Lately", "Mentioned in · N", and the
-   category page's per-day date headings (which also carry their own
-   border-bottom — see `.category-day-heading`). Was two identical copies,
-   `.country-section-title` and `.archive-section-title`, that differed only
-   in name. */
 /* What the hazard sources count in this country: hunger, conflict, alerts.
    A label and a statement each, with whose count it is and of when under it.
    Statements, so they are set at reading size, above the metrics, which are a
@@ -1700,118 +1634,50 @@ body.archetype-page-body {
    width: the chart's type is in viewBox units, and two cards side by side
    would print their axes at half the size. */
 .country-trajectory {
-  padding: var(--space-md) 0;
-  border-top: 1px solid var(--rule);
-
-  &:first-of-type { border-top: 0; padding-top: 0; }
+  padding: var(--space-sm) 0;
+  border-top: 1px solid var(--line-edge);
 }
 
-.country-trajectory-headline {
-  margin: var(--space-xs) 0 0;
-  font-size: var(--type-heading);
-  line-height: 1.1;
-  color: var(--text-emphasis);
-  font-variant-numeric: var(--figure-numerals);
-}
-
+.country-trajectory:last-child { border-bottom: 1px solid var(--line-divider); }
 .country-trajectory-subtitle { margin: var(--space-xs) 0 0; max-width: 44rem; }
+.country-trajectory-chart { margin-top: var(--space-sm); color: var(--ink-prose); }
+.country-trajectory .article-chart-move { color: var(--ink-quiet); }
 
-.country-trajectory-chart {
-  margin-top: var(--space-sm);
-  color: var(--text);
-}
-
-@media (max-width: 640px) {
-  .country-trajectory-headline { font-size: var(--type-lede); }
-}
-
-.section-title {
-  display: block;
-  margin-bottom: var(--space-sm);
-}
+.section-title { display: block; margin-bottom: var(--space-sm); }
 
 .metric-list {
-  list-style: none;
-  padding: 0;
-  margin: 0;
-  display: flex;
-  flex-direction: column;
-  gap: var(--space-sm);
-}
-
-.metric-row {
-  display: grid;
-  grid-template-columns: 11em 7em 1fr 5em;
-  grid-template-areas:
-    "label value strip rank"
-    "source source source source";
-  align-items: baseline;
-  gap: var(--space-xxs) var(--space-sm);
-  padding: var(--space-xs) 0;
-  border-bottom: 1px solid var(--rule-soft);
+  width: 100%;
+  border-collapse: collapse;
   font-size: var(--type-item);
+  line-height: 1.35;
 }
 
-.metric-label {
-  grid-area: label;
-  font-size: var(--type-label);
-  color: var(--text);
-  font-variant-caps: all-small-caps;
+.metric-list :is(th, td) { padding: 0.65rem 0 0.65rem var(--space-sm); }
+.metric-list th:first-child { padding-left: 0; text-align: left; }
+.metric-list thead th {
+  color: var(--ink-heading);
   font-weight: var(--weight-semibold);
-  font-feature-settings: "case" 1;
-  letter-spacing: var(--track-caps);
-}
-
-.metric-value {
-  grid-area: value;
-  color: var(--text-emphasis);
   text-align: right;
-  white-space: nowrap;
+  border-bottom: 1px solid currentColor;
 }
-
-.metric-strip {
-  grid-area: strip;
-  position: relative;
-  height: 2px;
-  background: var(--rule-soft);
-  align-self: center;
-  min-width: 4em;
-}
-
-.metric-strip-fill {
-  position: absolute;
-  inset: 0;
-  width: var(--fill, 0%);
-  background: var(--accent);
-  transform-origin: left;
-}
-
-.metric-rank {
-  grid-area: rank;
-  color: var(--text-secondary);
-  text-align: right;
-  white-space: nowrap;
-}
-
+.metric-row { border-bottom: 1px solid var(--line-divider); }
+.metric-label { width: 37%; font-weight: var(--weight-medium); color: var(--ink-prose); }
 .metric-source {
-  grid-area: source;
-  color: var(--text-dim);
-  font-size: var(--type-item);
-  padding-left: 11em;
-  margin-top: var(--space-xxs);
+  display: block;
+  margin-top: 0.125rem;
+  font-weight: var(--weight-regular);
+  font-size: var(--type-label);
+  color: var(--ink-quiet);
 }
+.metric-value { color: var(--ink-heading); text-align: right; }
+.metric-row td:nth-child(3) { width: 30%; }
+.metric-strip { height: 2px; background: var(--line-edge); }
+.metric-strip-fill { display: block; height: 100%; width: var(--fill); background: var(--accent); }
+.metric-rank { color: var(--ink-quiet); text-align: right; white-space: nowrap; }
 
 @media (max-width: 640px) {
-  .metric-row {
-    grid-template-columns: 1fr auto;
-    grid-template-areas:
-      "label    value"
-      "strip    strip"
-      "rank     rank"
-      "source   source";
-  }
-  .metric-source { padding-left: 0; }
-  .metric-strip { min-width: 100%; }
+  .metric-list :is(th, td) { padding-inline-start: var(--space-xs); }
+  .metric-row td:nth-child(3) { width: 12%; }
 }
 
 .country-coverage-list {
@@ -1830,6 +1696,7 @@ body.archetype-page-body {
    `scripts/lib/list-row.js`, which is the only place that decides which
    variant a given row is. */
 .list-row {
+  --type-heading: var(--size-md);
   display: grid;
   align-items: baseline;
   gap: var(--space-sm);
@@ -1850,7 +1717,8 @@ body.archetype-page-body {
 }
 
 .list-row-title {
-  font-size: var(--type-copy);
+  color: var(--ink-heading);
+  font-size: var(--type-heading);
   font-weight: var(--weight-medium);
   letter-spacing: var(--track-item);
   line-height: var(--leading-heading);
@@ -1863,8 +1731,7 @@ body.archetype-page-body {
   letter-spacing: var(--track-caps);
   color: var(--text-secondary);
   font-size: var(--type-label);
-  /* The cell also wears `.category`, whose 8px foot is the article kicker's:
-     it made this the one list whose rows were 50px to the others' 43. */
+  /* A category inside a row shares the title’s baseline. */
   margin-bottom: 0;
 }
 
@@ -1877,7 +1744,14 @@ body.archetype-page-body {
 
 .list-row--date-title-source { grid-template-columns: 7em 1fr 11em; }
 .list-row--date-title-category { grid-template-columns: 7em 1fr auto; }
-.list-row--title-source { grid-template-columns: 1fr 11em; }
+.list-row--title-source { grid-template-columns: minmax(0, 1fr) minmax(0, 26%); }
+.list-row--title-source:not(:has(.list-row-source, .list-row-category)) { grid-template-columns: 1fr; }
+@media (min-width: 641px) {
+  .list-row--title-source:has(.list-row-category):has(.list-row-source) {
+    grid-template-columns: minmax(0, 1fr) auto minmax(0, 26%);
+  }
+}
+.list-row:hover .list-row-title { text-decoration: underline; text-underline-offset: 0.2em; }
 .list-row--date-title { grid-template-columns: 7em 1fr; }
 
 @media (max-width: 640px) {
@@ -1909,7 +1783,7 @@ body.archetype-page-body {
   flex-direction: column;
   gap: var(--space-xs);
   padding-bottom: var(--space-md);
-  /* Same overrides as `.category-page-header` — the bare `header {}` rule's
+  /* The bare `header {}` rule's
      masthead margin-bottom otherwise stacks on top of `.entity-page`'s own
      gap to the content below, and its `align-items: center` centred this
      column on a site whose article and country headers start on the left. */
@@ -1982,81 +1856,61 @@ body.archetype-page-body {
 .entity-mentioned { margin-top: var(--space-md); }
 
 /* --- Category page --- */
-.category-page {
-  display: flex;
-  flex-direction: column;
-  gap: var(--space-lg);
-}
-
 .category-page-header {
   display: flex;
-  flex-direction: column;
-  gap: var(--space-xxs);
-  padding-bottom: var(--space-md);
-  /* Overrides the bare `header {}` rule's masthead margin (up to 3rem,
-     viewport-height-scaled) — this header is a flex item inside
-     `.category-page`, whose own `gap` is the real spacing to the list below.
-     Left unset, the two stacked and the list sat ~140px under the title.
-     `align-items` is the same rule's: it centred the masthead's row and, in
-     this column, the title. */
-  margin-bottom: 0;
-  align-items: flex-start;
-  border-bottom: 1px solid var(--rule);
-}
-
-.category-page-title {
-  font-variant-caps: titling-caps;
-}
-
-.category-article-list {
-  list-style: none;
-  padding: 0;
+  flex-wrap: wrap;
+  align-items: baseline;
+  justify-content: flex-start;
+  gap: var(--space-xs) var(--space-sm);
   margin: 0;
-  display: flex;
-  flex-direction: column;
-  gap: var(--space-md);
+  padding-bottom: 1.75rem;
+  border-bottom: 1px solid var(--ink-heading);
 }
 
-.category-day-group { display: block; }
+.category-page-title { margin: 0; color: var(--ink-heading); }
+.category-page-title::before {
+  width: 12px;
+  height: 12px;
+  margin-right: var(--space-sm);
+  vertical-align: 0.32em;
+}
+.category-page-header .t-caption { font-size: var(--type-item); margin: 0; }
 
-/* Caps/tracking/weight/color/size come from `.label`; this is only what a
-   date heading needs beyond that: tighter margin than `.section-title`'s
-   default (a run of day-groups is denser than a metrics/lately section) and
-   its own rule underneath. */
+.category-article-list, .category-day-list { list-style: none; }
+.category-day-group {
+  display: grid;
+  grid-template-columns: 12.5rem minmax(0, 1fr);
+  padding-block: 1.125rem;
+}
+.category-day-group + .category-day-group { border-top: 1px solid var(--line-divider); }
 .category-day-heading {
-  margin-bottom: var(--space-xs);
-  padding-bottom: var(--space-xxs);
-  border-bottom: 1px solid var(--rule);
-}
-
-.category-day-list {
-  list-style: none;
-  padding: 0;
+  letter-spacing: normal;
+  position: sticky;
+  top: var(--space-sm);
+  align-self: start;
+  padding: var(--space-xs) var(--space-sm) 0 0;
   margin: 0;
-  display: flex;
-  flex-direction: column;
+  font-size: var(--type-item);
+  font-weight: var(--weight-semibold);
+  color: var(--ink-heading);
+  font-variant-numeric: var(--figure-numerals);
 }
-
 .category-day-list li:last-child .list-row { border-bottom: none; }
 
-/* Inline country tags in article bodies — open the country-preview
-   sheet. The hairline dotted underline alone signals "interactive"
-   without intruding on body copy; on hover/focus it solidifies into
-   the accent colour. */
+@media (max-width: 640px) {
+  .category-day-group { grid-template-columns: 1fr; }
+  .category-day-heading { position: static; padding: 0 0 var(--space-xs); }
+}
+
+/* The underline stays visible across wraps, in both reader schemes. */
 .country-link {
-  color: var(--text);
-  text-decoration: none;
-  border-bottom: 1px dotted var(--text-secondary);
-  padding-bottom: 1px;
-  cursor: pointer;
-  transition: border-bottom-color var(--dur-fast) var(--ease-out), border-bottom-style var(--dur-fast) var(--ease-out);
+  color: inherit;
+  text-decoration: underline solid var(--ink-quiet) 1px;
+  text-underline-offset: 4px;
 }
 
 .country-link:hover,
-.country-link:focus-visible {
-  border-bottom-color: var(--accent);
-  border-bottom-style: solid;
-}
+.country-link:focus-visible { text-decoration-color: currentColor; }
 
 /* Hover's change of underline is 1.3:1 at best, which is no way to find the
    keyboard's place in a paragraph of these. */
@@ -2344,7 +2198,7 @@ body.archetype-page-body {
    button, in the page's own ink. */
 .article-app { display: none; }
 
-@media (pointer: coarse) {
+@media (max-width: 640px) and (pointer: coarse) {
   .article-app {
     display: grid;
     gap: var(--space-sm);
@@ -2427,17 +2281,10 @@ body.has-app-bar { padding-bottom: calc(3rem + env(safe-area-inset-bottom)); }
 
 /* --- Entity strip on article pages --- */
 .article-entities {
-  margin: var(--space-lg) 0 0;
-  padding-top: var(--space-md);
-  border-top: 1px solid var(--rule);
   display: flex;
   flex-wrap: wrap;
-  align-items: center;
-  gap: var(--space-sm);
-}
-.article-entities-label {
-  margin-right: var(--space-xs);
-  color: var(--text-secondary);
+  align-items: baseline;
+  gap: var(--space-xs);
 }
 .article-entity-chip {
   display: inline-flex;
@@ -4235,18 +4082,21 @@ body.map-wide > footer {
   }
 }
 
-/* A row of its own under the documents, on the pages whose footer is a wrapped
-   line rather than the rail's column. It was one only by running out of room:
-   on a column wide enough to hold all three it sat 16px after `privacy`, and
-   `x` read as a fifth document. And in its own register on the article page
-   too, where it inherited the status line's tracked small caps and was the one
-   place these four were set as a heading. */
-.article-page-body > footer .footer-social,
-body.archetype-page-body > footer .footer-social {
-  flex-basis: 100%;
-  font-variant-caps: normal;
-  letter-spacing: 0;
+/* The article foot pairs the publication date with navigation and app links. */
+.article-page-body > footer {
+  justify-content: flex-start;
+  gap: var(--space-xs) var(--space-sm);
+  padding-top: var(--space-sm);
 }
+
+.article-page-body > footer :is(.footer-links, .footer-social, .footer-maker, .footer-maker-links) {
+  gap: var(--space-xs) var(--space-sm);
+}
+
+.article-page-body > footer .footer-social a[rel~="me"] { display: none; }
+.article-page-body > footer .footer-maker { margin-top: 0; }
+
+body.archetype-page-body > footer .footer-social { flex-basis: 100%; }
 
 /* The strip: one row of chrome laid over the top of the map.
 
