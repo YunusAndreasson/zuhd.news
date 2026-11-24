@@ -77,9 +77,6 @@ calendar `hijri.md`.
 - MapLibre's atmosphere is off (`atmosphere-blend` 0, stated: a `sky` block
   without it is 0.8). It paints over every layer, and over the poles its lit
   edge drew a second, shadowed sphere. The sky canvas draws the limb.
-- `drawSolar` sets the light with `anchor: 'map'` and `sunLightPosition`, the
-  antisolar direction (MapLibre negates it). With no `light` the crescent is
-  fixed to the screen. No other `sky` property reaches the globe.
 - **Never call `setPadding` mid-flight**: it is a `jumpTo`, which cancels the
   flight. Use `writePadding`, which defers while `flying`; the drawer snaps
   shut (`setExpanded(open, true)`) before a flight.
