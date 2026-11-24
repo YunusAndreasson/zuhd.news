@@ -39,6 +39,7 @@ import {
   CATEGORY_COLOUR,
   CATEGORY_ORDER,
   COUNTRY_TILES,
+  DENSITY_OPACITY,
   densityCssRamp,
   densityRamp,
   FALLBACK_CATEGORY_COLOUR,
@@ -95,7 +96,7 @@ import {
 import { liveSignals, signalFor, type MarketSignal } from './_map/signals'
 import { createPaneSeam, type PaneSeam } from './_map/panes'
 import { createTimeline, type Timeline } from './_map/timeline'
-import { createSheet, type Sheet } from './_map/sheet'
+import { createSheet, type AmbientMark, type Sheet } from './_map/sheet'
 import { MAKKAH_LABEL, MAKKAH_TZ, metricName, relativeTime, solarClock, zoneOffset } from './_map/format'
 import { createStoryPopup, type CountryStanding, type ShownStory, type StoryPopup } from './_map/popup'
 import { reducedMotion } from './_disclosure'
@@ -263,6 +264,14 @@ export const HIT_ORDER = [
  * hover and takes nothing.
  */
 const PRAYER_HOVER: ExpressionSpecification = ['boolean', ['feature-state', 'hover'], false]
+
+/** Keep each observation's age or severity at rest. A targeted glyph comes forward. */
+const ambientOpacity = (strength: ExpressionSpecification, atRest: number): ExpressionSpecification => [
+  'case',
+  ['any', ['boolean', ['feature-state', 'hover'], false], ['boolean', ['feature-state', 'selected'], false]],
+  1,
+  ['*', strength, atRest],
+]
 
 /** How wide, in pixels, the pointer may miss a hairline by and still find it. */
 const PRAYER_GRAB_PX = 7
@@ -1715,7 +1724,15 @@ export function mount(
    */
   let lastPointer: Point | null = null
 
-  const sheet: Sheet = createSheet()
+  const ambientMarks: Record<'hover' | 'selected', AmbientMark | null> = { hover: null, selected: null }
+  const writeAmbientMark = (state: keyof typeof ambientMarks, mark: AmbientMark | null) => {
+    const previous = ambientMarks[state]
+    if (previous?.id === mark?.id && previous?.source === mark?.source) return
+    if (previous) map.removeFeatureState(previous, state)
+    if (mark) map.setFeatureState(mark, { [state]: true })
+    ambientMarks[state] = mark
+  }
+  const sheet: Sheet = createSheet((mark) => writeAmbientMark('selected', mark))
   let popup: StoryPopup | null = null
   /**
    * The row a keyboard opened the card from. The card is in the map, early in
@@ -1963,12 +1980,17 @@ export function mount(
    * takes no width. Measured here rather than through `applyPadding`'s `inset`,
    * which is declared further down and does not exist yet at the first call.
    */
+  const railEdges = (canvas: DOMRect) => ({
+    left: Math.max(0, feed.element.getBoundingClientRect().right - canvas.left),
+    right: Math.max(0, canvas.right - hud.getBoundingClientRect().left),
+  })
   const fitZoom = (lat: number) => {
     const w = mapEl.clientWidth || window.innerWidth || 1280
     const h = mapEl.clientHeight || window.innerHeight || 800
-    const wide = document.body.classList.contains('map-wide')
-    const side = (el: Element) => (wide ? el.getBoundingClientRect().width : 0)
-    return globeFitZoom(globeSpan(w, h, side(feed.element), side(hud)), lat)
+    const { left, right } = wideQuery.matches
+      ? railEdges(mapEl.getBoundingClientRect())
+      : { left: 0, right: 0 }
+    return globeFitZoom(globeSpan(w, h, left, right), lat)
   }
 
   /**
@@ -2296,40 +2318,18 @@ export function mount(
       return w > 0 && h > 0 ? { w, h, top: Math.max(r.top, canvas.top) } : null
     }
 
-    const rail = inset(feed.element)
-    /**
-     * The instrument rail, which now intersects too.
-     *
-     * This measured only the story rail for as long as the canvas was its own
-     * grid column — then *neither* rail intersected it, `inset` returned null on
-     * the first line and the zero padding that followed was right by accident
-     * rather than by measurement. The canvas spans the whole grid now so the
-     * rails can be seen through, which turns both of them into real overlaps,
-     * and measuring one of two is worse than measuring neither: the camera gets
-     * pushed right by half the story rail and nothing pushes it back. Measured
-     * at 1896×913 the disc centred at **x=1109 against a visible-gap centre of
-     * 924** — 185px off, which reads as a globe adrift toward the instruments
-     * with a band of dead sky down the left.
-     *
-     * Guarded on being a genuine side column: on a phone the rail is a bar
-     * across the foot and the money block lives inside the scrubber, so a
-     * full-width intersection is the *bottom* being eaten and belongs to the
-     * union below, not to a left or right inset.
-     */
-    const asideBox = inset(hud)
-    const aside = asideBox && asideBox.w < canvas.width - 1 ? asideBox.w : 0
-
-    if (!rail || rail.w < canvas.width - 1) {
-      const left = rail?.w ?? 0
+    if (wideQuery.matches) {
+      const { left, right } = railEdges(canvas)
       // The camera centres in what the docked story card leaves; the card's
       // own popup padding is unchanged, since no popup is open beside it.
-      writePadding({ top: 0, bottom: 0, right: aside, left: Math.max(left, dockEdge()) }, park)
+      writePadding({ top: 0, bottom: 0, right, left: Math.max(left, dockEdge()) }, park)
       // The camera centres between the rails; a card must also clear the
       // timeline under the globe, which the camera has never been padded for.
       const scrub = inset(timeline?.element)
-      writeCardPadding({ top: 0, bottom: scrub?.h ?? 0, right: aside, left })
+      const bottom = scrub ? canvas.bottom - scrub.top : 0
+      writeCardPadding({ top: 0, bottom, right, left })
       // The height the card's cap halves (`.maplibregl-popup-content`).
-      mapEl.style.setProperty('--map-card-room', `${Math.round(canvas.height - (scrub?.h ?? 0))}px`)
+      mapEl.style.setProperty('--map-card-room', `${Math.round(canvas.height - bottom)}px`)
       return
     }
 
@@ -2339,6 +2339,8 @@ export function mount(
     // two heights would count the same pixels twice. Only reached on the
     // full-width branch: on the desktop side the rail is a column and the
     // timeline has never contributed padding, and that stays true.
+    const rail = inset(feed.element)
+    if (!rail) return
     const scrubber = inset(timeline?.element)
     const top = scrubber && scrubber.w >= canvas.width - 1
       ? Math.min(rail.top, scrubber.top)
@@ -2521,11 +2523,12 @@ export function mount(
       type: 'FeatureCollection' as const,
       features: gdacs.map((a) => {
         const t = Date.parse(a.fromDate)
+        const id = detailKey(a)
         return {
           type: 'Feature' as const,
-          id: detailKey(a),
+          id,
           properties: {
-            id: a.eventid,
+            id,
             level: a.alertlevel || 'Green',
             name: a.name,
             kind: a.eventtype || '',
@@ -2844,14 +2847,14 @@ export function mount(
     // for the basemap's cities, and overwriting it would replace the world's
     // place labels with our own datelines.
     map.addSource('story-places', { type: 'geojson', data: empty })
-    map.addSource('gdacs', { type: 'geojson', data: empty })
-    map.addSource('thermal', { type: 'geojson', data: empty })
+    map.addSource('gdacs', { type: 'geojson', data: empty, promoteId: 'id' })
+    map.addSource('thermal', { type: 'geojson', data: empty, promoteId: 'id' })
     map.addSource('chokepoints', { type: 'geojson', data: empty })
     map.addSource('markets', { type: 'geojson', data: empty })
     map.addSource('callouts', { type: 'geojson', data: empty })
     map.addSource('callout-leaders', { type: 'geojson', data: empty })
-    map.addSource('conflict', { type: 'geojson', data: empty })
-    map.addSource('famine', { type: 'geojson', data: empty })
+    map.addSource('conflict', { type: 'geojson', data: empty, promoteId: 'id' })
+    map.addSource('famine', { type: 'geojson', data: empty, promoteId: 'id' })
     map.addSource('genocide', { type: 'geojson', data: empty })
     // The one fixed place: the map's centre, where the clock and the calendar
     // are read.
@@ -3151,7 +3154,7 @@ export function mount(
      *
      * The related one: there is no tone that works flat for a grid line, which
      * is the argument `MAP_COLOURS.water` already makes about rivers. A line
-     * quiet enough on `#080a0d` sea is *darker than every stop of the land ramp*
+     * quiet enough on the open sea is *darker than every stop of the land ramp*
      * and vanishes over the continents; anything that survives the ramp's
      * bright end is loud over water, where the beacons are. Drawn first, the
      * question does not arise: it has exactly one ground and is tuned against
@@ -3195,51 +3198,14 @@ export function mount(
         source: 'graticule',
         paint: {
           'line-color': MAP_COLOURS.graticule,
-          /**
-           * 1.2, and 0.6 was never the width this line was measured at.
-           *
-           * `MAP_COLOURS.graticule` states its value as "1.44:1 against the
-           * ocean", and that is true of the **tone**. It was not true of
-           * anything on screen, because MapLibre's line shader extrudes to
-           *
-           *     ANTIALIASING = 1.0 / u_device_pixel_ratio / 2.0
-           *     outset = halfwidth + ANTIALIASING
-           *
-           * so at `line-width: 0.6` the solid core is 0.3px against 0.5px of
-           * falloff on a 1× display: **the line never reaches full alpha
-           * anywhere along its length**. Composited that is 1.20:1 by day and
-           * 1.11:1 under the night wash it then sat beneath — two or three
-           * values at 8-bit, and
-           * measured off the rendered canvas over open water it came back at
-           * **1.00–1.06:1**. The one mark added to say the world is a sphere
-           * was, on the hemisphere it was added for, not on the screen at all.
-           * A 16× exposure boost shows it perfectly; nothing else does.
-           *
-           * `ANTIALIASING` is 0.25 at DPR 2, and the arithmetic says a 0.3
-           * half-width should therefore clear it — so the first version of this
-           * note said the bug was a 1× display's alone. **Measured off a
-           * `shoot.mjs` capture at DPR 2, it is not**: the line came out
-           * `rgb(28,32,40)` at 1.2 and `rgb(18,21,26)` at 0.6, which is 47% of
-           * the tone, not 100%. A half-width under one *device* pixel loses
-           * coverage to the rasteriser whatever the falloff term says. Both
-           * densities were short; the retina one was merely less short.
-           *
-           * 1.2 leaves margin on both without becoming a second line family
-           * beside the frontiers. Measured after: **1.24:1 on the night ocean
-           * against 1.10:1 before**, still under the night wash; above it the
-           * tone is about 1.35:1 by day and night alike.
-           *
-           * The tone is deliberately left alone. It was measured correctly and
-           * the defect was never in it — raising it now would spend a second
-           * change on the same symptom and leave nothing to attribute.
-           */
+          // Keep a solid core at 1×. Quiet the grid with opacity.
           'line-width': 1.2,
           'line-opacity': [
             'interpolate',
             ['linear'],
             ['zoom'],
             GLOBE_ZOOM.sphere,
-            1,
+            0.35,
             GLOBE_ZOOM.plane,
             0,
           ],
@@ -3343,7 +3309,7 @@ export function mount(
             'interpolate',
             ['linear'],
             ['zoom'],
-            3.2, 1,
+            3.2, DENSITY_OPACITY,
             DENSITY_FADE_OUT, 0,
           ],
         },
@@ -3367,7 +3333,7 @@ export function mount(
           'circle-radius': ['interpolate', ['linear'], ['zoom'], 0, 9, 3, 15, 6, 22],
           'circle-color': MAP_COLOURS.makkah,
           'circle-blur': 1,
-          'circle-opacity': 0.75,
+          'circle-opacity': 0.4,
         },
       },
       'borders',
@@ -3398,19 +3364,8 @@ export function mount(
           'line-color': MAP_COLOURS.prayer,
           'line-width': 0.9,
           'line-dasharray': [3, 4],
-          // Stays `line-opacity`, unlike `rivers`, and the reason is that this
-          // one is data-driven. `line-layer-opacity` is `data-constant` in the
-          // spec, so it cannot read `feature-state` and cannot carry the hover
-          // step — splitting the two across both properties would express one
-          // decision as a product of two numbers, which is how a hover ends up
-          // at some tone nobody chose.
-          //
-          // The accumulation it would fix is also much smaller here than at a
-          // river confluence: these are five curves of constant solar hour angle,
-          // so they run parallel almost everywhere and only approach each other
-          // near the poles, at 0.2 alpha, in a layer a reader has to switch on.
-          // Not worth a full-canvas compositing pass per frame.
-          'line-opacity': ['case', PRAYER_HOVER, 0.55, 0.2],
+          // Per-feature opacity lifts just the prayer under the pointer.
+          'line-opacity': ['case', PRAYER_HOVER, 0.55, 0.08],
         },
       },
       'borders',
@@ -3462,8 +3417,7 @@ export function mount(
           'text-padding': 2,
         },
         paint: {
-          // Full strength, deliberately, while the line stays at 0.2: the label
-          // is the whole difference between a prayer time and a stray hairline.
+          'text-opacity': ['case', PRAYER_HOVER, 1, 0.35],
           'text-color': MAP_COLOURS.prayer,
           'text-halo-color': MAP_COLOURS.labelHalo,
           'text-halo-width': 1.2,
@@ -3529,7 +3483,7 @@ export function mount(
         // halo: a solid square in the darker red, outlined in the lighter one,
         // is the same two-tone mark the circle drew.
         'icon-color': OVERLAY_COLOUR.conflictFill,
-        'icon-opacity': ['*', ['get', 'a'], 0.55],
+        'icon-opacity': ambientOpacity(['*', ['get', 'a'], 0.55], 0.4),
         'icon-halo-color': OVERLAY_COLOUR.conflict,
         'icon-halo-width': 0.8,
       },
@@ -3594,14 +3548,14 @@ export function mount(
         'icon-color': OVERLAY_COLOUR.gdacs,
         // Green is 98% of the feed, so a flat 0.4 there made the whole layer
         // one weight. Within Green, severity drives presence instead.
-        'icon-opacity': [
+        'icon-opacity': ambientOpacity([
           'case',
           ['==', ['get', 'level'], 'Red'],
           0.95,
           ['==', ['get', 'level'], 'Orange'],
           0.85,
           ['interpolate', ['linear'], ['get', 'mag'], 0, 0.32, 1, 0.8],
-        ],
+        ], 0.45),
         'icon-halo-color': MAP_COLOURS.labelHalo,
         'icon-halo-width': 1,
       },
@@ -3647,7 +3601,7 @@ export function mount(
         id: 'callout-leaders',
         type: 'line',
         source: 'callout-leaders',
-        paint: { 'line-color': MAP_COLOURS.label, 'line-width': 1, 'line-opacity': 0.6 },
+        paint: { 'line-color': MAP_COLOURS.labelDim, 'line-width': 1, 'line-opacity': 0.35 },
       },
       'chokepoint-labels',
     )
@@ -3913,13 +3867,13 @@ export function mount(
         // where sun glint or a weak (<15 K) anomaly could account for the
         // reading, and a mark the satellite is unsure of must not arrive at the
         // same weight as a saturated night pass.
-        'icon-opacity': [
+        'icon-opacity': ambientOpacity([
           'match',
           ['get', 'conf'],
           'high', 0.95,
           'nominal', 0.8,
           0.5,
-        ],
+        ], 0.35),
         'icon-halo-color': MAP_COLOURS.labelHalo,
         'icon-halo-width': 1.2,
       },
@@ -3992,7 +3946,7 @@ export function mount(
         // drawn at all — and it is not the same claim as one made last month. The
         // floor is high on purpose: this layer's quietest mark still has to be a
         // mark, unlike a fortnight-old story beacon which may fade to a hint.
-        'icon-opacity': ['interpolate', ['linear'], ['get', 'age'], 0, 1, 1, 0.55],
+        'icon-opacity': ambientOpacity(['interpolate', ['linear'], ['get', 'age'], 0, 1, 1, 0.55], 0.35),
         'icon-halo-color': MAP_COLOURS.labelHalo,
         'icon-halo-width': 1.4,
       },
@@ -4025,7 +3979,7 @@ export function mount(
       source: 'makkah',
       layout: {
         'text-field': ['get', 'name'],
-        'text-font': ['Source Sans 3 Bold'],
+        'text-font': ['Source Sans 3 Regular'],
         'text-size': ['interpolate', ['linear'], ['zoom'], 0, 12, 4, 15],
         'text-letter-spacing': 0.04,
         'text-anchor': 'top',
@@ -4851,10 +4805,8 @@ export function mount(
       const dock = pin && docked()
       if (pin) sheet.dockTo(null)
       if (key === 'makkah') return sheet.showMakkah(Date.now(), pin, dock)
-      const alert = gdacs.find((a) => a.eventid === key)
-      // `details` is keyed by `${eventtype}:${eventid}`, which is why the bare
-      // event id never found anything — see `detailKey` in shared/gdacs.
-      if (alert) return sheet.showGdacs(alert, gdacsDetails[detailKey(alert)] ?? null, pin, dock)
+      const alert = gdacs.find((a) => detailKey(a) === key)
+      if (alert) return sheet.showGdacs(alert, gdacsDetails[key] ?? null, pin, dock)
       const cp = chokepoints.find((c) => c.id === key)
       if (cp) return sheet.showChokepoint(cp, pin, dock)
       const ex = markets.find((m) => m.id === key)
@@ -5086,6 +5038,9 @@ export function mount(
      */
     function resolvePointer(point: Point, lngLat: [number, number]) {
       const f = topHit(point)
+      const source = f?.source
+      const ambient = source === 'conflict' || source === 'thermal' || source === 'famine' || source === 'gdacs'
+      writeAmbientMark('hover', ambient && f?.id != null ? { source, id: String(f.id) } : null)
       const overMarker = f !== null
       const e = { point, lngLat: { lng: lngLat[0], lat: lngLat[1] } }
 
@@ -5146,6 +5101,7 @@ export function mount(
 
     map.on('mouseout', () => {
       lastPointer = null
+      writeAmbientMark('hover', null)
       setHoverSlug(null)
       setHoverPrayer(null)
       hidePrayerTip()
@@ -6566,15 +6522,11 @@ export function mount(
   const measureChrome = () => {
     const scrub = timeline?.element
     if (scrub) {
-      document.body.style.setProperty('--map-scrub-h', `${Math.round(scrub.offsetHeight)}px`)
-      // The range chips stand above the scrubber's box on the desktop, so a
-      // card in the canvas's lower-left corner measures to their top
-      // (`--map-scrub-reach`), or it lies over them.
-      const top = Math.min(
-        scrub.getBoundingClientRect().top,
-        timeline?.controls.getBoundingClientRect().top ?? Number.POSITIVE_INFINITY,
-      )
-      document.body.style.setProperty('--map-scrub-reach', `${Math.round(window.innerHeight - top)}px`)
+      const reach = Math.round(window.innerHeight - scrub.getBoundingClientRect().top)
+      // On phones the drawer's own height is reserved separately.
+      const height = wideQuery.matches ? reach : scrub.offsetHeight
+      document.body.style.setProperty('--map-scrub-h', `${height}px`)
+      document.body.style.setProperty('--map-scrub-reach', `${reach}px`)
     }
   }
 
@@ -6767,7 +6719,7 @@ export function mount(
       prop: '--map-rail-user',
       id: 'rail',
       name: 'story list',
-      edge: () => feed.element.getBoundingClientRect().width,
+      edge: () => feed.element.getBoundingClientRect().right,
       onChange: onResize,
     }),
     createPaneSeam({
@@ -6779,7 +6731,7 @@ export function mount(
       // spine of sparklines. See the stylesheet's `body.map-aside-off`, and the
       // note on `verbs` for why the button must not go on saying "show".
       verbs: { off: 'Expand', on: 'Collapse' },
-      edge: () => hud.getBoundingClientRect().width,
+      edge: () => window.innerWidth - hud.getBoundingClientRect().left,
       onChange: onResize,
     }),
   ]

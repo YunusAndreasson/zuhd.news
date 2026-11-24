@@ -181,9 +181,8 @@ calendar `hijri.md`.
   one thing that clears `flying`; a bare `map.flyTo` leaves hover dead.
 - `Popup.addTo` fires `close` synchronously on an open popup. Attach only
   through `attach()` (`reattaching`), or the card stays on "Loading…".
-- A story card speaks as the article page does: headline at `--size-h3`,
-  the hook (the prose's first paragraph, the preview's lead) at `--size-md` in
-  `--map-ink`, then the body. A country's own card shares the headline.
+- Story and country card headlines use the 25px step (`--type-lede`).
+  A story's hook uses `--type-copy` in `--map-ink` in both preview and full card.
 - A story card is one width at two densities. `preview()` prefetches the
   story, and `growTo` runs after the position is final.
 - On the desktop a story's card is docked beside the list (`.map-story-dock`,
@@ -219,7 +218,7 @@ calendar `hijri.md`.
 - A story's `chart` is fetched only where `hasSeriesRecord`: a company's or a
   lab's id has no `/api/entity` file.
 - Peek answers one question and clips (`.map-sheet.is-peek`). Its offsets
-  are `--map-scrub-reach` (the scrubber or the range chips above it) and
+  are `--map-scrub-reach` (the range bar and its bottom inset) and
   `--map-rail-w`; the first is set on `body`, where the sheet is appended,
   and teardown removes it.
 - A docked card takes the canvas's free height (`--sheet-max-h`) and its width

@@ -41,9 +41,11 @@
 
       <section class="country-metrics">
         <h2 class="label section-title">Metrics</h2>
-        <ol class="metric-list">
-          {{metricRows}}
-        </ol>
+        <table class="metric-list" aria-label="Country metrics">
+          <colgroup span="1"></colgroup><colgroup span="1"></colgroup><colgroup span="2"></colgroup>
+          <thead><tr><th scope="col">Metric</th><th scope="col">Value</th><th scope="colgroup" colspan="2">Rank</th></tr></thead>
+          <tbody>{{metricRows}}</tbody>
+        </table>
       </section>
 
       {{coverageSection}}

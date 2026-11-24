@@ -5,6 +5,8 @@
 // reading surface back to the homepage after the old split-pane reader was
 // retired — the list is scannable on its own, and each row is a link.
 
+import { APP_ANDROID, APP_IOS } from '@shared/share'
+import { appPlatform } from '../_app-prompt'
 import { signedPct } from '@shared/chart/series'
 import { NARROW_PX, type MapPoint } from './types'
 import { CATEGORY_COLOUR, FALLBACK_CATEGORY_COLOUR } from './style'
@@ -94,7 +96,7 @@ export function createFeed(opts: FeedOptions): Feed {
   root.setAttribute('aria-label', 'Latest stories')
 
   const count = document.createElement('span')
-  count.className = 'map-feed-count'
+  count.className = 'map-feed-count sr-only'
   // Changing a range or a category rewrites the map and this number, and
   // says nothing out loud. Announcing the new count is the one piece of
   // feedback that confirms the control did anything at all.
@@ -109,28 +111,13 @@ export function createFeed(opts: FeedOptions): Feed {
   list.id = 'stories'
   list.tabIndex = -1
 
-  /**
-   * On a phone the rail is a drawer, and the head is its handle.
-   *
-   * The rail is a 21rem column beside the map on a desktop, which costs the
-   * map nothing. Reproduced on a phone it became a 42vh slab across the
-   * bottom: four stories visible, permanently, over a map already cut to 58vh
-   * — so neither half was usable and there was no gesture that gave the map
-   * its screen back. Collapsed to its own header it costs one line, and the
-   * whole head is the target: a 2.8rem bar is easy to hit, a chevron alone is
-   * not.
-   *
-   * A <button> wrapping the count rather than a click handler on the div, so
-   * it is reachable by keyboard and announces its state. The stylesheet is
-   * what decides whether the drawer exists at all — on a desktop the disclosure
-   * is inert and the rail has no collapsed height to return to.
-   *
-   * The head itself is a container rather than that button, because it holds
-   * two controls now. A <button> inside a <button> is invalid markup, and
-   * browsers resolve it by dropping the inner one — so nesting refresh inside
-   * the handle would have left it unclickable on exactly the layout where the
-   * handle exists.
-   */
+  // The store link and story drawer are separate targets in the phone bar.
+  const app = document.createElement('a')
+  app.className = 'map-feed-app'
+  app.textContent = 'Get the app'
+  const platform = appPlatform()
+  app.href = platform === 'ios' ? APP_IOS : platform === 'android' ? APP_ANDROID : '/get'
+
   const head = document.createElement('div')
   head.className = 'map-feed-head'
 
@@ -145,7 +132,8 @@ export function createFeed(opts: FeedOptions): Feed {
     '<svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" focusable="false">' +
     '<path d="M3.5 10 8 5.5 12.5 10"/></svg>'
 
-  disclosure.append(count, chevron)
+  disclosure.setAttribute('aria-label', 'Stories')
+  disclosure.append(chevron)
 
   /**
    * Check for new stories without leaving the page.
@@ -209,7 +197,7 @@ export function createFeed(opts: FeedOptions): Feed {
   search.setAttribute('aria-keyshortcuts', 'Meta+K Control+K /')
   search.addEventListener('click', () => opts.onSearch?.())
 
-  head.append(disclosure, ...(opts.onSearch ? [search] : []), refresh)
+  head.append(count, app, disclosure, ...(opts.onSearch ? [search] : []), refresh)
 
   // Between the head and the list, and outside both: see `filterHost`.
   const filterHost = document.createElement('div')
@@ -265,8 +253,7 @@ export function createFeed(opts: FeedOptions): Feed {
     if (!narrowQuery.matches) {
       disclosure.removeAttribute('aria-expanded')
       disclosure.removeAttribute('aria-controls')
-      // The count is said and not shown on the desktop, so this button is an
-      // empty box there: out of the tab order, or focus lands on nothing.
+      // Desktop has a permanent story list. The drawer handle is phone-only.
       disclosure.tabIndex = -1
       return
     }

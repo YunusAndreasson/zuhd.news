@@ -30,7 +30,8 @@ import { escHtml, escXml, smartQuotes } from './lib/html.js'
 import { dropRulesNeedingClass, KEPT_MAP_CLASSES } from './lib/page-css.js'
 import { ARCHETYPE_HEADER, siteFooter, WORDMARK, footerStatusLine } from './lib/site-chrome.js'
 import { dayLabel } from './lib/period.js'
-import { listRow } from './lib/list-row.js'
+import { storyDays } from './build/story-days.js'
+import { bundleIslands, scratchDir } from './lib/island-bundle.js'
 import { publishedTimes } from './lib/published-at.js'
 import { pruneOlderThan } from './lib/prune-cache.js'
 import { openStampLedger } from './lib/stable-stamp.js'
@@ -45,7 +46,12 @@ const TEMPLATES_DIR = join(ROOT, 'templates')
 
 const CATEGORY_ORDER = ['politics', 'economy', 'science', 'tech']
 
-
+const { CATEGORY_COLOUR, FALLBACK_CATEGORY_COLOUR, metricName } = await import(
+  await bundleIslands(scratchDir('page-labels'), [
+    { path: 'public/islands/_map/style.ts', names: ['CATEGORY_COLOUR', 'FALLBACK_CATEGORY_COLOUR'] },
+    { path: 'public/islands/_map/format.ts', names: ['metricName'] },
+  ], 'page-labels.mjs')
+)
 
 // Convert structured timeline array to HTML for web rendering
 const contextToHtml = (timeline) => {
@@ -155,21 +161,13 @@ const buildArticle = (filename, dir = CONTENT_DIR) => {
   // strip to the reader's HTML body.
   const concepts = Array.isArray(meta.concepts) ? meta.concepts : []
 
-  // Wrap a leading `Location — ` prefix in a small-caps dateline. The em
-  // dash is dropped; CSS handles the spacing. We strip the dateline from
-  // the markdown source before HTML rendering (so smartQuotes doesn't
-  // curl our attribute quotes), then inject the styled span back into
-  // the first paragraph of the rendered HTML.
+  // Both surfaces use the same prose. The map card gives the place its own
+  // line; in the reader it runs into the lede with the original dash.
   const datelineMatch = body.match(DATELINE_RE)
   const strippedBody = datelineMatch ? body.slice(datelineMatch[0].length) : body
-  let renderedHtml = markdownToHtml(strippedBody)
-  if (datelineMatch) {
-    const location = datelineMatch[1].trim()
-    renderedHtml = renderedHtml.replace(
-      /^<p>/,
-      () => `<p><span class="article-dateline">${escHtml(location)}</span>`,
-    )
-  }
+  const renderedHtml = markdownToHtml(strippedBody)
+  const dateline = datelineMatch ? escHtml(datelineMatch[1].trim()) : ''
+  const withDateline = (prefix) => dateline ? renderedHtml.replace(/^<p>/, () => `<p>${prefix}`) : renderedHtml
 
   const slug = basename(filename, '.md')
   return {
@@ -181,13 +179,9 @@ const buildArticle = (filename, dir = CONTENT_DIR) => {
     // newsletter — the correction reaches a subscriber through the channel
     // they already have rather than sitting on a page nobody revisits.
     correctedAt: corrections.length ? corrections[corrections.length - 1].date : null,
-    bodyHtml: renderedHtml + sourcemark,
-    // The same prose without the flat `Sources:` line. The map's story card
-    // renders its own attribution from the `sources[]` array — linked, and on a
-    // contested story annotated with each outlet's country and tone — so it
-    // needs the body to stop short of naming them, or the card would print the
-    // same outlets twice under two different treatments.
-    bodyHtmlBare: renderedHtml,
+    prose: withDateline(`<strong class="article-dateline">${dateline}</strong> — `),
+    sourcemark,
+    bodyHtmlBare: withDateline(`<span class="article-dateline">${dateline}</span>`),
     title: smartQuotes(meta.title || 'Untitled'),
     dateFormatted: formatDate(meta.date),
     sourceCount: sources.length,
@@ -331,15 +325,12 @@ const appHandoffHtml = () =>
  */
 const buildArticlePage = (article, prev, next, thread, template, indicatorMap, extras = {}) => {
   const { slug, meta, body, title, dateFormatted, addedAt, correctedAt } = article
-  // The prose, then the story's chart, then the corrections and the isnad, then
-  // the way to the map: `bodyHtml` is the prose and the source mark, and
-  // `bodyHtmlBare` the prose alone, so the mark is what follows it.
-  const prose = article.bodyHtmlBare ?? article.bodyHtml
-  const sourcemark = article.bodyHtml.slice(prose.length)
+  // The standalone reader puts the source label in the ledger gutter.
+  const sourceRows = article.sourcemark
+    .replace('<p class="article-sources-flat">Sources: ', '<p class="article-sources-flat"><span class="ledger-label">Sources</span>')
   const mapLink = extras.onMap
-    ? `<p class="article-map-link"><a href="/s/${slug}">See it on the map →</a></p>`
+    ? `<p class="article-map-link"><span class="ledger-label">Map</span><a href="/s/${slug}">See it on the map →</a></p>`
     : ''
-  const bodyHtml = (extras.locator ?? '') + prose + (extras.chart ?? '') + sourcemark + mapLink
   const isoDate = meta.date || new Date(addedAt).toISOString()
   const category = meta.category || 'politics'
   const description = buildDescription(body)
@@ -397,7 +388,9 @@ const buildArticlePage = (article, prev, next, thread, template, indicatorMap, e
     .replace(/{{title}}/g, () => escHtml(title))
     .replace(/{{titleAttr}}/g, () => escHtml(title))
     .replace(/{{description}}/g, () => escHtml(description))
-    .replace(/{{category}}/g, () => category)
+    .replace(/{{category}}/g, () => escHtml(category))
+    .replace('{{categoryName}}', () => escHtml(capitalize(category)))
+    .replace('{{categoryHue}}', () => CATEGORY_COLOUR[category] ?? FALLBACK_CATEGORY_COLOUR)
     .replace(/{{dateFormatted}}/g, () => dateFormatted)
     .replace(/{{isoDate}}/g, () => isoDate)
     .replace(/{{kickerDate}}/g, () => escHtml(kickerDate))
@@ -414,7 +407,9 @@ const buildArticlePage = (article, prev, next, thread, template, indicatorMap, e
         ? '<a class="article-corrected" href="#corrections">corrected</a>'
         : '',
     )
-    .replace(/{{bodyHtml}}/g, () => bodyHtml)
+    .replace('{{bodyHtml}}', () => (extras.locator ?? '') + article.prose)
+    .replace('{{storyChart}}', () => extras.chart ?? '')
+    .replace('{{sourceRows}}', () => sourceRows + mapLink)
     .replace(/{{entityStrip}}/g, () => entityStripHtml(meta.entities, indicatorMap))
     .replace(/{{threadBlock}}/g, () => threadBlockHtml(thread?.threadContext))
     // The map, not this page. A reader on the article is looking at the
@@ -506,6 +501,14 @@ rmSync(join(DIST_DIR, 'style.css'), { force: true })
 
 const cssContent = transformSync(readFileSync(join(ROOT, 'public', 'style.css'), 'utf-8'), { loader: 'css', minify: true }).code
 
+// The two standalone pages need only the shared face and tokens, even on a 404.
+const standaloneCss = cssContent.match(/(?:@font-face|:root)\{[^{}]*\}/g).join('')
+for (const page of ['404.html', 'get.html']) {
+  const path = join(DIST_DIR, page)
+  const html = readFileSync(path, 'utf-8')
+  writeFileSync(path, html.replace('<link rel="stylesheet" href="/style.css">', () => `<style>${standaloneCss}</style>`))
+}
+
 // Every page but the map, without the map's rules. A rule that needs a `.map-*`
 // class cannot match where no element has one, and they were over half of what
 // each article re-downloaded. `KEPT_MAP_CLASSES` are the ones another island
@@ -553,7 +556,7 @@ const headCommon = `<meta charset="utf-8">
   <meta name="color-scheme" content="light dark">
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
   <meta name="theme-color" content="#fff" media="(prefers-color-scheme: light)">
-  <meta name="theme-color" content="#080808" media="(prefers-color-scheme: dark)">
+  <meta name="theme-color" content="#080a0d" media="(prefers-color-scheme: dark)">
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="default">
@@ -579,9 +582,7 @@ const headCommon = `<meta charset="utf-8">
  *
  * Unconditional, because these pages are unconditional. The value is
  * `--map-ground` itself, so the chrome and the canvas are the same black
- * rather than two blacks a few points apart. (The site-wide dark value was
- * `#141414`, which was a third black again — it matched neither `--bg`'s
- * `#080808` nor the map's ground.)
+ * across both page types.
  */
 const headCommonDark = headCommon.replace(
   / {2}<meta name="theme-color"[^\n]*\n {2}<meta name="theme-color"[^\n]*/,
@@ -2113,7 +2114,7 @@ for (const a of sorted) {
       category: a.meta.category || 'politics',
       location: a.meta.location || '',
       eventCoverage: Number(a.meta.eventCoverage) || 0,
-      bodyHtml: a.bodyHtmlBare ?? a.bodyHtml,
+      bodyHtml: a.bodyHtmlBare,
       sentimentDivergence:
         a.meta.sentimentDivergence != null ? Number(a.meta.sentimentDivergence) : null,
       // `country` and `sentiment` were dropped here while feed.json (above)
@@ -2463,47 +2464,20 @@ for (const a of sorted) {
   // biome-ignore lint/suspicious/noAssignInExpressions: the (x ??= []) group-by idiom, in statement position. The rule is here for `if (a = b)`.
   ;(byCategory[cat] ??= []).push(a)
 }
-// Group rows under a date heading so a 14-day archive scans without the
-// date column repeating on every row. Days come in reverse-chronological
-// order (newest first).
-const formatDayHeading = (iso) => {
-  // `iso` is a UTC day, so it is printed as one: the machine's locale set the
-  // month before the date. `island-loader.js` makes the last two "Today" and
-  // "Yesterday", which printed here stayed true only until midnight.
-  return new Date(iso).toLocaleDateString('en-GB', { weekday: 'long', day: 'numeric', month: 'long', timeZone: 'UTC' })
-}
 for (const cat of CATEGORY_ORDER) {
   const items = (byCategory[cat] || [])
     .slice()
     .sort((a, b) => (b.meta.date || '').localeCompare(a.meta.date || ''))
   if (items.length === 0) continue
-  const groups = []
-  let currentDay = null
-  for (const a of items) {
-    const day = (a.meta.date || '').slice(0, 10)
-    if (day !== currentDay) {
-      currentDay = day
-      groups.push({ day, items: [] })
-    }
-    groups[groups.length - 1].items.push(a)
-  }
-  const rows = groups.map(g => `<li class="category-day-group">
-      <h2 class="label section-title category-day-heading"><time datetime="${g.day}" data-day>${formatDayHeading(g.day)}</time></h2>
-      <ol class="category-day-list">${g.items.map(a => `<li>${listRow({
-        title: a.title,
-        url: `/a/${a.slug}`,
-        source: a.sources[0]?.name || '',
-        variant: 'title-source',
-      })}</li>`).join('')}</ol>
-    </li>`).join('\n')
   const html = categoryPageTemplate
     .replaceAll('{{shareRow}}', () => shareRowHtml(`/c/${cat}`, `${capitalize(cat)} — zuhd.news`))
     .replaceAll('{{cat}}', () => cat)
+    .replace('{{categoryHue}}', () => CATEGORY_COLOUR[cat])
     .replaceAll('{{catCap}}', () => capitalize(cat))
     .replaceAll('{{count}}', () => String(items.length))
     .replaceAll('{{days}}', () => String(BUILD_WINDOW_DAYS))
     .replaceAll('{{description}}', () => escHtml(`${items.length} ${cat} articles on zuhd.news. Minimalist global news, typography-first.`))
-    .replaceAll('{{rows}}', () => rows)
+    .replaceAll('{{rows}}', () => storyDays(items))
   writeFileSync(join(DIST_DIR, 'c', `${cat}.html`), html)
 
   // The desk's own share card. Four files, no disk cache — the render is a
@@ -2590,6 +2564,7 @@ console.log(`  Built: a/ (${sorted.length} article pages)`)
 // coverage for articles datelined in the country. Reads COUNTRY_DATA,
 // COUNTRY_AUGMENTED, and country-ranking.ts directly from /shared/.
 const countryResult = await buildCountryPages({
+  metricName,
   sorted,
   distDir: DIST_DIR,
   template: countryTemplate,
