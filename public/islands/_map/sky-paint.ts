@@ -28,7 +28,6 @@ import { daysSinceJ2000, gmstHours, sunEquatorial } from './solar'
 import {
   directionOf,
   place,
-  type Placed,
   type Project,
   type SkyCamera,
   skyFrame,
@@ -128,13 +127,30 @@ export function createSky(view: SkyView): Sky {
   let dpr = 1
   let now = new Date()
 
+  /**
+   * What is on the canvas: the disc it was painted round, the fade, and the
+   * sun's bearing it was painted at (null for the full ring).
+   *
+   * A pan at one zoom moves neither the disc's centre nor its radius (MapLibre
+   * holds the planet's size), only the sun's bearing on screen. So a `move`
+   * that leaves the disc where it was turns the painted canvas with a CSS
+   * rotation, which the compositor applies without a repaint, instead of
+   * filling 72 gradient wedges again. Measured on a spin: the fills were a
+   * quarter of the GPU process's time per frame.
+   */
+  let painted: { cx: number; cy: number; r: number; fade: number; dpr: number; toSun: number | null } | null =
+    null
+  /** The canvas's side and where it sits, in CSS px. */
+  let side = 0
+
   const resize = () => {
-    const rect = canvas.getBoundingClientRect()
+    // The canvas is a square round the disc; the frame it can be seen in is
+    // its parent's.
+    const frame = canvas.parentElement
     dpr = Math.min(2, window.devicePixelRatio || 1)
-    width = rect.width
-    height = rect.height
-    canvas.width = Math.max(1, Math.round(width * dpr))
-    canvas.height = Math.max(1, Math.round(height * dpr))
+    width = frame?.clientWidth ?? 0
+    height = frame?.clientHeight ?? 0
+    painted = null
   }
 
   /**
@@ -150,13 +166,14 @@ export function createSky(view: SkyView): Sky {
   }
 
   const clear = () => {
+    painted = null
     if (!ctx) return
     ctx.setTransform(1, 0, 0, 1, 0, 0)
     ctx.clearRect(0, 0, canvas.width, canvas.height)
   }
 
   /**
-   * The atmosphere, outside the limb.
+   * The atmosphere, outside the limb, round a disc at (`c`, `c`) of radius `r`.
    *
    * Seventy-two wedges rather than one ring with a second gradient over it,
    * because carving a crescent out of a ring on this canvas means
@@ -165,21 +182,14 @@ export function createSky(view: SkyView): Sky {
    * drawn with `lighter` — which is both what light does and what makes
    * adjacent wedges meet with no seam.
    */
-  const drawHalo = (cam: SkyCamera, sun: Placed | null, fade: number) => {
+  const drawHalo = (c: number, r: number, toSun: number | null, fade: number) => {
     if (!ctx) return
-    const thickness = Math.max(3, cam.r * HALO_THICKNESS)
-    const outer = cam.r + thickness
-    const grad = ctx.createRadialGradient(cam.cx, cam.cy, cam.r, cam.cx, cam.cy, outer)
+    const thickness = Math.max(3, r * HALO_THICKNESS)
+    const outer = r + thickness
+    const grad = ctx.createRadialGradient(c, c, r, c, c, outer)
     grad.addColorStop(0, `rgb(${HALO_RGB[0]} ${HALO_RGB[1]} ${HALO_RGB[2]} / 1)`)
     grad.addColorStop(0.45, `rgb(${HALO_RGB[0]} ${HALO_RGB[1]} ${HALO_RGB[2]} / 0.34)`)
     grad.addColorStop(1, `rgb(${HALO_RGB[0]} ${HALO_RGB[1]} ${HALO_RGB[2]} / 0)`)
-
-    // Which way the sun lies on screen. When it is off the drawn sky the day
-    // side is still knowable — the sun is then behind the camera, which is to
-    // say the whole visible face is lit — so the crescent becomes a full ring.
-    const toSun = sun
-      ? Math.atan2(sun.y - cam.cy, sun.x - cam.cx)
-      : null
 
     ctx.save()
     ctx.globalCompositeOperation = 'lighter'
@@ -192,12 +202,12 @@ export function createSky(view: SkyView): Sky {
     // globe covers the inner ramp in hardware, so the profile a reader sees
     // begins at full strength on the edge itself with no seam where MapLibre's
     // antialiased disc ends. Outside, it falls off — see `AIRGLOW_REACH`.
-    const rimInner = cam.r - 0.6
-    const rimOuter = cam.r + AIRGLOW_REACH
+    const rimInner = r - 0.6
+    const rimOuter = r + AIRGLOW_REACH
     const span = rimOuter - rimInner
     // Where a radius lands on the gradient's 0..1 parameter.
-    const at = (px: number) => (cam.r + px - rimInner) / span
-    const rim = ctx.createRadialGradient(cam.cx, cam.cy, rimInner, cam.cx, cam.cy, rimOuter)
+    const at = (px: number) => (r + px - rimInner) / span
+    const rim = ctx.createRadialGradient(c, c, rimInner, c, c, rimOuter)
     const glow = `rgb(${AIRGLOW_RGB[0]} ${AIRGLOW_RGB[1]} ${AIRGLOW_RGB[2]}`
     rim.addColorStop(0, `${glow} / 1)`)
     // Full through the limb, so the peak is exactly the token's measurement.
@@ -208,8 +218,8 @@ export function createSky(view: SkyView): Sky {
     ctx.globalAlpha = AIRGLOW_ALPHA * fade
     ctx.fillStyle = rim
     ctx.beginPath()
-    ctx.arc(cam.cx, cam.cy, rimOuter, 0, Math.PI * 2)
-    ctx.arc(cam.cx, cam.cy, rimInner, 0, Math.PI * 2, true)
+    ctx.arc(c, c, rimOuter, 0, Math.PI * 2)
+    ctx.arc(c, c, rimInner, 0, Math.PI * 2, true)
     ctx.fill()
 
     const step = (Math.PI * 2) / HALO_WEDGES
@@ -228,8 +238,8 @@ export function createSky(view: SkyView): Sky {
       if (alpha < 0.004) continue
       ctx.globalAlpha = alpha
       ctx.beginPath()
-      ctx.arc(cam.cx, cam.cy, outer, a0, a1)
-      ctx.arc(cam.cx, cam.cy, cam.r, a1, a0, true)
+      ctx.arc(c, c, outer, a0, a1)
+      ctx.arc(c, c, r, a1, a0, true)
       ctx.closePath()
       ctx.fillStyle = grad
       ctx.fill()
@@ -237,20 +247,55 @@ export function createSky(view: SkyView): Sky {
     ctx.restore()
   }
 
+  /** A square canvas round the disc, painted with the crescent at `toSun`. */
+  const paint = (cam: SkyCamera, toSun: number | null, fade: number) => {
+    if (!ctx) return
+    // Room for the halo and the airglow's falloff, and a pixel to spare.
+    const reach = Math.max(3, cam.r * HALO_THICKNESS, AIRGLOW_REACH) + 2
+    const next = Math.ceil(2 * (cam.r + reach))
+    if (next !== side || canvas.width !== Math.round(next * dpr)) {
+      side = next
+      canvas.width = Math.round(side * dpr)
+      canvas.height = Math.round(side * dpr)
+      canvas.style.width = `${side}px`
+      canvas.style.height = `${side}px`
+    }
+    ctx.setTransform(1, 0, 0, 1, 0, 0)
+    ctx.clearRect(0, 0, canvas.width, canvas.height)
+    ctx.setTransform(dpr, 0, 0, dpr, 0, 0)
+    drawHalo(side / 2, cam.r, toSun, fade)
+    painted = { cx: cam.cx, cy: cam.cy, r: cam.r, fade, dpr, toSun }
+    pose(cam, 0)
+  }
+
+  /** Puts the canvas's centre on the disc's, turned by `turn` radians. */
+  const pose = (cam: SkyCamera, turn: number) => {
+    const x = cam.cx - side / 2
+    const y = cam.cy - side / 2
+    canvas.style.transform = turn ? `translate(${x}px, ${y}px) rotate(${turn}rad)` : `translate(${x}px, ${y}px)`
+  }
+
+  /** Whether the painted canvas still fits this camera, so turning it will do. */
+  const fits = (cam: SkyCamera, toSun: number | null, fade: number) =>
+    painted !== null &&
+    painted.dpr === dpr &&
+    Math.abs(painted.cx - cam.cx) < 0.25 &&
+    Math.abs(painted.cy - cam.cy) < 0.25 &&
+    Math.abs(painted.r - cam.r) < 0.25 &&
+    Math.abs(painted.fade - fade) < 0.002 &&
+    (painted.toSun === null) === (toSun === null)
+
   const draw = (at?: Date) => {
     if (!ctx) return
     now = at ?? new Date()
-    clear()
-    if (width === 0 || height === 0) return
-    if (typeof document !== 'undefined' && document.hidden) return
+    if (width === 0 || height === 0) return clear()
+    if (typeof document !== 'undefined' && document.hidden) return clear()
 
     const fade = zoomFade()
-    if (fade <= 0) return
+    if (fade <= 0) return clear()
 
     const cam = calibrate(view.project, view.centre(), view.bearing(), view.pitch())
-    if (!cam) return
-
-    ctx.setTransform(dpr, 0, 0, dpr, 0, 0)
+    if (!cam) return clear()
 
     const n = daysSinceJ2000(now)
     const [lng, lat] = view.centre()
@@ -260,11 +305,18 @@ export function createSky(view: SkyView): Sky {
     // centre: that parallax is 0.008° for the sun, well under a pixel. It was
     // applied while the moon was drawn, for which it reaches 2°.
     const sunEq = sunEquatorial(now)
-    const sunPlaced = place(directionOf(sunEq.ra, sunEq.dec), cam, frame)
+    const sun = place(directionOf(sunEq.ra, sunEq.dec), cam, frame)
+    // Which way the sun lies on screen. When it is off the drawn sky the day
+    // side is still knowable — the sun is then behind the camera, which is to
+    // say the whole visible face is lit — so the crescent becomes a full ring.
+    // The sun itself is not drawn.
+    const toSun = sun ? Math.atan2(sun.y - cam.cy, sun.x - cam.cx) : null
 
-    // The sun itself is not drawn: the halo takes its bearing, which is what
-    // puts the crescent on the day limb.
-    drawHalo(cam, sunPlaced, fade)
+    if (painted && fits(cam, toSun, fade)) {
+      pose(cam, toSun === null || painted.toSun === null ? 0 : toSun - painted.toSun)
+      return
+    }
+    paint(cam, toSun, fade)
   }
 
   return {

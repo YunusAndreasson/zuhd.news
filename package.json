@@ -22,6 +22,7 @@
     "perf": "node scripts/perf/probe.mjs",
     "perf:idle": "node scripts/perf/idle-renders.mjs",
     "perf:profile": "node scripts/perf/idle-profile.mjs",
+    "perf:spin": "node scripts/perf/spin.mjs",
     "fetch": "node scripts/fetch-news.js",
     "deploy": "npx wrangler pages deploy dist --project-name zuhd-news --branch master --commit-dirty=true",
     "publish": "node scripts/publish-edition.js && npm run deploy",

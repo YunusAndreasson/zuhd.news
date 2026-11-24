@@ -100,7 +100,7 @@ import { createSheet, type AmbientMark, type Sheet } from './_map/sheet'
 import { MAKKAH_LABEL, MAKKAH_TZ, metricName, relativeTime, solarClock, zoneOffset } from './_map/format'
 import { createStoryPopup, type CountryStanding, type ShownStory, type StoryPopup } from './_map/popup'
 import { reducedMotion } from './_disclosure'
-import { dayPolygon, nightPolygon, sunLightPosition, terminatorBand } from './_map/solar'
+import { dayPolygon, nightPolygon, terminatorBand } from './_map/solar'
 import { PRAYER_NOTE, PRAYERS, type PrayerId, prayerInstantAt, prayerLines } from './_map/prayer'
 import { HIJRI_NOTE, hijriLabel } from './_map/hijri'
 import {
@@ -4115,22 +4115,6 @@ export function mount(
     // so the state map has to be rewritten rather than replayed onto a feature
     // order that may no longer match it.
     syncPrayerHover(true)
-    // MapLibre's own atmosphere, aimed at the same sun as everything above it.
-    //
-    // Until this line the globe's crescent came from an undeclared `light`,
-    // which meant `anchor: 'viewport'` and a `u_sun_pos` that never moved — a
-    // lit limb pinned to the upper-left of the screen at every hour of every
-    // day, over a terminator drawn from the real sun and beside `sky-paint.ts`'s
-    // own crescent, which was right the whole time. The derivation, and the
-    // reason the antisolar point is the thing handed over, are in
-    // `sunLightPosition`.
-    //
-    // It belongs on this tick and not on `move`: `anchor: 'map'` means the
-    // position is in the world frame and MapLibre re-rotates it into view space
-    // itself, every frame, so panning cannot stale it. What staleness there is
-    // is the sun's own 0.5° per tick, the same figure the sky and the shade
-    // above are already drawn at.
-    map.setLight({ anchor: 'map', position: sunLightPosition(now) })
     // The sky is on this tick for exactly the reason the terminator is: it is a
     // function of where the sun is, and 120 seconds is 0.5° of sky rotation,
     // which is under a pixel where the sky is drawn most precisely. It is *not*
@@ -6767,8 +6751,8 @@ export function mount(
   void startCore()
 
   /**
-   * Where each country's name stands on the map, from the `countryLabels`
-   * source the map already holds: the switcher flies there and opens the
+   * Where each country's name stands on the map, from the `names` source the
+   * map already holds (its `set: 'country'` points): the switcher flies there and opens the
    * country's card at that point. Read once, when the switcher first opens.
    */
   let countryPoints: Map<string, [number, number]> | null = null
@@ -6776,7 +6760,7 @@ export function mount(
     if (countryPoints) return
     // Before the style has loaded there is no source to read: leave the cache
     // unset so the next opening asks again, rather than keeping an empty list.
-    const source = map.getSource<GeoJSONSource>('countryLabels')
+    const source = map.getSource<GeoJSONSource>('names')
     if (!source) return
     countryPoints = new Map()
     const points = countryPoints
@@ -6786,7 +6770,7 @@ export function mount(
         if (data.type !== 'FeatureCollection') return
         for (const f of data.features) {
           const name = f.properties?.name
-          if (typeof name === 'string' && f.geometry.type === 'Point') {
+          if (f.properties?.set === 'country' && typeof name === 'string' && f.geometry.type === 'Point') {
             points.set(name, f.geometry.coordinates as [number, number])
           }
         }

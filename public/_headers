@@ -44,21 +44,15 @@
 /basemap/places.geojson
   Cache-Control: public, max-age=86400, stale-while-revalidate=604800
 
-/basemap/country-labels.geojson
+/basemap/names.geojson
   Cache-Control: public, max-age=86400, stale-while-revalidate=604800
 
-# Water and sea names, fetched at idle. Every basemap URL carries `?v=BASEMAP_V`,
+# Water, fetched at idle. Every basemap URL carries `?v=BASEMAP_V`,
 # so a rebuilt file still reaches a reader inside the day.
 /basemap/lakes.geojson
   Cache-Control: public, max-age=86400, stale-while-revalidate=604800
 
 /basemap/rivers.geojson
-  Cache-Control: public, max-age=86400, stale-while-revalidate=604800
-
-/basemap/seas.geojson
-  Cache-Control: public, max-age=86400, stale-while-revalidate=604800
-
-/basemap/regions.geojson
   Cache-Control: public, max-age=86400, stale-while-revalidate=604800
 
 # Islands split by extension so the two rules never both match: esbuild emits

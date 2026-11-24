@@ -77,9 +77,6 @@ calendar `hijri.md`.
 - MapLibre's atmosphere is off (`atmosphere-blend` 0, stated: a `sky` block
   without it is 0.8). It paints over every layer, and over the poles its lit
   edge drew a second, shadowed sphere. The sky canvas draws the limb.
-- `drawSolar` sets the light with `anchor: 'map'` and `sunLightPosition`, the
-  antisolar direction (MapLibre negates it). With no `light` the crescent is
-  fixed to the screen. No other `sky` property reaches the globe.
 - **Never call `setPadding` mid-flight**: it is a `jumpTo`, which cancels the
   flight. Use `writePadding`, which defers while `flying`; the drawer snaps
   shut (`setExpanded(open, true)`) before a flight.
@@ -104,6 +101,12 @@ calendar `hijri.md`.
 - `Popup` keeps `locationOccludedOpacity: 0`, and `syncOccludedPointer`
   mirrors it to `pointer-events`: opacity alone leaves an unseen card taking
   clicks.
+- Every source with a visible layer costs each frame its own tile selection
+  (about 0.45 ms of main thread on a spin, Intel HD 630). Put static or
+  co-written GeoJSON in one source told apart by a property (`names`,
+  `sphere`); never merge sources written in two steps, as the callouts are.
+- Measure a frame with `npm run perf:spin`: draw calls and thread CPU time,
+  A/B in one tab. Wall time on this laptop swings ±30%.
 - A non-constant `symbol-sort-key` draws each run of equal keys in its own
   call, every frame: never key on one value per feature. `story-points` draws
   in source order (`symbol-z-order: 'source'`), written oldest first.
