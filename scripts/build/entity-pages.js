@@ -20,7 +20,7 @@ import { formatDate } from '../lib/article-chain.js'
 import { labelDay } from '../lib/period.js'
 import { escHtml } from '../lib/html.js'
 import { footerStatusLine } from '../lib/site-chrome.js'
-import { listRow } from '../lib/list-row.js'
+import { storyDays } from './story-days.js'
 import { canonicalIndicatorId } from '../lib/entity-registry.js'
 import { loadShared } from './shared-ts.js'
 import { latestTrendsPath } from '../lib/trends-snapshot.js'
@@ -367,13 +367,7 @@ export const buildEntityPages = async ({
           ${
             cited.length
               ? `<ol class="archive-article-list entity-recent-sources">
-            ${cited.map((a) => `<li>${listRow({
-              title: a.title,
-              url: `/a/${a.slug}`,
-              date: a.date,
-              dateFormatted: a.dateFormatted,
-              variant: 'date-title',
-            })}</li>`).join('')}
+            ${storyDays(cited, { heading: 'h3' })}
           </ol>`
               : ''
           }
@@ -384,14 +378,7 @@ export const buildEntityPages = async ({
       ? `<section class="entity-mentioned">
           <h2 class="label section-title">Mentioned in · ${mentions.length}</h2>
           <ol class="archive-article-list">
-            ${mentions.map((a) => `<li>${listRow({
-              title: a.title,
-              url: `/a/${a.slug}`,
-              date: a.meta.date,
-              dateFormatted: a.dateFormatted,
-              source: a.sources[0]?.name || '',
-              variant: 'date-title-source',
-            })}</li>`).join('')}
+            ${storyDays(mentions, { heading: 'h3' })}
           </ol>
         </section>`
       : ''

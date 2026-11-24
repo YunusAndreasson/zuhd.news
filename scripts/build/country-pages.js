@@ -16,7 +16,7 @@ import { largestPolygonCentroid } from '../lib/geo-point.js'
 import { buildCountryOgPng } from '../lib/og-image.js'
 import { escHtml } from '../lib/html.js'
 import { footerStatusLine } from '../lib/site-chrome.js'
-import { listRow } from '../lib/list-row.js'
+import { storyDays } from './story-days.js'
 import { loadShared } from './shared-ts.js'
 import { ROOT } from '../lib/paths.js'
 
@@ -32,19 +32,16 @@ import { ROOT } from '../lib/paths.js'
  * next cell, so announcing it twice makes a 26-row table read as 52 facts. It
  * used to carry an `aria-label` of its own, which is what produced that.
  */
-const renderMetricRow = (rankStrip, meta, value, rank, total) => {
+const renderMetricRow = (rankStrip, metricName, meta, value, rank, total) => {
   const strip = rankStrip(rank, total)
   const source = meta.source ? escHtml(meta.source) : ''
   return `
-    <li class="metric-row">
-      <div class="metric-label">${escHtml(meta.label)}</div>
-      <div class="metric-value t-tabular">${escHtml(value ?? '—')}</div>
-      <div class="metric-strip" aria-hidden="true">
-        <span class="metric-strip-fill" style="--fill:${strip.css}"></span>
-      </div>
-      <div class="metric-rank t-tabular">${escHtml(strip.text)}</div>
-      ${source ? `<div class="metric-source t-source-host">${source}</div>` : ''}
-    </li>`
+    <tr class="metric-row">
+      <th scope="row" class="metric-label">${escHtml(metricName(meta.label))}${source ? `<span class="metric-source">${source}</span>` : ''}</th>
+      <td class="metric-value">${escHtml(value ?? '—')}</td>
+      <td aria-hidden="true"><div class="metric-strip"><span class="metric-strip-fill" style="--fill:${strip.css}"></span></div></td>
+      <td class="metric-rank t-tabular">${escHtml(strip.text)}</td>
+    </tr>`
 }
 
 /**
@@ -164,10 +161,17 @@ const trajectoriesHtml = (cards, TRAJECTORIES, CHART) => {
       ]
         .filter(Boolean)
         .join(' · ')
+      const last = model.latest
+      const move = CHART.rowChange(model, last.i)
+      const comparisonYear = model.windowPeriods[last.i - 1]
+      const rank = card.key === 'complexity' ? `Rank ${card.headline}. ` : ''
       return `<article class="country-trajectory">
-          <h3 class="label">${escHtml(card.eyebrow)}</h3>
-          <p class="country-trajectory-headline">${escHtml(card.headline)}</p>
-          <p class="t-caption country-trajectory-subtitle">${escHtml(card.subtitle)}</p>
+          <div class="article-chart-head">
+            <h3 class="article-chart-label">${escHtml(card.label)}</h3>
+            <span class="article-chart-reading">${escHtml(model.formatExact(last.value))}</span>
+            ${move ? `<span class="article-chart-move">${escHtml(move.text)} vs ${escHtml(comparisonYear)}</span>` : ''}
+          </div>
+          <p class="t-caption country-trajectory-subtitle">${escHtml(rank + card.subtitle)}</p>
           <div class="country-trajectory-chart" data-island-auto="series-chart">
             ${renderMarkup(staticFigure(model, { caption }))}
             <script type="application/json" class="chart-source">${chartSource({
@@ -214,7 +218,7 @@ const resolveArticleCountry = (feat, countries, lat, lng) => {
 
 /**
  * @param {{ sorted: any[], distDir: string, template: string,
- *           skipOg?: boolean,
+ *           metricName: (label: string) => string, skipOg?: boolean,
  *           hazards?: { totals?: any[], conflict?: any, alerts?: any[] },
  *           shareRowHtml?: (target: string, title: string) => string }} opts
  *        `hazards` is what the build's hazard snapshots hold: the IPC's country
@@ -234,6 +238,7 @@ const resolveArticleCountry = (feat, countries, lat, lng) => {
  */
 export const buildCountryPages = async ({
   sorted,
+  metricName,
   distDir,
   template,
   shareRowHtml = () => '',
@@ -387,7 +392,7 @@ export const buildCountryPages = async ({
     }).filter(Boolean)
 
     const metricRows = metricResults
-      .map((r) => renderMetricRow(rankStrip, r.meta, r.value, r.rank, r.total))
+      .map((r) => renderMetricRow(rankStrip, metricName, r.meta, r.value, r.rank, r.total))
       .join('\n')
 
     const hazardsSection = hazardsHtml(hazardsByCountry.get(iso2), FACTS)
@@ -402,14 +407,7 @@ export const buildCountryPages = async ({
       ? `<section class="country-coverage">
           <h2 class="label section-title">Recent coverage · ${recent.length}</h2>
           <ol class="country-coverage-list">
-            ${recent.map((a) => `<li>${listRow({
-              title: a.title,
-              url: `/a/${a.slug}`,
-              date: a.meta.date,
-              dateFormatted: a.dateFormatted,
-              category: a.meta.category || '',
-              variant: 'date-title-category',
-            })}</li>`).join('')}
+            ${storyDays(recent, { heading: 'h3', showCategory: true })}
           </ol>
         </section>`
       : ''
