@@ -1,98 +1,5 @@
 [
   {
-    "timestamp": "2026-11-03T05:15:50.185Z",
-    "candidateCount": 10,
-    "candidates": [
-      {
-        "slug": "2026-11-03-us-midterms-vote-trump-approval-iran-war-fuel-prices",
-        "title": "Midterms Test Trump's War",
-        "category": "politics",
-        "eventCoverage": 524,
-        "importance": 6
-      },
-      {
-        "slug": "2026-11-03-us-strikes-qeshm-island-bandar-lengeh-hormuz",
-        "title": "US Strikes Qeshm Island",
-        "category": "politics",
-        "eventCoverage": 440,
-        "importance": 6
-      },
-      {
-        "slug": "2026-11-03-apple-ternus-record-quarter-india-memory-chip-prices",
-        "title": "Apple Raises Prices",
-        "category": "tech",
-        "eventCoverage": 291,
-        "importance": 6
-      },
-      {
-        "slug": "2026-11-03-un-reports-cryosphere-irreversible-ice-loss-1-5c",
-        "title": "UN Warns On Ice",
-        "category": "science",
-        "eventCoverage": 83,
-        "importance": 6
-      },
-      {
-        "slug": "2026-11-02-russian-bomb-aid-centre-komyshuvakha-24-killed",
-        "title": "Russian Bomb Kills Aid Seekers",
-        "category": "politics",
-        "eventCoverage": 78,
-        "importance": 6
-      },
-      {
-        "slug": "2026-11-03-saudi-airstrikes-yemen-17-killed-children",
-        "title": "Saudi Strikes Hit Yemen",
-        "category": "politics",
-        "eventCoverage": 0,
-        "importance": 6
-      },
-      {
-        "slug": "2026-11-03-karachi-imported-wheat-flour-roti-prices",
-        "title": "Imported Wheat Misses Bread",
-        "category": "economy",
-        "eventCoverage": 0,
-        "importance": 6
-      },
-      {
-        "slug": "2026-11-02-chinese-cars-argentina-market-local-manufacturers",
-        "title": "Chinese Cars Flood Argentina",
-        "category": "economy",
-        "eventCoverage": 0,
-        "importance": 6
-      },
-      {
-        "slug": "2026-11-03-uk-ncsc-annual-report-unprecedented-rise-cyberattacks",
-        "title": "UK Braces For Cyberattacks",
-        "category": "tech",
-        "eventCoverage": 0,
-        "importance": 6
-      },
-      {
-        "slug": "2026-11-03-bytedance-ocean-engine-ends-agency-rebates",
-        "title": "ByteDance Cuts Agency Rebates",
-        "category": "tech",
-        "eventCoverage": 0,
-        "importance": 6
-      }
-    ],
-    "selected": {
-      "slug": "2026-11-03-us-midterms-vote-trump-approval-iran-war-fuel-prices",
-      "title": "Midterms Test Trump's War",
-      "category": "politics",
-      "body": "Diesel hit a record $6.52 a gallon in",
-      "eventCoverage": 524,
-      "importance": 6
-    },
-    "skipReason": null,
-    "sent": true,
-    "pushTitle": "Breaking News",
-    "pushBody": "US midterms open with Trump's Iran war and fuel prices top of voters' concerns",
-    "response": {
-      "pushed": 1,
-      "skipped": 0,
-      "tokens": 5
-    }
-  },
-  {
     "timestamp": "2026-11-03T10:18:14.674Z",
     "candidateCount": 10,
     "candidates": [
@@ -10196,6 +10103,113 @@
     "sent": true,
     "pushTitle": "Breaking News",
     "pushBody": "Spain Supreme Court shelves case against Puigdemont, clearing return from exile",
+    "response": {
+      "pushed": 1,
+      "skipped": 0,
+      "tokens": 4
+    }
+  },
+  {
+    "timestamp": "2026-11-24T14:19:04.701Z",
+    "candidateCount": 12,
+    "candidates": [
+      {
+        "slug": "2026-11-24-punjab-akali-dal-bjp-alliance-2027-farm-laws",
+        "title": "Akalis Rejoin Modi's Alliance",
+        "category": "politics",
+        "eventCoverage": 282,
+        "importance": 6
+      },
+      {
+        "slug": "2026-11-24-anthropic-shares-ipo-price-nvidia-huang-return",
+        "title": "Anthropic Lags Nvidia Surge",
+        "category": "economy",
+        "eventCoverage": 226,
+        "importance": 6
+      },
+      {
+        "slug": "2026-11-24-syria-marota-city-evicted-families-property-rights",
+        "title": "Marota Evictions Outlast Assad",
+        "category": "politics",
+        "eventCoverage": 0,
+        "importance": 6
+      },
+      {
+        "slug": "2026-11-24-pakistan-lawyers-repeal-26th-27th-amendments-bilawal",
+        "title": "Lawyers Demand Amendments' Repeal",
+        "category": "politics",
+        "eventCoverage": 0,
+        "importance": 6
+      },
+      {
+        "slug": "2026-11-24-uganda-journalist-john-odele-criminal-libel-detained",
+        "title": "Uganda Jails Reporter",
+        "category": "politics",
+        "eventCoverage": 0,
+        "importance": 6
+      },
+      {
+        "slug": "2026-11-24-brent-crude-three-month-low-glut-iran",
+        "title": "Oil Slides Toward Glut",
+        "category": "economy",
+        "eventCoverage": 0,
+        "importance": 6
+      },
+      {
+        "slug": "2026-11-24-lebanon-liban-telecom-asset-valuation-public-funds",
+        "title": "Liban Telecom Revived Unguarded",
+        "category": "economy",
+        "eventCoverage": 0,
+        "importance": 6
+      },
+      {
+        "slug": "2026-11-24-amazon-cairn-ai-agents-zero-day-exploit",
+        "title": "AI Agents Find Zero-Day",
+        "category": "tech",
+        "eventCoverage": 0,
+        "importance": 6
+      },
+      {
+        "slug": "2026-11-24-brazil-palantir-agu-pilot-abin-sovereignty-risk",
+        "title": "Brazil Pilots Palantir",
+        "category": "tech",
+        "eventCoverage": 0,
+        "importance": 6
+      },
+      {
+        "slug": "2026-11-24-xiaomi-q3-profit-falls-memory-prices-ai-spending",
+        "title": "Memory Costs Hit Xiaomi",
+        "category": "tech",
+        "eventCoverage": 0,
+        "importance": 6
+      },
+      {
+        "slug": "2026-11-24-china-biolight-dialysis-plant-halted-falsified-records",
+        "title": "Dialysis Plant Halted",
+        "category": "tech",
+        "eventCoverage": 0,
+        "importance": 6
+      },
+      {
+        "slug": "2026-11-24-stellenbosch-fungal-virulence-antifungal-strategy",
+        "title": "Polyamines Target Fungal Virulence",
+        "category": "science",
+        "eventCoverage": 0,
+        "importance": 6
+      }
+    ],
+    "selected": {
+      "slug": "2026-11-24-anthropic-shares-ipo-price-nvidia-huang-return",
+      "title": "Anthropic Lags Nvidia Surge",
+      "category": "economy",
+      "body": "Nvidia added nearly $1 trillion Monday while Anthropic slipped",
+      "eventCoverage": 226,
+      "importance": 6
+    },
+    "skipReason": null,
+    "sent": true,
+    "pushTitle": "Breaking News",
+    "pushBody": "Nvidia adds nearly $1 trillion in market value in one day",
     "response": {
       "pushed": 1,
       "skipped": 0,
