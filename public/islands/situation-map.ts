@@ -1963,12 +1963,17 @@ export function mount(
    * takes no width. Measured here rather than through `applyPadding`'s `inset`,
    * which is declared further down and does not exist yet at the first call.
    */
+  const railEdges = (canvas: DOMRect) => ({
+    left: Math.max(0, feed.element.getBoundingClientRect().right - canvas.left),
+    right: Math.max(0, canvas.right - hud.getBoundingClientRect().left),
+  })
   const fitZoom = (lat: number) => {
     const w = mapEl.clientWidth || window.innerWidth || 1280
     const h = mapEl.clientHeight || window.innerHeight || 800
-    const wide = document.body.classList.contains('map-wide')
-    const side = (el: Element) => (wide ? el.getBoundingClientRect().width : 0)
-    return globeFitZoom(globeSpan(w, h, side(feed.element), side(hud)), lat)
+    const { left, right } = wideQuery.matches
+      ? railEdges(mapEl.getBoundingClientRect())
+      : { left: 0, right: 0 }
+    return globeFitZoom(globeSpan(w, h, left, right), lat)
   }
 
   /**
@@ -2296,40 +2301,18 @@ export function mount(
       return w > 0 && h > 0 ? { w, h, top: Math.max(r.top, canvas.top) } : null
     }
 
-    const rail = inset(feed.element)
-    /**
-     * The instrument rail, which now intersects too.
-     *
-     * This measured only the story rail for as long as the canvas was its own
-     * grid column — then *neither* rail intersected it, `inset` returned null on
-     * the first line and the zero padding that followed was right by accident
-     * rather than by measurement. The canvas spans the whole grid now so the
-     * rails can be seen through, which turns both of them into real overlaps,
-     * and measuring one of two is worse than measuring neither: the camera gets
-     * pushed right by half the story rail and nothing pushes it back. Measured
-     * at 1896×913 the disc centred at **x=1109 against a visible-gap centre of
-     * 924** — 185px off, which reads as a globe adrift toward the instruments
-     * with a band of dead sky down the left.
-     *
-     * Guarded on being a genuine side column: on a phone the rail is a bar
-     * across the foot and the money block lives inside the scrubber, so a
-     * full-width intersection is the *bottom* being eaten and belongs to the
-     * union below, not to a left or right inset.
-     */
-    const asideBox = inset(hud)
-    const aside = asideBox && asideBox.w < canvas.width - 1 ? asideBox.w : 0
-
-    if (!rail || rail.w < canvas.width - 1) {
-      const left = rail?.w ?? 0
+    if (wideQuery.matches) {
+      const { left, right } = railEdges(canvas)
       // The camera centres in what the docked story card leaves; the card's
       // own popup padding is unchanged, since no popup is open beside it.
-      writePadding({ top: 0, bottom: 0, right: aside, left: Math.max(left, dockEdge()) }, park)
+      writePadding({ top: 0, bottom: 0, right, left: Math.max(left, dockEdge()) }, park)
       // The camera centres between the rails; a card must also clear the
       // timeline under the globe, which the camera has never been padded for.
       const scrub = inset(timeline?.element)
-      writeCardPadding({ top: 0, bottom: scrub?.h ?? 0, right: aside, left })
+      const bottom = scrub ? canvas.bottom - scrub.top : 0
+      writeCardPadding({ top: 0, bottom, right, left })
       // The height the card's cap halves (`.maplibregl-popup-content`).
-      mapEl.style.setProperty('--map-card-room', `${Math.round(canvas.height - (scrub?.h ?? 0))}px`)
+      mapEl.style.setProperty('--map-card-room', `${Math.round(canvas.height - bottom)}px`)
       return
     }
 
@@ -2339,6 +2322,8 @@ export function mount(
     // two heights would count the same pixels twice. Only reached on the
     // full-width branch: on the desktop side the rail is a column and the
     // timeline has never contributed padding, and that stays true.
+    const rail = inset(feed.element)
+    if (!rail) return
     const scrubber = inset(timeline?.element)
     const top = scrubber && scrubber.w >= canvas.width - 1
       ? Math.min(rail.top, scrubber.top)
@@ -6566,15 +6551,11 @@ export function mount(
   const measureChrome = () => {
     const scrub = timeline?.element
     if (scrub) {
-      document.body.style.setProperty('--map-scrub-h', `${Math.round(scrub.offsetHeight)}px`)
-      // The range chips stand above the scrubber's box on the desktop, so a
-      // card in the canvas's lower-left corner measures to their top
-      // (`--map-scrub-reach`), or it lies over them.
-      const top = Math.min(
-        scrub.getBoundingClientRect().top,
-        timeline?.controls.getBoundingClientRect().top ?? Number.POSITIVE_INFINITY,
-      )
-      document.body.style.setProperty('--map-scrub-reach', `${Math.round(window.innerHeight - top)}px`)
+      const reach = Math.round(window.innerHeight - scrub.getBoundingClientRect().top)
+      // On phones the drawer's own height is reserved separately.
+      const height = wideQuery.matches ? reach : scrub.offsetHeight
+      document.body.style.setProperty('--map-scrub-h', `${height}px`)
+      document.body.style.setProperty('--map-scrub-reach', `${reach}px`)
     }
   }
 
@@ -6767,7 +6748,7 @@ export function mount(
       prop: '--map-rail-user',
       id: 'rail',
       name: 'story list',
-      edge: () => feed.element.getBoundingClientRect().width,
+      edge: () => feed.element.getBoundingClientRect().right,
       onChange: onResize,
     }),
     createPaneSeam({
@@ -6779,7 +6760,7 @@ export function mount(
       // spine of sparklines. See the stylesheet's `body.map-aside-off`, and the
       // note on `verbs` for why the button must not go on saying "show".
       verbs: { off: 'Expand', on: 'Collapse' },
-      edge: () => hud.getBoundingClientRect().width,
+      edge: () => window.innerWidth - hud.getBoundingClientRect().left,
       onChange: onResize,
     }),
   ]

@@ -2179,7 +2179,7 @@ export interface MarketStripOptions {
  */
 type RailShape = Record<string, number[]>
 const SHAPE_KEY = 'zuhd-rail-shape'
-const ROW_PX = 27
+const ROW_PX = 28
 const DEFAULT_SHAPE: RailShape = {
   money: [ROW_PX, ROW_PX, ROW_PX, ROW_PX],
   events: [ROW_PX, ROW_PX, ROW_PX, 35, 35],

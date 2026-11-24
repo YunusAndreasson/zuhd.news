@@ -255,52 +255,22 @@ export function createTimeline(opts: TimelineOptions): Timeline {
     )
   }
 
-  /**
-   * The palette, resolved once.
-   *
-   * Custom properties resolve to `light-dark()` strings canvas cannot parse, so
-   * each colour has to be round-tripped through a real element that has a
-   * computed style. Canvas has the same problem with `font`: it parses the
-   * shorthand with no element to resolve against, so a `var()` in it is invalid
-   * and the assignment is silently dropped — the day labels were falling back
-   * to default sans while the rest of the map ran on Source Sans.
-   *
-   * This used to run *inside* `draw`, which meant appending a probe element to
-   * the document, four `getComputedStyle` reads and a removal on every frame of
-   * a scrub — a forced style recalculation per pointer move, on the one
-   * interaction where the frame budget is already spent rebuilding the story
-   * layer. None of these values can change while the map is open: the page
-   * commits to `color-scheme: dark` and the tokens are static.
-   *
-   * **The map's tokens, not the site's.** These were `--rule`, `--text-dim` and
-   * `--text` — the palette for pages that follow the reader, on the one page
-   * that commits to dark regardless of them. `--rule` resolves to `#181818` on
-   * this surface: 1.03:1 against the ocean, and *darker than the land*. It was
-   * painting the day columns and every bar outside the visible window, so the
-   * axis this rail is built around — "a bare slider gives you no sense of
-   * *when*", per the header — was drawn in a colour that does not exist on
-   * screen. `--text-dim` is a neutral grey where the whole chrome is blue-grey,
-   * and it carried the tick labels.
-   *
-   * The dark-surface palette exists for exactly this: chrome sitting on the
-   * map's ground rather than on a CSS surface. `--map-ink-dim` is its floor —
-   * 5.52:1 against `--map-ground`, so a label drawn in it at full strength is
-   * readable rather than merely present.
-   */
+  // Canvas needs resolved CSS colours and font metrics. Read them once after mounting.
   const readPalette = () => {
     const probe = document.createElement('span')
     probe.style.cssText = 'position:absolute;opacity:0'
     root.append(probe)
-    const colour = (name: string, fallback: string) => {
-      probe.style.color = fallback
-      probe.style.color = `var(${name}, ${fallback})`
-      return getComputedStyle(probe).color || fallback
+    const colour = (name: string) => {
+      probe.style.color = `var(${name})`
+      return getComputedStyle(probe).color
     }
+    probe.style.fontSize = 'var(--size-3xs)'
     const palette = {
-      dim: colour('--map-line', '#232936'),
-      mid: colour('--map-ink-dim', '#7f8896'),
-      bright: colour('--map-ink', '#e6eaf0'),
-      family: getComputedStyle(probe).fontFamily || 'sans-serif',
+      dim: colour('--map-line-divider'),
+      bar: colour('--map-ink-inactive'),
+      mid: colour('--map-ink-quiet'),
+      bright: colour('--map-ink-heading'),
+      font: `${getComputedStyle(probe).fontSize} ${getComputedStyle(probe).fontFamily}`,
     }
     probe.remove()
     return palette
@@ -327,25 +297,13 @@ export function createTimeline(opts: TimelineOptions): Timeline {
     ctx.clearRect(0, 0, w, h)
 
     palette ??= readPalette()
-    const { dim, mid, bright, family } = palette
+    const { dim, bar, mid, bright, font } = palette
 
     const axisH = 14
     const barH = h - axisH - 2
     const xOf = (t: number) => ((t - start) / span) * w
 
-    // The slice the map is actually drawing. Without it the chips say "24h"
-    // while the rail shows fourteen days of bars, and nothing connects the
-    // two — the reader has no way to see that most of this histogram is not
-    // on the map.
-    //
-    // **It has to be visible to do that.** The band was `--text-dim` at
-    // `globalAlpha` 0.12, under a `.map-timeline-track` wrapper at `opacity`
-    // 0.6 — 0.072 of a neutral grey over near-black, which is a rectangle
-    // nobody can see. On the default 3d view that is the whole answer to "which
-    // of these fourteen days am I looking at", and it was not on screen. Now it
-    // is `--map-ink-dim` at 0.16 with the wrapper opacity gone, and it carries
-    // a rule at its left edge: the right edge is already drawn by the scrub
-    // head, so one rule closes the shape.
+    // The band follows the selected window even when the head is scrubbed back.
     const headT = scrubTime()
     const windowStart = windowFrom !== null && windowFrom > start ? windowFrom : start
     if (windowStart > start) {
@@ -364,7 +322,7 @@ export function createTimeline(opts: TimelineOptions): Timeline {
     // Day columns first — the axis the histogram sits on.
     // 11px, the type scale's floor (`--size-3xs`): the dates were the one text
     // on the page set under it.
-    ctx.font = `11px ${family}`
+    ctx.font = font
     ctx.textBaseline = 'alphabetic'
     /**
      * How many days a drawn column stands for.
@@ -405,78 +363,46 @@ export function createTimeline(opts: TimelineOptions): Timeline {
       const d = local(day)
       const label = d.getUTCDate() === 1 ? MONTHS[d.getUTCMonth()] : String(d.getUTCDate())
       ctx.fillStyle = isCurrent ? bright : mid
-      // 0.9, not the 0.55 this was. These are the dates — the thing that makes
-      // the rail a calendar rather than a slider — set at the floor, and under the
-      // old stack (site `--text-dim`, 0.55 here, 0.6 on the wrapper) they
-      // composited to **1.51:1** against the ground. `--map-ink-dim` at 0.9 is
-      // 4.65:1, which clears AA; the day under the head stays `--map-ink` so
-      // "which day am I on" is still the loudest thing on the axis.
-      ctx.globalAlpha = isCurrent ? 1 : 0.9
+      ctx.globalAlpha = 1
       ctx.textAlign = 'left'
       if (x + 21 < w) ctx.fillText(label, x + 3, h - 2)
     }
     ctx.globalAlpha = 1
 
-    // Volume histogram.
+    // Count individual story times so a bucket straddling the range edge
+    // colours only the stories actually visible on the map.
     const buckets = Math.max(1, Math.round(span / BUCKET_MS))
-    const counts = new Array(buckets).fill(0)
-    // Per category as well, for the bars the map is drawing.
-    const cats = CATEGORY_ORDER.length
-    const byCat = new Array<number>(buckets * (cats + 1)).fill(0)
+    const counts = new Array<number>(buckets).fill(0)
+    const colours = [...CATEGORY_ORDER.map(cat => CATEGORY_COLOUR[cat]), FALLBACK_CATEGORY_COLOUR, bar]
+    const outside = colours.length - 1
+    const byTone = new Array<number>(buckets * colours.length).fill(0)
     for (const p of points) {
-      const idx = Math.floor(((p.t - start) / span) * buckets)
-      if (idx < 0 || idx >= buckets) continue
+      if (p.t < start || p.t > end) continue
+      const idx = Math.min(buckets - 1, Math.floor(((p.t - start) / span) * buckets))
+      const cat = CATEGORY_ORDER.indexOf(p.cat)
+      const tone = p.t < windowStart || p.t > headT ? outside : cat < 0 ? outside - 1 : cat
       counts[idx]++
-      const c = CATEGORY_ORDER.indexOf(p.cat)
-      byCat[idx * (cats + 1) + (c < 0 ? cats : c)]++
+      byTone[idx * colours.length + tone]++
     }
     const max = Math.max(1, ...counts)
     const barW = w / buckets
     for (let i = 0; i < buckets; i++) {
       if (!counts[i]) continue
-      const bh = (counts[i] / max) * barH
-      // Drawn or not drawn — the same question the band above answers, asked
-      // per bar. It used to split on `bucket <= headT`, which is *before or
-      // after the scrub head*: two states, and the wrong two. The map draws
-      // `windowStart … headT`, so on the 3d view the rail was painting eleven
-      // days of bars at the same weight as the three that were on screen, and
-      // dimming only the bars in the future of the head — of which, at the live
-      // edge, there are none. A reader taking the histogram at its word saw a
-      // fortnight of activity claimed for a map showing three days of it.
-      const t = start + i * BUCKET_MS
-      const shown = t >= windowStart && t <= headT
-      const x = i * barW
-      const bw = Math.max(1, barW - 0.7)
-      /**
-       * On the map, a bar is its stories' categories, stacked in the order
-       * of the chips and in their dots' colours: the window then reads as
-       * the slice of the globe it is, and its bars say what kind of news
-       * each hour held. Off the map, one tone.
-       */
-      if (shown) {
-        let y = barH
-        ctx.globalAlpha = 0.85
-        for (let c = 0; c <= cats; c++) {
-          const n = byCat[i * (cats + 1) + c]
-          if (!n) continue
-          const sh = (n / max) * barH
-          ctx.fillStyle =
-            c < cats ? (CATEGORY_COLOUR[CATEGORY_ORDER[c]] ?? mid) : FALLBACK_CATEGORY_COLOUR
-          ctx.fillRect(x, y - sh, bw, sh)
-          y -= sh
-        }
-        continue
+      let y = barH
+      for (const [tone, colour] of colours.entries()) {
+        const n = byTone[i * colours.length + tone]
+        if (!n) continue
+        const height = (n / max) * barH
+        y -= height
+        ctx.fillStyle = colour ?? mid
+        ctx.globalAlpha = tone === outside ? 0.45 : 1
+        ctx.fillRect(i * barW, y, Math.max(1, barW - 0.7), height)
       }
-      ctx.fillStyle = dim
-      // The out-of-window weight is high for a `--map-line` bar rather than low
-      // for an ink one: those days are still the shape of the fortnight, which
-      // is what makes the window legible as a slice *of* something, and the
-      // separation is carried by the two tones being a step apart rather than
-      // by fading one of them out.
-      ctx.globalAlpha = 0.9
-      ctx.fillRect(x, barH - bh, bw, bh)
     }
     ctx.globalAlpha = 1
+    // Keep the live edge visible when the reader scrubs back.
+    ctx.fillStyle = mid
+    ctx.fillRect(w - 1, 0, 1, barH + 3)
   }
 
   /**
@@ -523,8 +449,8 @@ export function createTimeline(opts: TimelineOptions): Timeline {
     draw()
   })
 
-  const onResize = () => scheduleDraw()
-  window.addEventListener('resize', onResize, { passive: true })
+  const observer = typeof ResizeObserver === 'undefined' ? null : new ResizeObserver(scheduleDraw)
+  observer?.observe(track)
 
   return {
     element: root,
@@ -544,7 +470,7 @@ export function createTimeline(opts: TimelineOptions): Timeline {
       if (drawFrame) cancelAnimationFrame(drawFrame)
       range.removeEventListener('input', onInput)
       liveBtn.removeEventListener('click', onLive)
-      window.removeEventListener('resize', onResize)
+      observer?.disconnect()
       root.remove()
     },
   }

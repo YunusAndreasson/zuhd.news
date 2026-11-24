@@ -2976,38 +2976,25 @@ body.map-page {
      outlived the bug: it is what the range group and each money row are pinned
      to, so a segmented control and a sparkline row come out the same height as
      each other down the rail. Change the chip padding and the two still agree. */
-  --map-hud-row-h: 27px;
+  --map-hud-row-h: 28px;
 
-  /* The disclosure caret's own box, named because two rules have to agree
-     about it and only one of them can see it.
-
-     The caret is a `::after`, so it is always the row's last flex item — which
-     means on a two-line row it lands at the end of line *two* and line one has
-     nothing holding its place. Measured: every figure in the rail ends at
-     1876.3 and the probability on an odds caption ended at 1886.6, so the one
-     number set larger than its neighbours was also the one sticking 10px past
-     them. The caption line reserves this plus the row's gap; the caret takes it
-     as a basis. One term, two uses, and no literal in either. */
-  --map-caret-w: 0.2rem;
-
-  /* The rails' frame, one statement each. The gutter is both rails' inner
-     edge. The band is the height of the top of both rails (the wordmark and
-     the briefing on the left, the time and the date on the right), so the
-     hairline under each sits at one y and `stories` and `money` start level.
-     A block's heading stands about five times further from the block above
-     than from its own rows, so proximity alone says which rows it names. */
+  /* The grid tracks include the outer inset. Their inner ends anchor the
+     camera, controls, story dock and resize handles at every panel width. */
+  --map-inset-gap: 0.875rem;
+  --map-masthead-size: calc((var(--type-copy) + var(--type-lede)) / 2);
+  --map-masthead-h: 4rem;
+  --map-foot-h: 2.4rem;
   --map-gutter-x: clamp(0.9rem, 1.4vw, 1.15rem);
-  --map-band-h: 4.5rem;
-  --map-block-gap: 1.2rem;
-  --map-head-gap: 0.15rem;
-  /* Shared tracks for name, level, direction, figure, age and disclosure. */
+  --map-band-h: var(--map-masthead-h);
+  --map-block-gap: 1.25rem;
+  --map-head-gap: 0.375rem;
+  /* Shared tracks for name, level, direction, figure and optional age. */
   --map-rail-cols:
     [label] minmax(0, 1fr)
-    [level] 3.1rem
+    [level] 3.4rem
     [tick] 9px
-    [fig] 2.85rem
-    [age] 1.35rem
-    [caret] var(--map-caret-w);
+    [fig] 3.5rem
+    [age] 1.4rem;
   max-width: none;
   height: 100dvh;
   overflow: hidden;
@@ -3106,65 +3093,21 @@ body.map-page {
   body.map-page { --map-rail-base: 24rem; }
 }
 
-/* --- The instrument rail -------------------------------------------------
-
-   Everything that was a strip of chrome *over* the map is a column *beside*
-   it: the time range, the category and layer chips, the ground picker, the
-   money readout and the clock. The scrubber stays where it is, because a time
-   axis reads left to right and nothing about a wide screen changes that — it
-   simply stops spanning the whole window and spans the globe's column, which is
-   a denser fortnight rather than a stretched one.
-
-   ── There is no other desktop layout, and there used to be ───────────────
-   This was gated on *measured surplus width* — `viewportW − railW − viewportH ≥
-   18rem`, computed by `syncWide` in the island because the condition mixes a
-   width, a height and a rem-valued column and no media query can express it.
-   The arithmetic was right and the gate was the mistake: every desktop that
-   failed it fell back to a strip of chips across the top of the map with the
-   money readout exiled to the scrubber's readout line, so which side of the map
-   the controls stood on — and whether the sparklines were on screen at all —
-   depended on the shape of the reader's window. A layout with no rule a reader
-   can learn is the same complaint this file already makes about the strip's own
-   height, one level up. The rail is the desktop layout at every desktop width
-   now, and the only question left is the phone's, which is the `max-width:
-   900px` block at the foot of this file.
-
-   ── The rail takes what it needs, and the surplus goes back to the map ────
-   The first version of this took the *whole* leftover — `viewport − stories −
-   globe` — on the reasoning that spending all of it lands the canvas at 1:1,
-   which is the frame a disc wants. That produced a 512px rail at 1920 for
-   content whose widest element is a five-column prayer strip needing about 300,
-   and a column of 11px small-caps labels with 200px of air beside them reads as
-   a panel nobody finished rather than as a generous one.
-
-   So the cap is the content's, not the viewport's: **21rem**, which is the
-   prayer strip's five columns plus the rail's padding, and every other block
-   here is narrower. The floor is 18rem, where those columns start to collide,
-   and since the gate went it is a floor the layout actually stands on: from
-   about 1400px down the surplus term is negative and every desktop narrower than
-   that gets exactly 18rem. That is what the bottom step of the rail ladder above
-   is for — the story column gives way first, because a headline that wraps to
-   three lines is a worse loss than a column of instruments that cannot hold its
-   widest block.
-
-   The leftover is not wasted, and it also cannot be given to the planet — that
-   is the arithmetic at the top of this section, and it is worth restating
-   because the instinct is so strong: **the globe is bound by the shorter side,
-   which is the height, so widening the canvas grows the margin and never the
-   Earth.** What the leftover buys is exactly that margin — 306px a side became
-   106px when the rail took everything, and comes back to about 190 here. A disc
-   needs room around its limb; the note on `GLOBE_FIT` makes the same point from
-   the other direction.
-
-   Measured: canvas 1176×913 at 1920×1080 and 1968×1295 at 2560×1440, against
-   1512×935 and 2112×1295 before — so the frame is materially squarer, the
-   planet is unchanged to the pixel, and the rail is the size of its contents. */
+/* The instrument panel takes the surplus beside a square globe. */
 body.map-wide {
-  /* The cap is 24rem, not 21 — see the story rail's ladder for the three rem
-     that moved and why they were free. The `clamp` is unchanged in kind: the
-     leftover after a square canvas is still what this asks for, and the cap is
-     still what binds at every width a desktop actually has. */
-  --map-aside-w: clamp(18rem, var(--map-aside-user, calc(100vw - var(--map-rail-w) - 100dvh)), 24rem);
+  --map-aside-w: clamp(calc(17rem + var(--map-inset-gap)),
+    var(--map-aside-user, calc(100vw - var(--map-rail-w) - 100dvh)),
+    calc(24rem + var(--map-inset-gap)));
+  --map-radius: 0.75rem;
+  --map-float-fill: color-mix(in srgb, var(--map-panel) 90%, transparent);
+}
+
+body.map-wide :is(.map-feed, .map-hud, .map-mapctl, .map-seam-toggle, .map-timeline) {
+  background: var(--map-float-fill);
+  backdrop-filter: blur(20px) saturate(1.3);
+  border: 1px solid var(--map-line-edge);
+  border-radius: var(--map-radius);
+  box-shadow: 0 10px 32px rgb(0 0 0 / 32%);
 }
 
 /* --- Folded --------------------------------------------------------------
@@ -3173,14 +3116,14 @@ body.map-wide {
    the wordmark and the document links, because they live in that column and a
    panel that folds while keeping some of itself is not folded.
 
-   `body.map-page.map-rail-off` rather than `body.map-rail-off`, so this beats
+   `body.map-wide.map-rail-off` rather than `body.map-rail-off`, so this beats
    the `clamp()` above on specificity rather than on source order. Two rules of
    equal weight setting the same custom property is a layout that depends on
    which one a future edit happens to move.
 
    The instrument rail folds only where it exists: on a phone the HUD is a strip
    over the map and there is nothing here to shut. */
-body.map-page.map-rail-off {
+body.map-wide.map-rail-off {
   --map-rail-w: 0px;
 
   & .map-feed,
@@ -3214,8 +3157,8 @@ body.map-page { --map-spine-w: 5.5rem; }
    the full hover treatment when the pointer arrives. */
 .map-seam {
   position: absolute;
-  top: 0;
-  bottom: 0;
+  top: var(--map-inset-gap);
+  bottom: var(--map-inset-gap);
   width: 9px;
   z-index: 10;
   cursor: col-resize;
@@ -3369,6 +3312,7 @@ body.is-pane-dragging {
    screen half a control away from the edge it marks, and nothing would have
    reported it: both positions look deliberate. */
 body.map-page.map-rail-off .map-seam[data-side='left'] {
+  left: var(--map-inset-gap);
   transform: none;
 }
 
@@ -3499,50 +3443,18 @@ body.map-page.map-rail-off .map-seam[data-side='left'] .map-seam-toggle {
      of a sibling that comes earlier in the DOM. */
   position: relative;
   z-index: 2;
-  border-right: 1px solid var(--map-line-soft);
-  /* See `.map-canvas-host`: this is the alpha that was always declared and never
-     had anything behind it. The blur keeps a coastline or a story mark passing
-     under the rail a wash rather than an edge competing with a headline, and
-     6px is `.map-mapctl`'s, because those boxes are the same bargain already —
-     a panel floating on the planet — and two answers to one question is how the
-     nine near-blacks got here in the first place.
-
-     **80% is a contrast floor, not a taste.** What binds it is the quietest ink
-     the rail carries — `.map-feed-count`, the "138 STORIES · NEWEST 120 LISTED"
-     line, at `rgb(130,130,130)` (L 0.2232) — over the brightest ground the
-     metric paints, which `_map/style.ts` pins by measuring `#8d97a6` at 2.76:1
-     on it (so L 0.0788). Composited that way the ink reads **4.57:1 at 80%**
-     and falls under AA the moment the rail gets thinner: 4.39:1 at 75% and
-     4.29:1 at 72%. `colour-system.test.js` cannot see this — it checks declared
-     tokens, and this background is only decided at paint time against a
-     backdrop that moves — which is exactly why the number is written down
-     here. Going further needs the quiet inks lifted first, not the alpha
-     dropped. */
-  background: color-mix(in srgb, var(--map-sunken) 80%, transparent);
-  backdrop-filter: blur(6px) saturate(1.1);
-  /* The site footer is `position: fixed` over the bottom of this column.
-     Reserving its height ends the scrolling list at the footer's top edge;
-     without it the list ran 62px underneath, and the last visible story was
-     sliced through the middle of its own type against an opaque edge. */
-  padding-bottom: 3.9rem;
 }
 
-/* On the desktop the count is said and not shown: `131 stories · newest 120
-   listed` stood over the list as its first line and told a reader nothing the
-   list and the map did not. A screen reader still hears it, because changing
-   the range or a category rewrites the map in silence otherwise. On a phone it
-   is the drawer handle's label and stays. (`.sr-only`'s own declarations.) */
-body.map-wide .map-feed-count {
-  position: absolute;
-  width: 1px;
-  height: 1px;
-  padding: 0;
-  margin: -1px;
+/* At 90% raised fill, quiet ink over the brightest LAND_RAMP stop clears
+   5.2:1 (inactive ink 4.6:1). The fixed footer occupies the reserved foot. */
+body.map-wide .map-feed {
+  margin: var(--map-inset-gap) 0 var(--map-inset-gap) var(--map-inset-gap);
+  padding-bottom: var(--map-foot-h);
   overflow: hidden;
-  clip-path: inset(50%);
-  white-space: nowrap;
-  border: 0;
+  container-type: inline-size;
 }
+
+.map-feed-app { display: none; }
 
 /* The top padding reserves the height of the fixed header above it — the two
    are coupled, and the header is `position: fixed` so nothing enforces it. It
@@ -3657,27 +3569,16 @@ body.map-wide .map-feed-count {
    always open, so there is nothing to disclose. */
 .map-feed-chevron { display: none; }
 
-/* On the desktop the refresh control stands at the end of the `stories`
-   heading's line, the first line under the head, and the head keeps no row of
-   its own. With the count gone it was one small control on a whole line: a
-   third row under the wordmark and the briefing, or, on a day with no
-   briefing, a row alone under a gap. Beside the heading it is next to what it
-   refreshes and the list starts a row higher either way.
-
-   Placed, not moved: it is still the head's second child, so the phone's
-   handle and the tab order are what they were. `top: 100%` is the head's own
-   foot, and the heading is the first thing under it. */
-body.map-wide .map-feed-head { position: relative; }
-
-body.map-wide .map-feed-refresh {
-  position: absolute;
-  /* In the band, level with the wordmark: the rail's head has no heading
-     line to stand on, and a page's action belongs at the page's head. */
-  top: calc(var(--map-band-h) / 2 + 0.3rem);
-  right: var(--map-gutter-x);
-  transform: translateY(-50%);
-  font-size: var(--type-label);
+/* The actions and wordmark share the first line even on briefing days. */
+body.map-wide .map-feed-head {
+  align-items: center;
+  justify-content: flex-end;
+  height: var(--map-band-h);
+  padding: 0 var(--map-gutter-x) calc(var(--map-band-h) - var(--map-masthead-h));
 }
+
+body.map-wide .map-feed-disclosure { display: none; }
+body.map-wide .map-feed-refresh { font-size: var(--type-label); }
 
 /* `.map-hud-more` is a pass-through on the desktop: it generates no box, so
    `.map-filters` and `.map-ground` stay direct flex items of the HUD strip and
@@ -3796,17 +3697,41 @@ body.map-wide .map-feed-filters {
    Hover and the open story still fill the row. */
 body.map-wide .map-feed-item {
   position: relative;
+  gap: 0.75rem;
+  padding-block: 0.5625rem 0.625rem;
   border-bottom: 0;
+
+  & .map-feed-dot { width: 7px; height: 7px; margin-top: 0.4375rem; }
+  & .map-feed-meta { margin-top: 0.1875rem; }
 
   &::after {
     content: '';
     position: absolute;
-    right: 0;
+    right: var(--map-gutter-x);
     bottom: 0;
-    left: calc(var(--map-gutter-x) + 6px + 0.55rem);
+    left: calc(var(--map-gutter-x) + 7px + 0.75rem);
     height: 1px;
-    background: var(--map-line-soft);
+    background: var(--map-line-divider);
   }
+}
+
+body.map-wide .map-feed-day {
+  padding-block: 1.125rem 0.375rem;
+  background: var(--map-panel);
+  border: 0;
+}
+
+body.map-wide .map-feed-day:first-child + .map-feed-item {
+  padding-block: 0.75rem 0.875rem;
+
+  .map-feed-title {
+    font-size: var(--type-copy);
+    line-height: var(--leading-heading);
+    font-weight: var(--weight-semibold);
+    letter-spacing: var(--track-item);
+  }
+
+  .map-feed-dot { margin-top: 0.5625rem; }
 }
 
 .map-feed-dot {
@@ -3922,13 +3847,7 @@ body.map-wide .map-feed-item {
 
 /* Desktop only: a phone has no keys to open it with, and its drawer handle no
    room. */
-body.map-wide .map-feed-search {
-  display: inline-flex;
-  position: absolute;
-  top: calc(var(--map-band-h) / 2 + 0.3rem);
-  right: calc(var(--map-gutter-x) + 6rem);
-  transform: translateY(-50%);
-}
+body.map-wide .map-feed-search { display: inline-flex; }
 
 /* The hovered story's dot, ringed in the one gold (`_map/hover-mark.ts`), or
    pointed at from the limb when the planet hides it. In at once, out over a
@@ -4126,17 +4045,8 @@ body.map-wide .map-feed-search {
 }
 
 /* --- Header, status, chrome over the map --- */
-/* The wordmark and the briefing player get a row each.
-   They used to share one line inside the rail's 21rem, and they do not fit:
-   the wordmark takes 155px of the 300px content width, the play button and
-   "Today's briefing" take the remaining 145px, and the progress track — which
-   is `flex: 1` — was shrunk to exactly 0px wide. The player rendered a
-   scrubber that could not be seen, hit or dragged, jammed against the
-   right-hand edge. Stacking gives it the full width, so the track gets its
-   10rem and the two things stop competing for the same line. */
-/* A day with a briefing gives the left band a second row, and the right band
-   grows with it so the two hairlines stay level. */
-body.map-page:has(> header .audio-briefing) { --map-band-h: 6.45rem; }
+/* The briefing has its own row below the wordmark and masthead actions. */
+body.map-page:has(> header .audio-briefing) { --map-band-h: calc(var(--map-masthead-h) + 2rem); }
 
 body.map-page > header {
   position: fixed;
@@ -4167,6 +4077,21 @@ body.map-page > header {
   > * { pointer-events: auto; }
 }
 
+body.map-wide > header {
+  top: calc(var(--map-inset-gap) + 1px);
+  left: calc(var(--map-inset-gap) + 1px);
+  width: calc(var(--map-rail-w) - var(--map-inset-gap) - 2px);
+  gap: 0;
+  padding-block: 0;
+}
+
+body.map-wide .wordmark {
+  line-height: var(--map-masthead-h);
+  font-size: var(--map-masthead-size);
+  letter-spacing: var(--track-display);
+  color: var(--map-ink-heading);
+}
+
 body.map-page > footer {
   position: fixed;
   left: 0;
@@ -4184,9 +4109,7 @@ body.map-page > footer {
 
 body.map-page > footer .footer-maker { display: none; }
 
-/* Two quiet rows in the rail's foot: what the site is, then where else it is.
-   The rail is 21rem — eight links on one line would crowd it, and crowding is
-   the opposite of subtle. */
+/* The open phone drawer stacks the two navigation groups. */
 body.map-page > footer {
   flex-direction: column;
   align-items: flex-start;
@@ -4278,6 +4201,38 @@ body.map-page > footer .footer-social {
   a { color: var(--map-ink-muted); }
   a:hover { color: var(--map-ink); }
   a:nth-child(2) { margin-right: var(--space-sm); }
+}
+
+/* Keep the site's shared footer markup and its document links. */
+body.map-page > footer .footer-social a[rel~='me'] { display: none; }
+
+body.map-wide > footer {
+  left: calc(var(--map-inset-gap) + 1px);
+  bottom: calc(var(--map-inset-gap) + 1px);
+  width: calc(var(--map-rail-w) - var(--map-inset-gap) - 2px);
+  height: var(--map-foot-h);
+  padding: 0 clamp(0.375rem, calc(var(--map-rail-w) - 15rem), var(--map-gutter-x));
+  flex-flow: row nowrap;
+  align-items: center;
+  gap: 0;
+  background: transparent;
+  border-color: var(--map-line-divider);
+
+  :is(.footer-links, .footer-social) {
+    flex-wrap: nowrap;
+    align-items: baseline;
+    gap: 0;
+    white-space: nowrap;
+  }
+
+  a { font-size: var(--type-label); font-weight: var(--weight-regular); }
+
+  :is(.footer-links a + a, .footer-social a)::before {
+    content: '·' / '';
+    margin-inline: clamp(0px, calc((var(--map-rail-w) - 16rem) / 12), 0.28em);
+    color: var(--map-ink-quiet);
+    display: inline-block;
+  }
 }
 
 /* A row of its own under the documents, on the pages whose footer is a wrapped
@@ -4511,6 +4466,7 @@ body.map-wide .map-hud > .map-range-group {
 .map-markets-group:focus-visible,
 .map-feed-title:focus-visible,
 .map-feed-search:focus-visible,
+.map-feed-app:focus-visible,
 .map-timeline-live:focus-visible {
   outline: var(--ring-width) solid var(--map-focus);
   outline-offset: var(--ring-offset);
@@ -4835,13 +4791,7 @@ body.map-wide .map-hud {
   padding: 0 var(--map-gutter-x) 1.1rem;
   overflow-y: auto;
   overscroll-behavior: contain;
-  /* The instrument rail's half of the same change, and the same 80% floor —
-     see `.map-feed` for what measures it. */
-  background: color-mix(in srgb, var(--map-sunken) 80%, transparent);
-  backdrop-filter: blur(6px) saturate(1.1);
-  border-left: 1px solid var(--map-line-soft);
-  /* The strip was `pointer-events: none` so the map stayed draggable through
-     the gaps between its chips. A rail has no gaps over the map. */
+  margin: var(--map-inset-gap) var(--map-inset-gap) var(--map-inset-gap) 0;
   pointer-events: auto;
 }
 
@@ -4946,7 +4896,7 @@ body.map-wide {
 
 body.map-wide .map-mapctl {
   position: absolute;
-  top: var(--space-sm);
+  top: var(--map-inset-gap);
   z-index: 3;
   display: flex;
   flex-direction: column;
@@ -4961,12 +4911,8 @@ body.map-wide .map-mapctl {
      Less the rails, because `100%` is the window's width now and not the
      canvas's: this box's parent spans under both rails, as the offsets below
      already record, and a cap of the window less two gutters capped nothing. */
-  max-width: calc(100% - var(--map-rail-w) - var(--map-aside-w) - 2 * var(--space-sm));
+  max-width: calc(100% - var(--map-rail-w) - var(--map-aside-w) - 2 * var(--map-inset-gap));
   padding: 0.4rem 0.5rem;
-  background: color-mix(in srgb, var(--map-panel) 85%, transparent);
-  border: 1px solid var(--map-line-card);
-  border-radius: var(--map-radius);
-  backdrop-filter: blur(6px);
 
   /* The rail's foot rules do not travel with the button. `margin-top: auto` was
      pushing it to the bottom of a 1,300px column and the negative left margin
@@ -5011,7 +4957,7 @@ body.map-wide .map-mapctl {
    `.map-reset` already carried these terms because it hangs off the root, and
    now every box in the canvas's corners is measured the same way.
 
-   Folding a rail needs no rule of its own: `body.map-page.map-rail-off` sets
+   Folding a rail needs no rule of its own: `body.map-wide.map-rail-off` sets
    `--map-rail-w: 0px` and the spine sets `--map-aside-w`, so each `calc` gives
    the bare inset back exactly when the rail it dodges is gone. */
 /* `is-left` holds only the `layers` trigger and its disclosed chips — none of
@@ -5020,7 +4966,7 @@ body.map-wide .map-mapctl {
    content instead of sharing that box's stated width. `is-right` keeps the
    13rem the ground picker's longest name was measured against. */
 body.map-wide .map-mapctl.is-left {
-  left: calc(var(--map-rail-w) + var(--space-sm));
+  left: calc(var(--map-rail-w) + var(--map-inset-gap));
   /* A floor, because Gecko sizes this box narrower than its words draw: in
      Zen "Genocide" and the open caret sat on the right border while Chromium
      left 16px. 7rem fits the longest name with room in both, and stays inside
@@ -5028,13 +4974,13 @@ body.map-wide .map-mapctl.is-left {
   min-width: 7rem;
 }
 body.map-wide .map-mapctl.is-right {
-  right: calc(var(--map-aside-w) + var(--space-sm));
+  right: calc(var(--map-aside-w) + var(--map-inset-gap));
   width: 13rem;
   /* And less its neighbour: 8rem is the `layers` box open, with a gap. Under
      about 930px the two met in the middle of the canvas, and opening the
      layers ran them 15px into this box's `<select>`. The picker gives way,
      since a long metric name already ellipses in it. */
-  max-width: calc(100% - var(--map-rail-w) - var(--map-aside-w) - 2 * var(--space-sm) - 8rem);
+  max-width: calc(100% - var(--map-rail-w) - var(--map-aside-w) - 2 * var(--map-inset-gap) - 8rem);
 }
 
 /* The Hijri date is the rail's alone. On the strip the clock is one
@@ -5070,17 +5016,24 @@ body.map-wide .map-status {
   display: flex;
   flex-direction: column;
   align-items: flex-start;
-  justify-content: space-between;
   gap: var(--space-xxs);
   height: calc(var(--map-band-h) + 1px);
   min-height: 0;
-  padding: 1.35rem 0 0.5rem;
+  justify-content: center;
+  padding: 0;
   border-bottom: 1px solid var(--map-line-soft);
   font-size: var(--type-item);
   font-variant-numeric: var(--figure-numerals);
   line-height: 1.2;
   color: var(--map-ink);
   pointer-events: auto;
+}
+
+body.map-wide .map-clock {
+  font-size: var(--map-masthead-size);
+  font-weight: var(--weight-medium);
+  letter-spacing: var(--track-heading);
+  color: var(--map-ink-heading);
 }
 
 body.map-wide .map-now-hijri {
@@ -5218,7 +5171,7 @@ body.map-wide .map-feed-filters .map-filter {
      stories' dot column, and the last word ends on the rail's right edge. */
   .map-group-label + & { margin-left: -0.4rem; }
   &:last-child { margin-right: -0.4rem; }
-  /* Story filters use the same item role as their headlines. */
+  /* Compact controls above the headlines. */
   font-variant-caps: normal;
   font-size: var(--type-item);
   font-weight: var(--weight-medium);
@@ -5230,9 +5183,7 @@ body.map-wide .map-feed-filters .map-filter {
      lead; the press still brightens it. */
   &.is-on { color: var(--map-ink-soft); }
   &:hover { color: var(--map-ink-body); }
-  /* The story row's gap, not the rail's, so a chip's word starts on the same
-     column as a headline. */
-  gap: 0.55rem;
+  gap: 0.375rem;
 
   /* **One dot column for the pane.** A category's colour is drawn twice here —
      as a chip's glyph and as the dot on every story of that category — and
@@ -5241,15 +5192,28 @@ body.map-wide .map-feed-filters .map-filter {
      eye catches without being asked to, because the reader is meant to connect
      them. The rail's 1.45rem mark box is right there, where the marks are 13px
      silhouettes that have to line up with each other; here the box is the story
-     dot's own 6px and the glyph is *centred* in it, overflowing symmetrically,
+     dot's own 7px and the glyph is *centred* in it, overflowing symmetrically,
      so both discs share a centre line. */
   & .map-filter-mark {
-    flex: 0 0 6px;
-    /* `auto` is the default and it is the content's width, so a 6px basis under
+    flex: 0 0 7px;
+    /* `auto` is the default and it is the content's width, so a small basis under
        a 13px glyph produced a 13px box and moved nothing. */
     min-width: 0;
     justify-content: center;
     overflow: visible;
+  }
+}
+
+/* At the drag floor the search glyph keeps its accessible name. */
+@container (max-width: 15rem) {
+  .map-feed-search-keys { display: none; }
+}
+
+@container (max-width: 17rem) {
+  body.map-wide .map-feed-filters .map-filter {
+    padding-inline: 0.125rem;
+    gap: 0.2rem;
+    font-size: var(--type-label);
   }
 }
 
@@ -5510,7 +5474,7 @@ body.map-wide .map-ground {
 
 /* The companies' row is in the document before its payload is. `display` above
    and in the rail outranks the `hidden` attribute, and an empty wrapper there
-   is a blank 27px row under `markets`. */
+   leaves an empty row under `markets`. */
 .map-markets-item[hidden] { display: none; }
 
 /* The two groups the rail gained from the app's menu, `companies` and
@@ -5535,18 +5499,7 @@ body.map-wide {
 
   & .map-markets-head {
     display: block;
-    /* Zero for the reason `.map-group-label` states — these are the same
-       heading and must not drift apart on the one property that decides which
-       block a reader reads them into. */
     margin-bottom: var(--map-head-gap);
-
-    /* Every other heading in this rail is followed by items that outdent
-       themselves by their own padding, so the word starts on the content edge
-       and the rows' hover boxes reach past it. These do the same, so `money`
-       lines up with `stories`, `layers` and `ground` down the column. */
-    /* 0.85rem, not 0.7: `world` came out 11.2px below the money block's closing
-       `next` line against 5.0px above its own first row, the weakest grouping in
-       the rail. */
     &:not(:first-child) { margin-top: var(--map-block-gap); }
   }
 
@@ -5607,8 +5560,8 @@ body.map-wide {
     align-items: center;
     gap: 0.45rem;
     margin: 0 -0.4rem;
-    padding: 0.1rem 0.4rem;
-    border-radius: 2px;
+    padding: 0 0.4rem;
+    border-radius: var(--map-radius-ctl);
     min-height: var(--map-hud-row-h);
 
     &:hover { background: var(--map-row-hover); }
@@ -5617,9 +5570,10 @@ body.map-wide {
   /* The summary already carried the outdent and the hover; inside the box they
      belong to the box, or a row would draw two nested highlights. */
   & .map-markets-item .map-markets-summary {
+    flex: 1;
     margin: 0;
     padding: 0;
-    min-height: 0;
+    min-height: var(--map-hud-row-h);
 
     &:hover { background: none; }
   }
@@ -5632,8 +5586,8 @@ body.map-wide {
     display: grid;
     grid-template-columns: var(--map-rail-cols);
     align-items: center;
-    column-gap: 0.45rem;
-    width: 100%;
+    column-gap: 0.3rem;
+    width: auto;
     min-height: var(--map-hud-row-h);
     /* The chips' outdent, restated. Without it these rows sit 6.4px right of
        every mark above them, which is exactly the misalignment that makes one
@@ -5644,13 +5598,7 @@ body.map-wide {
 
     &:hover { background: var(--map-row-hover); }
 
-    /* Always present, not hover-revealed. Alone in a block of readouts the
-       caret is the only thing saying these are doors, and a touch reader has
-       no hover to reveal it with. */
-    &::after {
-      opacity: 1;
-      grid-column: caret;
-    }
+    &::after { content: none; }
   }
 
   /* The tick at the row's *head* goes, and the one in the reading box says it.
@@ -5694,7 +5642,7 @@ body.map-wide {
     text-align: left;
     font-size: var(--type-item);
     font-variant-caps: normal;
-    font-weight: var(--weight-medium);
+    font-weight: var(--weight-regular);
     letter-spacing: 0;
     color: var(--map-ink-prose);
 
@@ -5706,30 +5654,13 @@ body.map-wide {
   & .map-markets-tally,
   & .map-markets-note { display: none; }
 
-  /* The reading itself, on the rows that are one instrument rather than a
-     group.
-
-     It sits between the name and the line because that is the order the row is
-     read in — what it is, what it costs, where it has been — and because the
-     alternative, putting it at the end beside the change, would give the row
-     two numerals in the same column meaning different things.
-
-     `--map-ink-body` and *not* the spark box's tone: a level is not a signed
-     quantity. $91.82 painted orange because the last week was down would be the
-     row asserting that the price itself is bad news, which is the same mistake
-     the layer trends record for a green DISASTERS +40%.
-
-     A fixed basis rather than content width, so a column of levels sets flush
-     and the lines beside them still begin on one edge — the alignment the whole
-     block is arranged around. Four figures plus a symbol is what these series
-     produce (`$91.82`, `17.09`, `4.68%`); anything wider is an ellipsis rather
-     than a wider column, because the card carries the exact figure. */
+  /* An unsigned level and its signed move have separate columns. */
   & .map-markets-level {
     grid-column: level;
     overflow: hidden;
-    color: var(--map-ink-body);
+    color: var(--map-ink-heading);
     font-size: var(--type-figure);
-    font-weight: var(--weight-semibold);
+    font-weight: var(--weight-regular);
     font-variant-numeric: var(--figure-numerals);
     letter-spacing: 0;
     text-overflow: ellipsis;
@@ -5822,63 +5753,11 @@ body.map-wide {
     );
   }
 
-  /* A caption, and the reading it captions — two levels, not two layouts.
-
-     Every other row on this rail is labelled with something that fits the
-     4.8rem column because it *is* a code: `currencies`, `BRENT`, `US 10Y`. A
-     prediction market is only readable as the question it asks and a Wikipedia
-     series as the article it counts, and neither survives that column —
-     `US–Iran nuclear deal` truncates to `US–Iran nu…`, a row that kept its
-     alignment and lost its subject.
-
-     So the phrase takes a line of its own and the reading indents to the grid
-     underneath it. What makes that a hierarchy rather than a ragged exception
-     is the second half: **the level, the line and the figure stand in exactly
-     the same three columns as every other row in the rail**, so a reader's eye
-     runs down one set of columns from `markets` to the last attention row
-     without re-finding them. The captions are a second rhythm, separated by
-     weight and case rather than by position — one ink step down, out of small
-     caps, at the label's own size.
-
-     `nowrap` on the summary is overridden here rather than removed there. That
-     rule exists because a *fixed-width* label plus a line does not fit, which
-     is still true of every block it governs; here the wrap is the intent
-     instead of the symptom. */
-  /* One line, three columns: the question, which way it went, and the door.
-
-     ── The two things that got these rows here ──────────────────────────────
-     They were a flex wrap run with the caption held to one line by
-     `text-overflow: ellipsis`, and a reader reported the obvious: the questions
-     were cut. `US x Iran Effective Ceasefire by August 31` rendered as
-     `US x Iran Effective Ceasefire by August…` — a row that kept its alignment
-     and lost the thing it is about, which is the exact failure the caption
-     treatment was invented to *prevent*. A grid fixes that by letting column one
-     wrap instead of clip.
-
-     Then the **level went** (2026-08-07): these blocks are scanned for which
-     questions are moving, not read for what they stand at, so the row prints the
-     movement and the card behind it carries the reading. That takes the second
-     grid row with it — one line each, `BLOCK_ROWS` doubled to ten, and twice as
-     many subjects in fewer pixels than five of the old rows cost.
-
-     ── Why it still wraps rather than truncating ────────────────────────────
-     `minmax(0, 1fr)` and a caption that wraps, so a question too long for the
-     column takes a second line rather than losing its end. Most set on one:
-     at 1920 the column is ~270px against `Fed raises rates 25bp after Sept 2026`
-     at ~230. Below 1200px, where `--map-rail-base` steps to 17rem, the longest
-     wrap to two — which is the row growing to fit its subject, and is the
-     opposite failure from the one that was reported.
-
-     The caret takes a column of its own rather than being a `::after` at the end
-     of a flex line, which is what the old `--map-caret-w` reservation and
-     `.map-markets-break` existed to fake. Both are gone. */
+  /* Phrase labels also take the level track and may wrap to two lines. */
   & .map-markets-straits .map-markets-summary,
   & .map-markets-odds .map-markets-summary,
   & .map-markets-attention .map-markets-summary,
   & .map-markets-events .map-markets-summary {
-    /* No floor of its own: the summary's, or its row wrapper's, already puts
-       these on the money rows' 27px pitch, and a second one inside the
-       wrapper made every event row 30. */
     row-gap: 0;
 
     /* `center`, not the grid's `baseline`: a question that wraps to two lines
@@ -5892,24 +5771,8 @@ body.map-wide {
     & .map-markets-nil { grid-column: tick / age; }
   }
 
-  & .map-markets-events .map-markets-window { grid-column: tick / caret; }
+  & .map-markets-events .map-markets-window { grid-column: tick / -1; }
 
-  /* The question, and its probability, on one line; the trend on the next.
-
-     The first arrangement put the caption alone on line 1 and indented the
-     whole reading — level, line and figure — to the grid underneath. It aligned
-     perfectly at 21rem and **wrapped to a third line at the rail's 18rem
-     floor**, because flex decides wrapping on an item's *base* size before it
-     shrinks anything: the indent plus a 3.1rem level left 81px for a box whose
-     content wants 103, so the line jumped to a row of its own. Measured, not
-     reasoned — the geometry probe reported `lineL` at the rail's own left edge
-     where every other row reported the grid column.
-
-     The level moves up beside its subject instead, which is where it reads
-     better anyway (*this question is at 60%*) and leaves line 2 holding only
-     the shape and its change. Line 2 then starts on the same column every
-     money and world line starts on, and ends on the same column every figure
-     ends on, with 217px of need against 245px of room at the floor. */
   & .map-markets-caption {
     /* Basis zero, not `auto`, and it is the same trap as the wrap above: flex
        wraps on an item's *base* size, so a caption based on its own text pushed
@@ -5924,7 +5787,7 @@ body.map-wide {
        phrases rather than tickers, and small caps on a phrase is a headline
        treatment on something that is not a headline. */
     font-variant-caps: normal;
-    font-weight: var(--weight-medium);
+    font-weight: var(--weight-regular);
     letter-spacing: 0;
     /* Tight, because every unit of leading here is space between a question and
        its own answer — see the padding rule on the summary. */
@@ -5953,60 +5816,7 @@ body.map-wide {
     white-space: normal;
   }
 
-  /* The caret's column, held open on the line the caret is not on.
-
-     A `::after` is always the last flex item, so on these two-line rows it sits
-     at the end of line two and line one runs the full width of the row. The
-     probability is the last thing on line one — so the biggest numeral in the
-     block was also the only one in the rail overhanging its column, by exactly
-     the caret plus the row's gap. Derived from both rather than typed as the
-     10.3px it measures, since either can move. */
-  /* `flex-basis: 100%` is what breaks the line — an item that cannot share a
-     row with anything always starts a new one — and the margin is the indent
-     that lands it on the grid. One derived term rather than a literal: the
-     label's own basis plus the row's gap, because that column has already moved
-     twice (6.2rem guessed from `--map-spine-w`, then 4.8rem measured off
-     `currencies`) and a number typed here would be right only for the layout it
-     was typed against. */
-  /* `.map-markets-break` is gone (2026-08-07). It was a zero-height flex line
-     break, which is what a grid does by having rows — see the grid rule on these
-     summaries above. */
-
-  /* The indent is gone with the flex run (2026-08-07): the grid's second column
-     *is* the alignment, and a `margin-left` on top of a grid track would push the
-     reading out of the track that positions it. Three regressions this file
-     records — the caption's own basis, the reading's basis, and the caret exiled
-     to a third line at 1280 — were all flex deciding a wrap on a *base* size,
-     which is a question a grid never asks. */
-
-  /* The events block needs no rule of its own here — it reached its row
-     grammar (2026-08-08) by going through the same caption-grid selector
-     `.map-markets-odds`/`.map-markets-attention` already use, rather than
-     the bespoke `<p>` styling `.map-markets-next` had when it was one
-     unheaded caption line closing the money block. See `eventRow` in
-     `markets.ts`. */
 }
-
-/* The caret's column, held open on the line the caret is not on.
-
-   A `::after` is always the last flex item, so on a two-line odds or attention
-   row it sits at the end of line two and line one runs the full width. The
-   probability is the last thing on line one — so the biggest numeral in the
-   block was the only figure in the rail overhanging its column, by exactly the
-   caret plus the row's gap. Measured: every other figure ends at 1876.3 and
-   this ended at 1886.6. Derived from both terms rather than typed as the 10.3px
-   it comes to, since either can move.
-
-   Outside the `body.map-wide` block above for the reason stated there — a
-   compound `&` selector is scored without its parent — which is why this reads
-   from the body class rather than continuing the nesting. */
-/* The caret's column used to be faked with a margin on the level, because a
-   `::after` is the last flex item and therefore sat at the end of line *two* —
-   so line one had nothing holding its place and the probability, the largest
-   numeral in the block, was the only figure in the rail overhanging its column
-   by exactly 10.3px. The grid gives the caret a track (`--map-caret-w`, third
-   column), so the reservation is the layout rather than a compensation for
-   it. */
 
 /* --- The spine -----------------------------------------------------------
 
@@ -6037,7 +5847,7 @@ body.map-wide {
    It costs the map nothing, exactly as the full rail does — the globe is bound
    by the shorter side, so the 15rem this hands back is margin either way. */
 body.map-page.map-wide.map-aside-off {
-  --map-aside-w: var(--map-spine-w);
+  --map-aside-w: calc(var(--map-spine-w) + var(--map-inset-gap));
 
   & .map-hud {
     padding-right: 0.5rem;
@@ -6110,12 +5920,7 @@ body.map-page.map-wide.map-aside-off {
 
   & .map-markets-nil { flex: 1 1 auto; }
 
-  /* What goes is what needs a column to be read down. A level is a 3.1rem block
-     of digits inside a 4.4rem row and an age is a caveat about a number rather
-     than the number, so both spend width the change itself needs. The change
-     stays, and that is the change of 2026-08-07: the spine used to drop it and
-     keep a 55px sparkline, which is a smudge standing in for a fact the row
-     could simply have printed. */
+  /* In the folded rail the signed move takes the full width. */
   & .map-markets-level,
   & .map-markets-head-note,
   & .map-markets-age { display: none; }
@@ -6566,52 +6371,27 @@ body:not(.map-wide) .map-markets.is-waiting { display: none; }
 .map-timeline.is-scrubbed .map-timeline-head { color: var(--map-ink-muted); }
 .map-timeline.is-scrubbed .map-timeline-readout { color: var(--map-ink); }
 
-/* --- The readout is revealed, not reserved ------------------------------
+body.map-wide .map-timeline {
+  left: calc(var(--map-rail-w) + var(--map-inset-gap));
+  right: calc(var(--map-aside-w) + var(--map-inset-gap));
+  bottom: var(--map-inset-gap);
+  max-width: 60rem;
+  margin-inline: auto;
+  padding: 0.5rem 0.75rem;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.25rem 0.75rem;
 
-   A line of type that is *always* on screen to say what time it is now, at the
-   foot of a map whose whole subject is what is happening now. It is the answer
-   to a question a reader asks occasionally, holding a row of the strip
-   permanently for it.
+  &::before { content: none; }
+  & .map-timeline-head { flex-basis: 100%; }
+  & .map-timeline-track { flex: 1 1 9rem; min-width: 0; }
+  & .map-ranges { border: 0; overflow: visible; }
+  & .map-range { border-radius: var(--map-radius-ctl); }
+}
 
-   **It does not make the globe bigger, and the first version of this note said
-   it did.** `.map-timeline` is `position: absolute; bottom: 0` over a canvas
-   that is `inset: 0` — so the scrubber floats *over* a full-bleed map and its
-   height has never entered `fitZoom`, which reads `mapEl.clientHeight`.
-   Measured before and after: globe diameter 990 → 990, `minZoom` 2.4996 →
-   2.4996, canvas height 884 → 884. What the 22px actually buys is **occlusion**
-   — that much less chrome lying across the bottom of the planet — and a
-   `--map-scrub-h` of 52px against 76px, which is 24px more room for every peek
-   card, since the card clears the scrubber by that measurement.
-
-   **Out of flow rather than collapsed, and that is the load-bearing part.**
-   Collapsing its height on hover would change `.map-timeline`'s `offsetHeight`,
-   which is `--map-scrub-h`, which `applyPadding` feeds to `Map.setPadding` —
-   and `setPadding` is `jumpTo` underneath, which begins by calling `stop()`.
-   A reader brushing the scrubber mid-flight would silently cancel the camera
-   animation, which is the exact failure the note on `writePadding` records.
-   Absolute keeps the measured geometry constant, so hovering costs no layout
-   and no camera.
-
-   It carries its own ground because it now sits in the scrim's *overhang* —
-   the 2rem above the box where `.map-timeline::before` is ramping to
-   transparent, not the flat 96% the content was tuned against.
-
-   Three ways back: hover, keyboard focus, and **`is-scrubbed`, which is not
-   optional**. Scrubbed away from live, this line is the only thing on screen
-   saying which day is drawn; a reader who moves the pointer off must not lose
-   that. `.map-timeline-live` ("back to live") lives here too and is reachable
-   the same three ways.
-
-   It used to defer the money ribbon with them, and that was a decision rather
-   than an oversight: this row was the ribbon's only home on a desktop narrow
-   enough to miss the instrument rail, and sharing the line meant sharing the
-   height. That layout is gone — above 900px the money block is always in the
-   rail — so what this hides is the readout and the live button, which is what it
-   was written for.
-
-   Pointer-capable and non-phone only. A phone has no hover and the phone block
-   already drops `.map-status`, so hiding this there would remove the clock and
-   the Hijri date outright rather than defer them. */
+/* Keep the readout visible while scrubbing or using the controls. Its
+   absolute position keeps hover from changing the camera's measured frame. */
 @media (hover: hover) and (min-width: 901px) {
   .map-timeline-head {
     position: absolute;
@@ -6630,22 +6410,6 @@ body:not(.map-wide) .map-markets.is-waiting { display: none; }
   .map-timeline.is-scrubbed .map-timeline-head {
     opacity: 1;
     pointer-events: auto;
-  }
-
-  /* The controls slot is the head's mirror and its opposite in the one property
-     that matters: same strip above the track, same scrim, **left instead of
-     right, and never deferred**. The head hides a readout until the reader
-     touches the axis, which is right for a readout and impossible for a control
-     — the range chips spent one build in there at `opacity: 0`, laid out and
-     painted by nothing. */
-  .map-timeline-controls {
-    position: absolute;
-    /* The `layers` box's left edge, with no padding before the chips: their
-       border stood 9px inside the box above them. */
-    left: var(--space-sm);
-    bottom: 100%;
-    padding: 0.1rem 0.45rem 0.2rem 0;
-    background: color-mix(in srgb, var(--map-ground) 92%, transparent);
   }
 
   @media (prefers-reduced-motion: reduce) {
@@ -6875,7 +6639,7 @@ body.map-wide .map-mapctl .map-filter-label { text-transform: capitalize; }
 /* The layers trigger: a disclosure, not a switch and no longer a door.
 
    It wears the chips' own row shape because it *is* one of that group's rows —
-   the mark column, the label, the same 27px box. What it must not wear is a
+   the mark column, the label, the same control-row height. What it must not wear is a
    pressed state: nothing here is on or off, and `.map-filter`'s `is-on` ink
    would say otherwise.
 
@@ -7977,7 +7741,7 @@ body.map-page {
   position: absolute;
   z-index: 2;
   top: 4.5rem;
-  left: calc(var(--map-rail-w) + var(--space-sm));
+  left: calc(var(--map-rail-w) + var(--map-inset-gap));
   width: var(--map-dock-w);
   max-height: calc(100% - 4.5rem - var(--map-scrub-reach, 5.5rem) - var(--space-xs));
   display: flex;
@@ -9696,6 +9460,25 @@ body.doc-page .chart {
     background: none;
     border: none;
     border-bottom: 1px solid var(--map-line-soft);
+    cursor: pointer;
+  }
+
+  .map-feed-app {
+    display: inline-flex;
+    align-items: center;
+    height: 100%;
+    font-size: var(--type-item);
+    font-weight: var(--weight-medium);
+    font-variant-caps: normal;
+    letter-spacing: normal;
+    color: var(--map-ink-quiet);
+  }
+
+  .map-feed-disclosure {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    align-self: stretch;
     cursor: pointer;
   }
 

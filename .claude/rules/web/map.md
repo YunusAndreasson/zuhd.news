@@ -218,7 +218,7 @@ calendar `hijri.md`.
 - A story's `chart` is fetched only where `hasSeriesRecord`: a company's or a
   lab's id has no `/api/entity` file.
 - Peek answers one question and clips (`.map-sheet.is-peek`). Its offsets
-  are `--map-scrub-reach` (the scrubber or the range chips above it) and
+  are `--map-scrub-reach` (the range bar and its bottom inset) and
   `--map-rail-w`; the first is set on `body`, where the sheet is appended,
   and teardown removes it.
 - A docked card takes the canvas's free height (`--sheet-max-h`) and its width
