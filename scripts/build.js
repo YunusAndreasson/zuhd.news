@@ -2246,7 +2246,7 @@ console.log(`  Built: api/map-leads.json (${Object.keys(mapLeads).length} leads)
 // `default-src 'none'`.
 {
   mkdirSync(join(DIST_DIR, 'basemap'), { recursive: true })
-  const { countriesUltra, depth, countryLabels, places, lakes, rivers, seas, regions } =
+  const { countriesUltra, coast, depth, countryLabels, places, lakes, rivers, seas, regions } =
     await buildMapSources(ROOT)
   const emit = (name, data) => {
     writeFileSync(join(DIST_DIR, 'basemap', name), JSON.stringify(data))
@@ -2258,7 +2258,7 @@ console.log(`  Built: api/map-leads.json (${Object.keys(mapLeads).length} leads)
   const r = emit('rivers.geojson', rivers)
   const s = emit('seas.geojson', seas)
   const g = emit('regions.geojson', regions)
-  const tiles = writeBasemapTiles({ countries: countriesUltra, depth }, join(DIST_DIR, 'basemap', 'tiles'))
+  const tiles = writeBasemapTiles({ countries: countriesUltra, depth, coast }, join(DIST_DIR, 'basemap', 'tiles'))
   console.log(
     `  Built: basemap/ (` +
       `${tiles.files} tiles ${Math.round(tiles.bytes / 1024)}KB, ${places.features.length} places ${c}KB, ` +
