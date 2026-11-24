@@ -202,6 +202,9 @@ export interface Entity {
 }
 
 export interface Article {
+  /** Publisher clearance for the first-run opener, scoped to this revision. */
+  starterEligible?: boolean;
+  starterEvidence?: 'measurement' | 'chart' | 'both';
   slug: string;
   title: string;
   date: string;
@@ -274,7 +277,31 @@ export interface ContextBrief extends ContextIndexEntry {
   sources?: string[];
 }
 
+/** Completed exchange-local observation and recording for a single UTC edition. */
+export interface WidgetCandidate {
+  version: 1;
+  edition: string;
+  sourceRevision: string;
+  close?: {
+    id: 'mkt:bse' | 'mkt:jse' | 'mkt:tadawul';
+    label: string;
+    unit: 'index points';
+    completed: true;
+    sessionDate: string;
+    value: number;
+    sourceRevision: string;
+    observations?: { date: string; value: number }[];
+  };
+  audio: { status: 'unavailable' } | {
+    status: 'available';
+    date: string;
+    generated: string;
+    durationSeconds?: number;
+  };
+}
+
 export interface FeedResponse {
+  widgetCandidate?: WidgetCandidate;
   generated: string;
   // Wire format may omit empty categories — post-merge consumers use
   // `GroupedArticles` (a full Record) where every key is guaranteed present.

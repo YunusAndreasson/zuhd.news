@@ -62,3 +62,10 @@ export function labelDay(label, year) {
  * @param {number | Date} t
  */
 export const isoDay = (t) => new Date(t).toISOString().slice(0, 10)
+
+/** An ISO day that actually exists (Date.parse rolls February 30 into March). */
+export function validDay(value) {
+  if (typeof value !== 'string' || !/^\d{4}-\d{2}-\d{2}$/.test(value)) return false
+  const ms = Date.parse(value)
+  return Number.isFinite(ms) && new Date(ms).toISOString().startsWith(value)
+}

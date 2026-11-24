@@ -16,13 +16,14 @@
 
 import { readFileSync, existsSync } from 'node:fs'
 import { tryReadArticle } from './lib/article.js'
+import { writeText } from './lib/json-file.js'
 import { batchFiles } from './lib/article-files.js'
 import { callClaudeJson, callCost } from './lib/claude-envelope.js'
 import { runWithConcurrency } from './lib/concurrency.js'
 import { pathOf } from './lib/datasets.js'
-import { replaceFrontmatterKey, yamlString } from './lib/frontmatter.js'
+import { reviewInput, reviewPrompt, stampReview } from './lib/starter-topics.js'
+import { parseFrontmatter, replaceFrontmatterKey, setStarterField, withdrawStarter, yamlString } from './lib/frontmatter.js'
 import { fetchSourceText } from './lib/fetch-source-text.js'
-import { writeText } from './lib/json-file.js'
 import { modelFor } from './lib/models.js'
 
 const FETCH_CONCURRENCY = 5
@@ -55,8 +56,7 @@ function collectSourceTasks(files) {
 }
 
 /** Single Haiku call — batched across every successfully-fetched source in
- *  the cycle. Returns a Map keyed by numeric item key → {angle, sentiment}.
- *  On any error returns an empty map; callers fall back gracefully.
+ *  the cycle. Source item keys index angles and story keys index revision reviews.
  *
  *  Through `callClaudeJson`, like every other JSON call. This stage unwrapped
  *  the envelope itself, and its copy had parted from the shared one twice. An
@@ -65,13 +65,12 @@ function collectSourceTasks(files) {
  *  repair for an unescaped quote rewrote every *sound* entry of the batch
  *  (`"angle": "…“, ”sentiment": …`), so it could only mend an answer in which
  *  every angle was broken the same way. */
-async function extractAnglesViaHaiku(items) {
-  if (items.length === 0) return new Map()
-
+async function extractAnglesViaHaiku(items, starterInstructions) {
   const blocks = items
     .map(
       (it) => `# Item ${it.key}
   outlet: ${it.name}
+  story key: ${it.fileIdx}, source index: ${it.sourceIdx}
   article topic: ${it.articleTitle}
   source text (first ${SOURCE_TEXT_FOR_HAIKU} chars):
   """
@@ -97,7 +96,7 @@ Rules:
   - Angle string must be ≤140 chars, use specific verbs (emphasizes, cites, reconstructs, maps, foregrounds), avoid adjectival generalizations.
   - Sentiment: a number in [-1.0, 1.0]. -1 = sharply negative/critical of subject; 0 = neutral factual; +1 = sharply favorable/sympathetic. Most wire reporting sits in [-0.2, 0.2]. Round to 2 decimals.
 
-Return ONLY a JSON object keyed by item key (as string), mapping to {angle: string|null, sentiment: number}.
+Use each numbered item key (as string) for {angle: string|null, sentiment: number}, alongside starterReviews.
 
 Example output for 2 items:
 {
@@ -107,15 +106,17 @@ Example output for 2 items:
 
 ${blocks}
 
+${starterInstructions}
+
 Return ONLY the JSON object. No commentary, no markdown fences.`
 
   const res = await callClaudeJson(prompt, { model: modelFor('haiku'), timeout: 120_000, maxBuffer: 1024 * 1024 })
   if (res.error) {
     console.error(`  ✗ angles-haiku: ${res.error}`)
-    return new Map()
+    return { angles: new Map(), reviews: {} }
   }
   console.log(`  · angles-haiku: answered in ${(res.elapsedMs / 1000).toFixed(1)}s${callCost(res)}`)
-  const obj = res.out
+  const obj = res.out ?? {}
   const out = new Map()
   for (const it of items) {
     const entry = obj[it.key]
@@ -128,7 +129,7 @@ Return ONLY the JSON object. No commentary, no markdown fences.`
         : null
     out.set(it.key, { angle, sentiment: sent })
   }
-  return out
+  return { angles: out, reviews: obj.starterReviews ?? {} }
 }
 
 /** Rewrite the `sources:` YAML block in the frontmatter string. We fully
@@ -175,7 +176,16 @@ for (const { path: fullPath, name: filename } of newFiles) {
   const { raw, meta } = article
   const title = typeof meta.title === 'string' ? meta.title : ''
   const sources = Array.isArray(meta.sources) ? meta.sources : []
-  files.push({ fullPath, raw, title, sources })
+  let input = null
+  try {
+    const story = { key: files.length, ...reviewInput(article) }
+    // Reject a circular YAML alias here, before it can spoil the batch prompt.
+    JSON.stringify(story)
+    input = story
+  } catch (error) {
+    console.warn(`Starter ineligible (${filename}):`, error instanceof Error ? error.message : error)
+  }
+  files.push({ fullPath, raw, title, sources, input })
 }
 
 if (files.length === 0) {
@@ -248,16 +258,22 @@ if (failedList.length > 0) {
   console.log(`  · source-angles: failed domains: ${failedList.map(([d, n]) => `${d}×${n}`).join(' ')}`)
 }
 
-const angles = haikuItems.length > 0 ? await extractAnglesViaHaiku(haikuItems) : new Map()
+let starterInstructions = ''
+try {
+  starterInstructions = reviewPrompt(files.map(file => file.input).filter(Boolean))
+} catch (error) {
+  console.warn(`Starter reviews unavailable:`, error instanceof Error ? error.message : error)
+}
+const { angles, reviews } = await extractAnglesViaHaiku(haikuItems, starterInstructions)
 
 // Pass 3: merge Haiku output back into each file's sources + write frontmatter.
 let processed = 0
 let totalAngles = 0
 let totalSentiments = 0
-for (const file of files) {
+for (const [fileIdx, file] of files.entries()) {
   let dirty = false
   const updatedSources = file.sources.map((s, idx) => {
-    const item = haikuItems.find((h) => h.fileIdx === files.indexOf(file) && h.sourceIdx === idx)
+    const item = haikuItems.find((h) => h.fileIdx === fileIdx && h.sourceIdx === idx)
     if (!item) return s
     const resolved = angles.get(item.key)
     if (!resolved) return s
@@ -274,12 +290,18 @@ for (const file of files) {
     }
     return next
   })
-  if (!dirty) {
-    processed++
-    continue
+  const withAngles = dirty ? writeSourcesToFrontmatter(file.raw, updatedSources) : file.raw
+  let updated
+  try {
+    const review = starterInstructions && file.input ? stampReview(parseFrontmatter(withAngles), reviews[fileIdx],
+      new Set(haikuItems.filter(item => item.fileIdx === fileIdx).map(item => item.sourceIdx))) : null
+    updated = setStarterField(withAngles, 'starterReview', review ?? undefined)
+  } catch (error) {
+    updated = withdrawStarter(withAngles, file.fullPath, error)
   }
-  const updated = writeSourcesToFrontmatter(file.raw, updatedSources)
-  if (updated !== file.raw) writeText(file.fullPath, updated)
+  if (updated !== file.raw) {
+    writeText(file.fullPath, updated)
+  }
   processed++
 }
 

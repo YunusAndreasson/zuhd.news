@@ -1,6 +1,6 @@
 import assert from 'node:assert/strict'
 import { test } from 'node:test'
-import { parseFrontmatter, removeFrontmatterKey, replaceFrontmatterKey, setFrontmatterLine, splitFrontmatter, yamlString } from './frontmatter.js'
+import { parseFrontmatter, removeFrontmatterKey, replaceFrontmatterKey, setFrontmatterLine, setStarterField, splitFrontmatter, withdrawStarter, yamlString } from './frontmatter.js'
 
 const doc = `---
 title: "A"
@@ -130,4 +130,25 @@ test('yamlString writes a value the parser reads back as it was, whatever is in 
     assert.equal(parseFrontmatter(`---\nmention: ${yamlString(value)}\n---\nBody.`).meta.mention, value)
   }
   assert.throws(() => parseFrontmatter(`---\nmention: ${byHand('C:\\Users')}\n---\nBody.`), 'which is what the hand-written quoting did with a backslash')
+})
+
+test('removing the only key preserves an empty frontmatter mapping', () => {
+  assert.deepEqual(parseFrontmatter(removeFrontmatterKey('---\nchart: gold\n---\nBody.', 'chart')), { meta: {}, body: 'Body.' })
+})
+
+test('the source desk keeps its ordinary block insertion and trailing whitespace rules', () => {
+  const raw = '---\ntitle: One\nsources: []\ncategory: economy\n\n---\nProse.'
+  assert.equal(replaceFrontmatterKey(raw, 'sources', ['sources: [Dawn]']),
+    '---\ntitle: One\ncategory: economy\nsources: [Dawn]\n---\nProse.')
+})
+
+test('an uneditable starter anchor can be withdrawn without losing an editorial alias', () => {
+  const original = '---\ntitle: Report\nstarterEligible: &flag true\neditorial: *flag\n---\nSaved correction.'
+  const withdrawn = withdrawStarter(original, 'report', new Error('desk unavailable'))
+  assert.deepEqual(parseFrontmatter(withdrawn), {
+    meta: { title: 'Report', starterEligible: false, editorial: true }, body: 'Saved correction.',
+  })
+  assert.equal(withdrawStarter(withdrawn, 'report', 'retry'), withdrawn)
+  const reviewed = setStarterField(withdrawn, 'starterReview', { revision: 'fresh' })
+  assert.deepEqual(parseFrontmatter(reviewed).meta, { title: 'Report', starterEligible: true, editorial: true, starterReview: { revision: 'fresh' } })
 })

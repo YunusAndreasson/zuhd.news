@@ -7,7 +7,11 @@ import { basename } from 'node:path'
 import { batchFiles } from './lib/article-files.js'
 import { pathOf } from './lib/datasets.js'
 import { readJson, writeText } from './lib/json-file.js'
+import { withdrawStarter } from './lib/frontmatter.js'
 import { runStage } from './lib/stage.js'
+import { starterCatalogue } from './lib/starter-articles.js'
+import { classifyRevision } from './lib/starter-eligibility.js'
+import { reviewAfterChartRemoval } from './lib/starter-topics.js'
 import { latestTrendsPath } from './lib/trends-snapshot.js'
 import { createValidator, publishedKeys } from './lib/validate-article.js'
 
@@ -34,6 +38,8 @@ export function main() {
   for (const c of readJson(pathOf('companies'))?.companies || []) knownIds.add(`co:${c.id}`)
   for (const l of readJson(pathOf('aiModels'))?.labs || []) knownIds.add(`ai:${l.id}`)
 
+  const accepted = []
+  let checked = 0
   const validator = createValidator({ published, offeredBySlug, knownIds })
   /** @type {{ slug: string, reason: string }[]} */
   const dropped = []
@@ -42,16 +48,18 @@ export function main() {
 
   for (const { rel: f, path: full, name } of files) {
     if (!existsSync(full)) continue
-    const { bad, text, events, problems } = validator.check(readFileSync(full, 'utf8'), name)
-    // Whole or not at all: an article is a record, and nothing writes it again.
+    const raw = readFileSync(full, 'utf8')
+    const { bad, text, events, problems } = validator.check(raw, name)
+    checked++
     if (text !== null) writeText(full, text)
     for (const event of events) console.log(`${event}: ${f}`)
     if (bad) {
       console.log(`SKIP (${bad}): ${f}`)
       renameSync(full, `${full}.bad`)
       dropped.push({ slug: basename(name, '.md'), reason: bad })
-    } else if (problems.length) {
-      flagged.push({ slug: basename(name, '.md'), reason: problems.join('; ') })
+    } else {
+      accepted.push({ full, name, raw, edited: text ?? raw })
+      if (problems.length) flagged.push({ slug: basename(name, '.md'), reason: problems.join('; ') })
     }
   }
 
@@ -65,9 +73,26 @@ export function main() {
   const { removed, repaired, chartsSet, chartsDropped, chartsCited } = validator.counts
   if (chartsSet) console.log(`Charts: ${chartsSet} set, ${chartsDropped} dropped, ${chartsCited} cite the figure`)
 
-  console.log(`Validated ${files.length} articles, ${removed} removed${repaired ? `, ${repaired} dateline(s) repaired` : ''}`)
+  // All base checks, repairs and quarantines have finished. Classification
+  // only sees accepted reports. An intervening save belongs to its editor.
+  let catalogue
+  for (const { name, full, raw, edited } of accepted) {
+    let revision
+    try {
+      if (catalogue === undefined) catalogue = starterCatalogue()
+      if (!catalogue) throw new Error('starter catalogue unavailable')
+      revision = classifyRevision(raw === edited ? raw : reviewAfterChartRemoval(raw, edited), catalogue)
+    } catch (error) {
+      revision = withdrawStarter(edited, name, error)
+    }
+    if (revision !== edited) {
+      if (readFileSync(full, 'utf8') !== edited) throw new Error(`Article changed after validation: ${name}`)
+      writeText(full, revision)
+    }
+  }
+  console.log(`Validated ${checked} articles, ${removed} removed${repaired ? `, ${repaired} dateline(s) repaired` : ''}`)
   return {
-    counts: { listed: files.length, removed, repaired, chartsSet, chartsDropped, chartsCited, repeatedBlocks: repeats.length },
+    counts: { listed: files.length, checked, removed, repaired, chartsSet, chartsDropped, chartsCited, repeatedBlocks: repeats.length },
     dropped,
     flagged,
   }

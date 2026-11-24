@@ -311,7 +311,7 @@ export const oddsScore = (ind, text, lower) => {
  * @param {{ values?: number[], periods?: string[], dates?: string[], asOf?: string }} ind
  * @returns {{ t: number, v: number }[] | null}
  */
-const datedPoints = (ind) => {
+export const datedPoints = (ind) => {
   const values = ind.values || []
   /** @type {number[]} */
   let days

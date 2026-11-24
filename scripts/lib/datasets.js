@@ -84,6 +84,7 @@ const catalog = {
   // What scripts/cycle/notify.js last mailed about that, so a failure is mailed once and then about daily.
   alertMail: { path: 'logs/alert-mail.json', class: 'cache' },
   apiStamps: { path: '.cache/api-stamps.json', class: 'cache' },
+  widgetExchange: { path: '.cache/widget-exchange.json', class: 'cache' },
   ogCards: { path: '.cache/og', class: 'cache' },
   igCards: { path: '.cache/ig', class: 'cache' },
   countryCards: { path: '.cache/og-country', class: 'cache' },

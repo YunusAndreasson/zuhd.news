@@ -6,9 +6,9 @@
   "description": "News for all humans. Typography-first, minimalist news site.",
   "scripts": {
     "dev": "SKIP_OG=1 node scripts/watch.js",
-    "dev:once": "SKIP_OG=1 node scripts/build.js && npx wrangler pages dev dist",
-    "dev:og": "node scripts/build.js && npx wrangler pages dev dist",
-    "build": "node scripts/build.js",
+    "dev:once": "SKIP_OG=1 node scripts/publish-edition.js --preview && npx wrangler pages dev dist",
+    "dev:og": "node scripts/publish-edition.js --preview && npx wrangler pages dev dist",
+    "build": "node scripts/publish-edition.js",
     "test": "node --test scripts/lib/*.test.js",
     "test:unit": "node --test $(ls scripts/lib/*.test.js | grep -vE 'lib/(logs|corpus|selection|blocks|share-card-type)\\.test\\.js$')",
     "test:cycle": "node --test scripts/cycle/golden.test.js",
@@ -24,7 +24,7 @@
     "perf:profile": "node scripts/perf/idle-profile.mjs",
     "fetch": "node scripts/fetch-news.js",
     "deploy": "npx wrangler pages deploy dist --project-name zuhd-news --branch master --commit-dirty=true",
-    "publish": "node scripts/build.js && npm run deploy",
+    "publish": "node scripts/publish-edition.js && npm run deploy",
     "briefing": "node scripts/generate-briefing.js"
   },
   "dependencies": {

@@ -52,7 +52,7 @@ const runBuild = () => {
   const reason = pendingChange || 'initial'
   pendingChange = null
   console.log(`\n[watch] rebuild (${reason})…`)
-  const proc = spawn(NODE, [join(ROOT, 'scripts/build.js')], {
+  const proc = spawn(NODE, [join(ROOT, 'scripts/publish-edition.js'), '--preview'], {
     cwd: ROOT,
     env: { ...process.env, SKIP_OG: process.env.SKIP_OG ?? '1' },
     stdio: ['ignore', 'inherit', 'inherit'],
@@ -100,7 +100,7 @@ const initialBuild = () =>
   new Promise((resolve) => {
     console.log('[watch] initial build…')
     const start = Date.now()
-    const proc = spawn(NODE, [join(ROOT, 'scripts/build.js')], {
+    const proc = spawn(NODE, [join(ROOT, 'scripts/publish-edition.js'), '--preview'], {
       cwd: ROOT,
       env: { ...process.env, SKIP_OG: process.env.SKIP_OG ?? '1' },
       stdio: ['ignore', 'inherit', 'inherit'],

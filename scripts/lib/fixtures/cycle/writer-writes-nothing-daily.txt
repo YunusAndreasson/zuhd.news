@@ -40,7 +40,7 @@ commands
   git commit --only content/.events-dispatch.json -m Event dispatch 2026-10-08T05:01
   node scripts/fetch-analytics.js
   node scripts/generate-briefing.js
-  node scripts/build.js
+  node scripts/publish-edition.js
   git add content/audio/
   git commit --only content/audio/ -m Audio briefing 2026-10-08
   node scripts/cycle/sync.js

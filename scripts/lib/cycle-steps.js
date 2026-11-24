@@ -414,8 +414,12 @@ export async function validate(cycle) {
   // `tee` whose own stdout was the variable.
   cycle.logOnly(raw)
   cycle.say(`Validate exit: ${status}`)
-  const bad = out.split('\n').filter((l) => l.startsWith('SKIP (')).length
-  cycle.funnel.validated = cycle.state.newCount - bad
+  if (status !== 0) throw new CycleExit(status)
+  const summaries = [...out.matchAll(/^Validated (\d+) articles, (\d+) removed(?:, \d+ dateline\(s\) repaired)?$/gm)]
+  const [summary] = summaries
+  if (summaries.length !== 1 || !summary || Number(summary[2]) > Number(summary[1])) throw new CycleExit(1)
+  const bad = Number(summary[2])
+  cycle.funnel.validated = Number(summary[1]) - bad
   if (bad > 0) cycle.funnel.validNote = `${bad} removed`
 }
 
@@ -431,7 +435,7 @@ const DEPLOY = ['npx', 'wrangler', 'pages', 'deploy', 'dist', '--project-name', 
 
 /** Commit the cycle's articles, reconcile with the remote, and deploy. @param {Cycle} cycle */
 export async function publish(cycle) {
-  await cycle.commitOnly(`Editorial cycle ${when.spoken(cycle.clock())}: ${cycle.funnel.validated ?? cycle.state.newCount} articles`, [
+  await cycle.commitOnly(`Editorial cycle ${when.spoken(cycle.clock())}: ${cycle.funnel.validated ?? 0} articles`, [
     'articles', 'lastCycle', 'storyLedger', 'contextBriefs', 'swedish',
   ])
   await cycle.sync()

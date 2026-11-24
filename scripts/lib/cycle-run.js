@@ -452,7 +452,7 @@ export class Cycle {
    */
   async build() {
     for (let attempt = 1; ; attempt++) {
-      const { status, out } = await this.readBoth(['node', 'scripts/build.js'])
+      const { status, out } = await this.readBoth(['node', 'scripts/publish-edition.js'])
       this.say(out)
       if (status === 0 || attempt >= 3 || !out.includes('Another build is already running')) return status
       this.say(`Build lock held — retrying in 20s (attempt ${attempt}/3)`)

@@ -108,12 +108,12 @@ on_cycle_exit() {
 }
 
 # Build with a retry on the build lock (see Stage 3b for why). Sets BUILD_EXIT.
-# One copy: the Stage 4 audio rebuild ran a bare `node scripts/build.js` with no
+# One copy: the Stage 4 audio rebuild ran a bare `node scripts/publish-edition.js` with no
 # retry and no exit check, then deployed whatever dist/ held.
 build_site() {
   local attempt=1 out
   while :; do
-    out=$(node scripts/build.js 2>&1)
+    out=$(node scripts/publish-edition.js 2>&1)
     BUILD_EXIT=$?
     echo "$out" | tee -a "$LOG_FILE"
     if [ "$BUILD_EXIT" -eq 0 ] || [ "$attempt" -ge 3 ] \
@@ -792,9 +792,14 @@ $ACRONYMS
   # the article's mtime and the log is appended to right after, so the funnel
   # and the commit message counted quarantined articles as published.
   VALIDATE_OUT=$(node scripts/validate-articles.js 2>&1 | tee -a "$LOG_FILE")
-  echo "Validate exit: $?" | tee -a "$LOG_FILE"
-  BAD_COUNT=$(printf '%s\n' "$VALIDATE_OUT" | grep -c '^SKIP (' || true)
-  FUNNEL_VALIDATED=$((NEW_COUNT - BAD_COUNT))
+  VALIDATE_EXIT=$?
+  echo "Validate exit: $VALIDATE_EXIT" | tee -a "$LOG_FILE"
+  [ "$VALIDATE_EXIT" -eq 0 ] || exit "$VALIDATE_EXIT"
+  mapfile -t VALIDATE_SUMMARIES < <(grep -E '^Validated [0-9]+ articles, [0-9]+ removed(, [0-9]+ dateline\(s\) repaired)?$' <<< "$VALIDATE_OUT")
+  [ "${#VALIDATE_SUMMARIES[@]}" -eq 1 ] || exit 1
+  read -r _ CHECKED_COUNT _ BAD_COUNT _ <<< "${VALIDATE_SUMMARIES[0]}"
+  [ "$CHECKED_COUNT" -ge "$BAD_COUNT" ] || exit 1
+  FUNNEL_VALIDATED=$((CHECKED_COUNT - BAD_COUNT))
   [ "$BAD_COUNT" -gt 0 ] && FUNNEL_VALID_NOTE="${BAD_COUNT} removed"
 
   # Write .last-cycle.json from validated articles (not raw selection)
@@ -841,7 +846,7 @@ $ACRONYMS
   if [ "$BUILD_EXIT" -eq 0 ]; then
     # Commit
     CYCLE_TIME=$(date -u +"%Y-%m-%d %H:%M UTC")
-    commit_only "Editorial cycle $CYCLE_TIME: ${FUNNEL_VALIDATED:-$NEW_COUNT} articles" \
+    commit_only "Editorial cycle $CYCLE_TIME: ${FUNNEL_VALIDATED:-0} articles" \
       content/articles/ content/.last-cycle.json content/.story-ledger.json content/.context-briefs.json content/.sv.json
     sync_remote
 

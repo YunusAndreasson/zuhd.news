@@ -38,11 +38,12 @@ export function parseAddLog(out) {
  * the walk to the build's window: ~0.6 s for 14 days, 3 s for the whole
  * history on the box. An empty map outside a git checkout.
  */
-export function publishedTimes(root, days) {
+export function publishedTimes(root, daysOrSince) {
+  const since = typeof daysOrSince === 'number' ? `${daysOrSince}.days` : daysOrSince
   try {
     const out = execFileSync(
       'git',
-      ['log', `--since=${days}.days`, '--diff-filter=A', '--no-renames', '--format=@%at', '--name-only', '--', 'content/articles/'],
+      ['log', `--since=${since}`, '--diff-filter=A', '--no-renames', '--format=@%at', '--name-only', '--', 'content/articles/'],
       { cwd: root, encoding: 'utf-8', maxBuffer: 16 * 1024 * 1024, stdio: ['ignore', 'pipe', 'ignore'] },
     )
     return parseAddLog(out)

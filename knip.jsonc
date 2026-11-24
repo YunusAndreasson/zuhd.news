@@ -31,6 +31,8 @@
         //    wherever npm happens to agree is not one. `npm run deadcode` passes
         //    --no-config-hints so the command reports findings, not config advice.
         "scripts/body-lengths.js",
+        "scripts/backfill-starters.js",
+        "scripts/publish-edition.js",
         "scripts/build.js",
         "scripts/compute-metrics.js",
         "scripts/company-gaps.js",

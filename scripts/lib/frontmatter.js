@@ -1,5 +1,16 @@
 // Named import, not default: js-yaml 5's ESM build dropped the default export.
+import { AsyncLocalStorage } from 'node:async_hooks'
+import { isDeepStrictEqual } from 'node:util'
 import { load } from 'js-yaml'
+
+// Last resort when even a withdrawal cannot be represented by a lossless
+// field edit (for example, a shared YAML anchor). Preserve all editorial bytes.
+const withdrawnHeader = '---\n# zuhd: starter review withdrawn\n'
+
+// The publisher scopes its revision collector to this build. Other article
+// readers, including a concurrent validation, never join that collection.
+/** @type {AsyncLocalStorage<(article: { meta: Record<string, any>, body: string }) => void>} */
+export const parsedArticles = new AsyncLocalStorage()
 
 /**
  * The frontmatter block and the prose under it, as text: the split every
@@ -47,7 +58,13 @@ export function parseFrontmatter(content) {
   // wrapped across two lines, which 4 had been folding into a trailing space
   // inside the published href — a live defect, now fixed in the article.)
   if (!cleaned.trim()) return { meta: {}, body: split.body }
-  return { meta: load(cleaned) ?? {}, body: split.body }
+  const article = { meta: load(cleaned) ?? {}, body: split.body }
+  if (content.startsWith(withdrawnHeader) && article.meta && typeof article.meta === 'object') {
+    Object.assign(article.meta, { starterEligible: false })
+    Reflect.deleteProperty(article.meta, 'starterReview')
+  }
+  parsedArticles.getStore()?.(article)
+  return article
 }
 
 /**
@@ -168,4 +185,61 @@ export function setFrontmatterLine(block, key, value, { after } = {}) {
   const anchor = after ? new RegExp(`^${after}:.*$`, 'm') : null
   if (anchor?.test(block)) return block.replace(anchor, (hit) => `${hit}\n${line}`)
   return `${block}\n${line}`
+}
+
+// The onboarding fields may be quoted, escaped or indented. Check their edit
+// against the parsed mapping so another field cannot be changed or an old
+// approval hidden by an unfamiliar YAML spelling.
+/**
+ * @param {string} raw
+ * @param {'starterReview'|'starterEligible'} key
+ * @param {unknown} [value] omit to withdraw a review
+ */
+export function setStarterField(raw, key, value) {
+  if (key === 'starterReview' && value && raw.startsWith(withdrawnHeader)) raw = `---\n${raw.slice(withdrawnHeader.length)}`
+  return raw.replace(/^---\n([\s\S]*?)\n---(?=\n|$)/, (frontmatter, /** @type {string} */ yaml) => {
+    const mapping = (/** @type {string} */ text) => {
+      const parsed = text.trim() ? load(text.replace(/",\s*$/gm, '"')) : {}
+      if (!parsed || typeof parsed !== 'object' || Array.isArray(parsed)) throw new Error('Expected frontmatter mapping')
+      return /** @type {Record<string, unknown>} */ (parsed)
+    }
+    const original = mapping(yaml)
+    if (value === undefined ? !Object.hasOwn(original, key) : isDeepStrictEqual(original[key], value)) return frontmatter
+    const lines = yaml.split('\n')
+    const indent = lines.find(line => line.trim() && !line.trimStart().startsWith('#'))?.match(/^ */)?.[0] ?? ''
+    const start = lines.findIndex(line => {
+      if (!line.startsWith(indent)) return false
+      const match = line.slice(indent.length).match(/^(?:\?\s+)?("(?:\\.|[^"\\])*"|'(?:''|[^'])*'|[\w.-]+)[ \t]*(?::(?:\s|$)|$)/)
+      return match && (/^["']/.test(match[1]) ? load(match[1]) : match[1]) === key
+    })
+    if (start >= 0) {
+      let end = start + 1
+      if (lines[start].slice(indent.length).startsWith('? ') && lines[end]?.startsWith(`${indent}:`)) end++
+      while (end < lines.length && (lines[end].trim() === '' || lines[end].startsWith(`${indent} `) ||
+        /^-(?:\s|$)/.test(lines[end].slice(indent.length)))) end++
+      lines.splice(start, end - start)
+    }
+    /** @type {Record<string, unknown>} */
+    const expected = { ...original }
+    if (value === undefined) delete expected[key]
+    else {
+      const documentEnd = lines.findIndex(line => /^\.\.\.(?:\s|$)/.test(line))
+      lines.splice(documentEnd < 0 ? lines.length : documentEnd, 0, `${indent}${key}: ${JSON.stringify(value)}`)
+      expected[key] = value
+    }
+    const result = lines.join('\n')
+    if (!isDeepStrictEqual({ ...mapping(result) }, expected)) throw new Error(`Cannot apply the edit to frontmatter key ${key} safely`)
+    return `---\n${result}\n---`
+  })
+}
+
+/** @param {string} raw @param {string} name @param {unknown} error */
+export function withdrawStarter(raw, name, error) {
+  console.warn(`Starter ineligible (${name}):`, error instanceof Error ? error.message : error)
+  try {
+    return setStarterField(setStarterField(raw, 'starterReview'), 'starterEligible', false)
+  } catch (editError) {
+    console.warn(`Starter withdrawal (${name}):`, editError instanceof Error ? editError.message : editError)
+    return raw.startsWith(withdrawnHeader) ? raw : raw.replace(/^---\n/, withdrawnHeader)
+  }
 }

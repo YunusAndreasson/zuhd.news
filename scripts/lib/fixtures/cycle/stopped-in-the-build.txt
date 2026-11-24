@@ -61,7 +61,7 @@ commands
   node scripts/write-last-cycle.js
   node scripts/pick-breaking-social.js
   npm run typecheck
-  node scripts/build.js
+  node scripts/publish-edition.js
   node <repo>/scripts/cycle/alert.js
       + ALERT_LOG=<repo>/logs/cycle-2026-10-08_1804.log
       + ALERT_REASON=no articles published

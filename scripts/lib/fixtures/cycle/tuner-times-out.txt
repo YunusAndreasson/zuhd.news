@@ -61,7 +61,7 @@ commands
   node scripts/write-last-cycle.js
   node scripts/pick-breaking-social.js
   npm run typecheck
-  node scripts/build.js
+  node scripts/publish-edition.js
   git add content/articles/ content/.last-cycle.json content/.story-ledger.json content/.context-briefs.json content/.sv.json
   git commit --only content/articles/ content/.last-cycle.json content/.story-ledger.json content/.context-briefs.json content/.sv.json -m Editorial cycle 2026-10-08 22:03 UTC: 2 articles
   node scripts/cycle/sync.js
