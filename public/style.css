@@ -3247,11 +3247,14 @@ body.map-page.map-rail-off .map-seam[data-side='left'] .map-seam-toggle {
 
    `pointer-events: none` because nothing on it is a target, and a canvas that
    took the pointer would take it from MapLibre entirely. */
+/* A square round the disc, placed and turned by `sky-paint.ts`: a pan turns
+   the painted canvas on the compositor instead of repainting it. */
 .map-sky {
   position: absolute;
-  inset: 0;
-  width: 100%;
-  height: 100%;
+  top: 0;
+  left: 0;
+  transform-origin: 50% 50%;
+  will-change: transform;
   pointer-events: none;
 }
 

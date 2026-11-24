@@ -47,8 +47,12 @@ locks, the light and space's tone are `map.md`; the night wash is
   It has no `z-index`: the island appends it before `new MapLibreMap`.
   Appended after, it covers the earth and nothing throws
   (`map-island.test.js`).
-- No source, layer, `addImage`, feature state or rAF loop. It repaints on
+- No source, layer, `addImage`, feature state or rAF loop. `draw` runs on
   `move` and on `drawSolar`'s tick, so an idle tick still writes nothing.
+- The canvas is a square round the disc. It repaints only when the disc's
+  centre or radius, the fade or the pixel ratio moves (`fits`); a pan turns
+  the painted canvas with a CSS rotation instead. The 72 wedge fills were a
+  quarter of the GPU process's time per frame of a spin.
 - `draw` paints nothing while `document.hidden`, and nothing repaints it until
   the next `move` or tick.
 
