@@ -44,8 +44,11 @@ calendar `hijri.md`.
   the gap between the rails (`globeSpan`), not the canvas the rails float over;
   capped at `GLOBE_ZOOM.sphere`. `onResize` must call `map.resize()` and
   re-apply it.
-- The reachable floor is about 0.1 below `minZoom`: MapLibre adds
-  `log2(cos lat)` on the sphere. Not a bug.
+- The reachable floor is `minZoom + log2(cos lat)`: MapLibre lowers the zoom
+  to hold the planet's size as the centre moves north, down to 3.5 levels at a
+  pole. Not a bug, but every `['zoom']` drifts with it. Do not clamp the
+  centre with `transformConstrain`: the override replaces MapLibre's own
+  constrain on both projections and reads the committed camera mid-update.
 - Keep `maxPitch: 0` and `touchPitch: false`: `calibrate` (`_map/sky.ts`)
   draws no sky for a tilted or turned camera.
 - The globe takes no keys (`keyboard: false`) and its canvas is out of the
@@ -71,9 +74,9 @@ calendar `hijri.md`.
 - The graticule (`_map/graticule.ts`) is generated, not fetched, and stops at
   85°. It sits before `land`: no tone works on both sea and land. Keep
   `line-width` at 1.2 or more: thinner never reaches its tone.
-- `atmosphere-blend` is a constant 0.2. Never zoom-interpolate it: MapLibre
-  already fades it with the projection. Its colour is MapLibre's own and it
-  paints over labels and marks, so raising it washes the day limb.
+- MapLibre's atmosphere is off (`atmosphere-blend` 0, stated: a `sky` block
+  without it is 0.8). It paints over every layer, and over the poles its lit
+  edge drew a second, shadowed sphere. The sky canvas draws the limb.
 - `drawSolar` sets the light with `anchor: 'map'` and `sunLightPosition`, the
   antisolar direction (MapLibre negates it). With no `light` the crescent is
   fixed to the screen. No other `sky` property reaches the globe.
@@ -101,6 +104,9 @@ calendar `hijri.md`.
 - `Popup` keeps `locationOccludedOpacity: 0`, and `syncOccludedPointer`
   mirrors it to `pointer-events`: opacity alone leaves an unseen card taking
   clicks.
+- A non-constant `symbol-sort-key` draws each run of equal keys in its own
+  call, every frame: never key on one value per feature. `story-points` draws
+  in source order (`symbol-z-order: 'source'`), written oldest first.
 - Hover is `promoteId` and `setFeatureState`, never a `setFilter` or
   `setPaintProperty` per pointer move, which reloads the source.
 - Only `applyMetric` calls `removeFeatureState` on `countries` without an id,

@@ -31,6 +31,8 @@ export const COUNTRY_TILE_MAX_ZOOM = 5
 export const COUNTRY_TILE_LAYER = 'countries'
 /** The depth bands' layer, the `source-layer` of `depth`. */
 export const DEPTH_TILE_LAYER = 'depth'
+/** Antarctica's coast as a line, the `source-layer` of `pole-coast`. */
+export const COAST_TILE_LAYER = 'coast'
 const EXTENT = 8192
 
 /**

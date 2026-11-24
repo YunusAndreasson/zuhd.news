@@ -107,6 +107,31 @@ export const closePolar = (ring) => {
 }
 
 /**
+ * A polygon's rings as lines, without the edges `closePolar` added at the pole.
+ *
+ * @param {import('geojson').Geometry} g
+ * @returns {import('geojson').MultiLineString}
+ */
+export const coastOf = (g) => {
+  const polys = g.type === 'Polygon' ? [g.coordinates] : g.type === 'MultiPolygon' ? g.coordinates : []
+  const lines = []
+  for (const poly of polys) {
+    for (const ring of poly) {
+      // Split where the ring runs along the pole, so the two ends stay apart.
+      let run = []
+      for (const pt of ring) {
+        if (pt[1] <= -89.999) {
+          if (run.length > 1) lines.push(run)
+          run = []
+        } else run.push(pt)
+      }
+      if (run.length > 1) lines.push(run)
+    }
+  }
+  return { type: 'MultiLineString', coordinates: lines }
+}
+
+/**
  * Douglas–Peucker on an open chain. Tolerance is in degrees.
  */
 const simplifyChain = (pts, tol) => {
@@ -313,19 +338,36 @@ export async function buildMapSources(root) {
   // The polygons ship only `iso2`: the hover, the ground metric and the card
   // all key on it, and the names come from `country-labels`, built from the
   // 1:50m tier with its names.
+  //
+  // Antarctica, which has no code, ships `pole`. Past 85°S the globe stretches
+  // a tile's edge to the pole: the no-data hatch became a pinwheel there, and
+  // `borders`, stroking the polygon, drew the closure `closePolar` walks along
+  // the pole as a ring at 85°S. So both leave it out, and its coast is a line
+  // in a tile layer of its own (`coast`), where no fill can triangulate it.
   const keyed = (fc) => ({
     ...fc,
     features: fc.features.map((f) => ({
       ...f,
-      properties: f.properties?.iso2 ? { iso2: f.properties.iso2 } : {},
+      properties: f.properties?.iso2
+        ? { iso2: f.properties.iso2 }
+        : f.properties?.name === 'Antarctica'
+          ? { pole: 1 }
+          : {},
     })),
   })
+  const countriesUltra = keyed(tier('countries-10m.json', 3, 0.003))
   return {
     // Natural Earth 1:10m. 255 countries against 50m's 240 — the difference
     // is mostly islands and a coastline with real inlets rather than a
     // smoothed outline. Coordinates keep 3 decimals (~110 m), and 0.003°
     // (≈ 330 m) of simplification is about one pixel at zoom 9, `maxZoom`.
-    countriesUltra: keyed(tier('countries-10m.json', 3, 0.003)),
+    countriesUltra,
+    coast: {
+      type: /** @type {const} */ ('FeatureCollection'),
+      features: countriesUltra.features
+        .filter((f) => f.properties.pole)
+        .map((f) => ({ type: 'Feature', properties: {}, geometry: coastOf(f.geometry) })),
+    },
     depth: depthBands(root),
     countryLabels: await countryLabelPoints(countries),
     places: await placeLabels(root),

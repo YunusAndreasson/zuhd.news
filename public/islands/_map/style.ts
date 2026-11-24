@@ -7,7 +7,7 @@
 // Dark by design rather than by theme: coloured markers need a dark ground to
 // read against, and every operational map worth copying commits to it.
 
-import type { ExpressionSpecification, StyleSpecification } from 'maplibre-gl'
+import type { ExpressionSpecification, LineLayerSpecification, StyleSpecification } from 'maplibre-gl'
 import { MAKKAH_LABEL } from './format'
 
 /**
@@ -527,7 +527,7 @@ export const basemapUrl = (file: string, v?: string) =>
  * zoom written, past which MapLibre overzooms, and the one layer in each tile.
  * `map-geo.test.js` pins both to the build's.
  */
-export const COUNTRY_TILES = { maxzoom: 5, layer: 'countries', depthLayer: 'depth' } as const
+export const COUNTRY_TILES = { maxzoom: 5, layer: 'countries', depthLayer: 'depth', coastLayer: 'coast' } as const
 
 /**
  * The sea floor's tone from each depth (`d`, metres) down, shallowest first.
@@ -743,6 +743,13 @@ export const globeFitZoom = (span: number, lat: number): number => {
 export const globeSpan = (canvasW: number, canvasH: number, left: number, right: number): number =>
   Math.min(canvasH, Math.max(1, canvasW - left - right))
 
+/** Every frontier and coastline: `borders`, and Antarctica's `pole-coast`. */
+const BORDER_PAINT: NonNullable<LineLayerSpecification['paint']> = {
+  'line-color': MAP_COLOURS.border,
+  // Borders stay hairline at world zoom and firm up as you go in.
+  'line-width': ['interpolate', ['linear'], ['zoom'], 0, 0.4, 4, 0.8, 8, 1.2],
+}
+
 export function buildStyle(v?: string): StyleSpecification {
   return {
     version: 8,
@@ -779,51 +786,22 @@ export function buildStyle(v?: string): StyleSpecification {
       ],
     },
     /**
-     * The atmosphere, and nothing else.
+     * No MapLibre atmosphere: the island's sky canvas (`sky-paint.ts`) draws
+     * the crescent and the airglow outside the limb.
      *
-     * `sky-color` is `ocean` deliberately: the canvas clears to transparent and
-     * `.map-canvas-host` paints `--map-ground` behind it, so space is already
-     * this tone. Setting the sky to anything else would put a second, disagreeing
-     * ground behind the globe and reopen the seam the CSS fix closes — the HUD
-     * and scrubber scrims fade into `--map-ground`, and they do not know which
-     * of the two they are sitting on.
+     * MapLibre's atmosphere is a sphere drawn over every layer, lit from the
+     * sun. Over the poles its lit edge read as a second, shadowed sphere inside
+     * the planet, it washed the day limb's names, and it cost a full-canvas
+     * pass every frame. With `atmosphere-blend` at 0 `draw_sky.ts` draws
+     * nothing. It is stated: a `sky` block without it means the 0.8 default.
      *
-     * `atmosphere-blend` takes a **constant, not a zoom interpolation**, and
-     * that is not laziness. `draw_sky.ts` computes
-     * `blend × projectionData.projectionTransition`, so it already fades out
-     * exactly in step with the globe. Interpolating it here would be a second
-     * copy of `GLOBE_ZOOM` that nothing checks against the first — the class of
-     * duplication this file's header is about.
-     *
-     * `fog-*` is untouched: it requires 3D terrain, and there is none.
+     * `sky-color` is space's tone: the canvas clears to transparent and
+     * `.map-canvas-host` paints `--map-ground` behind it.
      */
     sky: {
       'sky-color': MAP_COLOURS.space,
       'horizon-color': MAP_COLOURS.horizon,
-      /**
-       * 0.2, not the 0.8 default, and the number was measured rather than
-       * chosen.
-       *
-       * The atmosphere is lit from the sun's own direction — `draw_sky.ts`
-       * takes a `sunPos` uniform — so it is a *crescent* along the day limb,
-       * not a ring. At 0.8 that crescent renders near-white, which on this map
-       * is a category error: `OVERLAY_COLOUR.genocide` is the one unmuted tone
-       * the whole palette is rationed to afford, and a white arc a thousand
-       * pixels long was louder than it, drawn by the camera rather than by any
-       * fact about the world.
-       *
-       * At 0.34 the limb was a rim rather than a light source, but the glow is
-       * drawn after every layer, labels and marks included, in a pale blue
-       * fixed in MapLibre's shader: a band ~90px deep over the day limb's land
-       * washed its names and marks. At 0.2 the rim stays and the wash recedes:
-       * one pixel over Mali at world zoom went from (84,103,121) to
-       * (72,86,102).
-       *
-       * The night limb is unlit by this glow, since the scattering is dark
-       * wherever the sun is behind the planet. Its edge is the airglow line on
-       * the island's own sky canvas (`MAP_COLOURS.airglow`, `sky-paint.ts`).
-       */
-      'atmosphere-blend': 0.2,
+      'atmosphere-blend': 0,
     },
     sources: {
       // `promoteId` lifts each feature's `iso2` into the feature id, which is
@@ -1023,11 +1001,17 @@ export function buildStyle(v?: string): StyleSpecification {
         type: 'line',
         source: 'countries',
         'source-layer': COUNTRY_TILES.layer,
-        paint: {
-          'line-color': MAP_COLOURS.border,
-          // Borders stay hairline at world zoom and firm up as you go in.
-          'line-width': ['interpolate', ['linear'], ['zoom'], 0, 0.4, 4, 0.8, 8, 1.2],
-        },
+        // Antarctica's coast is `pole-coast`: its polygon's closure along the
+        // pole drew a ring at 85°S (`coastOf`, `scripts/build/basemap.js`).
+        filter: ['!', ['has', 'pole']],
+        paint: BORDER_PAINT,
+      },
+      {
+        id: 'pole-coast',
+        type: 'line',
+        source: 'countries',
+        'source-layer': COUNTRY_TILES.coastLayer,
+        paint: BORDER_PAINT,
       },
       /**
        * Ranges, deserts, plateaus, basins and plains: the Sahel, the Hindu

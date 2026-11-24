@@ -31,7 +31,7 @@ import {
 // `GeoJSON.*` was being reached for as a UMD global, which @types/geojson only
 // exposes to non-module files — so the namespace never resolved in here.
 // Type-only, so esbuild drops it.
-import type { FeatureCollection } from 'geojson'
+import type { Feature, FeatureCollection, LineString, Polygon } from 'geojson'
 import { pointSourceWriter } from './_map/point-source'
 import {
   basemapUrl,
@@ -461,6 +461,28 @@ const json = async <T>(
 }
 
 const empty = { type: 'FeatureCollection' as const, features: [] }
+
+/** The graticule, tagged for the `sphere` source. It never changes. */
+const GRID: Feature[] = graticuleLines().map((f) => ({ ...f, properties: { ...f.properties, kind: 'grid' } }))
+
+/**
+ * The `sphere` source: the graticule, and the night, the day and the twilight
+ * band when there is a sun to cut them from (all null at the equinox).
+ */
+const sphereData = (
+  night: Feature<Polygon> | null,
+  day: Feature<Polygon> | null,
+  band: Feature<LineString> | null,
+): FeatureCollection => {
+  const features: Feature[] = [...GRID]
+  const tag = (f: Feature | null, kind: string) => {
+    if (f) features.push({ ...f, properties: { ...f.properties, kind } })
+  }
+  tag(night, 'night')
+  tag(day, 'day')
+  tag(band, 'band')
+  return { type: 'FeatureCollection', features }
+}
 
 const catColour = (fallback: string) =>
   [
@@ -2387,9 +2409,12 @@ export function mount(
   }
 
 
+  // Oldest first: `story-points` draws in this order (`symbol-z-order:
+  // 'source'`), so the newest story is on top wherever two dots touch, and
+  // `pointSourceWriter` keeps the order through every diff.
   const storyCollection = (visible: MapPoint[], slots: Map<string, FlowerSlot>) => ({
     type: 'FeatureCollection' as const,
-    features: visible.map((p) => {
+    features: [...visible].sort((a, b) => a.t - b.t).map((p) => {
       const slot = slots.get(p.slug)
       const w = p.w ?? UNKNOWN_COVERAGE_W
       const rank = slot?.rank ?? 0
@@ -2871,20 +2896,11 @@ export function mount(
         ],
       },
     })
-    map.addSource('night', { type: 'geojson', data: empty })
-    map.addSource('day', { type: 'geojson', data: empty })
-    // The same curve the two hemispheres are cut from, kept open — see
-    // `terminatorBand`. A separate source rather than a filter on `night`,
-    // because one is a polygon and the other is the line around it.
-    map.addSource('terminator', { type: 'geojson', data: empty })
-    // Built here rather than fetched: 761 points of arithmetic, so a file would
-    // be a request and an entry in `BASEMAP_V` bought for something the client
-    // can produce before the first frame. It never changes, so unlike `night`
-    // and `day` it is filled at declaration and no tick ever rewrites it.
-    map.addSource('graticule', {
-      type: 'geojson',
-      data: { type: 'FeatureCollection', features: graticuleLines() },
-    })
+    // The night, the day, the twilight band along the terminator and the
+    // graticule: one source, told apart by `kind` (`sphereData`). The four
+    // layers draw next to each other, so one source is one set of tile masks
+    // and one tile pyramid a frame instead of four.
+    map.addSource('sphere', { type: 'geojson', data: sphereData(null, null, null) })
     // `promoteId` so hover can address a whole prayer by name. The geometry is
     // a MultiLineString cut at the antimeridian and at the poles, so a segment
     // is not a thing a reader would ever mean to point at.
@@ -2926,7 +2942,11 @@ export function mount(
           type: 'fill',
           source: 'countries',
           'source-layer': COUNTRY_TILES.layer,
+          // Antarctica is no country's missing figure, and its hatch drew a
+          // pinwheel round the pole (`pole` in `scripts/build/basemap.js`).
+          filter: ['!', ['has', 'pole']],
           paint: {
+            'fill-antialias': false,
             'fill-pattern': 'nodata-hatch',
             'fill-opacity': [
               'case',
@@ -2936,7 +2956,9 @@ export function mount(
             ],
           },
         },
-        'borders',
+        // Over `land`, under the lakes: a lake is not the country's missing
+        // figure, and one source in a row shares one set of tile masks.
+        'lakes',
       )
     } catch (err) {
       console.warn('[map] no-data hatch unavailable', err)
@@ -2989,9 +3011,13 @@ export function mount(
         paint: {
           'fill-color': '#ffffff',
           'fill-opacity': ['case', ['boolean', ['feature-state', 'hover'], false], 0.06, 0],
+          // `borders` draws the edge; an outline pass here drew every
+          // country's at opacity 0, every frame.
+          'fill-antialias': false,
         },
       },
-      'borders',
+      // Beside `land` and the hatch, under the lakes: see the hatch.
+      'lakes',
     )
 
     // The country whose card is open, drawn round in the label's ink, above
@@ -3025,8 +3051,11 @@ export function mount(
       {
         id: 'day-shade',
         type: 'fill',
-        source: 'day',
-        paint: { 'fill-color': DAYLIGHT, 'fill-opacity': 0.055 },
+        source: 'sphere',
+        filter: ['==', ['get', 'kind'], 'day'],
+        // No outline pass: on a translucent fill it doubles the alpha along
+        // every edge, the antimeridian cut and the pole closure included.
+        paint: { 'fill-color': DAYLIGHT, 'fill-opacity': 0.055, 'fill-antialias': false },
       },
       'land',
     )
@@ -3058,8 +3087,9 @@ export function mount(
       {
         id: 'night-shade',
         type: 'fill',
-        source: 'night',
-        paint: { 'fill-color': MAP_COLOURS.space, 'fill-opacity': 0.28 },
+        source: 'sphere',
+        filter: ['==', ['get', 'kind'], 'night'],
+        paint: { 'fill-color': MAP_COLOURS.space, 'fill-opacity': 0.28, 'fill-antialias': false },
       },
       'land',
     )
@@ -3119,7 +3149,8 @@ export function mount(
       {
         id: 'twilight',
         type: 'line',
-        source: 'terminator',
+        source: 'sphere',
+        filter: ['==', ['get', 'kind'], 'band'],
         paint: {
           'line-color': DAYLIGHT,
           'line-width': twilightWidth,
@@ -3195,7 +3226,8 @@ export function mount(
       {
         id: 'graticule',
         type: 'line',
-        source: 'graticule',
+        source: 'sphere',
+        filter: ['==', ['get', 'kind'], 'grid'],
         paint: {
           'line-color': MAP_COLOURS.graticule,
           // Keep a solid core at 1×. Quiet the grid with opacity.
@@ -3736,8 +3768,10 @@ export function mount(
         'icon-offset': flowerOffsets(PETAL_PX),
         'icon-allow-overlap': true,
         'icon-ignore-placement': true,
-        // Newest on top where two dots of a flower touch.
-        'symbol-sort-key': ['get', 't'],
+        // Newest on top where two dots touch, by the source's order
+        // (`storyCollection`). A `symbol-sort-key` of the story's time drew
+        // each story in its own call, every frame.
+        'symbol-z-order': 'source',
       },
       paint: {
         'icon-color': catColour(FALLBACK_CATEGORY_COLOUR),
@@ -4065,18 +4099,11 @@ export function mount(
   const drawSolar = () => {
     if (!mounted || !layersReady) return
     const now = new Date()
-    const night = nightPolygon(now)
-    src('night')?.setData(
-      night ? { type: 'FeatureCollection', features: [night] } : empty,
-    )
-    // The same boundary from the other side, for the water. See `dayPolygon`.
-    const day = dayPolygon(now)
-    src('day')?.setData(day ? { type: 'FeatureCollection', features: [day] } : empty)
-    // And the boundary itself, for the twilight ramp drawn along it. All three
-    // come back null together at the equinox, so the shade, the lift and the
-    // band appear and disappear as one picture rather than in pieces.
-    const band = terminatorBand(now)
-    src('terminator')?.setData(band ? { type: 'FeatureCollection', features: [band] } : empty)
+    // The night, the same boundary from the other side for the water (see
+    // `dayPolygon`), and the boundary itself for the twilight ramp drawn along
+    // it. All three come back null together at the equinox, so the shade, the
+    // lift and the band appear and disappear as one picture.
+    src('sphere')?.setData(sphereData(nightPolygon(now), dayPolygon(now), terminatorBand(now)))
     // Note these keep drawing at the equinox, when `terminatorLat` degenerates
     // and the two polygons above come back null: the closed form behind them
     // has no such singularity. Across that instant — a window about twelve
