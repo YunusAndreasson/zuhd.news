@@ -5871,7 +5871,175 @@
       "fingerprint": "97bd8b2626a075d3",
       "recipe": "d9c5954d3ae1",
       "translatedAt": "2026-11-24T10:11:11.819Z"
+    },
+    "2026-11-24-amazon-cairn-ai-agents-zero-day-exploit": {
+      "titel": "AI-agenter hittar nolldagssårbarhet",
+      "plats": "Östasien",
+      "stycken": [
+        "Östasien — Agenter kartlade en universitetsserver och skrev filer inom 11 minuter.",
+        "Amazon säger att tempot går snabbare än vad säkerhetsoperationscentraler hinner bedöma och prioritera manuellt.",
+        "Med uppdraget att enbart skaffa shell-åtkomst hittade Cairn-agenterna en path traversal-brist i en app för medicinsk bilddiagnostik och fick root-behörighet.",
+        "På andra mål lade agenterna över 16 timmar på attacker mot Redis och Log4Shell och misslyckades.",
+        "Varken en rättning eller ett säkerhetsmeddelande fanns när Amazon hittade bristen, och rapporten nämner ingen patch."
+      ],
+      "fingerprint": "bc410a3fe8a22b79",
+      "recipe": "d9c5954d3ae1",
+      "translatedAt": "2026-11-24T14:16:50.925Z"
+    },
+    "2026-11-24-anthropic-shares-ipo-price-nvidia-huang-return": {
+      "titel": "Anthropic hänger inte med Nvidia",
+      "plats": "USA",
+      "stycken": [
+        "USA — Nvidia tillförde nästan 1 biljon dollar i värde på måndagen medan Anthropic föll 1,4 procent.",
+        "Anthropic, två dagar efter börsnoteringen, missade årets största uppgång på Nasdaq.",
+        "Trump säger att han övertygade Nvidias styrelse att återinsätta Huang, som förespråkar fria open weight-modeller som underbjuder Anthropics betalmodeller.",
+        "Nvidia gick med på att investera 10 miljarder dollar i Anthropics riktade emission på 26 miljarder dollar, enligt Anthropics inlämnade dokument.",
+        "Handlare på Polymarket sätter oddsen till 16 procent för att Anthropic når ett värde på 1,75 biljoner dollar senast 31 december, en nedgång med 34 punkter på en vecka."
+      ],
+      "fingerprint": "767ea6d55c72b9d5",
+      "recipe": "d9c5954d3ae1",
+      "translatedAt": "2026-11-24T14:16:50.925Z"
+    },
+    "2026-11-24-brazil-palantir-agu-pilot-abin-sovereignty-risk": {
+      "titel": "Brasilien testar Palantir",
+      "plats": "Brasília",
+      "stycken": [
+        "Brasília — [Brasiliens](country:BR) generaladvokatämbete kör programvara som dess spioner avvisade.",
+        "Abin, underrättelsetjänsten, avstod 2023 från sitt eget inköp med hänvisning till risker för digital suveränitet.",
+        "Ämbetet betalar 3,7 miljoner real under två år för Palantirs Foundry- och AI-plattform, som körs i Amazons moln.",
+        "Ämbetet säger att Palantir och Amazon inte deltog i bygget av dess prototyper.",
+        "Kontraktet löper ut i december och ämbetet säger att det inte kommer att förnya det."
+      ],
+      "fingerprint": "96dd631ba06881e2",
+      "recipe": "d9c5954d3ae1",
+      "translatedAt": "2026-11-24T14:16:50.926Z"
+    },
+    "2026-11-24-brent-crude-three-month-low-glut-iran": {
+      "titel": "Oljan glider mot överutbud",
+      "plats": "Hormuzsundet",
+      "stycken": [
+        "Hormuzsundet — Brent noterades till 86,57 dollar den 23 november, ned 7,1 procent.",
+        "Rädslan för förnyade strider mellan [USA](country:US) och [Iran](country:IR) förlorar mot prognoser om ett överutbud av råolja.",
+        "JP Morgans råvaruchef säger att kriget höll tillbaka oljeproduktionen i Mellanöstern i flera månader och att producenterna nu kommer att skynda sig att återta marknadsandelar.",
+        "Trafiken genom Hormuz låg den 15 november fortfarande 39 procent under det normala, 2,3 fartyg om dagen.",
+        "Handlare på Polymarket ger ett avtal mellan USA och Iran om Hormuz senast 31 december 13 procents chans."
+      ],
+      "fingerprint": "a9fc2ccc589a877d",
+      "recipe": "d9c5954d3ae1",
+      "translatedAt": "2026-11-24T14:16:50.926Z"
+    },
+    "2026-11-24-china-biolight-dialysis-plant-halted-falsified-records": {
+      "titel": "Dialysfabrik stoppas",
+      "plats": "Tianjin",
+      "stycken": [
+        "Tianjin — Personalen testade aldrig citrat i dialyspulvret.",
+        "Överskott av citrat kan utlösa för lågt kalcium, arytmi och krampanfall hos patienter.",
+        "[Kinas](country:CN) läkemedelsmyndighet fann förfalskad dokumentation vid en oanmäld inspektion och stoppade Biolights enda pulverfabrik i norra Kina.",
+        "Biolight säger att bara A-pulvret berörs och att sparade prover och ett externt test uppfyllde standarderna.",
+        "Biolight säger att fabriker i fem andra regioner kan försörja norra Kina."
+      ],
+      "fingerprint": "5d261b471f99260f",
+      "recipe": "d9c5954d3ae1",
+      "translatedAt": "2026-11-24T14:16:50.926Z"
+    },
+    "2026-11-24-lebanon-liban-telecom-asset-valuation-public-funds": {
+      "titel": "Liban Telecom återuppstår utan skyddsnät",
+      "plats": "Beirut",
+      "stycken": [
+        "Beirut — [Libanons](country:LB) statliga telekombolag har funnits på pappret sedan 2005.",
+        "Människorättsorganisationer varnar för att offentliga medel riskeras när telekomtillgångar värderas utan skyddsmekanismer för styrningen.",
+        "Regeringen beordrade den 8 oktober en värdering av ministeriets och Ogeros tillgångar, med undantag för mobilnäten, och operatören Alfa sköter anbudsförfarandet.",
+        "Wissam Mansour, tidigare chef vid Touch, säger att en värdering före reformen sänker priset, när 1 miljon abonnenter finns på illegala nät.",
+        "Ogeros anställda och de tillgångar som ska gå till Liban Telecom är fortfarande inte fastställda."
+      ],
+      "fingerprint": "a68ab424a8df963e",
+      "recipe": "d9c5954d3ae1",
+      "translatedAt": "2026-11-24T14:16:50.926Z"
+    },
+    "2026-11-24-pakistan-lawyers-repeal-26th-27th-amendments-bilawal": {
+      "titel": "Advokater kräver att ändringar upphävs",
+      "plats": "Islamabad",
+      "stycken": [
+        "Islamabad — 100 advokater kräver att de ändringar som Bilawals parti röstade igenom upphävs.",
+        "Undertecknarna säger att koalitionen behåller sin majoritet genom platser som tagits från oppositionen.",
+        "Den 26:e ändringen tog bort domarnas majoritet i den kommission som utser de konstitutionella kamrarna, och den 27:e gjorde kamrarna till en separat domstol.",
+        "Bilawal sade senare att han inte tar avstånd från den 27:e ändringen, utan bara påpekar att det saknades enighet kring den.",
+        "Brevet kräver att ordningen före den 26:e ändringen återställs och att de reserverade platserna lämnas tillbaka till dem som brevet kallar deras rättmätiga anspråkshavare."
+      ],
+      "fingerprint": "84022c7ab25e5109",
+      "recipe": "d9c5954d3ae1",
+      "translatedAt": "2026-11-24T14:17:25.899Z"
+    },
+    "2026-11-24-punjab-akali-dal-bjp-alliance-2027-farm-laws": {
+      "titel": "Akali Dal återvänder till Modis allians",
+      "plats": "New Delhi",
+      "stycken": [
+        "New Delhi — Akali Dal återvänder till den allians som partiet lämnade i protest mot jordbrukslagarna.",
+        "Akali Dal och Bharatiya Janata Party ställs mot det styrande Aam Aadmi Party i Punjabs val 2027.",
+        "Var för sig vann de 3 respektive 2 av 117 platser 2022, och enligt en analys skulle deras sammanlagda röster ha vänt sex platser.",
+        "Punjabs chefsminister Bhagwant Mann säger att de två åter förenats av lockelsen till makten, efter att de angripit varandra över jordbrukslagarna.",
+        "Inrikesminister Amit Shah säger att National Democratic Alliance kommer att bilda Punjabs nästa regering."
+      ],
+      "fingerprint": "c8eb9c3cd6e3f955",
+      "recipe": "d9c5954d3ae1",
+      "translatedAt": "2026-11-24T14:17:25.899Z"
+    },
+    "2026-11-24-stellenbosch-fungal-virulence-antifungal-strategy": {
+      "titel": "Polyaminer riktas mot svampars virulens",
+      "plats": "Stellenbosch",
+      "stycken": [
+        "Stellenbosch — 19 svamparter toppar WHO:s lista över prioriterade hot.",
+        "Stigande temperaturer och felanvändning av antimykotika gör att svampar tål däggdjurens kroppsvärme.",
+        "Att blockera syntesen av polyaminer hindrar Candida från att bilda hyfer, de trådar som svampen använder för att fastna på vävnad och undgå immunförsvaret.",
+        "Översikten i Clinical Microbiology Reviews sammanfattar befintliga studier, och hämmare av en enskild molekyl har ofta misslyckats kliniskt.",
+        "Forskarna behöver fortfarande ämnen som stör svampars polyaminer utan att skada friska mänskliga celler."
+      ],
+      "fingerprint": "a28517689b3a5fde",
+      "recipe": "d9c5954d3ae1",
+      "translatedAt": "2026-11-24T14:17:25.899Z"
+    },
+    "2026-11-24-syria-marota-city-evicted-families-property-rights": {
+      "titel": "Marota-vräkningarna består efter Assad",
+      "plats": "Damaskus",
+      "stycken": [
+        "Damaskus — 7 500 familjer röjdes undan för Assads höghus.",
+        "[Syrien](country:SY)s nya myndigheter bygger på samma mark i stället för att lämna tillbaka den.",
+        "Dekret 66 betalade ägarna i andelar, och invånare som flytt utomlands missade inspektionerna och förverkade alternativt boende.",
+        "Syria Indicator fann att 2 000 familjer i maj 2024 ännu inte hade fått vare sig bostad, ersättning eller hyresbidrag.",
+        "Guvernementets investeringschef planerar höghus på 13 till 70 våningar, varav ett för teknikföretag."
+      ],
+      "fingerprint": "0155d00d2f4103cd",
+      "recipe": "d9c5954d3ae1",
+      "translatedAt": "2026-11-24T14:17:25.899Z"
+    },
+    "2026-11-24-uganda-journalist-john-odele-criminal-libel-detained": {
+      "titel": "Uganda fängslar reporter",
+      "plats": "Soroti",
+      "stycken": [
+        "Soroti — Journalisten John Odele har varit frihetsberövad sedan 10 november.",
+        "[Uganda](country:UG) åtalar honom med stöd av en ärekränkningslag som landets konstitutionsdomstol underkände i mars.",
+        "Hans reportage handlade om gripandet av presidentens rådgivare Peter Elwelu, och åtalet hävdar att det antydde att general Samuel Okiding försummade sina plikter.",
+        "Polisen och ministern för presidentämbetet svarade inte på förfrågningar om kommentar från Committee to Protect Journalists.",
+        "En domstol i Soroti häktade honom till den 3 december."
+      ],
+      "fingerprint": "e9b6b0081a1711d2",
+      "recipe": "d9c5954d3ae1",
+      "translatedAt": "2026-11-24T14:17:25.899Z"
+    },
+    "2026-11-24-xiaomi-q3-profit-falls-memory-prices-ai-spending": {
+      "titel": "Minneskostnader slår mot Xiaomi",
+      "plats": "Peking",
+      "stycken": [
+        "Peking — Xiaomis telefonleveranser sjönk med 29 procent till 30,7 miljoner.",
+        "Nettovinsten föll med 68 procent till 3,88 miljarder yuan när telefonmarginalerna krympte till 9,2 procent.",
+        "Minneskostnaderna fortsätter att stiga, sade president Lu Weibing, och Xiaomi tänker inte bara höja priserna för att föra över dem på kunderna.",
+        "Det genomsnittliga försäljningspriset steg med 39,8 procent till rekordhöga 1 486 yuan när Xiaomi drev på med premiummodeller.",
+        "AI stod för över 30 procent av forskning och utveckling under de nio första månaderna, och Xiaomi har ännu inte omsatt det i intäkter i stor skala."
+      ],
+      "fingerprint": "dbdc6e4889b4cf39",
+      "recipe": "d9c5954d3ae1",
+      "translatedAt": "2026-11-24T14:17:25.899Z"
     }
   },
-  "generatedAt": "2026-11-24T10:11:11.829Z"
+  "generatedAt": "2026-11-24T14:17:25.911Z"
 }
