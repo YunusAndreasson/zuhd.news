@@ -3110,11 +3110,12 @@ test('every label on the map is legible on every ground it can land on', () => {
   const peak = Math.max(...M.DENSITY_STOPS.map(([, a]) => a))
   const washed = grounds.map((g) => composite(channels(M.MAP_COLOURS.density), peak, g))
 
-  // Every ink MapLibre sets type in. `prayer` is here too: its labels are drawn
-  // at full strength over the same land.
+  // Full-strength cartographic and story inks, including the prayer under the pointer.
   const inks = {
-    'country names': M.MAP_COLOURS.labelDim,
-    'city names and the place numeral': M.MAP_COLOURS.label,
+    'region names': M.MAP_COLOURS.labelDim,
+    'country names': M.MAP_COLOURS.countryLabel,
+    'city names': M.MAP_COLOURS.placeLabel,
+    'place numerals': M.MAP_COLOURS.label,
     'marine labels': M.MAP_COLOURS.waterLabel,
     'prayer labels': M.MAP_COLOURS.prayer,
     'Makkah': M.MAP_COLOURS.makkahLabel,
@@ -3144,8 +3145,10 @@ test('every label on the map is legible on every ground it can land on', () => {
   // two, because a country name is already carried by being uppercase,
   // letter-spaced and set alone at a centroid.
   assert.ok(
-    luminance(M.MAP_COLOURS.label) > luminance(M.MAP_COLOURS.labelDim),
-    'city names must not be quieter than country names',
+    luminance(M.MAP_COLOURS.placeLabel) > luminance(M.MAP_COLOURS.countryLabel) &&
+    luminance(M.MAP_COLOURS.countryLabel) > luminance(M.MAP_COLOURS.labelDim) &&
+    luminance(M.MAP_COLOURS.label) > luminance(M.MAP_COLOURS.placeLabel),
+    'region, country, city and story count must be successively brighter',
   )
 
   // The label tones are text, not marks, and must not drift into a category or

@@ -55,11 +55,11 @@ Camera, MapLibre and cards are `map.md`; the rails are `map-rail.md`.
   before country and city names.
 - Makkah is the map's own mark: `makkah-glow` in `--brand`'s gold, never a dot
   (`economy` is a hair away), and `makkah-label` in `makkahLabel`, the gold
-  lightened to AA. The gazetteer's Makkah is filtered out of `place-dots` and
+  adjusted for AA. The gazetteer's Makkah is filtered out of `place-dots` and
   `place-labels`, or it is named twice.
-- Country names stay quiet (Regular, halo 1) in `labelDim`; `neutral` fails on
+- Country names stay quiet (Regular, halo 1) in `countryLabel`; `neutral` fails on
   the brightest land. A halo does not make a label readable.
-- `DENSITY_STOPS` peaks at 0.30: type on the wash must keep 3:1.
+- The regional wash and its key use `DENSITY_OPACITY` (0.5) on `DENSITY_STOPS`; the local bloom keeps its own strength.
 - The land's physical names are `region-labels`, from
   `shared/data/regions-50m.geojson` (`scripts/build/regions.mjs`, which holds
   the editorial cuts). Under the country names, in `labelDim`, quieter by case
@@ -115,6 +115,7 @@ Camera, MapLibre and cards are `map.md`; the rails are `map-rail.md`.
 - Genocide marks only what a named UN body has determined
   (`shared/genocide.ts`). It draws last, never collides, and its card leads
   with the body that made the finding, not a casualty figure.
+- `ambientOpacity` preserves observation strength at rest; feature state lifts the hovered mark and the mark named by the open sheet.
 - Genocide and famine are conditions: the scrubber must never filter them.
 - The genocide chip is a real toggle switching `genocide-marks`, `-core` and
   `-labels` together. It is the last chip, after `famine`, and shares
