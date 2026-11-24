@@ -12,6 +12,7 @@ import {
 } from 'react';
 import {
   type AccessibilityActionEvent,
+  AccessibilityInfo,
   type GestureResponderEvent,
   Pressable as RNPressable,
   StyleSheet,
@@ -32,7 +33,10 @@ import {
   getSnapshot as getBookmarks,
   subscribe as subscribeBookmarks,
 } from '../../lib/bookmark-store';
+import { spokenDelta } from '../../lib/cards/format';
 import type { GraphCard } from '../../lib/cards/types';
+import { gaugeMove } from '../../lib/cards/week-move';
+import { observationDate } from '../../lib/data-freshness';
 import { ACTIONS_ROW, AFTER_PROSE_GAP } from '../../lib/deck-layout';
 import { useNewSpent } from '../../lib/fresh-store';
 import { largeContent } from '../../lib/large-content';
@@ -40,13 +44,16 @@ import type { StoryRow } from '../../lib/map-feed';
 import { COUNTRY_URL_SCHEME, makeMarkdownStyles, renderSentences } from '../../lib/markdown';
 import type { RiverArticle } from '../../lib/news-order';
 import { openExternal } from '../../lib/open-link';
+import { archiveStory } from '../../lib/opening-story';
 import type { StoryOdds } from '../../lib/predictions';
 import { useReadSlugs } from '../../lib/read-store';
 import { unreadNewBehind } from '../../lib/resume-landing';
 import { articleThreadContext, hookOf, restOf } from '../../lib/story-card';
 import type { TapResult } from '../../lib/tap-result';
+import { ARCHIVE_QUOTE, ArchiveGoldChart } from '../ArchiveGoldChart';
 import { OddsLine } from '../OddsLine';
-import { Pressable, Text } from '../primitives';
+import { PublisherOffer } from '../PublisherOffer';
+import { Icon, Pressable, Text } from '../primitives';
 import { StoryChart } from '../StoryChart';
 
 /**
@@ -86,6 +93,9 @@ import { StoryChart } from '../StoryChart';
  */
 
 interface StoryCardProps {
+  starter?: boolean;
+  archiveReady?: boolean;
+  archiveEdition?: boolean;
   row: StoryRow;
   odds: StoryOdds | null;
   /** The series the prose cites (`lib/story-chart.ts`). Where there is one it
@@ -108,7 +118,7 @@ interface StoryCardProps {
   onCountryPress: (result: TapResult) => void;
   onEntityPress: (entity: Entity) => void;
   onOddsPress: (odds: StoryOdds) => void;
-  onChartPress?: (card: GraphCard) => void;
+  onChartPress?: (card: GraphCard | 'archive-gold') => void;
 }
 
 /** Body lines the veil takes to go from half strength to nothing. */
@@ -228,6 +238,9 @@ const Veil = memo(function Veil({
 });
 
 export const StoryCard = memo(function StoryCard({
+  starter = false,
+  archiveReady = true,
+  archiveEdition = false,
   row,
   odds,
   chart,
@@ -247,6 +260,16 @@ export const StoryCard = memo(function StoryCard({
   const { fontScale } = useWindowDimensions();
   const { article } = row;
 
+  const archived =
+    starter &&
+    article.chart === archiveStory.chart &&
+    article.slug === archiveStory.slug &&
+    article.sentences[0] === archiveStory.sentences[0];
+  const archiveChart = archived && archiveReady;
+  const header = useRef<React.ComponentRef<typeof View>>(null);
+  useEffect(() => {
+    if (open && header.current) AccessibilityInfo.sendAccessibilityEvent(header.current, 'focus');
+  }, [open]);
   const meta = useMemo(() => {
     return [article.category, formatTimeAgo(articleTime(article))].filter(Boolean).join(' · ');
   }, [article]);
@@ -300,6 +323,7 @@ export const StoryCard = memo(function StoryCard({
         // Open, a reader can hold a paragraph to copy it; at rest the card is
         // one button. The prop switches in place: nothing is rebuilt.
         selectable: open,
+        uncapped: starter,
       }),
     [
       article.sentences,
@@ -309,6 +333,7 @@ export const StoryCard = memo(function StoryCard({
       tappableEntities,
       onEntityPress,
       open,
+      starter,
     ],
   );
   // **At rest the hook's links are its words** (`plainBlocks`): the resting
@@ -323,8 +348,9 @@ export const StoryCard = memo(function StoryCard({
       renderSentences(hookOf(article.sentences), mdStyles, {
         location: article.location,
         plainBlocks: 1,
+        uncapped: starter,
       }),
-    [article.sentences, article.location, mdStyles],
+    [article.sentences, article.location, mdStyles, starter],
   );
   // A block per paragraph, with the gap `mdStyles.sentence`'s marginBottom
   // draws between them. Everything after the hook ran on as ONE paragraph
@@ -375,19 +401,66 @@ export const StoryCard = memo(function StoryCard({
   // A story read once and left says `new` no more (2026-09-26, the user's
   // request); `fresh-store` spends it on leaving, never while it is in front.
   const newSpent = useNewSpent(row.slug);
-  const mark = row.mark === 'new' && newSpent ? null : row.mark;
+  const mark = starter ? null : row.mark === 'new' && newSpent ? null : row.mark;
   const categoryInk = categoryTextColor(article.category, colors);
-  const age = formatTimeAgo(articleTime(article));
+  const date = new Date(article.publishedAt ?? article.addedAt);
+  const age = starter
+    ? date.toLocaleDateString('en-GB', {
+        day: 'numeric',
+        month: 'short',
+        ...(archiveEdition ? { year: 'numeric' } : {}),
+        timeZone: 'UTC',
+      })
+    : formatTimeAgo(articleTime(article));
+  const delta = chart && (gaugeMove(chart)?.delta ?? chart.delta);
   const kicker = [meta, mark].filter(Boolean).join(' · ');
 
+  const hookBlock = (
+    <RNPressable {...openTap} accessible={false}>
+      <View
+        accessibilityElementsHidden={!open}
+        importantForAccessibility={open ? 'auto' : 'no-hide-descendants'}
+      >
+        {hook}
+      </View>
+    </RNPressable>
+  );
   return (
     <View style={styles.card}>
       <RNPressable
-        {...openTap}
-        accessibilityRole="button"
-        accessibilityLabel={`${[kicker, article.location].filter(Boolean).join(' · ')}. ${row.title}`}
-        accessibilityHint="Opens the whole story"
-        accessibilityActions={accessibilityActions}
+        {...(open ? {} : openTap)}
+        ref={header}
+        accessibilityRole={open ? 'header' : 'button'}
+        accessibilityLabel={
+          open
+            ? row.title
+            : [
+                article.location,
+                row.title,
+                starter ? age : kicker,
+                starter &&
+                  (archived
+                    ? 'Dealer premium up to 30,000 Pakistani rupees per tola'
+                    : article.sentences[0]),
+                starter &&
+                  (archived
+                    ? archiveChart && ARCHIVE_QUOTE
+                    : chart &&
+                      [
+                        chart.title,
+                        chart.reading,
+                        chart.readingNote,
+                        observationDate(chart.asOf),
+                        delta && spokenDelta(delta),
+                      ]
+                        .filter(Boolean)
+                        .join(', ')),
+              ]
+                .filter(Boolean)
+                .join('. ')
+        }
+        accessibilityHint={open ? undefined : 'Opens the whole story'}
+        accessibilityActions={open ? undefined : accessibilityActions}
         onAccessibilityAction={handleAccessibilityAction}
       >
         <View style={styles.kicker}>
@@ -397,7 +470,7 @@ export const StoryCard = memo(function StoryCard({
                 {article.category}
               </Text>
             ) : null}
-            {article.category ? ` · ${age}` : age}
+            {article.category ? ` · ${archiveEdition ? 'Archive · ' : ''}${age}` : age}
             {mark ? (
               <Text variant="labelXs" tone="emphasis">
                 {` · ${mark}`}
@@ -407,21 +480,43 @@ export const StoryCard = memo(function StoryCard({
         </View>
         {/* Emphasis ink, as the web's title: never quieter than the lede
             under it, which is set in the same step. */}
-        <Text
-          variant="title"
-          tone="emphasis"
-          maxFontSizeMultiplier={MAX_FONT_SCALE.heading}
-          style={styles.title}
-          selectable={open}
-        >
-          {row.title}
-        </Text>
+        <View style={styles.titleRow}>
+          <Text
+            variant="title"
+            tone="emphasis"
+            maxFontSizeMultiplier={starter ? 0 : MAX_FONT_SCALE.heading}
+            style={styles.title}
+            selectable={open}
+          >
+            {row.title}
+          </Text>
+          {starter && !open ? <Icon name="chevron-forward" size="xs" tone="secondary" /> : null}
+        </View>
       </RNPressable>
 
+      {(open || starter) && hookBlock}
+      {open && fontScale > 1.5 ? (
+        <PublisherOffer key={article.slug} source="opened_report" />
+      ) : null}
       {/* The story's chart, over the hook: at the end of the prose a reader
           at rest could not tell a story had one. At rest it is part of the
           card's one button; open, a press on it opens the chart. */}
-      {chart ? (
+      {archiveChart ? (
+        <RNPressable
+          {...(open ? { onPress: () => onChartPress?.('archive-gold') } : openTap)}
+          accessible={open}
+          accessibilityRole="button"
+          accessibilityLabel={ARCHIVE_QUOTE}
+          accessibilityHint="Opens the dated gold reading"
+        >
+          <View
+            accessibilityElementsHidden={!open}
+            importantForAccessibility={open ? 'auto' : 'no-hide-descendants'}
+          >
+            <ArchiveGoldChart />
+          </View>
+        </RNPressable>
+      ) : chart && !archived ? (
         <RNPressable {...openTap} accessible={false}>
           <View
             pointerEvents={open ? 'auto' : 'none'}
@@ -433,19 +528,17 @@ export const StoryCard = memo(function StoryCard({
         </RNPressable>
       ) : null}
 
-      {/* The hook is a large, obvious target for "tell me more" — but not an
-          accessibility element of its own: the sentence is read as text. */}
-      <RNPressable {...openTap} accessible={false}>
-        {hook}
-      </RNPressable>
-
+      {!open && !starter && hookBlock}
       <View>
         <View
           pointerEvents={open ? 'auto' : 'none'}
           accessibilityElementsHidden={!open}
           importantForAccessibility={open ? 'auto' : 'no-hide-descendants'}
         >
-          {rest}
+          {open && fontScale <= 1.5 ? (
+            <PublisherOffer key={article.slug} source="opened_report" />
+          ) : null}
+          {open || !starter ? rest : null}
 
           {/* What follows the prose is set apart by space, not a rule beyond
               the exhibit's own: a section gap, so the odds line reads as an
@@ -453,7 +546,7 @@ export const StoryCard = memo(function StoryCard({
               top rule sat a paragraph gap from the last sentence), and the
               thread line under it closes the story. A story with a chart
               shows the chart, over its hook, instead of the odds line. */}
-          {shownOdds || threadContext ? (
+          {(open || !starter) && (shownOdds || threadContext) ? (
             <View style={styles.afterProse}>
               {shownOdds ? (
                 <OddsLine odds={shownOdds} last={!threadContext} onPress={onOddsPress} />
@@ -725,7 +818,13 @@ const styles = StyleSheet.create({
   // section tier, over the paragraph's.
   afterProse: { paddingTop: AFTER_PROSE_GAP },
 
-  title: { marginBottom: SPACING.sm },
+  titleRow: {
+    flexDirection: 'row',
+    alignItems: 'baseline',
+    gap: SPACING.xs,
+    marginBottom: SPACING.sm,
+  },
+  title: { flexShrink: 1 },
   // No rule over the row and none under it (2026-10-03, the user's request).
   // A hairline closed it above and the dock's closed it below, and the two
   // boxed three words in. The row is told apart from the prose by its ink —

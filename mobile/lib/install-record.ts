@@ -65,6 +65,7 @@ interface InstallRecord {
   version: 1;
   kind: InstallKind;
   firstOpenSent: boolean;
+  genuineSeed?: boolean;
   /** Sent, or settled with nothing to send: an empty referrer, the reads used
    *  up, an existing install, iOS. */
   attributionSettled: boolean;
@@ -99,6 +100,7 @@ function decode(raw: string): InstallRecord | null {
       version: 1,
       kind: s.kind,
       firstOpenSent: s.firstOpenSent !== false,
+      genuineSeed: s.genuineSeed === true,
       // A flag that cannot be read is spent: never a second send.
       attributionSettled: s.attributionSettled !== false,
       referrerFailures: isCount(s.referrerFailures) ? s.referrerFailures : 0,
@@ -135,7 +137,7 @@ function save(next: InstallRecord): void {
  * Make this install's record if it has none, as `kind`. Called once a launch,
  * before anything is claimed; a later launch keeps the record it finds.
  */
-export function openInstallRecord(kind: InstallKind): void {
+export function openInstallRecord(kind: InstallKind, genuineSeed = false): void {
   if (load() !== null) return;
   try {
     // Absent, not unreadable: don't overwrite one the store failed to read.
@@ -148,6 +150,7 @@ export function openInstallRecord(kind: InstallKind): void {
     version: 1,
     kind,
     firstOpenSent: false,
+    genuineSeed,
     attributionSettled: existing,
     referrerFailures: 0,
     activatedSent: existing,
@@ -155,12 +158,25 @@ export function openInstallRecord(kind: InstallKind): void {
   });
 }
 
+let genuineForeground = false;
+/** A background launch can seed the install and exit before its first reader arrives. */
+export function openingVisit(): boolean {
+  const record = load();
+  return genuineForeground || (!!record?.genuineSeed && !record.firstOpenSent);
+}
+
 /** `First Open`, the one time it is due. */
-export function trackFirstOpen(): void {
+export function trackFirstOpen(genuine?: boolean): boolean {
   const current = load();
-  if (!current || current.firstOpenSent) return;
+  if (!current || current.firstOpenSent) return false;
+  const genuineOpen = !!(current.genuineSeed || genuine);
+  genuineForeground = genuineOpen;
   save({ ...current, firstOpenSent: true });
-  void analytics.track(ANALYTICS_EVENTS.FIRST_OPEN, { install_kind: current.kind });
+  void analytics.track(ANALYTICS_EVENTS.FIRST_OPEN, {
+    install_kind: current.kind,
+    ...(genuine === undefined ? {} : { genuine_first_open: genuineOpen, flow_version: 1 }),
+  });
+  return genuineOpen;
 }
 
 /** Whether these counts reach the activation moment. */

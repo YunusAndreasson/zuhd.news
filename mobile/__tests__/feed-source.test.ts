@@ -9,15 +9,24 @@ const mockCacheReadSync = jest.fn<unknown, []>(() => null);
 // runs while `feed-source` is initialising, before these consts are assigned,
 // so a direct reference captures `undefined`.
 jest.mock('../lib/json-cache', () => ({
-  createJsonCache: () => ({
-    read: () => mockCacheRead(),
-    readSync: () => mockCacheReadSync(),
-    write: (data: unknown) => mockCacheWrite(data),
-  }),
+  createJsonCache: (name: string) =>
+    name === 'zuhd-opener.json'
+      ? { readSync: () => null, write: async () => {} }
+      : {
+          read: () => mockCacheRead(),
+          readSync: () => mockCacheReadSync(),
+          write: (data: unknown) => mockCacheWrite(data),
+        },
 }));
 
 import type { FeedResponse } from '@shared/types';
 import { fetchWithTimeout } from '../lib/fetch';
+import { refreshWidget } from '../lib/widget-store';
+jest.mock('../lib/widget-store', () => ({
+  checkingWidgetEdition: jest.fn(),
+  refreshWidget: jest.fn(),
+  syncWidget: jest.fn(),
+}));
 import { fetchFeed } from '../lib/feed-source';
 
 const mockFetch = fetchWithTimeout as jest.MockedFunction<typeof fetchWithTimeout>;
@@ -189,4 +198,10 @@ it('holds an arrival feed in memory until explicitly saved and rechecks newer wr
   mockCacheReadSync.mockReturnValue(feed('2026-10-15T12:00:00Z'));
   await expect(saveFeed(staged)).rejects.toThrow(/older/i);
   expect(mockCacheWrite).not.toHaveBeenCalled();
+});
+
+it('reports a server error without changing the widget’s network status', async () => {
+  mockFetch.mockResolvedValueOnce({ ...notFound(), status: 503 });
+  await expect(fetchFeed()).rejects.toThrow();
+  expect(refreshWidget).not.toHaveBeenCalled();
 });

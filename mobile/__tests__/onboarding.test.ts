@@ -130,6 +130,9 @@ describe('seeding', () => {
   it('fresh install: everything pending', () => {
     const s = loadStore();
     const state = s.getSnapshot();
+    expect(state.publisherCohort).toBe(true);
+    s.flushOnboarding();
+    expect(loadStore().getSnapshot().publisherCohort).toBe(true);
     expect(state.snapCount).toBe(0);
     expect(state.primer.status).toBe('pending');
     for (const id of s.HINT_IDS) {
@@ -149,6 +152,7 @@ describe('seeding', () => {
   it('existing user via bookmarks file only', () => {
     mockFiles.set('/doc/zuhd-bookmarks.json', '[]');
     const s = loadStore();
+    expect(s.getSnapshot().publisherCohort).toBe(false);
     expect(s.getSnapshot().hints.swipe.status).toBe('dismissed');
   });
 
@@ -344,13 +348,12 @@ describe('persistence', () => {
     let s = loadStore();
     s.recordArticleSnap();
     s.recordArticleSnap();
-    s.setPrimerStatus('declined');
     s.flushOnboarding();
     expect(mockKv.has('zuhd_onboarding')).toBe(true);
     s = loadStore();
     const state = s.getSnapshot();
     expect(state.snapCount).toBe(2);
-    expect(state.primer.status).toBe('declined');
+    expect(state.primer.status).toBe('pending');
     expect(state.hints.swipe.status).toBe('done');
   });
 

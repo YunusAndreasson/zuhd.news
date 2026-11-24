@@ -14,10 +14,11 @@ import {
   retryFailedSnapshots,
 } from '../lib/arrival';
 import { collectNewArticles, isOlderFeed } from '../lib/feed-diff';
-import { feedCache } from '../lib/feed-source';
+import { feedCache, readStarter } from '../lib/feed-source';
 import { flushStores } from '../lib/flush-stores';
 import { noteFeed } from '../lib/fresh-store';
 import { subscribeConnectivity } from '../lib/network';
+import { archiveStory, openingStory, type Starter, selectStarter } from '../lib/opening-story';
 import { getLastSeenAt, saveLastSeenAt } from '../lib/storage';
 import { useAppResume } from './useAppResume';
 
@@ -54,6 +55,8 @@ export interface AppReturn {
 }
 
 interface ArticlesState {
+  verifyNotificationFeed: () => Promise<FeedResponse>;
+  starter: Starter | null;
   grouped: GroupedArticles;
   briefing: BriefingInfo | null;
   loading: boolean;
@@ -72,6 +75,8 @@ const TICK_GRANULARITY_MS = 60_000;
 export function useArticles(
   /** Where the screen answers a return; read when one happens. */
   onReturnRef?: { readonly current: ((ret: AppReturn) => void) | null },
+  firstLaunch = false,
+  seriesAvailable?: (story: Starter) => boolean,
 ): ArticlesState {
   const queryClient = useQueryClient();
   /** Null until read from storage: `noteFeed` waits for it. */
@@ -176,6 +181,18 @@ export function useArticles(
     [newerBuild, queryClient],
   );
 
+  // A tap needs the publisher's answer, even when cached news or the bundled
+  // first-run story was ready to paint. The cold fetch can also lag the meta endpoint.
+  const verifyNotificationFeed = useCallback(async () => {
+    const generation = arrivalGeneration();
+    if (!queryClient.getQueryData(FEED_QUERY_KEY)) await queryClient.query(feedQuery);
+    await loadLatest();
+    if (generation !== arrivalGeneration()) throw new Error('Feed verification cancelled');
+    const feed = queryClient.getQueryData(FEED_QUERY_KEY);
+    if (!feed) throw new Error('Feed unavailable');
+    return feed;
+  }, [loadLatest, queryClient]);
+
   // A launch that opened on a cached feed checks for a newer build once,
   // after the note above has run on the cached one — a first install fetches
   // through the query instead. The screen puts the reader on the new front.
@@ -269,8 +286,60 @@ export function useArticles(
   }, []);
 
   const categories = query.data?.categories;
+  // Give the initial feed the splash's short paint window. Once the first
+  // card is visible, a late network reply can add neighbours but cannot replace it.
+  const [graceEnded, setGraceEnded] = useState(false);
+  const waiting =
+    firstLaunch && !categories && !graceEnded && query.fetchStatus !== 'paused' && !query.error;
+  useEffect(() => {
+    if (!waiting) return;
+    const timeout = setTimeout(() => setGraceEnded(true), 1200);
+    return () => clearTimeout(timeout);
+  }, [waiting]);
+  const [selection, setSelection] = useState<{
+    story: Starter | null;
+    categories: typeof categories;
+  }>();
+  const chosen = selection?.story;
+  const starter = useMemo(() => {
+    if (!firstLaunch) return null;
+    const fallback = readStarter();
+    if (chosen) {
+      // A correction can replace the text behind the pinned slug. A withdrawal
+      // invalidates that choice even if the reader has not left the first run.
+      for (const [category, rows] of Object.entries(categories ?? {})) {
+        const current = rows.find((a) => a.slug === chosen.slug);
+        if (!current) continue;
+        const kept = selectStarter(
+          { [category]: [current] },
+          { ...fallback, previous: chosen },
+          seriesAvailable,
+        );
+        if (kept?.slug === chosen.slug) return kept;
+        return selectStarter(categories ?? {}, fallback, seriesAvailable);
+      }
+      if (
+        openingStory({}, chosen, seriesAvailable) &&
+        !(chosen.slug === archiveStory.slug && fallback.archiveWithdrawn)
+      )
+        return chosen;
+    }
+    return selectStarter(categories ?? {}, fallback, seriesAvailable);
+  }, [firstLaunch, categories, chosen, seriesAvailable]);
+  if (
+    firstLaunch &&
+    !waiting &&
+    (!selection || selection.categories !== categories || chosen?.slug !== starter?.slug)
+  )
+    setSelection({ story: starter, categories });
   const grouped = useMemo<GroupedArticles>(() => {
     const result = { ...emptyGrouped, ...categories };
+    if (starter) {
+      result[starter.category] = [
+        ...result[starter.category].filter((a) => a.slug !== starter.slug),
+        starter,
+      ];
+    }
     const present = new Set(
       Object.values(result).flatMap((articles) => articles.map((a) => a.slug)),
     );
@@ -278,10 +347,12 @@ export function useArticles(
       if (!present.has(article.slug)) result[category] = [...result[category], article];
     }
     return result;
-  }, [categories, openedArticles]);
+  }, [categories, openedArticles, starter]);
 
   return {
+    verifyNotificationFeed,
     grouped,
+    starter,
     briefing: query.data?.briefing ?? null,
     // Surface loading only on the very first attempt — cache hydration from
     // the persister presents data instantly, so loading flips false as soon
@@ -289,7 +360,10 @@ export function useArticles(
     // A first launch with nothing on disk and no network pauses the query
     // rather than failing it, so it is the error screen (which says no
     // connection, and resumes with the network), not a spinner that never ends.
-    loading: query.isPending && !query.data && query.fetchStatus !== 'paused',
+    loading:
+      firstLaunch && starter
+        ? waiting
+        : query.isPending && !query.data && query.fetchStatus !== 'paused',
     error: query.error
       ? (query.error.message ?? 'Unknown error')
       : query.fetchStatus === 'paused' && !query.data

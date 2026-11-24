@@ -3,7 +3,12 @@ import { API_BASE } from '../constants/theme';
 import { isOlderFeed } from './feed-diff';
 import { type FetchJsonOptions, fetchJson, HttpError, MalformedResponseError } from './fetchJson';
 import { createJsonCache } from './json-cache';
+
+export { readStarter } from './starter-cache';
+
+import { rememberStarter } from './starter-cache';
 import { isFeedResponse } from './validate';
+import { checkingWidgetEdition, syncWidget } from './widget-store';
 
 /**
  * The one place that knows where the feed comes from — the network endpoint
@@ -49,25 +54,30 @@ function isMissingOrMalformed(err: unknown): boolean {
  */
 export async function downloadFeed(opts: FetchJsonOptions = {}): Promise<FeedResponse> {
   const options = { timeoutMs: FEED_TIMEOUT_MS, ...opts };
-  let feed: FeedResponse;
+  checkingWidgetEdition(true);
   try {
-    feed = await fetchJson(FEED_LITE_URL, isFeedResponse, options);
-  } catch (err) {
-    // Only a missing or unreadable lite file falls back. A timeout or a lost
-    // network would fail the full feed too, at twelve times the bytes, and an
-    // aborted caller is a cancelled query whose second request would outlive it.
-    if (options.signal?.aborted || !isMissingOrMalformed(err)) throw err;
-    feed = await fetchJson(FEED_FULL_URL, isFeedResponse, options);
+    let feed: FeedResponse;
+    try {
+      feed = await fetchJson(FEED_LITE_URL, isFeedResponse, options);
+    } catch (error) {
+      // Fetch the larger endpoint only for a missing or malformed lite file.
+      if (options.signal?.aborted || !isMissingOrMalformed(error)) throw error;
+      feed = await fetchJson(FEED_FULL_URL, isFeedResponse, options);
+    }
+    if (options.signal?.aborted) throw new Error('Feed fetch cancelled');
+    return feed;
+  } finally {
+    checkingWidgetEdition(false);
   }
-  if (options.signal?.aborted) throw new Error('Feed fetch cancelled');
-  return feed;
 }
 
 /** Compare and write together, including for a feed held while its layers arrived. */
 export async function saveFeed(feed: FeedResponse): Promise<void> {
   if (isOlderFeed(feed, feedCache.readSync()))
     throw new Error('Feed response is older than cached feed');
+  rememberStarter(feed);
   await feedCache.write(feed);
+  await syncWidget(feed);
 }
 
 export async function fetchFeed(opts: FetchJsonOptions = {}): Promise<FeedResponse> {

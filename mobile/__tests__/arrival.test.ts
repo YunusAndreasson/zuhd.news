@@ -225,3 +225,16 @@ it('an expired partial transfer cannot advance the feed file past its layers', a
   await expect(pending).rejects.toThrow('cancelled');
   expect(saveFeed).not.toHaveBeenCalled();
 });
+
+it('rejects a feed behind the advertised build before it can change the widget or disk cache', async () => {
+  const { fetchArrival } = jest.requireActual<typeof import('../lib/arrival')>('../lib/arrival');
+  const { downloadFeed, saveFeed } =
+    require('../lib/feed-source') as typeof import('../lib/feed-source');
+  jest.mocked(downloadFeed).mockResolvedValue(feed('2026-11-23T04:00:00Z', []));
+  jest.mocked(fetchAllSnapshots).mockResolvedValue([]);
+  jest.mocked(saveFeed).mockClear();
+  await expect(fetchArrival(new QueryClient(), '2026-11-23T05:00:00Z')).rejects.toThrow(
+    'advertised build',
+  );
+  expect(saveFeed).not.toHaveBeenCalled();
+});

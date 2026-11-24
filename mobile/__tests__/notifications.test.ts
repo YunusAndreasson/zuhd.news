@@ -6,6 +6,7 @@ const mockDeleteSecure = jest.fn();
 const mockFetch = jest.fn();
 const mockGetPermissions = jest.fn();
 const mockRequestPermissions = jest.fn();
+const mockChannel = jest.fn();
 
 jest.mock('expo-application', () => ({ applicationId: 'news.zuhd.app' }));
 
@@ -21,7 +22,9 @@ jest.mock('expo-notifications', () => ({
   getPermissionsAsync: (...args: unknown[]) => mockGetPermissions(...args),
   requestPermissionsAsync: (...args: unknown[]) => mockRequestPermissions(...args),
   setNotificationChannelAsync: jest.fn(),
-  AndroidImportance: { DEFAULT: 3, HIGH: 4 },
+  getNotificationChannelAsync: (...args: unknown[]) => mockChannel(...args),
+  AndroidImportance: { NONE: 0, DEFAULT: 3, HIGH: 4 },
+  IosAuthorizationStatus: { AUTHORIZED: 2 },
   PermissionStatus: { GRANTED: 'granted', DENIED: 'denied', UNDETERMINED: 'undetermined' },
 }));
 
@@ -35,12 +38,14 @@ jest.mock('../lib/fetch', () => ({
   fetchWithTimeout: (...args: unknown[]) => mockFetch(...args),
 }));
 
+import { publisherSnapshot } from '../lib/publisher-state';
 import * as platform from '../constants/platform';
 import {
   addPushTokenListener,
   enableNotifications,
   notificationPermissionUndetermined,
   openNotificationSettings,
+  publisherDelivery,
   registerPushToken,
   TOKEN_FETCH_TIMEOUT_MS,
   unregisterPushToken,
@@ -67,7 +72,7 @@ beforeEach(() => {
   mockRationale.mockResolvedValue(false);
   mockSetSecure.mockResolvedValue(undefined);
   mockGetExpoPushToken.mockResolvedValue({ data: 'ExponentPushToken[new]' });
-  mockFetch.mockResolvedValue(http(true));
+  mockFetch.mockResolvedValue(http(true, 201));
   mockGetSecure.mockResolvedValue(null);
   mockAddPushTokenListener.mockReturnValue({ remove: jest.fn() });
   jest.spyOn(console, 'warn').mockImplementation(() => {});
@@ -102,10 +107,7 @@ describe('push token backend synchronization', () => {
     await registerPushToken();
 
     expect(mockSetSecure).toHaveBeenCalledWith('zuhd_pushToken', 'ExponentPushToken[new]');
-    expect(console.warn).toHaveBeenCalledWith(
-      'Push token registration failed:',
-      expect.objectContaining({ message: expect.stringContaining('HTTP 503') }),
-    );
+    expect(publisherSnapshot().status).toBe('failed');
   });
 
   it('forwards native token rotations through the listener', async () => {
@@ -126,14 +128,18 @@ describe('push token backend synchronization', () => {
   });
 
   it('keeps the local token when backend unregister fails', async () => {
-    mockGetSecure.mockResolvedValue('ExponentPushToken[old]');
+    mockGetSecure.mockImplementation(async (key) =>
+      key === 'zuhd_pushToken' ? 'ExponentPushToken[old]' : null,
+    );
     mockFetch.mockResolvedValue(http(false, 500));
     await unregisterPushToken();
     expect(mockDeleteSecure).not.toHaveBeenCalled();
   });
 
   it('deletes the local token after backend unregister succeeds', async () => {
-    mockGetSecure.mockResolvedValue('ExponentPushToken[old]');
+    mockGetSecure.mockImplementation(async (key) =>
+      key === 'zuhd_pushToken' ? 'ExponentPushToken[old]' : null,
+    );
     await unregisterPushToken();
     expect(mockFetch).toHaveBeenCalledWith(
       expect.stringMatching(/\/api\/tokens$/),
@@ -157,7 +163,9 @@ it('finishes an in-flight POST before deleting the token on opt-out', async () =
     startedPost();
     return posted;
   });
-  mockGetSecure.mockResolvedValue('ExponentPushToken[new]');
+  mockGetSecure.mockImplementation(async (key) =>
+    key === 'zuhd_pushToken' ? 'ExponentPushToken[new]' : null,
+  );
   const registration = registerPushToken();
   await started;
   const deletion = unregisterPushToken();
@@ -185,7 +193,9 @@ it('does not send a registration still obtaining a token when opt-out occurs', a
 });
 
 it('can retry an offline deletion using the token retained on disk', async () => {
-  mockGetSecure.mockResolvedValue('ExponentPushToken[old]');
+  mockGetSecure.mockImplementation(async (key) =>
+    key === 'zuhd_pushToken' ? 'ExponentPushToken[old]' : null,
+  );
   mockFetch.mockRejectedValueOnce(new Error('offline'));
   await unregisterPushToken();
   expect(mockDeleteSecure).not.toHaveBeenCalled();
@@ -199,7 +209,9 @@ it('an opt-out reaches the server even while a token request hangs', async () =>
   jest.useFakeTimers();
   try {
     mockGetExpoPushToken.mockImplementationOnce(() => new Promise(() => {}));
-    mockGetSecure.mockResolvedValue('ExponentPushToken[old]');
+    mockGetSecure.mockImplementation(async (key) =>
+      key === 'zuhd_pushToken' ? 'ExponentPushToken[old]' : null,
+    );
     const registration = registerPushToken();
     // Let the registration reach its token request before the opt-out.
     await jest.advanceTimersByTimeAsync(0);
@@ -224,19 +236,31 @@ describe('asking for permission', () => {
   it('a first ask can show the system dialog, and its answer is the answer', async () => {
     mockGetPermissions.mockResolvedValue(permission('undetermined', false, true));
     mockRequestPermissions.mockResolvedValue(permission('denied', false, false));
-    await expect(enableNotifications()).resolves.toEqual({ granted: false, osPrompt: true });
+    await expect(enableNotifications()).resolves.toEqual({
+      granted: false,
+      osPrompt: true,
+      outcome: 'denied',
+    });
   });
 
   it('once refused for good, the system answers without its dialog', async () => {
     mockGetPermissions.mockResolvedValue(permission('denied', false, false));
     mockRequestPermissions.mockResolvedValue(permission('denied', false, false));
-    await expect(enableNotifications()).resolves.toEqual({ granted: false, osPrompt: false });
+    await expect(enableNotifications()).resolves.toEqual({
+      granted: false,
+      osPrompt: false,
+      outcome: 'denied',
+    });
   });
 
   it('already allowed: granted, with no dialog', async () => {
     mockGetPermissions.mockResolvedValue(permission('granted', true, true));
     mockRequestPermissions.mockResolvedValue(permission('granted', true, true));
-    await expect(enableNotifications()).resolves.toEqual({ granted: true, osPrompt: false });
+    await expect(enableNotifications()).resolves.toEqual({
+      granted: true,
+      osPrompt: false,
+      outcome: 'granted',
+    });
   });
 
   it('on iOS, undetermined only while the system has never been asked', async () => {
@@ -261,12 +285,17 @@ describe('asking for permission', () => {
     const saved = new Map<string, string>();
     mockSetSecure.mockImplementation(async (key: string, value: string) => saved.set(key, value));
     mockGetSecure.mockImplementation(async (key: string) => saved.get(key) ?? null);
+    mockRationale.mockResolvedValue(true);
     let markerAtRequest: string | undefined;
     mockRequestPermissions.mockImplementation(async () => {
       markerAtRequest = saved.get('zuhd_notif_asked');
       return permission('denied', false, true);
     });
-    await expect(enableNotifications()).resolves.toEqual({ granted: false, osPrompt: true });
+    await expect(enableNotifications()).resolves.toEqual({
+      granted: false,
+      osPrompt: true,
+      outcome: 'denied',
+    });
     expect(markerAtRequest).toBe('1');
     expect(mockRequestPermissions).toHaveBeenCalledTimes(1);
     await expect(notificationPermissionUndetermined()).resolves.toBe(false);
@@ -326,4 +355,75 @@ describe('notification settings', () => {
     expect(sendIntent).not.toHaveBeenCalled();
     expect(openSettings).toHaveBeenCalledTimes(1);
   });
+});
+
+it('retries a lost acknowledgement and credits only a 201 for the current generation and token', async () => {
+  const disk = new Map<string, string>();
+  mockGetSecure.mockImplementation(async (key) => disk.get(key) ?? null);
+  mockSetSecure.mockImplementation(async (key, value) => disk.set(key, value));
+  mockDeleteSecure.mockImplementation(async (key) => disk.delete(key));
+  mockFetch.mockRejectedValueOnce(new Error('offline'));
+  await registerPushToken(undefined, 'enable', 1);
+  expect(publisherSnapshot().status).toBe('pending');
+  mockFetch.mockResolvedValueOnce(http(true, 200));
+  await registerPushToken(undefined, 'reconnect', 1);
+  expect(publisherSnapshot().status).toBe('failed');
+  await registerPushToken(undefined, 'retry', 1);
+  expect(publisherSnapshot().status).toBe('accepted');
+  await registerPushToken(undefined, 'refresh', 1);
+  expect(mockFetch).toHaveBeenCalledTimes(3);
+  await registerPushToken(undefined, 'enable', 2);
+  expect(mockFetch).toHaveBeenCalledTimes(4);
+  mockGetExpoPushToken.mockResolvedValueOnce({ data: 'rotated' });
+  await registerPushToken(undefined, 'rotation', 2);
+  expect(mockFetch.mock.calls.slice(-2).map((call) => call[2].method)).toEqual(['POST', 'DELETE']);
+  expect(mockFetch.mock.calls.at(-1)?.[2].body).toContain('ExponentPushToken[new]');
+});
+
+it('reads both Android channels independently and requires the OS grant', async () => {
+  android(35);
+  mockGetPermissions.mockResolvedValue({ granted: true });
+  mockChannel.mockImplementation(async (id) => ({ importance: id === 'briefing' ? 0 : 4 }));
+  await expect(publisherDelivery()).resolves.toEqual({ briefing: false, breaking: true });
+  mockGetPermissions.mockResolvedValue({ granted: false });
+  await expect(publisherDelivery()).resolves.toEqual({ briefing: false, breaking: false });
+});
+
+it('requires full iOS authorization and a visible delivery surface', async () => {
+  for (const [status, visible, expected] of [
+    [3, true, false],
+    [2, false, false],
+    [2, true, true],
+  ] as const) {
+    mockGetPermissions.mockResolvedValue({
+      granted: true,
+      ios: { status, allowsDisplayOnLockScreen: visible },
+    });
+    await expect(publisherDelivery()).resolves.toEqual({ briefing: expected, breaking: expected });
+  }
+});
+
+it('does not display an unexpected OS dialog if a direct opt-in loses its grant', async () => {
+  mockGetPermissions.mockResolvedValue({
+    status: 'undetermined',
+    granted: false,
+    canAskAgain: true,
+  });
+  await expect(enableNotifications(false)).resolves.toMatchObject({
+    osPrompt: false,
+    granted: false,
+  });
+  expect(mockRequestPermissions).not.toHaveBeenCalled();
+});
+
+it('distinguishes an observable Android dismissal from an ambiguous denial', async () => {
+  android(35);
+  mockGetPermissions.mockResolvedValue({ status: 'denied', granted: false, canAskAgain: true });
+  for (const [status, outcome] of [
+    ['undetermined', 'dismissed'],
+    ['denied', 'unknown'],
+  ]) {
+    mockRequestPermissions.mockResolvedValue({ status, granted: false, canAskAgain: true });
+    await expect(enableNotifications()).resolves.toMatchObject({ outcome });
+  }
 });

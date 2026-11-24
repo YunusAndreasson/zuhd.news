@@ -5,11 +5,7 @@ import { DARK_COLORS, DARK_CONTRAST_COLORS, DEFAULT_PREFS } from '../constants/t
 import { ThemeProvider, usePreferences, useTheme } from '../hooks/useTheme';
 import * as Network from 'expo-network';
 import { analytics } from '../lib/analytics';
-import {
-  enableNotifications,
-  notificationsGranted,
-  unregisterPushToken,
-} from '../lib/notifications';
+import { enableNotifications, publisherDelivery, unregisterPushToken } from '../lib/notifications';
 import { savePreferences } from '../lib/storage';
 
 jest.mock('react-native', () => ({
@@ -25,6 +21,7 @@ jest.mock('react-native', () => ({
   useColorScheme: () => 'dark',
   useWindowDimensions: () => ({ width: 411, height: 914, fontScale: 1, scale: 2.625 }),
 }));
+jest.mock('expo-sqlite/kv-store', () => ({ getItemSync: () => null, setItemSync: jest.fn() }));
 jest.mock('expo-network', () => ({
   addNetworkStateListener: jest.fn(() => ({ remove: jest.fn() })),
   getNetworkStateAsync: jest.fn(async () => ({ isConnected: true })),
@@ -35,9 +32,10 @@ jest.mock('../lib/notifications', () => ({
   addPushTokenListener: jest.fn(),
   registerPushToken: jest.fn(),
   unregisterPushToken: jest.fn(),
-  enableNotifications: jest.fn(async () => ({ granted: true, osPrompt: true })),
+  enableNotifications: jest.fn(async () => ({ granted: true, osPrompt: true, outcome: 'granted' })),
   disableNotifications: jest.fn(),
-  notificationsGranted: jest.fn(async () => true),
+  publisherDelivery: jest.fn(async () => ({ briefing: true, breaking: true })),
+  setupNotificationChannels: jest.fn(async () => {}),
 }));
 jest.mock('../lib/analytics', () => ({
   analytics: { track: jest.fn(async () => {}), register: jest.fn(async () => {}) },
@@ -75,7 +73,7 @@ it('keeps edited preferences when Android recreates the provider in the same run
 });
 
 it('merges a delayed notification permission result into the latest display preferences', async () => {
-  let grant!: (value: { granted: boolean; osPrompt: boolean }) => void;
+  let grant!: (value: { granted: boolean; osPrompt: boolean; outcome: 'granted' }) => void;
   jest.mocked(enableNotifications).mockImplementationOnce(
     () =>
       new Promise((resolve) => {
@@ -95,7 +93,7 @@ it('merges a delayed notification permission result into the latest display pref
     hook.result.current.setFontSize('small');
   });
   await act(async () => {
-    grant({ granted: true, osPrompt: true });
+    grant({ granted: true, osPrompt: true, outcome: 'granted' });
     await pending;
   });
   expect(hook.result.current.preferences).toMatchObject({
@@ -116,7 +114,7 @@ it('retries notification opt-out on reconnect without resending on every network
   const calls = jest.mocked(Network.addNetworkStateListener).mock.calls;
   const network = calls[calls.length - 1]?.[0];
   jest.mocked(unregisterPushToken).mockClear();
-  act(() => {
+  await act(async () => {
     network?.({ isConnected: false } as never);
     network?.({ isConnected: true } as never);
     network?.({ isConnected: true } as never);
@@ -149,16 +147,17 @@ it('answers the primer’s ask with its source, and says whether a push can reac
   jest.mocked(analytics.track).mockClear();
   jest.mocked(analytics.register).mockClear();
   // The OS has the permission off: on in the app is not enough.
-  jest.mocked(notificationsGranted).mockResolvedValueOnce(false);
+  jest.mocked(publisherDelivery).mockResolvedValueOnce({ briefing: false, breaking: false });
   await act(async () => {
-    await hook.result.current.setNotifications(true, { primed: true, source: 'first_briefing' });
+    await hook.result.current.setNotifications(true, { primed: true, source: 'finished_briefing' });
   });
   expect(analytics.track).toHaveBeenCalledWith('Permission Result', {
     permission: 'notifications',
     granted: true,
     primed: true,
     os_prompt: true,
-    source: 'first_briefing',
+    outcome: 'granted',
+    source: 'finished_briefing',
   });
   expect(analytics.register).toHaveBeenLastCalledWith({ notifications_enabled: false });
   jest.mocked(analytics.track).mockClear();
@@ -175,7 +174,9 @@ it('the settings toggle is an unprimed ask, with no source', async () => {
     hook = renderHook(usePreferences, { wrapper: Wrapper });
   });
   jest.mocked(analytics.track).mockClear();
-  jest.mocked(enableNotifications).mockResolvedValueOnce({ granted: false, osPrompt: false });
+  jest
+    .mocked(enableNotifications)
+    .mockResolvedValueOnce({ granted: false, osPrompt: false, outcome: 'denied' });
   await act(async () => {
     await hook.result.current.setNotifications(true);
   });
@@ -184,5 +185,41 @@ it('the settings toggle is an unprimed ask, with no source', async () => {
     granted: false,
     primed: false,
     os_prompt: false,
+    outcome: 'denied',
   });
+});
+
+it('consumes a blocked return from Settings before a later independent OS grant', async () => {
+  const { beginPublisherSettings } = require('../lib/publisher-history');
+  const { AppState } = require('react-native');
+  let hook!: ReturnType<typeof renderHook<ReturnType<typeof usePreferences>, unknown>>;
+  await act(async () => {
+    hook = renderHook(usePreferences, { wrapper: Wrapper });
+  });
+  await act(async () => {
+    await hook.result.current.setNotifications(false);
+  });
+  const change = AppState.addEventListener.mock.lastCall[1];
+  beginPublisherSettings();
+  jest.mocked(publisherDelivery).mockResolvedValue({ briefing: false, breaking: false });
+  await act(async () => {
+    change('background');
+    change('active');
+  });
+  jest.mocked(publisherDelivery).mockResolvedValue({ briefing: true, breaking: true });
+  await act(async () => {
+    change('background');
+    change('active');
+  });
+  expect(hook.result.current.preferences.notifications).toBe(false);
+  beginPublisherSettings();
+  await act(async () => {
+    change('active');
+  });
+  expect(hook.result.current.preferences.notifications).toBe(false);
+  await act(async () => {
+    change('background');
+    change('active');
+  });
+  expect(hook.result.current.preferences.notifications).toBe(true);
 });

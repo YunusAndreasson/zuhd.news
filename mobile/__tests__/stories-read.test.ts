@@ -73,18 +73,6 @@ it('a new visit counts again, and is no longer the first', () => {
   ]);
 });
 
-it('tells a listener the visit’s count, until it unsubscribes', () => {
-  const store = load();
-  const counts: number[] = [];
-  const stop = store.onVisitRead((count) => counts.push(count));
-  store.markRead('a');
-  store.markRead('a');
-  store.markRead('b');
-  stop();
-  store.markRead('c');
-  expect(counts).toEqual([1, 2]);
-});
-
 it('a story newly read is a step toward Activated; one read again is not', () => {
   // A new install's record (`install-record.ts`), as the first launch opens it.
   mockKv.set(

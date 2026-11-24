@@ -98,7 +98,8 @@ function formatTime(seconds: number): string {
 }
 
 interface BriefingBarProps {
-  state: 'idle' | 'preparing' | 'playing' | 'paused';
+  state: 'idle' | 'preparing' | 'playing' | 'paused' | 'finished';
+  offer?: React.ReactNode;
   elapsed: number;
   duration: number;
   date: string;
@@ -113,6 +114,7 @@ interface BriefingBarProps {
 
 export const BriefingBar = memo(function BriefingBar({
   state,
+  offer,
   elapsed,
   duration,
   date,
@@ -240,11 +242,13 @@ export const BriefingBar = memo(function BriefingBar({
                 size as the `briefing · {date}` label and reads as a peer of the
                 lg icons rather than a tiny caption. */}
             <Text variant="tabular" tone="emphasis" scale={13 / 11}>
-              {formatTime(elapsed)}
-              <Text variant="tabular" tone="secondary" scale={13 / 11}>
-                {' / '}
-                {formatTime(duration)}
-              </Text>
+              {state === 'finished' ? 'Finished' : formatTime(elapsed)}
+              {state !== 'finished' && (
+                <Text variant="tabular" tone="secondary" scale={13 / 11}>
+                  {' / '}
+                  {formatTime(duration)}
+                </Text>
+              )}
             </Text>
 
             {preparing ? (
@@ -256,7 +260,13 @@ export const BriefingBar = memo(function BriefingBar({
             ) : (
               <IconButton
                 onPress={onToggle}
-                accessibilityLabel={playing ? 'Pause briefing' : 'Play briefing'}
+                accessibilityLabel={
+                  playing
+                    ? 'Pause briefing'
+                    : state === 'finished'
+                      ? 'Replay briefing'
+                      : 'Resume briefing'
+                }
                 {...largeContent(playing ? 'pause' : 'play')}
               >
                 <Icon name={playing ? 'pause' : 'play'} tone="emphasis" size="lg" />
@@ -275,31 +285,34 @@ export const BriefingBar = memo(function BriefingBar({
             </IconButton>
           </View>
 
-          <ScrubBar
-            scrub={scrub}
-            fraction={progressSV}
-            interactive={!preparing}
-            height={PROGRESS_HEIGHT}
-            // The dock's recipe: one scrubber, one track, wherever it is.
-            trackColor={colors.rule}
-            fillColor={colors.textSecondary}
-            thumbColor={colors.textEmphasis}
-            style={styles.progressTouch}
-            accessibilityRole={preparing ? 'progressbar' : 'adjustable'}
-            // The position is the value, not part of the name, so VoiceOver
-            // reads the new one after each adjustment.
-            accessibilityLabel={preparing ? 'Preparing briefing' : 'Briefing progress'}
-            accessibilityValue={{
-              min: 0,
-              max: Math.max(0, Math.round(duration)),
-              now: Math.min(Math.round(elapsed), Math.max(0, Math.round(duration))),
-              text: preparing
-                ? `${formatTime(duration)} total`
-                : `${formatTime(elapsed)} of ${formatTime(duration)}`,
-            }}
-            accessibilityActions={preparing ? undefined : SEEK_ACTIONS}
-            onAccessibilityAction={preparing ? undefined : handleSeekAction}
-          />
+          {offer ? <View style={styles.offer}>{offer}</View> : null}
+          {state !== 'finished' && (
+            <ScrubBar
+              scrub={scrub}
+              fraction={progressSV}
+              interactive={!preparing}
+              height={PROGRESS_HEIGHT}
+              // The dock's recipe: one scrubber, one track, wherever it is.
+              trackColor={colors.rule}
+              fillColor={colors.textSecondary}
+              thumbColor={colors.textEmphasis}
+              style={styles.progressTouch}
+              accessibilityRole={preparing ? 'progressbar' : 'adjustable'}
+              // The position is the value, not part of the name, so VoiceOver
+              // reads the new one after each adjustment.
+              accessibilityLabel={preparing ? 'Preparing briefing' : 'Briefing progress'}
+              accessibilityValue={{
+                min: 0,
+                max: Math.max(0, Math.round(duration)),
+                now: Math.min(Math.round(elapsed), Math.max(0, Math.round(duration))),
+                text: preparing
+                  ? `${formatTime(duration)} total`
+                  : `${formatTime(elapsed)} of ${formatTime(duration)}`,
+              }}
+              accessibilityActions={preparing ? undefined : SEEK_ACTIONS}
+              onAccessibilityAction={preparing ? undefined : handleSeekAction}
+            />
+          )}
         </View>
       </View>
     </Animated.View>
@@ -388,6 +401,7 @@ const styles = StyleSheet.create({
     // a bar whose bottom edge was the screen's.
     paddingTop: SPACING.md,
   },
+  offer: { paddingHorizontal: SPACING.md },
   row: {
     flexDirection: 'row',
     alignItems: 'center',

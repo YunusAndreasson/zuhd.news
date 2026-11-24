@@ -33,7 +33,6 @@ export function dropRetiredFound(): void {
 let visitReads = 0;
 /** Whether this visit is the first in which the install read a story. */
 let visitFirstTime = false;
-const visitListeners = new Set<(count: number) => void>();
 
 /** Returns true when this call marked the story read; false if it already was.
  *  A story newly read counts toward the visit's `Stories Read`. */
@@ -49,7 +48,6 @@ export function markRead(slug: string, now?: number): boolean {
       first_time: visitFirstTime,
     });
   }
-  for (const listener of visitListeners) listener(visitReads);
   return true;
 }
 
@@ -57,14 +55,6 @@ export function markRead(slug: string, now?: number): boolean {
 export function startReadingVisit(): void {
   visitReads = 0;
   visitFirstTime = false;
-}
-
-/** Told the visit's count each time a story is newly read. Returns the unsubscribe. */
-export function onVisitRead(listener: (count: number) => void): () => void {
-  visitListeners.add(listener);
-  return () => {
-    visitListeners.delete(listener);
-  };
 }
 
 /** Drop read slugs that have left the feed and are older than two weeks. */

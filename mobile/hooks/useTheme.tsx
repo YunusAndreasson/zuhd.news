@@ -2,7 +2,12 @@ import { NavigationBar } from 'expo-navigation-bar';
 import * as SystemUI from 'expo-system-ui';
 import { createContext, use, useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import { Appearance, AppState, useColorScheme, useWindowDimensions } from 'react-native';
-import { ANALYTICS_EVENTS, type PrimerSource } from '../constants/analytics';
+import {
+  ANALYTICS_EVENTS,
+  type PermissionOutcome,
+  type PrimerSource,
+  type RegistrationReason,
+} from '../constants/analytics';
 import { IS_ANDROID } from '../constants/platform';
 import {
   type AppearanceMode,
@@ -30,10 +35,20 @@ import {
   addPushTokenListener,
   disableNotifications,
   enableNotifications,
-  notificationsGranted,
+  publisherDelivery,
   registerPushToken,
+  setupNotificationChannels,
   unregisterPushToken,
 } from '../lib/notifications';
+import { offerHistory, publisherSettingsTransition, saveOffer } from '../lib/publisher-history';
+import { observePublisher } from '../lib/publisher-session';
+import {
+  publisherChanges,
+  publisherEnabled,
+  publisherSnapshot,
+  setDelivery,
+  setRegistration,
+} from '../lib/publisher-state';
 import { getPreferences, savePreferences } from '../lib/storage';
 import { legibilityReady, useLegibility } from './useLegibility';
 
@@ -56,6 +71,7 @@ export interface Theme {
 export interface NotificationAsk {
   primed: boolean;
   source?: PrimerSource;
+  onAnswer?: (answer: PermissionOutcome) => void;
 }
 
 export interface PreferencesApi {
@@ -108,7 +124,9 @@ export function ThemeProvider({
   const [prefs, setPrefs] = useState<Preferences>(() => {
     const current = latestPrefs ?? initialPrefs;
     setHapticsEnabled(current.haptics);
-    return current;
+    const consent = offerHistory().consent;
+    latestPrefs = consent === undefined ? current : { ...current, notifications: consent };
+    return latestPrefs;
   });
   const systemScheme = useColorScheme();
 
@@ -136,21 +154,52 @@ export function ThemeProvider({
     [persist],
   );
   const notificationRequest = useRef(0);
+  const prompting = useRef(false);
   const setNotifications = useCallback(
     async (v: boolean, ask: NotificationAsk = { primed: false }): Promise<boolean> => {
       const request = ++notificationRequest.current;
+      const consentGeneration = (offerHistory().generation ?? 0) + 1;
+      prompting.current = v;
       if (v) {
-        const { granted, osPrompt } = await enableNotifications();
+        // A process death at the OS dialog retains the explicit publisher choice.
+        saveOffer({
+          promptChoice: true,
+          origin: ask.source,
+          generation: consentGeneration,
+        });
+        const { granted, osPrompt, outcome } = await enableNotifications(ask.primed || !ask.source);
+        const delivery = granted ? await publisherDelivery() : null;
+        if (request === notificationRequest.current) prompting.current = false;
         void analytics.track(ANALYTICS_EVENTS.PERMISSION_RESULT, {
           permission: 'notifications',
           granted,
+          outcome,
           primed: ask.primed,
           os_prompt: osPrompt,
           ...(ask.source && { source: ask.source }),
         });
-        if (!granted || request !== notificationRequest.current) return false;
+        if (
+          request !== notificationRequest.current ||
+          offerHistory().generation !== consentGeneration
+        )
+          return false;
+        ask.onAnswer?.(outcome);
+        if (!granted) {
+          saveOffer({ promptChoice: false });
+          return false;
+        }
+        if (delivery) setDelivery(delivery);
+        setRegistration('pending', 'enable');
+        saveOffer({ consent: true, disabled: false, promptChoice: false });
         persist({ notifications: true });
       } else {
+        saveOffer({
+          generation: consentGeneration,
+          consent: false,
+          disabled: true,
+          promptChoice: false,
+        });
+        void unregisterPushToken();
         persist({ notifications: false });
         void analytics.track(ANALYTICS_EVENTS.NOTIFICATIONS_TURNED_OFF);
         await disableNotifications();
@@ -162,37 +211,96 @@ export function ThemeProvider({
 
   useEffect(() => {
     let current = true;
-    const sync = () => {
-      if (prefs.notifications) void registerPushToken();
-      else void unregisterPushToken();
-      // Whether a push can reach this reader: the setting, and the OS's
-      // permission, which can be withdrawn in system settings while away.
-      if (!prefs.notifications) {
-        void analytics.register({ notifications_enabled: false });
-        return;
-      }
-      void notificationsGranted().then((granted) => {
-        if (current) void analytics.register({ notifications_enabled: granted });
-      });
+    let generation = 0;
+    let retryTimer: ReturnType<typeof setTimeout> | undefined;
+    let retryDelay = 15_000;
+    const consent = prefs.notifications;
+    const observe = () => {
+      if (!current) return;
+      const snapshot = publisherSnapshot();
+      if (offerHistory().registration !== snapshot.status)
+        saveOffer({ registration: snapshot.status });
+      const effective = publisherEnabled(consent, snapshot);
+      void analytics.register({ notifications_enabled: effective });
+      observePublisher(
+        {
+          consent,
+          ...snapshot.delivery,
+          registration: snapshot.status,
+          effective,
+          observed_at: Date.now(),
+        },
+        snapshot.reason,
+      );
     };
-    sync();
-    const tokenSubscription = prefs.notifications ? addPushTokenListener() : null;
-    let connected = true;
-    const unsubscribeNetwork = subscribeConnectivity((next, initial) => {
-      const previous = connected;
-      connected = next;
-      if (!initial && next && !previous) sync();
+    const unsubscribe = publisherChanges.subscribe(observe);
+    const sync = async (reason: RegistrationReason) => {
+      clearTimeout(retryTimer);
+      const attempt = ++generation;
+      await setupNotificationChannels().catch(() => {});
+      const delivery = await publisherDelivery();
+      if (
+        !current ||
+        prompting.current ||
+        attempt !== generation ||
+        (latestPrefs ?? initialPrefs).notifications !== consent
+      )
+        return;
+      setDelivery(delivery);
+      if (!consent && offerHistory().promptChoice) {
+        saveOffer({ promptChoice: false });
+        if (delivery.briefing || delivery.breaking) {
+          saveOffer({ consent: true, disabled: false });
+          persist({ notifications: true });
+          return;
+        }
+      }
+      if (consent && (delivery.briefing || delivery.breaking))
+        await registerPushToken(undefined, reason, offerHistory().generation);
+      else if (!consent) await unregisterPushToken();
+      observe();
+      if (
+        current &&
+        attempt === generation &&
+        consent &&
+        (delivery.briefing || delivery.breaking) &&
+        ['pending', 'failed'].includes(publisherSnapshot().status)
+      ) {
+        retryTimer = setTimeout(() => {
+          if (AppState.currentState === 'active') void sync('retry');
+        }, retryDelay);
+        retryDelay = Math.min(retryDelay * 2, 300_000);
+      } else retryDelay = 15_000;
+    };
+    void sync('refresh');
+    const tokenSubscription = consent ? addPushTokenListener(offerHistory().generation) : null;
+    const unsubscribeNetwork = subscribeConnectivity((online, initial) => {
+      if (!initial && online) void sync('reconnect');
     });
     const appState = AppState.addEventListener('change', (state) => {
-      if (state === 'active') sync();
+      const trip = publisherSettingsTransition(state === 'active');
+      if (state === 'active') {
+        if (trip !== undefined && !consent) {
+          void publisherDelivery().then((delivery) => {
+            if (!current || offerHistory().generation !== trip) return;
+            if (delivery.briefing || delivery.breaking) {
+              setDelivery(delivery);
+              saveOffer({ consent: true, disabled: false });
+              persist({ notifications: true });
+            } else void sync('refresh');
+          });
+        } else void sync('refresh');
+      } else if (state === 'background') observe();
     });
     return () => {
       current = false;
+      clearTimeout(retryTimer);
       tokenSubscription?.remove();
       unsubscribeNetwork();
+      unsubscribe();
       appState.remove();
     };
-  }, [prefs.notifications]);
+  }, [prefs.notifications, persist, initialPrefs]);
 
   const resolvedAppearance: 'dark' | 'light' =
     prefs.appearance === 'system'

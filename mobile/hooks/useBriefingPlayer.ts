@@ -12,17 +12,23 @@ import {
 import { File } from 'expo-file-system';
 import { useCallback, useEffect, useRef, useState } from 'react';
 import { AppState, type AppStateStatus } from 'react-native';
-import { ANALYTICS_EVENTS } from '../constants/analytics';
-import { API_BASE, type BriefingSpeed } from '../constants/theme';
+import { ANALYTICS_EVENTS, type BriefingOpenSource } from '../constants/analytics';
+import type { BriefingSpeed } from '../constants/theme';
 import { analytics } from '../lib/analytics';
 import { heardPct } from '../lib/analytics-buckets';
 import { resolveAudioDuration } from '../lib/audio-duration';
 import { resolveDownloadedAudioSource } from '../lib/audio-source';
 import { briefingAudioFile, briefingPartialFile, deleteBriefingAudio } from '../lib/briefing-audio';
-import { readSavedPlace, saveSavedPlace, subscribeToBriefingReset } from '../lib/briefing-progress';
+import {
+  noteBriefingHeard,
+  readSavedPlace,
+  saveSavedPlace,
+  subscribeToBriefingReset,
+} from '../lib/briefing-progress';
 import { recordBytes } from '../lib/data-usage';
 import { claimFirst } from '../lib/firsts';
 import { noteActivation } from '../lib/install-record';
+import { completedWidgetAudio, refreshWidget, widgetAudioUrl } from '../lib/widget-store';
 
 const PLAYBACK_STATUS_UPDATE = 'playbackStatusUpdate';
 // The CDN currently answers byte-range requests with the complete MP3, which
@@ -54,10 +60,15 @@ async function getArtworkUrl(): Promise<string | undefined> {
 }
 
 let downloadSequence = 0;
-function resolveBriefingSource(url: string, controller: AbortController): Promise<string> {
+function resolveBriefingSource(
+  url: string,
+  controller: AbortController,
+  localOnly: boolean,
+): Promise<string> {
   try {
     const file = briefingAudioFile(url);
     if (file.exists && file.size > 0) return Promise.resolve(file.uri);
+    if (localOnly) return Promise.reject(new Error('Saved recording unavailable'));
     // Only completed files use the cache name. Cancellation or process death
     // can leave a partial file behind; it must never be mistaken for audio.
     const partial = briefingPartialFile(++downloadSequence);
@@ -78,6 +89,7 @@ function resolveBriefingSource(url: string, controller: AbortController): Promis
         else downloaded.moveSync(file, { overwrite: true });
         // One recording on the device: the one just saved.
         deleteBriefingAudio({ keep: file });
+        void refreshWidget();
         return { localUri: file.uri };
       })
       .catch((error: unknown) => {
@@ -89,8 +101,8 @@ function resolveBriefingSource(url: string, controller: AbortController): Promis
     return resolveDownloadedAudioSource(url, download, SOURCE_DOWNLOAD_WAIT_MS, () =>
       controller.abort(),
     );
-  } catch {
-    return Promise.resolve(url);
+  } catch (error) {
+    return localOnly ? Promise.reject(error) : Promise.resolve(url);
   }
 }
 
@@ -107,6 +119,8 @@ interface BriefingPlayer {
   failureCount: number;
   /** Monotonic signal: increments once for each briefing heard to its end. */
   finishCount: number;
+  finished: boolean;
+  audible: boolean;
   /** False when the feed didn't surface a briefing date — typically because
    *  the latest mp3 has aged out of the 7-day server retention window or
    *  generation has been broken longer than that. Consumers should toast
@@ -114,7 +128,7 @@ interface BriefingPlayer {
   available: boolean;
   toggle: () => void;
   /** Play, or go on playing: a toggle that never pauses. A briefing push's tap. */
-  play: () => void;
+  play: (source?: BriefingOpenSource) => void;
   seek: (seconds: number) => void;
   dismiss: () => void;
 }
@@ -168,6 +182,7 @@ export function useBriefingPlayer(
   /** When the recording was made (`FeedResponse.briefing.generated`). */
   recorded?: string,
   speed: BriefingSpeed = '1',
+  localOnly = false,
 ): BriefingPlayer {
   // No synthetic fallback to today's UTC date — that path produced a
   // guaranteed 404 whenever the latest briefing was >36h old. The feed
@@ -191,6 +206,8 @@ export function useBriefingPlayer(
   const [resumeAt, setResumeAt] = useState(0);
   const [hasPlayer, setHasPlayer] = useState(false);
   const [failureCount, setFailureCount] = useState(0);
+  const [finishedRecording, setFinishedRecording] = useState<string | null>(null);
+  const [audibleRecording, setAudibleRecording] = useState<string | null>(null);
   const [finishCount, setFinishCount] = useState(0);
   const playerRef = useRef<AudioPlayer | null>(null);
   const speedRef = useRef(speed);
@@ -229,7 +246,7 @@ export function useBriefingPlayer(
   // A fresh load's play, armed until the player is heard playing: only then
   // is it a `Briefing Started`. A load that fails or gives up never is, so a
   // retry counts once; a pause and resume within one load is the same start.
-  const startRef = useRef<{ resumed: boolean } | null>(null);
+  const startRef = useRef<{ resumed: boolean; source?: BriefingOpenSource } | null>(null);
   // Played to the end, or closed, with the player kept: the next play is a
   // start again, from the top or from where it was closed.
   const finishedRef = useRef(false);
@@ -245,8 +262,9 @@ export function useBriefingPlayer(
       return;
     }
     readSavedPlace()
-      .then(([savedPos, savedDateStr]) => {
+      .then(([savedPos, savedDateStr, heardRecording]) => {
         if (cancelled || generation !== progressGeneration.current) return;
+        if (heardRecording === recording) setAudibleRecording(recording);
         const pos = savedPos ? Number.parseInt(savedPos, 10) : 0;
         const valid =
           isSameRecording(savedDateStr, effectiveDate, recording) &&
@@ -358,6 +376,8 @@ export function useBriefingPlayer(
     () =>
       subscribeToBriefingReset(() => {
         progressGeneration.current++;
+        setFinishedRecording(null);
+        setAudibleRecording(null);
         closedRef.current = true;
         savedDate.current = null;
         teardownPlayer();
@@ -561,7 +581,7 @@ export function useBriefingPlayer(
       if (start) {
         startRef.current = null;
         void analytics.track(ANALYTICS_EVENTS.BRIEFING_STARTED, {
-          resumed: start.resumed,
+          ...start,
           first_time: claimFirst('briefing'),
         });
       }
@@ -571,12 +591,24 @@ export function useBriefingPlayer(
       playingIntentRef.current = status.playing;
       setPlaying(status.playing);
     }
+    if (
+      status.playing &&
+      status.currentTime > 0 &&
+      savedDate.current &&
+      audibleRecording !== savedDate.current
+    ) {
+      setAudibleRecording(savedDate.current);
+      noteBriefingHeard(savedDate.current);
+    }
     if (status.currentTime >= 0) {
       setElapsed(Math.floor(status.currentTime));
       if (status.currentTime > 0) setResumable(true);
     }
 
     if (status.didJustFinish) {
+      setFinishedRecording(recording);
+      const finishedGeneration = savedDate.current?.split('#')[1];
+      if (finishedGeneration) void completedWidgetAudio(finishedGeneration);
       finishedRef.current = true;
       startRef.current = null;
       void analytics.track(ANALYTICS_EVENTS.BRIEFING_COMPLETED);
@@ -594,207 +626,203 @@ export function useBriefingPlayer(
       setResumable(false);
       setHasPlayer(false);
       if (savedDate.current) void saveSavedPlace(0, savedDate.current).catch(() => {});
-      // ExoPlayer retains playWhenReady at the end. Seeking an ended player
-      // back to zero without pausing starts the briefing again immediately.
-      try {
-        player.pause();
-      } catch {}
-      player.seekTo(0).catch(() => {});
-      try {
-        player.clearLockScreenControls();
-      } catch {}
-      lockScreenActivationToken.current += 1;
-      lockScreenActivationPending.current = false;
-      lockScreenActive.current = false;
-      lockScreenDurationKnown.current = false;
+      // The presentation retains the edition. Release the completed source
+      // and its audio session; Replay takes the normal fresh-load path.
+      teardownPlayer();
+      finishedRef.current = true;
+      void setIsAudioActiveAsync(false).catch(() => {});
     }
   });
 
-  const toggle = useCallback(async () => {
-    closedRef.current = false;
-    const toggleToken = ++toggleTokenRef.current;
-    const nextPlaying = !playingIntentRef.current;
-    playingIntentRef.current = nextPlaying;
+  const toggle = useCallback(
+    async (source?: BriefingOpenSource) => {
+      setFinishedRecording(null);
+      closedRef.current = false;
+      const toggleToken = ++toggleTokenRef.current;
+      const nextPlaying = !playingIntentRef.current;
+      playingIntentRef.current = nextPlaying;
 
-    // No briefing available — refuse to attempt playback rather than fall
-    // through to a 404. Consumers should also gate on `available` to show
-    // a toast; this is the defensive layer.
-    if (!effectiveDate && !playerRef.current) {
-      playingIntentRef.current = false;
-      return;
-    }
-
-    if (nextPlaying) setPreparing(true);
-
-    try {
-      // Pause/cancel is synchronous. It must not wait behind audio-session
-      // setup from a prior play tap, otherwise a quick second tap cannot undo
-      // the first one.
-      if (!nextPlaying) {
-        sourceAbort.current?.abort();
-        if (giveUpTimer.current) {
-          clearTimeout(giveUpTimer.current);
-          giveUpTimer.current = null;
-        }
-        // An armed start stays armed: a play before it was heard is still
-        // this load's start when the reader plays again.
-        wantsToPlayRef.current = false;
-        if (playerRef.current) {
-          if (!playerRef.current.isLoaded) {
-            teardownPlayer();
-          } else {
-            savePosition();
-            playerRef.current.pause();
-          }
-        }
-        setPreparing(false);
-        setPlaying(false);
+      // No briefing available — refuse to attempt playback rather than fall
+      // through to a 404. Consumers should also gate on `available` to show
+      // a toast; this is the defensive layer.
+      if (!effectiveDate && !playerRef.current) {
+        playingIntentRef.current = false;
         return;
       }
 
-      // Resume existing player. Re-check intent after the async audio-session
-      // hop so a newer pause tap wins.
-      if (playerRef.current) {
-        const player = playerRef.current;
-        wantsToPlayRef.current = true;
+      if (nextPlaying) setPreparing(true);
+
+      try {
+        // Pause/cancel is synchronous. It must not wait behind audio-session
+        // setup from a prior play tap, otherwise a quick second tap cannot undo
+        // the first one.
+        if (!nextPlaying) {
+          sourceAbort.current?.abort();
+          if (giveUpTimer.current) {
+            clearTimeout(giveUpTimer.current);
+            giveUpTimer.current = null;
+          }
+          // An armed start stays armed: a play before it was heard is still
+          // this load's start when the reader plays again.
+          wantsToPlayRef.current = false;
+          if (playerRef.current) {
+            if (!playerRef.current.isLoaded) {
+              teardownPlayer();
+            } else {
+              savePosition();
+              playerRef.current.pause();
+            }
+          }
+          setPreparing(false);
+          setPlaying(false);
+          return;
+        }
+
+        // Resume existing player. Re-check intent after the async audio-session
+        // hop so a newer pause tap wins.
+        if (playerRef.current) {
+          const player = playerRef.current;
+          wantsToPlayRef.current = true;
+          try {
+            await setIsAudioActiveAsync(true);
+          } catch {}
+          if (
+            toggleToken !== toggleTokenRef.current ||
+            !playingIntentRef.current ||
+            playerRef.current !== player
+          )
+            return;
+          // Heard to the end or closed, and played again: a start, from the
+          // top or from the place it was closed at.
+          if (source || finishedRef.current || stoppedRef.current) {
+            startRef.current = { resumed: !finishedRef.current, ...(source && { source }) };
+            finishedRef.current = false;
+            stoppedRef.current = false;
+          }
+          player.play();
+          armGiveUp();
+          return;
+        }
+
+        // A feed refresh can replace this recording while audio-session setup is pending.
+        savedDate.current = recording;
         try {
+          await setAudioModeAsync({
+            playsInSilentMode: true,
+            shouldPlayInBackground: true,
+            interruptionMode: 'doNotMix',
+          });
           await setIsAudioActiveAsync(true);
-        } catch {}
+        } catch {} // May fail in Expo Go
+        if (toggleToken !== toggleTokenRef.current || !playingIntentRef.current) return;
+
+        const player = managedPlayer;
+        playerRef.current = player;
+        setHasPlayer(true);
+        const loadToken = ++sourceLoadToken.current;
+        wantsToPlayRef.current = true;
+        sourcePreparingRef.current = true;
+
+        // The recording in the address: the download is kept by URL, so without
+        // it a device that had the first recording of a date kept playing it.
+        const remoteUrl = widgetAudioUrl(effectiveDate, recorded);
+        const controller = new AbortController();
+        sourceAbort.current = controller;
+        const playbackSource = await resolveBriefingSource(remoteUrl, controller, localOnly);
+        if (sourceAbort.current === controller) sourceAbort.current = null;
         if (
           toggleToken !== toggleTokenRef.current ||
-          !playingIntentRef.current ||
-          playerRef.current !== player
+          loadToken !== sourceLoadToken.current ||
+          closedRef.current ||
+          playerRef.current !== player ||
+          !wantsToPlayRef.current ||
+          !playingIntentRef.current
         )
           return;
-        // Heard to the end or closed, and played again: a start, from the
-        // top or from the place it was closed at.
-        if (finishedRef.current || stoppedRef.current) {
-          startRef.current = { resumed: !finishedRef.current };
-          finishedRef.current = false;
-          stoppedRef.current = false;
+        cachedRecordingUrl.current = playbackSource === remoteUrl ? null : remoteUrl;
+        try {
+          player.replace(playbackSource);
+          // iOS applies pitch correction to the current item. Read the speed
+          // after the download in case the listener changed it during loading.
+          player.setPlaybackRate(Number(speedRef.current));
+        } catch {
+          failPlayback(true);
+          return;
         }
+
+        // Restore persisted progress only after the source exists; opening the
+        // app remains free of audio I/O.
+        let resumed = false;
+        try {
+          const [savedPos, savedDateStr] = await readSavedPlace();
+          if (toggleToken !== toggleTokenRef.current || loadToken !== sourceLoadToken.current)
+            return;
+          if (isSameRecording(savedDateStr, effectiveDate, recording) && savedPos) {
+            const pos = Number.parseInt(savedPos, 10);
+            if (pos > 0) {
+              resumed = true;
+              player.seekTo(pos).catch(() => {});
+              setElapsed(pos);
+              setResumable(true);
+            }
+          }
+        } catch {}
+
+        if (
+          toggleToken !== toggleTokenRef.current ||
+          loadToken !== sourceLoadToken.current ||
+          closedRef.current ||
+          playerRef.current !== player ||
+          !playingIntentRef.current
+        )
+          return;
+
+        // Kick off playback immediately so the first tap is responsive. play()
+        // safely no-ops if AVPlayer is still buffering — the cold-start retry
+        // in the status listener re-issues it once isLoaded flips true.
+        sourcePreparingRef.current = false;
+        finishedRef.current = false;
+        stoppedRef.current = false;
+        startRef.current = { resumed, ...(source && { source }) };
         player.play();
         armGiveUp();
-        return;
-      }
 
-      // A feed refresh can replace this recording while audio-session setup is pending.
-      savedDate.current = recording;
-      try {
-        await setAudioModeAsync({
-          playsInSilentMode: true,
-          shouldPlayInBackground: true,
-          interruptionMode: 'doNotMix',
-        });
-        await setIsAudioActiveAsync(true);
-      } catch {} // May fail in Expo Go
-      if (toggleToken !== toggleTokenRef.current || !playingIntentRef.current) return;
+        // Defer lock-screen activation until AVPlayer reports a real duration.
+        // The first MPNowPlayingInfo write must carry it — if duration is 0 at
+        // setActiveForLockScreen time, iOS pins the empty/wrong-duration
+        // scrubber state for the lifetime of the card and later
+        // updateLockScreenMetadata calls don't reliably reset it. play() above
+        // is safe to call before activation: AudioPlayer.play() only writes
+        // NowPlayingInfo when already active, so no duration=0 leaks through.
+        // Prefer a complete card, but never trade all lock-screen controls for
+        // a duration AVPlayer may not discover promptly on this MP3 response.
+        const loadedWithDuration = await waitForLoaded(player, 5000);
 
-      const player = managedPlayer;
-      playerRef.current = player;
-      setHasPlayer(true);
-      const loadToken = ++sourceLoadToken.current;
-      wantsToPlayRef.current = true;
-      sourcePreparingRef.current = true;
+        // Dismissal, a new recording or a failed load invalidates this wait.
+        if (closedRef.current || loadToken !== sourceLoadToken.current) return;
 
-      // The recording in the address: the download is kept by URL, so without
-      // it a device that had the first recording of a date kept playing it.
-      const remoteUrl = `${API_BASE}/audio/briefing-${effectiveDate}.mp3${
-        recorded ? `?v=${encodeURIComponent(recorded)}` : ''
-      }`;
-      const controller = new AbortController();
-      sourceAbort.current = controller;
-      const playbackSource = await resolveBriefingSource(remoteUrl, controller);
-      if (sourceAbort.current === controller) sourceAbort.current = null;
-      if (
-        toggleToken !== toggleTokenRef.current ||
-        loadToken !== sourceLoadToken.current ||
-        closedRef.current ||
-        playerRef.current !== player ||
-        !wantsToPlayRef.current ||
-        !playingIntentRef.current
-      )
-        return;
-      cachedRecordingUrl.current = playbackSource === remoteUrl ? null : remoteUrl;
-      try {
-        player.replace(playbackSource);
-        // iOS applies pitch correction to the current item. Read the speed
-        // after the download in case the listener changed it during loading.
-        player.setPlaybackRate(Number(speedRef.current));
+        // The timeout fallback restores artwork/play/pause/skip immediately.
+        // If native duration arrives later, the status listener recreates the card
+        // so iOS receives duration on its first metadata write.
+        await activateLockScreen(player, !loadedWithDuration);
       } catch {
-        failPlayback(true);
-        return;
+        // A cancelled preparation must not tear down a newer playback request.
+        if (toggleToken === toggleTokenRef.current) failPlayback();
       }
-
-      // Restore persisted progress only after the source exists; opening the
-      // app remains free of audio I/O.
-      let resumed = false;
-      try {
-        const [savedPos, savedDateStr] = await readSavedPlace();
-        if (toggleToken !== toggleTokenRef.current || loadToken !== sourceLoadToken.current) return;
-        if (isSameRecording(savedDateStr, effectiveDate, recording) && savedPos) {
-          const pos = Number.parseInt(savedPos, 10);
-          if (pos > 0) {
-            resumed = true;
-            player.seekTo(pos).catch(() => {});
-            setElapsed(pos);
-            setResumable(true);
-          }
-        }
-      } catch {}
-
-      if (
-        toggleToken !== toggleTokenRef.current ||
-        loadToken !== sourceLoadToken.current ||
-        closedRef.current ||
-        playerRef.current !== player ||
-        !playingIntentRef.current
-      )
-        return;
-
-      // Kick off playback immediately so the first tap is responsive. play()
-      // safely no-ops if AVPlayer is still buffering — the cold-start retry
-      // in the status listener re-issues it once isLoaded flips true.
-      sourcePreparingRef.current = false;
-      finishedRef.current = false;
-      stoppedRef.current = false;
-      startRef.current = { resumed };
-      player.play();
-      armGiveUp();
-
-      // Defer lock-screen activation until AVPlayer reports a real duration.
-      // The first MPNowPlayingInfo write must carry it — if duration is 0 at
-      // setActiveForLockScreen time, iOS pins the empty/wrong-duration
-      // scrubber state for the lifetime of the card and later
-      // updateLockScreenMetadata calls don't reliably reset it. play() above
-      // is safe to call before activation: AudioPlayer.play() only writes
-      // NowPlayingInfo when already active, so no duration=0 leaks through.
-      // Prefer a complete card, but never trade all lock-screen controls for
-      // a duration AVPlayer may not discover promptly on this MP3 response.
-      const loadedWithDuration = await waitForLoaded(player, 5000);
-
-      // Dismissal, a new recording or a failed load invalidates this wait.
-      if (closedRef.current || loadToken !== sourceLoadToken.current) return;
-
-      // The timeout fallback restores artwork/play/pause/skip immediately.
-      // If native duration arrives later, the status listener recreates the card
-      // so iOS receives duration on its first metadata write.
-      await activateLockScreen(player, !loadedWithDuration);
-    } catch {
-      // A cancelled preparation must not tear down a newer playback request.
-      if (toggleToken === toggleTokenRef.current) failPlayback();
-    }
-  }, [
-    effectiveDate,
-    recording,
-    recorded,
-    managedPlayer,
-    savePosition,
-    activateLockScreen,
-    armGiveUp,
-    failPlayback,
-    teardownPlayer,
-  ]);
+    },
+    [
+      effectiveDate,
+      localOnly,
+      recording,
+      recorded,
+      managedPlayer,
+      savePosition,
+      activateLockScreen,
+      armGiveUp,
+      failPlayback,
+      teardownPlayer,
+    ],
+  );
 
   // Pure data operation: clamp, seek, publish. No haptic: this used to tick
   // once per crossed audio-second, and the caller drives it per gesture frame,
@@ -808,10 +836,13 @@ export function useBriefingPlayer(
   }, []);
 
   /** For a briefing push: a tap on it is never a pause (`usePendingNotification`). */
-  const play = useCallback(() => {
-    if (playingIntentRef.current) return;
-    void toggle();
-  }, [toggle]);
+  const play = useCallback(
+    (source: BriefingOpenSource = 'briefing_push') => {
+      if (playingIntentRef.current) return;
+      void toggle(source);
+    },
+    [toggle],
+  );
 
   const dismiss = useCallback(() => {
     // How far the reader got before closing it, from the player when it has
@@ -871,6 +902,8 @@ export function useBriefingPlayer(
     resumeAt,
     failureCount,
     finishCount,
+    finished: finishedRecording === recording,
+    audible: audibleRecording === recording,
     available,
     toggle,
     play,

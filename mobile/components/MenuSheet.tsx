@@ -65,11 +65,18 @@ import {
 } from '../lib/menu-hazards';
 import { metricGroups, rankingLeaders } from '../lib/metric-groups';
 import type { RiverArticle } from '../lib/news-order';
-import { openNotificationSettings } from '../lib/notifications';
+import { openNotificationSettings, registerPushToken } from '../lib/notifications';
 import { resetOnboarding } from '../lib/onboarding-store';
 import { MARKET_CAVEAT } from '../lib/predictions';
+import {
+  beginPublisherSettings,
+  cancelPublisherSettings,
+  offerHistory,
+} from '../lib/publisher-history';
+import { publisherChanges, publisherEnabled, publisherSnapshot } from '../lib/publisher-state';
 import { LEADERS_SEPARATOR } from '../lib/row-leaders';
 import type { TapResult } from '../lib/tap-result';
+import { widgetSupported } from '../lib/widget-store';
 import {
   type GroupFigure,
   groupFigure,
@@ -104,6 +111,7 @@ import { SheetPager } from './SheetPager';
 import { SheetPrivacyPage } from './SheetPrivacyPage';
 import { SheetSearchPage } from './SheetSearchPage';
 import { Toggle } from './Toggle';
+import { WidgetSetup } from './WidgetSetup';
 
 const APP_VERSION = Constants.expoConfig?.version ?? '';
 const CONTACT_EMAIL = 'contact@zuhd.news';
@@ -136,6 +144,7 @@ type PageKey =
   | 'search'
   | 'saved'
   | 'map key'
+  | 'Home Screen widget'
   | GroupKey
   | 'world hazards'
   | HazardKey
@@ -259,6 +268,12 @@ export const MenuSheet = memo(function MenuSheet({
   const { typography } = useTheme();
   const prefsApi = usePreferences();
   const { preferences } = prefsApi;
+  const registration = useSyncExternalStore(publisherChanges.subscribe, publisherSnapshot);
+  const enabled = publisherEnabled(preferences.notifications, registration);
+  const channelsOff =
+    registration.deliveryChecked &&
+    !registration.delivery.briefing &&
+    !registration.delivery.breaking;
   const nav = useSheetNavigation<PageKey>();
   // Called as functions, not as `nav.push()`: a method call reads as a change
   // to `nav`, and the compiler could not keep the callbacks below memoized on
@@ -418,6 +433,8 @@ export const MenuSheet = memo(function MenuSheet({
   // after it, the whole menu silently skipped the compiler.
   function renderPage() {
     const current = nav.current;
+    if (current === 'Home Screen widget')
+      return <WidgetSetup done={() => sheetRef.current?.dismiss()} />;
     if (current === 'world hazards') {
       return layers.length > 0 ? (
         <HazardLayers layers={layers} hazards={hazards} onPress={navPush} />
@@ -512,13 +529,18 @@ export const MenuSheet = memo(function MenuSheet({
           <MenuRow
             title="notifications"
             description={
-              notificationPermissionDenied
+              (notificationPermissionDenied && !enabled) ||
+              (preferences.notifications && channelsOff)
                 ? 'Notification permission is off. You can enable it in device settings.'
-                : 'The daily briefing and breaking news'
+                : preferences.notifications && !enabled
+                  ? registration.status === 'failed'
+                    ? 'Registration failed · tap to turn off'
+                    : 'Publisher alerts requested · tap to turn off'
+                  : 'One alert per briefing, plus breaking news as it happens.'
             }
-            trailing={<Toggle value={preferences.notifications} />}
+            trailing={<Toggle value={enabled} />}
             accessibilityRole="switch"
-            accessibilityState={{ checked: preferences.notifications }}
+            accessibilityState={{ checked: enabled }}
             onPress={() => {
               hapticTick();
               if (preferences.notifications) {
@@ -530,13 +552,24 @@ export const MenuSheet = memo(function MenuSheet({
               });
             }}
           />
-          {notificationPermissionDenied ? (
+          {preferences.notifications && !channelsOff && registration.status === 'failed' ? (
+            <MenuRow
+              title="retry registration"
+              onPress={() => void registerPushToken(undefined, 'retry', offerHistory().generation)}
+            />
+          ) : null}
+          {(!enabled && notificationPermissionDenied) ||
+          (preferences.notifications && channelsOff) ? (
             <MenuRow
               title="open device settings"
               trailing="leave"
-              onPress={() =>
-                openNotificationSettings().catch(() => onToast?.('Couldn’t open device settings'))
-              }
+              onPress={() => {
+                const trip = preferences.notifications ? undefined : beginPublisherSettings();
+                void openNotificationSettings().catch(() => {
+                  cancelPublisherSettings(trip);
+                  onToast?.('Couldn’t open device settings');
+                });
+              }}
             />
           ) : null}
 
@@ -821,6 +854,13 @@ function MenuRootPage({
         trailing="push"
         onPress={() => navPush('search')}
       />
+      {widgetSupported() ? (
+        <MenuRow
+          title="Home Screen widget"
+          trailing="push"
+          onPress={() => navPush('Home Screen widget')}
+        />
+      ) : null}
       <SavedRow onPress={() => navPush('saved')} />
       <MenuRow
         title="map key"

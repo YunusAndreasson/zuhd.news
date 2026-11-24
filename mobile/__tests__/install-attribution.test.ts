@@ -107,6 +107,23 @@ describe('install_id', () => {
 });
 
 describe('First Open', () => {
+  it('carries a genuine background seed to the first active launch once', () => {
+    launch().openInstallRecord('new', true);
+    const foreground = launch();
+    expect(foreground.trackFirstOpen(false)).toBe(true);
+    expect(launch().trackFirstOpen(false)).toBe(false);
+    expect(mockTracked).toEqual([
+      ['First Open', { install_kind: 'new', genuine_first_open: true, flow_version: 1 }],
+    ]);
+  });
+  it('excludes a marketing backfill from the genuine cohort', () => {
+    const app = launch();
+    app.openInstallRecord('new', false);
+    expect(app.trackFirstOpen(false)).toBe(false);
+    expect(mockTracked).toEqual([
+      ['First Open', { install_kind: 'new', genuine_first_open: false, flow_version: 1 }],
+    ]);
+  });
   it('a new install sends it once, as new, across launches', () => {
     open('new');
     open('new');

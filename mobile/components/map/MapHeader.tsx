@@ -8,7 +8,7 @@ import { formatAudioDurationMinutes } from '../../lib/audio-duration';
 import { CONTROL_ROW } from '../../lib/deck-layout';
 import { largeContent } from '../../lib/large-content';
 import type { StripItem } from '../../lib/now';
-import { Icon, IconButton } from '../primitives';
+import { Icon, IconButton, Text } from '../primitives';
 import type { IconButtonProps } from '../primitives/IconButton';
 import { GAUGE_EXTRA, IndicatorStrip } from './IndicatorStrip';
 
@@ -187,15 +187,16 @@ const HeardRing = memo(function HeardRing({
 function HeaderControl({
   children,
   narrow = false,
+  labelled = false,
   ...button
-}: Omit<IconButtonProps, 'style' | 'hitSlop'> & { narrow?: boolean }) {
+}: Omit<IconButtonProps, 'style' | 'hitSlop'> & { narrow?: boolean; labelled?: boolean }) {
   return (
     <IconButton
       {...button}
       hitSlop={narrow ? PLAY_SLOP : 0}
-      style={[styles.control, narrow && styles.narrow]}
+      style={[styles.control, narrow && styles.narrow, labelled && styles.labelled]}
     >
-      <View style={styles.glyph}>{children}</View>
+      <View style={labelled ? styles.playLabel : styles.glyph}>{children}</View>
     </IconButton>
   );
 }
@@ -206,6 +207,8 @@ export const MapHeader = memo(function MapHeader({
   onMenuPress,
   selectedId = null,
   linkedIds,
+  offlineOpening = false,
+  showBriefingLabel = false,
   listenAvailable = false,
   listenResumable = false,
   listenDuration,
@@ -213,6 +216,8 @@ export const MapHeader = memo(function MapHeader({
   onListenPress,
 }: {
   items: StripItem[];
+  offlineOpening?: boolean;
+  showBriefingLabel?: boolean;
   onSelect: (item: StripItem) => void;
   onMenuPress: () => void;
   /** Today's briefing exists and its player is not already up. */
@@ -277,19 +282,24 @@ export const MapHeader = memo(function MapHeader({
             components (every gauge's Pressable and DeltaChip) from scratch
             on every collapse back to the map — measured at ~493ms dev /
             ~165ms production. */}
-        <IndicatorStrip
-          items={items}
-          onSelect={onSelect}
-          selectedId={selectedId}
-          linkedIds={linkedIds}
-          initialViewport={stripViewport}
-        />
+        {offlineOpening ? (
+          <Text variant="labelXs">Offline</Text>
+        ) : (
+          <IndicatorStrip
+            items={items}
+            onSelect={onSelect}
+            selectedId={selectedId}
+            linkedIds={linkedIds}
+            initialViewport={stripViewport}
+          />
+        )}
       </View>
       {listenAvailable && onListenPress ? (
         <HeaderControl
           narrow
+          labelled={showBriefingLabel && fontScale <= 1.5}
           onPress={onListenPress}
-          accessibilityLabel={`${listenResumable ? 'Resume daily briefing' : 'Daily briefing'}${listenMinutes ? `, ${listenMinutes}${heard > 0 ? ' left' : ''}` : ''}`}
+          accessibilityLabel={`${listenResumable ? 'Resume daily briefing' : 'Play today’s briefing'}${listenMinutes ? `, ${listenMinutes}${heard > 0 ? ' left' : ''}` : ''}`}
           accessibilityHint={
             listenResumable ? 'Resumes today’s audio briefing' : 'Plays today’s audio briefing'
           }
@@ -301,6 +311,11 @@ export const MapHeader = memo(function MapHeader({
           <View style={styles.playNudge}>
             <Icon name="play" size="sm" tone="default" />
           </View>
+          {showBriefingLabel && fontScale <= 1.5 ? (
+            <Text variant="caption" tone="secondary">
+              Briefing
+            </Text>
+          ) : null}
         </HeaderControl>
       ) : (
         <View style={[styles.control, styles.narrow]} pointerEvents="none" accessible={false} />
@@ -335,6 +350,8 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
   },
   narrow: { width: PLAY_WIDTH },
+  labelled: { width: 'auto', paddingHorizontal: SPACING.sm },
+  playLabel: { flexDirection: 'row', alignItems: 'center', gap: SPACING.xs },
   glyph: {
     width: GLYPH_BOX,
     height: GLYPH_BOX,

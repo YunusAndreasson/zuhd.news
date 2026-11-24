@@ -2,6 +2,7 @@ import { memo, useMemo } from 'react';
 import { StyleSheet } from 'react-native';
 import { LAYOUT } from '../constants/theme';
 import type { SwipeCard } from '../lib/cards/rank';
+import { ArchiveGoldChart } from './ArchiveGoldChart';
 import { CardView } from './cards/CardView';
 import { SheetScrollView } from './SheetContent';
 import { type BaseSheetProps, SheetLayout } from './SheetLayout';
@@ -35,7 +36,7 @@ import { type BaseSheetProps, SheetLayout } from './SheetLayout';
  */
 
 interface CardSheetProps extends BaseSheetProps {
-  card: SwipeCard | null;
+  card: SwipeCard | 'archive-gold' | null;
   /** The resting story card's height: where the card first opens. */
   peekHeight: number;
   /** Opens a story the card cites. */
@@ -63,10 +64,17 @@ export const CardSheet = memo(function CardSheet({
       snapPoints={snapPoints}
       index={0}
     >
-      <SheetScrollView bottomInset={bottomInset} contentContainerStyle={styles.flush}>
+      <SheetScrollView
+        bottomInset={bottomInset}
+        contentContainerStyle={card === 'archive-gold' ? undefined : styles.flush}
+      >
         {/* Keyed by card, so the next card mounts fresh: its chart draws in and
             measures its own width, instead of inheriting the last card's. */}
-        {card ? <CardView key={card.id} card={card} onStoryPress={onStoryPress} /> : null}
+        {card === 'archive-gold' ? (
+          <ArchiveGoldChart detail />
+        ) : card ? (
+          <CardView key={card.id} card={card} onStoryPress={onStoryPress} />
+        ) : null}
       </SheetScrollView>
     </SheetLayout>
   );

@@ -20,6 +20,7 @@ import {
   queryClient,
 } from './query-client';
 import { getLastSeenAt } from './storage';
+import { refreshWidget } from './widget-store';
 
 const TASK_NAME = 'ZUHD_BACKGROUND_FETCH';
 let unsavedGeneration: number | undefined;
@@ -67,7 +68,15 @@ async function applyNewBuild(controller: AbortController): Promise<boolean> {
   // A feed file alone may have landed before an interrupted layer download.
   // Only a complete query cache can satisfy the probe.
   const build = await probeGenerated(controller.signal);
-  if (build === queryClient.getQueryData(FEED_QUERY_KEY)?.generated) return false;
+  if (build === queryClient.getQueryData(FEED_QUERY_KEY)?.generated) {
+    if (
+      Platform.OS === 'android' &&
+      !controller.signal.aborted &&
+      generation === arrivalGeneration()
+    )
+      await refreshWidget();
+    return false;
+  }
   const lastSeenAt = await getLastSeenAt();
   if (controller.signal.aborted) throw new Error('Background refresh expired');
   if (generation !== arrivalGeneration()) return false;

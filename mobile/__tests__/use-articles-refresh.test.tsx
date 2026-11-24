@@ -1,3 +1,4 @@
+import { usePendingNotification } from '../hooks/usePendingNotification';
 import type { Article, FeedResponse } from '@shared/types';
 import { notifyManager, QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import { act, renderHook } from '@testing-library/react';
@@ -6,7 +7,8 @@ import type { ReactNode } from 'react';
 import { useArticles } from '../hooks/useArticles';
 import { useOffline } from '../hooks/useOffline';
 import { fetchArrival, probeGenerated, retryFailedSnapshots } from '../lib/arrival';
-import { fetchFeed } from '../lib/feed-source';
+import { archiveStory, type Starter } from '../lib/opening-story';
+import { downloadFeed, feedCache, fetchFeed } from '../lib/feed-source';
 
 let mockResume: (awayMs: number) => Promise<void>;
 let mockBackground: () => void;
@@ -30,9 +32,13 @@ jest.mock('../lib/arrival', () => ({
   fetchArrival: jest.fn(),
   retryFailedSnapshots: jest.fn(async () => {}),
 }));
+jest.mock('../lib/api-snapshots', () => ({ fetchAllSnapshots: jest.fn(async () => []) }));
 jest.mock('../lib/feed-source', () => ({
+  downloadFeed: jest.fn(),
+  saveFeed: jest.fn(),
   fetchFeed: jest.fn(),
-  feedCache: { readSync: () => mockFeed('old', ['one']) },
+  feedCache: { readSync: jest.fn(() => mockFeed('old', ['one'])) },
+  readStarter: () => ({ previous: null, archiveWithdrawn: false }),
 }));
 jest.mock('../lib/storage', () => ({
   getLastSeenAt: jest.fn(async () => 0),
@@ -59,7 +65,7 @@ function deferred<T>() {
   });
   return { promise, resolve, reject };
 }
-function mount(onReturn = jest.fn()) {
+function mount(onReturn = jest.fn(), firstLaunch = false) {
   const client = new QueryClient({
     defaultOptions: { queries: { retry: false, gcTime: Infinity } },
   });
@@ -67,7 +73,7 @@ function mount(onReturn = jest.fn()) {
     <QueryClientProvider client={client}>{children}</QueryClientProvider>
   );
   const ref = { current: onReturn };
-  return { ...renderHook(() => useArticles(ref), { wrapper }), client, onReturn };
+  return { ...renderHook(() => useArticles(ref, firstLaunch), { wrapper }), client, onReturn };
 }
 beforeEach(() => {
   jest.clearAllMocks();
@@ -360,4 +366,205 @@ it('a foreground probe accepts a build that the background task finished while i
     await resume;
   });
   expect(fetchArrival).not.toHaveBeenCalled();
+});
+
+it('pins a flagged first opener through feed arrivals, uses corrections and falls back on withdrawal', async () => {
+  const article: Starter = {
+    ...archiveStory,
+    slug: 'live',
+    publishedAt: archiveStory.publishedAt! + 86400000,
+  };
+  const feed = (rows: Starter[]): FeedResponse => ({
+    generated: '2026-11-23',
+    categories: { economy: rows },
+    briefing: null,
+  });
+  jest.mocked(feedCache.readSync).mockReturnValueOnce(feed([article]));
+  const hook = mount(jest.fn(), true);
+  await act(async () => {});
+  expect(hook.result.current.starter?.slug).toBe('live');
+  const revised = { ...article, title: 'Corrected reading' };
+  const newer = { ...article, slug: 'newer', publishedAt: article.publishedAt! + 86400000 };
+  await act(async () => {
+    hook.client.setQueryData(['feed'], feed([newer, revised]));
+  });
+  expect(hook.result.current.starter?.title).toBe('Corrected reading');
+  await act(async () => {
+    hook.client.setQueryData(['feed'], feed([newer]));
+  });
+  expect(hook.result.current.starter?.title).toBe('Corrected reading');
+  await act(async () => {
+    hook.client.setQueryData(['feed'], feed([{ ...revised, starterEligible: false }]));
+  });
+  expect(hook.result.current.starter?.slug).toBe(archiveStory.slug);
+});
+
+const mockResponse = {
+  notification: { request: { content: { data: { kind: 'briefing', date: '2026-11-23' } } } },
+};
+const mockClear = jest.fn();
+jest.mock('expo-notifications', () => ({
+  useLastNotificationResponse: () => mockResponse,
+  clearLastNotificationResponse: () => mockClear(),
+}));
+function renderBriefingTap(
+  hook: ReturnType<typeof mount>,
+  play: jest.Mock,
+  unavailable: jest.Mock,
+) {
+  return renderHook(() => {
+    const { grouped, loading, generated, verifyNotificationFeed } = hook.result.current;
+    usePendingNotification(loading, grouped, jest.fn(), {
+      verify: verifyNotificationFeed,
+      generated,
+      play,
+      unavailable,
+    });
+  });
+}
+it('a briefing tap survives the first-launch splash deadline until the addressed feed arrives', async () => {
+  jest.mocked(feedCache.readSync).mockReturnValue(null);
+  const download = deferred<FeedResponse>();
+  jest.mocked(probeGenerated).mockResolvedValue('2026-11-23T05:00:00Z');
+  jest.mocked(fetchFeed).mockReturnValue(download.promise);
+  const h = mount(jest.fn(), true);
+  const play = jest.fn(),
+    unavailable = jest.fn();
+  const pending = renderBriefingTap(h, play, unavailable);
+  expect(mockClear).not.toHaveBeenCalled();
+  await act(async () => {
+    await new Promise((resolve) => setTimeout(resolve, 1400));
+  });
+  expect(h.result.current.generated).toBeNull();
+  pending.rerender();
+  expect(mockClear).not.toHaveBeenCalled();
+  expect(unavailable).not.toHaveBeenCalled();
+  await act(async () => {
+    download.resolve({
+      ...mockFeed('2026-11-23T05:00:00Z', ['one']),
+      briefing: { available: true, date: '2026-11-23' },
+    });
+  });
+  pending.rerender();
+  expect(h.result.current.briefing?.available).toBe(true);
+  expect(play).toHaveBeenCalledTimes(1);
+  expect(mockClear).toHaveBeenCalledTimes(1);
+});
+it('a pinned chart-only opener loses its place when its chart disappears outside the feed window', async () => {
+  const article: Starter = {
+    ...archiveStory,
+    slug: 'chart-only',
+    starterEvidence: 'chart',
+    sentences: ['Series 4 chips arrive.'],
+    publishedAt: archiveStory.publishedAt! + 86400000,
+  };
+  const client = new QueryClient({
+    defaultOptions: { queries: { retry: false, gcTime: Infinity } },
+  });
+  const wrapper = ({ children }: { children: ReactNode }) => (
+    <QueryClientProvider client={client}>{children}</QueryClientProvider>
+  );
+  const initial = { ...mockFeed('old', []), categories: { economy: [article] } };
+  jest.mocked(feedCache.readSync).mockReturnValue(initial);
+  const h = renderHook(({ usable }) => useArticles({ current: jest.fn() }, true, () => usable), {
+    wrapper,
+    initialProps: { usable: true },
+  });
+  await act(async () => {});
+  expect(h.result.current.starter?.slug).toBe(article.slug);
+  await act(async () => {
+    client.setQueryData(['feed'], mockFeed('new', []));
+  });
+  h.rerender({ usable: false });
+  expect(h.result.current.starter?.slug).toBe(archiveStory.slug);
+});
+it('a cached empty feed waits for the matching briefing on a warm launch', async () => {
+  const probe = deferred<string>();
+  jest.mocked(probeGenerated).mockReturnValue(probe.promise);
+  jest.mocked(feedCache.readSync).mockReturnValue(mockFeed('2026-11-22T05:00:00Z', ['one']));
+  const today = {
+    ...mockFeed('2026-11-23T05:00:00Z', ['two']),
+    briefing: { available: true, date: '2026-11-23', generated: '2026-11-23T05:00:00Z' },
+  };
+  jest.mocked(fetchArrival).mockResolvedValue({ feed: today, snapshots: [] });
+  const h = mount();
+  const play = jest.fn(),
+    unavailable = jest.fn();
+  const p = renderBriefingTap(h, play, unavailable);
+  expect(unavailable).not.toHaveBeenCalled();
+  expect(mockClear).not.toHaveBeenCalled();
+  await act(async () => {
+    probe.resolve(today.generated);
+  });
+  p.rerender();
+  expect(h.result.current.briefing?.date).toBe('2026-11-23');
+  expect(play).toHaveBeenCalledTimes(1);
+  expect(mockClear).toHaveBeenCalledTimes(1);
+});
+
+it('keeps a briefing tap pending when the feed edge still serves a same-day build older than meta', async () => {
+  const old = mockFeed('2026-11-23T04:00:00Z', ['one']);
+  const published = '2026-11-23T05:00:00Z';
+  jest.mocked(feedCache.readSync).mockReturnValue(old);
+  jest.mocked(probeGenerated).mockResolvedValue(published);
+  jest.mocked(downloadFeed).mockResolvedValue(old);
+  const arrival = jest.requireActual<typeof import('../lib/arrival')>('../lib/arrival');
+  jest.mocked(fetchArrival).mockImplementation(arrival.fetchArrival);
+  const h = mount();
+  const play = jest.fn();
+  const unavailable = jest.fn();
+  renderBriefingTap(h, play, unavailable);
+  await act(async () => {});
+  expect(downloadFeed).toHaveBeenCalled();
+  expect(unavailable).not.toHaveBeenCalled();
+  expect(mockClear).not.toHaveBeenCalled();
+});
+
+it('verifies a cold same-day empty feed against the advertised recording in one mounted screen', async () => {
+  notifyManager.setScheduler((fn) => setTimeout(fn, 0));
+  const old = mockFeed('2026-11-23T04:00:00Z', ['one']);
+  const latest = {
+    ...mockFeed('2026-11-23T05:00:00Z', ['two']),
+    briefing: { date: '2026-11-23', available: true, generated: '2026-11-23T05:00:00Z' },
+  };
+  const first = deferred<FeedResponse>();
+  jest.mocked(feedCache.readSync).mockReturnValue(null);
+  jest.mocked(fetchFeed).mockReturnValue(first.promise);
+  jest.mocked(probeGenerated).mockResolvedValue(latest.generated);
+  jest.mocked(fetchArrival).mockResolvedValue({ feed: latest, snapshots: [] });
+  const client = new QueryClient({
+    defaultOptions: { queries: { retry: false, gcTime: Infinity } },
+  });
+  const wrapper = ({ children }: { children: ReactNode }) => (
+    <QueryClientProvider client={client}>{children}</QueryClientProvider>
+  );
+  const play = jest.fn(),
+    unavailable = jest.fn(),
+    select = jest.fn();
+  const h = renderHook(
+    () => {
+      const feed = useArticles(undefined, true);
+      usePendingNotification(feed.loading, feed.grouped, select, {
+        verify: feed.verifyNotificationFeed,
+        generated: feed.generated,
+        play,
+        unavailable,
+      });
+      return feed;
+    },
+    { wrapper },
+  );
+  await act(async () => {
+    first.resolve(old);
+    await new Promise((r) => setTimeout(r, 40));
+  });
+  await act(async () => {
+    await h.result.current.refresh();
+    await new Promise((r) => setTimeout(r, 40));
+  });
+  expect(h.result.current.briefing?.date).toBe(latest.briefing.date);
+  expect(unavailable).not.toHaveBeenCalled();
+  expect(mockClear).toHaveBeenCalledTimes(1);
+  expect(play).toHaveBeenCalledTimes(1);
+  expect(play).toHaveBeenCalledWith(latest.briefing);
 });

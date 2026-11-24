@@ -38,3 +38,7 @@ With auto-init off, the SDK's `activateApp` runs at process start, before
 `initializeSDK` has made it deliverable, so its one-time install report fails
 the same way on every launch. `initializeSDK` repeats it. Android only: the iOS
 build does not link this package.
+
+## expo-widgets 58.0.29 and Daily briefing
+
+The provider supplies per-instance Android bounds, a native launch action, pinning and verified configuration queries. WidgetKit supplies the gallery flag and accessibility size to the initial layout and registers the host’s embedded fonts. Recheck these adapters when upgrading expo-widgets.

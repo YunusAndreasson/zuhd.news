@@ -13,10 +13,12 @@ import { clearKnown } from './fresh-store';
 import { rotateInstallId } from './install-id';
 import { deleteLegacy, type LegacyCopy } from './legacy-store';
 import { resetOnboarding } from './onboarding-store';
+import { erasePublisherSession } from './publisher-session';
 import { persister, queryClient } from './query-client';
 import { clearRead } from './read-store';
 import { orderStorageWork } from './store-plumbing';
 import { resetReviewState } from './store-review';
+import { eraseWidget } from './widget-store';
 
 /**
  * Erase everything the app has stored about this reader's use of it.
@@ -59,6 +61,7 @@ const LEGACY_COPIES: LegacyCopy[] = [
   { file: new File(Paths.document, 'zuhd-bookmarks.json') },
   { file: new File(Paths.document, 'zuhd-onboarding.json') },
   { file: new File(Paths.cache, 'query-cache.json') },
+  { file: new File(Paths.cache, 'zuhd-opener.json') },
   { secureKey: 'zuhd_review_count' },
   { secureKey: 'zuhd_review_prompted' },
   { secureKey: 'zuhd_briefing_pos' },
@@ -69,7 +72,14 @@ export async function eraseLocalData(): Promise<void> {
   // In-memory stores first, so nothing flushes itself back over the cleared
   // keys afterwards.
   cancelArrivals();
-  const cleared = [clearBookmarks(), clearKnown(), clearRead(), resetOnboarding()];
+  const widgetErased = eraseWidget();
+  const cleared = [
+    erasePublisherSession(),
+    clearBookmarks(),
+    clearKnown(),
+    clearRead(),
+    resetOnboarding(),
+  ];
   clearFirsts();
   resetReviewState();
   resetDataUsage();
@@ -77,16 +87,9 @@ export async function eraseLocalData(): Promise<void> {
   // The briefing's downloaded audio, which the privacy page counts among
   // what nothing downloaded outlives.
   deleteBriefingAudio({ partials: true });
-  // Analytics starts again under a new anonymous id and a new `install_id`,
-  // the erase being the last event under the old ones. The install's record
-  // of what it sent once (`install-record.ts`) stays: an erased install is
-  // not a new one.
-  void analytics.track(ANALYTICS_EVENTS.LOCAL_DATA_ERASED).then(() => {
-    rotateInstallId();
-    return analytics.reset();
-  });
 
   await Promise.all([
+    widgetErased,
     clearBriefingProgress(),
     persister.removeClient(),
     feedCache.clear(),
@@ -100,4 +103,12 @@ export async function eraseLocalData(): Promise<void> {
     }),
   ]);
   if (cleared.some((success) => !success)) throw new Error('Could not erase all local data');
+  // Analytics starts again under a new anonymous id and a new `install_id`,
+  // the erase being the last event under the old ones. The install's record
+  // of what it sent once (`install-record.ts`) stays: an erased install is
+  // not a new one.
+  void analytics.track(ANALYTICS_EVENTS.LOCAL_DATA_ERASED).then(() => {
+    rotateInstallId();
+    return analytics.reset();
+  });
 }

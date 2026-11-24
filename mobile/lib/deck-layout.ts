@@ -135,6 +135,7 @@ interface DeckLines {
 }
 
 export interface DeckLayoutInput {
+  opening?: boolean;
   width: number;
   height: number;
   leftInset?: number;
@@ -203,10 +204,14 @@ export function computeDeckLayout(input: DeckLayoutInput): DeckLayout {
   // footer above the dock. Leave a real drag between the two stops there.
   const room = Math.max(0, height - topChrome);
   const storyCap = storyCapOf(input);
-  const cap = Math.min(room - BAND_MIN, storyCap - CONTROL_ROW);
+  const largeOpening = input.opening && input.fontScale > 1.5;
+  const cap = largeOpening ? room - CONTROL_ROW : Math.min(room - BAND_MIN, storyCap - CONTROL_ROW);
   const peekCap = Math.min(room, Math.max(HANDLE + dock, cap));
 
-  const peek = Math.round(Math.min(Math.max(Math.min(content, bandCap), floor), peekCap));
+  const openingPeek = input.opening ? height * (input.fontScale > 1.5 ? 0.84 : 0.43) : 0;
+  const peek = Math.round(
+    Math.min(Math.max(Math.min(content, bandCap), floor, openingPeek), peekCap),
+  );
   const band = room - peek;
 
   // The whole story — its lines and the gaps between its blocks, the lede's
@@ -246,6 +251,7 @@ export function computeDeckLayout(input: DeckLayoutInput): DeckLayout {
 function storyCapOf(input: DeckLayoutInput): number {
   const { height, chromeHeight } = input;
   const room = Math.max(0, height - chromeHeight);
+  if (input.opening && input.fontScale > 1.5) return room;
   const controls =
     HANDLE +
     ACTIONS_ROW +

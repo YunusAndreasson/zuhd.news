@@ -28,6 +28,12 @@ export const ANALYTICS_EVENTS = {
    *  says whether the install is new or one that updated into it
    *  (`lib/install-record.ts`). Count new installs by `install_kind: 'new'`. */
   FIRST_OPEN: 'First Open',
+  PUBLISHER_SESSION_CHECKPOINT: 'First Session Checkpoint',
+  FIRST_SESSION_CLOSED: 'First Session Closed',
+  PUBLISHER_OFFER_VIEWED: 'Publisher Offer Viewed',
+  PUBLISHER_SETTINGS_OPENED: 'Publisher Settings Opened',
+  PUBLISHER_REGISTRATION_VERIFIED: 'Publisher Registration Verified',
+  PUBLISHER_OPT_IN_OBSERVED: 'Publisher Opt In Observed',
   /** Android only, a new install, once, unless ad measurement is off on the
    *  privacy page: the Play Store's install referrer, which says which link or ad brought the
    *  install (`lib/install-attribution.ts`). */
@@ -65,6 +71,10 @@ export const ANALYTICS_EVENTS = {
   STORY_SHARED: 'Story Shared',
   /** A story was saved. Which story is not sent. */
   STORY_SAVED: 'Story Saved',
+  WIDGET_OFFER_VIEWED: 'Widget Offer Viewed',
+  WIDGET_SETUP_STARTED: 'Widget Setup Started',
+  WIDGET_PRESENCE_VERIFIED: 'Widget Presence Verified',
+  WIDGET_OPENED: 'Widget Opened',
   /** The reader erased the local data: the last event under the old id. */
   LOCAL_DATA_ERASED: 'Local Data Erased',
 } as const;
@@ -81,7 +91,28 @@ export type OnboardingStep = 'swipe' | 'globe' | 'masthead';
 export type AwayBucket = '5m-1h' | '1-6h' | '6-24h' | '1d+';
 export type PermissionKind = 'notifications' | 'ad_measurement';
 /** The moment the notification primer came up at. */
-export type PrimerSource = 'first_briefing' | 'stories_read' | 'caught_up';
+export type PrimerSource =
+  | 'opened_report'
+  | 'paused_briefing'
+  | 'finished_briefing'
+  | 'later_briefing';
+export type PermissionOutcome = 'granted' | 'denied' | 'dismissed' | 'unknown';
+export type RegistrationStatus = 'removed' | 'pending' | 'failed' | 'accepted';
+export type RegistrationReason =
+  | 'enable'
+  | 'reconnect'
+  | 'rotation'
+  | 'refresh'
+  | 'disable'
+  | 'retry';
+export interface PublisherObservation {
+  consent: boolean;
+  briefing: boolean;
+  breaking: boolean;
+  registration: RegistrationStatus;
+  effective: boolean;
+  observed_at: number;
+}
 /** How a story came to be opened: on the map itself, from a push, a link or the menu. */
 export type StoryOpenVia = 'card' | 'notification' | 'link' | 'menu';
 export type NotificationType = 'briefing' | 'breaking' | 'other';
@@ -102,7 +133,24 @@ export interface AnalyticsEventProperties {
   /** `/` for the route, `/sheet/<sheet>`, `/menu/<page>`; never a country or a card's name. */
   [ANALYTICS_EVENTS.SCREEN_VIEWED]: { screen: `/${string}` };
   [ANALYTICS_EVENTS.APP_OPENED]: { launch: 'cold' } | { launch: 'warm'; away: AwayBucket };
-  [ANALYTICS_EVENTS.FIRST_OPEN]: { install_kind: InstallKind };
+  [ANALYTICS_EVENTS.FIRST_OPEN]: {
+    install_kind: InstallKind;
+    genuine_first_open?: boolean;
+    flow_version?: number;
+  };
+  [ANALYTICS_EVENTS.PUBLISHER_SESSION_CHECKPOINT]: PublisherObservation & {
+    active: boolean;
+    away_since: number | null;
+  };
+  [ANALYTICS_EVENTS.FIRST_SESSION_CLOSED]: PublisherObservation & { closed_at: number };
+  [ANALYTICS_EVENTS.PUBLISHER_OFFER_VIEWED]: { source: PrimerSource; stage: 'first' | 'later' };
+  [ANALYTICS_EVENTS.PUBLISHER_SETTINGS_OPENED]: { source: PrimerSource };
+  [ANALYTICS_EVENTS.PUBLISHER_REGISTRATION_VERIFIED]: {
+    status: RegistrationStatus;
+    reason: RegistrationReason;
+    observed_at: number;
+  };
+  [ANALYTICS_EVENTS.PUBLISHER_OPT_IN_OBSERVED]: PublisherObservation;
   /** Never decoded or parsed: marketer reads the parts joined. */
   [ANALYTICS_EVENTS.INSTALL_ATTRIBUTION]: ReferrerParts;
   [ANALYTICS_EVENTS.ACTIVATED]: undefined;
@@ -123,6 +171,7 @@ export interface AnalyticsEventProperties {
     granted: boolean;
     primed: boolean;
     os_prompt: boolean;
+    outcome?: PermissionOutcome;
     source?: PrimerSource;
   };
   [ANALYTICS_EVENTS.NOTIFICATIONS_TURNED_OFF]: undefined;
@@ -131,12 +180,29 @@ export interface AnalyticsEventProperties {
   /** `first_time`: the first visit in which this install read a story. */
   [ANALYTICS_EVENTS.STORIES_READ]: { count: StoriesReadCount; first_time: boolean };
   /** `resumed`: from a place saved in an earlier play. `first_time`: this install's first. */
-  [ANALYTICS_EVENTS.BRIEFING_STARTED]: { resumed: boolean; first_time: boolean };
+  [ANALYTICS_EVENTS.BRIEFING_STARTED]: {
+    resumed: boolean;
+    first_time: boolean;
+    source?: BriefingOpenSource;
+  };
   [ANALYTICS_EVENTS.BRIEFING_COMPLETED]: undefined;
   [ANALYTICS_EVENTS.BRIEFING_STOPPED]: { heard_pct: HeardPct };
   /** Android reports every close of its share sheet as shared. */
   [ANALYTICS_EVENTS.STORY_SHARED]: { completed: boolean };
   [ANALYTICS_EVENTS.STORY_SAVED]: undefined;
+  [ANALYTICS_EVENTS.WIDGET_OFFER_VIEWED]: { source: 'menu' };
+  [ANALYTICS_EVENTS.WIDGET_SETUP_STARTED]: {
+    source: 'menu';
+    method: 'ios_guide' | 'android_guide' | 'android_pin';
+  };
+  [ANALYTICS_EVENTS.WIDGET_PRESENCE_VERIFIED]: {
+    state: 'present' | 'absent' | 'unknown';
+    accessory: 'present' | 'absent' | 'unknown';
+    via: 'ios_configurations' | 'android_provider_ids';
+    observed_at: number;
+    sequence: number;
+  };
+  [ANALYTICS_EVENTS.WIDGET_OPENED]: { target: 'briefing' | 'edition' | 'open' };
   [ANALYTICS_EVENTS.LOCAL_DATA_ERASED]: undefined;
 }
 
@@ -160,3 +226,5 @@ export type SuperProperties = {
   /** Android only: ad measurement is on (it is unless turned off on the privacy page). */
   ad_measurement?: boolean;
 };
+
+export type BriefingOpenSource = 'briefing_push' | 'widget' | 'widget_preview';

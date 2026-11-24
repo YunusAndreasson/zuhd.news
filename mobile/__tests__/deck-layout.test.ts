@@ -281,3 +281,13 @@ it('leaves a reachable footer and scrollable story in short landscape windows at
   expect(layout.full - layout.dock - 16 - 40).toBeGreaterThanOrEqual(48);
   expect(layout.storyBand).toBeGreaterThan(0);
 });
+
+it('gives an enlarged opener a scrollable resting card and a reachable expanded stop', () => {
+  for (const fontScale of [2, 3.12]) {
+    const normal = computeDeckLayout(small({ fontScale }));
+    const opened = computeDeckLayout(small({ fontScale, opening: true }));
+    expect(opened.peek).toBeGreaterThan(normal.peek);
+    expect(opened.full).toBeGreaterThan(opened.peek);
+    expect(opened.full).toBeLessThanOrEqual(640 - 128);
+  }
+});

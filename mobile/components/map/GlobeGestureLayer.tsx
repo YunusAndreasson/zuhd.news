@@ -125,6 +125,7 @@ interface GlobeGestureLayerProps {
   onTap: (result: TapResult, epoch?: number) => void;
   /** A pinch has ended; redraw at full detail once `delayMs` has passed. */
   onZoomSettle: (delayMs: number, epoch: number) => void;
+  onExplore?: () => void;
   onImpact: () => void;
   enabled?: boolean;
   /**
@@ -165,6 +166,7 @@ export const GlobeGestureLayer = memo(function GlobeGestureLayer({
   onTap,
   onZoomSettle,
   onImpact,
+  onExplore,
   enabled = true,
   collapseMode = false,
   onCollapse,
@@ -451,6 +453,7 @@ export const GlobeGestureLayer = memo(function GlobeGestureLayer({
   return (
     <Animated.View
       style={[styles.layer, boundsStyle]}
+      onTouchEnd={onExplore}
       accessible={false}
       accessibilityElementsHidden
       importantForAccessibility="no-hide-descendants"

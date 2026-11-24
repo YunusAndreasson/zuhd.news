@@ -7,7 +7,16 @@ import type {
   Entity,
   GdacsAlert,
 } from '@shared/types';
-import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
+import { router, useLocalSearchParams } from 'expo-router';
+import {
+  useCallback,
+  useEffect,
+  useLayoutEffect,
+  useMemo,
+  useRef,
+  useState,
+  useSyncExternalStore,
+} from 'react';
 import {
   AppState,
   type LayoutChangeEvent,
@@ -52,12 +61,12 @@ import { StoryDock } from '../components/map/StoryDock';
 import { StoryMeasure } from '../components/map/StoryMeasure';
 import { NotificationPrimerSheet } from '../components/NotificationPrimerSheet';
 import { OverlaySheet } from '../components/OverlaySheet';
-import { Screen } from '../components/primitives';
+import { OfferContext, type PrimerAction } from '../components/PublisherOffer';
+import { Pressable, Screen, Stack, Text } from '../components/primitives';
 import type { BottomSheetMethodsRef } from '../components/SheetLayout';
 import { SourcesSheet } from '../components/SourcesSheet';
 import { Toast, type ToastRef } from '../components/Toast';
-import { ANALYTICS_EVENTS, type PrimerSource, type StoryOpenVia } from '../constants/analytics';
-import { IS_ANDROID } from '../constants/platform';
+import { ANALYTICS_EVENTS, type StoryOpenVia } from '../constants/analytics';
 import { CATEGORIES, categoryMarkColor, EDITORIAL, VARIANT_CAP } from '../constants/theme';
 import { useAiModels } from '../hooks/useAiModels';
 import { useAnalysis } from '../hooks/useAnalysis';
@@ -87,7 +96,7 @@ import { useReadTracking } from '../hooks/useReadTracking';
 import { useSheetHandoff } from '../hooks/useSheetHandoff';
 import { useStoryOpener } from '../hooks/useStoryOpener';
 import { useHardwareBack } from '../hooks/useSwipeBack';
-import { usePreferences, useTheme } from '../hooks/useTheme';
+import { useTheme } from '../hooks/useTheme';
 import { useTrendsSnapshot } from '../hooks/useTrendsSnapshot';
 import { analytics } from '../lib/analytics';
 import { announce } from '../lib/announce';
@@ -97,6 +106,7 @@ import {
   restore as restoreBookmark,
   toggle as toggleBookmark,
 } from '../lib/bookmark-store';
+import { briefingSelection, type PlaybackRequest } from '../lib/briefing-selection';
 import { markMove } from '../lib/cards/format';
 import { buildInstrumentCards, straitCardFor } from '../lib/cards/markets';
 import type { SwipeCard } from '../lib/cards/rank';
@@ -106,7 +116,9 @@ import { exchangeMove } from '../lib/cards/week-move';
 import { companyGauges } from '../lib/companies';
 import { conflictWeekOf } from '../lib/conflict-week';
 import { alertsInCountry, countryFacts, marksInCountry } from '../lib/country-hazards';
+import { datedCard, widgetRoute, widgetTap } from '../lib/daily-widget';
 import {
+  ACTIONS_ROW,
   computeDeckLayout,
   openHeightNeedsMeasuring,
   openStoryHeight,
@@ -117,6 +129,7 @@ import { globeGdacsAlerts } from '../lib/gdacs';
 import { arcDegrees, crossingFlies } from '../lib/globe-camera';
 import { type GlobeTapFrame, IDENTITY_GLOBE_TRANSFORM } from '../lib/globe-display';
 import { hapticError, hapticImpact, hapticNotification, hapticSwipe } from '../lib/haptics';
+import { openingVisit } from '../lib/install-record';
 import {
   buildInstrumentCatalog,
   type CatalogGroup,
@@ -129,7 +142,6 @@ import { coverageStory, mapCandidates } from '../lib/map-selection';
 import { exchangeCard, exchangeIsStale, exchangesOf, stockMarketPlace } from '../lib/markets';
 import type { MenuHazards } from '../lib/menu-hazards';
 import { orderNewsRiver, type RiverArticle, recentRiver, riverAnchor } from '../lib/news-order';
-import { notificationPermissionUndetermined } from '../lib/notifications';
 import {
   buildNowSurfaces,
   type LatLng,
@@ -139,21 +151,24 @@ import {
   type StripItem,
   stripLabel,
 } from '../lib/now';
-import {
-  getSnapshot as getOnboarding,
-  markHintDone,
-  recordArticleSnap,
-} from '../lib/onboarding-store';
+import { firstRun, markHintDone, recordArticleSnap } from '../lib/onboarding-store';
 import { openExternal } from '../lib/open-link';
+import { hasOpeningReading, type Starter } from '../lib/opening-story';
 import type { OverlaySelection } from '../lib/overlays';
 import { oddsByStory, oddsLabels, type StoryOdds } from '../lib/predictions';
-import { getSnapshot as getReadSlugs, markRead, onVisitRead, pruneRead } from '../lib/read-store';
+import { getSnapshot as getReadSlugs, markRead, pruneRead } from '../lib/read-store';
 import { refreshFailedToast } from '../lib/refresh-toast';
 import { resumeLanding, unreadNewBehind } from '../lib/resume-landing';
 import { maybeRequestReview, recordStorySwipe } from '../lib/store-review';
 import { storyCharts } from '../lib/story-chart';
 import { storyShare } from '../lib/story-share';
 import { countryTap, type TapResult } from '../lib/tap-result';
+import {
+  currentWidgetEdition,
+  savedWidgetAudio,
+  widgetDetail,
+  widgetEditionChanges,
+} from '../lib/widget-store';
 
 /**
  * One screen.
@@ -179,16 +194,6 @@ import { countryTap, type TapResult } from '../lib/tap-result';
  * front door had already been tried once and abandoned for swipe-first news.
  */
 
-// Give the reader time to arrive at the caught-up boundary and read it before
-// anything asks them for something. The delay used to be measured against the
-// "Caught up" toast's 2s dwell; that toast is gone, but the interval is still
-// the right one — it is the pause between the app saying you can stop and the
-// app asking a favour.
-const PRIMER_PRESENT_DELAY_MS = 2600;
-/** The primer's moment for a reader who reads: this many stories newly read
- *  in one visit. Caught up needs a second look the same day, which a reader
- *  who comes once a day never makes. */
-const PRIMER_AFTER_READS = 5;
 /** How long a story asked for by name may take to grow before the next open
  *  of the sheet no longer counts as it (`Story Opened`'s `via`). */
 const STORY_OPEN_VIA_MS = 5_000;
@@ -241,7 +246,8 @@ function swipeFlies(
 
 export default function HomeScreen() {
   const { colors, font, typography, textVariants } = useTheme();
-  const { preferences } = usePreferences();
+  const [firstLaunch] = useState(() => firstRun || openingVisit());
+  const [explored, setExplored] = useState(false);
   const reduceMotion = useReducedMotion();
   const insets = useSafeAreaInsets();
   const { width: screenWidth, height: screenHeight, fontScale } = useWindowDimensions();
@@ -265,11 +271,16 @@ export default function HomeScreen() {
   /** `handleReturn`, below, for `useArticles` to call inside an arrival. */
   const returnHandlerRef = useRef<((ret: AppReturn) => void) | null>(null);
   const globeRef = useRef<MiniGlobeRef>(null);
+  const { widget: widgetIntent, widgetPreview } = useLocalSearchParams<{
+    widget?: string;
+    widgetPreview?: string;
+  }>();
+  const [playbackRequest, setPlaybackRequest] = useState<PlaybackRequest | null>(null);
+  const widgetPlayback = playbackRequest && 'audio' in playbackRequest ? playbackRequest : null;
+  const widgetSerial = useRef(0);
+  const consumedWidget = useRef<string | null>(null);
   const briefingChromeRef = useRef<BriefingChromeRef>(null);
 
-  const { grouped, briefing, loading, error, refresh, retry, tick, generated, injectArticle } =
-    useArticles(returnHandlerRef);
-  const { points: heatmapPoints, ready: heatmapReady } = useHeatmap(generated);
   const { chokepoints } = useChokepoints();
   const { alerts: gdacsAlerts, details: gdacsDetails } = useGdacsAlerts();
   const { events: conflictEvents, snapshot: conflictSnapshot } = useConflictEvents();
@@ -289,6 +300,50 @@ export default function HomeScreen() {
   const companiesSnapshot = useCompanies();
   const companies = useMemo(() => companiesSnapshot?.companies ?? [], [companiesSnapshot]);
   const aiModels = useAiModels();
+  const openingSeries = useCallback(
+    (story: Starter) =>
+      hasOpeningReading(
+        storyCharts([story], {
+          ranked: marketSignals,
+          trends,
+          chokepoints,
+          analysis,
+          articles: [story],
+          exchanges,
+          companies,
+          aiModels,
+        }).get(story.slug),
+      ),
+    [marketSignals, trends, chokepoints, analysis, exchanges, companies, aiModels],
+  );
+  const {
+    starter,
+    grouped,
+    verifyNotificationFeed,
+    briefing,
+    loading,
+    error,
+    refresh,
+    retry,
+    tick,
+    generated,
+    injectArticle,
+  } = useArticles(returnHandlerRef, firstLaunch, openingSeries);
+  const archiveAvailable = useSyncExternalStore(
+    widgetEditionChanges.subscribe,
+    () =>
+      !widgetPlayback ||
+      widgetDetail(widgetPlayback.audio.date, widgetPlayback.revision)?.audio?.generated ===
+        widgetPlayback.audio.generated,
+  );
+  const { withdrawn, ...playerSelection } = briefingSelection(
+    briefing,
+    playbackRequest,
+    generated?.slice(0, 10) ?? null,
+    archiveAvailable,
+  );
+  if (withdrawn) setPlaybackRequest(withdrawn);
+  const { points: heatmapPoints, ready: heatmapReady } = useHeatmap(generated);
   const offline = useOffline();
 
   const [briefingVisible, setBriefingVisible] = useState(false);
@@ -338,7 +393,7 @@ export default function HomeScreen() {
   const [activeConflict, setActiveConflict] = useState<ConflictEvent | null>(null);
   const [chooserCandidates, setChooserCandidates] = useState<TapResult[]>([]);
   const [activeEntity, setActiveEntity] = useState<Entity | null>(null);
-  const [activeCard, setActiveCard] = useState<SwipeCard | null>(null);
+  const [activeCard, setActiveCard] = useState<SwipeCard | 'archive-gold' | null>(null);
   const [activeOverlay, setActiveOverlay] = useState<OverlaySelection | null>(null);
   // The payload-less sheets need explicit open flags so the hint overlay can
   // yield the airspace; every other sheet's openness is derived from its
@@ -369,7 +424,7 @@ export default function HomeScreen() {
   const globeClip = useSharedValue(90);
   const storyClip = useSharedValue(90);
   const zoomSettleTimerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
-  const primerTimerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
+
   const sheetProgress = useSharedValue(0);
   /** Set the first time the reader moves the camera or the deck themselves. */
   const cameraClaimedRef = useRef(false);
@@ -428,8 +483,10 @@ export default function HomeScreen() {
   // The sheet at rest and open is sized from the card's type, not a fraction
   // of the window or the story in front, and the globe takes what is left —
   // see `lib/deck-layout.ts`.
+  const opening = !!starter && !explored;
   const deckInput = useMemo(
     () => ({
+      opening,
       width: screenWidth,
       leftInset: insets.left,
       rightInset: insets.right,
@@ -452,6 +509,7 @@ export default function HomeScreen() {
       },
     }),
     [
+      opening,
       screenWidth,
       screenHeight,
       topChromeHeight,
@@ -505,8 +563,13 @@ export default function HomeScreen() {
   // reported come first (`compareHeat`), which moves no cell out of its run.
   // biome-ignore lint/correctness/useExhaustiveDependencies: `tick` re-measures the window as stories age past a day while the app is open
   const river = useMemo(
-    () => recentRiver(orderNewsRiver(grouped), Date.now(), pinnedSlugs),
-    [grouped, pinnedSlugs, tick],
+    () =>
+      recentRiver(
+        orderNewsRiver(grouped),
+        Date.now(),
+        starter ? new Set([...pinnedSlugs, starter.slug]) : pinnedSlugs,
+      ),
+    [grouped, pinnedSlugs, tick, starter],
   );
 
   const columns = useMemo(
@@ -697,6 +760,24 @@ export default function HomeScreen() {
   // ---------------------------------------------------------------------
   const fresh = useFreshSlugs();
   const { storyRows, cameraTrack, places } = useMapStories({ river, fresh, odds: oddsLabelBySlug });
+  const openingArticles = useMemo(
+    () => (opening && starter ? [starter] : river),
+    [opening, starter, river],
+  );
+  const openingPlaces = useMemo(
+    () =>
+      opening && starter
+        ? places
+            .filter((place) => place.slugs.includes(starter.slug))
+            .map((place) => ({
+              ...place,
+              slugs: [starter.slug],
+              lat: starter.lat ?? place.lat,
+              lng: starter.lng ?? place.lng,
+            }))
+        : places,
+    [opening, places, starter],
+  );
 
   const resolvableEntityIds = useMemo(() => new Set(indicatorsById.keys()), [indicatorsById]);
   const activeIndicator = useMemo(
@@ -714,7 +795,6 @@ export default function HomeScreen() {
   useEffect(
     () => () => {
       if (zoomSettleTimerRef.current) clearTimeout(zoomSettleTimerRef.current);
-      if (primerTimerRef.current) clearTimeout(primerTimerRef.current);
     },
     [],
   );
@@ -834,6 +914,7 @@ export default function HomeScreen() {
       // A scrub already moved the cards on UI. A newer globe gesture keeps
       // its camera, while React still needs that card's committed selection.
       if (!ownsCamera && !options.deckMoved) return;
+      setExplored(true);
       const index = storyRowsRef.current.findIndex((r) => r.slug === slug);
       if (index < 0) {
         pendingFocusRef.current = { slug, ...options };
@@ -899,6 +980,21 @@ export default function HomeScreen() {
     ],
   );
 
+  const placedStarter = useRef<string | null>(null);
+  useLayoutEffect(() => {
+    if (!starter || loading || placedStarter.current === starter.slug || explored) return;
+    const index = storyRows.findIndex((row) => row.slug === starter.slug);
+    if (index < 0 || cameraClaimedRef.current || pendingFocusRef.current) return;
+    placedStarter.current = starter.slug;
+    deckIndexRef.current = index;
+    currentSlugRef.current = starter.slug;
+    launchFrontSlugRef.current = starter.slug;
+    storyProgress.value = index;
+    storyCommitted.value = index;
+    setDeckIndex(index);
+    setCameraFront(storyRows[index]?.coords ?? null);
+  }, [starter, loading, explored, storyRows, setCameraFront, storyProgress, storyCommitted]);
+
   // A focus that arrived before its story did.
   useEffect(() => {
     const pending = pendingFocusRef.current;
@@ -960,7 +1056,7 @@ export default function HomeScreen() {
   // place until the card closes, so a ring on the planet always has a gauge.
   const [selectedGauge, setSelectedGauge] = useState<StripItem | null>(null);
 
-  const openCard = useCallback((card: SwipeCard) => {
+  const openCard = useCallback((card: SwipeCard | 'archive-gold') => {
     setActiveCard(card);
     cardSheetRef.current?.present();
   }, []);
@@ -1208,9 +1304,14 @@ export default function HomeScreen() {
   }, []);
   /** A briefing push: it plays, and one already playing goes on. A toggle
    *  here paused the briefing the reader was listening to. */
-  const handleBriefingPush = useCallback(() => {
+  const handleBriefingPush = useCallback((audio: NonNullable<typeof briefing>) => {
     markHintDone('masthead');
-    briefingChromeRef.current?.play();
+    setPlaybackRequest({
+      source: 'briefing_push',
+      date: audio.date,
+      recorded: audio.generated,
+      serial: ++widgetSerial.current,
+    });
   }, []);
   const handleBriefingUnavailable = useCallback(() => {
     hapticError();
@@ -1218,12 +1319,19 @@ export default function HomeScreen() {
   }, []);
   const handleBriefingPlaybackError = useCallback(() => {
     hapticError();
+    if (widgetPlayback?.close) {
+      const close = widgetPlayback.close;
+      briefingChromeRef.current?.dismiss();
+      openCard(datedCard(close));
+      toastRef.current?.show('Audio unavailable for this edition', undefined, 'top');
+      return;
+    }
     toastRef.current?.show(
       'Could not play the briefing · tap to try again',
       { onPress: handleBriefingPress, hint: 'Plays today’s briefing' },
       'top',
     );
-  }, [handleBriefingPress]);
+  }, [handleBriefingPress, widgetPlayback, openCard]);
 
   const handleSourcesPress = useCallback((article: Article) => {
     markHintDone('sources');
@@ -1338,78 +1446,39 @@ export default function HomeScreen() {
     ready: !loading && heatmapReady,
     // Not on the end card either: every lesson there points at a next story
     // or a story to open, and the end card has neither.
-    suppressed: sheetOpen || briefingVisible || deckIndex >= storyRows.length,
+    suppressed: opening || sheetOpen || briefingVisible || deckIndex >= storyRows.length,
   });
 
   /** The pill itself was tapped away. */
   const handleHintTap = useCallback(() => dismissActiveHint('tap'), [dismissActiveHint]);
 
-  const notificationsOnRef = useRef(preferences.notifications);
-  notificationsOnRef.current = preferences.notifications;
   const primerTriedRef = useRef(false);
-  /** The moment the primer is presented at, for its answer's `source`. */
-  const [primerSource, setPrimerSource] = useState<PrimerSource>('caught_up');
-
-  /** The primer, once a session, a moment after `source`'s moment, unless a
-   *  sheet has come up by then. */
-  const presentPrimer = useCallback((source: PrimerSource) => {
+  const primerAction = useRef<PrimerAction | null>(null);
+  const presentPrimer = useCallback((action: PrimerAction) => {
+    if (primerAction.current || sheetOpenRef.current) return;
+    primerAction.current = action;
     primerTriedRef.current = true;
-    primerTimerRef.current = setTimeout(() => {
-      primerTimerRef.current = null;
-      if (sheetOpenRef.current) return;
-      setPrimerSource(source);
-      setPrimerOpen(true);
-      primerSheetRef.current?.present();
-      void analytics.track(ANALYTICS_EVENTS.PERMISSION_PROMPT_SHOWN, {
-        permission: 'notifications',
-        primed: true,
-        source,
-      });
-    }, PRIMER_PRESENT_DELAY_MS);
+    setPrimerOpen(true);
+    primerSheetRef.current?.present();
+    void analytics.track(ANALYTICS_EVENTS.PERMISSION_PROMPT_SHOWN, {
+      permission: 'notifications',
+      primed: true,
+      source: action.source,
+    });
   }, []);
-
-  /**
-   * The primer's moments for a reader caught up never reaches: the first
-   * briefing heard to its end, or the fifth story read in a visit, whichever
-   * comes first. Only for a reader the OS has never asked and the primer
-   * never has, and never over another sheet; a moment that finds one open
-   * leaves the ask to the next. A briefing that ends with the phone locked
-   * asks when the reader comes back.
-   */
-  const askAtMomentRef = useRef<(source: PrimerSource) => void>(() => {});
-  const deferredPrimerRef = useRef<PrimerSource | null>(null);
-  const askAtMoment = useCallback(
-    (source: PrimerSource) => {
-      if (primerTriedRef.current || sheetOpenRef.current) return;
-      if (getOnboarding().primer.status !== 'pending' || notificationsOnRef.current) return;
-      if (AppState.currentState !== 'active') {
-        deferredPrimerRef.current = source;
-        return;
-      }
-      void notificationPermissionUndetermined().then((undetermined) => {
-        if (!undetermined || primerTriedRef.current || sheetOpenRef.current) return;
-        presentPrimer(source);
-      });
-    },
-    [presentPrimer],
+  const enableFromPrimer = useCallback(async () => {
+    await primerAction.current?.enable();
+  }, []);
+  const offerContext = useMemo(
+    () => ({
+      present: presentPrimer,
+      edition: briefing?.date ?? generated?.slice(0, 10) ?? '',
+      obscured: sheetOpen,
+      storyTop: screenHeight - layout.full,
+      storyBottom: screenHeight - layout.dock - ACTIONS_ROW,
+    }),
+    [presentPrimer, briefing?.date, generated, sheetOpen, screenHeight, layout.full, layout.dock],
   );
-  askAtMomentRef.current = askAtMoment;
-  useEffect(() => {
-    const visits = onVisitRead((count) => {
-      if (count >= PRIMER_AFTER_READS) askAtMomentRef.current('stories_read');
-    });
-    const subscription = AppState.addEventListener('change', (state) => {
-      const deferred = deferredPrimerRef.current;
-      if (state !== 'active' || !deferred) return;
-      deferredPrimerRef.current = null;
-      askAtMomentRef.current(deferred);
-    });
-    return () => {
-      visits();
-      subscription.remove();
-    };
-  }, []);
-  const handleBriefingFinished = useCallback(() => askAtMoment('first_briefing'), [askAtMoment]);
 
   const caughtUpFiredRef = useRef(false);
 
@@ -1420,12 +1489,8 @@ export default function HomeScreen() {
     if (caughtUpFiredRef.current) return false;
     caughtUpFiredRef.current = true;
     hapticNotification();
-    if (primerTriedRef.current) return true;
-    if (getOnboarding().primer.status !== 'pending' || notificationsOnRef.current) return true;
-    if (IS_ANDROID) askAtMoment('caught_up');
-    else presentPrimer('caught_up');
     return true;
-  }, [askAtMoment, presentPrimer]);
+  }, []);
 
   /**
    * A finger has started a swipe on the deck. Whether the camera follows it is
@@ -1434,6 +1499,7 @@ export default function HomeScreen() {
    * value the UI thread is writing blocks until the UI thread answers.
    */
   const handleDeckDragStart = useCallback(() => {
+    setExplored(true);
     cameraClaimedRef.current = true;
     dismissActiveHint('swipe');
   }, [dismissActiveHint]);
@@ -1591,7 +1657,11 @@ export default function HomeScreen() {
     runSheetHandOff();
   }, [runSheetHandOff]);
   const handleEntityDismiss = useCallback(() => setActiveEntity(null), []);
-  const handlePrimerDismiss = useCallback(() => setPrimerOpen(false), []);
+  const handlePrimerDismiss = useCallback(() => {
+    setPrimerOpen(false);
+    primerAction.current?.restore();
+    primerAction.current = null;
+  }, []);
   const handleCardDismiss = useCallback(() => {
     setActiveCard(null);
     setSelectedGauge(null);
@@ -1762,9 +1832,83 @@ export default function HomeScreen() {
   // get back down to the globe closed zuhd instead.
   useHardwareBack({ enabled: sheetDetent === 'full', onBack: collapseSheet });
 
-  useLaunchSplash(loading, heatmapReady);
+  useLaunchSplash(loading, !!starter || heatmapReady);
 
-  usePendingNotification(loading, grouped, handleNotificationStory, handleBriefingPush);
+  usePendingNotification(loading, grouped, handleNotificationStory, {
+    verify: verifyNotificationFeed,
+    generated,
+    play: handleBriefingPush,
+    unavailable: handleBriefingUnavailable,
+  });
+  useEffect(() => {
+    if (!widgetIntent) {
+      consumedWidget.current = null;
+      return;
+    }
+    if (consumedWidget.current === widgetIntent) return;
+    const route = widgetRoute(widgetIntent);
+    const edition = route && widgetDetail(route.date, route.revision);
+    if (loading) return;
+    if (route && firstLaunch && !explored) {
+      setExplored(true);
+      return;
+    }
+    consumedWidget.current = widgetIntent;
+    router.setParams({ widget: undefined, widgetPreview: undefined });
+    const current = currentWidgetEdition();
+    const target = route
+      ? widgetTap(
+          edition ?? undefined,
+          current,
+          briefing,
+          offline,
+          !!edition && savedWidgetAudio(edition),
+          Date.now(),
+        )
+      : 'open';
+    if (!widgetPreview) void analytics.track(ANALYTICS_EVENTS.WIDGET_OPENED, { target });
+    for (const sheet of [
+      menuSheetRef,
+      primerSheetRef,
+      sourcesSheetRef,
+      countrySheetRef,
+      disasterSheetRef,
+      conflictSheetRef,
+      disambiguationSheetRef,
+      entitySheetRef,
+      overlaySheetRef,
+    ])
+      sheet.current?.dismiss();
+    if (!route) {
+      cardSheetRef.current?.dismiss();
+      return;
+    }
+    const audio = edition?.audio;
+    if (target === 'briefing' && audio) {
+      cardSheetRef.current?.dismiss();
+      setPlaybackRequest({
+        audio,
+        revision: route.revision,
+        close: edition?.close,
+        source: widgetPreview ? 'widget_preview' : 'widget',
+        localOnly:
+          widgetTap(edition ?? undefined, current, briefing, offline, false, Date.now()) !==
+          'briefing',
+        serial: ++widgetSerial.current,
+      });
+    } else {
+      if (edition?.close) openCard(datedCard(edition.close));
+      else cardSheetRef.current?.dismiss();
+      if (!edition?.close || route.target === 'briefing')
+        toastRef.current?.show(
+          edition
+            ? 'Audio unavailable for this edition'
+            : 'This saved edition is no longer available',
+          undefined,
+          'top',
+        );
+    }
+  }, [widgetIntent, widgetPreview, firstLaunch, explored, loading, briefing, offline, openCard]);
   useLinkedStory(loading, grouped, handleLinkedStory);
 
   const storyCount = storyRows.length;
@@ -1827,6 +1971,7 @@ export default function HomeScreen() {
   const handleReturn = useCallback(
     (ret: AppReturn) => {
       const added = ret.added.length;
+      if (ret.coldStart && starter) return;
       const landing = resumeLanding({
         explicitStory: explicitStoryRef.current,
         awayMs: ret.awayMs,
@@ -1849,7 +1994,7 @@ export default function HomeScreen() {
       setDeckIndex(0);
       frontFlightRef.current = true;
     },
-    [collapseSheet, dropRelease, holdCamera, showNewToast, storyCommitted, storyProgress],
+    [collapseSheet, dropRelease, holdCamera, showNewToast, storyCommitted, storyProgress, starter],
   );
   useEffect(() => {
     returnHandlerRef.current = handleReturn;
@@ -1913,6 +2058,15 @@ export default function HomeScreen() {
       return (
         <StoryCard
           row={row}
+          starter={starter?.slug === row.slug}
+          archiveEdition={
+            starter?.slug === row.slug &&
+            (!generated ||
+              offline ||
+              new Date(articleTime(row.article)).toISOString().slice(0, 10) <
+                generated.slice(0, 10))
+          }
+          archiveReady={!!generated || offline || !!error || heatmapReady}
           odds={odds.get(row.slug) ?? null}
           chart={charts.get(row.slug) ?? null}
           resolvableEntityIds={resolvableEntityIds}
@@ -1934,6 +2088,11 @@ export default function HomeScreen() {
     },
     [
       expandSheet,
+      error,
+      heatmapReady,
+      generated,
+      offline,
+      starter,
       handleCountryPress,
       handleEntityPress,
       handleNextStory,
@@ -2108,7 +2267,7 @@ export default function HomeScreen() {
         bottomInset={layout.dock}
         keyOf={keyOfDeck}
         renderStory={renderStory}
-        renderFooter={renderStoryFooter}
+        renderFooter={!storyOpen && starter?.slug === frontSlug ? undefined : renderStoryFooter}
         renderEnd={renderEnd}
         onDragStart={handleDeckDragStart}
         onClaim={claimForDeck}
@@ -2129,6 +2288,9 @@ export default function HomeScreen() {
       renderEnd,
       renderStory,
       renderStoryFooter,
+      storyOpen,
+      starter,
+      frontSlug,
       sheetProgress,
       screenWidth,
       storyCount,
@@ -2190,13 +2352,33 @@ export default function HomeScreen() {
       </Screen>
     );
 
-  if (error && Object.values(grouped).every((a) => a.length === 0)) {
+  if (
+    error &&
+    !widgetIntent &&
+    !widgetPlayback &&
+    !activeCard &&
+    Object.values(grouped).every((a) => a.length === 0)
+  ) {
     return <ErrorState offline={offline} error={error} onRetry={retry} />;
   }
 
+  if (firstLaunch && !starter && !explored && !briefingVisible) {
+    return (
+      <Screen>
+        <Stack fill align="center" justify="center" gap="row">
+          <Text variant="body">No opening report available.</Text>
+          <Pressable accessibilityRole="button" onPress={() => setExplored(true)}>
+            <Text variant="bodyEmphasis">Explore the globe</Text>
+          </Pressable>
+        </Stack>
+      </Screen>
+    );
+  }
+
   return (
-    <View style={[styles.screen, { backgroundColor: colors.bg }]}>
-      {/* The one earth. Everything below is a layer over it — the open story
+    <OfferContext value={offerContext}>
+      <View style={[styles.screen, { backgroundColor: colors.bg }]}>
+        {/* The one earth. Everything below is a layer over it — the open story
           too: the sheet rises over the globe, which slides up with it
           (`globeLiftStyle`) and is never redrawn for it. It used to
           step back as the sheet rose, scaled into the band above it by a
@@ -2205,253 +2387,255 @@ export default function HomeScreen() {
           projection carried past the screen for the ground the shrink
           uncovered. Opening a story was slow (2026-09-21); the sheet is
           opaque, so now the globe draws nothing while it moves. */}
-      <GlobeLayer style={[styles.globeLayer, globeLiftStyle]}>
-        <MiniGlobe
-          ref={globeRef}
+        <GlobeLayer style={[styles.globeLayer, globeLiftStyle]}>
+          <MiniGlobe
+            ref={globeRef}
+            tapFrame={globeTapFrame}
+            requestEpoch={requestEpoch}
+            articles={openingArticles}
+            heatmapPoints={opening ? undefined : heatmapPoints}
+            chokepoints={opening ? undefined : chokepoints}
+            straitMoves={straitMoves}
+            landingAt={landingAt}
+            selectedAt={selectedGauge?.coords ?? null}
+            gdacsAlerts={opening ? undefined : globeAlerts}
+            conflictEvents={opening ? undefined : conflictEvents}
+            marketMarks={opening ? undefined : marketMarks}
+            marketViewport={marketViewport}
+            places={openingPlaces}
+            famineAreas={opening ? undefined : famineAreas}
+            thermalEvents={opening ? undefined : thermalEvents}
+            genocideSituations={opening ? undefined : genocideSituations}
+            storyProgress={storyProgress}
+            cameraTrack={cameraTrack}
+            cameraOwner={cameraOwner}
+            cameraLat={cameraLat}
+            cameraLng={cameraLng}
+            width={screenWidth}
+            height={screenHeight}
+            radius={layout.radius}
+            centerY={layout.centerY}
+            zoomActive={zoomActive}
+            zoomAngle={zoomAngle}
+            clipOut={globeClip}
+            storyClipOut={storyClip}
+            viewLat={viewLat}
+            viewLng={viewLng}
+            tick={tick}
+          />
+        </GlobeLayer>
+
+        <GlobeGestureLayer
+          globeRef={globeRef}
           tapFrame={globeTapFrame}
-          requestEpoch={requestEpoch}
-          articles={river}
-          heatmapPoints={heatmapPoints}
-          chokepoints={chokepoints}
-          straitMoves={straitMoves}
-          landingAt={landingAt}
-          selectedAt={selectedGauge?.coords ?? null}
-          gdacsAlerts={globeAlerts}
-          conflictEvents={conflictEvents}
-          marketMarks={marketMarks}
-          marketViewport={marketViewport}
-          places={places}
-          famineAreas={famineAreas}
-          thermalEvents={thermalEvents}
-          genocideSituations={genocideSituations}
-          storyProgress={storyProgress}
-          cameraTrack={cameraTrack}
+          canvasTop={0}
+          topChromeHeight={topChromeHeight}
+          sheetPeekHeight={layout.peek}
+          sheetFullHeight={layout.full}
+          sheetProgress={sheetProgress}
           cameraOwner={cameraOwner}
           cameraLat={cameraLat}
           cameraLng={cameraLng}
-          width={screenWidth}
-          height={screenHeight}
-          radius={layout.radius}
-          centerY={layout.centerY}
-          zoomActive={zoomActive}
-          zoomAngle={zoomAngle}
-          clipOut={globeClip}
-          storyClipOut={storyClip}
           viewLat={viewLat}
           viewLng={viewLng}
-          tick={tick}
+          zoomActive={zoomActive}
+          zoomAngle={zoomAngle}
+          cancelFlight={cancelFlight}
+          requestEpoch={requestEpoch}
+          clip={globeClip}
+          storyClip={storyClip}
+          radius={layout.radius}
+          centerX={screenWidth / 2}
+          centerY={layout.centerY}
+          reduceMotion={reduceMotion}
+          onExplore={opening ? () => setExplored(true) : undefined}
+          onTap={handleCountryPress}
+          onZoomSettle={handleZoomSettle}
+          onImpact={hapticImpact}
+          enabled={sheetDetent === 'peek'}
+          collapseMode={sheetDetent === 'full'}
+          onCollapse={collapseSheet}
         />
-      </GlobeLayer>
 
-      <GlobeGestureLayer
-        globeRef={globeRef}
-        tapFrame={globeTapFrame}
-        canvasTop={0}
-        topChromeHeight={topChromeHeight}
-        sheetPeekHeight={layout.peek}
-        sheetFullHeight={layout.full}
-        sheetProgress={sheetProgress}
-        cameraOwner={cameraOwner}
-        cameraLat={cameraLat}
-        cameraLng={cameraLng}
-        viewLat={viewLat}
-        viewLng={viewLng}
-        zoomActive={zoomActive}
-        zoomAngle={zoomAngle}
-        cancelFlight={cancelFlight}
-        requestEpoch={requestEpoch}
-        clip={globeClip}
-        storyClip={storyClip}
-        radius={layout.radius}
-        centerX={screenWidth / 2}
-        centerY={layout.centerY}
-        reduceMotion={reduceMotion}
-        onTap={handleCountryPress}
-        onZoomSettle={handleZoomSettle}
-        onImpact={hapticImpact}
-        enabled={sheetDetent === 'peek'}
-        collapseMode={sheetDetent === 'full'}
-        onCollapse={collapseSheet}
-      />
+        <View style={styles.topChrome} onLayout={onTopChromeLayout} pointerEvents="box-none">
+          <MapHeader
+            onMenuPress={handleMenuPress}
+            items={stripSlots}
+            onSelect={handleStripPress}
+            selectedId={selectedGauge?.id ?? null}
+            linkedIds={linkedGauges}
+            // While the player bar is up it is the control. A second play button
+            // over audio that was already playing said the opposite of what was
+            // happening; it returns when the bar hides.
+            offlineOpening={opening && offline}
+            showBriefingLabel={firstLaunch}
+            listenAvailable={briefingStatus.available && !briefingVisible}
+            listenResumable={briefingStatus.resumable}
+            listenDuration={briefingStatus.duration}
+            listenHeard={briefingStatus.heard}
+            onListenPress={handleBriefingPress}
+          />
+        </View>
 
-      <View style={styles.topChrome} onLayout={onTopChromeLayout} pointerEvents="box-none">
-        <MapHeader
-          onMenuPress={handleMenuPress}
-          items={stripSlots}
-          onSelect={handleStripPress}
-          selectedId={selectedGauge?.id ?? null}
-          linkedIds={linkedGauges}
-          // While the player bar is up it is the control. A second play button
-          // over audio that was already playing said the opposite of what was
-          // happening; it returns when the bar hides.
-          listenAvailable={briefingStatus.available && !briefingVisible}
-          listenResumable={briefingStatus.resumable}
-          listenDuration={briefingStatus.duration}
-          listenHeard={briefingStatus.heard}
-          onListenPress={handleBriefingPress}
+        {alertTitle && !opening ? (
+          <AlertPill title={alertTitle} top={alertTop} onPress={handleMastheadAlertPress} />
+        ) : null}
+
+        <MapSheet
+          ref={mapSheetRef}
+          scrollablePeek={!!starter && frontSlug === starter.slug && fontScale > 1.5}
+          peek={layout.peek}
+          full={layout.full}
+          progress={sheetProgress}
+          renderList={renderList}
+          onDetentChange={handleDetentChange}
+          onPullDown={handleRefresh}
         />
-      </View>
 
-      {alertTitle ? (
-        <AlertPill title={alertTitle} top={alertTop} onPress={handleMastheadAlertPress} />
-      ) : null}
+        {/* Pinned to the screen, not the sheet: the same place at rest and open. */}
+        {firstLaunch && !generated && storyCount === 1 ? null : dock}
 
-      <MapSheet
-        ref={mapSheetRef}
-        peek={layout.peek}
-        full={layout.full}
-        progress={sheetProgress}
-        renderList={renderList}
-        onDetentChange={handleDetentChange}
-        onPullDown={handleRefresh}
-      />
+        {unmeasured.length > 0 ? (
+          <StoryMeasure
+            key={unmeasured.map((i) => cardKeys[i]).join('\n')}
+            count={unmeasured.length}
+            width={readingColumn}
+            renderCard={renderUnmeasuredCard}
+            onMeasured={handleStoryMeasured}
+          />
+        ) : null}
 
-      {/* Pinned to the screen, not the sheet: the same place at rest and open. */}
-      {dock}
-
-      {unmeasured.length > 0 ? (
-        <StoryMeasure
-          key={unmeasured.map((i) => cardKeys[i]).join('\n')}
-          count={unmeasured.length}
-          width={readingColumn}
-          renderCard={renderUnmeasuredCard}
-          onMeasured={handleStoryMeasured}
-        />
-      ) : null}
-
-      {/* A top toast starts under the gauges, and under the player when it is
+        {/* A top toast starts under the gauges, and under the player when it is
           up; "12 new · ~9 min read" landed on the strip's readings. A bottom
           one ends above the dock. */}
-      <Toast ref={toastRef} topOffset={topToastOffset} bottomOffset={layout.dock} />
+        <Toast ref={toastRef} topOffset={topToastOffset} bottomOffset={layout.dock} />
 
-      <HintOverlay
-        hint={activeHint}
-        onDismiss={handleHintTap}
-        bottomInset={insets.bottom}
-        // Above whatever height the sheet has settled at, so the pill never
-        // sits on the words it is pointing at.
-        bottomOffset={sheetDetent === 'full' ? layout.full : layout.peek}
-      />
+        <HintOverlay
+          hint={activeHint}
+          onDismiss={handleHintTap}
+          bottomInset={insets.bottom}
+          // Above whatever height the sheet has settled at, so the pill never
+          // sits on the words it is pointing at.
+          bottomOffset={sheetDetent === 'full' ? layout.full : layout.peek}
+        />
 
-      <BriefingChrome
-        ref={briefingChromeRef}
-        date={briefing?.date}
-        duration={briefing?.duration}
-        recorded={briefing?.generated}
-        onUnavailable={handleBriefingUnavailable}
-        onPlaybackError={handleBriefingPlaybackError}
-        onFinish={handleBriefingFinished}
-        onVisibilityChange={setBriefingVisible}
-        onStatusChange={setBriefingStatus}
-        topOffset={topChromeHeight}
-        onHeightChange={setPlayerHeight}
-      />
+        <BriefingChrome
+          ref={briefingChromeRef}
+          {...playerSelection}
+          onWidgetDismiss={() => setPlaybackRequest(null)}
+          onUnavailable={handleBriefingUnavailable}
+          onPlaybackError={handleBriefingPlaybackError}
+          onVisibilityChange={setBriefingVisible}
+          onStatusChange={setBriefingStatus}
+          topOffset={topChromeHeight}
+          onHeightChange={setPlayerHeight}
+        />
 
-      <MenuSheet
-        sheetRef={menuSheetRef}
-        bottomInset={insets.bottom}
-        onDismiss={handleMenuDismiss}
-        grouped={grouped}
-        onSelectArticle={handleMenuSelectArticle}
-        catalog={catalog}
-        hazards={menuHazards}
-        gdacsDetails={gdacsDetails}
-        articles={river}
-        onSelectRow={handleMenuRowSelect}
-        onStoryPress={handleMenuStoryPress}
-        rootKey={menuRootKey}
-        onToast={handleMenuToast}
-      />
+        <MenuSheet
+          sheetRef={menuSheetRef}
+          bottomInset={insets.bottom}
+          onDismiss={handleMenuDismiss}
+          grouped={grouped}
+          onSelectArticle={handleMenuSelectArticle}
+          catalog={catalog}
+          hazards={menuHazards}
+          gdacsDetails={gdacsDetails}
+          articles={river}
+          onSelectRow={handleMenuRowSelect}
+          onStoryPress={handleMenuStoryPress}
+          rootKey={menuRootKey}
+          onToast={handleMenuToast}
+        />
 
-      <CardSheet
-        sheetRef={cardSheetRef}
-        bottomInset={insets.bottom}
-        card={activeCard}
-        peekHeight={layout.peek}
-        onDismiss={handleCardDismiss}
-        onStoryPress={handleCardSheetStoryPress}
-      />
+        <CardSheet
+          sheetRef={cardSheetRef}
+          bottomInset={insets.bottom}
+          card={activeCard}
+          peekHeight={layout.peek}
+          onDismiss={handleCardDismiss}
+          onStoryPress={handleCardSheetStoryPress}
+        />
 
-      <CountrySheet
-        sheetRef={countrySheetRef}
-        country={countrySheet}
-        activeAlerts={countryAlerts}
-        onAlertPress={handleCountryAlertPress}
-        hazards={countryHazards}
-        facts={countryFactRows}
-        bottomInset={insets.bottom}
-        onDismiss={handleCountryDismiss}
-      />
+        <CountrySheet
+          sheetRef={countrySheetRef}
+          country={countrySheet}
+          activeAlerts={countryAlerts}
+          onAlertPress={handleCountryAlertPress}
+          hazards={countryHazards}
+          facts={countryFactRows}
+          bottomInset={insets.bottom}
+          onDismiss={handleCountryDismiss}
+        />
 
-      <DisasterSheet
-        sheetRef={disasterSheetRef}
-        alert={activeAlert}
-        details={gdacsDetails}
-        bottomInset={insets.bottom}
-        onDismiss={handleDisasterDismiss}
-        onCountryPress={handleDisasterCountryPress}
-      />
+        <DisasterSheet
+          sheetRef={disasterSheetRef}
+          alert={activeAlert}
+          details={gdacsDetails}
+          bottomInset={insets.bottom}
+          onDismiss={handleDisasterDismiss}
+          onCountryPress={handleDisasterCountryPress}
+        />
 
-      <ConflictSheet
-        sheetRef={conflictSheetRef}
-        event={activeConflict}
-        bottomInset={insets.bottom}
-        onDismiss={handleConflictDismiss}
-        onCountryPress={handleConflictCountryPress}
-      />
+        <ConflictSheet
+          sheetRef={conflictSheetRef}
+          event={activeConflict}
+          bottomInset={insets.bottom}
+          onDismiss={handleConflictDismiss}
+          onCountryPress={handleConflictCountryPress}
+        />
 
-      <OverlaySheet
-        sheetRef={overlaySheetRef}
-        overlay={activeOverlay}
-        articles={river}
-        bottomInset={insets.bottom}
-        onDismiss={handleOverlayDismiss}
-        onArticlePress={handleOverlayArticlePress}
-        onCountryPress={handleOverlayCountryPress}
-      />
+        <OverlaySheet
+          sheetRef={overlaySheetRef}
+          overlay={activeOverlay}
+          articles={river}
+          bottomInset={insets.bottom}
+          onDismiss={handleOverlayDismiss}
+          onArticlePress={handleOverlayArticlePress}
+          onCountryPress={handleOverlayCountryPress}
+        />
 
-      <DisambiguationSheet
-        sheetRef={disambiguationSheetRef}
-        candidates={chooserCandidates}
-        chokepoints={chokepoints}
-        straitMoves={straitMoves}
-        alerts={gdacsAlerts}
-        conflictEvents={conflictEvents}
-        instruments={rankedInstruments}
-        famineAreas={famineAreas}
-        thermalEvents={thermalEvents}
-        genocideSituations={genocideSituations}
-        bottomInset={insets.bottom}
-        onDismiss={handleChooserDismiss}
-        onSelect={handleChooserSelect}
-      />
+        <DisambiguationSheet
+          sheetRef={disambiguationSheetRef}
+          candidates={chooserCandidates}
+          chokepoints={chokepoints}
+          straitMoves={straitMoves}
+          alerts={gdacsAlerts}
+          conflictEvents={conflictEvents}
+          instruments={rankedInstruments}
+          famineAreas={famineAreas}
+          thermalEvents={thermalEvents}
+          genocideSituations={genocideSituations}
+          bottomInset={insets.bottom}
+          onDismiss={handleChooserDismiss}
+          onSelect={handleChooserSelect}
+        />
 
-      <EntitySheet
-        sheetRef={entitySheetRef}
-        entity={activeEntity}
-        indicator={activeIndicator}
-        articles={river}
-        bottomInset={insets.bottom}
-        onDismiss={handleEntityDismiss}
-        onArticlePress={handleEntityArticlePress}
-      />
+        <EntitySheet
+          sheetRef={entitySheetRef}
+          entity={activeEntity}
+          indicator={activeIndicator}
+          articles={river}
+          bottomInset={insets.bottom}
+          onDismiss={handleEntityDismiss}
+          onArticlePress={handleEntityArticlePress}
+        />
 
-      <SourcesSheet
-        sheetRef={sourcesSheetRef}
-        sources={sheetSources}
-        divergence={sheetDivergence}
-        bottomInset={insets.bottom}
-        onDismiss={handleSourcesDismiss}
-      />
+        <SourcesSheet
+          sheetRef={sourcesSheetRef}
+          sources={sheetSources}
+          divergence={sheetDivergence}
+          bottomInset={insets.bottom}
+          onDismiss={handleSourcesDismiss}
+        />
 
-      <NotificationPrimerSheet
-        sheetRef={primerSheetRef}
-        bottomInset={insets.bottom}
-        onDismiss={handlePrimerDismiss}
-        onToast={handleMenuToast}
-        source={primerSource}
-      />
-    </View>
+        <NotificationPrimerSheet
+          sheetRef={primerSheetRef}
+          bottomInset={insets.bottom}
+          onDismiss={handlePrimerDismiss}
+          onContinue={enableFromPrimer}
+        />
+      </View>
+    </OfferContext>
   );
 }
 

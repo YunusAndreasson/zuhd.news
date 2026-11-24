@@ -1,136 +1,102 @@
-import { memo, useCallback, useRef } from 'react';
-import { StyleSheet, View } from 'react-native';
-import { ANALYTICS_EVENTS, type PrimerSource } from '../constants/analytics';
-import { IS_ANDROID } from '../constants/platform';
-import { HIT_SLOP, RADIUS, SPACING } from '../constants/theme';
-import { usePreferences, useTheme } from '../hooks/useTheme';
-import { analytics } from '../lib/analytics';
-import { markOsPromptSpent } from '../lib/notification-prompt';
-import { getSnapshot as getOnboarding, setPrimerStatus } from '../lib/onboarding-store';
+import { memo, useRef } from 'react';
+import { AccessibilityInfo, Image, StyleSheet, View } from 'react-native';
+import { RADIUS, SPACING } from '../constants/theme';
+import { useTheme } from '../hooks/useTheme';
 import { Pressable, Text } from './primitives';
 import { SheetScrollView } from './SheetContent';
 import { type BaseSheetProps, SheetLayout } from './SheetLayout';
 
-interface NotificationPrimerSheetProps extends BaseSheetProps {
-  onToast: (message: string) => void;
-  /** The moment it was presented at, for its `Permission Result`. */
-  source: PrimerSource;
-}
-
-/** The reader said no to the primer itself: the OS was never asked. */
-function trackDeclined(source: PrimerSource): void {
-  void analytics.track(ANALYTICS_EVENTS.PERMISSION_RESULT, {
-    permission: 'notifications',
-    granted: false,
-    primed: true,
-    os_prompt: false,
-    source,
-  });
-}
-
-/** The one-time notification primer. Presented by HomeScreen at the first of
- *  its moments: a first briefing heard to the end, the fifth story read in a
- *  visit, or "caught up" (a swipe onto a story already seen) — a soft ask
- *  before the once-ever OS dialog, led by the frequency cap. Any dismissal
- *  counts as "not now"; there is no re-ask — the MenuSheet settings toggle
- *  remains the permanent path. */
 export const NotificationPrimerSheet = memo(function NotificationPrimerSheet({
   sheetRef,
   bottomInset,
   onDismiss,
-  onToast,
-  source,
-}: NotificationPrimerSheetProps) {
+  onContinue,
+}: BaseSheetProps & { onContinue: () => Promise<void> }) {
   const { colors } = useTheme();
-  const { setNotifications } = usePreferences();
-  const busyRef = useRef(false);
-
-  const handleEnable = useCallback(async () => {
-    if (busyRef.current) return;
-    busyRef.current = true;
-    try {
-      // iOS keeps its legacy cold-prompt marker. Android records every OS
-      // request in enableNotifications, including one made from Settings.
-      if (!IS_ANDROID) await markOsPromptSpent();
-      const granted = await setNotifications(true, { primed: true, source });
-      setPrimerStatus(granted ? 'accepted' : 'declined');
-      sheetRef.current?.dismiss();
-      if (granted) onToast('Briefings on');
-    } finally {
-      busyRef.current = false;
-    }
-  }, [setNotifications, onToast, sheetRef, source]);
-
-  const handleNotNow = useCallback(() => {
-    setPrimerStatus('declined');
-    trackDeclined(source);
-    sheetRef.current?.dismiss();
-  }, [sheetRef, source]);
-
-  const handleDismiss = useCallback(() => {
-    // Pan-down / backdrop dismissal counts as "not now" — but only when no
-    // explicit choice landed first (Enable dismisses after setting status).
-    if (getOnboarding().primer.status === 'pending') {
-      setPrimerStatus('declined');
-      trackDeclined(source);
-    }
-    onDismiss();
-  }, [onDismiss, source]);
-
+  const busy = useRef(false);
+  const heading = useRef<React.ComponentRef<typeof View>>(null);
+  const focusHeading = () => {
+    if (heading.current) AccessibilityInfo.sendAccessibilityEvent(heading.current, 'focus');
+  };
   return (
-    // One briefing a day, on the 05:00 UTC cycle, and one push for it. This
-    // promised a morning and an evening one long after the evening one was
-    // gone; the pipeline said so in its own comment (2026-09-25).
-    <SheetLayout sheetRef={sheetRef} onDismiss={handleDismiss} handleTitle="one briefing a day">
-      <SheetScrollView bottomInset={bottomInset}>
-        <Text variant="body">
-          The day’s stories, said once. Breaking news only when it matters.
-        </Text>
-        <View style={styles.actions}>
-          <Pressable
-            onPress={handleEnable}
-            hitSlop={HIT_SLOP}
-            style={[
-              styles.enablePill,
-              { backgroundColor: colors.pillBg, borderColor: colors.rule },
-            ]}
-            accessibilityRole="button"
-            accessibilityLabel="Enable briefings"
-            accessibilityHint="Asks the system for notification permission"
-          >
-            <Text variant="label" tone="emphasis">
-              enable briefings
-            </Text>
-          </Pressable>
-          <Pressable
-            onPress={handleNotNow}
-            hitSlop={HIT_SLOP}
-            accessibilityRole="button"
-            accessibilityLabel="Not now"
-            accessibilityHint="Closes without enabling notifications"
-          >
-            <Text variant="labelSm" tone="secondary">
-              not now
-            </Text>
-          </Pressable>
+    <SheetLayout sheetRef={sheetRef} onDismiss={onDismiss} handle={<View />}>
+      <SheetScrollView bottomInset={bottomInset} contentContainerStyle={styles.content}>
+        <View ref={heading} accessible accessibilityRole="header" onLayout={focusHeading}>
+          <Text variant="title" tone="emphasis" maxFontSizeMultiplier={0}>
+            When the briefing is ready
+          </Text>
         </View>
+        <Text variant="body" maxFontSizeMultiplier={0}>
+          One alert when the day’s audio is published. You’ll also get breaking news as it happens.
+        </Text>
+        <Text variant="labelXs" tone="secondary" maxFontSizeMultiplier={0} style={styles.caption}>
+          Notification preview · example
+        </Text>
+        <View
+          style={[styles.preview, { backgroundColor: colors.pillBg, borderColor: colors.rule }]}
+        >
+          <Image accessible={false} source={require('../assets/icon.png')} style={styles.icon} />
+          <View style={styles.sample}>
+            <Text variant="caption" tone="secondary" maxFontSizeMultiplier={0}>
+              zuhd.news
+            </Text>
+            <Text variant="body" tone="emphasis" maxFontSizeMultiplier={0}>
+              Today's Briefing
+            </Text>
+            <Text variant="body" maxFontSizeMultiplier={0}>
+              Fed raises rates · Hormuz traffic dips
+            </Text>
+          </View>
+        </View>
+        <Text variant="caption" tone="secondary" maxFontSizeMultiplier={0}>
+          Tap a briefing alert to listen.
+        </Text>
+        <Pressable
+          accessibilityRole="button"
+          accessibilityLabel="Continue"
+          accessibilityHint="Asks the system for notification permission"
+          style={[styles.button, { backgroundColor: colors.textEmphasis }]}
+          onPress={async () => {
+            if (busy.current) return;
+            busy.current = true;
+            try {
+              await onContinue();
+            } finally {
+              busy.current = false;
+              sheetRef.current?.dismiss();
+            }
+          }}
+        >
+          <Text variant="body" tone="inverse" maxFontSizeMultiplier={0}>
+            Continue
+          </Text>
+        </Pressable>
       </SheetScrollView>
     </SheetLayout>
   );
 });
-
 const styles = StyleSheet.create({
-  actions: {
-    flexDirection: 'row',
+  content: { gap: SPACING.sm, paddingTop: SPACING.lg },
+  caption: { marginTop: SPACING.md },
+  preview: {
     alignItems: 'center',
-    gap: SPACING.lg,
-    marginTop: SPACING.lg,
-  },
-  enablePill: {
-    paddingVertical: SPACING.sm,
-    paddingHorizontal: SPACING.lg,
+    flexDirection: 'row',
+    gap: SPACING.smPlus,
     borderRadius: RADIUS.floating,
-    // Hairline definition over the sheet bg — same recipe as the action pills.
     borderWidth: StyleSheet.hairlineWidth,
+    padding: SPACING.articlePadding,
+  },
+  icon: {
+    width: SPACING.xl + SPACING.sm,
+    height: SPACING.xl + SPACING.sm,
+    borderRadius: SPACING.sm,
+  },
+  sample: { flex: 1 },
+  button: {
+    minHeight: SPACING.xxl,
+    marginTop: SPACING.sm,
+    borderRadius: RADIUS.floating,
+    alignItems: 'center',
+    justifyContent: 'center',
   },
 });

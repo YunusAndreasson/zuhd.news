@@ -32,6 +32,7 @@ interface HintEntry {
 export interface OnboardingState {
   version: 1;
   seededAt: number;
+  publisherCohort?: boolean;
   hints: Record<HintId, HintEntry>;
   /** Capped reading depth used only to sequence contextual hints. */
   snapCount: number;
@@ -76,6 +77,7 @@ function seed(existingUser: boolean): OnboardingState {
   return {
     version: 1,
     seededAt: Date.now(),
+    publisherCohort: !existingUser,
     hints: seedHints(existingUser ? 'dismissed' : 'pending'),
     snapCount: 0,
     primer: { status: 'pending', decidedAt: 0 },
@@ -94,7 +96,7 @@ function isExistingUser(): boolean {
       Storage.getItemSync('zuhd_bookmarks') !== null
     );
   } catch {
-    return false;
+    return true;
   }
 }
 
@@ -304,10 +306,6 @@ export function recordHintShown(id: HintId): void {
       [id]: { showCount, status: showCount >= MAX_HINT_SHOWS ? 'expired' : entry.status },
     },
   });
-}
-
-export function setPrimerStatus(status: PrimerStatus): void {
-  commit({ ...state, primer: { status, decidedAt: Date.now() } });
 }
 
 // ---------------------------------------------------------------------------

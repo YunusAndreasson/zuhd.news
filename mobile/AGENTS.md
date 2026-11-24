@@ -229,11 +229,7 @@ For Expo or EAS work, start with the `expo-overview` skill when it is available 
 <!-- BEGIN EXPO PACKAGE SKILLS -->
 ## Package skills
 
-Before using or modifying a package listed below, read its relevant skill for package-specific guidance. Each link for a row opens the same skill.
-
-| Package | Skill | Read |
-| --- | --- | --- |
-| expo-sqlite | expo-sqlite | [.agents/skills/expo-sqlite/SKILL.md](.agents/skills/expo-sqlite/SKILL.md), [.claude/skills/expo-sqlite/SKILL.md](.claude/skills/expo-sqlite/SKILL.md) |
+No linked package skills are available.
 
 Run `npx @expo/agent-cli skills:sync` after changing dependencies to refresh this index. Run `npx @expo/agent-cli skills:list` to see available package skills.
 <!-- END EXPO PACKAGE SKILLS -->

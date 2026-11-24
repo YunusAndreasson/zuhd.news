@@ -72,6 +72,7 @@
     "expo-system-ui": "~58.0.7",
     "expo-task-manager": "~58.0.14",
     "expo-updates": "~58.0.22",
+    "expo-widgets": "~58.0.29",
     "mixpanel-react-native": "^4.1.0",
     "react": "19.3.0",
     "react-native": "0.88.1",
@@ -117,7 +118,8 @@
     "autolinking": {
       "android": {
         "buildFromSource": [
-          "expo-ui"
+          "expo-ui",
+          "expo-widgets"
         ]
       },
       "ios": {

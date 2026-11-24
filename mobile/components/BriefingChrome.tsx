@@ -1,9 +1,12 @@
-import { type Ref, useCallback, useEffect, useImperativeHandle, useState } from 'react';
+import { type Ref, useCallback, useEffect, useImperativeHandle, useRef, useState } from 'react';
 import { useBriefingPlayer } from '../hooks/useBriefingPlayer';
 import { usePreferences } from '../hooks/useTheme';
+import { announce } from '../lib/announce';
 import { BriefingBar } from './BriefingBar';
+import { PublisherOffer } from './PublisherOffer';
 
 export interface BriefingChromeRef {
+  dismiss: () => void;
   toggle: () => void;
   /** Play, or go on playing: never a pause. */
   play: () => void;
@@ -23,14 +26,16 @@ export interface BriefingStatus {
 const HEARD_STEPS = 40;
 
 interface BriefingChromeProps {
+  playbackRequest?: number;
+  playbackSource?: 'widget' | 'widget_preview' | 'briefing_push';
+  localOnly?: boolean;
+  onWidgetDismiss?: () => void;
   date?: string;
   duration?: number;
   /** When the recording was made (`FeedResponse.briefing.generated`). */
   recorded?: string;
   onUnavailable: () => void;
   onPlaybackError: () => void;
-  /** A briefing was heard to its end. */
-  onFinish: () => void;
   onVisibilityChange: (visible: boolean) => void;
   /** Fired when the *slow* fields change, never on an elapsed tick. */
   onStatusChange: (status: BriefingStatus) => void;
@@ -68,11 +73,14 @@ interface BriefingChromeProps {
  */
 export function BriefingChrome({
   date,
+  playbackRequest,
+  playbackSource,
+  localOnly,
+  onWidgetDismiss,
   duration,
   recorded,
   onUnavailable,
   onPlaybackError,
-  onFinish,
   onVisibilityChange,
   onStatusChange,
   topOffset,
@@ -80,13 +88,13 @@ export function BriefingChrome({
   ref,
 }: BriefingChromeProps) {
   const { preferences } = usePreferences();
-  const player = useBriefingPlayer(date, duration, recorded, preferences.briefingSpeed);
+  const player = useBriefingPlayer(date, duration, recorded, preferences.briefingSpeed, localOnly);
   // Called as functions, not as `player.toggle()`: a method call reads as a
   // change to `player`, and the compiler could not keep the callbacks below
   // memoized on the function alone.
   const { available, toggle, play, dismiss } = player;
   const [presented, setPresented] = useState(false);
-  const visible = presented && player.state !== 'idle';
+  const visible = presented && (player.state !== 'idle' || player.finished);
 
   const handleToggle = useCallback(() => {
     if (!available) {
@@ -97,24 +105,36 @@ export function BriefingChrome({
     toggle();
   }, [onUnavailable, available, toggle]);
 
-  const handlePlay = useCallback(() => {
-    if (!available) {
-      onUnavailable();
-      return;
-    }
-    setPresented(true);
-    play();
-  }, [onUnavailable, available, play]);
+  const handlePlay = useCallback(
+    (source?: 'widget' | 'widget_preview' | 'briefing_push') => {
+      if (!available) {
+        onUnavailable();
+        return;
+      }
+      setPresented(true);
+      play(source);
+    },
+    [onUnavailable, available, play],
+  );
 
+  const consumed = useRef<number | undefined>(undefined);
+  useEffect(() => {
+    if (playbackRequest !== undefined && consumed.current !== playbackRequest) {
+      consumed.current = playbackRequest;
+      handlePlay(playbackSource);
+    }
+  }, [playbackRequest, playbackSource, handlePlay]);
   const handleDismiss = useCallback(() => {
     setPresented(false);
     dismiss();
-  }, [dismiss]);
+    onWidgetDismiss?.();
+  }, [dismiss, onWidgetDismiss]);
 
-  useImperativeHandle(ref, () => ({ toggle: handleToggle, play: handlePlay }), [
-    handleToggle,
-    handlePlay,
-  ]);
+  useImperativeHandle(
+    ref,
+    () => ({ toggle: handleToggle, play: handlePlay, dismiss: handleDismiss }),
+    [handleToggle, handlePlay, handleDismiss],
+  );
 
   useEffect(() => {
     onVisibilityChange(visible);
@@ -147,25 +167,42 @@ export function BriefingChrome({
     });
   }, [onStatusChange, player.available, player.resumable, player.duration, heard]);
 
+  const handledFailure = useRef(0);
   useEffect(() => {
-    if (player.failureCount === 0) return;
+    if (player.failureCount === 0 || player.failureCount === handledFailure.current) return;
+    handledFailure.current = player.failureCount;
     setPresented(false);
     onPlaybackError();
   }, [onPlaybackError, player.failureCount]);
 
   useEffect(() => {
-    if (player.finishCount > 0) onFinish();
-  }, [onFinish, player.finishCount]);
+    if (player.finishCount > 0) announce('Briefing finished', { queue: true });
+  }, [player.finishCount]);
 
   if (!visible) return null;
 
   return (
     <BriefingBar
-      state={player.state}
+      state={player.finished ? 'finished' : player.state}
+      offer={
+        player.finished ? (
+          <PublisherOffer
+            key={`${player.date}-finished`}
+            source="finished_briefing"
+            recordingDate={player.date}
+          />
+        ) : player.state === 'paused' && player.audible ? (
+          <PublisherOffer
+            key={`${player.date}-paused`}
+            source="paused_briefing"
+            recordingDate={player.date}
+          />
+        ) : null
+      }
       elapsed={player.elapsed}
       duration={player.duration}
       date={player.date}
-      onToggle={player.toggle}
+      onToggle={() => void player.toggle()}
       onSeek={player.seek}
       onDismiss={handleDismiss}
       topOffset={topOffset}

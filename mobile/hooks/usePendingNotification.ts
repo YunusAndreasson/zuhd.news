@@ -1,38 +1,101 @@
-import type { Category, GroupedArticles } from '@shared/types';
+import type { Category, FeedResponse, GroupedArticles } from '@shared/types';
 import * as Notifications from 'expo-notifications';
-import { useEffect, useRef } from 'react';
+import { useEffect, useEffectEvent, useRef } from 'react';
 import { ANALYTICS_EVENTS } from '../constants/analytics';
 import { CATEGORIES } from '../constants/theme';
 import { analytics } from '../lib/analytics';
 import { getSnapshot as getBookmarks } from '../lib/bookmark-store';
+import { isIsoDate } from '../lib/data-freshness';
 
-/** Dispatch each notification tap once after the feed is ready. Missing stories
- * are resolved by the opener through the per-story endpoint. `onPlayBriefing`
- * plays the briefing, and a briefing already playing goes on: the push says
- * it is ready, so a tap on it is never a pause. Each tap is a `Notification
- * Opened`, with its kind and never its story or date. */
+interface BriefingTap {
+  verify: () => Promise<FeedResponse>;
+  generated: string | null;
+  play: (audio: NonNullable<FeedResponse['briefing']>) => void;
+  unavailable: () => void;
+}
+
+/** A briefing alert addresses the publisher’s UTC edition. The clock used to
+ * paint the splash and the cached feed cannot decide the fate of that tap. */
 export function usePendingNotification(
   loading: boolean,
   grouped: GroupedArticles,
   onSelectArticle: (slug: string, category: Category) => void,
-  onPlayBriefing?: () => void,
+  briefing?: BriefingTap,
 ): void {
   const response = Notifications.useLastNotificationResponse();
   const handled = useRef<typeof response>(null);
+  const undated = useRef<{ response: typeof response; day: string | null } | null>(null);
+  const verify = briefing?.verify;
+  const generated = briefing?.generated;
+  const deliver = useEffectEvent((audio: FeedResponse['briefing']) => {
+    if (audio) briefing?.play(audio);
+    else briefing?.unavailable();
+  });
+
+  useEffect(() => {
+    if (!response || handled.current === response || !verify) return;
+    const data = response.notification.request.content.data;
+    if (data?.kind !== 'briefing') return;
+    let day = data.date;
+    if (day === undefined) {
+      if (undated.current?.response !== response) {
+        // Expo supplies delivery time in seconds on iOS and milliseconds on
+        // Android. Older responses can have only the edition visible at the tap.
+        const stamp = response.notification.date;
+        const delivered = new Date(stamp < 1e12 ? stamp * 1000 : stamp);
+        const deliveredDay =
+          stamp > 0 && Number.isFinite(delivered.getTime())
+            ? delivered.toISOString().slice(0, 10)
+            : null;
+        undated.current = { response, day: deliveredDay ?? generated?.slice(0, 10) ?? null };
+      }
+      day = undated.current.day;
+    }
+    let current = true;
+    let timer: ReturnType<typeof setTimeout>;
+    let delay = 5000;
+    const resolve = async () => {
+      try {
+        const feed = await verify();
+        if (!current || handled.current === response) return;
+        if (generated && Date.parse(feed.generated) < Date.parse(generated)) {
+          throw new Error('An older feed cannot resolve this notification');
+        }
+        const edition = feed.generated.slice(0, 10);
+        const audio = feed.briefing;
+        const matches = audio?.available && day === audio.date;
+        if (
+          matches ||
+          typeof day !== 'string' ||
+          day <= edition ||
+          day.length !== 10 ||
+          !isIsoDate(day)
+        ) {
+          handled.current = response;
+          void analytics.track(ANALYTICS_EVENTS.NOTIFICATION_OPENED, { type: 'briefing' });
+          deliver(matches ? audio : null);
+          Notifications.clearLastNotificationResponse();
+          return;
+        }
+      } catch {
+        // Network failure leaves the addressed response pending.
+      }
+      if (current) {
+        timer = setTimeout(resolve, delay);
+        delay = Math.min(60000, delay * 2);
+      }
+    };
+    void resolve();
+    return () => {
+      current = false;
+      clearTimeout(timer);
+    };
+  }, [response, verify, generated]);
 
   useEffect(() => {
     if (loading || !response || handled.current === response) return;
     const data = response.notification.request.content.data;
-    if (data?.kind === 'briefing') {
-      if (onPlayBriefing) {
-        handled.current = response;
-        void analytics.track(ANALYTICS_EVENTS.NOTIFICATION_OPENED, { type: 'briefing' });
-        onPlayBriefing();
-        Notifications.clearLastNotificationResponse();
-      }
-      return;
-    }
-
+    if (data?.kind === 'briefing') return;
     const slug = typeof data?.slug === 'string' ? data.slug : null;
     if (slug) {
       handled.current = response;
@@ -46,7 +109,7 @@ export function usePendingNotification(
       // replayed on a later launch.
       Notifications.clearLastNotificationResponse();
     }
-  }, [loading, grouped, onSelectArticle, onPlayBriefing, response]);
+  }, [loading, grouped, onSelectArticle, response]);
 }
 
 /** The live feed's category for `slug`, else a saved story's, else null.

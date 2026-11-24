@@ -1,4 +1,10 @@
-import { act, renderHook } from '@testing-library/react';
+import type { FeedResponse } from '@shared/types';
+import { createElement, createRef, useState, useCallback, useRef } from 'react';
+import { BriefingChrome, type BriefingChromeRef } from '../components/BriefingChrome';
+import { briefingSelection, type PlaybackRequest } from '../lib/briefing-selection';
+import { usePendingNotification } from '../hooks/usePendingNotification';
+import { widgetAudioUrl } from '../lib/widget-store';
+import { act, render, renderHook } from '@testing-library/react';
 import { type AudioStatus, setIsAudioActiveAsync } from 'expo-audio';
 import Storage from 'expo-sqlite/kv-store';
 import { clearBriefingProgress } from '../lib/briefing-progress';
@@ -141,23 +147,15 @@ beforeEach(() => {
   });
 });
 
-it('pauses before rewinding an ended player so the briefing does not loop', async () => {
+it('releases the completed source and keeps its edition available for replay', async () => {
   const hook = renderHook(() => useBriefingPlayer('2026-09-27'));
   await act(async () => {
     await hook.result.current.toggle();
   });
-  // ExoPlayer keeps playWhenReady true at the end; seeking starts it again
-  // unless pause has first cleared that intent.
-  let playWhenReady = true;
-  mockPlayer.pause.mockImplementationOnce(() => {
-    playWhenReady = false;
-  });
-  mockPlayer.seekTo.mockImplementationOnce(async () => {
-    mockPlayer.playing = playWhenReady;
-  });
   await status({ currentTime: 120, playing: false, didJustFinish: true });
   expect(mockPlayer.playing).toBe(false);
-  expect(mockPlayer.seekTo).toHaveBeenLastCalledWith(0);
+  expect(mockPlayer.replace).toHaveBeenLastCalledWith(null);
+  expect(hook.result.current.finished).toBe(true);
   expect(hook.result.current.elapsed).toBe(0);
   expect(hook.result.current.resumable).toBe(false);
   expect(hook.result.current.state).toBe('idle');
@@ -616,6 +614,21 @@ describe('briefing events', () => {
     expect(sent('Briefing Stopped')).toEqual([['Briefing Stopped', { heard_pct: 50 }]]);
   });
 
+  it.each(['widget', 'widget_preview'] as const)(
+    'attributes audible playback to %s',
+    async (source) => {
+      const hook = renderHook(() => useBriefingPlayer('2026-09-27', 120));
+      await act(async () => {
+        hook.result.current.play(source);
+      });
+      expect(sent('Briefing Started')).toHaveLength(0);
+      await status({ playing: true, currentTime: 1 });
+      expect(sent('Briefing Started')).toEqual([
+        ['Briefing Started', expect.objectContaining({ source })],
+      ]);
+    },
+  );
+
   it('play goes on playing a briefing that plays: a briefing push is never a pause', async () => {
     const hook = renderHook(() => useBriefingPlayer('2026-09-27', 120));
     await act(async () => {
@@ -665,4 +678,124 @@ it('sets the chosen speed and changes it without replacing or starting the recor
   expect(mockPlayer.setPlaybackRate).toHaveBeenLastCalledWith(1.5);
   expect(mockPlayer.play).not.toHaveBeenCalled();
   expect(mockPlayer.replace).not.toHaveBeenCalled();
+});
+
+it('opens the fallback if a widget archive file disappeared after the tap', async () => {
+  const hook = renderHook(() =>
+    useBriefingPlayer('2026-09-26', 502, '2026-09-26T17:32:41.210Z', '1', true),
+  );
+  const download = jest.mocked(File.downloadFileAsync);
+  download.mockClear();
+  await act(async () => {
+    await hook.result.current.play();
+  });
+  expect(download).not.toHaveBeenCalled();
+  expect(hook.result.current.failureCount).toBeGreaterThan(0);
+});
+
+jest.mock('../components/BriefingBar', () => ({ BriefingBar: () => null }));
+jest.mock('../components/PublisherOffer', () => ({ PublisherOffer: () => null }));
+jest.mock('../hooks/useTheme', () => ({
+  usePreferences: () => ({ preferences: { briefingSpeed: '1' } }),
+}));
+jest.mock('../lib/bookmark-store', () => ({ getSnapshot: () => [] }));
+let mockResponse: unknown = null;
+const mockClear = jest.fn();
+jest.mock('expo-notifications', () => ({
+  useLastNotificationResponse: () => mockResponse,
+  clearLastNotificationResponse: () => mockClear(),
+}));
+const a = { date: '2026-11-22', generated: '2026-11-22T05:01:00Z', available: true, duration: 120 };
+const b = { ...a, date: '2026-11-23', generated: '2026-11-23T05:01:00Z' };
+const started: PlaybackRequest = {
+  source: 'widget',
+  revision: 'a'.repeat(64),
+  audio: { ...a, status: 'available', durationSeconds: 120 },
+  localOnly: true,
+  serial: 1,
+};
+const chrome = createRef<BriefingChromeRef>();
+const noop = () => {};
+const grouped = { economy: [], politics: [], tech: [], science: [] };
+
+function Host({ briefing }: { briefing: FeedResponse['briefing'] }) {
+  const [request, setRequest] = useState<PlaybackRequest | null>(started);
+  const serial = useRef(1);
+  const generated = briefing?.generated ?? a.generated;
+  const verify = useCallback(
+    async () => ({ generated, briefing, categories: grouped }),
+    [generated, briefing],
+  );
+  usePendingNotification(false, grouped, noop, {
+    verify,
+    generated,
+    play: (audio) =>
+      setRequest({
+        source: 'briefing_push',
+        date: audio.date,
+        recorded: audio.generated,
+        serial: ++serial.current,
+      }),
+    unavailable: noop,
+  });
+  const { withdrawn, ...selection } = briefingSelection(briefing, request, generated.slice(0, 10));
+  if (withdrawn) setRequest(withdrawn);
+  return createElement(BriefingChrome, {
+    ref: chrome,
+    ...selection,
+    onWidgetDismiss: () => setRequest(null),
+    onUnavailable: noop,
+    onPlaybackError: noop,
+    onVisibilityChange: noop,
+    onStatusChange: noop,
+    topOffset: 0,
+  });
+}
+async function paused() {
+  mockResponse = null;
+  const file = briefingAudioFile(widgetAudioUrl(a.date, a.generated));
+  mockCachedAudio.set(file.uri, 240);
+  const host = render(createElement(Host, { briefing: a }));
+  await act(async () => {});
+  expect(mockPlayer.replace).toHaveBeenCalledWith(file.uri);
+  status({ playing: true, currentTime: 30 });
+  await act(async () => {
+    chrome.current?.toggle();
+  });
+  expect(mockPlayer.playing).toBe(false);
+  return host;
+}
+it('a correct live feed makes a paused widget switch and play today', async () => {
+  const h = await paused();
+  mockResponse = {
+    notification: { request: { content: { data: { kind: 'briefing', date: b.date } } } },
+  };
+  h.rerender(createElement(Host, { briefing: b }));
+  await act(async () => {});
+  expect(jest.mocked(File.downloadFileAsync).mock.lastCall?.[0]).toContain(b.date);
+  expect(mockPlayer.playing).toBe(true);
+});
+it('a dated push waits for today without resuming the paused widget', async () => {
+  const h = await paused();
+  mockResponse = {
+    notification: { request: { content: { data: { kind: 'briefing', date: b.date } } } },
+  };
+  h.rerender(createElement(Host, { briefing: a }));
+  await act(async () => {});
+  expect(mockPlayer.playing).toBe(false);
+  expect(mockClear).not.toHaveBeenCalled();
+  h.rerender(createElement(Host, { briefing: b }));
+  await act(async () => {});
+  expect(mockPlayer.playing).toBe(true);
+  expect(jest.mocked(File.downloadFileAsync).mock.lastCall?.[0]).toContain(b.date);
+  expect(mockClear).toHaveBeenCalledTimes(1);
+});
+it('same-day withdrawal invalidates a downloaded recording on the mounted player', async () => {
+  const h = await paused();
+  h.rerender(createElement(Host, { briefing: null }));
+  await act(async () => {
+    chrome.current?.toggle();
+  });
+  expect(mockPlayer.playing).toBe(false);
+  expect(mockPlayer.replace).toHaveBeenLastCalledWith(null);
 });

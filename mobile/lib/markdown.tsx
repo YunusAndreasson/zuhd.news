@@ -445,6 +445,7 @@ export interface SentenceOptions {
    * these blocks are still consumed, so a later block never tags the same one.
    */
   plainBlocks?: number;
+  uncapped?: boolean;
   /** Each block can be held to copy (an open story). The prop switches in
    *  place, so turning it on rebuilds nothing; and the links in it then take a
    *  long press of their own, so the hold that copies does not open them. */
@@ -474,6 +475,7 @@ export function renderSentences(
     entities,
     onEntityPress,
     plainBlocks = 0,
+    uncapped = false,
     selectable = false,
   }: SentenceOptions = {},
 ): ReactNode[] {
@@ -518,7 +520,7 @@ export function renderSentences(
         key={i}
         {...SENTENCE_TEXT_PROPS}
         style={i === 0 ? [mdStyles.sentence, mdStyles.lede] : mdStyles.sentence}
-        maxFontSizeMultiplier={MAX_FONT_SCALE.body}
+        maxFontSizeMultiplier={uncapped ? 0 : MAX_FONT_SCALE.body}
         selectable={selectable}
       >
         {renderSegments(rendered, mdStyles, openLink, onEntityPress, selectable)}

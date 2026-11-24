@@ -24,8 +24,11 @@ import { sendInstallAttribution } from '../lib/install-attribution';
 import { installKind, openInstallRecord, trackFirstOpen } from '../lib/install-record';
 import { markLaunch } from '../lib/launch-timing';
 import { isMeasurementOn, startMeasurement, subscribeMeasurement } from '../lib/measurement';
+import { subscribeConnectivity } from '../lib/network';
 import { clearLegacyScheduledNotifications, setupNotificationChannels } from '../lib/notifications';
 import { firstRun, getSnapshot as getOnboarding } from '../lib/onboarding-store';
+import { startPublisherVisit } from '../lib/publisher-history';
+import { checkpoint, noteActive } from '../lib/publisher-session';
 import {
   getLaunchQueryClient,
   PERSIST_BUSTER,
@@ -34,6 +37,7 @@ import {
 } from '../lib/query-client';
 import { dropRetiredFound, startReadingVisit } from '../lib/read-store';
 import { navigationIntegration, sentryEnabled } from '../lib/sentry';
+import { observeWidget, refreshWidget } from '../lib/widget-store';
 
 configureReanimatedLogger({ level: ReanimatedLogLevel.warn, strict: false });
 
@@ -63,6 +67,9 @@ let lastScreen: string | null = null;
 function sendColdOpen(): boolean {
   if (coldOpenSent) return false;
   coldOpenSent = true;
+  void analytics.registerOnce({ install_date: utcDay(getOnboarding().seededAt) });
+  openInstallRecord(installKind(firstRun, getOnboarding().seededAt), firstRun);
+  checkpoint(true, trackFirstOpen(firstRun));
   void analytics.track(ANALYTICS_EVENTS.APP_OPENED, { launch: 'cold' });
   return true;
 }
@@ -101,23 +108,41 @@ function RootLayout() {
   // a launch there waits for the reader to bring it up.
   useEffect(() => {
     if (AppState.currentState === 'active') {
+      void observeWidget();
+      void refreshWidget();
       sendColdOpen();
-      return;
     }
+    const stopConnectivity = subscribeConnectivity((online) => void refreshWidget(!online));
+    const heartbeat = setInterval(() => {
+      if (AppState.currentState === 'active') noteActive();
+    }, 60_000);
     let timer: ReturnType<typeof setTimeout> | undefined;
     const subscription = AppState.addEventListener('change', (state) => {
       // A tick later, so a warm open answering the same change goes first
       // and sends this as the cold one it is.
-      if (state === 'active') timer = setTimeout(sendColdOpen, 0);
+      clearTimeout(timer);
+      if (state === 'active') {
+        void observeWidget();
+        void refreshWidget();
+        timer = setTimeout(() => {
+          if (!sendColdOpen()) checkpoint(true);
+        }, 0);
+      } else {
+        checkpoint(false);
+        timer = setTimeout(() => checkpoint(false), STALE_THRESHOLD);
+      }
     });
     return () => {
       subscription.remove();
+      stopConnectivity();
+      clearInterval(heartbeat);
       clearTimeout(timer);
     };
   }, []);
   // Back after five minutes or more: a warm open, and a new visit.
   const handleResume = useCallback((awayMs: number) => {
     startReadingVisit();
+    startPublisherVisit();
     if (sendColdOpen()) return;
     void analytics.track(ANALYTICS_EVENTS.APP_OPENED, { launch: 'warm', away: awayBucket(awayMs) });
   }, []);
@@ -130,14 +155,12 @@ function RootLayout() {
   useEffect(() => {
     if (!launchRecorded) {
       launchRecorded = true;
+      openInstallRecord(installKind(firstRun, getOnboarding().seededAt), firstRun);
       void analytics.registerOnce({ install_date: utcDay(getOnboarding().seededAt) });
       // The firsts only for the store's `firstRun`: an install updated over
       // the air into this code has seen them. For marketer it is new if it was
       // first opened since counting began (`installKind`).
       if (firstRun) startFirsts();
-      openInstallRecord(installKind(firstRun, getOnboarding().seededAt));
-      // After the install date, which it carries. Once per install, either kind.
-      trackFirstOpen();
     }
     // Android only, on unless the reader turned it off (`lib/measurement.ts`).
     // Turning it back on is also when a held Install Attribution may go

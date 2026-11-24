@@ -86,6 +86,7 @@ export type MapSheetDetent = 'peek' | 'full';
 type SheetGesture = ReturnType<typeof usePanGesture>;
 
 interface MapSheetProps {
+  scrollablePeek?: boolean;
   /** Visible height at rest, in px. */
   peek: number;
   /** Height with a story open, in px — the same for every story. */
@@ -136,6 +137,7 @@ const SHEET = 1;
 const LIST = 2;
 
 export function MapSheet({
+  scrollablePeek = false,
   peek,
   full,
   progress,
@@ -317,7 +319,8 @@ export function MapSheet({
           // Not expanded → nothing below can use a vertical drag.
           // Expanded and already at the top and pulling down → the list has
           // nowhere to go, so the sheet takes it.
-          owner.value = offset.value > 0.5 || (atTop && pullingDown) ? SHEET : LIST;
+          owner.value =
+            (!scrollablePeek && offset.value > 0.5) || (atTop && pullingDown) ? SHEET : LIST;
         }
         if (owner.value !== SHEET) return;
         const next = dragStart.value + e.translationY - dragStartY.value;
@@ -370,6 +373,7 @@ export function MapSheet({
       dragStart,
       dragStartY,
       handlePullDown,
+      scrollablePeek,
       listOffset,
       offset,
       owner,
@@ -437,7 +441,7 @@ export function MapSheet({
   });
 
   const list = renderList({
-    scrollEnabled: detent === 'full',
+    scrollEnabled: detent === 'full' || scrollablePeek,
     onScrollOffset: listOffset,
     sheetGesture: pan,
   });
@@ -471,7 +475,11 @@ export function MapSheet({
           >
             <Animated.View style={[styles.indicator, pullIndicatorStyle]} />
           </View>
-          <View style={styles.clip}>{list}</View>
+          <View
+            style={[styles.clip, scrollablePeek && detent === 'peek' && { marginBottom: travel }]}
+          >
+            {list}
+          </View>
         </View>
       </GestureDetector>
     </Animated.View>

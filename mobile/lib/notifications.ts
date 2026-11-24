@@ -3,10 +3,17 @@ import Constants from 'expo-constants';
 import * as Notifications from 'expo-notifications';
 import { deleteItemAsync, getItemAsync, setItemAsync } from 'expo-secure-store';
 import { Linking, Platform, type TurboModule, TurboModuleRegistry } from 'react-native';
+import type { PermissionOutcome, RegistrationReason } from '../constants/analytics';
 import { IS_ANDROID } from '../constants/platform';
 import { API_BASE } from '../constants/theme';
 import { fetchWithTimeout } from './fetch';
 import { markOsPromptSpent, osPromptSpent } from './notification-prompt';
+import {
+  noDelivery,
+  type PublisherDelivery,
+  REFRESH_AFTER,
+  setRegistration,
+} from './publisher-state';
 
 interface AndroidPermissions extends TurboModule {
   shouldShowRequestPermissionRationale(permission: string): Promise<boolean>;
@@ -48,6 +55,7 @@ export async function setupNotificationChannels(): Promise<void> {
 export interface NotificationAnswer {
   granted: boolean;
   osPrompt: boolean;
+  outcome: PermissionOutcome;
 }
 
 /** Android can open the app’s alert controls directly. Some devices only offer app settings. */
@@ -66,27 +74,57 @@ export async function openNotificationSettings(): Promise<void> {
 }
 
 /** Request permission and setup channels. */
-export async function enableNotifications(): Promise<NotificationAnswer> {
+export async function enableNotifications(allowPrompt = true): Promise<NotificationAnswer> {
   let osPrompt = false;
   try {
     await setupNotificationChannels();
     const before = await Notifications.getPermissionsAsync();
-    osPrompt = !before.granted && before.canAskAgain;
-    if (osPrompt && IS_ANDROID && Number(Platform.Version) >= 33) await markOsPromptSpent();
-    const { granted } = await Notifications.requestPermissionsAsync();
-    if (!granted) return { granted: false, osPrompt };
-    return { granted: true, osPrompt };
+    osPrompt =
+      allowPrompt &&
+      !before.granted &&
+      before.canAskAgain &&
+      (!IS_ANDROID || Number(Platform.Version) >= 33);
+    if (osPrompt) await markOsPromptSpent();
+    const result = osPrompt ? await Notifications.requestPermissionsAsync() : before;
+    const outcome = result.granted
+      ? 'granted'
+      : osPrompt && result.status === 'undetermined' && IS_ANDROID
+        ? 'dismissed'
+        : result.status === 'denied' &&
+            (!IS_ANDROID || !result.canAskAgain || (await androidRationale()))
+          ? 'denied'
+          : 'unknown';
+    return { granted: result.granted, osPrompt, outcome };
   } catch {
-    return { granted: false, osPrompt };
+    return { granted: false, osPrompt, outcome: 'unknown' };
   }
 }
 
-/** Whether the OS lets the app notify, without asking. */
-export async function notificationsGranted(): Promise<boolean> {
+function androidRationale(): Promise<boolean> {
+  const permissions = TurboModuleRegistry.getEnforcing<AndroidPermissions>('PermissionsAndroid');
+  return permissions.shouldShowRequestPermissionRationale('android.permission.POST_NOTIFICATIONS');
+}
+
+/** Delivery is stricter than a granted permission (provisional iOS and muted Android channels). */
+export async function publisherDelivery(): Promise<PublisherDelivery> {
   try {
-    return (await Notifications.getPermissionsAsync()).granted;
+    const permission = await Notifications.getPermissionsAsync();
+    if (!permission.granted) return noDelivery;
+    if (IS_ANDROID) {
+      const enabled = async (id: string) => {
+        const channel = await Notifications.getNotificationChannelAsync(id);
+        return !!channel && channel.importance > Notifications.AndroidImportance.NONE;
+      };
+      const [briefing, breaking] = await Promise.all([enabled(CHANNEL_ID), enabled('breaking')]);
+      return { briefing, breaking };
+    }
+    const ios = permission.ios;
+    const available =
+      ios?.status === Notifications.IosAuthorizationStatus.AUTHORIZED &&
+      !!(ios.allowsAlert || ios.allowsDisplayOnLockScreen || ios.allowsDisplayInNotificationCenter);
+    return { briefing: available, breaking: available };
   } catch {
-    return false;
+    return noDelivery;
   }
 }
 
@@ -105,10 +143,7 @@ export async function notificationPermissionUndetermined(): Promise<boolean> {
     // Expo also reports denied before the first ask. On installs that predate
     // the Settings marker, Android remembers a refusal that still permits a
     // second ask: it tells the app to show a rationale for that second dialog.
-    const permissions = TurboModuleRegistry.getEnforcing<AndroidPermissions>('PermissionsAndroid');
-    return !(await permissions.shouldShowRequestPermissionRationale(
-      'android.permission.POST_NOTIFICATIONS',
-    ));
+    return !(await androidRationale());
   } catch {
     return false;
   }
@@ -165,43 +200,118 @@ function queueTokenWork(work: () => Promise<void>): Promise<void> {
   return next;
 }
 
-/** Register Expo push token with the backend. Idempotent. */
-export function registerPushToken(devicePushToken?: Notifications.DevicePushToken): Promise<void> {
+const RECEIPT_KEY = 'zuhd_pushReceipt';
+const RETIRED_KEY = 'zuhd_retiredPushTokens';
+let resolution = 0;
+
+async function retiredTokens(): Promise<string[]> {
+  const raw = await getItemAsync(RETIRED_KEY);
+  if (!raw) return [];
+  const tokens: unknown = JSON.parse(raw);
+  return Array.isArray(tokens) ? tokens.filter((t): t is string => typeof t === 'string') : [];
+}
+
+async function removeToken(token: string): Promise<boolean> {
+  const response = await fetchWithTimeout(`${API_BASE}/api/tokens`, 10_000, {
+    method: 'DELETE',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({ token }),
+  });
+  return response.ok;
+}
+
+async function drainRetired(active?: string): Promise<void> {
+  const retired = await retiredTokens();
+  for (const token of [...retired]) {
+    if (token !== active && !(await removeToken(token))) continue;
+    retired.splice(retired.indexOf(token), 1);
+    await setItemAsync(RETIRED_KEY, JSON.stringify(retired));
+  }
+}
+
+export function registerPushToken(
+  devicePushToken?: Notifications.DevicePushToken,
+  reason: RegistrationReason = devicePushToken ? 'rotation' : 'refresh',
+  generation = 0,
+): Promise<void> {
   const version = registrationVersion;
+  const attempt = ++resolution;
+  const current = () => version === registrationVersion && attempt === resolution;
+  // Every reconciliation must first establish the identity of the current token.
+  setRegistration('pending', reason);
   return queueTokenWork(async () => {
+    if (!current()) return;
     try {
-      if (version !== registrationVersion) return;
       const projectId: unknown =
         Constants.easConfig?.projectId ?? Constants.expoConfig?.extra?.eas?.projectId;
-      if (typeof projectId !== 'string' || !projectId) return;
-      // Bounded, so a stalled network cannot hold an opt-out's DELETE behind
-      // it. Nothing has been sent yet, so giving up here registers nothing.
+      if (typeof projectId !== 'string' || !projectId) {
+        setRegistration('failed', reason);
+        return;
+      }
       const { data: token } = await within(
         Notifications.getExpoPushTokenAsync({ projectId, devicePushToken }),
         TOKEN_FETCH_TIMEOUT_MS,
       );
-      if (version !== registrationVersion) return;
-      // Keep a deletion target even if the POST reaches the server but its
-      // response is lost. The next opt-out/reconnect can still remove it.
-      await setItemAsync(TOKEN_KEY, token);
-      const response = await fetchWithTimeout(`${API_BASE}/api/tokens`, 10_000, {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ token }),
-      });
-      if (!response.ok) throw new Error(`Push token registration failed: HTTP ${response.status}`);
-    } catch (e) {
-      console.warn('Push token registration failed:', e);
+      if (!current()) return;
+      const previous = await getItemAsync(TOKEN_KEY);
+      if (previous && previous !== token) {
+        const retired = await retiredTokens();
+        await setItemAsync(RETIRED_KEY, JSON.stringify([...new Set([...retired, previous])]));
+      }
+      const receipt = await getItemAsync(RECEIPT_KEY);
+      let acceptedAt = 0;
+      if (receipt && previous === token) {
+        try {
+          const saved = JSON.parse(receipt);
+          if (
+            saved?.status === 'accepted' &&
+            saved.token === token &&
+            saved.generation === generation &&
+            Number.isFinite(saved.at)
+          )
+            acceptedAt = saved.at;
+        } catch {
+          /* Invalid receipts always require a new POST. */
+        }
+      }
+      if (!current()) return;
+      if (acceptedAt <= Date.now() - REFRESH_AFTER || acceptedAt > Date.now()) {
+        await setItemAsync(RECEIPT_KEY, JSON.stringify({ status: 'pending', generation, token }));
+        await setItemAsync(TOKEN_KEY, token); // Deletion target, even when the response is lost.
+        if (!current()) return;
+        const response = await fetchWithTimeout(`${API_BASE}/api/tokens`, 10_000, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ token }),
+        });
+        if (!current()) return;
+        if (response.status !== 201) {
+          await setItemAsync(RECEIPT_KEY, JSON.stringify({ status: 'failed', generation, token }));
+          if (current()) setRegistration('failed', reason);
+          return;
+        }
+        acceptedAt = Date.now();
+        await setItemAsync(
+          RECEIPT_KEY,
+          JSON.stringify({ status: 'accepted', generation, token, at: acceptedAt }),
+        );
+      }
+      if (current()) setRegistration('accepted', reason, acceptedAt);
+      await drainRetired(token).catch(() => {});
+    } catch {
+      if (current()) setRegistration('pending', reason);
     }
   });
 }
 
 /** Keep the backend registration current when APNs/FCM rotates a native token
  * while the app is alive. */
-export function addPushTokenListener(): Notifications.EventSubscription {
+export function addPushTokenListener(generation = 0): Notifications.EventSubscription {
   let active = true;
+  const version = registrationVersion;
   const subscription = Notifications.addPushTokenListener((devicePushToken) => {
-    if (active) void registerPushToken(devicePushToken);
+    if (active && registrationVersion === version)
+      void registerPushToken(devicePushToken, 'rotation', generation);
   });
   return {
     remove: () => {
@@ -214,17 +324,16 @@ export function addPushTokenListener(): Notifications.EventSubscription {
 /** Unregister push token from the backend. */
 export function unregisterPushToken(): Promise<void> {
   registrationVersion++;
+  setRegistration('removed', 'disable');
   return queueTokenWork(async () => {
     try {
+      // Invalidate acknowledgement even if DELETE is offline.
+      await setItemAsync(RECEIPT_KEY, '');
       const token = await getItemAsync(TOKEN_KEY);
-      if (!token) return;
-      const response = await fetchWithTimeout(`${API_BASE}/api/tokens`, 10_000, {
-        method: 'DELETE',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ token }),
-      });
-      if (!response.ok) return;
-      await deleteItemAsync(TOKEN_KEY);
-    } catch {}
+      if (token && (await removeToken(token))) await deleteItemAsync(TOKEN_KEY);
+      await drainRetired();
+    } catch {
+      // TOKEN_KEY and retired tokens remain deletion targets on restart/reconnect.
+    }
   });
 }

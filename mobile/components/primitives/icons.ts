@@ -32,6 +32,8 @@ export const ICONS = {
   // A menu row that leaves the app — mail, the store, a data provider's site —
   // where a chevron would promise another page.
   'open-outline': { ios: 'arrow.up.right.square', android: 'open_in_new', glyph: 0xe89e },
+  check: { ios: 'checkmark', android: 'check', glyph: 0xe5ca },
+  headphones: { ios: 'headphones', android: 'headphones', glyph: 0xf01f },
   pause: { ios: 'pause.fill', android: 'pause', glyph: 0xe034 },
   play: { ios: 'play.fill', android: 'play_arrow', glyph: 0xe037 },
   search: { ios: 'magnifyingglass', android: 'search', glyph: 0xe8b6 },

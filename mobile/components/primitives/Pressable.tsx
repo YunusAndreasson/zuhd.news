@@ -10,6 +10,7 @@ import Animated from 'react-native-reanimated';
 import { usePressScale } from '../../hooks/usePressScale';
 
 export interface PressableProps extends Omit<RNPressableProps, 'style' | 'onPress'> {
+  ref?: React.Ref<React.ComponentRef<typeof RNPressable>>;
   onPress: () => void;
   style?: StyleProp<ViewStyle>;
   /**

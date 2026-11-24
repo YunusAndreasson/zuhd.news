@@ -41,6 +41,11 @@ async function main() {
   for (const platform of ['ios', 'android']) {
     const fingerprint = await createFingerprintAsync(root, {
       platforms: [platform],
+      extraSources: ['widgets', 'assets/widget'].map((filePath) => ({
+        type: 'dir',
+        filePath,
+        reasons: ['Bundled Daily briefing widget'],
+      })),
       // ios/ and android/ are generated (CNG): a stale local prebuild sits here and
       // EAS has run prebuild by post-install. Their source is the app config, the
       // plugins, the patches and the native packages, which are all hashed.

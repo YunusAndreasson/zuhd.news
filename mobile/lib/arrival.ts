@@ -101,6 +101,11 @@ export function fetchArrival(
       fetchAllSnapshots((key) => queryClient.getQueryData(key), false, controller.signal),
     ]);
     if (controller.signal.aborted) throw new Error('Arrival cancelled');
+    // A meta response can reach the edge before its feed. An older copy
+    // cannot settle a dated notification or revoke a widget's recording.
+    if (build && Date.parse(feed.generated) < Date.parse(build)) {
+      throw new Error('Feed has not reached the advertised build');
+    }
     await saveFeed(feed);
     return { feed, snapshots, generation: startedIn };
   }

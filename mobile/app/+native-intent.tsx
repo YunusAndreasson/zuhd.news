@@ -1,3 +1,5 @@
+import { widgetRoute } from '../lib/daily-widget';
+
 /**
  * Every link into the app lands on the one screen there is.
  *
@@ -19,6 +21,11 @@ export function redirectSystemPath({ path }: { path: string; initial: boolean })
   try {
     // `zuhd-news://a/x` arrives with `a` as the URL's host; strip the scheme
     // and the slashes so both that and a bare `/a/x` read as `a/x`.
+    const preview = path.endsWith('?preview=1');
+    const address = preview ? path.slice(0, -10) : path;
+    const widget = widgetRoute(address);
+    if (widget || path === 'zuhd-news:///widget/open' || path === '/widget/open')
+      return '/?widget=' + encodeURIComponent(address) + (preview ? '&widgetPreview=1' : '');
     const noScheme = path.replace(/^[a-z][a-z0-9+.-]*:\/\//i, '').split(/[?#]/)[0] ?? '';
     const bare = noScheme.replace(SITE_HOST, '');
     const match = STORY_PATH.exec(bare.startsWith('/') ? bare : `/${bare}`);

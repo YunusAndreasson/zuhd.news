@@ -49,6 +49,20 @@ const emptyGrouped: Record<Category, Article[]> = {
   tech: [],
 };
 
+function briefingTap(available: boolean, date = '2026-11-21') {
+  const generated = `${date}T12:00:00Z`;
+  return {
+    generated,
+    play: jest.fn(),
+    unavailable: jest.fn(),
+    verify: async () => ({
+      categories: {},
+      generated,
+      briefing: available ? { date, available, generated } : null,
+    }),
+  };
+}
+
 beforeEach(() => {
   mockLastResponse = null;
   mockBookmarks = [];
@@ -107,19 +121,20 @@ describe('notification response routing', () => {
     expect(mockClearResponse).toHaveBeenCalledTimes(1);
   });
 
-  it('keeps a briefing response pending until a player callback exists', () => {
-    mockLastResponse = response({ kind: 'briefing' });
-    const onSelect = jest.fn();
-    const onPlay = jest.fn();
+  it('consumes an unavailable hydrated briefing so a future edition never autoplays', async () => {
+    mockLastResponse = response({ kind: 'briefing', date: '2026-11-21' });
+    const empty = briefingTap(false);
     const { rerender } = renderHook(
-      ({ callback }) =>
-        usePendingNotification(false, emptyGrouped, onSelect, callback ? onPlay : undefined),
-      { initialProps: { callback: false } },
+      ({ tap }) => usePendingNotification(false, emptyGrouped, jest.fn(), tap),
+      { initialProps: { tap: empty } },
     );
-    expect(mockClearResponse).not.toHaveBeenCalled();
-
-    rerender({ callback: true });
-    expect(onPlay).toHaveBeenCalledTimes(1);
+    await act(async () => {});
+    expect(empty.unavailable).toHaveBeenCalledTimes(1);
+    expect(mockClearResponse).toHaveBeenCalledTimes(1);
+    const later = briefingTap(true, '2026-11-22');
+    rerender({ tap: later });
+    await act(async () => {});
+    expect(later.play).not.toHaveBeenCalled();
     expect(mockClearResponse).toHaveBeenCalledTimes(1);
   });
 
@@ -129,7 +144,7 @@ describe('notification response routing', () => {
     expect(mockClearResponse).toHaveBeenCalledTimes(1);
   });
 
-  it('each tap is a Notification Opened of its kind, never with its story or date', () => {
+  it('each tap is a Notification Opened of its kind, never with its story or date', async () => {
     const cases: [Record<string, unknown>, string][] = [
       [{ kind: 'briefing', date: '2026-11-21' }, 'briefing'],
       [{ slug: 'story' }, 'breaking'],
@@ -138,21 +153,63 @@ describe('notification response routing', () => {
     for (const [data, type] of cases) {
       mockTrack.mockClear();
       mockLastResponse = response(data);
-      renderHook(() => usePendingNotification(false, emptyGrouped, jest.fn(), jest.fn()));
+      const tap = briefingTap(true);
+      const h = renderHook(() => usePendingNotification(false, emptyGrouped, jest.fn(), tap));
+      await act(async () => {});
+      h.unmount();
       expect(mockTrack.mock.calls).toEqual([['Notification Opened', { type }]]);
     }
   });
 
-  it('a briefing tap waiting for its player is sent once, when it plays', () => {
+  it('a briefing tap waiting for feed hydration is sent once, when it plays', async () => {
     mockLastResponse = response({ kind: 'briefing' });
+    const tap = briefingTap(true);
     const { rerender } = renderHook(
       ({ callback }) =>
-        usePendingNotification(false, emptyGrouped, jest.fn(), callback ? jest.fn() : undefined),
+        usePendingNotification(!callback, emptyGrouped, jest.fn(), callback ? tap : undefined),
       { initialProps: { callback: false } },
     );
     expect(mockTrack).not.toHaveBeenCalled();
     rerender({ callback: true });
     rerender({ callback: true });
+    await act(async () => {});
+    expect(tap.play).toHaveBeenCalledTimes(1);
     expect(mockTrack).toHaveBeenCalledTimes(1);
   });
 });
+
+it('an undated tap on an empty offline edition cannot start the next edition', async () => {
+  const feed = briefingTap(false);
+  const failed = jest.fn(async () => {
+    throw Error('offline');
+  });
+  const opened = { ...feed, verify: failed };
+  mockLastResponse = response({ kind: 'briefing' });
+  const h = renderHook(({ tap }) => usePendingNotification(false, emptyGrouped, jest.fn(), tap), {
+    initialProps: { tap: opened as ReturnType<typeof briefingTap> },
+  });
+  await act(async () => {});
+  expect(mockClearResponse).not.toHaveBeenCalled();
+  const later = briefingTap(true, '2026-11-22');
+  h.rerender({ tap: later });
+  await act(async () => {});
+  expect(later.play).not.toHaveBeenCalled();
+  expect(later.unavailable).toHaveBeenCalledTimes(1);
+  expect(mockClearResponse).toHaveBeenCalledTimes(1);
+});
+
+it.each([1, 1000])(
+  'an undated delivered notification uses its native timestamp on a cold launch (%s)',
+  async (scale) => {
+    const date = '2026-11-21';
+    const delivered = response({ kind: 'briefing' });
+    mockLastResponse = {
+      notification: { ...delivered.notification, date: Date.parse(date) / scale },
+    };
+    const tap = { ...briefingTap(true, date), generated: null };
+    renderHook(() => usePendingNotification(false, emptyGrouped, jest.fn(), tap));
+    await act(async () => {});
+    expect(tap.play).toHaveBeenCalledWith(expect.objectContaining({ date }));
+    expect(mockClearResponse).toHaveBeenCalledTimes(1);
+  },
+);

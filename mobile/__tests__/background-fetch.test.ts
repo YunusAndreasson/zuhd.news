@@ -42,6 +42,8 @@ import { addExpirationListener } from 'expo-background-task';
 import * as TaskManager from 'expo-task-manager';
 import { FEED_QUERY_KEY, fetchArrival, probeGenerated } from '../lib/arrival';
 import '../lib/background-fetch';
+import { refreshWidget } from '../lib/widget-store';
+jest.mock('../lib/widget-store', () => ({ refreshWidget: jest.fn() }));
 import { flushKnown, noteFeed } from '../lib/fresh-store';
 import { queryClient } from '../lib/query-client';
 
@@ -141,4 +143,19 @@ it('expires an unfinished probe without writing a partial build', async () => {
   expect(await pending).toBe(2);
   expect(fetchArrival).not.toHaveBeenCalled();
   expect(persistQueryClientSave).not.toHaveBeenCalled();
+});
+
+it('recomputes an unchanged Android widget without writing another verified feed', async () => {
+  const { Platform } = require('react-native');
+  const os = Platform.OS;
+  try {
+    Platform.OS = 'android';
+    queryClient.setQueryData(FEED_QUERY_KEY, feed('same'));
+    jest.mocked(probeGenerated).mockResolvedValue('same');
+    await task();
+    expect(refreshWidget).toHaveBeenCalledWith();
+    expect(fetchArrival).not.toHaveBeenCalled();
+  } finally {
+    Platform.OS = os;
+  }
 });

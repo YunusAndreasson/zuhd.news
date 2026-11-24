@@ -306,10 +306,12 @@ it('rejects when a required asynchronous deletion fails', async () => {
 });
 
 it('rejects when clearing a synchronous store fails', async () => {
+  mockAnalyticsCalls.length = 0;
   jest.mocked(Storage.setItemSync).mockImplementationOnce(() => {
     throw new Error('disk full');
   });
   await expect(eraseLocalData()).rejects.toThrow('Could not erase all local data');
+  expect(mockAnalyticsCalls).not.toContain('reset');
 });
 
 it('orders background persistence behind an active save and discards delayed writes on erase', async () => {
@@ -346,4 +348,22 @@ it('orders background persistence behind an active save and discards delayed wri
   } finally {
     jest.useRealTimers();
   }
+});
+
+it('closes the erase boundary before the old first session can follow the rotated identity', async () => {
+  await jest.isolateModulesAsync(async () => {
+    const { checkpoint } = jest.requireActual<typeof import('../lib/publisher-session')>(
+      '../lib/publisher-session',
+    );
+    const { eraseLocalData: erase } =
+      jest.requireActual<typeof import('../lib/wipe')>('../lib/wipe');
+    mockAnalyticsCalls.length = 0;
+    checkpoint(true, true, 1000);
+    expect(mockAnalyticsCalls).toEqual(['First Session Checkpoint']);
+    await erase();
+    mockAnalyticsCalls.length = 0;
+    checkpoint(false, false, 2000);
+    checkpoint(true, true, 400000);
+    expect(mockAnalyticsCalls).toEqual([]);
+  });
 });
