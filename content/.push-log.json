@@ -1,105 +1,5 @@
 [
   {
-    "timestamp": "2026-11-03T22:14:28.180Z",
-    "candidateCount": 11,
-    "candidates": [
-      {
-        "slug": "2026-11-03-iran-five-conditions-regional-security-us-ceasefire-proposal",
-        "title": "Iran Sets Five Conditions",
-        "category": "politics",
-        "eventCoverage": 855,
-        "importance": 6
-      },
-      {
-        "slug": "2026-11-03-nepal-helicopters-collide-everest-base-camp-indian-tourist",
-        "title": "Helicopters Collide Near Everest",
-        "category": "politics",
-        "eventCoverage": 405,
-        "importance": 6
-      },
-      {
-        "slug": "2026-11-03-justice-department-target-letters-alaska-senate-sullivan-namesake",
-        "title": "Justice Department Targets Elias",
-        "category": "politics",
-        "eventCoverage": 264,
-        "importance": 6
-      },
-      {
-        "slug": "2026-11-03-south-africa-local-elections-ballot-sabotage-iec-security",
-        "title": "Group Storms South African Ballot Warehouse",
-        "category": "politics",
-        "eventCoverage": 0,
-        "importance": 6
-      },
-      {
-        "slug": "2026-11-03-amd-forecast-ai-data-center-demand-nvidia",
-        "title": "AMD Forecast Beats Estimates",
-        "category": "economy",
-        "eventCoverage": 0,
-        "importance": 6
-      },
-      {
-        "slug": "2026-11-03-ecb-december-rate-hike-nagel-bundesbank",
-        "title": "Nagel Backs December Hike",
-        "category": "economy",
-        "eventCoverage": 0,
-        "importance": 6
-      },
-      {
-        "slug": "2026-11-03-johannesburg-municipal-wage-deal-election-anc-samwu",
-        "title": "Johannesburg Signs Unfunded Wage Deal",
-        "category": "economy",
-        "eventCoverage": 0,
-        "importance": 6
-      },
-      {
-        "slug": "2026-11-03-russia-data-centers-underground-ukrainian-drone-strikes",
-        "title": "Russia Buries Data Centers",
-        "category": "tech",
-        "eventCoverage": 0,
-        "importance": 6
-      },
-      {
-        "slug": "2026-11-03-nyt-sues-brave-paywall-bypass-ai-data-deals",
-        "title": "NYT Sues Brave",
-        "category": "tech",
-        "eventCoverage": 0,
-        "importance": 6
-      },
-      {
-        "slug": "2026-11-03-google-x-cpe-botnet-android-tv-boxes",
-        "title": "Google Dismantles X.CPE Botnet",
-        "category": "tech",
-        "eventCoverage": 0,
-        "importance": 6
-      },
-      {
-        "slug": "2026-11-03-servier-sevasemten-becker-muscular-dystrophy-trial-fails",
-        "title": "Servier Drug Fails Trial",
-        "category": "science",
-        "eventCoverage": 0,
-        "importance": 6
-      }
-    ],
-    "selected": {
-      "slug": "2026-11-03-iran-five-conditions-regional-security-us-ceasefire-proposal",
-      "title": "Iran Sets Five Conditions",
-      "category": "politics",
-      "body": "[Iran](country:IR) demands recognition of its sovereignty over",
-      "eventCoverage": 855,
-      "importance": 6
-    },
-    "skipReason": null,
-    "sent": true,
-    "pushTitle": "Breaking News",
-    "pushBody": "Iran demands recognition of Hormuz sovereignty, sets 5 conditions for regional security",
-    "response": {
-      "pushed": 1,
-      "skipped": 0,
-      "tokens": 5
-    }
-  },
-  {
     "timestamp": "2026-11-04T05:16:20.371Z",
     "candidateCount": 10,
     "candidates": [
@@ -10217,6 +10117,113 @@
     "sent": true,
     "pushTitle": "Breaking News",
     "pushBody": "US jury convicts Huawei on 10 of 12 counts in trade secrets case",
+    "response": {
+      "pushed": 1,
+      "skipped": 0,
+      "tokens": 5
+    }
+  },
+  {
+    "timestamp": "2026-11-25T10:18:40.711Z",
+    "candidateCount": 12,
+    "candidates": [
+      {
+        "slug": "2026-11-25-trump-expedite-federal-executions-newsom-commutations",
+        "title": "Trump Orders Faster Federal Executions",
+        "category": "politics",
+        "eventCoverage": 236,
+        "importance": 6
+      },
+      {
+        "slug": "2026-11-25-abrego-garcia-self-deports-spain",
+        "title": "Abrego Garcia Leaves for Spain",
+        "category": "politics",
+        "eventCoverage": 138,
+        "importance": 6
+      },
+      {
+        "slug": "2026-11-25-uk-energy-price-cap-26-percent-iran-war-gas",
+        "title": "Ofgem Raises Price Cap 26%",
+        "category": "economy",
+        "eventCoverage": 104,
+        "importance": 6
+      },
+      {
+        "slug": "2026-11-25-asia-chip-stocks-sell-off-ai-doubts",
+        "title": "Asian Chip Stocks Plunge",
+        "category": "economy",
+        "eventCoverage": 84,
+        "importance": 6
+      },
+      {
+        "slug": "2026-11-25-israel-iran-chemical-weapons-claim-liberman-eisenkot",
+        "title": "Liberman Doubts Iran Chemical Claim",
+        "category": "politics",
+        "eventCoverage": 73,
+        "importance": 6
+      },
+      {
+        "slug": "2026-11-25-hormuz-two-tankers-mines-irgc",
+        "title": "Guard Says Mines Hit Tankers",
+        "category": "economy",
+        "eventCoverage": 0,
+        "importance": 6
+      },
+      {
+        "slug": "2026-11-25-czech-central-bank-bitcoin-disclosure",
+        "title": "Czech Bank Withholds Bitcoin Figures",
+        "category": "economy",
+        "eventCoverage": 0,
+        "importance": 6
+      },
+      {
+        "slug": "2026-11-25-ramaphosa-phala-phala-impeachment-report-set-aside",
+        "title": "Court Quashes Impeachment Report",
+        "category": "politics",
+        "eventCoverage": 0,
+        "importance": 6
+      },
+      {
+        "slug": "2026-11-25-primordial-black-hole-star-explosion",
+        "title": "Tiny Black Holes Could Detonate Stars",
+        "category": "science",
+        "eventCoverage": 0,
+        "importance": 6
+      },
+      {
+        "slug": "2026-11-25-sea-watch-spokesperson-spyware-phone",
+        "title": "Spyware Found on Sea-Watch Phone",
+        "category": "tech",
+        "eventCoverage": 0,
+        "importance": 6
+      },
+      {
+        "slug": "2026-11-25-sand-ai-magi-2-video-model-price",
+        "title": "MAGI-2 Tops Video Ranking",
+        "category": "tech",
+        "eventCoverage": 0,
+        "importance": 6
+      },
+      {
+        "slug": "2026-11-25-starlink-musk-lobbying-south-africa-bee-law",
+        "title": "Starlink Lobbied Over Ownership Rule",
+        "category": "tech",
+        "eventCoverage": 0,
+        "importance": 6
+      }
+    ],
+    "selected": {
+      "slug": "2026-11-25-asia-chip-stocks-sell-off-ai-doubts",
+      "title": "Asian Chip Stocks Plunge",
+      "category": "economy",
+      "body": "The benchmark Taiex fell as much as 7.9%",
+      "eventCoverage": 84,
+      "importance": 6
+    },
+    "skipReason": null,
+    "sent": true,
+    "pushTitle": "Breaking News",
+    "pushBody": "Taiwan's Taiex plunges 7.9% as Asian chip stocks crash",
     "response": {
       "pushed": 1,
       "skipped": 0,
