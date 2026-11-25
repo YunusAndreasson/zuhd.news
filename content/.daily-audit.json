@@ -1,38 +1,37 @@
 {
-  "date": "2026-11-23",
+  "date": "2026-11-24",
   "metrics": {
-    "articles": { "value": 56, "detail": "5 cycles, all completed, avg 11 published/cycle (50 yesterday)" },
-    "freshness": { "median": 0.1, "p90": 0.3, "max": 0.8, "target": 1.0, "met": true },
-    "categories": { "politics": 22, "economy": 12, "science": 4, "tech": 18 },
-    "multiSource": { "pct": 34, "target": 30, "met": true },
-    "usDatelines": { "pct": 25, "target": 25, "met": true },
-    "latAmDatelines": { "pct": 5, "target": 5, "met": true },
-    "sameEventDuplicates": { "value": 0, "target": 0, "met": true },
+    "articles": { "value": 61, "detail": "5 cycles, all completed, avg 12 published/cycle (56 yesterday)" },
+    "freshness": { "median": 0.1, "p90": 0.3, "max": 0.9, "target": 1.0, "met": true },
+    "categories": { "politics": 22, "economy": 16, "science": 6, "tech": 17 },
+    "multiSource": { "pct": 33, "target": 30, "met": true },
+    "usDatelines": { "pct": 23, "target": 25, "met": true },
+    "latAmDatelines": { "pct": 8, "target": 5, "met": true },
+    "sameEventDuplicates": { "value": 1, "target": 0, "met": false },
     "missingDatelines": { "value": 0, "target": 0, "met": true },
-    "stateOrAdvocacyOnly": 0,
-    "imageUrlPct": 98,
-    "regions": { "count": 5, "target": 4, "met": true, "breakdown": { "AM": 17, "EU": 13, "ME": 10, "AS": 9, "AF": 7 } },
-    "sciTech": { "ratio": 39, "target": 25, "met": true },
-    "topSourceShare": { "source": "Reuters / Al Jazeera Online / Bloomberg Business (tie)", "pct": 11, "target": 20, "met": true },
-    "uniqueSources": 58,
+    "stateOrAdvocacyOnly": 1,
+    "imageUrlPct": 95,
+    "regions": { "count": 6, "target": 4, "met": true, "breakdown": { "AM": 19, "AS": 14, "ME": 14, "EU": 7, "AF": 6, "GL": 1 } },
+    "sciTech": { "ratio": 38, "target": 25, "met": true },
+    "topSourceShare": { "source": "Reuters / Ars Technica (tie)", "pct": 10, "target": 20, "met": true },
+    "uniqueSources": 49,
     "duplicates": 0,
-    "avgCycleDuration": 1123
+    "avgCycleDuration": 1090
   },
-  "experiment": "Skipped. No experiment is active, there is no pause gate, and every target is met except science, at 4 against 5, which the 2026-09-26 decision allows on a thin-science day. Latin American datelines recovered from 0% to 5% without a change, which supports yesterday's reading that the gap was supply, not selection.",
-  "weakestArea": "Science is 4 against 5 for the second day running, and it comes from only two outlets (Phys.org ×3, STAT). The fix by policy is wider science sources, not a higher floor. US datelines sit exactly on the 25% ceiling, and five of the fourteen are the bare country name \"United States\" rather than a city.",
+  "experiment": "Skipped. No experiment is active and there is no pause gate. Every target is met except same-event duplicates, and no tunable parameter can fix that one. Science reached 6 against 5 from four outlets, including Nature.",
+  "weakestArea": "There is one same-event duplicate. Two 404 Media stories cover the same Google patent for a personalised AI TV channel: \"Google Patents Personal AI Channel\" and \"Google Patents Personalised AI Channel\". They came from different URLs on the same outlet and their titles differ by one word, so neither the URL dedup layer nor the exact-title 72h gate in validate-articles.js caught them. Fixing this means a fuzzy-title or same-outlet-same-subject check in the pipeline code, which is outside daily tuning, so the operator should handle it. One of the two should be removed.",
   "watching": [
-    "Hormuz and the Gulf: Iran now says the tankers were hit by mines, and coastguards are forming a joint Red Sea arrangement.",
-    "Gaza: Oxfam reports poisoned water and the Yellow Line keeps displacing people, while settlers entered a Jericho neighbourhood in the West Bank.",
-    "Nigeria: gunmen hit a Delta State campaign event and the naira slid on election risk, and Abuja has protested to South Africa over killings of Nigerians.",
-    "Ukraine at sea: Ukraine says it sank a Russian corvette off Libya, and NATO warned about a Russian nuclear-armed satellite.",
-    "Deutsche Bank: two stories on financing of meatpackers and tank parts, likely to draw follow-ups.",
-    "COP31 ended without a deal, so watch for national responses and a fallback text."
+    "Hormuz and the Gulf: crossings are down 40%, oil is sliding toward a glut, and Qatar is pressing Iran–US talks while the Houthis hit a Riyadh tower again.",
+    "Iraq: Baghdad seized Kurdish oilfields and disputes its OPEC+ capacity.",
+    "Nigeria: the NDC boycotted a police meeting and police are hunting executives ahead of the election.",
+    "Colombia: a car bomb in Villavicencio, a hostage-taking in Cartagena, and a request to X to ban Petro.",
+    "Trade: Trump readies new tariffs and the US blacklisted an Alibaba unit.",
+    "Solomon Islands dropped its China security pact, a rare Oceania story to follow."
   ],
   "coverageGaps": [
-    "Science came from two outlets only (Phys.org, STAT); health, climate and physics journals were absent.",
-    "Tech is 18 of 56 (32%) and leans on Chinese tech press and security news, while science is thin.",
-    "Oceania had no datelines today.",
-    "Six datelines are bare country names (\"United States\" ×5, \"South Africa\") rather than cities."
+    "Seven datelines are bare country or region names (\"United States\" ×6, \"United Arab Emirates\", \"China\", \"Germany\", \"East Asia\") rather than cities.",
+    "Europe had only 7 datelines (11%), down from 13 yesterday.",
+    "Tech is 17 of 61 (28%) and still leans on Chinese tech press (Zhidx ×4, TMTPost, TechNode)."
   ],
-  "context": "This is the third straight day with all five cycles completed. Cycles averaged 1123s against 910s yesterday, with the selector at 169s, the writer at 143s and the editor at 93s. Source spread is the widest this week: 58 outlets, none above 11%."
+  "context": "This is the fourth straight day with all five cycles completed, averaging 1090s, with the selector at 153s, the writer at 147s and the editor at 76s. Multi-source (33%), US datelines (23%) and Latin America (8%) have now held their targets for several days without any experiment, so no tunable is under pressure. One story was quarantined, and one Qatar/Iran story has only state or advocacy sources."
 }
