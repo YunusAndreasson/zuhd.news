@@ -21,6 +21,7 @@ import { subscribeConnectivity } from '../lib/network';
 import { archiveStory, openingStory, type Starter, selectStarter } from '../lib/opening-story';
 import { getLastSeenAt, saveLastSeenAt } from '../lib/storage';
 import { useAppResume } from './useAppResume';
+import { useClockChange } from './useClockChange';
 
 const emptyGrouped: GroupedArticles = {
   politics: [],
@@ -129,11 +130,12 @@ export function useArticles(
   const [tick, setTick] = useState(0);
   const lastTickAtRef = useRef(0);
   const bumpTick = useCallback(() => {
-    const now = Date.now();
-    if (now - lastTickAtRef.current < TICK_GRANULARITY_MS) return;
+    const now = performance.now();
+    if (lastTickAtRef.current && now - lastTickAtRef.current < TICK_GRANULARITY_MS) return;
     lastTickAtRef.current = now;
     setTick((t) => t + 1);
   }, []);
+  useClockChange(() => setTick((t) => t + 1));
 
   /** The build the site is on, when it is not the one on screen; null when
    *  it is. Throws when the site cannot be reached. */
@@ -301,8 +303,12 @@ export function useArticles(
     categories: typeof categories;
   }>();
   const chosen = selection?.story;
+  // After an interrupted first run, a second cold launch still has an
+  // opening report to read. Hold it until a real feed arrives on reconnect.
+  const needsFallback =
+    !categories && (query.fetchStatus === 'paused' || !!query.error || selection !== undefined);
   const starter = useMemo(() => {
-    if (!firstLaunch) return null;
+    if (!firstLaunch && !needsFallback) return null;
     const fallback = readStarter();
     if (chosen) {
       // A correction can replace the text behind the pinned slug. A withdrawal
@@ -325,9 +331,9 @@ export function useArticles(
         return chosen;
     }
     return selectStarter(categories ?? {}, fallback, seriesAvailable);
-  }, [firstLaunch, categories, chosen, seriesAvailable]);
+  }, [firstLaunch, needsFallback, categories, chosen, seriesAvailable]);
   if (
-    firstLaunch &&
+    (firstLaunch || needsFallback) &&
     !waiting &&
     (!selection || selection.categories !== categories || chosen?.slug !== starter?.slug)
   )
@@ -357,13 +363,7 @@ export function useArticles(
     // Surface loading only on the very first attempt — cache hydration from
     // the persister presents data instantly, so loading flips false as soon
     // as there's *anything* to render.
-    // A first launch with nothing on disk and no network pauses the query
-    // rather than failing it, so it is the error screen (which says no
-    // connection, and resumes with the network), not a spinner that never ends.
-    loading:
-      firstLaunch && starter
-        ? waiting
-        : query.isPending && !query.data && query.fetchStatus !== 'paused',
+    loading: starter ? waiting : query.isPending && !query.data && query.fetchStatus !== 'paused',
     error: query.error
       ? (query.error.message ?? 'Unknown error')
       : query.fetchStatus === 'paused' && !query.data

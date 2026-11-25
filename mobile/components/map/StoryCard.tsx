@@ -221,7 +221,7 @@ const Veil = memo(function Veil({
   const shown = useAnimatedStyle(() => {
     if (globalThis.__RUNTIME_KIND === 1) return { opacity: open ? 0 : 1 };
     return { opacity: progress.value > 0 ? 0 : 1 };
-  }, [progress]);
+  });
   return (
     <Animated.View
       style={[StyleSheet.absoluteFill, shown]}
@@ -270,9 +270,6 @@ export const StoryCard = memo(function StoryCard({
   useEffect(() => {
     if (open && header.current) AccessibilityInfo.sendAccessibilityEvent(header.current, 'focus');
   }, [open]);
-  const meta = useMemo(() => {
-    return [article.category, formatTimeAgo(articleTime(article))].filter(Boolean).join(' · ');
-  }, [article]);
 
   const threadContext = articleThreadContext(article);
   const shownOdds = chart ? null : odds;
@@ -413,7 +410,7 @@ export const StoryCard = memo(function StoryCard({
       })
     : formatTimeAgo(articleTime(article));
   const delta = chart && (gaugeMove(chart)?.delta ?? chart.delta);
-  const kicker = [meta, mark].filter(Boolean).join(' · ');
+  const kicker = [article.category, age, mark].filter(Boolean).join(' · ');
 
   const hookBlock = (
     <RNPressable {...openTap} accessible={false}>
@@ -494,8 +491,10 @@ export const StoryCard = memo(function StoryCard({
         </View>
       </RNPressable>
 
-      {(open || starter) && hookBlock}
-      {open && fontScale > 1.5 ? (
+      {/* The starter leads with its measured hook, including the archive.
+          Daily stories lead with their chart in both detents. */}
+      {starter && hookBlock}
+      {starter && open && fontScale > 1.5 ? (
         <PublisherOffer key={article.slug} source="opened_report" />
       ) : null}
       {/* The story's chart, over the hook: at the end of the prose a reader
@@ -528,7 +527,10 @@ export const StoryCard = memo(function StoryCard({
         </RNPressable>
       ) : null}
 
-      {!open && !starter && hookBlock}
+      {!starter && hookBlock}
+      {!starter && open && fontScale > 1.5 ? (
+        <PublisherOffer key={article.slug} source="opened_report" />
+      ) : null}
       <View>
         <View
           pointerEvents={open ? 'auto' : 'none'}

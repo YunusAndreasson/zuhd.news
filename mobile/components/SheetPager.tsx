@@ -7,7 +7,7 @@ import Animated, {
   useSharedValue,
   withTiming,
 } from 'react-native-reanimated';
-import { ANIMATION, EASING, KEEP_MOTION, SPACING } from '../constants/theme';
+import { ANIMATION, EASING, KEEP_MOTION, OPACITY, SPACING } from '../constants/theme';
 import type { SheetMove } from '../hooks/useSheetNavigation';
 import { useTheme } from '../hooks/useTheme';
 
@@ -20,9 +20,8 @@ import { useTheme } from '../hooks/useTheme';
  * from under a veil of the sheet's ground that lifts off it.
  *
  * The veil is a leaf: fading the page itself would composite every row off
- * screen for each frame of the fade. It is keyed by the page, so it mounts
- * opaque in the commit that mounts the page, and the page's first frame is
- * never seen at rest. Needs a sheet of fixed height (`SheetLayout`'s `fill`).
+ * screen for each frame of the fade. The new title and rows remain readable
+ * from their first frame. Needs a sheet of fixed height (`SheetLayout`'s `fill`).
  *
  * A page's own entrance (a stagger of its blocks) is its owner's to skip:
  * `LayoutAnimationConfig skipEntering`, keyed by the page.
@@ -40,10 +39,8 @@ const TIMING = { duration: ANIMATION.normal, easing: EASING.out };
 /** How far a page is dragged before the ground has closed over it. */
 const DRAG_FADE = 200;
 
-/** Opaque, then clear: the veil's own style is the cleared one. It keeps its
- *  fade under Reduce Motion, which drops the page's slide: the page then
- *  dissolves in where it rests instead of replacing the last in one frame. */
-export const VEIL_LIFT = new Keyframe({ 0: { opacity: 1 }, 100: { opacity: 0 } })
+/** Keep the fade under Reduce Motion, which drops the page's slide. */
+export const VEIL_LIFT = new Keyframe({ 0: { opacity: OPACITY.soft }, 100: { opacity: 0 } })
   .duration(ANIMATION.normal)
   .reduceMotion(KEEP_MOTION.reduceMotion);
 
@@ -71,12 +68,13 @@ export function PageVeil({
 }) {
   const { colors } = useTheme();
   const moving = useMoving(move);
+  if (!moving) return null;
   return (
     <Animated.View
       key={pageKey}
-      entering={moving ? VEIL_LIFT : undefined}
+      entering={VEIL_LIFT}
       pointerEvents="none"
-      style={[StyleSheet.absoluteFill, styles.veil, { backgroundColor: colors.sheetBg }, style]}
+      style={[StyleSheet.absoluteFill, { backgroundColor: colors.sheetBg }, style]}
     />
   );
 }
@@ -102,7 +100,7 @@ export function SheetPager({
     shift.set(withTiming(0, TIMING));
   }, [moving, move, shift]);
   // A page dragged away is put home as the page changes under the drag: the
-  // one arriving mounts under its own opaque veil, so the step is never seen.
+  // one arriving gets its own short slide.
   // biome-ignore lint/correctness/useExhaustiveDependencies: `pageKey` is when to run
   useLayoutEffect(() => {
     drag?.set(0);
@@ -133,5 +131,4 @@ export function SheetPager({
 
 const styles = StyleSheet.create({
   page: { flex: 1 },
-  veil: { opacity: 0 },
 });

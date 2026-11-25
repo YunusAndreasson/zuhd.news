@@ -2834,48 +2834,30 @@ export const MiniGlobe = memo(function MiniGlobe({
     if (t.x === 0 && t.y === 0 && t.scale === 1) return NO_WARP;
     return [{ translateX: t.x }, { translateY: t.y }, { scale: t.scale }];
   };
+  const groundFade = useSharedValue(1);
+  const display = useDerivedValue(() => {
+    const frame = framePictures.value;
+    return {
+      ...globeTransform(frame.cam, liveCamera.value, cx, cy, width, height, globeRadius),
+      revision: frame.revision,
+    };
+  });
   useAnimatedReaction(
-    () => ({
-      ...globeTransform(
-        framePictures.value.cam,
-        liveCamera.value,
-        cx,
-        cy,
-        width,
-        height,
-        globeRadius,
-      ),
-      revision: framePictures.value.revision,
-    }),
+    () => display.value,
     (displayed) => {
       tapFrame.value = displayed;
     },
   );
-  // Derived straight from the picture and the camera, not from `tapFrame`: a
-  // reaction's write reaches a derived value in the same pass only if the
-  // reaction happens to be registered first, and this one is registered again
-  // whenever the layout changes. Read through `tapFrame`, a new picture was
-  // drawn for a frame with the last picture's slide, which showed as a wobble
-  // just before a landing, where the settled picture is drawn ahead of the
-  // camera. `tapFrame` is for a tap, which can be a frame behind.
-  const warp = useDerivedValue<Transforms3d>(() =>
-    toTransforms(
-      globeTransform(framePictures.value.cam, liveCamera.value, cx, cy, width, height, globeRadius),
-    ),
-  );
-  const prevWarp = useDerivedValue<Transforms3d>(() =>
-    toTransforms(
-      globeTransform(
-        framePictures.value.prevCam,
-        liveCamera.value,
-        cx,
-        cy,
-        width,
-        height,
-        globeRadius,
-      ),
-    ),
-  );
+  // The drawing and hit-test use the same transform. The drawing reads the
+  // derived value directly, so a tap reaction can never delay the warp.
+  const warp = useDerivedValue<Transforms3d>(() => toTransforms(display.value));
+  const prevWarp = useDerivedValue<Transforms3d>(() => {
+    const previous = framePictures.value.prevCam;
+    if (!previous) return NO_WARP;
+    return toTransforms(
+      globeTransform(previous, liveCamera.value, cx, cy, width, height, globeRadius),
+    );
+  });
 
   // **A landing sharpens; it does not snap.** Moving frames are drawn from
   // the coarse motion tier and a settled one from the resting tier, 2–4× the
@@ -2899,7 +2881,6 @@ export const MiniGlobe = memo(function MiniGlobe({
   // on the canvas's transparent ground: `(1 − t)·old + t·new`, whole at every
   // step. Laid over it instead, the two summed to `t + (1 − t)²` wherever
   // they were solid — 75% at the midpoint, a dim where the flash had been.
-  const groundFade = useSharedValue(1);
   const fadeLayer = (picture: SkPicture, alpha: number, add = false): SkPicture => {
     'worklet';
     return createPicture(
@@ -2937,25 +2918,15 @@ export const MiniGlobe = memo(function MiniGlobe({
   // the band above it (removed 2026-09-21; the props that carried that
   // transform went on 2026-10-02).
   const beaconStyle = useAnimatedStyle(() => {
-    const dot = framePictures.value.activeDot;
-    // Carried by the warp, like the ground under it.
-    let wx = dot ? dot.x : 0;
-    let wy = dot ? dot.y : 0;
-    let ws = 1;
-    for (const transform of warp.value) {
-      if ('scale' in transform) ws = transform.scale;
-      if ('translateX' in transform) wx += transform.translateX;
-      if ('translateY' in transform) wy += transform.translateY;
-    }
-    if (dot) {
-      wx += (ws - 1) * dot.x;
-      wy += (ws - 1) * dot.y;
-    }
-    const x = dot ? wx : 0;
-    const y = dot ? wy : 0;
+    const frame = framePictures.value;
+    const dot = frame.activeDot;
+    if (!dot) return { opacity: 0 };
+    const warp = display.value;
+    const x = dot.x * warp.scale + warp.x;
+    const y = dot.y * warp.scale + warp.y;
     return {
-      opacity: dot ? 1 : 0,
-      backgroundColor: framePictures.value.activeColor,
+      opacity: 1,
+      backgroundColor: frame.activeColor,
       borderColor: colors.bg,
       transform: [{ translateX: x - 9 }, { translateY: y - 9 }, { scale: (ACTIVE_DOT_R + 2) / 9 }],
     };

@@ -1,6 +1,11 @@
 import { usePendingNotification } from '../hooks/usePendingNotification';
 import type { Article, FeedResponse } from '@shared/types';
-import { notifyManager, QueryClient, QueryClientProvider } from '@tanstack/react-query';
+import {
+  notifyManager,
+  onlineManager,
+  QueryClient,
+  QueryClientProvider,
+} from '@tanstack/react-query';
 import { act, renderHook } from '@testing-library/react';
 import * as Network from 'expo-network';
 import type { ReactNode } from 'react';
@@ -81,6 +86,26 @@ beforeEach(() => {
   notifyManager.setScheduler((cb) => cb());
 });
 afterEach(() => notifyManager.setScheduler((cb) => setTimeout(cb, 0)));
+
+it('keeps the bundled starter on a returning offline launch until the feed arrives', async () => {
+  jest.mocked(feedCache.readSync).mockReturnValue(null);
+  onlineManager.setOnline(false);
+  const hook = mount();
+  try {
+    expect(hook.result.current.loading).toBe(false);
+    expect(hook.result.current.starter?.slug).toBe(archiveStory.slug);
+    expect(hook.result.current.grouped.economy).toContainEqual(archiveStory);
+    await act(async () => {
+      hook.client.setQueryData(['feed'], mockFeed('return', ['one']));
+    });
+    expect(hook.result.current.starter).toBeNull();
+    expect(hook.result.current.grouped.politics[0]?.slug).toBe('one');
+  } finally {
+    hook.unmount();
+    onlineManager.setOnline(true);
+    jest.mocked(feedCache.readSync).mockImplementation(() => mockFeed('old', ['one']));
+  }
+});
 
 it('keeps the grouped stories when only the build stamp changes', async () => {
   const hook = mount();

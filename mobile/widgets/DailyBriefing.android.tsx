@@ -7,17 +7,14 @@ import {
   padding,
   width,
 } from '@expo/ui/jetpack-compose/modifiers';
-import { createWidget, type WidgetEnvironment } from 'expo-widgets';
 import type { WidgetFace } from '../lib/daily-widget';
+import {
+  type BriefingEnvironment,
+  type briefingWidgetDesign,
+  dailyBriefingWidget,
+} from './daily-briefing-layout';
 
-function DailyBriefing(
-  p: WidgetFace,
-  env: WidgetEnvironment & {
-    widthDp?: number;
-    heightDp?: number;
-    fontScale?: number;
-  },
-) {
+function DailyBriefing(p: WidgetFace, env: BriefingEnvironment, d: typeof briefingWidgetDesign) {
   'widget';
   const w = env.widthDp ?? 156;
   const h = env.heightDp ?? 156;
@@ -37,16 +34,97 @@ function DailyBriefing(
       {value}
     </Text>
   );
-  if (!p.date)
+  if (!p.date) {
+    const arabic = env.language === 'ar';
+    const title = arabic ? 'الموجز اليومي' : 'Daily briefing';
+    const status = p.loading
+      ? arabic
+        ? 'جارٍ البحث عن الموجز'
+        : 'Checking for briefing'
+      : arabic
+        ? 'لا يوجد موجز بعد'
+        : 'No edition yet';
+    const ink = dark ? d.dark : d.light;
+    const color = palette?.onSurface ?? ink.textEmphasis;
+    const compactText = w < 220 && (env.fontScale ?? 1) > 1.15;
+    const inset = large ? d.space.sm : compactText ? d.space.md : d.space.lg;
     return (
       <Column
-        verticalArrangement="center"
-        modifiers={[fillMaxSize(), background(paper), padding(16, 16, 16, 16)]}
+        modifiers={[
+          fillMaxSize(),
+          palette
+            ? background(palette.surface)
+            : {
+                $type: 'newsWidgetBackground',
+                light: d.light.widgetPaper,
+                dark: d.dark.widgetPaper,
+              },
+          padding(inset, d.space.sm, inset, d.space.sm),
+        ]}
       >
-        {txt('Daily briefing', 18, true)}
-        {txt(p.loading ? 'Checking edition' : 'Open zuhd.news', 14, false, muted)}
+        <Row verticalAlignment="center">
+          {!compactText ? (
+            <>
+              <Image
+                source={{ uri: 'zuhd_widget_mark' }}
+                tint={color}
+                modifiers={[width(22), height(22)]}
+              />
+              <Spacer modifiers={[width(d.space.xs)]} />
+            </>
+          ) : null}
+          <Text
+            color={color}
+            style={{ fontSize: 14, fontWeight: 'bold' }}
+            maxLines={compactText ? 2 : 1}
+            modifiers={[
+              palette
+                ? { $type: 'newsWidgetText' }
+                : {
+                    $type: 'newsWidgetText',
+                    light: d.light.textEmphasis,
+                    dark: d.dark.textEmphasis,
+                  },
+            ]}
+          >
+            {title}
+          </Text>
+        </Row>
+        <Spacer modifiers={[height(d.space.xs)]} />
+        <Spacer
+          modifiers={[
+            fillMaxWidth(),
+            height(1),
+            palette
+              ? background(color)
+              : {
+                  $type: 'newsWidgetBackground',
+                  light: d.light.rule,
+                  dark: d.dark.rule,
+                },
+          ]}
+        />
+        <Spacer modifiers={[height(d.space.sm)]} />
+        <Text
+          color={palette?.onSurface ?? ink.textSecondary}
+          style={{ fontSize: 14 }}
+          maxLines={2}
+          modifiers={[
+            fillMaxWidth(),
+            palette
+              ? { $type: 'newsWidgetText' }
+              : {
+                  $type: 'newsWidgetText',
+                  light: d.light.textSecondary,
+                  dark: d.dark.textSecondary,
+                },
+          ]}
+        >
+          {status}
+        </Text>
       </Column>
     );
+  }
   const chart = palette ? p.chartMono : dark ? p.chartDark : p.chartLight;
   const icon = (tint: string) => (
     <Image
@@ -154,4 +232,4 @@ function DailyBriefing(
     </Column>
   );
 }
-export default createWidget('DailyBriefing', DailyBriefing, {});
+export default dailyBriefingWidget(DailyBriefing);

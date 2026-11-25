@@ -416,8 +416,7 @@ export const CountrySheet = memo(function CountrySheet({
     [push],
   );
   const back = useCallback(() => {
-    pop();
-    if (countryName) announce(countryName);
+    if (pop() && countryName) announce(countryName);
   }, [pop, countryName]);
 
   const hasBack = activeRanking !== null;

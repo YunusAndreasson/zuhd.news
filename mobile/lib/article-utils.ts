@@ -38,6 +38,10 @@ export const eventTime = (a: Pick<Article, 'eventAt' | 'date' | 'addedAt'>): num
  *  dock's scrub, and `toLocaleDateString` builds a formatter per call. */
 let dayMonthFormat: Intl.DateTimeFormat | undefined;
 
+export function clearArticleDateFormat() {
+  dayMonthFormat = undefined;
+}
+
 export function formatTimeAgo(addedAt: number): string {
   const diffMs = Date.now() - addedAt;
   const diffMin = Math.floor(diffMs / 60_000);

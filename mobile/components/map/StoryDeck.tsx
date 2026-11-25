@@ -233,7 +233,7 @@ const DeckSlot = memo(function DeckSlot({
       return { transform: [{ translateX: restOffset * pitch }] };
     }
     return { transform: [{ translateX: (position - progress.value) * pitch }] };
-  }, [position, pitch, progress]);
+  });
   // **A neighbour is dimmed by a veil of the sheet's ground, not by its own
   // opacity** (2026-10-03). On iOS a translucent view with sublayers is drawn
   // off screen as a group on every frame its opacity is between 0 and 1 — the
@@ -253,7 +253,7 @@ const DeckSlot = memo(function DeckSlot({
     const away = Math.min(1, Math.abs(position - progress.value));
     const fade = peekFade && peekFade.value > 0.5 ? 1 : 0;
     return { opacity: 1 - (1 - (1 - PEEK_OPACITY) * away) * (1 - fade * away) };
-  }, [position, progress, peekFade]);
+  });
 
   const nativeConfig = useMemo(
     (): NativeGestureConfig => ({ simultaneousWith: sheetGesture }),

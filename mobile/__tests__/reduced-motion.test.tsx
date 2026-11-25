@@ -3,7 +3,7 @@ import { createRef, type ReactNode } from 'react';
 import * as Reanimated from 'react-native-reanimated';
 import { ReduceMotion } from 'react-native-reanimated';
 import type { ToastRef } from '../components/Toast';
-import { dissolveIn, dissolveOut } from '../constants/theme';
+import { dissolveIn, dissolveOut, OPACITY } from '../constants/theme';
 
 // Under Reduce Motion a slide gives way to a dissolve in place, which keeps
 // its fade: Reanimated would otherwise drop the slide to a cut, and a cut is
@@ -69,7 +69,7 @@ it('dissolves in place, and keeps the fade under the setting', () => {
 it("keeps a sheet page's veil fading, which is its only motion left", () => {
   const veil = VEIL_LIFT as unknown as Chain;
   expect(veil.kind).toBe('Keyframe');
-  expect(veil.definitions).toEqual({ 0: { opacity: 1 }, 100: { opacity: 0 } });
+  expect(veil.definitions).toEqual({ 0: { opacity: OPACITY.soft }, 100: { opacity: 0 } });
   expect(keeps(veil)).toBe(true);
 });
 

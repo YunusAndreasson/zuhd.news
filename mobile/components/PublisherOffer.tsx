@@ -21,7 +21,6 @@ import { announce } from '../lib/announce';
 import {
   notificationPermissionUndetermined,
   openNotificationSettings,
-  publisherDelivery,
   registerPushToken,
 } from '../lib/notifications';
 import { getSnapshot, subscribe as onboardingChanges } from '../lib/onboarding-store';
@@ -65,7 +64,15 @@ export function PublisherOffer(entry: OfferEntry) {
   const target = useRef<React.ComponentRef<typeof View>>(null);
   const actionTarget = useRef<React.ComponentRef<typeof View>>(null);
   const [stage, setStage] = useState<'first' | 'later' | null>(null);
-  const [mode, setMode] = useState<'prompt' | 'direct' | 'blocked' | null>(null);
+  const [canPrompt, setCanPrompt] = useState<boolean | null>(null);
+  const hasDelivery = state.delivery.briefing || state.delivery.breaking;
+  const mode = hasDelivery
+    ? 'direct'
+    : canPrompt
+      ? 'prompt'
+      : canPrompt === false && state.deliveryChecked
+        ? 'blocked'
+        : null;
   const [answer, setAnswer] = useState<PermissionOutcome>();
   const [busy, setBusy] = useState(false);
   const busyRef = useRef(false);
@@ -80,13 +87,13 @@ export function PublisherOffer(entry: OfferEntry) {
   const later = visibleStage === 'later';
   const origin = later ? 'later_briefing' : source;
   useEffect(() => {
-    if (!visibleStage || offline) return;
+    if (!visibleStage) return;
     let live = true;
+    let attempt = 0;
     const resolve = async () => {
+      const current = ++attempt;
       const prompt = await notificationPermissionUndetermined();
-      const delivery = await publisherDelivery();
-      if (live)
-        setMode(prompt ? 'prompt' : delivery.briefing || delivery.breaking ? 'direct' : 'blocked');
+      if (live && current === attempt) setCanPrompt(prompt);
     };
     void resolve();
     const sub = AppState.addEventListener('change', (value) => {
@@ -96,7 +103,7 @@ export function PublisherOffer(entry: OfferEntry) {
       live = false;
       sub.remove();
     };
-  }, [visibleStage, offline]);
+  }, [visibleStage]);
 
   const claim = useCallback(() => {
     if (!enrolled) return false;
@@ -152,6 +159,7 @@ export function PublisherOffer(entry: OfferEntry) {
         primed,
         source: origin,
         onAnswer: (result) => {
+          setCanPrompt(false);
           setAnswer(result);
           if (result === 'denied')
             saveOffer({ refusal: { edition, day: localDay(), visit: publisherVisit() } });
@@ -168,7 +176,8 @@ export function PublisherOffer(entry: OfferEntry) {
   };
   const press = () => {
     if (busyRef.current || !claim()) return;
-    if (later || mode === 'blocked') {
+    if (mode === 'direct') void enable(false);
+    else if (later || mode === 'blocked') {
       const trip = beginPublisherSettings(origin);
       void analytics.track(ANALYTICS_EVENTS.PUBLISHER_SETTINGS_OPENED, { source: origin });
       setSettingsVisited(true);
@@ -177,8 +186,7 @@ export function PublisherOffer(entry: OfferEntry) {
         cancelPublisherSettings(trip);
         setSettingsError(true);
       });
-    } else if (mode === 'direct') void enable(false);
-    else host?.present({ source: origin, enable: () => enable(true), restore });
+    } else host?.present({ source: origin, enable: () => enable(true), restore });
   };
   let label: string | null = null;
   let note: string | null = null;
@@ -204,6 +212,10 @@ export function PublisherOffer(entry: OfferEntry) {
         };
       } else if (state.status === 'accepted') note = 'News alerts off';
       else note = 'Turning on alerts. We’ll retry automatically.';
+    } else if (mode === 'direct' && (answer === 'denied' || settingsVisited || later)) {
+      note = SCOPE;
+      label = 'Get news alerts';
+      action = press;
     } else if (settingsVisited) note = 'News alerts off';
     else if (answer) note = resultText(answer);
     else if (offline) note = 'Publisher alerts are available when you’re online.';
@@ -229,7 +241,7 @@ export function PublisherOffer(entry: OfferEntry) {
       accessible={!label}
       accessibilityLiveRegion="polite"
     >
-      {later && !consent && !settingsVisited ? (
+      {later && !consent && !settingsVisited && mode !== 'direct' ? (
         <Text variant="labelXs" tone="secondary">
           News alerts off
         </Text>

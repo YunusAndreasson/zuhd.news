@@ -401,8 +401,10 @@ describe('persistence', () => {
     mockFiles.set(LAST_SEEN_PATH, '1');
     const s = loadStore();
     expect(s.getSnapshot().hints.masthead.status).toBe('dismissed');
+    const generation = s.onboardingReplayGeneration();
     s.resetOnboarding();
     expect(s.getSnapshot().hints.masthead.status).toBe('pending');
+    expect(s.onboardingReplayGeneration()).toBe(generation + 1);
   });
 
   it('markOsPromptSpent writes the legacy key', async () => {

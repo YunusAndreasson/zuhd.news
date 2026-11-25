@@ -168,7 +168,7 @@ export function ThemeProvider({
           generation: consentGeneration,
         });
         const { granted, osPrompt, outcome } = await enableNotifications(ask.primed || !ask.source);
-        const delivery = granted ? await publisherDelivery() : null;
+        const delivery = await publisherDelivery();
         if (request === notificationRequest.current) prompting.current = false;
         void analytics.track(ANALYTICS_EVENTS.PERMISSION_RESULT, {
           permission: 'notifications',
@@ -184,11 +184,11 @@ export function ThemeProvider({
         )
           return false;
         ask.onAnswer?.(outcome);
+        setDelivery(delivery);
         if (!granted) {
           saveOffer({ promptChoice: false });
           return false;
         }
-        if (delivery) setDelivery(delivery);
         setRegistration('pending', 'enable');
         saveOffer({ consent: true, disabled: false, promptChoice: false });
         persist({ notifications: true });

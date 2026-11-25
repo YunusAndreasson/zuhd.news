@@ -399,6 +399,8 @@ export default function HomeScreen() {
   // yield the airspace; every other sheet's openness is derived from its
   // payload state above.
   const [menuOpen, setMenuOpen] = useState(false);
+  const menuOpenRef = useRef(false);
+  menuOpenRef.current = menuOpen;
   const [primerOpen, setPrimerOpen] = useState(false);
 
   // ---------------------------------------------------------------------
@@ -459,6 +461,7 @@ export default function HomeScreen() {
   });
 
   const toastRef = useRef<ToastRef>(null);
+  const menuToastRef = useRef<ToastRef>(null);
 
   // ---------------------------------------------------------------------
   // One platform sheet at a time
@@ -1631,10 +1634,8 @@ export default function HomeScreen() {
     if (item) handleNowPress(item);
   }, [handleNowPress]);
 
-  const handleMenuToast = useCallback((message: string) => {
+  const handleMenuDismissToast = (message: string) =>
     toastRef.current?.show(message, undefined, 'top');
-  }, []);
-
   const handleMenuDismiss = useCallback(() => {
     menuClosedAtRef.current = Date.now();
     setMenuOpen(false);
@@ -1704,13 +1705,14 @@ export default function HomeScreen() {
   // the press through a ref.
   const storyPressRef = useRef<(slug: string) => void>(() => {});
   const reportStoryError = useCallback((slug: string, missing: boolean) => {
+    const toast = (menuOpenRef.current ? menuToastRef.current : null) ?? toastRef.current;
     // A story the site has no file for (one without a place, or a slug since
     // removed) cannot be fetched by trying again.
     if (missing) {
-      toastRef.current?.show('That story is no longer available');
+      toast?.show('That story is no longer available');
       return;
     }
-    toastRef.current?.show('Could not open that story · tap to try again', {
+    toast?.show('Could not open that story · tap to try again', {
       onPress: () => storyPressRef.current(slug),
       hint: 'Opens the story',
     });
@@ -2544,7 +2546,8 @@ export default function HomeScreen() {
           onSelectRow={handleMenuRowSelect}
           onStoryPress={handleMenuStoryPress}
           rootKey={menuRootKey}
-          onToast={handleMenuToast}
+          toastRef={menuToastRef}
+          onDismissToast={handleMenuDismissToast}
         />
 
         <CardSheet

@@ -829,7 +829,7 @@ export const TrendBlock = memo(function TrendBlock({
       <GestureDetector gesture={pan}>
         <View
           onLayout={(e) => setWidth(e.nativeEvent.layout.width)}
-          style={[blockSharedStyles.chartWrap, { height }]}
+          style={[blockSharedStyles.chartWrap, styles.plot, { height }]}
         >
           {width > 0 ? (
             <>
@@ -1017,6 +1017,8 @@ export const TrendBlock = memo(function TrendBlock({
 });
 
 const styles = StyleSheet.create({
+  // The canvas, gesture coordinates and axes all measure physical x from the left.
+  plot: { direction: 'ltr' },
   // `sm`, not `xs`: the multi-series legend can sit directly beneath this
   // label, so the extra breathing room keeps the label from crowding the
   // legend row.
@@ -1087,6 +1089,7 @@ const styles = StyleSheet.create({
     textAlign: 'center',
   },
   xAxisRow: {
+    direction: 'ltr',
     flexDirection: 'row',
     justifyContent: 'space-between',
     marginTop: SPACING.xs,
@@ -1098,6 +1101,7 @@ const styles = StyleSheet.create({
     textAlign: 'right',
   },
   timeAxisRow: {
+    direction: 'ltr',
     position: 'relative',
     height: LABEL_ROW_HEIGHT,
     marginTop: SPACING.xs,

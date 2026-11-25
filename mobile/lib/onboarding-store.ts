@@ -318,6 +318,11 @@ export function getSnapshot(): OnboardingState {
   return state;
 }
 
+let replayGeneration = 0;
+export function onboardingReplayGeneration() {
+  return replayGeneration;
+}
+
 // ---------------------------------------------------------------------------
 // Reset — settings action ("show tips again") and onboarding QA.
 // ---------------------------------------------------------------------------
@@ -327,6 +332,7 @@ export function getSnapshot(): OnboardingState {
  *  notifications toggle in settings is the durable control, and re-arming
  *  the primer would be a second ask the reader never requested. */
 export function resetOnboarding(): boolean {
+  replayGeneration += 1;
   shownThisSession.clear();
   commit({
     ...state,

@@ -14,10 +14,18 @@ import {
   resizable,
   widgetURL,
 } from '@expo/ui/swift-ui/modifiers';
-import { createWidget, type WidgetEnvironment } from 'expo-widgets';
 import type { WidgetFace } from '../lib/daily-widget';
+import {
+  type BriefingEnvironment,
+  type briefingWidgetDesign,
+  dailyBriefingWidget,
+} from './daily-briefing-layout';
 
-function DailyBriefing(props: WidgetFace, env: WidgetEnvironment & { largeText?: boolean }) {
+function DailyBriefing(
+  props: WidgetFace,
+  env: BriefingEnvironment,
+  d: typeof briefingWidgetDesign,
+) {
   'widget';
   const family = env.widgetFamily;
   const dark = env.colorScheme === 'dark';
@@ -28,9 +36,20 @@ function DailyBriefing(props: WidgetFace, env: WidgetEnvironment & { largeText?:
   const quiet = dark ? '#b3b3b3' : '#626262';
   const wide = family === 'systemMedium' && !!props.subject && !env.largeText;
   const publicAction = props.publicAction ?? 'Open zuhd.news';
-  const name = props.example ? 'Example' : 'Daily briefing';
+  const arabic = env.language === 'ar';
+  const name = props.example
+    ? 'Example'
+    : arabic && !props.date
+      ? 'الموجز اليومي'
+      : 'Daily briefing';
   const date = props.example && !wide ? 'Example · 22 Nov 2026' : props.date;
-  const title = props.loading ? 'Checking edition' : publicAction;
+  const title = props.loading
+    ? arabic
+      ? 'جارٍ البحث عن الموجز'
+      : 'Checking for briefing'
+    : arabic
+      ? 'لا يوجد موجز بعد'
+      : 'No edition yet';
   const modifiers = [
     containerBackground(paper, 'widget'),
     ...(!props.example ? [widgetURL(props.url ?? 'zuhd-news:///widget/open')] : []),
@@ -42,7 +61,7 @@ function DailyBriefing(props: WidgetFace, env: WidgetEnvironment & { largeText?:
           (publicAction === 'Daily briefing' && props.action !== publicAction
             ? (props.publicLabel ?? '')
             : (props.privateLabel ?? ''))
-        : props.publicLabel) || title,
+        : props.publicLabel) || `${name}, ${title}`,
     ),
   ];
   const inkMods = full ? [foregroundStyle(ink)] : [];
@@ -71,7 +90,16 @@ function DailyBriefing(props: WidgetFace, env: WidgetEnvironment & { largeText?:
           <Image systemName="headphones" size={18} />
         )}
         {props.example ? <Text modifiers={[font({ size: 10 })]}>Example</Text> : null}
-        <Text modifiers={[font({ size: 11 })]}>{props.shortDate ?? 'Briefing'}</Text>
+        <Text modifiers={[font({ size: 11 })]}>
+          {props.shortDate ??
+            (props.loading
+              ? arabic
+                ? 'جارٍ التحميل'
+                : 'Checking'
+              : arabic
+                ? 'الموجز'
+                : 'Briefing')}
+        </Text>
       </VStack>
     );
   if (family === 'accessoryRectangular')
@@ -90,15 +118,23 @@ function DailyBriefing(props: WidgetFace, env: WidgetEnvironment & { largeText?:
     return (
       <VStack
         alignment="leading"
-        spacing={4}
+        spacing={d.space.xs}
         modifiers={[
           ...modifiers,
-          padding({ all: 16 }),
-          frame({ maxWidth: 10000, maxHeight: 10000, alignment: 'leading' }),
+          padding({ all: d.space.lg }),
+          frame({ maxWidth: 10000, maxHeight: 10000, alignment: 'topLeading' }),
         ]}
       >
-        <Image systemName="book" size={16} />
-        {txt(name, 18, true)}
+        <HStack spacing={d.space.xs}>
+          {!env.largeText ? <Image systemName="headphones" size={16} modifiers={inkMods} /> : null}
+          {txt(name, 14, true)}
+        </HStack>
+        <Spacer
+          modifiers={[
+            frame({ maxWidth: 10000, minHeight: 1, maxHeight: 1 }),
+            background(dark ? d.dark.rule : d.light.rule),
+          ]}
+        />
         {txt(title, 14, false, true)}
       </VStack>
     );
@@ -219,4 +255,4 @@ function DailyBriefing(props: WidgetFace, env: WidgetEnvironment & { largeText?:
     </VStack>
   );
 }
-export default createWidget('DailyBriefing', DailyBriefing, {});
+export default dailyBriefingWidget(DailyBriefing);
