@@ -1,3 +1,197 @@
+diff --git a/node_modules/expo-widgets/android/build.gradle b/node_modules/expo-widgets/android/build.gradle
+--- a/node_modules/expo-widgets/android/build.gradle
++++ b/node_modules/expo-widgets/android/build.gradle
+@@ -1,10 +1,19 @@
+ import org.apache.tools.ant.taskdefs.condition.Os
+ 
++buildscript {
++  repositories { mavenCentral() }
++  dependencies {
++    classpath("org.jetbrains.kotlin.plugin.compose:org.jetbrains.kotlin.plugin.compose.gradle.plugin:${kotlinVersion}")
++  }
++}
++
+ plugins {
+   id 'com.android.library'
+   id 'expo-module-gradle-plugin'
+ }
+ 
++apply plugin: 'org.jetbrains.kotlin.plugin.compose'
++
+ group = 'expo.modules.widgets'
+ version = '58.0.29'
+ 
+@@ -64,6 +73,7 @@
+ 
+   buildFeatures {
+     prefab true
++    compose true
+   }
+ 
+   packagingOptions {
+@@ -144,6 +154,9 @@
+   implementation 'com.facebook.react:react-android'
+   implementation 'com.facebook.react:hermes-android'
+   implementation expoModule.getExpoDependency("expo-ui")
++  // Expo UI already ships Material Components. Use its existing version to
++  // compile the native widget editor without adding another runtime library.
++  compileOnly 'com.google.android.material:material:1.13.0'
+   api 'io.github.expo.peek:peek-emittables:0.3.3'
+   implementation "androidx.glance:glance:1.2.0"
+   // Glance requests work-runtime-ktx 2.7.1, which still bundles the Kotlin extensions WorkManager 2.8+
+diff --git a/node_modules/expo-widgets/android/src/main/AndroidManifest.xml b/node_modules/expo-widgets/android/src/main/AndroidManifest.xml
+--- a/node_modules/expo-widgets/android/src/main/AndroidManifest.xml
++++ b/node_modules/expo-widgets/android/src/main/AndroidManifest.xml
+@@ -3,5 +3,17 @@
+     <receiver
+       android:name="expo.modules.widgets.notifications.ExpoWidgetsNotificationReceiver"
+       android:exported="false" />
++    <receiver
++      android:name="expo.modules.widgets.WidgetClockReceiver"
++      android:exported="false">
++      <intent-filter>
++        <action android:name="android.intent.action.TIME_SET" />
++        <action android:name="android.intent.action.TIMEZONE_CHANGED" />
++        <action android:name="android.intent.action.DATE_CHANGED" />
++        <action android:name="android.intent.action.LOCALE_CHANGED" />
++        <action android:name="android.intent.action.BOOT_COMPLETED" />
++        <action android:name="android.intent.action.MY_PACKAGE_REPLACED" />
++      </intent-filter>
++    </receiver>
+   </application>
+ </manifest>
+diff --git a/node_modules/expo-widgets/android/src/main/java/expo/modules/widgets/ExpoWidgetEmittableTree.kt b/node_modules/expo-widgets/android/src/main/java/expo/modules/widgets/ExpoWidgetEmittableTree.kt
+--- a/node_modules/expo-widgets/android/src/main/java/expo/modules/widgets/ExpoWidgetEmittableTree.kt
++++ b/node_modules/expo-widgets/android/src/main/java/expo/modules/widgets/ExpoWidgetEmittableTree.kt
+@@ -4,6 +4,13 @@
+ 
+ import android.annotation.SuppressLint
+ import android.content.Context
++import android.content.Intent
++import android.content.res.ColorStateList
++import android.os.Build
++import android.net.Uri
++import android.util.TypedValue
++import android.widget.RemoteViews
++import androidx.glance.appwidget.action.actionStartActivity
+ import android.graphics.Color as AndroidColor
+ import androidx.compose.ui.unit.DpSize
+ import androidx.compose.ui.unit.TextUnit
+@@ -59,6 +66,7 @@
+ import expo.modules.ui.convertibles.VerticalAlignment
+ import expo.modules.ui.convertibles.VerticalArrangementDefault
+ import androidx.compose.ui.graphics.Color
++import androidx.compose.ui.graphics.toArgb
+ import androidx.glance.Emittable
+ import androidx.glance.EmittableButton
+ import androidx.glance.EmittableImage
+@@ -77,6 +85,7 @@
+ import androidx.glance.appwidget.RadioButtonDefaults
+ import androidx.glance.appwidget.SwitchDefaults
+ import androidx.glance.background
++import androidx.glance.color.ColorProvider as DayNightColorProvider
+ import androidx.glance.layout.Alignment
+ import androidx.glance.layout.ContentScale
+ import androidx.glance.layout.EmittableBox
+@@ -213,8 +222,10 @@
+   }
+ }
+ 
+-private fun ReadableMap.toPeekText(converterContext: ConverterContext): EmittableText {
++private fun ReadableMap.toPeekText(converterContext: ConverterContext): Emittable {
+   val props = props<TextProps>(converterContext)
++  val newsStyle = props.modifiers.firstOrNull { it["\$type"]?.asString() == "newsWidgetText" }
++  if (newsStyle != null) brandedNewsText(converterContext, props, newsStyle)?.let { return it }
+   val typography = props.typography?.toGlanceTypography()
+   return EmittableText().also {
+     it.text = props.textContent()
+@@ -231,14 +242,36 @@
+   }
+ }
+ 
++// Glance's own Text renderer accepts system typefaces. A RemoteViews TextView
++// keeps Source Sans in launcher builds and uses Android's scaled SP and ellipsis.
++private fun brandedNewsText(context: ConverterContext, props: TextProps, style: ModifierType): Emittable? {
++  val app = context.applicationContext
++  val name = if (props.fontWeight?.toGlanceFontWeight() == FontWeight.Bold)
++    "zuhd_widget_text_bold" else "zuhd_widget_text_regular"
++  val layout = app.resources.getIdentifier(name, "layout", app.packageName)
++  val id = app.resources.getIdentifier("zuhd_widget_text", "id", app.packageName)
++  if (layout == 0 || id == 0) return null
++  val views = RemoteViews(app.packageName, layout)
++  views.setTextViewText(id, props.textContent())
++  props.fontSize?.let { views.setTextViewTextSize(id, TypedValue.COMPLEX_UNIT_SP, it.toFloat()) }
++  props.maxLines?.let { views.setInt(id, "setMaxLines", it) }
++  val pair = style.newsWidgetColors()
++  if (pair != null && Build.VERSION.SDK_INT >= 31) {
++    views.setColorStateList(id, "setTextColor", ColorStateList.valueOf(pair.first), ColorStateList.valueOf(pair.second))
++  } else {
++    props.color.toGlanceColorProvider()?.let { views.setTextColor(id, it.getColor(app).toArgb()) }
++  }
++  return NewsRemoteText.create(views, props.textModifier(context))
++}
++
+ private fun ReadableMap.toPeekImage(converterContext: WidgetConverterContext): Emittable {
+   val props = props<WidgetImageProps>(converterContext)
+   val source = props.source
+     ?: return createErrorText("Image has no source. Pass source={{ uri }} with a drawable resource name or a file URI.")
+   val provider = runCatching {
+     loadWidgetImage(converterContext.applicationContext, source, props.imageTarget(converterContext))
+-  }.getOrElse { error ->
+-    return createErrorText(error.message ?: "Image '${source.uri}' could not be loaded.")
++  }.getOrElse {
++    return EmittableSpacer().also { it.modifier = props.imageModifier(converterContext) }
+   }
+ 
+   return EmittableImage().also {
+@@ -419,11 +452,47 @@
+     "background" -> asRecord<BackgroundParams>(converterContext)?.color?.toGlanceColorProvider()
+       ?.let { GlanceModifier.background(it) }
+     "cornerRadius" -> asRecord<CornerRadiusParams>(converterContext)?.let { GlanceModifier.cornerRadius(it.radius.dp) }
++    "newsWidgetBackground" -> newsWidgetColors()?.let { (light, dark) ->
++      GlanceModifier.background(DayNightColorProvider(Color(light), Color(dark)))
++    }
++    "newsWidgetEdit" -> this["id"]?.asString()?.toIntOrNull()?.let { id ->
++      val context = converterContext.applicationContext
++      val intent = Intent(context, NewsWidgetConfigurationActivity::class.java)
++        .setAction(android.appwidget.AppWidgetManager.ACTION_APPWIDGET_CONFIGURE)
++        .setData(Uri.parse("zuhd-news:///widget/edit/$id"))
++        .putExtra(android.appwidget.AppWidgetManager.EXTRA_APPWIDGET_ID, id)
++      GlanceModifier.clickable(actionStartActivity(intent)).semantics {
++        contentDescription = this@toPeekModifier["label"]?.asString() ?: "Edit"
++      }
++    }
++    "previewLabel" -> this["label"]?.asString()?.let { label ->
++      GlanceModifier.semantics { contentDescription = label }
++    }
++    "newsWidgetLink" -> this["url"]?.asString()?.let { url ->
++      if (url == "zuhd-news:///" || Regex("zuhd-news:///a/[a-zA-Z0-9-]+").matches(url)) {
++        val context = converterContext.applicationContext
++        val launch = context.packageManager.getLaunchIntentForPackage(context.packageName)
++        launch?.apply {
++          action = Intent.ACTION_VIEW
++          data = Uri.parse(url)
++        }?.let {
++          val label = this["label"]?.asString()
++          val clickable = GlanceModifier.clickable(actionStartActivity(it))
++          if (label == null) clickable else clickable.semantics { contentDescription = label }
++        }
++      } else null
++    }
+     // Unsupported Expo UI modifiers are ignored until they have exact Glance semantics.
+     else -> null
+   } ?: GlanceModifier
+ }
+ 
++private fun ModifierType.newsWidgetColors(): Pair<Int, Int>? {
++  val light = this["light"]?.asString() ?: return null
++  val dark = this["dark"]?.asString() ?: return null
++  return runCatching { AndroidColor.parseColor(light) to AndroidColor.parseColor(dark) }.getOrNull()
++}
++
+ private inline fun <reified T : Record> ModifierType.asRecord(converterContext: ConverterContext): T? {
+   return runCatching { recordFromMap<T>(this, converterContext) }.getOrNull()
+ }
 diff --git a/node_modules/expo-widgets/android/src/main/java/expo/modules/widgets/ExpoWidgetsAppWidgetProvider.kt b/node_modules/expo-widgets/android/src/main/java/expo/modules/widgets/ExpoWidgetsAppWidgetProvider.kt
 --- a/node_modules/expo-widgets/android/src/main/java/expo/modules/widgets/ExpoWidgetsAppWidgetProvider.kt
 +++ b/node_modules/expo-widgets/android/src/main/java/expo/modules/widgets/ExpoWidgetsAppWidgetProvider.kt
@@ -10,11 +204,24 @@ diff --git a/node_modules/expo-widgets/android/src/main/java/expo/modules/widget
  ) : GlanceAppWidgetReceiver() {
    override val glanceAppWidget: PeekEmittableAppWidget = ExpoWidgetsPeekWidget(widgetName)
  
-@@ -19,5 +19,6 @@
+@@ -19,5 +19,19 @@
      }
  
      super.onReceive(context, intent)
-+    if (widgetName == "DailyBriefing") observeBriefingWidgets(context)
++    if (widgetName == "DailyBriefing") {
++      observeBriefingWidgets(context)
++      WidgetClock.schedule(context)
++    }
++  }
++
++  override fun onDeleted(context: Context, appWidgetIds: IntArray) {
++    super.onDeleted(context, appWidgetIds)
++    if (widgetName == "LatestNews") NewsWidgetConfiguration.remove(context, appWidgetIds)
++  }
++
++  override fun onRestored(context: Context, oldWidgetIds: IntArray, newWidgetIds: IntArray) {
++    super.onRestored(context, oldWidgetIds, newWidgetIds)
++    if (widgetName == "LatestNews") NewsWidgetConfiguration.restore(context, oldWidgetIds, newWidgetIds)
    }
  }
 diff --git a/node_modules/expo-widgets/android/src/main/java/expo/modules/widgets/ExpoWidgetsPeekWidget.kt b/node_modules/expo-widgets/android/src/main/java/expo/modules/widgets/ExpoWidgetsPeekWidget.kt
@@ -31,15 +238,40 @@ diff --git a/node_modules/expo-widgets/android/src/main/java/expo/modules/widget
  import androidx.glance.Emittable
  import androidx.glance.appwidget.AppWidgetId
  import androidx.glance.appwidget.SizeMode
-@@ -25,9 +29,26 @@
+@@ -20,14 +24,50 @@
+     id: AppWidgetId,
+     options: Bundle,
+     size: DpSize
++  ): Emittable = render(context, size, widgetId = id.appWidgetId)
++
++  internal fun render(
++    context: Context,
++    size: DpSize,
++    widgetId: Int? = null,
++    draft: Map<String, Any>? = null
+   ): Emittable {
+     val appContext = context.applicationContext
      val layout = WidgetsLayoutRegistry.layout(appContext, widgetName)
        ?: return createErrorRoot("No layout found for $widgetName")
-     val props = WidgetsLayoutRegistry.props(appContext, widgetName)
+-    val props = WidgetsLayoutRegistry.props(appContext, widgetName)
 -    val environment = getWidgetEnvironment(appContext)
++    if (widgetId != null && (widgetName == "DailyBriefing" || widgetName == "LatestNews")) WidgetClock.watch(appContext)
++    val stored = WidgetsLayoutRegistry.props(appContext, widgetName)
++    val now = System.currentTimeMillis()
++    val props = when (widgetName) {
++      "DailyBriefing" -> WidgetClock.briefingFace(stored, now, WidgetClock.offline(appContext) == true)
++      "LatestNews" -> (stored ?: emptyMap()) + ("offline" to (WidgetClock.offline(appContext) ?: stored?.get("offline")))
++      else -> stored
++    }
 +    val environment = getWidgetEnvironment(appContext) + mapOf(
 +      "widthDp" to size.width.value.toDouble(),
 +      "heightDp" to size.height.value.toDouble(),
-+      "fontScale" to appContext.resources.configuration.fontScale.toDouble()
++      "fontScale" to appContext.resources.configuration.fontScale.toDouble(),
++      "configuration" to (draft ?: if (widgetName == "LatestNews" && widgetId != null)
++        NewsWidgetConfiguration.get(appContext, widgetId) else emptyMap<String, Any?>()),
++      "preview" to (draft != null),
++      "language" to appContext.resources.configuration.locales[0].language,
++      "editWidgetId" to widgetId?.takeIf { widgetName == "LatestNews" && android.os.Build.VERSION.SDK_INT < 31 }
 +    )
      val node = evaluateLayout(appContext, layout, props, environment)
  
@@ -60,14 +292,502 @@ diff --git a/node_modules/expo-widgets/android/src/main/java/expo/modules/widget
 +    return root
    }
  }
+diff --git a/node_modules/expo-widgets/android/src/main/java/expo/modules/widgets/NewsRemoteText.java b/node_modules/expo-widgets/android/src/main/java/expo/modules/widgets/NewsRemoteText.java
+new file mode 100644
+--- /dev/null
++++ b/node_modules/expo-widgets/android/src/main/java/expo/modules/widgets/NewsRemoteText.java
+@@ -0,0 +1,18 @@
++package expo.modules.widgets;
++
++import android.widget.RemoteViews;
++import androidx.glance.Emittable;
++import androidx.glance.GlanceModifier;
++import androidx.glance.appwidget.EmittableAndroidRemoteViews;
++
++/** Adapter for the Glance version bundled with Peek. */
++final class NewsRemoteText {
++  private NewsRemoteText() {}
++
++  static Emittable create(RemoteViews views, GlanceModifier modifier) {
++    EmittableAndroidRemoteViews text = new EmittableAndroidRemoteViews();
++    text.setRemoteViews(views);
++    text.setModifier(modifier);
++    return text;
++  }
++}
+diff --git a/node_modules/expo-widgets/android/src/main/java/expo/modules/widgets/NewsWidgetConfigurationActivity.kt b/node_modules/expo-widgets/android/src/main/java/expo/modules/widgets/NewsWidgetConfigurationActivity.kt
+new file mode 100644
+--- /dev/null
++++ b/node_modules/expo-widgets/android/src/main/java/expo/modules/widgets/NewsWidgetConfigurationActivity.kt
+@@ -0,0 +1,351 @@
++@file:android.annotation.SuppressLint("RestrictedApi")
++
++package expo.modules.widgets
++
++import android.app.Activity
++import android.appwidget.AppWidgetManager
++import android.content.Context
++import android.content.Intent
++import android.content.res.ColorStateList
++import android.content.res.Configuration
++import android.graphics.Color
++import android.graphics.Typeface
++import android.graphics.drawable.GradientDrawable
++import android.os.Build
++import android.os.Bundle
++import android.util.Log
++import android.view.Gravity
++import android.view.View
++import android.view.ViewGroup.LayoutParams.MATCH_PARENT
++import android.view.ViewGroup.LayoutParams.WRAP_CONTENT
++import android.widget.FrameLayout
++import android.widget.ImageView
++import android.widget.LinearLayout
++import android.widget.ScrollView
++import android.widget.TextView
++import androidx.compose.ui.unit.DpSize
++import androidx.compose.ui.unit.dp
++import androidx.core.view.ViewCompat
++import androidx.core.view.WindowCompat
++import androidx.core.view.WindowInsetsCompat
++import androidx.glance.appwidget.ExperimentalGlanceRemoteViewsApi
++import androidx.glance.appwidget.GlanceRemoteViews
++import com.google.android.material.button.MaterialButton
++import com.google.android.material.chip.Chip
++import com.google.android.material.chip.ChipGroup
++import com.google.android.material.materialswitch.MaterialSwitch
++import io.github.expo.peek.emittables.EmittableTree
++import kotlinx.coroutines.CancellationException
++import kotlinx.coroutines.CoroutineScope
++import kotlinx.coroutines.Dispatchers
++import kotlinx.coroutines.Job
++import kotlinx.coroutines.SupervisorJob
++import kotlinx.coroutines.cancel
++import kotlinx.coroutines.launch
++import kotlinx.coroutines.withContext
++import org.json.JSONObject
++
++internal object NewsWidgetConfiguration {
++  private fun store(context: Context) =
++    context.getSharedPreferences("LatestNewsConfiguration", Context.MODE_PRIVATE)
++
++  fun get(context: Context, id: Int): Map<String, Any?> =
++    store(context).getString(id.toString(), null)?.let {
++      runCatching { WidgetsJson.parseMap(it) }.getOrNull()
++    } ?: emptyMap()
++
++  fun save(context: Context, id: Int, choices: Map<String, Any>): Boolean =
++    store(context).edit().putString(id.toString(), WidgetsJson.stringifyMap(choices)).commit()
++
++  fun remove(context: Context, ids: IntArray) {
++    val edit = store(context).edit()
++    ids.forEach { edit.remove(it.toString()) }
++    edit.apply()
++  }
++
++  fun restore(context: Context, oldIds: IntArray, newIds: IntArray) {
++    val preferences = store(context)
++    val previous = oldIds.map { preferences.getString(it.toString(), null) }
++    val edit = preferences.edit()
++    oldIds.forEach { edit.remove(it.toString()) }
++    newIds.forEachIndexed { index, id -> edit.putString(id.toString(), previous.getOrNull(index)) }
++    edit.apply()
++  }
++}
++
++
++class NewsWidgetConfigurationActivity : Activity() {
++  private data class Paper(val bg: Int, val sheet: Int, val title: Int, val accent: Int, val rule: Int)
++  private data class Draft(val section: String, val images: Boolean, val appearance: String) {
++    fun choices(): Map<String, Any> =
++      mapOf("section" to section, "images" to images, "appearance" to appearance)
++  }
++
++  private lateinit var draft: Draft
++  private lateinit var paper: Paper
++  private lateinit var regular: Typeface
++  private lateinit var semibold: Typeface
++  private lateinit var preview: FrameLayout
++  private lateinit var previewFallback: TextView
++  private lateinit var parameters: JSONObject
++  private var arabic = false
++
++  private val previews = CoroutineScope(SupervisorJob() + Dispatchers.Main.immediate)
++  private var previewJob: Job? = null
++  @OptIn(ExperimentalGlanceRemoteViewsApi::class)
++  private val remotePreview = GlanceRemoteViews()
++  private val renderer = ExpoWidgetsPeekWidget("LatestNews")
++
++  override fun onCreate(savedInstanceState: Bundle?) {
++    super.onCreate(savedInstanceState)
++    val id = intent.getIntExtra(
++      AppWidgetManager.EXTRA_APPWIDGET_ID, AppWidgetManager.INVALID_APPWIDGET_ID
++    )
++    val result = Intent().putExtra(AppWidgetManager.EXTRA_APPWIDGET_ID, id)
++    setResult(RESULT_CANCELED, result)
++    val manager = AppWidgetManager.getInstance(this)
++    if (id == AppWidgetManager.INVALID_APPWIDGET_ID ||
++      manager.getAppWidgetInfo(id)?.provider != widgetProviderComponentName(this, "LatestNews")
++    ) {
++      finish()
++      return
++    }
++
++    val resource = resources.getIdentifier("news_widget_options", "raw", packageName)
++    val design = resources.openRawResource(resource).bufferedReader().use { JSONObject(it.readText()) }
++    parameters = design.getJSONObject("parameters")
++    arabic = resources.configuration.locales[0].language == "ar"
++    val dark = resources.configuration.uiMode and Configuration.UI_MODE_NIGHT_MASK == Configuration.UI_MODE_NIGHT_YES
++    val palette = design.getJSONObject("paper").getJSONObject(if (dark) "dark" else "light")
++    fun color(key: String) = Color.parseColor(palette.getString(key))
++    paper = Paper(color("bg"), color("sheetBg"), color("textEmphasis"), color("accent"), color("rule"))
++    regular = Typeface.createFromAsset(assets, "fonts/SourceSans3-Regular.ttf")
++    semibold = Typeface.createFromAsset(assets, "fonts/SourceSans3-SemiBold.ttf")
++
++    val current = NewsWidgetConfiguration.get(this, id)
++    val section = parameters.getJSONObject("section")
++    val images = parameters.getJSONObject("images")
++    val appearance = parameters.getJSONObject("appearance")
++    draft = Draft(
++      savedInstanceState?.getString("section") ?: current["section"] as? String ?: section.getString("default"),
++      savedInstanceState?.getBoolean("images") ?: current["images"] as? Boolean ?: images.getBoolean("default"),
++      savedInstanceState?.getString("appearance") ?: current["appearance"] as? String ?: appearance.getString("default")
++    )
++
++    WindowCompat.setDecorFitsSystemWindows(window, false)
++    WindowCompat.getInsetsController(window, window.decorView).apply {
++      isAppearanceLightStatusBars = !dark
++      isAppearanceLightNavigationBars = !dark
++    }
++    val root = column().apply { setBackgroundColor(paper.bg) }
++    ViewCompat.setOnApplyWindowInsetsListener(root) { view, insets ->
++      val bars = insets.getInsets(WindowInsetsCompat.Type.systemBars() or WindowInsetsCompat.Type.displayCutout())
++      view.setPadding(bars.left, bars.top, bars.right, bars.bottom)
++      insets
++    }
++
++    val panel = column().apply { setPaddingRelative(dp(24), dp(12), dp(24), dp(24)) }
++    root.addView(ScrollView(this).apply {
++      isFillViewport = true
++      isVerticalScrollBarEnabled = false
++      addView(panel)
++    }, LinearLayout.LayoutParams(MATCH_PARENT, 0, 1f))
++    panel.addView(LinearLayout(this).apply {
++      gravity = Gravity.CENTER_VERTICAL
++      val mark = ImageView(this@NewsWidgetConfigurationActivity).apply {
++        setImageResource(resources.getIdentifier("zuhd_widget_mark", "drawable", packageName))
++        setImageTintList(ColorStateList.valueOf(paper.title))
++        importantForAccessibility = View.IMPORTANT_FOR_ACCESSIBILITY_NO
++      }
++      addView(mark, LinearLayout.LayoutParams(dp(36), dp(36)).apply { marginEnd = dp(8) })
++      addView(label(words(section.getJSONArray("values").getJSONObject(0), "name"), 28f, true).heading())
++    })
++
++    panel.space(16)
++    panel.addView(label(tr("Medium preview", "معاينة متوسطة"), 14f, true, paper.accent).heading())
++    panel.space(8)
++    previewFallback = label(tr("Loading preview…", "جارٍ تحميل المعاينة…"), 16f, true).apply {
++      gravity = Gravity.CENTER
++    }
++    preview = FrameLayout(this).apply {
++      background = GradientDrawable().apply {
++        cornerRadius = dp(24).toFloat()
++        setColor(paper.sheet)
++      }
++      foreground = GradientDrawable().apply {
++        cornerRadius = dp(24).toFloat()
++        setColor(Color.TRANSPARENT)
++        setStroke(dp(1), paper.rule)
++      }
++      clipToOutline = true
++      addView(previewFallback, FrameLayout.LayoutParams(MATCH_PARENT, MATCH_PARENT))
++      addOnLayoutChangeListener { _, l, _, r, _, previousL, _, previousR, _ ->
++        if (r - l != previousR - previousL) updatePreview()
++      }
++    }
++    panel.addView(preview, LinearLayout.LayoutParams(MATCH_PARENT, dp(232)))
++
++    panel.space(24)
++    panel.addView(label(words(section, "title"), 18f, true).heading())
++    panel.space(4)
++    panel.addView(choices(section, draft.section) { draft = draft.copy(section = it) })
++
++    panel.space(20)
++    panel.addView(label(words(appearance, "title"), 18f, true).heading())
++    panel.space(4)
++    panel.addView(choices(appearance, draft.appearance) { draft = draft.copy(appearance = it) })
++
++    panel.space(16)
++    panel.addView(View(this).apply { setBackgroundColor(paper.rule) }, MATCH_PARENT, dp(1))
++    panel.addView(MaterialSwitch(this).apply {
++      text = words(images, "title")
++      textSize = 17f
++      typeface = semibold
++      setTextColor(paper.title)
++      minHeight = dp(56)
++      isChecked = draft.images
++      thumbTintList = checkedColors(paper.bg, paper.accent)
++      trackTintList = checkedColors(paper.title, paper.rule)
++      setOnCheckedChangeListener { _, checked ->
++        draft = draft.copy(images = checked)
++        updatePreview()
++      }
++    }, MATCH_PARENT, WRAP_CONTENT)
++
++    root.addView(View(this).apply { setBackgroundColor(paper.rule) }, MATCH_PARENT, dp(1))
++    val actions = LinearLayout(this).apply {
++      gravity = Gravity.END or Gravity.CENTER_VERTICAL
++      setPaddingRelative(dp(24), dp(8), dp(24), dp(8))
++    }
++    actions.addView(action(tr("Cancel", "إلغاء"), primary = false) { finish() })
++    actions.addView(
++      action(tr("Save widget", "حفظ الأداة"), primary = true) {
++        if (NewsWidgetConfiguration.save(this, id, draft.choices())) {
++          WidgetsUpdater.reload(this, "LatestNews")
++          setResult(RESULT_OK, result)
++          finish()
++        }
++      },
++      LinearLayout.LayoutParams(WRAP_CONTENT, WRAP_CONTENT).apply { marginStart = dp(8) }
++    )
++    root.addView(actions, MATCH_PARENT, WRAP_CONTENT)
++    setContentView(root)
++    ViewCompat.requestApplyInsets(root)
++  }
++
++  @OptIn(ExperimentalGlanceRemoteViewsApi::class)
++  private fun updatePreview() {
++    val width = preview.width
++    val height = preview.height
++    if (width <= 0 || height <= 0) return
++    val density = resources.displayMetrics.density
++    val size = DpSize((width / density).dp, (height / density).dp)
++    val choices = draft.choices()
++    previewJob?.cancel()
++    previewJob = previews.launch {
++      try {
++        val layout = withContext(Dispatchers.Default) {
++          renderer.render(this@NewsWidgetConfigurationActivity, size, draft = choices)
++        }
++        val view = remotePreview.compose(this@NewsWidgetConfigurationActivity, size) {
++          EmittableTree(layout)
++        }.remoteViews.apply(this@NewsWidgetConfigurationActivity, preview)
++        preview.removeAllViews()
++        preview.addView(view, FrameLayout.LayoutParams(MATCH_PARENT, MATCH_PARENT))
++      } catch (error: CancellationException) {
++        throw error
++      } catch (error: Exception) {
++        Log.w("NewsWidgetEditor", "Could not render widget preview", error)
++        preview.removeAllViews()
++        previewFallback.text = tr("Preview unavailable", "المعاينة غير متاحة")
++        preview.addView(previewFallback, FrameLayout.LayoutParams(MATCH_PARENT, MATCH_PARENT))
++      }
++    }
++  }
++
++  private fun choices(option: JSONObject, selected: String, onPick: (String) -> Unit) =
++    ChipGroup(this).apply {
++      isSingleSelection = true
++      isSelectionRequired = true
++      chipSpacingHorizontal = dp(8)
++      chipSpacingVertical = dp(4)
++      val labels = option.getJSONArray("values")
++      val ids = mutableMapOf<Int, String>()
++      for (index in 0 until labels.length()) {
++        val item = labels.getJSONObject(index)
++        val key = item.getString("value")
++        val chip = Chip(this@NewsWidgetConfigurationActivity, null, com.google.android.material.R.attr.chipStyle).apply {
++          id = View.generateViewId()
++          text = words(item, "name")
++          textSize = 16f
++          typeface = semibold
++          isCheckable = true
++          setEnsureMinTouchTargetSize(true)
++          chipMinHeight = dp(40).toFloat()
++          chipStrokeWidth = dp(1).toFloat()
++          chipStrokeColor = checkedColors(paper.accent, paper.rule)
++          chipBackgroundColor = checkedColors(paper.sheet, paper.bg)
++          setTextColor(checkedColors(paper.title, paper.accent))
++          checkedIconTint = ColorStateList.valueOf(paper.title)
++          isChecked = key == selected
++        }
++        ids[chip.id] = key
++        addView(chip)
++      }
++      setOnCheckedStateChangeListener { _, choices ->
++        choices.firstOrNull()?.let(ids::get)?.let {
++          onPick(it)
++          updatePreview()
++        }
++      }
++    }
++
++  private fun action(caption: String, primary: Boolean, click: () -> Unit): MaterialButton {
++    return MaterialButton(this).apply {
++      text = caption
++      isAllCaps = false
++      textSize = 16f
++      typeface = semibold
++      minHeight = dp(48)
++      cornerRadius = dp(24)
++      backgroundTintList = ColorStateList.valueOf(if (primary) paper.title else paper.bg)
++      setTextColor(if (primary) paper.bg else paper.title)
++      rippleColor = ColorStateList.valueOf(if (primary) paper.accent else paper.rule)
++      setOnClickListener { click() }
++    }
++  }
++
++  private fun label(value: String, size: Float, strong: Boolean, ink: Int = paper.title) =
++    TextView(this).apply {
++      text = value
++      textSize = size
++      typeface = if (strong) semibold else regular
++      setTextColor(ink)
++      includeFontPadding = false
++    }
++
++  private fun TextView.heading() = apply { if (Build.VERSION.SDK_INT >= 28) isAccessibilityHeading = true }
++  private fun column() = LinearLayout(this).apply { orientation = LinearLayout.VERTICAL }
++  private fun LinearLayout.space(height: Int) = addView(View(this@NewsWidgetConfigurationActivity), 1, dp(height))
++  private fun dp(value: Int) = (value * resources.displayMetrics.density + 0.5f).toInt()
++  private fun tr(english: String, arabicText: String) = if (arabic) arabicText else english
++  private fun words(record: JSONObject, key: String) = record.getString(if (arabic) "${key}Ar" else key)
++  private fun checkedColors(checked: Int, unchecked: Int) = ColorStateList(
++    arrayOf(intArrayOf(android.R.attr.state_checked), intArrayOf()),
++    intArrayOf(checked, unchecked)
++  )
++
++  override fun onSaveInstanceState(outState: Bundle) {
++    super.onSaveInstanceState(outState)
++    if (::draft.isInitialized) {
++      outState.putString("section", draft.section)
++      outState.putBoolean("images", draft.images)
++      outState.putString("appearance", draft.appearance)
++    }
++  }
++
++  override fun onDestroy() {
++    previews.cancel()
++    super.onDestroy()
++  }
++}
+diff --git a/node_modules/expo-widgets/android/src/main/java/expo/modules/widgets/WidgetClock.kt b/node_modules/expo-widgets/android/src/main/java/expo/modules/widgets/WidgetClock.kt
+new file mode 100644
+--- /dev/null
++++ b/node_modules/expo-widgets/android/src/main/java/expo/modules/widgets/WidgetClock.kt
+@@ -0,0 +1,94 @@
++package expo.modules.widgets
++
++import android.app.AlarmManager
++import android.app.PendingIntent
++import android.appwidget.AppWidgetManager
++import android.content.BroadcastReceiver
++import android.content.ComponentCallbacks
++import android.content.res.Configuration
++import android.content.Context
++import android.content.Intent
++import android.net.ConnectivityManager
++import android.net.NetworkCapabilities
++
++internal object WidgetClock {
++  private var watching = false
++
++  @Synchronized
++  fun watch(context: Context) {
++    if (watching) return
++    watching = true
++    val app = context.applicationContext
++    app.registerComponentCallbacks(object : ComponentCallbacks {
++      override fun onConfigurationChanged(newConfig: Configuration) {
++        WidgetsUpdater.reloadAll(app)
++      }
++
++      override fun onLowMemory() = Unit
++    })
++    runCatching {
++      app.getSystemService(ConnectivityManager::class.java)?.registerDefaultNetworkCallback(
++        object : ConnectivityManager.NetworkCallback() {
++          override fun onAvailable(network: android.net.Network) { WidgetsUpdater.reloadAll(app) }
++          override fun onLost(network: android.net.Network) { WidgetsUpdater.reloadAll(app) }
++        }
++      )
++    }
++  }
++
++  private data class Entry(val timestamp: Long, val face: Map<String, Any?>, val offlineFace: Map<String, Any?>)
++
++  private fun entries(props: Map<String, Any?>?): List<Entry> {
++    val values = props?.get("timeline") as? List<*> ?: return emptyList()
++    return values.mapNotNull { value ->
++      val row = value as? Map<*, *> ?: return@mapNotNull null
++      val timestamp = (row["timestamp"] as? Number)?.toLong() ?: return@mapNotNull null
++      val face = row["face"] as? Map<*, *> ?: return@mapNotNull null
++      val offlineFace = row["offlineFace"] as? Map<*, *> ?: face
++      return@mapNotNull Entry(
++        timestamp,
++        face.entries.associate { it.key.toString() to it.value },
++        offlineFace.entries.associate { it.key.toString() to it.value }
++      )
++    }
++  }
++
++  fun briefingFace(props: Map<String, Any?>?, now: Long, offline: Boolean): Map<String, Any?>? {
++    if (props?.containsKey("timeline") != true) return props
++    val entry = entries(props).lastOrNull { it.timestamp <= now } ?: return emptyMap()
++    return if (offline) entry.offlineFace else entry.face
++  }
++
++  fun schedule(context: Context) {
++    val alarm = context.getSystemService(AlarmManager::class.java) ?: return
++    val component = widgetProviderComponentName(context, "DailyBriefing")
++    val hasBriefing = AppWidgetManager.getInstance(context).getAppWidgetIds(component).isNotEmpty()
++    val pending = PendingIntent.getBroadcast(
++      context,
++      0,
++      Intent(context, WidgetClockReceiver::class.java),
++      PendingIntent.FLAG_IMMUTABLE or PendingIntent.FLAG_UPDATE_CURRENT
++    )
++    val props = WidgetsLayoutRegistry.props(context, "DailyBriefing")
++    val now = System.currentTimeMillis()
++    val next = if (hasBriefing) entries(props).firstOrNull { it.timestamp > now }?.timestamp else null
++    if (next == null) alarm.cancel(pending)
++    else alarm.setAndAllowWhileIdle(AlarmManager.RTC, next, pending)
++  }
++
++  fun offline(context: Context): Boolean? = runCatching {
++    val connectivity = context.getSystemService(ConnectivityManager::class.java)
++      ?: return@runCatching null
++    val active = connectivity.activeNetwork ?: return@runCatching true
++    val capabilities = connectivity.getNetworkCapabilities(active) ?: return@runCatching null
++    !capabilities.hasCapability(NetworkCapabilities.NET_CAPABILITY_INTERNET)
++  }.getOrNull()
++}
++
++class WidgetClockReceiver : BroadcastReceiver() {
++  override fun onReceive(context: Context, intent: Intent) {
++    val result = goAsync()
++    WidgetClock.schedule(context)
++    WidgetsUpdater.reloadAll(context) { result.finish() }
++  }
++}
+diff --git a/node_modules/expo-widgets/android/src/main/java/expo/modules/widgets/WidgetObject.kt b/node_modules/expo-widgets/android/src/main/java/expo/modules/widgets/WidgetObject.kt
+--- a/node_modules/expo-widgets/android/src/main/java/expo/modules/widgets/WidgetObject.kt
++++ b/node_modules/expo-widgets/android/src/main/java/expo/modules/widgets/WidgetObject.kt
+@@ -24,6 +24,7 @@
+ 
+   fun updateSnapshot(props: Map<String, Any?>) {
+     WidgetsStorage.set(context, "__expo_widgets_${name}_props", props)
++    if (name == "DailyBriefing") WidgetClock.schedule(context)
+     reload()
+   }
+ }
 diff --git a/node_modules/expo-widgets/android/src/main/java/expo/modules/widgets/WidgetProviderNames.kt b/node_modules/expo-widgets/android/src/main/java/expo/modules/widgets/WidgetProviderNames.kt
 --- a/node_modules/expo-widgets/android/src/main/java/expo/modules/widgets/WidgetProviderNames.kt
 +++ b/node_modules/expo-widgets/android/src/main/java/expo/modules/widgets/WidgetProviderNames.kt
-@@ -2,6 +2,33 @@
- 
+@@ -3,6 +3,33 @@
  import android.content.ComponentName
  import android.content.Context
-+
+ 
 +// Save the OS observation made while the launcher owns the screen.
 +@Synchronized
 +internal fun observeBriefingWidgets(context: Context): Map<String, Any> {
@@ -94,17 +814,17 @@ diff --git a/node_modules/expo-widgets/android/src/main/java/expo/modules/widget
 +  }
 +  return observations.last() + ("history" to observations)
 +}
- 
++
  private const val PROVIDER_SUFFIX = "Provider"
  
+ internal fun widgetProviderComponentName(context: Context, widgetName: String): ComponentName {
 diff --git a/node_modules/expo-widgets/android/src/main/java/expo/modules/widgets/WidgetsModule.kt b/node_modules/expo-widgets/android/src/main/java/expo/modules/widgets/WidgetsModule.kt
 --- a/node_modules/expo-widgets/android/src/main/java/expo/modules/widgets/WidgetsModule.kt
 +++ b/node_modules/expo-widgets/android/src/main/java/expo/modules/widgets/WidgetsModule.kt
-@@ -18,6 +18,22 @@
- 
+@@ -19,6 +19,22 @@
    override fun definition() = ModuleDefinition {
      Name("ExpoWidgets")
-+
+ 
 +    Function("canPinBriefing") {
 +      android.appwidget.AppWidgetManager.getInstance(context).isRequestPinAppWidgetSupported
 +    }
@@ -120,9 +840,36 @@ diff --git a/node_modules/expo-widgets/android/src/main/java/expo/modules/widget
 +    }
 +
 +    Function("briefingPresence") { observeBriefingWidgets(context) }
- 
++
      Events(ON_USER_INTERACTION)
  
+     OnStartObserving(ON_USER_INTERACTION) {
+diff --git a/node_modules/expo-widgets/android/src/main/java/expo/modules/widgets/WidgetsUpdater.kt b/node_modules/expo-widgets/android/src/main/java/expo/modules/widgets/WidgetsUpdater.kt
+--- a/node_modules/expo-widgets/android/src/main/java/expo/modules/widgets/WidgetsUpdater.kt
++++ b/node_modules/expo-widgets/android/src/main/java/expo/modules/widgets/WidgetsUpdater.kt
+@@ -27,14 +27,18 @@
+     }
+   }
+ 
+-  fun reloadAll(context: Context) {
++  fun reloadAll(context: Context, onComplete: () -> Unit = {}) {
+     val appContext = context.applicationContext
+ 
+     updateScope.launch {
+-      updateMutex.withLock {
+-        widgetNames(appContext).forEach { name ->
+-          updateWidget(appContext, name)
++      try {
++        updateMutex.withLock {
++          widgetNames(appContext).forEach { name ->
++            updateWidget(appContext, name)
++          }
+         }
++      } finally {
++        onComplete()
+       }
+     }
+   }
 diff --git a/node_modules/expo-widgets/ios/Widgets/EntryView.swift b/node_modules/expo-widgets/ios/Widgets/EntryView.swift
 --- a/node_modules/expo-widgets/ios/Widgets/EntryView.swift
 +++ b/node_modules/expo-widgets/ios/Widgets/EntryView.swift
@@ -137,7 +884,7 @@ diff --git a/node_modules/expo-widgets/ios/Widgets/EntryView.swift b/node_module
      self.entry = entry
 +    if entry.name == "DailyBriefing" { _ = Self.registerBriefingFonts }
    }
-+
+ 
 +  private static let registerBriefingFonts: Void = {
 +    let app = Bundle.main.bundleURL.deletingLastPathComponent().deletingLastPathComponent()
 +    for name in ["SourceSans3-Regular", "SourceSans3-SemiBold", "SourceSans3-Bold"] {
@@ -145,7 +892,7 @@ diff --git a/node_modules/expo-widgets/ios/Widgets/EntryView.swift b/node_module
 +      CTFontManagerRegisterFontsForURL(url as CFURL, .process, nil)
 +    }
 +  }()
- 
++
    private var widgetEnvironment: [String: Any] {
      var env: [String: Any] = getWidgetEnvironment(environment: environment)
 +    env["largeText"] = environment.dynamicTypeSize.isAccessibilitySize
@@ -174,11 +921,10 @@ diff --git a/node_modules/expo-widgets/ios/Widgets/TimelineProvider.swift b/node
 diff --git a/node_modules/expo-widgets/ios/WidgetsModule.swift b/node_modules/expo-widgets/ios/WidgetsModule.swift
 --- a/node_modules/expo-widgets/ios/WidgetsModule.swift
 +++ b/node_modules/expo-widgets/ios/WidgetsModule.swift
-@@ -14,6 +14,18 @@
- 
+@@ -15,6 +15,18 @@
    public func definition() -> ModuleDefinition {
      Name("ExpoWidgets")
-+
+ 
 +    AsyncFunction("briefingPresence") { (promise: Promise) in
 +      WidgetCenter.shared.getCurrentConfigurations { result in
 +        switch result {
@@ -190,6 +936,79 @@ diff --git a/node_modules/expo-widgets/ios/WidgetsModule.swift b/node_modules/ex
 +        }
 +      }
 +    }
- 
++
      Events(onPushToStartTokenReceived, onTokenReceived, onUserInteraction)
  
+     OnStartObserving(onUserInteraction) {
+diff --git a/node_modules/expo-widgets/plugin/build/ios/withWidgetSourceFiles.js b/node_modules/expo-widgets/plugin/build/ios/withWidgetSourceFiles.js
+--- a/node_modules/expo-widgets/plugin/build/ios/withWidgetSourceFiles.js
++++ b/node_modules/expo-widgets/plugin/build/ios/withWidgetSourceFiles.js
+@@ -340,6 +340,7 @@
+ }`;
+     return `import WidgetKit
+ import SwiftUI
++import CoreText
+ import AppIntents
+ internal import ExpoWidgets
+ 
+@@ -411,10 +412,24 @@
+ 
+   init(entry: ${widget.name}TimelineProvider.Entry) {
+     self.entry = entry
++    if entry.name == "LatestNews" { _ = Self.registerNewsFonts }
+   }
+ 
++  private static let registerNewsFonts: Void = {
++    let app = Bundle.main.bundleURL.deletingLastPathComponent().deletingLastPathComponent()
++    for name in ["SourceSans3-Regular", "SourceSans3-SemiBold"] {
++      CTFontManagerRegisterFontsForURL(app.appendingPathComponent(name + ".ttf") as CFURL, .process, nil)
++    }
++  }()
++
+   private var widgetEnvironment: [String: Any] {
+     var env: [String: Any] = getWidgetEnvironment(environment: environment)
++    if entry.name == "LatestNews" {
++      let app = Bundle.main.bundleURL.deletingLastPathComponent().deletingLastPathComponent()
++      env["brandMark"] = app.appendingPathComponent("android-icon-monochrome.png").absoluteString
++    }
++    env["language"] = environment.locale.language.languageCode?.identifier ?? "en"
++    env["largeText"] = environment.dynamicTypeSize.isAccessibilitySize
+     env["timestamp"] = Int(entry.date.timeIntervalSince1970 * 1000)
+     env["configuration"] = [
+   ${Object.entries(configuration?.parameters ?? {}).map(([name, param])=>{
+diff --git a/node_modules/expo-widgets/plugin/src/ios/withWidgetSourceFiles.ts b/node_modules/expo-widgets/plugin/src/ios/withWidgetSourceFiles.ts
+--- a/node_modules/expo-widgets/plugin/src/ios/withWidgetSourceFiles.ts
++++ b/node_modules/expo-widgets/plugin/src/ios/withWidgetSourceFiles.ts
+@@ -368,6 +368,7 @@
+ }`;
+   return `import WidgetKit
+ import SwiftUI
++import CoreText
+ import AppIntents
+ internal import ExpoWidgets
+ 
+@@ -445,10 +446,24 @@
+ 
+   init(entry: ${widget.name}TimelineProvider.Entry) {
+     self.entry = entry
++    if entry.name == "LatestNews" { _ = Self.registerNewsFonts }
+   }
+ 
++  private static let registerNewsFonts: Void = {
++    let app = Bundle.main.bundleURL.deletingLastPathComponent().deletingLastPathComponent()
++    for name in ["SourceSans3-Regular", "SourceSans3-SemiBold"] {
++      CTFontManagerRegisterFontsForURL(app.appendingPathComponent(name + ".ttf") as CFURL, .process, nil)
++    }
++  }()
++
+   private var widgetEnvironment: [String: Any] {
+     var env: [String: Any] = getWidgetEnvironment(environment: environment)
++    if entry.name == "LatestNews" {
++      let app = Bundle.main.bundleURL.deletingLastPathComponent().deletingLastPathComponent()
++      env["brandMark"] = app.appendingPathComponent("android-icon-monochrome.png").absoluteString
++    }
++    env["language"] = environment.locale.language.languageCode?.identifier ?? "en"
++    env["largeText"] = environment.dynamicTypeSize.isAccessibilitySize
+     env["timestamp"] = Int(entry.date.timeIntervalSince1970 * 1000)
+     env["configuration"] = [
+   ${Object.entries(configuration?.parameters ?? {})

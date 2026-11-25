@@ -5,7 +5,8 @@ import { Platform } from 'react-native';
 import { ANALYTICS_EVENTS } from '../constants/analytics';
 import { API_BASE } from '../constants/theme';
 import { analytics } from './analytics';
-import { type Edition, widgetEdition, widgetFace } from './daily-widget';
+import { type Edition, type WidgetFace, widgetEdition, widgetFace } from './daily-widget';
+import { type NewsWidgetProps, newsTimelineTimes, selectNewsWidget } from './news-widget';
 import { createListeners } from './store-plumbing';
 
 type Observation = { home: boolean; accessory: boolean; observed?: number; sequence?: number };
@@ -49,6 +50,8 @@ interface State {
   current?: string;
   complete?: string;
   wallpaper?: boolean;
+  news?: NewsWidgetProps;
+  newsError?: boolean;
 }
 function read(): State {
   try {
@@ -71,10 +74,11 @@ export function widgetAudioUrl(date: string, generated?: string) {
 }
 export function savedWidgetAudio(e: Edition) {
   if (!e.audio) return false;
-  const { briefingAudioFile } = require('./briefing-audio') as typeof import('./briefing-audio');
+  const { briefingAudioFile, validBriefingAudio } =
+    require('./briefing-audio') as typeof import('./briefing-audio');
   try {
     const file = briefingAudioFile(widgetAudioUrl(e.edition, e.audio.generated));
-    return file.exists && file.size > 0;
+    return validBriefingAudio(file);
   } catch {
     // Protected or evicted files cannot be promised to an offline reader.
     return false;
@@ -104,7 +108,8 @@ export function widgetPreview() {
 }
 let queue = Promise.resolve(),
   generation = 0,
-  lastWrite = '';
+  lastWrite = '',
+  lastNewsWrite = '';
 function enqueue(work: () => void | Promise<void>) {
   queue = queue.catch(() => {}).then(work);
   return queue;
@@ -116,15 +121,19 @@ async function render(s: State, token: number) {
     today = new Date(now).toISOString().slice(0, 10);
   const e = s.editions.find((x) => x.revision === s.current);
   const saved = !!e && savedWidgetAudio(e);
-  const at = (t: number) =>
+  const at = (t: number, offline = s.offline) =>
     !e && fetchCount > 0
       ? { loading: true }
-      : widgetFace(e, t, s.verified, s.offline, saved, s.complete ?? null);
+      : widgetFace(e, t, s.verified, offline, saved, s.complete ?? null);
   const face = at(now);
-  const assets =
-    face.date && e
-      ? await (require('./widget-images') as typeof import('./widget-images')).widgetImages(e)
-      : {};
+  let assets: Partial<WidgetFace> = {};
+  if (face.date && e) {
+    try {
+      assets = await (require('./widget-images') as typeof import('./widget-images')).widgetImages(
+        e,
+      );
+    } catch {}
+  }
   if (token !== generation) return;
   const times = [now];
   if (e && face.date) {
@@ -138,21 +147,52 @@ async function render(s: State, token: number) {
       if (t > now && t <= end && !times.includes(t)) times.push(t);
     }
   }
-  const entries = times
-    .sort((a, b) => a - b)
-    .map((t) => {
-      const f = at(t);
-      return {
-        date: new Date(t),
-        props: f.date ? { ...f, ...assets, wallpaper: s.wallpaper === true } : f,
-      };
-    });
+  const withArt = (f: WidgetFace) =>
+    f.date ? { ...f, ...assets, wallpaper: s.wallpaper === true } : f;
+  times.sort((a, b) => a - b);
+  const entries = times.map((t) => ({ date: new Date(t), props: withArt(at(t)) }));
   const key = JSON.stringify(entries.map((r, i) => [i ? r.date.toISOString() : today, r.props]));
   if (key === lastWrite) return;
   if (Platform.OS === 'ios') widget.updateTimeline(entries);
-  else widget.updateSnapshot(entries[0]!.props);
+  else if (face.date) {
+    widget.updateSnapshot({
+      timeline: times.map((t, i) => ({
+        timestamp: i === 0 && e ? Math.min(t, Date.parse(e.edition)) : t,
+        face: withArt(at(t, false)),
+        offlineFace: withArt(at(t, true)),
+      })),
+    });
+  } else widget.updateSnapshot(face);
   lastWrite = key;
 }
+async function renderNews(s: State, token: number) {
+  const widget = (require('../widgets/LatestNews') as typeof import('../widgets/LatestNews'))
+    .default;
+  const props: NewsWidgetProps = { ...s.news, offline: s.offline, error: s.newsError };
+  const key = JSON.stringify([props, !s.news && fetchCount > 0]);
+  if (key === lastNewsWrite) return;
+  if (props.stories) {
+    try {
+      const { newsWidgetImages } =
+        require('./news-widget-images') as typeof import('./news-widget-images');
+      await newsWidgetImages(props);
+    } catch {}
+  }
+  if (token !== generation) return;
+  props.loading = !props.generated && fetchCount > 0;
+  if (Platform.OS === 'ios') {
+    widget.updateTimeline(
+      newsTimelineTimes(Date.now(), props.generated).map((time) => ({
+        date: new Date(time),
+        props,
+      })),
+    );
+  } else {
+    widget.updateSnapshot(props);
+  }
+  lastNewsWrite = key;
+}
+
 export const widgetEditionChanges = createListeners();
 function update(change: (s: State) => void) {
   if (!widgetSupported()) return Promise.resolve();
@@ -164,8 +204,10 @@ function update(change: (s: State) => void) {
     storage().setItemSync(STORE, JSON.stringify(s));
     widgetEditionChanges.emit();
     await render(s, token);
+    await renderNews(s, token);
   }).catch(() => {
     lastWrite = '';
+    lastNewsWrite = '';
   });
 }
 export function syncWidget(feed: FeedResponse) {
@@ -174,6 +216,8 @@ export function syncWidget(feed: FeedResponse) {
     if (!Number.isFinite(stamp) || stamp < s.stamp) return;
     const edition = feed.widgetCandidate?.edition ?? new Date(stamp).toISOString().slice(0, 10);
     s.stamp = stamp;
+    s.news = selectNewsWidget(feed);
+    s.newsError = false;
     const e = widgetEdition(feed.widgetCandidate, stamp);
     const previous = s.editions.find((x) => x.revision === s.current);
     if (e) {
@@ -201,9 +245,24 @@ export function checkingWidgetEdition(active: boolean) {
   fetchCount = Math.max(0, fetchCount + (active ? 1 : -1));
   const isFetching = fetchCount > 0;
   if (wasFetching === isFetching) return;
-  if (!widgetSupported() || read().current) return;
+  if (!widgetSupported()) return;
+  const { current, news } = read();
+  if (current && news) return;
   void update(() => {});
 }
+export const widgetFeedError = () =>
+  update((s) => {
+    s.newsError = true;
+  });
+
+/** Existing installations can paint headlines from their durable app feed. */
+export function seedWidgetNews(feed: FeedResponse | null) {
+  if (!feed || !widgetSupported() || read().news) return;
+  return update((s) => {
+    if (!s.news) s.news = selectNewsWidget(feed);
+  });
+}
+
 export const refreshWidget = (offline?: boolean) =>
   update((s) => {
     if (offline !== undefined) {
@@ -217,6 +276,7 @@ export const completedWidgetAudio = (generated: string) =>
 export function eraseWidget() {
   generation++;
   lastWrite = '';
+  lastNewsWrite = '';
   fetchCount = 0;
   if (!widgetSupported()) return Promise.resolve();
   return enqueue(() => {
@@ -226,6 +286,9 @@ export function eraseWidget() {
       require('../widgets/DailyBriefing') as typeof import('../widgets/DailyBriefing')
     ).default;
     widget.updateSnapshot({});
+    (
+      require('../widgets/LatestNews') as typeof import('../widgets/LatestNews')
+    ).default.updateSnapshot({});
     (require('./widget-images') as typeof import('./widget-images')).removeWidgetImages();
   });
 }

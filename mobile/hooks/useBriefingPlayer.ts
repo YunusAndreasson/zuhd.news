@@ -18,7 +18,12 @@ import { analytics } from '../lib/analytics';
 import { heardPct } from '../lib/analytics-buckets';
 import { resolveAudioDuration } from '../lib/audio-duration';
 import { resolveDownloadedAudioSource } from '../lib/audio-source';
-import { briefingAudioFile, briefingPartialFile, deleteBriefingAudio } from '../lib/briefing-audio';
+import {
+  briefingAudioFile,
+  briefingPartialFile,
+  deleteBriefingAudio,
+  validBriefingAudio,
+} from '../lib/briefing-audio';
 import {
   noteBriefingHeard,
   readSavedPlace,
@@ -67,7 +72,7 @@ function resolveBriefingSource(
 ): Promise<string> {
   try {
     const file = briefingAudioFile(url);
-    if (file.exists && file.size > 0) return Promise.resolve(file.uri);
+    if (validBriefingAudio(file)) return Promise.resolve(file.uri);
     if (localOnly) return Promise.reject(new Error('Saved recording unavailable'));
     // Only completed files use the cache name. Cancellation or process death
     // can leave a partial file behind; it must never be mistaken for audio.
@@ -81,11 +86,11 @@ function resolveBriefingSource(
         // Fetched whether it is kept or not: the data figure in settings
         // counts the briefing, the largest thing the app downloads.
         const bytes = downloaded.size;
-        if (!bytes) throw new Error('Empty briefing download');
-        recordBytes(bytes);
+        if (bytes) recordBytes(bytes);
+        if (!validBriefingAudio(downloaded)) throw new Error('Invalid briefing download');
         // Both files are in the cache directory. Finish the rename in this
         // turn so an erase or a new recording cannot run ahead of it.
-        if (file.exists && file.size > 0) downloaded.delete();
+        if (validBriefingAudio(file)) downloaded.delete();
         else downloaded.moveSync(file, { overwrite: true });
         // One recording on the device: the one just saved.
         deleteBriefingAudio({ keep: file });

@@ -44,23 +44,20 @@ it('shows the iPhone guide and checks actual placement on leaving setup', () => 
   view.unmount();
   expect(observeWidget).toHaveBeenCalledTimes(1);
 });
-it.each([true, false])(
-  'requests Android pinning and handles launcher acceptance %s',
-  (accepted) => {
-    rn.Platform.OS = 'android';
-    jest.mocked(canPinWidget).mockReturnValue(true);
-    jest.mocked(pinWidget).mockReturnValue(accepted);
-    render(<WidgetSetup done={() => {}} />);
-    fireEvent.click(screen.getByText('Add to Home screen'));
-    expect(pinWidget).toHaveBeenCalledTimes(1);
-    expect(!!screen.queryByText('Open Widgets and find zuhd.news.')).toBe(!accepted);
-    expect(analytics.track).toHaveBeenCalledWith('Widget Setup Started', {
-      source: 'menu',
-      method: 'android_pin',
-    });
-    expect(analytics.track).not.toHaveBeenCalledWith('Widget Presence Verified', expect.anything());
-  },
-);
+it.each([true, false])('requests Android pinning and handles request dispatch %s', (dispatched) => {
+  rn.Platform.OS = 'android';
+  jest.mocked(canPinWidget).mockReturnValue(true);
+  jest.mocked(pinWidget).mockReturnValue(dispatched);
+  render(<WidgetSetup done={() => {}} />);
+  fireEvent.click(screen.getByText('Add to Home screen'));
+  expect(pinWidget).toHaveBeenCalledTimes(1);
+  expect(!!screen.queryByText('Open Widgets and find zuhd.news.')).toBe(!dispatched);
+  expect(analytics.track).toHaveBeenCalledWith('Widget Setup Started', {
+    source: 'menu',
+    method: 'android_pin',
+  });
+  expect(analytics.track).not.toHaveBeenCalledWith('Widget Presence Verified', expect.anything());
+});
 it('offers manual placement immediately on a launcher without pin support', () => {
   rn.Platform.OS = 'android';
   jest.mocked(canPinWidget).mockReturnValue(false);

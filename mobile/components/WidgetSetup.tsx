@@ -43,19 +43,19 @@ export function WidgetSetup({ done }: { done: () => void }) {
   return (
     <View style={styles.page}>
       <Text variant="sectionHeading">
-        {guide ? 'Add to your Home Screen' : 'Daily briefing widget'}
+        {guide ? 'Add to your Home Screen' : 'Home Screen widgets'}
       </Text>
       {guide ? (
         (ios
           ? [
               'Touch and hold an empty area of your Home Screen.',
               'Tap Edit, then Add Widget. On older versions, tap +.',
-              'Search for zuhd.news, choose Daily briefing, then tap Add Widget.',
+              'Search for zuhd.news, choose Latest news or Daily briefing, then tap Add Widget.',
             ]
           : [
               'Touch and hold an empty area of your Home screen.',
               'Open Widgets and find zuhd.news.',
-              'Touch and hold Daily briefing, then place it on your Home screen.',
+              'Touch and hold Latest news or Daily briefing, then place it on your Home screen.',
             ]
         ).map((line, i) => (
           <View key={line} style={styles.row}>
@@ -66,13 +66,21 @@ export function WidgetSetup({ done }: { done: () => void }) {
           </View>
         ))
       ) : (
-        <Text variant="body">
-          {face.subject
-            ? 'See how a market moved over seven days. Tap to listen when the briefing is available, or open the dated chart.'
-            : face.date
-              ? 'See the edition and its listening time. Tap to open the briefing.'
-              : 'Open the app when connected to load an edition.'}
-        </Text>
+        <>
+          <MenuRow
+            title="Latest news"
+            description="Headlines by section, with optional maps."
+            onPress={() => setGuide(true)}
+          />
+          <Text variant="sectionHeading">Daily briefing</Text>
+          <Text variant="body">
+            {face.subject
+              ? 'See how a market moved over seven days. Tap to listen when the briefing is available, or open the dated chart.'
+              : face.date
+                ? 'See the edition and its listening time. Tap to open the briefing.'
+                : 'Open the app when connected to load an edition.'}
+          </Text>
+        </>
       )}
       <Pressable
         accessibilityRole="link"

@@ -1,4 +1,5 @@
-import { File, Paths } from 'expo-file-system';
+import { File, FileMode, Paths } from 'expo-file-system';
+import { hasMp3Frames, mp3AudioOffset } from './mp3-format';
 
 /**
  * The briefing's audio on the device. Each recording is about 4 MB, and a
@@ -12,6 +13,28 @@ const PREFIX = 'briefing-';
 /** Where a completed download of `url` lives. Only a complete file takes it. */
 export function briefingAudioFile(url: string): File {
   return new File(Paths.cache, `${PREFIX}${encodeURIComponent(url)}.mp3`);
+}
+
+/** Check completed downloads, including files saved by older versions. */
+export function validBriefingAudio(file: File): boolean {
+  try {
+    if (!file.exists || file.size < 10) return false;
+    const handle = file.open(FileMode.ReadOnly);
+    try {
+      const offset = mp3AudioOffset(handle.readBytesSync(10));
+      if (offset < 0 || offset >= file.size) return false;
+      handle.offset = offset;
+      const sampleSize = 8_192;
+      if (!hasMp3Frames(handle.readBytesSync(sampleSize))) return false;
+      if (file.size - offset <= sampleSize) return true;
+      handle.offset = file.size - sampleSize;
+      return hasMp3Frames(handle.readBytesSync(sampleSize));
+    } finally {
+      handle.close();
+    }
+  } catch {
+    return false;
+  }
 }
 
 /** A download in progress, never mistaken for audio. */
