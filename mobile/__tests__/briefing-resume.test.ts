@@ -27,7 +27,22 @@ const initialStatus: PlaybackStatus = {
   error: null,
 };
 let mockStatus = initialStatus;
-const mockCachedAudio = new Map<string, number>();
+const mockCachedAudio = new Map<string, Uint8Array>();
+const mockMp3 = new Uint8Array(834);
+mockMp3.set([255, 251, 144, 0], 0);
+mockMp3.set([255, 251, 144, 0], 417);
+
+function mockOpenAudio(bytes: Uint8Array) {
+  return {
+    offset: 0,
+    readBytesSync(length: number) {
+      const next = bytes.subarray(this.offset, this.offset + length);
+      this.offset += next.length;
+      return next;
+    },
+    close() {},
+  };
+}
 const mockListeners = new Set<(status: PlaybackStatus) => void>();
 const mockPlayer = {
   isLoaded: true,
@@ -80,17 +95,21 @@ jest.mock('expo-audio', () => ({
 }));
 jest.mock('expo-file-system', () => ({
   Paths: { cache: '/cache' },
+  FileMode: { ReadOnly: 'readOnly' },
   File: Object.assign(
     class {
       get exists() {
         return mockCachedAudio.has(this.uri);
       }
       get size() {
-        return mockCachedAudio.get(this.uri) ?? 0;
+        return mockCachedAudio.get(this.uri)?.length ?? 0;
       }
       uri: string;
       constructor(directory: string, name: string) {
         this.uri = `${directory}/${name}`;
+      }
+      open() {
+        return mockOpenAudio(mockCachedAudio.get(this.uri) ?? new Uint8Array());
       }
       delete() {
         mockCachedAudio.delete(this.uri);
@@ -99,9 +118,11 @@ jest.mock('expo-file-system', () => ({
     {
       downloadFileAsync: jest.fn(async () => ({
         uri: 'file:///briefing.mp3',
-        size: 13,
+        exists: true,
+        size: mockMp3.length,
+        open: () => mockOpenAudio(mockMp3),
         moveSync: jest.fn((destination: File) => {
-          mockCachedAudio.set(destination.uri, 13);
+          mockCachedAudio.set(destination.uri, mockMp3);
         }),
         delete: jest.fn(),
       })),
@@ -395,26 +416,31 @@ it('publishes only completed downloads under the reusable MP3 cache name', async
   expect(mockPlayer.replace).toHaveBeenCalledWith(expect.stringMatching(/\.mp3$/));
 });
 
-it('plays the fresh download on the first tap when an empty MP3 was left in cache', async () => {
-  const file = briefingAudioFile(`${API_BASE}/audio/briefing-2026-09-27.mp3`);
-  mockCachedAudio.set(file.uri, 0);
-  const hook = renderHook(() => useBriefingPlayer('2026-09-27'));
-  await act(async () => {
-    await hook.result.current.toggle();
-  });
-  expect(File.downloadFileAsync).toHaveBeenCalledTimes(1);
-  expect(mockPlayer.replace).toHaveBeenCalledWith(file.uri);
-  expect(file.size).toBeGreaterThan(0);
-});
+it.each([0, 1024])(
+  'plays the fresh download on the first tap after finding %d invalid bytes in cache',
+  async (size) => {
+    const file = briefingAudioFile(`${API_BASE}/audio/briefing-2026-09-27.mp3`);
+    mockCachedAudio.set(file.uri, new Uint8Array(size));
+    const hook = renderHook(() => useBriefingPlayer('2026-09-27'));
+    await act(async () => {
+      await hook.result.current.toggle();
+    });
+    expect(File.downloadFileAsync).toHaveBeenCalledTimes(1);
+    expect(mockPlayer.replace).toHaveBeenCalledWith(file.uri);
+    expect(file.size).toBeGreaterThan(0);
+  },
+);
 
 it('cannot put a downloaded MP3 back after the reader erases it', async () => {
   let allowMove!: () => void;
   const moving = new Promise<void>((resolve) => {
     allowMove = resolve;
   });
-  const publish = (file: File) => mockCachedAudio.set(file.uri, 13);
+  const publish = (file: File) => mockCachedAudio.set(file.uri, mockMp3);
   jest.mocked(File.downloadFileAsync).mockResolvedValueOnce({
-    size: 13,
+    exists: true,
+    size: mockMp3.length,
+    open: () => mockOpenAudio(mockMp3),
     move: async (file: File) => {
       await moving;
       publish(file);
@@ -754,7 +780,7 @@ function Host({ briefing }: { briefing: FeedResponse['briefing'] }) {
 async function paused() {
   mockResponse = null;
   const file = briefingAudioFile(widgetAudioUrl(a.date, a.generated));
-  mockCachedAudio.set(file.uri, 240);
+  mockCachedAudio.set(file.uri, mockMp3);
   const host = render(createElement(Host, { briefing: a }));
   await act(async () => {});
   expect(mockPlayer.replace).toHaveBeenCalledWith(file.uri);

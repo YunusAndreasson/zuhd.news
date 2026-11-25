@@ -6,9 +6,13 @@ module.exports = function withBriefingGallery(config) {
   config = withXcodeProject(config, (mod) => {
     const project = mod.modResults;
     IOSConfig.XcodeUtils.ensureGroupRecursively(project, 'Resources');
-    for (const name of ['example-chart.png', 'briefing-cover.jpg']) {
+    for (const name of [
+      'widget/example-chart.png',
+      'widget/briefing-cover.jpg',
+      'android-icon-monochrome.png',
+    ]) {
       IOSConfig.XcodeUtils.addResourceFileToGroup({
-        filepath: '../assets/widget/' + name,
+        filepath: '../assets/' + name,
         groupName: 'Resources',
         project,
         isBuildFile: true,

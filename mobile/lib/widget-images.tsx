@@ -1,13 +1,31 @@
 import { Asset } from 'expo-asset';
 import { Directory, File } from 'expo-file-system';
 import { widgetsDirectory } from 'expo-widgets';
-import { Circle, Group, Path } from 'react-native-skia';
+import { Circle, Group, Path, Skia } from 'react-native-skia';
 import { bakeSprite } from '../components/globe/sprite-bake';
+import { DARK_COLORS, LIGHT_COLORS } from '../constants/theme';
 import { sparkPoints } from './cards/spark';
 import type { Edition, WidgetFace } from './daily-widget';
 
-function publish(file: File, bytes: Uint8Array) {
-  if (file.exists) return;
+export async function validWidgetImage(file: File) {
+  try {
+    if (!file.exists || !file.size || file.size > 1_048_576) return false;
+    const data = Skia.Data.fromBytes(await file.bytes());
+    const encoded = Skia.Image.MakeFromEncoded(data);
+    if (!encoded) return false;
+    try {
+      const raster = await encoded.makeRasterImage();
+      if (raster !== encoded) raster.dispose();
+      return true;
+    } finally {
+      encoded.dispose();
+    }
+  } catch {
+    return false;
+  }
+}
+
+export function publishWidgetImage(file: File, bytes: Uint8Array) {
   const part = new File(file.parentDirectory, file.name + '.part');
   part.writeSync(bytes);
   part.moveSync(file, { overwrite: true });
@@ -17,13 +35,17 @@ export async function widgetImages(edition: Edition): Promise<Partial<WidgetFace
   const dir = new Directory(widgetsDirectory);
   dir.create({ idempotent: true, intermediates: true });
   const cover = new File(dir, 'briefing-orbit-v1.jpg');
-  if (!cover.exists) {
+  let hasCover = await validWidgetImage(cover);
+  if (!hasCover) {
     const asset = await Asset.fromModule(
       require('../assets/widget/briefing-cover.jpg'),
     ).downloadAsync();
-    if (asset.localUri) publish(cover, await new File(asset.localUri).bytes());
+    if (asset.localUri) {
+      publishWidgetImage(cover, await new File(asset.localUri).bytes());
+      hasCover = true;
+    }
   }
-  const assets: Partial<WidgetFace> = cover.exists ? { cover: cover.uri } : {};
+  const assets: Partial<WidgetFace> = hasCover ? { cover: cover.uri } : {};
   const c = edition.close,
     obs = c?.observations;
   if (!c || !obs?.length) return assets;
@@ -39,12 +61,12 @@ export async function widgetImages(edition: Edition): Promise<Partial<WidgetFace
   );
   const down = c.value < first;
   for (const [key, color] of [
-    ['chartLight', down ? '#963c43' : '#35684a'],
-    ['chartDark', down ? '#e8a2aa' : '#9ac6a9'],
-    ['chartMono', '#aaaaaa'],
+    ['chartLight', down ? LIGHT_COLORS.toneUnfavorableText : LIGHT_COLORS.toneFavorableText],
+    ['chartDark', down ? DARK_COLORS.toneUnfavorableText : DARK_COLORS.toneFavorableText],
+    ['chartMono', DARK_COLORS.accent],
   ] as const) {
     const file = new File(dir, `close-${c.sourceRevision}-${key}.png`);
-    if (!file.exists) {
+    if (!(await validWidgetImage(file))) {
       const last = points.at(-1);
       if (!last) continue;
       const path = points.map((point, i) => `${i ? 'L' : 'M'}${point.x} ${point.y}`).join(' ');
@@ -64,7 +86,7 @@ export async function widgetImages(edition: Edition): Promise<Partial<WidgetFace
       );
       if (!image) continue;
       try {
-        publish(file, await image.encodeToBytes());
+        publishWidgetImage(file, await image.encodeToBytes());
       } finally {
         image.dispose();
       }
@@ -88,5 +110,5 @@ export function removeWidgetImages() {
   const dir = new Directory(widgetsDirectory);
   if (dir.exists)
     for (const f of dir.list())
-      if (f instanceof File && /^(close-|briefing-orbit-)/.test(f.name)) f.delete();
+      if (f instanceof File && /^(close-|briefing-orbit-|news-map-)/.test(f.name)) f.delete();
 }

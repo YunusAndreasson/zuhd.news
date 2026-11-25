@@ -8,7 +8,7 @@ export { readStarter } from './starter-cache';
 
 import { rememberStarter } from './starter-cache';
 import { isFeedResponse } from './validate';
-import { checkingWidgetEdition, syncWidget } from './widget-store';
+import { checkingWidgetEdition, syncWidget, widgetFeedError } from './widget-store';
 
 /**
  * The one place that knows where the feed comes from — the network endpoint
@@ -66,6 +66,9 @@ export async function downloadFeed(opts: FetchJsonOptions = {}): Promise<FeedRes
     }
     if (options.signal?.aborted) throw new Error('Feed fetch cancelled');
     return feed;
+  } catch (error) {
+    if (!options.signal?.aborted) void widgetFeedError();
+    throw error;
   } finally {
     checkingWidgetEdition(false);
   }

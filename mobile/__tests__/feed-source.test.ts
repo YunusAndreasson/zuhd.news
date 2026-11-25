@@ -26,6 +26,7 @@ jest.mock('../lib/widget-store', () => ({
   checkingWidgetEdition: jest.fn(),
   refreshWidget: jest.fn(),
   syncWidget: jest.fn(),
+  widgetFeedError: jest.fn(),
 }));
 import { fetchFeed } from '../lib/feed-source';
 

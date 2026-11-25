@@ -1,0 +1,64 @@
+{
+  "section": {
+    "title": "Stories",
+    "type": "enum",
+    "default": "latest",
+    "values": [
+      {
+        "value": "latest",
+        "name": "Latest news",
+        "nameAr": "آخر الأخبار"
+      },
+      {
+        "value": "politics",
+        "name": "Politics",
+        "nameAr": "سياسة"
+      },
+      {
+        "value": "economy",
+        "name": "Economy",
+        "nameAr": "اقتصاد"
+      },
+      {
+        "value": "science",
+        "name": "Science",
+        "nameAr": "علوم"
+      },
+      {
+        "value": "tech",
+        "name": "Technology",
+        "nameAr": "تقنية"
+      }
+    ],
+    "titleAr": "الأخبار"
+  },
+  "images": {
+    "title": "Show maps",
+    "type": "boolean",
+    "default": true,
+    "titleAr": "عرض الخرائط"
+  },
+  "appearance": {
+    "title": "Appearance",
+    "type": "enum",
+    "default": "system",
+    "values": [
+      {
+        "value": "system",
+        "name": "System",
+        "nameAr": "النظام"
+      },
+      {
+        "value": "light",
+        "name": "Light",
+        "nameAr": "فاتح"
+      },
+      {
+        "value": "dark",
+        "name": "Dark",
+        "nameAr": "داكن"
+      }
+    ],
+    "titleAr": "المظهر"
+  }
+}

@@ -39,12 +39,26 @@ jest.mock(
   }),
   { virtual: true },
 );
+const mockNewsTimeline = jest.fn();
+const mockNewsSnapshot = jest.fn();
+jest.mock(
+  '../widgets/LatestNews',
+  () => ({
+    __esModule: true,
+    default: {
+      updateTimeline: (...args: unknown[]) => mockNewsTimeline(...args),
+      updateSnapshot: (...args: unknown[]) => mockNewsSnapshot(...args),
+    },
+  }),
+  { virtual: true },
+);
 jest.mock('../lib/widget-images', () => ({
   widgetImages: () => Promise.resolve({}),
   removeWidgetImages: () => mockRemove(),
 }));
 jest.mock('../lib/briefing-audio', () => ({
   briefingAudioFile: () => ({ exists: false, size: 0 }),
+  validBriefingAudio: () => false,
 }));
 jest.mock('../lib/analytics', () => ({ analytics: { track: jest.fn() } }));
 const generated = '2026-11-23T05:46:00Z';
@@ -94,6 +108,7 @@ it('schedules rollover and expiry, keeps an archive and clears private state on 
   expect(widgetPreview()).toEqual({});
   expect(mockSnapshot).toHaveBeenCalledWith({});
   expect(mockRemove).toHaveBeenCalled();
+  expect(mockNewsSnapshot).toHaveBeenCalledWith({});
 });
 it('measures OS transitions separately and preserves the native observation time', async () => {
   mockPresence.mockReturnValue({ home: false, accessory: true });
@@ -175,5 +190,28 @@ it('expires the Android snapshot at its original verification deadline', async (
     expect(widgetPreview()).toEqual({});
   } finally {
     Platform.OS = original;
+  }
+});
+
+it('publishes the briefing rollover to Android for launcher-side selection', async () => {
+  const rn = jest.requireMock('react-native');
+  const before = rn.Platform.OS;
+  rn.Platform.OS = 'android';
+  try {
+    await eraseWidget();
+    await syncWidget(feed('2026-11-23T15:55Z', candidate));
+    const snapshot = mockSnapshot.mock.lastCall?.[0] as {
+      timeline: { timestamp: number; face: { playable?: boolean; action?: string } }[];
+    };
+    expect(snapshot.timeline[0]?.face.playable).toBe(true);
+    expect(snapshot.timeline[1]).toMatchObject({
+      timestamp: Date.parse('2026-11-24T00:00:00Z'),
+      face: { playable: false, action: 'Previous edition' },
+    });
+    expect(mockNewsSnapshot).toHaveBeenLastCalledWith(
+      expect.objectContaining({ generated: Date.parse('2026-11-23T15:55Z') }),
+    );
+  } finally {
+    rn.Platform.OS = before;
   }
 });

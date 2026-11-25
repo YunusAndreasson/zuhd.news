@@ -19,6 +19,7 @@ import { ThemeProvider, useTheme } from '../hooks/useTheme';
 import { analytics } from '../lib/analytics';
 import { awayBucket, utcDay } from '../lib/analytics-buckets';
 import { registerBackgroundTask } from '../lib/background-fetch';
+import { feedCache } from '../lib/feed-source';
 import { startFirsts } from '../lib/firsts';
 import { sendInstallAttribution } from '../lib/install-attribution';
 import { installKind, openInstallRecord, trackFirstOpen } from '../lib/install-record';
@@ -37,7 +38,7 @@ import {
 } from '../lib/query-client';
 import { dropRetiredFound, startReadingVisit } from '../lib/read-store';
 import { navigationIntegration, sentryEnabled } from '../lib/sentry';
-import { observeWidget, refreshWidget } from '../lib/widget-store';
+import { observeWidget, refreshWidget, seedWidgetNews } from '../lib/widget-store';
 
 configureReanimatedLogger({ level: ReanimatedLogLevel.warn, strict: false });
 
@@ -108,6 +109,7 @@ function RootLayout() {
   // a launch there waits for the reader to bring it up.
   useEffect(() => {
     if (AppState.currentState === 'active') {
+      void seedWidgetNews(feedCache.readSync());
       void observeWidget();
       void refreshWidget();
       sendColdOpen();

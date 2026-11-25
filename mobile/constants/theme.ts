@@ -1,7 +1,10 @@
 import type { Category } from '@shared/types';
 import { type TextProps as RNTextProps, StyleSheet, type TextStyle } from 'react-native';
 import { Easing, FadeIn, FadeOut, ReduceMotion } from 'react-native-reanimated';
+import { DARK_PAPER, LIGHT_PAPER, SPACING } from './paper';
 import { ANDROID_TEXT_BASE } from './platform';
+
+export { SPACING } from './paper';
 
 // ---------------------------------------------------------------------------
 // Preference types
@@ -79,20 +82,20 @@ export const WHITE = '#ffffff';
 // ---------------------------------------------------------------------------
 
 export const DARK_COLORS = {
-  bg: '#0F0F11',
+  bg: DARK_PAPER.bg,
   text: '#e8e8e8',
-  textSecondary: '#999',
+  textSecondary: DARK_PAPER.textSecondary,
   // `accent` is a soft text tier that sits between `text` and
   // `textSecondary` in luminance — used by the `lead` and `sectionHeading`
   // variants and as a structural fill in SVG blocks. Naming note: this is
   // NOT the brand accent. The brand accent is `dome` (Dome of the Rock
   // gold). The name is retained for legacy reasons; new code can read it
   // as "soft text / second voice".
-  accent: '#b3b3b3',
-  rule: '#2e2e2e',
-  textEmphasis: '#FAFAFA',
+  accent: DARK_PAPER.accent,
+  rule: DARK_PAPER.rule,
+  textEmphasis: DARK_PAPER.textEmphasis,
   dome: '#c9a84c', // Dome of the Rock gold: Makkah's light and the search caret, never text
-  sheetBg: '#161619',
+  sheetBg: DARK_PAPER.sheetBg,
   // 0.88 alpha keeps `labelSm` text WCAG AA across the brightest composites
   // on the globe (over a `colors.dome` hotspot glow). The base luminance
   // also matters: the previous rgb(50,50,50) at α=0.88 composited to ~46
@@ -186,30 +189,30 @@ export const DARK_COLORS = {
 } as const satisfies Record<string, string>;
 
 export const LIGHT_COLORS = {
-  bg: '#f5f2ed',
+  bg: LIGHT_PAPER.bg,
   text: '#2a2a2a',
   // Clears AA on the player and on a pill as well as on the sheet: at #666
   // the briefing's date and length read 4.1:1 on the light player.
-  textSecondary: '#626262',
+  textSecondary: LIGHT_PAPER.textSecondary,
   // See DARK_COLORS.accent for the naming note (this is *not* the brand
   // accent — `dome` is). Light-mode value sits between `text` and
   // `textSecondary` in luminance the same way as dark: about two thirds of
   // the way down, in contrast. It was #5a5a5a, 6.2:1 beside secondary's 5.1,
   // so the "second voice" and the quiet one were one grey on cream (and a
   // second chart series drew in the third's ink).
-  accent: '#4f4f4f',
+  accent: LIGHT_PAPER.accent,
   // A hairline as strong on cream as `#2e2e2e` is on the dark sheet (OKLab
   // ΔL 0.09 against 0.10). It was #d8d4ce, half that: 1.19:1 on `sheetBg`,
   // where the sheet's handle, the toggles' off track and every row rule sit.
-  rule: '#cfcac2',
-  textEmphasis: '#1a1a1a',
+  rule: LIGHT_PAPER.rule,
+  textEmphasis: LIGHT_PAPER.textEmphasis,
   // Dome darkens significantly on cream — the dark-mode #c9a84c gold sits
   // at ~2:1 against `bg`, invisible on it. A deeper bronze-gold (~5:1 on bg)
   // keeps Makkah's light and the search caret seen. No text is set in it:
   // gold on a rank read as a medal. Both modes still use one gold,
   // hue-aligned.
   dome: '#7a5e1a',
-  sheetBg: '#eae6e0',
+  sheetBg: LIGHT_PAPER.sheetBg,
   pillBg: 'rgba(226,222,216,0.88)',
   /** See DARK_COLORS.playerBg: `pillBg` over `sheetBg`, solid. */
   playerBg: '#e3dfd9',
@@ -523,22 +526,6 @@ export function typographyFor(sizeScale: number, widthScale: number): Typography
   typographies.set(key, next);
   return next;
 }
-
-export const SPACING = {
-  xxs: 2,
-  xs: 4,
-  sm: 8,
-  smPlus: 10,
-  md: 16,
-  lg: 24,
-  xl: 32,
-  xxl: 48,
-  screenPadding: 18,
-  /** The reading column's inset: the story card, the dock, the gauges and
-   *  the cards. A few pixels wider a column than `screenPadding`, which the
-   *  platform sheets keep. */
-  articlePadding: 14,
-} as const;
 
 /** Named `gap` tiers for Stack. Derived from SPACING but intent-named so layout
  *  code doesn't leak raw spacing values. */

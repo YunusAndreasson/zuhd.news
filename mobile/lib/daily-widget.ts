@@ -142,6 +142,8 @@ export function datedCard(c: Close): GraphCard {
 }
 
 export interface WidgetFace {
+  /** Android stores the dated faces together for launcher-side selection. */
+  timeline?: { timestamp: number; face: WidgetFace; offlineFace: WidgetFace }[];
   date?: string;
   shortDate?: string;
   subject?: string;
