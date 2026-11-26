@@ -1,98 +1,5 @@
 [
   {
-    "timestamp": "2026-11-05T05:14:25.359Z",
-    "candidateCount": 10,
-    "candidates": [
-      {
-        "slug": "2026-11-04-trump-iran-war-end-whenever-i-want-congress-war-powers",
-        "title": "Trump Claims Iran War Control",
-        "category": "politics",
-        "eventCoverage": 455,
-        "importance": 6
-      },
-      {
-        "slug": "2026-11-05-hubert-aiwanger-found-dead-berlin-hotel",
-        "title": "Aiwanger Found Dead",
-        "category": "politics",
-        "eventCoverage": 215,
-        "importance": 6
-      },
-      {
-        "slug": "2026-11-05-herzog-certifies-results-coalition-talks-netanyahu-arab-parties",
-        "title": "Herzog Opens Coalition Talks",
-        "category": "politics",
-        "eventCoverage": 100,
-        "importance": 6
-      },
-      {
-        "slug": "2026-11-04-colombia-law-rebels-not-political-actors",
-        "title": "Colombia Outlaws Rebel Negotiations",
-        "category": "politics",
-        "eventCoverage": 0,
-        "importance": 6
-      },
-      {
-        "slug": "2026-11-05-india-crude-imports-43-countries-uae-hormuz",
-        "title": "India Diversifies Crude Imports",
-        "category": "economy",
-        "eventCoverage": 0,
-        "importance": 6
-      },
-      {
-        "slug": "2026-11-05-pboc-digital-yuan-overseas-banks-cbets",
-        "title": "Digital Yuan Goes Offshore",
-        "category": "economy",
-        "eventCoverage": 0,
-        "importance": 6
-      },
-      {
-        "slug": "2026-11-05-chashma-canal-closure-taunsa-farmers-water-theft",
-        "title": "Chashma Canal Closure Starves Farms",
-        "category": "economy",
-        "eventCoverage": 0,
-        "importance": 6
-      },
-      {
-        "slug": "2026-11-05-cemetery-skeletons-climate-shocks-rickets-industrial-revolution",
-        "title": "Climate Linked to Rickets",
-        "category": "science",
-        "eventCoverage": 0,
-        "importance": 6
-      },
-      {
-        "slug": "2026-11-05-claude-code-product-lead-cat-wu-joins-openai",
-        "title": "Claude Code Lead Joins OpenAI",
-        "category": "tech",
-        "eventCoverage": 0,
-        "importance": 6
-      },
-      {
-        "slug": "2026-11-05-nasa-x-70-fractal-experimental-aircraft",
-        "title": "NASA Unveils X-70 Fractal",
-        "category": "tech",
-        "eventCoverage": 0,
-        "importance": 6
-      }
-    ],
-    "selected": {
-      "slug": "2026-11-05-hubert-aiwanger-found-dead-berlin-hotel",
-      "title": "Aiwanger Found Dead",
-      "category": "politics",
-      "body": "Hubert Aiwanger, 55, was found dead in his hotel",
-      "eventCoverage": 215,
-      "importance": 6
-    },
-    "skipReason": null,
-    "sent": true,
-    "pushTitle": "Breaking News",
-    "pushBody": "Bavaria deputy premier Hubert Aiwanger found dead in Berlin hotel, police say",
-    "response": {
-      "pushed": 1,
-      "skipped": 0,
-      "tokens": 5
-    }
-  },
-  {
     "timestamp": "2026-11-05T10:14:44.744Z",
     "candidateCount": 11,
     "candidates": [
@@ -10224,6 +10131,99 @@
     "sent": true,
     "pushTitle": "Breaking News",
     "pushBody": "Norse Atlantic suspends all flights, warns of bankruptcy without short-term financing",
+    "response": {
+      "pushed": 1,
+      "skipped": 0,
+      "tokens": 5
+    }
+  },
+  {
+    "timestamp": "2026-11-26T14:18:36.810Z",
+    "candidateCount": 10,
+    "candidates": [
+      {
+        "slug": "2026-11-26-spacex-shares-trump-accounts-musk-children",
+        "title": "Musk Pledges SpaceX Shares",
+        "category": "economy",
+        "eventCoverage": 358,
+        "importance": 6
+      },
+      {
+        "slug": "2026-11-26-kim-jong-un-tactical-nuclear-weapons-deployment",
+        "title": "Kim Displays Nuclear Warheads",
+        "category": "politics",
+        "eventCoverage": 333,
+        "importance": 6
+      },
+      {
+        "slug": "2026-11-26-bangkok-oil-depot-explosion-phra-khanong-evacuation",
+        "title": "Bangkok Refinery Explodes",
+        "category": "politics",
+        "eventCoverage": 144,
+        "importance": 6
+      },
+      {
+        "slug": "2026-11-26-makkah-pact-islamabad-meeting-saudi-houthi-war",
+        "title": "Makkah Pact Meets Islamabad",
+        "category": "politics",
+        "eventCoverage": 0,
+        "importance": 6
+      },
+      {
+        "slug": "2026-11-26-opec-plus-quota-rollover-january-iran-war-brent",
+        "title": "OPEC+ Weighs Quota Rollover",
+        "category": "economy",
+        "eventCoverage": 0,
+        "importance": 6
+      },
+      {
+        "slug": "2026-11-26-pakistan-fuel-cost-adjustment-83-paise-electricity-bills",
+        "title": "Pakistan Caps Fuel Surcharge",
+        "category": "economy",
+        "eventCoverage": 0,
+        "importance": 6
+      },
+      {
+        "slug": "2026-11-26-eu-chat-control-council-bypass-parliament-negotiators",
+        "title": "Council Eyes Chat Control Workaround",
+        "category": "tech",
+        "eventCoverage": 0,
+        "importance": 6
+      },
+      {
+        "slug": "2026-11-26-xinbang-indiemicro-auto-chip-acquisition-china",
+        "title": "Xinbang Swallows Indiemicro",
+        "category": "tech",
+        "eventCoverage": 0,
+        "importance": 6
+      },
+      {
+        "slug": "2026-11-26-thales-alenia-cargo-return-company-spin-out",
+        "title": "Thales Plans Cargo Spin-Out",
+        "category": "tech",
+        "eventCoverage": 0,
+        "importance": 6
+      },
+      {
+        "slug": "2026-11-26-most-distant-quasar-630-million-years-big-bang",
+        "title": "Record Quasar Discovered",
+        "category": "science",
+        "eventCoverage": 0,
+        "importance": 6
+      }
+    ],
+    "selected": {
+      "slug": "2026-11-26-kim-jong-un-tactical-nuclear-weapons-deployment",
+      "title": "Kim Displays Nuclear Warheads",
+      "category": "politics",
+      "body": "Analyst Ankit Panda counted 5 warhead designs in Kim's",
+      "eventCoverage": 333,
+      "importance": 6
+    },
+    "skipReason": null,
+    "sent": true,
+    "pushTitle": "Breaking News",
+    "pushBody": "Kim Jong Un orders wider deployment of tactical nuclear weapons, state media says",
     "response": {
       "pushed": 1,
       "skipped": 0,
