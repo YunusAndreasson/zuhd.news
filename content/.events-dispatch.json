@@ -2,17 +2,18 @@
   "items": {
     "fomc-2026-12": {
       "standingFingerprint": "7461ec820c9cf170",
-      "recentFingerprint": "5ec83034baa7aceb",
+      "recentFingerprint": "c9ac641d326adbf3",
       "prompt": "cc42a1f1",
       "standing": "The Federal Reserve's rate-setting committee, which meets eight times a year to set the overnight rate US banks lend at. Its decisions price dollar borrowing worldwide, from American mortgages to emerging-market debt.",
-      "recent": "Minutes showed almost all officials expect more rate hikes after US consumer prices rose 0.4% in October, and Goolsbee has left a larger-than-usual rise open for December. The meeting settles how fast Warsh's Fed tightens, with Bowman under an inspector general probe over a Bank of America dinner held the day after a rate vote.",
+      "recent": "US inflation hit 3.8% in October, and the minutes showed almost all officials expect more rate hikes. The open question is size: Goolsbee left a larger-than-usual rise on the table, while CME FedWatch shows zero chance of a half-point move. The committee also meets under a probe into Bowman addressing bankers the day after a rate vote.",
       "citations": [
+        "2026-11-25-us-pce-inflation-october-fed-december-hike",
         "2026-11-19-fed-minutes-rate-hike-risk-daly",
-        "2026-11-16-fed-hikes-return-hot-us-inflation-schmid",
         "2026-11-19-fed-goolsbee-larger-hike-ai-inflation",
+        "2026-11-23-fed-hike-bets-ai-rout-bessent-warning",
         "2026-11-24-fed-bowman-blackout-probe-bank-of-america-dinner"
       ],
-      "generatedAt": "2026-11-25T05:31:12.780Z"
+      "generatedAt": "2026-11-26T05:28:01.267Z"
     },
     "g20-2026-miami": {
       "standingFingerprint": "041eb1ecc79e970b",
@@ -27,68 +28,52 @@
     },
     "ecb-2026-12": {
       "standingFingerprint": "644eb225dab9953a",
-      "recentFingerprint": "cec2ab0244b2f8d3",
+      "recentFingerprint": "94f43e1ebe5e7bf2",
       "prompt": "cc42a1f1",
       "standing": "The European Central Bank's Governing Council, which meets eight times a year to set interest rates for the countries sharing the euro. Its deposit rate drives borrowing costs for some 350 million people, and the euro moves with it.",
-      "recent": "France's borrowing premium over Germany has hit 1.75 points, and the European Central Bank has so far left that spread to markets rather than step in. The council also meets just after Paris and Berlin sealed the succession: Spain takes the presidency and Germany's Markus Brunnermeier the chief economist's seat.",
+      "recent": "The council meets with its leadership settled by a deal Paris and Berlin sealed: Spain takes the presidency, and Germany the chief economist seat for Markus Brunnermeier. France's borrowing premium over Germany has hit 1.75 points, and the ECB has so far left France to markets, while Italy wants €5.9 billion from its banks next year.",
       "citations": [
         "2026-11-18-ecb-markets-discipline-france-debt",
         "2026-11-17-de-cos-ecb-president-brunnermeier-chief-economist",
-        "2026-11-18-ecb-succession-brunnermeier-paris-berlin"
+        "2026-11-18-ecb-succession-brunnermeier-paris-berlin",
+        "2026-11-13-intesa-italy-bank-levies-ecb-sovereign-debt"
       ],
-      "generatedAt": "2026-11-25T05:31:22.966Z"
+      "generatedAt": "2026-11-26T05:27:59.482Z"
     },
     "boe-2026-12": {
       "standingFingerprint": "498a0992d302cf13",
-      "recentFingerprint": "e14e6528be2be70d",
+      "recentFingerprint": "344c43f8357f5483",
       "prompt": "cc42a1f1",
       "standing": "The Bank of England's Monetary Policy Committee, nine members who vote eight times a year on Bank Rate. Their decision sets the price of UK mortgages and business loans, and sterling and gilt yields move with it.",
-      "recent": "UK inflation accelerated again in the latest figures and has now run above target for more than two years. That puts the Bank of England's decision on whether price growth that keeps climbing, rather than easing, calls for tighter policy or for patience, a question that sets borrowing costs for UK households and firms.",
+      "recent": "UK inflation accelerated again in October and has now run above target for more than two years. That makes this the last decision of the year a test of how much longer the committee will tolerate a miss that keeps lengthening. Its vote split will show whether patience on the committee is wearing thin.",
       "citations": [
         "2026-11-18-uk-inflation-3-6-october-bank-of-england"
       ],
-      "generatedAt": "2026-11-25T05:31:24.368Z"
+      "generatedAt": "2026-11-26T05:28:12.704Z"
     },
     "boj-2026-12": {
       "standingFingerprint": "b08124a86f654bb7",
-      "recentFingerprint": "6cccb6e8b2aa09c0",
+      "recentFingerprint": "c643555dec1971dc",
       "prompt": "cc42a1f1",
       "standing": "The Bank of Japan's policy board, which meets eight times a year to set the country's short-term interest rate. Its decisions move the yen and the yield on Japanese government debt, and reach borrowers far beyond Japan.",
-      "recent": "The yen breached 160 per dollar this month, and Washington sold $500 million of euros to buy it. Core inflation then came in at 2.2%, under the 2.3% forecast. The board weighs a currency that is pushing up the cost of Japan's defence plan against price data that gives it less reason to move.",
+      "recent": "The yen breached 160 per dollar, and Washington confirmed it sold $500 million of euros to buy yen. The weak yen is already raising the cost of Japan's defence plan and its flagship AI project, while core inflation came in at 2.2%, below the 2.3% forecast. The board weighs a currency under strain against softer prices.",
       "citations": [
         "2026-11-13-yen-breaches-160-us-confirms-500-million-intervention",
         "2026-11-20-japan-core-inflation-boj-hike-yen",
         "2026-11-22-japan-takaichi-defence-budget-weak-yen",
+        "2026-11-20-japan-noetra-sovereign-ai-cost-surge-weak-yen",
         "2026-11-12-yen-160-fed-hike-intervention-risk"
       ],
-      "generatedAt": "2026-11-25T05:31:26.664Z"
-    },
-    "fred-us-gdp-2026-11-25": {
-      "standingFingerprint": "f941ab836edf2e53",
-      "recentFingerprint": "903d899ff0a28674",
-      "prompt": "cc42a1f1",
-      "standing": "The Bureau of Economic Analysis's measure of US output, published each quarter as an advance estimate and then revised twice. It sets the growth figure the Federal Reserve, Treasury yields and the dollar trade on.",
-      "recent": "The dollar paused ahead of the release, with traders reading the US data for what it says about the Fed path. The figures land after reports that US consumers are holding up against inflation going into the holiday season, and this reading settles whether that spending has shown up in output, which is the growth picture the Fed weighs.",
-      "citations": [],
-      "generatedAt": "2026-11-25T05:31:13.628Z"
-    },
-    "fred-us-pce-2026-11-25": {
-      "standingFingerprint": "f7794ed88caf73b9",
-      "recentFingerprint": "902ccc95c9cb89f9",
-      "prompt": "cc42a1f1",
-      "standing": "The Bureau of Economic Analysis's monthly report on US personal income and spending, which carries the PCE price index the Federal Reserve targets at 2%. It sets the inflation read that rate expectations and the dollar trade on.",
-      "recent": "US consumers went into the holiday season still spending in the face of inflation. This release puts figures on that: how much households earned, how much they spent, and how fast the prices they paid rose. It settles whether incomes are keeping pace with that spending.",
-      "citations": [],
-      "generatedAt": "2026-11-24T05:26:54.537Z"
+      "generatedAt": "2026-11-26T05:28:13.409Z"
     },
     "fred-us-gdp-2026-12-02": {
       "standingFingerprint": "f941ab836edf2e53",
-      "recentFingerprint": "a473601bdffefa96",
+      "recentFingerprint": "07c0d96ec8580116",
       "prompt": "cc42a1f1",
       "standing": "The Bureau of Economic Analysis's measure of US output, published each quarter as an advance estimate and then revised twice. It sets the growth figure the Federal Reserve, Treasury yields and the dollar trade on.",
-      "recent": "US consumers have held up against inflation going into the holiday season, and the dollar has been trading on each US data release for what it says about the Fed path. This release settles how much of that consumer resilience showed up in output.",
+      "recent": "An upgrade to the last GDP figures has kept a December rate rise in play for the Fed, so this release lands on an open question: whether growth is strong enough to justify tightening again. With US consumers holding up against inflation into the holiday season, it tests how much of that strength holds.",
       "citations": [],
-      "generatedAt": "2026-11-25T05:31:10.518Z"
+      "generatedAt": "2026-11-26T05:27:59.852Z"
     },
     "fred-us-jobs-report-2026-12-04": {
       "standingFingerprint": "76dd59465c94d59d",
@@ -100,6 +85,6 @@
       "generatedAt": "2026-11-24T05:27:00.246Z"
     }
   },
-  "generatedAt": "2026-11-25T05:31:26.665Z",
+  "generatedAt": "2026-11-26T05:28:13.410Z",
   "windowDays": 14
 }
