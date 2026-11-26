@@ -1,105 +1,5 @@
 [
   {
-    "timestamp": "2026-11-05T14:17:21.022Z",
-    "candidateCount": 11,
-    "candidates": [
-      {
-        "slug": "2026-11-05-hormuz-tanker-mine-fire-shipping",
-        "title": "Tanker Hits Hormuz Mine",
-        "category": "economy",
-        "eventCoverage": 157,
-        "importance": 6
-      },
-      {
-        "slug": "2026-11-05-bank-of-england-raises-rates-inflation-warning",
-        "title": "Bank of England Hikes Rates",
-        "category": "economy",
-        "eventCoverage": 117,
-        "importance": 6
-      },
-      {
-        "slug": "2026-11-05-ukraine-strike-ryazan-oil-refinery",
-        "title": "Ryazan Refinery Appears Hit",
-        "category": "politics",
-        "eventCoverage": 88,
-        "importance": 6
-      },
-      {
-        "slug": "2026-11-05-nigeria-court-voids-atiku-adc-nomination",
-        "title": "Court Voids Atiku Nomination",
-        "category": "politics",
-        "eventCoverage": 84,
-        "importance": 6
-      },
-      {
-        "slug": "2026-11-05-lahore-court-pti-workers-detained-uae",
-        "title": "Court Rebukes Foreign Ministry",
-        "category": "politics",
-        "eventCoverage": 0,
-        "importance": 6
-      },
-      {
-        "slug": "2026-11-05-mubadala-energy-double-output-gas-egypt-nargis",
-        "title": "Mubadala Bets on Gas",
-        "category": "economy",
-        "eventCoverage": 0,
-        "importance": 6
-      },
-      {
-        "slug": "2026-11-05-ukraine-central-bank-opposes-crypto-bill",
-        "title": "Central Bank Opposes Crypto Bill",
-        "category": "economy",
-        "eventCoverage": 0,
-        "importance": 6
-      },
-      {
-        "slug": "2026-11-05-chainalysis-breach-agentic-ai-all-users",
-        "title": "Chainalysis Breach Exposes All Users",
-        "category": "tech",
-        "eventCoverage": 0,
-        "importance": 6
-      },
-      {
-        "slug": "2026-11-05-germany-interior-ministry-freedom-of-information-kritis",
-        "title": "Germany Curbs Information Freedom",
-        "category": "tech",
-        "eventCoverage": 0,
-        "importance": 6
-      },
-      {
-        "slug": "2026-11-05-tokenrhythm-wang-yunhe-neohorse-recursive-self-improvement",
-        "title": "TokenRhythm Releases NeoHorse",
-        "category": "tech",
-        "eventCoverage": 0,
-        "importance": 6
-      },
-      {
-        "slug": "2026-11-05-modelbest-minicpm-35b-model-runs-on-phone",
-        "title": "ModelBest Shrinks 35B Model",
-        "category": "tech",
-        "eventCoverage": 0,
-        "importance": 6
-      }
-    ],
-    "selected": {
-      "slug": "2026-11-05-hormuz-tanker-mine-fire-shipping",
-      "title": "Tanker Hits Hormuz Mine",
-      "category": "economy",
-      "body": "Another tanker hit a mine east of Hormuz, [Iran](country:IR)'s navy",
-      "eventCoverage": 157,
-      "importance": 6
-    },
-    "skipReason": null,
-    "sent": true,
-    "pushTitle": "Breaking News",
-    "pushBody": "Iran says tanker hits mine east of Hormuz",
-    "response": {
-      "pushed": 1,
-      "skipped": 0,
-      "tokens": 5
-    }
-  },
-  {
     "timestamp": "2026-11-05T18:14:28.540Z",
     "candidateCount": 14,
     "candidates": [
@@ -10245,6 +10145,99 @@
     "sent": true,
     "pushTitle": "Breaking News",
     "pushBody": "Iranian drone kills 2 Italian technicians in Kuwait, officials say",
+    "response": {
+      "pushed": 1,
+      "skipped": 0,
+      "tokens": 5
+    }
+  },
+  {
+    "timestamp": "2026-11-26T22:14:46.128Z",
+    "candidateCount": 10,
+    "candidates": [
+      {
+        "slug": "2026-11-26-nvidia-halts-ai-chip-shipments-southeast-asia-licence-rule",
+        "title": "Nvidia Freezes Southeast Asia Orders",
+        "category": "tech",
+        "eventCoverage": 216,
+        "importance": 6
+      },
+      {
+        "slug": "2026-11-26-bardella-antisemitic-remarks-recordings-national-rally",
+        "title": "Bardella Recordings Surface",
+        "category": "politics",
+        "eventCoverage": 192,
+        "importance": 6
+      },
+      {
+        "slug": "2026-11-26-uk-military-cannot-find-half-veteran-reserves-russia",
+        "title": "UK Reserve Half Missing",
+        "category": "politics",
+        "eventCoverage": 180,
+        "importance": 6
+      },
+      {
+        "slug": "2026-11-26-emefiele-naira-redesign-colour-swap-trial-testimony",
+        "title": "Investigator Disputes Emefiele Naira",
+        "category": "economy",
+        "eventCoverage": 0,
+        "importance": 6
+      },
+      {
+        "slug": "2026-11-26-dubai-islamic-bank-emirates-islamic-merger-largest-lender",
+        "title": "Dubai Islamic Buys Emirates Islamic",
+        "category": "economy",
+        "eventCoverage": 0,
+        "importance": 6
+      },
+      {
+        "slug": "2026-11-26-pakistan-petrol-diesel-price-cut-brent-levy",
+        "title": "Pakistan Trims Fuel Prices",
+        "category": "economy",
+        "eventCoverage": 0,
+        "importance": 6
+      },
+      {
+        "slug": "2026-11-26-pakistan-opposition-achakzai-national-government-crisis",
+        "title": "Opposition Alliance Proposes National Government",
+        "category": "politics",
+        "eventCoverage": 0,
+        "importance": 6
+      },
+      {
+        "slug": "2026-11-26-ajk-removes-rawalakot-mayor-anti-state-jaac",
+        "title": "Kashmir Removes Rawalakot Mayor",
+        "category": "politics",
+        "eventCoverage": 0,
+        "importance": 6
+      },
+      {
+        "slug": "2026-11-26-agunloye-mambilla-6bn-trial-efcc-no-case",
+        "title": "Agunloye Mambilla Case Closes",
+        "category": "politics",
+        "eventCoverage": 0,
+        "importance": 6
+      },
+      {
+        "slug": "2026-11-26-uk-national-cyber-action-plan-delayed-december",
+        "title": "UK Delays Cyber Action Plan",
+        "category": "tech",
+        "eventCoverage": 0,
+        "importance": 6
+      }
+    ],
+    "selected": {
+      "slug": "2026-11-26-nvidia-halts-ai-chip-shipments-southeast-asia-licence-rule",
+      "title": "Nvidia Freezes Southeast Asia Orders",
+      "category": "tech",
+      "body": "Nvidia stopped server shipments to [Malaysia](country:MY),",
+      "eventCoverage": 216,
+      "importance": 6
+    },
+    "skipReason": null,
+    "sent": true,
+    "pushTitle": "Breaking News",
+    "pushBody": "Nvidia halts server shipments to Malaysia, Singapore, Thailand, Indonesia",
     "response": {
       "pushed": 1,
       "skipped": 0,
