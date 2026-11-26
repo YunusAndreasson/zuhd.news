@@ -1,6 +1,7 @@
 import type { Article, Category, GroupedArticles } from '@shared/types';
 import { type RefObject, useCallback, useEffect, useRef } from 'react';
 import { API_BASE, CATEGORIES } from '../constants/theme';
+import { ambiguousArticleSlugs } from '../lib/article-identity';
 import { getSnapshot as getBookmarks } from '../lib/bookmark-store';
 import { fetchJson, HttpError } from '../lib/fetchJson';
 import { articleFromStory, isStoryPayload } from '../lib/story-payload';
@@ -18,17 +19,20 @@ export function useStoryOpener(
   return useCallback(
     async (slug: string) => {
       request.current?.abort();
-      for (const category of CATEGORIES) {
-        const article = groupedRef.current[category].find((a) => a.slug === slug);
-        if (article) {
-          onOpen(slug, article, category);
+      const grouped = groupedRef.current;
+      if (!ambiguousArticleSlugs(grouped, slug).has(slug)) {
+        for (const category of CATEGORIES) {
+          const article = grouped[category].find((a) => a.slug === slug);
+          if (article) {
+            onOpen(slug, article, category);
+            return;
+          }
+        }
+        const saved = getBookmarks().find((b) => b.article.slug === slug);
+        if (saved) {
+          onOpen(slug, saved.article, saved.category);
           return;
         }
-      }
-      const saved = getBookmarks().find((b) => b.article.slug === slug);
-      if (saved) {
-        onOpen(slug, saved.article, saved.category);
-        return;
       }
       const controller = new AbortController();
       request.current = controller;

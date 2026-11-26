@@ -66,6 +66,15 @@ it('supports every platform configuration choice, including sections with an emp
   expect(options.appearance.values.map(({ value }) => value)).toEqual(['system', 'light', 'dark']);
 });
 
+it('does not publish a widget link for two different articles sharing a slug', () => {
+  const first = { ...article('same-link', now - 60_000), title: 'Report from Lagos', lat: 6.52 };
+  const second = { ...first, title: 'Report from Sapporo', lat: 43.06, publishedAt: now };
+  const result = selectNewsWidget(feed({ politics: [first], science: [second] }));
+  expect(result?.stories?.latest).toEqual([]);
+  expect(result?.stories?.politics).toEqual([]);
+  expect(result?.stories?.science).toEqual([]);
+});
+
 it('schedules the stale boundary once and skips times that already passed', () => {
   const fresh = newsTimelineTimes(now + 5 * 60_000, now);
   expect(fresh[0]).toBe(now + 5 * 60_000);

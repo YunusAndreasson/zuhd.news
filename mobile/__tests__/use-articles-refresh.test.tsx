@@ -118,6 +118,47 @@ it('keeps the grouped stories when only the build stamp changes', async () => {
   expect(hook.result.current.grouped).toBe(before);
 });
 
+it('keeps an opened article intact across a colliding arrival and accepts a complete correction', async () => {
+  const hook = mount();
+  const base = mockFeed('old', ['linked']).categories.politics?.[0];
+  if (!base) throw new Error('Missing test article');
+  const article: Article = {
+    ...base,
+    title: 'Lagos report',
+    location: 'Lagos',
+    lat: 6.52,
+    lng: 3.38,
+    sentences: ['The original Lagos body.'],
+  };
+  const replacement = {
+    ...article,
+    title: 'Corrected Sapporo report',
+    location: 'Sapporo',
+    lat: 43.06,
+    lng: 141.35,
+    sentences: ['The corrected Sapporo body.'],
+  };
+  await act(async () => hook.result.current.injectArticle(article, 'politics'));
+  await act(async () => {
+    hook.client.setQueryData(['feed'], {
+      generated: 'collision',
+      categories: { politics: [article], science: [replacement] },
+      briefing: null,
+    });
+  });
+  expect(hook.result.current.grouped.politics).toEqual([article]);
+  expect(hook.result.current.grouped.science).toEqual([]);
+  await act(async () => {
+    hook.client.setQueryData(['feed'], {
+      generated: 'corrected',
+      categories: { science: [replacement] },
+      briefing: null,
+    });
+  });
+  expect(hook.result.current.grouped.politics).toEqual([]);
+  expect(hook.result.current.grouped.science).toEqual([replacement]);
+});
+
 it('a pull joins the launch check and receives its added stories', async () => {
   const probe = deferred<string>();
   jest.mocked(probeGenerated).mockReturnValue(probe.promise);

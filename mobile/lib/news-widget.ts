@@ -1,6 +1,7 @@
 import type { Category, FeedResponse } from '@shared/types';
 import type { AppearanceMode } from '../constants/theme';
 import options from '../widgets/news-options.json';
+import { withoutAmbiguousArticles } from './article-identity';
 import { articleTime } from './article-utils';
 
 export type NewsSection = 'latest' | Category;
@@ -38,10 +39,11 @@ export const NEWS_HOME = 'zuhd-news:///';
 export function selectNewsWidget(feed: FeedResponse): NewsWidgetProps | undefined {
   const generated = Date.parse(feed.generated);
   if (!Number.isFinite(generated)) return;
+  const { categories } = withoutAmbiguousArticles(feed);
   const all: NewsStory[] = [];
   for (const value of NEWS_SECTIONS) {
     if (value === 'latest') continue;
-    for (const article of feed.categories[value] ?? []) {
+    for (const article of categories[value] ?? []) {
       const published = articleTime(article);
       const title = article.title.trim();
       if (!title || !/^[a-z0-9][a-z0-9-]*$/i.test(article.slug) || !Number.isFinite(published))

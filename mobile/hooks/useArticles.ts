@@ -13,6 +13,7 @@ import {
   probeGenerated,
   retryFailedSnapshots,
 } from '../lib/arrival';
+import { withoutAmbiguousArticles } from '../lib/article-identity';
 import { collectNewArticles, isOlderFeed } from '../lib/feed-diff';
 import { feedCache, readStarter } from '../lib/feed-source';
 import { flushStores } from '../lib/flush-stores';
@@ -103,6 +104,7 @@ export function useArticles(
   // written on every fetch) never overwrites it.
   const query = useQuery({
     ...feedQuery,
+    select: withoutAmbiguousArticles,
     initialData: () => feedCache.readSync() ?? undefined,
     initialDataUpdatedAt: Date.now,
     // Only when there is nothing to show. Once there is, a newer build

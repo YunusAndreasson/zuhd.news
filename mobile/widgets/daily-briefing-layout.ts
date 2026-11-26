@@ -1,5 +1,6 @@
 import { createWidget, type WidgetEnvironment } from 'expo-widgets';
 import { DARK_PAPER, LIGHT_PAPER, SPACING } from '../constants/paper';
+import { briefingFrame } from '../lib/briefing-widget-layout';
 import type { WidgetFace } from '../lib/daily-widget';
 
 export type BriefingEnvironment = WidgetEnvironment & {
@@ -21,11 +22,12 @@ export function dailyBriefingWidget(
     p: WidgetFace,
     env: BriefingEnvironment,
     tokens: typeof briefingWidgetDesign,
+    frame: typeof briefingFrame,
   ) => React.JSX.Element,
 ) {
   // Widget functions are serialized without their JS closures.
   const source = `function(props, env) {
-    return (${String(layout)})(props, env, ${JSON.stringify(briefingWidgetDesign)});
+    return (${String(layout)})(props, env, ${JSON.stringify(briefingWidgetDesign)}, ${String(briefingFrame)});
   }`;
   return createWidget(
     'DailyBriefing',

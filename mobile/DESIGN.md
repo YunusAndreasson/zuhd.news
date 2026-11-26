@@ -370,7 +370,9 @@ text needs the space. A reader can disable maps in the platform editor.
 The shared paper and spacing tokens live in `constants/paper.ts` so the
 embedded widget renderer can load them without mounting the app. Widget text
 uses native styles and size limits because the launcher and WidgetKit control
-the available space. Daily briefing keeps its printed UTC edition date.
+the available space. Daily briefing keeps its printed UTC edition date. Its
+action sits on opaque paper in a dedicated footer. Cover art and market charts
+use the space above it.
 
 ## Accessibility checklist
 

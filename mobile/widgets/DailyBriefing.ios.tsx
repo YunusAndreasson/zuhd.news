@@ -1,4 +1,4 @@
-import { HStack, Image, Spacer, Text, VStack, ZStack } from '@expo/ui/swift-ui';
+import { HStack, Image, Spacer, Text, VStack } from '@expo/ui/swift-ui';
 import {
   accessibilityElement,
   accessibilityLabel,
@@ -9,6 +9,7 @@ import {
   font,
   foregroundStyle,
   frame,
+  layoutPriority,
   padding,
   privacySensitive,
   resizable,
@@ -31,9 +32,8 @@ function DailyBriefing(
   const dark = env.colorScheme === 'dark';
   const full = !env.widgetRenderingMode || env.widgetRenderingMode === 'fullColor';
   const photo = full && !env.isLuminanceReduced && env.levelOfDetail !== 'simplified';
-  const ink = dark ? '#FAFAFA' : '#1a1a1a';
-  const paper = dark ? '#161619' : '#f5f2ed';
-  const quiet = dark ? '#b3b3b3' : '#626262';
+  const theme = dark ? d.dark : d.light;
+  const { textEmphasis: ink, widgetPaper: paper, textSecondary: quiet, rule } = theme;
   const wide = family === 'systemMedium' && !!props.subject && !env.largeText;
   const publicAction = props.publicAction ?? 'Open zuhd.news';
   const arabic = env.language === 'ar';
@@ -138,6 +138,47 @@ function DailyBriefing(
         {txt(title, 14, false, true)}
       </VStack>
     );
+  const action = props.example
+    ? 'Example'
+    : props.playable && (!props.action || props.action === 'Daily briefing')
+      ? 'Listen'
+      : (props.action ?? 'Open edition');
+  const footer = (
+    <VStack alignment="leading" spacing={0} modifiers={[layoutPriority(1)]}>
+      <Spacer
+        modifiers={[frame({ maxWidth: 10000, minHeight: 1, maxHeight: 1 }), background(rule)]}
+      />
+      <HStack
+        spacing={d.space.sm}
+        modifiers={[
+          padding({ horizontal: d.space.md, vertical: d.space.xs }),
+          frame({ minHeight: 40 }),
+        ]}
+      >
+        <Image
+          systemName={
+            props.action === 'Listened'
+              ? 'checkmark.circle.fill'
+              : props.playable
+                ? 'play.circle.fill'
+                : 'book.circle'
+          }
+          size={20}
+          modifiers={inkMods}
+        />
+        <Text
+          modifiers={[
+            font({ family: 'SourceSans3-SemiBold', size: 15, textStyle: 'callout' }),
+            ...inkMods,
+          ]}
+        >
+          {action}
+        </Text>
+        <Spacer minLength={0} />
+        {wide ? txt(props.minutes ?? '', 13, false, true) : null}
+      </HStack>
+    </VStack>
+  );
   if (wide) {
     const chart = full ? (dark ? props.chartDark : props.chartLight) : props.chartMono;
     return (
@@ -166,39 +207,11 @@ function DailyBriefing(
           </HStack>
           {props.move ? txt(props.move, 13, false, true) : null}
         </VStack>
-        <Spacer />
-        <Spacer
-          modifiers={[
-            frame({ maxWidth: 10000, minHeight: 1, maxHeight: 1 }),
-            background(dark ? '#39393b' : '#d6d2cd'),
-          ]}
-        />
-        <HStack spacing={8} modifiers={[padding({ horizontal: 16 }), frame({ height: 45 })]}>
-          <Image
-            systemName={
-              props.action === 'Listened'
-                ? 'checkmark.circle.fill'
-                : props.playable
-                  ? 'play.circle.fill'
-                  : 'book.circle'
-            }
-            size={24}
-            modifiers={inkMods}
-          />
-          {txt(props.example ? 'Example' : (props.action ?? name), 15, true)}
-          <Spacer />
-          {txt(props.minutes ?? '', 13, false, true)}
-        </HStack>
+        <Spacer minLength={0} />
+        {footer}
       </VStack>
     );
   }
-  const bottom = props.example
-    ? 'Example'
-    : props.playable
-      ? 'Listen'
-      : props.date
-        ? 'Open edition'
-        : title;
   return (
     <VStack
       alignment="leading"
@@ -213,45 +226,21 @@ function DailyBriefing(
             {txt(props.minutes.split(' ')[0] ?? '', photo ? 39 : 42, true)}
             {txt('min', 23, true)}
           </HStack>
-        ) : (
-          txt(
-            props.playable
-              ? 'Listen'
-              : props.action === 'Audio pending'
-                ? 'Pending'
-                : 'Open edition',
-            23,
-            true,
-          )
-        )}
-      </VStack>
-      <Spacer />
-      <ZStack
-        alignment="leading"
-        modifiers={[frame({ maxWidth: 10000, minHeight: 46, maxHeight: 46 }), clipped()]}
-      >
-        {photo && props.cover ? (
-          <Image
-            uiImage={props.cover}
-            modifiers={[
-              resizable(),
-              aspectRatio({ contentMode: 'fill' }),
-              frame({ maxWidth: 10000, minHeight: 46, maxHeight: 46 }),
-              clipped(),
-            ]}
-          />
         ) : null}
-        <HStack
-          spacing={6}
+      </VStack>
+      <Spacer minLength={0} />
+      {photo && !env.largeText && props.cover ? (
+        <Image
+          uiImage={props.cover}
           modifiers={[
-            padding({ horizontal: 16 }),
-            ...(photo && props.cover ? [foregroundStyle('white')] : inkMods),
+            resizable(),
+            aspectRatio({ contentMode: 'fill' }),
+            frame({ maxWidth: 10000, minHeight: 26, maxHeight: 26 }),
+            clipped(),
           ]}
-        >
-          <Image systemName={props.playable ? 'play.fill' : 'book'} size={12} />
-          <Text>{bottom}</Text>
-        </HStack>
-      </ZStack>
+        />
+      ) : null}
+      {footer}
     </VStack>
   );
 }
